@@ -55,6 +55,8 @@
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
+#include "res/text/bank/battle_tower.h"
+
 typedef struct {
     s16 unk_00;
     s16 unk_02;
@@ -435,14 +437,13 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
     return;
 }
 
-// See message_bank_battle_tower.gmm
-static const u16 highestIVMessageIndices[] = {
-    122,
-    123,
-    124,
-    127,
-    125,
-    126
+static const u16 sHighestIVMessageIndices[] = {
+    pl_msg_00000304_00122,
+    pl_msg_00000304_00123,
+    pl_msg_00000304_00124,
+    pl_msg_00000304_00127,
+    pl_msg_00000304_00125,
+    pl_msg_00000304_00126
 };
 
 BOOL ScrCmd_JudgeStats(ScriptContext *ctx)
@@ -485,7 +486,7 @@ BOOL ScrCmd_JudgeStats(ScriptContext *ctx)
         }
     }
 
-    *highestIVIndex = highestIVMessageIndices[*highestIVIndex];
+    *highestIVIndex = sHighestIVMessageIndices[*highestIVIndex];
     return 0;
 }
 

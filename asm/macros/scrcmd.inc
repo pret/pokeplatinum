@@ -4078,7 +4078,7 @@
     .short 749
     .endm
 
-    .macro ScrCmd_JudgeStats arg0, arg1, arg2, arg3
+    .macro JudgeStats arg0, arg1, arg2, arg3
     .short 750
     .short \arg0
     .short \arg1
