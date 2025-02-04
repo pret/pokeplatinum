@@ -5,20 +5,18 @@
 
 #include "struct_defs/struct_0200C738.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
-
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "math.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 
 typedef struct {
     u8 unk_00;
@@ -84,16 +82,16 @@ static void ov77_021D6670()
     const int v0 = 76;
 
     {
-        UnkStruct_ov22_022559F8 v1 = {
+        CharTransferTemplate v1 = {
             1, 0, 0, v0
         };
 
-        sub_0201E86C(&v1);
+        CharTransfer_Init(&v1);
     }
 
-    sub_0201F834(1, v0);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(1, v0);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 static void ov77_021D66A0(UnkStruct_ov77_021D6800 *param0, CellActorInitParamsEx *param1, CellActorResourceData *param2)
@@ -209,8 +207,8 @@ static void ov77_021D6800(UnkStruct_ov77_021D6800 *param0)
     param0->unk_1A0[2] = SpriteResourceCollection_Add(param0->unk_190[2], 128, 5, 0, 0, 2, v1);
     param0->unk_1A0[3] = SpriteResourceCollection_Add(param0->unk_190[3], 128, 6, 0, 0, 3, v1);
 
-    sub_0200A328(param0->unk_1A0[0]);
-    sub_0200A5C8(param0->unk_1A0[1]);
+    SpriteTransfer_RequestChar(param0->unk_1A0[0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[1]);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -220,8 +218,8 @@ static void ov77_021D691C(UnkStruct_ov77_021D6800 *param0)
 {
     u8 v0;
 
-    sub_0200A4E4(param0->unk_1A0[0]);
-    sub_0200A6DC(param0->unk_1A0[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_1A0[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_190[v0]);
@@ -229,8 +227,8 @@ static void ov77_021D691C(UnkStruct_ov77_021D6800 *param0)
 
     CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 }
 
 static void ov77_021D6964(UnkStruct_ov77_021D6800 *param0)

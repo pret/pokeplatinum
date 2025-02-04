@@ -17,6 +17,7 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
+#include "char_transfer.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -29,14 +30,20 @@
 #include "text.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_0201E86C.h"
 
-void sub_0208A3F4 (UnkStruct_02089688 * param0)
+void sub_0208A3F4(UnkStruct_02089688 *param0)
 {
     param0->unk_2C0.unk_04 = sub_0200C6E4(101);
     {
         const UnkStruct_ov104_0224133C v0 = {
-            0, 128, 0, 32, 0, 128, 0, 32,
+            0,
+            128,
+            0,
+            32,
+            0,
+            128,
+            0,
+            32,
         };
         const UnkStruct_ov104_022412F4 v1 = {
             48 + 48, 1024 * 0x40, 512 * 0x20, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_32K
@@ -48,7 +55,12 @@ void sub_0208A3F4 (UnkStruct_02089688 * param0)
     {
         BOOL v2;
         const UnkStruct_ov104_02241308 v3 = {
-            48 + 48, 16 + 16, 64, 64, 16, 16,
+            48 + 48,
+            16 + 16,
+            64,
+            64,
+            16,
+            16,
         };
 
         param0->unk_2C0.unk_08 = sub_0200C704(param0->unk_2C0.unk_04);
@@ -61,12 +73,12 @@ void sub_0208A3F4 (UnkStruct_02089688 * param0)
     }
 }
 
-void sub_0208A490 (UnkStruct_02089688 * param0)
+void sub_0208A490(UnkStruct_02089688 *param0)
 {
-    NARC * v0;
+    NARC *v0;
     BgConfig *v1;
-    SpriteRenderer * v2;
-    SpriteGfxHandler * v3;
+    SpriteRenderer *v2;
+    SpriteGfxHandler *v3;
     PaletteData *v4;
 
     v2 = param0->unk_2C0.unk_04;
@@ -107,7 +119,7 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
     }
 }
 
-void sub_0208A6CC (UnkStruct_02089688 * param0)
+void sub_0208A6CC(UnkStruct_02089688 *param0)
 {
     int v0;
 
@@ -133,6 +145,7 @@ void sub_0208A6CC (UnkStruct_02089688 * param0)
 
 extern void _u32_div_f(void);
 
+// clang-format off
 asm void sub_0208A758 (UnkStruct_02089688 * param0)
 {
     push {r4, r5, r6, r7, lr}
@@ -294,12 +307,13 @@ asm void sub_0208A758 (UnkStruct_02089688 * param0)
     add sp, #0x44
     pop {r4, r5, r6, r7, pc}
 }
+// clang-format on
 
-void sub_0208A8A0 (UnkStruct_02089688 * param0)
+void sub_0208A8A0(UnkStruct_02089688 *param0)
 {
     SpriteTemplate v0;
-    SpriteRenderer * v1;
-    SpriteGfxHandler * v2;
+    SpriteRenderer *v1;
+    SpriteGfxHandler *v2;
     PaletteData *v3;
 
     v1 = param0->unk_2C0.unk_04;
@@ -351,11 +365,11 @@ void sub_0208A8A0 (UnkStruct_02089688 * param0)
     sub_0208AAB4(param0, 2, 0);
 }
 
-void sub_0208A9BC (UnkStruct_02089688 * param0)
+void sub_0208A9BC(UnkStruct_02089688 *param0)
 {
     SpriteTemplate v0;
-    SpriteRenderer * v1;
-    SpriteGfxHandler * v2;
+    SpriteRenderer *v1;
+    SpriteGfxHandler *v2;
     PaletteData *v3;
 
     v1 = param0->unk_2C0.unk_04;
@@ -401,7 +415,7 @@ void sub_0208A9BC (UnkStruct_02089688 * param0)
     }
 }
 
-void sub_0208AAB4 (UnkStruct_02089688 * param0, int param1, BOOL param2)
+void sub_0208AAB4(UnkStruct_02089688 *param0, int param1, BOOL param2)
 {
     if (param2 == 1) {
         SpriteActor_EnableObject(param0->unk_1F0[param1].unk_0C, 1);
@@ -410,10 +424,10 @@ void sub_0208AAB4 (UnkStruct_02089688 * param0, int param1, BOOL param2)
     }
 }
 
-void sub_0208AAE4 (UnkStruct_02089688 * param0, int param1)
+void sub_0208AAE4(UnkStruct_02089688 *param0, int param1)
 {
     s16 v0, v1;
-    CellActorData * v2;
+    CellActorData *v2;
 
     if (param1 < param0->unk_3C4) {
         return;
@@ -426,7 +440,7 @@ void sub_0208AAE4 (UnkStruct_02089688 * param0, int param1)
     SpriteActor_SetSpritePositionXY(param0->unk_1F0[0].unk_0C, v0, v1 + 16);
 }
 
-void sub_0208AB2C (UnkStruct_02089688 * param0, int param1)
+void sub_0208AB2C(UnkStruct_02089688 *param0, int param1)
 {
     s16 v0, v1;
 
@@ -436,7 +450,7 @@ void sub_0208AB2C (UnkStruct_02089688 * param0, int param1)
     SpriteActor_SetSpritePositionXY(param0->unk_1F0[1].unk_0C, v0, v1);
 }
 
-void sub_0208AB6C (UnkStruct_02089688 * param0, int param1, int param2)
+void sub_0208AB6C(UnkStruct_02089688 *param0, int param1, int param2)
 {
     s16 v0, v1;
 
@@ -446,7 +460,7 @@ void sub_0208AB6C (UnkStruct_02089688 * param0, int param1, int param2)
     SpriteActor_SetSpritePositionXY(param0->unk_1F0[param2].unk_0C, v0, v1);
 }
 
-void sub_0208ABB4 (UnkStruct_02089688 * param0)
+void sub_0208ABB4(UnkStruct_02089688 *param0)
 {
     sub_0200D330(param0->unk_1F0[0].unk_0C);
     sub_0200D330(param0->unk_1F0[1].unk_0C);
@@ -495,7 +509,7 @@ void sub_0208ABB4 (UnkStruct_02089688 * param0)
     }
 }
 
-static void sub_0208AC80 (FontOAM * param0, int param1, int param2)
+static void sub_0208AC80(FontOAM *param0, int param1, int param2)
 {
     int v0;
     int v1;
@@ -505,7 +519,7 @@ static void sub_0208AC80 (FontOAM * param0, int param1, int param2)
     }
 }
 
-void sub_0208AC8C (UnkStruct_02089688 * param0)
+void sub_0208AC8C(UnkStruct_02089688 *param0)
 {
     int v0;
     s16 v1, v2;
@@ -544,7 +558,7 @@ void sub_0208AC8C (UnkStruct_02089688 * param0)
     }
 }
 
-int sub_0208AD98 (int param0, BOOL param1)
+int sub_0208AD98(int param0, BOOL param1)
 {
     int v0 = 0;
 
@@ -557,7 +571,7 @@ int sub_0208AD98 (int param0, BOOL param1)
     return v0;
 }
 
-void sub_0208ADA4 (UnkStruct_02089688 * param0)
+void sub_0208ADA4(UnkStruct_02089688 *param0)
 {
     int v0;
 
@@ -570,7 +584,7 @@ void sub_0208ADA4 (UnkStruct_02089688 * param0)
     }
 }
 
-void sub_0208ADE4 (UnkStruct_02089688 * param0, int param1)
+void sub_0208ADE4(UnkStruct_02089688 *param0, int param1)
 {
     int v0;
     int v1;
@@ -632,10 +646,10 @@ void sub_0208ADE4 (UnkStruct_02089688 * param0, int param1)
     }
 }
 
-static inline void inline_0208AF44 (UnkStruct_02089688 * param0, int param1, s16 param2, s16 param3)
+static inline void inline_0208AF44(UnkStruct_02089688 *param0, int param1, s16 param2, s16 param3)
 {
     s16 v0, v1;
-    UnkStruct_0208AF44 * v2;
+    UnkStruct_0208AF44 *v2;
 
     v2 = &param0->unk_00[param1];
 
@@ -647,7 +661,7 @@ static inline void inline_0208AF44 (UnkStruct_02089688 * param0, int param1, s16
     v2->unk_10->rect.right = v0 + param2;
 }
 
-void sub_0208AF44 (UnkStruct_02089688 * param0)
+void sub_0208AF44(UnkStruct_02089688 *param0)
 {
     int v0;
     s16 v1;
@@ -666,42 +680,42 @@ void sub_0208AF44 (UnkStruct_02089688 * param0)
     }
 }
 
-void sub_0208AFCC (UnkStruct_02089688 * param0)
+void sub_0208AFCC(UnkStruct_02089688 *param0)
 {
     param0->unk_2C0.unk_8C = sub_02012744(2, 101);
     Font_InitManager(FONT_SUBSCREEN, 101);
 }
 
-void sub_0208AFE8 (UnkStruct_02089688 * param0)
+void sub_0208AFE8(UnkStruct_02089688 *param0)
 {
     Font_Free(FONT_SUBSCREEN);
     sub_02012870(param0->unk_2C0.unk_90[0]);
-    sub_0201EE28(&param0->unk_2C0.unk_98[0]);
+    CharTransfer_ClearRange(&param0->unk_2C0.unk_98[0]);
     sub_02012870(param0->unk_2C0.unk_90[1]);
-    sub_0201EE28(&param0->unk_2C0.unk_98[1]);
+    CharTransfer_ClearRange(&param0->unk_2C0.unk_98[1]);
     sub_020127BC(param0->unk_2C0.unk_8C);
 }
 
-void sub_0208B028 (UnkStruct_02089688 * param0)
+void sub_0208B028(UnkStruct_02089688 *param0)
 {
     sub_0200CD7C(param0->unk_2C0.unk_10, 2, param0->unk_2C0.unk_04, param0->unk_2C0.unk_08, 14, 7, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1003);
 }
 
-void sub_0208B064 (UnkStruct_02089688 * param0)
+void sub_0208B064(UnkStruct_02089688 *param0)
 {
     sub_0208B028(param0);
     sub_0208B090(param0, 0, 78, 165, 0);
     sub_0208B090(param0, 1, 172, 165, 0);
 }
 
-void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int param3, int param4)
+void sub_0208B090(UnkStruct_02089688 *param0, int param1, int param2, int param3, int param4)
 {
     s16 v0, v1;
     UnkStruct_020127E8 v2;
-    Strbuf* v3;
+    Strbuf *v3;
     int v4;
     int v5;
-    MessageLoader * v6;
+    MessageLoader *v6;
     Window v7;
 
     v6 = MessageLoader_Init(0, 26, 212, 101);
@@ -716,7 +730,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     v4 = 1003;
     v5 = sub_02012898(&v7, NNS_G2D_VRAM_TYPE_2DMAIN, 101);
 
-    sub_0201ED94(v5, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_2C0.unk_98[param1]);
+    CharTransfer_AllocRange(v5, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_2C0.unk_98[param1]);
 
     v0 = (param0->unk_2C0.unk_18[param1 + 26].rect.left + param0->unk_2C0.unk_18[param1 + 26].rect.right) / 2;
     v0 -= 40;
@@ -728,7 +742,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     v2.unk_08 = sub_0200D9B0(param0->unk_2C0.unk_08);
     v2.unk_0C = sub_0200D04C(param0->unk_2C0.unk_08, v4);
     v2.unk_10 = NULL;
-    v2.unk_14 = param0->unk_2C0.unk_98[param1].unk_04;
+    v2.unk_14 = param0->unk_2C0.unk_98[param1].offset;
     v2.unk_18 = v0;
     v2.unk_1C = v1;
     v2.unk_20 = 0;
@@ -754,10 +768,10 @@ void sub_0208B1C4(BgConfig *param0, Window *param1, int param2, int param3, int 
     sub_0208B230(param1, param8);
 }
 
-void sub_0208B230 (Window * param0, int param1)
+void sub_0208B230(Window *param0, int param1)
 {
-    MessageLoader * v0;
-    Strbuf* v1;
+    MessageLoader *v0;
+    Strbuf *v1;
 
     Window_FillTilemap(param0, 15);
 

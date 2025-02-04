@@ -10,7 +10,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -23,6 +22,7 @@
 #include "overlay017/struct_ov17_0223F744.h"
 
 #include "bg_window.h"
+#include "char_transfer.h"
 #include "font.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
@@ -38,7 +38,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_0201E86C.h"
 #include "unk_02024220.h"
 
 FS_EXTERN_OVERLAY(overlay11);
@@ -115,7 +114,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkSt
 {
     UnkStruct_020127E8 v0;
     Window v1;
-    SpriteManagerAllocation v2;
+    CharTransferAllocation v2;
     int v3;
     FontOAM *v4;
     int v5, v6;
@@ -137,7 +136,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkSt
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, param0);
-    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
+    CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
     if (param12 == 1) {
         param10 -= v5 / 2;
@@ -150,7 +149,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkSt
     v0.unk_08 = sub_0200D9B0(param2);
     v0.unk_0C = sub_0200D04C(param2, param9);
     v0.unk_10 = NULL;
-    v0.unk_14 = v2.unk_04;
+    v0.unk_14 = v2.offset;
     v0.unk_18 = param10;
     v0.unk_1C = param11;
     v0.unk_20 = param13;
@@ -175,7 +174,7 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkSt
 void ov17_0223F2E4(UnkStruct_ov17_0223F2E4 *param0)
 {
     sub_02012870(param0->unk_00);
-    sub_0201EE28(&param0->unk_04);
+    CharTransfer_ClearRange(&param0->unk_04);
 }
 
 void ov17_0223F2F8(UnkStruct_ov17_0223F2E4 *param0, int param1, int param2, int param3)

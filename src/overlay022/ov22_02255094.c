@@ -10,26 +10,25 @@
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay022/struct_ov22_02255CB8.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "pltt_transfer.h"
 #include "resource_collection.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_02015064.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_0202419C.h"
 
 static void ov22_02255634(void);
@@ -172,7 +171,7 @@ void ov22_02255248(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BO
     SpriteResource *v0;
 
     v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_48[0], param1, param2, param3, param5, param4, 14);
-    sub_0200A3DC(v0);
+    SpriteTransfer_RequestCharAtEnd(v0);
 }
 
 void ov22_02255268(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5, int param6)
@@ -180,7 +179,7 @@ void ov22_02255268(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BO
     SpriteResource *v0;
 
     v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_48[1], param1, param2, param3, param6, param4, param5, 14);
-    sub_0200A640(v0);
+    SpriteTransfer_RequestPlttFreeSpace(v0);
 }
 
 void ov22_0225528C(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4)
@@ -690,19 +689,19 @@ static void ov22_022559E0(UnkStruct_ov22_0225A0E4 *param0)
 static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             8,
             0x8000,
             0x4000,
             14
         };
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834(5, 14);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(5, 14);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 
     NNS_G2dInitOamManagerModule();
 
@@ -728,8 +727,8 @@ static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0)
         }
     }
 
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
     sub_0200A878();
 }
 

@@ -23,8 +23,8 @@
 #include "pokemon_icon.h"
 #include "ribbon.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
+#include "vram_transfer.h"
 
 static void SetTypeIcon(PokemonSummaryScreen *summaryScreen, u8 spriteIndex, u8 param2, u8 type);
 static void SetMonAndTypeIcons(PokemonSummaryScreen *summaryScreen);
@@ -220,7 +220,7 @@ void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScree
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
-    VRAMTransferManager_New(32, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    VramTransfer_New(32, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     summaryScreen->renderer = sub_0200C6E4(HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->gfxHandler = sub_0200C704(summaryScreen->renderer);

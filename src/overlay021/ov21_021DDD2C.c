@@ -24,13 +24,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
-#include "unk_0201DBEC.h"
 #include "unk_02023FCC.h"
+#include "vram_transfer.h"
 
 typedef struct {
     UnkStruct_ov21_021E68F4 *unk_00;
@@ -408,7 +408,7 @@ static void ov21_021DE1A4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
 
     param0->unk_04[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 105, 1, 105 + 6000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
-    sub_0200A3DC(param0->unk_04[0]);
+    SpriteTransfer_RequestCharAtEnd(param0->unk_04[0]);
     SpriteResource_ReleaseData(param0->unk_04[0]);
 
     param0->unk_04[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v1, 103, 1, 103 + 6000, 2, param2);
@@ -419,7 +419,7 @@ static void ov21_021DE224(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
 {
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
 
-    sub_0200A4E4(param0->unk_04[0]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_04[0]);
 
     SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_04[0]);
     SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_04[2]);
@@ -649,7 +649,7 @@ static void ov21_021DE4D4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
             break;
         }
 
-        v2 = sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_SUB, 2 * 32, &((u8 *)(param0->unk_20->pRawData))[(v1 * 32)], 32);
+        v2 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_SUB, 2 * 32, &((u8 *)(param0->unk_20->pRawData))[(v1 * 32)], 32);
         GF_ASSERT(v2);
     }
 }

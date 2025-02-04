@@ -22,12 +22,12 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_0200679C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200F174.h"
 
 typedef struct {
@@ -164,8 +164,8 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         }
         break;
     case 7:
-        sub_0200A4E4(v0->unk_35C[0]);
-        sub_0200A6DC(v0->unk_35C[1]);
+        SpriteTransfer_ResetCharTransfer(v0->unk_35C[0]);
+        SpriteTransfer_ResetPlttTransfer(v0->unk_35C[1]);
 
         for (v2 = 0; v2 < 4; v2++) {
             SpriteResourceCollection_Delete(v0->unk_34C[v2]);
@@ -452,8 +452,8 @@ static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
         NARC_dtor(v1);
     }
 
-    sub_0200A3DC(param0->unk_35C[0]);
-    sub_0200A640(param0->unk_35C[1]);
+    SpriteTransfer_RequestCharAtEnd(param0->unk_35C[0]);
+    SpriteTransfer_RequestPlttFreeSpace(param0->unk_35C[1]);
 }
 
 static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5)

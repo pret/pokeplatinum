@@ -29,11 +29,11 @@
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 
 #include "res/text/bank/pokedex.h"
 
@@ -349,12 +349,12 @@ static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, UnkSt
 
     heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], pokedexGraphicsNarc, 93, 1, 93 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
-    sub_0200A3DC(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES]);
+    SpriteTransfer_RequestCharAtEnd(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES]);
     SpriteResource_ReleaseData(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES]);
 
     heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE] = SpriteResourceCollection_AddPaletteFrom(v0->unk_13C[1], pokedexGraphicsNarc, 14, 0, 14 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, heapID);
 
-    sub_0200A640(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE]);
+    SpriteTransfer_RequestPlttFreeSpace(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE]);
     SpriteResource_ReleaseData(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE]);
 
     heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_SPRITE] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], pokedexGraphicsNarc, 91, 1, 91 + 7000, 2, heapID);
@@ -365,8 +365,8 @@ static void FreeSprites(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_0
 {
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
 
-    sub_0200A4E4(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES]);
-    sub_0200A6DC(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE]);
+    SpriteTransfer_ResetCharTransfer(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES]);
+    SpriteTransfer_ResetPlttTransfer(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE]);
     SpriteResourceCollection_Remove(v0->unk_13C[0], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES]);
     SpriteResourceCollection_Remove(v0->unk_13C[1], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE]);
     SpriteResourceCollection_Remove(v0->unk_13C[2], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_SPRITE]);

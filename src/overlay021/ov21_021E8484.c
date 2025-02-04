@@ -28,15 +28,15 @@
 #include "core_sys.h"
 #include "heap.h"
 #include "narc.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "touch_screen.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201F834.h"
 #include "unk_02023FCC.h"
+#include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
 
@@ -516,7 +516,7 @@ static void ov21_021E89F4(UnkStruct_ov21_021E8794 *param0, UnkStruct_ov21_021E85
 
     param0->unk_08[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 102, 1, 102 + 13000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
-    sub_0200A3DC(param0->unk_08[0]);
+    SpriteTransfer_RequestCharAtEnd(param0->unk_08[0]);
     SpriteResource_ReleaseData(param0->unk_08[0]);
 
     param0->unk_08[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v1, 100, 1, 100 + 13000, 2, param2);
@@ -527,7 +527,7 @@ static void ov21_021E8A74(UnkStruct_ov21_021E8794 *param0, UnkStruct_ov21_021E85
 {
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
 
-    sub_0200A4E4(param0->unk_08[0]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_08[0]);
     SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_08[0]);
     SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_08[2]);
     SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_08[3]);
@@ -580,14 +580,14 @@ static void ov21_021E8B40(UnkStruct_ov21_021E8794 *param0, UnkStruct_ov21_021E85
     v2 = SpriteResourceCollection_Find(v3->unk_13C[1], 11 + 2100);
 
     v1.unk_00 = v3->unk_14C;
-    v1.unk_08 = sub_0200A72C(v2, NULL);
+    v1.unk_08 = SpriteTransfer_GetPaletteProxy(v2, NULL);
     v1.unk_14 = -8;
     v1.unk_18 = 2;
     v1.unk_1C = 0;
     v1.unk_20 = NNS_G2D_VRAM_TYPE_2DSUB;
     v1.heapID = param2;
 
-    v4 = sub_0201FAB4(v1.unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
+    v4 = PlttTransfer_GetPlttOffset(v1.unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(v3->unk_14C, 16, 2);
     v5 = Pokedex_DisplayMessage(v3->unk_14C, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_anotherform, 0, 0);
 
@@ -655,7 +655,7 @@ static void ov21_021E8BE8(UnkStruct_ov21_021E8584 *param0, CellActor *param1, Un
 
         *param10 = ov21_021D27E0(param0->unk_00, v4, &v1, param7);
 
-        v2 = sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_SUB, param5 * 32, v1->pRawData, 32);
+        v2 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_SUB, param5 * 32, v1->pRawData, 32);
         GF_ASSERT(v2);
     }
 }

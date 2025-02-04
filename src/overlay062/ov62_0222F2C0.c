@@ -32,7 +32,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
@@ -42,6 +41,7 @@
 #include "unk_0208B284.h"
 #include "unk_0208BA78.h"
 #include "unk_0208C010.h"
+#include "vram_transfer.h"
 
 static void ov62_0222F670(BgConfig *param0);
 static void ov62_0222F848(UnkStruct_0208C06C *param0);
@@ -54,7 +54,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
-    VRAMTransferManager_New(4, 102);
+    VramTransfer_New(4, 102);
 
     param0->unk_14.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, 102);
     param0->unk_14.unk_10 = BgConfig_New(102);
@@ -209,7 +209,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
     ov62_022411EC(param0);
 
     SetMainCallback(NULL, NULL);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 }
 
 static const BgTemplate Unk_ov62_022487B0[] = {
@@ -362,7 +362,7 @@ void ov62_0222F8E4(void *param0)
 {
     UnkStruct_0208C06C *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     PaletteData_CommitFadedBuffers(v0->unk_14.unk_14);
     Bg_RunScheduledUpdates(v0->unk_14.unk_10);
 

@@ -8,7 +8,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0202DF40.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay097/struct_ov97_0222D250.h"
 #include "overlay097/struct_ov97_02237808.h"
 #include "overlay097/struct_ov97_02237AEC.h"
@@ -18,6 +17,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "crypto.h"
 #include "font.h"
 #include "graphics.h"
@@ -28,24 +28,23 @@
 #include "message.h"
 #include "message_util.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_02033200.h"
+#include "vram_transfer.h"
 
 typedef struct {
     BgConfig *unk_00;
@@ -301,20 +300,20 @@ int ov97_02237A18(UnkStruct_ov97_02237808 *param0)
 void ov97_02237A20(void)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
-    UnkStruct_ov22_022559F8 v1 = {
+    CharTransferTemplate v1 = {
         40,
         4096,
         4096,
         NULL,
     };
 
-    v1.unk_0C = v0->unk_08;
+    v1.heapID = v0->unk_08;
 
-    sub_0201E88C(&v1, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
-    sub_0201F834(30, v0->unk_08);
+    CharTransfer_InitWithVramModes(&v1, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
+    PlttTransfer_Init(30, v0->unk_08);
 
-    sub_0201E994();
-    sub_0201F8E4();
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 BOOL ov97_02237A60(void)
@@ -380,8 +379,8 @@ void ov97_02237B0C(int param0, int param1, int param2, int param3, int param4, i
         v0->unk_34.unk_1A8[param5][3] = SpriteResourceCollection_Add(v0->unk_34.unk_190[3], param0, param4, v2, param5, 3, v0->unk_08);
     }
 
-    sub_0200A328(v0->unk_34.unk_1A8[param5][0]);
-    sub_0200A640(v0->unk_34.unk_1A8[param5][1]);
+    SpriteTransfer_RequestChar(v0->unk_34.unk_1A8[param5][0]);
+    SpriteTransfer_RequestPlttFreeSpace(v0->unk_34.unk_1A8[param5][1]);
     sub_020093B4(&v0->unk_34.unk_1D8[param5], param5, param5, param5, param5, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34.unk_190[0], v0->unk_34.unk_190[1], v0->unk_34.unk_190[2], v0->unk_34.unk_190[3], NULL, NULL);
 
     if (param5 == 0) {
@@ -480,19 +479,19 @@ void ov97_02237DA0(void)
     }
 
     if (v1->unk_1A8[0][0]) {
-        sub_0200A4E4(v1->unk_1A8[0][0]);
+        SpriteTransfer_ResetCharTransfer(v1->unk_1A8[0][0]);
     }
 
     if (v1->unk_1A8[1][0]) {
-        sub_0200A4E4(v1->unk_1A8[1][0]);
+        SpriteTransfer_ResetCharTransfer(v1->unk_1A8[1][0]);
     }
 
     if (v1->unk_1A8[0][1]) {
-        sub_0200A6DC(v1->unk_1A8[0][1]);
+        SpriteTransfer_ResetPlttTransfer(v1->unk_1A8[0][1]);
     }
 
     if (v1->unk_1A8[1][1]) {
-        sub_0200A6DC(v1->unk_1A8[1][1]);
+        SpriteTransfer_ResetPlttTransfer(v1->unk_1A8[1][1]);
     }
 
     for (v2 = 0; v2 < 6; v2++) {
@@ -504,8 +503,8 @@ void ov97_02237DA0(void)
     v1->unk_00 = NULL;
 
     sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 
     SetMainCallback(NULL, NULL);
 }
@@ -524,7 +523,7 @@ static void ov97_02237E58(void *param0)
         v0->unk_F08 = NULL;
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     if (v0->unk_00) {

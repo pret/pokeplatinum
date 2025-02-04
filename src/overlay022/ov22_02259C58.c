@@ -17,19 +17,19 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "error_handling.h"
 #include "font.h"
 #include "message.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_02012744.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_02023FCC.h"
 
 static void ov22_02259D94(UnkStruct_ov22_02259C58 *param0, void *param1);
@@ -205,17 +205,17 @@ void ov22_02259F24(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *par
     for (v0 = 0; v0 < 5; v0++) {
         ov22_022552EC(param1, v0);
         ov22_02255300(param1, v0);
-        sub_0201EB50(v0);
+        CharTransfer_ResetTask(v0);
     }
 
-    sub_0201F9F0(0);
-    sub_0201F9F0(1);
+    PlttTransfer_ResetTask(0);
+    PlttTransfer_ResetTask(1);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov22_02259CE8(&param0->unk_00[v0]);
     }
 
-    sub_0201EE28(&param0->unk_40.unk_14);
+    CharTransfer_ClearRange(&param0->unk_40.unk_14);
     ov22_02259D00(&param0->unk_40);
     sub_020127BC(param0->unk_64);
     sub_02024034(param0->unk_68);
@@ -347,11 +347,11 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
     v0.unk_20 = 19;
 
     v3 = SpriteResourceCollection_Find(param2->unk_48[1], 1);
-    v0.unk_18 = sub_0200A72C(v3, NULL);
+    v0.unk_18 = SpriteTransfer_GetPaletteProxy(v3, NULL);
 
-    GF_ASSERT(sub_0201ED94(sub_02012898(param4, NNS_G2D_VRAM_TYPE_2DMAIN, 13), 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_14));
+    GF_ASSERT(CharTransfer_AllocRange(sub_02012898(param4, NNS_G2D_VRAM_TYPE_2DMAIN, 13), 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_14));
 
-    v0.unk_24 = param0->unk_14.unk_04;
+    v0.unk_24 = param0->unk_14.offset;
 
     ov22_02259C9C(param0, &v0);
 }

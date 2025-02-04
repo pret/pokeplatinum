@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
+#include "constants/heap.h"
 
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
@@ -46,10 +47,10 @@
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/ov9_02249960.h"
-#include "overlay022/struct_ov22_022559F8.h"
 
 #include "bg_window.h"
 #include "camera.h"
+#include "char_transfer.h"
 #include "comm_player_manager.h"
 #include "core_sys.h"
 #include "easy3d.h"
@@ -69,15 +70,13 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "player_avatar.h"
+#include "pltt_transfer.h"
 #include "pokeradar.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "unk_02027F50.h"
@@ -86,6 +85,7 @@
 #include "unk_020559DC.h"
 #include "unk_02055C50.h"
 #include "unk_02068344.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay6);
 FS_EXTERN_OVERLAY(overlay7);
@@ -139,7 +139,7 @@ static void fieldmap(void *param0)
     FieldSystem *fieldSystem = param0;
 
     Bg_RunScheduledUpdates(fieldSystem->bgConfig);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     inline_fieldmap(fieldSystem);
@@ -190,9 +190,9 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
 
         ov5_021D1414();
 
-        VRAMTransferManager_New(128, 4);
+        VramTransfer_New(128, HEAP_ID_FIELD);
         sub_02020B90(4, 4);
-        Easy3D_Init(4);
+        Easy3D_Init(HEAP_ID_FIELD);
 
         ov5_021D15B4();
         ov5_021D154C();
@@ -332,7 +332,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
         if (ov5_021D5C30(fieldSystem)) {
             ov5_021D15E8();
             sub_02020BD0();
-            VRAMTransferManager_Destroy();
+            VramTransfer_Free();
             Easy3D_Shutdown();
             ov5_021D1AE4(fieldSystem->unk_04->unk_04);
             SetMainCallback(NULL, NULL);
@@ -674,22 +674,22 @@ static void ov5_021D1578(UnkStruct_ov5_021D5894 *param0)
 void ov5_021D15B4(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             20, 0x8000, 0x4000, 4
         };
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834(20, 4);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(20, 4);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 void ov5_021D15E8(void)
 {
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 }
 
 static void ov5_021D15F4(FieldSystem *fieldSystem)

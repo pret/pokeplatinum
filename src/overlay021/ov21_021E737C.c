@@ -35,14 +35,14 @@
 #include "pokedex_heightweight.h"
 #include "pokemon_icon.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_02015064.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
 
@@ -566,12 +566,12 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 
     param0->unk_14[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v9, v1, 0, 8000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
-    sub_0200A450(param0->unk_14[0]);
+    SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_14[0]);
     SpriteResource_ReleaseData(param0->unk_14[0]);
 
     param0->unk_14[1] = SpriteResourceCollection_AddPaletteFrom(v0->unk_13C[1], v9, v2, 0, 8000, NNS_G2D_VRAM_TYPE_2DMAIN, 3, heapID);
 
-    v6 = sub_0200A640(param0->unk_14[1]);
+    v6 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_14[1]);
     GF_ASSERT(v6);
 
     {
@@ -582,12 +582,12 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     param0->unk_14[3] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], v9, v4, 0, 8000, 3, heapID);
     param0->unk_24[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v7, 93, 1, 93 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
-    sub_0200A3DC(param0->unk_24[0]);
+    SpriteTransfer_RequestCharAtEnd(param0->unk_24[0]);
     SpriteResource_ReleaseData(param0->unk_24[0]);
 
     param0->unk_24[1] = SpriteResourceCollection_AddPaletteFrom(v0->unk_13C[1], v7, 14, 0, 14 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, heapID);
 
-    sub_0200A640(param0->unk_24[1]);
+    SpriteTransfer_RequestPlttFreeSpace(param0->unk_24[1]);
 
     {
         param0->unk_C0 = Heap_AllocFromHeap(heapID, 32 * 5);
@@ -603,16 +603,16 @@ static void ov21_021E7AA0(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 {
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
 
-    sub_0200A4E4(param0->unk_14[0]);
-    sub_0200A6DC(param0->unk_14[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_14[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_14[1]);
 
     SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_14[0]);
     SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_14[1]);
     SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_14[2]);
     SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_14[3]);
 
-    sub_0200A4E4(param0->unk_24[0]);
-    sub_0200A6DC(param0->unk_24[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_24[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_24[1]);
 
     SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_24[0]);
     SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_24[1]);
@@ -1086,14 +1086,14 @@ static const UnkStruct_ov21_021E9DB0 *ov21_021E83D8(const UnkStruct_ov21_021E9DB
 static void ov21_021E8400(UnkStruct_ov21_021E7714 *param0, u8 param1, u16 param2)
 {
     NNSG2dPaletteData *v0 = SpriteResource_GetPaletteFade(param0->unk_14[1]);
-    const NNSG2dImagePaletteProxy *v1 = sub_0200A72C(param0->unk_14[1], NULL);
+    const NNSG2dImagePaletteProxy *v1 = SpriteTransfer_GetPaletteProxy(param0->unk_14[1], NULL);
 
     BlendPalette(v0->pRawData, param0->unk_BC, 3 * 16, param1, param2);
-    sub_0201DC68(NNS_GFD_DST_2D_OBJ_PLTT_MAIN, NNS_G2dGetImagePaletteLocation(v1, NNS_G2D_VRAM_TYPE_2DMAIN), param0->unk_BC, 3 * 32);
+    VramTransfer_Request(NNS_GFD_DST_2D_OBJ_PLTT_MAIN, NNS_G2dGetImagePaletteLocation(v1, NNS_G2D_VRAM_TYPE_2DMAIN), param0->unk_BC, 3 * 32);
 
     v0 = SpriteResource_GetPaletteFade(param0->unk_24[1]);
-    v1 = sub_0200A72C(param0->unk_24[1], NULL);
+    v1 = SpriteTransfer_GetPaletteProxy(param0->unk_24[1], NULL);
 
     BlendPalette(v0->pRawData, param0->unk_C0, 5 * 16, param1, param2);
-    sub_0201DC68(NNS_GFD_DST_2D_OBJ_PLTT_MAIN, NNS_G2dGetImagePaletteLocation(v1, NNS_G2D_VRAM_TYPE_2DMAIN), param0->unk_C0, 5 * 32);
+    VramTransfer_Request(NNS_GFD_DST_2D_OBJ_PLTT_MAIN, NNS_G2dGetImagePaletteLocation(v1, NNS_G2D_VRAM_TYPE_2DMAIN), param0->unk_C0, 5 * 32);
 }

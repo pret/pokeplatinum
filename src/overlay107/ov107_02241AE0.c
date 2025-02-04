@@ -54,7 +54,7 @@
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
 #include "unk_020363E8.h"
@@ -582,7 +582,7 @@ int ov107_02241D2C (OverlayManager * param0, int * param1)
 
     *(v1->unk_438) = v1->unk_0D;
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     ov107_02242E14(v1);
 
     OverlayManager_FreeData(param0);
@@ -1575,7 +1575,7 @@ static void ov107_022433EC (void * param0)
     }
 
     Bg_RunScheduledUpdates(v0->unk_4C);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

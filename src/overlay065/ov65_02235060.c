@@ -30,9 +30,9 @@
 #include "math.h"
 #include "narc.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 
 #define MCR_PCANM_DESTPL(x) ((7 * 32) + (((x) + 1) * 2))
 
@@ -651,10 +651,10 @@ static void ov65_02235960(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *par
     param0->unk_1A0.unk_00[2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param2, 38, 0, 50, 2, param1);
     param0->unk_1A0.unk_00[3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param2, 39, 0, 50, 3, param1);
 
-    v0 = sub_0200A3DC(param0->unk_1A0.unk_00[0]);
+    v0 = SpriteTransfer_RequestCharAtEnd(param0->unk_1A0.unk_00[0]);
     GF_ASSERT(v0 == 1);
 
-    v0 = sub_0200A640(param0->unk_1A0.unk_00[1]);
+    v0 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_1A0.unk_00[1]);
     GF_ASSERT(v0 == 1);
 
     SpriteResource_ReleaseData(param0->unk_1A0.unk_00[0]);
@@ -666,8 +666,8 @@ static void ov65_02235A60(UnkStruct_ov65_022358CC *param0)
 {
     int v0;
 
-    sub_0200A4E4(param0->unk_1A0.unk_00[0]);
-    sub_0200A6DC(param0->unk_1A0.unk_00[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_1A0.unk_00[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_1A0.unk_00[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Remove(param0->unk_190[v0], param0->unk_1A0.unk_00[v0]);
@@ -1196,7 +1196,7 @@ static void ov65_02236318(UnkStruct_ov65_02236318 *param0)
 
         for (v0 = 0; v0 < 4; v0++) {
             if (param0->unk_08 & (1 << v0)) {
-                sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_MAIN, MCR_PCANM_DESTPL(v0), ov65_02236410(param0, v1), 2);
+                VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, MCR_PCANM_DESTPL(v0), ov65_02236410(param0, v1), 2);
             }
         }
     }
@@ -1236,7 +1236,7 @@ static void ov65_02236384(UnkStruct_ov65_02236318 *param0)
     }
 
     if (v0) {
-        sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_MAIN, MCR_PCANM_DESTPL(param0->unk_0C), ov65_02236410(param0, v1), 2);
+        VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, MCR_PCANM_DESTPL(param0->unk_0C), ov65_02236410(param0, v1), 2);
     }
 }
 

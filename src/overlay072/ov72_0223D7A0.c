@@ -10,7 +10,6 @@
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay072/struct_ov72_0223DB98_decl.h"
 #include "overlay072/struct_ov72_0223DB98_t.h"
 #include "overlay072/struct_ov72_0223E2A8.h"
@@ -21,6 +20,7 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -33,10 +33,12 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -44,17 +46,14 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_0202C7FC.h"
+#include "vram_transfer.h"
 
 static void inline_ov72_0223E2A4(UnkStruct_ov72_0223DB98 *param0, int param1);
 static void ov72_0223DA48(void *param0);
@@ -211,10 +210,10 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     ov72_0223E9B4(v0->unk_5BFC, v0->unk_328.pixels);
 
     SetMainCallback(NULL, NULL);
-    sub_0200A4E4(v0->unk_1DC[0][0]);
-    sub_0200A4E4(v0->unk_1DC[1][0]);
-    sub_0200A6DC(v0->unk_1DC[0][1]);
-    sub_0200A6DC(v0->unk_1DC[1][1]);
+    SpriteTransfer_ResetCharTransfer(v0->unk_1DC[0][0]);
+    SpriteTransfer_ResetCharTransfer(v0->unk_1DC[1][0]);
+    SpriteTransfer_ResetPlttTransfer(v0->unk_1DC[0][1]);
+    SpriteTransfer_ResetPlttTransfer(v0->unk_1DC[1][1]);
 
     for (v1 = 0; v1 < 4; v1++) {
         SpriteResourceCollection_Delete(v0->unk_1CC[v1]);
@@ -222,8 +221,8 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
 
     CellActorCollection_Delete(v0->unk_3C);
     sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 
     ov72_0223E260(v0);
     Font_Free(FONT_SUBSCREEN);
@@ -244,7 +243,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
 
 static void ov72_0223DA48(void *param0)
 {
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
     Bg_RunScheduledUpdates((BgConfig *)param0);
 
@@ -459,16 +458,16 @@ static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
 static void ov72_0223DDA8(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             20, 2048, 2048, 39
         };
 
-        sub_0201E86C(&v0);
+        CharTransfer_Init(&v0);
     }
 
-    sub_0201F834(20, 39);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(20, 39);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 static void ov72_0223DDD8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
@@ -495,10 +494,10 @@ static void ov72_0223DDD8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
     param0->unk_1DC[1][2] = SpriteResourceCollection_AddFrom(param0->unk_1CC[2], param1, 8, 1, 1, 2, 39);
     param0->unk_1DC[1][3] = SpriteResourceCollection_AddFrom(param0->unk_1CC[3], param1, 9, 1, 1, 3, 39);
 
-    sub_0200A328(param0->unk_1DC[0][0]);
-    sub_0200A328(param0->unk_1DC[1][0]);
-    sub_0200A5C8(param0->unk_1DC[0][1]);
-    sub_0200A5C8(param0->unk_1DC[1][1]);
+    SpriteTransfer_RequestChar(param0->unk_1DC[0][0]);
+    SpriteTransfer_RequestChar(param0->unk_1DC[1][0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1DC[0][1]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1DC[1][1]);
 }
 
 static const u16 Unk_ov72_0223EB3C[1][3] = {

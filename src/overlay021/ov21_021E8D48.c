@@ -21,10 +21,10 @@
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
-#include "overlay022/struct_ov22_022559F8.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -34,6 +34,7 @@
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -41,9 +42,7 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
+#include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
 
@@ -407,7 +406,7 @@ static void ov21_021E9240(UnkStruct_ov21_021D22F8 *param0, UnkStruct_ov21_021D4C
     v2 = param0->unk_0C[1];
 
     v0.unk_00 = param1;
-    v0.unk_08 = sub_0200A72C(v2, NULL);
+    v0.unk_08 = SpriteTransfer_GetPaletteProxy(v2, NULL);
     v0.unk_0C = param0->unk_00;
     v0.unk_10 = -(128 / 2);
     v0.unk_14 = -(16 / 2);
@@ -440,12 +439,12 @@ static void ov21_021E92C4(SpriteResource **param0, SpriteResourceCollection **pa
 {
     param0[0] = SpriteResourceCollection_AddTiles(param1[0], param3, param4, 1, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
-    sub_0200A3DC(param0[0]);
+    SpriteTransfer_RequestCharAtEnd(param0[0]);
     SpriteResource_ReleaseData(param0[0]);
 
     param0[1] = SpriteResourceCollection_AddPalette(param1[1], param3, param5, 0, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param8, param2);
 
-    sub_0200A640(param0[1]);
+    SpriteTransfer_RequestPlttFreeSpace(param0[1]);
     SpriteResource_ReleaseData(param0[1]);
 
     param0[2] = SpriteResourceCollection_Add(param1[2], param3, param6, 1, param9, 2, param2);
@@ -456,12 +455,12 @@ static void ov21_021E9344(SpriteResource **param0, SpriteResourceCollection **pa
 {
     param0[0] = SpriteResourceCollection_AddTilesFrom(param1[0], param3, param4, 1, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
-    sub_0200A3DC(param0[0]);
+    SpriteTransfer_RequestCharAtEnd(param0[0]);
     SpriteResource_ReleaseData(param0[0]);
 
     param0[1] = SpriteResourceCollection_AddPaletteFrom(param1[1], param3, param5, 0, param9, NNS_G2D_VRAM_TYPE_2DMAIN, param8, param2);
 
-    sub_0200A640(param0[1]);
+    SpriteTransfer_RequestPlttFreeSpace(param0[1]);
     SpriteResource_ReleaseData(param0[1]);
 
     param0[2] = SpriteResourceCollection_AddFrom(param1[2], param3, param6, 1, param9, 2, param2);
@@ -470,8 +469,8 @@ static void ov21_021E9344(SpriteResource **param0, SpriteResourceCollection **pa
 
 static void ov21_021E93C4(SpriteResource **param0, SpriteResourceCollection **param1)
 {
-    sub_0200A4E4(param0[0]);
-    sub_0200A6DC(param0[1]);
+    SpriteTransfer_ResetCharTransfer(param0[0]);
+    SpriteTransfer_ResetPlttTransfer(param0[1]);
 
     SpriteResourceCollection_Remove(param1[0], param0[0]);
     SpriteResourceCollection_Remove(param1[1], param0[1]);
@@ -558,7 +557,7 @@ static void ov21_021E9560(UnkStruct_ov21_021E95B0 *param0, UnkStruct_ov21_021D4C
     v0 = ov21_021DF30C(param1, param3, param2);
 
     v1.unk_00 = param1;
-    v1.unk_08 = sub_0200A72C(param4, NULL);
+    v1.unk_08 = SpriteTransfer_GetPaletteProxy(param4, NULL);
     v1.unk_0C = param0->unk_00;
     v1.unk_10 = -78;
     v1.unk_14 = -8;
@@ -771,17 +770,17 @@ static Sprite *ov21_021E99E0(UnkStruct_02007768 *param0, Pokemon *param1, int pa
 
 static void ov21_021E9A0C(int param0)
 {
-    UnkStruct_ov22_022559F8 v0 = {
+    CharTransferTemplate v0 = {
         32, (1024 * 0x40), (512 * 0x20), 0
     };
 
-    v0.unk_0C = param0;
-    sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
+    v0.heapID = param0;
+    CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
 }
 
 static void ov21_021E9A38(void)
 {
-    sub_0201E958();
+    CharTransfer_Free();
 }
 
 static void ov21_021E9A40(UnkStruct_ov21_021E9A9C *param0, int param1, int param2, NARC *param3)
@@ -840,5 +839,5 @@ static void ov21_021E9AE8(UnkStruct_ov21_021E9A9C *param0, int param1)
 
 static void ov21_021E9B08(UnkStruct_ov21_021E9A9C *param0, int param1)
 {
-    sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_MAIN, 0 * 32, param0->unk_08[param1]->pRawData, 1 * 32);
+    VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, 0 * 32, param0->unk_08[param1]->pRawData, 1 * 32);
 }

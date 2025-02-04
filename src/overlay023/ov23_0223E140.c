@@ -13,7 +13,6 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay023/ov23_022416A8.h"
 #include "overlay023/ov23_02241F74.h"
 #include "overlay023/ov23_0224340C.h"
@@ -27,6 +26,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -42,11 +42,13 @@
 #include "math.h"
 #include "menu.h"
 #include "narc.h"
+#include "pltt_transfer.h"
 #include "pokedex.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -56,20 +58,17 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
 #include "unk_02054D00.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
+#include "vram_transfer.h"
 
 typedef struct {
     u8 unk_00;
@@ -1370,10 +1369,10 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 1);
     Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 2);
     Bg_FreeTilemapBuffer(Unk_ov23_02257740->unk_04, 3);
-    sub_0200A4E4(Unk_ov23_02257740->unk_1C0[0]);
-    sub_0200A4E4(Unk_ov23_02257740->unk_1C0[4]);
-    sub_0200A6DC(Unk_ov23_02257740->unk_1C0[1]);
-    sub_0200A6DC(Unk_ov23_02257740->unk_1C0[5]);
+    SpriteTransfer_ResetCharTransfer(Unk_ov23_02257740->unk_1C0[0]);
+    SpriteTransfer_ResetCharTransfer(Unk_ov23_02257740->unk_1C0[4]);
+    SpriteTransfer_ResetPlttTransfer(Unk_ov23_02257740->unk_1C0[1]);
+    SpriteTransfer_ResetPlttTransfer(Unk_ov23_02257740->unk_1C0[5]);
 
     for (v1 = 0; v1 < 4; v1++) {
         SpriteResourceCollection_Delete(Unk_ov23_02257740->unk_1B0[v1]);
@@ -1389,8 +1388,8 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     CellActorCollection_Delete(Unk_ov23_02257740->unk_20);
     sub_0200A878();
 
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 
     SetMainCallback(NULL, NULL);
     Heap_FreeToHeap(Unk_ov23_02257740->unk_04);
@@ -2783,18 +2782,18 @@ static void ov23_02240E88(void)
     v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, 29);
 
     ov23_02240E60(SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257740->unk_1B0[0], v1, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
-    sub_0200A328(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
+    SpriteTransfer_RequestChar(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
     ov23_02240E60(SpriteResourceCollection_AddPaletteFrom(Unk_ov23_02257740->unk_1B0[1], v1, 7, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 29));
 
-    sub_0200A640(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
+    SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
 
     ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[2], v1, 5, 0, 0, 2, 29));
     ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[3], v1, 4, 0, 0, 3, 29));
     ov23_02240E60(SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257740->unk_1B0[0], v1, 3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
 
-    sub_0200A328(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
+    SpriteTransfer_RequestChar(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
     ov23_02240E60(SpriteResourceCollection_AddPalette(Unk_ov23_02257740->unk_1B0[1], 52, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 29));
-    sub_0200A640(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
+    SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);
 
     ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[2], v1, 2, 0, 1, 2, 29));
     ov23_02240E60(SpriteResourceCollection_AddFrom(Unk_ov23_02257740->unk_1B0[3], v1, 1, 0, 1, 3, 29));
@@ -2842,16 +2841,16 @@ static void ov23_0224108C(void)
 static void ov23_0224119C(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             20, (2048 * 2), (2048 * 2), 29
         };
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
-    sub_0201F834(20, 29);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(20, 29);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 }
@@ -2863,7 +2862,7 @@ static void ov23_022411E8(void *param0)
     ov23_02240C94(v0);
 
     Bg_RunScheduledUpdates(v0);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 }
 

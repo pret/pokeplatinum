@@ -56,12 +56,12 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "unk_0207A274.h"
 #include "unk_0209BA80.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
 
@@ -2132,7 +2132,7 @@ static void ov105_0224451C(void *param0)
     }
 
     Bg_RunScheduledUpdates(v0->unk_4C);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

@@ -56,14 +56,13 @@
 #include "savedata_misc.h"
 #include "script_manager.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0201CED8.h"
-#include "unk_0201DBEC.h"
 #include "unk_02020AEC.h"
 #include "unk_02027F50.h"
 #include "unk_0205F180.h"
@@ -72,6 +71,7 @@
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "vars_flags.h"
+#include "vram_transfer.h"
 
 typedef struct UnkStruct_ov9_02249B04_t UnkStruct_ov9_02249B04;
 
@@ -2650,7 +2650,7 @@ static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 
 
         for (v0 = 0; v0 < 7; v0++) {
             param1->unk_1A0[v0] = SpriteResourceCollection_AddTilesFrom(param1->unk_190, param2, Unk_ov9_02251E58[v0], 0, ((v0) + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, 4);
-            sub_0200A3DC(param1->unk_1A0[v0]);
+            SpriteTransfer_RequestCharAtEnd(param1->unk_1A0[v0]);
         }
 
         param1->unk_1BC[0] = SpriteResourceCollection_AddPaletteFrom(param1->unk_194, param2, Unk_ov9_02251210[0], 0, (0 + 0xff), NNS_G2D_VRAM_TYPE_2DMAIN, 5, 4);
@@ -2673,7 +2673,7 @@ static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 
             }
         }
 
-        sub_0200A640(param1->unk_1BC[0]);
+        SpriteTransfer_RequestPlttFreeSpace(param1->unk_1BC[0]);
 
         for (v0 = 0; v0 < 7; v0++) {
             param1->unk_1C0[v0] = SpriteResourceCollection_AddFrom(param1->unk_198, param2, Unk_ov9_02251E90[v0], 0, ((v0) + 0xff), 2, 4);
@@ -2697,13 +2697,13 @@ static void ov9_0224B064(UnkStruct_ov9_0224B064 *param0)
 
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_1A0[v0] != NULL) {
-            sub_0200A4E4(param0->unk_1A0[v0]);
+            SpriteTransfer_ResetCharTransfer(param0->unk_1A0[v0]);
         }
     }
 
     for (v0 = 0; v0 < 1; v0++) {
         if (param0->unk_1BC[v0] != NULL) {
-            sub_0200A6DC(param0->unk_1BC[v0]);
+            SpriteTransfer_ResetPlttTransfer(param0->unk_1BC[v0]);
         }
     }
 
@@ -7835,7 +7835,7 @@ static void ov9_0224F804(UnkStruct_ov9_02249B04 *param0)
 
             v2 = &param0->unk_1A8;
             v3 = v2->unk_1BC[0];
-            v4 = sub_0200A72C(v3, NULL);
+            v4 = SpriteTransfer_GetPaletteProxy(v3, NULL);
             v1 = NNS_G2dGetImagePaletteLocation(v4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
             DC_FlushRange((void *)v0->unk_E8, 32 * 5);
@@ -8793,7 +8793,7 @@ void ov9_02250780(FieldSystem *fieldSystem)
         NNSGfdPlttKey v5 = TextureResource_GetPaletteKey(v4);
         u32 v6 = NNS_GfdGetPlttKeyAddr(v5);
 
-        sub_0201DC68(NNS_GFD_DST_3D_TEX_PLTT, v6, v1->unk_1C, 32);
+        VramTransfer_Request(NNS_GFD_DST_3D_TEX_PLTT, v6, v1->unk_1C, 32);
     }
 }
 
