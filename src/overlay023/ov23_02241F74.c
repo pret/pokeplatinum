@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021E779C.h"
+#include "overlay005/land_data.h"
 #include "overlay005/ov5_021EAFA4.h"
 #include "overlay023/funcptr_ov23_022427DC.h"
 #include "overlay023/funcptr_ov23_022431EC.h"
@@ -367,7 +367,7 @@ BOOL ov23_02242458(void)
                 }
 
                 v0 = ov5_021EAFA4(gSystem.touchX, gSystem.touchY, sCommManUnderground->fieldSystem->unk_8C);
-                ov5_021E9230(v0.x, v0.z, &v2, &v3);
+                LandData_ObjectPosToTilePos(v0.x, v0.z, &v2, &v3);
                 v4.unk_00 = v2;
                 v4.unk_02 = v3;
 

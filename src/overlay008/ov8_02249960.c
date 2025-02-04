@@ -19,11 +19,11 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/land_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021DF440.h"
-#include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EF250.h"
 #include "overlay005/ov5_021F4018.h"
 #include "overlay005/ov5_021F428C.h"
@@ -2543,7 +2543,7 @@ static void ov8_0224B18C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param
 
     v4 = MapObject_GetPos(param1->unk_20);
 
-    ov5_021E931C(v4, fieldSystem->unk_28);
+    LandDataManager_TrackTarget(v4, fieldSystem->landDataMan);
     Camera_TrackTarget(v4, fieldSystem->camera);
 }
 
@@ -2608,7 +2608,7 @@ static void ov8_0224B2C4(FieldSystem *fieldSystem, UnkStruct_ov8_0224B28C *param
 {
     const VecFx32 *v0 = PlayerAvatar_PosVector(fieldSystem->playerAvatar);
 
-    ov5_021E931C(v0, fieldSystem->unk_28);
+    LandDataManager_TrackTarget(v0, fieldSystem->landDataMan);
     Camera_TrackTarget(v0, fieldSystem->camera);
     MapObject_Delete(param1->unk_20);
 }
@@ -3552,7 +3552,7 @@ static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param
 
     v2 = MapObject_GetPos(v3->unk_30);
 
-    ov5_021E931C(v2, fieldSystem->unk_28);
+    LandDataManager_TrackTarget(v2, fieldSystem->landDataMan);
     Camera_TrackTarget(v2, fieldSystem->camera);
 }
 
@@ -3561,7 +3561,7 @@ static void ov8_0224C098(UnkStruct_ov8_0224C098 *param0)
     UnkStruct_ov8_0224C0C4 *v0 = &param0->unk_40;
     const VecFx32 *v1 = PlayerAvatar_PosVector(v0->fieldSystem->playerAvatar);
 
-    ov5_021E931C(v1, v0->fieldSystem->unk_28);
+    LandDataManager_TrackTarget(v1, v0->fieldSystem->landDataMan);
     Camera_TrackTarget(v1, v0->fieldSystem->camera);
     MapObject_Delete(v0->unk_30);
 }

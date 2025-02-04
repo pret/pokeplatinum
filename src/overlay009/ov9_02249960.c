@@ -19,17 +19,17 @@
 #include "field/field_system_sub2_t.h"
 #include "overlay005/area_data.h"
 #include "overlay005/fieldmap.h"
+#include "overlay005/land_data.h"
+#include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021DF440.h"
-#include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECE40.h"
 #include "overlay005/ov5_021F348C.h"
 #include "overlay005/ov5_021F8560.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
-#include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay005/struct_ov5_02201C58.h"
 #include "overlay009/struct_ov9_02249FF4.h"
@@ -374,7 +374,7 @@ typedef struct {
     NARC *unk_0C;
     MapMatrix *unk_10;
     AreaDataManager *unk_14;
-    UnkStruct_ov5_021E8F60 *unk_18;
+    LandDataManager *unk_18;
 } UnkStruct_ov9_0224C8E8;
 
 typedef struct {
@@ -4366,29 +4366,29 @@ static void ov9_0224C8E8(UnkStruct_ov9_02249B04 *param0)
     }
 
     {
-        NARC *v6 = ov5_021E9828(fieldSystem->unk_28);
+        NARC *v6 = LandDataManager_GetLandDataNARC(fieldSystem->landDataMan);
 
-        v2->unk_18 = ov5_021E9830(v2->unk_10, v2->unk_14, v6);
-        ov5_021E931C(PlayerAvatar_PosVector(fieldSystem->playerAvatar), v2->unk_18);
+        v2->unk_18 = LandDataManager_DistortionWorldNew(v2->unk_10, v2->unk_14, v6);
+        LandDataManager_TrackTarget(PlayerAvatar_PosVector(fieldSystem->playerAvatar), v2->unk_18);
     }
 
     {
-        ov5_021EA6A4(v2->unk_18, 1);
-        ov5_021EA6D0(v2->unk_18, 1);
+        LandDataManager_SetInDistortionWorld(v2->unk_18, 1);
+        LandDataManager_SetSkipMapProps(v2->unk_18, 1);
     }
 
     {
         int v7, v8, v9;
 
         ov9_0224C070(param0, v1, &v7, &v8, &v9);
-        ov5_021EA678(v2->unk_18, v7, v8, v9);
+        LandDataManager_DistortionWorldSetOffsets(v2->unk_18, v7, v8, v9);
     }
 
     {
         int v10 = Player_GetXPos(fieldSystem->playerAvatar);
         int v11 = Player_GetZPos(fieldSystem->playerAvatar);
 
-        ov5_021E99D8(v2->unk_18, v10, v11);
+        LandDataManager_DistortionWorldInitialLoad(v2->unk_18, v10, v11);
         v2->unk_08 = 1;
     }
 
@@ -4399,7 +4399,7 @@ static void ov9_0224C8E8(UnkStruct_ov9_02249B04 *param0)
         MapObject *v14 = Player_MapObject(fieldSystem->playerAvatar);
 
         MapObject_GetPosPtr(v14, &v13);
-        ov5_021EA6BC(fieldSystem->unk_28, &v12);
+        LandDataManager_GetOffset(fieldSystem->landDataMan, &v12);
 
         v13.y = v12.y + ((1 << 4) * FX32_ONE);
 
@@ -4414,15 +4414,15 @@ static void ov9_0224C9E8(UnkStruct_ov9_02249B04 *param0)
     UnkStruct_ov9_0224C8E8 *v0 = &param0->unk_1E88;
 
     if (v0->unk_04) {
-        ov5_021E9338(v0->unk_18);
-        ov5_021E9938(v0->unk_18);
+        LandDataManager_ForgetTrackedTarget(v0->unk_18);
+        LandDataManager_DistortionWorldEnd(v0->unk_18);
 
         if (v0->unk_14 != NULL) {
             v0->unk_14 = NULL;
         }
 
         if (v0->unk_18 != NULL) {
-            ov5_021E99C4(v0->unk_18);
+            LandDataManager_DistortionWorldFreeLoadedMapBuffers(v0->unk_18);
             v0->unk_18 = NULL;
         }
 
@@ -4440,7 +4440,7 @@ static void ov9_0224CA30(UnkStruct_ov9_02249B04 *param0)
     UnkStruct_ov9_0224C8E8 *v0 = &param0->unk_1E88;
 
     if (v0->unk_08) {
-        ov5_021E9C0C(v0->unk_18, param0->fieldSystem->areaModelAttrs);
+        LandDataManager_DistortionWorldRenderNextFloorMaps(v0->unk_18, param0->fieldSystem->areaModelAttrs);
     }
 }
 
@@ -4466,7 +4466,7 @@ void ov9_0224CA5C(FieldSystem *fieldSystem)
     }
 
     if (v1->unk_08 == 1) {
-        ov5_021EA174(fieldSystem, v1->unk_18);
+        LandDataManager_DistortionWorldTick(fieldSystem, v1->unk_18);
     }
 }
 
@@ -4477,11 +4477,11 @@ static void ov9_0224CA98(UnkStruct_ov9_02249B04 *param0)
 
     switch (v0->unk_01) {
     case 0:
-        ov5_021E9AAC(v1->unk_18, v0->unk_04, v0->unk_08, v0->unk_0C);
+        LandDataManager_DistortionWorldInitLoadedMaps(v1->unk_18, v0->unk_04, v0->unk_08, v0->unk_0C);
         v0->unk_01++;
         break;
     case 1:
-        ov5_021E9B10(v1->unk_18, v0->unk_02, v0->unk_0C[v0->unk_02]);
+        LandDataManager_DistortionWorldLoadAndInvalidate(v1->unk_18, v0->unk_02, v0->unk_0C[v0->unk_02]);
         v0->unk_02++;
 
         if (v0->unk_02 >= 4) {
@@ -4489,13 +4489,13 @@ static void ov9_0224CA98(UnkStruct_ov9_02249B04 *param0)
         }
         break;
     case 2:
-        ov5_021EA6F4(v1->unk_18, v0->unk_04, v0->unk_08);
+        LandDataManager_DistortionWorldUpdateTrackedTargetValues(v1->unk_18, v0->unk_04, v0->unk_08);
 
         {
             int v2 = 0;
 
             do {
-                ov5_021EA6E0(v1->unk_18, v2, 1);
+                LandDataManager_SetLoadedMapValid(v1->unk_18, v2, 1);
                 v2++;
             } while (v2 < 4);
         }
@@ -4519,11 +4519,11 @@ static void ov9_0224CB30(UnkStruct_ov9_02249B04 *param0)
 
     switch (v0->unk_01) {
     case 0:
-        ov5_021EA58C(fieldSystem->unk_28, v0->unk_04, v0->unk_08, v0->unk_0C);
+        LandDataManager_DistortionWorldInvalidateLoadedMaps(fieldSystem->landDataMan, v0->unk_04, v0->unk_08, v0->unk_0C);
         v0->unk_01++;
         break;
     case 1:
-        ov5_021EA5E0(fieldSystem->unk_28, v0->unk_02, v0->unk_0C[v0->unk_02]);
+        LandDataManager_DistortionWorldLoadEntire(fieldSystem->landDataMan, v0->unk_02, v0->unk_0C[v0->unk_02]);
         v0->unk_02++;
 
         if (v0->unk_02 >= 4) {
@@ -4531,13 +4531,13 @@ static void ov9_0224CB30(UnkStruct_ov9_02249B04 *param0)
         }
         break;
     case 2:
-        ov5_021EA6F4(fieldSystem->unk_28, v0->unk_04, v0->unk_08);
+        LandDataManager_DistortionWorldUpdateTrackedTargetValues(fieldSystem->landDataMan, v0->unk_04, v0->unk_08);
 
         {
             int v3 = 0;
 
             do {
-                ov5_021EA6E0(fieldSystem->unk_28, v3, 1);
+                LandDataManager_SetLoadedMapValid(fieldSystem->landDataMan, v3, 1);
                 v3++;
             } while (v3 < 4);
         }
@@ -4555,12 +4555,12 @@ static void ov9_0224CB30(UnkStruct_ov9_02249B04 *param0)
 static int (*const Unk_ov9_022514E0[5])(UnkStruct_ov9_02249B04 *, UnkStruct_ov9_0224CBD8 *);
 static int (*const Unk_ov9_02251428[4])(UnkStruct_ov9_02249B04 *, UnkStruct_ov9_0224CBD8 *);
 
-static void ov9_0224CBBC(UnkStruct_ov5_021E8F60 *param0, BOOL param1)
+static void ov9_0224CBBC(LandDataManager *param0, BOOL param1)
 {
     int v0 = 0;
 
     do {
-        ov5_021EA6E0(param0, v0++, param1);
+        LandDataManager_SetLoadedMapValid(param0, v0++, param1);
     } while (v0 < 4);
 }
 
@@ -4636,7 +4636,7 @@ static BOOL ov9_0224CC7C(UnkStruct_ov9_02249B04 *param0)
 
 static int ov9_0224CC90(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *param1)
 {
-    ov9_0224CBBC(param0->fieldSystem->unk_28, 0);
+    ov9_0224CBBC(param0->fieldSystem->landDataMan, 0);
     ov9_02249BD4(param0, ov9_022510D0(param0));
 
     param1->unk_04 = 1;
@@ -4655,19 +4655,19 @@ static int ov9_0224CCB8(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
 
     ov5_021D12D0(param0->fieldSystem, param1->unk_0C);
     ov9_0224BF18(param0, v2->unk_08);
-    ov5_021E9CD8(fieldSystem->unk_28);
+    LandDataManager_DistortionWorldEndWithoutFreeing(fieldSystem->landDataMan);
 
     param1->unk_08 = Player_GetXPos(fieldSystem->playerAvatar);
     param1->unk_0A = Player_GetZPos(fieldSystem->playerAvatar);
 
-    ov5_021E9D3C(v1->unk_10, v1->unk_14, v1->unk_18, fieldSystem->unk_28, param1->unk_08, param1->unk_0A);
+    LandDataManager_DistortionWorldPrepareNextFloor(v1->unk_10, v1->unk_14, v1->unk_18, fieldSystem->landDataMan, param1->unk_08, param1->unk_0A);
     v1->unk_08 = 0;
     ov9_0224CBBC(v1->unk_18, 0);
 
     MapMatrix_Free(v1->unk_10);
     v1->unk_10 = NULL;
 
-    ov9_0224CBBC(param0->fieldSystem->unk_28, 1);
+    ov9_0224CBBC(param0->fieldSystem->landDataMan, 1);
     v1->unk_00 = v2->unk_08;
 
     if (v1->unk_00 != 593) {
@@ -4689,14 +4689,14 @@ static int ov9_0224CD84(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
         NARC *v3;
         UnkStruct_ov9_0224C8E8 *v4 = &param0->unk_1E88;
 
-        v3 = ov5_021E9828(param0->fieldSystem->unk_28);
-        ov5_021E98C8(v4->unk_18, v4->unk_10, v4->unk_14, v3);
+        v3 = LandDataManager_GetLandDataNARC(param0->fieldSystem->landDataMan);
+        LandDataManager_DistortionWorldInit(v4->unk_18, v4->unk_10, v4->unk_14, v3);
 
         ov9_0224C070(param0, v4->unk_00, &v0, &v1, &v2);
-        ov5_021EA678(v4->unk_18, v0, v1, v2);
-        ov5_021EA6A4(v4->unk_18, 1);
-        ov5_021EA6D0(v4->unk_18, 1);
-        ov5_021E9AAC(v4->unk_18, param1->unk_08, param1->unk_0A, param1->unk_10);
+        LandDataManager_DistortionWorldSetOffsets(v4->unk_18, v0, v1, v2);
+        LandDataManager_SetInDistortionWorld(v4->unk_18, 1);
+        LandDataManager_SetSkipMapProps(v4->unk_18, 1);
+        LandDataManager_DistortionWorldInitLoadedMaps(v4->unk_18, param1->unk_08, param1->unk_0A, param1->unk_10);
 
         param1->unk_04 = 3;
         return 1;
@@ -4709,7 +4709,7 @@ static int ov9_0224CE00(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
 {
     UnkStruct_ov9_0224C8E8 *v0 = &param0->unk_1E88;
 
-    ov5_021E9B10(v0->unk_18, param1->unk_06, param1->unk_10[param1->unk_06]);
+    LandDataManager_DistortionWorldLoadAndInvalidate(v0->unk_18, param1->unk_06, param1->unk_10[param1->unk_06]);
 
     param1->unk_06++;
 
@@ -4728,7 +4728,7 @@ static int ov9_0224CE2C(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
     if (v1->unk_00 != 593) {
         v1->unk_08 = 1;
         ov9_0224CBBC(v1->unk_18, 1);
-        ov5_021EA6F4(v1->unk_18, param1->unk_08, param1->unk_0A);
+        LandDataManager_DistortionWorldUpdateTrackedTargetValues(v1->unk_18, param1->unk_08, param1->unk_0A);
     }
 
     v0 = ov9_0224D720(param1->unk_0C);
@@ -4789,40 +4789,40 @@ static int ov9_0224CEBC(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
     }
 
     if (v1->unk_04 == 0) {
-        NARC *v3 = ov5_021E9828(fieldSystem->unk_28);
+        NARC *v3 = LandDataManager_GetLandDataNARC(fieldSystem->landDataMan);
 
-        v1->unk_18 = ov5_021E9830(NULL, v1->unk_14, v3);
-        ov5_021E7A54(v1->unk_18);
+        v1->unk_18 = LandDataManager_DistortionWorldNew(NULL, v1->unk_14, v3);
+        LandDataManager_DistortionWorldNewLoadedMapsWithoutAttributesAndModel(v1->unk_18);
     }
 
     if (v1->unk_04 == 1) {
-        ov5_021E9998(v1->unk_18);
+        LandDataManager_DistortionWorldInitLoadedMapPropManagers(v1->unk_18);
     }
 
-    ov5_021E9998(fieldSystem->unk_28);
-    ov5_021EA6D8(v1->unk_18, v1->unk_10);
-    ov5_021E9F98(v1->unk_18, fieldSystem->unk_28);
+    LandDataManager_DistortionWorldInitLoadedMapPropManagers(fieldSystem->landDataMan);
+    LandDataManager_SetMapMatrix(v1->unk_18, v1->unk_10);
+    LandDataManager_DistortionWorldPreparePreviousFloor(v1->unk_18, fieldSystem->landDataMan);
 
     v1->unk_04 = 1;
     v1->unk_08 = 1;
 
     ov9_0224CBBC(v1->unk_18, 1);
-    ov9_0224CBBC(param0->fieldSystem->unk_28, 0);
+    ov9_0224CBBC(param0->fieldSystem->landDataMan, 0);
     MapMatrix_Load(v2->unk_00, fieldSystem->mapMatrix);
 
     {
         int v4 = 0, v5 = 0, v6 = 0;
 
-        ov5_021EA540(fieldSystem->unk_28, fieldSystem->mapMatrix, fieldSystem->areaDataManager);
+        LandDataManager_DistortionWorldInitWithoutNARC(fieldSystem->landDataMan, fieldSystem->mapMatrix, fieldSystem->areaDataManager);
         ov9_02251094(v2->unk_00, &v4, &v5, &v6);
-        ov5_021EA678(fieldSystem->unk_28, v4, v5, v6);
-        ov5_021EA6A4(fieldSystem->unk_28, 1);
-        ov5_021EA6D0(fieldSystem->unk_28, 1);
+        LandDataManager_DistortionWorldSetOffsets(fieldSystem->landDataMan, v4, v5, v6);
+        LandDataManager_SetInDistortionWorld(fieldSystem->landDataMan, 1);
+        LandDataManager_SetSkipMapProps(fieldSystem->landDataMan, 1);
 
         param1->unk_08 = fieldSystem->location->x;
         param1->unk_0A = fieldSystem->location->z;
 
-        ov5_021EA58C(fieldSystem->unk_28, param1->unk_08, param1->unk_0A, param1->unk_10);
+        LandDataManager_DistortionWorldInvalidateLoadedMaps(fieldSystem->landDataMan, param1->unk_08, param1->unk_0A, param1->unk_10);
     }
 
     param1->unk_04 = 2;
@@ -4833,7 +4833,7 @@ static int ov9_0224CFE0(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
 
-    ov5_021EA5E0(fieldSystem->unk_28, param1->unk_06, param1->unk_10[param1->unk_06]);
+    LandDataManager_DistortionWorldLoadEntire(fieldSystem->landDataMan, param1->unk_06, param1->unk_10[param1->unk_06]);
 
     param1->unk_06++;
 
@@ -4848,14 +4848,14 @@ static int ov9_0224D008(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
 
-    ov5_021EA6F4(fieldSystem->unk_28, param1->unk_08, param1->unk_0A);
+    LandDataManager_DistortionWorldUpdateTrackedTargetValues(fieldSystem->landDataMan, param1->unk_08, param1->unk_0A);
     ov9_02249C60(param0, param1->unk_0C);
 
     if (param1->unk_28 != NULL) {
         ov9_0224E0DC(param1->unk_28, 0);
     }
 
-    ov9_0224CBBC(param0->fieldSystem->unk_28, 1);
+    ov9_0224CBBC(param0->fieldSystem->landDataMan, 1);
 
     return 2;
 }
