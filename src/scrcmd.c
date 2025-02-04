@@ -43,6 +43,7 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/honey_tree.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021D5EB8.h"
@@ -55,7 +56,6 @@
 #include "overlay005/ov5_021EA874.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021EE7D4.h"
-#include "overlay005/ov5_021EFB0C.h"
 #include "overlay005/ov5_021F0E84.h"
 #include "overlay005/ov5_021F6454.h"
 #include "overlay005/ov5_021F77A8.h"
@@ -443,8 +443,8 @@ static BOOL ScrCmd_StartLegendaryBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartFatefulEncounter(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
-static BOOL ScrCmd_127(ScriptContext *ctx);
-static BOOL ScrCmd_128(ScriptContext *ctx);
+static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
+static BOOL ScrCmd_GetHoneyTreeStatus(ScriptContext *ctx);
 static BOOL ScrCmd_StartHoneyTreeBattle(ScriptContext *ctx);
 static BOOL ScrCmd_12A(ScriptContext *ctx);
 static BOOL ScrCmd_12B(ScriptContext *ctx);
@@ -1058,8 +1058,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_StartWildBattle,
     ScrCmd_StartFirstBattle,
     ScrCmd_StartCatchingTutorial,
-    ScrCmd_127,
-    ScrCmd_128,
+    ScrCmd_SlatherHoneyTree,
+    ScrCmd_GetHoneyTreeStatus,
     ScrCmd_StartHoneyTreeBattle,
     ScrCmd_12A,
     ScrCmd_12B,
@@ -5088,20 +5088,20 @@ static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_127(ScriptContext *ctx)
+static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov5_021EFBDC(fieldSystem);
+    HoneyTree_SlatherTree(fieldSystem);
     return 0;
 }
 
-static BOOL ScrCmd_128(ScriptContext *ctx)
+static BOOL ScrCmd_GetHoneyTreeStatus(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *var = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = ov5_021EFB94(fieldSystem);
+    *var = HoneyTree_GetTreeSlatherStatus(fieldSystem);
     return 0;
 }
 
@@ -5117,7 +5117,7 @@ static BOOL ScrCmd_12A(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov5_021EFC90(fieldSystem);
+    HoneyTree_StopShaking(fieldSystem);
     return 0;
 }
 

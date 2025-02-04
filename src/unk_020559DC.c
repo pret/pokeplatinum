@@ -132,7 +132,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
 static void sub_02055B64(FieldSystem *fieldSystem, s32 param1, const RTCTime *param2)
 {
     sub_02055CD4(fieldSystem, param1);
-    sub_0202D854(fieldSystem->saveData, param1);
+    SpecialEncounter_DecrementHoneyTreeTimers(fieldSystem->saveData, param1);
     sub_02028758(fieldSystem->saveData, param1, sub_02055C40(fieldSystem));
 
     {

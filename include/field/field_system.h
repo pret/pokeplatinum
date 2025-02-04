@@ -29,7 +29,6 @@
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
 #include "overlay005/struct_ov5_021EF300_decl.h"
 #include "overlay005/struct_ov5_021EF76C_decl.h"
-#include "overlay005/struct_ov5_021EFB30_decl.h"
 #include "overlay023/struct_ov23_0224942C_decl.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
@@ -44,6 +43,18 @@
 #include "overlay_manager.h"
 #include "pokeradar.h"
 #include "savedata.h"
+
+#define NUM_HONEY_TREES 21
+
+typedef struct HoneyTreeShake {
+    u8 shakeValue;
+    BOOL isShaking;
+} HoneyTreeShake;
+
+typedef struct HoneyTreeShakeData {
+    HoneyTreeShake shakeData[NUM_HONEY_TREES];
+    int unused[NUM_HONEY_TREES];
+} HoneyTreeShakeData;
 
 typedef struct FieldProcessManager {
     OverlayManager *parent;
@@ -95,7 +106,7 @@ typedef struct FieldSystem_t {
     JournalEntry *journalEntry;
     UnkStruct_ov5_021EF300 *unk_A0;
     UnkStruct_ov5_021E1608 *unk_A4;
-    UnkStruct_ov5_021EFB30 *unk_A8;
+    HoneyTreeShakeData *unk_A8;
     UnkStruct_0204AFC4 *unk_AC;
     const BattleRegulation *unk_B0;
     UnkStruct_0209ACBC *unk_B4;

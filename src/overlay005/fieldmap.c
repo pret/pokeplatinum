@@ -18,6 +18,7 @@
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
 #include "overlay005/hblank_system.h"
+#include "overlay005/honey_tree.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D521C.h"
@@ -39,7 +40,6 @@
 #include "overlay005/ov5_021EF250.h"
 #include "overlay005/ov5_021EF4BC.h"
 #include "overlay005/ov5_021EF75C.h"
-#include "overlay005/ov5_021EFB0C.h"
 #include "overlay005/ov5_021F0824.h"
 #include "overlay005/ov5_021F10E8.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
@@ -307,7 +307,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
         if (ov5_021E9300(fieldSystem->unk_28) == 1) {
             ov5_021EFA10(&fieldSystem->unk_30);
             ov5_021E92E4(fieldSystem->unk_28);
-            ov5_021EFB30(&fieldSystem->unk_A8);
+            HoneyTree_FreeShakeData(&fieldSystem->unk_A8);
             ov5_021D5BA8(fieldSystem);
             ov5_021D5278(&fieldSystem->unk_4C);
             ov5_021E1B20(fieldSystem->unk_64);
@@ -816,7 +816,7 @@ static void ov5_021D17EC(FieldSystem *fieldSystem)
     }
 
     fieldSystem->unk_A0 = ov5_021EF28C(8, 4);
-    fieldSystem->unk_A8 = ov5_021EFB0C();
+    fieldSystem->unk_A8 = HoneyTree_ShakeDataInit();
 
     if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_OVERWORLD) {
         ov5_021E9630(fieldSystem->unk_28, ov5_021F0030, fieldSystem);

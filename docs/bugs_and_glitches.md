@@ -151,3 +151,27 @@ a typo, the encounter rate stays unmodified.
 -                v0 * 2; // BUG: Abilities do not Increase Fishing Encounter Rate (see docs/bugs_and_glitches.md)
 +                v0 *= 2;
 ```
+
+### Surfing and Fishing Encounters ignore Magnet Pull
+
+When generating a wild encounter, the abilities Magnet Pull and Static  
+attempt to force the encountered mon to be respectively Steel or Electric type by
+manipulating the chosen encounter slot. Land encounters properly check each ability in turn,
+but surf and fishing encounters will overwrite Magnet Pull's forced encounter slot with a random one
+due to lacking a check in between Magnet Pull and Static.
+
+```diff
+  v0 = TryGetSlotForTypeMatchAbility(firstPartyMon, encounterFieldParams, encounterTable, MAX_WATER_ENCOUNTERS, TYPE_STEEL, ABILITY_MAGNET_PULL, &encounterSlot);
+-  v0 = TryGetSlotForTypeMatchAbility(firstPartyMon, encounterFieldParams, encounterTable, MAX_WATER_ENCOUNTERS, TYPE_ELECTRIC, ABILITY_STATIC, &encounterSlot);
+-
+-  if (!v0) {
+-      encounterSlot = GetWaterEncounterSlot();
+-  }
++  if (!v0)
++  {
++    v0 = TryGetSlotForTypeMatchAbility(firstPartyMon, encounterFieldParams, encounterTable, MAX_WATER_ENCOUNTERS, TYPE_ELECTRIC, ABILITY_STATIC, &encounterSlot);
++    if (!v0) {
++        encounterSlot = GetWaterEncounterSlot();
++    }
++  }
+```

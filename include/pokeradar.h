@@ -29,7 +29,7 @@ const BOOL sub_02069798(const RadarChain *chain);
 void sub_0206979C(FieldSystem *fieldSystem);
 BOOL GetRadarChainActive(const RadarChain *chain);
 BOOL RefreshRadarChain(FieldTask *param0);
-void sub_02069B74(FieldSystem *fieldSystem);
+void RadarChain_Increment(FieldSystem *fieldSystem);
 int GetChainCount(FieldSystem *fieldSystem);
 void RadarChargeStep(FieldSystem *fieldSystem);
 

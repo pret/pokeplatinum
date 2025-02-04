@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/struct_0202D7B0.h"
-#include "struct_defs/struct_0202D844.h"
-#include "struct_defs/struct_0202D84C.h"
 #include "struct_defs/struct_020698E4.h"
 #include "struct_defs/struct_0206C638.h"
 
@@ -29,17 +27,17 @@ void SpecialEncounter_Init(SpecialEncounter *param0)
     param0->trophyGarden.slot2 = TROPHY_GARDEN_SLOT_NONE;
 
     {
-        int v0;
-        UnkStruct_0202D844 *v1 = &(param0->unk_10);
+        int i;
+        HoneyTreeData *v1 = &(param0->treeData);
 
-        v1->unk_00 = 21;
+        v1->lastSlatheredTree = NUM_HONEY_TREES;
 
-        for (v0 = 0; v0 < 21; v0++) {
-            v1->unk_04[v0].unk_00 = 0;
-            v1->unk_04[v0].unk_04 = 0;
-            v1->unk_04[v0].unk_05 = 0;
-            v1->unk_04[v0].unk_06 = 0;
-            v1->unk_04[v0].unk_07 = 0;
+        for (i = 0; i < NUM_HONEY_TREES; i++) {
+            v1->honeyTrees[i].minutesRemaining = 0;
+            v1->honeyTrees[i].encounterSlot = 0;
+            v1->honeyTrees[i].encounterTableIndex = 0;
+            v1->honeyTrees[i].encounterGroup = 0;
+            v1->honeyTrees[i].numShakes = 0;
         }
     }
 
@@ -73,52 +71,54 @@ UnkStruct_020698E4 *sub_0202D830(SpecialEncounter *param0)
     return &(param0->unk_BC);
 }
 
-SpecialEncounter *SaveData_GetSpecialEncounters(SaveData *param0)
+SpecialEncounter *SaveData_GetSpecialEncounters(SaveData *speEnc)
 {
-    return SaveData_SaveTable(param0, SAVE_TABLE_ENTRY_ENCOUNTERS);
+    return SaveData_SaveTable(speEnc, SAVE_TABLE_ENTRY_ENCOUNTERS);
 }
 
-UnkStruct_0202D844 *sub_0202D840(SpecialEncounter *param0)
+// This is exclusively used in combination with SpecialEncounter_GetHoneyTree, so they could've just been one function...
+HoneyTreeData *SpecialEncounter_GetHoneyTreeData(SpecialEncounter *speEnc)
 {
-    return &(param0->unk_10);
+    return &(speEnc->treeData);
 }
 
-const int sub_0202D844(UnkStruct_0202D844 *param0)
+const int SpecialEncounter_GetLastSlatheredTreeId(HoneyTreeData *treeDat)
 {
-    return param0->unk_00;
+    return treeDat->lastSlatheredTree;
 }
 
-void sub_0202D848(const u8 param0, UnkStruct_0202D844 *param1)
+void SpecialEncounter_SetLastSlatheredTreeId(const u8 treeId, HoneyTreeData *treeDat)
 {
-    param1->unk_00 = param0;
+    treeDat->lastSlatheredTree = treeId;
 }
 
-UnkStruct_0202D84C *sub_0202D84C(const u8 param0, UnkStruct_0202D844 *param1)
+// Inconsistency: Roamers have bounds checking on the IDs used, but Honey Trees don't
+HoneyTree *SpecialEncounter_GetHoneyTree(const u8 treeId, HoneyTreeData *treeDat)
 {
-    UnkStruct_0202D84C *v0;
+    HoneyTree *tree;
 
-    v0 = &param1->unk_04[param0];
-    return v0;
+    tree = &treeDat->honeyTrees[treeId];
+    return tree;
 }
 
-void sub_0202D854(SaveData *param0, const int param1)
+void SpecialEncounter_DecrementHoneyTreeTimers(SaveData *save, const int decrement)
 {
-    int v0;
-    UnkStruct_0202D844 *v1;
-    SpecialEncounter *v2;
-    UnkStruct_0202D84C *v3;
+    int i;
+    HoneyTreeData *treeDat;
+    SpecialEncounter *speEnc;
+    HoneyTree *tree;
 
-    v2 = SaveData_GetSpecialEncounters(param0);
-    v1 = &(v2->unk_10);
+    speEnc = SaveData_GetSpecialEncounters(save);
+    treeDat = &(speEnc->treeData);
 
-    for (v0 = 0; v0 < 21; v0++) {
-        v3 = sub_0202D84C(v0, v1);
+    for (i = 0; i < NUM_HONEY_TREES; i++) {
+        tree = SpecialEncounter_GetHoneyTree(i, treeDat);
 
-        if (v3->unk_00 != 0) {
-            v3->unk_00 -= param1;
+        if (tree->minutesRemaining != 0) {
+            tree->minutesRemaining -= decrement;
 
-            if (v3->unk_00 < 0) {
-                v3->unk_00 = 0;
+            if (tree->minutesRemaining < 0) {
+                tree->minutesRemaining = 0;
             }
         }
     }

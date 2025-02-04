@@ -1616,11 +1616,11 @@
     .short 294
     .endm
 
-    .macro ScrCmd_127
+    .macro SlatherHoneyTree
     .short 295
     .endm
 
-    .macro ScrCmd_128 arg0
+    .macro GetHoneyTreeStatus arg0
     .short 296
     .short \arg0
     .endm

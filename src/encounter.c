@@ -543,7 +543,7 @@ void Encounter_NewVsHoneyTree(FieldTask *task, int *resultMaskPtr)
     dto->background = BACKGROUND_PLAIN;
     dto->terrain = TERRAIN_PLAIN;
 
-    ov6_02242034(fieldSystem, dto);
+    CreateWildMon_HoneyTree(fieldSystem, dto);
 
     GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_WILD_BATTLES_FOUGHT);
     StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
@@ -558,7 +558,7 @@ void Encounter_NewVsSpeciesAtLevel(FieldTask *task, u16 species, u8 level, int *
     dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_WILD_MON);
     FieldBattleDTO_Init(dto, fieldSystem);
 
-    ov6_022420D4(fieldSystem, species, level, dto);
+    CreateWildMon_Scripted(fieldSystem, species, level, dto);
 
     if (isLegendary) {
         dto->battleStatusMask |= BATTLE_STATUS_LEGENDARY;
@@ -577,7 +577,7 @@ void Encounter_NewFatefulVsSpeciesAtLevel(FieldTask *taskMan, u16 species, u8 le
     dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_WILD_MON);
     FieldBattleDTO_Init(dto, fieldSystem);
 
-    ov6_022420D4(fieldSystem, species, level, dto);
+    CreateWildMon_Scripted(fieldSystem, species, level, dto);
 
     BOOL tmp = TRUE;
     Pokemon *wildMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
@@ -979,7 +979,7 @@ void Encounter_NewVsGiratinaOrigin(FieldTask *task, u16 species, u8 level, int *
     dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_WILD_MON);
     FieldBattleDTO_Init(dto, fieldSystem);
 
-    ov6_022420D4(fieldSystem, species, level, dto);
+    CreateWildMon_Scripted(fieldSystem, species, level, dto);
 
     Pokemon *wildMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
     Pokemon_SetGiratinaOriginForm(wildMon);

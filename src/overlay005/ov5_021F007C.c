@@ -487,7 +487,7 @@ BOOL ov5_021F0488(FieldTask *param0)
                     v5 = Player_GetZPos(fieldSystem->playerAvatar);
                     v3 = (u8)FieldSystem_GetTileBehavior(fieldSystem, v4, v5);
 
-                    if (ov6_02242110(fieldSystem, v3)) {
+                    if (WildEncounter_TileHasEncounterRate(fieldSystem, v3)) {
                         v1->unk_0C = 6;
                     } else {
                         v1->unk_0C = 4;

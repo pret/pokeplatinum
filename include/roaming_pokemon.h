@@ -5,14 +5,6 @@
 
 #include "savedata.h"
 
-#define ROAMING_SLOT_MESPRIT   (0)
-#define ROAMING_SLOT_CRESSELIA (1)
-#define ROAMING_SLOT_DARKRAI   (2) // Unused in-game, see: https://tcrf.net/Pok%C3%A9mon_Platinum#Unused_Roaming_Darkrai
-#define ROAMING_SLOT_MOLTRES   (3)
-#define ROAMING_SLOT_ZAPDOS    (4)
-#define ROAMING_SLOT_ARTICUNO  (5)
-#define ROAMING_SLOT_MAX       (6)
-
 void sub_0206C33C(SpecialEncounter *param0, const u8 param1);
 void sub_0206C354(SpecialEncounter *param0);
 void sub_0206C37C(SpecialEncounter *param0);

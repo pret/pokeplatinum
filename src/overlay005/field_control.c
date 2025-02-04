@@ -14,12 +14,12 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/honey_tree.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1154.h"
 #include "overlay005/ov5_021E622C.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/ov5_021EF4BC.h"
-#include "overlay005/ov5_021EFB0C.h"
 #include "overlay005/ov5_021F8370.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay006/ov6_02240C9C.h"
@@ -290,7 +290,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         if (distortionState == AVATAR_DISTORTION_STATE_NONE) {
             int event;
 
-            if (ov5_021EFB40(fieldSystem, &event)) {
+            if (HoneyTree_TryInteract(fieldSystem, &event)) {
                 ScriptManager_Set(fieldSystem, event, NULL);
                 return TRUE;
             }

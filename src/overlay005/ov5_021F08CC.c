@@ -102,7 +102,7 @@ BOOL ov5_021F08F8(FieldTask *taskMan)
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
         v1->unk_10 = NULL;
-        v1->unk_08 = ov6_0224106C(fieldSystem, v1->unk_0C, &v1->unk_10);
+        v1->unk_08 = WildEncounter_TryFishingEncounter(fieldSystem, v1->unk_0C, &v1->unk_10);
         v1->unk_14 = ov5_021F09B4(fieldSystem, v1->unk_0C, v1->unk_08);
         v1->unk_00++;
         break;

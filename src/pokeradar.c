@@ -211,10 +211,10 @@ BOOL sub_02069690(RadarChain *chain)
     return FALSE;
 }
 
-BOOL PokeRadar_ShouldDoRadarEncounter(const int playerX, const int playerZ, FieldSystem *fieldSystem, RadarChain *chain, int *shake, BOOL *param5, BOOL *isShiny)
+BOOL PokeRadar_ShouldDoRadarEncounter(const int playerX, const int playerZ, FieldSystem *fieldSystem, RadarChain *chain, int *shake, BOOL *preserveChain, BOOL *isShiny)
 {
     u8 patchRing;
-    *param5 = 0;
+    *preserveChain = 0;
     *isShiny = 0;
 
     if (!PlayerStandingInPatch(chain, playerX, playerZ, &patchRing)) {
@@ -229,7 +229,7 @@ BOOL PokeRadar_ShouldDoRadarEncounter(const int playerX, const int playerZ, Fiel
         if (continueChain) {
             IncWithCap(&(chain->count));
             *shake = shakeType;
-            *param5 = 1;
+            *preserveChain = 1;
             sub_020698E4(fieldSystem, chain);
             *isShiny = chain->patch[patchRing].shiny;
             return TRUE;
@@ -485,7 +485,7 @@ static BOOL CheckPatchShiny(const int chainCount)
     }
 }
 
-void sub_02069B74(FieldSystem *fieldSystem)
+void RadarChain_Increment(FieldSystem *fieldSystem)
 {
     IncWithCap(&(fieldSystem->chain->count));
     sub_020698E4(fieldSystem, fieldSystem->chain);
