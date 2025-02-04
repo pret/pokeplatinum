@@ -1,9 +1,7 @@
-#ifndef POKEPLATINUM_STRUCT_0202D7B0_H
-#define POKEPLATINUM_STRUCT_0202D7B0_H
+#ifndef POKEPLATINUM_STRUCT_SPECIAL_ENCOUNTER_H
+#define POKEPLATINUM_STRUCT_SPECIAL_ENCOUNTER_H
 
-#include "struct_defs/struct_0202D7B0_sub2.h"
-#include "struct_defs/struct_020698E4.h"
-#include "struct_defs/struct_0206C638.h"
+#include "struct_defs/radar_chain_records.h"
 
 #include "field/field_system.h"
 
@@ -38,13 +36,29 @@ typedef struct {
     HoneyTree honeyTrees[NUM_HONEY_TREES];
 } HoneyTreeData;
 
+typedef struct {
+    int currentMapId;
+    u32 ivs;
+    u32 personality;
+    u16 species;
+    u16 currentHP;
+    u8 level;
+    u8 status;
+    u8 active;
+} Roamer;
+
+typedef struct PlayerRecentRoutes {
+    int currentMapId;
+    int previousMapId;
+} PlayerRecentRoutes;
+
 typedef struct SpecialEncounter {
     int marshDaily; // random number, index of the mon is derived from this in ReplaceGreatMarshDailyEncounters
     int swarmDaily; // random number, % NUM_SWARMS to get swarm ID
     TrophyGardenMons trophyGarden;
     HoneyTreeData treeData;
-    UnkStruct_020698E4 unk_BC;
-    SpecialEncounter_sub2 unk_C8;
+    RadarChainRecords chainRecords;
+    PlayerRecentRoutes recentRoutes; // Used to prevent roamers from trolling you by moving to the route you just left
     Roamer roamers[ROAMING_SLOT_MAX];
     u8 roamerRouteIndexes[ROAMING_SLOT_MAX]; // Not a map ID. Actually index into RoamingPokemonRoutes in roaming_pokemon.c
     u8 swarmEnabled;
@@ -53,4 +67,4 @@ typedef struct SpecialEncounter {
     u8 fluteFactor;
 } SpecialEncounter;
 
-#endif // POKEPLATINUM_STRUCT_0202D7B0_H
+#endif // POKEPLATINUM_STRUCT_SPECIAL_ENCOUNTER_H

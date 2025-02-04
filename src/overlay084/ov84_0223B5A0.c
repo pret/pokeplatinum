@@ -5,7 +5,7 @@
 
 #include "constants/field/map_load.h"
 
-#include "struct_defs/struct_0202D7B0.h"
+#include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0207CB08.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -36,6 +36,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "special_encounter.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -50,7 +51,6 @@
 #include "unk_02017728.h"
 #include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0202D7A8.h"
 #include "unk_020393C8.h"
 #include "unk_020683F4.h"
 #include "unk_0207CB08.h"

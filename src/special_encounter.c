@@ -1,11 +1,10 @@
-#include "unk_0202D7A8.h"
+#include "special_encounter.h"
 
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202D7B0.h"
-#include "struct_defs/struct_020698E4.h"
-#include "struct_defs/struct_0206C638.h"
+#include "struct_defs/radar_chain_records.h"
+#include "struct_defs/special_encounter.h"
 
 #include "math.h"
 #include "roaming_pokemon.h"
@@ -16,19 +15,19 @@ int SpecialEncounter_SaveSize(void)
     return sizeof(SpecialEncounter);
 }
 
-void SpecialEncounter_Init(SpecialEncounter *param0)
+void SpecialEncounter_Init(SpecialEncounter *specialEncounter)
 {
-    memset(param0, 0, sizeof(SpecialEncounter));
+    memset(specialEncounter, 0, sizeof(SpecialEncounter));
 
-    param0->marshDaily = MTRNG_Next();
-    param0->swarmDaily = MTRNG_Next();
-    param0->trophyGarden.unused = 0;
-    param0->trophyGarden.slot1 = TROPHY_GARDEN_SLOT_NONE;
-    param0->trophyGarden.slot2 = TROPHY_GARDEN_SLOT_NONE;
+    specialEncounter->marshDaily = MTRNG_Next();
+    specialEncounter->swarmDaily = MTRNG_Next();
+    specialEncounter->trophyGarden.unused = 0;
+    specialEncounter->trophyGarden.slot1 = TROPHY_GARDEN_SLOT_NONE;
+    specialEncounter->trophyGarden.slot2 = TROPHY_GARDEN_SLOT_NONE;
 
     {
         int i;
-        HoneyTreeData *v1 = &(param0->treeData);
+        HoneyTreeData *v1 = &(specialEncounter->treeData);
 
         v1->lastSlatheredTree = NUM_HONEY_TREES;
 
@@ -41,10 +40,10 @@ void SpecialEncounter_Init(SpecialEncounter *param0)
         }
     }
 
-    param0->swarmEnabled = 0;
-    param0->repelSteps = 0;
-    param0->radarCharge = 0;
-    param0->fluteFactor = FLUTE_FACTOR_NONE;
+    specialEncounter->swarmEnabled = 0;
+    specialEncounter->repelSteps = 0;
+    specialEncounter->radarCharge = 0;
+    specialEncounter->fluteFactor = FLUTE_FACTOR_NONE;
 }
 
 void SpecialEncounter_SetMixedRecordDailies(SpecialEncounter *speEnc, const u32 mixedRecord)
@@ -53,22 +52,22 @@ void SpecialEncounter_SetMixedRecordDailies(SpecialEncounter *speEnc, const u32 
     speEnc->swarmDaily = mixedRecord;
 }
 
-u32 SpecialEncounter_GetDailyMon(SpecialEncounter *param0, const u8 dailyType)
+u32 SpecialEncounter_GetDailyMon(SpecialEncounter *speEnc, const u8 dailyType)
 {
     switch (dailyType) {
     case DAILY_MARSH:
-        return param0->marshDaily;
+        return speEnc->marshDaily;
     case DAILY_SWARM:
-        return param0->swarmDaily;
+        return speEnc->swarmDaily;
     default:
         GF_ASSERT(0);
         return 0;
     }
 }
 
-UnkStruct_020698E4 *sub_0202D830(SpecialEncounter *param0)
+RadarChainRecords *SpecialEncounter_GetRadarChainRecords(SpecialEncounter *speEnc)
 {
-    return &(param0->unk_BC);
+    return &(speEnc->chainRecords);
 }
 
 SpecialEncounter *SaveData_GetSpecialEncounters(SaveData *speEnc)
@@ -95,12 +94,11 @@ void SpecialEncounter_SetLastSlatheredTreeId(const u8 treeId, HoneyTreeData *tre
 // Inconsistency: Roamers have bounds checking on the IDs used, but Honey Trees don't
 HoneyTree *SpecialEncounter_GetHoneyTree(const u8 treeId, HoneyTreeData *treeDat)
 {
-    HoneyTree *tree;
-
-    tree = &treeDat->honeyTrees[treeId];
+    HoneyTree *tree = &treeDat->honeyTrees[treeId];
     return tree;
 }
 
+// These are minute timers. They start at 24 hours'worth of minutes
 void SpecialEncounter_DecrementHoneyTreeTimers(SaveData *save, const int decrement)
 {
     int i;
@@ -126,9 +124,7 @@ void SpecialEncounter_DecrementHoneyTreeTimers(SaveData *save, const int decreme
 
 void SpecialEncounter_EnableSwarms(SaveData *saveData)
 {
-    SpecialEncounter *speEnc;
-
-    speEnc = SaveData_GetSpecialEncounters(saveData);
+    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(saveData);
     speEnc->swarmEnabled = 1;
 }
 
@@ -137,17 +133,17 @@ u8 SpecialEncounter_IsSwarmEnabled(SpecialEncounter *speEnc)
     return speEnc->swarmEnabled;
 }
 
-void sub_0202D8A4(SpecialEncounter *param0, const int param1)
+void SpecialEncounter_UpdateRecentRoutes(SpecialEncounter *speEnc, const int newMap)
 {
-    if (param0->unk_C8.unk_00 != param1) {
-        param0->unk_C8.unk_04 = param0->unk_C8.unk_00;
-        param0->unk_C8.unk_00 = param1;
+    if (speEnc->recentRoutes.currentMapId != newMap) {
+        speEnc->recentRoutes.previousMapId = speEnc->recentRoutes.currentMapId;
+        speEnc->recentRoutes.currentMapId = newMap;
     }
 }
 
-int sub_0202D8BC(SpecialEncounter *param0)
+int SpecialEncounter_GetPlayerPreviousMap(SpecialEncounter *speEnc)
 {
-    return param0->unk_C8.unk_04;
+    return speEnc->recentRoutes.previousMapId;
 }
 
 u8 SpecialEncounter_GetRoamerRouteIndex(SpecialEncounter *speEnc, const u8 roamerId)
@@ -181,11 +177,11 @@ Roamer *SpecialEncounter_GetRoamer(SpecialEncounter *speEnc, const u8 slot)
 
 u32 Roamer_GetData(const Roamer *roamer, const u8 dataType)
 {
-    u32 data;
+    u32 data; // awesome uninitialized variable with no default case
 
     switch (dataType) {
-    case 1:
-        data = roamer->unk_00;
+    case ROAMER_DATA_MAP_ID:
+        data = roamer->currentMapId;
         break;
     case ROAMER_DATA_IVS:
         data = roamer->ivs;
@@ -215,11 +211,9 @@ u32 Roamer_GetData(const Roamer *roamer, const u8 dataType)
 
 void Roamer_SetData(Roamer *roamer, const u8 dataType, const u32 data)
 {
-    u32 v0;
-
     switch (dataType) {
-    case 1:
-        roamer->unk_00 = data;
+    case ROAMER_DATA_MAP_ID:
+        roamer->currentMapId = data;
         break;
     case ROAMER_DATA_IVS:
         roamer->ivs = data;
@@ -245,22 +239,22 @@ void Roamer_SetData(Roamer *roamer, const u8 dataType, const u32 data)
     }
 }
 
-u8 *SpecialEncounter_GetRadarCharge(SpecialEncounter *param0)
+u8 *SpecialEncounter_GetRadarCharge(SpecialEncounter *speEnc)
 {
-    return &(param0->radarCharge);
+    return &(speEnc->radarCharge);
 }
 
-u8 *SpecialEncounter_GetRepelSteps(SpecialEncounter *param0)
+u8 *SpecialEncounter_GetRepelSteps(SpecialEncounter *speEnc)
 {
-    return &(param0->repelSteps);
+    return &(speEnc->repelSteps);
 }
 
-BOOL SpecialEncounter_RepelStepsEmpty(SpecialEncounter *param0)
+BOOL SpecialEncounter_RepelStepsEmpty(SpecialEncounter *speEnc)
 {
-    if (!param0->repelSteps) {
-        return 1;
+    if (!speEnc->repelSteps) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 

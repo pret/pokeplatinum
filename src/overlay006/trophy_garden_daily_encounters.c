@@ -7,16 +7,14 @@
 #include "inlines.h"
 #include "narc.h"
 #include "savedata.h"
-#include "unk_0202D7A8.h"
+#include "special_encounter.h"
 
 void TrophyGarden_AddNewMon(SaveData *saveData)
 {
     u16 newMonIndex;
     u16 index1, index2;
     int currentMons[2];
-    int *encData;
-
-    encData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, HEAP_ID_FIELD);
+    int *encData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, HEAP_ID_FIELD);
 
     SpecialEncounter_GetTrophyGardenMons(saveData, &index1, &index2);
 

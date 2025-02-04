@@ -15,8 +15,8 @@
 #include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system.h"
-#include "overlay006/ov6_02240C9C.h"
-#include "overlay006/ov6_02246034.h"
+#include "overlay006/roamer_after_battle.h"
+#include "overlay006/wild_encounters.h"
 #include "savedata/save_table.h"
 
 #include "catching_show.h"
@@ -421,7 +421,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
         break;
 
     case 4:
-        ov6_02246034(fieldSystem, encounter->dto);
+        RoamerAfterBattle_UpdateRoamers(fieldSystem, encounter->dto);
         FieldTransition_FadeIn(task);
         encounter->state++;
         break;
@@ -949,9 +949,9 @@ static void UpdateJournal(FieldSystem *fieldSystem, FieldBattleDTO *dto)
         JournalEntryMon *journalEntryMon;
 
         if (resultMask == BATTLE_RESULT_WIN) {
-            fieldSystem->unk_78.unk_02++;
+            fieldSystem->unk_78.wildMonDefeated++;
 
-            if (fieldSystem->unk_78.unk_02 >= 5) {
+            if (fieldSystem->unk_78.wildMonDefeated >= 5) {
                 caughtMon = Party_GetPokemonBySlotIndex(dto->parties[1], 0);
                 journalEntryMon = JournalEntry_CreateEventMonDefeated(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
                 JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryMon, JOURNAL_MON);

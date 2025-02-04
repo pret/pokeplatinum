@@ -2,8 +2,8 @@
 #define POKEPLATINUM_FIELD_SYSTEM_SUB3_H
 
 typedef struct {
-    u16 unk_00;
-    u16 unk_02;
+    u16 encounterAttempts;
+    u16 wildMonDefeated;
 } FieldSystem_sub3;
 
 #endif // POKEPLATINUM_FIELD_SYSTEM_SUB3_H

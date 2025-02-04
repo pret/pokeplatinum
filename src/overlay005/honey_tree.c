@@ -20,8 +20,8 @@
 #include "narc.h"
 #include "player_avatar.h"
 #include "save_player.h"
+#include "special_encounter.h"
 #include "trainer_info.h"
-#include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
 #include "unk_02054D00.h"
 
@@ -64,12 +64,14 @@ static const int sHoneyTreeMapIds[NUM_HONEY_TREES] = {
     MAP_HEADER_FLOAROMA_MEADOW
 };
 
+// Seems they considered having version exclusive Honey Tree encounters.
 static const int sEncounterTableIndexes_DPt[] = {
     0x2,
     0x3,
     0x4
 };
 
+// These IDs ultimately point to the same encounters.
 static const int sEncounterTableIndexes_P_Unused[] = {
     0x5,
     0x6,
@@ -79,22 +81,20 @@ static const int sEncounterTableIndexes_P_Unused[] = {
 HoneyTreeShakeData *HoneyTree_ShakeDataInit(void)
 {
     u8 i;
-    HoneyTreeShakeData *v1;
+    HoneyTreeShakeData *data = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(HoneyTreeShakeData));
 
-    v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(HoneyTreeShakeData));
-
-    for (i = 0; i < 21; i++) {
-        v1->shakeData[i].shakeValue = 0;
-        v1->shakeData[i].isShaking = FALSE;
+    for (i = 0; i < NUM_HONEY_TREES; i++) {
+        data->shakeData[i].shakeValue = 0;
+        data->shakeData[i].isShaking = FALSE;
     }
 
-    return v1;
+    return data;
 }
 
-void HoneyTree_FreeShakeData(HoneyTreeShakeData **param0)
+void HoneyTree_FreeShakeData(HoneyTreeShakeData **data)
 {
-    Heap_FreeToHeap(*param0);
-    *param0 = NULL;
+    Heap_FreeToHeap(*data);
+    *data = NULL;
 }
 
 BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId)
@@ -158,12 +158,10 @@ void HoneyTree_SlatherTree(FieldSystem *fieldSystem)
 
     tree->minutesRemaining = (24 * 60); // slathering lasts for one day
 
-    {
-        TrainerInfo *trainer = SaveData_GetTrainerInfo(fieldSystem->saveData);
-        munchlaxTree = IsMunchlaxTree(TrainerInfo_ID(trainer), treeId);
-    }
+    TrainerInfo *trainer = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    munchlaxTree = IsMunchlaxTree(TrainerInfo_ID(trainer), treeId);
 
-    // Slathering the same tree twice in succession has a 90% chance to not reset encounter group.
+    // Slathering the same tree twice in succession has a 90% chance to give the same group again.
     if (SpecialEncounter_GetLastSlatheredTreeId(treeDat) == treeId) {
         if ((LCRNG_RandMod(100)) < 90) {
             GetTreeEncounterSlot(&tree->encounterSlot);
@@ -172,30 +170,26 @@ void HoneyTree_SlatherTree(FieldSystem *fieldSystem)
         }
     }
 
-    {
-        GetTreeEncounterGroup(munchlaxTree, &tree->encounterGroup);
+    GetTreeEncounterGroup(munchlaxTree, &tree->encounterGroup);
 
-        if (tree->encounterGroup != TREE_GROUP_NO_ENCOUNTER) {
-            GetTreeEncounterSlot(&tree->encounterSlot);
+    if (tree->encounterGroup != TREE_GROUP_NO_ENCOUNTER) {
+        GetTreeEncounterSlot(&tree->encounterSlot);
 
-            tree->encounterTableIndex = GetEncounterTableFromGroup(tree->encounterGroup);
-        } else {
-            tree->encounterTableIndex = 0;
-            tree->encounterSlot = 0;
-            tree->minutesRemaining = 0;
-        }
-
-        tree->numShakes = GetShakesFromGroup(tree->encounterGroup);
+        tree->encounterTableIndex = GetEncounterTableFromGroup(tree->encounterGroup);
+    } else {
+        tree->encounterTableIndex = 0;
+        tree->encounterSlot = 0;
+        tree->minutesRemaining = 0;
     }
+
+    tree->numShakes = GetShakesFromGroup(tree->encounterGroup);
 
     SpecialEncounter_SetLastSlatheredTreeId(treeId, treeDat);
 }
 
 void HoneyTree_StopShaking(FieldSystem *fieldSystem)
 {
-    u8 treeId;
-
-    treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
+    u8 treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
     if (fieldSystem->unk_A8->shakeData[treeId].isShaking) {
@@ -224,9 +218,7 @@ void HoneyTree_StopShaking(FieldSystem *fieldSystem)
 // For normal trees the rates are 10/70/20/0.
 static void GetTreeEncounterGroup(const BOOL isMunchlaxTree, u8 *group)
 {
-    int roll;
-
-    roll = LCRNG_RandMod(100);
+    int roll = LCRNG_RandMod(100);
 
     if (isMunchlaxTree) {
         if (roll < 1) {
@@ -252,9 +244,7 @@ static void GetTreeEncounterGroup(const BOOL isMunchlaxTree, u8 *group)
 // Rates per slot are 40, 20, 20, 10, 5, 5
 static void GetTreeEncounterSlot(u8 *slot)
 {
-    int roll;
-
-    roll = LCRNG_RandMod(100);
+    int roll = LCRNG_RandMod(100);
 
     if (roll < 5) {
         *slot = 5;
@@ -271,7 +261,7 @@ static void GetTreeEncounterSlot(u8 *slot)
     }
 }
 
-// Return value is used to read from the encounter table NARC.
+// Return value is used to read from the encounter table NARC. This is effectively group - 1.
 // This looks really stupid, but it does sanitize invalid groups to table 0 instead of trying to read data out of bounds. I guess.
 static const int GetEncounterTableFromGroup(const u8 group)
 {
@@ -291,9 +281,7 @@ static const int GetEncounterTableFromGroup(const u8 group)
 static const int GetShakesFromGroup(const u8 group)
 {
     int numShakes;
-    int roll;
-
-    roll = LCRNG_RandMod(100);
+    int roll = LCRNG_RandMod(100);
 
     if (group == TREE_GROUP_C) {
         if (roll < 5) {
@@ -407,7 +395,6 @@ static void DoTreeShakingAnimation(FieldSystem *fieldSystem, UnkStruct_ov5_021E1
 static u8 GetTreeIdFromMapId(const int mapId)
 {
     u8 i;
-
     for (i = 0; i < NUM_HONEY_TREES; i++) {
         if (mapId == sHoneyTreeMapIds[i]) {
             return i;
@@ -465,9 +452,7 @@ static BOOL IsMunchlaxTree(const u32 trainerId, const u8 treeId)
 
 int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
 {
-    u8 treeId;
-
-    treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
+    u8 treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
     {
@@ -495,7 +480,6 @@ int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
 void ov5_021F0030(void *param0, const int param1, UnkStruct_ov5_021E1608 *const param2)
 {
     FieldSystem *fieldSystem;
-    u8 v1;
 
     if (param1 < 0) {
         return;
@@ -509,9 +493,7 @@ void HoneyTree_Unslather(FieldSystem *fieldSystem)
 {
     HoneyTreeData *treeDat;
     HoneyTree *tree;
-    u8 treeId;
-
-    treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
+    u8 treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
     fieldSystem->unk_A8->shakeData[treeId].isShaking = FALSE;

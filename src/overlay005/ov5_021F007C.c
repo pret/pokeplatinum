@@ -3,13 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/sdat.h"
+
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D5EB8.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
-#include "overlay006/ov6_02240C9C.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
+#include "overlay006/wild_encounters.h"
 
 #include "bg_window.h"
 #include "field_task.h"
@@ -67,7 +69,7 @@ static void ov5_021F007C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     Bg_SetPriority(2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
-    Sound_PlayEffect(1608);
+    Sound_PlayEffect(SEQ_SE_DP_FW230);
 }
 
 static void ov5_021F00BC(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
@@ -120,7 +122,7 @@ static void ov5_021F013C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     Bg_SetPriority(2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
-    Sound_PlayEffect(1608);
+    Sound_PlayEffect(SEQ_SE_DP_FW230);
 }
 
 static void ov5_021F0188(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSystem, void *param2)
@@ -487,7 +489,7 @@ BOOL ov5_021F0488(FieldTask *param0)
                     v5 = Player_GetZPos(fieldSystem->playerAvatar);
                     v3 = (u8)FieldSystem_GetTileBehavior(fieldSystem, v4, v5);
 
-                    if (WildEncounter_TileHasEncounterRate(fieldSystem, v3)) {
+                    if (WildEncounters_TileHasEncounterRate(fieldSystem, v3)) {
                         v1->unk_0C = 6;
                     } else {
                         v1->unk_0C = 4;
@@ -539,7 +541,7 @@ BOOL ov5_021F0488(FieldTask *param0)
             ov5_021F0374(fieldSystem);
         }
 
-        v6 = ov6_022411C8(fieldSystem, param0);
+        v6 = WildEncounters_TrySweetScentEncounter(fieldSystem, param0);
         GF_ASSERT(v6);
     } break;
     case 7:

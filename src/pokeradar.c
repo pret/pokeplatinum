@@ -6,12 +6,12 @@
 #include "constants/battle.h"
 #include "generated/sdat.h"
 
+#include "struct_defs/radar_chain_records.h"
 #include "struct_defs/struct_0201CFEC.h"
-#include "struct_defs/struct_020698E4.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F2D20.h"
-#include "overlay006/ov6_022430C4.h"
+#include "overlay006/radar_chain_records.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bag.h"
@@ -23,9 +23,9 @@
 #include "player_avatar.h"
 #include "scrcmd.h"
 #include "script_manager.h"
+#include "special_encounter.h"
 #include "unk_02005474.h"
 #include "unk_0201CED8.h"
-#include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
@@ -57,8 +57,8 @@ typedef struct RadarChain {
 
 static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const int param2, const int param3, const u8 param4, const u8 param5, GrassPatch *patch);
 static BOOL PlayerStandingInPatch(const RadarChain *chain, const int x, const int z, u8 *patchMatch);
-static void sub_020698E4(FieldSystem *fieldSystem, RadarChain *chain);
-static u8 sub_0206994C(FieldSystem *fieldSystem);
+static void TryReplaceLowestChainRecord(FieldSystem *fieldSystem, RadarChain *chain);
+static u8 GetLowestChainRecordSlot(FieldSystem *fieldSystem);
 static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult);
 static BOOL CheckPatchShiny(const int param0);
 static void IncWithCap(int *param0);
@@ -230,7 +230,7 @@ BOOL PokeRadar_ShouldDoRadarEncounter(const int playerX, const int playerZ, Fiel
             IncWithCap(&(chain->count));
             *shake = shakeType;
             *preserveChain = 1;
-            sub_020698E4(fieldSystem, chain);
+            TryReplaceLowestChainRecord(fieldSystem, chain);
             *isShiny = chain->patch[patchRing].shiny;
             return TRUE;
         } else {
@@ -239,7 +239,7 @@ BOOL PokeRadar_ShouldDoRadarEncounter(const int playerX, const int playerZ, Fiel
     } else {
         *shake = shakeType;
         chain->unk_14 = 0;
-        chain->unk_D0 = sub_0206994C(fieldSystem);
+        chain->unk_D0 = GetLowestChainRecordSlot(fieldSystem);
     }
 
     chain->shakeType = *shake;
@@ -349,19 +349,19 @@ static BOOL PlayerStandingInPatch(const RadarChain *chain, const int x, const in
     return FALSE;
 }
 
-static void sub_020698E4(FieldSystem *fieldSystem, RadarChain *chain)
+static void TryReplaceLowestChainRecord(FieldSystem *fieldSystem, RadarChain *chain)
 {
-    UnkStruct_020698E4 *v0 = sub_0202D830(SaveData_GetSpecialEncounters(fieldSystem->saveData));
-    int v1 = v0->unk_00[chain->unk_D0].unk_02;
+    RadarChainRecords *chainRecordData = SpecialEncounter_GetRadarChainRecords(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+    int lowestRecord = chainRecordData->records[chain->unk_D0].chainCount;
 
-    if (v1 < chain->count) {
-        v0->unk_00[chain->unk_D0].unk_02 = chain->count;
-        v0->unk_00[chain->unk_D0].unk_00 = chain->species;
-        ov6_02243160(v0);
-        if (v0->unk_00[chain->unk_D0].unk_02 <= chain->count) {
-            for (int v2 = 0; v2 < 3; v2++) {
-                if (v0->unk_00[(2 - v2)].unk_02 == chain->count) {
-                    chain->unk_D0 = (2 - v2);
+    if (lowestRecord < chain->count) {
+        chainRecordData->records[chain->unk_D0].chainCount = chain->count;
+        chainRecordData->records[chain->unk_D0].species = chain->species;
+        RadarChainRecords_SortSavedRecords(chainRecordData);
+        if (chainRecordData->records[chain->unk_D0].chainCount <= chain->count) {
+            for (int v2 = 0; v2 < NUM_RADAR_RECORDS; v2++) {
+                if (chainRecordData->records[((NUM_RADAR_RECORDS - 1) - v2)].chainCount == chain->count) {
+                    chain->unk_D0 = ((NUM_RADAR_RECORDS - 1) - v2);
                     return;
                 }
             }
@@ -370,31 +370,32 @@ static void sub_020698E4(FieldSystem *fieldSystem, RadarChain *chain)
     }
 }
 
-static u8 sub_0206994C(FieldSystem *fieldSystem)
+// Returns the index of the record with the lowest chain, or the first empty slot if there is one.
+static u8 GetLowestChainRecordSlot(FieldSystem *fieldSystem)
 {
-    u8 v1;
-    BOOL v2;
-    UnkStruct_020698E4 *v0 = sub_0202D830(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+    u8 slotToReplace;
+    BOOL lowerChain;
+    RadarChainRecords *recordsData = SpecialEncounter_GetRadarChainRecords(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 
-    for (v1 = 0; v1 < 3; v1++) {
-        if (v0->unk_00[v1].unk_00 == 0) {
-            return v1;
+    for (slotToReplace = 0; slotToReplace < NUM_RADAR_RECORDS; slotToReplace++) {
+        if (recordsData->records[slotToReplace].species == 0) {
+            return slotToReplace;
         }
     }
 
-    (v0->unk_00[0].unk_02 < v0->unk_00[1].unk_02) ? (v2 = 1) : (v2 = 0);
-    if (v2) {
-        v1 = 0;
+    (recordsData->records[0].chainCount < recordsData->records[1].chainCount) ? (lowerChain = 1) : (lowerChain = 0);
+    if (lowerChain) {
+        slotToReplace = 0;
     } else {
-        v1 = 1;
+        slotToReplace = 1;
     }
 
-    (v0->unk_00[v1].unk_02 < v0->unk_00[2].unk_02) ? (v2 = 1) : (v2 = 0);
-    if (!v2) {
-        v1 = 2;
+    (recordsData->records[slotToReplace].chainCount < recordsData->records[2].chainCount) ? (lowerChain = 1) : (lowerChain = 0);
+    if (!lowerChain) {
+        slotToReplace = 2;
     }
 
-    return v1;
+    return slotToReplace;
 }
 
 static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult)
@@ -488,7 +489,7 @@ static BOOL CheckPatchShiny(const int chainCount)
 void RadarChain_Increment(FieldSystem *fieldSystem)
 {
     IncWithCap(&(fieldSystem->chain->count));
-    sub_020698E4(fieldSystem, fieldSystem->chain);
+    TryReplaceLowestChainRecord(fieldSystem, fieldSystem->chain);
 }
 
 int GetChainCount(FieldSystem *fieldSystem)

@@ -2,8 +2,7 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202D7B0.h"
-#include "struct_defs/struct_0206C638.h"
+#include "struct_defs/special_encounter.h"
 
 #include "overlay025/poketch_system.h"
 #include "overlay047/ov47_02256634.h"
@@ -14,9 +13,9 @@
 #include "heap.h"
 #include "inlines.h"
 #include "poketch.h"
+#include "special_encounter.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0202D7A8.h"
 #include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
@@ -32,6 +31,8 @@ typedef struct {
     u8 unk_94[6];
     u8 unk_9A;
 } UnkStruct_ov47_0225621C;
+
+// This is the Marking Map
 
 static void NitroStaticInit(void);
 
@@ -322,7 +323,7 @@ static BOOL ov47_02256584(UnkStruct_ov47_0225621C *param0)
                 }
 
                 if (param0->unk_04.unk_3C[v3].unk_00) {
-                    param0->unk_04.unk_3C[v3].unk_04 = Roamer_GetData(param0->unk_7C[v3], 1);
+                    param0->unk_04.unk_3C[v3].unk_04 = Roamer_GetData(param0->unk_7C[v3], ROAMER_DATA_MAP_ID);
                     v0 = 1;
                 }
             }

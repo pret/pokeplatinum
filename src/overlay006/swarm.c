@@ -1,4 +1,4 @@
-#include "overlay006/ov6_02243218.h"
+#include "overlay006/swarm.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -42,9 +42,8 @@ u32 Swarm_GetMapId(const u32 swarm)
 void Swarm_GetMapIdAndSpecies(const u32 swarm, u16 *mapIdDest, u16 *speciesDest)
 {
     WildEncounters encounterData;
-    u32 mapId;
+    u32 mapId = Swarm_MapIdTable[(swarm % NUM_SWARMS)];
 
-    mapId = Swarm_MapIdTable[(swarm % NUM_SWARMS)];
     MapHeaderData_LoadWildEncounters(&encounterData, mapId);
 
     (*speciesDest) = encounterData.swarmEncounters[0];

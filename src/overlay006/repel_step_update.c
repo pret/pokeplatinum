@@ -1,4 +1,4 @@
-#include "overlay006/ov6_02246BF4.h"
+#include "overlay006/repel_step_update.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -7,13 +7,11 @@
 
 #include "savedata.h"
 #include "script_manager.h"
-#include "unk_0202D7A8.h"
+#include "special_encounter.h"
 
-BOOL ov6_02246BF4(SaveData *saveData, FieldSystem *fieldSystem)
+BOOL Repel_UpdateSteps(SaveData *saveData, FieldSystem *fieldSystem)
 {
-    u8 *repelSteps;
-
-    repelSteps = SpecialEncounter_GetRepelSteps(SaveData_GetSpecialEncounters(saveData));
+    u8 *repelSteps = SpecialEncounter_GetRepelSteps(SaveData_GetSpecialEncounters(saveData));
 
     if ((*repelSteps) > 0) {
         (*repelSteps)--;

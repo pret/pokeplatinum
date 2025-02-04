@@ -23,8 +23,8 @@
 #include "overlay005/ov5_021EF4BC.h"
 #include "overlay005/ov5_021F8370.h"
 #include "overlay005/vs_seeker.h"
-#include "overlay006/ov6_02240C9C.h"
-#include "overlay006/ov6_02246BF4.h"
+#include "overlay006/repel_step_update.h"
+#include "overlay006/wild_encounters.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
 #include "overlay023/ov23_02241F74.h"
@@ -556,7 +556,7 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
         }
     }
 
-    return MapHeader_HasWildEncounters(fieldSystem->location->mapId) && WildEncounter_TryWildEncounter(fieldSystem) == TRUE;
+    return MapHeader_HasWildEncounters(fieldSystem->location->mapId) && WildEncounters_TryWildEncounter(fieldSystem) == TRUE;
 }
 
 static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput *input)
@@ -856,7 +856,7 @@ static BOOL Field_UpdatePokeRadar(FieldSystem *fieldSystem)
 
 static BOOL Field_UpdateRepel(FieldSystem *fieldSystem)
 {
-    return ov6_02246BF4(fieldSystem->saveData, fieldSystem);
+    return Repel_UpdateSteps(fieldSystem->saveData, fieldSystem);
 }
 
 static BOOL Field_UpdateFriendship(FieldSystem *fieldSystem)
