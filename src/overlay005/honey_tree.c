@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/map_object.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "struct_defs/struct_02055130.h"
 
