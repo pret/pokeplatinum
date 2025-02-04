@@ -5,10 +5,10 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "sprite_resource.h"
 #include "string_template.h"
 
@@ -36,7 +36,7 @@ typedef struct {
     Window unk_1FC;
     SpriteResource *unk_20C[4];
     CellActor *unk_21C[3];
-    SpriteManagerAllocation unk_228;
+    CharTransferAllocation unk_228;
     FontOAM *unk_234;
     u32 unk_238;
     u32 unk_23C;

@@ -48,34 +48,33 @@
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
 #include "overlay021/struct_ov21_021E68F4.h"
-#include "overlay022/struct_ov22_022559F8.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "pokedex.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
-#include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_0202419C.h"
 #include "unk_0209ACBC.h"
+#include "vram_transfer.h"
 
 #include "res/text/bank/pokedex.h"
 
@@ -132,7 +131,7 @@ int ov21_021D0D80(OverlayManager *param0, int *param1)
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021D0F18));
 
-    VRAMTransferManager_New(8, 37);
+    VramTransfer_New(8, 37);
 
     v1 = OverlayManager_Args(param0);
 
@@ -212,7 +211,7 @@ int ov21_021D0EC8(OverlayManager *param0, int *param1)
     GF_ASSERT(v1 == 1);
 
     ov21_021D12C4();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     OverlayManager_FreeData(param0);
     Heap_Destroy(37);
     sub_0200544C(1, 127);
@@ -228,7 +227,7 @@ static void ov21_021D0F04(void *param0)
         ov21_021D12D8(v0->unk_00);
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
 }
 
 static void ov21_021D0F18(UnkStruct_ov21_021D0F18 *param0)
@@ -421,8 +420,8 @@ void ov21_021D12B0(int param0)
 void ov21_021D12C4(void)
 {
     sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
     ov21_021D1F84();
 }
 
@@ -746,7 +745,7 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D332
     v4 = ov21_021D2344(param0, 1);
 
     v2.unk_00 = param0->unk_14C;
-    v2.unk_08 = sub_0200A72C(v4, NULL);
+    v2.unk_08 = SpriteTransfer_GetPaletteProxy(v4, NULL);
     v2.unk_0C = v0;
     v2.unk_10 = -(128 / 2);
     v2.unk_14 = -(16 / 2);
@@ -1057,19 +1056,19 @@ static void ov21_021D1E94(int param0)
     sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, param0);
 
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             32,
             0x14000,
             0x4000,
         };
 
-        v0.unk_0C = param0;
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        v0.heapID = param0;
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834(32, param0);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(32, param0);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 static void ov21_021D1EEC(UnkStruct_ov21_021D0F60 *param0)

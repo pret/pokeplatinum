@@ -12,7 +12,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
@@ -26,6 +25,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
@@ -41,6 +41,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "sprite_resource.h"
@@ -54,13 +55,11 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_0209C390.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay63);
 
@@ -408,7 +407,7 @@ int ov65_0223648C(OverlayManager *param0, int *param1)
     MI_CpuFill8(v0->unk_00.unk_1C, 1, sizeof(u8) * 4);
     MI_CpuFill8(v0->unk_00.unk_20, 1, sizeof(u8) * 4);
 
-    VRAMTransferManager_New(16, 96);
+    VramTransfer_New(16, 96);
 
     v0->unk_00.unk_00 = sub_020388E8();
     v0->unk_00.unk_00->unk_00.unk_21 = v0->unk_00.unk_00->unk_00.unk_22;
@@ -507,7 +506,7 @@ int ov65_0223668C(OverlayManager *param0, int *param1)
     ov65_02237504(v0);
     ov65_022367F8(v0, 96);
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     OverlayManager_FreeData(param0);
     Heap_Destroy(97);
     Heap_Destroy(96);
@@ -569,7 +568,7 @@ static void ov65_02236780(void *param0)
     UnkStruct_ov65_022367A8 *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_30.unk_00);
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 }
 
@@ -839,17 +838,17 @@ static void ov65_02236D50(UnkStruct_ov65_02236840 *param0, u32 param1)
     sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param1);
 
     {
-        UnkStruct_ov22_022559F8 v1 = {
+        CharTransferTemplate v1 = {
             4, (128 * 1024), (16 * 1024), 0
         };
 
-        v1.unk_0C = param1;
-        sub_0201E88C(&v1, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        v1.heapID = param1;
+        CharTransfer_InitWithVramModes(&v1, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834(4, param1);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(4, param1);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
     sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
 
@@ -876,8 +875,8 @@ static void ov65_02236E04(UnkStruct_ov65_02236840 *param0)
         SpriteResourceCollection_Delete(param0->unk_1A8[v0]);
     }
 
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
     sub_0200A878();
 }
 
@@ -1098,7 +1097,7 @@ static void ov65_022372EC(UnkStruct_ov65_02236840 *param0, u32 param1)
 
     v2 = Unk_ov65_02239C04[param1];
     v1 = param0->unk_254->pRawData;
-    v0 = sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_MAIN, 0 * 32, &v1[v2 * 16], 32);
+    v0 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, 0 * 32, &v1[v2 * 16], 32);
 
     GF_ASSERT(v0);
 }

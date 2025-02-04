@@ -23,16 +23,16 @@
 #include "pokemon_icon.h"
 #include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
+#include "vram_transfer.h"
 
 void sub_02082C2C(GameWindowLayout *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    VRAMTransferManager_New(32, 12);
+    VramTransfer_New(32, 12);
 
     param0->unk_5A8 = sub_0200C6E4(12);
     param0->unk_5AC = sub_0200C704(param0->unk_5A8);

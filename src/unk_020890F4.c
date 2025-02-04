@@ -19,12 +19,12 @@
 #include "strbuf.h"
 #include "unk_0200C6E4.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
 #include "unk_020393C8.h"
 #include "unk_02089604.h"
 #include "unk_0208A3F4.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F2DBC.h"
 
@@ -351,7 +351,7 @@ static void sub_020895CC(void *param0)
 {
     UnkStruct_02089688 *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_2C0.unk_10);
     Bg_RunScheduledUpdates(v0->unk_2C0.unk_0C);

@@ -23,12 +23,12 @@
 #include "overlay022/struct_ov22_022550D4.h"
 #include "overlay022/struct_ov22_022557A0.h"
 #include "overlay022/struct_ov22_02255800.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "easy3d.h"
 #include "font.h"
@@ -39,10 +39,12 @@
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -51,16 +53,13 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02015064.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_0202419C.h"
+#include "vram_transfer.h"
 
 #define NUM_STARTER_OPTIONS 3
 #define STARTER_OPTION_0    SPECIES_TURTWIG
@@ -333,7 +332,7 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     app->messageFrame = Options_Frame(data->options);
     app->unk_704 = Options_TextFrameDelay(data->options);
 
-    VRAMTransferManager_New(8, HEAP_ID_CHOOSE_STARTER_APP);
+    VramTransfer_New(8, HEAP_ID_CHOOSE_STARTER_APP);
     SetMainCallback(ChooseStarterAppMainCallback, app);
     DisableHBlank();
 
@@ -466,7 +465,7 @@ BOOL ChooseStarter_Exit(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->bgl);
     ov78_021D10DC();
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     OverlayManager_FreeData(param0);
     Heap_Destroy(47);
 
@@ -480,7 +479,7 @@ static void ChooseStarterAppMainCallback(void *data)
     sub_0200A858();
     Bg_RunScheduledUpdates(app->bgl);
     sub_02008A94(app->spriteManager);
-    sub_0201DCAC();
+    VramTransfer_Process();
 }
 
 static void StartFadeIn(ChooseStarterApp *param0)
@@ -508,8 +507,8 @@ static void SetupDrawing(ChooseStarterApp *app, enum HeapId heap)
 static void ov78_021D10DC(void)
 {
     sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 
     ov78_021D1218();
 }
@@ -538,18 +537,18 @@ static void SetupOAM(enum HeapId heapID)
 
     sub_0200A784(OAM_MAIN_START, OAM_MAIN_END, OAM_AFFINE_MAIN_START, OAM_AFFINE_MAIN_END, OAM_SUB_START, OAM_SUB_END, OAM_AFFINE_SUB_START, OAM_AFFINE_SUB_END, heapID);
 
-    UnkStruct_ov22_022559F8 v0 = {
+    CharTransferTemplate v0 = {
         OAM_NUM_BYTES,
         OAM_VRAM_TRANSFER_MAIN_SIZE,
         OAM_VRAM_TRANSFER_SUB_SIZE,
         heapID,
     };
 
-    sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
+    CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
 
-    sub_0201F834(32, heapID);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(32, heapID);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 static void Setup3D(ChooseStarterApp *app)
@@ -1427,12 +1426,12 @@ static void MakeCursorOAM(ChooseStarterApp *param0, ChooseStarterCursor *param1,
 {
     param1->unk_04[0] = SpriteResourceCollection_AddTiles(param0->unk_24C[0], 82, 10, 0, 10, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
-    sub_0200A3DC(param1->unk_04[0]);
+    SpriteTransfer_RequestCharAtEnd(param1->unk_04[0]);
     SpriteResource_ReleaseData(param1->unk_04[0]);
 
     param1->unk_04[1] = SpriteResourceCollection_AddPalette(param0->unk_24C[1], 82, 11, 0, 11, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
 
-    sub_0200A640(param1->unk_04[1]);
+    SpriteTransfer_RequestPlttFreeSpace(param1->unk_04[1]);
     SpriteResource_ReleaseData(param1->unk_04[1]);
 
     param1->unk_04[2] = SpriteResourceCollection_Add(param0->unk_24C[2], 82, 12, 0, 12, 2, param2);
@@ -1441,8 +1440,8 @@ static void MakeCursorOAM(ChooseStarterApp *param0, ChooseStarterCursor *param1,
 
 static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1)
 {
-    sub_0200A4E4(param1->unk_04[0]);
-    sub_0200A6DC(param1->unk_04[1]);
+    SpriteTransfer_ResetCharTransfer(param1->unk_04[0]);
+    SpriteTransfer_ResetPlttTransfer(param1->unk_04[1]);
 
     SpriteResourceCollection_Remove(param0->unk_24C[0], param1->unk_04[0]);
     SpriteResourceCollection_Remove(param0->unk_24C[1], param1->unk_04[1]);

@@ -6,9 +6,9 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 
 #include "bg_window.h"
+#include "char_transfer.h"
 #include "narc.h"
 #include "palette.h"
 #include "touch_screen.h"
@@ -24,7 +24,7 @@ typedef struct {
     BOOL unk_88;
     UnkStruct_02012744 *unk_8C;
     FontOAM *unk_90[2];
-    SpriteManagerAllocation unk_98[2];
+    CharTransferAllocation unk_98[2];
     Window unk_B0;
 } UnkStruct_02089688_sub1;
 

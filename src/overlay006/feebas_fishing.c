@@ -7,9 +7,9 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "map_matrix.h"
 #include "narc.h"
 #include "record_mixed_rng.h"
-#include "unk_02039C80.h"
 #include "unk_0205F180.h"
 
 // Calculates if the player is facing a Feebas tile, but exits early 50% of the time
@@ -43,7 +43,7 @@ BOOL IsFacingFeebasTile(FieldSystem *fieldSystem)
     PlayerAvatar_GetFacingTile(fieldSystem->playerAvatar, &x, &z);
 
     // Value of 1 for the map this is actually used on
-    mapMatrixWidth = sub_02039E10(fieldSystem->unk_2C);
+    mapMatrixWidth = MapMatrix_GetWidth(fieldSystem->mapMatrix);
     isFeebasTile = FALSE;
 
     randTiles[0] = (rand >> 24) & 0xff;

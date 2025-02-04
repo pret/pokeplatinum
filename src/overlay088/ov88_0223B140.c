@@ -15,7 +15,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay088/ov88_0223E9C4.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay088/struct_ov88_0223C8AC.h"
@@ -23,6 +22,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "charcode_util.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -44,12 +44,14 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "party.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
 #include "rtc.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -60,15 +62,11 @@
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
@@ -84,6 +82,7 @@
 #include "unk_02092494.h"
 #include "unk_02095CD4.h"
 #include "vars_flags.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
 
@@ -837,11 +836,11 @@ static void ov88_0223BF7C(UnkStruct_02095E80 *param0)
 {
     int v0;
 
-    sub_0200A4E4(param0->unk_334[0][0]);
-    sub_0200A4E4(param0->unk_334[1][0]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_334[0][0]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_334[1][0]);
 
-    sub_0200A6DC(param0->unk_334[0][1]);
-    sub_0200A6DC(param0->unk_334[1][1]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_334[0][1]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_334[1][1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_324[v0]);
@@ -849,8 +848,8 @@ static void ov88_0223BF7C(UnkStruct_02095E80 *param0)
 
     CellActorCollection_Delete(param0->unk_194);
     sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 }
 
 static void ov88_0223BFD8(UnkStruct_02095E80 *param0)
@@ -911,7 +910,7 @@ static void ov88_0223C0E0(void *param0)
         v0->unk_2168 = 0;
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -1223,16 +1222,16 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
 static void ov88_0223C63C(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             20, 2048, 2048, 26
         };
 
-        sub_0201E86C(&v0);
+        CharTransfer_Init(&v0);
     }
 
-    sub_0201F834(20, 26);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(20, 26);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
@@ -1257,10 +1256,10 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     param0->unk_334[1][2] = SpriteResourceCollection_AddFrom(param0->unk_324[2], param1, 11, 1, 1, 2, 26);
     param0->unk_334[1][3] = SpriteResourceCollection_AddFrom(param0->unk_324[3], param1, 12, 1, 1, 3, 26);
 
-    sub_0200A328(param0->unk_334[0][0]);
-    sub_0200A328(param0->unk_334[1][0]);
-    sub_0200A5C8(param0->unk_334[0][1]);
-    sub_0200A5C8(param0->unk_334[1][1]);
+    SpriteTransfer_RequestChar(param0->unk_334[0][0]);
+    SpriteTransfer_RequestChar(param0->unk_334[1][0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_334[0][1]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_334[1][1]);
     Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, 26);
 }
 

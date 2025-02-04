@@ -42,11 +42,11 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_020989DC.h"
 #include "unk_02098FFC.h"
+#include "vram_transfer.h"
 
 typedef struct {
     StringTemplate *unk_00;
@@ -333,7 +333,7 @@ static void ov79_021D252C(void *param0)
     sub_02008A94(v0->unk_40.unk_04);
 
     OAMManager_ApplyAndResetBuffers();
-    sub_0201DCAC();
+    VramTransfer_Process();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -532,7 +532,7 @@ static void ov79_021D2858(UnkStruct_ov79_021D2928 *param0)
 
 static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
 {
-    VRAMTransferManager_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->unk_00);
 
     param0->unk_7C = sub_0200C6E4(param0->unk_00);
 
@@ -576,7 +576,7 @@ static void ov79_021D2908(UnkStruct_ov79_021D2928 *param0)
     sub_02099370(param0->unk_5C, param0->unk_60[0]);
     sub_0209903C(param0->unk_5C);
     sub_0200C8D4(param0->unk_7C);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 }
 
 static int ov79_021D2928(UnkStruct_ov79_021D2928 *param0)

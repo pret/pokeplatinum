@@ -21,7 +21,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/fraction.h"
-#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -50,6 +49,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "flags.h"
 #include "heap.h"
@@ -76,7 +76,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
-#include "unk_0201E86C.h"
 #include "unk_020797C8.h"
 #include "unk_0207A274.h"
 #include "unk_0208694C.h"
@@ -10777,7 +10776,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v12.unk_0C = 5;
                 v12.unk_10 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                 v12.unk_14 = sub_0207A280(BattleSystem_GetPokedex(v2->battleSys));
-                v2->tmpPtr[1] = sub_0201EE9C();
+                v2->tmpPtr[1] = CharTransfer_PopTaskManager();
                 v2->tmpPtr[0] = ov21_021E8D48(&v12);
                 v2->seqNum = 13;
             }
@@ -10811,7 +10810,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     } break;
     case 15:
         ov21_021E8DD0(v2->tmpPtr[0]);
-        sub_0201EEB8(v2->tmpPtr[1]);
+        CharTransfer_PushTaskManager(v2->tmpPtr[1]);
         ov16_0223B578(v2->battleSys);
         PaletteData_StartFade(v4, (0x1 | 0x4), 0xffff, 1, 16, 0, 0x0);
         v2->seqNum = 17;
@@ -12208,7 +12207,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     BgConfig *v8;
     Window v9;
     int v10;
-    SpriteManagerAllocation v11;
+    CharTransferAllocation v11;
     UnkStruct_020127E8 v12;
     int v13;
 
@@ -12263,14 +12262,14 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     Text_AddPrinterWithParamsAndColor(&v9, FONT_SYSTEM, v7, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
     v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
-    sub_0201ED94(v10, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v11);
+    CharTransfer_AllocRange(v10, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v11);
 
     v12.unk_00 = param1->tmpPtr[0];
     v12.unk_04 = &v9;
     v12.unk_08 = sub_0200D9B0(v2);
     v12.unk_0C = sub_0200D04C(v2, 20016);
     v12.unk_10 = NULL;
-    v12.unk_14 = v11.unk_04;
+    v12.unk_14 = v11.offset;
     v12.unk_18 = 176;
     v12.unk_1C = 8;
     v12.unk_20 = 0;
@@ -12279,7 +12278,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     v12.unk_2C = 5;
 
     param1->fontOAM = sub_020127E8(&v12);
-    param1->spriteMgrAlloc = v11;
+    param1->charTransferAllocation = v11;
 
     sub_02012AC0(param1->fontOAM, 1);
     Window_Remove(&v9);
@@ -12294,7 +12293,7 @@ static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScript
     sub_0200D0F4(param1->cellActorData[0]);
     sub_0200D0F4(param1->cellActorData[1]);
     sub_02012870(param1->fontOAM);
-    sub_0201EE28(&param1->spriteMgrAlloc);
+    CharTransfer_ClearRange(&param1->charTransferAllocation);
     SpriteGfxHandler_UnloadCharObjById(v0, 20021);
     SpriteGfxHandler_UnloadPlttObjById(v0, 20016);
     SpriteGfxHandler_UnloadCellObjById(v0, 20013);

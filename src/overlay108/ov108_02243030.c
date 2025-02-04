@@ -3,23 +3,22 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay108/struct_ov108_02243030.h"
 
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "gx_layers.h"
 #include "narc.h"
 #include "party.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_0207E0B8.h"
+#include "vram_transfer.h"
 
 static const u8 Unk_ov108_02243760[4] = {
     11,
@@ -41,7 +40,7 @@ void ov108_02243030(UnkStruct_ov108_02243030 *param0, Party *param1, Party *para
 {
     int v0;
 
-    VRAMTransferManager_New(32, 103);
+    VramTransfer_New(32, 103);
     ov108_022431FC();
 
     NNS_G2dInitOamManagerModule();
@@ -59,11 +58,11 @@ void ov108_02243030(UnkStruct_ov108_02243030 *param0, Party *param1, Party *para
     ov108_02243360(param0, param1, param2, param3);
 
     for (v0 = 0; v0 < 11; v0++) {
-        sub_0200A328(param0->unk_1A0[v0][0]);
+        SpriteTransfer_RequestChar(param0->unk_1A0[v0][0]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200A5C8(param0->unk_1A0[v0][1]);
+        SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[v0][1]);
     }
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -117,11 +116,11 @@ void ov108_02243194(UnkStruct_ov108_02243030 *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 11; v0++) {
-        sub_0200A4E4(param0->unk_1A0[v0][0]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_1A0[v0][0]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200A6DC(param0->unk_1A0[v0][1]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[v0][1]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -130,8 +129,8 @@ void ov108_02243194(UnkStruct_ov108_02243030 *param0)
 
     CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 
     return;
 }
@@ -139,16 +138,16 @@ void ov108_02243194(UnkStruct_ov108_02243030 *param0)
 static void ov108_022431FC(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             32, 1024, 1024, 103
         };
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834((8 + 2 + 1 + 3), 103);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init((8 + 2 + 1 + 3), 103);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 
     return;
 }

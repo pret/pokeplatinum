@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02039EBC_decl.h"
-
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/ov80_021D2AF4.h"
 #include "overlay080/struct_ov80_021D1478_sub1.h"
@@ -18,6 +16,7 @@
 #include "font.h"
 #include "heap.h"
 #include "map_header_util.h"
+#include "map_matrix.h"
 #include "message.h"
 #include "render_window.h"
 #include "strbuf.h"
@@ -28,7 +27,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02039C80.h"
 
 typedef struct {
     int unk_00;
@@ -505,7 +503,7 @@ static void ov80_021D1A30(UnkStruct_ov80_021D2A08 *param0)
     UnkStruct_ov80_021D1478 *v0 = param0->unk_34;
 
     v0->unk_24 = v0->unk_20;
-    v0->unk_20 = sub_02039F04((const UnkStruct_02039EBC *)param0->unk_30, v0->unk_18, v0->unk_1C);
+    v0->unk_20 = MainMapMatrixData_GetMapHeaderIDAtCoords((const MainMapMatrixData *)param0->unk_30, v0->unk_18, v0->unk_1C);
     v0->unk_A0 = ov80_021D2E24(param0->unk_40, v0->unk_18, v0->unk_1C, param0->unk_02);
 }
 
@@ -624,7 +622,7 @@ static void ov80_021D1C24(UnkStruct_ov80_021D2A08 *param0)
         CellActor_UpdateAnim(v1->unk_104, FX32_ONE);
 
         ov80_021D1A30(param0);
-        ov80_021D1AB0(param0, &(v1->unk_28[0]), sub_02039F04((const UnkStruct_02039EBC *)param0->unk_30, v1->unk_18, v1->unk_1C), v1->unk_18, v1->unk_1C);
+        ov80_021D1AB0(param0, &(v1->unk_28[0]), MainMapMatrixData_GetMapHeaderIDAtCoords((const MainMapMatrixData *)param0->unk_30, v1->unk_18, v1->unk_1C), v1->unk_18, v1->unk_1C);
         v0 += 1;
     }
 

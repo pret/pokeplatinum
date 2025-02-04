@@ -14,11 +14,11 @@
 #include "inlines.h"
 #include "location.h"
 #include "map_header_data.h"
+#include "map_matrix.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "pokedex.h"
 #include "special_encounter.h"
-#include "unk_02039C80.h"
 
 int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
 {
@@ -80,13 +80,13 @@ void GreatMarshBinoculars_SetNextLocationWithCoords(const u8 cycleNum, GreatMars
         int v3 = 240; // member number for NARC_INDEX_FIELDDATA__MAPMATRIX__MAP_MATRIX. Not sure what it represents exactly.
         nextX = binocularsData->coordsList[cycleNum].x / 32;
         nextZ = binocularsData->coordsList[cycleNum].z / 32;
-        nextMapId = sub_02039F10(v3, nextX, nextZ);
+        nextMapId = MapMatrixData_GetMapHeaderIDAtCoords(v3, nextX, nextZ);
     } else if (cycleNum == BINOCULARS_CYCLE_COUNT) {
         nextMapId = binocularsData->lookoutMapId;
     } else {
         nextX = binocularsData->coordsList[cycleNum].x / 32;
         nextZ = binocularsData->coordsList[cycleNum].z / 32;
-        nextMapId = sub_02039E30(binocularsData->fieldSystem->unk_2C, nextX, nextZ);
+        nextMapId = MapMatrix_GetMapHeaderIDAtCoords(binocularsData->fieldSystem->mapMatrix, nextX, nextZ);
     }
 
     Location_Set(&binocularsData->viewLocation, nextMapId, -1, binocularsData->coordsList[cycleNum].x, binocularsData->coordsList[cycleNum].z, 0);

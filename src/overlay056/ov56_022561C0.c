@@ -28,6 +28,7 @@
 #include "message_util.h"
 #include "save_player.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -37,7 +38,6 @@
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
 #include "unk_02027F84.h"
@@ -248,8 +248,8 @@ void ov56_02256468(UnkStruct_ov56_02256468 *param0)
         param0->unk_00 = 3;
 
         Font_UseLazyGlyphAccess(FONT_MESSAGE);
-        sub_0200A4E4(param0->unk_1C8[0]);
-        sub_0200A6DC(param0->unk_1C8[1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_1C8[0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_1C8[1]);
 
         for (v1 = 0; v1 < 4; v1++) {
             SpriteResourceCollection_Delete(param0->unk_1B8[v1]);
@@ -389,8 +389,8 @@ static void ov56_02256634(UnkStruct_ov56_02256468 *param0)
     param0->unk_1C8[2] = SpriteResourceCollection_Add(param0->unk_1B8[2], 74, 6, 1, 999, 2, 4);
     param0->unk_1C8[3] = SpriteResourceCollection_Add(param0->unk_1B8[3], 74, 7, 1, 999, 3, 4);
 
-    sub_0200A3DC(param0->unk_1C8[0]);
-    sub_0200A640(param0->unk_1C8[1]);
+    SpriteTransfer_RequestCharAtEnd(param0->unk_1C8[0]);
+    SpriteTransfer_RequestPlttFreeSpace(param0->unk_1C8[1]);
 }
 
 static const int Unk_ov56_02257238[] = {

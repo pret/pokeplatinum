@@ -18,6 +18,7 @@
 #include "field_task.h"
 #include "heap.h"
 #include "inlines.h"
+#include "map_matrix.h"
 #include "map_object.h"
 #include "map_tile_behavior.h"
 #include "player_avatar.h"
@@ -26,7 +27,6 @@
 #include "special_encounter.h"
 #include "unk_02005474.h"
 #include "unk_0201CED8.h"
-#include "unk_02039C80.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_020711EC.h"
@@ -322,7 +322,7 @@ static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const 
 
         int v5 = v0 / 32;
         int v6 = v1 / 32;
-        int v4 = sub_02039E30(fieldSystem->unk_2C, v5, v6);
+        int v4 = MapMatrix_GetMapHeaderIDAtCoords(fieldSystem->mapMatrix, v5, v6);
         if (fieldSystem->location->mapId != v4) {
             patch->active = FALSE;
             return FALSE;

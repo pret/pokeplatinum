@@ -12,13 +12,13 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02012744.h"
-#include "unk_0201E86C.h"
 
 typedef struct UnkStruct_ov21_021D4C0C_t {
     UnkStruct_02012744 *unk_00;
@@ -84,14 +84,14 @@ UnkStruct_ov21_021D4CA0 *ov21_021D4CB8(const UnkStruct_ov21_021D4CB8 *param0, in
     v1 = ov21_021D4EB4(param0->unk_00);
 
     GF_ASSERT(v1);
-    sub_0201ED94(param1, 1, param0->unk_20, &v1->unk_04);
+    CharTransfer_AllocRange(param1, 1, param0->unk_20, &v1->unk_04);
 
     v0.unk_00 = param0->unk_00->unk_00;
     v0.unk_04 = param0->unk_04;
     v0.unk_08 = param0->unk_00->unk_04;
     v0.unk_0C = param0->unk_08;
     v0.unk_10 = param0->unk_0C;
-    v0.unk_14 = v1->unk_04.unk_04;
+    v0.unk_14 = v1->unk_04.offset;
     v0.unk_18 = param0->unk_10;
     v0.unk_1C = param0->unk_14;
     v0.unk_20 = param0->unk_18;
@@ -107,7 +107,7 @@ UnkStruct_ov21_021D4CA0 *ov21_021D4CB8(const UnkStruct_ov21_021D4CB8 *param0, in
 void ov21_021D4D1C(UnkStruct_ov21_021D4CA0 *param0)
 {
     sub_02012870(param0->unk_00);
-    sub_0201EE28(&param0->unk_04);
+    CharTransfer_ClearRange(&param0->unk_04);
 
     memset(param0, 0, sizeof(UnkStruct_ov21_021D4CA0));
 }

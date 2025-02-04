@@ -6,7 +6,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -32,6 +31,7 @@
 #include "overlay117/struct_ov117_02266F10.h"
 
 #include "bg_window.h"
+#include "char_transfer.h"
 #include "communication_system.h"
 #include "error_handling.h"
 #include "font.h"
@@ -45,7 +45,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_0201E86C.h"
 
 typedef struct {
     u16 unk_00;
@@ -2013,7 +2012,7 @@ void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_020127
 {
     UnkStruct_020127E8 v0;
     Window v1;
-    SpriteManagerAllocation v2;
+    CharTransferAllocation v2;
     int v3;
     FontOAM *v4;
     int v5, v6;
@@ -2035,7 +2034,7 @@ void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_020127
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 110);
-    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
+    CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
     if (param11 == 1) {
         param9 -= v5 / 2;
@@ -2048,7 +2047,7 @@ void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_020127
     v0.unk_08 = sub_0200D9B0(param1);
     v0.unk_0C = sub_0200D04C(param1, param8);
     v0.unk_10 = NULL;
-    v0.unk_14 = v2.unk_04;
+    v0.unk_14 = v2.offset;
     v0.unk_18 = param9;
     v0.unk_1C = param10;
     v0.unk_20 = param12;
@@ -2073,7 +2072,7 @@ void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_020127
 void ov117_02265EB0(UnkStruct_ov117_02265EB0 *param0)
 {
     sub_02012870(param0->unk_00);
-    sub_0201EE28(&param0->unk_04);
+    CharTransfer_ClearRange(&param0->unk_04);
     param0->unk_00 = NULL;
 }
 

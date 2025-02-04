@@ -27,11 +27,11 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_02012744.h"
 #include "unk_02015064.h"
 
@@ -796,12 +796,12 @@ static void ov21_021D2AE8(UnkStruct_ov21_021D13FC *param0, int param1)
 
     v0->unk_0C[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_13C[0], v1, 78, 1, 3000, NNS_G2D_VRAM_TYPE_2DMAIN, param1);
 
-    sub_0200A3DC(v0->unk_0C[0]);
+    SpriteTransfer_RequestCharAtEnd(v0->unk_0C[0]);
     SpriteResource_ReleaseData(v0->unk_0C[0]);
 
     v0->unk_0C[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_13C[1], v1, 3, 0, 3000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param1);
 
-    sub_0200A640(v0->unk_0C[1]);
+    SpriteTransfer_RequestPlttFreeSpace(v0->unk_0C[1]);
     SpriteResource_ReleaseData(v0->unk_0C[1]);
 
     v0->unk_0C[2] = SpriteResourceCollection_AddFrom(param0->unk_13C[2], v1, 76, 1, 3000, 2, param1);
@@ -812,12 +812,12 @@ void ov21_021D2B88(UnkStruct_ov21_021D22F8 *param0, SpriteResourceCollection **p
 {
     param0->unk_0C[0] = SpriteResourceCollection_AddTilesFrom(param1[0], param3, 78, 1, 3000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
-    sub_0200A3DC(param0->unk_0C[0]);
+    SpriteTransfer_RequestCharAtEnd(param0->unk_0C[0]);
     SpriteResource_ReleaseData(param0->unk_0C[0]);
 
     param0->unk_0C[1] = SpriteResourceCollection_AddPaletteFrom(param1[1], param3, 3, 0, 3000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
 
-    sub_0200A640(param0->unk_0C[1]);
+    SpriteTransfer_RequestPlttFreeSpace(param0->unk_0C[1]);
     SpriteResource_ReleaseData(param0->unk_0C[1]);
 
     param0->unk_0C[2] = SpriteResourceCollection_AddFrom(param1[2], param3, 76, 1, 3000, 2, param2);
@@ -828,8 +828,8 @@ static void ov21_021D2C10(UnkStruct_ov21_021D13FC *param0)
 {
     UnkStruct_ov21_021D22F8 *v0 = &param0->unk_1B0;
 
-    sub_0200A4E4(v0->unk_0C[0]);
-    sub_0200A6DC(v0->unk_0C[1]);
+    SpriteTransfer_ResetCharTransfer(v0->unk_0C[0]);
+    SpriteTransfer_ResetPlttTransfer(v0->unk_0C[1]);
 
     SpriteResourceCollection_Remove(param0->unk_13C[0], v0->unk_0C[0]);
     SpriteResourceCollection_Remove(param0->unk_13C[1], v0->unk_0C[1]);
@@ -839,8 +839,8 @@ static void ov21_021D2C10(UnkStruct_ov21_021D13FC *param0)
 
 void ov21_021D2C58(UnkStruct_ov21_021D22F8 *param0, SpriteResourceCollection **param1)
 {
-    sub_0200A4E4(param0->unk_0C[0]);
-    sub_0200A6DC(param0->unk_0C[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_0C[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_0C[1]);
 
     SpriteResourceCollection_Remove(param1[0], param0->unk_0C[0]);
     SpriteResourceCollection_Remove(param1[1], param0->unk_0C[1]);
@@ -964,12 +964,12 @@ static void ov21_021D2E70(UnkStruct_ov21_021D13FC *param0, int param1)
 
     v0->unk_10[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_13C[0], v1, 119, 1, 12000, NNS_G2D_VRAM_TYPE_2DSUB, param1);
 
-    sub_0200A3DC(v0->unk_10[0]);
+    SpriteTransfer_RequestCharAtEnd(v0->unk_10[0]);
     SpriteResource_ReleaseData(v0->unk_10[0]);
 
     v0->unk_10[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_13C[1], v1, 21, 0, 12000, NNS_G2D_VRAM_TYPE_2DSUB, 1, param1);
 
-    sub_0200A640(v0->unk_10[1]);
+    SpriteTransfer_RequestPlttFreeSpace(v0->unk_10[1]);
     SpriteResource_ReleaseData(v0->unk_10[1]);
 
     v0->unk_10[2] = SpriteResourceCollection_AddFrom(param0->unk_13C[2], v1, 120, 1, 12000, 2, param1);
@@ -980,8 +980,8 @@ static void ov21_021D2F14(UnkStruct_ov21_021D13FC *param0)
 {
     UnkStruct_ov21_021D2584 *v0 = &param0->unk_1E0;
 
-    sub_0200A4E4(v0->unk_10[0]);
-    sub_0200A6DC(v0->unk_10[1]);
+    SpriteTransfer_ResetCharTransfer(v0->unk_10[0]);
+    SpriteTransfer_ResetPlttTransfer(v0->unk_10[1]);
 
     SpriteResourceCollection_Remove(param0->unk_13C[0], v0->unk_10[0]);
     SpriteResourceCollection_Remove(param0->unk_13C[1], v0->unk_10[1]);

@@ -38,12 +38,12 @@
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(overlay12);
@@ -170,7 +170,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 
     v0->unk_10.unk_20 = BgConfig_New(24);
 
-    VRAMTransferManager_New(64, 24);
+    VramTransfer_New(64, 24);
     SetAutorepeat(4, 8);
 
     ov17_0224FB34(v0->unk_10.unk_20);
@@ -300,7 +300,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 4);
     sub_0200D0B0(v0->unk_10.unk_18, v0->unk_10.unk_1C);
     sub_0200C8D4(v0->unk_10.unk_18);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     ov17_022507C4(&v0->unk_10);
 
@@ -359,7 +359,7 @@ static void ov17_0224FA24(void *param0)
     }
 
     sub_02008A94(v0->unk_10.unk_04);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_10.unk_C0);
     Bg_RunScheduledUpdates(v0->unk_10.unk_20);

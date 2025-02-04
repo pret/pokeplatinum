@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/heap.h"
 #include "generated/game_records.h"
 
 #include "struct_decls/battle_system.h"
@@ -39,6 +40,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "cell_transfer.h"
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
@@ -77,7 +79,6 @@
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -90,6 +91,7 @@
 #include "unk_0207A6DC.h"
 #include "unk_0207AE68.h"
 #include "unk_0208C098.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay10);
 FS_EXTERN_OVERLAY(overlay11);
@@ -320,7 +322,7 @@ void ov16_0223B3E4(BattleSystem *param0)
 
     sub_0200D0B0(param0->unk_90, param0->unk_94);
     sub_0200C8D4(param0->unk_90);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     Font_Free(FONT_SUBSCREEN);
 }
 
@@ -531,7 +533,7 @@ static void ov16_0223B790(OverlayManager *param0)
     v0->unk_00 = ov16_0223CD7C();
 
     DisableHBlank();
-    Font_InitManager(FONT_SUBSCREEN, 5);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
     if (v0->battleType & 0x20) {
         v0->unk_1A4 = sub_0200C440(0xe, 2, 0xf, 5);
@@ -555,7 +557,7 @@ static void ov16_0223B790(OverlayManager *param0)
         v0->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(5, (32 * 10 * 10));
     }
 
-    VRAMTransferManager_New(64, 5);
+    VramTransfer_New(64, HEAP_ID_BATTLE);
 
     {
         NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
@@ -647,7 +649,7 @@ static void ov16_0223B790(OverlayManager *param0)
     BagCursor_ResetBattle(BattleSystem_BagCursor(v0));
 
     v0->unk_1C4 = sub_02015F84(5, 4, 0);
-    v0->cellTransferState = sub_0201DCC8(4, 5);
+    v0->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (v0->battleStatusMask & 0x10) {
         for (v3 = 0; v3 < 4; v3++) {
@@ -798,7 +800,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
         Sound_StopEffect(1796, 0);
     }
 
-    sub_0201DCF0(battleSystem->cellTransferState);
+    CellTransfer_Free(battleSystem->cellTransferState);
 
     if (BattleSystem_RecordingStopped(battleSystem)) {
         sub_0200500C(127);
@@ -1520,7 +1522,7 @@ static void ov16_0223CE68(void *param0)
     }
 
     sub_02008A94(v0->unk_88);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_28);
     Bg_RunScheduledUpdates(v0->unk_04);
@@ -1533,7 +1535,7 @@ static void ov16_0223CF1C(void *param0)
     UnkStruct_0207A778 *v0 = param0;
 
     PaletteData_CommitFadedBuffers(v0->unk_0C);
-    sub_0201DCAC();
+    VramTransfer_Process();
     Bg_RunScheduledUpdates(v0->unk_04);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

@@ -8,12 +8,13 @@
 #include "overlay101/struct_ov101_021D8544.h"
 
 #include "cell_actor.h"
+#include "cell_transfer.h"
 #include "heap.h"
 #include "narc.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 
 typedef struct {
     u16 unk_00;
@@ -60,9 +61,9 @@ UnkStruct_ov101_021D7E48 *ov101_021D7E48(u32 param0, u32 param1, u32 param2, u32
     v0->unk_0A = param9;
     v0->unk_0B = param10;
     v0->unk_0C = sub_020095C4(param1, &v0->unk_10, param0);
-    v0->unk_19C = sub_0201DCC8(param2, param0);
+    v0->unk_19C = CellTransfer_New(param2, param0);
 
-    VRAMTransferManager_New(param2, param0);
+    VramTransfer_New(param2, param0);
 
     v0->unk_1A0 = SpriteResourceCollection_New(param3, 0, param0);
     v0->unk_1A4 = SpriteResourceCollection_New(param4, 1, param0);
@@ -102,13 +103,13 @@ void ov101_021D7FB4(UnkStruct_ov101_021D7E48 *param0)
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
         if (param0->unk_1B0[v0].unk_00 != param0->unk_08) {
-            sub_0200A4E4(param0->unk_1B0[v0].unk_04);
+            SpriteTransfer_ResetCharTransfer(param0->unk_1B0[v0].unk_04);
         }
     }
 
     for (v0 = 0; v0 < param0->unk_05; v0++) {
         if (param0->unk_1B4[v0].unk_00 != param0->unk_09) {
-            sub_0200A6DC(param0->unk_1B4[v0].unk_04);
+            SpriteTransfer_ResetPlttTransfer(param0->unk_1B4[v0].unk_04);
         }
     }
 
@@ -132,8 +133,8 @@ void ov101_021D7FB4(UnkStruct_ov101_021D7E48 *param0)
     Heap_FreeToHeap(param0->unk_1B4);
     Heap_FreeToHeap(param0->unk_1B8);
     Heap_FreeToHeap(param0->unk_1BC);
-    VRAMTransferManager_Destroy();
-    sub_0201DCF0(param0->unk_19C);
+    VramTransfer_Free();
+    CellTransfer_Free(param0->unk_19C);
     CellActorCollection_DeleteAll(param0->unk_0C);
     CellActorCollection_Delete(param0->unk_0C);
     Heap_FreeToHeap(param0);
@@ -142,7 +143,7 @@ void ov101_021D7FB4(UnkStruct_ov101_021D7E48 *param0)
 void ov101_021D80D4(UnkStruct_ov101_021D7E48 *param0)
 {
     CellActorCollection_Update(param0->unk_0C);
-    sub_0201DCE8();
+    CellTransfer_Update();
 }
 
 void ov101_021D80E4(UnkStruct_ov101_021D7E48 *param0, u32 param1, NARC *param2, u32 param3, u32 param4)
@@ -168,7 +169,7 @@ void ov101_021D814C(UnkStruct_ov101_021D7E48 *param0, u32 param1)
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
         if (param0->unk_1B0[v0].unk_00 == param1) {
-            sub_0200A3DC(param0->unk_1B0[v0].unk_04);
+            SpriteTransfer_RequestCharAtEnd(param0->unk_1B0[v0].unk_04);
             return;
         }
     }
@@ -212,7 +213,7 @@ void ov101_021D8220(UnkStruct_ov101_021D7E48 *param0, u32 param1)
 
     for (v0 = 0; v0 < param0->unk_05; v0++) {
         if (param0->unk_1B4[v0].unk_00 == param1) {
-            sub_0200A640(param0->unk_1B4[v0].unk_04);
+            SpriteTransfer_RequestPlttFreeSpace(param0->unk_1B4[v0].unk_04);
             return;
         }
     }
@@ -274,7 +275,7 @@ void ov101_021D8358(UnkStruct_ov101_021D7E48 *param0, u32 param1, u32 param2, u3
     if (param1 != param0->unk_08) {
         for (v0 = 0; v0 < param0->unk_04; v0++) {
             if (param0->unk_1B0[v0].unk_00 == param1) {
-                sub_0200A4E4(param0->unk_1B0[v0].unk_04);
+                SpriteTransfer_ResetCharTransfer(param0->unk_1B0[v0].unk_04);
                 SpriteResourceCollection_Remove(param0->unk_1A0, param0->unk_1B0[v0].unk_04);
                 param0->unk_1B0[v0].unk_00 = param0->unk_08;
                 break;
@@ -285,7 +286,7 @@ void ov101_021D8358(UnkStruct_ov101_021D7E48 *param0, u32 param1, u32 param2, u3
     if (param2 != param0->unk_09) {
         for (v0 = 0; v0 < param0->unk_05; v0++) {
             if (param0->unk_1B4[v0].unk_00 == param2) {
-                sub_0200A6DC(param0->unk_1B4[v0].unk_04);
+                SpriteTransfer_ResetPlttTransfer(param0->unk_1B4[v0].unk_04);
                 SpriteResourceCollection_Remove(param0->unk_1A4, param0->unk_1B4[v0].unk_04);
                 param0->unk_1B4[v0].unk_00 = param0->unk_09;
                 break;
@@ -350,7 +351,7 @@ void ov101_021D84A4(UnkStruct_ov101_021D7E48 *param0, UnkStruct_ov101_021D8544 *
 void ov101_021D8544(UnkStruct_ov101_021D8544 *param0)
 {
     if (param0->unk_00 == 1) {
-        sub_0200A5B4(param0->unk_08);
+        SpriteTransfer_DeleteCharTransfer(param0->unk_08);
     }
 
     CellActor_Delete(param0->unk_04);

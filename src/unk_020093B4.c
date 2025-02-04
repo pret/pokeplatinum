@@ -8,12 +8,12 @@
 #include "struct_defs/struct_0200C738.h"
 
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "heap.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
-#include "unk_0200A328.h"
+#include "sprite_transfer.h"
 #include "unk_0200A784.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_0202309C.h"
 
 void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, SpriteResourceCollection *param9, SpriteResourceCollection *param10, SpriteResourceCollection *param11, SpriteResourceCollection *param12, SpriteResourceCollection *param13, SpriteResourceCollection *param14)
@@ -59,17 +59,17 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
     }
 
     if (param7) {
-        v6 = sub_0200A558(v0, v2);
+        v6 = SpriteTransfer_GetCellTransferProxy(v0, v2);
         GF_ASSERT(v6);
 
         param0->charData = SpriteResource_GetTileData(v0);
     } else {
-        v6 = sub_0200A534(v0);
+        v6 = SpriteTransfer_GetImageProxy(v0);
         GF_ASSERT(v6);
         param0->charData = NULL;
     }
 
-    param0->paletteProxy = sub_0200A72C(v1, v6);
+    param0->paletteProxy = SpriteTransfer_GetPaletteProxy(v1, v6);
     param0->imageProxy = v6;
     param0->cellBank = SpriteResource_GetSpriteData(v2);
 
@@ -93,7 +93,7 @@ void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int par
 
 void sub_020094F0(CellActorResourceData *param0)
 {
-    sub_0200A5B4(param0->imageProxy);
+    SpriteTransfer_DeleteCharTransfer(param0->imageProxy);
     memset(param0, 0, sizeof(CellActorResourceData));
 }
 
@@ -189,19 +189,19 @@ void sub_0200966C(u32 param0, GXOBJVRamModeChar param1)
     switch (param1) {
     case GX_OBJVRAMMODE_CHAR_1D_32K:
         if ((GX_GetBankForOBJ() == GX_VRAM_OBJ_16_G) || (GX_GetBankForOBJ() == GX_VRAM_OBJ_16_F)) {
-            sub_0201E9C0(((512 - 16) * 32), 16 * 32, param0);
+            CharTransfer_ReserveVramRange(((512 - 16) * 32), 16 * 32, param0);
         } else {
-            sub_0201E9C0(((1024 - 16) * 32), 16 * 32, param0);
+            CharTransfer_ReserveVramRange(((1024 - 16) * 32), 16 * 32, param0);
         }
         break;
     case GX_OBJVRAMMODE_CHAR_1D_64K:
-        sub_0201E9C0(((2048 - 16) * 32), 16 * 32, param0);
+        CharTransfer_ReserveVramRange(((2048 - 16) * 32), 16 * 32, param0);
         break;
     case GX_OBJVRAMMODE_CHAR_1D_128K:
         if ((GX_GetBankForOBJ() == GX_VRAM_OBJ_80_EF) || (GX_GetBankForOBJ() == GX_VRAM_OBJ_80_EG)) {
-            sub_0201E9C0(((2560 - 16) * 32), 16 * 32, param0);
+            CharTransfer_ReserveVramRange(((2560 - 16) * 32), 16 * 32, param0);
         } else {
-            sub_0201E9C0(((4096 - 16) * 32), 16 * 32, param0);
+            CharTransfer_ReserveVramRange(((4096 - 16) * 32), 16 * 32, param0);
         }
         break;
     default:
@@ -212,5 +212,5 @@ void sub_0200966C(u32 param0, GXOBJVRamModeChar param1)
 
 void sub_02009704(u32 param0)
 {
-    sub_0201F890((1 << 14 | 1 << 15), param0);
+    PlttTransfer_MarkReservedSlots((1 << 14 | 1 << 15), param0);
 }

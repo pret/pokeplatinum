@@ -49,12 +49,12 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
 #include "unk_020683F4.h"
 #include "unk_0207CB08.h"
 #include "unk_0208C098.h"
+#include "vram_transfer.h"
 
 typedef struct {
     const u8 *unk_00;
@@ -573,7 +573,7 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
     ov84_0223BBC4(v0->unk_00);
 
     sub_0201E530();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     ov84_0223FB50(v0);
     ov84_0223F238(v0);
@@ -625,7 +625,7 @@ static void ov84_0223BA14(void *param0)
     UnkStruct_ov84_0223B5A0 *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_00);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

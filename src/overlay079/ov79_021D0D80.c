@@ -33,10 +33,10 @@
 #include "unk_0200F174.h"
 #include "unk_020158A8.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0208C098.h"
 #include "unk_02098FFC.h"
+#include "vram_transfer.h"
 
 typedef int (*UnkFuncPtr_ov79_021D394C)(UnkStruct_ov79_021D0E1C *);
 
@@ -201,7 +201,7 @@ static void ov79_021D0F7C(void *param0)
         OAMManager_ApplyAndResetBuffers();
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     Bg_RunScheduledUpdates(v0->unk_24);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

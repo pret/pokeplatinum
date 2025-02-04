@@ -25,6 +25,7 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -39,7 +40,9 @@
 #include "math.h"
 #include "narc.h"
 #include "player_avatar.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -47,10 +50,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
 #include "unk_02054D00.h"
@@ -3140,8 +3140,8 @@ static void ov23_02245F94(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 5:
-        sub_0200A450(Unk_ov23_02257764->unk_1F4[0][0]);
-        sub_0200A640(Unk_ov23_02257764->unk_1F4[0][1]);
+        SpriteTransfer_RequestCharAtEndWithHardwareMappingType(Unk_ov23_02257764->unk_1F4[0][0]);
+        SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257764->unk_1F4[0][1]);
 
         ov23_0224644C(v0->unk_114);
         ov23_02245ED4(v0);
@@ -3271,16 +3271,16 @@ static void ov23_02246370(int param0)
     }
 
     if (Unk_ov23_02257764->unk_1F4[0][0]) {
-        if (sub_0201EAD8(SpriteResource_GetID(Unk_ov23_02257764->unk_1F4[0][0]))) {
-            sub_0200A4E4(Unk_ov23_02257764->unk_1F4[0][0]);
+        if (CharTransfer_HasTask(SpriteResource_GetID(Unk_ov23_02257764->unk_1F4[0][0]))) {
+            SpriteTransfer_ResetCharTransfer(Unk_ov23_02257764->unk_1F4[0][0]);
         }
     }
 
     Unk_ov23_02257764->unk_1F4[0][0] = NULL;
 
     if (Unk_ov23_02257764->unk_1F4[0][1]) {
-        if (sub_0201F9DC(SpriteResource_GetID(Unk_ov23_02257764->unk_1F4[0][1]))) {
-            sub_0200A6DC(Unk_ov23_02257764->unk_1F4[0][1]);
+        if (PlttTransfer_HasTask(SpriteResource_GetID(Unk_ov23_02257764->unk_1F4[0][1]))) {
+            SpriteTransfer_ResetPlttTransfer(Unk_ov23_02257764->unk_1F4[0][1]);
         }
     }
 
@@ -3651,8 +3651,8 @@ static void ov23_02246CF0(BgConfig *param0, BOOL param1, int param2)
 
 static void ov23_02246D44(UnkStruct_ov23_022468DC *param0)
 {
-    sub_0200A450(Unk_ov23_02257764->unk_1F4[0][0]);
-    sub_0200A640(Unk_ov23_02257764->unk_1F4[0][1]);
+    SpriteTransfer_RequestCharAtEndWithHardwareMappingType(Unk_ov23_02257764->unk_1F4[0][0]);
+    SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257764->unk_1F4[0][1]);
     sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
 
     {
@@ -3829,8 +3829,8 @@ static void ov23_02247144(int param0, BOOL param1)
 
 static void ov23_022471D8(UnkStruct_ov23_022471D8 *param0)
 {
-    sub_0200A450(Unk_ov23_02257764->unk_1F4[0][0]);
-    sub_0200A640(Unk_ov23_02257764->unk_1F4[0][1]);
+    SpriteTransfer_RequestCharAtEndWithHardwareMappingType(Unk_ov23_02257764->unk_1F4[0][0]);
+    SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257764->unk_1F4[0][1]);
     sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
 
     {
@@ -3996,7 +3996,7 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
                 if ((param1->unk_118 % 3) == 2) {
                     int v12 = param1->unk_118 / 3;
 
-                    sub_0200A490(param1->unk_F8[0], param1->unk_F8[v12 + 1]);
+                    SpriteTransfer_ReplaceCharData(param1->unk_F8[0], param1->unk_F8[v12 + 1]);
                     param1->unk_124 = 0;
                     param1->unk_125 = 4;
                 }
@@ -4049,7 +4049,7 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
     case 5:
         if (param1->unk_124 == 0) {
             Sound_PlayEffect(1578);
-            sub_0200A490(param1->unk_F8[0], param1->unk_F8[6]);
+            SpriteTransfer_ReplaceCharData(param1->unk_F8[0], param1->unk_F8[6]);
 
             for (v0 = 1; v0 < 9; v0++) {
                 CellActor_SetAnim(Unk_ov23_02257764->unk_25C[v0], 1);
@@ -4194,7 +4194,7 @@ static void ov23_02247A8C(SysTask *param0, void *param1)
 
         if (v0->unk_124 > 30) {
             if (Unk_ov23_02257764->unk_B9F == 20) {
-                sub_0200A490(v0->unk_F8[0], v0->unk_F8[2]);
+                SpriteTransfer_ReplaceCharData(v0->unk_F8[0], v0->unk_F8[2]);
             }
 
             ov23_02253F60(ov23_0224219C(), 77, 0, NULL);
@@ -4303,8 +4303,8 @@ static void ov23_02247DB0(int param0, BOOL param1)
 
 static void ov23_02247E38(UnkStruct_ov23_02247E38 *param0)
 {
-    sub_0200A450(Unk_ov23_02257764->unk_1F4[0][0]);
-    sub_0200A640(Unk_ov23_02257764->unk_1F4[0][1]);
+    SpriteTransfer_RequestCharAtEndWithHardwareMappingType(Unk_ov23_02257764->unk_1F4[0][0]);
+    SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257764->unk_1F4[0][1]);
     sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
 
     {
@@ -4763,8 +4763,8 @@ static BOOL ov23_02248614(BgConfig *param0, UnkStruct_ov23_02248748 *param1)
 
 static void ov23_02248748(UnkStruct_ov23_02248748 *param0)
 {
-    sub_0200A450(Unk_ov23_02257764->unk_1F4[1][0]);
-    sub_0200A640(Unk_ov23_02257764->unk_1F4[1][1]);
+    SpriteTransfer_RequestCharAtEndWithHardwareMappingType(Unk_ov23_02257764->unk_1F4[1][0]);
+    SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257764->unk_1F4[1][1]);
     sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[1][0], Unk_ov23_02257764->unk_1D4[1][1], Unk_ov23_02257764->unk_1D4[1][2], Unk_ov23_02257764->unk_1D4[1][3], NULL, NULL);
 
     {
@@ -4842,8 +4842,8 @@ static void ov23_02248884(SysTask *param0, void *param1)
         G2_BlendNone();
         GX_SetMasterBrightness(0);
 
-        sub_0200A4E4(Unk_ov23_02257764->unk_1F4[1][0]);
-        sub_0200A6DC(Unk_ov23_02257764->unk_1F4[1][1]);
+        SpriteTransfer_ResetCharTransfer(Unk_ov23_02257764->unk_1F4[1][0]);
+        SpriteTransfer_ResetPlttTransfer(Unk_ov23_02257764->unk_1F4[1][1]);
 
         for (v1 = 0; v1 < 25; v1++) {
             if (Unk_ov23_02257764->unk_25C[v1] != NULL) {

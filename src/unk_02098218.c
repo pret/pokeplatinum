@@ -35,11 +35,11 @@
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_02024220.h"
 #include "unk_0202F180.h"
 #include "unk_0208694C.h"
 #include "unk_02092494.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F67FC.h"
@@ -79,7 +79,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 71);
     v1->unk_04.unk_00 = BgConfig_New(71);
 
-    VRAMTransferManager_New(64, 71);
+    VramTransfer_New(64, 71);
 
     v1->unk_04.unk_54 = sub_02015F84(71, 1, 0);
     v1->unk_04.unk_04 = PaletteData_New(71);
@@ -178,7 +178,7 @@ static int sub_02098388(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_04.unk_00, 4);
 
     Heap_FreeToHeap(v0->unk_04.unk_00);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     sub_02007B6C(v0->unk_04.unk_38);
     sub_02015FB8(v0->unk_04.unk_54);
     NARC_dtor(v0->unk_04.unk_3C);

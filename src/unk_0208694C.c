@@ -8,10 +8,9 @@
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
-
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "charcode_util.h"
 #include "core_sys.h"
 #include "font.h"
@@ -24,10 +23,12 @@
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -36,16 +37,13 @@
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_020797C8.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F2DAC.h"
 
@@ -1141,10 +1139,10 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
         SysTask_FinishAndFreeParam(v0->unk_400[v2]);
     }
 
-    sub_0200A4E4(v0->unk_328[0][0]);
-    sub_0200A4E4(v0->unk_328[1][0]);
-    sub_0200A6DC(v0->unk_328[0][1]);
-    sub_0200A6DC(v0->unk_328[1][1]);
+    SpriteTransfer_ResetCharTransfer(v0->unk_328[0][0]);
+    SpriteTransfer_ResetCharTransfer(v0->unk_328[1][0]);
+    SpriteTransfer_ResetPlttTransfer(v0->unk_328[0][1]);
+    SpriteTransfer_ResetPlttTransfer(v0->unk_328[1][1]);
 
     for (v2 = 0; v2 < 4; v2++) {
         SpriteResourceCollection_Delete(v0->unk_318[v2]);
@@ -1160,8 +1158,8 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
     }
 
     Bg_FreeTilemapBuffer(v0->unk_160, 7);
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
     sub_0208765C(v0->unk_160, v0->unk_41C);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
 
@@ -1223,7 +1221,7 @@ void sub_0208716C(UnkStruct_0208737C *param0)
 
 static void sub_02087190(void *param0)
 {
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -1521,16 +1519,16 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
 void sub_020877C4(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             20, 2048, 2048, 18
         };
 
-        sub_0201E86C(&v0);
+        CharTransfer_Init(&v0);
     }
 
-    sub_0201F834(20, 18);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(20, 18);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
@@ -1566,10 +1564,10 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
     param0->unk_328[1][2] = SpriteResourceCollection_AddFrom(param0->unk_318[2], param1, 13, 1, 1, 2, 18);
     param0->unk_328[1][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 15, 1, 1, 3, 18);
 
-    sub_0200A328(param0->unk_328[0][0]);
-    sub_0200A328(param0->unk_328[1][0]);
-    sub_0200A5C8(param0->unk_328[0][1]);
-    sub_0200A5C8(param0->unk_328[1][1]);
+    SpriteTransfer_RequestChar(param0->unk_328[0][0]);
+    SpriteTransfer_RequestChar(param0->unk_328[1][0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_328[0][1]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_328[1][1]);
 }
 
 static void sub_020879DC(SysTask *param0, void *param1)

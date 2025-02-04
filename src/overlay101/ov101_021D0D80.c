@@ -8,7 +8,6 @@
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay101/ov101_021D1A28.h"
 #include "overlay101/ov101_021D59AC.h"
 #include "overlay101/ov101_021D7E48.h"
@@ -17,6 +16,7 @@
 #include "overlay101/struct_ov101_021D1894.h"
 
 #include "bg_window.h"
+#include "char_transfer.h"
 #include "enums.h"
 #include "font.h"
 #include "game_records.h"
@@ -25,6 +25,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -36,10 +37,8 @@
 #include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_020711EC.h"
+#include "vram_transfer.h"
 
 typedef struct {
     UnkStruct_0203E348 *unk_00;
@@ -481,20 +480,20 @@ void ov101_021D14E4(UnkStruct_ov101_021D13C8 *param0)
 
 static void ov101_021D150C(void)
 {
-    UnkStruct_ov22_022559F8 v0 = {
+    CharTransferTemplate v0 = {
         32, 0x4000, 0x4000, 79
     };
 
-    sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
-    sub_0201F834(16, 79);
-    sub_0201E994();
-    sub_0201F8E4();
+    CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
+    PlttTransfer_Init(16, 79);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 static void ov101_021D1544(void)
 {
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 }
 
 static void ov101_021D1550(UnkStruct_ov101_021D13C8 *param0)
@@ -659,7 +658,7 @@ static void ov101_021D197C(void *param0)
 {
     UnkStruct_ov101_021D13C8 *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
     Bg_RunScheduledUpdates(v0->unk_43C);
 }

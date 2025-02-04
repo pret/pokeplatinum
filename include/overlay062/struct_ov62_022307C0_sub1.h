@@ -4,8 +4,8 @@
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012B20_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 
+#include "char_transfer.h"
 #include "touch_screen.h"
 
 typedef struct {
@@ -15,7 +15,7 @@ typedef struct {
     TouchScreenRect *unk_10;
     FontOAM *unk_14;
     UnkStruct_02012B20 *unk_18;
-    SpriteManagerAllocation unk_1C;
+    CharTransferAllocation unk_1C;
 } UnkStruct_ov62_022307C0_sub1;
 
 #endif // POKEPLATINUM_STRUCT_OV62_022307C0_SUB1_H

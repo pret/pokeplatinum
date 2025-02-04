@@ -31,12 +31,12 @@
 #include "message.h"
 #include "narc.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
 
@@ -784,13 +784,13 @@ static void ov21_021D6580(UnkStruct_ov21_021D71A8 *param0)
     SpriteResource *v0;
 
     v0 = SpriteResourceCollection_Find(param0->unk_80[0], 81);
-    sub_0200A4E4(v0);
+    SpriteTransfer_ResetCharTransfer(v0);
 
     v0 = SpriteResourceCollection_Find(param0->unk_80[1], 3);
-    sub_0200A6DC(v0);
+    SpriteTransfer_ResetPlttTransfer(v0);
 
     v0 = SpriteResourceCollection_Find(param0->unk_80[0], 111);
-    sub_0200A4E4(v0);
+    SpriteTransfer_ResetCharTransfer(v0);
 
     SpriteResourceCollection_Delete(param0->unk_80[0]);
     SpriteResourceCollection_Delete(param0->unk_80[1]);
@@ -805,12 +805,12 @@ static void ov21_021D65DC(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
 
     v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_80[0], v1, 81, 1, 81, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
-    sub_0200A3DC(v0);
+    SpriteTransfer_RequestCharAtEnd(v0);
     SpriteResource_ReleaseData(v0);
 
     v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_80[1], v1, 3, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 12, param2);
 
-    sub_0200A640(v0);
+    SpriteTransfer_RequestPlttFreeSpace(v0);
     SpriteResource_ReleaseData(v0);
     SpriteResourceCollection_AddFrom(param0->unk_80[2], v1, 79, 1, 79, 2, param2);
     SpriteResourceCollection_AddFrom(param0->unk_80[3], v1, 80, 1, 80, 3, param2);
@@ -818,7 +818,7 @@ static void ov21_021D65DC(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
 
     v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_80[0], v1, 111, 1, 111, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
 
-    sub_0200A3DC(v0);
+    SpriteTransfer_RequestCharAtEnd(v0);
     SpriteResource_ReleaseData(v0);
     SpriteResourceCollection_AddFrom(param0->unk_80[2], v1, 109, 1, 109, 2, param2);
     SpriteResourceCollection_AddFrom(param0->unk_80[3], v1, 110, 1, 110, 3, param2);

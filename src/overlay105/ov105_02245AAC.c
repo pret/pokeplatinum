@@ -3,17 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay105/struct_ov105_02245AAC.h"
 
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "gx_layers.h"
+#include "pltt_transfer.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 
 void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0);
 CellActor *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);
@@ -47,8 +46,8 @@ void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0)
     param0->unk_1A0[0][3] = SpriteResourceCollection_Add(param0->unk_190[3], 151, 1, 1, 0, 3, 93);
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_0200A328(param0->unk_1A0[v0][0]);
-        sub_0200A5C8(param0->unk_1A0[v0][1]);
+        SpriteTransfer_RequestChar(param0->unk_1A0[v0][0]);
+        SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[v0][1]);
     }
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -105,8 +104,8 @@ void ov105_02245C50(UnkStruct_ov105_02245AAC *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 1; v0++) {
-        sub_0200A4E4(param0->unk_1A0[v0][0]);
-        sub_0200A6DC(param0->unk_1A0[v0][1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_1A0[v0][0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[v0][1]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -115,8 +114,8 @@ void ov105_02245C50(UnkStruct_ov105_02245AAC *param0)
 
     CellActorCollection_Delete(param0->unk_00);
     sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 
     return;
 }
@@ -124,16 +123,16 @@ void ov105_02245C50(UnkStruct_ov105_02245AAC *param0)
 static void ov105_02245C98(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             32, 2048, 2048, 93
         };
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_64K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_64K);
     }
 
-    sub_0201F834(8, 93);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(8, 93);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 
     return;
 }

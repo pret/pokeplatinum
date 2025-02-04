@@ -24,13 +24,13 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_020298BC.h"
 
 typedef struct {
@@ -722,8 +722,8 @@ static void ov7_0224CA54(CellActorResourceData *param0, UnkStruct_ov7_0224C768 *
     param1->unk_148[3] = SpriteResourceCollection_AddFrom(param1->unk_138[3], v0, 6, 0, 5000, 3, param2);
 
     NARC_dtor(v0);
-    sub_0200A3DC(param1->unk_148[0]);
-    sub_0200A640(param1->unk_148[1]);
+    SpriteTransfer_RequestCharAtEnd(param1->unk_148[0]);
+    SpriteTransfer_RequestPlttFreeSpace(param1->unk_148[1]);
     sub_020093B4(param0, 5000, 5000, 5000, 5000, 0xffffffff, 0xffffffff, 0, 0, param1->unk_138[0], param1->unk_138[1], param1->unk_138[2], param1->unk_138[3], NULL, NULL);
 }
 
@@ -731,8 +731,8 @@ static void ov7_0224CB40(UnkStruct_ov7_0224C768 *param0)
 {
     int v0;
 
-    sub_0200A4E4(param0->unk_148[0]);
-    sub_0200A6DC(param0->unk_148[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_148[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_148[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_138[v0]);

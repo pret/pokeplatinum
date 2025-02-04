@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -24,6 +23,7 @@
 
 #include "assert.h"
 #include "bg_window.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
@@ -42,7 +42,6 @@
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_0201E86C.h"
 #include "unk_02094EDC.h"
 
 typedef struct {
@@ -97,7 +96,7 @@ typedef struct {
 
 typedef struct {
     FontOAM *unk_00;
-    SpriteManagerAllocation unk_04;
+    CharTransferAllocation unk_04;
     u16 unk_10;
 } UnkStruct_ov17_02240138;
 
@@ -948,7 +947,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
 {
     UnkStruct_020127E8 v0;
     Window v1;
-    SpriteManagerAllocation v2;
+    CharTransferAllocation v2;
     int v3;
     FontOAM *v4;
     BgConfig *v5;
@@ -976,7 +975,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     }
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DSUB, 21);
-    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &v2);
+    CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &v2);
 
     if (param9 == 1) {
         param7 -= v7 / 2;
@@ -989,7 +988,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     v0.unk_08 = sub_0200D9B0(v6);
     v0.unk_0C = sub_0200D04C(v6, param6);
     v0.unk_10 = NULL;
-    v0.unk_14 = v2.unk_04;
+    v0.unk_14 = v2.offset;
     v0.unk_18 = param7;
     v0.unk_1C = param8;
     v0.unk_20 = 0;
@@ -1018,7 +1017,7 @@ static void ov17_02240260(UnkStruct_ov17_0223F7E4 *param0)
     for (v0 = 0; v0 < 12; v0++) {
         if (param0->unk_40[v0].unk_00 != NULL) {
             sub_02012870(param0->unk_40[v0].unk_00);
-            sub_0201EE28(&param0->unk_40[v0].unk_04);
+            CharTransfer_ClearRange(&param0->unk_40[v0].unk_04);
             param0->unk_40[v0].unk_00 = NULL;
         }
     }

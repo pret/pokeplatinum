@@ -17,12 +17,12 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "map_matrix.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "save_player.h"
 #include "special_encounter.h"
 #include "trainer_info.h"
-#include "unk_02039C80.h"
 #include "unk_02054D00.h"
 
 #define TREE_GROUP_NO_ENCOUNTER 0
@@ -352,7 +352,7 @@ static void DoTreeShakingAnimation(FieldSystem *fieldSystem, UnkStruct_ov5_021E1
     u16 mapId;
     u8 treeId;
 
-    mapId = sub_02039E68(fieldSystem->unk_2C, param2);
+    mapId = MapMatrix_GetMapHeaderIDAtIndex(fieldSystem->mapMatrix, param2);
     treeId = GetTreeIdFromMapId(mapId);
 
     if (treeId != NUM_HONEY_TREES) {

@@ -10,7 +10,6 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay012/struct_ball_rotation_decl.h"
@@ -18,6 +17,7 @@
 #include "overlay022/struct_ov22_02258A48.h"
 
 #include "bg_window.h"
+#include "char_transfer.h"
 #include "menu.h"
 #include "palette.h"
 #include "string_list.h"
@@ -45,7 +45,7 @@ typedef struct {
     GenericPointerData *unk_15C;
     UnkStruct_02012744 *unk_160;
     FontOAM *unk_164[2];
-    SpriteManagerAllocation unk_16C[2];
+    CharTransferAllocation unk_16C[2];
     BOOL unk_184;
     PokemonAnimationSys *unk_188;
     BOOL unk_18C;

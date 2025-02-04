@@ -33,9 +33,9 @@
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay77);
 
@@ -903,7 +903,7 @@ static void ov77_021D2B38(void *param0)
         v2->unk_246 = 0;
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     sub_0200A858();
     ov77_021D6E40(v1->unk_34.unk_1C);
 }

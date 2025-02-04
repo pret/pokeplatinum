@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 #define POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 
-#include "struct_decls/struct_02039E30_decl.h"
 #include "struct_decls/struct_02054C18_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
@@ -40,6 +39,7 @@
 #include "journal.h"
 #include "location.h"
 #include "map_header_data.h"
+#include "map_matrix.h"
 #include "overlay_manager.h"
 #include "pokeradar.h"
 #include "savedata.h"
@@ -75,7 +75,7 @@ typedef struct FieldSystem_t {
     int unk_20;
     Camera *camera;
     UnkStruct_ov5_021E8F60 *unk_28;
-    UnkStruct_02039E30 *unk_2C;
+    MapMatrix *mapMatrix;
     UnkStruct_ov5_021EF76C *unk_30;
     UnkStruct_ov5_021D1A68 *unk_34;
     MapObjectManager *mapObjMan;
