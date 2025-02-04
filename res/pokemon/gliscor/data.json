@@ -1,5 +1,4 @@
 {
-    "name": "Gliscor",
     "base_stats": {
         "hp": 75,
         "attack": 95,
@@ -132,8 +131,60 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 10,
         "pokemon_pos_m": 0,
-        "entry_text": "If it succeeds in catching even a\nfaint breeze properly, it can circle\nthe globe without flapping once.",
-        "category": "Fang Scorp Pokémon"
+        "en": {
+            "name": "GLISCOR",
+            "category": "Fang Scorp Pokémon",
+            "entry_text": [
+                "If it succeeds in catching even a\n",
+                "faint breeze properly, it can circle\n",
+                "the globe without flapping once."
+            ]
+        },
+        "fr": {
+            "name": "SCORVOL",
+            "category": "Pokémon Scorpicroc",
+            "entry_text": [
+                "Il guette sa proie, pendu à une\n",
+                "branche la tête en bas, et s’en\n",
+                "saisit à la première occasion. "
+            ]
+        },
+        "de": {
+            "name": "SKORGRO",
+            "category": "Zahnskorpi",
+            "entry_text": [
+                "Es hängt kopfüber von einem Ast\n",
+                "und beobachtet seine Beute. Bei\n",
+                "Gelegenheit stürzt es sich auf sie."
+            ]
+        },
+        "it": {
+            "name": "GLISCOR",
+            "category": "Pokémon Scorpidente",
+            "entry_text": [
+                "Sta appeso ai rami con la testa in\n",
+                "giù. Alla prima occasione, si butta a\n",
+                "capofitto sulla preda."
+            ]
+        },
+        "es": {
+            "name": "GLISCOR",
+            "category": "Pokémon Colmicorpio",
+            "entry_text": [
+                "Espera a sus presas colgado de\n",
+                "una rama bocabajo. Cuando llega\n",
+                "su oportunidad, se lanza en picado."
+            ]
+        },
+        "jp": {
+            "name": "グライオン",
+            "category": "キバさそりポケモン",
+            "entry_text": [
+                "しっぽで　きのえだに　ぶらさがり\n",
+                "えものを　かんさつする。すきを\n",
+                "みて　じょうくうから　おそいかかる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

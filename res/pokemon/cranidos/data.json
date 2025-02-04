@@ -1,5 +1,4 @@
 {
-    "name": "Cranidos",
     "base_stats": {
         "hp": 67,
         "attack": 125,
@@ -129,8 +128,60 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "A lifelong jungle dweller from 100\nmillion years ago, it would snap\nobstructing trees with head butts.",
-        "category": "Head Butt Pokémon"
+        "en": {
+            "name": "CRANIDOS",
+            "category": "Head Butt Pokémon",
+            "entry_text": [
+                "A lifelong jungle dweller from 100\n",
+                "million years ago, it would snap\n",
+                "obstructing trees with head butts."
+            ]
+        },
+        "fr": {
+            "name": "KRANIDOS",
+            "category": "Pokémon Coud’Boule",
+            "entry_text": [
+                "Il vivait dans la jungle il y a \n",
+                "environ 100 millions d’années. Son\n",
+                "crâne est dur comme du fer."
+            ]
+        },
+        "de": {
+            "name": "KOKNODON",
+            "category": "Kopfstoß",
+            "entry_text": [
+                "Vor über 100 Millionen Jahren lebte\n",
+                "es in den Dschungeln. Sein Schädel\n",
+                "ist hart wie Eisen."
+            ]
+        },
+        "it": {
+            "name": "CRANIDOS",
+            "category": "Pokémon Cranioso",
+            "entry_text": [
+                "Viveva nella giungla circa 100\n",
+                "milioni di anni fa. Il suo cranio\n",
+                "è duro come il ferro."
+            ]
+        },
+        "es": {
+            "name": "CRANIDOS",
+            "category": "Pokémon Cabezazo",
+            "entry_text": [
+                "Vivía en la jungla hace unos 100\n",
+                "millones de años. Su cráneo es\n",
+                "tan duro como el hierro."
+            ]
+        },
+        "jp": {
+            "name": "ズガイドス",
+            "category": "ずつきポケモン",
+            "entry_text": [
+                "およそ　１おくねんまえに\n",
+                "こだいの　みつりんで　くらしていた。\n",
+                "てつのように　かたい　ずがいこつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

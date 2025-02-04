@@ -1,5 +1,4 @@
 {
-    "name": "Politoed",
     "base_stats": {
         "hp": 90,
         "attack": 75,
@@ -106,8 +105,60 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It gathers groups of others as\ntheir leader. Its cries make\nPOLIWAG obey.",
-        "category": "Frog Pokémon"
+        "en": {
+            "name": "POLITOED",
+            "category": "Frog Pokémon",
+            "entry_text": [
+                "It gathers groups of others as\n",
+                "their leader. Its cries make\n",
+                "POLIWAG obey."
+            ]
+        },
+        "fr": {
+            "name": "TARPAUD",
+            "category": "Pokémon Grenouille",
+            "entry_text": [
+                "Il rassemble ses pairs pour les\n",
+                "commander. Il utilise son cri \n",
+                "pour diriger PTITARD."
+            ]
+        },
+        "de": {
+            "name": "QUAXO",
+            "category": "Frosch",
+            "entry_text": [
+                "Es versammelt andere PKMN um sich\n",
+                "herum und führt sie an.\n",
+                "POLIWAG gehorchen seinem Ruf. "
+            ]
+        },
+        "it": {
+            "name": "POLITOED",
+            "category": "Pokémon Rana",
+            "entry_text": [
+                "Ama radunare gruppi e atteggiarsi\n",
+                "a capogruppo.\n",
+                "I suoi versi richiamano POLIWAG."
+            ]
+        },
+        "es": {
+            "name": "POLITOED",
+            "category": "Pokémon Rana",
+            "entry_text": [
+                "Agrupa a otros Pokémon para\n",
+                "liderarlos. Los POLIWAG obedecen\n",
+                "su voz."
+            ]
+        },
+        "jp": {
+            "name": "ニョロトノ",
+            "category": "かえるポケモン",
+            "entry_text": [
+                "ニョロトノを　リ－ダ－に　グル－プが\n",
+                "つくられる。ニョロトノの　なきごえが\n",
+                "ニョロモたちを　したがわせる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

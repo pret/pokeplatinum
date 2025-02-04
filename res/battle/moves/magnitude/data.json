@@ -6,7 +6,7 @@
     "accuracy": 100,
     "pp": 30,
     "effect": {
-        "type": "BATTLE_EFFECT_RANDOM_POWER_10_CASES",
+        "type": "BATTLE_EFFECT_PSYWAVE",
         "chance": 0
     },
     "range": "RANGE_ALL_ADJACENT",

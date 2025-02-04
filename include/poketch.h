@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_POKETCH_H
 #define POKEPLATINUM_POKETCH_H
 
-#include "consts/poketch.h"
+#include "generated/poketch_apps.h"
 
 #include "pokemon.h"
 #include "savedata.h"

@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/savedata/vars_flags.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
 

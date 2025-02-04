@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/trainers_school.h"
 
     .data
 
@@ -175,17 +176,17 @@ _01E7:
     End
 
 _0212:
-    StartTrainerBattle trainer_school_kid_harrison
+    StartTrainerBattle TRAINER_SCHOOL_KID_HARRISON
     GoTo _023C
     End
 
 _0220:
-    StartTrainerBattle trainer_school_kid_harrison
+    StartTrainerBattle TRAINER_SCHOOL_KID_HARRISON
     GoTo _023C
     End
 
 _022E:
-    StartTrainerBattle trainer_school_kid_harrison
+    StartTrainerBattle TRAINER_SCHOOL_KID_HARRISON
     GoTo _023C
     End
 
@@ -269,17 +270,17 @@ _031A:
     End
 
 _0345:
-    StartTrainerBattle trainer_school_kid_christine
+    StartTrainerBattle TRAINER_SCHOOL_KID_CHRISTINE
     GoTo _036F
     End
 
 _0353:
-    StartTrainerBattle trainer_school_kid_christine
+    StartTrainerBattle TRAINER_SCHOOL_KID_CHRISTINE
     GoTo _036F
     End
 
 _0361:
-    StartTrainerBattle trainer_school_kid_christine
+    StartTrainerBattle TRAINER_SCHOOL_KID_CHRISTINE
     GoTo _036F
     End
 

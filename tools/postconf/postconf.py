@@ -22,6 +22,27 @@ def is_wsl_accessing_windows() -> bool:
     return ("microsoft" in platform.uname()[2].lower() and os.path.realpath(os.path.abspath(__file__)).startswith("/mnt/"))
 
 
+def bytecode_scripts_order_only_deps(fileString: str) -> str:
+    '''Express bytecode-script dependencies on generated headers as order-only'''
+    return re.sub(
+        r"build ([\w\/\.]+): (\w+) ([\w\/\.]+) \| ([\w\/\.]+\/make_script_bin\.sh) ([\w\s\/\.]+)",
+        r"build \1: \2 \3 | \4 || \5",
+        fileString
+    )
+
+def pch_order_only_deps(fileString: str) -> str:
+    '''
+    Express dependencies attached to the PCH as order-only.
+    This is to address a Meson bug where the PCH is flagged as having implicit
+    dependencies on generated sources and headers.
+    '''
+    return re.sub(
+        r"build main.nef.p/global_pch.h.mch: c_PCH ../include/pch/global_pch.h \| ([\w\s\/\.]+)",
+        r"build main.nef.p/global_pch.h.mch: c_PCH ../include/pch/global_pch.h || \1",
+        fileString
+    )
+
+
 def main():
     BUILD_NINJA         = f'{BUILD_DIRECTORY}/build.ninja'
     COMPILE_COMMANDS    = f'{BUILD_DIRECTORY}/compile_commands.json'
@@ -29,11 +50,13 @@ def main():
     with open(BUILD_NINJA, 'r') as build_ninja_in, open(COMPILE_COMMANDS, 'r') as compile_commands_in:
         build_ninja_string = build_ninja_in.read()
         compile_commands_string = compile_commands_in.read()
-    
+
     # build.ninja edits
     build_ninja_string = backslash_to_forward_slash(build_ninja_string)
     build_ninja_string = fix_static_libs(build_ninja_string)
     build_ninja_string = nasm_to_asm(build_ninja_string)
+    build_ninja_string = bytecode_scripts_order_only_deps(build_ninja_string)
+    build_ninja_string = pch_order_only_deps(build_ninja_string)
 
     # compile_commands.json edits
     compile_commands_string = backslash_to_forward_slash(compile_commands_string)

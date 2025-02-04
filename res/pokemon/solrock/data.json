@@ -1,5 +1,4 @@
 {
-    "name": "Solrock",
     "base_stats": {
         "hp": 70,
         "attack": 95,
@@ -126,8 +125,60 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "A new Pokémon species, rumored\nto be from the sun. It gives off\nlight while spinning.",
-        "category": "Meteorite Pokémon"
+        "en": {
+            "name": "SOLROCK",
+            "category": "Meteorite Pokémon",
+            "entry_text": [
+                "A new Pokémon species, rumored\n",
+                "to be from the sun. It gives off\n",
+                "light while spinning."
+            ]
+        },
+        "fr": {
+            "name": "SOLAROC",
+            "category": "Pokémon Météorite",
+            "entry_text": [
+                "Le bruit court que cette nouvelle\n",
+                "espèce vient du soleil. Il produit\n",
+                "de la lumière en tournoyant."
+            ]
+        },
+        "de": {
+            "name": "SONNFEL",
+            "category": "Meteorit",
+            "entry_text": [
+                "Eine neue PKMN-Spezies, von der\n",
+                "man annimmt, sie käme von der\n",
+                "Sonne. Sie strahlt Licht ab."
+            ]
+        },
+        "it": {
+            "name": "SOLROCK",
+            "category": "Pokémon Meteorite",
+            "entry_text": [
+                "Nuova specie di Pokémon che si\n",
+                "dice provenga dal sole. Emana luce\n",
+                "roteando vorticosamente."
+            ]
+        },
+        "es": {
+            "name": "SOLROCK",
+            "category": "Pokémon Meteorito",
+            "entry_text": [
+                "Una nueva especie de Pokémon\n",
+                "que se rumorea procede del Sol.\n",
+                "Emite luz al girar."
+            ]
+        },
+        "jp": {
+            "name": "ソルロック",
+            "category": "いんせきポケモン",
+            "entry_text": [
+                "たいようの　ぶんしんと　うわさされる\n",
+                "しんしゅの　ポケモン。からだを\n",
+                "かいてんさせて　ひかりを　はなつ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

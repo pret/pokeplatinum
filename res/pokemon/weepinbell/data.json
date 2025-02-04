@@ -1,5 +1,4 @@
 {
-    "name": "Weepinbell",
     "base_stats": {
         "hp": 65,
         "attack": 90,
@@ -111,8 +110,60 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "A Pokémon that appears to be a\nplant. It captures unwary prey by\ndousing them with a toxic powder.",
-        "category": "Flycatcher Pokémon"
+        "en": {
+            "name": "WEEPINBELL",
+            "category": "Flycatcher Pokémon",
+            "entry_text": [
+                "A Pokémon that appears to be a\n",
+                "plant. It captures unwary prey by\n",
+                "dousing them with a toxic powder."
+            ]
+        },
+        "fr": {
+            "name": "BOUSTIFLOR",
+            "category": "Pokémon Carnivore",
+            "entry_text": [
+                "Un Pokémon végétal. Il capture les\n",
+                "proies étourdies en les endormant\n",
+                "à l’aide d’une poudre toxique."
+            ]
+        },
+        "de": {
+            "name": "ULTRIGARIA",
+            "category": "Fliegentot",
+            "entry_text": [
+                "Ein Pokémon, das wie eine Pflanze\n",
+                "aussieht. Es fängt Beute, indem es\n",
+                "giftigen Puder darüber verteilt."
+            ]
+        },
+        "it": {
+            "name": "WEEPINBELL",
+            "category": "Pokémon Moschivoro",
+            "entry_text": [
+                "Questo Pokémon sembra una pianta.\n",
+                "Cattura le prede con una polvere\n",
+                "tossica."
+            ]
+        },
+        "es": {
+            "name": "WEEPINBELL",
+            "category": "Pokémon Matamoscas",
+            "entry_text": [
+                "Este Pokémon parece una planta.\n",
+                "Captura a sus presas usando polvo\n",
+                "tóxico cuando están desprevenidas."
+            ]
+        },
+        "jp": {
+            "name": "ウツドン",
+            "category": "ハエとりポケモン",
+            "entry_text": [
+                "しょくぶつに　そっくりな　ポケモン。\n",
+                "ゆだんして　ちかよってきた　えものに\n",
+                "どくのこなを　あびせて　つかまえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

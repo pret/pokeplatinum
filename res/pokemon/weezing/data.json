@@ -1,5 +1,4 @@
 {
-    "name": "Weezing",
     "base_stats": {
         "hp": 65,
         "attack": 90,
@@ -112,8 +111,60 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "It grows by feeding on gases\nreleased by garbage. Though very\nrare, triplets have been found.",
-        "category": "Poison Gas Pokémon"
+        "en": {
+            "name": "WEEZING",
+            "category": "Poison Gas Pokémon",
+            "entry_text": [
+                "It grows by feeding on gases\n",
+                "released by garbage. Though very\n",
+                "rare, triplets have been found."
+            ]
+        },
+        "fr": {
+            "name": "SMOGOGO",
+            "category": "Pokémon Gaz Mortel",
+            "entry_text": [
+                "Il grandit en absorbant les gaz des\n",
+                "détritus. Des triplés existent, bien\n",
+                "qu’ils soient fort rares."
+            ]
+        },
+        "de": {
+            "name": "SMOGMOG",
+            "category": "Giftwolke",
+            "entry_text": [
+                "Es wächst, indem es Gase aufnimmt,\n",
+                "die aus dem Müll aufsteigen. Selten\n",
+                "kann man Drillinge von ihnen finden."
+            ]
+        },
+        "it": {
+            "name": "WEEZING",
+            "category": "Pokémon Velenuvola",
+            "entry_text": [
+                "Cresce nutrendosi dei gas emanati\n",
+                "dai rifiuti. Anche se rarissimi, ne\n",
+                "hanno trovati in gruppi di tre."
+            ]
+        },
+        "es": {
+            "name": "WEEZING",
+            "category": "Pokémon Gas Veneno",
+            "entry_text": [
+                "Crece alimentándose de los gases\n",
+                "emanados por la basura. Se han\n",
+                "dado raros casos de trillizos."
+            ]
+        },
+        "jp": {
+            "name": "マタドガス",
+            "category": "どくガスポケモン",
+            "entry_text": [
+                "ゴミから　はっせいする　ガスを\n",
+                "たべて　おおきくなる。ごくまれに\n",
+                "３つごの　マタドガスが　みつかる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

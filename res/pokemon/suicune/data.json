@@ -1,5 +1,4 @@
 {
-    "name": "Suicune",
     "base_stats": {
         "hp": 100,
         "attack": 75,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 9,
-        "entry_text": "It races around the world to\npurify fouled water. It dashes\naway with the north wind.",
-        "category": "Aurora Pokémon"
+        "en": {
+            "name": "SUICUNE",
+            "category": "Aurora Pokémon",
+            "entry_text": [
+                "It races around the world to\n",
+                "purify fouled water. It dashes\n",
+                "away with the north wind."
+            ]
+        },
+        "fr": {
+            "name": "SUICUNE",
+            "category": "Pokémon Aurore",
+            "entry_text": [
+                "Il parcourt le vaste monde pour\n",
+                "purifier les eaux polluées. Il\n",
+                "accompagne le vent du nord."
+            ]
+        },
+        "de": {
+            "name": "SUICUNE",
+            "category": "Polarlicht",
+            "entry_text": [
+                "Es wandert beständig in der Welt\n",
+                "herum, um verunreinigtes Wasser zu\n",
+                "reinigen. Es zieht mit dem Nordwind."
+            ]
+        },
+        "it": {
+            "name": "SUICUNE",
+            "category": "Pokémon Aurora",
+            "entry_text": [
+                "Corre per tutto il mondo per\n",
+                "purificare l’acqua contaminata.\n",
+                "Si allontana con i venti del nord."
+            ]
+        },
+        "es": {
+            "name": "SUICUNE",
+            "category": "Pokémon Aurora",
+            "entry_text": [
+                "Recorre el mundo para purificar\n",
+                "agua contaminada. Corre veloz\n",
+                "con el viento del norte."
+            ]
+        },
+        "jp": {
+            "name": "スイクン",
+            "category": "オ－ロラポケモン",
+            "entry_text": [
+                "せかいじゅうを　かけめぐり\n",
+                "よごれた　みずを　きよめている。\n",
+                "きたかぜと　ともに　はしりさる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

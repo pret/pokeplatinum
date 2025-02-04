@@ -1,5 +1,4 @@
 {
-    "name": "Ledian",
     "base_stats": {
         "hp": 55,
         "attack": 35,
@@ -120,8 +119,60 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "It uses starlight as energy. When\nmore stars appear at night, the\npatterns on its back grow larger.",
-        "category": "Five Star Pokémon"
+        "en": {
+            "name": "LEDIAN",
+            "category": "Five Star Pokémon",
+            "entry_text": [
+                "It uses starlight as energy. When\n",
+                "more stars appear at night, the\n",
+                "patterns on its back grow larger."
+            ]
+        },
+        "fr": {
+            "name": "COXYCLAQUE",
+            "category": "Pokémon 5 Etoiles",
+            "entry_text": [
+                "Il tire sa force de la lumière des\n",
+                "étoiles. Plus il y en a et plus ses\n",
+                "motifs dorsaux sont grands."
+            ]
+        },
+        "de": {
+            "name": "LEDIAN",
+            "category": "Fünf-Punkt",
+            "entry_text": [
+                "Es zieht Energie aus dem Licht der\n",
+                "Sterne. Je mehr Sterne zu sehen\n",
+                "sind, desto größer ist sein Muster."
+            ]
+        },
+        "it": {
+            "name": "LEDIAN",
+            "category": "Pokémon Pentastra",
+            "entry_text": [
+                "La luce delle stelle è la sua fonte\n",
+                "d’energia. Un cielo più stellato fa\n",
+                "ingrandire i disegni sul suo dorso."
+            ]
+        },
+        "es": {
+            "name": "LEDIAN",
+            "category": "Pokémon 5estrellas",
+            "entry_text": [
+                "Se nutre de la luz de las estrellas.\n",
+                "Cuanto más estrellada es la noche,\n",
+                "más crecen los dibujos de su lomo."
+            ]
+        },
+        "jp": {
+            "name": "レディアン",
+            "category": "いつつぼしポケモン",
+            "entry_text": [
+                "ほしあかりを　エネルギ－にする。\n",
+                "よぞらの　ほしの　かずが　ふえると\n",
+                "せなかの　もようが　おおきくなる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

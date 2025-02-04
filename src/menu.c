@@ -3,10 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/sdat.h"
-
-#include "gmm/message_bank_common_strings_2.h"
-#include "text/pl_msg.naix"
+#include "generated/sdat.h"
+#include "generated/text_banks.h"
 
 #include "bg_window.h"
 #include "colored_arrow.h"
@@ -18,6 +16,8 @@
 #include "string_list.h"
 #include "text.h"
 #include "unk_02005474.h"
+
+#include "res/text/bank/common_strings_2.h"
 
 static BOOL TryMovingCursorAndPlaySound(Menu *menu, u8 direction, u16 sound);
 static u8 TryMovingCursor(Menu *menu, u8 direction);
@@ -360,7 +360,7 @@ Menu *Menu_MakeYesNoChoiceWithCursorAt(BgConfig *bgConfig, const WindowTemplate 
     MessageLoader *msgLoader;
     StringList *choices;
 
-    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_common_strings_2, heapID);
+    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS_2, heapID);
     choices = StringList_New(2, heapID);
 
     StringList_AddFromMessageBank(choices, msgLoader, pl_msg_00000361_00041, 0);

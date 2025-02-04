@@ -1,5 +1,4 @@
 {
-    "name": "Numel",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -109,8 +108,60 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "Its humped back stores intensely\nhot magma. In rain, the magma\ncools, slowing its movement.",
-        "category": "Numb Pokémon"
+        "en": {
+            "name": "NUMEL",
+            "category": "Numb Pokémon",
+            "entry_text": [
+                "Its humped back stores intensely\n",
+                "hot magma. In rain, the magma\n",
+                "cools, slowing its movement."
+            ]
+        },
+        "fr": {
+            "name": "CHAMALLOT",
+            "category": "Pokémon Engourdi",
+            "entry_text": [
+                "Son dos bossu renferme une lave\n",
+                "bouillonnante. Elle refroidit par \n",
+                "temps de pluie, ce qui le ralentit."
+            ]
+        },
+        "de": {
+            "name": "CAMAUB",
+            "category": "Taubheit",
+            "entry_text": [
+                "In seinem Rücken speichert es sehr\n",
+                "heißes Magma. Regnet es, kühlt das\n",
+                "Magma ab und es wird langsamer."
+            ]
+        },
+        "it": {
+            "name": "NUMEL",
+            "category": "Pokémon Torpore",
+            "entry_text": [
+                "Nella gobba accumula magma. Quando\n",
+                "piove, il magma si indurisce e\n",
+                "il Pokémon diventa più lento."
+            ]
+        },
+        "es": {
+            "name": "NUMEL",
+            "category": "Pokémon Torpe",
+            "entry_text": [
+                "En su joroba almacena magma\n",
+                "ardiente que se enfría cuando\n",
+                "llueve y lo ralentiza."
+            ]
+        },
+        "jp": {
+            "name": "ドンメル",
+            "category": "どんかんポケモン",
+            "entry_text": [
+                "しゃくねつの　マグマを　せなかの\n",
+                "コブに　ためている。あめに　あたると\n",
+                "マグマが　ひえて　うごきが　にぶる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

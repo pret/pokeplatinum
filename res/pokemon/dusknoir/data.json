@@ -1,5 +1,4 @@
 {
-    "name": "Dusknoir",
     "base_stats": {
         "hp": 45,
         "attack": 100,
@@ -135,8 +134,60 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 6,
-        "entry_text": "It is said to take lost spirits\ninto its pliant body and guide\nthem home.",
-        "category": "Gripper Pokémon"
+        "en": {
+            "name": "DUSKNOIR",
+            "category": "Gripper Pokémon",
+            "entry_text": [
+                "It is said to take lost spirits\n",
+                "into its pliant body and guide\n",
+                "them home."
+            ]
+        },
+        "fr": {
+            "name": "NOCTUNOIR",
+            "category": "Pokémon Mainpince",
+            "entry_text": [
+                "L’antenne sur sa tête capte les\n",
+                "ondes radio du monde des esprits\n",
+                "lui ordonnant d’y porter des gens."
+            ]
+        },
+        "de": {
+            "name": "ZWIRRFINST",
+            "category": "Greifer",
+            "entry_text": [
+                "Die Antenne auf seinem Kopf\n",
+                "empfängt Radiowellen aus einer\n",
+                "anderen Dimension."
+            ]
+        },
+        "it": {
+            "name": "DUSKNOIR",
+            "category": "Pokémon Pinza",
+            "entry_text": [
+                "Capta con l’antenna onde che arri-\n",
+                "vano dal mondo degli spiriti, che gli\n",
+                "ordinano di portare lì le persone."
+            ]
+        },
+        "es": {
+            "name": "DUSKNOIR",
+            "category": "Pokémon Grilletes",
+            "entry_text": [
+                "La antena de la cabeza captura\n",
+                "ondas de radio lejanas que le\n",
+                "permiten secuestrar a gente."
+            ]
+        },
+        "jp": {
+            "name": "ヨノワ－ル",
+            "category": "てづかみポケモン",
+            "entry_text": [
+                "あたまの　アンテナで　れいかいからの\n",
+                "でんぱを　じゅしん。しじを　うけて\n",
+                "ひとを　れいかいへ　つれていくのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

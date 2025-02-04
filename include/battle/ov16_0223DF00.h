@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_message.h"
@@ -151,7 +151,7 @@ PCBoxes *ov16_0223E228(BattleSystem *battleSys);
  * @param battleSys
  * @return The battle's terrain.
  */
-enum Terrain BattleSystem_Terrain(BattleSystem *battleSys);
+enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
 int ov16_0223E240(BattleSystem *battleSys);
 int BattleSystem_MapHeader(BattleSystem *battleSys);
 int BattleSystem_Partner(BattleSystem *battleSys, int param1);

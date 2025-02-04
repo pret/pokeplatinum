@@ -1,24 +1,19 @@
     .ifndef ASM_BATTLE_SCRIPT_INC
     .set ASM_BATTLE_SCRIPT_INC, 1
-#define __ASM_PM_
 
 #include "constants/battle.h"
 #include "constants/items.h"
 #include "constants/species.h"
 #include "generated/abilities.h"
-#include "generated/items.h"
+#include "generated/battle_subscripts.h"
+#include "generated/game_records.h"
+#include "generated/genders.h"
+#include "generated/move_attributes.h"
 #include "generated/moves.h"
 #include "generated/pokemon_types.h"
-#include "gmm/message_bank_battle_strings.h"
+#include "generated/species_data_params.h"
 #include "battle/btlcmd.h"
-
-    .include "consts/battle.inc"
-    .include "consts/battle_subscripts.inc"
-    .include "consts/btlcmd.inc"
-    .include "consts/game_records.inc"
-    .include "consts/gender.inc"
-    .include "consts/moves.inc"
-    .include "consts/pokemon.inc"
+#include "res/text/bank/battle_strings.h"
 
     .equ FALSE, 0
     .equ TRUE, 1

@@ -1,5 +1,4 @@
 {
-    "name": "Regigigas",
     "base_stats": {
         "hp": 110,
         "attack": 160,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 23,
         "pokemon_pos_m": 1,
-        "entry_text": "It is said to have made Pokémon\nthat look like itself from a special\nice mountain, rocks, and magma.",
-        "category": "Colossal Pokémon"
+        "en": {
+            "name": "REGIGIGAS",
+            "category": "Colossal Pokémon",
+            "entry_text": [
+                "It is said to have made Pokémon\n",
+                "that look like itself from a special\n",
+                "ice mountain, rocks, and magma."
+            ]
+        },
+        "fr": {
+            "name": "REGIGIGAS",
+            "category": "Pokémon Prodigieux",
+            "entry_text": [
+                "Une légende tenace veut que ce\n",
+                "Pokémon ait traîné les continents\n",
+                "en les attachant à des cordes."
+            ]
+        },
+        "de": {
+            "name": "REGIGIGAS",
+            "category": "Kolossal",
+            "entry_text": [
+                "Es gibt eine Legende, wonach\n",
+                "dieses PKMN die Kontinente mit\n",
+                "einem Seil gezogen hat."
+            ]
+        },
+        "it": {
+            "name": "REGIGIGAS",
+            "category": "Pokémon Colossale",
+            "entry_text": [
+                "Una leggenda narra che questo\n",
+                "Pokémon abbia trainato i continenti\n",
+                "con delle funi."
+            ]
+        },
+        "es": {
+            "name": "REGIGIGAS",
+            "category": "Pokémon Colosal",
+            "entry_text": [
+                "Una antigua leyenda afirma que\n",
+                "este Pokémon arrastraba\n",
+                "continentes con cuerdas."
+            ]
+        },
+        "jp": {
+            "name": "レジギガス",
+            "category": "きょだいポケモン",
+            "entry_text": [
+                "なわで　しばった　たいりくを\n",
+                "ひっぱって　うごかしたという\n",
+                "でんせつが　のこされている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -1,5 +1,4 @@
 {
-    "name": "Graveler",
     "base_stats": {
         "hp": 55,
         "attack": 95,
@@ -118,8 +117,60 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "It rolls on mountain paths to move.\nOnce it builds momentum, no Pokémon\ncan stop it without difficulty.",
-        "category": "Rock Pokémon"
+        "en": {
+            "name": "GRAVELER",
+            "category": "Rock Pokémon",
+            "entry_text": [
+                "It rolls on mountain paths to move.\n",
+                "Once it builds momentum, no Pokémon\n",
+                "can stop it without difficulty."
+            ]
+        },
+        "fr": {
+            "name": "GRAVALANCH",
+            "category": "Pokémon Roche",
+            "entry_text": [
+                "GRAVALANCH creuse son terrier\n",
+                "à flanc de montagne en perçant\n",
+                "des galeries horizontales."
+            ]
+        },
+        "de": {
+            "name": "GEOROK",
+            "category": "Gestein",
+            "entry_text": [
+                "GEOROK leben an steilen\n",
+                "Felsvorsprüngen. Sie graben\n",
+                "dazu viele Löcher aus."
+            ]
+        },
+        "it": {
+            "name": "GRAVELER",
+            "category": "Pokémon Roccia",
+            "entry_text": [
+                "Costruisce la sua tana in fessure\n",
+                "scavate nelle pareti di precipizi e\n",
+                "dirupi scoscesi."
+            ]
+        },
+        "es": {
+            "name": "GRAVELER",
+            "category": "Pokémon Roca",
+            "entry_text": [
+                "Muchos GRAVELER hacen agujeros\n",
+                "en acantilados escarpados para\n",
+                "establecerse dentro de ellos."
+            ]
+        },
+        "jp": {
+            "name": "ゴロ－ン",
+            "category": "がんせきポケモン",
+            "entry_text": [
+                "けわしい　がけの　ちゅうふくに\n",
+                "いくつもの　よこあなを　みつけたら\n",
+                "それは　ゴロ－ンの　すみか。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

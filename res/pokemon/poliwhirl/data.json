@@ -1,5 +1,4 @@
 {
-    "name": "Poliwhirl",
     "base_stats": {
         "hp": 65,
         "attack": 65,
@@ -121,8 +120,60 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "The spiral pattern on its belly\nsubtly undulates. Staring at it\ngradually causes drowsiness.",
-        "category": "Tadpole Pokémon"
+        "en": {
+            "name": "POLIWHIRL",
+            "category": "Tadpole Pokémon",
+            "entry_text": [
+                "The spiral pattern on its belly\n",
+                "subtly undulates. Staring at it\n",
+                "gradually causes drowsiness."
+            ]
+        },
+        "fr": {
+            "name": "TETARTE",
+            "category": "Pokémon Têtard",
+            "entry_text": [
+                "La spirale qui orne son ventre\n",
+                "ondule doucement. Celui qui la fixe\n",
+                "est saisi d’une étrange torpeur. "
+            ]
+        },
+        "de": {
+            "name": "QUAPUTZI",
+            "category": "Kaulquappe",
+            "entry_text": [
+                "Das Spiralmuster auf seinem Bauch\n",
+                "dreht sich langsam. Starrt man\n",
+                "darauf, wird einem schwindelig."
+            ]
+        },
+        "it": {
+            "name": "POLIWHIRL",
+            "category": "Pokémon Girino",
+            "entry_text": [
+                "Il disegno spiraliforme sulla pancia\n",
+                "ondeggia leggermente. Chi lo fissa,\n",
+                "piano piano si assopisce."
+            ]
+        },
+        "es": {
+            "name": "POLIWHIRL",
+            "category": "Pokémon Renacuajo",
+            "entry_text": [
+                "El dibujo espiral de su panza ondea\n",
+                "levemente. Si se mira fijamente,\n",
+                "provoca somnolencia."
+            ]
+        },
+        "jp": {
+            "name": "ニョロゾ",
+            "category": "おたまポケモン",
+            "entry_text": [
+                "おなかの　うずまきは　びみょうに\n",
+                "うねっているので　みつめていると\n",
+                "だんだん　ねむくなってしまう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

@@ -1,5 +1,4 @@
 {
-    "name": "Weavile",
     "base_stats": {
         "hp": 70,
         "attack": 120,
@@ -133,8 +132,60 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "Evolution made it even more\ndevious. It communicates by clawing\nsigns in boulders.",
-        "category": "Sharp Claw Pokémon"
+        "en": {
+            "name": "WEAVILE",
+            "category": "Sharp Claw Pokémon",
+            "entry_text": [
+                "Evolution made it even more\n",
+                "devious. It communicates by clawing\n",
+                "signs in boulders."
+            ]
+        },
+        "fr": {
+            "name": "DIMORET",
+            "category": "Pokémon Grifacérée",
+            "entry_text": [
+                "Ils vivent par groupe de 4 ou 5\n",
+                "en région froide et chassent de\n",
+                "façon très organisée."
+            ]
+        },
+        "de": {
+            "name": "SNIBUNNA",
+            "category": "Stichklaue",
+            "entry_text": [
+                "Es lebt in kalten Gebieten in\n",
+                "Gruppen von 4 oder 5 PKMN, die bei\n",
+                "der Jagd großes Geschick zeigen."
+            ]
+        },
+        "it": {
+            "name": "WEAVILE",
+            "category": "Pokémon Lamartigli",
+            "entry_text": [
+                "Questi Pokémon vivono in zone fred-\n",
+                "de in gruppi di quattro o cinque.\n",
+                "Insieme sono cacciatori abilissimi."
+            ]
+        },
+        "es": {
+            "name": "WEAVILE",
+            "category": "Pokémon Garra Filo",
+            "entry_text": [
+                "Viven en zonas frías y forman\n",
+                "grupos de cuatro o cinco para\n",
+                "cazar con gran coordinación."
+            ]
+        },
+        "jp": {
+            "name": "マニュ－ラ",
+            "category": "かぎづめポケモン",
+            "entry_text": [
+                "さむい　ちいきで　くらす　ポケモン。\n",
+                "４、５ひきの　グル－プは　みごとな\n",
+                "れんけいで　えものを　おいつめる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

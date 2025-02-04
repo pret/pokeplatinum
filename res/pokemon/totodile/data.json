@@ -1,5 +1,4 @@
 {
-    "name": "Totodile",
     "base_stats": {
         "hp": 50,
         "attack": 65,
@@ -122,8 +121,60 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It has the habit of biting anything\nwith its developed jaws. Even its\nTrainer needs to be careful.",
-        "category": "Big Jaw Pokémon"
+        "en": {
+            "name": "TOTODILE",
+            "category": "Big Jaw Pokémon",
+            "entry_text": [
+                "It has the habit of biting anything\n",
+                "with its developed jaws. Even its\n",
+                "Trainer needs to be careful."
+            ]
+        },
+        "fr": {
+            "name": "KAIMINUS",
+            "category": "Pokémon Mâchoire",
+            "entry_text": [
+                "Il broie tout ce qu’il trouve avec\n",
+                "ses mâchoires puissantes. Même\n",
+                "son Dresseur doit s’en méfier."
+            ]
+        },
+        "de": {
+            "name": "KARNIMANI",
+            "category": "Großmaul",
+            "entry_text": [
+                "Es hat die Angewohnheit, nach allem\n",
+                "zu schnappen, was es sieht. Selbst\n",
+                "seine Trainer müssen aufpassen."
+            ]
+        },
+        "it": {
+            "name": "TOTODILE",
+            "category": "Pokémon Mascellone",
+            "entry_text": [
+                "Ha l’abitudine di mordere ogni cosa\n",
+                "con le potenti mandibole. Neppure\n",
+                "il suo Allenatore è al sicuro!"
+            ]
+        },
+        "es": {
+            "name": "TOTODILE",
+            "category": "Pokémon Fauces",
+            "entry_text": [
+                "Tiene costumbre de morderlo todo\n",
+                "con sus poderosas mandíbulas,\n",
+                "incluso entrenadores."
+            ]
+        },
+        "jp": {
+            "name": "ワニノコ",
+            "category": "おおあごポケモン",
+            "entry_text": [
+                "はったつした　あごを　もち\n",
+                "なんにでも　かみつく　しゅうせい。\n",
+                "トレ－ナ－も　ちゅういが　ひつよう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

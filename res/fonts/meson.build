@@ -109,5 +109,5 @@ pl_font_narc = custom_target('pl_font.narc',
     ],
 )
 
-nitrofs_files += pl_font_narc[0]
+nitrofs_files += pl_font_narc
 naix_headers += pl_font_narc[1]

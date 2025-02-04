@@ -1,5 +1,4 @@
 {
-    "name": "Slowking",
     "base_stats": {
         "hp": 95,
         "attack": 75,
@@ -138,8 +137,60 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 4,
-        "entry_text": "Being bitten by SHELLDER gave it\nintelligence comparable to that of\naward-winning scientists.",
-        "category": "Royal Pokémon"
+        "en": {
+            "name": "SLOWKING",
+            "category": "Royal Pokémon",
+            "entry_text": [
+                "Being bitten by SHELLDER gave it\n",
+                "intelligence comparable to that of\n",
+                "award-winning scientists."
+            ]
+        },
+        "fr": {
+            "name": "ROIGADA",
+            "category": "Pokémon Royal",
+            "entry_text": [
+                "La morsure de KOKIYAS a fait\n",
+                "de lui un génie dont l’intelligence\n",
+                "rivalise avec celle d’un prix Nobel."
+            ]
+        },
+        "de": {
+            "name": "LASCHOKING",
+            "category": "Monarch",
+            "entry_text": [
+                "Wird es von MUSCHAS gebissen, wird\n",
+                "es so intelligent, dass es sich mit\n",
+                "Nobelpreisträgern messen kann."
+            ]
+        },
+        "it": {
+            "name": "SLOWKING",
+            "category": "Pokémon Reale",
+            "entry_text": [
+                "Il morso di SHELLDER gli ha infuso\n",
+                "un’intelligenza pari a quella di\n",
+                "rinomati scienziati."
+            ]
+        },
+        "es": {
+            "name": "SLOWKING",
+            "category": "Pokémon Regio",
+            "entry_text": [
+                "Al ser mordido por un SHELLDER\n",
+                "desarrolló una inteligencia propia\n",
+                "de un ganador del premio Nobel."
+            ]
+        },
+        "jp": {
+            "name": "ヤドキング",
+            "category": "おうじゃポケモン",
+            "entry_text": [
+                "シェルダ－に　かまれたことによって\n",
+                "ノ－ベルしょうを　じゅしょうした\n",
+                "かがくしゃなみの　ちのうを　えた。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

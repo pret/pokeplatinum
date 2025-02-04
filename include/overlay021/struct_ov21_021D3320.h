@@ -15,7 +15,7 @@ typedef struct {
     BOOL isNationalDexUnlocked;
     int numEncountered;
     int numCaught;
-    int unk_1740;
+    BOOL unk_1740;
     int timeOfDay;
     HeightWeightData *HWData;
     u32 trainerGameCode;

@@ -1,5 +1,4 @@
 {
-    "name": "Baltoy",
     "base_stats": {
         "hp": 40,
         "attack": 40,
@@ -125,8 +124,60 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "It moves by spinning on its foot.\nIt is a rare Pokémon that was\ndiscovered in ancient ruins.",
-        "category": "Clay Doll Pokémon"
+        "en": {
+            "name": "BALTOY",
+            "category": "Clay Doll Pokémon",
+            "entry_text": [
+                "It moves by spinning on its foot.\n",
+                "It is a rare Pokémon that was\n",
+                "discovered in ancient ruins."
+            ]
+        },
+        "fr": {
+            "name": "BALBUTO",
+            "category": "Pokémon Poupargile",
+            "entry_text": [
+                "Il se déplace en tournoyant sur\n",
+                "son pied. Ce Pokémon rare fut\n",
+                "découvert dans de vieilles ruines."
+            ]
+        },
+        "de": {
+            "name": "PUPPANCE",
+            "category": "Lehmpuppe",
+            "entry_text": [
+                "Es bewegt sich, indem es sich auf\n",
+                "seinem Fuß dreht. Ein seltenes\n",
+                "PKMN, das in alten Ruinen lebte."
+            ]
+        },
+        "it": {
+            "name": "BALTOY",
+            "category": "Pokémon Argilla",
+            "entry_text": [
+                "Pokémon raro che si muove rotean-\n",
+                "do su se stesso. È stato scoperto\n",
+                "nei pressi di antiche rovine."
+            ]
+        },
+        "es": {
+            "name": "BALTOY",
+            "category": "Pokémon Muñ. Barro",
+            "entry_text": [
+                "Se mueve girando sobre su eje.\n",
+                "Es un extraño Pokémon que fue\n",
+                "encontrado en unas viejas ruinas."
+            ]
+        },
+        "jp": {
+            "name": "ヤジロン",
+            "category": "どぐうポケモン",
+            "entry_text": [
+                "いっぽんあしで　かいてんしながら\n",
+                "いどうする。こだいの　いせきから\n",
+                "みつかった　めずらしい　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -1,5 +1,4 @@
 {
-    "name": "Parasect",
     "base_stats": {
         "hp": 60,
         "attack": 95,
@@ -111,8 +110,60 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "A mushroom grown larger than the\nhost’s body controls PARASECT.\nIt scatters poisonous spores.",
-        "category": "Mushroom Pokémon"
+        "en": {
+            "name": "PARASECT",
+            "category": "Mushroom Pokémon",
+            "entry_text": [
+                "A mushroom grown larger than the\n",
+                "host’s body controls PARASECT.\n",
+                "It scatters poisonous spores."
+            ]
+        },
+        "fr": {
+            "name": "PARASECT",
+            "category": "Pokémon Champignon",
+            "entry_text": [
+                "Un champignon parasite plus gros\n",
+                "que PARASECT contrôle son corps.\n",
+                "Il répand des spores empoisonnées."
+            ]
+        },
+        "de": {
+            "name": "PARASEK",
+            "category": "Pilz",
+            "entry_text": [
+                "PARASEK wird von einem Pilz, der\n",
+                "größer als das Pokémon ist,\n",
+                "kontrolliert. Er gibt Giftsporen ab."
+            ]
+        },
+        "it": {
+            "name": "PARASECT",
+            "category": "Pokémon Fungo",
+            "entry_text": [
+                "PARASECT è controllato da un fungo\n",
+                "ancora più grosso del suo corpo.\n",
+                "Diffonde spore velenose."
+            ]
+        },
+        "es": {
+            "name": "PARASECT",
+            "category": "Pokémon Hongo",
+            "entry_text": [
+                "PARASECT está dominado por un\n",
+                "hongo parásito mayor que él.\n",
+                "Dispersa esporas venenosas."
+            ]
+        },
+        "jp": {
+            "name": "パラセクト",
+            "category": "きのこポケモン",
+            "entry_text": [
+                "からだよりも　おおきな　キノコが\n",
+                "パラセクトを　あやつっている。\n",
+                "どくの　ほうしを　ばらまく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

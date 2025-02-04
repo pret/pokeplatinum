@@ -1,5 +1,4 @@
 {
-    "name": "Chinchou",
     "base_stats": {
         "hp": 75,
         "attack": 38,
@@ -113,8 +112,60 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "It discharges positive and\nnegative electricity from its\nantenna tips to shock its foes.",
-        "category": "Angler Pokémon"
+        "en": {
+            "name": "CHINCHOU",
+            "category": "Angler Pokémon",
+            "entry_text": [
+                "It discharges positive and\n",
+                "negative electricity from its\n",
+                "antenna tips to shock its foes."
+            ]
+        },
+        "fr": {
+            "name": "LOUPIO",
+            "category": "Pokémon Poisson",
+            "entry_text": [
+                "Il envoie des décharges électriques\n",
+                "positives et négatives du bout des\n",
+                "antennes pour paralyser sa proie."
+            ]
+        },
+        "de": {
+            "name": "LAMPI",
+            "category": "Angler",
+            "entry_text": [
+                "Über seine Antennen entlädt es\n",
+                "Elektrizität, mit der es seinen\n",
+                "Gegnern einen Schlag versetzt."
+            ]
+        },
+        "it": {
+            "name": "CHINCHOU",
+            "category": "Pokémon Pescatore",
+            "entry_text": [
+                "Dalle antenne emette scariche\n",
+                "elettriche positive e negative con\n",
+                "le quali colpisce i nemici."
+            ]
+        },
+        "es": {
+            "name": "CHINCHOU",
+            "category": "Pokémon Rape",
+            "entry_text": [
+                "Libera cargas eléctricas positivas\n",
+                "y negativas con sus antenas para\n",
+                "aturdir a sus enemigos."
+            ]
+        },
+        "jp": {
+            "name": "チョンチ－",
+            "category": "あんこうポケモン",
+            "entry_text": [
+                "プラスと　マイナスの　でんきを\n",
+                "しょくしゅの　さきから　ながす。\n",
+                "てきを　かんでんさせてしまうのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

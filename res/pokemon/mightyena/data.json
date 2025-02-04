@@ -1,5 +1,4 @@
 {
-    "name": "Mightyena",
     "base_stats": {
         "hp": 70,
         "attack": 90,
@@ -112,8 +111,60 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "It chases down prey in a pack.\nIt will never disobey the commands\nof a skilled Trainer.",
-        "category": "Bite Pokémon"
+        "en": {
+            "name": "MIGHTYENA",
+            "category": "Bite Pokémon",
+            "entry_text": [
+                "It chases down prey in a pack.\n",
+                "It will never disobey the commands\n",
+                "of a skilled Trainer."
+            ]
+        },
+        "fr": {
+            "name": "GRAHYENA",
+            "category": "Pokémon Morsure",
+            "entry_text": [
+                "Il traque ses proies en groupe.\n",
+                "Il ne désobéira jamais aux\n",
+                "ordres d’un bon Dresseur."
+            ]
+        },
+        "de": {
+            "name": "MAGNAYEN",
+            "category": "Biss",
+            "entry_text": [
+                "Es jagt seine Beute im Rudel. Den\n",
+                "Befehlen eines erfahrenen Trainers\n",
+                "wird es stets folgen."
+            ]
+        },
+        "it": {
+            "name": "MIGHTYENA",
+            "category": "Pokémon Morso",
+            "entry_text": [
+                "Caccia le prede in branco. Non\n",
+                "disobbedisce mai agli ordini di\n",
+                "un Allenatore abile."
+            ]
+        },
+        "es": {
+            "name": "MIGHTYENA",
+            "category": "Pokémon Mordisco",
+            "entry_text": [
+                "Ataca a sus presas en manada.\n",
+                "Nunca desobedece las órdenes\n",
+                "de un entrenador avezado."
+            ]
+        },
+        "jp": {
+            "name": "グラエナ",
+            "category": "かみつきポケモン",
+            "entry_text": [
+                "むれで　えものを　おいつめる。\n",
+                "すぐれた　トレ－ナ－の　めいれいには\n",
+                "ぜったいに　さからわない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

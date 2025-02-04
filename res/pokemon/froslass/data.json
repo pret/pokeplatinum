@@ -1,5 +1,4 @@
 {
-    "name": "Froslass",
     "base_stats": {
         "hp": 70,
         "attack": 80,
@@ -123,8 +122,60 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "It freezes prey by blowing its -58\ndegrees F breath. It is said to\nthen secretly display its prey.",
-        "category": "Snow Land Pokémon"
+        "en": {
+            "name": "FROSLASS",
+            "category": "Snow Land Pokémon",
+            "entry_text": [
+                "It freezes prey by blowing its -58\n",
+                "degrees F breath. It is said to\n",
+                "then secretly display its prey."
+            ]
+        },
+        "fr": {
+            "name": "MOMARTIK",
+            "category": "Pokémon Enneigement",
+            "entry_text": [
+                "MOMARTIK gèle ses ennemis grâce à\n",
+                "son souffle à -50 °C. Ça ne se\n",
+                "voit pas, mais son corps est creux."
+            ]
+        },
+        "de": {
+            "name": "FROSDEDJE",
+            "category": "Schneegebiet",
+            "entry_text": [
+                "Sein eisiger Atem mit minus 50 Grad\n",
+                "friert Gegner ein. Was aussieht wie\n",
+                "sein Körper, ist tatsächlich hohl."
+            ]
+        },
+        "it": {
+            "name": "FROSLASS",
+            "category": "Pokémon Suolnevoso",
+            "entry_text": [
+                "Congela i nemici con un alito\n",
+                "glaciale a -50°C. Il suo corpo\n",
+                "è vuoto."
+            ]
+        },
+        "es": {
+            "name": "FROSLASS",
+            "category": "Pokémon Tierra Fría",
+            "entry_text": [
+                "Congela a sus enemigos con un\n",
+                "aliento gélido de 50 grados bajo\n",
+                "cero. Está hueco por dentro."
+            ]
+        },
+        "jp": {
+            "name": "ユキメノコ",
+            "category": "ゆきぐにポケモン",
+            "entry_text": [
+                "マイナス５０どの　れいきを　はいて\n",
+                "あいてを　こおらせる。どうたいに\n",
+                "みえる　ぶぶんは　じつは　くうどう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

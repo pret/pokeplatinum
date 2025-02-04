@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/distortion_world_giratina_room.h"
 
     .data
 

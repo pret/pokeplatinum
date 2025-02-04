@@ -3,14 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/text_banks.h"
+
 #include "struct_decls/struct_02023FCC_decl.h"
 
-#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D4EE4.h"
-#include "overlay021/ov21_021D85B0.h"
+#include "overlay021/pokedex_search.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
@@ -25,7 +26,6 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -41,6 +41,8 @@
 #include "unk_02012744.h"
 #include "unk_0201F834.h"
 #include "unk_02023FCC.h"
+
+#include "res/text/bank/pokedex.h"
 
 typedef struct {
     int *unk_00;
@@ -347,11 +349,11 @@ static int ov21_021D964C(UnkStruct_ov21_021E6A68 *param0, void *param1)
         return 0;
     }
 
-    if (ov21_021D86D8(v0->unk_08) != 0) {
+    if (PokedexSearch_GetScreenState(v0->unk_08) != 0) {
         return 0;
     }
 
-    v3 = ov21_021D863C(v0->unk_08);
+    v3 = PokedexSearch_GetFilterMethod(v0->unk_08);
 
     switch (param0->unk_00) {
     case 0:
@@ -468,7 +470,7 @@ static int ov21_021D9830(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
     int v6;
     int v7;
 
-    if (ov21_021D86D8(v0->unk_08) != 0) {
+    if (PokedexSearch_GetScreenState(v0->unk_08) != 0) {
         ov21_021DC96C(v3, v2, v0);
     } else {
         ov21_021DC7C0(v3, v2);
@@ -539,7 +541,7 @@ static int ov21_021D9960(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
     switch (param1->unk_00) {
     case 0:
-        if (ov21_021D86D0(v0->unk_08) == 1) {
+        if (PokedexSearch_GetFilteredState(v0->unk_08) == 1) {
             param1->unk_00 = 2;
         } else {
             sub_0200AAE0(6, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
@@ -825,33 +827,33 @@ static void ov21_021D9E08(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 
     sub_0202404C(param0->unk_08);
 
-    switch (ov21_021D8658(param1->unk_08)) {
-    case 0:
+    switch (PokedexSearch_GetSortOrder(param1->unk_08)) {
+    case SO_NUMERICAL:
         if (param0->unk_44[0] != 2) {
             param0->unk_44[0] = 1;
         }
         break;
-    case 1:
+    case SO_ALPHABETICAL:
         if (param0->unk_44[1] != 2) {
             param0->unk_44[1] = 1;
         }
         break;
-    case 2:
+    case SO_HEAVIEST:
         if (param0->unk_44[2] != 2) {
             param0->unk_44[2] = 1;
         }
         break;
-    case 3:
+    case SO_LIGHTEST:
         if (param0->unk_44[3] != 2) {
             param0->unk_44[3] = 1;
         }
         break;
-    case 4:
+    case SO_TALLEST:
         if (param0->unk_44[4] != 2) {
             param0->unk_44[4] = 1;
         }
         break;
-    case 5:
+    case SO_SMALLEST:
         if (param0->unk_44[5] != 2) {
             param0->unk_44[5] = 1;
         }
@@ -908,7 +910,7 @@ static void ov21_021D9F44(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 
     sub_0202404C(param0->unk_08);
 
-    switch (ov21_021D8674(param1->unk_08)) {
+    switch (PokedexSearch_GetFilterName(param1->unk_08)) {
     case 1:
         if (param0->unk_44[0] != 2) {
             param0->unk_44[0] = 1;
@@ -1012,8 +1014,8 @@ static void ov21_021DA0BC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     }
 
     sub_0202404C(param0->unk_08);
-    ov21_021DA0FC(param0, ov21_021D8698(param1->unk_08, 0));
-    ov21_021DA0FC(param0, ov21_021D8698(param1->unk_08, 1));
+    ov21_021DA0FC(param0, PokedexSearch_GetFilterType(param1->unk_08, 0));
+    ov21_021DA0FC(param0, PokedexSearch_GetFilterType(param1->unk_08, 1));
 }
 
 static void ov21_021DA0FC(UnkStruct_ov21_021D9B24 *param0, int param1)
@@ -1131,8 +1133,8 @@ static void ov21_021DA280(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     }
 
     sub_0202404C(param0->unk_08);
-    ov21_021DA308(param0, ov21_021D8698(param1->unk_08, 0));
-    ov21_021DA308(param0, ov21_021D8698(param1->unk_08, 1));
+    ov21_021DA308(param0, PokedexSearch_GetFilterType(param1->unk_08, 0));
+    ov21_021DA308(param0, PokedexSearch_GetFilterType(param1->unk_08, 1));
 }
 
 static void ov21_021DA2C0(u32 param0, u32 param1, void *param2)
@@ -1242,7 +1244,7 @@ static void ov21_021DA41C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 
     sub_0202404C(param0->unk_08);
 
-    switch (ov21_021D86BC(param1->unk_08)) {
+    switch (PokedexSearch_GetFilterForm(param1->unk_08)) {
     case 1:
         if (param0->unk_44[7] != 2) {
             param0->unk_44[7] = 1;
@@ -2753,7 +2755,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
 
     v1 = sub_0201FAB4(param1->unk_08, NNS_G2D_VRAM_TYPE_2DSUB);
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_order, 0, 0);
+    v2 = Pokedex_DisplayMessage(param2, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_order, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[1];
@@ -2765,7 +2767,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_name, 0, 0);
+    v2 = Pokedex_DisplayMessage(param2, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_name, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[2];
@@ -2777,7 +2779,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_type, 0, 0);
+    v2 = Pokedex_DisplayMessage(param2, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_type, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[3];
@@ -2789,7 +2791,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_form, 0, 0);
+    v2 = Pokedex_DisplayMessage(param2, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_form, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[4];
@@ -2801,7 +2803,7 @@ static void ov21_021DBEC8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
     ov21_021D4DA0(v0);
 
     v0 = ov21_021D4D6C(param2, 8, 2);
-    v2 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, pl_msg_pokedex_ok, 0, 0);
+    v2 = Pokedex_DisplayMessage(param2, v0, TEXT_BANK_POKEDEX, pl_msg_pokedex_ok, 0, 0);
 
     param1->unk_04 = v0;
     param1->unk_0C = param0->unk_00[5];
@@ -2870,7 +2872,7 @@ static void ov21_021DC088(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v4 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
+        v4 = Pokedex_DisplayMessage(param2, v0, TEXT_BANK_POKEDEX, entryID, 0, 0);
 
         param1->unk_10 = -v4 / 2;
         param1->unk_04 = v0;
@@ -2929,7 +2931,7 @@ static void ov21_021DC12C(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v5 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
+        v5 = Pokedex_DisplayMessage(param2, v0, TEXT_BANK_POKEDEX, entryID, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;
@@ -2988,7 +2990,7 @@ static void ov21_021DC1E8(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v5 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
+        v5 = Pokedex_DisplayMessage(param2, v0, TEXT_BANK_POKEDEX, entryID, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;
@@ -3044,7 +3046,7 @@ static void ov21_021DC2A4(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D4C
             break;
         }
 
-        v5 = Pokedex_DisplayMessage(param2, v0, message_bank_pokedex, entryID, 0, 0);
+        v5 = Pokedex_DisplayMessage(param2, v0, TEXT_BANK_POKEDEX, entryID, 0, 0);
 
         param1->unk_10 = -v5 / 2;
         param1->unk_04 = v0;
@@ -3097,37 +3099,37 @@ static void ov21_021DC3BC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 {
     switch (param0->unk_80) {
     case 0:
-        ov21_021D86C4(param1->unk_08, 0);
+        PokedexSearch_SetFilteredState(param1->unk_08, FALSE);
         Sound_PlayEffect(1501);
         break;
     case 1:
-        if (ov21_021D863C(param1->unk_08) != 0) {
-            ov21_021D8628(param1->unk_08, 0);
+        if (PokedexSearch_GetFilterMethod(param1->unk_08) != FM_ORDER) {
+            PokedexSearch_SetFilterMethod(param1->unk_08, FM_ORDER);
             Sound_PlayEffect(1501);
         }
         break;
     case 2:
-        if (ov21_021D863C(param1->unk_08) != 1) {
-            ov21_021D8628(param1->unk_08, 1);
+        if (PokedexSearch_GetFilterMethod(param1->unk_08) != FM_NAME) {
+            PokedexSearch_SetFilterMethod(param1->unk_08, FM_NAME);
             Sound_PlayEffect(1501);
         }
         break;
     case 3:
-        if (ov21_021D863C(param1->unk_08) != 2) {
-            ov21_021D8628(param1->unk_08, 2);
+        if (PokedexSearch_GetFilterMethod(param1->unk_08) != FM_TYPE) {
+            PokedexSearch_SetFilterMethod(param1->unk_08, FM_TYPE);
             Sound_PlayEffect(1501);
             param0->unk_88 = 0;
         }
         break;
     case 4:
-        if (ov21_021D863C(param1->unk_08) != 3) {
-            ov21_021D8628(param1->unk_08, 3);
+        if (PokedexSearch_GetFilterMethod(param1->unk_08) != FM_FORM) {
+            PokedexSearch_SetFilterMethod(param1->unk_08, FM_FORM);
             Sound_PlayEffect(1501);
         }
         break;
     case 5:
         if (param0->unk_94 <= 1) {
-            ov21_021D86C4(param1->unk_08, 1);
+            PokedexSearch_SetFilteredState(param1->unk_08, TRUE);
             Sound_PlayEffect(1501);
         }
         break;
@@ -3140,35 +3142,35 @@ static void ov21_021DC3BC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 
 static void ov21_021DC48C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
-    int v0 = 100;
+    int sortOrder = 100;
 
     switch (param0->unk_84) {
     case 0:
-        v0 = 0;
+        sortOrder = SO_NUMERICAL;
         break;
     case 1:
-        v0 = 1;
+        sortOrder = SO_ALPHABETICAL;
         break;
     case 2:
-        v0 = 2;
+        sortOrder = SO_HEAVIEST;
         break;
     case 3:
-        v0 = 3;
+        sortOrder = SO_LIGHTEST;
         break;
     case 4:
-        v0 = 4;
+        sortOrder = SO_TALLEST;
         break;
     case 5:
-        v0 = 5;
+        sortOrder = SO_SMALLEST;
         break;
     default:
         break;
     }
 
-    if (v0 != 100) {
-        if (ov21_021D8658(param1->unk_08) != v0) {
+    if (sortOrder != 100) {
+        if (PokedexSearch_GetSortOrder(param1->unk_08) != sortOrder) {
             Sound_PlayEffect(1501);
-            ov21_021D8644(param1->unk_08, v0);
+            PokedexSearch_SetSortOrder(param1->unk_08, sortOrder);
         }
     }
 
@@ -3215,10 +3217,10 @@ static void ov21_021DC4F8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     }
 
     if (v0 != 100) {
-        if (ov21_021D8674(param1->unk_08) != v0) {
+        if (PokedexSearch_GetFilterName(param1->unk_08) != v0) {
             Sound_PlayEffect(1501);
 
-            ov21_021D8660(param1->unk_08, v0);
+            PokedexSearch_SetFilterName(param1->unk_08, v0);
         }
     }
 
@@ -3325,21 +3327,21 @@ static void ov21_021DC600(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 static void ov21_021DC67C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1, int param2)
 {
     if (param2 != 0) {
-        if ((ov21_021D8698(param1->unk_08, 0) != param2) && (ov21_021D8698(param1->unk_08, 1) != param2)) {
-            if (ov21_021D8698(param1->unk_08, param0->unk_88) != param2) {
-                ov21_021D867C(param1->unk_08, param2, param0->unk_88);
+        if ((PokedexSearch_GetFilterType(param1->unk_08, 0) != param2) && (PokedexSearch_GetFilterType(param1->unk_08, 1) != param2)) {
+            if (PokedexSearch_GetFilterType(param1->unk_08, param0->unk_88) != param2) {
+                PokedexSearch_SetFilterType(param1->unk_08, param2, param0->unk_88);
                 param0->unk_88 = (param0->unk_88 + 1) % 2;
                 Sound_PlayEffect(1501);
             }
         }
     } else {
-        if (ov21_021D8698(param1->unk_08, 0) != 0) {
-            ov21_021D867C(param1->unk_08, param2, 0);
+        if (PokedexSearch_GetFilterType(param1->unk_08, 0) != 0) {
+            PokedexSearch_SetFilterType(param1->unk_08, param2, 0);
 
             Sound_PlayEffect(1501);
         } else {
-            if (ov21_021D8698(param1->unk_08, 1) != 0) {
-                ov21_021D867C(param1->unk_08, param2, 1);
+            if (PokedexSearch_GetFilterType(param1->unk_08, 1) != 0) {
+                PokedexSearch_SetFilterType(param1->unk_08, param2, 1);
                 Sound_PlayEffect(1501);
             }
         }
@@ -3403,9 +3405,9 @@ static void ov21_021DC720(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
     }
 
     if (v0 != 100) {
-        if (ov21_021D86BC(param1->unk_08) != v0) {
+        if (PokedexSearch_GetFilterForm(param1->unk_08) != v0) {
             Sound_PlayEffect(1501);
-            ov21_021D86A8(param1->unk_08, v0);
+            PokedexSearch_SetFilterForm(param1->unk_08, v0);
         }
     }
 
@@ -3532,10 +3534,10 @@ static void ov21_021DC93C(UnkStruct_ov21_021DC96C *param0, int param1)
 
 static void ov21_021DC96C(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D95CC *param1, const UnkStruct_ov21_021D95B8 *param2)
 {
-    if (ov21_021D86E0(param2->unk_08) == 4) {
-        if (ov21_021D86D8(param2->unk_08) == 3) {
+    if (PokedexSearch_GetScreenTimer(param2->unk_08) == 4) {
+        if (PokedexSearch_GetScreenState(param2->unk_08) == 3) {
             sub_0200AAE0(4, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
-        } else if (ov21_021D86D8(param2->unk_08) == 1) {
+        } else if (PokedexSearch_GetScreenState(param2->unk_08) == 1) {
             sub_0200AAE0(4, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
         }
     }

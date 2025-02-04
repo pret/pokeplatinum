@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/mt_coronet_2f.h"
 
     .data
 

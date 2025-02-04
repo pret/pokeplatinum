@@ -1,5 +1,4 @@
 {
-    "name": "Pidgeotto",
     "base_stats": {
         "hp": 63,
         "attack": 60,
@@ -112,8 +111,60 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "It flies over its wide territory in\nsearch of prey, downing it\nwith its highly developed claws.",
-        "category": "Bird Pokémon"
+        "en": {
+            "name": "PIDGEOTTO",
+            "category": "Bird Pokémon",
+            "entry_text": [
+                "It flies over its wide territory in\n",
+                "search of prey, downing it\n",
+                "with its highly developed claws."
+            ]
+        },
+        "fr": {
+            "name": "ROUCOUPS",
+            "category": "Pokémon Oiseau",
+            "entry_text": [
+                "Il survole son vaste territoire en\n",
+                "quête d’une proie avant de fondre\n",
+                "sur elle toutes griffes en avant."
+            ]
+        },
+        "de": {
+            "name": "TAUBOGA",
+            "category": "Vogel",
+            "entry_text": [
+                "Auf der Suche nach Nahrung, die es\n",
+                "mit scharfen Krallen schlägt, fliegt\n",
+                "es durch riesiges Territorium."
+            ]
+        },
+        "it": {
+            "name": "PIDGEOTTO",
+            "category": "Pokémon Uccello",
+            "entry_text": [
+                "Sorvola il suo ampio territorio a\n",
+                "caccia di prede, afferrandole con\n",
+                "i suoi artigli affilati."
+            ]
+        },
+        "es": {
+            "name": "PIDGEOTTO",
+            "category": "Pokémon Pájaro",
+            "entry_text": [
+                "Sobrevuela su extenso territorio\n",
+                "en busca de presas y ataca con\n",
+                "sus poderosas garras."
+            ]
+        },
+        "jp": {
+            "name": "ピジョン",
+            "category": "とりポケモン",
+            "entry_text": [
+                "ひろい　なわばりを　とびまわりながら\n",
+                "えものを　さがす。はったつした\n",
+                "あしの　ツメで　えものを　しとめる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -19,9 +19,9 @@
 #include "berry_data.h"
 #include "core_sys.h"
 #include "heap.h"
+#include "int_distance.h"
 #include "math.h"
 #include "poffin.h"
-#include "unk_0201E3BC.h"
 
 s32 ov83_0223F7F4(int param0, int param1, int param2, int param3, int param4, int param5)
 {
@@ -104,7 +104,7 @@ static u32 ov83_0223F8AC(UnkStruct_ov83_0223F8AC *param0, int param1, int param2
     u32 v2;
     u32 v3;
 
-    v3 = sub_0201E3BC(
+    v3 = CalcDistance2D(
         param1, param2, 128, 96);
 
     if (param0->unk_0C >= 0) {
@@ -472,7 +472,7 @@ void ov83_0223FCE8(UnkStruct_ov83_0223FDB0_sub1 *param0, const UnkStruct_ov83_02
 
     for (v3 = 1; v3 < param2; v3++) {
         v4 = param1->unk_130[v3];
-        v0 = sub_0201E3BC(v1->unk_00[0], v1->unk_04[0], v1->unk_00[v4], v1->unk_04[v4]);
+        v0 = CalcDistance2D(v1->unk_00[0], v1->unk_04[0], v1->unk_00[v4], v1->unk_04[v4]);
 
         if (v0 > 32) {
             param0->unk_04 = 0;

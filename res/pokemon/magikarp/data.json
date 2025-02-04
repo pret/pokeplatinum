@@ -1,5 +1,4 @@
 {
-    "name": "Magikarp",
     "base_stats": {
         "hp": 20,
         "attack": 10,
@@ -64,8 +63,60 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "A MAGIKARP living for many years\ncan leap a mountain using Splash.\nThe move remains useless, though.",
-        "category": "Fish Pokémon"
+        "en": {
+            "name": "MAGIKARP",
+            "category": "Fish Pokémon",
+            "entry_text": [
+                "A MAGIKARP living for many years\n",
+                "can leap a mountain using Splash.\n",
+                "The move remains useless, though."
+            ]
+        },
+        "fr": {
+            "name": "MAGICARPE",
+            "category": "Pokémon Poisson",
+            "entry_text": [
+                "Ce Pokémon est réputé pour être\n",
+                "le plus faible au monde. Nul ne\n",
+                "sait comment son espèce perdure."
+            ]
+        },
+        "de": {
+            "name": "KARPADOR",
+            "category": "Fisch",
+            "entry_text": [
+                "Man sagt, es sei das schwächste\n",
+                "PKMN der Welt. Niemand weiß, wie\n",
+                "es bisher überleben konnte."
+            ]
+        },
+        "it": {
+            "name": "MAGIKARP",
+            "category": "Pokémon Pesce",
+            "entry_text": [
+                "Si dice che sia il Pokémon più\n",
+                "debole del mondo. Nessuno sa\n",
+                "come abbia fatto a sopravvivere."
+            ]
+        },
+        "es": {
+            "name": "MAGIKARP",
+            "category": "Pokémon Pez",
+            "entry_text": [
+                "Se dice que es el Pokémon más\n",
+                "débil del mundo. No se sabe cómo\n",
+                "ha logrado sobrevivir."
+            ]
+        },
+        "jp": {
+            "name": "コイキング",
+            "category": "さかなポケモン",
+            "entry_text": [
+                "せかいいち　よわいと　いわれる\n",
+                "コイキングが　なぜ　いきのこって\n",
+                "いるのか　だれも　わからない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

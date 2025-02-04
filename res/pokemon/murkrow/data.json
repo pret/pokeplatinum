@@ -1,5 +1,4 @@
 {
-    "name": "Murkrow",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -121,8 +120,56 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "If spotted, it will lure an unwary\nperson into chasing it, then lose\nthe pursuer on mountain trails.",
-        "category": "Darkness Pokémon"
+        "en": {
+            "name": "MURKROW",
+            "category": "Darkness Pokémon",
+            "entry_text": [
+                "If spotted, it will lure an unwary\n",
+                "person into chasing it, then lose\n",
+                "the pursuer on mountain trails."
+            ]
+        },
+        "fr": {
+            "name": "CORNEBRE",
+            "category": "Pokémon Obscurité",
+            "entry_text": [
+                "On dit que rencontrer\n",
+                "un CORNEBRE la nuit est\n",
+                "signe de mauvais augure."
+            ]
+        },
+        "de": {
+            "name": "KRAMURX",
+            "category": "Finsternis",
+            "entry_text": [ "Sieht man dieses PKMN bei Nacht,\n", "sollen merkwürdige Dinge passieren." ]
+        },
+        "it": {
+            "name": "MURKROW",
+            "category": "Pokémon Oscurità",
+            "entry_text": [
+                "Si dice che l’incontro notturno\n",
+                "con questo Pokémon sia un\n",
+                "presagio infausto."
+            ]
+        },
+        "es": {
+            "name": "MURKROW",
+            "category": "Pokémon Oscuridad",
+            "entry_text": [
+                "Se dice que ver a este Pokémon\n",
+                "por la noche es señal de que van\n",
+                "a ocurrir cosas terribles."
+            ]
+        },
+        "jp": {
+            "name": "ヤミカラス",
+            "category": "くらやみポケモン",
+            "entry_text": [
+                "よるに　その　すがたを　みかけると\n",
+                "ふきつな　できごとが　おきると\n",
+                "しんじられている　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

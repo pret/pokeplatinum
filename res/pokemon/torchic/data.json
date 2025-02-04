@@ -1,5 +1,4 @@
 {
-    "name": "Torchic",
     "base_stats": {
         "hp": 45,
         "attack": 60,
@@ -111,8 +110,60 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "A fire burns inside, so it feels\nvery warm to hug. It launches\nfireballs of 1,800 degrees F.",
-        "category": "Chick Pokémon"
+        "en": {
+            "name": "TORCHIC",
+            "category": "Chick Pokémon",
+            "entry_text": [
+                "A fire burns inside, so it feels\n",
+                "very warm to hug. It launches\n",
+                "fireballs of 1,800 degrees F."
+            ]
+        },
+        "fr": {
+            "name": "POUSSIFEU",
+            "category": "Pokémon Poussin",
+            "entry_text": [
+                "Ses câlins réchauffent car il\n",
+                "renferme une fournaise. Il envoie\n",
+                "des boules de feu à 1 000 °C."
+            ]
+        },
+        "de": {
+            "name": "FLEMMLI",
+            "category": "Küken",
+            "entry_text": [
+                "In seinem Inneren lodert ein Feuer.\n",
+                "Es schleudert 1 000 Grad heiße\n",
+                "Feuerbälle."
+            ]
+        },
+        "it": {
+            "name": "TORCHIC",
+            "category": "Pokémon Pulcino",
+            "entry_text": [
+                "Nel suo corpo brucia una fiamma e\n",
+                "abbracciandolo si avverte calore.\n",
+                "Lancia palle di fuoco a 1000°C."
+            ]
+        },
+        "es": {
+            "name": "TORCHIC",
+            "category": "Pokémon Polluelo",
+            "entry_text": [
+                "En su interior arde una llama que\n",
+                "mantiene su cuerpo caliente. Tira\n",
+                "bolas de fuego a 1000 grados."
+            ]
+        },
+        "jp": {
+            "name": "アチャモ",
+            "category": "ひよこポケモン",
+            "entry_text": [
+                "たいないで　ほのおが　もえているので\n",
+                "だきしめると　とても　あたたかい。\n",
+                "１０００どの　ひのたまを　とばす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

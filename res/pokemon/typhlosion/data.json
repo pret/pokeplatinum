@@ -1,5 +1,4 @@
 {
-    "name": "Typhlosion",
     "base_stats": {
         "hp": 78,
         "attack": 84,
@@ -121,8 +120,60 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "It attacks using blasts of fire.\nIt creates heat shimmers with\nintense fire to hide itself.",
-        "category": "Volcano Pokémon"
+        "en": {
+            "name": "TYPHLOSION",
+            "category": "Volcano Pokémon",
+            "entry_text": [
+                "It attacks using blasts of fire.\n",
+                "It creates heat shimmers with\n",
+                "intense fire to hide itself."
+            ]
+        },
+        "fr": {
+            "name": "TYPHLOSION",
+            "category": "Pokémon Volcan",
+            "entry_text": [
+                "Il attaque en projetant des\n",
+                "flammes. Il se dissimule derrière\n",
+                "les vagues de chaleur qu’il produit."
+            ]
+        },
+        "de": {
+            "name": "TORNUPTO",
+            "category": "Vulkan",
+            "entry_text": [
+                "Es greift seine Gegner mit Feuer\n",
+                "an. Dabei entsteht ein Hitze-\n",
+                "flimmern, in dem es sich versteckt."
+            ]
+        },
+        "it": {
+            "name": "TYPHLOSION",
+            "category": "Pokémon Vulcano",
+            "entry_text": [
+                "Attacca usando fiamme esplosive.\n",
+                "Si cela in una scintillante nube di\n",
+                "calore creata dalle fiamme roventi."
+            ]
+        },
+        "es": {
+            "name": "TYPHLOSION",
+            "category": "Pokémon Volcán",
+            "entry_text": [
+                "Ataca con llamaradas. Con ellas\n",
+                "crea reflejos de calor para\n",
+                "ocultarse."
+            ]
+        },
+        "jp": {
+            "name": "バクフ－ン",
+            "category": "かざんポケモン",
+            "entry_text": [
+                "ほのおの　ばくふうで　こうげき。\n",
+                "しゃくねつの　ほのおで　かげろうを\n",
+                "つくりだし　すがたを　かくす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

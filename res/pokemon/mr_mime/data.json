@@ -1,5 +1,4 @@
 {
-    "name": "Mr. Mime",
     "base_stats": {
         "hp": 40,
         "attack": 45,
@@ -138,8 +137,60 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "It shapes an invisible wall in midair\nby minutely vibrating its fingertips\nto stop molecules in the air.",
-        "category": "Barrier Pokémon"
+        "en": {
+            "name": "MR. MIME",
+            "category": "Barrier Pokémon",
+            "entry_text": [
+                "It shapes an invisible wall in midair\n",
+                "by minutely vibrating its fingertips\n",
+                "to stop molecules in the air."
+            ]
+        },
+        "fr": {
+            "name": "M. MIME",
+            "category": "Pokémon Bloqueur",
+            "entry_text": [
+                "Un expert de la pantomime dont\n",
+                "les gestes façonnent de solides\n",
+                "murs invisibles."
+            ]
+        },
+        "de": {
+            "name": "PANTIMOS",
+            "category": "Sperre",
+            "entry_text": [
+                "Ein Experte der Pantomime. Es kann\n",
+                "unsichtbare, aber solide Wände\n",
+                "allein durch Gesten erzeugen."
+            ]
+        },
+        "it": {
+            "name": "MR. MIME",
+            "category": "Pokémon Barriera",
+            "entry_text": [
+                "È un esperto di mimica che, con\n",
+                "i gesti, riesce ad innalzare pareti\n",
+                "invisibili che sembrano reali."
+            ]
+        },
+        "es": {
+            "name": "MR. MIME",
+            "category": "Pokémon Barrera",
+            "entry_text": [
+                "Es un experto mimo que puede\n",
+                "crear paredes invisibles pero\n",
+                "sólidas solo con sus gestos."
+            ]
+        },
+        "jp": {
+            "name": "バリヤ－ド",
+            "category": "バリア－ポケモン",
+            "entry_text": [
+                "パントマイムの　たつじん。\n",
+                "みぶりてぶりで　つくった　カベは\n",
+                "やがて　ほんものに　なるのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

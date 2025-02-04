@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/celestic_town_southwest_house.h"
 
     .data
 

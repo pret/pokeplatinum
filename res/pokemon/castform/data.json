@@ -1,5 +1,4 @@
 {
-    "name": "Castform",
     "base_stats": {
         "hp": 70,
         "attack": 70,
@@ -106,8 +105,60 @@
         "pokemon_pos_f": 65523,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65523,
-        "entry_text": "Its appearance changes with the\nweather. Recently, its molecules\nwere found to be just like water.",
-        "category": "Weather Pokémon"
+        "en": {
+            "name": "CASTFORM",
+            "category": "Weather Pokémon",
+            "entry_text": [
+                "Its appearance changes with the\n",
+                "weather. Recently, its molecules\n",
+                "were found to be just like water."
+            ]
+        },
+        "fr": {
+            "name": "MORPHEO",
+            "category": "Pokémon Climat",
+            "entry_text": [
+                "Son aspect change avec la météo.\n",
+                "On a récemment découvert que ses\n",
+                "molécules étaient pareilles à l’eau."
+            ]
+        },
+        "de": {
+            "name": "FORMEO",
+            "category": "Wetter",
+            "entry_text": [
+                "Seine Gestalt ändert sich mit dem\n",
+                "Wetter. Vor kurzem entdeckte man,\n",
+                "dass seine Moleküle wie Wasser sind."
+            ]
+        },
+        "it": {
+            "name": "CASTFORM",
+            "category": "Pokémon Meteo",
+            "entry_text": [
+                "Il suo aspetto varia con il clima.\n",
+                "Recentemente si è scoperto che\n",
+                "le sue molecole sono di acqua."
+            ]
+        },
+        "es": {
+            "name": "CASTFORM",
+            "category": "Pokémon Clima",
+            "entry_text": [
+                "La meteorología determina su\n",
+                "aspecto. Hace poco se ha sabido\n",
+                "que sus células son como el agua.  "
+            ]
+        },
+        "jp": {
+            "name": "ポワルン",
+            "category": "てんきポケモン",
+            "entry_text": [
+                "てんきによって　すがたが　かわる。\n",
+                "みずの　ぶんしと　そっくりなことが\n",
+                "さいきんになって　はっけんされた。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

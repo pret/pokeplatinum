@@ -1,5 +1,4 @@
 {
-    "name": "Quilava",
     "base_stats": {
         "hp": 58,
         "attack": 64,
@@ -112,8 +111,60 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "It intimidates foes with the heat\nof its flames. The fire burns more\nstrongly when it readies to fight.",
-        "category": "Volcano Pokémon"
+        "en": {
+            "name": "QUILAVA",
+            "category": "Volcano Pokémon",
+            "entry_text": [
+                "It intimidates foes with the heat\n",
+                "of its flames. The fire burns more\n",
+                "strongly when it readies to fight."
+            ]
+        },
+        "fr": {
+            "name": "FEURISSON",
+            "category": "Pokémon Volcan",
+            "entry_text": [
+                "La chaleur de ses flammes intimide\n",
+                "l’ennemi. Elles s’intensifient\n",
+                "lorsqu’il se prépare à combattre."
+            ]
+        },
+        "de": {
+            "name": "IGELAVAR",
+            "category": "Vulkan",
+            "entry_text": [
+                "Es bedroht seine Gegner mit der\n",
+                "Hitze seiner Flammen. Ist es\n",
+                "kampfbereit, lodern sie stärker."
+            ]
+        },
+        "it": {
+            "name": "QUILAVA",
+            "category": "Pokémon Vulcano",
+            "entry_text": [
+                "Intimorisce i nemici con il calore\n",
+                "delle sue fiamme. Se è pronto a lot-\n",
+                "tare, le vampate sono più ardenti."
+            ]
+        },
+        "es": {
+            "name": "QUILAVA",
+            "category": "Pokémon Volcán",
+            "entry_text": [
+                "Intimida a sus enemigos con el\n",
+                "calor de sus llamas. Arde con\n",
+                "mayor fuerza cuando va a luchar."
+            ]
+        },
+        "jp": {
+            "name": "マグマラシ",
+            "category": "かざんポケモン",
+            "entry_text": [
+                "ほのおの　ねつで　あいてを　いかく。\n",
+                "たたかう　たいせいになると\n",
+                "ほのおの　いきおいが　ます。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

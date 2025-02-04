@@ -1,5 +1,4 @@
 {
-    "name": "Blaziken",
     "base_stats": {
         "hp": 80,
         "attack": 120,
@@ -130,8 +129,60 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 13,
         "pokemon_pos_m": 5,
-        "entry_text": "Flames spout from its wrists,\nenveloping its knuckles. Its\npunches scorch its foes.",
-        "category": "Blaze Pokémon"
+        "en": {
+            "name": "BLAZIKEN",
+            "category": "Blaze Pokémon",
+            "entry_text": [
+                "Flames spout from its wrists,\n",
+                "enveloping its knuckles. Its\n",
+                "punches scorch its foes."
+            ]
+        },
+        "fr": {
+            "name": "BRASEGALI",
+            "category": "Pokémon Ardent",
+            "entry_text": [
+                "Des flammes fusent de ses\n",
+                "poignets et ses coups brûlent\n",
+                "l’ennemi."
+            ]
+        },
+        "de": {
+            "name": "LOHGOCK",
+            "category": "Großbrand",
+            "entry_text": [
+                "Aus seinen Handgelenken kommt\n",
+                "Feuer, das seine Knöchel umhüllt.\n",
+                "Schläge verbrennen den Gegner."
+            ]
+        },
+        "it": {
+            "name": "BLAZIKEN",
+            "category": "Pokémon Vampe",
+            "entry_text": [
+                "Le fiamme che fuoriescono dai suoi\n",
+                "polsi gli avvolgono i pugni. Quando\n",
+                "colpisce il nemico, lo scotta."
+            ]
+        },
+        "es": {
+            "name": "BLAZIKEN",
+            "category": "Pokémon Llameante",
+            "entry_text": [
+                "Sus puños están envueltos en\n",
+                "llamas. Con sus golpes puede\n",
+                "quemar a sus rivales."
+            ]
+        },
+        "jp": {
+            "name": "バシャ－モ",
+            "category": "もうかポケモン",
+            "entry_text": [
+                "てくびから　ふきだした　ほのおで\n",
+                "こぶしを　つつみこんだ　パンチは\n",
+                "あいてを　くろこげに　してしまう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

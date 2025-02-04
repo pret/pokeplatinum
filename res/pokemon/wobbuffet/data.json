@@ -1,5 +1,4 @@
 {
-    "name": "Wobbuffet",
     "base_stats": {
         "hp": 190,
         "attack": 33,
@@ -59,8 +58,60 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "It desperately tries to keep its\nblack tail hidden. It is said to be\nproof the tail hides a secret.",
-        "category": "Patient Pokémon"
+        "en": {
+            "name": "WOBBUFFET",
+            "category": "Patient Pokémon",
+            "entry_text": [
+                "It desperately tries to keep its\n",
+                "black tail hidden. It is said to be\n",
+                "proof the tail hides a secret."
+            ]
+        },
+        "fr": {
+            "name": "QULBUTOKE",
+            "category": "Pokémon Patient",
+            "entry_text": [
+                "Il cherche désespérément à cacher\n",
+                "sa queue noire. Certains pensent\n",
+                "qu’elle renferme un secret. "
+            ]
+        },
+        "de": {
+            "name": "WOINGENAU",
+            "category": "Geduld",
+            "entry_text": [
+                "Verzweifelt versucht es, seinen\n",
+                "schwarzen Schweif zu verstecken.\n",
+                "Er soll ein Geheimnis enthalten."
+            ]
+        },
+        "it": {
+            "name": "WOBBUFFET",
+            "category": "Pokémon Pazienza",
+            "entry_text": [
+                "Cerca di tenere nascosta la sua\n",
+                "coda nera ad ogni costo. Pare\n",
+                "che essa celi un segreto."
+            ]
+        },
+        "es": {
+            "name": "WOBBUFFET",
+            "category": "Pokémon Paciente",
+            "entry_text": [
+                "Siempre intenta ocultar su cola,\n",
+                "por lo que muchos creen que\n",
+                "contiene un secreto."
+            ]
+        },
+        "jp": {
+            "name": "ソ－ナンス",
+            "category": "がまんポケモン",
+            "entry_text": [
+                "くろい　しっぽを　ひっしになって\n",
+                "かくすのは　しっぽに　ひみつがある\n",
+                "しょうこだと　かんぐられている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

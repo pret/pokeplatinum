@@ -1,5 +1,4 @@
 {
-    "name": "Zapdos",
     "base_stats": {
         "hp": 90,
         "attack": 90,
@@ -115,8 +114,60 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 5,
         "pokemon_pos_m": 0,
-        "entry_text": "A legendary Pokémon that is said\nto live in thunderclouds. It freely\ncontrols lightning bolts.",
-        "category": "Electric Pokémon"
+        "en": {
+            "name": "ZAPDOS",
+            "category": "Electric Pokémon",
+            "entry_text": [
+                "A legendary Pokémon that is said\n",
+                "to live in thunderclouds. It freely\n",
+                "controls lightning bolts."
+            ]
+        },
+        "fr": {
+            "name": "ELECTHOR",
+            "category": "Pokémon Electrique",
+            "entry_text": [
+                "Un Pokémon Oiseau légendaire dont\n",
+                "on dit qu’il vit dans les nuages \n",
+                "d’orage. Il contrôle la foudre."
+            ]
+        },
+        "de": {
+            "name": "ZAPDOS",
+            "category": "Elektro",
+            "entry_text": [
+                "Ein Legendäres Vogel-Pokémon,\n",
+                "das in Gewitterwolken leben soll.\n",
+                "Es kontrolliert Blitze. "
+            ]
+        },
+        "it": {
+            "name": "ZAPDOS",
+            "category": "Pokémon Elettrico",
+            "entry_text": [
+                "Un Pokémon uccello leggendario.\n",
+                "Si dice che viva tra le nubi tempo-\n",
+                "ralesche. Controlla i fulmini."
+            ]
+        },
+        "es": {
+            "name": "ZAPDOS",
+            "category": "Pokémon Eléctrico",
+            "entry_text": [
+                "Legendario Pokémon pájaro del que\n",
+                "se dice que vive en los nubarrones.\n",
+                "Controla los rayos eléctricos."
+            ]
+        },
+        "jp": {
+            "name": "サンダ－",
+            "category": "でんげきポケモン",
+            "entry_text": [
+                "かみなりぐもの　なかに　いると\n",
+                "いわれる　でんせつの　ポケモン。\n",
+                "カミナリを　じざいに　あやつる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/journal.h"
+#include "generated/journal_online_events.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"

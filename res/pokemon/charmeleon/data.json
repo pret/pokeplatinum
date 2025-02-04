@@ -1,5 +1,4 @@
 {
-    "name": "Charmeleon",
     "base_stats": {
         "hp": 58,
         "attack": 64,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "In the rocky mountains where\nCHARMELEON live, their fiery\ntails shine at night like stars.",
-        "category": "Flame Pokémon"
+        "en": {
+            "name": "CHARMELEON",
+            "category": "Flame Pokémon",
+            "entry_text": [
+                "In the rocky mountains where\n",
+                "CHARMELEON live, their fiery\n",
+                "tails shine at night like stars."
+            ]
+        },
+        "fr": {
+            "name": "REPTINCEL",
+            "category": "Pokémon Flamme",
+            "entry_text": [
+                "La nuit, la queue ardente du\n",
+                "REPTINCEL brille comme une étoile\n",
+                "dans son repaire montagneux."
+            ]
+        },
+        "de": {
+            "name": "GLUTEXO",
+            "category": "Flamme",
+            "entry_text": [
+                "GLUTEXO leben in den Bergen. Die\n",
+                "Flammen auf ihren Schweifspitzen\n",
+                "leuchten in der Nacht wie Sterne."
+            ]
+        },
+        "it": {
+            "name": "CHARMELEON",
+            "category": "Pokémon Fiamma",
+            "entry_text": [
+                "Sui monti rocciosi, sua dimora,\n",
+                "la coda di CHARMELEON brilla\n",
+                "come una stella nella notte."
+            ]
+        },
+        "es": {
+            "name": "CHARMELEON",
+            "category": "Pokémon Llama",
+            "entry_text": [
+                "En las montañas rocosas donde\n",
+                "viven los CHARMELEON, sus colas\n",
+                "ardientes brillan como estrellas."
+            ]
+        },
+        "jp": {
+            "name": "リザ－ド",
+            "category": "かえんポケモン",
+            "entry_text": [
+                "リザ－ドが　くらす　いわやまを\n",
+                "よなかに　みあげると　しっぽの\n",
+                "ほのおが　ほしのように　みえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

@@ -1,5 +1,4 @@
 {
-    "name": "Bonsly",
     "base_stats": {
         "hp": 50,
         "attack": 80,
@@ -110,8 +109,60 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "It prefers an arid atmosphere. It\nleaks water that looks like tears\nwhen adjusting its moisture level.",
-        "category": "Bonsai Pokémon"
+        "en": {
+            "name": "BONSLY",
+            "category": "Bonsai Pokémon",
+            "entry_text": [
+                "It prefers an arid atmosphere. It\n",
+                "leaks water that looks like tears\n",
+                "when adjusting its moisture level."
+            ]
+        },
+        "fr": {
+            "name": "MANZAI",
+            "category": "Pokémon Bonsaï",
+            "entry_text": [
+                "On dirait qu’il pleure constamment.\n",
+                "En fait, il régule ses fluides\n",
+                "corporels en éliminant le surplus."
+            ]
+        },
+        "de": {
+            "name": "MOBAI",
+            "category": "Bonsai",
+            "entry_text": [
+                "Es sieht aus, als würde es immer\n",
+                "weinen. Dabei reguliert es nur\n",
+                "seinen Wasserhaushalt."
+            ]
+        },
+        "it": {
+            "name": "BONSLY",
+            "category": "Pokémon Bonsai",
+            "entry_text": [
+                "Sembra che pianga tutto il tempo.\n",
+                "In realtà regola il livello dei fluidi\n",
+                "del corpo eliminando gli eccessi."
+            ]
+        },
+        "es": {
+            "name": "BONSLY",
+            "category": "Pokémon Bonsái",
+            "entry_text": [
+                "Parece que siempre está llorando,\n",
+                "pero en realidad está eliminando\n",
+                "el exceso de fluidos corporales."
+            ]
+        },
+        "jp": {
+            "name": "ウソハチ",
+            "category": "ぼんさいポケモン",
+            "entry_text": [
+                "いつも　ないているように　みえるが\n",
+                "たいないの　すいぶんを　そとに\n",
+                "だして　ちょうせつしているのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

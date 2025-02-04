@@ -40,8 +40,8 @@ typedef struct FieldBagCursor {
 } FieldBagCursor;
 
 typedef struct BattleBagCursor {
-    u8 scroll[BATTLE_ITEM_CATEGORY_MAX + 1];
-    u8 index[BATTLE_ITEM_CATEGORY_MAX + 1];
+    u8 scroll[ITEM_BATTLE_CATEGORY_MAX + 1];
+    u8 index[ITEM_BATTLE_CATEGORY_MAX + 1];
     u16 lastUsedItemID;
     u16 lastUsedCategory;
     u16 currentCategory;

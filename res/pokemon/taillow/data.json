@@ -1,5 +1,4 @@
 {
-    "name": "Taillow",
     "base_stats": {
         "hp": 40,
         "attack": 55,
@@ -107,8 +106,60 @@
         "pokemon_pos_f": 65519,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65519,
-        "entry_text": "It has a gutsy spirit that makes\nit bravely take on tough foes. It\nflies in search of warm climates.",
-        "category": "TinySwallow Pokémon"
+        "en": {
+            "name": "TAILLOW",
+            "category": "TinySwallow Pokémon",
+            "entry_text": [
+                "It has a gutsy spirit that makes\n",
+                "it bravely take on tough foes. It\n",
+                "flies in search of warm climates."
+            ]
+        },
+        "fr": {
+            "name": "NIRONDELLE",
+            "category": "Pokémon Minirondel",
+            "entry_text": [
+                "Ce Pokémon téméraire n’a pas peur\n",
+                "d’affronter des ennemis puissants.\n",
+                "Il vole en quête de climats chauds."
+            ]
+        },
+        "de": {
+            "name": "SCHWALBINI",
+            "category": "Schwälblein",
+            "entry_text": [
+                "Es ist sehr mutig und stellt sich\n",
+                "auch starken Gegnern. Es sucht\n",
+                "ständig nach warmen Regionen."
+            ]
+        },
+        "it": {
+            "name": "TAILLOW",
+            "category": "Pokémon Rondinella",
+            "entry_text": [
+                "È molto coraggioso e affronta\n",
+                "spavaldo i nemici più forti.\n",
+                "Migra verso i paesi caldi."
+            ]
+        },
+        "es": {
+            "name": "TAILLOW",
+            "category": "Pokémon Pequebuche",
+            "entry_text": [
+                "Es un Pokémon valiente que no\n",
+                "teme a los rivales fuertes. Vuela\n",
+                "en busca de climas templados. "
+            ]
+        },
+        "jp": {
+            "name": "スバメ",
+            "category": "こツバメポケモン",
+            "entry_text": [
+                "つよい　あいてにも　ゆうかんに\n",
+                "たちむかう　こんじょうの　もちぬし。\n",
+                "あたたかい　とちを　めざして　とぶ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

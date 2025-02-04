@@ -1,5 +1,4 @@
 {
-    "name": "Furret",
     "base_stats": {
         "hp": 85,
         "attack": 76,
@@ -131,8 +130,60 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "The mother puts its offspring to\nsleep by curling up around them.\nIt corners foes with speed.",
-        "category": "Long Body Pokémon"
+        "en": {
+            "name": "FURRET",
+            "category": "Long Body Pokémon",
+            "entry_text": [
+                "The mother puts its offspring to\n",
+                "sleep by curling up around them.\n",
+                "It corners foes with speed."
+            ]
+        },
+        "fr": {
+            "name": "FOUINAR",
+            "category": "Pokémon Allongé",
+            "entry_text": [
+                "La femelle s’enroule autour des\n",
+                "petits pour les bercer. Il accule\n",
+                "l’ennemi grâce à sa vitesse."
+            ]
+        },
+        "de": {
+            "name": "WIESENIOR",
+            "category": "Langleib",
+            "entry_text": [
+                "Es rollt sich um seine Jungen, wenn\n",
+                "diese schlafen sollen. Gegnern\n",
+                "begegnet es mit Schnelligkeit."
+            ]
+        },
+        "it": {
+            "name": "FURRET",
+            "category": "Pokémon Lungocorpo",
+            "entry_text": [
+                "Si addormenta avvolto nell’esile\n",
+                "corpo della madre. Mette all’angolo\n",
+                "i nemici con movimenti rapidi."
+            ]
+        },
+        "es": {
+            "name": "FURRET",
+            "category": "Pokémon Alargado",
+            "entry_text": [
+                "Acurruca a sus crías para que\n",
+                "duerman. Acorrala a los enemigos\n",
+                "con su enorme velocidad."
+            ]
+        },
+        "jp": {
+            "name": "オオタチ",
+            "category": "どうながポケモン",
+            "entry_text": [
+                "ははおやは　ほそながい　からだで\n",
+                "こどもを　つつみこみ　ねむらせる。\n",
+                "はやい　うごきで　てきを　おいこむ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

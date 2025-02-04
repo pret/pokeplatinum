@@ -1,5 +1,4 @@
 {
-    "name": "Blissey",
     "base_stats": {
         "hp": 255,
         "attack": 10,
@@ -141,8 +140,60 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "The eggs it lays are filled with\nhappiness. Eating even one bite\nwill bring a smile to anyone.",
-        "category": "Happiness Pokémon"
+        "en": {
+            "name": "BLISSEY",
+            "category": "Happiness Pokémon",
+            "entry_text": [
+                "The eggs it lays are filled with\n",
+                "happiness. Eating even one bite\n",
+                "will bring a smile to anyone."
+            ]
+        },
+        "fr": {
+            "name": "LEUPHORIE",
+            "category": "Pokémon Bonheur",
+            "entry_text": [
+                "Ce Pokémon au cœur d’or\n",
+                "soigne les Pokémon malades.\n",
+                "Il ressent la tristesse d’autrui."
+            ]
+        },
+        "de": {
+            "name": "HEITEIRA",
+            "category": "Freude",
+            "entry_text": [
+                "Dieses gutherzige PKMN pflegt\n",
+                "kranke PKMN gesund. Es spürt die\n",
+                "Traurigkeit anderer Lebewesen."
+            ]
+        },
+        "it": {
+            "name": "BLISSEY",
+            "category": "Pokémon Felicità",
+            "entry_text": [
+                "Questo Pokémon buono cura i\n",
+                "Pokémon malati e li fa guarire.\n",
+                "Percepisce la tristezza altrui."
+            ]
+        },
+        "es": {
+            "name": "BLISSEY",
+            "category": "Pokémon Felicidad",
+            "entry_text": [
+                "Este amable Pokémon cuida de\n",
+                "Pokémon enfermos y los sana.\n",
+                "Puede presentir la tristeza."
+            ]
+        },
+        "jp": {
+            "name": "ハピナス",
+            "category": "しあわせポケモン",
+            "entry_text": [
+                "よわった　ポケモンを　なおるまで\n",
+                "かんびょうする　やさしい　ポケモン。\n",
+                "かなしい　きもちを　キャッチする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

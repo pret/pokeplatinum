@@ -1,5 +1,4 @@
 {
-    "name": "Grumpig",
     "base_stats": {
         "hp": 80,
         "attack": 45,
@@ -132,8 +131,60 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It uses black pearls to amplify its\npsycho-power. It does an odd\ndance to gain control over foes.",
-        "category": "Manipulate Pokémon"
+        "en": {
+            "name": "GRUMPIG",
+            "category": "Manipulate Pokémon",
+            "entry_text": [
+                "It uses black pearls to amplify its\n",
+                "psycho-power. It does an odd\n",
+                "dance to gain control over foes."
+            ]
+        },
+        "fr": {
+            "name": "GRORET",
+            "category": "Pokémon Magouilleur",
+            "entry_text": [
+                "Les perles noires amplifient ses \n",
+                "pouvoirs psy. Sa danse étrange lui\n",
+                "permet de contrôler ses ennemis."
+            ]
+        },
+        "de": {
+            "name": "GROINK",
+            "category": "Manipulator",
+            "entry_text": [
+                "Mit schwarzen Perlen verstärkt es\n",
+                "seine Psycho-Kräfte. Mit einem\n",
+                "Tanz kontrolliert es seine Gegner."
+            ]
+        },
+        "it": {
+            "name": "GRUMPIG",
+            "category": "Pokémon Raggiro",
+            "entry_text": [
+                "Usa perle nere per amplificare i\n",
+                "suoi poteri psichici. Con una danza\n",
+                "acquisisce controllo sul nemico."
+            ]
+        },
+        "es": {
+            "name": "GRUMPIG",
+            "category": "Pokémon Manipulador",
+            "entry_text": [
+                "Usa perlas negras para potenciar\n",
+                "sus poderes psíquicos. Con su\n",
+                "raro baile controla a los rivales."
+            ]
+        },
+        "jp": {
+            "name": "ブ－ピッグ",
+            "category": "あやつりポケモン",
+            "entry_text": [
+                "くろしんじゅで　サイコパワ－を\n",
+                "ぞうふくさせる。ふしぎな　ステップで\n",
+                "あいての　こころを　あやつる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

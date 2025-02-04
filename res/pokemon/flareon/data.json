@@ -1,5 +1,4 @@
 {
-    "name": "Flareon",
     "base_stats": {
         "hp": 65,
         "attack": 130,
@@ -108,8 +107,60 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "Inhaled air is heated in the flame\nsac in its body to an intense fire\nover 3,000 degrees Fahrenheit.",
-        "category": "Flame Pokémon"
+        "en": {
+            "name": "FLAREON",
+            "category": "Flame Pokémon",
+            "entry_text": [
+                "Inhaled air is heated in the flame\n",
+                "sac in its body to an intense fire\n",
+                "over 3,000 degrees Fahrenheit."
+            ]
+        },
+        "fr": {
+            "name": "PYROLI",
+            "category": "Pokémon Flamme",
+            "entry_text": [
+                "Son corps contient une glande\n",
+                "enflammée. Sa température monte\n",
+                "à 900 °C avant le combat."
+            ]
+        },
+        "de": {
+            "name": "FLAMARA",
+            "category": "Feuer",
+            "entry_text": [
+                "In seinem Körper befindet sich eine\n",
+                "Flamme. Seine Körpertemperatur\n",
+                "liegt vor dem Kampf bei 900 Grad."
+            ]
+        },
+        "it": {
+            "name": "FLAREON",
+            "category": "Pokémon Fiamma",
+            "entry_text": [
+                "Nel corpo conserva una tasca\n",
+                "ardente. Prima di lottare, la sua\n",
+                "temperatura si innalza a 900°C."
+            ]
+        },
+        "es": {
+            "name": "FLAREON",
+            "category": "Pokémon Llama",
+            "entry_text": [
+                "Almacena llamas en su cuerpo, que\n",
+                "alcanza una temperatura de 900\n",
+                "grados antes de un combate."
+            ]
+        },
+        "jp": {
+            "name": "ブ－スタ－",
+            "category": "ほのおポケモン",
+            "entry_text": [
+                "たいないに　ほのおぶくろを　もつ。\n",
+                "たたかいが　はじまる　ちょくぜんには\n",
+                "たいおんが　９００どまで　あがる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

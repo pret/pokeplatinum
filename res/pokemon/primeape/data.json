@@ -1,5 +1,4 @@
 {
-    "name": "Primeape",
     "base_stats": {
         "hp": 65,
         "attack": 105,
@@ -129,8 +128,60 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It grows angry if you see its eyes\nand gets angrier if you run. If you\nbeat it, it gets even madder.",
-        "category": "Pig Monkey Pokémon"
+        "en": {
+            "name": "PRIMEAPE",
+            "category": "Pig Monkey Pokémon",
+            "entry_text": [
+                "It grows angry if you see its eyes\n",
+                "and gets angrier if you run. If you\n",
+                "beat it, it gets even madder."
+            ]
+        },
+        "fr": {
+            "name": "COLOSSINGE",
+            "category": "Pokémon Porsinge",
+            "entry_text": [
+                "Il grogne quand on le toise,\n",
+                "rugit quand on s’enfuit et devient\n",
+                "fou de rage quand on le frappe."
+            ]
+        },
+        "de": {
+            "name": "RASAFF",
+            "category": "Schw./ Affe",
+            "entry_text": [
+                "Siehst du ihm in die Augen, wird es\n",
+                "wütend. Rennst du weg, wird es\n",
+                "noch wütender. Ärgerst du es..."
+            ]
+        },
+        "it": {
+            "name": "PRIMEAPE",
+            "category": "Pokémon Suinpanzé",
+            "entry_text": [
+                "Se lo guardi fisso negli occhi, si\n",
+                "adira. Se corri, s’infuria. Se poi lo\n",
+                "sconfiggi, s’arrabbia ancor di più."
+            ]
+        },
+        "es": {
+            "name": "PRIMEAPE",
+            "category": "Pokémon Mono Cerdo",
+            "entry_text": [
+                "Se molesta si le miras a los ojos.\n",
+                "Se enfada si corres. Se enfurece\n",
+                "si le golpeas."
+            ]
+        },
+        "jp": {
+            "name": "オコリザル",
+            "category": "ぶたざるポケモン",
+            "entry_text": [
+                "しせんが　あっただけで　おこり\n",
+                "にげだしたら　また　おこり\n",
+                "たたきのめしても　まだ　おこる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

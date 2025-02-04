@@ -1,5 +1,4 @@
 {
-    "name": "Blastoise",
     "base_stats": {
         "hp": 79,
         "attack": 83,
@@ -128,8 +127,60 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 6,
         "pokemon_pos_m": 1,
-        "entry_text": "The jets of water it spouts from\nthe rocket cannons on its shell\ncan punch through thick steel.",
-        "category": "Shellfish Pokémon"
+        "en": {
+            "name": "BLASTOISE",
+            "category": "Shellfish Pokémon",
+            "entry_text": [
+                "The jets of water it spouts from\n",
+                "the rocket cannons on its shell\n",
+                "can punch through thick steel."
+            ]
+        },
+        "fr": {
+            "name": "TORTANK",
+            "category": "Pokémon Carapace",
+            "entry_text": [
+                "Les trombes d’eau projetées par\n",
+                "les canons de sa carapace peuvent\n",
+                "percer le métal le plus résistant."
+            ]
+        },
+        "de": {
+            "name": "TURTOK",
+            "category": "Panzer",
+            "entry_text": [
+                "Der Wasserstrahl, der aus den\n",
+                "Wasserdüsen schießt, kann\n",
+                "sogar Stahlwände durchdringen."
+            ]
+        },
+        "it": {
+            "name": "BLASTOISE",
+            "category": "Pokémon Crostaceo",
+            "entry_text": [
+                "I getti d’acqua lanciati dai\n",
+                "cannoni sul suo guscio riescono\n",
+                "a perforare persino l’acciaio."
+            ]
+        },
+        "es": {
+            "name": "BLASTOISE",
+            "category": "Pokémon Marisco",
+            "entry_text": [
+                "Los chorros de agua que lanza\n",
+                "por los tubos de su caparazón\n",
+                "pueden atravesar el acero."
+            ]
+        },
+        "jp": {
+            "name": "カメックス",
+            "category": "こうらポケモン",
+            "entry_text": [
+                "こうらの　ロケットほうから　ふきだす\n",
+                "すいりゅうは　ぶあつい　てっぱんも\n",
+                "いっぱつで　つらぬく　はかいりょく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

@@ -1,5 +1,4 @@
 {
-    "name": "Goldeen",
     "base_stats": {
         "hp": 45,
         "attack": 67,
@@ -109,8 +108,60 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "Though it appears very elegant\nwhen swimming with fins unfurled, it\ncan jab powerfully with its horn.",
-        "category": "Goldfish Pokémon"
+        "en": {
+            "name": "GOLDEEN",
+            "category": "Goldfish Pokémon",
+            "entry_text": [
+                "Though it appears very elegant\n",
+                "when swimming with fins unfurled, it\n",
+                "can jab powerfully with its horn."
+            ]
+        },
+        "fr": {
+            "name": "POISSIRENE",
+            "category": "Pokémon Poisson",
+            "entry_text": [
+                "Il nage élégamment en agitant sa\n",
+                "nageoire caudale comme si c’était\n",
+                "une robe. Il a l’allure d’une reine."
+            ]
+        },
+        "de": {
+            "name": "GOLDINI",
+            "category": "Goldfisch",
+            "entry_text": [
+                "Es schwimmt elegant und bewegt\n",
+                "seine Hinterflosse wie ein Kleid.\n",
+                "Es sieht aus wie eine Königin."
+            ]
+        },
+        "it": {
+            "name": "GOLDEEN",
+            "category": "Pokémon Pescerosso",
+            "entry_text": [
+                "Quando nuota, la pinna posteriore\n",
+                "sembra un elegante abito da sera.\n",
+                "Ha un aspetto regale."
+            ]
+        },
+        "es": {
+            "name": "GOLDEEN",
+            "category": "Pokémon Pez Color",
+            "entry_text": [
+                "Nada elegantemente moviendo la\n",
+                "aleta de su cola como un vestido.\n",
+                "Parece una reina."
+            ]
+        },
+        "jp": {
+            "name": "トサキント",
+            "category": "きんぎょポケモン",
+            "entry_text": [
+                "おびれを　ドレスのように　ゆらして\n",
+                "ゆうがに　およぐ　すがたは\n",
+                "まるで　すいちゅうの　じょおう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

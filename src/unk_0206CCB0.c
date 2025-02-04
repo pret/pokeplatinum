@@ -38,6 +38,7 @@
 #include "heap.h"
 #include "inlines.h"
 #include "map_header.h"
+#include "map_header_util.h"
 #include "math.h"
 #include "message.h"
 #include "party.h"
@@ -59,7 +60,6 @@
 #include "unk_0203A944.h"
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
-#include "unk_02071CFC.h"
 #include "unk_02094EDC.h"
 #include "vars_flags.h"
 
@@ -2627,7 +2627,7 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     v2 = (LCRNG_Next() % 29);
 
-    sub_02071D10(RoamingPokemon_GetRouteFromId(v2), 4, v6);
+    MapHeader_LoadName(RoamingPokemon_GetRouteFromId(v2), 4, v6);
     StringTemplate_SetStrbuf(param1, 0, v6, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v6);
 

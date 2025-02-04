@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "heap.h"
 #include "narc.h"

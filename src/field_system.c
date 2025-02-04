@@ -5,12 +5,12 @@
 
 #include "constants/field/map_load.h"
 #include "constants/heap.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_control.h"
 #include "overlay005/fieldmap.h"
-#include "overlay005/ov5_021DD6FC.h"
+#include "overlay005/map_name_popup.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1B08.h"
 #include "overlay005/ov5_021EA714.h"
@@ -281,13 +281,13 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     case MAP_LOAD_TYPE_BATTLE_TOWER:
         if (processInput) {
             if (FieldInput_Process_BattleTower(&fieldInput, fieldSystem) == TRUE) {
-                ov5_021DDA78(fieldSystem->unk_04->unk_08);
+                MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
                 ov5_021E1BCC(fieldSystem, 4);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
                 ov5_021EA714(fieldSystem, 0, 1);
             } else {
                 if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-                    ov5_021DDA78(fieldSystem->unk_04->unk_08);
+                    MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
                 }
 
                 BOOL tappedPoketch = FALSE;
@@ -304,14 +304,14 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     default:
         if (processInput) {
             if (FieldInput_Process(&fieldInput, fieldSystem) == TRUE) {
-                ov5_021DDA78(fieldSystem->unk_04->unk_08);
+                MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
                 ov5_021E1BCC(fieldSystem, 4);
                 sub_0205F56C(fieldSystem->playerAvatar);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
                 ov5_021EA714(fieldSystem, 0, 1);
             } else {
                 if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-                    ov5_021DDA78(fieldSystem->unk_04->unk_08);
+                    MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
                 }
 
                 BOOL tappedPoketch = 0;

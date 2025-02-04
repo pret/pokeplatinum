@@ -1,5 +1,4 @@
 {
-    "name": "Koffing",
     "base_stats": {
         "hp": 40,
         "attack": 65,
@@ -114,8 +113,60 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "Lighter-than-air gases in its body\nkeep it aloft. The gases not only\nsmell, they are also explosive.",
-        "category": "Poison Gas Pokémon"
+        "en": {
+            "name": "KOFFING",
+            "category": "Poison Gas Pokémon",
+            "entry_text": [
+                "Lighter-than-air gases in its body\n",
+                "keep it aloft. The gases not only\n",
+                "smell, they are also explosive."
+            ]
+        },
+        "fr": {
+            "name": "SMOGO",
+            "category": "Pokémon Gaz Mortel",
+            "entry_text": [
+                "Il flotte en retenant des gaz plus\n",
+                "légers que l’air. Ceux-ci sont\n",
+                "explosifs, en plus d’être fétides."
+            ]
+        },
+        "de": {
+            "name": "SMOGON",
+            "category": "Giftwolke",
+            "entry_text": [
+                "Gase, die leichter als Luft sind,\n",
+                "lassen es schweben. Diese Gase\n",
+                "stinken und sind explosiv."
+            ]
+        },
+        "it": {
+            "name": "KOFFING",
+            "category": "Pokémon Velenuvola",
+            "entry_text": [
+                "Fluttua a mezz’aria grazie ai gas\n",
+                "che ha in corpo. Questi sono male-\n",
+                "odoranti e altamente esplosivi."
+            ]
+        },
+        "es": {
+            "name": "KOFFING",
+            "category": "Pokémon Gas Veneno",
+            "entry_text": [
+                "Los gases de su cuerpo le permiten\n",
+                "flotar. Estos gases, además de\n",
+                "oler mal, también son explosivos."
+            ]
+        },
+        "jp": {
+            "name": "ドガ－ス",
+            "category": "どくガスポケモン",
+            "entry_text": [
+                "くうきよりも　かるい　ガスを\n",
+                "からだに　ためて　うかんでいる。\n",
+                "ガスは　くさいうえに　ばくはつする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -1,5 +1,4 @@
 {
-    "name": "Staravia",
     "base_stats": {
         "hp": 55,
         "attack": 75,
@@ -109,8 +108,60 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "Recognizing their own weakness,\nthey always live in a group. When\nalone, a STARAVIA cries noisily.",
-        "category": "Starling Pokémon"
+        "en": {
+            "name": "STARAVIA",
+            "category": "Starling Pokémon",
+            "entry_text": [
+                "Recognizing their own weakness,\n",
+                "they always live in a group. When\n",
+                "alone, a STARAVIA cries noisily."
+            ]
+        },
+        "fr": {
+            "name": "ETOURVOL",
+            "category": "Pokémon Etourneau",
+            "entry_text": [
+                "Il survole les forêts et les champs\n",
+                "en quête de Pokémon Insecte.\n",
+                "Ils forment de grandes volées."
+            ]
+        },
+        "de": {
+            "name": "STARAVIA",
+            "category": "Star",
+            "entry_text": [
+                "Auf der Suche nach Käfer-PKMN\n",
+                "fliegt es über Wiesen und Wälder. Es\n",
+                "bleibt in einem großen Schwarm."
+            ]
+        },
+        "it": {
+            "name": "STARAVIA",
+            "category": "Pokémon Storno",
+            "entry_text": [
+                "Vola nelle foreste e nei campi\n",
+                "in cerca di Pokémon coleottero.\n",
+                "Si muove in grandi gruppi."
+            ]
+        },
+        "es": {
+            "name": "STARAVIA",
+            "category": "Pokémon Estornino",
+            "entry_text": [
+                "Vuela por bosques y campos en\n",
+                "busca de Pokémon de tipo Bicho.\n",
+                "Siempre va en bandadas."
+            ]
+        },
+        "jp": {
+            "name": "ムクバ－ド",
+            "category": "むくどりポケモン",
+            "entry_text": [
+                "むしポケモンを　ねらって\n",
+                "もりや　そうげんを　とびまわる。\n",
+                "おおきな　むれで　こうどうする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

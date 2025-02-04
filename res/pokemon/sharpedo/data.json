@@ -1,5 +1,4 @@
 {
-    "name": "Sharpedo",
     "base_stats": {
         "hp": 70,
         "attack": 120,
@@ -125,8 +124,60 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 65535,
-        "entry_text": "Its fangs rip through sheet iron.\nIt swims at 75 mph and is known as\n“The Bully of the Sea.”",
-        "category": "Brutal Pokémon"
+        "en": {
+            "name": "SHARPEDO",
+            "category": "Brutal Pokémon",
+            "entry_text": [
+                "Its fangs rip through sheet iron.\n",
+                "It swims at 75 mph and is known as\n",
+                "“The Bully of the Sea.”"
+            ]
+        },
+        "fr": {
+            "name": "SHARPEDO",
+            "category": "Pokémon Brutal",
+            "entry_text": [
+                "Ses crocs lacèrent des feuilles\n",
+                "d’acier. Il nage à 120 km/h. On\n",
+                "l’appelle “tyran des mers”."
+            ]
+        },
+        "de": {
+            "name": "TOHAIDO",
+            "category": "Brutal",
+            "entry_text": [
+                "Seine Zähne durchdringen sogar\n",
+                "Eisen. Es schwimmt mit 120 km/h und\n",
+                "wird “Tyrann des Meeres” genannt."
+            ]
+        },
+        "it": {
+            "name": "SHARPEDO",
+            "category": "Pokémon Brutale",
+            "entry_text": [
+                "Con le sue zanne può spezzare\n",
+                "il ferro. Nuota a 120 km/h. È noto\n",
+                "come il “Tiranno del mare”."
+            ]
+        },
+        "es": {
+            "name": "SHARPEDO",
+            "category": "Pokémon Voraz",
+            "entry_text": [
+                "Con sus colmillos puede atravesar\n",
+                "el acero. Nada a 120 km por hora.\n",
+                "Le llaman el “terror de los mares”."
+            ]
+        },
+        "jp": {
+            "name": "サメハダ－",
+            "category": "きょうぼうポケモン",
+            "entry_text": [
+                "てっぱんも　かみちぎる　キバを　もち\n",
+                "およぐ　そくどは　じそく１２０キロ。　\n",
+                "べつめいは　うみのギャング。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

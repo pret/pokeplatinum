@@ -28,5 +28,5 @@ config_gra_narc = custom_target('config_gra.narc',
     ]
 )
 
-nitrofs_files += config_gra_narc[0]
+nitrofs_files += config_gra_narc
 naix_headers += config_gra_narc[1]

@@ -1,5 +1,4 @@
 {
-    "name": "Clefairy",
     "base_stats": {
         "hp": 70,
         "attack": 45,
@@ -145,8 +144,60 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "It is said that happiness will come\nto those who see a gathering of\nCLEFAIRY dancing under a full moon.",
-        "category": "Fairy Pokémon"
+        "en": {
+            "name": "CLEFAIRY",
+            "category": "Fairy Pokémon",
+            "entry_text": [
+                "It is said that happiness will come\n",
+                "to those who see a gathering of\n",
+                "CLEFAIRY dancing under a full moon."
+            ]
+        },
+        "fr": {
+            "name": "MELOFEE",
+            "category": "Pokémon Fée",
+            "entry_text": [
+                "Tout le monde craque pour cet\n",
+                "adorable Pokémon. Il vit en groupe\n",
+                "dans le calme des montagnes."
+            ]
+        },
+        "de": {
+            "name": "PIEPI",
+            "category": "Fee",
+            "entry_text": [
+                "Es ist bekannt für sein liebens-\n",
+                "wertes Wesen. Man sagt, es lebt\n",
+                "in der Stille der Berge."
+            ]
+        },
+        "it": {
+            "name": "CLEFAIRY",
+            "category": "Pokémon Fata",
+            "entry_text": [
+                "È molto amato per la sua indole\n",
+                "docile. Si pensa che viva in gruppo\n",
+                "nella quiete delle montagne."
+            ]
+        },
+        "es": {
+            "name": "CLEFAIRY",
+            "category": "Pokémon Hada",
+            "entry_text": [
+                "El preferido de mucha gente por su\n",
+                "naturaleza afable. Se cree que vive\n",
+                "en grupo en montañas tranquilas."
+            ]
+        },
+        "jp": {
+            "name": "ピッピ",
+            "category": "ようせいポケモン",
+            "entry_text": [
+                "あいくるしい　しぐさで　だいにんき。\n",
+                "しずかな　やまおくで　なかまたちと\n",
+                "くらしていると　かんがえられている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -2,9 +2,9 @@
 #define POKEPLATINUM_FOOTPRINT_DATA_H
 
 typedef struct FootprintData {
-    u8 hasFootprint;
-    u8 footprintSize;
-    u16 unk_02;
+    u8 has;
+    u8 size;
+    u16 padding;
 } FootprintData;
 
 #endif // POKEPLATINUM_FOOTPRINT_DATA_H

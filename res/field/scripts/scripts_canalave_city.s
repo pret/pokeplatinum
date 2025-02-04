@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/canalave_city.h"
 
     .data
 
@@ -161,15 +162,15 @@ _028A:
     GoTo _02DF
 
 _02DF:
-    StartTrainerBattle trainer_rival_canalave_city_piplup
+    StartTrainerBattle TRAINER_RIVAL_CANALAVE_CITY_PIPLUP
     GoTo _0303
 
 _02EB:
-    StartTrainerBattle trainer_rival_canalave_city_turtwig
+    StartTrainerBattle TRAINER_RIVAL_CANALAVE_CITY_TURTWIG
     GoTo _0303
 
 _02F7:
-    StartTrainerBattle trainer_rival_canalave_city_chimchar
+    StartTrainerBattle TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR
     GoTo _0303
 
 _0303:

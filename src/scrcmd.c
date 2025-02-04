@@ -8,8 +8,8 @@
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
-#include "consts/journal.h"
-#include "consts/scrcmd.h"
+#include "generated/journal_location_events.h"
+#include "generated/save_types.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"

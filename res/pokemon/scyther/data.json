@@ -1,5 +1,4 @@
 {
-    "name": "Scyther",
     "base_stats": {
         "hp": 70,
         "attack": 110,
@@ -119,8 +118,60 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "The sharp scythes on its forearms\nbecome increasingly sharp by\ncutting through hard objects.",
-        "category": "Mantis Pokémon"
+        "en": {
+            "name": "SCYTHER",
+            "category": "Mantis Pokémon",
+            "entry_text": [
+                "The sharp scythes on its forearms\n",
+                "become increasingly sharp by\n",
+                "cutting through hard objects."
+            ]
+        },
+        "fr": {
+            "name": "INSECATEUR",
+            "category": "Pokémon Mante",
+            "entry_text": [
+                "Ses coups de faux sont \n",
+                "pratiquement imparables. Il se \n",
+                "déplace comme un ninja."
+            ]
+        },
+        "de": {
+            "name": "SICHLOR",
+            "category": "Mantis",
+            "entry_text": [
+                "Es ist fast unmöglich, seinen\n",
+                "Sensen auszuweichen, da es mit der\n",
+                "Schnelligkeit eines Ninja zuschlägt."
+            ]
+        },
+        "it": {
+            "name": "SCYTHER",
+            "category": "Pokémon Mantide",
+            "entry_text": [
+                "È quasi impossibile parare gli\n",
+                "attacchi sferrati dalle sue falci.\n",
+                "Si muove come un ninja."
+            ]
+        },
+        "es": {
+            "name": "SCYTHER",
+            "category": "Pokémon Mantis",
+            "entry_text": [
+                "Es casi imposible evitar el ataque\n",
+                "de sus guadañas. Se mueve como\n",
+                "un ninja."
+            ]
+        },
+        "jp": {
+            "name": "ストライク",
+            "category": "かまきりポケモン",
+            "entry_text": [
+                "りょううでの　カマによる　こうげきを\n",
+                "ふせぐことは　ふかのうに　ちかい。\n",
+                "その　うごきは　まるで　ニンジャだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

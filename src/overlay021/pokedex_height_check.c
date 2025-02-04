@@ -3,9 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/text_banks.h"
+
 #include "struct_decls/sprite_decl.h"
 
-#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021E29DC.h"
@@ -17,7 +18,6 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -35,6 +35,8 @@
 #include "unk_020093B4.h"
 #include "unk_0200A328.h"
 
+#include "res/text/bank/pokedex.h"
+
 typedef struct {
     int *unk_00;
     UnkStruct_ov21_021D3320 *unk_04;
@@ -49,13 +51,6 @@ typedef struct {
     SpriteResource *heightCheckGraphics[4];
     CellActor *trainerHeightCellActor;
 } HeightCheckVisuals;
-
-enum HeightCheckGraphics {
-    HCG_TILES,
-    HCG_PALETTE,
-    HCG_CELLS,
-    HCG_ANIMATION,
-};
 
 static UnkStruct_ov21_021E6104 *ov21_021E608C(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
 static UnkStruct_ov21_021E6118 *ov21_021E60D8(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
@@ -352,30 +347,30 @@ static void GetHeightCheckGraphics(HeightCheckVisuals *heightCheckVisuals, UnkSt
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
     NARC *pokedexGraphicsNarc = ov21_021D26E0(v0);
 
-    heightCheckVisuals->heightCheckGraphics[HCG_TILES] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], pokedexGraphicsNarc, 93, 1, 93 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], pokedexGraphicsNarc, 93, 1, 93 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
-    sub_0200A3DC(heightCheckVisuals->heightCheckGraphics[HCG_TILES]);
-    SpriteResource_ReleaseData(heightCheckVisuals->heightCheckGraphics[HCG_TILES]);
+    sub_0200A3DC(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES]);
+    SpriteResource_ReleaseData(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES]);
 
-    heightCheckVisuals->heightCheckGraphics[HCG_PALETTE] = SpriteResourceCollection_AddPaletteFrom(v0->unk_13C[1], pokedexGraphicsNarc, 14, 0, 14 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, heapID);
+    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE] = SpriteResourceCollection_AddPaletteFrom(v0->unk_13C[1], pokedexGraphicsNarc, 14, 0, 14 + 7000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, heapID);
 
-    sub_0200A640(heightCheckVisuals->heightCheckGraphics[HCG_PALETTE]);
-    SpriteResource_ReleaseData(heightCheckVisuals->heightCheckGraphics[HCG_PALETTE]);
+    sub_0200A640(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE]);
+    SpriteResource_ReleaseData(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE]);
 
-    heightCheckVisuals->heightCheckGraphics[HCG_CELLS] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], pokedexGraphicsNarc, 91, 1, 91 + 7000, 2, heapID);
-    heightCheckVisuals->heightCheckGraphics[HCG_ANIMATION] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], pokedexGraphicsNarc, 92, 1, 92 + 7000, 3, heapID);
+    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_SPRITE] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], pokedexGraphicsNarc, 91, 1, 91 + 7000, 2, heapID);
+    heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_SPRITE_ANIM] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], pokedexGraphicsNarc, 92, 1, 92 + 7000, 3, heapID);
 }
 
 static void FreeSprites(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1)
 {
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
 
-    sub_0200A4E4(heightCheckVisuals->heightCheckGraphics[HCG_TILES]);
-    sub_0200A6DC(heightCheckVisuals->heightCheckGraphics[HCG_PALETTE]);
-    SpriteResourceCollection_Remove(v0->unk_13C[0], heightCheckVisuals->heightCheckGraphics[HCG_TILES]);
-    SpriteResourceCollection_Remove(v0->unk_13C[1], heightCheckVisuals->heightCheckGraphics[HCG_PALETTE]);
-    SpriteResourceCollection_Remove(v0->unk_13C[2], heightCheckVisuals->heightCheckGraphics[HCG_CELLS]);
-    SpriteResourceCollection_Remove(v0->unk_13C[3], heightCheckVisuals->heightCheckGraphics[HCG_ANIMATION]);
+    sub_0200A4E4(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES]);
+    sub_0200A6DC(heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE]);
+    SpriteResourceCollection_Remove(v0->unk_13C[0], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_TILES]);
+    SpriteResourceCollection_Remove(v0->unk_13C[1], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_PALETTE]);
+    SpriteResourceCollection_Remove(v0->unk_13C[2], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_SPRITE]);
+    SpriteResourceCollection_Remove(v0->unk_13C[3], heightCheckVisuals->heightCheckGraphics[SPRITE_RESOURCE_SPRITE_ANIM]);
 }
 
 static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, UnkStruct_ov21_021E6118 *param1, const UnkStruct_ov21_021E6104 *param2, enum HeapId heapID)
@@ -429,7 +424,7 @@ static void DummyForMatching3(HeightCheckVisuals *heightCheckVisuals)
 static void DisplayHeightLabels(UnkStruct_ov21_021E6118 *param0, enum HeapId heapID)
 {
     Strbuf *strbuf = Strbuf_Init(32, heapID);
-    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_heightcheck_topscreen, strbuf);
 
@@ -466,7 +461,7 @@ static void DisplayHeightValues(UnkStruct_ov21_021E6118 *param0, const UnkStruct
     Strbuf_Free(speciesName);
     MessageLoader_Free(messageBank);
 
-    messageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
+    messageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->unk_04, FONT_SYSTEM, PokedexSort_TrainerName(param1->unk_04), 146, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 

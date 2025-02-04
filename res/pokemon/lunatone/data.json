@@ -1,5 +1,4 @@
 {
-    "name": "Lunatone",
     "base_stats": {
         "hp": 70,
         "attack": 55,
@@ -122,8 +121,60 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "entry_text": "Because it turns active on nights\nof the full moon, it is said to have\nsome link to the lunar phases.",
-        "category": "Meteorite Pokémon"
+        "en": {
+            "name": "LUNATONE",
+            "category": "Meteorite Pokémon",
+            "entry_text": [
+                "Because it turns active on nights\n",
+                "of the full moon, it is said to have\n",
+                "some link to the lunar phases."
+            ]
+        },
+        "fr": {
+            "name": "SELEROC",
+            "category": "Pokémon Météorite",
+            "entry_text": [
+                "On suppose qu’il est lié au cycle\n",
+                "lunaire, car il ne sort que les\n",
+                "soirs de pleine lune."
+            ]
+        },
+        "de": {
+            "name": "LUNASTEIN",
+            "category": "Meteorit",
+            "entry_text": [
+                "Da es in Vollmondnächten aktiv wird,\n",
+                "sagt man ihm nach, mit den Mond-\n",
+                "phasen in Verbindung zu stehen."
+            ]
+        },
+        "it": {
+            "name": "LUNATONE",
+            "category": "Pokémon Meteorite",
+            "entry_text": [
+                "Diventa attivo nelle notti di luna\n",
+                "piena, pertanto si dice che abbia\n",
+                "qualche legame con le fasi lunari."
+            ]
+        },
+        "es": {
+            "name": "LUNATONE",
+            "category": "Pokémon Meteorito",
+            "entry_text": [
+                "Se piensa que está muy influido\n",
+                "por las fases lunares, ya que solo\n",
+                "actúa en noches de luna llena."
+            ]
+        },
+        "jp": {
+            "name": "ルナト－ン",
+            "category": "いんせきポケモン",
+            "entry_text": [
+                "まんげつの　よるになると　かっぱつに\n",
+                "かつどうするため　つきの　みちかけと\n",
+                "かんけいしていると　いわれている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

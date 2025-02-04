@@ -1,5 +1,4 @@
 {
-    "name": "Omastar",
     "base_stats": {
         "hp": 70,
         "attack": 60,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It is thought that this Pokémon\nbecame extinct because its spiral\nshell grew too large.",
-        "category": "Spiral Pokémon"
+        "en": {
+            "name": "OMASTAR",
+            "category": "Spiral Pokémon",
+            "entry_text": [
+                "It is thought that this Pokémon\n",
+                "became extinct because its spiral\n",
+                "shell grew too large."
+            ]
+        },
+        "fr": {
+            "name": "AMONISTAR",
+            "category": "Pokémon Spirale",
+            "entry_text": [
+                "On pense que ce Pokémon a\n",
+                "disparu parce que sa coquille en\n",
+                "spirale était devenue trop grosse."
+            ]
+        },
+        "de": {
+            "name": "AMOROSO",
+            "category": "Spirale",
+            "entry_text": [
+                "Man geht davon aus, dass das PKMN\n",
+                "ausgestorben ist, weil seine spiral-\n",
+                "förmige Schale zu groß wurde."
+            ]
+        },
+        "it": {
+            "name": "OMASTAR",
+            "category": "Pokémon Spirale",
+            "entry_text": [
+                "Si pensa che questo Pokémon si\n",
+                "sia estinto perché la sua conchiglia\n",
+                "a spirale è cresciuta troppo."
+            ]
+        },
+        "es": {
+            "name": "OMASTAR",
+            "category": "Pokémon Espiral",
+            "entry_text": [
+                "Se cree que este Pokémon se\n",
+                "extinguió porque su concha\n",
+                "espiral creció demasiado."
+            ]
+        },
+        "jp": {
+            "name": "オムスタ－",
+            "category": "うずまきポケモン",
+            "entry_text": [
+                "らせんじょうの　カラが　おおきく\n",
+                "なりすぎたことが　げんいんで\n",
+                "ぜつめつしたと　かんがえられている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

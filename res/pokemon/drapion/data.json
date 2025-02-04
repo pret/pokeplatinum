@@ -1,5 +1,4 @@
 {
-    "name": "Drapion",
     "base_stats": {
         "hp": 70,
         "attack": 90,
@@ -123,8 +122,60 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "Possessing a sturdy build, it takes\npride in its strength, taking down\nfoes without using toxins.",
-        "category": "Ogre Scorp Pokémon"
+        "en": {
+            "name": "DRAPION",
+            "category": "Ogre Scorp Pokémon",
+            "entry_text": [
+                "Possessing a sturdy build, it takes\n",
+                "pride in its strength, taking down\n",
+                "foes without using toxins."
+            ]
+        },
+        "fr": {
+            "name": "DRASCORE",
+            "category": "Pokémon Scorpogre",
+            "entry_text": [
+                "Il peut réduire une voiture en \n",
+                "pièces avec ses pinces. Le bout\n",
+                "de ses pinces contient du poison."
+            ]
+        },
+        "de": {
+            "name": "PIONDRAGI",
+            "category": "Ogerskorpion",
+            "entry_text": [
+                "In seinen Armen steckt so viel\n",
+                "Kraft, dass es mit seinen giftigen\n",
+                "Krallen Autos zerquetschen kann."
+            ]
+        },
+        "it": {
+            "name": "DRAPION",
+            "category": "Pokémon Scorpiaccio",
+            "entry_text": [
+                "Con le zampe può accartocciare una\n",
+                "macchina. Le punte degli artigli\n",
+                "sono velenose."
+            ]
+        },
+        "es": {
+            "name": "DRAPION",
+            "category": "Pokémon Escorpiogro",
+            "entry_text": [
+                "Sus brazos tienen fuerza para\n",
+                "destrozar un coche. La punta\n",
+                "de sus zarpas segrega veneno."
+            ]
+        },
+        "jp": {
+            "name": "ドラピオン",
+            "category": "ばけさそりポケモン",
+            "entry_text": [
+                "りょううでの　ツメは　じどうしゃを\n",
+                "スクラップにする　はかいりょく。\n",
+                "ツメの　さきから　どくを　だす。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

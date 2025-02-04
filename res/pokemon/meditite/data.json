@@ -1,5 +1,4 @@
 {
-    "name": "Meditite",
     "base_stats": {
         "hp": 30,
         "attack": 40,
@@ -127,8 +126,60 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It always trains deep in mountains.\nIt levitates when it heightens its\nspiritual power through meditation.",
-        "category": "Meditate Pokémon"
+        "en": {
+            "name": "MEDITITE",
+            "category": "Meditate Pokémon",
+            "entry_text": [
+                "It always trains deep in mountains.\n",
+                "It levitates when it heightens its\n",
+                "spiritual power through meditation."
+            ]
+        },
+        "fr": {
+            "name": "MEDITIKKA",
+            "category": "Pokémon Méditation",
+            "entry_text": [
+                "Il ne mange qu’une Baie par jour.\n",
+                "La faim lui a forgé une volonté\n",
+                "de fer."
+            ]
+        },
+        "de": {
+            "name": "MEDITIE",
+            "category": "Meditation",
+            "entry_text": [
+                "Es isst gerade mal eine Beere am\n",
+                "Tag. Durch Hunger wird sein Geist\n",
+                "ruhiger und schärfer."
+            ]
+        },
+        "it": {
+            "name": "MEDITITE",
+            "category": "Pokémon Meditazione",
+            "entry_text": [
+                "Mangia solo una bacca al giorno.\n",
+                "Resistendo alla fame, il suo spirito\n",
+                "viene temprato e rinvigorito."
+            ]
+        },
+        "es": {
+            "name": "MEDITITE",
+            "category": "Pokémon Meditador",
+            "entry_text": [
+                "Solo come una baya al día. El\n",
+                "ayuno fortalece su espíritu y\n",
+                "su capacidad de concentración."
+            ]
+        },
+        "jp": {
+            "name": "アサナン",
+            "category": "めいそうポケモン",
+            "entry_text": [
+                "１にち　１こだけ　きのみを　たべる。\n",
+                "くうふくに　たえることで\n",
+                "こころが　とぎすまされていく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

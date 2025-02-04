@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0207A81C.h"
 #include "struct_defs/struct_0207ACB4.h"
 #include "struct_defs/struct_0207AD40.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_io.h"
 #include "battle/ov16_0223DF00.h"

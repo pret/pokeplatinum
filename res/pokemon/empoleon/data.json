@@ -1,5 +1,4 @@
 {
-    "name": "Empoleon",
     "base_stats": {
         "hp": 84,
         "attack": 86,
@@ -129,8 +128,60 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 3,
-        "entry_text": "If anyone were to hurt its pride,\nit would slash them with wings that\ncan cleave through an ice floe.",
-        "category": "Emperor Pokémon"
+        "en": {
+            "name": "EMPOLEON",
+            "category": "Emperor Pokémon",
+            "entry_text": [
+                "If anyone were to hurt its pride,\n",
+                "it would slash them with wings that\n",
+                "can cleave through an ice floe."
+            ]
+        },
+        "fr": {
+            "name": "PINGOLEON",
+            "category": "Pokémon Empereur",
+            "entry_text": [
+                "Les trois cornes de son bec sont le\n",
+                "symbole de sa force. Celles du chef\n",
+                "sont plus grosses que les autres."
+            ]
+        },
+        "de": {
+            "name": "IMPOLEON",
+            "category": "Kaiser",
+            "entry_text": [
+                "Die 3 Hörner, die aus dem Schnabel\n",
+                "wachsen, stehen für Kraft. Ein\n",
+                "Anführer hat die größten Hörner."
+            ]
+        },
+        "it": {
+            "name": "EMPOLEON",
+            "category": "Pokémon Imperatore",
+            "entry_text": [
+                "I tre corni che si allungano dal suo\n",
+                "becco attestano la sua forza. Il\n",
+                "capogruppo ha i corni più grossi."
+            ]
+        },
+        "es": {
+            "name": "EMPOLEON",
+            "category": "Pokémon Emperador",
+            "entry_text": [
+                "Los tres cuernos de su pico son\n",
+                "muestra de su fuerza. El líder\n",
+                "tiene los cuernos más grandes."
+            ]
+        },
+        "jp": {
+            "name": "エンペルト",
+            "category": "こうていポケモン",
+            "entry_text": [
+                "クチバシから　のびている　３ぼんの\n",
+                "ツノは　つよさの　しょうちょう。\n",
+                "リ－ダ－が　いちばん　おおきい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

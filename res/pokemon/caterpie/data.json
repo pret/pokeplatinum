@@ -1,5 +1,4 @@
 {
-    "name": "Caterpie",
     "base_stats": {
         "hp": 45,
         "attack": 30,
@@ -64,8 +63,60 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "It releases a stench from its red\nantenna to repel enemies. It\ngrows by molting repeatedly.",
-        "category": "Worm Pokémon"
+        "en": {
+            "name": "CATERPIE",
+            "category": "Worm Pokémon",
+            "entry_text": [
+                "It releases a stench from its red\n",
+                "antenna to repel enemies. It\n",
+                "grows by molting repeatedly."
+            ]
+        },
+        "fr": {
+            "name": "CHENIPAN",
+            "category": "Pokémon Ver",
+            "entry_text": [
+                "Ses antennes rouges libèrent une\n",
+                "puanteur qui repousse l’ennemi. Il\n",
+                "grandit par mues régulières."
+            ]
+        },
+        "de": {
+            "name": "RAUPY",
+            "category": "Wurm",
+            "entry_text": [
+                "Seine roten Antennen sondern einen\n",
+                "Gestank ab, der Feinde verjagt. Es\n",
+                "wächst, indem es sich häutet."
+            ]
+        },
+        "it": {
+            "name": "CATERPIE",
+            "category": "Pokémon Baco",
+            "entry_text": [
+                "Dalle antenne rosse emana un puzzo\n",
+                "che respinge il nemico. Cresce\n",
+                "cambiando più volte la pelle."
+            ]
+        },
+        "es": {
+            "name": "CATERPIE",
+            "category": "Pokémon Gusano",
+            "entry_text": [
+                "Su antena roja desprende un gran\n",
+                "hedor para repeler a los enemigos.\n",
+                "Crece mudándose repetidamente."
+            ]
+        },
+        "jp": {
+            "name": "キャタピ－",
+            "category": "いもむしポケモン",
+            "entry_text": [
+                "あかい　しょっかくから　においを\n",
+                "だして　てきを　おいはらう。\n",
+                "だっぴを　くりかえし　おおきくなる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

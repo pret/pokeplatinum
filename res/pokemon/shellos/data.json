@@ -1,5 +1,4 @@
 {
-    "name": "Shellos",
     "base_stats": {
         "hp": 76,
         "attack": 48,
@@ -102,8 +101,60 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "Beware of pushing strongly on\nits squishy body, as it makes a\nmysterious purple fluid ooze out.",
-        "category": "Sea Slug Pokémon"
+        "en": {
+            "name": "SHELLOS",
+            "category": "Sea Slug Pokémon",
+            "entry_text": [
+                "Beware of pushing strongly on\n",
+                "its squishy body, as it makes a\n",
+                "mysterious purple fluid ooze out."
+            ]
+        },
+        "fr": {
+            "name": "SANCOKI",
+            "category": "Pokémon Aqualimace",
+            "entry_text": [
+                "Sa couleur et sa forme varient\n",
+                "selon les régions. On en recense\n",
+                "deux types à Sinnoh."
+            ]
+        },
+        "de": {
+            "name": "SCHALELLOS",
+            "category": "Seeschnecke",
+            "entry_text": [
+                "Sein Aussehen ist von Region zu\n",
+                "Region unterschiedlich. In Sinnoh\n",
+                "finden sich zwei Arten."
+            ]
+        },
+        "it": {
+            "name": "SHELLOS",
+            "category": "Pokémon Lumacomare",
+            "entry_text": [
+                "Forma e colori variano di regione\n",
+                "in regione. Pare che nella regione\n",
+                "di Sinnoh ne esistano due tipi."
+            ]
+        },
+        "es": {
+            "name": "SHELLOS",
+            "category": "Pokémon Babosa Mar.",
+            "entry_text": [
+                "El color y la forma varían según\n",
+                "la región. En Sinnoh, hay dos\n",
+                "tipos confirmados."
+            ]
+        },
+        "jp": {
+            "name": "カラナクシ",
+            "category": "ウミウシポケモン",
+            "entry_text": [
+                "せいそくちにより　ちがった　かたちや\n",
+                "いろを　している。シンオウちほうでは\n",
+                "２しゅるいが　かくにんされている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

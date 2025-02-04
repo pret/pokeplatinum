@@ -1,5 +1,4 @@
 {
-    "name": "Hippopotas",
     "base_stats": {
         "hp": 68,
         "attack": 72,
@@ -104,8 +103,60 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "It shuts its nostrils tight then\ntravels through sand as if walking.\nThey form colonies of around ten.",
-        "category": "Hippo Pokémon"
+        "en": {
+            "name": "HIPPOPOTAS",
+            "category": "Hippo Pokémon",
+            "entry_text": [
+                "It shuts its nostrils tight then\n",
+                "travels through sand as if walking.\n",
+                "They form colonies of around ten."
+            ]
+        },
+        "fr": {
+            "name": "HIPPOPOTAS",
+            "category": "Pokémon Hippo",
+            "entry_text": [
+                "Il vit dans des endroits arides.\n",
+                "Il exsude du sable granuleux\n",
+                "au lieu de transpirer."
+            ]
+        },
+        "de": {
+            "name": "HIPPOPOTAS",
+            "category": "Flusspferd",
+            "entry_text": [
+                "Es lebt in ausgetrockneten\n",
+                "Gebieten. Statt zu schwitzen,\n",
+                "sondert sein Körper Sand ab. "
+            ]
+        },
+        "it": {
+            "name": "HIPPOPOTAS",
+            "category": "Pokémon Ippo",
+            "entry_text": [
+                "Vive in territori aridi. Invece del\n",
+                "sudore, espelle dal corpo sabbia\n",
+                "granulosa."
+            ]
+        },
+        "es": {
+            "name": "HIPPOPOTAS",
+            "category": "Pokémon Hipo",
+            "entry_text": [
+                "Vive en zonas áridas. En lugar\n",
+                "de sudar, su cuerpo expulsa\n",
+                "granos de arena."
+            ]
+        },
+        "jp": {
+            "name": "ヒポポタス",
+            "category": "カバポケモン",
+            "entry_text": [
+                "かんそうした　とちで　くらす。\n",
+                "あせの　かわりに　すなつぶを\n",
+                "からだから　ぶんぴつする　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

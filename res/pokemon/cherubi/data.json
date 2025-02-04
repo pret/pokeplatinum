@@ -1,5 +1,4 @@
 {
-    "name": "Cherubi",
     "base_stats": {
         "hp": 45,
         "attack": 35,
@@ -103,8 +102,60 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "The small ball is not only filled with\nnutrients, it is also tasty. STARLY\ntry to peck it off.",
-        "category": "Cherry Pokémon"
+        "en": {
+            "name": "CHERUBI",
+            "category": "Cherry Pokémon",
+            "entry_text": [
+                "The small ball is not only filled with\n",
+                "nutrients, it is also tasty. STARLY\n",
+                "try to peck it off."
+            ]
+        },
+        "fr": {
+            "name": "CERIBOU",
+            "category": "Pokémon Cerise",
+            "entry_text": [
+                "La petite boule renferme les\n",
+                "délicieux nutriments sucrés\n",
+                "dont il a besoin pour évoluer."
+            ]
+        },
+        "de": {
+            "name": "KIKUGI",
+            "category": "Kirsche",
+            "entry_text": [
+                "Das kleine Bällchen enthält alles,\n",
+                "was es für die Entwicklung\n",
+                "braucht. Es ist süß und lecker."
+            ]
+        },
+        "it": {
+            "name": "CHERUBI",
+            "category": "Pokémon Ciliegia",
+            "entry_text": [
+                "La pallina contiene i nutrimenti\n",
+                "necessari per l’evoluzione. Dicono\n",
+                "che sia molto dolce e deliziosa."
+            ]
+        },
+        "es": {
+            "name": "CHERUBI",
+            "category": "Pokémon Cereza",
+            "entry_text": [
+                "La pequeña esfera, dulce y\n",
+                "sabrosa, contiene los nutrientes\n",
+                "necesarios para evolucionar."
+            ]
+        },
+        "jp": {
+            "name": "チェリンボ",
+            "category": "さくらんぼポケモン",
+            "entry_text": [
+                "しんかに　ひつような　えいようぶんが\n",
+                "ちいさい　たまに　ためられている。\n",
+                "とても　あまくて　おいしい　らしい。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

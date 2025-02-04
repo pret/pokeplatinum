@@ -1,5 +1,4 @@
 {
-    "name": "Magmortar",
     "base_stats": {
         "hp": 75,
         "attack": 95,
@@ -119,8 +118,60 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "When launching 3,600 degrees F\nfireballs, its body takes on a\nwhitish hue from the intense heat.",
-        "category": "Blast Pokémon"
+        "en": {
+            "name": "MAGMORTAR",
+            "category": "Blast Pokémon",
+            "entry_text": [
+                "When launching 3,600 degrees F\n",
+                "fireballs, its body takes on a\n",
+                "whitish hue from the intense heat."
+            ]
+        },
+        "fr": {
+            "name": "MAGANON",
+            "category": "Pokémon Explosion",
+            "entry_text": [
+                "Il projette des boules de feu de\n",
+                "2 000 °C à bout de bras. Il\n",
+                "vit dans les cratères volcaniques."
+            ]
+        },
+        "de": {
+            "name": "MAGBRANT",
+            "category": "Detonation",
+            "entry_text": [
+                "Aus den Enden seiner Arme schießen\n",
+                "Feuerbälle mit 2 000 Grad.\n",
+                "Es lebt in Vulkankratern."
+            ]
+        },
+        "it": {
+            "name": "MAGMORTAR",
+            "category": "Pokémon Esplosivo",
+            "entry_text": [
+                "Spara palle di fuoco di oltre\n",
+                "2000°C dagli arti superiori.\n",
+                "Vive nei crateri dei vulcani."
+            ]
+        },
+        "es": {
+            "name": "MAGMORTAR",
+            "category": "Pokémon Explosión",
+            "entry_text": [
+                "Sus brazos disparan bolas de\n",
+                "fuego de más de 2000 grados.\n",
+                "Vive en cráteres volcánicos."
+            ]
+        },
+        "jp": {
+            "name": "ブ－バ－ン",
+            "category": "ばくえんポケモン",
+            "entry_text": [
+                "うでの　さきから　せっし２０００どの\n",
+                "ひのたまを　はっしゃする。\n",
+                "かざんの　かこうを　すみかにする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

@@ -1,5 +1,4 @@
 {
-    "name": "Shinx",
     "base_stats": {
         "hp": 45,
         "attack": 65,
@@ -108,8 +107,60 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "The extension and contraction of\nits muscles generates electricity.\nIt glows when in trouble.",
-        "category": "Flash Pokémon"
+        "en": {
+            "name": "SHINX",
+            "category": "Flash Pokémon",
+            "entry_text": [
+                "The extension and contraction of\n",
+                "its muscles generates electricity.\n",
+                "It glows when in trouble."
+            ]
+        },
+        "fr": {
+            "name": "LIXY",
+            "category": "Pokémon Flash",
+            "entry_text": [
+                "Sa fourrure étincelle en cas de\n",
+                "danger. Il profite du fait que \n",
+                "l’ennemi est aveuglé pour s’enfuir."
+            ]
+        },
+        "de": {
+            "name": "SHEINUX",
+            "category": "Flacker",
+            "entry_text": [
+                "In Gefahr blendet es seinen Gegner\n",
+                "mit seinem Fell und flieht, während\n",
+                "der Gegner einen Moment blind ist."
+            ]
+        },
+        "it": {
+            "name": "SHINX",
+            "category": "Pokémon Baleno",
+            "entry_text": [
+                "In caso di pericolo, la sua pelliccia\n",
+                "si illumina. Il nemico rimane acceca-\n",
+                "to e lui ne approfitta per fuggire."
+            ]
+        },
+        "es": {
+            "name": "SHINX",
+            "category": "Pokémon Flash",
+            "entry_text": [
+                "Si siente peligro, todo su pelaje\n",
+                "brilla. Aprovecha la ceguera\n",
+                "temporal de su rival para huir."
+            ]
+        },
+        "jp": {
+            "name": "コリンク",
+            "category": "せんこうポケモン",
+            "entry_text": [
+                "きけんを　かんじると　ぜんしんの\n",
+                "たいもうが　ひかる。あいてが　めを\n",
+                "くらませている　あいだに　にげる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

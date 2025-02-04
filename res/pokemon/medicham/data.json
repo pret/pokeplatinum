@@ -1,5 +1,4 @@
 {
-    "name": "Medicham",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -130,8 +129,60 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "It gains the ability to see the aura\nof its opponents by honing its mind\nthrough starvation.",
-        "category": "Meditate Pokémon"
+        "en": {
+            "name": "MEDICHAM",
+            "category": "Meditate Pokémon",
+            "entry_text": [
+                "It gains the ability to see the aura\n",
+                "of its opponents by honing its mind\n",
+                "through starvation."
+            ]
+        },
+        "fr": {
+            "name": "CHARMINA",
+            "category": "Pokémon Méditation",
+            "entry_text": [
+                "Il a développé son sixième sens\n",
+                "grâce au yoga. Ses mouvements\n",
+                "sont gracieux."
+            ]
+        },
+        "de": {
+            "name": "MEDITALIS",
+            "category": "Meditation",
+            "entry_text": [
+                "Mit Yoga-Training hat es seinen\n",
+                "6. Sinn geschärft. Seine\n",
+                "Bewegungen sind sehr elegant."
+            ]
+        },
+        "it": {
+            "name": "MEDICHAM",
+            "category": "Pokémon Meditazione",
+            "entry_text": [
+                "Con gli esercizi di yoga ha affinato\n",
+                "il sesto senso. I suoi movimenti\n",
+                "sono molto eleganti."
+            ]
+        },
+        "es": {
+            "name": "MEDICHAM",
+            "category": "Pokémon Meditador",
+            "entry_text": [
+                "El yoga ha perfeccionado su\n",
+                "sexto sentido. Sus movimientos\n",
+                "son extremadamente elegantes."
+            ]
+        },
+        "jp": {
+            "name": "チャ－レム",
+            "category": "めいそうポケモン",
+            "entry_text": [
+                "ヨガの　しゅぎょうによって\n",
+                "だい６かんが　はったつした。\n",
+                "ゆうがに　おどるような　みのこなし。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

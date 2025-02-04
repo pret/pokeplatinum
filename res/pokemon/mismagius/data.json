@@ -1,5 +1,4 @@
 {
-    "name": "Mismagius",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -114,8 +113,60 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "Its cry sounds like an incantation.\nIt is said the cry may rarely be\nimbued with happiness-giving power.",
-        "category": "Magical Pokémon"
+        "en": {
+            "name": "MISMAGIUS",
+            "category": "Magical Pokémon",
+            "entry_text": [
+                "Its cry sounds like an incantation.\n",
+                "It is said the cry may rarely be\n",
+                "imbued with happiness-giving power."
+            ]
+        },
+        "fr": {
+            "name": "MAGIREVE",
+            "category": "Pokémon Magique",
+            "entry_text": [
+                "Son cri rappelle une incantation.\n",
+                "Ceux qui l’entendent souffrent\n",
+                "de migraines et d’hallucinations."
+            ]
+        },
+        "de": {
+            "name": "TRAUNMAGIL",
+            "category": "Magisch",
+            "entry_text": [
+                "Seine Rufe klingen wie Beschwö-\n",
+                "rungen. Die, die sie hören, kriegen\n",
+                "Kopfschmerzen und Halluzinationen."
+            ]
+        },
+        "it": {
+            "name": "MISMAGIUS",
+            "category": "Pokémon Stregone",
+            "entry_text": [
+                "I suoi versi sembrano incantesimi.\n",
+                "Chi li sente è tormentato da\n",
+                "emicranie e allucinazioni."
+            ]
+        },
+        "es": {
+            "name": "MISMAGIUS",
+            "category": "Pokémon Mágico",
+            "entry_text": [
+                "Sus gritos parecen cánticos.\n",
+                "Los que los escuchan padecen\n",
+                "migrañas y alucinaciones."
+            ]
+        },
+        "jp": {
+            "name": "ムウマ－ジ",
+            "category": "マジカルポケモン",
+            "entry_text": [
+                "じゅもんのような　なきごえを　だして\n",
+                "みみにした　あいてを\n",
+                "ずつうや　げんかくで　くるしめる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

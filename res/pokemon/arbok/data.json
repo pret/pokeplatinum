@@ -1,5 +1,4 @@
 {
-    "name": "Arbok",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -117,8 +116,60 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "The pattern on its belly is for\nintimidation. It constricts foes\nwhile they are frozen in fear.",
-        "category": "Cobra Pokémon"
+        "en": {
+            "name": "ARBOK",
+            "category": "Cobra Pokémon",
+            "entry_text": [
+                "The pattern on its belly is for\n",
+                "intimidation. It constricts foes\n",
+                "while they are frozen in fear."
+            ]
+        },
+        "fr": {
+            "name": "ARBOK",
+            "category": "Pokémon Cobra",
+            "entry_text": [
+                "Il utilise la marque sur son ventre\n",
+                "pour intimider l’ennemi. Il étouffe\n",
+                "l’ennemi pétrifié par la peur."
+            ]
+        },
+        "de": {
+            "name": "ARBOK",
+            "category": "Kobra",
+            "entry_text": [
+                "Das Muster auf seinem Bauch\n",
+                "schüchtert Gegner ein. Sind sie vor\n",
+                "Angst erstarrt, umklammert es sie."
+            ]
+        },
+        "it": {
+            "name": "ARBOK",
+            "category": "Pokémon Cobra",
+            "entry_text": [
+                "Prima paralizza i nemici con il terri-\n",
+                "ficante disegno che ha sul ventre,\n",
+                "poi gli si avvinghia intorno."
+            ]
+        },
+        "es": {
+            "name": "ARBOK",
+            "category": "Pokémon Cobra",
+            "entry_text": [
+                "ARBOK intimida a sus presas con el\n",
+                "dibujo de su panza y luego las\n",
+                "asfixia con su cuerpo."
+            ]
+        },
+        "jp": {
+            "name": "ア－ボック",
+            "category": "コブラポケモン",
+            "entry_text": [
+                "おなかの　もようで　てきを　いかく。\n",
+                "もように　おびえて　うごけなくなった\n",
+                "すきに　からだで　しめつける。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

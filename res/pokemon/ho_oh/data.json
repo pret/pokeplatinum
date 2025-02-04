@@ -1,5 +1,4 @@
 {
-    "name": "Ho-Oh",
     "base_stats": {
         "hp": 106,
         "attack": 130,
@@ -133,8 +132,60 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 21,
         "pokemon_pos_m": 0,
-        "entry_text": "Its feathers are in seven colors.\nIt is said that anyone seeing it is\npromised eternal happiness.",
-        "category": "Rainbow Pokémon"
+        "en": {
+            "name": "HO-OH",
+            "category": "Rainbow Pokémon",
+            "entry_text": [
+                "Its feathers are in seven colors.\n",
+                "It is said that anyone seeing it is\n",
+                "promised eternal happiness."
+            ]
+        },
+        "fr": {
+            "name": "HO-OH",
+            "category": "Pokémon Arcenciel",
+            "entry_text": [
+                "Ses plumes possèdent sept \n",
+                "couleurs. On prétend que sa vue\n",
+                "apporte la joie éternelle."
+            ]
+        },
+        "de": {
+            "name": "HO-OH",
+            "category": "Regenbogen",
+            "entry_text": [
+                "Seine Federn besitzen 7 Farben.\n",
+                "Man sagt, dass demjenigen, der es\n",
+                "sieht, ewiges Glück beschieden ist."
+            ]
+        },
+        "it": {
+            "name": "HO-OH",
+            "category": "Pokémon Arcobaleno",
+            "entry_text": [
+                "Le sue piume sono di sette colori.\n",
+                "Si dice che chiunque lo veda\n",
+                "sarà per sempre felice."
+            ]
+        },
+        "es": {
+            "name": "HO-OH",
+            "category": "Pokémon Arco Iris",
+            "entry_text": [
+                "Su plumaje tiene siete colores.\n",
+                "Se dice que verlo proporciona\n",
+                "felicidad eterna."
+            ]
+        },
+        "jp": {
+            "name": "ホウオウ",
+            "category": "にじいろポケモン",
+            "entry_text": [
+                "なないろの　つばさを　もつ。\n",
+                "ホウオウを　みた　ものは　えいえんの\n",
+                "しあわせが　やくそくされるという。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

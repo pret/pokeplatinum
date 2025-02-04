@@ -1,5 +1,4 @@
 {
-    "name": "Misdreavus",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -124,8 +123,60 @@
         "pokemon_pos_f": 65527,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65527,
-        "entry_text": "A Pokémon that startles people in\nthe middle of the night. It gathers\nfear as its energy.",
-        "category": "Screech Pokémon"
+        "en": {
+            "name": "MISDREAVUS",
+            "category": "Screech Pokémon",
+            "entry_text": [
+                "A Pokémon that startles people in\n",
+                "the middle of the night. It gathers\n",
+                "fear as its energy."
+            ]
+        },
+        "fr": {
+            "name": "FEUFOREVE",
+            "category": "Pokémon Strident",
+            "entry_text": [
+                "Il adore se faufiler derrière les\n",
+                "gens la nuit pour les effrayer\n",
+                "avec son cri strident."
+            ]
+        },
+        "de": {
+            "name": "TRAUNFUGIL",
+            "category": "Kreischer",
+            "entry_text": [
+                "Es liebt es, sich nachts an andere\n",
+                "heranzuschleichen und sie mit einem\n",
+                "schrillen Schrei zu erschrecken."
+            ]
+        },
+        "it": {
+            "name": "MISDREAVUS",
+            "category": "Pokémon Strido",
+            "entry_text": [
+                "Ama avvicinarsi alle persone in\n",
+                "piena notte per terrorizzarle con\n",
+                "il suo urlo stridulo."
+            ]
+        },
+        "es": {
+            "name": "MISDREAVUS",
+            "category": "Pokémon Chirrido",
+            "entry_text": [
+                "Le encanta sorprender a la gente\n",
+                "de noche y asustarla con sus\n",
+                "estridentes gritos."
+            ]
+        },
+        "jp": {
+            "name": "ムウマ",
+            "category": "よなきポケモン",
+            "entry_text": [
+                "まよなか　はいごから　ちかづき\n",
+                "なきさけぶような　なきごえを　あげて\n",
+                "おどろかせては　よろこぶ　ポケモン。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

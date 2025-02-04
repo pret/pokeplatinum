@@ -2,7 +2,7 @@
 #define POKEPLATINUM_FIELD_BATTLE_DATA_TRANSFER_H
 
 #include "constants/battle.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "field/field_system_decl.h"
 
@@ -51,7 +51,7 @@ typedef struct FieldBattleDTO {
     JournalEntry *journalEntry;
     UnkStruct_02027F8C *unk_124;
     int background;
-    enum Terrain terrain;
+    enum BattleTerrain terrain;
     int mapLabelTextID;
     int mapHeaderID;
     enum TimeOfDay timeOfDay;

@@ -1,5 +1,4 @@
 {
-    "name": "Yanma",
     "base_stats": {
         "hp": 65,
         "attack": 65,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "It can hover in one spot by\nflapping its wings at high speed. It\nflits about to guard its territory.",
-        "category": "Clear Wing Pokémon"
+        "en": {
+            "name": "YANMA",
+            "category": "Clear Wing Pokémon",
+            "entry_text": [
+                "It can hover in one spot by\n",
+                "flapping its wings at high speed. It\n",
+                "flits about to guard its territory."
+            ]
+        },
+        "fr": {
+            "name": "YANMA",
+            "category": "Pokémon Translaile",
+            "entry_text": [
+                "Il voit à 360 degrés sans avoir à\n",
+                "tourner la tête. Il ne loupe jamais\n",
+                "une proie, même dans son dos."
+            ]
+        },
+        "de": {
+            "name": "YANMA",
+            "category": "Libelle",
+            "entry_text": [
+                "Mit seinen Augen hat es einen Blick-\n",
+                "winkel von 360 Grad. Es sieht sogar\n",
+                "Beute, die sich hinter ihm befindet."
+            ]
+        },
+        "it": {
+            "name": "YANMA",
+            "category": "Pokémon Alachiara",
+            "entry_text": [
+                "Ha un campo visivo a 360° senza\n",
+                "muovere la testa. Riesce a vedere\n",
+                "persino le prede alle sue spalle."
+            ]
+        },
+        "es": {
+            "name": "YANMA",
+            "category": "Pokémon Ala Clara",
+            "entry_text": [
+                "Su campo visual es de 360 grados\n",
+                "sin girar la cabeza. Detecta hasta\n",
+                "las presas que están a su espalda."
+            ]
+        },
+        "jp": {
+            "name": "ヤンヤンマ",
+            "category": "うすばねポケモン",
+            "entry_text": [
+                "かおを　うごかさずに　３６０ど\n",
+                "すべてを　みわたす　めを　もつので\n",
+                "まうしろの　えものも　みのがさない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

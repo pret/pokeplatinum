@@ -1,5 +1,4 @@
 {
-    "name": "Hippowdon",
     "base_stats": {
         "hp": 108,
         "attack": 112,
@@ -107,8 +106,60 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 10,
         "pokemon_pos_m": 3,
-        "entry_text": "It is surprisingly quick to anger.\nIt holds its mouth agape as a\ndisplay of its strength.",
-        "category": "Heavyweight Pokémon"
+        "en": {
+            "name": "HIPPOWDON",
+            "category": "Heavyweight Pokémon",
+            "entry_text": [
+                "It is surprisingly quick to anger.\n",
+                "It holds its mouth agape as a\n",
+                "display of its strength."
+            ]
+        },
+        "fr": {
+            "name": "HIPPODOCUS",
+            "category": "Pokémon Poids Lourd",
+            "entry_text": [
+                "Il emmagasine du sable qu’il\n",
+                "expulse en tornades par les\n",
+                "pores de sa peau pour attaquer."
+            ]
+        },
+        "de": {
+            "name": "HIPPOTERUS",
+            "category": "Schwergewicht",
+            "entry_text": [
+                "Es wirbelt im Körper gespeicherten\n",
+                "Sand durch Öffnungen und generiert\n",
+                "so einen Sandwirbelsturm."
+            ]
+        },
+        "it": {
+            "name": "HIPPOWDON",
+            "category": "Pokémon Grandepeso",
+            "entry_text": [
+                "Immagazzina sabbia all’interno del\n",
+                "corpo e l’espelle con violenza dai\n",
+                "pori, formando enormi vortici."
+            ]
+        },
+        "es": {
+            "name": "HIPPOWDON",
+            "category": "Pokémon Peso Pesado",
+            "entry_text": [
+                "Cuando ataca, expulsa arena\n",
+                "almacenada en su interior\n",
+                "para crear un gran tornado."
+            ]
+        },
+        "jp": {
+            "name": "カバルドン",
+            "category": "じゅうりょうポケモン",
+            "entry_text": [
+                "たいないに　ためた　すなを　からだの\n",
+                "あなから　ふきあげて　きょだいな\n",
+                "たつまきを　つくり　こうげきする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

@@ -558,5 +558,5 @@ events_narc = custom_target('zone_event.narc',
     ]
 )
 
-nitrofs_files += events_narc[0]
+nitrofs_files += events_narc
 naix_headers += events_narc[1]

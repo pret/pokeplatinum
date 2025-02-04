@@ -1,5 +1,4 @@
 {
-    "name": "Grovyle",
     "base_stats": {
         "hp": 50,
         "attack": 65,
@@ -125,8 +124,56 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It lives in dense jungles. While \nclosing in on its prey, it leaps\nfrom branch to branch.",
-        "category": "Wood Gecko Pokémon"
+        "en": {
+            "name": "GROVYLE",
+            "category": "Wood Gecko Pokémon",
+            "entry_text": [
+                "It lives in dense jungles. While \n",
+                "closing in on its prey, it leaps\n",
+                "from branch to branch."
+            ]
+        },
+        "fr": {
+            "name": "MASSKO",
+            "category": "Pokémon Bois Gecko",
+            "entry_text": [
+                "Il vit dans les jungles denses. \n",
+                "Il saute de branche en branche\n",
+                "pour approcher de sa proie."
+            ]
+        },
+        "de": {
+            "name": "REPTAIN",
+            "category": "Waldgecko",
+            "entry_text": [
+                "Es lebt im dichten Dschungel.\n",
+                "Es springt von Ast zu Ast, wenn es\n",
+                "sich einer Beute nähert."
+            ]
+        },
+        "it": {
+            "name": "GROVYLE",
+            "category": "Pokémon Legnogeco",
+            "entry_text": [ "Vive in giungle fitte. Si avvicina\n", "alle prede saltando di ramo in ramo." ]
+        },
+        "es": {
+            "name": "GROVYLE",
+            "category": "Pokémon Geco Bosque",
+            "entry_text": [
+                "Vive en selvas frondosas. Salta de\n",
+                "rama en rama para acercarse a\n",
+                "sus presas."
+            ]
+        },
+        "jp": {
+            "name": "ジュプトル",
+            "category": "もりトカゲポケモン",
+            "entry_text": [
+                "みつりんに　せいそくする。\n",
+                "えだから　えだへ　とびうつりながら\n",
+                "いどうして　えものに　せっきんする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

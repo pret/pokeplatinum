@@ -7,11 +7,11 @@
 #include "constants/forms.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
-#include "consts/gender.h"
-#include "consts/pokemon.h"
 #include "generated/abilities.h"
 #include "generated/gender_ratios.h"
+#include "generated/genders.h"
 #include "generated/items.h"
+#include "generated/species_data_params.h"
 
 #include "struct_defs/struct_0202D7B0.h"
 #include "struct_defs/struct_0206C638.h"

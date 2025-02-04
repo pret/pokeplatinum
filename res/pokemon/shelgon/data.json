@@ -1,5 +1,4 @@
 {
-    "name": "Shelgon",
     "base_stats": {
         "hp": 65,
         "attack": 95,
@@ -118,8 +117,60 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "Within its rugged shell, its cells\nhave begun changing. The shell\npeels off the instant it evolves.",
-        "category": "Endurance Pokémon"
+        "en": {
+            "name": "SHELGON",
+            "category": "Endurance Pokémon",
+            "entry_text": [
+                "Within its rugged shell, its cells\n",
+                "have begun changing. The shell\n",
+                "peels off the instant it evolves."
+            ]
+        },
+        "fr": {
+            "name": "DRACKHAUS",
+            "category": "Pokémon Endurant",
+            "entry_text": [
+                "Ses cellules ont commencé à\n",
+                "changer dans sa robuste coquille.\n",
+                "Il la perd en évoluant."
+            ]
+        },
+        "de": {
+            "name": "DRASCHEL",
+            "category": "Durchsteher",
+            "entry_text": [
+                "Die Zellen seines Panzers fingen an,\n",
+                "sich zu verändern. Er fällt ab,\n",
+                "sobald sich das PKMN entwickelt."
+            ]
+        },
+        "it": {
+            "name": "SHELGON",
+            "category": "Pokémon Resistenza",
+            "entry_text": [
+                "Nella sua dura corazza le cellule\n",
+                "hanno cominciato a cambiare.\n",
+                "Quando si evolve, la corazza cade."
+            ]
+        },
+        "es": {
+            "name": "SHELGON",
+            "category": "Pokémon Resistencia",
+            "entry_text": [
+                "Las células han empezado a cambiar\n",
+                "dentro de su dura concha, que se\n",
+                "separa cuando evoluciona."
+            ]
+        },
+        "jp": {
+            "name": "コモル－",
+            "category": "にんたいポケモン",
+            "entry_text": [
+                "かたい　カラの　なかでは　さいぼうが\n",
+                "へんかを　はじめている。しんかする\n",
+                "しゅんかんに　カラが　はがれおちる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

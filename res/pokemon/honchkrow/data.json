@@ -1,5 +1,4 @@
 {
-    "name": "Honchkrow",
     "base_stats": {
         "hp": 100,
         "attack": 125,
@@ -114,8 +113,60 @@
         "pokemon_pos_f": 18,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 18,
-        "entry_text": "If one utters a deep cry, many\nMURKROW gather quickly. For this,\nit is called “Summoner of Night.”",
-        "category": "Big Boss Pokémon"
+        "en": {
+            "name": "HONCHKROW",
+            "category": "Big Boss Pokémon",
+            "entry_text": [
+                "If one utters a deep cry, many\n",
+                "MURKROW gather quickly. For this,\n",
+                "it is called “Summoner of Night.”"
+            ]
+        },
+        "fr": {
+            "name": "CORBOSS",
+            "category": "Pokémon Big Boss",
+            "entry_text": [
+                "Ce Pokémon nocturne évolue en\n",
+                "grandes volées escortées par des\n",
+                "CORNEBRE."
+            ]
+        },
+        "de": {
+            "name": "KRAMSHEF",
+            "category": "Anführer",
+            "entry_text": [
+                "Ein nachtaktives PKMN, das sich in\n",
+                "Schwärmen mit KRAMURX durch die\n",
+                "Nacht bewegt."
+            ]
+        },
+        "it": {
+            "name": "HONCHKROW",
+            "category": "Pokémon Grancapo",
+            "entry_text": [
+                "Diventa attivo di notte e lo si vede\n",
+                "spesso in compagnia di numerosi\n",
+                "MURKROW."
+            ]
+        },
+        "es": {
+            "name": "HONCHKROW",
+            "category": "Pokémon Gran Jefe",
+            "entry_text": [
+                "Está activo por la noche y\n",
+                "pulula arrastrando a\n",
+                "numerosos MURKROW."
+            ]
+        },
+        "jp": {
+            "name": "ドンカラス",
+            "category": "おおボスポケモン",
+            "entry_text": [
+                "よるになると　かつどうを　はじめる。\n",
+                "たくさんの　ヤミカラスを　ひきつれ\n",
+                "むれを　つくることで　しられる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

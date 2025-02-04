@@ -5,8 +5,9 @@
 
 #include "constants/field_poison.h"
 #include "constants/player_avatar.h"
-#include "consts/game_records.h"
-#include "consts/sdat.h"
+#include "generated/game_records.h"
+#include "generated/sdat.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"

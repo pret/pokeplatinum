@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/pokemon_mansion.h"
 
     .data
 
@@ -21,8 +22,8 @@ _0033:
     ScrCmd_1B7 0x404C, 5
     AddVar 0x404C, 5
     SetFlag 0xAB6
-    ClearTrainerFlag trainer_rich_boy_liam
-    ClearTrainerFlag trainer_lady_celeste
+    ClearTrainerFlag TRAINER_RICH_BOY_LIAM
+    ClearTrainerFlag TRAINER_LADY_CELESTE
     End
 
 _004D:
@@ -81,8 +82,8 @@ _00FF:
     SetFlag 0x166
     ScrCmd_03E 0x800C
     GoToIfEq 0x800C, 1, _0471
-    SetTrainerFlag trainer_rich_boy_liam
-    SetTrainerFlag trainer_lady_celeste
+    SetTrainerFlag TRAINER_RICH_BOY_LIAM
+    SetTrainerFlag TRAINER_LADY_CELESTE
     Message 5
     CloseMessage
     ApplyMovement 2, _03FC
@@ -95,7 +96,7 @@ _00FF:
     WaitMovement
     Message 15
     CloseMessage
-    StartTrainerBattle trainer_maid_belinda
+    StartTrainerBattle TRAINER_MAID_BELINDA
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
@@ -107,7 +108,7 @@ _00FF:
     WaitMovement
     Message 17
     CloseMessage
-    StartTrainerBattle trainer_maid_sophie
+    StartTrainerBattle TRAINER_MAID_SOPHIE
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
@@ -119,7 +120,7 @@ _00FF:
     WaitMovement
     Message 19
     CloseMessage
-    StartTrainerBattle trainer_maid_emily
+    StartTrainerBattle TRAINER_MAID_EMILY
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
@@ -131,7 +132,7 @@ _00FF:
     WaitMovement
     Message 21
     CloseMessage
-    StartTrainerBattle trainer_maid_elena
+    StartTrainerBattle TRAINER_MAID_ELENA
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
@@ -151,7 +152,7 @@ _00FF:
     WaitMovement
     Message 23
     CloseMessage
-    StartTrainerBattle trainer_maid_clare
+    StartTrainerBattle TRAINER_MAID_CLARE
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
     AddVar 0x8005, 0x404D
@@ -182,8 +183,8 @@ _00FF:
     StartTrainerBattle 0x8007
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0484
-    SetTrainerFlag trainer_rich_boy_liam
-    SetTrainerFlag trainer_lady_celeste
+    SetTrainerFlag TRAINER_RICH_BOY_LIAM
+    SetTrainerFlag TRAINER_LADY_CELESTE
     CallIfEq 0x8006, 0, _03D7
     CallIfEq 0x8006, 1, _03DC
     CloseMessage
@@ -203,14 +204,14 @@ _0396:
     End
 
 _03A1:
-    SetVar 0x8007, trainer_rich_boy_liam
+    SetVar 0x8007, TRAINER_RICH_BOY_LIAM
     SetVar 0x4020, 62
     ScrCmd_2F3 2, 0x8007
     Message 8
     Return
 
 _03B7:
-    SetVar 0x8007, trainer_lady_celeste
+    SetVar 0x8007, TRAINER_LADY_CELESTE
     SetVar 0x4020, 63
     ScrCmd_2F3 2, 0x8007
     Message 9

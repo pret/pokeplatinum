@@ -1,5 +1,4 @@
 {
-    "name": "Slakoth",
     "base_stats": {
         "hp": 60,
         "attack": 60,
@@ -120,8 +119,60 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "It spends nearly all its time in a\nday sprawled out. Just seeing it\nmakes one drowsy.",
-        "category": "Slacker Pokémon"
+        "en": {
+            "name": "SLAKOTH",
+            "category": "Slacker Pokémon",
+            "entry_text": [
+                "It spends nearly all its time in a\n",
+                "day sprawled out. Just seeing it\n",
+                "makes one drowsy."
+            ]
+        },
+        "fr": {
+            "name": "PARECOOL",
+            "category": "Pokémon Flâneur",
+            "entry_text": [
+                "Il passe le plus clair de son temps\n",
+                "affalé. Rien qu’à le voir, on a\n",
+                "envie de bâiller."
+            ]
+        },
+        "de": {
+            "name": "BUMMELZ",
+            "category": "Faulpelz",
+            "entry_text": [
+                "Es verbringt fast den ganzen Tag\n",
+                "mit Faulenzen und Schlafen. Selbst\n",
+                "sein Anblick macht bereits müde."
+            ]
+        },
+        "it": {
+            "name": "SLAKOTH",
+            "category": "Pokémon Ozioso",
+            "entry_text": [
+                "Passa quasi tutto il tempo\n",
+                "sdraiato. Soltanto a guardarlo\n",
+                "si prova sonnolenza."
+            ]
+        },
+        "es": {
+            "name": "SLAKOTH",
+            "category": "Pokémon Gandul",
+            "entry_text": [
+                "Pasa la mayor parte del día\n",
+                "repanchingado. Entra sueño\n",
+                "solo de verlo."
+            ]
+        },
+        "jp": {
+            "name": "ナマケロ",
+            "category": "なまけものポケモン",
+            "entry_text": [
+                "１にちのうち　ほとんどの　じかんを\n",
+                "ねころがって　すごす。その　ようすを\n",
+                "みていると　ねむけに　おそわれる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

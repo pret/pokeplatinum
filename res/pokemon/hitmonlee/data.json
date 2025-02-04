@@ -1,5 +1,4 @@
 {
-    "name": "Hitmonlee",
     "base_stats": {
         "hp": 50,
         "attack": 120,
@@ -114,8 +113,60 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "Its legs can stretch double.\nFirst-time foes are startled by\nits extensible reach.",
-        "category": "Kicking Pokémon"
+        "en": {
+            "name": "HITMONLEE",
+            "category": "Kicking Pokémon",
+            "entry_text": [
+                "Its legs can stretch double.\n",
+                "First-time foes are startled by\n",
+                "its extensible reach."
+            ]
+        },
+        "fr": {
+            "name": "KICKLEE",
+            "category": "Pokémon Latteur",
+            "entry_text": [
+                "Ses pattes élastiques s’allongent,\n",
+                "ce qui ne manque jamais de\n",
+                "surprendre au premier combat."
+            ]
+        },
+        "de": {
+            "name": "KICKLEE",
+            "category": "Kicker",
+            "entry_text": [
+                "Seine Beine können die doppelte\n",
+                "Länge annehmen. Gegner, die das\n",
+                "nicht wissen, erschrecken."
+            ]
+        },
+        "it": {
+            "name": "HITMONLEE",
+            "category": "Pokémon Tiracalci",
+            "entry_text": [
+                "I suoi arti inferiori si allungano del\n",
+                "doppio, il che sbalordisce i nemici\n",
+                "che lo vedono per la prima volta."
+            ]
+        },
+        "es": {
+            "name": "HITMONLEE",
+            "category": "Pokémon Patada",
+            "entry_text": [
+                "Sus piernas se extienden hasta\n",
+                "doblar su longitud para sorprender\n",
+                "a enemigos desprevenidos."
+            ]
+        },
+        "jp": {
+            "name": "サワムラ－",
+            "category": "キックポケモン",
+            "entry_text": [
+                "あしが　２ばいの　ながさに　のびる。\n",
+                "はじめて　たたかう　あいては\n",
+                "その　まあいの　ひろさに　おどろく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

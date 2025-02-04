@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/hearthome_city_pokemon_fan_club.h"
 
     .data
 

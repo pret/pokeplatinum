@@ -12,8 +12,8 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
+#include "fx_util.h"
 #include "map_object.h"
-#include "unk_0201E190.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 
@@ -174,7 +174,7 @@ static void ov5_021F5204(UnkStruct_ov101_021D5D90 *param0, void *param1)
             const MtxFx43 *v4 = NNS_G3dGlbGetInvCameraMtx();
             MtxFx33 v5;
 
-            sub_0201E2E0(&v3, 90, 0, 0);
+            MTX_Rot33Angles(&v3, 90, 0, 0);
 
             MTX_Copy43To33(v4, &v5);
             MTX_Concat33(&v3, &v5, &v3);

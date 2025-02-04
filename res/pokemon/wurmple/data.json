@@ -1,5 +1,4 @@
 {
-    "name": "Wurmple",
     "base_stats": {
         "hp": 45,
         "attack": 45,
@@ -70,8 +69,60 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "Often targeted by bird Pokémon,\nit desperately resists by releasing\npoison from its tail spikes.",
-        "category": "Worm Pokémon"
+        "en": {
+            "name": "WURMPLE",
+            "category": "Worm Pokémon",
+            "entry_text": [
+                "Often targeted by bird Pokémon,\n",
+                "it desperately resists by releasing\n",
+                "poison from its tail spikes."
+            ]
+        },
+        "fr": {
+            "name": "CHENIPOTTE",
+            "category": "Pokémon Ver",
+            "entry_text": [
+                "Il adore manger des feuilles. Si un\n",
+                "ETOURMI l’attaque, il riposte avec\n",
+                "les piquants de son postérieur."
+            ]
+        },
+        "de": {
+            "name": "WAUMPEL",
+            "category": "Wurm",
+            "entry_text": [
+                "Es isst am liebsten Blätter. Wird es\n",
+                "von einem STARALILI angegriffen,\n",
+                "verteidigt es sich mit Stacheln."
+            ]
+        },
+        "it": {
+            "name": "WURMPLE",
+            "category": "Pokémon Baco",
+            "entry_text": [
+                "Ama mangiare le foglie. Se STARLY lo\n",
+                "attacca, si difende con gli aculei\n",
+                "che ha sulla parte posteriore."
+            ]
+        },
+        "es": {
+            "name": "WURMPLE",
+            "category": "Pokémon Gusano",
+            "entry_text": [
+                "Le encanta comer hojas. Si le\n",
+                "ataca un STARLY, se defenderá\n",
+                "con sus púas."
+            ]
+        },
+        "jp": {
+            "name": "ケムッソ",
+            "category": "いもむしポケモン",
+            "entry_text": [
+                "はっぱが　だいこうぶつ。\n",
+                "ムックルに　おそわれたときは\n",
+                "おしりの　トゲで　げきたいする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

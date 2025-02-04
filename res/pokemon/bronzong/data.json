@@ -1,5 +1,4 @@
 {
-    "name": "Bronzong",
     "base_stats": {
         "hp": 67,
         "attack": 89,
@@ -127,8 +126,60 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "It brought rains by opening portals\nto another world. It was revered\nas a bringer of plentiful harvests.",
-        "category": "Bronze Bell Pokémon"
+        "en": {
+            "name": "BRONZONG",
+            "category": "Bronze Bell Pokémon",
+            "entry_text": [
+                "It brought rains by opening portals\n",
+                "to another world. It was revered\n",
+                "as a bringer of plentiful harvests."
+            ]
+        },
+        "fr": {
+            "name": "ARCHEODONG",
+            "category": "Pokémon Clochebronze",
+            "entry_text": [
+                "La découverte d’un de ces Pokémon\n",
+                "sur un site de fouilles après 2 000 \n",
+                "ans de sommeil a fait sensation."
+            ]
+        },
+        "de": {
+            "name": "BRONZONG",
+            "category": "Bronzeglocke",
+            "entry_text": [
+                "Dieses PKMN fand man bei Grabungen\n",
+                "auf einer Baustelle, an deren Ort\n",
+                "es 2 000 Jahre geschlafen hatte."
+            ]
+        },
+        "it": {
+            "name": "BRONZONG",
+            "category": "Pokémon Squibronzo",
+            "entry_text": [
+                "Il suo ritrovamento in un cantiere\n",
+                "dopo un sonno di 2000 anni fece a\n",
+                "suo tempo molto scalpore."
+            ]
+        },
+        "es": {
+            "name": "BRONZONG",
+            "category": "Pokémon Cam. Bronce",
+            "entry_text": [
+                "Se produjo un gran revuelo cuando\n",
+                "encontraron uno en una obra\n",
+                "después de 2000 años durmiendo."
+            ]
+        },
+        "jp": {
+            "name": "ド－タクン",
+            "category": "どうたくポケモン",
+            "entry_text": [
+                "２０００ねん　いじょう　ねむっていた\n",
+                "ド－タクンが　こうじげんばから\n",
+                "ほりだされ　だいニュ－スに　なった。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

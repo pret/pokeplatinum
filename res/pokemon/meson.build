@@ -35,6 +35,7 @@ poke_icon_files = []
 pokegra_files = []
 otherpoke_index = {} # otherpoke uses a unique, non-uniform structure
 
+pokemon_data_root = meson.current_source_dir()
 
 # 1. These static files must always exist.
 icons_shared = files(
@@ -102,24 +103,8 @@ endforeach
 # use of it.
 species_env = environment()
 species_env.append('SPECIES', species_dirnames, separator: ';')
+species_env.append('PYTHONPATH', meson.project_build_root()) # For python scripts
 
-
-# Order of extra personal files for mon forms
-# TODO: Move these into species directories after finishing the refactor
-species_data_files += [
-    deoxys_attack_personal,
-    deoxys_defense_personal,
-    deoxys_speed_personal,
-    wormadam_sandy_personal,
-    wormadam_trash_personal,
-    giratina_origin_personal,
-    shaymin_sky_personal,
-    rotom_heat_personal,
-    rotom_wash_personal,
-    rotom_frost_personal,
-    rotom_fan_personal,
-    rotom_mow_personal
-]
 
 # The last icon added to the list before this should have been
 # the basic egg icon.
@@ -191,11 +176,12 @@ datagen_species_out = custom_target('datagen_species_out',
         'pl_poke_data.narc',
         'tutorable_moves.h',
         'species_learnsets_by_tutor.h',
+        'species_footprints.h',
     ],
     command: [
         datagen_species_exe,
         meson.current_build_dir(),
-        meson.current_source_dir(),
+        pokemon_data_root,
         form_data_order,
         files('move_tutors.json'),
     ],
@@ -204,14 +190,9 @@ datagen_species_out = custom_target('datagen_species_out',
         species_data_files,
     ],
 )
-pl_personal_narc = datagen_species_out[0]
-evo_narc = datagen_species_out[1]
-wotbl_narc = datagen_species_out[2]
-ppark_narc = datagen_species_out[3]
-height_narc = datagen_species_out[4]
-pl_poke_data_narc = datagen_species_out[5]
 tutorable_moves_h = datagen_species_out[6]
 species_learnsets_by_tutor_h = datagen_species_out[7]
+species_footprints_h = datagen_species_out[8]
 
 
 # OLD NARCs
@@ -267,8 +248,7 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
 
 pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
     output: 'pl_pokezukan.narc',
-    input: species_data_files,
-    env: json2bin_env,
+    env: py_consts_env,
     command: [
         make_pl_pokezukan_py,
         '--narc', narc_exe,
@@ -281,8 +261,7 @@ pl_pokezukan_narc = custom_target('pl_pokezukan.narc',
 
 shinzukan_narc = custom_target('shinzukan.narc',
     output: 'shinzukan.narc',
-    input: species_data_files,
-    env: json2bin_env,
+    env: py_consts_env,
     command: [
         make_shinzukan_py,
         '--narc', narc_exe,
@@ -306,16 +285,8 @@ pl_growtbl_narc = custom_target('pl_growtbl.narc',
     ]
 )
 
-pokedex_data_srcs = files()
-foreach pokemon : species_dirnames
-    pokedex_data_srcs += files(pokemon / 'data.json')
-endforeach
-
 pokedex_data_narc = custom_target('zukan_data.narc',
     output: 'zukan_data.narc',
-    input: pokedex_data_srcs,
-    env: json2bin_env,
-    depends: [ py_consts_generators ],
     command: [
         make_pokedex_data_py,
         '--narc', narc_exe,
@@ -323,15 +294,14 @@ pokedex_data_narc = custom_target('zukan_data.narc',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
         'giratina_origin',
-        pokedex_data_srcs
-    ]
+    ],
+    env: species_env,
+    depends: [ py_consts_generators ],
+    depend_files: [ species_data_files ],
 )
 
 pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
     output: 'zukan_data_gira.narc',
-    input: pokedex_data_srcs,
-    env: json2bin_env,
-    depends: [ py_consts_generators ],
     command: [
         make_pokedex_data_py,
         '--narc', narc_exe,
@@ -339,36 +309,17 @@ pokedex_data_giratina_altered_narc = custom_target('zukan_data_gira.narc',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
         'giratina_altered',
-        pokedex_data_srcs
-    ]
-)
-
-species_header_target = meson.current_build_dir()
-
-gen_species_headers = custom_target('gen_species_headers',
-    output: [
-        'footprint_data.h',
     ],
-    input: species_data_files,
-    env: json2bin_env,
+    env: species_env,
     depends: [ py_consts_generators ],
-    command: [
-        make_species_tables_py,
-        '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--output-dir', species_header_target,
-    ]
+    depend_files: [ species_data_files ],
 )
 
-nitrofs_files += pl_personal_narc
-nitrofs_files += evo_narc
-nitrofs_files += wotbl_narc
-nitrofs_files += ppark_narc
-nitrofs_files += height_narc
+nitrofs_files += datagen_species_out
 
 nitrofs_files += pl_poke_icon_narc
 nitrofs_files += pl_pokegra_narc
 nitrofs_files += pl_otherpoke_narc
-nitrofs_files += pl_poke_data_narc
 nitrofs_files += pl_pokezukan_narc
 nitrofs_files += shinzukan_narc
 nitrofs_files += pl_growtbl_narc

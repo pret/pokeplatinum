@@ -1,5 +1,4 @@
 {
-    "name": "Espeon",
     "base_stats": {
         "hp": 65,
         "attack": 65,
@@ -113,8 +112,60 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "Its fur is so sensitive, it can\nsense minute shifts in the air\nand predict the weather.",
-        "category": "Sun Pokémon"
+        "en": {
+            "name": "ESPEON",
+            "category": "Sun Pokémon",
+            "entry_text": [
+                "Its fur is so sensitive, it can\n",
+                "sense minute shifts in the air\n",
+                "and predict the weather."
+            ]
+        },
+        "fr": {
+            "name": "MENTALI",
+            "category": "Pokémon Soleil",
+            "entry_text": [
+                "Son pelage a l’aspect et la texture\n",
+                "du velours. L’orbe à son front luit\n",
+                "quand il utilise ses pouvoirs psy."
+            ]
+        },
+        "de": {
+            "name": "PSIANA",
+            "category": "Sonne",
+            "entry_text": [
+                "Sein Fell ist wie Samt. Setzt es\n",
+                "Psycho-Kräfte ein, leuchtet die\n",
+                "Kugel in seiner Stirn."
+            ]
+        },
+        "it": {
+            "name": "ESPEON",
+            "category": "Pokémon Sole",
+            "entry_text": [
+                "Il suo pelo è simile al velluto.\n",
+                "Quando usa i suoi poteri psichici,\n",
+                "la sfera che ha sulla fronte brilla."
+            ]
+        },
+        "es": {
+            "name": "ESPEON",
+            "category": "Pokémon Sol",
+            "entry_text": [
+                "Su pelaje es como el terciopelo.\n",
+                "La esfera de su frente brilla\n",
+                "cuando usa sus poderes psíquicos."
+            ]
+        },
+        "jp": {
+            "name": "エ－フィ",
+            "category": "たいようポケモン",
+            "entry_text": [
+                "たいもうは　ビロ－ドの　つやと\n",
+                "はだざわり。サイコパワ－を　つかう\n",
+                "とき　ひたいの　たまが　かがやく。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

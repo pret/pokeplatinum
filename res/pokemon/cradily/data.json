@@ -1,5 +1,4 @@
 {
-    "name": "Cradily",
     "base_stats": {
         "hp": 86,
         "attack": 81,
@@ -115,8 +114,60 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "It lives in the shallows of warm\nseas. When the tide goes out, it\ndigs up prey from beaches.",
-        "category": "Barnacle Pokémon"
+        "en": {
+            "name": "CRADILY",
+            "category": "Barnacle Pokémon",
+            "entry_text": [
+                "It lives in the shallows of warm\n",
+                "seas. When the tide goes out, it\n",
+                "digs up prey from beaches."
+            ]
+        },
+        "fr": {
+            "name": "VACILYS",
+            "category": "Pokémon Bernacle",
+            "entry_text": [
+                "Vit dans les hauts-fonds des mers\n",
+                "chaudes. Il déterre sa proie du\n",
+                "sable quand la marée se retire."
+            ]
+        },
+        "de": {
+            "name": "WIELIE",
+            "category": "Rankfüßer",
+            "entry_text": [
+                "Es lebt in seichten Stellen warmer\n",
+                "Meere. Bei Ebbe sucht es im Sand\n",
+                "nach Beute. "
+            ]
+        },
+        "it": {
+            "name": "CRADILY",
+            "category": "Pokémon Lepade",
+            "entry_text": [
+                "Vive in acque poco profonde nei\n",
+                "mari caldi. Con la bassa marea,\n",
+                "scava sulla riva in cerca di prede."
+            ]
+        },
+        "es": {
+            "name": "CRADILY",
+            "category": "Pokémon Percebe",
+            "entry_text": [
+                "Vive en el fondo de los mares de\n",
+                "aguas templadas. Emerge para\n",
+                "cazar cuando baja la marea."
+            ]
+        },
+        "jp": {
+            "name": "ユレイドル",
+            "category": "いわつぼポケモン",
+            "entry_text": [
+                "あたたかい　うみの　あさせに　いる。\n",
+                "しおが　ひくと　すなはまに　もぐった\n",
+                "えものを　ほりだして　たべる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

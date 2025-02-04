@@ -1,6 +1,6 @@
 #include "scrcmd_system_flags.h"
 
-#include "consts/badges.h"
+#include "generated/badges.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"

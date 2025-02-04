@@ -1,5 +1,4 @@
 {
-    "name": "-----",
     "base_stats": {
         "hp": 0,
         "attack": 0,
@@ -37,6 +36,10 @@
         "by_tm": [  ]
     },
     "evolutions": [  ],
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL"
+    },
     "pokedex_data": {
         "height": 7,
         "weight": 69,
@@ -49,7 +52,35 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": null,
-        "category": "????? Pokémon"
+        "en": {
+            "name": "----------",
+            "category": "????? Pokémon",
+            "entry_text": [  ]
+        },
+        "fr": {
+            "name": "----------",
+            "category": "Pokémon ?????",
+            "entry_text": [  ]
+        },
+        "de": {
+            "name": "----------",
+            "category": "?????",
+            "entry_text": [  ]
+        },
+        "it": {
+            "name": "----------",
+            "category": "Pokémon ?????",
+            "entry_text": [  ]
+        },
+        "es": {
+            "name": "----------",
+            "category": "Pokémon (?)",
+            "entry_text": [  ]
+        },
+        "jp": {
+            "name": "－－－－－",
+            "category": "？？？？？ポケモン",
+            "entry_text": [  ]
+        }
     }
 }

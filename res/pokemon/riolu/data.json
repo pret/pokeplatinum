@@ -1,5 +1,4 @@
 {
-    "name": "Riolu",
     "base_stats": {
         "hp": 40,
         "attack": 70,
@@ -115,8 +114,60 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "It has the peculiar power of being\nable to see emotions such as joy\nand rage in the form of waves.",
-        "category": "Emanation Pokémon"
+        "en": {
+            "name": "RIOLU",
+            "category": "Emanation Pokémon",
+            "entry_text": [
+                "It has the peculiar power of being\n",
+                "able to see emotions such as joy\n",
+                "and rage in the form of waves."
+            ]
+        },
+        "fr": {
+            "name": "RIOLU",
+            "category": "Pokémon Emanation",
+            "entry_text": [
+                "Son aura s’intensifie pour\n",
+                "prévenir son entourage quand\n",
+                "il a peur ou qu’il est triste."
+            ]
+        },
+        "de": {
+            "name": "RIOLU",
+            "category": "Wellenspiel",
+            "entry_text": [
+                "Die Aura, die dieses PKMN umgibt,\n",
+                "verstärkt sich, wenn es zeigen will,\n",
+                "dass es ängstlich oder traurig ist."
+            ]
+        },
+        "it": {
+            "name": "RIOLU",
+            "category": "Pokémon Emanazione",
+            "entry_text": [
+                "L’aura che emana si intensifica\n",
+                "per comunicare agli altri se è\n",
+                "triste o spaventato."
+            ]
+        },
+        "es": {
+            "name": "RIOLU",
+            "category": "Pokémon Emanación",
+            "entry_text": [
+                "Su aura se intensifica para alertar\n",
+                "a otros cuando está triste o tiene\n",
+                "miedo."
+            ]
+        },
+        "jp": {
+            "name": "リオル",
+            "category": "はもんポケモン",
+            "entry_text": [
+                "からだから　はっする　はどうは\n",
+                "こわいとき　かなしいときに　つよまり\n",
+                "ピンチを　なかまに　つたえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

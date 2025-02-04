@@ -1,5 +1,4 @@
 {
-    "name": "Shellder",
     "base_stats": {
         "hp": 30,
         "attack": 65,
@@ -106,8 +105,60 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "It swims backward by opening and\nclosing its two shells. Its large\ntongue is always kept hanging out.",
-        "category": "Bivalve Pokémon"
+        "en": {
+            "name": "SHELLDER",
+            "category": "Bivalve Pokémon",
+            "entry_text": [
+                "It swims backward by opening and\n",
+                "closing its two shells. Its large\n",
+                "tongue is always kept hanging out."
+            ]
+        },
+        "fr": {
+            "name": "KOKIYAS",
+            "category": "Pokémon Bivalve",
+            "entry_text": [
+                "Il nage à reculons en ouvrant et en\n",
+                "refermant ses deux coquilles. Il\n",
+                "laisse traîner sa large langue."
+            ]
+        },
+        "de": {
+            "name": "MUSCHAS",
+            "category": "Muschel",
+            "entry_text": [
+                "Es schwimmt rückwärts, indem es\n",
+                "seine Schale öffnet und schließt.\n",
+                "Es zeigt immer seine breite Zunge."
+            ]
+        },
+        "it": {
+            "name": "SHELLDER",
+            "category": "Pokémon Bivalve",
+            "entry_text": [
+                "Nuota all’indietro aprendo e\n",
+                "chiudendo le due valve. La lingua\n",
+                "è sempre fuori a penzoloni."
+            ]
+        },
+        "es": {
+            "name": "SHELLDER",
+            "category": "Pokémon Bivalvo",
+            "entry_text": [
+                "Nada hacia atrás abriendo y\n",
+                "cerrando su concha. Su gran\n",
+                "lengua siempre queda colgando."
+            ]
+        },
+        "jp": {
+            "name": "シェルダ－",
+            "category": "２まいがいポケモン",
+            "entry_text": [
+                "２まいの　カラを　あけしめすることで\n",
+                "うしろむきに　およぐ。どんなときでも\n",
+                "おおきな　ベロは　だしっぱなし。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

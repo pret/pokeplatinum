@@ -1,5 +1,4 @@
 {
-    "name": "Bagon",
     "base_stats": {
         "hp": 45,
         "attack": 75,
@@ -112,8 +111,60 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Dreaming of one day flying, it\npractices by leaping off cliffs\nevery day.",
-        "category": "Rock Head Pokémon"
+        "en": {
+            "name": "BAGON",
+            "category": "Rock Head Pokémon",
+            "entry_text": [
+                "Dreaming of one day flying, it\n",
+                "practices by leaping off cliffs\n",
+                "every day."
+            ]
+        },
+        "fr": {
+            "name": "DRABY",
+            "category": "Pokémon Tête de Roc",
+            "entry_text": [
+                "Il rêve de pouvoir voler un jour. \n",
+                "Pour l’heure, il s’entraîne en\n",
+                "sautant du haut des falaises."
+            ]
+        },
+        "de": {
+            "name": "KINDWURM",
+            "category": "Steinhaupt",
+            "entry_text": [
+                "Es träumt davon, eines Tages\n",
+                "fliegen zu können und springt daher\n",
+                "jeden Tag von hohen Klippen."
+            ]
+        },
+        "it": {
+            "name": "BAGON",
+            "category": "Pokémon Rocciotesta",
+            "entry_text": [
+                "Sogna di poter volare un giorno e,\n",
+                "pertanto, si allena regolarmente\n",
+                "gettandosi da alture."
+            ]
+        },
+        "es": {
+            "name": "BAGON",
+            "category": "Pokémon Cabeza Roca",
+            "entry_text": [
+                "Sueña con volar algún día,\n",
+                "por lo que siempre practica\n",
+                "saltando desde acantilados."
+            ]
+        },
+        "jp": {
+            "name": "タツベイ",
+            "category": "いしあたまポケモン",
+            "entry_text": [
+                "おおぞらを　とぶことを　ゆめみて\n",
+                "まいにち　とぶ　れんしゅうのために\n",
+                "がけから　とびおりている。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

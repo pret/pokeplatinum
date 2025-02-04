@@ -1,5 +1,4 @@
 {
-    "name": "Fearow",
     "base_stats": {
         "hp": 65,
         "attack": 90,
@@ -106,8 +105,60 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "It has the stamina to fly all\nday on its broad wings. It\nfights by using its sharp beak.",
-        "category": "Beak Pokémon"
+        "en": {
+            "name": "FEAROW",
+            "category": "Beak Pokémon",
+            "entry_text": [
+                "It has the stamina to fly all\n",
+                "day on its broad wings. It\n",
+                "fights by using its sharp beak."
+            ]
+        },
+        "fr": {
+            "name": "RAPASDEPIC",
+            "category": "Pokémon Bec-Oiseau",
+            "entry_text": [
+                "Il a assez d’énergie pour voler \n",
+                "toute la journée avec ses grandes \n",
+                "ailes. Il frappe de son bec acéré."
+            ]
+        },
+        "de": {
+            "name": "IBITAK",
+            "category": "Pickvogel",
+            "entry_text": [
+                "Es hat genügend Ausdauer, den\n",
+                "ganzen Tag zu fliegen. Sein\n",
+                "scharfer Schnabel dient als Waffe."
+            ]
+        },
+        "it": {
+            "name": "FEAROW",
+            "category": "Pokémon Becco",
+            "entry_text": [
+                "Le sue ampie ali robuste gli permet-\n",
+                "tono di volare tutto il giorno.\n",
+                "Combatte usando il becco aguzzo."
+            ]
+        },
+        "es": {
+            "name": "FEAROW",
+            "category": "Pokémon Pico",
+            "entry_text": [
+                "Tiene energía para volar todo el\n",
+                "día con sus grandes alas. Lucha\n",
+                "con su afilado pico."
+            ]
+        },
+        "jp": {
+            "name": "オニドリル",
+            "category": "くちばしポケモン",
+            "entry_text": [
+                "おおきな　つばさで　１にちじゅう\n",
+                "とびまわる　たいりょくの　もちぬし。\n",
+                "するどい　くちばしで　たたかう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

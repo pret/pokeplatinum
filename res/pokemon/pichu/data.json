@@ -1,5 +1,4 @@
 {
-    "name": "Pichu",
     "base_stats": {
         "hp": 20,
         "attack": 40,
@@ -100,8 +99,60 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "The electric sacs in its cheeks are\nsmall. If even a little electricity\nleaks, it becomes shocked.",
-        "category": "Tiny Mouse Pokémon"
+        "en": {
+            "name": "PICHU",
+            "category": "Tiny Mouse Pokémon",
+            "entry_text": [
+                "The electric sacs in its cheeks are\n",
+                "small. If even a little electricity\n",
+                "leaks, it becomes shocked."
+            ]
+        },
+        "fr": {
+            "name": "PICHU",
+            "category": "Pokémon Minisouris",
+            "entry_text": [
+                "Les poches sur ses joues sont\n",
+                "encore trop petites pour\n",
+                "accumuler beaucoup d’électricité."
+            ]
+        },
+        "de": {
+            "name": "PICHU",
+            "category": "Babymaus",
+            "entry_text": [
+                "Seine Backentaschen sind noch\n",
+                "recht klein. Daher kann es nicht\n",
+                "allzu viel Elektrizität speichern."
+            ]
+        },
+        "it": {
+            "name": "PICHU",
+            "category": "Pokémon Topino",
+            "entry_text": [
+                "Le sacche che ha sulle guance sono\n",
+                "ancora piccole e non riescono a\n",
+                "immagazzinare molta elettricità."
+            ]
+        },
+        "es": {
+            "name": "PICHU",
+            "category": "Pokémon Ratoncito",
+            "entry_text": [
+                "Las bolsas de sus mejillas son aún\n",
+                "demasiado pequeñas para almacenar\n",
+                "mucha electricidad."
+            ]
+        },
+        "jp": {
+            "name": "ピチュ－",
+            "category": "こねずみポケモン",
+            "entry_text": [
+                "ほっぺたの　でんきぶくろが\n",
+                "まだ　ちいさいので\n",
+                "でんきを　たくさん　ためられない。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

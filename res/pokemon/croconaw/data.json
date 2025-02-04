@@ -1,5 +1,4 @@
 {
-    "name": "Croconaw",
     "base_stats": {
         "hp": 65,
         "attack": 80,
@@ -126,8 +125,60 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "Once it bites down, it won’t let go\nuntil it loses its fangs. New fangs\nquickly grow into place.",
-        "category": "Big Jaw Pokémon"
+        "en": {
+            "name": "CROCONAW",
+            "category": "Big Jaw Pokémon",
+            "entry_text": [
+                "Once it bites down, it won’t let go\n",
+                "until it loses its fangs. New fangs\n",
+                "quickly grow into place."
+            ]
+        },
+        "fr": {
+            "name": "CROCRODIL",
+            "category": "Pokémon Mâchoire",
+            "entry_text": [
+                "Quand il mord, il ne lâche pas prise\n",
+                "avant que ses crocs se brisent.\n",
+                "Ils repoussent par la suite."
+            ]
+        },
+        "de": {
+            "name": "TYRACROC",
+            "category": "Großmaul",
+            "entry_text": [
+                "Hat es einmal zugebissen, lässt es\n",
+                "erst los, wenn es seine Zähne\n",
+                "verliert, die schnell nachwachsen."
+            ]
+        },
+        "it": {
+            "name": "CROCONAW",
+            "category": "Pokémon Mascellone",
+            "entry_text": [
+                "Quando azzanna il nemico, non molla\n",
+                "la presa finché non gli cadono le\n",
+                "zanne, che però ricrescono subito."
+            ]
+        },
+        "es": {
+            "name": "CROCONAW",
+            "category": "Pokémon Fauces",
+            "entry_text": [
+                "Cuando muerde algo, no lo suelta\n",
+                "hasta que pierde sus colmillos.\n",
+                "Estos se regeneran rápidamente."
+            ]
+        },
+        "jp": {
+            "name": "アリゲイツ",
+            "category": "おおあごポケモン",
+            "entry_text": [
+                "いちど　かみつくと　キバが\n",
+                "ぬけるまで　ぜったいに　はなさない。\n",
+                "ぬけた　キバは　すぐに　はえてくる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

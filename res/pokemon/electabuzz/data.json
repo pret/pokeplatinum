@@ -1,5 +1,4 @@
 {
-    "name": "Electabuzz",
     "base_stats": {
         "hp": 65,
         "attack": 83,
@@ -121,8 +120,60 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "It windmills its arms to slightly\nboost its punches. Foes have been\nknown to escape in the meantime.",
-        "category": "Electric Pokémon"
+        "en": {
+            "name": "ELECTABUZZ",
+            "category": "Electric Pokémon",
+            "entry_text": [
+                "It windmills its arms to slightly\n",
+                "boost its punches. Foes have been\n",
+                "known to escape in the meantime."
+            ]
+        },
+        "fr": {
+            "name": "ELEKTEK",
+            "category": "Pokémon Electrique",
+            "entry_text": [
+                "Ce Pokémon dévore l’électricité des\n",
+                "centrales. Il est responsable de la\n",
+                "majorité des coupures de courant."
+            ]
+        },
+        "de": {
+            "name": "ELEKTEK",
+            "category": "Elektro",
+            "entry_text": [
+                "Die Hälfte aller Stromausfälle wird\n",
+                "durch dieses PKMN ausgelöst, das\n",
+                "in E-Werken Elektrizität frisst."
+            ]
+        },
+        "it": {
+            "name": "ELECTABUZZ",
+            "category": "Pokémon Elettrico",
+            "entry_text": [
+                "Quando si avvicina alle centrali\n",
+                "per nutrirsi dell’elettricità,\n",
+                "provoca un black-out."
+            ]
+        },
+        "es": {
+            "name": "ELECTABUZZ",
+            "category": "Pokémon Eléctrico",
+            "entry_text": [
+                "La mitad de los apagones los\n",
+                "provoca el enorme apetito de este\n",
+                "Pokémon que come electricidad."
+            ]
+        },
+        "jp": {
+            "name": "エレブ－",
+            "category": "でんげきポケモン",
+            "entry_text": [
+                "ていでんの　げんいんの　はんぶんは\n",
+                "エレブ－が　はつでんしょに　あらわれ\n",
+                "でんきを　たべてしまった　ことだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

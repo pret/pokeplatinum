@@ -43,6 +43,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "int_distance.h"
 #include "math.h"
 #include "narc.h"
 #include "render_window.h"
@@ -57,7 +58,6 @@
 #include "unk_0200A328.h"
 #include "unk_02015064.h"
 #include "unk_02015920.h"
-#include "unk_0201E3BC.h"
 #include "unk_02098FFC.h"
 
 typedef struct {
@@ -1491,7 +1491,7 @@ static void ov83_0223F0F4(UnkStruct_ov83_0223F054 *param0, UnkStruct_ov83_0223FE
 
         v4 = param0->unk_14.x - (128 * FX32_ONE);
         v5 = param0->unk_14.y - (96 * FX32_ONE);
-        v1 = sub_0201E3BC(v4 >> FX32_SHIFT, v5 >> FX32_SHIFT, 0, 0);
+        v1 = CalcDistance2D(v4 >> FX32_SHIFT, v5 >> FX32_SHIFT, 0, 0);
         v2 = FX_Atan2Idx(v5, v4);
         v3 = v2 + param0->unk_2C;
 

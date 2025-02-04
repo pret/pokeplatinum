@@ -235,5 +235,5 @@ pokemon_summary_screen_narc = custom_target('pl_pst_gra.narc',
     ]
 )
 
-nitrofs_files += pokemon_summary_screen_narc[0]
+nitrofs_files += pokemon_summary_screen_narc
 naix_headers += pokemon_summary_screen_narc[1]

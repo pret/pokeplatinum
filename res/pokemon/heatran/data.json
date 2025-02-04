@@ -1,5 +1,4 @@
 {
-    "name": "Heatran",
     "base_stats": {
         "hp": 91,
         "attack": 90,
@@ -119,8 +118,60 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 7,
         "pokemon_pos_m": 1,
-        "entry_text": "Its body is made of rugged steel.\nHowever, it is partially melted in\nspots because of its own heat.",
-        "category": "Lava Dome Pokémon"
+        "en": {
+            "name": "HEATRAN",
+            "category": "Lava Dome Pokémon",
+            "entry_text": [
+                "Its body is made of rugged steel.\n",
+                "However, it is partially melted in\n",
+                "spots because of its own heat."
+            ]
+        },
+        "fr": {
+            "name": "HEATRAN",
+            "category": "Pokémon Caldeira",
+            "entry_text": [
+                "Il hante les grottes volcaniques.\n",
+                "Il rampe au mur et au plafond grâce\n",
+                "à ses pieds en forme de croix."
+            ]
+        },
+        "de": {
+            "name": "HEATRAN",
+            "category": "Lavadom",
+            "entry_text": [
+                "Es lebt in vulkanischen Höhlen.\n",
+                "Mit seinen kreuzförmigen Klauen\n",
+                "kann es sogar an der Decke laufen."
+            ]
+        },
+        "it": {
+            "name": "HEATRAN",
+            "category": "Pokémon Cratere",
+            "entry_text": [
+                "Vive nelle cavità dei vulcani. Scava\n",
+                "con i suoi piedi a croce per scalare\n",
+                "pareti e arrampicarsi sui soffitti."
+            ]
+        },
+        "es": {
+            "name": "HEATRAN",
+            "category": "Pokémon Domo Lava",
+            "entry_text": [
+                "Habita cuevas volcánicas. Cava\n",
+                "con sus pies en forma de cruz\n",
+                "para trepar por techos y paredes."
+            ]
+        },
+        "jp": {
+            "name": "ヒ－ドラン",
+            "category": "かこうポケモン",
+            "entry_text": [
+                "かざんの　ほらあなに　せいそく。\n",
+                "じゅうじの　ツメを　くいこませて\n",
+                "カベや　てんじょうを　はいまわる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

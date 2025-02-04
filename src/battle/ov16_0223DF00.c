@@ -7,9 +7,8 @@
 #include "constants/game_options.h"
 #include "constants/heap.h"
 #include "constants/items.h"
-#include "consts/battle.h"
-#include "consts/game_records.h"
 #include "generated/species.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pokedexdata_decl.h"
@@ -23,7 +22,7 @@
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_display.h"
@@ -114,7 +113,7 @@ u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
 u8 Battler_Side(BattleSystem *battleSystem, int param1);
 void *ov16_0223E220(BattleSystem *battleSystem);
 PCBoxes *ov16_0223E228(BattleSystem *battleSystem);
-enum Terrain BattleSystem_Terrain(BattleSystem *battleSys);
+enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
 int ov16_0223E240(BattleSystem *battleSystem);
 int BattleSystem_MapHeader(BattleSystem *battleSystem);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
@@ -505,7 +504,7 @@ PCBoxes *ov16_0223E228(BattleSystem *battleSystem)
     return battleSystem->pcBoxes;
 }
 
-enum Terrain BattleSystem_Terrain(BattleSystem *battleSys)
+enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys)
 {
     if (battleSys->terrain > TERRAIN_MAX || battleSys->terrain < TERRAIN_PLAIN) {
         return TERRAIN_MAX;
@@ -1551,7 +1550,7 @@ int ov16_0223F6F0(BattleSystem *battleSystem, u16 param1)
 
 u16 BattleSystem_TrainerItems(BattleSystem *battleSystem, int param1, int param2)
 {
-    return battleSystem->trainers[param1].items[param2];
+    return battleSystem->trainers[param1].header.items[param2];
 }
 
 u32 BattleSystem_RecordingStopped(BattleSystem *battleSystem)

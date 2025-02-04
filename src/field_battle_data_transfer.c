@@ -9,16 +9,16 @@
 #include "constants/overworld_weather.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
-#include "consts/battle.h"
 #include "generated/items.h"
 #include "generated/species.h"
+#include "generated/text_banks.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0205EC34.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
@@ -61,8 +61,7 @@
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
 
-#include "res/text/gmm/message_bank_location_names.h"
-#include "res/text/pl_msg.naix"
+#include "res/text/bank/location_names.h"
 
 static int CalcTerrain(const FieldSystem *fieldSystem, enum BattleBackground background);
 static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fieldSystem);
@@ -154,7 +153,7 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const Fie
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
     Options *options = SaveData_Options(fieldSystem->saveData);
     FieldBattleDTO *dto = FieldBattleDTO_New(heapID, BATTLE_TYPE_CATCH_TUTORIAL);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_counterpart_names, heapID);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTERPART_NAMES, heapID);
     Strbuf *strbuf = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
     Pokemon *mon;
 
@@ -405,7 +404,7 @@ void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *f
         int unionAppearance = TrainerInfo_Appearance(trainerInfo);
         int unionGender = TrainerInfo_Gender(trainerInfo);
 
-        dto->trainer[BATTLER_PLAYER_1].class = sub_0205CA14(unionGender, unionAppearance, 1);
+        dto->trainer[BATTLER_PLAYER_1].header.trainerType = sub_0205CA14(unionGender, unionAppearance, 1);
         CharCode_Copy(dto->trainer[BATTLER_PLAYER_1].name, TrainerInfo_Name(dto->trainerInfo[BATTLER_PLAYER_1]));
         dto->trainer[BATTLER_PLAYER_2] = dto->trainer[BATTLER_PLAYER_1];
     } else {
@@ -444,7 +443,7 @@ void FieldBattleDTO_UpdatePokedex(const FieldBattleDTO *dto, FieldSystem *fieldS
     Pokedex_Copy(dto->pokedex, pokedex);
 }
 
-static const enum Terrain sTerrainForBackground[] = {
+static const enum BattleTerrain sTerrainForBackground[] = {
     [BACKGROUND_PLAIN] = TERRAIN_PLAIN,
     [BACKGROUND_WATER] = TERRAIN_WATER,
     [BACKGROUND_CITY] = TERRAIN_BUILDING,
@@ -549,7 +548,7 @@ BOOL CheckPlayerDidNotCaptureWildMon(u32 battleResult)
 
 void FieldBattleDTO_CopyPlayerInfoToTrainerData(FieldBattleDTO *dto)
 {
-    dto->trainer[BATTLER_PLAYER_1].class = TrainerInfo_Gender(dto->trainerInfo[BATTLER_PLAYER_1]);
+    dto->trainer[BATTLER_PLAYER_1].header.trainerType = TrainerInfo_Gender(dto->trainerInfo[BATTLER_PLAYER_1]);
     CharCode_Copy(dto->trainer[BATTLER_PLAYER_1].name, TrainerInfo_Name(dto->trainerInfo[BATTLER_PLAYER_1]));
     dto->trainer[BATTLER_PLAYER_2] = dto->trainer[BATTLER_PLAYER_1];
 }

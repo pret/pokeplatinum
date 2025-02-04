@@ -1,5 +1,4 @@
 {
-    "name": "Golbat",
     "base_stats": {
         "hp": 75,
         "attack": 80,
@@ -116,8 +115,60 @@
         "pokemon_pos_f": 65532,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65532,
-        "entry_text": "Its sharp fangs puncture the\ntoughest of hides and have small\nholes for greedily sucking blood.",
-        "category": "Bat Pokémon"
+        "en": {
+            "name": "GOLBAT",
+            "category": "Bat Pokémon",
+            "entry_text": [
+                "Its sharp fangs puncture the\n",
+                "toughest of hides and have small\n",
+                "holes for greedily sucking blood."
+            ]
+        },
+        "fr": {
+            "name": "NOSFERALTO",
+            "category": "Pokémon Chovsouris",
+            "entry_text": [
+                "Il aime le sang des humains et des\n",
+                "Pokémon. Il erre la nuit en quête\n",
+                "d’un cou où planter ses crocs."
+            ]
+        },
+        "de": {
+            "name": "GOLBAT",
+            "category": "Fledermaus",
+            "entry_text": [
+                "Es liebt das Blut von Menschen und\n",
+                "Pokémon. Nachts fliegt es umher auf\n",
+                "der Suche nach Halsvenen."
+            ]
+        },
+        "it": {
+            "name": "GOLBAT",
+            "category": "Pokémon Pipistrello",
+            "entry_text": [
+                "Ama il sangue umano e quello dei\n",
+                "Pokémon. Vola nel buio della notte\n",
+                "in cerca di vene da succhiare."
+            ]
+        },
+        "es": {
+            "name": "GOLBAT",
+            "category": "Pokémon Murciélago",
+            "entry_text": [
+                "Le encanta la sangre, tanto la de\n",
+                "Pokémon como la humana.\n",
+                "Sale a calmar su sed por la noche."
+            ]
+        },
+        "jp": {
+            "name": "ゴルバット",
+            "category": "こうもりポケモン",
+            "entry_text": [
+                "ひとや　ポケモンの　けつえきが\n",
+                "だいこうぶつ。くびすじの　けっかんを\n",
+                "ねらい　よぞらを　とびまわる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

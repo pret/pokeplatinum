@@ -1,5 +1,4 @@
 {
-    "name": "Mareep",
     "base_stats": {
         "hp": 55,
         "attack": 40,
@@ -103,8 +102,60 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "Its fluffy coat swells to double\nwhen static electricity builds up.\nTouching it can be shocking.",
-        "category": "Wool Pokémon"
+        "en": {
+            "name": "MAREEP",
+            "category": "Wool Pokémon",
+            "entry_text": [
+                "Its fluffy coat swells to double\n",
+                "when static electricity builds up.\n",
+                "Touching it can be shocking."
+            ]
+        },
+        "fr": {
+            "name": "WATTOUAT",
+            "category": "Pokémon Laine",
+            "entry_text": [
+                "Sa laine fournie enfle lorsqu’il\n",
+                "accumule de l’électricité statique.\n",
+                "Son contact peut choquer. "
+            ]
+        },
+        "de": {
+            "name": "VOLTILAMM",
+            "category": "Wolle",
+            "entry_text": [
+                "Sein weiches Fell wird doppelt so\n",
+                "dick, wenn sich Elektrizität\n",
+                "aufbaut. "
+            ]
+        },
+        "it": {
+            "name": "MAREEP",
+            "category": "Pokémon Lana",
+            "entry_text": [
+                "Se il manto è carico d’elettricità,\n",
+                "le sue dimensioni raddoppiano e può\n",
+                "dare la scossa.\n"
+            ]
+        },
+        "es": {
+            "name": "MAREEP",
+            "category": "Pokémon Lana",
+            "entry_text": [
+                "Su pelaje lanudo dobla su volumen\n",
+                "al acumular electricidad estática.\n",
+                "Tocarlo puede dar calambre."
+            ]
+        },
+        "jp": {
+            "name": "メリ－プ",
+            "category": "わたげポケモン",
+            "entry_text": [
+                "ふわふわの　たいもうは　せいでんきが\n",
+                "たまると　２ばいに　ふくらむ。\n",
+                "さわると　かんでんしてしまう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

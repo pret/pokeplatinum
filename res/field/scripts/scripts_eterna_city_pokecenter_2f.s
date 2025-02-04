@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/eterna_city_pokecenter_2f.h"
 
     .data
 

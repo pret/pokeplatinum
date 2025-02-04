@@ -1,5 +1,4 @@
 {
-    "name": "Mothim",
     "base_stats": {
         "hp": 70,
         "attack": 94,
@@ -113,8 +112,60 @@
         "pokemon_pos_f": 65525,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65525,
-        "entry_text": "While it loves floral honey, it won’t\ngather any itself. Instead, it\nplots to steal some from COMBEE.",
-        "category": "Moth Pokémon"
+        "en": {
+            "name": "MOTHIM",
+            "category": "Moth Pokémon",
+            "entry_text": [
+                "While it loves floral honey, it won’t\n",
+                "gather any itself. Instead, it\n",
+                "plots to steal some from COMBEE."
+            ]
+        },
+        "fr": {
+            "name": "PAPILORD",
+            "category": "Pokémon Phalène",
+            "entry_text": [
+                "Il aime le nectar des fleurs et\n",
+                "n’hésite pas à voler celui\n",
+                "que récupère APITRINI."
+            ]
+        },
+        "de": {
+            "name": "MOTERPEL",
+            "category": "Motte",
+            "entry_text": [
+                "Es liebt Honig und stiehlt den\n",
+                "Honig, der von WADRIBIE\n",
+                "gesammelt wurde."
+            ]
+        },
+        "it": {
+            "name": "MOTHIM",
+            "category": "Pokémon Falena",
+            "entry_text": [
+                "Ama il nettare dei fiori. Ruba e\n",
+                "mangia il nettare raccolto da \n",
+                "COMBEE."
+            ]
+        },
+        "es": {
+            "name": "MOTHIM",
+            "category": "Pokémon Polilla",
+            "entry_text": [
+                "Le encanta la miel de las\n",
+                "flores y roba la que recoge\n",
+                "COMBEE."
+            ]
+        },
+        "jp": {
+            "name": "ガ－メイル",
+            "category": "ミノガポケモン",
+            "entry_text": [
+                "はなの　ミツが　だいすき。\n",
+                "ミツハニ－の　あつめた　ミツを\n",
+                "よこどりして　たべてしまう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",

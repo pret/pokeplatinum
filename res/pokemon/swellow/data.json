@@ -1,5 +1,4 @@
 {
-    "name": "Swellow",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -106,8 +105,60 @@
         "pokemon_pos_f": 65531,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65531,
-        "entry_text": "It circles the sky in search of\nprey. When it spots one, it dives\nsteeply to catch the prey.",
-        "category": "Swallow Pokémon"
+        "en": {
+            "name": "SWELLOW",
+            "category": "Swallow Pokémon",
+            "entry_text": [
+                "It circles the sky in search of\n",
+                "prey. When it spots one, it dives\n",
+                "steeply to catch the prey."
+            ]
+        },
+        "fr": {
+            "name": "HELEDELLE",
+            "category": "Pokémon Hirondelle",
+            "entry_text": [
+                "Il vole en cercle en quête d’une\n",
+                "proie. Dès qu’il l’a repérée, il fond\n",
+                "sur elle en un éclair."
+            ]
+        },
+        "de": {
+            "name": "SCHWALBOSS",
+            "category": "Schwalbe",
+            "entry_text": [
+                "Es fliegt auf der Suche nach Beute\n",
+                "ständig umher. Findet es Beute,\n",
+                "stürzt es sich im Sturzflug auf sie."
+            ]
+        },
+        "it": {
+            "name": "SWELLOW",
+            "category": "Pokémon Rondine",
+            "entry_text": [
+                "Vola in tondo alla ricerca di prede.\n",
+                "Quando ne avvista una, si lancia\n",
+                "in picchiata per catturarla."
+            ]
+        },
+        "es": {
+            "name": "SWELLOW",
+            "category": "Pokémon Buche",
+            "entry_text": [
+                "Vuela en círculos en busca de\n",
+                "presas. Cuando ve una, se lanza\n",
+                "sin dudarlo."
+            ]
+        },
+        "jp": {
+            "name": "オオスバメ",
+            "category": "ツバメポケモン",
+            "entry_text": [
+                "じょうくうを　せんかいしながら\n",
+                "えものを　さがし　まっさかさまに\n",
+                "きゅうこうかして　つかまえる。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

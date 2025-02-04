@@ -3,9 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/text_banks.h"
+
 #include "struct_decls/sprite_decl.h"
 
-#include "gmm/message_bank_pokedex.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
@@ -14,7 +15,6 @@
 #include "overlay021/species_caught_status.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
-#include "overlay021/struct_ov21_021D157C.h"
 #include "overlay021/struct_ov21_021D2648.h"
 #include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
@@ -23,7 +23,6 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
-#include "text/pl_msg.naix"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -40,6 +39,8 @@
 #include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
+
+#include "res/text/bank/pokedex.h"
 
 typedef struct {
     UnkStruct_ov21_021D13FC *unk_00;
@@ -71,7 +72,7 @@ typedef struct {
     CellActorResourceData unk_B4;
     void *unk_D8;
     NNSG2dScreenData *unk_DC;
-    UnkStruct_ov21_021D157C unk_E0;
+    PokedexLoadingScreen loadingScreen;
     UnkStruct_ov21_021D2648 unk_104;
     UnkStruct_ov21_021D2648 unk_124;
     int unk_144;
@@ -737,7 +738,7 @@ static void ov21_021D63C0(UnkStruct_ov21_021D71A8 *param0)
 static void ov21_021D63DC(UnkStruct_ov21_021D13FC *param0, int heapID, int param2, int param3)
 {
     Strbuf *v0 = Strbuf_Init(32, heapID);
-    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_seen, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 8, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
@@ -759,7 +760,7 @@ static void ov21_021D63DC(UnkStruct_ov21_021D13FC *param0, int heapID, int param
 static void ov21_021D64B0(UnkStruct_ov21_021D13FC *param0, int heapID, int param2)
 {
     Strbuf *v0 = Strbuf_Init(32, heapID);
-    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     MessageLoader_GetStrbuf(pokedexMessageBank, pl_msg_pokedex_results, v0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_04, FONT_SYSTEM, v0, 8, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
@@ -1289,7 +1290,7 @@ static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D13
     UnkStruct_ov21_021D4CB8 v0;
     Window *v1;
     Strbuf *v2 = Strbuf_Init(32, heapID);
-    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_pokedex, heapID);
+    MessageLoader *pokedexMessageBank = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEDEX, heapID);
 
     v0.unk_00 = param1->unk_14C;
     v0.unk_08 = param0->unk_90.paletteProxy;
@@ -1420,31 +1421,27 @@ static void ov21_021D6FB4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D5C
         }
     }
 
-    ov21_021D1558(&param0->unk_E0, param1->unk_00->unk_00, 2, param0->unk_DC, v0, v1, v2, v3, v4);
+    Pokedex_SetLoadingScreenParams(&param0->loadingScreen, param1->unk_00->unk_00, 2, param0->unk_DC, v0, v1, v2, v3, v4);
 }
 
 static BOOL ov21_021D7044(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D5C08 *param1)
 {
-    BOOL v0;
-    int v1;
+    BOOL moveComplete = Pokedex_LoadingScreenMove(&param0->loadingScreen);
 
-    v0 = ov21_021D157C(&param0->unk_E0);
+    if (moveComplete == FALSE) {
+        int bottomPos = (param0->loadingScreen.bottomDist * (param0->loadingScreen.counter - 1)) / param0->loadingScreen.duration;
+        bottomPos += param0->loadingScreen.bottomStart;
+        bottomPos *= 8;
+        bottomPos = bottomPos - (14 * 8);
 
-    if (v0 == 0) {
-        v1 = (param0->unk_E0.unk_18 * (param0->unk_E0.unk_1C - 1)) / param0->unk_E0.unk_20;
-        v1 += param0->unk_E0.unk_10;
-        v1 = v1;
-        v1 *= 8;
-        v1 = v1 - (14 * 8);
-
-        if (v1 < -48) {
-            v1 = -48;
+        if (bottomPos < -48) {
+            bottomPos = -48;
         }
 
-        Bg_ScheduleScroll(param1->unk_00->unk_00, 1, 3, v1);
+        Bg_ScheduleScroll(param1->unk_00->unk_00, 1, 3, bottomPos);
     }
 
-    return v0;
+    return moveComplete;
 }
 
 static void ov21_021D7094(UnkStruct_ov21_021D5C08 *param0, const UnkStruct_ov21_021D5B68 *param1, BOOL param2)

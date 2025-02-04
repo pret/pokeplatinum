@@ -1,5 +1,4 @@
 {
-    "name": "Slugma",
     "base_stats": {
         "hp": 40,
         "attack": 40,
@@ -109,8 +108,60 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "Its body is made of magma.\nIf it doesn’t keep moving, its\nbody will cool and harden.",
-        "category": "Lava Pokémon"
+        "en": {
+            "name": "SLUGMA",
+            "category": "Lava Pokémon",
+            "entry_text": [
+                "Its body is made of magma.\n",
+                "If it doesn’t keep moving, its\n",
+                "body will cool and harden."
+            ]
+        },
+        "fr": {
+            "name": "LIMAGMA",
+            "category": "Pokémon Lave",
+            "entry_text": [
+                "Son corps est fait de magma.\n",
+                "S’il cesse de bouger, il refroidit\n",
+                "et durcit."
+            ]
+        },
+        "de": {
+            "name": "SCHNECKMAG",
+            "category": "Lava",
+            "entry_text": [
+                "Sein Körper besteht aus Magma.\n",
+                "Bleibt es nicht ständig in Bewegung,\n",
+                "kühlt es aus und verhärtet sich."
+            ]
+        },
+        "it": {
+            "name": "SLUGMA",
+            "category": "Pokémon Lava",
+            "entry_text": [
+                "Nel suo corpo scorre magma. Se\n",
+                "non si muove continuamente, il suo\n",
+                "corpo si raffredda e s’indurisce."
+            ]
+        },
+        "es": {
+            "name": "SLUGMA",
+            "category": "Pokémon Lava",
+            "entry_text": [
+                "Su cuerpo se compone de magma.\n",
+                "Si deja de moverse, se enfría y se\n",
+                "endurece."
+            ]
+        },
+        "jp": {
+            "name": "マグマッグ",
+            "category": "ようがんポケモン",
+            "entry_text": [
+                "ようがんで　できた　からだを　もつ。\n",
+                "たえず　うごいていないと　からだが\n",
+                "ひえて　かたまってしまうのだ。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

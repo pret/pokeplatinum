@@ -1,5 +1,4 @@
 {
-    "name": "Crawdaunt",
     "base_stats": {
         "hp": 63,
         "attack": 120,
@@ -128,8 +127,60 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "It is a ruffian that uses its\npincers to pick up and toss out\nother Pokémon from its pond.",
-        "category": "Rogue Pokémon"
+        "en": {
+            "name": "CRAWDAUNT",
+            "category": "Rogue Pokémon",
+            "entry_text": [
+                "It is a ruffian that uses its\n",
+                "pincers to pick up and toss out\n",
+                "other Pokémon from its pond."
+            ]
+        },
+        "fr": {
+            "name": "COLHOMARD",
+            "category": "Pokémon Crapule",
+            "entry_text": [
+                "C’est un voyou qui utilise ses\n",
+                "pinces pour chasser les autres\n",
+                "Pokémon hors de sa mare."
+            ]
+        },
+        "de": {
+            "name": "KREBUTACK",
+            "category": "Schlingel",
+            "entry_text": [
+                "Dieser Grobian ergreift andere PKMN\n",
+                "mit seinen Scheren und wirft sie\n",
+                "aus seinem Teich."
+            ]
+        },
+        "it": {
+            "name": "CRAWDAUNT",
+            "category": "Pokémon Canaglia",
+            "entry_text": [
+                "Pokémon violento che afferra il\n",
+                "nemico con le chele e lo scaraventa\n",
+                "fuori dal suo stagno."
+            ]
+        },
+        "es": {
+            "name": "CRAWDAUNT",
+            "category": "Pokémon Granuja",
+            "entry_text": [
+                "Este malandrín usa sus pinzas para\n",
+                "atosigar y expulsar a los otros\n",
+                "Pokémon que viven en su estanque."
+            ]
+        },
+        "jp": {
+            "name": "シザリガ－",
+            "category": "ならずものポケモン",
+            "entry_text": [
+                "いけに　すむ　ほかの　ポケモンを\n",
+                "ハサミで　つまみあげ　いけの　そとへ\n",
+                "ほうりだしてしまう　あばれんぼう。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",

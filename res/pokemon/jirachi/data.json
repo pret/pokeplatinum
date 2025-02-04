@@ -1,5 +1,4 @@
 {
-    "name": "Jirachi",
     "base_stats": {
         "hp": 100,
         "attack": 100,
@@ -134,8 +133,60 @@
         "pokemon_pos_f": 65518,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65518,
-        "entry_text": "It is said to have the ability to\ngrant any wish for just one week\nevery thousand years.",
-        "category": "Wish Pokémon"
+        "en": {
+            "name": "JIRACHI",
+            "category": "Wish Pokémon",
+            "entry_text": [
+                "It is said to have the ability to\n",
+                "grant any wish for just one week\n",
+                "every thousand years."
+            ]
+        },
+        "fr": {
+            "name": "JIRACHI",
+            "category": "Pokémon Souhait",
+            "entry_text": [
+                "On raconte qu’une fois tous les\n",
+                "mille ans, il a la capacité d’exaucer\n",
+                "tous les vœux durant une semaine."
+            ]
+        },
+        "de": {
+            "name": "JIRACHI",
+            "category": "Wünscher",
+            "entry_text": [
+                "Man sagt, es kann alle tausend\n",
+                "Jahre für eine Woche jeden Wunsch\n",
+                "erfüllen."
+            ]
+        },
+        "it": {
+            "name": "JIRACHI",
+            "category": "Pokémon Desiderio",
+            "entry_text": [
+                "Ha l’abilità di realizzare ogni\n",
+                "desiderio, ma soltanto per\n",
+                "una settimana ogni 1000 anni."
+            ]
+        },
+        "es": {
+            "name": "JIRACHI",
+            "category": "Pokémon Deseo",
+            "entry_text": [
+                "Se dice que puede otorgar\n",
+                "cualquier deseo durante una\n",
+                "semana cada mil años."
+            ]
+        },
+        "jp": {
+            "name": "ジラ－チ",
+            "category": "ねがいごとポケモン",
+            "entry_text": [
+                "１０００ねんかんで　７にちだけ\n",
+                "めを　さまし　どんな　ねがいごとでも\n",
+                "かなえる　ちからを　つかうという。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",

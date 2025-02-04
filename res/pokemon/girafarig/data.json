@@ -1,5 +1,4 @@
 {
-    "name": "Girafarig",
     "base_stats": {
         "hp": 70,
         "attack": 80,
@@ -122,8 +121,60 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "The head on its tail contains a\nsmall brain. It can instinctively\nfight even while facing backward.",
-        "category": "Long Neck Pokémon"
+        "en": {
+            "name": "GIRAFARIG",
+            "category": "Long Neck Pokémon",
+            "entry_text": [
+                "The head on its tail contains a\n",
+                "small brain. It can instinctively\n",
+                "fight even while facing backward."
+            ]
+        },
+        "fr": {
+            "name": "GIRAFARIG",
+            "category": "Pokémon Long-Cou",
+            "entry_text": [
+                "Sa queue contient un minuscule\n",
+                "cerveau. Elle mord l’ennemi qui\n",
+                "essaie de le frapper dans le dos."
+            ]
+        },
+        "de": {
+            "name": "GIRAFARIG",
+            "category": "Langhals",
+            "entry_text": [
+                "Sein Schweif besitzt ebenfalls ein\n",
+                "Gehirn. Er beißt jeden Gegner, der\n",
+                "sich von hinten heranschleicht."
+            ]
+        },
+        "it": {
+            "name": "GIRAFARIG",
+            "category": "Pokémon Lungocollo",
+            "entry_text": [
+                "Ha due cervelli, uno piccolo anche\n",
+                "sulla coda. Morde per respingere i\n",
+                "nemici che si avvicinano da dietro."
+            ]
+        },
+        "es": {
+            "name": "GIRAFARIG",
+            "category": "Pokémon Grancuello",
+            "entry_text": [
+                "Su cola tiene un pequeño cerebro\n",
+                "y muerde a los enemigos que\n",
+                "intentan acercarse por la espalda."
+            ]
+        },
+        "jp": {
+            "name": "キリンリキ",
+            "category": "くびながポケモン",
+            "entry_text": [
+                "しっぽも　ちいさい　のうを　もつ。\n",
+                "うしろから　しのびよる　あいてを\n",
+                "かみついて　げきたいする。"
+            ]
+        }
     },
     "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",

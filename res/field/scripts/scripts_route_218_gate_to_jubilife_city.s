@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_218_gate_to_jubilife_city.h"
 
     .data
 
