@@ -5,7 +5,6 @@
 
 #include "field/field_system.h"
 #include "overlay005/bdhc.h"
-#include "overlay005/bdhc_loader.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021E15F4.h"
@@ -215,7 +214,7 @@ static void ov5_021E77E4(UnkStruct_ov5_021E8F60 *param0, const u8 param1)
     }
 
     if (param0->unk_04[param1].unk_00.unk_10.unk_04 != 0) {
-        BDHCLoader_ForceExitTask(param0->unk_04[param1].unk_00.unk_0C);
+        BDHC_KillLoad(param0->unk_04[param1].unk_00.unk_0C);
     }
 
     param0->unk_04[param1].unk_00.unk_24 = 1;
@@ -228,7 +227,7 @@ static void ov5_021E7814(UnkStruct_ov5_021E7814 *param0)
     }
 
     if (param0->unk_10.unk_04 != 0) {
-        BDHCLoader_ForceExitTask(param0->unk_0C);
+        BDHC_KillLoad(param0->unk_0C);
     }
 
     param0->unk_10.unk_00 = 0;
@@ -500,7 +499,7 @@ static void ov5_021E7C00(const u8 param0, UnkStruct_ov5_021EF76C *const param1, 
 
     {
         param6->unk_10.unk_04++;
-        param6->unk_0C = BDHCLoader_StartTask(param5->unk_EC, v3.unk_08, param6->unk_00[param0]->bdhc, &param6->unk_10.unk_04, &param6->unk_00[param0]->bdhcBuffer, &param6->unk_10.unk_00);
+        param6->unk_0C = BDHC_LazyLoad(param5->unk_EC, v3.unk_08, param6->unk_00[param0]->bdhc, &param6->unk_10.unk_04, &param6->unk_00[param0]->bdhcBuffer, &param6->unk_10.unk_00);
     }
 }
 
@@ -610,7 +609,7 @@ static void ov5_021E7E28(const int param0, const u8 param1, UnkStruct_ov5_021EF7
     }
 
     {
-        BDHCLoader_Load(param7->unk_EC, v2.unk_08, param7->unk_84[param1]->bdhc, param7->unk_84[param1]->bdhcBuffer);
+        BDHC_Load(param7->unk_EC, v2.unk_08, param7->unk_84[param1]->bdhc, param7->unk_84[param1]->bdhcBuffer);
     }
 
     param7->unk_84[param1]->unk_860 = param0;
@@ -691,7 +690,7 @@ static void ov5_021E7FF0(const int param0, const u8 param1, UnkStruct_ov5_021EF7
     NARC_Seek(param7->unk_EC, v1.unk_04);
 
     {
-        BDHCLoader_Load(param7->unk_EC, v1.unk_08, param7->unk_84[param1]->bdhc, param7->unk_84[param1]->bdhcBuffer);
+        BDHC_Load(param7->unk_EC, v1.unk_08, param7->unk_84[param1]->bdhc, param7->unk_84[param1]->bdhcBuffer);
     }
 
     param7->unk_84[param1]->unk_860 = param0;
@@ -1443,7 +1442,7 @@ static void ov5_021E8E28(UnkStruct_ov5_021E8F60 *param0, const int param1, const
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_84[v0]->bdhc = BDHC_New();
 
-        BDHCLoader_MarkBDHCNotLoaded(param0->unk_84[v0]->bdhc);
+        BDHC_MarkNotLoaded(param0->unk_84[v0]->bdhc);
         ov5_021E7E28(v1[v0], v0, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
     }
 }
@@ -2234,7 +2233,7 @@ void ov5_021E9D3C(MapMatrix *param0, UnkStruct_ov5_021EF76C *param1, UnkStruct_o
 
     for (v0 = 0; v0 < 4; v0++) {
         v1[v0] = param3->unk_84[v0]->unk_860;
-        BDHCLoader_MarkBDHCNotLoaded(param3->unk_84[v0]->bdhc);
+        BDHC_MarkNotLoaded(param3->unk_84[v0]->bdhc);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -2486,7 +2485,7 @@ void ov5_021EA5E0(UnkStruct_ov5_021E8F60 *param0, int param1, int param2)
 
     MI_CpuFillFast(param0->unk_84[param1]->unk_00, 0xffffffff, 2 * 32 * 32);
 
-    BDHCLoader_MarkBDHCNotLoaded(param0->unk_84[param1]->bdhc);
+    BDHC_MarkNotLoaded(param0->unk_84[param1]->bdhc);
     ov5_021E7E28(param2, param1, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
 }
 
