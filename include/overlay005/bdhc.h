@@ -6,7 +6,7 @@
 typedef struct BDHCPlate {
     u16 firstPointIndex;
     u16 secondPointIndex;
-    u16 normalIndex;
+    u16 slopeIndex;
     u16 heightIndex;
 } BDHCPlate;
 
