@@ -287,8 +287,8 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
 
     sub_0203F5C0(fieldSystem, 2);
 
-    fieldSystem->unk_78.unk_00 = 0;
-    fieldSystem->unk_78.unk_02 = 0;
+    fieldSystem->wildBattleMetadata.encounterAttempts = 0;
+    fieldSystem->wildBattleMetadata.wildMonDefeated = 0;
 }
 
 void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL param1)
@@ -323,8 +323,8 @@ void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL
         }
     }
 
-    fieldSystem->unk_78.unk_00 = 0;
-    fieldSystem->unk_78.unk_02 = 0;
+    fieldSystem->wildBattleMetadata.encounterAttempts = 0;
+    fieldSystem->wildBattleMetadata.wildMonDefeated = 0;
 }
 
 static void FieldMapChange_CreateObjects(FieldSystem *fieldSystem)

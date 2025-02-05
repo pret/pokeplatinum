@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "field/field_system_decl.h"
-#include "overlay006/ov6_022430C4.h"
+#include "overlay006/radar_chain_records.h"
 #include "overlay025/poketch_button.h"
 #include "overlay025/poketch_system.h"
 #include "overlay053/ov53_02256420.h"
@@ -15,6 +15,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
+
+// This is the Trainer Counter.
 
 typedef struct {
     u8 unk_00;
@@ -84,7 +86,7 @@ static BOOL ov53_0225621C(UnkStruct_ov53_0225621C *param0, PoketchSystem *poketc
     int v2;
 
     fieldSystem = PoketchSystem_GetFieldSystem(poketchSys);
-    param0->unk_04.unk_04 = ov6_02243140(fieldSystem);
+    param0->unk_04.unk_04 = RadarChainRecords_GetActiveChain(fieldSystem);
 
     if (param0->unk_04.unk_04) {
         param0->unk_04.unk_00 = GetRadarSpecies(fieldSystem);
@@ -93,11 +95,11 @@ static BOOL ov53_0225621C(UnkStruct_ov53_0225621C *param0, PoketchSystem *poketc
     }
 
     for (v2 = 0; v2 < 3; v2++) {
-        param0->unk_04.unk_14[v2] = ov6_02243114(fieldSystem, v2);
-        param0->unk_04.unk_08[v2] = ov6_022430E8(fieldSystem, v2);
+        param0->unk_04.unk_14[v2] = RadarChainRecords_GetChainCount(fieldSystem, v2);
+        param0->unk_04.unk_08[v2] = RadarChainRecords_GetSpecies(fieldSystem, v2);
     }
 
-    param0->unk_04.unk_20 = ov6_022430C4(fieldSystem);
+    param0->unk_04.unk_20 = RadarChainRecords_GetNumFilledSlots(fieldSystem);
 
     if (ov53_02256420(&(param0->unk_2C), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
@@ -198,7 +200,7 @@ static BOOL ov53_02256370(UnkStruct_ov53_0225621C *param0)
         int v1;
 
         fieldSystem = PoketchSystem_GetFieldSystem(param0->poketchSys);
-        param0->unk_04.unk_04 = ov6_02243140(fieldSystem);
+        param0->unk_04.unk_04 = RadarChainRecords_GetActiveChain(fieldSystem);
 
         if (param0->unk_04.unk_04 == 0) {
             v1 = 0;

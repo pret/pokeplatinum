@@ -142,10 +142,10 @@ _0204:
 
 _0245:
     ScrCmd_1DE 0x4009, 0, 0x8004, 0x8005
-    ScrCmd_0DA 0, 0x8004, 0, 0
+    BufferSpeciesNameFromVar 0, 0x8004, 0, 0
     BufferMoveName 1, 0x8005
     ScrCmd_1DE 0x4009, 1, 0x8004, 0x8005
-    ScrCmd_0DA 2, 0x8004, 0, 0
+    BufferSpeciesNameFromVar 2, 0x8004, 0, 0
     BufferMoveName 3, 0x8005
     Return
 

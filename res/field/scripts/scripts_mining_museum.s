@@ -222,11 +222,11 @@ _03E7:
     End
 
 _03F2:
-    ScrCmd_0DA 0, 0x40B4, 0, 0
+    BufferSpeciesNameFromVar 0, 0x40B4, 0, 0
     Message 7
     GetPartyCount 0x800C
     GoToIfEq 0x800C, 6, _04A0
-    ScrCmd_0DA 1, 0x40B4, 0, 0
+    BufferSpeciesNameFromVar 1, 0x40B4, 0, 0
     BufferPlayerName 0
     PlaySound SEQ_FANFA4
     Message 8

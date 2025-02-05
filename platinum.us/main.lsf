@@ -132,7 +132,7 @@ Static main
 	Object main.nef.p/src_game_records.c.o
 	Object main.nef.p/src_unk_0202D05C.c.o
 	Object main.nef.p/src_unk_0202D778.c.o
-	Object main.nef.p/src_unk_0202D7A8.c.o
+	Object main.nef.p/src_special_encounter.c.o
 	Object main.nef.p/src_unk_0202DA40.c.o
 	Object main.nef.p/src_unk_0202DAB4.c.o
 	Object main.nef.p/src_unk_0202DF8C.c.o
@@ -514,7 +514,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_hblank_system.c.o
 	Object main.nef.p/src_overlay005_ov5_021EF4BC.c.o
 	Object main.nef.p/src_overlay005_ov5_021EF75C.c.o
-	Object main.nef.p/src_overlay005_ov5_021EFB0C.c.o
+	Object main.nef.p/src_overlay005_honey_tree.c.o
 	Object main.nef.p/src_overlay005_ov5_021F007C.c.o
 	Object main.nef.p/src_overlay005_ov5_021FF6B8.c.o
 	Object main.nef.p/src_overlay005_ov5_021F067C.c.o
@@ -565,28 +565,28 @@ Overlay overlay6
 {
 	After overlay5
 	Object main.nef.p/src_overlay006_ov6_0223E140.c.o
-	Object main.nef.p/src_overlay006_ov6_02240C9C.c.o
+	Object main.nef.p/src_overlay006_wild_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_022426AC.c.o
 	Object main.nef.p/src_overlay006_great_marsh_binoculars.c.o
 	Object main.nef.p/src_overlay006_ov6_02242AF0.c.o
 	Object main.nef.p/src_overlay006_great_marsh_daily_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_02243004.c.o
-	Object main.nef.p/src_overlay006_ov6_022430C4.c.o
-	Object main.nef.p/src_overlay006_ov6_02243218.c.o
+	Object main.nef.p/src_overlay006_radar_chain_records.c.o
+	Object main.nef.p/src_overlay006_swarm.c.o
 	Object main.nef.p/src_overlay006_ov6_02243258.c.o
-	Object main.nef.p/src_overlay006_ov6_02246034.c.o
+	Object main.nef.p/src_overlay006_roamer_after_battle.c.o
 	Object main.nef.p/src_overlay006_ov6_02246184.c.o
 	Object main.nef.p/src_overlay006_ov6_02246444.c.o
 	Object main.nef.p/src_overlay006_ov6_022465FC.c.o
 	Object main.nef.p/src_overlay006_ov6_02246A30.c.o
-	Object main.nef.p/src_overlay006_ov6_02246B74.c.o
-	Object main.nef.p/src_overlay006_ov6_02246BF4.c.o
+	Object main.nef.p/src_overlay006_special_dates.c.o
+	Object main.nef.p/src_overlay006_repel_step_update.c.o
 	Object main.nef.p/src_overlay006_ov6_02246C24.c.o
 	Object main.nef.p/src_overlay006_ov6_02246F00.c.o
 	Object main.nef.p/src_overlay006_ov6_02247078.c.o
 	Object main.nef.p/src_overlay006_ov6_02247100.c.o
-	Object main.nef.p/src_overlay006_ov6_022475B0.c.o
-	Object main.nef.p/src_overlay006_ov6_02247660.c.o
+	Object main.nef.p/src_overlay006_trophy_garden_daily_encounters.c.o
+	Object main.nef.p/src_overlay006_feebas_fishing.c.o
 	Object main.nef.p/src_overlay006_dual_slot_encounters.c.o
 	Object main.nef.p/src_overlay006_ov6_02247830.c.o
 	Object main.nef.p/src_overlay006_ov6_02247A0C.c.o

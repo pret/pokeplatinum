@@ -4,255 +4,285 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "generated/map_headers.h"
 
-#include "struct_defs/struct_0202D7B0.h"
-#include "struct_defs/struct_0206C638.h"
+#include "struct_defs/special_encounter.h"
 
 #include "heap.h"
 #include "inlines.h"
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "special_encounter.h"
 #include "trainer_info.h"
-#include "unk_0202D7A8.h"
 
-typedef struct {
-    u16 unk_00;
-    u16 unk_02[5];
-} UnkStruct_020EFBB8;
+enum RoamerRouteIndex {
+    RI_ROUTE_201 = 0,
+    RI_ROUTE_202,
+    RI_ROUTE_203,
+    RI_ROUTE_204_SOUTH,
+    RI_ROUTE_204_NORTH,
+    RI_ROUTE_205_SOUTH,
+    RI_ROUTE_205_NORTH,
+    RI_ROUTE_206,
+    RI_ROUTE_207,
+    RI_ROUTE_208,
+    RI_ROUTE_209,
+    RI_ROUTE_210_SOUTH,
+    RI_ROUTE_210_NORTH,
+    RI_ROUTE_211_WEST,
+    RI_ROUTE_211_EAST,
+    RI_ROUTE_212_NORTH,
+    RI_ROUTE_212_SOUTH,
+    RI_ROUTE_213,
+    RI_ROUTE_214,
+    RI_ROUTE_215,
+    RI_ROUTE_216,
+    RI_ROUTE_217,
+    RI_ROUTE_218,
+    RI_ROUTE_219,
+    RI_ROUTE_220,
+    RI_ROUTE_221,
+    RI_ROUTE_222,
+    RI_VALLEY_WINDWORKS_OUTSIDE,
+    RI_FUEGO_IRONWORKS_OUTSIDE,
+    RI_MAX,
+};
 
-static void sub_0206C538(SpecialEncounter *param0, const u8 param1, const int param2);
-static void sub_0206C588(SpecialEncounter *param0, const u8 param1, const int param2);
-static void sub_0206C638(SpecialEncounter *param0, const u8 param1, const u8 param2, const int param3);
+typedef struct NearbyRoutes {
+    u16 numPossibilities;
+    u16 adjacentRouteIndexes[5];
+} NearbyRoutes;
 
-static const UnkStruct_020EFBB8 Unk_020EFBB8[29] = {
-    {
-        0x2,
-        { 0x1, 0x17, 0xffff, 0xffff, 0xffff },
+static void MoveRoamerRandom(SpecialEncounter *speEnc, const u8 roamerSlot, const int playerPreviousMap);
+static void MoveRoamerNearby(SpecialEncounter *param0, const u8 roamerSlot, const int playerPreviousMap);
+static void SetNewMapLocation(SpecialEncounter *speEnc, const u8 roamerSlot, const u8 newMapIndex, const int newMapId);
+
+// Includes adjacent routes as well as routes connected to adjacent towns.
+// e.g. Route 202's entry includes both routes connected to Sandgem Town and all 3 routes connected to Jubilife City.
+static const NearbyRoutes sNearbyRoutes[RI_MAX] = {
+    [RI_ROUTE_201] = {
+        2,
+        { RI_ROUTE_202, RI_ROUTE_219, 0xFFFF, 0xFFFF, 0xFFFF },
     },
-    {
-        0x5,
-        { 0x0, 0x2, 0x3, 0x16, 0x17 },
+    [RI_ROUTE_202] = {
+        5,
+        { RI_ROUTE_201, RI_ROUTE_203, RI_ROUTE_204_SOUTH, RI_ROUTE_218, RI_ROUTE_219 },
     },
-    {
-        0x4,
-        { 0x1, 0x3, 0x8, 0x16, 0xffff },
+    [RI_ROUTE_203] = {
+        4,
+        { RI_ROUTE_202, RI_ROUTE_204_SOUTH, RI_ROUTE_207, RI_ROUTE_218, 0xFFFF },
     },
-    {
-        0x4,
-        { 0x1, 0x2, 0x4, 0x16, 0xffff },
+    [RI_ROUTE_204_SOUTH] = {
+        4,
+        { RI_ROUTE_202, RI_ROUTE_203, RI_ROUTE_204_NORTH, RI_ROUTE_218, 0xFFFF },
     },
-    {
-        0x2,
-        { 0x3, 0x5, 0xffff, 0xffff, 0xffff },
+    [RI_ROUTE_204_NORTH] = {
+        2,
+        { RI_ROUTE_204_SOUTH, RI_ROUTE_205_SOUTH, 0xFFFF, 0xFFFF, 0xFFFF },
     },
-    {
-        0x4,
-        { 0x4, 0x6, 0x1B, 0x1C, 0xffff },
+    [RI_ROUTE_205_SOUTH] = {
+        4,
+        { RI_ROUTE_204_NORTH, RI_ROUTE_205_NORTH, RI_VALLEY_WINDWORKS_OUTSIDE, RI_FUEGO_IRONWORKS_OUTSIDE, 0xFFFF },
     },
-    {
-        0x3,
-        { 0x5, 0x7, 0x9, 0xffff, 0xffff },
+    [RI_ROUTE_205_NORTH] = {
+        3,
+        { RI_ROUTE_205_SOUTH, RI_ROUTE_206, 9, 0xFFFF, 0xFFFF },
     },
-    {
-        0x3,
-        { 0x6, 0x8, 0xD, 0xffff, 0xffff },
+    [RI_ROUTE_206] = {
+        3,
+        { RI_ROUTE_205_NORTH, RI_ROUTE_207, RI_ROUTE_211_WEST, 0xFFFF, 0xFFFF },
     },
-    {
-        0x3,
-        { 0x2, 0x7, 0x9, 0xffff, 0xffff },
+    [RI_ROUTE_207] = {
+        3,
+        { RI_ROUTE_203, RI_ROUTE_206, RI_ROUTE_208, 0xFFFF, 0xFFFF },
     },
-    {
-        0x3,
-        { 0x8, 0xA, 0xF, 0xffff, 0xffff },
+    [RI_ROUTE_208] = {
+        3,
+        { RI_ROUTE_207, RI_ROUTE_209, RI_ROUTE_212_NORTH, 0xFFFF, 0xFFFF },
     },
-    {
-        0x3,
-        { 0x9, 0xB, 0xF, 0xffff, 0xffff },
+    [RI_ROUTE_209] = {
+        3,
+        { RI_ROUTE_208, RI_ROUTE_210_SOUTH, RI_ROUTE_212_NORTH, 0xFFFF, 0xFFFF },
     },
-    {
-        0x3,
-        { 0xA, 0xC, 0x13, 0xffff, 0xffff },
+    [RI_ROUTE_210_SOUTH] = {
+        3,
+        { RI_ROUTE_209, RI_ROUTE_210_NORTH, RI_ROUTE_215, 0xFFFF, 0xFFFF },
     },
-    {
-        0x2,
-        { 0xB, 0xE, 0xffff, 0xffff, 0xffff },
+    [RI_ROUTE_210_NORTH] = {
+        2,
+        { RI_ROUTE_210_SOUTH, RI_ROUTE_211_EAST, 0xFFFF, 0xFFFF, 0xFFFF },
     },
-    {
-        0x4,
-        { 0x6, 0x7, 0xE, 0x14, 0xffff },
+    [RI_ROUTE_211_WEST] = {
+        4,
+        { RI_ROUTE_205_NORTH, RI_ROUTE_206, RI_ROUTE_211_EAST, RI_ROUTE_216, 0xFFFF },
     },
-    {
-        0x3,
-        { 0xC, 0xD, 0x14, 0xffff },
+    [RI_ROUTE_211_EAST] = {
+        3,
+        { RI_ROUTE_210_NORTH, RI_ROUTE_211_WEST, RI_ROUTE_216, 0xFFFF },
     },
-    {
-        0x3,
-        { 0x9, 0xA, 0x10, 0xffff, 0xffff },
+    [RI_ROUTE_212_NORTH] = {
+        3,
+        { RI_ROUTE_208, RI_ROUTE_209, RI_ROUTE_212_SOUTH, 0xFFFF, 0xFFFF },
     },
-    {
-        0x2,
-        { 0xF, 0x11, 0xffff, 0xffff, 0xffff },
+    [RI_ROUTE_212_SOUTH] = {
+        2,
+        { RI_ROUTE_212_NORTH, RI_ROUTE_213, 0xFFFF, 0xFFFF, 0xFFFF },
     },
-    {
-        0x3,
-        { 0x10, 0x12, 0x1A, 0xffff, 0xffff },
+    [RI_ROUTE_213] = {
+        3,
+        { RI_ROUTE_212_SOUTH, RI_ROUTE_214, RI_ROUTE_222, 0xFFFF, 0xFFFF },
     },
-    {
-        0x3,
-        { 0x11, 0x13, 0x1A, 0xffff, 0xffff },
+    [RI_ROUTE_214] = {
+        3,
+        { RI_ROUTE_213, RI_ROUTE_215, RI_ROUTE_222, 0xFFFF, 0xFFFF },
     },
-    {
-        0x2,
-        { 0xB, 0x12, 0xffff, 0xffff, 0xffff },
+    [RI_ROUTE_215] = {
+        2,
+        { RI_ROUTE_210_SOUTH, RI_ROUTE_214, 0xFFFF, 0xFFFF, 0xFFFF },
     },
-    {
-        0x3,
-        { 0xD, 0xE, 0x15, 0xffff, 0xffff },
+    [RI_ROUTE_216] = {
+        3,
+        { RI_ROUTE_211_WEST, RI_ROUTE_211_EAST, RI_ROUTE_217, 0xFFFF, 0xFFFF },
     },
-    {
-        0x1,
-        { 0x14, 0xffff, 0xffff, 0xffff, 0xffff },
+    [RI_ROUTE_217] = {
+        1,
+        { RI_ROUTE_216, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF },
     },
-    {
-        0x3,
-        { 0x1, 0x2, 0x3, 0xffff, 0xffff },
+    [RI_ROUTE_218] = {
+        3,
+        { RI_ROUTE_202, RI_ROUTE_203, RI_ROUTE_204_SOUTH, 0xFFFF, 0xFFFF },
     },
-    {
-        0x3,
-        { 0x0, 0x1, 0x18, 0xffff, 0xffff },
+    [RI_ROUTE_219] = {
+        3,
+        { RI_ROUTE_201, RI_ROUTE_202, RI_ROUTE_220, 0xFFFF, 0xFFFF },
     },
-    {
-        0x2,
-        { 0x17, 0x19, 0xffff, 0xffff, 0xffff },
+    [RI_ROUTE_220] = {
+        2,
+        { RI_ROUTE_219, RI_ROUTE_221, 0xFFFF, 0xFFFF, 0xFFFF },
     },
-    {
-        0x1,
-        { 0x18, 0xffff, 0xffff, 0xffff, 0xffff },
+    [RI_ROUTE_221] = {
+        1,
+        { RI_ROUTE_220, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF },
     },
-    {
-        0x2,
-        { 0x11, 0x12, 0xffff, 0xffff, 0xffff },
+    [RI_ROUTE_222] = {
+        2,
+        { RI_ROUTE_213, RI_ROUTE_214, 0xFFFF, 0xFFFF, 0xFFFF },
     },
-    {
-        0x1,
-        { 0x5, 0xffff, 0xffff, 0xffff, 0xffff },
+    [RI_VALLEY_WINDWORKS_OUTSIDE] = {
+        1,
+        { RI_ROUTE_205_SOUTH, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF },
     },
-    {
-        0x1,
-        { 0x5, 0xffff, 0xffff, 0xffff, 0xffff },
+    [RI_FUEGO_IRONWORKS_OUTSIDE] = {
+        1,
+        { RI_ROUTE_205_SOUTH, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF },
     },
 };
 
-static const int RoamingPokemonRoutes[29] = {
-    0x156,
-    0x157,
-    0x158,
-    0x159,
-    0x15A,
-    0x15B,
-    0x15D,
-    0x15E,
-    0x161,
-    0x162,
-    0x164,
-    0x16A,
-    0x16B,
-    0x16D,
-    0x16E,
-    0x16F,
-    0x173,
-    0x175,
-    0x17C,
-    0x17E,
-    0x17F,
-    0x181,
-    0x184,
-    0x187,
-    0x1D3,
-    0x188,
-    0x18B,
-    0xC8,
-    0xCC,
+// All outdoor areas with encounters on the mainland except Trophy Garden, Great Marsh, and the ones past Sunyshore City
+static const int RoamingPokemonRoutes[RI_MAX] = {
+    [RI_ROUTE_201] = MAP_HEADER_ROUTE_201,
+    [RI_ROUTE_202] = MAP_HEADER_ROUTE_202,
+    [RI_ROUTE_203] = MAP_HEADER_ROUTE_203,
+    [RI_ROUTE_204_SOUTH] = MAP_HEADER_ROUTE_204_SOUTH,
+    [RI_ROUTE_204_NORTH] = MAP_HEADER_ROUTE_204_NORTH,
+    [RI_ROUTE_205_SOUTH] = MAP_HEADER_ROUTE_205_SOUTH,
+    [RI_ROUTE_205_NORTH] = MAP_HEADER_ROUTE_205_NORTH,
+    [RI_ROUTE_206] = MAP_HEADER_ROUTE_206,
+    [RI_ROUTE_207] = MAP_HEADER_ROUTE_207,
+    [RI_ROUTE_208] = MAP_HEADER_ROUTE_208,
+    [RI_ROUTE_209] = MAP_HEADER_ROUTE_209,
+    [RI_ROUTE_210_SOUTH] = MAP_HEADER_ROUTE_210_SOUTH,
+    [RI_ROUTE_210_NORTH] = MAP_HEADER_ROUTE_210_NORTH,
+    [RI_ROUTE_211_WEST] = MAP_HEADER_ROUTE_211_WEST,
+    [RI_ROUTE_211_EAST] = MAP_HEADER_ROUTE_211_EAST,
+    [RI_ROUTE_212_NORTH] = MAP_HEADER_ROUTE_212_NORTH,
+    [RI_ROUTE_212_SOUTH] = MAP_HEADER_ROUTE_212_SOUTH,
+    [RI_ROUTE_213] = MAP_HEADER_ROUTE_213,
+    [RI_ROUTE_214] = MAP_HEADER_ROUTE_214,
+    [RI_ROUTE_215] = MAP_HEADER_ROUTE_215,
+    [RI_ROUTE_216] = MAP_HEADER_ROUTE_216,
+    [RI_ROUTE_217] = MAP_HEADER_ROUTE_217,
+    [RI_ROUTE_218] = MAP_HEADER_ROUTE_218,
+    [RI_ROUTE_219] = MAP_HEADER_ROUTE_219,
+    [RI_ROUTE_220] = MAP_HEADER_ROUTE_220,
+    [RI_ROUTE_221] = MAP_HEADER_ROUTE_221,
+    [RI_ROUTE_222] = MAP_HEADER_ROUTE_222,
+    [RI_VALLEY_WINDWORKS_OUTSIDE] = MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE,
+    [RI_FUEGO_IRONWORKS_OUTSIDE] = MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
 };
 
-void sub_0206C33C(SpecialEncounter *param0, const u8 param1)
+void RoamingPokemon_MoveToRandomMap(SpecialEncounter *speEnc, const u8 roamerSlot)
 {
-    int v0;
-
-    v0 = sub_0202D8BC(param0);
-    sub_0206C538(param0, param1, v0);
+    int previousMap = SpecialEncounter_GetPlayerPreviousMap(speEnc);
+    MoveRoamerRandom(speEnc, roamerSlot, previousMap);
 }
 
-void sub_0206C354(SpecialEncounter *param0)
+// Used when Teleporting/Flying
+void RoamingPokemon_RandomizeAllLocations(SpecialEncounter *speEnc)
 {
-    u8 v0;
-
-    for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0202D8F8(param0, v0)) {
-            sub_0206C33C(param0, v0);
+    for (u8 i = 0; i < ROAMING_SLOT_MAX; i++) {
+        if (SpecialEncounter_IsRoamerActive(speEnc, i)) {
+            RoamingPokemon_MoveToRandomMap(speEnc, i);
         }
     }
 }
 
-void sub_0206C37C(SpecialEncounter *param0)
+// Moves all Roamers. For each, it has a 1/16 chance to randomize its location. Otherwise, it will move to a nearby route.
+void RoamingPokemon_MoveAllLocations(SpecialEncounter *specialEncounter)
 {
-    u8 v0;
-
-    for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0202D8F8(param0, v0)) {
+    for (u8 i = 0; i < ROAMING_SLOT_MAX; i++) {
+        if (SpecialEncounter_IsRoamerActive(specialEncounter, i)) {
             if (LCRNG_RandMod(16) == 0) {
-                sub_0206C33C(param0, v0);
+                RoamingPokemon_MoveToRandomMap(specialEncounter, i);
             } else {
                 {
-                    int v1;
-
-                    v1 = sub_0202D8BC(param0);
-                    sub_0206C588(param0, v0, v1);
+                    int previousMap = SpecialEncounter_GetPlayerPreviousMap(specialEncounter);
+                    MoveRoamerNearby(specialEncounter, i, previousMap);
                 }
             }
         }
     }
 }
 
-int sub_0206C3C8(const u8 param0)
+int RoamingPokemon_GetRouteFromId(const u8 routeId)
 {
-    GF_ASSERT(param0 < 29);
-    return RoamingPokemonRoutes[param0];
+    GF_ASSERT(routeId < RI_MAX);
+    return RoamingPokemonRoutes[routeId];
 }
 
-BOOL sub_0206C3E0(SpecialEncounter *param0)
+BOOL RoamingPokemon_AnyRoamersActive(SpecialEncounter *speEnc)
 {
-    u8 v0;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0202D8F8(param0, v0)) {
-            return 1;
+    for (u8 i = 0; i < ROAMING_SLOT_MAX; i++) {
+        if (SpecialEncounter_IsRoamerActive(speEnc, i)) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_0206C404(SpecialEncounter *param0, const int param1)
+// Runs when the player changes maps. Roamers cannot move to the map the player just left.
+void RoamingPokemon_UpdatePlayerRecentRoutes(SpecialEncounter *speEnc, const int newMap)
 {
-    if (sub_0206C3E0(param0)) {
-        sub_0202D8A4(param0, param1);
+    if (RoamingPokemon_AnyRoamersActive(speEnc)) {
+        SpecialEncounter_UpdateRecentRoutes(speEnc, newMap);
     }
 }
 
 void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
 {
-    Pokemon *v0;
-    Roamer *v1;
-    SpecialEncounter *v2;
+    Pokemon *roamerMonData;
+    Roamer *newRoamer;
+    SpecialEncounter *speEnc;
     int previouslyVisitedMap;
-    TrainerInfo *v4;
+    TrainerInfo *trainer;
     int species;
     u8 level;
 
-    v2 = SaveData_GetSpecialEncounters(saveData);
-    v1 = sub_0202D924(v2, slot);
+    speEnc = SaveData_GetSpecialEncounters(saveData);
+    newRoamer = SpecialEncounter_GetRoamer(speEnc, slot);
 
     switch (slot) {
     case ROAMING_SLOT_MESPRIT:
@@ -284,83 +314,83 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
         return;
     }
 
-    sub_0202D980(v1, 4, species);
-    sub_0202D980(v1, 6, level);
+    Roamer_SetData(newRoamer, ROAMER_DATA_SPECIES, species);
+    Roamer_SetData(newRoamer, ROAMER_DATA_LEVEL, level);
 
-    v4 = SaveData_GetTrainerInfo(saveData);
-    v0 = Pokemon_New(4);
+    trainer = SaveData_GetTrainerInfo(saveData);
+    roamerMonData = Pokemon_New(4);
 
-    Pokemon_Init(v0);
-    Pokemon_InitWith(v0, species, level, 32, FALSE, 0, OTID_SET, TrainerInfo_ID_LowHalf(v4));
-    sub_0202D980(v1, 7, 0);
-    sub_0202D980(v1, 8, 1);
-    sub_0202D980(v1, 2, Pokemon_GetValue(v0, MON_DATA_COMBINED_IVS, NULL));
-    sub_0202D980(v1, 3, Pokemon_GetValue(v0, MON_DATA_PERSONALITY, NULL));
-    sub_0202D980(v1, 5, Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL));
-    Heap_FreeToHeap(v0);
+    Pokemon_Init(roamerMonData);
+    Pokemon_InitWith(roamerMonData, species, level, 32, FALSE, 0, OTID_SET, TrainerInfo_ID_LowHalf(trainer));
+    Roamer_SetData(newRoamer, ROAMER_DATA_STATUS, 0);
+    Roamer_SetData(newRoamer, ROAMER_DATA_ACTIVE, 1);
+    Roamer_SetData(newRoamer, ROAMER_DATA_IVS, Pokemon_GetValue(roamerMonData, MON_DATA_COMBINED_IVS, NULL));
+    Roamer_SetData(newRoamer, ROAMER_DATA_PERSONALITY, Pokemon_GetValue(roamerMonData, MON_DATA_PERSONALITY, NULL));
+    Roamer_SetData(newRoamer, ROAMER_DATA_CURRENT_HP, Pokemon_GetValue(roamerMonData, MON_DATA_MAX_HP, NULL));
+    Heap_FreeToHeap(roamerMonData);
 
-    previouslyVisitedMap = sub_0202D8BC(v2);
-    sub_0206C538(v2, slot, previouslyVisitedMap);
+    previouslyVisitedMap = SpecialEncounter_GetPlayerPreviousMap(speEnc);
+    MoveRoamerRandom(speEnc, slot, previouslyVisitedMap);
 }
 
-static void sub_0206C538(SpecialEncounter *param0, const u8 param1, const int param2)
+static void MoveRoamerRandom(SpecialEncounter *specialEncounter, const u8 roamerSlot, const int playerPreviousMap)
 {
-    u8 v0;
-    int v1;
-    int v2;
+    u8 newIndex;
+    int currentRoute;
+    int newRoute;
 
-    v1 = RoamingPokemonRoutes[sub_0202D8C4(param0, param1)];
+    currentRoute = RoamingPokemonRoutes[SpecialEncounter_GetRoamerRouteIndex(specialEncounter, roamerSlot)];
 
     while (TRUE) {
-        v0 = LCRNG_RandMod(29);
-        v2 = RoamingPokemonRoutes[v0];
+        newIndex = LCRNG_RandMod(RI_MAX);
+        newRoute = RoamingPokemonRoutes[newIndex];
 
-        if ((v2 != param2) && (v2 != v1)) {
-            sub_0206C638(param0, param1, v0, v2);
+        if ((newRoute != playerPreviousMap) && (newRoute != currentRoute)) {
+            SetNewMapLocation(specialEncounter, roamerSlot, newIndex, newRoute);
             break;
         }
     }
 }
 
-static void sub_0206C588(SpecialEncounter *param0, const u8 param1, const int param2)
+static void MoveRoamerNearby(SpecialEncounter *specialEncounter, const u8 roamerSlot, const int playerPreviousMap)
 {
-    const UnkStruct_020EFBB8 *v0;
-    u8 v1;
-    int v2;
+    const NearbyRoutes *possibleNewRoutes;
+    u8 newMapIndex;
+    int newMapId;
 
-    v0 = &(Unk_020EFBB8[sub_0202D8C4(param0, param1)]);
+    possibleNewRoutes = &(sNearbyRoutes[SpecialEncounter_GetRoamerRouteIndex(specialEncounter, roamerSlot)]);
 
-    if (v0->unk_00 == 1) {
-        v1 = v0->unk_02[0];
-        v2 = RoamingPokemonRoutes[v1];
+    if (possibleNewRoutes->numPossibilities == 1) {
+        newMapIndex = possibleNewRoutes->adjacentRouteIndexes[0];
+        newMapId = RoamingPokemonRoutes[newMapIndex];
 
-        if (v2 == param2) {
-            sub_0206C538(param0, param1, param2);
+        if (newMapId == playerPreviousMap) {
+            MoveRoamerRandom(specialEncounter, roamerSlot, playerPreviousMap);
         } else {
-            sub_0206C638(param0, param1, v1, v2);
+            SetNewMapLocation(specialEncounter, roamerSlot, newMapIndex, newMapId);
         }
     } else {
-        u8 v3;
+        u8 nearbyIndex;
 
         while (TRUE) {
-            v3 = LCRNG_RandMod(v0->unk_00);
-            v1 = v0->unk_02[v3];
-            v2 = RoamingPokemonRoutes[v1];
+            nearbyIndex = LCRNG_RandMod(possibleNewRoutes->numPossibilities);
+            newMapIndex = possibleNewRoutes->adjacentRouteIndexes[nearbyIndex];
+            newMapId = RoamingPokemonRoutes[newMapIndex];
 
-            if (v2 != param2) {
-                sub_0206C638(param0, param1, v1, v2);
+            if (newMapId != playerPreviousMap) {
+                SetNewMapLocation(specialEncounter, roamerSlot, newMapIndex, newMapId);
                 break;
             }
         }
     }
 }
 
-static void sub_0206C638(SpecialEncounter *param0, const u8 param1, const u8 param2, const int param3)
+static void SetNewMapLocation(SpecialEncounter *specialEncounter, const u8 roamerSlot, const u8 newMapIndex, const int newMapId)
 {
-    Roamer *v0;
+    Roamer *roamer;
 
-    v0 = sub_0202D924(param0, param1);
+    roamer = SpecialEncounter_GetRoamer(specialEncounter, roamerSlot);
 
-    sub_0202D8DC(param0, param1, param2);
-    sub_0202D980(v0, 1, param3);
+    SpecialEncounter_SetRoamerRouteIndex(specialEncounter, roamerSlot, newMapIndex);
+    Roamer_SetData(roamer, ROAMER_DATA_MAP_ID, newMapId);
 }

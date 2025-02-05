@@ -2340,16 +2340,16 @@ u32 sub_0206156C(PlayerAvatar *playerAvatar, int param1)
     return MapObject_GetTileBehaviorFromDir(v0, param1);
 }
 
-void sub_0206157C(PlayerAvatar *playerAvatar, int param1, int *param2, int *param3)
+void PlayerAvatar_MoveCoordsInDirection(PlayerAvatar *playerAvatar, int facingDirection, int *x, int *z)
 {
-    *param2 = Player_GetXPos(playerAvatar) + MapObject_GetDxFromDir(param1);
-    *param3 = Player_GetZPos(playerAvatar) + MapObject_GetDzFromDir(param1);
+    *x = Player_GetXPos(playerAvatar) + MapObject_GetDxFromDir(facingDirection);
+    *z = Player_GetZPos(playerAvatar) + MapObject_GetDzFromDir(facingDirection);
 }
 
-void sub_020615AC(PlayerAvatar *playerAvatar, int *param1, int *param2)
+void PlayerAvatar_GetFacingTileCoords(PlayerAvatar *playerAvatar, int *x, int *z)
 {
-    int v0 = PlayerAvatar_GetDir(playerAvatar);
-    sub_0206157C(playerAvatar, v0, param1, param2);
+    int facingDirection = PlayerAvatar_GetDir(playerAvatar);
+    PlayerAvatar_MoveCoordsInDirection(playerAvatar, facingDirection, x, z);
 }
 
 static void sub_020615C8(PlayerAvatar *playerAvatar)

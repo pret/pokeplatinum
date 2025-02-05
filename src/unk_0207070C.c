@@ -201,7 +201,7 @@ void sub_02070728(FieldSystem *fieldSystem, UnkStruct_02070950 *param1)
     v2 = Player_GetZPos(fieldSystem->playerAvatar);
     v4 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
-    sub_020615AC(fieldSystem->playerAvatar, &v1, &v2);
+    PlayerAvatar_GetFacingTileCoords(fieldSystem->playerAvatar, &v1, &v2);
     v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
     if (ov5_021E0118(fieldSystem->playerAvatar, v4, v3)) {

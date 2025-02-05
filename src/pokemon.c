@@ -395,7 +395,8 @@ u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
     return result;
 }
 
-void sub_02074158(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality)
+// only used when encountering a roamer
+void Pokemon_InitAndCalcStats(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality)
 {
     Pokemon_InitWith(mon, monSpecies, monLevel, 0, TRUE, monPersonality, OTID_NOT_SET, 0);
     Pokemon_SetValue(mon, MON_DATA_COMBINED_IVS, &monCombinedIVs);
@@ -4407,9 +4408,9 @@ static const u16 sHeldItemChance[][2] = {
     { 20, 80 }
 };
 
-void Pokemon_GiveHeldItem(Pokemon *mon, u32 param1, int param2)
+void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates)
 {
-    if (param1 & (0x1 | 0x80)) {
+    if (battleType & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FRONTIER)) {
         return;
     }
 
@@ -4424,9 +4425,11 @@ void Pokemon_GiveHeldItem(Pokemon *mon, u32 param1, int param2)
         return;
     }
 
-    if (rand < sHeldItemChance[param2][0]) {
+    // Without CompoundEyes (itemRates == 0) 45% no item, 50% common item, 5% rare item
+    // With CompoundEyes (itemRates == 1) 20% no item, 60% common item, 20% rare item
+    if (rand < sHeldItemChance[itemRates][0]) {
         return;
-    } else if (rand < sHeldItemChance[param2][1]) {
+    } else if (rand < sHeldItemChance[itemRates][1]) {
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &monItem1);
     } else {
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &monItem2);

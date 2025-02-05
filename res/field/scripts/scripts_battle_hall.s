@@ -270,13 +270,13 @@ _03F5:
     ScrCmd_2CC 1, 0x40BB, 0x800C
     GoToIfEq 0x800C, 0, _04F4
     ScrCmd_2CC 2, 0x40BB, 0x800C
-    ScrCmd_0DA 0, 0x800C, 0, 0
+    BufferSpeciesNameFromVar 0, 0x800C, 0, 0
     GoToIfEq 0x800C, 0x4001, _04F4
     GoTo _04A2
     End
 
 _04A2:
-    ScrCmd_0DA 1, 0x4001, 0, 0
+    BufferSpeciesNameFromVar 1, 0x4001, 0, 0
     Message 34
     ScrCmd_044 25, 13, 1, 1, 0x800C
     ScrCmd_046 41, 0xFF, 0

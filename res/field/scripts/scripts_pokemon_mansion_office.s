@@ -68,9 +68,9 @@ _00D8:
     End
 
 _00FB:
-    ScrCmd_1EC
-    ScrCmd_1ED 0x8000
-    ScrCmd_0DA 0, 0x8000, 0, 0
+    AddTrophyGardenMon
+    GetTrophyGardenSlot1Species 0x8000
+    BufferSpeciesNameFromVar 0, 0x8000, 0, 0
     Message 6
     GetPlayerMapPos 0x8001, 0x8002
     ApplyMovement 2, _01D4
@@ -90,8 +90,8 @@ _00FB:
     GoTo _0155
 
 _0155:
-    ScrCmd_1ED 0x8000
-    ScrCmd_0DA 0, 0x8000, 0, 0
+    GetTrophyGardenSlot1Species 0x8000
+    BufferSpeciesNameFromVar 0, 0x8000, 0, 0
     Message 10
     WaitABXPadPress
     CloseMessage
@@ -235,8 +235,8 @@ _02FF:
     Return
 
 _0304:
-    ScrCmd_1ED 0x8000
-    ScrCmd_0DA 0, 0x8000, 0, 0
+    GetTrophyGardenSlot1Species 0x8000
+    BufferSpeciesNameFromVar 0, 0x8000, 0, 0
     Message 14
     WaitABXPadPress
     CloseMessage

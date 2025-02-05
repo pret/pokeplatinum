@@ -440,17 +440,17 @@ _05EA:
     LockAll
     CheckItem ITEM_HONEY, 1, 0x800C
     GoToIfNe 0x800C, 0, _0632
-    ScrCmd_128 0x800C
-    GoToIfEq 0x800C, 1, _065F
-    GoToIfEq 0x800C, 2, _066A
-    GoToIfEq 0x800C, 3, _06F4
+    GetHoneyTreeStatus 0x800C
+    GoToIfEq 0x800C, TREE_STATUS_BARE, _065F
+    GoToIfEq 0x800C, TREE_STATUS_SLATHERED, _066A
+    GoToIfEq 0x800C, TREE_STATUS_ENCOUNTER, _06F4
     End
 
 _0632:
-    ScrCmd_128 0x800C
-    GoToIfEq 0x800C, 1, _0675
-    GoToIfEq 0x800C, 2, _067E
-    GoToIfEq 0x800C, 3, _06F4
+    GetHoneyTreeStatus 0x800C
+    GoToIfEq 0x800C, TREE_STATUS_BARE, _0675
+    GoToIfEq 0x800C, TREE_STATUS_SLATHERED, _067E
+    GoToIfEq 0x800C, TREE_STATUS_ENCOUNTER, _06F4
     End
 
 _065F:
@@ -520,7 +520,7 @@ _06BB:
 _06D5:
     RemoveItem ITEM_HONEY, 1, 0x800C
     ScrCmd_260 1
-    ScrCmd_127
+    SlatherHoneyTree
     WaitTime 10, 0x800C
     Message 51
     WaitABXPadPress

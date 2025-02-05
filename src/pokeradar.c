@@ -6,12 +6,12 @@
 #include "constants/battle.h"
 #include "generated/sdat.h"
 
+#include "struct_defs/radar_chain_records.h"
 #include "struct_defs/struct_0201CFEC.h"
-#include "struct_defs/struct_020698E4.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F2D20.h"
-#include "overlay006/ov6_022430C4.h"
+#include "overlay006/radar_chain_records.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bag.h"
@@ -24,16 +24,16 @@
 #include "player_avatar.h"
 #include "scrcmd.h"
 #include "script_manager.h"
+#include "special_encounter.h"
 #include "unk_02005474.h"
 #include "unk_0201CED8.h"
-#include "unk_0202D7A8.h"
 #include "unk_02054D00.h"
 #include "unk_020553DC.h"
 #include "unk_020711EC.h"
 
 typedef struct {
-    int unk_00;
-    int unk_04;
+    int x;
+    int z;
     int shakeType;
     BOOL active;
     BOOL continueChain;
@@ -56,9 +56,9 @@ typedef struct RadarChain {
 } RadarChain;
 
 static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const int param2, const int param3, const u8 param4, const u8 param5, GrassPatch *patch);
-static BOOL sub_020698AC(const RadarChain *chain, const int param1, const int param2, u8 *param3);
-static void sub_020698E4(FieldSystem *fieldSystem, RadarChain *chain);
-static u8 sub_0206994C(FieldSystem *fieldSystem);
+static BOOL PlayerStandingInPatch(const RadarChain *chain, const int x, const int z, u8 *patchMatch);
+static void TryReplaceLowestChainRecord(FieldSystem *fieldSystem, RadarChain *chain);
+static u8 GetLowestChainRecordSlot(FieldSystem *fieldSystem);
 static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult);
 static BOOL CheckPatchShiny(const int param0);
 static void IncWithCap(int *param0);
@@ -171,8 +171,8 @@ void sub_02069638(FieldSystem *fieldSystem, RadarChain *chain)
 {
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         if (chain->patch[patchRing].active) {
-            int v1 = chain->patch[patchRing].unk_00;
-            int v2 = chain->patch[patchRing].unk_04;
+            int v1 = chain->patch[patchRing].x;
+            int v2 = chain->patch[patchRing].z;
             if (chain->patch[patchRing].shiny) {
                 chain->patch[patchRing].unk_18 = ov5_021F3154(fieldSystem, v1, v2, 2);
             } else {
@@ -211,13 +211,13 @@ BOOL sub_02069690(RadarChain *chain)
     return FALSE;
 }
 
-BOOL sub_020696DC(const int param0, const int param1, FieldSystem *fieldSystem, RadarChain *chain, int *param4, BOOL *param5, BOOL *param6)
+BOOL PokeRadar_ShouldDoRadarEncounter(const int playerX, const int playerZ, FieldSystem *fieldSystem, RadarChain *chain, int *shake, BOOL *preserveChain, BOOL *isShiny)
 {
     u8 patchRing;
-    *param5 = 0;
-    *param6 = 0;
+    *preserveChain = 0;
+    *isShiny = 0;
 
-    if (!sub_020698AC(chain, param0, param1, &patchRing)) {
+    if (!PlayerStandingInPatch(chain, playerX, playerZ, &patchRing)) {
         return FALSE;
     }
 
@@ -228,21 +228,21 @@ BOOL sub_020696DC(const int param0, const int param1, FieldSystem *fieldSystem, 
     if (chain->unk_14 == 0) {
         if (continueChain) {
             IncWithCap(&(chain->count));
-            *param4 = shakeType;
-            *param5 = 1;
-            sub_020698E4(fieldSystem, chain);
-            *param6 = chain->patch[patchRing].shiny;
+            *shake = shakeType;
+            *preserveChain = 1;
+            TryReplaceLowestChainRecord(fieldSystem, chain);
+            *isShiny = chain->patch[patchRing].shiny;
             return TRUE;
         } else {
-            *param4 = shakeType;
+            *shake = shakeType;
         }
     } else {
-        *param4 = shakeType;
+        *shake = shakeType;
         chain->unk_14 = 0;
-        chain->unk_D0 = sub_0206994C(fieldSystem);
+        chain->unk_D0 = GetLowestChainRecordSlot(fieldSystem);
     }
 
-    chain->shakeType = *param4;
+    chain->shakeType = *shake;
     return TRUE;
 }
 
@@ -305,8 +305,8 @@ static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const 
 {
     int v0 = (param2 - (9 / 2)) + param4;
     int v1 = (param3 - (9 / 2)) + param5;
-    patch->unk_00 = v0;
-    patch->unk_04 = v1;
+    patch->x = v0;
+    patch->z = v1;
     u8 v2 = FieldSystem_GetTileBehavior(fieldSystem, v0, v1);
 
     if (TileBehavior_IsTallGrass(v2)) {
@@ -335,12 +335,13 @@ static BOOL CheckTileIsGrass(FieldSystem *fieldSystem, const fx32 param1, const 
     }
 }
 
-static BOOL sub_020698AC(const RadarChain *chain, const int param1, const int param2, u8 *param3)
+// Checks if the player is standing in any of the shaking patches.
+static BOOL PlayerStandingInPatch(const RadarChain *chain, const int x, const int z, u8 *patchMatch)
 {
     for (u8 patchRing = 0; patchRing < NUM_GRASS_PATCHES; patchRing++) {
         if (chain->patch[patchRing].active) {
-            if ((chain->patch[patchRing].unk_00 == param1) && (chain->patch[patchRing].unk_04 == param2)) {
-                *param3 = patchRing;
+            if ((chain->patch[patchRing].x == x) && (chain->patch[patchRing].z == z)) {
+                *patchMatch = patchRing;
                 return TRUE;
             }
         }
@@ -348,19 +349,19 @@ static BOOL sub_020698AC(const RadarChain *chain, const int param1, const int pa
     return FALSE;
 }
 
-static void sub_020698E4(FieldSystem *fieldSystem, RadarChain *chain)
+static void TryReplaceLowestChainRecord(FieldSystem *fieldSystem, RadarChain *chain)
 {
-    UnkStruct_020698E4 *v0 = sub_0202D830(SaveData_GetSpecialEncounters(fieldSystem->saveData));
-    int v1 = v0->unk_00[chain->unk_D0].unk_02;
+    RadarChainRecords *chainRecordData = SpecialEncounter_GetRadarChainRecords(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+    int lowestRecord = chainRecordData->records[chain->unk_D0].chainCount;
 
-    if (v1 < chain->count) {
-        v0->unk_00[chain->unk_D0].unk_02 = chain->count;
-        v0->unk_00[chain->unk_D0].unk_00 = chain->species;
-        ov6_02243160(v0);
-        if (v0->unk_00[chain->unk_D0].unk_02 <= chain->count) {
-            for (int v2 = 0; v2 < 3; v2++) {
-                if (v0->unk_00[(2 - v2)].unk_02 == chain->count) {
-                    chain->unk_D0 = (2 - v2);
+    if (lowestRecord < chain->count) {
+        chainRecordData->records[chain->unk_D0].chainCount = chain->count;
+        chainRecordData->records[chain->unk_D0].species = chain->species;
+        RadarChainRecords_SortSavedRecords(chainRecordData);
+        if (chainRecordData->records[chain->unk_D0].chainCount <= chain->count) {
+            for (int v2 = 0; v2 < NUM_RADAR_RECORDS; v2++) {
+                if (chainRecordData->records[((NUM_RADAR_RECORDS - 1) - v2)].chainCount == chain->count) {
+                    chain->unk_D0 = ((NUM_RADAR_RECORDS - 1) - v2);
                     return;
                 }
             }
@@ -369,31 +370,32 @@ static void sub_020698E4(FieldSystem *fieldSystem, RadarChain *chain)
     }
 }
 
-static u8 sub_0206994C(FieldSystem *fieldSystem)
+// Returns the index of the record with the lowest chain, or the first empty slot if there is one.
+static u8 GetLowestChainRecordSlot(FieldSystem *fieldSystem)
 {
-    u8 v1;
-    BOOL v2;
-    UnkStruct_020698E4 *v0 = sub_0202D830(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+    u8 slotToReplace;
+    BOOL lowerChain;
+    RadarChainRecords *recordsData = SpecialEncounter_GetRadarChainRecords(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 
-    for (v1 = 0; v1 < 3; v1++) {
-        if (v0->unk_00[v1].unk_00 == 0) {
-            return v1;
+    for (slotToReplace = 0; slotToReplace < NUM_RADAR_RECORDS; slotToReplace++) {
+        if (recordsData->records[slotToReplace].species == 0) {
+            return slotToReplace;
         }
     }
 
-    (v0->unk_00[0].unk_02 < v0->unk_00[1].unk_02) ? (v2 = 1) : (v2 = 0);
-    if (v2) {
-        v1 = 0;
+    lowerChain = recordsData->records[0].chainCount < recordsData->records[1].chainCount ? 1 : 0;
+    if (lowerChain) {
+        slotToReplace = 0;
     } else {
-        v1 = 1;
+        slotToReplace = 1;
     }
 
-    (v0->unk_00[v1].unk_02 < v0->unk_00[2].unk_02) ? (v2 = 1) : (v2 = 0);
-    if (!v2) {
-        v1 = 2;
+    lowerChain = recordsData->records[slotToReplace].chainCount < recordsData->records[2].chainCount ? 1 : 0;
+    if (!lowerChain) {
+        slotToReplace = 2;
     }
 
-    return v1;
+    return slotToReplace;
 }
 
 static BOOL CheckPatchContinueChain(const u8 patchRing, const int battleResult)
@@ -423,7 +425,7 @@ BOOL RefreshRadarChain(FieldTask *taskMan)
     switch (*v1) {
     case 0:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
-        u8 *v2 = sub_0202D9C4(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+        u8 *v2 = SpecialEncounter_GetRadarCharge(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 
         if (*v2 < RADAR_BATTERY_STEPS) {
             ScriptManager_Start(taskMan, 8970, NULL, NULL);
@@ -484,10 +486,10 @@ static BOOL CheckPatchShiny(const int chainCount)
     }
 }
 
-void sub_02069B74(FieldSystem *fieldSystem)
+void RadarChain_Increment(FieldSystem *fieldSystem)
 {
     IncWithCap(&(fieldSystem->chain->count));
-    sub_020698E4(fieldSystem, fieldSystem->chain);
+    TryReplaceLowestChainRecord(fieldSystem, fieldSystem->chain);
 }
 
 int GetChainCount(FieldSystem *fieldSystem)
@@ -500,7 +502,7 @@ void RadarChargeStep(FieldSystem *fieldSystem)
     u8 *v0;
 
     if (Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), 431, 1, 4) == 1) {
-        v0 = sub_0202D9C4(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+        v0 = SpecialEncounter_GetRadarCharge(SaveData_GetSpecialEncounters(fieldSystem->saveData));
         if ((*v0) < RADAR_BATTERY_STEPS) {
             (*v0)++;
         }

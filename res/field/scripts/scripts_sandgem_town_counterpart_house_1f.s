@@ -60,7 +60,7 @@ _009A:
     GoToIfUnset 0x964, _005A
     GoToIfSet 240, _00C4
     SetFlag 240
-    ScrCmd_21B
+    EnableSwarms
     BufferPlayerName 0
     Message 4
     WaitABXPadPress
@@ -70,9 +70,9 @@ _009A:
 
 _00C4:
     BufferPlayerName 0
-    ScrCmd_0E3 0x4001, 0x4000
+    GetSwarmMapAndSpecies 0x4001, 0x4000
     ScrCmd_0E2 1, 0x4001
-    ScrCmd_0DA 2, 0x4000, 0, 1
+    BufferSpeciesNameFromVar 2, 0x4000, 0, 1
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _00FA
     GoToIfEq 0x800C, 1, _0103

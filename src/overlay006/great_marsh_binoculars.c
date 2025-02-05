@@ -6,7 +6,6 @@
 #include "field/field_system.h"
 #include "overlay006/dual_slot_encounters.h"
 #include "overlay006/great_marsh_daily_encounters.h"
-#include "overlay006/ov6_02240C9C.h"
 #include "overlay006/wild_encounters.h"
 
 #include "field_system.h"
@@ -19,7 +18,7 @@
 #include "narc.h"
 #include "player_avatar.h"
 #include "pokedex.h"
-#include "unk_0202D7A8.h"
+#include "special_encounter.h"
 
 int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
 {

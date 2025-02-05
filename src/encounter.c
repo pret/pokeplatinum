@@ -15,8 +15,8 @@
 #include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system.h"
-#include "overlay006/ov6_02240C9C.h"
-#include "overlay006/ov6_02246034.h"
+#include "overlay006/roamer_after_battle.h"
+#include "overlay006/wild_encounters.h"
 #include "savedata/save_table.h"
 
 #include "catching_show.h"
@@ -421,7 +421,7 @@ static BOOL FieldTask_WildEncounter(FieldTask *task)
         break;
 
     case 4:
-        ov6_02246034(fieldSystem, encounter->dto);
+        RoamerAfterBattle_UpdateRoamers(fieldSystem, encounter->dto);
         FieldTransition_FadeIn(task);
         encounter->state++;
         break;
@@ -543,7 +543,7 @@ void Encounter_NewVsHoneyTree(FieldTask *task, int *resultMaskPtr)
     dto->background = BACKGROUND_PLAIN;
     dto->terrain = TERRAIN_PLAIN;
 
-    ov6_02242034(fieldSystem, dto);
+    CreateWildMon_HoneyTree(fieldSystem, dto);
 
     GameRecords_IncrementRecordValue(SaveData_GetGameRecordsPtr(fieldSystem->saveData), RECORD_WILD_BATTLES_FOUGHT);
     StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
@@ -558,7 +558,7 @@ void Encounter_NewVsSpeciesAtLevel(FieldTask *task, u16 species, u8 level, int *
     dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_WILD_MON);
     FieldBattleDTO_Init(dto, fieldSystem);
 
-    ov6_022420D4(fieldSystem, species, level, dto);
+    CreateWildMon_Scripted(fieldSystem, species, level, dto);
 
     if (isLegendary) {
         dto->battleStatusMask |= BATTLE_STATUS_LEGENDARY;
@@ -577,7 +577,7 @@ void Encounter_NewFatefulVsSpeciesAtLevel(FieldTask *taskMan, u16 species, u8 le
     dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_WILD_MON);
     FieldBattleDTO_Init(dto, fieldSystem);
 
-    ov6_022420D4(fieldSystem, species, level, dto);
+    CreateWildMon_Scripted(fieldSystem, species, level, dto);
 
     BOOL tmp = TRUE;
     Pokemon *wildMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
@@ -949,9 +949,9 @@ static void UpdateJournal(FieldSystem *fieldSystem, FieldBattleDTO *dto)
         JournalEntryMon *journalEntryMon;
 
         if (resultMask == BATTLE_RESULT_WIN) {
-            fieldSystem->unk_78.unk_02++;
+            fieldSystem->wildBattleMetadata.wildMonDefeated++;
 
-            if (fieldSystem->unk_78.unk_02 >= 5) {
+            if (fieldSystem->wildBattleMetadata.wildMonDefeated >= 5) {
                 caughtMon = Party_GetPokemonBySlotIndex(dto->parties[1], 0);
                 journalEntryMon = JournalEntry_CreateEventMonDefeated(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
                 JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryMon, JOURNAL_MON);
@@ -979,7 +979,7 @@ void Encounter_NewVsGiratinaOrigin(FieldTask *task, u16 species, u8 level, int *
     dto = FieldBattleDTO_New(HEAP_ID_FIELDMAP, BATTLE_TYPE_WILD_MON);
     FieldBattleDTO_Init(dto, fieldSystem);
 
-    ov6_022420D4(fieldSystem, species, level, dto);
+    CreateWildMon_Scripted(fieldSystem, species, level, dto);
 
     Pokemon *wildMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
     Pokemon_SetGiratinaOriginForm(wildMon);

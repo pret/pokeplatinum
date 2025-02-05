@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_defs/struct_0202D7B0.h"
+#include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202E7D8.h"
 #include "struct_defs/struct_0202E7E4.h"
 #include "struct_defs/struct_0202E7F0.h"
@@ -21,13 +21,12 @@
 #include "struct_defs/struct_0202E81C.h"
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
-#include "struct_defs/struct_0206C638.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay006/ov6_02243218.h"
 #include "overlay006/ov6_02246444.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
+#include "overlay006/swarm.h"
 #include "overlay025/poketch_system.h"
 #include "savedata/save_table.h"
 
@@ -50,12 +49,12 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
+#include "special_encounter.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_020298BC.h"
-#include "unk_0202D7A8.h"
 #include "unk_0202E2CC.h"
 #include "unk_0203A944.h"
 #include "unk_02054884.h"
@@ -2238,17 +2237,17 @@ static int sub_0206EB94(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     u16 v0, v1;
     SpecialEncounter *v2 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
 
-    ov6_0224322C(SpecialEncounter_GetDailyMon(v2, DAILY_SWARM), &v0, &v1);
+    Swarm_GetMapIdAndSpecies(SpecialEncounter_GetDailyMon(v2, DAILY_SWARM), &v0, &v1);
     StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v0));
     sub_0206CEA4(param1, 1, v1);
 
     return 29;
 }
 
-static BOOL sub_0206EBD4(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
+static BOOL FieldSystem_IsSwarmEnabled(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *unused)
 {
-    SpecialEncounter *v0 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
-    return sub_0202D898(v0);
+    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+    return SpecialEncounter_IsSwarmEnabled(speEnc);
 }
 
 static BOOL sub_0206EBE4(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
@@ -2627,16 +2626,16 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     v2 = (LCRNG_Next() % 29);
 
-    MapHeader_LoadName(sub_0206C3C8(v2), 4, v6);
+    MapHeader_LoadName(RoamingPokemon_GetRouteFromId(v2), HEAP_ID_FIELD, v6);
     StringTemplate_SetStrbuf(param1, 0, v6, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v6);
 
     for (v3 = 0; v3 < 6; v3++) {
-        if (sub_0202D8F8(v1, v3)) {
-            v0 = sub_0202D924(v1, v3);
+        if (SpecialEncounter_IsRoamerActive(v1, v3)) {
+            v0 = SpecialEncounter_GetRoamer(v1, v3);
 
-            v4 = sub_0202D93C(v0, 4);
-            v5 = sub_0202D93C(v0, 3);
+            v4 = Roamer_GetData(v0, ROAMER_DATA_SPECIES);
+            v5 = Roamer_GetData(v0, ROAMER_DATA_PERSONALITY);
 
             sub_0206CE74(param1, 1, v4, Pokemon_GetGenderOf(v4, v5), TrainerInfo_RegionCode(v7), TrainerInfo_GameCode(v7));
             break;
@@ -2654,7 +2653,7 @@ static BOOL sub_0206EE74(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
     v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (sub_0202D8F8(v1, v0)) {
+        if (SpecialEncounter_IsRoamerActive(v1, v0)) {
             return 1;
         }
     }
@@ -3005,7 +3004,7 @@ static const UnkStruct_020EFFA4 Unk_020EFE84[17] = {
     { sub_0206E940, sub_0206EA0C },
     { sub_0206EA10, NULL },
     { NULL, NULL },
-    { sub_0206EB94, sub_0206EBD4 },
+    { sub_0206EB94, FieldSystem_IsSwarmEnabled },
     { NULL, NULL },
     { NULL, sub_0206EBE4 },
     { NULL, NULL },
