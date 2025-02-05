@@ -65,9 +65,9 @@ void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D16
     v0 = ov63_0222D1B8(param1);
 
     if (param0->unk_10 == 0) {
-        sub_0200962C(param0->unk_00, FX32_CONST(v0), FX32_CONST(v1));
+        SetMainScreenViewRect(param0->unk_00, FX32_CONST(v0), FX32_CONST(v1));
     } else {
-        sub_0200964C(param0->unk_00, FX32_CONST(v0), FX32_CONST(v1) + (192 << FX32_SHIFT));
+        SetSubScreenViewRect(param0->unk_00, FX32_CONST(v0), FX32_CONST(v1) + (192 << FX32_SHIFT));
     }
 
     ov63_0222D378(param0, v0, v1);

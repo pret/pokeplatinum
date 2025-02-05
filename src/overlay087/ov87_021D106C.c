@@ -94,7 +94,7 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
         NNS_G2dInitOamManagerModule();
         RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 61);
 
-        v0->unk_34 = sub_020095C4(64, &v0->unk_38, 61);
+        v0->unk_34 = SpriteList_InitRendering(64, &v0->unk_38, 61);
         v0->unk_1E4 = MessageLoader_Init(0, 26, 352, 61);
         v0->unk_1E8 = MessageLoader_Init(1, 26, 412, 61);
         v0->unk_1EC = MessageLoader_Init(1, 26, 647, 61);

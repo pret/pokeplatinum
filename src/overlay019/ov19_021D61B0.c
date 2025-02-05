@@ -175,8 +175,8 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             NNS_G2dInitOamManagerModule();
 
             RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 10);
-            v0->unk_18 = sub_020095C4(128, &v0->unk_1C, 10);
-            sub_0200964C(&(v0->unk_1C), 0, (384 << FX32_SHIFT));
+            v0->unk_18 = SpriteList_InitRendering(128, &v0->unk_1C, 10);
+            SetSubScreenViewRect(&(v0->unk_1C), 0, (384 << FX32_SHIFT));
 
             NNS_G2dInitImagePaletteProxy(&(v0->unk_1A8));
 

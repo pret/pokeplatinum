@@ -573,7 +573,7 @@ static void ov21_021E47CC(UnkStruct_ov21_021E4360 *param0, UnkStruct_ov21_021E41
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int v3, v4;
 
-    sub_020093B4(&v0, 116 + 11000, 19 + 11000, 117 + 11000, 115 + 11000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 116 + 11000, 19 + 11000, 117 + 11000, 115 + 11000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;

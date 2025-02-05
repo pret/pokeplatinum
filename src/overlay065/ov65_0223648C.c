@@ -848,10 +848,10 @@ static void ov65_02236D50(UnkStruct_ov65_02236840 *param0, u32 param1)
     PlttTransfer_Init(4, param1);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    param0->unk_18 = sub_020095C4(4, &param0->unk_1C, param1);
+    param0->unk_18 = SpriteList_InitRendering(4, &param0->unk_1C, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_1A8[v0] = SpriteResourceCollection_New(4, v0, param1);

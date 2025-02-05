@@ -1972,7 +1972,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
     NARC *v3 = param0->unk_D80;
 
     {
-        sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+        ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
     }
 
     {

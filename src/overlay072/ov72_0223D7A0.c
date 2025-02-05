@@ -477,9 +477,9 @@ static void ov72_0223DDD8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 39);
 
-    param0->unk_3C = sub_020095C4(50, &param0->unk_40, 39);
+    param0->unk_3C = SpriteList_InitRendering(50, &param0->unk_40, 39);
 
-    sub_0200964C(&param0->unk_40, 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(&param0->unk_40, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_1CC[v0] = SpriteResourceCollection_New(2, v0, 39);
@@ -508,8 +508,8 @@ static void ov72_0223DF58(UnkStruct_ov72_0223DB98 *param0)
 {
     int v0;
 
-    sub_020093B4(&param0->unk_1FC, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1CC[0], param0->unk_1CC[1], param0->unk_1CC[2], param0->unk_1CC[3], NULL, NULL);
-    sub_020093B4(&param0->unk_220, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1CC[0], param0->unk_1CC[1], param0->unk_1CC[2], param0->unk_1CC[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_1FC, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1CC[0], param0->unk_1CC[1], param0->unk_1CC[2], param0->unk_1CC[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_220, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1CC[0], param0->unk_1CC[1], param0->unk_1CC[2], param0->unk_1CC[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v1;

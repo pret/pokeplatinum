@@ -545,7 +545,7 @@ static void ov21_021DEE80(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     CellActorInitParams v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
 
-    sub_020093B4(&v0, 4000, 4000, 4000, 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 4000, 4000, 4000, 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;
@@ -639,7 +639,7 @@ static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     type1 = ov21_021DF180(type1);
     type2 = ov21_021DF180(type2);
 
-    sub_020093B4(&v0, 90 + 4000, 13 + 4000, 88 + 4000, 89 + 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 90 + 4000, 13 + 4000, 88 + 4000, 89 + 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;
@@ -746,7 +746,7 @@ static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     UnkStruct_ov21_021D4CB8 v5;
     SpriteResource *v6;
 
-    sub_020093B4(&v0, 90 + 4000, 13 + 4000, 88 + 4000, 89 + 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 90 + 4000, 13 + 4000, 88 + 4000, 89 + 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;

@@ -191,14 +191,14 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     v0->unk_0C.unk_18 = sub_0200C6E4(21);
     sub_0200C73C(v0->unk_0C.unk_18, &Unk_ov17_02252DC8, &Unk_ov17_02252D9C, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_0C.unk_1C = sub_0200C704(v0->unk_0C.unk_18);
 
     sub_0200C7C0(v0->unk_0C.unk_18, v0->unk_0C.unk_1C, (64 + 64));
     sub_0200CB30(v0->unk_0C.unk_18, v0->unk_0C.unk_1C, &Unk_ov17_02252DB0);
-    sub_0200964C(sub_0200C738(v0->unk_0C.unk_18), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(v0->unk_0C.unk_18), 0, ((192 + 80) << FX32_SHIFT));
 
     v0->unk_0C.unk_04 = sub_0200762C(21);
     ov17_0223B884();

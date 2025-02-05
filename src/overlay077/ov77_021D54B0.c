@@ -107,7 +107,7 @@ static void ov77_021D54B0()
 
 static void ov77_021D54E8(const int param0, UnkStruct_ov77_021D5564 *param1, const int param2, CellActorInitParamsEx *param3, CellActorResourceData *param4, int param5, int param6)
 {
-    sub_020093B4(param4, param0, param0, param0, param0, 0xffffffff, 0xffffffff, param5, param2, param1->unk_190[0], param1->unk_190[1], param1->unk_190[2], param1->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(param4, param0, param0, param0, param0, 0xffffffff, 0xffffffff, param5, param2, param1->unk_190[0], param1->unk_190[1], param1->unk_190[2], param1->unk_190[3], NULL, NULL);
 
     {
         param3->collection = param1->unk_00;
@@ -142,7 +142,7 @@ void ov77_021D5564(UnkStruct_ov77_021D5564 *param0)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, v1);
 
-    param0->unk_00 = sub_020095C4(((3 + 1 + 1 + 2 + 4) + 6 + 16), &param0->unk_04, v1);
+    param0->unk_00 = SpriteList_InitRendering(((3 + 1 + 1 + 2 + 4) + 6 + 16), &param0->unk_04, v1);
     param0->unk_300 = CellTransfer_New(3, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -218,7 +218,7 @@ void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
     CellActorCollection_Delete(param0->unk_00);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_020094F0(&param0->unk_294[v0]);
+        SpriteResourcesHeader_Clear(&param0->unk_294[v0]);
     }
 
     if (param0->unk_300 != NULL) {

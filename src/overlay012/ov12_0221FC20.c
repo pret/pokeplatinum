@@ -2106,7 +2106,7 @@ static void ov12_0222144C(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_134 = sub_0200C704(param0->unk_BC->unk_AC);
 
     sub_0200C7C0(param0->unk_BC->unk_AC, param0->unk_134, v0);
-    sub_0200964C(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
     sub_0200CB30(param0->unk_BC->unk_AC, param0->unk_134, &v1);
 }
 
@@ -3571,7 +3571,7 @@ static void ov12_02222CE8(UnkStruct_ov12_0221FCDC *param0)
     GF_ASSERT(param0->unk_C8[v1] != NULL);
 
     sub_0200C7C0(param0->unk_BC->unk_AC, param0->unk_C8[v1], v2);
-    sub_0200964C(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
 
     {
         UnkStruct_ov104_02241308 v3;

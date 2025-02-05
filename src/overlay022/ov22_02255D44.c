@@ -442,8 +442,8 @@ int ov22_02256174(OverlayManager *param0, int *param1)
 
     CellActorCollection_SetActive(v0->unk_00.unk_44, 0);
     sub_02039734();
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), 13);
 

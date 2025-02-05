@@ -420,7 +420,7 @@ void sub_0205D0AC(UnkStruct_0205D094 *param0)
 
 static void sub_0205D0B4(UnkStruct_0205D094 *param0)
 {
-    param0->unk_00 = sub_020095C4(2, &param0->unk_30, 4);
+    param0->unk_00 = SpriteList_InitRendering(2, &param0->unk_30, 4);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -454,7 +454,7 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     SpriteTransfer_RequestPlttFreeSpaceList(param0->unk_18[1]);
 
     v1 = LoadMemberFromNARC(177, 4, 0, 4, 0);
-    param0->unk_04 = sub_02009508(v1, 4, param0->unk_08[0], param0->unk_08[1], param0->unk_08[2], param0->unk_08[3], NULL, NULL);
+    param0->unk_04 = SpriteResourcesHeaderList_NewFromResdat(v1, 4, param0->unk_08[0], param0->unk_08[1], param0->unk_08[2], param0->unk_08[3], NULL, NULL);
 
     Heap_FreeToHeap(v1);
 }
@@ -495,7 +495,7 @@ static void sub_0205D22C(UnkStruct_0205D094 *param0)
     CellActorCollection_Delete(param0->unk_00);
     param0->unk_00 = NULL;
 
-    sub_020095A8(param0->unk_04);
+    SpriteResourcesHeaderList_Free(param0->unk_04);
     param0->unk_04 = NULL;
 
     SpriteTransfer_ResetCharTransferList(param0->unk_18[0]);

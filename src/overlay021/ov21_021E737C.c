@@ -634,7 +634,7 @@ static void ov21_021E7B34(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     int species = PokedexSort_CurrentSpecies(param2->unk_00);
     int v7 = PokedexSort_DefaultForm(param2->unk_00, species);
 
-    sub_020093B4(&v0, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;
@@ -672,7 +672,7 @@ static void ov21_021E7B34(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     param0->unk_0C[1] = CellActorCollection_Add(&v1);
 
     CellActor_SetAnim(param0->unk_0C[1], 0);
-    sub_020093B4(&v0, SpriteResource_GetID(param0->unk_14[0]), SpriteResource_GetID(param0->unk_14[1]), SpriteResource_GetID(param0->unk_14[2]), SpriteResource_GetID(param0->unk_14[3]), 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, SpriteResource_GetID(param0->unk_14[0]), SpriteResource_GetID(param0->unk_14[1]), SpriteResource_GetID(param0->unk_14[2]), SpriteResource_GetID(param0->unk_14[3]), 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;

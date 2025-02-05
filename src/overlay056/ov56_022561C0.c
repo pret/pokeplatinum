@@ -377,7 +377,7 @@ static void ov56_02256634(UnkStruct_ov56_02256468 *param0)
 {
     int v0;
 
-    param0->unk_28 = sub_020095C4(10, &param0->unk_2C, 4);
+    param0->unk_28 = SpriteList_InitRendering(10, &param0->unk_2C, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_1B8[v0] = SpriteResourceCollection_New(1, v0, 4);
@@ -402,7 +402,7 @@ static void ov56_02256704(UnkStruct_ov56_02256468 *param0)
 {
     int v0;
 
-    sub_020093B4(&param0->unk_1D8, 999, 999, 999, 999, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_1D8, 999, 999, 999, 999, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v1;

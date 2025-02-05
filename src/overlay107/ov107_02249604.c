@@ -48,7 +48,7 @@ void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2)
     NNS_G2dInitOamManagerModule();
 
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 100);
-    param0->unk_00 = sub_020095C4(40, &param0->unk_04, 100);
+    param0->unk_00 = SpriteList_InitRendering(40, &param0->unk_04, 100);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov107_0224A204[v0], v0, 100);
@@ -111,7 +111,7 @@ CellActor *ov107_022498A4(UnkStruct_ov107_02249954 *param0, u32 param1, u32 para
     CellActorResourceData v1;
     CellActor *v2;
 
-    sub_020093B4(&v1, param1, param2, param3, param3, 0xffffffff, 0xffffffff, 0, param6, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v1, param1, param2, param3, param3, 0xffffffff, 0xffffffff, 0, param6, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v3;

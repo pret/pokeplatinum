@@ -523,10 +523,10 @@ static void ov68_0225CAB4(UnkStruct_ov68_0225C91C *param0, u32 param1)
     PlttTransfer_Init(32, param1);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    param0->unk_04 = sub_020095C4(32, &param0->unk_08, param1);
+    param0->unk_04 = SpriteList_InitRendering(32, &param0->unk_08, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_194[v0] = SpriteResourceCollection_New(32, v0, param1);
@@ -688,7 +688,7 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
         CellActorResourceData v1;
         CellActorInitParams v2 = { 0 };
 
-        sub_020093B4(&v1, 20, 20, 20, 20, 0xffffffff, 0xffffffff, 0, 0, param2->unk_194[0], param2->unk_194[1], param2->unk_194[2], param2->unk_194[3], NULL, NULL);
+        SpriteResourcesHeader_Init(&v1, 20, 20, 20, 20, 0xffffffff, 0xffffffff, 0, 0, param2->unk_194[0], param2->unk_194[1], param2->unk_194[2], param2->unk_194[3], NULL, NULL);
 
         v2.collection = param2->unk_04;
         v2.resourceData = &v1;

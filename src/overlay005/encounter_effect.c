@@ -729,7 +729,7 @@ void ov5_021DE47C(UnkStruct_ov5_021DE47C *param0, int param1, int param2)
 {
     int v0;
 
-    param0->unk_00 = sub_020095C4(param1, &param0->unk_04, 4);
+    param0->unk_00 = SpriteList_InitRendering(param1, &param0->unk_04, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_190[v0] = SpriteResourceCollection_New(param2, v0, 4);
@@ -757,7 +757,7 @@ void ov5_021DE4CC(NARC *param0, UnkStruct_ov5_021DE47C *param1, UnkStruct_ov5_02
     SpriteTransfer_RequestCharAtEnd(param2->unk_00[0]);
     SpriteResource_ReleaseData(param2->unk_00[0]);
     SpriteTransfer_RequestPlttFreeSpace(param2->unk_00[1]);
-    sub_020093B4(&param2->unk_10, param8, param8, param8, param8, 0xffffffff, 0xffffffff, 0, 0, param1->unk_190[0], param1->unk_190[1], param1->unk_190[2], param1->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param2->unk_10, param8, param8, param8, param8, 0xffffffff, 0xffffffff, 0, 0, param1->unk_190[0], param1->unk_190[1], param1->unk_190[2], param1->unk_190[3], NULL, NULL);
 }
 
 void ov5_021DE5A4(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1)

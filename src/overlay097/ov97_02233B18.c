@@ -511,8 +511,8 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
     NNS_G2dInitOamManagerModule();
 
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 78);
-    param0->unk_28 = sub_020095C4(80, &param0->unk_2C, 78);
-    sub_0200964C(&param0->unk_2C, 0, (256 * FX32_ONE));
+    param0->unk_28 = SpriteList_InitRendering(80, &param0->unk_2C, 78);
+    SetSubScreenViewRect(&param0->unk_2C, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_1B8[v0] = SpriteResourceCollection_New(3, v0, 78);
@@ -530,7 +530,7 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
 
 static void ov97_022340B0(UnkStruct_ov97_02234A2C *param0)
 {
-    sub_020093B4(&param0->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 

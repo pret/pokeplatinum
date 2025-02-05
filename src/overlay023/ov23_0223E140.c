@@ -2770,9 +2770,9 @@ static void ov23_02240E88(void)
     RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 29);
     ov23_0224119C();
 
-    Unk_ov23_02257740->unk_20 = sub_020095C4(26, &Unk_ov23_02257740->unk_24, 29);
+    Unk_ov23_02257740->unk_20 = SpriteList_InitRendering(26, &Unk_ov23_02257740->unk_24, 29);
 
-    sub_0200964C(&Unk_ov23_02257740->unk_24, 0, (192 << FX32_SHIFT) * 2);
+    SetSubScreenViewRect(&Unk_ov23_02257740->unk_24, 0, (192 << FX32_SHIFT) * 2);
 
     for (v0 = 0; v0 < 4; v0++) {
         Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, 29);
@@ -2805,7 +2805,7 @@ static void ov23_0224108C(void)
     CellActorInitParamsEx v2;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_020093B4(&Unk_ov23_02257740->unk_204[v0], v0, v0, v0, v0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257740->unk_1B0[0], Unk_ov23_02257740->unk_1B0[1], Unk_ov23_02257740->unk_1B0[2], Unk_ov23_02257740->unk_1B0[3], NULL, NULL);
+        SpriteResourcesHeader_Init(&Unk_ov23_02257740->unk_204[v0], v0, v0, v0, v0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257740->unk_1B0[0], Unk_ov23_02257740->unk_1B0[1], Unk_ov23_02257740->unk_1B0[2], Unk_ov23_02257740->unk_1B0[3], NULL, NULL);
 
         v2.collection = Unk_ov23_02257740->unk_20;
         v2.resourceData = &Unk_ov23_02257740->unk_204[v0];
@@ -2850,8 +2850,8 @@ static void ov23_0224119C(void)
     PlttTransfer_Init(20, 29);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
 static void ov23_022411E8(void *param0)

@@ -317,9 +317,9 @@ static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 62);
 
-    param0->unk_BE4 = sub_020095C4(72 + 6, &param0->unk_BE8, 62);
+    param0->unk_BE4 = SpriteList_InitRendering(72 + 6, &param0->unk_BE8, 62);
 
-    sub_0200964C(&param0->unk_BE8, 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(&param0->unk_BE8, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_D74[v0] = SpriteResourceCollection_New(3, v0, 62);
@@ -389,8 +389,8 @@ static void ov94_0223C32C(UnkStruct_ov94_0223FD4C *param0)
 {
     int v0;
 
-    sub_020093B4(&param0->unk_DB4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D74[0], param0->unk_D74[1], param0->unk_D74[2], param0->unk_D74[3], NULL, NULL);
-    sub_020093B4(&param0->unk_DD8, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D74[0], param0->unk_D74[1], param0->unk_D74[2], param0->unk_D74[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_DB4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D74[0], param0->unk_D74[1], param0->unk_D74[2], param0->unk_D74[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_DD8, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D74[0], param0->unk_D74[1], param0->unk_D74[2], param0->unk_D74[3], NULL, NULL);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }

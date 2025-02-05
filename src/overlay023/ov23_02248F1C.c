@@ -96,7 +96,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         break;
     case 1:
         ov23_02249584(v0);
-        sub_020093B4(&v0->unk_36C, 1000, 1000, 1000, 1000, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34C[0], v0->unk_34C[1], v0->unk_34C[2], v0->unk_34C[3], NULL, NULL);
+        SpriteResourcesHeader_Init(&v0->unk_36C, 1000, 1000, 1000, 1000, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34C[0], v0->unk_34C[1], v0->unk_34C[2], v0->unk_34C[3], NULL, NULL);
 
         {
             CellActorInitParamsEx v3;
@@ -432,7 +432,7 @@ static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
 {
     int v0;
 
-    param0->unk_1BC = sub_020095C4(((7 + 1) + 16 + 1), &param0->unk_1C0, 4);
+    param0->unk_1BC = SpriteList_InitRendering(((7 + 1) + 16 + 1), &param0->unk_1C0, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_34C[v0] = SpriteResourceCollection_New(1, v0, 4);

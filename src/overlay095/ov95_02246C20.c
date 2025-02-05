@@ -163,8 +163,8 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
             NNS_G2dInitOamManagerModule();
 
             RenderOam_Init(0, 128, 0, 32, 1, 127, 0, 32, 57);
-            v0->unk_18 = sub_020095C4(64, &v0->unk_1C, 57);
-            sub_0200964C(&(v0->unk_1C), 0, (192 + 40 << FX32_SHIFT));
+            v0->unk_18 = SpriteList_InitRendering(64, &v0->unk_1C, 57);
+            SetSubScreenViewRect(&(v0->unk_1C), 0, (192 + 40 << FX32_SHIFT));
 
             v0->unk_1B0 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_SPECIES, NULL);
             v0->unk_1B2 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_FORM, NULL);

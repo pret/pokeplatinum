@@ -545,12 +545,12 @@ static void ov112_0225CB98(UnkStruct_ov112_0225C9BC *param0, u32 param1)
     PlttTransfer_Init(32, param1);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    param0->unk_04 = sub_020095C4(32, &param0->unk_08, param1);
+    param0->unk_04 = SpriteList_InitRendering(32, &param0->unk_08, param1);
 
-    sub_0200964C(&param0->unk_08, 0, (FX32_CONST(256)));
+    SetSubScreenViewRect(&param0->unk_08, 0, (FX32_CONST(256)));
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_194[v0] = SpriteResourceCollection_New(32, v0, param1);

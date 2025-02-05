@@ -3250,8 +3250,8 @@ static void ov23_02246324(void)
 {
     int v0;
 
-    Unk_ov23_02257764->unk_44 = sub_020095C4(32, &Unk_ov23_02257764->unk_48, 4);
-    sub_0200964C(&Unk_ov23_02257764->unk_48, 0, (192 << FX32_SHIFT) * 2);
+    Unk_ov23_02257764->unk_44 = SpriteList_InitRendering(32, &Unk_ov23_02257764->unk_48, 4);
+    SetSubScreenViewRect(&Unk_ov23_02257764->unk_48, 0, (192 << FX32_SHIFT) * 2);
 
     for (v0 = 0; v0 < 4; v0++) {
         Unk_ov23_02257764->unk_1D4[0][v0] = SpriteResourceCollection_New(2, v0, 4);
@@ -3302,7 +3302,7 @@ static void ov23_02246370(int param0)
 
 static void ov23_0224644C(int param0)
 {
-    sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
+    SpriteResourcesHeader_Init(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
 
     {
         CellActorInitParamsEx v0;
@@ -3652,7 +3652,7 @@ static void ov23_02246D44(UnkStruct_ov23_022468DC *param0)
 {
     SpriteTransfer_RequestCharAtEndWithHardwareMappingType(Unk_ov23_02257764->unk_1F4[0][0]);
     SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257764->unk_1F4[0][1]);
-    sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
+    SpriteResourcesHeader_Init(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
 
     {
         CellActorInitParamsEx v0;
@@ -3830,7 +3830,7 @@ static void ov23_022471D8(UnkStruct_ov23_022471D8 *param0)
 {
     SpriteTransfer_RequestCharAtEndWithHardwareMappingType(Unk_ov23_02257764->unk_1F4[0][0]);
     SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257764->unk_1F4[0][1]);
-    sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
+    SpriteResourcesHeader_Init(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
 
     {
         CellActorInitParamsEx v0;
@@ -4155,8 +4155,8 @@ static void ov23_02247A8C(SysTask *param0, void *param1)
         {
             int v2;
 
-            Unk_ov23_02257764->unk_44 = sub_020095C4(32, &Unk_ov23_02257764->unk_48, 4);
-            sub_0200964C(&Unk_ov23_02257764->unk_48, 0, (192 << FX32_SHIFT) * 2);
+            Unk_ov23_02257764->unk_44 = SpriteList_InitRendering(32, &Unk_ov23_02257764->unk_48, 4);
+            SetSubScreenViewRect(&Unk_ov23_02257764->unk_48, 0, (192 << FX32_SHIFT) * 2);
 
             for (v2 = 0; v2 < 4; v2++) {
                 Unk_ov23_02257764->unk_1D4[0][v2] = SpriteResourceCollection_New(7 + 1, v2, 4);
@@ -4304,7 +4304,7 @@ static void ov23_02247E38(UnkStruct_ov23_02247E38 *param0)
 {
     SpriteTransfer_RequestCharAtEndWithHardwareMappingType(Unk_ov23_02257764->unk_1F4[0][0]);
     SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257764->unk_1F4[0][1]);
-    sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
+    SpriteResourcesHeader_Init(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[0][0], Unk_ov23_02257764->unk_1D4[0][1], Unk_ov23_02257764->unk_1D4[0][2], Unk_ov23_02257764->unk_1D4[0][3], NULL, NULL);
 
     {
         CellActorInitParamsEx v0;
@@ -4764,7 +4764,7 @@ static void ov23_02248748(UnkStruct_ov23_02248748 *param0)
 {
     SpriteTransfer_RequestCharAtEndWithHardwareMappingType(Unk_ov23_02257764->unk_1F4[1][0]);
     SpriteTransfer_RequestPlttFreeSpace(Unk_ov23_02257764->unk_1F4[1][1]);
-    sub_020093B4(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[1][0], Unk_ov23_02257764->unk_1D4[1][1], Unk_ov23_02257764->unk_1D4[1][2], Unk_ov23_02257764->unk_1D4[1][3], NULL, NULL);
+    SpriteResourcesHeader_Init(&Unk_ov23_02257764->unk_238, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257764->unk_1D4[1][0], Unk_ov23_02257764->unk_1D4[1][1], Unk_ov23_02257764->unk_1D4[1][2], Unk_ov23_02257764->unk_1D4[1][3], NULL, NULL);
 
     {
         CellActorInitParamsEx v0;
@@ -4823,8 +4823,8 @@ static void ov23_02248884(SysTask *param0, void *param1)
         sub_020594FC();
         Sound_PlayEffect(1354);
 
-        Unk_ov23_02257764->unk_44 = sub_020095C4(32, &Unk_ov23_02257764->unk_48, 4);
-        sub_0200964C(&Unk_ov23_02257764->unk_48, 0, (192 << FX32_SHIFT) * 2);
+        Unk_ov23_02257764->unk_44 = SpriteList_InitRendering(32, &Unk_ov23_02257764->unk_48, 4);
+        SetSubScreenViewRect(&Unk_ov23_02257764->unk_48, 0, (192 << FX32_SHIFT) * 2);
         v0->unk_00 = 5;
         break;
     case 5:

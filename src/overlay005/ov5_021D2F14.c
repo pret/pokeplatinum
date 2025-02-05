@@ -31,7 +31,7 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *
     u32 v3;
     u32 v4;
 
-    param0->unk_00 = sub_020095C4(param2, &param0->unk_04, param3);
+    param0->unk_00 = SpriteList_InitRendering(param2, &param0->unk_04, param3);
     param0->unk_1C6 = param3;
 
     if (param1->val2.unk_10 == NULL) {
@@ -73,7 +73,7 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *
     SpriteTransfer_RequestPlttFreeSpaceList(param0->unk_1AC[1]);
 
     v2 = ReadFileToHeap(param3, param1->val2.unk_18);
-    param0->unk_190 = sub_02009508(v2, param3, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
+    param0->unk_190 = SpriteResourcesHeaderList_NewFromResdat(v2, param3, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
     Heap_FreeToHeap(v2);
 }
@@ -83,7 +83,7 @@ void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0)
     u32 v0;
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_020095A8(param0->unk_190);
+    SpriteResourcesHeaderList_Free(param0->unk_190);
     SpriteTransfer_ResetCharTransferList(param0->unk_1AC[0]);
     SpriteTransfer_ResetPlttTransferList(param0->unk_1AC[1]);
 
@@ -130,7 +130,7 @@ void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, UnkStruct_ov104_02241308 *para
     u32 v3;
     u32 v4, v5;
 
-    param0->unk_00 = sub_020095C4(param2, &param0->unk_04, param3);
+    param0->unk_00 = SpriteList_InitRendering(param2, &param0->unk_04, param3);
     param0->unk_1C6 = param3;
 
     if ((param1->val2.unk_10 == 0) || (param1->val2.unk_14 == 0)) {
@@ -359,7 +359,7 @@ CellActorData *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
         }
     }
 
-    sub_020093B4(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->transferToVRAM, param1->bgPriority, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
+    SpriteResourcesHeader_Init(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->transferToVRAM, param1->bgPriority, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
     v3.collection = param0->unk_00;
     v3.resourceData = v2->unk_04;

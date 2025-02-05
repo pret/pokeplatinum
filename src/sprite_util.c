@@ -1,8 +1,8 @@
 #include "sprite_util.h"
 
-#include <nitro.h>
-#include <string.h>
+#include "constants/heap.h"
 
+#include "bg_window.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
 #include "heap.h"
@@ -13,201 +13,200 @@
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 
-void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, SpriteResourceCollection *param9, SpriteResourceCollection *param10, SpriteResourceCollection *param11, SpriteResourceCollection *param12, SpriteResourceCollection *param13, SpriteResourceCollection *param14)
+#define RESDAT_TABLE_TERMINATOR 0xFFFFFFFE
+
+void SpriteResourcesHeader_Init(CellActorResourceData *resourceHeader, int charResourceID, int plttResourceID, int cellResourceID, int animResourceID, int mcellResourceID, int manimResourceID, int vramTransfer, int priority, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources)
 {
-    SpriteResource *v0;
-    SpriteResource *v1;
-    SpriteResource *v2;
-    SpriteResource *v3 = NULL;
-    SpriteResource *v4 = NULL;
-    SpriteResource *v5 = NULL;
-    NNSG2dImageProxy *v6;
+    SpriteResource *charResource;
+    SpriteResource *plttResource;
+    SpriteResource *cellResource;
+    SpriteResource *animResource = NULL;
+    SpriteResource *mcellResource = NULL;
+    SpriteResource *manimResource = NULL;
+    NNSG2dImageProxy *imageProxy;
 
-    GF_ASSERT(param9);
-    GF_ASSERT(param10);
-    GF_ASSERT(param12);
-    GF_ASSERT(param11);
-    GF_ASSERT(param0);
+    GF_ASSERT(charResources);
+    GF_ASSERT(plttResources);
+    GF_ASSERT(animResources);
+    GF_ASSERT(cellResources);
+    GF_ASSERT(resourceHeader);
 
-    v0 = SpriteResourceCollection_Find(param9, param1);
-    GF_ASSERT(v0);
+    charResource = SpriteResourceCollection_Find(charResources, charResourceID);
+    GF_ASSERT(charResource);
 
-    v1 = SpriteResourceCollection_Find(param10, param2);
-    GF_ASSERT(v1);
+    plttResource = SpriteResourceCollection_Find(plttResources, plttResourceID);
+    GF_ASSERT(plttResource);
 
-    v2 = SpriteResourceCollection_Find(param11, param3);
-    GF_ASSERT(v2);
+    cellResource = SpriteResourceCollection_Find(cellResources, cellResourceID);
+    GF_ASSERT(cellResource);
 
-    if (param12) {
-        if (param4 != 0xffffffff) {
-            v3 = SpriteResourceCollection_Find(param12, param4);
-            GF_ASSERT(v3);
+    if (animResources) {
+        if (animResourceID != -1) {
+            animResource = SpriteResourceCollection_Find(animResources, animResourceID);
+            GF_ASSERT(animResource);
         }
     }
 
-    if (param13 != NULL) {
-        if (param5 != 0xffffffff) {
-            v4 = SpriteResourceCollection_Find(param13, param5);
+    if (mcellResources != NULL) {
+        if (mcellResourceID != -1) {
+            mcellResource = SpriteResourceCollection_Find(mcellResources, mcellResourceID);
         }
 
-        if (param6 != 0xffffffff) {
-            v5 = SpriteResourceCollection_Find(param14, param6);
+        if (manimResourceID != -1) {
+            manimResource = SpriteResourceCollection_Find(manimResources, manimResourceID);
         }
     }
 
-    if (param7) {
-        v6 = SpriteTransfer_GetCellTransferProxy(v0, v2);
-        GF_ASSERT(v6);
-
-        param0->charData = SpriteResource_GetTileData(v0);
+    if (vramTransfer) {
+        imageProxy = SpriteTransfer_GetCellTransferProxy(charResource, cellResource);
+        GF_ASSERT(imageProxy);
+        resourceHeader->charData = SpriteResource_GetTileData(charResource);
     } else {
-        v6 = SpriteTransfer_GetImageProxy(v0);
-        GF_ASSERT(v6);
-        param0->charData = NULL;
+        imageProxy = SpriteTransfer_GetImageProxy(charResource);
+        GF_ASSERT(imageProxy);
+        resourceHeader->charData = NULL;
     }
 
-    param0->paletteProxy = SpriteTransfer_GetPaletteProxy(v1, v6);
-    param0->imageProxy = v6;
-    param0->cellBank = SpriteResource_GetSpriteData(v2);
+    resourceHeader->paletteProxy = SpriteTransfer_GetPaletteProxy(plttResource, imageProxy);
+    resourceHeader->imageProxy = imageProxy;
+    resourceHeader->cellBank = SpriteResource_GetSpriteData(cellResource);
+    resourceHeader->cellAnimBank = animResource ? SpriteResource_GetSpriteAnimData(animResource) : NULL;
 
-    if (v3) {
-        param0->cellAnimBank = SpriteResource_GetSpriteAnimData(v3);
+    if (mcellResource) {
+        resourceHeader->multiCellBank = SpriteResource_GetMultiSpriteData(mcellResource);
+        resourceHeader->multiCellAnimBank = SpriteResource_GetMultiSpriteAnimData(manimResource);
     } else {
-        param0->cellAnimBank = NULL;
+        resourceHeader->multiCellBank = NULL;
+        resourceHeader->multiCellAnimBank = NULL;
     }
 
-    if (v4) {
-        param0->multiCellBank = SpriteResource_GetMultiSpriteData(v4);
-        param0->multiCellAnimBank = SpriteResource_GetMultiSpriteAnimData(v5);
-    } else {
-        param0->multiCellBank = NULL;
-        param0->multiCellAnimBank = NULL;
+    resourceHeader->isVRamTransfer = vramTransfer;
+    resourceHeader->priority = priority;
+}
+
+void SpriteResourcesHeader_Clear(CellActorResourceData *resourceHeader)
+{
+    SpriteTransfer_DeleteCharTransfer(resourceHeader->imageProxy);
+    memset(resourceHeader, 0, sizeof(CellActorResourceData));
+}
+
+SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatTableEntry *resdatEntries, enum HeapId heapID, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources)
+{
+    int resdatLength = 0;
+    while (resdatEntries[resdatLength].charResourceID != RESDAT_TABLE_TERMINATOR) {
+        resdatLength++;
     }
 
-    param0->isVRamTransfer = param7;
-    param0->priority = param8;
-}
+    SpriteResourcesHeaderList *headerList = Heap_AllocFromHeap(heapID, sizeof(SpriteResourcesHeaderList));
+    headerList->headers = Heap_AllocFromHeap(heapID, sizeof(CellActorResourceData) * resdatLength);
+    headerList->length = resdatLength;
 
-void sub_020094F0(CellActorResourceData *param0)
-{
-    SpriteTransfer_DeleteCharTransfer(param0->imageProxy);
-    memset(param0, 0, sizeof(CellActorResourceData));
-}
-
-SpriteResourcesHeaderList *sub_02009508(const ResdatTableEntry *param0, int param1, SpriteResourceCollection *param2, SpriteResourceCollection *param3, SpriteResourceCollection *param4, SpriteResourceCollection *param5, SpriteResourceCollection *param6, SpriteResourceCollection *param7)
-{
-    int v0;
-    int v1;
-    SpriteResourcesHeaderList *v2;
-    int v3, v4;
-
-    v1 = 0;
-
-    while (param0[v1].charResourceID != 0xfffffffe) {
-        v1++;
+    for (int i = 0; i < headerList->length; i++) {
+        SpriteResourcesHeader_Init(headerList->headers + i,
+            resdatEntries[i].charResourceID,
+            resdatEntries[i].plttResourceID,
+            resdatEntries[i].cellResourceID,
+            resdatEntries[i].animResourceID,
+            resdatEntries[i].mcellResourceID,
+            resdatEntries[i].manimResourceID,
+            resdatEntries[i].vramTransfer,
+            resdatEntries[i].priority,
+            charResources,
+            plttResources,
+            cellResources,
+            animResources,
+            mcellResources,
+            manimResources);
     }
 
-    v2 = Heap_AllocFromHeap(param1, sizeof(SpriteResourcesHeaderList));
-    v2->headers = Heap_AllocFromHeap(param1, sizeof(CellActorResourceData) * v1);
-    v2->length = v1;
+    return headerList;
+}
 
-    for (v0 = 0; v0 < v2->length; v0++) {
-        sub_020093B4(v2->headers + v0, param0[v0].charResourceID, param0[v0].plttResourceID, param0[v0].cellResourceID, param0[v0].animResourceID, param0[v0].mcellResourceID, param0[v0].manimResourceID, param0[v0].vramTransfer, param0[v0].priority, param2, param3, param4, param5, param6, param7);
+void SpriteResourcesHeaderList_Free(SpriteResourcesHeaderList *headerList)
+{
+    GF_ASSERT(headerList);
+    if (headerList->headers) {
+        Heap_FreeToHeap(headerList->headers);
     }
 
-    return v2;
+    Heap_FreeToHeap(headerList);
 }
 
-void sub_020095A8(SpriteResourcesHeaderList *param0)
+CellActorCollection *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapId heapID)
 {
-    GF_ASSERT(param0);
+    CellActorCollectionParams template;
+    NNSG2dViewRect viewRect;
 
-    if (param0->headers) {
-        Heap_FreeToHeap(param0->headers);
-    }
+    InitRenderer(&g2dRenderer->renderer, -FX32_ONE);
 
-    Heap_FreeToHeap(param0);
+    viewRect.posTopLeft.x = 0;
+    viewRect.posTopLeft.y = 0;
+    viewRect.sizeView.x = (255 << FX32_SHIFT);
+    viewRect.sizeView.y = (192 << FX32_SHIFT);
+    RenderOam_InitSurface(&g2dRenderer->mainScreen, &viewRect, NNS_G2D_SURFACETYPE_MAIN2D, &g2dRenderer->renderer);
+
+    viewRect.posTopLeft.x = 0;
+    viewRect.posTopLeft.y = (192 << FX32_SHIFT);
+    viewRect.sizeView.x = (255 << FX32_SHIFT);
+    viewRect.sizeView.y = (192 << FX32_SHIFT);
+    RenderOam_InitSurface(&g2dRenderer->subScreen, &viewRect, NNS_G2D_SURFACETYPE_SUB2D, &g2dRenderer->renderer);
+
+    template.maxElements = maxElements;
+    template.renderer = &g2dRenderer->renderer;
+    template.heapID = heapID;
+    return CellActorCollection_New(&template);
 }
 
-CellActorCollection *sub_020095C4(int param0, G2dRenderer *param1, int param2)
+void SetMainScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y)
 {
-    CellActorCollectionParams v0;
-    NNSG2dViewRect v1;
-
-    InitRenderer(&param1->renderer, -FX32_ONE);
-
-    v1.posTopLeft.x = 0;
-    v1.posTopLeft.y = 0;
-    v1.sizeView.x = (255 << FX32_SHIFT);
-    v1.sizeView.y = (192 << FX32_SHIFT);
-
-    RenderOam_InitSurface(&param1->mainScreen, &v1, NNS_G2D_SURFACETYPE_MAIN2D, &param1->renderer);
-
-    v1.posTopLeft.x = 0;
-    v1.posTopLeft.y = (192 << FX32_SHIFT);
-    v1.sizeView.x = (255 << FX32_SHIFT);
-    v1.sizeView.y = (192 << FX32_SHIFT);
-
-    RenderOam_InitSurface(&param1->subScreen, &v1, NNS_G2D_SURFACETYPE_SUB2D, &param1->renderer);
-
-    v0.maxElements = param0;
-    v0.renderer = &param1->renderer;
-    v0.heapID = param2;
-
-    return CellActorCollection_New(&v0);
+    NNSG2dViewRect viewRect;
+    viewRect.posTopLeft.x = x;
+    viewRect.posTopLeft.y = y;
+    viewRect.sizeView.x = (255 << FX32_SHIFT);
+    viewRect.sizeView.y = (192 << FX32_SHIFT);
+    SetRenderSurfaceViewRect(&g2dRenderer->mainScreen, &viewRect);
 }
 
-void sub_0200962C(G2dRenderer *param0, fx32 param1, fx32 param2)
+void SetSubScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y)
 {
-    NNSG2dViewRect v0;
-
-    v0.posTopLeft.x = param1;
-    v0.posTopLeft.y = param2;
-    v0.sizeView.x = (255 << FX32_SHIFT);
-    v0.sizeView.y = (192 << FX32_SHIFT);
-
-    SetRenderSurfaceViewRect(&param0->mainScreen, &v0);
+    NNSG2dViewRect viewRect;
+    viewRect.posTopLeft.x = x;
+    viewRect.posTopLeft.y = y;
+    viewRect.sizeView.x = (255 << FX32_SHIFT);
+    viewRect.sizeView.y = (192 << FX32_SHIFT);
+    SetRenderSurfaceViewRect(&g2dRenderer->subScreen, &viewRect);
 }
 
-void sub_0200964C(G2dRenderer *param0, fx32 param1, fx32 param2)
+void ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE vramType, GXOBJVRamModeChar vramMode)
 {
-    NNSG2dViewRect v0;
-
-    v0.posTopLeft.x = param1;
-    v0.posTopLeft.y = param2;
-    v0.sizeView.x = (255 << FX32_SHIFT);
-    v0.sizeView.y = (192 << FX32_SHIFT);
-
-    SetRenderSurfaceViewRect(&param0->subScreen, &v0);
-}
-
-void sub_0200966C(u32 param0, GXOBJVRamModeChar param1)
-{
-    switch (param1) {
+    switch (vramMode) {
     case GX_OBJVRAMMODE_CHAR_1D_32K:
-        if ((GX_GetBankForOBJ() == GX_VRAM_OBJ_16_G) || (GX_GetBankForOBJ() == GX_VRAM_OBJ_16_F)) {
-            CharTransfer_ReserveVramRange(((512 - 16) * 32), 16 * 32, param0);
+        if (GX_GetBankForOBJ() == GX_VRAM_OBJ_16_G || GX_GetBankForOBJ() == GX_VRAM_OBJ_16_F) {
+            CharTransfer_ReserveVramRange((512 - 16) * TILE_SIZE_4BPP, 16 * TILE_SIZE_4BPP, vramType);
         } else {
-            CharTransfer_ReserveVramRange(((1024 - 16) * 32), 16 * 32, param0);
+            CharTransfer_ReserveVramRange((1024 - 16) * TILE_SIZE_4BPP, 16 * TILE_SIZE_4BPP, vramType);
         }
         break;
+
     case GX_OBJVRAMMODE_CHAR_1D_64K:
-        CharTransfer_ReserveVramRange(((2048 - 16) * 32), 16 * 32, param0);
+        CharTransfer_ReserveVramRange((2048 - 16) * TILE_SIZE_4BPP, 16 * TILE_SIZE_4BPP, vramType);
         break;
+
     case GX_OBJVRAMMODE_CHAR_1D_128K:
-        if ((GX_GetBankForOBJ() == GX_VRAM_OBJ_80_EF) || (GX_GetBankForOBJ() == GX_VRAM_OBJ_80_EG)) {
-            CharTransfer_ReserveVramRange(((2560 - 16) * 32), 16 * 32, param0);
+        if (GX_GetBankForOBJ() == GX_VRAM_OBJ_80_EF || GX_GetBankForOBJ() == GX_VRAM_OBJ_80_EG) {
+            CharTransfer_ReserveVramRange((2560 - 16) * TILE_SIZE_4BPP, 16 * TILE_SIZE_4BPP, vramType);
         } else {
-            CharTransfer_ReserveVramRange(((4096 - 16) * 32), 16 * 32, param0);
+            CharTransfer_ReserveVramRange((4096 - 16) * TILE_SIZE_4BPP, 16 * TILE_SIZE_4BPP, vramType);
         }
         break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }
 
-void sub_02009704(u32 param0)
+void ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE vramType)
 {
-    PlttTransfer_MarkReservedSlots((1 << 14 | 1 << 15), param0);
+    PlttTransfer_MarkReservedSlots((1 << 14 | 1 << 15), vramType);
 }

@@ -220,14 +220,14 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     v0->unk_24 = sub_0200C6E4(110);
 
     sub_0200C73C(v0->unk_24, &Unk_ov117_022669A8, &Unk_ov117_0226697C, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_28 = sub_0200C704(v0->unk_24);
 
     sub_0200C7C0(v0->unk_24, v0->unk_28, (96 + 128));
     sub_0200CB30(v0->unk_24, v0->unk_28, &Unk_ov117_02266990);
-    sub_0200964C(sub_0200C738(v0->unk_24), 0, ((192 + 160) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(v0->unk_24), 0, ((192 + 160) << FX32_SHIFT));
     ov117_02261574(v0);
 
     v0->unk_80 = MessageLoader_Init(0, 26, 9, 110);

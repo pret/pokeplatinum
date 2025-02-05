@@ -961,7 +961,7 @@ static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 
-    param0->unk_04 = sub_020095C4(64, &param0->unk_78, param1);
+    param0->unk_04 = SpriteList_InitRendering(64, &param0->unk_78, param1);
 
     RenderOam_InitSurface(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.renderer);
 
@@ -982,7 +982,7 @@ static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
 
     SpriteResource_ReleaseData(param0->unk_260[0]);
     SpriteResource_ReleaseData(param0->unk_260[1]);
-    sub_020093B4(&param0->unk_23C, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param0->unk_204[0], param0->unk_204[1], param0->unk_204[2], param0->unk_204[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_23C, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param0->unk_204[0], param0->unk_204[1], param0->unk_204[2], param0->unk_204[3], NULL, NULL);
 }
 
 static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0)

@@ -65,8 +65,8 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     SetMainCallback(ov116_02261794, param0);
     DisableHBlank();
     VramTransfer_New(32, 106);
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
     sub_02039734();
 
     {
@@ -1087,7 +1087,7 @@ static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
         v2 = sub_0200CB30(param0->unk_48.unk_08, param0->unk_48.unk_0C, &v3);
         GF_ASSERT(v2);
     }
-    sub_0200964C(sub_0200C738(param0->unk_48.unk_08), 0, (192 + 64) << FX32_SHIFT);
+    SetSubScreenViewRect(sub_0200C738(param0->unk_48.unk_08), 0, (192 + 64) << FX32_SHIFT);
 }
 
 static BOOL ov116_02261768(int param0)

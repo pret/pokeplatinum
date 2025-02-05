@@ -419,7 +419,7 @@ static void ov104_0223C7EC(UnkStruct_ov104_0223C4CC *param0)
     v1 = ov63_0222D1B0(&param0->unk_1C) + param0->unk_A4.unk_06;
     v0 = ov63_0222D1B8(&param0->unk_1C) + param0->unk_A4.unk_04;
 
-    sub_0200962C(sub_0200C738(param0->unk_34.unk_00), FX32_CONST(v0), FX32_CONST(v1));
+    SetMainScreenViewRect(sub_0200C738(param0->unk_34.unk_00), FX32_CONST(v0), FX32_CONST(v1));
     Bg_ScheduleScroll(param0->unk_00, 3, 0, v0);
     Bg_ScheduleScroll(param0->unk_00, 3, 3, v1);
 
@@ -814,14 +814,14 @@ static void ov104_0223CFF4(UnkStruct_ov104_0223C4CC *param0)
     param0->unk_34.unk_00 = sub_0200C6E4(94);
 
     sub_0200C73C(param0->unk_34.unk_00, &Unk_ov104_0224133C, &Unk_ov104_022412F4, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     param0->unk_34.unk_04 = sub_0200C704(param0->unk_34.unk_00);
 
     sub_0200C7C0(param0->unk_34.unk_00, param0->unk_34.unk_04, (64 + 64));
     sub_0200CB30(param0->unk_34.unk_00, param0->unk_34.unk_04, &Unk_ov104_02241308);
-    sub_0200964C(sub_0200C738(param0->unk_34.unk_00), 0, (512 * FX32_ONE));
+    SetSubScreenViewRect(sub_0200C738(param0->unk_34.unk_00), 0, (512 * FX32_ONE));
 }
 
 static void ov104_0223D058(UnkStruct_ov104_0223C4CC *param0)

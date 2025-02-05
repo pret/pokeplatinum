@@ -2637,8 +2637,8 @@ static void ov9_0224AED8(UnkStruct_ov9_02249B04 *param0)
 
 static void ov9_0224AEE4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224B064 *param1, NARC *param2)
 {
-    param1->unk_00 = sub_020095C4(16, &param1->unk_04, 4);
-    sub_0200962C(&param1->unk_04, (FX32_ONE * 0), (FX32_ONE * -512));
+    param1->unk_00 = SpriteList_InitRendering(16, &param1->unk_04, 4);
+    SetMainScreenViewRect(&param1->unk_04, (FX32_ONE * 0), (FX32_ONE * -512));
     param1->unk_190 = SpriteResourceCollection_New(7, 0, 4);
     param1->unk_194 = SpriteResourceCollection_New(1, 1, 4);
     param1->unk_198 = SpriteResourceCollection_New(7, 2, 4);
@@ -2743,7 +2743,7 @@ static CellActor *ov9_0224B130(UnkStruct_ov9_0224B064 *param0, const VecFx32 *pa
     CellActorInitParams v1;
     CellActor *v2;
 
-    sub_020093B4(&v0, ((param2) + 0xff), ((param3) + 0xff), ((param4) + 0xff), ((param5) + 0xff), 0xffffffff, 0xffffffff, 0, param6, param0->unk_190, param0->unk_194, param0->unk_198, param0->unk_19C, NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, ((param2) + 0xff), ((param3) + 0xff), ((param4) + 0xff), ((param5) + 0xff), 0xffffffff, 0xffffffff, 0, param6, param0->unk_190, param0->unk_194, param0->unk_198, param0->unk_19C, NULL, NULL);
 
     v1.collection = param0->unk_00;
     v1.resourceData = &v0;

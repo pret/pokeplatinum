@@ -1312,12 +1312,12 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
         CharTransfer_ClearBuffers();
         PlttTransfer_Clear();
 
-        sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
-        sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+        ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
+        ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
         sub_02039734();
-        param0->unk_04 = sub_020095C4(24, &param0->unk_08, param2);
-        sub_0200964C(&param0->unk_08, 0, (256 * FX32_ONE));
+        param0->unk_04 = SpriteList_InitRendering(24, &param0->unk_08, param2);
+        SetSubScreenViewRect(&param0->unk_08, 0, (256 * FX32_ONE));
 
         for (v3 = 0; v3 < 4; v3++) {
             param0->unk_194[v3] = SpriteResourceCollection_New(24, v3, param2);
@@ -1657,7 +1657,7 @@ static void ov70_0225EC20(UnkStruct_ov70_0225EC20 *param0, UnkStruct_ov70_0225E4
     NARC_dtor(v3);
     SpriteTransfer_RequestCharAtEnd(param0->unk_40[0]);
     SpriteTransfer_RequestPlttFreeSpace(param0->unk_40[1]);
-    sub_020093B4(&v0, 5000, 5000, 5000, 5000, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 5000, 5000, 5000, 5000, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
     v1.collection = param1->unk_04;
     v1.resourceData = &v0;
@@ -2707,7 +2707,7 @@ static void ov70_0225FEF0(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
         CellActorResourceData v3;
         CellActorInitParams v4 = { NULL };
 
-        sub_020093B4(&v3, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
+        SpriteResourcesHeader_Init(&v3, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
         v4.collection = param1->unk_04;
         v4.resourceData = &v3;
@@ -2781,7 +2781,7 @@ static void ov70_02260080(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
         CellActorResourceData v6;
         CellActorInitParams v7 = { NULL };
 
-        sub_020093B4(&v6, 101, 101, 101, 101, 0xffffffff, 0xffffffff, 1, 3, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
+        SpriteResourcesHeader_Init(&v6, 101, 101, 101, 101, 0xffffffff, 0xffffffff, 1, 3, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
         v7.collection = param1->unk_04;
         v7.resourceData = &v6;
@@ -2997,7 +2997,7 @@ static void ov70_022603CC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225E4
             GF_ASSERT(v3);
 
             SpriteResource_ReleaseData(param0->unk_BC[v0]);
-            sub_020093B4(&v9, 150 + v0, 150 + v10->unk_00, 150 + v10->unk_00, 150 + v10->unk_00, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
+            SpriteResourcesHeader_Init(&v9, 150 + v0, 150 + v10->unk_00, 150 + v10->unk_00, 150 + v10->unk_00, 0xffffffff, 0xffffffff, 0, 0, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
             v8.collection = param1->unk_04;
             v8.resourceData = &v9;

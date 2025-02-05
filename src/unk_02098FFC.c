@@ -56,7 +56,7 @@ static void sub_02099058(UnkStruct_0209903C *param0)
     u32 v0, v1;
     u8 v2[] = { 1, 1, 1, 1 };
 
-    param0->unk_10 = sub_020095C4(param0->unk_0C, &param0->unk_14, param0->unk_00);
+    param0->unk_10 = SpriteList_InitRendering(param0->unk_0C, &param0->unk_14, param0->unk_00);
 
     v2[1] = param0->unk_0A;
 
@@ -133,7 +133,7 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
     v4->unk_08->headers = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
     v4->unk_04 = v4->unk_08->headers;
 
-    sub_020093B4(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
+    SpriteResourcesHeader_Init(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
 
     v5.collection = param0->unk_10;
     v5.resourceData = v4->unk_04;
