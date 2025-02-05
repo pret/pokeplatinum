@@ -9,6 +9,9 @@
 #include "field/field_system.h"
 #include "savedata/save_table.h"
 
+#include "constants/narc.h"
+#include "generated/text_banks.h"
+
 #include "berry_data.h"
 #include "field_script_context.h"
 #include "field_system.h"
@@ -275,7 +278,7 @@ static Strbuf *GetSpeciesNameStrbuf(u16 speciesId, u32 heapId)
     MessageLoader *speciesNames;
     Strbuf *buffer;
 
-    speciesNames = MessageLoader_Init(1, 26, 412, heapId); // contextually this must be species names. Not sure how the narc/bank IDs map to that exactly.
+    speciesNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapId);
     buffer = MessageLoader_GetNewStrbuf(speciesNames, speciesId);
 
     MessageLoader_Free(speciesNames);
@@ -287,7 +290,7 @@ BOOL ScrCmd_0DB(ScriptContext *param0)
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
     u16 v2 = sub_0206B054(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    Strbuf *v3 = GetSpeciesNameStrbuf(v2, 4);
+    Strbuf *v3 = GetSpeciesNameStrbuf(v2, HEAP_ID_FIELD);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v3);
@@ -300,7 +303,7 @@ BOOL ScrCmd_0DC(ScriptContext *param0)
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
     u16 v2 = sub_0206B064(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    Strbuf *v3 = GetSpeciesNameStrbuf(v2, 4);
+    Strbuf *v3 = GetSpeciesNameStrbuf(v2, HEAP_ID_FIELD);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v3);
@@ -313,7 +316,7 @@ BOOL ScrCmd_0DD(ScriptContext *param0)
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
     u16 v2 = VarsFlags_GetPlayerCounterpartStarterSpecies(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    Strbuf *v3 = GetSpeciesNameStrbuf(v2, 4);
+    Strbuf *v3 = GetSpeciesNameStrbuf(v2, HEAP_ID_FIELD);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v3);

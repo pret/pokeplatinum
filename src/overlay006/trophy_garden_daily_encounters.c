@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/species.h"
+
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
@@ -21,17 +23,17 @@ void TrophyGarden_AddNewMon(SaveData *saveData)
     if (index1 != TROPHY_GARDEN_SLOT_NONE) {
         currentMons[0] = encData[index1];
     } else {
-        currentMons[0] = 0;
+        currentMons[0] = SPECIES_NONE;
     }
 
     if (index2 != TROPHY_GARDEN_SLOT_NONE) {
         currentMons[1] = encData[index2];
     } else {
-        currentMons[1] = 0;
+        currentMons[1] = SPECIES_NONE;
     }
 
     while (TRUE) {
-        newMonIndex = LCRNG_RandMod(16);
+        newMonIndex = LCRNG_RandMod(NUM_TROPHY_GARDEN_SPECIAL_MONS);
 
         if ((currentMons[0] != encData[newMonIndex]) && (currentMons[1] != encData[newMonIndex])) {
             TrophyGarden_ShiftSlotsForNewMon(saveData, newMonIndex);

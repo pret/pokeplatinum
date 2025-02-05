@@ -42,7 +42,7 @@ void FieldSystem_InitFlagsOnMapChange(FieldSystem *fieldSystem)
     sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
     SpecialEncounter_SetFluteFactor(SaveData_GetSpecialEncounters(fieldSystem->saveData), FLUTE_FACTOR_NONE);
 
-    fieldSystem->unk_78.encounterAttempts = 0;
+    fieldSystem->wildBattleMetadata.encounterAttempts = 0;
 
     if (!SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
         SpecialEncounter *v0;
@@ -71,7 +71,7 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
     SpecialEncounter_SetFluteFactor(SaveData_GetSpecialEncounters(fieldSystem->saveData), FLUTE_FACTOR_NONE);
 
-    fieldSystem->unk_78.encounterAttempts = 0;
+    fieldSystem->wildBattleMetadata.encounterAttempts = 0;
 
     {
         SpecialEncounter *v0;

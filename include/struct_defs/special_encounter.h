@@ -9,13 +9,15 @@
 #define FLUTE_FACTOR_USED_BLACK 1 // decreases encounter rate by 50%
 #define FLUTE_FACTOR_USED_WHITE 2 // increases encounter rate by 50%
 
-#define ROAMING_SLOT_MESPRIT   (0)
-#define ROAMING_SLOT_CRESSELIA (1)
-#define ROAMING_SLOT_DARKRAI   (2) // Unused in-game, see: https://tcrf.net/Pok%C3%A9mon_Platinum#Unused_Roaming_Darkrai
-#define ROAMING_SLOT_MOLTRES   (3)
-#define ROAMING_SLOT_ZAPDOS    (4)
-#define ROAMING_SLOT_ARTICUNO  (5)
-#define ROAMING_SLOT_MAX       (6)
+enum RoamingSlot {
+    ROAMING_SLOT_MESPRIT = 0,
+    ROAMING_SLOT_CRESSELIA,
+    ROAMING_SLOT_DARKRAI, // Unused in-game, see: https://tcrf.net/Pok%C3%A9mon_Platinum#Unused_Roaming_Darkrai
+    ROAMING_SLOT_MOLTRES,
+    ROAMING_SLOT_ZAPDOS,
+    ROAMING_SLOT_ARTICUNO,
+    ROAMING_SLOT_MAX
+};
 
 typedef struct TrophyGardenMons {
     BOOL unused;
@@ -31,12 +33,12 @@ typedef struct HoneyTree {
     u8 numShakes;
 } HoneyTree;
 
-typedef struct {
+typedef struct PlayerHoneyTreeStates {
     u8 lastSlatheredTree;
     HoneyTree honeyTrees[NUM_HONEY_TREES];
-} HoneyTreeData;
+} PlayerHoneyTreeStates;
 
-typedef struct {
+typedef struct Roamer {
     int currentMapId;
     u32 ivs;
     u32 personality;
@@ -56,7 +58,7 @@ typedef struct SpecialEncounter {
     int marshDaily; // random number, index of the mon is derived from this in ReplaceGreatMarshDailyEncounters
     int swarmDaily; // random number, % NUM_SWARMS to get swarm ID
     TrophyGardenMons trophyGarden;
-    HoneyTreeData treeData;
+    PlayerHoneyTreeStates treeStates;
     RadarChainRecords chainRecords;
     PlayerRecentRoutes recentRoutes; // Used to prevent roamers from trolling you by moving to the route you just left
     Roamer roamers[ROAMING_SLOT_MAX];

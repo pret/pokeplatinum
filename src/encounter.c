@@ -949,9 +949,9 @@ static void UpdateJournal(FieldSystem *fieldSystem, FieldBattleDTO *dto)
         JournalEntryMon *journalEntryMon;
 
         if (resultMask == BATTLE_RESULT_WIN) {
-            fieldSystem->unk_78.wildMonDefeated++;
+            fieldSystem->wildBattleMetadata.wildMonDefeated++;
 
-            if (fieldSystem->unk_78.wildMonDefeated >= 5) {
+            if (fieldSystem->wildBattleMetadata.wildMonDefeated >= 5) {
                 caughtMon = Party_GetPokemonBySlotIndex(dto->parties[1], 0);
                 journalEntryMon = JournalEntry_CreateEventMonDefeated(SaveData_GetPlayTime(fieldSystem->saveData), Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, 0), Pokemon_GetValue(caughtMon, MON_DATA_GENDER, 0), dto->timeOfDay, HEAP_ID_FIELDMAP);
                 JournalEntry_SaveData(fieldSystem->journalEntry, journalEntryMon, JOURNAL_MON);

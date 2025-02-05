@@ -25,19 +25,17 @@ void SpecialEncounter_Init(SpecialEncounter *specialEncounter)
     specialEncounter->trophyGarden.slot1 = TROPHY_GARDEN_SLOT_NONE;
     specialEncounter->trophyGarden.slot2 = TROPHY_GARDEN_SLOT_NONE;
 
-    {
-        int i;
-        HoneyTreeData *v1 = &(specialEncounter->treeData);
+    int i;
+    PlayerHoneyTreeStates *v1 = &(specialEncounter->treeStates);
 
-        v1->lastSlatheredTree = NUM_HONEY_TREES;
+    v1->lastSlatheredTree = NUM_HONEY_TREES;
 
-        for (i = 0; i < NUM_HONEY_TREES; i++) {
-            v1->honeyTrees[i].minutesRemaining = 0;
-            v1->honeyTrees[i].encounterSlot = 0;
-            v1->honeyTrees[i].encounterTableIndex = 0;
-            v1->honeyTrees[i].encounterGroup = 0;
-            v1->honeyTrees[i].numShakes = 0;
-        }
+    for (i = 0; i < NUM_HONEY_TREES; i++) {
+        v1->honeyTrees[i].minutesRemaining = 0;
+        v1->honeyTrees[i].encounterSlot = 0;
+        v1->honeyTrees[i].encounterTableIndex = 0;
+        v1->honeyTrees[i].encounterGroup = 0;
+        v1->honeyTrees[i].numShakes = 0;
     }
 
     specialEncounter->swarmEnabled = 0;
@@ -76,23 +74,23 @@ SpecialEncounter *SaveData_GetSpecialEncounters(SaveData *speEnc)
 }
 
 // This is exclusively used in combination with SpecialEncounter_GetHoneyTree, so they could've just been one function...
-HoneyTreeData *SpecialEncounter_GetHoneyTreeData(SpecialEncounter *speEnc)
+PlayerHoneyTreeStates *SpecialEncounter_GetPlayerHoneyTreeStates(SpecialEncounter *speEnc)
 {
-    return &(speEnc->treeData);
+    return &(speEnc->treeStates);
 }
 
-const int SpecialEncounter_GetLastSlatheredTreeId(HoneyTreeData *treeDat)
+const int SpecialEncounter_GetLastSlatheredTreeId(PlayerHoneyTreeStates *treeDat)
 {
     return treeDat->lastSlatheredTree;
 }
 
-void SpecialEncounter_SetLastSlatheredTreeId(const u8 treeId, HoneyTreeData *treeDat)
+void SpecialEncounter_SetLastSlatheredTreeId(const u8 treeId, PlayerHoneyTreeStates *treeDat)
 {
     treeDat->lastSlatheredTree = treeId;
 }
 
 // Inconsistency: Roamers have bounds checking on the IDs used, but Honey Trees don't
-HoneyTree *SpecialEncounter_GetHoneyTree(const u8 treeId, HoneyTreeData *treeDat)
+HoneyTree *SpecialEncounter_GetHoneyTree(const u8 treeId, PlayerHoneyTreeStates *treeDat)
 {
     HoneyTree *tree = &treeDat->honeyTrees[treeId];
     return tree;
@@ -102,12 +100,12 @@ HoneyTree *SpecialEncounter_GetHoneyTree(const u8 treeId, HoneyTreeData *treeDat
 void SpecialEncounter_DecrementHoneyTreeTimers(SaveData *save, const int decrement)
 {
     int i;
-    HoneyTreeData *treeDat;
+    PlayerHoneyTreeStates *treeDat;
     SpecialEncounter *speEnc;
     HoneyTree *tree;
 
     speEnc = SaveData_GetSpecialEncounters(save);
-    treeDat = &(speEnc->treeData);
+    treeDat = &(speEnc->treeStates);
 
     for (i = 0; i < NUM_HONEY_TREES; i++) {
         tree = SpecialEncounter_GetHoneyTree(i, treeDat);

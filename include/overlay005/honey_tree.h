@@ -5,8 +5,10 @@
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
 
-HoneyTreeShakeData *HoneyTree_ShakeDataInit(void);
-void HoneyTree_FreeShakeData(HoneyTreeShakeData **param0);
+#include "constants/honey_tree.h"
+
+HoneyTreeShakeList *HoneyTree_ShakeDataInit(void);
+void HoneyTree_FreeShakeData(HoneyTreeShakeList **param0);
 BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId);
 u16 HoneyTree_GetTreeSlatherStatus(FieldSystem *fieldSystem);
 void HoneyTree_SlatherTree(FieldSystem *fieldSystem);

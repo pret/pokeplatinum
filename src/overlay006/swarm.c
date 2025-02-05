@@ -9,7 +9,7 @@
 
 #include "map_header_data.h"
 
-static const u32 Swarm_MapIdTable[NUM_SWARMS] = {
+static const u32 sSwarmMapIdTable[NUM_SWARMS] = {
     MAP_HEADER_ROUTE_201,
     MAP_HEADER_ROUTE_202,
     MAP_HEADER_ROUTE_203,
@@ -36,13 +36,13 @@ static const u32 Swarm_MapIdTable[NUM_SWARMS] = {
 
 u32 Swarm_GetMapId(const u32 swarm)
 {
-    return Swarm_MapIdTable[swarm % NUM_SWARMS];
+    return sSwarmMapIdTable[swarm % NUM_SWARMS];
 }
 
 void Swarm_GetMapIdAndSpecies(const u32 swarm, u16 *mapIdDest, u16 *speciesDest)
 {
     WildEncounters encounterData;
-    u32 mapId = Swarm_MapIdTable[(swarm % NUM_SWARMS)];
+    u32 mapId = sSwarmMapIdTable[(swarm % NUM_SWARMS)];
 
     MapHeaderData_LoadWildEncounters(&encounterData, mapId);
 

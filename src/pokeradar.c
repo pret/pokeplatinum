@@ -383,14 +383,14 @@ static u8 GetLowestChainRecordSlot(FieldSystem *fieldSystem)
         }
     }
 
-    (recordsData->records[0].chainCount < recordsData->records[1].chainCount) ? (lowerChain = 1) : (lowerChain = 0);
+    lowerChain = recordsData->records[0].chainCount < recordsData->records[1].chainCount ? 1 : 0;
     if (lowerChain) {
         slotToReplace = 0;
     } else {
         slotToReplace = 1;
     }
 
-    (recordsData->records[slotToReplace].chainCount < recordsData->records[2].chainCount) ? (lowerChain = 1) : (lowerChain = 0);
+    lowerChain = recordsData->records[slotToReplace].chainCount < recordsData->records[2].chainCount ? 1 : 0;
     if (!lowerChain) {
         slotToReplace = 2;
     }

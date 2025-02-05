@@ -78,20 +78,19 @@ static const int sEncounterTableIndexes_P_Unused[] = {
     0x7
 };
 
-HoneyTreeShakeData *HoneyTree_ShakeDataInit(void)
+HoneyTreeShakeList *HoneyTree_ShakeDataInit(void)
 {
-    u8 i;
-    HoneyTreeShakeData *data = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(HoneyTreeShakeData));
+    HoneyTreeShakeList *data = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(HoneyTreeShakeList));
 
-    for (i = 0; i < NUM_HONEY_TREES; i++) {
-        data->shakeData[i].shakeValue = 0;
-        data->shakeData[i].isShaking = FALSE;
+    for (u8 i = 0; i < NUM_HONEY_TREES; i++) {
+        data->trees[i].shakeValue = 0;
+        data->trees[i].isShaking = FALSE;
     }
 
     return data;
 }
 
-void HoneyTree_FreeShakeData(HoneyTreeShakeData **data)
+void HoneyTree_FreeShakeData(HoneyTreeShakeList **data)
 {
     Heap_FreeToHeap(*data);
     *data = NULL;
@@ -101,59 +100,55 @@ BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId)
 {
     UnkStruct_02055130 v0;
     int x, z;
-    BOOL v3;
-    int facingDirection;
+    BOOL isFacingHoneyTree;
 
-    *eventId = 2008; // i guess this is the ID of the honey tree script ? not familiar with the script system yet
+    *eventId = 2008; // Loads script index 8 from scripts_unk_0211.s, which is the common Honey Tree script.
 
     x = Player_GetXPos(fieldSystem->playerAvatar);
     z = Player_GetZPos(fieldSystem->playerAvatar);
-    facingDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    if (facingDirection == DIR_NORTH) {
+    if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) == DIR_NORTH) { // Honey Trees can only be interacted with from below.
         sub_020550F4(x, z, 0, -1, 1, 1, &v0);
-        v3 = sub_02055178(fieldSystem, 26, &v0, NULL);
+        isFacingHoneyTree = sub_02055178(fieldSystem, 26, &v0, NULL);
     } else {
-        v3 = 0;
+        isFacingHoneyTree = FALSE;
     }
 
-    return v3;
+    return isFacingHoneyTree;
 }
 
 u16 HoneyTree_GetTreeSlatherStatus(FieldSystem *fieldSystem)
 {
     u8 treeId;
-    HoneyTreeData *treeDat;
+    PlayerHoneyTreeStates *treeDat;
     HoneyTree *tree;
 
     treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
-    treeDat = SpecialEncounter_GetHoneyTreeData(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+    treeDat = SpecialEncounter_GetPlayerHoneyTreeStates(SaveData_GetSpecialEncounters(fieldSystem->saveData));
     tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
 
     if (SixHoursSinceSlathered(tree->minutesRemaining)) {
-        return 3; // tree can have Pokemon
+        return TREE_STATUS_ENCOUNTER; // tree can have Pokemon
+    } else if (tree->minutesRemaining != 0) {
+        return TREE_STATUS_SLATHERED; // tree is slathered
     } else {
-        if (tree->minutesRemaining != 0) {
-            return 2; // tree is slathered
-        } else {
-            return 1; // tree is bare
-        }
+        return TREE_STATUS_BARE; // tree is bare
     }
 }
 
 void HoneyTree_SlatherTree(FieldSystem *fieldSystem)
 {
     u8 treeId;
-    HoneyTreeData *treeDat;
+    PlayerHoneyTreeStates *treeDat;
     HoneyTree *tree;
     BOOL munchlaxTree;
 
     treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
-    treeDat = SpecialEncounter_GetHoneyTreeData(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+    treeDat = SpecialEncounter_GetPlayerHoneyTreeStates(SaveData_GetSpecialEncounters(fieldSystem->saveData));
     tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
 
     tree->minutesRemaining = (24 * 60); // slathering lasts for one day
@@ -192,7 +187,7 @@ void HoneyTree_StopShaking(FieldSystem *fieldSystem)
     u8 treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
-    if (fieldSystem->unk_A8->shakeData[treeId].isShaking) {
+    if (fieldSystem->unk_A8->trees[treeId].isShaking) {
         u8 v1;
         UnkStruct_ov5_021E1890 *v2;
         UnkStruct_ov5_021E1608 *v3;
@@ -206,10 +201,10 @@ void HoneyTree_StopShaking(FieldSystem *fieldSystem)
         v4 = ov5_021E18BC(v2);
 
         if (v2 != NULL) {
-            ov5_021D3D18(fieldSystem->unk_50, v4, 26, fieldSystem->unk_A8->shakeData[treeId].shakeValue);
+            ov5_021D3D18(fieldSystem->unk_50, v4, 26, fieldSystem->unk_A8->trees[treeId].shakeValue);
         }
 
-        fieldSystem->unk_A8->shakeData[treeId].isShaking = FALSE;
+        fieldSystem->unk_A8->trees[treeId].isShaking = FALSE;
     }
 }
 
@@ -262,7 +257,6 @@ static void GetTreeEncounterSlot(u8 *slot)
 }
 
 // Return value is used to read from the encounter table NARC. This is effectively group - 1.
-// This looks really stupid, but it does sanitize invalid groups to table 0 instead of trying to read data out of bounds. I guess.
 static const int GetEncounterTableFromGroup(const u8 group)
 {
     int table;
@@ -356,11 +350,11 @@ static void DoTreeShakingAnimation(FieldSystem *fieldSystem, UnkStruct_ov5_021E1
     treeId = GetTreeIdFromMapId(mapId);
 
     if (treeId != NUM_HONEY_TREES) {
-        HoneyTreeData *treeDat;
+        PlayerHoneyTreeStates *treeDat;
         HoneyTree *tree;
         UnkStruct_ov5_021E1890 *v4;
 
-        treeDat = SpecialEncounter_GetHoneyTreeData(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+        treeDat = SpecialEncounter_GetPlayerHoneyTreeStates(SaveData_GetSpecialEncounters(fieldSystem->saveData));
         tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
 
         if (SixHoursSinceSlathered(tree->minutesRemaining)) {
@@ -380,10 +374,10 @@ static void DoTreeShakingAnimation(FieldSystem *fieldSystem, UnkStruct_ov5_021E1
 
                 v7 = ov5_021E18BC(v4);
 
-                ov5_021D3D18(fieldSystem->unk_50, v7, 26, fieldSystem->unk_A8->shakeData[treeId].shakeValue);
+                ov5_021D3D18(fieldSystem->unk_50, v7, 26, fieldSystem->unk_A8->trees[treeId].shakeValue);
 
-                fieldSystem->unk_A8->shakeData[treeId].shakeValue = shakeValue;
-                fieldSystem->unk_A8->shakeData[treeId].isShaking = isShaking;
+                fieldSystem->unk_A8->trees[treeId].shakeValue = shakeValue;
+                fieldSystem->unk_A8->trees[treeId].isShaking = isShaking;
 
                 ov5_021D3B24(26, shakeValue, 1, v7, fieldSystem->unk_50);
             }
@@ -455,26 +449,24 @@ int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
     u8 treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
-    {
-        int *narcData;
-        int species;
-        HoneyTreeData *treeDat;
-        HoneyTree *tree;
+    int *narcData;
+    int species;
+    PlayerHoneyTreeStates *treeDat;
+    HoneyTree *tree;
 
-        treeDat = SpecialEncounter_GetHoneyTreeData(SaveData_GetSpecialEncounters(fieldSystem->saveData));
-        tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
+    treeDat = SpecialEncounter_GetPlayerHoneyTreeStates(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+    tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
 
-        if ((GAME_VERSION == DIAMOND) || (GAME_VERSION == PLATINUM)) {
-            narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_DPt[tree->encounterTableIndex], 4);
-        } else {
-            narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_P_Unused[tree->encounterTableIndex], 4);
-        }
-
-        species = narcData[tree->encounterSlot];
-        Heap_FreeToHeap(narcData);
-
-        return species;
+    if ((GAME_VERSION == DIAMOND) || (GAME_VERSION == PLATINUM)) {
+        narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_DPt[tree->encounterTableIndex], HEAP_ID_FIELD);
+    } else {
+        narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_P_Unused[tree->encounterTableIndex], HEAP_ID_FIELD);
     }
+
+    species = narcData[tree->encounterSlot];
+    Heap_FreeToHeap(narcData);
+
+    return species;
 }
 
 void ov5_021F0030(void *param0, const int param1, UnkStruct_ov5_021E1608 *const param2)
@@ -491,14 +483,14 @@ void ov5_021F0030(void *param0, const int param1, UnkStruct_ov5_021E1608 *const 
 
 void HoneyTree_Unslather(FieldSystem *fieldSystem)
 {
-    HoneyTreeData *treeDat;
+    PlayerHoneyTreeStates *treeDat;
     HoneyTree *tree;
     u8 treeId = GetTreeIdFromMapId(fieldSystem->location->mapId);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
-    fieldSystem->unk_A8->shakeData[treeId].isShaking = FALSE;
+    fieldSystem->unk_A8->trees[treeId].isShaking = FALSE;
 
-    treeDat = SpecialEncounter_GetHoneyTreeData(SaveData_GetSpecialEncounters(fieldSystem->saveData));
+    treeDat = SpecialEncounter_GetPlayerHoneyTreeStates(SaveData_GetSpecialEncounters(fieldSystem->saveData));
     tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
 
     tree->minutesRemaining = 0;

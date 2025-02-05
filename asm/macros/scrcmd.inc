@@ -11,6 +11,7 @@
 #include "generated/sdat.h"
 #include "generated/species.h"
 #include "generated/trainers.h"
+#include "constants/honey_tree.h"
 
 #include "macros/movement.inc"
 
@@ -1621,9 +1622,9 @@
     .short 295
     .endm
 
-    .macro GetHoneyTreeStatus arg0
+    .macro GetHoneyTreeStatus destVar
     .short 296
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro StartHoneyTreeBattle
@@ -2652,13 +2653,13 @@
     .short 491
     .endm
 
-    .macro ScrCmd_1EC
+    .macro AddTrophyGardenMon
     .short 492
     .endm
 
-    .macro ScrCmd_1ED arg0
+    .macro GetTrophyGardenSlot1Species destVar
     .short 493
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_1EE arg0, arg1
@@ -2904,7 +2905,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_21B
+    .macro EnableSwarms
     .short 539
     .endm
 

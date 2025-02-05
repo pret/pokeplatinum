@@ -4410,7 +4410,7 @@ static const u16 sHeldItemChance[][2] = {
 
 void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates)
 {
-    if (battleType & (0x1 | 0x80)) {
+    if (battleType & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FRONTIER)) {
         return;
     }
 

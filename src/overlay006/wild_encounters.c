@@ -371,7 +371,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
         FieldBattleDTO_Free(battleParams);
     }
 
-    fieldSystem->unk_78.encounterAttempts = 0;
+    fieldSystem->wildBattleMetadata.encounterAttempts = 0;
 
     return gettingEncounter;
 }
@@ -403,7 +403,7 @@ BOOL WildEncounters_TryFishingEncounter(FieldSystem *fieldSystem, const int fish
     FieldBattleDTO_Init(*battleParams, fieldSystem);
     FieldBattleDTO_SetWaterTerrain(*battleParams);
 
-    if (MapHeader_HasFeebasTiles(fieldSystem->location->mapId) && IsFacingFeebasTile(fieldSystem)) {
+    if (MapHeader_HasFeebasTiles(fieldSystem->location->mapId) && PlayerAvatar_IsFacingFeebasTile(fieldSystem)) {
         int species;
         u8 maxLevel, minLevel;
 
@@ -445,7 +445,7 @@ BOOL WildEncounters_TryFishingEncounter(FieldSystem *fieldSystem, const int fish
     return TRUE;
 }
 
-// Same as TryGrassEncounter except it always generates an encounter if they exist
+// Same as WildEncounters_TryWildEncounter except it always generates an encounter if they exist
 BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *param1)
 {
     FieldBattleDTO *battleParams;
@@ -550,7 +550,7 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
         GF_ASSERT(FALSE);
     }
 
-    fieldSystem->unk_78.encounterAttempts = 0;
+    fieldSystem->wildBattleMetadata.encounterAttempts = 0;
     return TRUE;
 }
 
@@ -679,7 +679,7 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
     if (!gettingEncounter) {
         FieldBattleDTO_Free(*battleParams);
     } else {
-        fieldSystem->unk_78.encounterAttempts = 0;
+        fieldSystem->wildBattleMetadata.encounterAttempts = 0;
     }
 
     return gettingEncounter;
@@ -754,7 +754,7 @@ static BOOL ShouldGetRandomEncounter(FieldSystem *fieldSystem, const u32 encount
 
     // lowers effective encounter rate by 95% for the first few steps after each encounter.
     if (!GracePeriodStepsUsed(fieldSystem, encRate)) {
-        fieldSystem->unk_78.encounterAttempts++;
+        fieldSystem->wildBattleMetadata.encounterAttempts++;
 
         if (LCRNG_RandMod(100) >= 5) {
             return FALSE;
@@ -806,7 +806,7 @@ static BOOL GracePeriodStepsUsed(FieldSystem *fieldSystem, u32 encounterRate)
 
     encounterRate = 8 - (encounterRate); // higher encounter rates also lower the grace period.
 
-    return fieldSystem->unk_78.encounterAttempts >= encounterRate;
+    return fieldSystem->wildBattleMetadata.encounterAttempts >= encounterRate;
 }
 
 static BOOL CheckEncounterRateSuccess(FieldSystem *fieldSystem, u32 encounterRate)
@@ -1520,12 +1520,12 @@ static u8 TryFindHigherLevelSlot(const EncounterSlot *encounterTable, const Wild
 
 static void InitEncounterFieldParams(FieldSystem *fieldSystem, Pokemon *firstPartyMon, WildEncounters *encounterData, WildEncounters_FieldParams *encounterFieldParams)
 {
-    if (Pokemon_GetValue(firstPartyMon, MON_DATA_IS_EGG, NULL) == 0) {
+    if (Pokemon_GetValue(firstPartyMon, MON_DATA_IS_EGG, NULL) == FALSE) {
         encounterFieldParams->isFirstMonEgg = FALSE;
         encounterFieldParams->firstMonAbility = Pokemon_GetValue(firstPartyMon, MON_DATA_ABILITY, NULL);
     } else {
         encounterFieldParams->isFirstMonEgg = TRUE;
-        encounterFieldParams->firstMonAbility = 123; // ABILITY_BAD_DREAMS seemingly standing in for ABILITY_NONE. Bad Dreams doesn't have a field effect anyway.
+        encounterFieldParams->firstMonAbility = ABILITY_BAD_DREAMS; // ABILITY_BAD_DREAMS seemingly standing in for ABILITY_NONE. Bad Dreams doesn't have a field effect anyway.
     }
 
     encounterFieldParams->firstBattlerLevel = 0;

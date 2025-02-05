@@ -3,7 +3,7 @@
 
 #include "field/field_system_decl.h"
 
-BOOL IsFacingFeebasTile(FieldSystem *fieldSystem);
+BOOL PlayerAvatar_IsFacingFeebasTile(FieldSystem *fieldSystem);
 void LoadFeebasLevelRange(u8 *maxLevel, u8 *minLevel);
 void LoadFeebasFromNARC(int *param0);
 

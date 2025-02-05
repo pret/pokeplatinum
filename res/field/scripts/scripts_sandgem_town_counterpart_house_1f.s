@@ -60,7 +60,7 @@ _009A:
     GoToIfUnset 0x964, _005A
     GoToIfSet 240, _00C4
     SetFlag 240
-    ScrCmd_21B
+    EnableSwarms
     BufferPlayerName 0
     Message 4
     WaitABXPadPress

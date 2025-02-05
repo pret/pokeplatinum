@@ -571,8 +571,8 @@ static BOOL ScrCmd_1E8(ScriptContext *ctx);
 static BOOL ScrCmd_1E9(ScriptContext *ctx);
 static BOOL ScrCmd_1EA(ScriptContext *ctx);
 static BOOL ScrCmd_1EB(ScriptContext *ctx);
-static BOOL ScrCmd_1EC(ScriptContext *ctx);
-static BOOL ScrCmd_1ED(ScriptContext *ctx);
+static BOOL ScrCmd_AddTrophyGardenMon(ScriptContext *ctx);
+static BOOL ScrCmd_GetTrophyGardenSlot1Species(ScriptContext *ctx);
 static BOOL ScrCmd_1EF(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementGameRecord(ScriptContext *ctx);
 static BOOL ScrCmd_1E6(ScriptContext *ctx);
@@ -599,7 +599,7 @@ static BOOL ScrCmd_26F(ScriptContext *ctx);
 static BOOL ScrCmd_218(ScriptContext *ctx);
 static BOOL ScrCmd_219(ScriptContext *ctx);
 static BOOL ScrCmd_21A(ScriptContext *ctx);
-static BOOL ScrCmd_21B(ScriptContext *ctx);
+static BOOL ScrCmd_EnableSwarms(ScriptContext *ctx);
 static BOOL ScrCmd_21C(ScriptContext *ctx);
 static BOOL ScrCmd_226(ScriptContext *ctx);
 static BOOL ScrCmd_227(ScriptContext *ctx);
@@ -1255,8 +1255,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1E9,
     ScrCmd_1EA,
     ScrCmd_1EB,
-    ScrCmd_1EC,
-    ScrCmd_1ED,
+    ScrCmd_AddTrophyGardenMon,
+    ScrCmd_GetTrophyGardenSlot1Species,
     ScrCmd_1EE,
     ScrCmd_1EF,
     ScrCmd_1F0,
@@ -1302,7 +1302,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_218,
     ScrCmd_219,
     ScrCmd_21A,
-    ScrCmd_21B,
+    ScrCmd_EnableSwarms,
     ScrCmd_21C,
     ScrCmd_21D,
     ScrCmd_21E,
@@ -4806,7 +4806,7 @@ static BOOL ScrCmd_GetSwarmMapAndSpecies(ScriptContext *ctx)
     u16 *speciesDest = ScriptContext_GetVarPointer(ctx);
 
     Swarm_GetMapIdAndSpecies(SpecialEncounter_GetDailyMon(speEnc, DAILY_SWARM), mapDest, speciesDest);
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_0DE(ScriptContext *ctx)
@@ -5093,7 +5093,7 @@ static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     HoneyTree_SlatherTree(fieldSystem);
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_GetHoneyTreeStatus(ScriptContext *ctx)
@@ -5102,7 +5102,7 @@ static BOOL ScrCmd_GetHoneyTreeStatus(ScriptContext *ctx)
     u16 *var = ScriptContext_GetVarPointer(ctx);
 
     *var = HoneyTree_GetTreeSlatherStatus(fieldSystem);
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_StartHoneyTreeBattle(ScriptContext *ctx)
@@ -6281,18 +6281,18 @@ static BOOL ScrCmd_1EB(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_1EC(ScriptContext *ctx)
+static BOOL ScrCmd_AddTrophyGardenMon(ScriptContext *ctx)
 {
     TrophyGarden_AddNewMon(ctx->fieldSystem->saveData);
-    return 0;
+    return FALSE;
 }
 
-static BOOL ScrCmd_1ED(ScriptContext *ctx)
+static BOOL ScrCmd_GetTrophyGardenSlot1Species(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *var = ScriptContext_GetVarPointer(ctx);
 
-    (*v0) = TrophyGarden_GetSlot1Species(ctx->fieldSystem->saveData);
-    return 0;
+    *var = TrophyGarden_GetSlot1Species(ctx->fieldSystem->saveData);
+    return FALSE;
 }
 
 static BOOL ScrCmd_1EF(ScriptContext *ctx)
@@ -6501,7 +6501,7 @@ static BOOL ScrCmd_21A(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_21B(ScriptContext *ctx)
+static BOOL ScrCmd_EnableSwarms(ScriptContext *ctx)
 {
     SpecialEncounter_EnableSwarms(ctx->fieldSystem->saveData);
 

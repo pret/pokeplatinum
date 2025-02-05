@@ -441,16 +441,16 @@ _05EA:
     CheckItem ITEM_HONEY, 1, 0x800C
     GoToIfNe 0x800C, 0, _0632
     GetHoneyTreeStatus 0x800C
-    GoToIfEq 0x800C, 1, _065F
-    GoToIfEq 0x800C, 2, _066A
-    GoToIfEq 0x800C, 3, _06F4
+    GoToIfEq 0x800C, TREE_STATUS_BARE, _065F
+    GoToIfEq 0x800C, TREE_STATUS_SLATHERED, _066A
+    GoToIfEq 0x800C, TREE_STATUS_ENCOUNTER, _06F4
     End
 
 _0632:
     GetHoneyTreeStatus 0x800C
-    GoToIfEq 0x800C, 1, _0675
-    GoToIfEq 0x800C, 2, _067E
-    GoToIfEq 0x800C, 3, _06F4
+    GoToIfEq 0x800C, TREE_STATUS_BARE, _0675
+    GoToIfEq 0x800C, TREE_STATUS_SLATHERED, _067E
+    GoToIfEq 0x800C, TREE_STATUS_ENCOUNTER, _06F4
     End
 
 _065F:

@@ -14,7 +14,7 @@
 
 // Calculates if the player is facing a Feebas tile, but exits early 50% of the time
 // to simulate Feebas having a 50% encounter rate.
-BOOL IsFacingFeebasTile(FieldSystem *fieldSystem)
+BOOL PlayerAvatar_IsFacingFeebasTile(FieldSystem *fieldSystem)
 {
     u8 i;
     int numFishingtiles;
@@ -40,7 +40,7 @@ BOOL IsFacingFeebasTile(FieldSystem *fieldSystem)
 
     rand = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(fieldSystem->saveData));
 
-    PlayerAvatar_GetFacingTile(fieldSystem->playerAvatar, &x, &z);
+    PlayerAvatar_GetFacingTileCoords(fieldSystem->playerAvatar, &x, &z);
 
     // Value of 1 for the map this is actually used on
     mapMatrixWidth = MapMatrix_GetWidth(fieldSystem->mapMatrix);

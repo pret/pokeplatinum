@@ -29,10 +29,10 @@ void SpecialEncounter_SetMixedRecordDailies(SpecialEncounter *speEnc, const u32 
 u32 SpecialEncounter_GetDailyMon(SpecialEncounter *param0, const u8 dailyType);
 RadarChainRecords *SpecialEncounter_GetRadarChainRecords(SpecialEncounter *speEnc);
 SpecialEncounter *SaveData_GetSpecialEncounters(SaveData *sDat);
-HoneyTreeData *SpecialEncounter_GetHoneyTreeData(SpecialEncounter *speEnc);
-const int SpecialEncounter_GetLastSlatheredTreeId(HoneyTreeData *treeDat);
-void SpecialEncounter_SetLastSlatheredTreeId(const u8 treeId, HoneyTreeData *treeDat);
-HoneyTree *SpecialEncounter_GetHoneyTree(const u8 param0, HoneyTreeData *param1);
+PlayerHoneyTreeStates *SpecialEncounter_GetPlayerHoneyTreeStates(SpecialEncounter *speEnc);
+const int SpecialEncounter_GetLastSlatheredTreeId(PlayerHoneyTreeStates *treeDat);
+void SpecialEncounter_SetLastSlatheredTreeId(const u8 treeId, PlayerHoneyTreeStates *treeDat);
+HoneyTree *SpecialEncounter_GetHoneyTree(const u8 param0, PlayerHoneyTreeStates *param1);
 void SpecialEncounter_DecrementHoneyTreeTimers(SaveData *param0, const int param1);
 void SpecialEncounter_EnableSwarms(SaveData *param0);
 u8 SpecialEncounter_IsSwarmEnabled(SpecialEncounter *speEnc);

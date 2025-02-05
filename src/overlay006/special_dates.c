@@ -100,18 +100,18 @@ static const u16 sDecemberDays[] = {
 };
 
 static const SpecialDate sSpecialDates[12] = {
-    { sizeof(sJanuaryDays) / 2, sJanuaryDays },
-    { sizeof(sFebruaryDays) / 2, sFebruaryDays },
-    { sizeof(sMarchDays) / 2, sMarchDays },
-    { sizeof(sAprilDays) / 2, sAprilDays },
-    { sizeof(sMayDays) / 2, sMayDays },
-    { sizeof(sJuneDays) / 2, sJuneDays },
-    { sizeof(sJulyDays) / 2, sJulyDays },
-    { sizeof(sAugustDays) / 2, sAugustDays },
-    { sizeof(sSeptemberDays) / 2, sSeptemberDays },
-    { sizeof(sOctoberDays) / 2, sOctoberDays },
-    { sizeof(sNovemberDays) / 2, sNovemberDays },
-    { sizeof(sDecemberDays) / 2, sDecemberDays }
+    { NELEMS(sJanuaryDays), sJanuaryDays },
+    { NELEMS(sFebruaryDays), sFebruaryDays },
+    { NELEMS(sMarchDays), sMarchDays },
+    { NELEMS(sAprilDays), sAprilDays },
+    { NELEMS(sMayDays), sMayDays },
+    { NELEMS(sJuneDays), sJuneDays },
+    { NELEMS(sJulyDays), sJulyDays },
+    { NELEMS(sAugustDays), sAugustDays },
+    { NELEMS(sSeptemberDays), sSeptemberDays },
+    { NELEMS(sOctoberDays), sOctoberDays },
+    { NELEMS(sNovemberDays), sNovemberDays },
+    { NELEMS(sDecemberDays), sDecemberDays }
 };
 
 static const int sEncounterRateModifiers[] = {
@@ -158,7 +158,3 @@ int SpecialDates_ModifyEncounterRate(const int encounterModifier, const BOOL has
 
     return encounterModifier;
 }
-
-#undef DateMod
-#undef GetDate
-#undef GetModifier
