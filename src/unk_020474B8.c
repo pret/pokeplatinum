@@ -4,13 +4,13 @@
 #include <nitro/code16.h>
 #include <string.h>
 
+#include "constants/narc.h"
+#include "generated/text_banks.h"
+
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
-
-#include "constants/narc.h"
-#include "generated/text_banks.h"
 
 #include "berry_data.h"
 #include "field_script_context.h"

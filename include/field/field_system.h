@@ -55,7 +55,7 @@ typedef struct HoneyTreeShakeList {
     int unused[NUM_HONEY_TREES];
 } HoneyTreeShakeList;
 
-typedef struct FieldWildBattleMetadata{
+typedef struct FieldWildBattleMetadata {
     u16 encounterAttempts;
     u16 wildMonDefeated;
 } FieldWildBattleMetadata;

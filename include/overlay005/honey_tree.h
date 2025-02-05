@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_HONEY_TREE_H
 #define POKEPLATINUM_HONEY_TREE_H
 
+#include "constants/honey_tree.h"
+
 #include "field/field_system.h"
 #include "field/field_system_decl.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
-
-#include "constants/honey_tree.h"
 
 HoneyTreeShakeList *HoneyTree_ShakeDataInit(void);
 void HoneyTree_FreeShakeData(HoneyTreeShakeList **param0);
