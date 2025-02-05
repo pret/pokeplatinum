@@ -162,7 +162,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
 
             NNS_G2dInitOamManagerModule();
 
-            sub_0200A784(0, 128, 0, 32, 1, 127, 0, 32, 57);
+            RenderOam_Init(0, 128, 0, 32, 1, 127, 0, 32, 57);
             v0->unk_18 = sub_020095C4(64, &v0->unk_1C, 57);
             sub_0200964C(&(v0->unk_1C), 0, (192 + 40 << FX32_SHIFT));
 
@@ -213,7 +213,7 @@ int ov95_02246E1C(OverlayManager *param0, int *param1)
     Strbuf_Free(v1->unk_14);
     Heap_FreeToHeap(v1->unk_08);
     CellActorCollection_Delete(v1->unk_18);
-    sub_0200A878();
+    RenderOam_Free();
     OverlayManager_FreeData(param0);
     Heap_Destroy(57);
     Heap_Destroy(58);
@@ -258,7 +258,7 @@ static void ov95_02246F0C(SysTask *param0, void *param1)
     UnkStruct_ov95_02247628 *v0 = param1;
 
     CellActorCollection_Update(v0->unk_18);
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

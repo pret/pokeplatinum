@@ -220,7 +220,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     }
 
     CellActorCollection_Delete(v0->unk_3C);
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 
@@ -244,7 +244,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
 static void ov72_0223DA48(void *param0)
 {
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates((BgConfig *)param0);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -475,7 +475,7 @@ static void ov72_0223DDD8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 39);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 39);
 
     param0->unk_3C = sub_020095C4(50, &param0->unk_40, 39);
 

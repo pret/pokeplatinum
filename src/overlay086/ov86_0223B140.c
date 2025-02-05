@@ -596,7 +596,7 @@ static void ov86_0223B6CC(SysTask *param0, void *param1)
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
     CellActorCollection_Update(v0->unk_24);
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 static SysTask *ov86_0223B744(SysTaskFunc param0, void *param1, int param2)
@@ -776,7 +776,7 @@ static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 *param0)
     v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 63);
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 63);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 63);
 
     param0->unk_24 = sub_020095C4(64, &param0->unk_28, 63);
     param0->unk_1D0 = Graphics_GetCellBankFromOpenNARC(v2, 77, 0, &v0, 63);
@@ -890,7 +890,7 @@ static void ov86_0223BD68(UnkStruct_ov86_0223B3C8 *param0)
     Heap_FreeToHeap(param0->unk_1D4);
     Heap_FreeToHeap(param0->unk_1D0);
     CellActorCollection_Delete(param0->unk_24);
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 static void ov86_0223BDAC(SysTask *param0, void *param1)

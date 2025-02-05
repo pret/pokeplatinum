@@ -277,7 +277,7 @@ static void ov61_0222C1FC(void *param0)
     UnkStruct_ov61_0222C664 *v0 = param0;
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates(v0->unk_04);
 
     inline_ov61_0222C1FC(&v0->unk_A4);

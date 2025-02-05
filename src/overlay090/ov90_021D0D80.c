@@ -881,8 +881,8 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
 
         sub_0200C73C(param0->unk_29C, &v0, &v1, 32);
         sub_0200C7C0(param0->unk_29C, param0->unk_2A0, 4);
-        sub_0200A93C(param0->unk_00);
-        sub_0200A944(param0->unk_00);
+        RenderOam_ClearMain(param0->unk_00);
+        RenderOam_ClearSub(param0->unk_00);
     }
 
     {

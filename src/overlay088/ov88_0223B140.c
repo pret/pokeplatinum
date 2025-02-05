@@ -847,7 +847,7 @@ static void ov88_0223BF7C(UnkStruct_02095E80 *param0)
     }
 
     CellActorCollection_Delete(param0->unk_194);
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 }
@@ -911,7 +911,7 @@ static void ov88_0223C0E0(void *param0)
     }
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -1239,7 +1239,7 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 127, 0, 32, 0, 127, 0, 32, 26);
+    RenderOam_Init(0, 127, 0, 32, 0, 127, 0, 32, 26);
 
     param0->unk_194 = sub_020095C4((2 + 12 + 12 + 12 + 2 + 2 + 2 + 1), &param0->unk_198, 26);
 

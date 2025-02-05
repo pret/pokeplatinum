@@ -43,7 +43,7 @@ void ov111_021D2F80(UnkStruct_ov111_021D2F80 *param0)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 115);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 115);
     param0->unk_00 = sub_020095C4(40, &param0->unk_04, 115);
     sub_0200964C(&param0->unk_04, 0, (512 * FX32_ONE));
 
@@ -161,7 +161,7 @@ void ov111_021D3320(UnkStruct_ov111_021D2F80 *param0)
     }
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 

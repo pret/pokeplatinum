@@ -140,7 +140,7 @@ void ov77_021D5564(UnkStruct_ov77_021D5564 *param0)
 
     ov77_021D54B0();
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, v1);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, v1);
 
     param0->unk_00 = sub_020095C4(((3 + 1 + 1 + 2 + 4) + 6 + 16), &param0->unk_04, v1);
     param0->unk_300 = CellTransfer_New(3, v1);
@@ -226,7 +226,7 @@ void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
         param0->unk_300 = NULL;
     }
 
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
     VramTransfer_Free();

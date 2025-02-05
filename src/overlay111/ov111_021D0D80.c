@@ -1286,7 +1286,7 @@ static void ov111_021D2090(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_58);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

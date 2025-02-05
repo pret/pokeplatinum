@@ -436,7 +436,7 @@ static void ov98_022474E8 (void * param0)
     UnkStruct_ov98_02247704 * v0 = param0;
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     Bg_RunScheduledUpdates(v0->unk_04);
     inline_ov61_0222C1FC(&v0->unk_EC);

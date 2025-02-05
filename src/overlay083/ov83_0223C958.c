@@ -136,7 +136,7 @@ void ov83_0223CBA4(UnkStruct_ov83_0223B784 *param0)
 
 void ov83_0223CBFC(UnkStruct_ov83_0223B784 *param0)
 {
-    sub_0200A858();
+    RenderOam_Transfer();
 
     if (param0->unk_20) {
         Bg_RunScheduledUpdates(param0->unk_20);
@@ -296,7 +296,7 @@ static void ov83_0223CD54(UnkStruct_ov83_0223B784 *param0)
 static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)
 {
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, param0->unk_00);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, param0->unk_00);
 
     {
         CharTransferTemplate v0 = {
@@ -317,7 +317,7 @@ static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)
 
 static void ov83_0223CDC0(UnkStruct_ov83_0223B784 *param0)
 {
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 }

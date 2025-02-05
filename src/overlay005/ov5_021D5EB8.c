@@ -775,7 +775,7 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
     v0.sizeView.x = (255 << FX32_SHIFT);
     v0.sizeView.y = (192 << FX32_SHIFT);
 
-    sub_0200A8B0(&param0->unk_C0, &v0, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_14);
+    RenderOam_InitSurface(&param0->unk_C0, &v0, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_14);
 
     for (v1 = 0; v1 < 4; v1++) {
         param0->unk_00[v1] = SpriteResourceCollection_New(31, v1, 4);

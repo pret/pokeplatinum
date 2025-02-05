@@ -302,7 +302,7 @@ int ov109_021D3F9C(OverlayManager *param0, int *param1)
     }
 
     CellActorCollection_Delete(v1->unk_60);
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 
@@ -364,7 +364,7 @@ static void ov109_021D4044(SysTask *param0, void *param1)
 static void ov109_021D40A8(void *param0)
 {
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates((BgConfig *)param0);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -598,7 +598,7 @@ static void ov109_021D441C(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 95);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 95);
 
     param0->unk_60 = sub_020095C4(30, &param0->unk_64, 95);
     GF_ASSERT(param0->unk_60);

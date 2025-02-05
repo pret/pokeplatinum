@@ -2133,7 +2133,7 @@ static void ov105_0224451C(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_4C);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

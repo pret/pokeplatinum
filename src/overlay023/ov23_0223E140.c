@@ -1385,7 +1385,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     }
 
     CellActorCollection_Delete(Unk_ov23_02257740->unk_20);
-    sub_0200A878();
+    RenderOam_Free();
 
     CharTransfer_Free();
     PlttTransfer_Free();
@@ -2767,7 +2767,7 @@ static void ov23_02240E88(void)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 124, 0, 31, 0, 124, 0, 31, 29);
+    RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 29);
     ov23_0224119C();
 
     Unk_ov23_02257740->unk_20 = sub_020095C4(26, &Unk_ov23_02257740->unk_24, 29);
@@ -2862,7 +2862,7 @@ static void ov23_022411E8(void *param0)
 
     Bg_RunScheduledUpdates(v0);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 BOOL ov23_02241200(int param0, int param1)

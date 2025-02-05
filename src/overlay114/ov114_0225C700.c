@@ -1371,7 +1371,7 @@ static void ov114_0225CFCC(UnkStruct_ov114_0225CFCC *param0, u32 param1, u32 par
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param4);
+    RenderOam_Init(0, 126, 0, 31, 0, 126, 0, 31, param4);
 
     {
         CharTransferTemplate v1 = Unk_ov114_0226017C;
@@ -1400,7 +1400,7 @@ static void ov114_0225D058(UnkStruct_ov114_0225CFCC *param0)
     CellActorCollection_Delete(param0->unk_00);
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 static void ov114_0225D070(UnkStruct_ov114_0225CFCC *param0)
@@ -1410,7 +1410,7 @@ static void ov114_0225D070(UnkStruct_ov114_0225CFCC *param0)
 
 static void ov114_0225D07C(UnkStruct_ov114_0225CFCC *param0)
 {
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 static void ov114_0225D084(UnkStruct_ov114_0225D084 *param0, u32 param1)

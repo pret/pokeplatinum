@@ -904,7 +904,7 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         sub_0200C73C(param0->unk_A8, &v3, &v4, 32);
         sub_0200C7C0(param0->unk_A8, param0->unk_AC, 3);
         sub_0200CB30(param0->unk_A8, param0->unk_AC, &v5);
-        sub_0200A93C(param0->unk_00);
+        RenderOam_ClearMain(param0->unk_00);
     }
 
     sub_0200CC9C(param0->unk_A8, param0->unk_AC, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 0);

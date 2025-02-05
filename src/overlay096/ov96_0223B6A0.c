@@ -194,7 +194,7 @@ static void ov96_0223B940(void *param0)
     UnkStruct_ov96_0223BF40 *v0 = param0;
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     inline_ov61_0222C1FC(&v0->unk_FF8);
 
@@ -255,7 +255,7 @@ static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 68);
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 68);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 68);
 
     param0->unk_BF4 = sub_020095C4(10, &param0->unk_BF8, 68);
 
@@ -415,7 +415,7 @@ static void ov96_0223BC8C(UnkStruct_ov96_0223BF40 *param0)
 
     param0->unk_BF4 = NULL;
 
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 }

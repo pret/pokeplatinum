@@ -1069,7 +1069,7 @@ static void ov71_0223C128(UnkStruct_ov71_0223B620 *param0, const u8 param1)
 static void ov71_0223C18C(void *param0)
 {
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

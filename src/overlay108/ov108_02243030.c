@@ -44,7 +44,7 @@ void ov108_02243030(UnkStruct_ov108_02243030 *param0, Party *param1, Party *para
     ov108_022431FC();
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 103);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 103);
 
     param0->unk_00 = sub_020095C4(((4 * 4) + 1 + 8 + 8 + 1), &param0->unk_04, 103);
 
@@ -128,7 +128,7 @@ void ov108_02243194(UnkStruct_ov108_02243030 *param0)
     }
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 

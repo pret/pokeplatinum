@@ -330,7 +330,7 @@ void ov97_02237A74(void)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, v1->unk_08);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, v1->unk_08);
     v1->unk_34.unk_00 = sub_020095C4(128, &v1->unk_34.unk_04, v1->unk_08);
     sub_0200964C(&v1->unk_34.unk_04, 0, (256 * FX32_ONE));
 
@@ -502,7 +502,7 @@ void ov97_02237DA0(void)
     CellActorCollection_Delete(v1->unk_00);
     v1->unk_00 = NULL;
 
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 
@@ -524,7 +524,7 @@ static void ov97_02237E58(void *param0)
     }
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     if (v0->unk_00) {
         Bg_RunScheduledUpdates(v0->unk_00);

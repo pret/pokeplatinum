@@ -1398,7 +1398,7 @@ static void ov69_0225D384(UnkStruct_ov69_0225D35C *param0)
 static void ov69_0225D390(UnkStruct_ov69_0225D35C *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_00);
-    sub_0200A858();
+    RenderOam_Transfer();
     VramTransfer_Process();
 }
 
@@ -1469,7 +1469,7 @@ static void ov69_0225D53C(UnkStruct_ov69_0225D35C *param0, u32 param1)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param1);
+    RenderOam_Init(0, 126, 0, 31, 0, 126, 0, 31, param1);
     CharTransfer_InitWithVramModes(&Unk_ov69_0225F050, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     PlttTransfer_Init(32, param1);
     CharTransfer_ClearBuffers();
@@ -1502,7 +1502,7 @@ static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0)
 
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 static void ov69_0225D604(UnkStruct_ov69_0225D35C *param0, u32 param1)

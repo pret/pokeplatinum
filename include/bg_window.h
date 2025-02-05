@@ -15,11 +15,6 @@
 
 #define PIXEL_FILL(color) (((color) << 4) | (color))
 
-enum DSScreen {
-    DS_SCREEN_MAIN = 0,
-    DS_SCREEN_SUB,
-};
-
 enum BgLayer {
     BG_LAYER_MAIN_0 = 0,
     BG_LAYER_MAIN_1,

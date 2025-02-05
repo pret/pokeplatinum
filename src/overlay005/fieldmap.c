@@ -140,7 +140,7 @@ static void fieldmap(void *param0)
 
     Bg_RunScheduledUpdates(fieldSystem->bgConfig);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     inline_fieldmap(fieldSystem);
 }
@@ -654,12 +654,12 @@ static void ov5_021D1524(BgConfig *bgl)
 static void ov5_021D154C(void)
 {
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 124, 0, 31, 0, 124, 0, 31, 4);
+    RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 4);
 }
 
 static void ov5_021D1570(void)
 {
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 static void ov5_021D1578(UnkStruct_ov5_021D5894 *param0)

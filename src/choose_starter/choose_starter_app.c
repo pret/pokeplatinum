@@ -475,7 +475,7 @@ static void ChooseStarterAppMainCallback(void *data)
 {
     ChooseStarterApp *app = data;
 
-    sub_0200A858();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates(app->bgl);
     sub_02008A94(app->spriteManager);
     VramTransfer_Process();
@@ -505,7 +505,7 @@ static void SetupDrawing(ChooseStarterApp *app, enum HeapId heap)
 
 static void ov78_021D10DC(void)
 {
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 
@@ -534,7 +534,7 @@ static void SetupOAM(enum HeapId heapID)
 {
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(OAM_MAIN_START, OAM_MAIN_END, OAM_AFFINE_MAIN_START, OAM_AFFINE_MAIN_END, OAM_SUB_START, OAM_SUB_END, OAM_AFFINE_SUB_START, OAM_AFFINE_SUB_END, heapID);
+    RenderOam_Init(OAM_MAIN_START, OAM_MAIN_END, OAM_AFFINE_MAIN_START, OAM_AFFINE_MAIN_END, OAM_SUB_START, OAM_SUB_END, OAM_AFFINE_SUB_START, OAM_AFFINE_SUB_END, heapID);
 
     CharTransferTemplate v0 = {
         OAM_NUM_BYTES,

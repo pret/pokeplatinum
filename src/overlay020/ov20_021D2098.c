@@ -112,7 +112,7 @@ UnkStruct_ov20_021D2128 *ov20_021D2098(const UnkStruct_ov20_021D16E8 *param0, co
         v0->unk_1C = param1;
 
         NNS_G2dInitOamManagerModule();
-        sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 35);
+        RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 35);
 
         v0->unk_24 = sub_020095C4(128, &v0->unk_28, 35);
         v0->unk_20 = BgConfig_New(35);
@@ -143,7 +143,7 @@ void ov20_021D2128(UnkStruct_ov20_021D2128 *param0)
         SysTask_Done(param0->unk_00);
         SysTask_Done(param0->unk_04);
 
-        sub_0200A878();
+        RenderOam_Free();
         CellActorCollection_Delete(param0->unk_24);
 
         Heap_FreeToHeap(param0->unk_20);
@@ -166,7 +166,7 @@ static void ov20_021D217C(SysTask *param0, void *param1)
     UnkStruct_ov20_021D2128 *v0 = param1;
 
     CellActorCollection_Update(v0->unk_24);
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

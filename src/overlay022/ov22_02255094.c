@@ -265,7 +265,7 @@ void ov22_022553F8(UnkStruct_ov22_0225A0E4 *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_40);
     sub_02008A94(param0->unk_20);
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 void ov22_02255410(UnkStruct_ov22_02255CB8 *param0, int param1)
@@ -410,7 +410,7 @@ void ov22_022555FC(UnkStruct_ov22_0225A0E4 *param0)
 void ov22_0225561C(UnkStruct_ov22_0225A0E4 *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_40);
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 void ov22_0225562C(UnkStruct_ov22_0225A0E4 *param0)
@@ -705,7 +705,7 @@ static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 124, 0, 31, 0, 124, 0, 31, 14);
+    RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 14);
     param0->unk_44 = sub_020095C4(48, &param0->unk_58, 14);
     sub_0200964C(&param0->unk_58, 0, (512 * FX32_ONE));
 
@@ -729,7 +729,7 @@ static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0)
 
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 static void ov22_02255AC0(UnkStruct_ov22_0225A0E4 *param0)

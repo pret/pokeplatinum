@@ -1148,7 +1148,7 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
     }
 
     CellActorCollection_Delete(v0->unk_188);
-    sub_0200A878();
+    RenderOam_Free();
     Heap_FreeToHeapExplicit(18, v0->unk_510);
 
     if (v0->unk_00 == 1) {
@@ -1221,7 +1221,7 @@ void sub_0208716C(UnkStruct_0208737C *param0)
 static void sub_02087190(void *param0)
 {
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -1535,7 +1535,7 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 18);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 18);
 
     param0->unk_188 = sub_020095C4(40 + 4, &param0->unk_18C, 18);
 

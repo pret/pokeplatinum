@@ -556,7 +556,7 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
         };
 
         sub_0200C73C(param0->unk_7C, &v0, &v1, 32);
-        sub_0200A93C(param0->unk_00);
+        RenderOam_ClearMain(param0->unk_00);
     }
 
     param0->unk_5C = sub_02098FFC(param0->unk_00, 2, 2, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);

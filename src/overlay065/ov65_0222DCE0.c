@@ -866,7 +866,7 @@ static void ov65_0222E47C(UnkStruct_ov65_0222EBE0 *param0)
     }
 
     CellActorCollection_Delete(param0->unk_18C);
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 
@@ -933,7 +933,7 @@ static void ov65_0222E5E0(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_15C);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     inline_ov61_0222C1FC(&v0->unk_E2C);
 
@@ -1494,7 +1494,7 @@ static void ov65_0222EE18(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 54);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 54);
 
     param0->unk_18C = sub_020095C4(8, &param0->unk_190, 54);
 
@@ -2044,8 +2044,8 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
                 param0->unk_B4C[v0] = NULL;
             }
 
-            sub_0200A93C(54);
-            sub_0200A944(54);
+            RenderOam_ClearMain(54);
+            RenderOam_ClearSub(54);
         }
 
         if (ov65_02232FCC(param0) == 1) {

@@ -240,7 +240,7 @@ static void ov94_0223BFE4(void *param0)
     }
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     inline_ov61_0222C1FC(&v0->unk_11B4);
 
@@ -315,7 +315,7 @@ static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 62);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 62);
 
     param0->unk_BE4 = sub_020095C4(72 + 6, &param0->unk_BE8, 62);
 
@@ -516,7 +516,7 @@ static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0)
     CellActorCollection_Delete(param0->unk_BE4);
     param0->unk_BE4 = NULL;
 
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 }

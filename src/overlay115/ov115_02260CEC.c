@@ -981,7 +981,7 @@ void ov115_022611C8(UnkStruct_ov115_02260D78 *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_1AB4.unk_00);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 s32 ov115_022611E0(const UnkStruct_ov115_02260D78 *param0)
@@ -3160,7 +3160,7 @@ static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param1);
+    RenderOam_Init(0, 126, 0, 31, 0, 126, 0, 31, param1);
 
     {
         CharTransferTemplate v1 = {
@@ -3201,7 +3201,7 @@ static void ov115_02263A3C(UnkStruct_ov115_02261ADC *param0)
 
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 static void ov115_02263A74(UnkStruct_ov115_02261ADC *param0, NARC *param1, u32 param2)

@@ -510,7 +510,7 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 78);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 78);
     param0->unk_28 = sub_020095C4(80, &param0->unk_2C, 78);
     sub_0200964C(&param0->unk_2C, 0, (256 * FX32_ONE));
 
@@ -1568,7 +1568,7 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
     CellActorCollection_Delete(param0->unk_28);
     param0->unk_28 = NULL;
 
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 
@@ -1634,7 +1634,7 @@ static void ov97_022353CC(void *param0)
     }
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates(v0->unk_20);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

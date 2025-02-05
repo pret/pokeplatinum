@@ -174,7 +174,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
             NNS_G2dInitOamManagerModule();
 
-            sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 10);
+            RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 10);
             v0->unk_18 = sub_020095C4(128, &v0->unk_1C, 10);
             sub_0200964C(&(v0->unk_1C), 0, (384 << FX32_SHIFT));
 
@@ -259,7 +259,7 @@ void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0)
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
     Heap_FreeToHeap(param0->unk_1C0);
     Heap_FreeToHeap(param0);
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 void ov19_021D6594(UnkStruct_ov19_021D61B0 *param0, u32 param1)
@@ -397,7 +397,7 @@ static void ov19_021D6664(SysTask *param0, void *param1)
     ov19_021DAA80(&v0->unk_6604);
 
     CellActorCollection_Update(v0->unk_18);
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

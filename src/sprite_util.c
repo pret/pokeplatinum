@@ -141,14 +141,14 @@ CellActorCollection *sub_020095C4(int param0, G2dRenderer *param1, int param2)
     v1.sizeView.x = (255 << FX32_SHIFT);
     v1.sizeView.y = (192 << FX32_SHIFT);
 
-    sub_0200A8B0(&param1->mainScreen, &v1, NNS_G2D_SURFACETYPE_MAIN2D, &param1->renderer);
+    RenderOam_InitSurface(&param1->mainScreen, &v1, NNS_G2D_SURFACETYPE_MAIN2D, &param1->renderer);
 
     v1.posTopLeft.x = 0;
     v1.posTopLeft.y = (192 << FX32_SHIFT);
     v1.sizeView.x = (255 << FX32_SHIFT);
     v1.sizeView.y = (192 << FX32_SHIFT);
 
-    sub_0200A8B0(&param1->subScreen, &v1, NNS_G2D_SURFACETYPE_SUB2D, &param1->renderer);
+    RenderOam_InitSurface(&param1->subScreen, &v1, NNS_G2D_SURFACETYPE_SUB2D, &param1->renderer);
 
     v0.maxElements = param0;
     v0.renderer = &param1->renderer;

@@ -92,7 +92,7 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
         v0->unk_10 = BgConfig_New(61);
 
         NNS_G2dInitOamManagerModule();
-        sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 61);
+        RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 61);
 
         v0->unk_34 = sub_020095C4(64, &v0->unk_38, 61);
         v0->unk_1E4 = MessageLoader_Init(0, 26, 352, 61);
@@ -121,7 +121,7 @@ void ov87_021D1140(UnkStruct_ov87_021D106C *param0)
         MessageLoader_Free(param0->unk_1E8);
         MessageLoader_Free(param0->unk_1E4);
         CellActorCollection_Delete(param0->unk_34);
-        sub_0200A878();
+        RenderOam_Free();
         Heap_FreeToHeap(param0->unk_10);
         Heap_FreeToHeap(param0);
     }
@@ -132,7 +132,7 @@ static void ov87_021D11AC(void *param0)
     UnkStruct_ov87_021D106C *v0 = param0;
 
     CellActorCollection_Update(v0->unk_34);
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

@@ -500,7 +500,7 @@ static void ov101_021D1550(UnkStruct_ov101_021D13C8 *param0)
 {
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 79);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 79);
     param0->unk_450 = ov101_021D7E48(79, 64, 32, 64, 16, 64, 32, 11, 8, 11, 11);
     ov101_021D15BC(param0);
 }
@@ -509,7 +509,7 @@ static void ov101_021D15A4(UnkStruct_ov101_021D13C8 *param0)
 {
     ov101_021D1868(param0);
     ov101_021D7FB4(param0->unk_450);
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 static void ov101_021D15BC(UnkStruct_ov101_021D13C8 *param0)
@@ -659,7 +659,7 @@ static void ov101_021D197C(void *param0)
     UnkStruct_ov101_021D13C8 *v0 = param0;
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates(v0->unk_43C);
 }
 

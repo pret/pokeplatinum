@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/screen.h"
 
 #include "overlay077/const_ov77_021D742C.h"
 

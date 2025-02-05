@@ -859,7 +859,7 @@ static void ov64_0222E228(UnkStruct_ov64_0222E21C *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_00);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 static void ov64_0222E23C(UnkStruct_ov64_0222E21C *param0)
@@ -946,7 +946,7 @@ static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
     NNS_G2dInitOamManagerModule();
 
     VramTransfer_New(16, param1);
-    sub_0200A784(0, 126, 0, 30, 0, 126, 0, 30, param1);
+    RenderOam_Init(0, 126, 0, 30, 0, 126, 0, 30, param1);
 
     {
         CharTransferTemplate v2 = {
@@ -963,7 +963,7 @@ static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
 
     param0->unk_04 = sub_020095C4(64, &param0->unk_78, param1);
 
-    sub_0200A8B0(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.renderer);
+    RenderOam_InitSurface(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.renderer);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_204[v0] = SpriteResourceCollection_New(64, v0, param1);
@@ -1003,7 +1003,7 @@ static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0)
     CellActorCollection_Delete(param0->unk_04);
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0200A878();
+    RenderOam_Free();
     VramTransfer_Free();
 }
 

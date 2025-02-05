@@ -1305,7 +1305,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
 
         NNS_G2dInitOamManagerModule();
 
-        sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param2);
+        RenderOam_Init(0, 126, 0, 31, 0, 126, 0, 31, param2);
         CharTransfer_InitWithVramModes(&Unk_ov70_0226D5DC, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_64K);
         PlttTransfer_Init(24, param2);
 
@@ -1367,7 +1367,7 @@ static void ov70_0225E6D0(UnkStruct_ov70_0225E4EC *param0)
         CellActorCollection_Delete(param0->unk_04);
         CharTransfer_Free();
         PlttTransfer_Free();
-        sub_0200A878();
+        RenderOam_Free();
     }
 
     {
@@ -1378,7 +1378,7 @@ static void ov70_0225E6D0(UnkStruct_ov70_0225E4EC *param0)
 static void ov70_0225E740(UnkStruct_ov70_0225E4EC *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_00);
-    sub_0200A858();
+    RenderOam_Transfer();
     VramTransfer_Process();
 }
 

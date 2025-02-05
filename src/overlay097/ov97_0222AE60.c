@@ -963,7 +963,7 @@ static void ov97_0222BD14(UnkStruct_0222AE60 *param0)
 static void ov97_0222BD48(void *param0)
 {
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates((BgConfig *)param0);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
