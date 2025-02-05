@@ -12,10 +12,10 @@
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "unk_0200A784.h"
 
 void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1);
 CellActor *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2, u32 param3, u8 param4);

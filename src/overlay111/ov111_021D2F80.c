@@ -10,10 +10,10 @@
 #include "gx_layers.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "unk_0200A784.h"
 #include "vram_transfer.h"
 
 void ov111_021D2F80(UnkStruct_ov111_021D2F80 *param0);

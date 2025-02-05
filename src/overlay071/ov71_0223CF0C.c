@@ -11,10 +11,10 @@
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "unk_0200A784.h"
 
 typedef struct {
     int unk_00;

@@ -9,10 +9,10 @@
 #include "char_transfer.h"
 #include "gx_layers.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "unk_0200A784.h"
 
 void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0);
 CellActor *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);

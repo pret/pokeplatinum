@@ -50,7 +50,7 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "sprite_util.h"
-#include "unk_0200A784.h"
+#include "render_oam.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"

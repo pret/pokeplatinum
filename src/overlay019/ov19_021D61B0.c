@@ -42,12 +42,12 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "render_oam.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 

@@ -18,9 +18,9 @@
 #include "message.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_0200A784.h"
 #include "unk_02015064.h"
 #include "unk_0202419C.h"
 

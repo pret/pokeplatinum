@@ -19,10 +19,10 @@
 #include "narc.h"
 #include "palette.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "unk_0200A784.h"
 #include "unk_02017728.h"
 
 typedef struct CellTransferStateData_t {

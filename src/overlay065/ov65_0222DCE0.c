@@ -71,7 +71,7 @@
 #include "unk_02005474.h"
 #include "sprite_util.h"
 #include "sprite_transfer.h"
-#include "unk_0200A784.h"
+#include "render_oam.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"

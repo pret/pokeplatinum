@@ -12,10 +12,10 @@
 #include "core_sys.h"
 #include "gx_layers.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "unk_0200A784.h"
 #include "vram_transfer.h"
 
 SDK_COMPILER_ASSERT(((3 + 1 + 1 + 2 + 4) + 6) == 17);

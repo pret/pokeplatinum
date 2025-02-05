@@ -12,7 +12,7 @@
 #include "game_overlay.h"
 #include "heap.h"
 #include "poketch.h"
-#include "unk_0200A784.h"
+#include "render_oam.h"
 #include "unk_0200A9DC.h"
 
 FS_EXTERN_OVERLAY(overlay24);

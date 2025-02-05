@@ -32,7 +32,7 @@ pokeplatinum_c = files(
     'sprite_util.c',
     'sprite_resource.c',
     'sprite_transfer.c',
-    'unk_0200A784.c',
+    'render_oam.c',
     'unk_0200A9DC.c',
     'message.c',
     'message_util.c',

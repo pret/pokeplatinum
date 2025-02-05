@@ -9,12 +9,12 @@
 #include "heap.h"
 #include "math.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200A784.h"
 
 typedef struct {
     u8 unk_00;

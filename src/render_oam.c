@@ -1,17 +1,18 @@
-#include "unk_0200A784.h"
+#include "render_oam.h"
 
-#include <nitro.h>
-#include <string.h>
+#include <nnsys.h>
+
+#include "constants/heap.h"
 
 #include "cell_actor.h"
 #include "heap.h"
 #include "render_view.h"
 
-typedef struct {
-    NNSG2dOamManagerInstance unk_00;
-    NNSG2dOamManagerInstance unk_1C;
-    int unk_38;
-} UnkStruct_021BF430;
+typedef struct OamManager {
+    NNSG2dOamManagerInstance mainScreenOam;
+    NNSG2dOamManagerInstance subScreenOam;
+    enum HeapId heapID;
+} OamManager;
 
 static BOOL sub_0200A94C(const GXOamAttr *param0, u16 param1, BOOL param2);
 static BOOL sub_0200A96C(const GXOamAttr *param0, u16 param1, BOOL param2);
@@ -19,7 +20,7 @@ static u16 sub_0200A990(const MtxFx22 *param0);
 static u16 sub_0200A9B4(const MtxFx22 *param0);
 static void sub_0200A7C8(int param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8);
 
-static UnkStruct_021BF430 *Unk_021BF430;
+static OamManager *sOamManager;
 
 void sub_0200A784(int param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
@@ -61,41 +62,41 @@ static void sub_0200A7C8(int param0, int param1, int param2, int param3, int par
 {
     BOOL v0;
 
-    GF_ASSERT(Unk_021BF430 == NULL);
-    Unk_021BF430 = Heap_AllocFromHeap(param8, sizeof(UnkStruct_021BF430));
+    GF_ASSERT(sOamManager == NULL);
+    sOamManager = Heap_AllocFromHeap(param8, sizeof(OamManager));
 
-    GF_ASSERT(Unk_021BF430);
-    Unk_021BF430->unk_38 = param8;
+    GF_ASSERT(sOamManager);
+    sOamManager->heapID = param8;
 
-    v0 = NNS_G2dGetNewOamManagerInstance(&Unk_021BF430->unk_00, param0, param1, param2, param3, NNS_G2D_OAMTYPE_MAIN);
+    v0 = NNS_G2dGetNewOamManagerInstance(&sOamManager->mainScreenOam, param0, param1, param2, param3, NNS_G2D_OAMTYPE_MAIN);
     GF_ASSERT(v0);
 
-    v0 = NNS_G2dGetNewOamManagerInstance(&Unk_021BF430->unk_1C, param4, param5, param6, param7, NNS_G2D_OAMTYPE_SUB);
+    v0 = NNS_G2dGetNewOamManagerInstance(&sOamManager->subScreenOam, param4, param5, param6, param7, NNS_G2D_OAMTYPE_SUB);
     GF_ASSERT(v0);
 }
 
 void sub_0200A858(void)
 {
-    if (Unk_021BF430) {
-        NNS_G2dApplyAndResetOamManagerBuffer(&Unk_021BF430->unk_00);
-        NNS_G2dApplyAndResetOamManagerBuffer(&Unk_021BF430->unk_1C);
+    if (sOamManager) {
+        NNS_G2dApplyAndResetOamManagerBuffer(&sOamManager->mainScreenOam);
+        NNS_G2dApplyAndResetOamManagerBuffer(&sOamManager->subScreenOam);
     }
 }
 
 void sub_0200A878(void)
 {
-    GF_ASSERT(Unk_021BF430);
+    GF_ASSERT(sOamManager);
 
-    sub_0200A93C(Unk_021BF430->unk_38);
-    sub_0200A944(Unk_021BF430->unk_38);
-    Heap_FreeToHeap(Unk_021BF430);
+    sub_0200A93C(sOamManager->heapID);
+    sub_0200A944(sOamManager->heapID);
+    Heap_FreeToHeap(sOamManager);
 
-    Unk_021BF430 = NULL;
+    sOamManager = NULL;
 }
 
 void sub_0200A8B0(NNSG2dRenderSurface *param0, NNSG2dViewRect *param1, NNSG2dSurfaceType param2, NNSG2dRendererInstance *param3)
 {
-    GF_ASSERT(Unk_021BF430);
+    GF_ASSERT(sOamManager);
 
     if (param2 == NNS_G2D_SURFACETYPE_MAIN2D) {
         InitRenderSurface(param0, param1, sub_0200A94C, sub_0200A990, IsObjectInView, param2, param3);
@@ -108,12 +109,12 @@ NNSG2dOamManagerInstance *sub_0200A914(int param0)
 {
     NNSG2dOamManagerInstance *v0;
 
-    GF_ASSERT(Unk_021BF430);
+    GF_ASSERT(sOamManager);
 
     if (param0 == 0) {
-        v0 = &Unk_021BF430->unk_00;
+        v0 = &sOamManager->mainScreenOam;
     } else {
-        v0 = &Unk_021BF430->unk_1C;
+        v0 = &sOamManager->subScreenOam;
     }
 
     return v0;
@@ -133,7 +134,7 @@ static BOOL sub_0200A94C(const GXOamAttr *param0, u16 param1, BOOL param2)
 {
     BOOL v0;
 
-    v0 = NNS_G2dEntryOamManagerOamWithAffineIdx(&Unk_021BF430->unk_00, param0, param1);
+    v0 = NNS_G2dEntryOamManagerOamWithAffineIdx(&sOamManager->mainScreenOam, param0, param1);
     GF_ASSERT(v0);
 
     return v0;
@@ -143,7 +144,7 @@ static BOOL sub_0200A96C(const GXOamAttr *param0, u16 param1, BOOL param2)
 {
     BOOL v0;
 
-    v0 = NNS_G2dEntryOamManagerOamWithAffineIdx(&Unk_021BF430->unk_1C, param0, param1);
+    v0 = NNS_G2dEntryOamManagerOamWithAffineIdx(&sOamManager->subScreenOam, param0, param1);
     GF_ASSERT(v0);
 
     return v0;
@@ -153,7 +154,7 @@ static u16 sub_0200A990(const MtxFx22 *param0)
 {
     u16 v0;
 
-    v0 = NNS_G2dEntryOamManagerAffine(&Unk_021BF430->unk_00, param0);
+    v0 = NNS_G2dEntryOamManagerAffine(&sOamManager->mainScreenOam, param0);
     GF_ASSERT(v0 != NNS_G2D_OAM_AFFINE_IDX_NONE);
 
     return v0;
@@ -163,7 +164,7 @@ static u16 sub_0200A9B4(const MtxFx22 *param0)
 {
     u16 v0;
 
-    v0 = NNS_G2dEntryOamManagerAffine(&Unk_021BF430->unk_1C, param0);
+    v0 = NNS_G2dEntryOamManagerAffine(&sOamManager->subScreenOam, param0);
     GF_ASSERT(v0 != NNS_G2D_OAM_AFFINE_IDX_NONE);
 
     return v0;

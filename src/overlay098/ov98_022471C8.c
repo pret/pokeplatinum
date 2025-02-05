@@ -38,7 +38,7 @@
 #include "system_data.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200A784.h"
+#include "render_oam.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "vram_transfer.h"

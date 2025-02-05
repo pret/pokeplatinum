@@ -11,7 +11,7 @@
 #include "cell_actor.h"
 #include "communication_system.h"
 #include "gx_layers.h"
-#include "unk_0200A784.h"
+#include "render_oam.h"
 #include "unk_0200C6E4.h"
 #include "unk_020393C8.h"
 #include "unk_02098FFC.h"
