@@ -5,7 +5,7 @@
 
 #include "cell_actor.h"
 #include "heap.h"
-#include "unk_0202309C.h"
+#include "render_view.h"
 
 typedef struct {
     NNSG2dOamManagerInstance unk_00;
@@ -98,9 +98,9 @@ void sub_0200A8B0(NNSG2dRenderSurface *param0, NNSG2dViewRect *param1, NNSG2dSur
     GF_ASSERT(Unk_021BF430);
 
     if (param2 == NNS_G2D_SURFACETYPE_MAIN2D) {
-        sub_020230AC(param0, param1, sub_0200A94C, sub_0200A990, sub_020230F0, param2, param3);
+        InitRenderSurface(param0, param1, sub_0200A94C, sub_0200A990, IsObjectInView, param2, param3);
     } else {
-        sub_020230AC(param0, param1, sub_0200A96C, sub_0200A9B4, sub_020230F0, param2, param3);
+        InitRenderSurface(param0, param1, sub_0200A96C, sub_0200A9B4, IsObjectInView, param2, param3);
     }
 }
 

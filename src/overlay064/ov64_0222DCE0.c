@@ -57,7 +57,7 @@
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "unk_0202309C.h"
+#include "render_view.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -2333,7 +2333,7 @@ static BOOL ov64_0222F948 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
         Bg_ScheduleScroll(param2->unk_00, Unk_ov64_02232258[3], 0, 0);
 
         v2 = Unk_ov64_02232460;
-        sub_020230E0(&param2->unk_08, &v2);
+        SetRenderSurfaceViewRect(&param2->unk_08, &v2);
 
         if (param0->unk_AC == 2) {
             v0 = 2;
@@ -2359,7 +2359,7 @@ static BOOL ov64_0222F948 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     v2 = Unk_ov64_02232460;
     v2.posTopLeft.x += v1 << FX32_SHIFT;
 
-    sub_020230E0(&param2->unk_08, &v2);
+    SetRenderSurfaceViewRect(&param2->unk_08, &v2);
 
     if (param0->unk_AA % (12 / 4)) {
         v3 = param0->unk_AA / (12 / 4);

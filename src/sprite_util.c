@@ -7,11 +7,11 @@
 #include "char_transfer.h"
 #include "heap.h"
 #include "pltt_transfer.h"
+#include "render_view.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "unk_0200A784.h"
-#include "unk_0202309C.h"
 
 void sub_020093B4(CellActorResourceData *param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, SpriteResourceCollection *param9, SpriteResourceCollection *param10, SpriteResourceCollection *param11, SpriteResourceCollection *param12, SpriteResourceCollection *param13, SpriteResourceCollection *param14)
 {
@@ -134,7 +134,7 @@ CellActorCollection *sub_020095C4(int param0, G2dRenderer *param1, int param2)
     CellActorCollectionParams v0;
     NNSG2dViewRect v1;
 
-    sub_0202309C(&param1->renderer, -FX32_ONE);
+    InitRenderer(&param1->renderer, -FX32_ONE);
 
     v1.posTopLeft.x = 0;
     v1.posTopLeft.y = 0;
@@ -166,7 +166,7 @@ void sub_0200962C(G2dRenderer *param0, fx32 param1, fx32 param2)
     v0.sizeView.x = (255 << FX32_SHIFT);
     v0.sizeView.y = (192 << FX32_SHIFT);
 
-    sub_020230E0(&param0->mainScreen, &v0);
+    SetRenderSurfaceViewRect(&param0->mainScreen, &v0);
 }
 
 void sub_0200964C(G2dRenderer *param0, fx32 param1, fx32 param2)
@@ -178,7 +178,7 @@ void sub_0200964C(G2dRenderer *param0, fx32 param1, fx32 param2)
     v0.sizeView.x = (255 << FX32_SHIFT);
     v0.sizeView.y = (192 << FX32_SHIFT);
 
-    sub_020230E0(&param0->subScreen, &v0);
+    SetRenderSurfaceViewRect(&param0->subScreen, &v0);
 }
 
 void sub_0200966C(u32 param0, GXOBJVRamModeChar param1)

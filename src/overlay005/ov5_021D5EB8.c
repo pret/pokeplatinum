@@ -20,6 +20,7 @@
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
+#include "render_view.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -27,7 +28,6 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200A784.h"
-#include "unk_0202309C.h"
 
 typedef struct UnkStruct_ov5_021D5EF8_t {
     UnkStruct_ov5_021D6594 *unk_00;
@@ -768,7 +768,7 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
     int v1;
     int v2;
 
-    sub_0202309C(&param0->unk_14, -FX32_ONE);
+    InitRenderer(&param0->unk_14, -FX32_ONE);
 
     v0.posTopLeft.x = 0;
     v0.posTopLeft.y = 0;

@@ -86,7 +86,7 @@ pokeplatinum_c = files(
     'touch_screen.c',
     'unk_02022844.c',
     'resource_collection.c',
-    'unk_0202309C.c',
+    'render_view.c',
     'font_manager.c',
     'unk_02023FCC.c',
     'unk_0202414C.c',
