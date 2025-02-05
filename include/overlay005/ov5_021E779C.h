@@ -4,12 +4,12 @@
 #include <nitro/fx/fx.h>
 
 #include "field/field_system_decl.h"
+#include "overlay005/bdhc.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
-#include "overlay005/struct_ov5_021EF13C_decl.h"
 #include "overlay005/struct_ov5_021EF76C_decl.h"
 
 #include "map_matrix.h"
@@ -33,7 +33,7 @@ u8 ov5_021E935C(const u32 param0, const int param1);
 u8 ov5_021E9390(const int param0, const u8 param1, const UnkStruct_ov5_021E8F60 *param2);
 int ov5_021E9560(const UnkStruct_ov5_021E8F60 *param0, const u8 param1);
 BOOL ov5_021E9580(const UnkStruct_ov5_021E8F60 *param0, const int param1, const int param2, u8 *param3);
-const UnkStruct_ov5_021EF13C *ov5_021E9610(const UnkStruct_ov5_021E8F60 *param0, const u8 param1);
+const BDHC *ov5_021E9610(const UnkStruct_ov5_021E8F60 *param0, const u8 param1);
 u16 const *ov5_021E9624(const UnkStruct_ov5_021E8F60 *param0, const u8 param1);
 void ov5_021E9630(UnkStruct_ov5_021E8F60 *param0, UnkFuncPtr_ov5_021E9630 param1, void *param2);
 NARC *ov5_021E9828(UnkStruct_ov5_021E8F60 *param0);
