@@ -31,10 +31,10 @@
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
@@ -847,7 +847,7 @@ static void ov21_021E5734(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     int v3;
     int v4, v5;
 
-    sub_020093B4(&v0, 113 + 10000, 18 + 10000, 114 + 10000, 112 + 10000, 0xffffffff, 0xffffffff, 0, 2, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 113 + 10000, 18 + 10000, 114 + 10000, 112 + 10000, 0xffffffff, 0xffffffff, 0, 2, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;

@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay019/funcptr_ov19_021D79B8.h"
@@ -43,12 +42,12 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "render_oam.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 
@@ -57,7 +56,7 @@ struct UnkStruct_ov19_021D61B0_t {
     SysTask *unk_04;
     SysTask *unk_08[4];
     CellActorCollection *unk_18;
-    UnkStruct_0200C738 unk_1C;
+    G2dRenderer unk_1C;
     NNSG2dImagePaletteProxy unk_1A8;
     UnkStruct_02007768 *unk_1BC;
     BgConfig *unk_1C0;
@@ -175,9 +174,9 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
             NNS_G2dInitOamManagerModule();
 
-            sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 10);
-            v0->unk_18 = sub_020095C4(128, &v0->unk_1C, 10);
-            sub_0200964C(&(v0->unk_1C), 0, (384 << FX32_SHIFT));
+            RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 10);
+            v0->unk_18 = SpriteList_InitRendering(128, &v0->unk_1C, 10);
+            SetSubScreenViewRect(&(v0->unk_1C), 0, (384 << FX32_SHIFT));
 
             NNS_G2dInitImagePaletteProxy(&(v0->unk_1A8));
 
@@ -260,7 +259,7 @@ void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0)
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
     Heap_FreeToHeap(param0->unk_1C0);
     Heap_FreeToHeap(param0);
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 void ov19_021D6594(UnkStruct_ov19_021D61B0 *param0, u32 param1)
@@ -398,7 +397,7 @@ static void ov19_021D6664(SysTask *param0, void *param1)
     ov19_021DAA80(&v0->unk_6604);
 
     CellActorCollection_Update(v0->unk_18);
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

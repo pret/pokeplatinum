@@ -9,8 +9,8 @@
 
 #include "game_overlay.h"
 #include "poketch.h"
+#include "render_oam.h"
 #include "system_flags.h"
-#include "unk_0200A784.h"
 #include "vars_flags.h"
 
 FS_EXTERN_OVERLAY(overlay24);
@@ -31,7 +31,7 @@ void ov5_021EA728(FieldSystem *fieldSystem)
     if (Poketch_IsEnabled(poketch)
         && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
-        PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, sub_0200A914(1));
+        PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, RenderOam_GetScreenOam(1));
     } else {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay24), 2);
         ov24_02253CE0(fieldSystem->bgConfig);

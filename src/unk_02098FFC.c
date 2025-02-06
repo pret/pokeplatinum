@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0209903C.h"
 #include "struct_defs/struct_0209903C_sub1.h"
@@ -14,7 +13,7 @@
 #include "narc.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 #include "unk_0200C6E4.h"
 
 static void sub_02099058(UnkStruct_0209903C *param0);
@@ -57,7 +56,7 @@ static void sub_02099058(UnkStruct_0209903C *param0)
     u32 v0, v1;
     u8 v2[] = { 1, 1, 1, 1 };
 
-    param0->unk_10 = sub_020095C4(param0->unk_0C, &param0->unk_14, param0->unk_00);
+    param0->unk_10 = SpriteList_InitRendering(param0->unk_0C, &param0->unk_14, param0->unk_00);
 
     v2[1] = param0->unk_0A;
 
@@ -130,11 +129,11 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
 
     v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorData));
 
-    v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02009508));
-    v4->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
-    v4->unk_04 = v4->unk_08->unk_00;
+    v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(SpriteResourcesHeaderList));
+    v4->unk_08->headers = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
+    v4->unk_04 = v4->unk_08->headers;
 
-    sub_020093B4(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
+    SpriteResourcesHeader_Init(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
 
     v5.collection = param0->unk_10;
     v5.resourceData = v4->unk_04;

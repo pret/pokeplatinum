@@ -25,6 +25,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -32,7 +33,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
@@ -182,8 +182,8 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     v0->unk_10.unk_18 = sub_0200C6E4(24);
 
     sub_0200C73C(v0->unk_10.unk_18, &Unk_ov17_02254B0C, &Unk_ov17_02254AC4, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_10.unk_1C = sub_0200C704(v0->unk_10.unk_18);
     sub_0200C7C0(v0->unk_10.unk_18, v0->unk_10.unk_1C, (64 + 64));

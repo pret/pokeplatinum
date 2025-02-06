@@ -11,10 +11,10 @@
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
+#include "sprite_util.h"
 
 typedef struct {
     int unk_00;
@@ -58,9 +58,9 @@ void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
 
     ov71_0223D2F4();
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 25);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 25);
 
-    param0->unk_00 = sub_020095C4((8 + 8 + 8 + 1), &param0->unk_04, 25);
+    param0->unk_00 = SpriteList_InitRendering((8 + 8 + 8 + 1), &param0->unk_04, 25);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov71_0223D6C8[v0], v0, 25);
@@ -102,7 +102,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
     int v0;
     CellActorResourceData v1;
 
-    sub_020093B4(&v1, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 1, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v1, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 1, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         u8 v2;
@@ -189,7 +189,7 @@ void ov71_0223D238(UnkStruct_ov71_0223D238 *param0)
     }
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 }

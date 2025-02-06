@@ -11,7 +11,7 @@
 #include "palette.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 
 typedef struct {
     int unk_00;
@@ -786,7 +786,7 @@ static void ov63_0222B510(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
     v3 = ov63_0222B49C(param3, 2, v2);
     v4 = ov63_0222B49C(param3, 3, v2);
 
-    sub_020093B4(&param0->unk_10[param1].unk_14, 0x200 + param1, 0x200 + param1, v3, v4, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_10[param1].unk_14, 0x200 + param1, 0x200 + param1, v3, v4, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
 }
 
 static void ov63_0222B664(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param2, int param3, u32 param4)
@@ -816,7 +816,7 @@ static void ov63_0222B664(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
     param0->unk_10[param1].unk_10 = param3;
     param0->unk_10[param1].unk_00 = 1;
 
-    sub_020093B4(&param0->unk_10[param1].unk_14, 0x200 + param1, 0x402, 0x180 + v2, 0x180 + v2, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_10[param1].unk_14, 0x200 + param1, 0x402, 0x180 + v2, 0x180 + v2, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
 }
 
 static void ov63_0222B738(UnkStruct_ov63_0222AE60 *param0, u32 param1)
@@ -896,7 +896,7 @@ static void ov63_0222B7E8(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
     GF_ASSERT(v1);
 
     SpriteResource_ReleaseData(param0->unk_2248.unk_00[0]);
-    sub_020093B4(&param0->unk_2248.unk_10, 0x120, 0x200 + v3, 0x120, 0x120, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_2248.unk_10, 0x120, 0x200 + v3, 0x120, 0x120, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
 }
 
 static void ov63_0222B914(UnkStruct_ov63_0222AE60 *param0)

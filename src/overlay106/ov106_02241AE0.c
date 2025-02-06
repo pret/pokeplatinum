@@ -34,17 +34,17 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -828,8 +828,8 @@ static void ov106_02242500(UnkStruct_ov106_02243118 *param0)
     ov106_022436CC(param0->unk_284, Party_GetPokemonBySlotIndex(param0->unk_290, 0));
 
     if (CommSys_IsInitialized()) {
-        sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
-        sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+        ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
+        ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
         sub_02039734();
     }
 
@@ -890,7 +890,7 @@ static void ov106_022426E0(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_48);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

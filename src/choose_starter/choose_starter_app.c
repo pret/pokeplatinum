@@ -16,7 +16,6 @@
 #include "struct_decls/struct_02015214_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay021/struct_ov21_021E7F40.h"
@@ -41,10 +40,12 @@
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -52,8 +53,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02015064.h"
 #include "unk_02017728.h"
@@ -207,7 +206,7 @@ typedef struct ChooseStarterApp {
     Strbuf *unk_AC;
     WindowTemplate unk_B0;
     Menu *unk_B8;
-    UnkStruct_0200C738 unk_BC;
+    G2dRenderer unk_BC;
     CellActorCollection *unk_248;
     SpriteResourceCollection *unk_24C[6];
     UnkStruct_02007768 *spriteManager;
@@ -476,7 +475,7 @@ static void ChooseStarterAppMainCallback(void *data)
 {
     ChooseStarterApp *app = data;
 
-    sub_0200A858();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates(app->bgl);
     sub_02008A94(app->spriteManager);
     VramTransfer_Process();
@@ -506,7 +505,7 @@ static void SetupDrawing(ChooseStarterApp *app, enum HeapId heap)
 
 static void ov78_021D10DC(void)
 {
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 
@@ -535,7 +534,7 @@ static void SetupOAM(enum HeapId heapID)
 {
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(OAM_MAIN_START, OAM_MAIN_END, OAM_AFFINE_MAIN_START, OAM_AFFINE_MAIN_END, OAM_SUB_START, OAM_SUB_END, OAM_AFFINE_SUB_START, OAM_AFFINE_SUB_END, heapID);
+    RenderOam_Init(OAM_MAIN_START, OAM_MAIN_END, OAM_AFFINE_MAIN_START, OAM_AFFINE_MAIN_END, OAM_SUB_START, OAM_SUB_END, OAM_AFFINE_SUB_START, OAM_AFFINE_SUB_END, heapID);
 
     CharTransferTemplate v0 = {
         OAM_NUM_BYTES,
@@ -744,7 +743,7 @@ static void ov78_021D1518(ChooseStarterApp *param0)
 
 static void MakeCellActors(ChooseStarterApp *param0, int param1)
 {
-    param0->unk_248 = sub_020095C4(2, &param0->unk_BC, param1);
+    param0->unk_248 = SpriteList_InitRendering(2, &param0->unk_BC, param1);
     param0->unk_24C[0] = SpriteResourceCollection_New(2, 0, param1);
     param0->unk_24C[1] = SpriteResourceCollection_New(2, 1, param1);
     param0->unk_24C[2] = SpriteResourceCollection_New(2, 2, param1);
@@ -1454,7 +1453,7 @@ static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor 
     CellActorResourceData v0;
     CellActorInitParams v1;
 
-    sub_020093B4(&v0, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, param0->unk_24C[0], param0->unk_24C[1], param0->unk_24C[2], param0->unk_24C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, param0->unk_24C[0], param0->unk_24C[1], param0->unk_24C[2], param0->unk_24C[3], NULL, NULL);
 
     v1.collection = param0->unk_248;
     v1.resourceData = &v0;

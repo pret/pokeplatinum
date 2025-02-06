@@ -23,12 +23,12 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "string_template.h"
 #include "unk_020041CC.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02033200.h"
@@ -194,7 +194,7 @@ static void ov96_0223B940(void *param0)
     UnkStruct_ov96_0223BF40 *v0 = param0;
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     inline_ov61_0222C1FC(&v0->unk_FF8);
 
@@ -255,11 +255,11 @@ static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 68);
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 68);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 68);
 
-    param0->unk_BF4 = sub_020095C4(10, &param0->unk_BF8, 68);
+    param0->unk_BF4 = SpriteList_InitRendering(10, &param0->unk_BF8, 68);
 
-    sub_0200964C(&param0->unk_BF8, 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(&param0->unk_BF8, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_D84[v0] = SpriteResourceCollection_New(2, v0, 68);
@@ -298,7 +298,7 @@ static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0)
 {
     int v0;
 
-    sub_020093B4(&param0->unk_DC4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D84[0], param0->unk_D84[1], param0->unk_D84[2], param0->unk_D84[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_DC4, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_D84[0], param0->unk_D84[1], param0->unk_D84[2], param0->unk_D84[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v1;
@@ -415,7 +415,7 @@ static void ov96_0223BC8C(UnkStruct_ov96_0223BF40 *param0)
 
     param0->unk_BF4 = NULL;
 
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 }

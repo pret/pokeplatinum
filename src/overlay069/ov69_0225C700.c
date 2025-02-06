@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -35,19 +34,19 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
@@ -107,7 +106,7 @@ typedef struct {
 typedef struct {
     BgConfig *unk_00;
     CellActorCollection *unk_04;
-    UnkStruct_0200C738 unk_08;
+    G2dRenderer unk_08;
     SpriteResourceCollection *unk_194[4];
     GenericPointerData *unk_1A4;
     NARC *unk_1A8;
@@ -1399,7 +1398,7 @@ static void ov69_0225D384(UnkStruct_ov69_0225D35C *param0)
 static void ov69_0225D390(UnkStruct_ov69_0225D35C *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_00);
-    sub_0200A858();
+    RenderOam_Transfer();
     VramTransfer_Process();
 }
 
@@ -1470,17 +1469,17 @@ static void ov69_0225D53C(UnkStruct_ov69_0225D35C *param0, u32 param1)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param1);
+    RenderOam_Init(0, 126, 0, 31, 0, 126, 0, 31, param1);
     CharTransfer_InitWithVramModes(&Unk_ov69_0225F050, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     PlttTransfer_Init(32, param1);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    param0->unk_04 = sub_020095C4(32, &param0->unk_08, param1);
+    param0->unk_04 = SpriteList_InitRendering(32, &param0->unk_08, param1);
 
-    sub_0200964C(&param0->unk_08, 0, (FX32_CONST(256)));
+    SetSubScreenViewRect(&param0->unk_08, 0, (FX32_CONST(256)));
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_194[v0] = SpriteResourceCollection_New(32, v0, param1);
@@ -1503,7 +1502,7 @@ static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0)
 
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 static void ov69_0225D604(UnkStruct_ov69_0225D35C *param0, u32 param1)
@@ -2649,7 +2648,7 @@ static void ov69_0225E960(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
         GF_ASSERT(v2);
 
         SpriteResource_ReleaseData(param0->unk_6C[v0][0]);
-        sub_020093B4(&v1, v0, 0, v0, v0, 0xffffffff, 0xffffffff, 0, 1, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
+        SpriteResourcesHeader_Init(&v1, v0, 0, v0, v0, 0xffffffff, 0xffffffff, 0, 1, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
         param0->unk_3C[v0] = CellActorCollection_Add(&v3);
 

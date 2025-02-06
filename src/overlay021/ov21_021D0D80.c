@@ -60,13 +60,13 @@
 #include "pokedex.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "strbuf.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
-#include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
@@ -419,7 +419,7 @@ void ov21_021D12B0(int param0)
 
 void ov21_021D12C4(void)
 {
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
     ov21_021D1F84();
@@ -428,7 +428,7 @@ void ov21_021D12C4(void)
 void ov21_021D12D8(UnkStruct_ov21_021D0F60 *param0)
 {
     ov21_021D214C(&param0->unk_177C);
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 UnkStruct_ov21_021D3FE0 *ov21_021D12EC(UnkStruct_ov21_021D0F60 *param0)
@@ -1053,7 +1053,7 @@ static void ov21_021D1E74(void)
 static void ov21_021D1E94(int param0)
 {
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, param0);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, param0);
 
     {
         CharTransferTemplate v0 = {

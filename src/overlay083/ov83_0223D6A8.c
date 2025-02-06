@@ -49,13 +49,13 @@
 #include "render_window.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_02015064.h"
 #include "unk_02015920.h"
 #include "unk_02098FFC.h"
@@ -184,7 +184,7 @@ void ov83_0223D754(UnkStruct_ov83_0223D784 *param0, int param1, int param2, int 
 {
     int v0;
 
-    param0->unk_00 = sub_020095C4(param1, &param0->unk_04, param3);
+    param0->unk_00 = SpriteList_InitRendering(param1, &param0->unk_04, param3);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_190[v0] = SpriteResourceCollection_New(param2, v0, param3);
@@ -221,7 +221,7 @@ void ov83_0223D7A8(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
     GF_ASSERT(v0);
     SpriteResource_ReleaseData(param1->unk_00[1]);
 
-    sub_020093B4(&param1->unk_14, param8, param8, param8, param8, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param1->unk_14, param8, param8, param8, param8, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 }
 
 void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1, NARC *param2, SpriteResource *param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
@@ -242,7 +242,7 @@ void ov83_0223D894(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *par
     GF_ASSERT(v0);
 
     SpriteResource_ReleaseData(param1->unk_00[0]);
-    sub_020093B4(&param1->unk_14, param7, v1, param7, param7, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param1->unk_14, param7, v1, param7, param7, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 }
 
 void ov83_0223D95C(UnkStruct_ov83_0223D784 *param0, UnkStruct_ov83_0223D95C *param1)

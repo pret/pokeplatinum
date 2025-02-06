@@ -5,7 +5,6 @@
 
 #include "generated/journal_online_events.h"
 
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207DE04.h"
 #include "struct_defs/struct_0207DFAC.h"
 #include "struct_defs/struct_0207E060.h"
@@ -42,17 +41,17 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_020363E8.h"
@@ -105,7 +104,7 @@ typedef struct {
     u8 unk_15;
     u16 unk_16;
     CellActorCollection *unk_18;
-    UnkStruct_0200C738 unk_1C;
+    G2dRenderer unk_1C;
     SpriteResourceCollection *unk_1A8[4];
     UnkStruct_ov63_0222BE18 *unk_1B8;
     UnkStruct_ov63_0222CD2C *unk_1BC;
@@ -569,7 +568,7 @@ static void ov65_02236780(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_30.unk_00);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 static BOOL ov65_02236794(const UnkStruct_ov65_02236794 *param0)
@@ -835,7 +834,7 @@ static void ov65_02236D50(UnkStruct_ov65_02236840 *param0, u32 param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 126, 0, 31, 0, 126, 0, 31, param1);
+    RenderOam_Init(0, 126, 0, 31, 0, 126, 0, 31, param1);
 
     {
         CharTransferTemplate v1 = {
@@ -849,10 +848,10 @@ static void ov65_02236D50(UnkStruct_ov65_02236840 *param0, u32 param1)
     PlttTransfer_Init(4, param1);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    param0->unk_18 = sub_020095C4(4, &param0->unk_1C, param1);
+    param0->unk_18 = SpriteList_InitRendering(4, &param0->unk_1C, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_1A8[v0] = SpriteResourceCollection_New(4, v0, param1);
@@ -877,7 +876,7 @@ static void ov65_02236E04(UnkStruct_ov65_02236840 *param0)
 
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 static void ov65_02236E44(UnkStruct_ov65_02236840 *param0, const UnkStruct_0207DE04 *param1, u32 param2, u32 param3)

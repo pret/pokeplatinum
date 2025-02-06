@@ -24,6 +24,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -32,7 +33,6 @@
 #include "string_template.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201E3D8.h"
@@ -277,7 +277,7 @@ static void ov61_0222C1FC(void *param0)
     UnkStruct_ov61_0222C664 *v0 = param0;
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates(v0->unk_04);
 
     inline_ov61_0222C1FC(&v0->unk_A4);

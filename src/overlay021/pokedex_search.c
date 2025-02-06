@@ -27,11 +27,11 @@
 #include "narc.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
 
 #include "res/text/bank/pokedex.h"
@@ -631,7 +631,7 @@ static void InitCellActors(PokedexSearchDisplay *searchDisplay, UnkStruct_ov21_0
     CellActorInitParams v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
 
-    sub_020093B4(&v0, 81 + 15000, 3 + 15000, 79 + 15000, 80 + 15000, 0xffffffff, 0xffffffff, 0, 2, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 81 + 15000, 3 + 15000, 79 + 15000, 80 + 15000, 0xffffffff, 0xffffffff, 0, 2, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;

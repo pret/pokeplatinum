@@ -1,16 +1,14 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021D30A8_H
 #define POKEPLATINUM_STRUCT_OV5_021D30A8_H
 
-#include "struct_defs/struct_02009508.h"
-#include "struct_defs/struct_0200C738.h"
-
 #include "cell_actor.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 
 typedef struct {
     CellActorCollection *unk_00;
-    UnkStruct_0200C738 unk_04;
-    UnkStruct_02009508 *unk_190;
+    G2dRenderer unk_04;
+    SpriteResourcesHeaderList *unk_190;
     SpriteResourceCollection *unk_194[6];
     SpriteResourceList *unk_1AC[6];
     u16 unk_1C4;

@@ -25,10 +25,10 @@
 #include "palette.h"
 #include "render_text.h"
 #include "savedata_misc.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
@@ -86,10 +86,10 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
 
     if (param0->unk_00 != 0) {
         ov62_02241130(param0);
-        sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
-        sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
-        sub_0200966C(NNS_G2D_VRAM_TYPE_2DSUB, GX_OBJVRAMMODE_CHAR_1D_128K);
-        sub_02009704(NNS_G2D_VRAM_TYPE_2DSUB);
+        ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
+        ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
+        ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DSUB, GX_OBJVRAMMODE_CHAR_1D_128K);
+        ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DSUB);
         sub_02039734();
         sub_020397C8(1, 102);
 
@@ -355,7 +355,7 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
         GF_ASSERT(v2);
     }
 
-    sub_0200964C(sub_0200C738(param0->unk_14.unk_04), 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(sub_0200C738(param0->unk_14.unk_04), 0, (256 * FX32_ONE));
 }
 
 void ov62_0222F8E4(void *param0)

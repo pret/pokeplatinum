@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203E0FC.h"
 
 #include "applications/pokemon_summary_screen/main.h"
@@ -30,6 +29,7 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -99,7 +99,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     Strbuf *unk_BDC;
     int unk_BE0;
     CellActorCollection *unk_BE4;
-    UnkStruct_0200C738 unk_BE8;
+    G2dRenderer unk_BE8;
     SpriteResourceCollection *unk_D74[4];
     SpriteResource *unk_D84[3][4];
     CellActorResourceData unk_DB4;

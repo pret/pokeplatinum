@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02099F80.h"
@@ -38,12 +37,15 @@
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -51,15 +53,11 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "sprite_transfer.h"
-#include "unk_0200A784.h"
+#include "render_oam.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
-#include "vram_transfer.h"
-#include "pltt_transfer.h"
-#include "unk_0202309C.h"
+#include "render_view.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -67,6 +65,7 @@
 #include "unk_0208694C.h"
 #include "unk_020890F4.h"
 #include "vars_flags.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F2DBC.h"
@@ -120,7 +119,7 @@ typedef struct {
     BgConfig *unk_00;
     CellActorCollection *unk_04;
     NNSG2dRenderSurface unk_08;
-    UnkStruct_0200C738 unk_78;
+    G2dRenderer unk_78;
     SpriteResourceCollection *unk_204[4];
     StringTemplate *unk_214;
     MessageLoader *unk_218;
@@ -860,7 +859,7 @@ static void ov64_0222E228(UnkStruct_ov64_0222E21C *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_00);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 static void ov64_0222E23C(UnkStruct_ov64_0222E21C *param0)
@@ -947,7 +946,7 @@ static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
     NNS_G2dInitOamManagerModule();
 
     VramTransfer_New(16, param1);
-    sub_0200A784(0, 126, 0, 30, 0, 126, 0, 30, param1);
+    RenderOam_Init(0, 126, 0, 30, 0, 126, 0, 30, param1);
 
     {
         CharTransferTemplate v2 = {
@@ -962,9 +961,9 @@ static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 
-    param0->unk_04 = sub_020095C4(64, &param0->unk_78, param1);
+    param0->unk_04 = SpriteList_InitRendering(64, &param0->unk_78, param1);
 
-    sub_0200A8B0(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.unk_00);
+    RenderOam_InitSurface(&param0->unk_08, &Unk_ov64_02232460, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_78.renderer);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_204[v0] = SpriteResourceCollection_New(64, v0, param1);
@@ -983,7 +982,7 @@ static void ov64_0222E3D8(UnkStruct_ov64_0222E21C *param0, u32 param1)
 
     SpriteResource_ReleaseData(param0->unk_260[0]);
     SpriteResource_ReleaseData(param0->unk_260[1]);
-    sub_020093B4(&param0->unk_23C, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param0->unk_204[0], param0->unk_204[1], param0->unk_204[2], param0->unk_204[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_23C, 100, 100, 100, 100, 0xffffffff, 0xffffffff, 0, 0, param0->unk_204[0], param0->unk_204[1], param0->unk_204[2], param0->unk_204[3], NULL, NULL);
 }
 
 static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0)
@@ -1004,7 +1003,7 @@ static void ov64_0222E570(UnkStruct_ov64_0222E21C *param0)
     CellActorCollection_Delete(param0->unk_04);
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0200A878();
+    RenderOam_Free();
     VramTransfer_Free();
 }
 
@@ -2334,7 +2333,7 @@ static BOOL ov64_0222F948 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
         Bg_ScheduleScroll(param2->unk_00, Unk_ov64_02232258[3], 0, 0);
 
         v2 = Unk_ov64_02232460;
-        sub_020230E0(&param2->unk_08, &v2);
+        SetRenderSurfaceViewRect(&param2->unk_08, &v2);
 
         if (param0->unk_AC == 2) {
             v0 = 2;
@@ -2360,7 +2359,7 @@ static BOOL ov64_0222F948 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
     v2 = Unk_ov64_02232460;
     v2.posTopLeft.x += v1 << FX32_SHIFT;
 
-    sub_020230E0(&param2->unk_08, &v2);
+    SetRenderSurfaceViewRect(&param2->unk_08, &v2);
 
     if (param0->unk_AA % (12 / 4)) {
         v3 = param0->unk_AA / (12 / 4);

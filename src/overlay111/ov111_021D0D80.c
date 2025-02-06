@@ -30,6 +30,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -39,7 +40,6 @@
 #include "touch_screen.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200A784.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_0201567C.h"
@@ -1286,7 +1286,7 @@ static void ov111_021D2090(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_58);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

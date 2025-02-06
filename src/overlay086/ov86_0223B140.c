@@ -6,7 +6,6 @@
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02008900.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_02099F80.h"
@@ -31,6 +30,8 @@
 #include "party.h"
 #include "play_time.h"
 #include "pokemon.h"
+#include "render_oam.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -40,8 +41,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
@@ -62,7 +61,7 @@ typedef struct {
     BgConfig *unk_10;
     Window unk_14;
     CellActorCollection *unk_24;
-    UnkStruct_0200C738 unk_28;
+    G2dRenderer unk_28;
     CellActor *unk_1B4[6];
     CellActor *unk_1CC;
     void *unk_1D0;
@@ -597,7 +596,7 @@ static void ov86_0223B6CC(SysTask *param0, void *param1)
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
     CellActorCollection_Update(v0->unk_24);
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 static SysTask *ov86_0223B744(SysTaskFunc param0, void *param1, int param2)
@@ -777,9 +776,9 @@ static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 *param0)
     v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 63);
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 63);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 63);
 
-    param0->unk_24 = sub_020095C4(64, &param0->unk_28, 63);
+    param0->unk_24 = SpriteList_InitRendering(64, &param0->unk_28, 63);
     param0->unk_1D0 = Graphics_GetCellBankFromOpenNARC(v2, 77, 0, &v0, 63);
     param0->unk_1D4 = Graphics_GetAnimBankFromOpenNARC(v2, 78, 0, &v1, 63);
 
@@ -891,7 +890,7 @@ static void ov86_0223BD68(UnkStruct_ov86_0223B3C8 *param0)
     Heap_FreeToHeap(param0->unk_1D4);
     Heap_FreeToHeap(param0->unk_1D0);
     CellActorCollection_Delete(param0->unk_24);
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 static void ov86_0223BDAC(SysTask *param0, void *param1)

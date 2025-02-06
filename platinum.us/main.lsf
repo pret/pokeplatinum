@@ -33,10 +33,10 @@ Static main
 	Object main.nef.p/src_narc.c.o
 	Object main.nef.p/src_graphics.c.o
 	Object main.nef.p/src_unk_0200762C.c.o
-	Object main.nef.p/src_unk_020093B4.c.o
+	Object main.nef.p/src_sprite_util.c.o
 	Object main.nef.p/src_sprite_resource.c.o
 	Object main.nef.p/src_sprite_transfer.c.o
-	Object main.nef.p/src_unk_0200A784.c.o
+	Object main.nef.p/src_render_oam.c.o
 	Object main.nef.p/src_unk_0200A9DC.c.o
 	Object main.nef.p/src_message.c.o
 	Object main.nef.p/src_message_util.c.o
@@ -93,7 +93,7 @@ Static main
 	Object main.nef.p/src_unk_02022844.c.o
 	Object main.nef.p/src_error_handling.c.o
 	Object main.nef.p/src_resource_collection.c.o
-	Object main.nef.p/src_unk_0202309C.c.o
+	Object main.nef.p/src_render_view.c.o
 	Object main.nef.p/src_font_manager.c.o
 	Object main.nef.p/src_strbuf.c.o
 	Object main.nef.p/src_unk_02023FCC.c.o

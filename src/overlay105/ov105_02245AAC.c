@@ -9,10 +9,10 @@
 #include "char_transfer.h"
 #include "gx_layers.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
+#include "sprite_util.h"
 
 void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0);
 CellActor *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);
@@ -32,9 +32,9 @@ void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0)
 
     ov105_02245C98();
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 93);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 93);
 
-    param0->unk_00 = sub_020095C4((6 + 2 + 1), &param0->unk_04, 93);
+    param0->unk_00 = SpriteList_InitRendering((6 + 2 + 1), &param0->unk_04, 93);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov105_02246444[v0], v0, 93);
@@ -62,7 +62,7 @@ CellActor *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 para
     CellActorResourceData v1;
     CellActor *v2;
 
-    sub_020093B4(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, param4, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, param4, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v3;
@@ -113,7 +113,7 @@ void ov105_02245C50(UnkStruct_ov105_02245AAC *param0)
     }
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 

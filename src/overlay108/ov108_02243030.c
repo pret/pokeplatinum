@@ -13,10 +13,10 @@
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
+#include "sprite_util.h"
 #include "unk_0207E0B8.h"
 #include "vram_transfer.h"
 
@@ -44,9 +44,9 @@ void ov108_02243030(UnkStruct_ov108_02243030 *param0, Party *param1, Party *para
     ov108_022431FC();
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 103);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 103);
 
-    param0->unk_00 = sub_020095C4(((4 * 4) + 1 + 8 + 8 + 1), &param0->unk_04, 103);
+    param0->unk_00 = SpriteList_InitRendering(((4 * 4) + 1 + 8 + 8 + 1), &param0->unk_04, 103);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov108_02243760[v0], v0, 103);
@@ -77,7 +77,7 @@ CellActor *ov108_022430F0(UnkStruct_ov108_02243030 *param0, u32 param1, u32 para
     CellActorResourceData v1;
     CellActor *v2;
 
-    sub_020093B4(&v1, param1, param2, param3, param3, 0xffffffff, 0xffffffff, 0, param6, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v1, param1, param2, param3, param3, 0xffffffff, 0xffffffff, 0, param6, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v3;
@@ -128,7 +128,7 @@ void ov108_02243194(UnkStruct_ov108_02243030 *param0)
     }
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 

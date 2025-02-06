@@ -24,11 +24,11 @@
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 
@@ -300,7 +300,7 @@ static void ov22_0225A0E4(UnkStruct_ov22_02259C58 *param0, int param1, UnkStruct
     CellActorResourceData v1;
     CellActorInitParamsEx v2;
 
-    sub_020093B4(&v1, param1, 0, param1, param1, 0xFFFFFFFF, 0xFFFFFFFF, 0, 0, param2->unk_48[0], param2->unk_48[1], param2->unk_48[2], param2->unk_48[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v1, param1, 0, param1, param1, 0xFFFFFFFF, 0xFFFFFFFF, 0, 0, param2->unk_48[0], param2->unk_48[1], param2->unk_48[2], param2->unk_48[3], NULL, NULL);
 
     v2.collection = param2->unk_44;
     v2.resourceData = &v1;
@@ -326,7 +326,7 @@ static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct
     CellActorInitParamsEx v2;
     SpriteResource *v3;
 
-    sub_020093B4(&v1, param1, 0, param1, param1, 0xFFFFFFFF, 0xFFFFFFFF, 0, 0, param2->unk_48[0], param2->unk_48[1], param2->unk_48[2], param2->unk_48[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v1, param1, 0, param1, param1, 0xFFFFFFFF, 0xFFFFFFFF, 0, 0, param2->unk_48[0], param2->unk_48[1], param2->unk_48[2], param2->unk_48[3], NULL, NULL);
 
     v2.collection = param2->unk_44;
     v2.resourceData = &v1;

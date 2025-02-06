@@ -31,10 +31,10 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "spl.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
 #include "unk_0202C9F4.h"
@@ -2277,7 +2277,7 @@ static void ov12_02237C54(BallRotation *param0)
     sub_0200C7C0(param0->unk_90.cellActorSys, param0->unk_2C, 10);
 
     if (param0->unk_90.surface == 0) {
-        sub_0200964C(sub_0200C738(param0->unk_90.cellActorSys), 0, ((192 + 80) << FX32_SHIFT));
+        SetSubScreenViewRect(sub_0200C738(param0->unk_90.cellActorSys), 0, ((192 + 80) << FX32_SHIFT));
     }
 
     {

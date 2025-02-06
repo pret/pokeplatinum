@@ -7,7 +7,6 @@
 #include "generated/genders.h"
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "cell_actor.h"
 #include "heap.h"
@@ -16,9 +15,9 @@
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_020093B4.h"
 #include "unk_020131EC.h"
 
 static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0);
@@ -72,7 +71,7 @@ void GreatMarshLookout_CreateLookoutMonSprite(GreatMarshLookout_SpriteResources 
 
     BuildArchivedPokemonSprite(&resources->unk_28, species, gender, 2, 0, NULL, NULL);
 
-    resources->unk_38 = sub_020095C4(1, &resources->unk_3C, HEAP_ID_FIELD);
+    resources->unk_38 = SpriteList_InitRendering(1, &resources->unk_3C, HEAP_ID_FIELD);
     v1 = NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, HEAP_ID_FIELD);
 
     for (i = 0; i < 4; i++) {
@@ -173,7 +172,7 @@ static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0)
     int v0;
     CellActorResourceData v1;
 
-    sub_020093B4(&v1, 0, 1, 2, 3, 0xffffffff, 0xffffffff, 0, 0, param0->unk_00[0], param0->unk_00[1], param0->unk_00[2], param0->unk_00[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v1, 0, 1, 2, 3, 0xffffffff, 0xffffffff, 0, 0, param0->unk_00[0], param0->unk_00[1], param0->unk_00[2], param0->unk_00[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v2;

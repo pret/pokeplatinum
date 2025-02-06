@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02087A10_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -26,9 +25,11 @@
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_oam.h"
 #include "render_window.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -36,8 +37,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
@@ -84,7 +83,7 @@ struct UnkStruct_02087A10_t {
     Strbuf *unk_180;
     Strbuf *unk_184;
     CellActorCollection *unk_188;
-    UnkStruct_0200C738 unk_18C;
+    G2dRenderer unk_18C;
     SpriteResourceCollection *unk_318[4];
     SpriteResource *unk_328[2][4];
     CellActorResourceData unk_348;
@@ -1149,7 +1148,7 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
     }
 
     CellActorCollection_Delete(v0->unk_188);
-    sub_0200A878();
+    RenderOam_Free();
     Heap_FreeToHeapExplicit(18, v0->unk_510);
 
     if (v0->unk_00 == 1) {
@@ -1222,7 +1221,7 @@ void sub_0208716C(UnkStruct_0208737C *param0)
 static void sub_02087190(void *param0)
 {
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -1536,11 +1535,11 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 18);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 18);
 
-    param0->unk_188 = sub_020095C4(40 + 4, &param0->unk_18C, 18);
+    param0->unk_188 = SpriteList_InitRendering(40 + 4, &param0->unk_18C, 18);
 
-    sub_0200964C(&param0->unk_18C, 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(&param0->unk_18C, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_318[v0] = SpriteResourceCollection_New(2, v0, 18);
@@ -1588,8 +1587,8 @@ static void sub_02087A10(UnkStruct_02087A10 *param0)
 {
     int v0;
 
-    sub_020093B4(&param0->unk_348, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 1, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
-    sub_020093B4(&param0->unk_36C, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_348, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 1, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_36C, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_318[0], param0->unk_318[1], param0->unk_318[2], param0->unk_318[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v1;

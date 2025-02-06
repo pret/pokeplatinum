@@ -45,11 +45,11 @@
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "spl.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
 #include "vram_transfer.h"
@@ -2106,7 +2106,7 @@ static void ov12_0222144C(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_134 = sub_0200C704(param0->unk_BC->unk_AC);
 
     sub_0200C7C0(param0->unk_BC->unk_AC, param0->unk_134, v0);
-    sub_0200964C(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
     sub_0200CB30(param0->unk_BC->unk_AC, param0->unk_134, &v1);
 }
 
@@ -3571,7 +3571,7 @@ static void ov12_02222CE8(UnkStruct_ov12_0221FCDC *param0)
     GF_ASSERT(param0->unk_C8[v1] != NULL);
 
     sub_0200C7C0(param0->unk_BC->unk_AC, param0->unk_C8[v1], v2);
-    sub_0200964C(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
 
     {
         UnkStruct_ov104_02241308 v3;

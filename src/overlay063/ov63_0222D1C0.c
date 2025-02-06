@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "overlay063/ov63_0222D160.h"
 #include "overlay063/struct_ov63_0222CC3C.h"
 #include "overlay063/struct_ov63_0222D160.h"
@@ -13,10 +11,10 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 
 typedef struct UnkStruct_ov63_0222D1C0_t {
-    UnkStruct_0200C738 *unk_00;
+    G2dRenderer *unk_00;
     BgConfig *unk_04;
     void *unk_08;
     NNSG2dScreenData *unk_0C;
@@ -33,7 +31,7 @@ static void ov63_0222D4F8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 
 static u8 ov63_0222D688(u8 param0, u8 param1);
 static const void *ov63_0222D6BC(const u8 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, UnkStruct_ov63_0222CC3C *param6);
 
-UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(UnkStruct_0200C738 *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 param3)
+UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 param3)
 {
     UnkStruct_ov63_0222D1C0 *v0;
 
@@ -67,9 +65,9 @@ void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D16
     v0 = ov63_0222D1B8(param1);
 
     if (param0->unk_10 == 0) {
-        sub_0200962C(param0->unk_00, FX32_CONST(v0), FX32_CONST(v1));
+        SetMainScreenViewRect(param0->unk_00, FX32_CONST(v0), FX32_CONST(v1));
     } else {
-        sub_0200964C(param0->unk_00, FX32_CONST(v0), FX32_CONST(v1) + (192 << FX32_SHIFT));
+        SetSubScreenViewRect(param0->unk_00, FX32_CONST(v0), FX32_CONST(v1) + (192 << FX32_SHIFT));
     }
 
     ov63_0222D378(param0, v0, v1);

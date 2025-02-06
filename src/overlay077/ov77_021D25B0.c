@@ -25,10 +25,10 @@
 #include "math.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_oam.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020041CC.h"
-#include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
@@ -849,7 +849,7 @@ static void ov77_021D2AA0(void)
 static void ov77_021D2B30(void *param0)
 {
     UnkStruct_ov77_021D2E9C *v0 = param0;
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 static void ov77_021D2B38(void *param0)
@@ -904,7 +904,7 @@ static void ov77_021D2B38(void *param0)
     }
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
     ov77_021D6E40(v1->unk_34.unk_1C);
 }
 

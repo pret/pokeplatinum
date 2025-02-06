@@ -62,6 +62,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -71,7 +72,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
@@ -362,7 +362,7 @@ void ov16_0223B430(BattleSystem *param0)
     NARC_dtor(v1);
     TextPrinter_SetScrollArrowBaseTile(1);
     ov16_0223DD4C(param0);
-    sub_0200964C(sub_0200C738(param0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(param0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 }
 
 void ov16_0223B53C(BattleSystem *param0)
@@ -578,14 +578,14 @@ static void ov16_0223B790(OverlayManager *param0)
     v0->unk_90 = sub_0200C6E4(5);
 
     sub_0200C73C(v0->unk_90, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_94 = sub_0200C704(v0->unk_90);
 
     sub_0200C7C0(v0->unk_90, v0->unk_94, (64 + 64));
     sub_0200CB30(v0->unk_90, v0->unk_94, &Unk_ov16_0226E2B0);
-    sub_0200964C(sub_0200C738(v0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(v0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 
     ov16_02268A88(v0->unk_198);
 

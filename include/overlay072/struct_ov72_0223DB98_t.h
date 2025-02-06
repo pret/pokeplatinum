@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV72_0223DB98_T_H
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "overlay072/struct_ov72_0223E7D8.h"
 #include "overlay072/struct_ov72_0223E80C.h"
@@ -14,6 +13,7 @@
 #include "game_records.h"
 #include "message.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 
@@ -30,7 +30,7 @@ struct UnkStruct_ov72_0223DB98_t {
     Strbuf *unk_34;
     int unk_38;
     CellActorCollection *unk_3C;
-    UnkStruct_0200C738 unk_40;
+    G2dRenderer unk_40;
     SpriteResourceCollection *unk_1CC[4];
     SpriteResource *unk_1DC[2][4];
     CellActorResourceData unk_1FC;

@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -21,14 +20,14 @@
 #include "heap.h"
 #include "message.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "render_window.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
@@ -41,7 +40,7 @@ typedef struct UnkStruct_ov87_021D106C_t {
     BgConfig *unk_10;
     Window unk_14[2];
     CellActorCollection *unk_34;
-    UnkStruct_0200C738 unk_38;
+    G2dRenderer unk_38;
     CellActor *unk_1C4[6];
     void *unk_1DC;
     void *unk_1E0;
@@ -93,9 +92,9 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
         v0->unk_10 = BgConfig_New(61);
 
         NNS_G2dInitOamManagerModule();
-        sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 61);
+        RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 61);
 
-        v0->unk_34 = sub_020095C4(64, &v0->unk_38, 61);
+        v0->unk_34 = SpriteList_InitRendering(64, &v0->unk_38, 61);
         v0->unk_1E4 = MessageLoader_Init(0, 26, 352, 61);
         v0->unk_1E8 = MessageLoader_Init(1, 26, 412, 61);
         v0->unk_1EC = MessageLoader_Init(1, 26, 647, 61);
@@ -122,7 +121,7 @@ void ov87_021D1140(UnkStruct_ov87_021D106C *param0)
         MessageLoader_Free(param0->unk_1E8);
         MessageLoader_Free(param0->unk_1E4);
         CellActorCollection_Delete(param0->unk_34);
-        sub_0200A878();
+        RenderOam_Free();
         Heap_FreeToHeap(param0->unk_10);
         Heap_FreeToHeap(param0);
     }
@@ -133,7 +132,7 @@ static void ov87_021D11AC(void *param0)
     UnkStruct_ov87_021D106C *v0 = param0;
 
     CellActorCollection_Update(v0->unk_34);
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

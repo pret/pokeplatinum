@@ -69,9 +69,9 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 #include "sprite_transfer.h"
-#include "unk_0200A784.h"
+#include "render_oam.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02017728.h"
@@ -866,7 +866,7 @@ static void ov65_0222E47C(UnkStruct_ov65_0222EBE0 *param0)
     }
 
     CellActorCollection_Delete(param0->unk_18C);
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 
@@ -933,7 +933,7 @@ static void ov65_0222E5E0(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_15C);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     inline_ov61_0222C1FC(&v0->unk_E2C);
 
@@ -1485,8 +1485,8 @@ static void ov65_0222EDD0(void)
     PlttTransfer_Init(20, 54);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
 static void ov65_0222EE18(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
@@ -1494,11 +1494,11 @@ static void ov65_0222EE18(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 54);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 54);
 
-    param0->unk_18C = sub_020095C4(8, &param0->unk_190, 54);
+    param0->unk_18C = SpriteList_InitRendering(8, &param0->unk_190, 54);
 
-    sub_0200964C(&param0->unk_190, 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(&param0->unk_190, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_31C[v0] = SpriteResourceCollection_New(1, v0, 54);
@@ -2044,8 +2044,8 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
                 param0->unk_B4C[v0] = NULL;
             }
 
-            sub_0200A93C(54);
-            sub_0200A944(54);
+            RenderOam_ClearMain(54);
+            RenderOam_ClearSub(54);
         }
 
         if (ov65_02232FCC(param0) == 1) {
@@ -6690,7 +6690,7 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 par
 
     SpriteResource_ReleaseData(param0->unk_BE0.unk_20C[0]);
     SpriteResource_ReleaseData(param0->unk_BE0.unk_20C[1]);
-    sub_020093B4(&v2, 30, 30, 30, 30, 0xffffffff, 0xffffffff, 0, 0, param0->unk_31C[0], param0->unk_31C[1], param0->unk_31C[2], param0->unk_31C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v2, 30, 30, 30, 30, 0xffffffff, 0xffffffff, 0, 0, param0->unk_31C[0], param0->unk_31C[1], param0->unk_31C[2], param0->unk_31C[3], NULL, NULL);
 
     for (v1 = 0; v1 < 3; v1++) {
         v9[v1].collection = param0->unk_18C;

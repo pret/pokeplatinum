@@ -6,7 +6,6 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -37,12 +36,14 @@
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -50,8 +51,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
@@ -120,7 +119,7 @@ typedef struct {
     BgConfig *unk_20;
     int unk_24;
     CellActorCollection *unk_28;
-    UnkStruct_0200C738 unk_2C;
+    G2dRenderer unk_2C;
     SpriteResourceCollection *unk_1B8[6];
     SpriteResource *unk_1D0[6];
     CellActorResourceData unk_1E8;
@@ -511,9 +510,9 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 78);
-    param0->unk_28 = sub_020095C4(80, &param0->unk_2C, 78);
-    sub_0200964C(&param0->unk_2C, 0, (256 * FX32_ONE));
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 78);
+    param0->unk_28 = SpriteList_InitRendering(80, &param0->unk_2C, 78);
+    SetSubScreenViewRect(&param0->unk_2C, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_1B8[v0] = SpriteResourceCollection_New(3, v0, 78);
@@ -531,7 +530,7 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
 
 static void ov97_022340B0(UnkStruct_ov97_02234A2C *param0)
 {
-    sub_020093B4(&param0->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
@@ -1569,7 +1568,7 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
     CellActorCollection_Delete(param0->unk_28);
     param0->unk_28 = NULL;
 
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 
@@ -1635,7 +1634,7 @@ static void ov97_022353CC(void *param0)
     }
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates(v0->unk_20);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

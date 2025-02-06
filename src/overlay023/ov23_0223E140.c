@@ -7,7 +7,6 @@
 
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -44,11 +43,13 @@
 #include "narc.h"
 #include "pltt_transfer.h"
 #include "pokedex.h"
+#include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -57,8 +58,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -138,7 +137,7 @@ typedef struct {
     BgConfig *unk_04;
     MATHRandContext32 unk_08;
     CellActorCollection *unk_20;
-    UnkStruct_0200C738 unk_24;
+    G2dRenderer unk_24;
     SpriteResourceCollection *unk_1B0[4];
     SpriteResource *unk_1C0[8];
     CellActorResourceData unk_1E0;
@@ -1386,7 +1385,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     }
 
     CellActorCollection_Delete(Unk_ov23_02257740->unk_20);
-    sub_0200A878();
+    RenderOam_Free();
 
     CharTransfer_Free();
     PlttTransfer_Free();
@@ -2768,12 +2767,12 @@ static void ov23_02240E88(void)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 124, 0, 31, 0, 124, 0, 31, 29);
+    RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 29);
     ov23_0224119C();
 
-    Unk_ov23_02257740->unk_20 = sub_020095C4(26, &Unk_ov23_02257740->unk_24, 29);
+    Unk_ov23_02257740->unk_20 = SpriteList_InitRendering(26, &Unk_ov23_02257740->unk_24, 29);
 
-    sub_0200964C(&Unk_ov23_02257740->unk_24, 0, (192 << FX32_SHIFT) * 2);
+    SetSubScreenViewRect(&Unk_ov23_02257740->unk_24, 0, (192 << FX32_SHIFT) * 2);
 
     for (v0 = 0; v0 < 4; v0++) {
         Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, 29);
@@ -2806,7 +2805,7 @@ static void ov23_0224108C(void)
     CellActorInitParamsEx v2;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_020093B4(&Unk_ov23_02257740->unk_204[v0], v0, v0, v0, v0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257740->unk_1B0[0], Unk_ov23_02257740->unk_1B0[1], Unk_ov23_02257740->unk_1B0[2], Unk_ov23_02257740->unk_1B0[3], NULL, NULL);
+        SpriteResourcesHeader_Init(&Unk_ov23_02257740->unk_204[v0], v0, v0, v0, v0, 0xffffffff, 0xffffffff, 0, 0, Unk_ov23_02257740->unk_1B0[0], Unk_ov23_02257740->unk_1B0[1], Unk_ov23_02257740->unk_1B0[2], Unk_ov23_02257740->unk_1B0[3], NULL, NULL);
 
         v2.collection = Unk_ov23_02257740->unk_20;
         v2.resourceData = &Unk_ov23_02257740->unk_204[v0];
@@ -2851,8 +2850,8 @@ static void ov23_0224119C(void)
     PlttTransfer_Init(20, 29);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
 static void ov23_022411E8(void *param0)
@@ -2863,7 +2862,7 @@ static void ov23_022411E8(void *param0)
 
     Bg_RunScheduledUpdates(v0);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 BOOL ov23_02241200(int param0, int param1)

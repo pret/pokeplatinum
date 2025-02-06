@@ -24,11 +24,11 @@
 #include "render_window.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_02095AF0.h"
 
 static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1);
@@ -373,7 +373,7 @@ static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **pa
 
 static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, CellActorResourceData *param2, int param3)
 {
-    sub_020093B4(param2, SpriteResource_GetID(param0[0]), SpriteResource_GetID(param0[1]), SpriteResource_GetID(param0[2]), SpriteResource_GetID(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
+    SpriteResourcesHeader_Init(param2, SpriteResource_GetID(param0[0]), SpriteResource_GetID(param0[1]), SpriteResource_GetID(param0[2]), SpriteResource_GetID(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
 }
 
 static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6)

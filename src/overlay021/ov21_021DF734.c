@@ -29,8 +29,8 @@
 #include "pokemon.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"
@@ -559,7 +559,7 @@ static void ov21_021DFE0C(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
     int v3, v4;
     int v5;
 
-    sub_020093B4(&v0, 122 + 14000, 22 + 14000, 123 + 14000, 121 + 14000, 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 122 + 14000, 22 + 14000, 123 + 14000, 121 + 14000, 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;

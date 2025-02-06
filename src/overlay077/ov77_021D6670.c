@@ -3,20 +3,18 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "cell_actor.h"
 #include "char_transfer.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "math.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 
 typedef struct {
     u8 unk_00;
@@ -48,7 +46,7 @@ typedef struct {
 
 typedef struct {
     CellActorCollection *unk_00;
-    UnkStruct_0200C738 unk_04;
+    G2dRenderer unk_04;
     SpriteResourceCollection *unk_190[4];
     SpriteResource *unk_1A0[4];
     UnkStruct_ov77_021D6ADC unk_1B0[10];
@@ -96,7 +94,7 @@ static void ov77_021D6670()
 
 static void ov77_021D66A0(UnkStruct_ov77_021D6800 *param0, CellActorInitParamsEx *param1, CellActorResourceData *param2)
 {
-    sub_020093B4(param2, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(param2, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         param1->collection = param0->unk_00;
@@ -194,9 +192,9 @@ static void ov77_021D6800(UnkStruct_ov77_021D6800 *param0)
     ov77_021D6670();
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, v1);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, v1);
 
-    param0->unk_00 = sub_020095C4(10, &param0->unk_04, v1);
+    param0->unk_00 = SpriteList_InitRendering(10, &param0->unk_04, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov77_021D7930[v0], v0, v1);
@@ -226,7 +224,7 @@ static void ov77_021D691C(UnkStruct_ov77_021D6800 *param0)
     }
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 }

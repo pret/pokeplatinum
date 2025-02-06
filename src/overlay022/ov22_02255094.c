@@ -22,12 +22,12 @@
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "render_oam.h"
 #include "resource_collection.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_02015064.h"
 #include "unk_0202419C.h"
 
@@ -152,7 +152,7 @@ CellActor *ov22_022551E4(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2
     CellActorResourceData v0;
     CellActorInitParams v1;
 
-    sub_020093B4(&v0, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_48[0], param0->unk_48[1], param0->unk_48[2], param0->unk_48[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_48[0], param0->unk_48[1], param0->unk_48[2], param0->unk_48[3], NULL, NULL);
 
     v1.collection = param0->unk_44;
     v1.resourceData = &v0;
@@ -265,7 +265,7 @@ void ov22_022553F8(UnkStruct_ov22_0225A0E4 *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_40);
     sub_02008A94(param0->unk_20);
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 void ov22_02255410(UnkStruct_ov22_02255CB8 *param0, int param1)
@@ -410,7 +410,7 @@ void ov22_022555FC(UnkStruct_ov22_0225A0E4 *param0)
 void ov22_0225561C(UnkStruct_ov22_0225A0E4 *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_40);
-    sub_0200A858();
+    RenderOam_Transfer();
 }
 
 void ov22_0225562C(UnkStruct_ov22_0225A0E4 *param0)
@@ -705,9 +705,9 @@ static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 124, 0, 31, 0, 124, 0, 31, 14);
-    param0->unk_44 = sub_020095C4(48, &param0->unk_58, 14);
-    sub_0200964C(&param0->unk_58, 0, (512 * FX32_ONE));
+    RenderOam_Init(0, 124, 0, 31, 0, 124, 0, 31, 14);
+    param0->unk_44 = SpriteList_InitRendering(48, &param0->unk_58, 14);
+    SetSubScreenViewRect(&param0->unk_58, 0, (512 * FX32_ONE));
 
     param0->unk_48[0] = SpriteResourceCollection_New(8, 0, 14);
     param0->unk_48[1] = SpriteResourceCollection_New(5, 1, 14);
@@ -729,7 +729,7 @@ static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0)
 
     CharTransfer_Free();
     PlttTransfer_Free();
-    sub_0200A878();
+    RenderOam_Free();
 }
 
 static void ov22_02255AC0(UnkStruct_ov22_0225A0E4 *param0)

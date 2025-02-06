@@ -30,16 +30,16 @@
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "render_window.h"
 #include "savedata.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
@@ -330,9 +330,9 @@ void ov97_02237A74(void)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, v1->unk_08);
-    v1->unk_34.unk_00 = sub_020095C4(128, &v1->unk_34.unk_04, v1->unk_08);
-    sub_0200964C(&v1->unk_34.unk_04, 0, (256 * FX32_ONE));
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, v1->unk_08);
+    v1->unk_34.unk_00 = SpriteList_InitRendering(128, &v1->unk_34.unk_04, v1->unk_08);
+    SetSubScreenViewRect(&v1->unk_34.unk_04, 0, (256 * FX32_ONE));
 
     v1->unk_274 = (192 << FX32_SHIFT);
 
@@ -381,7 +381,7 @@ void ov97_02237B0C(int param0, int param1, int param2, int param3, int param4, i
 
     SpriteTransfer_RequestChar(v0->unk_34.unk_1A8[param5][0]);
     SpriteTransfer_RequestPlttFreeSpace(v0->unk_34.unk_1A8[param5][1]);
-    sub_020093B4(&v0->unk_34.unk_1D8[param5], param5, param5, param5, param5, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34.unk_190[0], v0->unk_34.unk_190[1], v0->unk_34.unk_190[2], v0->unk_34.unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0->unk_34.unk_1D8[param5], param5, param5, param5, param5, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34.unk_190[0], v0->unk_34.unk_190[1], v0->unk_34.unk_190[2], v0->unk_34.unk_190[3], NULL, NULL);
 
     if (param5 == 0) {
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -396,7 +396,7 @@ void ov97_02237C80(fx32 param0, fx32 param1)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
-    sub_0200964C(&v0->unk_34.unk_04, param0, param1);
+    SetSubScreenViewRect(&v0->unk_34.unk_04, param0, param1);
     v0->unk_274 = param1;
 }
 
@@ -502,7 +502,7 @@ void ov97_02237DA0(void)
     CellActorCollection_Delete(v1->unk_00);
     v1->unk_00 = NULL;
 
-    sub_0200A878();
+    RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 
@@ -524,7 +524,7 @@ static void ov97_02237E58(void *param0)
     }
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     if (v0->unk_00) {
         Bg_RunScheduledUpdates(v0->unk_00);

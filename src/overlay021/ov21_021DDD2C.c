@@ -25,9 +25,9 @@
 #include "narc.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
 #include "unk_02023FCC.h"
 #include "vram_transfer.h"
@@ -432,7 +432,7 @@ static void ov21_021DE258(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
     CellActorInitParams v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
 
-    sub_020093B4(&v0, 105 + 6000, 11 + 2100, 103 + 6000, 104 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 105 + 6000, 11 + 2100, 103 + 6000, 104 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;

@@ -11,7 +11,7 @@
 #include "cell_actor.h"
 #include "communication_system.h"
 #include "gx_layers.h"
-#include "unk_0200A784.h"
+#include "render_oam.h"
 #include "unk_0200C6E4.h"
 #include "unk_020393C8.h"
 #include "unk_02098FFC.h"
@@ -50,8 +50,8 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
         sub_0200C73C(param0->unk_1B8, &v0, &v1, 32);
         sub_0200C7C0(param0->unk_1B8, param0->unk_1BC, 3 + 5 + 6);
 
-        sub_0200A93C(param0->unk_00);
-        sub_0200A944(param0->unk_00);
+        RenderOam_ClearMain(param0->unk_00);
+        RenderOam_ClearSub(param0->unk_00);
     }
 
     {

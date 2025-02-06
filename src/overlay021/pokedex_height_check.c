@@ -30,10 +30,10 @@
 #include "pokedex_heightweight.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 
 #include "res/text/bank/pokedex.h"
 
@@ -380,7 +380,7 @@ static void DisplayTrainerHeight(HeightCheckVisuals *heightCheckVisuals, UnkStru
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
 
-    sub_020093B4(&trainerResource, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&trainerResource, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     trainerCellParams.collection = v2->unk_138;
     trainerCellParams.resourceData = &trainerResource;

@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0205C22C.h"
 #include "struct_defs/struct_0205C924.h"
@@ -29,6 +28,7 @@
 #include "save_player.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -37,7 +37,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_020093B4.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
 #include "unk_02027F84.h"
@@ -73,7 +72,7 @@ struct UnkStruct_ov56_02256468_t {
     u16 *unk_20;
     NNSG2dScreenData *unk_24;
     CellActorCollection *unk_28;
-    UnkStruct_0200C738 unk_2C;
+    G2dRenderer unk_2C;
     SpriteResourceCollection *unk_1B8[4];
     SpriteResource *unk_1C8[4];
     CellActorResourceData unk_1D8;
@@ -378,7 +377,7 @@ static void ov56_02256634(UnkStruct_ov56_02256468 *param0)
 {
     int v0;
 
-    param0->unk_28 = sub_020095C4(10, &param0->unk_2C, 4);
+    param0->unk_28 = SpriteList_InitRendering(10, &param0->unk_2C, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_1B8[v0] = SpriteResourceCollection_New(1, v0, 4);
@@ -403,7 +402,7 @@ static void ov56_02256704(UnkStruct_ov56_02256468 *param0)
 {
     int v0;
 
-    sub_020093B4(&param0->unk_1D8, 999, 999, 999, 999, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_1D8, 999, 999, 999, 999, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v1;

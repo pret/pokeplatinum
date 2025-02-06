@@ -42,9 +42,11 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -52,8 +54,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_02024220.h"
@@ -2133,7 +2133,7 @@ static void ov105_0224451C(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_4C);
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -2855,8 +2855,8 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
     param0->unk_128 = sub_0200762C(93);
 
     if (CommSys_IsInitialized()) {
-        sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
-        sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+        ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
+        ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
         sub_02039734();
     }
 

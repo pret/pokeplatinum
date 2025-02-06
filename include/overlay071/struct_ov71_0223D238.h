@@ -3,14 +3,13 @@
 
 #include <nnsys.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "cell_actor.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 
 typedef struct {
     CellActorCollection *unk_00;
-    UnkStruct_0200C738 unk_04;
+    G2dRenderer unk_04;
     SpriteResourceCollection *unk_190[4];
     SpriteResource *unk_1A0[2][4];
     CellActor *unk_1C0[25];

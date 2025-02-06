@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
-
 #include "overlay101/struct_ov101_021D8544.h"
 
 #include "cell_actor.h"
@@ -13,7 +11,7 @@
 #include "narc.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 #include "vram_transfer.h"
 
 typedef struct {
@@ -33,7 +31,7 @@ typedef struct UnkStruct_ov101_021D7E48_t {
     u8 unk_0A;
     u8 unk_0B;
     CellActorCollection *unk_0C;
-    UnkStruct_0200C738 unk_10;
+    G2dRenderer unk_10;
     NNSG2dCellTransferState *unk_19C;
     SpriteResourceCollection *unk_1A0;
     SpriteResourceCollection *unk_1A4;
@@ -60,7 +58,7 @@ UnkStruct_ov101_021D7E48 *ov101_021D7E48(u32 param0, u32 param1, u32 param2, u32
     v0->unk_09 = param8;
     v0->unk_0A = param9;
     v0->unk_0B = param10;
-    v0->unk_0C = sub_020095C4(param1, &v0->unk_10, param0);
+    v0->unk_0C = SpriteList_InitRendering(param1, &v0->unk_10, param0);
     v0->unk_19C = CellTransfer_New(param2, param0);
 
     VramTransfer_New(param2, param0);
@@ -327,7 +325,7 @@ void ov101_021D84A4(UnkStruct_ov101_021D7E48 *param0, UnkStruct_ov101_021D8544 *
         param8 = 0xffffffff;
     }
 
-    sub_020093B4(
+    SpriteResourcesHeader_Init(
         &v0, param5, param6, param7, param8, 0xffffffff, 0xffffffff, param4, param9, param0->unk_1A0, param0->unk_1A4, param0->unk_1A8, param0->unk_1AC, NULL, NULL);
 
     if (param4 == 1) {

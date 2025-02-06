@@ -2,10 +2,10 @@
 #define POKEPLATINUM_OV6_022426AC_H
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "cell_actor.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 
 typedef struct GreatMarshLookout_SpriteResources {
     SpriteResourceCollection *unk_00[4];
@@ -14,7 +14,7 @@ typedef struct GreatMarshLookout_SpriteResources {
     void *unk_24;
     ArchivedSprite unk_28;
     CellActorCollection *unk_38;
-    UnkStruct_0200C738 unk_3C;
+    G2dRenderer unk_3C;
     CellActor *unk_1C8;
     BOOL unk_1CC;
     BOOL unk_1D0;

@@ -20,14 +20,14 @@
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
+#include "render_oam.h"
+#include "render_view.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
-#include "unk_0202309C.h"
 
 typedef struct UnkStruct_ov5_021D5EF8_t {
     UnkStruct_ov5_021D6594 *unk_00;
@@ -768,14 +768,14 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
     int v1;
     int v2;
 
-    sub_0202309C(&param0->unk_14, -FX32_ONE);
+    InitRenderer(&param0->unk_14, -FX32_ONE);
 
     v0.posTopLeft.x = 0;
     v0.posTopLeft.y = 0;
     v0.sizeView.x = (255 << FX32_SHIFT);
     v0.sizeView.y = (192 << FX32_SHIFT);
 
-    sub_0200A8B0(&param0->unk_C0, &v0, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_14);
+    RenderOam_InitSurface(&param0->unk_C0, &v0, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_14);
 
     for (v1 = 0; v1 < 4; v1++) {
         param0->unk_00[v1] = SpriteResourceCollection_New(31, v1, 4);
@@ -1593,7 +1593,7 @@ static void ov5_021D6F4C(CellActorResourceData *param0, UnkStruct_ov5_021D6594 *
         v0[v1] = SpriteResource_GetID(param2->unk_00[v1]);
     }
 
-    sub_020093B4(param0, v0[0], v0[1], v0[2], v0[3], 0xffffffff, 0xffffffff, param3, param4, param1->unk_08.unk_00[0], param1->unk_08.unk_00[1], param1->unk_08.unk_00[2], param1->unk_08.unk_00[3], NULL, NULL);
+    SpriteResourcesHeader_Init(param0, v0[0], v0[1], v0[2], v0[3], 0xffffffff, 0xffffffff, param3, param4, param1->unk_08.unk_00[0], param1->unk_08.unk_00[1], param1->unk_08.unk_00[2], param1->unk_08.unk_00[3], NULL, NULL);
 }
 
 static void ov5_021D6FA8(UnkStruct_ov5_021D6FA8 *param0)

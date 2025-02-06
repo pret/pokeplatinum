@@ -30,12 +30,12 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_oam.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200A784.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
@@ -881,8 +881,8 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
 
         sub_0200C73C(param0->unk_29C, &v0, &v1, 32);
         sub_0200C7C0(param0->unk_29C, param0->unk_2A0, 4);
-        sub_0200A93C(param0->unk_00);
-        sub_0200A944(param0->unk_00);
+        RenderOam_ClearMain(param0->unk_00);
+        RenderOam_ClearSub(param0->unk_00);
     }
 
     {

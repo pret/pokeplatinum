@@ -38,7 +38,7 @@
 #include "system_data.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200A784.h"
+#include "render_oam.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "vram_transfer.h"
@@ -436,7 +436,7 @@ static void ov98_022474E8 (void * param0)
     UnkStruct_ov98_02247704 * v0 = param0;
 
     VramTransfer_Process();
-    sub_0200A858();
+    RenderOam_Transfer();
 
     Bg_RunScheduledUpdates(v0->unk_04);
     inline_ov61_0222C1FC(&v0->unk_EC);

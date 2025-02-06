@@ -35,9 +35,9 @@
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
@@ -2352,7 +2352,7 @@ static void ov21_021DB708(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D95
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int v3;
 
-    sub_020093B4(&v0, 125 + 16000, 3 + 16000, 126 + 16000, 124 + 16000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 125 + 16000, 3 + 16000, 126 + 16000, 124 + 16000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;
@@ -2377,7 +2377,7 @@ static void ov21_021DB79C(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D95
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int v3;
 
-    sub_020093B4(&v0, 125 + 16000, 3 + 16000, 126 + 16000, 124 + 16000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 125 + 16000, 3 + 16000, 126 + 16000, 124 + 16000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;
@@ -2602,7 +2602,7 @@ static void ov21_021DBBE4(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D95
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int v3, v4;
 
-    sub_020093B4(&v0, 128 + 16000, 3 + 16000, 129 + 16000, 127 + 16000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 128 + 16000, 3 + 16000, 129 + 16000, 127 + 16000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;
