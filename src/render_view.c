@@ -39,7 +39,7 @@ BOOL IsObjectInView(const NNSG2dCellData *cellData, const MtxFx32 *objectCoords,
     fx32 minX, maxX;
     fx32 tmp;
 
-    if (NNS_G2dCellHasBR(cellData) == 1) {
+    if (NNS_G2dCellHasBR(cellData) == TRUE) {
         minY = boundingRect->minY << FX32_SHIFT;
         maxY = boundingRect->maxY << FX32_SHIFT;
         minX = boundingRect->minX << FX32_SHIFT;

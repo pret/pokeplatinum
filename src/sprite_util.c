@@ -15,7 +15,7 @@
 
 #define RESDAT_TABLE_TERMINATOR 0xFFFFFFFE
 
-void SpriteResourcesHeader_Init(CellActorResourceData *resourceHeader, int charResourceID, int plttResourceID, int cellResourceID, int animResourceID, int mcellResourceID, int manimResourceID, int vramTransfer, int priority, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources)
+void SpriteResourcesHeader_Init(CellActorResourceData *resourceHeader, int charResourceID, int plttResourceID, int cellResourceID, int animResourceID, int mcellResourceID, int manimResourceID, BOOL vramTransfer, int priority, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources)
 {
     SpriteResource *charResource;
     SpriteResource *plttResource;

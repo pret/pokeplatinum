@@ -9,6 +9,11 @@
 #include "heap.h"
 #include "render_view.h"
 
+#define NUM_HW_OAM_ATTR            128
+#define NUM_HW_OAM_ATTR_RESERVED   4
+#define NUM_HW_OAM_AFFINES         32
+#define NUM_HW_OAM_AFFINE_RESERVED 1
+
 typedef struct OamManager {
     NNSG2dOamManagerInstance mainScreenOam;
     NNSG2dOamManagerInstance subScreenOam;
@@ -31,11 +36,11 @@ void RenderOam_Init(int mainOamStart, int mainOamCount, int mainAffineOamStart, 
     int trueMainAffineOamCount;
 
     // The first 4 OAM managers are reserved.
-    if (mainOamStart < 4) {
-        trueMainOamStart = 4;
+    if (mainOamStart < NUM_HW_OAM_ATTR_RESERVED) {
+        trueMainOamStart = NUM_HW_OAM_ATTR_RESERVED;
 
-        if (mainOamCount > 124) {
-            trueMainOamCount = mainOamCount - (4 - mainOamStart);
+        if (mainOamCount > NUM_HW_OAM_ATTR - NUM_HW_OAM_ATTR_RESERVED) {
+            trueMainOamCount = mainOamCount - (NUM_HW_OAM_ATTR_RESERVED - mainOamStart);
         } else {
             trueMainOamCount = mainOamCount;
         }
@@ -45,11 +50,11 @@ void RenderOam_Init(int mainOamStart, int mainOamCount, int mainAffineOamStart, 
     }
 
     // The first affine-enabled manager is reserved.
-    if (mainAffineOamStart < 1) {
-        trueMainAffineOamStart = 1;
+    if (mainAffineOamStart < NUM_HW_OAM_AFFINE_RESERVED) {
+        trueMainAffineOamStart = NUM_HW_OAM_AFFINE_RESERVED;
 
-        if (mainAffineOamCount > 30) {
-            trueMainAffineOamCount = mainAffineOamCount - (1 - mainAffineOamStart);
+        if (mainAffineOamCount > NUM_HW_OAM_AFFINES - NUM_HW_OAM_AFFINE_RESERVED - 1) {
+            trueMainAffineOamCount = mainAffineOamCount - (NUM_HW_OAM_AFFINE_RESERVED - mainAffineOamStart);
         } else {
             trueMainAffineOamCount = mainAffineOamCount;
         }
