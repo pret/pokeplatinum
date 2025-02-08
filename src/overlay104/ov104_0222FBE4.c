@@ -60,7 +60,6 @@
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "field_battle_data_transfer.h"
 #include "field_comm_manager.h"
@@ -80,6 +79,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -87,7 +87,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
-#include "unk_02017728.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
@@ -2009,7 +2008,7 @@ static BOOL ov104_02231068(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02231078(UnkStruct_ov104_0222E930 *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
@@ -2025,7 +2024,7 @@ static BOOL ov104_02231090(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_022310B0(UnkStruct_ov104_0222E930 *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 

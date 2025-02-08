@@ -34,11 +34,11 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02017728.h"
 #include "unk_020393C8.h"
 
 struct UnkStruct_ov95_02247628_t {
@@ -172,7 +172,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
             v0->unk_1B6 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_FORM, NULL);
             v0->unk_1B8 = NULL;
 
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             DisableHBlank();
             GXLayers_DisableEngineALayers();
             GXLayers_DisableEngineBLayers();

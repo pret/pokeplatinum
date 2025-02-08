@@ -25,12 +25,12 @@
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02017728.h"
 
 typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_ov87_021D0D80 *unk_00;
@@ -103,7 +103,7 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
         v0->unk_1F8 = Strbuf_Init(256, 61);
         v0->unk_1FC = Pokemon_New(61);
 
-        SetMainCallback(ov87_021D11AC, v0);
+        SetVBlankCallback(ov87_021D11AC, v0);
     }
 
     return v0;
@@ -112,7 +112,7 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
 void ov87_021D1140(UnkStruct_ov87_021D106C *param0)
 {
     if (param0) {
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         Heap_FreeToHeap(param0->unk_1FC);
         Strbuf_Free(param0->unk_1F8);
         Strbuf_Free(param0->unk_1F4);

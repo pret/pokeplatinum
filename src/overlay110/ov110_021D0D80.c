@@ -12,7 +12,7 @@
 #include "overlay110/ov110_021D2124.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
+#include "system.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -28,7 +28,7 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
+#include "system.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
 #include "unk_020302D0.h"
@@ -96,7 +96,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     UnkStruct_ov110_021D0F78 * v1;
     UnkStruct_0203E564 * v2;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
 
     GXLayers_DisableEngineALayers();
@@ -131,7 +131,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     Font_LoadTextPalette(0, 13 * 32, 114);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 114);
     ov110_021D2124(v1->unk_0C, v1->unk_10, ov110_021D1208(v1->unk_06));
-    SetMainCallback(ov110_021D1048, (void *)v1);
+    SetVBlankCallback(ov110_021D1048, (void *)v1);
     (*param1) = 0;
 
     return 1;
@@ -181,7 +181,7 @@ int ov110_021D0EF0 (OverlayManager * param0, int * param1)
     ov110_021D11CC(v1->unk_0C);
 
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(114);
 
     return 1;
@@ -218,7 +218,7 @@ static BOOL ov110_021D0FD0 (UnkStruct_ov110_021D0F78 * param0)
         break;
     case 1:
 
-        if ((gCoreSys.heldKeys & PAD_BUTTON_A) || (gCoreSys.heldKeys & PAD_BUTTON_B)) {
+        if ((gSystem.heldKeys & PAD_BUTTON_A) || (gSystem.heldKeys & PAD_BUTTON_B)) {
             return 1;
         }
         break;

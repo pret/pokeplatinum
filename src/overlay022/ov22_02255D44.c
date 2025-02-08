@@ -50,7 +50,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -65,6 +64,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -73,7 +73,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
@@ -202,7 +201,7 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
-    SetMainCallback(ov22_02256940, v0);
+    SetVBlankCallback(ov22_02256940, v0);
     DisableHBlank();
 
     v2 = OverlayManager_Args(param0);
@@ -271,7 +270,7 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
         }
         break;
     case 5:
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) | (gCoreSys.touchPressed)) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) | (gSystem.touchPressed)) {
             ov22_0225A628(&v0->unk_5C4, 26, 385, 48);
             RenderControlFlags_SetSpeedUpOnTouch(0);
             (*param1)++;
@@ -394,7 +393,7 @@ int ov22_02256098(OverlayManager *param0, int *param1)
     ov22_022594AC(&v0->unk_3C0);
     ov22_022566F4(v0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     v1 = sub_0201E530();
@@ -419,7 +418,7 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
-    SetMainCallback(ov22_02256940, v0);
+    SetVBlankCallback(ov22_02256940, v0);
     DisableHBlank();
 
     v2 = OverlayManager_Args(param0);
@@ -655,7 +654,7 @@ int ov22_02256600(OverlayManager *param0, int *param1)
     ov22_022594AC(&v0->unk_3C0);
     ov22_022566F4(v0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     v1 = sub_0201E530();

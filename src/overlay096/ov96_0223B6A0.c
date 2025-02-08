@@ -28,9 +28,9 @@
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "string_template.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
 #include "unk_02099550.h"
@@ -62,7 +62,7 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -183,7 +183,7 @@ int ov96_0223B8CC(OverlayManager *param0, int *param1)
     sub_020334CC();
     Heap_FreeToHeap(v0->unk_04);
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(68);
 
     return 1;
@@ -397,7 +397,7 @@ static void ov96_0223BC64(UnkStruct_ov96_0223BF40 *param0)
     ov96_0223B9D0(param0);
     ov96_0223BB0C(param0);
 
-    SetMainCallback(ov96_0223B940, param0);
+    SetVBlankCallback(ov96_0223B940, param0);
 }
 
 static void ov96_0223BC8C(UnkStruct_ov96_0223BF40 *param0)

@@ -26,7 +26,6 @@
 #include "charcode_util.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -57,6 +56,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
@@ -66,7 +66,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02017728.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
@@ -276,7 +275,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     UnkStruct_02095E80 *v0;
     NARC *v1;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -304,7 +303,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     ov88_0223C17C(v0->unk_174);
     StartScreenTransition(0, 1, 1, 0x0, 16, 1, 26);
     ov88_0223C504(v0, v1);
-    SetMainCallback(ov88_0223C0E0, v0);
+    SetVBlankCallback(ov88_0223C0E0, v0);
     ov88_0223C63C();
     ov88_0223C66C(v0, v1);
     ov88_0223CBA0(v0);
@@ -397,7 +396,7 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
 
     CellActor_SetDrawFlag(param0->unk_39C[0], 1);
     CellActor_SetDrawFlag(param0->unk_39C[1], 1);
-    SetMainCallback(ov88_0223C0E0, param0);
+    SetVBlankCallback(ov88_0223C0E0, param0);
     NARC_dtor(v0);
 }
 
@@ -889,7 +888,7 @@ int ov88_0223C03C(OverlayManager *param0, int *param1)
     StringTemplate_Free(v0->unk_178);
     Strbuf_Free(v0->unk_18C);
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(26);
 
     return 1;
@@ -1471,22 +1470,22 @@ static void ov88_0223CE34(u32 *param0)
     int v0 = 0;
     int v1 = 0;
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         v1 = 1;
         v0++;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         v1 = 2;
         v0++;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
         v1 = 3;
         v0++;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         v1 = 4;
         v0++;
     }
@@ -1687,7 +1686,7 @@ static void ov88_0223D140(ChatotCry *param0)
 
 static int ov88_0223D150(UnkStruct_02095E80 *param0)
 {
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
         param0->unk_88[0] = 12;
         ov88_0223BE28(param0);
@@ -1695,7 +1694,7 @@ static int ov88_0223D150(UnkStruct_02095E80 *param0)
     } else {
         ov88_0223CE34(&param0->unk_14C[0]);
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_14C[0] == 0) {
                 if (param0->unk_88[0] == 12) {
                     param0->unk_226C = ov88_0223D2C4;
@@ -1796,7 +1795,7 @@ static int ov88_0223D3E0(UnkStruct_02095E80 *param0)
 
 static int ov88_0223D434(UnkStruct_02095E80 *param0)
 {
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D150;

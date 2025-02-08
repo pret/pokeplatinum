@@ -24,7 +24,6 @@
 
 #include "bg_window.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_message.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -50,6 +49,7 @@
 #include "script_manager.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -231,7 +231,7 @@ static void FieldMapChange_SetNewLocation(FieldSystem *fieldSystem, const Locati
 void FieldMapChange_Set3DDisplay(FieldSystem *fieldSystem)
 {
     GF_ASSERT(fieldSystem->mapLoadType < MAP_LOAD_TYPE_MAX);
-    gCoreSys.unk_65 = fieldSystem->mapLoadMode->unk_00_12;
+    gSystem.whichScreenIs3D = fieldSystem->mapLoadMode->unk_00_12;
 }
 
 void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)

@@ -13,7 +13,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -22,11 +21,11 @@
 #include "overlay_manager.h"
 #include "render_oam.h"
 #include "strbuf.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
@@ -142,7 +141,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     UnkStruct_ov71_0223B620 *v0;
     NARC *v1;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -243,7 +242,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
 
     ov71_0223C288();
 
-    SetMainCallback(ov71_0223C18C, NULL);
+    SetVBlankCallback(ov71_0223C18C, NULL);
     DrawWifiConnectionIcon();
     sub_0200544C(1, (127 / 3));
     StartScreenTransition(2, 3, 3, 0x0, 6, 1, 25);
@@ -392,7 +391,7 @@ int ov71_0223B5B8(OverlayManager *param0, int *param1)
 
     sub_0201E530();
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(25);
     sub_0200544C(1, 127);
 
@@ -930,7 +929,7 @@ static int ov71_0223BEF8(UnkStruct_ov71_0223B620 *param0)
 
     param0->unk_30D4 = 0xffffffff;
 
-    if (gCoreSys.touchPressed) {
+    if (gSystem.touchPressed) {
         param0->unk_30C4 = 1;
     }
 
@@ -939,7 +938,7 @@ static int ov71_0223BEF8(UnkStruct_ov71_0223B620 *param0)
     if (param0->unk_30D4 != 0xffffffff) {
         v1 = 1;
         v0 = 1;
-    } else if (gCoreSys.touchHeld) {
+    } else if (gSystem.touchHeld) {
         param0->unk_30D4 = ov71_0223C654(param0->unk_00, Unk_ov71_0223D4D0[param0->unk_B4->unk_04_0].unk_00[param0->unk_337C]);
 
         if (param0->unk_30C4) {
@@ -951,9 +950,9 @@ static int ov71_0223BEF8(UnkStruct_ov71_0223B620 *param0)
     }
 
     if (v1 == 0) {
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             v0 = 3;
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             v0 = 4;
         }
     }
@@ -968,23 +967,23 @@ static void ov71_0223BFBC(UnkStruct_ov71_0223B620 *param0)
 
     v0 = 0;
 
-    if ((gCoreSys.touchX != 0xffff) && (gCoreSys.touchY != 0xffff) && (param0->unk_30DC != 0xffff) && (param0->unk_30E0 != 0xffff)) {
+    if ((gSystem.touchX != 0xffff) && (gSystem.touchY != 0xffff) && (param0->unk_30DC != 0xffff) && (param0->unk_30E0 != 0xffff)) {
         if ((param0->unk_30D4 != 0xffffffff) && (param0->unk_30D4 != 0)) {
             if (param0->unk_B4->unk_48[param0->unk_30D4 - 1].unk_00_0) {
-                if (param0->unk_30DC > gCoreSys.touchX) {
-                    v1 = param0->unk_30DC - gCoreSys.touchX;
+                if (param0->unk_30DC > gSystem.touchX) {
+                    v1 = param0->unk_30DC - gSystem.touchX;
                     param0->unk_3364.unk_02 = -1;
                 } else {
-                    v1 = gCoreSys.touchX - param0->unk_30DC;
+                    v1 = gSystem.touchX - param0->unk_30DC;
                     param0->unk_3364.unk_02 = 1;
                 }
 
                 if ((v1 >= 3) && (v1 <= 40)) {
-                    if (param0->unk_30E0 > gCoreSys.touchY) {
-                        v1 = param0->unk_30E0 - gCoreSys.touchY;
+                    if (param0->unk_30E0 > gSystem.touchY) {
+                        v1 = param0->unk_30E0 - gSystem.touchY;
                         param0->unk_3364.unk_03 = -1;
                     } else {
-                        v1 = gCoreSys.touchY - param0->unk_30E0;
+                        v1 = gSystem.touchY - param0->unk_30E0;
                         param0->unk_3364.unk_03 = 1;
                     }
 
@@ -995,11 +994,11 @@ static void ov71_0223BFBC(UnkStruct_ov71_0223B620 *param0)
                         ov71_0223C444(&param0->unk_3364);
                     }
                 } else if (v1 <= 40) {
-                    if (param0->unk_30E0 > gCoreSys.touchY) {
-                        v1 = param0->unk_30E0 - gCoreSys.touchY;
+                    if (param0->unk_30E0 > gSystem.touchY) {
+                        v1 = param0->unk_30E0 - gSystem.touchY;
                         param0->unk_3364.unk_03 = -1;
                     } else {
-                        v1 = gCoreSys.touchY - param0->unk_30E0;
+                        v1 = gSystem.touchY - param0->unk_30E0;
                         param0->unk_3364.unk_03 = 1;
                     }
 
@@ -1018,8 +1017,8 @@ static void ov71_0223BFBC(UnkStruct_ov71_0223B620 *param0)
         }
     }
 
-    param0->unk_30DC = gCoreSys.touchX;
-    param0->unk_30E0 = gCoreSys.touchY;
+    param0->unk_30DC = gSystem.touchX;
+    param0->unk_30E0 = gSystem.touchY;
 }
 
 static void ov71_0223C0D8(UnkStruct_ov71_0223B620 *param0, const u8 param1)
@@ -1324,7 +1323,7 @@ static int ov71_0223C60C(BgConfig *param0, const TouchScreenRect *rect)
         if (v0 != 0) {
             u16 v1 = 0x40;
 
-            if (Bg_DoesPixelAtXYMatchVal(param0, 2, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+            if (Bg_DoesPixelAtXYMatchVal(param0, 2, gSystem.touchX, gSystem.touchY, &v1) == 0) {
                 return 0xffffffff;
             }
         } else {
@@ -1343,7 +1342,7 @@ static int ov71_0223C654(BgConfig *param0, const TouchScreenRect *rect)
         if (v0 != 0) {
             u16 v1 = 0x40;
 
-            if (Bg_DoesPixelAtXYMatchVal(param0, 2, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+            if (Bg_DoesPixelAtXYMatchVal(param0, 2, gSystem.touchX, gSystem.touchY, &v1) == 0) {
                 return 0xffffffff;
             }
         } else {

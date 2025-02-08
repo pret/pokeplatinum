@@ -23,7 +23,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -48,12 +47,12 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "system_data.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202DAB4.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -2141,7 +2140,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             *param1 = 8;
         }
 
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0)) {
+        if ((gSystem.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0)) {
             ov97_0222D30C(v3, 0);
             ov97_0222D2DC();
             sub_02039794();
@@ -2173,7 +2172,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             break;
         }
 
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0)) {
+        if ((gSystem.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0)) {
             ov97_0222D2DC();
             sub_02039794();
             ov97_0222D40C(v3, -1);
@@ -2188,7 +2187,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
 
         v1 = CommSys_CurNetId();
 
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0) || ((v1 != 0) && (CommSys_IsPlayerConnected(v1) == 0))) {
+        if ((gSystem.pressedKeys & PAD_BUTTON_B) || (--v3->unk_434 == 0) || ((v1 != 0) && (CommSys_IsPlayerConnected(v1) == 0))) {
             ov97_0222D30C(v3, 0);
             ov97_0222D2DC();
             sub_02039794();
@@ -2273,7 +2272,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         *param1 = 18;
         break;
     case 18:
-        if (gCoreSys.pressedKeys) {
+        if (gSystem.pressedKeys) {
             Sound_PlayEffect(1500);
             ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
             *param1 = 3;
@@ -2362,7 +2361,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         *param1 = ov97_0222E228(param0, NULL, NULL, *param1);
         break;
     case 51:
-        if (gCoreSys.pressedKeys) {
+        if (gSystem.pressedKeys) {
             ov97_0222D444(&v3->unk_58, 0);
             *param1 = ov97_0222DA64(param0);
         }
@@ -2383,7 +2382,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         return 1;
         break;
     case 55:
-        if (gCoreSys.pressedKeys) {
+        if (gSystem.pressedKeys) {
             Sound_PlayEffect(1500);
 
             if (v3->unk_8C.unk_00.unk_4E_2 == 1) {
@@ -2566,7 +2565,7 @@ static void ov97_022302F4(UnkStruct_ov97_0222D04C *param0)
         break;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         switch (Unk_ov97_0223F1A8) {
         case 40:
         case 41:

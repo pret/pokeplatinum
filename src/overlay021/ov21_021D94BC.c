@@ -29,13 +29,13 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -1387,7 +1387,7 @@ static void ov21_021DA534(UnkStruct_ov21_021D4FE4 *param0, int param1)
 
 static void ov21_021DA5A8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
-    if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+    if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
             switch (ov21_021D4F7C(param0->unk_18)) {
             case 1:
@@ -1425,7 +1425,7 @@ static void ov21_021DA5A8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
         param0->unk_8C = 0;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->unk_80 = 0;
         param0->unk_2C[param0->unk_80] = 2;
     }
@@ -1506,7 +1506,7 @@ static void ov21_021DA6B0(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
 
 static void ov21_021DA7B0(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
-    if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+    if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
             switch (ov21_021D4F7C(param0->unk_18)) {
             case 8:
@@ -1617,7 +1617,7 @@ static void ov21_021DA888(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
 
 static void ov21_021DA988(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
-    if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+    if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
             switch (ov21_021D4F7C(param0->unk_18)) {
             case 6:
@@ -1764,7 +1764,7 @@ static void ov21_021DAAD4(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
 
 static void ov21_021DAC08(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
-    if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+    if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
             switch (ov21_021D4F7C(param0->unk_18)) {
             case 6:
@@ -1930,7 +1930,7 @@ static void ov21_021DAD74(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
 
 static void ov21_021DAED8(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
-    if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+    if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
             switch (ov21_021D4F7C(param0->unk_18)) {
             case 6:
@@ -2058,7 +2058,7 @@ static void ov21_021DB02C(UnkStruct_ov21_021D9B24 *param0, enum HeapId heapID)
 
 static void ov21_021DB12C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
-    if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+    if (gSystem.heldKeys & PAD_BUTTON_A) {
         if (param0->unk_8C == 0) {
             switch (ov21_021D4F7C(param0->unk_18)) {
             case 6:
@@ -2132,22 +2132,22 @@ static void ov21_021DB12C(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95
 
 static void ov21_021DB2FC(UnkStruct_ov21_021D9B24 *param0, UnkStruct_ov21_021D95B8 *param1)
 {
-    if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         ov21_021D4F20(param0->unk_18, 0, 1);
         param0->unk_8C = 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         ov21_021D4F20(param0->unk_18, 0, -1);
         param0->unk_8C = 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         ov21_021D4F20(param0->unk_18, 1, -1);
         param0->unk_8C = 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         ov21_021D4F20(param0->unk_18, 1, 1);
         param0->unk_8C = 1;
     }

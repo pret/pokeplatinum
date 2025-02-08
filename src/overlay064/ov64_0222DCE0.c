@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/savedata/vars_flags.h"
+#include "constants/screen.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -22,7 +23,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "font.h"
 #include "game_options.h"
@@ -39,7 +39,9 @@
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "render_text.h"
+#include "render_view.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -49,15 +51,13 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "system_flags.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "render_oam.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02017728.h"
-#include "render_view.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -607,7 +607,7 @@ int ov64_0222DCE0(OverlayManager *param0, int *param1)
     ov64_02230620(&v0->unk_41C, &v0->unk_28C, &v0->unk_04, 52);
     ov64_022308DC(&v0->unk_444, &v0->unk_28C, &v0->unk_04, 52);
 
-    SetMainCallback(ov64_0222DF3C, v0);
+    SetVBlankCallback(ov64_0222DF3C, v0);
     DisableHBlank();
 
     return 1;
@@ -666,7 +666,7 @@ int ov64_0222DEA4(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov64_0222DFD0 *v0 = OverlayManager_Data(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     ov64_0222EC8C(&v0->unk_2C8, &v0->unk_28C, &v0->unk_04);
@@ -701,13 +701,13 @@ static void ov64_0222DF48(UnkStruct_ov64_0222DFD0 *param0, u32 param1)
     ov64_02230680(&param0->unk_41C, &param0->unk_28C, &param0->unk_04, param1);
     ov64_02230B1C(&param0->unk_444, &param0->unk_28C, &param0->unk_04, param1);
 
-    SetMainCallback(ov64_0222DF3C, param0);
+    SetVBlankCallback(ov64_0222DF3C, param0);
     DisableHBlank();
 }
 
 static void ov64_0222DFD0(UnkStruct_ov64_0222DFD0 *param0)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     ov64_0222EE00(&param0->unk_2C8, &param0->unk_28C, &param0->unk_04);
@@ -832,7 +832,7 @@ static void ov64_0222E164(UnkStruct_ov64_0222E060 *param0)
 
 static void ov64_0222E1A4(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_0222E060 *param1, u32 param2)
 {
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
     param0->unk_21C = NARC_ctor(NARC_INDEX_GRAPHIC__PL_WIFINOTE, param2);
 
@@ -1346,7 +1346,7 @@ static int ov64_0222EA70(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E06
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             ov64_0222F050(param0);
             param1->unk_04 = 3;
         }
@@ -1569,23 +1569,23 @@ static BOOL ov64_0222EE84(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E0
 {
     BOOL v0 = 0;
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1501);
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1501);
         param0->unk_00 = 3;
         return 1;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         if (param0->unk_00 > 0) {
             param0->unk_00--;
             v0 = 1;
         }
-    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         if (param0->unk_00 < 3) {
             param0->unk_00++;
             v0 = 1;
@@ -1879,7 +1879,7 @@ static int ov64_0222F0C4(UnkStruct_ov64_0222F0C4 *param0, UnkStruct_ov64_0222E06
             break;
         }
 
-        if (gCoreSys.pressedKeys) {
+        if (gSystem.pressedKeys) {
             ov64_0222EA28(param2, 1);
             param1->unk_04 = 2;
             ov64_0222FF18(param0);
@@ -2197,7 +2197,7 @@ static u32 ov64_0222F798 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
     BOOL v2;
     int v3;
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         if (param0->unk_04 == 8) {
             Sound_PlayEffect(1501);
             return 3;
@@ -2211,7 +2211,7 @@ static u32 ov64_0222F798 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
         return 4;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1501);
         return 3;
     }
@@ -2220,7 +2220,7 @@ static u32 ov64_0222F798 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
     v1 = 0;
     v2 = 0;
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         if (param0->unk_04 == 8) {
             param0->unk_04 = param0->unk_06;
             v1 = 1;
@@ -2238,7 +2238,7 @@ static u32 ov64_0222F798 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
                 }
             }
         }
-    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         if ((param0->unk_04 == 3) || (param0->unk_04 == 7)) {
             param0->unk_04 = 8;
             v1 = 1;
@@ -2257,7 +2257,7 @@ static u32 ov64_0222F798 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
                 }
             }
         }
-    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
         if (param0->unk_04 != 8) {
             if (param0->unk_04 < (8 / 2)) {
                 param0->unk_04 += (8 / 2);
@@ -2269,7 +2269,7 @@ static u32 ov64_0222F798 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
                 v1 = 1;
             }
         }
-    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         if (param0->unk_04 != 8) {
             if (param0->unk_04 < (8 / 2)) {
                 param0->unk_04 += (8 / 2);
@@ -2899,7 +2899,7 @@ static int ov64_02230628 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_0222E
         param1->unk_04 = 1;
         break;
     case 1:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1501);
             ov64_0222E074(param1, 0, 2);
             ov64_0223087C(param0, param2);
@@ -3143,30 +3143,30 @@ static int ov64_02230904(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E06
         param1->unk_04 = 2;
         break;
     case 2:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1501);
             param1->unk_04 = 6;
         } else {
-            if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+            if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
                 ov64_02232138(param0, -1);
                 param1->unk_04 = 3;
                 param0->unk_08 = 2;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
                 ov64_02232138(param0, 1);
                 param1->unk_04 = 3;
                 param0->unk_08 = 3;
-            } else if (gCoreSys.heldKeys & PAD_KEY_UP) {
+            } else if (gSystem.heldKeys & PAD_KEY_UP) {
                 param1->unk_04 = 5;
                 param0->unk_08 = 0;
                 param0->unk_0C = 4;
-            } else if (gCoreSys.heldKeys & PAD_KEY_DOWN) {
+            } else if (gSystem.heldKeys & PAD_KEY_DOWN) {
                 param1->unk_04 = 5;
                 param0->unk_08 = 1;
                 param0->unk_0C = 4;
             }
         }
 
-        if ((gCoreSys.heldKeys & (PAD_KEY_UP | PAD_KEY_DOWN)) == 0) {
+        if ((gSystem.heldKeys & (PAD_KEY_UP | PAD_KEY_DOWN)) == 0) {
             param0->unk_0E = 0;
         }
         break;

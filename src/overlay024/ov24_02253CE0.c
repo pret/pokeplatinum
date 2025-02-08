@@ -1,7 +1,6 @@
 #include "overlay024/ov24_02253CE0.h"
 
-#include <nitro.h>
-#include <string.h>
+#include "constants/heap.h"
 
 #include "bg_window.h"
 #include "graphics.h"

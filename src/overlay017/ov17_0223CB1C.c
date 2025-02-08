@@ -34,13 +34,13 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -124,7 +124,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov17_02247A48 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -219,7 +219,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     sub_02004234(0);
     sub_02004550(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
-    SetMainCallback(ov17_0223D0C8, v0);
+    SetVBlankCallback(ov17_0223D0C8, v0);
     Sound_PlayEffect(1541);
 
     return 1;
@@ -337,7 +337,7 @@ int ov17_0223CF8C(OverlayManager *param0, int *param1)
 
     sub_0201E530();
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(22);
     sub_02095A24();

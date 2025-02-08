@@ -8,7 +8,7 @@
 #include "nnsys/g2d/g2d_RendererCore.h"
 
 #include "heap.h"
-#include "unk_02017728.h"
+#include "system.h"
 
 typedef void (*CellActorDrawFunc)(const CellActorCollection *, CellActor *);
 typedef void (*CellActorAnimUpdateFunc)(CellActor *);

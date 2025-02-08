@@ -22,7 +22,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -35,6 +34,7 @@
 #include "player_avatar.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_020655F4.h"
 
@@ -2177,12 +2177,12 @@ static BOOL ov6_02240364(UnkStruct_ov6_022401B8 *param0, int param1, int param2)
     BOOL v1[2] = { 0, 0 };
     UnkStruct_ov6_02240260 *v2 = &param0->unk_34;
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         v2->unk_00++;
         v2->unk_00 %= 32;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (v2->unk_00) {
             v2->unk_00--;
         } else {
@@ -2190,12 +2190,12 @@ static BOOL ov6_02240364(UnkStruct_ov6_022401B8 *param0, int param1, int param2)
         }
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         v2->unk_04++;
         v2->unk_04 %= 32;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (v2->unk_04) {
             v2->unk_04--;
         } else {

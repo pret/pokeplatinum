@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -26,7 +28,6 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "enums.h"
 #include "font.h"
@@ -44,6 +45,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -51,7 +53,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -183,7 +184,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov117_02261280 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
@@ -261,7 +262,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     StartScreenTransition(0, 27, 27, 0x0, 6, 1, 110);
     v0->unk_94 = SysTask_Start(ov117_02260F7C, v0, 60000);
 
-    gCoreSys.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
@@ -283,7 +284,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
         PaletteData_LoadBufferFromHardware(v0->unk_8C, 2, v2 * 16, 3 * 0x20);
     }
 
-    SetMainCallback(ov117_02260DA0, v0);
+    SetVBlankCallback(ov117_02260DA0, v0);
 
     if (v0->unk_00->unk_3C) {
         ov4_021D1E74(110);
@@ -436,7 +437,7 @@ int ov117_02260C10(OverlayManager *param0, int *param1)
     ov117_022641E4(v0);
     ov117_02264508(v0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     ov117_022615E0(v0);
     ov117_022618E8(v0);

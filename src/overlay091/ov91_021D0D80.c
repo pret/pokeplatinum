@@ -17,7 +17,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -35,11 +34,11 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
@@ -366,7 +365,7 @@ int ov91_021D0D80(OverlayManager *param0, int *param1)
 
     Window_ScheduleCopyToVRAM(&v0->unk_08[12]);
     ov91_021D2594(v0);
-    SetMainCallback(ov91_021D0F9C, v0);
+    SetVBlankCallback(ov91_021D0F9C, v0);
 
     return 1;
 }
@@ -438,7 +437,7 @@ static void ov91_021D0ED8(UnkStruct_ov91_021D0ED8 *param0)
 {
     NARC *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     GXLayers_DisableEngineALayers();
@@ -462,7 +461,7 @@ static void ov91_021D0ED8(UnkStruct_ov91_021D0ED8 *param0)
     ov91_021D1784(param0);
     ov91_021D1498(param0);
 
-    SetMainCallback(ov91_021D0F9C, param0);
+    SetVBlankCallback(ov91_021D0F9C, param0);
     NARC_dtor(v0);
 }
 
@@ -475,7 +474,7 @@ static void ov91_021D0F6C(UnkStruct_ov91_021D0ED8 *param0)
     ov91_021D20B4(param0);
 
     VramTransfer_Free();
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 }
 
 static void ov91_021D0F9C(void *param0)
@@ -657,7 +656,7 @@ static int ov91_021D122C(UnkStruct_ov91_021D0ED8 *param0)
     u32 v0;
     u16 v1, v2;
 
-    if (gCoreSys.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+    if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
         Sound_PlayEffect(1501);
         param0->unk_00->unk_14 ^= 1;
         ov91_021D1498(param0);

@@ -50,7 +50,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "flags.h"
 #include "heap.h"
 #include "item.h"
@@ -65,6 +64,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_data.h"
@@ -2055,7 +2055,7 @@ static BOOL BtlCmd_WaitButtonABTime(BattleSystem *battleSys, BattleContext *batt
     int frames = BattleScript_Read(battleCtx);
 
     if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
             battleCtx->waitCounter = frames;
         }
     }
@@ -10207,7 +10207,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF_WAIT:
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE_WAIT:
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             data->seqNum++;
         }
@@ -10784,7 +10784,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         break;
     case 13:
         if (ov21_021E8DEC(v2->tmpPtr[0])) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v2->seqNum = 14;
             } else if (TouchScreen_Tapped()) {
                 Sound_PlayEffect(1500);

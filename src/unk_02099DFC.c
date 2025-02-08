@@ -4,7 +4,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -15,11 +14,11 @@
 #include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "system.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 
 FS_EXTERN_OVERLAY(overlay77);
 
@@ -107,7 +106,7 @@ int sub_02099E38(OverlayManager *param0, int *param1)
         sub_02004234(0);
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -118,7 +117,7 @@ int sub_02099E38(OverlayManager *param0, int *param1)
         SetAutorepeat(4, 8);
         sub_02099F80(v0);
         sub_0209A098(v0);
-        SetMainCallback(sub_02099F74, (void *)v0);
+        SetVBlankCallback(sub_02099F74, (void *)v0);
         GXLayers_TurnBothDispOn();
         StartScreenTransition(0, 1, 1, 0, 6, 1, v0->unk_00);
         *param1 = 1;
@@ -138,7 +137,7 @@ int sub_02099E38(OverlayManager *param0, int *param1)
         if (IsScreenTransitionDone() == TRUE) {
             sub_0209A0E0(v0);
             sub_0209A044(v0);
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             v1 = 1;
         }
         break;
@@ -339,7 +338,7 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
         }
         break;
     case 2:
-        if ((param2 != 0) || (gCoreSys.pressedKeys & 1)) {
+        if ((param2 != 0) || (gSystem.pressedKeys & 1)) {
             param0->unk_08 = 0;
             v0 = 1;
         }

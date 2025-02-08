@@ -33,11 +33,11 @@
 #include "overlay070/struct_ov70_02265F38.h"
 #include "overlay070/struct_ov70_0226DA18.h"
 
-#include "core_sys.h"
 #include "enums.h"
 #include "list_menu.h"
 #include "math.h"
 #include "strbuf.h"
+#include "system.h"
 #include "unk_02005474.h"
 
 typedef struct {
@@ -463,7 +463,7 @@ static BOOL ov70_02263120(int param0)
         break;
     }
 
-    if (gCoreSys.heldKeys & v0) {
+    if (gSystem.heldKeys & v0) {
         return 1;
     }
 
@@ -895,7 +895,7 @@ static BOOL ov70_02263414(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         ov70_02262E88(param0, 21);
         break;
     case 18:
-        if (!((Sound_IsEffectPlaying(1448) == 0) && (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)))) {
+        if (!((Sound_IsEffectPlaying(1448) == 0) && (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)))) {
             break;
         }
 
@@ -1308,7 +1308,7 @@ static BOOL ov70_02263CC8(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
                     return 0;
                 }
 
-                if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+                if (gSystem.pressedKeys & PAD_BUTTON_A) {
                     {
                         UnkStruct_ov70_0225CC54 *v17;
                         u32 v18;
@@ -1396,7 +1396,7 @@ static BOOL ov70_02263CC8(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
                     }
                 }
 
-                if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+                if (gSystem.pressedKeys & PAD_BUTTON_X) {
                     if (ov70_0225E3F0(param1) == 0) {
                         ov70_0225E328(param1, ov66_0222E338(v11), 0);
                         Sound_PlayEffect(1500);
@@ -2415,7 +2415,7 @@ static BOOL ov70_02264D38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
         }
         break;
     case 2:
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (gCoreSys.pressedKeys & PAD_KEY_DOWN)) {
+        if ((gSystem.pressedKeys & PAD_BUTTON_B) || (gSystem.pressedKeys & PAD_KEY_DOWN)) {
             ov66_0222EBC4(v4, param2);
             ov70_0225DFCC(param1);
             v0->unk_0A = 6;

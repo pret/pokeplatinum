@@ -1,7 +1,8 @@
 #include "overlay055/ov55_0225632C.h"
 
-#include <nitro.h>
 #include <string.h>
+
+#include "constants/heap.h"
 
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/struct_ov25_0225517C.h"

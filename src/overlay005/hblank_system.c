@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "heap.h"
-#include "unk_02017728.h"
+#include "system.h"
 
 static void HBlankSystem_Init(HBlankSystem *hBlankSystem);
 static void HBlankTask_Init(HBlankTask *task);

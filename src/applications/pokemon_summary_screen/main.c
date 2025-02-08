@@ -21,7 +21,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -40,6 +39,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -50,7 +50,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -202,7 +201,7 @@ BOOL PokemonSummaryScreen_ShowContestData(SaveData *saveData)
 
 static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -247,7 +246,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     SetupInitialPageGfx(summaryScreen);
     PokemonSummaryScreen_SetSubscreenType(summaryScreen);
     PokemonSummaryScreen_SetupCamera(summaryScreen);
-    SetMainCallback(PokemonSummaryScreenVBlank, summaryScreen);
+    SetVBlankCallback(PokemonSummaryScreenVBlank, summaryScreen);
     GXLayers_TurnBothDispOn();
     sub_02004550(61, 0, 0);
     DrawWifiConnectionIcon();
@@ -339,7 +338,7 @@ static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
 {
     PokemonSummaryScreen *summaryScreen = OverlayManager_Data(ovyManager);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     PokemonSummaryScreen_FreeCameraAndMonSprite(summaryScreen);
     PokemonSummaryScreen_FreeSpriteResources(summaryScreen);
     PokemonSummaryScreen_RemoveWindows(summaryScreen);

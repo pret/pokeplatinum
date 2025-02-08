@@ -29,8 +29,8 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 
 typedef struct UnkStruct_ov20_021D2128_t {
     SysTask *unk_00;
@@ -105,7 +105,7 @@ UnkStruct_ov20_021D2128 *ov20_021D2098(const UnkStruct_ov20_021D16E8 *param0, co
     if (v0) {
         int v1;
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
 
         v0->unk_18 = param0;
@@ -132,7 +132,7 @@ void ov20_021D2128(UnkStruct_ov20_021D2128 *param0)
     if (param0) {
         int v0;
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
 
         for (v0 = 0; v0 < 4; v0++) {
             if (param0->unk_08[v0]) {

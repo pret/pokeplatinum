@@ -27,7 +27,6 @@
 #include "bag.h"
 #include "charcode_util.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_overworld_state.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -45,6 +44,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "system.h"
 #include "system_data.h"
 #include "system_flags.h"
 #include "trainer_info.h"
@@ -121,7 +121,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
         + date.month * 0x100 * date.day * 0x10000
         + time.hour * 0x10000
         + (time.minute + time.second) * 0x1000000
-        + gCoreSys.vblankCounter;
+        + gSystem.vblankCounter;
 
     if (CommSys_IsInitialized() == TRUE) {
         for (i = 0; i < CommSys_ConnectedCount(); i++) {

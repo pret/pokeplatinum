@@ -23,7 +23,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "unk_02017728.h"
+#include "system.h"
 
 typedef struct CellTransferStateData_t {
     int unk_00;

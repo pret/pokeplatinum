@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -11,7 +13,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "core_sys.h"
 #include "easy3d.h"
 #include "font.h"
 #include "game_options.h"
@@ -31,10 +32,10 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_0202C858.h"
 #include "unk_020996D0.h"
@@ -303,7 +304,7 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
     UnkStruct_ov92_021D1B24 *v0;
     int v1 = 50;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -346,7 +347,7 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
     v0->camera = Camera_Alloc(v0->unk_00);
     v0->unk_BAE8 = 0;
 
-    gCoreSys.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
     SetAutorepeat(4, 8);
@@ -585,7 +586,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         u16 v10 = v0->unk_BAD8;
         ov92_021D1700(v0);
 
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (v0->unk_BAF8 & PAD_BUTTON_B)) {
+        if ((gSystem.pressedKeys & PAD_BUTTON_B) || (v0->unk_BAF8 & PAD_BUTTON_B)) {
             Window_EraseStandardFrame(&v0->unk_B834, 0);
             Sound_PlayEffect(1501);
             Window_FillRectWithColor(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
@@ -598,7 +599,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
                 *param1 = 17;
             }
         } else {
-            if ((gCoreSys.pressedKeys & PAD_BUTTON_X) && (v0->unk_BB28 == 0)) {
+            if ((gSystem.pressedKeys & PAD_BUTTON_X) && (v0->unk_BB28 == 0)) {
                 v0->unk_BB28 = 1;
                 ov92_021D1F90(v0);
 
@@ -608,7 +609,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
                 break;
             }
 
-            if ((gCoreSys.pressedKeys & (PAD_BUTTON_X | PAD_BUTTON_A | PAD_BUTTON_B)) && (v0->unk_BB28 == 1)) {
+            if ((gSystem.pressedKeys & (PAD_BUTTON_X | PAD_BUTTON_A | PAD_BUTTON_B)) && (v0->unk_BB28 == 1)) {
                 v0->unk_BB28 = 0;
                 ov92_021D1F90(v0);
                 break;
@@ -617,7 +618,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
             {
                 BOOL v11;
 
-                v11 = ov92_021D2460(v0, gCoreSys.pressedKeys, gCoreSys.heldKeys);
+                v11 = ov92_021D2460(v0, gSystem.pressedKeys, gSystem.heldKeys);
 
                 if ((v11 == 1) && (v0->unk_BB28 == 1)) {
                     v0->unk_BB28 = 0;
@@ -679,11 +680,11 @@ int ov92_021D1478(OverlayManager *param0, int *param1)
     StringTemplate_Free(v0->unk_B870);
     Easy3D_Shutdown();
     Heap_FreeToHeap(v0->unk_B810);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     OverlayManager_FreeData(param0);
     Heap_Destroy(v1);
 
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     return 1;
 }
@@ -822,8 +823,8 @@ static void ov92_021D1700(UnkStruct_ov92_021D1B24 *param0)
 
     param0->unk_BAF8 = 0;
 
-    if (gCoreSys.touchPressed) {
-        if ((gCoreSys.touchX >= (25 * 8)) && (gCoreSys.touchX <= ((25 + 6) * 8)) && (gCoreSys.touchY >= (21 * 8)) && (gCoreSys.touchY <= ((21 + 2) * 8))) {
+    if (gSystem.touchPressed) {
+        if ((gSystem.touchX >= (25 * 8)) && (gSystem.touchX <= ((25 + 6) * 8)) && (gSystem.touchY >= (21 * 8)) && (gSystem.touchY <= ((21 + 2) * 8))) {
             param0->unk_BAF8 = PAD_BUTTON_B;
             return;
         } else {
@@ -832,13 +833,13 @@ static void ov92_021D1700(UnkStruct_ov92_021D1B24 *param0)
             param0->unk_BB0C = 0;
             param0->unk_BB10 = 0;
             param0->unk_BAF8 = 0;
-            param0->unk_BB00 = gCoreSys.touchX;
-            param0->unk_BB04 = gCoreSys.touchY;
+            param0->unk_BB00 = gSystem.touchX;
+            param0->unk_BB04 = gSystem.touchY;
             param0->unk_BB10 = 4;
         }
     }
 
-    if (gCoreSys.touchHeld) {
+    if (gSystem.touchHeld) {
         switch (param0->unk_BAFC) {
         case 0:
             if (!param0->unk_BB10) {
@@ -851,8 +852,8 @@ static void ov92_021D1700(UnkStruct_ov92_021D1B24 *param0)
             param0->unk_BAF8 = v0 | v2;
             param0->unk_BB08 = v1;
             param0->unk_BB0C = v3;
-            param0->unk_BB00 = gCoreSys.touchX;
-            param0->unk_BB04 = gCoreSys.touchY;
+            param0->unk_BB00 = gSystem.touchX;
+            param0->unk_BB04 = gSystem.touchY;
             break;
         }
     } else {
@@ -874,8 +875,8 @@ static void ov92_021D1818(int param0, int param1, int *param2, int *param3, int 
     int v2 = 0;
     int v3 = 0;
 
-    if (gCoreSys.touchX != 0xffff) {
-        v2 = gCoreSys.touchX - param0;
+    if (gSystem.touchX != 0xffff) {
+        v2 = gSystem.touchX - param0;
 
         if (v2 < 0) {
             v2 ^= -1;
@@ -891,8 +892,8 @@ static void ov92_021D1818(int param0, int param1, int *param2, int *param3, int 
     *param2 = v0;
     *param3 = v2;
 
-    if (gCoreSys.touchY != 0xffff) {
-        v3 = gCoreSys.touchY - param1;
+    if (gSystem.touchY != 0xffff) {
+        v3 = gSystem.touchY - param1;
 
         if (v3 < 0) {
             v3 ^= -1;
@@ -1000,7 +1001,7 @@ static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param
         }
         break;
     case 2:
-        if ((param2 != 0) || (gCoreSys.pressedKeys & PAD_BUTTON_A)) {
+        if ((param2 != 0) || (gSystem.pressedKeys & PAD_BUTTON_A)) {
             param0->unk_B864 = 0;
             v0 = 1;
         }

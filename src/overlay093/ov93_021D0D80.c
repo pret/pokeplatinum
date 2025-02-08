@@ -14,9 +14,9 @@
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_0208C098.h"
 
@@ -200,7 +200,7 @@ int ov93_021D0F58(OverlayManager *param0, int *param1)
 
 static void ov93_021D0FA8(void)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();

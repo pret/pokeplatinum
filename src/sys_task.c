@@ -3,27 +3,27 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
 #include "sys_task_manager.h"
+#include "system.h"
 
 SysTask *SysTask_Start(SysTaskFunc callback, void *param, u32 priority)
 {
-    return SysTaskManager_AddTask(gCoreSys.mainTaskMgr, callback, param, priority);
+    return SysTaskManager_AddTask(gSystem.mainTaskMgr, callback, param, priority);
 }
 
 SysTask *SysTask_ExecuteOnVBlank(SysTaskFunc callback, void *param, u32 priority)
 {
-    return SysTaskManager_AddTask(gCoreSys.vBlankTaskMgr, callback, param, priority);
+    return SysTaskManager_AddTask(gSystem.vBlankTaskMgr, callback, param, priority);
 }
 
 SysTask *SysTask_CreateOnPrintQueue(SysTaskFunc callback, void *param, u32 priority)
 {
-    return SysTaskManager_AddTask(gCoreSys.printTaskMgr, callback, param, priority);
+    return SysTaskManager_AddTask(gSystem.printTaskMgr, callback, param, priority);
 }
 
 SysTask *SysTask_ExecuteAfterVBlank(SysTaskFunc callback, void *param, u32 priority)
 {
-    return SysTaskManager_AddTask(gCoreSys.postVBlankTaskMgr, callback, param, priority);
+    return SysTaskManager_AddTask(gSystem.postVBlankTaskMgr, callback, param, priority);
 }
 
 void SysTask_Done(SysTask *task)

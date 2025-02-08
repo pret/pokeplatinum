@@ -22,9 +22,9 @@
 #include "math.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 
 enum {
@@ -140,7 +140,7 @@ void ov95_02249770(void *param0)
     if (v0) {
         int v1;
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
 
         ov95_02249A68(v0);
         ov95_02249B80(v0);

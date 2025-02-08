@@ -6,10 +6,10 @@
 
 #include "bg_window.h"
 #include "colored_arrow.h"
-#include "core_sys.h"
 #include "font.h"
 #include "heap.h"
 #include "string_list.h"
+#include "system.h"
 #include "text.h"
 
 static void PrintEntry(ListMenu *menu, void *strbuf, u8 xOffset, u8 yOffset);

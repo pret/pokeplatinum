@@ -35,7 +35,6 @@
 
 #include "assert.h"
 #include "bg_window.h"
-#include "core_sys.h"
 #include "graphics.h"
 #include "heap.h"
 #include "palette.h"
@@ -44,6 +43,7 @@
 #include "spl.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200A9DC.h"
@@ -1328,7 +1328,7 @@ static void ov17_02249014(SysTask *param0, void *param1)
         v0->unk_15 = 1;
     }
 
-    if ((v0->unk_00->unk_00->unk_155 == 0) && (v0->unk_18 < 30) && ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.touchPressed))) {
+    if ((v0->unk_00->unk_00->unk_155 == 0) && (v0->unk_18 < 30) && ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.touchPressed))) {
         v0->unk_18 = 30;
         v1 = 0;
         v0->unk_13 = 0;

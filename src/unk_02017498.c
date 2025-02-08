@@ -11,8 +11,8 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "overlay_manager.h"
+#include "system.h"
 #include "unk_020041CC.h"
-#include "unk_02017728.h"
 #include "unk_02033200.h"
 #include "unk_020393C8.h"
 #include "unk_0208BA78.h"
@@ -36,7 +36,7 @@ int sub_02017498(OverlayManager *param0, int *param1)
 {
     UnkStruct_02017498 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();

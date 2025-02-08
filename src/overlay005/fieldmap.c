@@ -52,7 +52,6 @@
 #include "camera.h"
 #include "char_transfer.h"
 #include "comm_player_manager.h"
-#include "core_sys.h"
 #include "easy3d.h"
 #include "field_map_change.h"
 #include "field_message.h"
@@ -75,8 +74,8 @@
 #include "render_oam.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
+#include "system.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "unk_02027F50.h"
@@ -154,7 +153,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
 
     switch (*param1) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
 
         G2_BlendNone();
@@ -335,7 +334,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             VramTransfer_Free();
             Easy3D_Shutdown();
             ov5_021D1AE4(fieldSystem->unk_04->unk_04);
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             Heap_FreeToHeap(fieldSystem->bgConfig);
             Heap_FreeToHeap(fieldSystem->unk_04);
 
@@ -916,7 +915,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     ov5_021D5CE4(fieldSystem->unk_04->unk_10, ov5_021EFA8C(fieldSystem->unk_30));
     sub_02068344(fieldSystem);
     ov5_021EE7C0(fieldSystem);
-    SetMainCallback(fieldmap, fieldSystem);
+    SetVBlankCallback(fieldmap, fieldSystem);
 }
 
 static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1)

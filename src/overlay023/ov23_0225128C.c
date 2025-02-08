@@ -27,7 +27,6 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "heap.h"
@@ -43,6 +42,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "system_flags.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -578,7 +578,7 @@ static BOOL ov23_02251960(SysTask *param0, void *param1)
 static BOOL ov23_02251A58(UnkStruct_ov23_02250CD4 *param0)
 {
     if (ov23_02254238(ov23_022421BC()) == 0) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov23_02254044(ov23_022421BC());
             return 1;
         }
@@ -705,7 +705,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         v0->unk_2AA = 7;
         break;
     case 7:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov23_02253D10(v0->unk_270);
             v0->unk_270 = NULL;
             v0->unk_2AA = 0;
@@ -760,7 +760,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         break;
     case 16:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 if (!sub_02033DFC()) {
                     sub_0200AAE0(1, 0, -6, GX_BLEND_PLANEMASK_BG0, 1);
                 }

@@ -29,12 +29,12 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "save_player.h"
+#include "system.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
-#include "unk_02017728.h"
 #include "unk_02024220.h"
 #include "unk_0202F180.h"
 #include "unk_0208694C.h"
@@ -62,7 +62,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     UnkStruct_0209843C *v0;
     UnkStruct_ov119_021D0FD0 *v1;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Create(3, 71, 0x40000);
 
@@ -98,7 +98,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     ov119_021D17B8(&v1->unk_04);
 
     sub_0200569C();
-    SetMainCallback(ov119_021D0FD0, v1);
+    SetVBlankCallback(ov119_021D0FD0, v1);
 
     return 1;
 }
@@ -188,7 +188,7 @@ static int sub_02098388(OverlayManager *param0, int *param1)
     OverlayManager_FreeData(param0);
     Heap_Destroy(71);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     return 1;

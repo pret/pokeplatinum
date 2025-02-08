@@ -21,7 +21,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -43,6 +42,7 @@
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
@@ -50,7 +50,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202C7FC.h"
 #include "vram_transfer.h"
@@ -114,7 +113,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
     case 0:
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -148,7 +147,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
 
         sub_0201E3D8();
         sub_0201E450(1);
-        SetMainCallback(ov72_0223DA48, v0->unk_00);
+        SetVBlankCallback(ov72_0223DA48, v0->unk_00);
         Font_InitManager(FONT_SUBSCREEN, 39);
 
         ov72_0223DB98(v0);
@@ -209,7 +208,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
 
     ov72_0223E9B4(v0->unk_5BFC, v0->unk_328.pixels);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SpriteTransfer_ResetCharTransfer(v0->unk_1DC[0][0]);
     SpriteTransfer_ResetCharTransfer(v0->unk_1DC[1][0]);
     SpriteTransfer_ResetPlttTransfer(v0->unk_1DC[0][1]);
@@ -235,7 +234,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(39);
 
     return 1;
@@ -1166,21 +1165,21 @@ static void ov72_0223EA18(UnkStruct_ov72_0223DB98 *param0)
 
     v0 = 0;
 
-    if ((gCoreSys.touchX != 0xffff) && (gCoreSys.touchY != 0xffff) && (param0->unk_5D0C != 0xffff) && (param0->unk_5D10 != 0xffff)) {
-        if (param0->unk_5D0C > gCoreSys.touchX) {
-            v1 = param0->unk_5D0C - gCoreSys.touchX;
+    if ((gSystem.touchX != 0xffff) && (gSystem.touchY != 0xffff) && (param0->unk_5D0C != 0xffff) && (param0->unk_5D10 != 0xffff)) {
+        if (param0->unk_5D0C > gSystem.touchX) {
+            v1 = param0->unk_5D0C - gSystem.touchX;
             param0->unk_5D04.unk_02 = -1;
         } else {
-            v1 = gCoreSys.touchX - param0->unk_5D0C;
+            v1 = gSystem.touchX - param0->unk_5D0C;
             param0->unk_5D04.unk_02 = 1;
         }
 
         if ((v1 >= 3) && (v1 <= 40)) {
-            if (param0->unk_5D10 > gCoreSys.touchY) {
-                v1 = param0->unk_5D10 - gCoreSys.touchY;
+            if (param0->unk_5D10 > gSystem.touchY) {
+                v1 = param0->unk_5D10 - gSystem.touchY;
                 param0->unk_5D04.unk_03 = -1;
             } else {
-                v1 = gCoreSys.touchY - param0->unk_5D10;
+                v1 = gSystem.touchY - param0->unk_5D10;
                 param0->unk_5D04.unk_03 = 1;
             }
 
@@ -1191,11 +1190,11 @@ static void ov72_0223EA18(UnkStruct_ov72_0223DB98 *param0)
                 (void)0;
             }
         } else if (v1 <= 40) {
-            if (param0->unk_5D10 > gCoreSys.touchY) {
-                v1 = param0->unk_5D10 - gCoreSys.touchY;
+            if (param0->unk_5D10 > gSystem.touchY) {
+                v1 = param0->unk_5D10 - gSystem.touchY;
                 param0->unk_5D04.unk_03 = -1;
             } else {
-                v1 = gCoreSys.touchY - param0->unk_5D10;
+                v1 = gSystem.touchY - param0->unk_5D10;
                 param0->unk_5D04.unk_03 = 1;
             }
 
@@ -1208,8 +1207,8 @@ static void ov72_0223EA18(UnkStruct_ov72_0223DB98 *param0)
         }
     }
 
-    param0->unk_5D0C = gCoreSys.touchX;
-    param0->unk_5D10 = gCoreSys.touchY;
+    param0->unk_5D0C = gSystem.touchX;
+    param0->unk_5D10 = gSystem.touchY;
 }
 
 static void ov72_0223EAD8(UnkStruct_ov72_0223EAD8 *param0)

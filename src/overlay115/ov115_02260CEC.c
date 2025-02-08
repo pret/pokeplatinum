@@ -26,7 +26,6 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "font.h"
 #include "graphics.h"
@@ -43,6 +42,7 @@
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -2322,7 +2322,7 @@ static void ov115_0226294C(UnkStruct_ov115_022622F8 *param0, const VecFx32 *para
 
 static void ov115_02262974(UnkStruct_ov115_02260D78 *param0)
 {
-    if (gCoreSys.touchHeld == 0) {
+    if (gSystem.touchHeld == 0) {
         ov115_02262990(param0);
     } else {
         ov115_02262B70(param0);
@@ -2438,8 +2438,8 @@ static void ov115_02262B70(UnkStruct_ov115_02260D78 *param0)
             v0.y = param0->unk_8690.unk_02[param0->unk_8690.unk_00 - 1].y;
             ov115_02262CBC(&param0->unk_20, v0);
         } else {
-            v0.x = gCoreSys.touchX;
-            v0.y = gCoreSys.touchY;
+            v0.x = gSystem.touchX;
+            v0.y = gSystem.touchY;
             ov115_02262CBC(&param0->unk_20, v0);
         }
     }
@@ -2455,8 +2455,8 @@ static BOOL ov115_02262C60(UnkStruct_ov115_02260D78 *param0)
         return 0;
     }
 
-    v0 = 128 - gCoreSys.touchX;
-    v1 = -96 - gCoreSys.touchY;
+    v0 = 128 - gSystem.touchX;
+    v1 = -96 - gSystem.touchY;
     v2 = FX_Sqrt(((v0 * v0) + (v1 * v1)) << FX32_SHIFT) >> FX32_SHIFT;
 
     if (v2 <= (190 - -96)) {
@@ -3961,7 +3961,7 @@ static void ov115_02264BC0(UnkStruct_ov115_02264BA0 *param0)
         return;
     }
 
-    ov115_02264BD8(param0, gCoreSys.touchX, gCoreSys.touchY);
+    ov115_02264BD8(param0, gSystem.touchX, gSystem.touchY);
 }
 
 static void ov115_02264BD8(UnkStruct_ov115_02264BA0 *param0, s32 param1, s32 param2)

@@ -28,7 +28,6 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "easy3d.h"
 #include "font.h"
 #include "game_options.h"
@@ -49,13 +48,13 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02015064.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
@@ -332,7 +331,7 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     app->unk_704 = Options_TextFrameDelay(data->options);
 
     VramTransfer_New(8, HEAP_ID_CHOOSE_STARTER_APP);
-    SetMainCallback(ChooseStarterAppMainCallback, app);
+    SetVBlankCallback(ChooseStarterAppMainCallback, app);
     DisableHBlank();
 
     sub_0201E3D8();
@@ -440,7 +439,7 @@ BOOL ChooseStarter_Exit(OverlayManager *param0, int *param1)
     ChooseStarterData *v1 = OverlayManager_Args(param0);
     BOOL v2;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     v1->species = GetSelectedSpecies(v0->cursorPosition);
 
@@ -954,7 +953,7 @@ static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1)
     case 3:
         ov78_021D1C58(param0);
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             ov78_021D1C98(param0, 1);
 
             Sound_PlayEffect(1500);
@@ -1128,14 +1127,14 @@ static void SetSelectionMatrixObjects(ChooseStarterApp *param0)
 
 static void ov78_021D1C58(ChooseStarterApp *param0)
 {
-    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (param0->cursorPosition - 1 >= 0) {
             param0->cursorPosition -= 1;
             Sound_PlayEffect(1500);
         }
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (param0->cursorPosition + 1 < 3) {
             param0->cursorPosition += 1;
             Sound_PlayEffect(1500);

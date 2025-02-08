@@ -10,7 +10,6 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "field_message.h"
 #include "font.h"
 #include "game_options.h"
@@ -28,6 +27,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_020298BC.h"
@@ -329,7 +329,7 @@ BOOL ov7_0224BF2C(UnkStruct_ov7_0224BEFC *param0)
         break;
     case 11:
         if (ov7_0224C4B8(&param0->unk_1B8)) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 param0->unk_00 = param0->unk_04;
             }
         }

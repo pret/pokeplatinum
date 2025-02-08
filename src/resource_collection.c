@@ -6,7 +6,7 @@
 #include "constants/heap.h"
 
 #include "heap.h"
-#include "unk_02017728.h"
+#include "system.h"
 
 #define RESOURCE_ID_INVALID (-1)
 

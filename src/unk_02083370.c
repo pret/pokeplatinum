@@ -17,7 +17,6 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "heap.h"
 #include "menu.h"
@@ -27,6 +26,7 @@
 #include "render_window.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
@@ -219,7 +219,7 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
 int sub_02083658(GameWindowLayout *param0)
 {
     if (Text_IsPrinterActive(param0->unk_B10) == 0) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             sub_020826E0(param0, 29, 1);
             sub_0200D414(param0->unk_5B0[6], 0);
@@ -233,7 +233,7 @@ int sub_02083658(GameWindowLayout *param0)
 int sub_020836A8(GameWindowLayout *param0)
 {
     if (Text_IsPrinterActive(param0->unk_B10) == 0) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             LoadOverlay118(param0);
             return 19;
@@ -378,7 +378,7 @@ static int sub_02083990(void *param0)
 
 int sub_020839BC(GameWindowLayout *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
@@ -762,7 +762,7 @@ static void sub_020844B0(GameWindowLayout *param0, int *param1)
 
 int sub_020845A8(GameWindowLayout *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 34, 1);
         sub_0200D414(param0->unk_5B0[6], 0);
@@ -1033,7 +1033,7 @@ static int sub_02084A18(GameWindowLayout *param0)
 
 int sub_02084B34(GameWindowLayout *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
         sub_0200D414(param0->unk_5B0[6], 0);

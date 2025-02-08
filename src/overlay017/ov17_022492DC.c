@@ -15,7 +15,6 @@
 
 #include "bg_window.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
@@ -24,6 +23,7 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_0200C6E4.h"
@@ -477,13 +477,13 @@ int ov17_02249760(UnkStruct_ov17_022492DC *param0)
 
     if (v1 == 0xffffffff) {
         if (v3->unk_18 == Unk_ov17_02254554) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
                 v1 = 3;
-            } else if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_KEY_DOWN)) {
+            } else if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_KEY_DOWN)) {
                 v1 = 1;
-            } else if (gCoreSys.pressedKeys & (PAD_BUTTON_X | PAD_KEY_UP)) {
+            } else if (gSystem.pressedKeys & (PAD_BUTTON_X | PAD_KEY_UP)) {
                 v1 = 0;
-            } else if (gCoreSys.pressedKeys & (PAD_BUTTON_Y | PAD_KEY_LEFT)) {
+            } else if (gSystem.pressedKeys & (PAD_BUTTON_Y | PAD_KEY_LEFT)) {
                 v1 = 2;
             }
         }

@@ -21,7 +21,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
@@ -34,12 +33,12 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
-#include "unk_02017728.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
 #include "unk_0208C098.h"
@@ -217,7 +216,7 @@ static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0)
 {
     switch (param0->unk_04) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -251,7 +250,7 @@ static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0)
         ov90_021D1984(param0);
         break;
     case 4:
-        SetMainCallback(ov90_021D1034, param0);
+        SetVBlankCallback(ov90_021D1034, param0);
         param0->unk_04 = 0;
         return 1;
     }
@@ -275,7 +274,7 @@ static int ov90_021D0F98(UnkStruct_ov90_021D0ECC *param0)
         ov90_021D1280(param0);
         break;
     case 1:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -320,7 +319,7 @@ static void ov90_021D1034(void *param0)
 
 static int ov90_021D105C(UnkStruct_ov90_021D0ECC *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Sound_PlayEffect(1500);
         return 1;
     }
@@ -366,12 +365,12 @@ static int ov90_021D1080(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0 = 0;
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
 
         if (param0->unk_0B >= 10) {
@@ -381,26 +380,26 @@ static int ov90_021D1080(UnkStruct_ov90_021D0ECC *param0)
         param0->unk_0D = (param0->unk_0D + 1) % 2;
         v0 = 1;
     } else {
-        if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+        if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
             v0 = inline_ov90_021D1080(param0);
 
             if (v0) {
                 Sound_PlayEffect(1500);
             }
-        } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+        } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
             v0 = inline_ov90_021D1080_1(param0);
 
             if (v0) {
                 Sound_PlayEffect(1500);
             }
-        } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+        } else if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
             param0->unk_0C = (param0->unk_0C + 2) % 3;
             v0 = 1;
 
             if (param0->unk_0B != 10) {
                 Sound_PlayEffect(1500);
             }
-        } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+        } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
             param0->unk_0C = (param0->unk_0C + 1) % 3;
             v0 = 1;
 

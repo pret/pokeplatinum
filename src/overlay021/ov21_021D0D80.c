@@ -64,13 +64,13 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "strbuf.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_0209ACBC.h"
@@ -138,7 +138,7 @@ int ov21_021D0D80(OverlayManager *param0, int *param1)
     u32 form = Pokedex_GetDisplayForm(v1->pokedex, 487, 0);
     Pokedex_SetupGiratina(form);
 
-    SetMainCallback(ov21_021D0F04, v0);
+    SetVBlankCallback(ov21_021D0F04, v0);
     DisableHBlank();
     sub_0201E3D8();
 
@@ -205,7 +205,7 @@ int ov21_021D0EC8(OverlayManager *param0, int *param1)
     UnkStruct_ov21_021D0F18 *v0 = OverlayManager_Data(param0);
     BOOL v1;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     v1 = sub_0201E530();
     GF_ASSERT(v1 == 1);

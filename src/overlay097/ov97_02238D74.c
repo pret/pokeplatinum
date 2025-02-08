@@ -6,9 +6,9 @@
 #include "overlay097/ov97_0222D30C.h"
 #include "overlay097/struct_ov97_0222D04C.h"
 
-#include "core_sys.h"
 #include "heap.h"
 #include "overlay_manager.h"
+#include "system.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -234,7 +234,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
             }
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             v2->unk_26D8 = 1;
         }
         break;
@@ -259,7 +259,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
             *param1 = 4109;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             DWC_NASLoginAbort();
         }
         break;
@@ -315,7 +315,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
         break;
     case 4107:
         if (Unk_ov97_02240400 == 0) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+            if (gSystem.pressedKeys & PAD_BUTTON_B) {
                 ov97_02238E44(v2, 3, param1, 4108, 4108);
             } else {
                 if (DWC_NdGetProgress(&v2->unk_26BC, &v2->unk_26C0) == 1) {
@@ -366,7 +366,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
         *param1 = 4112;
         break;
     case 4112:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             v2->unk_26DC = NULL;
             DWC_ClearError();
             ov97_02238E94();
@@ -383,7 +383,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
             } else {
                 *param1 = v2->unk_16B0;
             }
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             v2->unk_26D8 = 1;
         }
         break;
@@ -391,7 +391,7 @@ int ov97_02238EAC(OverlayManager *param0, int *param1)
         if (Unk_ov97_02240404 == 1) {
             Unk_ov97_02240404 = 0;
             *param1 = v2->unk_16B0;
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             v2->unk_26D8 = 1;
         }
 

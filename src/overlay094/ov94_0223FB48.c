@@ -20,7 +20,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -37,6 +36,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -543,11 +543,11 @@ static int ov94_022402BC(UnkStruct_ov94_0223FD4C *param0)
     ov94_022404F0(param0);
 
     if (param0->unk_24 == 5) {
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ov94_0223C4C0(param0, 1, 0);
             param0->unk_2C = 2;
             Sound_PlayEffect(1500);
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_112 == 30) {
                 ov94_0223C4C0(param0, 1, 0);
                 param0->unk_2C = 2;
@@ -576,11 +576,11 @@ static int ov94_022402BC(UnkStruct_ov94_0223FD4C *param0)
             }
         }
     } else if (param0->unk_24 == 6) {
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ov94_0223C4C0(param0, 3, 0);
             param0->unk_2C = 2;
             Sound_PlayEffect(1500);
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_112 == 30) {
                 ov94_0223C4C0(param0, 3, 0);
                 param0->unk_2C = 2;
@@ -622,13 +622,13 @@ static void ov94_022404F0(UnkStruct_ov94_0223FD4C *param0)
 {
     int v0 = 0, v1 = 0, v2 = 0;
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         v1 = 1;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         v1 = 2;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         v1 = 3;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         v1 = 4;
     }
 

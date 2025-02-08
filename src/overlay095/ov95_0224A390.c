@@ -22,9 +22,9 @@
 #include "math.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 
@@ -126,7 +126,7 @@ void *ov95_0224A390(UnkStruct_ov95_02247628 *param0)
         v0->unk_0C = 0;
 
         ov95_0224A848(&(v0->unk_34));
-        SetMainCallback(ov95_0224AB50, v0);
+        SetVBlankCallback(ov95_0224AB50, v0);
     }
 
     return v0;
@@ -139,7 +139,7 @@ void ov95_0224A3CC(void *param0)
     if (v0) {
         int v1;
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
 
         ov95_0224A678(v0);
         ov95_0224A7A0(v0);

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
@@ -27,7 +29,6 @@
 #include "camera.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -36,10 +37,10 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "sprite_util.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
@@ -62,7 +63,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     param0->unk_78 = LCRNG_GetSeed();
 
     ov116_022612CC(param0);
-    SetMainCallback(ov116_02261794, param0);
+    SetVBlankCallback(ov116_02261794, param0);
     DisableHBlank();
     VramTransfer_New(32, 106);
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
@@ -667,7 +668,7 @@ int ov116_02260CF4(OverlayManager *param0, int *param1)
 
 static void ov116_022610FC(UnkStruct_ov116_0226139C *param0)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
 
@@ -830,7 +831,7 @@ void ov116_0226139C(UnkStruct_ov116_0226139C *param0)
     sub_0200D0B0(param0->unk_48.unk_08, param0->unk_48.unk_0C);
     sub_0200C8D4(param0->unk_48.unk_08);
 
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
     G3X_AlphaBlend(0);
@@ -1036,7 +1037,7 @@ static void ov116_02261494(BgConfig *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    gCoreSys.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
     G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 7, 10);

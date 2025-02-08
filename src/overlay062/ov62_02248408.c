@@ -18,7 +18,7 @@
 #include "pokemon.h"
 #include "savedata.h"
 #include "strbuf.h"
-#include "unk_02017728.h"
+#include "system.h"
 #include "unk_0202F1D4.h"
 
 static void ov62_0224856C(Strbuf *param0, int param1);

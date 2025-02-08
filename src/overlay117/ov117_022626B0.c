@@ -11,12 +11,12 @@
 #include "overlay117/struct_ov117_02261280.h"
 #include "overlay117/struct_ov117_02264E84.h"
 
-#include "core_sys.h"
 #include "easy3d.h"
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 
@@ -224,10 +224,10 @@ void ov117_02262798(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022626B0 *
         param1->unk_214 = 0;
         param1->unk_218 = 0;
     } else {
-        param1->unk_20C = gCoreSys.touchX;
-        param1->unk_210 = gCoreSys.touchY;
-        param1->unk_214 = gCoreSys.touchHeld;
-        param1->unk_218 = gCoreSys.touchPressed;
+        param1->unk_20C = gSystem.touchX;
+        param1->unk_210 = gSystem.touchY;
+        param1->unk_214 = gSystem.touchHeld;
+        param1->unk_218 = gSystem.touchPressed;
     }
 
     ov117_02263270(param1);

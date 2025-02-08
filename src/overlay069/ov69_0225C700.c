@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_02015958.h"
@@ -22,7 +24,6 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "font.h"
 #include "game_options.h"
@@ -45,11 +46,11 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202C858.h"
@@ -703,7 +704,7 @@ int ov69_0225C700(OverlayManager *param0, int *param1)
     ov69_0225DEC0(&v0->unk_BC70, &v0->unk_20, &v0->unk_1CC, 105);
     ov69_0225D030(v0, v1);
 
-    SetMainCallback(ov69_0225CF90, v0);
+    SetVBlankCallback(ov69_0225CF90, v0);
     DisableHBlank();
 
     return 1;
@@ -774,7 +775,7 @@ int ov69_0225C8FC(OverlayManager *param0, int *param1)
     v0 = OverlayManager_Data(param0);
     v1 = OverlayManager_Args(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     ov69_0225DFBC(&v0->unk_BC70, &v0->unk_20);
@@ -905,8 +906,8 @@ static void ov69_0225CBE4(int param0, int param1, int *param2, int *param3, int 
     int v2 = 0;
     int v3 = 0;
 
-    if (gCoreSys.touchX != 0xffff) {
-        v2 = gCoreSys.touchX - param0;
+    if (gSystem.touchX != 0xffff) {
+        v2 = gSystem.touchX - param0;
 
         if (v2 < 0) {
             v2 ^= -1;
@@ -923,8 +924,8 @@ static void ov69_0225CBE4(int param0, int param1, int *param2, int *param3, int 
     *param2 = v0;
     *param3 = v2;
 
-    if (gCoreSys.touchY != 0xffff) {
-        v3 = gCoreSys.touchY - param1;
+    if (gSystem.touchY != 0xffff) {
+        v3 = gSystem.touchY - param1;
 
         if (v3 < 0) {
             v3 ^= -1;
@@ -1155,7 +1156,7 @@ static u32 ov69_0225CF9C(UnkStruct_ov69_0225CE64 *param0)
         Sound_PlayEffect(1501);
         return 2;
     } else {
-        if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+        if (gSystem.pressedKeys & PAD_BUTTON_X) {
             {
                 UnkStruct_ov69_0225E0C0 v2;
 
@@ -1177,7 +1178,7 @@ static u32 ov69_0225CF9C(UnkStruct_ov69_0225CE64 *param0)
                 }
             }
         } else {
-            v0 = ov69_0225CC54(param0, gCoreSys.pressedKeys, gCoreSys.heldKeys);
+            v0 = ov69_0225CC54(param0, gSystem.pressedKeys, gSystem.heldKeys);
         }
     }
 
@@ -1407,7 +1408,7 @@ static void ov69_0225D3A4(UnkStruct_ov69_0225D35C *param0, Options *param1, u32 
     SetAllGraphicsModes(&Unk_ov69_0225F040);
 
     param0->unk_00 = BgConfig_New(param2);
-    gCoreSys.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
 
@@ -1459,7 +1460,7 @@ static void ov69_0225D504(UnkStruct_ov69_0225D35C *param0)
     }
 
     Heap_FreeToHeap(param0->unk_00);
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 }
 
@@ -1855,8 +1856,8 @@ static void ov69_0225DC54(UnkStruct_ov69_0225DC48 *param0)
 
     param0->unk_00 = 0;
 
-    if (gCoreSys.touchPressed) {
-        if ((gCoreSys.touchX >= (25 * 8)) && (gCoreSys.touchX <= ((25 + 6) * 8)) && (gCoreSys.touchY >= (21 * 8)) && (gCoreSys.touchY <= ((21 + 2) * 8))) {
+    if (gSystem.touchPressed) {
+        if ((gSystem.touchX >= (25 * 8)) && (gSystem.touchX <= ((25 + 6) * 8)) && (gSystem.touchY >= (21 * 8)) && (gSystem.touchY <= ((21 + 2) * 8))) {
             param0->unk_00 = PAD_BUTTON_B;
             return;
         } else {
@@ -1865,13 +1866,13 @@ static void ov69_0225DC54(UnkStruct_ov69_0225DC48 *param0)
             param0->unk_14 = 0;
             param0->unk_18 = 0;
             param0->unk_00 = 0;
-            param0->unk_08 = gCoreSys.touchX;
-            param0->unk_0C = gCoreSys.touchY;
+            param0->unk_08 = gSystem.touchX;
+            param0->unk_0C = gSystem.touchY;
             param0->unk_18 = 4;
         }
     }
 
-    if (gCoreSys.touchHeld) {
+    if (gSystem.touchHeld) {
         switch (param0->unk_04) {
         case 0:
 
@@ -1885,8 +1886,8 @@ static void ov69_0225DC54(UnkStruct_ov69_0225DC48 *param0)
             param0->unk_00 = v0 | v2;
             param0->unk_10 = v1;
             param0->unk_14 = v3;
-            param0->unk_08 = gCoreSys.touchX;
-            param0->unk_0C = gCoreSys.touchY;
+            param0->unk_08 = gSystem.touchX;
+            param0->unk_0C = gSystem.touchY;
             break;
         }
     } else {

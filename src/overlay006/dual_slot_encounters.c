@@ -5,7 +5,7 @@
 
 #include "overlay006/wild_encounters.h"
 
-#include "core_sys.h"
+#include "system.h"
 
 void WildEncounters_ReplaceDualSlotEncounters(const WildEncounters *encounterData, const BOOL nationalDexObtained, int *param2, int *param3)
 {
@@ -13,7 +13,7 @@ void WildEncounters_ReplaceDualSlotEncounters(const WildEncounters *encounterDat
         return;
     }
 
-    switch (gCoreSys.gbaCartridgeVersion) {
+    switch (gSystem.gbaCartridgeVersion) {
     case SAPPHIRE:
         (*param2) = encounterData->dualSlotSapphireEncounters[0];
         (*param3) = encounterData->dualSlotSapphireEncounters[1];

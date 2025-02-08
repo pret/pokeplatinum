@@ -20,7 +20,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -40,6 +39,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
@@ -48,7 +48,6 @@
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
 #include "unk_020683F4.h"
@@ -387,7 +386,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov84_0223B5A0 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -442,7 +441,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
         ov84_02240328(v0);
     }
 
-    SetMainCallback(ov84_0223BA14, v0);
+    SetVBlankCallback(ov84_0223BA14, v0);
     sub_02004550(51, 0, 0);
     DrawWifiConnectionIcon();
 
@@ -588,7 +587,7 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
     StringTemplate_Free(v0->unk_118);
     NARC_dtor(v0->unk_D4);
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(6);
     SetAutorepeat(4, 8);
 
@@ -1229,7 +1228,7 @@ static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
     v0 = &param0->unk_C4->unk_04[param0->unk_C4->unk_64];
     ListMenu_GetListAndCursorPos(param0->unk_15C, &v0->unk_06, &v0->unk_04);
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_SELECT) {
+    if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
         if (ov84_0223D244(param0) == 1) {
             Sound_PlayEffect(1500);
             return 2;
@@ -1292,7 +1291,7 @@ static void ov84_0223C720(UnkStruct_ov84_0223B5A0 *param0)
 
 static u8 ov84_0223C750(UnkStruct_ov84_0223B5A0 *param0)
 {
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
         if (param0->unk_424 == 1) {
             return 0;
         }
@@ -1314,7 +1313,7 @@ static u8 ov84_0223C750(UnkStruct_ov84_0223B5A0 *param0)
 
         return 1;
     }
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         if (param0->unk_424 == 1) {
             return 0;
         }
@@ -1449,7 +1448,7 @@ static u8 ov84_0223CA5C(UnkStruct_ov84_0223B5A0 *param0)
 {
     UnkStruct_ov84_0223C920 *v0 = &param0->unk_429;
 
-    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (param0->unk_424 == 1) {
             return 1;
         }
@@ -1482,7 +1481,7 @@ static u8 ov84_0223CA5C(UnkStruct_ov84_0223B5A0 *param0)
         ov84_02240B68(param0);
         return 1;
     }
-    if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (param0->unk_424 == 1) {
             return 1;
         }
@@ -1598,7 +1597,7 @@ static int ov84_0223CDB0(UnkStruct_ov84_0223B5A0 *param0)
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
 
-        if (Bg_DoesPixelAtXYMatchVal(param0->unk_00, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+        if (Bg_DoesPixelAtXYMatchVal(param0->unk_00, 4, gSystem.touchX, gSystem.touchY, &v1) == 0) {
             return 0xffffffff;
         }
     }
@@ -1613,7 +1612,7 @@ static int ov84_0223CE08(UnkStruct_ov84_0223B5A0 *param0)
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
 
-        if (Bg_DoesPixelAtXYMatchVal(param0->unk_00, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+        if (Bg_DoesPixelAtXYMatchVal(param0->unk_00, 4, gSystem.touchX, gSystem.touchY, &v1) == 0) {
             return 0xffffffff;
         }
     }
@@ -1795,7 +1794,7 @@ static BOOL ov84_0223D1F4(UnkStruct_ov84_0223B5A0 *param0)
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
 
-        if (Bg_DoesPixelAtXYMatchVal(param0->unk_00, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+        if (Bg_DoesPixelAtXYMatchVal(param0->unk_00, 4, gSystem.touchX, gSystem.touchY, &v1) == 0) {
             return 0;
         }
 
@@ -1858,7 +1857,7 @@ static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_SELECT) {
+    if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
         Sound_PlayEffect(1500);
         ov84_0223D42C(param0);
         return 1;
@@ -1887,7 +1886,7 @@ static u8 ov84_0223D2F8(UnkStruct_ov84_0223B5A0 *param0)
     case 0xfffffffe:
         Sound_PlayEffect(1500);
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             ov84_0223D42C(param0);
         } else {
             ov84_0223D484(param0);
@@ -2123,7 +2122,7 @@ static int ov84_0223D858(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223D8EC(UnkStruct_ov84_0223B5A0 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gCoreSys.touchPressed) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             Window_EraseMessageBox(&param0->unk_04[6], 0);
             Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
             ov84_02240B34(param0, 1);
@@ -2199,7 +2198,7 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
             break;
         }
 
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gCoreSys.touchPressed) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 60);
 
             Window_FillTilemap(&param0->unk_04[6], 15);
@@ -2331,7 +2330,7 @@ static int ov84_0223DDD0(UnkStruct_ov84_0223B5A0 *param0)
             break;
         }
 
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gCoreSys.touchPressed) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             Window_EraseMessageBox(&param0->unk_04[6], 0);
             param0->unk_483 = 2;
         }
@@ -2413,13 +2412,13 @@ static int ov84_0223DF0C(UnkStruct_ov84_0223B5A0 *param0)
         Sound_PlayEffect(1592);
         return 7;
     }
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov84_0223FFF0(param0);
         ov84_02240D3C(param0, 0);
         Sound_PlayEffect(1500);
         return 8;
     }
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov84_0223FFC0(param0);
         ov84_02240D3C(param0, 0);
         ov84_02240B34(param0, 1);
@@ -2508,7 +2507,7 @@ static int ov84_0223E158(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223E18C(UnkStruct_ov84_0223B5A0 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gCoreSys.touchPressed) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             param0->unk_479 = 0;
             Window_EraseMessageBox(&param0->unk_04[6], 0);
             Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
@@ -2604,7 +2603,7 @@ static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223E36C(UnkStruct_ov84_0223B5A0 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gCoreSys.touchPressed) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             Window_EraseMessageBox(&param0->unk_04[6], 0);
             Window_ScheduleCopyToVRAM(&param0->unk_04[1]);
             ov84_02240B34(param0, 1);
@@ -2732,7 +2731,7 @@ static int ov84_0223E5C4(UnkStruct_ov84_0223B5A0 *param0)
         Sound_PlayEffect(1592);
         return 18;
     }
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Strbuf *v1;
 
         ov84_02240D3C(param0, 0);
@@ -2749,7 +2748,7 @@ static int ov84_0223E5C4(UnkStruct_ov84_0223B5A0 *param0)
 
         return 19;
     }
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->unk_48C = 0;
 
         ov84_02240D3C(param0, 0);
@@ -2859,7 +2858,7 @@ static int ov84_0223E920(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223E9B0(UnkStruct_ov84_0223B5A0 *param0)
 {
     if (Text_IsPrinterActive(param0->unk_426) == 0) {
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gCoreSys.touchPressed) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || gSystem.touchPressed) {
             param0->unk_479 = 0;
             param0->unk_48C = 0;
 
@@ -2961,15 +2960,15 @@ static BOOL ov84_0223EB84(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
         param0->unk_492 = 1;
         param0->unk_498 = 0;
         param0->unk_494 = 0;
-        param0->unk_49E = gCoreSys.touchX;
-        param0->unk_4A0 = gCoreSys.touchY;
+        param0->unk_49E = gSystem.touchX;
+        param0->unk_4A0 = gSystem.touchY;
     }
 
     if (param0->unk_492 == 1) {
         if (ov84_0223EB6C() == 1) {
             s32 v0, v1;
 
-            v0 = CalcDotProduct2D(128 - param0->unk_49E, 80 - param0->unk_4A0, 128 - gCoreSys.touchX, 80 - gCoreSys.touchY, 80);
+            v0 = CalcDotProduct2D(128 - param0->unk_49E, 80 - param0->unk_4A0, 128 - gSystem.touchX, 80 - gSystem.touchY, 80);
             v1 = CalcRadialAngle(80, v0 * 2);
             v1 = ((v1 << 8) / 182) >> 8;
             param0->unk_49A += v1;
@@ -3005,8 +3004,8 @@ static BOOL ov84_0223EB84(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
                     }
                 }
             }
-            param0->unk_49E = gCoreSys.touchX;
-            param0->unk_4A0 = gCoreSys.touchY;
+            param0->unk_49E = gSystem.touchX;
+            param0->unk_4A0 = gSystem.touchY;
         } else {
             param0->unk_492 = 0;
             param0->unk_498 = 0;

@@ -94,7 +94,6 @@
 #include "camera.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "encounter.h"
 #include "field_comm_manager.h"
 #include "field_map_change.h"
@@ -136,6 +135,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "system_data.h"
 #include "system_flags.h"
 #include "text.h"
@@ -2280,7 +2280,7 @@ static BOOL ScrCmd_WaitABPress(ScriptContext *ctx)
 static BOOL ScriptContext_CheckABPress(ScriptContext *ctx)
 {
     // this doesn't match using == TRUE or leaving off a comparison entirely
-    return (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) != FALSE;
+    return (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) != FALSE;
 }
 
 static BOOL ScrCmd_WaitABPressTime(ScriptContext *ctx)
@@ -2292,7 +2292,7 @@ static BOOL ScrCmd_WaitABPressTime(ScriptContext *ctx)
 
 static BOOL ScriptContext_DecrementABPressTimer(ScriptContext *ctx)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return TRUE;
     }
 
@@ -2309,19 +2309,19 @@ static BOOL ScrCmd_WaitABXPadPress(ScriptContext *ctx)
 
 static BOOL ScriptContext_CheckABXPadPress(ScriptContext *ctx)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return TRUE;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_NORTH);
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_SOUTH);
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_WEST);
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_EAST);
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_X) {
         sub_0203F0C0(ctx->fieldSystem);
     } else {
         return FALSE;
@@ -2339,10 +2339,10 @@ static BOOL ScrCmd_WaitABPadPress(ScriptContext *ctx)
 static BOOL ScriptContext_CheckABPadPress(ScriptContext *ctx)
 {
     // this function doesn't match simplified further, using == TRUE, or leaving off a comparison entirely
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return TRUE;
     }
-    return (gCoreSys.pressedKeys & PAD_KEY) != FALSE;
+    return (gSystem.pressedKeys & PAD_KEY) != FALSE;
 }
 
 static BOOL ScrCmd_OpenMessage(ScriptContext *ctx)
@@ -2569,13 +2569,13 @@ static BOOL sub_02040670(ScriptContext *ctx)
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         v4 = 0;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         v4 = 1;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         v4 = 2;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         v4 = 3;
     }
 
@@ -2586,7 +2586,7 @@ static BOOL sub_02040670(ScriptContext *ctx)
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+    if (gSystem.pressedKeys & PAD_BUTTON_X) {
         Text_RemovePrinter(*v1);
         *v2 = 1;
         return 1;
@@ -2611,18 +2611,18 @@ static BOOL sub_02040730(ScriptContext *ctx)
     u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
     int v2 = 0xffff;
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         *v1 = 0;
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         v2 = 0;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         v2 = 1;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         v2 = 2;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         v2 = 3;
     }
 
@@ -2632,7 +2632,7 @@ static BOOL sub_02040730(ScriptContext *ctx)
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+    if (gSystem.pressedKeys & PAD_BUTTON_X) {
         *v1 = 1;
         return 1;
     }
@@ -5460,7 +5460,7 @@ static BOOL sub_02043A4C(ScriptContext *ctx)
     u16 *v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
     u32 v1 = sub_0205B91C(ctx->fieldSystem->unk_7C);
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         v1 = sub_0205B9EC(ctx->fieldSystem->unk_7C, 8);
 
         if (v1) {
@@ -7062,7 +7062,7 @@ static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = gCoreSys.gbaCartridgeVersion;
+    *destVar = gSystem.gbaCartridgeVersion;
     return TRUE;
 }
 
@@ -8090,11 +8090,11 @@ static BOOL ScrCmd_2FC(ScriptContext *ctx)
 
     *v0 = 0;
 
-    if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+    if (gSystem.heldKeys & PAD_BUTTON_A) {
         *v0 = 1;
     }
 
-    if (gCoreSys.heldKeys & PAD_BUTTON_B) {
+    if (gSystem.heldKeys & PAD_BUTTON_B) {
         *v0 = 1;
     }
 

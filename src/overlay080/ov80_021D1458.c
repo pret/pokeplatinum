@@ -12,7 +12,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "heap.h"
 #include "map_header_util.h"
@@ -22,6 +21,7 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
@@ -238,7 +238,7 @@ int ov80_021D163C(UnkStruct_ov80_021D2A08 *param0)
 {
     UnkStruct_ov80_021D1478 *v0 = param0->unk_34;
 
-    if ((v0->unk_14 <= 1) && gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if ((v0->unk_14 <= 1) && gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1501);
         return 1;
     }
@@ -247,7 +247,7 @@ int ov80_021D163C(UnkStruct_ov80_021D2A08 *param0)
         return 0;
     }
 
-    ov80_021D18F8(param0, gCoreSys.heldKeys);
+    ov80_021D18F8(param0, gSystem.heldKeys);
 
     return 0;
 }
@@ -257,14 +257,14 @@ int ov80_021D1678(UnkStruct_ov80_021D2A08 *param0)
     UnkStruct_ov80_021D1478 *v0 = param0->unk_34;
 
     if (v0->unk_14 <= 1) {
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov80_021D29BC(param0)) {
                 Sound_PlayEffect(1501);
                 return 1;
             }
 
             return 0;
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1501);
             return 1;
         }
@@ -274,7 +274,7 @@ int ov80_021D1678(UnkStruct_ov80_021D2A08 *param0)
         return 0;
     }
 
-    ov80_021D18F8(param0, gCoreSys.heldKeys);
+    ov80_021D18F8(param0, gSystem.heldKeys);
     return 0;
 }
 
@@ -282,12 +282,12 @@ int ov80_021D16D0(UnkStruct_ov80_021D2A08 *param0)
 {
     UnkStruct_ov80_021D1478 *v0 = param0->unk_34;
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_B)) {
         Sound_PlayEffect(1501);
         return 1;
     }
 
-    ov80_021D18F8(param0, gCoreSys.heldKeys);
+    ov80_021D18F8(param0, gSystem.heldKeys);
     return 0;
 }
 
@@ -387,7 +387,7 @@ static int ov80_021D1848(UnkStruct_ov80_021D2A08 *param0, int param1)
 
     v1 = 0x12;
 
-    if (Bg_DoesPixelAtXYMatchVal(param0->unk_28, 5, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+    if (Bg_DoesPixelAtXYMatchVal(param0->unk_28, 5, gSystem.touchX, gSystem.touchY, &v1) == 0) {
         return v0;
     }
 

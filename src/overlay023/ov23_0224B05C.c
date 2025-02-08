@@ -30,7 +30,6 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_map_change.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -50,6 +49,7 @@
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -1677,7 +1677,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         break;
     case 12:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 v1->unk_0C = 13;
                 ov23_02254044(ov23_0224219C());
                 CommPlayer_SetDir(0);
@@ -1712,7 +1712,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         return 1;
     case 8:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 v1->unk_0C = 13;
                 ov23_02254044(ov23_0224219C());
                 return 0;
@@ -1803,7 +1803,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
         break;
     case 4:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v4 = 1;
             }
         }
@@ -2364,7 +2364,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
         break;
     case 1:
         if (ov23_02254238(ov23_022421AC()) == 0) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 int v1 = v0->unk_05;
 
                 ov23_02253F40(ov23_022421AC(), 14 + v1, 0, NULL);
@@ -2374,7 +2374,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
         break;
     case 2:
         if (ov23_02254238(ov23_022421AC()) == 0) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 ov23_0224D54C(v0);
                 v0->unk_00 = 4;
                 ov23_02254044(ov23_022421AC());

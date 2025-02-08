@@ -33,7 +33,6 @@
 #include "camera.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -52,13 +51,13 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_020363E8.h"
@@ -440,7 +439,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     UnkStruct_0209C194 *v1 = OverlayManager_Args(param0);
 
     CommMan_SetErrorHandling(1, 1);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     ResetLock(2);
     Heap_Create(3, 95, 0x80000);
@@ -458,7 +457,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     sub_0201E3D8();
     sub_0201E450(4);
     ov109_021D1C28(v0);
-    SetMainCallback(ov109_021D1C00, v0);
+    SetVBlankCallback(ov109_021D1C00, v0);
     ov109_021D29CC(v0);
     ov109_021D2AF0(v0);
 
@@ -513,7 +512,7 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
     ov109_021D2AF8(v0);
     ov109_021D1C68(v0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     VramTransfer_Free();
     NARC_dtor(v0->unk_D80);
     OverlayManager_FreeData(param0);
@@ -1360,7 +1359,7 @@ static int ov109_021D1A14(UnkStruct_ov109_021D0F70 *param0)
     ov109_021D2634(param0, 11);
     CommTiming_StartSync(202);
 
-    gCoreSys.inhibitReset = 1;
+    gSystem.inhibitReset = 1;
     param0->unk_00 = 44;
 
     return 0;
@@ -1384,7 +1383,7 @@ static int ov109_021D1AA8(UnkStruct_ov109_021D0F70 *param0)
         param0->unk_CC->unk_14.unk_08, 2, &param0->unk_04);
 
     if (v0) {
-        gCoreSys.inhibitReset = 0;
+        gSystem.inhibitReset = 0;
         DestroyWaitDial(param0->unk_DC8);
         param0->unk_00 = 48;
     }

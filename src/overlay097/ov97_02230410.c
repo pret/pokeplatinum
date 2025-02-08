@@ -17,7 +17,6 @@
 #include "cell_actor.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -39,6 +38,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -980,11 +980,11 @@ static void ov97_022314FC(UnkStruct_ov97_02230868 *param0, int param1, int *para
     int v0;
     int v1 = param0->unk_3E10;
 
-    if (gCoreSys.pressedKeys & PAD_KEY_RIGHT && (param0->unk_3E10 != 1)) {
+    if (gSystem.pressedKeys & PAD_KEY_RIGHT && (param0->unk_3E10 != 1)) {
         param0->unk_3E10 = 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_LEFT && (param0->unk_3E10 != 0)) {
+    if (gSystem.pressedKeys & PAD_KEY_LEFT && (param0->unk_3E10 != 0)) {
         param0->unk_3E10 = 0;
     }
 
@@ -995,13 +995,13 @@ static void ov97_022314FC(UnkStruct_ov97_02230868 *param0, int param1, int *para
 
     v0 = 0;
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         v0 = 2;
-    } else if ((gCoreSys.pressedKeys & PAD_BUTTON_A) && param1 && (param0->unk_3E10 == 0)) {
+    } else if ((gSystem.pressedKeys & PAD_BUTTON_A) && param1 && (param0->unk_3E10 == 0)) {
         v0 = 1;
-    } else if ((gCoreSys.pressedKeys & PAD_BUTTON_A) && (param0->unk_3E10 == 1)) {
+    } else if ((gSystem.pressedKeys & PAD_BUTTON_A) && (param0->unk_3E10 == 1)) {
         v0 = 2;
-    } else if ((gCoreSys.pressedKeys & PAD_BUTTON_A) && (param1 == 0)) {
+    } else if ((gSystem.pressedKeys & PAD_BUTTON_A) && (param1 == 0)) {
         v0 = 3;
     }
 
@@ -1063,14 +1063,14 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
     case 3:
         v0 = v4->unk_2C20;
 
-        if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+        if (gSystem.pressedKeys & PAD_KEY_UP) {
             v0 = ov97_02230F20(v4, v4->unk_2C20, -1);
-        } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+        } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
             v0 = ov97_02230F20(v4, v4->unk_2C20, 1);
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1500);
             ov97_02230C10(v4, 0, 28, param1);
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(1500);
             *param1 = 4;
         }
@@ -1089,7 +1089,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
     case 5:
         ov97_02231088(param0, param1, NULL);
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1500);
             *param1 = 11;
         }
@@ -1112,7 +1112,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
     case 8:
         ov97_02231354(v4);
 
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1536);
             ov97_022312B4(v4, 1, 1 * FX32_ONE, 0.025 * FX32_ONE);
             *param1 = 9;
@@ -1230,7 +1230,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         }
         break;
     case 25:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             *param1 = 19;
         }
         break;

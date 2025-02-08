@@ -24,7 +24,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "graphics.h"
 #include "heap.h"
 #include "math.h"
@@ -32,6 +31,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
+#include "system.h"
 #include "vram_transfer.h"
 
 #define MCR_PCANM_DESTPL(x) ((7 * 32) + (((x) + 1) * 2))
@@ -196,12 +196,12 @@ u32 ov65_02235198(UnkStruct_ov65_02235130 *param0)
         if (v0 == 1) {
             ov65_02235B30(param0);
 
-            if (gCoreSys.heldKeys & PAD_KEY_DOWN) {
+            if (gSystem.heldKeys & PAD_KEY_DOWN) {
                 return 1;
             }
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov65_02235254(param0) > 0) {
                 return 2;
             } else if (ov65_02235654(param0) == 1) {
@@ -984,7 +984,7 @@ static BOOL ov65_02236044(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022354
         return 0;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         v4 = ov65_022357A8(param0, param1, v0);
 
         if (v4 != NULL) {
@@ -1002,31 +1002,31 @@ static BOOL ov65_02236044(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022354
         return 0;
     }
 
-    if (gCoreSys.heldKeys & PAD_BUTTON_B) {
+    if (gSystem.heldKeys & PAD_BUTTON_B) {
         v3 = 3;
     } else {
         v3 = 2;
     }
 
-    if (gCoreSys.heldKeys & PAD_KEY_UP) {
+    if (gSystem.heldKeys & PAD_KEY_UP) {
         if (v0 == 0) {
             ov65_02236230(param0, v3, v0, v1);
         } else {
             ov65_02236230(param0, 1, 0, v1);
         }
-    } else if (gCoreSys.heldKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.heldKeys & PAD_KEY_DOWN) {
         if (v0 == 1) {
             ov65_02236230(param0, v3, v0, v1);
         } else {
             ov65_02236230(param0, 1, 1, v1);
         }
-    } else if (gCoreSys.heldKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.heldKeys & PAD_KEY_LEFT) {
         if (v0 == 2) {
             ov65_02236230(param0, v3, v0, v1);
         } else {
             ov65_02236230(param0, 1, 2, v1);
         }
-    } else if (gCoreSys.heldKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.heldKeys & PAD_KEY_RIGHT) {
         if (v0 == 3) {
             ov65_02236230(param0, v3, v0, v1);
         } else {

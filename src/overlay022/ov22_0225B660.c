@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_defs/struct_02041DC8.h"
@@ -15,7 +17,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -25,9 +26,9 @@
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
 #include "unk_02094EDC.h"
@@ -65,7 +66,7 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_0225B85C), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B85C));
 
-    SetMainCallback(ov22_0225B848, v0);
+    SetVBlankCallback(ov22_0225B848, v0);
     DisableHBlank();
 
     v1 = OverlayManager_Args(param0);
@@ -80,7 +81,7 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
     v0->unk_0C = v1->unk_08;
 
     ov22_02255094();
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
     ov22_022555D4(&v0->unk_14, 14);
 
@@ -136,7 +137,7 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
         }
         break;
     case 3:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             (*param1)++;
         }
         break;
@@ -164,7 +165,7 @@ int ov22_0225B7FC(OverlayManager *param0, int *param1)
     ov22_022555FC(&v0->unk_14);
     ov22_022550B4();
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     OverlayManager_FreeData(param0);
     Heap_Destroy(13);

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay066/ov66_0222DDF0.h"
@@ -17,7 +19,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
@@ -32,10 +33,10 @@
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "strbuf.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 
@@ -341,7 +342,7 @@ int ov112_0225C700(OverlayManager *param0, int *param1)
     ov112_0225D1EC(&v0->unk_1C8, &v0->unk_08, 107);
     ov112_0225D57C(&v0->unk_264, &v0->unk_08, 107);
 
-    SetMainCallback(ov112_0225C964, v0);
+    SetVBlankCallback(ov112_0225C964, v0);
     DisableHBlank();
 
     return 1;
@@ -370,7 +371,7 @@ int ov112_0225C7C4(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (ov66_0222E12C(v1->unk_08) == 1) || (ov66_02231760() == 1)) {
+        if ((gSystem.pressedKeys & PAD_BUTTON_B) || (ov66_0222E12C(v1->unk_08) == 1) || (ov66_02231760() == 1)) {
             if (ov66_0222E12C(v1->unk_08) == 1) {
                 ov66_0222E2A4(v1->unk_08);
             }
@@ -427,7 +428,7 @@ int ov112_0225C8FC(OverlayManager *param0, int *param1)
     ov112_0225D2D0(&v0->unk_1C8);
     ov112_0225CC84(&v0->unk_1B0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     ov112_0225C9F4(&v0->unk_08);
@@ -490,7 +491,7 @@ static void ov112_0225CA34(UnkStruct_ov112_0225C9BC *param0, u32 param1)
     SetAllGraphicsModes(&Unk_ov112_0225D834);
 
     param0->unk_00 = BgConfig_New(param1);
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
 
@@ -530,7 +531,7 @@ static void ov112_0225CB60(UnkStruct_ov112_0225C9BC *param0)
     }
 
     Heap_FreeToHeap(param0->unk_00);
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 }
 

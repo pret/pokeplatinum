@@ -33,7 +33,6 @@
 #include "cell_actor.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_map_change.h"
 #include "field_system.h"
 #include "font.h"
@@ -51,6 +50,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -572,7 +572,7 @@ static void ov23_0224F914(SysTask *param0, void *param1)
         break;
     case 13:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 ov23_02254044(ov23_0224219C());
                 ov23_02250B34(param0, v0, 0);
                 ov23_02243204();
@@ -582,7 +582,7 @@ static void ov23_0224F914(SysTask *param0, void *param1)
         break;
     case 14:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 UnkFuncPtr_ov23_0224F914 v2 = (UnkFuncPtr_ov23_0224F914)v0->unk_00;
 
                 v2(v0);
@@ -1523,7 +1523,7 @@ static void ov23_02250B9C(SysTask *param0, void *param1)
         return;
     case 4:
         if (ov23_02254238(ov23_022421AC()) == 0) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v0->unk_2AA = 2;
             }
         }

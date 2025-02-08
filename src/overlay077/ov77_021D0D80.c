@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -9,7 +11,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "core_sys.h"
 #include "easy3d.h"
 #include "easy3d_object.h"
 #include "font.h"
@@ -23,12 +24,12 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "strbuf.h"
+#include "system.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 
@@ -166,7 +167,7 @@ static int ov77_021D0D80(OverlayManager *param0, int *param1)
     G2S_BlendNone();
     G2_BlendNone();
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
 
     GXLayers_DisableEngineALayers();
@@ -189,7 +190,7 @@ static int ov77_021D0D80(OverlayManager *param0, int *param1)
     ov77_021D17B4(v0);
     ov77_021D11CC(v0);
 
-    SetMainCallback(ov77_021D1178, (void *)v0);
+    SetVBlankCallback(ov77_021D1178, (void *)v0);
     GXLayers_TurnBothDispOn();
 
     return 1;
@@ -204,14 +205,14 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
         if (ov77_021D1A60(&v0->unk_238, v0->unk_04, v0->unk_00) == 1) {
             v0->unk_238.unk_00 = 0;
 
-            if (gCoreSys.unk_6C == 0) {
+            if (gSystem.unk_6C == 0) {
                 v0->unk_4EC = 30 * 1;
                 v0->unk_238.unk_29C = 1;
                 v0->unk_238.unk_2A0 = 0;
                 *param1 = 2;
             } else {
                 v0->unk_4EC = 0;
-                gCoreSys.unk_6C = 0;
+                gSystem.unk_6C = 0;
                 v0->unk_238.unk_2A0 = 1;
                 *param1 = 1;
             }
@@ -242,7 +243,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
 
         v0->unk_4F8++;
 
-        if (((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.pressedKeys & PAD_BUTTON_START) == PAD_BUTTON_START)) {
+        if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_START) == PAD_BUTTON_START)) {
             v0->unk_4E8 = 1;
             sub_0200564C(0, 60);
             sub_02005844(487, 1);
@@ -251,7 +252,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
             break;
         }
 
-        if ((gCoreSys.heldKeys & (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) == (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) {
+        if ((gSystem.heldKeys & (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) == (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) {
             v0->unk_4E8 = 2;
             StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 6;
@@ -260,7 +261,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
 
         if (v0->unk_4F8 > 30 * 30) {
             v0->unk_4E8 = 3;
-            gCoreSys.unk_6C = 1;
+            gSystem.unk_6C = 1;
             {
                 GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
             }
@@ -320,7 +321,7 @@ static int ov77_021D10FC(OverlayManager *param0, int *param1)
     int v1 = v0->unk_00;
     int v2 = v0->unk_4E8;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     ov77_021D11FC(v0);
     ov77_021D1908(v0);
@@ -371,7 +372,7 @@ static void ov77_021D1184(void)
 
 static BOOL ov77_021D11A4(void)
 {
-    if (((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.pressedKeys & PAD_BUTTON_START) == PAD_BUTTON_START) || ((gCoreSys.pressedKeys & PAD_BUTTON_SELECT) == PAD_BUTTON_SELECT)) {
+    if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_START) == PAD_BUTTON_START) || ((gSystem.pressedKeys & PAD_BUTTON_SELECT) == PAD_BUTTON_SELECT)) {
         return 1;
     }
 
@@ -893,7 +894,7 @@ static BOOL ov77_021D1A60(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         G3X_AntiAlias(1);
     }
 
-    gCoreSys.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
     GXLayers_SwapDisplay();
     param0->unk_04.unk_00 = 2;
 
@@ -1205,7 +1206,7 @@ static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
     G2_BlendNone();
     G3X_EdgeMarking(0);
 
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
     return 1;

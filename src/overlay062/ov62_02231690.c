@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0202F298_decl.h"
@@ -32,7 +34,6 @@
 #include "overlay062/struct_ov62_02248CDC.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "font.h"
 #include "game_records.h"
@@ -48,6 +49,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
@@ -2747,7 +2749,7 @@ static void ov62_02234440(UnkStruct_0208C06C *param0)
         param0->unk_41D8.unk_0C = NULL;
     }
 
-    if (gCoreSys.unk_65 == 0) {
+    if (gSystem.whichScreenIs3D == DS_SCREEN_MAIN) {
         param0->unk_41D8.unk_08 = param0->unk_6F4;
     } else {
         param0->unk_41D8.unk_08 = param0->unk_6F0;
