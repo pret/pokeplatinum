@@ -439,7 +439,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     UnkStruct_0209C194 *v1 = OverlayManager_Args(param0);
 
     CommMan_SetErrorHandling(1, 1);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     ResetLock(2);
     Heap_Create(3, 95, 0x80000);
@@ -457,7 +457,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     sub_0201E3D8();
     sub_0201E450(4);
     ov109_021D1C28(v0);
-    SetMainCallback(ov109_021D1C00, v0);
+    SetVBlankCallback(ov109_021D1C00, v0);
     ov109_021D29CC(v0);
     ov109_021D2AF0(v0);
 
@@ -512,7 +512,7 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
     ov109_021D2AF8(v0);
     ov109_021D1C68(v0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     VramTransfer_Free();
     NARC_dtor(v0->unk_D80);
     OverlayManager_FreeData(param0);

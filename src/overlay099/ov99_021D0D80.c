@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -90,7 +92,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov99_021D2CB0 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -158,7 +160,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     GXS_SetVisibleWnd(GX_WNDMASK_W0);
 
-    gSystem.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
@@ -167,7 +169,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     v0->unk_14 = SysTask_Start(ov99_021D1244, v0, 60000);
 
-    SetMainCallback(ov99_021D1350, v0);
+    SetVBlankCallback(ov99_021D1350, v0);
     sub_02004550(14, 1186, 1);
 
     sub_0200AB4C(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
@@ -279,7 +281,7 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     ov99_021D19A0(v0);
 
     NARC_dtor(v0->unk_10F8);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
     sub_0201E530();

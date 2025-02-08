@@ -134,7 +134,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov17_0224FCA0 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -215,7 +215,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02004550(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
-    SetMainCallback(ov17_0224FA24, v0);
+    SetVBlankCallback(ov17_0224FA24, v0);
 
     v0->unk_08 = SysTask_ExecuteOnVBlank(ov17_0224FAE4, v0, 10);
     Sound_PlayEffect(1765);
@@ -330,7 +330,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(24);
     sub_02095A24();

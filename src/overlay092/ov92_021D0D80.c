@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -302,7 +304,7 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
     UnkStruct_ov92_021D1B24 *v0;
     int v1 = 50;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -345,7 +347,7 @@ int ov92_021D0D80(OverlayManager *param0, int *param1)
     v0->camera = Camera_Alloc(v0->unk_00);
     v0->unk_BAE8 = 0;
 
-    gSystem.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
     SetAutorepeat(4, 8);
@@ -678,11 +680,11 @@ int ov92_021D1478(OverlayManager *param0, int *param1)
     StringTemplate_Free(v0->unk_B870);
     Easy3D_Shutdown();
     Heap_FreeToHeap(v0->unk_B810);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     OverlayManager_FreeData(param0);
     Heap_Destroy(v1);
 
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     return 1;
 }

@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/savedata/vars_flags.h"
+#include "constants/screen.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -22,7 +23,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "system.h"
 #include "enums.h"
 #include "font.h"
 #include "game_options.h"
@@ -39,7 +39,9 @@
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "render_text.h"
+#include "render_view.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -49,15 +51,13 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "system_flags.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "render_oam.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "system.h"
-#include "render_view.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
 #include "unk_0203909C.h"
@@ -607,7 +607,7 @@ int ov64_0222DCE0(OverlayManager *param0, int *param1)
     ov64_02230620(&v0->unk_41C, &v0->unk_28C, &v0->unk_04, 52);
     ov64_022308DC(&v0->unk_444, &v0->unk_28C, &v0->unk_04, 52);
 
-    SetMainCallback(ov64_0222DF3C, v0);
+    SetVBlankCallback(ov64_0222DF3C, v0);
     DisableHBlank();
 
     return 1;
@@ -666,7 +666,7 @@ int ov64_0222DEA4(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov64_0222DFD0 *v0 = OverlayManager_Data(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     ov64_0222EC8C(&v0->unk_2C8, &v0->unk_28C, &v0->unk_04);
@@ -701,13 +701,13 @@ static void ov64_0222DF48(UnkStruct_ov64_0222DFD0 *param0, u32 param1)
     ov64_02230680(&param0->unk_41C, &param0->unk_28C, &param0->unk_04, param1);
     ov64_02230B1C(&param0->unk_444, &param0->unk_28C, &param0->unk_04, param1);
 
-    SetMainCallback(ov64_0222DF3C, param0);
+    SetVBlankCallback(ov64_0222DF3C, param0);
     DisableHBlank();
 }
 
 static void ov64_0222DFD0(UnkStruct_ov64_0222DFD0 *param0)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     ov64_0222EE00(&param0->unk_2C8, &param0->unk_28C, &param0->unk_04);
@@ -832,7 +832,7 @@ static void ov64_0222E164(UnkStruct_ov64_0222E060 *param0)
 
 static void ov64_0222E1A4(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_0222E060 *param1, u32 param2)
 {
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
     param0->unk_21C = NARC_ctor(NARC_INDEX_GRAPHIC__PL_WIFINOTE, param2);
 

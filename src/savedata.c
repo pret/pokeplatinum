@@ -119,7 +119,7 @@ BOOL SaveData_Erase(SaveData *saveData)
 {
     u8 *saveBuffer = Heap_AllocFromHeapAtEnd(HEAP_ID_APPLICATION, SAVE_SECTOR_SIZE);
 
-    SleepLock(1);
+    SleepLock(SLEEP_TYPE_SAVE_DATA);
 
     SaveBlockFooter_Erase(saveData, SAVE_BLOCK_ID_NORMAL, !saveData->blockOffsets[SAVE_BLOCK_ID_NORMAL]);
     SaveBlockFooter_Erase(saveData, SAVE_BLOCK_ID_BOXES, !saveData->blockOffsets[SAVE_BLOCK_ID_BOXES]);
@@ -137,7 +137,7 @@ BOOL SaveData_Erase(SaveData *saveData)
     SaveData_Clear(saveData);
 
     saveData->dataExists = FALSE;
-    SleepUnlock(1);
+    SleepUnlock(SLEEP_TYPE_SAVE_DATA);
 
     return TRUE;
 }
@@ -169,14 +169,14 @@ int SaveData_Save(SaveData *saveData)
     }
 
     if (saveData->isNewGameData) {
-        SleepLock(1);
+        SleepLock(SLEEP_TYPE_SAVE_DATA);
 
         SaveBlockFooter_Erase(saveData, SAVE_BLOCK_ID_NORMAL, !saveData->blockOffsets[SAVE_BLOCK_ID_NORMAL]);
         SaveBlockFooter_Erase(saveData, SAVE_BLOCK_ID_BOXES, !saveData->blockOffsets[SAVE_BLOCK_ID_BOXES]);
         SaveBlockFooter_Erase(saveData, SAVE_BLOCK_ID_NORMAL, saveData->blockOffsets[SAVE_BLOCK_ID_NORMAL]);
         SaveBlockFooter_Erase(saveData, SAVE_BLOCK_ID_BOXES, saveData->blockOffsets[SAVE_BLOCK_ID_BOXES]);
 
-        SleepUnlock(1);
+        SleepUnlock(SLEEP_TYPE_SAVE_DATA);
     }
 
     int saveResult = SaveDataState_Save(saveData);
@@ -662,7 +662,7 @@ static void SaveDataState_Init(SaveData *saveData, SaveDataState *state, int blo
         state->endBlock = blockID + 1;
     }
 
-    SleepLock(1);
+    SleepLock(SLEEP_TYPE_SAVE_DATA);
 }
 
 static int SaveDataState_Main(SaveData *saveData, SaveDataState *state)
@@ -756,7 +756,7 @@ static void SaveDataState_End(SaveData *saveData, SaveDataState *state, int save
         saveData->fullSaveRequired = FALSE;
     }
 
-    SleepUnlock(1);
+    SleepUnlock(SLEEP_TYPE_SAVE_DATA);
 }
 
 static void SaveDataState_Cancel(SaveData *saveData, SaveDataState *state)
@@ -781,7 +781,7 @@ static void SaveDataState_Cancel(SaveData *saveData, SaveDataState *state)
         state->locked = FALSE;
     }
 
-    SleepUnlock(1);
+    SleepUnlock(SLEEP_TYPE_SAVE_DATA);
 }
 
 BOOL SaveDataState_Save(SaveData *saveData)
@@ -964,7 +964,7 @@ static u32 SaveCheckFooter_SaveCounter(void *saveBody, u32 size)
 
 int SaveDataExtra_Save(const SaveData *saveData, int extraSaveID, void *data)
 {
-    SleepLock(1);
+    SleepLock(SLEEP_TYPE_SAVE_DATA);
     GF_ASSERT(extraSaveID < gExtraSaveTableSize);
 
     const SaveTableEntry *saveTable = &gExtraSaveTable[extraSaveID];
@@ -994,17 +994,17 @@ int SaveDataExtra_Save(const SaveData *saveData, int extraSaveID, void *data)
     }
 
     if (saveResult == TRUE) {
-        SleepUnlock(1);
+        SleepUnlock(SLEEP_TYPE_SAVE_DATA);
         return SAVE_RESULT_OK;
     } else {
-        SleepUnlock(1);
+        SleepUnlock(SLEEP_TYPE_SAVE_DATA);
         return SAVE_RESULT_CORRUPT;
     }
 }
 
 int SaveDataExtra_SaveMirror(SaveData *saveData, int extraSaveID, void *data)
 {
-    SleepLock(1);
+    SleepLock(SLEEP_TYPE_SAVE_DATA);
     GF_ASSERT(extraSaveID < gExtraSaveTableSize);
 
     const SaveTableEntry *saveTable = &gExtraSaveTable[extraSaveID];
@@ -1037,10 +1037,10 @@ int SaveDataExtra_SaveMirror(SaveData *saveData, int extraSaveID, void *data)
     }
 
     if (saveResult == TRUE) {
-        SleepUnlock(1);
+        SleepUnlock(SLEEP_TYPE_SAVE_DATA);
         return SAVE_RESULT_OK;
     } else {
-        SleepUnlock(1);
+        SleepUnlock(SLEEP_TYPE_SAVE_DATA);
         return SAVE_RESULT_CORRUPT;
     }
 }

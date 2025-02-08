@@ -128,7 +128,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     v4 = SaveData_GetTrainerInfo(v3->unk_08);
     v2 = v3->unk_24;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -192,7 +192,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
 
-    SetMainCallback(ov104_0223C6EC, v0);
+    SetVBlankCallback(ov104_0223C6EC, v0);
     v0->unk_A0 = SysTask_ExecuteOnVBlank(ov104_0223C71C, v0, 10);
     ov104_0222EB8C(v0, &v0->unk_90, v0->unk_C1);
     sub_02039734();
@@ -244,7 +244,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(94);
 

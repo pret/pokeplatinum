@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -858,7 +860,7 @@ static void ov77_021D2B38(void *param0)
     UnkStruct_ov77_021D37C0 *v2 = &v1->unk_34;
 
     if (v2->unk_25B == 1) {
-        gSystem.unk_65 = 1;
+        gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
         GXLayers_SwapDisplay();
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -933,7 +935,7 @@ static int ov77_021D2D08(OverlayManager *param0, int *param1)
     sub_0200AB84();
     sub_0200F344(0, 0x7fff);
     sub_0200F344(1, 0x7fff);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -947,7 +949,7 @@ static int ov77_021D2D08(OverlayManager *param0, int *param1)
     v0->unk_08 = 0;
     v0->unk_2A8 = 0;
 
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
     v0->unk_14 = LCRNG_GetSeed();
 
@@ -1059,7 +1061,7 @@ static void ov77_021D2F0C(UnkStruct_ov77_021D2E9C *param0)
     param0->unk_18.unk_0C = param0->unk_0C;
     param0->unk_18.unk_14 = ov77_021D670C();
 
-    SetMainCallback(ov77_021D2B30, (void *)param0);
+    SetVBlankCallback(ov77_021D2B30, (void *)param0);
 
     param0->unk_18.unk_02 = 1;
 }
@@ -1167,7 +1169,7 @@ static BOOL ov77_021D30D0(UnkStruct_ov77_021D2F38 *param0, const int param1)
 
 static void ov77_021D3234(UnkStruct_ov77_021D2E9C *param0)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     if (param0->unk_18.unk_02) {
         ov77_021D67B0(param0->unk_18.unk_14);
@@ -1343,7 +1345,7 @@ static void ov77_021D34A8(UnkStruct_ov77_021D2E9C *param0)
     ov77_021D6CFC(param0->unk_34.unk_1C);
     param0->unk_34.unk_10 = param0->unk_0C;
 
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -1355,7 +1357,7 @@ static void ov77_021D34A8(UnkStruct_ov77_021D2E9C *param0)
     NNS_G3dGlbMaterialColorSpecEmi(GX_RGB(18, 18, 18), GX_RGB(14, 14, 14), 0);
     NNS_G3dGlbPolygonAttr(13, GX_POLYGONMODE_MODULATE, GX_CULL_BACK, 0, 31, GX_POLYGON_ATTR_MISC_FOG);
 
-    SetMainCallback(ov77_021D2B38, (void *)param0);
+    SetVBlankCallback(ov77_021D2B38, (void *)param0);
     sub_0200AB4C(-16, GX_BLEND_PLANEMASK_BG3, 1);
 
     param0->unk_34.unk_02 = 1;
@@ -1465,7 +1467,7 @@ static void ov77_021D36F8(UnkStruct_ov77_021D2E9C *param0)
     GX_SetVisibleWnd(0);
     GXS_SetVisibleWnd(0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 }
 
 static void ov77_021D37C0(UnkStruct_ov77_021D37C0 *param0)
@@ -1629,7 +1631,7 @@ static void ov77_021D3D4C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
 static void ov77_021D3DC4(UnkStruct_ov77_021D37C0 *param0)
 {
-    if (gSystem.unk_65 == 0) {
+    if (gSystem.whichScreenIs3D == 0) {
         Bg_SetOffset(param0->unk_10, 1, 3, 0);
         Bg_SetOffset(param0->unk_10, 2, 3, 0);
         Bg_SetOffset(param0->unk_10, 3, 3, 0);
@@ -2055,7 +2057,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
             ov77_021D603C(param1->unk_14, 16, 1);
             ov77_021D636C(param1->unk_14, 0);
             ov77_021D3B5C(param0, param1);
-            gSystem.unk_65 = 0;
+            gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
             GXLayers_SwapDisplay();
             ov77_021D3DC4(param1);
             param1->unk_246 = 1;
@@ -2101,7 +2103,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
         if (IsScreenTransitionDone()) {
             if (1) {
-                gSystem.unk_65 = 1;
+                gSystem.whichScreenIs3D = DS_SCREEN_SUB;
                 GXLayers_SwapDisplay();
                 ov77_021D3DC4(param1);
 
@@ -2129,7 +2131,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         if (IsScreenTransitionDone()) {
             MI_CpuCopy16(param1->unk_240, (void *)HW_BG_PLTT, 0x200);
 
-            gSystem.unk_65 = 0;
+            gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
             GXLayers_SwapDisplay();
 
             ov77_021D3D4C(param0, param1);
@@ -2175,7 +2177,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
         if (IsScreenTransitionDone()) {
-            gSystem.unk_65 = 1;
+            gSystem.whichScreenIs3D = DS_SCREEN_SUB;
             GXLayers_SwapDisplay();
             (*v0)++;
         }

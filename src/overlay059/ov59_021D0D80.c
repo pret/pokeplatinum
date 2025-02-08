@@ -165,7 +165,7 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -196,7 +196,7 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
         StartScreenTransition(0, 17, 17, 0x0, 16, 1, 51);
 
         ov59_021D1388(v0, v1);
-        SetMainCallback(ov59_021D1100, v0);
+        SetVBlankCallback(ov59_021D1100, v0);
 
         ov59_021D1250(v0, v1);
         ov59_021D1474();
@@ -320,7 +320,7 @@ int ov59_021D0FF4(OverlayManager *param0, int *param1)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     sub_0205BEA8(0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(51);
 
     return 1;

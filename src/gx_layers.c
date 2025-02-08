@@ -98,7 +98,7 @@ void GXLayers_TurnBothDispOn(void)
 
 void GXLayers_SwapDisplay(void)
 {
-    if (gSystem.unk_65 == 0) {
+    if (gSystem.whichScreenIs3D == 0) {
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     } else {
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);

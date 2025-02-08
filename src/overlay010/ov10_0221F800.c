@@ -542,7 +542,7 @@ static u8 ov10_0221FB28(UnkStruct_ov10_0221FB28 *param0)
 {
     G2_BlendNone();
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -605,7 +605,7 @@ static u8 ov10_0221FBFC(UnkStruct_ov10_0221FB28 *param0)
         ov10_02221C14(param0);
         sub_02039734();
         sub_0208C120(0, param0->unk_00->unk_24);
-        SetMainCallback(ov10_02220C64, param0);
+        SetVBlankCallback(ov10_02220C64, param0);
         return 1;
     }
 
@@ -629,7 +629,7 @@ static u8 ov10_0221FC78(UnkStruct_ov10_0221FB28 *param0)
         break;
     case 2:
         sub_0208C120(0, param0->unk_00->unk_24);
-        SetMainCallback(ov10_02220C64, param0);
+        SetVBlankCallback(ov10_02220C64, param0);
         param0->unk_B76 = 0;
         param0->unk_B70 = 8;
         param0->unk_B71 = 4;
@@ -681,7 +681,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0)
         break;
     case 2:
         sub_0208C120(0, param0->unk_00->unk_24);
-        SetMainCallback(ov10_02220C64, param0);
+        SetVBlankCallback(ov10_02220C64, param0);
         param0->unk_B76 = 0;
         param0->unk_B70 = 4;
         param0->unk_B71 = 2;
@@ -1145,7 +1145,7 @@ static u8 ov10_02220A50(SysTask *param0, UnkStruct_ov10_0221FB28 *param1)
         return 0;
     }
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     ov10_02222A48(param1);
 
     if (param1->unk_00->unk_28 != 0) {

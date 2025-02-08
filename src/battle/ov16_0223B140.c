@@ -313,7 +313,7 @@ void ov16_0223B384(BattleSystem *param0)
 
 void ov16_0223B3E4(BattleSystem *param0)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     ov16_02268A14(param0->unk_198);
     Window_Remove(&param0->windows[0]);
 
@@ -466,7 +466,7 @@ void ov16_0223B578(BattleSystem *param0)
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    SetMainCallback(ov16_0223CE68, param0);
+    SetVBlankCallback(ov16_0223CE68, param0);
 
     param0->unk_23FB_1 = 1;
 
@@ -949,7 +949,7 @@ static void ov16_0223C004(BattleSystem *param0, BgConfig *param1)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    SetMainCallback(ov16_0223CE68, param0);
+    SetVBlankCallback(ov16_0223CE68, param0);
 }
 
 static void ov16_0223C210(BattleSystem *param0)
@@ -1749,7 +1749,7 @@ static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
         MessageLoader_Free(v5);
     }
 
-    SetMainCallback(ov16_0223CF1C, v0);
+    SetVBlankCallback(ov16_0223CF1C, v0);
     PaletteData_StartFade(v0->unk_0C, (0x1 | 0x4), 0xffff, 0, 16, 0, 0x0);
 
     v0->unk_1024 = Window_AddWaitDial(v0->unk_08, 1);
@@ -1988,7 +1988,7 @@ static void ov16_0223D7B4(OverlayManager *param0)
 {
     UnkStruct_0207A778 *v0 = OverlayManager_Data(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     sub_0200F344(0, 0x0);
     PaletteData_FreeBuffer(v0->unk_0C, 0);
     PaletteData_Free(v0->unk_0C);

@@ -205,7 +205,7 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     UnkStruct_ov85_022417E4 *v0;
     NARC *v1;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -243,7 +243,7 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     ov85_02242038(v0);
     ov85_02242218(v0);
 
-    SetMainCallback(ov85_022415F4, v0);
+    SetVBlankCallback(ov85_022415F4, v0);
     DrawWifiConnectionIcon();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     NARC_dtor(v1);
@@ -291,7 +291,7 @@ int ov85_022415A0(OverlayManager *param0, int *param1)
 
     Heap_FreeToHeap(v0->unk_1FC);
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(36);
 
     G2_BlendNone();

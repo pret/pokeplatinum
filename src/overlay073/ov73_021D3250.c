@@ -67,7 +67,7 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
 
         GXLayers_DisableEngineALayers();
@@ -79,7 +79,7 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         ov73_021D342C(v0);
         ov73_021D366C(v0);
 
-        SetMainCallback(ov73_021D3420, (void *)v0);
+        SetVBlankCallback(ov73_021D3420, (void *)v0);
         GXLayers_TurnBothDispOn();
 
         {
@@ -133,7 +133,7 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         if (IsScreenTransitionDone() == 1) {
             ov73_021D368C(v0);
             ov73_021D35F4(v0);
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
 
             v1 = 1;
         }

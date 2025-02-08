@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay100/ov100_021D13E4.h"
@@ -56,7 +58,7 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
 
     ov100_021D1034(&v0->unk_0C);
     StartScreenTransition(0, 1, 1, 0x0, 6 * 2, 1, 111);
-    SetMainCallback(ov100_021D13B4, v0);
+    SetVBlankCallback(ov100_021D13B4, v0);
 
     v0->unk_0C.unk_50.unk_00 = 31;
     v0->unk_0C.unk_50.unk_01 = 31;
@@ -141,14 +143,14 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
 
     v0 = OverlayManager_Data(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Window_EraseMessageBox(&v0->unk_0C.unk_30, 1);
     Window_ClearAndCopyToVRAM(&v0->unk_0C.unk_30);
     Window_Remove(&v0->unk_0C.unk_30);
 
     ov100_021D111C(&v0->unk_0C);
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
     OverlayManager_FreeData(param0);
@@ -208,7 +210,7 @@ static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
 
 static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();

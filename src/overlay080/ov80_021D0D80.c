@@ -200,7 +200,7 @@ static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
 {
     switch (param0->unk_0C) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -234,7 +234,7 @@ static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
         ov80_021D2A08(param0);
         break;
     case 2:
-        SetMainCallback(ov80_021D0E68, param0);
+        SetVBlankCallback(ov80_021D0E68, param0);
         param0->unk_38 = Unk_ov80_021D2E94[param0->unk_00].unk_10;
         param0->unk_0C = 0;
         return 1;
@@ -251,7 +251,7 @@ static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0)
     sub_0201E530();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     ov80_021D2AC0(param0);

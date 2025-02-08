@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_02015958.h"
@@ -1329,7 +1331,7 @@ static void ov114_0225CEF0(UnkStruct_ov114_0225CEF0 *param0, const GraphicsModes
     param0->unk_04 = param2;
     param0->unk_08 = param3;
 
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
     {

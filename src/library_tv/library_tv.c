@@ -72,7 +72,7 @@ BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
 
         GXLayers_DisableEngineALayers();
@@ -86,7 +86,7 @@ BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
         LibraryTV_SetVramBank(ltv);
         LibraryTV_SetMsgLdr(ltv);
 
-        SetMainCallback(LibraryTV_VBlank, (void *)ltv);
+        SetVBlankCallback(LibraryTV_VBlank, (void *)ltv);
         GXLayers_TurnBothDispOn();
 
         ltv->waitTiming = 0;
@@ -136,7 +136,7 @@ BOOL LibraryTV_Main(OverlayManager *ovy, int *state)
         if (IsScreenTransitionDone() == 1) {
             LibraryTV_ReleaseMsgLdr(ltv);
             LibraryTV_ReleaseVramBank(ltv);
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             result = TRUE;
         }
         break;

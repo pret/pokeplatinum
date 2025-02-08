@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
@@ -106,7 +108,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     OS_SetIrqFunction(OS_IE_V_BLANK, VBlankIntr);
     OS_EnableIrqMask(OS_IE_V_BLANK);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
 
     GXLayers_DisableEngineALayers();
@@ -116,7 +118,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     GXS_SetVisiblePlane(0);
 
     SetAutorepeat(4, 8);
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
     G2_BlendNone();

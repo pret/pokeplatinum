@@ -216,7 +216,7 @@ static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0)
 {
     switch (param0->unk_04) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -250,7 +250,7 @@ static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0)
         ov90_021D1984(param0);
         break;
     case 4:
-        SetMainCallback(ov90_021D1034, param0);
+        SetVBlankCallback(ov90_021D1034, param0);
         param0->unk_04 = 0;
         return 1;
     }
@@ -274,7 +274,7 @@ static int ov90_021D0F98(UnkStruct_ov90_021D0ECC *param0)
         ov90_021D1280(param0);
         break;
     case 1:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();

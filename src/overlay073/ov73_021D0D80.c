@@ -162,7 +162,7 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
 
         GXLayers_DisableEngineALayers();
@@ -176,7 +176,7 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
         ov73_021D12C4(v0);
         ov73_021D1318(v0);
 
-        SetMainCallback(ov73_021D0FF0, (void *)v0);
+        SetVBlankCallback(ov73_021D0FF0, (void *)v0);
         GXLayers_TurnBothDispOn();
 
         *param1 = 1;
@@ -197,7 +197,7 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
             ov73_021D1300(v0);
             ov73_021D1238(v0);
             ov73_021D1328(v0);
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
 
             v1 = 1;
         }
@@ -207,7 +207,7 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
             ov73_021D1300(v0);
             ov73_021D1238(v0);
             ov73_021D1328(v0);
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             *param1 = 4;
         }
         break;

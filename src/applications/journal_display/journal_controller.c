@@ -69,7 +69,7 @@ int JournalController_Init(OverlayManager *ovyManager, int *state)
     JournalManager *journalManager;
     SaveData *saveData;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -102,7 +102,7 @@ int JournalController_Init(OverlayManager *ovyManager, int *state)
     JournalPrinter_PrintEntry(journalManager, 0);
     ov81_021D1434(journalManager);
 
-    SetMainCallback(JournalController_MainCallback, journalManager);
+    SetVBlankCallback(JournalController_MainCallback, journalManager);
     GXLayers_TurnBothDispOn();
     sub_02039734();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -141,7 +141,7 @@ int JournalController_Exit(OverlayManager *ovyManager, int *state)
 {
     JournalManager *journalManager = OverlayManager_Data(ovyManager);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     JournalPrinter_RemoveWindows(journalManager);
     JournalController_TeardownBgs(journalManager->bgConfig);

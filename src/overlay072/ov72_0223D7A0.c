@@ -113,7 +113,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
     case 0:
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -147,7 +147,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
 
         sub_0201E3D8();
         sub_0201E450(1);
-        SetMainCallback(ov72_0223DA48, v0->unk_00);
+        SetVBlankCallback(ov72_0223DA48, v0->unk_00);
         Font_InitManager(FONT_SUBSCREEN, 39);
 
         ov72_0223DB98(v0);
@@ -208,7 +208,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
 
     ov72_0223E9B4(v0->unk_5BFC, v0->unk_328.pixels);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SpriteTransfer_ResetCharTransfer(v0->unk_1DC[0][0]);
     SpriteTransfer_ResetCharTransfer(v0->unk_1DC[1][0]);
     SpriteTransfer_ResetPlttTransfer(v0->unk_1DC[0][1]);
@@ -234,7 +234,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(39);
 
     return 1;

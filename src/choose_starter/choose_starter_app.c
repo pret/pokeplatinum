@@ -331,7 +331,7 @@ BOOL ChooseStarter_Init(OverlayManager *param0, int *param1)
     app->unk_704 = Options_TextFrameDelay(data->options);
 
     VramTransfer_New(8, HEAP_ID_CHOOSE_STARTER_APP);
-    SetMainCallback(ChooseStarterAppMainCallback, app);
+    SetVBlankCallback(ChooseStarterAppMainCallback, app);
     DisableHBlank();
 
     sub_0201E3D8();
@@ -439,7 +439,7 @@ BOOL ChooseStarter_Exit(OverlayManager *param0, int *param1)
     ChooseStarterData *v1 = OverlayManager_Args(param0);
     BOOL v2;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     v1->species = GetSelectedSpecies(v0->cursorPosition);
 

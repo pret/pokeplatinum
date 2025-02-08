@@ -5,6 +5,8 @@
 #include <ppwlobby/ppw_lobby.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -333,7 +335,7 @@ int ov68_0225C700(OverlayManager *param0, int *param1)
     GF_ASSERT(v1->unk_08 < 2);
     Unk_ov68_0225DEB0[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00, v1, 122);
 
-    SetMainCallback(ov68_0225C914, v0);
+    SetVBlankCallback(ov68_0225C914, v0);
     DisableHBlank();
 
     return 1;
@@ -407,7 +409,7 @@ int ov68_0225C8A8(OverlayManager *param0, int *param1)
     v0 = OverlayManager_Data(param0);
     v1 = OverlayManager_Args(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     Unk_ov68_0225DEA0[v1->unk_08](&v0->unk_1DC, &v0->unk_1A8, &v0->unk_00);
@@ -468,7 +470,7 @@ static void ov68_0225C9A0(UnkStruct_ov68_0225C91C *param0, Options *param1, u32 
     SetAllGraphicsModes(&Unk_ov68_0225DD48);
 
     param0->unk_00 = BgConfig_New(param2);
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
 

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 
@@ -1061,7 +1063,7 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
 {
     BgConfig *v0 = param0->unk_08;
 
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
     PaletteData_FillBufferRange(param0->unk_0C, 0, 2, 0x0, 0, 1);

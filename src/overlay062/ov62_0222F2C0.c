@@ -47,7 +47,7 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0);
 
 void ov62_0222F2C0(UnkStruct_0208C06C *param0)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -81,7 +81,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
         RenderControlFlags_SetSpeedUpOnTouch(1);
     }
 
-    SetMainCallback(ov62_0222F8E4, param0);
+    SetVBlankCallback(ov62_0222F8E4, param0);
 
     if (param0->unk_00 != 0) {
         ov62_02241130(param0);
@@ -207,7 +207,7 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
 
     ov62_022411EC(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     VramTransfer_Free();
 }
 
@@ -303,7 +303,7 @@ static void ov62_0222F670(BgConfig *param0)
 
 void ov62_0222F824(int param0)
 {
-    gSystem.unk_65 = param0;
+    gSystem.whichScreenIs3D = param0;
     GXLayers_SwapDisplay();
 }
 

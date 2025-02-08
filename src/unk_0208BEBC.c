@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_0208C06C.h"
 
 #include "overlay062/ov62_0222F2C0.h"
@@ -125,7 +127,7 @@ static int sub_0208BF6C(OverlayManager *param0, int *param1)
         ov62_0222F514(v0);
         Heap_Destroy(102);
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay62));
-        gSystem.unk_65 = 0;
+        gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
         GXLayers_SwapDisplay();
 
         return 1;

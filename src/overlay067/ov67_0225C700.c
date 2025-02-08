@@ -185,7 +185,7 @@ int ov67_0225C700(OverlayManager *param0, int *param1)
     ov67_0225D188(&v0->unk_10, v0->unk_0C, 1, 674, 5, 1, 22, 2, (((((1 + (18 + 12)) + 9) + (27 * 4)) + (23 * 16)) + (6 * 4)), v0->unk_00, 112);
     ov67_0225D37C(&v0->unk_10, 21);
 
-    SetMainCallback(ov67_0225CE28, v0);
+    SetVBlankCallback(ov67_0225CE28, v0);
     DisableHBlank();
 
     return 1;
@@ -384,7 +384,7 @@ int ov67_0225CB1C(OverlayManager *param0, int *param1)
 
     v0 = OverlayManager_Data(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     inline_ov61_0222C160(&v0->unk_D4);
@@ -423,7 +423,7 @@ int ov67_0225CB8C(OverlayManager *param0, int *param1)
     ov67_0225D37C(&v0->unk_10, 21);
 
     sub_02039734();
-    SetMainCallback(ov67_0225CE28, v0);
+    SetVBlankCallback(ov67_0225CE28, v0);
     DisableHBlank();
 
     return 1;
@@ -521,7 +521,7 @@ int ov67_0225CDC0(OverlayManager *param0, int *param1)
 
     v0 = OverlayManager_Data(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     inline_ov61_0222C160(&v0->unk_D4);

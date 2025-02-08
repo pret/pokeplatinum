@@ -409,7 +409,7 @@ int ov108_02241D70(OverlayManager *param0, int *param1)
     VramTransfer_Free();
     ov108_02242238(v1);
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(103);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
@@ -784,7 +784,7 @@ static void ov108_02242238(UnkStruct_ov108_02241DB0 *param0)
 
 static void ov108_02242344(void)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
 
     GXLayers_DisableEngineALayers();
@@ -862,7 +862,7 @@ static void ov108_0224237C(UnkStruct_ov108_02241DB0 *param0)
         sub_02039734();
     }
 
-    SetMainCallback(ov108_02242708, (void *)param0);
+    SetVBlankCallback(ov108_02242708, (void *)param0);
     return;
 }
 

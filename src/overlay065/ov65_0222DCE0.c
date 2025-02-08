@@ -688,7 +688,7 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
 {
     NARC *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -711,7 +711,7 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
 
     inline_ov61_0222C3B0(&param0->unk_E2C, v0, 4, 54);
 
-    SetMainCallback(ov65_0222E5E0, param0);
+    SetVBlankCallback(ov65_0222E5E0, param0);
 
     ov65_0222EDD0();
     ov65_0222EE18(param0, v0);
@@ -846,7 +846,7 @@ static void ov65_0222E47C(UnkStruct_ov65_0222EBE0 *param0)
 {
     int v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     inline_ov61_0222C160(&param0->unk_E2C);
 

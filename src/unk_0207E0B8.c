@@ -246,7 +246,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     GameWindowLayout *v0;
     NARC *v1;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -310,7 +310,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
 
-    SetMainCallback(sub_0207E898, v0);
+    SetVBlankCallback(sub_0207E898, v0);
     DrawWifiConnectionIcon();
     NARC_dtor(v1);
 
@@ -643,7 +643,7 @@ static int sub_0207E7E0(OverlayManager *param0, int *param1)
     GameWindowLayout *v0 = OverlayManager_Data(param0);
     u32 v1;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     sub_02082FF4(v0);
     sub_02081B90(v0);
     sub_0207EA24(v0->unk_00);

@@ -1616,7 +1616,7 @@ void ov5_021E924C(UnkStruct_ov5_021E8F60 *param0)
 {
     u8 v0;
 
-    sub_02017ACC();
+    ClearUnusedSystemCache();
 
     NNS_GfdResetLnkTexVramState();
     NNS_GfdResetLnkPlttVramState();

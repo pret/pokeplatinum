@@ -106,7 +106,7 @@ int sub_02099E38(OverlayManager *param0, int *param1)
         sub_02004234(0);
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -117,7 +117,7 @@ int sub_02099E38(OverlayManager *param0, int *param1)
         SetAutorepeat(4, 8);
         sub_02099F80(v0);
         sub_0209A098(v0);
-        SetMainCallback(sub_02099F74, (void *)v0);
+        SetVBlankCallback(sub_02099F74, (void *)v0);
         GXLayers_TurnBothDispOn();
         StartScreenTransition(0, 1, 1, 0, 6, 1, v0->unk_00);
         *param1 = 1;
@@ -137,7 +137,7 @@ int sub_02099E38(OverlayManager *param0, int *param1)
         if (IsScreenTransitionDone() == TRUE) {
             sub_0209A0E0(v0);
             sub_0209A044(v0);
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             v1 = 1;
         }
         break;

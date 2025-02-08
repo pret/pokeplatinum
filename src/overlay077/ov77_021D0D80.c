@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -165,7 +167,7 @@ static int ov77_021D0D80(OverlayManager *param0, int *param1)
     G2S_BlendNone();
     G2_BlendNone();
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
 
     GXLayers_DisableEngineALayers();
@@ -188,7 +190,7 @@ static int ov77_021D0D80(OverlayManager *param0, int *param1)
     ov77_021D17B4(v0);
     ov77_021D11CC(v0);
 
-    SetMainCallback(ov77_021D1178, (void *)v0);
+    SetVBlankCallback(ov77_021D1178, (void *)v0);
     GXLayers_TurnBothDispOn();
 
     return 1;
@@ -319,7 +321,7 @@ static int ov77_021D10FC(OverlayManager *param0, int *param1)
     int v1 = v0->unk_00;
     int v2 = v0->unk_4E8;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     ov77_021D11FC(v0);
     ov77_021D1908(v0);
@@ -892,7 +894,7 @@ static BOOL ov77_021D1A60(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         G3X_AntiAlias(1);
     }
 
-    gSystem.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
     GXLayers_SwapDisplay();
     param0->unk_04.unk_00 = 2;
 
@@ -1204,7 +1206,7 @@ static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
     G2_BlendNone();
     G3X_EdgeMarking(0);
 
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
     return 1;

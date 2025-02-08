@@ -1,26 +1,38 @@
 #include "system.h"
 
+#include "nitro/pad/common/pad.h"
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/screen.h"
 
 #include "boot.h"
 #include "heap.h"
 #include "math.h"
 #include "sys_task_manager.h"
 
-typedef struct {
-    void *unk_00;
-    u32 unk_04;
-} UnkStruct_021BF6F0;
+#define MAIN_TASK_MAX        160
+#define VBLANK_TASK_MAX      32
+#define POST_VBLANK_TASK_MAX 32
+#define PRINT_TASK_MAX       4
 
+#define CACHE_ENTRY_MAX 128
+
+typedef struct CacheEntry {
+    void *data;
+    u32 hash;
+} CacheEntry;
+
+static void VBlankIntr(void);
+static void DummyVBlankIntr(void);
+static void HBlankIntr(void);
 static void SetHBlankEnabled(BOOL param0);
-void sub_0201777C(void);
+static void InitHeapSystem(void);
 static void ApplyButtonModeToInput(void);
 
 System gSystem;
 
-void sub_02017728(void)
+static void VBlankIntr(void)
 {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
     MI_WaitDma(GX_DEFAULT_DMAID);
@@ -28,28 +40,28 @@ void sub_02017728(void)
     gSystem.frameCounter++;
 }
 
-static void sub_0201775C(void)
+static void DummyVBlankIntr(void)
 {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
     MI_WaitDma(GX_DEFAULT_DMAID);
 }
 
-void sub_0201777C(void)
+void SetDummyVBlankIntr(void)
 {
-    (void)OS_DisableIrqMask(OS_IE_V_BLANK);
-    OS_SetIrqFunction(OS_IE_V_BLANK, sub_0201775C);
-    (void)OS_EnableIrqMask(OS_IE_V_BLANK);
+    OS_DisableIrqMask(OS_IE_V_BLANK);
+    OS_SetIrqFunction(OS_IE_V_BLANK, DummyVBlankIntr);
+    OS_EnableIrqMask(OS_IE_V_BLANK);
 }
 
-void SetMainCallback(Callback cb, void *data)
+void SetVBlankCallback(Callback cb, void *data)
 {
-    gSystem.mainCallback = cb;
-    gSystem.mainCallbackData = data;
+    gSystem.vblankCallback = cb;
+    gSystem.vblankCallbackData = data;
 }
 
 void DisableHBlank(void)
 {
-    SetHBlankEnabled(0);
+    SetHBlankEnabled(FALSE);
     gSystem.hblankCallback = NULL;
     gSystem.hblankCallbackData = NULL;
 }
@@ -57,18 +69,18 @@ void DisableHBlank(void)
 BOOL SetHBlankCallback(Callback cb, void *data)
 {
     if (cb == NULL) {
-        SetHBlankEnabled(0);
+        SetHBlankEnabled(FALSE);
         gSystem.hblankCallback = NULL;
         gSystem.hblankCallbackData = NULL;
-        return 1;
+        return TRUE;
     } else {
         if (gSystem.hblankCallback == NULL) {
             gSystem.hblankCallbackData = data;
             gSystem.hblankCallback = cb;
-            SetHBlankEnabled(1);
-            return 1;
+            SetHBlankEnabled(TRUE);
+            return TRUE;
         } else {
-            return 0;
+            return FALSE;
         }
     }
 }
@@ -82,116 +94,99 @@ static void HBlankIntr(void)
 
 static void SetHBlankEnabled(BOOL enabled)
 {
-    OSIrqMask savedMask;
-
     OS_DisableIrq();
-
     if (!enabled) {
-        savedMask = OS_GetIrqMask();
+        OSIrqMask savedMask = OS_GetIrqMask();
         OS_DisableIrqMask(OS_IE_H_BLANK);
-        GX_HBlankIntr(0);
+        GX_HBlankIntr(FALSE);
     } else {
-        savedMask = OS_GetIrqMask();
+        OSIrqMask savedMask = OS_GetIrqMask();
         OS_SetIrqFunction(OS_IE_H_BLANK, HBlankIntr);
         OS_EnableIrqMask(OS_IE_H_BLANK);
-        GX_HBlankIntr(1);
+        GX_HBlankIntr(TRUE);
     }
-
     OS_EnableIrq();
 }
 
-static const HeapParam Unk_020E5674[] = {
-    { 0xD200, OS_ARENA_MAIN },
-    { 0x20E00, OS_ARENA_MAIN },
-    { 0x10, OS_ARENA_MAIN },
-    { 0x10D800, OS_ARENA_MAIN }
+static const HeapParam sHeapInitParams[] = {
+    { HEAP_SIZE_SYSTEM, OS_ARENA_MAIN },
+    { HEAP_SIZE_SAVE, OS_ARENA_MAIN },
+    { HEAP_SIZE_DEBUG, OS_ARENA_MAIN },
+    { HEAP_SIZE_APPLICATION, OS_ARENA_MAIN }
 };
 
-static void sub_02017850(void)
+static void InitHeapSystem(void)
 {
-    u32 v0[8];
-    u8 v1[MATH_MD5_DIGEST_SIZE];
-    u32 v2, v3;
+    u32 lowEntropyData[8];
+    u8 md5[MATH_MD5_DIGEST_SIZE];
 
-    OS_GetLowEntropyData(v0);
-    MATH_CalcMD5(v1, v0, sizeof(v0));
+    OS_GetLowEntropyData(lowEntropyData);
+    MATH_CalcMD5(md5, lowEntropyData, sizeof(lowEntropyData));
 
-    v2 = 0;
-
-    for (v3 = 0; v3 < MATH_MD5_DIGEST_SIZE; v3++) {
-        v2 += v1[v3];
+    u32 offset = 0;
+    for (u32 i = 0; i < MATH_MD5_DIGEST_SIZE; i++) {
+        offset += md5[i];
     }
 
-    v2 %= 256;
-
-    while (v2 % 4) {
-        v2++;
+    offset %= 256;
+    while (offset % 4) {
+        offset++;
     }
 
-    Heap_InitSystem(Unk_020E5674, NELEMS(Unk_020E5674), 123, v2);
+    Heap_InitSystem(sHeapInitParams, NELEMS(sHeapInitParams), HEAP_ID_MAX, offset);
 }
 
-void sub_0201789C(void)
+void InitSystem(void)
 {
     OS_Init();
     FX_Init();
-
     GX_SetPower(GX_POWER_ALL);
     GX_Init();
-
     OS_InitTick();
-    sub_02017850();
+    InitHeapSystem();
 
-    gSystem.mainTaskMgr = SysTaskManager_Init(160, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(160), 4));
-    gSystem.vBlankTaskMgr = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
-    gSystem.postVBlankTaskMgr = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
-    gSystem.printTaskMgr = SysTaskManager_Init(4, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(4), 4));
+    gSystem.mainTaskMgr = SysTaskManager_Init(MAIN_TASK_MAX, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(MAIN_TASK_MAX), 4));
+    gSystem.vBlankTaskMgr = SysTaskManager_Init(VBLANK_TASK_MAX, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(VBLANK_TASK_MAX), 4));
+    gSystem.postVBlankTaskMgr = SysTaskManager_Init(POST_VBLANK_TASK_MAX, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(POST_VBLANK_TASK_MAX), 4));
+    gSystem.printTaskMgr = SysTaskManager_Init(PRINT_TASK_MAX, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(PRINT_TASK_MAX), 4));
 
     GX_DispOff();
     GXS_DispOff();
-
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
-    OS_SetIrqFunction(OS_IE_V_BLANK, sub_02017728);
+    OS_SetIrqFunction(OS_IE_V_BLANK, VBlankIntr);
 
-    (void)OS_EnableIrqMask(OS_IE_V_BLANK);
-    (void)OS_EnableIrqMask(OS_IE_FIFO_RECV);
-    (void)OS_EnableIrq();
-    (void)GX_VBlankIntr(1);
-
+    OS_EnableIrqMask(OS_IE_V_BLANK);
+    OS_EnableIrqMask(OS_IE_FIFO_RECV);
+    OS_EnableIrq();
+    GX_VBlankIntr(TRUE);
     FS_Init(1);
     CheckForMemoryTampering();
 
-    {
-        u32 v0 = FS_GetTableSize();
-        void *v1 = OS_AllocFromMainArenaLo(v0, 4);
+    u32 fsTableSize = FS_GetTableSize();
+    void *fsTable = OS_AllocFromMainArenaLo(fsTableSize, 4);
 
-        GF_ASSERT(v1 != NULL);
-        FS_LoadTable(v1, v0);
-    }
+    GF_ASSERT(fsTable != NULL);
+    FS_LoadTable(fsTable, fsTableSize);
 
-    gSystem.mainCallback = NULL;
+    gSystem.vblankCallback = NULL;
     gSystem.hblankCallback = NULL;
     gSystem.dummyCallback_10 = NULL;
     gSystem.dummyCallback_14 = NULL;
     gSystem.heapCanary = NULL;
     gSystem.vblankCounter = 0;
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     CARD_SetCacheFlushThreshold(0x500, 0x2400);
-
     InitCRC16Table(HEAP_ID_SYSTEM);
 }
 
-void InitGraphics(void)
+void InitVRAM(void)
 {
     GX_SetBankForLCDC(GX_VRAM_LCDC_ALL);
-
     MI_CpuClearFast((void *)HW_LCDC_VRAM, HW_LCDC_VRAM_SIZE);
     GX_DisableBankForLCDC();
-
     MI_CpuFillFast((void *)HW_OAM, 192, HW_OAM_SIZE);
     MI_CpuFillFast((void *)HW_DB_OAM, 192, HW_DB_OAM_SIZE);
-
     MI_CpuClearFast((void *)HW_PLTT, HW_PLTT_SIZE);
     MI_CpuClearFast((void *)HW_DB_PLTT, HW_DB_PLTT_SIZE);
 }
@@ -199,15 +194,12 @@ void InitGraphics(void)
 void *ReadFileToHeap(int heapID, const char *filename)
 {
     FSFile file;
-    void *buf;
-
     FS_InitFile(&file);
 
+    void *buf;
     if (FS_OpenFile(&file, filename)) {
         u32 length = FS_GetLength(&file);
-
         buf = Heap_AllocFromHeap(heapID, length);
-
         if (buf != NULL) {
             if (FS_ReadFile(&file, buf, length) != length) {
                 Heap_FreeToHeapExplicit(heapID, buf);
@@ -226,12 +218,10 @@ void *ReadFileToHeap(int heapID, const char *filename)
 void ReadFileToBuffer(const char *filename, void **buf)
 {
     FSFile file;
-
     FS_InitFile(&file);
 
     if (FS_OpenFile(&file, filename)) {
         u32 length = FS_GetLength(&file);
-
         if (*buf != NULL) {
             if (FS_ReadFile(&file, *buf, length) != length) {
                 /* error not handled */
@@ -242,26 +232,21 @@ void ReadFileToBuffer(const char *filename, void **buf)
     }
 }
 
-UnkStruct_021BF6F0 Unk_021BF6F0[128];
+CacheEntry sCache[CACHE_ENTRY_MAX];
 
-void sub_02017ACC(void)
+void ClearUnusedSystemCache(void)
 {
-    int v0;
-
-    for (v0 = 128 - 1; v0 > -1; v0--) {
-        if (Unk_021BF6F0[v0].unk_00 != NULL) {
-            Heap_FreeToHeap(Unk_021BF6F0[v0].unk_00);
-
-            Unk_021BF6F0[v0].unk_00 = NULL;
-            Unk_021BF6F0[v0].unk_04 = 0;
+    for (int i = CACHE_ENTRY_MAX - 1; i > -1; i--) {
+        if (sCache[i].data != NULL) {
+            Heap_FreeToHeap(sCache[i].data);
+            sCache[i].data = NULL;
+            sCache[i].hash = 0;
         }
     }
 }
 
 void InitKeypadAndTouchpad(void)
 {
-    TPCalibrateParam v0;
-
     gSystem.buttonMode = 0;
     gSystem.heldKeysRaw = 0;
     gSystem.pressedKeysRaw = 0;
@@ -276,19 +261,19 @@ void InitKeypadAndTouchpad(void)
     gSystem.touchY = 0;
     gSystem.touchPressed = 0;
     gSystem.touchHeld = 0;
-    gSystem.unk_64 = 0;
+    gSystem.touchAutoSampling = FALSE;
 
     TP_Init();
 
-    if (TP_GetUserInfo(&v0) == 1) {
-        TP_SetCalibrateParam(&v0);
+    TPCalibrateParam touchCalibration;
+    if (TP_GetUserInfo(&touchCalibration) == TRUE) {
+        TP_SetCalibrateParam(&touchCalibration);
     } else {
-        v0.x0 = 0x2ae;
-        v0.y0 = 0x58c;
-        v0.xDotSize = 0xe25;
-        v0.yDotSize = 0x1208;
-
-        TP_SetCalibrateParam(&v0);
+        touchCalibration.x0 = 0x02AE;
+        touchCalibration.y0 = 0x058C;
+        touchCalibration.xDotSize = 0x0E25;
+        touchCalibration.yDotSize = 0x1208;
+        TP_SetCalibrateParam(&touchCalibration);
     }
 }
 
@@ -297,14 +282,14 @@ void SetGBACartridgeVersion(int version)
     gSystem.gbaCartridgeVersion = version;
 }
 
-void SleepLock(u8 param0)
+void SleepLock(u8 mask)
 {
-    gSystem.inhibitSleep |= param0;
+    gSystem.inhibitSleep |= mask;
 }
 
-void SleepUnlock(u8 param0)
+void SleepUnlock(u8 mask)
 {
-    gSystem.inhibitSleep &= ~(param0);
+    gSystem.inhibitSleep &= ~(mask);
 }
 
 void ReadKeypadAndTouchpad(void)
@@ -328,7 +313,7 @@ void ReadKeypadAndTouchpad(void)
     gSystem.pressedKeysRaw = padRead & (padRead ^ gSystem.heldKeysRaw);
     gSystem.pressedKeysRepeatableRaw = gSystem.pressedKeysRaw;
 
-    if ((padRead != 0) && (gSystem.heldKeysRaw == padRead)) {
+    if (padRead != 0 && gSystem.heldKeysRaw == padRead) {
         if (--gSystem.autorepeatTimer == 0) {
             gSystem.pressedKeysRepeatableRaw = padRead;
             gSystem.autorepeatTimer = gSystem.autorepeatRate;
@@ -345,8 +330,8 @@ void ReadKeypadAndTouchpad(void)
 
     ApplyButtonModeToInput();
 
-    if (gSystem.unk_64 == 0) {
-        while (TP_RequestRawSampling(&tpRaw) != 0)
+    if (gSystem.touchAutoSampling == FALSE) {
+        while (TP_RequestRawSampling(&tpRaw) != FALSE)
             ;
     } else {
         TP_GetLatestRawPointInAuto(&tpRaw);
@@ -380,84 +365,55 @@ void ReadKeypadAndTouchpad(void)
     gSystem.touchHeld = tp.touch;
 }
 
+#define CONVERT_KEY(member, convertFrom, convertTo) \
+    {                                               \
+        if (member & convertFrom) {                 \
+            member |= convertTo;                    \
+        }                                           \
+    }
+#define SWAP_KEY(member, swapA, swapB)        \
+    {                                         \
+        u32 tmp = 0;                          \
+        if (member & swapA) {                 \
+            tmp |= swapB;                     \
+        }                                     \
+        if (member & swapB) {                 \
+            tmp |= swapA;                     \
+        }                                     \
+        member &= ((swapA | swapB) ^ 0xFFFF); \
+        member |= tmp;                        \
+    }
+#define CLEAR_KEY(member, key)    \
+    {                             \
+        member &= (key ^ 0xFFFF); \
+    }
+
 static void ApplyButtonModeToInput(void)
 {
     switch (gSystem.buttonMode) {
     default:
     case BUTTON_MODE_NORMAL:
         break;
+
     case BUTTON_MODE_START_IS_X:
-        if (gSystem.pressedKeys & PAD_BUTTON_START) {
-            gSystem.pressedKeys |= PAD_BUTTON_X;
-        }
-
-        if (gSystem.heldKeys & PAD_BUTTON_START) {
-            gSystem.heldKeys |= PAD_BUTTON_X;
-        }
-
-        if (gSystem.pressedKeysRepeatable & PAD_BUTTON_START) {
-            gSystem.pressedKeysRepeatable |= PAD_BUTTON_X;
-        }
+        CONVERT_KEY(gSystem.pressedKeys, PAD_BUTTON_START, PAD_BUTTON_X);
+        CONVERT_KEY(gSystem.heldKeys, PAD_BUTTON_START, PAD_BUTTON_X);
+        CONVERT_KEY(gSystem.pressedKeysRepeatable, PAD_BUTTON_START, PAD_BUTTON_X);
         break;
-    case BUTTON_MODE_SWAP_XY: {
-        u32 tmp = 0;
 
-        if (gSystem.pressedKeys & PAD_BUTTON_X) {
-            tmp |= PAD_BUTTON_Y;
-        }
-
-        if (gSystem.pressedKeys & PAD_BUTTON_Y) {
-            tmp |= PAD_BUTTON_X;
-        }
-
-        gSystem.pressedKeys &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
-        gSystem.pressedKeys |= tmp;
-    }
-        {
-            u32 tmp = 0;
-
-            if (gSystem.heldKeys & PAD_BUTTON_X) {
-                tmp |= PAD_BUTTON_Y;
-            }
-
-            if (gSystem.heldKeys & PAD_BUTTON_Y) {
-                tmp |= PAD_BUTTON_X;
-            }
-
-            gSystem.heldKeys &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
-            gSystem.heldKeys |= tmp;
-        }
-        {
-            u32 tmp = 0;
-
-            if (gSystem.pressedKeysRepeatable & PAD_BUTTON_X) {
-                tmp |= PAD_BUTTON_Y;
-            }
-
-            if (gSystem.pressedKeysRepeatable & PAD_BUTTON_Y) {
-                tmp |= PAD_BUTTON_X;
-            }
-
-            gSystem.pressedKeysRepeatable &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
-            gSystem.pressedKeysRepeatable |= tmp;
-        }
+    case BUTTON_MODE_SWAP_XY:
+        SWAP_KEY(gSystem.pressedKeys, PAD_BUTTON_X, PAD_BUTTON_Y);
+        SWAP_KEY(gSystem.heldKeys, PAD_BUTTON_X, PAD_BUTTON_Y);
+        SWAP_KEY(gSystem.pressedKeysRepeatable, PAD_BUTTON_X, PAD_BUTTON_Y);
         break;
+
     case BUTTON_MODE_L_IS_A:
-        if (gSystem.pressedKeys & PAD_BUTTON_L) {
-            gSystem.pressedKeys |= PAD_BUTTON_A;
-        }
-
-        if (gSystem.heldKeys & PAD_BUTTON_L) {
-            gSystem.heldKeys |= PAD_BUTTON_A;
-        }
-
-        if (gSystem.pressedKeysRepeatable & PAD_BUTTON_L) {
-            gSystem.pressedKeysRepeatable |= PAD_BUTTON_A;
-        }
-
-        gSystem.pressedKeys &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
-        gSystem.heldKeys &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
-        gSystem.pressedKeysRepeatable &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
+        CONVERT_KEY(gSystem.pressedKeys, PAD_BUTTON_L, PAD_BUTTON_A);
+        CONVERT_KEY(gSystem.heldKeys, PAD_BUTTON_L, PAD_BUTTON_A);
+        CONVERT_KEY(gSystem.pressedKeysRepeatable, PAD_BUTTON_L, PAD_BUTTON_A);
+        CLEAR_KEY(gSystem.pressedKeys, (PAD_BUTTON_L | PAD_BUTTON_R));
+        CLEAR_KEY(gSystem.heldKeys, (PAD_BUTTON_L | PAD_BUTTON_R));
+        CLEAR_KEY(gSystem.pressedKeysRepeatable, (PAD_BUTTON_L | PAD_BUTTON_R));
         break;
     }
 }
@@ -468,19 +424,19 @@ void SetAutorepeat(int rate, int delay)
     gSystem.autorepeatDelay = delay;
 }
 
-void ResetLock(u8 param0)
+void ResetLock(u8 mask)
 {
-    gSystem.inhibitReset |= param0;
+    gSystem.inhibitReset |= mask;
 }
 
-void ResetUnlock(u8 param0)
+void ResetUnlock(u8 mask)
 {
-    gSystem.inhibitReset &= ~(param0);
+    gSystem.inhibitReset &= ~(mask);
 }
 
-#define HEAP_CANARY 0x2f93a1bc
+#define HEAP_CANARY 0x2F93A1BC
 
-void InitHeapCanary(int heapID)
+void InitHeapCanary(enum HeapId heapID)
 {
     GF_ASSERT(gSystem.heapCanary == NULL);
 
@@ -499,9 +455,9 @@ void FreeHeapCanary(void)
 
 BOOL HeapCanaryOK(void)
 {
+    // Explicit if required to match.
     if (gSystem.heapCanary && *gSystem.heapCanary == HEAP_CANARY) {
-        return 1;
+        return TRUE;
     }
-
-    return 0;
+    return FALSE;
 }

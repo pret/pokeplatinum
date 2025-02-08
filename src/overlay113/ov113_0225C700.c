@@ -4,6 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
 #include "constants/species.h"
 
 #include "struct_decls/font_oam.h"
@@ -339,7 +340,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov113_0225DBCC *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -433,7 +434,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
 
-    gSystem.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
@@ -445,7 +446,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     v0->unk_18 = SysTask_Start(ov113_0225CEF0, v0, 60000);
 
-    SetMainCallback(ov113_0225CF18, v0);
+    SetVBlankCallback(ov113_0225CF18, v0);
 
     return 1;
 }
@@ -656,7 +657,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
 
     NARC_dtor(v0->unk_160);
     NARC_dtor(v0->unk_164);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
     sub_0201E530();

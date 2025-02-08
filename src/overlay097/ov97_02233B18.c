@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "constants/gba/species.h"
+#include "constants/screen.h"
 #include "constants/species.h"
 
 #include "struct_decls/struct_02015920_decl.h"
@@ -294,7 +295,7 @@ static int ov97_02233B8C(UnkStruct_ov97_02234A2C *param0)
         v0 = ov97_02236280();
 
         if (v0 == 0) {
-            SleepUnlock(1);
+            SleepUnlock(SLEEP_TYPE_SAVE_DATA);
             return 12;
         }
 
@@ -311,7 +312,7 @@ static int ov97_02233B8C(UnkStruct_ov97_02234A2C *param0)
             v0 = ov97_022362C8();
 
             if (v0 == 8) {
-                SleepUnlock(1);
+                SleepUnlock(SLEEP_TYPE_SAVE_DATA);
                 return 12;
             }
         }
@@ -326,19 +327,19 @@ static int ov97_02233B8C(UnkStruct_ov97_02234A2C *param0)
         } while (v2 != 2);
 
         ov97_022362C8();
-        SleepLock(1);
+        SleepLock(SLEEP_TYPE_SAVE_DATA);
         v4->unk_00++;
         break;
     case 9:
         v0 = ov97_022362C8();
 
         if (v0 == 8) {
-            SleepUnlock(1);
+            SleepUnlock(SLEEP_TYPE_SAVE_DATA);
             return 12;
         }
 
         if (v0 == 0) {
-            SleepUnlock(1);
+            SleepUnlock(SLEEP_TYPE_SAVE_DATA);
             return 11;
         }
         break;
@@ -1393,7 +1394,7 @@ static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
     GXLayers_SetBanks(&v0);
     ov97_02234D28(param0->unk_20);
 
-    gSystem.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
     Text_ResetAllPrinters();
@@ -1522,7 +1523,7 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
 {
     int v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     for (v0 = 0; v0 < 30; v0++) {
         if (param0->unk_20C[v0].unk_00) {
@@ -1572,7 +1573,7 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
     PlttTransfer_Free();
 
     sub_02015938(param0->unk_E8EC);
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
     Bg_FreeTilemapBuffer(param0->unk_20, 0);
@@ -1845,7 +1846,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         ov97_022340B0(v3);
         ov97_0223468C(v3);
 
-        SetMainCallback(ov97_022353CC, v3);
+        SetVBlankCallback(ov97_022353CC, v3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 
         if (v3->unk_04 == 1) {
@@ -1955,7 +1956,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         ov97_02234508(v3);
         ov97_022343A8(v3);
 
-        SetMainCallback(ov97_022353CC, v3);
+        SetVBlankCallback(ov97_022353CC, v3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         ov97_02234B0C(v3, NULL);

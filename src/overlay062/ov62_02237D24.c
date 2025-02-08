@@ -306,7 +306,7 @@ static BOOL ov62_02237F08(UnkStruct_0208C06C *param0)
         ov62_02234540(param0, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        SetMainCallback(ov62_022394D8, param0);
+        SetVBlankCallback(ov62_022394D8, param0);
         param0->unk_08++;
         break;
     case 1:
@@ -478,7 +478,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
 
             Heap_FreeToHeap(v0);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
-            SetMainCallback(ov62_0222F8E4, param0);
+            SetVBlankCallback(ov62_0222F8E4, param0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
@@ -567,7 +567,7 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
 
             Heap_FreeToHeap(v0);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
-            SetMainCallback(ov62_0222F8E4, param0);
+            SetVBlankCallback(ov62_0222F8E4, param0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
@@ -817,7 +817,7 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
 
             Heap_FreeToHeap(v0);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
-            SetMainCallback(ov62_0222F8E4, param0);
+            SetVBlankCallback(ov62_0222F8E4, param0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
@@ -920,7 +920,7 @@ static BOOL ov62_02238D04(UnkStruct_0208C06C *param0)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        SetMainCallback(ov62_022394D8, param0);
+        SetVBlankCallback(ov62_022394D8, param0);
         param0->unk_08++;
         break;
     case 1:

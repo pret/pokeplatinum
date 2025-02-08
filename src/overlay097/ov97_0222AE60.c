@@ -911,7 +911,7 @@ static void ov97_0222BC9C(OverlayManager *param0)
     Bg_FreeTilemapBuffer(v1->unk_00, 1);
     Bg_FreeTilemapBuffer(v1->unk_00, 2);
     Heap_FreeToHeap(v1->unk_00);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 }
 
 u16 Unk_ov97_0223DF70[] = {
@@ -1053,7 +1053,7 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
         ov97_0222B404(v1);
         ov97_0222B46C(v1);
 
-        SetMainCallback(ov97_0222BD48, v1->unk_00);
+        SetVBlankCallback(ov97_0222BD48, v1->unk_00);
 
         ov97_0222B9BC(v1);
         ov97_0222BAD8(v1, v1->unk_54);

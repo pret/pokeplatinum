@@ -172,7 +172,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
             v0->unk_1B6 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_FORM, NULL);
             v0->unk_1B8 = NULL;
 
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             DisableHBlank();
             GXLayers_DisableEngineALayers();
             GXLayers_DisableEngineBLayers();

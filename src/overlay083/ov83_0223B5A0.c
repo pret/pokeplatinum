@@ -132,7 +132,7 @@ int ov83_0223B5B0(OverlayManager *param0, int *param1)
     v1->unk_28 = Options_TextFrameDelay(v0->unk_10->unk_18);
     v1->unk_31C = 1;
 
-    SetMainCallback(ov83_0223B5A0, v0);
+    SetVBlankCallback(ov83_0223B5A0, v0);
     DisableHBlank();
     sub_02004550(12, 1183, 1);
 
@@ -220,7 +220,7 @@ int ov83_0223B710(OverlayManager *param0, int *param1)
 
     ov83_0223D1EC(v2);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
     MI_CpuClear8(v2, sizeof(UnkStruct_ov83_0223B784));

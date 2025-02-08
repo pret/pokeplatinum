@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_02017498.h"
 #include "struct_defs/struct_02099F80.h"
@@ -139,7 +141,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov61_0222C664 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -182,13 +184,13 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
 
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
     RenderControlFlags_SetSpeedUpOnTouch(0);
-    SetMainCallback(ov61_0222C1FC, v0);
+    SetVBlankCallback(ov61_0222C1FC, v0);
 
     if (v0->unk_00->unk_10) {
         sub_02039734();
@@ -257,7 +259,7 @@ int ov61_0222C160(OverlayManager *param0, int *param1)
     ov61_0222C70C(v0);
     Heap_FreeToHeap(v0->unk_04);
     ov61_0222C38C(v0->unk_04);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
     sub_0201E530();

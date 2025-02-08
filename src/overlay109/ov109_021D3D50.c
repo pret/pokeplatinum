@@ -170,7 +170,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -198,7 +198,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         ov109_021D40F0(v0->unk_14);
         StartScreenTransition(0, 17, 17, 0x0, 16, 1, 95);
         ov109_021D4300(v0, v1);
-        SetMainCallback(ov109_021D40A8, v0);
+        SetVBlankCallback(ov109_021D40A8, v0);
         ov109_021D41F8(v0, v1);
         ov109_021D43EC();
         ov109_021D441C(v0, v1);
@@ -313,7 +313,7 @@ int ov109_021D3F9C(OverlayManager *param0, int *param1)
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     v1->unk_0C->unk_10 = v1->unk_08;
     v1->unk_0C->unk_08 = ov109_021D548C();

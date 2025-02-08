@@ -134,7 +134,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
             break;
         }
 
-        SetMainCallback(ov115_02260A50, v0);
+        SetVBlankCallback(ov115_02260A50, v0);
         DisableHBlank();
 
         v0->unk_38 = 0;
@@ -330,7 +330,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
 
         ov115_02260D78(v0->unk_34);
         v0->unk_34 = NULL;
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         VramTransfer_Free();
         (*param1)++;
@@ -546,7 +546,7 @@ static void ov115_02260B30(UnkStruct_ov115_0226095C *param0)
 
 static void ov115_02260B44(UnkStruct_ov115_0226095C *param0, UnkStruct_ov115_02260440 *param1)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     if (param0->unk_00 != NULL) {

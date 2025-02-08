@@ -36,7 +36,7 @@ int sub_02017498(OverlayManager *param0, int *param1)
 {
     UnkStruct_02017498 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();

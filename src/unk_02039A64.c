@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
@@ -15,8 +17,6 @@
 #include "text.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
-
-void sub_0201777C(void);
 
 void sub_02039A64(int param0, int param1);
 
@@ -78,7 +78,7 @@ void sub_02039A64(int param0, int param1)
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -86,7 +86,7 @@ void sub_02039A64(int param0, int param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
     SetAutorepeat(4, 8);
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
     G2_BlendNone();

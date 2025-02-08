@@ -336,7 +336,7 @@ void ov100_021D4C94(UnkStruct_ov100_021D46C8 *param0, int param1)
 
 void ov100_021D4DC8(int param0)
 {
-    gSystem.unk_65 = param0;
+    gSystem.whichScreenIs3D = param0;
     GXLayers_SwapDisplay();
 }
 

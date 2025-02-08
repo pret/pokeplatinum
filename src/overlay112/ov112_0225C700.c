@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay066/ov66_0222DDF0.h"
@@ -340,7 +342,7 @@ int ov112_0225C700(OverlayManager *param0, int *param1)
     ov112_0225D1EC(&v0->unk_1C8, &v0->unk_08, 107);
     ov112_0225D57C(&v0->unk_264, &v0->unk_08, 107);
 
-    SetMainCallback(ov112_0225C964, v0);
+    SetVBlankCallback(ov112_0225C964, v0);
     DisableHBlank();
 
     return 1;
@@ -426,7 +428,7 @@ int ov112_0225C8FC(OverlayManager *param0, int *param1)
     ov112_0225D2D0(&v0->unk_1C8);
     ov112_0225CC84(&v0->unk_1B0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     ov112_0225C9F4(&v0->unk_08);
@@ -489,7 +491,7 @@ static void ov112_0225CA34(UnkStruct_ov112_0225C9BC *param0, u32 param1)
     SetAllGraphicsModes(&Unk_ov112_0225D834);
 
     param0->unk_00 = BgConfig_New(param1);
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
 
@@ -529,7 +531,7 @@ static void ov112_0225CB60(UnkStruct_ov112_0225C9BC *param0)
     }
 
     Heap_FreeToHeap(param0->unk_00);
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 }
 

@@ -53,7 +53,7 @@ int ov66_0222DCE0(OverlayManager *param0, int *param1)
     v0->unk_04 = ov66_0222DDF0(v0->unk_00, 104);
     v0->unk_08 = ov66_02230C44(v1->unk_08, v1->unk_04, v1->unk_00, v0->unk_04, 104);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     v0->unk_0C = SysTask_ExecuteAfterVBlank(ov66_0222DDDC, v0, 0);
@@ -87,7 +87,7 @@ int ov66_0222DD90(OverlayManager *param0, int *param1)
     v0 = OverlayManager_Data(param0);
 
     SysTask_Done(v0->unk_0C);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     ov66_02230C90(v0->unk_08);

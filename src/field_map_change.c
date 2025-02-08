@@ -231,7 +231,7 @@ static void FieldMapChange_SetNewLocation(FieldSystem *fieldSystem, const Locati
 void FieldMapChange_Set3DDisplay(FieldSystem *fieldSystem)
 {
     GF_ASSERT(fieldSystem->mapLoadType < MAP_LOAD_TYPE_MAX);
-    gSystem.unk_65 = fieldSystem->mapLoadMode->unk_00_12;
+    gSystem.whichScreenIs3D = fieldSystem->mapLoadMode->unk_00_12;
 }
 
 void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)

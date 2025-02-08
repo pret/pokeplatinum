@@ -201,7 +201,7 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
-    SetMainCallback(ov22_02256940, v0);
+    SetVBlankCallback(ov22_02256940, v0);
     DisableHBlank();
 
     v2 = OverlayManager_Args(param0);
@@ -393,7 +393,7 @@ int ov22_02256098(OverlayManager *param0, int *param1)
     ov22_022594AC(&v0->unk_3C0);
     ov22_022566F4(v0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     v1 = sub_0201E530();
@@ -418,7 +418,7 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
-    SetMainCallback(ov22_02256940, v0);
+    SetVBlankCallback(ov22_02256940, v0);
     DisableHBlank();
 
     v2 = OverlayManager_Args(param0);
@@ -654,7 +654,7 @@ int ov22_02256600(OverlayManager *param0, int *param1)
     ov22_022594AC(&v0->unk_3C0);
     ov22_022566F4(v0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     v1 = sub_0201E530();

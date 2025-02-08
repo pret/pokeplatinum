@@ -141,7 +141,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     UnkStruct_ov71_0223B620 *v0;
     NARC *v1;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -242,7 +242,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
 
     ov71_0223C288();
 
-    SetMainCallback(ov71_0223C18C, NULL);
+    SetVBlankCallback(ov71_0223C18C, NULL);
     DrawWifiConnectionIcon();
     sub_0200544C(1, (127 / 3));
     StartScreenTransition(2, 3, 3, 0x0, 6, 1, 25);
@@ -391,7 +391,7 @@ int ov71_0223B5B8(OverlayManager *param0, int *param1)
 
     sub_0201E530();
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(25);
     sub_0200544C(1, 127);
 

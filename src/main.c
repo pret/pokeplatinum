@@ -67,8 +67,8 @@ extern const OverlayManagerTemplate gOpeningCutsceneOverlayTemplate;
 
 void NitroMain(void)
 {
-    sub_0201789C();
-    InitGraphics();
+    InitSystem();
+    InitVRAM();
     InitKeypadAndTouchpad();
 
     SetGBACartridgeVersion(NULL);
@@ -156,8 +156,8 @@ void NitroMain(void)
         sub_0200ABF0();
         sub_0200F27C();
 
-        if (gSystem.mainCallback != NULL) {
-            gSystem.mainCallback(gSystem.mainCallbackData);
+        if (gSystem.vblankCallback != NULL) {
+            gSystem.vblankCallback(gSystem.vblankCallbackData);
         }
 
         UpdateSound();
@@ -217,8 +217,8 @@ static void WaitFrame(void)
     gSystem.vblankCounter++;
     gSystem.frameCounter = 0;
 
-    if (gSystem.mainCallback != NULL) {
-        gSystem.mainCallback(gSystem.mainCallbackData);
+    if (gSystem.vblankCallback != NULL) {
+        gSystem.vblankCallback(gSystem.vblankCallbackData);
     }
 }
 

@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02089688.h"
 #include "struct_defs/struct_02099F80.h"
@@ -50,7 +52,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     memset(v0, 0, sizeof(UnkStruct_02089688));
     v0->unk_38C = *((UnkStruct_02089438 *)OverlayManager_Args(param0));
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -85,7 +87,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 15, 7);
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 
-    SetMainCallback(sub_020895CC, v0);
+    SetVBlankCallback(sub_020895CC, v0);
 
     return 1;
 }
@@ -339,7 +341,7 @@ static void sub_0208945C(BgConfig *param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
-    gSystem.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);

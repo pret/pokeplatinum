@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -646,7 +648,7 @@ int ov70_0225D9A4(OverlayManager *param0, int *param1)
     v0->unk_438 = ov70_02269190(v0->unk_34, v0->unk_44C, v0->unk_450, v0->unk_444, 112, 113);
     v0->unk_440 = ov70_0226C60C(112, v0);
 
-    SetMainCallback(ov70_0225E4C8, v0);
+    SetVBlankCallback(ov70_0225E4C8, v0);
     DisableHBlank();
 
     return 1;
@@ -784,7 +786,7 @@ int ov70_0225DDF8(OverlayManager *param0, int *param1)
         v1->unk_18 = v0->unk_01;
     }
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     ov70_0226C6F8(v0->unk_440);
@@ -1262,7 +1264,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
 
     VramTransfer_New(32, param2);
     GXLayers_SetBanks(&Unk_ov70_0226D664);
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
     {

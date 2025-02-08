@@ -163,7 +163,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
 
             v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, 10);
 
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             DisableHBlank();
             GXLayers_DisableEngineALayers();
             GXLayers_DisableEngineBLayers();
@@ -234,7 +234,7 @@ static void ov19_021D6474(SysTask *param0, void *param1)
 
 void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SysTask_Done(param0->unk_00);
     SysTask_Done(param0->unk_04);
 

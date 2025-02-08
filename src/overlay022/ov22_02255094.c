@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_defs/struct_02099F80.h"
@@ -63,14 +65,14 @@ void ov22_02255094(void)
     ov22_02255654();
     ov22_022556DC();
 
-    gSystem.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
 }
 
 void ov22_022550B4(void)
 {
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
     ov22_02255738();

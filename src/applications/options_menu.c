@@ -351,7 +351,7 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
 {
     switch (menuData->subState) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -380,7 +380,7 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
         VramTransfer_New(32, menuData->heapID);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
         DrawWifiConnectionIcon();
-        SetMainCallback(OptionsMenuVBlank, menuData);
+        SetVBlankCallback(OptionsMenuVBlank, menuData);
         menuData->subState = 0;
         return TRUE;
     }
@@ -410,7 +410,7 @@ static int TeardownMenuData(OptionsMenuData *menuData)
         break;
 
     case 1:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();

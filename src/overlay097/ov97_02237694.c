@@ -389,7 +389,7 @@ void ov97_02237B0C(int param0, int param1, int param2, int param3, int param4, i
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     }
 
-    SetMainCallback(ov97_02237E58, NULL);
+    SetVBlankCallback(ov97_02237E58, NULL);
 }
 
 void ov97_02237C80(fx32 param0, fx32 param1)
@@ -506,7 +506,7 @@ void ov97_02237DA0(void)
     CharTransfer_Free();
     PlttTransfer_Free();
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 }
 
 u32 ov97_02237E4C(int param0)

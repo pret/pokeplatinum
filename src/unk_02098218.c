@@ -62,7 +62,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     UnkStruct_0209843C *v0;
     UnkStruct_ov119_021D0FD0 *v1;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Create(3, 71, 0x40000);
 
@@ -98,7 +98,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     ov119_021D17B8(&v1->unk_04);
 
     sub_0200569C();
-    SetMainCallback(ov119_021D0FD0, v1);
+    SetVBlankCallback(ov119_021D0FD0, v1);
 
     return 1;
 }
@@ -188,7 +188,7 @@ static int sub_02098388(OverlayManager *param0, int *param1)
     OverlayManager_FreeData(param0);
     Heap_Destroy(71);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
 
     return 1;

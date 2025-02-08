@@ -201,7 +201,7 @@ BOOL PokemonSummaryScreen_ShowContestData(SaveData *saveData)
 
 static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -246,7 +246,7 @@ static int PokemonSummaryScreen_Init(OverlayManager *ovyManager, int *state)
     SetupInitialPageGfx(summaryScreen);
     PokemonSummaryScreen_SetSubscreenType(summaryScreen);
     PokemonSummaryScreen_SetupCamera(summaryScreen);
-    SetMainCallback(PokemonSummaryScreenVBlank, summaryScreen);
+    SetVBlankCallback(PokemonSummaryScreenVBlank, summaryScreen);
     GXLayers_TurnBothDispOn();
     sub_02004550(61, 0, 0);
     DrawWifiConnectionIcon();
@@ -338,7 +338,7 @@ static int PokemonSummaryScreen_Exit(OverlayManager *ovyManager, int *state)
 {
     PokemonSummaryScreen *summaryScreen = OverlayManager_Data(ovyManager);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     PokemonSummaryScreen_FreeCameraAndMonSprite(summaryScreen);
     PokemonSummaryScreen_FreeSpriteResources(summaryScreen);
     PokemonSummaryScreen_RemoveWindows(summaryScreen);

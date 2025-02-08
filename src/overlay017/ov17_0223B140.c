@@ -143,7 +143,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov17_02246F24 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -257,7 +257,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02004550(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
-    SetMainCallback(ov17_0223B6BC, v0);
+    SetVBlankCallback(ov17_0223B6BC, v0);
 
     return 1;
 }
@@ -372,7 +372,7 @@ int ov17_0223B580(OverlayManager *param0, int *param1)
 
     sub_0201E530();
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(21);
     sub_02095A24();

@@ -289,7 +289,7 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov86_0223B3C8 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Create(3, 63, 196608);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov86_0223B3C8), 63);

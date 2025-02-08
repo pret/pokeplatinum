@@ -79,7 +79,7 @@ int ov101_021D0D80(OverlayManager *param0, int *param1)
     UnkStruct_ov101_021D13C8 *v1;
     UnkStruct_0203E348 *v2;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -150,7 +150,7 @@ int ov101_021D0EE4(OverlayManager *param0, int *param1)
     UnkStruct_ov101_021D0F3C *v0 = OverlayManager_Data(param0);
     UnkStruct_ov101_021D13C8 *v1 = v0->unk_04;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     ov101_021D0F3C(v0, v1);
 
@@ -231,7 +231,7 @@ static void ov101_021D0F9C(UnkStruct_ov101_021D13C8 *param0)
     G2S_SetBG3Priority(3);
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_OBJ, 8, 9);
 
-    SetMainCallback(ov101_021D197C, param0);
+    SetVBlankCallback(ov101_021D197C, param0);
 }
 
 static void ov101_021D107C(UnkStruct_ov101_021D13C8 *param0)

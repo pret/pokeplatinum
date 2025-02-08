@@ -87,7 +87,7 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -224,7 +224,7 @@ int ov94_0223BF54(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->unk_04);
     Heap_FreeToHeap(v0->unk_00);
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(62);
 
     return 1;
@@ -495,7 +495,7 @@ static void ov94_0223C4E0(UnkStruct_ov94_0223FD4C *param0)
     ov94_0223C0D4(param0);
     ov94_0223C32C(param0);
 
-    SetMainCallback(ov94_0223BFE4, param0);
+    SetVBlankCallback(ov94_0223BFE4, param0);
 }
 
 static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0)

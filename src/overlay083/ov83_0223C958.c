@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay022/struct_ov22_022550D4.h"
@@ -68,7 +70,7 @@ void ov83_0223C958(UnkStruct_ov83_0223B784 *param0)
 
     NARC_dtor(v0);
 
-    gSystem.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
     GXLayers_SwapDisplay();
 }
 
@@ -93,7 +95,7 @@ void ov83_0223CAA4(UnkStruct_ov83_0223B784 *param0)
     ov83_0223CF20(param0);
 
     ov83_0223D068(param0);
-    gSystem.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 }
 

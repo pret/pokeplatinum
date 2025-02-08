@@ -1306,7 +1306,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     v1 = BgConfig_New(29);
     Unk_ov23_02257740->unk_04 = v1;
 
-    SetMainCallback(ov23_022411E8, v1);
+    SetVBlankCallback(ov23_022411E8, v1);
 
     ov23_02253E2C(ov23_0224219C(), v1, (512 - (18 + 12)), (((512 - (18 + 12)) - 73) - (27 * 4)));
     ov23_0223EC34(v1);
@@ -1389,7 +1389,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
     CharTransfer_Free();
     PlttTransfer_Free();
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_FreeToHeap(Unk_ov23_02257740->unk_04);
 
     Unk_ov23_02257740->unk_04 = NULL;

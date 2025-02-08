@@ -91,7 +91,7 @@ int sub_0209A300(OverlayManager *param0, int *param1)
     case 0:
         sub_0200F344(0, 0);
         sub_0200F344(1, 0);
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -111,7 +111,7 @@ int sub_0209A300(OverlayManager *param0, int *param1)
     case 2:
         sub_0209A530(v0);
         sub_0209A490(v0);
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         v1 = 1;
         break;
     }

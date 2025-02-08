@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_02087A10_decl.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
@@ -873,7 +875,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -899,7 +901,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         sub_020871B0(v0, (UnkStruct_0208737C *)OverlayManager_Args(param0));
         sub_0208769C(v0, v1);
         Font_InitManager(FONT_SUBSCREEN, 18);
-        SetMainCallback(sub_02087190, NULL);
+        SetVBlankCallback(sub_02087190, NULL);
         sub_0208737C(v0, param0);
         Font_UseImmediateGlyphAccess(FONT_SYSTEM, 18);
         sub_020877C4();
@@ -912,7 +914,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         sub_0208732C(1);
 
         {
-            gSystem.unk_65 = 1;
+            gSystem.whichScreenIs3D = DS_SCREEN_SUB;
             GXLayers_SwapDisplay();
         }
 
@@ -1176,11 +1178,11 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
     MessageLoader_Free(v0->unk_16C);
     StringTemplate_Free(v0->unk_168);
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(18);
 
     {
-        gSystem.unk_65 = 0;
+        gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
         GXLayers_SwapDisplay();
     }
 

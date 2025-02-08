@@ -275,7 +275,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     UnkStruct_02095E80 *v0;
     NARC *v1;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -303,7 +303,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     ov88_0223C17C(v0->unk_174);
     StartScreenTransition(0, 1, 1, 0x0, 16, 1, 26);
     ov88_0223C504(v0, v1);
-    SetMainCallback(ov88_0223C0E0, v0);
+    SetVBlankCallback(ov88_0223C0E0, v0);
     ov88_0223C63C();
     ov88_0223C66C(v0, v1);
     ov88_0223CBA0(v0);
@@ -396,7 +396,7 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
 
     CellActor_SetDrawFlag(param0->unk_39C[0], 1);
     CellActor_SetDrawFlag(param0->unk_39C[1], 1);
-    SetMainCallback(ov88_0223C0E0, param0);
+    SetVBlankCallback(ov88_0223C0E0, param0);
     NARC_dtor(v0);
 }
 
@@ -888,7 +888,7 @@ int ov88_0223C03C(OverlayManager *param0, int *param1)
     StringTemplate_Free(v0->unk_178);
     Strbuf_Free(v0->unk_18C);
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(26);
 
     return 1;
