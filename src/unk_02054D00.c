@@ -9,7 +9,6 @@
 #include "overlay005/bdhc.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021E779C.h"
-#include "overlay005/ov5_021EEC68.h"
 #include "overlay005/ov5_021EF250.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
@@ -105,7 +104,7 @@ static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1
         } else {
             {
                 const BDHC *v21 = ov5_021E9610(v18, v8);
-                v1 = ov5_021EED9C(v16, v11.x, v11.z, v21, &v11.y);
+                v1 = CalculateObjectHeight(v16, v11.x, v11.z, v21, &v11.y);
             }
         }
     }
