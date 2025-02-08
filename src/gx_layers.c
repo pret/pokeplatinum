@@ -4,6 +4,8 @@
 #include <nnsys.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "system.h"
@@ -98,7 +100,7 @@ void GXLayers_TurnBothDispOn(void)
 
 void GXLayers_SwapDisplay(void)
 {
-    if (gSystem.whichScreenIs3D == 0) {
+    if (gSystem.whichScreenIs3D == DS_SCREEN_MAIN) {
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     } else {
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);

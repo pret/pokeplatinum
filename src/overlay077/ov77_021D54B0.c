@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "overlay077/ov77_021D6670.h"
 #include "overlay077/struct_ov77_021D6734_decl.h"
 
@@ -521,7 +523,7 @@ void ov77_021D6290(UnkStruct_ov77_021D5564 *param0, fx32 param1)
     VecFx32 v1;
     int v2, v3;
 
-    if (gSystem.whichScreenIs3D == 0) {
+    if (gSystem.whichScreenIs3D == DS_SCREEN_MAIN) {
         v2 = 13;
         v3 = 15;
     } else {
@@ -560,7 +562,7 @@ void ov77_021D636C(UnkStruct_ov77_021D5564 *param0, int param1)
     VecFx32 v1;
 
     if (param1 == 0) {
-        if (gSystem.whichScreenIs3D == 0) {
+        if (gSystem.whichScreenIs3D == DS_SCREEN_MAIN) {
             CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[13], 0);
             CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[14], 0);
             CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_250[15], 1);

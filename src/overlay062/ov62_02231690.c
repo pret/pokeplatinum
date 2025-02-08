@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0202F298_decl.h"
@@ -2747,7 +2749,7 @@ static void ov62_02234440(UnkStruct_0208C06C *param0)
         param0->unk_41D8.unk_0C = NULL;
     }
 
-    if (gSystem.whichScreenIs3D == 0) {
+    if (gSystem.whichScreenIs3D == DS_SCREEN_MAIN) {
         param0->unk_41D8.unk_08 = param0->unk_6F4;
     } else {
         param0->unk_41D8.unk_08 = param0->unk_6F0;

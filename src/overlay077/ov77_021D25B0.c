@@ -1631,7 +1631,7 @@ static void ov77_021D3D4C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
 static void ov77_021D3DC4(UnkStruct_ov77_021D37C0 *param0)
 {
-    if (gSystem.whichScreenIs3D == 0) {
+    if (gSystem.whichScreenIs3D == DS_SCREEN_MAIN) {
         Bg_SetOffset(param0->unk_10, 1, 3, 0);
         Bg_SetOffset(param0->unk_10, 2, 3, 0);
         Bg_SetOffset(param0->unk_10, 3, 3, 0);
