@@ -54,7 +54,7 @@ _00AE:
     ScrCmd_0C5 0x8004
     ScrCmd_29E 0, 0x8005
     WaitTime 7, 0x800C
-    ScrCmd_065 0x800D
+    RemoveObject 0x800D
     ScrCmd_201 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_CUT, 0x8004, 0, 0, 0
 _00E8:
@@ -71,7 +71,7 @@ _0103:
     ScrCmd_0C5 0x8000
     ScrCmd_29E 0, 0x8005
     WaitTime 7, 0x800C
-    ScrCmd_065 0x800D
+    RemoveObject 0x800D
     ScrCmd_201 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_CUT, 0x8004, 0, 0, 0
 _0133:
@@ -155,7 +155,7 @@ _0284:
     ScrCmd_0C5 0x8004
     ScrCmd_29E 1, 0x8005
     WaitTime 10, 0x800C
-    ScrCmd_065 0x800D
+    RemoveObject 0x800D
     ScrCmd_201 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, 0x8004, 0, 0, 0
 _02B2:
@@ -172,7 +172,7 @@ _02CD:
     ScrCmd_0C5 0x8000
     ScrCmd_29E 1, 0x8005
     WaitTime 10, 0x800C
-    ScrCmd_065 0x800D
+    RemoveObject 0x800D
     ScrCmd_201 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, 0x8004, 0, 0, 0
 _02FD:

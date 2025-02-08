@@ -416,7 +416,7 @@ _0596:
     GoTo _0596
 
 _05C1:
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4002, 0xFF, _05E4
@@ -873,19 +873,19 @@ _0D3A:
     Return
 
 _0D86:
-    ScrCmd_065 1
+    RemoveObject 1
     Return
 
 _0D8C:
-    ScrCmd_065 2
+    RemoveObject 2
     Return
 
 _0D92:
-    ScrCmd_065 3
+    RemoveObject 3
     Return
 
 _0D98:
-    ScrCmd_065 4
+    RemoveObject 4
     Return
 
     .balign 4, 0
@@ -1320,7 +1320,7 @@ _111B:
     GoTo _111B
 
 _1146:
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4002, 0xFF, _10F4

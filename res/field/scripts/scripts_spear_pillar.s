@@ -232,7 +232,7 @@ _0249:
     ScrCmd_18C 0xFF, 1
     ApplyMovement 5, _0500
     WaitMovement
-    ScrCmd_065 5
+    RemoveObject 5
     SetVar 0x4098, 2
     GoTo _0508
     End
@@ -336,11 +336,11 @@ _041C:
     EndMovement
 
 _0424:
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x26C
-    GoToIfEq 0x800C, 0x186, _0454
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0454
     SetVar 0x8004, 0x26B
-    GoToIfEq 0x800C, 0x183, _0454
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _0454
     SetVar 0x8004, 0x25F
 _0454:
     Return

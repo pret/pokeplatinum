@@ -5,6 +5,8 @@
 
 #include "struct_defs/struct_02090800.h"
 
+#include "global/pm_version.h"
+
 #include "heap.h"
 #include "message.h"
 #include "pokemon.h"
@@ -360,28 +362,28 @@ static void InitializeAlternateMetInfoStrBuf(PokemonInfoDisplayStruct *param0, i
 
     switch (Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_GAME, NULL)) {
     default:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (sub_02017070(1, 7)));
+        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 7)));
         break;
-    case 4:
-    case 5:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (sub_02017070(1, 3)));
+    case FIRERED:
+    case LEAFGREEN:
+        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 3)));
         break;
-    case 7:
-    case 8:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (sub_02017070(1, 4)));
+    case HEARTGOLD:
+    case SOULSILVER:
+        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 4)));
         break;
-    case 2:
-    case 1:
-    case 3:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (sub_02017070(1, 5)));
+    case RUBY:
+    case SAPPHIRE:
+    case EMERALD:
+        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 5)));
         break;
-    case 15:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (sub_02017070(1, 8)));
+    case COLOSSEUM:
+        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 8)));
         break;
-    case 10:
-    case 11:
-    case 12:
-        StringTemplate_SetMetLocationName(param0->unk_08, 4, (sub_02017070(1, 7)));
+    case DIAMOND:
+    case PEARL:
+    case PLATINUM:
+        StringTemplate_SetMetLocationName(param0->unk_08, 4, (SpecialMetLoc_GetId(1, 7)));
         break;
     }
 
@@ -670,7 +672,7 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
 
     if (Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
         if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == 0) {
-            if (Pokemon_GetValue(param0, MON_DATA_HATCH_LOCATION, NULL) == (sub_02017070(0, 55))) {
+            if (Pokemon_GetValue(param0, MON_DATA_HATCH_LOCATION, NULL) == (SpecialMetLoc_GetId(0, 55))) {
                 v0 = 15;
             } else if (Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
                 if (param1 == 1) {
@@ -678,7 +680,7 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
                 } else {
                     v0 = 8;
                 }
-            } else if (Pokemon_GetValue(param0, MON_DATA_HATCH_LOCATION, NULL) == (sub_02017070(1, 1))) {
+            } else if (Pokemon_GetValue(param0, MON_DATA_HATCH_LOCATION, NULL) == (SpecialMetLoc_GetId(1, 1))) {
                 v0 = 2;
             } else {
                 if (param1 == 1) {
@@ -689,13 +691,13 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
             }
         } else {
             if (Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
-                if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 2)) {
+                if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 2)) {
                     if (param1 == 1) {
                         v0 = 13;
                     } else {
                         v0 = 14;
                     }
-                } else if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(2, 1)) {
+                } else if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(2, 1)) {
                     if (param1 == 1) {
                         v0 = 11;
                     } else {
@@ -709,7 +711,7 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
                     }
                 }
             } else {
-                if ((Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 1)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 0)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 9)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 10)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 11))) {
+                if ((Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 1)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 0)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 9)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 10)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == SpecialMetLoc_GetId(1, 11))) {
                     if (param1 == 1) {
                         v0 = 5;
                     } else {
@@ -727,7 +729,7 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
     } else {
         if (param1 == 1) {
             if (Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
-                if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == (sub_02017070(2, 1))) {
+                if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == (SpecialMetLoc_GetId(2, 1))) {
                     v0 = 20;
                 } else {
                     v0 = 18;
@@ -756,8 +758,8 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
 {
     switch (sel) {
     case 0:
-        if (metLocation > (sub_02017070(1, 0))) {
-            metLocation = (sub_02017070(2, 2));
+        if (metLocation > (SpecialMetLoc_GetId(1, 0))) {
+            metLocation = (SpecialMetLoc_GetId(2, 2));
         }
 
         if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
@@ -774,16 +776,16 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
     case 1:
         if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
             ResetBoxPokemonEggStatus(boxMon, 0);
-            SetMetLocationForBoxPokemon(boxMon, (sub_02017070(1, 1)), 1);
+            SetMetLocationForBoxPokemon(boxMon, (SpecialMetLoc_GetId(1, 1)), 1);
             FinalizeBoxPokemonData(boxMon);
         } else {
             ResetBoxPokemonEggStatus(boxMon, 0);
-            SetMetLocationForBoxPokemon(boxMon, (sub_02017070(1, 1)), 1);
+            SetMetLocationForBoxPokemon(boxMon, (SpecialMetLoc_GetId(1, 1)), 1);
         }
         break;
     case 2:
         ResetBoxPokemonEggStatus(boxMon, 0);
-        SetMetLocationForBoxPokemon(boxMon, (sub_02017070(0, 55)), 1);
+        SetMetLocationForBoxPokemon(boxMon, (SpecialMetLoc_GetId(0, 55)), 1);
         FinalizeBoxPokemonData(boxMon);
         break;
     case 3:
@@ -818,12 +820,12 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
         if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
             (void)0;
         } else {
-            SetMetLocationForBoxPokemon(boxMon, (sub_02017070(1, 2)), 1);
+            SetMetLocationForBoxPokemon(boxMon, (SpecialMetLoc_GetId(1, 2)), 1);
         }
         break;
     case 6:
-        if (metLocation > (sub_02017070(1, 0))) {
-            metLocation = (sub_02017070(2, 2));
+        if (metLocation > (SpecialMetLoc_GetId(1, 0))) {
+            metLocation = (SpecialMetLoc_GetId(2, 2));
         }
 
         if (sub_0207884C(boxMon, trainerInfo, heapID) == 0) {

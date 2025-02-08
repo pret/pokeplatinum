@@ -110,7 +110,7 @@ _017C:
     CallIfEq 0x8004, 0x357, _0322
     CallIfEq 0x8004, 0x358, _032E
     CallIfEq 0x8004, 0x359, _0342
-    ScrCmd_065 20
+    RemoveObject 20
     CallIfEq 0x8004, 0x355, _0356
     CallIfEq 0x8004, 0x356, _0362
     CallIfEq 0x8004, 0x357, _036E
@@ -476,7 +476,7 @@ _05D7:
     WaitTime 15, 0x800C
     ApplyMovement 18, _0678
     WaitMovement
-    ScrCmd_065 18
+    RemoveObject 18
     WaitTime 1, 0x800C
     ScrCmd_186 18, 0x34D, 0x2EC
     ScrCmd_188 18, 15
@@ -724,7 +724,7 @@ _08D6:
     GoTo _08EE
 
 _08EE:
-    ScrCmd_065 18
+    RemoveObject 18
     ReleaseAll
     End
 

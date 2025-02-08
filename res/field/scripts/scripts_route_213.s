@@ -76,7 +76,7 @@ _00F1:
 
 _010B:
     SetFlag 0x118
-    ScrCmd_065 30
+    RemoveObject 30
     ScrCmd_186 30, 0x2AB, 0x341
     ScrCmd_189 30, 3
     ScrCmd_188 30, 17
@@ -114,7 +114,7 @@ _0180:
     End
 
 _019A:
-    ScrCmd_065 30
+    RemoveObject 30
     SetFlag 0x104
     ClearFlag 0x1E8
     ScrCmd_064 33
@@ -135,7 +135,7 @@ _019A:
     CallIfEq 0x8004, 3, _02CB
     CallIfEq 0x8004, 0, _02DF
     CallIfEq 0x8004, 1, _02F3
-    ScrCmd_065 33
+    RemoveObject 33
     CallCommonScript 0x808
     ScrCmd_315 0x800C
     CallIfEq 0x800C, 2, _0261

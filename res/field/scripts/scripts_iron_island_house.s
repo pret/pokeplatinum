@@ -51,7 +51,7 @@ _00B2:
     ApplyMovement 0, _00F0
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 0
+    RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_04A 0x603
     ReleaseAll
@@ -61,7 +61,7 @@ _00D0:
     ApplyMovement 0, _00FC
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 0
+    RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ScrCmd_04A 0x603
     ReleaseAll

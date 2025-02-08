@@ -81,8 +81,8 @@ _0114:
     GoTo _0166
 
 _013C:
-    ScrCmd_065 2
-    ScrCmd_065 3
+    RemoveObject 2
+    RemoveObject 3
     ScrCmd_186 3, 0x1D2, 0x213
     ScrCmd_189 3, 0
     ScrCmd_188 3, 14

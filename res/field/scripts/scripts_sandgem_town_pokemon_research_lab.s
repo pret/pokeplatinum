@@ -297,7 +297,7 @@ _042B:
 
 _043C:
     BufferPlayerName 0
-    ScrCmd_0DC 1
+    BufferRivalStarterSpeciesName 1
     Message 20
     GoTo _044D
     End
@@ -307,7 +307,7 @@ _044D:
     ApplyMovement 0xFF, _04C4
     ApplyMovement 3, _04D8
     WaitMovement
-    ScrCmd_065 3
+    RemoveObject 3
     ClearFlag 0x177
     SetVar 0x40A6, 1
     ReleaseAll
@@ -591,7 +591,7 @@ _0677:
     CloseMessage
     ApplyMovement 4, _0898
     WaitMovement
-    ScrCmd_065 4
+    RemoveObject 4
     Message 42
     CloseMessage
     WaitTime 15, 0x800C

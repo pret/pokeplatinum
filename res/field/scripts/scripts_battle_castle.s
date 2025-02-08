@@ -131,7 +131,7 @@ _01FF:
     WaitFadeScreen
     ScrCmd_2D2 4, 0x40BD, 0x800C
     ScrCmd_2D4 0x4002, 0x4005, 0x4006
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4002, 0xFF, _0139
@@ -289,7 +289,7 @@ _04D0:
     ScrCmd_1F8
     ScrCmd_2C4 11
     CallIfEq 0x40BD, 2, _0539
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ScrCmd_313 1

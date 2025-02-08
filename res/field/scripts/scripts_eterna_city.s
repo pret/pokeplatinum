@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city.h"
+#include "res/text/bank/special_met_location_names.h"
 
     .data
 
@@ -298,7 +299,7 @@ _0411:
     End
 
 _042B:
-    ScrCmd_065 12
+    RemoveObject 12
     SetVar 0x407A, 2
     ReleaseAll
     End
@@ -778,7 +779,7 @@ _08FC:
     ScrCmd_169 77
     ApplyMovement 31, _094C
     WaitMovement
-    ScrCmd_065 31
+    RemoveObject 31
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
@@ -898,7 +899,7 @@ _0AB6:
     ApplyMovement 33, _0BC0
     ApplyMovement 0xFF, _0CAC
     WaitMovement
-    ScrCmd_065 32
+    RemoveObject 32
     WaitTime 35, 0x800C
     ApplyMovement 33, _0BD4
     ApplyMovement 0xFF, _0CC0
@@ -909,7 +910,7 @@ _0AB6:
     ApplyMovement 33, _0BCC
     ApplyMovement 0xFF, _0CC8
     WaitMovement
-    ScrCmd_065 33
+    RemoveObject 33
     SetVar 0x407A, 1
     ReleaseAll
     End
@@ -1169,7 +1170,7 @@ _0DF6:
     Call _0E4B
     ApplyMovement 12, _0EA0
     WaitMovement
-    ScrCmd_065 12
+    RemoveObject 12
     GoTo _0E83
     End
 
@@ -1179,7 +1180,7 @@ _0E4B:
     Message 10
     Message 16
     CloseMessage
-    ScrCmd_097 175, 11
+    GiveEgg SPECIES_TOGEPI, SPECIAL_METLOC_NAME_CYNTHIA
     SetVar 0x407A, 5
     Return
 
@@ -1267,7 +1268,7 @@ _0F78:
     End
 
 _0F92:
-    ScrCmd_065 12
+    RemoveObject 12
     GoTo _0FBA
     End
 

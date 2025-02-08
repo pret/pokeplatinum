@@ -18,7 +18,7 @@ _0014:
 
 _0021:
     SetFlag 0x1E1
-    ScrCmd_065 0
+    RemoveObject 0
     ClearFlag 142
     End
 

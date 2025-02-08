@@ -117,7 +117,7 @@ _019E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -135,7 +135,7 @@ _01F2:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -153,7 +153,7 @@ _0246:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -171,7 +171,7 @@ _029A:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -189,7 +189,7 @@ _02EE:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -207,7 +207,7 @@ _0342:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -225,7 +225,7 @@ _0396:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA

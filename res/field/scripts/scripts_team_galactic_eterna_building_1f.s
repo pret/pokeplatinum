@@ -68,7 +68,7 @@ _006A:
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2
     ScrCmd_064 5
-    ScrCmd_065 4
+    RemoveObject 4
     SetFlag 113
     SetVar 0x411D, 1
     WaitTime 30, 0x800C
@@ -80,7 +80,7 @@ _006A:
     ScrCmd_188 4, 16
     ScrCmd_189 4, 2
     ScrCmd_064 4
-    ScrCmd_065 5
+    RemoveObject 5
     CloseMessage
     ReleaseAll
     End
@@ -127,7 +127,7 @@ _0134:
     PlayFanfare SEQ_SE_DP_W062
     FadeScreen 6, 1, 0, 0x7FFF
     WaitFadeScreen
-    ScrCmd_065 6
+    RemoveObject 6
     WaitFanfare SEQ_SE_DP_W062
     FadeScreen 6, 1, 1, 0x7FFF
     WaitFadeScreen

@@ -275,7 +275,7 @@ _0492:
     ApplyMovement 1, _0550
     WaitMovement
     SetFlag 0x1CB
-    ScrCmd_065 1
+    RemoveObject 1
     Return
 
 _04A6:

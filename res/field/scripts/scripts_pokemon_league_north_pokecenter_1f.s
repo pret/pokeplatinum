@@ -149,9 +149,9 @@ _01C1:
     BufferRivalName 0
     Message 0
     CloseMessage
-    ScrCmd_0DE 0x800C
-    GoToIfEq 0x800C, 0x183, _0203
-    GoToIfEq 0x800C, 0x186, _020F
+    GetPlayerStarterSpecies 0x800C
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _0203
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _020F
     GoTo _01F7
 
 _01F7:
@@ -196,7 +196,7 @@ _0286:
 
 _0296:
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 5
+    RemoveObject 5
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x40EF, 1
     ReleaseAll

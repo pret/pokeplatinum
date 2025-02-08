@@ -90,9 +90,9 @@ _0111:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    ScrCmd_0DE 0x800C
-    GoToIfEq 0x800C, 0x183, _014C
-    GoToIfEq 0x800C, 0x186, _0158
+    GetPlayerStarterSpecies 0x800C
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _014C
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0158
     GoTo _0140
 
 _0140:
@@ -141,7 +141,7 @@ _01E9:
     GoTo _01F9
 
 _01F9:
-    ScrCmd_065 5
+    RemoveObject 5
     SetVar 0x4088, 1
     ReleaseAll
     End

@@ -162,7 +162,7 @@ _0184:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    ScrCmd_065 13
+    RemoveObject 13
     SetVar 0x40C8, 1
     SetVar 0x404E, 0xFF
     FadeScreen 6, 1, 0, 0

@@ -57,7 +57,7 @@ _0085:
     ScrCmd_2E4 1, 0x4002, 0x4003
     ScrCmd_2E4 2, 0x4004, 0x4005
     ScrCmd_2E3
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x8000, 0

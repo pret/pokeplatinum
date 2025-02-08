@@ -144,7 +144,7 @@ _0184:
     WaitFadeScreen
     ScrCmd_067
     ScrCmd_310
-    ScrCmd_0A1
+    ReturnToField
     GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
     ApplyMovement 241, _0340
@@ -167,8 +167,8 @@ _0184:
     ApplyMovement 2, _02F0
     ApplyMovement 241, _0348
     WaitMovement
-    ScrCmd_065 4
-    ScrCmd_065 3
+    RemoveObject 4
+    RemoveObject 3
     ScrCmd_067
     ApplyMovement 0xFF, _02C0
     WaitMovement
@@ -178,7 +178,7 @@ _0184:
     ApplyMovement 2, _0308
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 2
+    RemoveObject 2
     ScrCmd_04A 0x603
     SetVar 0x4078, 4
     SetVar 0x40B2, 2

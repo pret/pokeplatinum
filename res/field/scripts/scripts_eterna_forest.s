@@ -209,7 +209,7 @@ _02CB:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ClearHasPartner
-    ScrCmd_065 0
+    RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 227
     SetVar 0x40B1, 2
@@ -389,7 +389,7 @@ _04A2:
     End
 
 _04B4:
-    ScrCmd_065 24
+    RemoveObject 24
     ReleaseAll
     End
 

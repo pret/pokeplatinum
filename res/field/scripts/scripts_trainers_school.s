@@ -68,7 +68,7 @@ _00D8:
 
 _00F2:
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 1
+    RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x40E7, 1
     SetFlag 241
@@ -169,9 +169,9 @@ _01A6:
 _01E7:
     Message 10
     CloseMessage
-    ScrCmd_0DE 0x800C
-    GoToIfEq 0x800C, 0x183, _0220
-    GoToIfEq 0x800C, 0x186, _022E
+    GetPlayerStarterSpecies 0x800C
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _0220
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _022E
     GoTo _0212
     End
 
@@ -263,9 +263,9 @@ _02E4:
 _031A:
     Message 16
     CloseMessage
-    ScrCmd_0DE 0x800C
-    GoToIfEq 0x800C, 0x183, _0353
-    GoToIfEq 0x800C, 0x186, _0361
+    GetPlayerStarterSpecies 0x800C
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _0353
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0361
     GoTo _0345
     End
 

@@ -171,7 +171,7 @@ _0262:
     CloseMessage
     ApplyMovement 3, _0498
     WaitMovement
-    ScrCmd_065 3
+    RemoveObject 3
     SetVar 0x4087, 1
     ReleaseAll
     End
@@ -457,7 +457,7 @@ _0635:
     Return
 
 _0641:
-    ScrCmd_065 3
+    RemoveObject 3
     ClearFlag 0x177
     SetVar 0x4087, 3
     ReleaseAll

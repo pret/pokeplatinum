@@ -1039,7 +1039,7 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
         } while (TRUE);
     }
 
-    Pokemon_InitWith(newEncounter, species, level, 32, TRUE, newEncounterPersonality, OTID_SET, encounterFieldParams->trainerID);
+    Pokemon_InitWith(newEncounter, species, level, INIT_IVS_RANDOM, TRUE, newEncounterPersonality, OTID_SET, encounterFieldParams->trainerID);
 
     GF_ASSERT(AddWildMonToParty(partyId, encounterFieldParams, newEncounter, battleParams));
     Heap_FreeToHeap(newEncounter);

@@ -557,9 +557,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_065 arg0
+    .macro RemoveObject localID
     .short 101
-    .short \arg0
+    .short \localID
     .endm
 
     .macro ScrCmd_066 arg0, arg1
@@ -852,18 +852,19 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_096 arg0, arg1, arg2, arg3
+    .macro GivePokemon species, level, heldItem, successVar
     .short 150
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \species
+    .short \level
+    .short \heldItem
+    .short \successVar
     .endm
 
-    .macro ScrCmd_097 arg0, arg1
+    @ eggGiverTextId corresponds to an entry in special_met_location_names.gmm.
+    .macro GiveEgg species, eggGiverTextId
     .short 151
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \eggGiverTextId
     .endm
 
     .macro ScrCmd_098 arg0, arg1, arg2
@@ -912,7 +913,7 @@
     .short 160
     .endm
 
-    .macro ScrCmd_0A1
+    .macro ReturnToField
     .short 161
     .endm
 
@@ -1000,11 +1001,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_0B4
+    .macro StartChooseStarterScene
     .short 180
     .endm
 
-    .macro ScrCmd_0B5
+    .macro SaveChosenStarter
     .short 181
     .endm
 
@@ -1206,9 +1207,9 @@
     .byte \arg0
     .endm
 
-    .macro BufferSpeciesNameFromVar bufferId, var, unused1, unused2
+    .macro BufferSpeciesNameFromVar templateArg, var, unused1, unused2
     .short 218
-    .byte \bufferId
+    .byte \templateArg
     .short \var
     .short \unused1
     .byte \unused2
@@ -1219,9 +1220,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_0DC arg0
+    .macro BufferRivalStarterSpeciesName templateArg
     .short 220
-    .byte \arg0
+    .byte \templateArg
     .endm
 
     .macro ScrCmd_0DD arg0
@@ -1229,9 +1230,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_0DE arg0
+    .macro GetPlayerStarterSpecies destVar
     .short 222
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro BufferUndergroundGoodsName templateArg, goods

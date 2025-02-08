@@ -204,7 +204,7 @@ _037B:
     CloseMessage
     ScrCmd_191
     ScrCmd_193 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _03F3
@@ -236,7 +236,7 @@ _0403:
     CloseMessage
     ScrCmd_191
     ScrCmd_193 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _0740
@@ -299,7 +299,7 @@ _0541:
     CloseMessage
     ScrCmd_2E7 0x8000, 0x8001
     ScrCmd_2E8 0x8002
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8002, 4, _05DD
@@ -355,23 +355,23 @@ _0613:
     End
 
 _067F:
-    ScrCmd_065 0
+    RemoveObject 0
     Return
 
 _0685:
-    ScrCmd_065 2
+    RemoveObject 2
     Return
 
 _068B:
-    ScrCmd_065 3
+    RemoveObject 3
     Return
 
 _0691:
-    ScrCmd_065 1
+    RemoveObject 1
     Return
 
 _0697:
-    ScrCmd_065 4
+    RemoveObject 4
     Return
 
 _069D:
@@ -542,7 +542,7 @@ _081E:
     ApplyMovement 6, _0900
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 6
+    RemoveObject 6
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x411B, 2
     ReleaseAll

@@ -135,7 +135,7 @@ _00E0:
     CallIfEq 0x4000, 2, _0369
     CallIfEq 0x4000, 3, _037D
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 0
+    RemoveObject 0
     CallCommonScript 0x7FB
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 0x173

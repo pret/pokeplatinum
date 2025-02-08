@@ -192,7 +192,7 @@ _020D:
     SetVar 0x8004, 0x800C
     ScrCmd_0B2 0x8004, 0x800C
     GoToIfEq 0x800C, 0, _02CE
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Call _0077
@@ -200,7 +200,7 @@ _020D:
     End
 
 _02CE:
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Call _0077

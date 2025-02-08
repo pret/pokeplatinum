@@ -83,7 +83,7 @@ _00FB:
     CloseMessage
     ApplyMovement 2, _01F0
     WaitMovement
-    ScrCmd_065 2
+    RemoveObject 2
     SetVar 0x400B, 1
     Call _016C
     SetFlag 0xAA2

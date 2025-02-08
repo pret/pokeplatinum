@@ -234,7 +234,7 @@ _0333:
 _035A:
     ScrCmd_0A3
 _035C:
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ScrCmd_168 0, 0, 8, 2, 77

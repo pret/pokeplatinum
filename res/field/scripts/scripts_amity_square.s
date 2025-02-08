@@ -253,7 +253,7 @@ _0365:
     End
 
 _037D:
-    ScrCmd_065 5
+    RemoveObject 5
     GoTo _0389
     End
 

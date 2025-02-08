@@ -47,7 +47,7 @@ _002E:
     ApplyMovement 6, _0160
     ApplyMovement 0xFF, _01DC
     WaitMovement
-    ScrCmd_065 6
+    RemoveObject 6
     SetVar 0x40F7, 1
     ApplyMovement 5, _0190
     ApplyMovement 0xFF, _01E4
@@ -80,7 +80,7 @@ _0104:
     ApplyMovement 5, _01B0
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 5
+    RemoveObject 5
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 0x978
     ReleaseAll
@@ -201,7 +201,7 @@ _01EC:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A8 0, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -215,7 +215,7 @@ _0229:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A8 1, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -229,7 +229,7 @@ _0266:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A8 2, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -243,7 +243,7 @@ _02A3:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A8 3, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -257,7 +257,7 @@ _02E0:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A8 4, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -473,7 +473,7 @@ _05B9:
 
 _05D3:
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 10
+    RemoveObject 10
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 0x18D
     ReleaseAll

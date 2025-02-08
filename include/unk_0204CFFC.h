@@ -3,10 +3,10 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_096(ScriptContext *param0);
+BOOL ScrCmd_GivePokemon(ScriptContext *param0);
 BOOL ScrCmd_198(ScriptContext *param0);
 BOOL ScrCmd_199(ScriptContext *param0);
-BOOL ScrCmd_097(ScriptContext *param0);
+BOOL ScrCmd_GiveEgg(ScriptContext *ctx);
 BOOL ScrCmd_098(ScriptContext *param0);
 BOOL ScrCmd_099(ScriptContext *param0);
 BOOL ScrCmd_09A(ScriptContext *param0);

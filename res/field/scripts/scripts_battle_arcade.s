@@ -134,7 +134,7 @@ _020B:
     WaitFadeScreen
     ScrCmd_2D9 4, 0x40BE, 0x800C
     ScrCmd_2DB 0x4002, 0x4005, 0x4006
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4002, 0xFF, _0145
@@ -292,7 +292,7 @@ _04DC:
     ScrCmd_1F8
     ScrCmd_2C4 15
     CallIfEq 0x40BE, 2, _0545
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ScrCmd_313 1

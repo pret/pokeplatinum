@@ -179,7 +179,7 @@ _026E:
     ApplyMovement 2, _02DC
     WaitMovement
     SetFlag 0x25B
-    ScrCmd_065 2
+    RemoveObject 2
     PlayFanfare SEQ_SE_DP_KAIDAN2
     WaitFanfare SEQ_SE_DP_KAIDAN2
     Return

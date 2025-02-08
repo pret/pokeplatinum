@@ -601,12 +601,12 @@ _0820:
     Message 1
     ScrCmd_04C 0x1AB, 0
     ScrCmd_04D
-    ScrCmd_065 31
+    RemoveObject 31
     Message 2
     CloseMessage
     ApplyMovement 32, _089C
     WaitMovement
-    ScrCmd_065 32
+    RemoveObject 32
     SetVar 0x40F6, 1
     ReleaseAll
     End

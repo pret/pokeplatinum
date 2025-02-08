@@ -32,7 +32,7 @@ _0042:
 
 _0069:
     SetFlag 0x1E0
-    ScrCmd_065 0
+    RemoveObject 0
     ClearFlag 142
     Return
 
@@ -84,7 +84,7 @@ _00D3:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 1
+    RemoveObject 1
     SetFlag 0x13E
     SetFlag 0x984
     FadeScreen 6, 1, 1, 0

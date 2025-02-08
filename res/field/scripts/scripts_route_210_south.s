@@ -72,10 +72,10 @@ _00CA:
     ApplyMovement 26, _0280
     ApplyMovement 19, _02B4
     WaitMovement
-    ScrCmd_065 27
-    ScrCmd_065 28
-    ScrCmd_065 26
-    ScrCmd_065 19
+    RemoveObject 27
+    RemoveObject 28
+    RemoveObject 26
+    RemoveObject 19
     WaitTime 45, 0x800C
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 0x230, _015B
@@ -135,7 +135,7 @@ _0230:
     GoTo _0240
 
 _0240:
-    ScrCmd_065 20
+    RemoveObject 20
     SetFlag 0x107
     ReleaseAll
     End

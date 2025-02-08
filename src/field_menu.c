@@ -363,7 +363,7 @@ static u32 sub_0203ABD0(FieldSystem *fieldSystem)
         v0 |= 0x1;
     }
 
-    if (sub_0206B054(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
+    if (VarsFlags_GetPlayerStarterSpecies(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
         v0 |= 0x2;
     }
 

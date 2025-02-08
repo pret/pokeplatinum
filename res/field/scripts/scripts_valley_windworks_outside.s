@@ -46,7 +46,7 @@ _008A:
 
 _00AD:
     SetFlag 0x20B
-    ScrCmd_065 4
+    RemoveObject 4
     ClearFlag 142
     End
 
@@ -80,7 +80,7 @@ _00CF:
     ScrCmd_169 77
     ScrCmd_16A 77
     Message 4
-    ScrCmd_065 0
+    RemoveObject 0
     CloseMessage
     ReleaseAll
     End
@@ -194,7 +194,7 @@ _0201:
     ApplyMovement 0xFF, _02C8
     ApplyMovement 6, _0324
     WaitMovement
-    ScrCmd_065 6
+    RemoveObject 6
     SetVar 0x411E, 2
     ReleaseAll
     End

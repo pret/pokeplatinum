@@ -128,8 +128,8 @@ _012A:
     ApplyMovement 6, _016C
     WaitMovement
     SetFlag 0x224
-    ScrCmd_065 5
-    ScrCmd_065 6
+    RemoveObject 5
+    RemoveObject 6
     CloseMessage
     ReleaseAll
     End

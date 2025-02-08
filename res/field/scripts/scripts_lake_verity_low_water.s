@@ -32,8 +32,8 @@ _004E:
 
 _005B:
     SetFlag 0x18F
-    ScrCmd_065 3
-    ScrCmd_065 2
+    RemoveObject 3
+    RemoveObject 2
     ClearFlag 142
     End
     End
@@ -66,7 +66,7 @@ _006F:
     ApplyMovement 4, _01F0
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 4
+    RemoveObject 4
     WaitTime 50, 0x800C
     ApplyMovement 0xFF, _0378
     ApplyMovement 5, _02AC
@@ -104,7 +104,7 @@ _006F:
     ApplyMovement 0xFF, _039C
     WaitMovement
     SetFlag 0x196
-    ScrCmd_065 5
+    RemoveObject 5
     PlayFanfare SEQ_SE_DP_KAIDAN2
     GoTo _01A1
     End
