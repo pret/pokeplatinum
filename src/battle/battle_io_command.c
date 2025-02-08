@@ -666,7 +666,7 @@ static void ov16_0225C558(BattleSystem *param0, BattlerData *param1)
 
     if (param1->bootState == 0x0) {
         if ((v0 & 0x8) || (((v0 & 0x8) == 0) && (param1->battlerType != 4))) {
-            ov16_0226947C(battleInput, -0xd00, 0);
+            BattleInput_StartHorizontalScrollTask(battleInput, -0xd00, 0);
         }
     }
 

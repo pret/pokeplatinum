@@ -333,7 +333,7 @@ void ov13_022280F0(UnkStruct_ov13_02227244 *param0, u8 param1)
 {
     if (param0->unk_00->unk_14 == 1) {
         ov16_0226DFB0(param0->unk_38, Unk_ov13_02229BFC[param1][0], Unk_ov13_02229BFC[param1][1]);
-        ov16_0226DFD0(param0->unk_38, 60);
+        CatchingTutorialFinger_RequestTouch(param0->unk_38, 60);
     } else {
         ov16_0226DFBC(param0->unk_38);
     }

@@ -582,7 +582,7 @@ static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0)
     switch (param0->unk_1159) {
     case 0:
 
-        if (ov16_0226DFD4(param0->unk_38) == 1) {
+        if (CatchingTutorialFinger_CheckTouchAnimationFinished(param0->unk_38) == 1) {
             Sound_PlayEffect(1501);
             param0->unk_114D = 2;
             param0->unk_114B = 12;
@@ -599,7 +599,7 @@ static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0)
         param0->unk_1159++;
         break;
     case 2:
-        if (ov16_0226DFD4(param0->unk_38) == 1) {
+        if (CatchingTutorialFinger_CheckTouchAnimationFinished(param0->unk_38) == 1) {
             Sound_PlayEffect(1501);
             param0->unk_00->unk_27[param0->unk_114D] = 0;
             param0->unk_114B = 12;
@@ -616,7 +616,7 @@ static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0)
         param0->unk_1159++;
         break;
     case 4:
-        if (ov16_0226DFD4(param0->unk_38) == 1) {
+        if (CatchingTutorialFinger_CheckTouchAnimationFinished(param0->unk_38) == 1) {
             Sound_PlayEffect(1501);
             param0->unk_00->unk_1C = ov13_02227BA8(param0, param0->unk_00->unk_27[param0->unk_114D]);
             param0->unk_00->unk_1E = param0->unk_114D;

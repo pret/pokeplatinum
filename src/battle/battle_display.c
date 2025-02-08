@@ -2913,7 +2913,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
         v9 = BattleSystem_GetMessageLoader(v0->unk_00);
 
         if (v4 & 0x400) {
-            switch (ov16_0223F228(v0->unk_00)) {
+            switch (BattleSystem_GetCatchingTutorialState(v0->unk_00)) {
             case 0:
                 v10.tags = 2;
                 v10.params[0] = v0->unk_09 | (v0->unk_23 << 8);
@@ -3304,7 +3304,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
         v0->unk_20++;
     default:
         if (ov16_0226BCD0(battleInput) == 1) {
-            ov16_0223F234(v0->unk_00, 1);
+            CatchingTutorial_SetCatchingTutorialState(v0->unk_00, 1);
             ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
             Heap_FreeToHeap(param1);
             SysTask_Done(param0);
@@ -3437,7 +3437,7 @@ static void ov16_02260F14(SysTask *param0, void *param1)
             }
 
             v6.unk_20 = v0->unk_0E;
-            v6.unk_21 = ov16_02269368(v0->unk_30, v0->unk_0E);
+            v6.unk_21 = GetSelectedMonsFromMoveRange(v0->unk_30, v0->unk_0E);
 
             BattleInput_ChangeMenu(v8, v9, battleInput, 12, 0, &v6);
             NARC_dtor(v8);

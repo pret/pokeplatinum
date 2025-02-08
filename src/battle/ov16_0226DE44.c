@@ -105,7 +105,7 @@ void CatchingTutorialFinger_Free(CatchingTutorialFinger *param0)
     Heap_FreeToHeap(param0);
 }
 
-void ov16_0226DF80(CatchingTutorialFinger *param0, int param1, int param2, fx32 param3)
+void CatchingTutorialFinger_SetPosition(CatchingTutorialFinger *param0, int param1, int param2, fx32 param3)
 {
     ov16_0226E13C(param0);
 
@@ -119,7 +119,7 @@ void ov16_0226DF80(CatchingTutorialFinger *param0, int param1, int param2, fx32 
 
 void ov16_0226DFB0(CatchingTutorialFinger *param0, int param1, int param2)
 {
-    ov16_0226DF80(param0, param1, param2, (192 << FX32_SHIFT));
+    CatchingTutorialFinger_SetPosition(param0, param1, param2, (192 << FX32_SHIFT));
 }
 
 void ov16_0226DFBC(CatchingTutorialFinger *param0)
@@ -128,12 +128,12 @@ void ov16_0226DFBC(CatchingTutorialFinger *param0)
     ov16_0226E13C(param0);
 }
 
-void ov16_0226DFD0(CatchingTutorialFinger *param0, int param1)
+void CatchingTutorialFinger_RequestTouch(CatchingTutorialFinger *param0, int param1)
 {
     param0->unk_18 = param1;
 }
 
-BOOL ov16_0226DFD4(CatchingTutorialFinger *param0)
+BOOL CatchingTutorialFinger_CheckTouchAnimationFinished(CatchingTutorialFinger *param0)
 {
     return param0->unk_1B;
 }

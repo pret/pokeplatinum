@@ -147,8 +147,8 @@ int ov16_0223F1F8(BattleSystem *battleSystem);
 u16 *ov16_0223F204(BattleSystem *battleSystem);
 u16 *ov16_0223F210(BattleSystem *battleSystem);
 int BattleSystem_FieldWeather(BattleSystem *battleSystem);
-u8 ov16_0223F228(BattleSystem *battleSystem);
-void ov16_0223F234(BattleSystem *battleSystem, u8 param1);
+u8 BattleSystem_GetCatchingTutorialState(BattleSystem *battleSystem);
+void CatchingTutorial_SetCatchingTutorialState(BattleSystem *battleSystem, u8 param1);
 int ov16_0223F240(BattleSystem *battleSystem);
 void ov16_0223F24C(BattleSystem *battleSystem, int param1);
 void ov16_0223F268(BattleSystem *battleSystem);
@@ -1238,12 +1238,12 @@ int BattleSystem_FieldWeather(BattleSystem *battleSys)
     return battleSys->fieldWeather;
 }
 
-u8 ov16_0223F228(BattleSystem *battleSystem)
+u8 BattleSystem_GetCatchingTutorialState(BattleSystem *battleSystem)
 {
     return battleSystem->unk_241D;
 }
 
-void ov16_0223F234(BattleSystem *battleSystem, u8 param1)
+void CatchingTutorial_SetCatchingTutorialState(BattleSystem *battleSystem, u8 param1)
 {
     battleSystem->unk_241D = param1;
 }
