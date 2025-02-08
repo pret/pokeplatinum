@@ -913,18 +913,18 @@ _0BAA:
 _0BCA:
     GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x268
-    GoToIfEq 0x800C, 0x186, _0C2E
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0C2E
     SetVar 0x8004, 0x269
-    GoToIfEq 0x800C, 0x189, _0C2E
+    GoToIfEq 0x800C, SPECIES_PIPLUP, _0C2E
     SetVar 0x8004, 0x26A
     Return
 
 _0BFC:
     GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x265
-    GoToIfEq 0x800C, 0x186, _0C2E
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0C2E
     SetVar 0x8004, 0x266
-    GoToIfEq 0x800C, 0x189, _0C2E
+    GoToIfEq 0x800C, SPECIES_PIPLUP, _0C2E
     SetVar 0x8004, 0x267
     Return
 

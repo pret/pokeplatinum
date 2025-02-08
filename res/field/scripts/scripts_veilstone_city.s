@@ -649,18 +649,18 @@ _0919:
 _0939:
     GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x271
-    GoToIfEq 0x800C, 0x186, _099D
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _099D
     SetVar 0x8004, 0x272
-    GoToIfEq 0x800C, 0x189, _099D
+    GoToIfEq 0x800C, SPECIES_PIPLUP, _099D
     SetVar 0x8004, 0x270
     Return
 
 _096B:
     GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x26E
-    GoToIfEq 0x800C, 0x186, _099D
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _099D
     SetVar 0x8004, 0x26F
-    GoToIfEq 0x800C, 0x189, _099D
+    GoToIfEq 0x800C, SPECIES_PIPLUP, _099D
     SetVar 0x8004, 0x26D
     Return
 

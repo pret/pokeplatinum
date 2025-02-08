@@ -33,8 +33,8 @@ _001D:
     Message 1
     CloseMessage
     GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, 0x183, _00B3
-    GoToIfEq 0x800C, 0x186, _00C1
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _00B3
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _00C1
     GoTo _00A5
     End
 

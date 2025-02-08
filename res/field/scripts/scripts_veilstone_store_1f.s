@@ -87,9 +87,9 @@ _00A9:
     FacePlayer
     GoToIfSet 0x129, _0109
     GetPlayerStarterSpecies 0x800C
-    CallIfEq 0x800C, 0x183, _0119
-    CallIfEq 0x800C, 0x186, _0121
-    CallIfEq 0x800C, 0x189, _0129
+    CallIfEq 0x800C, SPECIES_TURTWIG, _0119
+    CallIfEq 0x800C, SPECIES_CHIMCHAR, _0121
+    CallIfEq 0x800C, SPECIES_PIPLUP, _0129
     SetVar 0x4107, 0x8004
     ScrCmd_343 0, 0x8004
     Message 3

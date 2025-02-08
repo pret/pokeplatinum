@@ -260,8 +260,8 @@ _0347:
 
 _037F:
     GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, 0x186, _03A3
-    GoToIfEq 0x800C, 0x183, _03B5
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _03A3
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _03B5
     GoTo _03C7
 
 _03A3:

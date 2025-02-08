@@ -860,7 +860,7 @@
     .short \successVar
     .endm
 
-    @ eggGiverTextId corresponds to an entry in special_met_location_names.gmm. 9 is "Traveling Man", 10 is "Riley", 11 is "Cynthia".
+    @ eggGiverTextId corresponds to an entry in special_met_location_names.gmm.
     .macro GiveEgg species, eggGiverTextId
     .short 151
     .short \species

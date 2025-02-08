@@ -157,8 +157,8 @@ _028A:
     Message 0
     CloseMessage
     GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, 0x183, _02EB
-    GoToIfEq 0x800C, 0x186, _02F7
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _02EB
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _02F7
     GoTo _02DF
 
 _02DF:

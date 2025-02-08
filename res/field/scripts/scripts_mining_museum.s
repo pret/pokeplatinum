@@ -231,7 +231,7 @@ _03F2:
     PlaySound SEQ_FANFA4
     Message 8
     WaitSound
-    GivePokemon 0x40B4, 20, 0, 0x800C
+    GivePokemon 0x40B4, 20, ITEM_NONE, 0x800C
     IncrementGameRecord RECORD_UNK_115
     SetVar 0x40B4, 0
     Message 9

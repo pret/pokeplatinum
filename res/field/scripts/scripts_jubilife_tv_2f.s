@@ -35,9 +35,9 @@ _0044:
     FacePlayer
     GoToIfSet 0x13D, _00A4
     GetPlayerStarterSpecies 0x800C
-    CallIfEq 0x800C, 0x183, _00B4
-    CallIfEq 0x800C, 0x186, _00BC
-    CallIfEq 0x800C, 0x189, _00C4
+    CallIfEq 0x800C, SPECIES_TURTWIG, _00B4
+    CallIfEq 0x800C, SPECIES_CHIMCHAR, _00BC
+    CallIfEq 0x800C, SPECIES_PIPLUP, _00C4
     SetVar 0x410A, 0x8004
     ScrCmd_343 0, 0x8004
     Message 1

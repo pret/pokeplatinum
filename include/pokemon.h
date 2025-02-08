@@ -33,6 +33,8 @@
 #define FACE_BACK  0
 #define FACE_FRONT 2
 
+#define INIT_IVS_RANDOM 32
+
 enum EvolutionClass {
     EVO_CLASS_BY_LEVEL = 0,
     EVO_CLASS_BY_TRADE,
@@ -805,7 +807,7 @@ void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 specie
  */
 void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID, u8 delay);
 BOOL Pokemon_IsEligibleForAction(Pokemon *mon);
-void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *param1, int monPokeball, int metLocation, int metTerrain, int heapId);
+void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapId);
 void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates);
 BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID);

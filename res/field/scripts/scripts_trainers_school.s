@@ -170,8 +170,8 @@ _01E7:
     Message 10
     CloseMessage
     GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, 0x183, _0220
-    GoToIfEq 0x800C, 0x186, _022E
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _0220
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _022E
     GoTo _0212
     End
 
@@ -264,8 +264,8 @@ _031A:
     Message 16
     CloseMessage
     GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, 0x183, _0353
-    GoToIfEq 0x800C, 0x186, _0361
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _0353
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0361
     GoTo _0345
     End
 

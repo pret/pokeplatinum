@@ -284,7 +284,7 @@ _042E:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GetPlayerStarterSpecies 0x8000
-    GivePokemon 0x8000, 5, 0, 0x800C
+    GivePokemon 0x8000, 5, ITEM_NONE, 0x800C
     ApplyMovement 5, _07F8
     ApplyMovement 2, _0760
     ApplyMovement 0xFF, _0884
@@ -359,8 +359,8 @@ _057A:
     CloseMessage
     ScrCmd_06D 2, 15
     GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, 0x183, _05BB
-    GoToIfEq 0x800C, 0x186, _05C5
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _05BB
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _05C5
     GoTo _05B1
     End
 

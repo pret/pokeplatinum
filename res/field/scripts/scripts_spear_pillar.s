@@ -338,9 +338,9 @@ _041C:
 _0424:
     GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x26C
-    GoToIfEq 0x800C, 0x186, _0454
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0454
     SetVar 0x8004, 0x26B
-    GoToIfEq 0x800C, 0x183, _0454
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _0454
     SetVar 0x8004, 0x25F
 _0454:
     Return

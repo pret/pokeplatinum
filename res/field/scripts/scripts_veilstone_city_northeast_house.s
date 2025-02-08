@@ -37,7 +37,7 @@ _005B:
     BufferPlayerName 0
     Message 3
     WaitSound
-    GivePokemon SPECIES_PORYGON, 25, 0, 0x800C
+    GivePokemon SPECIES_PORYGON, 25, ITEM_NONE, 0x800C
     SetFlag 151
     Message 4
     ScrCmd_03E 0x800C

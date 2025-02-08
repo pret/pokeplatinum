@@ -29,7 +29,7 @@ BOOL Pokemon_CanBattle(Pokemon *mon)
     return !Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 }
 
-BOOL Pokemon_GiveMonFromScript(int heapID, SaveData *saveData, u16 species, u8 level, u16 heldItem, int metLocation, int metTerrain)
+BOOL Pokemon_GiveMonFromScript(enum HeapId heapID, SaveData *saveData, u16 species, u8 level, u16 heldItem, int metLocation, int metTerrain)
 {
     BOOL result;
     Pokemon *mon;
@@ -41,7 +41,7 @@ BOOL Pokemon_GiveMonFromScript(int heapID, SaveData *saveData, u16 species, u8 l
     mon = Pokemon_New(heapID);
 
     Pokemon_Init(mon);
-    Pokemon_InitWith(mon, species, level, 32, FALSE, 0, OTID_NOT_SET, 0);
+    Pokemon_InitWith(mon, species, level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
     Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, metLocation, metTerrain, heapID);
 
     item = heldItem;

@@ -36,7 +36,7 @@ _0057:
     BufferPlayerName 0
     Message 3
     WaitSound
-    GivePokemon SPECIES_EEVEE, 20, 0, 0x800C
+    GivePokemon SPECIES_EEVEE, 20, ITEM_NONE, 0x800C
     SetFlag 0x131
     Message 4
     ScrCmd_03E 0x800C

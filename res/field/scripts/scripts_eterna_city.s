@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city.h"
+#include "res/text/bank/special_met_location_names.h"
 
     .data
 
@@ -1179,7 +1180,7 @@ _0E4B:
     Message 10
     Message 16
     CloseMessage
-    GiveEgg SPECIES_TOGEPI, 11
+    GiveEgg SPECIES_TOGEPI, SPECIAL_METLOC_NAME_CYNTHIA
     SetVar 0x407A, 5
     Return
 

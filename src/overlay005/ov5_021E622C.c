@@ -2603,7 +2603,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     u8 hatchCycles = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_HATCH_CYCLES);
     Strbuf *eggName;
 
-    Pokemon_InitWith(egg, species, 1, 32, FALSE, 0, OTID_NOT_SET, 0);
+    Pokemon_InitWith(egg, species, 1, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
 
     metLvl = 0;
     ball = ITEM_POKE_BALL;
@@ -2624,14 +2624,14 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
     Strbuf_Free(eggName);
 
     if (param4 == 4) {
-        u32 v6 = TrainerInfo_ID(trainerInfo);
-        u32 v7 = TrainerInfo_Gender(trainerInfo);
-        Strbuf *v8 = TrainerInfo_NameNewStrbuf(trainerInfo, 32);
+        u32 trainerId = TrainerInfo_ID(trainerInfo);
+        u32 gender = TrainerInfo_Gender(trainerInfo);
+        Strbuf *otName = TrainerInfo_NameNewStrbuf(trainerInfo, 32);
 
-        Pokemon_SetValue(egg, MON_DATA_OTNAME_STRBUF, v8);
-        Pokemon_SetValue(egg, MON_DATA_OT_ID, &v6);
-        Pokemon_SetValue(egg, MON_DATA_OT_GENDER, &v7);
-        Strbuf_Free(v8);
+        Pokemon_SetValue(egg, MON_DATA_OTNAME_STRBUF, otName);
+        Pokemon_SetValue(egg, MON_DATA_OT_ID, &trainerId);
+        Pokemon_SetValue(egg, MON_DATA_OT_GENDER, &gender);
+        Strbuf_Free(otName);
     }
 
     sub_0209304C(egg, trainerInfo, param4, metLocation, 0);
@@ -2663,7 +2663,7 @@ void ov5_021E6DE8(Pokemon *param0, u16 param1, UnkStruct_02026310 *param2, u32 p
         }
     }
 
-    Pokemon_InitWith(param0, param1, 1, 32, TRUE, v2, OTID_NOT_SET, 0);
+    Pokemon_InitWith(param0, param1, 1, INIT_IVS_RANDOM, TRUE, v2, OTID_NOT_SET, 0);
 
     v0 = 0;
     v1 = ITEM_POKE_BALL;
@@ -3071,7 +3071,7 @@ static void ov5_021E742C(Pokemon *param0, int param1)
         }
     }
 
-    Pokemon_InitWith(v16, v0, 1, 32, TRUE, v3, OTID_NOT_SET, 0);
+    Pokemon_InitWith(v16, v0, 1, INIT_IVS_RANDOM, TRUE, v3, OTID_NOT_SET, 0);
 
     for (v7 = 0; v7 < LEARNED_MOVES_MAX; v7++) {
         Pokemon_SetValue(v16, MON_DATA_MOVE1 + v7, &(v1[v7]));

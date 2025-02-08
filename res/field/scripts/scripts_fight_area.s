@@ -250,9 +250,9 @@ _0306:
 _030C:
     GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x39D
-    GoToIfEq 0x800C, 0x186, _033E
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _033E
     SetVar 0x8004, 0x39C
-    GoToIfEq 0x800C, 0x183, _033E
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _033E
     SetVar 0x8004, 0x39B
     Return
 

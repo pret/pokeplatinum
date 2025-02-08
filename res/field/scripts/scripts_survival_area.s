@@ -172,8 +172,8 @@ _01BE:
     Message 2
     CloseMessage
     GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, 0x183, _0236
-    GoToIfEq 0x800C, 0x186, _0272
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _0236
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0272
     GoTo _01FA
     End
 

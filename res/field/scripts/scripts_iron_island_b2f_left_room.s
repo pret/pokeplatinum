@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/iron_island_b2f_left_room.h"
+#include "res/text/bank/special_met_location_names.h"
 
     .data
 
@@ -261,7 +262,7 @@ _031C:
     PlaySound SEQ_FANFA4
     WaitSound
     Message 12
-    GiveEgg SPECIES_RIOLU, 10
+    GiveEgg SPECIES_RIOLU, SPECIAL_METLOC_NAME_RILEY
     SetFlag 0x1E5
     ClearFlag 226
     Call _0371

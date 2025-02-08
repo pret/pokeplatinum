@@ -108,9 +108,9 @@ _012F:
     FacePlayer
     GoToIfSet 0x128, _0189
     GetPlayerStarterSpecies 0x800C
-    CallIfEq 0x800C, 0x183, _0194
-    CallIfEq 0x800C, 0x186, _019C
-    CallIfEq 0x800C, 0x189, _01A4
+    CallIfEq 0x800C, SPECIES_TURTWIG, _0194
+    CallIfEq 0x800C, SPECIES_CHIMCHAR, _019C
+    CallIfEq 0x800C, SPECIES_PIPLUP, _01A4
     ScrCmd_261 0, 0x8004
     Message 37
     SetVar 0x8005, 1
@@ -577,8 +577,8 @@ _04C8:
     ApplyMovement 26, _05CC
     WaitMovement
     GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, 0x183, _054B
-    GoToIfEq 0x800C, 0x186, _0557
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _054B
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0557
     GoTo _053F
 
 _053F:

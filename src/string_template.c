@@ -490,7 +490,7 @@ void StringTemplate_SetMetLocationName(StringTemplate *template, u32 idx, u32 lo
             u32 bankID, msgID;
             if (metLocationType == 0 && metLocationID == 0) {
                 bankID = sMetLocationBanks[1];
-                msgID = pl_msg_00000435_00012;
+                msgID = SPECIAL_METLOC_NAME_MYSTERY_ZONE;
             } else {
                 bankID = sMetLocationBanks[2];
                 msgID = pl_msg_00000434_00002;

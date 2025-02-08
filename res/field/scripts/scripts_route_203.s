@@ -91,8 +91,8 @@ _0111:
     Message 0
     CloseMessage
     GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, 0x183, _014C
-    GoToIfEq 0x800C, 0x186, _0158
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _014C
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0158
     GoTo _0140
 
 _0140:
