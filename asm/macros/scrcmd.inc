@@ -852,12 +852,12 @@
     .short \arg1
     .endm
 
-    .macro GivePokemon species, level, arg2, arg3
+    .macro GivePokemon species, level, heldItem, successVar
     .short 150
     .short \species
     .short \level
-    .short \arg2
-    .short \arg3
+    .short \heldItem
+    .short \successVar
     .endm
 
     @ eggGiverTextId corresponds to an entry in special_met_location_names.gmm. 9 is "Traveling Man", 10 is "Riley", 11 is "Cynthia".
@@ -1230,9 +1230,9 @@
     .byte \arg0
     .endm
 
-    .macro GetPlayerStarterSpecies arg0
+    .macro GetPlayerStarterSpecies destVar
     .short 222
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro BufferUndergroundGoodsName templateArg, goods
