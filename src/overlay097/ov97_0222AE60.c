@@ -14,6 +14,7 @@
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
+#include "boot.h"
 #include "cell_actor.h"
 #include "core_sys.h"
 #include "font.h"
@@ -40,7 +41,6 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_02024358.h"
 #include "unk_0202DAB4.h"
 #include "unk_020366A0.h"
 #include "unk_0209A74C.h"
@@ -1178,7 +1178,7 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D6BC);
         break;
     case 6:
-        sub_020243E0("data/eoo.dat");
+        RebootAndLoadROM("data/eoo.dat");
         break;
     case 7:
         sub_0200569C();

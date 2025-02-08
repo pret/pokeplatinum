@@ -7,11 +7,11 @@
 
 #include "struct_defs/struct_02017E74.h"
 
+#include "boot.h"
 #include "core_sys.h"
 #include "heap.h"
 #include "math.h"
 #include "sys_task_manager.h"
-#include "unk_02024358.h"
 
 typedef struct {
     void *unk_00;
@@ -27,10 +27,8 @@ CoreSys gCoreSys;
 void sub_02017728(void)
 {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
-
     MI_WaitDma(GX_DEFAULT_DMAID);
     SysTaskManager_ExecuteTasks(gCoreSys.vBlankTaskMgr);
-
     gCoreSys.frameCounter++;
 }
 
@@ -165,7 +163,7 @@ void sub_0201789C(void)
     (void)GX_VBlankIntr(1);
 
     FS_Init(1);
-    sub_02024358();
+    CheckForMemoryTampering();
 
     {
         u32 v0 = FS_GetTableSize();
