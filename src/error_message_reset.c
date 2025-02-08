@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02017E74.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"

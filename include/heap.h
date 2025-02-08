@@ -3,10 +3,12 @@
 
 #include <nnsys.h>
 
-#include "constants/heap.h"
+typedef struct HeapParam {
+    u32 size;
+    OSArenaId arena;
+} HeapParam;
 
-#include "struct_defs/struct_02017E74.h"
-
+void Heap_InitSystem(const HeapParam *templates, u32 nTemplates, u32 totalNumHeaps, u32 preSize);
 BOOL Heap_Create(u32 parent, u32 child, u32 size);
 BOOL Heap_CreateAtEnd(u32 parent, u32 child, u32 size);
 void Heap_Destroy(u32 heapID);

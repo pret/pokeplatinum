@@ -1,8 +1,8 @@
 #include "unk_02033200.h"
 
-#include <nitro.h>
-#include <nitro/wvr.h>
 #include <string.h>
+
+#include "constants/heap.h"
 
 #include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202610C.h"

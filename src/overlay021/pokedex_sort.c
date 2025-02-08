@@ -1,7 +1,8 @@
 #include "overlay021/pokedex_sort.h"
 
-#include <nitro.h>
 #include <string.h>
+
+#include "constants/heap.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 
@@ -13,7 +14,6 @@
 #include "core_sys.h"
 #include "graphics.h"
 #include "heap.h"
-#include "narc.h"
 #include "pokedex.h"
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"

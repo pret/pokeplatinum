@@ -1,11 +1,8 @@
 #include "unk_02017728.h"
 
-#include <nitro.h>
 #include <string.h>
 
 #include "constants/heap.h"
-
-#include "struct_defs/struct_02017E74.h"
 
 #include "boot.h"
 #include "core_sys.h"
