@@ -3534,7 +3534,7 @@ static BOOL ScrCmd_191(ScriptContext *ctx)
     v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
     *v0 = sub_0203D3C0(32, ctx->fieldSystem);
 
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return 1;
 }
 
@@ -3545,7 +3545,7 @@ static BOOL ScrCmd_2A5(ScriptContext *ctx)
     v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
     *v0 = sub_0203D3E4(32, ctx->fieldSystem);
 
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return 1;
 }
 
@@ -3712,7 +3712,7 @@ static BOOL ScrCmd_194(ScriptContext *ctx)
     u16 v4 = ScriptContext_GetVar(ctx);
 
     *v0 = sub_0203D578(32, ctx->fieldSystem, v3, v2, v4, v1);
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -3754,7 +3754,7 @@ static BOOL ScrCmd_196(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
 
     *v0 = sub_0203D5C8(32, ctx->fieldSystem, v1);
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -3784,7 +3784,7 @@ static BOOL ScrCmd_2E7(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
 
     *v0 = sub_0203E63C(32, ctx->fieldSystem, v1, v2);
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -3908,7 +3908,7 @@ static BOOL sub_02041D3C(ScriptContext *ctx)
     return 1;
 }
 
-BOOL ScriptContext_WaitForApplication(ScriptContext *ctx)
+BOOL ScriptContext_WaitForApplicationExit(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
@@ -4216,7 +4216,7 @@ static BOOL ScrCmd_130(ScriptContext *ctx)
 static BOOL ScrCmd_205(ScriptContext *ctx)
 {
     sub_0203E224(ctx->fieldSystem);
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -4224,7 +4224,7 @@ static BOOL ScrCmd_205(ScriptContext *ctx)
 static BOOL ScrCmd_310(ScriptContext *ctx)
 {
     sub_0203E704(ctx->fieldSystem);
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -4322,7 +4322,7 @@ static BOOL ScrCmd_0AC(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     sub_0203DDFC(fieldSystem);
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -4391,7 +4391,7 @@ static BOOL ScrCmd_0B2(ScriptContext *ctx)
     if (sub_02039074(ctx->fieldSystem->saveData)) {
         *v1 = 1;
         sub_0203E0FC(ctx->fieldSystem, v0);
-        ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+        ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     } else {
         *v1 = 0;
     }
@@ -4418,7 +4418,7 @@ static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx)
     chooseStarterData->options = SaveData_Options(ctx->fieldSystem->saveData);
 
     FieldSystem_LaunchChooseStarterApp(ctx->fieldSystem, *fieldSysDataPtr);
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return TRUE;
 }
@@ -4452,7 +4452,7 @@ static BOOL ScrCmd_178(ScriptContext *ctx)
     GF_ASSERT(*v0 == 0);
 
     *v0 = sub_0203D264(ctx->fieldSystem, v1);
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -5124,7 +5124,7 @@ static BOOL ScrCmd_12A(ScriptContext *ctx)
 static BOOL ScrCmd_12B(ScriptContext *ctx)
 {
     sub_0203E0D0(ctx->fieldSystem);
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return 1;
 }
 
@@ -7471,7 +7471,7 @@ static BOOL ScrCmd_290(ScriptContext *ctx)
     v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
     *v0 = sub_0203D410(32, ctx->fieldSystem, v1);
 
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return 1;
 }
 
@@ -7902,7 +7902,7 @@ BOOL ScrCmd_2E2(ScriptContext *ctx)
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
 
     *v0 = sub_0203E608(ctx->fieldSystem, 32);
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -8058,7 +8058,7 @@ static BOOL ScrCmd_2F6(ScriptContext *ctx)
     if (sub_02039074(ctx->fieldSystem->saveData)) {
         *v2 = 1;
         sub_0203E6C0(ctx->fieldSystem, v1, v0);
-        ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+        ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     } else {
         *v2 = 0;
     }
@@ -8271,7 +8271,7 @@ static BOOL ScrCmd_313(ScriptContext *ctx)
 static BOOL ScrCmd_320(ScriptContext *ctx)
 {
     sub_0203E714(ctx->fieldSystem);
-    ScriptContext_Pause(ctx, ScriptContext_WaitForApplication);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
