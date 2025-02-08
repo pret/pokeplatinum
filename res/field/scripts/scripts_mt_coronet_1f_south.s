@@ -24,7 +24,7 @@ _0006:
     ApplyMovement 0xFF, _00B0
     ApplyMovement 6, _0080
     WaitMovement
-    ScrCmd_065 6
+    RemoveObject 6
     SetVar 0x4096, 1
     ReleaseAll
     End

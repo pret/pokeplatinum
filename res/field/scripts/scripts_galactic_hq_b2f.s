@@ -57,8 +57,8 @@ _007F:
     ApplyMovement 7, _00C4
     WaitMovement
     SetFlag 0x227
-    ScrCmd_065 6
-    ScrCmd_065 7
+    RemoveObject 6
+    RemoveObject 7
     CloseMessage
     ReleaseAll
     End

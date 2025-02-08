@@ -271,7 +271,7 @@ _02A0:
     CloseMessage
     ApplyMovement 10, _0348
     WaitMovement
-    ScrCmd_065 10
+    RemoveObject 10
     ApplyMovement 0xFF, _0318
     WaitMovement
     SetFlag 0x157

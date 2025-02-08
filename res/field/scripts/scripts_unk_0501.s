@@ -136,7 +136,7 @@ _01B9:
     GoTo _01B9
 
 _01DE:
-    ScrCmd_0A1
+    ReturnToField
     ScrCmd_072 20, 2
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

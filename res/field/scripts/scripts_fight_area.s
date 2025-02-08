@@ -161,13 +161,13 @@ _0198:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 25
-    ScrCmd_065 24
-    ScrCmd_065 29
-    ScrCmd_065 28
-    ScrCmd_065 27
-    ScrCmd_065 30
-    ScrCmd_065 31
+    RemoveObject 25
+    RemoveObject 24
+    RemoveObject 29
+    RemoveObject 28
+    RemoveObject 27
+    RemoveObject 30
+    RemoveObject 31
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ApplyMovement 7, _0378
@@ -201,7 +201,7 @@ _0198:
     ApplyMovement 26, _03D4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 26
+    RemoveObject 26
     WaitFanfare SEQ_SE_DP_KAIDAN2
     BufferRivalName 0
     Message 18
@@ -211,7 +211,7 @@ _0198:
     ApplyMovement 7, _03A4
     ApplyMovement 0xFF, _0428
     WaitMovement
-    ScrCmd_065 7
+    RemoveObject 7
     ApplyMovement 8, _0478
     ApplyMovement 0xFF, _043C
     WaitMovement
@@ -220,15 +220,15 @@ _0198:
     ApplyMovement 8, _0484
     ApplyMovement 0xFF, _041C
     WaitMovement
-    ScrCmd_065 8
+    RemoveObject 8
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 1, _02E0
     SetVar 0x4081, 2
     Return
 
 _02E0:
-    ScrCmd_065 22
-    ScrCmd_065 23
+    RemoveObject 22
+    RemoveObject 23
     SetFlag 0x294
     Return
 
@@ -248,7 +248,7 @@ _0306:
     End
 
 _030C:
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x39D
     GoToIfEq 0x800C, 0x186, _033E
     SetVar 0x8004, 0x39C

@@ -38,7 +38,7 @@ _0022:
 _0088:
     ScrCmd_20D 6, 0x800C
     GoToIfEq 0x800C, 0, _0088
-    ScrCmd_065 1
+    RemoveObject 1
     ApplyMovement 241, _0178
     WaitMovement
     ScrCmd_067
@@ -67,7 +67,7 @@ _00FD:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_320
-    ScrCmd_0A1
+    ReturnToField
     ScrCmd_328 1
     Warp MAP_HEADER_DISTORTION_WORLD_1F, 0, 55, 40, 1
     FadeScreen 6, 1, 1, 0

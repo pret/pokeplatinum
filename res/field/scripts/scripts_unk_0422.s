@@ -75,7 +75,7 @@ _00BA:
 
 _00CA:
     BufferRivalName 0
-    ScrCmd_0DC 1
+    BufferRivalStarterSpeciesName 1
     Message 4
     WaitABXPadPress
     GoTo _00ED

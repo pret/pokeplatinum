@@ -298,7 +298,7 @@ _04BE:
     WaitFadeScreen
     CloseMessage
     ScrCmd_1DD 30, 0, 0
-    ScrCmd_0A1
+    ReturnToField
     ScrCmd_1DD 31, 0, 0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -588,7 +588,7 @@ _097F:
     ScrCmd_0B3 0x4000
     ScrCmd_1DD 16, 0x4001, 0x4000
     SetVar 0x4001, 0x4000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x800C, 0x4001
@@ -1169,7 +1169,7 @@ _1304:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_1D9 0x8000, 0x8001
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -1283,7 +1283,7 @@ _140A:
     CloseMessage
     ScrCmd_191
     ScrCmd_193 0x800C
-    ScrCmd_0A1
+    ReturnToField
     SetVar 0x8000, 0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen

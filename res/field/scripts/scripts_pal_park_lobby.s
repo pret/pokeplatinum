@@ -405,7 +405,7 @@ _04F6:
     ApplyMovement 1, _0564
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 1
+    RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x40C6, 1
     ReleaseAll

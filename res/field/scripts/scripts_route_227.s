@@ -40,7 +40,7 @@ _0012:
     ApplyMovement 0xFF, _012C
     ApplyMovement 3, _0168
     WaitMovement
-    ScrCmd_065 4
+    RemoveObject 4
     ApplyMovement 3, _0170
     ApplyMovement 0xFF, _0108
     WaitMovement
@@ -52,7 +52,7 @@ _0012:
     ApplyMovement 3, _0178
     ApplyMovement 0xFF, _0118
     WaitMovement
-    ScrCmd_065 3
+    RemoveObject 3
     SetVar 0x408B, 1
     ReleaseAll
     End

@@ -21,7 +21,7 @@ _000A:
     GoToIfEq 0x800C, 0, _00A6
     SetFlag 176
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    ScrCmd_065 2
+    RemoveObject 2
     CallIfUnset 214, _008A
     CallIfSet 214, _0098
     Message 1

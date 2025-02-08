@@ -27,7 +27,7 @@ BOOL ScrCmd_1C6(ScriptContext *param0)
     v1 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
     *v1 = sub_0203D6E4(32, param0->fieldSystem, v0);
 
-    ScriptContext_Pause(param0, sub_02041D60);
+    ScriptContext_Pause(param0, ScrCmd_ResumeScriptOnAppExit);
     return 1;
 }
 
@@ -86,7 +86,7 @@ static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16
     v1->unk_15 = param1;
 
     sub_0203E284(param0->fieldSystem, v1);
-    ScriptContext_Pause(param0, sub_02041D60);
+    ScriptContext_Pause(param0, ScrCmd_ResumeScriptOnAppExit);
     Heap_FreeToHeap(param3);
 }
 

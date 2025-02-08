@@ -86,7 +86,7 @@ _00A9:
     LockAll
     FacePlayer
     GoToIfSet 0x129, _0109
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     CallIfEq 0x800C, 0x183, _0119
     CallIfEq 0x800C, 0x186, _0121
     CallIfEq 0x800C, 0x189, _0129

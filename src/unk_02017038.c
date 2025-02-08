@@ -28,10 +28,11 @@ int sub_02017058(u32 param0)
     return param0 - Unk_020E565C[v0];
 }
 
-int sub_02017070(int param0, int param1)
+// baseValue 1 = Transfer mons and eggs
+int SpecialMetLoc_GetId(int baseValue, int modifier)
 {
-    GF_ASSERT(param0 < 3);
-    return Unk_020E565C[param0] + param1;
+    GF_ASSERT(baseValue < 3);
+    return Unk_020E565C[baseValue] + modifier;
 }
 
 BOOL sub_0201708C(u16 param0)

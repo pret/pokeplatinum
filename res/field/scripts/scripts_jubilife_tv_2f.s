@@ -34,7 +34,7 @@ _0044:
     LockAll
     FacePlayer
     GoToIfSet 0x13D, _00A4
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     CallIfEq 0x800C, 0x183, _00B4
     CallIfEq 0x800C, 0x186, _00BC
     CallIfEq 0x800C, 0x189, _00C4

@@ -259,7 +259,7 @@ _0347:
     End
 
 _037F:
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     GoToIfEq 0x800C, 0x186, _03A3
     GoToIfEq 0x800C, 0x183, _03B5
     GoTo _03C7

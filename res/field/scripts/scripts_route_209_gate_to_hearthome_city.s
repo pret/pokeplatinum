@@ -32,7 +32,7 @@ _001D:
     BufferPlayerName 1
     Message 1
     CloseMessage
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     GoToIfEq 0x800C, 0x183, _00B3
     GoToIfEq 0x800C, 0x186, _00C1
     GoTo _00A5
@@ -67,7 +67,7 @@ _00CF:
     CallIfEq 0x8005, 8, _01AE
     CallIfEq 0x8005, 9, _01BA
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 1
+    RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x407B, 2
     ReleaseAll

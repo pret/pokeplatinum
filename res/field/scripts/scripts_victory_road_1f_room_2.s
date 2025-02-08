@@ -282,7 +282,7 @@ _0389:
     GoTo _03A1
 
 _03A1:
-    ScrCmd_065 28
+    RemoveObject 28
     SetFlag 230
     SetVar 0x4090, 2
     ReleaseAll

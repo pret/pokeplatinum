@@ -70,7 +70,7 @@ _009C:
     WaitFadeScreen
     CloseMessage
     ScrCmd_244 0, 0x800C, 0x8000, 0x8001
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _015B
@@ -79,7 +79,7 @@ _009C:
     WaitFadeScreen
     CloseMessage
     ScrCmd_244 0, 0x800C, 0x8002, 0x8003
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _015B

@@ -123,7 +123,7 @@ _0190:
     WaitFadeScreen
     CloseMessage
     ScrCmd_243 0, 0x800C, 0x8004
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _02AE

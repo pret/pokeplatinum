@@ -64,7 +64,7 @@ _00B0:
     WaitFadeScreen
     ScrCmd_191
     ScrCmd_193 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8000, 0xFF, _0296
@@ -96,7 +96,7 @@ _0161:
     CloseMessage
     ScrCmd_2E7 0x8000, 0x8003
     ScrCmd_2E8 0x8002
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8002, 4, _021B

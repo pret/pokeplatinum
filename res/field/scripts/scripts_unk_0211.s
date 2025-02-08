@@ -1007,35 +1007,35 @@ _0DC2:
     CloseMessage
     Call _0F94
     ScrCmd_0AB 0
-    ScrCmd_0A1
+    ReturnToField
     GoTo _0E21
 
 _0DD5:
     CloseMessage
     Call _0F94
     ScrCmd_0AB 1
-    ScrCmd_0A1
+    ReturnToField
     GoTo _0E21
 
 _0DE8:
     CloseMessage
     Call _0F94
     ScrCmd_0AB 2
-    ScrCmd_0A1
+    ReturnToField
     GoTo _0E21
 
 _0DFB:
     CloseMessage
     Call _0F94
     ScrCmd_0AB 3
-    ScrCmd_0A1
+    ReturnToField
     GoTo _0E21
 
 _0E0E:
     CloseMessage
     Call _0F94
     ScrCmd_0AB 4
-    ScrCmd_0A1
+    ReturnToField
     GoTo _0E21
 
 _0E21:
@@ -1115,7 +1115,7 @@ _0F2C:
     GoToIfEq 0x800C, 1, _0F59
     Call _0F94
     ScrCmd_0B1
-    ScrCmd_0A1
+    ReturnToField
     Call _0F80
     GoTo _0C1C
 
@@ -1375,7 +1375,7 @@ _1282:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_205
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -1653,14 +1653,14 @@ _15E7:
     SetVar 0x8004, 0x800C
     ScrCmd_2F6 0x8005, 0x8004, 0x800C
     GoToIfEq 0x800C, 0, _1624
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReturnCommonScript
     End
 
 _1624:
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReturnCommonScript

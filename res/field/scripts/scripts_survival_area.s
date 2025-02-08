@@ -105,7 +105,7 @@ _00D5:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    ScrCmd_065 8
+    RemoveObject 8
     ReleaseAll
     End
 
@@ -171,7 +171,7 @@ _01BE:
     BufferPlayerName 1
     Message 2
     CloseMessage
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     GoToIfEq 0x800C, 0x183, _0236
     GoToIfEq 0x800C, 0x186, _0272
     GoTo _01FA

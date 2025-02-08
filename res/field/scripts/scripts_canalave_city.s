@@ -156,7 +156,7 @@ _028A:
     BufferPlayerName 1
     Message 0
     CloseMessage
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     GoToIfEq 0x800C, 0x183, _02EB
     GoToIfEq 0x800C, 0x186, _02F7
     GoTo _02DF
@@ -181,7 +181,7 @@ _0303:
     CloseMessage
     ApplyMovement 11, _035C
     WaitMovement
-    ScrCmd_065 11
+    RemoveObject 11
     SetVar 0x4078, 1
     ReleaseAll
     End
@@ -229,7 +229,7 @@ _0377:
     ApplyMovement 11, _03AC
     ApplyMovement 0xFF, _03BC
     WaitMovement
-    ScrCmd_065 11
+    RemoveObject 11
     SetVar 0x4078, 3
     SetVar 0x40B2, 1
     ReleaseAll
@@ -263,7 +263,7 @@ _03C8:
     CloseMessage
     ApplyMovement 14, _04B8
     WaitMovement
-    ScrCmd_065 14
+    RemoveObject 14
     ApplyMovement 11, _04C0
     WaitMovement
     BufferRivalName 0
@@ -271,7 +271,7 @@ _03C8:
     CloseMessage
     ApplyMovement 11, _04C8
     WaitMovement
-    ScrCmd_065 11
+    RemoveObject 11
     ApplyMovement 13, _04A0
     WaitMovement
     BufferRivalName 0
@@ -699,7 +699,7 @@ _0959:
     CloseMessage
     ApplyMovement 16, _09AC
     WaitMovement
-    ScrCmd_065 16
+    RemoveObject 16
     ScrCmd_186 16, 45, 0x2EE
     ScrCmd_189 16, 2
     ScrCmd_188 16, 16
@@ -751,7 +751,7 @@ _09FA:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    ScrCmd_065 18
+    RemoveObject 18
     ReleaseAll
     End
 

@@ -185,7 +185,7 @@ _02B5:
     ApplyMovement 4, _0470
     ApplyMovement 3, _056C
     WaitMovement
-    ScrCmd_065 3
+    RemoveObject 3
     CallCommonScript 0x7FB
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0344
@@ -211,7 +211,7 @@ _035E:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    ScrCmd_065 4
+    RemoveObject 4
     SetVar 0x4071, 1
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -474,7 +474,7 @@ _057C:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    ScrCmd_065 14
+    RemoveObject 14
     WaitTime 30, 0x800C
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _0610
@@ -585,7 +585,7 @@ _0772:
     ApplyMovement 0xFF, _07E4
     WaitMovement
     CallCommonScript 0x801
-    ScrCmd_065 4
+    RemoveObject 4
     SetVar 0x4071, 2
     ReleaseAll
     End

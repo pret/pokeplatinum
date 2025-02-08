@@ -30,7 +30,7 @@ _0062:
 
 _006F:
     SetFlag 0x251
-    ScrCmd_065 0
+    RemoveObject 0
     ClearFlag 142
     End
 

@@ -20,7 +20,7 @@ _001C:
 
 _0029:
     SetFlag 0x250
-    ScrCmd_065 0
+    RemoveObject 0
     ClearFlag 142
     End
 
@@ -72,7 +72,7 @@ _00CB:
     GoToIfEq 0x800C, 0, _010C
     CallCommonScript 0x7E0
     CloseMessage
-    ScrCmd_065 1
+    RemoveObject 1
     ReleaseAll
     End
 

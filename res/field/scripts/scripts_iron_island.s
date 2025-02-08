@@ -118,7 +118,7 @@ _014B:
     ApplyMovement 1, _0168
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 1
+    RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ReleaseAll
     End

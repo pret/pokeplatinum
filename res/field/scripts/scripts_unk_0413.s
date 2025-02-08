@@ -238,7 +238,7 @@ _042D:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_178 0
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ScrCmd_179 0x8005
@@ -274,7 +274,7 @@ _04EE:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_178 1
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ScrCmd_179 0x800C

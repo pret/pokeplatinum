@@ -29,11 +29,11 @@ BOOL Pokemon_CanBattle(Pokemon *mon)
     return !Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 }
 
-BOOL sub_020548B0(int heapID, SaveData *saveData, u16 param2, u8 param3, u16 param4, int param5, int param6)
+BOOL Pokemon_GiveMonFromScript(int heapID, SaveData *saveData, u16 species, u8 level, u16 heldItem, int metLocation, int metTerrain)
 {
     BOOL result;
     Pokemon *mon;
-    u32 v2;
+    u32 item;
     Party *party;
     TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
 
@@ -41,11 +41,11 @@ BOOL sub_020548B0(int heapID, SaveData *saveData, u16 param2, u8 param3, u16 par
     mon = Pokemon_New(heapID);
 
     Pokemon_Init(mon);
-    Pokemon_InitWith(mon, param2, param3, 32, FALSE, 0, OTID_NOT_SET, 0);
-    Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, param5, param6, heapID);
+    Pokemon_InitWith(mon, species, level, 32, FALSE, 0, OTID_NOT_SET, 0);
+    Pokemon_SetCatchData(mon, trainerInfo, ITEM_POKE_BALL, metLocation, metTerrain, heapID);
 
-    v2 = param4;
-    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &v2);
+    item = heldItem;
+    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
     result = Party_AddPokemon(party, mon);
 
     if (result) {
@@ -67,8 +67,8 @@ BOOL sub_02054930(int unused, SaveData *saveData, u16 param2, u8 param3, int par
 
     Pokemon_Init(mon);
 
-    v0 = sub_02017070(param4, param5);
-    ov5_021E6CF0(mon, param2, param3, trainerInfo, 4, v0);
+    v0 = SpecialMetLoc_GetId(param4, param5);
+    Egg_CreateEgg(mon, param2, param3, trainerInfo, 4, v0);
 
     result = Party_AddPokemon(party, mon);
     Heap_FreeToHeap(mon);

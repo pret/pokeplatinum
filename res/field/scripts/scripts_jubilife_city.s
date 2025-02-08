@@ -186,7 +186,7 @@ _02BB:
     ApplyMovement 7, _0474
     ApplyMovement 0xFF, _04F8
     WaitMovement
-    ScrCmd_065 7
+    RemoveObject 7
     SetVar 0x4077, 1
     ReleaseAll
     End
@@ -889,8 +889,8 @@ _0AFE:
     ApplyMovement 17, _0EA4
     ApplyMovement 18, _0EAC
     WaitMovement
-    ScrCmd_065 17
-    ScrCmd_065 18
+    RemoveObject 17
+    RemoveObject 18
     SetFlag 0x19C
     ApplyMovement 16, _0EF8
     ApplyMovement 7, _0E54
@@ -911,7 +911,7 @@ _0BAA:
     End
 
 _0BCA:
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x268
     GoToIfEq 0x800C, 0x186, _0C2E
     SetVar 0x8004, 0x269
@@ -920,7 +920,7 @@ _0BCA:
     Return
 
 _0BFC:
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x265
     GoToIfEq 0x800C, 0x186, _0C2E
     SetVar 0x8004, 0x266
@@ -957,15 +957,15 @@ _0C52:
     End
 
 _0C7C:
-    ScrCmd_065 7
-    ScrCmd_065 16
+    RemoveObject 7
+    RemoveObject 16
     ClearFlag 0x198
     SetVar 0x4077, 4
     SetVar 0x4076, 2
     SetVar 0x4079, 3
-    ScrCmd_065 24
-    ScrCmd_065 25
-    ScrCmd_065 27
+    RemoveObject 24
+    RemoveObject 25
+    RemoveObject 27
     ScrCmd_186 30, 174, 0x2EE
     ScrCmd_188 30, 14
     ClearFlag 0x18B
@@ -980,7 +980,7 @@ _0C7C:
     WaitTime 15, 0x800C
     ApplyMovement 30, _0DC8
     WaitMovement
-    ScrCmd_065 30
+    RemoveObject 30
     ReleaseAll
     End
 
@@ -1599,10 +1599,10 @@ _12BB:
     End
 
 _12D5:
-    ScrCmd_065 23
+    RemoveObject 23
     SetFlag 243
     ClearFlag 0x1F7
-    ScrCmd_065 31
+    RemoveObject 31
     SetFlag 0x181
     ReleaseAll
     End
@@ -1795,7 +1795,7 @@ _14CF:
     CloseMessage
     ApplyMovement 31, _154C
     WaitMovement
-    ScrCmd_065 31
+    RemoveObject 31
     CallCommonScript 0x808
     SetVar 0x4076, 2
     ReleaseAll

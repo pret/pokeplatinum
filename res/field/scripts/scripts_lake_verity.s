@@ -204,12 +204,12 @@ _0230:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 7
-    ScrCmd_065 8
-    ScrCmd_065 0
-    ScrCmd_065 1
-    ScrCmd_065 2
-    ScrCmd_065 3
+    RemoveObject 7
+    RemoveObject 8
+    RemoveObject 0
+    RemoveObject 1
+    RemoveObject 2
+    RemoveObject 3
     SetFlag 0x98E
     ApplyMovement 6, _02FC
     ApplyMovement 0xFF, _0304

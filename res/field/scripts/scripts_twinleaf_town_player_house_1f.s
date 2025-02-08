@@ -454,7 +454,7 @@ _065C:
 
 _0676:
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 1
+    RemoveObject 1
     SetVar 0x40A4, 6
     ReleaseAll
     End

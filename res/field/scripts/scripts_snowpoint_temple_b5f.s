@@ -13,7 +13,7 @@ _000A:
 
 _0017:
     SetFlag 0x243
-    ScrCmd_065 0
+    RemoveObject 0
     ClearFlag 142
     End
 

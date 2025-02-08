@@ -145,7 +145,7 @@ _029F:
     End
 
 _02B1:
-    ScrCmd_065 4
+    RemoveObject 4
     ClearFlag 0x188
     SetVar 0x4087, 2
     ReleaseAll

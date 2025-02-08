@@ -34,7 +34,7 @@ _0047:
     Call _00E8
     PlayFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 0x21C
-    ScrCmd_065 1
+    RemoveObject 1
     SetVar 0x4105, 1
     ReleaseAll
     End
