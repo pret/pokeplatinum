@@ -12,7 +12,6 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_overlay.h"
 #include "game_start.h"
@@ -23,11 +22,11 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02003B60.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02017428.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_02022844.h"
 #include "unk_0202419C.h"
@@ -114,8 +113,8 @@ void NitroMain(void)
         }
     }
 
-    gCoreSys.unk_6C = 1;
-    gCoreSys.frameCounter = 0;
+    gSystem.unk_6C = 1;
+    gSystem.frameCounter = 0;
 
     InitRNG();
     sub_0200AB84();
@@ -128,41 +127,41 @@ void NitroMain(void)
         HandleConsoleFold();
         ReadKeypadAndTouchpad();
 
-        if ((gCoreSys.heldKeysRaw & RESET_COMBO) == RESET_COMBO && !gCoreSys.inhibitReset) {
+        if ((gSystem.heldKeysRaw & RESET_COMBO) == RESET_COMBO && !gSystem.inhibitReset) {
             SoftReset(RESET_CLEAN);
         }
 
         if (CommSys_Update()) {
             CheckHeapCanary();
             RunApplication();
-            SysTaskManager_ExecuteTasks(gCoreSys.mainTaskMgr);
-            SysTaskManager_ExecuteTasks(gCoreSys.printTaskMgr);
+            SysTaskManager_ExecuteTasks(gSystem.mainTaskMgr);
+            SysTaskManager_ExecuteTasks(gSystem.printTaskMgr);
 
-            if (!gCoreSys.frameCounter) {
+            if (!gSystem.frameCounter) {
                 OS_WaitIrq(TRUE, OS_IE_V_BLANK);
-                gCoreSys.vblankCounter++;
+                gSystem.vblankCounter++;
             }
         }
 
         UpdateRTC();
         sub_02017458();
         sub_020241CC();
-        SysTaskManager_ExecuteTasks(gCoreSys.printTaskMgr);
+        SysTaskManager_ExecuteTasks(gSystem.printTaskMgr);
 
         OS_WaitIrq(TRUE, OS_IE_V_BLANK);
 
-        gCoreSys.vblankCounter++;
-        gCoreSys.frameCounter = 0;
+        gSystem.vblankCounter++;
+        gSystem.frameCounter = 0;
 
         sub_0200ABF0();
         sub_0200F27C();
 
-        if (gCoreSys.mainCallback != NULL) {
-            gCoreSys.mainCallback(gCoreSys.mainCallbackData);
+        if (gSystem.mainCallback != NULL) {
+            gSystem.mainCallback(gSystem.mainCallbackData);
         }
 
         UpdateSound();
-        SysTaskManager_ExecuteTasks(gCoreSys.postVBlankTaskMgr);
+        SysTaskManager_ExecuteTasks(gSystem.postVBlankTaskMgr);
     }
 }
 
@@ -215,11 +214,11 @@ static void WaitFrame(void)
 
     OS_WaitIrq(TRUE, OS_IE_V_BLANK);
 
-    gCoreSys.vblankCounter++;
-    gCoreSys.frameCounter = 0;
+    gSystem.vblankCounter++;
+    gSystem.frameCounter = 0;
 
-    if (gCoreSys.mainCallback != NULL) {
-        gCoreSys.mainCallback(gCoreSys.mainCallbackData);
+    if (gSystem.mainCallback != NULL) {
+        gSystem.mainCallback(gSystem.mainCallbackData);
     }
 }
 
@@ -294,7 +293,7 @@ static void HeapCanaryFailed(int resetParam, int param1)
         HandleConsoleFold();
         ReadKeypadAndTouchpad();
 
-        if (elapsed >= 30 && gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (elapsed >= 30 && gSystem.pressedKeys & PAD_BUTTON_A) {
             break;
         }
 
@@ -314,7 +313,7 @@ void InitRNG(void)
     RTCTime time;
     GetCurrentDateTime(&date, &time);
 
-    u32 seed = date.year + date.month * 0x100 * date.day * 0x10000 + time.hour * 0x10000 + (time.minute + time.second) * 0x1000000 + gCoreSys.vblankCounter;
+    u32 seed = date.year + date.month * 0x100 * date.day * 0x10000 + time.hour * 0x10000 + (time.minute + time.second) * 0x1000000 + gSystem.vblankCounter;
 
     MTRNG_SetSeed(seed);
     LCRNG_SetSeed(seed);
@@ -326,7 +325,7 @@ void HandleConsoleFold(void)
     PMWakeUpTrigger trigger;
 
     if (PAD_DetectFold()) {
-        if (gCoreSys.inhibitSleep == 0) {
+        if (gSystem.inhibitSleep == 0) {
             BeforeSleep();
 
             if (CTRDG_IsPulledOut() == TRUE) {
@@ -336,7 +335,7 @@ void HandleConsoleFold(void)
 sleep_again:
             trigger = PM_TRIGGER_COVER_OPEN | PM_TRIGGER_CARD;
 
-            if (gCoreSys.gbaCartridgeVersion && !gIgnoreCartridgeForWake) {
+            if (gSystem.gbaCartridgeVersion && !gIgnoreCartridgeForWake) {
                 trigger |= PM_TRIGGER_CARTRIDGE;
             }
 

@@ -26,7 +26,6 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "enums.h"
 #include "font.h"
@@ -44,6 +43,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -51,7 +51,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -261,7 +260,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     StartScreenTransition(0, 27, 27, 0x0, 6, 1, 110);
     v0->unk_94 = SysTask_Start(ov117_02260F7C, v0, 60000);
 
-    gCoreSys.unk_65 = 1;
+    gSystem.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();

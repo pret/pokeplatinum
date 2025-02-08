@@ -16,7 +16,7 @@
 
 #include "bg_window.h"
 #include "colored_arrow.h"
-#include "core_sys.h"
+#include "system.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -40,7 +40,7 @@
 #include "unk_02005474.h"
 #include "render_oam.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
+#include "system.h"
 #include "vram_transfer.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202ACE0.h"
@@ -351,7 +351,7 @@ int ov98_022471C8 (OverlayManager * param0, int * param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     RenderControlFlags_SetCanABSpeedUpPrint(1);
@@ -1143,7 +1143,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     str r1, [r0, #0]
     b _02248670
  _022484B8:
-    ldr r1, = gCoreSys
+    ldr r1, = gSystem
     add r0, #0xac
     ldr r2, [r1, #0x4c]
     ldr r4, [r0, #0]
@@ -1230,7 +1230,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     bl ov98_022482CC
     b _02248670
  _02248566:
-    ldr r1, = gCoreSys
+    ldr r1, = gSystem
     mov r2, #0x10
     ldr r1, [r1, #0x48]
     tst r2, r1
@@ -2192,7 +2192,7 @@ static int ov98_02249414 (UnkStruct_ov98_02247704 * param0)
 
 static int ov98_02249438 (UnkStruct_ov98_02247704 * param0)
 {
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A || gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A || gSystem.pressedKeys & PAD_BUTTON_B) {
         Window_EraseStandardFrame(&param0->unk_68, 0);
         param0->unk_08 = 0;
     }

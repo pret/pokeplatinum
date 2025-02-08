@@ -32,13 +32,13 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -1382,7 +1382,7 @@ static void ov21_021E3C34(UnkStruct_ov21_021E342C *param0)
 
     ov21_021E3C64(param0);
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov21_021E2E00(v0);
         param0->unk_2C = 1;
         Sound_PlayEffect(1501);
@@ -1427,15 +1427,15 @@ static void ov21_021E3D48(UnkStruct_ov21_021E37B4 *param0, UnkStruct_ov21_021E34
         return;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         ov21_021D4F20(param0->unk_14, 0, 1);
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         ov21_021D4F20(param0->unk_14, 0, -1);
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         switch (ov21_021D4F7C(param0->unk_14)) {
         case 0:
             if (v0->unk_08 != 0) {
@@ -1540,11 +1540,11 @@ static void ov21_021E3EEC(UnkStruct_ov21_021E37B4 *param0, UnkStruct_ov21_021E34
     }
 
     if (param1->unk_30 == 0) {
-        if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+        if (gSystem.pressedKeys & PAD_KEY_DOWN) {
             param1->unk_30 = 1;
         }
     } else {
-        if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+        if (gSystem.pressedKeys & PAD_KEY_UP) {
             param1->unk_30 = 0;
         }
     }

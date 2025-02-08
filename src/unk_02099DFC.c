@@ -4,7 +4,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -15,11 +14,11 @@
 #include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "system.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 
 FS_EXTERN_OVERLAY(overlay77);
 
@@ -339,7 +338,7 @@ static BOOL sub_0209A200(UnkStruct_02099DFC *param0, u32 param1, int param2, int
         }
         break;
     case 2:
-        if ((param2 != 0) || (gCoreSys.pressedKeys & 1)) {
+        if ((param2 != 0) || (gSystem.pressedKeys & 1)) {
             param0->unk_08 = 0;
             v0 = 1;
         }

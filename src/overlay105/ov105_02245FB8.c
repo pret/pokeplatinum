@@ -9,8 +9,8 @@
 #include "overlay105/struct_ov105_02246394.h"
 
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "heap.h"
+#include "system.h"
 
 struct UnkStruct_ov105_02246060_t {
     u8 unk_00;
@@ -86,24 +86,24 @@ void ov105_02246080(UnkStruct_ov105_02246060 *param0)
         return;
     }
 
-    if (gCoreSys.pressedKeys == 0) {
+    if (gSystem.pressedKeys == 0) {
         return;
     }
 
     if (param0->unk_01 == 2) {
-        if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+        if (gSystem.pressedKeys & PAD_KEY_LEFT) {
             if (param0->unk_02 == 0) {
                 param0->unk_02 = (param0->unk_00 - 1);
             } else {
                 param0->unk_02--;
             }
-        } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+        } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
             if (param0->unk_02 == (param0->unk_00 - 1)) {
                 param0->unk_02 = 0;
             } else {
                 param0->unk_02++;
             }
-        } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+        } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
             if (param0->unk_02 < (param0->unk_10)) {
                 param0->unk_02 = param0->unk_10;
             } else if (param0->unk_02 == (param0->unk_00 - 1)) {
@@ -111,7 +111,7 @@ void ov105_02246080(UnkStruct_ov105_02246060 *param0)
             } else {
                 param0->unk_02++;
             }
-        } else if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+        } else if (gSystem.pressedKeys & PAD_KEY_UP) {
             if (param0->unk_02 < (param0->unk_10)) {
                 param0->unk_02 = (param0->unk_00 - 1);
             } else {
@@ -127,13 +127,13 @@ void ov105_02246080(UnkStruct_ov105_02246060 *param0)
             v2 = PAD_KEY_UP;
         }
 
-        if (gCoreSys.pressedKeys & v1) {
+        if (gSystem.pressedKeys & v1) {
             param0->unk_02++;
 
             if (param0->unk_02 >= param0->unk_00) {
                 param0->unk_02 = 0;
             }
-        } else if (gCoreSys.pressedKeys & v2) {
+        } else if (gSystem.pressedKeys & v2) {
             if (param0->unk_02 == 0) {
                 param0->unk_02 = param0->unk_00;
             }

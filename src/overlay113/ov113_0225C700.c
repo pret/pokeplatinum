@@ -40,7 +40,6 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "font.h"
 #include "fx_util.h"
@@ -63,13 +62,13 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -434,7 +433,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
 
-    gCoreSys.unk_65 = 1;
+    gSystem.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
@@ -475,10 +474,10 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (gCoreSys.touchPressed && (gCoreSys.touchY < 160)) {
+        if (gSystem.touchPressed && (gSystem.touchY < 160)) {
             if (ov113_0225E318(v0, ((32 << 8) / 6)) == 1) {
-                v0->unk_8D8[v0->unk_920].unk_09 = gCoreSys.touchX;
-                v0->unk_8D8[v0->unk_920].unk_0A = gCoreSys.touchY;
+                v0->unk_8D8[v0->unk_920].unk_09 = gSystem.touchX;
+                v0->unk_8D8[v0->unk_920].unk_0A = gSystem.touchY;
 
                 ov113_0225DDC0(v0, &v0->unk_8D8[v0->unk_920], v0->unk_168.unk_04);
                 ov113_02260818(&v0->unk_8D8[v0->unk_920]);

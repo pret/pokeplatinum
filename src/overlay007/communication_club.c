@@ -11,7 +11,6 @@
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_comm_manager.h"
 #include "field_message.h"
 #include "field_system.h"
@@ -27,6 +26,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -578,7 +578,7 @@ static void ov7_0224A34C(SysTask *task, void *param1)
         return;
     }
 
-    if ((PAD_BUTTON_B)&gCoreSys.pressedKeys) {
+    if ((PAD_BUTTON_B)&gSystem.pressedKeys) {
         CommClubMan_PrintMessage(pl_msg_00000353_00003, FALSE); // Do you want to leave the group?
         CommClubMan_SetTask(CommClubTask_WaitConfirmLeaveGroup);
     }
@@ -1050,7 +1050,7 @@ static void CommClubTask_DifferentRegulation(SysTask *task, void *param1)
     CommClubManager *commClubMan = (CommClubManager *)param1;
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             CommClubMan_DestroyList(task, commClubMan);
             CommClubMan_Disconnect();
             sCommClubMan->retCode = 4;
@@ -1066,7 +1066,7 @@ static void ov7_0224ABA4(SysTask *task, void *param1)
     ov7_0224A64C(commClubMan);
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov7_0224A5D0();
             CommClubMan_SetTask(ov7_0224ABE0);
         }
@@ -1239,7 +1239,7 @@ static void ov7_0224AD68(SysTask *task, void *param1)
 static void ov7_0224ADD8(SysTask *task, void *param1)
 {
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
             SysTask_Done(task);
         }
@@ -1518,7 +1518,7 @@ static void CommClubTask_ExitGuestRoomEnd(SysTask *task, void *param1)
     CommClubManager *commClubMan = (CommClubManager *)param1;
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             SysTask_Done(task);
             CommClubMan_Disconnect();
             sCommClubMan->retCode = COMM_CLUB_RET_CANCEL;
@@ -1564,7 +1564,7 @@ static void ov7_0224B370(SysTask *task, void *param1)
     CommClubManager *commClubMan = (CommClubManager *)param1;
 
     if (FieldMessage_FinishedPrinting(sCommClubMan->printMsgIndex)) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             CommClubMan_PrintChooseJoinMsg(commClubMan);
             SysTask_Done(task);
         }

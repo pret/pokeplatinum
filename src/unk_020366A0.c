@@ -13,13 +13,12 @@
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "heap.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "system.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_02017728.h"
 #include "unk_02030EE0.h"
 #include "unk_0203266C.h"
 #include "unk_02032798.h"
@@ -2464,7 +2463,7 @@ void sub_02038A20(int param0)
                 if (!sub_020389D8()) {
                     sub_0200569C();
                     SaveData_SaveStateCancel(Unk_021C07D4->unk_28);
-                    gCoreSys.unk_64 = 1;
+                    gSystem.unk_64 = 1;
 
                     if (Unk_021C07D4->unk_59 == 3) {
                         sub_020389C4(3);

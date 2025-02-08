@@ -9,7 +9,7 @@
 #include "applications/pokemon_summary_screen/sprite.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 
@@ -177,7 +177,7 @@ static int sub_02092224(PokemonSummaryScreen *summaryScreen)
     if (v0 != TOUCHSCREEN_INPUT_NONE) {
         u16 v1 = 0xFFFE;
 
-        if (Bg_DoesPixelAtXYMatchVal(summaryScreen->bgConfig, BG_LAYER_SUB_0, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+        if (Bg_DoesPixelAtXYMatchVal(summaryScreen->bgConfig, BG_LAYER_SUB_0, gSystem.touchX, gSystem.touchY, &v1) == 0) {
             return TOUCHSCREEN_INPUT_NONE;
         }
     }

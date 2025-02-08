@@ -26,7 +26,6 @@
 #include "overlay062/struct_ov62_0223D518_sub1_sub1.h"
 #include "overlay062/struct_ov62_02241130.h"
 
-#include "core_sys.h"
 #include "gds.h"
 #include "heap.h"
 #include "message.h"
@@ -34,6 +33,7 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "unk_0202F1D4.h"
 #include "unk_020366A0.h"
 
@@ -155,7 +155,7 @@ static int ov61_0222B168(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B13
 
 static int ov61_0222B190(UnkStruct_ov62_022349A8 *param0, UnkStruct_ov61_0222B138 *param1)
 {
-    if ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_BUTTON_B)) {
+    if ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_B)) {
         ov61_0222BB54(param0, NULL);
         return 1;
     }

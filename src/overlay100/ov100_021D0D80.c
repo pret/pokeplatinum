@@ -17,7 +17,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "core_sys.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -26,10 +25,10 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "render_window.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
 
@@ -149,7 +148,7 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
     Window_Remove(&v0->unk_0C.unk_30);
 
     ov100_021D111C(&v0->unk_0C);
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     OverlayManager_FreeData(param0);

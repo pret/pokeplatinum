@@ -36,7 +36,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "core_sys.h"
 #include "field_message.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -55,6 +54,7 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_02027F50.h"
@@ -2857,7 +2857,7 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
 
         v2->unk_00++;
     case 12:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             int v9 = Player_GetXPos(fieldSystem->playerAvatar);
             int v10 = Player_GetZPos(fieldSystem->playerAvatar);
 

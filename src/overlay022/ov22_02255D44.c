@@ -50,7 +50,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -65,6 +64,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -73,7 +73,6 @@
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_020298BC.h"
 #include "unk_020363E8.h"
@@ -271,7 +270,7 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
         }
         break;
     case 5:
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) | (gCoreSys.touchPressed)) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) | (gSystem.touchPressed)) {
             ov22_0225A628(&v0->unk_5C4, 26, 385, 48);
             RenderControlFlags_SetSpeedUpOnTouch(0);
             (*param1)++;

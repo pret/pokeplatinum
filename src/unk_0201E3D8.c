@@ -5,8 +5,8 @@
 
 #include "overlay072/struct_ov72_0223E2A8.h"
 
-#include "core_sys.h"
 #include "inlines.h"
+#include "system.h"
 
 static u32 sub_0201E658(u32 param0);
 static u32 sub_0201E4EC(void);
@@ -93,7 +93,7 @@ u32 sub_0201E450(u32 param0)
 static void sub_0201E4A4(u32 param0, u32 param1, void *param2, u32 param3, u32 param4, u32 param5)
 {
     Unk_021C0704.unk_58 = param0;
-    gCoreSys.unk_64 = param1;
+    gSystem.unk_64 = param1;
     Unk_021C0704.unk_00 = param2;
     Unk_021C0704.unk_04 = param3;
     Unk_021C0704.unk_08 = param5;

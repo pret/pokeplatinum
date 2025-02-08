@@ -21,7 +21,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -36,12 +35,12 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_020989DC.h"
@@ -750,7 +749,7 @@ static int ov79_021D2C08(UnkStruct_ov79_021D2928 *param0)
         return 7;
     }
 
-    if (((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) == 0) && (param0->unk_0E++ < 90)) {
+    if (((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) == 0) && (param0->unk_0E++ < 90)) {
         return 7;
     }
 

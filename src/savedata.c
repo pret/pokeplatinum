@@ -11,7 +11,7 @@
 #include "inlines.h"
 #include "math.h"
 #include "savedata_misc.h"
-#include "unk_02017728.h"
+#include "system.h"
 #include "unk_0209A74C.h"
 #include "unk_0209AA74.h"
 

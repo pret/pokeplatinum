@@ -11,7 +11,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -21,6 +20,7 @@
 #include "narc.h"
 #include "render_window.h"
 #include "strbuf.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -422,11 +422,11 @@ static int ov94_0223CBEC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223CC28(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov94_0223CFD8(param0, 7, ov94_0223C4D4(param0), 0, 0xf0f);
         ov94_0223C3F4(param0, 10, 12);
         CellActor_SetAnimateFlag(param0->unk_E20, 0);
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         switch (param0->unk_10C) {
         case 0:
             if (param0->unk_36 == 0) {
@@ -461,13 +461,13 @@ static int ov94_0223CC28(UnkStruct_ov94_0223FD4C *param0)
             Sound_PlayEffect(1500);
             break;
         }
-    } else if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    } else if (gSystem.pressedKeys & PAD_KEY_UP) {
         if (param0->unk_10C != 0) {
             param0->unk_10C--;
             Sound_PlayEffect(1500);
             ov94_0223C3FC(param0->unk_E20, Unk_ov94_02245A48[param0->unk_10C][0], Unk_ov94_02245A48[param0->unk_10C][1]);
         }
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (param0->unk_10C < 2) {
             param0->unk_10C++;
             Sound_PlayEffect(1500);

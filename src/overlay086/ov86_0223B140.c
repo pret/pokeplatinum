@@ -16,7 +16,6 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
@@ -36,6 +35,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -43,7 +43,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02017728.h"
 
 typedef struct {
     fx32 unk_00;
@@ -540,7 +539,7 @@ static BOOL ov86_0223B574(UnkStruct_ov86_0223B3C8 *param0)
         param0->unk_00++;
         break;
     case 8:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             return 1;
         }
         break;

@@ -17,7 +17,6 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -27,11 +26,11 @@
 #include "savedata_misc.h"
 #include "sprite_util.h"
 #include "sys_task.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
@@ -304,7 +303,7 @@ static void ov62_0222F670(BgConfig *param0)
 
 void ov62_0222F824(int param0)
 {
-    gCoreSys.unk_65 = param0;
+    gSystem.unk_65 = param0;
     GXLayers_SwapDisplay();
 }
 

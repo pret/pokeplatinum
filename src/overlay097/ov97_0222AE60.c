@@ -16,7 +16,6 @@
 #include "bg_window.h"
 #include "boot.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_start.h"
 #include "graphics.h"
@@ -34,13 +33,13 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "system_data.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202DAB4.h"
 #include "unk_020366A0.h"
 #include "unk_0209A74C.h"
@@ -192,7 +191,7 @@ static BOOL ov97_0222AE64(UnkStruct_0222AE60 *param0)
             }
         }
     } else {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             Window_EraseStandardFrame(&param0->unk_158, 0);
             Window_Remove(&param0->unk_158);
@@ -377,10 +376,10 @@ static BOOL ov97_0222B07C(UnkStruct_0222AE60 *param0)
         if (param0->unk_134) {
             param0->unk_134--;
         } else {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Window_Remove(&param0->unk_13C);
                 param0->unk_12C = 19;
-                param0->unk_138 = gCoreSys.pressedKeys;
+                param0->unk_138 = gSystem.pressedKeys;
                 Sound_PlayEffect(1500);
             }
         }
@@ -1064,8 +1063,8 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
         v1->unk_124 = 10;
         break;
     case 5:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 Sound_PlayEffect(1500);
                 v1->unk_58 = v1->unk_DC[v1->unk_54];
 
@@ -1108,11 +1107,11 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+        if (gSystem.pressedKeys & PAD_KEY_UP) {
             ov97_0222BB88(v1, -1);
         }
 
-        if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+        if (gSystem.pressedKeys & PAD_KEY_DOWN) {
             ov97_0222BB88(v1, 1);
         }
 

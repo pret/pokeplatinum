@@ -17,7 +17,6 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_comm_manager.h"
 #include "field_message.h"
 #include "field_system.h"
@@ -33,6 +32,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -279,7 +279,7 @@ static BOOL sub_0205A324(FieldTask *param0)
             v0->unk_34 = 7;
             MapObjectMan_StopAllMovement(v0->fieldSystem->mapObjMan);
             v0->unk_08(1, v0->unk_50);
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             v0->unk_34 = 4;
             CommTiming_StartSync(92);
             v0->unk_43 = 5;
@@ -925,17 +925,17 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
 static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
 {
     do {
-        if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+        if (gSystem.pressedKeys & PAD_KEY_UP) {
             param0->unk_81 = ((param0->unk_81 == 0) ? (param0->unk_80 - 1) : (param0->unk_81 - 1));
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+        if (gSystem.pressedKeys & PAD_KEY_DOWN) {
             param0->unk_81 = (param0->unk_81 == (param0->unk_80 - 1)) ? 0 : (param0->unk_81 + 1);
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(1500);
 
             if (param0->unk_81 < (param0->unk_80 - 1)) {
@@ -945,7 +945,7 @@ static int sub_0205AFE4(UnkStruct_0205A0D8 *param0)
             }
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1500);
             return 2;
         }
@@ -1025,7 +1025,7 @@ static BOOL sub_0205B140(FieldTask *param0)
         break;
     case 1:
         if (FieldMessage_FinishedPrinting(v1->unk_20)) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 MessageLoader_Free(v1->unk_1C);
                 StringTemplate_Free(v1->unk_18);
                 Strbuf_Free(v1->unk_00);

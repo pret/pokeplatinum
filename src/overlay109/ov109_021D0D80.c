@@ -33,7 +33,6 @@
 #include "camera.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -52,13 +51,13 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_020363E8.h"
@@ -1360,7 +1359,7 @@ static int ov109_021D1A14(UnkStruct_ov109_021D0F70 *param0)
     ov109_021D2634(param0, 11);
     CommTiming_StartSync(202);
 
-    gCoreSys.inhibitReset = 1;
+    gSystem.inhibitReset = 1;
     param0->unk_00 = 44;
 
     return 0;
@@ -1384,7 +1383,7 @@ static int ov109_021D1AA8(UnkStruct_ov109_021D0F70 *param0)
         param0->unk_CC->unk_14.unk_08, 2, &param0->unk_04);
 
     if (v0) {
-        gCoreSys.inhibitReset = 0;
+        gSystem.inhibitReset = 0;
         DestroyWaitDial(param0->unk_DC8);
         param0->unk_00 = 48;
     }

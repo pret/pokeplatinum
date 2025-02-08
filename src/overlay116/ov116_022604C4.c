@@ -27,7 +27,6 @@
 #include "camera.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -36,10 +35,10 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "sprite_util.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
@@ -830,7 +829,7 @@ void ov116_0226139C(UnkStruct_ov116_0226139C *param0)
     sub_0200D0B0(param0->unk_48.unk_08, param0->unk_48.unk_0C);
     sub_0200C8D4(param0->unk_48.unk_08);
 
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     G3X_AlphaBlend(0);
@@ -1036,7 +1035,7 @@ static void ov116_02261494(BgConfig *param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    gCoreSys.unk_65 = 1;
+    gSystem.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 7, 10);

@@ -5,10 +5,10 @@
 
 #include "struct_defs/struct_02089688.h"
 
-#include "core_sys.h"
 #include "heap.h"
 #include "palette.h"
 #include "strbuf.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
@@ -347,7 +347,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
     ldr r0, [r4, r0]
     cmp r0, #1
     bne _02089CBC
-    ldr r0, = gCoreSys
+    ldr r0, = gSystem
               ldr r0, [r0, #0x48]
     cmp r0, #0
     beq _02089C80
@@ -387,7 +387,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
     str r1, [r4, r0]
     pop {r3, r4, r5, r6, r7, pc}
  _02089CBC:
-    ldr r0, = gCoreSys
+    ldr r0, = gSystem
               mov r1, #0x40
     ldr r0, [r0, #0x4c]
     tst r1, r0
@@ -475,7 +475,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
     mov r6, #1
     b _02089F2A
  _02089D56:
-    ldr r1, = gCoreSys
+    ldr r1, = gSystem
               ldr r7, [r1, #0x48]
     mov r1, #1
     tst r1, r7

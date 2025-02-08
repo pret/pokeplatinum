@@ -18,7 +18,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -34,6 +33,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
@@ -851,7 +851,7 @@ static u8 ov13_02220848(UnkStruct_ov13_022213F0 *param0)
 
 static u8 ov13_02220864(UnkStruct_ov13_022213F0 *param0)
 {
-    if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || (TouchScreen_Tapped() == 1)) {
+    if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || (TouchScreen_Tapped() == 1)) {
         return param0->unk_2075;
     }
 

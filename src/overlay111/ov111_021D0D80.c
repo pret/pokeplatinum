@@ -36,6 +36,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
@@ -44,7 +45,6 @@
 #include "unk_0200F174.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "vram_transfer.h"
 

@@ -13,7 +13,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
@@ -26,13 +25,13 @@
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_020158A8.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0208C098.h"
 #include "unk_02098FFC.h"
@@ -249,7 +248,7 @@ static int ov79_021D0FEC(UnkStruct_ov79_021D0E1C *param0)
 
     v1 = ov79_021D0FB0(param0);
 
-    if (gCoreSys.heldKeys != 0) {
+    if (gSystem.heldKeys != 0) {
         if (param0->unk_14 == 0) {
             v0 = ListMenu_ProcessInput(param0->unk_C4);
         }
@@ -264,14 +263,14 @@ static int ov79_021D0FEC(UnkStruct_ov79_021D0E1C *param0)
         return 0;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
         param0->unk_1A = 0xFF;
         param0->unk_10 = 0;
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
 
         switch (v0) {
@@ -309,7 +308,7 @@ static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
 
     v0 = ListMenu_ProcessInput(param0->unk_C8);
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
         ov79_021D1F60(param0);
         ov79_021D2214(param0, 0);
@@ -317,7 +316,7 @@ static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
         return 0;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
 
         switch (v0) {
@@ -377,7 +376,7 @@ static int ov79_021D11C0(UnkStruct_ov79_021D0E1C *param0)
         return 0;
     }
 
-    if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) == 0) {
+    if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) == 0) {
         return 0;
     }
 

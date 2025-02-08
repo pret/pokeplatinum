@@ -11,8 +11,8 @@
 #include "overlay022/struct_ov22_0225500C.h"
 #include "overlay022/struct_ov22_02255040.h"
 
-#include "core_sys.h"
 #include "heap.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_02015064.h"
 
@@ -74,8 +74,8 @@ BOOL ov22_02254E54(UnkStruct_ov22_02255040 *param0, int *param1, int *param2, NN
 
     ov22_02254F00(param0, &v1, &v2);
 
-    *param1 = gCoreSys.touchX - v1;
-    *param2 = gCoreSys.touchY - v2;
+    *param1 = gSystem.touchX - v1;
+    *param2 = gSystem.touchY - v2;
 
     for (v3 = (*param2 - 4); v3 < (*param2 + 4); v3++) {
         if (v3 >= 0) {

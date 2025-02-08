@@ -12,7 +12,6 @@
 #include "berry_data.h"
 #include "bg_window.h"
 #include "camera.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -22,10 +21,10 @@
 #include "overlay_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
@@ -705,7 +704,7 @@ static int ov85_02241D10(UnkStruct_ov85_022417E4 *param0)
 {
     u32 v0;
 
-    if (gCoreSys.heldKeys & PAD_KEY_UP) {
+    if (gSystem.heldKeys & PAD_KEY_UP) {
         v0 = ov85_02241EB8(param0->unk_1F8->unk_00, param0->unk_1F8->unk_08, -1);
 
         if (param0->unk_1F8->unk_08 != v0) {
@@ -725,7 +724,7 @@ static int ov85_02241D10(UnkStruct_ov85_022417E4 *param0)
         return 1;
     }
 
-    if (gCoreSys.heldKeys & PAD_KEY_DOWN) {
+    if (gSystem.heldKeys & PAD_KEY_DOWN) {
         v0 = ov85_02241EB8(param0->unk_1F8->unk_00, param0->unk_1F8->unk_08, 1);
 
         if (param0->unk_1F8->unk_08 != v0) {
@@ -745,7 +744,7 @@ static int ov85_02241D10(UnkStruct_ov85_022417E4 *param0)
         return 1;
     }
 
-    if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || (gCoreSys.touchPressed)) {
+    if ((gSystem.pressedKeys & PAD_BUTTON_B) || (gSystem.touchPressed)) {
         sub_0208C120(1, 36);
         return 3;
     }

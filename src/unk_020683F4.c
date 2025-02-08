@@ -27,7 +27,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "core_sys.h"
 #include "field_map_change.h"
 #include "field_menu.h"
 #include "field_message.h"
@@ -49,6 +48,7 @@
 #include "save_player.h"
 #include "script_manager.h"
 #include "strbuf.h"
+#include "system.h"
 #include "system_flags.h"
 #include "unk_0200F174.h"
 #include "unk_02028124.h"
@@ -957,7 +957,7 @@ static BOOL sub_02068F48(FieldTask *task)
         break;
     case 1:
         if (FieldMessage_FinishedPrinting(v1->unk_14) == 1) {
-            if (gCoreSys.pressedKeys & (PAD_KEY | PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_KEY | PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Window_EraseMessageBox(&v1->unk_00, 0);
                 v1->unk_16++;
             }

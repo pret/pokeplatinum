@@ -18,7 +18,6 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -37,6 +36,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
@@ -44,7 +44,6 @@
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E010.h"
 #include "unk_0201E3D8.h"
 #include "unk_02024220.h"
@@ -589,7 +588,7 @@ static int sub_0207E6C0(GameWindowLayout *param0)
 
 static int sub_0207E6E4(GameWindowLayout *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Sound_PlayEffect(1500);
         return 32;
     }
@@ -1423,13 +1422,13 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
 
     v1 = 4;
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         v1 = 0;
-    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         v1 = 1;
-    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
         v1 = 2;
-    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         v1 = 3;
     }
 
@@ -1624,7 +1623,7 @@ static u8 sub_0207FE98(GameWindowLayout *param0)
 {
     u8 v0;
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         if (param0->unk_B11 == 6) {
             return 4;
         } else if (param0->unk_B11 == 7) {
@@ -1664,7 +1663,7 @@ static u8 sub_0207FE98(GameWindowLayout *param0)
         }
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         if (param0->unk_B0F_7 == 0) {
             Sound_PlayEffect(1500);
             param0->unk_B11 = 7;
@@ -2033,7 +2032,7 @@ static u8 sub_020805E4(GameWindowLayout *param0)
 {
     u8 v0;
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
 
         if ((param0->unk_B11 >= 6) || (param0->unk_B11 == param0->unk_B0F_0)) {
@@ -2045,7 +2044,7 @@ static u8 sub_020805E4(GameWindowLayout *param0)
         }
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
         sub_02083B88(param0);
         return 3;
@@ -2308,7 +2307,7 @@ static int GetValidWindowLayout(GameWindowLayout *param0)
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
 
-        if (Bg_DoesPixelAtXYMatchVal(param0->unk_00, 4, gCoreSys.touchX, gCoreSys.touchY, &v1) == 0) {
+        if (Bg_DoesPixelAtXYMatchVal(param0->unk_00, 4, gSystem.touchX, gSystem.touchY, &v1) == 0) {
             return 0xffffffff;
         }
     }
@@ -2363,7 +2362,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
 {
     switch (param0->unk_B14[1]) {
     case 0:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (param0->unk_B11 >= 6) {
                 Sound_PlayEffect(1500);
                 sub_02083B88(param0);
@@ -2392,7 +2391,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
             }
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1500);
             sub_02083B88(param0);
             return 1;
@@ -2426,7 +2425,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
         }
         break;
     case 1:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             sub_0200D414(param0->unk_5B0[6], 0);
@@ -2466,7 +2465,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
         }
         break;
     case 4:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             sub_0200D414(param0->unk_5B0[6], 0);
@@ -2525,7 +2524,7 @@ static u8 HandleSpecialInput(GameWindowLayout *param0)
 {
     u8 v0;
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         if (param0->unk_B11 == 7) {
             if (param0->unk_B0F_7 == 0) {
                 Sound_PlayEffect(1500);
@@ -2543,7 +2542,7 @@ static u8 HandleSpecialInput(GameWindowLayout *param0)
         return 5;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         if (param0->unk_B0F_7 == 0) {
             Sound_PlayEffect(1500);
             param0->unk_B11 = 7;
@@ -2733,7 +2732,7 @@ static void SwapPokemonItem(GameWindowLayout *param0, Pokemon *param1, u32 param
 static int HandleMessageCompletion(GameWindowLayout *param0)
 {
     if (Text_IsPrinterActive(param0->unk_B10) == 0) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             return ResetWindowOnInput(param0);
         }
     }
@@ -2744,7 +2743,7 @@ static int HandleMessageCompletion(GameWindowLayout *param0)
 static int ProcessMessageResult(GameWindowLayout *param0)
 {
     if (Text_IsPrinterActive(param0->unk_B10) == 0) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             LoadOverlay118(param0);
             return 13;

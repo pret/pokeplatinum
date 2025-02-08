@@ -14,9 +14,9 @@
 #include "overlay076/struct_ov76_0223B52C.h"
 #include "overlay076/struct_ov76_0223DE00.h"
 
-#include "core_sys.h"
 #include "game_overlay.h"
 #include "palette.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_0200C6E4.h"
 #include "unk_0202C9F4.h"
@@ -56,7 +56,7 @@ void ov76_0223B184(TouchScreenRect *rect, CellActorData *param1, BOOL param2)
     }
 
     if (param2 == 1) {
-        SpriteActor_SetSpritePositionXY(param1, gCoreSys.touchX, gCoreSys.touchY);
+        SpriteActor_SetSpritePositionXY(param1, gSystem.touchX, gSystem.touchY);
         SpriteActor_GetSpritePositionXY(param1, &v0, &v1);
         ov76_0223B174(rect);
     } else {

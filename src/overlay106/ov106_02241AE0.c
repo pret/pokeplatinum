@@ -20,7 +20,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -42,12 +41,12 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02030108.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
@@ -404,9 +403,9 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         param0->unk_08 = 1;
         break;
     case 1:
-        ov106_02242D64(param0, gCoreSys.pressedKeys);
+        ov106_02242D64(param0, gSystem.pressedKeys);
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov104_0223B5A4(param0->unk_0D) == 0xfe) {
                 Sound_PlayEffect(1501);
                 StartScreenTransition(0, 0, 0, 0x0, 6, 1, 98);
@@ -1239,7 +1238,7 @@ static void ov106_02242D64(UnkStruct_ov106_02243118 *param0, int param1)
 
     v0 = 0;
 
-    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (ov104_0223B5A4(param0->unk_0D) != 0xfe) {
             param0->unk_0C = param0->unk_0D;
         } else {
@@ -1257,7 +1256,7 @@ static void ov106_02242D64(UnkStruct_ov106_02243118 *param0, int param1)
         v0 = 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (ov104_0223B5A4(param0->unk_0D) != 0xfe) {
             param0->unk_0C = param0->unk_0D;
         } else {
@@ -1275,7 +1274,7 @@ static void ov106_02242D64(UnkStruct_ov106_02243118 *param0, int param1)
         v0 = 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         if (ov104_0223B5A4(param0->unk_0D) != 0xfe) {
             param0->unk_0C = param0->unk_0D;
         } else {
@@ -1301,7 +1300,7 @@ static void ov106_02242D64(UnkStruct_ov106_02243118 *param0, int param1)
         v0 = 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (ov104_0223B5A4(param0->unk_0D) != 0xfe) {
             param0->unk_0C = param0->unk_0D;
         } else {

@@ -6,7 +6,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -14,10 +13,10 @@
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 
 void sub_02039834(int param0, int param1, int param2);
 
@@ -124,7 +123,7 @@ void sub_02039834(int param0, int param1, int param2)
     GXS_SetVisiblePlane(0);
 
     SetAutorepeat(4, 8);
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     G2_BlendNone();

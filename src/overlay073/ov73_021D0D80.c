@@ -8,7 +8,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_start.h"
@@ -30,6 +29,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -39,7 +39,6 @@
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0208694C.h"
 
 #include "constdata/const_020F2DAC.h"
@@ -264,18 +263,18 @@ static BOOL ov73_021D0FFC(void)
     BOOL v0 = 0;
     u16 v1, v2;
 
-    if (gCoreSys.touchPressed) {
-        if ((gCoreSys.touchX < 256) && (gCoreSys.touchY < 192)) {
-            if (gCoreSys.touchX < 128) {
-                v1 = 128 - gCoreSys.touchX;
+    if (gSystem.touchPressed) {
+        if ((gSystem.touchX < 256) && (gSystem.touchY < 192)) {
+            if (gSystem.touchX < 128) {
+                v1 = 128 - gSystem.touchX;
             } else {
-                v1 = gCoreSys.touchX - 128;
+                v1 = gSystem.touchX - 128;
             }
 
-            if (gCoreSys.touchY < 100) {
-                v2 = 100 - gCoreSys.touchY;
+            if (gSystem.touchY < 100) {
+                v2 = 100 - gSystem.touchY;
             } else {
-                v2 = gCoreSys.touchY - 100;
+                v2 = gSystem.touchY - 100;
             }
 
             if ((v1 * v1 + v2 * v2) <= 16 * 16) {
@@ -722,7 +721,7 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
         }
         break;
     case 2:
-        if ((param2 != 0) || ((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A)) {
+        if ((param2 != 0) || ((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A)) {
             Window_Remove(&param0->unk_1C);
             param0->unk_50 = 0;
             v0 = 1;
@@ -876,7 +875,7 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
         }
         break;
     case 3:
-        if (((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) {
+        if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             param0->unk_54 = 4;
         }
@@ -1570,7 +1569,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         param0->unk_0C = 22;
         break;
     case 22:
-        if (gCoreSys.pressedKeys) {
+        if (gSystem.pressedKeys) {
             param0->unk_0C = 27;
             break;
         }
@@ -1744,7 +1743,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
                 Bg_ClearTilemap(param0->unk_18, 0);
             }
             param0->unk_0C = 48;
-        } else if (gCoreSys.pressedKeys) {
+        } else if (gSystem.pressedKeys) {
             param0->unk_0C = 49;
         }
         break;
@@ -1879,7 +1878,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         }
         break;
     case 67:
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) {
+        if ((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) {
             param0->unk_7C = 6;
             param0->unk_80 = 10;
             param0->unk_78 = 2;
@@ -1892,7 +1891,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
             break;
         }
 
-        if ((gCoreSys.pressedKeys & PAD_KEY_LEFT) == PAD_KEY_LEFT || (gCoreSys.pressedKeys & PAD_KEY_RIGHT) == PAD_KEY_RIGHT) {
+        if ((gSystem.pressedKeys & PAD_KEY_LEFT) == PAD_KEY_LEFT || (gSystem.pressedKeys & PAD_KEY_RIGHT) == PAD_KEY_RIGHT) {
             if (param0->unk_84 == 0) {
                 param0->unk_84 = 1;
             } else {

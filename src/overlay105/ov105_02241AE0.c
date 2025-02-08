@@ -28,7 +28,6 @@
 #include "cell_actor.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -50,12 +49,12 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
@@ -894,19 +893,19 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
     case 1:
         ov105_02246080(param0->unk_30C);
 
-        if (gCoreSys.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+        if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
             Sound_PlayEffect(1500);
             ov105_022453F8(param0, param0->unk_11, ov105_022461A0(param0->unk_30C), 0, param0->unk_31C);
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(1500);
             ov105_022461A4(param0->unk_30C, 1);
             ov105_02244DF0(param0);
 
             param0->unk_310 = ov105_02245FB8(&param0->unk_144, (NELEMS(Unk_ov105_02246308)), (NELEMS(Unk_ov105_02246308)), 1, 0, Unk_ov105_02246308, NULL);
             param0->unk_08++;
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             if (param0->unk_11 > 0) {
                 Sound_PlayEffect(1500);
                 ov105_0224296C(param0);
@@ -1425,12 +1424,12 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
     case 1:
         ov105_02246080(param0->unk_30C);
 
-        if (gCoreSys.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN)) {
+        if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN)) {
             Sound_PlayEffect(1500);
             ov105_022453F8(param0, param0->unk_11, ov105_022461A0(param0->unk_30C), 1, param0->unk_31C);
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(1500);
 
             if (ov105_022461A0(param0->unk_30C) == (param0->unk_1A - 1)) {
@@ -1443,7 +1442,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
                 param0->unk_310 = ov105_02245FB8(&param0->unk_144, (NELEMS(Unk_ov105_02246308)), (NELEMS(Unk_ov105_02246308)), 1, 0, Unk_ov105_02246308, NULL);
                 param0->unk_08++;
             }
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1500);
             ov105_02245528(param0, 1);
             return 1;
@@ -1641,17 +1640,17 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
     case 1:
         ov105_02246080(param0->unk_30C);
 
-        if (gCoreSys.pressedKeys & (PAD_KEY_UP | PAD_KEY_DOWN)) {
+        if (gSystem.pressedKeys & (PAD_KEY_UP | PAD_KEY_DOWN)) {
             Sound_PlayEffect(1500);
             ov105_022453F8(param0, 0, ov105_022461A0(param0->unk_30C), 0, param0->unk_320);
         }
 
-        if (gCoreSys.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+        if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
             Sound_PlayEffect(1500);
             ov105_022453F8(param0, 0, ov105_022461A0(param0->unk_30C), 0, param0->unk_320);
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(1500);
 
             if (ov105_022461A0(param0->unk_30C) == (param0->unk_1B - 1)) {
@@ -1668,7 +1667,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
                 param0->unk_10 = ov105_02244D14(param0, 14);
                 param0->unk_08++;
             }
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1500);
             ov105_02245528(param0, 1);
             return 1;

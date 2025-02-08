@@ -31,7 +31,6 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_system.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -44,6 +43,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0202854C.h"
@@ -353,7 +353,7 @@ BOOL ov23_02242458(void)
         return 0;
     }
 
-    if (gCoreSys.touchPressed) {
+    if (gSystem.touchPressed) {
         sCommManUnderground->unk_134 = 30;
 
         if (!sCommManUnderground->unk_14B) {
@@ -366,13 +366,13 @@ BOOL ov23_02242458(void)
                     return 0;
                 }
 
-                v0 = ov5_021EAFA4(gCoreSys.touchX, gCoreSys.touchY, sCommManUnderground->fieldSystem->unk_8C);
+                v0 = ov5_021EAFA4(gSystem.touchX, gSystem.touchY, sCommManUnderground->fieldSystem->unk_8C);
                 ov5_021E9230(v0.x, v0.z, &v2, &v3);
                 v4.unk_00 = v2;
                 v4.unk_02 = v3;
 
-                sCommManUnderground->unk_18.unk_00 = gCoreSys.touchX;
-                sCommManUnderground->unk_18.unk_02 = gCoreSys.touchY;
+                sCommManUnderground->unk_18.unk_00 = gSystem.touchX;
+                sCommManUnderground->unk_18.unk_02 = gSystem.touchY;
                 sCommManUnderground->unk_1C.unk_00 = v2;
                 sCommManUnderground->unk_1C.unk_02 = v3;
 

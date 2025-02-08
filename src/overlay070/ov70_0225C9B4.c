@@ -20,9 +20,9 @@
 #include "overlay070/ov70_0225C858.h"
 #include "overlay070/struct_ov70_0225C894_decl.h"
 
-#include "core_sys.h"
 #include "heap.h"
 #include "math.h"
+#include "system.h"
 #include "unk_02005474.h"
 
 typedef struct {
@@ -807,31 +807,31 @@ static void ov70_0225D310(UnkStruct_ov70_0225CC54 *param0, UnkStruct_ov70_0225CA
         return;
     }
 
-    if (gCoreSys.heldKeys & PAD_BUTTON_B) {
+    if (gSystem.heldKeys & PAD_BUTTON_B) {
         v3 = 3;
     } else {
         v3 = 2;
     }
 
-    if (gCoreSys.heldKeys & PAD_KEY_UP) {
+    if (gSystem.heldKeys & PAD_KEY_UP) {
         if (v0 == 0) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {
             ov70_0225D17C(param1, 1, 0, v1);
         }
-    } else if (gCoreSys.heldKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.heldKeys & PAD_KEY_DOWN) {
         if (v0 == 1) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {
             ov70_0225D17C(param1, 1, 1, v1);
         }
-    } else if (gCoreSys.heldKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.heldKeys & PAD_KEY_LEFT) {
         if (v0 == 2) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {
             ov70_0225D17C(param1, 1, 2, v1);
         }
-    } else if (gCoreSys.heldKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.heldKeys & PAD_KEY_RIGHT) {
         if (v0 == 3) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {

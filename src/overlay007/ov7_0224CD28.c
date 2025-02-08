@@ -16,7 +16,6 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "font.h"
@@ -40,6 +39,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -392,7 +392,7 @@ static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
         return 0;
     }
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         void *journalEntryLocationEvent;
 
         Window_EraseMessageBox(&param1->unk_08[1], 0);
@@ -962,7 +962,7 @@ static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
         return 6;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         CellActor_SetDrawFlag(param0->unk_25C[0], 0);
         CellActor_SetDrawFlag(param0->unk_25C[1], 0);
         Window_EraseStandardFrame(&param0->unk_08[4], 1);
@@ -973,7 +973,7 @@ static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
         return ov7_0224E098(param0);
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Window_EraseStandardFrame(&param0->unk_08[4], 1);
         Window_EraseStandardFrame(&param0->unk_08[3], 1);
         Window_EraseMessageBox(&param0->unk_08[5], 0);
@@ -1214,7 +1214,7 @@ static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
         return 10;
     }
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         if (param0->unk_28C == 1) {
             sub_0206B3B4(param0->unk_288);
         }
@@ -1257,7 +1257,7 @@ static u8 ov7_0224E7C8(UnkStruct_ov7_0224D008 *param0)
         return 11;
     }
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->unk_08[5], 0);
         ov7_0224EB38(param0, 0);
         CellActor_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);

@@ -36,7 +36,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
@@ -48,6 +47,7 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
@@ -1042,9 +1042,9 @@ static void ov12_0222048C(UnkStruct_ov12_0221FCDC *param0)
 {
     param0->unk_89 = 1;
 
-    if (gCoreSys.heldKeys & PAD_BUTTON_L) {
-        if (gCoreSys.heldKeys & PAD_BUTTON_R) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+    if (gSystem.heldKeys & PAD_BUTTON_L) {
+        if (gSystem.heldKeys & PAD_BUTTON_R) {
+            if (gSystem.pressedKeys & PAD_BUTTON_X) {
                 param0->unk_18 += 1;
                 param0->unk_89 = 0;
             }

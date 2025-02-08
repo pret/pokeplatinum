@@ -22,7 +22,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -46,6 +45,7 @@
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
@@ -53,7 +53,6 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0202EEC0.h"
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
@@ -702,7 +701,7 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
             v1 = ov97_02234124(param0, param0->unk_E8E4, v0);
             v2 = ov97_02234148(param0, param0->unk_E8E4, v0);
             v5 = ov97_0223416C(param0, param0->unk_E8E4, v0);
-            v3 = gCoreSys.gbaCartridgeVersion;
+            v3 = gSystem.gbaCartridgeVersion;
             v4 = GBASpeciesToDSFormId(ov97_02236DD0(v1), v5, v3);
 
             ov97_022342E4(v1, v2, v4, v0, param0->unk_20C[v0].unk_00, v6, v7);
@@ -1394,7 +1393,7 @@ static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
     GXLayers_SetBanks(&v0);
     ov97_02234D28(param0->unk_20);
 
-    gCoreSys.unk_65 = 1;
+    gSystem.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     Text_ResetAllPrinters();
@@ -1469,7 +1468,7 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
         v1 = ov97_02234124(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
         v2 = ov97_02234148(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
         v4 = ov97_0223416C(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
-        v3 = gCoreSys.gbaCartridgeVersion;
+        v3 = gSystem.gbaCartridgeVersion;
 
         ov97_02234278(v1, v2, v4, v3, v0, param0->unk_478[v0]);
     }
@@ -1573,7 +1572,7 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
     PlttTransfer_Free();
 
     sub_02015938(param0->unk_E8EC);
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     Bg_FreeTilemapBuffer(param0->unk_20, 0);
@@ -1751,7 +1750,7 @@ static BOOL ov97_02235590(UnkStruct_ov97_02234A2C *param0, int param1)
                 return 1;
             }
         } else {
-            if (gCoreSys.touchPressed || gCoreSys.pressedKeys) {
+            if (gSystem.touchPressed || gSystem.pressedKeys) {
                 RenderControlFlags_SetSpeedUpOnTouch(0);
                 Sound_PlayEffect(1500);
                 return 1;
@@ -1912,7 +1911,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         }
         break;
     case 7:
-        if (gCoreSys.touchPressed || gCoreSys.pressedKeys) {
+        if (gSystem.touchPressed || gSystem.pressedKeys) {
             ov97_02234CC4(v3, 0, 12, param1);
         }
         break;
@@ -2104,7 +2103,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         }
         break;
     case 22:
-        if (gCoreSys.touchPressed || gCoreSys.pressedKeys) {
+        if (gSystem.touchPressed || gSystem.pressedKeys) {
             ov97_02234CF4(v3, 0, 24, param1);
             Sound_PlayEffect(1500);
         }

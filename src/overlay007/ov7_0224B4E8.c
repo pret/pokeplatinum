@@ -9,7 +9,6 @@
 #include "field/field_system.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "font.h"
@@ -22,6 +21,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0202602C.h"
@@ -503,7 +503,7 @@ static BOOL ov7_0224BC74(FieldTask *param0)
         break;
     case 6:
         if (FieldMessage_FinishedPrinting(v1->unk_74)) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 v1->unk_7C = 0;
             }
         }
@@ -514,7 +514,7 @@ static BOOL ov7_0224BC74(FieldTask *param0)
         v1->unk_7C++;
         break;
     case 8:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov7_0224BBA0(v1);
             ov7_0224B4E8(v1, 106);
             ov7_0224B5A8(v1);

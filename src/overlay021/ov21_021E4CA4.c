@@ -24,7 +24,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
@@ -32,6 +31,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -628,7 +628,7 @@ static void ov21_021E530C(u32 param0, UnkStruct_ov21_021E4D90 *param1, UnkStruct
             ov21_021E5E18(param2);
         }
 
-        param2->unk_38 = gCoreSys.touchX;
+        param2->unk_38 = gSystem.touchX;
         param2->unk_30 = 1;
         break;
     case 1:
@@ -637,8 +637,8 @@ static void ov21_021E530C(u32 param0, UnkStruct_ov21_021E4D90 *param1, UnkStruct
         }
 
         param2->unk_4C = 1;
-        param2->unk_54 = gCoreSys.touchX;
-        param2->unk_58 = gCoreSys.touchY;
+        param2->unk_54 = gSystem.touchX;
+        param2->unk_58 = gSystem.touchY;
         break;
     case 2:
         if (param2->unk_2C) {
@@ -660,18 +660,18 @@ static void ov21_021E537C(u32 param0, UnkStruct_ov21_021E4D90 *param1, UnkStruct
     switch (param0) {
     case 0:
         if (param2->unk_30 == 1) {
-            v0 = gCoreSys.touchX - param2->unk_38;
+            v0 = gSystem.touchX - param2->unk_38;
 
             if (param2->unk_34 == 0) {
                 if (12 <= v0) {
                     param2->unk_34 = 1;
-                    param2->unk_38 = gCoreSys.touchX;
+                    param2->unk_38 = gSystem.touchX;
                     Sound_PlayEffect(1527);
                 }
             } else {
                 if (-12 >= v0) {
                     param2->unk_34 = 0;
-                    param2->unk_38 = gCoreSys.touchX;
+                    param2->unk_38 = gSystem.touchX;
                     Sound_PlayEffect(1527);
                 }
             }
@@ -683,8 +683,8 @@ static void ov21_021E537C(u32 param0, UnkStruct_ov21_021E4D90 *param1, UnkStruct
             ov21_021E5AAC(param2);
             ov21_021E5AD8(param2);
 
-            param2->unk_54 = gCoreSys.touchX;
-            param2->unk_58 = gCoreSys.touchY;
+            param2->unk_54 = gSystem.touchX;
+            param2->unk_58 = gSystem.touchY;
         }
         break;
     case 2:
@@ -693,11 +693,11 @@ static void ov21_021E537C(u32 param0, UnkStruct_ov21_021E4D90 *param1, UnkStruct
                 param2->unk_20 = 1;
                 ov21_021E5ED8(param2, 0);
             } else {
-                if (gCoreSys.touchY < (99 - -16) + 16) {
+                if (gSystem.touchY < (99 - -16) + 16) {
                     if (param2->unk_34 == 0) {
-                        ov21_021E5BE4(param2, gCoreSys.touchX);
+                        ov21_021E5BE4(param2, gSystem.touchX);
                     } else {
-                        ov21_021E5C18(param2, gCoreSys.touchX);
+                        ov21_021E5C18(param2, gSystem.touchX);
                     }
 
                     param2->unk_3C = 0;
@@ -1019,8 +1019,8 @@ static void ov21_021E5A44(UnkStruct_ov21_021E51DC *param0)
 
     v1 = param0->unk_54 - 51;
     v0 = param0->unk_58 - 157;
-    v3 = gCoreSys.touchX - 51;
-    v2 = gCoreSys.touchY - 157;
+    v3 = gSystem.touchX - 51;
+    v2 = gSystem.touchY - 157;
     v4 = CalcDotProduct2D(v1, v0, v3, v2, 0);
 
     if (MATH_IAbs(v4) < 1) {
@@ -1380,7 +1380,7 @@ static void ov21_021E5F5C(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D
 {
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         param0->unk_28 = 1;
 
         param0->unk_18[0] = 0;

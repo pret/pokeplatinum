@@ -120,7 +120,6 @@
 
 #include "assert.h"
 #include "bg_window.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "flags.h"
 #include "heap.h"
@@ -134,6 +133,7 @@
 #include "render_window.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -3022,7 +3022,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
         v0->unk_0A = 5;
         break;
     case 5:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_START) {
+        if (gSystem.pressedKeys & PAD_BUTTON_START) {
             BattlerData *v14;
             int i;
 

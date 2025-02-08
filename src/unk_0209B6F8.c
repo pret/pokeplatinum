@@ -17,10 +17,10 @@
 #include "overlay104/struct_ov104_0223D3B0_sub1.h"
 #include "overlay104/struct_ov104_0223D8F0.h"
 
-#include "core_sys.h"
 #include "game_overlay.h"
 #include "heap.h"
 #include "overlay_manager.h"
+#include "system.h"
 
 #include "constdata/const_020F8BE0.h"
 
@@ -112,7 +112,7 @@ int sub_0209B75C(OverlayManager *param0, int *param1)
         }
 
         if (ov104_0222E6A8(v0->unk_14) == 1) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+            if (gSystem.pressedKeys & PAD_BUTTON_B) {
                 *param1 = 2;
             }
         }

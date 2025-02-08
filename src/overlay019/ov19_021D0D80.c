@@ -33,7 +33,6 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -50,6 +49,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_02023FCC.h"
@@ -302,7 +302,7 @@ int ov19_021D0DEC(OverlayManager *param0, int *param1)
         return 0;
     } else {
         if (v0->unk_1A8 != NULL) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_Y) {
+            if (gSystem.pressedKeys & PAD_BUTTON_Y) {
                 if (ov19_021D6628(v0->unk_114) == 1) {
                     ov19_021D5DD8(&v0->unk_00);
                     ov19_021D6594(v0->unk_114, 43);
@@ -478,7 +478,7 @@ static int ov19_021D0FF0(UnkStruct_ov19_021D5DF8 *param0)
 {
     switch (param0->unk_1B0) {
     case 0:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov19_021D5E4C(&param0->unk_00)) {
                 if (ov19_021D5E08(&param0->unk_00) != 3) {
                     ov19_021D0EB0(param0, ov19_021D20A4);
@@ -489,24 +489,24 @@ static int ov19_021D0FF0(UnkStruct_ov19_021D5DF8 *param0)
             }
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ov19_021D0EB0(param0, ov19_021D1F5C);
             break;
         }
 
-        if (gCoreSys.heldKeys & PAD_BUTTON_L) {
+        if (gSystem.heldKeys & PAD_BUTTON_L) {
             ov19_021D5CE8(&param0->unk_00);
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
-        if (gCoreSys.heldKeys & PAD_BUTTON_R) {
+        if (gSystem.heldKeys & PAD_BUTTON_R) {
             ov19_021D5CBC(&(param0->unk_00));
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
-        if (ov19_021D4F74(gCoreSys.heldKeys, param0)) {
+        if (ov19_021D4F74(gSystem.heldKeys, param0)) {
             ov19_021D6594(param0->unk_114, 5);
 
             if (ov19_021D5E38(&param0->unk_00) == 1) {
@@ -555,7 +555,7 @@ static int ov19_021D1270(UnkStruct_ov19_021D5DF8 *param0)
 {
     switch (param0->unk_1B0) {
     case 0:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov19_021D5E2C(&param0->unk_00) == 6) {
                 param0->unk_1B0 = 2;
                 break;
@@ -572,12 +572,12 @@ static int ov19_021D1270(UnkStruct_ov19_021D5DF8 *param0)
             break;
         }
 
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_B) || ((gCoreSys.pressedKeys & PAD_KEY_RIGHT) && (ov19_021D5E2C(&param0->unk_00) & 1)) || ((gCoreSys.pressedKeys & PAD_KEY_RIGHT) && (ov19_021D5E2C(&param0->unk_00) == 6))) {
+        if ((gSystem.pressedKeys & PAD_BUTTON_B) || ((gSystem.pressedKeys & PAD_KEY_RIGHT) && (ov19_021D5E2C(&param0->unk_00) & 1)) || ((gSystem.pressedKeys & PAD_KEY_RIGHT) && (ov19_021D5E2C(&param0->unk_00) == 6))) {
             param0->unk_1B0 = 2;
             break;
         }
 
-        if (ov19_021D4F74(gCoreSys.heldKeys, param0)) {
+        if (ov19_021D4F74(gSystem.heldKeys, param0)) {
             ov19_021D6594(param0->unk_114, 5);
 
             if (ov19_021D5E38(&param0->unk_00) == 1) {
@@ -638,7 +638,7 @@ static int ov19_021D1270(UnkStruct_ov19_021D5DF8 *param0)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             param0->unk_1B0 = 0;
         }
@@ -657,29 +657,29 @@ static int ov19_021D15C0(UnkStruct_ov19_021D5DF8 *param0)
 {
     switch (param0->unk_1B0) {
     case 0:
-        if (gCoreSys.heldKeys & (PAD_KEY_LEFT | PAD_BUTTON_L)) {
+        if (gSystem.heldKeys & (PAD_KEY_LEFT | PAD_BUTTON_L)) {
             ov19_021D5CE8(&param0->unk_00);
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
-        if (gCoreSys.heldKeys & (PAD_KEY_RIGHT | PAD_BUTTON_R)) {
+        if (gSystem.heldKeys & (PAD_KEY_RIGHT | PAD_BUTTON_R)) {
             ov19_021D5CBC(&(param0->unk_00));
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             ov19_021D0EB0(param0, ov19_021D2694);
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ov19_021D0EB0(param0, ov19_021D1F5C);
             break;
         }
 
-        if (ov19_021D4F74(gCoreSys.heldKeys, param0)) {
+        if (ov19_021D4F74(gSystem.heldKeys, param0)) {
             ov19_021D6594(param0->unk_114, 5);
 
             if (ov19_021D5E38(&param0->unk_00) == 1) {
@@ -706,29 +706,29 @@ static int ov19_021D17AC(UnkStruct_ov19_021D5DF8 *param0)
 {
     switch (param0->unk_1B0) {
     case 0:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             ov19_021D0EB0(param0, ov19_021D1DEC);
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ov19_021D0EB0(param0, ov19_021D1F5C);
             break;
         }
 
-        if (gCoreSys.heldKeys & PAD_BUTTON_L) {
+        if (gSystem.heldKeys & PAD_BUTTON_L) {
             ov19_021D5CE8(&param0->unk_00);
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
-        if (gCoreSys.heldKeys & PAD_BUTTON_R) {
+        if (gSystem.heldKeys & PAD_BUTTON_R) {
             ov19_021D5CBC(&(param0->unk_00));
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
-        if (ov19_021D4F74(gCoreSys.heldKeys, param0)) {
+        if (ov19_021D4F74(gSystem.heldKeys, param0)) {
             ov19_021D6594(param0->unk_114, 5);
 
             if (ov19_021D5E38(&param0->unk_00) == 1) {
@@ -760,7 +760,7 @@ static int ov19_021D19B8(UnkStruct_ov19_021D5DF8 *param0)
 {
     switch (param0->unk_1B0) {
     case 0:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov19_021D5E08(&param0->unk_00) != 1) {
                 ov19_021D6594(param0->unk_114, 34);
                 param0->unk_1B0 = 1;
@@ -773,24 +773,24 @@ static int ov19_021D19B8(UnkStruct_ov19_021D5DF8 *param0)
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ov19_021D0EB0(param0, ov19_021D1F5C);
             break;
         }
 
-        if (gCoreSys.heldKeys & PAD_BUTTON_L) {
+        if (gSystem.heldKeys & PAD_BUTTON_L) {
             ov19_021D5CE8(&param0->unk_00);
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
-        if (gCoreSys.heldKeys & PAD_BUTTON_R) {
+        if (gSystem.heldKeys & PAD_BUTTON_R) {
             ov19_021D5CBC(&(param0->unk_00));
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
-        if (ov19_021D4F74(gCoreSys.heldKeys, param0)) {
+        if (ov19_021D4F74(gSystem.heldKeys, param0)) {
             ov19_021D6594(param0->unk_114, 5);
 
             if (ov19_021D5E38(&param0->unk_00) == 1) {
@@ -833,7 +833,7 @@ static int ov19_021D19B8(UnkStruct_ov19_021D5DF8 *param0)
         }
         break;
     case 5:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             param0->unk_1B0 = 0;
         }
@@ -954,7 +954,7 @@ static void ov19_021D1DEC(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         (*param1) = 5;
     case 5:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             (*param1) = 6;
         }
@@ -1010,7 +1010,7 @@ static void ov19_021D1F5C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         (*param1) = 3;
     case 3:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             (*param1) = 4;
         }
@@ -1272,7 +1272,7 @@ static void ov19_021D2308(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
     case 7:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             (*param1) = 6;
         }
@@ -1527,7 +1527,7 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
     switch (*param1) {
     case 0:
-        if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+        if (gSystem.heldKeys & PAD_BUTTON_A) {
             ov19_021D5594(param0, &param0->unk_00);
             ov19_021D6594(param0->unk_114, 44);
             Sound_PlayEffect(1500);
@@ -1538,10 +1538,10 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
 
     case 1:
-        if (gCoreSys.heldKeys & PAD_BUTTON_A) {
-            switch (ov19_021D5150(gCoreSys.heldKeys, param0)) {
+        if (gSystem.heldKeys & PAD_BUTTON_A) {
+            switch (ov19_021D5150(gSystem.heldKeys, param0)) {
             case 2:
-                if ((gCoreSys.heldKeys & PAD_PLUS_KEY_MASK) == (gCoreSys.pressedKeys & PAD_PLUS_KEY_MASK)) {
+                if ((gSystem.heldKeys & PAD_PLUS_KEY_MASK) == (gSystem.pressedKeys & PAD_PLUS_KEY_MASK)) {
                     Sound_PlayEffect(1523);
                 }
                 break;
@@ -1572,9 +1572,9 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        switch (ov19_021D5150(gCoreSys.heldKeys, param0)) {
+        switch (ov19_021D5150(gSystem.heldKeys, param0)) {
         case 2:
-            if ((gCoreSys.heldKeys & PAD_PLUS_KEY_MASK) == (gCoreSys.pressedKeys & PAD_PLUS_KEY_MASK)) {
+            if ((gSystem.heldKeys & PAD_PLUS_KEY_MASK) == (gSystem.pressedKeys & PAD_PLUS_KEY_MASK)) {
                 Sound_PlayEffect(1523);
             }
             break;
@@ -1601,7 +1601,7 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
 
         case 0:
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 if (ov19_021D2DD0(&param0->unk_00)) {
                     ov19_021D56AC(param0, &param0->unk_00);
                     ov19_021D6594(param0->unk_114, 10);
@@ -1612,7 +1612,7 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 }
                 break;
             }
-            if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+            if (gSystem.pressedKeys & PAD_BUTTON_B) {
                 Sound_PlayEffect(1523);
             }
             break;
@@ -1696,7 +1696,7 @@ static void ov19_021D2E1C(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
     case 2:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             (*param1) = 3;
         }
@@ -1791,7 +1791,7 @@ static void ov19_021D3010(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             (*param1) = 2;
         }
@@ -1868,7 +1868,7 @@ static void ov19_021D30D0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             (*param1) = 8;
         }
@@ -1950,7 +1950,7 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D4458(param0);
             (*param1) = 1;
         }
@@ -1960,7 +1960,7 @@ static void ov19_021D3294(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             (*param1) = 6;
         }
@@ -2138,7 +2138,7 @@ static void ov19_021D35F8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D5408(&param0->unk_00, 4);
             ov19_021D6594(param0->unk_114, 24);
             (*param1) = 6;
@@ -2149,7 +2149,7 @@ static void ov19_021D35F8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D5408(&param0->unk_00, 33);
             ov19_021D6594(param0->unk_114, 24);
             (*param1) = 6;
@@ -2160,7 +2160,7 @@ static void ov19_021D35F8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             (*param1) = 7;
         }
@@ -2184,7 +2184,7 @@ static void ov19_021D35F8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov19_021D6594(param0->unk_114, 26);
             (*param1) = 9;
         }
@@ -2500,7 +2500,7 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 5:
         if (ov19_021D6600(param0->unk_114, 24)) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(1501);
                 ov19_021D6594(param0->unk_114, 26);
                 (*param1)++;
@@ -2577,7 +2577,7 @@ static void ov19_021D3FB0(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 4:
         if (ov19_021D6600(param0->unk_114, 24)) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(1501);
                 ov19_021D6594(param0->unk_114, 26);
                 (*param1) = 5;
@@ -2666,7 +2666,7 @@ static void ov19_021D4184(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 5:
         if (ov19_021D6600(param0->unk_114, 24)) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(1501);
                 ov19_021D6594(param0->unk_114, 26);
                 (*param1) = 6;
@@ -2700,7 +2700,7 @@ static void ov19_021D4390(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         }
         break;
     case 3:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_PLUS_KEY_MASK)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_PLUS_KEY_MASK)) {
             ov19_021D6594(param0->unk_114, 18);
             (*param1)++;
         }
@@ -2764,7 +2764,7 @@ static BOOL ov19_021D4468(UnkStruct_ov19_021D5DF8 *param0)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_KEY_LEFT | PAD_BUTTON_L)) {
+        if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_BUTTON_L)) {
             v0->unk_05--;
 
             if (v0->unk_05 < 0) {
@@ -2776,7 +2776,7 @@ static BOOL ov19_021D4468(UnkStruct_ov19_021D5DF8 *param0)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_KEY_RIGHT | PAD_BUTTON_R)) {
+        if (gSystem.pressedKeys & (PAD_KEY_RIGHT | PAD_BUTTON_R)) {
             if (++(v0->unk_05) >= 18) {
                 v0->unk_05 = 0;
             }
@@ -2786,12 +2786,12 @@ static BOOL ov19_021D4468(UnkStruct_ov19_021D5DF8 *param0)
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(1501);
             return 1;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1501);
             v0->unk_05 = -1;
             return 1;
@@ -2858,7 +2858,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             }
         }
 
-        if (gCoreSys.pressedKeys & (PAD_PLUS_KEY_MASK | PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_PLUS_KEY_MASK | PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1501);
             ov19_021D5D94(&(param0->unk_00), 0);
             ov19_021D5D9C(&(param0->unk_00), ov19_021D5E68(&param0->unk_00));
@@ -3000,7 +3000,7 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             }
         }
 
-        if (gCoreSys.pressedKeys & (PAD_PLUS_KEY_MASK | PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_PLUS_KEY_MASK | PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1501);
             ov19_021D5D94(&param0->unk_00, 0);
             ov19_021D6594(param0->unk_114, 40);

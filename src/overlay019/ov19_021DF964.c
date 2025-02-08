@@ -10,8 +10,8 @@
 #include "overlay019/struct_ov19_021D5BAC.h"
 #include "overlay019/struct_ov19_021DF964.h"
 
-#include "core_sys.h"
 #include "enums.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_020797C8.h"
 
@@ -254,7 +254,7 @@ int ov19_021DFD2C(UnkStruct_ov19_021D4DF0 *param0)
 {
     UnkStruct_ov19_021DF964 *v0 = &(param0->unk_74);
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         if (v0->unk_20) {
             v0->unk_20--;
             return -2;
@@ -264,7 +264,7 @@ int ov19_021DFD2C(UnkStruct_ov19_021D4DF0 *param0)
         }
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (v0->unk_20 < (v0->unk_21 - 1)) {
             v0->unk_20++;
             return -2;
@@ -274,12 +274,12 @@ int ov19_021DFD2C(UnkStruct_ov19_021D4DF0 *param0)
         }
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1501);
         return -1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1501);
         return v0->unk_00[v0->unk_20];
     }

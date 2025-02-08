@@ -28,7 +28,6 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "game_records.h"
@@ -46,6 +45,7 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -2385,11 +2385,11 @@ static void ov23_022451C8(SysTask *param0, void *param1)
         }
         break;
     case 7:
-        if (gCoreSys.touchHeld) {
+        if (gSystem.touchHeld) {
             UnkStruct_ov23_0224271C v4;
 
-            v4.unk_00 = gCoreSys.touchX;
-            v4.unk_02 = gCoreSys.touchY;
+            v4.unk_00 = gSystem.touchX;
+            v4.unk_02 = gSystem.touchY;
 
             if (ov23_02245064(&v4, v0->unk_10, v0)) {
                 if (v0->unk_19) {
@@ -3736,14 +3736,14 @@ static BOOL ov23_02246F20(BgConfig *param0, UnkStruct_ov23_022468DC *param1)
         return 1;
     }
 
-    if (gCoreSys.touchPressed) {
+    if (gSystem.touchPressed) {
         for (v0 = 0; v0 < ov23_022468C0(); v0++) {
             if (param1->unk_E4[v0]) {
                 continue;
             }
 
-            v8 = gCoreSys.touchX * FX32_ONE - param1->unk_44[v0].unk_00;
-            v9 = gCoreSys.touchY * FX32_ONE - param1->unk_44[v0].unk_04;
+            v8 = gSystem.touchX * FX32_ONE - param1->unk_44[v0].unk_00;
+            v9 = gSystem.touchY * FX32_ONE - param1->unk_44[v0].unk_04;
             v11 = FX_Mul(v8, v8) + FX_Mul(v9, v9);
             v11 = FX_Sqrt(v11);
 
@@ -3981,9 +3981,9 @@ static BOOL ov23_02247568(BgConfig *param0, UnkStruct_ov23_022471D8 *param1)
         }
         break;
     case 3:
-        if (gCoreSys.touchPressed) {
-            v7 = (gCoreSys.touchX - 128) * FX32_ONE;
-            v8 = (gCoreSys.touchY - param1->unk_120) * FX32_ONE;
+        if (gSystem.touchPressed) {
+            v7 = (gSystem.touchX - 128) * FX32_ONE;
+            v8 = (gSystem.touchY - param1->unk_120) * FX32_ONE;
             v10 = FX_Mul(v7, v7) + FX_Mul(v8, v8);
             v10 = FX_Sqrt(v10);
 

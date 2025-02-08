@@ -27,7 +27,6 @@
 #include "cell_actor.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -48,6 +47,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
@@ -58,7 +58,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202F1D4.h"
@@ -480,7 +479,7 @@ static void ov10_0221F930(UnkStruct_ov10_0221FB28 *param0)
         break;
     case 2:
         if (param0->unk_BBC == 1) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 param0->unk_BB0 = 3;
             }
         }

@@ -16,7 +16,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -27,6 +26,7 @@
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
+#include "system.h"
 #include "unk_0200762C.h"
 #include "unk_02015064.h"
 #include "unk_0202419C.h"
@@ -63,14 +63,14 @@ void ov22_02255094(void)
     ov22_02255654();
     ov22_022556DC();
 
-    gCoreSys.unk_65 = 1;
+    gSystem.unk_65 = 1;
 
     GXLayers_SwapDisplay();
 }
 
 void ov22_022550B4(void)
 {
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     ov22_02255738();

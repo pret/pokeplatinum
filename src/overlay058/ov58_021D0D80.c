@@ -19,7 +19,6 @@
 #include "char_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -38,6 +37,7 @@
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
@@ -45,7 +45,6 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_02030EE0.h"
 #include "unk_02033200.h"
@@ -876,7 +875,7 @@ static void ov58_021D1A80(UnkStruct_02095EAC *param0)
     CellActor_SetDrawFlag(param0->unk_23C[CommSys_CurNetId()], 0);
 
     if (v1 != 0xffffffff) {
-        ov58_021D1A10(param0->unk_23C[CommSys_CurNetId()], gCoreSys.touchX, gCoreSys.touchY);
+        ov58_021D1A10(param0->unk_23C[CommSys_CurNetId()], gSystem.touchX, gSystem.touchY);
         CellActor_SetDrawFlag(param0->unk_23C[CommSys_CurNetId()], 1);
     }
 

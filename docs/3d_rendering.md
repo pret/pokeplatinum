@@ -105,14 +105,14 @@ angle = (angle + 100) % 0xFFFF;
 Easy3DObject_SetRotation(&giratinaObj, angle, ROTATION_AXIS_Y);
 
 // Resize using L and R
-if (gCoreSys.heldKeys & PAD_BUTTON_R) {
+if (gSystem.heldKeys & PAD_BUTTON_R) {
     VecFx32 scale;
     Easy3DObject_GetScale(&giratinaObj, &scale.x, &scale.y, &scale.z);
     scale.x = FX_Mul(scale.x, FX32_CONST(1.01));
     scale.y = FX_Mul(scale.y, FX32_CONST(1.01));
     scale.z = FX_Mul(scale.z, FX32_CONST(1.01));
     Easy3DObject_SetScale(&giratinaObj, scale.x, scale.y, scale.z);
-} else if (gCoreSys.heldKeys & PAD_BUTTON_L) {
+} else if (gSystem.heldKeys & PAD_BUTTON_L) {
     VecFx32 scale;
     Easy3DObject_GetScale(&giratinaObj, &scale.x, &scale.y, &scale.z);
     scale.x = FX_Mul(scale.x, FX32_CONST(0.99));

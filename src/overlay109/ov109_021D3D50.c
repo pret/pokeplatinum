@@ -19,7 +19,6 @@
 #include "char_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -44,12 +43,12 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02030EE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -738,7 +737,7 @@ static int ov109_021D478C(UnkStruct_ov109_021D5140 *param0, int param1)
 
 static void ov109_021D47B8(UnkStruct_ov109_021D5140 *param0)
 {
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         if (CommSys_CurNetId() == 0) {
             if ((ov109_021D548C() == param0->unk_10->unk_2C) && (param0->unk_10->unk_30 == 0)) {
                 u8 v0 = 1;
@@ -751,7 +750,7 @@ static void ov109_021D47B8(UnkStruct_ov109_021D5140 *param0)
                 Sound_PlayEffect(1522);
             }
         }
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         if (CommSys_CurNetId()) {
             if (param0->unk_10->unk_28 == 0) {
                 ov109_021D55A8(param0, 4, 0);
@@ -852,7 +851,7 @@ static int ov109_021D4980(UnkStruct_ov109_021D5140 *param0, int param1)
 
     if (CommSys_CurNetId()) {
         if (param0->unk_10->unk_28) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
                 Sound_PlayEffect(1522);
             }
 
@@ -861,7 +860,7 @@ static int ov109_021D4980(UnkStruct_ov109_021D5140 *param0, int param1)
         }
     } else {
         if (param0->unk_10->unk_30 != 0) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
                 Sound_PlayEffect(1522);
             }
 
@@ -976,7 +975,7 @@ static int ov109_021D4B94(UnkStruct_ov109_021D5140 *param0, int param1)
     u32 v1;
 
     if ((ov109_021D548C() != param0->unk_10->unk_2C) || (param0->unk_10->unk_30 != 0)) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
             Sound_PlayEffect(1522);
         }
 
@@ -1052,7 +1051,7 @@ static int ov109_021D4CC8(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     void *journalEntryOnlineEvent;
 
-    gCoreSys.inhibitReset = 1;
+    gSystem.inhibitReset = 1;
 
     journalEntryOnlineEvent = JournalEntry_CreateEventMixedRecords(95);
     JournalEntry_SaveData(param0->unk_0C->unk_14.unk_18, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
@@ -1079,7 +1078,7 @@ static int ov109_021D4D20(UnkStruct_ov109_021D5140 *param0, int param1)
 
         param0->unk_1C.unk_00 = 0;
         param0->unk_3C4 = 0;
-        gCoreSys.inhibitReset = 0;
+        gSystem.inhibitReset = 0;
         param0->unk_10->unk_24 = 0;
     }
 
@@ -1134,7 +1133,7 @@ static int ov109_021D4E28(UnkStruct_ov109_021D5140 *param0, int param1)
     int v0;
 
     if ((param0->unk_10->unk_2C != ov109_021D548C()) || (param0->unk_10->unk_30 != 0)) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
             Sound_PlayEffect(1522);
         }
 

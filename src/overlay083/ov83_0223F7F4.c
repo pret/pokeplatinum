@@ -17,11 +17,11 @@
 #include "overlay083/struct_ov83_022401AC.h"
 
 #include "berry_data.h"
-#include "core_sys.h"
 #include "heap.h"
 #include "int_distance.h"
 #include "math.h"
 #include "poffin.h"
+#include "system.h"
 
 s32 ov83_0223F7F4(int param0, int param1, int param2, int param3, int param4, int param5)
 {
@@ -55,9 +55,9 @@ void ov83_0223F83C(UnkStruct_ov83_0223F820 *param0)
 {
     s32 v0;
 
-    if (gCoreSys.touchHeld) {
-        param0->unk_00 = gCoreSys.touchX;
-        param0->unk_04 = gCoreSys.touchY;
+    if (gSystem.touchHeld) {
+        param0->unk_00 = gSystem.touchX;
+        param0->unk_04 = gSystem.touchY;
 
         if (param0->unk_14 == 0) {
             param0->unk_08 = param0->unk_00;
@@ -68,7 +68,7 @@ void ov83_0223F83C(UnkStruct_ov83_0223F820 *param0)
     param0->unk_10 = ov83_0223F7F4(param0->unk_00, param0->unk_04, param0->unk_08, param0->unk_0C, 128, 96);
     param0->unk_08 = param0->unk_00;
     param0->unk_0C = param0->unk_04;
-    param0->unk_14 = gCoreSys.touchHeld;
+    param0->unk_14 = gSystem.touchHeld;
 }
 
 void ov83_0223F88C(UnkStruct_ov83_0223F88C *param0, UnkStruct_ov83_0223F820 *param1)

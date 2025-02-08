@@ -16,7 +16,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "core_sys.h"
 #include "easy3d.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -28,11 +27,11 @@
 #include "render_oam.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
@@ -859,7 +858,7 @@ static void ov77_021D2B38(void *param0)
     UnkStruct_ov77_021D37C0 *v2 = &v1->unk_34;
 
     if (v2->unk_25B == 1) {
-        gCoreSys.unk_65 = 1;
+        gSystem.unk_65 = 1;
 
         GXLayers_SwapDisplay();
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -948,7 +947,7 @@ static int ov77_021D2D08(OverlayManager *param0, int *param1)
     v0->unk_08 = 0;
     v0->unk_2A8 = 0;
 
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
     GXLayers_SwapDisplay();
     v0->unk_14 = LCRNG_GetSeed();
 
@@ -961,9 +960,9 @@ static int ov77_021D2D94(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov77_021D2E9C *v0 = OverlayManager_Data(param0);
 
-    if ((v0->unk_2A8) && ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_BUTTON_START))) {
+    if ((v0->unk_2A8) && ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_START))) {
         v0->unk_08 = 1;
-        gCoreSys.unk_6C = 0;
+        gSystem.unk_6C = 0;
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
     }
@@ -1344,7 +1343,7 @@ static void ov77_021D34A8(UnkStruct_ov77_021D2E9C *param0)
     ov77_021D6CFC(param0->unk_34.unk_1C);
     param0->unk_34.unk_10 = param0->unk_0C;
 
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -1630,7 +1629,7 @@ static void ov77_021D3D4C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
 static void ov77_021D3DC4(UnkStruct_ov77_021D37C0 *param0)
 {
-    if (gCoreSys.unk_65 == 0) {
+    if (gSystem.unk_65 == 0) {
         Bg_SetOffset(param0->unk_10, 1, 3, 0);
         Bg_SetOffset(param0->unk_10, 2, 3, 0);
         Bg_SetOffset(param0->unk_10, 3, 3, 0);
@@ -2056,7 +2055,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
             ov77_021D603C(param1->unk_14, 16, 1);
             ov77_021D636C(param1->unk_14, 0);
             ov77_021D3B5C(param0, param1);
-            gCoreSys.unk_65 = 0;
+            gSystem.unk_65 = 0;
             GXLayers_SwapDisplay();
             ov77_021D3DC4(param1);
             param1->unk_246 = 1;
@@ -2102,7 +2101,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
         if (IsScreenTransitionDone()) {
             if (1) {
-                gCoreSys.unk_65 = 1;
+                gSystem.unk_65 = 1;
                 GXLayers_SwapDisplay();
                 ov77_021D3DC4(param1);
 
@@ -2130,7 +2129,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         if (IsScreenTransitionDone()) {
             MI_CpuCopy16(param1->unk_240, (void *)HW_BG_PLTT, 0x200);
 
-            gCoreSys.unk_65 = 0;
+            gSystem.unk_65 = 0;
             GXLayers_SwapDisplay();
 
             ov77_021D3D4C(param0, param1);
@@ -2176,7 +2175,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
         if (IsScreenTransitionDone()) {
-            gCoreSys.unk_65 = 1;
+            gSystem.unk_65 = 1;
             GXLayers_SwapDisplay();
             (*v0)++;
         }

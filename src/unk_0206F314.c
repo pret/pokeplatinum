@@ -16,7 +16,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "field_task.h"
 #include "font.h"
 #include "game_options.h"
@@ -31,6 +30,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
@@ -271,13 +271,13 @@ static int sub_0206F498(UnkStruct_0206F7F8 *param0)
 
     v0 = ListMenu_ProcessInput(param0->unk_C0);
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
         sub_0206FF10(param0);
         return 10;
     }
 
-    if (!(gCoreSys.pressedKeys & PAD_BUTTON_A)) {
+    if (!(gSystem.pressedKeys & PAD_BUTTON_A)) {
         return 3;
     }
 
@@ -307,13 +307,13 @@ static int sub_0206F508(UnkStruct_0206F7F8 *param0)
 
 static int sub_0206F514(UnkStruct_0206F7F8 *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         Sound_PlayEffect(1500);
         sub_02070288(param0);
         return 2;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_SELECT) {
+    if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
         Sound_PlayEffect(1500);
         sub_0206FFE4(param0);
         return 6;
@@ -326,13 +326,13 @@ static int sub_0206F554(UnkStruct_0206F7F8 *param0)
 {
     UnkStruct_0206F3A0 *v0;
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_B)) {
         Sound_PlayEffect(1500);
         sub_02070010(param0);
         return 5;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
         param0->unk_0C = 0;
         param0->unk_328 = &(param0->unk_324[param0->unk_1F].unk_04[param0->unk_32C[param0->unk_28]]);
@@ -344,7 +344,7 @@ static int sub_0206F554(UnkStruct_0206F7F8 *param0)
         return 7;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         if (param0->unk_28 > 0) {
             Sound_PlayEffect(1500);
             --param0->unk_28;
@@ -352,7 +352,7 @@ static int sub_0206F554(UnkStruct_0206F7F8 *param0)
         }
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (param0->unk_28 < (param0->unk_21 - 1)) {
             Sound_PlayEffect(1500);
             ++param0->unk_28;
@@ -443,7 +443,7 @@ static int sub_0206F748(UnkStruct_0206F7F8 *param0)
         param0->unk_0C++;
         break;
     case 2:
-        if (!(gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if (!(gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
             break;
         }
 
@@ -882,7 +882,7 @@ static BOOL sub_020702D0(FieldTask *param0)
         CellActorCollection_Update(v1->unk_08->unk_134.unk_00);
         break;
     case 9:
-        if (!(gCoreSys.pressedKeys & PAD_BUTTON_A)) {
+        if (!(gSystem.pressedKeys & PAD_BUTTON_A)) {
             return 0;
         }
 

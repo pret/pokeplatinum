@@ -6,7 +6,6 @@
 #include "field/field_system.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "field_system.h"
 #include "field_task.h"
 #include "font.h"
@@ -17,6 +16,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_0202F108.h"
 
@@ -109,7 +109,7 @@ static BOOL ov6_02247A34(FieldTask *param0)
         v1->unk_04++;
         break;
     case 1:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov6_02247CC8(v1->unk_00);
             v1->unk_04++;
         }

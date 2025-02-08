@@ -1,11 +1,10 @@
-#include "unk_02017728.h"
+#include "system.h"
 
 #include <string.h>
 
 #include "constants/heap.h"
 
 #include "boot.h"
-#include "core_sys.h"
 #include "heap.h"
 #include "math.h"
 #include "sys_task_manager.h"
@@ -19,14 +18,14 @@ static void SetHBlankEnabled(BOOL param0);
 void sub_0201777C(void);
 static void ApplyButtonModeToInput(void);
 
-CoreSys gCoreSys;
+System gSystem;
 
 void sub_02017728(void)
 {
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
     MI_WaitDma(GX_DEFAULT_DMAID);
-    SysTaskManager_ExecuteTasks(gCoreSys.vBlankTaskMgr);
-    gCoreSys.frameCounter++;
+    SysTaskManager_ExecuteTasks(gSystem.vBlankTaskMgr);
+    gSystem.frameCounter++;
 }
 
 static void sub_0201775C(void)
@@ -44,28 +43,28 @@ void sub_0201777C(void)
 
 void SetMainCallback(Callback cb, void *data)
 {
-    gCoreSys.mainCallback = cb;
-    gCoreSys.mainCallbackData = data;
+    gSystem.mainCallback = cb;
+    gSystem.mainCallbackData = data;
 }
 
 void DisableHBlank(void)
 {
     SetHBlankEnabled(0);
-    gCoreSys.hblankCallback = NULL;
-    gCoreSys.hblankCallbackData = NULL;
+    gSystem.hblankCallback = NULL;
+    gSystem.hblankCallbackData = NULL;
 }
 
 BOOL SetHBlankCallback(Callback cb, void *data)
 {
     if (cb == NULL) {
         SetHBlankEnabled(0);
-        gCoreSys.hblankCallback = NULL;
-        gCoreSys.hblankCallbackData = NULL;
+        gSystem.hblankCallback = NULL;
+        gSystem.hblankCallbackData = NULL;
         return 1;
     } else {
-        if (gCoreSys.hblankCallback == NULL) {
-            gCoreSys.hblankCallbackData = data;
-            gCoreSys.hblankCallback = cb;
+        if (gSystem.hblankCallback == NULL) {
+            gSystem.hblankCallbackData = data;
+            gSystem.hblankCallback = cb;
             SetHBlankEnabled(1);
             return 1;
         } else {
@@ -76,8 +75,8 @@ BOOL SetHBlankCallback(Callback cb, void *data)
 
 static void HBlankIntr(void)
 {
-    if (gCoreSys.hblankCallback) {
-        gCoreSys.hblankCallback(gCoreSys.hblankCallbackData);
+    if (gSystem.hblankCallback) {
+        gSystem.hblankCallback(gSystem.hblankCallbackData);
     }
 }
 
@@ -143,10 +142,10 @@ void sub_0201789C(void)
     OS_InitTick();
     sub_02017850();
 
-    gCoreSys.mainTaskMgr = SysTaskManager_Init(160, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(160), 4));
-    gCoreSys.vBlankTaskMgr = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
-    gCoreSys.postVBlankTaskMgr = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
-    gCoreSys.printTaskMgr = SysTaskManager_Init(4, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(4), 4));
+    gSystem.mainTaskMgr = SysTaskManager_Init(160, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(160), 4));
+    gSystem.vBlankTaskMgr = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
+    gSystem.postVBlankTaskMgr = SysTaskManager_Init(32, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(32), 4));
+    gSystem.printTaskMgr = SysTaskManager_Init(4, OS_AllocFromMainArenaLo(SysTaskManager_GetRequiredSize(4), 4));
 
     GX_DispOff();
     GXS_DispOff();
@@ -170,13 +169,13 @@ void sub_0201789C(void)
         FS_LoadTable(v1, v0);
     }
 
-    gCoreSys.mainCallback = NULL;
-    gCoreSys.hblankCallback = NULL;
-    gCoreSys.unk_10 = NULL;
-    gCoreSys.unk_14 = NULL;
-    gCoreSys.heapCanary = NULL;
-    gCoreSys.vblankCounter = 0;
-    gCoreSys.unk_65 = 0;
+    gSystem.mainCallback = NULL;
+    gSystem.hblankCallback = NULL;
+    gSystem.dummyCallback_10 = NULL;
+    gSystem.dummyCallback_14 = NULL;
+    gSystem.heapCanary = NULL;
+    gSystem.vblankCounter = 0;
+    gSystem.unk_65 = 0;
 
     CARD_SetCacheFlushThreshold(0x500, 0x2400);
 
@@ -263,21 +262,21 @@ void InitKeypadAndTouchpad(void)
 {
     TPCalibrateParam v0;
 
-    gCoreSys.buttonMode = 0;
-    gCoreSys.heldKeysRaw = 0;
-    gCoreSys.pressedKeysRaw = 0;
-    gCoreSys.pressedKeysRepeatableRaw = 0;
-    gCoreSys.heldKeys = 0;
-    gCoreSys.pressedKeys = 0;
-    gCoreSys.pressedKeysRepeatable = 0;
-    gCoreSys.autorepeatTimer = 0;
-    gCoreSys.autorepeatRate = 4;
-    gCoreSys.autorepeatDelay = 8;
-    gCoreSys.touchX = 0;
-    gCoreSys.touchY = 0;
-    gCoreSys.touchPressed = 0;
-    gCoreSys.touchHeld = 0;
-    gCoreSys.unk_64 = 0;
+    gSystem.buttonMode = 0;
+    gSystem.heldKeysRaw = 0;
+    gSystem.pressedKeysRaw = 0;
+    gSystem.pressedKeysRepeatableRaw = 0;
+    gSystem.heldKeys = 0;
+    gSystem.pressedKeys = 0;
+    gSystem.pressedKeysRepeatable = 0;
+    gSystem.autorepeatTimer = 0;
+    gSystem.autorepeatRate = 4;
+    gSystem.autorepeatDelay = 8;
+    gSystem.touchX = 0;
+    gSystem.touchY = 0;
+    gSystem.touchPressed = 0;
+    gSystem.touchHeld = 0;
+    gSystem.unk_64 = 0;
 
     TP_Init();
 
@@ -295,17 +294,17 @@ void InitKeypadAndTouchpad(void)
 
 void SetGBACartridgeVersion(int version)
 {
-    gCoreSys.gbaCartridgeVersion = version;
+    gSystem.gbaCartridgeVersion = version;
 }
 
 void SleepLock(u8 param0)
 {
-    gCoreSys.inhibitSleep |= param0;
+    gSystem.inhibitSleep |= param0;
 }
 
 void SleepUnlock(u8 param0)
 {
-    gCoreSys.inhibitSleep &= ~(param0);
+    gSystem.inhibitSleep &= ~(param0);
 }
 
 void ReadKeypadAndTouchpad(void)
@@ -316,37 +315,37 @@ void ReadKeypadAndTouchpad(void)
 
     if (PAD_DetectFold()) {
         // Can't press any buttons while the lid is closed.
-        gCoreSys.pressedKeys = 0;
-        gCoreSys.heldKeys = 0;
-        gCoreSys.pressedKeysRepeatable = 0;
-        gCoreSys.touchPressed = 0;
-        gCoreSys.touchHeld = 0;
+        gSystem.pressedKeys = 0;
+        gSystem.heldKeys = 0;
+        gSystem.pressedKeysRepeatable = 0;
+        gSystem.touchPressed = 0;
+        gSystem.touchHeld = 0;
         return;
     }
 
     padRead = PAD_Read();
 
-    gCoreSys.pressedKeysRaw = padRead & (padRead ^ gCoreSys.heldKeysRaw);
-    gCoreSys.pressedKeysRepeatableRaw = gCoreSys.pressedKeysRaw;
+    gSystem.pressedKeysRaw = padRead & (padRead ^ gSystem.heldKeysRaw);
+    gSystem.pressedKeysRepeatableRaw = gSystem.pressedKeysRaw;
 
-    if ((padRead != 0) && (gCoreSys.heldKeysRaw == padRead)) {
-        if (--gCoreSys.autorepeatTimer == 0) {
-            gCoreSys.pressedKeysRepeatableRaw = padRead;
-            gCoreSys.autorepeatTimer = gCoreSys.autorepeatRate;
+    if ((padRead != 0) && (gSystem.heldKeysRaw == padRead)) {
+        if (--gSystem.autorepeatTimer == 0) {
+            gSystem.pressedKeysRepeatableRaw = padRead;
+            gSystem.autorepeatTimer = gSystem.autorepeatRate;
         }
     } else {
-        gCoreSys.autorepeatTimer = gCoreSys.autorepeatDelay;
+        gSystem.autorepeatTimer = gSystem.autorepeatDelay;
     }
 
-    gCoreSys.heldKeysRaw = padRead;
+    gSystem.heldKeysRaw = padRead;
 
-    gCoreSys.pressedKeys = gCoreSys.pressedKeysRaw;
-    gCoreSys.heldKeys = gCoreSys.heldKeysRaw;
-    gCoreSys.pressedKeysRepeatable = gCoreSys.pressedKeysRepeatableRaw;
+    gSystem.pressedKeys = gSystem.pressedKeysRaw;
+    gSystem.heldKeys = gSystem.heldKeysRaw;
+    gSystem.pressedKeysRepeatable = gSystem.pressedKeysRepeatableRaw;
 
     ApplyButtonModeToInput();
 
-    if (gCoreSys.unk_64 == 0) {
+    if (gSystem.unk_64 == 0) {
         while (TP_RequestRawSampling(&tpRaw) != 0)
             ;
     } else {
@@ -356,16 +355,16 @@ void ReadKeypadAndTouchpad(void)
     TP_GetCalibratedPoint(&tp, &tpRaw);
 
     if (tp.validity == TP_VALIDITY_VALID) {
-        gCoreSys.touchX = tp.x;
-        gCoreSys.touchY = tp.y;
+        gSystem.touchX = tp.x;
+        gSystem.touchY = tp.y;
     } else {
-        if (gCoreSys.touchHeld) {
+        if (gSystem.touchHeld) {
             switch (tp.validity) {
             case TP_VALIDITY_INVALID_X:
-                gCoreSys.touchY = tp.y;
+                gSystem.touchY = tp.y;
                 break;
             case TP_VALIDITY_INVALID_Y:
-                gCoreSys.touchX = tp.x;
+                gSystem.touchX = tp.x;
                 break;
             case TP_VALIDITY_INVALID_XY:
                 break;
@@ -377,130 +376,130 @@ void ReadKeypadAndTouchpad(void)
         }
     }
 
-    gCoreSys.touchPressed = (u16)(tp.touch & (tp.touch ^ gCoreSys.touchHeld));
-    gCoreSys.touchHeld = tp.touch;
+    gSystem.touchPressed = (u16)(tp.touch & (tp.touch ^ gSystem.touchHeld));
+    gSystem.touchHeld = tp.touch;
 }
 
 static void ApplyButtonModeToInput(void)
 {
-    switch (gCoreSys.buttonMode) {
+    switch (gSystem.buttonMode) {
     default:
     case BUTTON_MODE_NORMAL:
         break;
     case BUTTON_MODE_START_IS_X:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_START) {
-            gCoreSys.pressedKeys |= PAD_BUTTON_X;
+        if (gSystem.pressedKeys & PAD_BUTTON_START) {
+            gSystem.pressedKeys |= PAD_BUTTON_X;
         }
 
-        if (gCoreSys.heldKeys & PAD_BUTTON_START) {
-            gCoreSys.heldKeys |= PAD_BUTTON_X;
+        if (gSystem.heldKeys & PAD_BUTTON_START) {
+            gSystem.heldKeys |= PAD_BUTTON_X;
         }
 
-        if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_START) {
-            gCoreSys.pressedKeysRepeatable |= PAD_BUTTON_X;
+        if (gSystem.pressedKeysRepeatable & PAD_BUTTON_START) {
+            gSystem.pressedKeysRepeatable |= PAD_BUTTON_X;
         }
         break;
     case BUTTON_MODE_SWAP_XY: {
         u32 tmp = 0;
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+        if (gSystem.pressedKeys & PAD_BUTTON_X) {
             tmp |= PAD_BUTTON_Y;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_Y) {
+        if (gSystem.pressedKeys & PAD_BUTTON_Y) {
             tmp |= PAD_BUTTON_X;
         }
 
-        gCoreSys.pressedKeys &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
-        gCoreSys.pressedKeys |= tmp;
+        gSystem.pressedKeys &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
+        gSystem.pressedKeys |= tmp;
     }
         {
             u32 tmp = 0;
 
-            if (gCoreSys.heldKeys & PAD_BUTTON_X) {
+            if (gSystem.heldKeys & PAD_BUTTON_X) {
                 tmp |= PAD_BUTTON_Y;
             }
 
-            if (gCoreSys.heldKeys & PAD_BUTTON_Y) {
+            if (gSystem.heldKeys & PAD_BUTTON_Y) {
                 tmp |= PAD_BUTTON_X;
             }
 
-            gCoreSys.heldKeys &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
-            gCoreSys.heldKeys |= tmp;
+            gSystem.heldKeys &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
+            gSystem.heldKeys |= tmp;
         }
         {
             u32 tmp = 0;
 
-            if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_X) {
+            if (gSystem.pressedKeysRepeatable & PAD_BUTTON_X) {
                 tmp |= PAD_BUTTON_Y;
             }
 
-            if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_Y) {
+            if (gSystem.pressedKeysRepeatable & PAD_BUTTON_Y) {
                 tmp |= PAD_BUTTON_X;
             }
 
-            gCoreSys.pressedKeysRepeatable &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
-            gCoreSys.pressedKeysRepeatable |= tmp;
+            gSystem.pressedKeysRepeatable &= ((PAD_BUTTON_X | PAD_BUTTON_Y) ^ 0xffff);
+            gSystem.pressedKeysRepeatable |= tmp;
         }
         break;
     case BUTTON_MODE_L_IS_A:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_L) {
-            gCoreSys.pressedKeys |= PAD_BUTTON_A;
+        if (gSystem.pressedKeys & PAD_BUTTON_L) {
+            gSystem.pressedKeys |= PAD_BUTTON_A;
         }
 
-        if (gCoreSys.heldKeys & PAD_BUTTON_L) {
-            gCoreSys.heldKeys |= PAD_BUTTON_A;
+        if (gSystem.heldKeys & PAD_BUTTON_L) {
+            gSystem.heldKeys |= PAD_BUTTON_A;
         }
 
-        if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_L) {
-            gCoreSys.pressedKeysRepeatable |= PAD_BUTTON_A;
+        if (gSystem.pressedKeysRepeatable & PAD_BUTTON_L) {
+            gSystem.pressedKeysRepeatable |= PAD_BUTTON_A;
         }
 
-        gCoreSys.pressedKeys &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
-        gCoreSys.heldKeys &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
-        gCoreSys.pressedKeysRepeatable &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
+        gSystem.pressedKeys &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
+        gSystem.heldKeys &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
+        gSystem.pressedKeysRepeatable &= ((PAD_BUTTON_L | PAD_BUTTON_R) ^ 0xffff);
         break;
     }
 }
 
 void SetAutorepeat(int rate, int delay)
 {
-    gCoreSys.autorepeatRate = rate;
-    gCoreSys.autorepeatDelay = delay;
+    gSystem.autorepeatRate = rate;
+    gSystem.autorepeatDelay = delay;
 }
 
 void ResetLock(u8 param0)
 {
-    gCoreSys.inhibitReset |= param0;
+    gSystem.inhibitReset |= param0;
 }
 
 void ResetUnlock(u8 param0)
 {
-    gCoreSys.inhibitReset &= ~(param0);
+    gSystem.inhibitReset &= ~(param0);
 }
 
 #define HEAP_CANARY 0x2f93a1bc
 
 void InitHeapCanary(int heapID)
 {
-    GF_ASSERT(gCoreSys.heapCanary == NULL);
+    GF_ASSERT(gSystem.heapCanary == NULL);
 
-    gCoreSys.heapCanary = Heap_AllocFromHeapAtEnd(heapID, sizeof(u32));
-    *(gCoreSys.heapCanary) = HEAP_CANARY;
+    gSystem.heapCanary = Heap_AllocFromHeapAtEnd(heapID, sizeof(u32));
+    *(gSystem.heapCanary) = HEAP_CANARY;
 }
 
 void FreeHeapCanary(void)
 {
-    GF_ASSERT(gCoreSys.heapCanary != NULL);
+    GF_ASSERT(gSystem.heapCanary != NULL);
 
-    *(gCoreSys.heapCanary) = 0;
-    Heap_FreeToHeap(gCoreSys.heapCanary);
-    gCoreSys.heapCanary = NULL;
+    *(gSystem.heapCanary) = 0;
+    Heap_FreeToHeap(gSystem.heapCanary);
+    gSystem.heapCanary = NULL;
 }
 
 BOOL HeapCanaryOK(void)
 {
-    if (gCoreSys.heapCanary && *gCoreSys.heapCanary == HEAP_CANARY) {
+    if (gSystem.heapCanary && *gSystem.heapCanary == HEAP_CANARY) {
         return 1;
     }
 

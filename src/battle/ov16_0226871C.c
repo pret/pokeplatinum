@@ -31,7 +31,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
@@ -51,12 +50,12 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02017728.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
 
@@ -3755,7 +3754,7 @@ static void ov16_0226BD74(SysTask *param0, void *param1)
     v2 = PaletteData_GetFadedBuffer(v1, 1);
     v3 = (16 - 8) * 2;
 
-    if (gCoreSys.touchHeld && ((v4 == 1) || (v5 == 1))) {
+    if (gSystem.touchHeld && ((v4 == 1) || (v5 == 1))) {
         if (memcmp(&v2[8], &v0->unk_5C[8], v3) == 0) {
             if (BattleSystem_BattleType(v0->unk_00) & 0x80) {
                 MI_CpuCopy16(&v0->unk_60[0], &v2[0], 0x20);
@@ -3789,7 +3788,7 @@ static int ov16_0226BE48(UnkStruct_ov16_02268A14 *param0)
     }
 
     if (v0->unk_00 == 0) {
-        if ((param0->unk_6C0 == 1) || (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
+        if ((param0->unk_6C0 == 1) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
             if (param0->unk_6C0 == 0) {
                 Sound_PlayEffect(1500);
             }
@@ -3834,18 +3833,18 @@ static int ov16_0226BEC0(UnkStruct_ov16_02268A14 *param0, int param1)
     default:
         v4 = Unk_ov16_022701EC[v0->unk_01][v0->unk_02];
 
-        if ((v4 == 3) && (gCoreSys.pressedKeys & PAD_KEY_UP)) {
+        if ((v4 == 3) && (gSystem.pressedKeys & PAD_KEY_UP)) {
             (void)0;
         } else {
             v1 = ov16_0226CB10(v0, 3, 2, Unk_ov16_022701EC[0]);
 
             if ((v1 == 0) && (v4 == 0)) {
-                if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+                if (gSystem.pressedKeys & PAD_KEY_LEFT) {
                     v0->unk_02 = 0;
                     v0->unk_01 = 1;
                     Sound_PlayEffect(1500);
                     v1 = PAD_KEY_LEFT;
-                } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+                } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
                     v0->unk_02 = 2;
                     v0->unk_01 = 1;
                     Sound_PlayEffect(1500);
@@ -4356,7 +4355,7 @@ static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2
     v1 = param0->unk_02;
     v0 = param0->unk_01;
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         param0->unk_01--;
 
         if (param0->unk_01 < 0) {
@@ -4375,7 +4374,7 @@ static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_UP;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         param0->unk_01++;
 
         if (param0->unk_01 >= param2) {
@@ -4394,7 +4393,7 @@ static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_DOWN;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         param0->unk_02--;
 
         if (param0->unk_02 < 0) {
@@ -4413,7 +4412,7 @@ static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_LEFT;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         param0->unk_02++;
 
         if (param0->unk_02 >= param1) {
@@ -4432,9 +4431,9 @@ static u32 ov16_0226CB10(UnkStruct_ov16_0226CB10 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_RIGHT;
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         v2 = PAD_BUTTON_A;
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         v2 = PAD_BUTTON_B;
     } else {
         return 0;

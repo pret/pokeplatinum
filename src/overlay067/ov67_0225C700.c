@@ -17,7 +17,6 @@
 #include "overlay066/struct_ov66_02231300.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -35,10 +34,10 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 
@@ -301,7 +300,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
         (*param1)++;
     } break;
     case 10:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             int v8;
             int v9;
 

@@ -14,7 +14,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "game_options.h"
 #include "gx_layers.h"
@@ -24,6 +23,7 @@
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 
@@ -336,7 +336,7 @@ void ov100_021D4C94(UnkStruct_ov100_021D46C8 *param0, int param1)
 
 void ov100_021D4DC8(int param0)
 {
-    gCoreSys.unk_65 = param0;
+    gSystem.unk_65 = param0;
     GXLayers_SwapDisplay();
 }
 

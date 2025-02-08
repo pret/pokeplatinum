@@ -17,7 +17,6 @@
 #include "overlay033/struct_ov33_02256474_decl.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
@@ -27,6 +26,7 @@
 #include "pokemon_icon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 
 typedef struct {
     UnkStruct_ov25_022558C4 *unk_00;
@@ -509,7 +509,7 @@ static void ov33_02256B08(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
 
 static void ov33_02256B3C(const char *param0, ...)
 {
-    if (gCoreSys.heldKeys & PAD_BUTTON_B) {
+    if (gSystem.heldKeys & PAD_BUTTON_B) {
         va_list v0;
         va_start(v0, param0);
         va_end(v0);

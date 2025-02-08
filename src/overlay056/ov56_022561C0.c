@@ -16,7 +16,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "font.h"
@@ -32,13 +31,13 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_02014A84.h"
-#include "unk_02017728.h"
 #include "unk_02027F84.h"
 #include "unk_02033200.h"
 #include "unk_0205B33C.h"
@@ -591,7 +590,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
             param0->unk_228 = v0 - 2;
             break;
         default:
-            if (gCoreSys.touchPressed == 0) {
+            if (gSystem.touchPressed == 0) {
                 break;
             }
 
@@ -677,19 +676,19 @@ static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0)
 
 static void ov56_02256C84(UnkStruct_ov56_02256468 *param0)
 {
-    if (gCoreSys.heldKeys & PAD_BUTTON_L) {
+    if (gSystem.heldKeys & PAD_BUTTON_L) {
         ov56_0225718C(param0, 0);
 
-        if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_L) {
+        if (gSystem.pressedKeysRepeatable & PAD_BUTTON_L) {
             if (param0->unk_2D8.unk_04 != 0) {
                 param0->unk_2D8.unk_04--;
                 Sound_PlayEffect(1509);
             }
         }
-    } else if (gCoreSys.heldKeys & PAD_BUTTON_R) {
+    } else if (gSystem.heldKeys & PAD_BUTTON_R) {
         ov56_0225718C(param0, 1);
 
-        if (gCoreSys.pressedKeysRepeatable & PAD_BUTTON_R) {
+        if (gSystem.pressedKeysRepeatable & PAD_BUTTON_R) {
             if (param0->unk_2D8.unk_04 < param0->unk_2D8.unk_00 - 3) {
                 param0->unk_2D8.unk_04++;
                 Sound_PlayEffect(1509);
@@ -919,10 +918,10 @@ static void ov56_0225712C(UnkStruct_ov56_02256468 *param0)
 {
     param0->unk_2EC = 0;
 
-    if (gCoreSys.touchPressed) {
+    if (gSystem.touchPressed) {
         param0->unk_2EC = 1;
     } else {
-        if (gCoreSys.touchHeld) {
+        if (gSystem.touchHeld) {
             param0->unk_2ED--;
 
             if (param0->unk_2ED < 0) {

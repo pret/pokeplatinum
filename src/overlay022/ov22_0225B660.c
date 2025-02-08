@@ -15,7 +15,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -25,9 +24,9 @@
 #include "pokemon.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
 #include "unk_02094EDC.h"
@@ -80,7 +79,7 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
     v0->unk_0C = v1->unk_08;
 
     ov22_02255094();
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
     GXLayers_SwapDisplay();
     ov22_022555D4(&v0->unk_14, 14);
 
@@ -136,7 +135,7 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
         }
         break;
     case 3:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             (*param1)++;
         }
         break;

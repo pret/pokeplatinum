@@ -21,7 +21,6 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -40,6 +39,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -50,7 +50,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"

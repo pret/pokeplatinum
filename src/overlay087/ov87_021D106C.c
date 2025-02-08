@@ -25,12 +25,12 @@
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02017728.h"
 
 typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_ov87_021D0D80 *unk_00;

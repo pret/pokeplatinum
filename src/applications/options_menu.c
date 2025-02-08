@@ -11,7 +11,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -25,12 +24,12 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "strbuf.h"
+#include "system.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 

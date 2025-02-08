@@ -13,7 +13,6 @@
 #include "applications/journal_display/journal_printer.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -26,11 +25,11 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 
@@ -330,7 +329,7 @@ static int JournalController_IsOpeningTransitionDone(JournalManager *journalMana
 
 static int JournalController_HandleInput(JournalManager *journalManager)
 {
-    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (JournalController_NewDirectionPageExists(journalManager, -1) == TRUE) {
             return JOURNAL_STATE_TURN_LEFT;
         }
@@ -338,7 +337,7 @@ static int JournalController_HandleInput(JournalManager *journalManager)
         return JOURNAL_STATE_HANDLE_INPUT;
     }
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
         if (JournalController_NewDirectionPageExists(journalManager, 1) == TRUE) {
             return JOURNAL_STATE_TURN_RIGHT;
         }
@@ -346,7 +345,7 @@ static int JournalController_HandleInput(JournalManager *journalManager)
         return JOURNAL_STATE_HANDLE_INPUT;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         if (journalManager->page != 0) {
             if (JournalController_NewDirectionPageExists(journalManager, -1) == TRUE) {
                 return JOURNAL_STATE_TURN_LEFT;
@@ -357,7 +356,7 @@ static int JournalController_HandleInput(JournalManager *journalManager)
         }
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_START) {
+    if (gSystem.pressedKeys & PAD_BUTTON_START) {
         sub_0208C120(1, HEAP_ID_JOURNAL);
         return JOURNAL_STATE_CLOSE;
     }

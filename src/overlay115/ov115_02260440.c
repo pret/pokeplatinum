@@ -23,13 +23,12 @@
 
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "graphics.h"
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "system.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -131,7 +130,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+        if (gSystem.heldKeys & PAD_BUTTON_A) {
             break;
         }
 

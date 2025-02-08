@@ -11,7 +11,6 @@
 #include "overlay115/camera_angle.h"
 
 #include "camera.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -20,9 +19,9 @@
 #include "render_text.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -90,7 +89,7 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
     DWWarp_InitCamera(dww);
     StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
 
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();

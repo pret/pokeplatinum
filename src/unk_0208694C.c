@@ -11,7 +11,6 @@
 #include "cell_actor.h"
 #include "char_transfer.h"
 #include "charcode_util.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -33,6 +32,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -40,7 +40,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
-#include "unk_02017728.h"
 #include "unk_020797C8.h"
 #include "vram_transfer.h"
 
@@ -913,7 +912,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         sub_0208732C(1);
 
         {
-            gCoreSys.unk_65 = 1;
+            gSystem.unk_65 = 1;
             GXLayers_SwapDisplay();
         }
 
@@ -1021,7 +1020,7 @@ static int sub_02086D38(UnkStruct_02087A10 *param0, int param1)
 {
     sub_02088350(param0);
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_SELECT) {
+    if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
         if (CellActor_GetDrawFlag(param0->unk_390[8]) == 0) {
             CellActor_SetDrawFlag(param0->unk_390[8], 1);
             return param1;
@@ -1047,15 +1046,15 @@ static int sub_02086D38(UnkStruct_02087A10 *param0, int param1)
 
         sub_02088844(param0->unk_3A, param0->unk_4C4);
         Sound_PlayEffect(1694);
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         param1 = sub_02088898(param0, param0->unk_3A[param0->unk_1C.unk_04][param0->unk_1C.unk_00], 1);
         param0->unk_1C.unk_14 = 1;
     } else if (param0->unk_62C == 1) {
         param1 = sub_02088898(param0, param0->unk_3A[param0->unk_1C.unk_04][param0->unk_1C.unk_00], 0);
         param0->unk_1C.unk_14 = 0;
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param1 = sub_02088898(param0, (0xe001 + 6), 1);
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_R) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_R) {
         param1 = sub_02088898(param0, (0xe001 + 5), 1);
     }
 
@@ -1181,7 +1180,7 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
     Heap_Destroy(18);
 
     {
-        gCoreSys.unk_65 = 0;
+        gSystem.unk_65 = 0;
         GXLayers_SwapDisplay();
     }
 
@@ -1952,35 +1951,35 @@ static void sub_02088350(UnkStruct_02087A10 *param0)
         v2 = 1;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         Sound_PlayEffect(1500);
         CellActor_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 1;
         v0++;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         Sound_PlayEffect(1500);
         CellActor_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 2;
         v0++;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
         Sound_PlayEffect(1500);
         CellActor_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 3;
         v0++;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         Sound_PlayEffect(1500);
         CellActor_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 4;
         v0++;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_START) {
+    if (gSystem.pressedKeys & PAD_BUTTON_START) {
         Sound_PlayEffect(1500);
         CellActor_SetDrawFlag(param0->unk_390[8], 1);
         param0->unk_1C.unk_00 = 12;
@@ -2223,7 +2222,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
         }
     }
 
-    if ((CellActor_GetDrawFlag(param0->unk_390[8]) == 0) && (gCoreSys.touchPressed == 0)) {
+    if ((CellActor_GetDrawFlag(param0->unk_390[8]) == 0) && (gSystem.touchPressed == 0)) {
         CellActor_SetDrawFlag(param0->unk_390[8], 1);
         return 2;
     }
@@ -2596,9 +2595,9 @@ static BOOL sub_0208903C(UnkStruct_02087A10 *param0)
         v1 = 4;
     }
 
-    if (gCoreSys.touchPressed) {
-        v2 = gCoreSys.touchX;
-        v3 = gCoreSys.touchY;
+    if (gSystem.touchPressed) {
+        v2 = gSystem.touchX;
+        v3 = gSystem.touchY;
 
         for (v0 = v1; v0 < (NELEMS(Unk_020F2A14)); v0++) {
             v4 = Unk_020F2A14[v0].unk_00;

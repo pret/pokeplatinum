@@ -7,11 +7,11 @@
 #include "overlay062/ov62_022300D8.h"
 #include "overlay062/ov62_02231690.h"
 
-#include "core_sys.h"
 #include "game_overlay.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "savedata_misc.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_0208B284.h"
 #include "unk_0208BA78.h"
@@ -125,7 +125,7 @@ static int sub_0208BF6C(OverlayManager *param0, int *param1)
         ov62_0222F514(v0);
         Heap_Destroy(102);
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay62));
-        gCoreSys.unk_65 = 0;
+        gSystem.unk_65 = 0;
         GXLayers_SwapDisplay();
 
         return 1;

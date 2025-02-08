@@ -24,7 +24,6 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
@@ -37,6 +36,7 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
@@ -1536,7 +1536,7 @@ static int ov17_02240C90(UnkStruct_ov17_0223F7E4 *param0)
     }
 
     if (v0->unk_00 == 0) {
-        if ((param0->unk_304 == 1) || (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
+        if ((param0->unk_304 == 1) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
             if (param0->unk_304 == 0) {
                 Sound_PlayEffect(1500);
             }
@@ -1697,7 +1697,7 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
     v1 = param0->unk_02;
     v0 = param0->unk_01;
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         param0->unk_01--;
 
         if (param0->unk_01 < 0) {
@@ -1716,7 +1716,7 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_UP;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         param0->unk_01++;
 
         if (param0->unk_01 >= param2) {
@@ -1735,7 +1735,7 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_DOWN;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         param0->unk_02--;
 
         if (param0->unk_02 < 0) {
@@ -1754,7 +1754,7 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_LEFT;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         param0->unk_02++;
 
         if (param0->unk_02 >= param1) {
@@ -1773,9 +1773,9 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_RIGHT;
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         v2 = PAD_BUTTON_A;
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         v2 = PAD_BUTTON_B;
     } else {
         return 0;

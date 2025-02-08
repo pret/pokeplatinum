@@ -7,7 +7,6 @@
 #include "overlay023/struct_ov23_02253F60.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "heap.h"
 #include "list_menu.h"
 #include "message.h"
@@ -16,6 +15,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 
@@ -143,7 +143,7 @@ static void ov23_02253E40(SysTask *param0, void *param1)
         }
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov23_02254044(v0);
     }
 }

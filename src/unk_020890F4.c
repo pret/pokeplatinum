@@ -9,7 +9,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -17,8 +16,8 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "strbuf.h"
+#include "system.h"
 #include "unk_0200C6E4.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
 #include "unk_020393C8.h"
@@ -340,7 +339,7 @@ static void sub_0208945C(BgConfig *param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
-    gCoreSys.unk_65 = 1;
+    gSystem.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);

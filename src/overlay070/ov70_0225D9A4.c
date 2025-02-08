@@ -38,7 +38,6 @@
 #include "cell_actor.h"
 #include "cell_transfer.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "error_handling.h"
 #include "font.h"
@@ -65,12 +64,12 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -716,7 +715,7 @@ int ov70_0225DB90(OverlayManager *param0, int *param1)
         (*param1) = 4;
     } break;
     case 4:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             (*param1) = 7;
         }
         break;
@@ -1263,7 +1262,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
 
     VramTransfer_New(32, param2);
     GXLayers_SetBanks(&Unk_ov70_0226D664);
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     {

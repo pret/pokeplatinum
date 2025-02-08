@@ -20,7 +20,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -42,11 +41,11 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 #include "unk_020363E8.h"
@@ -592,7 +591,7 @@ static BOOL ov108_02241F28(UnkStruct_ov108_02241DB0 *param0)
         param0->unk_08 = 6;
         break;
     case 6:
-        ov108_02242964(param0, gCoreSys.pressedKeys);
+        ov108_02242964(param0, gSystem.pressedKeys);
 
         if (CommSys_CurNetId() == 0) {
             if (param0->unk_18 > 0) {

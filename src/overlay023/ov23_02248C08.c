@@ -10,10 +10,10 @@
 
 #include "bg_window.h"
 #include "colored_arrow.h"
-#include "core_sys.h"
 #include "heap.h"
 #include "list_menu.h"
 #include "string_list.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
 
@@ -95,7 +95,7 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
         if (param0->unk_1C) {
             ov23_02248CA4(v1, v2, param0);
 
-            if ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_BUTTON_SELECT)) {
+            if ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_SELECT)) {
                 Sound_PlayEffect(1500);
 
                 if (v1 + v2 == v8 - 1) {
@@ -159,7 +159,7 @@ u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0)
                 return 0xffffffff;
             }
         } else {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_SELECT) {
+            if (gSystem.pressedKeys & PAD_BUTTON_SELECT) {
                 Sound_PlayEffect(1500);
 
                 if (v1 + v2 == v8 - 1) {

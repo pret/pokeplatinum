@@ -25,13 +25,13 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
-#include "core_sys.h"
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -731,7 +731,7 @@ static void ov21_021E728C(UnkStruct_ov21_021E6C60 *param0, UnkStruct_ov21_021E6A
 
 static void ov21_021E72E8(UnkStruct_ov21_021E6DAC *param0, UnkStruct_ov21_021E6A20 *param1)
 {
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         if (param1->unk_04 == 1) {
             param1->unk_04 = 0;
             *param1->unk_00 |= (1 << 0);

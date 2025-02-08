@@ -7,7 +7,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -18,10 +17,10 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 
 typedef struct {
     int unk_00;
@@ -141,7 +140,7 @@ int ov102_021D0E2C(OverlayManager *param0, int *param1)
         }
         break;
     case 4:
-        if (((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B) || (gCoreSys.touchPressed)) {
+        if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B) || (gSystem.touchPressed)) {
             StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 5;
         }

@@ -20,7 +20,6 @@
 #include "overlay099/struct_ov99_021D3A40.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "font.h"
 #include "graphics.h"
@@ -29,6 +28,7 @@
 #include "message.h"
 #include "palette.h"
 #include "strbuf.h"
+#include "system.h"
 #include "text.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
@@ -1061,7 +1061,7 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
 {
     BgConfig *v0 = param0->unk_08;
 
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     PaletteData_FillBufferRange(param0->unk_0C, 0, 2, 0x0, 0, 1);

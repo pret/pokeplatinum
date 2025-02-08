@@ -15,7 +15,6 @@
 #include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "font.h"
 #include "game_options.h"
@@ -33,12 +32,12 @@
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
-#include "unk_02017728.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 
@@ -182,7 +181,7 @@ static BOOL ov75_021D0E34(UnkStruct_ov75_021D1184 *param0)
 
 static int ov75_021D0E5C(UnkStruct_ov75_021D1184 *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Sound_PlayEffect(1507);
         return 1;
     }
@@ -194,7 +193,7 @@ static int ov75_021D0E80(UnkStruct_ov75_021D1184 *param0)
 {
     u8 v0 = 0;
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A)) {
         if (param0->unk_11 == 3) {
             if (param0->unk_12 == 0) {
                 if (ov75_021D0E34(param0)) {
@@ -219,23 +218,23 @@ static int ov75_021D0E80(UnkStruct_ov75_021D1184 *param0)
         }
 
         return 1;
-    } else if (gCoreSys.pressedKeys & (PAD_BUTTON_B)) {
+    } else if (gSystem.pressedKeys & (PAD_BUTTON_B)) {
         Sound_PlayEffect(1501);
         param0->unk_0C = UnkEnum_ov75_021D0E80_03;
         return 0;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_START) {
+    if (gSystem.pressedKeys & PAD_BUTTON_START) {
         param0->unk_11 = 3;
         param0->unk_12 = 0;
         v0 = 1;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         param0->unk_11 = (param0->unk_11 + 1) % 4;
         v0 = 1;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    } else if (gSystem.pressedKeys & PAD_KEY_UP) {
         param0->unk_11 = (param0->unk_11 + 4 - 1) % 4;
         v0 = 1;
-    } else if (gCoreSys.pressedKeys & (PAD_KEY_RIGHT | PAD_KEY_LEFT)) {
+    } else if (gSystem.pressedKeys & (PAD_KEY_RIGHT | PAD_KEY_LEFT)) {
         if (param0->unk_11 == 3) {
             param0->unk_12 ^= 1;
             v0 = 1;
@@ -276,7 +275,7 @@ static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
         break;
     case 1:
 
-        if (!(gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if (!(gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
             return 0;
         }
 

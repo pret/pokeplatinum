@@ -9,7 +9,6 @@
 #include "field/field_system.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -28,6 +27,7 @@
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200A9DC.h"
@@ -150,7 +150,7 @@ static BOOL sub_020529C4(FieldTask *task)
         }
         break;
     case 2:
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_BUTTON_B)) {
+        if ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_B)) {
             StartScreenTransition(0, 0, 0, 0x0, 8, 1, 32);
             v0->unk_00++;
         }

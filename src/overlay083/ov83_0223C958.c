@@ -12,7 +12,6 @@
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
@@ -21,6 +20,7 @@
 #include "render_oam.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "unk_02015064.h"
 #include "unk_0202419C.h"
 
@@ -68,7 +68,7 @@ void ov83_0223C958(UnkStruct_ov83_0223B784 *param0)
 
     NARC_dtor(v0);
 
-    gCoreSys.unk_65 = 1;
+    gSystem.unk_65 = 1;
     GXLayers_SwapDisplay();
 }
 
@@ -93,7 +93,7 @@ void ov83_0223CAA4(UnkStruct_ov83_0223B784 *param0)
     ov83_0223CF20(param0);
 
     ov83_0223D068(param0);
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
     GXLayers_SwapDisplay();
 }
 

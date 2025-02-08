@@ -24,7 +24,6 @@
 #include "cell_actor.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
@@ -32,10 +31,10 @@
 #include "journal.h"
 #include "overlay_manager.h"
 #include "poffin.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202ACE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -681,7 +680,7 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     case 4:
         param1->unk_1C--;
 
-        if ((param1->unk_1C < 0) || (gCoreSys.touchPressed) || (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if ((param1->unk_1C < 0) || (gSystem.touchPressed) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
             (*param2)++;
             break;
         }
@@ -699,7 +698,7 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     case 6:
         param1->unk_1C--;
 
-        if ((gCoreSys.touchPressed) || (param1->unk_1C < 0) || (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if ((gSystem.touchPressed) || (param1->unk_1C < 0) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
             (*param2)++;
         }
         break;
@@ -749,7 +748,7 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     case 10:
         param1->unk_1C--;
 
-        if ((gCoreSys.touchPressed) || (param1->unk_1C < 0) || (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if ((gSystem.touchPressed) || (param1->unk_1C < 0) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B))) {
             if (param1->unk_1488 > 1) {
                 ov83_0223EC8C(&param1->unk_6A0, 6);
                 ov83_0223E9BC(&param1->unk_6A0);

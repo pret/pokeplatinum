@@ -17,7 +17,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "enums.h"
 #include "gx_layers.h"
@@ -29,11 +28,11 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -159,7 +158,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     GXS_SetVisibleWnd(GX_WNDMASK_W0);
 
-    gCoreSys.unk_65 = 1;
+    gSystem.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
@@ -190,7 +189,7 @@ int ov99_021D1028(OverlayManager *param0, int *param1)
         v0->unk_1110 = ov99_021D3F6C(v0->unk_110C, 1);
     }
 
-    if (v0->unk_00->unk_04 && (gCoreSys.pressedKeys & PAD_BUTTON_START)) {
+    if (v0->unk_00->unk_04 && (gSystem.pressedKeys & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
             StartScreenTransition(0, 0, 0, 0x0, 6, 1, 75);
             v0->unk_1100 = 1;

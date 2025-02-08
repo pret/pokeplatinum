@@ -12,7 +12,7 @@
 #include "overlay110/ov110_021D2124.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
+#include "system.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -28,7 +28,7 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
+#include "system.h"
 #include "unk_0202D05C.h"
 #include "unk_0202FF4C.h"
 #include "unk_020302D0.h"
@@ -218,7 +218,7 @@ static BOOL ov110_021D0FD0 (UnkStruct_ov110_021D0F78 * param0)
         break;
     case 1:
 
-        if ((gCoreSys.heldKeys & PAD_BUTTON_A) || (gCoreSys.heldKeys & PAD_BUTTON_B)) {
+        if ((gSystem.heldKeys & PAD_BUTTON_A) || (gSystem.heldKeys & PAD_BUTTON_B)) {
             return 1;
         }
         break;

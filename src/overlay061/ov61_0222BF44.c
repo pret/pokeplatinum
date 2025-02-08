@@ -12,7 +12,6 @@
 #include "overlay061/struct_ov61_0222C3B0.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -31,10 +30,10 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "system_data.h"
 #include "text.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202ACE0.h"
 #include "unk_020366A0.h"
@@ -183,7 +182,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
 
-    gCoreSys.unk_65 = 0;
+    gSystem.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     RenderControlFlags_SetCanABSpeedUpPrint(1);
@@ -833,7 +832,7 @@ static int ov61_0222CC40(UnkStruct_ov61_0222C664 *param0)
 
 static int ov61_0222CC64(UnkStruct_ov61_0222C664 *param0)
 {
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A || gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A || gSystem.pressedKeys & PAD_BUTTON_B) {
         Window_EraseStandardFrame(&param0->unk_64, 0);
         param0->unk_90 = 0;
 
