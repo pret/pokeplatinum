@@ -821,7 +821,7 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
     ListMenu_GetListAndCursorPos(param0->unk_78, NULL, &v2);
 
     if (v1 != v2) {
-        SpriteActor_SetPositionXY(param0->unk_25C[2], (176 - 4), 24 + v2 * 16);
+        Sprite_SetPositionXY(param0->unk_25C[2], (176 - 4), 24 + v2 * 16);
     }
 
     switch (v0) {
@@ -1480,11 +1480,11 @@ static void ov7_0224EB14(UnkStruct_ov7_0224D008 *param0)
 static void ov7_0224EB38(UnkStruct_ov7_0224D008 *param0, u8 param1)
 {
     if (param1 == 0) {
-        SpriteActor_SetPositionXY(param0->unk_25C[0], 177, 8);
-        SpriteActor_SetPositionXY(param0->unk_25C[1], 177, 132);
+        Sprite_SetPositionXY(param0->unk_25C[0], 177, 8);
+        Sprite_SetPositionXY(param0->unk_25C[1], 177, 132);
     } else {
-        SpriteActor_SetPositionXY(param0->unk_25C[0], 162, 108);
-        SpriteActor_SetPositionXY(param0->unk_25C[1], 162, 132);
+        Sprite_SetPositionXY(param0->unk_25C[0], 162, 108);
+        Sprite_SetPositionXY(param0->unk_25C[1], 162, 132);
     }
 }
 
@@ -1510,7 +1510,7 @@ static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
 
 static void ov7_0224EC10(UnkStruct_ov7_0224D008 *param0, u8 param1)
 {
-    sub_0200D414(param0->unk_25C[2], param1);
+    Sprite_SetExplicitPalette(param0->unk_25C[2], param1);
 }
 
 static void ov7_0224EC20(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)

@@ -200,7 +200,7 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
     }
 
     SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    SpriteSystem_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
     PaletteData_LoadBufferFromFileStart(BattleSystem_PaletteSys(param0->unk_04), 27, Unk_ov16_02270134[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
     SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, 1, v6);
     SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, 1, v8);
@@ -217,8 +217,8 @@ void ov16_0226862C(UnkStruct_ov16_02268520 *param0)
     v1 = ov16_0223E018(param0->unk_04);
     v2 = &Unk_ov16_022700CC[param0->unk_08];
 
-    param0->unk_00 = SpriteActor_LoadResources(v0, v1, v2);
-    SpriteActor_UpdateObject(param0->unk_00->sprite);
+    param0->unk_00 = SpriteSystem_NewSprite(v0, v1, v2);
+    Sprite_TickFrame(param0->unk_00->sprite);
 }
 
 void ov16_02268660(UnkStruct_ov16_02268520 *param0)
@@ -227,7 +227,7 @@ void ov16_02268660(UnkStruct_ov16_02268520 *param0)
         return;
     }
 
-    sub_0200D0F4(param0->unk_00);
+    Sprite_DeleteAndFreeResources(param0->unk_00);
     param0->unk_00 = NULL;
 }
 
@@ -260,7 +260,7 @@ void ov16_022686BC(UnkStruct_ov16_02268520 *param0, int param1)
         return;
     }
 
-    SpriteActor_EnableObject(param0->unk_00, param1);
+    Sprite_SetDrawFlag2(param0->unk_00, param1);
 }
 
 void ov16_022686CC(UnkStruct_ov16_02268520 *param0, BattleSystem *param1, u16 param2, int param3)

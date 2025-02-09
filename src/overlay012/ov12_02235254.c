@@ -745,7 +745,7 @@ void ov12_02235918(Sprite *param0, UnkStruct_ov12_02235350 *param1)
 
 void ov12_02235950(CellActorData *param0, UnkStruct_ov12_02235350 *param1)
 {
-    SpriteActor_GetSpritePositionXY(param0, &(param1->unk_00), &(param1->unk_02));
+    Sprite_GetPositionXY2(param0, &(param1->unk_00), &(param1->unk_02));
 }
 
 void ov12_0223595C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_0223595C *param1)

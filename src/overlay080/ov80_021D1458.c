@@ -617,7 +617,7 @@ static void ov80_021D1C24(UnkStruct_ov80_021D2A08 *param0)
     }
 
     if (v1->unk_13-- == 3) {
-        SpriteActor_SetPositionXY(v1->unk_104, v1->unk_18 * 7 + (48 - 23), v1->unk_1C * 7 + (6 - 40));
+        Sprite_SetPositionXY(v1->unk_104, v1->unk_18 * 7 + (48 - 23), v1->unk_1C * 7 + (6 - 40));
         CellActor_UpdateAnim(v1->unk_104, FX32_ONE);
 
         ov80_021D1A30(param0);
@@ -905,18 +905,18 @@ static void ov80_021D2398(UnkStruct_ov80_021D2A08 *param0)
     UnkStruct_ov80_021D1478 *v0 = param0->unk_34;
     SpriteTemplateFromResourceHeader v1 = Unk_ov80_021D30E8[2];
 
-    v0->unk_100 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[0]);
+    v0->unk_100 = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[0]);
 
     CellActor_SetDrawFlag(v0->unk_100, 0);
     CellActor_SetAnimSpeed(v0->unk_100, FX32_ONE);
-    SpriteActor_SetPositionXY(v0->unk_100, 128, 108);
+    Sprite_SetPositionXY(v0->unk_100, 128, 108);
 
-    v0->unk_104 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[1]);
+    v0->unk_104 = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[1]);
 
     CellActor_SetDrawFlag(v0->unk_104, 1);
     CellActor_SetAnimSpeed(v0->unk_104, FX32_CONST(2));
     CellActor_SetAnimateFlag(v0->unk_104, 1);
-    SpriteActor_SetPositionXY(v0->unk_104, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
+    Sprite_SetPositionXY(v0->unk_104, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 
     if (param0->unk_2C->unk_0C == 0) {
         v1.plttIdx = 1;
@@ -924,11 +924,11 @@ static void ov80_021D2398(UnkStruct_ov80_021D2A08 *param0)
         v1.plttIdx = 0;
     }
 
-    v0->unk_108 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &v1);
+    v0->unk_108 = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_D8, param0->unk_DC, &v1);
 
     CellActor_SetDrawFlag(v0->unk_108, 1);
     SpriteActor_SetAnimFrame(v0->unk_108, param0->unk_2C->unk_0C);
-    SpriteActor_SetPositionXY(v0->unk_108, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
+    Sprite_SetPositionXY(v0->unk_108, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 }
 
 static void ov80_021D24BC(UnkStruct_ov80_021D2A08 *param0, int param1, int param2)
@@ -1015,9 +1015,9 @@ static void ov80_021D259C(UnkStruct_ov80_021D2A08 *param0)
         v2->unk_0A = v3;
         v2->unk_0B = 1;
 
-        v2->unk_0C = sub_0200CA08(param0->unk_D8, param0->unk_DC, &(Unk_ov80_021D30E8));
+        v2->unk_0C = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_D8, param0->unk_DC, &(Unk_ov80_021D30E8));
 
-        SpriteActor_SetPositionXY(v2->unk_0C, v2->unk_00 * 7 + 25, v2->unk_04 * 7 + -34);
+        Sprite_SetPositionXY(v2->unk_0C, v2->unk_00 * 7 + 25, v2->unk_04 * 7 + -34);
         CellActor_SetPriority(v2->unk_0C, 2);
         CellActor_SetDrawFlag(v2->unk_0C, 0);
     }
@@ -1061,7 +1061,7 @@ static void ov80_021D2700(UnkStruct_ov80_021D2A08 *param0)
 
     for (v2 = 0; v2 < v0->unk_A4.unk_00; v2++) {
         v1 = &(v0->unk_A4.unk_0C[v2]);
-        sub_0200C7E4(v1->unk_0C);
+        SpriteSystem_DeleteSprite(v1->unk_0C);
     }
 }
 

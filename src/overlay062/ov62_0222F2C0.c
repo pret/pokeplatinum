@@ -167,8 +167,8 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
 
     NARC_dtor(param0->unk_14.unk_00);
     SysTask_Done(param0->unk_41E8);
-    sub_0200D0B0(param0->unk_14.unk_04, param0->unk_14.unk_08);
-    sub_0200C8D4(param0->unk_14.unk_04);
+    SpriteSystem_FreeResourcesAndManager(param0->unk_14.unk_04, param0->unk_14.unk_08);
+    SpriteSystem_Free(param0->unk_14.unk_04);
     sub_02039794();
 
     {
@@ -311,7 +311,7 @@ void ov62_0222F834(UnkStruct_0208C06C *param0)
 
 static void ov62_0222F848(UnkStruct_0208C06C *param0)
 {
-    param0->unk_14.unk_04 = sub_0200C6E4(102);
+    param0->unk_14.unk_04 = SpriteSystem_Alloc(102);
     {
         const RenderOamTemplate v0 = {
             0,
@@ -328,7 +328,7 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
             128, 0x10000, 0x4000, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K
         };
 
-        sub_0200C73C(param0->unk_14.unk_04, &v0, &v1, 16 + 16);
+        SpriteSystem_Init(param0->unk_14.unk_04, &v0, &v1, 16 + 16);
     }
 
     {
@@ -342,16 +342,16 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
             16,
         };
 
-        param0->unk_14.unk_08 = sub_0200C704(param0->unk_14.unk_04);
+        param0->unk_14.unk_08 = SpriteManager_New(param0->unk_14.unk_04);
 
-        v2 = sub_0200C7C0(param0->unk_14.unk_04, param0->unk_14.unk_08, 64 + 64 + 64);
+        v2 = SpriteSystem_InitSprites(param0->unk_14.unk_04, param0->unk_14.unk_08, 64 + 64 + 64);
         GF_ASSERT(v2);
 
-        v2 = sub_0200CB30(param0->unk_14.unk_04, param0->unk_14.unk_08, &v3);
+        v2 = SpriteSystem_InitManagerWithCapacities(param0->unk_14.unk_04, param0->unk_14.unk_08, &v3);
         GF_ASSERT(v2);
     }
 
-    SetSubScreenViewRect(sub_0200C738(param0->unk_14.unk_04), 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_14.unk_04), 0, (256 * FX32_ONE));
 }
 
 void ov62_0222F8E4(void *param0)
@@ -708,7 +708,7 @@ void ov62_0222FF7C(UnkStruct_0208C06C *param0)
             continue;
         }
 
-        SpriteActor_GetSpritePositionXY(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
+        Sprite_GetPositionXY2(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
 
         param0->unk_534.unk_C8[v0].unk_10->rect.top = v2 - 16;
         param0->unk_534.unk_C8[v0].unk_10->rect.bottom = v2 + 16;
@@ -723,7 +723,7 @@ void ov62_02230014(UnkStruct_0208C06C *param0)
     s16 v1, v2;
 
     for (v0 = 0; v0 < 5; v0++) {
-        SpriteActor_GetSpritePositionXY(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
+        Sprite_GetPositionXY2(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
         param0->unk_534.unk_C8[v0].unk_10->rect.top = 0;
         param0->unk_534.unk_C8[v0].unk_10->rect.bottom = 0;
         param0->unk_534.unk_C8[v0].unk_10->rect.left = 0;

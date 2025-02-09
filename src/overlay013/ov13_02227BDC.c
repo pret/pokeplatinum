@@ -77,10 +77,10 @@ static void ov13_02227C08(UnkStruct_ov13_02227244 *param0)
     SpriteResourceCapacities v0 = { 8, 8, 3, 3, 0, 0 };
     SpriteSystem *v1 = ov16_0223E010(param0->unk_00->unk_00);
 
-    param0->unk_30C = sub_0200C704(v1);
+    param0->unk_30C = SpriteManager_New(v1);
 
-    sub_0200C7C0(v1, param0->unk_30C, 6 + 5 + 1);
-    sub_0200CB30(v1, param0->unk_30C, &v0);
+    SpriteSystem_InitSprites(v1, param0->unk_30C, 6 + 5 + 1);
+    SpriteSystem_InitManagerWithCapacities(v1, param0->unk_30C, &v0);
 }
 
 static void ov13_02227C54(UnkStruct_ov13_02227244 *param0)
@@ -94,7 +94,7 @@ static void ov13_02227C54(UnkStruct_ov13_02227244 *param0)
 
     for (v1 = 0; v1 < 6; v1++) {
         SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_FileID(1, 1), 0, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
-        SpriteSystem_LoadPalette(param0->unk_08, 3, v0, param0->unk_30C, v2, Item_FileID(1, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_08, 3, v0, param0->unk_30C, v2, Item_FileID(1, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
     }
 
     SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_IconNCERFile(), 0, 46263);
@@ -105,7 +105,7 @@ static void ov13_02227C54(UnkStruct_ov13_02227244 *param0)
 static void ov13_02227D10(UnkStruct_ov13_02227244 *param0, u16 param1, u32 param2)
 {
     SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_00);
-    sub_0200D948(v0, param0->unk_30C, 16, Item_FileID(param1, 1), 0, param2);
+    SpriteSystem_ReplaceCharResObj(v0, param0->unk_30C, 16, Item_FileID(param1, 1), 0, param2);
 }
 
 static void ov13_02227D48(UnkStruct_ov13_02227244 *param0, u16 param1, u16 param2, u32 param3)
@@ -134,7 +134,7 @@ static CellActorData *ov13_02227D78(UnkStruct_ov13_02227244 *param0, u32 param1)
     v0.bgPriority = 1;
     v0.vramTransfer = FALSE;
 
-    return SpriteActor_LoadResources(v1, param0->unk_30C, &v0);
+    return SpriteSystem_NewSprite(v1, param0->unk_30C, &v0);
 }
 
 static void ov13_02227DE8(UnkStruct_ov13_02227244 *param0)
@@ -154,18 +154,18 @@ void ov13_02227E08(UnkStruct_ov13_02227244 *param0)
     v0 = ov16_0223E010(param0->unk_00->unk_00);
 
     for (v1 = 0; v1 < 6; v1++) {
-        sub_0200D0F4(param0->unk_310[v1]);
+        Sprite_DeleteAndFreeResources(param0->unk_310[v1]);
     }
 
     ov13_02227FDC(param0);
     ov13_022280C8(param0);
-    sub_0200D0B0(v0, param0->unk_30C);
+    SpriteSystem_FreeResourcesAndManager(v0, param0->unk_30C);
 }
 
 static void ov13_02227E48(CellActorData *param0, const int param1, const int param2)
 {
-    SpriteActor_EnableObject(param0, 1);
-    SpriteActor_SetSpritePositionXY(param0, param1, param2);
+    Sprite_SetDrawFlag2(param0, 1);
+    Sprite_SetPositionXY2(param0, param1, param2);
 }
 
 void ov13_02227E68(UnkStruct_ov13_02227244 *param0, u32 param1)
@@ -173,7 +173,7 @@ void ov13_02227E68(UnkStruct_ov13_02227244 *param0, u32 param1)
     u32 v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        SpriteActor_EnableObject(param0->unk_310[v0], 0);
+        Sprite_SetDrawFlag2(param0->unk_310[v0], 0);
     }
 
     switch (param1) {

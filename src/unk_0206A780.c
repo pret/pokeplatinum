@@ -74,7 +74,7 @@ void sub_0206A844(UnkStruct_0206A844 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_1C8[v0] != NULL) {
-            sub_0200D0F4(param0->unk_1C8[v0]);
+            Sprite_DeleteAndFreeResources(param0->unk_1C8[v0]);
         }
     }
 
@@ -97,8 +97,8 @@ void sub_0206A870(UnkStruct_0206A844 *param0)
 
 void sub_0206A8A0(UnkStruct_0206A844 *param0, s16 param1, s16 param2, s16 param3)
 {
-    SpriteActor_SetSpritePositionXY(param0->unk_1C8[0], param1, param2);
-    SpriteActor_SetSpritePositionXY(param0->unk_1C8[1], param1, param3);
+    Sprite_SetPositionXY2(param0->unk_1C8[0], param1, param2);
+    Sprite_SetPositionXY2(param0->unk_1C8[1], param1, param3);
 }
 
 void sub_0206A8C4(UnkStruct_0206A844 *param0, u16 param1, BOOL param2)
@@ -107,5 +107,5 @@ void sub_0206A8C4(UnkStruct_0206A844 *param0, u16 param1, BOOL param2)
         return;
     }
 
-    SpriteActor_EnableObject(param0->unk_1C8[param1], param2);
+    Sprite_SetDrawFlag2(param0->unk_1C8[param1], param2);
 }

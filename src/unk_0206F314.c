@@ -345,7 +345,7 @@ static int sub_0206F554(UnkStruct_0206F7F8 *param0)
         if (param0->unk_28 > 0) {
             Sound_PlayEffect(1500);
             --param0->unk_28;
-            SpriteActor_SetSpritePositionXY(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
+            Sprite_SetPositionXY2(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
         }
     }
 
@@ -353,7 +353,7 @@ static int sub_0206F554(UnkStruct_0206F7F8 *param0)
         if (param0->unk_28 < (param0->unk_21 - 1)) {
             Sound_PlayEffect(1500);
             ++param0->unk_28;
-            SpriteActor_SetSpritePositionXY(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
+            Sprite_SetPositionXY2(param0->unk_2FC[0], 126, 16 + 16 * param0->unk_28);
         }
     }
 
@@ -383,7 +383,7 @@ static int sub_0206F658(UnkStruct_0206F7F8 *param0)
     case 0:
         Window_FillTilemap(&param0->unk_E4, ((15 << 4) | 15));
         param0->unk_1E = Text_AddPrinterWithParamsAndColor(&param0->unk_E4, FONT_MESSAGE, param0->unk_2C.unk_68[1], 0, 0, param0->unk_1A, TEXT_COLOR(1, 2, 15), NULL);
-        sub_0200D41C(param0->unk_2FC[0], 2);
+        Sprite_SetExplicitPalette2(param0->unk_2FC[0], 2);
         param0->unk_0C++;
         break;
     case 1:
@@ -407,12 +407,12 @@ static int sub_0206F658(UnkStruct_0206F7F8 *param0)
     case 3:
         param0->unk_328->unk_04 = 0;
         sub_02070050(param0, 1);
-        sub_0200D41C(param0->unk_2FC[0], 1);
+        Sprite_SetExplicitPalette2(param0->unk_2FC[0], 1);
         param0->unk_0C = 0;
         return 6;
     case 0xFF:
         sub_0206FFB4(param0);
-        sub_0200D41C(param0->unk_2FC[0], 1);
+        Sprite_SetExplicitPalette2(param0->unk_2FC[0], 1);
         param0->unk_0C = 0;
         return 6;
     }
@@ -429,7 +429,7 @@ static int sub_0206F748(UnkStruct_0206F7F8 *param0)
         Sound_PlayEffect(1522);
         Window_FillTilemap(&param0->unk_E4, ((15 << 4) | 15));
         param0->unk_1E = Text_AddPrinterWithParamsAndColor(&param0->unk_E4, FONT_MESSAGE, param0->unk_2C.unk_68[2], 0, 0, param0->unk_1A, TEXT_COLOR(1, 2, 15), NULL);
-        sub_0200D41C(param0->unk_2FC[0], 2);
+        Sprite_SetExplicitPalette2(param0->unk_2FC[0], 2);
         param0->unk_0C++;
         break;
     case 1:
@@ -446,7 +446,7 @@ static int sub_0206F748(UnkStruct_0206F7F8 *param0)
 
         Sound_PlayEffect(1500);
         sub_0206FFB4(param0);
-        sub_0200D41C(param0->unk_2FC[0], 1);
+        Sprite_SetExplicitPalette2(param0->unk_2FC[0], 1);
         param0->unk_0C = 0;
         return 6;
     }
@@ -655,7 +655,7 @@ static void sub_0206FCC4(UnkStruct_0206F7F8 *param0)
         param0->unk_2FC[v0] = ov5_021D3584(&param0->unk_134, &v2[v0]);
     }
 
-    SpriteActor_EnableObject(param0->unk_2FC[1], 0);
+    Sprite_SetDrawFlag2(param0->unk_2FC[1], 0);
 }
 
 static void sub_0206FD94(UnkStruct_0206F7F8 *param0)
@@ -664,7 +664,7 @@ static void sub_0206FD94(UnkStruct_0206F7F8 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_2FC[v0] != NULL) {
-            sub_0200D0F4(param0->unk_2FC[v0]);
+            Sprite_DeleteAndFreeResources(param0->unk_2FC[v0]);
         }
     }
 
@@ -702,7 +702,7 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_E4, 1, (1024 - (18 + 12)), 10);
     Window_FillTilemap(&param0->unk_E4, ((15 << 4) | 15));
     Text_AddPrinterWithParamsAndColor(&param0->unk_E4, FONT_MESSAGE, param0->unk_2C.unk_10, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    SpriteActor_EnableObject(param0->unk_2FC[0], 1);
+    Sprite_SetDrawFlag2(param0->unk_2FC[0], 1);
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 3);
 }
 
@@ -713,7 +713,7 @@ static void sub_0206FF10(UnkStruct_0206F7F8 *param0)
     Window_ClearAndCopyToVRAM(&(param0->unk_D4));
     Window_EraseStandardFrame(&(param0->unk_D4), 0);
     Window_Remove(&(param0->unk_D4));
-    SpriteActor_EnableObject(param0->unk_2FC[0], 0);
+    Sprite_SetDrawFlag2(param0->unk_2FC[0], 0);
     Bg_ScheduleTilemapTransfer(param0->unk_D0, 3);
 }
 
@@ -729,7 +729,7 @@ static void sub_0206FF60(ListMenu *param0, u32 param1, u8 param2)
     ListMenu_GetListAndCursorPos(param0, &v0, &v1);
     v2 = ListMenu_GetAttribute(param0, 2);
 
-    SpriteActor_SetSpritePositionXY(v3->unk_2FC[0], 126, 16 + 16 * (v1 + v0));
+    Sprite_SetPositionXY2(v3->unk_2FC[0], 126, 16 + 16 * (v1 + v0));
 }
 
 static void sub_0206FFB4(UnkStruct_0206F7F8 *param0)
@@ -741,15 +741,15 @@ static void sub_0206FFB4(UnkStruct_0206F7F8 *param0)
 static void sub_0206FFE4(UnkStruct_0206F7F8 *param0)
 {
     sub_0206FFB4(param0);
-    SpriteActor_SetSpritePositionXY(param0->unk_2FC[0], 126, 16 + param0->unk_28 * 16);
-    SpriteActor_EnableObject(param0->unk_2FC[0], 1);
+    Sprite_SetPositionXY2(param0->unk_2FC[0], 126, 16 + param0->unk_28 * 16);
+    Sprite_SetDrawFlag2(param0->unk_2FC[0], 1);
 }
 
 static void sub_02070010(UnkStruct_0206F7F8 *param0)
 {
     Window_FillTilemap(&param0->unk_E4, ((15 << 4) | 15));
     Text_AddPrinterWithParamsAndColor(&param0->unk_E4, FONT_MESSAGE, param0->unk_2C.unk_50[param0->unk_1F], 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
-    SpriteActor_EnableObject(param0->unk_2FC[0], 0);
+    Sprite_SetDrawFlag2(param0->unk_2FC[0], 0);
 }
 
 static void sub_02070050(UnkStruct_0206F7F8 *param0, BOOL param1)
@@ -819,7 +819,7 @@ static void sub_020701DC(UnkStruct_0206F7F8 *param0, u16 param1)
     Window_Add(param0->unk_D0, &param0->unk_D4, 1, 4, 1, 24, 12, 13, 1);
     Window_DrawStandardFrame(&param0->unk_D4, 1, (1024 - (18 + 12) - 9), 11);
     sub_02070050(param0, 0);
-    SpriteActor_EnableObject(param0->unk_2FC[1], 1);
+    Sprite_SetDrawFlag2(param0->unk_2FC[1], 1);
     Window_Add(param0->unk_D0, &param0->unk_F4, 3, 8, 14, 8, 2, 13, ((((1024 - (18 + 12) - 9) - 27 * 4) - 6 * 4) - (8 * 2)));
     Window_FillTilemap(&param0->unk_F4, ((0 << 4) | 0));
     Text_AddPrinterWithParamsAndColor(&param0->unk_F4, FONT_SYSTEM, param0->unk_2C.unk_14, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
@@ -833,8 +833,8 @@ static void sub_02070288(UnkStruct_0206F7F8 *param0)
     Window_Remove(&param0->unk_D4);
     Window_ClearAndCopyToVRAM(&param0->unk_F4);
     Window_Remove(&param0->unk_F4);
-    SpriteActor_EnableObject(param0->unk_2FC[0], 0);
-    SpriteActor_EnableObject(param0->unk_2FC[1], 0);
+    Sprite_SetDrawFlag2(param0->unk_2FC[0], 0);
+    Sprite_SetDrawFlag2(param0->unk_2FC[1], 0);
 }
 
 static BOOL sub_020702D0(FieldTask *param0)

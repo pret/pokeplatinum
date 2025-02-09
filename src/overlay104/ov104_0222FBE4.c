@@ -1320,8 +1320,8 @@ static BOOL ov104_0223066C(UnkStruct_ov104_0222E930 *param0)
         v9 = (*((param0)->unk_1C++));
         v10 = ov104_0223D2FC(v1, v9, v4);
 
-        SpriteActor_SetSpritePositionXY(v10, v5, v6);
-        SpriteActor_EnableObject(v10, v7);
+        Sprite_SetPositionXY2(v10, v5, v6);
+        Sprite_SetDrawFlag2(v10, v7);
 
         ov104_0223D378(v1, v9, v8);
     }
@@ -1353,7 +1353,7 @@ static BOOL ov104_02230728(UnkStruct_ov104_0222E930 *param0)
     v4 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v4 != NULL);
-    SpriteActor_EnableObject(v4, v3);
+    Sprite_SetDrawFlag2(v4, v3);
 
     return 0;
 }
@@ -1368,7 +1368,7 @@ static BOOL ov104_02230760(UnkStruct_ov104_0222E930 *param0)
     v3 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v3 != NULL);
-    sub_0200D7CC(v3->sprite, 1);
+    Sprite_SetFlipMode(v3->sprite, 1);
 
     return 0;
 }
@@ -1385,9 +1385,9 @@ static BOOL ov104_02230790(UnkStruct_ov104_0222E930 *param0)
     GF_ASSERT(v0 != NULL);
 
     if (v4 == 0) {
-        sub_0200D808(v0->sprite, GX_OAM_MODE_NORMAL);
+        Sprite_SetExplicitOamMode(v0->sprite, GX_OAM_MODE_NORMAL);
     } else {
-        sub_0200D808(v0->sprite, GX_OAM_MODE_XLU);
+        Sprite_SetExplicitOamMode(v0->sprite, GX_OAM_MODE_XLU);
     }
 
     return 0;
@@ -1402,7 +1402,7 @@ static BOOL ov104_022307D8(UnkStruct_ov104_0222E930 *param0)
 
     v2 = ov104_0223D370(v3, v0);
 
-    sub_0200D364(v2, v1);
+    Sprite_SetAnim(v2, v1);
     ov104_0223D378(v3, v0, 1);
 
     return 0;
@@ -1434,7 +1434,7 @@ static BOOL ov104_02230850(UnkStruct_ov104_0222E930 *param0)
 
     v0 = ov104_0223D370(v1, param0->unk_78[0]);
 
-    if ((ov104_0223D3A4(v1, param0->unk_78[0]) == 0) || (sub_0200D3B8(v0) == 0)) {
+    if ((ov104_0223D3A4(v1, param0->unk_78[0]) == 0) || (Sprite_IsAnimated(v0) == 0)) {
         return 1;
     }
 

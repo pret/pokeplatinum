@@ -567,7 +567,7 @@ static CellActorData *ov17_02241720(PaletteData *param0, SpriteSystem *param1, S
     }
 
     SpriteSystem_LoadCharResObjFromOpenNarc(param1, param2, param5, v2, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33001 + param4);
-    SpriteSystem_LoadPalette(param0, 2, param1, param2, param5, v3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33002 + param4);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0, 2, param1, param2, param5, v3, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33002 + param4);
     SpriteSystem_LoadCellResObjFromOpenNarc(param1, param2, param5, v4, 1, 33001 + param4);
     SpriteSystem_LoadAnimResObjFromOpenNarc(param1, param2, param5, v5, 1, 33001 + param4);
 
@@ -579,15 +579,15 @@ static CellActorData *ov17_02241720(PaletteData *param0, SpriteSystem *param1, S
     v1.x = (8 * 12) + (4 * 8) * param4;
     v1.y = (8 * 5) + 0 * param4;
 
-    v0 = SpriteActor_LoadResources(param1, param2, &v1);
-    SpriteActor_UpdateObject(v0->sprite);
+    v0 = SpriteSystem_NewSprite(param1, param2, &v1);
+    Sprite_TickFrame(v0->sprite);
 
     return v0;
 }
 
 static void ov17_02241814(SpriteManager *param0, CellActorData *param1, int param2)
 {
-    sub_0200D0F4(param1);
+    Sprite_DeleteAndFreeResources(param1);
     SpriteManager_UnloadCharObjById(param0, 33001 + param2);
     SpriteManager_UnloadPlttObjById(param0, 33002 + param2);
     SpriteManager_UnloadCellObjById(param0, 33001 + param2);
@@ -622,15 +622,15 @@ static CellActorData *ov17_022418A4(SpriteSystem *param0, SpriteManager *param1,
     v1.y = (8 * 4) + 0 * param2;
     v1.plttIdx = v2[param2];
 
-    v0 = SpriteActor_LoadResources(param0, param1, &v1);
-    SpriteActor_UpdateObject(v0->sprite);
+    v0 = SpriteSystem_NewSprite(param0, param1, &v1);
+    Sprite_TickFrame(v0->sprite);
 
     return v0;
 }
 
 static void ov17_02241900(CellActorData *param0)
 {
-    sub_0200D0F4(param0);
+    Sprite_DeleteAndFreeResources(param0);
 }
 
 static void ov17_02241908(SpriteManager *param0)
@@ -690,10 +690,10 @@ void ov17_02241A24(UnkStruct_ov17_0223F88C *param0)
     SpriteTemplate v1;
 
     v1 = Unk_ov17_022537B8;
-    v0 = SpriteActor_LoadResources(param0->unk_18, param0->unk_1C, &v1);
+    v0 = SpriteSystem_NewSprite(param0->unk_18, param0->unk_1C, &v1);
 
-    SpriteActor_EnableObject(v0, 0);
-    SpriteActor_UpdateObject(v0->sprite);
+    Sprite_SetDrawFlag2(v0, 0);
+    Sprite_TickFrame(v0->sprite);
 
     param0->unk_17C = v0;
 }
@@ -702,7 +702,7 @@ void ov17_02241A64(UnkStruct_ov17_0223F88C *param0)
 {
     GF_ASSERT(param0->unk_17C != NULL);
 
-    sub_0200D0F4(param0->unk_17C);
+    Sprite_DeleteAndFreeResources(param0->unk_17C);
     param0->unk_17C = NULL;
 }
 
@@ -710,9 +710,9 @@ void ov17_02241A8C(UnkStruct_ov17_0223F88C *param0, int param1, int param2)
 {
     GF_ASSERT(param0->unk_17C != NULL);
 
-    SpriteActor_SetSpritePositionXY(param0->unk_17C, Unk_ov17_022536E4[param1].unk_00, Unk_ov17_022536E4[param1].unk_02);
-    sub_0200D364(param0->unk_17C, param2);
-    SpriteActor_EnableObject(param0->unk_17C, 1);
+    Sprite_SetPositionXY2(param0->unk_17C, Unk_ov17_022536E4[param1].unk_00, Unk_ov17_022536E4[param1].unk_02);
+    Sprite_SetAnim(param0->unk_17C, param2);
+    Sprite_SetDrawFlag2(param0->unk_17C, 1);
 
     switch (param2) {
     case 0:
@@ -733,7 +733,7 @@ void ov17_02241A8C(UnkStruct_ov17_0223F88C *param0, int param1, int param2)
 void ov17_02241B1C(UnkStruct_ov17_0223F88C *param0)
 {
     GF_ASSERT(param0->unk_17C != NULL);
-    SpriteActor_EnableObject(param0->unk_17C, 0);
+    Sprite_SetDrawFlag2(param0->unk_17C, 0);
 }
 
 void ov17_02241B3C(UnkStruct_ov17_02246F24 *param0, int param1, int param2, u8 *param3)
@@ -749,7 +749,7 @@ void ov17_02241B3C(UnkStruct_ov17_02246F24 *param0, int param1, int param2, u8 *
     v0->unk_00 = param0;
     v0->unk_08 = param1;
 
-    SpriteActor_GetSpritePositionXY(param0->unk_0C.unk_A8[param1], &v0->unk_0C, &v0->unk_0E);
+    Sprite_GetPositionXY2(param0->unk_0C.unk_A8[param1], &v0->unk_0C, &v0->unk_0E);
 
     switch (param2) {
     case 0:
@@ -824,7 +824,7 @@ static void ov17_02241C2C(SysTask *param0, void *param1)
         return;
     }
 
-    SpriteActor_SetSpritePositionXY(v0->unk_00->unk_0C.unk_A8[v0->unk_08], v0->unk_10 / 0x100, v0->unk_14 / 0x100);
+    Sprite_SetPositionXY2(v0->unk_00->unk_0C.unk_A8[v0->unk_08], v0->unk_10 / 0x100, v0->unk_14 / 0x100);
 }
 
 static void ov17_02241CF0(SysTask *param0, void *param1)
@@ -852,7 +852,7 @@ static void ov17_02241CF0(SysTask *param0, void *param1)
             }
         }
 
-        SpriteActor_SetSpritePositionXY(v0->unk_00->unk_0C.unk_A8[v0->unk_08], v0->unk_10 / 0x100, v0->unk_14 / 0x100);
+        Sprite_SetPositionXY2(v0->unk_00->unk_0C.unk_A8[v0->unk_08], v0->unk_10 / 0x100, v0->unk_14 / 0x100);
         break;
     default:
         *(v0->unk_04) = 1;
@@ -870,10 +870,10 @@ void ov17_02241D94(UnkStruct_ov17_0223F88C *param0, int param1, NARC *param2)
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_18, param0->unk_1C, param2, 19, 1, 33005);
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_18, param0->unk_1C, param2, 18, 1, 33005);
 
-    param0->unk_C0 = SpriteActor_LoadResources(param0->unk_18, param0->unk_1C, &Unk_ov17_02253854);
+    param0->unk_C0 = SpriteSystem_NewSprite(param0->unk_18, param0->unk_1C, &Unk_ov17_02253854);
 
-    SpriteActor_UpdateObject(param0->unk_C0->sprite);
-    SpriteActor_SetSpritePositionXY(param0->unk_C0, (8 * 12) + (4 * 8) * param1, (7 * 8));
+    Sprite_TickFrame(param0->unk_C0->sprite);
+    Sprite_SetPositionXY2(param0->unk_C0, (8 * 12) + (4 * 8) * param1, (7 * 8));
 }
 
 void ov17_02241E24(UnkStruct_ov17_0223F88C *param0)
@@ -881,7 +881,7 @@ void ov17_02241E24(UnkStruct_ov17_0223F88C *param0)
     SpriteManager_UnloadCharObjById(param0->unk_1C, 33005);
     SpriteManager_UnloadCellObjById(param0->unk_1C, 33005);
     SpriteManager_UnloadAnimObjById(param0->unk_1C, 33005);
-    sub_0200D0F4(param0->unk_C0);
+    Sprite_DeleteAndFreeResources(param0->unk_C0);
 
     param0->unk_C0 = NULL;
 }
@@ -903,7 +903,7 @@ void ov17_02241EA4(SpriteManager *param0)
 static inline void inline_ov17_02241EC4(UnkStruct_ov17_0223F88C *param0, int param1, int param2)
 {
     if (param0->unk_C4[param1][param2] != NULL) {
-        sub_0200D0F4(param0->unk_C4[param1][param2]);
+        Sprite_DeleteAndFreeResources(param0->unk_C4[param1][param2]);
         param0->unk_C4[param1][param2] = NULL;
     }
 }
@@ -930,10 +930,10 @@ static CellActorData *ov17_02241F08(SpriteSystem *param0, SpriteManager *param1,
 {
     CellActorData *v0;
 
-    v0 = SpriteActor_LoadResources(param0, param1, &Unk_ov17_02253888);
+    v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_02253888);
 
-    SpriteActor_UpdateObject(v0->sprite);
-    SpriteActor_SetSpritePositionXY(v0, param2, param3);
+    Sprite_TickFrame(v0->sprite);
+    Sprite_SetPositionXY2(v0, param2, param3);
 
     return v0;
 }
@@ -958,10 +958,10 @@ void ov17_02241F34(UnkStruct_ov17_0223F88C *param0, int param1, int param2, int 
 
         if (param0->unk_C4[param1][v2] == NULL) {
             param0->unk_C4[param1][v2] = ov17_02241F08(param0->unk_18, param0->unk_1C, Unk_ov17_0225370C[param2][0] + v2 * 8, Unk_ov17_0225370C[param2][1]);
-            sub_0200D364(param0->unk_C4[param1][v2], v3);
+            Sprite_SetAnim(param0->unk_C4[param1][v2], v3);
             ov17_02242048(param0->unk_C4[param1][v2]);
-        } else if (sub_0200D37C(param0->unk_C4[param1][v2]) < v3) {
-            sub_0200D364(param0->unk_C4[param1][v2], v3);
+        } else if (Sprite_GetActiveAnim(param0->unk_C4[param1][v2]) < v3) {
+            Sprite_SetAnim(param0->unk_C4[param1][v2], v3);
             ov17_02242048(param0->unk_C4[param1][v2]);
         }
     }
@@ -978,7 +978,7 @@ static void ov17_02242048(CellActorData *param0)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02242048));
     v0->unk_00 = param0;
 
-    SpriteActor_EnableObject(param0, 0);
+    Sprite_SetDrawFlag2(param0, 0);
     SysTask_Start(ov17_0224207C, v0, 40000);
 }
 
@@ -988,17 +988,17 @@ static void ov17_0224207C(SysTask *param0, void *param1)
 
     switch (v0->unk_0C) {
     case 0:
-        sub_0200D6A4(v0->unk_00, 2);
+        Sprite_SetAffineOverwriteMode(v0->unk_00, 2);
         v0->unk_04 = (0.1f);
         v0->unk_08 = (0.1f);
-        SpriteActor_EnableObject(v0->unk_00, 1);
+        Sprite_SetDrawFlag2(v0->unk_00, 1);
         v0->unk_0C++;
     case 1:
         v0->unk_04 += (0.3f);
         v0->unk_08 += (0.3f);
 
-        sub_0200D6E8(v0->unk_00, v0->unk_04, v0->unk_08);
-        sub_0200D7C0(v0->unk_00, 0);
+        Sprite_SetAffineScale(v0->unk_00, v0->unk_04, v0->unk_08);
+        Sprite_OffsetAffineZRotation(v0->unk_00, 0);
 
         if (v0->unk_04 >= (1.5f)) {
             v0->unk_0C++;
@@ -1008,17 +1008,17 @@ static void ov17_0224207C(SysTask *param0, void *param1)
         v0->unk_04 -= (0.3f);
         v0->unk_08 -= (0.3f);
 
-        sub_0200D6E8(v0->unk_00, v0->unk_04, v0->unk_08);
-        sub_0200D7C0(v0->unk_00, 0);
+        Sprite_SetAffineScale(v0->unk_00, v0->unk_04, v0->unk_08);
+        Sprite_OffsetAffineZRotation(v0->unk_00, 0);
 
         if (v0->unk_04 <= (1.0f)) {
-            sub_0200D6E8(v0->unk_00, (1.0f), (1.0f));
-            sub_0200D79C(v0->unk_00, 0);
+            Sprite_SetAffineScale(v0->unk_00, (1.0f), (1.0f));
+            Sprite_SetAffineZRotation(v0->unk_00, 0);
             v0->unk_0C++;
         }
         break;
     default:
-        sub_0200D6A4(v0->unk_00, 0);
+        Sprite_SetAffineOverwriteMode(v0->unk_00, 0);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         return;
@@ -1047,7 +1047,7 @@ void ov17_022421E0(SpriteManager *param0)
 
 static inline void inline_ov17_0224221C(UnkStruct_ov17_0223F88C *param0, int param1, int param2)
 {
-    sub_0200D0F4(param0->unk_124[param1][param2]);
+    Sprite_DeleteAndFreeResources(param0->unk_124[param1][param2]);
     param0->unk_124[param1][param2] = NULL;
 }
 
@@ -1075,10 +1075,10 @@ static CellActorData *ov17_02242260(SpriteSystem *param0, SpriteManager *param1,
 {
     CellActorData *v0;
 
-    v0 = SpriteActor_LoadResources(param0, param1, &Unk_ov17_022537EC);
+    v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_022537EC);
 
-    SpriteActor_UpdateObject(v0->sprite);
-    SpriteActor_SetSpritePositionXY(v0, param2, param3);
+    Sprite_TickFrame(v0->sprite);
+    Sprite_SetPositionXY2(v0, param2, param3);
 
     return v0;
 }
@@ -1087,10 +1087,10 @@ static CellActorData *ov17_0224228C(SpriteSystem *param0, SpriteManager *param1,
 {
     CellActorData *v0;
 
-    v0 = SpriteActor_LoadResources(param0, param1, &Unk_ov17_0225371C);
+    v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_0225371C);
 
-    SpriteActor_UpdateObject(v0->sprite);
-    SpriteActor_SetSpritePositionXY(v0, param2, param3);
+    Sprite_TickFrame(v0->sprite);
+    Sprite_SetPositionXY2(v0, param2, param3);
 
     return v0;
 }
@@ -1101,7 +1101,7 @@ static void ov17_022422B8(SysTask *param0, void *param1)
 
     switch (v0->unk_2E) {
     case 0:
-        sub_0200D6A4(v0->unk_04, 1);
+        Sprite_SetAffineOverwriteMode(v0->unk_04, 1);
 
         v0->unk_20 = v0->unk_10 + (32 << 8);
         v0->unk_24 = v0->unk_14 + (72 << 8);
@@ -1149,16 +1149,16 @@ static void ov17_022422B8(SysTask *param0, void *param1)
         }
         break;
     default:
-        sub_0200D0F4(v0->unk_04);
-        SpriteActor_EnableObject(v0->unk_08, 1);
+        Sprite_DeleteAndFreeResources(v0->unk_04);
+        Sprite_SetDrawFlag2(v0->unk_08, 1);
         Sound_PlayEffect(1760);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         return;
     }
 
-    sub_0200D7C0(v0->unk_04, 0x2000);
-    SpriteActor_SetSpritePositionXY(v0->unk_04, v0->unk_10 / 0x100, v0->unk_14 / 0x100);
+    Sprite_OffsetAffineZRotation(v0->unk_04, 0x2000);
+    Sprite_SetPositionXY2(v0->unk_04, v0->unk_10 / 0x100, v0->unk_14 / 0x100);
 }
 
 BOOL ov17_022424A8(UnkStruct_ov17_0223F88C *param0, int param1)
@@ -1167,7 +1167,7 @@ BOOL ov17_022424A8(UnkStruct_ov17_0223F88C *param0, int param1)
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param0->unk_124[param1][v0] != NULL) {
-            if (sub_0200D408(param0->unk_124[param1][v0]) == 0) {
+            if (Sprite_GetDrawFlag2(param0->unk_124[param1][v0]) == 0) {
                 return 0;
             }
         }
@@ -1187,7 +1187,7 @@ void ov17_022424D4(UnkStruct_ov17_0223F88C *param0, int param1, int param2)
     for (v1 = 0; v1 < v0; v1++) {
         if (param0->unk_124[param1][v1] == NULL) {
             param0->unk_124[param1][v1] = ov17_02242260(param0->unk_18, param0->unk_1C, Unk_ov17_022536D8[param1][0] + v1 * 5, Unk_ov17_022536D8[param1][1]);
-            SpriteActor_EnableObject(param0->unk_124[param1][v1], 0);
+            Sprite_SetDrawFlag2(param0->unk_124[param1][v1], 0);
 
             v2 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_022422B8));
             MI_CpuClear8(v2, sizeof(UnkStruct_ov17_022422B8));
@@ -1229,14 +1229,14 @@ static void ov17_0224262C(UnkStruct_ov17_02246F24 *param0, GXOamMode param1, int
     for (v0 = 0; v0 < 4; v0++) {
         for (v1 = 0; v1 < 6; v1++) {
             if (param0->unk_0C.unk_C4[v0][v1] != NULL) {
-                SpriteActor_SetOAMMode(param0->unk_0C.unk_C4[v0][v1], param1);
-                SpriteActor_EnableObject(param0->unk_0C.unk_C4[v0][v1], v2);
+                Sprite_SetExplicitOamMode2(param0->unk_0C.unk_C4[v0][v1], param1);
+                Sprite_SetDrawFlag2(param0->unk_0C.unk_C4[v0][v1], v2);
             }
         }
 
         if (param0->unk_0C.unk_160[v0] != NULL) {
-            SpriteActor_SetOAMMode(param0->unk_0C.unk_160[v0], param1);
-            SpriteActor_EnableObject(param0->unk_0C.unk_160[v0], v2);
+            Sprite_SetExplicitOamMode2(param0->unk_0C.unk_160[v0], param1);
+            Sprite_SetDrawFlag2(param0->unk_0C.unk_160[v0], v2);
         }
 
         sub_02012AF0(param0->unk_0C.unk_180[v0].unk_00, param1);
@@ -1638,12 +1638,12 @@ void ov17_0224308C(SpriteManager *param0)
 void ov17_022430AC(UnkStruct_ov17_0223F88C *param0, int param1, int param2)
 {
     if (param0->unk_160[param1] == NULL) {
-        param0->unk_160[param1] = SpriteActor_LoadResources(param0->unk_18, param0->unk_1C, &Unk_ov17_02253750);
+        param0->unk_160[param1] = SpriteSystem_NewSprite(param0->unk_18, param0->unk_1C, &Unk_ov17_02253750);
     }
 
-    sub_0200D364(param0->unk_160[param1], param2);
-    SpriteActor_SetSpritePositionXY(param0->unk_160[param1], (8 * 8), (5 * 8 + 2) + param1 * (6 * 8));
-    SpriteActor_UpdateObject(param0->unk_160[param1]->sprite);
+    Sprite_SetAnim(param0->unk_160[param1], param2);
+    Sprite_SetPositionXY2(param0->unk_160[param1], (8 * 8), (5 * 8 + 2) + param1 * (6 * 8));
+    Sprite_TickFrame(param0->unk_160[param1]->sprite);
 }
 
 void ov17_022430F8(UnkStruct_ov17_0223F88C *param0)
@@ -1652,7 +1652,7 @@ void ov17_022430F8(UnkStruct_ov17_0223F88C *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_160[v0] != NULL) {
-            sub_0200D0F4(param0->unk_160[v0]);
+            Sprite_DeleteAndFreeResources(param0->unk_160[v0]);
             param0->unk_160[v0] = NULL;
         }
     }
@@ -1832,7 +1832,7 @@ void ov17_0224331C(UnkStruct_ov17_02246F24 *param0, int param1, int param2, u8 *
         }
 
         if (*param3 == 0) {
-            SpriteActor_GetSpritePositionXY(param0->unk_0C.unk_C4[param1][v7], &v3, &v4);
+            Sprite_GetPositionXY2(param0->unk_0C.unk_C4[param1][v7], &v3, &v4);
             v8 = sub_0208C0A4(
                      MATH_IAbs(v3 - v1), MATH_IAbs(v4 - v2))
                 * 0x100;
@@ -1861,7 +1861,7 @@ void ov17_0224331C(UnkStruct_ov17_02246F24 *param0, int param1, int param2, u8 *
         v0->unk_23 = v3;
         v0->unk_24 = v4;
 
-        SpriteActor_GetSpritePositionXY(param0->unk_0C.unk_C4[param1][v7], &v5, &v6);
+        Sprite_GetPositionXY2(param0->unk_0C.unk_C4[param1][v7], &v5, &v6);
 
         v0->unk_1C = (MATH_IAbs(v3 - v5) << 8) / (3 * (*param3));
         v0->unk_18 = v5 << 8;
@@ -1886,9 +1886,9 @@ static void ov17_022434E0(SysTask *param0, void *param1)
             v0->unk_20++;
         }
 
-        SpriteActor_GetSpritePositionXY(v0->unk_08, &v4, &v5);
+        Sprite_GetPositionXY2(v0->unk_08, &v4, &v5);
         v4 = v0->unk_18 >> 8;
-        SpriteActor_SetSpritePositionXY(v0->unk_08, v4, v5);
+        Sprite_SetPositionXY2(v0->unk_08, v4, v5);
         break;
     case 1:
         v0->unk_1E += v0->unk_14;
@@ -1911,10 +1911,10 @@ static void ov17_022434E0(SysTask *param0, void *param1)
         v3 = v0->unk_10 / 0x100;
         v1 = FX_Mul(CalcCosineDegrees(v0->unk_1E / 100), v3 << FX32_SHIFT) / FX32_ONE;
         v2 = FX_Mul(CalcSineDegrees(v0->unk_1E / 100), v3 << FX32_SHIFT) / FX32_ONE;
-        SpriteActor_SetSpritePositionXY(v0->unk_08, v0->unk_21 + v1, v0->unk_22 + v2);
+        Sprite_SetPositionXY2(v0->unk_08, v0->unk_21 + v1, v0->unk_22 + v2);
         break;
     default:
-        SpriteActor_EnableObject(v0->unk_08, 0);
+        Sprite_SetDrawFlag2(v0->unk_08, 0);
         Sound_PlayEffect(1505);
         ov17_022414B0(v0->unk_04);
 
@@ -1955,7 +1955,7 @@ static void ov17_022436A4(SysTask *param0, void *param1)
             continue;
         }
 
-        sub_0200D330(v0->unk_00->unk_0C.unk_124[v0->unk_08][v1]);
+        Sprite_TickOneFrame(v0->unk_00->unk_0C.unk_124[v0->unk_08][v1]);
     }
 }
 
@@ -2004,7 +2004,7 @@ static void ov17_02243750(SysTask *param0, void *param1)
             break;
         }
 
-        SpriteActor_GetSpritePositionXY(v0->unk_04, &v1, &v2);
+        Sprite_GetPositionXY2(v0->unk_04, &v1, &v2);
 
         v2 += (6 << FX32_SHIFT) >> FX32_SHIFT;
         v0->unk_1C = v1 << 8;
@@ -2023,12 +2023,12 @@ static void ov17_02243750(SysTask *param0, void *param1)
         v4 = FX_Mul(CalcCosineDegrees(v0->unk_0C / 100), (6 << FX32_SHIFT)) / FX32_ONE;
 
         v0->unk_20 += 0x80;
-        SpriteActor_SetSpritePositionXY(v0->unk_04, (v0->unk_1C >> 8) + v3, (v0->unk_20 >> 8) + v4);
+        Sprite_SetPositionXY2(v0->unk_04, (v0->unk_1C >> 8) + v3, (v0->unk_20 >> 8) + v4);
         v0->unk_24++;
 
         if (v0->unk_24 > 80) {
             v0->unk_24 = 0;
-            SpriteActor_GetSpritePositionXY(v0->unk_04, &v1, &v2);
+            Sprite_GetPositionXY2(v0->unk_04, &v1, &v2);
             v0->unk_1C = v1 << 8;
             v0->unk_20 = v2 << 8;
             {
@@ -2057,10 +2057,10 @@ static void ov17_02243750(SysTask *param0, void *param1)
             v0->unk_0E++;
         }
 
-        SpriteActor_SetSpritePositionXY(v0->unk_04, v0->unk_1C >> 8, v0->unk_20 >> 8);
+        Sprite_SetPositionXY2(v0->unk_04, v0->unk_1C >> 8, v0->unk_20 >> 8);
         break;
     default:
-        SpriteActor_EnableObject(v0->unk_04, 0);
+        Sprite_SetDrawFlag2(v0->unk_04, 0);
         Sound_PlayEffect(1505);
         (*(v0->unk_08))--;
         Heap_FreeToHeap(param1);

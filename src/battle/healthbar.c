@@ -515,13 +515,13 @@ void Healthbar_LoadResources(SpriteSystem *renderer, SpriteManager *gfxHandler, 
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbarType);
 
     SpriteSystem_LoadCharResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[0], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[0]);
-    SpriteSystem_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
     SpriteSystem_LoadCellResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[2], TRUE, template->resources[2]);
     SpriteSystem_LoadAnimResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[3], TRUE, template->resources[3]);
-    SpriteSystem_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_EFFECTS_PALETTE_RESID);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_EFFECTS_PALETTE_RESID);
 
     if (healthbarType == HEALTHBAR_TYPE_SAFARI_ZONE || healthbarType == HEALTHBAR_TYPE_PAL_PARK) {
-        SpriteSystem_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 81, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_SAFARI_PALETTE_RESID);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 81, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_SAFARI_PALETTE_RESID);
     }
 }
 
@@ -531,7 +531,7 @@ static void Healthbar_LoadMainPalette(SpriteSystem *renderer, SpriteManager *han
 
     if (template != NULL) {
         SpriteSystem_LoadCharResObjFromOpenNarc(renderer, handler, narc, template->resources[0], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[0]);
-        SpriteSystem_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, handler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, handler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
         SpriteSystem_LoadCellResObjFromOpenNarc(renderer, handler, narc, template->resources[2], TRUE, template->resources[2]);
         SpriteSystem_LoadAnimResObjFromOpenNarc(renderer, handler, narc, template->resources[3], TRUE, template->resources[3]);
     }
@@ -540,9 +540,9 @@ static void Healthbar_LoadMainPalette(SpriteSystem *renderer, SpriteManager *han
 CellActorData *Healthbar_LoadCellActor(SpriteSystem *renderer, SpriteManager *handler, int type)
 {
     const SpriteTemplate *template = Healthbar_SpriteTemplate(type);
-    CellActorData *data = SpriteActor_LoadResources(renderer, handler, template);
+    CellActorData *data = SpriteSystem_NewSprite(renderer, handler, template);
 
-    SpriteActor_UpdateObject(data->sprite);
+    Sprite_TickFrame(data->sprite);
     return data;
 }
 
@@ -677,7 +677,7 @@ void ov16_02267220(Healthbar *param0)
         return;
     }
 
-    sub_0200D0F4(param0->mainActor);
+    Sprite_DeleteAndFreeResources(param0->mainActor);
     param0->mainActor = NULL;
 }
 
@@ -687,7 +687,7 @@ static void ov16_02267244(Healthbar *param0)
         return;
     }
 
-    sub_0200D0F4(param0->arrowActor);
+    Sprite_DeleteAndFreeResources(param0->arrowActor);
     param0->arrowActor = NULL;
 }
 
@@ -746,7 +746,7 @@ void ov16_022672C4(Healthbar *param0)
     Healthbar_LoadMainPalette(v1, v2, v4, v3, param0->type);
 
     if (param0->arrowActor != NULL) {
-        SpriteActor_SetPositionXY(param0->arrowActor->sprite, v0->x - sArrowOffsetX[param0->type], v0->y + 0);
+        Sprite_SetPositionXY(param0->arrowActor->sprite, v0->x - sArrowOffsetX[param0->type], v0->y + 0);
     }
 
     NARC_dtor(v4);
@@ -908,10 +908,10 @@ void ov16_022675D8(Healthbar *param0, int param1)
         return;
     }
 
-    sub_0200D460(param0->mainActor, param1);
+    Sprite_SetExplicitPriority(param0->mainActor, param1);
 
     if (param0->arrowActor != NULL) {
-        sub_0200D460(param0->arrowActor, param1);
+        Sprite_SetExplicitPriority(param0->arrowActor, param1);
     }
 }
 
@@ -933,7 +933,7 @@ static void Healthbar_EnableArrow(Healthbar *battleSys, BOOL enable)
         return;
     }
 
-    SpriteActor_EnableObject(battleSys->arrowActor, enable);
+    Sprite_SetDrawFlag2(battleSys->arrowActor, enable);
 }
 
 void Healthbar_Enable(Healthbar *battleSys, BOOL enable)
@@ -942,7 +942,7 @@ void Healthbar_Enable(Healthbar *battleSys, BOOL enable)
         return;
     }
 
-    SpriteActor_EnableObject(battleSys->mainActor, enable);
+    Sprite_SetDrawFlag2(battleSys->mainActor, enable);
     Healthbar_EnableArrow(battleSys, enable);
 }
 
@@ -951,9 +951,9 @@ void Healthbar_OffsetPositionXY(Healthbar *healthbar, int x, int y)
     GF_ASSERT(healthbar->mainActor != NULL);
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbar->type);
 
-    SpriteActor_SetPositionXY(healthbar->mainActor->sprite, template->x + x, template->y + y);
+    Sprite_SetPositionXY(healthbar->mainActor->sprite, template->x + x, template->y + y);
     if (healthbar->arrowActor != NULL) {
-        SpriteActor_SetPositionXY(healthbar->arrowActor->sprite,
+        Sprite_SetPositionXY(healthbar->arrowActor->sprite,
             template->x + x - sArrowOffsetX[healthbar->type],
             template->y + y + 0);
     }
@@ -1003,7 +1003,7 @@ static void ScrollHealthbarTask(SysTask *task, void *data)
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbar->type);
 
     s16 x, y;
-    SpriteActor_GetSpritePositionXY(healthbar->mainActor, &x, &y);
+    Sprite_GetPositionXY2(healthbar->mainActor, &x, &y);
 
     // Determine new X and Y based on the type of healthbar
     switch (healthbar->type) {
@@ -1051,9 +1051,9 @@ static void ScrollHealthbarTask(SysTask *task, void *data)
     }
 
     // Update positions of the sprites on the screen
-    SpriteActor_SetSpritePositionXY(healthbar->mainActor, x, y);
+    Sprite_SetPositionXY2(healthbar->mainActor, x, y);
     if (healthbar->arrowActor != NULL) {
-        SpriteActor_SetSpritePositionXY(healthbar->arrowActor, x - sArrowOffsetX[healthbar->type], y + 0);
+        Sprite_SetPositionXY2(healthbar->arrowActor, x - sArrowOffsetX[healthbar->type], y + 0);
     }
 
     // If the sprites are now in position, we're done
@@ -1772,8 +1772,8 @@ static void ov16_02268380(SysTask *param0, void *param1)
 
     switch (v0->unk_08) {
     case 0:
-        v2 = sub_0200D05C(v1, 20007, NNS_G2D_VRAM_TYPE_2DMAIN);
-        sub_0200D41C(v0->unk_00->mainActor, v2);
+        v2 = SpriteManager_FindPlttResourceOffset(v1, 20007, NNS_G2D_VRAM_TYPE_2DMAIN);
+        Sprite_SetExplicitPalette2(v0->unk_00->mainActor, v2);
         v0->unk_09 = v2;
         v0->unk_08++;
     case 1:
@@ -1797,8 +1797,8 @@ static void ov16_02268380(SysTask *param0, void *param1)
         PaletteData_Blend(v3, 2, v0->unk_09 * 16 + 0, 16, v0->unk_0A, 0x73a5);
         break;
     default:
-        v2 = sub_0200D05C(v1, 20006, NNS_G2D_VRAM_TYPE_2DMAIN);
-        sub_0200D41C(v0->unk_00->mainActor, v2);
+        v2 = SpriteManager_FindPlttResourceOffset(v1, 20006, NNS_G2D_VRAM_TYPE_2DMAIN);
+        Sprite_SetExplicitPalette2(v0->unk_00->mainActor, v2);
 
         (*(v0->unk_04)) = 1;
 

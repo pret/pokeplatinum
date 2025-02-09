@@ -179,7 +179,7 @@ void sub_0209933C(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1, int pa
 
 void sub_02099370(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1)
 {
-    sub_0200D0F4(param1->unk_04);
+    Sprite_DeleteAndFreeResources(param1->unk_04);
 
     param0->unk_1C4[param1->unk_00].unk_00 = 0;
     param0->unk_1C4[param1->unk_00].unk_02 = 0;

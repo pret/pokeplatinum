@@ -397,7 +397,7 @@ static void ov13_022287A4(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
         for (v1 = 0; v1 < 6; v1++) {
             v0 = param0->unk_310[v1];
 
-            if (sub_0200D408(v0) != 0) {
+            if (Sprite_GetDrawFlag2(v0) != 0) {
                 break;
             }
         }
@@ -408,10 +408,10 @@ static void ov13_022287A4(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
     switch (param2) {
     case 0:
     case 2:
-        sub_0200D5DC(v0, 0, 2);
+        Sprite_OffsetPositionXY2(v0, 0, 2);
         break;
     case 1:
-        sub_0200D5DC(v0, 0, -4);
+        Sprite_OffsetPositionXY2(v0, 0, -4);
         break;
     }
 }

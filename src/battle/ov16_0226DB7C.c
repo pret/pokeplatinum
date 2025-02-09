@@ -42,7 +42,7 @@ void ov16_0226DB7C(SpriteSystem *param0, SpriteManager *param1, PaletteData *par
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param3);
 
-    SpriteSystem_LoadPalette(param2, 3, param0, param1, v0, 80, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, 3, param0, param1, v0, 80, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
     SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, v0, 250, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, v0, 251, 1, param6);
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, v0, 252, 1, param7);
@@ -75,8 +75,8 @@ UnkStruct_ov16_0226DC24 *ov16_0226DC24(SpriteSystem *param0, SpriteManager *para
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DC24));
 
     for (v2 = 0; v2 < 5; v2++) {
-        v0->unk_00[v2] = SpriteActor_LoadResources(param0, param1, &v1);
-        SpriteActor_EnableObject(v0->unk_00[v2], 0);
+        v0->unk_00[v2] = SpriteSystem_NewSprite(param0, param1, &v1);
+        Sprite_SetDrawFlag2(v0->unk_00[v2], 0);
     }
 
     v0->unk_14 = SysTask_Start(ov16_0226DE10, v0, 40000);
@@ -88,7 +88,7 @@ void ov16_0226DCA8(UnkStruct_ov16_0226DC24 *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0200D0F4(param0->unk_00[v0]);
+        Sprite_DeleteAndFreeResources(param0->unk_00[v0]);
     }
 
     SysTask_Done(param0->unk_14);
@@ -99,18 +99,18 @@ void ov16_0226DCCC(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int 
 {
     int v0;
 
-    sub_0200D500(param0->unk_00[0], param1, param2, param9);
-    sub_0200D500(param0->unk_00[1], param3, param4, param9);
-    sub_0200D500(param0->unk_00[2], param5, param6, param9);
-    sub_0200D500(param0->unk_00[3], param7, param8, param9);
+    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00[0], param1, param2, param9);
+    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00[1], param3, param4, param9);
+    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00[2], param5, param6, param9);
+    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00[3], param7, param8, param9);
 
-    sub_0200D364(param0->unk_00[0], 0);
-    sub_0200D364(param0->unk_00[1], 1);
-    sub_0200D364(param0->unk_00[2], 2);
-    sub_0200D364(param0->unk_00[3], 3);
+    Sprite_SetAnim(param0->unk_00[0], 0);
+    Sprite_SetAnim(param0->unk_00[1], 1);
+    Sprite_SetAnim(param0->unk_00[2], 2);
+    Sprite_SetAnim(param0->unk_00[3], 3);
 
     for (v0 = 0; v0 < 4; v0++) {
-        SpriteActor_EnableObject(param0->unk_00[v0], 1);
+        Sprite_SetDrawFlag2(param0->unk_00[v0], 1);
     }
 }
 
@@ -131,9 +131,9 @@ void ov16_0226DD9C(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int 
 
 void ov16_0226DDC0(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, fx32 param4)
 {
-    sub_0200D500(param0->unk_00[4], param1, param2, param4);
-    sub_0200D364(param0->unk_00[4], param3);
-    SpriteActor_EnableObject(param0->unk_00[4], 1);
+    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00[4], param1, param2, param4);
+    Sprite_SetAnim(param0->unk_00[4], param3);
+    Sprite_SetDrawFlag2(param0->unk_00[4], 1);
 }
 
 void ov16_0226DDE8(UnkStruct_ov16_0226DC24 *param0)
@@ -141,13 +141,13 @@ void ov16_0226DDE8(UnkStruct_ov16_0226DC24 *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        SpriteActor_EnableObject(param0->unk_00[v0], 0);
+        Sprite_SetDrawFlag2(param0->unk_00[v0], 0);
     }
 }
 
 void ov16_0226DE04(UnkStruct_ov16_0226DC24 *param0)
 {
-    SpriteActor_EnableObject(param0->unk_00[4], 0);
+    Sprite_SetDrawFlag2(param0->unk_00[4], 0);
 }
 
 static void ov16_0226DE10(SysTask *param0, void *param1)
@@ -155,15 +155,15 @@ static void ov16_0226DE10(SysTask *param0, void *param1)
     UnkStruct_ov16_0226DC24 *v0 = param1;
     int v1;
 
-    if (sub_0200D408(v0->unk_00[0]) == 0) {
+    if (Sprite_GetDrawFlag2(v0->unk_00[0]) == 0) {
         return;
     }
 
     for (v1 = 0; v1 < 4; v1++) {
-        sub_0200D330(v0->unk_00[v1]);
+        Sprite_TickOneFrame(v0->unk_00[v1]);
     }
 
-    if (sub_0200D408(v0->unk_00[4]) == 1) {
-        sub_0200D330(v0->unk_00[4]);
+    if (Sprite_GetDrawFlag2(v0->unk_00[4]) == 1) {
+        Sprite_TickOneFrame(v0->unk_00[4]);
     }
 }

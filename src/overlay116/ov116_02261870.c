@@ -163,7 +163,7 @@ void ov116_02261940(UnkStruct_ov116_0226139C *param0)
     }
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
-    sub_0200C7EC(param0->unk_48.unk_0C);
+    SpriteSystem_DrawSprites(param0->unk_48.unk_0C);
 }
 
 void ov116_02261C48(UnkStruct_ov116_02262A8C *param0, int param1)
@@ -226,9 +226,9 @@ void ov116_02261D08(UnkStruct_ov116_02262A8C *param0)
 
     for (v4 = 0; v4 < (3 * 12); v4++) {
         ov116_02261CD8(&v0, v4 * 8, 20, 1, 3, 9006);
-        param0->unk_28[v4] = SpriteActor_LoadResources(v1, v2, &v0);
-        sub_0200D430(param0->unk_28[v4], 3);
-        sub_0200D364(param0->unk_28[v4], (v4 % 11) + 1);
+        param0->unk_28[v4] = SpriteSystem_NewSprite(v1, v2, &v0);
+        Sprite_SetExplicitPaletteOffset(param0->unk_28[v4], 3);
+        Sprite_SetAnim(param0->unk_28[v4], (v4 % 11) + 1);
     }
 
     ov116_02261E0C(param0, 0, 0);
@@ -248,10 +248,10 @@ void ov116_02261D70(UnkStruct_ov116_02262A8C *param0)
 
         v0.bgPriority = 0;
         v0.priority = 1;
-        param0->unk_B8[v4] = SpriteActor_LoadResources(v1, v2, &v0);
+        param0->unk_B8[v4] = SpriteSystem_NewSprite(v1, v2, &v0);
 
-        sub_0200D33C(param0->unk_B8[v4]);
-        sub_0200D430(param0->unk_B8[v4], 1);
+        Sprite_TickTwoFrame(param0->unk_B8[v4]);
+        Sprite_SetExplicitPaletteOffset(param0->unk_B8[v4], 1);
     }
 }
 
@@ -260,7 +260,7 @@ void ov116_02261DF0(UnkStruct_ov116_02262A8C *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200D0F4(param0->unk_B8[v0]);
+        Sprite_DeleteAndFreeResources(param0->unk_B8[v0]);
     }
 }
 
@@ -269,7 +269,7 @@ void ov116_02261E0C(UnkStruct_ov116_02262A8C *param0, BOOL param1, int param2)
     int v0;
 
     for (v0 = 0; v0 < (3 * 12); v0++) {
-        SpriteActor_EnableObject(param0->unk_28[v0], param1);
+        Sprite_SetDrawFlag2(param0->unk_28[v0], param1);
     }
 }
 
@@ -278,7 +278,7 @@ void ov116_02261E28(UnkStruct_ov116_02262A8C *param0)
     int v0;
 
     for (v0 = 0; v0 < (3 * 12); v0++) {
-        sub_0200D33C(param0->unk_28[v0]);
+        Sprite_TickTwoFrame(param0->unk_28[v0]);
     }
 }
 
@@ -287,7 +287,7 @@ void ov116_02261E40(UnkStruct_ov116_02262A8C *param0)
     int v0;
 
     for (v0 = 0; v0 < (3 * 12); v0++) {
-        sub_0200D0F4(param0->unk_28[v0]);
+        Sprite_DeleteAndFreeResources(param0->unk_28[v0]);
     }
 }
 
@@ -314,8 +314,8 @@ void ov116_02261E58(UnkStruct_ov116_02262A8C *param0, int param1, int param2)
 
     int v1 = param0->unk_DC[param1];
 
-    sub_0200D364(param0->unk_1C[v1], v0[param2][0]);
-    sub_0200D364(param0->unk_20[v1], v0[param2][1]);
+    Sprite_SetAnim(param0->unk_1C[v1], v0[param2][0]);
+    Sprite_SetAnim(param0->unk_20[v1], v0[param2][1]);
 }
 
 int ov116_02261EA4(UnkStruct_ov116_02262A8C *param0, int param1)
@@ -331,8 +331,8 @@ int ov116_02261EA4(UnkStruct_ov116_02262A8C *param0, int param1)
     int v2[2];
 
     v1 = param0->unk_DC[param1];
-    v2[0] = sub_0200D37C(param0->unk_1C[v1]);
-    v2[1] = sub_0200D37C(param0->unk_20[v1]);
+    v2[0] = Sprite_GetActiveAnim(param0->unk_1C[v1]);
+    v2[1] = Sprite_GetActiveAnim(param0->unk_20[v1]);
 
     {
         int v3;
@@ -359,9 +359,9 @@ void ov116_02261F08(UnkStruct_ov116_02262A8C *param0)
             continue;
         }
 
-        sub_0200D33C(param0->unk_1C[v1]);
-        sub_0200D33C(param0->unk_20[v1]);
-        sub_0200D33C(param0->unk_24[v1]);
+        Sprite_TickTwoFrame(param0->unk_1C[v1]);
+        Sprite_TickTwoFrame(param0->unk_20[v1]);
+        Sprite_TickTwoFrame(param0->unk_24[v1]);
 
         v1++;
     }
@@ -377,9 +377,9 @@ void ov116_02261F3C(UnkStruct_ov116_02262A8C *param0)
             continue;
         }
 
-        sub_0200D0F4(param0->unk_1C[v1]);
-        sub_0200D0F4(param0->unk_20[v1]);
-        sub_0200D0F4(param0->unk_24[v1]);
+        Sprite_DeleteAndFreeResources(param0->unk_1C[v1]);
+        Sprite_DeleteAndFreeResources(param0->unk_20[v1]);
+        Sprite_DeleteAndFreeResources(param0->unk_24[v1]);
 
         v1++;
     }
@@ -595,7 +595,7 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DSUB, v11);
     SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
     SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPalette(v5, 3, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DSUB, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 3, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DSUB, v11);
 
     v7 = 27;
     v8 = 28;
@@ -607,7 +607,7 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
     SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
     SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPalette(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     v7 = 11;
     v8 = 12;
@@ -619,7 +619,7 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
     SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
     SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPalette(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     v7 = 19;
     v8 = 20;
@@ -631,7 +631,7 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
     SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
     SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPalette(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     v7 = 15;
     v8 = 16;
@@ -643,7 +643,7 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
     SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
     SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPalette(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     v7 = 23;
     v8 = 24;
@@ -655,7 +655,7 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
     SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
     SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPalette(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     {
         NARC *v13 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, 106);
@@ -670,7 +670,7 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
         SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v13, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
         SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v13, v8, 0, v11);
         SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v13, v7, 0, v11);
-        SpriteSystem_LoadPalette(v5, 2, v3, v4, v13, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v13, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
         NARC_dtor(v13);
     }
 }
@@ -694,21 +694,21 @@ void ov116_022625A8(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
         ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, (176 + 64), 2, 0, 9000);
         v0.priority = 1;
 
-        param1->unk_1C[v5] = SpriteActor_LoadResources(v1, v2, &v0);
+        param1->unk_1C[v5] = SpriteSystem_NewSprite(v1, v2, &v0);
         ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, ((176 + 64) + 0), 2, 0, 9000);
         v0.priority = 2;
 
-        param1->unk_20[v5] = SpriteActor_LoadResources(v1, v2, &v0);
-        sub_0200D430(param1->unk_20[v5], 0 + ov116_02264680(param0, v4));
+        param1->unk_20[v5] = SpriteSystem_NewSprite(v1, v2, &v0);
+        Sprite_SetExplicitPaletteOffset(param1->unk_20[v5], 0 + ov116_02264680(param0, v4));
         ov116_02261CD8(&v0, Unk_ov116_02267A78[param1->unk_04 - 1][v5] + 0, ((176 + 64) + 0), 2, 0, 9000);
         v0.priority = 3;
 
-        param1->unk_24[v5] = SpriteActor_LoadResources(v1, v2, &v0);
-        sub_0200D430(param1->unk_24[v5], 0 + ov116_02264680(param0, v4));
-        sub_0200D364(param1->unk_24[v5], 5);
-        sub_0200D33C(param1->unk_1C[v5]);
-        sub_0200D33C(param1->unk_20[v5]);
-        sub_0200D33C(param1->unk_24[v5]);
+        param1->unk_24[v5] = SpriteSystem_NewSprite(v1, v2, &v0);
+        Sprite_SetExplicitPaletteOffset(param1->unk_24[v5], 0 + ov116_02264680(param0, v4));
+        Sprite_SetAnim(param1->unk_24[v5], 5);
+        Sprite_TickTwoFrame(param1->unk_1C[v5]);
+        Sprite_TickTwoFrame(param1->unk_20[v5]);
+        Sprite_TickTwoFrame(param1->unk_24[v5]);
         ov116_02261E58(param1, v4, 0);
 
         v5++;
@@ -727,9 +727,9 @@ CellActorData *ov116_022626E8(UnkStruct_ov116_02262A8C *param0, s16 param1, s16 
 
     v1.bgPriority = 0;
     v1.priority = 0;
-    v0 = SpriteActor_LoadResources(v2, v3, &v1);
+    v0 = SpriteSystem_NewSprite(v2, v3, &v1);
 
-    sub_0200D33C(v0);
+    Sprite_TickTwoFrame(v0);
 
     return v0;
 }
@@ -748,25 +748,25 @@ void ov116_02262724(UnkStruct_ov116_02262A8C *param0)
 
         v2.bgPriority = 2;
         v2.priority = 20;
-        param0->unk_D0[v0] = SpriteActor_LoadResources(v3, v4, &v2);
+        param0->unk_D0[v0] = SpriteSystem_NewSprite(v3, v4, &v2);
 
-        sub_0200D364(param0->unk_D0[v0], 0);
-        sub_0200D330(param0->unk_D0[v0]);
-        sub_0200D430(param0->unk_D0[v0], 4);
-        SpriteActor_SetOAMMode(param0->unk_D0[v0], GX_OAM_MODE_XLU);
-        SpriteActor_EnableObject(param0->unk_D0[v0], 0);
+        Sprite_SetAnim(param0->unk_D0[v0], 0);
+        Sprite_TickOneFrame(param0->unk_D0[v0]);
+        Sprite_SetExplicitPaletteOffset(param0->unk_D0[v0], 4);
+        Sprite_SetExplicitOamMode2(param0->unk_D0[v0], GX_OAM_MODE_XLU);
+        Sprite_SetDrawFlag2(param0->unk_D0[v0], 0);
 
         ov116_02261CD8(&v2, 0, 0, 2, 0, 9000);
 
         v2.bgPriority = 2;
         v2.priority = 20;
-        param0->unk_C8[v0] = SpriteActor_LoadResources(v3, v4, &v2);
+        param0->unk_C8[v0] = SpriteSystem_NewSprite(v3, v4, &v2);
 
-        sub_0200D364(param0->unk_C8[v0], 6);
-        sub_0200D330(param0->unk_C8[v0]);
-        sub_0200D430(param0->unk_C8[v0], 0);
-        SpriteActor_SetOAMMode(param0->unk_C8[v0], GX_OAM_MODE_XLU);
-        SpriteActor_EnableObject(param0->unk_C8[v0], 0);
+        Sprite_SetAnim(param0->unk_C8[v0], 6);
+        Sprite_TickOneFrame(param0->unk_C8[v0]);
+        Sprite_SetExplicitPaletteOffset(param0->unk_C8[v0], 0);
+        Sprite_SetExplicitOamMode2(param0->unk_C8[v0], GX_OAM_MODE_XLU);
+        Sprite_SetDrawFlag2(param0->unk_C8[v0], 0);
     }
 }
 
@@ -775,8 +775,8 @@ void ov116_0226281C(UnkStruct_ov116_02262A8C *param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        sub_0200D0F4(param0->unk_D0[v0]);
-        sub_0200D0F4(param0->unk_C8[v0]);
+        Sprite_DeleteAndFreeResources(param0->unk_D0[v0]);
+        Sprite_DeleteAndFreeResources(param0->unk_C8[v0]);
     }
 }
 
@@ -793,17 +793,17 @@ void ov116_02262840(UnkStruct_ov116_02262A8C *param0)
 
     v2.bgPriority = 0;
     v2.priority = 0;
-    param0->unk_D8 = SpriteActor_LoadResources(v3, v4, &v2);
+    param0->unk_D8 = SpriteSystem_NewSprite(v3, v4, &v2);
 
-    sub_0200D364(param0->unk_D8, 1);
-    SpriteActor_EnableObject(param0->unk_D8, 1);
-    sub_0200D330(param0->unk_D8);
-    sub_0200D430(param0->unk_D8, 7);
+    Sprite_SetAnim(param0->unk_D8, 1);
+    Sprite_SetDrawFlag2(param0->unk_D8, 1);
+    Sprite_TickOneFrame(param0->unk_D8);
+    Sprite_SetExplicitPaletteOffset(param0->unk_D8, 7);
 }
 
 void ov116_022628AC(UnkStruct_ov116_02262A8C *param0)
 {
-    sub_0200D0F4(param0->unk_D8);
+    Sprite_DeleteAndFreeResources(param0->unk_D8);
 }
 
 void ov116_022628B8(UnkStruct_ov116_0226139C *param0)

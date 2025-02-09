@@ -214,7 +214,7 @@ u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2)
 
 void ov12_022259DC(UnkStruct_ov12_02225F6C *param0, CellActorData *param1, s16 param2, s16 param3)
 {
-    SpriteActor_SetSpritePositionXY(param1, param2 + param0->unk_00, param3 + param0->unk_02);
+    Sprite_SetPositionXY2(param1, param2 + param0->unk_00, param3 + param0->unk_02);
 }
 
 void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, CellActorData *param1)
@@ -222,7 +222,7 @@ void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, CellActorData *param1)
     f32 v0, v1;
 
     ov12_02225FA4(param0, &v0, &v1);
-    sub_0200D6E8(param1, v0, v1);
+    Sprite_SetAffineScale(param1, v0, v1);
 }
 
 void ov12_02225A18(UnkStruct_ov12_02225F6C *param0, Sprite *param1, s16 param2, s16 param3)
@@ -617,8 +617,8 @@ void ov12_0222605C(CellActorData *param0, s16 param1, s16 param2, fx32 param3, i
         v1 = param1 - param2;
     }
 
-    SpriteActor_GetSpritePositionXY(param0, &v2, &v3);
-    SpriteActor_SetSpritePositionXY(param0, v2, v1 + v0);
+    Sprite_GetPositionXY2(param0, &v2, &v3);
+    Sprite_SetPositionXY2(param0, v2, v1 + v0);
 }
 
 BOOL ov12_022260A8(UnkStruct_ov12_02225F6C *param0, CellActorData *param1)
@@ -746,7 +746,7 @@ void ov12_022261C4(UnkStruct_ov12_02226274 *param0, UnkStruct_ov12_02225F6C *par
     param0->unk_98[3] = param11;
 
     for (v0 = 0; v0 < param0->unk_AC; v0++) {
-        SpriteActor_EnableObject(param0->unk_98[v0], 0);
+        Sprite_SetDrawFlag2(param0->unk_98[v0], 0);
     }
 }
 
@@ -761,7 +761,7 @@ BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0)
     }
 
     if (param0->unk_A8 <= param0->unk_AA) {
-        SpriteActor_EnableObject(param0->unk_98[param0->unk_AD], 1);
+        Sprite_SetDrawFlag2(param0->unk_98[param0->unk_AD], 1);
         param0->unk_AD++;
         param0->unk_AA = 0;
     }
@@ -775,13 +775,13 @@ BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0)
 
         if (v1[v0]) {
             if (param0->unk_AE == 0) {
-                SpriteActor_SetSpritePositionXY(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].unk_00, param0->unk_02 + param0->unk_04[v0].unk_02);
+                Sprite_SetPositionXY2(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].unk_00, param0->unk_02 + param0->unk_04[v0].unk_02);
             } else {
                 ov12_02225FA4(&param0->unk_04[v0], &v2, &v3);
-                sub_0200D6E8(param0->unk_98[v0], v2, v3);
+                Sprite_SetAffineScale(param0->unk_98[v0], v2, v3);
             }
         } else {
-            SpriteActor_EnableObject(param0->unk_98[v0], 0);
+            Sprite_SetDrawFlag2(param0->unk_98[v0], 0);
         }
     }
 

@@ -251,7 +251,7 @@ void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1)
         }
     }
 
-    if (sub_0200D3B8(param1) == 0) {
+    if (Sprite_IsAnimated(param1) == 0) {
         if (param0->unk_1114.unk_04 != -1) {
             param0->unk_1114.unk_04++;
 
@@ -262,10 +262,10 @@ void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1)
                 v1 = 0;
             }
 
-            sub_0200D364(param1, v1);
+            Sprite_SetAnim(param1, v1);
         } else {
             param0->unk_1114.unk_04 = 0;
-            sub_0200D364(param1, 0);
+            Sprite_SetAnim(param1, 0);
         }
     }
 }

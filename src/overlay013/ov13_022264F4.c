@@ -185,7 +185,7 @@ static void ov13_02226590(SysTask *param0, void *param1)
     }
 
     ov13_02228848(v0);
-    sub_0200C7EC(v0->unk_30C);
+    SpriteSystem_DrawSprites(v0->unk_30C);
 }
 
 static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)

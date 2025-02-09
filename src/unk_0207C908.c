@@ -104,23 +104,23 @@ u32 sub_0207C944(void)
 
 void sub_0207C948(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
-    sub_0200CBDC(param0, param1, sub_0207C944(), sub_0207C908(param3), 1, param2, param4);
+    SpriteSystem_LoadCharResObj(param0, param1, sub_0207C944(), sub_0207C908(param3), 1, param2, param4);
 }
 
 void sub_0207C97C(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, u32 param3)
 {
-    sub_0200CC9C(param0, param1, sub_0207C944(), sub_0207C920(), 0, 3, param2, param3);
+    SpriteSystem_LoadPlttResObj(param0, param1, sub_0207C944(), sub_0207C920(), 0, 3, param2, param3);
 }
 
 void sub_0207C9B0(PaletteData *param0, int param1, SpriteSystem *param2, SpriteManager *param3, NNS_G2D_VRAM_TYPE param4, u32 param5)
 {
-    sub_0200CD7C(param0, param1, param2, param3, sub_0207C944(), sub_0207C920(), 0, 3, param4, param5);
+    SpriteSystem_LoadPaletteBuffer(param0, param1, param2, param3, sub_0207C944(), sub_0207C920(), 0, 3, param4, param5);
 }
 
 void sub_0207C9EC(SpriteSystem *param0, SpriteManager *param1, u32 param2, u32 param3)
 {
-    sub_0200CE0C(param0, param1, sub_0207C944(), sub_0207C924(), 1, param2);
-    sub_0200CE3C(param0, param1, sub_0207C944(), sub_0207C928(), 1, param3);
+    SpriteSystem_LoadCellResObj(param0, param1, sub_0207C944(), sub_0207C924(), 1, param2);
+    SpriteSystem_LoadAnimResObj(param0, param1, sub_0207C944(), sub_0207C928(), 1, param3);
 }
 
 void sub_0207CA34(SpriteManager *param0, u32 param1)
@@ -146,14 +146,14 @@ CellActorData *sub_0207CA58(SpriteSystem *param0, SpriteManager *param1, int par
 
     v1 = *param3;
     v1.plttIdx = sub_0207C92C(param2);
-    v0 = SpriteActor_LoadResources(param0, param1, &v1);
+    v0 = SpriteSystem_NewSprite(param0, param1, &v1);
 
     return v0;
 }
 
 void sub_0207CA88(CellActorData *param0)
 {
-    sub_0200D0F4(param0);
+    Sprite_DeleteAndFreeResources(param0);
 }
 
 u32 sub_0207CA90(int param0)
@@ -175,7 +175,7 @@ u32 sub_0207CAC0(void)
 
 void sub_0207CAC4(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
-    sub_0200CBDC(param0, param1, sub_0207CAC0(), sub_0207CA90(param3), 1, param2, param4);
+    SpriteSystem_LoadCharResObj(param0, param1, sub_0207CAC0(), sub_0207CA90(param3), 1, param2, param4);
 }
 
 void sub_0207CAF8(SpriteManager *param0, u32 param1)
@@ -185,5 +185,5 @@ void sub_0207CAF8(SpriteManager *param0, u32 param1)
 
 void sub_0207CB00(CellActorData *param0)
 {
-    sub_0200D0F4(param0);
+    Sprite_DeleteAndFreeResources(param0);
 }

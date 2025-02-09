@@ -64,7 +64,7 @@ UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteSystem *param0, SpriteManager *para
         v1->unk_00.unk_0C = v2[v3].unk_0C;
         v1->unk_00.unk_10 = v2[v3].unk_10;
         v1->unk_14 = param2[v3];
-        v1->unk_18 = sub_0200CA08(param0, param1, &v4);
+        v1->unk_18 = SpriteSystem_NewSpriteFromResourceHeader(param0, param1, &v4);
 
         CellActor_SetDrawFlag(v1->unk_18, 1);
 
@@ -77,7 +77,7 @@ UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteSystem *param0, SpriteManager *para
         }
 
         CellActor_UpdateAnim(v1->unk_18, FX32_CONST(v1->unk_00.unk_08));
-        SpriteActor_SetPositionXY(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
+        Sprite_SetPositionXY(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
     }
 
     return v0;

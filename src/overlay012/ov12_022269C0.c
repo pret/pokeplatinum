@@ -129,20 +129,20 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        SpriteActor_UpdateObject(v0->unk_14[0]->sprite);
-        SpriteActor_UpdateObject(v0->unk_14[1]->sprite);
-        SpriteActor_UpdateObject(v0->unk_14[2]->sprite);
+        Sprite_TickFrame(v0->unk_14[0]->sprite);
+        Sprite_TickFrame(v0->unk_14[1]->sprite);
+        Sprite_TickFrame(v0->unk_14[2]->sprite);
 
-        sub_0200D5AC(v0->unk_14[0]->sprite, 1, 0);
-        sub_0200D5AC(v0->unk_14[1]->sprite, -1, 0);
-        sub_0200D5AC(v0->unk_14[2]->sprite, 1, 1);
+        Sprite_OffsetPositionXY(v0->unk_14[0]->sprite, 1, 0);
+        Sprite_OffsetPositionXY(v0->unk_14[1]->sprite, -1, 0);
+        Sprite_OffsetPositionXY(v0->unk_14[2]->sprite, 1, 1);
 
-        sub_0200C7EC(v0->unk_0C);
+        SpriteSystem_DrawSprites(v0->unk_0C);
         break;
     case 1: {
         UnkStruct_ov12_0221FCDC *v1 = v0->unk_04;
 
-        sub_0200D0F4(v0->unk_10);
+        Sprite_DeleteAndFreeResources(v0->unk_10);
         Heap_FreeToHeap(v0);
         ov12_02220220(v1, param0);
     } break;
@@ -171,7 +171,7 @@ void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
         int v2;
 
         for (v2 = 1; v2 < 3; v2++) {
-            v0->unk_14[v2] = SpriteActor_LoadResources(v0->unk_08, v0->unk_0C, &v1);
+            v0->unk_14[v2] = SpriteSystem_NewSprite(v0->unk_08, v0->unk_0C, &v1);
         }
     }
 

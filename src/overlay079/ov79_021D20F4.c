@@ -22,8 +22,8 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
 {
     VramTransfer_New(32, param0->unk_00);
 
-    param0->unk_1B8 = sub_0200C6E4(param0->unk_00);
-    param0->unk_1BC = sub_0200C704(param0->unk_1B8);
+    param0->unk_1B8 = SpriteSystem_Alloc(param0->unk_00);
+    param0->unk_1BC = SpriteManager_New(param0->unk_1B8);
 
     {
         RenderOamTemplate v0 = {
@@ -44,8 +44,8 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
             GX_OBJVRAMMODE_CHAR_1D_32K,
         };
 
-        sub_0200C73C(param0->unk_1B8, &v0, &v1, 32);
-        sub_0200C7C0(param0->unk_1B8, param0->unk_1BC, 3 + 5 + 6);
+        SpriteSystem_Init(param0->unk_1B8, &v0, &v1, 32);
+        SpriteSystem_InitSprites(param0->unk_1B8, param0->unk_1BC, 3 + 5 + 6);
 
         RenderOam_ClearMain(param0->unk_00);
         RenderOam_ClearSub(param0->unk_00);
@@ -62,7 +62,7 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
             "data/porucase_celact.cldat"
         };
 
-        sub_0200C8F0(param0->unk_1B8, param0->unk_1BC, &v2);
+        SpriteSystem_LoadResourceDataFromFilepaths(param0->unk_1B8, param0->unk_1BC, &v2);
     }
 
     param0->unk_1F8 = sub_02098FFC(param0->unk_00, 1, 1, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
@@ -78,14 +78,14 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
 void ov79_021D21CC(UnkStruct_ov79_021D0E1C *param0)
 {
     sub_0209903C(param0->unk_1F8);
-    sub_0200C8B0(param0->unk_1B8, param0->unk_1BC);
-    sub_0200C8D4(param0->unk_1B8);
+    SpriteSystem_DestroySpriteManager(param0->unk_1B8, param0->unk_1BC);
+    SpriteSystem_Free(param0->unk_1B8);
     VramTransfer_Free();
 }
 
 void ov79_021D21F8(UnkStruct_ov79_021D0E1C *param0)
 {
-    sub_0200C7EC(param0->unk_1BC);
+    SpriteSystem_DrawSprites(param0->unk_1BC);
     sub_02099160(param0->unk_1F8);
 }
 

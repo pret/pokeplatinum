@@ -50,13 +50,13 @@ u32 ov17_0224F0B8(void)
 
 void ov17_0224F0BC(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
-    sub_0200CBDC(param0, param1, ov17_0224F0B8(), ov17_0224F080(param3), 1, param2, param4);
+    SpriteSystem_LoadCharResObj(param0, param1, ov17_0224F0B8(), ov17_0224F080(param3), 1, param2, param4);
 }
 
 void ov17_0224F0F0(SpriteSystem *param0, SpriteManager *param1, u32 param2, u32 param3)
 {
-    sub_0200CE0C(param0, param1, ov17_0224F0B8(), ov17_0224F098(), 1, param2);
-    sub_0200CE3C(param0, param1, ov17_0224F0B8(), ov17_0224F09C(), 1, param3);
+    SpriteSystem_LoadCellResObj(param0, param1, ov17_0224F0B8(), ov17_0224F098(), 1, param2);
+    SpriteSystem_LoadAnimResObj(param0, param1, ov17_0224F0B8(), ov17_0224F09C(), 1, param3);
 }
 
 void ov17_0224F138(SpriteManager *param0, u32 param1)
@@ -77,12 +77,12 @@ CellActorData *ov17_0224F154(SpriteSystem *param0, SpriteManager *param1, int pa
 
     v1 = *param3;
     v1.plttIdx = ov17_0224F0A0(param2);
-    v0 = SpriteActor_LoadResources(param0, param1, &v1);
+    v0 = SpriteSystem_NewSprite(param0, param1, &v1);
 
     return v0;
 }
 
 void ov17_0224F184(CellActorData *param0)
 {
-    sub_0200D0F4(param0);
+    Sprite_DeleteAndFreeResources(param0);
 }

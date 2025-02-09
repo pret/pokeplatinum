@@ -327,7 +327,7 @@ static void ov79_021D252C(void *param0)
     Bg_RunScheduledUpdates(v0->unk_68);
     sub_02008A94(v0->unk_40.unk_04);
 
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     VramTransfer_Process();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -529,7 +529,7 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
 {
     VramTransfer_New(32, param0->unk_00);
 
-    param0->unk_7C = sub_0200C6E4(param0->unk_00);
+    param0->unk_7C = SpriteSystem_Alloc(param0->unk_00);
 
     {
         RenderOamTemplate v0 = {
@@ -550,14 +550,14 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
             GX_OBJVRAMMODE_CHAR_1D_32K,
         };
 
-        sub_0200C73C(param0->unk_7C, &v0, &v1, 32);
+        SpriteSystem_Init(param0->unk_7C, &v0, &v1, 32);
         RenderOam_ClearMain(param0->unk_00);
     }
 
     param0->unk_5C = sub_02098FFC(param0->unk_00, 2, 2, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
     param0->unk_60[0] = sub_0209916C(param0->unk_5C, param0->unk_10->unk_08, 100, 90, 0, 1, 0, 0);
 
-    SpriteActor_EnableObject(param0->unk_60[0]->unk_04, 0);
+    Sprite_SetDrawFlag2(param0->unk_60[0]->unk_04, 0);
 
     if (CommSys_IsInitialized()) {
         sub_02039734();
@@ -570,7 +570,7 @@ static void ov79_021D2908(UnkStruct_ov79_021D2928 *param0)
 {
     sub_02099370(param0->unk_5C, param0->unk_60[0]);
     sub_0209903C(param0->unk_5C);
-    sub_0200C8D4(param0->unk_7C);
+    SpriteSystem_Free(param0->unk_7C);
     VramTransfer_Free();
 }
 

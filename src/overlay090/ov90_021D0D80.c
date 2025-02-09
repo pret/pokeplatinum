@@ -849,8 +849,8 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
 {
     VramTransfer_New(32, param0->unk_00);
 
-    param0->unk_29C = sub_0200C6E4(param0->unk_00);
-    param0->unk_2A0 = sub_0200C704(param0->unk_29C);
+    param0->unk_29C = SpriteSystem_Alloc(param0->unk_00);
+    param0->unk_2A0 = SpriteManager_New(param0->unk_29C);
 
     {
         RenderOamTemplate v0 = {
@@ -872,8 +872,8 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
             GX_OBJVRAMMODE_CHAR_1D_32K,
         };
 
-        sub_0200C73C(param0->unk_29C, &v0, &v1, 32);
-        sub_0200C7C0(param0->unk_29C, param0->unk_2A0, 4);
+        SpriteSystem_Init(param0->unk_29C, &v0, &v1, 32);
+        SpriteSystem_InitSprites(param0->unk_29C, param0->unk_2A0, 4);
         RenderOam_ClearMain(param0->unk_00);
         RenderOam_ClearSub(param0->unk_00);
     }
@@ -889,15 +889,15 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
             "data/btower_celact.cldat"
         };
 
-        sub_0200C8F0(param0->unk_29C, param0->unk_2A0, &v2);
+        SpriteSystem_LoadResourceDataFromFilepaths(param0->unk_29C, param0->unk_2A0, &v2);
     }
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov90_021D1B6C(UnkStruct_ov90_021D0ECC *param0)
 {
-    sub_0200C8B0(param0->unk_29C, param0->unk_2A0);
-    sub_0200C8D4(param0->unk_29C);
+    SpriteSystem_DestroySpriteManager(param0->unk_29C, param0->unk_2A0);
+    SpriteSystem_Free(param0->unk_29C);
     VramTransfer_Free();
 }
 
@@ -907,12 +907,12 @@ static void ov90_021D1B90(UnkStruct_ov90_021D0ECC *param0)
         return;
     }
 
-    sub_0200C7EC(param0->unk_2A0);
+    SpriteSystem_DrawSprites(param0->unk_2A0);
 }
 
 static void ov90_021D1BA4(void)
 {
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
 }
 
 static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
@@ -926,7 +926,7 @@ static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
     };
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_2A4[v0] = sub_0200CA08(param0->unk_29C, param0->unk_2A0, &v1[v0]);
+        param0->unk_2A4[v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_29C, param0->unk_2A0, &v1[v0]);
     }
 
     CellActor_SetDrawFlag(param0->unk_2A4[2], 0);
@@ -942,7 +942,7 @@ static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200C7E4(param0->unk_2A4[v0]);
+        SpriteSystem_DeleteSprite(param0->unk_2A4[v0]);
     }
 }
 
@@ -995,5 +995,5 @@ static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2,
         break;
     }
 
-    SpriteActor_SetPositionXY(param0->unk_2A4[0], param2 * 72 + 54, param3 * 24 + 68);
+    Sprite_SetPositionXY(param0->unk_2A4[0], param2 * 72 + 54, param3 * 24 + 68);
 }

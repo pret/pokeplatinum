@@ -981,8 +981,8 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
 
     v0.unk_00 = param0->unk_3C;
     v0.unk_04 = &v1;
-    v0.unk_08 = sub_0200D9B0(v6);
-    v0.unk_0C = sub_0200D04C(v6, param6);
+    v0.unk_08 = SpriteManager_GetSpriteList(v6);
+    v0.unk_0C = SpriteManager_FindPlttResourceProxy(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.offset;
     v0.unk_18 = param7;
@@ -1064,7 +1064,7 @@ static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
             v3.y = Unk_ov17_02253298[v0][1];
 
             param0->unk_118[v0] = ov17_0224F154(v1, v2, v4, &v3);
-            sub_0200D500(param0->unk_118[v0], v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
+            Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_118[v0], v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
         }
     }
 }
@@ -1176,7 +1176,7 @@ static void ov17_0224051C(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_2CC.unk_04_val1.unk_00[v4] != NULL) {
-                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->sprite, 0, -2);
+                Sprite_OffsetPositionXY(v0->unk_2CC.unk_04_val1.unk_00[v4]->sprite, 0, -2);
             }
         }
 
@@ -1199,7 +1199,7 @@ static void ov17_0224051C(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_2CC.unk_04_val1.unk_00[v4] != NULL) {
-                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->sprite, 0, 1);
+                Sprite_OffsetPositionXY(v0->unk_2CC.unk_04_val1.unk_00[v4]->sprite, 0, 1);
             }
         }
 
@@ -1288,11 +1288,11 @@ static void ov17_02240658(SysTask *param0, void *param1)
             sub_020128C4(v0->unk_40[v6].unk_00, v2, v3 + -2);
 
             if (v8 != 0) {
-                sub_0200D5AC(v0->unk_118[v7]->sprite, 0, -2);
+                Sprite_OffsetPositionXY(v0->unk_118[v7]->sprite, 0, -2);
 
                 for (v10 = 0; v10 < 6; v10++) {
                     if (v0->unk_12C[v11][v10] != NULL) {
-                        sub_0200D5AC(v0->unk_12C[v11][v10]->sprite, 0, -2);
+                        Sprite_OffsetPositionXY(v0->unk_12C[v11][v10]->sprite, 0, -2);
                     }
                 }
             }
@@ -1323,11 +1323,11 @@ static void ov17_02240658(SysTask *param0, void *param1)
             sub_020128C4(v0->unk_40[v6].unk_00, v2, v3 + 1);
 
             if (v8 != 0) {
-                sub_0200D5AC(v0->unk_118[v7]->sprite, 0, 1);
+                Sprite_OffsetPositionXY(v0->unk_118[v7]->sprite, 0, 1);
 
                 for (v10 = 0; v10 < 6; v10++) {
                     if (v0->unk_12C[v11][v10] != NULL) {
-                        sub_0200D5AC(v0->unk_12C[v11][v10]->sprite, 0, 1);
+                        Sprite_OffsetPositionXY(v0->unk_12C[v11][v10]->sprite, 0, 1);
                     }
                 }
             }

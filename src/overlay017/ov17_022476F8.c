@@ -114,14 +114,14 @@ void ov17_022477B8(UnkStruct_ov17_02247A48 *param0, int param1, int param2, fx32
     v0 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_022477B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022477B8));
 
-    v0->unk_04 = SpriteActor_LoadResources(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
-    sub_0200D500(v0->unk_04, param1, param2, (256 * FX32_ONE));
+    v0->unk_04 = SpriteSystem_NewSprite(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
+    Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_04, param1, param2, (256 * FX32_ONE));
 
     if (param4 == 1) {
-        sub_0200D364(v0->unk_04, 1);
+        Sprite_SetAnim(v0->unk_04, 1);
     }
 
-    SpriteActor_UpdateObject(v0->unk_04->sprite);
+    Sprite_TickFrame(v0->unk_04->sprite);
 
     v0->unk_08 = param1 << 8;
     v0->unk_0C = param2 << 8;
@@ -143,7 +143,7 @@ static void ov17_02247840(SysTask *param0, void *param1)
         v0->unk_10 += (6 << FX32_SHIFT);
         v0->unk_0C -= 0x100;
 
-        sub_0200D500(v0->unk_04, v0->unk_08 / 0x100 + v1, v0->unk_0C / 0x100, (256 * FX32_ONE));
+        Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_04, v0->unk_08 / 0x100 + v1, v0->unk_0C / 0x100, (256 * FX32_ONE));
 
         v0->unk_16++;
 
@@ -152,7 +152,7 @@ static void ov17_02247840(SysTask *param0, void *param1)
         }
         break;
     default:
-        sub_0200D0F4(v0->unk_04);
+        Sprite_DeleteAndFreeResources(v0->unk_04);
         (*(v0->unk_00))--;
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);

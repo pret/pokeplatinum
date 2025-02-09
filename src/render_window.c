@@ -772,7 +772,7 @@ static void SysTask_HandlePokemonPreview(SysTask *task, void *data)
     switch (preview->state) {
     case 1:
         ErasePokemonPreviewWindow(preview);
-        sub_0200D0F4(preview->cellActorData);
+        Sprite_DeleteAndFreeResources(preview->cellActorData);
         ov5_021D375C(&preview->unk_00);
         SysTask_FinishAndFreeParam(task);
         return;

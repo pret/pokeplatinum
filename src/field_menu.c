@@ -828,7 +828,7 @@ static void sub_0203B4E8(FieldMenu *menu)
     u16 v0;
 
     for (v0 = 0; v0 < menu->unk_220; v0++) {
-        sub_0200D0F4(menu->unk_200[v0]);
+        Sprite_DeleteAndFreeResources(menu->unk_200[v0]);
     }
 
     ov5_021D375C(&menu->unk_38);

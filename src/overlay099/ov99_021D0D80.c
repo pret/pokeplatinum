@@ -131,17 +131,17 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     ov99_021D1918(v0);
 
-    v0->unk_18 = sub_0200C6E4(75);
+    v0->unk_18 = SpriteSystem_Alloc(75);
 
-    sub_0200C73C(v0->unk_18, &Unk_ov99_021D4760, &Unk_ov99_021D4718, (16 + 16));
+    SpriteSystem_Init(v0->unk_18, &Unk_ov99_021D4760, &Unk_ov99_021D4718, (16 + 16));
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_1C = sub_0200C704(v0->unk_18);
+    v0->unk_1C = SpriteManager_New(v0->unk_18);
 
-    sub_0200C7C0(v0->unk_18, v0->unk_1C, (64 + 64));
-    sub_0200CB30(v0->unk_18, v0->unk_1C, &Unk_ov99_021D472C);
-    SetSubScreenViewRect(sub_0200C738(v0->unk_18), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteSystem_InitSprites(v0->unk_18, v0->unk_1C, (64 + 64));
+    SpriteSystem_InitManagerWithCapacities(v0->unk_18, v0->unk_1C, &Unk_ov99_021D472C);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_18), 0, ((192 + 80) << FX32_SHIFT));
 
     ov99_021D16E4(v0);
 
@@ -267,8 +267,8 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     }
 
     MessageLoader_Free(v0->unk_20);
-    sub_0200D0B0(v0->unk_18, v0->unk_1C);
-    sub_0200C8D4(v0->unk_18);
+    SpriteSystem_FreeResourcesAndManager(v0->unk_18, v0->unk_1C);
+    SpriteSystem_Free(v0->unk_18);
     PaletteData_FreeBuffer(v0->unk_0C, 0);
     PaletteData_FreeBuffer(v0->unk_0C, 1);
     PaletteData_FreeBuffer(v0->unk_0C, 2);
@@ -297,8 +297,8 @@ static void ov99_021D1244(SysTask *param0, void *param1)
         G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 
-    sub_0200C7EC(v0->unk_1C);
-    sub_0200C808();
+    SpriteSystem_DrawSprites(v0->unk_1C);
+    SpriteSystem_UpdateTransfer();
 }
 
 static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0)
@@ -352,7 +352,7 @@ static void ov99_021D1350(void *param0)
     UnkStruct_ov99_021D2CB0 *v0 = param0;
 
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_0C);
     Bg_RunScheduledUpdates(v0->unk_08);
 

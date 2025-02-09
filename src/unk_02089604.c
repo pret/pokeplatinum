@@ -189,16 +189,16 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
                     continue;
                 }
 
-                sub_0200D5DC(param0->unk_00[v0].unk_0C, param0->unk_00[v0].unk_14.unk_00, param0->unk_00[v0].unk_14.unk_02);
+                Sprite_OffsetPositionXY2(param0->unk_00[v0].unk_0C, param0->unk_00[v0].unk_14.unk_00, param0->unk_00[v0].unk_14.unk_02);
                 param0->unk_00[v0].unk_14.unk_04--;
 
                 if ((v0 >= param0->unk_2B0) && (v0 < param0->unk_2B4)) {
-                    sub_0200D6E8(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
+                    Sprite_SetAffineScale(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
                 }
 
                 if ((v0 >= param0->unk_2B8) && (v0 < param0->unk_2BC)) {
-                    sub_0200D6E8(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
+                    Sprite_SetAffineScale(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
                 }
             }
@@ -208,19 +208,19 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
                     continue;
                 }
 
-                sub_0200D5DC(param0->unk_1A0[v0].unk_0C, param0->unk_1A0[v0].unk_14.unk_00, param0->unk_1A0[v0].unk_14.unk_02);
+                Sprite_OffsetPositionXY2(param0->unk_1A0[v0].unk_0C, param0->unk_1A0[v0].unk_14.unk_00, param0->unk_1A0[v0].unk_14.unk_02);
                 param0->unk_1A0[v0].unk_14.unk_04--;
             }
 
             if (param0->unk_00[0].unk_14.unk_04 == 0) {
                 for (v0 = param0->unk_2B0; v0 < param0->unk_2B4; v0++) {
-                    sub_0200D364(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
-                    sub_0200D330(param0->unk_00[v0].unk_0C);
+                    Sprite_SetAnim(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
+                    Sprite_TickOneFrame(param0->unk_00[v0].unk_0C);
                 }
 
                 for (v0 = param0->unk_2B8; v0 < param0->unk_2BC; v0++) {
-                    sub_0200D364(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
-                    sub_0200D330(param0->unk_00[v0].unk_0C);
+                    Sprite_SetAnim(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
+                    Sprite_TickOneFrame(param0->unk_00[v0].unk_0C);
                 }
 
                 param0->unk_29C++;
@@ -235,7 +235,7 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
                 continue;
             }
 
-            sub_0200D6E8(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
+            Sprite_SetAffineScale(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
             param0->unk_00[v0].unk_14.unk_05++;
         }
 
@@ -244,7 +244,7 @@ BOOL sub_02089974(UnkStruct_02089688 *param0)
                 continue;
             }
 
-            sub_0200D6E8(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
+            Sprite_SetAffineScale(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
             param0->unk_00[v0].unk_14.unk_05++;
         }
 
@@ -290,7 +290,7 @@ BOOL sub_02089BEC(UnkStruct_02089688 *param0)
 
     sub_0208ABB4(param0);
     sub_0208AC8C(param0);
-    sub_0200C7EC(param0->unk_2C0.unk_08);
+    SpriteSystem_DrawSprites(param0->unk_2C0.unk_08);
 
     return v0;
 }
@@ -530,12 +530,12 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
     add r1, r0, #0
     add r0, r4, r7
     ldr r0, [r0, #0xc]
-    bl sub_0200D364
+    bl Sprite_SetAnim
     mov r0, #0x96
     lsl r0, r0, #2
     ldr r0, [r4, r0]
     mov r1, #3
-    bl sub_0200D364
+    bl Sprite_SetAnim
     add r0, r4, r7
     ldr r3, [r0, #4]
     ldr r0, [sp]
@@ -759,7 +759,7 @@ void sub_02089F80(UnkStruct_02089688 *param0)
     for (v0 = 0; v0 < param0->unk_2A4; v0++) {
         if (param0->unk_00[v0].unk_00 == 0) {
             param0->unk_00[v0].unk_00 = 1;
-            sub_0200D364(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
+            Sprite_SetAnim(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
         }
 
         v1 = param0->unk_00[v0].unk_00 - 1;
@@ -794,12 +794,12 @@ void sub_02089FFC(UnkStruct_02089688 *param0)
     v0 = param0->unk_1F0[0].unk_00;
     param0->unk_00[v0].unk_00 = 0;
 
-    sub_0200D364(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
+    Sprite_SetAnim(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
     v1 = param0->unk_00[v0].unk_04;
 
     if (v0 > param0->unk_3C4) {
         v0--;
-        sub_0200D364(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
+        Sprite_SetAnim(param0->unk_00[v0].unk_0C, sub_0208AD98(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
 
         v2 = param0->unk_00[v0].unk_04;
 
@@ -903,13 +903,13 @@ void sub_0208A180(u32 param0, u32 param1, void *param2)
                 v1 = v0->unk_1F0[0].unk_00;
                 v0->unk_00[v1].unk_00 = param0 - 16 + 1;
 
-                sub_0200D364(v0->unk_00[v1].unk_0C, sub_0208AD98(v0->unk_00[v1].unk_00, v0->unk_00[v1].unk_08));
+                Sprite_SetAnim(v0->unk_00[v1].unk_0C, sub_0208AD98(v0->unk_00[v1].unk_00, v0->unk_00[v1].unk_08));
                 sub_0208AAB4(v0, 1, 1);
                 sub_0208AB2C(v0, param0 - 16);
                 sub_0208AAB4(v0, 1, 0);
                 sub_0208AAB4(v0, 2, 1);
                 sub_0208AB6C(v0, param0 - 16, 2);
-                sub_0200D364(v0->unk_1F0[2].unk_0C, 3);
+                Sprite_SetAnim(v0->unk_1F0[2].unk_0C, 3);
 
                 v2 = v0->unk_00[v1].unk_04;
                 v1++;

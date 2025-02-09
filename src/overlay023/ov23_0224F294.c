@@ -224,7 +224,7 @@ static void ov23_0224F460(UnkStruct_ov23_02250CD4 *param0)
     u16 v0;
 
     for (v0 = 0; v0 < param0->unk_25C; v0++) {
-        sub_0200D0F4(param0->unk_23C[v0]);
+        Sprite_DeleteAndFreeResources(param0->unk_23C[v0]);
     }
 
     ov5_021D375C(&param0->unk_74);

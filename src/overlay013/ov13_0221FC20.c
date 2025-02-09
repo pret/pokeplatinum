@@ -283,7 +283,7 @@ static void ov13_0221FCAC(SysTask *param0, void *param1)
     }
 
     ov13_0222537C(v0);
-    sub_0200C7EC(v0->unk_1FB0);
+    SpriteSystem_DrawSprites(v0->unk_1FB0);
     ov13_0222601C(v0);
 }
 
@@ -883,7 +883,7 @@ static u8 ov13_022208A4(UnkStruct_ov13_022213F0 *param0)
             param0->unk_04[v0->unk_11].unk_17_3 = PokemonSummaryScreen_StatusIconAnimIdx(param0->unk_04[v0->unk_11].unk_00);
 
             if (param0->unk_04[v0->unk_11].unk_17_3 == 7) {
-                SpriteActor_EnableObject(param0->unk_1FB4[13 + v0->unk_11], 0);
+                Sprite_SetDrawFlag2(param0->unk_1FB4[13 + v0->unk_11], 0);
                 ov13_022234A8(param0, v0->unk_11);
             }
 
@@ -1715,7 +1715,7 @@ static u8 ov13_022219DC(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02221A04(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteActor_EnableObject(param0->unk_1FB4[26], 0);
+    Sprite_SetDrawFlag2(param0->unk_1FB4[26], 0);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_206C[10]);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_206C[6]);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_206C[7]);

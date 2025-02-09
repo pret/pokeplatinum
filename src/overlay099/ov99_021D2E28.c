@@ -142,8 +142,8 @@ static void ov99_021D2ED8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2E
         param1->unk_94[v1].unk_2C = FX_Mul(CalcCosineDegrees_FX32(Unk_ov99_021D4BDC[v1].unk_10), Unk_ov99_021D4BDC[v1].unk_08);
         param1->unk_94[v1].unk_34 = Unk_ov99_021D4BDC[v1].unk_00;
 
-        sub_0200D650(param0->unk_10E0[v0], param1->unk_94[v1].unk_00 + param1->unk_94[v1].unk_28, param1->unk_94[v1].unk_04 + param1->unk_94[v1].unk_2C, ((192 + 80) << FX32_SHIFT));
-        sub_0200D6A4(param0->unk_10E0[v0], 2);
+        Sprite_SetPositionFxXYWithSubscreenOffset(param0->unk_10E0[v0], param1->unk_94[v1].unk_00 + param1->unk_94[v1].unk_28, param1->unk_94[v1].unk_04 + param1->unk_94[v1].unk_2C, ((192 + 80) << FX32_SHIFT));
+        Sprite_SetAffineOverwriteMode(param0->unk_10E0[v0], 2);
     }
 }
 
@@ -243,9 +243,9 @@ static void ov99_021D2FD4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2E
     }
 
     if (v0->unk_38 == 0) {
-        sub_0200D7C0(param2, v1->unk_4C);
+        Sprite_OffsetAffineZRotation(param2, v1->unk_4C);
     } else {
-        sub_0200D7C0(param2, -v1->unk_4C);
+        Sprite_OffsetAffineZRotation(param2, -v1->unk_4C);
     }
 
     v0->unk_36++;
@@ -256,7 +256,7 @@ static void ov99_021D2FD4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2E
     }
 
     v0->unk_04 -= v1->unk_48;
-    sub_0200D650(param2, v0->unk_00 + v0->unk_28, v0->unk_04 + v0->unk_2C, ((192 + 80) << FX32_SHIFT));
+    Sprite_SetPositionFxXYWithSubscreenOffset(param2, v0->unk_00 + v0->unk_28, v0->unk_04 + v0->unk_2C, ((192 + 80) << FX32_SHIFT));
 }
 
 static void ov99_021D32D8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2E28 *param1)

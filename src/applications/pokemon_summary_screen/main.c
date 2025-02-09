@@ -328,7 +328,7 @@ static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state)
     PokemonSummaryScreen_UpdateArrowAndTapAnims(summaryScreen);
     PokemonSummaryScreen_DrawSheenSprites(summaryScreen);
     PokemonSummaryScreen_UpdateRibbonFlashAnim(summaryScreen);
-    sub_0200C7EC(summaryScreen->gfxHandler);
+    SpriteSystem_DrawSprites(summaryScreen->gfxHandler);
     PokemonSummaryScreen_Update3DGfx(summaryScreen);
 
     return FALSE;
@@ -364,7 +364,7 @@ static void PokemonSummaryScreenVBlank(void *data)
     Bg_RunScheduledUpdates(summaryScreen->bgConfig);
     sub_02008A94(summaryScreen->monSprite.spriteManager);
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -815,7 +815,7 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
 
         if (summaryScreen->cursor != LEARNED_MOVES_MAX) {
             if (Item_IsHMMove(summaryScreen->monData.moves[summaryScreen->cursor]) == TRUE && summaryScreen->data->move != MOVE_NONE) {
-                SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
+                Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
                 DrawEmptyHearts(summaryScreen);
                 PokemonSummaryScreen_PrintHMMovesCantBeForgotten(summaryScreen);
                 return SUMMARY_STATE_WAIT_HM_MSG_INPUT;
@@ -1666,11 +1666,11 @@ static u8 SetupBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
         }
 
         UpdateMoveAttributes(summaryScreen);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
         PokemonSummaryScreen_ShowMonIcon(summaryScreen);
 
         if (summaryScreen->monData.type1 != summaryScreen->monData.type2) {
-            SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
+            Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
         }
 
         CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], TRUE);
@@ -1684,10 +1684,10 @@ static u8 HideBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
 {
     switch (summaryScreen->pageState) {
     case PAGE_STATE_INITIAL:
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], FALSE);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], FALSE);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], FALSE);
         CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], FALSE);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, NULL);
@@ -1775,11 +1775,11 @@ static void UpdateBattleMoveAttributes(PokemonSummaryScreen *summaryScreen, u32 
 {
     if (move == SUMMARY_MOVE_NONE) {
         PokemonSummaryScreen_ClearBattleAttributeWindows(summaryScreen);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
     } else {
         PokemonSummaryScreen_PrintBattleMoveAttributes(summaryScreen, move);
         PokemonSummaryScreen_UpdateMoveCategoryIcon(summaryScreen, move);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], TRUE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], TRUE);
     }
 }
 
@@ -1828,11 +1828,11 @@ static void SetupMoveInfoNoTransition(PokemonSummaryScreen *summaryScreen)
     PokemonSummaryScreen_ShowMove5OrCancel(summaryScreen);
     UpdateMoveAttributes(summaryScreen);
 
-    SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
+    Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
     PokemonSummaryScreen_ShowMonIcon(summaryScreen);
 
     if (summaryScreen->monData.type1 != summaryScreen->monData.type2) {
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
     }
 
     CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], TRUE);
@@ -1888,7 +1888,7 @@ static u8 HideContestMoveInfo(PokemonSummaryScreen *summaryScreen)
     switch (summaryScreen->pageState) {
     case PAGE_STATE_INITIAL:
         PokemonSummaryScreen_HideContestStatDots(summaryScreen);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], FALSE);
         UpdateAppealHearts(summaryScreen, SUMMARY_MOVE_NONE);
         CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], FALSE);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
@@ -1976,10 +1976,10 @@ static void SetupMoveInfoFromSubscreenButton(PokemonSummaryScreen *summaryScreen
 
     if (summaryScreen->page == SUMMARY_PAGE_BATTLE_MOVES) {
         PokemonSummaryScreen_HideContestStatDots(summaryScreen);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
 
         if (summaryScreen->monData.type1 != summaryScreen->monData.type2) {
-            SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
+            Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
         }
 
         Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 3, 0);

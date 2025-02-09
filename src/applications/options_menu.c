@@ -341,7 +341,7 @@ static void OptionsMenuVBlank(void *data)
         menuData->redrawMessageBox = FALSE;
     }
 
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     NNS_GfdDoVramTransfer();
     Bg_RunScheduledUpdates(menuData->bgConfig);
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

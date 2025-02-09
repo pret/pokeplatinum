@@ -106,7 +106,7 @@ static void ov99_021D2CB0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C
     GF_ASSERT(NELEMS(Unk_ov99_021D4B70) == 4 - 2 + 1);
 
     for (v0 = 2; v0 <= 4; v0++, v1++) {
-        sub_0200D650(param0->unk_10E0[v0], Unk_ov99_021D4B70[v1].unk_04, Unk_ov99_021D4B70[v1].unk_08, ((192 + 80) << FX32_SHIFT));
+        Sprite_SetPositionFxXYWithSubscreenOffset(param0->unk_10E0[v0], Unk_ov99_021D4B70[v1].unk_04, Unk_ov99_021D4B70[v1].unk_08, ((192 + 80) << FX32_SHIFT));
         param1->unk_08[v1].unk_00 = Unk_ov99_021D4B70[v1].unk_04;
         param1->unk_08[v1].unk_04 = Unk_ov99_021D4B70[v1].unk_08;
     }
@@ -143,12 +143,12 @@ static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C
     v0->unk_00 += v1->unk_0C;
     v0->unk_04 += v1->unk_10;
 
-    sub_0200D650(param2, v0->unk_00, v0->unk_04 + v2, ((192 + 80) << FX32_SHIFT));
+    Sprite_SetPositionFxXYWithSubscreenOffset(param2, v0->unk_00, v0->unk_04 + v2, ((192 + 80) << FX32_SHIFT));
 
     if (v0->unk_12 == 0) {
-        sub_0200D74C(param2, v1->unk_1C, v1->unk_1C);
+        Sprite_OffsetAffineScale(param2, v1->unk_1C, v1->unk_1C);
     } else {
-        sub_0200D74C(param2, -v1->unk_1C, -v1->unk_1C);
+        Sprite_OffsetAffineScale(param2, -v1->unk_1C, -v1->unk_1C);
     }
 
     v0->unk_10++;

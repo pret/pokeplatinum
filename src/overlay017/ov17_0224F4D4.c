@@ -176,15 +176,15 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     sub_0201E450(4);
     Font_InitManager(FONT_SUBSCREEN, 24);
 
-    v0->unk_10.unk_18 = sub_0200C6E4(24);
+    v0->unk_10.unk_18 = SpriteSystem_Alloc(24);
 
-    sub_0200C73C(v0->unk_10.unk_18, &Unk_ov17_02254B0C, &Unk_ov17_02254AC4, (16 + 16));
+    SpriteSystem_Init(v0->unk_10.unk_18, &Unk_ov17_02254B0C, &Unk_ov17_02254AC4, (16 + 16));
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_10.unk_1C = sub_0200C704(v0->unk_10.unk_18);
-    sub_0200C7C0(v0->unk_10.unk_18, v0->unk_10.unk_1C, (64 + 64));
-    sub_0200CB30(v0->unk_10.unk_18, v0->unk_10.unk_1C, &Unk_ov17_02254AD8);
+    v0->unk_10.unk_1C = SpriteManager_New(v0->unk_10.unk_18);
+    SpriteSystem_InitSprites(v0->unk_10.unk_18, v0->unk_10.unk_1C, (64 + 64));
+    SpriteSystem_InitManagerWithCapacities(v0->unk_10.unk_18, v0->unk_10.unk_1C, &Unk_ov17_02254AD8);
     v0->unk_10.unk_04 = sub_0200762C(24);
 
     ov17_0224FDDC();
@@ -295,8 +295,8 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 3);
     Bg_ToggleLayer(4, 0);
     Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 4);
-    sub_0200D0B0(v0->unk_10.unk_18, v0->unk_10.unk_1C);
-    sub_0200C8D4(v0->unk_10.unk_18);
+    SpriteSystem_FreeResourcesAndManager(v0->unk_10.unk_18, v0->unk_10.unk_1C);
+    SpriteSystem_Free(v0->unk_10.unk_18);
     VramTransfer_Free();
 
     ov17_022507C4(&v0->unk_10);
@@ -357,7 +357,7 @@ static void ov17_0224FA24(void *param0)
 
     sub_02008A94(v0->unk_10.unk_04);
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_10.unk_C0);
     Bg_RunScheduledUpdates(v0->unk_10.unk_20);
 
@@ -396,8 +396,8 @@ static void ov17_0224FAFC(SysTask *param0, void *param1)
     if (v0->unk_850 == 1) {
         sub_02007768(v0->unk_10.unk_04);
         ov11_0221F8F0();
-        sub_0200C7EC(v0->unk_10.unk_1C);
-        sub_0200C808();
+        SpriteSystem_DrawSprites(v0->unk_10.unk_1C);
+        SpriteSystem_UpdateTransfer();
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 

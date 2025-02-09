@@ -52,7 +52,7 @@ void ov16_0226DE44(SpriteSystem *param0, SpriteManager *param1, u32 param2, Pale
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
 
-    SpriteSystem_LoadPalette(param3, 3, param0, param1, v0, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param3, 3, param0, param1, v0, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
     SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, v0, 10, 0, NNS_G2D_VRAM_TYPE_2DSUB, param4);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, v0, 12, 0, param6);
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, v0, 13, 0, param7);
@@ -84,8 +84,8 @@ UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteSystem *param0, SpriteManager *para
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov16_0226DEEC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DEEC));
 
-    v0->unk_00 = SpriteActor_LoadResources(param0, param1, &v1);
-    SpriteActor_EnableObject(v0->unk_00, 0);
+    v0->unk_00 = SpriteSystem_NewSprite(param0, param1, &v1);
+    Sprite_SetDrawFlag2(v0->unk_00, 0);
 
     v0->unk_14 = (192 << FX32_SHIFT);
     v0->unk_04 = SysTask_Start(ov16_0226DFD8, v0, 999);
@@ -95,7 +95,7 @@ UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteSystem *param0, SpriteManager *para
 
 void ov16_0226DF68(UnkStruct_ov16_0226DEEC *param0)
 {
-    sub_0200D0F4(param0->unk_00);
+    Sprite_DeleteAndFreeResources(param0->unk_00);
     SysTask_Done(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
@@ -108,8 +108,8 @@ void ov16_0226DF80(UnkStruct_ov16_0226DEEC *param0, int param1, int param2, fx32
     param0->unk_0C = param2;
     param0->unk_14 = param3;
 
-    sub_0200D500(param0->unk_00, param1, param2, param3);
-    SpriteActor_EnableObject(param0->unk_00, 1);
+    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00, param1, param2, param3);
+    Sprite_SetDrawFlag2(param0->unk_00, 1);
 }
 
 void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2)
@@ -119,7 +119,7 @@ void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2)
 
 void ov16_0226DFBC(UnkStruct_ov16_0226DEEC *param0)
 {
-    SpriteActor_EnableObject(param0->unk_00, 0);
+    Sprite_SetDrawFlag2(param0->unk_00, 0);
     ov16_0226E13C(param0);
 }
 
@@ -149,7 +149,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
         }
     }
 
-    if (sub_0200D408(v0->unk_00) == 0) {
+    if (Sprite_GetDrawFlag2(v0->unk_00) == 0) {
         return;
     }
 
@@ -169,7 +169,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
 
         if (v0->unk_1C == 0) {
             v1 = FX_Mul(CalcSineDegrees(v0->unk_10 / 100), 14 << FX32_SHIFT) / FX32_ONE;
-            sub_0200D500(v0->unk_00, v0->unk_08, v0->unk_0C - v1, v0->unk_14);
+            Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_00, v0->unk_08, v0->unk_0C - v1, v0->unk_14);
         }
     }
 
@@ -184,7 +184,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
             }
             break;
         case 1:
-            sub_0200D500(v0->unk_00, v0->unk_08, v0->unk_0C + 8, v0->unk_14);
+            Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_00, v0->unk_08, v0->unk_0C + 8, v0->unk_14);
             v0->unk_1B = 1;
             v0->unk_1D++;
             break;
@@ -192,7 +192,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
             v0->unk_1E++;
 
             if (v0->unk_1E > 2) {
-                sub_0200D500(v0->unk_00, v0->unk_08, v0->unk_0C + 2, v0->unk_14);
+                Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_00, v0->unk_08, v0->unk_0C + 2, v0->unk_14);
                 v0->unk_1E = 0;
                 v0->unk_1D++;
             }
@@ -211,7 +211,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
         }
     }
 
-    sub_0200D330(v0->unk_00);
+    Sprite_TickOneFrame(v0->unk_00);
 }
 
 static void ov16_0226E13C(UnkStruct_ov16_0226DEEC *param0)

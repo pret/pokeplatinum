@@ -285,7 +285,7 @@ void ov16_0225C104(BattleSystem *param0, BattlerData *param1, int param2)
     }
 
     if (param1->unk_18) {
-        sub_0200D0F4(param1->unk_18);
+        Sprite_DeleteAndFreeResources(param1->unk_18);
     }
 
     ov16_022647D8(param1);
