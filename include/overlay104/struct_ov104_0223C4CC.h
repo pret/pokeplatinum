@@ -40,7 +40,7 @@ typedef struct UnkStruct_ov104_0223C4CC_t {
         SpriteManager *unk_04;
     } unk_34;
     UnkStruct_ov104_0223D3B0_1 unk_3C;
-    CellActorData *unk_80[4];
+    ManagedSprite *unk_80[4];
     void *unk_90;
     SysTask *unk_94;
     SysTask *unk_98;

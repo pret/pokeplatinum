@@ -19,7 +19,7 @@
 
 typedef struct UnkStruct_ov77_021D6CFC_t {
     UnkStruct_02007768 *unk_00;
-    Sprite *unk_04[3];
+    PokemonSprite *unk_04[3];
     BOOL unk_10;
     void *unk_14;
     UnkStruct_02014014 *unk_18;
@@ -252,7 +252,7 @@ BOOL ov77_021D6E78(UnkStruct_ov77_021D6CFC *param0, const u8 param1, const int p
 
 static BOOL ov77_021D7004(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite *v0 = param0->unk_04[param1];
+    PokemonSprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, 6);
     sub_02008274(v0, 1, -16);
@@ -273,7 +273,7 @@ static BOOL ov77_021D7004(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 
 static BOOL ov77_021D7074(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite *v0 = param0->unk_04[param1];
+    PokemonSprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, -3);
     sub_02008274(v0, 1, -18);
@@ -291,7 +291,7 @@ static BOOL ov77_021D7074(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 
 static BOOL ov77_021D70CC(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite *v0 = param0->unk_04[param1];
+    PokemonSprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, -16);
     sub_02008274(v0, 1, -16);
@@ -312,7 +312,7 @@ static BOOL ov77_021D70CC(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 
 static BOOL ov77_021D713C(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite *v0 = param0->unk_04[param1];
+    PokemonSprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, -6);
     sub_02008274(v0, 1, -16);
@@ -330,7 +330,7 @@ static BOOL ov77_021D713C(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 
 static BOOL ov77_021D7194(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite *v0 = param0->unk_04[param1];
+    PokemonSprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, 8);
     sub_02008274(v0, 1, -16);
@@ -351,7 +351,7 @@ static BOOL ov77_021D7194(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 
 static BOOL ov77_021D7204(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
-    Sprite *v0 = param0->unk_04[param1];
+    PokemonSprite *v0 = param0->unk_04[param1];
 
     sub_02008274(v0, 0, 6);
     sub_02008274(v0, 1, -20);
@@ -378,7 +378,7 @@ static void ov77_021D725C(void)
 
 static void ov77_021D7268(SPLEmitter *param0)
 {
-    Sprite *v0 = sub_02014764();
+    PokemonSprite *v0 = sub_02014764();
     VecFx32 v1 = { 0, 0, 0 };
 
     v1.x = 172 * (sub_020080C0(v0, 0) - 128);

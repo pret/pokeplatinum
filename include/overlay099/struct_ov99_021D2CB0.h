@@ -34,7 +34,7 @@ typedef struct {
     Easy3DObject unk_6C[2][16];
     UnkStruct_ov99_021D2CB0_sub1 unk_F6C;
     UnkStruct_ov99_021D3A40 unk_FA4;
-    CellActorData *unk_10E0[5];
+    ManagedSprite *unk_10E0[5];
     u8 *unk_10F4;
     NARC *unk_10F8;
     u32 unk_10FC;

@@ -5,10 +5,10 @@
 
 #include "overlay079/struct_ov79_021D0E1C.h"
 
-#include "cell_actor.h"
 #include "communication_system.h"
 #include "gx_layers.h"
 #include "render_oam.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "unk_020393C8.h"
 #include "unk_02098FFC.h"
@@ -92,12 +92,12 @@ void ov79_021D21F8(UnkStruct_ov79_021D0E1C *param0)
 void ov79_021D2214(UnkStruct_ov79_021D0E1C *param0, BOOL param1)
 {
     if (param1 == 0) {
-        CellActor_SetExplicitPalette(param0->unk_1C0[0], 0);
-        CellActor_SetAnimateFlag(param0->unk_1C0[1], 1);
-        CellActor_SetAnimateFlag(param0->unk_1C0[2], 1);
+        Sprite_SetExplicitPalette(param0->unk_1C0[0], 0);
+        Sprite_SetAnimateFlag(param0->unk_1C0[1], 1);
+        Sprite_SetAnimateFlag(param0->unk_1C0[2], 1);
     } else {
-        CellActor_SetExplicitPalette(param0->unk_1C0[0], 9);
-        CellActor_SetAnimateFlag(param0->unk_1C0[1], 0);
-        CellActor_SetAnimateFlag(param0->unk_1C0[2], 0);
+        Sprite_SetExplicitPalette(param0->unk_1C0[0], 9);
+        Sprite_SetAnimateFlag(param0->unk_1C0[1], 0);
+        Sprite_SetAnimateFlag(param0->unk_1C0[2], 0);
     }
 }

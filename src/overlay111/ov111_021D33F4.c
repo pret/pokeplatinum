@@ -7,8 +7,8 @@
 #include "overlay111/struct_ov111_021D2F80.h"
 #include "overlay111/struct_ov111_021D33F4_decl.h"
 
-#include "cell_actor.h"
 #include "heap.h"
+#include "sprite.h"
 
 struct UnkStruct_ov111_021D33F4_t {
     u16 unk_00;
@@ -16,7 +16,7 @@ struct UnkStruct_ov111_021D33F4_t {
     u8 unk_03;
     u32 unk_04;
     u32 unk_08;
-    CellActor *unk_0C;
+    Sprite *unk_0C;
 };
 
 UnkStruct_ov111_021D33F4 *ov111_021D33F4(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 param2, u16 param3, u16 param4, u8 param5, u32 param6, u32 param7);
@@ -50,20 +50,20 @@ UnkStruct_ov111_021D33F4 *ov111_021D33F4(UnkStruct_ov111_021D2F80 *param0, u32 p
 
 void *ov111_021D3448(UnkStruct_ov111_021D33F4 *param0)
 {
-    CellActor_Delete(param0->unk_0C);
+    Sprite_Delete(param0->unk_0C);
     Heap_FreeToHeap(param0);
     return NULL;
 }
 
 void ov111_021D345C(UnkStruct_ov111_021D33F4 *param0, int param1)
 {
-    CellActor_SetDrawFlag(param0->unk_0C, param1);
+    Sprite_SetDrawFlag(param0->unk_0C, param1);
     return;
 }
 
 void ov111_021D3468(UnkStruct_ov111_021D33F4 *param0, u32 param1)
 {
-    CellActor_SetPriority(param0->unk_0C, param1);
+    Sprite_SetPriority(param0->unk_0C, param1);
     return;
 }
 
@@ -78,7 +78,7 @@ void ov111_021D3474(UnkStruct_ov111_021D33F4 *param0, int param1, int param2)
         v0.y += (512 * FX32_ONE);
     }
 
-    CellActor_SetPosition(param0->unk_0C, &v0);
+    Sprite_SetPosition(param0->unk_0C, &v0);
     return;
 }
 
@@ -86,7 +86,7 @@ void ov111_021D349C(UnkStruct_ov111_021D33F4 *param0, int *param1, int *param2)
 {
     const VecFx32 *v0;
 
-    v0 = CellActor_GetPosition(param0->unk_0C);
+    v0 = Sprite_GetPosition(param0->unk_0C);
 
     *param1 = (v0->x / FX32_ONE);
     *param2 = (v0->y / FX32_ONE);
@@ -96,8 +96,8 @@ void ov111_021D349C(UnkStruct_ov111_021D33F4 *param0, int *param1, int *param2)
 
 void ov111_021D34C4(UnkStruct_ov111_021D33F4 *param0, u32 param1)
 {
-    CellActor_SetAnimSpeed(param0->unk_0C, FX32_ONE);
-    CellActor_SetAnimNoRestart(param0->unk_0C, param1);
+    Sprite_SetAnimSpeed(param0->unk_0C, FX32_ONE);
+    Sprite_SetAnimNoRestart(param0->unk_0C, param1);
 
     return;
 }
@@ -121,38 +121,38 @@ void ov111_021D34E0(UnkStruct_ov111_021D33F4 *param0, u32 param1)
     u8 v0;
     v0 = param1;
 
-    CellActor_SetAffineScaleEx(param0->unk_0C, &Unk_ov111_021D3834[0], 1);
+    Sprite_SetAffineScaleEx(param0->unk_0C, &Unk_ov111_021D3834[0], 1);
 
     return;
 }
 
 void ov111_021D34F4(UnkStruct_ov111_021D33F4 *param0, VecFx32 *param1)
 {
-    CellActor_SetAffineScaleEx(param0->unk_0C, param1, 2);
+    Sprite_SetAffineScaleEx(param0->unk_0C, param1, 2);
     return;
 }
 
 void ov111_021D3500(UnkStruct_ov111_021D33F4 *param0, u32 param1)
 {
-    CellActor_SetExplicitPaletteWithOffset(param0->unk_0C, param1);
+    Sprite_SetExplicitPaletteWithOffset(param0->unk_0C, param1);
     return;
 }
 
 void ov111_021D350C(UnkStruct_ov111_021D33F4 *param0, int param1)
 {
-    CellActor_SetAnimateFlag(param0->unk_0C, param1);
-    CellActor_SetAnimSpeed(param0->unk_0C, FX32_ONE);
-    CellActor_SetAnim(param0->unk_0C, CellActor_GetActiveAnim(param0->unk_0C));
+    Sprite_SetAnimateFlag(param0->unk_0C, param1);
+    Sprite_SetAnimSpeed(param0->unk_0C, FX32_ONE);
+    Sprite_SetAnim(param0->unk_0C, Sprite_GetActiveAnim(param0->unk_0C));
     return;
 }
 
 void ov111_021D3530(UnkStruct_ov111_021D33F4 *param0, BOOL param1)
 {
-    CellActor_SetPixelated(param0->unk_0C, param1);
+    Sprite_SetPixelated(param0->unk_0C, param1);
     return;
 }
 
 BOOL ov111_021D353C(UnkStruct_ov111_021D33F4 *param0)
 {
-    return CellActor_IsAnimated(param0->unk_0C);
+    return Sprite_IsAnimated(param0->unk_0C);
 }

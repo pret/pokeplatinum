@@ -75,7 +75,7 @@ static BOOL ov100_021D4104(UnkStruct_ov100_021D4104 *param0, s16 param1, s16 par
     BOOL v6;
     fx32 v7, v8;
 
-    Sprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v2, &v3, FX32_CONST(192));
+    ManagedSprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v2, &v3, FX32_CONST(192));
 
     v0 = FX_FX32_TO_F32(v2);
     v1 = FX_FX32_TO_F32(v3);
@@ -92,7 +92,7 @@ static BOOL ov100_021D4104(UnkStruct_ov100_021D4104 *param0, s16 param1, s16 par
         v7 += (CalcSineDegrees_Wraparound(param0->unk_20) * 1);
         v8 += (CalcCosineDegrees_Wraparound(param0->unk_20) * 1);
 
-        Sprite_OffsetPositionFxXY(param0->unk_00, v7, v8);
+        ManagedSprite_OffsetPositionFxXY(param0->unk_00, v7, v8);
     }
 
     return v6;
@@ -113,7 +113,7 @@ static void ov100_021D4214(UnkStruct_ov100_021D4104 *param0)
     v0 = (128 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(param0->unk_1C) * 64);
     v1 = (48 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(param0->unk_1C) * 24);
 
-    Sprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, v0, v1, FX32_CONST(192));
+    ManagedSprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, v0, v1, FX32_CONST(192));
 
     param0->unk_14 = v1 / FX32_ONE;
 }
@@ -128,7 +128,7 @@ static void ov100_021D4264(UnkStruct_ov100_021D4104 *param0, int param1, int par
     v0 = (param1 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(param0->unk_1C) * param3);
     v1 = (param2 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(param0->unk_1C) * param4);
 
-    Sprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, v0, v1, FX32_CONST(192));
+    ManagedSprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, v0, v1, FX32_CONST(192));
 }
 
 static void ov100_021D42B0(UnkStruct_ov100_021D4104 *param0)
@@ -157,7 +157,7 @@ static void ov100_021D42B0(UnkStruct_ov100_021D4104 *param0)
         param0->unk_0C = 3;
     }
 
-    Sprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v0, &v1, FX32_CONST(192));
+    ManagedSprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v0, &v1, FX32_CONST(192));
 
     param0->unk_14 = (v1 / FX32_ONE);
 }
@@ -177,12 +177,12 @@ static void ov100_021D4318(UnkStruct_ov100_021D4104 *param0)
         param0->unk_0C = 2;
     }
 
-    Sprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v0, &v1, FX32_CONST(192));
+    ManagedSprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v0, &v1, FX32_CONST(192));
 
     v0 += (CalcSineDegrees_Wraparound(param0->unk_20) * (3 * param0->unk_28[0]));
     v1 += (CalcCosineDegrees_Wraparound(param0->unk_20) * (3 * param0->unk_28[1]));
 
-    Sprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, v0, v1, FX32_CONST(192));
+    ManagedSprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, v0, v1, FX32_CONST(192));
 
     param0->unk_14 = v1 / FX32_ONE;
 }
@@ -203,8 +203,8 @@ static void ov100_021D43BC(UnkStruct_ov100_021D4104 *param0)
         v0 = 0.6f;
     }
 
-    Sprite_SetAffineScale(param0->unk_00, v0, v0);
-    Sprite_SetPriority(param0->unk_00, param0->unk_14);
+    ManagedSprite_SetAffineScale(param0->unk_00, v0, v0);
+    ManagedSprite_SetPriority(param0->unk_00, param0->unk_14);
 }
 
 void ov100_021D4414(SysTask *param0, void *param1)
@@ -214,7 +214,7 @@ void ov100_021D4414(SysTask *param0, void *param1)
     Unk_ov100_021D5334[v0->unk_0C](v0);
 
     ov100_021D43BC(v0);
-    Sprite_TickTwoFrame(v0->unk_00);
+    ManagedSprite_TickTwoFrames(v0->unk_00);
 }
 
 void ov100_021D4438(SysTask *param0, void *param1)
@@ -228,23 +228,23 @@ void ov100_021D4438(SysTask *param0, void *param1)
         BOOL v3;
 
         if (v0->unk_04 && v0->unk_3C) {
-            Sprite_GetPositionXY2(v0->unk_04, &v1, &v2);
+            ManagedSprite_GetPositionXY(v0->unk_04, &v1, &v2);
 
             v3 = ov100_021D4104(v0, v1, v2, 3.0f, 1);
 
             {
                 f32 v4, v5;
 
-                Sprite_GetAffineScale(v0->unk_00, &v4, &v5);
+                ManagedSprite_GetAffineScale(v0->unk_00, &v4, &v5);
 
                 if (v4 > 0.10f) {
                     v4 = v4 - 0.002f;
                 }
 
-                Sprite_SetAffineScale(v0->unk_00, v4, v4);
+                ManagedSprite_SetAffineScale(v0->unk_00, v4, v4);
             }
         }
     }
 
-    Sprite_TickTwoFrame(v0->unk_00);
+    ManagedSprite_TickTwoFrames(v0->unk_00);
 }

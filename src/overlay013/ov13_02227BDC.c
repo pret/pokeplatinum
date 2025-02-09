@@ -113,7 +113,7 @@ static void ov13_02227D48(UnkStruct_ov13_02227244 *param0, u16 param1, u16 param
     PaletteData_LoadBufferFromFileStart(param0->unk_08, 16, Item_FileID(param1, 2), param0->unk_00->unk_0C, 3, 0x20, param2 * 16);
 }
 
-static CellActorData *ov13_02227D78(UnkStruct_ov13_02227244 *param0, u32 param1)
+static ManagedSprite *ov13_02227D78(UnkStruct_ov13_02227244 *param0, u32 param1)
 {
     SpriteTemplate v0;
     SpriteSystem *v1;
@@ -162,10 +162,10 @@ void ov13_02227E08(UnkStruct_ov13_02227244 *param0)
     SpriteSystem_FreeResourcesAndManager(v0, param0->unk_30C);
 }
 
-static void ov13_02227E48(CellActorData *param0, const int param1, const int param2)
+static void ov13_02227E48(ManagedSprite *param0, const int param1, const int param2)
 {
-    Sprite_SetDrawFlag2(param0, 1);
-    Sprite_SetPositionXY2(param0, param1, param2);
+    ManagedSprite_SetDrawFlag(param0, 1);
+    ManagedSprite_SetPositionXY(param0, param1, param2);
 }
 
 void ov13_02227E68(UnkStruct_ov13_02227244 *param0, u32 param1)
@@ -173,7 +173,7 @@ void ov13_02227E68(UnkStruct_ov13_02227244 *param0, u32 param1)
     u32 v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        Sprite_SetDrawFlag2(param0->unk_310[v0], 0);
+        ManagedSprite_SetDrawFlag(param0->unk_310[v0], 0);
     }
 
     switch (param1) {

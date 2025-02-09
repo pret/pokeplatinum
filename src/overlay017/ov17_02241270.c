@@ -52,12 +52,12 @@ void ov17_02241270(SpriteSystem *param0, SpriteManager *param1, NARC *param2)
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, 44, TRUE, 33014);
 }
 
-CellActorData *ov17_022412C0(SpriteSystem *param0, SpriteManager *param1, int param2)
+ManagedSprite *ov17_022412C0(SpriteSystem *param0, SpriteManager *param1, int param2)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
 
     v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_0225364C);
-    Sprite_SetPositionXYWithSubscreenOffset2(v0, (5 * 8) + (11 * 8) * param2, (0xc * 8) + 0 * param2, ((192 + 80) << FX32_SHIFT));
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v0, (5 * 8) + (11 * 8) * param2, (0xc * 8) + 0 * param2, ((192 + 80) << FX32_SHIFT));
     Sprite_TickFrame(v0->sprite);
 
     return v0;
@@ -70,7 +70,7 @@ void ov17_022412F0(SpriteManager *param0)
     SpriteManager_UnloadAnimObjById(param0, 33014);
 }
 
-void ov17_02241314(CellActorData *param0)
+void ov17_02241314(ManagedSprite *param0)
 {
     Sprite_DeleteAndFreeResources(param0);
 }
@@ -82,9 +82,9 @@ void ov17_0224131C(SpriteSystem *param0, SpriteManager *param1, NARC *param2)
     SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, 47, TRUE, 33013);
 }
 
-CellActorData *ov17_0224136C(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, int param4)
+ManagedSprite *ov17_0224136C(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, int param4)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
 
     if (param4 >= 0) {
         v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_02253618);
@@ -92,13 +92,13 @@ CellActorData *ov17_0224136C(SpriteSystem *param0, SpriteManager *param1, int pa
         v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_02253680);
     }
 
-    Sprite_SetPositionXYWithSubscreenOffset2(v0, param2, param3, ((192 + 80) << FX32_SHIFT));
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v0, param2, param3, ((192 + 80) << FX32_SHIFT));
     Sprite_TickFrame(v0->sprite);
 
     return v0;
 }
 
-void ov17_022413AC(CellActorData *param0)
+void ov17_022413AC(ManagedSprite *param0)
 {
     Sprite_DeleteAndFreeResources(param0);
 }

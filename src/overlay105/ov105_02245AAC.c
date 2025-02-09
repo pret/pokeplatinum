@@ -5,17 +5,17 @@
 
 #include "overlay105/struct_ov105_02245AAC.h"
 
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "gx_layers.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 
 void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0);
-CellActor *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);
+Sprite *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5);
 void ov105_02245C50(UnkStruct_ov105_02245AAC *param0);
 static void ov105_02245C98(void);
 
@@ -56,18 +56,18 @@ void ov105_02245AAC(UnkStruct_ov105_02245AAC *param0)
     return;
 }
 
-CellActor *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5)
+Sprite *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2, u32 param3, int param4, u8 param5)
 {
     int v0;
-    CellActorResourceData v1;
-    CellActor *v2;
+    SpriteResourcesHeader v1;
+    Sprite *v2;
 
     SpriteResourcesHeader_Init(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, param4, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
-        CellActorInitParamsEx v3;
+        AffineSpriteListTemplate v3;
 
-        v3.collection = param0->unk_00;
+        v3.list = param0->unk_00;
         v3.resourceData = &v1;
         v3.position.x = 0;
         v3.position.y = 0;
@@ -90,10 +90,10 @@ CellActor *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 para
             v3.position.y += (192 << FX32_SHIFT);
         }
 
-        v2 = CellActorCollection_AddEx(&v3);
+        v2 = SpriteList_AddEx(&v3);
 
-        CellActor_SetAnimateFlag(v2, 1);
-        CellActor_SetAnim(v2, param2);
+        Sprite_SetAnimateFlag(v2, 1);
+        Sprite_SetAnim(v2, param2);
     }
 
     return v2;
@@ -112,7 +112,7 @@ void ov105_02245C50(UnkStruct_ov105_02245AAC *param0)
         SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
-    CellActorCollection_Delete(param0->unk_00);
+    SpriteList_Delete(param0->unk_00);
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();

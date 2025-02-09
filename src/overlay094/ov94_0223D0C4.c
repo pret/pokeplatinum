@@ -15,7 +15,6 @@
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -28,6 +27,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -250,23 +250,23 @@ static void ov94_0223D2E8(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_0223D3DC(UnkStruct_ov94_0223FD4C *param0)
 {
-    CellActorInitParamsEx v0;
+    AffineSpriteListTemplate v0;
 
     ov94_0223C300(&v0, param0, &param0->unk_DB4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0.position.x = FX32_ONE * 208;
     v0.position.y = FX32_ONE * 58;
 
-    param0->unk_F30 = CellActorCollection_AddEx(&v0);
+    param0->unk_F30 = SpriteList_AddEx(&v0);
 
-    CellActor_SetAnimateFlag(param0->unk_F30, 1);
-    CellActor_SetAnim(param0->unk_F30, 37);
+    Sprite_SetAnimateFlag(param0->unk_F30, 1);
+    Sprite_SetAnim(param0->unk_F30, 37);
     sub_02039734();
 }
 
 static void ov94_0223D428(UnkStruct_ov94_0223FD4C *param0)
 {
-    CellActor_Delete(param0->unk_F30);
+    Sprite_Delete(param0->unk_F30);
 }
 
 static const int Unk_ov94_02245B94[][4] = {

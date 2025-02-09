@@ -9,15 +9,15 @@
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "message.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 
 typedef struct {
     UnkStruct_ov19_021D61B0 *unk_00;
     BgConfig *unk_04;
-    CellActorCollection *unk_08;
+    SpriteList *unk_08;
     const UnkStruct_ov19_021D4DF0 *unk_0C;
     Window *unk_10;
     void *unk_14;
@@ -31,8 +31,8 @@ typedef struct {
     NNSG2dScreenData *unk_38;
     Bitmap unk_3C;
     UnkStruct_0200C440 *unk_44;
-    CellActor *unk_48[18];
-    CellActor *unk_90;
+    Sprite *unk_48[18];
+    Sprite *unk_90;
     u32 unk_94[18];
     SysTask *unk_DC;
     s32 unk_E0;

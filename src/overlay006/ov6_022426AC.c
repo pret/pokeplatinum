@@ -8,11 +8,11 @@
 
 #include "struct_defs/archived_sprite.h"
 
-#include "cell_actor.h"
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -120,7 +120,7 @@ void ov6_02242828(GreatMarshLookout_SpriteResources *param0)
         SpriteResourceCollection_Delete(param0->unk_00[v0]);
     }
 
-    CellActorCollection_Delete(param0->unk_38);
+    SpriteList_Delete(param0->unk_38);
     Heap_FreeToHeap(param0->unk_20);
     Heap_FreeToHeap(param0->unk_24);
 }
@@ -130,7 +130,7 @@ static void ov6_02242860(SysTask *param0, void *param1)
     GreatMarshLookout_SpriteResources *v0 = param1;
 
     if (v0->unk_1CC) {
-        CellActorCollection_Update(v0->unk_38);
+        SpriteList_Update(v0->unk_38);
     } else {
         v0->unk_1D0 = 1;
         SysTask_Done(param0);
@@ -170,14 +170,14 @@ static void ov6_02242880(SpriteResourceCollection *param0, SpriteResourceCollect
 static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0)
 {
     int v0;
-    CellActorResourceData v1;
+    SpriteResourcesHeader v1;
 
     SpriteResourcesHeader_Init(&v1, 0, 1, 2, 3, 0xffffffff, 0xffffffff, 0, 0, param0->unk_00[0], param0->unk_00[1], param0->unk_00[2], param0->unk_00[3], NULL, NULL);
 
     {
-        CellActorInitParamsEx v2;
+        AffineSpriteListTemplate v2;
 
-        v2.collection = param0->unk_38;
+        v2.list = param0->unk_38;
         v2.resourceData = &v1;
         v2.position.x = 0;
         v2.position.y = 0;
@@ -192,9 +192,9 @@ static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0)
         v2.position.x = FX32_ONE * (256 / 2);
         v2.position.y = FX32_ONE * (192 / 2);
 
-        param0->unk_1C8 = CellActorCollection_AddEx(&v2);
+        param0->unk_1C8 = SpriteList_AddEx(&v2);
 
-        CellActor_SetAnimateFlag(param0->unk_1C8, 0);
-        CellActor_SetAnim(param0->unk_1C8, 0);
+        Sprite_SetAnimateFlag(param0->unk_1C8, 0);
+        Sprite_SetAnim(param0->unk_1C8, 0);
     }
 }

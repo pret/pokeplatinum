@@ -3,11 +3,11 @@
 
 #include <nnsys.h>
 
-#include "cell_actor.h"
+#include "sprite.h"
 
 typedef struct {
     int unk_00;
-    CellActor *unk_04;
+    Sprite *unk_04;
     const NNSG2dImageProxy *unk_08;
 } UnkStruct_ov101_021D8544;
 

@@ -270,7 +270,7 @@ void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSys);
 u8 BattleSystem_RecordedChatter(BattleSystem *battleSys, int param1);
 void ov16_0223F858(BattleSystem *battleSys, u8 *param1);
 void ov16_0223F87C(BattleSystem *battleSys, u8 *param1);
-void ov16_0223F8AC(BattleSystem *battleSys, Sprite **param1);
+void ov16_0223F8AC(BattleSystem *battleSys, PokemonSprite **param1);
 void BattleSystem_SetGaugePriority(BattleSystem *battleSys, int param1);
 
 /**

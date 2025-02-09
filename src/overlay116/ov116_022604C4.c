@@ -369,7 +369,7 @@ static BOOL ov116_02260B6C(UnkStruct_ov116_02262A8C *param0)
         { 0, 0 },
     };
 
-    v0 = Sprite_GetAnimationFrame(param0->unk_D8);
+    v0 = ManagedSprite_GetAnimationFrame(param0->unk_D8);
     v1 = (param0->unk_0C * 12) + v0;
     v2 = v4[v1][0];
     v3 = v4[v1][1];
@@ -395,9 +395,9 @@ static BOOL ov116_02260B6C(UnkStruct_ov116_02262A8C *param0)
     param0->unk_08 = v0;
 
     if (param0->unk_0C == 2) {
-        if (Sprite_GetActiveAnim(param0->unk_D8) != 2) {
-            Sprite_SetPositionXY2(param0->unk_D8, 128, 100);
-            Sprite_SetAnimNoRestart(param0->unk_D8, 2);
+        if (ManagedSprite_GetActiveAnim(param0->unk_D8) != 2) {
+            ManagedSprite_SetPositionXY(param0->unk_D8, 128, 100);
+            ManagedSprite_SetAnimNoRestart(param0->unk_D8, 2);
 
             ov116_02266FEC(&param0->unk_FC.unk_190);
             ov116_02266FEC(&param0->unk_FC.unk_1A0);
@@ -410,7 +410,7 @@ static BOOL ov116_02260B6C(UnkStruct_ov116_02262A8C *param0)
         param0->unk_08 = 0;
         param0->unk_0C = 0;
 
-        Sprite_SetDrawFlag2(param0->unk_D8, 0);
+        ManagedSprite_SetDrawFlag(param0->unk_D8, 0);
 
         ov116_02266FEC(&param0->unk_FC.unk_190);
         ov116_02266FEC(&param0->unk_FC.unk_1A0);
@@ -420,7 +420,7 @@ static BOOL ov116_02260B6C(UnkStruct_ov116_02262A8C *param0)
         return 1;
     }
 
-    Sprite_TickTwoFrame(param0->unk_D8);
+    ManagedSprite_TickTwoFrames(param0->unk_D8);
 
     return 0;
 }

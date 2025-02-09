@@ -31,7 +31,7 @@ typedef struct {
     NARC *unk_D4;
     SpriteSystem *unk_D8;
     SpriteManager *unk_DC;
-    CellActorData *unk_E0[12];
+    ManagedSprite *unk_E0[12];
     UnkStruct_0200C440 *unk_110;
     MessageLoader *unk_114;
     StringTemplate *unk_118;

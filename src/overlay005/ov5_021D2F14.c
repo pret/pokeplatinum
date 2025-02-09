@@ -5,9 +5,9 @@
 
 #include "overlay005/struct_ov5_021D30A8.h"
 
-#include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_system.h"
 #include "sprite_transfer.h"
@@ -77,7 +77,7 @@ void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0)
 {
     u32 v0;
 
-    CellActorCollection_Delete(param0->unk_00);
+    SpriteList_Delete(param0->unk_00);
     SpriteResourcesHeaderList_Free(param0->unk_190);
     SpriteTransfer_ResetCharTransferList(param0->unk_1AC[0]);
     SpriteTransfer_ResetPlttTransferList(param0->unk_1AC[1]);
@@ -88,10 +88,10 @@ void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0)
     }
 }
 
-CellActor *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplateFromResourceHeader *param1)
+Sprite *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplateFromResourceHeader *param1)
 {
-    CellActorInitParamsEx v0;
-    CellActor *v1;
+    AffineSpriteListTemplate v0;
+    Sprite *v1;
     VecFx32 v2 = { FX32_ONE, FX32_ONE, FX32_ONE };
     VecFx32 v3;
 
@@ -99,7 +99,7 @@ CellActor *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplateFrom
     v3.y = param1->y * FX32_ONE;
     v3.z = param1->z * FX32_ONE;
 
-    v0.collection = param0->unk_00;
+    v0.list = param0->unk_00;
     v0.resourceData = &param0->unk_190->headers[param1->resourceHeaderID];
     v0.position = v3;
     v0.affineScale = v2;
@@ -108,11 +108,11 @@ CellActor *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplateFrom
     v0.vramType = param1->vramType;
     v0.heapID = param0->unk_1C6;
 
-    v1 = CellActorCollection_AddEx(&v0);
+    v1 = SpriteList_AddEx(&v0);
     GF_ASSERT(v1);
 
-    CellActor_SetAnim(v1, param1->animIdx);
-    CellActor_SetExplicitPaletteWithOffset(v1, param1->plttIdx);
+    Sprite_SetAnim(v1, param1->animIdx);
+    Sprite_SetExplicitPaletteWithOffset(v1, param1->plttIdx);
 
     return v1;
 }
@@ -323,18 +323,18 @@ static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param
     GF_ASSERT(0);
 }
 
-CellActorData *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate *param1)
+ManagedSprite *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate *param1)
 {
     int v0;
     int v1;
-    CellActorData *v2 = NULL;
-    CellActorInitParamsEx v3;
+    ManagedSprite *v2 = NULL;
+    AffineSpriteListTemplate v3;
     int v4[6];
 
-    v2 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorData));
+    v2 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(ManagedSprite));
 
     v2->resourceHeaderList = Heap_AllocFromHeap(param0->unk_1C6, sizeof(SpriteResourcesHeaderList));
-    v2->resourceHeaderList->headers = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorResourceData));
+    v2->resourceHeaderList->headers = Heap_AllocFromHeap(param0->unk_1C6, sizeof(SpriteResourcesHeader));
     v2->resourceHeader = v2->resourceHeaderList->headers;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -356,7 +356,7 @@ CellActorData *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
 
     SpriteResourcesHeader_Init(v2->resourceHeader, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->vramTransfer, param1->bgPriority, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
-    v3.collection = param0->unk_00;
+    v3.list = param0->unk_00;
     v3.resourceData = v2->resourceHeader;
     v3.position.x = FX32_CONST(param1->x);
     v3.position.y = FX32_CONST(param1->y);
@@ -374,12 +374,12 @@ CellActorData *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
     v3.vramType = param1->vramType;
     v3.heapID = param0->unk_1C6;
 
-    v2->sprite = CellActorCollection_AddEx(&v3);
+    v2->sprite = SpriteList_AddEx(&v3);
 
     if (v2->sprite != NULL) {
-        v1 = CellActor_GetExplicitPalette(v2->sprite);
-        CellActor_SetAnim(v2->sprite, param1->animIdx);
-        CellActor_SetExplicitPalette(v2->sprite, v1 + param1->plttIdx);
+        v1 = Sprite_GetExplicitPalette(v2->sprite);
+        Sprite_SetAnim(v2->sprite, param1->animIdx);
+        Sprite_SetExplicitPalette(v2->sprite, v1 + param1->plttIdx);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -391,7 +391,7 @@ void ov5_021D375C(UnkStruct_ov5_021D30A8 *param0)
 {
     u32 v0;
 
-    CellActorCollection_Delete(param0->unk_00);
+    SpriteList_Delete(param0->unk_00);
     SpriteTransfer_ResetCharTransferList(param0->unk_1AC[0]);
     SpriteTransfer_ResetPlttTransferList(param0->unk_1AC[1]);
 

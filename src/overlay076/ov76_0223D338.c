@@ -51,7 +51,7 @@
 
 typedef struct {
     int unk_00;
-    CellActorData *unk_04;
+    ManagedSprite *unk_04;
     FontOAM *unk_08;
 } UnkStruct_ov76_0223D9AC;
 
@@ -291,12 +291,12 @@ static void ov76_0223D600(UnkStruct_ov76_0223DE00 *param0, int param1, BOOL para
     }
 
     ov76_0223C0EC(param0->unk_3C4[param1], &v0, &v1);
-    Sprite_SetPositionXY2(param0->unk_2F4[param1], v0, v1);
+    ManagedSprite_SetPositionXY(param0->unk_2F4[param1], v0, v1);
 
     if (param2 == 1) {
         param0->unk_3C4[v2] = param0->unk_3C4[param1];
         ov76_0223C0EC(param0->unk_3C4[v2], &v0, &v1);
-        Sprite_SetPositionXY2(param0->unk_2F4[v2], v0, v1);
+        ManagedSprite_SetPositionXY(param0->unk_2F4[v2], v0, v1);
     }
 }
 
@@ -446,18 +446,18 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
     return 1;
 }
 
-void ov76_0223D94C(CellActorData *param0, int param1)
+void ov76_0223D94C(ManagedSprite *param0, int param1)
 {
     switch (param1) {
     case 0:
-        Sprite_SetAnimationFrame(param0, 1);
+        ManagedSprite_SetAnimationFrame(param0, 1);
         break;
     case 2:
-        Sprite_SetAnimationFrame(param0, 2);
+        ManagedSprite_SetAnimationFrame(param0, 2);
         break;
     case 1:
     case 3:
-        Sprite_SetAnimationFrame(param0, 0);
+        ManagedSprite_SetAnimationFrame(param0, 0);
         break;
     default:
         GF_ASSERT(0);
@@ -483,12 +483,12 @@ static void ov76_0223D9AC(SysTask *param0, void *param1)
     switch (v0->unk_00) {
     case 3:
         ov76_0223D984(v0->unk_08, 0, -1);
-        Sprite_SetAnimationFrame(v0->unk_04, 2);
+        ManagedSprite_SetAnimationFrame(v0->unk_04, 2);
         v0->unk_00++;
         break;
     case 6:
         ov76_0223D984(v0->unk_08, 0, +2);
-        Sprite_SetAnimationFrame(v0->unk_04, 0);
+        ManagedSprite_SetAnimationFrame(v0->unk_04, 0);
         SysTask_Done(param0);
         Heap_FreeToHeap(v0);
         break;
@@ -498,7 +498,7 @@ static void ov76_0223D9AC(SysTask *param0, void *param1)
     }
 }
 
-static void ov76_0223DA00(CellActorData *param0, FontOAM *param1)
+static void ov76_0223DA00(ManagedSprite *param0, FontOAM *param1)
 {
     UnkStruct_ov76_0223D9AC *v0;
 
@@ -1123,7 +1123,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             break;
         }
 
-        Sprite_SetDrawFlag2(param0->unk_2F4[1], 0);
+        ManagedSprite_SetDrawFlag(param0->unk_2F4[1], 0);
         ov76_0223D494(param0, 0, 0xff, 0);
         ov76_0223CA30(&param0->unk_D4.unk_18[0], 7);
         ov76_0223CDA4(param0);
@@ -1146,7 +1146,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
 
             v15 = sub_02098164(param0->unk_324[v13].unk_04);
             ov76_0223CDC4(&param0->unk_D4.unk_18[0], v15);
-            Sprite_SetPositionXY2(param0->unk_324[v13].unk_08, v11, v12);
+            ManagedSprite_SetPositionXY(param0->unk_324[v13].unk_08, v11, v12);
             ov76_0223B758(param0, v13);
             ov76_0223B7D4(param0, v13);
         } else {
@@ -1252,11 +1252,11 @@ static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
 {
     switch (param0->unk_3D4) {
     case 0:
-        Sprite_SetPriority(param0->unk_2F4[0], 25);
-        Sprite_SetPriority(param0->unk_2F4[1], 20);
-        Sprite_SetAnim(param0->unk_2F4[0], 1);
+        ManagedSprite_SetPriority(param0->unk_2F4[0], 25);
+        ManagedSprite_SetPriority(param0->unk_2F4[1], 20);
+        ManagedSprite_SetAnim(param0->unk_2F4[0], 1);
         ov76_0223CA30(&param0->unk_D4.unk_18[0], 10);
-        Sprite_SetDrawFlag2(param0->unk_2F4[1], 1);
+        ManagedSprite_SetDrawFlag(param0->unk_2F4[1], 1);
         param0->unk_3D4++;
     case 1: {
         BOOL v0;
@@ -1274,7 +1274,7 @@ static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
             param0->unk_3D4 = 2;
             Sound_PlayEffect(1500);
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sprite_SetDrawFlag2(param0->unk_2F4[1], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_2F4[1], 0);
             ov76_0223D600(param0, 0, 1);
             param0->unk_3D4 = 3;
             Sound_PlayEffect(1501);
@@ -1286,10 +1286,10 @@ static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
         }
         break;
     case 3:
-        Sprite_SetPriority(param0->unk_2F4[0], 20);
-        Sprite_SetPriority(param0->unk_2F4[1], 25);
+        ManagedSprite_SetPriority(param0->unk_2F4[0], 20);
+        ManagedSprite_SetPriority(param0->unk_2F4[1], 25);
         ov76_0223D494(param0, 0, 0xff, 0);
-        Sprite_SetAnim(param0->unk_2F4[0], 0);
+        ManagedSprite_SetAnim(param0->unk_2F4[0], 0);
         ov76_0223CA30(&param0->unk_D4.unk_18[0], 7);
         break;
     }

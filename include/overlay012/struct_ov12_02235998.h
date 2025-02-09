@@ -5,13 +5,13 @@
 
 #include "overlay012/struct_ov12_02235350.h"
 
-#include "sprite_system.h"
+#include "sprite.h"
 
 typedef struct {
     UnkStruct_ov12_02235350 unk_00;
     UnkStruct_ov12_02235350 unk_04;
-    Sprite *unk_08;
-    CellActorData *unk_0C;
+    PokemonSprite *unk_08;
+    ManagedSprite *unk_0C;
     int unk_10;
 } UnkStruct_ov12_02235998;
 

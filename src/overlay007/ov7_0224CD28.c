@@ -13,7 +13,6 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
-#include "cell_actor.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "font.h"
@@ -32,6 +31,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_system.h"
 #include "sprite_transfer.h"
@@ -294,9 +294,9 @@ BOOL ov7_0224CEAC(FieldTask *param0)
     }
 
     if ((v1->unk_297 >= 4) && (v1->unk_297 <= 11)) {
-        CellActor_UpdateAnim(v1->unk_25C[0], FX32_ONE);
-        CellActor_UpdateAnim(v1->unk_25C[1], FX32_ONE);
-        CellActorCollection_Update(v1->unk_94.unk_00);
+        Sprite_UpdateAnim(v1->unk_25C[0], FX32_ONE);
+        Sprite_UpdateAnim(v1->unk_25C[1], FX32_ONE);
+        SpriteList_Update(v1->unk_94.unk_00);
     }
 
     return 0;
@@ -694,17 +694,17 @@ static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
         ListMenu_GetListAndCursorPos(param0, &v5, &v6);
 
         if (v5 == 0) {
-            CellActor_SetDrawFlag(v0->unk_25C[0], 0);
+            Sprite_SetDrawFlag(v0->unk_25C[0], 0);
         } else {
-            CellActor_SetDrawFlag(v0->unk_25C[0], 1);
+            Sprite_SetDrawFlag(v0->unk_25C[0], 1);
         }
 
         v4 = ListMenu_GetAttribute(param0, 2);
 
         if ((v4 > 7) && (v4 > v5 + 7)) {
-            CellActor_SetDrawFlag(v0->unk_25C[1], 1);
+            Sprite_SetDrawFlag(v0->unk_25C[1], 1);
         } else {
-            CellActor_SetDrawFlag(v0->unk_25C[1], 0);
+            Sprite_SetDrawFlag(v0->unk_25C[1], 0);
         }
     }
     Window_ScheduleCopyToVRAM(&v0->unk_08[1]);
@@ -840,11 +840,11 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
         Strbuf *v3;
         u32 v4;
 
-        param0->unk_26C[0] = (u16)CellActor_GetDrawFlag(param0->unk_25C[0]);
-        param0->unk_26C[1] = (u16)CellActor_GetDrawFlag(param0->unk_25C[1]);
+        param0->unk_26C[0] = (u16)Sprite_GetDrawFlag(param0->unk_25C[0]);
+        param0->unk_26C[1] = (u16)Sprite_GetDrawFlag(param0->unk_25C[1]);
 
-        CellActor_SetDrawFlag(param0->unk_25C[0], 0);
-        CellActor_SetDrawFlag(param0->unk_25C[1], 0);
+        Sprite_SetDrawFlag(param0->unk_25C[0], 0);
+        Sprite_SetDrawFlag(param0->unk_25C[1], 0);
 
         ov7_0224EC10(param0, 1);
 
@@ -916,8 +916,8 @@ static u8 ov7_0224DE94(UnkStruct_ov7_0224D008 *param0)
     ov7_0224DED4(param0);
     ov7_0224E28C(param0, 0);
 
-    CellActor_SetDrawFlag(param0->unk_25C[0], 1);
-    CellActor_SetDrawFlag(param0->unk_25C[1], 1);
+    Sprite_SetDrawFlag(param0->unk_25C[0], 1);
+    Sprite_SetDrawFlag(param0->unk_25C[1], 1);
 
     return 6;
 }
@@ -961,8 +961,8 @@ static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        CellActor_SetDrawFlag(param0->unk_25C[0], 0);
-        CellActor_SetDrawFlag(param0->unk_25C[1], 0);
+        Sprite_SetDrawFlag(param0->unk_25C[0], 0);
+        Sprite_SetDrawFlag(param0->unk_25C[1], 0);
         Window_EraseStandardFrame(&param0->unk_08[4], 1);
         Window_EraseStandardFrame(&param0->unk_08[3], 1);
         Window_FillTilemap(&param0->unk_08[5], 15);
@@ -978,8 +978,8 @@ static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
 
         ov7_0224EB38(param0, 0);
 
-        CellActor_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
-        CellActor_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
+        Sprite_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
+        Sprite_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
 
         ov7_0224EC10(param0, 0);
 
@@ -1158,8 +1158,8 @@ static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
     case 0xfffffffe:
         Window_EraseMessageBox(&param0->unk_08[5], 0);
         ov7_0224EB38(param0, 0);
-        CellActor_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
-        CellActor_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
+        Sprite_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
+        Sprite_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
         ov7_0224EC10(param0, 0);
         Window_ScheduleCopyToVRAM(&param0->unk_08[1]);
         return 4;
@@ -1238,8 +1238,8 @@ static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
 
         Window_EraseMessageBox(&param0->unk_08[5], 0);
         ov7_0224EB38(param0, 0);
-        CellActor_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
-        CellActor_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
+        Sprite_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
+        Sprite_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
         ov7_0224EC10(param0, 0);
         Window_ScheduleCopyToVRAM(&param0->unk_08[1]);
 
@@ -1258,8 +1258,8 @@ static u8 ov7_0224E7C8(UnkStruct_ov7_0224D008 *param0)
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->unk_08[5], 0);
         ov7_0224EB38(param0, 0);
-        CellActor_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
-        CellActor_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
+        Sprite_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
+        Sprite_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
         ov7_0224EC10(param0, 0);
         Window_ScheduleCopyToVRAM(&param0->unk_08[1]);
 
@@ -1471,7 +1471,7 @@ static void ov7_0224EB14(UnkStruct_ov7_0224D008 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        CellActor_Delete(param0->unk_25C[v0]);
+        Sprite_Delete(param0->unk_25C[v0]);
     }
 
     ov5_021D30A8(&param0->unk_94);
@@ -1493,7 +1493,7 @@ static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
     SpriteResource *v0;
 
     if ((param0->unk_2A9 != 0) && (param0->unk_2A9 != 3)) {
-        CellActor_SetDrawFlag(param0->unk_25C[3], 0);
+        Sprite_SetDrawFlag(param0->unk_25C[3], 0);
         return;
     }
 
@@ -1510,7 +1510,7 @@ static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
 
 static void ov7_0224EC10(UnkStruct_ov7_0224D008 *param0, u8 param1)
 {
-    Sprite_SetExplicitPalette(param0->unk_25C[2], param1);
+    Sprite_SetExplicitPalette2(param0->unk_25C[2], param1);
 }
 
 static void ov7_0224EC20(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)

@@ -40,7 +40,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "enums.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
@@ -56,6 +55,7 @@
 #include "pokemon.h"
 #include "poketch.h"
 #include "render_text.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -191,7 +191,7 @@ void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSystem);
 u8 BattleSystem_RecordedChatter(BattleSystem *battleSystem, int param1);
 void ov16_0223F858(BattleSystem *battleSystem, u8 *param1);
 void ov16_0223F87C(BattleSystem *battleSystem, u8 *param1);
-void ov16_0223F8AC(BattleSystem *battleSystem, Sprite **param1);
+void ov16_0223F8AC(BattleSystem *battleSystem, PokemonSprite **param1);
 void BattleSystem_SetGaugePriority(BattleSystem *battleSystem, int param1);
 u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo);
 void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1);
@@ -1134,7 +1134,7 @@ void ov16_0223EF8C(BattleSystem *battleSystem)
     MI_CpuCopy32(PaletteData_GetUnfadedBuffer(battleSystem->unk_28, 0), battleSystem->unk_220, HW_BG_PLTT_SIZE);
 
     v7 = G2_GetOBJCharPtr();
-    v0 = SpriteActor_ImageProxy(battleSystem->unk_17C[1].unk_00->sprite);
+    v0 = Sprite_GetImageProxy(battleSystem->unk_17C[1].unk_00->sprite);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v2 = 20; v2 < 20 + 8; v2++) {
@@ -1165,7 +1165,7 @@ void ov16_0223EF8C(BattleSystem *battleSystem)
     }
 
     v7 = G2_GetOBJCharPtr();
-    v0 = SpriteActor_ImageProxy(battleSystem->unk_17C[0].unk_00->sprite);
+    v0 = Sprite_GetImageProxy(battleSystem->unk_17C[0].unk_00->sprite);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v6 = 0; v6 < 0x40 * 32; v6++) {
@@ -1625,7 +1625,7 @@ void ov16_0223F87C(BattleSystem *battleSystem, u8 *param1)
     }
 }
 
-void ov16_0223F8AC(BattleSystem *battleSystem, Sprite **param1)
+void ov16_0223F8AC(BattleSystem *battleSystem, PokemonSprite **param1)
 {
     int v0;
 

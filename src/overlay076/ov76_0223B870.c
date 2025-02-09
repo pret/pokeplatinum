@@ -18,7 +18,6 @@
 #include "overlay076/struct_ov76_0223DE00.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "font.h"
 #include "graphics.h"
@@ -31,6 +30,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -48,7 +48,7 @@
 
 typedef struct {
     UnkStruct_ov12_02225F6C unk_00[9];
-    CellActorData *unk_144[8];
+    ManagedSprite *unk_144[8];
     BgConfig *unk_164;
     int unk_168;
     BOOL *unk_16C;
@@ -88,11 +88,11 @@ void ov76_0223D16C(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223D318(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223D31C(UnkStruct_ov76_0223DE00 *param0);
 
-static void ov76_0223B870(TouchScreenRect *rect, CellActorData *param1, int param2, int param3)
+static void ov76_0223B870(TouchScreenRect *rect, ManagedSprite *param1, int param2, int param3)
 {
     s16 v0, v1;
 
-    Sprite_GetPositionXY2(param1, &v0, &v1);
+    ManagedSprite_GetPositionXY(param1, &v0, &v1);
 
     rect->rect.top = v1 - param3;
     rect->rect.bottom = v1 + param3;
@@ -291,9 +291,9 @@ void ov76_0223BBAC(UnkStruct_ov76_0223DE00 *param0)
         };
 
         for (v0 = 0; v0 < 8; v0++) {
-            Sprite_SetPositionXY2(param0->unk_3E4.unk_00[v0], v6[v0][0], v6[v0][1] - 1);
-            Sprite_TickOneFrame(param0->unk_3E4.unk_00[v0]);
-            Sprite_SetAnimationFrame(param0->unk_3E4.unk_00[v0], 0);
+            ManagedSprite_SetPositionXY(param0->unk_3E4.unk_00[v0], v6[v0][0], v6[v0][1] - 1);
+            ManagedSprite_TickFrame(param0->unk_3E4.unk_00[v0]);
+            ManagedSprite_SetAnimationFrame(param0->unk_3E4.unk_00[v0], 0);
         }
     }
 }
@@ -358,7 +358,7 @@ void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
 
             v0->unk_144[v1] = param0->unk_324[v1].unk_08;
 
-            Sprite_GetPositionXY2(v0->unk_144[v1], &v2, &v3);
+            ManagedSprite_GetPositionXY(v0->unk_144[v1], &v2, &v3);
             ov12_02225BC8(&v0->unk_00[v1], v2, v2 + ((+7 * 8) * param1), v3, v3 + ((-2 * 8) * param1), param2);
             ov12_02225C50(&v0->unk_00[v1], v0->unk_144[v1]);
             ov12_02225C50(&v0->unk_00[v1], v0->unk_144[v1]);
@@ -588,8 +588,8 @@ void ov76_0223C188(UnkStruct_ov76_0223DE00 *param0)
         v4 = Pokemon_GetValue(v5, MON_DATA_FORM, NULL);
         v3 = PokeIconPaletteIndex(v2, v4, v1);
 
-        CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_2FC[v0]->sprite, v3);
-        Sprite_SetAnim(param0->unk_2FC[v0], 1);
+        Sprite_SetExplicitPaletteOffsetAutoAdjust(param0->unk_2FC[v0]->sprite, v3);
+        ManagedSprite_SetAnim(param0->unk_2FC[v0], 1);
     }
 }
 
@@ -600,7 +600,7 @@ void ov76_0223C288(UnkStruct_ov76_0223DE00 *param0)
     s16 v2, v3;
 
     for (v0 = 0; v0 < param0->unk_00->unk_00; v0++) {
-        Sprite_SetDrawFlag2(param0->unk_2FC[v0], 0);
+        ManagedSprite_SetDrawFlag(param0->unk_2FC[v0], 0);
     }
 
     for (v0 = 0; v0 < 12; v0++) {
@@ -608,8 +608,8 @@ void ov76_0223C288(UnkStruct_ov76_0223DE00 *param0)
 
         if (v1 != 0xff) {
             ov76_0223C0EC(v0, &v2, &v3);
-            Sprite_SetPositionXY2(param0->unk_2FC[v1], v2 + -16, v3 + (+12));
-            Sprite_SetDrawFlag2(param0->unk_2FC[v1], 1);
+            ManagedSprite_SetPositionXY(param0->unk_2FC[v1], v2 + -16, v3 + (+12));
+            ManagedSprite_SetDrawFlag(param0->unk_2FC[v1], 1);
         }
     }
 }
@@ -619,7 +619,7 @@ void ov76_0223C304(UnkStruct_ov76_0223DE00 *param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_00->unk_00; v0++) {
-        Sprite_TickOneFrame(param0->unk_2FC[v0]);
+        ManagedSprite_TickFrame(param0->unk_2FC[v0]);
     }
 }
 
@@ -734,7 +734,7 @@ void ov76_0223C4AC(UnkStruct_ov76_0223DE00 *param0)
         v1.resources[5] = SPRITE_RESOURCE_NONE;
         param0->unk_314[v0] = SpriteSystem_NewSprite(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, &v1);
 
-        Sprite_SetFlipMode2(param0->unk_314[v0], v2[v0][2]);
+        ManagedSprite_SetFlipMode(param0->unk_314[v0], v2[v0][2]);
     }
 }
 
@@ -747,7 +747,7 @@ void ov76_0223C544(UnkStruct_ov76_0223DE00 *param0)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        Sprite_TickOneFrame(param0->unk_314[v0]);
+        ManagedSprite_TickFrame(param0->unk_314[v0]);
     }
 }
 
@@ -756,7 +756,7 @@ void ov76_0223C568(UnkStruct_ov76_0223DE00 *param0, int param1)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        Sprite_SetDrawFlag2(param0->unk_314[v0], param1);
+        ManagedSprite_SetDrawFlag(param0->unk_314[v0], param1);
     }
 }
 
@@ -807,7 +807,7 @@ void ov76_0223C61C(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
                 s16 v2, v3;
 
                 ov76_0223C0EC(v0, &v2, &v3);
-                Sprite_SetPositionXY2(param0->unk_264[v0].unk_08, v2, v3);
+                ManagedSprite_SetPositionXY(param0->unk_264[v0].unk_08, v2, v3);
             }
         }
 
@@ -834,11 +834,11 @@ void ov76_0223C61C(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
             s16 v4, v5;
 
             ov76_0223C0EC(param0->unk_3C4[0], &v4, &v5);
-            Sprite_SetPositionXY2(param0->unk_2F4[0], v4, v5);
-            Sprite_SetPositionXY2(param0->unk_2F4[1], v4, v5);
-            Sprite_SetPriority(param0->unk_2F4[1], 25);
-            Sprite_SetAnim(param0->unk_2F4[0], 0);
-            Sprite_SetAnim(param0->unk_2F4[1], 0);
+            ManagedSprite_SetPositionXY(param0->unk_2F4[0], v4, v5);
+            ManagedSprite_SetPositionXY(param0->unk_2F4[1], v4, v5);
+            ManagedSprite_SetPriority(param0->unk_2F4[1], 25);
+            ManagedSprite_SetAnim(param0->unk_2F4[0], 0);
+            ManagedSprite_SetAnim(param0->unk_2F4[1], 0);
         }
     }
 }
@@ -855,7 +855,7 @@ void ov76_0223C7E0(UnkStruct_ov76_0223DE00 *param0)
             continue;
         }
 
-        Sprite_SetAnim(param0->unk_264[v0].unk_08, param0->unk_264[v0].unk_04);
+        ManagedSprite_SetAnim(param0->unk_264[v0].unk_08, param0->unk_264[v0].unk_04);
     }
 }
 
@@ -896,11 +896,11 @@ void ov76_0223C88C(UnkStruct_ov76_0223DE00 *param0)
     int v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        Sprite_TickOneFrame(param0->unk_264[v0].unk_08);
+        ManagedSprite_TickFrame(param0->unk_264[v0].unk_08);
     }
 
-    Sprite_TickOneFrame(param0->unk_2F4[0]);
-    Sprite_TickOneFrame(param0->unk_2F4[1]);
+    ManagedSprite_TickFrame(param0->unk_2F4[0]);
+    ManagedSprite_TickFrame(param0->unk_2F4[1]);
 }
 
 void ov76_0223C8BC(UnkStruct_ov76_0223DE00 *param0)
@@ -1256,9 +1256,9 @@ void ov76_0223D16C(UnkStruct_ov76_0223DE00 *param0)
         };
 
         for (v0 = 8; v0 < 13; v0++) {
-            Sprite_SetPositionXY2(param0->unk_3E4.unk_00[v0], v6[v0][0], v6[v0][1]);
-            Sprite_TickOneFrame(param0->unk_3E4.unk_00[v0]);
-            Sprite_SetAnimationFrame(param0->unk_3E4.unk_00[v0], 0);
+            ManagedSprite_SetPositionXY(param0->unk_3E4.unk_00[v0], v6[v0][0], v6[v0][1]);
+            ManagedSprite_TickFrame(param0->unk_3E4.unk_00[v0]);
+            ManagedSprite_SetAnimationFrame(param0->unk_3E4.unk_00[v0], 0);
             ov76_0223B870(&param0->unk_D4.unk_FC[v0], param0->unk_3E4.unk_00[v0], v7[v0][0], v7[v0][1]);
         }
     }
@@ -1273,7 +1273,7 @@ void ov76_0223D2F4(UnkStruct_ov76_0223DE00 *param0, int param1)
             continue;
         }
 
-        Sprite_SetDrawFlag2(param0->unk_3E4.unk_00[v0], param1);
+        ManagedSprite_SetDrawFlag(param0->unk_3E4.unk_00[v0], param1);
     }
 }
 

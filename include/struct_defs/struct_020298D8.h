@@ -9,7 +9,7 @@
 #include "touch_screen.h"
 
 typedef struct {
-    Sprite *unk_00;
+    PokemonSprite *unk_00;
     TouchScreenHitTable unk_04;
     UnkStruct_ov22_022596B0 unk_08;
     Pokemon *unk_0C;

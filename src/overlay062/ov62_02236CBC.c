@@ -13,13 +13,13 @@
 #include "overlay062/struct_ov62_022312B0.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
@@ -35,12 +35,12 @@ typedef struct {
     f32 unk_04[5];
     int unk_18[5];
     int unk_2C[5];
-    CellActorData *unk_40[5];
-    CellActorData *unk_54[5];
-    CellActorData *unk_68[5];
-    CellActorData *unk_7C[5];
+    ManagedSprite *unk_40[5];
+    ManagedSprite *unk_54[5];
+    ManagedSprite *unk_68[5];
+    ManagedSprite *unk_7C[5];
     int unk_90;
-    CellActorData *unk_94[2];
+    ManagedSprite *unk_94[2];
     UnkStruct_ov62_022312B0 unk_9C[2];
     int unk_D4;
     int unk_D8;
@@ -74,9 +74,9 @@ static void ov62_02236CBC(UnkStruct_0208C06C *param0, int param1)
     UnkStruct_ov62_02236CBC *v0 = param0->unk_860;
 
     if (param1 == 0) {
-        Sprite_SetPositionXY2(v0->unk_9C[1].unk_08, 128, 232);
+        ManagedSprite_SetPositionXY(v0->unk_9C[1].unk_08, 128, 232);
     } else {
-        Sprite_SetPositionXY2(v0->unk_9C[1].unk_08, 80, 232);
+        ManagedSprite_SetPositionXY(v0->unk_9C[1].unk_08, 80, 232);
     }
 
     sub_020128C4(v0->unk_9C[1].unk_0C, 36, -8);
@@ -106,15 +106,15 @@ static void ov62_02236D48(UnkStruct_0208C06C *param0)
     ov62_0223118C(&v0->unk_9C[1], &param0->unk_14, NNS_G2D_VRAM_TYPE_2DSUB);
     ov62_0223124C(&v0->unk_9C[1], &param0->unk_14, 3);
 
-    Sprite_SetPositionXY2(v0->unk_9C[1].unk_08, 128, 232);
+    ManagedSprite_SetPositionXY(v0->unk_9C[1].unk_08, 128, 232);
     sub_020128C4(v0->unk_9C[1].unk_0C, 36, -8);
     sub_020129D0(v0->unk_9C[1].unk_0C, 1);
 
     v0->unk_94[1] = ov62_022313E0(param0, NNS_G2D_VRAM_TYPE_2DSUB);
 
-    Sprite_SetPositionXY2(v0->unk_94[1], 220, 160 + 64);
-    Sprite_SetAnim(v0->unk_94[1], 2);
-    Sprite_SetDrawFlag2(v0->unk_94[1], 0);
+    ManagedSprite_SetPositionXY(v0->unk_94[1], 220, 160 + 64);
+    ManagedSprite_SetAnim(v0->unk_94[1], 2);
+    ManagedSprite_SetDrawFlag(v0->unk_94[1], 0);
 
     ov62_02236CBC(param0, 1);
 }
@@ -284,9 +284,9 @@ static void ov62_022371CC(UnkStruct_0208C06C *param0)
 
     for (v0 = 0; v0 < 5; v0++) {
         v4->unk_40[v0] = SpriteSystem_NewSprite(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
-        Sprite_SetAnim(v4->unk_40[v0], 1);
-        Sprite_TickOneFrame(v4->unk_40[v0]);
-        Sprite_SetAffineScale(v4->unk_40[v0], v4->unk_04[v0], v4->unk_04[v0]);
+        ManagedSprite_SetAnim(v4->unk_40[v0], 1);
+        ManagedSprite_TickFrame(v4->unk_40[v0]);
+        ManagedSprite_SetAffineScale(v4->unk_40[v0], v4->unk_04[v0], v4->unk_04[v0]);
     }
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -304,14 +304,14 @@ static void ov62_022371CC(UnkStruct_0208C06C *param0)
         v4->unk_54[v0] = SpriteSystem_NewSprite(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
 
         if (v0 == 3) {
-            Sprite_SetAnim(v4->unk_54[v0], 0);
+            ManagedSprite_SetAnim(v4->unk_54[v0], 0);
         } else {
-            Sprite_SetAnim(v4->unk_54[v0], 1);
+            ManagedSprite_SetAnim(v4->unk_54[v0], 1);
         }
 
-        Sprite_TickOneFrame(v4->unk_54[v0]);
-        Sprite_SetAffineScale(v4->unk_54[v0], v4->unk_04[v0], v4->unk_04[v0]);
-        Sprite_SetExplicitPalette2(v4->unk_54[v0], 10 + v0);
+        ManagedSprite_TickFrame(v4->unk_54[v0]);
+        ManagedSprite_SetAffineScale(v4->unk_54[v0], v4->unk_04[v0], v4->unk_04[v0]);
+        ManagedSprite_SetExplicitPalette(v4->unk_54[v0], 10 + v0);
     }
 
     v9.resources[0] = 28282;
@@ -336,19 +336,19 @@ static void ov62_022371CC(UnkStruct_0208C06C *param0)
         v4->unk_68[v0] = SpriteSystem_NewSprite(param0->unk_14.unk_04, param0->unk_14.unk_08, &v9);
 
         if (v3[v0] == 0) {
-            Sprite_SetAnim(v4->unk_68[v0], 5);
-            Sprite_SetExplicitPalette2(v4->unk_68[v0], 4 + 5);
-            Sprite_SetDrawFlag2(v4->unk_54[v0], 0);
-            Sprite_SetDrawFlag2(v4->unk_40[v0], 0);
+            ManagedSprite_SetAnim(v4->unk_68[v0], 5);
+            ManagedSprite_SetExplicitPalette(v4->unk_68[v0], 4 + 5);
+            ManagedSprite_SetDrawFlag(v4->unk_54[v0], 0);
+            ManagedSprite_SetDrawFlag(v4->unk_40[v0], 0);
         } else {
             int v11[] = { 0, 1, 4, 3, 2 };
 
-            Sprite_SetAnim(v4->unk_68[v0], v11[v0]);
-            Sprite_SetExplicitPalette2(v4->unk_68[v0], 4 + v11[v0]);
+            ManagedSprite_SetAnim(v4->unk_68[v0], v11[v0]);
+            ManagedSprite_SetExplicitPalette(v4->unk_68[v0], 4 + v11[v0]);
         }
 
-        Sprite_TickOneFrame(v4->unk_68[v0]);
-        Sprite_SetAffineScale(v4->unk_68[v0], v4->unk_04[v0], v4->unk_04[v0]);
+        ManagedSprite_TickFrame(v4->unk_68[v0]);
+        ManagedSprite_SetAffineScale(v4->unk_68[v0], v4->unk_04[v0], v4->unk_04[v0]);
     }
 
     v9.resources[0] = 29292;
@@ -385,22 +385,22 @@ static void ov62_022371CC(UnkStruct_0208C06C *param0)
 
         if (v2[v0] == 0) {
             if (v0 < v1) {
-                Sprite_SetDrawFlag2(v4->unk_7C[v0], 0);
+                ManagedSprite_SetDrawFlag(v4->unk_7C[v0], 0);
             }
         }
 
-        Sprite_SetAnim(v4->unk_7C[v0], v2[v0]);
+        ManagedSprite_SetAnim(v4->unk_7C[v0], v2[v0]);
         ov62_02230E68(v4->unk_7C[v0], 88 + (16 * v0), 72);
-        Sprite_TickOneFrame(v4->unk_7C[v0]);
+        ManagedSprite_TickFrame(v4->unk_7C[v0]);
     }
 
-    Sprite_SetDrawFlag2(v4->unk_7C[4 - 1], TRUE);
-    Sprite_SetDrawFlag2(v4->unk_7C[4 - 0], TRUE);
+    ManagedSprite_SetDrawFlag(v4->unk_7C[4 - 1], TRUE);
+    ManagedSprite_SetDrawFlag(v4->unk_7C[4 - 0], TRUE);
 
     for (v0 = 0; v0 < 5; v0++) {
-        Sprite_SetAffineOverwriteMode(v4->unk_40[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
-        Sprite_SetAffineOverwriteMode(v4->unk_54[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
-        Sprite_SetAffineOverwriteMode(v4->unk_68[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetAffineOverwriteMode(v4->unk_40[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetAffineOverwriteMode(v4->unk_54[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetAffineOverwriteMode(v4->unk_68[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
     }
 }
 
@@ -466,22 +466,22 @@ static BOOL ov62_022375A4(UnkStruct_0208C06C *param0)
         if (v0->unk_2C[0] != 0) {
             v0->unk_04[v1] += 0.05f;
         } else {
-            Sprite_SetAffineOverwriteMode(v0->unk_40[v1], AFFINE_OVERWRITE_MODE_NONE);
-            Sprite_SetAffineOverwriteMode(v0->unk_54[v1], AFFINE_OVERWRITE_MODE_NONE);
-            Sprite_SetAffineOverwriteMode(v0->unk_68[v1], AFFINE_OVERWRITE_MODE_NONE);
+            ManagedSprite_SetAffineOverwriteMode(v0->unk_40[v1], AFFINE_OVERWRITE_MODE_NONE);
+            ManagedSprite_SetAffineOverwriteMode(v0->unk_54[v1], AFFINE_OVERWRITE_MODE_NONE);
+            ManagedSprite_SetAffineOverwriteMode(v0->unk_68[v1], AFFINE_OVERWRITE_MODE_NONE);
             v0->unk_04[v1] = 1.0f;
         }
 
         v4 = (128 << FX32_SHIFT) + CalcSineDegrees_Wraparound(v0->unk_2C[v1]) * v0->unk_18[v1];
         v5 = (106 << FX32_SHIFT) - CalcCosineDegrees_Wraparound(v0->unk_2C[v1]) * v0->unk_18[v1];
 
-        Sprite_SetPositionFxXY(v0->unk_68[v1], v4, v5);
-        Sprite_GetPositionXY2(v0->unk_68[v1], &v2, &v3);
-        Sprite_SetPositionXY2(v0->unk_40[v1], v2 - 32, v3 - 2);
-        Sprite_SetPositionXY2(v0->unk_54[v1], v2 + 16, v3 - 2);
-        Sprite_SetAffineScale(v0->unk_68[v1], v0->unk_04[v1], v0->unk_04[v1]);
-        Sprite_SetAffineScale(v0->unk_40[v1], v0->unk_04[v1], v0->unk_04[v1]);
-        Sprite_SetAffineScale(v0->unk_54[v1], v0->unk_04[v1], v0->unk_04[v1]);
+        ManagedSprite_SetPositionFxXY(v0->unk_68[v1], v4, v5);
+        ManagedSprite_GetPositionXY(v0->unk_68[v1], &v2, &v3);
+        ManagedSprite_SetPositionXY(v0->unk_40[v1], v2 - 32, v3 - 2);
+        ManagedSprite_SetPositionXY(v0->unk_54[v1], v2 + 16, v3 - 2);
+        ManagedSprite_SetAffineScale(v0->unk_68[v1], v0->unk_04[v1], v0->unk_04[v1]);
+        ManagedSprite_SetAffineScale(v0->unk_40[v1], v0->unk_04[v1], v0->unk_04[v1]);
+        ManagedSprite_SetAffineScale(v0->unk_54[v1], v0->unk_04[v1], v0->unk_04[v1]);
     }
 
     if (v0->unk_2C[0] == 0) {
@@ -505,9 +505,9 @@ static BOOL ov62_022376C4(UnkStruct_0208C06C *param0)
 
     if (v0->unk_2C[0] == 20) {
         for (v1 = 0; v1 < 5; v1++) {
-            Sprite_SetAffineOverwriteMode(v0->unk_40[v1], AFFINE_OVERWRITE_MODE_DOUBLE);
-            Sprite_SetAffineOverwriteMode(v0->unk_54[v1], AFFINE_OVERWRITE_MODE_DOUBLE);
-            Sprite_SetAffineOverwriteMode(v0->unk_68[v1], AFFINE_OVERWRITE_MODE_DOUBLE);
+            ManagedSprite_SetAffineOverwriteMode(v0->unk_40[v1], AFFINE_OVERWRITE_MODE_DOUBLE);
+            ManagedSprite_SetAffineOverwriteMode(v0->unk_54[v1], AFFINE_OVERWRITE_MODE_DOUBLE);
+            ManagedSprite_SetAffineOverwriteMode(v0->unk_68[v1], AFFINE_OVERWRITE_MODE_DOUBLE);
         }
     }
 
@@ -517,21 +517,21 @@ static BOOL ov62_022376C4(UnkStruct_0208C06C *param0)
         if (v0->unk_2C[0] != 0) {
             v0->unk_04[v1] -= 0.05f;
         } else {
-            Sprite_SetDrawFlag2(v0->unk_68[v1], 0);
-            Sprite_SetDrawFlag2(v0->unk_40[v1], 0);
-            Sprite_SetDrawFlag2(v0->unk_54[v1], 0);
+            ManagedSprite_SetDrawFlag(v0->unk_68[v1], 0);
+            ManagedSprite_SetDrawFlag(v0->unk_40[v1], 0);
+            ManagedSprite_SetDrawFlag(v0->unk_54[v1], 0);
         }
 
         v4 = (128 << FX32_SHIFT) - CalcSineDegrees_Wraparound(v0->unk_2C[v1]) * v0->unk_18[v1];
         v5 = (106 << FX32_SHIFT) - CalcCosineDegrees_Wraparound(v0->unk_2C[v1]) * v0->unk_18[v1];
 
-        Sprite_SetPositionFxXY(v0->unk_68[v1], v4, v5);
-        Sprite_GetPositionXY2(v0->unk_68[v1], &v2, &v3);
-        Sprite_SetPositionXY2(v0->unk_40[v1], v2 - 32, v3 - 2);
-        Sprite_SetPositionXY2(v0->unk_54[v1], v2 + 16, v3 - 2);
-        Sprite_SetAffineScale(v0->unk_68[v1], v0->unk_04[v1], v0->unk_04[v1]);
-        Sprite_SetAffineScale(v0->unk_40[v1], v0->unk_04[v1], v0->unk_04[v1]);
-        Sprite_SetAffineScale(v0->unk_54[v1], v0->unk_04[v1], v0->unk_04[v1]);
+        ManagedSprite_SetPositionFxXY(v0->unk_68[v1], v4, v5);
+        ManagedSprite_GetPositionXY(v0->unk_68[v1], &v2, &v3);
+        ManagedSprite_SetPositionXY(v0->unk_40[v1], v2 - 32, v3 - 2);
+        ManagedSprite_SetPositionXY(v0->unk_54[v1], v2 + 16, v3 - 2);
+        ManagedSprite_SetAffineScale(v0->unk_68[v1], v0->unk_04[v1], v0->unk_04[v1]);
+        ManagedSprite_SetAffineScale(v0->unk_40[v1], v0->unk_04[v1], v0->unk_04[v1]);
+        ManagedSprite_SetAffineScale(v0->unk_54[v1], v0->unk_04[v1], v0->unk_04[v1]);
     }
 
     if (v0->unk_2C[0] == 0) {
@@ -560,10 +560,10 @@ static void ov62_02237814(UnkStruct_0208C06C *param0)
         v5 = v7[v1][0] << FX32_SHIFT;
         v6 = v7[v1][1] << FX32_SHIFT;
 
-        Sprite_SetPositionFxXY(v0->unk_68[v1], v5, v6);
-        Sprite_GetPositionXY2(v0->unk_68[v1], &v3, &v4);
-        Sprite_SetPositionXY2(v0->unk_40[v1], v3 - 32, v4 - 2);
-        Sprite_SetPositionXY2(v0->unk_54[v1], v3 + 16, v4 - 2);
+        ManagedSprite_SetPositionFxXY(v0->unk_68[v1], v5, v6);
+        ManagedSprite_GetPositionXY(v0->unk_68[v1], &v3, &v4);
+        ManagedSprite_SetPositionXY(v0->unk_40[v1], v3 - 32, v4 - 2);
+        ManagedSprite_SetPositionXY(v0->unk_54[v1], v3 + 16, v4 - 2);
     }
 }
 

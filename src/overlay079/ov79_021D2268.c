@@ -15,7 +15,6 @@
 #include "overlay079/struct_ov79_021D38D0.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "communication_system.h"
 #include "font.h"
 #include "gx_layers.h"
@@ -27,6 +26,7 @@
 #include "pokemon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -82,8 +82,8 @@ struct UnkStruct_ov79_021D29B4_t {
     int unk_08;
     UnkStruct_ov79_021D2C50 unk_0C;
     UnkStruct_ov79_021D2C50 unk_68;
-    CellActor *unk_C4;
-    Sprite *unk_C8;
+    Sprite *unk_C4;
+    PokemonSprite *unk_C8;
     UnkStruct_ov79_021D29E4 unk_CC[4];
 };
 
@@ -557,7 +557,7 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
     param0->unk_5C = sub_02098FFC(param0->unk_00, 2, 2, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
     param0->unk_60[0] = sub_0209916C(param0->unk_5C, param0->unk_10->unk_08, 100, 90, 0, 1, 0, 0);
 
-    Sprite_SetDrawFlag2(param0->unk_60[0]->unk_04, 0);
+    ManagedSprite_SetDrawFlag(param0->unk_60[0]->unk_04, 0);
 
     if (CommSys_IsInitialized()) {
         sub_02039734();
@@ -653,12 +653,12 @@ static int ov79_021D2A04(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
     param1->unk_0C.unk_58 = 24;
     param1->unk_0C.unk_54 = 0;
 
-    CellActor_SetPosition(param1->unk_C4, &param1->unk_0C.unk_00);
+    Sprite_SetPosition(param1->unk_C4, &param1->unk_0C.unk_00);
     VEC_Subtract(&param1->unk_0C.unk_00, &param1->unk_0C.unk_0C, &v0);
     ov79_021D2268(&param1->unk_0C.unk_3C, &v0, FX32_CONST(24));
 
-    CellActor_SetAffineOverwriteMode(param1->unk_C4, 1);
-    CellActor_SetAffineScale(param1->unk_C4, &param1->unk_0C.unk_24);
+    Sprite_SetAffineOverwriteMode(param1->unk_C4, 1);
+    Sprite_SetAffineScale(param1->unk_C4, &param1->unk_0C.unk_24);
 
     ov79_021D29B4(param1, 0, ov79_021D2C50);
     ov79_021D29B4(param1, 1, ov79_021D2D7C);
@@ -772,9 +772,9 @@ static void ov79_021D2C50(SysTask *param0, void *param1)
     VEC_Subtract(&v2->unk_24, &v2->unk_30, &v3);
 
     ov79_021D2268(&v2->unk_3C, &v3, FX32_CONST(v0->unk_04));
-    CellActor_SetDrawFlag(v1->unk_C4, 1);
-    CellActor_SetAffineOverwriteMode(v1->unk_C4, 1);
-    CellActor_SetAffineScale(v1->unk_C4, &v2->unk_24);
+    Sprite_SetDrawFlag(v1->unk_C4, 1);
+    Sprite_SetAffineOverwriteMode(v1->unk_C4, 1);
+    Sprite_SetAffineScale(v1->unk_C4, &v2->unk_24);
     SysTask_SetCallback(param0, ov79_021D2CEC);
 }
 
@@ -788,13 +788,13 @@ static void ov79_021D2CEC(SysTask *param0, void *param1)
     v3.x = v2->unk_24.x - FX_Mul(v2->unk_3C.x, v0->unk_0C);
     v3.y = v2->unk_24.y - FX_Mul(v2->unk_3C.y, v0->unk_0C);
 
-    CellActor_SetAffineScale(v1->unk_C4, &v3);
+    Sprite_SetAffineScale(v1->unk_C4, &v3);
 
     v0->unk_0C += FX32_ONE;
     v0->unk_04--;
 
     if (v0->unk_04 == 0) {
-        CellActor_SetDrawFlag(v1->unk_C4, 0);
+        Sprite_SetDrawFlag(v1->unk_C4, 0);
         ov79_021D29E4(v0);
     }
 }
@@ -819,7 +819,7 @@ static void ov79_021D2D7C(SysTask *param0, void *param1)
     v2->unk_48 = FX_Div(FX32_CONST(180), FX32_CONST(v0->unk_04));
     v2->unk_4C = FX_Div(FX32_CONST(1), FX32_CONST(v0->unk_04));
 
-    CellActor_SetPosition(v1->unk_C4, &v2->unk_00);
+    Sprite_SetPosition(v1->unk_C4, &v2->unk_00);
     SysTask_SetCallback(param0, ov79_021D2E74);
 }
 
@@ -839,7 +839,7 @@ static void ov79_021D2E74(SysTask *param0, void *param1)
     v5 = FX32_ONE;
     v3.y += FX_Mul(v4, v5);
 
-    CellActor_SetPosition(v1->unk_C4, &v3);
+    Sprite_SetPosition(v1->unk_C4, &v3);
 
     v0->unk_0C += FX32_ONE;
     v0->unk_04--;

@@ -6,7 +6,7 @@
 
 typedef struct {
     SysTask *unk_00;
-    CellActorData *unk_04;
+    ManagedSprite *unk_04;
     s32 unk_08;
     s32 unk_0C;
     s32 unk_10;

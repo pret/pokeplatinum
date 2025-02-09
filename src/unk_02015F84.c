@@ -38,7 +38,7 @@ typedef struct UnkStruct_02016DAC_t {
 } UnkStruct_02016DAC;
 
 typedef struct UnkStruct_02016E64_t {
-    Sprite *unk_00;
+    PokemonSprite *unk_00;
     SysTask *unk_04;
     void *unk_08;
     u32 *unk_0C;
@@ -194,7 +194,7 @@ void sub_02015FB8(PokemonAnimationSys *param0)
     Heap_FreeToHeap(param0);
 }
 
-void PokeAnimation_Init(PokemonAnimationSys *param0, Sprite *param1, const PokeAnimationSettings *param2, const u8 param3)
+void PokeAnimation_Init(PokemonAnimationSys *param0, PokemonSprite *param1, const PokeAnimationSettings *param2, const u8 param3)
 {
     u8 v0 = param3;
     int v1 = param2->animation;

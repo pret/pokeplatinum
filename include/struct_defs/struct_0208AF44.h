@@ -10,7 +10,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     BOOL unk_08;
-    CellActorData *unk_0C;
+    ManagedSprite *unk_0C;
     TouchScreenRect *unk_10;
     UnkStruct_0208AF44_sub1 unk_14;
 } UnkStruct_0208AF44;

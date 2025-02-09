@@ -17,7 +17,7 @@ typedef struct {
     PaletteData *unk_08;
     UnkStruct_ov16_0223E0C8 *unk_0C[4];
     u8 unk_1C[4];
-    Sprite *unk_20[4];
+    PokemonSprite *unk_20[4];
     u32 unk_30;
     u16 unk_34[4];
     u8 unk_3C[4];

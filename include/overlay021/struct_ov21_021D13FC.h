@@ -12,8 +12,8 @@
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "narc.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "sys_task_manager.h"
@@ -22,11 +22,11 @@ typedef struct {
     BgConfig *unk_00;
     Window unk_04;
     G2dRenderer unk_14;
-    CellActorCollection *unk_138;
+    SpriteList *unk_138;
     SpriteResourceCollection *unk_13C[4];
     UnkStruct_ov21_021D4C0C *unk_14C;
     UnkStruct_02007768 *unk_150;
-    Sprite *unk_154[4];
+    PokemonSprite *unk_154[4];
     UnkStruct_02015064 *unk_164;
     UnkStruct_ov21_021D23F8 unk_168;
     UnkStruct_ov21_021D23F8 unk_18C;

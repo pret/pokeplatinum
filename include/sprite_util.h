@@ -3,7 +3,7 @@
 
 #include <nitro/gx.h>
 
-#include "cell_actor.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 
 typedef struct ResdatTableEntry {
@@ -23,7 +23,7 @@ typedef struct G2dRenderer {
     NNSG2dRenderSurface subScreen;
 } G2dRenderer;
 
-void SpriteResourcesHeader_Init(CellActorResourceData *resourceHeader,
+void SpriteResourcesHeader_Init(SpriteResourcesHeader *resourceHeader,
     int charResourceID,
     int plttResourceID,
     int cellResourceID,
@@ -38,7 +38,7 @@ void SpriteResourcesHeader_Init(CellActorResourceData *resourceHeader,
     SpriteResourceCollection *animResources,
     SpriteResourceCollection *mcellResources,
     SpriteResourceCollection *manimResources);
-void SpriteResourcesHeader_Clear(CellActorResourceData *resourceHeader);
+void SpriteResourcesHeader_Clear(SpriteResourcesHeader *resourceHeader);
 
 SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatTableEntry *resdatEntries,
     enum HeapId heapID,
@@ -50,7 +50,7 @@ SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatT
     SpriteResourceCollection *manimResources);
 void SpriteResourcesHeaderList_Free(SpriteResourcesHeaderList *param0);
 
-CellActorCollection *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapId heapID);
+SpriteList *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapId heapID);
 void SetMainScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y);
 void SetSubScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y);
 void ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE vramType, GXOBJVRamModeChar vramMode);

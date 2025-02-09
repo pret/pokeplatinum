@@ -14,12 +14,12 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "cell_actor.h"
 #include "game_options.h"
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -401,7 +401,7 @@ typedef struct PokemonSummaryMonSpriteData {
     void *spriteManager;
     SpriteAnimationFrame frames[MAX_ANIMATION_FRAMES];
     PokemonAnimationSys *animationSys;
-    Sprite *sprite;
+    PokemonSprite *sprite;
     BOOL flip;
 } PokemonSummaryMonSpriteData;
 
@@ -422,8 +422,8 @@ typedef struct PokemonSummaryScreen {
 
     SpriteSystem *renderer;
     SpriteManager *gfxHandler;
-    CellActor *sprites[SUMMARY_SPRITE_MAX];
-    CellActorData *actor[SUMMARY_SPRITE_MAX];
+    Sprite *sprites[SUMMARY_SPRITE_MAX];
+    ManagedSprite *sprite[SUMMARY_SPRITE_MAX];
 
     UnkStruct_0200C440 *unk_684;
     MessageLoader *msgLoader;

@@ -11,7 +11,7 @@
 #include "sys_task_manager.h"
 
 typedef struct UnkStruct_ov16_0226DC24_t {
-    CellActorData *unk_00[5];
+    ManagedSprite *unk_00[5];
     SysTask *unk_14;
 } UnkStruct_ov16_0226DC24;
 
@@ -76,7 +76,7 @@ UnkStruct_ov16_0226DC24 *ov16_0226DC24(SpriteSystem *param0, SpriteManager *para
 
     for (v2 = 0; v2 < 5; v2++) {
         v0->unk_00[v2] = SpriteSystem_NewSprite(param0, param1, &v1);
-        Sprite_SetDrawFlag2(v0->unk_00[v2], 0);
+        ManagedSprite_SetDrawFlag(v0->unk_00[v2], 0);
     }
 
     v0->unk_14 = SysTask_Start(ov16_0226DE10, v0, 40000);
@@ -99,18 +99,18 @@ void ov16_0226DCCC(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int 
 {
     int v0;
 
-    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00[0], param1, param2, param9);
-    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00[1], param3, param4, param9);
-    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00[2], param5, param6, param9);
-    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00[3], param7, param8, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[0], param1, param2, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[1], param3, param4, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[2], param5, param6, param9);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[3], param7, param8, param9);
 
-    Sprite_SetAnim(param0->unk_00[0], 0);
-    Sprite_SetAnim(param0->unk_00[1], 1);
-    Sprite_SetAnim(param0->unk_00[2], 2);
-    Sprite_SetAnim(param0->unk_00[3], 3);
+    ManagedSprite_SetAnim(param0->unk_00[0], 0);
+    ManagedSprite_SetAnim(param0->unk_00[1], 1);
+    ManagedSprite_SetAnim(param0->unk_00[2], 2);
+    ManagedSprite_SetAnim(param0->unk_00[3], 3);
 
     for (v0 = 0; v0 < 4; v0++) {
-        Sprite_SetDrawFlag2(param0->unk_00[v0], 1);
+        ManagedSprite_SetDrawFlag(param0->unk_00[v0], 1);
     }
 }
 
@@ -131,9 +131,9 @@ void ov16_0226DD9C(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int 
 
 void ov16_0226DDC0(UnkStruct_ov16_0226DC24 *param0, int param1, int param2, int param3, fx32 param4)
 {
-    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00[4], param1, param2, param4);
-    Sprite_SetAnim(param0->unk_00[4], param3);
-    Sprite_SetDrawFlag2(param0->unk_00[4], 1);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00[4], param1, param2, param4);
+    ManagedSprite_SetAnim(param0->unk_00[4], param3);
+    ManagedSprite_SetDrawFlag(param0->unk_00[4], 1);
 }
 
 void ov16_0226DDE8(UnkStruct_ov16_0226DC24 *param0)
@@ -141,13 +141,13 @@ void ov16_0226DDE8(UnkStruct_ov16_0226DC24 *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        Sprite_SetDrawFlag2(param0->unk_00[v0], 0);
+        ManagedSprite_SetDrawFlag(param0->unk_00[v0], 0);
     }
 }
 
 void ov16_0226DE04(UnkStruct_ov16_0226DC24 *param0)
 {
-    Sprite_SetDrawFlag2(param0->unk_00[4], 0);
+    ManagedSprite_SetDrawFlag(param0->unk_00[4], 0);
 }
 
 static void ov16_0226DE10(SysTask *param0, void *param1)
@@ -155,15 +155,15 @@ static void ov16_0226DE10(SysTask *param0, void *param1)
     UnkStruct_ov16_0226DC24 *v0 = param1;
     int v1;
 
-    if (Sprite_GetDrawFlag2(v0->unk_00[0]) == 0) {
+    if (ManagedSprite_GetDrawFlag(v0->unk_00[0]) == 0) {
         return;
     }
 
     for (v1 = 0; v1 < 4; v1++) {
-        Sprite_TickOneFrame(v0->unk_00[v1]);
+        ManagedSprite_TickFrame(v0->unk_00[v1]);
     }
 
-    if (Sprite_GetDrawFlag2(v0->unk_00[4]) == 1) {
-        Sprite_TickOneFrame(v0->unk_00[4]);
+    if (ManagedSprite_GetDrawFlag(v0->unk_00[4]) == 1) {
+        ManagedSprite_TickFrame(v0->unk_00[4]);
     }
 }

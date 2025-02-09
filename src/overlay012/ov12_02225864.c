@@ -15,12 +15,12 @@
 #include "overlay012/struct_ov12_02226454.h"
 
 #include "buffer_manager.h"
-#include "cell_actor.h"
 #include "heap.h"
 #include "inlines.h"
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "screen_scroll_manager.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -146,9 +146,9 @@ s16 ov12_022258E0(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
     return 0;
 }
 
-u8 ov12_02225950(CellActorData *param0)
+u8 ov12_02225950(ManagedSprite *param0)
 {
-    return PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(param0->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
+    return PlttTransfer_GetPlttOffset(Sprite_GetPaletteProxy(param0->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
 int ov12_02225964(UnkStruct_ov12_0221FCDC *param0, int param1)
@@ -212,26 +212,26 @@ u32 ov12_022259AC(fx32 param0, fx32 param1, fx32 param2)
     return v0 >> FX32_SHIFT;
 }
 
-void ov12_022259DC(UnkStruct_ov12_02225F6C *param0, CellActorData *param1, s16 param2, s16 param3)
+void ov12_022259DC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1, s16 param2, s16 param3)
 {
-    Sprite_SetPositionXY2(param1, param2 + param0->unk_00, param3 + param0->unk_02);
+    ManagedSprite_SetPositionXY(param1, param2 + param0->unk_00, param3 + param0->unk_02);
 }
 
-void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, CellActorData *param1)
+void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
 {
     f32 v0, v1;
 
     ov12_02225FA4(param0, &v0, &v1);
-    Sprite_SetAffineScale(param1, v0, v1);
+    ManagedSprite_SetAffineScale(param1, v0, v1);
 }
 
-void ov12_02225A18(UnkStruct_ov12_02225F6C *param0, Sprite *param1, s16 param2, s16 param3)
+void ov12_02225A18(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1, s16 param2, s16 param3)
 {
     sub_02007DEC(param1, 0, param2 + param0->unk_00);
     sub_02007DEC(param1, 1, param3 + param0->unk_02);
 }
 
-void ov12_02225A3C(UnkStruct_ov12_02225F6C *param0, Sprite *param1)
+void ov12_02225A3C(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
 {
     sub_02007DEC(param1, 12, param0->unk_00);
     sub_02007DEC(param1, 13, param0->unk_02);
@@ -293,7 +293,7 @@ BOOL ov12_02225AE0(UnkStruct_ov12_02225F6C *param0)
     return 0;
 }
 
-BOOL ov12_02225B78(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, CellActorData *param3)
+BOOL ov12_02225B78(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, ManagedSprite *param3)
 {
     if (ov12_02225AE0(param0)) {
         ov12_022259DC(param0, param3, param1, param2);
@@ -303,7 +303,7 @@ BOOL ov12_02225B78(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, Cell
     return 0;
 }
 
-BOOL ov12_02225BA0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, Sprite *param3)
+BOOL ov12_02225BA0(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, PokemonSprite *param3)
 {
     if (ov12_02225AE0(param0)) {
         ov12_02225A18(param0, param3, param1, param2);
@@ -343,7 +343,7 @@ BOOL ov12_02225C14(UnkStruct_ov12_02225F6C *param0)
     return 0;
 }
 
-BOOL ov12_02225C50(UnkStruct_ov12_02225F6C *param0, CellActorData *param1)
+BOOL ov12_02225C50(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
 {
     if (ov12_02225C14(param0)) {
         ov12_022259DC(param0, param1, 0, 0);
@@ -353,7 +353,7 @@ BOOL ov12_02225C50(UnkStruct_ov12_02225F6C *param0, CellActorData *param1)
     return 0;
 }
 
-BOOL ov12_02225C74(UnkStruct_ov12_02225F6C *param0, Sprite *param1)
+BOOL ov12_02225C74(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
 {
     if (ov12_02225C14(param0)) {
         ov12_02225A18(param0, param1, 0, 0);
@@ -391,7 +391,7 @@ BOOL ov12_02225CE4(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *par
     return 1;
 }
 
-BOOL ov12_02225D2C(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1, CellActorData *param2)
+BOOL ov12_02225D2C(UnkStruct_ov12_02225F6C *param0, UnkStruct_ov12_02225F6C *param1, ManagedSprite *param2)
 {
     if (ov12_02225CE4(param0, param1)) {
         ov12_022259DC(param0, param2, 0, 0);
@@ -586,7 +586,7 @@ s16 ov12_02225FD4(s16 param0, int param1, fx32 param2)
     return v5;
 }
 
-void ov12_02226024(Sprite *param0, s16 param1, s16 param2, fx32 param3, int param4)
+void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, int param4)
 {
     s16 v0;
     s16 v1;
@@ -602,7 +602,7 @@ void ov12_02226024(Sprite *param0, s16 param1, s16 param2, fx32 param3, int para
     sub_02007DEC(param0, 1, v1 + v0);
 }
 
-void ov12_0222605C(CellActorData *param0, s16 param1, s16 param2, fx32 param3, int param4)
+void ov12_0222605C(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, int param4)
 {
     s16 v0;
     s16 v1;
@@ -617,11 +617,11 @@ void ov12_0222605C(CellActorData *param0, s16 param1, s16 param2, fx32 param3, i
         v1 = param1 - param2;
     }
 
-    Sprite_GetPositionXY2(param0, &v2, &v3);
-    Sprite_SetPositionXY2(param0, v2, v1 + v0);
+    ManagedSprite_GetPositionXY(param0, &v2, &v3);
+    ManagedSprite_SetPositionXY(param0, v2, v1 + v0);
 }
 
-BOOL ov12_022260A8(UnkStruct_ov12_02225F6C *param0, CellActorData *param1)
+BOOL ov12_022260A8(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
 {
     if (ov12_02225EB8(param0)) {
         ov12_022259FC(param0, param1);
@@ -631,7 +631,7 @@ BOOL ov12_022260A8(UnkStruct_ov12_02225F6C *param0, CellActorData *param1)
     return 0;
 }
 
-BOOL ov12_022260C8(UnkStruct_ov12_02225F6C *param0, Sprite *param1)
+BOOL ov12_022260C8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
 {
     if (ov12_02225EB8(param0)) {
         ov12_02225A3C(param0, param1);
@@ -641,7 +641,7 @@ BOOL ov12_022260C8(UnkStruct_ov12_02225F6C *param0, Sprite *param1)
     return 0;
 }
 
-BOOL ov12_022260E8(UnkStruct_ov12_02225F6C *param0, Sprite *param1)
+BOOL ov12_022260E8(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
 {
     if (ov12_02225F6C(param0)) {
         ov12_02225A3C(param0, param1);
@@ -713,7 +713,7 @@ BOOL ov12_02226138(UnkStruct_ov12_02225F6C *param0)
     return 0;
 }
 
-BOOL ov12_0222619C(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, Sprite *param3)
+BOOL ov12_0222619C(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, PokemonSprite *param3)
 {
     if (ov12_02226138(param0)) {
         ov12_02225A18(param0, param3, param1, param2);
@@ -723,7 +723,7 @@ BOOL ov12_0222619C(UnkStruct_ov12_02225F6C *param0, s16 param1, s16 param2, Spri
     return 0;
 }
 
-void ov12_022261C4(UnkStruct_ov12_02226274 *param0, UnkStruct_ov12_02225F6C *param1, UnkFuncPtr_ov12_02226274 param2, s16 param3, s16 param4, u16 param5, u8 param6, u8 param7, CellActorData *param8, CellActorData *param9, CellActorData *param10, CellActorData *param11)
+void ov12_022261C4(UnkStruct_ov12_02226274 *param0, UnkStruct_ov12_02225F6C *param1, UnkFuncPtr_ov12_02226274 param2, s16 param3, s16 param4, u16 param5, u8 param6, u8 param7, ManagedSprite *param8, ManagedSprite *param9, ManagedSprite *param10, ManagedSprite *param11)
 {
     int v0;
 
@@ -746,7 +746,7 @@ void ov12_022261C4(UnkStruct_ov12_02226274 *param0, UnkStruct_ov12_02225F6C *par
     param0->unk_98[3] = param11;
 
     for (v0 = 0; v0 < param0->unk_AC; v0++) {
-        Sprite_SetDrawFlag2(param0->unk_98[v0], 0);
+        ManagedSprite_SetDrawFlag(param0->unk_98[v0], 0);
     }
 }
 
@@ -761,7 +761,7 @@ BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0)
     }
 
     if (param0->unk_A8 <= param0->unk_AA) {
-        Sprite_SetDrawFlag2(param0->unk_98[param0->unk_AD], 1);
+        ManagedSprite_SetDrawFlag(param0->unk_98[param0->unk_AD], 1);
         param0->unk_AD++;
         param0->unk_AA = 0;
     }
@@ -775,13 +775,13 @@ BOOL ov12_02226274(UnkStruct_ov12_02226274 *param0)
 
         if (v1[v0]) {
             if (param0->unk_AE == 0) {
-                Sprite_SetPositionXY2(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].unk_00, param0->unk_02 + param0->unk_04[v0].unk_02);
+                ManagedSprite_SetPositionXY(param0->unk_98[v0], param0->unk_00 + param0->unk_04[v0].unk_00, param0->unk_02 + param0->unk_04[v0].unk_02);
             } else {
                 ov12_02225FA4(&param0->unk_04[v0], &v2, &v3);
-                Sprite_SetAffineScale(param0->unk_98[v0], v2, v3);
+                ManagedSprite_SetAffineScale(param0->unk_98[v0], v2, v3);
             }
         } else {
-            Sprite_SetDrawFlag2(param0->unk_98[v0], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_98[v0], 0);
         }
     }
 

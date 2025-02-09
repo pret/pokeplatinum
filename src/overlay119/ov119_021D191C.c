@@ -7,12 +7,12 @@
 #include "overlay119/struct_ov119_021D0FD0.h"
 #include "overlay119/struct_ov119_021D1930.h"
 
-#include "cell_actor.h"
 #include "gx_layers.h"
 #include "menu.h"
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "text.h"
 #include "unk_020041CC.h"
@@ -240,7 +240,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D1514(param0);
         ov119_021D161C(param0);
 
-        Sprite_SetDrawFlag2(param0->unk_74, 0);
+        ManagedSprite_SetDrawFlag(param0->unk_74, 0);
 
         ov119_021D1858(param0);
         ov119_021D190C(param0, 1);
@@ -382,7 +382,7 @@ static BOOL ov119_021D1E38(UnkStruct_ov119_021D0FD0 *param0)
 {
     switch (param0->unk_68) {
     case 0:
-        Sprite_SetAnimationFrame(param0->unk_74, 0);
+        ManagedSprite_SetAnimationFrame(param0->unk_74, 0);
         param0->unk_68++;
         break;
     case 1:
@@ -409,7 +409,7 @@ static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        Sprite_SetAnimationFrame(param0->unk_74, 1);
+        ManagedSprite_SetAnimationFrame(param0->unk_74, 1);
         param0->unk_68++;
         break;
     case 1: {
@@ -420,7 +420,7 @@ static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0)
         if (v0 == 2) {
             Sound_PlayEffect(1812);
 
-            Sprite_SetAnimationFrame(param0->unk_74, 2);
+            ManagedSprite_SetAnimationFrame(param0->unk_74, 2);
             param0->unk_68++;
             param0->unk_64 = 0;
         }
@@ -431,7 +431,7 @@ static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0)
         v1 = ov119_021D176C(param0, 0);
 
         if (v1 == 2) {
-            Sprite_SetAnimationFrame(param0->unk_74, 2);
+            ManagedSprite_SetAnimationFrame(param0->unk_74, 2);
             param0->unk_68 = 0;
             param0->unk_64 = 0;
             return 0;
@@ -455,7 +455,7 @@ static BOOL ov119_021D1EF0(UnkStruct_ov119_021D0FD0 *param0)
 
         if (v0 == 1) {
             Sound_PlayEffect(1812);
-            Sprite_SetAnimationFrame(param0->unk_74, 3);
+            ManagedSprite_SetAnimationFrame(param0->unk_74, 3);
             ov119_021D14DC(param0->unk_04.unk_40, 0);
         }
 
@@ -491,7 +491,7 @@ static BOOL ov119_021D1F48(UnkStruct_ov119_021D0FD0 *param0)
         if (v0 == 1) {
             Sound_PlayEffect(1812);
 
-            Sprite_SetAnimationFrame(param0->unk_74, 4);
+            ManagedSprite_SetAnimationFrame(param0->unk_74, 4);
             ov119_021D14DC(param0->unk_04.unk_40, 1);
         }
 
@@ -517,7 +517,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        Sprite_SetAnimationFrame(param0->unk_74, 4);
+        ManagedSprite_SetAnimationFrame(param0->unk_74, 4);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
         param0->unk_68++;
         break;
@@ -527,14 +527,14 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
         v0 = ov119_021D176C(param0, 3);
 
         if (v0 == 1) {
-            Sprite_SetAnimationFrame(param0->unk_74, 5);
+            ManagedSprite_SetAnimationFrame(param0->unk_74, 5);
             Sound_PlayEffect(1799);
             ov119_021D14DC(param0->unk_04.unk_40, 2);
             ov119_021D14DC(param0->unk_04.unk_40, 3);
         }
 
         if (v0 == 2) {
-            Sprite_SetDrawFlag2(param0->unk_74, 0);
+            ManagedSprite_SetDrawFlag(param0->unk_74, 0);
             param0->unk_64 = 0;
             param0->unk_68++;
         }
@@ -549,7 +549,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
                 NNSG2dImagePaletteProxy *v1;
                 int v2;
 
-                v1 = CellActor_GetPaletteProxy(param0->unk_78->sprite);
+                v1 = Sprite_GetPaletteProxy(param0->unk_78->sprite);
                 v2 = PlttTransfer_GetPlttOffset(v1, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v2), 0, 0, 16, 0xFFFF);
@@ -563,18 +563,18 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
         s16 v3, v4;
         int v5 = 0;
 
-        Sprite_GetPositionXY2(param0->unk_78, &v3, &v4);
+        ManagedSprite_GetPositionXY(param0->unk_78, &v3, &v4);
 
         if (v4 > -48) {
-            Sprite_OffsetPositionXY2(param0->unk_78, 0, -4);
+            ManagedSprite_OffsetPositionXY(param0->unk_78, 0, -4);
         } else {
             v5++;
         }
 
-        Sprite_GetPositionXY2(param0->unk_7C, &v3, &v4);
+        ManagedSprite_GetPositionXY(param0->unk_7C, &v3, &v4);
 
         if (v4 < 192) {
-            Sprite_OffsetPositionXY2(param0->unk_7C, 0, +4);
+            ManagedSprite_OffsetPositionXY(param0->unk_7C, 0, +4);
         } else {
             v5++;
         }
@@ -585,9 +585,9 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         ov119_021D190C(param0, 0);
-        Sprite_SetDrawFlag2(param0->unk_74, 0);
-        Sprite_SetDrawFlag2(param0->unk_78, 0);
-        Sprite_SetDrawFlag2(param0->unk_7C, 0);
+        ManagedSprite_SetDrawFlag(param0->unk_74, 0);
+        ManagedSprite_SetDrawFlag(param0->unk_78, 0);
+        ManagedSprite_SetDrawFlag(param0->unk_7C, 0);
 
         param0->unk_68++;
     } break;
@@ -655,7 +655,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
                 NNSG2dImagePaletteProxy *v0;
                 int v1;
 
-                v0 = CellActor_GetPaletteProxy(param0->unk_78->sprite);
+                v0 = Sprite_GetPaletteProxy(param0->unk_78->sprite);
                 v1 = PlttTransfer_GetPlttOffset(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v1), 0, 0, 16, 0xFFFF);
@@ -669,18 +669,18 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
         s16 v2, v3;
         int v4 = 0;
 
-        Sprite_GetPositionXY2(param0->unk_78, &v2, &v3);
+        ManagedSprite_GetPositionXY(param0->unk_78, &v2, &v3);
 
         if (v3 > -48) {
-            Sprite_OffsetPositionXY2(param0->unk_78, 0, -4);
+            ManagedSprite_OffsetPositionXY(param0->unk_78, 0, -4);
         } else {
             v4++;
         }
 
-        Sprite_GetPositionXY2(param0->unk_7C, &v2, &v3);
+        ManagedSprite_GetPositionXY(param0->unk_7C, &v2, &v3);
 
         if (v3 < 192) {
-            Sprite_OffsetPositionXY2(param0->unk_7C, 0, +4);
+            ManagedSprite_OffsetPositionXY(param0->unk_7C, 0, +4);
         } else {
             v4++;
         }
@@ -692,9 +692,9 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
         ov119_021D190C(param0, 0);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-        Sprite_SetDrawFlag2(param0->unk_74, 0);
-        Sprite_SetDrawFlag2(param0->unk_78, 0);
-        Sprite_SetDrawFlag2(param0->unk_7C, 0);
+        ManagedSprite_SetDrawFlag(param0->unk_74, 0);
+        ManagedSprite_SetDrawFlag(param0->unk_78, 0);
+        ManagedSprite_SetDrawFlag(param0->unk_7C, 0);
 
         param0->unk_68++;
     } break;

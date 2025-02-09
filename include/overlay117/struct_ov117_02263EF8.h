@@ -13,7 +13,7 @@ typedef struct {
     s16 unk_0C;
     u8 unk_0E;
     u8 padding_0F[1];
-    CellActorData *unk_10;
+    ManagedSprite *unk_10;
     const UnkStruct_ov117_02266F10 *unk_14;
 } UnkStruct_ov117_02263EF8;
 

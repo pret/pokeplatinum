@@ -88,7 +88,7 @@ Static main
 	Object main.nef.p/src_gx_layers.c.o
 	Object main.nef.p/src_camera.c.o
 	Object main.nef.p/src_unk_02020AEC.c.o
-	Object main.nef.p/src_cell_actor.c.o
+	Object main.nef.p/src_sprite.c.o
 	Object main.nef.p/src_touch_screen.c.o
 	Object main.nef.p/src_unk_02022844.c.o
 	Object main.nef.p/src_error_handling.c.o

@@ -4,13 +4,13 @@
 #include "struct_decls/battle_system.h"
 
 #include "bg_window.h"
-#include "sprite_system.h"
+#include "sprite.h"
 #include "sys_task_manager.h"
 
 typedef struct {
     u8 state;
-    CellActorData *mainActor;
-    CellActorData *arrowActor;
+    ManagedSprite *mainSprite;
+    ManagedSprite *arrowSprite;
     BattleSystem *battleSys;
     SysTask *unk_10;
     Window unk_14;

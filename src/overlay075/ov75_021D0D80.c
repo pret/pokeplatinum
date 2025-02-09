@@ -83,7 +83,7 @@ typedef struct {
     Menu *unk_A4;
     SpriteSystem *unk_A8;
     SpriteManager *unk_AC;
-    CellActorData *unk_B0[3];
+    ManagedSprite *unk_B0[3];
 } UnkStruct_ov75_021D1184;
 
 typedef int (*UnkFuncPtr_ov75_021D1184)(UnkStruct_ov75_021D1184 *);
@@ -932,7 +932,7 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         param0->unk_B0[v0] = SpriteSystem_NewSprite(param0->unk_A8, param0->unk_AC, &v2);
 
         if (param0->unk_1C->unk_14[v0].val1_0 == 7) {
-            Sprite_SetDrawFlag2(param0->unk_B0[v0], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_B0[v0], 0);
         }
     }
 }

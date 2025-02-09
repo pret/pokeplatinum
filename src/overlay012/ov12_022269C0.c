@@ -6,8 +6,8 @@
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
-#include "cell_actor.h"
 #include "heap.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -32,9 +32,9 @@ typedef struct {
     UnkStruct_ov12_0221FCDC *unk_04;
     SpriteSystem *unk_08;
     SpriteManager *unk_0C;
-    CellActorData *unk_10;
-    CellActorData *unk_14[100];
-    CellActor *unk_1A4[10];
+    ManagedSprite *unk_10;
+    ManagedSprite *unk_14[100];
+    Sprite *unk_1A4[10];
 } UnkStruct_ov12_02226AAC;
 
 void ov12_022269C0(UnkStruct_ov12_0221FCDC *param0)
@@ -149,7 +149,7 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
     }
 }
 
-void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
+void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_02226AAC *v0;
     SpriteTemplate v1;

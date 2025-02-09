@@ -10,7 +10,7 @@
 typedef struct {
     BattleSystem *unk_00;
     UnkStruct_ov16_02268520 *unk_04;
-    CellActorData *unk_08;
+    ManagedSprite *unk_08;
     u8 unk_0C;
     u8 unk_0D;
     u8 unk_0E;

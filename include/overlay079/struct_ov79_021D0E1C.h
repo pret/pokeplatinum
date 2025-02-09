@@ -11,10 +11,10 @@
 #include "overlay079/struct_ov79_021D0E1C_sub1.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "string_list.h"
 
@@ -54,9 +54,9 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     Window unk_E8[13];
     SpriteSystem *unk_1B8;
     SpriteManager *unk_1BC;
-    CellActor *unk_1C0[3];
-    CellActor *unk_1CC[5];
-    CellActor *unk_1E0[6];
+    Sprite *unk_1C0[3];
+    Sprite *unk_1CC[5];
+    Sprite *unk_1E0[6];
     UnkStruct_0209903C *unk_1F8;
     UnkStruct_0209916C *unk_1FC;
 } UnkStruct_ov79_021D0E1C;

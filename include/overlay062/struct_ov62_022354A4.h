@@ -17,7 +17,7 @@ typedef struct {
     u8 unk_1C;
     u8 unk_1D;
     u8 padding_1E[2];
-    CellActorData *unk_20;
+    ManagedSprite *unk_20;
     FontOAM *unk_24;
     UnkStruct_0208B878 *unk_28;
     BOOL *unk_2C;

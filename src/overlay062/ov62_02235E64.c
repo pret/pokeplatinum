@@ -738,8 +738,8 @@ static void ov62_02236C20(UnkStruct_0208C06C *param0)
     ov62_0223118C(&v0->unk_158[0], &param0->unk_14, NNS_G2D_VRAM_TYPE_2DSUB);
     ov62_0223124C(&v0->unk_158[0], &param0->unk_14, 3);
 
-    Sprite_SetAnim(v0->unk_158[0].unk_08, 0);
-    Sprite_SetPositionXY2(v0->unk_158[0].unk_08, 80, 232);
+    ManagedSprite_SetAnim(v0->unk_158[0].unk_08, 0);
+    ManagedSprite_SetPositionXY(v0->unk_158[0].unk_08, 80, 232);
     sub_020128C4(v0->unk_158[0].unk_0C, 36, -8);
     sub_020129D0(v0->unk_158[0].unk_0C, 1);
 }

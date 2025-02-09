@@ -59,7 +59,7 @@ typedef struct {
         struct {
             UnkStruct_ov17_02249B30 *unk_00;
             const UnkStruct_ov17_02254630 *unk_04[3];
-            CellActorData *unk_10[3];
+            ManagedSprite *unk_10[3];
             u32 unk_1C[3];
             int unk_28;
             u16 unk_2C;

@@ -303,10 +303,10 @@ static BOOL ov62_02235580(UnkStruct_0208C06C *param0)
                             v5->unk_04 = v5->unk_00;
                             v5->unk_06 = (25 + (36 * (5 - 1)));
 
-                            Sprite_SetAnim(param0->unk_534.unk_00[v4].unk_00, param0->unk_818[param0->unk_534.unk_1B0].unk_0C);
+                            ManagedSprite_SetAnim(param0->unk_534.unk_00[v4].unk_00, param0->unk_818[param0->unk_534.unk_1B0].unk_0C);
                             ov62_02230FC8(param0, &param0->unk_534.unk_00[param0->unk_534.unk_1A4], param0->unk_818[param0->unk_534.unk_1B0].unk_08, &param0->unk_818[param0->unk_534.unk_1B0]);
                             sub_020129D0(param0->unk_534.unk_00[param0->unk_534.unk_1A4].unk_14, 1);
-                            Sprite_SetDrawFlag2(param0->unk_534.unk_00[v4].unk_00, 1);
+                            ManagedSprite_SetDrawFlag(param0->unk_534.unk_00[v4].unk_00, 1);
                         } else {
                             v5->unk_04 = v5->unk_00 - 4;
                             v5->unk_06 = (16 * (param0->unk_534.unk_1A4 - v4)) + (25 + (36 * (5 - (param0->unk_534.unk_1A4 - v4) - 1)));
@@ -324,9 +324,9 @@ static BOOL ov62_02235580(UnkStruct_0208C06C *param0)
 
             for (v4 = 0; v4 < param0->unk_534.unk_1A4; v4++) {
                 if (v4 == param0->unk_534.unk_1A4) {
-                    Sprite_SetExplicitPaletteOffset(param0->unk_534.unk_00[v4].unk_00, (2 - 1));
+                    ManagedSprite_SetExplicitPaletteOffset(param0->unk_534.unk_00[v4].unk_00, (2 - 1));
                 } else {
-                    Sprite_SetExplicitPaletteOffset(param0->unk_534.unk_00[v4].unk_00, (3 - 1));
+                    ManagedSprite_SetExplicitPaletteOffset(param0->unk_534.unk_00[v4].unk_00, (3 - 1));
                 }
             }
         }
@@ -432,9 +432,9 @@ static BOOL ov62_02235854(UnkStruct_0208C06C *param0)
 
                 for (v3 = 0; v3 < param0->unk_534.unk_1A4; v3++) {
                     if (v3 == param0->unk_534.unk_1A4 - 1) {
-                        Sprite_SetExplicitPaletteOffset(param0->unk_534.unk_00[v3].unk_00, (2 - 1));
+                        ManagedSprite_SetExplicitPaletteOffset(param0->unk_534.unk_00[v3].unk_00, (2 - 1));
                     } else {
-                        Sprite_SetExplicitPaletteOffset(param0->unk_534.unk_00[v3].unk_00, (3 - 1));
+                        ManagedSprite_SetExplicitPaletteOffset(param0->unk_534.unk_00[v3].unk_00, (3 - 1));
                     }
                 }
             }

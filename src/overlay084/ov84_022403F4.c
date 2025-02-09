@@ -7,10 +7,10 @@
 
 #include "overlay084/struct_ov84_0223B5A0.h"
 
-#include "cell_actor.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "move_table.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "unk_0207C908.h"
 #include "vram_transfer.h"
@@ -267,29 +267,29 @@ static void ov84_02240950(UnkStruct_ov84_0223B5A0 *param0)
         param0->unk_E0[v0] = SpriteSystem_NewSprite(param0->unk_D8, param0->unk_DC, &Unk_ov84_022411B0[v0]);
     }
 
-    Sprite_SetDrawFlag2(param0->unk_E0[5], 0);
-    Sprite_SetDrawFlag2(param0->unk_E0[6], 0);
-    Sprite_SetDrawFlag2(param0->unk_E0[10], 0);
-    Sprite_SetDrawFlag2(param0->unk_E0[11], 0);
+    ManagedSprite_SetDrawFlag(param0->unk_E0[5], 0);
+    ManagedSprite_SetDrawFlag(param0->unk_E0[6], 0);
+    ManagedSprite_SetDrawFlag(param0->unk_E0[10], 0);
+    ManagedSprite_SetDrawFlag(param0->unk_E0[11], 0);
 
     if ((param0->unk_C4->unk_65 == 4) || (param0->unk_C4->unk_65 == 5)) {
-        Sprite_SetDrawFlag2(param0->unk_E0[1], 0);
+        ManagedSprite_SetDrawFlag(param0->unk_E0[1], 0);
     }
 
     if (param0->unk_424 == 1) {
-        Sprite_SetDrawFlag2(param0->unk_E0[2], 0);
-        Sprite_SetDrawFlag2(param0->unk_E0[3], 0);
+        ManagedSprite_SetDrawFlag(param0->unk_E0[2], 0);
+        ManagedSprite_SetDrawFlag(param0->unk_E0[3], 0);
     }
 
     ov84_02240D3C(param0, 0);
 
-    Sprite_SetAnim(param0->unk_E0[0], param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08);
-    Sprite_SetPositionXY2(param0->unk_E0[1], ov84_02240C30(param0, param0->unk_C4->unk_64), 97);
-    Sprite_SetPositionXY2(param0->unk_E0[4], 177, 24 + (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 - 1) * 16);
+    ManagedSprite_SetAnim(param0->unk_E0[0], param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08);
+    ManagedSprite_SetPositionXY(param0->unk_E0[1], ov84_02240C30(param0, param0->unk_C4->unk_64), 97);
+    ManagedSprite_SetPositionXY(param0->unk_E0[4], 177, 24 + (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04 - 1) * 16);
 
     {
         VecFx32 v1 = { FX32_ONE, FX32_ONE, FX32_ONE };
-        CellActor_SetAffineScaleEx(param0->unk_E0[0]->sprite, &v1, 2);
+        Sprite_SetAffineScaleEx(param0->unk_E0[0]->sprite, &v1, 2);
     }
 }
 
@@ -310,7 +310,7 @@ void ov84_02240ABC(UnkStruct_ov84_0223B5A0 *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        Sprite_TickOneFrame(param0->unk_E0[v0]);
+        ManagedSprite_TickFrame(param0->unk_E0[v0]);
     }
 }
 
@@ -322,8 +322,8 @@ void ov84_02240AD8(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 
 void ov84_02240B34(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 {
-    Sprite_SetExplicitPalette2(param0->unk_E0[4], param1);
-    Sprite_SetExplicitPalette2(param0->unk_E0[1], param1);
+    ManagedSprite_SetExplicitPalette(param0->unk_E0[4], param1);
+    ManagedSprite_SetExplicitPalette(param0->unk_E0[1], param1);
 }
 
 u8 ov84_02240B50(UnkStruct_ov84_0223B5A0 *param0)
@@ -358,7 +358,7 @@ static void ov84_02240B98(UnkStruct_ov84_0223B5A0 *param0)
 {
     VecFx32 v0;
 
-    v0 = *(CellActor_GetPosition(param0->unk_E0[1]->sprite));
+    v0 = *(Sprite_GetPosition(param0->unk_E0[1]->sprite));
 
     if (param0->unk_454.unk_01 == 0) {
         v0.x -= param0->unk_454.unk_04[param0->unk_454.unk_03];
@@ -366,12 +366,12 @@ static void ov84_02240B98(UnkStruct_ov84_0223B5A0 *param0)
         v0.x += param0->unk_454.unk_04[param0->unk_454.unk_03];
     }
 
-    CellActor_SetPosition(param0->unk_E0[1]->sprite, &v0);
+    Sprite_SetPosition(param0->unk_E0[1]->sprite, &v0);
     param0->unk_454.unk_03++;
 
     if (param0->unk_454.unk_03 == 8) {
         v0.x = ov84_02240C30(param0, param0->unk_478) * FX32_ONE;
-        CellActor_SetPosition(param0->unk_E0[1]->sprite, &v0);
+        Sprite_SetPosition(param0->unk_E0[1]->sprite, &v0);
         param0->unk_454.unk_00 = 0;
     }
 }
@@ -386,7 +386,7 @@ static void ov84_02240C48(UnkStruct_ov84_0223B5A0 *param0)
     VecFx32 v0;
     fx32 v1;
 
-    v0 = *(CellActor_GetPosition(param0->unk_E0[1]->sprite));
+    v0 = *(Sprite_GetPosition(param0->unk_E0[1]->sprite));
     v1 = ov84_02240C30(param0, param0->unk_478) * FX32_ONE;
 
     if (v1 < v0.x) {
@@ -410,11 +410,11 @@ static void ov84_02240C48(UnkStruct_ov84_0223B5A0 *param0)
 void ov84_02240CF0(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 {
     if (param1 == 0) {
-        Sprite_SetPositionXY2(param0->unk_E0[8], 220, 156);
-        Sprite_SetPositionXY2(param0->unk_E0[9], 220, 180);
+        ManagedSprite_SetPositionXY(param0->unk_E0[8], 220, 156);
+        ManagedSprite_SetPositionXY(param0->unk_E0[9], 220, 180);
     } else {
-        Sprite_SetPositionXY2(param0->unk_E0[8], 162, 108);
-        Sprite_SetPositionXY2(param0->unk_E0[9], 162, 132);
+        ManagedSprite_SetPositionXY(param0->unk_E0[8], 162, 108);
+        ManagedSprite_SetPositionXY(param0->unk_E0[9], 162, 132);
     }
 
     ov84_02240D3C(param0, 1);
@@ -422,8 +422,8 @@ void ov84_02240CF0(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 
 void ov84_02240D3C(UnkStruct_ov84_0223B5A0 *param0, u8 param1)
 {
-    Sprite_SetDrawFlag2(param0->unk_E0[8], param1);
-    Sprite_SetDrawFlag2(param0->unk_E0[9], param1);
+    ManagedSprite_SetDrawFlag(param0->unk_E0[8], param1);
+    ManagedSprite_SetDrawFlag(param0->unk_E0[9], param1);
 }
 
 void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2)
@@ -432,8 +432,8 @@ void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2)
     u16 v1;
     u16 v2;
 
-    Sprite_SetDrawFlag2(param0->unk_E0[10], param2);
-    Sprite_SetDrawFlag2(param0->unk_E0[11], param2);
+    ManagedSprite_SetDrawFlag(param0->unk_E0[10], param2);
+    ManagedSprite_SetDrawFlag(param0->unk_E0[11], param2);
 
     if (param2 == 0) {
         return;
@@ -444,26 +444,26 @@ void ov84_02240D5C(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u8 param2)
     v2 = MoveTable_LoadParam(v0, MOVEATTRIBUTE_CLASS);
 
     SpriteSystem_ReplaceCharResObj(param0->unk_D8, param0->unk_DC, sub_0207C944(), sub_0207C908(v1), 1, 49409);
-    Sprite_SetExplicitPalette2(param0->unk_E0[10], sub_0207C92C(v1) + 6);
+    ManagedSprite_SetExplicitPalette(param0->unk_E0[10], sub_0207C92C(v1) + 6);
     SpriteSystem_ReplaceCharResObj(param0->unk_D8, param0->unk_DC, sub_0207CAC0(), sub_0207CA90(v2), 1, 49410);
-    Sprite_SetExplicitPalette2(param0->unk_E0[11], sub_0207CAA8(v2) + 6);
+    ManagedSprite_SetExplicitPalette(param0->unk_E0[11], sub_0207CAA8(v2) + 6);
 }
 
 void ov84_02240E24(UnkStruct_ov84_0223B5A0 *param0, s16 param1, s16 param2)
 {
-    Sprite_SetDrawFlag2(param0->unk_E0[6], 1);
-    Sprite_SetPositionXY2(param0->unk_E0[6], param1, param2);
-    Sprite_SetAnimationFrame(param0->unk_E0[6], 0);
-    Sprite_SetAnim(param0->unk_E0[6], 0);
+    ManagedSprite_SetDrawFlag(param0->unk_E0[6], 1);
+    ManagedSprite_SetPositionXY(param0->unk_E0[6], param1, param2);
+    ManagedSprite_SetAnimationFrame(param0->unk_E0[6], 0);
+    ManagedSprite_SetAnim(param0->unk_E0[6], 0);
 }
 
 void ov84_02240E5C(UnkStruct_ov84_0223B5A0 *param0)
 {
-    if (Sprite_GetDrawFlag2(param0->unk_E0[6]) == 1) {
-        Sprite_TickNFrames(param0->unk_E0[6], FX32_ONE);
+    if (ManagedSprite_GetDrawFlag(param0->unk_E0[6]) == 1) {
+        ManagedSprite_TickNFrames(param0->unk_E0[6], FX32_ONE);
 
-        if (Sprite_GetAnimationFrame(param0->unk_E0[6]) == 2) {
-            Sprite_SetDrawFlag2(param0->unk_E0[6], 0);
+        if (ManagedSprite_GetAnimationFrame(param0->unk_E0[6]) == 2) {
+            ManagedSprite_SetDrawFlag(param0->unk_E0[6], 0);
         }
     }
 }

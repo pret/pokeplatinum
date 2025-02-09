@@ -26,13 +26,13 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "pokedex_data_index.h"
 #include "pokemon.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -49,8 +49,8 @@ typedef struct {
 } UnkStruct_ov21_021DE760;
 
 typedef struct {
-    CellActor *unk_00[3];
-    CellActor *unk_0C;
+    Sprite *unk_00[3];
+    Sprite *unk_0C;
     UnkStruct_ov21_021D4CA0 *unk_10;
     SpriteResource *unk_14[4];
     SpriteResource *unk_24[4];
@@ -541,13 +541,13 @@ static void ov21_021DEE38(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
 
 static void ov21_021DEE80(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, int param2)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
 
     SpriteResourcesHeader_Init(&v0, 4000, 4000, 4000, 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.collection = v2->unk_138;
+    v1.list = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 32;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -555,13 +555,13 @@ static void ov21_021DEE80(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     v1.position.y = (88 * FX32_ONE);
     v1.position.x = (120 * FX32_ONE);
 
-    param0->unk_00[0] = CellActorCollection_Add(&v1);
+    param0->unk_00[0] = SpriteList_Add(&v1);
 }
 
 static void ov21_021DEEF8(UnkStruct_ov21_021DF374 *param0)
 {
     if (param0->unk_00[0]) {
-        CellActor_Delete(param0->unk_00[0]);
+        Sprite_Delete(param0->unk_00[0]);
     }
 }
 
@@ -579,7 +579,7 @@ static void ov21_021DEF3C(UnkStruct_ov21_021DE760 *param0)
 
 static void ov21_021DEF54(UnkStruct_ov21_021DE760 *param0, const UnkStruct_ov21_021DE6D4 *param1)
 {
-    Sprite *v0 = ov21_021D2170(param0->unk_00);
+    PokemonSprite *v0 = ov21_021D2170(param0->unk_00);
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
     ov21_021D1890(param0->unk_00, param1->unk_04, species, 2, 48, 72);
@@ -588,7 +588,7 @@ static void ov21_021DEF54(UnkStruct_ov21_021DE760 *param0, const UnkStruct_ov21_
 
 static void ov21_021DEF8C(UnkStruct_ov21_021DE760 *param0)
 {
-    Sprite *v0 = ov21_021D2170(param0->unk_00);
+    PokemonSprite *v0 = ov21_021D2170(param0->unk_00);
 
     sub_02007DEC(v0, 6, 1);
     sub_02008780(v0);
@@ -627,8 +627,8 @@ static void ov21_021DF054(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
 
 static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
     int type1, type2;
@@ -641,7 +641,7 @@ static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
 
     SpriteResourcesHeader_Init(&v0, 90 + 4000, 13 + 4000, 88 + 4000, 89 + 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.collection = v2->unk_138;
+    v1.list = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 32;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -649,15 +649,15 @@ static void ov21_021DF098(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     v1.position.x = (170 * FX32_ONE);
     v1.position.y = (72 * FX32_ONE);
 
-    param0->unk_00[1] = CellActorCollection_Add(&v1);
+    param0->unk_00[1] = SpriteList_Add(&v1);
 
-    CellActor_SetAnim(param0->unk_00[1], 0 + type1);
+    Sprite_SetAnim(param0->unk_00[1], 0 + type1);
 
     if (type1 != type2) {
         v1.position.x = (220 * FX32_ONE);
         v1.position.y = (72 * FX32_ONE);
-        param0->unk_00[2] = CellActorCollection_Add(&v1);
-        CellActor_SetAnim(param0->unk_00[2], 0 + type2);
+        param0->unk_00[2] = SpriteList_Add(&v1);
+        Sprite_SetAnim(param0->unk_00[2], 0 + type2);
     } else {
         param0->unk_00[2] = NULL;
     }
@@ -728,18 +728,18 @@ int ov21_021DF180(int param0)
 static void ov21_021DF1F8(UnkStruct_ov21_021DF374 *param0)
 {
     if (param0->unk_00[1]) {
-        CellActor_Delete(param0->unk_00[1]);
+        Sprite_Delete(param0->unk_00[1]);
     }
 
     if (param0->unk_00[2]) {
-        CellActor_Delete(param0->unk_00[2]);
+        Sprite_Delete(param0->unk_00[2]);
     }
 }
 
 static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
     Window *v4;
@@ -748,7 +748,7 @@ static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
 
     SpriteResourcesHeader_Init(&v0, 90 + 4000, 13 + 4000, 88 + 4000, 89 + 4000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.collection = v2->unk_138;
+    v1.list = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 32;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -756,9 +756,9 @@ static void ov21_021DF214(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     v1.position.x = (192 * FX32_ONE);
     v1.position.y = (52 * FX32_ONE);
 
-    param0->unk_0C = CellActorCollection_Add(&v1);
+    param0->unk_0C = SpriteList_Add(&v1);
 
-    CellActor_SetAnim(param0->unk_0C, 0x11);
+    Sprite_SetAnim(param0->unk_0C, 0x11);
 
     if (PokedexSort_CurrentCaughtStatus(param2->unk_04) != 2) {
         species = 0;
@@ -805,7 +805,7 @@ Window *ov21_021DF30C(UnkStruct_ov21_021D4C0C *param0, int param1, int param2)
 
 static void ov21_021DF35C(UnkStruct_ov21_021DF374 *param0)
 {
-    CellActor_Delete(param0->unk_0C);
+    Sprite_Delete(param0->unk_0C);
     param0->unk_0C = NULL;
     ov21_021D4D1C(param0->unk_10);
 }
@@ -966,11 +966,11 @@ static void ov21_021DF64C(UnkStruct_ov21_021DF374 *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_00[v0]) {
-            CellActor_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_XLU);
+            Sprite_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_XLU);
         }
     }
 
-    CellActor_SetExplicitOAMMode(param0->unk_0C, GX_OAM_MODE_XLU);
+    Sprite_SetExplicitOAMMode(param0->unk_0C, GX_OAM_MODE_XLU);
     sub_02012AF0(param0->unk_10->unk_00, GX_OAM_MODE_XLU);
 }
 
@@ -980,11 +980,11 @@ static void ov21_021DF680(UnkStruct_ov21_021DF374 *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_00[v0]) {
-            CellActor_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_NORMAL);
+            Sprite_SetExplicitOAMMode(param0->unk_00[v0], GX_OAM_MODE_NORMAL);
         }
     }
 
-    CellActor_SetExplicitOAMMode(param0->unk_0C, GX_OAM_MODE_NORMAL);
+    Sprite_SetExplicitOAMMode(param0->unk_0C, GX_OAM_MODE_NORMAL);
     sub_02012AF0(param0->unk_10->unk_00, GX_OAM_MODE_NORMAL);
 }
 

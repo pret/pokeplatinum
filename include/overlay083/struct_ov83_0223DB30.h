@@ -4,13 +4,13 @@
 #include "overlay083/struct_ov83_0223D95C.h"
 #include "overlay083/struct_ov83_0223DA94.h"
 
-#include "cell_actor.h"
+#include "sprite.h"
 
 typedef struct {
     BOOL unk_00;
     BOOL unk_04;
-    CellActor *unk_08[4];
-    CellActor *unk_18[4];
+    Sprite *unk_08[4];
+    Sprite *unk_18[4];
     UnkStruct_ov83_0223D95C unk_28[4];
     int unk_108;
     UnkStruct_ov83_0223DA94 unk_10C[4];

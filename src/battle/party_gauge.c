@@ -11,18 +11,18 @@
 #include "battle/ov16_0223DF00.h"
 
 #include "assert.h"
-#include "cell_actor.h"
 #include "enums.h"
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 
 typedef struct {
-    CellActorData *cells;
+    ManagedSprite *cells;
     SysTask *task;
     enum HideArrowType hideType;
     enum PartyGaugeSide side;
@@ -34,7 +34,7 @@ typedef struct {
 } PartyGaugeArrow;
 
 typedef struct {
-    CellActorData *cells;
+    ManagedSprite *cells;
     SysTask *task;
     enum PartyGaugeSide side;
     enum PartyGaugePosition position;
@@ -315,11 +315,11 @@ static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum Par
     arrow->cells = SpriteSystem_NewSprite(renderer, gfxHandler, &sArrowTemplate);
 
     if (side == PARTY_GAUGE_OURS) {
-        Sprite_SetPositionXY2(arrow->cells, ARROW_X_START_OURS, sArrowYPosOurs[pos]);
-        CellActor_SetAnim(arrow->cells->sprite, PGANM_ARROW_OURS);
+        ManagedSprite_SetPositionXY(arrow->cells, ARROW_X_START_OURS, sArrowYPosOurs[pos]);
+        Sprite_SetAnim(arrow->cells->sprite, PGANM_ARROW_OURS);
     } else {
-        Sprite_SetPositionXY2(arrow->cells, ARROW_X_START_THEIRS, sArrowYPosTheirs[pos]);
-        CellActor_SetAnim(arrow->cells->sprite, PGANM_ARROW_THEIRS);
+        ManagedSprite_SetPositionXY(arrow->cells, ARROW_X_START_THEIRS, sArrowYPosTheirs[pos]);
+        Sprite_SetAnim(arrow->cells->sprite, PGANM_ARROW_THEIRS);
     }
 
     Sprite_TickFrame(arrow->cells->sprite);
@@ -340,7 +340,7 @@ static void ShowArrowTask(SysTask *task, void *data)
     case SHOW_ARROW_INIT:
         s16 x, y;
 
-        Sprite_GetPositionXY2(arrow->cells, &x, &y);
+        ManagedSprite_GetPositionXY(arrow->cells, &x, &y);
         arrow->x = x << 8;
         arrow->state++;
         // fall-through
@@ -352,7 +352,7 @@ static void ShowArrowTask(SysTask *task, void *data)
                 arrow->state++;
             }
 
-            Sprite_SetPositionXY2(arrow->cells, arrow->x >> 8, sArrowYPosOurs[arrow->position]);
+            ManagedSprite_SetPositionXY(arrow->cells, arrow->x >> 8, sArrowYPosOurs[arrow->position]);
         } else {
             arrow->x += ARROW_IN_SPEED;
             if (arrow->x >= ARROW_X_END_THEIRS << 8) {
@@ -360,7 +360,7 @@ static void ShowArrowTask(SysTask *task, void *data)
                 arrow->state++;
             }
 
-            Sprite_SetPositionXY2(arrow->cells, arrow->x >> 8, sArrowYPosTheirs[arrow->position]);
+            ManagedSprite_SetPositionXY(arrow->cells, arrow->x >> 8, sArrowYPosTheirs[arrow->position]);
         }
         break;
 
@@ -401,10 +401,10 @@ static void HideArrowTask(SysTask *task, void *data)
     case HIDE_ARROW_INIT:
         s16 x, y;
 
-        Sprite_GetPositionXY2(arrow->cells, &x, &y);
+        ManagedSprite_GetPositionXY(arrow->cells, &x, &y);
         arrow->x = x << 8;
 
-        Sprite_SetExplicitOamMode2(arrow->cells, GX_OAM_MODE_XLU);
+        ManagedSprite_SetExplicitOamMode(arrow->cells, GX_OAM_MODE_XLU);
         arrow->alpha = 16 << 8;
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, (arrow->alpha >> 8), 16 - (arrow->alpha >> 8));
@@ -422,10 +422,10 @@ static void HideArrowTask(SysTask *task, void *data)
         if (arrow->hideType == HIDE_ARROW_FADE_AND_SCROLL) {
             if (arrow->side == PARTY_GAUGE_OURS) {
                 arrow->x -= ARROW_OUT_SPEED;
-                Sprite_SetPositionXY2(arrow->cells, arrow->x >> 8, sArrowYPosOurs[arrow->position]);
+                ManagedSprite_SetPositionXY(arrow->cells, arrow->x >> 8, sArrowYPosOurs[arrow->position]);
             } else {
                 arrow->x += ARROW_OUT_SPEED;
-                Sprite_SetPositionXY2(arrow->cells, arrow->x >> 8, sArrowYPosTheirs[arrow->position]);
+                ManagedSprite_SetPositionXY(arrow->cells, arrow->x >> 8, sArrowYPosTheirs[arrow->position]);
             }
         }
 
@@ -433,7 +433,7 @@ static void HideArrowTask(SysTask *task, void *data)
 
         if (arrow->alpha <= 0) {
             arrow->alpha = 0;
-            Sprite_SetDrawFlag(arrow->cells->sprite, 0);
+            Sprite_SetDrawFlag2(arrow->cells->sprite, 0);
             arrow->state++;
         }
 
@@ -466,12 +466,12 @@ static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum Par
     pokeballs->cells = SpriteSystem_NewSprite(renderer, gfxHandler, &sPokeballTemplate);
 
     if (side == PARTY_GAUGE_OURS) {
-        Sprite_SetPositionXY2(pokeballs->cells, POKEBALL_X_START_OURS, sPokeballYPosOurs[pos]);
+        ManagedSprite_SetPositionXY(pokeballs->cells, POKEBALL_X_START_OURS, sPokeballYPosOurs[pos]);
     } else {
-        Sprite_SetPositionXY2(pokeballs->cells, POKEBALL_X_START_THEIRS, sPokeballYPosTheirs[pos]);
+        ManagedSprite_SetPositionXY(pokeballs->cells, POKEBALL_X_START_THEIRS, sPokeballYPosTheirs[pos]);
     }
 
-    CellActor_SetAnim(pokeballs->cells->sprite, frame);
+    Sprite_SetAnim(pokeballs->cells->sprite, frame);
     Sprite_TickFrame(pokeballs->cells->sprite);
 
     pokeballs->side = side;
@@ -509,7 +509,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
     switch (pokeballs->state) {
     case SHOW_POKEBALLS_INIT:
         s16 x, y;
-        Sprite_GetPositionXY2(pokeballs->cells, &x, &y);
+        ManagedSprite_GetPositionXY(pokeballs->cells, &x, &y);
         pokeballs->xStart = x << 8;
 
         pokeballs->state++;
@@ -530,7 +530,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
                 pokeballs->state++;
             }
 
-            Sprite_SetPositionXY2(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
+            ManagedSprite_SetPositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
         } else {
             pokeballs->xStart += POKEBALL_IN_SPEED;
 
@@ -539,7 +539,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
                 pokeballs->state++;
             }
 
-            Sprite_SetPositionXY2(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
+            ManagedSprite_SetPositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
         }
 
         Sprite_TickFrame(pokeballs->cells->sprite);
@@ -556,9 +556,9 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
         }
 
         if (pokeballs->side == PARTY_GAUGE_OURS) {
-            SpriteActor_SetAnimFrame(pokeballs->cells->sprite, 1);
+            Sprite_SetAnimFrame(pokeballs->cells->sprite, 1);
         } else {
-            SpriteActor_SetAnimFrame(pokeballs->cells->sprite, 1);
+            Sprite_SetAnimFrame(pokeballs->cells->sprite, 1);
         }
 
         pokeballs->delay = 0;
@@ -571,7 +571,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
             break;
         }
 
-        CellActor_SetAnim(pokeballs->cells->sprite, pokeballs->flipAnimation);
+        Sprite_SetAnim(pokeballs->cells->sprite, pokeballs->flipAnimation);
         pokeballs->delay = 0;
         pokeballs->state++;
         // fall-through
@@ -584,7 +584,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
                 pokeballs->state++;
             }
 
-            Sprite_SetPositionXY2(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
+            ManagedSprite_SetPositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
         } else {
             pokeballs->xStart -= POKEBALL_IN_SPEED_SLOW;
 
@@ -593,14 +593,14 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
                 pokeballs->state++;
             }
 
-            Sprite_SetPositionXY2(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
+            ManagedSprite_SetPositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
         }
 
         Sprite_TickFrame(pokeballs->cells->sprite);
         break;
 
     default:
-        SpriteActor_SetAnimFrame(pokeballs->cells->sprite, 0);
+        Sprite_SetAnimFrame(pokeballs->cells->sprite, 0);
         SysTask_Done(task);
         pokeballs->task = NULL;
     }
@@ -613,10 +613,10 @@ static void ShowPokeballsMidBattleTask(SysTask *task, void *data)
     switch (pokeballs->state) {
     case SHOW_POKEBALLS_INIT:
         s16 x, y;
-        Sprite_GetPositionXY2(pokeballs->cells, &x, &y);
+        ManagedSprite_GetPositionXY(pokeballs->cells, &x, &y);
         pokeballs->xStart = x << 8;
 
-        SpriteActor_SetAnimFrame(pokeballs->cells->sprite, 0);
+        Sprite_SetAnimFrame(pokeballs->cells->sprite, 0);
         pokeballs->state++;
         // fall-through
     case SHOW_POKEBALLS_DELAY:
@@ -634,7 +634,7 @@ static void ShowPokeballsMidBattleTask(SysTask *task, void *data)
                 pokeballs->state++;
             }
 
-            Sprite_SetPositionXY2(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
+            ManagedSprite_SetPositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
         } else {
             pokeballs->xStart += POKEBALL_IN_SPEED;
 
@@ -643,7 +643,7 @@ static void ShowPokeballsMidBattleTask(SysTask *task, void *data)
                 pokeballs->state++;
             }
 
-            Sprite_SetPositionXY2(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
+            ManagedSprite_SetPositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
         }
         break;
 
@@ -693,10 +693,10 @@ static void HidePokeballsStartOfBattleTask(SysTask *task, void *data)
     case HIDE_POKEBALLS_INIT:
         s16 x, y;
 
-        Sprite_GetPositionXY2(pokeballs->cells, &x, &y);
+        ManagedSprite_GetPositionXY(pokeballs->cells, &x, &y);
         pokeballs->xStart = x << 8;
 
-        Sprite_SetExplicitOamMode2(pokeballs->cells, GX_OAM_MODE_XLU);
+        ManagedSprite_SetExplicitOamMode(pokeballs->cells, GX_OAM_MODE_XLU);
         pokeballs->state++;
         // fall-through
     case HIDE_POKEBALLS_DELAY:
@@ -713,10 +713,10 @@ static void HidePokeballsStartOfBattleTask(SysTask *task, void *data)
     case HIDE_POKEBALLS_FADE:
         if (pokeballs->side == PARTY_GAUGE_OURS) {
             pokeballs->xStart -= POKEBALL_OUT_SPEED;
-            Sprite_SetPositionXY2(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
+            ManagedSprite_SetPositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosOurs[pokeballs->position]);
         } else {
             pokeballs->xStart += POKEBALL_OUT_SPEED;
-            Sprite_SetPositionXY2(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
+            ManagedSprite_SetPositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
         }
 
         // Need some more documentation on this one
@@ -729,7 +729,7 @@ static void HidePokeballsStartOfBattleTask(SysTask *task, void *data)
 
     case HIDE_POKEBALLS_BREAK:
     default:
-        Sprite_SetDrawFlag(pokeballs->cells->sprite, 0);
+        Sprite_SetDrawFlag2(pokeballs->cells->sprite, 0);
         SysTask_Done(task);
         pokeballs->task = NULL;
     }
@@ -745,7 +745,7 @@ static void HidePokeballsMidBattleTask(SysTask *task, void *data)
 
     switch (pokeballs->state) {
     case HIDE_POKEBALLS_INIT:
-        Sprite_SetExplicitOamMode2(pokeballs->cells, GX_OAM_MODE_XLU);
+        ManagedSprite_SetExplicitOamMode(pokeballs->cells, GX_OAM_MODE_XLU);
         pokeballs->state++;
         // fall-through
     case HIDE_POKEBALLS_DELAY:
@@ -754,7 +754,7 @@ static void HidePokeballsMidBattleTask(SysTask *task, void *data)
 
     case HIDE_POKEBALLS_BREAK:
     default:
-        Sprite_SetDrawFlag(pokeballs->cells->sprite, 0);
+        Sprite_SetDrawFlag2(pokeballs->cells->sprite, 0);
         SysTask_Done(task);
         pokeballs->task = NULL;
     }

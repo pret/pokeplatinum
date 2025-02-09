@@ -17,7 +17,6 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
-#include "cell_actor.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -37,6 +36,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -87,7 +87,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     Window unk_10[24];
     SpriteSystem *unk_190;
     SpriteManager *unk_194;
-    CellActorData *unk_198[30];
+    ManagedSprite *unk_198[30];
     u32 unk_210;
     UnkStruct_ov10_0221FB28_sub1 unk_214[6];
     u16 unk_298[96];
@@ -156,7 +156,7 @@ static u8 ov10_0221FBFC(UnkStruct_ov10_0221FB28 *param0);
 static u8 ov10_022209E0(UnkStruct_ov10_0221FB28 *param0);
 static BOOL ov10_02220AD0(void);
 static void ov10_02220B00(UnkStruct_ov10_0221FB28 *param0, SpriteResourceCapacities *param1, int param2);
-static CellActorData *ov10_02220BA0(UnkStruct_ov10_0221FB28 *param0, const u32 *param1);
+static ManagedSprite *ov10_02220BA0(UnkStruct_ov10_0221FB28 *param0, const u32 *param1);
 static void ov10_02220BE8(UnkStruct_ov10_0221FB28 *param0);
 static void ov10_02220C2C(UnkStruct_ov10_0221FB28 *param0);
 static void ov10_02220C64(void *param0);
@@ -967,9 +967,9 @@ static u8 ov10_02220604(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_02220698(UnkStruct_ov10_0221FB28 *param0)
 {
     Sound_PlayEffect(1818);
-    Sprite_SetDrawFlag2(param0->unk_198[12], 1);
-    Sprite_SetDrawFlag2(param0->unk_198[13], 1);
-    Sprite_SetAnim(param0->unk_198[12], 0);
+    ManagedSprite_SetDrawFlag(param0->unk_198[12], 1);
+    ManagedSprite_SetDrawFlag(param0->unk_198[13], 1);
+    ManagedSprite_SetAnim(param0->unk_198[12], 0);
     param0->unk_B75 = 32;
     return 1;
 }
@@ -977,7 +977,7 @@ static u8 ov10_02220698(UnkStruct_ov10_0221FB28 *param0)
 static u8 ov10_022206D8(UnkStruct_ov10_0221FB28 *param0)
 {
     Sound_PlayEffect(1818);
-    Sprite_SetDrawFlag2(param0->unk_198[12], 1);
+    ManagedSprite_SetDrawFlag(param0->unk_198[12], 1);
     param0->unk_B75 = 64;
     return 1;
 }
@@ -1208,7 +1208,7 @@ static void ov10_02220B00(UnkStruct_ov10_0221FB28 *param0, SpriteResourceCapacit
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static CellActorData *ov10_02220BA0(UnkStruct_ov10_0221FB28 *param0, const u32 *param1)
+static ManagedSprite *ov10_02220BA0(UnkStruct_ov10_0221FB28 *param0, const u32 *param1)
 {
     SpriteTemplate v0;
 
@@ -1246,7 +1246,7 @@ static void ov10_02220C2C(UnkStruct_ov10_0221FB28 *param0)
     u16 v0;
 
     for (v0 = 0; v0 < param0->unk_210; v0++) {
-        CellActor_UpdateAnim(param0->unk_198[v0]->sprite, FX32_ONE);
+        Sprite_UpdateAnim(param0->unk_198[v0]->sprite, FX32_ONE);
     }
 }
 
@@ -1502,7 +1502,7 @@ static void ov10_02221188(UnkStruct_ov10_0221FB28 *param0, u8 param1, s16 param2
     u8 v1[] = { 0, 3, 6, 9 };
 
     for (v0 = 0; v0 < 3; v0++) {
-        Sprite_SetPositionXY2(param0->unk_198[v1[param1] + v0], param0->unk_B58[param1] + v0 * 19 + param2, param0->unk_B5C[param1] + param3);
+        ManagedSprite_SetPositionXY(param0->unk_198[v1[param1] + v0], param0->unk_B58[param1] + v0 * 19 + param2, param0->unk_B5C[param1] + param3);
     }
 }
 
@@ -1516,7 +1516,7 @@ static void ov10_022211F0(UnkStruct_ov10_0221FB28 *param0, Party *param1, u16 pa
     v4 = 0;
 
     for (v1 = 0; v1 < param2; v1++) {
-        Sprite_SetAnim(param0->unk_198[v1 + param3], 0);
+        ManagedSprite_SetAnim(param0->unk_198[v1 + param3], 0);
 
         if (v3 > v1) {
             v0 = Party_GetPokemonBySlotIndex(param1, v1);
@@ -1528,11 +1528,11 @@ static void ov10_022211F0(UnkStruct_ov10_0221FB28 *param0, Party *param1, u16 pa
             v2 = PokemonSummaryScreen_StatusIconAnimIdx(v0);
 
             if (v2 == 6) {
-                Sprite_SetAnim(param0->unk_198[v4 + param3], 3);
+                ManagedSprite_SetAnim(param0->unk_198[v4 + param3], 3);
             } else if (v2 != 7) {
-                Sprite_SetAnim(param0->unk_198[v4 + param3], 2);
+                ManagedSprite_SetAnim(param0->unk_198[v4 + param3], 2);
             } else {
-                Sprite_SetAnim(param0->unk_198[v4 + param3], 1);
+                ManagedSprite_SetAnim(param0->unk_198[v4 + param3], 1);
             }
 
             v4++;
@@ -1700,35 +1700,35 @@ static void ov10_0222166C(UnkStruct_ov10_0221FB28 *param0)
 
 static void ov10_022216E0(UnkStruct_ov10_0221FB28 *param0)
 {
-    Sprite_SetDrawFlag2(param0->unk_198[12], 0);
-    Sprite_SetDrawFlag2(param0->unk_198[13], 0);
+    ManagedSprite_SetDrawFlag(param0->unk_198[12], 0);
+    ManagedSprite_SetDrawFlag(param0->unk_198[13], 0);
 
     if (param0->unk_00->unk_2A == 3) {
-        Sprite_SetPositionXY2(param0->unk_198[12], 128, (96 - 24));
-        Sprite_SetAnim(param0->unk_198[12], 3 - 1);
+        ManagedSprite_SetPositionXY(param0->unk_198[12], 128, (96 - 24));
+        ManagedSprite_SetAnim(param0->unk_198[12], 3 - 1);
         return;
     }
 
     if (ov10_02220AD0() == 1) {
         if (param0->unk_00->unk_2A == 1) {
-            Sprite_SetPositionXY2(param0->unk_198[12], 48, (96 - 24));
-            Sprite_SetPositionXY2(param0->unk_198[13], 208, (96 - 24));
+            ManagedSprite_SetPositionXY(param0->unk_198[12], 48, (96 - 24));
+            ManagedSprite_SetPositionXY(param0->unk_198[13], 208, (96 - 24));
         } else {
-            Sprite_SetPositionXY2(param0->unk_198[12], 208, (96 - 24));
-            Sprite_SetPositionXY2(param0->unk_198[13], 48, (96 - 24));
+            ManagedSprite_SetPositionXY(param0->unk_198[12], 208, (96 - 24));
+            ManagedSprite_SetPositionXY(param0->unk_198[13], 48, (96 - 24));
         }
     } else {
         if (param0->unk_00->unk_2A == 1) {
-            Sprite_SetPositionXY2(param0->unk_198[12], 208, (96 - 24));
-            Sprite_SetPositionXY2(param0->unk_198[13], 48, (96 - 24));
+            ManagedSprite_SetPositionXY(param0->unk_198[12], 208, (96 - 24));
+            ManagedSprite_SetPositionXY(param0->unk_198[13], 48, (96 - 24));
         } else {
-            Sprite_SetPositionXY2(param0->unk_198[12], 48, (96 - 24));
-            Sprite_SetPositionXY2(param0->unk_198[13], 208, (96 - 24));
+            ManagedSprite_SetPositionXY(param0->unk_198[12], 48, (96 - 24));
+            ManagedSprite_SetPositionXY(param0->unk_198[13], 208, (96 - 24));
         }
     }
 
-    Sprite_SetAnim(param0->unk_198[12], 1 - 1);
-    Sprite_SetAnim(param0->unk_198[13], 2 - 1);
+    ManagedSprite_SetAnim(param0->unk_198[12], 1 - 1);
+    ManagedSprite_SetAnim(param0->unk_198[13], 2 - 1);
 }
 
 static void ov10_022217CC(UnkStruct_ov10_0221FB28 *param0)
@@ -2087,35 +2087,35 @@ static void ov10_02221EEC(UnkStruct_ov10_0221FB28 *param0, u32 param1)
 
     for (v0 = 0; v0 < 5; v0++) {
         param0->unk_198[param1 * 5 + v0] = ov10_02220BA0(param0, &Unk_ov10_02222F3C[param1 * 5 + v0][0]);
-        Sprite_SetPositionXY2(param0->unk_198[param1 * 5 + v0], Unk_ov10_02222C6C[param1][v0 * 2], Unk_ov10_02222C6C[param1][v0 * 2 + 1]);
+        ManagedSprite_SetPositionXY(param0->unk_198[param1 * 5 + v0], Unk_ov10_02222C6C[param1][v0 * 2], Unk_ov10_02222C6C[param1][v0 * 2 + 1]);
     }
 
     if (param0->unk_214[param1].unk_04 == 0) {
         for (v0 = 0; v0 < 5; v0++) {
-            Sprite_SetDrawFlag2(param0->unk_198[param1 * 5 + v0], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_198[param1 * 5 + v0], 0);
         }
     } else {
-        Sprite_SetExplicitPalette2(param0->unk_198[param1 * 5 + 0], PokeIconPaletteIndex(param0->unk_214[param1].unk_04, param0->unk_214[param1].unk_11, param0->unk_214[param1].unk_0F));
-        Sprite_SetAnim(param0->unk_198[param1 * 5 + 0], ov10_02221E84(param0, param1));
+        ManagedSprite_SetExplicitPalette(param0->unk_198[param1 * 5 + 0], PokeIconPaletteIndex(param0->unk_214[param1].unk_04, param0->unk_214[param1].unk_11, param0->unk_214[param1].unk_0F));
+        ManagedSprite_SetAnim(param0->unk_198[param1 * 5 + 0], ov10_02221E84(param0, param1));
 
         if (param0->unk_214[param1].unk_0A == 0) {
-            Sprite_SetDrawFlag2(param0->unk_198[param1 * 5 + 1], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_198[param1 * 5 + 1], 0);
         } else if (Item_IsMail(param0->unk_214[param1].unk_0A) == 1) {
-            Sprite_SetAnim(param0->unk_198[param1 * 5 + 1], 1);
+            ManagedSprite_SetAnim(param0->unk_198[param1 * 5 + 1], 1);
         } else {
-            Sprite_SetAnim(param0->unk_198[param1 * 5 + 1], 0);
+            ManagedSprite_SetAnim(param0->unk_198[param1 * 5 + 1], 0);
         }
 
         if (param0->unk_214[param1].unk_10 == 0) {
-            Sprite_SetDrawFlag2(param0->unk_198[param1 * 5 + 2], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_198[param1 * 5 + 2], 0);
         } else {
-            Sprite_SetAnim(param0->unk_198[param1 * 5 + 2], 2);
+            ManagedSprite_SetAnim(param0->unk_198[param1 * 5 + 2], 2);
         }
 
         if (param0->unk_214[param1].unk_14 == 7) {
-            Sprite_SetDrawFlag2(param0->unk_198[param1 * 5 + 3], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_198[param1 * 5 + 3], 0);
         } else {
-            Sprite_SetAnim(param0->unk_198[param1 * 5 + 3], param0->unk_214[v0].unk_14);
+            ManagedSprite_SetAnim(param0->unk_198[param1 * 5 + 3], param0->unk_214[v0].unk_14);
         }
     }
 }
@@ -2213,7 +2213,7 @@ static void ov10_02222340(UnkStruct_ov10_0221FB28 *param0, s16 param1)
 
     for (v0 = 0; v0 < 3; v0++) {
         for (v1 = 0; v1 < 5; v1++) {
-            Sprite_SetPositionXY2(
+            ManagedSprite_SetPositionXY(
                 param0->unk_198[(v2 + v0) * 5 + v1], Unk_ov10_02222C6C[v2 + v0][v1 * 2] + param1, Unk_ov10_02222C6C[v2 + v0][v1 * 2 + 1]);
         }
     }

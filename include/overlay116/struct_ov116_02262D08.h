@@ -11,7 +11,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     u8 padding_08[4];
-    CellActorData *unk_0C;
+    ManagedSprite *unk_0C;
     UnkStruct_ov116_0226469C unk_10;
     int unk_28;
     int *unk_2C;

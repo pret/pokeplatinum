@@ -12,7 +12,7 @@
 #include "sys_task_manager.h"
 
 typedef struct UnkStruct_ov16_0226DEEC_t {
-    CellActorData *unk_00;
+    ManagedSprite *unk_00;
     SysTask *unk_04;
     int unk_08;
     int unk_0C;
@@ -85,7 +85,7 @@ UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteSystem *param0, SpriteManager *para
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DEEC));
 
     v0->unk_00 = SpriteSystem_NewSprite(param0, param1, &v1);
-    Sprite_SetDrawFlag2(v0->unk_00, 0);
+    ManagedSprite_SetDrawFlag(v0->unk_00, 0);
 
     v0->unk_14 = (192 << FX32_SHIFT);
     v0->unk_04 = SysTask_Start(ov16_0226DFD8, v0, 999);
@@ -108,8 +108,8 @@ void ov16_0226DF80(UnkStruct_ov16_0226DEEC *param0, int param1, int param2, fx32
     param0->unk_0C = param2;
     param0->unk_14 = param3;
 
-    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_00, param1, param2, param3);
-    Sprite_SetDrawFlag2(param0->unk_00, 1);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_00, param1, param2, param3);
+    ManagedSprite_SetDrawFlag(param0->unk_00, 1);
 }
 
 void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2)
@@ -119,7 +119,7 @@ void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2)
 
 void ov16_0226DFBC(UnkStruct_ov16_0226DEEC *param0)
 {
-    Sprite_SetDrawFlag2(param0->unk_00, 0);
+    ManagedSprite_SetDrawFlag(param0->unk_00, 0);
     ov16_0226E13C(param0);
 }
 
@@ -149,7 +149,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
         }
     }
 
-    if (Sprite_GetDrawFlag2(v0->unk_00) == 0) {
+    if (ManagedSprite_GetDrawFlag(v0->unk_00) == 0) {
         return;
     }
 
@@ -169,7 +169,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
 
         if (v0->unk_1C == 0) {
             v1 = FX_Mul(CalcSineDegrees(v0->unk_10 / 100), 14 << FX32_SHIFT) / FX32_ONE;
-            Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_00, v0->unk_08, v0->unk_0C - v1, v0->unk_14);
+            ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_00, v0->unk_08, v0->unk_0C - v1, v0->unk_14);
         }
     }
 
@@ -184,7 +184,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
             }
             break;
         case 1:
-            Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_00, v0->unk_08, v0->unk_0C + 8, v0->unk_14);
+            ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_00, v0->unk_08, v0->unk_0C + 8, v0->unk_14);
             v0->unk_1B = 1;
             v0->unk_1D++;
             break;
@@ -192,7 +192,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
             v0->unk_1E++;
 
             if (v0->unk_1E > 2) {
-                Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_00, v0->unk_08, v0->unk_0C + 2, v0->unk_14);
+                ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_00, v0->unk_08, v0->unk_0C + 2, v0->unk_14);
                 v0->unk_1E = 0;
                 v0->unk_1D++;
             }
@@ -211,7 +211,7 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
         }
     }
 
-    Sprite_TickOneFrame(v0->unk_00);
+    ManagedSprite_TickFrame(v0->unk_00);
 }
 
 static void ov16_0226E13C(UnkStruct_ov16_0226DEEC *param0)

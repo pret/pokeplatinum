@@ -31,7 +31,6 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "catching_show.h"
-#include "cell_actor.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -55,6 +54,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -141,10 +141,10 @@ static u32 sub_0203AC3C(FieldSystem *fieldSystem);
 static void sub_0203B318(FieldMenu *menu, u8 *param1, u32 param2, u8 param3);
 static void sub_0203B4E8(FieldMenu *menu);
 static void sub_0203B520(FieldMenu *menu);
-static void sub_0203B558(CellActor *graphicElement, u32 param1);
-static void sub_0203B588(CellActor *graphicElement, u16 param1, u16 param2);
+static void sub_0203B558(Sprite *graphicElement, u32 param1);
+static void sub_0203B588(Sprite *graphicElement, u16 param1, u16 param2);
 static void sub_0203B5B4(FieldMenu *menu, u16 param1, u16 param2);
-static void sub_0203B5E8(CellActor *graphicElement);
+static void sub_0203B5E8(Sprite *graphicElement);
 static BOOL sub_0203AC44(FieldTask *taskMan);
 static void sub_0203ADFC(FieldTask *taskMan);
 static BOOL FieldMenu_Select(FieldTask *taskMan);
@@ -503,7 +503,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
 
     if (menu->unk_20 != NULL) {
         sub_0203B520(menu);
-        CellActorCollection_Update(menu->unk_38.unk_00);
+        SpriteList_Update(menu->unk_38.unk_00);
     }
 
     return FALSE;
@@ -811,7 +811,7 @@ static void sub_0203B318(FieldMenu *menu, u8 *param1, u32 param2, u8 param3)
 
         {
             VecFx32 v4 = { FX32_ONE, FX32_ONE, FX32_ONE };
-            CellActor_SetAffineScaleEx(menu->unk_200[1 + i]->sprite, &v4, 1);
+            Sprite_SetAffineScaleEx(menu->unk_200[1 + i]->sprite, &v4, 1);
         }
     }
 
@@ -839,26 +839,26 @@ static void sub_0203B520(FieldMenu *menu)
     u16 v0;
 
     for (v0 = 0; v0 < menu->unk_220; v0++) {
-        CellActor_UpdateAnim(menu->unk_200[v0]->sprite, FX32_ONE);
+        Sprite_UpdateAnim(menu->unk_200[v0]->sprite, FX32_ONE);
     }
 }
 
-static void sub_0203B558(CellActor *graphicElement, u32 param1)
+static void sub_0203B558(Sprite *graphicElement, u32 param1)
 {
     VecFx32 vec;
 
-    vec = *(CellActor_GetPosition(graphicElement));
+    vec = *(Sprite_GetPosition(graphicElement));
     vec.y = (20 + 24 * param1) * FX32_ONE;
 
-    CellActor_SetPosition(graphicElement, &vec);
+    Sprite_SetPosition(graphicElement, &vec);
 }
 
-static void sub_0203B588(CellActor *graphicElement, u16 param1, u16 param2)
+static void sub_0203B588(Sprite *graphicElement, u16 param1, u16 param2)
 {
-    u32 v0 = CellActor_GetActiveAnim(graphicElement);
+    u32 v0 = Sprite_GetActiveAnim(graphicElement);
 
-    CellActor_SetAnim(graphicElement, (v0 / 3) * 3 + param1);
-    CellActor_SetExplicitPaletteWithOffset(graphicElement, param2);
+    Sprite_SetAnim(graphicElement, (v0 / 3) * 3 + param1);
+    Sprite_SetExplicitPaletteWithOffset(graphicElement, param2);
 }
 
 static void sub_0203B5B4(FieldMenu *menu, u16 param1, u16 param2)
@@ -867,13 +867,13 @@ static void sub_0203B5B4(FieldMenu *menu, u16 param1, u16 param2)
     sub_0203B588(menu->unk_200[1 + param2]->sprite, 1, 1);
 }
 
-static void sub_0203B5E8(CellActor *graphicElement)
+static void sub_0203B5E8(Sprite *graphicElement)
 {
-    if ((CellActor_GetActiveAnim(graphicElement) % 3) != 1) {
+    if ((Sprite_GetActiveAnim(graphicElement) % 3) != 1) {
         return;
     }
 
-    if (CellActor_IsAnimated(graphicElement) == 0) {
+    if (Sprite_IsAnimated(graphicElement) == 0) {
         sub_0203B588(graphicElement, 2, 1);
     }
 }

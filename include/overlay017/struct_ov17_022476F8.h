@@ -18,8 +18,8 @@
 typedef struct {
     UnkStruct_02095C48_sub1 *unk_00;
     UnkStruct_02007768 *unk_04;
-    Sprite *unk_08[4];
-    Sprite *unk_18;
+    PokemonSprite *unk_08[4];
+    PokemonSprite *unk_18;
     SpriteSystem *unk_1C;
     SpriteManager *unk_20;
     BgConfig *unk_24;
@@ -29,7 +29,7 @@ typedef struct {
     Strbuf *unk_40;
     PaletteData *unk_44;
     UnkStruct_ov16_0223E0C8 unk_48[4];
-    CellActorData *unk_88[8];
+    ManagedSprite *unk_88[8];
     UnkStruct_ov17_0223F6E8 unk_A8;
     u8 unk_C4;
 } UnkStruct_ov17_022476F8;

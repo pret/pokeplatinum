@@ -11,16 +11,16 @@
 
 #include "bg_window.h"
 #include "narc.h"
-#include "sprite_system.h"
+#include "sprite.h"
 #include "sys_task_manager.h"
 
 #define DATA_BUF_SIZE 256
 
 struct BattlerData {
     UnkStruct_ov16_0225BFFC_sub1 unk_00;
-    CellActorData *unk_18;
-    Sprite *unk_1C;
-    Sprite *unk_20;
+    ManagedSprite *unk_18;
+    PokemonSprite *unk_1C;
+    PokemonSprite *unk_20;
     Window *unk_24;
     Healthbar healthbar;
     UnkStruct_ov16_0226C378 unk_7B;

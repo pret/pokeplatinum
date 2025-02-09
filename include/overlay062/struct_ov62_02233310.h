@@ -18,7 +18,7 @@ typedef struct {
     int unk_14;
     Window unk_18;
     const UnkStruct_ov62_02248CDC *unk_28;
-    CellActorData *unk_2C[2];
+    ManagedSprite *unk_2C[2];
     MessageLoader *unk_34;
     UnkStruct_ov62_02233310_sub1 unk_38;
     BOOL unk_48;

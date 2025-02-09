@@ -39,6 +39,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -68,8 +69,8 @@ typedef struct {
     int unk_1B0;
     Window unk_1B4[8];
     Window unk_234[8];
-    CellActorData *unk_2B4[30];
-    Sprite *unk_32C;
+    ManagedSprite *unk_2B4[30];
+    PokemonSprite *unk_32C;
     UnkStruct_02023FCC *unk_330[5];
     UnkStruct_02023FCC *unk_344;
     UnkStruct_ov62_022312B0 unk_348[2];
@@ -574,13 +575,13 @@ static void ov62_0223A4C8(UnkStruct_0208C06C *param0, int param1)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     if (param1 == 0) {
-        Sprite_SetDrawFlag2(v0->unk_348[1].unk_08, 1);
+        ManagedSprite_SetDrawFlag(v0->unk_348[1].unk_08, 1);
         sub_020129D0(v0->unk_348[1].unk_0C, 1);
-        Sprite_SetPositionXY2(v0->unk_348[0].unk_08, 32, 232);
+        ManagedSprite_SetPositionXY(v0->unk_348[0].unk_08, 32, 232);
     } else {
-        Sprite_SetDrawFlag2(v0->unk_348[1].unk_08, 0);
+        ManagedSprite_SetDrawFlag(v0->unk_348[1].unk_08, 0);
         sub_020129D0(v0->unk_348[1].unk_0C, 0);
-        Sprite_SetPositionXY2(v0->unk_348[0].unk_08, 80, 232);
+        ManagedSprite_SetPositionXY(v0->unk_348[0].unk_08, 80, 232);
     }
 
     sub_020128C4(v0->unk_348[0].unk_0C, 36, -8);
@@ -1115,9 +1116,9 @@ static void ov62_0223AE60(UnkStruct_0208C06C *param0)
             v0->unk_2B4[v5] = SpriteSystem_NewSprite(v1, v2, &v4);
             v8 = PokeIconPaletteIndex(v7, v6, v9);
 
-            Sprite_SetExplicitPaletteOffset(v0->unk_2B4[v5], 4 + v8);
-            Sprite_SetAnim(v0->unk_2B4[v5], 1);
-            Sprite_SetPriority(v0->unk_2B4[v5], 30 - v5);
+            ManagedSprite_SetExplicitPaletteOffset(v0->unk_2B4[v5], 4 + v8);
+            ManagedSprite_SetAnim(v0->unk_2B4[v5], 1);
+            ManagedSprite_SetPriority(v0->unk_2B4[v5], 30 - v5);
         }
     }
 }
@@ -1135,7 +1136,7 @@ static void ov62_0223AFC0(UnkStruct_0208C06C *param0, int param1)
             continue;
         }
 
-        Sprite_SetDrawFlag2(v0->unk_2B4[v1], param1);
+        ManagedSprite_SetDrawFlag(v0->unk_2B4[v1], param1);
     }
 }
 

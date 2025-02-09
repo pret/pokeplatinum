@@ -7,7 +7,6 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "font.h"
 #include "graphics.h"
@@ -15,6 +14,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
@@ -93,7 +93,7 @@ typedef struct {
 typedef struct {
     s16 unk_00;
     s16 unk_02;
-    CellActorData *unk_04[4];
+    ManagedSprite *unk_04[4];
     LinearInterpolationTaskFX32 unk_14[4];
 } UnkStruct_ov104_0223E48C;
 
@@ -102,7 +102,7 @@ typedef struct {
     UnkStruct_ov104_0223E48C unk_14;
     s32 unk_78;
     UnkStruct_ov104_0223E3B8 unk_7C;
-    CellActorData *unk_90;
+    ManagedSprite *unk_90;
 } UnkStruct_ov104_0223DDE4;
 
 typedef struct {
@@ -290,7 +290,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
 
         v0->unk_90 = SpriteSystem_NewSprite(param0->unk_14, param0->unk_18, &Unk_ov104_022418B4);
 
-        Sprite_SetDrawFlag2(v0->unk_90, 0);
+        ManagedSprite_SetDrawFlag(v0->unk_90, 0);
         Sprite_TickFrame(v0->unk_90->sprite);
         ov104_0223E3FC(param0, &v0->unk_14, (FX32_CONST(72)) + FX32_CONST(param0->unk_28), (FX32_CONST(82)) + FX32_CONST(param0->unk_2A), param1);
         param0->unk_00++;
@@ -515,11 +515,11 @@ static void ov104_0223E3FC(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
 
     for (v0 = 0; v0 < 4; v0++) {
         param1->unk_04[v0] = SpriteSystem_NewSprite(param0->unk_14, param0->unk_18, &v1);
-        Sprite_SetDrawFlag2(param1->unk_04[v0], 0);
+        ManagedSprite_SetDrawFlag(param1->unk_04[v0], 0);
 
         if (v0 != 3) {
-            CellActor_SetAffineOverwriteMode(param1->unk_04[v0]->sprite, 2);
-            CellActor_SetAnim(param1->unk_04[v0]->sprite, 1);
+            Sprite_SetAffineOverwriteMode(param1->unk_04[v0]->sprite, 2);
+            Sprite_SetAnim(param1->unk_04[v0]->sprite, 1);
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(2), FX32_CONST(1), 6);
         } else {
             ov104_0223E534(&param1->unk_14[v0], FX32_CONST(1), FX32_CONST(1), 6);
@@ -557,8 +557,8 @@ static BOOL ov104_0223E4A4(UnkStruct_ov104_0223E48C *param0)
         v1 = ov104_0223E544(&param0->unk_14[v0]);
         v3 = ov104_0223E58C(param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue, param0->unk_14[v0].currentValue);
 
-        CellActor_SetAffineScale(param0->unk_04[v0]->sprite, &v3);
-        CellActor_SetDrawFlag(param0->unk_04[v0]->sprite, 1);
+        Sprite_SetAffineScale(param0->unk_04[v0]->sprite, &v3);
+        Sprite_SetDrawFlag(param0->unk_04[v0]->sprite, 1);
 
         if (v1 == 0) {
             v2 = 0;
@@ -742,8 +742,8 @@ static BOOL ov104_0223E804(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
 
     switch (param2->unk_04) {
     case 0:
-        Sprite_SetPositionXYWithSubscreenOffset2(param1->unk_90, 256 + param0->unk_28, 80 + param0->unk_2A, (512 * FX32_ONE));
-        Sprite_SetDrawFlag2(param1->unk_90, 1);
+        ManagedSprite_SetPositionXYWithSubscreenOffset(param1->unk_90, 256 + param0->unk_28, 80 + param0->unk_2A, (512 * FX32_ONE));
+        ManagedSprite_SetDrawFlag(param1->unk_90, 1);
         param2->unk_00 = 256 << 8;
         param2->unk_04++;
         break;
@@ -755,7 +755,7 @@ static BOOL ov104_0223E804(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_022
             param2->unk_04++;
         }
 
-        Sprite_SetPositionXYWithSubscreenOffset2(param1->unk_90, param2->unk_00 >> 8, 80 + param0->unk_2A, (512 * FX32_ONE));
+        ManagedSprite_SetPositionXYWithSubscreenOffset(param1->unk_90, param2->unk_00 >> 8, 80 + param0->unk_2A, (512 * FX32_ONE));
         break;
     default:
         return 1;

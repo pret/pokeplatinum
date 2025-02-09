@@ -25,7 +25,6 @@
 #include "overlay105/struct_ov105_02246060_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -45,6 +44,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -104,7 +104,7 @@ struct UnkStruct_ov105_02241FF4_t {
     PaletteData *unk_120;
     GenericPointerData *unk_124;
     UnkStruct_02007768 *unk_128;
-    Sprite *unk_12C[3];
+    PokemonSprite *unk_12C[3];
     Options *unk_138;
     SaveData *unk_13C;
     PokemonSummary *unk_140;
@@ -571,7 +571,7 @@ int ov105_02241BD8(OverlayManager *param0, int *param1)
         break;
     }
 
-    CellActorCollection_Update(v0->unk_144.unk_00);
+    SpriteList_Update(v0->unk_144.unk_00);
     ov105_02245D50(v0->unk_128);
 
     return 0;

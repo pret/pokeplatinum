@@ -153,7 +153,7 @@ void ov16_0225E4C8(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
 void ov16_02263730(BattleSystem *param0, BattlerData *param1);
 u8 Battler_Type(BattlerData *param0);
 u8 Battler_BootState(BattlerData *param0);
-Sprite *ov16_02263AFC(BattlerData *param0);
+PokemonSprite *ov16_02263AFC(BattlerData *param0);
 Healthbar *ov16_02263B08(BattlerData *param0);
 UnkStruct_ov16_0226C378 *ov16_02263B0C(BattlerData *param0);
 void ov16_02263B10(BattlerData *param0);

@@ -31,7 +31,7 @@
 #include "unk_0200F174.h"
 
 typedef struct {
-    CellActorData *unk_00;
+    ManagedSprite *unk_00;
     fx32 unk_04;
     fx32 unk_08;
     fx32 unk_0C;
@@ -342,7 +342,7 @@ static void ov116_022647BC(SysTask *param0, void *param1)
     switch (v0->unk_04) {
     case 0:
         for (v1 = 0; v1 < 3; v1++) {
-            Sprite_GetPositionFxXY(v0->unk_08[v1], &v2, &v3);
+            ManagedSprite_GetPositionFxXY(v0->unk_08[v1], &v2, &v3);
             ov116_0226469C(&v0->unk_14[v1][0], v2, v2 + v6[v1], FX_F32_TO_FX32(0.3f), 8);
             ov116_0226469C(&v0->unk_14[v1][1], v3, v3 + v7[v1], FX_F32_TO_FX32(0.2f), 8);
         }
@@ -354,13 +354,13 @@ static void ov116_022647BC(SysTask *param0, void *param1)
             v4[v1][0] = ov116_022646FC(&v0->unk_14[v1][0]);
             v4[v1][1] = ov116_022646FC(&v0->unk_14[v1][1]);
 
-            Sprite_SetPositionFxXY(v0->unk_08[v1], v0->unk_14[v1][0].unk_00, v0->unk_14[v1][1].unk_00);
+            ManagedSprite_SetPositionFxXY(v0->unk_08[v1], v0->unk_14[v1][0].unk_00, v0->unk_14[v1][1].unk_00);
 
             if ((v4[v1][0] == 0) || (v4[v1][1] == 0)) {
                 v5 = 0;
             }
 
-            Sprite_TickOneFrame(v0->unk_08[v1]);
+            ManagedSprite_TickFrame(v0->unk_08[v1]);
         }
         if (v5) {
             v0->unk_04++;
@@ -395,7 +395,7 @@ void ov116_0226493C(UnkStruct_ov116_02262A8C *param0, s16 param1, s16 param2)
 
         for (v1 = 0; v1 < 3; v1++) {
             param0->unk_214C[v0].unk_08[v1] = ov116_022626E8(param0, param1, param2);
-            Sprite_SetAnim(param0->unk_214C[v0].unk_08[v1], ((param1 * (v0 + 1)) + (param2 * (v1 + 1))) % 3);
+            ManagedSprite_SetAnim(param0->unk_214C[v0].unk_08[v1], ((param1 * (v0 + 1)) + (param2 * (v1 + 1))) % 3);
         }
 
         SysTask_Start(ov116_022647BC, &param0->unk_214C[v0], 4096);
@@ -414,7 +414,7 @@ static inline void inline_ov116_022649E4_1(UnkStruct_ov116_02264FEC_sub1 *wk, fx
     wk->unk_04 += x;
     wk->unk_08 += y;
 
-    Sprite_SetPositionFxXYWithSubscreenOffset(wk->unk_00, wk->unk_14 + wk->unk_0C + wk->unk_1C + wk->unk_04, wk->unk_18 + wk->unk_10 + wk->unk_20 + wk->unk_08, FX32_CONST(192 + 32));
+    ManagedSprite_SetPositionFxXYWithSubscreenOffset(wk->unk_00, wk->unk_14 + wk->unk_0C + wk->unk_1C + wk->unk_04, wk->unk_18 + wk->unk_10 + wk->unk_20 + wk->unk_08, FX32_CONST(192 + 32));
 }
 
 static void ov116_022649E4(SysTask *param0, void *param1)
@@ -505,7 +505,7 @@ static void ov116_022649E4(SysTask *param0, void *param1)
 
                 if (v0->unk_14[v6].unk_32 >= (10 + v0->unk_14[v6].unk_26)) {
                     if (v0->unk_14[v6].unk_32 == (10 + v0->unk_14[v6].unk_26)) {
-                        Sprite_SetAnim(v0->unk_14[v6].unk_00, 0);
+                        ManagedSprite_SetAnim(v0->unk_14[v6].unk_00, 0);
                     }
 
                     if (v0->unk_14[v6].unk_32 == (18 + v0->unk_14[v6].unk_26)) {
@@ -516,7 +516,7 @@ static void ov116_022649E4(SysTask *param0, void *param1)
                         }
                     }
 
-                    Sprite_SetDrawFlag2(v0->unk_14[v6].unk_00, v0->unk_14[v6].unk_25);
+                    ManagedSprite_SetDrawFlag(v0->unk_14[v6].unk_00, v0->unk_14[v6].unk_25);
 
                     switch (v0->unk_14[v6].unk_27) {
                     case 0:
@@ -674,7 +674,7 @@ static void ov116_0226510C(UnkStruct_ov116_02265470 *param0)
     s16 v1, v2;
     s16 v3[] = { 188, 188, 180, 180 };
     BOOL v4[4] = { 1, 1, 1, 1 };
-    CellActorData *v5;
+    ManagedSprite *v5;
 
     if (param0->unk_04 == 0) {
         return;
@@ -688,10 +688,10 @@ static void ov116_0226510C(UnkStruct_ov116_02265470 *param0)
                 continue;
             }
 
-            Sprite_GetPositionXY2(v5, &v1, &v2);
+            ManagedSprite_GetPositionXY(v5, &v1, &v2);
             if (v2 > v3[v0]) {
                 v2 -= 6;
-                Sprite_SetPositionXY2(v5, v1, v2);
+                ManagedSprite_SetPositionXY(v5, v1, v2);
                 v4[v0] = 0;
             }
         }
@@ -719,10 +719,10 @@ static void ov116_0226510C(UnkStruct_ov116_02265470 *param0)
                 continue;
             }
 
-            Sprite_GetPositionXY2(v5, &v1, &v2);
+            ManagedSprite_GetPositionXY(v5, &v1, &v2);
             if (v2 < (192 + 32)) {
                 v2 += 6;
-                Sprite_SetPositionXY2(v5, v1, v2);
+                ManagedSprite_SetPositionXY(v5, v1, v2);
                 v4[v0] = 0;
             }
         }
@@ -746,7 +746,7 @@ static void ov116_0226510C(UnkStruct_ov116_02265470 *param0)
             continue;
         }
 
-        Sprite_TickTwoFrame(v5);
+        ManagedSprite_TickTwoFrames(v5);
     }
 }
 
@@ -912,10 +912,10 @@ void ov116_02265470(UnkStruct_ov116_02262A8C *param0)
             {
                 s16 v2, v3;
 
-                Sprite_GetPositionXY2(param0->unk_B8[0], &v2, &v3);
-                Sprite_SetPositionXY2(param0->unk_B8[0], v2, (192 + 32));
-                Sprite_GetPositionXY2(param0->unk_B8[1], &v2, &v3);
-                Sprite_SetPositionXY2(param0->unk_B8[1], v2, (192 + 32));
+                ManagedSprite_GetPositionXY(param0->unk_B8[0], &v2, &v3);
+                ManagedSprite_SetPositionXY(param0->unk_B8[0], v2, (192 + 32));
+                ManagedSprite_GetPositionXY(param0->unk_B8[1], &v2, &v3);
+                ManagedSprite_SetPositionXY(param0->unk_B8[1], v2, (192 + 32));
             }
             break;
         case 2: {
@@ -933,10 +933,10 @@ void ov116_02265470(UnkStruct_ov116_02262A8C *param0)
             {
                 s16 v5, v6;
 
-                Sprite_GetPositionXY2(param0->unk_B8[2], &v5, &v6);
-                Sprite_SetPositionXY2(param0->unk_B8[2], v5, (192 + 32));
-                Sprite_GetPositionXY2(param0->unk_B8[3], &v5, &v6);
-                Sprite_SetPositionXY2(param0->unk_B8[3], v5, (192 + 32));
+                ManagedSprite_GetPositionXY(param0->unk_B8[2], &v5, &v6);
+                ManagedSprite_SetPositionXY(param0->unk_B8[2], v5, (192 + 32));
+                ManagedSprite_GetPositionXY(param0->unk_B8[3], &v5, &v6);
+                ManagedSprite_SetPositionXY(param0->unk_B8[3], v5, (192 + 32));
             }
             break;
         case 4:
@@ -1175,9 +1175,9 @@ static void ov116_0226591C(SysTask *param0, void *param1)
                 for (v0 = 0; v0 < 2; v0++) {
                     int v5 = Unk_ov116_02267DA4[v2].unk_0C[v0];
 
-                    Sprite_SetExplicitPaletteOffset(v4->unk_00[v0].unk_00, 4 + v5);
+                    ManagedSprite_SetExplicitPaletteOffset(v4->unk_00[v0].unk_00, 4 + v5);
                     v5 = Unk_ov116_02267DA4[v2].unk_18[v0];
-                    Sprite_SetExplicitPaletteOffset(v4->unk_A0[v0].unk_00, 0 + v5);
+                    ManagedSprite_SetExplicitPaletteOffset(v4->unk_A0[v0].unk_00, 0 + v5);
                 }
 
                 SysTask_Start(Unk_ov116_02267DA4[v2].unk_24, v3, 4097);
@@ -1237,7 +1237,7 @@ static void ov116_02265AA4(SysTask *param0, void *param1)
         v1->unk_00[0].unk_18 = 64;
         v1->unk_00[0].unk_1C = 24;
 
-        Sprite_SetDrawFlag2(v1->unk_00[0].unk_00, 1);
+        ManagedSprite_SetDrawFlag(v1->unk_00[0].unk_00, 1);
 
         v1->unk_A0[0].unk_08 = 0;
         v1->unk_A0[0].unk_14 = 128;
@@ -1245,23 +1245,23 @@ static void ov116_02265AA4(SysTask *param0, void *param1)
         v1->unk_A0[0].unk_18 = 64;
         v1->unk_A0[0].unk_1C = 24;
 
-        Sprite_SetDrawFlag2(v1->unk_A0[0].unk_00, 1);
+        ManagedSprite_SetDrawFlag(v1->unk_A0[0].unk_00, 1);
 
         {
-            Sprite_GetPositionFxXYWithSubscreenOffset(v1->unk_00[0].unk_00, &v5, &v6, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_GetPositionFxXYWithSubscreenOffset(v1->unk_00[0].unk_00, &v5, &v6, ((192 + 64) << FX32_SHIFT));
 
             v3 = (v1->unk_00[0].unk_14 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v1->unk_00[0].unk_08) * v1->unk_00[0].unk_18);
             v4 = (v1->unk_00[0].unk_16 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(v1->unk_00[0].unk_08) * v1->unk_00[0].unk_1C);
 
-            Sprite_SetPositionFxXYWithSubscreenOffset(v1->unk_00[0].unk_00, v3, v4, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_SetPositionFxXYWithSubscreenOffset(v1->unk_00[0].unk_00, v3, v4, ((192 + 64) << FX32_SHIFT));
             ov116_02264764(&v1->unk_00[0].unk_20, v3, v3 + FX32_CONST(180), ov116_022658C8(v1->unk_148));
             ov116_02264764(&v1->unk_00[0].unk_38, v4, v4 - FX32_CONST(24), ov116_022658C8(v1->unk_148));
-            Sprite_GetPositionFxXYWithSubscreenOffset(v1->unk_A0[0].unk_00, &v5, &v6, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_GetPositionFxXYWithSubscreenOffset(v1->unk_A0[0].unk_00, &v5, &v6, ((192 + 64) << FX32_SHIFT));
 
             v3 = (v1->unk_A0[0].unk_14 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v1->unk_A0[0].unk_08) * v1->unk_A0[0].unk_18);
             v4 = (v1->unk_A0[0].unk_16 << FX32_SHIFT) - (CalcCosineDegrees_Wraparound(v1->unk_A0[0].unk_08) * v1->unk_A0[0].unk_1C);
 
-            Sprite_SetPositionFxXYWithSubscreenOffset(v1->unk_A0[0].unk_00, v3, v4, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_SetPositionFxXYWithSubscreenOffset(v1->unk_A0[0].unk_00, v3, v4, ((192 + 64) << FX32_SHIFT));
             ov116_02264764(&v1->unk_A0[0].unk_20, v3, v3 - FX32_CONST(180), ov116_022658C8(v1->unk_144));
             ov116_02264764(&v1->unk_A0[0].unk_38, v4, v4 + FX32_CONST(24), ov116_022658C8(v1->unk_144));
         }
@@ -1328,7 +1328,7 @@ static BOOL ov116_02265D8C(UnkStruct_ov116_02265D84 *param0, int param1, int par
 
     switch (param0->unk_04) {
     case 0:
-        Sprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v1, &v2, ((192 + 64) << FX32_SHIFT));
+        ManagedSprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v1, &v2, ((192 + 64) << FX32_SHIFT));
         if (param2 == 0) {
             ov116_02264764(&param0->unk_20, v1, v1 - FX32_CONST(180), ov116_022658C8(param1));
         } else {
@@ -1345,7 +1345,7 @@ static BOOL ov116_02265D8C(UnkStruct_ov116_02265D84 *param0, int param1, int par
     case 1:
         v0[0] = ov116_02264774(&param0->unk_20);
         ov116_02264774(&param0->unk_38);
-        Sprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, param0->unk_20.unk_00, param0->unk_38.unk_00, ((192 + 64) << FX32_SHIFT));
+        ManagedSprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, param0->unk_20.unk_00, param0->unk_38.unk_00, ((192 + 64) << FX32_SHIFT));
 
         if (v0[0]) {
             return 1;
@@ -1382,7 +1382,7 @@ static BOOL ov116_02265E64(UnkStruct_ov116_02265D84 *param0, int param1, int par
     case 1:
         v0[0] = ov116_02264774(&param0->unk_20);
         ov116_02264774(&param0->unk_38);
-        Sprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, param0->unk_20.unk_00, param0->unk_38.unk_00, ((192 + 64) << FX32_SHIFT));
+        ManagedSprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, param0->unk_20.unk_00, param0->unk_38.unk_00, ((192 + 64) << FX32_SHIFT));
 
         if (v0[0]) {
             return 1;
@@ -1419,7 +1419,7 @@ static BOOL ov116_02265F1C(UnkStruct_ov116_02265D84 *param0, int param1, int par
     case 1:
         v0[0] = ov116_02264774(&param0->unk_20);
         ov116_02264774(&param0->unk_38);
-        Sprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, param0->unk_20.unk_00, param0->unk_38.unk_00, ((192 + 64) << FX32_SHIFT));
+        ManagedSprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, param0->unk_20.unk_00, param0->unk_38.unk_00, ((192 + 64) << FX32_SHIFT));
 
         if (v0[0]) {
             return 1;
@@ -1450,7 +1450,7 @@ static BOOL ov116_02265FD4(UnkStruct_ov116_02265D84 *param0, int param1, int par
             param0->unk_08 = 0;
         }
 
-        Sprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v3, &v4, ((192 + 64) << FX32_SHIFT));
+        ManagedSprite_GetPositionFxXYWithSubscreenOffset(param0->unk_00, &v3, &v4, ((192 + 64) << FX32_SHIFT));
 
         if (param2 == 0) {
             v1 = (param0->unk_14 << FX32_SHIFT) - (CalcSineDegrees_Wraparound(param0->unk_08) * param0->unk_18);
@@ -1460,7 +1460,7 @@ static BOOL ov116_02265FD4(UnkStruct_ov116_02265D84 *param0, int param1, int par
             v2 = (param0->unk_16 << FX32_SHIFT) - (CalcCosineDegrees_Wraparound(param0->unk_08) * param0->unk_1C);
         }
 
-        Sprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, v1, v2, ((192 + 64) << FX32_SHIFT));
+        ManagedSprite_SetPositionFxXYWithSubscreenOffset(param0->unk_00, v1, v2, ((192 + 64) << FX32_SHIFT));
 
         if (param0->unk_08 == 0) {
             param0->unk_10++;
@@ -1503,7 +1503,7 @@ static void ov116_022660A8(SysTask *param0, void *param1)
             v2->unk_00[v0].unk_18 = 64;
             v2->unk_00[v0].unk_1C = 24;
 
-            Sprite_SetDrawFlag2(v2->unk_00[v0].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_00[v0].unk_00, 1);
 
             v2->unk_A0[v0].unk_08 = 0;
             v2->unk_A0[v0].unk_14 = 128;
@@ -1511,24 +1511,24 @@ static void ov116_022660A8(SysTask *param0, void *param1)
             v2->unk_A0[v0].unk_18 = 64;
             v2->unk_A0[v0].unk_1C = 24;
 
-            Sprite_SetDrawFlag2(v2->unk_A0[v0].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_A0[v0].unk_00, 1);
 
-            Sprite_GetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_GetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_00[v0].unk_14 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_18);
             v5 = (v2->unk_00[v0].unk_16 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_1C);
-            Sprite_SetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_SetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
 
-            Sprite_GetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_GetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_A0[v0].unk_14 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v2->unk_A0[v0].unk_08) * v2->unk_A0[v0].unk_18);
             v5 = (v2->unk_A0[v0].unk_16 << FX32_SHIFT) - (CalcCosineDegrees_Wraparound(v2->unk_A0[v0].unk_08) * v2->unk_A0[v0].unk_1C);
-            Sprite_SetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_SetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
         }
 
         ov116_02265D84(&v2->unk_A0[0]);
         ov116_02265D84(&v2->unk_A0[1]);
         ov116_02265D84(&v2->unk_00[0]);
         ov116_02265D84(&v2->unk_00[1]);
-        Sprite_SetDrawFlag2(v2->unk_00[1].unk_00, 0);
+        ManagedSprite_SetDrawFlag(v2->unk_00[1].unk_00, 0);
         v1->unk_1C++;
     case 1:
         v3[0] = ov116_02265D8C(&v2->unk_A0[0], v2->unk_144, 0, 3);
@@ -1541,7 +1541,7 @@ static void ov116_022660A8(SysTask *param0, void *param1)
             ov116_02265D84(&v2->unk_A0[1]);
             ov116_02265D84(&v2->unk_00[0]);
             ov116_02265D84(&v2->unk_00[1]);
-            Sprite_SetDrawFlag2(v2->unk_00[1].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_00[1].unk_00, 1);
             v1->unk_1C++;
         } else {
             break;
@@ -1630,7 +1630,7 @@ static void ov116_0226644C(SysTask *param0, void *param1)
             v2->unk_00[v0].unk_18 = 64;
             v2->unk_00[v0].unk_1C = 24;
 
-            Sprite_SetDrawFlag2(v2->unk_00[v0].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_00[v0].unk_00, 1);
 
             v2->unk_A0[v0].unk_08 = 0;
             v2->unk_A0[v0].unk_14 = 128;
@@ -1638,24 +1638,24 @@ static void ov116_0226644C(SysTask *param0, void *param1)
             v2->unk_A0[v0].unk_18 = 64;
             v2->unk_A0[v0].unk_1C = 24;
 
-            Sprite_SetDrawFlag2(v2->unk_A0[v0].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_A0[v0].unk_00, 1);
 
-            Sprite_GetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_GetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_00[v0].unk_14 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_18);
             v5 = (v2->unk_00[v0].unk_16 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_1C);
-            Sprite_SetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_SetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
 
-            Sprite_GetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_GetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_A0[v0].unk_14 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v2->unk_A0[v0].unk_08) * v2->unk_A0[v0].unk_18);
             v5 = (v2->unk_A0[v0].unk_16 << FX32_SHIFT) - (CalcCosineDegrees_Wraparound(v2->unk_A0[v0].unk_08) * v2->unk_A0[v0].unk_1C);
-            Sprite_SetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_SetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
         }
 
         ov116_02265D84(&v2->unk_A0[0]);
         ov116_02265D84(&v2->unk_A0[1]);
         ov116_02265D84(&v2->unk_00[0]);
         ov116_02265D84(&v2->unk_00[1]);
-        Sprite_SetDrawFlag2(v2->unk_00[1].unk_00, 0);
+        ManagedSprite_SetDrawFlag(v2->unk_00[1].unk_00, 0);
         v1->unk_1C++;
     case 1:
         v3[0] = ov116_02265D8C(&v2->unk_A0[0], v2->unk_144, 0, 3);
@@ -1667,7 +1667,7 @@ static void ov116_0226644C(SysTask *param0, void *param1)
             ov116_02265D84(&v2->unk_A0[1]);
             ov116_02265D84(&v2->unk_00[0]);
             ov116_02265D84(&v2->unk_00[1]);
-            Sprite_SetDrawFlag2(v2->unk_00[1].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_00[1].unk_00, 1);
             v1->unk_1C++;
         } else {
             break;
@@ -1748,7 +1748,7 @@ static void ov116_022667F4(SysTask *param0, void *param1)
             v2->unk_00[v0].unk_18 = 64;
             v2->unk_00[v0].unk_1C = 24;
 
-            Sprite_SetDrawFlag2(v2->unk_00[v0].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_00[v0].unk_00, 1);
 
             v2->unk_A0[v0].unk_08 = 0;
             v2->unk_A0[v0].unk_14 = 128;
@@ -1756,24 +1756,24 @@ static void ov116_022667F4(SysTask *param0, void *param1)
             v2->unk_A0[v0].unk_18 = 64;
             v2->unk_A0[v0].unk_1C = 24;
 
-            Sprite_SetDrawFlag2(v2->unk_A0[v0].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_A0[v0].unk_00, 1);
 
-            Sprite_GetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_GetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_00[v0].unk_14 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_18);
             v5 = (v2->unk_00[v0].unk_16 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_1C);
-            Sprite_SetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_SetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
 
-            Sprite_GetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_GetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_A0[v0].unk_14 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v2->unk_A0[v0].unk_08) * v2->unk_A0[v0].unk_18);
             v5 = (v2->unk_A0[v0].unk_16 << FX32_SHIFT) - (CalcCosineDegrees_Wraparound(v2->unk_A0[v0].unk_08) * v2->unk_A0[v0].unk_1C);
-            Sprite_SetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_SetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
         }
 
         ov116_02265D84(&v2->unk_A0[0]);
         ov116_02265D84(&v2->unk_A0[1]);
         ov116_02265D84(&v2->unk_00[0]);
         ov116_02265D84(&v2->unk_00[1]);
-        Sprite_SetDrawFlag2(v2->unk_00[1].unk_00, 0);
+        ManagedSprite_SetDrawFlag(v2->unk_00[1].unk_00, 0);
         v1->unk_1C++;
 
     case 1:
@@ -1787,7 +1787,7 @@ static void ov116_022667F4(SysTask *param0, void *param1)
             ov116_02265D84(&v2->unk_A0[1]);
             ov116_02265D84(&v2->unk_00[0]);
             ov116_02265D84(&v2->unk_00[1]);
-            Sprite_SetDrawFlag2(v2->unk_00[1].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_00[1].unk_00, 1);
             v1->unk_1C++;
         } else {
             break;
@@ -1894,7 +1894,7 @@ static void ov116_02266BF0(SysTask *param0, void *param1)
             v2->unk_00[v0].unk_18 = 64;
             v2->unk_00[v0].unk_1C = 24;
 
-            Sprite_SetDrawFlag2(v2->unk_00[v0].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_00[v0].unk_00, 1);
 
             v2->unk_A0[v0].unk_08 = 0;
             v2->unk_A0[v0].unk_14 = 128;
@@ -1902,24 +1902,24 @@ static void ov116_02266BF0(SysTask *param0, void *param1)
             v2->unk_A0[v0].unk_18 = 64;
             v2->unk_A0[v0].unk_1C = 24;
 
-            Sprite_SetDrawFlag2(v2->unk_A0[v0].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_A0[v0].unk_00, 1);
 
-            Sprite_GetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_GetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_00[v0].unk_14 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_18);
             v5 = (v2->unk_00[v0].unk_16 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(v2->unk_00[v0].unk_08) * v2->unk_00[v0].unk_1C);
-            Sprite_SetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_SetPositionFxXYWithSubscreenOffset(v2->unk_00[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
 
-            Sprite_GetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_GetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, &v6, &v7, ((192 + 64) << FX32_SHIFT));
             v4 = (v2->unk_A0[v0].unk_14 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v2->unk_A0[v0].unk_08) * v2->unk_A0[v0].unk_18);
             v5 = (v2->unk_A0[v0].unk_16 << FX32_SHIFT) - (CalcCosineDegrees_Wraparound(v2->unk_A0[v0].unk_08) * v2->unk_A0[v0].unk_1C);
-            Sprite_SetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
+            ManagedSprite_SetPositionFxXYWithSubscreenOffset(v2->unk_A0[v0].unk_00, v4, v5, ((192 + 64) << FX32_SHIFT));
         }
 
         ov116_02265D84(&v2->unk_A0[0]);
         ov116_02265D84(&v2->unk_A0[1]);
         ov116_02265D84(&v2->unk_00[0]);
         ov116_02265D84(&v2->unk_00[1]);
-        Sprite_SetDrawFlag2(v2->unk_00[1].unk_00, 0);
+        ManagedSprite_SetDrawFlag(v2->unk_00[1].unk_00, 0);
         v1->unk_1C++;
     case 1:
         v3[0] = ov116_02265D8C(&v2->unk_A0[0], v2->unk_144, 0, 3);
@@ -1932,7 +1932,7 @@ static void ov116_02266BF0(SysTask *param0, void *param1)
             ov116_02265D84(&v2->unk_A0[1]);
             ov116_02265D84(&v2->unk_00[0]);
             ov116_02265D84(&v2->unk_00[1]);
-            Sprite_SetDrawFlag2(v2->unk_00[1].unk_00, 1);
+            ManagedSprite_SetDrawFlag(v2->unk_00[1].unk_00, 1);
             v1->unk_1C++;
         } else {
             break;

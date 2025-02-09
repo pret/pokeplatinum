@@ -4,7 +4,7 @@
 #include "sprite_system.h"
 
 typedef struct {
-    CellActorData *unk_00;
+    ManagedSprite *unk_00;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;

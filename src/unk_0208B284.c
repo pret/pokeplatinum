@@ -124,7 +124,7 @@ static void sub_0208B3D4(SysTask *param0, void *param1)
                 v0->unk_24[v1].unk_06 = v0->unk_24[v1 - 1].unk_06;
             }
 
-            Sprite_GetPositionFxXYWithSubscreenOffset(v0->unk_24[v1].unk_00, &v5, &v6, v0->unk_10.unk_10);
+            ManagedSprite_GetPositionFxXYWithSubscreenOffset(v0->unk_24[v1].unk_00, &v5, &v6, v0->unk_10.unk_10);
 
             v3 = FX_FX32_TO_F32(v5);
             v4 = FX_FX32_TO_F32(v6);
@@ -132,7 +132,7 @@ static void sub_0208B3D4(SysTask *param0, void *param1)
             v9 = sub_0208B2DC(v0->unk_24[v1].unk_04, v0->unk_24[v1].unk_06, v3, v4, &v7, &v8, (8.0f - ((v1 - v2) * 0.5f)) / 2, 16);
 
             if (v9 && (v0->unk_24[v1].unk_08 == 0)) {
-                Sprite_OffsetPositionFxXY(v0->unk_24[v1].unk_00, FX_F32_TO_FX32(v7), FX_F32_TO_FX32(v8));
+                ManagedSprite_OffsetPositionFxXY(v0->unk_24[v1].unk_00, FX_F32_TO_FX32(v7), FX_F32_TO_FX32(v8));
             } else {
                 {
                     int v10;
@@ -161,7 +161,7 @@ static void sub_0208B3D4(SysTask *param0, void *param1)
                         v0->unk_24[v1].unk_0C %= 720;
                         v14 = (v0->unk_24[0].unk_04 << FX32_SHIFT) + (CalcSineDegrees_Wraparound(v0->unk_24[v1].unk_0C) * v0->unk_FC);
                         v15 = (v0->unk_24[0].unk_06 << FX32_SHIFT) + (CalcCosineDegrees_Wraparound(v0->unk_24[v1].unk_0C) * v0->unk_100);
-                        Sprite_SetPositionFxXYWithSubscreenOffset(v0->unk_24[v1].unk_00, v14, v15, v0->unk_10.unk_10);
+                        ManagedSprite_SetPositionFxXYWithSubscreenOffset(v0->unk_24[v1].unk_00, v14, v15, v0->unk_10.unk_10);
                         break;
                     default:
                         break;
@@ -257,8 +257,8 @@ void sub_0208B7B4(UnkStruct_0208B878 *param0)
     for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
         param0->unk_24[v0].unk_00 = SpriteSystem_NewSprite(v2, v3, &v1);
 
-        Sprite_TickOneFrame(param0->unk_24[v0].unk_00);
-        Sprite_SetPositionXY2(param0->unk_24[v0].unk_00, 256 / 2, 192 / 2);
+        ManagedSprite_TickFrame(param0->unk_24[v0].unk_00);
+        ManagedSprite_SetPositionXY(param0->unk_24[v0].unk_00, 256 / 2, 192 / 2);
     }
 }
 
@@ -352,7 +352,7 @@ BOOL sub_0208B948(UnkStruct_0208B878 *param0, s16 param1, s16 param2)
         for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
             param0->unk_24[v0].unk_04 = param1;
             param0->unk_24[v0].unk_06 = param2;
-            Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_24[v0].unk_00, param1, param2, param0->unk_10.unk_10);
+            ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_24[v0].unk_00, param1, param2, param0->unk_10.unk_10);
         }
     }
 
@@ -387,7 +387,7 @@ BOOL sub_0208B9E0(UnkStruct_0208B878 *param0, BOOL param1)
         int v0;
 
         for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
-            Sprite_SetDrawFlag2(param0->unk_24[v0].unk_00, param1);
+            ManagedSprite_SetDrawFlag(param0->unk_24[v0].unk_00, param1);
         }
     }
 
@@ -410,7 +410,7 @@ void sub_0208BA30(UnkStruct_0208B878 *param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
-        Sprite_SetAnim(param0->unk_24[v0].unk_00, 1);
+        ManagedSprite_SetAnim(param0->unk_24[v0].unk_00, 1);
     }
 }
 
@@ -419,6 +419,6 @@ void sub_0208BA54(UnkStruct_0208B878 *param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_10.unk_00; v0++) {
-        Sprite_SetAnim(param0->unk_24[v0].unk_00, 0);
+        ManagedSprite_SetAnim(param0->unk_24[v0].unk_00, 0);
     }
 }

@@ -8,7 +8,7 @@ struct UnkStruct_ov17_0224DF54_t;
 
 typedef struct {
     SysTask *unk_00;
-    CellActorData *unk_04;
+    ManagedSprite *unk_04;
     struct UnkStruct_ov17_0224DF54_t *unk_08;
     u8 unk_0C;
     u8 unk_0D;

@@ -32,7 +32,6 @@
 
 #include "assert.h"
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "game_options.h"
 #include "heap.h"
 #include "inlines.h"
@@ -43,6 +42,7 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "spl.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -92,9 +92,9 @@ static void ov17_0224BE50(SysTask *param0, void *param1);
 static void ov17_0224BE64(UnkStruct_ov17_0224BE50 *param0);
 static void ov17_0224BF58(UnkStruct_ov17_0224BE50 *param0);
 static void ov17_0224C414(SysTask *param0, void *param1);
-static BOOL ov17_0224B7BC(UnkStruct_ov17_0224B7BC *param0, Sprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, UnkStruct_ov17_0224ABFC *param6, u32 param7);
-static BOOL ov17_0224B8D0(UnkStruct_ov17_0224B7BC *param0, Sprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, int param6, u32 param7);
-static BOOL ov17_0224BA50(UnkStruct_ov17_0224B7BC *param0, Sprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, int param6, u32 param7);
+static BOOL ov17_0224B7BC(UnkStruct_ov17_0224B7BC *param0, PokemonSprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, UnkStruct_ov17_0224ABFC *param6, u32 param7);
+static BOOL ov17_0224B8D0(UnkStruct_ov17_0224B7BC *param0, PokemonSprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, int param6, u32 param7);
+static BOOL ov17_0224BA50(UnkStruct_ov17_0224B7BC *param0, PokemonSprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, int param6, u32 param7);
 static void ov17_0224ABFC(SysTask *param0, void *param1);
 static int ov17_0224B06C(int param0);
 static void ov17_0224AE84(SysTask *param0, void *param1);
@@ -522,7 +522,7 @@ void ov17_0224A428(SpriteManager *param0)
 
 static int ov17_0224A46C(UnkStruct_ov17_0224A1EC *param0, SpriteSystem *param1, SpriteManager *param2, int param3, int param4, int param5, int param6, int param7)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     int v1;
     SpriteTemplate v2;
 
@@ -569,10 +569,10 @@ static int ov17_0224A46C(UnkStruct_ov17_0224A1EC *param0, SpriteSystem *param1, 
 
     v0 = SpriteSystem_NewSprite(param1, param2, &v2);
 
-    Sprite_SetAnim(v0, param3);
+    ManagedSprite_SetAnim(v0, param3);
     Sprite_TickFrame(v0->sprite);
-    Sprite_SetPositionXYWithSubscreenOffset2(v0, param5, param6, (256 * FX32_ONE));
-    Sprite_SetAnimateFlag(v0, 1);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v0, param5, param6, (256 * FX32_ONE));
+    ManagedSprite_SetAnimateFlag(v0, 1);
 
     for (v1 = 0; v1 < (((16 * 2) / 2) * 4 + 4); v1++) {
         if (param0->unk_D8[v1] == NULL) {
@@ -613,12 +613,12 @@ void ov17_0224A5F8(SpriteManager *param0)
 
 void ov17_0224A61C(UnkStruct_ov17_0224A1EC *param0, SpriteSystem *param1, SpriteManager *param2)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     int v1;
 
     for (v1 = 0; v1 < 3; v1++) {
         param0->unk_960[v1] = SpriteSystem_NewSprite(param1, param2, &Unk_ov17_02254794);
-        Sprite_SetDrawFlag2(param0->unk_960[v1], 0);
+        ManagedSprite_SetDrawFlag(param0->unk_960[v1], 0);
     }
 }
 
@@ -670,7 +670,7 @@ void ov17_0224A7B8(UnkStruct_ov17_0224A1EC *param0)
 
 void ov17_0224A7E0(UnkStruct_ov17_0224A1EC *param0, SpriteSystem *param1, SpriteManager *param2, int param3, int param4, u8 param5)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     int v1, v2, v3, v4;
     UnkStruct_ov17_0224A8D4 *v5;
 
@@ -689,10 +689,10 @@ void ov17_0224A7E0(UnkStruct_ov17_0224A1EC *param0, SpriteSystem *param1, Sprite
 
     v5->unk_00 = param0->unk_960[v4];
 
-    Sprite_SetAnim(v5->unk_00, param3);
-    Sprite_SetPositionXYWithSubscreenOffset2(v5->unk_00, v2, v3, (256 * FX32_ONE));
+    ManagedSprite_SetAnim(v5->unk_00, param3);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v5->unk_00, v2, v3, (256 * FX32_ONE));
     Sprite_TickFrame(v5->unk_00->sprite);
-    Sprite_SetDrawFlag2(v5->unk_00, 1);
+    ManagedSprite_SetDrawFlag(v5->unk_00, 1);
 
     for (v1 = 0; v1 < 3; v1++) {
         sub_020129D0(param0->unk_96C[v1][v4].unk_00, 0);
@@ -716,7 +716,7 @@ static void ov17_0224A8D4(SysTask *param0, void *param1)
         sub_020129A4(v0->unk_04->unk_00, &v1, &v2);
         v2 += -4;
         sub_020128C4(v0->unk_04->unk_00, v1, v2);
-        Sprite_OffsetPositionXY2(v0->unk_00, 0, -4);
+        ManagedSprite_OffsetPositionXY(v0->unk_00, 0, -4);
 
         v0->unk_0C++;
 
@@ -735,7 +735,7 @@ static void ov17_0224A8D4(SysTask *param0, void *param1)
         break;
     default:
         sub_020129D0(v0->unk_04->unk_00, 0);
-        Sprite_SetDrawFlag2(v0->unk_00, 0);
+        ManagedSprite_SetDrawFlag(v0->unk_00, 0);
         v0->unk_08 = NULL;
         SysTask_Done(param0);
         return;
@@ -770,7 +770,7 @@ void ov17_0224A9D4(SpriteManager *param0)
 
 void ov17_0224A9F8(UnkStruct_ov17_0224A1EC *param0, SpriteSystem *param1, SpriteManager *param2)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
 
     v0 = SpriteSystem_NewSprite(param1, param2, &Unk_ov17_022547C8);
     Sprite_TickFrame(v0->sprite);
@@ -807,7 +807,7 @@ static void ov17_0224AA68(SysTask *param0, void *param1)
     v1 = v0->unk_14.unk_04[v3].unk_04;
     v2 = v0->unk_14.unk_04[v3].unk_08;
 
-    Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_14.unk_1E8, v1, v2 - 8 * 5, (256 * FX32_ONE));
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_14.unk_1E8, v1, v2 - 8 * 5, (256 * FX32_ONE));
 }
 
 void ov17_0224AA94(SpriteSystem *param0, SpriteManager *param1, NARC *param2)
@@ -831,7 +831,7 @@ void ov17_0224AB08(UnkStruct_ov17_0224A1EC *param0, SpriteSystem *param1, Sprite
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_200[v0].unk_04 = SpriteSystem_NewSprite(param1, param2, &Unk_ov17_02254830);
         Sprite_TickFrame(param0->unk_200[v0].unk_04->sprite);
-        Sprite_SetAffineOverwriteMode(param0->unk_200[v0].unk_04, AFFINE_OVERWRITE_MODE_NORMAL);
+        ManagedSprite_SetAffineOverwriteMode(param0->unk_200[v0].unk_04, AFFINE_OVERWRITE_MODE_NORMAL);
         param0->unk_200[v0].unk_13 = v0;
         param0->unk_200[v0].unk_0C = &param0->unk_04[v0];
         param0->unk_200[v0].unk_14 = Pokemon_DPSpriteYOffset(param0->unk_00->unk_00[v0], 2);
@@ -858,7 +858,7 @@ void ov17_0224ABDC(UnkStruct_ov17_0224A1EC *param0, int param1)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        Sprite_SetDrawFlag2(param0->unk_200[v0].unk_04, param1);
+        ManagedSprite_SetDrawFlag(param0->unk_200[v0].unk_04, param1);
     }
 }
 
@@ -889,8 +889,8 @@ static void ov17_0224ABFC(SysTask *param0, void *param1)
         v2 = v8;
     }
 
-    Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_04, v1, v2, (256 * FX32_ONE));
-    Sprite_SetAffineScale(v0->unk_04, v5, v5);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_04, v1, v2, (256 * FX32_ONE));
+    ManagedSprite_SetAffineScale(v0->unk_04, v5, v5);
 }
 
 void ov17_0224AC78(UnkStruct_ov17_0224ABFC *param0, int param1, int param2)
@@ -939,7 +939,7 @@ void ov17_0224AD4C(SpriteManager *param0)
 
 BOOL ov17_0224AD70(UnkStruct_ov17_0224DF54 *param0, int param1, int param2)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     u32 v1, v2;
     UnkStruct_ov17_0224AE84 *v3;
     int v4, v5, v6;
@@ -967,9 +967,9 @@ BOOL ov17_0224AD70(UnkStruct_ov17_0224DF54 *param0, int param1, int param2)
     v5 = param0->unk_14.unk_04[param1].unk_04;
     v6 = param0->unk_14.unk_04[param1].unk_08;
 
-    Sprite_SetAnim(v0, param2);
-    Sprite_SetPositionXYWithSubscreenOffset2(v0, v5, v6, (256 * FX32_ONE));
-    CellActor_SetAnimateFlag(v0->sprite, 1);
+    ManagedSprite_SetAnim(v0, param2);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v0, v5, v6, (256 * FX32_ONE));
+    Sprite_SetAnimateFlag(v0->sprite, 1);
     Sprite_TickFrame(v0->sprite);
 
     v1 = sub_02094E98(param0->unk_00);
@@ -1022,7 +1022,7 @@ static void ov17_0224AE84(SysTask *param0, void *param1)
     CP_SetDivImm32_32(v0->unk_0C, 0x100);
     v2 = CP_GetDivResult32();
 
-    Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_04, v1, v2, (256 * FX32_ONE));
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_04, v1, v2, (256 * FX32_ONE));
 }
 
 static void ov17_0224AF3C(UnkStruct_ov17_0224DF54 *param0, int param1, int param2, int param3)
@@ -1073,15 +1073,15 @@ void ov17_0224AFF8(SpriteManager *param0)
 
 BOOL ov17_0224B01C(UnkStruct_ov17_0224DF54 *param0)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     UnkStruct_ov17_0224B058 *v1;
 
     v1 = &param0->unk_14.unk_910;
     v0 = SpriteSystem_NewSprite(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_0225472C);
 
-    Sprite_SetPositionXYWithSubscreenOffset2(v0, -1, (0x16 * 8), (256 * FX32_ONE));
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v0, -1, (0x16 * 8), (256 * FX32_ONE));
     Sprite_TickFrame(v0->sprite);
-    Sprite_SetDrawFlag2(v0, 0);
+    ManagedSprite_SetDrawFlag(v0, 0);
 
     v1->unk_04 = v0;
     return 1;
@@ -1116,7 +1116,7 @@ static int ov17_0224B06C(int param0)
     return v0;
 }
 
-void ov17_0224B09C(Sprite *param0, UnkStruct_ov17_0224B09C *param1)
+void ov17_0224B09C(PokemonSprite *param0, UnkStruct_ov17_0224B09C *param1)
 {
     s32 v0, v1;
 
@@ -1166,7 +1166,7 @@ static BOOL ov17_0224B0E8(UnkStruct_ov17_0224DF54 *param0, int param1, const Unk
             if (param0->unk_14.unk_D8[v8] != NULL) {
                 Sprite_GetPositionXYWithSubscreenOffset2(param0->unk_14.unk_D8[v8], &v6, &v7, (256 * FX32_ONE));
 
-                if ((v6 == v1) && (v7 == v2) && (Sprite_GetActiveAnim(param0->unk_14.unk_D8[v8]) != 2)) {
+                if ((v6 == v1) && (v7 == v2) && (ManagedSprite_GetActiveAnim(param0->unk_14.unk_D8[v8]) != 2)) {
                     return 0;
                 }
             }
@@ -1441,7 +1441,7 @@ static void ov17_0224B5F0(SysTask *param0, void *param1)
     }
 }
 
-static inline void inline_ov17_0224B7BC(UnkStruct_ov17_0224B7BC *param0, Sprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5)
+static inline void inline_ov17_0224B7BC(UnkStruct_ov17_0224B7BC *param0, PokemonSprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5)
 {
     s32 v0, v1, v2, v3;
     s32 v4, v5;
@@ -1477,7 +1477,7 @@ static inline void inline_ov17_0224B7BC(UnkStruct_ov17_0224B7BC *param0, Sprite 
     ov22_0225B100(param2->unk_00, param2->unk_04, param2->unk_08);
 }
 
-static BOOL ov17_0224B7BC(UnkStruct_ov17_0224B7BC *param0, Sprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, UnkStruct_ov17_0224ABFC *param6, u32 param7)
+static BOOL ov17_0224B7BC(UnkStruct_ov17_0224B7BC *param0, PokemonSprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, UnkStruct_ov17_0224ABFC *param6, u32 param7)
 {
     BOOL v0 = 0;
 
@@ -1524,7 +1524,7 @@ static BOOL ov17_0224B7BC(UnkStruct_ov17_0224B7BC *param0, Sprite *param1, UnkSt
     return v0;
 }
 
-static BOOL ov17_0224B8D0(UnkStruct_ov17_0224B7BC *param0, Sprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, int param6, u32 param7)
+static BOOL ov17_0224B8D0(UnkStruct_ov17_0224B7BC *param0, PokemonSprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, int param6, u32 param7)
 {
     BOOL v0 = 0;
     s32 v1;
@@ -1592,7 +1592,7 @@ static BOOL ov17_0224B8D0(UnkStruct_ov17_0224B7BC *param0, Sprite *param1, UnkSt
     return v0;
 }
 
-static BOOL ov17_0224BA50(UnkStruct_ov17_0224B7BC *param0, Sprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, int param6, u32 param7)
+static BOOL ov17_0224BA50(UnkStruct_ov17_0224B7BC *param0, PokemonSprite *param1, UnkStruct_ov17_0224B09C *param2, int param3, int param4, int param5, int param6, u32 param7)
 {
     BOOL v0 = 0;
     s32 v1;
@@ -1989,7 +1989,7 @@ void ov17_0224C384(UnkStruct_ov17_0224DF54 *param0, SpriteSystem *param1, Sprite
     v0->unk_04 = SpriteSystem_NewSprite(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_022547FC);
 
     Sprite_TickFrame(v0->unk_04->sprite);
-    Sprite_SetDrawFlag2(v0->unk_04, 0);
+    ManagedSprite_SetDrawFlag(v0->unk_04, 0);
 
     v0->unk_00 = SysTask_Start(ov17_0224C414, v0, ((30000 + 10000) + 15));
 }
@@ -2029,14 +2029,14 @@ void ov17_0224C434(UnkStruct_ov17_0224B058 *param0, u32 param1, u32 param2, int 
     v2 = (256 - v1) / 2;
     v0 = param1 * v1 / param2;
 
-    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_04, v0 - 1 + v2, (0x16 * 8), (256 * FX32_ONE));
-    Sprite_SetDrawFlag2(param0->unk_04, 1);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_04, v0 - 1 + v2, (0x16 * 8), (256 * FX32_ONE));
+    ManagedSprite_SetDrawFlag(param0->unk_04, 1);
 }
 
 void ov17_0224C47C(UnkStruct_ov17_0224B058 *param0, int param1)
 {
-    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_04, -1, (0x16 * 8), (256 * FX32_ONE));
-    Sprite_SetDrawFlag2(param0->unk_04, param1);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_04, -1, (0x16 * 8), (256 * FX32_ONE));
+    ManagedSprite_SetDrawFlag(param0->unk_04, param1);
 }
 
 void ov17_0224C49C(UnkStruct_ov17_0224C384 *param0, u32 param1, u32 param2, int param3)
@@ -2061,13 +2061,13 @@ void ov17_0224C49C(UnkStruct_ov17_0224C384 *param0, u32 param1, u32 param2, int 
     v4 = (0x12 * 8);
     v4 -= CalcSineDegrees(v5) * 10 / FX32_ONE;
 
-    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_04, v3, v4, (256 * FX32_ONE));
-    Sprite_SetDrawFlag2(param0->unk_04, 1);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_04, v3, v4, (256 * FX32_ONE));
+    ManagedSprite_SetDrawFlag(param0->unk_04, 1);
 }
 
 void ov17_0224C540(UnkStruct_ov17_0224C384 *param0)
 {
-    Sprite_SetDrawFlag2(param0->unk_04, 0);
+    ManagedSprite_SetDrawFlag(param0->unk_04, 0);
 }
 
 void ov17_0224C54C(UnkStruct_ov17_0224C384 *param0, int param1)
@@ -2077,8 +2077,8 @@ void ov17_0224C54C(UnkStruct_ov17_0224C384 *param0, int param1)
     v0 = ov17_0223F0BC(param1, 3);
     v1 = (256 - v0) / 2;
 
-    Sprite_SetDrawFlag2(param0->unk_04, 1);
-    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_04, v1, (0x12 * 8), (256 * FX32_ONE));
+    ManagedSprite_SetDrawFlag(param0->unk_04, 1);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_04, v1, (0x12 * 8), (256 * FX32_ONE));
 }
 
 int ov17_0224C57C(int param0)

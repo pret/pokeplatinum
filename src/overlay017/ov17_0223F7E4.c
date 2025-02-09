@@ -66,7 +66,7 @@ typedef struct {
     s16 unk_02;
     union {
         struct {
-            CellActorData *unk_00[3];
+            ManagedSprite *unk_00[3];
             const s16 *unk_0C;
             const UnkStruct_ov17_02253388 *unk_10;
             int unk_14;
@@ -123,9 +123,9 @@ typedef struct UnkStruct_ov17_0223F7E4_t {
     u16 *unk_34[2];
     UnkStruct_02012744 *unk_3C;
     UnkStruct_ov17_02240138 unk_40[12];
-    CellActorData *unk_118[4];
-    CellActorData *unk_128;
-    CellActorData *unk_12C[4][6];
+    ManagedSprite *unk_118[4];
+    ManagedSprite *unk_128;
+    ManagedSprite *unk_12C[4][6];
     UnkStruct_ov17_0223FF38 unk_18C;
     void *unk_2C0;
     NNSG2dCharacterData *unk_2C4;
@@ -1064,7 +1064,7 @@ static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
             v3.y = Unk_ov17_02253298[v0][1];
 
             param0->unk_118[v0] = ov17_0224F154(v1, v2, v4, &v3);
-            Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_118[v0], v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
+            ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_118[v0], v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
         }
     }
 }

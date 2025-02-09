@@ -219,11 +219,11 @@ static void ov100_021D2250(UnkStruct_ov100_021D1C98 *param0)
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_08.unk_0C[v0].unk_00 = SpriteSystem_NewSprite(v3, v4, &v6);
 
-        Sprite_TickOneFrame(param0->unk_08.unk_0C[v0].unk_00);
-        Sprite_SetAffineOverwriteMode(param0->unk_08.unk_0C[v0].unk_00, AFFINE_OVERWRITE_MODE_DOUBLE);
-        Sprite_SetAffineScale(param0->unk_08.unk_0C[v0].unk_00, 0.5f, 0.5f);
-        Sprite_SetExplicitPaletteOffset(param0->unk_08.unk_0C[v0].unk_00, v0);
-        Sprite_SetPositionXY2(param0->unk_08.unk_0C[v0].unk_00, 16 + (v0 * 64), 64);
+        ManagedSprite_TickFrame(param0->unk_08.unk_0C[v0].unk_00);
+        ManagedSprite_SetAffineOverwriteMode(param0->unk_08.unk_0C[v0].unk_00, AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetAffineScale(param0->unk_08.unk_0C[v0].unk_00, 0.5f, 0.5f);
+        ManagedSprite_SetExplicitPaletteOffset(param0->unk_08.unk_0C[v0].unk_00, v0);
+        ManagedSprite_SetPositionXY(param0->unk_08.unk_0C[v0].unk_00, 16 + (v0 * 64), 64);
 
         param0->unk_08.unk_0C[v0].unk_0C = 1;
         param0->unk_08.unk_0C[v0].unk_08 = v0;

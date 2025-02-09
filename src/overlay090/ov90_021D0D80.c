@@ -14,7 +14,6 @@
 #include "overlay090/struct_ov90_021D1750.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
@@ -25,6 +24,7 @@
 #include "overlay_manager.h"
 #include "render_oam.h"
 #include "save_player.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -82,7 +82,7 @@ typedef struct {
     UnkStruct_ov90_021D17F8 unk_BC[30];
     SpriteSystem *unk_29C;
     SpriteManager *unk_2A0;
-    CellActor *unk_2A4[4];
+    Sprite *unk_2A4[4];
 } UnkStruct_ov90_021D0ECC;
 
 static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0);
@@ -929,12 +929,12 @@ static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
         param0->unk_2A4[v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_29C, param0->unk_2A0, &v1[v0]);
     }
 
-    CellActor_SetDrawFlag(param0->unk_2A4[2], 0);
-    CellActor_SetDrawFlag(param0->unk_2A4[1], 0);
-    CellActor_SetAnimateFlag(param0->unk_2A4[0], 1);
-    CellActor_SetAnimateFlag(param0->unk_2A4[2], 1);
-    CellActor_SetAnimateFlag(param0->unk_2A4[3], 1);
-    CellActor_SetExplicitPriority(param0->unk_2A4[1], 3);
+    Sprite_SetDrawFlag(param0->unk_2A4[2], 0);
+    Sprite_SetDrawFlag(param0->unk_2A4[1], 0);
+    Sprite_SetAnimateFlag(param0->unk_2A4[0], 1);
+    Sprite_SetAnimateFlag(param0->unk_2A4[2], 1);
+    Sprite_SetAnimateFlag(param0->unk_2A4[3], 1);
+    Sprite_SetExplicitPriority(param0->unk_2A4[1], 3);
 }
 
 static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0)
@@ -942,7 +942,7 @@ static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        SpriteSystem_DeleteSprite(param0->unk_2A4[v0]);
+        Sprite_Delete2(param0->unk_2A4[v0]);
     }
 }
 
@@ -951,16 +951,16 @@ static void ov90_021D1C44(UnkStruct_ov90_021D0ECC *param0, BOOL param1)
     BOOL v0;
 
     if (param1 == 0) {
-        CellActor_SetExplicitPalette(param0->unk_2A4[0], 1);
+        Sprite_SetExplicitPalette(param0->unk_2A4[0], 1);
         v0 = 0;
     } else {
-        CellActor_SetExplicitPalette(param0->unk_2A4[0], 0);
+        Sprite_SetExplicitPalette(param0->unk_2A4[0], 0);
         v0 = 1;
     }
 
-    CellActor_SetAnimateFlag(param0->unk_2A4[0], v0);
-    CellActor_SetAnimateFlag(param0->unk_2A4[2], v0);
-    CellActor_SetAnimateFlag(param0->unk_2A4[3], v0);
+    Sprite_SetAnimateFlag(param0->unk_2A4[0], v0);
+    Sprite_SetAnimateFlag(param0->unk_2A4[2], v0);
+    Sprite_SetAnimateFlag(param0->unk_2A4[3], v0);
 }
 
 static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2, u8 param3)
@@ -968,30 +968,30 @@ static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2,
     u16 v0, v1;
 
     if (param0->unk_0E == 10 - 2) {
-        CellActor_SetDrawFlag(param0->unk_2A4[1], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[1], 1);
 
         if (param1 == 10) {
-            SpriteActor_SetAnimFrame(param0->unk_2A4[1], 1);
-            CellActor_SetDrawFlag(param0->unk_2A4[0], 0);
+            Sprite_SetAnimFrame(param0->unk_2A4[1], 1);
+            Sprite_SetDrawFlag(param0->unk_2A4[0], 0);
         } else {
-            SpriteActor_SetAnimFrame(param0->unk_2A4[1], 0);
-            CellActor_SetDrawFlag(param0->unk_2A4[0], 1);
+            Sprite_SetAnimFrame(param0->unk_2A4[1], 0);
+            Sprite_SetDrawFlag(param0->unk_2A4[0], 1);
         }
     } else {
-        CellActor_SetDrawFlag(param0->unk_2A4[0], 1);
-        CellActor_SetDrawFlag(param0->unk_2A4[1], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[0], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[1], 0);
     }
 
     switch (param0->unk_0E) {
     case 0:
-        CellActor_SetDrawFlag(param0->unk_2A4[2], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[2], 0);
         break;
     case (10 - 2):
-        CellActor_SetDrawFlag(param0->unk_2A4[3], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[3], 0);
         break;
     default:
-        CellActor_SetDrawFlag(param0->unk_2A4[2], 1);
-        CellActor_SetDrawFlag(param0->unk_2A4[3], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[2], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[3], 1);
         break;
     }
 

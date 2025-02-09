@@ -8,13 +8,13 @@
 #include "overlay062/struct_ov62_02246BF4_sub1.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "unk_02005474.h"
@@ -203,19 +203,19 @@ BOOL ov62_02246DF8(UnkStruct_ov62_02246BF4 *param0)
                     continue;
                 }
 
-                Sprite_OffsetPositionXY2(param0->unk_00[v0].unk_0C, param0->unk_00[v0].unk_14.unk_00, param0->unk_00[v0].unk_14.unk_02);
+                ManagedSprite_OffsetPositionXY(param0->unk_00[v0].unk_0C, param0->unk_00[v0].unk_14.unk_00, param0->unk_00[v0].unk_14.unk_02);
                 param0->unk_00[v0].unk_14.unk_04--;
 
                 if ((v0 >= param0->unk_210) && (v0 < param0->unk_214)) {
-                    Sprite_SetAffineScale(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
+                    ManagedSprite_SetAffineScale(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
-                    Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
+                    ManagedSprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
                 }
 
                 if ((v0 >= param0->unk_218) && (v0 < param0->unk_21C)) {
-                    Sprite_SetAffineScale(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
+                    ManagedSprite_SetAffineScale(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
-                    Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
+                    ManagedSprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
                 }
             }
 
@@ -224,19 +224,19 @@ BOOL ov62_02246DF8(UnkStruct_ov62_02246BF4 *param0)
                     continue;
                 }
 
-                Sprite_OffsetPositionXY2(param0->unk_150[v0].unk_0C, param0->unk_150[v0].unk_14.unk_00, param0->unk_150[v0].unk_14.unk_02);
+                ManagedSprite_OffsetPositionXY(param0->unk_150[v0].unk_0C, param0->unk_150[v0].unk_14.unk_00, param0->unk_150[v0].unk_14.unk_02);
                 param0->unk_150[v0].unk_14.unk_04--;
             }
 
             if (param0->unk_00[0].unk_14.unk_04 == 0) {
                 for (v0 = param0->unk_210; v0 < param0->unk_214; v0++) {
-                    Sprite_SetAnim(param0->unk_00[v0].unk_0C, ov62_02247B3C(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
-                    Sprite_TickOneFrame(param0->unk_00[v0].unk_0C);
+                    ManagedSprite_SetAnim(param0->unk_00[v0].unk_0C, ov62_02247B3C(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
+                    ManagedSprite_TickFrame(param0->unk_00[v0].unk_0C);
                 }
 
                 for (v0 = param0->unk_218; v0 < param0->unk_21C; v0++) {
-                    Sprite_SetAnim(param0->unk_00[v0].unk_0C, ov62_02247B3C(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
-                    Sprite_TickOneFrame(param0->unk_00[v0].unk_0C);
+                    ManagedSprite_SetAnim(param0->unk_00[v0].unk_0C, ov62_02247B3C(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
+                    ManagedSprite_TickFrame(param0->unk_00[v0].unk_0C);
                 }
                 param0->unk_1FC++;
             }
@@ -246,21 +246,21 @@ BOOL ov62_02246DF8(UnkStruct_ov62_02246BF4 *param0)
     case 1:
         for (v0 = param0->unk_210; v0 < param0->unk_214; v0++) {
             if (param0->unk_00[v0].unk_14.unk_05 == 6) {
-                Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_NORMAL);
+                ManagedSprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_NORMAL);
                 continue;
             }
 
-            Sprite_SetAffineScale(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
+            ManagedSprite_SetAffineScale(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
             param0->unk_00[v0].unk_14.unk_05++;
         }
 
         for (v0 = param0->unk_218; v0 < param0->unk_21C; v0++) {
             if (param0->unk_00[v0].unk_14.unk_05 == 6) {
-                Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_NORMAL);
+                ManagedSprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_NORMAL);
                 continue;
             }
 
-            Sprite_SetAffineScale(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
+            ManagedSprite_SetAffineScale(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
             param0->unk_00[v0].unk_14.unk_05++;
         }
 
@@ -323,7 +323,7 @@ void ov62_022470A8(UnkStruct_ov62_02246BF4 *param0)
     for (v0 = 0; v0 < param0->unk_204; v0++) {
         if (param0->unk_00[v0].unk_00 == 0) {
             param0->unk_00[v0].unk_00 = 1;
-            Sprite_SetAnim(param0->unk_00[v0].unk_0C, ov62_02247B3C(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
+            ManagedSprite_SetAnim(param0->unk_00[v0].unk_0C, ov62_02247B3C(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
         }
 
         v1 = param0->unk_00[v0].unk_00 - 1;
@@ -360,13 +360,13 @@ void ov62_02247160(UnkStruct_ov62_02246BF4 *param0)
     v0 = param0->unk_188[0].unk_00;
     param0->unk_00[v0].unk_00 = 0;
 
-    Sprite_SetAnim(param0->unk_00[v0].unk_0C, ov62_02247B3C(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
+    ManagedSprite_SetAnim(param0->unk_00[v0].unk_0C, ov62_02247B3C(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
 
     v1 = param0->unk_00[v0].unk_04;
 
     if (v0 > 0) {
         v0--;
-        Sprite_SetAnim(param0->unk_00[v0].unk_0C, ov62_02247B3C(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
+        ManagedSprite_SetAnim(param0->unk_00[v0].unk_0C, ov62_02247B3C(param0->unk_00[v0].unk_00, param0->unk_00[v0].unk_08));
         v2 = param0->unk_00[v0].unk_04;
 
         if (v1 != v2) {
@@ -476,13 +476,13 @@ void ov62_0224730C(u32 param0, u32 param1, void *param2)
                 v1 = v0->unk_188[0].unk_00;
                 v0->unk_00[v1].unk_00 = param0 - 12 + 1;
 
-                Sprite_SetAnim(v0->unk_00[v1].unk_0C, ov62_02247B3C(v0->unk_00[v1].unk_00, v0->unk_00[v1].unk_08));
+                ManagedSprite_SetAnim(v0->unk_00[v1].unk_0C, ov62_02247B3C(v0->unk_00[v1].unk_00, v0->unk_00[v1].unk_08));
                 ov62_02247968(v0, 1, 1);
                 ov62_022479D4(v0, param0 - 12);
                 ov62_02247968(v0, 1, 0);
                 ov62_02247968(v0, 2, 1);
                 ov62_02247A20(v0, param0 - 12, 2);
-                Sprite_SetAnim(v0->unk_188[2].unk_0C, 3);
+                ManagedSprite_SetAnim(v0->unk_188[2].unk_0C, 3);
 
                 v2 = v0->unk_00[v1].unk_04;
                 v1++;
@@ -661,16 +661,16 @@ void ov62_02247754(UnkStruct_ov62_02246BF4 *param0)
     for (v0 = 0; v0 < param0->unk_204 + 3 - 1; v0++) {
         if (v0 == (param0->unk_150[v2].unk_00 + v2 + 1)) {
             param0->unk_150[v2].unk_0C = SpriteSystem_NewSprite(v4, v5, &v3);
-            Sprite_SetPositionXY2(param0->unk_150[v2].unk_0C, 72 + (v0 * 8) + 4, 24);
-            Sprite_SetAnim(param0->unk_150[v2].unk_0C, 22);
-            Sprite_TickOneFrame(param0->unk_150[v2].unk_0C);
+            ManagedSprite_SetPositionXY(param0->unk_150[v2].unk_0C, 72 + (v0 * 8) + 4, 24);
+            ManagedSprite_SetAnim(param0->unk_150[v2].unk_0C, 22);
+            ManagedSprite_TickFrame(param0->unk_150[v2].unk_0C);
             v2++;
         } else {
             param0->unk_00[v1].unk_0C = SpriteSystem_NewSprite(v4, v5, &v3);
-            Sprite_SetPositionXY2(param0->unk_00[v1].unk_0C, 72 + (v0 * 8) + 4, 24);
-            Sprite_SetAnim(param0->unk_00[v1].unk_0C, ov62_02247B3C(param0->unk_00[v1].unk_00, param0->unk_00[v1].unk_08));
-            Sprite_SetAffineOverwriteMode(param0->unk_00[v1].unk_0C, AFFINE_OVERWRITE_MODE_NONE);
-            Sprite_TickOneFrame(param0->unk_00[v1].unk_0C);
+            ManagedSprite_SetPositionXY(param0->unk_00[v1].unk_0C, 72 + (v0 * 8) + 4, 24);
+            ManagedSprite_SetAnim(param0->unk_00[v1].unk_0C, ov62_02247B3C(param0->unk_00[v1].unk_00, param0->unk_00[v1].unk_08));
+            ManagedSprite_SetAffineOverwriteMode(param0->unk_00[v1].unk_0C, AFFINE_OVERWRITE_MODE_NONE);
+            ManagedSprite_TickFrame(param0->unk_00[v1].unk_0C);
             v1++;
         }
     }
@@ -708,26 +708,26 @@ void ov62_0224784C(UnkStruct_ov62_02246BF4 *param0)
     param0->unk_188[2].unk_0C = SpriteSystem_NewSprite(v1, v2, &v0);
 
     ov62_02247998(param0, 0);
-    Sprite_SetAnim(param0->unk_188[0].unk_0C, 0);
-    Sprite_TickOneFrame(param0->unk_188[0].unk_0C);
+    ManagedSprite_SetAnim(param0->unk_188[0].unk_0C, 0);
+    ManagedSprite_TickFrame(param0->unk_188[0].unk_0C);
 
     param0->unk_188[1].unk_14.unk_00 = 0;
     param0->unk_188[1].unk_14.unk_02 = 0;
     param0->unk_188[1].unk_00 = 1;
 
     ov62_022479D4(param0, 0);
-    Sprite_SetAnim(param0->unk_188[1].unk_0C, param0->unk_188[1].unk_00);
-    Sprite_TickOneFrame(param0->unk_188[1].unk_0C);
-    Sprite_SetExplicitOamMode2(param0->unk_188[1].unk_0C, GX_OAM_MODE_XLU);
+    ManagedSprite_SetAnim(param0->unk_188[1].unk_0C, param0->unk_188[1].unk_00);
+    ManagedSprite_TickFrame(param0->unk_188[1].unk_0C);
+    ManagedSprite_SetExplicitOamMode(param0->unk_188[1].unk_0C, GX_OAM_MODE_XLU);
 
     param0->unk_188[2].unk_14.unk_00 = 0;
     param0->unk_188[2].unk_14.unk_02 = 0;
     param0->unk_188[2].unk_00 = 1;
 
     ov62_022479D4(param0, 0);
-    Sprite_SetAnim(param0->unk_188[2].unk_0C, param0->unk_188[2].unk_00);
-    Sprite_TickOneFrame(param0->unk_188[2].unk_0C);
-    Sprite_SetExplicitOamMode2(param0->unk_188[2].unk_0C, GX_OAM_MODE_XLU);
+    ManagedSprite_SetAnim(param0->unk_188[2].unk_0C, param0->unk_188[2].unk_00);
+    ManagedSprite_TickFrame(param0->unk_188[2].unk_0C);
+    ManagedSprite_SetExplicitOamMode(param0->unk_188[2].unk_0C, GX_OAM_MODE_XLU);
     ov62_02247968(param0, 1, 0);
     ov62_02247968(param0, 2, 0);
 }
@@ -735,22 +735,22 @@ void ov62_0224784C(UnkStruct_ov62_02246BF4 *param0)
 void ov62_02247968(UnkStruct_ov62_02246BF4 *param0, int param1, BOOL param2)
 {
     if (param2 == 1) {
-        Sprite_SetDrawFlag2(param0->unk_188[param1].unk_0C, 1);
+        ManagedSprite_SetDrawFlag(param0->unk_188[param1].unk_0C, 1);
     } else {
-        Sprite_SetDrawFlag2(param0->unk_188[param1].unk_0C, 0);
+        ManagedSprite_SetDrawFlag(param0->unk_188[param1].unk_0C, 0);
     }
 }
 
 void ov62_02247998(UnkStruct_ov62_02246BF4 *param0, int param1)
 {
     s16 v0, v1;
-    CellActorData *v2;
+    ManagedSprite *v2;
 
     v2 = param0->unk_00[param1].unk_0C;
     param0->unk_188[0].unk_00 = param1;
 
-    Sprite_GetPositionXY2(v2, &v0, &v1);
-    Sprite_SetPositionXY2(param0->unk_188[0].unk_0C, v0, v1 + 16);
+    ManagedSprite_GetPositionXY(v2, &v0, &v1);
+    ManagedSprite_SetPositionXY(param0->unk_188[0].unk_0C, v0, v1 + 16);
 }
 
 void ov62_022479D4(UnkStruct_ov62_02246BF4 *param0, int param1)
@@ -760,7 +760,7 @@ void ov62_022479D4(UnkStruct_ov62_02246BF4 *param0, int param1)
     v0 = (param0->unk_220.unk_18[param1 + 12].rect.left + param0->unk_220.unk_18[param1 + 12].rect.right) / 2;
     v1 = (param0->unk_220.unk_18[param1 + 12].rect.top + param0->unk_220.unk_18[param1 + 12].rect.bottom) / 2;
 
-    Sprite_SetPositionXY2(param0->unk_188[1].unk_0C, v0 - 0, v1 - 8);
+    ManagedSprite_SetPositionXY(param0->unk_188[1].unk_0C, v0 - 0, v1 - 8);
 }
 
 void ov62_02247A20(UnkStruct_ov62_02246BF4 *param0, int param1, int param2)
@@ -770,14 +770,14 @@ void ov62_02247A20(UnkStruct_ov62_02246BF4 *param0, int param1, int param2)
     v0 = (param0->unk_220.unk_18[param1 + 12].rect.left + param0->unk_220.unk_18[param1 + 12].rect.right) / 2;
     v1 = (param0->unk_220.unk_18[param1 + 12].rect.top + param0->unk_220.unk_18[param1 + 12].rect.bottom) / 2;
 
-    Sprite_SetPositionXY2(param0->unk_188[param2].unk_0C, v0 - 0, v1 - 8);
+    ManagedSprite_SetPositionXY(param0->unk_188[param2].unk_0C, v0 - 0, v1 - 8);
 }
 
 void ov62_02247A70(UnkStruct_ov62_02246BF4 *param0)
 {
-    Sprite_TickOneFrame(param0->unk_188[0].unk_0C);
-    Sprite_TickOneFrame(param0->unk_188[1].unk_0C);
-    Sprite_TickOneFrame(param0->unk_188[2].unk_0C);
+    ManagedSprite_TickFrame(param0->unk_188[0].unk_0C);
+    ManagedSprite_TickFrame(param0->unk_188[1].unk_0C);
+    ManagedSprite_TickFrame(param0->unk_188[2].unk_0C);
 
     {
         int v0 = 2;
@@ -785,13 +785,13 @@ void ov62_02247A70(UnkStruct_ov62_02246BF4 *param0)
         BOOL v2;
 
         for (v0 = 1; v0 < 3; v0++) {
-            v1 = Sprite_GetActiveAnim(param0->unk_188[v0].unk_0C);
+            v1 = ManagedSprite_GetActiveAnim(param0->unk_188[v0].unk_0C);
 
             if (v1 == 3) {
-                v2 = Sprite_IsAnimated(param0->unk_188[v0].unk_0C);
+                v2 = ManagedSprite_IsAnimated(param0->unk_188[v0].unk_0C);
 
                 if (v2 == 0) {
-                    Sprite_SetAnim(param0->unk_188[v0].unk_0C, param0->unk_188[v0].unk_00);
+                    ManagedSprite_SetAnim(param0->unk_188[v0].unk_0C, param0->unk_188[v0].unk_00);
 
                     if (param0->unk_220.unk_78 == 1) {
                         ov62_02247968(param0, 1, 0);
@@ -803,11 +803,11 @@ void ov62_02247A70(UnkStruct_ov62_02246BF4 *param0)
                 }
             } else {
                 if (v1 != param0->unk_188[v0].unk_00) {
-                    Sprite_SetAnim(param0->unk_188[v0].unk_0C, param0->unk_188[v0].unk_00);
+                    ManagedSprite_SetAnim(param0->unk_188[v0].unk_0C, param0->unk_188[v0].unk_00);
                 }
 
                 {
-                    v1 = Sprite_GetActiveAnim(param0->unk_188[2].unk_0C);
+                    v1 = ManagedSprite_GetActiveAnim(param0->unk_188[2].unk_0C);
 
                     if (v1 != 3) {
                         if (param0->unk_220.unk_78 == 1) {
@@ -872,10 +872,10 @@ void ov62_02247B88(UnkStruct_ov62_02246BF4 *param0, int param1)
             }
         }
 
-        Sprite_GetPositionXY2(param0->unk_00[v0].unk_0C, &v3, &v4);
+        ManagedSprite_GetPositionXY(param0->unk_00[v0].unk_0C, &v3, &v4);
 
         if (param1 == 0) {
-            Sprite_SetPositionXY2(param0->unk_00[v0].unk_0C, v2, v4);
+            ManagedSprite_SetPositionXY(param0->unk_00[v0].unk_0C, v2, v4);
         } else {
             param0->unk_00[v0].unk_14.unk_00 = (v2 - v3) / 2;
             param0->unk_00[v0].unk_14.unk_02 = 0;
@@ -884,7 +884,7 @@ void ov62_02247B88(UnkStruct_ov62_02246BF4 *param0, int param1)
         }
 
         if ((v0 == param0->unk_150[v1].unk_00) && (v1 != 3 - 1)) {
-            Sprite_GetPositionXY2(param0->unk_150[v1].unk_0C, &v3, &v4);
+            ManagedSprite_GetPositionXY(param0->unk_150[v1].unk_0C, &v3, &v4);
 
             if (param0->unk_210 == param0->unk_214) {
                 v2 += 8;
@@ -897,7 +897,7 @@ void ov62_02247B88(UnkStruct_ov62_02246BF4 *param0, int param1)
             }
 
             if (param1 == 0) {
-                Sprite_SetPositionXY2(param0->unk_150[v1].unk_0C, v2, v4);
+                ManagedSprite_SetPositionXY(param0->unk_150[v1].unk_0C, v2, v4);
             } else {
                 param0->unk_150[v1].unk_14.unk_00 = (v2 - v3) / 2;
                 param0->unk_150[v1].unk_14.unk_02 = 0;
@@ -916,7 +916,7 @@ static inline void inline_ov62_02247CE0(UnkStruct_ov62_02246BF4 *param0, int par
 
     v2 = &param0->unk_00[param1];
 
-    Sprite_GetPositionXY2(v2->unk_0C, &v0, &v1);
+    ManagedSprite_GetPositionXY(v2->unk_0C, &v0, &v1);
 
     v2->unk_10->rect.top = v1 - param3;
     v2->unk_10->rect.left = v0 - param2;

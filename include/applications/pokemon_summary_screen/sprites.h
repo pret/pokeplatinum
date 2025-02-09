@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITE_H
-#define POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITE_H
+#ifndef POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITES_H
+#define POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITES_H
 
 #include "applications/pokemon_summary_screen/main.h"
 
@@ -38,4 +38,4 @@ void PokemonSummaryScreen_UpdateRibbonFlashAnim(PokemonSummaryScreen *summaryScr
 void PokemonSummaryScreen_UpdateConditionFlashSprites(PokemonSummaryScreen *summaryScreen, BOOL showFlashes);
 void PokemonSummaryScreen_UpdateConditionFlashAnim(PokemonSummaryScreen *summaryScreen);
 
-#endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITE_H
+#endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITES_H

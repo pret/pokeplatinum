@@ -11,7 +11,7 @@ typedef struct {
     s16 unk_10;
     u8 padding_12[2];
     BOOL unk_14;
-    CellActorData *unk_18[2];
+    ManagedSprite *unk_18[2];
 } UnkStruct_ov62_0223359C;
 
 #endif // POKEPLATINUM_STRUCT_OV62_0223359C_H

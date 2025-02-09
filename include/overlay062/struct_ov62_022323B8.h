@@ -8,8 +8,8 @@
 
 typedef struct {
     UnkStruct_02030A80 *unk_00;
-    CellActorData *unk_04;
-    CellActorData *unk_08;
+    ManagedSprite *unk_04;
+    ManagedSprite *unk_08;
     Window unk_0C[8];
 } UnkStruct_ov62_022323B8;
 

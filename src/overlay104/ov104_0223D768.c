@@ -66,10 +66,10 @@ void ov104_0223D768(SpriteSystem *param0, SpriteManager *param1, NARC *param2, P
     GF_ASSERT(param4 < NELEMS(Unk_ov104_022417D8));
     v0 = &Unk_ov104_022417D8[param4];
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->resources[SPRITE_RESOURCE_TILES], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[SPRITE_RESOURCE_TILES]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param3, PLTTBUF_MAIN_OBJ, param0, param1, param2, v0->resources[SPRITE_RESOURCE_PALETTE], FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[SPRITE_RESOURCE_PALETTE]);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param2, v0->resources[SPRITE_RESOURCE_SPRITE], TRUE, v0->resources[SPRITE_RESOURCE_SPRITE]);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->resources[SPRITE_RESOURCE_SPRITE_ANIM], TRUE, v0->resources[SPRITE_RESOURCE_SPRITE_ANIM]);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->resources[SPRITE_RESOURCE_CHAR], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[SPRITE_RESOURCE_CHAR]);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param3, PLTTBUF_MAIN_OBJ, param0, param1, param2, v0->resources[SPRITE_RESOURCE_PLTT], FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[SPRITE_RESOURCE_PLTT]);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param2, v0->resources[SPRITE_RESOURCE_CELL], TRUE, v0->resources[SPRITE_RESOURCE_CELL]);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->resources[SPRITE_RESOURCE_ANIM], TRUE, v0->resources[SPRITE_RESOURCE_ANIM]);
 }
 
 void ov104_0223D7EC(SpriteManager *param0, u16 param1)
@@ -85,9 +85,9 @@ void ov104_0223D7EC(SpriteManager *param0, u16 param1)
     SpriteManager_UnloadAnimObjById(param0, v0->resources[3]);
 }
 
-CellActorData *ov104_0223D828(SpriteSystem *param0, SpriteManager *param1, u16 param2)
+ManagedSprite *ov104_0223D828(SpriteSystem *param0, SpriteManager *param1, u16 param2)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
 
     GF_ASSERT(param2 < NELEMS(Unk_ov104_022417D8));
 
@@ -96,7 +96,7 @@ CellActorData *ov104_0223D828(SpriteSystem *param0, SpriteManager *param1, u16 p
     return v0;
 }
 
-void ov104_0223D858(CellActorData *param0)
+void ov104_0223D858(ManagedSprite *param0)
 {
     Sprite_DeleteAndFreeResources(param0);
 }

@@ -388,7 +388,7 @@ static void ov13_0222872C(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
 
 static void ov13_022287A4(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     u8 v1;
 
     if ((param1 >= 6) && (param1 <= 11)) {
@@ -397,7 +397,7 @@ static void ov13_022287A4(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
         for (v1 = 0; v1 < 6; v1++) {
             v0 = param0->unk_310[v1];
 
-            if (Sprite_GetDrawFlag2(v0) != 0) {
+            if (ManagedSprite_GetDrawFlag(v0) != 0) {
                 break;
             }
         }
@@ -408,10 +408,10 @@ static void ov13_022287A4(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
     switch (param2) {
     case 0:
     case 2:
-        Sprite_OffsetPositionXY2(v0, 0, 2);
+        ManagedSprite_OffsetPositionXY(v0, 0, 2);
         break;
     case 1:
-        Sprite_OffsetPositionXY2(v0, 0, -4);
+        ManagedSprite_OffsetPositionXY(v0, 0, -4);
         break;
     }
 }

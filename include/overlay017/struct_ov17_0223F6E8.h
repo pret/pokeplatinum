@@ -5,7 +5,7 @@
 #include "sys_task_manager.h"
 
 typedef struct {
-    CellActorData *unk_00[6];
+    ManagedSprite *unk_00[6];
     SysTask *unk_18;
 } UnkStruct_ov17_0223F6E8;
 

@@ -9,7 +9,7 @@
 #include "touch_screen.h"
 
 typedef struct {
-    CellActorData *unk_00;
+    ManagedSprite *unk_00;
     u8 padding_04[8];
     BOOL unk_0C;
     TouchScreenRect *unk_10;

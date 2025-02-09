@@ -6,7 +6,6 @@
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_020831B4.h"
 
-#include "cell_actor.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -15,6 +14,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "unk_0201E010.h"
@@ -115,7 +115,7 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
     v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
-    v4 = NNS_G2dGetImageLocation(SpriteActor_ImageProxy(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
+    v4 = NNS_G2dGetImageLocation(Sprite_GetImageProxy(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
     v5 = LoadMemberFromOpenNARC(v1, Pokemon_IconSpriteIndex(v0), 0, 12, 1);
     v7 = NNS_G2dGetUnpackedCharacterData(v5, &v6);
 
@@ -125,7 +125,7 @@ void sub_02082DA8(GameWindowLayout *param0, u8 param1)
     }
 
     Heap_FreeToHeap(v5);
-    Sprite_SetExplicitPalette(param0->unk_704[param1].unk_24, PokeIconPaletteIndex(v2, v3, 0) + 3);
+    Sprite_SetExplicitPalette2(param0->unk_704[param1].unk_24, PokeIconPaletteIndex(v2, v3, 0) + 3);
     NARC_dtor(v1);
 }
 
@@ -169,13 +169,13 @@ void sub_02082E58(GameWindowLayout *param0)
         param0->unk_5B0[10 + v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[4 + v0]);
         param0->unk_704[v0].unk_1A = Unk_020F20C0[4 + v0].x;
         param0->unk_704[v0].unk_1C = Unk_020F20C0[4 + v0].y;
-        CellActor_SetDrawFlag(param0->unk_5B0[10 + v0], 0);
+        Sprite_SetDrawFlag(param0->unk_5B0[10 + v0], 0);
         param0->unk_5B0[16 + v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[10 + v0]);
         param0->unk_5B0[22 + v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_5A8, param0->unk_5AC, &Unk_020F20C0[16 + v0]);
     }
 
-    CellActor_SetDrawFlag(param0->unk_5B0[7], 0);
-    CellActor_SetDrawFlag(param0->unk_5B0[28], 0);
+    Sprite_SetDrawFlag(param0->unk_5B0[7], 0);
+    Sprite_SetDrawFlag(param0->unk_5B0[28], 0);
 }
 
 void sub_02082FAC(GameWindowLayout *param0, u8 param1, u16 param2, u16 param3)
@@ -206,46 +206,46 @@ void sub_02082FF4(GameWindowLayout *param0)
 
 void sub_02083014(GameWindowLayout *param0, u8 param1, u8 param2)
 {
-    CellActor **v0 = &param0->unk_5B0[10 + param1];
+    Sprite **v0 = &param0->unk_5B0[10 + param1];
 
     if (param2 == 7) {
-        CellActor_SetDrawFlag(*v0, 0);
+        Sprite_SetDrawFlag(*v0, 0);
         return;
     }
 
-    CellActor_SetAnim(*v0, param2);
-    CellActor_SetDrawFlag(*v0, 1);
+    Sprite_SetAnim(*v0, param2);
+    Sprite_SetDrawFlag(*v0, 1);
 }
 
 void sub_02083040(GameWindowLayout *param0, u8 param1, u16 param2)
 {
-    CellActor **v0 = &param0->unk_5B0[16 + param1];
+    Sprite **v0 = &param0->unk_5B0[16 + param1];
 
     if (param2 == 0) {
-        CellActor_SetDrawFlag(*v0, 0);
+        Sprite_SetDrawFlag(*v0, 0);
         return;
     }
 
     if (Item_IsMail(param2) == 1) {
-        CellActor_SetAnim(*v0, 1);
+        Sprite_SetAnim(*v0, 1);
     } else {
-        CellActor_SetAnim(*v0, 0);
+        Sprite_SetAnim(*v0, 0);
     }
 
-    CellActor_SetDrawFlag(*v0, 1);
+    Sprite_SetDrawFlag(*v0, 1);
 }
 
 void sub_02083080(GameWindowLayout *param0, u8 param1)
 {
-    CellActor **v0 = &param0->unk_5B0[16 + param1];
+    Sprite **v0 = &param0->unk_5B0[16 + param1];
 
-    CellActor_SetAnim(*v0, 1);
-    CellActor_SetDrawFlag(*v0, 1);
+    Sprite_SetAnim(*v0, 1);
+    Sprite_SetDrawFlag(*v0, 1);
 }
 
 void sub_020830A0(GameWindowLayout *param0, u8 param1, s16 param2, s16 param3)
 {
-    CellActor **v0 = &param0->unk_5B0[16 + param1];
+    Sprite **v0 = &param0->unk_5B0[16 + param1];
 
     param0->unk_704[param1].unk_1E = param2 + 8;
     param0->unk_704[param1].unk_20 = param3 + 8;
@@ -260,24 +260,24 @@ void sub_020830D4(GameWindowLayout *param0, u8 param1)
 
 void sub_02083104(GameWindowLayout *param0, u8 param1)
 {
-    CellActor **v0 = &param0->unk_5B0[22 + param1];
+    Sprite **v0 = &param0->unk_5B0[22 + param1];
 
     if (param0->unk_704[param1].unk_12 == 0) {
-        CellActor_SetDrawFlag(*v0, 0);
+        Sprite_SetDrawFlag(*v0, 0);
         return;
     }
 
-    CellActor_SetDrawFlag(*v0, 1);
+    Sprite_SetDrawFlag(*v0, 1);
 }
 
-static void sub_02083138(CellActor *param0, u8 param1)
+static void sub_02083138(Sprite *param0, u8 param1)
 {
-    if (CellActor_GetActiveAnim(param0) == param1) {
+    if (Sprite_GetActiveAnim(param0) == param1) {
         return;
     }
 
-    SpriteActor_SetAnimFrame(param0, 0);
-    CellActor_SetAnim(param0, param1);
+    Sprite_SetAnimFrame(param0, 0);
+    Sprite_SetAnim(param0, param1);
 }
 
 static u8 sub_02083158(StrBufWrapper *param0)
@@ -324,10 +324,10 @@ void sub_020831B4(GameWindowLayout *param0)
         }
 
         sub_02083138(v0->unk_24, v2);
-        CellActor_UpdateAnim(v0->unk_24, FX32_ONE);
+        Sprite_UpdateAnim(v0->unk_24, FX32_ONE);
 
         if ((param0->unk_B11 == v1) && (v2 != 0) && (v2 != 5)) {
-            if (CellActor_GetAnimFrame(v0->unk_24) == 0) {
+            if (Sprite_GetAnimFrame(v0->unk_24) == 0) {
                 Sprite_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 - 3);
             } else {
                 Sprite_SetPositionXY(v0->unk_24, v0->unk_16, v0->unk_18 + 1);
@@ -345,10 +345,10 @@ void sub_0208327C(GameWindowLayout *param0, u8 param1, u8 param2)
     u8 v0, v1;
 
     sub_0201E010(&param0->unk_7F4[param1], &v0, &v1);
-    CellActor_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
-    CellActor_SetDrawFlag(param0->unk_5B0[6], 1);
+    Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
+    Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
     Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);
-    Sprite_SetExplicitPalette(param0->unk_5B0[6], param2);
+    Sprite_SetExplicitPalette2(param0->unk_5B0[6], param2);
 }
 
 void sub_020832E4(GameWindowLayout *param0, s16 param1, s16 param2)
@@ -360,19 +360,19 @@ void sub_020832E4(GameWindowLayout *param0, s16 param1, s16 param2)
     v0.y += (256 * FX32_ONE);
     v0.z = 0;
 
-    CellActor_SetPosition(param0->unk_5B0[28], &v0);
-    CellActor_SetDrawFlag(param0->unk_5B0[28], 1);
-    SpriteActor_SetAnimFrame(param0->unk_5B0[28], 0);
-    CellActor_SetAnim(param0->unk_5B0[28], 0);
+    Sprite_SetPosition(param0->unk_5B0[28], &v0);
+    Sprite_SetDrawFlag(param0->unk_5B0[28], 1);
+    Sprite_SetAnimFrame(param0->unk_5B0[28], 0);
+    Sprite_SetAnim(param0->unk_5B0[28], 0);
 }
 
 void sub_02083334(GameWindowLayout *param0)
 {
-    if (CellActor_GetDrawFlag(param0->unk_5B0[28]) == 1) {
-        CellActor_UpdateAnim(param0->unk_5B0[28], FX32_ONE);
+    if (Sprite_GetDrawFlag(param0->unk_5B0[28]) == 1) {
+        Sprite_UpdateAnim(param0->unk_5B0[28], FX32_ONE);
 
-        if (CellActor_GetAnimFrame(param0->unk_5B0[28]) == 2) {
-            CellActor_SetDrawFlag(param0->unk_5B0[28], 0);
+        if (Sprite_GetAnimFrame(param0->unk_5B0[28]) == 2) {
+            Sprite_SetDrawFlag(param0->unk_5B0[28], 0);
         }
     }
 }

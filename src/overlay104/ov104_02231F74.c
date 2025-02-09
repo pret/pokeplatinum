@@ -27,7 +27,6 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "heap.h"
@@ -42,6 +41,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -871,7 +871,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param
     PaletteData *v2 = param0->unk_04;
     ArchivedSprite v3;
     void *v4;
-    CellActorData *v5;
+    ManagedSprite *v5;
 
     {
         NARC *v6;
@@ -906,7 +906,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param
         }
 
         v5 = SpriteSystem_NewSprite(v0, v1, &v8);
-        Sprite_TickOneFrame(v5);
+        ManagedSprite_TickFrame(v5);
     }
 
     {
@@ -925,11 +925,11 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param
         NNSG2dImagePaletteProxy *v12;
         int v13;
 
-        v11 = SpriteActor_ImageProxy(v5->sprite);
+        v11 = Sprite_GetImageProxy(v5->sprite);
         DC_FlushRange(v4, sizeof(10 * 10 * ((8 / 2) * 8)));
         GX_LoadOBJ(v4, v11->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], (10 * 10 * ((8 / 2) * 8)));
 
-        v12 = CellActor_GetPaletteProxy(v5->sprite);
+        v12 = Sprite_GetPaletteProxy(v5->sprite);
         v13 = PlttTransfer_GetPlttOffset(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         PaletteData_LoadBufferFromFileStart(v2, v3.archive, v3.palette, param2, 2, 0x20, v13 * 16);
@@ -997,9 +997,9 @@ void ov104_02232F28(UnkStruct_ov104_0223C4CC *param0)
     SpriteManager_UnloadPlttObjById(param0->unk_34.unk_04, 2000);
 }
 
-CellActorData *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param2, int param3, int param4)
+ManagedSprite *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param2, int param3, int param4)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     SpriteTemplate v1;
 
     GF_ASSERT(param2 < (2008 - 2000));
@@ -1016,13 +1016,13 @@ CellActorData *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1,
 
     v0 = SpriteSystem_NewSprite(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
 
-    CellActor_SetExplicitPaletteOffsetAutoAdjust(v0->sprite, Pokemon_IconPaletteIndex(param1));
-    Sprite_TickOneFrame(v0);
+    Sprite_SetExplicitPaletteOffsetAutoAdjust(v0->sprite, Pokemon_IconPaletteIndex(param1));
+    ManagedSprite_TickFrame(v0);
 
     return v0;
 }
 
-void ov104_02232FD4(UnkStruct_ov104_0223C4CC *param0, CellActorData *param1, int param2)
+void ov104_02232FD4(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1, int param2)
 {
     SpriteManager_UnloadCharObjById(param0->unk_34.unk_04, 2000 + param2);
     Sprite_DeleteAndFreeResources(param1);
@@ -1049,9 +1049,9 @@ void ov104_0223307C(UnkStruct_ov104_0223C4CC *param0)
     SpriteManager_UnloadPlttObjById(param0->unk_34.unk_04, 2001);
 }
 
-CellActorData *ov104_022330AC(UnkStruct_ov104_0223C4CC *param0, int param1, int param2)
+ManagedSprite *ov104_022330AC(UnkStruct_ov104_0223C4CC *param0, int param1, int param2)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     SpriteTemplate v1;
 
     v1 = Unk_ov104_0223F9AC;
@@ -1061,12 +1061,12 @@ CellActorData *ov104_022330AC(UnkStruct_ov104_0223C4CC *param0, int param1, int 
     v1.priority = 300;
 
     v0 = SpriteSystem_NewSprite(param0->unk_34.unk_00, param0->unk_34.unk_04, &v1);
-    Sprite_TickOneFrame(v0);
+    ManagedSprite_TickFrame(v0);
 
     return v0;
 }
 
-void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, CellActorData *param1)
+void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1)
 {
     Sprite_DeleteAndFreeResources(param1);
 }

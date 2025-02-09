@@ -26,7 +26,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "easy3d.h"
 #include "font.h"
@@ -42,6 +41,7 @@
 #include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -156,7 +156,7 @@ typedef struct ChooseStarterRotation {
 } ChooseStarterRotation;
 
 typedef struct ChooseStarterCursor {
-    CellActor *unk_00;
+    Sprite *unk_00;
     SpriteResource *unk_04[6];
     VecFx32 unk_1C;
     SysTask *unk_28;
@@ -184,7 +184,7 @@ typedef struct StarterPreviewWindow {
 } StarterPreviewWindow;
 
 typedef struct StarterPreviewGraphics {
-    Sprite *unk_00;
+    PokemonSprite *unk_00;
     StarterPreviewAnimation unk_04;
     SysTask *unk_3C;
 } StarterPreviewGraphics;
@@ -206,10 +206,10 @@ typedef struct ChooseStarterApp {
     WindowTemplate unk_B0;
     Menu *unk_B8;
     G2dRenderer unk_BC;
-    CellActorCollection *unk_248;
+    SpriteList *unk_248;
     SpriteResourceCollection *unk_24C[6];
     UnkStruct_02007768 *spriteManager;
-    Sprite *sprites[NUM_STARTER_OPTIONS];
+    PokemonSprite *sprites[NUM_STARTER_OPTIONS];
     StarterPreviewGraphics unk_274;
     NNSFndAllocator unk_2B4;
     ChooseStarter3DGraphics unk_2C4[6];
@@ -275,7 +275,7 @@ static void ov78_021D1CA8(ChooseStarterApp *param0, int param1);
 static void ov78_021D1DF0(ChooseStarterApp *param0);
 static void ov78_021D1E28(ChooseStarterApp *param0);
 static void ov78_021D1E44(ChooseStarterApp *param0, int param1);
-static void MakePokemonSprite(Sprite **sprite, ChooseStarterApp *app, int species);
+static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species);
 static void ov78_021D15CC(ChooseStarter3DGraphics *param0, int param1, int param2, int param3, NNSFndAllocator *param4);
 static void ov78_021D1604(ChooseStarter3DGraphics *param0, int param1, int param2);
 static void ov78_021D16D8(ChooseStarter3DGraphics *param0, NNSFndAllocator *param1);
@@ -299,7 +299,7 @@ static BOOL ov78_021D2608(StarterPreviewWindow *param0);
 static void ov78_021D2618(ChooseStarterApp *param0);
 static void ov78_021D2688(ChooseStarterApp *param0);
 static BOOL ov78_021D26A4(ChooseStarterApp *param0);
-static void ov78_021D26B4(StarterPreviewGraphics *param0, Sprite *param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8);
+static void ov78_021D26B4(StarterPreviewGraphics *param0, PokemonSprite *param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8);
 static void ov78_021D270C(StarterPreviewGraphics *param0);
 static void ov78_021D2740(SysTask *param0, void *param1);
 static void ov78_021D1C58(ChooseStarterApp *param0);
@@ -695,7 +695,7 @@ static void MakeSprite(ChooseStarterApp *app, enum HeapId heapID)
     }
 }
 
-static void MakePokemonSprite(Sprite **sprite, ChooseStarterApp *app, int species)
+static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int species)
 {
     int gender = Pokemon_GetGenderOf(species, 0);
 
@@ -754,7 +754,7 @@ static void MakeCellActors(ChooseStarterApp *param0, int param1)
 
 static void ov78_021D1594(ChooseStarterApp *param0)
 {
-    CellActorCollection_Delete(param0->unk_248);
+    SpriteList_Delete(param0->unk_248);
     SpriteResourceCollection_Delete(param0->unk_24C[0]);
     SpriteResourceCollection_Delete(param0->unk_24C[1]);
     SpriteResourceCollection_Delete(param0->unk_24C[2]);
@@ -1037,7 +1037,7 @@ static void DrawScene(ChooseStarterApp *param0)
     NNS_G3dGePopMtx(1);
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
-    CellActorCollection_Update(param0->unk_248);
+    SpriteList_Update(param0->unk_248);
 }
 
 static void MakeCamera(ChooseStarterApp *param0, int param1)
@@ -1449,12 +1449,12 @@ static void ov78_021D2290(ChooseStarterApp *param0, ChooseStarterCursor *param1)
 
 static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor *param1, int param2)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
 
     SpriteResourcesHeader_Init(&v0, 10, 11, 12, 13, 0xffffffff, 0xffffffff, 0, 1, param0->unk_24C[0], param0->unk_24C[1], param0->unk_24C[2], param0->unk_24C[3], NULL, NULL);
 
-    v1.collection = param0->unk_248;
+    v1.list = param0->unk_248;
     v1.resourceData = &v0;
     v1.priority = 32;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -1463,8 +1463,8 @@ static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor 
     v1.position.x = 0;
     v1.position.y = 0;
 
-    param1->unk_00 = CellActorCollection_Add(&v1);
-    CellActor_SetDrawFlag(param1->unk_00, 0);
+    param1->unk_00 = SpriteList_Add(&v1);
+    Sprite_SetDrawFlag(param1->unk_00, 0);
 
     param1->unk_1C.x = 0;
     param1->unk_1C.y = 0;
@@ -1472,7 +1472,7 @@ static void AttachCursorCellActor(ChooseStarterApp *param0, ChooseStarterCursor 
 
 static void ov78_021D2350(ChooseStarterCursor *param0)
 {
-    CellActor_Delete(param0->unk_00);
+    Sprite_Delete(param0->unk_00);
 }
 
 static void ov78_021D235C(ChooseStarterRotation *param0, fx32 param1, int param2)
@@ -1514,7 +1514,7 @@ static void ov78_021D23E8(SysTask *param0, void *param1)
     v1 = v0->unk_1C;
     v1.y += v0->unk_2C.unk_00;
 
-    CellActor_SetPosition(v0->unk_00, &v1);
+    Sprite_SetPosition(v0->unk_00, &v1);
 }
 
 static void ov78_021D241C(ChooseStarterCursor *param0)
@@ -1527,7 +1527,7 @@ static void ov78_021D241C(ChooseStarterCursor *param0)
 
 static void ov78_021D2430(ChooseStarterCursor *param0, BOOL param1)
 {
-    CellActor_SetDrawFlag(param0->unk_00, param1);
+    Sprite_SetDrawFlag(param0->unk_00, param1);
 }
 
 static void ov78_021D243C(ChooseStarterCursor *param0, int param1, int param2)
@@ -1668,7 +1668,7 @@ static BOOL ov78_021D26A4(ChooseStarterApp *param0)
     return ov78_021D2608(&param0->unk_6A8);
 }
 
-static void ov78_021D26B4(StarterPreviewGraphics *param0, Sprite *param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
+static void ov78_021D26B4(StarterPreviewGraphics *param0, PokemonSprite *param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8)
 {
     GF_ASSERT(param0->unk_3C == NULL);
 

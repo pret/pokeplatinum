@@ -7,9 +7,9 @@
 
 #include "overlay005/ov5_021D2F14.h"
 
-#include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
+#include "sprite.h"
 #include "sprite_system.h"
 
 static const SpriteTemplate Unk_020EFA04[] = {
@@ -88,17 +88,17 @@ void sub_0206A870(UnkStruct_0206A844 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_1C8[v0] != NULL) {
-            CellActor_UpdateAnim(param0->unk_1C8[v0]->sprite, FX32_ONE);
+            Sprite_UpdateAnim(param0->unk_1C8[v0]->sprite, FX32_ONE);
         }
     }
 
-    CellActorCollection_Update(param0->unk_00.unk_00);
+    SpriteList_Update(param0->unk_00.unk_00);
 }
 
 void sub_0206A8A0(UnkStruct_0206A844 *param0, s16 param1, s16 param2, s16 param3)
 {
-    Sprite_SetPositionXY2(param0->unk_1C8[0], param1, param2);
-    Sprite_SetPositionXY2(param0->unk_1C8[1], param1, param3);
+    ManagedSprite_SetPositionXY(param0->unk_1C8[0], param1, param2);
+    ManagedSprite_SetPositionXY(param0->unk_1C8[1], param1, param3);
 }
 
 void sub_0206A8C4(UnkStruct_0206A844 *param0, u16 param1, BOOL param2)
@@ -107,5 +107,5 @@ void sub_0206A8C4(UnkStruct_0206A844 *param0, u16 param1, BOOL param2)
         return;
     }
 
-    Sprite_SetDrawFlag2(param0->unk_1C8[param1], param2);
+    ManagedSprite_SetDrawFlag(param0->unk_1C8[param1], param2);
 }

@@ -20,7 +20,6 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
-#include "cell_actor.h"
 #include "easy3d_object.h"
 #include "font.h"
 #include "graphics.h"
@@ -28,6 +27,7 @@
 #include "heap.h"
 #include "message.h"
 #include "palette.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
@@ -55,8 +55,8 @@ typedef struct {
 
 static void ov99_021D1A54(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1B98(UnkStruct_ov99_021D2CB0 *param0);
-static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 *param0, CellActorData **param1, CellActorData **param2);
-static void ov99_021D1C9C(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1, CellActorData *param2);
+static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite **param1, ManagedSprite **param2);
+static void ov99_021D1C9C(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite *param1, ManagedSprite *param2);
 static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1E6C(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1E90(UnkStruct_ov99_021D2CB0 *param0);
@@ -352,25 +352,25 @@ static void ov99_021D1B98(UnkStruct_ov99_021D2CB0 *param0)
     SpriteManager_UnloadAnimObjById(param0->unk_1C, 10001);
 }
 
-static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 *param0, CellActorData **param1, CellActorData **param2)
+static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite **param1, ManagedSprite **param2)
 {
-    CellActorData *v0;
-    CellActorData *v1;
+    ManagedSprite *v0;
+    ManagedSprite *v1;
     SpriteTemplate v2 = Unk_ov99_021D4900;
 
     MI_CpuClear8(&param0->unk_1114, sizeof(UnkStruct_ov99_021D2CB0_sub2));
 
     v0 = SpriteSystem_NewSprite(param0->unk_18, param0->unk_1C, &v2);
 
-    Sprite_SetAnimateFlag(v0, 1);
+    ManagedSprite_SetAnimateFlag(v0, 1);
     Sprite_TickFrame(v0->sprite);
 
     *param1 = v0;
     v2.priority = 60;
     v1 = SpriteSystem_NewSprite(param0->unk_18, param0->unk_1C, &v2);
 
-    Sprite_SetAnim(v1, 2);
-    Sprite_SetAnimateFlag(v1, 1);
+    ManagedSprite_SetAnim(v1, 2);
+    ManagedSprite_SetAnimateFlag(v1, 1);
     Sprite_TickFrame(v1->sprite);
 
     *param2 = v1;
@@ -397,7 +397,7 @@ static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 *param0, CellActorData **param
     }
 }
 
-static void ov99_021D1C9C(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1, CellActorData *param2)
+static void ov99_021D1C9C(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite *param1, ManagedSprite *param2)
 {
     Sprite_DeleteAndFreeResources(param1);
     Sprite_DeleteAndFreeResources(param2);
@@ -526,8 +526,8 @@ static void ov99_021D1F70(UnkStruct_ov99_021D2CB0 *param0)
     for (v0 = 2; v0 <= 4; v0++) {
         param0->unk_10E0[v0] = SpriteSystem_NewSprite(param0->unk_18, param0->unk_1C, &Unk_ov99_021D499C);
 
-        Sprite_SetAffineOverwriteMode(param0->unk_10E0[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
-        Sprite_SetAnimateFlag(param0->unk_10E0[v0], TRUE);
+        ManagedSprite_SetAffineOverwriteMode(param0->unk_10E0[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetAnimateFlag(param0->unk_10E0[v0], TRUE);
         Sprite_TickFrame(param0->unk_10E0[v0]->sprite);
     }
 }
@@ -743,7 +743,7 @@ static void ov99_021D23B0(UnkStruct_ov99_021D2CB0 *param0)
 
     for (v0 = 2; v0 <= 3; v0++) {
         param0->unk_10E0[v0] = SpriteSystem_NewSprite(param0->unk_18, param0->unk_1C, &Unk_ov99_021D4968);
-        Sprite_SetAnimateFlag(param0->unk_10E0[v0], 1);
+        ManagedSprite_SetAnimateFlag(param0->unk_10E0[v0], 1);
         Sprite_TickFrame(param0->unk_10E0[v0]->sprite);
     }
 }
@@ -870,8 +870,8 @@ static void ov99_021D2714(UnkStruct_ov99_021D2CB0 *param0)
 
     param0->unk_10E0[3] = SpriteSystem_NewSprite(param0->unk_18, param0->unk_1C, &Unk_ov99_021D49D0);
 
-    Sprite_SetAnimateFlag(param0->unk_10E0[3], 1);
-    Sprite_SetDrawFlag2(param0->unk_10E0[3], 0);
+    ManagedSprite_SetAnimateFlag(param0->unk_10E0[3], 1);
+    ManagedSprite_SetDrawFlag(param0->unk_10E0[3], 0);
     Sprite_TickFrame(param0->unk_10E0[3]->sprite);
 }
 
@@ -903,14 +903,14 @@ static void ov99_021D2828(UnkStruct_ov99_021D2CB0 *param0)
 
     for (v0 = 2; v0 <= 2; v0++) {
         param0->unk_10E0[v0] = SpriteSystem_NewSprite(param0->unk_18, param0->unk_1C, &Unk_ov99_021D4934);
-        Sprite_SetAnimateFlag(param0->unk_10E0[v0], 1);
+        ManagedSprite_SetAnimateFlag(param0->unk_10E0[v0], 1);
         Sprite_TickFrame(param0->unk_10E0[v0]->sprite);
     }
 
     param0->unk_10E0[4] = SpriteSystem_NewSprite(param0->unk_18, param0->unk_1C, &Unk_ov99_021D48CC);
 
-    Sprite_SetAnimateFlag(param0->unk_10E0[4], 1);
-    Sprite_SetDrawFlag2(param0->unk_10E0[4], 0);
+    ManagedSprite_SetAnimateFlag(param0->unk_10E0[4], 1);
+    ManagedSprite_SetDrawFlag(param0->unk_10E0[4], 0);
     Sprite_TickFrame(param0->unk_10E0[4]->sprite);
 }
 

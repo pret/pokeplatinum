@@ -62,7 +62,7 @@ void ov17_0224AFF8(SpriteManager *param0);
 BOOL ov17_0224B01C(UnkStruct_ov17_0224DF54 *param0);
 void ov17_0224B058(UnkStruct_ov17_0224DF54 *param0);
 void ov17_0224B068(UnkStruct_ov17_0224A1EC *param0, int param1);
-void ov17_0224B09C(Sprite *param0, UnkStruct_ov17_0224B09C *param1);
+void ov17_0224B09C(PokemonSprite *param0, UnkStruct_ov17_0224B09C *param1);
 void ov17_0224B0CC(UnkStruct_ov17_0224A1EC *param0);
 void ov17_0224B20C(UnkStruct_ov17_0224DF54 *param0, const UnkStruct_ov17_0224EDE0 *param1);
 void ov17_0224B59C(UnkStruct_ov17_0224DF54 *param0);

@@ -10,7 +10,7 @@
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
 
-#include "sprite_system.h"
+#include "sprite.h"
 
 int ov12_02235254(UnkStruct_ov12_0221FCDC *param0, int param1);
 int ov12_0223525C(UnkStruct_ov12_0221FCDC *param0, int param1);
@@ -50,8 +50,8 @@ void ov12_02235780(UnkStruct_ov12_0221FCDC *param0, int param1, int param2);
 void ov12_022357BC(UnkStruct_ov12_0221FCDC *param0, int param1, int param2, int param3);
 void ov12_022357EC(UnkStruct_ov12_0221FCDC *param0, int param1, int param2);
 void ov12_02235838(UnkStruct_ov12_0221FCDC *param0, int param1, BOOL param2);
-void ov12_02235918(Sprite *param0, UnkStruct_ov12_02235350 *param1);
-void ov12_02235950(CellActorData *param0, UnkStruct_ov12_02235350 *param1);
+void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1);
+void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1);
 void ov12_0223595C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_0223595C *param1);
 void ov12_02235998(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3);
 void ov12_02235D74(UnkStruct_ov12_0221FCDC *param0, int param1, UnkStruct_ov12_02235998 *param2, int *param3);

@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV83_0223F410_H
 #define POKEPLATINUM_STRUCT_OV83_0223F410_H
 
-#include "cell_actor.h"
+#include "sprite.h"
 
 typedef struct {
-    CellActor *unk_00;
+    Sprite *unk_00;
     int unk_04;
     int unk_08;
     BOOL unk_0C;

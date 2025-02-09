@@ -16,7 +16,6 @@
 
 #include "assert.h"
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "crypto.h"
 #include "font.h"
@@ -33,6 +32,7 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -58,7 +58,7 @@ typedef struct {
     int unk_20;
     BOOL unk_24[4];
     UnkStruct_ov97_02237AEC unk_34;
-    CellActor *unk_26C;
+    Sprite *unk_26C;
     int unk_270;
     fx32 unk_274;
     u8 unk_278[3200];
@@ -413,11 +413,11 @@ void ov97_02237CAC(int param0)
         VecFx32 *v1;
 
         if (v0->unk_270 == 0) {
-            if ((CellActor_GetDrawFlag(v0->unk_26C) == 0) && (param0 == 0)) {
-                CellActor_SetDrawFlag(v0->unk_26C, 1);
+            if ((Sprite_GetDrawFlag(v0->unk_26C) == 0) && (param0 == 0)) {
+                Sprite_SetDrawFlag(v0->unk_26C, 1);
             }
 
-            v1 = (VecFx32 *)CellActor_GetPosition(v0->unk_26C);
+            v1 = (VecFx32 *)Sprite_GetPosition(v0->unk_26C);
 
             if (v1->y < 384 * FX32_ONE) {
                 v1->y += FX32_ONE * 3;
@@ -428,18 +428,18 @@ void ov97_02237CAC(int param0)
     }
 
     if (v0->unk_34.unk_00 != NULL) {
-        CellActorCollection_Update(v0->unk_34.unk_00);
+        SpriteList_Update(v0->unk_34.unk_00);
     }
 }
 
-CellActor *ov97_02237D14(int param0, CellActor *param1, int param2, int param3, int param4)
+Sprite *ov97_02237D14(int param0, Sprite *param1, int param2, int param3, int param4)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
     if (param1 == NULL) {
-        CellActorInitParamsEx v1;
+        AffineSpriteListTemplate v1;
 
-        v1.collection = v0->unk_34.unk_00;
+        v1.list = v0->unk_34.unk_00;
         v1.resourceData = &v0->unk_34.unk_1D8[param0];
         v1.position.z = 0;
         v1.affineScale.x = FX32_ONE;
@@ -456,13 +456,13 @@ CellActor *ov97_02237D14(int param0, CellActor *param1, int param2, int param3, 
             v1.position.y += v0->unk_274;
         }
 
-        param1 = CellActorCollection_AddEx(&v1);
+        param1 = SpriteList_AddEx(&v1);
     }
 
-    CellActor_SetAnimateFlag(param1, 1);
-    CellActor_SetExplicitPriority(param1, 0);
-    CellActor_SetAnim(param1, param4);
-    CellActor_SetDrawFlag(param1, 1);
+    Sprite_SetAnimateFlag(param1, 1);
+    Sprite_SetExplicitPriority(param1, 0);
+    Sprite_SetAnim(param1, param4);
+    Sprite_SetDrawFlag(param1, 1);
 
     return param1;
 }
@@ -474,7 +474,7 @@ void ov97_02237DA0(void)
     int v2;
 
     if (v0->unk_26C) {
-        CellActor_Delete(v0->unk_26C);
+        Sprite_Delete(v0->unk_26C);
         v0->unk_26C = NULL;
     }
 
@@ -499,7 +499,7 @@ void ov97_02237DA0(void)
         v1->unk_190[v2] = NULL;
     }
 
-    CellActorCollection_Delete(v1->unk_00);
+    SpriteList_Delete(v1->unk_00);
     v1->unk_00 = NULL;
 
     RenderOam_Free();
@@ -566,7 +566,7 @@ static int ov97_02237EA8(int param0)
     return 0;
 }
 
-static void ov97_02237EF8(CellActor *param0, Pokemon *param1, int param2, int param3, u8 *param4, ArchivedSprite *param5)
+static void ov97_02237EF8(Sprite *param0, Pokemon *param1, int param2, int param3, u8 *param4, ArchivedSprite *param5)
 {
     int v0, v1;
     u32 v2;
@@ -583,14 +583,14 @@ static void ov97_02237EF8(CellActor *param0, Pokemon *param1, int param2, int pa
     DC_FlushRange(param4, 0x20 * 10 * 10);
 
     {
-        NNSG2dImageProxy *v4 = SpriteActor_ImageProxy(param0);
+        NNSG2dImageProxy *v4 = Sprite_GetImageProxy(param0);
         u32 v5 = NNS_G2dGetImageLocation(v4, NNS_G2D_VRAM_TYPE_2DSUB);
 
         GXS_LoadOBJ(param4, v5 + 1 * (0x20 * 10 * 10), (0x20 * 10 * 10));
     }
 
     {
-        NNSG2dImagePaletteProxy *v6 = CellActor_GetPaletteProxy(param0);
+        NNSG2dImagePaletteProxy *v6 = Sprite_GetPaletteProxy(param0);
         u32 v7 = NNS_G2dGetImagePaletteLocation(v6, NNS_G2D_VRAM_TYPE_2DSUB);
 
         Graphics_LoadPalette(param5->archive, param5->palette, 5, 0x20 * (2 + 1) + v7, 32, v3->unk_08);
@@ -712,7 +712,7 @@ void ov97_02238194(BgConfig *param0, UnkStruct_0202DF40 *param1)
         break;
     }
 
-    CellActor_SetDrawFlag(v2->unk_26C, 0);
+    Sprite_SetDrawFlag(v2->unk_26C, 0);
 }
 
 void ov97_0223829C(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *param1, int param2)

@@ -17,7 +17,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -28,6 +27,7 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "spl.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -570,8 +570,8 @@ void ov119_021D161C(UnkStruct_ov119_021D0FD0 *param0)
 
     param0->unk_74 = SpriteSystem_NewSprite(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
 
-    Sprite_TickOneFrame(param0->unk_74);
-    Sprite_SetAffineOverwriteMode(param0->unk_74, AFFINE_OVERWRITE_MODE_DOUBLE);
+    ManagedSprite_TickFrame(param0->unk_74);
+    ManagedSprite_SetAffineOverwriteMode(param0->unk_74, AFFINE_OVERWRITE_MODE_DOUBLE);
 
     v0.x = 0;
     v0.y = 0 - (2 * 8);
@@ -582,12 +582,12 @@ void ov119_021D161C(UnkStruct_ov119_021D0FD0 *param0)
     v0.resources[3] = 25003;
 
     param0->unk_78 = SpriteSystem_NewSprite(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
-    Sprite_TickOneFrame(param0->unk_78);
+    ManagedSprite_TickFrame(param0->unk_78);
 
     v0.y = 192 - (6 * 8);
 
     param0->unk_7C = SpriteSystem_NewSprite(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
-    Sprite_TickOneFrame(param0->unk_7C);
+    ManagedSprite_TickFrame(param0->unk_7C);
 }
 
 static const s16 Unk_ov119_021D2478[][10] = {
@@ -648,10 +648,10 @@ BOOL ov119_021D16C0(UnkStruct_ov119_021D0FD0 *param0, int param1)
                 v5++;
             }
 
-            Sprite_OffsetPositionXY2(param0->unk_74, v1, v2);
+            ManagedSprite_OffsetPositionXY(param0->unk_74, v1, v2);
 
             if (v3 != 0.0f) {
-                Sprite_SetAffineScale(param0->unk_74, v3, v4);
+                ManagedSprite_SetAffineScale(param0->unk_74, v3, v4);
             } else {
                 v5++;
             }

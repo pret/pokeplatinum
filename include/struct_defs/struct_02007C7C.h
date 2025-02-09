@@ -8,7 +8,7 @@
 
 #include "functypes/funcptr_02007C34.h"
 
-typedef struct Sprite {
+typedef struct PokemonSprite {
     u32 unk_00_0 : 1;
     u32 unk_00_1 : 6;
     u32 unk_00_7 : 1;
@@ -27,6 +27,6 @@ typedef struct Sprite {
     UnkStruct_02007C7C_sub2 unk_6C;
     UnkStruct_02007C7C_sub2 unk_78;
     SpriteAnimationFrame unk_84[10];
-} Sprite;
+} PokemonSprite;
 
 #endif // POKEPLATINUM_STRUCT_02007C7C_H

@@ -52,7 +52,7 @@ typedef struct UnkStruct_ov117_022626B0_t {
     int unk_228;
     int unk_22C;
     fx32 unk_230;
-    CellActorData *unk_234;
+    ManagedSprite *unk_234;
     int unk_238;
     int unk_23C;
     int unk_240;
@@ -100,9 +100,9 @@ void ov117_02262D4C(BOOL param0, BOOL param1);
 void ov117_02262D98();
 static void ov117_022638D8(UnkStruct_ov117_02261280 *param0);
 static void ov117_022639BC(UnkStruct_ov117_02261280 *param0);
-static CellActorData *ov117_02263A00(UnkStruct_ov117_02261280 *param0);
-static void ov117_02263A6C(UnkStruct_ov117_022626B0 *param0, CellActorData *param1);
-static void ov117_02263AE4(CellActorData *param0);
+static ManagedSprite *ov117_02263A00(UnkStruct_ov117_02261280 *param0);
+static void ov117_02263A6C(UnkStruct_ov117_022626B0 *param0, ManagedSprite *param1);
+static void ov117_02263AE4(ManagedSprite *param0);
 
 static const fx16 Unk_ov117_02266B12[3 * 6] = {
     0x0,
@@ -931,21 +931,21 @@ static void ov117_022639BC(UnkStruct_ov117_02261280 *param0)
     SpriteManager_UnloadPlttObjById(param0->unk_28, 10005);
 }
 
-static CellActorData *ov117_02263A00(UnkStruct_ov117_02261280 *param0)
+static ManagedSprite *ov117_02263A00(UnkStruct_ov117_02261280 *param0)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     SpriteTemplate v1;
 
     v1 = Unk_ov117_02266B38;
     v0 = SpriteSystem_NewSprite(param0->unk_24, param0->unk_28, &v1);
 
-    Sprite_SetDrawFlag2(v0, 0);
+    ManagedSprite_SetDrawFlag(v0, 0);
     Sprite_TickFrame(v0->sprite);
 
     return v0;
 }
 
-static void ov117_02263A6C(UnkStruct_ov117_022626B0 *param0, CellActorData *param1)
+static void ov117_02263A6C(UnkStruct_ov117_022626B0 *param0, ManagedSprite *param1)
 {
     int v0;
 
@@ -955,12 +955,12 @@ static void ov117_02263A6C(UnkStruct_ov117_022626B0 *param0, CellActorData *para
         v0 = ov117_022637AC(param0, 0) + 1;
     }
 
-    Sprite_SetPositionXYWithSubscreenOffset2(param1, param0->unk_21C, (param0->unk_230 >> FX32_SHIFT) + Unk_ov117_02266B05[param0->unk_270].unk_02, ((192 + 160) << FX32_SHIFT));
-    Sprite_SetAnim(param1, v0);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param1, param0->unk_21C, (param0->unk_230 >> FX32_SHIFT) + Unk_ov117_02266B05[param0->unk_270].unk_02, ((192 + 160) << FX32_SHIFT));
+    ManagedSprite_SetAnim(param1, v0);
     Sprite_TickFrame(param1->sprite);
 }
 
-static void ov117_02263AE4(CellActorData *param0)
+static void ov117_02263AE4(ManagedSprite *param0)
 {
     Sprite_DeleteAndFreeResources(param0);
 }

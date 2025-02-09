@@ -33,7 +33,7 @@ typedef struct {
 
 static void ov99_021D3588(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1);
 static void ov99_021D35C8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1);
-static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, CellActorData *param2, int param3);
+static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, ManagedSprite *param2, int param3);
 static void ov99_021D3930(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1);
 static void ov99_021D36B0(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D36D4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1);
@@ -157,8 +157,8 @@ static void ov99_021D3588(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     GF_ASSERT(NELEMS(Unk_ov99_021D4C90) == 2 - 2 + 1);
 
     for (v0 = 2; v0 <= 2; v0++, v1++) {
-        Sprite_SetAffineOverwriteMode(param0->unk_10E0[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
-        Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_10E0[v0], Unk_ov99_021D4C90[v1].unk_00, Unk_ov99_021D4C90[v1].unk_02, ((192 + 80) << FX32_SHIFT));
+        ManagedSprite_SetAffineOverwriteMode(param0->unk_10E0[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_10E0[v0], Unk_ov99_021D4C90[v1].unk_00, Unk_ov99_021D4C90[v1].unk_02, ((192 + 80) << FX32_SHIFT));
         param1->unk_124[v1].unk_00 = Unk_ov99_021D4C90[v1].unk_00 * FX32_ONE;
         param1->unk_124[v1].unk_04 = Unk_ov99_021D4C90[v1].unk_02 * FX32_ONE;
     }
@@ -177,7 +177,7 @@ static void ov99_021D35C8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     }
 }
 
-static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, CellActorData *param2, int param3)
+static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, ManagedSprite *param2, int param3)
 {
     UnkStruct_ov99_021D35E8 *v0 = &param1->unk_124[param3];
     const UnkStruct_ov99_021D4C90 *v1 = &Unk_ov99_021D4C90[param3];
@@ -198,12 +198,12 @@ static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     v0->unk_00 += v1->unk_04;
     v0->unk_04 += v1->unk_08;
 
-    Sprite_SetPositionFxXYWithSubscreenOffset(param2, v0->unk_00, v0->unk_04 + v2, ((192 + 80) << FX32_SHIFT));
+    ManagedSprite_SetPositionFxXYWithSubscreenOffset(param2, v0->unk_00, v0->unk_04 + v2, ((192 + 80) << FX32_SHIFT));
 
     if (v0->unk_0E == 0) {
-        Sprite_OffsetAffineZRotation(param2, v1->unk_14);
+        ManagedSprite_OffsetAffineZRotation(param2, v1->unk_14);
     } else {
-        Sprite_OffsetAffineZRotation(param2, -v1->unk_14);
+        ManagedSprite_OffsetAffineZRotation(param2, -v1->unk_14);
     }
 
     v0->unk_0C++;
@@ -216,8 +216,8 @@ static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
 
 static void ov99_021D36B0(UnkStruct_ov99_021D2CB0 *param0)
 {
-    Sprite_SetExplicitOamMode2(param0->unk_10E0[3], GX_OAM_MODE_XLU);
-    Sprite_SetExplicitOamMode2(param0->unk_10E0[4], GX_OAM_MODE_XLU);
+    ManagedSprite_SetExplicitOamMode(param0->unk_10E0[3], GX_OAM_MODE_XLU);
+    ManagedSprite_SetExplicitOamMode(param0->unk_10E0[4], GX_OAM_MODE_XLU);
 }
 
 static void ov99_021D36D4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1)
@@ -247,9 +247,9 @@ static void ov99_021D372C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     param1->unk_11E = 0;
     param1->unk_11F = 31;
 
-    Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_10E0[4], Unk_ov99_021D4C84[param2].unk_00, Unk_ov99_021D4C84[param2].unk_02, ((192 + 80) << FX32_SHIFT));
-    Sprite_SetDrawFlag2(param0->unk_10E0[4], 1);
-    Sprite_SetDrawFlag2(param0->unk_10E0[3], 0);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_10E0[4], Unk_ov99_021D4C84[param2].unk_00, Unk_ov99_021D4C84[param2].unk_02, ((192 + 80) << FX32_SHIFT));
+    ManagedSprite_SetDrawFlag(param0->unk_10E0[4], 1);
+    ManagedSprite_SetDrawFlag(param0->unk_10E0[3], 0);
 
     G2S_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, param1->unk_11E, param1->unk_11F);
     G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, param1->unk_11F, param1->unk_11E);
@@ -277,13 +277,13 @@ static void ov99_021D37E0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
 
         G2S_ChangeBlendAlpha(param1->unk_11E, param1->unk_11F);
 
-        Sprite_OffsetPositionFxXY(param0->unk_10E0[4], -0x6000, 0xd000);
+        ManagedSprite_OffsetPositionFxXY(param0->unk_10E0[4], -0x6000, 0xd000);
         Sprite_GetPositionXYWithSubscreenOffset2(param0->unk_10E0[4], &v0, &v1, ((192 + 80) << FX32_SHIFT));
 
         if (v1 > 192 + 32) {
-            Sprite_SetDrawFlag2(param0->unk_10E0[4], 0);
-            Sprite_SetDrawFlag2(param0->unk_10E0[3], 1);
-            Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_10E0[3], v0, -32, ((192 + 80) << FX32_SHIFT));
+            ManagedSprite_SetDrawFlag(param0->unk_10E0[4], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_10E0[3], 1);
+            ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_10E0[3], v0, -32, ((192 + 80) << FX32_SHIFT));
             param1->unk_11D = 1;
         }
     } else {
@@ -300,11 +300,11 @@ static void ov99_021D37E0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
 
         G2_ChangeBlendAlpha(param1->unk_11E, param1->unk_11F);
 
-        Sprite_OffsetPositionFxXY(param0->unk_10E0[3], -0x6000, 0xd000);
+        ManagedSprite_OffsetPositionFxXY(param0->unk_10E0[3], -0x6000, 0xd000);
         Sprite_GetPositionXYWithSubscreenOffset2(param0->unk_10E0[3], &v0, &v1, ((192 + 80) << FX32_SHIFT));
 
         if (v1 > 192 + 32) {
-            Sprite_SetDrawFlag2(param0->unk_10E0[3], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_10E0[3], 0);
             param1->unk_11D = 0;
             param1->unk_11C = 0;
         }

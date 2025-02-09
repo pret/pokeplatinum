@@ -23,7 +23,6 @@
 #include "overlay065/struct_ov65_022376D0.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -43,6 +42,7 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -102,7 +102,7 @@ typedef struct {
     u8 unk_14;
     u8 unk_15;
     u16 unk_16;
-    CellActorCollection *unk_18;
+    SpriteList *unk_18;
     G2dRenderer unk_1C;
     SpriteResourceCollection *unk_1A8[4];
     UnkStruct_ov63_0222BE18 *unk_1B8;
@@ -487,7 +487,7 @@ int ov65_02236548(OverlayManager *param0, int *param1)
     }
 
     ov65_022372B0(&v0->unk_30);
-    CellActorCollection_Update(v0->unk_30.unk_18);
+    SpriteList_Update(v0->unk_30.unk_18);
 
     return 0;
 }
@@ -867,7 +867,7 @@ static void ov65_02236E04(UnkStruct_ov65_02236840 *param0)
     ov63_0222CD9C(param0->unk_1BC);
     ov63_0222BE58(param0->unk_1B8);
 
-    CellActorCollection_Delete(param0->unk_18);
+    SpriteList_Delete(param0->unk_18);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_1A8[v0]);

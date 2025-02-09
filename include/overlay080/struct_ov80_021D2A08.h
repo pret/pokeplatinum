@@ -61,7 +61,7 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     NNSG2dScreenData *unk_D4;
     SpriteSystem *unk_D8;
     SpriteManager *unk_DC;
-    CellActorData *unk_E0;
+    ManagedSprite *unk_E0;
 } UnkStruct_ov80_021D2A08;
 
 #endif // POKEPLATINUM_STRUCT_OV80_021D2A08_H

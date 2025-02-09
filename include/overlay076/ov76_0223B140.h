@@ -8,7 +8,7 @@
 #include "sprite_system.h"
 #include "touch_screen.h"
 
-void ov76_0223B184(TouchScreenRect *rect, CellActorData *param1, BOOL param2);
+void ov76_0223B184(TouchScreenRect *rect, ManagedSprite *param1, BOOL param2);
 void ov76_0223B1E0(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223B208(UnkStruct_ov76_0223DE00 *param0);
 int ov76_0223B278(UnkStruct_ov76_0223DE00 *param0, u8 param1);

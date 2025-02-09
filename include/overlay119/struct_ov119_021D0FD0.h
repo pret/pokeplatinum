@@ -7,7 +7,7 @@
 #include "overlay119/struct_ov119_021D16C0.h"
 #include "overlay119/struct_ov119_021D17B8.h"
 
-#include "sprite_system.h"
+#include "sprite.h"
 
 typedef struct {
     UnkStruct_0209843C *unk_00;
@@ -17,10 +17,10 @@ typedef struct {
     int unk_64;
     int unk_68;
     u8 unk_6C;
-    Sprite *unk_70;
-    CellActorData *unk_74;
-    CellActorData *unk_78;
-    CellActorData *unk_7C;
+    PokemonSprite *unk_70;
+    ManagedSprite *unk_74;
+    ManagedSprite *unk_78;
+    ManagedSprite *unk_7C;
     UnkStruct_ov119_021D16C0 unk_80;
 } UnkStruct_ov119_021D0FD0;
 

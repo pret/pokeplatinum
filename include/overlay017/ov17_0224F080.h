@@ -14,7 +14,7 @@ void ov17_0224F0BC(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYP
 void ov17_0224F0F0(SpriteSystem *param0, SpriteManager *param1, u32 param2, u32 param3);
 void ov17_0224F138(SpriteManager *param0, u32 param1);
 void ov17_0224F140(SpriteManager *param0, u32 param1, u32 param2);
-CellActorData *ov17_0224F154(SpriteSystem *param0, SpriteManager *param1, int param2, const SpriteTemplate *param3);
-void ov17_0224F184(CellActorData *param0);
+ManagedSprite *ov17_0224F154(SpriteSystem *param0, SpriteManager *param1, int param2, const SpriteTemplate *param3);
+void ov17_0224F184(ManagedSprite *param0);
 
 #endif // POKEPLATINUM_OV17_0224F080_H

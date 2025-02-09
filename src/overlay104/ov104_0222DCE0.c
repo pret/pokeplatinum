@@ -14,7 +14,6 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "cell_actor.h"
 #include "charcode_util.h"
 #include "communication_information.h"
 #include "communication_system.h"
@@ -29,6 +28,7 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
@@ -38,8 +38,8 @@
 #include "unk_02092494.h"
 
 void ov104_0222E1C0(SaveData *param0, Party *param1, Pokemon *param2);
-void ov104_0222E1D8(CellActor *param0, u8 param1);
-void ov104_0222E204(CellActor *param0, s16 param1, s16 param2, u8 param3);
+void ov104_0222E1D8(Sprite *param0, u8 param1);
+void ov104_0222E204(Sprite *param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);
 void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int param2, int param3);
 void ov104_0222E284(FieldBattleDTO *param0, UnkStruct_ov104_0223A348_sub1 *param1, int param2, int param3, int param4);
@@ -381,19 +381,19 @@ void ov104_0222E1C0(SaveData *param0, Party *param1, Pokemon *param2)
     return;
 }
 
-void ov104_0222E1D8(CellActor *param0, u8 param1)
+void ov104_0222E1D8(Sprite *param0, u8 param1)
 {
-    if (CellActor_GetActiveAnim(param0) == param1) {
+    if (Sprite_GetActiveAnim(param0) == param1) {
         return;
     }
 
-    SpriteActor_SetAnimFrame(param0, 0);
-    CellActor_SetAnim(param0, param1);
-    CellActor_UpdateAnim(param0, FX32_ONE);
+    Sprite_SetAnimFrame(param0, 0);
+    Sprite_SetAnim(param0, param1);
+    Sprite_UpdateAnim(param0, FX32_ONE);
     return;
 }
 
-void ov104_0222E204(CellActor *param0, s16 param1, s16 param2, u8 param3)
+void ov104_0222E204(Sprite *param0, s16 param1, s16 param2, u8 param3)
 {
     VecFx32 v0;
 
@@ -402,14 +402,14 @@ void ov104_0222E204(CellActor *param0, s16 param1, s16 param2, u8 param3)
     v0.z = 0;
 
     if (param3 == 1) {
-        if (CellActor_GetAnimFrame(param0) == 0) {
+        if (Sprite_GetAnimFrame(param0) == 0) {
             v0.y = (param2 - 3) * FX32_ONE;
         } else {
             v0.y = (param2 + 1) * FX32_ONE;
         }
     }
 
-    CellActor_SetPosition(param0, &v0);
+    Sprite_SetPosition(param0, &v0);
     return;
 }
 

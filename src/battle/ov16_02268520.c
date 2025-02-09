@@ -260,7 +260,7 @@ void ov16_022686BC(UnkStruct_ov16_02268520 *param0, int param1)
         return;
     }
 
-    Sprite_SetDrawFlag2(param0->unk_00, param1);
+    ManagedSprite_SetDrawFlag(param0->unk_00, param1);
 }
 
 void ov16_022686CC(UnkStruct_ov16_02268520 *param0, BattleSystem *param1, u16 param2, int param3)

@@ -1299,7 +1299,7 @@ static BOOL ov104_0223066C(UnkStruct_ov104_0222E930 *param0)
     const u8 *v2;
     s32 v3;
     u16 v4, v5, v6, v7, v8, v9;
-    CellActorData *v10;
+    ManagedSprite *v10;
 
     v3 = ov104_0222EA60(param0);
     v2 = param0->unk_1C;
@@ -1320,8 +1320,8 @@ static BOOL ov104_0223066C(UnkStruct_ov104_0222E930 *param0)
         v9 = (*((param0)->unk_1C++));
         v10 = ov104_0223D2FC(v1, v9, v4);
 
-        Sprite_SetPositionXY2(v10, v5, v6);
-        Sprite_SetDrawFlag2(v10, v7);
+        ManagedSprite_SetPositionXY(v10, v5, v6);
+        ManagedSprite_SetDrawFlag(v10, v7);
 
         ov104_0223D378(v1, v9, v8);
     }
@@ -1348,12 +1348,12 @@ static BOOL ov104_02230728(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
     u16 v2 = ov104_0222FC00(param0);
     u8 v3 = (*((param0)->unk_1C++));
-    CellActorData *v4;
+    ManagedSprite *v4;
 
     v4 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v4 != NULL);
-    Sprite_SetDrawFlag2(v4, v3);
+    ManagedSprite_SetDrawFlag(v4, v3);
 
     return 0;
 }
@@ -1363,19 +1363,19 @@ static BOOL ov104_02230760(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
     u16 v2 = ov104_0222FC00(param0);
-    CellActorData *v3;
+    ManagedSprite *v3;
 
     v3 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v3 != NULL);
-    Sprite_SetFlipMode(v3->sprite, 1);
+    Sprite_SetFlipMode2(v3->sprite, 1);
 
     return 0;
 }
 
 static BOOL ov104_02230790(UnkStruct_ov104_0222E930 *param0)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     UnkStruct_ov104_022320B4 *v1 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v2 = sub_0209B974(v1->unk_00);
     u16 v3 = ov104_0222FC00(param0);
@@ -1385,9 +1385,9 @@ static BOOL ov104_02230790(UnkStruct_ov104_0222E930 *param0)
     GF_ASSERT(v0 != NULL);
 
     if (v4 == 0) {
-        Sprite_SetExplicitOamMode(v0->sprite, GX_OAM_MODE_NORMAL);
+        Sprite_SetExplicitOamMode2(v0->sprite, GX_OAM_MODE_NORMAL);
     } else {
-        Sprite_SetExplicitOamMode(v0->sprite, GX_OAM_MODE_XLU);
+        Sprite_SetExplicitOamMode2(v0->sprite, GX_OAM_MODE_XLU);
     }
 
     return 0;
@@ -1397,12 +1397,12 @@ static BOOL ov104_022307D8(UnkStruct_ov104_0222E930 *param0)
 {
     u16 v0 = ov104_0222FC00(param0);
     u16 v1 = ov104_0222FC00(param0);
-    CellActorData *v2;
+    ManagedSprite *v2;
     UnkStruct_ov104_0223C4CC *v3 = sub_0209B974(param0->unk_00->unk_00);
 
     v2 = ov104_0223D370(v3, v0);
 
-    Sprite_SetAnim(v2, v1);
+    ManagedSprite_SetAnim(v2, v1);
     ov104_0223D378(v3, v0, 1);
 
     return 0;
@@ -1429,12 +1429,12 @@ static BOOL ov104_02230830(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02230850(UnkStruct_ov104_0222E930 *param0)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(param0->unk_00->unk_00);
 
     v0 = ov104_0223D370(v1, param0->unk_78[0]);
 
-    if ((ov104_0223D3A4(v1, param0->unk_78[0]) == 0) || (Sprite_IsAnimated(v0) == 0)) {
+    if ((ov104_0223D3A4(v1, param0->unk_78[0]) == 0) || (ManagedSprite_IsAnimated(v0) == 0)) {
         return 1;
     }
 

@@ -28,7 +28,7 @@
 
 typedef struct {
     u8 *unk_00;
-    CellActorData *unk_04;
+    ManagedSprite *unk_04;
     s32 unk_08;
     s32 unk_0C;
     fx32 unk_10;
@@ -115,10 +115,10 @@ void ov17_022477B8(UnkStruct_ov17_02247A48 *param0, int param1, int param2, fx32
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022477B8));
 
     v0->unk_04 = SpriteSystem_NewSprite(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
-    Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_04, param1, param2, (256 * FX32_ONE));
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_04, param1, param2, (256 * FX32_ONE));
 
     if (param4 == 1) {
-        Sprite_SetAnim(v0->unk_04, 1);
+        ManagedSprite_SetAnim(v0->unk_04, 1);
     }
 
     Sprite_TickFrame(v0->unk_04->sprite);
@@ -143,7 +143,7 @@ static void ov17_02247840(SysTask *param0, void *param1)
         v0->unk_10 += (6 << FX32_SHIFT);
         v0->unk_0C -= 0x100;
 
-        Sprite_SetPositionXYWithSubscreenOffset2(v0->unk_04, v0->unk_08 / 0x100 + v1, v0->unk_0C / 0x100, (256 * FX32_ONE));
+        ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_04, v0->unk_08 / 0x100 + v1, v0->unk_0C / 0x100, (256 * FX32_ONE));
 
         v0->unk_16++;
 

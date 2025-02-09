@@ -42,7 +42,7 @@ typedef struct {
     StringTemplate *unk_1FA8;
     Strbuf *unk_1FAC;
     SpriteManager *unk_1FB0;
-    CellActorData *unk_1FB4[38];
+    ManagedSprite *unk_1FB4[38];
     Window unk_204C[2];
     Window *unk_206C;
     u8 unk_2070;

@@ -31,7 +31,6 @@
 
 #include "overlay005/struct_ov5_021DE5D0.h"
 
-#include "cell_actor.h"
 #include "charcode_util.h"
 #include "flags.h"
 #include "heap.h"
@@ -46,6 +45,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "rtc.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "trainer_data.h"
@@ -3121,10 +3121,10 @@ static const int Unk_020F0588[] = {
     0x1
 };
 
-CellActorData *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
+ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
 {
     SpriteTemplate v0;
-    CellActorData *v1;
+    ManagedSprite *v1;
     NARC *narc;
     UnkStruct_ov5_021DE5D0 v3;
     int v4 = 1;
@@ -3155,10 +3155,10 @@ CellActorData *sub_02076994(SpriteSystem *param0, SpriteManager *param1, Palette
 
     v1 = SpriteSystem_NewSprite(param0, param1, &v0);
 
-    CellActor_SetExplicitPaletteOffsetAutoAdjust(v1->sprite, 0);
-    Sprite_SetPositionXY2(v1, param3, param4);
-    Sprite_TickOneFrame(v1);
-    Sprite_SetAnimateFlag(v1, 1);
+    Sprite_SetExplicitPaletteOffsetAutoAdjust(v1->sprite, 0);
+    ManagedSprite_SetPositionXY(v1, param3, param4);
+    ManagedSprite_TickFrame(v1);
+    ManagedSprite_SetAnimateFlag(v1, 1);
 
     return v1;
 }
@@ -4868,7 +4868,7 @@ void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u1
     MI_CpuCopy8(data.faces[face].frames, frames, sizeof(SpriteAnimationFrame) * MAX_ANIMATION_FRAMES);
 }
 
-void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, Sprite *sprite, u16 species, int face, int reverse, int frame)
+void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame)
 {
     int faceType = (face == FACE_FRONT) ? 0 : 1;
 

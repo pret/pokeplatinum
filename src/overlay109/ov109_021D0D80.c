@@ -311,7 +311,7 @@ typedef struct {
     int unk_08;
     int unk_0C;
     UnkStruct_ov109_021D0F70 *unk_10;
-    CellActorData *unk_14;
+    ManagedSprite *unk_14;
 } UnkStruct_ov109_021D3600;
 
 static void ov109_021D0F70(UnkStruct_ov109_021D0F70 *param0);
@@ -335,7 +335,7 @@ static void ov109_021D2344(UnkStruct_ov109_021D0F70 *param0, u32 param1);
 static void ov109_021D2368(UnkStruct_ov109_021D0F70 *param0);
 static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0);
 static void ov109_021D24C0(UnkStruct_ov109_021D0F70 *param0);
-static CellActorData *ov109_021D24E0(UnkStruct_ov109_021D0F70 *param0, const SpriteTemplate *param1);
+static ManagedSprite *ov109_021D24E0(UnkStruct_ov109_021D0F70 *param0, const SpriteTemplate *param1);
 static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0);
 static void ov109_021D25E8(UnkStruct_ov109_021D0F70 *param0);
 static void ov109_021D2634(UnkStruct_ov109_021D0F70 *param0, u32 param1);
@@ -1999,9 +1999,9 @@ static void ov109_021D24C0(UnkStruct_ov109_021D0F70 *param0)
     SpriteSystem_Free(param0->unk_D94);
 }
 
-static CellActorData *ov109_021D24E0(UnkStruct_ov109_021D0F70 *param0, const SpriteTemplate *param1)
+static ManagedSprite *ov109_021D24E0(UnkStruct_ov109_021D0F70 *param0, const SpriteTemplate *param1)
 {
-    CellActorData *v0 = SpriteSystem_NewSprite(param0->unk_D94, param0->unk_D98, param1);
+    ManagedSprite *v0 = SpriteSystem_NewSprite(param0->unk_D94, param0->unk_D98, param1);
     return v0;
 }
 
@@ -3087,9 +3087,9 @@ static void ov109_021D3600(SysTask *param0, void *param1)
             }
         }
 
-        Sprite_TickNFrames(v0->unk_14, FX32_ONE + (FX32_ONE / 2));
+        ManagedSprite_TickNFrames(v0->unk_14, FX32_ONE + (FX32_ONE / 2));
 
-        if (Sprite_IsAnimated(v0->unk_14) == 0) {
+        if (ManagedSprite_IsAnimated(v0->unk_14) == 0) {
             v0->unk_00++;
         }
 
@@ -3125,7 +3125,7 @@ static SysTask *ov109_021D3684(UnkStruct_ov109_021D0F70 *param0)
     v0.resources[5] = SPRITE_RESOURCE_NONE;
 
     v1->unk_14 = ov109_021D24E0(param0, &v0);
-    Sprite_TickOneFrame(v1->unk_14);
+    ManagedSprite_TickFrame(v1->unk_14);
 
     v1->unk_10 = param0;
     {

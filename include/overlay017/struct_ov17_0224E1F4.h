@@ -9,7 +9,7 @@
 
 typedef struct {
     Pokemon *unk_00;
-    Sprite *unk_04;
+    PokemonSprite *unk_04;
     UnkStruct_ov17_0224B09C *unk_08;
     u8 unk_0C;
     u8 unk_0D;

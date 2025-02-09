@@ -70,9 +70,9 @@ void ov17_0224F140(SpriteManager *param0, u32 param1, u32 param2)
     SpriteManager_UnloadAnimObjById(param0, param2);
 }
 
-CellActorData *ov17_0224F154(SpriteSystem *param0, SpriteManager *param1, int param2, const SpriteTemplate *param3)
+ManagedSprite *ov17_0224F154(SpriteSystem *param0, SpriteManager *param1, int param2, const SpriteTemplate *param3)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     SpriteTemplate v1;
 
     v1 = *param3;
@@ -82,7 +82,7 @@ CellActorData *ov17_0224F154(SpriteSystem *param0, SpriteManager *param1, int pa
     return v0;
 }
 
-void ov17_0224F184(CellActorData *param0)
+void ov17_0224F184(ManagedSprite *param0)
 {
     Sprite_DeleteAndFreeResources(param0);
 }

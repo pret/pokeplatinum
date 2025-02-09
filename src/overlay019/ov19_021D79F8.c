@@ -17,12 +17,12 @@
 #include "overlay019/struct_ov19_021DCD18.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -104,7 +104,7 @@ static const u16 Unk_ov19_021E0138[] = {
     10,
 };
 
-BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4)
+BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4)
 {
     param0->unk_00 = param2->unk_40.unk_00;
     param0->unk_01 = 11;
@@ -413,7 +413,7 @@ static void ov19_021D8114(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param1->unk_00 != NULL) {
-            CellActor_Delete(param1->unk_00);
+            Sprite_Delete(param1->unk_00);
             param1->unk_00 = NULL;
         }
 
@@ -684,9 +684,9 @@ static void ov19_021D865C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD
     for (v2 = 0; v2 < 5; v2++) {
         for (v1 = 0; v1 < 6; v1++) {
             if (param1->unk_00 != NULL) {
-                v0 = *(CellActor_GetPosition(param1->unk_00));
+                v0 = *(Sprite_GetPosition(param1->unk_00));
                 v0.x = param0->unk_68[param2][v1];
-                CellActor_SetPosition(param1->unk_00, &v0);
+                Sprite_SetPosition(param1->unk_00, &v0);
             }
 
             param1++;
@@ -702,9 +702,9 @@ static void ov19_021D86B4(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD
     for (v2 = 0; v2 < 5; v2++) {
         for (v1 = 0; v1 < 6; v1++) {
             if (param1->unk_00 != NULL) {
-                v0 = *(CellActor_GetPosition(param1->unk_00));
+                v0 = *(Sprite_GetPosition(param1->unk_00));
                 v0.x = param0->unk_38[param2][v1];
-                CellActor_SetPosition(param1->unk_00, &v0);
+                Sprite_SetPosition(param1->unk_00, &v0);
             }
 
             param1++;
@@ -726,7 +726,7 @@ static void ov19_021D870C(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021DCD
             v0.x = (112 + param0->unk_585C + v1 * 24) * FX32_ONE;
 
             if (param1->unk_00 != NULL) {
-                CellActor_SetPosition(param1->unk_00, &v0);
+                Sprite_SetPosition(param1->unk_00, &v0);
             }
 
             param1++;

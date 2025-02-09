@@ -22,7 +22,7 @@
 #include "overlay107/struct_ov107_02249B8C_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "sprite.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "system.h"
@@ -364,7 +364,7 @@ int ov107_02245FD0 (OverlayManager * param0, int * param1)
     }
 
     ov107_022492A8(v0);
-    CellActorCollection_Update(v0->unk_158.unk_00);
+    SpriteList_Update(v0->unk_158.unk_00);
 
     return 0;
 }

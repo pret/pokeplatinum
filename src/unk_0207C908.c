@@ -139,9 +139,9 @@ void sub_0207CA44(SpriteManager *param0, u32 param1, u32 param2)
     SpriteManager_UnloadAnimObjById(param0, param2);
 }
 
-CellActorData *sub_0207CA58(SpriteSystem *param0, SpriteManager *param1, int param2, const SpriteTemplate *param3)
+ManagedSprite *sub_0207CA58(SpriteSystem *param0, SpriteManager *param1, int param2, const SpriteTemplate *param3)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     SpriteTemplate v1;
 
     v1 = *param3;
@@ -151,7 +151,7 @@ CellActorData *sub_0207CA58(SpriteSystem *param0, SpriteManager *param1, int par
     return v0;
 }
 
-void sub_0207CA88(CellActorData *param0)
+void sub_0207CA88(ManagedSprite *param0)
 {
     Sprite_DeleteAndFreeResources(param0);
 }
@@ -183,7 +183,7 @@ void sub_0207CAF8(SpriteManager *param0, u32 param1)
     SpriteManager_UnloadCharObjById(param0, param1);
 }
 
-void sub_0207CB00(CellActorData *param0)
+void sub_0207CB00(ManagedSprite *param0)
 {
     Sprite_DeleteAndFreeResources(param0);
 }

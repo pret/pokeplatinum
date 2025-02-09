@@ -29,7 +29,6 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "brightness_controller.h"
-#include "cell_actor.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
 #include "field_map_change.h"
@@ -44,6 +43,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -71,10 +71,10 @@ typedef struct {
 
 static void ov23_0224F460(UnkStruct_ov23_02250CD4 *param0);
 static void ov23_0224F498(UnkStruct_ov23_02250CD4 *param0);
-static void ov23_0224F4D0(CellActor *param0, u32 param1);
-static void ov23_0224F500(CellActor *param0, u16 param1, u16 param2);
+static void ov23_0224F4D0(Sprite *param0, u32 param1);
+static void ov23_0224F500(Sprite *param0, u16 param1, u16 param2);
 static void ov23_0224F52C(UnkStruct_ov23_02250CD4 *param0, u16 param1, u16 param2);
-static void ov23_0224F560(CellActor *param0);
+static void ov23_0224F560(Sprite *param0);
 static void ov23_0224F914(SysTask *param0, void *param1);
 static BOOL ov23_0224FA58(SysTask *param0, void *param1);
 static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248D20 param1);
@@ -210,7 +210,7 @@ static void ov23_0224F294(UnkStruct_ov23_02250CD4 *param0, u8 *param1, u32 param
 
         {
             VecFx32 v4 = { FX32_ONE, FX32_ONE, FX32_ONE };
-            CellActor_SetAffineScaleEx(param0->unk_23C[1 + v1]->sprite, &v4, 1);
+            Sprite_SetAffineScaleEx(param0->unk_23C[1 + v1]->sprite, &v4, 1);
         }
     }
 
@@ -235,26 +235,26 @@ static void ov23_0224F498(UnkStruct_ov23_02250CD4 *param0)
     u16 v0;
 
     for (v0 = 0; v0 < param0->unk_25C; v0++) {
-        CellActor_UpdateAnim(param0->unk_23C[v0]->sprite, FX32_ONE);
+        Sprite_UpdateAnim(param0->unk_23C[v0]->sprite, FX32_ONE);
     }
 }
 
-static void ov23_0224F4D0(CellActor *param0, u32 param1)
+static void ov23_0224F4D0(Sprite *param0, u32 param1)
 {
     VecFx32 v0;
 
-    v0 = *(CellActor_GetPosition(param0));
+    v0 = *(Sprite_GetPosition(param0));
     v0.y = (20 + 24 * param1) * FX32_ONE;
 
-    CellActor_SetPosition(param0, &v0);
+    Sprite_SetPosition(param0, &v0);
 }
 
-static void ov23_0224F500(CellActor *param0, u16 param1, u16 param2)
+static void ov23_0224F500(Sprite *param0, u16 param1, u16 param2)
 {
-    u32 v0 = CellActor_GetActiveAnim(param0);
+    u32 v0 = Sprite_GetActiveAnim(param0);
 
-    CellActor_SetAnim(param0, (v0 / 3) * 3 + param1);
-    CellActor_SetExplicitPaletteWithOffset(param0, param2);
+    Sprite_SetAnim(param0, (v0 / 3) * 3 + param1);
+    Sprite_SetExplicitPaletteWithOffset(param0, param2);
 }
 
 static void ov23_0224F52C(UnkStruct_ov23_02250CD4 *param0, u16 param1, u16 param2)
@@ -263,13 +263,13 @@ static void ov23_0224F52C(UnkStruct_ov23_02250CD4 *param0, u16 param1, u16 param
     ov23_0224F500(param0->unk_23C[1 + param2]->sprite, 1, 1);
 }
 
-static void ov23_0224F560(CellActor *param0)
+static void ov23_0224F560(Sprite *param0)
 {
-    if ((CellActor_GetActiveAnim(param0) % 3) != 1) {
+    if ((Sprite_GetActiveAnim(param0) % 3) != 1) {
         return;
     }
 
-    if (CellActor_IsAnimated(param0) == 0) {
+    if (Sprite_IsAnimated(param0) == 0) {
         ov23_0224F500(param0, 2, 1);
     }
 }
@@ -633,7 +633,7 @@ static BOOL ov23_0224FA58(SysTask *param0, void *param1)
     switch (v0->unk_2A0) {
     case 0xffffffff:
         ov23_0224F498(v0);
-        CellActorCollection_Update(v0->unk_74.unk_00);
+        SpriteList_Update(v0->unk_74.unk_00);
         return 0;
     case 0xfffffffe:
         v0->unk_2AA = 2;

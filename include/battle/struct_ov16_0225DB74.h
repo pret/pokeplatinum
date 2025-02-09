@@ -10,7 +10,7 @@
 typedef struct {
     BattleSystem *unk_00;
     BattlerData *unk_04;
-    Sprite *unk_08;
+    PokemonSprite *unk_08;
     UnkStruct_ov16_02265BBC unk_0C;
     u8 unk_64;
     u8 unk_65;

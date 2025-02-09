@@ -10,13 +10,13 @@
 #include "overlay080/struct_ov80_021D2C5C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "heap.h"
 #include "map_header_util.h"
 #include "map_matrix.h"
 #include "message.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
@@ -33,7 +33,7 @@ typedef struct {
     u16 unk_08;
     u8 unk_0A;
     u8 unk_0B;
-    CellActor *unk_0C;
+    Sprite *unk_0C;
 } UnkStruct_ov80_021D1744;
 
 typedef struct {
@@ -69,9 +69,9 @@ typedef struct {
     UnkStruct_ov80_021D2C1C *unk_9C;
     UnkStruct_ov80_021D2AF4 *unk_A0;
     UnkStruct_ov80_021D2570 unk_A4;
-    CellActor *unk_100;
-    CellActor *unk_104;
-    CellActor *unk_108;
+    Sprite *unk_100;
+    Sprite *unk_104;
+    Sprite *unk_108;
     SysTask *unk_10C;
 } UnkStruct_ov80_021D1478;
 
@@ -618,7 +618,7 @@ static void ov80_021D1C24(UnkStruct_ov80_021D2A08 *param0)
 
     if (v1->unk_13-- == 3) {
         Sprite_SetPositionXY(v1->unk_104, v1->unk_18 * 7 + (48 - 23), v1->unk_1C * 7 + (6 - 40));
-        CellActor_UpdateAnim(v1->unk_104, FX32_ONE);
+        Sprite_UpdateAnim(v1->unk_104, FX32_ONE);
 
         ov80_021D1A30(param0);
         ov80_021D1AB0(param0, &(v1->unk_28[0]), MainMapMatrixData_GetMapHeaderIDAtCoords((const MainMapMatrixData *)param0->unk_30, v1->unk_18, v1->unk_1C), v1->unk_18, v1->unk_1C);
@@ -907,15 +907,15 @@ static void ov80_021D2398(UnkStruct_ov80_021D2A08 *param0)
 
     v0->unk_100 = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[0]);
 
-    CellActor_SetDrawFlag(v0->unk_100, 0);
-    CellActor_SetAnimSpeed(v0->unk_100, FX32_ONE);
+    Sprite_SetDrawFlag(v0->unk_100, 0);
+    Sprite_SetAnimSpeed(v0->unk_100, FX32_ONE);
     Sprite_SetPositionXY(v0->unk_100, 128, 108);
 
     v0->unk_104 = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[1]);
 
-    CellActor_SetDrawFlag(v0->unk_104, 1);
-    CellActor_SetAnimSpeed(v0->unk_104, FX32_CONST(2));
-    CellActor_SetAnimateFlag(v0->unk_104, 1);
+    Sprite_SetDrawFlag(v0->unk_104, 1);
+    Sprite_SetAnimSpeed(v0->unk_104, FX32_CONST(2));
+    Sprite_SetAnimateFlag(v0->unk_104, 1);
     Sprite_SetPositionXY(v0->unk_104, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 
     if (param0->unk_2C->unk_0C == 0) {
@@ -926,8 +926,8 @@ static void ov80_021D2398(UnkStruct_ov80_021D2A08 *param0)
 
     v0->unk_108 = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_D8, param0->unk_DC, &v1);
 
-    CellActor_SetDrawFlag(v0->unk_108, 1);
-    SpriteActor_SetAnimFrame(v0->unk_108, param0->unk_2C->unk_0C);
+    Sprite_SetDrawFlag(v0->unk_108, 1);
+    Sprite_SetAnimFrame(v0->unk_108, param0->unk_2C->unk_0C);
     Sprite_SetPositionXY(v0->unk_108, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 }
 
@@ -1018,8 +1018,8 @@ static void ov80_021D259C(UnkStruct_ov80_021D2A08 *param0)
         v2->unk_0C = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_D8, param0->unk_DC, &(Unk_ov80_021D30E8));
 
         Sprite_SetPositionXY(v2->unk_0C, v2->unk_00 * 7 + 25, v2->unk_04 * 7 + -34);
-        CellActor_SetPriority(v2->unk_0C, 2);
-        CellActor_SetDrawFlag(v2->unk_0C, 0);
+        Sprite_SetPriority(v2->unk_0C, 2);
+        Sprite_SetDrawFlag(v2->unk_0C, 0);
     }
 
     if (v0->unk_A4.unk_00 == 0) {
@@ -1038,8 +1038,8 @@ static void ov80_021D26AC(SysTask *param0, void *param1)
         return;
     }
 
-    CellActor_SetDrawFlag(v0->unk_0C[v0->unk_0B].unk_0C, 0);
-    CellActor_SetDrawFlag(v0->unk_0C[v0->unk_0A].unk_0C, 1);
+    Sprite_SetDrawFlag(v0->unk_0C[v0->unk_0B].unk_0C, 0);
+    Sprite_SetDrawFlag(v0->unk_0C[v0->unk_0A].unk_0C, 1);
 
     v0->unk_0B = v0->unk_0A;
     v0->unk_0A = (v0->unk_0A + (v0->unk_00 - 1)) % v0->unk_00;
@@ -1061,7 +1061,7 @@ static void ov80_021D2700(UnkStruct_ov80_021D2A08 *param0)
 
     for (v2 = 0; v2 < v0->unk_A4.unk_00; v2++) {
         v1 = &(v0->unk_A4.unk_0C[v2]);
-        SpriteSystem_DeleteSprite(v1->unk_0C);
+        Sprite_Delete2(v1->unk_0C);
     }
 }
 
@@ -1087,9 +1087,9 @@ static void ov80_021D2774(SysTask *param0, void *param1)
 
     switch (v1->unk_04) {
     case 0:
-        CellActor_SetDrawFlag(v1->unk_100, 1);
-        CellActor_SetAnimateFlag(v1->unk_100, 1);
-        SpriteActor_SetAnimFrame(v1->unk_100, 1);
+        Sprite_SetDrawFlag(v1->unk_100, 1);
+        Sprite_SetAnimateFlag(v1->unk_100, 1);
+        Sprite_SetAnimFrame(v1->unk_100, 1);
         Sound_PlayEffect(1508);
         v1->unk_04++;
         break;
@@ -1105,8 +1105,8 @@ static void ov80_021D2774(SysTask *param0, void *param1)
 
         break;
     case 2:
-        CellActor_SetDrawFlag(v1->unk_100, 0);
-        CellActor_SetAnimateFlag(v1->unk_100, 0);
+        Sprite_SetDrawFlag(v1->unk_100, 0);
+        Sprite_SetAnimateFlag(v1->unk_100, 0);
 
         v0->unk_14 = 0;
         StartScreenTransition(4, 13, 2, 0x0, 8, 1, v0->unk_04);

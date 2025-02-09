@@ -6,7 +6,7 @@
 #include "struct_defs/struct_02007C7C.h"
 
 typedef struct UnkStruct_02007768_t {
-    Sprite unk_00[4];
+    PokemonSprite unk_00[4];
     NNSG2dImageProxy unk_2B0;
     NNSG2dImagePaletteProxy unk_2D4;
     int unk_2E8;

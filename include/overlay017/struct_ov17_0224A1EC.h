@@ -30,7 +30,7 @@ typedef struct {
     UnkStruct_02095C48_sub1 *unk_00;
     UnkStruct_ov17_0224B09C unk_04[4];
     UnkStruct_02007768 *unk_44;
-    Sprite *unk_48[4];
+    PokemonSprite *unk_48[4];
     SpriteSystem *unk_58;
     SpriteManager *unk_5C;
     BgConfig *unk_60;
@@ -41,8 +41,8 @@ typedef struct {
     PaletteData *unk_90;
     UnkStruct_02012744 *unk_94;
     UnkStruct_ov16_0223E0C8 unk_98[4];
-    CellActorData *unk_D8[68];
-    CellActorData *unk_1E8;
+    ManagedSprite *unk_D8[68];
+    ManagedSprite *unk_1E8;
     SysTask *unk_1EC;
     UnkStruct_ov17_0224C9A4 unk_1F0;
     UnkStruct_ov17_0224C384 *unk_1FC;
@@ -51,7 +51,7 @@ typedef struct {
     UnkStruct_ov17_0224AE84 unk_290[4][16];
     UnkStruct_ov17_0224B058 unk_910;
     UnkStruct_ov17_0224A8D4 unk_92C[3];
-    CellActorData *unk_960[3];
+    ManagedSprite *unk_960[3];
     UnkStruct_ov17_0223F2E4 unk_96C[3][3];
     const UnkStruct_ov17_02253084 *unk_A10;
     u8 unk_A14[4];

@@ -367,9 +367,9 @@ void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteSystem *param1, Sprite
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_00[v0] = SpriteSystem_NewSprite(param1, param2, &v1);
 
-        Sprite_SetPositionXY2(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
-        Sprite_SetAnim(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
-        Sprite_SetAffineOverwriteMode(param0->unk_00[v0], AFFINE_OVERWRITE_MODE_NORMAL);
+        ManagedSprite_SetPositionXY(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
+        ManagedSprite_SetAnim(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
+        ManagedSprite_SetAffineOverwriteMode(param0->unk_00[v0], AFFINE_OVERWRITE_MODE_NORMAL);
         Sprite_TickFrame(param0->unk_00[v0]->sprite);
     }
 
@@ -394,7 +394,7 @@ static void ov17_0223F6E8(SysTask *param0, void *param1)
     int v1;
 
     for (v1 = 0; v1 < 6; v1++) {
-        Sprite_OffsetAffineZRotation(v0->unk_00[v1], Unk_ov17_022531CC[v1].unk_04);
+        ManagedSprite_OffsetAffineZRotation(v0->unk_00[v1], Unk_ov17_022531CC[v1].unk_04);
     }
 }
 

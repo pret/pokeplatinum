@@ -44,7 +44,6 @@
 #include "overlay021/struct_ov21_021E8E0C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "flags.h"
 #include "heap.h"
@@ -57,6 +56,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -10794,7 +10794,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 14: {
-        Sprite *v13;
+        PokemonSprite *v13;
 
         v13 = ov21_021E8E00(v2->tmpPtr[0]);
         sub_02008274(v13, 0, 4);
@@ -12220,18 +12220,18 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     SpriteSystem_LoadCellResObj(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 257, TRUE, 20013);
     SpriteSystem_LoadAnimResObj(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 258, TRUE, 20013);
 
-    param1->cellActorData[0] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_0226E6C4);
+    param1->sprites[0] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_0226E6C4);
 
-    Sprite_TickOneFrame(param1->cellActorData[0]);
+    ManagedSprite_TickFrame(param1->sprites[0]);
     SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param2), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
     SpriteSystem_LoadPaletteBuffer(v3, PLTTBUF_MAIN_OBJ, v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 20017);
     SpriteSystem_LoadCellResObj(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KCellsFileIndex(), FALSE, 20014);
     SpriteSystem_LoadAnimResObj(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KAnimationFileIndex(), FALSE, 20014);
 
-    param1->cellActorData[1] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_0226E6F8);
+    param1->sprites[1] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_0226E6F8);
 
-    CellActor_SetExplicitPaletteOffsetAutoAdjust(param1->cellActorData[1]->sprite, Pokemon_IconPaletteIndex(param2));
-    Sprite_TickOneFrame(param1->cellActorData[1]);
+    Sprite_SetExplicitPaletteOffsetAutoAdjust(param1->sprites[1]->sprite, Pokemon_IconPaletteIndex(param2));
+    ManagedSprite_TickFrame(param1->sprites[1]);
 
     param1->tmpPtr[0] = sub_02012744(1, 5);
 
@@ -12286,8 +12286,8 @@ static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScript
 
     v0 = ov16_0223E018(param0);
 
-    Sprite_DeleteAndFreeResources(param1->cellActorData[0]);
-    Sprite_DeleteAndFreeResources(param1->cellActorData[1]);
+    Sprite_DeleteAndFreeResources(param1->sprites[0]);
+    Sprite_DeleteAndFreeResources(param1->sprites[1]);
     sub_02012870(param1->fontOAM);
     CharTransfer_ClearRange(&param1->charTransferAllocation);
     SpriteManager_UnloadCharObjById(v0, 20021);
