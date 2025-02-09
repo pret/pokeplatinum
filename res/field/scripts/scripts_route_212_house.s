@@ -66,14 +66,14 @@ _007E:
     GoToIfEq 0x8000, 0xFF, _0264
     ScrCmd_198 0x8000, 0x8001
     GoToIfEq 0x8001, 0, _0259
-    ScrCmd_2E5 0x8000, 0, 0x800C
+    HasLearnableTutorMoves 0x8000, 0, 0x800C
     GoToIfEq 0x800C, 0, _026F
     BufferPartyMonNickname 0, 0x8000
     Message 5
-    ScrCmd_2E6 0x8000, 0, 0x800C
+    ShowMoveTutorMoveSelectionMenu 0x8000, 0, 0x800C
     SetVar 0x8003, 0x800C
     GoToIfEq 0x8003, -2, _0264
-    ScrCmd_2EA 0x8003, 0x800C
+    CanAffordMove 0x8003, 0x800C
     GoToIfEq 0x800C, 0, _027A
     ScrCmd_1C8 0x800C, 0x8000
     SetVar 0x8002, 0x800C
@@ -145,8 +145,8 @@ _0224:
     End
 
 _0245:
-    ScrCmd_2EB 0x8003
-    ScrCmd_2E9 0x8000, 0x8002, 0x8003
+    PayShardsCost 0x8003
+    ResetMoveSlot 0x8000, 0x8002, 0x8003
     GoTo _0264
     End
 

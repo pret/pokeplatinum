@@ -1689,12 +1689,12 @@ _165E:
 
 _1672:
     Message 129
-    ScrCmd_2E6 0xFF, 0x8004, 0x800C
+    ShowMoveTutorMoveSelectionMenu 0xFF, 0x8004, 0x800C
     SetVar 0x8003, 0x800C
     GoToIfEq 0x8003, -2, _16A4
-    ScrCmd_2EC 21, 1, 0x8003, 0x800C
+    ShowShardsCost 21, 1, 0x8003, 0x800C
     WaitABPress
-    ScrCmd_2ED
+    CloseShardsCostWindow
     GoTo _16A4
     End
 

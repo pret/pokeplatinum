@@ -277,7 +277,7 @@
     .short 48
     .endm
 
-    // This also sets the player's direction appropriately when a pad 
+    // This also sets the player's direction appropriately when a pad
     // button is pressed, unlike the WaitABPadPress command.
     .macro WaitABXPadPress
     .short 49
@@ -671,7 +671,7 @@
     .short \arg0
     .endm
 
-    // If the player has no space left in the bag, resultVar will be set to FALSE 
+    // If the player has no space left in the bag, resultVar will be set to FALSE
     .macro AddItem item, count, resultVar
     .short 123
     .short \item
@@ -2195,7 +2195,7 @@
     .short \destVarID
     .endm
 
-    // Counts alive mons in the party and stores the result in the destVar, 
+    // Counts alive mons in the party and stores the result in the destVar,
     // but excludes the one at the party slot provided.
     .macro CountAliveMonsExcept destVarID, partySlot
     .short 411
@@ -4024,18 +4024,19 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_2E5 arg0, arg1, arg2
+    // resultVar will be set to TRUE if the pokemon has at least one move it can learn at the given location and doesn't know yet
+    .macro HasLearnableTutorMoves partySlot, location, resultVar
     .short 741
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \partySlot
+    .short \location
+    .short \resultVar
     .endm
 
-    .macro ScrCmd_2E6 arg0, arg1, arg2
+    .macro ShowMoveTutorMoveSelectionMenu partySlot, location, outSelectedOption
     .short 742
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \partySlot
+    .short \location
+    .short \outSelectedOption
     .endm
 
     .macro ScrCmd_2E7 arg0, arg1
@@ -4049,33 +4050,34 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2E9 arg0, arg1, arg2
+    .macro ResetMoveSlot partySlot, moveID, moveSlot
     .short 745
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \partySlot
+    .short \moveID
+    .short \moveSlot
     .endm
 
-    .macro ScrCmd_2EA arg0, arg1
+    // resultVar will be set to TRUE if the move is available at a shards move tutor and the player can afford it
+    .macro CanAffordMove moveID, resultVar
     .short 746
-    .short \arg0
-    .short \arg1
+    .short \moveID
+    .short \resultVar
     .endm
 
-    .macro ScrCmd_2EB arg0
+    .macro PayShardsCost moveID
     .short 747
-    .short \arg0
+    .short \moveID
     .endm
 
-    .macro ScrCmd_2EC arg0, arg1, arg2, arg3
+    .macro ShowShardsCost arg0, arg1, selectedMove, outSelectedOption
     .short 748
     .byte \arg0
     .byte \arg1
-    .short \arg2
-    .short \arg3
+    .short \selectedMove
+    .short \outSelectedOption
     .endm
 
-    .macro ScrCmd_2ED
+    .macro CloseShardsCostWindow
     .short 749
     .endm
 
