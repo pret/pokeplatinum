@@ -1,7 +1,11 @@
 #include "sprite_system.h"
 
-#include <nitro.h>
+#include "nitro/fx/fx.h"
 #include <string.h>
+
+#include "constants/heap.h"
+
+#include "nnsys/g2d/g2d_Image.h"
 
 #include "cell_actor.h"
 #include "cell_transfer.h"
@@ -16,126 +20,111 @@
 #include "sprite_util.h"
 #include "system.h"
 
-static CellActor *CreateSpriteFromResourceHeader(SpriteSystem *param0, SpriteManager *param1, int param2, s16 param3, s16 param4, s16 param5, u16 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13);
-static BOOL LoadCellResObjInternal(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, int param4, int param5, int param6);
-static BOOL LoadCellResObjFromNarcInternal(SpriteSystem *param0, SpriteManager *param1, NARC *param2, int param3, int param4, int param5, int param6);
-static BOOL RegisterLoadedResource(SpriteResourceList *param0, SpriteResource *param1);
-static BOOL UnregisterLoadedCharResource(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2);
-static BOOL UnregisterLoadedPlttResource(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2);
-static BOOL UnregisterLoadedResource(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2);
-static void SetSpriteAnimateFlag(CellActor *param0, int param1);
-static void SetSpriteAnimationSpeed(CellActor *param0, fx32 param1);
-static BOOL IsSpriteAnimated(CellActor *param0);
-static void SetSpriteAnimationFrame(CellActor *param0, u16 param1);
-static u16 GetSpriteAnimationFrame(CellActor *param0);
-static void SetSpriteExplicitPaletteOffset(CellActor *param0, int param1);
-static void SetSpriteExplicitPriority(CellActor *param0, int param1);
-static void SetSpritePriority(CellActor *param0, int param1);
-static u32 GetSpritePriority(CellActor *param0);
-static void SetSpriteAffineOverwriteMode(CellActor *param0, int param1);
-static void SetSpriteAffineScale(CellActor *param0, f32 param1, f32 param2);
-static void OffsetSpriteAffineScale(CellActor *param0, f32 param1, f32 param2);
-static void GetSpriteAffineScale(CellActor *param0, f32 *param1, f32 *param2);
-static void SetSpriteAffineZRotation(CellActor *param0, u16 param1);
-static void OffsetSpriteAffineZRotation(CellActor *param0, s32 param1);
+static CellActor *CreateSpriteFromResourceHeader(SpriteSystem *spriteSys, SpriteManager *spriteMan, int resourceHeaderID, s16 x, s16 y, s16 z, u16 animIdx, int priority, int plttIdx, enum NNS_G2D_VRAM_TYPE vramType, int param10, int param11, int param12, int param13);
+static BOOL LoadResObjInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, int compressed, int type, int resourceID);
+static BOOL LoadResObjFromNarcInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, int type, int resourceID);
+static BOOL RegisterLoadedResource(SpriteResourceList *resourceList, SpriteResource *resource);
+static BOOL UnregisterLoadedResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload);
+static BOOL UnregisterLoadedCharResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload);
+static BOOL UnregisterLoadedPlttResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload);
+static void SetSpriteAnimateFlag(CellActor *sprite, BOOL animate);
+static void SetSpriteAnimationSpeed(CellActor *sprite, fx32 speed);
+static BOOL IsSpriteAnimated(CellActor *sprite);
+static void SetSpriteAnimationFrame(CellActor *sprite, u16 frame);
+static u16 GetSpriteAnimationFrame(CellActor *sprite);
+static void SetSpriteExplicitPaletteOffset(CellActor *sprite, int paletteOffset);
+static void SetSpriteExplicitPriority(CellActor *sprite, int priority);
+static void SetSpritePriority(CellActor *sprite, int priority);
+static u32 GetSpritePriority(CellActor *sprite);
+static void SetSpriteAffineOverwriteMode(CellActor *sprite, enum AffineOverwriteMode mode);
+static void SetSpriteAffineScale(CellActor *sprite, f32 xScale, f32 yScale);
+static void OffsetSpriteAffineScale(CellActor *sprite, f32 xOffset, f32 yOffset);
+static void GetSpriteAffineScale(CellActor *sprite, f32 *outXScale, f32 *outYOffset);
+static void SetSpriteAffineZRotation(CellActor *sprite, u16 angle);
+static void OffsetSpriteAffineZRotation(CellActor *sprite, s32 offset);
 
-SpriteSystem *SpriteSystem_Alloc(int param0)
+SpriteSystem *SpriteSystem_Alloc(enum HeapId heapID)
 {
-    SpriteSystem *v0 = NULL;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(SpriteSystem));
-
-    if (v0 == NULL) {
+    SpriteSystem *spriteSys = Heap_AllocFromHeap(heapID, sizeof(SpriteSystem));
+    if (spriteSys == NULL) {
         return NULL;
     }
 
-    v0->heapId = param0;
-    v0->spriteManagerCount = 0;
-    v0->inUse = TRUE;
+    spriteSys->heapId = heapID;
+    spriteSys->spriteManagerCount = 0;
+    spriteSys->inUse = TRUE;
 
-    return v0;
+    return spriteSys;
 }
 
-SpriteManager *SpriteManager_New(SpriteSystem *param0)
+SpriteManager *SpriteManager_New(SpriteSystem *spriteSys)
 {
-    int v0;
-    SpriteManager *v1 = NULL;
+    GF_ASSERT(spriteSys != NULL);
 
-    GF_ASSERT(param0 != NULL);
-
-    v1 = Heap_AllocFromHeap(param0->heapId, sizeof(SpriteManager));
-
-    if (v1 == NULL) {
+    SpriteManager *spriteMan = Heap_AllocFromHeap(spriteSys->heapId, sizeof(SpriteManager));
+    if (spriteMan == NULL) {
         return NULL;
     }
 
-    param0->spriteManagerCount++;
-
-    for (v0 = 0; v0 < 6; v0++) {
-        v1->ownedResources[v0] = NULL;
+    spriteSys->spriteManagerCount++;
+    for (int i = 0; i < 6; i++) {
+        spriteMan->ownedResources[i] = NULL;
     }
 
-    return v1;
+    return spriteMan;
 }
 
-G2dRenderer *SpriteSystem_GetRenderer(SpriteSystem *param0)
+G2dRenderer *SpriteSystem_GetRenderer(SpriteSystem *spriteSys)
 {
-    return &param0->renderer;
+    return &spriteSys->renderer;
 }
 
-BOOL SpriteSystem_Init(SpriteSystem *param0, const RenderOamTemplate *param1, const CharTransferTemplateWithModes *param2, int param3)
+BOOL SpriteSystem_Init(SpriteSystem *spriteSys, const RenderOamTemplate *oamTemplate, const CharTransferTemplateWithModes *transferTemplate, int plttCapacity)
 {
-    GF_ASSERT(param0 != NULL);
-
-    if (param0 == NULL) {
-        return 0;
+    GF_ASSERT(spriteSys != NULL);
+    if (spriteSys == NULL) {
+        return FALSE;
     }
 
-    {
-        CharTransferTemplate v0;
-
-        v0.maxTasks = param2->maxTasks;
-        v0.sizeMain = param2->sizeMain;
-        v0.sizeSub = param2->sizeSub;
-        v0.heapID = param0->heapId;
-
-        CharTransfer_InitWithVramModes(&v0, param2->modeMain, param2->modeSub);
-    }
-
-    PlttTransfer_Init(param3, param0->heapId);
+    CharTransferTemplate charTransferTemplate;
+    charTransferTemplate.maxTasks = transferTemplate->maxTasks;
+    charTransferTemplate.sizeMain = transferTemplate->sizeMain;
+    charTransferTemplate.sizeSub = transferTemplate->sizeSub;
+    charTransferTemplate.heapID = spriteSys->heapId;
+    CharTransfer_InitWithVramModes(&charTransferTemplate, transferTemplate->modeMain, transferTemplate->modeSub);
+    PlttTransfer_Init(plttCapacity, spriteSys->heapId);
     NNS_G2dInitOamManagerModule();
 
-    if (param0->inUse == TRUE) {
-        RenderOam_Init(param1->mainOamStart, param1->mainOamCount, param1->mainAffineOamStart, param1->mainAffineOamCount, param1->subOamStart, param1->subOamCount, param1->subAffineOamStart, param1->subAffineOamCount, param0->heapId);
+    if (spriteSys->inUse == TRUE) {
+        RenderOam_Init(oamTemplate->mainOamStart, oamTemplate->mainOamCount, oamTemplate->mainAffineOamStart, oamTemplate->mainAffineOamCount, oamTemplate->subOamStart, oamTemplate->subOamCount, oamTemplate->subAffineOamStart, oamTemplate->subAffineOamCount, spriteSys->heapId);
     }
 
-    param0->cellTransferStates = CellTransfer_New(32, param0->heapId);
-
+    spriteSys->cellTransferStates = CellTransfer_New(32, spriteSys->heapId);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 
-    return 1;
+    return TRUE;
 }
 
-BOOL SpriteSystem_InitSprites(SpriteSystem *param0, SpriteManager *param1, int param2)
+BOOL SpriteSystem_InitSprites(SpriteSystem *spriteSys, SpriteManager *spriteMan, int maxSprites)
 {
-    if ((param0 == NULL) || (param1 == NULL)) {
-        return 0;
+    if (spriteSys == NULL || spriteMan == NULL) {
+        return FALSE;
     }
 
-    param1->sprites = SpriteList_InitRendering(param2, &param0->renderer, param0->heapId);
-    return 1;
+    spriteMan->sprites = SpriteList_InitRendering(maxSprites, &spriteSys->renderer, spriteSys->heapId);
+    return TRUE;
 }
 
-void SpriteSystem_DeleteSprite(CellActor *param0)
+void SpriteSystem_DeleteSprite(CellActor *sprite)
 {
-    CellActor_Delete(param0);
+    CellActor_Delete(sprite);
 }
 
-void SpriteSystem_DrawSprites(SpriteManager *param0)
+void SpriteSystem_DrawSprites(SpriteManager *spriteMan)
 {
-    GF_ASSERT(param0 != NULL);
-    CellActorCollection_Update(param0->sprites);
+    GF_ASSERT(spriteMan != NULL);
+    CellActorCollection_Update(spriteMan->sprites);
 }
 
 void SpriteSystem_TransferOam(void)
@@ -148,1178 +137,1113 @@ void SpriteSystem_UpdateTransfer(void)
     CellTransfer_Update();
 }
 
-void SpriteManager_DeleteAllSprites(SpriteManager *param0)
+void SpriteManager_DeleteAllSprites(SpriteManager *spriteMan)
 {
-    CellActorCollection_Delete(param0->sprites);
+    CellActorCollection_Delete(spriteMan->sprites);
 }
 
-void SpriteManager_FreeResourceHeaders(SpriteManager *param0)
+void SpriteManager_FreeResourceHeaders(SpriteManager *spriteMan)
 {
-    if (param0->resourceHeaders == NULL) {
+    if (spriteMan->resourceHeaders == NULL) {
         return;
     }
 
-    SpriteResourcesHeaderList_Free(param0->resourceHeaders);
+    SpriteResourcesHeaderList_Free(spriteMan->resourceHeaders);
 }
 
-void SpriteManager_FreeResources(SpriteManager *param0)
+void SpriteManager_FreeResources(SpriteManager *spriteMan)
 {
-    int v0;
-    SpriteResourceTable *v1;
-
-    for (v0 = 0; v0 < param0->numResourceTypes; v0++) {
-        v1 = SpriteResourceTable_GetArrayElement(param0->resourcePaths, v0);
-        SpriteResourceTable_Clear(v1);
+    for (int i = 0; i < spriteMan->numResourceTypes; i++) {
+        SpriteResourceTable *resTable = SpriteResourceTable_GetArrayElement(spriteMan->resourcePaths, i);
+        SpriteResourceTable_Clear(resTable);
     }
 
-    Heap_FreeToHeap(param0->resourcePaths);
-    SpriteTransfer_ResetCharTransferList(param0->unownedResources[0]);
-    SpriteTransfer_ResetPlttTransferList(param0->unownedResources[1]);
+    Heap_FreeToHeap(spriteMan->resourcePaths);
+    SpriteTransfer_ResetCharTransferList(spriteMan->unownedResources[SPRITE_RESOURCE_TILES]);
+    SpriteTransfer_ResetPlttTransferList(spriteMan->unownedResources[SPRITE_RESOURCE_PALETTE]);
 
-    for (v0 = 0; v0 < param0->numResourceTypes; v0++) {
-        SpriteResourceList_Delete(param0->unownedResources[v0]);
-        SpriteResourceCollection_Delete(param0->ownedResources[v0]);
+    for (int i = 0; i < spriteMan->numResourceTypes; i++) {
+        SpriteResourceList_Delete(spriteMan->unownedResources[i]);
+        SpriteResourceCollection_Delete(spriteMan->ownedResources[i]);
     }
 }
 
-void SpriteSystem_FreeVramTransfers(SpriteSystem *param0)
+void SpriteSystem_FreeVramTransfers(SpriteSystem *spriteSys)
 {
-    CellTransfer_Free(param0->cellTransferStates);
+    CellTransfer_Free(spriteSys->cellTransferStates);
     CharTransfer_Free();
-
     PlttTransfer_Free();
 
-    if (param0->inUse == TRUE) {
+    if (spriteSys->inUse == TRUE) {
         RenderOam_Free();
     }
 }
 
-void SpriteSystem_FreeSpriteManager(SpriteSystem *param0, SpriteManager *param1)
+void SpriteSystem_FreeSpriteManager(SpriteSystem *spriteSys, SpriteManager *spriteMan)
 {
-    param0->spriteManagerCount--;
-    Heap_FreeToHeap(param1);
+    spriteSys->spriteManagerCount--;
+    Heap_FreeToHeap(spriteMan);
 }
 
-void SpriteSystem_DestroySpriteManager(SpriteSystem *param0, SpriteManager *param1)
+void SpriteSystem_DestroySpriteManager(SpriteSystem *spriteSys, SpriteManager *spriteMan)
 {
-    SpriteManager_DeleteAllSprites(param1);
-    SpriteManager_FreeResourceHeaders(param1);
-    SpriteManager_FreeResources(param1);
-    SpriteSystem_FreeSpriteManager(param0, param1);
+    SpriteManager_DeleteAllSprites(spriteMan);
+    SpriteManager_FreeResourceHeaders(spriteMan);
+    SpriteManager_FreeResources(spriteMan);
+    SpriteSystem_FreeSpriteManager(spriteSys, spriteMan);
 }
 
-void SpriteSystem_Free(SpriteSystem *param0)
+void SpriteSystem_Free(SpriteSystem *spriteSys)
 {
-    GF_ASSERT(param0->spriteManagerCount == 0);
-
-    SpriteSystem_FreeVramTransfers(param0);
-    Heap_FreeToHeap(param0);
+    GF_ASSERT(spriteSys->spriteManagerCount == 0);
+    SpriteSystem_FreeVramTransfers(spriteSys);
+    Heap_FreeToHeap(spriteSys);
 }
 
-BOOL SpriteSystem_LoadResourceDataFromFilepaths(SpriteSystem *param0, SpriteManager *param1, const SpriteResourceDataPaths *param2)
+BOOL SpriteSystem_LoadResourceDataFromFilepaths(SpriteSystem *spriteSys, SpriteManager *spriteMan, const SpriteResourceDataPaths *paths)
 {
-    int v0;
-    int v1 = 6;
-    int v2;
-    SpriteResourceTable *v3;
-    void *v4;
+    int numResourceTypes = SPRITE_RESOURCE_MAX;
 
-    if ((param0 == NULL) || (param1 == NULL)) {
-        return 0;
+    if (spriteSys == NULL || spriteMan == NULL) {
+        return FALSE;
     }
 
-    if (param2->asStruct.mcellResources == NULL) {
-        v1 = 6 - 2;
+    if (paths->asStruct.mcellResources == NULL) {
+        numResourceTypes = SPRITE_RESOURCE_MAX - 2;
     }
 
-    param1->numResourceTypes = v1;
-    v2 = SpriteResourceTable_Size();
-    param1->resourcePaths = Heap_AllocFromHeap(param0->heapId, v2 * v1);
+    spriteMan->numResourceTypes = numResourceTypes;
+    int resourceCount = SpriteResourceTable_Size();
+    spriteMan->resourcePaths = Heap_AllocFromHeap(spriteSys->heapId, resourceCount * numResourceTypes);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v3 = SpriteResourceTable_GetArrayElement(param1->resourcePaths, v0);
-        v4 = ReadFileToHeap(param0->heapId, param2->asArray[v0]);
-
-        SpriteResourceTable_LoadFromBinary(v4, v3, param0->heapId);
-        Heap_FreeToHeap(v4);
+    for (int i = 0; i < numResourceTypes; i++) {
+        SpriteResourceTable *resourceTable = SpriteResourceTable_GetArrayElement(spriteMan->resourcePaths, i);
+        void *buf = ReadFileToHeap(spriteSys->heapId, paths->asArray[i]);
+        SpriteResourceTable_LoadFromBinary(buf, resourceTable, spriteSys->heapId);
+        Heap_FreeToHeap(buf);
     }
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v3 = SpriteResourceTable_GetArrayElement(param1->resourcePaths, v0);
-        v2 = SpriteResourceTable_GetCount(v3);
-
-        param1->ownedResources[v0] = SpriteResourceCollection_New(v2, v0, param0->heapId);
+    for (int i = 0; i < numResourceTypes; i++) {
+        SpriteResourceTable *resourceTable = SpriteResourceTable_GetArrayElement(spriteMan->resourcePaths, i);
+        resourceCount = SpriteResourceTable_GetCount(resourceTable);
+        spriteMan->ownedResources[i] = SpriteResourceCollection_New(resourceCount, i, spriteSys->heapId);
     }
 
-    for (v0 = 0; v0 < v1; v0++) {
-        v3 = SpriteResourceTable_GetArrayElement(param1->resourcePaths, v0);
-        v2 = SpriteResourceTable_GetCount(v3);
-
-        param1->unownedResources[v0] = SpriteResourceList_New(v2, param0->heapId);
-        param1->loadedResourceCount[v0] = SpriteResourceCollection_Extend(param1->ownedResources[v0], v3, param1->unownedResources[v0], param0->heapId);
+    for (int i = 0; i < numResourceTypes; i++) {
+        SpriteResourceTable *resourceTable = SpriteResourceTable_GetArrayElement(spriteMan->resourcePaths, i);
+        resourceCount = SpriteResourceTable_GetCount(resourceTable);
+        spriteMan->unownedResources[i] = SpriteResourceList_New(resourceCount, spriteSys->heapId);
+        spriteMan->loadedResourceCount[i] = SpriteResourceCollection_Extend(spriteMan->ownedResources[i], resourceTable, spriteMan->unownedResources[i], spriteSys->heapId);
     }
 
-    SpriteTransfer_RequestCharList(param1->unownedResources[0]);
-    SpriteTransfer_RequestPlttWholeRangeList(param1->unownedResources[1]);
+    SpriteTransfer_RequestCharList(spriteMan->unownedResources[SPRITE_RESOURCE_TILES]);
+    SpriteTransfer_RequestPlttWholeRangeList(spriteMan->unownedResources[SPRITE_RESOURCE_PALETTE]);
 
-    v4 = ReadFileToHeap(param0->heapId, param2->asStruct.spriteTable);
-    param1->resourceHeaders = SpriteResourcesHeaderList_NewFromResdat(v4, param0->heapId, param1->ownedResources[0], param1->ownedResources[1], param1->ownedResources[2], param1->ownedResources[3], param1->ownedResources[4], param1->ownedResources[5]);
+    void *buf = ReadFileToHeap(spriteSys->heapId, paths->asStruct.spriteTable);
+    spriteMan->resourceHeaders = SpriteResourcesHeaderList_NewFromResdat(buf,
+        spriteSys->heapId,
+        spriteMan->ownedResources[SPRITE_RESOURCE_TILES],
+        spriteMan->ownedResources[SPRITE_RESOURCE_PALETTE],
+        spriteMan->ownedResources[SPRITE_RESOURCE_SPRITE],
+        spriteMan->ownedResources[SPRITE_RESOURCE_SPRITE_ANIM],
+        spriteMan->ownedResources[SPRITE_RESOURCE_MULTI_SPRITE],
+        spriteMan->ownedResources[SPRITE_RESOURCE_MULTI_SPRITE_ANIM]);
 
-    Heap_FreeToHeap(v4);
-    return 1;
+    Heap_FreeToHeap(buf);
+    return TRUE;
 }
 
-CellActor *SpriteSystem_NewSpriteFromResourceHeader(SpriteSystem *param0, SpriteManager *param1, const SpriteTemplateFromResourceHeader *param2)
+CellActor *SpriteSystem_NewSpriteFromResourceHeader(SpriteSystem *spriteSys, SpriteManager *spriteMan, const SpriteTemplateFromResourceHeader *template)
 {
-    CellActor *v0 = NULL;
-
-    v0 = CreateSpriteFromResourceHeader(param0, param1, param2->resourceHeaderID, param2->x, param2->y, param2->x, param2->animIdx, param2->priority, param2->plttIdx, param2->vramType, param2->dummy18, param2->dummy1C, param2->dummy20, param2->dummy24);
-    return v0;
+    return CreateSpriteFromResourceHeader(spriteSys,
+        spriteMan,
+        template->resourceHeaderID,
+        template->x,
+        template->y,
+        template->x,
+        template->animIdx,
+        template->priority,
+        template->plttIdx,
+        template->vramType,
+        template->dummy18,
+        template->dummy1C,
+        template->dummy20,
+        template->dummy24);
 }
 
-static CellActor *CreateSpriteFromResourceHeader(SpriteSystem *param0, SpriteManager *param1, int param2, s16 param3, s16 param4, s16 param5, u16 param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13)
+static CellActor *CreateSpriteFromResourceHeader(SpriteSystem *spriteSys, SpriteManager *spriteMan, int resourceHeaderID, s16 x, s16 y, s16 z, u16 animIdx, int priority, int plttIdx, enum NNS_G2D_VRAM_TYPE vramType, int param10, int param11, int param12, int param13)
 {
-    CellActor *v0 = NULL;
-    CellActorInitParamsEx v1;
+    CellActorInitParamsEx template;
 
-    v1.collection = param1->sprites;
-    v1.resourceData = &param1->resourceHeaders->headers[param2];
-    v1.position.x = FX32_CONST(param3);
-    v1.position.y = FX32_CONST(param4);
-    v1.position.z = FX32_CONST(param5);
+    template.collection = spriteMan->sprites;
+    template.resourceData = &spriteMan->resourceHeaders->headers[resourceHeaderID];
+    template.position.x = FX32_CONST(x);
+    template.position.y = FX32_CONST(y);
+    template.position.z = FX32_CONST(z);
 
-    if (param9 == NNS_G2D_VRAM_TYPE_2DSUB) {
-        v1.position.y += (192 << FX32_SHIFT);
+    if (vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
+        template.position.y += (192 << FX32_SHIFT);
     }
 
-    v1.affineScale.x = FX32_ONE;
-    v1.affineScale.y = FX32_ONE;
-    v1.affineScale.z = FX32_ONE;
-    v1.affineZRotation = 0;
-    v1.priority = param7;
-    v1.vramType = param9;
-    v1.heapID = param0->heapId;
+    template.affineScale.x = FX32_ONE;
+    template.affineScale.y = FX32_ONE;
+    template.affineScale.z = FX32_ONE;
+    template.affineZRotation = 0;
+    template.priority = priority;
+    template.vramType = vramType;
+    template.heapID = spriteSys->heapId;
 
-    v0 = CellActorCollection_AddEx(&v1);
-
-    if (v0 != NULL) {
-        CellActor_SetAnim(v0, param6);
-        CellActor_SetExplicitPalette(v0, param8);
+    CellActor *sprite = CellActorCollection_AddEx(&template);
+    if (sprite != NULL) {
+        CellActor_SetAnim(sprite, animIdx);
+        CellActor_SetExplicitPalette(sprite, plttIdx);
     }
 
-    return v0;
+    return sprite;
 }
 
-BOOL SpriteSystem_InitManagerWithCapacities(SpriteSystem *param0, SpriteManager *param1, const SpriteResourceCapacities *param2)
+BOOL SpriteSystem_InitManagerWithCapacities(SpriteSystem *spriteSys, SpriteManager *spriteMan, const SpriteResourceCapacities *capacities)
 {
-    int v0;
-    int v1;
-    int v2 = 6;
-    int v3;
-    SpriteResourceTable *v4;
+    int i, j; // must pre-declare to match
+    int numResourceTypes = SPRITE_RESOURCE_MAX;
 
-    if ((param0 == NULL) || (param1 == NULL)) {
-        return 0;
+    if (spriteSys == NULL || spriteMan == NULL) {
+        return FALSE;
     }
 
-    if ((param2->asStruct.mcellCapacity == 0) || (param2->asStruct.manimCapacity == 0)) {
-        v2 = 6 - 2;
+    if (capacities->asStruct.mcellCapacity == 0 || capacities->asStruct.manimCapacity == 0) {
+        numResourceTypes = SPRITE_RESOURCE_MAX - 2;
     }
 
-    param1->numResourceTypes = v2;
-
-    for (v0 = 0; v0 < v2; v0++) {
-        param1->ownedResources[v0] = SpriteResourceCollection_New(param2->asArray[v0], v0, param0->heapId);
+    spriteMan->numResourceTypes = numResourceTypes;
+    for (i = 0; i < numResourceTypes; i++) {
+        spriteMan->ownedResources[i] = SpriteResourceCollection_New(capacities->asArray[i], i, spriteSys->heapId);
     }
 
-    for (v0 = 0; v0 < v2; v0++) {
-        v3 = param2->asArray[v0];
-
-        if (v3 == 0) {
+    for (i = 0; i < numResourceTypes; i++) {
+        int capacity = capacities->asArray[i];
+        if (capacity == 0) {
             continue;
         }
 
-        param1->unownedResources[v0] = SpriteResourceList_New(v3, param0->heapId);
-        param1->loadedResourceCount[v0] = 0;
+        spriteMan->unownedResources[i] = SpriteResourceList_New(capacity, spriteSys->heapId);
+        spriteMan->loadedResourceCount[i] = 0;
 
-        for (v1 = 0; v1 < param1->unownedResources[v0]->capacity; v1++) {
-            param1->unownedResources[v0]->resources[v1] = NULL;
+        for (j = 0; j < spriteMan->unownedResources[i]->capacity; j++) {
+            spriteMan->unownedResources[i]->resources[j] = NULL;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-BOOL SpriteSystem_LoadCharResObj(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, BOOL param4, int param5, int param6)
+BOOL SpriteSystem_LoadCharResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
-    SpriteResource *v0;
-
-    if (SpriteResourceCollection_IsIDUnused(param1->ownedResources[0], param6) == 0) {
-        return 0;
+    if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_TILES], resourceID) == FALSE) {
+        return FALSE;
     }
 
-    v0 = SpriteResourceCollection_AddTiles(param1->ownedResources[0], param2, param3, param4, param6, param5, param0->heapId);
-
-    if (v0 != NULL) {
-        SpriteTransfer_RequestCharAtEnd(v0);
-        RegisterLoadedResource(param1->unownedResources[0], v0);
-
-        return 1;
+    SpriteResource *resource = SpriteResourceCollection_AddTiles(spriteMan->ownedResources[SPRITE_RESOURCE_TILES],
+        narcID,
+        memberIdx,
+        compressed,
+        resourceID,
+        vramType,
+        spriteSys->heapId);
+    if (resource != NULL) {
+        SpriteTransfer_RequestCharAtEnd(resource);
+        RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_TILES], resource);
+        return TRUE;
     }
 
-    GF_ASSERT(0);
-
-    return (v0 == NULL) ? 0 : 1;
+    GF_ASSERT(FALSE);
+    return (resource == NULL) ? FALSE : TRUE;
 }
 
-BOOL SpriteSystem_LoadCharResObjFromOpenNarc(SpriteSystem *param0, SpriteManager *param1, NARC *param2, int param3, BOOL param4, int param5, int param6)
+BOOL SpriteSystem_LoadCharResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
-    SpriteResource *v0;
-
-    if (SpriteResourceCollection_IsIDUnused(param1->ownedResources[0], param6) == 0) {
-        return 0;
+    if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_TILES], resourceID) == FALSE) {
+        return FALSE;
     }
 
-    v0 = SpriteResourceCollection_AddTilesFrom(param1->ownedResources[0], param2, param3, param4, param6, param5, param0->heapId);
-
-    if (v0 != NULL) {
-        SpriteTransfer_RequestCharAtEnd(v0);
-        RegisterLoadedResource(param1->unownedResources[0], v0);
-        return 1;
+    SpriteResource *resource = SpriteResourceCollection_AddTilesFrom(spriteMan->ownedResources[SPRITE_RESOURCE_TILES],
+        narc,
+        memberIdx,
+        compressed,
+        resourceID,
+        vramType,
+        spriteSys->heapId);
+    if (resource != NULL) {
+        SpriteTransfer_RequestCharAtEnd(resource);
+        RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_TILES], resource);
+        return TRUE;
     }
 
-    GF_ASSERT(0);
-
-    return (v0 == NULL) ? 0 : 1;
+    GF_ASSERT(FALSE);
+    return (resource == NULL) ? FALSE : TRUE;
 }
 
-s8 SpriteSystem_LoadPlttResObj(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, int param4, int param5, int param6, int param7)
+s8 SpriteSystem_LoadPlttResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
-    SpriteResource *v0;
-    int v1;
-
-    if (SpriteResourceCollection_IsIDUnused(param1->ownedResources[1], param7) == 0) {
+    if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_PALETTE], resourceID) == FALSE) {
         return -1;
     }
 
-    v0 = SpriteResourceCollection_AddPalette(param1->ownedResources[1], param2, param3, param4, param7, param6, param5, param0->heapId);
-
-    if (v0 != NULL) {
-        v1 = SpriteTransfer_RequestPlttFreeSpace(v0);
-        GF_ASSERT(v1 == 1);
-
-        RegisterLoadedResource(param1->unownedResources[1], v0);
-        return SpriteTransfer_GetPlttOffset(v0, param6);
+    SpriteResource *resource = SpriteResourceCollection_AddPalette(spriteMan->ownedResources[SPRITE_RESOURCE_PALETTE],
+        narcID,
+        memberIdx,
+        compressed,
+        resourceID,
+        vramType,
+        paletteIdx,
+        spriteSys->heapId);
+    if (resource != NULL) {
+        BOOL success = SpriteTransfer_RequestPlttFreeSpace(resource);
+        GF_ASSERT(success == TRUE);
+        RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_PALETTE], resource);
+        return SpriteTransfer_GetPlttOffset(resource, vramType);
     }
 
-    GF_ASSERT(0);
-
+    GF_ASSERT(FALSE);
     return -1;
 }
 
-s8 SpriteSystem_LoadPlttResObjFromOpenNarc(SpriteSystem *param0, SpriteManager *param1, NARC *param2, int param3, int param4, int param5, int param6, int param7)
+s8 SpriteSystem_LoadPlttResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
-    SpriteResource *v0;
-    int v1;
-
-    if (SpriteResourceCollection_IsIDUnused(param1->ownedResources[1], param7) == 0) {
+    if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_PALETTE], resourceID) == FALSE) {
         return -1;
     }
 
-    v0 = SpriteResourceCollection_AddPaletteFrom(param1->ownedResources[1], param2, param3, param4, param7, param6, param5, param0->heapId);
+    SpriteResource *resource = SpriteResourceCollection_AddPaletteFrom(spriteMan->ownedResources[SPRITE_RESOURCE_PALETTE],
+        narc,
+        memberIdx,
+        compressed,
+        resourceID,
+        vramType,
+        paletteIdx,
+        spriteSys->heapId);
+    if (resource != NULL) {
+        BOOL success = SpriteTransfer_RequestPlttFreeSpace(resource);
+        GF_ASSERT(success == TRUE);
+        RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_PALETTE], resource);
 
-    if (v0 != NULL) {
-        v1 = SpriteTransfer_RequestPlttFreeSpace(v0);
-        GF_ASSERT(v1 == 1);
-        RegisterLoadedResource(param1->unownedResources[1], v0);
-
-        return SpriteTransfer_GetPlttOffset(v0, param6);
+        return SpriteTransfer_GetPlttOffset(resource, vramType);
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return -1;
 }
 
-u8 SpriteSystem_LoadPaletteBuffer(PaletteData *param0, int param1, SpriteSystem *param2, SpriteManager *param3, int param4, int param5, int param6, int param7, int param8, int param9)
+u8 SpriteSystem_LoadPaletteBuffer(PaletteData *paletteData, enum PaletteBufferID bufferID, SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
-    int v0;
-
-    v0 = SpriteSystem_LoadPlttResObj(param2, param3, param4, param5, param6, param7, param8, param9);
-
-    if (v0 != -1) {
-        PaletteData_LoadBufferFromHardware(param0, param1, v0 * 16, param7 * 0x20);
+    int paletteOffset = SpriteSystem_LoadPlttResObj(spriteSys, spriteMan, narcID, memberIdx, compressed, paletteIdx, vramType, resourceID);
+    if (paletteOffset != -1) {
+        PaletteData_LoadBufferFromHardware(paletteData, bufferID, paletteOffset * 16, paletteIdx * PALETTE_SIZE_BYTES);
     }
 
-    return v0;
+    return paletteOffset;
 }
 
-u8 SpriteSystem_LoadPaletteBufferFromOpenNarc(PaletteData *param0, enum PaletteBufferID param1, SpriteSystem *param2, SpriteManager *param3, NARC *param4, int param5, BOOL param6, int param7, int param8, int param9)
+u8 SpriteSystem_LoadPaletteBufferFromOpenNarc(PaletteData *paletteData, enum PaletteBufferID bufferID, SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, int paletteIdx, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
-    int v0;
-
-    v0 = SpriteSystem_LoadPlttResObjFromOpenNarc(param2, param3, param4, param5, param6, param7, param8, param9);
-
-    if (v0 != -1) {
-        PaletteData_LoadBufferFromHardware(param0, param1, v0 * 16, param7 * 0x20);
+    int paletteOffset = SpriteSystem_LoadPlttResObjFromOpenNarc(spriteSys, spriteMan, narc, memberIdx, compressed, paletteIdx, vramType, resourceID);
+    if (paletteOffset != -1) {
+        PaletteData_LoadBufferFromHardware(paletteData, bufferID, paletteOffset * 16, paletteIdx * PALETTE_SIZE_BYTES);
     }
 
-    return v0;
+    return paletteOffset;
 }
 
-BOOL SpriteSystem_LoadCellResObj(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, int param4, int param5)
+BOOL SpriteSystem_LoadCellResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, int compressed, int resourceID)
 {
-    return LoadCellResObjInternal(param0, param1, param2, param3, param4, 2, param5);
+    return LoadResObjInternal(spriteSys, spriteMan, narcID, memberIdx, compressed, SPRITE_RESOURCE_SPRITE, resourceID);
 }
 
-BOOL SpriteSystem_LoadCellResObjFromOpenNarc(SpriteSystem *param0, SpriteManager *param1, NARC *param2, int param3, BOOL param4, int param5)
+BOOL SpriteSystem_LoadCellResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, int resourceID)
 {
-    return LoadCellResObjFromNarcInternal(param0, param1, param2, param3, param4, 2, param5);
+    return LoadResObjFromNarcInternal(spriteSys, spriteMan, narc, memberIdx, compressed, SPRITE_RESOURCE_SPRITE, resourceID);
 }
 
-BOOL SpriteSystem_LoadAnimResObj(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, int param4, int param5)
+BOOL SpriteSystem_LoadAnimResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, int compressed, int resourceID)
 {
-    return LoadCellResObjInternal(param0, param1, param2, param3, param4, 3, param5);
+    return LoadResObjInternal(spriteSys, spriteMan, narcID, memberIdx, compressed, SPRITE_RESOURCE_SPRITE_ANIM, resourceID);
 }
 
-BOOL SpriteSystem_LoadAnimResObjFromOpenNarc(SpriteSystem *param0, SpriteManager *param1, NARC *param2, int param3, BOOL param4, int param5)
+BOOL SpriteSystem_LoadAnimResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, int resourceID)
 {
-    return LoadCellResObjFromNarcInternal(param0, param1, param2, param3, param4, 3, param5);
+    return LoadResObjFromNarcInternal(spriteSys, spriteMan, narc, memberIdx, compressed, SPRITE_RESOURCE_SPRITE_ANIM, resourceID);
 }
 
-CellActorData *SpriteSystem_NewSprite(SpriteSystem *param0, SpriteManager *param1, const SpriteTemplate *param2)
+CellActorData *SpriteSystem_NewSprite(SpriteSystem *spriteSys, SpriteManager *spriteMan, const SpriteTemplate *template)
 {
-    int v0;
-    int v1;
-    CellActorData *v2 = NULL;
-    CellActorInitParamsEx v3;
-    int v4[6];
+    int i;
+    int spritePalette;
+    CellActorData *managedSprite = NULL;
+    CellActorInitParamsEx innerTemplate;
+    int resourceIDs[6];
 
-    v2 = Heap_AllocFromHeap(param0->heapId, sizeof(CellActorData));
-
-    if (v2 == NULL) {
+    managedSprite = Heap_AllocFromHeap(spriteSys->heapId, sizeof(CellActorData));
+    if (managedSprite == NULL) {
         return NULL;
     }
 
-    v2->resourceHeaderList = Heap_AllocFromHeap(param0->heapId, sizeof(SpriteResourcesHeaderList));
-
-    if (v2->resourceHeaderList == NULL) {
+    managedSprite->resourceHeaderList = Heap_AllocFromHeap(spriteSys->heapId, sizeof(SpriteResourcesHeaderList));
+    if (managedSprite->resourceHeaderList == NULL) {
         return NULL;
     }
 
-    v2->resourceHeaderList->headers = Heap_AllocFromHeap(param0->heapId, sizeof(CellActorResourceData));
-    v2->resourceHeader = v2->resourceHeaderList->headers;
-
-    if (v2->resourceHeaderList->headers == NULL) {
-        if (v2->resourceHeaderList) {
-            Heap_FreeToHeap(v2->resourceHeaderList);
+    managedSprite->resourceHeaderList->headers = Heap_AllocFromHeap(spriteSys->heapId, sizeof(CellActorResourceData));
+    managedSprite->resourceHeader = managedSprite->resourceHeaderList->headers;
+    if (managedSprite->resourceHeaderList->headers == NULL) {
+        if (managedSprite->resourceHeaderList) {
+            Heap_FreeToHeap(managedSprite->resourceHeaderList);
         }
-
         return NULL;
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v4[v0] = param2->resources[v0];
+    for (i = 0; i < SPRITE_RESOURCE_MAX; i++) {
+        resourceIDs[i] = template->resources[i];
     }
 
-    if ((param1->ownedResources[4] == NULL) || (param1->ownedResources[5] == NULL)) {
-        v4[4] = 0xffffffff;
-        v4[5] = 0xffffffff;
+    if (spriteMan->ownedResources[SPRITE_RESOURCE_MULTI_SPRITE] == NULL || spriteMan->ownedResources[SPRITE_RESOURCE_MULTI_SPRITE_ANIM] == NULL) {
+        resourceIDs[SPRITE_RESOURCE_MULTI_SPRITE] = SPRITE_RESOURCE_NONE;
+        resourceIDs[SPRITE_RESOURCE_MULTI_SPRITE_ANIM] = SPRITE_RESOURCE_NONE;
     } else {
-        if ((v4[4] != 0xffffffff) && (SpriteResourceCollection_IsIDUnused(param1->ownedResources[4], v4[4]) == 0)) {
-            v4[4] = 0xffffffff;
+        if (resourceIDs[SPRITE_RESOURCE_MULTI_SPRITE] != SPRITE_RESOURCE_NONE
+            && SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_MULTI_SPRITE], resourceIDs[SPRITE_RESOURCE_MULTI_SPRITE]) == FALSE) {
+            resourceIDs[SPRITE_RESOURCE_MULTI_SPRITE] = SPRITE_RESOURCE_NONE;
         }
 
-        if ((v4[5] != 0xffffffff) && (SpriteResourceCollection_IsIDUnused(param1->ownedResources[5], v4[5]) == 0)) {
-            v4[5] = 0xffffffff;
+        if (resourceIDs[SPRITE_RESOURCE_MULTI_SPRITE_ANIM] != SPRITE_RESOURCE_NONE
+            && SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_MULTI_SPRITE_ANIM], resourceIDs[SPRITE_RESOURCE_MULTI_SPRITE_ANIM]) == 0) {
+            resourceIDs[SPRITE_RESOURCE_MULTI_SPRITE_ANIM] = SPRITE_RESOURCE_NONE;
         }
     }
 
-    SpriteResourcesHeader_Init(v2->resourceHeader, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param2->vramTransfer, param2->bgPriority, param1->ownedResources[0], param1->ownedResources[1], param1->ownedResources[2], param1->ownedResources[3], param1->ownedResources[4], param1->ownedResources[5]);
+    SpriteResourcesHeader_Init(managedSprite->resourceHeader,
+        resourceIDs[SPRITE_RESOURCE_TILES],
+        resourceIDs[SPRITE_RESOURCE_PALETTE],
+        resourceIDs[SPRITE_RESOURCE_SPRITE],
+        resourceIDs[SPRITE_RESOURCE_SPRITE_ANIM],
+        resourceIDs[SPRITE_RESOURCE_MULTI_SPRITE],
+        resourceIDs[SPRITE_RESOURCE_MULTI_SPRITE_ANIM],
+        template->vramTransfer,
+        template->bgPriority,
+        spriteMan->ownedResources[SPRITE_RESOURCE_TILES],
+        spriteMan->ownedResources[SPRITE_RESOURCE_PALETTE],
+        spriteMan->ownedResources[SPRITE_RESOURCE_SPRITE],
+        spriteMan->ownedResources[SPRITE_RESOURCE_SPRITE_ANIM],
+        spriteMan->ownedResources[SPRITE_RESOURCE_MULTI_SPRITE],
+        spriteMan->ownedResources[SPRITE_RESOURCE_MULTI_SPRITE_ANIM]);
 
-    v3.collection = param1->sprites;
-    v3.resourceData = v2->resourceHeader;
-    v3.position.x = FX32_CONST(param2->x);
-    v3.position.y = FX32_CONST(param2->y);
-    v3.position.z = FX32_CONST(param2->z);
+    innerTemplate.collection = spriteMan->sprites;
+    innerTemplate.resourceData = managedSprite->resourceHeader;
+    innerTemplate.position.x = FX32_CONST(template->x);
+    innerTemplate.position.y = FX32_CONST(template->y);
+    innerTemplate.position.z = FX32_CONST(template->z);
 
-    if (param2->vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
-        v3.position.y += (192 << FX32_SHIFT);
+    if (template->vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
+        innerTemplate.position.y += (192 << FX32_SHIFT);
     }
 
-    v3.affineScale.x = FX32_ONE;
-    v3.affineScale.y = FX32_ONE;
-    v3.affineScale.z = FX32_ONE;
-    v3.affineZRotation = 0;
-    v3.priority = param2->priority;
-    v3.vramType = param2->vramType;
-    v3.heapID = param0->heapId;
-    v2->sprite = CellActorCollection_AddEx(&v3);
-    v2->vramTransfer = param2->vramTransfer;
+    innerTemplate.affineScale.x = FX32_ONE;
+    innerTemplate.affineScale.y = FX32_ONE;
+    innerTemplate.affineScale.z = FX32_ONE;
+    innerTemplate.affineZRotation = 0;
+    innerTemplate.priority = template->priority;
+    innerTemplate.vramType = template->vramType;
+    innerTemplate.heapID = spriteSys->heapId;
 
-    if (v2->sprite != NULL) {
-        v1 = CellActor_GetExplicitPalette(v2->sprite);
-
-        CellActor_SetAnim(v2->sprite, param2->animIdx);
-        CellActor_SetExplicitPalette(v2->sprite, v1 + param2->plttIdx);
+    managedSprite->sprite = CellActorCollection_AddEx(&innerTemplate);
+    managedSprite->vramTransfer = template->vramTransfer;
+    if (managedSprite->sprite != NULL) {
+        spritePalette = CellActor_GetExplicitPalette(managedSprite->sprite);
+        CellActor_SetAnim(managedSprite->sprite, template->animIdx);
+        CellActor_SetExplicitPalette(managedSprite->sprite, spritePalette + template->plttIdx);
     } else {
         GF_ASSERT(FALSE);
     }
 
-    return v2;
+    return managedSprite;
 }
 
-const NNSG2dImagePaletteProxy *SpriteManager_FindPlttResourceProxy(SpriteManager *param0, int param1)
+const NNSG2dImagePaletteProxy *SpriteManager_FindPlttResourceProxy(SpriteManager *spriteMan, int resourceID)
 {
-    SpriteResource *v0 = SpriteResourceCollection_Find(param0->ownedResources[1], param1);
-    return SpriteTransfer_GetPaletteProxy(v0, NULL);
+    SpriteResource *resource = SpriteResourceCollection_Find(spriteMan->ownedResources[SPRITE_RESOURCE_PALETTE], resourceID);
+    return SpriteTransfer_GetPaletteProxy(resource, NULL);
 }
 
-u32 SpriteManager_FindPlttResourceOffset(SpriteManager *param0, int param1, NNS_G2D_VRAM_TYPE param2)
+u32 SpriteManager_FindPlttResourceOffset(SpriteManager *spriteMan, int resourceID, enum NNS_G2D_VRAM_TYPE vramType)
 {
-    SpriteResource *v0 = SpriteResourceCollection_Find(param0->ownedResources[1], param1);
-    return SpriteTransfer_GetPlttOffset(v0, param2);
+    SpriteResource *resource = SpriteResourceCollection_Find(spriteMan->ownedResources[SPRITE_RESOURCE_PALETTE], resourceID);
+    return SpriteTransfer_GetPlttOffset(resource, vramType);
 }
 
-BOOL SpriteManager_UnloadCharObjById(SpriteManager *param0, int param1)
+BOOL SpriteManager_UnloadCharObjById(SpriteManager *spriteMan, int resourceID)
 {
-    return UnregisterLoadedCharResource(param0->ownedResources[0], param0->unownedResources[0], param1);
+    return UnregisterLoadedCharResource(spriteMan->ownedResources[SPRITE_RESOURCE_TILES], spriteMan->unownedResources[SPRITE_RESOURCE_TILES], resourceID);
 }
 
-BOOL SpriteManager_UnloadPlttObjById(SpriteManager *param0, int param1)
+BOOL SpriteManager_UnloadPlttObjById(SpriteManager *spriteMan, int resourceID)
 {
-    return UnregisterLoadedPlttResource(param0->ownedResources[1], param0->unownedResources[1], param1);
+    return UnregisterLoadedPlttResource(spriteMan->ownedResources[SPRITE_RESOURCE_PALETTE], spriteMan->unownedResources[SPRITE_RESOURCE_PALETTE], resourceID);
 }
 
-BOOL SpriteManager_UnloadCellObjById(SpriteManager *param0, int param1)
+BOOL SpriteManager_UnloadCellObjById(SpriteManager *spriteMan, int resourceID)
 {
-    return UnregisterLoadedResource(param0->ownedResources[2], param0->unownedResources[2], param1);
+    return UnregisterLoadedResource(spriteMan->ownedResources[SPRITE_RESOURCE_SPRITE], spriteMan->unownedResources[SPRITE_RESOURCE_SPRITE], resourceID);
 }
 
-BOOL SpriteManager_UnloadAnimObjById(SpriteManager *param0, int param1)
+BOOL SpriteManager_UnloadAnimObjById(SpriteManager *spriteMan, int resourceID)
 {
-    return UnregisterLoadedResource(param0->ownedResources[3], param0->unownedResources[3], param1);
+    return UnregisterLoadedResource(spriteMan->ownedResources[SPRITE_RESOURCE_SPRITE_ANIM], spriteMan->unownedResources[SPRITE_RESOURCE_SPRITE_ANIM], resourceID);
 }
 
-void SpriteSystem_FreeResourcesAndManager(SpriteSystem *param0, SpriteManager *param1)
+void SpriteSystem_FreeResourcesAndManager(SpriteSystem *spriteSys, SpriteManager *spriteMan)
 {
-    int v0;
+    SpriteManager_DeleteAllSprites(spriteMan);
+    SpriteTransfer_ResetCharTransferList(spriteMan->unownedResources[SPRITE_RESOURCE_TILES]);
+    SpriteTransfer_ResetPlttTransferList(spriteMan->unownedResources[SPRITE_RESOURCE_PALETTE]);
 
-    SpriteManager_DeleteAllSprites(param1);
-    SpriteTransfer_ResetCharTransferList(param1->unownedResources[0]);
-    SpriteTransfer_ResetPlttTransferList(param1->unownedResources[1]);
-
-    for (v0 = 0; v0 < param1->numResourceTypes; v0++) {
-        SpriteResourceList_Delete(param1->unownedResources[v0]);
-        SpriteResourceCollection_Delete(param1->ownedResources[v0]);
+    for (int i = 0; i < spriteMan->numResourceTypes; i++) {
+        SpriteResourceList_Delete(spriteMan->unownedResources[i]);
+        SpriteResourceCollection_Delete(spriteMan->ownedResources[i]);
     }
 
-    SpriteSystem_FreeSpriteManager(param0, param1);
+    SpriteSystem_FreeSpriteManager(spriteSys, spriteMan);
 }
 
-void Sprite_DeleteAndFreeResources(CellActorData *param0)
+void Sprite_DeleteAndFreeResources(CellActorData *sprite)
 {
-    if (param0->vramTransfer) {
-        SpriteTransfer_DeleteCharTransfer(param0->resourceHeader->imageProxy);
+    if (sprite->vramTransfer) {
+        SpriteTransfer_DeleteCharTransfer(sprite->resourceHeader->imageProxy);
     }
 
-    CellActor_Delete(param0->sprite);
-    SpriteResourcesHeaderList_Free(param0->resourceHeaderList);
-    Heap_FreeToHeap(param0);
+    CellActor_Delete(sprite->sprite);
+    SpriteResourcesHeaderList_Free(sprite->resourceHeaderList);
+    Heap_FreeToHeap(sprite);
 }
 
-static BOOL LoadCellResObjInternal(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, int param4, int param5, int param6)
+static BOOL LoadResObjInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, int compressed, int type, int resourceID)
 {
-    SpriteResource *v0;
-    int v1;
-
-    if (SpriteResourceCollection_IsIDUnused(param1->ownedResources[param5], param6) == 0) {
-        return 0;
+    if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[type], resourceID) == FALSE) {
+        return FALSE;
     }
 
-    v0 = SpriteResourceCollection_Add(param1->ownedResources[param5], param2, param3, param4, param6, param5, param0->heapId);
-
-    if (v0 != NULL) {
-        v1 = RegisterLoadedResource(param1->unownedResources[param5], v0);
-
-        GF_ASSERT(v1 == 1);
-        return v1;
+    SpriteResource *resource = SpriteResourceCollection_Add(spriteMan->ownedResources[type], narcID, memberIdx, compressed, resourceID, type, spriteSys->heapId);
+    if (resource != NULL) {
+        BOOL success = RegisterLoadedResource(spriteMan->unownedResources[type], resource);
+        GF_ASSERT(success == TRUE);
+        return success;
     }
 
-    GF_ASSERT(0);
-    return (v0 == NULL) ? 0 : 1;
+    GF_ASSERT(FALSE);
+    return (resource == NULL) ? FALSE : TRUE;
 }
 
-static BOOL LoadCellResObjFromNarcInternal(SpriteSystem *param0, SpriteManager *param1, NARC *param2, int param3, int param4, int param5, int param6)
+static BOOL LoadResObjFromNarcInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, int type, int resourceID)
 {
-    SpriteResource *v0;
-    int v1;
-
-    if (SpriteResourceCollection_IsIDUnused(param1->ownedResources[param5], param6) == 0) {
-        return 0;
+    if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[type], resourceID) == FALSE) {
+        return FALSE;
     }
 
-    v0 = SpriteResourceCollection_AddFrom(param1->ownedResources[param5], param2, param3, param4, param6, param5, param0->heapId);
-
-    if (v0 != NULL) {
-        v1 = RegisterLoadedResource(param1->unownedResources[param5], v0);
-
-        GF_ASSERT(v1 == 1);
-        return v1;
+    SpriteResource *resource = SpriteResourceCollection_AddFrom(spriteMan->ownedResources[type], narc, memberIdx, compressed, resourceID, type, spriteSys->heapId);
+    if (resource != NULL) {
+        BOOL success = RegisterLoadedResource(spriteMan->unownedResources[type], resource);
+        GF_ASSERT(success == TRUE);
+        return success;
     }
 
-    GF_ASSERT(0);
-
-    return (v0 == NULL) ? 0 : 1;
+    GF_ASSERT(FALSE);
+    return (resource == NULL) ? FALSE : TRUE;
 }
 
-static BOOL RegisterLoadedResource(SpriteResourceList *param0, SpriteResource *param1)
+static BOOL RegisterLoadedResource(SpriteResourceList *resourceList, SpriteResource *resource)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->capacity; v0++) {
-        if (param0->resources[v0] != NULL) {
+    for (int i = 0; i < resourceList->capacity; i++) {
+        if (resourceList->resources[i] != NULL) {
             continue;
         }
 
-        param0->resources[v0] = param1;
-        param0->count++;
-
-        return 1;
+        resourceList->resources[i] = resource;
+        resourceList->count++;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL UnregisterLoadedResource(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2)
+static BOOL UnregisterLoadedResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload)
 {
-    int v0;
-    int v1;
-
-    for (v0 = 0; v0 < param1->capacity; v0++) {
-        if (param1->resources[v0] == NULL) {
+    for (int i = 0; i < unownedResources->capacity; i++) {
+        if (unownedResources->resources[i] == NULL) {
             continue;
         }
 
-        v1 = SpriteResource_GetID(param1->resources[v0]);
-
-        if (v1 == param2) {
-            SpriteResourceCollection_Remove(param0, param1->resources[v0]);
-
-            param1->resources[v0] = NULL;
-            param1->count--;
-
-            return 1;
+        int resourceID = SpriteResource_GetID(unownedResources->resources[i]);
+        if (resourceID == toUnload) {
+            SpriteResourceCollection_Remove(ownedResources, unownedResources->resources[i]);
+            unownedResources->resources[i] = NULL;
+            unownedResources->count--;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL UnregisterLoadedCharResource(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2)
+static BOOL UnregisterLoadedCharResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload)
 {
-    int v0;
-    int v1;
-
-    for (v0 = 0; v0 < param1->capacity; v0++) {
-        if (param1->resources[v0] == NULL) {
+    for (int i = 0; i < unownedResources->capacity; i++) {
+        if (unownedResources->resources[i] == NULL) {
             continue;
         }
 
-        v1 = SpriteResource_GetID(param1->resources[v0]);
-
-        if (v1 == param2) {
-            CharTransfer_ResetTask(param2);
-            SpriteResourceCollection_Remove(param0, param1->resources[v0]);
-
-            param1->resources[v0] = NULL;
-            param1->count--;
-
-            return 1;
+        int resourceID = SpriteResource_GetID(unownedResources->resources[i]);
+        if (resourceID == toUnload) {
+            CharTransfer_ResetTask(toUnload);
+            SpriteResourceCollection_Remove(ownedResources, unownedResources->resources[i]);
+            unownedResources->resources[i] = NULL;
+            unownedResources->count--;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL UnregisterLoadedPlttResource(SpriteResourceCollection *param0, SpriteResourceList *param1, int param2)
+static BOOL UnregisterLoadedPlttResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload)
 {
-    int v0;
-    int v1;
-
-    for (v0 = 0; v0 < param1->capacity; v0++) {
-        if (param1->resources[v0] == NULL) {
+    for (int i = 0; i < unownedResources->capacity; i++) {
+        if (unownedResources->resources[i] == NULL) {
             continue;
         }
 
-        v1 = SpriteResource_GetID(param1->resources[v0]);
-
-        if (v1 == param2) {
-            PlttTransfer_ResetTask(param2);
-            SpriteResourceCollection_Remove(param0, param1->resources[v0]);
-
-            param1->resources[v0] = NULL;
-            param1->count--;
-
-            return 1;
+        int resourceID = SpriteResource_GetID(unownedResources->resources[i]);
+        if (resourceID == toUnload) {
+            PlttTransfer_ResetTask(toUnload);
+            SpriteResourceCollection_Remove(ownedResources, unownedResources->resources[i]);
+            unownedResources->resources[i] = NULL;
+            unownedResources->count--;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-void Sprite_TickFrame(CellActor *param0)
+void Sprite_TickFrame(CellActor *sprite)
 {
-    CellActor_UpdateAnim(param0, FX32_ONE);
+    CellActor_UpdateAnim(sprite, FX32_ONE);
 }
 
-void Sprite_TickOneFrame(CellActorData *param0)
+void Sprite_TickOneFrame(CellActorData *managedSprite)
 {
-    Sprite_TickFrame(param0->sprite);
+    Sprite_TickFrame(managedSprite->sprite);
 }
 
-void Sprite_TickTwoFrame(CellActorData *param0)
+void Sprite_TickTwoFrame(CellActorData *managedSprite)
 {
-    CellActor_UpdateAnim(param0->sprite, FX32_CONST(2));
+    CellActor_UpdateAnim(managedSprite->sprite, FX32_CONST(2));
 }
 
-void Sprite_TickNFrames(CellActorData *param0, fx32 param1)
+void Sprite_TickNFrames(CellActorData *managedSprite, fx32 frames)
 {
-    CellActor_UpdateAnim(param0->sprite, param1);
+    CellActor_UpdateAnim(managedSprite->sprite, frames);
 }
 
-u32 Sprite_GetNumFrames(CellActorData *param0)
+u32 Sprite_GetNumFrames(CellActorData *managedSprite)
 {
-    return CellActor_GetAnimCount(param0->sprite);
+    return CellActor_GetAnimCount(managedSprite->sprite);
 }
 
-void Sprite_SetAnim(CellActorData *param0, u32 param1)
+void Sprite_SetAnim(CellActorData *managedSprite, u32 animID)
 {
-    CellActor_SetAnim(param0->sprite, param1);
+    CellActor_SetAnim(managedSprite->sprite, animID);
 }
 
-void Sprite_SetAnimNoRestart(CellActorData *param0, u32 param1)
+void Sprite_SetAnimNoRestart(CellActorData *managedSprite, u32 animID)
 {
-    CellActor_SetAnimNoRestart(param0->sprite, param1);
+    CellActor_SetAnimNoRestart(managedSprite->sprite, animID);
 }
 
-u32 Sprite_GetActiveAnim(CellActorData *param0)
+u32 Sprite_GetActiveAnim(CellActorData *managedSprite)
 {
-    return CellActor_GetActiveAnim(param0->sprite);
+    return CellActor_GetActiveAnim(managedSprite->sprite);
 }
 
-static void SetSpriteAnimateFlag(CellActor *param0, int param1)
+static void SetSpriteAnimateFlag(CellActor *sprite, BOOL animate)
 {
-    CellActor_SetAnimateFlag(param0, param1);
+    CellActor_SetAnimateFlag(sprite, animate);
 }
 
-void Sprite_SetAnimateFlag(CellActorData *param0, int param1)
+void Sprite_SetAnimateFlag(CellActorData *managedSprite, BOOL animate)
 {
-    SetSpriteAnimateFlag(param0->sprite, param1);
+    SetSpriteAnimateFlag(managedSprite->sprite, animate);
 }
 
-static void SetSpriteAnimationSpeed(CellActor *param0, fx32 param1)
+static void SetSpriteAnimationSpeed(CellActor *sprite, fx32 speed)
 {
-    CellActor_SetAnimSpeed(param0, param1);
+    CellActor_SetAnimSpeed(sprite, speed);
 }
 
-void Sprite_SetAnimationSpeed(CellActorData *param0, fx32 param1)
+void Sprite_SetAnimationSpeed(CellActorData *managedSprite, fx32 animSpeed)
 {
-    SetSpriteAnimationSpeed(param0->sprite, param1);
+    SetSpriteAnimationSpeed(managedSprite->sprite, animSpeed);
 }
 
-static BOOL IsSpriteAnimated(CellActor *param0)
+static BOOL IsSpriteAnimated(CellActor *sprite)
 {
-    return CellActor_IsAnimated(param0);
+    return CellActor_IsAnimated(sprite);
 }
 
-BOOL Sprite_IsAnimated(CellActorData *param0)
+BOOL Sprite_IsAnimated(CellActorData *managedSprite)
 {
-    return IsSpriteAnimated(param0->sprite);
+    return IsSpriteAnimated(managedSprite->sprite);
 }
 
-void SetSpriteAnimationFrame(CellActor *param0, u16 param1)
+void SetSpriteAnimationFrame(CellActor *sprite, u16 frame)
 {
-    SpriteActor_SetAnimFrame(param0, param1);
+    SpriteActor_SetAnimFrame(sprite, frame);
 }
 
-void Sprite_SetAnimationFrame(CellActorData *param0, u16 param1)
+void Sprite_SetAnimationFrame(CellActorData *managedSprite, u16 frame)
 {
-    SetSpriteAnimationFrame(param0->sprite, param1);
+    SetSpriteAnimationFrame(managedSprite->sprite, frame);
 }
 
-static u16 GetSpriteAnimationFrame(CellActor *param0)
+static u16 GetSpriteAnimationFrame(CellActor *sprite)
 {
-    return CellActor_GetAnimFrame(param0);
+    return CellActor_GetAnimFrame(sprite);
 }
 
-u16 Sprite_GetAnimationFrame(CellActorData *param0)
+u16 Sprite_GetAnimationFrame(CellActorData *managedSprite)
 {
-    return GetSpriteAnimationFrame(param0->sprite);
+    return GetSpriteAnimationFrame(managedSprite->sprite);
 }
 
-void Sprite_SetDrawFlag(CellActor *param0, int param1)
+void Sprite_SetDrawFlag(CellActor *sprite, BOOL draw)
 {
-    CellActor_SetDrawFlag(param0, param1);
+    CellActor_SetDrawFlag(sprite, draw);
 }
 
-void Sprite_SetDrawFlag2(CellActorData *param0, int param1)
+void Sprite_SetDrawFlag2(CellActorData *managedSprite, BOOL draw)
 {
-    Sprite_SetDrawFlag(param0->sprite, param1);
+    Sprite_SetDrawFlag(managedSprite->sprite, draw);
 }
 
-int Sprite_GetDrawFlag(CellActor *param0)
+int Sprite_GetDrawFlag(CellActor *sprite)
 {
-    return CellActor_GetDrawFlag(param0);
+    return CellActor_GetDrawFlag(sprite);
 }
 
-int Sprite_GetDrawFlag2(CellActorData *param0)
+int Sprite_GetDrawFlag2(CellActorData *managedSprite)
 {
-    return Sprite_GetDrawFlag(param0->sprite);
+    return Sprite_GetDrawFlag(managedSprite->sprite);
 }
 
-void Sprite_SetExplicitPalette(CellActor *param0, int param1)
+void Sprite_SetExplicitPalette(CellActor *sprite, int palette)
 {
-    CellActor_SetExplicitPalette(param0, param1);
+    CellActor_SetExplicitPalette(sprite, palette);
 }
 
-void Sprite_SetExplicitPalette2(CellActorData *param0, int param1)
+void Sprite_SetExplicitPalette2(CellActorData *managedSprite, int paletteIdx)
 {
-    Sprite_SetExplicitPalette(param0->sprite, param1);
+    Sprite_SetExplicitPalette(managedSprite->sprite, paletteIdx);
 }
 
-static void SetSpriteExplicitPaletteOffset(CellActor *param0, int param1)
+static void SetSpriteExplicitPaletteOffset(CellActor *sprite, int paletteOffset)
 {
-    CellActor_SetExplicitPaletteOffset(param0, param1);
+    CellActor_SetExplicitPaletteOffset(sprite, paletteOffset);
 }
 
-void Sprite_SetExplicitPaletteOffset(CellActorData *param0, int param1)
+void Sprite_SetExplicitPaletteOffset(CellActorData *managedSprite, int paletteOffset)
 {
-    SetSpriteExplicitPaletteOffset(param0->sprite, param1);
+    SetSpriteExplicitPaletteOffset(managedSprite->sprite, paletteOffset);
 }
 
-int Sprite_GetExplicitPaletteOffset(CellActorData *param0)
+int Sprite_GetExplicitPaletteOffset(CellActorData *managedSprite)
 {
-    return CellActor_GetExplicitPaletteOffset(param0->sprite);
+    return CellActor_GetExplicitPaletteOffset(managedSprite->sprite);
 }
 
-static void SetSpriteExplicitPriority(CellActor *param0, int param1)
+static void SetSpriteExplicitPriority(CellActor *sprite, int explicitPriority)
 {
-    CellActor_SetExplicitPriority(param0, param1);
+    CellActor_SetExplicitPriority(sprite, explicitPriority);
 }
 
-int Sprite_GetExplicitPriority(CellActorData *param0)
+int Sprite_GetExplicitPriority(CellActorData *managedSprite)
 {
-    return CellActor_GetExplicitPriority(param0->sprite);
+    return CellActor_GetExplicitPriority(managedSprite->sprite);
 }
 
-void Sprite_SetExplicitPriority(CellActorData *param0, int param1)
+void Sprite_SetExplicitPriority(CellActorData *managedSprite, int explicitPriority)
 {
-    SetSpriteExplicitPriority(param0->sprite, param1);
+    SetSpriteExplicitPriority(managedSprite->sprite, explicitPriority);
 }
 
-static void SetSpritePriority(CellActor *param0, int param1)
+static void SetSpritePriority(CellActor *sprite, int priority)
 {
-    CellActor_SetPriority(param0, param1);
+    CellActor_SetPriority(sprite, priority);
 }
 
-void Sprite_SetPriority(CellActorData *param0, int param1)
+void Sprite_SetPriority(CellActorData *managedSprite, int priority)
 {
-    SetSpritePriority(param0->sprite, param1);
+    SetSpritePriority(managedSprite->sprite, priority);
 }
 
-u32 GetSpritePriority(CellActor *param0)
+u32 GetSpritePriority(CellActor *sprite)
 {
-    return CellActor_GetPriority(param0);
+    return CellActor_GetPriority(sprite);
 }
 
-u32 Sprite_GetPriority(CellActorData *param0)
+u32 Sprite_GetPriority(CellActorData *managedSprite)
 {
-    return GetSpritePriority(param0->sprite);
+    return GetSpritePriority(managedSprite->sprite);
 }
 
-void Sprite_SetPositionXY(CellActor *param0, s16 param1, s16 param2)
+void Sprite_SetPositionXY(CellActor *sprite, s16 x, s16 y)
 {
-    VecFx32 v0;
-
-    v0.x = param1 * FX32_ONE;
-    v0.y = param2 * FX32_ONE;
-
-    if (CellActor_GetVRamType(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
-        v0.y += (192 << FX32_SHIFT);
+    VecFx32 position;
+    position.x = x * FX32_ONE;
+    position.y = y * FX32_ONE;
+    if (CellActor_GetVRamType(sprite) == NNS_G2D_VRAM_TYPE_2DSUB) {
+        position.y += (192 << FX32_SHIFT);
     }
+    position.z = 0;
 
-    v0.z = 0;
-
-    CellActor_SetPosition(param0, &v0);
+    CellActor_SetPosition(sprite, &position);
 }
 
-void Sprite_SetPositionXY2(CellActorData *param0, s16 param1, s16 param2)
+void Sprite_SetPositionXY2(CellActorData *managedSprite, s16 x, s16 y)
 {
-    Sprite_SetPositionXY(param0->sprite, param1, param2);
+    Sprite_SetPositionXY(managedSprite->sprite, x, y);
 }
 
-void Sprite_SetPositionXYWithSubscreenOffset(CellActor *param0, s16 param1, s16 param2, fx32 param3)
+void Sprite_SetPositionXYWithSubscreenOffset(CellActor *sprite, s16 x, s16 y, fx32 offset)
 {
-    VecFx32 v0;
-
-    v0.x = param1 * FX32_ONE;
-    v0.y = param2 * FX32_ONE;
-
-    if (CellActor_GetVRamType(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
-        v0.y += param3;
+    VecFx32 position;
+    position.x = x * FX32_ONE;
+    position.y = y * FX32_ONE;
+    if (CellActor_GetVRamType(sprite) == NNS_G2D_VRAM_TYPE_2DSUB) {
+        position.y += offset;
     }
+    position.z = 0;
 
-    v0.z = 0;
-
-    CellActor_SetPosition(param0, &v0);
+    CellActor_SetPosition(sprite, &position);
 }
 
-void Sprite_SetPositionXYWithSubscreenOffset2(CellActorData *param0, s16 param1, s16 param2, fx32 param3)
+void Sprite_SetPositionXYWithSubscreenOffset2(CellActorData *managedSprite, s16 x, s16 y, fx32 offset)
 {
-    Sprite_SetPositionXYWithSubscreenOffset(param0->sprite, param1, param2, param3);
+    Sprite_SetPositionXYWithSubscreenOffset(managedSprite->sprite, x, y, offset);
 }
 
-void Sprite_GetPositionXY(CellActor *param0, s16 *param1, s16 *param2)
+void Sprite_GetPositionXY(CellActor *sprite, s16 *outX, s16 *outY)
 {
-    const VecFx32 *v0;
-
-    v0 = CellActor_GetPosition(param0);
-    *param1 = v0->x / FX32_ONE;
-
-    if (CellActor_GetVRamType(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
-        *param2 = (v0->y - (192 << FX32_SHIFT)) / FX32_ONE;
+    const VecFx32 *position = CellActor_GetPosition(sprite);
+    *outX = position->x / FX32_ONE;
+    if (CellActor_GetVRamType(sprite) == NNS_G2D_VRAM_TYPE_2DSUB) {
+        *outY = (position->y - (192 << FX32_SHIFT)) / FX32_ONE;
     } else {
-        *param2 = v0->y / FX32_ONE;
+        *outY = position->y / FX32_ONE;
     }
 }
 
-void Sprite_GetPositionXY2(CellActorData *param0, s16 *param1, s16 *param2)
+void Sprite_GetPositionXY2(CellActorData *managedSprite, s16 *outX, s16 *outY)
 {
-    Sprite_GetPositionXY(param0->sprite, param1, param2);
+    Sprite_GetPositionXY(managedSprite->sprite, outX, outY);
 }
 
-void Sprite_GetPositionXYWithSubscreenOffset(CellActor *param0, s16 *param1, s16 *param2, fx32 param3)
+void Sprite_GetPositionXYWithSubscreenOffset(CellActor *sprite, s16 *outX, s16 *outY, fx32 offset)
 {
-    const VecFx32 *v0;
-
-    v0 = CellActor_GetPosition(param0);
-    *param1 = v0->x / FX32_ONE;
-
-    if (CellActor_GetVRamType(param0) == NNS_G2D_VRAM_TYPE_2DSUB) {
-        *param2 = (v0->y - param3) / FX32_ONE;
+    const VecFx32 *position = CellActor_GetPosition(sprite);
+    *outX = position->x / FX32_ONE;
+    if (CellActor_GetVRamType(sprite) == NNS_G2D_VRAM_TYPE_2DSUB) {
+        *outY = (position->y - offset) / FX32_ONE;
     } else {
-        *param2 = v0->y / FX32_ONE;
+        *outY = position->y / FX32_ONE;
     }
 }
 
-void Sprite_GetPositionXYWithSubscreenOffset2(CellActorData *param0, s16 *param1, s16 *param2, fx32 param3)
+void Sprite_GetPositionXYWithSubscreenOffset2(CellActorData *managedSprite, s16 *outX, s16 *outY, fx32 offset)
 {
-    Sprite_GetPositionXYWithSubscreenOffset(param0->sprite, param1, param2, param3);
+    Sprite_GetPositionXYWithSubscreenOffset(managedSprite->sprite, outX, outY, offset);
 }
 
-void Sprite_OffsetPositionXY(CellActor *param0, s16 param1, s16 param2)
+void Sprite_OffsetPositionXY(CellActor *sprite, s16 x, s16 y)
 {
-    const VecFx32 *v0;
-    VecFx32 v1;
-
-    v0 = CellActor_GetPosition(param0);
-
-    v1.x = v0->x + (param1 * FX32_ONE);
-    v1.y = v0->y + (param2 * FX32_ONE);
-    v1.z = v0->z;
-
-    CellActor_SetPosition(param0, &v1);
+    const VecFx32 *oldPosition = CellActor_GetPosition(sprite);
+    VecFx32 newPosition;
+    newPosition.x = oldPosition->x + (x * FX32_ONE);
+    newPosition.y = oldPosition->y + (y * FX32_ONE);
+    newPosition.z = oldPosition->z;
+    CellActor_SetPosition(sprite, &newPosition);
 }
 
-void Sprite_OffsetPositionXY2(CellActorData *param0, s16 param1, s16 param2)
+void Sprite_OffsetPositionXY2(CellActorData *managedSprite, s16 x, s16 y)
 {
-    Sprite_OffsetPositionXY(param0->sprite, param1, param2);
+    Sprite_OffsetPositionXY(managedSprite->sprite, x, y);
 }
 
-void Sprite_OffsetPositionFxXY(CellActorData *param0, fx32 param1, fx32 param2)
+void Sprite_OffsetPositionFxXY(CellActorData *managedSprite, fx32 x, fx32 y)
 {
-    const VecFx32 *v0;
-    VecFx32 v1;
-
-    v0 = CellActor_GetPosition(param0->sprite);
-
-    v1.x = v0->x + param1;
-    v1.y = v0->y + param2;
-    v1.z = v0->z;
-
-    CellActor_SetPosition(param0->sprite, &v1);
+    const VecFx32 *oldPosition = CellActor_GetPosition(managedSprite->sprite);
+    VecFx32 newPosition;
+    newPosition.x = oldPosition->x + x;
+    newPosition.y = oldPosition->y + y;
+    newPosition.z = oldPosition->z;
+    CellActor_SetPosition(managedSprite->sprite, &newPosition);
 }
 
-void Sprite_SetPositionFxXY(CellActorData *param0, fx32 param1, fx32 param2)
+void Sprite_SetPositionFxXY(CellActorData *managedSprite, fx32 x, fx32 y)
 {
-    const VecFx32 *v0;
-    VecFx32 v1;
-
-    v0 = CellActor_GetPosition(param0->sprite);
-
-    v1.x = param1;
-    v1.y = param2;
-    v1.z = v0->z;
-
-    CellActor_SetPosition(param0->sprite, &v1);
+    const VecFx32 *oldPosition = CellActor_GetPosition(managedSprite->sprite);
+    VecFx32 newPosition;
+    newPosition.x = x;
+    newPosition.y = y;
+    newPosition.z = oldPosition->z;
+    CellActor_SetPosition(managedSprite->sprite, &newPosition);
 }
 
-void Sprite_GetPositionFxXY(CellActorData *param0, fx32 *param1, fx32 *param2)
+void Sprite_GetPositionFxXY(CellActorData *managedSprite, fx32 *outX, fx32 *outY)
 {
-    const VecFx32 *v0;
-    VecFx32 v1;
-
-    v0 = CellActor_GetPosition(param0->sprite);
-
-    *param1 = v0->x;
-    *param2 = v0->y;
+    const VecFx32 *position = CellActor_GetPosition(managedSprite->sprite);
+    *outX = position->x;
+    *outY = position->y;
 }
 
-void Sprite_SetPositionFxXYWithSubscreenOffset(CellActorData *param0, fx32 param1, fx32 param2, fx32 param3)
+void Sprite_SetPositionFxXYWithSubscreenOffset(CellActorData *managedSprite, fx32 x, fx32 y, fx32 offset)
 {
-    if (CellActor_GetVRamType(param0->sprite) == NNS_G2D_VRAM_TYPE_2DSUB) {
-        Sprite_SetPositionFxXY(param0, param1, param2 + param3);
+    if (CellActor_GetVRamType(managedSprite->sprite) == NNS_G2D_VRAM_TYPE_2DSUB) {
+        Sprite_SetPositionFxXY(managedSprite, x, y + offset);
     } else {
-        Sprite_SetPositionFxXY(param0, param1, param2);
+        Sprite_SetPositionFxXY(managedSprite, x, y);
     }
 }
 
-void Sprite_GetPositionFxXYWithSubscreenOffset(CellActorData *param0, fx32 *param1, fx32 *param2, fx32 param3)
+void Sprite_GetPositionFxXYWithSubscreenOffset(CellActorData *managedSprite, fx32 *outX, fx32 *outY, fx32 offset)
 {
-    Sprite_GetPositionFxXY(param0, param1, param2);
-
-    if (CellActor_GetVRamType(param0->sprite) == NNS_G2D_VRAM_TYPE_2DSUB) {
-        *param2 = *param2 - param3;
+    Sprite_GetPositionFxXY(managedSprite, outX, outY);
+    if (CellActor_GetVRamType(managedSprite->sprite) == NNS_G2D_VRAM_TYPE_2DSUB) {
+        *outY = *outY - offset;
     }
 }
 
-static void SetSpriteAffineOverwriteMode(CellActor *param0, int param1)
+static void SetSpriteAffineOverwriteMode(CellActor *sprite, enum AffineOverwriteMode mode)
 {
-    CellActor_SetAffineOverwriteMode(param0, param1);
+    CellActor_SetAffineOverwriteMode(sprite, mode);
 }
 
-void Sprite_SetAffineOverwriteMode(CellActorData *param0, int param1)
+void Sprite_SetAffineOverwriteMode(CellActorData *managedSprite, enum AffineOverwriteMode mode)
 {
-    SetSpriteAffineOverwriteMode(param0->sprite, param1);
+    SetSpriteAffineOverwriteMode(managedSprite->sprite, mode);
 }
 
-static void SetSpriteAffineScale(CellActor *param0, f32 param1, f32 param2)
+static void SetSpriteAffineScale(CellActor *sprite, f32 xScale, f32 yScale)
 {
-    const VecFx32 *v0;
-    VecFx32 *v1;
-
-    v0 = CellActor_GetAffineScale(param0);
-    v1 = (VecFx32 *)v0;
-
-    v1->x = (param1 * FX32_ONE);
-    v1->y = (param2 * FX32_ONE);
-
-    CellActor_SetAffineScale(param0, v1);
+    VecFx32 *scale = (VecFx32 *)CellActor_GetAffineScale(sprite);
+    scale->x = (xScale * FX32_ONE);
+    scale->y = (yScale * FX32_ONE);
+    CellActor_SetAffineScale(sprite, scale);
 }
 
-void Sprite_SetAffineScale(CellActorData *param0, f32 param1, f32 param2)
+void Sprite_SetAffineScale(CellActorData *managedSprite, f32 xScale, f32 yScale)
 {
-    SetSpriteAffineScale(param0->sprite, param1, param2);
+    SetSpriteAffineScale(managedSprite->sprite, xScale, yScale);
 }
 
-static void OffsetSpriteAffineScale(CellActor *param0, f32 param1, f32 param2)
+static void OffsetSpriteAffineScale(CellActor *sprite, f32 xOffset, f32 yOffset)
 {
-    const VecFx32 *v0;
-    VecFx32 *v1;
-
-    v0 = CellActor_GetAffineScale(param0);
-    v1 = (VecFx32 *)v0;
-
-    v1->x = v0->x + (param1 * FX32_ONE);
-    v1->y = v0->y + (param2 * FX32_ONE);
-
-    CellActor_SetAffineScale(param0, v1);
+    VecFx32 *scale = (VecFx32 *)CellActor_GetAffineScale(sprite);
+    scale->x += (xOffset * FX32_ONE);
+    scale->y += (yOffset * FX32_ONE);
+    CellActor_SetAffineScale(sprite, scale);
 }
 
-void Sprite_OffsetAffineScale(CellActorData *param0, f32 param1, f32 param2)
+void Sprite_OffsetAffineScale(CellActorData *managedSprite, f32 xOffset, f32 yOffset)
 {
-    OffsetSpriteAffineScale(param0->sprite, param1, param2);
+    OffsetSpriteAffineScale(managedSprite->sprite, xOffset, yOffset);
 }
 
-void GetSpriteAffineScale(CellActor *param0, f32 *param1, f32 *param2)
+void GetSpriteAffineScale(CellActor *sprite, f32 *outXScale, f32 *outYScale)
 {
-    const VecFx32 *v0;
-    VecFx32 *v1;
-
-    v0 = CellActor_GetAffineScale(param0);
-
-    *param1 = FX_FX32_TO_F32(v0->x);
-    *param2 = FX_FX32_TO_F32(v0->y);
+    const VecFx32 *scale = CellActor_GetAffineScale(sprite);
+    *outXScale = FX_FX32_TO_F32(scale->x);
+    *outYScale = FX_FX32_TO_F32(scale->y);
 }
 
-void Sprite_GetAffineScale(CellActorData *param0, f32 *param1, f32 *param2)
+void Sprite_GetAffineScale(CellActorData *managedSprite, f32 *outXScale, f32 *outYScale)
 {
-    GetSpriteAffineScale(param0->sprite, param1, param2);
+    GetSpriteAffineScale(managedSprite->sprite, outXScale, outYScale);
 }
 
-static void SetSpriteAffineZRotation(CellActor *param0, u16 param1)
+static void SetSpriteAffineZRotation(CellActor *sprite, u16 angle)
 {
-    CellActor_SetAffineZRotation(param0, param1);
+    CellActor_SetAffineZRotation(sprite, angle);
 }
 
-void Sprite_SetAffineZRotation(CellActorData *param0, u16 param1)
+void Sprite_SetAffineZRotation(CellActorData *managedSprite, u16 angle)
 {
-    SetSpriteAffineZRotation(param0->sprite, param1);
+    SetSpriteAffineZRotation(managedSprite->sprite, angle);
 }
 
-void OffsetSpriteAffineZRotation(CellActor *param0, s32 param1)
+void OffsetSpriteAffineZRotation(CellActor *sprite, s32 offset)
 {
-    u16 v0;
-
-    v0 = CellActor_GetAffineZRotation(param0);
-    v0 += param1;
-
-    CellActor_SetAffineZRotation(param0, v0);
+    u16 angle = CellActor_GetAffineZRotation(sprite);
+    angle += offset;
+    CellActor_SetAffineZRotation(sprite, angle);
 }
 
-void Sprite_OffsetAffineZRotation(CellActorData *param0, s32 param1)
+void Sprite_OffsetAffineZRotation(CellActorData *managedSprite, s32 offset)
 {
-    OffsetSpriteAffineZRotation(param0->sprite, param1);
+    OffsetSpriteAffineZRotation(managedSprite->sprite, offset);
 }
 
-void Sprite_SetFlipMode(CellActor *param0, int param1)
+void Sprite_SetFlipMode(CellActor *sprite, int mode)
 {
-    CellActor_SetFlipMode(param0, param1);
+    CellActor_SetFlipMode(sprite, mode);
 }
 
-void Sprite_SetFlipMode2(CellActorData *param0, int param1)
+void Sprite_SetFlipMode2(CellActorData *managedSprite, int mode)
 {
-    Sprite_SetFlipMode(param0->sprite, param1);
+    Sprite_SetFlipMode(managedSprite->sprite, mode);
 }
 
-void Sprite_SetAffineTranslation(CellActorData *param0, s16 param1, s16 param2)
+void Sprite_SetAffineTranslation(CellActorData *managedSprite, s16 x, s16 y)
 {
-    VecFx32 v0;
-
-    v0.x = param1 << FX32_SHIFT;
-    v0.y = param2 << FX32_SHIFT;
-    v0.z = 0;
-
-    CellActor_SetAffineTranslation(param0->sprite, &v0);
+    VecFx32 translation;
+    translation.x = x << FX32_SHIFT;
+    translation.y = y << FX32_SHIFT;
+    translation.z = 0;
+    CellActor_SetAffineTranslation(managedSprite->sprite, &translation);
 }
 
-void Sprite_SetPixelated(CellActorData *param0, BOOL param1)
+void Sprite_SetPixelated(CellActorData *managedSprite, BOOL pixelated)
 {
-    CellActor_SetPixelated(param0->sprite, param1);
+    CellActor_SetPixelated(managedSprite->sprite, pixelated);
 }
 
-void Sprite_SetExplicitOamMode(CellActor *param0, GXOamMode param1)
+void Sprite_SetExplicitOamMode(CellActor *sprite, GXOamMode mode)
 {
-    CellActor_SetExplicitOAMMode(param0, param1);
+    CellActor_SetExplicitOAMMode(sprite, mode);
 }
 
-void Sprite_SetExplicitOamMode2(CellActorData *param0, GXOamMode param1)
+void Sprite_SetExplicitOamMode2(CellActorData *managedSprite, GXOamMode mode)
 {
-    Sprite_SetExplicitOamMode(param0->sprite, param1);
+    Sprite_SetExplicitOamMode(managedSprite->sprite, mode);
 }
 
-u32 Sprite_SetUserAttrForCurrentAnimFrame(CellActorData *param0)
+u32 Sprite_SetUserAttrForCurrentAnimFrame(CellActorData *managedSprite)
 {
-    return CellActor_GetUserAttrForCurrentAnimFrame(param0->sprite);
+    return CellActor_GetUserAttrForCurrentAnimFrame(managedSprite->sprite);
 }
 
-BOOL SpriteSystem_LoadCharResObjWithHardwareMappingType(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, BOOL param4, int param5, int param6)
+BOOL SpriteSystem_LoadCharResObjWithHardwareMappingType(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
-    SpriteResource *v0;
-
-    if (SpriteResourceCollection_IsIDUnused(param1->ownedResources[0], param6) == 0) {
-        return 0;
+    if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_TILES], resourceID) == FALSE) {
+        return FALSE;
     }
 
-    v0 = SpriteResourceCollection_AddTiles(param1->ownedResources[0], param2, param3, param4, param6, param5, param0->heapId);
-
-    if (v0 != NULL) {
-        SpriteTransfer_RequestCharWithHardwareMappingType(v0);
-        RegisterLoadedResource(param1->unownedResources[0], v0);
-
-        return 1;
+    SpriteResource *resource = SpriteResourceCollection_AddTiles(spriteMan->ownedResources[SPRITE_RESOURCE_TILES],
+        narcID,
+        memberIdx,
+        compressed,
+        resourceID,
+        vramType,
+        spriteSys->heapId);
+    if (resource != NULL) {
+        SpriteTransfer_RequestCharWithHardwareMappingType(resource);
+        RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_TILES], resource);
+        return TRUE;
     }
 
-    GF_ASSERT(0);
-
-    return (v0 == NULL) ? 0 : 1;
+    GF_ASSERT(FALSE);
+    return (resource == NULL) ? FALSE : TRUE;
 }
 
-BOOL SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, BOOL param4, int param5, int param6)
+BOOL SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
-    SpriteResource *v0;
-
-    if (SpriteResourceCollection_IsIDUnused(param1->ownedResources[0], param6) == 0) {
-        return 0;
+    if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_TILES], resourceID) == FALSE) {
+        return FALSE;
     }
 
-    v0 = SpriteResourceCollection_AddTiles(param1->ownedResources[0], param2, param3, param4, param6, param5, param0->heapId);
-
-    if (v0 != NULL) {
-        SpriteTransfer_RequestCharAtEndWithHardwareMappingType(v0);
-        RegisterLoadedResource(param1->unownedResources[0], v0);
-
-        return 1;
+    SpriteResource *resource = SpriteResourceCollection_AddTiles(spriteMan->ownedResources[SPRITE_RESOURCE_TILES],
+        narcID,
+        memberIdx,
+        compressed,
+        resourceID,
+        vramType,
+        spriteSys->heapId);
+    if (resource != NULL) {
+        SpriteTransfer_RequestCharAtEndWithHardwareMappingType(resource);
+        RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_TILES], resource);
+        return TRUE;
     }
 
-    GF_ASSERT(0);
-
-    return (v0 == NULL) ? 0 : 1;
+    GF_ASSERT(FALSE);
+    return (resource == NULL) ? FALSE : TRUE;
 }
 
-BOOL SpriteSystem_LoadCharResObjFromOpenNarcWithHardwareMappingType(SpriteSystem *param0, SpriteManager *param1, NARC *param2, int param3, BOOL param4, int param5, int param6)
+BOOL SpriteSystem_LoadCharResObjFromOpenNarcWithHardwareMappingType(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, enum NNS_G2D_VRAM_TYPE vramType, int resourceID)
 {
-    SpriteResource *v0;
-
-    if (SpriteResourceCollection_IsIDUnused(param1->ownedResources[0], param6) == 0) {
-        return 0;
+    if (SpriteResourceCollection_IsIDUnused(spriteMan->ownedResources[SPRITE_RESOURCE_TILES], resourceID) == FALSE) {
+        return FALSE;
     }
 
-    v0 = SpriteResourceCollection_AddTilesFrom(param1->ownedResources[0], param2, param3, param4, param6, param5, param0->heapId);
-
-    if (v0 != NULL) {
-        SpriteTransfer_RequestCharAtEndWithHardwareMappingType(v0);
-        RegisterLoadedResource(param1->unownedResources[0], v0);
-
-        return 1;
+    SpriteResource *resource = SpriteResourceCollection_AddTilesFrom(spriteMan->ownedResources[0],
+        narc,
+        memberIdx,
+        compressed,
+        resourceID,
+        vramType,
+        spriteSys->heapId);
+    if (resource != NULL) {
+        SpriteTransfer_RequestCharAtEndWithHardwareMappingType(resource);
+        RegisterLoadedResource(spriteMan->unownedResources[SPRITE_RESOURCE_TILES], resource);
+        return TRUE;
     }
 
-    GF_ASSERT(0);
-
-    return (v0 == NULL) ? 0 : 1;
+    GF_ASSERT(FALSE);
+    return (resource == NULL) ? FALSE : TRUE;
 }
 
-void SpriteSystem_ReplaceCharResObj(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, BOOL param4, int param5)
+void SpriteSystem_ReplaceCharResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, int resourceID)
 {
-    SpriteResource *v0;
-
-    v0 = SpriteResourceCollection_Find(param1->ownedResources[0], param5);
-
-    SpriteResourceCollection_ModifyTiles(param1->ownedResources[0], v0, param2, param3, param4, param0->heapId);
-    SpriteTransfer_RetransferCharData(v0);
+    SpriteResource *resource = SpriteResourceCollection_Find(spriteMan->ownedResources[SPRITE_RESOURCE_TILES], resourceID);
+    SpriteResourceCollection_ModifyTiles(spriteMan->ownedResources[SPRITE_RESOURCE_TILES],
+        resource,
+        narcID,
+        memberIdx,
+        compressed,
+        spriteSys->heapId);
+    SpriteTransfer_RetransferCharData(resource);
 }
 
-void SpriteSystem_ReplacePlttResObj(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, BOOL param4, int param5)
+void SpriteSystem_ReplacePlttResObj(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, BOOL compressed, int resourceID)
 {
-    SpriteResource *v0;
-
-    v0 = SpriteResourceCollection_Find(param1->ownedResources[1], param5);
-
-    SpriteResourceCollection_ModifyPalette(param1->ownedResources[1], v0, param2, param3, param4, param0->heapId);
-    SpriteTransfer_ReplacePlttData(v0);
+    SpriteResource *resource = SpriteResourceCollection_Find(spriteMan->ownedResources[SPRITE_RESOURCE_PALETTE], resourceID);
+    SpriteResourceCollection_ModifyPalette(spriteMan->ownedResources[SPRITE_RESOURCE_PALETTE],
+        resource,
+        narcID,
+        memberIdx,
+        compressed,
+        spriteSys->heapId);
+    SpriteTransfer_ReplacePlttData(resource);
 }
 
-CellActorCollection *SpriteManager_GetSpriteList(SpriteManager *param0)
+CellActorCollection *SpriteManager_GetSpriteList(SpriteManager *spriteMan)
 {
-    return param0->sprites;
+    return spriteMan->sprites;
 }
 
-void SpriteSystem_ReplaceCharResObjFromOpenNarc(SpriteSystem *param0, SpriteManager *param1, NARC *param2, int param3, BOOL param4, int param5)
+void SpriteSystem_ReplaceCharResObjFromOpenNarc(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, int resourceID)
 {
-    SpriteResource *v0;
-
-    v0 = SpriteResourceCollection_Find(param1->ownedResources[0], param5);
-
-    SpriteResourceCollection_ModifyTilesFrom(param1->ownedResources[0], v0, param2, param3, param4, param0->heapId);
-    SpriteTransfer_RetransferCharData(v0);
+    SpriteResource *resource = SpriteResourceCollection_Find(spriteMan->ownedResources[SPRITE_RESOURCE_TILES], resourceID);
+    SpriteResourceCollection_ModifyTilesFrom(spriteMan->ownedResources[SPRITE_RESOURCE_TILES],
+        resource,
+        narc,
+        memberIdx,
+        compressed,
+        spriteSys->heapId);
+    SpriteTransfer_RetransferCharData(resource);
 }
