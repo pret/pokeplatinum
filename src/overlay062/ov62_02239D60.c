@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
 #include "constants/species.h"
 
 #include "struct_decls/sprite_decl.h"
@@ -1073,9 +1074,9 @@ static void ov62_0223AE60(UnkStruct_0208C06C *param0)
     v2 = param0->unk_14.unk_08;
     v3 = param0->unk_14.unk_14;
 
-    SpriteSystem_LoadPaletteBuffer(v3, 2, v1, v2, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
-    SpriteSystem_LoadCellResObj(v1, v2, 19, PokeIcon64KCellsFileIndex(), 0, 100000);
-    SpriteSystem_LoadAnimResObj(v1, v2, 19, PokeIcon64KAnimationFileIndex(), 0, 100000);
+    SpriteSystem_LoadPaletteBuffer(v3, PLTTBUF_MAIN_OBJ, v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
+    SpriteSystem_LoadCellResObj(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KCellsFileIndex(), FALSE, 100000);
+    SpriteSystem_LoadAnimResObj(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KAnimationFileIndex(), FALSE, 100000);
 
     {
         int v5;
@@ -1093,7 +1094,7 @@ static void ov62_0223AE60(UnkStruct_0208C06C *param0)
                 continue;
             }
 
-            SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v1, v2, 19, PokeIconSpriteIndex(v7, v9, v6), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + v5);
+            SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(v7, v9, v6), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + v5);
 
             v4.x = 110 + ((v5 % 6) * 24);
             v4.y = 48 + ((v5 / 6) * 22);

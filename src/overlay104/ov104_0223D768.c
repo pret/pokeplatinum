@@ -5,6 +5,7 @@
 
 #include "narc.h"
 #include "palette.h"
+#include "sprite_resource.h"
 #include "sprite_system.h"
 
 static const SpriteTemplate Unk_ov104_022417D8[] = {
@@ -65,10 +66,10 @@ void ov104_0223D768(SpriteSystem *param0, SpriteManager *param1, NARC *param2, P
     GF_ASSERT(param4 < NELEMS(Unk_ov104_022417D8));
     v0 = &Unk_ov104_022417D8[param4];
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->resources[0], 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[0]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param3, 2, param0, param1, param2, v0->resources[1], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[1]);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param2, v0->resources[2], 1, v0->resources[2]);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->resources[3], 1, v0->resources[3]);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param2, v0->resources[SPRITE_RESOURCE_TILES], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[SPRITE_RESOURCE_TILES]);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param3, PLTTBUF_MAIN_OBJ, param0, param1, param2, v0->resources[SPRITE_RESOURCE_PALETTE], FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v0->resources[SPRITE_RESOURCE_PALETTE]);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param2, v0->resources[SPRITE_RESOURCE_SPRITE], TRUE, v0->resources[SPRITE_RESOURCE_SPRITE]);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, v0->resources[SPRITE_RESOURCE_SPRITE_ANIM], TRUE, v0->resources[SPRITE_RESOURCE_SPRITE_ANIM]);
 }
 
 void ov104_0223D7EC(SpriteManager *param0, u16 param1)

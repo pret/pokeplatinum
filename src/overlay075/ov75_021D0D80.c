@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
+
 #include "struct_defs/struct_020978D8.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -898,16 +900,16 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         RenderOam_ClearMain(param0->unk_00);
     }
 
-    SpriteSystem_LoadPlttResObj(param0->unk_A8, param0->unk_AC, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
-    SpriteSystem_LoadCellResObj(param0->unk_A8, param0->unk_AC, 19, PokeIconCellsFileIndex(), 0, 0);
-    SpriteSystem_LoadAnimResObj(param0->unk_A8, param0->unk_AC, 19, PokeIconAnimationFileIndex(), 0, 0);
+    SpriteSystem_LoadPlttResObj(param0->unk_A8, param0->unk_AC, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
+    SpriteSystem_LoadCellResObj(param0->unk_A8, param0->unk_AC, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconCellsFileIndex(), FALSE, 0);
+    SpriteSystem_LoadAnimResObj(param0->unk_A8, param0->unk_AC, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconAnimationFileIndex(), FALSE, 0);
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_1C->unk_14[v0].val2 == 0xFFFF) {
             break;
         }
 
-        SpriteSystem_LoadCharResObjWithHardwareMappingType(param0->unk_A8, param0->unk_AC, 19, param0->unk_1C->unk_14[v0].val1_0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v0);
+        SpriteSystem_LoadCharResObjWithHardwareMappingType(param0->unk_A8, param0->unk_AC, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_1C->unk_14[v0].val1_0, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v0);
         MI_CpuClear8(&v2, sizeof(SpriteTemplate));
 
         v2.x = (16 * 8) - (40 * v0);

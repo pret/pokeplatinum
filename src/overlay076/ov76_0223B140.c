@@ -184,9 +184,9 @@ void ov76_0223B36C(UnkStruct_ov76_0223DE00 *param0, u8 param1, u8 param2)
     v0 = sub_02098140(param1);
     v1 = (param2 + 20000);
 
-    SpriteSystem_LoadCharResObj(v2, v3, 91, v0, 1, NNS_G2D_VRAM_TYPE_2DSUB, v1);
-    SpriteSystem_LoadCellResObj(v2, v3, 91, 93, 1, 22000 + 93);
-    SpriteSystem_LoadAnimResObj(v2, v3, 91, 1, 1, 23000 + 1);
+    SpriteSystem_LoadCharResObj(v2, v3, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, v0, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, v1);
+    SpriteSystem_LoadCellResObj(v2, v3, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, 93, TRUE, 22000 + 93);
+    SpriteSystem_LoadAnimResObj(v2, v3, NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, 1, TRUE, 23000 + 1);
 }
 
 void ov76_0223B400(UnkStruct_ov76_0223DE00 *param0)

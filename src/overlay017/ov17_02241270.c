@@ -47,9 +47,9 @@ static const SpriteTemplate Unk_ov17_02253680 = {
 
 void ov17_02241270(SpriteSystem *param0, SpriteManager *param1, NARC *param2)
 {
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param2, 42, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33019);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param2, 43, 1, 33014);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, 44, 1, 33014);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param2, 42, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, 33019);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param2, 43, TRUE, 33014);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, 44, TRUE, 33014);
 }
 
 CellActorData *ov17_022412C0(SpriteSystem *param0, SpriteManager *param1, int param2)
@@ -77,9 +77,9 @@ void ov17_02241314(CellActorData *param0)
 
 void ov17_0224131C(SpriteSystem *param0, SpriteManager *param1, NARC *param2)
 {
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param2, 45, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33018);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param2, 46, 1, 33013);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, 47, 1, 33013);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param2, 45, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, 33018);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param2, 46, TRUE, 33013);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, 47, TRUE, 33013);
 }
 
 CellActorData *ov17_0224136C(SpriteSystem *param0, SpriteManager *param1, int param2, int param3, int param4)

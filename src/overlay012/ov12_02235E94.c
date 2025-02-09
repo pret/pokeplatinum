@@ -2300,10 +2300,10 @@ static void ov12_02237C54(BallRotation *param0)
 
         v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param0->unk_90.heapID);
 
-        SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param0->unk_90.target + 6000);
+        SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v0, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, param0->unk_90.target + 6000);
         SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_90.paletteSys, 2, param0->unk_90.cellActorSys, param0->unk_2C, v6, v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param0->unk_90.target + 6000);
-        SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v2, 1, param0->unk_90.target + 6000);
-        SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v3, 1, param0->unk_90.target + 6000);
+        SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v2, TRUE, param0->unk_90.target + 6000);
+        SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v3, TRUE, param0->unk_90.target + 6000);
         NARC_dtor(v6);
     }
 }

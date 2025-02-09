@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
+
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sentence.h"
 
@@ -876,10 +878,10 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param
 
         v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param2);
 
-        SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v6, 112, 0, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
-        SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, 2, v0, v1, v6, 111, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
-        SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v6, 113, 0, param3);
-        SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v6, 114, 0, param3);
+        SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v6, 112, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, PLTTBUF_MAIN_OBJ, v0, v1, v6, 111, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
+        SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v6, 113, FALSE, param3);
+        SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v6, 114, FALSE, param3);
         NARC_dtor(v6);
     }
 
@@ -983,9 +985,9 @@ static const SpriteTemplate Unk_ov104_0223F9AC = {
 
 void ov104_02232EC0(UnkStruct_ov104_0223C4CC *param0)
 {
-    SpriteSystem_LoadPaletteBuffer(param0->unk_04, 2, param0->unk_34.unk_00, param0->unk_34.unk_04, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 2000);
-    SpriteSystem_LoadCellResObj(param0->unk_34.unk_00, param0->unk_34.unk_04, 19, PokeIcon32KCellsFileIndex(), 0, 2000);
-    SpriteSystem_LoadAnimResObj(param0->unk_34.unk_00, param0->unk_34.unk_04, 19, PokeIcon32KAnimationFileIndex(), 0, 2000);
+    SpriteSystem_LoadPaletteBuffer(param0->unk_04, PLTTBUF_MAIN_OBJ, param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 2000);
+    SpriteSystem_LoadCellResObj(param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KCellsFileIndex(), FALSE, 2000);
+    SpriteSystem_LoadAnimResObj(param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon32KAnimationFileIndex(), FALSE, 2000);
 }
 
 void ov104_02232F28(UnkStruct_ov104_0223C4CC *param0)
@@ -1003,7 +1005,7 @@ CellActorData *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1,
     GF_ASSERT(param2 < (2008 - 2000));
 
     SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(
-        param0->unk_34.unk_00, param0->unk_34.unk_04, 19, Pokemon_IconSpriteIndex(param1), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2000 + param2);
+        param0->unk_34.unk_00, param0->unk_34.unk_04, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param1), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2000 + param2);
 
     v1 = Unk_ov104_0223F9E0;
 
@@ -1032,10 +1034,10 @@ void ov104_02232FEC(UnkStruct_ov104_0223C4CC *param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 94);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_04, 2, param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081934(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081938(), 0, 2001);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_0208193C(), 0, 2001);
-    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(param0->unk_34.unk_00, param0->unk_34.unk_04, 20, sub_02081930(), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 2009);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_04, PLTTBUF_MAIN_OBJ, param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081938(), FALSE, 2001);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_0208193C(), FALSE, 2001);
+    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(param0->unk_34.unk_00, param0->unk_34.unk_04, 20, sub_02081930(), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 2009);
     NARC_dtor(v0);
 }
 

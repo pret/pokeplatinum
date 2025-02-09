@@ -199,11 +199,11 @@ void ov16_02268520(UnkStruct_ov16_02268520 *param0)
         v8 = 20006;
     }
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
-    PaletteData_LoadBufferFromFileStart(BattleSystem_PaletteSys(param0->unk_04), 27, Unk_ov16_02270134[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, 1, v6);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, 1, v8);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v10, v3, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_PaletteSys(param0->unk_04), PLTTBUF_MAIN_OBJ, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    PaletteData_LoadBufferFromFileStart(BattleSystem_PaletteSys(param0->unk_04), NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, Unk_ov16_02270134[param0->unk_09][v9], 5, PLTTBUF_MAIN_BG, 0x20, 0x7 * 0x10);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v10, v5, TRUE, v6);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v10, v7, TRUE, v8);
     NARC_dtor(v10);
 }
 

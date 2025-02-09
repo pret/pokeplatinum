@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
 #include "constants/screen.h"
 
 #include "struct_decls/struct_0202F298_decl.h"
@@ -580,16 +581,16 @@ static void ov62_022320EC(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
     v6 = param1->unk_14.unk_08;
     v7 = param1->unk_14.unk_14;
 
-    v4 = SpriteSystem_LoadPaletteBuffer(v7, 2, v5, v6, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
+    v4 = SpriteSystem_LoadPaletteBuffer(v7, PLTTBUF_MAIN_OBJ, v5, v6, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
 
     {
         int v9 = PokeIcon64KCellsFileIndex();
-        SpriteSystem_LoadCellResObj(v5, v6, 19, v9, 0, 100000);
+        SpriteSystem_LoadCellResObj(v5, v6, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, v9, FALSE, 100000);
     }
 
     {
         int v10 = PokeIcon64KAnimationFileIndex();
-        SpriteSystem_LoadAnimResObj(v5, v6, 19, v10, 0, 100000);
+        SpriteSystem_LoadAnimResObj(v5, v6, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, v10, FALSE, 100000);
     }
 
     {
@@ -605,7 +606,7 @@ static void ov62_022320EC(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
 
         v11 = PokeIconSpriteIndex(v1, v0, v3);
 
-        SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v5, v6, 19, v11, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
+        SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v5, v6, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, v11, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
 
         v8.x = 72 + 4;
         v8.y = 64 - 4;
@@ -717,10 +718,10 @@ static void ov62_0223226C(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
         v6 = ov62_02232234(v9, 3);
     }
 
-    SpriteSystem_LoadPaletteBuffer(v3, 2, v1, v2, 146, v5, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 165535);
-    SpriteSystem_LoadCellResObj(v1, v2, 146, v7, 0, 165535);
-    SpriteSystem_LoadAnimResObj(v1, v2, 146, v8, 0, 165535);
-    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v1, v2, 146, v6, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 165535);
+    SpriteSystem_LoadPaletteBuffer(v3, PLTTBUF_MAIN_OBJ, v1, v2, NARC_INDEX_GRAPHIC__WIFI2DCHAR, v5, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 165535);
+    SpriteSystem_LoadCellResObj(v1, v2, NARC_INDEX_GRAPHIC__WIFI2DCHAR, v7, FALSE, 165535);
+    SpriteSystem_LoadAnimResObj(v1, v2, NARC_INDEX_GRAPHIC__WIFI2DCHAR, v8, FALSE, 165535);
+    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v1, v2, NARC_INDEX_GRAPHIC__WIFI2DCHAR, v6, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 165535);
 
     v4.x = 40;
     v4.y = 56 + 4;
@@ -1716,9 +1717,9 @@ void ov62_0223331C(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
     SpriteManager *v5 = param1->unk_14.unk_08;
     PaletteData *v6 = param1->unk_14.unk_14;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(v4, v5, v2, 127, 0, param2, 200000);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v4, v5, v2, 126, 0, 200000);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v4, v5, v2, 125, 0, 200000);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v4, v5, v2, 127, FALSE, param2, 200000);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v4, v5, v2, 126, FALSE, 200000);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v4, v5, v2, 125, FALSE, 200000);
 
     v1.x = 128;
     v1.y = 96;
@@ -2204,7 +2205,7 @@ CellActorData *ov62_02233A7C(UnkStruct_0208C06C *param0, NARC *param1, int param
         return NULL;
     }
 
-    SpriteSystem_LoadCharResObjFromOpenNarcWithHardwareMappingType(v1, v2, param1, PokeIconSpriteIndex(param3, param5, param4), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + param2);
+    SpriteSystem_LoadCharResObjFromOpenNarcWithHardwareMappingType(v1, v2, param1, PokeIconSpriteIndex(param3, param5, param4), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + param2);
 
     v4.x = 0;
     v4.y = -48;
@@ -2577,7 +2578,7 @@ static void ov62_02234000(UnkStruct_ov62_02233F74 *param0, UnkStruct_0208C06C *p
         v2 = v8[v0];
         v6 = PokeIconSpriteIndex(v1, 0, v2);
 
-        SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v10, v11, 19, v6, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + v3);
+        SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v10, v11, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, v6, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + v3);
 
         v4.x = v13[v9][v0][0] + 12 - 4;
         v4.y = v13[v9][v0][1] - 12;

@@ -1972,10 +1972,10 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
 
         v4 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, 95);
 
-        SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v4, 14, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
-        SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, 2, v0, v1, v4, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
-        SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v4, 13, 0, 6);
-        SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v4, 12, 0, 7);
+        SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v4, 14, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, PLTTBUF_MAIN_OBJ, v0, v1, v4, 8, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
+        SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v4, 13, FALSE, 6);
+        SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v4, 12, FALSE, 7);
         NARC_dtor(v4);
     }
 

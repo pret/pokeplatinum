@@ -3138,10 +3138,10 @@ CellActorData *sub_02076994(SpriteSystem *param0, SpriteManager *param1, Palette
 
     narc = NARC_ctor(v3.unk_00, heapID);
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, 2, param0, param1, narc, v3.unk_08, 0, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, narc, v3.unk_0C, 0, 20007 + param7);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, narc, v3.unk_10, 0, 20007 + param7);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, PLTTBUF_MAIN_OBJ, param0, param1, narc, v3.unk_08, FALSE, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, narc, v3.unk_0C, FALSE, 20007 + param7);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, narc, v3.unk_10, FALSE, 20007 + param7);
     NARC_dtor(narc);
 
     v0 = Unk_020F05E4;

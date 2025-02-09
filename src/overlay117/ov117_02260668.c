@@ -992,16 +992,16 @@ static void ov117_0226168C(UnkStruct_ov117_02261280 *param0, NARC *param1)
 
     ov117_02266150(param0);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10004);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 24, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 26, 0, 10002);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 25, 0, 10002);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_8C, PLTTBUF_MAIN_OBJ, param0->unk_24, param0->unk_28, param1, 27, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10004);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 24, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 26, FALSE, 10002);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 25, FALSE, 10002);
     param0->unk_15A8.unk_00 = ov117_02266130(param0);
 
-    SpriteSystem_LoadPaletteBuffer(param0->unk_8C, 2, param0->unk_24, param0->unk_28, 171, 20, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
-    SpriteSystem_LoadCharResObj(param0->unk_24, param0->unk_28, 171, 21, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
-    SpriteSystem_LoadCellResObj(param0->unk_24, param0->unk_28, 171, 22, 0, 10001);
-    SpriteSystem_LoadAnimResObj(param0->unk_24, param0->unk_28, 171, 23, 0, 10001);
+    SpriteSystem_LoadPaletteBuffer(param0->unk_8C, PLTTBUF_MAIN_OBJ, param0->unk_24, param0->unk_28, NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, 20, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
+    SpriteSystem_LoadCharResObj(param0->unk_24, param0->unk_28, NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, 21, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 10001);
+    SpriteSystem_LoadCellResObj(param0->unk_24, param0->unk_28, NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, 22, FALSE, 10001);
+    SpriteSystem_LoadAnimResObj(param0->unk_24, param0->unk_28, NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, 23, FALSE, 10001);
     param0->unk_174C.unk_00 = ov117_02266244(param0);
 }
 
@@ -1022,10 +1022,10 @@ static void ov117_022618E8(UnkStruct_ov117_02261280 *param0)
 
 static void ov117_02261940(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_8C, 3, param0->unk_24, param0->unk_28, param1, 23, 0, 9, NNS_G2D_VRAM_TYPE_2DSUB, 10006);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 20, 0, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 22, 0, 10004);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 21, 0, 10004);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_8C, PLTTBUF_SUB_OBJ, param0->unk_24, param0->unk_28, param1, 23, FALSE, 9, NNS_G2D_VRAM_TYPE_2DSUB, 10006);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 20, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 22, FALSE, 10004);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 21, FALSE, 10004);
 
     ov117_022648E0(param0);
     ov117_02264FB0(param0, &param0->unk_1458);

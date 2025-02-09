@@ -87,20 +87,20 @@ void sub_0208A490(UnkStruct_02089688 *param0)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 17, v1, 5, 0, 0, 0, 101);
     PaletteData_LoadBufferFromFileStart(v4, 159, 16, 101, 1, 0x20 * 1, 0);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, 2, v2, v3, v0, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
-    SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 2, 0, 1000);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 3, 0, 1000);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, PLTTBUF_MAIN_OBJ, v2, v3, v0, 1, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 0, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 2, FALSE, 1000);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 3, FALSE, 1000);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, 2, v2, v3, v0, 5, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
-    SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 4, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 6, 0, 1001);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 7, 0, 1001);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, PLTTBUF_MAIN_OBJ, v2, v3, v0, 5, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 4, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1001);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 6, FALSE, 1001);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 7, FALSE, 1001);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, 2, v2, v3, v0, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1002);
-    SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 8, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1002);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 10, 0, 1002);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 11, 0, 1002);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, PLTTBUF_MAIN_OBJ, v2, v3, v0, 9, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1002);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 8, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1002);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 10, FALSE, 1002);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 11, FALSE, 1002);
 
     {
         int v5 = Options_Frame(param0->unk_38C.unk_20);

@@ -42,10 +42,10 @@ void ov16_0226DB7C(SpriteSystem *param0, SpriteManager *param1, PaletteData *par
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param3);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, 3, param0, param1, v0, 80, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, v0, 250, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, v0, 251, 1, param6);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, v0, 252, 1, param7);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, PLTTBUF_SUB_OBJ, param0, param1, v0, 80, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, v0, 250, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, param4);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, v0, 251, TRUE, param6);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, v0, 252, TRUE, param7);
     NARC_dtor(v0);
 }
 

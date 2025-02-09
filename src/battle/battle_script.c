@@ -12215,18 +12215,18 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     v2 = ov16_0223E018(param0);
     v3 = BattleSystem_PaletteSys(param0);
 
-    SpriteSystem_LoadCharResObj(v1, v2, 27, 256, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
-    SpriteSystem_LoadPaletteBuffer(v3, 2, v1, v2, 27, 82, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 20016);
-    SpriteSystem_LoadCellResObj(v1, v2, 27, 257, 1, 20013);
-    SpriteSystem_LoadAnimResObj(v1, v2, 27, 258, 1, 20013);
+    SpriteSystem_LoadCharResObj(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 256, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
+    SpriteSystem_LoadPaletteBuffer(v3, PLTTBUF_MAIN_OBJ, v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 82, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 20016);
+    SpriteSystem_LoadCellResObj(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 257, TRUE, 20013);
+    SpriteSystem_LoadAnimResObj(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 258, TRUE, 20013);
 
     param1->cellActorData[0] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_0226E6C4);
 
     Sprite_TickOneFrame(param1->cellActorData[0]);
-    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v1, v2, 19, Pokemon_IconSpriteIndex(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
-    SpriteSystem_LoadPaletteBuffer(v3, 2, v1, v2, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 20017);
-    SpriteSystem_LoadCellResObj(v1, v2, 19, PokeIcon64KCellsFileIndex(), 0, 20014);
-    SpriteSystem_LoadAnimResObj(v1, v2, 19, PokeIcon64KAnimationFileIndex(), 0, 20014);
+    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param2), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
+    SpriteSystem_LoadPaletteBuffer(v3, PLTTBUF_MAIN_OBJ, v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 20017);
+    SpriteSystem_LoadCellResObj(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KCellsFileIndex(), FALSE, 20014);
+    SpriteSystem_LoadAnimResObj(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KAnimationFileIndex(), FALSE, 20014);
 
     param1->cellActorData[1] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_0226E6F8);
 

@@ -39,6 +39,7 @@
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "spl.h"
+#include "sprite_resource.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "sys_task.h"
@@ -2121,10 +2122,10 @@ static void ov12_022214C4(UnkStruct_ov12_0221FCDC *param0)
     v0[4] = 0;
     v0[5] = 0;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 76, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v0[0]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, 2, param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 75, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v0[1]);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 77, 0, v0[2]);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 78, 0, v0[3]);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 76, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v0[SPRITE_RESOURCE_PALETTE]);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_C4, PLTTBUF_MAIN_OBJ, param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 75, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v0[SPRITE_RESOURCE_PALETTE]);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 77, FALSE, v0[SPRITE_RESOURCE_SPRITE]);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_134, param0->unk_1A0[1], 78, FALSE, v0[SPRITE_RESOURCE_SPRITE_ANIM]);
 }
 
 static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
@@ -3593,7 +3594,7 @@ static void ov12_02222D84(UnkStruct_ov12_0221FCDC *param0)
     v1 = inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->unk_1A0[2], v1, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v1 + 5000);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_BC->unk_AC, param0->unk_C8[v0], param0->unk_1A0[2], v1, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, v1 + 5000);
 }
 
 static void ov12_02222DCC(UnkStruct_ov12_0221FCDC *param0)
@@ -4217,10 +4218,10 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *param0, int param1, int par
             v3[4] = 0;
             v3[5] = 0;
 
-            SpriteSystem_LoadCharResObjFromOpenNarc(v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 76, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v3[0]);
-            SpriteSystem_LoadPaletteBufferFromOpenNarc(v2->unk_08.unk_08, 2, v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 75, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v3[1]);
-            SpriteSystem_LoadCellResObjFromOpenNarc(v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 77, 0, v3[2]);
-            SpriteSystem_LoadAnimResObjFromOpenNarc(v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 78, 0, v3[3]);
+            SpriteSystem_LoadCharResObjFromOpenNarc(v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 76, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v3[SPRITE_RESOURCE_TILES]);
+            SpriteSystem_LoadPaletteBufferFromOpenNarc(v2->unk_08.unk_08, 2, v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 75, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, v3[SPRITE_RESOURCE_PALETTE]);
+            SpriteSystem_LoadCellResObjFromOpenNarc(v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 77, FALSE, v3[SPRITE_RESOURCE_SPRITE]);
+            SpriteSystem_LoadAnimResObjFromOpenNarc(v2->unk_08.unk_00, v2->unk_08.unk_04, v4, 78, FALSE, v3[SPRITE_RESOURCE_SPRITE_ANIM]);
         }
 
         NARC_dtor(v4);

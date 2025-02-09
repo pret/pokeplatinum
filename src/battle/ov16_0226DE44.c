@@ -52,10 +52,10 @@ void ov16_0226DE44(SpriteSystem *param0, SpriteManager *param1, u32 param2, Pale
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param3, 3, param0, param1, v0, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
-    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, v0, 10, 0, NNS_G2D_VRAM_TYPE_2DSUB, param4);
-    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, v0, 12, 0, param6);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, v0, 13, 0, param7);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param3, PLTTBUF_SUB_OBJ, param0, param1, v0, 11, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, v0, 10, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, param4);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, v0, 12, FALSE, param6);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, v0, 13, FALSE, param7);
     NARC_dtor(v0);
 }
 

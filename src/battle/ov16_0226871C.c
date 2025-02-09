@@ -1332,13 +1332,13 @@ void ov16_02268D40(NARC *param0, UnkStruct_ov16_02268A14 *param1)
     v1 = ov16_0223E010(param1->unk_00);
     v2 = ov16_0223E018(param1->unk_00);
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(v1, v2, param0, 208, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v1, v2, param0, 207, 1, 20015);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v1, v2, param0, 209, 1, 20015);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v1, v2, param0, 208, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v1, v2, param0, 207, TRUE, 20015);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v1, v2, param0, 209, TRUE, 20015);
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(v1, v2, param0, 205, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20024);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v1, v2, param0, 204, 1, 20016);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v1, v2, param0, 206, 1, 20016);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v1, v2, param0, 205, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, 20024);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v1, v2, param0, 204, TRUE, 20016);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v1, v2, param0, 206, TRUE, 20016);
 
     for (i = 0; i < 6; i++) {
         param1->unk_5BC[i] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_02270414);
@@ -2505,7 +2505,7 @@ static CellActorData *ov16_0226A7A4(UnkStruct_ov16_02268A14 *param0, Pokemon *pa
     v0 = ov16_0223E010(param0->unk_00);
     v1 = ov16_0223E018(param0->unk_00);
 
-    SpriteSystem_LoadCharResObj(v0, v1, 19, Pokemon_IconSpriteIndex(param1), 0, NNS_G2D_VRAM_TYPE_2DSUB, v2);
+    SpriteSystem_LoadCharResObj(v0, v1, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param1), 0, NNS_G2D_VRAM_TYPE_2DSUB, v2);
 
     v3 = Unk_ov16_022704B0;
     v3.resources[0] = v2;

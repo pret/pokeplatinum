@@ -36,10 +36,10 @@ static const SpriteTemplate Unk_ov17_02254D9C = {
 
 void ov17_02252AB0(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
-    SpriteSystem_LoadPaletteBuffer(param2, 3, param0, param1, 27, 80, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
-    SpriteSystem_LoadCharResObj(param0, param1, 27, 250, 1, NNS_G2D_VRAM_TYPE_2DSUB, param3);
-    SpriteSystem_LoadCellResObj(param0, param1, 27, 251, 1, param5);
-    SpriteSystem_LoadAnimResObj(param0, param1, 27, 252, 1, param6);
+    SpriteSystem_LoadPaletteBuffer(param2, PLTTBUF_SUB_OBJ, param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 80, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
+    SpriteSystem_LoadCharResObj(param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 250, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, param3);
+    SpriteSystem_LoadCellResObj(param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 251, TRUE, param5);
+    SpriteSystem_LoadAnimResObj(param0, param1, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 252, TRUE, param6);
 }
 
 void ov17_02252B20(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4)

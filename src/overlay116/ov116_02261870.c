@@ -592,10 +592,10 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     v11 = 9000;
     v12 = 13;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DSUB, v11);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 3, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DSUB, v11);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, v11);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, FALSE, v11);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, FALSE, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, PLTTBUF_SUB_OBJ, v3, v4, v6, v10, FALSE, v12, NNS_G2D_VRAM_TYPE_2DSUB, v11);
 
     v7 = 27;
     v8 = 28;
@@ -604,10 +604,10 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     v11 = 9003;
     v12 = 1;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, FALSE, v11);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, FALSE, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, PLTTBUF_MAIN_OBJ, v3, v4, v6, v10, FALSE, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     v7 = 11;
     v8 = 12;
@@ -616,10 +616,10 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     v11 = 9004;
     v12 = 1;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, FALSE, v11);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, FALSE, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, PLTTBUF_MAIN_OBJ, v3, v4, v6, v10, FALSE, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     v7 = 19;
     v8 = 20;
@@ -628,10 +628,10 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     v11 = 9005;
     v12 = 1;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, FALSE, v11);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, FALSE, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, PLTTBUF_MAIN_OBJ, v3, v4, v6, v10, FALSE, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     v7 = 15;
     v8 = 16;
@@ -640,10 +640,10 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     v11 = 9006;
     v12 = 1;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, FALSE, v11);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, FALSE, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, PLTTBUF_MAIN_OBJ, v3, v4, v6, v10, FALSE, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     v7 = 23;
     v8 = 24;
@@ -652,10 +652,10 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     v11 = 9002;
     v12 = 3;
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, 0, v11);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, 0, v11);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v6, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v6, v9, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v6, v8, FALSE, v11);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v6, v7, FALSE, v11);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, PLTTBUF_MAIN_OBJ, v3, v4, v6, v10, FALSE, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     {
         NARC *v13 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, 106);
@@ -667,10 +667,10 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
         v11 = 9007;
         v12 = 2;
 
-        SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v13, v9, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
-        SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v13, v8, 0, v11);
-        SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v13, v7, 0, v11);
-        SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, 2, v3, v4, v13, v10, 0, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+        SpriteSystem_LoadCharResObjFromOpenNarc(v3, v4, v13, v9, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
+        SpriteSystem_LoadCellResObjFromOpenNarc(v3, v4, v13, v8, FALSE, v11);
+        SpriteSystem_LoadAnimResObjFromOpenNarc(v3, v4, v13, v7, FALSE, v11);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, PLTTBUF_MAIN_OBJ, v3, v4, v13, v10, FALSE, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
         NARC_dtor(v13);
     }
 }

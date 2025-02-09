@@ -50,13 +50,13 @@ u32 ov17_0224F0B8(void)
 
 void ov17_0224F0BC(SpriteSystem *param0, SpriteManager *param1, NNS_G2D_VRAM_TYPE param2, int param3, u32 param4)
 {
-    SpriteSystem_LoadCharResObj(param0, param1, ov17_0224F0B8(), ov17_0224F080(param3), 1, param2, param4);
+    SpriteSystem_LoadCharResObj(param0, param1, ov17_0224F0B8(), ov17_0224F080(param3), TRUE, param2, param4);
 }
 
 void ov17_0224F0F0(SpriteSystem *param0, SpriteManager *param1, u32 param2, u32 param3)
 {
-    SpriteSystem_LoadCellResObj(param0, param1, ov17_0224F0B8(), ov17_0224F098(), 1, param2);
-    SpriteSystem_LoadAnimResObj(param0, param1, ov17_0224F0B8(), ov17_0224F09C(), 1, param3);
+    SpriteSystem_LoadCellResObj(param0, param1, ov17_0224F0B8(), ov17_0224F098(), TRUE, param2);
+    SpriteSystem_LoadAnimResObj(param0, param1, ov17_0224F0B8(), ov17_0224F09C(), TRUE, param3);
 }
 
 void ov17_0224F138(SpriteManager *param0, u32 param1)

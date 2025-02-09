@@ -251,10 +251,10 @@ static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0)
         PaletteData_LoadBuffer(v4, &v6, 0, 0, 0x2);
     }
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, 3, v2, v3, v0, 50, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 48, 0, v5);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 47, 0, v5);
-    SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 49, 0, NNS_G2D_VRAM_TYPE_2DSUB, v5);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, PLTTBUF_SUB_OBJ, v2, v3, v0, 50, FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 48, FALSE, v5);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 47, FALSE, v5);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 49, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, v5);
 
     ov100_021D4AC8(&param0->unk_1A4.unk_498, 60, param0->unk_7C4->unk_00);
 

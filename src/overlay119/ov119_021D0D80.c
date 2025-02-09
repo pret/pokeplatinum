@@ -535,15 +535,15 @@ void ov119_021D1514(UnkStruct_ov119_021D0FD0 *param0)
     v1 = param0->unk_04.unk_4C;
     v2 = param0->unk_04.unk_04;
 
-    SpriteSystem_LoadCharResObj(v0, v1, v4, v3[v6][0], 1, v5, 20000);
-    SpriteSystem_LoadPaletteBuffer(v2, 2, v0, v1, v4, v3[v6][1], 0, 1, v5, 20001);
-    SpriteSystem_LoadCellResObj(v0, v1, v4, v3[v6][2], 1, 20002);
-    SpriteSystem_LoadAnimResObj(v0, v1, v4, v3[v6][3], 1, 20003);
+    SpriteSystem_LoadCharResObj(v0, v1, v4, v3[v6][0], TRUE, v5, 20000);
+    SpriteSystem_LoadPaletteBuffer(v2, PLTTBUF_MAIN_OBJ, v0, v1, v4, v3[v6][1], FALSE, 1, v5, 20001);
+    SpriteSystem_LoadCellResObj(v0, v1, v4, v3[v6][2], TRUE, 20002);
+    SpriteSystem_LoadAnimResObj(v0, v1, v4, v3[v6][3], TRUE, 20003);
 
-    SpriteSystem_LoadCharResObj(v0, v1, v4, 7, 1, v5, 25000);
-    SpriteSystem_LoadPaletteBuffer(v2, 2, v0, v1, v4, 10, 0, 1, v5, 25001);
-    SpriteSystem_LoadCellResObj(v0, v1, v4, 6, 1, 25002);
-    SpriteSystem_LoadAnimResObj(v0, v1, v4, 5, 1, 25003);
+    SpriteSystem_LoadCharResObj(v0, v1, v4, 7, TRUE, v5, 25000);
+    SpriteSystem_LoadPaletteBuffer(v2, PLTTBUF_MAIN_OBJ, v0, v1, v4, 10, FALSE, 1, v5, 25001);
+    SpriteSystem_LoadCellResObj(v0, v1, v4, 6, TRUE, 25002);
+    SpriteSystem_LoadAnimResObj(v0, v1, v4, 5, TRUE, 25003);
 }
 
 void ov119_021D161C(UnkStruct_ov119_021D0FD0 *param0)

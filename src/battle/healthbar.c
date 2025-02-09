@@ -18,6 +18,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sprite_resource.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -514,10 +515,10 @@ void Healthbar_LoadResources(SpriteSystem *renderer, SpriteManager *gfxHandler, 
 {
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbarType);
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[0], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[0]);
+    SpriteSystem_LoadCharResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[SPRITE_RESOURCE_TILES], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[SPRITE_RESOURCE_TILES]);
     SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
-    SpriteSystem_LoadCellResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[2], TRUE, template->resources[2]);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[3], TRUE, template->resources[3]);
+    SpriteSystem_LoadCellResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[SPRITE_RESOURCE_SPRITE], TRUE, template->resources[SPRITE_RESOURCE_SPRITE]);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[SPRITE_RESOURCE_SPRITE_ANIM], TRUE, template->resources[SPRITE_RESOURCE_SPRITE_ANIM]);
     SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_EFFECTS_PALETTE_RESID);
 
     if (healthbarType == HEALTHBAR_TYPE_SAFARI_ZONE || healthbarType == HEALTHBAR_TYPE_PAL_PARK) {
@@ -530,10 +531,10 @@ static void Healthbar_LoadMainPalette(SpriteSystem *renderer, SpriteManager *han
     const SpriteTemplate *template = ov16_02268314(type);
 
     if (template != NULL) {
-        SpriteSystem_LoadCharResObjFromOpenNarc(renderer, handler, narc, template->resources[0], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[0]);
+        SpriteSystem_LoadCharResObjFromOpenNarc(renderer, handler, narc, template->resources[SPRITE_RESOURCE_TILES], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[SPRITE_RESOURCE_TILES]);
         SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, handler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
-        SpriteSystem_LoadCellResObjFromOpenNarc(renderer, handler, narc, template->resources[2], TRUE, template->resources[2]);
-        SpriteSystem_LoadAnimResObjFromOpenNarc(renderer, handler, narc, template->resources[3], TRUE, template->resources[3]);
+        SpriteSystem_LoadCellResObjFromOpenNarc(renderer, handler, narc, template->resources[SPRITE_RESOURCE_SPRITE], TRUE, template->resources[SPRITE_RESOURCE_SPRITE]);
+        SpriteSystem_LoadAnimResObjFromOpenNarc(renderer, handler, narc, template->resources[SPRITE_RESOURCE_SPRITE_ANIM], TRUE, template->resources[SPRITE_RESOURCE_SPRITE_ANIM]);
     }
 }
 

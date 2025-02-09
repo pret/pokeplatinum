@@ -17,6 +17,7 @@
 #include "item.h"
 #include "move_table.h"
 #include "narc.h"
+#include "palette.h"
 #include "party.h"
 #include "pokemon_icon.h"
 #include "sprite_system.h"
@@ -251,15 +252,15 @@ static void ov13_02224588(UnkStruct_ov13_022213F0 *param0)
     v2 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, 3, v0, param0->unk_1FB0, v2, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 45063);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v2, PokeIcon32KCellsFileIndex(), 0, 45063);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, param0->unk_1FB0, v2, PokeIcon32KAnimationFileIndex(), 0, 45063);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v2, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, 45063);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v2, PokeIcon32KCellsFileIndex(), FALSE, 45063);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, param0->unk_1FB0, v2, PokeIcon32KAnimationFileIndex(), FALSE, 45063);
 
     for (v1 = 0; v1 < 6; v1++) {
         if (param0->unk_04[v1].unk_04 != 0) {
-            SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v2, Pokemon_IconSpriteIndex(param0->unk_04[v1].unk_00), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
+            SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v2, Pokemon_IconSpriteIndex(param0->unk_04[v1].unk_00), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
         } else {
-            SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v2, PokeIconSpriteIndex(0, 0, 0), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
+            SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v2, PokeIconSpriteIndex(0, 0, 0), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
         }
     }
 
@@ -273,10 +274,10 @@ static void ov13_02224670(UnkStruct_ov13_022213F0 *param0)
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_0C);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, 3, v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconPltt(), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45064);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconCell(), 0, 45064);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconAnim(), 0, 45064);
-    SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconChar(), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45069);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconPltt(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45064);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconCell(), FALSE, 45064);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconAnim(), FALSE, 45064);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconChar(), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45069);
     NARC_dtor(v1);
 }
 
@@ -306,10 +307,10 @@ static void ov13_02224798(UnkStruct_ov13_022213F0 *param0)
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, 3, v0, param0->unk_1FB0, v2, sub_02081934(), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45066);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v2, sub_02081938(), 0, 45066);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, param0->unk_1FB0, v2, sub_0208193C(), 0, 45066);
-    SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v2, sub_02081930(), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45078);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v2, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45066);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v2, sub_02081938(), FALSE, 45066);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, param0->unk_1FB0, v2, sub_0208193C(), FALSE, 45066);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v2, sub_02081930(), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45078);
     NARC_dtor(v2);
 }
 
@@ -317,10 +318,10 @@ static void ov13_02224848(UnkStruct_ov13_022213F0 *param0)
 {
     SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    SpriteSystem_LoadPaletteBuffer(param0->unk_1E4, 3, v0, param0->unk_1FB0, 72, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45067);
-    SpriteSystem_LoadCellResObj(v0, param0->unk_1FB0, 72, 25, 0, 45067);
-    SpriteSystem_LoadAnimResObj(v0, param0->unk_1FB0, 72, 24, 0, 45067);
-    SpriteSystem_LoadCharResObj(v0, param0->unk_1FB0, 72, 26, 0, NNS_G2D_VRAM_TYPE_2DSUB, 45079);
+    SpriteSystem_LoadPaletteBuffer(param0->unk_1E4, 3, v0, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 27, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45067);
+    SpriteSystem_LoadCellResObj(v0, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 25, FALSE, 45067);
+    SpriteSystem_LoadAnimResObj(v0, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 24, FALSE, 45067);
+    SpriteSystem_LoadCharResObj(v0, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 26, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45079);
 }
 
 static CellActorData *ov13_022248D8(UnkStruct_ov13_022213F0 *param0, u32 param1)

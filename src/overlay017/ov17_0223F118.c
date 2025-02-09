@@ -312,19 +312,19 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
 void ov17_0223F560(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6)
 {
     if (param3 != -1) {
-        SpriteSystem_LoadCharResObj(param0, param1, 46, 73, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+        SpriteSystem_LoadCharResObj(param0, param1, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 73, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
     }
 
     if (param4 != -1) {
-        SpriteSystem_LoadPaletteBuffer(param2, 2, param0, param1, 46, 7, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param4);
+        SpriteSystem_LoadPaletteBuffer(param2, PLTTBUF_MAIN_OBJ, param0, param1, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 7, 0, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, param4);
     }
 
     if (param5 != -1) {
-        SpriteSystem_LoadCellResObj(param0, param1, 46, 74, 1, param5);
+        SpriteSystem_LoadCellResObj(param0, param1, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 74, TRUE, param5);
     }
 
     if (param6 != -1) {
-        SpriteSystem_LoadAnimResObj(param0, param1, 46, 75, 1, param6);
+        SpriteSystem_LoadAnimResObj(param0, param1, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 75, TRUE, param6);
     }
 }
 
