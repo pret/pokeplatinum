@@ -1343,7 +1343,7 @@ void ov16_02268D40(NARC *param0, UnkStruct_ov16_02268A14 *param1)
     for (i = 0; i < 6; i++) {
         param1->unk_5BC[i] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_02270414);
         Sprite_SetPositionXYWithSubscreenOffset(param1->unk_5BC[i]->sprite, 12 + 19 * i, 13, ((192 + 80) << FX32_SHIFT));
-        Sprite_SetAffineOverwriteMode(param1->unk_5BC[i], 1);
+        Sprite_SetAffineOverwriteMode(param1->unk_5BC[i], AFFINE_OVERWRITE_MODE_NORMAL);
 
         param1->unk_5D4[i] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_02270448);
         Sprite_SetPositionXYWithSubscreenOffset(param1->unk_5D4[i]->sprite, 246 + -12 * i, 9, ((192 + 80) << FX32_SHIFT));

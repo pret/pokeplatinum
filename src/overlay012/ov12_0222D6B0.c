@@ -237,7 +237,7 @@ void ov12_0222D7C0(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
 
     for (v0 = 0; v0 < v1->unk_05; v0++) {
         v1->unk_01[v0] = 0;
-        Sprite_SetAffineOverwriteMode(v1->unk_14[v0], 2);
+        Sprite_SetAffineOverwriteMode(v1->unk_14[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
         Sprite_SetExplicitOamMode2(v1->unk_14[v0], GX_OAM_MODE_XLU);
 
         if (ov12_0221FDD4(v1->unk_08) == 1) {
@@ -670,9 +670,9 @@ void ov12_0222DEFC(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
             v5 = Unk_ov12_0223A19A[v0][0] + (LCRNG_Next() % Unk_ov12_0223A19A[v0][2]);
 
             Sprite_SetPositionXY2(v6, v4, v5);
-            Sprite_SetAffineOverwriteMode(v6, 2);
+            Sprite_SetAffineOverwriteMode(v6, AFFINE_OVERWRITE_MODE_DOUBLE);
             Sprite_SetAffineScale(v6, v2->unk_14[v1].unk_38, v2->unk_14[v1].unk_38);
-            Sprite_SetDrawFlag2(v6, 0);
+            Sprite_SetDrawFlag2(v6, FALSE);
 
             ov12_022201CC(param0, ov12_0222DC98, &v2->unk_14[v1], 1100 - 1);
 

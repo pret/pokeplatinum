@@ -420,7 +420,7 @@ void ov12_0222AE68(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
 
     for (v0 = 0; v0 < ov12_02220280(v1->unk_08, 0); v0++) {
         v1->unk_01[v0] = 0;
-        Sprite_SetAffineOverwriteMode(v1->unk_14[v0], 2);
+        Sprite_SetAffineOverwriteMode(v1->unk_14[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
         Sprite_OffsetPositionXY2(v1->unk_14[v0], 0, 32 - (v0 * 4));
         Sprite_SetExplicitOamMode2(v1->unk_14[v0], GX_OAM_MODE_XLU);
     }
@@ -1277,7 +1277,7 @@ void ov12_0222C3C0(UnkStruct_ov12_0221FCDC *param0)
             v0->unk_18[v1].unk_01 = 0;
             v0->unk_18[v1].unk_04 = ov12_022202C0(v0->unk_10, v1);
 
-            Sprite_SetAffineOverwriteMode(v0->unk_18[v1].unk_04, 2);
+            Sprite_SetAffineOverwriteMode(v0->unk_18[v1].unk_04, AFFINE_OVERWRITE_MODE_DOUBLE);
             Sprite_SetExplicitOamMode2(v0->unk_18[v1].unk_04, GX_OAM_MODE_XLU);
             Sprite_SetPriority(v0->unk_18[v1].unk_04, v1 + 1);
         }
@@ -1744,7 +1744,7 @@ void ov12_0222CC54(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
     v1 = ov12_02225964(param0, ov12_02220240(param0));
     v2->unk_38 = param3;
 
-    Sprite_SetAffineOverwriteMode(v2->unk_38, 2);
+    Sprite_SetAffineOverwriteMode(v2->unk_38, AFFINE_OVERWRITE_MODE_DOUBLE);
 
     v2->unk_3C[0].unk_08 = ov12_022232FC(param0, ov12_02220240(param0));
     v2->unk_3C[1].unk_08 = ov12_022232FC(param0, ov12_02220248(param0));
@@ -1903,7 +1903,7 @@ void ov12_0222CFA0(UnkStruct_ov12_0221FCDC *param0)
     }
 
     Sprite_SetPositionXY2(v0->unk_40, v0->unk_14.unk_00, v0->unk_14.unk_02);
-    Sprite_SetAffineOverwriteMode(v0->unk_40, 2);
+    Sprite_SetAffineOverwriteMode(v0->unk_40, AFFINE_OVERWRITE_MODE_DOUBLE);
     Sprite_SetExplicitOamMode2(v0->unk_40, GX_OAM_MODE_XLU);
 
     {

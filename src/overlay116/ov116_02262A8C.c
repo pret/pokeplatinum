@@ -14,6 +14,7 @@
 #include "overlay116/struct_ov116_022649E4.h"
 #include "overlay116/struct_ov116_0226501C.h"
 
+#include "cell_actor.h"
 #include "communication_system.h"
 #include "easy3d_object.h"
 #include "heap.h"
@@ -583,7 +584,7 @@ static void ov116_0226323C(SysTask *param0, void *param1)
 
         Sprite_SetAnim(v0->unk_0C, 7);
         Sprite_SetPriority(v0->unk_0C, 0);
-        Sprite_SetAffineOverwriteMode(v0->unk_0C, 2);
+        Sprite_SetAffineOverwriteMode(v0->unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
         Sprite_GetAffineScale(v0->unk_0C, &v1, &v2);
         ov116_02264764(&v0->unk_10, FX_F32_TO_FX32(v2), FX_F32_TO_FX32(2.0f), 2);
 
@@ -650,7 +651,7 @@ static void ov116_0226323C(SysTask *param0, void *param1)
     default:
         Sprite_SetAffineScale(v0->unk_0C, 1.0f, 1.0f);
         Sprite_SetAnim(v0->unk_0C, 5);
-        Sprite_SetPriority(v0->unk_0C, 2);
+        Sprite_SetPriority(v0->unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
         Sprite_SetAffineOverwriteMode(v0->unk_0C, 0);
 
         v0->unk_30 = 0;

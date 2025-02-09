@@ -17,6 +17,7 @@
 
 #include "bg_window.h"
 #include "camera.h"
+#include "cell_actor.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -570,7 +571,7 @@ void ov119_021D161C(UnkStruct_ov119_021D0FD0 *param0)
     param0->unk_74 = SpriteSystem_NewSprite(param0->unk_04.unk_50, param0->unk_04.unk_4C, &v0);
 
     Sprite_TickOneFrame(param0->unk_74);
-    Sprite_SetAffineOverwriteMode(param0->unk_74, 2);
+    Sprite_SetAffineOverwriteMode(param0->unk_74, AFFINE_OVERWRITE_MODE_DOUBLE);
 
     v0.x = 0;
     v0.y = 0 - (2 * 8);

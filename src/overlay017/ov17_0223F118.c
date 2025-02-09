@@ -369,7 +369,7 @@ void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteSystem *param1, Sprite
 
         Sprite_SetPositionXY2(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
         Sprite_SetAnim(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
-        Sprite_SetAffineOverwriteMode(param0->unk_00[v0], 1);
+        Sprite_SetAffineOverwriteMode(param0->unk_00[v0], AFFINE_OVERWRITE_MODE_NORMAL);
         Sprite_TickFrame(param0->unk_00[v0]->sprite);
     }
 

@@ -16,6 +16,7 @@
 #include "overlay062/struct_ov62_022312B0.h"
 
 #include "bg_window.h"
+#include "cell_actor.h"
 #include "char_transfer.h"
 #include "graphics.h"
 #include "math.h"
@@ -197,7 +198,7 @@ void ov62_02230464(UnkStruct_0208C06C *param0)
                 }
 
                 Sprite_TickOneFrame(param0->unk_6F8[v5].unk_00[v4]);
-                Sprite_SetAffineOverwriteMode(param0->unk_6F8[v5].unk_00[v4], 2);
+                Sprite_SetAffineOverwriteMode(param0->unk_6F8[v5].unk_00[v4], AFFINE_OVERWRITE_MODE_DOUBLE);
                 Sprite_SetAffineScale(param0->unk_6F8[v5].unk_00[v4], v7[v5], 1.0f);
 
                 param0->unk_6F8[v5].unk_28 = 0;

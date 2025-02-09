@@ -21,6 +21,7 @@
 #include "overlay012/struct_ov12_02236690.h"
 #include "overlay012/struct_ov12_02237728.h"
 
+#include "cell_actor.h"
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
@@ -2330,8 +2331,8 @@ static void ov12_02237D8C(BallRotation *param0)
 
     param0->unk_30 = SpriteSystem_NewSprite(param0->unk_90.cellActorSys, param0->unk_2C, &v1);
 
-    Sprite_SetDrawFlag2(param0->unk_30, 1);
-    Sprite_SetAffineOverwriteMode(param0->unk_30, 2);
+    Sprite_SetDrawFlag2(param0->unk_30, TRUE);
+    Sprite_SetAffineOverwriteMode(param0->unk_30, AFFINE_OVERWRITE_MODE_DOUBLE);
     Sprite_SetAnimationFrame(param0->unk_30, 0);
     Sprite_SetAnim(param0->unk_30, 0);
     Sprite_TickOneFrame(param0->unk_30);

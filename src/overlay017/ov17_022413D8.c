@@ -22,6 +22,7 @@
 
 #include "assert.h"
 #include "bg_window.h"
+#include "cell_actor.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "heap.h"
@@ -988,10 +989,10 @@ static void ov17_0224207C(SysTask *param0, void *param1)
 
     switch (v0->unk_0C) {
     case 0:
-        Sprite_SetAffineOverwriteMode(v0->unk_00, 2);
+        Sprite_SetAffineOverwriteMode(v0->unk_00, AFFINE_OVERWRITE_MODE_DOUBLE);
         v0->unk_04 = (0.1f);
         v0->unk_08 = (0.1f);
-        Sprite_SetDrawFlag2(v0->unk_00, 1);
+        Sprite_SetDrawFlag2(v0->unk_00, TRUE);
         v0->unk_0C++;
     case 1:
         v0->unk_04 += (0.3f);
@@ -1018,7 +1019,7 @@ static void ov17_0224207C(SysTask *param0, void *param1)
         }
         break;
     default:
-        Sprite_SetAffineOverwriteMode(v0->unk_00, 0);
+        Sprite_SetAffineOverwriteMode(v0->unk_00, AFFINE_OVERWRITE_MODE_NONE);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         return;
@@ -1101,7 +1102,7 @@ static void ov17_022422B8(SysTask *param0, void *param1)
 
     switch (v0->unk_2E) {
     case 0:
-        Sprite_SetAffineOverwriteMode(v0->unk_04, 1);
+        Sprite_SetAffineOverwriteMode(v0->unk_04, AFFINE_OVERWRITE_MODE_NORMAL);
 
         v0->unk_20 = v0->unk_10 + (32 << 8);
         v0->unk_24 = v0->unk_14 + (72 << 8);

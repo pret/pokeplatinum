@@ -351,7 +351,7 @@ static void ov100_021D1A54(UnkStruct_ov100_021D1808 *param0)
         param0->unk_0C.unk_0C[v0].unk_04 = param0->unk_0C.unk_D4[v0].unk_00;
 
         Sprite_TickOneFrame(param0->unk_0C.unk_0C[v0].unk_00);
-        Sprite_SetAffineOverwriteMode(param0->unk_0C.unk_0C[v0].unk_00, 2);
+        Sprite_SetAffineOverwriteMode(param0->unk_0C.unk_0C[v0].unk_00, AFFINE_OVERWRITE_MODE_DOUBLE);
         Sprite_SetAffineScale(param0->unk_0C.unk_0C[v0].unk_00, v9[v0], v9[v0]);
         Sprite_SetExplicitPaletteOffset(param0->unk_0C.unk_0C[v0].unk_00, v0);
         Sprite_SetPositionXY2(param0->unk_0C.unk_0C[v0].unk_00, v7[v0], v8[v0]);

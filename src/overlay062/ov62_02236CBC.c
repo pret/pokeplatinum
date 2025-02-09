@@ -13,6 +13,7 @@
 #include "overlay062/struct_ov62_022312B0.h"
 
 #include "bg_window.h"
+#include "cell_actor.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -393,13 +394,13 @@ static void ov62_022371CC(UnkStruct_0208C06C *param0)
         Sprite_TickOneFrame(v4->unk_7C[v0]);
     }
 
-    Sprite_SetDrawFlag2(v4->unk_7C[4 - 1], 1);
-    Sprite_SetDrawFlag2(v4->unk_7C[4 - 0], 1);
+    Sprite_SetDrawFlag2(v4->unk_7C[4 - 1], TRUE);
+    Sprite_SetDrawFlag2(v4->unk_7C[4 - 0], TRUE);
 
     for (v0 = 0; v0 < 5; v0++) {
-        Sprite_SetAffineOverwriteMode(v4->unk_40[v0], 2);
-        Sprite_SetAffineOverwriteMode(v4->unk_54[v0], 2);
-        Sprite_SetAffineOverwriteMode(v4->unk_68[v0], 2);
+        Sprite_SetAffineOverwriteMode(v4->unk_40[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
+        Sprite_SetAffineOverwriteMode(v4->unk_54[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
+        Sprite_SetAffineOverwriteMode(v4->unk_68[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
     }
 }
 
@@ -465,9 +466,9 @@ static BOOL ov62_022375A4(UnkStruct_0208C06C *param0)
         if (v0->unk_2C[0] != 0) {
             v0->unk_04[v1] += 0.05f;
         } else {
-            Sprite_SetAffineOverwriteMode(v0->unk_40[v1], 0);
-            Sprite_SetAffineOverwriteMode(v0->unk_54[v1], 0);
-            Sprite_SetAffineOverwriteMode(v0->unk_68[v1], 0);
+            Sprite_SetAffineOverwriteMode(v0->unk_40[v1], AFFINE_OVERWRITE_MODE_NONE);
+            Sprite_SetAffineOverwriteMode(v0->unk_54[v1], AFFINE_OVERWRITE_MODE_NONE);
+            Sprite_SetAffineOverwriteMode(v0->unk_68[v1], AFFINE_OVERWRITE_MODE_NONE);
             v0->unk_04[v1] = 1.0f;
         }
 
@@ -504,9 +505,9 @@ static BOOL ov62_022376C4(UnkStruct_0208C06C *param0)
 
     if (v0->unk_2C[0] == 20) {
         for (v1 = 0; v1 < 5; v1++) {
-            Sprite_SetAffineOverwriteMode(v0->unk_40[v1], 2);
-            Sprite_SetAffineOverwriteMode(v0->unk_54[v1], 2);
-            Sprite_SetAffineOverwriteMode(v0->unk_68[v1], 2);
+            Sprite_SetAffineOverwriteMode(v0->unk_40[v1], AFFINE_OVERWRITE_MODE_DOUBLE);
+            Sprite_SetAffineOverwriteMode(v0->unk_54[v1], AFFINE_OVERWRITE_MODE_DOUBLE);
+            Sprite_SetAffineOverwriteMode(v0->unk_68[v1], AFFINE_OVERWRITE_MODE_DOUBLE);
         }
     }
 

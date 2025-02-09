@@ -28,6 +28,7 @@
 #include "overlay117/struct_ov117_02266F10.h"
 
 #include "bg_window.h"
+#include "cell_actor.h"
 #include "char_transfer.h"
 #include "communication_system.h"
 #include "error_handling.h"
@@ -785,7 +786,7 @@ static CellActorData *ov117_0226417C(UnkStruct_ov117_02261280 *param0, const Unk
 
     Sprite_SetPositionXYWithSubscreenOffset2(v0, param1->unk_00, param1->unk_02, ((192 + 160) << FX32_SHIFT));
     Sprite_SetAnim(v0, param1->unk_04);
-    Sprite_SetAffineOverwriteMode(v0, 2);
+    Sprite_SetAffineOverwriteMode(v0, AFFINE_OVERWRITE_MODE_DOUBLE);
     Sprite_TickFrame(v0->sprite);
 
     return v0;
@@ -1504,7 +1505,7 @@ void ov117_02265064(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022653F4 *
         param1->unk_00[v1].unk_08 = SpriteSystem_NewSprite(param0->unk_24, param0->unk_28, &Unk_ov117_02266E04);
         Sprite_SetPositionXYWithSubscreenOffset2(param1->unk_00[v1].unk_08, v3, v4 + -24 + 24, ((192 + 160) << FX32_SHIFT));
         Sprite_SetExplicitOamMode2(param1->unk_00[v1].unk_08, GX_OAM_MODE_XLU);
-        Sprite_SetAffineOverwriteMode(param1->unk_00[v1].unk_08, 1);
+        Sprite_SetAffineOverwriteMode(param1->unk_00[v1].unk_08, AFFINE_OVERWRITE_MODE_NORMAL);
         Sprite_SetAffineScale(param1->unk_00[v1].unk_08, 1.0f, 1.0f);
         Sprite_SetAnim(param1->unk_00[v1].unk_08, 34 + v1);
         Sprite_TickFrame(param1->unk_00[v1].unk_08->sprite);

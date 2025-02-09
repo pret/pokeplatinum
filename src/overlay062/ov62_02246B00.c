@@ -8,6 +8,7 @@
 #include "overlay062/struct_ov62_02246BF4_sub1.h"
 
 #include "bg_window.h"
+#include "cell_actor.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "heap.h"
@@ -208,13 +209,13 @@ BOOL ov62_02246DF8(UnkStruct_ov62_02246BF4 *param0)
                 if ((v0 >= param0->unk_210) && (v0 < param0->unk_214)) {
                     Sprite_SetAffineScale(param0->unk_00[v0].unk_0C, v1[param0->unk_00[v0].unk_14.unk_05], v1[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
-                    Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, 2);
+                    Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
                 }
 
                 if ((v0 >= param0->unk_218) && (v0 < param0->unk_21C)) {
                     Sprite_SetAffineScale(param0->unk_00[v0].unk_0C, v2[param0->unk_00[v0].unk_14.unk_05], v2[param0->unk_00[v0].unk_14.unk_05]);
                     param0->unk_00[v0].unk_14.unk_05++;
-                    Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, 2);
+                    Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
                 }
             }
 
@@ -245,7 +246,7 @@ BOOL ov62_02246DF8(UnkStruct_ov62_02246BF4 *param0)
     case 1:
         for (v0 = param0->unk_210; v0 < param0->unk_214; v0++) {
             if (param0->unk_00[v0].unk_14.unk_05 == 6) {
-                Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, 1);
+                Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_NORMAL);
                 continue;
             }
 
@@ -255,7 +256,7 @@ BOOL ov62_02246DF8(UnkStruct_ov62_02246BF4 *param0)
 
         for (v0 = param0->unk_218; v0 < param0->unk_21C; v0++) {
             if (param0->unk_00[v0].unk_14.unk_05 == 6) {
-                Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, 1);
+                Sprite_SetAffineOverwriteMode(param0->unk_00[v0].unk_0C, AFFINE_OVERWRITE_MODE_NORMAL);
                 continue;
             }
 
@@ -668,7 +669,7 @@ void ov62_02247754(UnkStruct_ov62_02246BF4 *param0)
             param0->unk_00[v1].unk_0C = SpriteSystem_NewSprite(v4, v5, &v3);
             Sprite_SetPositionXY2(param0->unk_00[v1].unk_0C, 72 + (v0 * 8) + 4, 24);
             Sprite_SetAnim(param0->unk_00[v1].unk_0C, ov62_02247B3C(param0->unk_00[v1].unk_00, param0->unk_00[v1].unk_08));
-            Sprite_SetAffineOverwriteMode(param0->unk_00[v1].unk_0C, 0);
+            Sprite_SetAffineOverwriteMode(param0->unk_00[v1].unk_0C, AFFINE_OVERWRITE_MODE_NONE);
             Sprite_TickOneFrame(param0->unk_00[v1].unk_0C);
             v1++;
         }

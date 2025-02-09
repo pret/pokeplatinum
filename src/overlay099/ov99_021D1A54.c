@@ -20,6 +20,7 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
+#include "cell_actor.h"
 #include "easy3d_object.h"
 #include "font.h"
 #include "graphics.h"
@@ -525,8 +526,8 @@ static void ov99_021D1F70(UnkStruct_ov99_021D2CB0 *param0)
     for (v0 = 2; v0 <= 4; v0++) {
         param0->unk_10E0[v0] = SpriteSystem_NewSprite(param0->unk_18, param0->unk_1C, &Unk_ov99_021D499C);
 
-        Sprite_SetAffineOverwriteMode(param0->unk_10E0[v0], 2);
-        Sprite_SetAnimateFlag(param0->unk_10E0[v0], 1);
+        Sprite_SetAffineOverwriteMode(param0->unk_10E0[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
+        Sprite_SetAnimateFlag(param0->unk_10E0[v0], TRUE);
         Sprite_TickFrame(param0->unk_10E0[v0]->sprite);
     }
 }

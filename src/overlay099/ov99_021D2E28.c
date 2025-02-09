@@ -143,7 +143,7 @@ static void ov99_021D2ED8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2E
         param1->unk_94[v1].unk_34 = Unk_ov99_021D4BDC[v1].unk_00;
 
         Sprite_SetPositionFxXYWithSubscreenOffset(param0->unk_10E0[v0], param1->unk_94[v1].unk_00 + param1->unk_94[v1].unk_28, param1->unk_94[v1].unk_04 + param1->unk_94[v1].unk_2C, ((192 + 80) << FX32_SHIFT));
-        Sprite_SetAffineOverwriteMode(param0->unk_10E0[v0], 2);
+        Sprite_SetAffineOverwriteMode(param0->unk_10E0[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
     }
 }
 

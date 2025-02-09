@@ -12,6 +12,7 @@
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/struct_ov12_02226454.h"
 
+#include "cell_actor.h"
 #include "heap.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
@@ -154,8 +155,8 @@ static void ov12_0223483C(CellActorData *param0, UnkStruct_ov12_02225F6C *param1
 {
     s16 v0, v1;
 
-    Sprite_SetAffineOverwriteMode(param0, 2);
-    Sprite_SetDrawFlag2(param0, 1);
+    Sprite_SetAffineOverwriteMode(param0, AFFINE_OVERWRITE_MODE_DOUBLE);
+    Sprite_SetDrawFlag2(param0, TRUE);
     Sprite_GetPositionXY2(param0, &v0, &v1);
 
     ov12_02225BC8(param1, v0, v0 + (16 * param3), v1, v1 + -32, 32);

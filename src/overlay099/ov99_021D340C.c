@@ -157,7 +157,7 @@ static void ov99_021D3588(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     GF_ASSERT(NELEMS(Unk_ov99_021D4C90) == 2 - 2 + 1);
 
     for (v0 = 2; v0 <= 2; v0++, v1++) {
-        Sprite_SetAffineOverwriteMode(param0->unk_10E0[v0], 2);
+        Sprite_SetAffineOverwriteMode(param0->unk_10E0[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
         Sprite_SetPositionXYWithSubscreenOffset2(param0->unk_10E0[v0], Unk_ov99_021D4C90[v1].unk_00, Unk_ov99_021D4C90[v1].unk_02, ((192 + 80) << FX32_SHIFT));
         param1->unk_124[v1].unk_00 = Unk_ov99_021D4C90[v1].unk_00 * FX32_ONE;
         param1->unk_124[v1].unk_04 = Unk_ov99_021D4C90[v1].unk_02 * FX32_ONE;

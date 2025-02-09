@@ -413,7 +413,7 @@ void ov12_0222EFB0(UnkStruct_ov12_0221FCDC *param0)
 
         Sprite_GetPositionXY2(v0->unk_1C[1], &v2, &v3);
         Sprite_SetPositionXY2(v0->unk_1C[0], v2 + v4, v3);
-        Sprite_SetAffineOverwriteMode(v0->unk_1C[0], 2);
+        Sprite_SetAffineOverwriteMode(v0->unk_1C[0], AFFINE_OVERWRITE_MODE_DOUBLE);
         Sprite_SetAffineScale(v0->unk_1C[0], v0->unk_2C * v0->unk_36, v0->unk_30);
     }
 

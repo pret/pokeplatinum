@@ -75,7 +75,7 @@ void ov12_0222E810(UnkStruct_ov12_0221FCDC *param0)
     v0->unk_30[0].unk_0C = ov12_022202C0(param0, 1);
     v0->unk_30[1].unk_0C = ov12_022202C0(param0, 2);
 
-    Sprite_SetAffineOverwriteMode(v0->unk_1C.unk_0C, 2);
+    Sprite_SetAffineOverwriteMode(v0->unk_1C.unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
     Sprite_SetExplicitPriority(v0->unk_1C.unk_0C, ov12_0222339C(param0));
     Sprite_SetExplicitPriority(v0->unk_30[0].unk_0C, ov12_0222339C(param0));
     Sprite_SetExplicitPriority(v0->unk_30[1].unk_0C, ov12_0222339C(param0));

@@ -831,7 +831,7 @@ void ov17_0224AB08(UnkStruct_ov17_0224A1EC *param0, SpriteSystem *param1, Sprite
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_200[v0].unk_04 = SpriteSystem_NewSprite(param1, param2, &Unk_ov17_02254830);
         Sprite_TickFrame(param0->unk_200[v0].unk_04->sprite);
-        Sprite_SetAffineOverwriteMode(param0->unk_200[v0].unk_04, 1);
+        Sprite_SetAffineOverwriteMode(param0->unk_200[v0].unk_04, AFFINE_OVERWRITE_MODE_NORMAL);
         param0->unk_200[v0].unk_13 = v0;
         param0->unk_200[v0].unk_0C = &param0->unk_04[v0];
         param0->unk_200[v0].unk_14 = Pokemon_DPSpriteYOffset(param0->unk_00->unk_00[v0], 2);
