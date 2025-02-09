@@ -3,16 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
-
 #include "heap.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200C6E4.h"
 
 typedef struct UnkStruct_ov17_02252B48_t {
     CellActorData *unk_00[5];
@@ -20,9 +15,9 @@ typedef struct UnkStruct_ov17_02252B48_t {
 } UnkStruct_ov17_02252B48;
 
 static void ov17_02252CB8(SysTask *param0, void *param1);
-void ov17_02252AB0(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, u32 param3, u32 param4, u32 param5, u32 param6);
-void ov17_02252B20(SpriteGfxHandler *param0, u32 param1, u32 param2, u32 param3, u32 param4);
-UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
+void ov17_02252AB0(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, u32 param3, u32 param4, u32 param5, u32 param6);
+void ov17_02252B20(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4);
+UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteSystem *param0, SpriteManager *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 void ov17_02252BCC(UnkStruct_ov17_02252B48 *param0);
 void ov17_02252C9C(UnkStruct_ov17_02252B48 *param0);
 
@@ -39,7 +34,7 @@ static const SpriteTemplate Unk_ov17_02254D9C = {
     0x0
 };
 
-void ov17_02252AB0(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void ov17_02252AB0(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     sub_0200CD7C(param2, 3, param0, param1, 27, 80, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
     sub_0200CBDC(param0, param1, 27, 250, 1, NNS_G2D_VRAM_TYPE_2DSUB, param3);
@@ -47,15 +42,15 @@ void ov17_02252AB0(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData
     sub_0200CE3C(param0, param1, 27, 252, 1, param6);
 }
 
-void ov17_02252B20(SpriteGfxHandler *param0, u32 param1, u32 param2, u32 param3, u32 param4)
+void ov17_02252B20(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
-    SpriteGfxHandler_UnloadCharObjById(param0, param1);
-    SpriteGfxHandler_UnloadPlttObjById(param0, param2);
-    SpriteGfxHandler_UnloadCellObjById(param0, param3);
-    SpriteGfxHandler_UnloadAnimObjById(param0, param4);
+    SpriteManager_UnloadCharObjById(param0, param1);
+    SpriteManager_UnloadPlttObjById(param0, param2);
+    SpriteManager_UnloadCellObjById(param0, param3);
+    SpriteManager_UnloadAnimObjById(param0, param4);
 }
 
-UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+UnkStruct_ov17_02252B48 *ov17_02252B48(SpriteSystem *param0, SpriteManager *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     UnkStruct_ov17_02252B48 *v0;
     SpriteTemplate v1;

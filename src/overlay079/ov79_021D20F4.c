@@ -3,16 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay007/struct_ov7_0224F2EC.h"
 #include "overlay079/struct_ov79_021D0E1C.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "cell_actor.h"
 #include "communication_system.h"
 #include "gx_layers.h"
 #include "render_oam.h"
-#include "unk_0200C6E4.h"
+#include "sprite_system.h"
 #include "unk_020393C8.h"
 #include "unk_02098FFC.h"
 #include "vram_transfer.h"
@@ -29,7 +26,7 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
     param0->unk_1BC = sub_0200C704(param0->unk_1B8);
 
     {
-        UnkStruct_ov104_0224133C v0 = {
+        RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -39,7 +36,7 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
             0,
             32,
         };
-        UnkStruct_ov104_022412F4 v1 = {
+        CharTransferTemplateWithModes v1 = {
             3,
             1024,
             1024,
@@ -55,7 +52,7 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
     }
 
     {
-        UnkStruct_ov7_0224F2EC v2 = {
+        SpriteResourceDataPaths v2 = {
             "data/porucase_chr.resdat",
             "data/porucase_pal.resdat",
             "data/porucase_cell.resdat",

@@ -3,10 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-
 #include "overlay100/ov100_021D400C.h"
 #include "overlay100/ov100_021D46C8.h"
 #include "overlay100/ov100_021D4E04.h"
@@ -24,10 +20,10 @@
 #include "math.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sys_task.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
@@ -240,8 +236,8 @@ static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0)
 {
     NARC *v0 = param0->unk_7C4->unk_00;
     BgConfig *v1 = param0->unk_7C4->unk_0C;
-    SpriteRenderer *v2 = param0->unk_7C4->unk_04;
-    SpriteGfxHandler *v3 = param0->unk_7C4->unk_08;
+    SpriteSystem *v2 = param0->unk_7C4->unk_04;
+    SpriteManager *v3 = param0->unk_7C4->unk_08;
     PaletteData *v4 = param0->unk_7C4->unk_10;
     int v5 = 50000;
 
@@ -255,10 +251,10 @@ static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0)
         PaletteData_LoadBuffer(v4, &v6, 0, 0, 0x2);
     }
 
-    SpriteRenderer_LoadPalette(v4, 3, v2, v3, v0, 50, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(v2, v3, v0, 48, 0, v5);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(v2, v3, v0, 47, 0, v5);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(v2, v3, v0, 49, 0, NNS_G2D_VRAM_TYPE_2DSUB, v5);
+    SpriteSystem_LoadPalette(v4, 3, v2, v3, v0, 50, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v2, v3, v0, 48, 0, v5);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 47, 0, v5);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v2, v3, v0, 49, 0, NNS_G2D_VRAM_TYPE_2DSUB, v5);
 
     ov100_021D4AC8(&param0->unk_1A4.unk_498, 60, param0->unk_7C4->unk_00);
 
@@ -296,8 +292,8 @@ static void ov100_021D1A54(UnkStruct_ov100_021D1808 *param0)
     int v0;
     NARC *v1 = param0->unk_7C4->unk_00;
     BgConfig *v2 = param0->unk_7C4->unk_0C;
-    SpriteRenderer *v3 = param0->unk_7C4->unk_04;
-    SpriteGfxHandler *v4 = param0->unk_7C4->unk_08;
+    SpriteSystem *v3 = param0->unk_7C4->unk_04;
+    SpriteManager *v4 = param0->unk_7C4->unk_08;
     PaletteData *v5 = param0->unk_7C4->unk_10;
     SpriteTemplate v6;
 
@@ -309,7 +305,7 @@ static void ov100_021D1A54(UnkStruct_ov100_021D1808 *param0)
     v6.plttIdx = 0;
     v6.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v6.bgPriority = 2;
-    v6.transferToVRAM = FALSE;
+    v6.vramTransfer = FALSE;
 
     v6.resources[4] = SPRITE_RESOURCE_NONE;
     v6.resources[5] = SPRITE_RESOURCE_NONE;

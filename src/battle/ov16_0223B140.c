@@ -34,9 +34,6 @@
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay011/ov11_0221F840.h"
 #include "overlay012/ov12_0221FC20.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -62,6 +59,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -74,7 +72,6 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0201567C.h"
@@ -139,7 +136,7 @@ static BOOL ov16_0223CD3C(u16 param0);
 static void ov16_0223DD90(BattleSystem *param0, FieldBattleDTO *param1);
 static void ov16_0223DECC(void);
 
-static const UnkStruct_ov104_0224133C Unk_ov16_0226E2E4 = {
+static const RenderOamTemplate Unk_ov16_0226E2E4 = {
     0x0,
     0x80,
     0x0,
@@ -150,7 +147,7 @@ static const UnkStruct_ov104_0224133C Unk_ov16_0226E2E4 = {
     0x20
 };
 
-static const UnkStruct_ov104_022412F4 Unk_ov16_0226E29C = {
+static const CharTransferTemplateWithModes Unk_ov16_0226E29C = {
     0x60,
     0x10000,
     0x4000,
@@ -158,7 +155,7 @@ static const UnkStruct_ov104_022412F4 Unk_ov16_0226E29C = {
     GX_OBJVRAMMODE_CHAR_1D_32K
 };
 
-const UnkStruct_ov104_02241308 Unk_ov16_0226E2B0 = {
+const SpriteResourceCapacities Unk_ov16_0226E2B0 = {
     0x60,
     0x20,
     0x40,

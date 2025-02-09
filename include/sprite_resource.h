@@ -15,6 +15,7 @@ enum SpriteResourceType {
     SPRITE_RESOURCE_SPRITE_ANIM,
     SPRITE_RESOURCE_MULTI_SPRITE,
     SPRITE_RESOURCE_MULTI_SPRITE_ANIM,
+    SPRITE_RESOURCE_MAX,
 };
 
 typedef struct SpriteResource {

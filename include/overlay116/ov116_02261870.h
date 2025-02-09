@@ -3,14 +3,13 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/cell_actor_data.h"
-
 #include "overlay116/struct_ov116_0226139C.h"
 #include "overlay116/struct_ov116_02262A8C.h"
 #include "overlay116/struct_ov116_0226501C.h"
 
 #include "easy3d_object.h"
 #include "narc.h"
+#include "sprite_system.h"
 
 void ov116_02261870(Easy3DObject *param0, MtxFx43 *param1, VecFx32 *param2);
 void ov116_022618A8(UnkStruct_ov116_0226501C *param0, NARC *param1, int param2);

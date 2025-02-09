@@ -5,7 +5,6 @@
 
 #include "generated/items.h"
 
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_020831B4.h"
 #include "struct_defs/struct_02083D1C.h"
@@ -24,12 +23,12 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0207070C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"

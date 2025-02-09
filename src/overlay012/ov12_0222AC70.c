@@ -4,10 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
@@ -27,9 +23,9 @@
 #include "heap.h"
 #include "palette.h"
 #include "pltt_transfer.h"
+#include "sprite_system.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 
 typedef struct {
     u8 unk_00;
@@ -38,8 +34,8 @@ typedef struct {
     u8 unk_05;
     u8 unk_06;
     UnkStruct_ov12_0221FCDC *unk_08;
-    SpriteRenderer *unk_0C;
-    SpriteGfxHandler *unk_10;
+    SpriteSystem *unk_0C;
+    SpriteManager *unk_10;
     CellActorData *unk_14[3];
     UnkStruct_ov12_02225F6C unk_20;
 } UnkStruct_ov12_0222AC70;
@@ -78,7 +74,7 @@ typedef struct {
     s16 unk_0A;
     UnkStruct_ov12_0221FCDC *unk_0C;
     Sprite *unk_10;
-    SpriteGfxHandler *unk_14;
+    SpriteManager *unk_14;
     CellActorData *unk_18[4];
     UnkStruct_ov12_02225F6C unk_28[4];
 } UnkStruct_ov12_0222B4C8;
@@ -138,7 +134,7 @@ typedef struct {
     u8 unk_00;
     u8 unk_01;
     UnkStruct_ov12_0221FCDC *unk_04;
-    SpriteGfxHandler *unk_08;
+    SpriteManager *unk_08;
     CellActorData *unk_0C;
     CellActorData *unk_10;
 } UnkStruct_ov12_0222BFF4;
@@ -158,7 +154,7 @@ typedef struct {
     s8 unk_08;
     Sprite *unk_0C;
     UnkStruct_ov12_0221FCDC *unk_10;
-    SpriteGfxHandler *unk_14;
+    SpriteManager *unk_14;
     UnkStruct_ov12_0222C1A4_sub1 unk_18[3];
 } UnkStruct_ov12_0222C1A4;
 
@@ -170,7 +166,7 @@ typedef struct {
     int unk_04;
     BgConfig *unk_08;
     UnkStruct_ov12_0221FCDC *unk_0C;
-    SpriteGfxHandler *unk_10;
+    SpriteManager *unk_10;
     UnkStruct_ov12_02235998 unk_14[4];
     UnkStruct_ov12_02235998 unk_64[4];
     UnkStruct_ov12_02225F6C unk_B4;
@@ -184,7 +180,7 @@ typedef struct {
     UnkStruct_ov12_02235350 unk_04;
     BgConfig *unk_08;
     UnkStruct_ov12_0221FCDC *unk_0C;
-    SpriteGfxHandler *unk_10;
+    SpriteManager *unk_10;
     Sprite *unk_14;
     CellActorData *unk_18;
     UnkStruct_ov12_02225F6C unk_1C;
@@ -268,8 +264,8 @@ typedef struct {
     int unk_08;
     u8 unk_0C;
     UnkStruct_ov12_0221FCDC *unk_10;
-    SpriteRenderer *unk_14;
-    SpriteGfxHandler *unk_18;
+    SpriteSystem *unk_14;
+    SpriteManager *unk_18;
     Sprite *unk_1C;
     s16 unk_20;
     int unk_24;
@@ -372,13 +368,13 @@ static void ov12_0222AC70(SysTask *param0, void *param1)
     }
 
     for (v0 = 0; v0 < ov12_02220280(v1->unk_08, 0); v0++) {
-        SpriteActor_UpdateObject(v1->unk_14[v0]->unk_00);
+        SpriteActor_UpdateObject(v1->unk_14[v0]->sprite);
     }
 
     sub_0200C7EC(v1->unk_10);
 }
 
-void ov12_0222AE68(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222AE68(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     int v0;
     UnkStruct_ov12_0222AC70 *v1;
@@ -735,10 +731,10 @@ void ov12_0222B68C(UnkStruct_ov12_0221FCDC *param0)
             sub_0200D460(v0->unk_18[2], v4);
             sub_0200D460(v0->unk_18[3], v4);
 
-            v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_18[0]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+            v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_18[0]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
             PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 128, 128, 128);
 
-            v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_18[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+            v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_18[2]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
             PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 196, 196, 196);
         } else {
             sub_0200D474(v0->unk_18[0], 20);
@@ -754,10 +750,10 @@ void ov12_0222B68C(UnkStruct_ov12_0221FCDC *param0)
             sub_0200D460(v0->unk_18[2], v4);
             sub_0200D460(v0->unk_18[3], v4);
 
-            v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_18[0]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+            v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_18[0]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
             PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 196, 196, 196);
 
-            v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_18[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+            v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_18[2]->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
             PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_0C), v5, v3, ov12_0221FDE4(param0), 2, 0x20, v2 * 16, 128, 128, 128);
         }
     }
@@ -1138,7 +1134,7 @@ void ov12_0222C0C0(UnkStruct_ov12_0221FCDC *param0)
         int v2 = ov12_02223334(v0->unk_04, ov12_02220240(v0->unk_04));
         int v3 = ov12_02223344(v0->unk_04, ov12_02220240(v0->unk_04));
 
-        v1 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_0C->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+        v1 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_0C->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
         PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_04), v3, v2, ov12_0221FDE4(param0), 2, 0x20, v1 * 16, 256, 256, 256);
     }
 
@@ -1731,7 +1727,7 @@ static void ov12_0222CBFC(SysTask *param0, void *param1)
     sub_0200C7EC(v1->unk_10.unk_10);
 }
 
-void ov12_0222CC54(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222CC54(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     int v0;
     int v1;
@@ -2123,7 +2119,7 @@ static void ov12_0222D128(SysTask *param0, void *param1)
     sub_0200C7EC(v1->unk_18);
 }
 
-void ov12_0222D56C(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222D56C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     int v0;
     UnkStruct_ov12_0222D128 *v1;

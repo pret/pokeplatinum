@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_OV99_021D4134_H
 #define POKEPLATINUM_OV99_021D4134_H
 
-#include "struct_decls/cell_actor_data.h"
-
 #include "overlay099/struct_ov99_021D2CB0.h"
+
+#include "sprite_system.h"
 
 void ov99_021D4134(UnkStruct_ov99_021D2CB0 *param0, int param1);
 void ov99_021D4170(UnkStruct_ov99_021D2CB0 *param0);

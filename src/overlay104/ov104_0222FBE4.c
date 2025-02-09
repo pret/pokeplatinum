@@ -5,12 +5,9 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay063/ov63_0222BE18.h"
@@ -76,6 +73,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -84,7 +82,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0202ACE0.h"
@@ -132,7 +129,7 @@ typedef struct {
     UnkStruct_ov104_0223EBD0 *unk_2C;
 } UnkStruct_ov104_02231148;
 
-void ov104_0223DC7C(int param0, BgConfig *param1, SpriteRenderer *param2, SpriteGfxHandler *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7);
+void ov104_0223DC7C(int param0, BgConfig *param1, SpriteSystem *param2, SpriteManager *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7);
 u16 ov104_0222FC8C(UnkStruct_ov104_0222E930 *param0, u16 param1);
 u16 *ov104_0222FC14(UnkStruct_ov104_0222E930 *param0, u16 param1);
 static BOOL ov104_0222FCA0(UnkStruct_ov104_0222E930 *param0);
@@ -1371,7 +1368,7 @@ static BOOL ov104_02230760(UnkStruct_ov104_0222E930 *param0)
     v3 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v3 != NULL);
-    sub_0200D7CC(v3->unk_00, 1);
+    sub_0200D7CC(v3->sprite, 1);
 
     return 0;
 }
@@ -1388,9 +1385,9 @@ static BOOL ov104_02230790(UnkStruct_ov104_0222E930 *param0)
     GF_ASSERT(v0 != NULL);
 
     if (v4 == 0) {
-        sub_0200D808(v0->unk_00, GX_OAM_MODE_NORMAL);
+        sub_0200D808(v0->sprite, GX_OAM_MODE_NORMAL);
     } else {
-        sub_0200D808(v0->unk_00, GX_OAM_MODE_XLU);
+        sub_0200D808(v0->sprite, GX_OAM_MODE_XLU);
     }
 
     return 0;

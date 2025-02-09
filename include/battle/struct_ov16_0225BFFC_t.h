@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_0225BFFC_T_H
 #define POKEPLATINUM_STRUCT_OV16_0225BFFC_T_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/sprite_decl.h"
 
 #include "battle/struct_ov16_0225BFFC_sub1.h"
@@ -12,6 +11,7 @@
 
 #include "bg_window.h"
 #include "narc.h"
+#include "sprite_system.h"
 #include "sys_task_manager.h"
 
 #define DATA_BUF_SIZE 256

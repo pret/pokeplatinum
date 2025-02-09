@@ -5,8 +5,6 @@
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
@@ -20,14 +18,15 @@
 #include "char_transfer.h"
 #include "menu.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "string_list.h"
 #include "touch_screen.h"
 
 typedef struct {
     int unk_00;
     BOOL unk_04;
-    SpriteRenderer *unk_08;
-    SpriteGfxHandler *unk_0C;
+    SpriteSystem *unk_08;
+    SpriteManager *unk_0C;
     BgConfig *unk_10;
     PaletteData *unk_14;
     Window unk_18[11];

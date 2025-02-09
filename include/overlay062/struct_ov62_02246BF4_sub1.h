@@ -1,10 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_02246BF4_SUB1_H
 #define POKEPLATINUM_STRUCT_OV62_02246BF4_SUB1_H
 
-#include "struct_decls/cell_actor_data.h"
-
 #include "overlay062/struct_ov62_02246BF4_sub1_sub1.h"
 
+#include "sprite_system.h"
 #include "touch_screen.h"
 
 typedef struct {

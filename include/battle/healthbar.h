@@ -1,14 +1,11 @@
 #ifndef POKEPLATINUM_OV16_02266F1C_H
 #define POKEPLATINUM_OV16_02266F1C_H
 
-#include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-
 #include "battle/struct_ov16_022674C4.h"
 
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 
 #define HEALTHBAR_INFO_NONE                   0
 #define HEALTHBAR_INFO_HP_GAUGE               (1 << 0)
@@ -65,8 +62,8 @@ enum HealthbarGaugeType {
  * @param palette
  * @param healthbarType
  */
-void Healthbar_LoadResources(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, NARC *narc, PaletteData *palette, enum HealthbarType healthbarType);
-CellActorData *Healthbar_LoadCellActor(SpriteRenderer *renderer, SpriteGfxHandler *handler, int type);
+void Healthbar_LoadResources(SpriteSystem *renderer, SpriteManager *gfxHandler, NARC *narc, PaletteData *palette, enum HealthbarType healthbarType);
+CellActorData *Healthbar_LoadCellActor(SpriteSystem *renderer, SpriteManager *handler, int type);
 
 /**
  * @brief Draw the informational parts of the healthbar, according to a set

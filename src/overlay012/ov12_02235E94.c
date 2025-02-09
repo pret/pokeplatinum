@@ -3,10 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
 
@@ -23,7 +20,6 @@
 #include "overlay012/struct_ov12_02236030.h"
 #include "overlay012/struct_ov12_02236690.h"
 #include "overlay012/struct_ov12_02237728.h"
-#include "overlay104/struct_ov104_02241308.h"
 
 #include "heap.h"
 #include "math.h"
@@ -31,11 +27,11 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "spl.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_02014000.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
@@ -100,7 +96,7 @@ typedef struct BallRotation {
     s8 unk_22;
     BOOL unk_24;
     BOOL unk_28;
-    SpriteGfxHandler *unk_2C;
+    SpriteManager *unk_2C;
     CellActorData *unk_30;
     UnkStruct_ov12_02225D50 unk_34;
     UnkStruct_ov12_02225F6C unk_48[2];
@@ -2282,14 +2278,14 @@ static void ov12_02237C54(BallRotation *param0)
 
     {
         int v4;
-        UnkStruct_ov104_02241308 v5;
+        SpriteResourceCapacities v5;
 
         for (v4 = 0; v4 < 6; v4++) {
-            v5.val1[v4] = 10;
+            v5.asArray[v4] = 10;
         }
 
-        v5.val1[4] = 0;
-        v5.val1[5] = 0;
+        v5.asArray[4] = 0;
+        v5.asArray[5] = 0;
 
         sub_0200CB30(param0->unk_90.cellActorSys, param0->unk_2C, &v5);
     }
@@ -2304,10 +2300,10 @@ static void ov12_02237C54(BallRotation *param0)
 
         v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param0->unk_90.heapID);
 
-        SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param0->unk_90.target + 6000);
-        SpriteRenderer_LoadPalette(param0->unk_90.paletteSys, 2, param0->unk_90.cellActorSys, param0->unk_2C, v6, v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param0->unk_90.target + 6000);
-        SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v2, 1, param0->unk_90.target + 6000);
-        SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v3, 1, param0->unk_90.target + 6000);
+        SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param0->unk_90.target + 6000);
+        SpriteSystem_LoadPalette(param0->unk_90.paletteSys, 2, param0->unk_90.cellActorSys, param0->unk_2C, v6, v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param0->unk_90.target + 6000);
+        SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v2, 1, param0->unk_90.target + 6000);
+        SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_90.cellActorSys, param0->unk_2C, v6, v3, 1, param0->unk_90.target + 6000);
         NARC_dtor(v6);
     }
 }
@@ -2326,7 +2322,7 @@ static void ov12_02237D8C(BallRotation *param0)
     v1.plttIdx = 0;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.bgPriority = param0->unk_90.bgPrio;
-    v1.transferToVRAM = FALSE;
+    v1.vramTransfer = FALSE;
 
     for (v0 = 0; v0 < 6; v0++) {
         v1.resources[v0] = param0->unk_90.target + 6000;

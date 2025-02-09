@@ -6,11 +6,6 @@
 #include "cell_actor.h"
 #include "sprite_resource.h"
 
-typedef struct SpriteResourcesHeaderList {
-    CellActorResourceData *headers;
-    int length;
-} SpriteResourcesHeaderList;
-
 typedef struct ResdatTableEntry {
     u32 charResourceID;
     u32 plttResourceID;

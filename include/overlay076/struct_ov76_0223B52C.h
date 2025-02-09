@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV76_0223B52C_H
 #define POKEPLATINUM_STRUCT_OV76_0223B52C_H
 
-#include "struct_decls/cell_actor_data.h"
-
+#include "sprite_system.h"
 #include "touch_screen.h"
 
 typedef struct {

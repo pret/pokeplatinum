@@ -12,9 +12,6 @@
 #include "overlay099/ov99_021D3E78.h"
 #include "overlay099/struct_ov99_021D2CB0.h"
 #include "overlay099/struct_ov99_021D3A40.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 #include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
@@ -28,12 +25,12 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_020041CC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -46,7 +43,7 @@ static const CameraAngle Unk_ov99_021D46CC = {
     ((0 * 0xffff) / 360)
 };
 
-static const UnkStruct_ov104_0224133C Unk_ov99_021D4760 = {
+static const RenderOamTemplate Unk_ov99_021D4760 = {
     0x0,
     0x80,
     0x0,
@@ -57,7 +54,7 @@ static const UnkStruct_ov104_0224133C Unk_ov99_021D4760 = {
     0x20
 };
 
-static const UnkStruct_ov104_022412F4 Unk_ov99_021D4718 = {
+static const CharTransferTemplateWithModes Unk_ov99_021D4718 = {
     0x60,
     0x10000,
     0x4000,
@@ -65,7 +62,7 @@ static const UnkStruct_ov104_022412F4 Unk_ov99_021D4718 = {
     GX_OBJVRAMMODE_CHAR_1D_128K
 };
 
-static const UnkStruct_ov104_02241308 Unk_ov99_021D472C = {
+static const SpriteResourceCapacities Unk_ov99_021D472C = {
     0x60,
     0x20,
     0x40,

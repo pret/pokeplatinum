@@ -10,10 +10,6 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "graphics/pokemon_summary_screen/pl_pst_gra.naix"
-#include "overlay007/struct_ov7_0224F2EC.h"
-#include "overlay007/struct_ov7_0224F358.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -22,7 +18,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "ribbon.h"
-#include "unk_0200C6E4.h"
+#include "sprite_system.h"
 #include "unk_0207C908.h"
 #include "vram_transfer.h"
 
@@ -116,7 +112,7 @@ enum ConditionFlashBounds {
 #define DOT_MAX_POS 300
 #define DOT_MIN_POS 44
 
-static const UnkStruct_ov7_0224F358 Unk_020F41A8[] = {
+static const SpriteTemplateFromResourceHeader Unk_020F41A8[] = {
     [SUMMARY_SPRITE_TAB_INFO] = { 0x1, 0x80, 0x18, 0x0, 0x0, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     [SUMMARY_SPRITE_TAB_MEMO] = { 0x1, 0x90, 0x18, 0x0, 0x1, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     [SUMMARY_SPRITE_TAB_SKILLS] = { 0x1, 0xA0, 0x18, 0x0, 0x2, 0x1, 0x1, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
@@ -225,7 +221,7 @@ void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScree
     summaryScreen->renderer = sub_0200C6E4(HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->gfxHandler = sub_0200C704(summaryScreen->renderer);
 
-    UnkStruct_ov104_0224133C v0 = {
+    RenderOamTemplate v0 = {
         0,
         128,
         0,
@@ -236,7 +232,7 @@ void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScree
         32,
     };
 
-    UnkStruct_ov104_022412F4 v1 = {
+    CharTransferTemplateWithModes v1 = {
         77,
         1024,
         1024,
@@ -247,7 +243,7 @@ void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScree
     sub_0200C73C(summaryScreen->renderer, &v0, &v1, 32);
     sub_0200C7C0(summaryScreen->renderer, summaryScreen->gfxHandler, SUMMARY_SPRITE_MAX);
 
-    UnkStruct_ov7_0224F2EC v2 = {
+    SpriteResourceDataPaths v2 = {
         "data/pst_chr.resdat",
         "data/pst_pal.resdat",
         "data/pst_cell.resdat",

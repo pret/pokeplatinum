@@ -3,10 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/struct_ov80_021D2AF4.h"
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
@@ -15,7 +11,7 @@
 
 #include "cell_actor.h"
 #include "heap.h"
-#include "unk_0200C6E4.h"
+#include "sprite_system.h"
 
 const UnkStruct_ov80_021D2C5C_sub1 Unk_ov80_021D31D8[20] = {
     { 0x19B, 0x0, 0x0, 0x0, 0x0, 0x15, 0xBD },
@@ -40,13 +36,13 @@ const UnkStruct_ov80_021D2C5C_sub1 Unk_ov80_021D31D8[20] = {
     { 0xAC, 0x44, 0x0, 0x1, 0x3, 0xB6, 0x77 }
 };
 
-UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteRenderer *param0, SpriteGfxHandler *param1, u8 *param2, short param3, int param4)
+UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteSystem *param0, SpriteManager *param1, u8 *param2, short param3, int param4)
 {
     UnkStruct_ov80_021D2C1C *v0;
     UnkStruct_ov80_021D2C5C *v1;
     const UnkStruct_ov80_021D2C5C_sub1 *v2;
     short v3;
-    static const UnkStruct_ov7_0224F358 v4 = {
+    static const SpriteTemplateFromResourceHeader v4 = {
         4, 0, 0, 0, 0, 10, 5, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
     };
 

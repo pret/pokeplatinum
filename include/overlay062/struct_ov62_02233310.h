@@ -1,13 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_02233310_H
 #define POKEPLATINUM_STRUCT_OV62_02233310_H
 
-#include "struct_decls/cell_actor_data.h"
-
 #include "overlay062/struct_ov62_02233310_sub1.h"
 #include "overlay062/struct_ov62_02248CDC.h"
 
 #include "bg_window.h"
 #include "message.h"
+#include "sprite_system.h"
 
 typedef struct {
     int unk_00;

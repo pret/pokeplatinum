@@ -1,7 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/ov80_021D2AF4.h"
 #include "overlay080/struct_ov80_021D1478_sub1.h"
 #include "overlay080/struct_ov80_021D259C.h"
@@ -18,6 +17,7 @@
 #include "map_matrix.h"
 #include "message.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -25,7 +25,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 
 typedef struct {
@@ -856,7 +855,7 @@ static void ov80_021D225C(UnkStruct_ov80_021D2A08 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_28, 7);
 }
 
-static const UnkStruct_ov7_0224F358 Unk_ov80_021D30E8[] = {
+static const SpriteTemplateFromResourceHeader Unk_ov80_021D30E8[] = {
     {
         0,
         0,
@@ -904,7 +903,7 @@ static const UnkStruct_ov7_0224F358 Unk_ov80_021D30E8[] = {
 static void ov80_021D2398(UnkStruct_ov80_021D2A08 *param0)
 {
     UnkStruct_ov80_021D1478 *v0 = param0->unk_34;
-    UnkStruct_ov7_0224F358 v1 = Unk_ov80_021D30E8[2];
+    SpriteTemplateFromResourceHeader v1 = Unk_ov80_021D30E8[2];
 
     v0->unk_100 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &Unk_ov80_021D30E8[0]);
 
@@ -920,9 +919,9 @@ static void ov80_021D2398(UnkStruct_ov80_021D2A08 *param0)
     SpriteActor_SetPositionXY(v0->unk_104, v0->unk_18 * 7 + (48 - 23), v0->unk_1C * 7 + (6 - 40));
 
     if (param0->unk_2C->unk_0C == 0) {
-        v1.unk_10 = 1;
+        v1.plttIdx = 1;
     } else {
-        v1.unk_10 = 0;
+        v1.plttIdx = 0;
     }
 
     v0->unk_108 = sub_0200CA08(param0->unk_D8, param0->unk_DC, &v1);
@@ -977,7 +976,7 @@ static void ov80_021D259C(UnkStruct_ov80_021D2A08 *param0)
     UnkStruct_ov80_021D1744 *v2;
     int v3 = 0, v4, v5;
     static const u16 v6[4] = { 0, 2, 3, 1 };
-    static const UnkStruct_ov7_0224F358 Unk_ov80_021D30E8 = {
+    static const SpriteTemplateFromResourceHeader Unk_ov80_021D30E8 = {
         3, 0, 0, 0, 0, 2, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
     };
 

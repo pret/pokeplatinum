@@ -3,8 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/struct_0207C690.h"
@@ -32,6 +30,7 @@
 #include "camera.h"
 #include "message.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -43,8 +42,8 @@ typedef struct UnkStruct_ov117_02261280_t {
     u32 unk_0C[4];
     UnkStruct_ov114_0225CAD4 *unk_1C;
     int unk_20;
-    SpriteRenderer *unk_24;
-    SpriteGfxHandler *unk_28;
+    SpriteSystem *unk_24;
+    SpriteManager *unk_28;
     BgConfig *unk_2C;
     Window unk_30[5];
     MessageLoader *unk_80;

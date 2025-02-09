@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020F1DB8.h"
 
 #include "battle/ov16_0223DF00.h"
@@ -16,13 +13,12 @@
 #include "overlay013/ov13_02227A4C.h"
 #include "overlay013/ov13_02228A38.h"
 #include "overlay013/struct_ov13_02227244.h"
-#include "overlay104/struct_ov104_02241308.h"
 
 #include "gx_layers.h"
 #include "item.h"
 #include "narc.h"
 #include "palette.h"
-#include "unk_0200C6E4.h"
+#include "sprite_system.h"
 
 static void ov13_02227C08(UnkStruct_ov13_02227244 *param0);
 static void ov13_02227C54(UnkStruct_ov13_02227244 *param0);
@@ -78,8 +74,8 @@ void ov13_02227BDC(UnkStruct_ov13_02227244 *param0)
 
 static void ov13_02227C08(UnkStruct_ov13_02227244 *param0)
 {
-    UnkStruct_ov104_02241308 v0 = { 8, 8, 3, 3, 0, 0 };
-    SpriteRenderer *v1 = ov16_0223E010(param0->unk_00->unk_00);
+    SpriteResourceCapacities v0 = { 8, 8, 3, 3, 0, 0 };
+    SpriteSystem *v1 = ov16_0223E010(param0->unk_00->unk_00);
 
     param0->unk_30C = sub_0200C704(v1);
 
@@ -89,7 +85,7 @@ static void ov13_02227C08(UnkStruct_ov13_02227244 *param0)
 
 static void ov13_02227C54(UnkStruct_ov13_02227244 *param0)
 {
-    SpriteRenderer *v0;
+    SpriteSystem *v0;
     u32 v1;
     NARC *v2;
 
@@ -97,18 +93,18 @@ static void ov13_02227C54(UnkStruct_ov13_02227244 *param0)
     v0 = ov16_0223E010(param0->unk_00->unk_00);
 
     for (v1 = 0; v1 < 6; v1++) {
-        SpriteRenderer_LoadCharResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_FileID(1, 1), 0, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
-        SpriteRenderer_LoadPalette(param0->unk_08, 3, v0, param0->unk_30C, v2, Item_FileID(1, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
+        SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_FileID(1, 1), 0, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
+        SpriteSystem_LoadPalette(param0->unk_08, 3, v0, param0->unk_30C, v2, Item_FileID(1, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
     }
 
-    SpriteRenderer_LoadCellResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_IconNCERFile(), 0, 46263);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_IconNANRFile(), 0, 46263);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_IconNCERFile(), 0, 46263);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, param0->unk_30C, v2, Item_IconNANRFile(), 0, 46263);
     NARC_dtor(v2);
 }
 
 static void ov13_02227D10(UnkStruct_ov13_02227244 *param0, u16 param1, u32 param2)
 {
-    SpriteRenderer *v0 = ov16_0223E010(param0->unk_00->unk_00);
+    SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_00);
     sub_0200D948(v0, param0->unk_30C, 16, Item_FileID(param1, 1), 0, param2);
 }
 
@@ -120,7 +116,7 @@ static void ov13_02227D48(UnkStruct_ov13_02227244 *param0, u16 param1, u16 param
 static CellActorData *ov13_02227D78(UnkStruct_ov13_02227244 *param0, u32 param1)
 {
     SpriteTemplate v0;
-    SpriteRenderer *v1;
+    SpriteSystem *v1;
 
     v1 = ov16_0223E010(param0->unk_00->unk_00);
 
@@ -136,7 +132,7 @@ static CellActorData *ov13_02227D78(UnkStruct_ov13_02227244 *param0, u32 param1)
     v0.resources[2] = Unk_ov13_02229CBC[param1][2];
     v0.resources[3] = Unk_ov13_02229CBC[param1][3];
     v0.bgPriority = 1;
-    v0.transferToVRAM = FALSE;
+    v0.vramTransfer = FALSE;
 
     return SpriteActor_LoadResources(v1, param0->unk_30C, &v0);
 }
@@ -152,7 +148,7 @@ static void ov13_02227DE8(UnkStruct_ov13_02227244 *param0)
 
 void ov13_02227E08(UnkStruct_ov13_02227244 *param0)
 {
-    SpriteRenderer *v0;
+    SpriteSystem *v0;
     u32 v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_00);
@@ -235,7 +231,7 @@ static void ov13_02227F38(UnkStruct_ov13_02227244 *param0)
 
 static void ov13_02227F7C(UnkStruct_ov13_02227244 *param0)
 {
-    SpriteRenderer *v0;
+    SpriteSystem *v0;
     UnkStruct_ov16_0226DC24 *v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_00);
@@ -308,7 +304,7 @@ void ov13_02228050(UnkStruct_ov13_02227244 *param0)
 
 static void ov13_02228070(UnkStruct_ov13_02227244 *param0)
 {
-    SpriteRenderer *v0;
+    SpriteSystem *v0;
     UnkStruct_ov16_0226DEEC *v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_00);

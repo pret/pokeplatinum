@@ -1,13 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV12_0223595C_H
 #define POKEPLATINUM_STRUCT_OV12_0223595C_H
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "bg_window.h"
 #include "palette.h"
+#include "sprite_system.h"
 
 typedef struct {
     u8 unk_00;
@@ -15,9 +13,9 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     UnkStruct_ov12_0221FCDC *unk_04;
-    SpriteRenderer *unk_08;
-    SpriteGfxHandler *unk_0C;
-    SpriteGfxHandler *unk_10;
+    SpriteSystem *unk_08;
+    SpriteManager *unk_0C;
+    SpriteManager *unk_10;
     BgConfig *unk_14;
     PaletteData *unk_18;
 } UnkStruct_ov12_0223595C;

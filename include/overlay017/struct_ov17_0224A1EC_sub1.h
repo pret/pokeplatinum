@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_0224A1EC_SUB1_H
 #define POKEPLATINUM_STRUCT_OV17_0224A1EC_SUB1_H
 
-#include "struct_decls/cell_actor_data.h"
-
+#include "sprite_system.h"
 #include "sys_task_manager.h"
 
 struct UnkStruct_ov17_0224DF54_t;

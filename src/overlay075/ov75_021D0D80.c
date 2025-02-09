@@ -3,16 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020978D8.h"
 #include "struct_defs/struct_02099F80.h"
-
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "enums.h"
@@ -29,13 +21,13 @@
 #include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_020393C8.h"
@@ -87,8 +79,8 @@ typedef struct {
     NNSG2dScreenData *unk_40;
     Window unk_44[6];
     Menu *unk_A4;
-    SpriteRenderer *unk_A8;
-    SpriteGfxHandler *unk_AC;
+    SpriteSystem *unk_A8;
+    SpriteManager *unk_AC;
     CellActorData *unk_B0[3];
 } UnkStruct_ov75_021D1184;
 
@@ -874,7 +866,7 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
     param0->unk_AC = sub_0200C704(param0->unk_A8);
 
     {
-        UnkStruct_ov104_0224133C v3 = {
+        RenderOamTemplate v3 = {
             0,
             7,
             1,
@@ -884,14 +876,14 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
             1,
             1,
         };
-        UnkStruct_ov104_022412F4 v4 = {
+        CharTransferTemplateWithModes v4 = {
             3,
             1024,
             0,
             GX_OBJVRAMMODE_CHAR_1D_32K,
             GX_OBJVRAMMODE_CHAR_1D_32K,
         };
-        const UnkStruct_ov104_02241308 v5 = {
+        const SpriteResourceCapacities v5 = {
             3,
             1,
             1,
@@ -925,7 +917,7 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         v2.animIdx = 0;
         v2.bgPriority = 2;
         v2.plttIdx = param0->unk_1C->unk_14[v0].val1_12;
-        v2.transferToVRAM = FALSE;
+        v2.vramTransfer = FALSE;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
 
         v2.resources[0] = v0;

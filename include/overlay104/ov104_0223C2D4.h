@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV104_0223C2D4_H
 #define POKEPLATINUM_OV104_0223C2D4_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
@@ -10,6 +9,8 @@
 #include "overlay104/struct_ov104_0223C634.h"
 #include "overlay104/struct_ov104_0223C688.h"
 #include "overlay104/struct_ov104_0223D570.h"
+
+#include "sprite_system.h"
 
 UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0);
 void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0);

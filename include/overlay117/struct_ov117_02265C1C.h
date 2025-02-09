@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV117_02265C1C_H
 #define POKEPLATINUM_STRUCT_OV117_02265C1C_H
 
-#include "struct_decls/cell_actor_data.h"
+#include "sprite_system.h"
 
 typedef struct {
     CellActorData *unk_00;

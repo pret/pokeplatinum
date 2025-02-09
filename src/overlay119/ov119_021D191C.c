@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200D0F4.h"
-
 #include "overlay119/ov119_021D0D80.h"
 #include "overlay119/struct_ov119_021D0FD0.h"
 #include "overlay119/struct_ov119_021D1930.h"
@@ -15,11 +13,11 @@
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
+#include "sprite_system.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 
@@ -551,7 +549,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
                 NNSG2dImagePaletteProxy *v1;
                 int v2;
 
-                v1 = CellActor_GetPaletteProxy(param0->unk_78->unk_00);
+                v1 = CellActor_GetPaletteProxy(param0->unk_78->sprite);
                 v2 = PlttTransfer_GetPlttOffset(v1, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v2), 0, 0, 16, 0xFFFF);
@@ -657,7 +655,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
                 NNSG2dImagePaletteProxy *v0;
                 int v1;
 
-                v0 = CellActor_GetPaletteProxy(param0->unk_78->unk_00);
+                v0 = CellActor_GetPaletteProxy(param0->unk_78->sprite);
                 v1 = PlttTransfer_GetPlttOffset(v0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v1), 0, 0, 16, 0xFFFF);

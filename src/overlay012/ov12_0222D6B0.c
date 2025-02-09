@@ -4,10 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
@@ -23,9 +19,9 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "math.h"
+#include "sprite_system.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 
 typedef struct {
     u8 unk_00;
@@ -35,8 +31,8 @@ typedef struct {
     u8 unk_06;
     u8 unk_07;
     UnkStruct_ov12_0221FCDC *unk_08;
-    SpriteRenderer *unk_0C;
-    SpriteGfxHandler *unk_10;
+    SpriteSystem *unk_0C;
+    SpriteManager *unk_10;
     CellActorData *unk_14[3];
     UnkStruct_ov12_02225F6C unk_20;
 } UnkStruct_ov12_0222D6B0;
@@ -49,8 +45,8 @@ typedef struct {
     u8 unk_09;
     u8 unk_0A;
     UnkStruct_ov12_0221FCDC *unk_0C;
-    SpriteRenderer *unk_10;
-    SpriteGfxHandler *unk_14;
+    SpriteSystem *unk_10;
+    SpriteManager *unk_14;
     CellActorData *unk_18[6];
     int unk_30;
     CellActorData *unk_34;
@@ -61,8 +57,8 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov12_0221FCDC *unk_00;
-    SpriteRenderer *unk_04;
-    SpriteGfxHandler *unk_08;
+    SpriteSystem *unk_04;
+    SpriteManager *unk_08;
     u8 unk_0C;
     u8 unk_0D;
     u8 unk_0E;
@@ -80,8 +76,8 @@ typedef struct {
     u8 unk_03;
     u8 unk_04;
     UnkStruct_ov12_0221FCDC *unk_08;
-    SpriteRenderer *unk_0C;
-    SpriteGfxHandler *unk_10;
+    SpriteSystem *unk_0C;
+    SpriteManager *unk_10;
     UnkStruct_ov12_0222DC98 unk_14[20];
     int unk_514[20];
 } UnkStruct_ov12_0222DE24;
@@ -183,13 +179,13 @@ static void ov12_0222D6B0(SysTask *param0, void *param1)
     }
 
     for (v0 = 0; v0 < v1->unk_05; v0++) {
-        SpriteActor_UpdateObject(v1->unk_14[v0]->unk_00);
+        SpriteActor_UpdateObject(v1->unk_14[v0]->sprite);
     }
 
     sub_0200C7EC(v1->unk_10);
 }
 
-void ov12_0222D7C0(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222D7C0(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     int v0;
     UnkStruct_ov12_0222D6B0 *v1;
@@ -401,14 +397,14 @@ static void ov12_0222D934(SysTask *param0, void *param1)
 
     if ((v2->unk_00 < 3) && (v1 == 0)) {
         for (v0 = 0; v0 < v2->unk_08; v0++) {
-            SpriteActor_UpdateObject(v2->unk_18[v0]->unk_00);
+            SpriteActor_UpdateObject(v2->unk_18[v0]->sprite);
         }
     }
 
     sub_0200C7EC(v2->unk_14);
 }
 
-void ov12_0222DB60(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222DB60(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     int v0;
     UnkStruct_ov12_0222D934 *v1;
@@ -624,7 +620,7 @@ static const s16 Unk_ov12_0223A19A[][4] = {
     { 0x50, 0x92, 0x32, 0x35 }
 };
 
-void ov12_0222DEFC(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222DEFC(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     int v0;
     int v1;
@@ -819,7 +815,7 @@ static void ov12_0222E25C(SysTask *param0, void *param1)
     sub_0200C7EC(v0->unk_00.unk_10);
 }
 
-void ov12_0222E2F8(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222E2F8(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     UnkStruct_ov12_0222E25C *v0 = NULL;
 
@@ -958,7 +954,7 @@ static void ov12_0222E390(SysTask *param0, void *param1)
     sub_0200C7EC(v0->unk_00.unk_10);
 }
 
-void ov12_0222E61C(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222E61C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     UnkStruct_ov12_0222E390 *v0 = NULL;
 

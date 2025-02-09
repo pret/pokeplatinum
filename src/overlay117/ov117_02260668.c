@@ -10,9 +10,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay115/camera_angle.h"
 #include "overlay117/ov117_022626B0.h"
@@ -40,6 +37,7 @@
 #include "palette.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -49,7 +47,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -139,7 +136,7 @@ __attribute__((aligned(4))) static const u8 Unk_ov117_02266968[][4] = {
     { 0x0, 0x3, 0x1, 0x2 }
 };
 
-static const UnkStruct_ov104_0224133C Unk_ov117_022669A8 = {
+static const RenderOamTemplate Unk_ov117_022669A8 = {
     0x0,
     0x80,
     0x0,
@@ -150,7 +147,7 @@ static const UnkStruct_ov104_0224133C Unk_ov117_022669A8 = {
     0x20
 };
 
-static const UnkStruct_ov104_022412F4 Unk_ov117_0226697C = {
+static const CharTransferTemplateWithModes Unk_ov117_0226697C = {
     0x60,
     0x10000,
     0x4000,
@@ -158,7 +155,7 @@ static const UnkStruct_ov104_022412F4 Unk_ov117_0226697C = {
     GX_OBJVRAMMODE_CHAR_1D_32K
 };
 
-static const UnkStruct_ov104_02241308 Unk_ov117_02266990 = {
+static const SpriteResourceCapacities Unk_ov117_02266990 = {
     0x60,
     0x20,
     0x40,
@@ -975,7 +972,7 @@ static void ov117_0226168C(UnkStruct_ov117_02261280 *param0, NARC *param1)
     Strbuf *v1, *v2;
     int v3;
 
-    SpriteRenderer_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
+    SpriteSystem_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_80, 2);
     v0 = 6 + ((30 - Font_CalcStrbufWidth(0, v1, 0)) / 2);
@@ -995,10 +992,10 @@ static void ov117_0226168C(UnkStruct_ov117_02261280 *param0, NARC *param1)
 
     ov117_02266150(param0);
 
-    SpriteRenderer_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10004);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 24, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 26, 0, 10002);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 25, 0, 10002);
+    SpriteSystem_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, param1, 27, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10004);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 24, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 26, 0, 10002);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 25, 0, 10002);
     param0->unk_15A8.unk_00 = ov117_02266130(param0);
 
     sub_0200CD7C(param0->unk_8C, 2, param0->unk_24, param0->unk_28, 171, 20, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10002);
@@ -1025,10 +1022,10 @@ static void ov117_022618E8(UnkStruct_ov117_02261280 *param0)
 
 static void ov117_02261940(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
-    SpriteRenderer_LoadPalette(param0->unk_8C, 3, param0->unk_24, param0->unk_28, param1, 23, 0, 9, NNS_G2D_VRAM_TYPE_2DSUB, 10006);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 20, 0, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 22, 0, 10004);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 21, 0, 10004);
+    SpriteSystem_LoadPalette(param0->unk_8C, 3, param0->unk_24, param0->unk_28, param1, 23, 0, 9, NNS_G2D_VRAM_TYPE_2DSUB, 10006);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 20, 0, NNS_G2D_VRAM_TYPE_2DSUB, 10004);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 22, 0, 10004);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, param1, 21, 0, 10004);
 
     ov117_022648E0(param0);
     ov117_02264FB0(param0, &param0->unk_1458);

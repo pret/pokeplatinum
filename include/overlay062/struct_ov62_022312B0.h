@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_022312B0_H
 #define POKEPLATINUM_STRUCT_OV62_022312B0_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02012B20_decl.h"
 
 #include "char_transfer.h"
+#include "sprite_system.h"
 
 typedef struct {
     u8 padding_00[4];

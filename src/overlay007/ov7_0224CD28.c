@@ -9,8 +9,6 @@
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay007/struct_ov7_0224D008.h"
-#include "overlay007/struct_ov7_0224F2EC.h"
-#include "overlay007/struct_ov7_0224F358.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -35,6 +33,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "sprite_resource.h"
+#include "sprite_system.h"
 #include "sprite_transfer.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -44,7 +43,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_0202C9F4.h"
@@ -1438,7 +1436,7 @@ static void ov7_0224EA54(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param
     param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
 }
 
-static const UnkStruct_ov7_0224F2EC Unk_ov7_0224F2EC = {
+static const SpriteResourceDataPaths Unk_ov7_0224F2EC = {
     "data/shop_chr.resdat",
     "data/shop_pal.resdat",
     "data/shop_cell.resdat",
@@ -1448,7 +1446,7 @@ static const UnkStruct_ov7_0224F2EC Unk_ov7_0224F2EC = {
     "data/shop_h.cldat"
 };
 
-static const UnkStruct_ov7_0224F358 Unk_ov7_0224F358[] = {
+static const SpriteTemplateFromResourceHeader Unk_ov7_0224F358[] = {
     { 0, 0xB1, 0x8, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     { 0, 0xB1, 0x84, 0x0, 0x1, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
     { 1, 0xAC, 0x18, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },

@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV62_022300D8_H
 #define POKEPLATINUM_OV62_022300D8_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_020F3DCC_decl.h"
 #include "struct_defs/struct_0208C06C.h"
 
@@ -9,6 +8,7 @@
 #include "overlay062/struct_ov62_0223118C.h"
 #include "overlay062/struct_ov62_022312B0.h"
 
+#include "sprite_system.h"
 #include "sys_task_manager.h"
 
 void ov62_022300D8(UnkStruct_0208C06C *param0);

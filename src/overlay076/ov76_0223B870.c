@@ -3,10 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0207C690.h"
@@ -18,9 +14,6 @@
 #include "overlay076/struct_ov76_0223BBAC.h"
 #include "overlay076/struct_ov76_0223C398.h"
 #include "overlay076/struct_ov76_0223DE00.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -36,13 +29,13 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -69,7 +62,7 @@ void ov76_0223C32C(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223C354(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223C398(UnkStruct_ov76_0223C398 *param0);
 void ov76_0223C424(UnkStruct_ov76_0223C398 *param0);
-void ov76_0223C5A4(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC *param10);
+void ov76_0223C5A4(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC *param10);
 void ov76_0223C61C(UnkStruct_ov76_0223DE00 *param0, NARC *param1);
 void ov76_0223C7E0(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223C80C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2);
@@ -231,8 +224,8 @@ void ov76_0223BB04(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0;
     int v1;
-    SpriteRenderer *v2;
-    SpriteGfxHandler *v3;
+    SpriteSystem *v2;
+    SpriteManager *v3;
     PaletteData *v4;
 
     v2 = param0->unk_D4.unk_08;
@@ -254,8 +247,8 @@ void ov76_0223BBAC(UnkStruct_ov76_0223DE00 *param0)
     int v0;
     UnkStruct_ov76_0223BBAC *v1;
     SpriteTemplate v2;
-    SpriteRenderer *v3;
-    SpriteGfxHandler *v4;
+    SpriteSystem *v3;
+    SpriteManager *v4;
     PaletteData *v5;
 
     v3 = param0->unk_D4.unk_08;
@@ -270,7 +263,7 @@ void ov76_0223BBAC(UnkStruct_ov76_0223DE00 *param0)
     v2.priority = 60;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v2.bgPriority = 1;
-    v2.transferToVRAM = FALSE;
+    v2.vramTransfer = FALSE;
     v2.resources[4] = SPRITE_RESOURCE_NONE;
     v2.resources[5] = SPRITE_RESOURCE_NONE;
     v2.plttIdx = 0;
@@ -308,7 +301,7 @@ void ov76_0223BC70(UnkStruct_ov76_0223DE00 *param0)
     int v0;
 
     for (v0 = 0; v0 < 8; v0++) {
-        SpriteGfxHandler_UnloadCharObjById(param0->unk_D4.unk_0C, (v0 + 25000));
+        SpriteManager_UnloadCharObjById(param0->unk_D4.unk_0C, (v0 + 25000));
         sub_0200D0F4(param0->unk_3E4.unk_00[v0]);
     }
 }
@@ -534,8 +527,8 @@ void ov76_0223C0EC(int param0, s16 *param1, s16 *param2)
 
 void ov76_0223C110(UnkStruct_ov76_0223DE00 *param0)
 {
-    SpriteRenderer *v0;
-    SpriteGfxHandler *v1;
+    SpriteSystem *v0;
+    SpriteManager *v1;
     PaletteData *v2;
 
     v0 = param0->unk_D4.unk_08;
@@ -578,7 +571,7 @@ void ov76_0223C188(UnkStruct_ov76_0223DE00 *param0)
         v6.plttIdx = 0;
         v6.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         v6.bgPriority = 2;
-        v6.transferToVRAM = FALSE;
+        v6.vramTransfer = FALSE;
         v6.resources[0] = (v0 + 15000);
         v6.resources[1] = 16000;
         v6.resources[2] = 17000;
@@ -593,7 +586,7 @@ void ov76_0223C188(UnkStruct_ov76_0223DE00 *param0)
         v4 = Pokemon_GetValue(v5, MON_DATA_FORM, NULL);
         v3 = PokeIconPaletteIndex(v2, v4, v1);
 
-        CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_2FC[v0]->unk_00, v3);
+        CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_2FC[v0]->sprite, v3);
         sub_0200D364(param0->unk_2FC[v0], 1);
     }
 }
@@ -660,7 +653,7 @@ void ov76_0223C398(UnkStruct_ov76_0223C398 *param0)
 {
     param0->unk_08 = sub_0200C6E4(53);
     {
-        const UnkStruct_ov104_0224133C v0 = {
+        const RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -670,7 +663,7 @@ void ov76_0223C398(UnkStruct_ov76_0223C398 *param0)
             0,
             32,
         };
-        const UnkStruct_ov104_022412F4 v1 = {
+        const CharTransferTemplateWithModes v1 = {
             48 + 48, 1024 * 0x40, 512 * 0x20, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
@@ -679,7 +672,7 @@ void ov76_0223C398(UnkStruct_ov76_0223C398 *param0)
 
     {
         BOOL v2;
-        const UnkStruct_ov104_02241308 v3 = {
+        const SpriteResourceCapacities v3 = {
             48 + 48,
             16 + 16,
             64,
@@ -705,9 +698,9 @@ void ov76_0223C424(UnkStruct_ov76_0223C398 *param0)
 
 void ov76_0223C438(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 {
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, param1, 265, 1, 2, 45000);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, param1, 173, 1, 47000);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, param1, 81, 1, 48000);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, param1, 265, 1, 2, 45000);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, param1, 173, 1, 47000);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, param1, 81, 1, 48000);
 }
 
 void ov76_0223C4AC(UnkStruct_ov76_0223DE00 *param0)
@@ -730,7 +723,7 @@ void ov76_0223C4AC(UnkStruct_ov76_0223DE00 *param0)
         v1.plttIdx = 2;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         v1.bgPriority = 1;
-        v1.transferToVRAM = FALSE;
+        v1.vramTransfer = FALSE;
         v1.resources[0] = 45000;
         v1.resources[1] = 26000 + 290;
         v1.resources[2] = 47000;
@@ -774,12 +767,12 @@ void ov76_0223C588(UnkStruct_ov76_0223DE00 *param0)
     }
 }
 
-void ov76_0223C5A4(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC *param10)
+void ov76_0223C5A4(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC *param10)
 {
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param10, param3, 1, param7, (param3 + 11000));
-    SpriteRenderer_LoadPalette(param2, param8, param0, param1, param10, param4, 0, param9, param7, (param4 + 11000));
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param10, param5, 1, (param5 + 11000));
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param10, param6, 1, (param6 + 11000));
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param10, param3, 1, param7, (param3 + 11000));
+    SpriteSystem_LoadPalette(param2, param8, param0, param1, param10, param4, 0, param9, param7, (param4 + 11000));
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param10, param5, 1, (param5 + 11000));
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param10, param6, 1, (param6 + 11000));
 }
 
 void ov76_0223C61C(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
@@ -799,7 +792,7 @@ void ov76_0223C61C(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
             v1.plttIdx = 0;
             v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
             v1.bgPriority = 2;
-            v1.transferToVRAM = FALSE;
+            v1.vramTransfer = FALSE;
             v1.resources[0] = (266 + 11000);
             v1.resources[1] = (286 + 11000);
             v1.resources[2] = (174 + 11000);
@@ -824,7 +817,7 @@ void ov76_0223C61C(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
         v1.plttIdx = 0;
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         v1.bgPriority = 2;
-        v1.transferToVRAM = FALSE;
+        v1.vramTransfer = FALSE;
         v1.resources[0] = (275 + 11000);
         v1.resources[1] = (291 + 11000);
         v1.resources[2] = (179 + 11000);
@@ -1148,27 +1141,27 @@ void ov76_0223CF88(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 
 void ov76_0223CFEC(UnkStruct_ov76_0223DE00 *param0, NARC *param1)
 {
-    SpriteRenderer *v0;
-    SpriteGfxHandler *v1;
+    SpriteSystem *v0;
+    SpriteManager *v1;
     PaletteData *v2;
 
     v0 = param0->unk_D4.unk_08;
     v1 = param0->unk_D4.unk_0C;
     v2 = param0->unk_D4.unk_14;
 
-    SpriteRenderer_LoadPalette(v2, 3, v0, v1, param1, 290, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 26000 + 290);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, param1, 273, 1, NNS_G2D_VRAM_TYPE_2DSUB, 25000 + 273);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, param1, 177, 1, 27000 + 177);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, param1, 85, 1, 28000 + 85);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, param1, 274, 1, NNS_G2D_VRAM_TYPE_2DSUB, 25000 + 274);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, param1, 178, 1, 27000 + 178);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, param1, 86, 1, 28000 + 86);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, param1, 270, 1, NNS_G2D_VRAM_TYPE_2DSUB, 25000 + 270);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, param1, 175, 1, 27000 + 175);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, param1, 83, 1, 28000 + 83);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, param1, 272, 1, NNS_G2D_VRAM_TYPE_2DSUB, 35000 + 272);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, param1, 176, 1, 27000 + 176);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, param1, 84, 1, 28000 + 84);
+    SpriteSystem_LoadPalette(v2, 3, v0, v1, param1, 290, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 26000 + 290);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, param1, 273, 1, NNS_G2D_VRAM_TYPE_2DSUB, 25000 + 273);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, param1, 177, 1, 27000 + 177);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, param1, 85, 1, 28000 + 85);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, param1, 274, 1, NNS_G2D_VRAM_TYPE_2DSUB, 25000 + 274);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, param1, 178, 1, 27000 + 178);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, param1, 86, 1, 28000 + 86);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, param1, 270, 1, NNS_G2D_VRAM_TYPE_2DSUB, 25000 + 270);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, param1, 175, 1, 27000 + 175);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, param1, 83, 1, 28000 + 83);
+    SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, param1, 272, 1, NNS_G2D_VRAM_TYPE_2DSUB, 35000 + 272);
+    SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, param1, 176, 1, 27000 + 176);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, param1, 84, 1, 28000 + 84);
 }
 
 void ov76_0223D16C(UnkStruct_ov76_0223DE00 *param0)
@@ -1176,8 +1169,8 @@ void ov76_0223D16C(UnkStruct_ov76_0223DE00 *param0)
     int v0;
     UnkStruct_ov76_0223BBAC *v1;
     SpriteTemplate v2;
-    SpriteRenderer *v3;
-    SpriteGfxHandler *v4;
+    SpriteSystem *v3;
+    SpriteManager *v4;
     PaletteData *v5;
 
     v3 = param0->unk_D4.unk_08;
@@ -1192,7 +1185,7 @@ void ov76_0223D16C(UnkStruct_ov76_0223DE00 *param0)
     v2.priority = 60;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v2.bgPriority = 1;
-    v2.transferToVRAM = FALSE;
+    v2.vramTransfer = FALSE;
     v2.resources[4] = SPRITE_RESOURCE_NONE;
     v2.resources[5] = SPRITE_RESOURCE_NONE;
 

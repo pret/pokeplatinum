@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_OV76_0223D338_H
 #define POKEPLATINUM_OV76_0223D338_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_defs/struct_0202CA28.h"
 
 #include "overlay076/struct_ov76_0223DE00.h"
 
 #include "bg_window.h"
+#include "sprite_system.h"
 
 void ov76_0223D338(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223D350(UnkStruct_ov76_0223DE00 *param0);

@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
-
 #include "overlay117/ov117_02260668.h"
 #include "overlay117/ov117_02263AF0.h"
 #include "overlay117/struct_ov117_02261280.h"
@@ -16,9 +13,9 @@
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "system.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 
 typedef struct {
     fx32 unk_00;
@@ -919,19 +916,19 @@ static void ov117_022638D8(UnkStruct_ov117_02261280 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
 
-    SpriteRenderer_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, v0, 58, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10005);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 55, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 57, 0, 10003);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 56, 0, 10003);
+    SpriteSystem_LoadPalette(param0->unk_8C, 2, param0->unk_24, param0->unk_28, v0, 58, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10005);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 55, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 57, 0, 10003);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 56, 0, 10003);
     NARC_dtor(v0);
 }
 
 static void ov117_022639BC(UnkStruct_ov117_02261280 *param0)
 {
-    SpriteGfxHandler_UnloadCharObjById(param0->unk_28, 10003);
-    SpriteGfxHandler_UnloadCellObjById(param0->unk_28, 10003);
-    SpriteGfxHandler_UnloadAnimObjById(param0->unk_28, 10003);
-    SpriteGfxHandler_UnloadPlttObjById(param0->unk_28, 10005);
+    SpriteManager_UnloadCharObjById(param0->unk_28, 10003);
+    SpriteManager_UnloadCellObjById(param0->unk_28, 10003);
+    SpriteManager_UnloadAnimObjById(param0->unk_28, 10003);
+    SpriteManager_UnloadPlttObjById(param0->unk_28, 10005);
 }
 
 static CellActorData *ov117_02263A00(UnkStruct_ov117_02261280 *param0)
@@ -943,7 +940,7 @@ static CellActorData *ov117_02263A00(UnkStruct_ov117_02261280 *param0)
     v0 = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &v1);
 
     SpriteActor_EnableObject(v0, 0);
-    SpriteActor_UpdateObject(v0->unk_00);
+    SpriteActor_UpdateObject(v0->sprite);
 
     return v0;
 }
@@ -960,7 +957,7 @@ static void ov117_02263A6C(UnkStruct_ov117_022626B0 *param0, CellActorData *para
 
     sub_0200D500(param1, param0->unk_21C, (param0->unk_230 >> FX32_SHIFT) + Unk_ov117_02266B05[param0->unk_270].unk_02, ((192 + 160) << FX32_SHIFT));
     sub_0200D364(param1, v0);
-    SpriteActor_UpdateObject(param1->unk_00);
+    SpriteActor_UpdateObject(param1->sprite);
 }
 
 static void ov117_02263AE4(CellActorData *param0)

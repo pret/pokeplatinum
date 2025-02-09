@@ -9,12 +9,9 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -132,6 +129,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -140,7 +138,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
@@ -2596,16 +2593,16 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
                 }
             } else if (v1 >= (256 + 40)) {
                 {
-                    SpriteGfxHandler *v8;
+                    SpriteManager *v8;
 
                     v8 = ov16_0223E018(v0->unk_00);
                     sub_0200D0F4(v0->unk_04->unk_18);
                     v0->unk_04->unk_18 = NULL;
 
-                    SpriteGfxHandler_UnloadCharObjById(v8, 20015 + v0->unk_04->battlerType);
-                    SpriteGfxHandler_UnloadPlttObjById(v8, 20010 + v0->unk_04->battlerType);
-                    SpriteGfxHandler_UnloadCellObjById(v8, 20007 + v0->unk_04->battlerType);
-                    SpriteGfxHandler_UnloadAnimObjById(v8, 20007 + v0->unk_04->battlerType);
+                    SpriteManager_UnloadCharObjById(v8, 20015 + v0->unk_04->battlerType);
+                    SpriteManager_UnloadPlttObjById(v8, 20010 + v0->unk_04->battlerType);
+                    SpriteManager_UnloadCellObjById(v8, 20007 + v0->unk_04->battlerType);
+                    SpriteManager_UnloadAnimObjById(v8, 20007 + v0->unk_04->battlerType);
                 }
                 v0->unk_0A = 6;
             }
@@ -2649,17 +2646,17 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
 
         if (v1 <= -40) {
             {
-                SpriteGfxHandler *v10;
+                SpriteManager *v10;
 
                 v10 = ov16_0223E018(v0->unk_00);
 
                 sub_0200D0F4(v0->unk_04->unk_18);
                 v0->unk_04->unk_18 = NULL;
 
-                SpriteGfxHandler_UnloadCharObjById(v10, 20015 + v0->unk_04->battlerType);
-                SpriteGfxHandler_UnloadPlttObjById(v10, 20010 + v0->unk_04->battlerType);
-                SpriteGfxHandler_UnloadCellObjById(v10, 20007 + v0->unk_04->battlerType);
-                SpriteGfxHandler_UnloadAnimObjById(v10, 20007 + v0->unk_04->battlerType);
+                SpriteManager_UnloadCharObjById(v10, 20015 + v0->unk_04->battlerType);
+                SpriteManager_UnloadPlttObjById(v10, 20010 + v0->unk_04->battlerType);
+                SpriteManager_UnloadCellObjById(v10, 20007 + v0->unk_04->battlerType);
+                SpriteManager_UnloadAnimObjById(v10, 20007 + v0->unk_04->battlerType);
             }
             v0->unk_0A = 6;
         }
@@ -2739,16 +2736,16 @@ static void ov16_02260284(SysTask *param0, void *param1)
         }
         break;
     case 1: {
-        SpriteGfxHandler *v3;
+        SpriteManager *v3;
 
         v3 = ov16_0223E018(v0->unk_00);
         sub_0200D0F4(v0->unk_04->unk_18);
         v0->unk_04->unk_18 = NULL;
 
-        SpriteGfxHandler_UnloadCharObjById(v3, 20015 + v0->unk_04->battlerType);
-        SpriteGfxHandler_UnloadPlttObjById(v3, 20010 + v0->unk_04->battlerType);
-        SpriteGfxHandler_UnloadCellObjById(v3, 20007 + v0->unk_04->battlerType);
-        SpriteGfxHandler_UnloadAnimObjById(v3, 20007 + v0->unk_04->battlerType);
+        SpriteManager_UnloadCharObjById(v3, 20015 + v0->unk_04->battlerType);
+        SpriteManager_UnloadPlttObjById(v3, 20010 + v0->unk_04->battlerType);
+        SpriteManager_UnloadCellObjById(v3, 20007 + v0->unk_04->battlerType);
+        SpriteManager_UnloadAnimObjById(v3, 20007 + v0->unk_04->battlerType);
     }
         ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
         Heap_FreeToHeap(param1);
@@ -6130,8 +6127,8 @@ static void ov16_02264360(BattleSystem *param0, BattlerData *param1, BattleMessa
 
 static CellActorData *ov16_022643B8(BattleSystem *param0, int param1, int param2, int param3, s16 param4, s16 param5)
 {
-    SpriteRenderer *v0;
-    SpriteGfxHandler *v1;
+    SpriteSystem *v0;
+    SpriteManager *v1;
     PaletteData *v2;
     CellActorData *v3;
     int v4;

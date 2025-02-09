@@ -7,11 +7,7 @@
 #include "generated/items.h"
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02095C48.h"
@@ -31,12 +27,12 @@
 #include "message.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02024220.h"
 
@@ -110,7 +106,7 @@ void ov17_0223F1E0(GenericPointerData *param0)
     sub_020242C4(param0);
 }
 
-void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8(int param0, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -313,7 +309,7 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
     }
 }
 
-void ov17_0223F560(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6)
+void ov17_0223F560(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6)
 {
     if (param3 != -1) {
         sub_0200CBDC(param0, param1, 46, 73, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
@@ -332,26 +328,26 @@ void ov17_0223F560(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData
     }
 }
 
-void ov17_0223F5E8(SpriteGfxHandler *param0, int param1, int param2, int param3, int param4)
+void ov17_0223F5E8(SpriteManager *param0, int param1, int param2, int param3, int param4)
 {
     if (param1 != -1) {
-        SpriteGfxHandler_UnloadCharObjById(param0, param1);
+        SpriteManager_UnloadCharObjById(param0, param1);
     }
 
     if (param2 != -1) {
-        SpriteGfxHandler_UnloadPlttObjById(param0, param2);
+        SpriteManager_UnloadPlttObjById(param0, param2);
     }
 
     if (param3 != -1) {
-        SpriteGfxHandler_UnloadCellObjById(param0, param3);
+        SpriteManager_UnloadCellObjById(param0, param3);
     }
 
     if (param4 != -1) {
-        SpriteGfxHandler_UnloadAnimObjById(param0, param4);
+        SpriteManager_UnloadAnimObjById(param0, param4);
     }
 }
 
-void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
+void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteSystem *param1, SpriteManager *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
 {
     int v0;
     SpriteTemplate v1;
@@ -374,7 +370,7 @@ void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteRenderer *param1, Spri
         SpriteActor_SetSpritePositionXY(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
         sub_0200D364(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
         sub_0200D6A4(param0->unk_00[v0], 1);
-        SpriteActor_UpdateObject(param0->unk_00[v0]->unk_00);
+        SpriteActor_UpdateObject(param0->unk_00[v0]->sprite);
     }
 
     param0->unk_18 = SysTask_Start(ov17_0223F6E8, param0, param10);

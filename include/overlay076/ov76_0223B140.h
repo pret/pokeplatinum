@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_OV76_0223B140_H
 #define POKEPLATINUM_OV76_0223B140_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_defs/struct_0202CA28.h"
 
 #include "overlay076/struct_ov76_0223DE00.h"
 
+#include "sprite_system.h"
 #include "touch_screen.h"
 
 void ov76_0223B184(TouchScreenRect *rect, CellActorData *param1, BOOL param2);

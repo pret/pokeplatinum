@@ -3,8 +3,6 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/cell_actor_data.h"
-
 #include "overlay116/struct_ov116_02260490.h"
 #include "overlay116/struct_ov116_02262A8C_sub1.h"
 #include "overlay116/struct_ov116_02262A8C_sub2.h"
@@ -16,6 +14,7 @@
 #include "overlay116/struct_ov116_022660A8.h"
 
 #include "bg_window.h"
+#include "sprite_system.h"
 
 typedef struct {
     u32 unk_00;

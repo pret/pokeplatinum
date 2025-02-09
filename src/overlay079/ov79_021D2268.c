@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020158A8.h"
 #include "struct_defs/struct_02098DE8.h"
 #include "struct_defs/struct_0209903C.h"
@@ -15,8 +13,6 @@
 #include "overlay079/ov79_021D3768.h"
 #include "overlay079/struct_ov79_021D3820.h"
 #include "overlay079/struct_ov79_021D38D0.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -31,6 +27,7 @@
 #include "pokemon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -39,7 +36,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -107,7 +103,7 @@ typedef struct {
     UnkStruct_0209916C *unk_60[2];
     BgConfig *unk_68;
     Window unk_6C;
-    SpriteRenderer *unk_7C;
+    SpriteSystem *unk_7C;
     UnkStruct_ov79_021D29B4 unk_80;
 } UnkStruct_ov79_021D2928;
 
@@ -536,7 +532,7 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
     param0->unk_7C = sub_0200C6E4(param0->unk_00);
 
     {
-        UnkStruct_ov104_0224133C v0 = {
+        RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -546,7 +542,7 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
             0,
             31,
         };
-        UnkStruct_ov104_022412F4 v1 = {
+        CharTransferTemplateWithModes v1 = {
             3,
             0,
             0,
@@ -642,7 +638,7 @@ static int ov79_021D2A04(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov79_021D29B4));
 
-    param1->unk_C4 = param0->unk_60[0]->unk_04->unk_00;
+    param1->unk_C4 = param0->unk_60[0]->unk_04->sprite;
     param1->unk_C8 = param0->unk_40.unk_18;
     param1->unk_08 = param0->unk_30.unk_09;
     param1->unk_00 = 24;

@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV117_02263EF8_H
 #define POKEPLATINUM_STRUCT_OV117_02263EF8_H
 
-#include "struct_decls/cell_actor_data.h"
-
 #include "overlay117/struct_ov117_02266F10.h"
+
+#include "sprite_system.h"
 
 typedef struct {
     BOOL unk_00;

@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV12_02226274_H
 #define POKEPLATINUM_STRUCT_OV12_02226274_H
 
-#include "struct_decls/cell_actor_data.h"
-
 #include "overlay012/funcptr_ov12_02226274.h"
 #include "overlay012/struct_ov12_02225F6C.h"
+
+#include "sprite_system.h"
 
 typedef struct {
     s16 unk_00;

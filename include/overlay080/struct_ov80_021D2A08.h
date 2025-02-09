@@ -3,9 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
 
 #include "overlay080/struct_ov80_021D259C.h"
@@ -16,6 +13,7 @@
 #include "bg_window.h"
 #include "map_matrix.h"
 #include "message.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 
 typedef struct UnkStruct_ov80_021D2A08_t {
@@ -61,8 +59,8 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     NNSG2dScreenData *unk_CC;
     NNSG2dScreenData *unk_D0;
     NNSG2dScreenData *unk_D4;
-    SpriteRenderer *unk_D8;
-    SpriteGfxHandler *unk_DC;
+    SpriteSystem *unk_D8;
+    SpriteManager *unk_DC;
     CellActorData *unk_E0;
 } UnkStruct_ov80_021D2A08;
 

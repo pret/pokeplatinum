@@ -4,10 +4,6 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202CA28.h"
 
 #include "overlay012/ov12_02237E54.h"
@@ -16,9 +12,9 @@
 
 #include "game_overlay.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_0200C6E4.h"
 #include "unk_0202C9F4.h"
 #include "unk_02097B18.h"
 
@@ -175,8 +171,8 @@ void ov76_0223B36C(UnkStruct_ov76_0223DE00 *param0, u8 param1, u8 param2)
 {
     int v0;
     int v1;
-    SpriteRenderer *v2;
-    SpriteGfxHandler *v3;
+    SpriteSystem *v2;
+    SpriteManager *v3;
     PaletteData *v4;
 
     v2 = param0->unk_D4.unk_08;
@@ -276,8 +272,8 @@ BOOL ov76_0223B52C(UnkStruct_ov76_0223DE00 *param0, u8 param1)
     int v1;
     UnkStruct_ov76_0223B52C *v2;
     SpriteTemplate v3;
-    SpriteRenderer *v4;
-    SpriteGfxHandler *v5;
+    SpriteSystem *v4;
+    SpriteManager *v5;
     PaletteData *v6;
 
     v4 = param0->unk_D4.unk_08;
@@ -297,7 +293,7 @@ BOOL ov76_0223B52C(UnkStruct_ov76_0223DE00 *param0, u8 param1)
     v3.z = 0;
     v3.animIdx = 0;
     v3.plttIdx = 0;
-    v3.transferToVRAM = FALSE;
+    v3.vramTransfer = FALSE;
     v3.priority = 0;
     v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v3.bgPriority = 1;
@@ -416,7 +412,7 @@ void ov76_0223B704(UnkStruct_ov76_0223DE00 *param0, int param1)
     v0 = sub_02098140(param0->unk_324[param1].unk_04);
     v1 = (param1 + 20000);
 
-    SpriteGfxHandler_UnloadCharObjById(param0->unk_D4.unk_0C, v1);
+    SpriteManager_UnloadCharObjById(param0->unk_D4.unk_0C, v1);
     sub_0200D0F4(param0->unk_324[param1].unk_08);
 
     param0->unk_324[param1].unk_08 = NULL;

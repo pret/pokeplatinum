@@ -15,14 +15,10 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/fraction.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/trainer.h"
@@ -61,6 +57,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -72,7 +69,6 @@
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
@@ -12198,8 +12194,8 @@ static const SpriteTemplate Unk_ov16_0226E6F8 = {
 static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1, Pokemon *param2)
 {
     SpriteTemplate v0;
-    SpriteRenderer *v1;
-    SpriteGfxHandler *v2;
+    SpriteSystem *v1;
+    SpriteManager *v2;
     PaletteData *v3;
     MessageLoader *v4;
     StringTemplate *v5;
@@ -12234,7 +12230,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
 
     param1->cellActorData[1] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6F8);
 
-    CellActor_SetExplicitPaletteOffsetAutoAdjust(param1->cellActorData[1]->unk_00, Pokemon_IconPaletteIndex(param2));
+    CellActor_SetExplicitPaletteOffsetAutoAdjust(param1->cellActorData[1]->sprite, Pokemon_IconPaletteIndex(param2));
     sub_0200D330(param1->cellActorData[1]);
 
     param1->tmpPtr[0] = sub_02012744(1, 5);
@@ -12286,7 +12282,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
 
 static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1)
 {
-    SpriteGfxHandler *v0;
+    SpriteManager *v0;
 
     v0 = ov16_0223E018(param0);
 
@@ -12294,14 +12290,14 @@ static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScript
     sub_0200D0F4(param1->cellActorData[1]);
     sub_02012870(param1->fontOAM);
     CharTransfer_ClearRange(&param1->charTransferAllocation);
-    SpriteGfxHandler_UnloadCharObjById(v0, 20021);
-    SpriteGfxHandler_UnloadPlttObjById(v0, 20016);
-    SpriteGfxHandler_UnloadCellObjById(v0, 20013);
-    SpriteGfxHandler_UnloadAnimObjById(v0, 20013);
-    SpriteGfxHandler_UnloadCharObjById(v0, 20022);
-    SpriteGfxHandler_UnloadPlttObjById(v0, 20017);
-    SpriteGfxHandler_UnloadCellObjById(v0, 20014);
-    SpriteGfxHandler_UnloadAnimObjById(v0, 20014);
+    SpriteManager_UnloadCharObjById(v0, 20021);
+    SpriteManager_UnloadPlttObjById(v0, 20016);
+    SpriteManager_UnloadCellObjById(v0, 20013);
+    SpriteManager_UnloadAnimObjById(v0, 20013);
+    SpriteManager_UnloadCharObjById(v0, 20022);
+    SpriteManager_UnloadPlttObjById(v0, 20017);
+    SpriteManager_UnloadCellObjById(v0, 20014);
+    SpriteManager_UnloadAnimObjById(v0, 20014);
     sub_020127BC(param1->tmpPtr[0]);
 }
 

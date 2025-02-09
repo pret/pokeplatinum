@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV104_0223BFFC_H
 #define POKEPLATINUM_STRUCT_OV104_0223BFFC_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_020304A0_decl.h"
 
 #include "overlay104/struct_ov104_0223A348.h"
@@ -9,6 +8,7 @@
 
 #include "party.h"
 #include "savedata.h"
+#include "sprite_system.h"
 
 typedef struct {
     int unk_00;

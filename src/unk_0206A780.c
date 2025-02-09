@@ -3,16 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0206A844.h"
 
 #include "overlay005/ov5_021D2F14.h"
-#include "overlay104/struct_ov104_02241308.h"
 
 #include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_0200C6E4.h"
+#include "sprite_system.h"
 
 static const SpriteTemplate Unk_020EFA04[] = {
     {
@@ -43,7 +41,7 @@ static const SpriteTemplate Unk_020EFA04[] = {
 
 UnkStruct_0206A844 *sub_0206A780(int param0)
 {
-    UnkStruct_ov104_02241308 v0 = {
+    SpriteResourceCapacities v0 = {
         1, 1, 1, 1, 0, 0
     };
     u32 v1;
@@ -90,7 +88,7 @@ void sub_0206A870(UnkStruct_0206A844 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_1C8[v0] != NULL) {
-            CellActor_UpdateAnim(param0->unk_1C8[v0]->unk_00, FX32_ONE);
+            CellActor_UpdateAnim(param0->unk_1C8[v0]->sprite, FX32_ONE);
         }
     }
 

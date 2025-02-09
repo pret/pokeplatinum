@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -12,12 +10,8 @@
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay007/struct_ov7_0224F2EC.h"
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay090/struct_ov90_021D1750.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -31,12 +25,12 @@
 #include "overlay_manager.h"
 #include "render_oam.h"
 #include "save_player.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
@@ -86,8 +80,8 @@ typedef struct {
     UnkStruct_ov90_021D0ECC_sub1 unk_28;
     Window unk_6C[5];
     UnkStruct_ov90_021D17F8 unk_BC[30];
-    SpriteRenderer *unk_29C;
-    SpriteGfxHandler *unk_2A0;
+    SpriteSystem *unk_29C;
+    SpriteManager *unk_2A0;
     CellActor *unk_2A4[4];
 } UnkStruct_ov90_021D0ECC;
 
@@ -859,7 +853,7 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
     param0->unk_2A0 = sub_0200C704(param0->unk_29C);
 
     {
-        UnkStruct_ov104_0224133C v0 = {
+        RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -870,7 +864,7 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
             32,
         };
 
-        UnkStruct_ov104_022412F4 v1 = {
+        CharTransferTemplateWithModes v1 = {
             1,
             2048,
             2048,
@@ -885,7 +879,7 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
     }
 
     {
-        UnkStruct_ov7_0224F2EC v2 = {
+        SpriteResourceDataPaths v2 = {
             "data/btower_chr.resdat",
             "data/btower_pal.resdat",
             "data/btower_cell.resdat",
@@ -924,7 +918,7 @@ static void ov90_021D1BA4(void)
 static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0;
-    static const UnkStruct_ov7_0224F358 v1[] = {
+    static const SpriteTemplateFromResourceHeader v1[] = {
         { 0, 54, 68, 0, 0, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },
         { 0, 204, 114, 0, 1, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },
         { 0, 128, 52, 0, 2, 3, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },

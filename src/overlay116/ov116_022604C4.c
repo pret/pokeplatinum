@@ -8,9 +8,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay004/ov4_021D0D80.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay116/ov116_02260440.h"
 #include "overlay116/ov116_02261870.h"
@@ -36,10 +33,10 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "system.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_02024220.h"
@@ -1048,7 +1045,7 @@ static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
 {
     param0->unk_48.unk_08 = sub_0200C6E4(106);
     {
-        const UnkStruct_ov104_0224133C v0 = {
+        const RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -1059,7 +1056,7 @@ static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
             32,
         };
 
-        const UnkStruct_ov104_022412F4 v1 = {
+        const CharTransferTemplateWithModes v1 = {
             64 + 64,
             1024 * 0x40,
             512 * 0x20,
@@ -1071,7 +1068,7 @@ static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
     }
     {
         BOOL v2;
-        const UnkStruct_ov104_02241308 v3 = {
+        const SpriteResourceCapacities v3 = {
             64 + 64,
             16 + 16,
             128,

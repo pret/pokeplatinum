@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV62_02231690_H
 #define POKEPLATINUM_OV62_02231690_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_0202F41C_decl.h"
 #include "struct_defs/struct_0208B878.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -17,6 +16,7 @@
 #include "bg_window.h"
 #include "message.h"
 #include "narc.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 
 StringTemplate *ov62_02231690(u32 param0);

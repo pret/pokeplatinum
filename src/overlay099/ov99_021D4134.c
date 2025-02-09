@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200D0F4.h"
-
 #include "overlay099/struct_ov99_021D2CB0.h"
 #include "overlay099/struct_ov99_021D5434.h"
 
@@ -15,7 +13,7 @@
 #include "heap.h"
 #include "math.h"
 #include "palette.h"
-#include "unk_0200C6E4.h"
+#include "sprite_system.h"
 
 typedef struct {
     u16 unk_00;
@@ -219,7 +217,7 @@ void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1)
             param0->unk_1114.unk_00--;
         } else {
             v0 = G2_GetOBJCharPtr();
-            v2 = SpriteActor_ImageProxy(param1->unk_00);
+            v2 = SpriteActor_ImageProxy(param1->sprite);
 
             if (param0->unk_00->unk_00 == 0) {
                 MI_CpuCopy32(&param0->unk_10F4[param0->unk_1114.unk_02 * ((0x20 * 8) / 2)], (void *)((u32)v0 + 0x1d * 0x20 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);

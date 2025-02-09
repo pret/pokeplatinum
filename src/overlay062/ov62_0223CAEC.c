@@ -36,7 +36,7 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
+#include "sprite_system.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "unk_02030A80.h"

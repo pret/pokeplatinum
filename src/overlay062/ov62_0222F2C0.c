@@ -12,9 +12,6 @@
 #include "overlay062/ov62_02231690.h"
 #include "overlay062/ov62_0224112C.h"
 #include "overlay062/ov62_const_funcptr_tables.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "gx_layers.h"
@@ -24,12 +21,12 @@
 #include "palette.h"
 #include "render_text.h"
 #include "savedata_misc.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
@@ -316,7 +313,7 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
 {
     param0->unk_14.unk_04 = sub_0200C6E4(102);
     {
-        const UnkStruct_ov104_0224133C v0 = {
+        const RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -327,7 +324,7 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
             32,
         };
 
-        const UnkStruct_ov104_022412F4 v1 = {
+        const CharTransferTemplateWithModes v1 = {
             128, 0x10000, 0x4000, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K
         };
 
@@ -336,7 +333,7 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
 
     {
         BOOL v2;
-        const UnkStruct_ov104_02241308 v3 = {
+        const SpriteResourceCapacities v3 = {
             128,
             32,
             128,

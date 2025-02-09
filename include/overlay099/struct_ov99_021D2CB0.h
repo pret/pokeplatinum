@@ -1,9 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV99_021D2CB0_H
 #define POKEPLATINUM_STRUCT_OV99_021D2CB0_H
 
-#include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0207C690.h"
 
@@ -18,6 +15,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sys_task_manager.h"
 
 typedef struct {
@@ -27,8 +25,8 @@ typedef struct {
     PaletteData *unk_0C;
     GenericPointerData *unk_10;
     SysTask *unk_14;
-    SpriteRenderer *unk_18;
-    SpriteGfxHandler *unk_1C;
+    SpriteSystem *unk_18;
+    SpriteManager *unk_1C;
     MessageLoader *unk_20;
     Window *unk_24;
     Camera *camera;

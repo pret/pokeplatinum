@@ -11,8 +11,6 @@
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_02068630.h"
 #include "struct_defs/struct_020708E0.h"
@@ -29,7 +27,6 @@
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/save_info_window.h"
 #include "overlay021/struct_ov21_021D0D80.h"
-#include "overlay104/struct_ov104_02241308.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -58,6 +55,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -66,7 +64,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02028124.h"
@@ -735,12 +732,12 @@ static BOOL FieldMenu_Select(FieldTask *taskMan)
     menu->unk_28 = Menu_GetCursorPos(menu->unk_20);
 
     if (v2 != menu->unk_28) {
-        sub_0203B558(menu->unk_200[0]->unk_00, menu->unk_28);
+        sub_0203B558(menu->unk_200[0]->sprite, menu->unk_28);
         sub_0203B5B4(menu, v2, menu->unk_28);
         fieldSystem->unk_90 = menu->unk_30[menu->unk_28];
     }
 
-    sub_0203B5E8(menu->unk_200[1 + menu->unk_28]->unk_00);
+    sub_0203B5E8(menu->unk_200[1 + menu->unk_28]->sprite);
 
     switch (menu->unk_2C) {
     case 0xffffffff:
@@ -775,7 +772,7 @@ static void sub_0203B2EC(FieldMenu *menu, FieldSystem *fieldSystem)
 
 static void sub_0203B318(FieldMenu *menu, u8 *param1, u32 param2, u8 param3)
 {
-    UnkStruct_ov104_02241308 v0 = {
+    SpriteResourceCapacities v0 = {
         8, 1, 2, 2, 0, 0
     };
     u32 i;
@@ -792,7 +789,7 @@ static void sub_0203B318(FieldMenu *menu, u8 *param1, u32 param2, u8 param3)
 
     menu->unk_200[0] = ov5_021D3584(&menu->unk_38, &Unk_020EA0A4[0]);
 
-    sub_0203B558(menu->unk_200[0]->unk_00, menu->unk_28);
+    sub_0203B558(menu->unk_200[0]->sprite, menu->unk_28);
 
     ov5_021D3374(&menu->unk_38, v2, 4, 0, 13529);
     ov5_021D339C(&menu->unk_38, v2, 3, 0, 13529);
@@ -814,11 +811,11 @@ static void sub_0203B318(FieldMenu *menu, u8 *param1, u32 param2, u8 param3)
 
         {
             VecFx32 v4 = { FX32_ONE, FX32_ONE, FX32_ONE };
-            CellActor_SetAffineScaleEx(menu->unk_200[1 + i]->unk_00, &v4, 1);
+            CellActor_SetAffineScaleEx(menu->unk_200[1 + i]->sprite, &v4, 1);
         }
     }
 
-    sub_0203B588(menu->unk_200[1 + menu->unk_28]->unk_00, 2, 1);
+    sub_0203B588(menu->unk_200[1 + menu->unk_28]->sprite, 2, 1);
 
     menu->unk_220 = param2 + 1;
 
@@ -842,7 +839,7 @@ static void sub_0203B520(FieldMenu *menu)
     u16 v0;
 
     for (v0 = 0; v0 < menu->unk_220; v0++) {
-        CellActor_UpdateAnim(menu->unk_200[v0]->unk_00, FX32_ONE);
+        CellActor_UpdateAnim(menu->unk_200[v0]->sprite, FX32_ONE);
     }
 }
 
@@ -866,8 +863,8 @@ static void sub_0203B588(CellActor *graphicElement, u16 param1, u16 param2)
 
 static void sub_0203B5B4(FieldMenu *menu, u16 param1, u16 param2)
 {
-    sub_0203B588(menu->unk_200[1 + param1]->unk_00, 0, 0);
-    sub_0203B588(menu->unk_200[1 + param2]->unk_00, 1, 1);
+    sub_0203B588(menu->unk_200[1 + param1]->sprite, 0, 0);
+    sub_0203B588(menu->unk_200[1 + param2]->sprite, 1, 1);
 }
 
 static void sub_0203B5E8(CellActor *graphicElement)

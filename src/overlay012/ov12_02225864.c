@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay012/funcptr_ov12_02226274.h"
 #include "overlay012/ov12_0221FC20.h"
@@ -22,10 +21,10 @@
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "screen_scroll_manager.h"
+#include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 
 typedef struct {
     s16 unk_00;
@@ -149,7 +148,7 @@ s16 ov12_022258E0(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
 
 u8 ov12_02225950(CellActorData *param0)
 {
-    return PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(param0->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+    return PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(param0->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
 int ov12_02225964(UnkStruct_ov12_0221FCDC *param0, int param1)

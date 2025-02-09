@@ -6,11 +6,7 @@
 #include "constants/heap.h"
 #include "generated/sdat.h"
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/battle_io.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 
 #include "battle/ov16_0223DF00.h"
 
@@ -20,10 +16,10 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 
 typedef struct {
     CellActorData *cells;
@@ -74,9 +70,9 @@ enum PartyGaugeAnimIndex {
     PGANM_ARROW_OURS,
 };
 
-static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum PartyGaugePosition pos, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler);
+static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum PartyGaugePosition pos, SpriteSystem *renderer, SpriteManager *gfxHandler);
 static void HideArrow(PartyGaugeArrow *arrow, enum HideArrowType type);
-static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum PartyGaugeSide side, enum ShowPartyGaugeType type, enum PartyGaugePosition pos, int slot, int frame, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler);
+static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum PartyGaugeSide side, enum ShowPartyGaugeType type, enum PartyGaugePosition pos, int slot, int frame, SpriteSystem *renderer, SpriteManager *gfxHandler);
 static void HidePokeballs(PartyGaugePokeballs *pokeballs, int slot, enum HidePartyGaugeType type, s16 *arrowAlpha);
 static void ShowArrowTask(SysTask *task, void *data);
 static void HideArrowTask(SysTask *task, void *data);
@@ -112,7 +108,7 @@ static const SpriteTemplate sArrowTemplate = {
         SPRITE_RESOURCE_NONE,
     },
     .bgPriority = 0,
-    .transferToVRAM = FALSE,
+    .vramTransfer = FALSE,
 };
 
 static const SpriteTemplate sPokeballTemplate = {
@@ -132,7 +128,7 @@ static const SpriteTemplate sPokeballTemplate = {
         SPRITE_RESOURCE_NONE,
     },
     .bgPriority = 0,
-    .transferToVRAM = FALSE,
+    .vramTransfer = FALSE,
 };
 
 #define ARROW_TASK_PRIORITY    500
@@ -202,24 +198,24 @@ __attribute__((aligned(4))) static const u16 sPokeballYPosTheirs[] = {
 #define PARTY_GAUGE_NCER_BIN 341
 #define PARTY_GAUGE_NANR_BIN 342
 
-void PartyGauge_LoadGraphics(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, PaletteData *palette)
+void PartyGauge_LoadGraphics(SpriteSystem *renderer, SpriteManager *gfxHandler, PaletteData *palette)
 {
     NARC *narc = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
-    SpriteRenderer_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, PARTY_GAUGE_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PARTY_GAUGE_PLTT_RES_ID);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(renderer, gfxHandler, narc, PARTY_GAUGE_NCGR_BIN, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, PARTY_GAUGE_CHAR_RES_ID);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(renderer, gfxHandler, narc, PARTY_GAUGE_NCER_BIN, TRUE, PARTY_GAUGE_CELL_RES_ID);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(renderer, gfxHandler, narc, PARTY_GAUGE_NANR_BIN, TRUE, PARTY_GAUGE_ANIM_RES_ID);
+    SpriteSystem_LoadPalette(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, PARTY_GAUGE_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, PARTY_GAUGE_PLTT_RES_ID);
+    SpriteSystem_LoadCharResObjFromOpenNarc(renderer, gfxHandler, narc, PARTY_GAUGE_NCGR_BIN, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, PARTY_GAUGE_CHAR_RES_ID);
+    SpriteSystem_LoadCellResObjFromOpenNarc(renderer, gfxHandler, narc, PARTY_GAUGE_NCER_BIN, TRUE, PARTY_GAUGE_CELL_RES_ID);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(renderer, gfxHandler, narc, PARTY_GAUGE_NANR_BIN, TRUE, PARTY_GAUGE_ANIM_RES_ID);
 
     NARC_dtor(narc);
 }
 
-void PartyGauge_FreeGraphics(SpriteGfxHandler *gfxHandler)
+void PartyGauge_FreeGraphics(SpriteManager *gfxHandler)
 {
-    SpriteGfxHandler_UnloadCharObjById(gfxHandler, PARTY_GAUGE_CHAR_RES_ID);
-    SpriteGfxHandler_UnloadPlttObjById(gfxHandler, PARTY_GAUGE_PLTT_RES_ID);
-    SpriteGfxHandler_UnloadCellObjById(gfxHandler, PARTY_GAUGE_CELL_RES_ID);
-    SpriteGfxHandler_UnloadAnimObjById(gfxHandler, PARTY_GAUGE_ANIM_RES_ID);
+    SpriteManager_UnloadCharObjById(gfxHandler, PARTY_GAUGE_CHAR_RES_ID);
+    SpriteManager_UnloadPlttObjById(gfxHandler, PARTY_GAUGE_PLTT_RES_ID);
+    SpriteManager_UnloadCellObjById(gfxHandler, PARTY_GAUGE_CELL_RES_ID);
+    SpriteManager_UnloadAnimObjById(gfxHandler, PARTY_GAUGE_ANIM_RES_ID);
 }
 
 static PartyGauge *NewPartyGauge()
@@ -235,7 +231,7 @@ static void FreePartyGauge(PartyGauge *gauge)
     Heap_FreeToHeap(gauge);
 }
 
-PartyGauge *PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler)
+PartyGauge *PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteSystem *renderer, SpriteManager *gfxHandler)
 {
     PartyGauge *gauge = NewPartyGauge();
     ShowArrow(&gauge->arrow, side, pos, renderer, gfxHandler);
@@ -311,7 +307,7 @@ enum ShowArrowState {
     SHOW_ARROW_DONE,
 };
 
-static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum PartyGaugePosition pos, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler)
+static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum PartyGaugePosition pos, SpriteSystem *renderer, SpriteManager *gfxHandler)
 {
     GF_ASSERT(arrow->cells == NULL && arrow->task == NULL);
 
@@ -320,13 +316,13 @@ static void ShowArrow(PartyGaugeArrow *arrow, enum PartyGaugeSide side, enum Par
 
     if (side == PARTY_GAUGE_OURS) {
         SpriteActor_SetSpritePositionXY(arrow->cells, ARROW_X_START_OURS, sArrowYPosOurs[pos]);
-        CellActor_SetAnim(arrow->cells->unk_00, PGANM_ARROW_OURS);
+        CellActor_SetAnim(arrow->cells->sprite, PGANM_ARROW_OURS);
     } else {
         SpriteActor_SetSpritePositionXY(arrow->cells, ARROW_X_START_THEIRS, sArrowYPosTheirs[pos]);
-        CellActor_SetAnim(arrow->cells->unk_00, PGANM_ARROW_THEIRS);
+        CellActor_SetAnim(arrow->cells->sprite, PGANM_ARROW_THEIRS);
     }
 
-    SpriteActor_UpdateObject(arrow->cells->unk_00);
+    SpriteActor_UpdateObject(arrow->cells->sprite);
 
     arrow->side = side;
     arrow->position = pos;
@@ -437,7 +433,7 @@ static void HideArrowTask(SysTask *task, void *data)
 
         if (arrow->alpha <= 0) {
             arrow->alpha = 0;
-            SpriteActor_DrawSprite(arrow->cells->unk_00, 0);
+            SpriteActor_DrawSprite(arrow->cells->sprite, 0);
             arrow->state++;
         }
 
@@ -462,7 +458,7 @@ enum {
     SHOW_POKEBALLS_DONE,
 };
 
-static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum PartyGaugeSide side, enum ShowPartyGaugeType type, enum PartyGaugePosition pos, int slot, int frame, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler)
+static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum PartyGaugeSide side, enum ShowPartyGaugeType type, enum PartyGaugePosition pos, int slot, int frame, SpriteSystem *renderer, SpriteManager *gfxHandler)
 {
     GF_ASSERT(pokeballs->cells == NULL && pokeballs->task == NULL);
 
@@ -475,8 +471,8 @@ static void ShowPokeballs(PartyGaugePokeballs *pokeballs, s8 *numBalls, enum Par
         SpriteActor_SetSpritePositionXY(pokeballs->cells, POKEBALL_X_START_THEIRS, sPokeballYPosTheirs[pos]);
     }
 
-    CellActor_SetAnim(pokeballs->cells->unk_00, frame);
-    SpriteActor_UpdateObject(pokeballs->cells->unk_00);
+    CellActor_SetAnim(pokeballs->cells->sprite, frame);
+    SpriteActor_UpdateObject(pokeballs->cells->sprite);
 
     pokeballs->side = side;
     pokeballs->ballSlot = slot;
@@ -546,7 +542,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
             SpriteActor_SetSpritePositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
         }
 
-        SpriteActor_UpdateObject(pokeballs->cells->unk_00);
+        SpriteActor_UpdateObject(pokeballs->cells->sprite);
         break;
 
     case SHOW_POKEBALLS_INCREMENT:
@@ -555,14 +551,14 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
         // fall-through
     case SHOW_POKEBALLS_SET_FRAME:
         if (*(pokeballs->pokeballCount) != 6) {
-            SpriteActor_UpdateObject(pokeballs->cells->unk_00);
+            SpriteActor_UpdateObject(pokeballs->cells->sprite);
             break;
         }
 
         if (pokeballs->side == PARTY_GAUGE_OURS) {
-            SpriteActor_SetAnimFrame(pokeballs->cells->unk_00, 1);
+            SpriteActor_SetAnimFrame(pokeballs->cells->sprite, 1);
         } else {
-            SpriteActor_SetAnimFrame(pokeballs->cells->unk_00, 1);
+            SpriteActor_SetAnimFrame(pokeballs->cells->sprite, 1);
         }
 
         pokeballs->delay = 0;
@@ -575,7 +571,7 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
             break;
         }
 
-        CellActor_SetAnim(pokeballs->cells->unk_00, pokeballs->flipAnimation);
+        CellActor_SetAnim(pokeballs->cells->sprite, pokeballs->flipAnimation);
         pokeballs->delay = 0;
         pokeballs->state++;
         // fall-through
@@ -600,11 +596,11 @@ static void ShowPokeballsStartOfBattleTask(SysTask *task, void *data)
             SpriteActor_SetSpritePositionXY(pokeballs->cells, pokeballs->xStart >> 8, sPokeballYPosTheirs[pokeballs->position]);
         }
 
-        SpriteActor_UpdateObject(pokeballs->cells->unk_00);
+        SpriteActor_UpdateObject(pokeballs->cells->sprite);
         break;
 
     default:
-        SpriteActor_SetAnimFrame(pokeballs->cells->unk_00, 0);
+        SpriteActor_SetAnimFrame(pokeballs->cells->sprite, 0);
         SysTask_Done(task);
         pokeballs->task = NULL;
     }
@@ -620,7 +616,7 @@ static void ShowPokeballsMidBattleTask(SysTask *task, void *data)
         SpriteActor_GetSpritePositionXY(pokeballs->cells, &x, &y);
         pokeballs->xStart = x << 8;
 
-        SpriteActor_SetAnimFrame(pokeballs->cells->unk_00, 0);
+        SpriteActor_SetAnimFrame(pokeballs->cells->sprite, 0);
         pokeballs->state++;
         // fall-through
     case SHOW_POKEBALLS_DELAY:
@@ -728,12 +724,12 @@ static void HidePokeballsStartOfBattleTask(SysTask *task, void *data)
             pokeballs->state++;
         }
 
-        SpriteActor_UpdateObject(pokeballs->cells->unk_00);
+        SpriteActor_UpdateObject(pokeballs->cells->sprite);
         break;
 
     case HIDE_POKEBALLS_BREAK:
     default:
-        SpriteActor_DrawSprite(pokeballs->cells->unk_00, 0);
+        SpriteActor_DrawSprite(pokeballs->cells->sprite, 0);
         SysTask_Done(task);
         pokeballs->task = NULL;
     }
@@ -758,7 +754,7 @@ static void HidePokeballsMidBattleTask(SysTask *task, void *data)
 
     case HIDE_POKEBALLS_BREAK:
     default:
-        SpriteActor_DrawSprite(pokeballs->cells->unk_00, 0);
+        SpriteActor_DrawSprite(pokeballs->cells->sprite, 0);
         SysTask_Done(task);
         pokeballs->task = NULL;
     }

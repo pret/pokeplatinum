@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0209B75C_decl.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -33,9 +32,6 @@
 #include "overlay104/struct_ov104_0223D3B0.h"
 #include "overlay104/struct_ov104_0223D3B0_1.h"
 #include "overlay104/struct_ov104_0223D570.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "game_options.h"
@@ -47,13 +43,13 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -86,7 +82,7 @@ static void ov104_0223D584(UnkStruct_0209B75C *param0, int param1, UnkStruct_ov6
 static void ov104_0223C798(UnkStruct_ov104_0223C4CC *param0);
 static void ov104_0223C7EC(UnkStruct_ov104_0223C4CC *param0);
 
-static const UnkStruct_ov104_0224133C Unk_ov104_0224133C = {
+static const RenderOamTemplate Unk_ov104_0224133C = {
     0x0,
     0x80,
     0x0,
@@ -97,7 +93,7 @@ static const UnkStruct_ov104_0224133C Unk_ov104_0224133C = {
     0x20
 };
 
-static const UnkStruct_ov104_022412F4 Unk_ov104_022412F4 = {
+static const CharTransferTemplateWithModes Unk_ov104_022412F4 = {
     0x60,
     0x10000,
     0x4000,
@@ -105,7 +101,7 @@ static const UnkStruct_ov104_022412F4 Unk_ov104_022412F4 = {
     GX_OBJVRAMMODE_CHAR_1D_32K
 };
 
-static const UnkStruct_ov104_02241308 Unk_ov104_02241308 = {
+static const SpriteResourceCapacities Unk_ov104_02241308 = {
     0x60,
     0x20,
     0x40,
@@ -849,10 +845,10 @@ static void ov104_0223D058(UnkStruct_ov104_0223C4CC *param0)
             if (param0->unk_80[v1] != NULL) {
                 sub_0200D0F4(param0->unk_80[v1]);
 
-                SpriteGfxHandler_UnloadCharObjById(param0->unk_34.unk_04, 50000 + v1);
-                SpriteGfxHandler_UnloadPlttObjById(param0->unk_34.unk_04, 50000 + v1);
-                SpriteGfxHandler_UnloadCellObjById(param0->unk_34.unk_04, 50000 + v1);
-                SpriteGfxHandler_UnloadAnimObjById(param0->unk_34.unk_04, 50000 + v1);
+                SpriteManager_UnloadCharObjById(param0->unk_34.unk_04, 50000 + v1);
+                SpriteManager_UnloadPlttObjById(param0->unk_34.unk_04, 50000 + v1);
+                SpriteManager_UnloadCellObjById(param0->unk_34.unk_04, 50000 + v1);
+                SpriteManager_UnloadAnimObjById(param0->unk_34.unk_04, 50000 + v1);
             }
         }
     }

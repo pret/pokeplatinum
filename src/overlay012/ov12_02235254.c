@@ -5,7 +5,6 @@
 
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
@@ -15,8 +14,8 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "sprite_system.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_02014000.h"
 
 void ov17_022413D8(void);

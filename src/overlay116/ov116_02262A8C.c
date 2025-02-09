@@ -19,11 +19,11 @@
 #include "heap.h"
 #include "inlines.h"
 #include "math.h"
+#include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 
 static const s16 Unk_ov116_02267BFC[] = {

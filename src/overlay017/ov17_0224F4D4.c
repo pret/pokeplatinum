@@ -12,9 +12,6 @@
 #include "overlay017/ov17_02251D6C.h"
 #include "overlay017/struct_ov17_0224FCA0.h"
 #include "overlay017/struct_ov17_0224FECC.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -25,6 +22,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -34,7 +32,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -91,7 +88,7 @@ static int (*const Unk_ov17_02254B54[])(UnkStruct_ov17_0224FCA0 *, UnkStruct_ov1
     ov17_022506AC
 };
 
-static const UnkStruct_ov104_0224133C Unk_ov17_02254B0C = {
+static const RenderOamTemplate Unk_ov17_02254B0C = {
     0x0,
     0x80,
     0x0,
@@ -102,7 +99,7 @@ static const UnkStruct_ov104_0224133C Unk_ov17_02254B0C = {
     0x20
 };
 
-static const UnkStruct_ov104_022412F4 Unk_ov17_02254AC4 = {
+static const CharTransferTemplateWithModes Unk_ov17_02254AC4 = {
     0x60,
     0x10000,
     0x4000,
@@ -110,7 +107,7 @@ static const UnkStruct_ov104_022412F4 Unk_ov17_02254AC4 = {
     GX_OBJVRAMMODE_CHAR_1D_32K
 };
 
-static const UnkStruct_ov104_02241308 Unk_ov17_02254AD8 = {
+static const SpriteResourceCapacities Unk_ov17_02254AD8 = {
     0x60,
     0x20,
     0x40,

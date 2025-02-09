@@ -13,9 +13,6 @@
 #include "overlay100/ov100_021D46C8.h"
 #include "overlay100/struct_ov100_021D46C8.h"
 #include "overlay100/struct_ov100_021D4DD8.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -27,9 +24,9 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "system.h"
 #include "unk_020041CC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
@@ -165,7 +162,7 @@ static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
     param0->unk_04 = sub_0200C6E4(111);
 
     {
-        const UnkStruct_ov104_0224133C v0 = {
+        const RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -175,7 +172,7 @@ static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
             0,
             32,
         };
-        const UnkStruct_ov104_022412F4 v1 = {
+        const CharTransferTemplateWithModes v1 = {
             48 + 48,
             1024 * 0x40,
             512 * 0x20,
@@ -189,7 +186,7 @@ static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
 
     {
         BOOL v3;
-        const UnkStruct_ov104_02241308 v4 = {
+        const SpriteResourceCapacities v4 = {
             48 + 48,
             16 + 16,
             64,

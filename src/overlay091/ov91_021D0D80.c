@@ -3,17 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020997B8.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -31,13 +24,13 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
@@ -56,8 +49,8 @@ typedef struct {
     ListMenu *unk_104;
     StringList *unk_108;
     Menu *unk_10C;
-    SpriteRenderer *unk_110;
-    SpriteGfxHandler *unk_114;
+    SpriteSystem *unk_110;
+    SpriteManager *unk_114;
     CellActorData *unk_118[13];
     PokemonSummary unk_14C;
     OverlayManager *unk_17C;
@@ -1277,7 +1270,7 @@ static int ov91_021D2008(UnkStruct_ov91_021D0ED8 *param0)
 
 static void ov91_021D2014(UnkStruct_ov91_021D0ED8 *param0)
 {
-    UnkStruct_ov104_02241308 v0 = {
+    SpriteResourceCapacities v0 = {
         11, 2, 4, 4, 0, 0
     };
 
@@ -1287,7 +1280,7 @@ static void ov91_021D2014(UnkStruct_ov91_021D0ED8 *param0)
     param0->unk_114 = sub_0200C704(param0->unk_110);
 
     {
-        UnkStruct_ov104_0224133C v1 = {
+        RenderOamTemplate v1 = {
             0,
             128,
             0,
@@ -1297,7 +1290,7 @@ static void ov91_021D2014(UnkStruct_ov91_021D0ED8 *param0)
             0,
             32,
         };
-        UnkStruct_ov104_022412F4 v2 = {
+        CharTransferTemplateWithModes v2 = {
             13, 1024 * 128, 1024 * 16, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
@@ -1326,7 +1319,7 @@ static void ov91_021D20E8(UnkStruct_ov91_021D0ED8 *param0)
     u16 v0;
 
     for (v0 = 0; v0 < 13; v0++) {
-        CellActor_UpdateAnim(param0->unk_118[v0]->unk_00, FX32_ONE);
+        CellActor_UpdateAnim(param0->unk_118[v0]->sprite, FX32_ONE);
     }
 }
 
@@ -1334,9 +1327,9 @@ static void ov91_021D2110(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
 {
     u32 v0;
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 5, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47272);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 8, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47273);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47274);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 5, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47272);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 8, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47273);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47274);
 
     for (v0 = 47276; v0 <= 47282; v0++) {
         sub_0207C948(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, v0);
@@ -1345,12 +1338,12 @@ static void ov91_021D2110(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     sub_0207CAC4(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 47275);
     sub_0200CD0C(param0->unk_110, param0->unk_114, param1, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47272);
     sub_0207C97C(param0->unk_110, param0->unk_114, NNS_G2D_VRAM_TYPE_2DMAIN, 47273);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 4, 0, 47272);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 7, 0, 47273);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 1, 0, 47274);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 3, 0, 47272);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 6, 0, 47273);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 0, 0, 47274);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 4, 0, 47272);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 7, 0, 47273);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 1, 0, 47274);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 3, 0, 47272);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 6, 0, 47273);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_110, param0->unk_114, param1, 0, 0, 47274);
     sub_0207C9EC(param0->unk_110, param0->unk_114, 47275, 47275);
 }
 

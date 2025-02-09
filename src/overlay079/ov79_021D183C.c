@@ -15,12 +15,12 @@
 #include "menu.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_020158A8.h"
 #include "unk_02098FFC.h"
 

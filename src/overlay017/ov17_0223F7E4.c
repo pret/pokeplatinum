@@ -4,11 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_02095C48.h"
 
@@ -33,6 +29,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -40,7 +37,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02094EDC.h"
 
@@ -632,8 +628,8 @@ void ov17_0223F9C4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2, void
     const UnkStruct_ov17_02253558 *v0, *v1;
     int v2;
     BgConfig *v3;
-    SpriteRenderer *v4;
-    SpriteGfxHandler *v5;
+    SpriteSystem *v4;
+    SpriteManager *v5;
 
     param0->unk_0C = param3;
 
@@ -951,7 +947,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     int v3;
     FontOAM *v4;
     BgConfig *v5;
-    SpriteGfxHandler *v6;
+    SpriteManager *v6;
     int v7, v8;
 
     GF_ASSERT(param1->unk_00 == NULL);
@@ -1048,8 +1044,8 @@ static void ov17_022402A8(UnkStruct_ov17_0223F7E4 *param0)
 static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
 {
     int v0;
-    SpriteRenderer *v1;
-    SpriteGfxHandler *v2;
+    SpriteSystem *v1;
+    SpriteManager *v2;
     SpriteTemplate v3;
     int v4;
 
@@ -1076,8 +1072,8 @@ static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
 static void ov17_02240388(UnkStruct_ov17_0223F7E4 *param0)
 {
     int v0;
-    SpriteRenderer *v1;
-    SpriteGfxHandler *v2;
+    SpriteSystem *v1;
+    SpriteManager *v2;
 
     v1 = param0->unk_04->unk_18;
     v2 = param0->unk_04->unk_1C;
@@ -1180,7 +1176,7 @@ static void ov17_0224051C(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_2CC.unk_04_val1.unk_00[v4] != NULL) {
-                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->unk_00, 0, -2);
+                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->sprite, 0, -2);
             }
         }
 
@@ -1203,7 +1199,7 @@ static void ov17_0224051C(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_2CC.unk_04_val1.unk_00[v4] != NULL) {
-                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->unk_00, 0, 1);
+                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->sprite, 0, 1);
             }
         }
 
@@ -1292,11 +1288,11 @@ static void ov17_02240658(SysTask *param0, void *param1)
             sub_020128C4(v0->unk_40[v6].unk_00, v2, v3 + -2);
 
             if (v8 != 0) {
-                sub_0200D5AC(v0->unk_118[v7]->unk_00, 0, -2);
+                sub_0200D5AC(v0->unk_118[v7]->sprite, 0, -2);
 
                 for (v10 = 0; v10 < 6; v10++) {
                     if (v0->unk_12C[v11][v10] != NULL) {
-                        sub_0200D5AC(v0->unk_12C[v11][v10]->unk_00, 0, -2);
+                        sub_0200D5AC(v0->unk_12C[v11][v10]->sprite, 0, -2);
                     }
                 }
             }
@@ -1327,11 +1323,11 @@ static void ov17_02240658(SysTask *param0, void *param1)
             sub_020128C4(v0->unk_40[v6].unk_00, v2, v3 + 1);
 
             if (v8 != 0) {
-                sub_0200D5AC(v0->unk_118[v7]->unk_00, 0, 1);
+                sub_0200D5AC(v0->unk_118[v7]->sprite, 0, 1);
 
                 for (v10 = 0; v10 < 6; v10++) {
                     if (v0->unk_12C[v11][v10] != NULL) {
-                        sub_0200D5AC(v0->unk_12C[v11][v10]->unk_00, 0, 1);
+                        sub_0200D5AC(v0->unk_12C[v11][v10]->sprite, 0, 1);
                     }
                 }
             }

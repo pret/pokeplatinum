@@ -4,10 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 
 #include "overlay117/ov117_02260668.h"
@@ -40,10 +37,10 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 
 typedef struct {
@@ -789,7 +786,7 @@ static CellActorData *ov117_0226417C(UnkStruct_ov117_02261280 *param0, const Unk
     sub_0200D500(v0, param1->unk_00, param1->unk_02, ((192 + 160) << FX32_SHIFT));
     sub_0200D364(v0, param1->unk_04);
     sub_0200D6A4(v0, 2);
-    SpriteActor_UpdateObject(v0->unk_00);
+    SpriteActor_UpdateObject(v0->sprite);
 
     return v0;
 }
@@ -835,7 +832,7 @@ static void ov117_02264214(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
 
             sub_0200D500(v1, 128, 96, ((192 + 160) << FX32_SHIFT));
             sub_0200D364(v1, v6);
-            SpriteActor_UpdateObject(v1->unk_00);
+            SpriteActor_UpdateObject(v1->sprite);
 
             v10->unk_04 = LCRNG_Next() % 0x2000 + 0x2000;
             v10->unk_08 = LCRNG_Next() % 0x4000 + 0x2000;
@@ -863,7 +860,7 @@ static void ov117_02264214(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
 
         sub_0200D500(v1, 128, 96, ((192 + 160) << FX32_SHIFT));
         sub_0200D364(v1, 28 + LCRNG_Next() % 3);
-        SpriteActor_UpdateObject(v1->unk_00);
+        SpriteActor_UpdateObject(v1->sprite);
 
         v11->unk_04 = LCRNG_Next() % 0x2000 + 0x2000;
         v11->unk_08 = LCRNG_Next() % 0x4000 + 0x2000;
@@ -888,7 +885,7 @@ static void ov117_02264214(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
 
         sub_0200D500(v1, 128, 96, ((192 + 160) << FX32_SHIFT));
         sub_0200D364(v1, 11);
-        SpriteActor_UpdateObject(v1->unk_00);
+        SpriteActor_UpdateObject(v1->sprite);
 
         v12->unk_04 = LCRNG_Next() % 0x2000 + 0x2000;
         v12->unk_08 = LCRNG_Next() % 0x4000 + 0x2000;
@@ -1068,7 +1065,7 @@ static CellActorData *ov117_02264884(UnkStruct_ov117_02261280 *param0, int param
 
     sub_0200D500(v0, (9 * 8) - param2 * 16, (4 * 8), ((192 + 160) << FX32_SHIFT));
     sub_0200D364(v0, 0 + param1);
-    SpriteActor_UpdateObject(v0->unk_00);
+    SpriteActor_UpdateObject(v0->sprite);
     sub_0200D390(v0, 1);
 
     return v0;
@@ -1457,7 +1454,7 @@ void ov117_02264FB0(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226504C *
         param1->unk_00[v2] = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &v1);
         sub_0200D500(param1->unk_00[v2], Unk_ov117_02266BB4[v2].unk_00, Unk_ov117_02266BB4[v2].unk_02, ((192 + 160) << FX32_SHIFT));
         sub_0200D364(param1->unk_00[v2], 31 + v2 / 2);
-        SpriteActor_UpdateObject(param1->unk_00[v2]->unk_00);
+        SpriteActor_UpdateObject(param1->unk_00[v2]->sprite);
     }
 
     switch (param0->unk_00->unk_30) {
@@ -1495,13 +1492,13 @@ void ov117_02265064(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022653F4 *
         param1->unk_00[v1].unk_00 = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &v0);
         sub_0200D500(param1->unk_00[v1].unk_00, v3, v4 + -24, ((192 + 160) << FX32_SHIFT));
         sub_0200D364(param1->unk_00[v1].unk_00, Unk_ov117_02266B7A[v1 + 1]);
-        SpriteActor_UpdateObject(param1->unk_00[v1].unk_00->unk_00);
+        SpriteActor_UpdateObject(param1->unk_00[v1].unk_00->sprite);
         SpriteActor_EnableObject(param1->unk_00[v1].unk_00, 0);
 
         param1->unk_00[v1].unk_04 = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &Unk_ov117_02266DD0);
         sub_0200D500(param1->unk_00[v1].unk_04, 0, 0, ((192 + 160) << FX32_SHIFT));
         sub_0200D364(param1->unk_00[v1].unk_04, 33);
-        SpriteActor_UpdateObject(param1->unk_00[v1].unk_04->unk_00);
+        SpriteActor_UpdateObject(param1->unk_00[v1].unk_04->sprite);
         SpriteActor_EnableObject(param1->unk_00[v1].unk_04, 0);
 
         param1->unk_00[v1].unk_08 = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &Unk_ov117_02266E04);
@@ -1510,7 +1507,7 @@ void ov117_02265064(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022653F4 *
         sub_0200D6A4(param1->unk_00[v1].unk_08, 1);
         sub_0200D6E8(param1->unk_00[v1].unk_08, 1.0f, 1.0f);
         sub_0200D364(param1->unk_00[v1].unk_08, 34 + v1);
-        SpriteActor_UpdateObject(param1->unk_00[v1].unk_08->unk_00);
+        SpriteActor_UpdateObject(param1->unk_00[v1].unk_08->sprite);
         SpriteActor_EnableObject(param1->unk_00[v1].unk_08, 0);
 
         ov117_02266344(param0, &param1->unk_00[v1].unk_30);
@@ -1878,7 +1875,7 @@ void ov117_02265ABC(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02265C3C *
 
         sub_0200D500(param1->unk_00[v1].unk_04, 0, 0, ((192 + 160) << FX32_SHIFT));
         sub_0200D364(param1->unk_00[v1].unk_04, 33);
-        SpriteActor_UpdateObject(param1->unk_00[v1].unk_04->unk_00);
+        SpriteActor_UpdateObject(param1->unk_00[v1].unk_04->sprite);
         SpriteActor_EnableObject(param1->unk_00[v1].unk_04, 0);
     }
 }
@@ -1923,7 +1920,7 @@ void ov117_02265B58(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_02265C3C *
     v4->unk_10 = Unk_ov117_02266BB4[v3].unk_02 + -24;
 
     sub_0200D500(v4->unk_00, Unk_ov117_02266BB4[v3].unk_00, v4->unk_10 + -96, ((192 + 160) << FX32_SHIFT));
-    SpriteActor_UpdateObject(v4->unk_00->unk_00);
+    SpriteActor_UpdateObject(v4->unk_00->sprite);
 
     v4->unk_12 = param2;
     v4->unk_16 = param4 - (MATH_ABS(-96) * FX32_ONE) / 0x8000;
@@ -2008,7 +2005,7 @@ static BOOL ov117_02265C3C(UnkStruct_ov117_02265C3C *param0, UnkStruct_ov117_022
     return 1;
 }
 
-void ov117_02265DB8(BgConfig *param0, SpriteGfxHandler *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const Strbuf *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov117_02265DB8(BgConfig *param0, SpriteManager *param1, UnkStruct_02012744 *param2, UnkStruct_ov117_02265EB0 *param3, const Strbuf *param4, enum Font param5, TextColor param6, int param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
     Window v1;
@@ -2231,7 +2228,7 @@ CellActorData *ov117_02266130(UnkStruct_ov117_02261280 *param0)
     CellActorData *v0;
 
     v0 = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &Unk_ov117_02266E6C);
-    SpriteActor_UpdateObject(v0->unk_00);
+    SpriteActor_UpdateObject(v0->sprite);
     return v0;
 }
 
@@ -2275,7 +2272,7 @@ CellActorData *ov117_02266244(UnkStruct_ov117_02261280 *param0)
     v0 = SpriteActor_LoadResources(param0->unk_24, param0->unk_28, &Unk_ov117_02266EA0);
 
     SpriteActor_EnableObject(v0, 0);
-    SpriteActor_UpdateObject(v0->unk_00);
+    SpriteActor_UpdateObject(v0->sprite);
 
     return v0;
 }
@@ -2354,7 +2351,7 @@ static void ov117_02266344(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
         sub_0200D364(v0, 27);
         SpriteActor_SetOAMMode(v0, GX_OAM_MODE_XLU);
         SpriteActor_EnableObject(v0, 0);
-        SpriteActor_UpdateObject(v0->unk_00);
+        SpriteActor_UpdateObject(v0->sprite);
 
         param1->unk_00[v1] = v0;
     }
@@ -2404,7 +2401,7 @@ static void ov117_02266440(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
     case 1:
         for (v0 = 0; v0 < 2; v0++) {
             sub_0200D5E8(param2->unk_00[v0], param2->unk_08[v0], -param2->unk_10[v0]);
-            SpriteActor_UpdateObject(param2->unk_00[v0]->unk_00);
+            SpriteActor_UpdateObject(param2->unk_00[v0]->sprite);
         }
 
         param2->unk_19++;

@@ -4,10 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
@@ -32,9 +29,9 @@
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "spl.h"
+#include "sprite_system.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_02014000.h"
 
 typedef struct {
@@ -84,8 +81,8 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov12_0221FCDC *unk_00;
-    SpriteRenderer *unk_04;
-    SpriteGfxHandler *unk_08;
+    SpriteSystem *unk_04;
+    SpriteManager *unk_08;
     int unk_0C;
     int unk_10;
     CellActorData *unk_14;
@@ -116,7 +113,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov12_0221FCDC *unk_00;
-    SpriteGfxHandler *unk_04;
+    SpriteManager *unk_04;
     int unk_08;
     s16 unk_0C;
     s16 unk_0E;
@@ -150,7 +147,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov12_0221FCDC *unk_00;
-    SpriteGfxHandler *unk_04;
+    SpriteManager *unk_04;
     UnkStruct_ov12_02226454 unk_08;
 } UnkStruct_ov12_0222813C;
 
@@ -318,7 +315,7 @@ typedef struct {
     int unk_24;
     BgConfig *unk_28;
     UnkStruct_ov12_0221FCDC *unk_2C;
-    SpriteGfxHandler *unk_30;
+    SpriteManager *unk_30;
     UnkStruct_ov12_02235998 unk_34[4];
     UnkStruct_ov12_02235998 unk_84[4];
     UnkStruct_ov12_02225F6C unk_D4;
@@ -1027,7 +1024,7 @@ static void ov12_02227738(SysTask *param0, void *param1)
     sub_0200C7EC(v0->unk_08);
 }
 
-void ov12_0222777C(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222777C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     UnkStruct_ov12_02227620 *v0;
     Sprite *v1;
@@ -2395,7 +2392,7 @@ void ov12_022291AC(UnkStruct_ov12_0221FCDC *param0)
 
         ov12_02235D74(param0, v3, &(v1->unk_1C), &v0);
 
-        v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v1->unk_1C.unk_0C->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+        v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v1->unk_1C.unk_0C->sprite), NNS_G2D_VRAM_TYPE_2DMAIN);
         v1->unk_30 = ov12_02226870(v1->unk_00.unk_18, ov12_0221FDE4(param0), 2, v2 * 16, 16, v4, v5, v6, v7, v8, 1100);
     }
 
@@ -3188,7 +3185,7 @@ static void ov12_0222A178(SysTask *param0, void *param1)
     sub_0200C7EC(v1->unk_00.unk_10);
 }
 
-void ov12_0222A1AC(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222A1AC(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     UnkStruct_ov12_0222A178 *v0 = NULL;
 
@@ -3331,7 +3328,7 @@ static void ov12_0222A1F4(SysTask *param0, void *param1)
     sub_0200C7EC(v0->unk_00.unk_10);
 }
 
-void ov12_0222A34C(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222A34C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     UnkStruct_ov12_0222A1F478 *v0 = NULL;
 
@@ -3380,7 +3377,7 @@ static void ov12_0222A3DC(SysTask *param0, void *param1)
     sub_0200C7EC(v0->unk_00.unk_10);
 }
 
-void ov12_0222A410(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222A410(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     UnkStruct_ov12_0222A3DC *v0;
 
@@ -3468,7 +3465,7 @@ static void ov12_0222A4A0(SysTask *param0, void *param1)
     sub_0200C7EC(v0->unk_00.unk_10);
 }
 
-void ov12_0222A5C0(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_0222A5C0(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, CellActorData *param3)
 {
     UnkStruct_ov12_0222A4A0 *v0;
 

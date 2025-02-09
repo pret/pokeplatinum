@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/ov17_0223F118.h"
@@ -27,6 +25,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -34,7 +33,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
@@ -377,7 +375,7 @@ void ov17_02250D28(UnkStruct_ov17_0224FCA0 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 24);
 
-    SpriteRenderer_LoadPalette(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, v0, 10, 0, 4, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
+    SpriteSystem_LoadPalette(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, v0, 10, 0, 4, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
 
     ov17_02250F68(param0, v0);
     ov17_02250DB0(param0);
@@ -404,9 +402,9 @@ void ov17_02250DB0(UnkStruct_ov17_0224FCA0 *param0)
 
     v3 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 24);
 
-    SpriteRenderer_LoadPalette(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 33003);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, PokeIcon64KCellsFileIndex(), 0, 33002);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, PokeIcon64KAnimationFileIndex(), 0, 33002);
+    SpriteSystem_LoadPalette(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 33003);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, PokeIcon64KCellsFileIndex(), 0, 33002);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, PokeIcon64KAnimationFileIndex(), 0, 33002);
 
     v0 = Unk_ov17_02254C5C;
 
@@ -417,7 +415,7 @@ void ov17_02250DB0(UnkStruct_ov17_0224FCA0 *param0)
         param0->unk_10.unk_128[v2] = SpriteActor_LoadResources(param0->unk_10.unk_18, param0->unk_10.unk_1C, &v0);
 
         sub_0200D364(param0->unk_10.unk_128[v2], 1);
-        CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_10.unk_128[v2]->unk_00, Pokemon_IconPaletteIndex(param0->unk_00->unk_00.unk_00[v2]));
+        CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_10.unk_128[v2]->sprite, Pokemon_IconPaletteIndex(param0->unk_00->unk_00.unk_00[v2]));
         sub_0200D330(param0->unk_10.unk_128[v2]);
     }
 
@@ -435,12 +433,12 @@ void ov17_02250EFC(UnkStruct_ov17_0224FCA0 *param0)
 {
     int v0;
 
-    SpriteGfxHandler_UnloadCellObjById(param0->unk_10.unk_1C, 33002);
-    SpriteGfxHandler_UnloadAnimObjById(param0->unk_10.unk_1C, 33002);
-    SpriteGfxHandler_UnloadPlttObjById(param0->unk_10.unk_1C, 33003);
+    SpriteManager_UnloadCellObjById(param0->unk_10.unk_1C, 33002);
+    SpriteManager_UnloadAnimObjById(param0->unk_10.unk_1C, 33002);
+    SpriteManager_UnloadPlttObjById(param0->unk_10.unk_1C, 33003);
 
     for (v0 = 0; v0 < 4; v0++) {
-        SpriteGfxHandler_UnloadCharObjById(param0->unk_10.unk_1C, 33002 + v0);
+        SpriteManager_UnloadCharObjById(param0->unk_10.unk_1C, 33002 + v0);
         sub_0200D0F4(param0->unk_10.unk_128[v0]);
     }
 
@@ -459,16 +457,16 @@ static void ov17_02250F4C(SysTask *param0, void *param1)
 
 void ov17_02250F68(UnkStruct_ov17_0224FCA0 *param0, NARC *param1)
 {
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 102, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33007);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 101, 1, 33004);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 100, 1, 33004);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 102, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33007);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 101, 1, 33004);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 100, 1, 33004);
 }
 
 void ov17_02250FBC(UnkStruct_ov17_0224FCA0 *param0)
 {
-    SpriteGfxHandler_UnloadCharObjById(param0->unk_10.unk_1C, 33007);
-    SpriteGfxHandler_UnloadCellObjById(param0->unk_10.unk_1C, 33004);
-    SpriteGfxHandler_UnloadAnimObjById(param0->unk_10.unk_1C, 33004);
+    SpriteManager_UnloadCharObjById(param0->unk_10.unk_1C, 33007);
+    SpriteManager_UnloadCellObjById(param0->unk_10.unk_1C, 33004);
+    SpriteManager_UnloadAnimObjById(param0->unk_10.unk_1C, 33004);
 }
 
 void ov17_02250FE4(UnkStruct_ov17_0224FCA0 *param0)
@@ -572,9 +570,9 @@ static void ov17_02251140(SysTask *param0, void *param1)
 
 void ov17_0225122C(UnkStruct_ov17_0224FCA0 *param0, NARC *param1)
 {
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 84, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33006);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 83, 1, 33003);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 82, 1, 33003);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 84, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33006);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 83, 1, 33003);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 82, 1, 33003);
 
     {
         int v0, v1;
@@ -594,9 +592,9 @@ void ov17_0225122C(UnkStruct_ov17_0224FCA0 *param0, NARC *param1)
 
 void ov17_022512E0(UnkStruct_ov17_0224FCA0 *param0)
 {
-    SpriteGfxHandler_UnloadCharObjById(param0->unk_10.unk_1C, 33006);
-    SpriteGfxHandler_UnloadCellObjById(param0->unk_10.unk_1C, 33003);
-    SpriteGfxHandler_UnloadAnimObjById(param0->unk_10.unk_1C, 33003);
+    SpriteManager_UnloadCharObjById(param0->unk_10.unk_1C, 33006);
+    SpriteManager_UnloadCellObjById(param0->unk_10.unk_1C, 33003);
+    SpriteManager_UnloadAnimObjById(param0->unk_10.unk_1C, 33003);
 
     {
         int v0;
@@ -616,18 +614,18 @@ void ov17_0225131C(UnkStruct_ov17_0224FCA0 *param0, int param1, int param2)
 
 void ov17_02251344(UnkStruct_ov17_0224FCA0 *param0, NARC *param1)
 {
-    SpriteRenderer_LoadPalette(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33004);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 87, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33008);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 86, 1, 33005);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 85, 1, 33005);
+    SpriteSystem_LoadPalette(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33004);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 87, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 33008);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 86, 1, 33005);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, param1, 85, 1, 33005);
 }
 
 void ov17_022513C0(UnkStruct_ov17_0224FCA0 *param0)
 {
-    SpriteGfxHandler_UnloadPlttObjById(param0->unk_10.unk_1C, 33004);
-    SpriteGfxHandler_UnloadCharObjById(param0->unk_10.unk_1C, 33008);
-    SpriteGfxHandler_UnloadCellObjById(param0->unk_10.unk_1C, 33005);
-    SpriteGfxHandler_UnloadAnimObjById(param0->unk_10.unk_1C, 33005);
+    SpriteManager_UnloadPlttObjById(param0->unk_10.unk_1C, 33004);
+    SpriteManager_UnloadCharObjById(param0->unk_10.unk_1C, 33008);
+    SpriteManager_UnloadCellObjById(param0->unk_10.unk_1C, 33005);
+    SpriteManager_UnloadAnimObjById(param0->unk_10.unk_1C, 33005);
 }
 
 void ov17_022513F4(UnkStruct_ov17_0224FCA0 *param0, int param1, int param2, int param3, int param4)

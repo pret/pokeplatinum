@@ -1,9 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_022354A4_H
 #define POKEPLATINUM_STRUCT_OV62_022354A4_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/font_oam.h"
 #include "struct_defs/struct_0208B878.h"
+
+#include "sprite_system.h"
 
 typedef struct {
     s16 unk_00;

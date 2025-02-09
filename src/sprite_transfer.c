@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "nnsys/g2d/fmt/g2d_Cell_data.h"
-#include "nnsys/g2d/g2d_Image.h"
-
 #include "char_transfer.h"
 #include "pltt_transfer.h"
 #include "sprite_resource.h"

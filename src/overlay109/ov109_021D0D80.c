@@ -7,10 +7,6 @@
 #include "generated/journal_online_events.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073974.h"
 #include "struct_defs/struct_02073B50.h"
@@ -21,9 +17,6 @@
 
 #include "overlay005/struct_ov5_02201C58.h"
 #include "overlay072/struct_ov72_0223E2A8.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
 #include "overlay115/camera_angle.h"
@@ -46,6 +39,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -56,7 +50,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -299,8 +292,8 @@ typedef struct UnkStruct_ov109_021D0F70_t {
     NNSG2dScreenData *unk_D88;
     NNSG2dCharacterData *unk_D8C;
     NNSG2dPaletteData *unk_D90;
-    SpriteRenderer *unk_D94;
-    SpriteGfxHandler *unk_D98;
+    SpriteSystem *unk_D94;
+    SpriteManager *unk_D98;
     PaletteData *unk_D9C;
     GXRgb unk_DA0[8];
     SysTask *unk_DB0;
@@ -1926,7 +1919,7 @@ static void ov109_021D2344(UnkStruct_ov109_021D0F70 *param0, u32 param1)
 static void ov109_021D2368(UnkStruct_ov109_021D0F70 *param0)
 {
     {
-        const UnkStruct_ov104_0224133C v0 = {
+        const RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -1936,7 +1929,7 @@ static void ov109_021D2368(UnkStruct_ov109_021D0F70 *param0)
             0,
             32,
         };
-        const UnkStruct_ov104_022412F4 v1 = {
+        const CharTransferTemplateWithModes v1 = {
             48 + 48, 1024 * 0x40, 512 * 0x20, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
@@ -1946,7 +1939,7 @@ static void ov109_021D2368(UnkStruct_ov109_021D0F70 *param0)
 
     {
         BOOL v2;
-        const UnkStruct_ov104_02241308 v3 = {
+        const SpriteResourceCapacities v3 = {
             48 + 48,
             16 + 16,
             64,
@@ -1965,8 +1958,8 @@ static void ov109_021D2368(UnkStruct_ov109_021D0F70 *param0)
 
 static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
 {
-    SpriteRenderer *v0 = param0->unk_D94;
-    SpriteGfxHandler *v1 = param0->unk_D98;
+    SpriteSystem *v0 = param0->unk_D94;
+    SpriteManager *v1 = param0->unk_D98;
     PaletteData *v2 = param0->unk_D9C;
     NARC *v3 = param0->unk_D80;
 
@@ -1979,10 +1972,10 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
 
         v4 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, 95);
 
-        SpriteRenderer_LoadCharResObjFromOpenNarc(v0, v1, v4, 14, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
-        SpriteRenderer_LoadPalette(v2, 2, v0, v1, v4, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
-        SpriteRenderer_LoadCellResObjFromOpenNarc(v0, v1, v4, 13, 0, 6);
-        SpriteRenderer_LoadAnimResObjFromOpenNarc(v0, v1, v4, 12, 0, 7);
+        SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v4, 14, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+        SpriteSystem_LoadPalette(v2, 2, v0, v1, v4, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
+        SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v4, 13, 0, 6);
+        SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v4, 12, 0, 7);
         NARC_dtor(v4);
     }
 
@@ -3123,7 +3116,7 @@ static SysTask *ov109_021D3684(UnkStruct_ov109_021D0F70 *param0)
     v0.plttIdx = 0;
     v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v0.bgPriority = 0;
-    v0.transferToVRAM = FALSE;
+    v0.vramTransfer = FALSE;
     v0.resources[0] = 4;
     v0.resources[1] = 5;
     v0.resources[2] = 6;

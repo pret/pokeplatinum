@@ -4,15 +4,12 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202E8C0_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202EE10.h"
 #include "struct_defs/struct_0202EE10_sub1.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/struct_ov5_021D30A8.h"
-#include "overlay104/struct_ov104_02241308.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
@@ -27,13 +24,13 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0202E840.h"
 
 typedef struct {
@@ -609,7 +606,7 @@ static void sub_0206FC4C(UnkStruct_0206F7F8 *param0)
 static void sub_0206FCC4(UnkStruct_0206F7F8 *param0)
 {
     int v0;
-    UnkStruct_ov104_02241308 v1 = {
+    SpriteResourceCapacities v1 = {
         1, 1, 1, 1, 0, 0
     };
     static const SpriteTemplate v2[] = {

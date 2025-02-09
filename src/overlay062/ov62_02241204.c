@@ -46,7 +46,7 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
+#include "sprite_system.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
@@ -561,7 +561,7 @@ static void ov62_022414C0 (UnkStruct_0208C06C * param0)
             continue;
         }
 
-        SpriteGfxHandler_UnloadCharObjById(param0->unk_14.unk_08, 100000 + v4[v0]);
+        SpriteManager_UnloadCharObjById(param0->unk_14.unk_08, 100000 + v4[v0]);
     }
 
     ov62_02234540(param0, 0);

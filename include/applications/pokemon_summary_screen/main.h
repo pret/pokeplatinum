@@ -5,12 +5,9 @@
 
 #include "constants/moves.h"
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/sprite_animation_frame.h"
@@ -23,6 +20,7 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -422,8 +420,8 @@ typedef struct PokemonSummaryScreen {
     ConditionRectangle maxRects[MAX_CONDITION_RECT];
     u32 conditionState;
 
-    SpriteRenderer *renderer;
-    SpriteGfxHandler *gfxHandler;
+    SpriteSystem *renderer;
+    SpriteManager *gfxHandler;
     CellActor *sprites[SUMMARY_SPRITE_MAX];
     CellActorData *actor[SUMMARY_SPRITE_MAX];
 

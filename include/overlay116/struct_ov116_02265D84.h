@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV116_02265D84_H
 #define POKEPLATINUM_STRUCT_OV116_02265D84_H
 
-#include "struct_decls/cell_actor_data.h"
-
 #include "overlay116/struct_ov116_0226469C.h"
+
+#include "sprite_system.h"
 
 typedef struct {
     CellActorData *unk_00;

@@ -19,16 +19,12 @@
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_02078B40.h"
@@ -50,12 +46,12 @@
 #include "party.h"
 #include "pokemon.h"
 #include "rtc.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_0200C6E4.h"
 #include "unk_02015F84.h"
 #include "unk_02017038.h"
 #include "unk_02028124.h"
@@ -3125,7 +3121,7 @@ static const int Unk_020F0588[] = {
     0x1
 };
 
-CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
+CellActorData *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
 {
     SpriteTemplate v0;
     CellActorData *v1;
@@ -3142,10 +3138,10 @@ CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, Pa
 
     narc = NARC_ctor(v3.unk_00, heapID);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
-    SpriteRenderer_LoadPalette(param2, 2, param0, param1, narc, v3.unk_08, 0, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, narc, v3.unk_0C, 0, 20007 + param7);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, narc, v3.unk_10, 0, 20007 + param7);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
+    SpriteSystem_LoadPalette(param2, 2, param0, param1, narc, v3.unk_08, 0, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, narc, v3.unk_0C, 0, 20007 + param7);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, narc, v3.unk_10, 0, 20007 + param7);
     NARC_dtor(narc);
 
     v0 = Unk_020F05E4;
@@ -3159,7 +3155,7 @@ CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, Pa
 
     v1 = SpriteActor_LoadResources(param0, param1, &v0);
 
-    CellActor_SetExplicitPaletteOffsetAutoAdjust(v1->unk_00, 0);
+    CellActor_SetExplicitPaletteOffsetAutoAdjust(v1->sprite, 0);
     SpriteActor_SetSpritePositionXY(v1, param3, param4);
     sub_0200D330(v1);
     sub_0200D390(v1, 1);

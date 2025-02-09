@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0209903C.h"
 #include "struct_defs/struct_0209903C_sub1.h"
 #include "struct_defs/struct_0209916C.h"
@@ -12,9 +11,9 @@
 #include "heap.h"
 #include "narc.h"
 #include "sprite_resource.h"
+#include "sprite_system.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "unk_0200C6E4.h"
 
 static void sub_02099058(UnkStruct_0209903C *param0);
 static void sub_02099118(UnkStruct_0209903C *param0);
@@ -129,14 +128,14 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
 
     v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorData));
 
-    v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(SpriteResourcesHeaderList));
-    v4->unk_08->headers = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
-    v4->unk_04 = v4->unk_08->headers;
+    v4->resourceHeaderList = Heap_AllocFromHeap(param0->unk_00, sizeof(SpriteResourcesHeaderList));
+    v4->resourceHeaderList->headers = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
+    v4->resourceHeader = v4->resourceHeaderList->headers;
 
-    SpriteResourcesHeader_Init(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
+    SpriteResourcesHeader_Init(v4->resourceHeader, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
 
     v5.collection = param0->unk_10;
-    v5.resourceData = v4->unk_04;
+    v5.resourceData = v4->resourceHeader;
     v5.position.x = FX32_CONST(param2);
     v5.position.y = FX32_CONST(param3);
     v5.position.z = FX32_CONST(param4);
@@ -153,13 +152,13 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
     v5.vramType = v0;
     v5.heapID = param0->unk_00;
 
-    v4->unk_00 = CellActorCollection_AddEx(&v5);
+    v4->sprite = CellActorCollection_AddEx(&v5);
 
-    if (v4->unk_00 != NULL) {
-        CellActor_SetAnim(v4->unk_00, 0);
+    if (v4->sprite != NULL) {
+        CellActor_SetAnim(v4->sprite, 0);
         v2 = SpriteTransfer_GetPlttOffset(
             v6, v0);
-        CellActor_SetExplicitPalette(v4->unk_00, v2);
+        CellActor_SetExplicitPalette(v4->sprite, v2);
     } else {
         GF_ASSERT(FALSE);
     }

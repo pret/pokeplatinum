@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200D0F4.h"
-
 #include "overlay116/ov116_02261870.h"
 #include "overlay116/ov116_02266FEC.h"
 #include "overlay116/struct_ov116_0226139C.h"
@@ -26,10 +24,10 @@
 #include "inlines.h"
 #include "math.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 
 typedef struct {

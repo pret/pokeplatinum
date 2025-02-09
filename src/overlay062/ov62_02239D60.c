@@ -6,13 +6,9 @@
 #include "constants/species.h"
 
 #include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0208C06C.h"
 
@@ -42,13 +38,13 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "savedata.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "unk_02030A80.h"
@@ -1068,8 +1064,8 @@ static void ov62_0223ADC0(UnkStruct_0208C06C *param0, int param1)
 static void ov62_0223AE60(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
-    SpriteRenderer *v1;
-    SpriteGfxHandler *v2;
+    SpriteSystem *v1;
+    SpriteManager *v2;
     PaletteData *v3;
     SpriteTemplate v4;
 
@@ -1107,7 +1103,7 @@ static void ov62_0223AE60(UnkStruct_0208C06C *param0)
             v4.plttIdx = 0;
             v4.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
             v4.bgPriority = 0;
-            v4.transferToVRAM = FALSE;
+            v4.vramTransfer = FALSE;
             v4.resources[0] = 100000 + v5;
             v4.resources[1] = 100000;
             v4.resources[2] = 100000;
@@ -1148,9 +1144,9 @@ static void ov62_0223AFEC(UnkStruct_0208C06C *param0)
     int v1;
     int v2;
 
-    SpriteGfxHandler_UnloadPlttObjById(param0->unk_14.unk_08, 100000);
-    SpriteGfxHandler_UnloadCellObjById(param0->unk_14.unk_08, 100000);
-    SpriteGfxHandler_UnloadAnimObjById(param0->unk_14.unk_08, 100000);
+    SpriteManager_UnloadPlttObjById(param0->unk_14.unk_08, 100000);
+    SpriteManager_UnloadCellObjById(param0->unk_14.unk_08, 100000);
+    SpriteManager_UnloadAnimObjById(param0->unk_14.unk_08, 100000);
 
     for (v1 = 0; v1 < 30; v1++) {
         v2 = v0->unk_04.unk_28[v1];
@@ -1163,7 +1159,7 @@ static void ov62_0223AFEC(UnkStruct_0208C06C *param0)
             continue;
         }
 
-        SpriteGfxHandler_UnloadCharObjById(param0->unk_14.unk_08, 100000 + v1);
+        SpriteManager_UnloadCharObjById(param0->unk_14.unk_08, 100000 + v1);
         sub_0200D0F4(v0->unk_2B4[v1]);
         v0->unk_2B4[v1] = NULL;
     }

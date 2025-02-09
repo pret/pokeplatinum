@@ -1,9 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV104_0223C4CC_H
 #define POKEPLATINUM_STRUCT_OV104_0223C4CC_H
 
-#include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "struct_defs/struct_0207C690.h"
 
@@ -21,6 +18,7 @@
 
 #include "bg_window.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sys_task_manager.h"
 
 typedef struct UnkStruct_ov104_0223C4CC_t {
@@ -38,8 +36,8 @@ typedef struct UnkStruct_ov104_0223C4CC_t {
     UnkStruct_ov63_0222D848 *unk_2C;
     UnkStruct_ov63_0222D77C *unk_30;
     struct {
-        SpriteRenderer *unk_00;
-        SpriteGfxHandler *unk_04;
+        SpriteSystem *unk_00;
+        SpriteManager *unk_04;
     } unk_34;
     UnkStruct_ov104_0223D3B0_1 unk_3C;
     CellActorData *unk_80[4];

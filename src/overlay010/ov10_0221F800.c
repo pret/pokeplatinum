@@ -5,21 +5,14 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay010/struct_ov10_0221F800.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -44,6 +37,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -54,7 +48,6 @@
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
@@ -92,8 +85,8 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     PaletteData *unk_08;
     BgConfig *unk_0C;
     Window unk_10[24];
-    SpriteRenderer *unk_190;
-    SpriteGfxHandler *unk_194;
+    SpriteSystem *unk_190;
+    SpriteManager *unk_194;
     CellActorData *unk_198[30];
     u32 unk_210;
     UnkStruct_ov10_0221FB28_sub1 unk_214[6];
@@ -162,7 +155,7 @@ static u8 ov10_0221FD00(UnkStruct_ov10_0221FB28 *param0);
 static u8 ov10_0221FBFC(UnkStruct_ov10_0221FB28 *param0);
 static u8 ov10_022209E0(UnkStruct_ov10_0221FB28 *param0);
 static BOOL ov10_02220AD0(void);
-static void ov10_02220B00(UnkStruct_ov10_0221FB28 *param0, UnkStruct_ov104_02241308 *param1, int param2);
+static void ov10_02220B00(UnkStruct_ov10_0221FB28 *param0, SpriteResourceCapacities *param1, int param2);
 static CellActorData *ov10_02220BA0(UnkStruct_ov10_0221FB28 *param0, const u32 *param1);
 static void ov10_02220BE8(UnkStruct_ov10_0221FB28 *param0);
 static void ov10_02220C2C(UnkStruct_ov10_0221FB28 *param0);
@@ -1185,14 +1178,14 @@ static BOOL ov10_02220AD0(void)
     return 0;
 }
 
-static void ov10_02220B00(UnkStruct_ov10_0221FB28 *param0, UnkStruct_ov104_02241308 *param1, int param2)
+static void ov10_02220B00(UnkStruct_ov10_0221FB28 *param0, SpriteResourceCapacities *param1, int param2)
 {
     VramTransfer_New(64, param0->unk_00->unk_24);
 
     param0->unk_190 = sub_0200C6E4(param0->unk_00->unk_24);
     param0->unk_194 = sub_0200C704(param0->unk_190);
     {
-        UnkStruct_ov104_0224133C v0 = {
+        RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -1202,11 +1195,11 @@ static void ov10_02220B00(UnkStruct_ov10_0221FB28 *param0, UnkStruct_ov104_02241
             0,
             32,
         };
-        UnkStruct_ov104_022412F4 v1 = {
+        CharTransferTemplateWithModes v1 = {
             0, 1024 * 64, 1024 * 16, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
-        v1.unk_00 = param2;
+        v1.maxTasks = param2;
         sub_0200C73C(param0->unk_190, &v0, &v1, 16);
     }
 
@@ -1231,7 +1224,7 @@ static CellActorData *ov10_02220BA0(UnkStruct_ov10_0221FB28 *param0, const u32 *
     v0.resources[2] = param1[2];
     v0.resources[3] = param1[3];
     v0.bgPriority = param1[4];
-    v0.transferToVRAM = FALSE;
+    v0.vramTransfer = FALSE;
 
     return SpriteActor_LoadResources(param0->unk_190, param0->unk_194, &v0);
 }
@@ -1253,7 +1246,7 @@ static void ov10_02220C2C(UnkStruct_ov10_0221FB28 *param0)
     u16 v0;
 
     for (v0 = 0; v0 < param0->unk_210; v0++) {
-        CellActor_UpdateAnim(param0->unk_198[v0]->unk_00, FX32_ONE);
+        CellActor_UpdateAnim(param0->unk_198[v0]->sprite, FX32_ONE);
     }
 }
 
@@ -1463,7 +1456,7 @@ static void ov10_02221004(void)
 
 static void ov10_0222101C(UnkStruct_ov10_0221FB28 *param0)
 {
-    UnkStruct_ov104_02241308 v0 = {
+    SpriteResourceCapacities v0 = {
         2, 1, 2, 2, 0, 0
     };
     u32 v1;
@@ -1496,10 +1489,10 @@ static void ov10_022210F4(UnkStruct_ov10_0221FB28 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param0->unk_00->unk_24);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 208, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47111);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 208, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47111);
     sub_0200CC9C(param0->unk_190, param0->unk_194, 108, 8, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47111);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 207, 1, 47111);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 209, 1, 47111);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 207, 1, 47111);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 209, 1, 47111);
     NARC_dtor(v0);
 }
 
@@ -1665,7 +1658,7 @@ static void ov10_022214A0(UnkStruct_ov10_0221FB28 *param0, int param1, int param
 
 static void ov10_02221588(UnkStruct_ov10_0221FB28 *param0)
 {
-    UnkStruct_ov104_02241308 v0 = {
+    SpriteResourceCapacities v0 = {
         2, 1, 2, 2, 0, 0
     };
     u32 v1;
@@ -1699,9 +1692,9 @@ static void ov10_0222166C(UnkStruct_ov10_0221FB28 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__VS_DEMO_GRA, param0->unk_00->unk_24);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 5, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47112);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 6, 0, 47112);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 7, 0, 47112);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 5, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47112);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 6, 0, 47112);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 7, 0, 47112);
     NARC_dtor(v0);
 }
 
@@ -2129,7 +2122,7 @@ static void ov10_02221EEC(UnkStruct_ov10_0221FB28 *param0, u32 param1)
 
 static void ov10_02222050(UnkStruct_ov10_0221FB28 *param0)
 {
-    UnkStruct_ov104_02241308 v0 = {
+    SpriteResourceCapacities v0 = {
         9, 4, 4, 4, 0, 0
     };
     u32 v1;
@@ -2157,11 +2150,11 @@ static void ov10_022220B4(UnkStruct_ov10_0221FB28 *param0)
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->unk_24);
 
     sub_0200CD0C(param0->unk_190, param0->unk_194, v1, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 47112);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v1, PokeIcon32KCellsFileIndex(), 0, 47113);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v1, PokeIcon32KAnimationFileIndex(), 0, 47113);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v1, PokeIcon32KCellsFileIndex(), 0, 47113);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v1, PokeIcon32KAnimationFileIndex(), 0, 47113);
 
     for (v0 = 0; v0 < 6; v0++) {
-        SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v1, param0->unk_214[v0].unk_00, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47113 + v0);
+        SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v1, param0->unk_214[v0].unk_00, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47113 + v0);
     }
 
     NARC_dtor(v1);
@@ -2173,10 +2166,10 @@ static void ov10_0222216C(UnkStruct_ov10_0221FB28 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_24);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 20, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47119);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 20, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47119);
     sub_0200CD0C(param0->unk_190, param0->unk_194, v0, 21, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47113);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 19, 0, 47114);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 18, 0, 47114);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 19, 0, 47114);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 18, 0, 47114);
     NARC_dtor(v0);
 }
 
@@ -2186,10 +2179,10 @@ static void ov10_02222208(UnkStruct_ov10_0221FB28 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_24);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 64, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47120);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 64, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47120);
     sub_0200CD0C(param0->unk_190, param0->unk_194, v0, 65, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47114);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 63, 0, 47115);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 62, 0, 47115);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 63, 0, 47115);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 62, 0, 47115);
     NARC_dtor(v0);
 }
 
@@ -2199,10 +2192,10 @@ static void ov10_022222A4(UnkStruct_ov10_0221FB28 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_24);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47121);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47121);
     sub_0200CD0C(param0->unk_190, param0->unk_194, v0, 8, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47115);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 1, 0, 47116);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 0, 0, 47116);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 1, 0, 47116);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0->unk_190, param0->unk_194, v0, 0, 0, 47116);
     NARC_dtor(v0);
 }
 

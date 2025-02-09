@@ -114,6 +114,18 @@ typedef struct CellActorResourceData {
     u8 padding_21[3];
 } CellActorResourceData;
 
+typedef struct SpriteResourcesHeaderList {
+    CellActorResourceData *headers;
+    int length;
+} SpriteResourcesHeaderList;
+
+typedef struct CellActorData {
+    CellActor *sprite;
+    CellActorResourceData *resourceHeader;
+    SpriteResourcesHeaderList *resourceHeaderList;
+    BOOL vramTransfer;
+} CellActorData;
+
 typedef struct CellActorInitParams {
     CellActorCollection *collection;
     const CellActorResourceData *resourceData;

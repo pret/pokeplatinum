@@ -3,18 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 #include "overlay119/struct_ov119_021D0FD0.h"
 #include "overlay119/struct_ov119_021D14DC.h"
 #include "overlay119/struct_ov119_021D16C0.h"
@@ -33,12 +27,12 @@
 #include "pokemon.h"
 #include "render_window.h"
 #include "spl.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0202419C.h"
@@ -526,8 +520,8 @@ void ov119_021D150C(UnkStruct_ov119_021D14DC *param0)
 
 void ov119_021D1514(UnkStruct_ov119_021D0FD0 *param0)
 {
-    SpriteRenderer *v0;
-    SpriteGfxHandler *v1;
+    SpriteSystem *v0;
+    SpriteManager *v1;
     PaletteData *v2;
     int v3[][4] = {
         { 4, 9, 3, 2 },
@@ -564,7 +558,7 @@ void ov119_021D161C(UnkStruct_ov119_021D0FD0 *param0)
     v0.plttIdx = 0;
     v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v0.bgPriority = 2;
-    v0.transferToVRAM = FALSE;
+    v0.vramTransfer = FALSE;
 
     v0.resources[0] = 20000;
     v0.resources[1] = 20001;
@@ -707,7 +701,7 @@ void ov119_021D17B8(UnkStruct_ov119_021D17B8 *param0)
 {
     param0->unk_50 = sub_0200C6E4(71);
     {
-        const UnkStruct_ov104_0224133C v0 = {
+        const RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -717,7 +711,7 @@ void ov119_021D17B8(UnkStruct_ov119_021D17B8 *param0)
             0,
             32,
         };
-        const UnkStruct_ov104_022412F4 v1 = {
+        const CharTransferTemplateWithModes v1 = {
             48 + 48, 1024 * 0x40, 512 * 0x20, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_32K
         };
 
@@ -726,7 +720,7 @@ void ov119_021D17B8(UnkStruct_ov119_021D17B8 *param0)
 
     {
         BOOL v2;
-        const UnkStruct_ov104_02241308 v3 = {
+        const SpriteResourceCapacities v3 = {
             48 + 48,
             16 + 16,
             64,
