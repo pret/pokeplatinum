@@ -8,8 +8,7 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay005/ov5_021E15F4.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
+#include "overlay005/map_prop.h"
 
 #include "field_system.h"
 #include "heap.h"
@@ -43,7 +42,7 @@ typedef struct {
     u16 unk_00;
     u16 unk_02;
     u32 unk_04;
-    UnkStruct_ov5_021E1890 *unk_08;
+    MapProp *unk_08;
 } UnkStruct_ov5_021F8480_sub1;
 
 struct UnkStruct_ov5_021F8480_t {
@@ -160,8 +159,8 @@ static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const u32 param1)
                 if (v2->unk_00 == 0) {
                     v2->unk_00 = 1;
                     v2->unk_04 = v4;
-                    v2->unk_02 = ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, v4, &v5->unk_04, &v3, fieldSystem->unk_50);
-                    v2->unk_08 = ov5_021E18CC(fieldSystem->unk_A4, v4);
+                    v2->unk_02 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, v4, &v5->unk_04, &v3, fieldSystem->unk_50);
+                    v2->unk_08 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, v4);
                     break;
                 }
 

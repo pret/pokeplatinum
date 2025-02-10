@@ -3,16 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "field/field_system.h"
 #include "overlay005/bdhc.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D521C.h"
-#include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EEAC8.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
-#include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021EEB48_decl.h"
 #include "overlay005/struct_ov5_021EF76C_decl.h"
 
@@ -38,7 +39,7 @@ typedef struct {
     BDHC *bdhc;
     int unk_860;
     BOOL unk_864;
-    UnkStruct_ov5_021E1608 *unk_868;
+    MapPropManager *unk_868;
 } UnkStruct_ov5_021E79A8;
 
 typedef struct {
@@ -358,7 +359,7 @@ static void ov5_021E79A8(UnkStruct_ov5_021E8F60 *param0)
         ov5_021EEB90(v0, param0->unk_00, (void **)&(param0->unk_84[v0]->bdhcBuffer));
 
         if (param0->unk_FC == 0) {
-            param0->unk_84[v0]->unk_868 = ov5_021E15F4(4);
+            param0->unk_84[v0]->unk_868 = MapPropManager_New(HEAP_ID_FIELD);
         } else {
             param0->unk_84[v0]->unk_868 = NULL;
         }
@@ -381,7 +382,7 @@ void ov5_021E7A54(UnkStruct_ov5_021E8F60 *param0)
         param0->unk_84[v0]->unk_864 = 0;
 
         if (param0->unk_FC == 0) {
-            param0->unk_84[v0]->unk_868 = ov5_021E15F4(4);
+            param0->unk_84[v0]->unk_868 = MapPropManager_New(HEAP_ID_FIELD);
         } else {
             param0->unk_84[v0]->unk_868 = NULL;
         }
@@ -405,7 +406,7 @@ static void ov5_021E7AC4(UnkStruct_ov5_021E8F60 *param0)
         ov5_021EEB84(v0, param0->unk_00, (void **)&(param0->unk_84[v0]->unk_854));
 
         if (param0->unk_FC == 0) {
-            param0->unk_84[v0]->unk_868 = ov5_021E15F4(4);
+            param0->unk_84[v0]->unk_868 = MapPropManager_New(HEAP_ID_FIELD);
         } else {
             param0->unk_84[v0]->unk_868 = NULL;
         }
@@ -423,7 +424,7 @@ static void ov5_021E7B4C(UnkStruct_ov5_021E8F60 *param0)
         ov5_021EEB84(v0, param0->unk_00, (void **)&(param0->unk_84[v0]->unk_854));
 
         if (param0->unk_84[v0]->unk_868 != NULL) {
-            ov5_021E1610(param0->unk_84[v0]->unk_868);
+            MapPropManager_Init(param0->unk_84[v0]->unk_868);
         }
 
         param0->unk_84[v0]->unk_860 = -1;
@@ -489,7 +490,7 @@ static void ov5_021E7C00(const u8 param0, UnkStruct_ov5_021EF76C *const param1, 
     }
 
     if (param6->unk_00[param0]->unk_868 != NULL) {
-        ov5_021E16CC(param5->unk_EC, v3.unk_0C, param1, param6->unk_00[param0]->unk_868, param5->unk_E4);
+        MapPropManager_Load(param5->unk_EC, v3.unk_0C, param1, param6->unk_00[param0]->unk_868, param5->unk_E4);
     }
 
     {
@@ -530,7 +531,7 @@ static void ov5_021E7CD4(const u8 param0, UnkStruct_ov5_021EF76C *const param1, 
     }
 
     if (param6->unk_00[param0]->unk_868 != NULL) {
-        ov5_021E16CC(param5->unk_EC, v3.unk_0C, param1, param6->unk_00[param0]->unk_868, param5->unk_E4);
+        MapPropManager_Load(param5->unk_EC, v3.unk_0C, param1, param6->unk_00[param0]->unk_868, param5->unk_E4);
     }
 
     {
@@ -595,7 +596,7 @@ static void ov5_021E7E28(const int param0, const u8 param1, UnkStruct_ov5_021EF7
     }
 
     if (param7->unk_84[param1]->unk_868 != NULL) {
-        ov5_021E16CC(param7->unk_EC, v2.unk_0C, param2, param7->unk_84[param1]->unk_868, param7->unk_E4);
+        MapPropManager_Load(param7->unk_EC, v2.unk_0C, param2, param7->unk_84[param1]->unk_868, param7->unk_E4);
     }
 
     {
@@ -643,7 +644,7 @@ static void ov5_021E7F1C(const int param0, const u8 param1, UnkStruct_ov5_021EF7
     }
 
     if (param7->unk_84[param1]->unk_868 != NULL) {
-        ov5_021E16CC(param7->unk_EC, v1.unk_0C, param2, param7->unk_84[param1]->unk_868, param7->unk_E4);
+        MapPropManager_Load(param7->unk_EC, v1.unk_0C, param2, param7->unk_84[param1]->unk_868, param7->unk_E4);
     }
 
     {
@@ -684,7 +685,7 @@ static void ov5_021E7FF0(const int param0, const u8 param1, UnkStruct_ov5_021EF7
     }
 
     if (param7->unk_84[param1]->unk_868 != NULL) {
-        ov5_021E16CC(param7->unk_EC, v1.unk_0C, param2, param7->unk_84[param1]->unk_868, param7->unk_E4);
+        MapPropManager_Load(param7->unk_EC, v1.unk_0C, param2, param7->unk_84[param1]->unk_868, param7->unk_E4);
     }
 
     NARC_Seek(param7->unk_EC, v1.unk_04);
@@ -945,7 +946,7 @@ static void ov5_021E8614(const u8 param0, UnkStruct_ov5_021E8F60 *param1)
     BDHC_Reset(param1->unk_84[param0]->bdhc);
 
     if (param1->unk_84[param0]->unk_868 != NULL) {
-        ov5_021E1610(
+        MapPropManager_Init(
             param1->unk_84[param0]->unk_868);
     }
 
@@ -1152,7 +1153,7 @@ static void ov5_021E89D0(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, 
 
     if (param1->unk_84[param0]->unk_864 == 1) {
         if (param1->unk_84[param0]->unk_868 != NULL) {
-            ov5_021E17CC(&v0, param1->unk_AC, ov5_021EFAC0(param1->unk_AC), param2, param1->unk_84[param0]->unk_868);
+            MapPropManager_Render(&v0, param1->unk_AC, ov5_021EFAC0(param1->unk_AC), param2, param1->unk_84[param0]->unk_868);
         }
     }
 }
@@ -1630,7 +1631,7 @@ void ov5_021E924C(UnkStruct_ov5_021E8F60 *param0)
         BDHC_Free(param0->unk_84[v0]->bdhc);
 
         if (param0->unk_84[v0]->unk_868 != NULL) {
-            ov5_021E1608(param0->unk_84[v0]->unk_868);
+            MapPropManager_Free(param0->unk_84[v0]->unk_868);
         }
 
         Heap_FreeToHeap(param0->unk_84[v0]);
@@ -1669,7 +1670,7 @@ void ov5_021E9338(UnkStruct_ov5_021E8F60 *param0)
     param0->unk_C0.unk_0C = NULL;
 }
 
-void ov5_021E9340(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, UnkStruct_ov5_021E1608 **param2)
+void ov5_021E9340(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, MapPropManager **param2)
 {
     *param2 = param1->unk_84[param0]->unk_868;
 }
@@ -2039,7 +2040,7 @@ void ov5_021E9938(UnkStruct_ov5_021E8F60 *param0)
         param0->unk_84[v0]->unk_864 = 0;
 
         if (param0->unk_84[v0]->unk_868 != NULL) {
-            ov5_021E1608(param0->unk_84[v0]->unk_868);
+            MapPropManager_Free(param0->unk_84[v0]->unk_868);
         }
 
         Heap_FreeToHeap(param0->unk_84[v0]);
@@ -2057,7 +2058,7 @@ void ov5_021E9998(UnkStruct_ov5_021E8F60 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_84[v0]->unk_868 != NULL) {
-            ov5_021E1610(
+            MapPropManager_Init(
                 param0->unk_84[v0]->unk_868);
         }
     }
