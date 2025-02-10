@@ -58,8 +58,8 @@
 #include "overlay005/ov5_021EE7D4.h"
 #include "overlay005/ov5_021F0E84.h"
 #include "overlay005/ov5_021F6454.h"
-#include "overlay005/ov5_021F77A8.h"
 #include "overlay005/save_info_window.h"
+#include "overlay005/scrcmd_move_tutor.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 #include "overlay005/vs_seeker.h"
@@ -1504,15 +1504,15 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2E2,
     ScrCmd_2E3,
     ScrCmd_2E4,
-    ScrCmd_2E5,
-    ScrCmd_2E6,
+    ScrCmd_CheckHasLearnableTutorMoves,
+    ScrCmd_ShowMoveTutorMoveSelectionMenu,
     ScrCmd_2E7,
     ScrCmd_2E8,
-    ScrCmd_2E9,
-    ScrCmd_2EA,
-    ScrCmd_2EB,
-    ScrCmd_2EC,
-    ScrCmd_2ED,
+    ScrCmd_ResetMoveSlot,
+    ScrCmd_CheckCanAffordMove,
+    ScrCmd_PayShardsCost,
+    ScrCmd_ShowShardsCost,
+    ScrCmd_CloseShardCostWindow,
     ScrCmd_JudgeStats,
     ScrCmd_2EF,
     ScrCmd_2F0,
@@ -1586,7 +1586,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_334,
     ScrCmd_335,
     ScrCmd_336,
-    ScrCmd_HasSeenSpecies,
+    ScrCmd_CheckHasSeenSpecies,
     ScrCmd_338,
     ScrCmd_339,
     ScrCmd_33A,

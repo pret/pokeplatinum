@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/tutor_locations.h"
 #include "res/text/bank/common_strings.h"
 
     .data
@@ -1669,32 +1670,32 @@ _1624:
 _1636:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    SetVar 0x8004, 0
+    SetVar 0x8004, TUTOR_LOCATION_ROUTE_212
     GoTo _1672
     End
 
 _164A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    SetVar 0x8004, 1
+    SetVar 0x8004, TUTOR_LOCATION_SURVIVAL_AREA
     GoTo _1672
     End
 
 _165E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    SetVar 0x8004, 2
+    SetVar 0x8004, TUTOR_LOCATION_SNOWPOINT_CITY
     GoTo _1672
     End
 
 _1672:
     Message 129
-    ScrCmd_2E6 0xFF, 0x8004, 0x800C
+    ShowMoveTutorMoveSelectionMenu 0xFF, 0x8004, 0x800C
     SetVar 0x8003, 0x800C
     GoToIfEq 0x8003, -2, _16A4
-    ScrCmd_2EC 21, 1, 0x8003, 0x800C
+    ShowShardsCost 21, 1, 0x8003, 0x800C
     WaitABPress
-    ScrCmd_2ED
+    CloseShardsCostWindow
     GoTo _16A4
     End
 

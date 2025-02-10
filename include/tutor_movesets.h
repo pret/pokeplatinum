@@ -2,12 +2,7 @@
 #define POKEPLATINUM_TUTOR_MOVESETS_H
 
 #include "generated/moves.h"
-
-enum TutorLocation {
-    TUTOR_LOCATION_ROUTE_212 = 0,
-    TUTOR_LOCATION_SURVIVAL_AREA,
-    TUTOR_LOCATION_SNOWPOINT_CITY,
-};
+#include "generated/tutor_locations.h"
 
 typedef struct TeachableMove {
     u16 moveID;
