@@ -556,7 +556,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021F600C.c.o
 	Object main.nef.p/src_overlay005_ov5_021F61BC.c.o
 	Object main.nef.p/src_overlay005_ov5_021F6454.c.o
-	Object main.nef.p/src_overlay005_move_tutor.c.o
+	Object main.nef.p/src_overlay005_scrcmd_move_tutor.c.o
 	Object main.nef.p/src_overlay005_ov5_021F8370.c.o
 	Object main.nef.p/src_overlay005_ov5_021F8560.c.o
 }

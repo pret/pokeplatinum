@@ -45,7 +45,6 @@
 #include "field/field_system_sub2_t.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/map_object_anim_cmd.h"
-#include "overlay005/move_tutor.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021D5EB8.h"
 #include "overlay005/ov5_021DC018.h"
@@ -60,6 +59,7 @@
 #include "overlay005/ov5_021F0E84.h"
 #include "overlay005/ov5_021F6454.h"
 #include "overlay005/save_info_window.h"
+#include "overlay005/scrcmd_move_tutor.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 #include "overlay005/vs_seeker.h"
@@ -1504,12 +1504,12 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2E2,
     ScrCmd_2E3,
     ScrCmd_2E4,
-    ScrCmd_HasLearnableTutorMoves,
+    ScrCmd_CheckHasLearnableTutorMoves,
     ScrCmd_ShowMoveTutorMoveSelectionMenu,
     ScrCmd_2E7,
     ScrCmd_2E8,
     ScrCmd_ResetMoveSlot,
-    ScrCmd_CanAffordMove,
+    ScrCmd_CheckCanAffordMove,
     ScrCmd_PayShardsCost,
     ScrCmd_ShowShardsCost,
     ScrCmd_CloseShardCostWindow,
@@ -1586,7 +1586,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_334,
     ScrCmd_335,
     ScrCmd_336,
-    ScrCmd_HasSeenSpecies,
+    ScrCmd_CheckHasSeenSpecies,
     ScrCmd_338,
     ScrCmd_339,
     ScrCmd_33A,

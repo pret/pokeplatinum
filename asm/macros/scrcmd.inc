@@ -4025,7 +4025,7 @@
     .endm
 
     // resultVar will be set to TRUE if the pokemon has at least one move it can learn at the given location and doesn't know yet
-    .macro HasLearnableTutorMoves partySlot, location, resultVar
+    .macro CheckHasLearnableTutorMoves partySlot, location, resultVar
     .short 741
     .short \partySlot
     .short \location
@@ -4058,7 +4058,7 @@
     .endm
 
     // resultVar will be set to TRUE if the move is available at a shards move tutor and the player can afford it
-    .macro CanAffordMove moveID, resultVar
+    .macro CheckCanAffordMove moveID, resultVar
     .short 746
     .short \moveID
     .short \resultVar
@@ -4479,7 +4479,7 @@
     .short \arg0
     .endm
 
-    .macro HasSeenSpecies species, ret
+    .macro CheckHasSeenSpecies species, ret
     .short 823
     .short \species
     .short \ret

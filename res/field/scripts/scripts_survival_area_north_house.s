@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/tutor_locations.h"
 #include "res/text/bank/survival_area_north_house.h"
 
     .data
@@ -41,14 +42,14 @@ _004C:
     GoToIfEq 0x8000, 0xFF, _0232
     ScrCmd_198 0x8000, 0x8001
     GoToIfEq 0x8001, 0, _0227
-    HasLearnableTutorMoves 0x8000, 1, 0x800C
+    CheckHasLearnableTutorMoves 0x8000, TUTOR_LOCATION_SURVIVAL_AREA, 0x800C
     GoToIfEq 0x800C, 0, _023D
     BufferPartyMonNickname 0, 0x8000
     Message 5
-    ShowMoveTutorMoveSelectionMenu 0x8000, 1, 0x800C
+    ShowMoveTutorMoveSelectionMenu 0x8000, TUTOR_LOCATION_SURVIVAL_AREA, 0x800C
     SetVar 0x8003, 0x800C
     GoToIfEq 0x8003, -2, _0232
-    CanAffordMove 0x8003, 0x800C
+    CheckCanAffordMove 0x8003, 0x800C
     GoToIfEq 0x800C, 0, _0248
     ScrCmd_1C8 0x800C, 0x8000
     SetVar 0x8002, 0x800C

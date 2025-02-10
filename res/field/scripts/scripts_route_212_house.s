@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/tutor_locations.h"
 #include "res/text/bank/route_212_house.h"
 
     .data
@@ -66,14 +67,14 @@ _007E:
     GoToIfEq 0x8000, 0xFF, _0264
     ScrCmd_198 0x8000, 0x8001
     GoToIfEq 0x8001, 0, _0259
-    HasLearnableTutorMoves 0x8000, 0, 0x800C
+    CheckHasLearnableTutorMoves 0x8000, TUTOR_LOCATION_ROUTE_212, 0x800C
     GoToIfEq 0x800C, 0, _026F
     BufferPartyMonNickname 0, 0x8000
     Message 5
-    ShowMoveTutorMoveSelectionMenu 0x8000, 0, 0x800C
+    ShowMoveTutorMoveSelectionMenu 0x8000, TUTOR_LOCATION_ROUTE_212, 0x800C
     SetVar 0x8003, 0x800C
     GoToIfEq 0x8003, -2, _0264
-    CanAffordMove 0x8003, 0x800C
+    CheckCanAffordMove 0x8003, 0x800C
     GoToIfEq 0x800C, 0, _027A
     ScrCmd_1C8 0x800C, 0x8000
     SetVar 0x8002, 0x800C
