@@ -41,9 +41,11 @@ metang_generators = {
     'evolution_methods': { 'type': 'enum', 'tag': 'EvolutionMethod' },
     'exp_rates': { 'type': 'enum', 'tag': 'ExpRate' },
     'game_records': { 'type': 'enum', 'tag': 'GameRecord' },
+    'first_arrival_to_zones': { 'type': 'enum', 'tag': 'FirstArrivalToZone' },
     'footprint_sizes': { 'type': 'enum', 'tag': 'FootprintSize' },
     'gender_ratios': { 'type': 'enum', 'tag': 'GenderRatio' },
     'genders': { 'type': 'enum', 'tag': 'Gender' },
+    'giratina_shadow_animations': {'type': 'enum', 'tag': 'GiratinaShadowAnimation'},
     'item_ai_categories': { 'type': 'enum', 'tag': 'ItemAICategory' },
     'item_battle_categories': { 'type': 'enum', 'tag': 'ItemBattleCategory' },
     'item_hold_effects': { 'type': 'enum', 'tag': 'ItemHoldEffect' },
@@ -73,7 +75,8 @@ metang_generators = {
     'trainers': { 'type': 'enum', 'tag': 'Trainer' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
-    'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'}
+    'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
+    'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'}
 }
 
 c_consts_generators = []
