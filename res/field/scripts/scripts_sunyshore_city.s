@@ -641,15 +641,15 @@ _0791:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_234 0x800C
+    GetWeekDay 0x800C
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0806
-    GoToIfEq 0x8008, 1, _0810
-    GoToIfEq 0x8008, 2, _081A
-    GoToIfEq 0x8008, 3, _0824
-    GoToIfEq 0x8008, 4, _082E
-    GoToIfEq 0x8008, 5, _0838
-    GoToIfEq 0x8008, 6, _0842
+    GoToIfEq 0x8008, SUNDAY, _0806
+    GoToIfEq 0x8008, MONDAY, _0810
+    GoToIfEq 0x8008, TUESDAY, _081A
+    GoToIfEq 0x8008, WEDNESDAY, _0824
+    GoToIfEq 0x8008, THURSDAY, _082E
+    GoToIfEq 0x8008, FRIDAY, _0838
+    GoToIfEq 0x8008, SATURDAY, _0842
     End
 
 _0806:

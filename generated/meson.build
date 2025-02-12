@@ -76,7 +76,8 @@ metang_generators = {
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
-    'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'}
+    'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'},
+    'weekdays': { 'type': 'enum', 'tag': 'WeekDay' }
 }
 
 c_consts_generators = []

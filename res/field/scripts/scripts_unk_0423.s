@@ -344,7 +344,7 @@ _048E:
     FacePlayer
     ScrCmd_323 0x800C
     GoToIfEq 0x800C, 0, _04BC
-    ScrCmd_201 0x405C
+    GetCurrentMapID 0x405C
     SetVar 0x405D, 0x800D
     Message 17
     GoTo _04C7

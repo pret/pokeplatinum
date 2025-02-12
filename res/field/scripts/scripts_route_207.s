@@ -83,7 +83,7 @@ _00F1:
     GoTo _0156
 
 _012F:
-    SetFlag 0x97F
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_1
     SetVar 0x8004, 0x1BB
     SetVar 0x8005, 1
     CallCommonScript 0x7FC

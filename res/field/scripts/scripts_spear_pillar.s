@@ -473,7 +473,7 @@ _0567:
     SetFlag 0x1C9
     SetFlag 0x1CA
     SetVar 0x4098, 3
-    SetFlag 0x981
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_3
     ClearFlag 0x1C7
     SetFlag 0x132
     SetVar 0x40C3, 1

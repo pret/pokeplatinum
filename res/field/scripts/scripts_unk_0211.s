@@ -1236,7 +1236,7 @@ _10A2:
     End
 
 _10C7:
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     GoToIfEq 0x8004, 6, _11BD
     GoToIfEq 0x8004, 36, _11C5
     GoToIfEq 0x8004, 48, _11CD
@@ -1554,7 +1554,7 @@ _1475:
 
 _1477:
     LockAll
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     GoToIfEq 0x8004, 220, _14AC
     GoToIfEq 0x8004, 0x248, _14AC
     GoToIfEq 0x8004, 0x249, _14AC

@@ -22,7 +22,7 @@ _0024:
     CallIfUnset 0x10F, _00C5
     GoToIfLt 0x4089, 2, _007C
     GoToIfSet 0xAA8, _007C
-    ScrCmd_234 0x4000
+    GetWeekDay 0x4000
     GoToIfNe 0x4000, 5, _007C
     GoTo _0076
 

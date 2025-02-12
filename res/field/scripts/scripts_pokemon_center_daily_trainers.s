@@ -1,0 +1,1197 @@
+#include "macros/scrcmd.inc"
+#include "res/text/bank/unk_0203.h"
+
+    .data
+
+    ScriptEntry _000E
+    ScriptEntry _0398
+    ScriptEntry _040F
+    .short 0xFD13
+
+_000E:
+    SetFlag 0x183
+    SetFlag 0x184
+    GoToIfUnset FLAG_UNLOCKED_VS_SEEKER_LVL_1, _0029
+    Call _002B
+    End
+
+_0029:
+    End
+
+_002B:
+    GetWeekDay 0x4000
+    CallIfEq 0x4000, SUNDAY, _008C
+    CallIfEq 0x4000, MONDAY, _00ED
+    CallIfEq 0x4000, TUESDAY, _014E
+    CallIfEq 0x4000, WEDNESDAY, _01AF
+    CallIfEq 0x4000, THURSDAY, _0203
+    CallIfEq 0x4000, FRIDAY, _0264
+    CallIfEq 0x4000, SATURDAY, _02C5
+    Return
+
+_008C:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _0326
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0332
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0348
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _035E
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _036A
+    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0380
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _038C
+    Return
+
+_00ED:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0326
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0332
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0348
+    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _035E
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _036A
+    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _0380
+    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _038C
+    Return
+
+_014E:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0326
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0332
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0348
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _035E
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _036A
+    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _0380
+    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _038C
+    Return
+
+_01AF:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0332
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0348
+    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _035E
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _036A
+    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0380
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _038C
+    Return
+
+_0203:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0326
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0332
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0348
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _035E
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _036A
+    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _0380
+    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _038C
+    Return
+
+_0264:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0326
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0332
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0348
+    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _035E
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _036A
+    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _0380
+    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _038C
+    Return
+
+_02C5:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _0326
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0332
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0348
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _035E
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _036A
+    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0380
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _038C
+    Return
+
+_0326:
+    ClearFlag 0x183
+    SetVar 0x402A, 35
+    Return
+
+_0332:
+    ClearFlag 0x183
+    ClearFlag 0x184
+    SetVar 0x402A, 22
+    SetVar 0x402B, 23
+    Return
+
+_0348:
+    ClearFlag 0x183
+    ClearFlag 0x184
+    SetVar 0x402A, 22
+    SetVar 0x402B, 23
+    Return
+
+_035E:
+    ClearFlag 0x183
+    SetVar 0x402A, 43
+    Return
+
+_036A:
+    ClearFlag 0x183
+    ClearFlag 0x184
+    SetVar 0x402A, 22
+    SetVar 0x402B, 23
+    Return
+
+_0380:
+    ClearFlag 0x183
+    SetVar 0x402A, 71
+    Return
+
+_038C:
+    ClearFlag 0x183
+    SetVar 0x402A, 10
+    Return
+
+_0398:
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    SetVar 0x8004, 0
+    SetVar 0x8006, 0
+    CallIfEq 0x402A, 35, _1331
+    CallIfEq 0x402A, 22, _133E
+    CallIfEq 0x402A, 43, _13A3
+    CallIfEq 0x402A, 22, _13B0
+    CallIfEq 0x402A, 71, _13DD
+    CallIfEq 0x402A, 10, _13EA
+    GoToIfEq 0x8006, 1, _06A8
+    GoTo _0486
+    End
+
+_040F:
+    PlayFanfare SEQ_SE_CONFIRM
+    LockAll
+    FacePlayer
+    SetVar 0x8004, 1
+    SetVar 0x8006, 0
+    CallIfEq 0x402B, 35, _1331
+    CallIfEq 0x402B, 23, _1378
+    CallIfEq 0x402B, 43, _13A3
+    CallIfEq 0x402B, 22, _13B0
+    CallIfEq 0x402B, 71, _13DD
+    CallIfEq 0x402B, 10, _13EA
+    GoToIfEq 0x8006, 1, _06A8
+    GoTo _0486
+    End
+
+_0486:
+    SetVar 0x8000, 1
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _05B9
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _05B9
+    GoToIfEq 0x8000, 0, _0590
+    GoToIfEq 0x8004, 1, _051A
+    CallIfEq 0x402A, 35, _0828
+    CallIfEq 0x402A, 22, _0864
+    CallIfEq 0x402A, 43, _08F6
+    CallIfEq 0x402A, 22, _0932
+    CallIfEq 0x402A, 71, _0986
+    CallIfEq 0x402A, 10, _09C2
+    GoTo _0570
+    End
+
+_051A:
+    CallIfEq 0x402B, 35, _0828
+    CallIfEq 0x402B, 23, _08A0
+    CallIfEq 0x402B, 43, _08F6
+    CallIfEq 0x402B, 22, _095C
+    CallIfEq 0x402B, 71, _0986
+    CallIfEq 0x402B, 10, _09C2
+    GoTo _0570
+    End
+
+_0570:
+    ScrCmd_03E 0x800C
+    GoToIfEq 0x800C, 0, _05CE
+    GoToIfEq 0x800C, 1, _0761
+    End
+
+_0590:
+    GoToIfEq 0x8004, 1, _05AB
+    Call _100C
+    GoTo _081A
+    End
+
+_05AB:
+    Call _1036
+    GoTo _081A
+    End
+
+_05B9:
+    GoToIfEq 0x402A, 22, _05C8
+    Return
+
+_05C8:
+    ScrCmd_0EE 0x8000
+    Return
+
+_05CE:
+    GoToIfEq 0x8004, 1, _0631
+    CallIfEq 0x402A, 35, _09FE
+    CallIfEq 0x402A, 22, _0A40
+    CallIfEq 0x402A, 43, _0AF6
+    CallIfEq 0x402A, 22, _0B38
+    CallIfEq 0x402A, 71, _0BA4
+    CallIfEq 0x402A, 10, _0BE6
+    GoTo _0687
+    End
+
+_0631:
+    CallIfEq 0x402B, 35, _09FE
+    CallIfEq 0x402B, 23, _0A8E
+    CallIfEq 0x402B, 43, _0AF6
+    CallIfEq 0x402B, 22, _0B6E
+    CallIfEq 0x402B, 71, _0BA4
+    CallIfEq 0x402B, 10, _0BE6
+    GoTo _0687
+    End
+
+_0687:
+    CloseMessage
+    StartTrainerBattle 0x8005
+    CheckWonBattle 0x800C
+    GoToIfEq 0x800C, 0, _0822
+    GoTo _06A8
+    End
+
+_06A8:
+    GoToIfEq 0x8004, 1, _070B
+    CallIfEq 0x402A, 35, _0DFE
+    CallIfEq 0x402A, 22, _0E3E
+    CallIfEq 0x402A, 43, _0EE8
+    CallIfEq 0x402A, 22, _0F28
+    CallIfEq 0x402A, 71, _0F8C
+    CallIfEq 0x402A, 10, _0FCC
+    GoTo _081A
+    End
+
+_070B:
+    CallIfEq 0x402B, 35, _0DFE
+    CallIfEq 0x402B, 23, _0E86
+    CallIfEq 0x402B, 43, _0EE8
+    CallIfEq 0x402B, 22, _0F5A
+    CallIfEq 0x402B, 71, _0F8C
+    CallIfEq 0x402B, 10, _0FCC
+    GoTo _081A
+    End
+
+_0761:
+    GoToIfEq 0x8004, 1, _07C4
+    CallIfEq 0x402A, 35, _0C28
+    CallIfEq 0x402A, 22, _0C64
+    CallIfEq 0x402A, 43, _0CF6
+    CallIfEq 0x402A, 22, _0D32
+    CallIfEq 0x402A, 71, _0D86
+    CallIfEq 0x402A, 10, _0DC2
+    GoTo _081A
+    End
+
+_07C4:
+    CallIfEq 0x402B, 35, _0C28
+    CallIfEq 0x402B, 23, _0CA0
+    CallIfEq 0x402B, 43, _0CF6
+    CallIfEq 0x402B, 22, _0D5C
+    CallIfEq 0x402B, 71, _0D86
+    CallIfEq 0x402B, 10, _0DC2
+    GoTo _081A
+    End
+
+_081A:
+    WaitABXPadPress
+    CloseMessage
+    ReleaseAll
+    End
+
+_0822:
+    ScrCmd_0EB
+    ReleaseAll
+    End
+
+_0828:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0855
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _085A
+    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _085F
+    Return
+
+_0855:
+    Message 16
+    Return
+
+_085A:
+    Message 38
+    Return
+
+_085F:
+    Message 64
+    Return
+
+_0864:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0891
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0896
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _089B
+    Return
+
+_0891:
+    Message 0
+    Return
+
+_0896:
+    Message 30
+    Return
+
+_089B:
+    Message 68
+    Return
+
+_08A0:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _08E7
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _08EC
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _08F1
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _097C
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0981
+    Return
+
+_08E7:
+    Message 4
+    Return
+
+_08EC:
+    Message 34
+    Return
+
+_08F1:
+    Message 72
+    Return
+
+_08F6:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0923
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0928
+    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _092D
+    Return
+
+_0923:
+    Message 8
+    Return
+
+_0928:
+    Message 42
+    Return
+
+_092D:
+    Message 84
+    Return
+
+_0932:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0952
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0957
+    Return
+
+_0952:
+    Message 26
+    Return
+
+_0957:
+    Message 56
+    Return
+
+_095C:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _097C
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0981
+    Return
+
+_097C:
+    Message 21
+    Return
+
+_0981:
+    Message 51
+    Return
+
+_0986:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _09B3
+    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _09B8
+    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _09BD
+    Return
+
+_09B3:
+    Message 76
+    Return
+
+_09B8:
+    Message 80
+    Return
+
+_09BD:
+    Message 88
+    Return
+
+_09C2:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _09EF
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _09F4
+    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _09F9
+    Return
+
+_09EF:
+    Message 12
+    Return
+
+_09F4:
+    Message 46
+    Return
+
+_09F9:
+    Message 60
+    Return
+
+_09FE:
+    Call _1060
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0A31
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0A36
+    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _0A3B
+    Return
+
+_0A31:
+    Message 17
+    Return
+
+_0A36:
+    Message 39
+    Return
+
+_0A3B:
+    Message 65
+    Return
+
+_0A40:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0A6D
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0A78
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0A83
+    Return
+
+_0A6D:
+    Call _10C7
+    Message 1
+    Return
+
+_0A78:
+    Call _10C7
+    Message 31
+    Return
+
+_0A83:
+    Call _10C7
+    Message 69
+    Return
+
+_0A8E:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0AD5
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0AE0
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0AEB
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0B8E
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0B99
+    Return
+
+_0AD5:
+    Call _112E
+    Message 5
+    Return
+
+_0AE0:
+    Call _112E
+    Message 35
+    Return
+
+_0AEB:
+    Call _112E
+    Message 73
+    Return
+
+_0AF6:
+    Call _1195
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0B29
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0B2E
+    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _0B33
+    Return
+
+_0B29:
+    Message 9
+    Return
+
+_0B2E:
+    Message 43
+    Return
+
+_0B33:
+    Message 85
+    Return
+
+_0B38:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0B58
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0B63
+    Return
+
+_0B58:
+    Call _11FC
+    Message 27
+    Return
+
+_0B63:
+    Call _11FC
+    Message 57
+    Return
+
+_0B6E:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0B8E
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0B99
+    Return
+
+_0B8E:
+    Call _11FC
+    Message 22
+    Return
+
+_0B99:
+    Call _11FC
+    Message 52
+    Return
+
+_0BA4:
+    Call _1263
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _0BD7
+    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _0BDC
+    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0BE1
+    Return
+
+_0BD7:
+    Message 77
+    Return
+
+_0BDC:
+    Message 81
+    Return
+
+_0BE1:
+    Message 89
+    Return
+
+_0BE6:
+    Call _12CA
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _0C19
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0C1E
+    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _0C23
+    Return
+
+_0C19:
+    Message 13
+    Return
+
+_0C1E:
+    Message 47
+    Return
+
+_0C23:
+    Message 61
+    Return
+
+_0C28:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0C55
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0C5A
+    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _0C5F
+    Return
+
+_0C55:
+    Message 18
+    Return
+
+_0C5A:
+    Message 40
+    Return
+
+_0C5F:
+    Message 66
+    Return
+
+_0C64:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0C91
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0C96
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0C9B
+    Return
+
+_0C91:
+    Message 2
+    Return
+
+_0C96:
+    Message 32
+    Return
+
+_0C9B:
+    Message 70
+    Return
+
+_0CA0:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0CE7
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0CEC
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0CF1
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0D7C
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0D81
+    Return
+
+_0CE7:
+    Message 6
+    Return
+
+_0CEC:
+    Message 36
+    Return
+
+_0CF1:
+    Message 74
+    Return
+
+_0CF6:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0D23
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0D28
+    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _0D2D
+    Return
+
+_0D23:
+    Message 10
+    Return
+
+_0D28:
+    Message 44
+    Return
+
+_0D2D:
+    Message 86
+    Return
+
+_0D32:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0D52
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0D57
+    Return
+
+_0D52:
+    Message 28
+    Return
+
+_0D57:
+    Message 58
+    Return
+
+_0D5C:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0D7C
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0D81
+    Return
+
+_0D7C:
+    Message 23
+    Return
+
+_0D81:
+    Message 53
+    Return
+
+_0D86:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _0DB3
+    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _0DB8
+    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0DBD
+    Return
+
+_0DB3:
+    Message 78
+    Return
+
+_0DB8:
+    Message 82
+    Return
+
+_0DBD:
+    Message 90
+    Return
+
+_0DC2:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _0DEF
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0DF4
+    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _0DF9
+    Return
+
+_0DEF:
+    Message 14
+    Return
+
+_0DF4:
+    Message 48
+    Return
+
+_0DF9:
+    Message 62
+    Return
+
+_0DFE:
+    SetFlag 0xABC
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0E2F
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0E34
+    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _0E39
+    Return
+
+_0E2F:
+    Message 19
+    Return
+
+_0E34:
+    Message 41
+    Return
+
+_0E39:
+    Message 67
+    Return
+
+_0E3E:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0E6B
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0E74
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0E7D
+    Return
+
+_0E6B:
+    SetFlag 0xABD
+    Message 3
+    Return
+
+_0E74:
+    SetFlag 0xABD
+    Message 33
+    Return
+
+_0E7D:
+    SetFlag 0xABD
+    Message 71
+    Return
+
+_0E86:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0ECD
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0ED6
+    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0EDF
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0F7A
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0F83
+    Return
+
+_0ECD:
+    SetFlag 0xABE
+    Message 7
+    Return
+
+_0ED6:
+    SetFlag 0xABE
+    Message 37
+    Return
+
+_0EDF:
+    SetFlag 0xABE
+    Message 75
+    Return
+
+_0EE8:
+    SetFlag 0xABF
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0F19
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0F1E
+    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _0F23
+    Return
+
+_0F19:
+    Message 11
+    Return
+
+_0F1E:
+    Message 45
+    Return
+
+_0F23:
+    Message 87
+    Return
+
+_0F28:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0F48
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0F51
+    Return
+
+_0F48:
+    SetFlag 0xAC0
+    Message 29
+    Return
+
+_0F51:
+    SetFlag 0xAC0
+    Message 59
+    Return
+
+_0F5A:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0F7A
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0F83
+    Return
+
+_0F7A:
+    SetFlag 0xAC0
+    Message 24
+    Return
+
+_0F83:
+    SetFlag 0xAC0
+    Message 54
+    Return
+
+_0F8C:
+    SetFlag 0xAC1
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _0FBD
+    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _0FC2
+    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0FC7
+    Return
+
+_0FBD:
+    Message 79
+    Return
+
+_0FC2:
+    Message 83
+    Return
+
+_0FC7:
+    Message 91
+    Return
+
+_0FCC:
+    SetFlag 0xAC2
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _0FFD
+    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _1002
+    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _1007
+    Return
+
+_0FFD:
+    Message 15
+    Return
+
+_1002:
+    Message 49
+    Return
+
+_1007:
+    Message 63
+    Return
+
+_100C:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _102C
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _1031
+    Return
+
+_102C:
+    Message 25
+    Return
+
+_1031:
+    Message 55
+    Return
+
+_1036:
+    GetCurrentMapID 0x4001
+    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _1056
+    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _105B
+    Return
+
+_1056:
+    Message 20
+    Return
+
+_105B:
+    Message 50
+    Return
+
+_1060:
+    SetVar 0x8005, 0x173
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _109F
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _10A7
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _10AF
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _10B7
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _10BF
+    Return
+
+_109F:
+    SetVar 0x8005, TRAINER_IDOL_GRACE
+    Return
+
+_10A7:
+    SetVar 0x8005, TRAINER_IDOL_GRACE_REMATCH_1
+    Return
+
+_10AF:
+    SetVar 0x8005, TRAINER_IDOL_GRACE_REMATCH_2
+    Return
+
+_10B7:
+    SetVar 0x8005, TRAINER_IDOL_GRACE_REMATCH_3
+    Return
+
+_10BF:
+    SetVar 0x8005, TRAINER_IDOL_GRACE_REMATCH_4
+    Return
+
+_10C7:
+    SetVar 0x8005, 0x172
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _1106
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _110E
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _1116
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _111E
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _1126
+    Return
+
+_1106:
+    SetVar 0x8005, TRAINER_REPORTERS_KINSEY
+    Return
+
+_110E:
+    SetVar 0x8005, TRAINER_REPORTERS_KINSEY_REMATCH_1
+    Return
+
+_1116:
+    SetVar 0x8005, TRAINER_REPORTERS_KINSEY_REMATCH_2
+    Return
+
+_111E:
+    SetVar 0x8005, TRAINER_REPORTERS_KINSEY_REMATCH_3
+    Return
+
+_1126:
+    SetVar 0x8005, TRAINER_REPORTERS_KINSEY_REMATCH_4
+    Return
+
+_112E:
+    SetVar 0x8005, 0x171
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _116D
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _1175
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _117D
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _1185
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _118D
+    Return
+
+_116D:
+    SetVar 0x8005, TRAINER_CAMERAMAN_TEVIN
+    Return
+
+_1175:
+    SetVar 0x8005, TRAINER_CAMERAMAN_TEVIN_REMATCH_1
+    Return
+
+_117D:
+    SetVar 0x8005, TRAINER_CAMERAMAN_TEVIN_REMATCH_2
+    Return
+
+_1185:
+    SetVar 0x8005, TRAINER_CAMERAMAN_TEVIN_REMATCH_3
+    Return
+
+_118D:
+    SetVar 0x8005, TRAINER_CAMERAMAN_TEVIN_REMATCH_4
+    Return
+
+_1195:
+    SetVar 0x8005, 0x1CC
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _11D4
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _11DC
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _11E4
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _11EC
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _11F4
+    Return
+
+_11D4:
+    SetVar 0x8005, TRAINER_CLOWN_LEE
+    Return
+
+_11DC:
+    SetVar 0x8005, TRAINER_CLOWN_LEE_REMATCH_1
+    Return
+
+_11E4:
+    SetVar 0x8005, TRAINER_CLOWN_LEE_REMATCH_2
+    Return
+
+_11EC:
+    SetVar 0x8005, TRAINER_CLOWN_LEE_REMATCH_3
+    Return
+
+_11F4:
+    SetVar 0x8005, TRAINER_CLOWN_LEE_REMATCH_4
+    Return
+
+_11FC:
+    SetVar 0x8005, 0x170
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _123B
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _1243
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _124B
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _1253
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _125B
+    Return
+
+_123B:
+    SetVar 0x8005, TRAINER_INTERVIEWERS_ROXY_AND_OLI
+    Return
+
+_1243:
+    SetVar 0x8005, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_1
+    Return
+
+_124B:
+    SetVar 0x8005, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_2
+    Return
+
+_1253:
+    SetVar 0x8005, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_3
+    Return
+
+_125B:
+    SetVar 0x8005, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_4
+    Return
+
+_1263:
+    SetVar 0x8005, 0x1D1
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _12A2
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _12AA
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _12B2
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _12BA
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _12C2
+    Return
+
+_12A2:
+    SetVar 0x8005, TRAINER_POKE_KID_ARIEL
+    Return
+
+_12AA:
+    SetVar 0x8005, TRAINER_POKE_KID_ARIEL_REMATCH_1
+    Return
+
+_12B2:
+    SetVar 0x8005, TRAINER_POKE_KID_ARIEL_REMATCH_2
+    Return
+
+_12BA:
+    SetVar 0x8005, TRAINER_POKE_KID_ARIEL_REMATCH_3
+    Return
+
+_12C2:
+    SetVar 0x8005, TRAINER_POKE_KID_ARIEL_REMATCH_4
+    Return
+
+_12CA:
+    SetVar 0x8005, 0x1AF
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _1309
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _1311
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _1319
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _1321
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _1329
+    Return
+
+_1309:
+    SetVar 0x8005, TRAINER_GUITARIST_ARTURO
+    Return
+
+_1311:
+    SetVar 0x8005, TRAINER_GUITARIST_ARTURO_REMATCH_1
+    Return
+
+_1319:
+    SetVar 0x8005, TRAINER_GUITARIST_ARTURO_REMATCH_2
+    Return
+
+_1321:
+    SetVar 0x8005, TRAINER_GUITARIST_ARTURO_REMATCH_3
+    Return
+
+_1329:
+    SetVar 0x8005, TRAINER_GUITARIST_ARTURO_REMATCH_4
+    Return
+
+_1331:
+    GoToIfSet 0xABC, _13F7
+    Return
+
+_133E:
+    GetCurrentMapID 0x4001
+    GoToIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _136B
+    GoToIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _136B
+    GoToIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _136B
+    Return
+
+_136B:
+    GoToIfSet 0xABD, _13F7
+    Return
+
+_1378:
+    GetCurrentMapID 0x4001
+    GoToIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _13B0
+    GoToIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _13B0
+    GoToIfSet 0xABE, _13F7
+    Return
+
+_13A3:
+    GoToIfSet 0xABF, _13F7
+    Return
+
+_13B0:
+    GetCurrentMapID 0x4001
+    GoToIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _13D0
+    GoToIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _13D0
+    Return
+
+_13D0:
+    GoToIfSet 0xAC0, _13F7
+    Return
+
+_13DD:
+    GoToIfSet 0xAC1, _13F7
+    Return
+
+_13EA:
+    GoToIfSet 0xAC2, _13F7
+    Return
+
+_13F7:
+    SetVar 0x8006, 1
+    Return
+
+    .byte 0

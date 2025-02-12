@@ -43,7 +43,7 @@ _008C:
     WaitMovement
     Message 6
     CloseMessage
-    SetFlag 0x982
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_4
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 1, _010A
     CallIfEq 0x40F4, 0, _0102

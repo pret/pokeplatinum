@@ -580,8 +580,8 @@ static BOOL ScrCmd_1E7(ScriptContext *ctx);
 static BOOL ScrCmd_334(ScriptContext *ctx);
 static BOOL ScrCmd_335(ScriptContext *ctx);
 static BOOL ScrCmd_Dummy1F9(ScriptContext *ctx);
-static BOOL ScrCmd_200(ScriptContext *ctx);
-static BOOL ScrCmd_201(ScriptContext *ctx);
+static BOOL ScrCmd_GetPreviousMapID(ScriptContext *ctx);
+static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx);
 static BOOL ScrCmd_202(ScriptContext *ctx);
 static BOOL ScrCmd_203(ScriptContext *ctx);
 static BOOL ScrCmd_204(ScriptContext *ctx);
@@ -610,7 +610,7 @@ static BOOL ScrCmd_22B(ScriptContext *ctx);
 static BOOL ScrCmd_22C(ScriptContext *ctx);
 static BOOL ScrCmd_22D(ScriptContext *ctx);
 static BOOL ScrCmd_233(ScriptContext *ctx);
-static BOOL ScrCmd_234(ScriptContext *ctx);
+static BOOL ScrCmd_GetWeekDay(ScriptContext *ctx);
 static BOOL ScrCmd_239(ScriptContext *ctx);
 static BOOL ScrCmd_23A(ScriptContext *ctx);
 static BOOL ScrCmd_23B(ScriptContext *ctx);
@@ -1275,8 +1275,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1FD,
     ScrCmd_1FE,
     ScrCmd_1FF,
-    ScrCmd_200,
-    ScrCmd_201,
+    ScrCmd_GetPreviousMapID,
+    ScrCmd_GetCurrentMapID,
     ScrCmd_202,
     ScrCmd_203,
     ScrCmd_204,
@@ -1327,7 +1327,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_231,
     ScrCmd_232,
     ScrCmd_233,
-    ScrCmd_234,
+    ScrCmd_GetWeekDay,
     ScrCmd_235,
     ScrCmd_236,
     ScrCmd_237,
@@ -4627,22 +4627,22 @@ static BOOL ScrCmd_204(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_200(ScriptContext *ctx)
+static BOOL ScrCmd_GetPreviousMapID(ScriptContext *ctx)
 {
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
     Location *location = FieldOverworldState_GetPrevLocation(fieldState);
     u16 *mapId = ScriptContext_GetVarPointer(ctx);
 
     *mapId = location->mapId;
-    return 0;
+    return FALSE;
 }
 
-static BOOL ScrCmd_201(ScriptContext *ctx)
+static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *mapID = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = ctx->fieldSystem->location->mapId;
-    return 0;
+    *mapID = ctx->fieldSystem->location->mapId;
+    return FALSE;
 }
 
 static BOOL ScrCmd_0BF(ScriptContext *ctx)
@@ -6611,15 +6611,15 @@ static BOOL ScrCmd_233(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_234(ScriptContext *ctx)
+static BOOL ScrCmd_GetWeekDay(ScriptContext *ctx)
 {
-    RTCDate v0;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    RTCDate date;
+    u16 *weekDay = ScriptContext_GetVarPointer(ctx);
 
-    GetCurrentDate(&v0);
-    *v1 = v0.week;
+    GetCurrentDate(&date);
+    *weekDay = date.week;
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_239(ScriptContext *ctx)

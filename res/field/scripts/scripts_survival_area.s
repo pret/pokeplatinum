@@ -133,9 +133,9 @@ _0141:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_234 0x4000
-    GoToIfEq 0x4000, 0, _01BE
-    GoToIfEq 0x4000, 6, _01BE
+    GetWeekDay 0x4000
+    GoToIfEq 0x4000, SUNDAY, _01BE
+    GoToIfEq 0x4000, SATURDAY, _01BE
     BufferRivalName 0
     BufferPlayerName 1
     SetVar 0x8008, 0x40C2

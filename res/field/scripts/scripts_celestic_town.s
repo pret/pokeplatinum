@@ -18,7 +18,7 @@
     .short 0xFD13
 
 _0032:
-    SetFlag 0x980
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_2
     End
 
 _0038:

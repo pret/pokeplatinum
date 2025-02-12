@@ -38,7 +38,7 @@ _0042:
 
 _008E:
     Message 2
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CallIfEq 0x8004, 203, _014A
     WaitABXPadPress
     CloseMessage
@@ -55,7 +55,7 @@ _00AE:
     ScrCmd_29E 0, 0x8005
     WaitTime 7, 0x800C
     RemoveObject 0x800D
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_CUT, 0x8004, 0, 0, 0
 _00E8:
     WaitTime 1, 0x800C
@@ -72,7 +72,7 @@ _0103:
     ScrCmd_29E 0, 0x8005
     WaitTime 7, 0x800C
     RemoveObject 0x800D
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_CUT, 0x8004, 0, 0, 0
 _0133:
     WaitTime 1, 0x800C
@@ -156,7 +156,7 @@ _0284:
     ScrCmd_29E 1, 0x8005
     WaitTime 10, 0x800C
     RemoveObject 0x800D
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, 0x8004, 0, 0, 0
 _02B2:
     WaitTime 1, 0x800C
@@ -173,7 +173,7 @@ _02CD:
     ScrCmd_29E 1, 0x8005
     WaitTime 10, 0x800C
     RemoveObject 0x800D
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_SMASH, 0x8004, 0, 0, 0
 _02FD:
     WaitTime 1, 0x800C
@@ -216,7 +216,7 @@ _0381:
     Message 11
     WaitABXPadPress
     CloseMessage
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, 0x8004, 0, 0, 0
     GoTo _066D
     End
@@ -240,7 +240,7 @@ _03CC:
     Message 11
     WaitABXPadPress
     CloseMessage
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_STRENGTH, 0x8004, 0, 0, 0
     GoTo _0675
 
@@ -281,7 +281,7 @@ _0487:
     Message 19
     CloseMessage
     ScrCmd_0BF 0x8004
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_CLIMB, 0x8004, 0, 0, 0
     GoTo _0671
     End
@@ -292,7 +292,7 @@ _04B9:
     Message 19
     CloseMessage
     ScrCmd_0BF 0x8000
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_ROCK_CLIMB, 0x8004, 0, 0, 0
     ReleaseAll
     End
@@ -322,7 +322,7 @@ _051F:
     Message 13
     CloseMessage
     ScrCmd_0C0 0x8004
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_SURF, 0x8004, 0, 0, 0
     GoTo _0671
     End
@@ -335,7 +335,7 @@ _0551:
     ScrCmd_063 0xFF
     ScrCmd_0C0 0x8000
     ScrCmd_062 0xFF
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_SURF, 0x8004, 0, 0, 0
     ReleaseAll
     End
@@ -366,9 +366,9 @@ _05C3:
     Message 16
     CloseMessage
     ScrCmd_0C5 0x8004
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_DEFOG, 0x8004, 0, 0, 0
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CallIfEq 0x8004, 0x169, _0606
     GoTo _0671
     End
@@ -386,9 +386,9 @@ _060C:
     Defog 1
     PlayFanfare SEQ_SE_DP_FBRADE
     ScrCmd_0C4
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_DEFOG, 0x8004, 0, 0, 0
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CallIfEq 0x8004, 0x169, _0606
     GoTo _0675
 
@@ -443,7 +443,7 @@ _06D2:
     Message 23
     CloseMessage
     ScrCmd_0C1 0x8004
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_WATERFALL, 0x8004, 0, 0, 0
     GoTo _0671
     End
@@ -456,7 +456,7 @@ _0704:
     ScrCmd_063 0xFF
     ScrCmd_0C1 0x8000
     ScrCmd_062 0xFF
-    ScrCmd_201 0x8004
+    GetCurrentMapID 0x8004
     CreateJournalEvent LOCATION_EVENT_USED_WATERFALL, 0x8004, 0, 0, 0
     ReleaseAll
     End

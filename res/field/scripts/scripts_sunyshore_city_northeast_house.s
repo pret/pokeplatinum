@@ -38,13 +38,13 @@ _006A:
     GoTo _012B
 
 _0070:
-    ScrCmd_234 0x800C
-    GoToIfEq 0x800C, 0, _00C8
-    GoToIfEq 0x800C, 1, _00D2
-    GoToIfEq 0x800C, 2, _00DC
-    GoToIfEq 0x800C, 3, _00E6
-    GoToIfEq 0x800C, 4, _00F0
-    GoToIfEq 0x800C, 5, _00FA
+    GetWeekDay 0x800C
+    GoToIfEq 0x800C, SUNDAY, _00C8
+    GoToIfEq 0x800C, MONDAY, _00D2
+    GoToIfEq 0x800C, TUESDAY, _00DC
+    GoToIfEq 0x800C, WEDNESDAY, _00E6
+    GoToIfEq 0x800C, THURSDAY, _00F0
+    GoToIfEq 0x800C, FRIDAY, _00FA
     GoTo _0104
 
 _00C8:
@@ -101,13 +101,13 @@ _0136:
     End
 
 _0146:
-    ScrCmd_234 0x800C
-    GoToIfEq 0x800C, 0, _019E
-    GoToIfEq 0x800C, 1, _01F2
-    GoToIfEq 0x800C, 2, _0246
-    GoToIfEq 0x800C, 3, _029A
-    GoToIfEq 0x800C, 4, _02EE
-    GoToIfEq 0x800C, 5, _0342
+    GetWeekDay 0x800C
+    GoToIfEq 0x800C, SUNDAY, _019E
+    GoToIfEq 0x800C, MONDAY, _01F2
+    GoToIfEq 0x800C, TUESDAY, _0246
+    GoToIfEq 0x800C, WEDNESDAY, _029A
+    GoToIfEq 0x800C, THURSDAY, _02EE
+    GoToIfEq 0x800C, FRIDAY, _0342
     GoTo _0396
 
 _019E:

@@ -143,7 +143,7 @@ _0174:
     Return
 
 _017A:
-    SetFlag 0x983
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_5
     Return
 
     .byte 12

@@ -202,7 +202,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0500, TEXT_BANK_UNK_0016);
         retScriptID -= 10450;
     } else if (retScriptID >= 10400) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0400, TEXT_BANK_UNK_0203);
+        ScriptContext_Load(fieldSystem, ctx, scripts_pokemon_center_daily_trainers, TEXT_BANK_UNK_0203);
         retScriptID -= 10400;
     } else if (retScriptID >= 10300) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_1051, TEXT_BANK_UNK_0552);

@@ -11,7 +11,9 @@
 #include "generated/sdat.h"
 #include "generated/species.h"
 #include "generated/trainers.h"
+#include "generated/weekdays.h"
 #include "constants/honey_tree.h"
+#include "constants/savedata/vars_flags.h"
 
 #include "macros/movement.inc"
 
@@ -2768,12 +2770,12 @@
     .byte \arg3
     .endm
 
-    .macro ScrCmd_200 arg0
+    .macro GetPreviousMapID arg0
     .short 512
     .short \arg0
     .endm
 
-    .macro ScrCmd_201 arg0
+    .macro GetCurrentMapID arg0
     .short 513
     .short \arg0
     .endm
@@ -3041,9 +3043,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_234 arg0
+    .macro GetWeekDay destVarID
     .short 564
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_235 arg0, arg1=0, arg2=0, arg3=0
