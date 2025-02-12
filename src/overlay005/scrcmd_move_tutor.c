@@ -510,12 +510,12 @@ static void MoveTutorManager_InitMenuTemplate(MoveTutorManager *moveTutorManager
     moveTutorManager->menuTemplate.pagerMode = PAGER_MODE_LEFT_RIGHT_PAD;
     moveTutorManager->menuTemplate.fontID = FONT_SYSTEM;
     moveTutorManager->menuTemplate.cursorType = 0;
-    moveTutorManager->menuTemplate.tmp = (void *)moveTutorManager;
+    moveTutorManager->menuTemplate.parent = (void *)moveTutorManager;
 }
 
 static void MoveSelectionMenuCursorCallback(ListMenu *listMenu, u32 index, u8 onInit)
 {
-    MoveTutorManager *moveTutorManager = (MoveTutorManager *)ListMenu_GetAttribute(listMenu, LIST_MENU_TMP);
+    MoveTutorManager *moveTutorManager = (MoveTutorManager *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
 }
 
 static void SysTaskCallback(SysTask *sysTask, void *_moveTutorManager)

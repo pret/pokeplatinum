@@ -1072,7 +1072,7 @@ static void ov84_0223C224(UnkStruct_ov84_0223B5A0 *param0, u16 param1, u16 param
     v0.choices = param0->unk_160;
     v0.window = &param0->unk_04[0];
     v0.count = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_09;
-    v0.tmp = (void *)param0;
+    v0.parent = (void *)param0;
 
     if ((param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 3) || (param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_08 == 4)) {
         v0.textXOffset = (32 + 3);

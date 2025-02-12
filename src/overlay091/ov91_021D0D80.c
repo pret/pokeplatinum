@@ -926,7 +926,7 @@ static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0)
     v1.choices = param0->unk_108;
     v1.window = &param0->unk_08[13];
     v1.count = param0->unk_184;
-    v1.tmp = (void *)param0;
+    v1.parent = (void *)param0;
 
     param0->unk_104 = ListMenu_New(&v1, param0->unk_00->unk_12, param0->unk_00->unk_10, 67);
 

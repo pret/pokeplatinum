@@ -385,7 +385,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         v0.cursorCallback = param3;
     }
 
-    v0.tmp = param0;
+    v0.parent = param0;
     ov23_02251238(param0, v1, v0.count);
     param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
 }
@@ -431,7 +431,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         v0.cursorCallback = param3;
     }
 
-    v0.tmp = param0;
+    v0.parent = param0;
     ov23_02251238(param0, v1, v0.count);
     param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
 }
