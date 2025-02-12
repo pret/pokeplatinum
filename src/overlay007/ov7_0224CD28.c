@@ -642,7 +642,7 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
     v2.choices = param0->unk_7C;
     v2.window = &param0->unk_08[0];
     v2.count = param0->unk_294 + 1;
-    v2.tmp = (void *)param0;
+    v2.parent = (void *)param0;
 
     param0->unk_78 = ListMenu_New(&v2, 0, 0, 11);
 }

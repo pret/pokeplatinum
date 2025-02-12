@@ -43,7 +43,7 @@ enum ListMenuAttribute {
     LIST_MENU_FONT_ID,
     LIST_MENU_CURSOR_TYPE,
     LIST_MENU_WINDOW,
-    LIST_MENU_TMP,
+    LIST_MENU_PARENT,
 };
 
 typedef struct ListMenu ListMenu;
@@ -70,7 +70,7 @@ typedef struct ListMenuTemplate {
     u16 pagerMode : 2;
     u16 fontID : 6;
     u16 cursorType : 1;
-    void *tmp;
+    void *parent;
 } ListMenuTemplate;
 
 struct ListMenu {

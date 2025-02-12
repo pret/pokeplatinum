@@ -694,7 +694,7 @@ static void sub_0206FDC0(UnkStruct_0206F7F8 *param0, u16 param1, u16 param2)
 
     param0->unk_A0.window = &(param0->unk_D4);
     param0->unk_A0.choices = param0->unk_C4;
-    param0->unk_A0.tmp = (void *)param0;
+    param0->unk_A0.parent = (void *)param0;
     param0->unk_A0.count = v1;
     param0->unk_A0.yOffset = 0;
     param0->unk_A0.cursorCallback = sub_0206FF60;

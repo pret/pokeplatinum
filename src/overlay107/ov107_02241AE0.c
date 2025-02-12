@@ -1813,7 +1813,7 @@ static u8 ov107_022437CC (UnkStruct_ov107_02241D6C * param0, Window * param1, in
     Window_FillTilemap(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
-    
+
     switch (param10) {
     case 1:
         param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
@@ -1839,7 +1839,7 @@ static u8 ov107_02243890 (UnkStruct_ov107_02241D6C * param0, Window * param1, in
     u8 v0;
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
-    
+
     switch (param10) {
     case 1:
         param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
@@ -2479,7 +2479,7 @@ static void ov107_02244240 (UnkStruct_ov107_02241D6C * param0, u8 param1)
     param0->unk_1A0 = Unk_ov107_02249EE4;
     param0->unk_1A0.choices = param0->unk_19C;
     param0->unk_1A0.window = &param0->unk_50[5];
-    param0->unk_1A0.tmp = param0;
+    param0->unk_1A0.parent = param0;
     param0->unk_1A0.cursorCallback = ov107_0224440C;
     param0->unk_1A0.printCallback = ov107_02244560;
     param0->unk_1A0.count = (v1 + 1);
@@ -2573,7 +2573,7 @@ static void ov107_022445C4 (UnkStruct_ov107_02241D6C * param0)
     param0->unk_1A0 = Unk_ov107_02249EE4;
     param0->unk_1A0.choices = param0->unk_19C;
     param0->unk_1A0.window = &param0->unk_50[10];
-    param0->unk_1A0.tmp = param0;
+    param0->unk_1A0.parent = param0;
     param0->unk_1A0.cursorCallback = ov107_02244690;
     param0->unk_1A0.printCallback = ov107_02244708;
     param0->unk_1A0.count = (NELEMS(Unk_ov107_02249FF0));
@@ -2681,7 +2681,7 @@ static void ov107_02244780 (UnkStruct_ov107_02241D6C * param0)
     param0->unk_1A0 = Unk_ov107_02249EE4;
     param0->unk_1A0.choices = param0->unk_19C;
     param0->unk_1A0.window = &param0->unk_50[11];
-    param0->unk_1A0.tmp = param0;
+    param0->unk_1A0.parent = param0;
     param0->unk_1A0.cursorCallback = ov107_0224486C;
     param0->unk_1A0.printCallback = ov107_022448E8;
     param0->unk_1A0.count = (NELEMS(Unk_ov107_02249F54));
@@ -2797,13 +2797,13 @@ static void ov107_02244944 (UnkStruct_ov107_02241D6C * param0)
     param0->unk_1A0 = Unk_ov107_02249EE4;
     param0->unk_1A0.choices = param0->unk_19C;
     param0->unk_1A0.window = &param0->unk_50[9];
-    param0->unk_1A0.tmp = param0;
+    param0->unk_1A0.parent = param0;
     param0->unk_1A0.cursorCallback = ov107_02244A1C;
     param0->unk_1A0.printCallback = NULL;
     param0->unk_1A0.count = 5;
     param0->unk_1A0.maxDisplay = 5;
     param0->unk_1A0.textColorBg = 15;
-    param0->unk_1A0.tmp = param0;
+    param0->unk_1A0.parent = param0;
     param0->unk_198 = ListMenu_New(&param0->unk_1A0, param0->unk_18, param0->unk_1A, 100);
 
     ov107_02245650(param0, &param0->unk_50[9]);

@@ -755,7 +755,7 @@ static void ov23_0224FBFC(UnkStruct_ov23_02250CD4 *param0, int param1)
     v0.maxDisplay = v1;
     v0.choices = param0->unk_44;
     v0.window = &param0->unk_20;
-    v0.tmp = param0;
+    v0.parent = param0;
 
     param0->unk_50 = ListMenu_New(&v0, 0, 0, 4);
 }
@@ -870,7 +870,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     v2.window = &param0->unk_10;
     v2.cursorCallback = param0->unk_60;
     v2.printCallback = param0->unk_64;
-    v2.tmp = param0;
+    v2.parent = param0;
 
     ov23_02251238(param0, v4, v2.count);
 
@@ -1064,7 +1064,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     v3.choices = param0->unk_40;
     v3.window = &param0->unk_10;
     v3.cursorCallback = param0->unk_60;
-    v3.tmp = param0;
+    v3.parent = param0;
 
     ov23_02251238(param0, v5, v3.count);
 
@@ -1236,7 +1236,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     v2.choices = param0->unk_40;
     v2.window = &param0->unk_10;
     v2.cursorCallback = param0->unk_60;
-    v2.tmp = param0;
+    v2.parent = param0;
 
     ov23_02251238(param0, v4, v2.count);
 
@@ -1638,7 +1638,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
     v2.choices = param0->unk_40;
     v2.window = &param0->unk_10;
     v2.cursorCallback = param0->unk_60;
-    v2.tmp = param0;
+    v2.parent = param0;
 
     ov23_02251238(param0, v4, v2.count);
 
