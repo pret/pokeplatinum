@@ -1,0 +1,22 @@
+{
+    "species": "SPECIES_HAUNTER",
+    "hpIV": 20,
+    "atkIV": 25,
+    "defIV": 15,
+    "speedIV": 25,
+    "spAtkIV": 15,
+    "spDefIV": 15,
+    "unused1": 26,
+    "otID": 19248,
+    "cool": 0,
+    "beauty": 0,
+    "cute": 0,
+    "smart": 0,
+    "tough": 0,
+    "personality": 136,
+    "heldItem": "ITEM_EVERSTONE",
+    "otGender": "GENDER_FEMALE",
+    "unused2": 0,
+    "language": 2,
+    "requestedSpecies": "SPECIES_MEDICHAM"
+}
