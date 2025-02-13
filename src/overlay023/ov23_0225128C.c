@@ -45,7 +45,7 @@
 #include "system.h"
 #include "system_flags.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"
@@ -726,7 +726,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         ov23_0224FB7C(v0);
         ov23_02242FF8();
         ov23_022412F0();
-        sub_0200AAE0(1, -6, 0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, -6, 0, GX_BLEND_PLANEMASK_BG0, 1);
         ov23_02253F40(ov23_022421BC(), 48, 0, NULL);
         v0->unk_2AA = 16;
         break;
@@ -738,7 +738,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         ov23_0224FB7C(v0);
         ov23_02242FD0();
         ov23_02241E6C();
-        sub_0200AAE0(1, -6, 0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, -6, 0, GX_BLEND_PLANEMASK_BG0, 1);
         ov23_02253F40(ov23_022421BC(), 49, 0, NULL);
         v0->unk_2AA = 16;
         break;
@@ -750,7 +750,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         ov23_0224FB7C(v0);
         ov23_02242FE4();
         ov23_02245728();
-        sub_0200AAE0(1, -6, 0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, -6, 0, GX_BLEND_PLANEMASK_BG0, 1);
         ov23_02253F40(ov23_022421BC(), 50, 0, NULL);
         v0->unk_2AA = 16;
         break;
@@ -762,7 +762,7 @@ static void ov23_02251C04(SysTask *param0, void *param1)
         if (ov23_02254238(ov23_022421BC()) == 0) {
             if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 if (!sub_02033DFC()) {
-                    sub_0200AAE0(1, 0, -6, GX_BLEND_PLANEMASK_BG0, 1);
+                    BrightnessController_StartTransition(1, 0, -6, GX_BLEND_PLANEMASK_BG0, 1);
                 }
 
                 ov23_02254044(ov23_022421BC());

@@ -31,7 +31,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_020041CC.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0202419C.h"
@@ -932,7 +932,7 @@ static int ov77_021D2D08(OverlayManager *param0, int *param1)
 
     v1 = 76;
 
-    sub_0200AB84();
+    BrightnessController_ResetAllControllers();
     sub_0200F344(0, 0x7fff);
     sub_0200F344(1, 0x7fff);
     SetVBlankCallback(NULL, NULL);
@@ -1358,7 +1358,7 @@ static void ov77_021D34A8(UnkStruct_ov77_021D2E9C *param0)
     NNS_G3dGlbPolygonAttr(13, GX_POLYGONMODE_MODULATE, GX_CULL_BACK, 0, 31, GX_POLYGON_ATTR_MISC_FOG);
 
     SetVBlankCallback(ov77_021D2B38, (void *)param0);
-    sub_0200AB4C(-16, GX_BLEND_PLANEMASK_BG3, 1);
+    BrightnessController_SetScreenBrightness(-16, GX_BLEND_PLANEMASK_BG3, 1);
 
     param0->unk_34.unk_02 = 1;
 }
@@ -1854,12 +1854,12 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
         if (param2 >= 640) {
             Bg_ToggleLayer(3, 1);
-            sub_0200AAE0(8, 0, -16, GX_BLEND_PLANEMASK_BG3, 1);
+            BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG3, 1);
             (*v0)++;
         }
         break;
     case 1:
-        if ((sub_0200AC1C(1) == 1) && (param2 == 700)) {
+        if ((BrightnessController_IsTransitionComplete(1) == 1) && (param2 == 700)) {
             Bg_ToggleLayer(0, 1);
             ov77_021D6CD0(param1->unk_1C, 9);
             ov77_021D6CD0(param1->unk_1C, 10);

@@ -70,7 +70,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_0201E3D8.h"
@@ -1000,11 +1000,11 @@ static void ov22_02256C70(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        sub_0200AAE0(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
         v0->unk_0C++;
         break;
     case 3:
-        v1 = sub_0200AC1C(1);
+        v1 = BrightnessController_IsTransitionComplete(1);
 
         if (v1) {
             v0->unk_0C++;
@@ -1032,11 +1032,11 @@ static void ov22_02256C70(SysTask *param0, void *param1)
         v0->unk_0C++;
         break;
     case 7:
-        sub_0200AAE0(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
         v0->unk_0C++;
         break;
     case 8:
-        v1 = sub_0200AC1C(1);
+        v1 = BrightnessController_IsTransitionComplete(1);
 
         if (v1) {
             v0->unk_0C++;
@@ -1072,11 +1072,11 @@ static void ov22_02256DE0(SysTask *param0, void *param1)
 
     switch (v0->unk_0C) {
     case 0:
-        sub_0200AAE0(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
         v0->unk_0C++;
         break;
     case 1:
-        v1 = sub_0200AC1C(1);
+        v1 = BrightnessController_IsTransitionComplete(1);
 
         if (v1) {
             v0->unk_0C++;
@@ -1106,11 +1106,11 @@ static void ov22_02256DE0(SysTask *param0, void *param1)
         }
         break;
     case 5:
-        sub_0200AAE0(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
         v0->unk_0C++;
         break;
     case 6:
-        v1 = sub_0200AC1C(1);
+        v1 = BrightnessController_IsTransitionComplete(1);
 
         if (v1) {
             v0->unk_0C++;

@@ -35,7 +35,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02024220.h"
@@ -428,7 +428,7 @@ void ov17_0223F744(UnkStruct_ov17_0223F744 *param0)
 
 BOOL ov17_0223F760(void)
 {
-    if (sub_0200AC1C(1) == 1) {
+    if (BrightnessController_IsTransitionComplete(1) == 1) {
         return 1;
     }
 
@@ -439,14 +439,14 @@ static void ov17_0223F774(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_0223F744 *v0 = param1;
 
-    if (sub_0200AC1C(1) == 0) {
+    if (BrightnessController_IsTransitionComplete(1) == 0) {
         return;
     }
 
     v0->unk_08++;
 
     if (v0->unk_08 > v0->unk_0C[v0->unk_11]) {
-        sub_0200AAE0(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+        BrightnessController_StartTransition(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
         Sound_PlayEffect(1528);
 
         v0->unk_08 = 0;

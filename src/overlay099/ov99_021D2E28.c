@@ -14,7 +14,7 @@
 #include "bg_window.h"
 #include "math.h"
 #include "palette.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 #include "unk_0200C6E4.h"
 
 typedef struct {
@@ -104,17 +104,17 @@ BOOL ov99_021D2E28(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
     switch (param1->unk_00) {
     case 0:
         ov99_021D2ED8(param0, v0);
-        sub_0200AAE0(24, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+        BrightnessController_StartTransition(24, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
         param1->unk_00++;
         break;
     case 1:
         if (param0->unk_10FC >= 6000) {
-            sub_0200AAE0(24, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+            BrightnessController_StartTransition(24, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
             param1->unk_00++;
         }
         break;
     case 2:
-        if (sub_0200AC1C(3) == 1) {
+        if (BrightnessController_IsTransitionComplete(3) == 1) {
             return 1;
         }
         break;

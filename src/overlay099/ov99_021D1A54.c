@@ -32,7 +32,7 @@
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 
@@ -1095,7 +1095,7 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
 
     sub_0200F44C(0, -16);
     sub_0200F44C(1, -16);
-    sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+    BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
     Bg_ScheduleTilemapTransfer(param0->unk_08, 7);
 }
 

@@ -139,7 +139,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 #include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
@@ -6301,17 +6301,17 @@ static void ov16_022646C8(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        sub_0200AAE0(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) & (GX_BLEND_PLANEMASK_BG1 ^ 0xffff), 1);
+        BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) & (GX_BLEND_PLANEMASK_BG1 ^ 0xffff), 1);
         v0->unk_00++;
         break;
     case 1:
-        if (sub_0200AC1C(1) == 1) {
-            sub_0200AAE0(4, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) & (GX_BLEND_PLANEMASK_BG1 ^ 0xffff), 1);
+        if (BrightnessController_IsTransitionComplete(1) == 1) {
+            BrightnessController_StartTransition(4, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) & (GX_BLEND_PLANEMASK_BG1 ^ 0xffff), 1);
             v0->unk_00++;
         }
         break;
     case 2:
-        if (sub_0200AC1C(1) == 1) {
+        if (BrightnessController_IsTransitionComplete(1) == 1) {
             Heap_FreeToHeap(param1);
             SysTask_Done(param0);
         }

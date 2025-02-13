@@ -49,7 +49,7 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
 #include "unk_02054D00.h"
@@ -2029,14 +2029,14 @@ static void ov23_02244C70(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
         v0->unk_00++;
         break;
     case 2:
         v0->unk_00++;
         break;
     case 3:
-        sub_0200AAE0(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
         v0->unk_00++;
         break;
     case 4:
@@ -2050,7 +2050,7 @@ static void ov23_02244C70(SysTask *param0, void *param1)
 
         if (v0->unk_14 > 30) {
             sub_0205948C(0x10);
-            sub_0200AAE0(1, -4, 0, GX_BLEND_PLANEMASK_BG0, 1);
+            BrightnessController_StartTransition(1, -4, 0, GX_BLEND_PLANEMASK_BG0, 1);
             ov23_02254044(ov23_0224219C());
             CommPlayer_StartBlowAnimation(v0->unk_0C, v0->unk_10, v0->unk_18);
             Sound_PlayEffect(1631);
@@ -2063,7 +2063,7 @@ static void ov23_02244C70(SysTask *param0, void *param1)
     case 6:
         break;
     case 7:
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
         Heap_FreeToHeap(v0);
         SysTask_Done(param0);
 
@@ -2115,7 +2115,7 @@ static void ov23_02244E10(int param0, BOOL param1)
     if (Unk_ov23_02257764->unk_300) {
         UnkStruct_ov23_02244C70 *v0 = Unk_ov23_02257764->unk_300;
 
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
         Heap_FreeToHeap(v0);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
 
@@ -2219,7 +2219,7 @@ static void ov23_02244FD0(int param0, BOOL param1)
         }
 
         G2_BlendNone();
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
 
         {
             int v1;
@@ -2344,7 +2344,7 @@ static void ov23_022451C8(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
         Graphics_LoadTilesToBgLayer(50, 9, v0->unk_10, 2, 0, 8 * 6 * 6, 0, 4);
         v0->unk_00++;
         break;
@@ -2353,7 +2353,7 @@ static void ov23_022451C8(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 3:
-        sub_0200AAE0(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
 
         if (Unk_ov23_02257764->unk_B9F == 19) {
             Graphics_LoadTilemapToBgLayer(50, 8, v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
@@ -2376,7 +2376,7 @@ static void ov23_022451C8(SysTask *param0, void *param1)
         v0->unk_0C++;
 
         if (v0->unk_0C > 30) {
-            sub_0200AAE0(1, -4, 0, GX_BLEND_PLANEMASK_BG0, 1);
+            BrightnessController_StartTransition(1, -4, 0, GX_BLEND_PLANEMASK_BG0, 1);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             v0->unk_00 = 7;
             ov23_02253F60(ov23_0224219C(), 77, 0, NULL);
@@ -2647,7 +2647,7 @@ void ov23_02245728(void)
 void ov23_02245784(void)
 {
     if (Unk_ov23_02257764->unk_2F8) {
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
         G2_BlendNone();
         GX_SetMasterBrightness(0);
         SysTask_Done(Unk_ov23_02257764->unk_2F8);
@@ -2741,7 +2741,7 @@ static void ov23_0224590C(int param0, BOOL param1)
 static void ov23_02245938(int param0, BOOL param1)
 {
     if (Unk_ov23_02257764->unk_300) {
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
 
         G2_BlendNone();
         GX_SetMasterBrightness(0);
@@ -2767,9 +2767,9 @@ static void ov23_0224599C(SysTask *param0, void *param1)
         if (v0->unk_10 == 1) {
             v0->unk_04 = ov23_02244C10();
         } else if (v0->unk_10 == 2) {
-            sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
+            BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
         } else if (v0->unk_10 == 4) {
-            sub_0200AAE0(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
+            BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
         }
 
         if (30 < v0->unk_10) {
@@ -2788,7 +2788,7 @@ static void ov23_0224599C(SysTask *param0, void *param1)
     case 1:
         break;
     case 2:
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
 
         G2_BlendNone();
         GX_SetMasterBrightness(0);
@@ -2851,7 +2851,7 @@ static void ov23_02245AF4(int param0, BOOL param1)
             ov23_022448FC(v0->unk_0C);
         }
 
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
 
         G2_BlendNone();
         GX_SetMasterBrightness(0);
@@ -2906,14 +2906,14 @@ static void ov23_02245BA8(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
         v0->unk_00++;
         break;
     case 2:
         v0->unk_00++;
         break;
     case 3:
-        sub_0200AAE0(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
         v0->unk_00++;
         break;
     case 4:
@@ -3095,7 +3095,7 @@ static void ov23_02245F94(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
 
         if (Unk_ov23_02257764->unk_B9F == 29) {
             v2 = 2;
@@ -3117,7 +3117,7 @@ static void ov23_02245F94(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 3:
-        sub_0200AAE0(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
 
         if (Unk_ov23_02257764->unk_B9F == 29) {
             v2 = 1;
@@ -3150,7 +3150,7 @@ static void ov23_02245F94(SysTask *param0, void *param1)
         v0->unk_111++;
 
         if (v0->unk_111 > 30) {
-            sub_0200AAE0(1, -4, 0, GX_BLEND_PLANEMASK_BG0, 1);
+            BrightnessController_StartTransition(1, -4, 0, GX_BLEND_PLANEMASK_BG0, 1);
             ov23_02253F60(ov23_0224219C(), 76, 0, NULL);
 
             v0->unk_00 = 7;
@@ -3209,8 +3209,8 @@ static void ov23_02246220(int param0, BOOL param1)
             ov23_022448FC(v0->unk_112);
         }
 
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
-        sub_0200AAE0(1, 0, -4, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 0, -4, GX_BLEND_PLANEMASK_BG0, 1);
 
         ov23_02246370(v0->unk_114);
 
@@ -3551,7 +3551,7 @@ static void ov23_02246A80(SysTask *param0, void *param1)
         break;
     case 1:
         Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
-        sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
         v0->unk_00++;
         break;
     case 2:
@@ -3559,7 +3559,7 @@ static void ov23_02246A80(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 3:
-        sub_0200AAE0(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
         Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, 5, 0, 0, 2, 4);
         v0->unk_00++;
         break;
@@ -3812,7 +3812,7 @@ static void ov23_02247144(int param0, BOOL param1)
         }
 
         G2_BlendNone();
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
 
         GX_SetMasterBrightness(0);
         ov23_02246370(ov23_022468C0());
@@ -4165,7 +4165,7 @@ static void ov23_02247A8C(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
         Unk_ov23_02257764->unk_1F4[0][0] = SpriteResourceCollection_AddTiles(Unk_ov23_02257764->unk_1D4[0][0], 50, 32, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         v0->unk_F8[0] = Unk_ov23_02257764->unk_1F4[0][0];
         v0->unk_00++;
@@ -4175,7 +4175,7 @@ static void ov23_02247A8C(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 3:
-        sub_0200AAE0(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
         Unk_ov23_02257764->unk_1F4[0][2] = SpriteResourceCollection_Add(Unk_ov23_02257764->unk_1D4[0][2], 50, 31, 0, 0, 2, 4);
         v0->unk_00++;
         break;
@@ -4290,7 +4290,7 @@ static void ov23_02247DB0(int param0, BOOL param1)
         ov23_02247A60(v0);
         ov23_02246370(15);
 
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
         sub_0205948C(0x10);
         SysTask_Done(Unk_ov23_02257764->unk_2F0);
         Heap_FreeToHeap(v0);
@@ -4444,7 +4444,7 @@ static void ov23_022480C4(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
 
         if (Unk_ov23_02257764->unk_B9F == 31) {
             v2 = 22;
@@ -4460,7 +4460,7 @@ static void ov23_022480C4(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 3:
-        sub_0200AAE0(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
 
         if (Unk_ov23_02257764->unk_B9F == 31) {
             v2 = 21;
@@ -4578,7 +4578,7 @@ static void ov23_0224839C(int param0, BOOL param1)
             ov23_022448FC(v0->unk_29);
         }
 
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
         G2_BlendNone();
         GX_SetMasterBrightness(0);
         ov23_02246370(1);
@@ -4604,14 +4604,14 @@ static void ov23_02248418(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        sub_0200AAE0(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, 1);
         v0->unk_00++;
         break;
     case 2:
         v0->unk_00++;
         break;
     case 3:
-        sub_0200AAE0(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, 1);
         v0->unk_00++;
         break;
     case 4:
@@ -4700,7 +4700,7 @@ static void ov23_022485A8(int param0, BOOL param1)
             ov23_022448FC(v0->unk_10);
         }
 
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
         G2_BlendNone();
         GX_SetMasterBrightness(0);
 

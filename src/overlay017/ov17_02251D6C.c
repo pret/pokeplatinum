@@ -31,7 +31,7 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 #include "unk_0200F174.h"
 
 static int ov17_02251DAC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
@@ -853,12 +853,12 @@ static void ov17_022529C8(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        sub_0200AAE0(90, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+        BrightnessController_StartTransition(90, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
         sub_020055D0(1182, 90);
         v0->unk_10++;
         break;
     case 1:
-        if ((sub_0200AC1C(3) == 1) && (Sound_CheckFade() == 0)) {
+        if ((BrightnessController_IsTransitionComplete(3) == 1) && (Sound_CheckFade() == 0)) {
             ov17_02251020(v0->unk_00);
             GX_SetMasterBrightness(16);
             GXS_SetMasterBrightness(16);

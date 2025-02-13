@@ -35,7 +35,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 
@@ -3027,7 +3027,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
         if (v1 == 1) {
             ov5_021DE5D0(v0->unk_24C, heapID, param->trainerClass, 0, (GX_RGB(0, 0, 0)));
 
-            sub_0200AB4C(-14, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 1);
+            BrightnessController_SetScreenBrightness(-14, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 1);
 
             Bg_ScheduleScroll(encEffect->fieldSystem->bgConfig, 2, 0, -((v0->unk_00.currentValue >> FX32_SHIFT) + -92));
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -3093,7 +3093,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
-        sub_0200AB4C(0, GX_BLEND_PLANEMASK_NONE, 1);
+        BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_NONE, 1);
 
         Bg_SetOffset(encEffect->fieldSystem->bgConfig, 2, 0, 0);
 

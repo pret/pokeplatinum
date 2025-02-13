@@ -37,7 +37,7 @@ Static main
 	Object main.nef.p/src_sprite_resource.c.o
 	Object main.nef.p/src_sprite_transfer.c.o
 	Object main.nef.p/src_render_oam.c.o
-	Object main.nef.p/src_unk_0200A9DC.c.o
+	Object main.nef.p/src_brightness_controller.c.o
 	Object main.nef.p/src_message.c.o
 	Object main.nef.p/src_message_util.c.o
 	Object main.nef.p/src_string_template.c.o

@@ -24,7 +24,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_02003B60.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_02017428.h"
 #include "unk_0201E3D8.h"
@@ -117,7 +117,7 @@ void NitroMain(void)
     gSystem.frameCounter = 0;
 
     InitRNG();
-    sub_0200AB84();
+    BrightnessController_ResetAllControllers();
     PlayTime_FlagNotStarted();
 
     gIgnoreCartridgeForWake = FALSE;
@@ -153,7 +153,7 @@ void NitroMain(void)
         gSystem.vblankCounter++;
         gSystem.frameCounter = 0;
 
-        sub_0200ABF0();
+        BrightnessController_Update();
         sub_0200F27C();
 
         if (gSystem.vblankCallback != NULL) {
