@@ -804,17 +804,17 @@ PokemonCenterDailyTrainers_KinseyPostBattle:
     Return
 
 PokemonCenterDailyTrainers_KinseyPostBattleJubilife:
-    SetFlag FLAG_DEFEATED_REPORTERS_KINSEY
+    SetFlag FLAG_DEFEATED_REPORTER_KINSEY
     Message pokemon_center_daily_trainers_kinsey_post_battle_jubilife
     Return
 
 PokemonCenterDailyTrainers_KinseyPostBattleHearthome:
-    SetFlag FLAG_DEFEATED_REPORTERS_KINSEY
+    SetFlag FLAG_DEFEATED_REPORTER_KINSEY
     Message pokemon_center_daily_trainers_kinsey_post_battle_hearthome
     Return
 
 PokemonCenterDailyTrainers_KinseyPostBattleFightArea:
-    SetFlag FLAG_DEFEATED_REPORTERS_KINSEY
+    SetFlag FLAG_DEFEATED_REPORTER_KINSEY
     Message pokemon_center_daily_trainers_kinsey_post_battle_fight_area
     Return
 
@@ -992,7 +992,7 @@ PokemonCenterDailyTrainers_SetGraceRematch4:
     Return
 
 PokemonCenterDailyTrainers_SetKinseyTeam:
-    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY_UNUSED
+    SetVar VAR_TRAINER, TRAINER_REPORTER_KINSEY_UNUSED
     CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, PokemonCenterDailyTrainers_SetKinseyFirstBattle
     CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, PokemonCenterDailyTrainers_SetKinseyRematch1
     CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, PokemonCenterDailyTrainers_SetKinseyRematch2
@@ -1001,23 +1001,23 @@ PokemonCenterDailyTrainers_SetKinseyTeam:
     Return
 
 PokemonCenterDailyTrainers_SetKinseyFirstBattle:
-    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY
+    SetVar VAR_TRAINER, TRAINER_REPORTER_KINSEY
     Return
 
 PokemonCenterDailyTrainers_SetKinseyRematch1:
-    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY_REMATCH_1
+    SetVar VAR_TRAINER, TRAINER_REPORTER_KINSEY_REMATCH_1
     Return
 
 PokemonCenterDailyTrainers_SetKinseyRematch2:
-    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY_REMATCH_2
+    SetVar VAR_TRAINER, TRAINER_REPORTER_KINSEY_REMATCH_2
     Return
 
 PokemonCenterDailyTrainers_SetKinseyRematch3:
-    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY_REMATCH_3
+    SetVar VAR_TRAINER, TRAINER_REPORTER_KINSEY_REMATCH_3
     Return
 
 PokemonCenterDailyTrainers_SetKinseyRematch4:
-    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY_REMATCH_4
+    SetVar VAR_TRAINER, TRAINER_REPORTER_KINSEY_REMATCH_4
     Return
 
 PokemonCenterDailyTrainers_SetTevinTeam:
@@ -1177,7 +1177,7 @@ PokemonCenterDailyTrainers_CheckKinseyInPokemonCenter:
     Return
 
 PokemonCenterDailyTrainers_CheckKinseyDefeated:
-    GoToIfSet FLAG_DEFEATED_REPORTERS_KINSEY, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
+    GoToIfSet FLAG_DEFEATED_REPORTER_KINSEY, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
 PokemonCenterDailyTrainers_CheckTevinOrRoxyAndOliDefeated:
