@@ -31,11 +31,10 @@
 #include "pokemon.h"
 #include "savedata.h"
 #include "sprite.h"
-#include "sprite_system.h"
+#include "system_vars.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 typedef struct {

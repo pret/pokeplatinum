@@ -19,9 +19,9 @@
 #include "save_player.h"
 #include "special_encounter.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "unk_0203A7D8.h"
 #include "unk_020556C4.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 static BOOL sub_020705DC(FieldSystem *fieldSystem);

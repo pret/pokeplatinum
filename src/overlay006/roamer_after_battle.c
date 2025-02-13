@@ -15,7 +15,7 @@
 #include "pokemon.h"
 #include "roaming_pokemon.h"
 #include "special_encounter.h"
-#include "unk_0206AFE0.h"
+#include "system_vars.h"
 #include "vars_flags.h"
 
 static void MoveRoamersOffMap(SpecialEncounter *param0, const int param1);

@@ -16,7 +16,7 @@
 #include "special_encounter.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0206AFE0.h"
+#include "system_vars.h"
 #include "vars_flags.h"
 
 typedef struct {

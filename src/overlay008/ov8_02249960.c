@@ -56,6 +56,7 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_02027F50.h"
@@ -63,7 +64,6 @@
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
 #include "unk_02067A84.h"
-#include "unk_0206AFE0.h"
 #include "unk_020711EC.h"
 #include "vars_flags.h"
 

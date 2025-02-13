@@ -8,7 +8,7 @@
 #include "field_script_context.h"
 #include "inlines.h"
 #include "math.h"
-#include "unk_0206AFE0.h"
+#include "system_vars.h"
 #include "vars_flags.h"
 
 BOOL ScrCmd_2DF(ScriptContext *param0);

@@ -47,12 +47,12 @@
 #include "save_player.h"
 #include "special_encounter.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02054884.h"
 #include "unk_02054D00.h"
 #include "unk_020559DC.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 typedef struct RadarEncounterData {

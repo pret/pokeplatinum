@@ -1,7 +1,4 @@
-#include "unk_0206AFE0.h"
-
-#include <nitro.h>
-#include <string.h>
+#include "system_vars.h"
 
 #include "constants/savedata/vars_flags.h"
 #include "generated/map_headers.h"

@@ -35,12 +35,12 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 *param6);

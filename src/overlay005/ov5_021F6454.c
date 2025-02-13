@@ -43,6 +43,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_vars.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -52,7 +53,6 @@
 #include "unk_02038F8C.h"
 #include "unk_0205DFC4.h"
 #include "unk_020677F4.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/battle_tower.h"
