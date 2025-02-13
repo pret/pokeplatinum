@@ -1,4 +1,4 @@
-#include "dummy_scrcmd_0204F02C.h"
+#include "scrcmd_dummy_23F_242.h"
 
 #include <nitro.h>
 #include <string.h>

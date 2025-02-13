@@ -197,7 +197,7 @@ pokeplatinum_c = files(
     'unk_0204E75C.c',
     'unk_0204E974.c',
     'unk_0204EDA4.c',
-    'dummy_scrcmd_0204F02C.c',
+    'scrcmd_dummy_23F_242.c',
     'unk_0204F04C.c',
     'unk_0204F13C.c',
     'unk_0204FA34.c',
