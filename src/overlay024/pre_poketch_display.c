@@ -7,12 +7,12 @@
 #include "heap.h"
 #include "narc.h"
 
-#define OV24_HEAP_SIZE    0x18000
-#define OV24_NARC_HEAP_ID 8
+#define PRE_POKETCH_DISPLAY_HEAP_SIZE    0x18000
+#define PRE_POKETCH_DISPLAY_NARC_HEAP_ID 8
 
-#define OV24_NARC_Tiles_IDX   10
-#define OV24_NARC_Tilemap_IDX 11
-#define OV24_NARC_Palette_IDX 12
+#define PRE_POKETCH_DISPLAY_NARC_TILES_IDX   10
+#define PRE_POKETCH_DISPLAY_NARC_TILEMAP_IDX 11
+#define PRE_POKETCH_DISPLAY_NARC_PALETTE_IDX 12
 
 void PrePoketchDisplay_DisplayBg(BgConfig *bgConfig)
 {
@@ -32,7 +32,7 @@ void PrePoketchDisplay_DisplayBg(BgConfig *bgConfig)
         0
     };
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_APP, OV24_HEAP_SIZE);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_APP, PRE_POKETCH_DISPLAY_HEAP_SIZE);
 
     GXS_SetGraphicsMode(GX_BGMODE_0);
     GX_SetBankForSubBG(GX_VRAM_SUB_BG_32_H);
@@ -41,11 +41,11 @@ void PrePoketchDisplay_DisplayBg(BgConfig *bgConfig)
 
     Bg_InitFromTemplate(bgConfig, BG_LAYER_SUB_0, &template, BG_TYPE_STATIC);
 
-    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, OV24_NARC_HEAP_ID);
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, PRE_POKETCH_DISPLAY_NARC_HEAP_ID);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, OV24_NARC_Tiles_IDX, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, OV24_NARC_HEAP_ID);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, OV24_NARC_Tilemap_IDX, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, OV24_NARC_HEAP_ID);
-    Graphics_LoadPaletteFromOpenNARC(narc, OV24_NARC_Palette_IDX, PAL_LOAD_SUB_BG, 0, 0x20, OV24_NARC_HEAP_ID);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, PRE_POKETCH_DISPLAY_NARC_TILES_IDX, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, PRE_POKETCH_DISPLAY_NARC_HEAP_ID);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, PRE_POKETCH_DISPLAY_NARC_TILEMAP_IDX, bgConfig, BG_LAYER_SUB_0, 0, 0, TRUE, PRE_POKETCH_DISPLAY_NARC_HEAP_ID);
+    Graphics_LoadPaletteFromOpenNARC(narc, PRE_POKETCH_DISPLAY_NARC_PALETTE_IDX, PAL_LOAD_SUB_BG, 0, 0x20, PRE_POKETCH_DISPLAY_NARC_HEAP_ID);
     NARC_dtor(narc);
 
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -55,7 +55,7 @@ void PrePoketchDisplay_DisplayBg(BgConfig *bgConfig)
 void PrePoketchDisplay_FreeBg(BgConfig *bgConfig)
 {
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
-    Heap_Destroy(OV24_NARC_HEAP_ID);
+    Heap_Destroy(PRE_POKETCH_DISPLAY_NARC_HEAP_ID);
 }
 
 BOOL PrePoketchDisplay_AlwaysTrue(BgConfig *bgConfig)
