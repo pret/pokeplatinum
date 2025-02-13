@@ -574,7 +574,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_swarm.c.o
 	Object main.nef.p/src_overlay006_ov6_02243258.c.o
 	Object main.nef.p/src_overlay006_roamer_after_battle.c.o
-	Object main.nef.p/src_overlay006_ov6_02246184.c.o
+	Object main.nef.p/src_overlay006_npc_trade.c.o
 	Object main.nef.p/src_overlay006_ov6_02246444.c.o
 	Object main.nef.p/src_overlay006_ov6_022465FC.c.o
 	Object main.nef.p/src_overlay006_ov6_02246A30.c.o

@@ -4,8 +4,7 @@
 #include <string.h>
 
 #include "field/field_system.h"
-#include "overlay006/ov6_02246184.h"
-#include "overlay006/struct_ov6_02246204_decl.h"
+#include "overlay006/npc_trade.h"
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay095/ov95_02246C20.h"
 
@@ -17,7 +16,7 @@
 FS_EXTERN_OVERLAY(overlay95);
 
 typedef struct {
-    UnkStruct_ov6_02246204 *unk_00;
+    NpcTradeData *unk_00;
     u32 unk_04;
     int unk_08;
     UnkStruct_ov6_02246254 unk_0C;
@@ -88,7 +87,7 @@ static BOOL sub_0206C680(FieldTask *param0)
     return 0;
 }
 
-void sub_0206C740(FieldTask *param0, UnkStruct_ov6_02246204 *param1, int param2, u32 param3)
+void sub_0206C740(FieldTask *param0, NpcTradeData *param1, int param2, u32 param3)
 {
     UnkStruct_0206C660 *v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_0206C660));
 
