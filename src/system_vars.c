@@ -14,68 +14,62 @@
 #include "system_flags.h"
 #include "vars_flags.h"
 
-static BOOL sub_0206AFE0(VarsFlags *param0, u16 param1, u16 param2);
-static u16 sub_0206B010(VarsFlags *param0, u16 param1);
-BOOL VarsFlags_SetPlayerStarterSpecies(VarsFlags *param0, u16 param1);
-u16 VarsFlags_GetPlayerStarterSpecies(VarsFlags *param0);
-u16 VarsFlags_GetRivalStarterSpecies(VarsFlags *param0);
-u16 VarsFlags_GetPlayerCounterpartStarterSpecies(VarsFlags *param0);
-void sub_0206B558(VarsFlags *param0, u16 param1);
-void sub_0206B514(SaveData *param0);
-static u8 sub_0206B4A4(VarsFlags *param0);
+static BOOL TrySetVarToValue(VarsFlags *varsFlags, u16 varID, u16 value);
+static u16 TryGetVarValue(VarsFlags *varsFlags, u16 varID);
+static int GetDistributionEventMagicNumber(int eventID);
+static int GetHiddenLocationMagicNumber(int eventID);
+static u8 CalcVillaVisitorIndex(VarsFlags *varsFlags);
 
-static BOOL sub_0206AFE0(VarsFlags *param0, u16 param1, u16 param2)
+static BOOL TrySetVarToValue(VarsFlags *varsFlags, u16 varID, u16 value)
 {
-    u16 *v0 = VarsFlags_GetVarAddress(param0, param1);
-
-    if ((param1 < VARS_START) || (param1 > SPECIAL_VARS_START)) {
+    u16 *varAddress = VarsFlags_GetVarAddress(varsFlags, varID);
+    if (varID < VARS_START || varID > SPECIAL_VARS_START) {
         GF_ASSERT(FALSE);
         return FALSE;
     }
 
-    if (v0 == NULL) {
+    if (varAddress == NULL) {
         return FALSE;
     }
 
-    *v0 = param2;
+    *varAddress = value;
     return TRUE;
 }
 
-static u16 sub_0206B010(VarsFlags *param0, u16 param1)
+static u16 TryGetVarValue(VarsFlags *varsFlags, u16 varID)
 {
-    u16 *v0 = VarsFlags_GetVarAddress(param0, param1);
-
-    if (v0 == NULL) {
+    u16 *varAddress = VarsFlags_GetVarAddress(varsFlags, varID);
+    if (varAddress == NULL) {
         return 0;
     }
 
-    return *v0;
+    return *varAddress;
 }
 
 BOOL sub_0206B024(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (15 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (15 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 u16 sub_0206B034(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (15 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (15 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL VarsFlags_SetPlayerStarterSpecies(VarsFlags *var, u16 species)
 {
-    return sub_0206AFE0(var, (0 + (((0 + VARS_START) + 32) + 16)), species);
+    return TrySetVarToValue(var, (0 + (((0 + VARS_START) + 32) + 16)), species);
 }
 
 u16 VarsFlags_GetPlayerStarterSpecies(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (0 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (0 + (((0 + VARS_START) + 32) + 16)));
 }
 
 u16 VarsFlags_GetRivalStarterSpecies(VarsFlags *vars)
 {
     u16 rivalStarter;
-    u16 playerStarter = sub_0206B010(vars, (0 + (((0 + VARS_START) + 32) + 16)));
+    u16 playerStarter = TryGetVarValue(vars, (0 + (((0 + VARS_START) + 32) + 16)));
 
     if (playerStarter == SPECIES_TURTWIG) {
         rivalStarter = SPECIES_CHIMCHAR;
@@ -91,7 +85,7 @@ u16 VarsFlags_GetRivalStarterSpecies(VarsFlags *vars)
 u16 VarsFlags_GetPlayerCounterpartStarterSpecies(VarsFlags *param0)
 {
     u16 v0;
-    u16 v1 = sub_0206B010(param0, (0 + (((0 + VARS_START) + 32) + 16)));
+    u16 v1 = TryGetVarValue(param0, (0 + (((0 + VARS_START) + 32) + 16)));
 
     if (v1 == 387) {
         v0 = 393;
@@ -106,12 +100,12 @@ u16 VarsFlags_GetPlayerCounterpartStarterSpecies(VarsFlags *param0)
 
 u16 sub_0206B0B4(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (5 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (5 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B0C4(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (5 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (5 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 void VsSeeker_Reset(VarsFlags *param0)
@@ -122,88 +116,88 @@ void VsSeeker_Reset(VarsFlags *param0)
 
 u16 VsSeeker_GetBattery(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (3 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (3 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL VsSeeker_SetBattery(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (3 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (3 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 u16 VsSeeker_GetActiveStepCount(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (4 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (4 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL VsSeeker_SetActiveStepCount(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (4 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (4 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
-static int sub_0206B128(int param0)
-{
-    static const u16 v0[] = {
-        0x1209,
-        0x1112,
-        0x1123,
-        0x1103,
-    };
+static const u16 sDistributionEventMagicNumbers[] = {
+    0x1209,
+    0x1112,
+    0x1123,
+    0x1103,
+};
 
-    GF_ASSERT(0 <= param0 && param0 < NELEMS(v0));
-    return v0[param0];
+static int GetDistributionEventMagicNumber(int eventID)
+{
+    GF_ASSERT(0 <= eventID && eventID < NELEMS(sDistributionEventMagicNumbers));
+    return sDistributionEventMagicNumbers[eventID];
 }
 
 void sub_0206B144(VarsFlags *param0, int param1)
 {
-    sub_0206AFE0(param0, (19 + (((0 + VARS_START) + 32) + 16)) + param1, sub_0206B128(param1));
+    TrySetVarToValue(param0, (19 + (((0 + VARS_START) + 32) + 16)) + param1, GetDistributionEventMagicNumber(param1));
 }
 
 BOOL sub_0206B16C(VarsFlags *param0, int param1)
 {
-    return sub_0206B010(param0, (19 + (((0 + VARS_START) + 32) + 16)) + param1) == sub_0206B128(param1);
+    return TryGetVarValue(param0, (19 + (((0 + VARS_START) + 32) + 16)) + param1) == GetDistributionEventMagicNumber(param1);
 }
 
-static int sub_0206B194(int param0)
-{
-    static const u16 v0[] = {
-        0x208,
-        0x229,
-        0x312,
-        0x1028,
-    };
+static const u16 sHiddenLocationMagicNumbers[] = {
+    0x0208,
+    0x0229,
+    0x0312,
+    0x1028,
+};
 
-    GF_ASSERT(0 <= param0 && param0 < 4);
-    return v0[param0];
+static int GetHiddenLocationMagicNumber(int eventID)
+{
+    GF_ASSERT(0 <= eventID && eventID < 4);
+    return sHiddenLocationMagicNumbers[eventID];
 }
 
 void sub_0206B1B0(VarsFlags *param0, int param1)
 {
-    sub_0206AFE0(param0, (6 + (((0 + VARS_START) + 32) + 16)) + param1, sub_0206B194(param1));
+    TrySetVarToValue(param0, (6 + (((0 + VARS_START) + 32) + 16)) + param1, GetHiddenLocationMagicNumber(param1));
 }
 
 void sub_0206B1D8(VarsFlags *param0, int param1)
 {
-    sub_0206AFE0(param0, (6 + (((0 + VARS_START) + 32) + 16)) + param1, 0);
+    TrySetVarToValue(param0, (6 + (((0 + VARS_START) + 32) + 16)) + param1, 0);
 }
 
 BOOL VarFlags_HiddenLocationsUnlocked(VarsFlags *varFlags, int hiddenLocation)
 {
-    return sub_0206B010(varFlags, (6 + (((0 + VARS_START) + 32) + 16)) + hiddenLocation) == sub_0206B194(hiddenLocation);
+    return TryGetVarValue(varFlags, (6 + (((0 + VARS_START) + 32) + 16)) + hiddenLocation) == GetHiddenLocationMagicNumber(hiddenLocation);
 }
 
 BOOL sub_0206B218(VarsFlags *param0)
 {
-    return sub_0206AFE0(param0, (10 + (((0 + VARS_START) + 32) + 16)), 0);
+    return TrySetVarToValue(param0, (10 + (((0 + VARS_START) + 32) + 16)), 0);
 }
 
 u16 sub_0206B228(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (10 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (10 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B238(VarsFlags *param0)
 {
-    u16 v0 = sub_0206B010(param0, (10 + (((0 + VARS_START) + 32) + 16)));
+    u16 v0 = TryGetVarValue(param0, (10 + (((0 + VARS_START) + 32) + 16)));
 
     if (v0 < 10000) {
         v0++;
@@ -211,31 +205,31 @@ BOOL sub_0206B238(VarsFlags *param0)
         v0 = 10000;
     }
 
-    return sub_0206AFE0(param0, (10 + (((0 + VARS_START) + 32) + 16)), v0);
+    return TrySetVarToValue(param0, (10 + (((0 + VARS_START) + 32) + 16)), v0);
 }
 
 u16 sub_0206B260(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (11 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (11 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B270(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (11 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (11 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 void sub_0206B280(VarsFlags *param0, u32 param1)
 {
     u16 v1 = (param1 >> 16) & 0xffff;
     u16 v0 = param1 & 0xffff;
-    sub_0206AFE0(param0, (12 + (((0 + VARS_START) + 32) + 16)), v0);
-    sub_0206AFE0(param0, (12 + (((0 + VARS_START) + 32) + 16)), v1);
+    TrySetVarToValue(param0, (12 + (((0 + VARS_START) + 32) + 16)), v0);
+    TrySetVarToValue(param0, (12 + (((0 + VARS_START) + 32) + 16)), v1);
 }
 
 u32 sub_0206B2A4(VarsFlags *param0)
 {
-    u16 v0 = sub_0206B010(param0, (12 + (((0 + VARS_START) + 32) + 16)));
-    u16 v1 = sub_0206B010(param0, (13 + (((0 + VARS_START) + 32) + 16)));
+    u16 v0 = TryGetVarValue(param0, (12 + (((0 + VARS_START) + 32) + 16)));
+    u16 v1 = TryGetVarValue(param0, (13 + (((0 + VARS_START) + 32) + 16)));
 
     return (v1 << 16) | v0;
 }
@@ -258,12 +252,12 @@ void sub_0206B2E4(SaveData *param0, u16 param1)
 
 u16 sub_0206B314(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (17 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (17 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B324(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (17 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (17 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 void sub_0206B334(SaveData *param0)
@@ -275,37 +269,37 @@ void sub_0206B334(SaveData *param0)
 
 u16 sub_0206B354(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (14 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (14 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B364(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (14 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (14 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 u16 sub_0206B374(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (25 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (25 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B384(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (25 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (25 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 u16 sub_0206B394(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (16 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (16 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B3A4(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (16 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (16 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 BOOL sub_0206B3B4(VarsFlags *param0)
 {
-    u16 v0 = sub_0206B010(param0, (18 + (((0 + VARS_START) + 32) + 16)));
+    u16 v0 = TryGetVarValue(param0, (18 + (((0 + VARS_START) + 32) + 16)));
 
     if (v0 < 10000) {
         v0++;
@@ -313,108 +307,108 @@ BOOL sub_0206B3B4(VarsFlags *param0)
         v0 = 10000;
     }
 
-    return sub_0206AFE0(param0, (18 + (((0 + VARS_START) + 32) + 16)), v0);
+    return TrySetVarToValue(param0, (18 + (((0 + VARS_START) + 32) + 16)), v0);
 }
 
 u16 sub_0206B3DC(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (18 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (18 + (((0 + VARS_START) + 32) + 16)));
 }
 
 u16 sub_0206B3EC(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (36 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (36 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B3FC(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (36 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (36 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 u16 sub_0206B40C(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (23 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (23 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B41C(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (23 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (23 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 u16 sub_0206B42C(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (24 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (24 + (((0 + VARS_START) + 32) + 16)));
 }
 
 BOOL sub_0206B43C(VarsFlags *param0, u16 param1)
 {
-    return sub_0206AFE0(param0, (24 + (((0 + VARS_START) + 32) + 16)), param1);
+    return TrySetVarToValue(param0, (24 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 u16 sub_0206B44C(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (26 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (26 + (((0 + VARS_START) + 32) + 16)));
 }
 
 void sub_0206B45C(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (26 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (26 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 void sub_0206B46C(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (27 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (27 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 u16 sub_0206B47C(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (27 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (27 + (((0 + VARS_START) + 32) + 16)));
 }
 
 void sub_0206B48C(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (29 + (((0 + VARS_START) + 32) + 16)), (param1 + 1));
+    TrySetVarToValue(param0, (29 + (((0 + VARS_START) + 32) + 16)), (param1 + 1));
 }
 
-static const u8 Unk_020EFA70[] = {
-    0x19,
-    0x4B,
-    0x5A
+static const u8 sVillaVisitorPercentChances[] = {
+    25,
+    75,
+    90,
 };
 
-static const u8 Unk_020EFA6C[] = {
-    0x4,
-    0xC,
-    0xF
+static const u8 sNumPossibleVillaVisitors[] = {
+    4,
+    12,
+    15,
 };
 
-static u8 sub_0206B4A4(VarsFlags *param0)
+static u8 CalcVillaVisitorIndex(VarsFlags *varsFlags)
 {
-    int v0;
-    u16 v1 = 0, v2, v3;
+    // must pre-declare to match
+    int i;
+    u16 ownedFurniturePieces = 0, rngPercent, index;
 
-    for (v0 = 0; v0 < VILLA_FURNITURE_MAX; v0++) {
-        if (SystemFlag_HandleOwnsVillaFurniture(param0, HANDLE_FLAG_CHECK, v0) == TRUE) {
-            v1++;
+    for (i = 0; i < VILLA_FURNITURE_MAX; i++) {
+        if (SystemFlag_HandleOwnsVillaFurniture(varsFlags, HANDLE_FLAG_CHECK, i) == TRUE) {
+            ownedFurniturePieces++;
         }
     }
 
-    if (v1 >= 12) {
-        v3 = 2;
-    } else if (v1 >= 8) {
-        v3 = 1;
+    if (ownedFurniturePieces >= 12) {
+        index = 2;
+    } else if (ownedFurniturePieces >= 8) {
+        index = 1;
     } else {
-        v3 = 0;
+        index = 0;
     }
 
-    v2 = (LCRNG_Next() % 100);
-
-    if (v2 > Unk_020EFA70[v3]) {
-        return 0xff;
+    rngPercent = (LCRNG_Next() % 100);
+    if (rngPercent > sVillaVisitorPercentChances[index]) {
+        return 0xFF;
     }
 
-    v2 = (LCRNG_Next() % Unk_020EFA6C[v3]);
-    return v2;
+    rngPercent = (LCRNG_Next() % sNumPossibleVillaVisitors[index]);
+    return rngPercent;
 }
 
 void sub_0206B514(SaveData *param0)
@@ -426,7 +420,7 @@ void sub_0206B514(SaveData *param0)
     if ((location->mapId != MAP_HEADER_RESORT_AREA) && (location->mapId != MAP_HEADER_VILLA)) {
         SystemFlag_ClearVillaVisitorInside(v1);
         SystemFlag_ClearVillaVisitorOutside(v1);
-        sub_0206B558(v1, sub_0206B4A4(v1));
+        sub_0206B558(v1, CalcVillaVisitorIndex(v1));
     }
 
     return;
@@ -434,88 +428,88 @@ void sub_0206B514(SaveData *param0)
 
 void sub_0206B558(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (30 + (((0 + VARS_START) + 32) + 16)), param1);
-    sub_0206AFE0(param0, (42 + (((0 + VARS_START) + 32) + 16)), (LCRNG_Next() % 5));
+    TrySetVarToValue(param0, (30 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (42 + (((0 + VARS_START) + 32) + 16)), (LCRNG_Next() % 5));
 }
 
 u16 sub_0206B588(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (32 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (32 + (((0 + VARS_START) + 32) + 16)));
 }
 
 u16 sub_0206B598(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (33 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (33 + (((0 + VARS_START) + 32) + 16)));
 }
 
 u16 sub_0206B5A8(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (34 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (34 + (((0 + VARS_START) + 32) + 16)));
 }
 
 u16 sub_0206B5B8(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (35 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (35 + (((0 + VARS_START) + 32) + 16)));
 }
 
 u16 sub_0206B5C8(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (31 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (31 + (((0 + VARS_START) + 32) + 16)));
 }
 
 u16 sub_0206B5D8(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (37 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (37 + (((0 + VARS_START) + 32) + 16)));
 }
 
 void sub_0206B5E8(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (37 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (37 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 u16 sub_0206B5F8(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (38 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (38 + (((0 + VARS_START) + 32) + 16)));
 }
 
 void sub_0206B608(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (38 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (38 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 u16 sub_0206B618(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (39 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (39 + (((0 + VARS_START) + 32) + 16)));
 }
 
 void sub_0206B628(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (39 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (39 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 void sub_0206B638(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (40 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (40 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 void sub_0206B648(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (41 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (41 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 void sub_0206B658(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (46 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (46 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 void sub_0206B668(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (47 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (47 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 void sub_0206B678(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (48 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (48 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 void sub_0206B688(VarsFlags *param0, u16 param1, u16 param2)
@@ -543,15 +537,15 @@ void sub_0206B688(VarsFlags *param0, u16 param1, u16 param2)
 
 u16 sub_0206B6DC(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (43 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (43 + (((0 + VARS_START) + 32) + 16)));
 }
 
 void sub_0206B6EC(VarsFlags *param0, u16 param1)
 {
-    sub_0206AFE0(param0, (43 + (((0 + VARS_START) + 32) + 16)), param1);
+    TrySetVarToValue(param0, (43 + (((0 + VARS_START) + 32) + 16)), param1);
 }
 
 u16 sub_0206B6FC(VarsFlags *param0)
 {
-    return sub_0206B010(param0, (52 + (((0 + VARS_START) + 32) + 16)));
+    return TryGetVarValue(param0, (52 + (((0 + VARS_START) + 32) + 16)));
 }
