@@ -864,7 +864,7 @@ Overlay overlay23
 Overlay overlay24
 {
 	After overlay9
-	Object main.nef.p/src_overlay024_ov24_02253CE0.c.o
+	Object main.nef.p/src_overlay024_pre_poketch_display.c.o
 }
 
 Overlay overlay25

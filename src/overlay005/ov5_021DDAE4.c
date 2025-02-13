@@ -5,7 +5,7 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay024/ov24_02253CE0.h"
+#include "overlay024/pre_poketch_display.h"
 #include "overlay025/poketch_system.h"
 
 #include "brightness_controller.h"
@@ -34,12 +34,12 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
         break;
     case 1:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
-            ov24_02253DA4(fieldSystem->bgConfig);
+            PrePoketchDisplay_FreeBg(fieldSystem->bgConfig);
             v1->unk_00++;
         }
         break;
     case 2:
-        if (ov24_02253DB4(fieldSystem->bgConfig)) {
+        if (PrePoketchDisplay_AlwaysTrue(fieldSystem->bgConfig)) {
             Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
 
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
