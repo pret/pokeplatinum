@@ -3129,19 +3129,19 @@
     .endif
     .endm
 
-    .macro ScrCmd_23F
+    .macro Dummy23F
     .short 575
     .endm
 
-    .macro ScrCmd_240
+    .macro Dummy240
     .short 576
     .endm
 
-    .macro ScrCmd_241
+    .macro Dummy241
     .short 577
     .endm
 
-    .macro ScrCmd_242
+    .macro Dummy242
     .short 578
     .endm
 

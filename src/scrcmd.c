@@ -94,6 +94,7 @@
 #include "camera.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
+#include "dummy_scrcmd_0204F02C.h"
 #include "encounter.h"
 #include "field_comm_manager.h"
 #include "field_map_change.h"
@@ -180,7 +181,6 @@
 #include "unk_0204E75C.h"
 #include "unk_0204E974.h"
 #include "unk_0204EDA4.h"
-#include "unk_0204F02C.h"
 #include "unk_0204F04C.h"
 #include "unk_0204F13C.h"
 #include "unk_0204FAB4.h"
@@ -1338,10 +1338,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_23C,
     ScrCmd_23D,
     ScrCmd_23E,
-    ScrCmd_23F,
-    ScrCmd_240,
-    ScrCmd_241,
-    ScrCmd_242,
+    ScrCmd_Dummy23F,
+    ScrCmd_Dummy240,
+    ScrCmd_Dummy241,
+    ScrCmd_Dummy242,
     ScrCmd_243,
     ScrCmd_244,
     ScrCmd_245,
