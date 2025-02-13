@@ -43,10 +43,10 @@ void RoamerAfterBattle_UpdateRoamers(FieldSystem *fieldSystem, FieldBattleDTO *b
 
         if ((battleParams->resultMask == BATTLE_RESULT_WIN) && (roamerHP == 0)) {
             SpecialEncounter_ZeroRoamerData(&roamer);
-            sub_0206B688(SaveData_GetVarsFlags(fieldSystem->saveData), wildSpecies, 2);
+            SystemVars_SetRoamingSpeciesState(SaveData_GetVarsFlags(fieldSystem->saveData), wildSpecies, 2);
         } else if (battleParams->resultMask == BATTLE_RESULT_CAPTURED_MON) {
             SpecialEncounter_ZeroRoamerData(&roamer);
-            sub_0206B688(SaveData_GetVarsFlags(fieldSystem->saveData), wildSpecies, 1);
+            SystemVars_SetRoamingSpeciesState(SaveData_GetVarsFlags(fieldSystem->saveData), wildSpecies, 1);
         } else {
             Roamer_SetData(roamer, ROAMER_DATA_CURRENT_HP, roamerHP);
             Roamer_SetData(roamer, ROAMER_DATA_STATUS, roamerStatus);

@@ -1061,7 +1061,7 @@ static u32 sub_02069130(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if (sub_0206B16C(v0, 2) == 0) {
+    if (SystemVars_CheckDistributionEvent(v0, 2) == 0) {
         return -1;
     }
 

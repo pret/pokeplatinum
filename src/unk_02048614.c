@@ -148,7 +148,7 @@ BOOL ScrCmd_StartTrainerBattle(ScriptContext *ctx)
     u16 partnerTrainer = 0;
 
     if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(ctx->fieldSystem->saveData)) == TRUE) {
-        partnerTrainer = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
+        partnerTrainer = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
     }
 
     Encounter_NewVsTrainer(ctx->task,

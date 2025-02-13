@@ -1590,7 +1590,7 @@ void ov23_0224448C(int param0, int param1, void *param2, void *param3)
 
         {
             VarsFlags *v2 = SaveData_GetVarsFlags(Unk_ov23_02257764->fieldSystem->saveData);
-            sub_0206B43C(v2, sub_0206B42C(v2) + 1);
+            SystemVars_SetUndergroundTrapsSet(v2, SystemVars_GetUndergroundTrapsSet(v2) + 1);
         }
 
         ov23_02243E20(&v0->unk_00);

@@ -203,7 +203,7 @@ static BOOL FieldTask_Encounter(FieldTask *task)
 
         UpdateGameRecords(fieldSystem, encounter->dto);
         UpdateJournal(fieldSystem, encounter->dto);
-        sub_0206B48C(SaveData_GetVarsFlags(fieldSystem->saveData), encounter->dto->totalTurnsElapsed);
+        SystemVars_SetTotalTurnsForLastBattle(SaveData_GetVarsFlags(fieldSystem->saveData), encounter->dto->totalTurnsElapsed);
         FieldTransition_StartMap(task);
         (*state)++;
         break;

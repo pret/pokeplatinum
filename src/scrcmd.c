@@ -4429,7 +4429,7 @@ static BOOL ScrCmd_SaveChosenStarter(ScriptContext *ctx)
 
     chooseStarterData = (*fieldSysDataPtr);
 
-    VarsFlags_SetPlayerStarterSpecies(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), chooseStarterData->species);
+    SystemVars_SetPlayerStarter(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), chooseStarterData->species);
 
     Heap_FreeToHeap(*fieldSysDataPtr);
 
@@ -4812,7 +4812,7 @@ static BOOL ScrCmd_GetPlayerStarterSpecies(ScriptContext *ctx)
 {
     u16 *species = ScriptContext_GetVarPointer(ctx);
 
-    *species = VarsFlags_GetPlayerStarterSpecies(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    *species = SystemVars_GetPlayerStarter(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return FALSE;
 }
 
@@ -6087,7 +6087,7 @@ static BOOL ScrCmd_1C5(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    sub_0206B0C4(SaveData_GetVarsFlags(fieldSystem->saveData), 0x8200);
+    SystemVars_SetSizeContestRecord(SaveData_GetVarsFlags(fieldSystem->saveData), 0x8200);
     return 0;
 }
 
@@ -6456,7 +6456,7 @@ static BOOL ScrCmd_214(ScriptContext *ctx)
     VarsFlags *v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_0206B354(v0);
+    *v1 = SystemVars_GetSpiritombCounter(v0);
     return 0;
 }
 
@@ -6488,7 +6488,7 @@ static BOOL ScrCmd_219(ScriptContext *ctx)
 {
     u16 v0 = ScriptContext_GetVar(ctx);
 
-    sub_0206B270(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), v0);
+    SystemVars_SetNewsPressDeadline(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), v0);
     return 0;
 }
 
@@ -6496,7 +6496,7 @@ static BOOL ScrCmd_21A(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_0206B260(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    *v0 = SystemVars_GetNewsPressDeadline(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return 0;
 }
 
@@ -7062,7 +7062,7 @@ static BOOL ScrCmd_26F(ScriptContext *ctx)
 {
     VarsFlags *v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
-    sub_0206B364(v0, 0);
+    SystemVars_SetSpiritombCounter(v0, 0);
     return 0;
 }
 
@@ -7073,9 +7073,9 @@ static BOOL ScrCmd_270(ScriptContext *ctx)
     VarsFlags *v2 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
     if (v1) {
-        sub_0206B1B0(v2, v0);
+        SystemVars_SetHiddenLocationMagic(v2, v0);
     } else {
-        sub_0206B1D8(v2, v0);
+        SystemVars_ClearHiddenLocation(v2, v0);
     }
 
     return 0;
@@ -7098,7 +7098,7 @@ static BOOL ScrCmd_275(ScriptContext *ctx)
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
     u32 v3;
 
-    v3 = sub_0206B394(v1);
+    v3 = SystemVars_GetConsecutiveBonusRoundWins(v1);
 
     if (v3 >= 10) {
         *v2 = 1;
@@ -7113,7 +7113,7 @@ static BOOL ScrCmd_277(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_0206B314(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    *v0 = SystemVars_GetDailyRandomLevel(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return 0;
 }
 
@@ -7144,7 +7144,7 @@ static BOOL ScrCmd_27B(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     SaveData *v1 = fieldSystem->saveData;
 
-    sub_0206B334(v1);
+    SystemVars_SetDailyRandomLevel(v1);
     return 0;
 }
 
@@ -7199,7 +7199,7 @@ static BOOL ScrCmd_27E(ScriptContext *ctx)
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
     u16 v3;
 
-    v3 = sub_0206B3DC(v1);
+    v3 = SystemVars_GetDepartmentStoreRegularCount(v1);
 
     if (v3 >= 5) {
         *v2 = 1;
@@ -7332,7 +7332,7 @@ static BOOL ScrCmd_286(ScriptContext *ctx)
     VarsFlags *v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_0206B3EC(v0);
+    *v1 = SystemVars_GetUndergroundItemsGivenAway(v0);
     return 0;
 }
 
@@ -7341,7 +7341,7 @@ static BOOL ScrCmd_287(ScriptContext *ctx)
     VarsFlags *v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_0206B40C(v0);
+    *v1 = SystemVars_GetUndergroundFossilsUnearthed(v0);
     return 0;
 }
 
@@ -7350,7 +7350,7 @@ static BOOL ScrCmd_288(ScriptContext *ctx)
     VarsFlags *v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_0206B42C(v0);
+    *v1 = SystemVars_GetUndergroundTrapsSet(v0);
     return 0;
 }
 
@@ -7425,7 +7425,7 @@ static BOOL ScrCmd_28B(ScriptContext *ctx)
 
     GF_ASSERT(v0 <= 4);
 
-    *v1 = sub_0206B16C(v2, v0);
+    *v1 = SystemVars_CheckDistributionEvent(v2, v0);
     return 0;
 }
 
@@ -7548,7 +7548,7 @@ static BOOL ScrCmd_293(ScriptContext *ctx)
     VarsFlags *v0 = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = sub_0206B374(v0);
+    *v1 = SystemVars_GetUndergroundTalkCounter(v0);
     return 0;
 }
 

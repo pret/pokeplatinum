@@ -2606,7 +2606,7 @@ static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0)
                     {
                         VarsFlags *v5 = SaveData_GetVarsFlags(Unk_ov23_02257740->fieldSystem->saveData);
 
-                        sub_0206B41C(v5, sub_0206B40C(v5) + 1);
+                        SystemVars_SetUndergroundFossilsUnearthed(v5, SystemVars_GetUndergroundFossilsUnearthed(v5) + 1);
                     }
                 } else {
                     sub_02029688(v3, 1);

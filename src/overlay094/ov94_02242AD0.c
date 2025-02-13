@@ -1290,8 +1290,8 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
             if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
                 VarsFlags *v2 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
 
-                if (sub_0206B5F8(v2) == 0) {
-                    sub_0206B608(v2, 1);
+                if (SystemVars_GetArceusEventState(v2) == 0) {
+                    SystemVars_SetArceusEventState(v2, 1);
                 }
             }
         }
@@ -1337,8 +1337,8 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
         if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
 
-            if (sub_0206B5F8(v0) == 0) {
-                sub_0206B608(v0, 1);
+            if (SystemVars_GetArceusEventState(v0) == 0) {
+                SystemVars_SetArceusEventState(v0, 1);
             }
         }
     }

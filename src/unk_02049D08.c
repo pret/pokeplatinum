@@ -378,7 +378,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *param0, u16 param1, u16 param2)
         v5 = SaveData_GetGameRecordsPtr(param0);
 
         if (v3->unk_0F == 6) {
-            v2 = sub_0206B6FC(SaveData_GetVarsFlags(param0));
+            v2 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(param0));
         } else {
             v2 = sub_0202D414(v3->unk_74, 8 + v3->unk_0F, 0);
         }

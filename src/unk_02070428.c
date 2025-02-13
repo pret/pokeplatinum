@@ -127,7 +127,7 @@ void sub_020705B4(FieldSystem *fieldSystem)
     VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     SystemFlag_ClearHasPartner(v0);
-    sub_0206B024(v0, 0);
+    SystemVars_SetPartnerTrainerID(v0, 0);
 }
 
 void sub_020705CC(FieldSystem *fieldSystem)

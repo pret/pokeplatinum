@@ -17,7 +17,7 @@ BOOL ScrCmd_2E1(ScriptContext *param0);
 
 BOOL ScrCmd_215(ScriptContext *param0)
 {
-    sub_0206B218(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
+    SystemVars_ClearAmitySquareStepCount(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 
@@ -25,7 +25,7 @@ BOOL ScrCmd_216(ScriptContext *param0)
 {
     u16 *v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_0206B228(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
+    *v0 = SystemVars_GetAmitySquareStepCount(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     return 0;
 }
 

@@ -728,7 +728,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
         ov23_0224E124(v0);
         {
             VarsFlags *v2 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
-            sub_0206B3FC(v2, sub_0206B3EC(v2) + 1);
+            SystemVars_SetUndergroundItemsGivenAway(v2, SystemVars_GetUndergroundItemsGivenAway(v2) + 1);
         }
 
         GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_31);
