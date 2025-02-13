@@ -114,7 +114,7 @@ BOOL ov99_021D340C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
         param1->unk_00++;
         break;
     case 1:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) {
             G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, 31, 0);
             param1->unk_00++;
         }
@@ -126,7 +126,7 @@ BOOL ov99_021D340C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
         }
         break;
     case 3:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) {
             return 1;
         }
         break;

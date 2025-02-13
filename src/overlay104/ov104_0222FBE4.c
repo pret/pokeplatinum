@@ -2401,7 +2401,7 @@ static BOOL ov104_02231720(UnkStruct_ov104_02231148 *param0)
         param0->unk_04++;
         break;
     case 2:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 0) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
             break;
         }
 
@@ -2471,7 +2471,7 @@ static BOOL ov104_02231864(UnkStruct_ov104_02231148 *param0)
         param0->unk_04++;
         break;
     case 2:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 0) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
             break;
         }
 

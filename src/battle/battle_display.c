@@ -6305,13 +6305,13 @@ static void ov16_022646C8(SysTask *param0, void *param1)
         v0->unk_00++;
         break;
     case 1:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
             BrightnessController_StartTransition(4, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) & (GX_BLEND_PLANEMASK_BG1 ^ 0xffff), BRIGHTNESS_MAIN_SCREEN);
             v0->unk_00++;
         }
         break;
     case 2:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
             Heap_FreeToHeap(param1);
             SysTask_Done(param0);
         }

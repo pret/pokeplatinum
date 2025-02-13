@@ -87,7 +87,7 @@ BOOL ov99_021D2C08(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
         }
         break;
     case 2:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) {
             return 1;
         }
         break;

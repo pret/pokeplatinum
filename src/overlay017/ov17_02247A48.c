@@ -1277,7 +1277,7 @@ static void ov17_02248EC4(SysTask *param0, void *param1)
         v0->unk_10++;
         break;
     case 1:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
             PaletteData_FillBufferRange(v0->unk_00->unk_0C.unk_44, 0, 0, 0x0, 0, (13 * 16));
             PaletteData_FillBufferRange(v0->unk_00->unk_0C.unk_44, 2, 0, 0x0, 0, ((16 - 2) * 16));
             v0->unk_10++;

@@ -881,7 +881,7 @@ BOOL ov115_02260F70(UnkStruct_ov115_02260D78 *param0, u32 param1)
             v0 = 0;
         }
 
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == 0) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == FALSE) {
             v0 = 0;
         }
 
@@ -4625,7 +4625,7 @@ static void ov115_022658F8(UnkStruct_ov115_022658E0 *param0, UnkStruct_ov115_022
         param0->unk_00++;
         break;
     case 2:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
             ov115_022650C8(param1);
             ov115_022650F8(param1, (FX32_CONST(2)));
             ov115_0226425C(param2, 1);
@@ -4637,7 +4637,7 @@ static void ov115_022658F8(UnkStruct_ov115_022658E0 *param0, UnkStruct_ov115_022
         param0->unk_00++;
         break;
     case 4:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
             param0->unk_00++;
         }
         break;

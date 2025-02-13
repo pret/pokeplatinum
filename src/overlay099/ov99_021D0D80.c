@@ -208,7 +208,7 @@ int ov99_021D1028(OverlayManager *param0, int *param1)
                 v0->unk_1102 = 0;
             }
 
-            if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == 0) {
+            if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == FALSE) {
                 BrightnessController_ResetScreenController(BRIGHTNESS_BOTH_SCREENS);
             }
 

@@ -1777,21 +1777,21 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         param0->unk_0C = 51;
         break;
     case 51:
-        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == 1)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             BrightnessController_StartTransition(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
             BrightnessController_StartTransition(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
             param0->unk_0C = 52;
         }
         break;
     case 52:
-        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == 1)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
             BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
             param0->unk_0C = 53;
         }
         break;
     case 53:
-        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == 1)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             param0->unk_0C = 54;
         }
         break;
@@ -1809,7 +1809,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
     case 55:
         ov73_021D200C(param0, &param0->unk_94[0]);
 
-        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == 1)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             param0->unk_0C = 56;
         }
         break;

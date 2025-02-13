@@ -1859,7 +1859,7 @@ static BOOL ov77_021D4230(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
         }
         break;
     case 1:
-        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) && (param2 == 700)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (param2 == 700)) {
             Bg_ToggleLayer(0, 1);
             ov77_021D6CD0(param1->unk_1C, 9);
             ov77_021D6CD0(param1->unk_1C, 10);

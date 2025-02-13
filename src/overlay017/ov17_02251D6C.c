@@ -858,7 +858,7 @@ static void ov17_022529C8(SysTask *param0, void *param1)
         v0->unk_10++;
         break;
     case 1:
-        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == 1) && (Sound_CheckFade() == 0)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) && (Sound_CheckFade() == 0)) {
             ov17_02251020(v0->unk_00);
             GX_SetMasterBrightness(16);
             GXS_SetMasterBrightness(16);

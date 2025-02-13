@@ -428,7 +428,7 @@ void ov17_0223F744(UnkStruct_ov17_0223F744 *param0)
 
 BOOL ov17_0223F760(void)
 {
-    if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) {
+    if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
         return 1;
     }
 
@@ -439,7 +439,7 @@ static void ov17_0223F774(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_0223F744 *v0 = param1;
 
-    if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 0) {
+    if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
         return;
     }
 

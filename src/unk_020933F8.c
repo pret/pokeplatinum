@@ -1506,7 +1506,7 @@ static void sub_02094B30(SysTask *param0, void *param1)
     UnkStruct_02095C48 *v0 = param1;
     UnkStruct_02094A58 *v1 = v0->unk_19A0;
 
-    if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 0) {
+    if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
         return;
     }
 

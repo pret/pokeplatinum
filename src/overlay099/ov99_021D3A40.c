@@ -27,7 +27,7 @@ BOOL ov99_021D3A40(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
         }
         break;
     case 2:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) {
             if (param0->unk_1105 < 7) {
                 param1->unk_00 = 3;
             } else {
@@ -74,7 +74,7 @@ BOOL ov99_021D3B2C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
         }
         break;
     case 2:
-        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) {
             if (param0->unk_1105 < 10) {
                 param1->unk_00 = 3;
             } else {

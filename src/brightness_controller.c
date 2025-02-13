@@ -33,7 +33,7 @@ static TransitionController controllerSub; // Bottom Screen
 
 static void BrightnessController_StepTransition(TransitionController *controller)
 {
-    BOOL transitionFinished = 0;
+    BOOL transitionFinished = FALSE;
     TransitionData *data = &controller->data;
 
     if ((controller->brightness + controller->direction * controller->stepDelta != data->targetBrightness) && (controller->brightness != data->targetBrightness)) {
@@ -46,12 +46,12 @@ static void BrightnessController_StepTransition(TransitionController *controller
             if (controller->brightness != data->targetBrightness) {
                 controller->accumulator -= data->stepCount;
             } else {
-                transitionFinished = 1;
+                transitionFinished = TRUE;
             }
         }
     } else {
         controller->brightness = data->targetBrightness;
-        transitionFinished = 1;
+        transitionFinished = TRUE;
     }
 
     if (IS_SCREEN_SELECTED(data->screenSelect, BRIGHTNESS_MAIN_SCREEN)) {
@@ -60,15 +60,15 @@ static void BrightnessController_StepTransition(TransitionController *controller
         G2S_SetBlendBrightness(data->planeMask, controller->brightness);
     }
 
-    if (transitionFinished == 1) {
-        controller->isActive = 0;
+    if (transitionFinished == TRUE) {
+        controller->isActive = FALSE;
     }
 }
 
 static void BrightnessController_TransitionSetup(TransitionController *controller, const u8 stepCount, const s16 targetBrightness, const s16 startBrightness, const int planeMask, const u32 screenSelect)
 {
-    GF_ASSERT(controller->isActive == 0);
-    controller->isActive = 1;
+    GF_ASSERT(controller->isActive == FALSE);
+    controller->isActive = TRUE;
 
     TransitionData *data = &controller->data;
 
@@ -129,20 +129,20 @@ void BrightnessController_ResetAllControllers(void)
     MI_CpuClear8(&controllerMain, sizeof(TransitionController));
     MI_CpuClear8(&controllerSub, sizeof(TransitionController));
 
-    controllerMain.isActive = 0;
-    controllerSub.isActive = 0;
+    controllerMain.isActive = FALSE;
+    controllerSub.isActive = FALSE;
 }
 
 void BrightnessController_ResetScreenController(const u32 screenSelect)
 {
     if (IS_SCREEN_SELECTED(screenSelect, BRIGHTNESS_MAIN_SCREEN)) {
         MI_CpuClear8(&controllerMain, sizeof(TransitionController));
-        controllerMain.isActive = 0;
+        controllerMain.isActive = FALSE;
     }
 
     if (IS_SCREEN_SELECTED(screenSelect, BRIGHTNESS_SUB_SCREEN)) {
         MI_CpuClear8(&controllerSub, sizeof(TransitionController));
-        controllerSub.isActive = 0;
+        controllerSub.isActive = FALSE;
     }
 }
 
@@ -160,15 +160,15 @@ void BrightnessController_Update(void)
 BOOL BrightnessController_IsTransitionComplete(u32 screenSelect)
 {
     if (screenSelect == BRIGHTNESS_BOTH_SCREENS) {
-        if ((controllerMain.isActive == 0) && (controllerSub.isActive == 0)) {
+        if ((controllerMain.isActive == FALSE) && (controllerSub.isActive == FALSE)) {
             return 1;
         }
     } else if (screenSelect == BRIGHTNESS_MAIN_SCREEN) {
-        if (controllerMain.isActive == 0) {
+        if (controllerMain.isActive == FALSE) {
             return 1;
         }
     } else if (screenSelect == BRIGHTNESS_SUB_SCREEN) {
-        if (controllerSub.isActive == 0) {
+        if (controllerSub.isActive == FALSE) {
             return 1;
         }
     }
