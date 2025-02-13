@@ -127,6 +127,7 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_system_flags.h"
 #include "script_manager.h"
 #include "special_encounter.h"
@@ -179,7 +180,6 @@
 #include "unk_0204E75C.h"
 #include "unk_0204E974.h"
 #include "unk_0204EDA4.h"
-#include "unk_0204F02C.h"
 #include "unk_0204F04C.h"
 #include "unk_0204F13C.h"
 #include "unk_0204FAB4.h"
@@ -1337,10 +1337,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_23C,
     ScrCmd_23D,
     ScrCmd_23E,
-    ScrCmd_23F,
-    ScrCmd_240,
-    ScrCmd_241,
-    ScrCmd_242,
+    ScrCmd_Dummy23F,
+    ScrCmd_Dummy240,
+    ScrCmd_Dummy241,
+    ScrCmd_Dummy242,
     ScrCmd_243,
     ScrCmd_244,
     ScrCmd_245,
