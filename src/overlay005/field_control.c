@@ -761,7 +761,7 @@ static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
         Field_CalculateFriendship(fieldSystem);
     }
 
-    sub_0206B238(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemVars_IncrementAmitySquareStepCount(SaveData_GetVarsFlags(fieldSystem->saveData));
     return FALSE;
 }
 
@@ -865,7 +865,7 @@ static BOOL Field_UpdateFriendship(FieldSystem *fieldSystem)
     BOOL ret = FALSE;
 
     vars = SaveData_GetVarsFlags(fieldSystem->saveData);
-    u16 steps = sub_0206B44C(vars);
+    u16 steps = SystemVars_GetFriendshipStepCount(vars);
 
     steps++;
 
@@ -874,7 +874,7 @@ static BOOL Field_UpdateFriendship(FieldSystem *fieldSystem)
         ret = TRUE;
     }
 
-    sub_0206B45C(vars, steps);
+    SystemVars_SetFriendshipStepCount(vars, steps);
 
     return ret;
 }

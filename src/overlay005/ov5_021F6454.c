@@ -838,23 +838,23 @@ BOOL ScrCmd_30F(ScriptContext *param0)
     case 14:
         *v4 = 0;
 
-        if (sub_0206B588(v0) >= 2) {
+        if (SystemVars_GetBattleFactoryPrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B598(v0) >= 2) {
+        if (SystemVars_GetBattleHallPrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B5A8(v0) >= 2) {
+        if (SystemVars_GetBattleCastlePrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B5B8(v0) >= 2) {
+        if (SystemVars_GetBattleArcadePrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B5C8(v0) >= 2) {
+        if (SystemVars_GetBattleTowerPrintState(v0) >= 2) {
             *v4 = 1;
         }
         break;

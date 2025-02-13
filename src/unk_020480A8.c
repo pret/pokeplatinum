@@ -24,7 +24,7 @@ BOOL ScrCmd_24E(ScriptContext *param0)
     u16 *v1 = ScriptContext_GetVarPointer(param0);
     u32 v2;
 
-    v2 = sub_0206B2A4(v0);
+    v2 = SystemVars_GetJubilifeLotteryTrainerID(v0);
     *v1 = (u16)(v2 % (65535 + 1));
 
     return 0;
@@ -107,7 +107,7 @@ BOOL ScrCmd_250(ScriptContext *param0)
 {
     VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
-    sub_0206B2C8(v0);
+    SystemVars_RandomizeJubilifeLotteryTrainerID(v0);
     return 0;
 }
 

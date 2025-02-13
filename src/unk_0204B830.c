@@ -289,8 +289,8 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
 
     if (Pokemon_GetValue(v4, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {
-            if (sub_0206B5F8(v2) == 0) {
-                sub_0206B608(v2, 1);
+            if (SystemVars_GetArceusEventState(v2) == 0) {
+                SystemVars_SetArceusEventState(v2, 1);
             }
         }
     }
@@ -546,7 +546,7 @@ static void sub_0204C15C(FieldSystem *fieldSystem, void *param1)
     u16 v4 = 454;
 
     Bag_TryAddItem(v0, v4, 1, 32);
-    sub_0206B144(v2, 0);
+    SystemVars_SetDistributionEventMagic(v2, 0);
 }
 
 static void sub_0204C190(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
@@ -590,10 +590,10 @@ static void sub_0204C220(FieldSystem *fieldSystem, void *param1)
     u16 v4 = 452;
 
     Bag_TryAddItem(v0, v4, 1, 32);
-    sub_0206B144(v2, 1);
+    SystemVars_SetDistributionEventMagic(v2, 1);
 
-    if (sub_0206B618(v2) == 0) {
-        sub_0206B628(v2, 1);
+    if (SystemVars_GetShayminEventState(v2) == 0) {
+        SystemVars_SetShayminEventState(v2, 1);
     }
 }
 
@@ -638,7 +638,7 @@ static void sub_0204C2F4(FieldSystem *fieldSystem, void *param1)
     u16 v4 = 467;
 
     Bag_TryAddItem(v0, v4, 1, 32);
-    sub_0206B144(v2, 3);
+    SystemVars_SetDistributionEventMagic(v2, 3);
 }
 
 static void sub_0204C328(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
@@ -682,7 +682,7 @@ static void sub_0204C3B8(FieldSystem *fieldSystem, void *param1)
     u16 v4 = 455;
 
     Bag_TryAddItem(v0, v4, 1, 32);
-    sub_0206B144(v2, 2);
+    SystemVars_SetDistributionEventMagic(v2, 2);
 }
 
 static void sub_0204C3EC(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)

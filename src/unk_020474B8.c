@@ -289,7 +289,7 @@ BOOL ScrCmd_0DB(ScriptContext *param0)
 {
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
-    u16 v2 = VarsFlags_GetPlayerStarterSpecies(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
+    u16 v2 = SystemVars_GetPlayerStarter(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     Strbuf *v3 = GetSpeciesNameStrbuf(v2, HEAP_ID_FIELD);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -302,7 +302,7 @@ BOOL ScrCmd_BufferRivalStarterSpeciesName(ScriptContext *ctx)
 {
     StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 templateArg = ScriptContext_ReadByte(ctx);
-    u16 species = VarsFlags_GetRivalStarterSpecies(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    u16 species = SystemVars_GetRivalStarter(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     Strbuf *speciesName = GetSpeciesNameStrbuf(species, HEAP_ID_FIELD);
 
     StringTemplate_SetStrbuf(*stringTemplate, templateArg, speciesName, 0, 1, GAME_LANGUAGE);
@@ -315,7 +315,7 @@ BOOL ScrCmd_0DD(ScriptContext *param0)
 {
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
-    u16 v2 = VarsFlags_GetPlayerCounterpartStarterSpecies(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
+    u16 v2 = SystemVars_GetPlayerCounterpartStarter(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
     Strbuf *v3 = GetSpeciesNameStrbuf(v2, HEAP_ID_FIELD);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
@@ -549,7 +549,7 @@ BOOL ScrCmd_342(ScriptContext *param0)
 {
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
-    u16 v2 = VarsFlags_GetPlayerCounterpartStarterSpecies(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
+    u16 v2 = SystemVars_GetPlayerCounterpartStarter(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
 
     StringTemplate_SetSpeciesNameWithArticleByID(*v0, v1, v2);
     return 0;

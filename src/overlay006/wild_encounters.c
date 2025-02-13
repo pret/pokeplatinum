@@ -340,7 +340,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
-            battleParams->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
+            battleParams->trainerIDs[2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
             Trainer_Encounter(battleParams, fieldSystem->saveData, HEAP_ID_FIELDMAP);
             encounterSuccess = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
         }
@@ -527,7 +527,7 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
 
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
-            battleParams->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
+            battleParams->trainerIDs[2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
             Trainer_Encounter(battleParams, fieldSystem->saveData, 11);
             encounterSuccess = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
         }
@@ -658,7 +658,7 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, *battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
             {
-                (*battleParams)->trainerIDs[2] = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
+                (*battleParams)->trainerIDs[2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
                 Trainer_Encounter(*battleParams, fieldSystem->saveData, 11);
             }
             encounterSuccess = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, *battleParams, encounterTable, &encounterFieldParams);

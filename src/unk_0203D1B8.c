@@ -1568,10 +1568,10 @@ static BOOL sub_0203E35C(FieldTask *param0)
             sub_0206DD38(fieldSystem, Coins_GetValue(v5), v2->unk_00, TimeElapsed(v2->unk_04, v6) / 60);
             Coins_SetValue(SaveData_GetCoins(fieldSystem->saveData), v2->unk_00);
 
-            v4 = sub_0206B394(v1);
+            v4 = SystemVars_GetConsecutiveBonusRoundWins(v1);
 
             if ((v2->unk_0C.unk_0C) > v4) {
-                sub_0206B3A4(v1, v2->unk_0C.unk_0C);
+                SystemVars_SetConsecutiveBonusRoundWins(v1, v2->unk_0C.unk_0C);
             }
 
             Heap_FreeToHeap(v2);

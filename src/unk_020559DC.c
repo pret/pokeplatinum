@@ -103,7 +103,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
 
     {
         VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
-        u16 v2 = sub_0206B260(v1);
+        u16 v2 = SystemVars_GetNewsPressDeadline(v1);
 
         if (v2 > param1) {
             v2 -= param1;
@@ -111,18 +111,18 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
             v2 = 0;
         }
 
-        sub_0206B270(v1, v2);
+        SystemVars_SetNewsPressDeadline(v1, v2);
     }
 
     {
-        sub_0206B2E4(fieldSystem->saveData, param1);
+        SystemVars_SynchronizeJubilifeLotteryTrainerID(fieldSystem->saveData, param1);
     }
 
     {
-        sub_0206B334(fieldSystem->saveData);
+        SystemVars_SetDailyRandomLevel(fieldSystem->saveData);
     }
 
-    sub_0206B514(fieldSystem->saveData);
+    SystemVars_UpdateVillaVisitor(fieldSystem->saveData);
     FieldSystem_ClearDailyHiddenItemFlags(fieldSystem);
     sub_0206C008(fieldSystem->saveData);
     sub_0202C9A0(sub_0202C878(fieldSystem->saveData));

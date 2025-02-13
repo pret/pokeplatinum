@@ -355,6 +355,6 @@ static void ov48_022564E0(UnkStruct_ov48_0225621C *param0, PoketchSystem *poketc
     int v1;
 
     for (v1 = 0; v1 < 4; v1++) {
-        param0->unk_04.unk_94[v1] = VarFlags_HiddenLocationsUnlocked(v0, v1);
+        param0->unk_04.unk_94[v1] = SystemVars_CheckHiddenLocation(v0, v1);
     }
 }

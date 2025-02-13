@@ -248,7 +248,7 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
         FieldSystem_InitFlagsOnMapChange(fieldSystem);
     }
 
-    VsSeeker_Reset(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemVars_ResetVsSeeker(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     if (!noWarp) {
         sub_020559DC(fieldSystem);
@@ -305,7 +305,7 @@ void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL
         FieldSystem_InitFlagsOnMapChange(fieldSystem);
     }
 
-    VsSeeker_Reset(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemVars_ResetVsSeeker(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     if (!param1) {
         sub_020559DC(fieldSystem);
@@ -372,11 +372,11 @@ static void FieldMapChange_InitTerrainCollisionManager(FieldSystem *fieldSystem)
     GF_ASSERT(fieldSystem->terrainCollisionMan == NULL);
     MapMatrix_Load(fieldSystem->location->mapId, fieldSystem->mapMatrix);
 
-    if (VarFlags_HiddenLocationsUnlocked(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SEABREAKPATH)) {
+    if (SystemVars_CheckHiddenLocation(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SEABREAKPATH)) {
         MapMatrix_RevealSeabreakPath(fieldSystem->mapMatrix); // reveal Seabreak Path if Oak's Letter has been used
     }
 
-    if (!VarFlags_HiddenLocationsUnlocked(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SPRINGPATH)) {
+    if (!SystemVars_CheckHiddenLocation(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SPRINGPATH)) {
         MapMatrix_RevealSpringPath(fieldSystem->mapMatrix);
     }
 

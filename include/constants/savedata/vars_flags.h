@@ -5,6 +5,12 @@
 #include "generated/giratina_shadow_animations.h"
 #include "generated/villa_furnitures.h"
 
+#define VARS_START 0x4000
+
+#define SYSTEM_VARS_START (VARS_START + 0x0030)
+
+#define SPECIAL_VARS_START 0x8000
+
 #define SYSTEM_FLAGS_START                       2400
 #define FLAG_BAG_ACQUIRED                        (SYSTEM_FLAGS_START + 0)
 #define FLAG_HAS_PARTNER                         (SYSTEM_FLAGS_START + 1)
