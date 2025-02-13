@@ -36,7 +36,7 @@ static void BrightnessController_StepTransition(TransitionController *controller
     BOOL transitionFinished = FALSE;
     TransitionData *data = &controller->data;
 
-    if ((controller->brightness + controller->direction * controller->stepDelta != data->targetBrightness) && (controller->brightness != data->targetBrightness)) {
+    if (controller->brightness + controller->direction * controller->stepDelta != data->targetBrightness && controller->brightness != data->targetBrightness) {
         controller->brightness += controller->direction * controller->stepDelta;
         controller->accumulator += controller->stepRemainder;
 
@@ -161,17 +161,17 @@ BOOL BrightnessController_IsTransitionComplete(u32 screenSelect)
 {
     if (screenSelect == BRIGHTNESS_BOTH_SCREENS) {
         if ((controllerMain.isActive == FALSE) && (controllerSub.isActive == FALSE)) {
-            return 1;
+            return TRUE;
         }
     } else if (screenSelect == BRIGHTNESS_MAIN_SCREEN) {
         if (controllerMain.isActive == FALSE) {
-            return 1;
+            return TRUE;
         }
     } else if (screenSelect == BRIGHTNESS_SUB_SCREEN) {
         if (controllerSub.isActive == FALSE) {
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
