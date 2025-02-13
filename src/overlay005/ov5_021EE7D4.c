@@ -12,7 +12,7 @@
 #include "pokemon.h"
 #include "script_manager.h"
 #include "string_template.h"
-#include "unk_0206AFE0.h"
+#include "system_vars.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
 

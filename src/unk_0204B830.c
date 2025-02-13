@@ -24,6 +24,7 @@
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02017038.h"
 #include "unk_0202602C.h"
@@ -34,7 +35,6 @@
 #include "unk_0202DAB4.h"
 #include "unk_0202F180.h"
 #include "unk_02054884.h"
-#include "unk_0206AFE0.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
 

@@ -23,8 +23,8 @@
 #include "save_player.h"
 #include "script_manager.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "trainer_info.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 typedef struct {

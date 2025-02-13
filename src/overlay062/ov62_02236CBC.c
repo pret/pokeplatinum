@@ -21,12 +21,12 @@
 #include "palette.h"
 #include "sprite.h"
 #include "sprite_system.h"
+#include "system_vars.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_0202D05C.h"
 #include "unk_02030A80.h"
-#include "unk_0206AFE0.h"
 #include "unk_0208B284.h"
 #include "vars_flags.h"
 

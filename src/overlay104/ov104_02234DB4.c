@@ -20,11 +20,11 @@
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "system_vars.h"
 #include "unk_02030108.h"
 #include "unk_0203061C.h"
 #include "unk_02030880.h"
 #include "unk_0205DFC4.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *param0, u16 param1, u8 param2, u8 param3, u8 param4);

@@ -12,7 +12,7 @@
 #include "inlines.h"
 #include "party.h"
 #include "pokemon.h"
-#include "unk_0206AFE0.h"
+#include "system_vars.h"
 #include "unk_020797C8.h"
 #include "vars_flags.h"
 

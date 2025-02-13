@@ -27,10 +27,10 @@
 #include "script_manager.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_0205C980.h"
 #include "unk_0205DFC4.h"
-#include "unk_0206AFE0.h"
 #include "unk_020797C8.h"
 #include "vars_flags.h"
 
