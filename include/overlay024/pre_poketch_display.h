@@ -3,8 +3,8 @@
 
 #include "bg_window.h"
 
-void PrePoketchDisplay_DisplayBg(BgConfig *param0);
-void PrePoketchDisplay_FreeBg(BgConfig *param0);
-BOOL PrePoketchDisplay_AlwaysTrue(BgConfig *param0);
+void PrePoketchDisplay_DisplayBg(BgConfig *bgConfig);
+void PrePoketchDisplay_FreeBg(BgConfig *bgConfig);
+BOOL PrePoketchDisplay_AlwaysTrue(BgConfig *bgConfig);
 
 #endif // POKEPLATINUM_PRE_POKETCH_DISPLAY_H
