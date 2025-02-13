@@ -30,6 +30,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
@@ -53,7 +54,6 @@
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"
@@ -1886,6 +1886,6 @@ void ov23_02251238(UnkStruct_ov23_02250CD4 *param0, int param1, int param2)
 
 void ov23_02251270(SysTask *param0, void *param1)
 {
-    sub_0200AB4C(0, GX_BLEND_PLANEMASK_BG0, 1);
+    BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
     ov23_02251044(param1, 0xfffffffe);
 }

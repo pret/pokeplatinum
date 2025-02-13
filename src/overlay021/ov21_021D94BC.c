@@ -28,6 +28,7 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
@@ -38,7 +39,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 
@@ -443,12 +443,12 @@ static int ov21_021D97A0(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
         break;
     case 1:
         ov21_021D9A08(v3, v2, v0, v1, param1->heapID);
-        sub_0200AAE0(1, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
+        BrightnessController_StartTransition(1, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
         ov21_021DB480(v2, v1, v0);
         param1->unk_00++;
         break;
     case 2:
-        if (sub_0200AC1C(2)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             param1->unk_00++;
         }
         break;
@@ -544,12 +544,12 @@ static int ov21_021D9960(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
         if (PokedexSearch_GetFilteredState(v0->unk_08) == 1) {
             param1->unk_00 = 2;
         } else {
-            sub_0200AAE0(6, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
+            BrightnessController_StartTransition(6, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
             param1->unk_00++;
         }
         break;
     case 1:
-        if (sub_0200AC1C(2)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             param1->unk_00++;
         }
         break;
@@ -3536,9 +3536,9 @@ static void ov21_021DC96C(UnkStruct_ov21_021DC96C *param0, UnkStruct_ov21_021D95
 {
     if (PokedexSearch_GetScreenTimer(param2->unk_08) == 4) {
         if (PokedexSearch_GetScreenState(param2->unk_08) == 3) {
-            sub_0200AAE0(4, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
+            BrightnessController_StartTransition(4, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
         } else if (PokedexSearch_GetScreenState(param2->unk_08) == 1) {
-            sub_0200AAE0(4, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
+            BrightnessController_StartTransition(4, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
         }
     }
 }

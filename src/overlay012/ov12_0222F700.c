@@ -21,13 +21,13 @@
 #include "overlay012/struct_ov12_0222660C_decl.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "enums.h"
 #include "heap.h"
 #include "palette.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 
 typedef struct {
@@ -2515,7 +2515,7 @@ static void ov12_0223223C(SysTask *param0, void *param1)
         break;
     case 1:
         if (v0->unk_10 == 0) {
-            sub_0200AAE0(8, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 1);
+            BrightnessController_StartTransition(8, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
             v0->unk_10 = -1;
         } else {
             if (v0->unk_10 > 0) {
@@ -2524,8 +2524,8 @@ static void ov12_0223223C(SysTask *param0, void *param1)
         }
 
         if (v0->unk_10 == -1) {
-            if (sub_0200AC1C(1)) {
-                sub_0200AAE0(8, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 1);
+            if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
+                BrightnessController_StartTransition(8, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
                 v0->unk_10 = -2;
             }
         }
@@ -2535,7 +2535,7 @@ static void ov12_0223223C(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        if (sub_0200AC1C(1)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
             v0->unk_0C++;
             ov12_02235780(v0->unk_00, 16, 0);
             ov12_02226424(&v0->unk_3C, 16, 0, 0, 16, 8);

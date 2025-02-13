@@ -21,6 +21,7 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "heap.h"
@@ -32,7 +33,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200A9DC.h"
 
 #include "res/text/bank/pokedex.h"
 
@@ -453,11 +453,11 @@ static int EnterPokedexSearch(void *param0, UnkStruct_ov21_021E6B20 *param1, con
         break;
     case 1:
         DefaultDisplay(searchDisplay, v2, searchSettings, v1, param1->heapID);
-        sub_0200AAE0(1, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+        BrightnessController_StartTransition(1, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
         param1->unk_00++;
         break;
     case 2:
-        if (sub_0200AC1C(1)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
             param1->unk_00++;
         }
         break;
@@ -494,14 +494,14 @@ static int ExitPokedexSearch(void *param0, UnkStruct_ov21_021E6B20 *param1, cons
     switch (param1->unk_00) {
     case 0:
         if (searchSettings->applyFilter == FALSE) {
-            sub_0200AAE0(6, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+            BrightnessController_StartTransition(6, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
             param1->unk_00++;
         } else {
             param1->unk_00 = 2;
         }
         break;
     case 1:
-        if (sub_0200AC1C(1)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
             param1->unk_00++;
         }
         break;

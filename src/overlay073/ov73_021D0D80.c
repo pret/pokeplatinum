@@ -8,6 +8,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_start.h"
@@ -34,7 +35,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
@@ -1772,26 +1772,26 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         }
         break;
     case 50:
-        sub_0200AAE0(1, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), 1);
-        sub_0200AAE0(1, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 2);
+        BrightnessController_StartTransition(1, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_StartTransition(1, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
         param0->unk_0C = 51;
         break;
     case 51:
-        if ((sub_0200AC1C(1) == 1) && (sub_0200AC1C(2) == 1)) {
-            sub_0200AAE0(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), 1);
-            sub_0200AAE0(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 2);
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
+            BrightnessController_StartTransition(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
+            BrightnessController_StartTransition(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
             param0->unk_0C = 52;
         }
         break;
     case 52:
-        if ((sub_0200AC1C(1) == 1) && (sub_0200AC1C(2) == 1)) {
-            sub_0200AAE0(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), 1);
-            sub_0200AAE0(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 2);
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
+            BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
+            BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
             param0->unk_0C = 53;
         }
         break;
     case 53:
-        if ((sub_0200AC1C(1) == 1) && (sub_0200AC1C(2) == 1)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             param0->unk_0C = 54;
         }
         break;
@@ -1802,14 +1802,14 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         ov73_021D200C(param0, &param0->unk_94[0]);
         param0->unk_8B = 0;
         ov73_021D1B14(param0);
-        sub_0200AAE0(16, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), 1);
-        sub_0200AAE0(16, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 2);
+        BrightnessController_StartTransition(16, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_StartTransition(16, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
         param0->unk_0C = 55;
         break;
     case 55:
         ov73_021D200C(param0, &param0->unk_94[0]);
 
-        if ((sub_0200AC1C(1) == 1) && (sub_0200AC1C(2) == 1)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             param0->unk_0C = 56;
         }
         break;

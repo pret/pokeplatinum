@@ -18,6 +18,7 @@
 #include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "camera.h"
 #include "easy3d_object.h"
 #include "enums.h"
@@ -32,7 +33,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_020041CC.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"
@@ -172,7 +172,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     SetVBlankCallback(ov99_021D1350, v0);
     sub_02004550(14, 1186, 1);
 
-    sub_0200AB4C(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+    BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
     sub_0200F44C(0, 0);
     sub_0200F44C(1, 0);
 
@@ -208,8 +208,8 @@ int ov99_021D1028(OverlayManager *param0, int *param1)
                 v0->unk_1102 = 0;
             }
 
-            if (sub_0200AC1C(3) == 0) {
-                sub_0200ABB0(3);
+            if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == FALSE) {
+                BrightnessController_ResetScreenController(BRIGHTNESS_BOTH_SCREENS);
             }
 
             ov99_021D12F0(v0);

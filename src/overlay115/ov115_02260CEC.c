@@ -23,6 +23,7 @@
 #include "overlay115/struct_ov115_02265AD4.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
@@ -47,7 +48,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
@@ -854,7 +854,7 @@ BOOL ov115_02260F70(UnkStruct_ov115_02260D78 *param0, u32 param1)
         ov115_022625A8(param0);
         ov115_02262D90(param0);
 
-        sub_0200AAE0(24, -14, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
+        BrightnessController_StartTransition(24, -14, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
 
         ov115_02261ADC(&param0->unk_1AB4);
         ov114_0225CBB0(param0->unk_1AB4.unk_754);
@@ -881,7 +881,7 @@ BOOL ov115_02260F70(UnkStruct_ov115_02260D78 *param0, u32 param1)
             v0 = 0;
         }
 
-        if (sub_0200AC1C(2) == 0) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == FALSE) {
             v0 = 0;
         }
 
@@ -4621,11 +4621,11 @@ static void ov115_022658F8(UnkStruct_ov115_022658E0 *param0, UnkStruct_ov115_022
         }
         break;
     case 1:
-        sub_0200AAE0(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+        BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
         param0->unk_00++;
         break;
     case 2:
-        if (sub_0200AC1C(1) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
             ov115_022650C8(param1);
             ov115_022650F8(param1, (FX32_CONST(2)));
             ov115_0226425C(param2, 1);
@@ -4633,11 +4633,11 @@ static void ov115_022658F8(UnkStruct_ov115_022658E0 *param0, UnkStruct_ov115_022
         }
         break;
     case 3:
-        sub_0200AAE0(14, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+        BrightnessController_StartTransition(14, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
         param0->unk_00++;
         break;
     case 4:
-        if (sub_0200AC1C(1) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
             param0->unk_00++;
         }
         break;

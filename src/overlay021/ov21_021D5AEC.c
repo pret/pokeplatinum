@@ -25,6 +25,7 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "heap.h"
 #include "message.h"
@@ -37,7 +38,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200A9DC.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"
@@ -1518,9 +1518,9 @@ static void ov21_021D71A8(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D5C
 
     if (param2->unk_10 != 1) {
         if (param3) {
-            sub_0200AAE0(4, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+            BrightnessController_StartTransition(4, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
         } else {
-            sub_0200AAE0(4, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+            BrightnessController_StartTransition(4, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
         }
     }
 }
@@ -1532,7 +1532,7 @@ static BOOL ov21_021D71E4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D5C
     v0[0] = ov21_021D7044(param0, param1);
 
     if (param2->unk_10 != 1) {
-        v0[1] = sub_0200AC1C(1);
+        v0[1] = BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN);
     } else {
         v0[1] = 1;
     }
@@ -1540,7 +1540,7 @@ static BOOL ov21_021D71E4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D5C
     if ((v0[0] == 1) && (v0[1] == 1)) {
         if (param2->unk_10 != 1) {
             if (param3 == 0) {
-                sub_0200AB4C(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+                BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
                 Window_FillTilemap(&param1->unk_00->unk_04, 0);
                 Bg_ClearTilemap(param1->unk_00->unk_00, 1);
             }

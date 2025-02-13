@@ -58,6 +58,7 @@
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "enums.h"
@@ -83,7 +84,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
@@ -2395,13 +2395,13 @@ static BOOL ov104_02231720(UnkStruct_ov104_02231148 *param0)
             }
         }
 
-        sub_0200AAE0(40, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 1);
+        BrightnessController_StartTransition(40, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_MAIN_SCREEN);
         SysTask_Start(ov104_022313FC, param0, 0x1000);
 
         param0->unk_04++;
         break;
     case 2:
-        if (sub_0200AC1C(1) == 0) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
             break;
         }
 
@@ -2465,13 +2465,13 @@ static BOOL ov104_02231864(UnkStruct_ov104_02231148 *param0)
             }
         }
 
-        sub_0200AAE0(40, -16, 0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 1);
+        BrightnessController_StartTransition(40, -16, 0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_MAIN_SCREEN);
         SysTask_Start(ov104_022313FC, param0, 0x1000);
 
         param0->unk_04++;
         break;
     case 2:
-        if (sub_0200AC1C(1) == 0) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
             break;
         }
 

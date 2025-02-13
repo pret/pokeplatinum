@@ -24,6 +24,7 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
@@ -34,7 +35,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "vram_transfer.h"
@@ -399,7 +399,7 @@ static BOOL ov21_021E6D1C(UnkStruct_ov21_021E6C60 *param0, UnkStruct_ov21_021E6A
     if (ov21_021E33A4(param2->unk_0C)) {
         v0 = ov21_021D2424(&param1->unk_00->unk_18C);
     } else {
-        v0 = sub_0200AC1C(2);
+        v0 = BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN);
     }
 
     if (v0) {

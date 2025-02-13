@@ -8,12 +8,12 @@
 #include "overlay024/ov24_02253CE0.h"
 #include "overlay025/poketch_system.h"
 
+#include "brightness_controller.h"
 #include "field_task.h"
 #include "game_overlay.h"
 #include "heap.h"
 #include "poketch.h"
 #include "render_oam.h"
-#include "unk_0200A9DC.h"
 
 FS_EXTERN_OVERLAY(overlay24);
 FS_EXTERN_OVERLAY(overlay25);
@@ -29,11 +29,11 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
 
     switch (v1->unk_00) {
     case 0:
-        sub_0200AAE0(2, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
+        BrightnessController_StartTransition(2, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
         v1->unk_00++;
         break;
     case 1:
-        if (sub_0200AC1C(2)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             ov24_02253DA4(fieldSystem->bgConfig);
             v1->unk_00++;
         }
@@ -50,11 +50,11 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
         }
         break;
     case 3:
-        sub_0200AAE0(4, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 2);
+        BrightnessController_StartTransition(4, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
         v1->unk_00++;
         break;
     case 4:
-        if (sub_0200AC1C(2)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             Heap_FreeToHeap(v1);
             return 1;
         }
