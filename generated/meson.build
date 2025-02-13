@@ -59,6 +59,7 @@ metang_generators = {
     'move_ranges': { 'type': 'mask', 'tag': 'MoveRange', 'extra': ['--no-auto'] },
     'movement_actions': { 'type': 'enum', 'tag': 'MovementAction' },
     'moves': { 'type': 'enum', 'tag': 'Move' },
+    'npc_trades': { 'type': 'enum', 'tag': 'NpcTradeID' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },
     'pokemon_body_shapes': { 'type': 'enum', 'tag': 'PokemonBodyShape' },
@@ -116,6 +117,7 @@ foreach gen_key : metang_generators.keys()
     )
 endforeach
 
+npc_trades_txt = files('npc_trades.txt')
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
 trainers_txt = files('trainers.txt')

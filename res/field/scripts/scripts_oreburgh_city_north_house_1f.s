@@ -28,13 +28,13 @@ _003B:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0xFF, _00AC
-    ScrCmd_226 0
+    StartNpcTrade NPC_TRADE_KAZZA_ABRA
     SetVar 0x8004, 0x800C
     ScrCmd_198 0x8004, 0x8005
-    ScrCmd_228 0x800C
+    GetNpcTradeRequestedSpecies 0x800C
     GoToIfNe 0x8005, 0x800C, _009F
     ScrCmd_229 0x8004
-    ScrCmd_22A
+    FinishNpcTrade
     SetFlag 133
     Message 1
     WaitABXPadPress
@@ -43,7 +43,7 @@ _003B:
     End
 
 _009F:
-    ScrCmd_22A
+    FinishNpcTrade
     Message 2
     WaitABXPadPress
     CloseMessage

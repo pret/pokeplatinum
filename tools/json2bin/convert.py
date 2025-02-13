@@ -5,6 +5,7 @@ import functools
 from generated import (
     ai_flags,
     items,
+    genders,
     moves,
     species,
     trainer_classes
@@ -36,6 +37,9 @@ def from_trainer_class(s: str) -> int:
 
 def from_trainer_ai_flag(s: str) -> int:
     return ai_flags.AIFlag[s].value
+
+def from_gender(s: str) -> int:
+    return genders.Gender[s].value
 
 TrainerDataFlags = collections.namedtuple('TrainerDataFlags', ['has_moves', 'has_items'])
 

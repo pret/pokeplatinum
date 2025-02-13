@@ -6,6 +6,7 @@
 #include "generated/journal_online_events.h"
 #include "generated/map_headers.h"
 #include "generated/moves.h"
+#include "generated/npc_trades.h"
 #include "generated/poketch_apps.h"
 #include "generated/save_types.h"
 #include "generated/sdat.h"
@@ -2967,19 +2968,19 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_226 arg0
+    .macro StartNpcTrade npcTradeID
     .short 550
-    .byte \arg0
+    .byte \npcTradeID
     .endm
 
-    .macro ScrCmd_227 arg0
+    .macro GetNpcTradeSpecies destVar
     .short 551
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_228 arg0
+    .macro GetNpcTradeRequestedSpecies destVar
     .short 552
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_229 arg0
@@ -2987,7 +2988,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_22A
+    .macro FinishNpcTrade
     .short 554
     .endm
 
