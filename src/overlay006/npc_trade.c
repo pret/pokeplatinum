@@ -69,7 +69,7 @@ u32 NpcTrade_GetRequestedSpecies(const NpcTradeData *data)
     return data->npcTradeMon->requestedSpecies;
 }
 
-void ov6_02246234(FieldSystem *fieldSystem, NpcTradeData *data, int slot)
+void NpcTrade_ReceiveMon(FieldSystem *fieldSystem, NpcTradeData *data, int slot)
 {
     sub_0207A128(Party_GetFromSavedata(fieldSystem->saveData), slot, data->mon);
     sub_0202F180(fieldSystem->saveData, data->mon);

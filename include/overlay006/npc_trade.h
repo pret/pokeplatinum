@@ -41,7 +41,7 @@ NpcTradeData *NpcTrade_Init(u32 heapID, u32 entryID);
 void NpcTrade_Free(NpcTradeData *data);
 u32 NpcTrade_GetSpecies(const NpcTradeData *data);
 u32 NpcTrade_GetRequestedSpecies(const NpcTradeData *data);
-void ov6_02246234(FieldSystem *fieldSystem, NpcTradeData *data, int slot);
+void NpcTrade_ReceiveMon(FieldSystem *fieldSystem, NpcTradeData *data, int slot);
 void ov6_02246254(FieldSystem *fieldSystem, NpcTradeData *data, int slot, UnkStruct_ov6_02246254 *param3, Pokemon *givingMon, Pokemon *receivingMon);
 
 #endif // POKEPLATINUM_NPC_TRADE_H
