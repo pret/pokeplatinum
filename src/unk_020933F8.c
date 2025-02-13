@@ -27,6 +27,7 @@
 #include "savedata/save_table.h"
 
 #include "assert.h"
+#include "brightness_controller.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_task.h"
@@ -48,7 +49,6 @@
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "brightness_controller.h"
 #include "unk_020298BC.h"
 #include "unk_0202CC64.h"
 #include "unk_0202F108.h"

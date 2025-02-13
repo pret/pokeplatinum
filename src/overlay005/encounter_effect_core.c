@@ -21,6 +21,7 @@
 #include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "graphics.h"
@@ -35,7 +36,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 

@@ -21,6 +21,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
 #include "charcode_util.h"
@@ -63,7 +64,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_0202ACE0.h"

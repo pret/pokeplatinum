@@ -23,6 +23,7 @@
 #include "overlay023/struct_ov23_0224271C.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "camera.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
@@ -58,7 +59,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"

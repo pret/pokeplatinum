@@ -130,7 +130,6 @@ void BrightnessController_ResetAllControllers(void)
     controller_b.isActive = 0;
 }
 
-
 void BrightnessController_ResetScreenController(const u32 screen_select)
 {
     if (screen_select & SCREEN_A) {

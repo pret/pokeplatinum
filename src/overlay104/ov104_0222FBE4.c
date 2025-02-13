@@ -58,6 +58,7 @@
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "enums.h"
@@ -83,7 +84,6 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
-#include "brightness_controller.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"

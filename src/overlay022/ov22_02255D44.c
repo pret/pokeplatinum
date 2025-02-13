@@ -49,6 +49,7 @@
 #include "overlay022/struct_ov22_0225B388.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
@@ -70,7 +71,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_0201E3D8.h"

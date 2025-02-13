@@ -8,6 +8,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_start.h"
@@ -34,7 +35,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"

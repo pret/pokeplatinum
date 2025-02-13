@@ -23,6 +23,7 @@
 #include "overlay023/ov23_0224B05C.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "communication_system.h"
 #include "field_message.h"
 #include "field_overworld_state.h"
@@ -54,7 +55,6 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_02027F50.h"
 #include "unk_0202854C.h"

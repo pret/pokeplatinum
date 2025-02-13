@@ -11,6 +11,7 @@
 
 #include "assert.h"
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "communication_system.h"
 #include "font.h"
 #include "game_overlay.h"
@@ -24,7 +25,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_02003B60.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_02017428.h"
 #include "unk_0201E3D8.h"

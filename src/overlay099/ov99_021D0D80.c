@@ -18,6 +18,7 @@
 #include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "camera.h"
 #include "easy3d_object.h"
 #include "enums.h"
@@ -32,7 +33,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_020041CC.h"
-#include "brightness_controller.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0201E3D8.h"

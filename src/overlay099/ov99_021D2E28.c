@@ -12,9 +12,9 @@
 #include "overlay099/struct_ov99_021D3A40.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "math.h"
 #include "palette.h"
-#include "brightness_controller.h"
 #include "unk_0200C6E4.h"
 
 typedef struct {

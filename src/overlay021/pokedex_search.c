@@ -21,6 +21,7 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "font.h"
 #include "heap.h"
@@ -32,7 +33,6 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "brightness_controller.h"
 
 #include "res/text/bank/pokedex.h"
 

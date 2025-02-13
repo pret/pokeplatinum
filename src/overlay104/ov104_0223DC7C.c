@@ -10,6 +10,7 @@
 #include "struct_defs/struct_020127E8.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
 #include "font.h"
@@ -23,7 +24,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_0200679C.h"
-#include "brightness_controller.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"

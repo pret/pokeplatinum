@@ -22,6 +22,7 @@
 #include "overlay017/struct_ov17_0223F744.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "char_transfer.h"
 #include "font.h"
 #include "game_overlay.h"
@@ -35,7 +36,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "brightness_controller.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02024220.h"

@@ -8,12 +8,12 @@
 #include "overlay024/ov24_02253CE0.h"
 #include "overlay025/poketch_system.h"
 
+#include "brightness_controller.h"
 #include "field_task.h"
 #include "game_overlay.h"
 #include "heap.h"
 #include "poketch.h"
 #include "render_oam.h"
-#include "brightness_controller.h"
 
 FS_EXTERN_OVERLAY(overlay24);
 FS_EXTERN_OVERLAY(overlay25);

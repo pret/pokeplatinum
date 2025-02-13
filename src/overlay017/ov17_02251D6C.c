@@ -24,6 +24,7 @@
 #include "overlay017/struct_ov17_022539E4.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "heap.h"
 #include "pokemon.h"
 #include "render_window.h"
@@ -31,7 +32,6 @@
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 
 static int ov17_02251DAC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);

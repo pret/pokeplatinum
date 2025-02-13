@@ -50,6 +50,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "char_transfer.h"
 #include "gx_layers.h"
@@ -68,7 +69,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"

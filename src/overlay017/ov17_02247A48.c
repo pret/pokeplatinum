@@ -35,6 +35,7 @@
 
 #include "assert.h"
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "graphics.h"
 #include "heap.h"
 #include "palette.h"
@@ -46,7 +47,6 @@
 #include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "brightness_controller.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 

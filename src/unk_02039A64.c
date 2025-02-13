@@ -6,6 +6,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -15,7 +16,6 @@
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 
 void sub_02039A64(int param0, int param1);

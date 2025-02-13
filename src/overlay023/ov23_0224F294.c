@@ -30,6 +30,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
@@ -53,7 +54,6 @@
 #include "system.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "brightness_controller.h"
 #include "unk_0200C6E4.h"
 #include "unk_0202854C.h"
 #include "unk_0206A780.h"

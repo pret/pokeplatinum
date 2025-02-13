@@ -23,6 +23,7 @@
 #include "overlay023/struct_ov23_02250CD4.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "camera.h"
 #include "comm_player_manager.h"
 #include "communication_information.h"
@@ -45,7 +46,6 @@
 #include "system.h"
 #include "system_flags.h"
 #include "unk_02005474.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_0202854C.h"
 #include "unk_02033200.h"

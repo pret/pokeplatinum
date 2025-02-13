@@ -8,6 +8,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "communication_system.h"
 #include "font.h"
 #include "gx_layers.h"
@@ -18,7 +19,6 @@
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_020366A0.h"
 

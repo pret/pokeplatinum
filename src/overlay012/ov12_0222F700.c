@@ -21,13 +21,13 @@
 #include "overlay012/struct_ov12_0222660C_decl.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "enums.h"
 #include "heap.h"
 #include "palette.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
-#include "brightness_controller.h"
 #include "unk_0200C6E4.h"
 
 typedef struct {

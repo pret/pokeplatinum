@@ -24,6 +24,7 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
@@ -33,7 +34,6 @@
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "brightness_controller.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "vram_transfer.h"

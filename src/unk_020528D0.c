@@ -9,6 +9,7 @@
 #include "field/field_system.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -30,7 +31,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "brightness_controller.h"
 #include "unk_0200F174.h"
 #include "unk_0203A7D8.h"
 #include "unk_020553DC.h"
