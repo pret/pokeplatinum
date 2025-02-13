@@ -1637,7 +1637,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
 
         break;
     case 25:
-        BrightnessController_StartTransition(1, -16, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 1);
+        BrightnessController_StartTransition(1, -16, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, BRIGHTNESS_MAIN_SCREEN);
         v0->unk_00 = 26;
         break;
     case 26:

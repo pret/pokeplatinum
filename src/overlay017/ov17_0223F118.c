@@ -428,7 +428,7 @@ void ov17_0223F744(UnkStruct_ov17_0223F744 *param0)
 
 BOOL ov17_0223F760(void)
 {
-    if (BrightnessController_IsTransitionComplete(1) == 1) {
+    if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 1) {
         return 1;
     }
 
@@ -439,14 +439,14 @@ static void ov17_0223F774(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_0223F744 *v0 = param1;
 
-    if (BrightnessController_IsTransitionComplete(1) == 0) {
+    if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 0) {
         return;
     }
 
     v0->unk_08++;
 
     if (v0->unk_08 > v0->unk_0C[v0->unk_11]) {
-        BrightnessController_StartTransition(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+        BrightnessController_StartTransition(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
         Sound_PlayEffect(1528);
 
         v0->unk_08 = 0;

@@ -1238,12 +1238,12 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
         if (sub_0205444C(task, 1)) {
             ov23_02249A2C();
             fieldSystem->unk_6C = ov23_02249404(fieldSystem);
-            BrightnessController_StartTransition(30, 0, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 2);
+            BrightnessController_StartTransition(30, 0, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_SUB_SCREEN);
             mapChangeUndergroundData->state++;
         }
         break;
     case 12:
-        if (BrightnessController_IsTransitionComplete(2)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             ov23_0224DBF4(1);
             Heap_FreeToHeap(mapChangeUndergroundData);
             return 1;
@@ -1265,11 +1265,11 @@ BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
         ov23_0224DBF4(0);
         ov23_02249A5C();
         ov23_0224942C(fieldSystem->unk_6C);
-        BrightnessController_StartTransition(30, -16, 0, GX_BLEND_PLANEMASK_BG0, 2);
+        BrightnessController_StartTransition(30, -16, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_SUB_SCREEN);
         mapChangeUndergroundData->state++;
         break;
     case 1:
-        if (BrightnessController_IsTransitionComplete(2)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             if ((fieldSystem->unk_6C == NULL) && !CommSys_IsInitialized()) {
                 sub_0200564C(0, 30);
                 mapChangeUndergroundData->state++;

@@ -479,7 +479,7 @@ static BOOL ov21_021E50EC(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     if (ov21_021E33A4(param2->unk_08)) {
         v0 = ov21_021D2424(&param1->unk_00->unk_18C);
     } else {
-        v0 = BrightnessController_IsTransitionComplete(2);
+        v0 = BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN);
     }
 
     if (v0) {

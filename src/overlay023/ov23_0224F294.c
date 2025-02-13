@@ -1886,6 +1886,6 @@ void ov23_02251238(UnkStruct_ov23_02250CD4 *param0, int param1, int param2)
 
 void ov23_02251270(SysTask *param0, void *param1)
 {
-    BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, 1);
+    BrightnessController_SetScreenBrightness(0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
     ov23_02251044(param1, 0xfffffffe);
 }

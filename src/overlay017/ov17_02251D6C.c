@@ -853,12 +853,12 @@ static void ov17_022529C8(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        BrightnessController_StartTransition(90, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+        BrightnessController_StartTransition(90, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
         sub_020055D0(1182, 90);
         v0->unk_10++;
         break;
     case 1:
-        if ((BrightnessController_IsTransitionComplete(3) == 1) && (Sound_CheckFade() == 0)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == 1) && (Sound_CheckFade() == 0)) {
             ov17_02251020(v0->unk_00);
             GX_SetMasterBrightness(16);
             GXS_SetMasterBrightness(16);

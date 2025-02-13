@@ -1000,11 +1000,11 @@ static void ov22_02256C70(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        BrightnessController_StartTransition(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
         v0->unk_0C++;
         break;
     case 3:
-        v1 = BrightnessController_IsTransitionComplete(1);
+        v1 = BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN);
 
         if (v1) {
             v0->unk_0C++;
@@ -1032,11 +1032,11 @@ static void ov22_02256C70(SysTask *param0, void *param1)
         v0->unk_0C++;
         break;
     case 7:
-        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
         v0->unk_0C++;
         break;
     case 8:
-        v1 = BrightnessController_IsTransitionComplete(1);
+        v1 = BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN);
 
         if (v1) {
             v0->unk_0C++;
@@ -1072,11 +1072,11 @@ static void ov22_02256DE0(SysTask *param0, void *param1)
 
     switch (v0->unk_0C) {
     case 0:
-        BrightnessController_StartTransition(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
         v0->unk_0C++;
         break;
     case 1:
-        v1 = BrightnessController_IsTransitionComplete(1);
+        v1 = BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN);
 
         if (v1) {
             v0->unk_0C++;
@@ -1106,11 +1106,11 @@ static void ov22_02256DE0(SysTask *param0, void *param1)
         }
         break;
     case 5:
-        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
         v0->unk_0C++;
         break;
     case 6:
-        v1 = BrightnessController_IsTransitionComplete(1);
+        v1 = BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN);
 
         if (v1) {
             v0->unk_0C++;

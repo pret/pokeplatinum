@@ -2395,13 +2395,13 @@ static BOOL ov104_02231720(UnkStruct_ov104_02231148 *param0)
             }
         }
 
-        BrightnessController_StartTransition(40, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 1);
+        BrightnessController_StartTransition(40, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_MAIN_SCREEN);
         SysTask_Start(ov104_022313FC, param0, 0x1000);
 
         param0->unk_04++;
         break;
     case 2:
-        if (BrightnessController_IsTransitionComplete(1) == 0) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 0) {
             break;
         }
 
@@ -2465,13 +2465,13 @@ static BOOL ov104_02231864(UnkStruct_ov104_02231148 *param0)
             }
         }
 
-        BrightnessController_StartTransition(40, -16, 0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 1);
+        BrightnessController_StartTransition(40, -16, 0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_MAIN_SCREEN);
         SysTask_Start(ov104_022313FC, param0, 0x1000);
 
         param0->unk_04++;
         break;
     case 2:
-        if (BrightnessController_IsTransitionComplete(1) == 0) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == 0) {
             break;
         }
 

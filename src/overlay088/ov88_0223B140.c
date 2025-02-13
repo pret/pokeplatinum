@@ -703,7 +703,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         }
         break;
     case 16:
-        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 1);
+        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_MAIN_SCREEN);
         Bg_ToggleLayer(1, 1);
         Bg_ToggleLayer(2, 1);
         Bg_ToggleLayer(3, 1);
@@ -712,7 +712,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         param0->unk_4C++;
         break;
     case 17:
-        if (BrightnessController_IsTransitionComplete(1)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
             Pokemon *v10 = Party_GetPokemonBySlotIndex(param0->unk_2270, 0);
 
             param0->unk_2168 = ov88_0223C800(0, v10, param0->unk_848[0], &param0->unk_2148[0]);
@@ -721,7 +721,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         }
         break;
     case 18:
-        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_OBJ, 2);
+        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_SUB_SCREEN);
         Bg_ToggleLayer(4, 1);
         Bg_ToggleLayer(5, 1);
         Bg_ToggleLayer(6, 1);
@@ -731,7 +731,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         ov88_0223E8B4(param0);
         break;
     case 19:
-        if (BrightnessController_IsTransitionComplete(2)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
             Window_EraseMessageBox(&param0->unk_49C[23], 0);
             Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
             ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);

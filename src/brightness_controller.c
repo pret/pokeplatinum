@@ -3,7 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/brightness_transition_data.h"
+#include "include/constants/screen.h"
+
+#define IS_SCREEN_SELECTED(screenMask, screenConst) (screenMask & screenConst)
+
+typedef struct {
+    int plane_mask;
+    u32 screen_select;
+    u16 step_count;
+    s16 target_brightness;
+    u8 padding_0C[4];
+} Transition_Data;
 
 typedef struct {
     Transition_Data data;
@@ -47,9 +57,9 @@ static void BrightnessController_StepTransition(Transition_Controller *controlle
         transition_finished = 1;
     }
 
-    if (data->screen_select & SCREEN_A) {
+    if (IS_SCREEN_SELECTED(data->screen_select, BRIGHTNESS_MAIN_SCREEN)) {
         G2_SetBlendBrightness(data->plane_mask, controller->brightness);
-    } else if (data->screen_select & SCREEN_B) {
+    } else if (IS_SCREEN_SELECTED(data->screen_select, BRIGHTNESS_SUB_SCREEN)) {
         G2S_SetBlendBrightness(data->plane_mask, controller->brightness);
     }
 
@@ -95,26 +105,26 @@ void BrightnessController_StartTransition(const u8 step_count, const s16 traget_
         return;
     }
 
-    if (screen_select & SCREEN_A) {
+    if (IS_SCREEN_SELECTED(screen_select, BRIGHTNESS_MAIN_SCREEN)) {
         G2_SetBlendBrightness(plane_mask, start_brightness);
         controller = &controller_a;
-        BrightnessController_TransitionSetup(controller, step_count, traget_brightness, start_brightness, plane_mask, SCREEN_A);
+        BrightnessController_TransitionSetup(controller, step_count, traget_brightness, start_brightness, plane_mask, BRIGHTNESS_MAIN_SCREEN);
     }
 
-    if (screen_select & SCREEN_B) {
+    if (IS_SCREEN_SELECTED(screen_select, BRIGHTNESS_SUB_SCREEN)) {
         G2S_SetBlendBrightness(plane_mask, start_brightness);
         controller = &controller_b;
-        BrightnessController_TransitionSetup(controller, step_count, traget_brightness, start_brightness, plane_mask, SCREEN_B);
+        BrightnessController_TransitionSetup(controller, step_count, traget_brightness, start_brightness, plane_mask, BRIGHTNESS_SUB_SCREEN);
     }
 }
 
 void BrightnessController_SetScreenBrightness(const s16 brightness, const int plane_mask, const u32 screen_select)
 {
-    if (screen_select & SCREEN_A) {
+    if (IS_SCREEN_SELECTED(screen_select, BRIGHTNESS_MAIN_SCREEN)) {
         G2_SetBlendBrightness(plane_mask, brightness);
     }
 
-    if (screen_select & SCREEN_B) {
+    if (IS_SCREEN_SELECTED(screen_select, BRIGHTNESS_SUB_SCREEN)) {
         G2S_SetBlendBrightness(plane_mask, brightness);
     }
 
@@ -132,12 +142,12 @@ void BrightnessController_ResetAllControllers(void)
 
 void BrightnessController_ResetScreenController(const u32 screen_select)
 {
-    if (screen_select & SCREEN_A) {
+    if (IS_SCREEN_SELECTED(screen_select, BRIGHTNESS_MAIN_SCREEN)) {
         MI_CpuClear8(&controller_a, sizeof(Transition_Controller));
         controller_a.isActive = 0;
     }
 
-    if (screen_select & SCREEN_B) {
+    if (IS_SCREEN_SELECTED(screen_select, BRIGHTNESS_SUB_SCREEN)) {
         MI_CpuClear8(&controller_b, sizeof(Transition_Controller));
         controller_b.isActive = 0;
     }
@@ -156,15 +166,15 @@ void BrightnessController_Update(void)
 
 BOOL BrightnessController_IsTransitionComplete(u32 screen_select)
 {
-    if (screen_select == (SCREEN_A | SCREEN_B)) {
+    if (screen_select == BRIGHTNESS_BOTH_SCREENS) {
         if ((controller_a.isActive == 0) && (controller_b.isActive == 0)) {
             return 1;
         }
-    } else if (screen_select == SCREEN_A) {
+    } else if (screen_select == BRIGHTNESS_MAIN_SCREEN) {
         if (controller_a.isActive == 0) {
             return 1;
         }
-    } else if (screen_select == SCREEN_B) {
+    } else if (screen_select == BRIGHTNESS_SUB_SCREEN) {
         if (controller_b.isActive == 0) {
             return 1;
         }

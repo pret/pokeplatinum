@@ -453,11 +453,11 @@ static int EnterPokedexSearch(void *param0, UnkStruct_ov21_021E6B20 *param1, con
         break;
     case 1:
         DefaultDisplay(searchDisplay, v2, searchSettings, v1, param1->heapID);
-        BrightnessController_StartTransition(1, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+        BrightnessController_StartTransition(1, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
         param1->unk_00++;
         break;
     case 2:
-        if (BrightnessController_IsTransitionComplete(1)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
             param1->unk_00++;
         }
         break;
@@ -494,14 +494,14 @@ static int ExitPokedexSearch(void *param0, UnkStruct_ov21_021E6B20 *param1, cons
     switch (param1->unk_00) {
     case 0:
         if (searchSettings->applyFilter == FALSE) {
-            BrightnessController_StartTransition(6, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+            BrightnessController_StartTransition(6, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
             param1->unk_00++;
         } else {
             param1->unk_00 = 2;
         }
         break;
     case 1:
-        if (BrightnessController_IsTransitionComplete(1)) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN)) {
             param1->unk_00++;
         }
         break;
