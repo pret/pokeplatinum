@@ -5,6 +5,7 @@ MESON_DIR := subprojects/meson-$(MESON_VER)
 MESON_SUB := $(MESON_DIR)/meson.py
 
 MESON ?= $(MESON_SUB)
+NINJA ?= ninja
 WINELOADER ?= wine
 GIT ?= git
 
@@ -64,7 +65,7 @@ release: setup_release rom
 
 .NOTPARALLEL: debug
 debug: setup_debug rom
-	$(MESON) compile -C $(BUILD) debug.nef overlay.map
+	$(NINJA) -C $(BUILD) debug.nef overlay.map
 
 check: rom
 	$(MESON) test -C $(BUILD)
@@ -76,16 +77,16 @@ check: rom
 # generate data-targets first (archives and generated headers), then proceed
 # with compiling the ROM code.
 rom: $(BUILD)/build.ninja data
-	$(MESON) compile -C $(BUILD) pokeplatinum.us.nds
+	$(NINJA) -C $(BUILD) pokeplatinum.us.nds
 
 data: $(BUILD)/build.ninja
-	$(MESON) compile -C $(BUILD) data
+	$(NINJA) -C $(BUILD) data
 
 target: $(BUILD)/build.ninja
-	$(MESON) compile -C $(BUILD) $(MESON_TARGET)
+	$(NINJA) -C $(BUILD) $(MESON_TARGET)
 
 format: $(BUILD)/build.ninja
-	$(MESON) compile -C $(BUILD) clang-format
+	$(NINJA) -C $(BUILD) clang-format
 
 clean: $(BUILD)/build.ninja
 	$(MESON) compile -C $(BUILD) --clean
