@@ -11,7 +11,7 @@
     ScriptEntry _0435
     ScriptEntry _044C
     ScriptEntry _0463
-    .short 0xFD13
+    TableEnd
 
 _0022:
     GoToIfUnset 0x104, _002F

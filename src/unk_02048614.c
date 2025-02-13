@@ -36,8 +36,8 @@ BOOL ScrCmd_0E7(ScriptContext *param0);
 BOOL ScrCmd_0E8(ScriptContext *param0);
 BOOL ScrCmd_0E9(ScriptContext *param0);
 BOOL ScrCmd_0EA(ScriptContext *param0);
-BOOL ScrCmd_0EB(ScriptContext *param0);
-BOOL ScrCmd_0EE(ScriptContext *param0);
+BOOL ScrCmd_WhiteOut(ScriptContext *param0);
+BOOL ScrCmd_HasTwoAliveMons(ScriptContext *param0);
 BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *ctx);
 BOOL ScrCmd_0F0(ScriptContext *param0);
 BOOL ScrCmd_0F1(ScriptContext *param0);
@@ -264,7 +264,7 @@ BOOL ScrCmd_0EA(ScriptContext *param0)
     return 1;
 }
 
-BOOL ScrCmd_0EB(ScriptContext *param0)
+BOOL ScrCmd_WhiteOut(ScriptContext *param0)
 {
     sub_02052C5C(param0->task);
     return 1;
@@ -297,7 +297,7 @@ BOOL ScrCmd_CheckDidNotCapture(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_0EE(ScriptContext *param0)
+BOOL ScrCmd_HasTwoAliveMons(ScriptContext *param0)
 {
     u16 *v0 = ScriptContext_GetVarPointer(param0);
 

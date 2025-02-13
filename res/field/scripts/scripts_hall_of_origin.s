@@ -7,7 +7,7 @@
     ScriptEntry _0056
     ScriptEntry _0012
     ScriptEntry _0056
-    .short 0xFD13
+    TableEnd
 
 _0012:
     ScrCmd_28B 2, 0x4000
@@ -67,7 +67,7 @@ _00D0:
 
 _00DF:
     ClearFlag 0x24E
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

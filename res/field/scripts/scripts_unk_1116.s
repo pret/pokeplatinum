@@ -22,7 +22,7 @@
     ScriptEntry _0135
     ScriptEntry _0141
     ScriptEntry _014D
-    .short 0xFD13
+    TableEnd
 
 _004E:
     SetVar 0x8000, 1
@@ -110,7 +110,7 @@ _0159:
     ScrCmd_238 0x8000, 0x800C
     GoToIfEq 0x800C, 0, _02A1
     Message 0
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0190
     GoTo _02AE
     End

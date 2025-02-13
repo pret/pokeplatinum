@@ -22,7 +22,7 @@
     ScriptEntry _0791
     ScriptEntry _0850
     ScriptEntry _004E
-    .short 0xFD13
+    TableEnd
 
 _004E:
     CallIfEq 0x40A6, 2, _0077

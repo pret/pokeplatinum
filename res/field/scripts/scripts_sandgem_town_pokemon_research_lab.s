@@ -18,7 +18,7 @@
     ScriptEntry _05EC
     ScriptEntry _05FD
     ScriptEntry _0114
-    .short 0xFD13
+    TableEnd
 
 _003E:
     CallIfEq 0x40A6, 2, _005A
@@ -163,7 +163,7 @@ _022B:
     BufferPartyMonSpecies 0, 0
     Message 3
     Message 4
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _02BC
     GoTo _0261
     End
@@ -178,7 +178,7 @@ _0261:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 5
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0261
     CallIfNe 0x8002, 1, _02B6
     GoTo _02BC
@@ -231,7 +231,7 @@ _0330:
     PlayMusic SEQ_OPENING2
     Message 9
     Message 10
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0375
     GoTo _0394
     End
@@ -239,7 +239,7 @@ _0330:
 _0375:
     BufferPlayerName 0
     Message 11
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0375
     GoTo _0394
     End
@@ -528,7 +528,7 @@ _0621:
 _0631:
     BufferPlayerName 0
     Message 27
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0650
     GoTo _065B
     End

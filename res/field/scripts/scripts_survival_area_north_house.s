@@ -7,7 +7,7 @@
     ScriptEntry _000E
     ScriptEntry _0021
     ScriptEntry _0253
-    .short 0xFD13
+    TableEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -24,7 +24,7 @@ _0021:
     LockAll
     FacePlayer
     Message 0
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _004C
     GoToIfEq 0x800C, 1, _0232
     End
@@ -61,7 +61,7 @@ _00FD:
     BufferPartyMonNickname 0, 0x8000
     BufferMoveName 1, 0x8003
     Message 9
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _01B7
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -75,7 +75,7 @@ _00FD:
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
     Message 12
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _01B7
     BufferPartyMonNickname 0, 0x8000
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
@@ -98,7 +98,7 @@ _01B7:
     BufferPartyMonNickname 0, 0x8000
     BufferMoveName 1, 0x8003
     Message 10
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _01DD
     GoTo _00FD
     End

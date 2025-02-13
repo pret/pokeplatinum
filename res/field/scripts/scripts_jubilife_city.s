@@ -31,7 +31,7 @@
     ScriptEntry _1096
     ScriptEntry _10AD
     ScriptEntry _14CF
-    .short 0xFD13
+    TableEnd
 
 _0072:
     CallIfEq 0x4077, 0, _00AC
@@ -240,7 +240,7 @@ _036E:
 _0390:
     Message 16
     Message 17
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _03B6
     GoToIfEq 0x800C, 1, _03BB
     End
@@ -1029,7 +1029,7 @@ _0D8C:
     Return
 
 _0DB7:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 
@@ -1372,7 +1372,7 @@ _0FE6:
     LockAll
     FacePlayer
     Message 88
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1011
     GoToIfEq 0x800C, 1, _101C
     End
@@ -1637,7 +1637,7 @@ _1320:
     FacePlayer
     GoToIfSet 237, _138C
     Message 45
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1356
     GoToIfEq 0x800C, 1, _137D
     End
@@ -1676,7 +1676,7 @@ _1397:
     FacePlayer
     GoToIfSet 238, _1403
     Message 51
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _13CD
     GoToIfEq 0x800C, 1, _13F4
     End
@@ -1716,7 +1716,7 @@ _140E:
     GoToIfLt 0x40E7, 2, _149E
     GoToIfSet 239, _1493
     Message 57
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1451
     GoToIfEq 0x800C, 1, _1484
     End

@@ -6,7 +6,7 @@
     ScriptEntry _00B9
     ScriptEntry _0075
     ScriptEntry _0012
-    .short 0xFD13
+    TableEnd
 
 _0012:
     ScrCmd_284 0x4000

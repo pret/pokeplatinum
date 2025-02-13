@@ -18,7 +18,7 @@
     ScriptEntry _03EA
     ScriptEntry _0394
     ScriptEntry _03FD
-    .short 0xFD13
+    TableEnd
 
 _003E:
     GoToIfSet 0x97D, _004B
@@ -88,7 +88,7 @@ _0114:
     End
 
 _011F:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 
@@ -175,7 +175,7 @@ _01C7:
     LockAll
     GoToIfSet 0x97D, _0347
     Message 10
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _01FB
     GoToIfEq 0x800C, 1, _0341
     End

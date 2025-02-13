@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _000E
-    .short 0xFD13
+    TableEnd
 
 _000A:
     ScrCmd_2F2
@@ -15,7 +15,7 @@ _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _002E
     CloseMessage
     ReleaseAll

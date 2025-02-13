@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0010
-    .short 0xFD13
+    TableEnd
 
 _000A:
     SetFlag 0x9C5
@@ -37,7 +37,7 @@ _0062:
 _0082:
     SetFlag 219
     Message 2
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00FF
     GoToIfEq 0x800C, 1, _00F4
     End
@@ -46,7 +46,7 @@ _00A9:
     CheckItem ITEM_STAR_PIECE, 1, 0x800C
     GoToIfEq 0x800C, 0, _00E1
     Message 4
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00FF
     GoToIfEq 0x800C, 1, _00F4
     End

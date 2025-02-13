@@ -35,7 +35,7 @@
     ScriptEntry _095A
     ScriptEntry _0971
     ScriptEntry _0997
-    .short 0xFD13
+    TableEnd
 
 _0082:
     End
@@ -139,7 +139,7 @@ _013B:
     FacePlayer
     GoToIfSet 1, _01A7
     Message 14
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _01B2
     Message 15
     CloseMessage

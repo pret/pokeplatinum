@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _00C2
     ScriptEntry _00D5
-    .short 0xFD13
+    TableEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -14,7 +14,7 @@ _000E:
     FacePlayer
     GoToIfSet 133, _00B7
     Message 0
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _003B
     GoTo _00AC
 

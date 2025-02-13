@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    TableEnd
 
 _0006:
     BufferPlayerName 0

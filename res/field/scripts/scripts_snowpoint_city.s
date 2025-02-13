@@ -15,7 +15,7 @@
     ScriptEntry _01FE
     ScriptEntry _0215
     ScriptEntry _022A
-    .short 0xFD13
+    TableEnd
 
 _0032:
     GoToIfGe 0x407F, 1, _0041
@@ -220,7 +220,7 @@ _022A:
     FacePlayer
     GoToIfUnset 0x964, _0260
     Message 10
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0276
     GoToIfEq 0x800C, 1, _026B
     End

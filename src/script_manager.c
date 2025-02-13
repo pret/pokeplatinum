@@ -201,8 +201,8 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     } else if (retScriptID >= 10450) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0500, TEXT_BANK_UNK_0016);
         retScriptID -= 10450;
-    } else if (retScriptID >= 10400) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_pokemon_center_daily_trainers, TEXT_BANK_UNK_0203);
+    } else if (retScriptID >= SCRIPT_ID_POKEMON_CENTER_DAILY_TRAINERS) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_pokemon_center_daily_trainers, TEXT_BANK_POKEMON_CENTER_DAILY_TRAINERS);
         retScriptID -= 10400;
     } else if (retScriptID >= 10300) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_1051, TEXT_BANK_UNK_0552);

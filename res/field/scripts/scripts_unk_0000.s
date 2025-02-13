@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0021
     ScriptEntry _0046
-    .short 0xFD13
+    TableEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -21,7 +21,7 @@ _000E:
 _0021:
     LockAll
     Message 9
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0046
     GoToIfEq 0x800C, 1, _0059
     End

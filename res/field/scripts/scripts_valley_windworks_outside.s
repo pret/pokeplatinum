@@ -11,7 +11,7 @@
     ScriptEntry _01BF
     ScriptEntry _0022
     ScriptEntry _0201
-    .short 0xFD13
+    TableEnd
 
 _0022:
     End
@@ -86,7 +86,7 @@ _00CF:
     End
 
 _0133:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 
@@ -114,7 +114,7 @@ _0150:
 _016C:
     BufferItemName 0, 0x1B6
     Message 6
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _01A2
     SetFlag 0x10F
     Call _00BB
@@ -156,7 +156,7 @@ _01BF:
     End
 
 _01FB:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

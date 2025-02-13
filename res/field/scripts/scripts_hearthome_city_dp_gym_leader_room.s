@@ -133,7 +133,7 @@ _01C8:
     EndMovement
 
 _01DC:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

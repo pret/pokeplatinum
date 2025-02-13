@@ -11,7 +11,7 @@
     ScriptEntry _0150
     ScriptEntry _0022
     ScriptEntry _0128
-    .short 0xFD13
+    TableEnd
 
 _0022:
     GetTimeOfDay 0x4000

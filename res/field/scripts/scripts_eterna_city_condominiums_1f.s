@@ -6,14 +6,14 @@
     ScriptEntry _000E
     ScriptEntry _0139
     ScriptEntry _01EF
-    .short 0xFD13
+    TableEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0032
     GoTo _00B3
     End
@@ -37,7 +37,7 @@ _0032:
     GoToIfEq 0x800C, 1, _00C9
     BufferPartyMonNickname 0, 0x8005
     Message 2
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00D9
     GoTo _00B3
     End
@@ -98,7 +98,7 @@ _0139:
     FacePlayer
     GoToIfSet 134, _01E4
     Message 9
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0168
     GoTo _01D9
     End

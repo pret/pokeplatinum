@@ -11,7 +11,7 @@
     ScriptEntry _0210
     ScriptEntry _0223
     ScriptEntry _0236
-    .short 0xFD13
+    TableEnd
 
 _0022:
     SetFlag 0x9C7
@@ -108,7 +108,7 @@ _0154:
     ApplyMovement 0, _01E4
     ApplyMovement 3, _01F4
     WaitMovement
-    ScrCmd_0EE 0x800C
+    HasTwoAliveMons 0x800C
     GoToIfNe 0x800C, 0, _01A6
     GoTo _0181
     End
@@ -142,7 +142,7 @@ _01CA:
     Return
 
 _01DB:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 
@@ -239,7 +239,7 @@ _0249:
 
 _02D0:
     SetVar 0x4098, 1
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

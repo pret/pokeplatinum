@@ -14,7 +14,7 @@
     ScriptEntry _034E
     ScriptEntry _0361
     ScriptEntry _04A4
-    .short 0xFD13
+    TableEnd
 
 _002E:
     LockAll

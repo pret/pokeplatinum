@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0138
-    .short 0xFD13
+    TableEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -49,7 +49,7 @@ _00BE:
     Return
 
 _00CC:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

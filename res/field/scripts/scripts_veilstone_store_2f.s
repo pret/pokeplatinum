@@ -11,7 +11,7 @@
     ScriptEntry _0198
     ScriptEntry _01AE
     ScriptEntry _01C4
-    .short 0xFD13
+    TableEnd
 
 _0022:
     PlayFanfare SEQ_SE_CONFIRM
@@ -113,7 +113,7 @@ _012B:
     ScrCmd_134 10, 0x800C
     GoToIfEq 0x800C, 1, _016F
     Message 10
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _017A
     Message 11
     SetVar 0x8004, 10

@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0035
-    .short 0xFD13
+    TableEnd
 
 _000A:
     GoToIfSet 0x11D, _0029

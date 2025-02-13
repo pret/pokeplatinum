@@ -287,7 +287,7 @@
     ScriptEntry _0472
     ScriptEntry _0472
     ScriptEntry _0472
-    .short 0xFD13
+    TableEnd
 
 _0472:
     WaitFanfare SEQ_SE_CONFIRM

@@ -13,7 +13,7 @@
     ScriptEntry _0466
     ScriptEntry _0468
     ScriptEntry _01AA
-    .short 0xFD13
+    TableEnd
 
 _0026:
     ScrCmd_25B
@@ -251,7 +251,7 @@ _02E5:
 
 _02F9:
     Message 11
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _031C
     GoToIfEq 0x800C, 1, _0366
     End
@@ -290,7 +290,7 @@ _0371:
     Return
 
 _037D:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

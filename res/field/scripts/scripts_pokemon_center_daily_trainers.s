@@ -1,1197 +1,1216 @@
 #include "macros/scrcmd.inc"
-#include "res/text/bank/unk_0203.h"
+#include "res/text/bank/pokemon_center_daily_trainers.h"
+
+#define ARTURO         10
+#define KINSEY         22
+#define TEVIN          23
+#define ROXY_AND_OLI_1 22
+#define ROXY_AND_OLI_2 23
+#define GRACE          35
+#define LEE            43
+#define ARIEL          71
+
+#define VAR_MAP_ID     0x4001
+#define VAR_NPC_1      0x402A
+#define VAR_NPC_2      0x402B
+
+#define VAR_TWO_MONS   0x8000
+#define VAR_IS_NPC_2   0x8004
+#define VAR_TRAINER    0x8005
+#define VAR_DEFEATED   0x8006
 
     .data
 
-    ScriptEntry _000E
-    ScriptEntry _0398
-    ScriptEntry _040F
-    .short 0xFD13
+    ScriptEntry PokemonCenterDailyTrainers_CheckUnlockedVSSeeker
+    ScriptEntry PokemonCenterDailyTrainers_FirstNPC
+    ScriptEntry PokemonCenterDailyTrainers_SecondNPC
+    TableEnd
 
-_000E:
+PokemonCenterDailyTrainers_CheckUnlockedVSSeeker:
     SetFlag 0x183
     SetFlag 0x184
-    GoToIfUnset FLAG_UNLOCKED_VS_SEEKER_LVL_1, _0029
-    Call _002B
+    GoToIfUnset FLAG_UNLOCKED_VS_SEEKER_LVL_1, PokemonCenterDailyTrainers_End
+    Call PokemonCenterDailyTrainers_SetNPCs
     End
 
-_0029:
+PokemonCenterDailyTrainers_End:
     End
 
-_002B:
+PokemonCenterDailyTrainers_SetNPCs:
     GetWeekDay 0x4000
-    CallIfEq 0x4000, SUNDAY, _008C
-    CallIfEq 0x4000, MONDAY, _00ED
-    CallIfEq 0x4000, TUESDAY, _014E
-    CallIfEq 0x4000, WEDNESDAY, _01AF
-    CallIfEq 0x4000, THURSDAY, _0203
-    CallIfEq 0x4000, FRIDAY, _0264
-    CallIfEq 0x4000, SATURDAY, _02C5
+    CallIfEq 0x4000, SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
+    CallIfEq 0x4000, MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
+    CallIfEq 0x4000, TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday
+    CallIfEq 0x4000, WEDNESDAY, PokemonCenterDailyTrainers_SetNPCsWednesday
+    CallIfEq 0x4000, THURSDAY, PokemonCenterDailyTrainers_SetNPCsThursday
+    CallIfEq 0x4000, FRIDAY, PokemonCenterDailyTrainers_SetNPCsFriday
+    CallIfEq 0x4000, SATURDAY, PokemonCenterDailyTrainers_SetNPCsSaturday
     Return
 
-_008C:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _0326
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0332
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0348
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _035E
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _036A
-    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0380
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _038C
+PokemonCenterDailyTrainers_SetNPCsSunday:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCGrace
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey2
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCLee
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsRoxyAndOli
+    CallIfEq VAR_MAP_ID, MAP_HEADER_RESORT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCAriel
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCArturo
     Return
 
-_00ED:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0326
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0332
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0348
-    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _035E
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _036A
-    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _0380
-    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _038C
+PokemonCenterDailyTrainers_SetNPCsMonday:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCGrace
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey2
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCLee
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsRoxyAndOli
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCAriel
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCArturo
     Return
 
-_014E:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0326
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0332
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0348
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _035E
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _036A
-    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _0380
-    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _038C
+PokemonCenterDailyTrainers_SetNPCsTuesday:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCGrace
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey2
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCLee
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsRoxyAndOli
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCAriel
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCArturo
     Return
 
-_01AF:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0332
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0348
-    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _035E
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _036A
-    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0380
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _038C
+PokemonCenterDailyTrainers_SetNPCsWednesday:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey2
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCLee
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsRoxyAndOli
+    CallIfEq VAR_MAP_ID, MAP_HEADER_RESORT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCAriel
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCArturo
     Return
 
-_0203:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0326
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0332
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0348
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _035E
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _036A
-    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _0380
-    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _038C
+PokemonCenterDailyTrainers_SetNPCsThursday:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCGrace
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey2
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCLee
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsRoxyAndOli
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCAriel
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCArturo
     Return
 
-_0264:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0326
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0332
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0348
-    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _035E
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _036A
-    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _0380
-    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _038C
+PokemonCenterDailyTrainers_SetNPCsFriday:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCGrace
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey2
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCLee
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsRoxyAndOli
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCAriel
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCArturo
     Return
 
-_02C5:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _0326
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0332
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0348
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _035E
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _036A
-    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0380
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _038C
+PokemonCenterDailyTrainers_SetNPCsSaturday:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCGrace
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey2
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCLee
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCsRoxyAndOli
+    CallIfEq VAR_MAP_ID, MAP_HEADER_RESORT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCAriel
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_SetNPCArturo
     Return
 
-_0326:
+PokemonCenterDailyTrainers_SetNPCGrace:
     ClearFlag 0x183
-    SetVar 0x402A, 35
+    SetVar VAR_NPC_1, GRACE
     Return
 
-_0332:
-    ClearFlag 0x183
-    ClearFlag 0x184
-    SetVar 0x402A, 22
-    SetVar 0x402B, 23
-    Return
-
-_0348:
+PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey:
     ClearFlag 0x183
     ClearFlag 0x184
-    SetVar 0x402A, 22
-    SetVar 0x402B, 23
+    SetVar VAR_NPC_1, KINSEY
+    SetVar VAR_NPC_2, TEVIN
     Return
 
-_035E:
-    ClearFlag 0x183
-    SetVar 0x402A, 43
-    Return
-
-_036A:
+PokemonCenterDailyTrainers_SetNPCsTevinAndKinsey2:
     ClearFlag 0x183
     ClearFlag 0x184
-    SetVar 0x402A, 22
-    SetVar 0x402B, 23
+    SetVar VAR_NPC_1, KINSEY
+    SetVar VAR_NPC_2, TEVIN
     Return
 
-_0380:
+PokemonCenterDailyTrainers_SetNPCLee:
     ClearFlag 0x183
-    SetVar 0x402A, 71
+    SetVar VAR_NPC_1, LEE
     Return
 
-_038C:
+PokemonCenterDailyTrainers_SetNPCsRoxyAndOli:
     ClearFlag 0x183
-    SetVar 0x402A, 10
+    ClearFlag 0x184
+    SetVar VAR_NPC_1, ROXY_AND_OLI_1
+    SetVar VAR_NPC_2, ROXY_AND_OLI_2
     Return
 
-_0398:
+PokemonCenterDailyTrainers_SetNPCAriel:
+    ClearFlag 0x183
+    SetVar VAR_NPC_1, ARIEL
+    Return
+
+PokemonCenterDailyTrainers_SetNPCArturo:
+    ClearFlag 0x183
+    SetVar VAR_NPC_1, ARTURO
+    Return
+
+PokemonCenterDailyTrainers_FirstNPC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x8004, 0
-    SetVar 0x8006, 0
-    CallIfEq 0x402A, 35, _1331
-    CallIfEq 0x402A, 22, _133E
-    CallIfEq 0x402A, 43, _13A3
-    CallIfEq 0x402A, 22, _13B0
-    CallIfEq 0x402A, 71, _13DD
-    CallIfEq 0x402A, 10, _13EA
-    GoToIfEq 0x8006, 1, _06A8
-    GoTo _0486
+    SetVar VAR_IS_NPC_2, FALSE
+    SetVar VAR_DEFEATED, FALSE
+    CallIfEq VAR_NPC_1, GRACE, PokemonCenterDailyTrainers_CheckGraceDefeated
+    CallIfEq VAR_NPC_1, KINSEY, PokemonCenterDailyTrainers_CheckKinseyInPokemonCenter
+    CallIfEq VAR_NPC_1, LEE, PokemonCenterDailyTrainers_CheckLeeDefeated
+    CallIfEq VAR_NPC_1, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_CheckRoxyAndOliInPokemonCenter
+    CallIfEq VAR_NPC_1, ARIEL, PokemonCenterDailyTrainers_CheckArielDefeated
+    CallIfEq VAR_NPC_1, ARTURO, PokemonCenterDailyTrainers_CheckArturoDefeated
+    GoToIfEq VAR_DEFEATED, TRUE, PokemonCenterDailyTrainers_PostBattle
+    GoTo PokemonCenterDailyTrainers_IntroMessage
     End
 
-_040F:
+PokemonCenterDailyTrainers_SecondNPC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetVar 0x8004, 1
-    SetVar 0x8006, 0
-    CallIfEq 0x402B, 35, _1331
-    CallIfEq 0x402B, 23, _1378
-    CallIfEq 0x402B, 43, _13A3
-    CallIfEq 0x402B, 22, _13B0
-    CallIfEq 0x402B, 71, _13DD
-    CallIfEq 0x402B, 10, _13EA
-    GoToIfEq 0x8006, 1, _06A8
-    GoTo _0486
+    SetVar VAR_IS_NPC_2, TRUE
+    SetVar VAR_DEFEATED, FALSE
+    CallIfEq VAR_NPC_2, GRACE, PokemonCenterDailyTrainers_CheckGraceDefeated
+    CallIfEq VAR_NPC_2, TEVIN, PokemonCenterDailyTrainers_CheckTevinOrRoxyAndOliDefeated
+    CallIfEq VAR_NPC_2, LEE, PokemonCenterDailyTrainers_CheckLeeDefeated
+    CallIfEq VAR_NPC_2, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_CheckRoxyAndOliInPokemonCenter
+    CallIfEq VAR_NPC_2, ARIEL, PokemonCenterDailyTrainers_CheckArielDefeated
+    CallIfEq VAR_NPC_2, ARTURO, PokemonCenterDailyTrainers_CheckArturoDefeated
+    GoToIfEq VAR_DEFEATED, 1, PokemonCenterDailyTrainers_PostBattle
+    GoTo PokemonCenterDailyTrainers_IntroMessage
     End
 
-_0486:
-    SetVar 0x8000, 1
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _05B9
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _05B9
-    GoToIfEq 0x8000, 0, _0590
-    GoToIfEq 0x8004, 1, _051A
-    CallIfEq 0x402A, 35, _0828
-    CallIfEq 0x402A, 22, _0864
-    CallIfEq 0x402A, 43, _08F6
-    CallIfEq 0x402A, 22, _0932
-    CallIfEq 0x402A, 71, _0986
-    CallIfEq 0x402A, 10, _09C2
-    GoTo _0570
+PokemonCenterDailyTrainers_IntroMessage:
+    SetVar VAR_TWO_MONS, TRUE
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_CheckDoubleBattleTwoAliveMons
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_CheckDoubleBattleTwoAliveMons
+    GoToIfEq VAR_TWO_MONS, FALSE, PokemonCenterDailyTrainers_NotEnoughAliveMons
+    GoToIfEq VAR_IS_NPC_2, TRUE, PokemonCenterDailyTrainers_IntroMessageSecondNPC
+    CallIfEq VAR_NPC_1, GRACE, PokemonCenterDailyTrainers_GraceIntroMessage
+    CallIfEq VAR_NPC_1, KINSEY, PokemonCenterDailyTrainers_KinseyIntroMessage
+    CallIfEq VAR_NPC_1, LEE, PokemonCenterDailyTrainers_LeeIntroMessage
+    CallIfEq VAR_NPC_1, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_RoxyIntroMessage
+    CallIfEq VAR_NPC_1, ARIEL, PokemonCenterDailyTrainers_ArielIntroMessage
+    CallIfEq VAR_NPC_1, ARTURO, PokemonCenterDailyTrainers_ArturoIntroMessage
+    GoTo PokemonCenterDailyTrainers_AskForBattle
     End
 
-_051A:
-    CallIfEq 0x402B, 35, _0828
-    CallIfEq 0x402B, 23, _08A0
-    CallIfEq 0x402B, 43, _08F6
-    CallIfEq 0x402B, 22, _095C
-    CallIfEq 0x402B, 71, _0986
-    CallIfEq 0x402B, 10, _09C2
-    GoTo _0570
+PokemonCenterDailyTrainers_IntroMessageSecondNPC:
+    CallIfEq VAR_NPC_2, GRACE, PokemonCenterDailyTrainers_GraceIntroMessage
+    CallIfEq VAR_NPC_2, TEVIN, PokemonCenterDailyTrainers_TevinOrOliIntroMessage
+    CallIfEq VAR_NPC_2, LEE, PokemonCenterDailyTrainers_LeeIntroMessage
+    CallIfEq VAR_NPC_2, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_OliIntroMessage
+    CallIfEq VAR_NPC_2, ARIEL, PokemonCenterDailyTrainers_ArielIntroMessage
+    CallIfEq VAR_NPC_2, ARTURO, PokemonCenterDailyTrainers_ArturoIntroMessage
+    GoTo PokemonCenterDailyTrainers_AskForBattle
     End
 
-_0570:
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _05CE
-    GoToIfEq 0x800C, 1, _0761
+PokemonCenterDailyTrainers_AskForBattle:
+    YesNoMenu 0x800C
+    GoToIfEq 0x800C, YES, PokemonCenterDailyTrainers_BattleAccepted
+    GoToIfEq 0x800C, NO, PokemonCenterDailyTrainers_BattleDeclined
     End
 
-_0590:
-    GoToIfEq 0x8004, 1, _05AB
-    Call _100C
-    GoTo _081A
+PokemonCenterDailyTrainers_NotEnoughAliveMons:
+    GoToIfEq VAR_IS_NPC_2, TRUE, PokemonCenterDailyTrainers_OliNotEnoughAliveMons
+    Call PokemonCenterDailyTrainers_RoxyNotEnoughAliveMonsMessage
+    GoTo PokemonCenterDailyTrainers_CloseMessage
     End
 
-_05AB:
-    Call _1036
-    GoTo _081A
+PokemonCenterDailyTrainers_OliNotEnoughAliveMons:
+    Call PokemonCenterDailyTrainers_OliNotEnoughAliveMonsMessage
+    GoTo PokemonCenterDailyTrainers_CloseMessage
     End
 
-_05B9:
-    GoToIfEq 0x402A, 22, _05C8
+PokemonCenterDailyTrainers_CheckDoubleBattleTwoAliveMons:
+    GoToIfEq VAR_NPC_1, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_HasTwoAliveMons
     Return
 
-_05C8:
-    ScrCmd_0EE 0x8000
+PokemonCenterDailyTrainers_HasTwoAliveMons:
+    HasTwoAliveMons VAR_TWO_MONS
     Return
 
-_05CE:
-    GoToIfEq 0x8004, 1, _0631
-    CallIfEq 0x402A, 35, _09FE
-    CallIfEq 0x402A, 22, _0A40
-    CallIfEq 0x402A, 43, _0AF6
-    CallIfEq 0x402A, 22, _0B38
-    CallIfEq 0x402A, 71, _0BA4
-    CallIfEq 0x402A, 10, _0BE6
-    GoTo _0687
+PokemonCenterDailyTrainers_BattleAccepted:
+    GoToIfEq VAR_IS_NPC_2, TRUE, PokemonCenterDailyTrainers_BattleAcceptedSecondNPC
+    CallIfEq VAR_NPC_1, GRACE, PokemonCenterDailyTrainers_GraceBattleAccepted
+    CallIfEq VAR_NPC_1, KINSEY, PokemonCenterDailyTrainers_KinseyBattleAccepted
+    CallIfEq VAR_NPC_1, LEE, PokemonCenterDailyTrainers_LeeBattleAccepted
+    CallIfEq VAR_NPC_1, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_RoxyBattleAccepted
+    CallIfEq VAR_NPC_1, ARIEL, PokemonCenterDailyTrainers_ArielBattleAccepted
+    CallIfEq VAR_NPC_1, ARTURO, PokemonCenterDailyTrainers_ArturoBattleAccepted
+    GoTo PokemonCenterDailyTrainers_Battle
     End
 
-_0631:
-    CallIfEq 0x402B, 35, _09FE
-    CallIfEq 0x402B, 23, _0A8E
-    CallIfEq 0x402B, 43, _0AF6
-    CallIfEq 0x402B, 22, _0B6E
-    CallIfEq 0x402B, 71, _0BA4
-    CallIfEq 0x402B, 10, _0BE6
-    GoTo _0687
+PokemonCenterDailyTrainers_BattleAcceptedSecondNPC:
+    CallIfEq VAR_NPC_2, GRACE, PokemonCenterDailyTrainers_GraceBattleAccepted
+    CallIfEq VAR_NPC_2, TEVIN, PokemonCenterDailyTrainers_TevinOrOliBattleAccepted
+    CallIfEq VAR_NPC_2, LEE, PokemonCenterDailyTrainers_LeeBattleAccepted
+    CallIfEq VAR_NPC_2, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_OliBattleAccepted
+    CallIfEq VAR_NPC_2, ARIEL, PokemonCenterDailyTrainers_ArielBattleAccepted
+    CallIfEq VAR_NPC_2, ARTURO, PokemonCenterDailyTrainers_ArturoBattleAccepted
+    GoTo PokemonCenterDailyTrainers_Battle
     End
 
-_0687:
+PokemonCenterDailyTrainers_Battle:
     CloseMessage
-    StartTrainerBattle 0x8005
+    StartTrainerBattle VAR_TRAINER
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0822
-    GoTo _06A8
+    GoToIfEq 0x800C, FALSE, PokemonCenterDailyTrainers_BattleLost
+    GoTo PokemonCenterDailyTrainers_PostBattle
     End
 
-_06A8:
-    GoToIfEq 0x8004, 1, _070B
-    CallIfEq 0x402A, 35, _0DFE
-    CallIfEq 0x402A, 22, _0E3E
-    CallIfEq 0x402A, 43, _0EE8
-    CallIfEq 0x402A, 22, _0F28
-    CallIfEq 0x402A, 71, _0F8C
-    CallIfEq 0x402A, 10, _0FCC
-    GoTo _081A
+PokemonCenterDailyTrainers_PostBattle:
+    GoToIfEq VAR_IS_NPC_2, TRUE, PokemonCenterDailyTrainers_PostBattleSecondNPC
+    CallIfEq VAR_NPC_1, GRACE, PokemonCenterDailyTrainers_GracePostBattle
+    CallIfEq VAR_NPC_1, KINSEY, PokemonCenterDailyTrainers_KinseyPostBattle
+    CallIfEq VAR_NPC_1, LEE, PokemonCenterDailyTrainers_LeePostBattle
+    CallIfEq VAR_NPC_1, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_RoxyPostBattle
+    CallIfEq VAR_NPC_1, ARIEL, PokemonCenterDailyTrainers_ArielPostBattle
+    CallIfEq VAR_NPC_1, ARTURO, PokemonCenterDailyTrainers_ArturoPostBattle
+    GoTo PokemonCenterDailyTrainers_CloseMessage
     End
 
-_070B:
-    CallIfEq 0x402B, 35, _0DFE
-    CallIfEq 0x402B, 23, _0E86
-    CallIfEq 0x402B, 43, _0EE8
-    CallIfEq 0x402B, 22, _0F5A
-    CallIfEq 0x402B, 71, _0F8C
-    CallIfEq 0x402B, 10, _0FCC
-    GoTo _081A
+PokemonCenterDailyTrainers_PostBattleSecondNPC:
+    CallIfEq VAR_NPC_2, GRACE, PokemonCenterDailyTrainers_GracePostBattle
+    CallIfEq VAR_NPC_2, TEVIN, PokemonCenterDailyTrainers_TevinOrOliPostBattle
+    CallIfEq VAR_NPC_2, LEE, PokemonCenterDailyTrainers_LeePostBattle
+    CallIfEq VAR_NPC_2, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_OliPostBattle
+    CallIfEq VAR_NPC_2, ARIEL, PokemonCenterDailyTrainers_ArielPostBattle
+    CallIfEq VAR_NPC_2, ARTURO, PokemonCenterDailyTrainers_ArturoPostBattle
+    GoTo PokemonCenterDailyTrainers_CloseMessage
     End
 
-_0761:
-    GoToIfEq 0x8004, 1, _07C4
-    CallIfEq 0x402A, 35, _0C28
-    CallIfEq 0x402A, 22, _0C64
-    CallIfEq 0x402A, 43, _0CF6
-    CallIfEq 0x402A, 22, _0D32
-    CallIfEq 0x402A, 71, _0D86
-    CallIfEq 0x402A, 10, _0DC2
-    GoTo _081A
+PokemonCenterDailyTrainers_BattleDeclined:
+    GoToIfEq VAR_IS_NPC_2, TRUE, PokemonCenterDailyTrainers_BattleDeclinedSecondNPC
+    CallIfEq VAR_NPC_1, GRACE, PokemonCenterDailyTrainers_GraceBattleDeclined
+    CallIfEq VAR_NPC_1, KINSEY, PokemonCenterDailyTrainers_KinseyBattleDeclined
+    CallIfEq VAR_NPC_1, LEE, PokemonCenterDailyTrainers_LeeBattleDeclined
+    CallIfEq VAR_NPC_1, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_RoxyBattleDeclined
+    CallIfEq VAR_NPC_1, ARIEL, PokemonCenterDailyTrainers_ArielBattleDeclined
+    CallIfEq VAR_NPC_1, ARTURO, PokemonCenterDailyTrainers_ArturoBattleDeclined
+    GoTo PokemonCenterDailyTrainers_CloseMessage
     End
 
-_07C4:
-    CallIfEq 0x402B, 35, _0C28
-    CallIfEq 0x402B, 23, _0CA0
-    CallIfEq 0x402B, 43, _0CF6
-    CallIfEq 0x402B, 22, _0D5C
-    CallIfEq 0x402B, 71, _0D86
-    CallIfEq 0x402B, 10, _0DC2
-    GoTo _081A
+PokemonCenterDailyTrainers_BattleDeclinedSecondNPC:
+    CallIfEq VAR_NPC_2, GRACE, PokemonCenterDailyTrainers_GraceBattleDeclined
+    CallIfEq VAR_NPC_2, TEVIN, PokemonCenterDailyTrainers_TevinOrOliBattleDeclined
+    CallIfEq VAR_NPC_2, LEE, PokemonCenterDailyTrainers_LeeBattleDeclined
+    CallIfEq VAR_NPC_2, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_OliBattleDeclined
+    CallIfEq VAR_NPC_2, ARIEL, PokemonCenterDailyTrainers_ArielBattleDeclined
+    CallIfEq VAR_NPC_2, ARTURO, PokemonCenterDailyTrainers_ArturoBattleDeclined
+    GoTo PokemonCenterDailyTrainers_CloseMessage
     End
 
-_081A:
+PokemonCenterDailyTrainers_CloseMessage:
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0822:
-    ScrCmd_0EB
+PokemonCenterDailyTrainers_BattleLost:
+    WhiteOut
     ReleaseAll
     End
 
-_0828:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0855
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _085A
-    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _085F
+PokemonCenterDailyTrainers_GraceIntroMessage:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GraceIntroMessageOreburgh
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GraceIntroMessagePastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GraceIntroMessageSnowpoint
     Return
 
-_0855:
-    Message 16
+PokemonCenterDailyTrainers_GraceIntroMessageOreburgh:
+    Message pokemon_center_daily_trainers_grace_intro_oreburgh
     Return
 
-_085A:
-    Message 38
+PokemonCenterDailyTrainers_GraceIntroMessagePastoria:
+    Message pokemon_center_daily_trainers_grace_intro_pastiora
     Return
 
-_085F:
-    Message 64
+PokemonCenterDailyTrainers_GraceIntroMessageSnowpoint:
+    Message pokemon_center_daily_trainers_grace_intro_snowpoint
     Return
 
-_0864:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0891
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0896
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _089B
+PokemonCenterDailyTrainers_KinseyIntroMessage:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyIntroMessageJubilife
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyIntroMessageHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyIntroMessageFightArea
     Return
 
-_0891:
-    Message 0
+PokemonCenterDailyTrainers_KinseyIntroMessageJubilife:
+    Message pokemon_center_daily_trainers_kinsey_intro_jubilife
     Return
 
-_0896:
-    Message 30
+PokemonCenterDailyTrainers_KinseyIntroMessageHearthome:
+    Message pokemon_center_daily_trainers_kinsey_intro_hearthome
     Return
 
-_089B:
-    Message 68
+PokemonCenterDailyTrainers_KinseyIntroMessageFightArea:
+    Message pokemon_center_daily_trainers_kinsey_intro_fight_area
     Return
 
-_08A0:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _08E7
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _08EC
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _08F1
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _097C
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0981
+PokemonCenterDailyTrainers_TevinOrOliIntroMessage:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_TevinIntroMessageJubilife
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_TevinIntroMessageHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_TevinIntroMessageFightArea
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliIntroMessageEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliIntroMessageVeilstone
     Return
 
-_08E7:
-    Message 4
+PokemonCenterDailyTrainers_TevinIntroMessageJubilife:
+    Message pokemon_center_daily_trainers_tevin_intro_jubilife
     Return
 
-_08EC:
-    Message 34
+PokemonCenterDailyTrainers_TevinIntroMessageHearthome:
+    Message pokemon_center_daily_trainers_tevin_intro_hearthome
     Return
 
-_08F1:
-    Message 72
+PokemonCenterDailyTrainers_TevinIntroMessageFightArea:
+    Message pokemon_center_daily_trainers_tevin_intro_fight_area
     Return
 
-_08F6:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0923
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0928
-    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _092D
+PokemonCenterDailyTrainers_LeeIntroMessage:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_LeeIntroMessageHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_LeeIntroMessagePastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_LeeIntroMessageCelestic
     Return
 
-_0923:
-    Message 8
+PokemonCenterDailyTrainers_LeeIntroMessageHearthome:
+    Message pokemon_center_daily_trainers_lee_intro_hearthome
     Return
 
-_0928:
-    Message 42
+PokemonCenterDailyTrainers_LeeIntroMessagePastoria:
+    Message pokemon_center_daily_trainers_lee_intro_pastoria
     Return
 
-_092D:
-    Message 84
+PokemonCenterDailyTrainers_LeeIntroMessageCelestic:
+    Message pokemon_center_daily_trainers_lee_intro_celestic
     Return
 
-_0932:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0952
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0957
+PokemonCenterDailyTrainers_RoxyIntroMessage:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_RoxyIntroMessageEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_RoxyIntroMessageVeilstone
     Return
 
-_0952:
-    Message 26
+PokemonCenterDailyTrainers_RoxyIntroMessageEterna:
+    Message pokemon_center_daily_trainers_roxy_intro_eterna
     Return
 
-_0957:
-    Message 56
+PokemonCenterDailyTrainers_RoxyIntroMessageVeilstone:
+    Message pokemon_center_daily_trainers_roxy_intro_veilstone
     Return
 
-_095C:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _097C
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0981
+PokemonCenterDailyTrainers_OliIntroMessage:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliIntroMessageEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliIntroMessageVeilstone
     Return
 
-_097C:
-    Message 21
+PokemonCenterDailyTrainers_OliIntroMessageEterna:
+    Message pokemon_center_daily_trainers_oli_intro_eterna
     Return
 
-_0981:
-    Message 51
+PokemonCenterDailyTrainers_OliIntroMessageVeilstone:
+    Message pokemon_center_daily_trainers_oli_intro_veilstone
     Return
 
-_0986:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _09B3
-    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _09B8
-    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _09BD
+PokemonCenterDailyTrainers_ArielIntroMessage:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_ArielIntroMessageFloaroma
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_ArielIntroMessageSolaceon
+    CallIfEq VAR_MAP_ID, MAP_HEADER_RESORT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_ArielIntroMessageResortArea
     Return
 
-_09B3:
-    Message 76
+PokemonCenterDailyTrainers_ArielIntroMessageFloaroma:
+    Message pokemon_center_daily_trainers_ariel_intro_floaroma
     Return
 
-_09B8:
-    Message 80
+PokemonCenterDailyTrainers_ArielIntroMessageSolaceon:
+    Message pokemon_center_daily_trainers_ariel_intro_solaceon
     Return
 
-_09BD:
-    Message 88
+PokemonCenterDailyTrainers_ArielIntroMessageResortArea:
+    Message pokemon_center_daily_trainers_ariel_intro_resort_area
     Return
 
-_09C2:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _09EF
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _09F4
-    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _09F9
+PokemonCenterDailyTrainers_ArturoIntroMessage:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoIntroMessageCanalave
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoIntroMessagePastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoIntroMessageSunyshore
     Return
 
-_09EF:
-    Message 12
+PokemonCenterDailyTrainers_ArturoIntroMessageCanalave:
+    Message pokemon_center_daily_trainers_arturo_intro_canalave
     Return
 
-_09F4:
-    Message 46
+PokemonCenterDailyTrainers_ArturoIntroMessagePastoria:
+    Message pokemon_center_daily_trainers_arturo_intro_pastoria
     Return
 
-_09F9:
-    Message 60
+PokemonCenterDailyTrainers_ArturoIntroMessageSunyshore:
+    Message pokemon_center_daily_trainers_arturo_intro_sunyshore
     Return
 
-_09FE:
-    Call _1060
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0A31
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0A36
-    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _0A3B
+PokemonCenterDailyTrainers_GraceBattleAccepted:
+    Call PokemonCenterDailyTrainers_SetGraceTeam
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GraceBattleAcceptedMessageOreburgh
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GraceBattleAcceptedMessagePastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GraceBattleAcceptedMessageSnowpoint
     Return
 
-_0A31:
-    Message 17
+PokemonCenterDailyTrainers_GraceBattleAcceptedMessageOreburgh:
+    Message pokemon_center_daily_trainers_grace_battle_accepted_oreburgh
     Return
 
-_0A36:
-    Message 39
+PokemonCenterDailyTrainers_GraceBattleAcceptedMessagePastoria:
+    Message pokemon_center_daily_trainers_grace_battle_accepted_pastiora
     Return
 
-_0A3B:
-    Message 65
+PokemonCenterDailyTrainers_GraceBattleAcceptedMessageSnowpoint:
+    Message pokemon_center_daily_trainers_grace_battle_accepted_snowpoint
     Return
 
-_0A40:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0A6D
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0A78
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0A83
+PokemonCenterDailyTrainers_KinseyBattleAccepted:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyBattleAcceptedJubilife
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyBattleAcceptedHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyBattleAcceptedFightArea
     Return
 
-_0A6D:
-    Call _10C7
-    Message 1
+PokemonCenterDailyTrainers_KinseyBattleAcceptedJubilife:
+    Call PokemonCenterDailyTrainers_SetKinseyTeam
+    Message pokemon_center_daily_trainers_kinsey_battle_accepted_jubilife
     Return
 
-_0A78:
-    Call _10C7
-    Message 31
+PokemonCenterDailyTrainers_KinseyBattleAcceptedHearthome:
+    Call PokemonCenterDailyTrainers_SetKinseyTeam
+    Message pokemon_center_daily_trainers_kinsey_battle_accepted_hearthome
     Return
 
-_0A83:
-    Call _10C7
-    Message 69
+PokemonCenterDailyTrainers_KinseyBattleAcceptedFightArea:
+    Call PokemonCenterDailyTrainers_SetKinseyTeam
+    Message pokemon_center_daily_trainers_kinsey_battle_accepted_fight_area
     Return
 
-_0A8E:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0AD5
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0AE0
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0AEB
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0B8E
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0B99
+PokemonCenterDailyTrainers_TevinOrOliBattleAccepted:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_TevinBattleAcceptedJubilife
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_TevinBattleAcceptedHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_TevinBattleAcceptedFightArea
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliBattleAcceptedEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliBattleAcceptedVeilstone
     Return
 
-_0AD5:
-    Call _112E
-    Message 5
+PokemonCenterDailyTrainers_TevinBattleAcceptedJubilife:
+    Call PokemonCenterDailyTrainers_SetTevinTeam
+    Message pokemon_center_daily_trainers_tevin_battle_accepted_jubilife
     Return
 
-_0AE0:
-    Call _112E
-    Message 35
+PokemonCenterDailyTrainers_TevinBattleAcceptedHearthome:
+    Call PokemonCenterDailyTrainers_SetTevinTeam
+    Message pokemon_center_daily_trainers_tevin_battle_accepted_hearthome
     Return
 
-_0AEB:
-    Call _112E
-    Message 73
+PokemonCenterDailyTrainers_TevinBattleAcceptedFightArea:
+    Call PokemonCenterDailyTrainers_SetTevinTeam
+    Message pokemon_center_daily_trainers_tevin_battle_accepted_fight_area
     Return
 
-_0AF6:
-    Call _1195
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0B29
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0B2E
-    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _0B33
+PokemonCenterDailyTrainers_LeeBattleAccepted:
+    Call PokemonCenterDailyTrainers_SetLeeTeam
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_LeeBattleAcceptedHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_LeeBattleAcceptedPastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_LeeBattleAcceptedCelestic
     Return
 
-_0B29:
-    Message 9
+PokemonCenterDailyTrainers_LeeBattleAcceptedHearthome:
+    Message pokemon_center_daily_trainers_lee_battle_accepted_hearthome
     Return
 
-_0B2E:
-    Message 43
+PokemonCenterDailyTrainers_LeeBattleAcceptedPastoria:
+    Message pokemon_center_daily_trainers_lee_battle_accepted_pastiora
     Return
 
-_0B33:
-    Message 85
+PokemonCenterDailyTrainers_LeeBattleAcceptedCelestic:
+    Message pokemon_center_daily_trainers_lee_battle_accepted_celestic
     Return
 
-_0B38:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0B58
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0B63
+PokemonCenterDailyTrainers_RoxyBattleAccepted:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_RoxyBattleAcceptedEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_RoxyBattleAcceptedVeilstone
     Return
 
-_0B58:
-    Call _11FC
-    Message 27
+PokemonCenterDailyTrainers_RoxyBattleAcceptedEterna:
+    Call PokemonCenterDailyTrainers_SetRoxyAndOliTeam
+    Message pokemon_center_daily_trainers_roxy_battle_accepted_eterna
     Return
 
-_0B63:
-    Call _11FC
-    Message 57
+PokemonCenterDailyTrainers_RoxyBattleAcceptedVeilstone:
+    Call PokemonCenterDailyTrainers_SetRoxyAndOliTeam
+    Message pokemon_center_daily_trainers_roxy_battle_accepted_veilstone
     Return
 
-_0B6E:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0B8E
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0B99
+PokemonCenterDailyTrainers_OliBattleAccepted:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliBattleAcceptedEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliBattleAcceptedVeilstone
     Return
 
-_0B8E:
-    Call _11FC
-    Message 22
+PokemonCenterDailyTrainers_OliBattleAcceptedEterna:
+    Call PokemonCenterDailyTrainers_SetRoxyAndOliTeam
+    Message pokemon_center_daily_trainers_oli_battle_accepted_eterna
     Return
 
-_0B99:
-    Call _11FC
-    Message 52
+PokemonCenterDailyTrainers_OliBattleAcceptedVeilstone:
+    Call PokemonCenterDailyTrainers_SetRoxyAndOliTeam
+    Message pokemon_center_daily_trainers_oli_battle_accepted_veilstone
+
     Return
 
-_0BA4:
-    Call _1263
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _0BD7
-    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _0BDC
-    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0BE1
+PokemonCenterDailyTrainers_ArielBattleAccepted:
+    Call PokemonCenterDailyTrainers_SetArielTeam
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_ArielBattleAcceptedFloaroma
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_ArielBattleAcceptedSolaceon
+    CallIfEq VAR_MAP_ID, MAP_HEADER_RESORT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_ArielBattleAcceptedResortArea
     Return
 
-_0BD7:
-    Message 77
+PokemonCenterDailyTrainers_ArielBattleAcceptedFloaroma:
+    Message pokemon_center_daily_trainers_ariel_battle_accepted_floaroma
     Return
 
-_0BDC:
-    Message 81
+PokemonCenterDailyTrainers_ArielBattleAcceptedSolaceon:
+    Message pokemon_center_daily_trainers_ariel_battle_accepted_solaceon
     Return
 
-_0BE1:
-    Message 89
+PokemonCenterDailyTrainers_ArielBattleAcceptedResortArea:
+    Message pokemon_center_daily_trainers_ariel_battle_accepted_resort_area
     Return
 
-_0BE6:
-    Call _12CA
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _0C19
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0C1E
-    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _0C23
+PokemonCenterDailyTrainers_ArturoBattleAccepted:
+    Call PokemonCenterDailyTrainers_SetArturoTeam
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoBattleAcceptedCanalave
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoBattleAcceptedPastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoBattleAcceptedSunyshore
     Return
 
-_0C19:
-    Message 13
+PokemonCenterDailyTrainers_ArturoBattleAcceptedCanalave:
+    Message pokemon_center_daily_trainers_arturo_battle_accepted_canalave
     Return
 
-_0C1E:
-    Message 47
+PokemonCenterDailyTrainers_ArturoBattleAcceptedPastoria:
+    Message pokemon_center_daily_trainers_arturo_battle_accepted_pastiora
     Return
 
-_0C23:
-    Message 61
+PokemonCenterDailyTrainers_ArturoBattleAcceptedSunyshore:
+    Message pokemon_center_daily_trainers_arturo_battle_accepted_sunyshore
     Return
 
-_0C28:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0C55
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0C5A
-    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _0C5F
+PokemonCenterDailyTrainers_GraceBattleDeclined:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GraceBattleDeclinedOreburgh
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GraceBattleDeclinedPastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GraceBattleDeclinedSnowpoint
     Return
 
-_0C55:
-    Message 18
+PokemonCenterDailyTrainers_GraceBattleDeclinedOreburgh:
+    Message pokemon_center_daily_trainers_grace_battle_declined_oreburgh
     Return
 
-_0C5A:
-    Message 40
+PokemonCenterDailyTrainers_GraceBattleDeclinedPastoria:
+    Message pokemon_center_daily_trainers_grace_battle_declined_pastiora
     Return
 
-_0C5F:
-    Message 66
+PokemonCenterDailyTrainers_GraceBattleDeclinedSnowpoint:
+    Message pokemon_center_daily_trainers_grace_battle_declined_snowpoint
     Return
 
-_0C64:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0C91
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0C96
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0C9B
+PokemonCenterDailyTrainers_KinseyBattleDeclined:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyBattleDeclinedJubilife
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyBattleDeclinedHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyBattleDeclinedFightArea
     Return
 
-_0C91:
-    Message 2
+PokemonCenterDailyTrainers_KinseyBattleDeclinedJubilife:
+    Message pokemon_center_daily_trainers_kinsey_battle_declined_jubilife
     Return
 
-_0C96:
-    Message 32
+PokemonCenterDailyTrainers_KinseyBattleDeclinedHearthome:
+    Message pokemon_center_daily_trainers_kinsey_battle_declined_hearthome
     Return
 
-_0C9B:
-    Message 70
+PokemonCenterDailyTrainers_KinseyBattleDeclinedFightArea:
+    Message pokemon_center_daily_trainers_kinsey_battle_declined_fight_area
     Return
 
-_0CA0:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0CE7
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0CEC
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0CF1
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0D7C
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0D81
+PokemonCenterDailyTrainers_TevinOrOliBattleDeclined:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_KevinBattleDeclinedJubilife
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_KevinBattleDeclinedHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_KevinBattleDeclinedFightArea
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliBattleDeclinedEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliBattleDeclinedVeilstone
     Return
 
-_0CE7:
-    Message 6
+PokemonCenterDailyTrainers_KevinBattleDeclinedJubilife:
+    Message pokemon_center_daily_trainers_tevin_battle_declined_jubilife
     Return
 
-_0CEC:
-    Message 36
+PokemonCenterDailyTrainers_KevinBattleDeclinedHearthome:
+    Message pokemon_center_daily_trainers_tevin_battle_declined_hearthome
     Return
 
-_0CF1:
-    Message 74
+PokemonCenterDailyTrainers_KevinBattleDeclinedFightArea:
+    Message pokemon_center_daily_trainers_tevin_battle_declined_fight_area
     Return
 
-_0CF6:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0D23
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0D28
-    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _0D2D
+PokemonCenterDailyTrainers_LeeBattleDeclined:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_LeeBattleDeclinedHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_LeeBattleDeclinedPastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_LeeBattleDeclinedCelestic
     Return
 
-_0D23:
-    Message 10
+PokemonCenterDailyTrainers_LeeBattleDeclinedHearthome:
+    Message pokemon_center_daily_trainers_lee_battle_declined_hearthome
     Return
 
-_0D28:
-    Message 44
+PokemonCenterDailyTrainers_LeeBattleDeclinedPastoria:
+    Message pokemon_center_daily_trainers_lee_battle_declined_pastiora
     Return
 
-_0D2D:
-    Message 86
+PokemonCenterDailyTrainers_LeeBattleDeclinedCelestic:
+    Message pokemon_center_daily_trainers_lee_battle_declined_celestic
     Return
 
-_0D32:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0D52
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0D57
+PokemonCenterDailyTrainers_RoxyBattleDeclined:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_RoxyBattleDeclinedEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_RoxyBattleDeclinedVeilstone
     Return
 
-_0D52:
-    Message 28
+PokemonCenterDailyTrainers_RoxyBattleDeclinedEterna:
+    Message pokemon_center_daily_trainers_roxy_battle_declined_eterna
     Return
 
-_0D57:
-    Message 58
+PokemonCenterDailyTrainers_RoxyBattleDeclinedVeilstone:
+    Message pokemon_center_daily_trainers_roxy_battle_declined_veilstone
     Return
 
-_0D5C:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0D7C
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0D81
+PokemonCenterDailyTrainers_OliBattleDeclined:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliBattleDeclinedEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliBattleDeclinedVeilstone
     Return
 
-_0D7C:
-    Message 23
+PokemonCenterDailyTrainers_OliBattleDeclinedEterna:
+    Message pokemon_center_daily_trainers_oli_battle_declined_eterna
     Return
 
-_0D81:
-    Message 53
+PokemonCenterDailyTrainers_OliBattleDeclinedVeilstone:
+    Message pokemon_center_daily_trainers_oli_battle_declined_veilstone
     Return
 
-_0D86:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _0DB3
-    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _0DB8
-    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0DBD
+PokemonCenterDailyTrainers_ArielBattleDeclined:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_ArielBattleDeclinedFloaroma
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_ArielBattleDeclinedSolaceon
+    CallIfEq VAR_MAP_ID, MAP_HEADER_RESORT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_ArielBattleDeclinedResortArea
     Return
 
-_0DB3:
-    Message 78
+PokemonCenterDailyTrainers_ArielBattleDeclinedFloaroma:
+    Message pokemon_center_daily_trainers_ariel_battle_declined_floaroma
     Return
 
-_0DB8:
-    Message 82
+PokemonCenterDailyTrainers_ArielBattleDeclinedSolaceon:
+    Message pokemon_center_daily_trainers_ariel_battle_declined_solaceon
     Return
 
-_0DBD:
-    Message 90
+PokemonCenterDailyTrainers_ArielBattleDeclinedResortArea:
+    Message pokemon_center_daily_trainers_ariel_battle_declined_resort_area
     Return
 
-_0DC2:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _0DEF
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0DF4
-    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _0DF9
+PokemonCenterDailyTrainers_ArturoBattleDeclined:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoBattleDeclinedCanalave
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoBattleDeclinedPastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoBattleDeclinedSunyshore
     Return
 
-_0DEF:
-    Message 14
+PokemonCenterDailyTrainers_ArturoBattleDeclinedCanalave:
+    Message pokemon_center_daily_trainers_arturo_battle_declined_calanave
     Return
 
-_0DF4:
-    Message 48
+PokemonCenterDailyTrainers_ArturoBattleDeclinedPastoria:
+    Message pokemon_center_daily_trainers_arturo_battle_declined_pastiora
     Return
 
-_0DF9:
-    Message 62
+PokemonCenterDailyTrainers_ArturoBattleDeclinedSunyshore:
+    Message pokemon_center_daily_trainers_arturo_battle_declined_sunyshore
     Return
 
-_0DFE:
-    SetFlag 0xABC
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, _0E2F
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0E34
-    CallIfEq 0x4001, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, _0E39
+PokemonCenterDailyTrainers_GracePostBattle:
+    SetFlag FLAG_DEFEATED_IDOL_GRACE
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_OREBURGH_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GracePostBattleMessageOreburgh
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GracePostBattleMessagePastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_GracePostBattleMessageSnowpoint
     Return
 
-_0E2F:
-    Message 19
+PokemonCenterDailyTrainers_GracePostBattleMessageOreburgh:
+    Message pokemon_center_daily_trainers_grace_post_battle_oreburgh
     Return
 
-_0E34:
-    Message 41
+PokemonCenterDailyTrainers_GracePostBattleMessagePastoria:
+    Message pokemon_center_daily_trainers_grace_post_battle_pastiora
     Return
 
-_0E39:
-    Message 67
+PokemonCenterDailyTrainers_GracePostBattleMessageSnowpoint:
+    Message pokemon_center_daily_trainers_grace_post_battle_snowpoint
     Return
 
-_0E3E:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0E6B
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0E74
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0E7D
+PokemonCenterDailyTrainers_KinseyPostBattle:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyPostBattleJubilife
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyPostBattleHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_KinseyPostBattleFightArea
     Return
 
-_0E6B:
-    SetFlag 0xABD
-    Message 3
+PokemonCenterDailyTrainers_KinseyPostBattleJubilife:
+    SetFlag FLAG_DEFEATED_REPORTERS_KINSEY
+    Message pokemon_center_daily_trainers_kinsey_post_battle_jubilife
     Return
 
-_0E74:
-    SetFlag 0xABD
-    Message 33
+PokemonCenterDailyTrainers_KinseyPostBattleHearthome:
+    SetFlag FLAG_DEFEATED_REPORTERS_KINSEY
+    Message pokemon_center_daily_trainers_kinsey_post_battle_hearthome
     Return
 
-_0E7D:
-    SetFlag 0xABD
-    Message 71
+PokemonCenterDailyTrainers_KinseyPostBattleFightArea:
+    SetFlag FLAG_DEFEATED_REPORTERS_KINSEY
+    Message pokemon_center_daily_trainers_kinsey_post_battle_fight_area
     Return
 
-_0E86:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _0ECD
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0ED6
-    CallIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _0EDF
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0F7A
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0F83
+PokemonCenterDailyTrainers_TevinOrOliPostBattle:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_TevinPostBattleJubilife
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_TevinPostBattleHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_TevinPostBattleFightArea
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliPostBattleEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliPostBattleVeilstone
     Return
 
-_0ECD:
-    SetFlag 0xABE
-    Message 7
+PokemonCenterDailyTrainers_TevinPostBattleJubilife:
+    SetFlag FLAG_DEFEATED_CAMERAMAN_TEVIN
+    Message pokemon_center_daily_trainers_tevin_post_battle_jubilife
     Return
 
-_0ED6:
-    SetFlag 0xABE
-    Message 37
+PokemonCenterDailyTrainers_TevinPostBattleHearthome:
+    SetFlag FLAG_DEFEATED_CAMERAMAN_TEVIN
+    Message pokemon_center_daily_trainers_tevin_post_battle_hearthome
     Return
 
-_0EDF:
-    SetFlag 0xABE
-    Message 75
+PokemonCenterDailyTrainers_TevinPostBattleFightArea:
+    SetFlag FLAG_DEFEATED_CAMERAMAN_TEVIN
+    Message pokemon_center_daily_trainers_tevin_post_battled_fight_area
     Return
 
-_0EE8:
-    SetFlag 0xABF
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _0F19
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _0F1E
-    CallIfEq 0x4001, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, _0F23
+PokemonCenterDailyTrainers_LeePostBattle:
+    SetFlag FLAG_DEFEATED_CLOWN_LEE
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_LeePostBattleMessageHearthome
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_LeePostBattleMessagePastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CELESTIC_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_LeePostBattleMessageCelestic
     Return
 
-_0F19:
-    Message 11
+PokemonCenterDailyTrainers_LeePostBattleMessageHearthome:
+    Message pokemon_center_daily_trainers_lee_post_battle_hearthome
     Return
 
-_0F1E:
-    Message 45
+PokemonCenterDailyTrainers_LeePostBattleMessagePastoria:
+    Message pokemon_center_daily_trainers_lee_post_battle_pastiora
     Return
 
-_0F23:
-    Message 87
+PokemonCenterDailyTrainers_LeePostBattleMessageCelestic:
+    Message pokemon_center_daily_trainers_lee_post_battle_celestic
     Return
 
-_0F28:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0F48
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0F51
+PokemonCenterDailyTrainers_RoxyPostBattle:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_RoxyPostBattleEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_RoxyPostBattleVeilstone
     Return
 
-_0F48:
-    SetFlag 0xAC0
-    Message 29
+PokemonCenterDailyTrainers_RoxyPostBattleEterna:
+    SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
+    Message pokemon_center_daily_trainers_roxy_post_battle_eterna
     Return
 
-_0F51:
-    SetFlag 0xAC0
-    Message 59
+PokemonCenterDailyTrainers_RoxyPostBattleVeilstone:
+    SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
+    Message pokemon_center_daily_trainers_roxy_post_battle_veilstone
     Return
 
-_0F5A:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _0F7A
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _0F83
+PokemonCenterDailyTrainers_OliPostBattle:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliPostBattleEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliPostBattleVeilstone
     Return
 
-_0F7A:
-    SetFlag 0xAC0
-    Message 24
+PokemonCenterDailyTrainers_OliPostBattleEterna:
+    SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
+    Message pokemon_center_daily_trainers_oli_post_battle_eterna
     Return
 
-_0F83:
-    SetFlag 0xAC0
-    Message 54
+PokemonCenterDailyTrainers_OliPostBattleVeilstone:
+    SetFlag FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI
+    Message pokemon_center_daily_trainers_oli_post_battle_veilstone
     Return
 
-_0F8C:
-    SetFlag 0xAC1
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, _0FBD
-    CallIfEq 0x4001, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, _0FC2
-    CallIfEq 0x4001, MAP_HEADER_RESORT_AREA_POKECENTER_1F, _0FC7
+PokemonCenterDailyTrainers_ArielPostBattle:
+    SetFlag FLAG_DEFEATED_POKE_KID_ARIEL
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_ArielPostBattleMessageFloaroma
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F, PokemonCenterDailyTrainers_ArielPostBattleMessageSolaceon
+    CallIfEq VAR_MAP_ID, MAP_HEADER_RESORT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_ArielPostBattleMessageResortArea
     Return
 
-_0FBD:
-    Message 79
+PokemonCenterDailyTrainers_ArielPostBattleMessageFloaroma:
+    Message pokemon_center_daily_trainers_ariel_post_battle_floaroma
     Return
 
-_0FC2:
-    Message 83
+PokemonCenterDailyTrainers_ArielPostBattleMessageSolaceon:
+    Message pokemon_center_daily_trainers_ariel_post_battle_solaceon
     Return
 
-_0FC7:
-    Message 91
+PokemonCenterDailyTrainers_ArielPostBattleMessageResortArea:
+    Message pokemon_center_daily_trainers_ariel_post_battle_resort_area
     Return
 
-_0FCC:
-    SetFlag 0xAC2
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, _0FFD
-    CallIfEq 0x4001, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, _1002
-    CallIfEq 0x4001, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, _1007
+PokemonCenterDailyTrainers_ArturoPostBattle:
+    SetFlag FLAG_DEFEATED_GUITARIST_ARTURO
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_CANALAVE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoPostBattleMessageCanalave
+    CallIfEq VAR_MAP_ID, MAP_HEADER_PASTORIA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoPostBattleMessagePastoria
+    CallIfEq VAR_MAP_ID, MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_ArturoPostBattleMessageSunyshore
     Return
 
-_0FFD:
-    Message 15
+PokemonCenterDailyTrainers_ArturoPostBattleMessageCanalave:
+    Message pokemon_center_daily_trainers_arturo_post_battle_canalave
     Return
 
-_1002:
-    Message 49
+PokemonCenterDailyTrainers_ArturoPostBattleMessagePastoria:
+    Message pokemon_center_daily_trainers_arturo_post_battle_pastiora
     Return
 
-_1007:
-    Message 63
+PokemonCenterDailyTrainers_ArturoPostBattleMessageSunyshore:
+    Message pokemon_center_daily_trainers_arturo_post_battle_sunyshore
     Return
 
-_100C:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _102C
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _1031
+PokemonCenterDailyTrainers_RoxyNotEnoughAliveMonsMessage:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_RoxyNotEnoughAliveMonsMessageEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_RoxyNotEnoughAliveMonsMessageVeilstone
     Return
 
-_102C:
-    Message 25
+PokemonCenterDailyTrainers_RoxyNotEnoughAliveMonsMessageEterna:
+    Message pokemon_center_daily_trainers_roxy_not_enough_pokemon_eterna
     Return
 
-_1031:
-    Message 55
+PokemonCenterDailyTrainers_RoxyNotEnoughAliveMonsMessageVeilstone:
+    Message pokemon_center_daily_trainers_roxy_not_enough_pokemon_veilstone
     Return
 
-_1036:
-    GetCurrentMapID 0x4001
-    CallIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _1056
-    CallIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _105B
+PokemonCenterDailyTrainers_OliNotEnoughAliveMonsMessage:
+    GetCurrentMapID VAR_MAP_ID
+    CallIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliNotEnoughAliveMonsMessageEterna
+    CallIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_OliNotEnoughAliveMonsMessageVeilstone
     Return
 
-_1056:
-    Message 20
+PokemonCenterDailyTrainers_OliNotEnoughAliveMonsMessageEterna:
+    Message pokemon_center_daily_trainers_oli_not_enough_pokemon_eterna
     Return
 
-_105B:
-    Message 50
+PokemonCenterDailyTrainers_OliNotEnoughAliveMonsMessageVeilstone:
+    Message pokemon_center_daily_trainers_oli_not_enough_pokemon_veilstone
     Return
 
-_1060:
-    SetVar 0x8005, 0x173
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _109F
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _10A7
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _10AF
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _10B7
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _10BF
+PokemonCenterDailyTrainers_SetGraceTeam:
+    SetVar VAR_TRAINER, TRAINER_IDOL_GRACE_UNUSED
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, PokemonCenterDailyTrainers_SetGraceFirstBattle
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, PokemonCenterDailyTrainers_SetGraceRematch1
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, PokemonCenterDailyTrainers_SetGraceRematch2
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, PokemonCenterDailyTrainers_SetGraceRematch3
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, PokemonCenterDailyTrainers_SetGraceRematch4
     Return
 
-_109F:
-    SetVar 0x8005, TRAINER_IDOL_GRACE
+PokemonCenterDailyTrainers_SetGraceFirstBattle:
+    SetVar VAR_TRAINER, TRAINER_IDOL_GRACE
     Return
 
-_10A7:
-    SetVar 0x8005, TRAINER_IDOL_GRACE_REMATCH_1
+PokemonCenterDailyTrainers_SetGraceRematch1:
+    SetVar VAR_TRAINER, TRAINER_IDOL_GRACE_REMATCH_1
     Return
 
-_10AF:
-    SetVar 0x8005, TRAINER_IDOL_GRACE_REMATCH_2
+PokemonCenterDailyTrainers_SetGraceRematch2:
+    SetVar VAR_TRAINER, TRAINER_IDOL_GRACE_REMATCH_2
     Return
 
-_10B7:
-    SetVar 0x8005, TRAINER_IDOL_GRACE_REMATCH_3
+PokemonCenterDailyTrainers_SetGraceRematch3:
+    SetVar VAR_TRAINER, TRAINER_IDOL_GRACE_REMATCH_3
     Return
 
-_10BF:
-    SetVar 0x8005, TRAINER_IDOL_GRACE_REMATCH_4
+PokemonCenterDailyTrainers_SetGraceRematch4:
+    SetVar VAR_TRAINER, TRAINER_IDOL_GRACE_REMATCH_4
     Return
 
-_10C7:
-    SetVar 0x8005, 0x172
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _1106
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _110E
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _1116
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _111E
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _1126
+PokemonCenterDailyTrainers_SetKinseyTeam:
+    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY_UNUSED
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, PokemonCenterDailyTrainers_SetKinseyFirstBattle
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, PokemonCenterDailyTrainers_SetKinseyRematch1
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, PokemonCenterDailyTrainers_SetKinseyRematch2
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, PokemonCenterDailyTrainers_SetKinseyRematch3
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, PokemonCenterDailyTrainers_SetKinseyRematch4
     Return
 
-_1106:
-    SetVar 0x8005, TRAINER_REPORTERS_KINSEY
+PokemonCenterDailyTrainers_SetKinseyFirstBattle:
+    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY
     Return
 
-_110E:
-    SetVar 0x8005, TRAINER_REPORTERS_KINSEY_REMATCH_1
+PokemonCenterDailyTrainers_SetKinseyRematch1:
+    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY_REMATCH_1
     Return
 
-_1116:
-    SetVar 0x8005, TRAINER_REPORTERS_KINSEY_REMATCH_2
+PokemonCenterDailyTrainers_SetKinseyRematch2:
+    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY_REMATCH_2
     Return
 
-_111E:
-    SetVar 0x8005, TRAINER_REPORTERS_KINSEY_REMATCH_3
+PokemonCenterDailyTrainers_SetKinseyRematch3:
+    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY_REMATCH_3
     Return
 
-_1126:
-    SetVar 0x8005, TRAINER_REPORTERS_KINSEY_REMATCH_4
+PokemonCenterDailyTrainers_SetKinseyRematch4:
+    SetVar VAR_TRAINER, TRAINER_REPORTERS_KINSEY_REMATCH_4
     Return
 
-_112E:
-    SetVar 0x8005, 0x171
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _116D
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _1175
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _117D
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _1185
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _118D
+PokemonCenterDailyTrainers_SetTevinTeam:
+    SetVar VAR_TRAINER, TRAINER_CAMERAMAN_TEVIN_UNUSED
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, PokemonCenterDailyTrainers_SetTevinFirstBattle
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, PokemonCenterDailyTrainers_SetTevinRematch1
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, PokemonCenterDailyTrainers_SetTevinRematch2
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, PokemonCenterDailyTrainers_SetTevinRematch3
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, PokemonCenterDailyTrainers_SetTevinRematch4
     Return
 
-_116D:
-    SetVar 0x8005, TRAINER_CAMERAMAN_TEVIN
+PokemonCenterDailyTrainers_SetTevinFirstBattle:
+    SetVar VAR_TRAINER, TRAINER_CAMERAMAN_TEVIN
     Return
 
-_1175:
-    SetVar 0x8005, TRAINER_CAMERAMAN_TEVIN_REMATCH_1
+PokemonCenterDailyTrainers_SetTevinRematch1:
+    SetVar VAR_TRAINER, TRAINER_CAMERAMAN_TEVIN_REMATCH_1
     Return
 
-_117D:
-    SetVar 0x8005, TRAINER_CAMERAMAN_TEVIN_REMATCH_2
+PokemonCenterDailyTrainers_SetTevinRematch2:
+    SetVar VAR_TRAINER, TRAINER_CAMERAMAN_TEVIN_REMATCH_2
     Return
 
-_1185:
-    SetVar 0x8005, TRAINER_CAMERAMAN_TEVIN_REMATCH_3
+PokemonCenterDailyTrainers_SetTevinRematch3:
+    SetVar VAR_TRAINER, TRAINER_CAMERAMAN_TEVIN_REMATCH_3
     Return
 
-_118D:
-    SetVar 0x8005, TRAINER_CAMERAMAN_TEVIN_REMATCH_4
+PokemonCenterDailyTrainers_SetTevinRematch4:
+    SetVar VAR_TRAINER, TRAINER_CAMERAMAN_TEVIN_REMATCH_4
     Return
 
-_1195:
-    SetVar 0x8005, 0x1CC
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _11D4
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _11DC
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _11E4
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _11EC
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _11F4
+PokemonCenterDailyTrainers_SetLeeTeam:
+    SetVar VAR_TRAINER, TRAINER_CLOWN_LEE_UNUSED
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, PokemonCenterDailyTrainers_SetLeeFirstBattle
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, PokemonCenterDailyTrainers_SetLeeRematch1
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, PokemonCenterDailyTrainers_SetLeeRematch2
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, PokemonCenterDailyTrainers_SetLeeRematch3
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, PokemonCenterDailyTrainers_SetLeeRematch4
     Return
 
-_11D4:
-    SetVar 0x8005, TRAINER_CLOWN_LEE
+PokemonCenterDailyTrainers_SetLeeFirstBattle:
+    SetVar VAR_TRAINER, TRAINER_CLOWN_LEE
     Return
 
-_11DC:
-    SetVar 0x8005, TRAINER_CLOWN_LEE_REMATCH_1
+PokemonCenterDailyTrainers_SetLeeRematch1:
+    SetVar VAR_TRAINER, TRAINER_CLOWN_LEE_REMATCH_1
     Return
 
-_11E4:
-    SetVar 0x8005, TRAINER_CLOWN_LEE_REMATCH_2
+PokemonCenterDailyTrainers_SetLeeRematch2:
+    SetVar VAR_TRAINER, TRAINER_CLOWN_LEE_REMATCH_2
     Return
 
-_11EC:
-    SetVar 0x8005, TRAINER_CLOWN_LEE_REMATCH_3
+PokemonCenterDailyTrainers_SetLeeRematch3:
+    SetVar VAR_TRAINER, TRAINER_CLOWN_LEE_REMATCH_3
     Return
 
-_11F4:
-    SetVar 0x8005, TRAINER_CLOWN_LEE_REMATCH_4
+PokemonCenterDailyTrainers_SetLeeRematch4:
+    SetVar VAR_TRAINER, TRAINER_CLOWN_LEE_REMATCH_4
     Return
 
-_11FC:
-    SetVar 0x8005, 0x170
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _123B
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _1243
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _124B
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _1253
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _125B
+PokemonCenterDailyTrainers_SetRoxyAndOliTeam:
+    SetVar VAR_TRAINER, TRAINER_INTERVIEWERS_ROXY_AND_OLI_UNUSED
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, PokemonCenterDailyTrainers_SetRoxyAndOliFirstBattle
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, PokemonCenterDailyTrainers_SetRoxyAndOliRematch1
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, PokemonCenterDailyTrainers_SetRoxyAndOliRematch2
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, PokemonCenterDailyTrainers_SetRoxyAndOliRematch3
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, PokemonCenterDailyTrainers_SetRoxyAndOliRematch4
     Return
 
-_123B:
-    SetVar 0x8005, TRAINER_INTERVIEWERS_ROXY_AND_OLI
+PokemonCenterDailyTrainers_SetRoxyAndOliFirstBattle:
+    SetVar VAR_TRAINER, TRAINER_INTERVIEWERS_ROXY_AND_OLI
     Return
 
-_1243:
-    SetVar 0x8005, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_1
+PokemonCenterDailyTrainers_SetRoxyAndOliRematch1:
+    SetVar VAR_TRAINER, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_1
     Return
 
-_124B:
-    SetVar 0x8005, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_2
+PokemonCenterDailyTrainers_SetRoxyAndOliRematch2:
+    SetVar VAR_TRAINER, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_2
     Return
 
-_1253:
-    SetVar 0x8005, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_3
+PokemonCenterDailyTrainers_SetRoxyAndOliRematch3:
+    SetVar VAR_TRAINER, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_3
     Return
 
-_125B:
-    SetVar 0x8005, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_4
+PokemonCenterDailyTrainers_SetRoxyAndOliRematch4:
+    SetVar VAR_TRAINER, TRAINER_INTERVIEWERS_ROXY_AND_OLI_REMATCH_4
     Return
 
-_1263:
-    SetVar 0x8005, 0x1D1
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _12A2
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _12AA
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _12B2
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _12BA
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _12C2
+PokemonCenterDailyTrainers_SetArielTeam:
+    SetVar VAR_TRAINER, TRAINER_POKE_KID_ARIEL_UNUSED
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, PokemonCenterDailyTrainers_SetArielFirstBattle
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, PokemonCenterDailyTrainers_SetArielRematch1
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, PokemonCenterDailyTrainers_SetArielRematch2
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, PokemonCenterDailyTrainers_SetArielRematch3
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, PokemonCenterDailyTrainers_SetArielRematch4
     Return
 
-_12A2:
-    SetVar 0x8005, TRAINER_POKE_KID_ARIEL
+PokemonCenterDailyTrainers_SetArielFirstBattle:
+    SetVar VAR_TRAINER, TRAINER_POKE_KID_ARIEL
     Return
 
-_12AA:
-    SetVar 0x8005, TRAINER_POKE_KID_ARIEL_REMATCH_1
+PokemonCenterDailyTrainers_SetArielRematch1:
+    SetVar VAR_TRAINER, TRAINER_POKE_KID_ARIEL_REMATCH_1
     Return
 
-_12B2:
-    SetVar 0x8005, TRAINER_POKE_KID_ARIEL_REMATCH_2
+PokemonCenterDailyTrainers_SetArielRematch2:
+    SetVar VAR_TRAINER, TRAINER_POKE_KID_ARIEL_REMATCH_2
     Return
 
-_12BA:
-    SetVar 0x8005, TRAINER_POKE_KID_ARIEL_REMATCH_3
+PokemonCenterDailyTrainers_SetArielRematch3:
+    SetVar VAR_TRAINER, TRAINER_POKE_KID_ARIEL_REMATCH_3
     Return
 
-_12C2:
-    SetVar 0x8005, TRAINER_POKE_KID_ARIEL_REMATCH_4
+PokemonCenterDailyTrainers_SetArielRematch4:
+    SetVar VAR_TRAINER, TRAINER_POKE_KID_ARIEL_REMATCH_4
     Return
 
-_12CA:
-    SetVar 0x8005, 0x1AF
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, _1309
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, _1311
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, _1319
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, _1321
-    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, _1329
+PokemonCenterDailyTrainers_SetArturoTeam:
+    SetVar VAR_TRAINER, TRAINER_GUITARIST_ARTURO_UNUSED
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_1, PokemonCenterDailyTrainers_SetArturoFirstBattle
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_2, PokemonCenterDailyTrainers_SetArturoRematch1
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_3, PokemonCenterDailyTrainers_SetArturoRematch2
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_4, PokemonCenterDailyTrainers_SetArturoRematch3
+    CallIfSet FLAG_UNLOCKED_VS_SEEKER_LVL_5, PokemonCenterDailyTrainers_SetArturoRematch4
     Return
 
-_1309:
-    SetVar 0x8005, TRAINER_GUITARIST_ARTURO
+PokemonCenterDailyTrainers_SetArturoFirstBattle:
+    SetVar VAR_TRAINER, TRAINER_GUITARIST_ARTURO
     Return
 
-_1311:
-    SetVar 0x8005, TRAINER_GUITARIST_ARTURO_REMATCH_1
+PokemonCenterDailyTrainers_SetArturoRematch1:
+    SetVar VAR_TRAINER, TRAINER_GUITARIST_ARTURO_REMATCH_1
     Return
 
-_1319:
-    SetVar 0x8005, TRAINER_GUITARIST_ARTURO_REMATCH_2
+PokemonCenterDailyTrainers_SetArturoRematch2:
+    SetVar VAR_TRAINER, TRAINER_GUITARIST_ARTURO_REMATCH_2
     Return
 
-_1321:
-    SetVar 0x8005, TRAINER_GUITARIST_ARTURO_REMATCH_3
+PokemonCenterDailyTrainers_SetArturoRematch3:
+    SetVar VAR_TRAINER, TRAINER_GUITARIST_ARTURO_REMATCH_3
     Return
 
-_1329:
-    SetVar 0x8005, TRAINER_GUITARIST_ARTURO_REMATCH_4
+PokemonCenterDailyTrainers_SetArturoRematch4:
+    SetVar VAR_TRAINER, TRAINER_GUITARIST_ARTURO_REMATCH_4
     Return
 
-_1331:
-    GoToIfSet 0xABC, _13F7
+PokemonCenterDailyTrainers_CheckGraceDefeated:
+    GoToIfSet FLAG_DEFEATED_IDOL_GRACE, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
-_133E:
-    GetCurrentMapID 0x4001
-    GoToIfEq 0x4001, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, _136B
-    GoToIfEq 0x4001, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, _136B
-    GoToIfEq 0x4001, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, _136B
+PokemonCenterDailyTrainers_CheckKinseyInPokemonCenter:
+    GetCurrentMapID VAR_MAP_ID
+    GoToIfEq VAR_MAP_ID, MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_CheckKinseyDefeated
+    GoToIfEq VAR_MAP_ID, MAP_HEADER_HEARTHOME_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_CheckKinseyDefeated
+    GoToIfEq VAR_MAP_ID, MAP_HEADER_FIGHT_AREA_POKECENTER_1F, PokemonCenterDailyTrainers_CheckKinseyDefeated
     Return
 
-_136B:
-    GoToIfSet 0xABD, _13F7
+PokemonCenterDailyTrainers_CheckKinseyDefeated:
+    GoToIfSet FLAG_DEFEATED_REPORTERS_KINSEY, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
-_1378:
-    GetCurrentMapID 0x4001
-    GoToIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _13B0
-    GoToIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _13B0
-    GoToIfSet 0xABE, _13F7
+PokemonCenterDailyTrainers_CheckTevinOrRoxyAndOliDefeated:
+    GetCurrentMapID VAR_MAP_ID
+    GoToIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_CheckRoxyAndOliInPokemonCenter
+    GoToIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_CheckRoxyAndOliInPokemonCenter
+    GoToIfSet FLAG_DEFEATED_CAMERAMAN_TEVIN, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
-_13A3:
-    GoToIfSet 0xABF, _13F7
+PokemonCenterDailyTrainers_CheckLeeDefeated:
+    GoToIfSet FLAG_DEFEATED_CLOWN_LEE, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
-_13B0:
-    GetCurrentMapID 0x4001
-    GoToIfEq 0x4001, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, _13D0
-    GoToIfEq 0x4001, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, _13D0
+PokemonCenterDailyTrainers_CheckRoxyAndOliInPokemonCenter:
+    GetCurrentMapID VAR_MAP_ID
+    GoToIfEq VAR_MAP_ID, MAP_HEADER_ETERNA_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_CheckRoxyAndOliDefeated
+    GoToIfEq VAR_MAP_ID, MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F, PokemonCenterDailyTrainers_CheckRoxyAndOliDefeated
     Return
 
-_13D0:
-    GoToIfSet 0xAC0, _13F7
+PokemonCenterDailyTrainers_CheckRoxyAndOliDefeated:
+    GoToIfSet FLAG_DEFEATED_INTERVIEWERS_ROXY_AND_OLI, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
-_13DD:
-    GoToIfSet 0xAC1, _13F7
+PokemonCenterDailyTrainers_CheckArielDefeated:
+    GoToIfSet FLAG_DEFEATED_POKE_KID_ARIEL, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
-_13EA:
-    GoToIfSet 0xAC2, _13F7
+PokemonCenterDailyTrainers_CheckArturoDefeated:
+    GoToIfSet FLAG_DEFEATED_GUITARIST_ARTURO, PokemonCenterDailyTrainers_TrainerAlreadyDefeated
     Return
 
-_13F7:
-    SetVar 0x8006, 1
+PokemonCenterDailyTrainers_TrainerAlreadyDefeated:
+    SetVar VAR_DEFEATED, TRUE
     Return
 
     .byte 0

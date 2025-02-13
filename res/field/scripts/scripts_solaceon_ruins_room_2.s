@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    TableEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
@@ -29,7 +29,7 @@ _004F:
     ApplyMovement 0, _00D4
     WaitMovement
     Message 2
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _007C
     GoToIfEq 0x800C, 1, _00B8
     End

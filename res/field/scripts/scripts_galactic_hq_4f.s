@@ -7,7 +7,7 @@
     ScriptEntry _012C
     ScriptEntry _01C4
     ScriptEntry _01D5
-    .short 0xFD13
+    TableEnd
 
 _0012:
     LockAll
@@ -61,7 +61,7 @@ _00DB:
     Return
 
 _00E1:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 
@@ -114,7 +114,7 @@ _012C:
 
 _0154:
     Message 6
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0177
     GoToIfEq 0x800C, 1, _01AB
     End

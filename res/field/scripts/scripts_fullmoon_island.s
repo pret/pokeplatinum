@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0015
-    .short 0xFD13
+    TableEnd
 
 _000A:
     SetFlag 0x9D0
@@ -20,7 +20,7 @@ _0015:
     CheckItem ITEM_LUNAR_WING, 1, 0x800C
     GoToIfEq 0x800C, 1, _0052
     Message 1
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 0, _005D
     GoTo _0098

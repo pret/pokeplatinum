@@ -8,7 +8,7 @@
     ScriptEntry _012C
     ScriptEntry _0058
     ScriptEntry _0037
-    .short 0xFD13
+    TableEnd
 
 _0016:
     GoToIfEq 0x40D9, 0, _0035
@@ -169,7 +169,7 @@ _02AD:
 
 _02BB:
     Message 2
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 0, _01AC
     GoTo _0241
@@ -177,7 +177,7 @@ _02BB:
 
 _02D9:
     Message 3
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 0, _01E7
     GoTo _0241

@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0026
-    .short 0xFD13
+    TableEnd
 
 _000A:
     Call _0018

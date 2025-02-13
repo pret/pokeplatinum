@@ -5,7 +5,7 @@
 
     ScriptEntry _0010
     ScriptEntry _000A
-    .short 0xFD13
+    TableEnd
 
 _000A:
     SetFlag 0x9D8

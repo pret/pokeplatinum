@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _010B
     ScriptEntry _00A5
-    .short 0xFD13
+    TableEnd
 
 _000E:
     GoToIfEq 0x4106, 0, _0037

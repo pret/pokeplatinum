@@ -10,7 +10,7 @@
     ScriptEntry _006A
     ScriptEntry _0134
     ScriptEntry _001E
-    .short 0xFD13
+    TableEnd
 
 _001E:
     End

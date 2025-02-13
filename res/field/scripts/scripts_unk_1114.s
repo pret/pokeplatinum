@@ -932,7 +932,7 @@
     ScriptEntry _0E86
     ScriptEntry _0E86
     ScriptEntry _1054
-    .short 0xFD13
+    TableEnd
 
 _0E86:
     PlayFanfare SEQ_SE_CONFIRM
@@ -947,7 +947,7 @@ _0E86:
     GoToIfDefeated 0x8004, _0F40
     ScrCmd_0E9 0x800C
     GoToIfNe 0x800C, 1, _0F01
-    ScrCmd_0EE 0x800C
+    HasTwoAliveMons 0x800C
     GoToIfEq 0x800C, 0, _0FCB
     GoTo _0F01
     End
@@ -989,7 +989,7 @@ _0F73:
     SetVar 0x8007, 0x800C
     ScrCmd_0E9 0x800C
     GoToIfNe 0x800C, 1, _0FA3
-    ScrCmd_0EE 0x800C
+    HasTwoAliveMons 0x800C
     GoToIfEq 0x800C, 0, _0FCB
     GoTo _0FA3
     End
@@ -1004,7 +1004,7 @@ _0FA3:
     End
 
 _0FC5:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

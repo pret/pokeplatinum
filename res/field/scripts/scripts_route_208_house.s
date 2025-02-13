@@ -8,7 +8,7 @@
     ScriptEntry _007C
     ScriptEntry _0108
     ScriptEntry _02D5
-    .short 0xFD13
+    TableEnd
 
 _0016:
     SetFlag 0x9E7
@@ -52,7 +52,7 @@ _007C:
     ScrCmd_134 7, 0x800C
     GoToIfEq 0x800C, 1, _00FD
     Message 2
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00C7
     GoToIfEq 0x800C, 1, _00E2
     End

@@ -24,7 +24,7 @@
     ScriptEntry _1C27
     ScriptEntry _1DD1
     ScriptEntry _1F7B
-    .short 0xFD13
+    TableEnd
     End
 
 _0058:
@@ -207,7 +207,7 @@ _038A:
     Message 4
     FacePlayer
     Message 5
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _03E7
     GoTo _0460
 
@@ -215,7 +215,7 @@ _03A9:
     Message 12
     FacePlayer
     Message 13
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _03E7
     GoTo _0460
 
@@ -223,7 +223,7 @@ _03C8:
     Message 20
     FacePlayer
     Message 21
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _03E7
     GoTo _0460
 
@@ -329,7 +329,7 @@ _0534:
     Message 8
     FacePlayer
     Message 9
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0591
     GoTo _060A
 
@@ -337,7 +337,7 @@ _0553:
     Message 16
     FacePlayer
     Message 17
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0591
     GoTo _060A
 
@@ -345,7 +345,7 @@ _0572:
     Message 24
     FacePlayer
     Message 25
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0591
     GoTo _060A
 
@@ -451,7 +451,7 @@ _06DE:
     Message 30
     FacePlayer
     Message 31
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _073B
     GoTo _07B4
 
@@ -459,7 +459,7 @@ _06FD:
     Message 38
     FacePlayer
     Message 39
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _073B
     GoTo _07B4
 
@@ -467,7 +467,7 @@ _071C:
     Message 46
     FacePlayer
     Message 47
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _073B
     GoTo _07B4
 
@@ -573,7 +573,7 @@ _0888:
     Message 34
     FacePlayer
     Message 35
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _08E5
     GoTo _095E
 
@@ -581,7 +581,7 @@ _08A7:
     Message 42
     FacePlayer
     Message 43
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _08E5
     GoTo _095E
 
@@ -589,7 +589,7 @@ _08C6:
     Message 50
     FacePlayer
     Message 51
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _08E5
     GoTo _095E
 
@@ -695,7 +695,7 @@ _0A32:
     Message 56
     FacePlayer
     Message 57
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0A8F
     GoTo _0B08
 
@@ -703,7 +703,7 @@ _0A51:
     Message 64
     FacePlayer
     Message 65
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0A8F
     GoTo _0B08
 
@@ -711,7 +711,7 @@ _0A70:
     Message 72
     FacePlayer
     Message 73
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0A8F
     GoTo _0B08
 
@@ -817,7 +817,7 @@ _0BDC:
     Message 60
     FacePlayer
     Message 61
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0C39
     GoTo _0CB2
 
@@ -825,7 +825,7 @@ _0BFB:
     Message 68
     FacePlayer
     Message 69
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0C39
     GoTo _0CB2
 
@@ -833,7 +833,7 @@ _0C1A:
     Message 76
     FacePlayer
     Message 77
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0C39
     GoTo _0CB2
 
@@ -939,7 +939,7 @@ _0D86:
     Message 82
     FacePlayer
     Message 83
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0DE3
     GoTo _0E5C
 
@@ -947,7 +947,7 @@ _0DA5:
     Message 90
     FacePlayer
     Message 91
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0DE3
     GoTo _0E5C
 
@@ -955,7 +955,7 @@ _0DC4:
     Message 98
     FacePlayer
     Message 99
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0DE3
     GoTo _0E5C
 
@@ -1061,7 +1061,7 @@ _0F30:
     Message 86
     FacePlayer
     Message 87
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0F8D
     GoTo _1006
 
@@ -1069,7 +1069,7 @@ _0F4F:
     Message 94
     FacePlayer
     Message 95
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0F8D
     GoTo _1006
 
@@ -1077,7 +1077,7 @@ _0F6E:
     Message 102
     FacePlayer
     Message 103
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0F8D
     GoTo _1006
 
@@ -1183,7 +1183,7 @@ _10DA:
     Message 108
     FacePlayer
     Message 109
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1137
     GoTo _11B0
 
@@ -1191,7 +1191,7 @@ _10F9:
     Message 116
     FacePlayer
     Message 117
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1137
     GoTo _11B0
 
@@ -1199,7 +1199,7 @@ _1118:
     Message 124
     FacePlayer
     Message 125
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1137
     GoTo _11B0
 
@@ -1305,7 +1305,7 @@ _1284:
     Message 112
     FacePlayer
     Message 113
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _12E1
     GoTo _135A
 
@@ -1313,7 +1313,7 @@ _12A3:
     Message 120
     FacePlayer
     Message 121
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _12E1
     GoTo _135A
 
@@ -1321,7 +1321,7 @@ _12C2:
     Message 128
     FacePlayer
     Message 129
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _12E1
     GoTo _135A
 
@@ -1427,7 +1427,7 @@ _142E:
     Message 134
     FacePlayer
     Message 135
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _148B
     GoTo _1504
 
@@ -1435,7 +1435,7 @@ _144D:
     Message 142
     FacePlayer
     Message 143
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _148B
     GoTo _1504
 
@@ -1443,7 +1443,7 @@ _146C:
     Message 150
     FacePlayer
     Message 151
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _148B
     GoTo _1504
 
@@ -1549,7 +1549,7 @@ _15D8:
     Message 138
     FacePlayer
     Message 139
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1635
     GoTo _16AE
 
@@ -1557,7 +1557,7 @@ _15F7:
     Message 146
     FacePlayer
     Message 147
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1635
     GoTo _16AE
 
@@ -1565,7 +1565,7 @@ _1616:
     Message 154
     FacePlayer
     Message 155
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1635
     GoTo _16AE
 
@@ -1671,7 +1671,7 @@ _1782:
     Message 160
     FacePlayer
     Message 161
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _17DF
     GoTo _1858
 
@@ -1679,7 +1679,7 @@ _17A1:
     Message 168
     FacePlayer
     Message 169
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _17DF
     GoTo _1858
 
@@ -1687,7 +1687,7 @@ _17C0:
     Message 176
     FacePlayer
     Message 177
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _17DF
     GoTo _1858
 
@@ -1793,7 +1793,7 @@ _192C:
     Message 164
     FacePlayer
     Message 165
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1989
     GoTo _1A02
 
@@ -1801,7 +1801,7 @@ _194B:
     Message 172
     FacePlayer
     Message 173
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1989
     GoTo _1A02
 
@@ -1809,7 +1809,7 @@ _196A:
     Message 180
     FacePlayer
     Message 181
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1989
     GoTo _1A02
 
@@ -1915,7 +1915,7 @@ _1AD6:
     Message 186
     FacePlayer
     Message 187
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1B33
     GoTo _1BAC
 
@@ -1923,7 +1923,7 @@ _1AF5:
     Message 194
     FacePlayer
     Message 195
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1B33
     GoTo _1BAC
 
@@ -1931,7 +1931,7 @@ _1B14:
     Message 202
     FacePlayer
     Message 203
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1B33
     GoTo _1BAC
 
@@ -2037,7 +2037,7 @@ _1C80:
     Message 190
     FacePlayer
     Message 191
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1CDD
     GoTo _1D56
 
@@ -2045,7 +2045,7 @@ _1C9F:
     Message 198
     FacePlayer
     Message 199
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1CDD
     GoTo _1D56
 
@@ -2053,7 +2053,7 @@ _1CBE:
     Message 206
     FacePlayer
     Message 207
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1CDD
     GoTo _1D56
 
@@ -2159,7 +2159,7 @@ _1E2A:
     Message 212
     FacePlayer
     Message 213
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1E87
     GoTo _1F00
 
@@ -2167,7 +2167,7 @@ _1E49:
     Message 220
     FacePlayer
     Message 221
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1E87
     GoTo _1F00
 
@@ -2175,7 +2175,7 @@ _1E68:
     Message 228
     FacePlayer
     Message 229
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1E87
     GoTo _1F00
 
@@ -2281,7 +2281,7 @@ _1FD4:
     Message 216
     FacePlayer
     Message 217
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _2031
     GoTo _20AA
 
@@ -2289,7 +2289,7 @@ _1FF3:
     Message 224
     FacePlayer
     Message 225
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _2031
     GoTo _20AA
 
@@ -2297,7 +2297,7 @@ _2012:
     Message 232
     FacePlayer
     Message 233
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _2031
     GoTo _20AA
 
@@ -2386,7 +2386,7 @@ _2119:
     Return
 
 _2125:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

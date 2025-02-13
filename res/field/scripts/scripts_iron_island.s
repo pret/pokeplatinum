@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0014
     ScriptEntry _00FC
-    .short 0xFD13
+    TableEnd
 
 _000E:
     SetFlag 0x9DA
@@ -19,7 +19,7 @@ _0014:
     ScrCmd_1BD 0x8004
     FacePlayer
     Message 3
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 0, _003E
     GoTo _0071

@@ -314,7 +314,7 @@ static BOOL sub_02040730(ScriptContext *ctx);
 static BOOL ScrCmd_03C(ScriptContext *ctx);
 static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx);
 static BOOL ScrCmd_ScrollBG3(ScriptContext *ctx);
-static BOOL ScrCmd_03E(ScriptContext *ctx);
+static BOOL ScrCmd_YesNoMenu(ScriptContext *ctx);
 static BOOL sub_02040824(ScriptContext *ctx);
 static BOOL ScrCmd_040(ScriptContext *ctx);
 static BOOL ScrCmd_041(ScriptContext *ctx);
@@ -825,7 +825,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_03B,
     ScrCmd_03C,
     ScrCmd_ScrollBG3,
-    ScrCmd_03E,
+    ScrCmd_YesNoMenu,
     ScrCmd_03F,
     ScrCmd_040,
     ScrCmd_041,
@@ -998,10 +998,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0E8,
     ScrCmd_0E9,
     ScrCmd_0EA,
-    ScrCmd_0EB,
+    ScrCmd_WhiteOut,
     ScrCmd_CheckWonBattle,
     ScrCmd_CheckLostBattle,
-    ScrCmd_0EE,
+    ScrCmd_HasTwoAliveMons,
     ScrCmd_StartDummyTrainerBattle,
     ScrCmd_0F0,
     ScrCmd_0F1,
@@ -2648,7 +2648,7 @@ static BOOL ScrCmd_03C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_03E(ScriptContext *ctx)
+static BOOL ScrCmd_YesNoMenu(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Menu **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);

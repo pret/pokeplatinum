@@ -19,7 +19,7 @@
     ScriptEntry _0704
     ScriptEntry _060C
     ScriptEntry _064C
-    .short 0xFD13
+    TableEnd
 
 _0042:
     PlayFanfare SEQ_SE_CONFIRM
@@ -30,7 +30,7 @@ _0042:
     CheckBadgeAcquired BADGE_ID_FOREST, 0x800C
     GoToIfEq 0x800C, 0, _008E
     Message 0
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00AE
     CloseMessage
     GoTo _066D
@@ -135,7 +135,7 @@ _0223:
     CheckBadgeAcquired BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 0, _0275
     Message 3
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0284
     CloseMessage
     GoTo _066D
@@ -192,7 +192,7 @@ _0314:
     CheckBadgeAcquired BADGE_ID_MINE, 0x800C
     GoToIfEq 0x800C, 0, _0372
     Message 6
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0381
     CloseMessage
     GoTo _066D
@@ -254,7 +254,7 @@ _040E:
     CheckHasPartner 0x800C
     GoToIfEq 0x800C, 1, _0478
     Message 18
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0487
     CloseMessage
     GoTo _0671
@@ -303,7 +303,7 @@ _04DD:
     CheckHasPartner 0x800C
     GoToIfEq 0x800C, 1, _0512
     Message 12
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _051F
     CloseMessage
     GoTo _0671
@@ -346,7 +346,7 @@ _057D:
     ScrCmd_09A 0x800C, 0x1B0
     GoToIfEq 0x800C, 6, _05B4
     Message 15
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _05C3
     CloseMessage
     GoTo _0671
@@ -423,7 +423,7 @@ _0679:
     CheckBadgeAcquired BADGE_ID_BEACON, 0x800C
     GoToIfEq 0x800C, 0, _06C3
     Message 22
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _06D2
     CloseMessage
     GoTo _0671

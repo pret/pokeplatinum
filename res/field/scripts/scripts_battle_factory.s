@@ -17,7 +17,7 @@
     ScriptEntry _06F7
     ScriptEntry _070A
     ScriptEntry _003A
-    .short 0xFD13
+    TableEnd
 
 _003A:
     ScrCmd_238 19, 0x4000
@@ -155,7 +155,7 @@ _022C:
 
 _0270:
     Message 25
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _022C
     CloseMessage
     CallIfEq 0x40B9, 0, _02C2
@@ -184,7 +184,7 @@ _02E2:
 
 _02EC:
     Message 25
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _022C
     CloseMessage
     CallIfEq 0x40B9, 0, _033E

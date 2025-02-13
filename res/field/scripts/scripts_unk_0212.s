@@ -16,7 +16,7 @@
     ScriptEntry _0E74
     ScriptEntry _0E74
     ScriptEntry _1399
-    .short 0xFD13
+    TableEnd
 
 _0036:
     LockAll
@@ -49,7 +49,7 @@ _008B:
     CallIfEq 0x8007, 5, _00DF
     CallIfEq 0x8007, 7, _00F6
     SetVar 0x8004, 0
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     Return
 
 _00C8:
@@ -425,7 +425,7 @@ _05C1:
 
 _05E4:
     Message 215
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0291
     GoTo _0562
     End
@@ -459,7 +459,7 @@ _0625:
 
 _0669:
     Message 212
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0625
     CloseMessage
     ScrCmd_0F2 8, 0x8005, 0x8004, 0x800C
@@ -478,7 +478,7 @@ _06B3:
 
 _06BB:
     Message 212
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0625
     CloseMessage
     ScrCmd_0F3 8, 0x8005, 0x8004, 0x800C

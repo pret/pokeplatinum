@@ -8,7 +8,7 @@
     ScriptEntry _0035
     ScriptEntry _0048
     ScriptEntry _005B
-    .short 0xFD13
+    TableEnd
 
 _0016:
     SetVar 0x8007, 1

@@ -9,7 +9,7 @@
     ScriptEntry _0116
     ScriptEntry _001A
     ScriptEntry _0127
-    .short 0xFD13
+    TableEnd
 
 _001A:
     End
@@ -56,7 +56,7 @@ _0090:
 
 _009B:
     ClearFlag 0x250
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 
@@ -103,7 +103,7 @@ _0127:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 2
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0149
     GoTo _017F
     End

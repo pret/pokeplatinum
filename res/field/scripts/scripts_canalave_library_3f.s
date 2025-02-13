@@ -15,7 +15,7 @@
     ScriptEntry _05D4
     ScriptEntry _0616
     ScriptEntry _06A2
-    .short 0xFD13
+    TableEnd
 
 _0032:
     GetPlayerGender 0x4000
@@ -373,7 +373,7 @@ _043A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 30
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0471
     GoToIfEq 0x800C, 1, _0463
     End
@@ -397,7 +397,7 @@ _047C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 33
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _04B3
     GoToIfEq 0x800C, 1, _04A5
     End
@@ -421,7 +421,7 @@ _04BE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 36
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _04F5
     GoToIfEq 0x800C, 1, _04E7
     End
@@ -445,7 +445,7 @@ _0500:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 39
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0537
     GoToIfEq 0x800C, 1, _0529
     End
@@ -460,10 +460,10 @@ _0529:
 
 _0537:
     Message 41
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0529
     Message 42
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0529
     Message 43
     WaitABXPadPress
@@ -475,7 +475,7 @@ _056A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 44
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _05A1
     GoToIfEq 0x800C, 1, _0593
     End
@@ -490,10 +490,10 @@ _0593:
 
 _05A1:
     Message 46
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0593
     Message 47
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0593
     Message 48
     WaitABXPadPress
@@ -505,7 +505,7 @@ _05D4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 49
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _060B
     GoToIfEq 0x800C, 1, _05FD
     End

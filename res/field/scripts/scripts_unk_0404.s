@@ -331,7 +331,7 @@
     ScriptEntry _1E86
     ScriptEntry _1E9A
     ScriptEntry _1EAE
-    .short 0xFD13
+    TableEnd
 
 _0522:
     SetVar 0x8008, 17

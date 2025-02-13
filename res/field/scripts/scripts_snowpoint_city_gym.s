@@ -7,7 +7,7 @@
     ScriptEntry _0025
     ScriptEntry _0114
     ScriptEntry _0148
-    .short 0xFD13
+    TableEnd
 
 _0012:
     GoToIfSet 235, _001F
@@ -77,7 +77,7 @@ _00F8:
     End
 
 _010E:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

@@ -5,7 +5,7 @@
 
     ScriptEntry _000C
     ScriptEntry _0109
-    .short 0xFD13
+    TableEnd
     End
 
 _000C:

@@ -62,7 +62,7 @@
     ScriptEntry _15CB
     ScriptEntry _15D7
     ScriptEntry _170A
-    .short 0xFD13
+    TableEnd
 
 _00EA:
     End
@@ -86,7 +86,7 @@ _00EE:
     SetVar 0x8004, 0
 _0141:
     MessageVar 0x8004
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0172
     GoToIfEq 0x800C, 1, _0165
     End
@@ -184,7 +184,7 @@ _027A:
     Message 4
     BufferPlayerName 0
     Message 5
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _02D4
     Message 9
     WaitABXPadPress
@@ -196,7 +196,7 @@ _027A:
 _02B0:
     BufferPlayerName 0
     Message 6
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _02D4
     Message 9
     WaitABXPadPress
@@ -350,7 +350,7 @@ _04A8:
     GoToIfEq 0x800C, SAVE_TYPE_OVERWRITE, _04FC
     ScrCmd_2C1
     Message 13
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, SAVE_TYPE_NO_DATA_EXISTS, _05A0
     CheckSaveType 0x800C
     GoToIfEq 0x800C, SAVE_TYPE_NO_DATA_EXISTS, _051D
@@ -366,7 +366,7 @@ _04FC:
 
 _0509:
     Message 14
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _05A0
 _051D:
     Message 21
@@ -374,7 +374,7 @@ _051D:
 
 _0526:
     Message 14
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _05A0
     GoToIfUnset 31, _05C6
     GoToIfSet 31, _05D1
@@ -512,7 +512,7 @@ _06A2:
 
 _06BB:
     Message 50
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 0, _06D5
     ReleaseAll
@@ -538,7 +538,7 @@ _06F4:
     GoTo _06A2
 
 _0713:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 
@@ -1430,7 +1430,7 @@ _12F3:
     CheckPlayerOnBike 0x800C
     GoToIfEq 0x800C, 1, _133C
     Message 73
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _1359
     SetPlayerBike 1
     CloseMessage
@@ -1439,7 +1439,7 @@ _12F3:
 
 _133C:
     Message 74
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _1359
     SetPlayerBike 0
     CloseMessage
@@ -1574,7 +1574,7 @@ _14AC:
     GoToIfSet 0x11E, _1570
     BufferPlayerName 0
     Message 122
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _157B
     BufferPlayerName 0
     Message 123

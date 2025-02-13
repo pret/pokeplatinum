@@ -12,8 +12,10 @@
 #include "generated/species.h"
 #include "generated/trainers.h"
 #include "generated/weekdays.h"
+#include "constants/flags.h"
 #include "constants/honey_tree.h"
 #include "constants/savedata/vars_flags.h"
+#include "constants/scrcmd.h"
 
 #include "macros/movement.inc"
 
@@ -350,7 +352,7 @@
     .byte \directionY
     .endm
 
-    .macro ScrCmd_03E arg0
+    .macro YesNoMenu arg0
     .short 62
     .short \arg0
     .endm
@@ -1308,7 +1310,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_0EB
+    .macro WhiteOut
     .short 235
     .endm
 
@@ -1322,7 +1324,7 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_0EE arg0
+    .macro HasTwoAliveMons arg0
     .short 238
     .short \arg0
     .endm
@@ -4672,4 +4674,8 @@
 
     .macro ScriptEntry name
     .long \name-.-4
+    .endm
+
+    .macro TableEnd
+    .short 0xFD13
     .endm

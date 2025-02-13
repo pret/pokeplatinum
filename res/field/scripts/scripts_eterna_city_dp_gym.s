@@ -4,7 +4,7 @@
 
     ScriptEntry _000A
     ScriptEntry _000C
-    .short 0xFD13
+    TableEnd
 
 _000A:
     End

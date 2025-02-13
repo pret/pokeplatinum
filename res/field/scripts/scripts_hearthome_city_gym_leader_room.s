@@ -9,7 +9,7 @@
     ScriptEntry _01A0
     ScriptEntry _0248
     ScriptEntry _001A
-    .short 0xFD13
+    TableEnd
 
 _001A:
     GoToIfSet 142, _0027
@@ -165,7 +165,7 @@ _0224:
 
 _0248:
     ClearFlag 0x29C
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

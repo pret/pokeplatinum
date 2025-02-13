@@ -10,13 +10,13 @@
     ScriptEntry _00AD
     ScriptEntry _00CF
     ScriptEntry _00BE
-    .short 0xFD13
+    TableEnd
 
 _001E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 0
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _003E
     GoTo _0074
 
@@ -93,10 +93,10 @@ _00CF:
     LockAll
     FacePlayer
     Message 3
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _010A
     Message 5
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _010A
     Message 6
     GoTo _010A

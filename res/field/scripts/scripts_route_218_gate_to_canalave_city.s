@@ -5,7 +5,7 @@
 
     ScriptEntry _0208
     ScriptEntry _000A
-    .short 0xFD13
+    TableEnd
 
 _000A:
     LockAll

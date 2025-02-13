@@ -4,14 +4,14 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    TableEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0031
     GoToIfEq 0x800C, 1, _0079
     End
@@ -27,7 +27,7 @@ _0031:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 2
-    ScrCmd_03E 0x800C
+    YesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0031
     GoToIfEq 0x800C, 1, _0079
     End

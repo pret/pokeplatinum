@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _011F
     ScriptEntry _0153
-    .short 0xFD13
+    TableEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -75,7 +75,7 @@ _0103:
     End
 
 _0119:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

@@ -12,7 +12,7 @@
     ScriptEntry _0628
     ScriptEntry _063F
     ScriptEntry _0659
-    .short 0xFD13
+    TableEnd
 
 _0026:
     CallIfEq 0x40F4, 1, _004F

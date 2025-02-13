@@ -13,7 +13,7 @@
     ScriptEntry _002A
     ScriptEntry _0045
     ScriptEntry _0141
-    .short 0xFD13
+    TableEnd
 
 _002A:
     GoTo _0032
@@ -242,7 +242,7 @@ _02CB:
     End
 
 _02DC:
-    ScrCmd_0EB
+    WhiteOut
     ReleaseAll
     End
 

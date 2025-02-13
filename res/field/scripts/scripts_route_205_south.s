@@ -13,7 +13,7 @@
     ScriptEntry _0280
     ScriptEntry _0297
     ScriptEntry _02AE
-    .short 0xFD13
+    TableEnd
 
 _002A:
     End
