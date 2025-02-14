@@ -348,7 +348,7 @@ void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
 
     void *monData = PokemonSummaryScreen_MonData(summaryScreen);
 
-    ArchivedSprite sprite;
+    PokemonSpriteTemplate sprite;
 
     if (summaryScreen->data->dataType == SUMMARY_DATA_BOX_MON) {
         BoxPokemon_BuildArchivedSprite(&sprite, monData, 2, 0);

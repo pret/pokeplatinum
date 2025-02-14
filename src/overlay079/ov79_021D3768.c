@@ -83,7 +83,7 @@ static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1)
 
 static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapID)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     PokemonSprite *v1;
 
     param0->unk_04 = sub_0200762C(heapID);

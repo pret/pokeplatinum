@@ -453,7 +453,7 @@ static void ov95_02248174(UnkStruct_ov95_02247C6C *param0)
 
 static PokemonSprite *ov95_02248240(UnkStruct_ov95_02247C6C *param0)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     BoxPokemon *v1;
     int v2;
 

@@ -519,7 +519,7 @@ static void ov16_0223B790(OverlayManager *param0)
 {
     BattleSystem *battleSys = OverlayManager_Data(param0);
     FieldBattleDTO *v1 = OverlayManager_Args(param0);
-    ArchivedSprite v2;
+    PokemonSpriteTemplate v2;
     int v3;
     RTCDate v4;
     RTCTime v5;

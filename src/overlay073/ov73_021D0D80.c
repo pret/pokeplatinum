@@ -1094,7 +1094,7 @@ static const u8 Unk_ov72_021D39D4[] = {
 
 static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     void *v1;
     void *v2;
     void *v3;

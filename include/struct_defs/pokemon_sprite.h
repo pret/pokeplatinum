@@ -16,8 +16,8 @@ struct PokemonSprite {
     u32 unk_00_7 : 1;
     u32 unk_00_8 : 1;
     u32 : 23;
-    ArchivedSprite unk_04;
-    ArchivedSprite unk_14;
+    PokemonSpriteTemplate unk_04;
+    PokemonSpriteTemplate unk_14;
     UnkStruct_02007C7C_sub1 unk_24;
     u8 unk_58;
     u8 unk_59;

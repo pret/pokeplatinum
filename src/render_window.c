@@ -103,7 +103,7 @@ static void LoadPokemonPreviewResources(PokemonPreview *preview);
 static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y);
 static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 species, u8 gender);
 static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *param0, Pokemon *mon);
-static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *sprite);
+static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpriteTemplate *sprite);
 static void DrawPokemonPreviewWindow(PokemonPreview *preview, u8 palette, u16 tile);
 static void ErasePokemonPreviewWindow(PokemonPreview *preview);
 
@@ -856,7 +856,7 @@ static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 
 {
     void *buf = sub_0200762C(param0->heapId);
 
-    ArchivedSprite sprite;
+    PokemonSpriteTemplate sprite;
     BuildArchivedPokemonSprite(&sprite, species, gender, FACE_FRONT, FALSE, NULL, NULL);
     DrawPokemonPreviewSprite(param0, &sprite);
     sub_02007B6C(buf);
@@ -866,7 +866,7 @@ static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *pa
 {
     void *buf = sub_0200762C(param0->heapId);
 
-    ArchivedSprite sprite;
+    PokemonSpriteTemplate sprite;
     Pokemon_BuildArchivedSprite(&sprite, mon, FACE_FRONT);
     DrawPokemonPreviewSprite(param0, &sprite);
     sub_02007B6C(buf);
@@ -878,7 +878,7 @@ static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *pa
 #define POKEMON_SPRITE_FRAME_SIZE_BYTES   (TILE_SIZE_4BPP * POKEMON_SPRITE_FRAME_SIZE_TILES)
 #define POKEMON_SPRITE_WHOLE_SIZE_BYTES   (POKEMON_SPRITE_FRAME_SIZE_BYTES * 2)
 
-static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, ArchivedSprite *sprite)
+static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, PokemonSpriteTemplate *sprite)
 {
     u8 *buf;
     u32 offset;

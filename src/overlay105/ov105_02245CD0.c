@@ -52,7 +52,7 @@ void ov105_02245D50(UnkStruct_02007768 *param0)
 
 PokemonSprite *ov105_02245D88(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, int param4, int param5)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     PokemonSprite *v1;
     int v2;
     u32 v3;

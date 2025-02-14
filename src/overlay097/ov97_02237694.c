@@ -62,7 +62,7 @@ typedef struct {
     int unk_270;
     fx32 unk_274;
     u8 unk_278[3200];
-    ArchivedSprite unk_EF8;
+    PokemonSpriteTemplate unk_EF8;
     void (*unk_F08)(void *param0);
 } UnkStruct_ov97_0223F550;
 
@@ -564,7 +564,7 @@ static int ov97_02237EA8(int param0)
     return 0;
 }
 
-static void ov97_02237EF8(Sprite *param0, Pokemon *param1, int param2, int param3, u8 *param4, ArchivedSprite *param5)
+static void ov97_02237EF8(Sprite *param0, Pokemon *param1, int param2, int param3, u8 *param4, PokemonSpriteTemplate *param5)
 {
     int v0, v1;
     u32 v2;

@@ -346,7 +346,7 @@ static void ov22_0225B388(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
     ov22_022578F4(&param0->unk_1F4, &v0);
 
     {
-        ArchivedSprite v4;
+        PokemonSpriteTemplate v4;
 
         v1 = sub_0202A60C(param1->unk_00);
         v2 = sub_0202A614(param1->unk_00);

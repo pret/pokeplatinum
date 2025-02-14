@@ -10808,7 +10808,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 16:
         if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             {
-                ArchivedSprite v14;
+                PokemonSpriteTemplate v14;
 
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 

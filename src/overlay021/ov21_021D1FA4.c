@@ -158,7 +158,7 @@ void ov21_021D217C(const PokedexGraphicData *param0, BOOL param1)
 
 void Pokedex_LoadPokemonSprite(PokedexGraphicData *param0, int species, int gender, int face, int shiny, u8 form, u32 personality, int param7, int param8, int param9)
 {
-    ArchivedSprite sprite;
+    PokemonSpriteTemplate spriteTemplate;
     s16 yOffset;
 
     if (param0->pokemonSprite[param9]) {
@@ -169,7 +169,7 @@ void Pokedex_LoadPokemonSprite(PokedexGraphicData *param0, int species, int gend
         gender = Pokemon_GetGenderOf(species, 0);
     }
 
-    BuildArchivedPokemonSprite(&sprite, species, gender, face, shiny, form, personality);
+    BuildArchivedPokemonSprite(&spriteTemplate, species, gender, face, shiny, form, personality);
 
     if (face == 0) {
         yOffset = LoadPokemonSpriteYOffset(species, gender, face, form, personality);
@@ -178,7 +178,7 @@ void Pokedex_LoadPokemonSprite(PokedexGraphicData *param0, int species, int gend
         yOffset = 0;
     }
 
-    param0->pokemonSprite[param9] = sub_02007C34(param0->unk_150, &sprite, param7, param8 + yOffset, 0, 0, NULL, NULL);
+    param0->pokemonSprite[param9] = sub_02007C34(param0->unk_150, &spriteTemplate, param7, param8 + yOffset, 0, 0, NULL, NULL);
 }
 
 void ov21_021D222C(PokedexGraphicData *param0, int param1, int param2, int param3)

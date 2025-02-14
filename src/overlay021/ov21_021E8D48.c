@@ -755,7 +755,7 @@ static void ov21_021E998C(Window *param0, enum HeapId heapID)
 
 static PokemonSprite *ov21_021E99E0(UnkStruct_02007768 *param0, Pokemon *param1, int param2, int param3, int param4)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
 
     Pokemon_BuildArchivedSprite(&v0, param1, 2);
     return sub_02007C34(param0, &v0, param2, param3, 0, 0, NULL, NULL);
