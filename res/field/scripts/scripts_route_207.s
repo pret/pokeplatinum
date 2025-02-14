@@ -10,7 +10,7 @@
     ScriptEntry _01EC
     ScriptEntry _0203
     ScriptEntry _021A
-    TableEnd
+    ScriptEntryEnd
 
 _001E:
     GetPlayerGender 0x4000

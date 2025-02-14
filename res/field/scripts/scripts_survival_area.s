@@ -13,7 +13,7 @@
     ScriptEntry _002A
     ScriptEntry _0045
     ScriptEntry _0141
-    TableEnd
+    ScriptEntryEnd
 
 _002A:
     GoTo _0032
@@ -133,9 +133,9 @@ _0141:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetWeekDay 0x4000
-    GoToIfEq 0x4000, SUNDAY, _01BE
-    GoToIfEq 0x4000, SATURDAY, _01BE
+    GetDayOfWeek 0x4000
+    GoToIfEq 0x4000, DAY_OF_WEEK_SUNDAY, _01BE
+    GoToIfEq 0x4000, DAY_OF_WEEK_SATURDAY, _01BE
     BufferRivalName 0
     BufferPlayerName 1
     SetVar 0x8008, 0x40C2
@@ -242,7 +242,7 @@ _02CB:
     End
 
 _02DC:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

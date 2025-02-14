@@ -11,7 +11,7 @@
     ScriptEntry _0BC0
     ScriptEntry _0BD3
     ScriptEntry _0BE3
-    TableEnd
+    ScriptEntryEnd
 
 _0022:
     End
@@ -281,7 +281,7 @@ _04AD:
     ScrCmd_13A
     ScrCmd_13F 10, 0x800C
     MessageVar 0x800C
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0522
     ScrCmd_146 0x8004, 0x800C
     GoToIfEq 0x800C, 5, _0486
@@ -312,7 +312,7 @@ _053A:
     ScrCmd_13A
     ScrCmd_13F 11, 0x800C
     MessageVar 0x800C
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0646
     ScrCmd_146 0x8004, 0x800C
     GoToIfEq 0x800C, 5, _0486
@@ -334,7 +334,7 @@ _05AF:
     ScrCmd_13A
     ScrCmd_13F 12, 0x800C
     MessageVar 0x800C
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _065E
     ScrCmd_19D 0x800C
     GoToIfEq 0x800C, 0, _068A
@@ -528,7 +528,7 @@ _07D4:
 
 _0853:
     Message 11
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _08B6
     ScrCmd_143 1, 0
     CloseMessage
@@ -556,7 +556,7 @@ _08B6:
 
 _08C7:
     Message 26
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _093A
     GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 2, _094B
@@ -592,7 +592,7 @@ _094B:
 
 _095C:
     Message 21
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0A06
     ScrCmd_1F6 0x800C, 30
     GoToIfLt 0x800C, 2, _0A17
@@ -637,7 +637,7 @@ _0A17:
 
 _0A28:
     Message 30
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0A06
     ScrCmd_143 1, 0
     CloseMessage
@@ -658,7 +658,7 @@ _0A28:
 
 _0A82:
     Message 33
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0A06
     ScrCmd_143 1, 0
     CloseMessage
@@ -681,7 +681,7 @@ _0A82:
 
 _0AED:
     Message 18
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0B47
     ScrCmd_143 1, 0
     CloseMessage

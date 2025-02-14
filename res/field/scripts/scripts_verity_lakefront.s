@@ -7,7 +7,7 @@
     ScriptEntry _004E
     ScriptEntry _0066
     ScriptEntry _014C
-    TableEnd
+    ScriptEntryEnd
 
 _0012:
     GoToIfUnset 0x13E, _002A

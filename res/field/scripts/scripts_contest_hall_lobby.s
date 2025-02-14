@@ -14,7 +14,7 @@
     ScriptEntry _034E
     ScriptEntry _0361
     ScriptEntry _04A4
-    TableEnd
+    ScriptEntryEnd
 
 _002E:
     LockAll

@@ -41,7 +41,7 @@
     ScriptEntry _03E0
     ScriptEntry _0420
     ScriptEntry _009A
-    TableEnd
+    ScriptEntryEnd
 
 _009A:
     SetFlag 0x2CB

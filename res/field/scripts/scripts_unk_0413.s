@@ -7,7 +7,7 @@
     ScriptEntry _055F
     ScriptEntry _0583
     ScriptEntry _0598
-    TableEnd
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM
@@ -110,7 +110,7 @@ _01EA:
 
 _01F2:
     Message 17
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _053A
     CloseMessage
     ScrCmd_184 0
@@ -130,7 +130,7 @@ _023B:
     ScrCmd_33D 0, 0x8000
     Message 21
 _0243:
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _02F7
     ScrCmd_07D 0x8000, 0x8001, 0x800C
     GoToIfEq 0x800C, 0, _02CF
@@ -229,7 +229,7 @@ _03B4:
 
 _0413:
     Message 5
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _042D
     GoTo _053A
 
@@ -267,7 +267,7 @@ _04CA:
 
 _04DA:
     Message 8
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _053A
 _04EE:
     CloseMessage

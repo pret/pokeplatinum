@@ -11,7 +11,7 @@
     ScriptEntry _008A
     ScriptEntry _008C
     ScriptEntry _00A2
-    TableEnd
+    ScriptEntryEnd
 
 _0022:
     SetFlag 0x1A7
@@ -129,7 +129,7 @@ _01D1:
 
 _01DF:
     Message 8
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0175
     GoTo _01FB
     End

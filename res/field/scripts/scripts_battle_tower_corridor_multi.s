@@ -5,7 +5,7 @@
     ScriptEntry _000E
     ScriptEntry _0068
     ScriptEntry _008D
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     GoToIfEq 0x40DD, 0, _0048

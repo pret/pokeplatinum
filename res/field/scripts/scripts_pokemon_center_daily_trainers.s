@@ -24,7 +24,7 @@
     ScriptEntry PokemonCenterDailyTrainers_CheckUnlockedVSSeeker
     ScriptEntry PokemonCenterDailyTrainers_FirstNPC
     ScriptEntry PokemonCenterDailyTrainers_SecondNPC
-    TableEnd
+    ScriptEntryEnd
 
 PokemonCenterDailyTrainers_CheckUnlockedVSSeeker:
     SetFlag 0x183
@@ -37,14 +37,14 @@ PokemonCenterDailyTrainers_End:
     End
 
 PokemonCenterDailyTrainers_SetNPCs:
-    GetWeekDay 0x4000
-    CallIfEq 0x4000, SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
-    CallIfEq 0x4000, MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
-    CallIfEq 0x4000, TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday
-    CallIfEq 0x4000, WEDNESDAY, PokemonCenterDailyTrainers_SetNPCsWednesday
-    CallIfEq 0x4000, THURSDAY, PokemonCenterDailyTrainers_SetNPCsThursday
-    CallIfEq 0x4000, FRIDAY, PokemonCenterDailyTrainers_SetNPCsFriday
-    CallIfEq 0x4000, SATURDAY, PokemonCenterDailyTrainers_SetNPCsSaturday
+    GetDayOfWeek 0x4000
+    CallIfEq 0x4000, DAY_OF_WEEK_SUNDAY, PokemonCenterDailyTrainers_SetNPCsSunday
+    CallIfEq 0x4000, DAY_OF_WEEK_MONDAY, PokemonCenterDailyTrainers_SetNPCsMonday
+    CallIfEq 0x4000, DAY_OF_WEEK_TUESDAY, PokemonCenterDailyTrainers_SetNPCsTuesday
+    CallIfEq 0x4000, DAY_OF_WEEK_WEDNESDAY, PokemonCenterDailyTrainers_SetNPCsWednesday
+    CallIfEq 0x4000, DAY_OF_WEEK_THURSDAY, PokemonCenterDailyTrainers_SetNPCsThursday
+    CallIfEq 0x4000, DAY_OF_WEEK_FRIDAY, PokemonCenterDailyTrainers_SetNPCsFriday
+    CallIfEq 0x4000, DAY_OF_WEEK_SATURDAY, PokemonCenterDailyTrainers_SetNPCsSaturday
     Return
 
 PokemonCenterDailyTrainers_SetNPCsSunday:
@@ -223,7 +223,7 @@ PokemonCenterDailyTrainers_IntroMessageSecondNPC:
     End
 
 PokemonCenterDailyTrainers_AskForBattle:
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, YES, PokemonCenterDailyTrainers_BattleAccepted
     GoToIfEq 0x800C, NO, PokemonCenterDailyTrainers_BattleDeclined
     End
@@ -240,11 +240,11 @@ PokemonCenterDailyTrainers_OliNotEnoughAliveMons:
     End
 
 PokemonCenterDailyTrainers_CheckDoubleBattleTwoAliveMons:
-    GoToIfEq VAR_NPC_1, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_HasTwoAliveMons
+    GoToIfEq VAR_NPC_1, ROXY_AND_OLI_1, PokemonCenterDailyTrainers_CheckHasTwoAliveMons
     Return
 
-PokemonCenterDailyTrainers_HasTwoAliveMons:
-    HasTwoAliveMons VAR_TWO_MONS
+PokemonCenterDailyTrainers_CheckHasTwoAliveMons:
+    CheckHasTwoAliveMons VAR_TWO_MONS
     Return
 
 PokemonCenterDailyTrainers_BattleAccepted:
@@ -325,7 +325,7 @@ PokemonCenterDailyTrainers_CloseMessage:
     End
 
 PokemonCenterDailyTrainers_BattleLost:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -589,7 +589,6 @@ PokemonCenterDailyTrainers_OliBattleAcceptedEterna:
 PokemonCenterDailyTrainers_OliBattleAcceptedVeilstone:
     Call PokemonCenterDailyTrainers_SetRoxyAndOliTeam
     Message pokemon_center_daily_trainers_oli_battle_accepted_veilstone
-
     Return
 
 PokemonCenterDailyTrainers_ArielBattleAccepted:

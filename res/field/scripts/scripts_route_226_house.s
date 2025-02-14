@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0014
     ScriptEntry _00E7
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     SetFlag 0x9F1
@@ -29,7 +29,7 @@ _0014:
 
 _0046:
     Message 2
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0060
     GoTo _00D1
 

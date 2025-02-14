@@ -32,7 +32,7 @@
     ScriptEntry _0D00
     ScriptEntry _0FDC
     ScriptEntry _0EB4
-    TableEnd
+    ScriptEntryEnd
 
 _0072:
     CallIfEq 0x407A, 4, _00B5
@@ -1163,7 +1163,7 @@ _0DF6:
     ApplyMovement 0xFF, _0EAC
     WaitMovement
     Message 9
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0E75
     GetPartyCount 0x800C
     GoToIfGe 0x800C, 6, _0E67
@@ -1228,7 +1228,7 @@ _0EB4:
 
 _0ECD:
     Message 14
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0FAC
     GetPartyCount 0x800C
     GoToIfGe 0x800C, 6, _0F9E

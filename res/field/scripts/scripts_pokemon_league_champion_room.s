@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _000E
-    TableEnd
+    ScriptEntryEnd
 
 _000A:
     ScrCmd_25B
@@ -77,7 +77,7 @@ _0113:
 
 _0121:
     ClearFlag 0x98B
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _001A
     ScriptEntry _0032
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     SetVar 0x8007, 0

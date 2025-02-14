@@ -10,7 +10,7 @@
     ScriptEntry _0110
     ScriptEntry _0139
     ScriptEntry _014C
-    TableEnd
+    ScriptEntryEnd
 
 _001E:
     SetVar 0x8007, 3
@@ -68,7 +68,7 @@ _0078:
     ScrCmd_344 0, 0x8005
     ScrCmd_346 0
     Message 4
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00F4
     GoTo _0078
 

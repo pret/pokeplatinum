@@ -10,7 +10,7 @@
     ScriptEntry _00B2
     ScriptEntry _00C7
     ScriptEntry _04C4
-    TableEnd
+    ScriptEntryEnd
 
 _001E:
     CallIfGe 0x4087, 2, _005B

@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0021
     ScriptEntry _0034
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -42,7 +42,7 @@ _0034:
 
 _005C:
     Message 3
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _007F
     GoToIfEq 0x800C, 1, _00B3
     End

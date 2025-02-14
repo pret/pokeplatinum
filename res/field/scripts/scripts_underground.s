@@ -8,7 +8,7 @@
     ScriptEntry _018F
     ScriptEntry _0225
     ScriptEntry _0289
-    TableEnd
+    ScriptEntryEnd
 
 _001A:
     ScrCmd_14F

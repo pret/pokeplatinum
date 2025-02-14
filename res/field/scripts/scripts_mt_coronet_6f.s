@@ -4,7 +4,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0022
-    TableEnd
+    ScriptEntryEnd
 
 _000A:
     GoToIfSet 0x132, _0040

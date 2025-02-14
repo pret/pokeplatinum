@@ -10,7 +10,7 @@
     ScriptEntry _0190
     ScriptEntry _01A1
     ScriptEntry _01B2
-    TableEnd
+    ScriptEntryEnd
 
 _001E:
     ScrCmd_174
@@ -79,7 +79,7 @@ _00FF:
     End
 
 _0118:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

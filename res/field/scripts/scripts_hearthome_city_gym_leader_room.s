@@ -9,7 +9,7 @@
     ScriptEntry _01A0
     ScriptEntry _0248
     ScriptEntry _001A
-    TableEnd
+    ScriptEntryEnd
 
 _001A:
     GoToIfSet 142, _0027
@@ -165,7 +165,7 @@ _0224:
 
 _0248:
     ClearFlag 0x29C
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

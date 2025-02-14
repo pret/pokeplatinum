@@ -14,7 +14,7 @@
     ScriptEntry _07BB
     ScriptEntry _0908
     ScriptEntry _081E
-    TableEnd
+    ScriptEntryEnd
 
 _002E:
     End
@@ -112,7 +112,7 @@ _0151:
     CallIfEq 0x8004, 5, _06D9
     ScrCmd_303 0x8003, 0x800C
     GoToIfGe 0x8003, 1, _0254
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0740
     GoTo _01F8
     End
@@ -288,7 +288,7 @@ _051B:
     BufferPartyMonNickname 0, 0x8000
     BufferMoveName 1, 0x8001
     Message 0
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _05FE
     GoTo _0541
     End
@@ -306,7 +306,7 @@ _0541:
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
     Message 3
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _05FE
     BufferPartyMonNickname 0, 0x8000
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
@@ -328,7 +328,7 @@ _0541:
 _05DD:
     BufferMoveName 1, 0x8001
     Message 1
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0541
     GoTo _05FE
     End
@@ -619,31 +619,31 @@ _0908:
     LockAll
     FacePlayer
     Message 38
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _09CF
     Message 39
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _09CF
     Message 40
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _09CF
     Message 41
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _09CF
     Message 42
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _09CF
     Message 43
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _09CF
     Message 44
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _09CF
     Message 45
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _09CF
     Message 46
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _09CF
     Message 47
     GoTo _09D5

@@ -3,7 +3,7 @@
     .data
 
     ScriptEntry _0006
-    TableEnd
+    ScriptEntryEnd
 
 _0006:
     ScrCmd_036 0, 2, 0, 0x800C

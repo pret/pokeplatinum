@@ -12,7 +12,7 @@
     ScriptEntry _02A4
     ScriptEntry _0026
     ScriptEntry _02A6
-    TableEnd
+    ScriptEntryEnd
 
 _0026:
     End
@@ -41,13 +41,13 @@ _003F:
     GoToIfSet 0xAB3, _00A0
     GoToIfSet 0xAA9, _0084
     Message 1
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00B6
     GoTo _00AB
 
 _0084:
     Message 18
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00B6
     GoTo _00AB
     End

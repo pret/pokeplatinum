@@ -11,7 +11,7 @@
     ScriptEntry _020A
     ScriptEntry _021D
     ScriptEntry _0232
-    TableEnd
+    ScriptEntryEnd
 
 _0022:
     ScrCmd_2F2
@@ -31,7 +31,7 @@ _0041:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 13
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0061
     CloseMessage
     ReleaseAll
@@ -136,7 +136,7 @@ _0194:
     End
 
 _0204:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

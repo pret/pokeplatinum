@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _001D
-    TableEnd
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -25,7 +25,7 @@ _001D:
     BufferItemName 0, 0x8004
     GoToIfSet 132, _005E
     Message 1
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00A7
     GoToIfEq 0x800C, 1, _009C
     End
@@ -33,7 +33,7 @@ _001D:
 _005E:
     BufferItemName 0, 0x8004
     Message 3
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0086
     GoToIfEq 0x800C, 1, _0091
     End

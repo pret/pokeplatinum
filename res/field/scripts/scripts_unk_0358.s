@@ -3,7 +3,7 @@
     .data
 
     ScriptEntry _0006
-    TableEnd
+    ScriptEntryEnd
 
 _0006:
     SetFlag 0x9E2

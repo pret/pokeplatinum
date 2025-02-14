@@ -7,7 +7,7 @@
     ScriptEntry _0023
     ScriptEntry _003A
     ScriptEntry _004D
-    TableEnd
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM

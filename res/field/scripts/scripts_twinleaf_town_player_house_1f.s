@@ -14,7 +14,7 @@
     ScriptEntry _09E9
     ScriptEntry _09FA
     ScriptEntry _00E0
-    TableEnd
+    ScriptEntryEnd
 
 _002E:
     CallIfEq 0x40A4, 3, _0048

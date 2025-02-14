@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0090
     ScriptEntry _00A1
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     LockAll

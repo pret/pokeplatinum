@@ -5,7 +5,7 @@
     ScriptEntry _000E
     ScriptEntry _0029
     ScriptEntry _0031
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     SetVar 0x4000, 0

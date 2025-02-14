@@ -314,7 +314,7 @@ static BOOL sub_02040730(ScriptContext *ctx);
 static BOOL ScrCmd_03C(ScriptContext *ctx);
 static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx);
 static BOOL ScrCmd_ScrollBG3(ScriptContext *ctx);
-static BOOL ScrCmd_YesNoMenu(ScriptContext *ctx);
+static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx);
 static BOOL sub_02040824(ScriptContext *ctx);
 static BOOL ScrCmd_040(ScriptContext *ctx);
 static BOOL ScrCmd_041(ScriptContext *ctx);
@@ -610,7 +610,7 @@ static BOOL ScrCmd_22B(ScriptContext *ctx);
 static BOOL ScrCmd_22C(ScriptContext *ctx);
 static BOOL ScrCmd_22D(ScriptContext *ctx);
 static BOOL ScrCmd_233(ScriptContext *ctx);
-static BOOL ScrCmd_GetWeekDay(ScriptContext *ctx);
+static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
 static BOOL ScrCmd_239(ScriptContext *ctx);
 static BOOL ScrCmd_23A(ScriptContext *ctx);
 static BOOL ScrCmd_23B(ScriptContext *ctx);
@@ -825,7 +825,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_03B,
     ScrCmd_03C,
     ScrCmd_ScrollBG3,
-    ScrCmd_YesNoMenu,
+    ScrCmd_ShowYesNoMenu,
     ScrCmd_03F,
     ScrCmd_040,
     ScrCmd_041,
@@ -998,10 +998,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0E8,
     ScrCmd_0E9,
     ScrCmd_0EA,
-    ScrCmd_WhiteOut,
+    ScrCmd_BlackOutFromBattle,
     ScrCmd_CheckWonBattle,
     ScrCmd_CheckLostBattle,
-    ScrCmd_HasTwoAliveMons,
+    ScrCmd_CheckHasTwoAliveMons,
     ScrCmd_StartDummyTrainerBattle,
     ScrCmd_0F0,
     ScrCmd_0F1,
@@ -1327,7 +1327,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_231,
     ScrCmd_232,
     ScrCmd_233,
-    ScrCmd_GetWeekDay,
+    ScrCmd_GetDayOfWeek,
     ScrCmd_235,
     ScrCmd_236,
     ScrCmd_237,
@@ -2648,20 +2648,20 @@ static BOOL ScrCmd_03C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_YesNoMenu(ScriptContext *ctx)
+static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Menu **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
+    Menu **menu = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
     u16 v2 = ScriptContext_ReadHalfWord(ctx);
 
     LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
 
-    *v1 = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_020EAB84, 1024 - (18 + 12) - 9, 11, 4);
+    *menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_020EAB84, 1024 - (18 + 12) - 9, 11, 4);
     ctx->data[0] = v2;
 
     ScriptContext_Pause(ctx, sub_02040824);
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL sub_02040824(ScriptContext *ctx)
@@ -6611,7 +6611,7 @@ static BOOL ScrCmd_233(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_GetWeekDay(ScriptContext *ctx)
+static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx)
 {
     RTCDate date;
     u16 *weekDay = ScriptContext_GetVarPointer(ctx);

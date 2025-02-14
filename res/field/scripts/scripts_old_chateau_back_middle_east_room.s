@@ -4,7 +4,7 @@
 
     ScriptEntry _000A
     ScriptEntry _002E
-    TableEnd
+    ScriptEntryEnd
 
 _000A:
     ScrCmd_292 25, 0x4000

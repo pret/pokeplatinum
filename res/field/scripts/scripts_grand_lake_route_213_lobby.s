@@ -7,7 +7,7 @@
     ScriptEntry _0014
     ScriptEntry _004C
     ScriptEntry _005F
-    TableEnd
+    ScriptEntryEnd
 
 _0012:
     End

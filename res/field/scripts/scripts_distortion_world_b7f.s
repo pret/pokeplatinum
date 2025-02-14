@@ -9,7 +9,7 @@
     ScriptEntry _006F
     ScriptEntry _0096
     ScriptEntry _01DA
-    TableEnd
+    ScriptEntryEnd
 
 _001A:
     ScrCmd_2F2
@@ -121,7 +121,7 @@ _01C3:
 
 _01CE:
     SetVar 0x4055, 9
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

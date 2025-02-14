@@ -10,7 +10,7 @@
     ScriptEntry _0390
     ScriptEntry _03A7
     ScriptEntry _001E
-    TableEnd
+    ScriptEntryEnd
 
 _001E:
     GetTimeOfDay 0x4000
@@ -45,7 +45,7 @@ _0079:
 
 _00A1:
     Message 1
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00CA
     GoToIfEq 0x800C, 1, _00C4
     End
@@ -101,14 +101,14 @@ _0183:
     ApplyMovement 0xFF, _02DC
     WaitMovement
     Message 3
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _01E9
     GoToIfEq 0x800C, 1, _01C6
     End
 
 _01C6:
     Message 5
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _01E9
     GoToIfEq 0x800C, 1, _01C6
     End

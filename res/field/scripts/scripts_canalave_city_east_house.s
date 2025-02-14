@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    TableEnd
+    ScriptEntryEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
@@ -17,7 +17,7 @@ _0006:
 
 _0026:
     Message 1
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0049
     GoToIfEq 0x800C, 1, _0130
     End
@@ -52,7 +52,7 @@ _0054:
     GoToIfEq 0x8001, 0xFF, _0049
     ScrCmd_1CB 0, 0x8002, 0x8001
     Message 7
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0105
     GoToIfEq 0x800C, 1, _0049
     End

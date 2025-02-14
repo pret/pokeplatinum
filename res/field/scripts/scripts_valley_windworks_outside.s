@@ -11,7 +11,7 @@
     ScriptEntry _01BF
     ScriptEntry _0022
     ScriptEntry _0201
-    TableEnd
+    ScriptEntryEnd
 
 _0022:
     End
@@ -22,7 +22,7 @@ _0024:
     CallIfUnset 0x10F, _00C5
     GoToIfLt 0x4089, 2, _007C
     GoToIfSet 0xAA8, _007C
-    GetWeekDay 0x4000
+    GetDayOfWeek 0x4000
     GoToIfNe 0x4000, 5, _007C
     GoTo _0076
 
@@ -86,7 +86,7 @@ _00CF:
     End
 
 _0133:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -114,7 +114,7 @@ _0150:
 _016C:
     BufferItemName 0, 0x1B6
     Message 6
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _01A2
     SetFlag 0x10F
     Call _00BB
@@ -156,7 +156,7 @@ _01BF:
     End
 
 _01FB:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

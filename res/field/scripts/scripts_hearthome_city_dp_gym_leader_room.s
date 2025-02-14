@@ -133,7 +133,7 @@ _01C8:
     EndMovement
 
 _01DC:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

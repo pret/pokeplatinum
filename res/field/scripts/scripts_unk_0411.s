@@ -7,12 +7,12 @@
     ScriptEntry _00AB
     ScriptEntry _004C
     ScriptEntry _009D
-    TableEnd
+    ScriptEntryEnd
 
 _0012:
     BufferPlayerName 0
     Message 0
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0031
     GoTo _003E
     End
@@ -37,7 +37,7 @@ _004C:
     GetPlayerGender 0x800C
     CallIfEq 0x800C, 0, _0086
     CallIfEq 0x800C, 1, _008B
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0090
     GoTo _009D
     End

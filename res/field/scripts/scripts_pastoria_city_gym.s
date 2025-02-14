@@ -10,7 +10,7 @@
     ScriptEntry _0076
     ScriptEntry _0171
     ScriptEntry _01A5
-    TableEnd
+    ScriptEntryEnd
 
 _001E:
     SetVar 0x4001, 0
@@ -103,7 +103,7 @@ _0155:
     End
 
 _016B:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

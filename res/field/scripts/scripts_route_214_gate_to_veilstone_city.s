@@ -5,7 +5,7 @@
 
     ScriptEntry _0068
     ScriptEntry _000A
-    TableEnd
+    ScriptEntryEnd
 
 _000A:
     ScrCmd_1B7 0x4032, 4

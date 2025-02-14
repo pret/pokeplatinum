@@ -6,7 +6,7 @@
     ScriptEntry _0146
     ScriptEntry _015C
     ScriptEntry _0172
-    TableEnd
+    ScriptEntryEnd
 
 _0012:
     CallIfNe 0x40DB, 0, _008A
