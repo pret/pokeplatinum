@@ -7,11 +7,11 @@
 #include "overlay097/union_ov97_0222D2B0.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "game_options.h"
 #include "list_menu.h"
 #include "message.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -42,12 +42,12 @@ typedef struct {
     int unk_438;
     int unk_43C;
     int unk_440;
-    CellActorCollection *unk_444;
+    SpriteList *unk_444;
     G2dRenderer unk_448;
     SpriteResourceCollection *unk_5D4[6];
     SpriteResource *unk_5EC[6];
-    CellActorResourceData unk_604;
-    CellActor *unk_628;
+    SpriteResourcesHeader unk_604;
+    Sprite *unk_628;
     int unk_62C;
     int unk_630;
     int unk_634;

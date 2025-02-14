@@ -50,7 +50,6 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -61,6 +60,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -439,7 +439,7 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     ov22_0225894C(v2->unk_18, &v0->unk_1E8);
     ov22_022566C0(v0);
 
-    CellActorCollection_SetActive(v0->unk_00.unk_44, 0);
+    SpriteList_SetActive(v0->unk_00.unk_44, 0);
     sub_02039734();
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -1274,7 +1274,7 @@ static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0)
     ov22_022568DC(param0);
 
     sub_0200F344(0, 0x0);
-    CellActorCollection_SetActive(param0->unk_00.unk_44, 1);
+    SpriteList_SetActive(param0->unk_00.unk_44, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);

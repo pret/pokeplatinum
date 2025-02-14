@@ -2,12 +2,8 @@
 #define POKEPLATINUM_OV12_0221FC20_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/cell_actor_data.h"
-#include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_defs/sprite_template.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/struct_ov16_02264408.h"
 #include "battle/struct_ov16_02265BBC.h"
@@ -20,6 +16,7 @@
 #include "bg_window.h"
 #include "palette.h"
 #include "spl.h"
+#include "sprite_system.h"
 #include "sys_task_manager.h"
 
 UnkStruct_ov12_0221FCDC *ov12_0221FCDC(int param0);
@@ -44,11 +41,11 @@ UnkStruct_02014014 *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1);
 SPLEmitter *ov12_0222026C(UnkStruct_ov12_0221FCDC *param0, int param1);
 BgConfig *ov12_02220278(UnkStruct_ov12_0221FCDC *param0);
 s32 ov12_02220280(UnkStruct_ov12_0221FCDC *param0, int param1);
-CellActorData *ov12_02220298(UnkStruct_ov12_0221FCDC *param0, int param1);
-CellActorData *ov12_022202C0(UnkStruct_ov12_0221FCDC *param0, int param1);
-SpriteGfxHandler *ov12_022202EC(UnkStruct_ov12_0221FCDC *param0);
-SpriteGfxHandler *ov12_02220300(UnkStruct_ov12_0221FCDC *param0);
-SpriteRenderer *ov12_02220308(UnkStruct_ov12_0221FCDC *param0);
+ManagedSprite *ov12_02220298(UnkStruct_ov12_0221FCDC *param0, int param1);
+ManagedSprite *ov12_022202C0(UnkStruct_ov12_0221FCDC *param0, int param1);
+SpriteManager *ov12_022202EC(UnkStruct_ov12_0221FCDC *param0);
+SpriteManager *ov12_02220300(UnkStruct_ov12_0221FCDC *param0);
+SpriteSystem *ov12_02220308(UnkStruct_ov12_0221FCDC *param0);
 void ov12_02220474(void);
 int ov12_02220540(UnkStruct_ov12_0221FCDC *param0, int param1);
 void ov12_02220590(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_022380DC *param1, int param2);
@@ -68,7 +65,7 @@ int ov12_022232C4(UnkStruct_ov12_0221FCDC *param0, int param1);
 int ov12_022232D0(UnkStruct_ov12_0221FCDC *param0, int param1);
 int ov12_022232E0(UnkStruct_ov12_0221FCDC *param0, int param1);
 int ov12_022232EC(UnkStruct_ov12_0221FCDC *param0, int param1);
-Sprite *ov12_022232FC(UnkStruct_ov12_0221FCDC *param0, int param1);
+PokemonSprite *ov12_022232FC(UnkStruct_ov12_0221FCDC *param0, int param1);
 PaletteData *ov12_0222332C(UnkStruct_ov12_0221FCDC *param0);
 int ov12_02223334(UnkStruct_ov12_0221FCDC *param0, int param1);
 int ov12_02223344(UnkStruct_ov12_0221FCDC *param0, int param1);

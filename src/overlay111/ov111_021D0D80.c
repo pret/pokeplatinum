@@ -19,7 +19,6 @@
 #include "overlay111/struct_ov111_021D3620.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -34,6 +33,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
@@ -416,7 +416,7 @@ int ov111_021D0E34(OverlayManager *param0, int *param1)
         break;
     }
 
-    CellActorCollection_Update(v0->unk_16C.unk_00);
+    SpriteList_Update(v0->unk_16C.unk_00);
 
     return 0;
 }

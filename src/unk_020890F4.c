@@ -17,9 +17,9 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
-#include "unk_0200C6E4.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
 #include "unk_020393C8.h"
@@ -146,8 +146,8 @@ static int sub_0208927C(OverlayManager *param0, int *param1)
         v1 = sub_0201E530();
     }
 
-    sub_0200D0B0(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);
-    sub_0200C8D4(v0->unk_2C0.unk_04);
+    SpriteSystem_FreeResourcesAndManager(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);
+    SpriteSystem_Free(v0->unk_2C0.unk_04);
     sub_02024034(v0->unk_2C0.unk_14);
     OverlayManager_FreeData(param0);
     Heap_Destroy(101);
@@ -353,7 +353,7 @@ static void sub_020895CC(void *param0)
     UnkStruct_02089688 *v0 = param0;
 
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_2C0.unk_10);
     Bg_RunScheduledUpdates(v0->unk_2C0.unk_0C);
 

@@ -6,6 +6,17 @@
 #include "constants/heap.h"
 #include "constants/screen.h"
 
+typedef struct RenderOamTemplate {
+    int mainOamStart;
+    int mainOamCount;
+    int mainAffineOamStart;
+    int mainAffineOamCount;
+    int subOamStart;
+    int subOamCount;
+    int subAffineOamStart;
+    int subAffineOamCount;
+} RenderOamTemplate;
+
 void RenderOam_Init(int mainOamStart,
     int mainOamCount,
     int mainAffineOamStart,

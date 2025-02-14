@@ -1,19 +1,18 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_02246BF4_SUB2_H
 #define POKEPLATINUM_STRUCT_OV62_02246BF4_SUB2_H
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "bg_window.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "touch_screen.h"
 
 typedef struct {
     NARC *unk_00;
-    SpriteRenderer *unk_04;
-    SpriteGfxHandler *unk_08;
+    SpriteSystem *unk_04;
+    SpriteManager *unk_08;
     BgConfig *unk_0C;
     PaletteData *unk_10;
     UnkStruct_02023FCC *unk_14;

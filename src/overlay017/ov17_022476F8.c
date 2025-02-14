@@ -3,11 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay017/struct_ov17_022476F8.h"
 #include "overlay017/struct_ov17_0224792C.h"
@@ -21,6 +17,7 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -28,11 +25,10 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 
 typedef struct {
     u8 *unk_00;
-    CellActorData *unk_04;
+    ManagedSprite *unk_04;
     s32 unk_08;
     s32 unk_0C;
     fx32 unk_10;
@@ -97,18 +93,18 @@ void ov17_02247734(UnkStruct_ov17_022476F8 *param0)
     }
 }
 
-void ov17_0224774C(SpriteRenderer *param0, SpriteGfxHandler *param1, NARC *param2)
+void ov17_0224774C(SpriteSystem *param0, SpriteManager *param1, NARC *param2)
 {
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, param2, 67, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, param2, 68, 1, 33002);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, param2, 69, 1, 33002);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, param2, 67, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, param2, 68, TRUE, 33002);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, param2, 69, TRUE, 33002);
 }
 
-void ov17_02247798(SpriteGfxHandler *param0)
+void ov17_02247798(SpriteManager *param0)
 {
-    SpriteGfxHandler_UnloadCharObjById(param0, 33002);
-    SpriteGfxHandler_UnloadCellObjById(param0, 33002);
-    SpriteGfxHandler_UnloadAnimObjById(param0, 33002);
+    SpriteManager_UnloadCharObjById(param0, 33002);
+    SpriteManager_UnloadCellObjById(param0, 33002);
+    SpriteManager_UnloadAnimObjById(param0, 33002);
 }
 
 void ov17_022477B8(UnkStruct_ov17_02247A48 *param0, int param1, int param2, fx32 param3, int param4)
@@ -118,14 +114,14 @@ void ov17_022477B8(UnkStruct_ov17_02247A48 *param0, int param1, int param2, fx32
     v0 = Heap_AllocFromHeap(22, sizeof(UnkStruct_ov17_022477B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022477B8));
 
-    v0->unk_04 = SpriteActor_LoadResources(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
-    sub_0200D500(v0->unk_04, param1, param2, (256 * FX32_ONE));
+    v0->unk_04 = SpriteSystem_NewSprite(param0->unk_0C.unk_1C, param0->unk_0C.unk_20, &Unk_ov17_022543F8);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_04, param1, param2, (256 * FX32_ONE));
 
     if (param4 == 1) {
-        sub_0200D364(v0->unk_04, 1);
+        ManagedSprite_SetAnim(v0->unk_04, 1);
     }
 
-    SpriteActor_UpdateObject(v0->unk_04->unk_00);
+    Sprite_TickFrame(v0->unk_04->sprite);
 
     v0->unk_08 = param1 << 8;
     v0->unk_0C = param2 << 8;
@@ -147,7 +143,7 @@ static void ov17_02247840(SysTask *param0, void *param1)
         v0->unk_10 += (6 << FX32_SHIFT);
         v0->unk_0C -= 0x100;
 
-        sub_0200D500(v0->unk_04, v0->unk_08 / 0x100 + v1, v0->unk_0C / 0x100, (256 * FX32_ONE));
+        ManagedSprite_SetPositionXYWithSubscreenOffset(v0->unk_04, v0->unk_08 / 0x100 + v1, v0->unk_0C / 0x100, (256 * FX32_ONE));
 
         v0->unk_16++;
 
@@ -156,7 +152,7 @@ static void ov17_02247840(SysTask *param0, void *param1)
         }
         break;
     default:
-        sub_0200D0F4(v0->unk_04);
+        Sprite_DeleteAndFreeResources(v0->unk_04);
         (*(v0->unk_00))--;
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);

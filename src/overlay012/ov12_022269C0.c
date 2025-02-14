@@ -3,19 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
-
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
-#include "cell_actor.h"
 #include "heap.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200C6E4.h"
 
 typedef struct {
     u8 unk_00;
@@ -35,11 +30,11 @@ typedef struct {
 typedef struct {
     u8 unk_00;
     UnkStruct_ov12_0221FCDC *unk_04;
-    SpriteRenderer *unk_08;
-    SpriteGfxHandler *unk_0C;
-    CellActorData *unk_10;
-    CellActorData *unk_14[100];
-    CellActor *unk_1A4[10];
+    SpriteSystem *unk_08;
+    SpriteManager *unk_0C;
+    ManagedSprite *unk_10;
+    ManagedSprite *unk_14[100];
+    Sprite *unk_1A4[10];
 } UnkStruct_ov12_02226AAC;
 
 void ov12_022269C0(UnkStruct_ov12_0221FCDC *param0)
@@ -134,27 +129,27 @@ static void ov12_02226AAC(SysTask *param0, void *param1)
 
     switch (v0->unk_00) {
     case 0:
-        SpriteActor_UpdateObject(v0->unk_14[0]->unk_00);
-        SpriteActor_UpdateObject(v0->unk_14[1]->unk_00);
-        SpriteActor_UpdateObject(v0->unk_14[2]->unk_00);
+        Sprite_TickFrame(v0->unk_14[0]->sprite);
+        Sprite_TickFrame(v0->unk_14[1]->sprite);
+        Sprite_TickFrame(v0->unk_14[2]->sprite);
 
-        sub_0200D5AC(v0->unk_14[0]->unk_00, 1, 0);
-        sub_0200D5AC(v0->unk_14[1]->unk_00, -1, 0);
-        sub_0200D5AC(v0->unk_14[2]->unk_00, 1, 1);
+        Sprite_OffsetPositionXY(v0->unk_14[0]->sprite, 1, 0);
+        Sprite_OffsetPositionXY(v0->unk_14[1]->sprite, -1, 0);
+        Sprite_OffsetPositionXY(v0->unk_14[2]->sprite, 1, 1);
 
-        sub_0200C7EC(v0->unk_0C);
+        SpriteSystem_DrawSprites(v0->unk_0C);
         break;
     case 1: {
         UnkStruct_ov12_0221FCDC *v1 = v0->unk_04;
 
-        sub_0200D0F4(v0->unk_10);
+        Sprite_DeleteAndFreeResources(v0->unk_10);
         Heap_FreeToHeap(v0);
         ov12_02220220(v1, param0);
     } break;
     }
 }
 
-void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, CellActorData *param3)
+void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
     UnkStruct_ov12_02226AAC *v0;
     SpriteTemplate v1;
@@ -176,7 +171,7 @@ void ov12_02226B1C(UnkStruct_ov12_0221FCDC *param0, SpriteRenderer *param1, Spri
         int v2;
 
         for (v2 = 1; v2 < 3; v2++) {
-            v0->unk_14[v2] = SpriteActor_LoadResources(v0->unk_08, v0->unk_0C, &v1);
+            v0->unk_14[v2] = SpriteSystem_NewSprite(v0->unk_08, v0->unk_0C, &v1);
         }
     }
 

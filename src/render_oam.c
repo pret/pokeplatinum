@@ -5,9 +5,9 @@
 #include "constants/heap.h"
 #include "constants/screen.h"
 
-#include "cell_actor.h"
 #include "heap.h"
 #include "render_view.h"
+#include "sprite.h"
 
 #define NUM_HW_OAM_ATTR            128
 #define NUM_HW_OAM_ATTR_RESERVED   4

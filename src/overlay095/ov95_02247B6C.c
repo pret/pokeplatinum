@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -17,7 +17,6 @@
 #include "overlay095/struct_ov95_02247958_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -25,6 +24,7 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -41,9 +41,9 @@ typedef struct {
     int unk_04;
     int unk_08;
     UnkStruct_02007768 *unk_0C;
-    Sprite *unk_10;
+    PokemonSprite *unk_10;
     SpriteAnimationFrame unk_14[10];
-    CellActor *unk_3C[2];
+    Sprite *unk_3C[2];
     UnkStruct_ov95_02247568 unk_44;
     BgConfig *unk_54;
     Window unk_58;
@@ -82,7 +82,7 @@ static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1);
 static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1);
 static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1);
 static void ov95_02248174(UnkStruct_ov95_02247C6C *param0);
-static Sprite *ov95_02248240(UnkStruct_ov95_02247C6C *param0);
+static PokemonSprite *ov95_02248240(UnkStruct_ov95_02247C6C *param0);
 static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0);
 static void ov95_02248340(UnkStruct_ov95_02247C6C *param0);
 static void ov95_02248364(UnkStruct_ov95_02247C6C *param0, int param1, int param2, int param3);
@@ -298,8 +298,8 @@ static int ov95_02247ED8(UnkStruct_ov95_02247C6C *param0, int *param1)
     switch (*param1) {
     case 0:
         if (IsScreenTransitionDone()) {
-            CellActor_SetAnim(param0->unk_3C[0], 1);
-            CellActor_SetDrawFlag(param0->unk_3C[0], 1);
+            Sprite_SetAnim(param0->unk_3C[0], 1);
+            Sprite_SetDrawFlag(param0->unk_3C[0], 1);
             return 1;
         }
         break;
@@ -393,13 +393,13 @@ static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
     case 1:
         if (ov95_022483B4(param0)) {
             sub_02007DC8(param0->unk_10);
-            CellActor_SetAnim(param0->unk_3C[1], 0);
-            CellActor_SetDrawFlag(param0->unk_3C[1], 1);
+            Sprite_SetAnim(param0->unk_3C[1], 0);
+            Sprite_SetDrawFlag(param0->unk_3C[1], 1);
             (*param1)++;
         }
         break;
     case 2:
-        if (CellActor_IsAnimated(param0->unk_3C[1]) == 0) {
+        if (Sprite_IsAnimated(param0->unk_3C[1]) == 0) {
             ov95_022479A8(param0->unk_74, 1);
             ov95_02248364(param0, 16, 0, 16);
             ov95_02248420(param0);
@@ -451,7 +451,7 @@ static void ov95_02248174(UnkStruct_ov95_02247C6C *param0)
     sub_02008A84(param0->unk_0C, NNS_GfdGetPlttKeyAddr(v1), NNS_GfdGetPlttKeySize(v1));
 }
 
-static Sprite *ov95_02248240(UnkStruct_ov95_02247C6C *param0)
+static PokemonSprite *ov95_02248240(UnkStruct_ov95_02247C6C *param0)
 {
     ArchivedSprite v0;
     BoxPokemon *v1;
@@ -471,7 +471,7 @@ static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0)
 {
     NNSG2dImagePaletteProxy v0;
     NNSG2dImageProxy v1;
-    CellActorResourceData v2;
+    SpriteResourcesHeader v2;
 
     ov95_02247568(&param0->unk_44, 93, 7, 8);
 
@@ -486,9 +486,9 @@ static void ov95_0224829C(UnkStruct_ov95_02247C6C *param0)
     param0->unk_3C[0] = ov95_022475E4(param0->unk_00, &v2, 128, 100, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
     param0->unk_3C[1] = ov95_022475E4(param0->unk_00, &v2, 128, 90, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    CellActor_SetExplicitPriority(param0->unk_3C[1], 1);
-    CellActor_SetDrawFlag(param0->unk_3C[0], 0);
-    CellActor_SetDrawFlag(param0->unk_3C[1], 0);
+    Sprite_SetExplicitPriority(param0->unk_3C[1], 1);
+    Sprite_SetDrawFlag(param0->unk_3C[0], 0);
+    Sprite_SetDrawFlag(param0->unk_3C[1], 0);
 }
 
 static void ov95_02248340(UnkStruct_ov95_02247C6C *param0)
@@ -497,7 +497,7 @@ static void ov95_02248340(UnkStruct_ov95_02247C6C *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_3C[v0]) {
-            CellActor_Delete(param0->unk_3C[v0]);
+            Sprite_Delete(param0->unk_3C[v0]);
         }
     }
 

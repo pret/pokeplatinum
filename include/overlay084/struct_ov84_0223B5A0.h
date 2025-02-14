@@ -1,10 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV84_0223B5A0_H
 #define POKEPLATINUM_STRUCT_OV84_0223B5A0_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 
 #include "overlay084/struct_ov84_0223B5A0_sub1.h"
@@ -17,6 +14,7 @@
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -31,9 +29,9 @@ typedef struct {
     TrainerInfo *unk_CC;
     Options *unk_D0;
     NARC *unk_D4;
-    SpriteRenderer *unk_D8;
-    SpriteGfxHandler *unk_DC;
-    CellActorData *unk_E0[12];
+    SpriteSystem *unk_D8;
+    SpriteManager *unk_DC;
+    ManagedSprite *unk_E0[12];
     UnkStruct_0200C440 *unk_110;
     MessageLoader *unk_114;
     StringTemplate *unk_118;

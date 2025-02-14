@@ -9,10 +9,10 @@
 #include "overlay097/union_ov97_0222D2B0.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "list_menu.h"
 #include "overlay_manager.h"
 #include "savedata.h"
+#include "sprite.h"
 
 void ov97_02237694(int param0);
 void *ov97_022376C4(OverlayManager *param0, int param1, int param2, int param3);
@@ -34,7 +34,7 @@ void ov97_02237B0C(int param0, int param1, int param2, int param3, int param4, i
 void ov97_02237C80(fx32 param0, fx32 param1);
 void ov97_02237CA0(void);
 void ov97_02237CAC(int param0);
-CellActor *ov97_02237D14(int param0, CellActor *param1, int param2, int param3, int param4);
+Sprite *ov97_02237D14(int param0, Sprite *param1, int param2, int param3, int param4);
 void ov97_02237DA0(void);
 u32 ov97_02237E4C(int param0);
 void ov97_02238194(BgConfig *param0, UnkStruct_0202DF40 *param1);

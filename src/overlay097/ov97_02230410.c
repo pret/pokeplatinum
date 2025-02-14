@@ -14,7 +14,6 @@
 
 #include "bg_window.h"
 #include "buffer_manager.h"
-#include "cell_actor.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -31,6 +30,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -93,13 +93,13 @@ typedef struct {
     void (*unk_2C98)(void *);
     int unk_2C9C;
     int unk_2CA0;
-    CellActorCollection *unk_2CA4;
+    SpriteList *unk_2CA4;
     G2dRenderer unk_2CA8;
     SpriteResourceCollection *unk_2E34[6];
     SpriteResource *unk_2E4C[6];
-    CellActorResourceData unk_2E64;
-    CellActor *unk_2E88[2];
-    CellActor *unk_2E90[3];
+    SpriteResourcesHeader unk_2E64;
+    Sprite *unk_2E88[2];
+    Sprite *unk_2E90[3];
     UnkUnion_ov97_0222D2B0 unk_2E9C;
     UnkStruct_ov97_02231318 unk_31F4;
     void (*unk_3E0C)(void *);
@@ -237,25 +237,25 @@ static void ov97_02230410(UnkStruct_ov97_02230868 *param0)
 static void ov97_02230438(UnkStruct_ov97_02230868 *param0)
 {
     if (param0->unk_2E88[0]) {
-        CellActor_Delete(param0->unk_2E88[0]);
+        Sprite_Delete(param0->unk_2E88[0]);
     }
 
     if (param0->unk_2E88[1]) {
-        CellActor_Delete(param0->unk_2E88[1]);
+        Sprite_Delete(param0->unk_2E88[1]);
     }
 
     param0->unk_2E88[0] = param0->unk_2E88[1] = NULL;
 
     if (param0->unk_2E90[0]) {
-        CellActor_Delete(param0->unk_2E90[0]);
+        Sprite_Delete(param0->unk_2E90[0]);
     }
 
     if (param0->unk_2E90[1]) {
-        CellActor_Delete(param0->unk_2E90[1]);
+        Sprite_Delete(param0->unk_2E90[1]);
     }
 
     if (param0->unk_2E90[2]) {
-        CellActor_Delete(param0->unk_2E90[2]);
+        Sprite_Delete(param0->unk_2E90[2]);
     }
 
     param0->unk_2E90[0] = param0->unk_2E90[1] = param0->unk_2E90[2] = NULL;
@@ -267,9 +267,9 @@ static void ov97_022304AC(UnkStruct_ov97_02230868 *param0)
     param0->unk_3E10 = 0;
     param0->unk_2E88[0] = ov97_02237D14(0, param0->unk_2E88[0], 72, 168, 1);
 
-    CellActor_SetExplicitPriority(param0->unk_2E88[0], 2);
+    Sprite_SetExplicitPriority(param0->unk_2E88[0], 2);
     param0->unk_2E88[1] = ov97_02237D14(0, param0->unk_2E88[1], 184, 168, 0);
-    CellActor_SetExplicitPriority(param0->unk_2E88[1], 2);
+    Sprite_SetExplicitPriority(param0->unk_2E88[1], 2);
 }
 
 static void ov97_02230500(Window *param0, u8 param1)
@@ -800,7 +800,7 @@ static void ov97_022310FC(UnkStruct_ov97_02230868 *param0)
 
         if (v2 == 0) {
             if (param0->unk_2E90[v1]) {
-                CellActor_SetDrawFlag(param0->unk_2E90[v1], 0);
+                Sprite_SetDrawFlag(param0->unk_2E90[v1], 0);
             }
 
             continue;
@@ -812,7 +812,7 @@ static void ov97_022310FC(UnkStruct_ov97_02230868 *param0)
         DC_FlushRange(v4->pRawData, ((4 * 4) * 0x20));
         GX_LoadOBJ(v4->pRawData, (0x64 + v1 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
 
-        CellActor_SetExplicitPalette(param0->unk_2E90[v1], PokeIconPaletteIndex(v2, 0, 0) + 3);
+        Sprite_SetExplicitPalette(param0->unk_2E90[v1], PokeIconPaletteIndex(v2, 0, 0) + 3);
         Heap_FreeToHeap(v3);
     }
 }
@@ -989,8 +989,8 @@ static void ov97_022314FC(UnkStruct_ov97_02230868 *param0, int param1, int *para
     }
 
     if (v1 != param0->unk_3E10) {
-        CellActor_SetAnim(param0->unk_2E88[0], param0->unk_3E10 == 0 ? 1 : 0);
-        CellActor_SetAnim(param0->unk_2E88[1], param0->unk_3E10 == 0 ? 0 : 1);
+        Sprite_SetAnim(param0->unk_2E88[0], param0->unk_3E10 == 0 ? 1 : 0);
+        Sprite_SetAnim(param0->unk_2E88[1], param0->unk_3E10 == 0 ? 0 : 1);
     }
 
     v0 = 0;
@@ -1252,7 +1252,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
     }
 
     if (v4->unk_2CA4 != NULL) {
-        CellActorCollection_Update(v4->unk_2CA4);
+        SpriteList_Update(v4->unk_2CA4);
     }
 
     ov97_02237CA0();

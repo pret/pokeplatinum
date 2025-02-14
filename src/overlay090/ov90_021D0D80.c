@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -12,15 +10,10 @@
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay007/struct_ov7_0224F2EC.h"
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay090/struct_ov90_021D0D80.h"
 #include "overlay090/struct_ov90_021D1750.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
@@ -31,12 +24,13 @@
 #include "overlay_manager.h"
 #include "render_oam.h"
 #include "save_player.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202D05C.h"
@@ -86,9 +80,9 @@ typedef struct {
     UnkStruct_ov90_021D0ECC_sub1 unk_28;
     Window unk_6C[5];
     UnkStruct_ov90_021D17F8 unk_BC[30];
-    SpriteRenderer *unk_29C;
-    SpriteGfxHandler *unk_2A0;
-    CellActor *unk_2A4[4];
+    SpriteSystem *unk_29C;
+    SpriteManager *unk_2A0;
+    Sprite *unk_2A4[4];
 } UnkStruct_ov90_021D0ECC;
 
 static int ov90_021D0ECC(UnkStruct_ov90_021D0ECC *param0);
@@ -855,11 +849,11 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
 {
     VramTransfer_New(32, param0->unk_00);
 
-    param0->unk_29C = sub_0200C6E4(param0->unk_00);
-    param0->unk_2A0 = sub_0200C704(param0->unk_29C);
+    param0->unk_29C = SpriteSystem_Alloc(param0->unk_00);
+    param0->unk_2A0 = SpriteManager_New(param0->unk_29C);
 
     {
-        UnkStruct_ov104_0224133C v0 = {
+        RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -870,7 +864,7 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
             32,
         };
 
-        UnkStruct_ov104_022412F4 v1 = {
+        CharTransferTemplateWithModes v1 = {
             1,
             2048,
             2048,
@@ -878,14 +872,14 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
             GX_OBJVRAMMODE_CHAR_1D_32K,
         };
 
-        sub_0200C73C(param0->unk_29C, &v0, &v1, 32);
-        sub_0200C7C0(param0->unk_29C, param0->unk_2A0, 4);
+        SpriteSystem_Init(param0->unk_29C, &v0, &v1, 32);
+        SpriteSystem_InitSprites(param0->unk_29C, param0->unk_2A0, 4);
         RenderOam_ClearMain(param0->unk_00);
         RenderOam_ClearSub(param0->unk_00);
     }
 
     {
-        UnkStruct_ov7_0224F2EC v2 = {
+        SpriteResourceDataPaths v2 = {
             "data/btower_chr.resdat",
             "data/btower_pal.resdat",
             "data/btower_cell.resdat",
@@ -895,15 +889,15 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
             "data/btower_celact.cldat"
         };
 
-        sub_0200C8F0(param0->unk_29C, param0->unk_2A0, &v2);
+        SpriteSystem_LoadResourceDataFromFilepaths(param0->unk_29C, param0->unk_2A0, &v2);
     }
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
 static void ov90_021D1B6C(UnkStruct_ov90_021D0ECC *param0)
 {
-    sub_0200C8B0(param0->unk_29C, param0->unk_2A0);
-    sub_0200C8D4(param0->unk_29C);
+    SpriteSystem_DestroySpriteManager(param0->unk_29C, param0->unk_2A0);
+    SpriteSystem_Free(param0->unk_29C);
     VramTransfer_Free();
 }
 
@@ -913,18 +907,18 @@ static void ov90_021D1B90(UnkStruct_ov90_021D0ECC *param0)
         return;
     }
 
-    sub_0200C7EC(param0->unk_2A0);
+    SpriteSystem_DrawSprites(param0->unk_2A0);
 }
 
 static void ov90_021D1BA4(void)
 {
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
 }
 
 static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0;
-    static const UnkStruct_ov7_0224F358 v1[] = {
+    static const SpriteTemplateFromResourceHeader v1[] = {
         { 0, 54, 68, 0, 0, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },
         { 0, 204, 114, 0, 1, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },
         { 0, 128, 52, 0, 2, 3, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0 },
@@ -932,15 +926,15 @@ static void ov90_021D1BAC(UnkStruct_ov90_021D0ECC *param0)
     };
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_2A4[v0] = sub_0200CA08(param0->unk_29C, param0->unk_2A0, &v1[v0]);
+        param0->unk_2A4[v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_29C, param0->unk_2A0, &v1[v0]);
     }
 
-    CellActor_SetDrawFlag(param0->unk_2A4[2], 0);
-    CellActor_SetDrawFlag(param0->unk_2A4[1], 0);
-    CellActor_SetAnimateFlag(param0->unk_2A4[0], 1);
-    CellActor_SetAnimateFlag(param0->unk_2A4[2], 1);
-    CellActor_SetAnimateFlag(param0->unk_2A4[3], 1);
-    CellActor_SetExplicitPriority(param0->unk_2A4[1], 3);
+    Sprite_SetDrawFlag(param0->unk_2A4[2], 0);
+    Sprite_SetDrawFlag(param0->unk_2A4[1], 0);
+    Sprite_SetAnimateFlag(param0->unk_2A4[0], 1);
+    Sprite_SetAnimateFlag(param0->unk_2A4[2], 1);
+    Sprite_SetAnimateFlag(param0->unk_2A4[3], 1);
+    Sprite_SetExplicitPriority(param0->unk_2A4[1], 3);
 }
 
 static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0)
@@ -948,7 +942,7 @@ static void ov90_021D1C28(UnkStruct_ov90_021D0ECC *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200C7E4(param0->unk_2A4[v0]);
+        Sprite_Delete2(param0->unk_2A4[v0]);
     }
 }
 
@@ -957,16 +951,16 @@ static void ov90_021D1C44(UnkStruct_ov90_021D0ECC *param0, BOOL param1)
     BOOL v0;
 
     if (param1 == 0) {
-        CellActor_SetExplicitPalette(param0->unk_2A4[0], 1);
+        Sprite_SetExplicitPalette(param0->unk_2A4[0], 1);
         v0 = 0;
     } else {
-        CellActor_SetExplicitPalette(param0->unk_2A4[0], 0);
+        Sprite_SetExplicitPalette(param0->unk_2A4[0], 0);
         v0 = 1;
     }
 
-    CellActor_SetAnimateFlag(param0->unk_2A4[0], v0);
-    CellActor_SetAnimateFlag(param0->unk_2A4[2], v0);
-    CellActor_SetAnimateFlag(param0->unk_2A4[3], v0);
+    Sprite_SetAnimateFlag(param0->unk_2A4[0], v0);
+    Sprite_SetAnimateFlag(param0->unk_2A4[2], v0);
+    Sprite_SetAnimateFlag(param0->unk_2A4[3], v0);
 }
 
 static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2, u8 param3)
@@ -974,32 +968,32 @@ static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2,
     u16 v0, v1;
 
     if (param0->unk_0E == 10 - 2) {
-        CellActor_SetDrawFlag(param0->unk_2A4[1], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[1], 1);
 
         if (param1 == 10) {
-            SpriteActor_SetAnimFrame(param0->unk_2A4[1], 1);
-            CellActor_SetDrawFlag(param0->unk_2A4[0], 0);
+            Sprite_SetAnimFrame(param0->unk_2A4[1], 1);
+            Sprite_SetDrawFlag(param0->unk_2A4[0], 0);
         } else {
-            SpriteActor_SetAnimFrame(param0->unk_2A4[1], 0);
-            CellActor_SetDrawFlag(param0->unk_2A4[0], 1);
+            Sprite_SetAnimFrame(param0->unk_2A4[1], 0);
+            Sprite_SetDrawFlag(param0->unk_2A4[0], 1);
         }
     } else {
-        CellActor_SetDrawFlag(param0->unk_2A4[0], 1);
-        CellActor_SetDrawFlag(param0->unk_2A4[1], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[0], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[1], 0);
     }
 
     switch (param0->unk_0E) {
     case 0:
-        CellActor_SetDrawFlag(param0->unk_2A4[2], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[2], 0);
         break;
     case (10 - 2):
-        CellActor_SetDrawFlag(param0->unk_2A4[3], 0);
+        Sprite_SetDrawFlag(param0->unk_2A4[3], 0);
         break;
     default:
-        CellActor_SetDrawFlag(param0->unk_2A4[2], 1);
-        CellActor_SetDrawFlag(param0->unk_2A4[3], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[2], 1);
+        Sprite_SetDrawFlag(param0->unk_2A4[3], 1);
         break;
     }
 
-    SpriteActor_SetPositionXY(param0->unk_2A4[0], param2 * 72 + 54, param3 * 24 + 68);
+    Sprite_SetPositionXY(param0->unk_2A4[0], param2 * 72 + 54, param3 * 24 + 68);
 }

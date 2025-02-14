@@ -22,7 +22,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "easy3d_object.h"
 #include "font.h"
@@ -39,6 +38,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -106,7 +106,7 @@ typedef struct {
 
 typedef struct {
     BgConfig *unk_00;
-    CellActorCollection *unk_04;
+    SpriteList *unk_04;
     G2dRenderer unk_08;
     SpriteResourceCollection *unk_194[4];
     GenericPointerData *unk_1A4;
@@ -180,7 +180,7 @@ typedef struct {
     s16 unk_32;
     u8 unk_34[4];
     u8 unk_38[4];
-    CellActor *unk_3C[12];
+    Sprite *unk_3C[12];
     SpriteResource *unk_6C[12][4];
 } UnkStruct_ov69_0225EB60;
 
@@ -1393,7 +1393,7 @@ static void ov69_0225D35C(UnkStruct_ov69_0225D35C *param0)
 
 static void ov69_0225D384(UnkStruct_ov69_0225D35C *param0)
 {
-    CellActorCollection_Update(param0->unk_04);
+    SpriteList_Update(param0->unk_04);
 }
 
 static void ov69_0225D390(UnkStruct_ov69_0225D35C *param0)
@@ -1495,7 +1495,7 @@ static void ov69_0225D5D8(UnkStruct_ov69_0225D35C *param0)
 {
     int v0;
 
-    CellActorCollection_Delete(param0->unk_04);
+    SpriteList_Delete(param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_194[v0]);
@@ -2620,16 +2620,16 @@ static void ov69_0225E910(UnkStruct_ov69_0225E7DC *param0, u32 param1, UnkStruct
 static void ov69_0225E960(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D35C *param1, UnkStruct_ov69_0225E478 *param2, u32 param3)
 {
     int v0;
-    CellActorResourceData v1;
+    SpriteResourcesHeader v1;
     BOOL v2;
-    CellActorInitParams v3 = { NULL };
+    SpriteListTemplate v3 = { NULL };
 
     memset(param0, 0, sizeof(UnkStruct_ov69_0225EB60));
 
     param0->unk_30 = 2;
     param0->unk_32 = 128;
 
-    v3.collection = param1->unk_04;
+    v3.list = param1->unk_04;
     v3.resourceData = &v1;
     v3.priority = 64;
     v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
@@ -2651,10 +2651,10 @@ static void ov69_0225E960(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
         SpriteResource_ReleaseData(param0->unk_6C[v0][0]);
         SpriteResourcesHeader_Init(&v1, v0, 0, v0, v0, 0xffffffff, 0xffffffff, 0, 1, param1->unk_194[0], param1->unk_194[1], param1->unk_194[2], param1->unk_194[3], NULL, NULL);
 
-        param0->unk_3C[v0] = CellActorCollection_Add(&v3);
+        param0->unk_3C[v0] = SpriteList_Add(&v3);
 
-        CellActor_SetAnimateFlag(param0->unk_3C[v0], 1);
-        CellActor_SetAnimSpeed(param0->unk_3C[v0], FX32_ONE);
+        Sprite_SetAnimateFlag(param0->unk_3C[v0], 1);
+        Sprite_SetAnimSpeed(param0->unk_3C[v0], FX32_ONE);
     }
 
     ov69_0225EBEC(param0);
@@ -2668,7 +2668,7 @@ static void ov69_0225EAE8(UnkStruct_ov69_0225EB60 *param0, UnkStruct_ov69_0225D3
     Sound_StopEffect(1473, 0);
 
     for (v0 = 0; v0 < 12; v0++) {
-        CellActor_Delete(param0->unk_3C[v0]);
+        Sprite_Delete(param0->unk_3C[v0]);
         SpriteTransfer_ResetCharTransfer(param0->unk_6C[v0][0]);
 
         if (v0 == 0) {
@@ -2719,7 +2719,7 @@ static void ov69_0225EBEC(UnkStruct_ov69_0225EB60 *param0)
     int v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        CellActor_SetDrawFlag(param0->unk_3C[v0], 0);
+        Sprite_SetDrawFlag(param0->unk_3C[v0], 0);
     }
 }
 
@@ -2762,7 +2762,7 @@ static BOOL ov69_0225EC70(UnkStruct_ov69_0225EB60 *param0, u32 param1, UnkStruct
     }
 
     ov69_0225ED5C(&param0->unk_00[param1], param2);
-    CellActor_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 1);
+    Sprite_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 1);
     ov69_0225EEC4(param0, param1);
 
     return 1;
@@ -2780,7 +2780,7 @@ static BOOL ov69_0225ECAC(UnkStruct_ov69_0225EB60 *param0, u32 param1, UnkStruct
     ov69_0225EEC4(param0, param1);
 
     if (v0 == 1) {
-        CellActor_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 0);
+        Sprite_SetDrawFlag(param0->unk_3C[param0->unk_38[param1]], 0);
     }
 
     return v0;
@@ -2886,12 +2886,12 @@ static void ov69_0225EE68(const UnkStruct_ov69_0225ED90 *param0, UnkStruct_ov69_
 static void ov69_0225EEC4(UnkStruct_ov69_0225EB60 *param0, u32 param1)
 {
     VecFx32 v0;
-    CellActor *v1;
+    Sprite *v1;
 
     ov69_0225ED78(&param0->unk_00[param1], &v0);
 
     v1 = param0->unk_3C[param0->unk_38[param1]];
-    CellActor_SetPosition(v1, &v0);
+    Sprite_SetPosition(v1, &v0);
 }
 
 static u16 ov69_0225EEEC(u32 param0)

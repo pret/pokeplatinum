@@ -3,9 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_defs/struct_0200D0F4.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
@@ -15,8 +14,8 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "sprite_system.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_02014000.h"
 
 void ov17_022413D8(void);
@@ -728,7 +727,7 @@ void ov12_02235838(UnkStruct_ov12_0221FCDC *param0, int param1, BOOL param2)
     G2_SetWndOutsidePlane((1 << ov12_022233EC(param0, 0)) | (1 << ov12_022233EC(param0, 1)) | GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, 1);
 }
 
-void ov12_02235918(Sprite *param0, UnkStruct_ov12_02235350 *param1)
+void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1)
 {
     if (param0 == NULL) {
         param1->unk_00 = 0;
@@ -744,9 +743,9 @@ void ov12_02235918(Sprite *param0, UnkStruct_ov12_02235350 *param1)
     param1->unk_02 = sub_020080C0(param0, 1);
 }
 
-void ov12_02235950(CellActorData *param0, UnkStruct_ov12_02235350 *param1)
+void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1)
 {
-    SpriteActor_GetSpritePositionXY(param0, &(param1->unk_00), &(param1->unk_02));
+    ManagedSprite_GetPositionXY(param0, &(param1->unk_00), &(param1->unk_02));
 }
 
 void ov12_0223595C(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_0223595C *param1)
