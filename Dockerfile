@@ -23,8 +23,6 @@ RUN apt-get install -y --install-recommends winehq-stable
 RUN python -m venv .venv
 RUN . .venv/bin/activate
 RUN pip install meson ninja
-COPY tools/cw/license.dat /etc/mwerks/license.dat
-ENV LM_LICENSE_FILE=/etc/mwerks/license.dat
 RUN hash -r
 
 CMD [ "/bin/sh" ]
