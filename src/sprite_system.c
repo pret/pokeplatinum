@@ -24,9 +24,9 @@ static Sprite *CreateSpriteFromResourceHeader(SpriteSystem *spriteSys, SpriteMan
 static BOOL LoadResObjInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, int compressed, int type, int resourceID);
 static BOOL LoadResObjFromNarcInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, int memberIdx, BOOL compressed, int type, int resourceID);
 static BOOL RegisterLoadedResource(SpriteResourceList *resourceList, SpriteResource *resource);
-static BOOL UnregisterLoadedResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload);
-static BOOL UnregisterLoadedCharResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload);
-static BOOL UnregisterLoadedPlttResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload);
+static BOOL UnregisterLoadedResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int resourceID);
+static BOOL UnregisterLoadedCharResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int resourceID);
+static BOOL UnregisterLoadedPlttResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int resourceID);
 static void SetSpriteAnimateFlag(Sprite *sprite, BOOL animate);
 static void SetSpriteAnimationSpeed(Sprite *sprite, fx32 speed);
 static BOOL IsSpriteAnimated(Sprite *sprite);
@@ -673,15 +673,15 @@ static BOOL RegisterLoadedResource(SpriteResourceList *resourceList, SpriteResou
     return FALSE;
 }
 
-static BOOL UnregisterLoadedResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload)
+static BOOL UnregisterLoadedResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int resourceID)
 {
     for (int i = 0; i < unownedResources->capacity; i++) {
         if (unownedResources->resources[i] == NULL) {
             continue;
         }
 
-        int resourceID = SpriteResource_GetID(unownedResources->resources[i]);
-        if (resourceID == toUnload) {
+        int memberResourceID = SpriteResource_GetID(unownedResources->resources[i]);
+        if (memberResourceID == resourceID) {
             SpriteResourceCollection_Remove(ownedResources, unownedResources->resources[i]);
             unownedResources->resources[i] = NULL;
             unownedResources->count--;
@@ -692,16 +692,16 @@ static BOOL UnregisterLoadedResource(SpriteResourceCollection *ownedResources, S
     return FALSE;
 }
 
-static BOOL UnregisterLoadedCharResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload)
+static BOOL UnregisterLoadedCharResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int resourceID)
 {
     for (int i = 0; i < unownedResources->capacity; i++) {
         if (unownedResources->resources[i] == NULL) {
             continue;
         }
 
-        int resourceID = SpriteResource_GetID(unownedResources->resources[i]);
-        if (resourceID == toUnload) {
-            CharTransfer_ResetTask(toUnload);
+        int memberResourceID = SpriteResource_GetID(unownedResources->resources[i]);
+        if (memberResourceID == resourceID) {
+            CharTransfer_ResetTask(resourceID);
             SpriteResourceCollection_Remove(ownedResources, unownedResources->resources[i]);
             unownedResources->resources[i] = NULL;
             unownedResources->count--;
@@ -712,16 +712,16 @@ static BOOL UnregisterLoadedCharResource(SpriteResourceCollection *ownedResource
     return FALSE;
 }
 
-static BOOL UnregisterLoadedPlttResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int toUnload)
+static BOOL UnregisterLoadedPlttResource(SpriteResourceCollection *ownedResources, SpriteResourceList *unownedResources, int resourceID)
 {
     for (int i = 0; i < unownedResources->capacity; i++) {
         if (unownedResources->resources[i] == NULL) {
             continue;
         }
 
-        int resourceID = SpriteResource_GetID(unownedResources->resources[i]);
-        if (resourceID == toUnload) {
-            PlttTransfer_ResetTask(toUnload);
+        int memberResourceID = SpriteResource_GetID(unownedResources->resources[i]);
+        if (memberResourceID == resourceID) {
+            PlttTransfer_ResetTask(resourceID);
             SpriteResourceCollection_Remove(ownedResources, unownedResources->resources[i]);
             unownedResources->resources[i] = NULL;
             unownedResources->count--;
