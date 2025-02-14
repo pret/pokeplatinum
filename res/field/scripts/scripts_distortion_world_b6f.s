@@ -11,7 +11,7 @@
     ScriptEntry _00B4
     ScriptEntry _00D5
     ScriptEntry _00F6
-    TableEnd
+    ScriptEntryEnd
 
 _0022:
     ScrCmd_2F2

@@ -7,7 +7,7 @@
     ScriptEntry _02E8
     ScriptEntry _02FB
     ScriptEntry _030E
-    TableEnd
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM
@@ -19,7 +19,7 @@ _0012:
     BufferPlayerName 0
     BufferPartyMonNickname 1, 0x4000
     Message 0
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0058
     GoTo _0063
 

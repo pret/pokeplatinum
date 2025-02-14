@@ -1,5 +1,6 @@
 #include "generated/badges.h"
 #include "generated/catching_show_points_category.h"
+#include "generated/days_of_week.h"
 #include "generated/game_records.h"
 #include "generated/items.h"
 #include "generated/journal_location_events.h"
@@ -11,8 +12,6 @@
 #include "generated/sdat.h"
 #include "generated/species.h"
 #include "generated/trainers.h"
-#include "generated/weekdays.h"
-#include "constants/flags.h"
 #include "constants/honey_tree.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
@@ -352,9 +351,9 @@
     .byte \directionY
     .endm
 
-    .macro YesNoMenu arg0
+    .macro ShowYesNoMenu destVarID
     .short 62
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_03F
@@ -1310,7 +1309,7 @@
     .short \arg0
     .endm
 
-    .macro WhiteOut
+    .macro BlackOutFromBattle
     .short 235
     .endm
 
@@ -1324,7 +1323,7 @@
     .short \destVarID
     .endm
 
-    .macro HasTwoAliveMons arg0
+    .macro CheckHasTwoAliveMons arg0
     .short 238
     .short \arg0
     .endm
@@ -3045,7 +3044,7 @@
     .short \arg1
     .endm
 
-    .macro GetWeekDay destVarID
+    .macro GetDayOfWeek destVarID
     .short 564
     .short \destVarID
     .endm
@@ -4676,6 +4675,6 @@
     .long \name-.-4
     .endm
 
-    .macro TableEnd
+    .macro ScriptEntryEnd
     .short 0xFD13
     .endm

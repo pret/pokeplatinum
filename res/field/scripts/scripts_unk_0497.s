@@ -26,7 +26,7 @@
     ScriptEntry _06B4
     ScriptEntry _012B
     ScriptEntry _00ED
-    TableEnd
+    ScriptEntryEnd
 
 _005E:
     ScrCmd_20E
@@ -90,7 +90,7 @@ _00ED:
 _012B:
     LockAll
     Message 5
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
     GoToIfNe 0x800C, 0, _0174
     FadeScreen 6, 1, 0, 0

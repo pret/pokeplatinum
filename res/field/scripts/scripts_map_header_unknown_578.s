@@ -4,7 +4,7 @@
 
     ScriptEntry _000A
     ScriptEntry _000E
-    TableEnd
+    ScriptEntryEnd
 
 _000A:
     ScrCmd_2F2

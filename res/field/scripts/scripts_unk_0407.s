@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0035
-    TableEnd
+    ScriptEntryEnd
 
 _000A:
     ScrCmd_23E 0

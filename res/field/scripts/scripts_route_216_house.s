@@ -6,14 +6,14 @@
     ScriptEntry _000E
     ScriptEntry _0071
     ScriptEntry _0084
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0039
     GoToIfEq 0x800C, 1, _0066
     End
@@ -54,7 +54,7 @@ _0084:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 4
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00AD
     GoToIfEq 0x800C, 1, _00E3
     End

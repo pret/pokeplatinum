@@ -7,7 +7,7 @@
     ScriptEntry _0042
     ScriptEntry _0077
     ScriptEntry _00D3
-    TableEnd
+    ScriptEntryEnd
 
 _0012:
     SetFlag 0x9E1
@@ -62,7 +62,7 @@ _00C2:
     End
 
 _00CD:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -98,7 +98,7 @@ _013C:
     EndMovement
 
 _0144:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

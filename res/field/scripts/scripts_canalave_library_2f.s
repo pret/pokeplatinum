@@ -9,7 +9,7 @@
     ScriptEntry _00A1
     ScriptEntry _001A
     ScriptEntry _00B2
-    TableEnd
+    ScriptEntryEnd
 
 _001A:
     SetFlag 0x2C9
@@ -81,14 +81,14 @@ _00B2:
     ApplyMovement 1, _019C
     WaitMovement
     Message 5
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0104
     GoToIfEq 0x800C, 1, _00E1
     End
 
 _00E1:
     Message 6
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0104
     GoToIfEq 0x800C, 1, _00E1
     End
@@ -99,14 +99,14 @@ _0104:
     ApplyMovement 1, _01B4
     WaitMovement
     Message 8
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0159
     GoToIfEq 0x800C, 1, _0136
     End
 
 _0136:
     Message 9
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0159
     GoToIfEq 0x800C, 1, _0136
     End

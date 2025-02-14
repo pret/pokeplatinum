@@ -9,7 +9,7 @@
     ScriptEntry _043C
     ScriptEntry _048E
     ScriptEntry _0650
-    TableEnd
+    ScriptEntryEnd
 
 _001A:
     LockAll
@@ -73,7 +73,7 @@ _00F4:
     LockAll
     FacePlayer
     Message 5
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0123
     GoTo _0118
     End
@@ -153,7 +153,7 @@ _022C:
 
 _0245:
     Message 11
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0277
     GoTo _026C
     End

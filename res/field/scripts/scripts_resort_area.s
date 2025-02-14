@@ -18,7 +18,7 @@
     ScriptEntry _055C
     ScriptEntry _003E
     ScriptEntry _05BC
-    TableEnd
+    ScriptEntryEnd
 
 _003E:
     SetFlag 0x2AA
@@ -141,7 +141,7 @@ _0184:
     CallIfEq 0x8005, 0x1D9, _0272
     CallIfEq 0x8005, 0x1DA, _0274
     Message 6
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _02BC
     ScrCmd_30C
     Message 7
@@ -320,7 +320,7 @@ _03D4:
     LockAll
     FacePlayer
     Message 10
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0429
     Message 11
     CloseMessage
@@ -350,7 +350,7 @@ _043C:
     LockAll
     FacePlayer
     Message 13
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0491
     Message 14
     CloseMessage
@@ -374,7 +374,7 @@ _049C:
     LockAll
     FacePlayer
     Message 16
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _04F1
     Message 17
     CloseMessage
@@ -398,7 +398,7 @@ _04FC:
     LockAll
     FacePlayer
     Message 19
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0551
     Message 20
     CloseMessage
@@ -422,7 +422,7 @@ _055C:
     LockAll
     FacePlayer
     Message 22
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _05B1
     Message 23
     CloseMessage

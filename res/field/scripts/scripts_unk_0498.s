@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    TableEnd
+    ScriptEntryEnd
 
 _0006:
     SetVar 0x800C, 0

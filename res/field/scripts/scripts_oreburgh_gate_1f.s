@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0014
     ScriptEntry _007B
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     SetFlag 0x9CF

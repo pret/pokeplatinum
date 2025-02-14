@@ -9,7 +9,7 @@
     ScriptEntry _00B0
     ScriptEntry _00C0
     ScriptEntry _001A
-    TableEnd
+    ScriptEntryEnd
 
 _001A:
     GetPlayerMapPos 0x4004, 0x4005

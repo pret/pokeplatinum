@@ -11,7 +11,7 @@
     ScriptEntry _0310
     ScriptEntry _0323
     ScriptEntry _0336
-    TableEnd
+    ScriptEntryEnd
 
 _0022:
     SetFlag 0x9F4
@@ -204,7 +204,7 @@ _0296:
 
 _02AC:
     SetFlag 0x21D
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

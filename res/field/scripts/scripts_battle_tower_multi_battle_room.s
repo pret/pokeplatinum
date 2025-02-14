@@ -7,7 +7,7 @@
     ScriptEntry _0074
     ScriptEntry _0156
     ScriptEntry _0181
-    TableEnd
+    ScriptEntryEnd
 
 _0012:
     GoToIfEq 0x40DE, 0, _0054
@@ -205,7 +205,7 @@ _0354:
 
 _0362:
     Message 4
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 0, _025B
     GoTo _02E8
@@ -213,7 +213,7 @@ _0362:
 
 _0380:
     Message 5
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 0, _0296
     GoTo _02E8
@@ -254,7 +254,7 @@ _0418:
 
 _0452:
     Message 5
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _03D6
     SetVar 0x4000, 1
     GoTo _0418

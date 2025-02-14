@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0021
     ScriptEntry _005C
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     CallIfSet 254, _001B

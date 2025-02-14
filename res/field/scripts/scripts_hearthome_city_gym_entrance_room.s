@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0078
     ScriptEntry _00B6
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -15,7 +15,7 @@ _000E:
     CheckBadgeAcquired BADGE_ID_RELIC, 0x800C
     GoToIfEq 0x800C, 1, _006A
     Message 1
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _004C
     GoToIfEq 0x800C, 1, _0057
     End

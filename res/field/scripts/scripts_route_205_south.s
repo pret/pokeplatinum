@@ -13,7 +13,7 @@
     ScriptEntry _0280
     ScriptEntry _0297
     ScriptEntry _02AE
-    TableEnd
+    ScriptEntryEnd
 
 _002A:
     End

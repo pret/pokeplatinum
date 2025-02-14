@@ -14,7 +14,7 @@
     ScriptEntry _0113
     ScriptEntry _012A
     ScriptEntry _0141
-    TableEnd
+    ScriptEntryEnd
 
 _002E:
     End

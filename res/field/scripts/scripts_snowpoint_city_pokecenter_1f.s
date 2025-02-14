@@ -8,7 +8,7 @@
     ScriptEntry _0035
     ScriptEntry _0048
     ScriptEntry _0067
-    TableEnd
+    ScriptEntryEnd
 
 _0016:
     SetVar 0x8007, 0

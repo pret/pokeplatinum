@@ -3,7 +3,7 @@
     .data
 
     ScriptEntry _0006
-    TableEnd
+    ScriptEntryEnd
 
 _0006:
     AddVar 0x410C, 1

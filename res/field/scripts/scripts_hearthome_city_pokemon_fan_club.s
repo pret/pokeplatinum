@@ -9,7 +9,7 @@
     ScriptEntry _0174
     ScriptEntry _0193
     ScriptEntry _001A
-    TableEnd
+    ScriptEntryEnd
 
 _001A:
     ScrCmd_238 4, 0x4000

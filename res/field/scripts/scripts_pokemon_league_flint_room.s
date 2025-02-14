@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0138
-    TableEnd
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -49,7 +49,7 @@ _00BE:
     Return
 
 _00CC:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

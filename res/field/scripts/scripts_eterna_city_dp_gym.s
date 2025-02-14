@@ -4,7 +4,7 @@
 
     ScriptEntry _000A
     ScriptEntry _000C
-    TableEnd
+    ScriptEntryEnd
 
 _000A:
     End

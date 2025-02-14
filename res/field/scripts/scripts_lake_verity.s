@@ -10,7 +10,7 @@
     ScriptEntry _01D0
     ScriptEntry _0230
     ScriptEntry _030C
-    TableEnd
+    ScriptEntryEnd
 
 _001E:
     CallIfSet 186, _009D
@@ -229,7 +229,7 @@ _0230:
     End
 
 _02DB:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

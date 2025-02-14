@@ -9,7 +9,7 @@
     ScriptEntry _00E4
     ScriptEntry _0458
     ScriptEntry _05F4
-    TableEnd
+    ScriptEntryEnd
 
 _001A:
     CallIfEq 0x4057, 1, _00AA
@@ -93,7 +93,7 @@ _0124:
     BufferPlayerName 0
     ScrCmd_272 1
     Message 3
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 1, _0124
     Call _029A

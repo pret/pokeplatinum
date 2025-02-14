@@ -7,7 +7,7 @@
     ScriptEntry _001D
     ScriptEntry _0022
     ScriptEntry _0027
-    TableEnd
+    ScriptEntryEnd
 
 _0012:
     SetVar 0x4000, 0
@@ -85,6 +85,6 @@ _0104:
     End
 
 _011A:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End

@@ -9,7 +9,7 @@
     ScriptEntry _002F
     ScriptEntry _0042
     ScriptEntry _0053
-    TableEnd
+    ScriptEntryEnd
 
 _0016:
     SetFlag 0x9EC
@@ -49,7 +49,7 @@ _0053:
     LockAll
     FacePlayer
     Message 0
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _007E
     GoToIfEq 0x800C, 1, _0264
     End
@@ -86,7 +86,7 @@ _012F:
     BufferPartyMonNickname 0, 0x8000
     BufferMoveName 1, 0x8003
     Message 9
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _01E9
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -100,7 +100,7 @@ _012F:
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
     Message 12
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _01E9
     BufferPartyMonNickname 0, 0x8000
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
@@ -123,7 +123,7 @@ _01E9:
     BufferPartyMonNickname 0, 0x8000
     BufferMoveName 1, 0x8003
     Message 10
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _020F
     GoTo _012F
     End

@@ -6,7 +6,7 @@
     ScriptEntry _0021
     ScriptEntry _00C0
     ScriptEntry _000E
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     CallIfSet 0x121, _001B

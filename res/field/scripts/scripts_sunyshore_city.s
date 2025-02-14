@@ -22,7 +22,7 @@
     ScriptEntry _0791
     ScriptEntry _0850
     ScriptEntry _004E
-    TableEnd
+    ScriptEntryEnd
 
 _004E:
     CallIfEq 0x40A6, 2, _0077
@@ -641,15 +641,15 @@ _0791:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    GetWeekDay 0x800C
+    GetDayOfWeek 0x800C
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, SUNDAY, _0806
-    GoToIfEq 0x8008, MONDAY, _0810
-    GoToIfEq 0x8008, TUESDAY, _081A
-    GoToIfEq 0x8008, WEDNESDAY, _0824
-    GoToIfEq 0x8008, THURSDAY, _082E
-    GoToIfEq 0x8008, FRIDAY, _0838
-    GoToIfEq 0x8008, SATURDAY, _0842
+    GoToIfEq 0x8008, DAY_OF_WEEK_SUNDAY, _0806
+    GoToIfEq 0x8008, DAY_OF_WEEK_MONDAY, _0810
+    GoToIfEq 0x8008, DAY_OF_WEEK_TUESDAY, _081A
+    GoToIfEq 0x8008, DAY_OF_WEEK_WEDNESDAY, _0824
+    GoToIfEq 0x8008, DAY_OF_WEEK_THURSDAY, _082E
+    GoToIfEq 0x8008, DAY_OF_WEEK_FRIDAY, _0838
+    GoToIfEq 0x8008, DAY_OF_WEEK_SATURDAY, _0842
     End
 
 _0806:

@@ -25,7 +25,7 @@
     ScriptEntry _0461
     ScriptEntry _0474
     ScriptEntry _04AD
-    TableEnd
+    ScriptEntryEnd
 
 _005A:
     SetVar 0x8004, 0

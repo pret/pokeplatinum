@@ -15,7 +15,7 @@
     ScriptEntry _0034
     ScriptEntry _0032
     ScriptEntry _0168
-    TableEnd
+    ScriptEntryEnd
 
 _0032:
     End

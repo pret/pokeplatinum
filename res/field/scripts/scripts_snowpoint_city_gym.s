@@ -7,7 +7,7 @@
     ScriptEntry _0025
     ScriptEntry _0114
     ScriptEntry _0148
-    TableEnd
+    ScriptEntryEnd
 
 _0012:
     GoToIfSet 235, _001F
@@ -77,7 +77,7 @@ _00F8:
     End
 
 _010E:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 

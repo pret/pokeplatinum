@@ -8,7 +8,7 @@
     ScriptEntry _0070
     ScriptEntry _011D
     ScriptEntry _012A
-    TableEnd
+    ScriptEntryEnd
 
 _0016:
     ScrCmd_2F2
@@ -18,7 +18,7 @@ _001A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 7
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _003A
     CloseMessage
     ReleaseAll

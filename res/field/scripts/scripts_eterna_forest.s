@@ -15,7 +15,7 @@
     ScriptEntry _050C
     ScriptEntry _0032
     ScriptEntry _051D
-    TableEnd
+    ScriptEntryEnd
 
 _0032:
     GoToIfUnset 227, _003F

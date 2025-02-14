@@ -10,7 +10,7 @@
     ScriptEntry _006A
     ScriptEntry _0134
     ScriptEntry _001E
-    TableEnd
+    ScriptEntryEnd
 
 _001E:
     End

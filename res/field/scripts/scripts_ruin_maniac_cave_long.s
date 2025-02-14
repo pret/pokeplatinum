@@ -5,7 +5,7 @@
 
     ScriptEntry _0010
     ScriptEntry _000A
-    TableEnd
+    ScriptEntryEnd
 
 _000A:
     SetFlag 0x9D8

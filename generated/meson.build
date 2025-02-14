@@ -37,6 +37,7 @@ metang_generators = {
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
+    'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
     'egg_groups': { 'type': 'enum', 'tag': 'EggGroup' },
     'evolution_methods': { 'type': 'enum', 'tag': 'EvolutionMethod' },
     'exp_rates': { 'type': 'enum', 'tag': 'ExpRate' },
@@ -76,8 +77,7 @@ metang_generators = {
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
-    'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'},
-    'weekdays': { 'type': 'enum', 'tag': 'WeekDay' }
+    'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'}
 }
 
 c_consts_generators = []

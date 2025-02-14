@@ -5,7 +5,7 @@
     ScriptEntry _0077
     ScriptEntry _000E
     ScriptEntry _0043
-    TableEnd
+    ScriptEntryEnd
 
 _000E:
     CallIfNe 0x406A, 0x122, _003B

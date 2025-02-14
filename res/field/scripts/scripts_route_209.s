@@ -12,7 +12,7 @@
     ScriptEntry _02C6
     ScriptEntry _0026
     ScriptEntry _029E
-    TableEnd
+    ScriptEntryEnd
 
 _0026:
     GetTimeOfDay 0x4000
@@ -54,7 +54,7 @@ _00A4:
     CheckItem ITEM_ODD_KEYSTONE, 1, 0x800C
     GoToIfEq 0x800C, 0, _01BC
     Message 2
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00E6
     CloseMessage
     ReleaseAll
@@ -93,7 +93,7 @@ _014D:
     End
 
 _017F:
-    WhiteOut
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -148,7 +148,7 @@ _01C7:
     ScrCmd_346 0
     GoToIfSet 162, _020B
     Message 10
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0254
     GoToIfEq 0x800C, 1, _0249
     End
@@ -156,7 +156,7 @@ _01C7:
 _020B:
     BufferItemName 0, 0x8004
     Message 12
-    YesNoMenu 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0233
     GoToIfEq 0x800C, 1, _023E
     End
