@@ -3325,7 +3325,7 @@ static void ov23_0224644C(int param0)
             v0.position.x = FX32_ONE * 300;
             v0.position.y = FX32_ONE * 300;
 
-            Unk_ov23_02257764->unk_25C[v1] = SpriteList_AddEx(&v0);
+            Unk_ov23_02257764->unk_25C[v1] = SpriteList_AddAffine(&v0);
 
             Sprite_SetAnim(Unk_ov23_02257764->unk_25C[v1], 0);
             Sprite_SetAnimateFlag(Unk_ov23_02257764->unk_25C[v1], 0);
@@ -3675,7 +3675,7 @@ static void ov23_02246D44(UnkStruct_ov23_022468DC *param0)
             v0.position.x = FX32_ONE * 300;
             v0.position.y = FX32_ONE * 300;
 
-            Unk_ov23_02257764->unk_25C[v1] = SpriteList_AddEx(&v0);
+            Unk_ov23_02257764->unk_25C[v1] = SpriteList_AddAffine(&v0);
 
             Sprite_SetAffineOverwriteMode(Unk_ov23_02257764->unk_25C[v1], 1);
             Sprite_SetAnim(Unk_ov23_02257764->unk_25C[v1], (param0->unk_08[v1] * 2));
@@ -3853,7 +3853,7 @@ static void ov23_022471D8(UnkStruct_ov23_022471D8 *param0)
             v0.position.x = FX32_ONE * 100;
             v0.position.y = FX32_ONE * 100;
 
-            Unk_ov23_02257764->unk_25C[v1] = SpriteList_AddEx(&v0);
+            Unk_ov23_02257764->unk_25C[v1] = SpriteList_AddAffine(&v0);
 
             Sprite_SetAnim(Unk_ov23_02257764->unk_25C[v1], 2);
             Sprite_SetAnimateFlag(Unk_ov23_02257764->unk_25C[v1], 1);
@@ -4327,7 +4327,7 @@ static void ov23_02247E38(UnkStruct_ov23_02247E38 *param0)
             v0.position.x = FX32_ONE * 128;
             v0.position.y = FX32_ONE * 84;
 
-            Unk_ov23_02257764->unk_25C[v1] = SpriteList_AddEx(&v0);
+            Unk_ov23_02257764->unk_25C[v1] = SpriteList_AddAffine(&v0);
 
             Sprite_SetAffineOverwriteMode(Unk_ov23_02257764->unk_25C[v1], 2);
             Sprite_SetAnim(Unk_ov23_02257764->unk_25C[v1], 0);
@@ -4787,7 +4787,7 @@ static void ov23_02248748(UnkStruct_ov23_02248748 *param0)
             v0.position.x = FX32_ONE * 300;
             v0.position.y = FX32_ONE * 300;
 
-            Unk_ov23_02257764->unk_25C[v1] = SpriteList_AddEx(&v0);
+            Unk_ov23_02257764->unk_25C[v1] = SpriteList_AddAffine(&v0);
 
             if (v1 == 0) {
                 Sprite_SetAffineOverwriteMode(Unk_ov23_02257764->unk_25C[v1], 2);

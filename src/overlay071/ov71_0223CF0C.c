@@ -124,7 +124,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
         for (v0 = 0; v0 < 8; v0++) {
             v3.position.x = FX32_ONE * Unk_ov71_0223D73C[v0].unk_00;
             v3.position.y = FX32_ONE * Unk_ov71_0223D73C[v0].unk_04;
-            param0->unk_1C0[v0] = SpriteList_AddEx(&v3);
+            param0->unk_1C0[v0] = SpriteList_AddAffine(&v3);
             Sprite_SetAnimateFlag(param0->unk_1C0[v0], 0);
             Sprite_SetAnim(param0->unk_1C0[v0], v0);
 
@@ -140,7 +140,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
                 v3.position.x = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_00;
                 v3.position.y = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_04;
                 v3.priority = 1;
-                param0->unk_1C0[v2 + v0] = SpriteList_AddEx(&v3);
+                param0->unk_1C0[v2 + v0] = SpriteList_AddAffine(&v3);
                 Sprite_SetAnimateFlag(param0->unk_1C0[v2 + v0], 1);
                 Sprite_SetAnim(param0->unk_1C0[v2 + v0], 8);
                 Sprite_SetDrawFlag(param0->unk_1C0[v2 + v0], 0);
@@ -152,7 +152,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
                 v3.position.x = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_00;
                 v3.position.y = FX32_ONE * Unk_ov71_0223D6FC[v0].unk_04;
                 v3.priority = 1;
-                param0->unk_1C0[v2 + v0] = SpriteList_AddEx(&v3);
+                param0->unk_1C0[v2 + v0] = SpriteList_AddAffine(&v3);
                 Sprite_SetAnimateFlag(param0->unk_1C0[v2 + v0], 1);
                 Sprite_SetAnim(param0->unk_1C0[v2 + v0], 9);
                 Sprite_SetDrawFlag(param0->unk_1C0[v2 + v0], 0);
@@ -165,7 +165,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
             v3.position.x = FX32_ONE * (12 * 8);
             v3.position.y = FX32_ONE * (17 * 8);
             v3.priority = 0;
-            param0->unk_1C0[v2] = SpriteList_AddEx(&v3);
+            param0->unk_1C0[v2] = SpriteList_AddAffine(&v3);
             Sprite_SetAnimateFlag(param0->unk_1C0[v2], 0);
             Sprite_SetAnim(param0->unk_1C0[v2], 10);
             Sprite_SetDrawFlag(param0->unk_1C0[v2], 0);

@@ -1184,7 +1184,7 @@ static Sprite *ov97_0222E538(UnkStruct_ov97_0222E398 *param0, int param1)
             v1.position.y += FX32_CONST(256);
         }
 
-        v0 = SpriteList_AddEx(&v1);
+        v0 = SpriteList_AddAffine(&v1);
     }
 
     if (v0) {

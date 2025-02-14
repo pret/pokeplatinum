@@ -137,7 +137,7 @@ Sprite *ov111_021D3280(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 param2,
             v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         }
 
-        v2 = SpriteList_AddEx(&v3);
+        v2 = SpriteList_AddAffine(&v3);
 
         Sprite_SetAnimateFlag(v2, 0);
         Sprite_SetAnimSpeed(v2, FX32_ONE);

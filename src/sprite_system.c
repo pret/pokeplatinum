@@ -293,7 +293,7 @@ static Sprite *CreateSpriteFromResourceHeader(SpriteSystem *spriteSys, SpriteMan
     template.vramType = vramType;
     template.heapID = spriteSys->heapId;
 
-    Sprite *sprite = SpriteList_AddEx(&template);
+    Sprite *sprite = SpriteList_AddAffine(&template);
     if (sprite != NULL) {
         Sprite_SetAnim(sprite, animIdx);
         Sprite_SetExplicitPalette(sprite, plttIdx);
@@ -554,7 +554,7 @@ ManagedSprite *SpriteSystem_NewSprite(SpriteSystem *spriteSys, SpriteManager *sp
     innerTemplate.vramType = template->vramType;
     innerTemplate.heapID = spriteSys->heapId;
 
-    managedSprite->sprite = SpriteList_AddEx(&innerTemplate);
+    managedSprite->sprite = SpriteList_AddAffine(&innerTemplate);
     managedSprite->vramTransfer = template->vramTransfer;
     if (managedSprite->sprite != NULL) {
         spritePalette = Sprite_GetExplicitPalette(managedSprite->sprite);
@@ -1118,9 +1118,9 @@ void ManagedSprite_SetAffineTranslation(ManagedSprite *managedSprite, s16 x, s16
     Sprite_SetAffineTranslation(managedSprite->sprite, &translation);
 }
 
-void ManagedSprite_SetPixelated(ManagedSprite *managedSprite, BOOL pixelated)
+void ManagedSprite_SetMosaicFlag(ManagedSprite *managedSprite, BOOL mosaic)
 {
-    Sprite_SetPixelated(managedSprite->sprite, pixelated);
+    Sprite_SetMosaicFlag(managedSprite->sprite, mosaic);
 }
 
 void Sprite_SetExplicitOamMode2(Sprite *sprite, GXOamMode mode)

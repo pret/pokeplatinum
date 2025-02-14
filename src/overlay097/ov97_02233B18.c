@@ -746,7 +746,7 @@ static void ov97_02234508(UnkStruct_ov97_02234A2C *param0)
             v3.position.y = FX32_ONE * (v2 * 24 + 40);
 
             if (param0->unk_20C[v0].unk_00 == NULL) {
-                param0->unk_20C[v0].unk_00 = SpriteList_AddEx(&v3);
+                param0->unk_20C[v0].unk_00 = SpriteList_AddAffine(&v3);
             }
 
             Sprite_SetAnimateFlag(param0->unk_20C[v0].unk_00, 1);
@@ -759,7 +759,7 @@ static void ov97_02234508(UnkStruct_ov97_02234A2C *param0)
             v3.position.y += FX32_ONE * 12;
 
             if (param0->unk_20C[v0].unk_04 == NULL) {
-                param0->unk_20C[v0].unk_04 = SpriteList_AddEx(&v3);
+                param0->unk_20C[v0].unk_04 = SpriteList_AddAffine(&v3);
             }
 
             Sprite_SetAnimateFlag(param0->unk_20C[v0].unk_04, 1);
@@ -788,7 +788,7 @@ static Sprite *ov97_02234638(UnkStruct_ov97_02234A2C *param0, int param1, int pa
     v0.position.y = FX32_ONE * param2;
     v0.priority = 10;
 
-    v1 = SpriteList_AddEx(&v0);
+    v1 = SpriteList_AddAffine(&v0);
 
     Sprite_SetAnimateFlag(v1, 1);
     Sprite_SetAnim(v1, param3);
@@ -1459,7 +1459,7 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
         v5.position.x = FX32_ONE * (v0 * 40 + 28);
         v5.position.y = FX32_ONE * 142;
 
-        param0->unk_478[v0] = SpriteList_AddEx(&v5);
+        param0->unk_478[v0] = SpriteList_AddAffine(&v5);
 
         Sprite_SetAnimateFlag(param0->unk_478[v0], 1);
         Sprite_SetAnim(param0->unk_478[v0], 10 + v0);

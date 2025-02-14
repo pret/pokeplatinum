@@ -357,7 +357,7 @@ static void ov94_0223FE24(UnkStruct_ov94_0223FD4C *param0)
     v1.position.x = FX32_ONE * Unk_ov94_02245ED4[param0->unk_112][0];
     v1.position.y = FX32_ONE * Unk_ov94_02245ED4[param0->unk_112][1];
 
-    param0->unk_E20 = SpriteList_AddEx(&v1);
+    param0->unk_E20 = SpriteList_AddAffine(&v1);
 
     Sprite_SetAnimateFlag(param0->unk_E20, 1);
     Sprite_SetAnim(param0->unk_E20, 4);
@@ -373,7 +373,7 @@ static void ov94_0223FE24(UnkStruct_ov94_0223FD4C *param0)
         v1.position.y = FX32_ONE * Unk_ov94_02245ED4[v0][1];
         v1.priority = 20;
 
-        param0->unk_E28[v0] = SpriteList_AddEx(&v1);
+        param0->unk_E28[v0] = SpriteList_AddAffine(&v1);
 
         Sprite_SetAnim(param0->unk_E28[v0], 6 + v0);
         Sprite_SetExplicitPriority(param0->unk_E28[v0], 1);
@@ -384,7 +384,7 @@ static void ov94_0223FE24(UnkStruct_ov94_0223FD4C *param0)
         v1.position.y = FX32_ONE * (Unk_ov94_02245ED4[v0][1] + 6);
         v1.priority = 10;
 
-        param0->unk_EA0[v0] = SpriteList_AddEx(&v1);
+        param0->unk_EA0[v0] = SpriteList_AddAffine(&v1);
 
         Sprite_SetAnim(param0->unk_EA0[v0], 40);
         Sprite_SetExplicitPriority(param0->unk_EA0[v0], 1);
@@ -395,7 +395,7 @@ static void ov94_0223FE24(UnkStruct_ov94_0223FD4C *param0)
         v1.position.y = FX32_ONE * (Unk_ov94_02245ED4[v0][1] + 6);
         v1.priority = 10;
 
-        param0->unk_F18[v0] = SpriteList_AddEx(&v1);
+        param0->unk_F18[v0] = SpriteList_AddAffine(&v1);
 
         Sprite_SetAnim(param0->unk_F18[v0], 42);
         Sprite_SetExplicitPriority(param0->unk_F18[v0], 1);
@@ -405,7 +405,7 @@ static void ov94_0223FE24(UnkStruct_ov94_0223FD4C *param0)
         v1.position.x = FX32_ONE * Unk_ov94_02245E1C[v0][0];
         v1.position.y = FX32_ONE * Unk_ov94_02245E1C[v0][1];
 
-        param0->unk_F54[v0] = SpriteList_AddEx(&v1);
+        param0->unk_F54[v0] = SpriteList_AddAffine(&v1);
 
         Sprite_SetAnimateFlag(param0->unk_F54[v0], 1);
         Sprite_SetAnim(param0->unk_F54[v0], 38 + v0);

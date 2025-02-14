@@ -1611,7 +1611,7 @@ static void sub_02087A10(UnkStruct_02087A10 *param0)
             v1.position.x = FX32_ONE * Unk_020F2984[v0][0];
             v1.position.y = FX32_ONE * Unk_020F2984[v0][1];
 
-            param0->unk_390[v0] = SpriteList_AddEx(&v1);
+            param0->unk_390[v0] = SpriteList_AddAffine(&v1);
 
             Sprite_SetAnimateFlag(param0->unk_390[v0], 1);
             Sprite_SetAnim(param0->unk_390[v0], Unk_020F2984[v0][2]);
@@ -1636,7 +1636,7 @@ static void sub_02087A10(UnkStruct_02087A10 *param0)
             v1.position.x = FX32_ONE * ((10 * 8) + v0 * 12);
             v1.position.y = FX32_ONE * (4 * 8 + 7);
 
-            param0->unk_3C8[v0] = SpriteList_AddEx(&v1);
+            param0->unk_3C8[v0] = SpriteList_AddAffine(&v1);
 
             Sprite_SetAnimateFlag(param0->unk_3C8[v0], 1);
             Sprite_SetAnim(param0->unk_3C8[v0], 43);
@@ -1654,7 +1654,7 @@ static void sub_02087BE4(UnkStruct_02087A10 *param0, AffineSpriteListTemplate *p
 {
     param1->position.x = FX32_ONE * 24;
     param1->position.y = FX32_ONE * (16 - 8);
-    param0->unk_3F8[0] = SpriteList_AddEx(param1);
+    param0->unk_3F8[0] = SpriteList_AddAffine(param1);
 
     Sprite_SetAnimateFlag(param0->unk_3F8[0], 1);
 
@@ -1688,7 +1688,7 @@ static void sub_02087BE4(UnkStruct_02087A10 *param0, AffineSpriteListTemplate *p
         if (param0->unk_10 != 2) {
             param1->position.x = FX32_ONE * ((10 * 8) + param0->unk_0C * 13);
             param1->position.y = FX32_ONE * ((4 * 8 + 7) - 12);
-            param0->unk_3F8[1] = SpriteList_AddEx(param1);
+            param0->unk_3F8[1] = SpriteList_AddAffine(param1);
 
             if (param0->unk_10 == 0) {
                 Sprite_SetAnim(param0->unk_3F8[1], 45);

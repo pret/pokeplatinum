@@ -90,7 +90,7 @@ Sprite *ov105_02245BA4(UnkStruct_ov105_02245AAC *param0, u32 param1, u32 param2,
             v3.position.y += (192 << FX32_SHIFT);
         }
 
-        v2 = SpriteList_AddEx(&v3);
+        v2 = SpriteList_AddAffine(&v3);
 
         Sprite_SetAnimateFlag(v2, 1);
         Sprite_SetAnim(v2, param2);

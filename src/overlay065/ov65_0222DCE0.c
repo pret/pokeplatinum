@@ -6696,7 +6696,7 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 par
         v9[v1].resourceData = &v2;
         v9[v1].heapID = param2;
 
-        param0->unk_BE0.unk_21C[v1] = SpriteList_AddEx(&v9[v1]);
+        param0->unk_BE0.unk_21C[v1] = SpriteList_AddAffine(&v9[v1]);
 
         Sprite_SetAnim(param0->unk_BE0.unk_21C[v1], Unk_ov65_02238930[v1]);
     }

@@ -52,7 +52,7 @@ void ov22_02259C58(UnkStruct_ov22_02259C58 *param0, UnkStruct_ov22_02259C58_1 *p
     GF_ASSERT(param0);
     GF_ASSERT(param1);
 
-    param0->unk_00 = SpriteList_AddEx(param1->unk_00);
+    param0->unk_00 = SpriteList_AddAffine(param1->unk_00);
     GF_ASSERT(param0->unk_00);
 
     param0->unk_04 = param1->unk_0C;

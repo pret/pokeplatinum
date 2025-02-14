@@ -152,7 +152,7 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
     v5.vramType = v0;
     v5.heapID = param0->unk_00;
 
-    v4->sprite = SpriteList_AddEx(&v5);
+    v4->sprite = SpriteList_AddAffine(&v5);
 
     if (v4->sprite != NULL) {
         Sprite_SetAnim(v4->sprite, 0);

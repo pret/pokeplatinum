@@ -421,7 +421,7 @@ static void ov56_02256704(UnkStruct_ov56_02256468 *param0)
             v1.position.x = FX32_CONST(256 - 24);
             v1.position.y = FX32_CONST(Unk_ov56_02257238[v0]) + (192 << FX32_SHIFT);
 
-            param0->unk_1FC[v0] = SpriteList_AddEx(&v1);
+            param0->unk_1FC[v0] = SpriteList_AddAffine(&v1);
 
             Sprite_SetAnimateFlag(param0->unk_1FC[v0], 1);
             Sprite_SetAnim(param0->unk_1FC[v0], v0);

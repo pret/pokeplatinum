@@ -269,7 +269,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
 
         v2.position.x = FX32_ONE * (128 - 48);
         v2.position.y = FX32_ONE * (14 * 8);
-        param0->unk_250[0] = SpriteList_AddEx(&v2);
+        param0->unk_250[0] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[0], 0);
         Sprite_SetDrawFlag(param0->unk_250[0], 0);
@@ -278,7 +278,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
 
         v2.position.x = FX32_ONE * (128 - 48);
         v2.position.y = FX32_ONE * (14 * 8) + (192 << FX32_SHIFT);
-        param0->unk_250[1] = SpriteList_AddEx(&v2);
+        param0->unk_250[1] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[1], 0);
         Sprite_SetDrawFlag(param0->unk_250[1], 0);
@@ -287,7 +287,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
 
         v2.position.x = FX32_ONE * (128 + 48);
         v2.position.y = FX32_ONE * (14 * 8);
-        param0->unk_250[2] = SpriteList_AddEx(&v2);
+        param0->unk_250[2] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[2], 0);
         Sprite_SetDrawFlag(param0->unk_250[2], 0);
@@ -296,7 +296,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
 
         v2.position.x = FX32_ONE * -64;
         v2.position.y = FX32_ONE * (14 * 8);
-        param0->unk_250[3] = SpriteList_AddEx(&v2);
+        param0->unk_250[3] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[3], 1);
         Sprite_SetDrawFlag(param0->unk_250[3], 0);
@@ -305,7 +305,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
 
         v2.position.x = FX32_ONE * (256 + 64);
         v2.position.y = FX32_ONE * (14 * 8);
-        param0->unk_250[10] = SpriteList_AddEx(&v2);
+        param0->unk_250[10] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[10], 1);
         Sprite_SetDrawFlag(param0->unk_250[10], 0);
@@ -314,7 +314,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
 
         v2.position.x = FX32_ONE * 128;
         v2.position.y = FX32_ONE * (12 * 8);
-        param0->unk_250[11] = SpriteList_AddEx(&v2);
+        param0->unk_250[11] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[11], 1);
         Sprite_SetDrawFlag(param0->unk_250[11], 0);
@@ -324,7 +324,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
 
         v2.position.x = FX32_ONE * 128;
         v2.position.y = FX32_ONE * (12 * 8) + (192 << FX32_SHIFT);
-        param0->unk_250[12] = SpriteList_AddEx(&v2);
+        param0->unk_250[12] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[12], 1);
         Sprite_SetDrawFlag(param0->unk_250[12], 0);
@@ -334,12 +334,12 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
 
         v2.position.x = FX32_ONE * 128;
         v2.position.y = FX32_ONE * (0xd * 8);
-        param0->unk_250[13] = SpriteList_AddEx(&v2);
+        param0->unk_250[13] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[13], 1);
         Sprite_SetDrawFlag(param0->unk_250[13], 0);
 
-        param0->unk_250[14] = SpriteList_AddEx(&v2);
+        param0->unk_250[14] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[14], 1);
         Sprite_SetDrawFlag(param0->unk_250[14], 0);
@@ -348,12 +348,12 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
 
         v2.position.x = FX32_ONE * 128;
         v2.position.y = FX32_ONE * (0xd * 8) + (192 << FX32_SHIFT);
-        param0->unk_250[15] = SpriteList_AddEx(&v2);
+        param0->unk_250[15] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[15], 1);
         Sprite_SetDrawFlag(param0->unk_250[15], 0);
 
-        param0->unk_250[16] = SpriteList_AddEx(&v2);
+        param0->unk_250[16] = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_250[16], 1);
         Sprite_SetDrawFlag(param0->unk_250[16], 0);
@@ -363,7 +363,7 @@ void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
 
             v2.position.x = FX32_ONE * v4[v0];
             v2.position.y = FX32_ONE * v5[v0];
-            param0->unk_250[v3[v0]] = SpriteList_AddEx(&v2);
+            param0->unk_250[v3[v0]] = SpriteList_AddAffine(&v2);
 
             Sprite_SetAnimateFlag(param0->unk_250[v3[v0]], 1);
             Sprite_SetDrawFlag(param0->unk_250[v3[v0]], 0);
@@ -383,7 +383,7 @@ void ov77_021D5FB4(UnkStruct_ov77_021D5564 *param0, UnkStruct_ov77_021D6734 *par
 
         for (v0 = 0; v0 < 16; v0++) {
             v3 = ov77_021D6794(param1, v0);
-            (*v3) = SpriteList_AddEx(&v2);
+            (*v3) = SpriteList_AddAffine(&v2);
             Sprite_SetAnimateFlag(*v3, 0);
             Sprite_SetDrawFlag(*v3, 0);
         }

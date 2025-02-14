@@ -1290,7 +1290,7 @@ static void ov115_022615B0(UnkStruct_ov115_022615B0 *param0, AffineSpriteListTem
         param1->position.x = v1 << FX32_SHIFT;
         param1->position.y = v2 << FX32_SHIFT;
         param0->unk_18[v0] = param1->position;
-        param0->unk_00[v0] = SpriteList_AddEx(param1);
+        param0->unk_00[v0] = SpriteList_AddAffine(param1);
 
         Sprite_SetAnim(param0->unk_00[v0], 2);
         Sprite_SetDrawFlag(param0->unk_00[v0], 0);
@@ -3711,7 +3711,7 @@ static void ov115_022646BC(UnkStruct_ov115_02261ADC *param0, UnkStruct_ov115_022
         v0.priority = 32;
         v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         v0.heapID = param2;
-        param1->unk_00 = SpriteList_AddEx(&v0);
+        param1->unk_00 = SpriteList_AddAffine(&v0);
 
         Sprite_SetDrawFlag(param1->unk_00, 0);
     }
@@ -3934,7 +3934,7 @@ static void ov115_02264B40(UnkStruct_ov115_02261ADC *param0, UnkStruct_ov115_022
     v0.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v0.heapID = param3;
 
-    param1->unk_04 = SpriteList_AddEx(&v0);
+    param1->unk_04 = SpriteList_AddAffine(&v0);
 
     Sprite_SetDrawFlag(param1->unk_04, 0);
     Sprite_SetExplicitPalette(param1->unk_04, param2);
@@ -3995,7 +3995,7 @@ static void ov115_02264C0C(UnkStruct_ov115_02261ADC *param0, UnkStruct_ov115_022
     v1.heapID = param3;
 
     for (v0 = 0; v0 < 8; v0++) {
-        param1->unk_00[v0].unk_04 = SpriteList_AddEx(&v1);
+        param1->unk_00[v0].unk_04 = SpriteList_AddAffine(&v1);
         Sprite_SetDrawFlag(param1->unk_00[v0].unk_04, 0);
         Sprite_SetAffineOverwriteMode(param1->unk_00[v0].unk_04, 1);
         Sprite_SetExplicitPalette(param1->unk_00[v0].unk_04, param2);

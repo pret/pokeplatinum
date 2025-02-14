@@ -172,20 +172,20 @@ void Sprite_Reset(Sprite *sprite)
     sprite->explicitOamMode = GX_OAM_MODE_NORMAL;
 }
 
-Sprite *SpriteList_AddEx(const AffineSpriteListTemplate *params)
+Sprite *SpriteList_AddAffine(const AffineSpriteListTemplate *template)
 {
-    Sprite *sprite = SpriteList_AllocSprite(params->list);
+    Sprite *sprite = SpriteList_AllocSprite(template->list);
     if (sprite == NULL) {
         return NULL;
     }
 
-    sprite->list = params->list;
+    sprite->list = template->list;
     sprite->activeAnimID = 0;
-    sprite->position = params->position;
-    sprite->affineScale = params->affineScale;
-    sprite->affineZRotation = params->affineZRotation;
-    sprite->vramType = params->vramType;
-    sprite->priority = params->priority;
+    sprite->position = template->position;
+    sprite->affineScale = template->affineScale;
+    sprite->affineZRotation = template->affineZRotation;
+    sprite->vramType = template->vramType;
+    sprite->priority = template->priority;
     sprite->affineOverwriteMode = NNS_G2D_RND_AFFINE_OVERWRITE_NONE;
     sprite->flip = SPRITE_FLIP_NONE;
     sprite->explicitMosaic = FALSE;
@@ -193,10 +193,10 @@ Sprite *SpriteList_AddEx(const AffineSpriteListTemplate *params)
     sprite->overwriteFlags = NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS | NNS_G2D_RND_OVERWRITE_PRIORITY;
 
     NNS_G2dSetRndCoreAffineOverwriteMode(
-        &params->list->renderer->rendererCore,
+        &template->list->renderer->rendererCore,
         sprite->affineOverwriteMode);
     NNS_G2dSetRndCoreFlipMode(
-        &params->list->renderer->rendererCore,
+        &template->list->renderer->rendererCore,
         sprite->flip & SPRITE_FLIP_H,
         sprite->flip & SPRITE_FLIP_V);
 
@@ -204,7 +204,7 @@ Sprite *SpriteList_AddEx(const AffineSpriteListTemplate *params)
     sprite->animate = FALSE;
     sprite->animSpeed = (FX32_ONE * 2);
 
-    if (SpriteList_InitSprite(params->list, params->resourceData, sprite, params->heapID) == FALSE) {
+    if (SpriteList_InitSprite(template->list, template->resourceData, sprite, template->heapID) == FALSE) {
         Sprite_Delete(sprite);
         return NULL;
     }
@@ -212,27 +212,27 @@ Sprite *SpriteList_AddEx(const AffineSpriteListTemplate *params)
     sprite->explicitPaletteOffset = GetPaletteIndexForProxy(&sprite->paletteProxy, sprite->vramType);
     sprite->explicitPalette = sprite->explicitPaletteOffset;
 
-    SpriteList_Insert(params->list, sprite);
+    SpriteList_Insert(template->list, sprite);
 
     return sprite;
 }
 
-Sprite *SpriteList_Add(const SpriteListTemplate *params)
+Sprite *SpriteList_Add(const SpriteListTemplate *template)
 {
-    AffineSpriteListTemplate paramsEx;
+    AffineSpriteListTemplate affineTemplate;
 
-    paramsEx.list = params->list;
-    paramsEx.resourceData = params->resourceData;
-    paramsEx.position = params->position;
-    paramsEx.affineScale.x = FX32_ONE;
-    paramsEx.affineScale.y = FX32_ONE;
-    paramsEx.affineScale.z = FX32_ONE;
-    paramsEx.affineZRotation = 0;
-    paramsEx.priority = params->priority;
-    paramsEx.vramType = params->vramType;
-    paramsEx.heapID = params->heapID;
+    affineTemplate.list = template->list;
+    affineTemplate.resourceData = template->resourceData;
+    affineTemplate.position = template->position;
+    affineTemplate.affineScale.x = FX32_ONE;
+    affineTemplate.affineScale.y = FX32_ONE;
+    affineTemplate.affineScale.z = FX32_ONE;
+    affineTemplate.affineZRotation = 0;
+    affineTemplate.priority = template->priority;
+    affineTemplate.vramType = template->vramType;
+    affineTemplate.heapID = template->heapID;
 
-    return SpriteList_AddEx(&paramsEx);
+    return SpriteList_AddAffine(&affineTemplate);
 }
 
 void Sprite_Delete(Sprite *sprite)
@@ -541,11 +541,11 @@ NNSG2dImagePaletteProxy *Sprite_GetPaletteProxy(Sprite *paletteProxy)
     return &paletteProxy->paletteProxy;
 }
 
-void Sprite_SetPixelated(Sprite *sprite, BOOL pixelated)
+void Sprite_SetMosaicFlag(Sprite *sprite, BOOL mosaic)
 {
-    sprite->explicitMosaic = pixelated;
+    sprite->explicitMosaic = mosaic;
 
-    if (pixelated == TRUE) {
+    if (mosaic == TRUE) {
         sprite->overwriteFlags |= NNS_G2D_RND_OVERWRITE_MOSAIC;
     } else {
         sprite->overwriteFlags ^= NNS_G2D_RND_OVERWRITE_MOSAIC;

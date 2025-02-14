@@ -192,7 +192,7 @@ static void ov6_022428F8(GreatMarshLookout_SpriteResources *param0)
         v2.position.x = FX32_ONE * (256 / 2);
         v2.position.y = FX32_ONE * (192 / 2);
 
-        param0->unk_1C8 = SpriteList_AddEx(&v2);
+        param0->unk_1C8 = SpriteList_AddAffine(&v2);
 
         Sprite_SetAnimateFlag(param0->unk_1C8, 0);
         Sprite_SetAnim(param0->unk_1C8, 0);

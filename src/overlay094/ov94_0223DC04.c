@@ -222,7 +222,7 @@ static void ov94_0223DE7C(UnkStruct_ov94_0223FD4C *param0)
     v0.position.x = FX32_ONE * 208;
     v0.position.y = FX32_ONE * 58;
 
-    param0->unk_F30 = SpriteList_AddEx(&v0);
+    param0->unk_F30 = SpriteList_AddAffine(&v0);
 
     Sprite_SetAnimateFlag(param0->unk_F30, 1);
     Sprite_SetAnim(param0->unk_F30, 37);

@@ -456,7 +456,7 @@ Sprite *ov97_02237D14(int param0, Sprite *param1, int param2, int param3, int pa
             v1.position.y += v0->unk_274;
         }
 
-        param1 = SpriteList_AddEx(&v1);
+        param1 = SpriteList_AddAffine(&v1);
     }
 
     Sprite_SetAnimateFlag(param1, 1);

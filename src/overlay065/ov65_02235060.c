@@ -688,8 +688,8 @@ static void ov65_02235A94(UnkStruct_ov65_022358CC *param0, u32 param1)
     v0.priority = 0;
     v0.heapID = param1;
 
-    param0->unk_1A0.unk_34 = SpriteList_AddEx(&v0);
-    param0->unk_1A0.unk_38 = SpriteList_AddEx(&v0);
+    param0->unk_1A0.unk_34 = SpriteList_AddAffine(&v0);
+    param0->unk_1A0.unk_38 = SpriteList_AddAffine(&v0);
 
     Sprite_SetDrawFlag(param0->unk_1A0.unk_34, 0);
     Sprite_SetDrawFlag(param0->unk_1A0.unk_38, 0);

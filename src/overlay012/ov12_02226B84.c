@@ -2799,7 +2799,7 @@ void ov12_02229908(UnkStruct_ov12_0221FCDC *param0)
         v0->unk_2C = 15;
     }
 
-    ManagedSprite_SetPixelated(v0->unk_1C, 1);
+    ManagedSprite_SetMosaicFlag(v0->unk_1C, 1);
 
     {
         SysTask *v2;

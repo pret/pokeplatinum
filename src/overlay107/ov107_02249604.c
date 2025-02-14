@@ -139,7 +139,7 @@ Sprite *ov107_022498A4(UnkStruct_ov107_02249954 *param0, u32 param1, u32 param2,
             v3.position.y += (192 << FX32_SHIFT);
         }
 
-        v2 = SpriteList_AddEx(&v3);
+        v2 = SpriteList_AddAffine(&v3);
 
         Sprite_SetAnimateFlag(v2, 1);
         Sprite_SetAnimSpeed(v2, FX32_ONE);

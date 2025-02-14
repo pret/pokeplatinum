@@ -1185,7 +1185,7 @@ static void ov64_0222E9A4(UnkStruct_ov64_0222E21C *param0, u32 param1)
         v0[v1].resourceData = &param0->unk_23C;
         v0[v1].heapID = param1;
 
-        param0->unk_270[v1] = SpriteList_AddEx(&v0[v1]);
+        param0->unk_270[v1] = SpriteList_AddAffine(&v0[v1]);
 
         Sprite_SetAnimateFlag(param0->unk_270[v1], 1);
         Sprite_SetDrawFlag(param0->unk_270[v1], 0);
@@ -2119,7 +2119,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     ldr r0, [sp, #0x18]
     str r0, [sp, #0x54]
     add r0, sp, #0x28
-    bl SpriteList_AddEx
+    bl SpriteList_AddAffine
     mov r2, #0x42
     ldr r1, [sp, #0x14]
     lsl r2, r2, #2

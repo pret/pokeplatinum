@@ -566,7 +566,7 @@ static Sprite *sub_0205D344(UnkStruct_0205D094 *param0, int param1, VecFx32 *par
     v0.vramType = param4;
     v0.heapID = 4;
 
-    v1 = SpriteList_AddEx(&v0);
+    v1 = SpriteList_AddAffine(&v0);
     GF_ASSERT(v1);
 
     return v1;

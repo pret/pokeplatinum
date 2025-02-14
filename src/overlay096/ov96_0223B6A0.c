@@ -308,7 +308,7 @@ static void ov96_0223BB0C(UnkStruct_ov96_0223BF40 *param0)
         for (v0 = 0; v0 < 2; v0++) {
             v1.position.x = FX32_ONE * Unk_ov96_0223DA80[v0][0];
             v1.position.y = FX32_ONE * Unk_ov96_0223DA80[v0][1];
-            param0->unk_E30[v0] = SpriteList_AddEx(&v1);
+            param0->unk_E30[v0] = SpriteList_AddAffine(&v1);
             Sprite_SetAnimateFlag(param0->unk_E30[v0], 1);
             Sprite_SetAnim(param0->unk_E30[v0], v0);
             Sprite_SetDrawFlag(param0->unk_E30[v0], 0);

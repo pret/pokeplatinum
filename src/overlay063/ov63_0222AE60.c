@@ -460,7 +460,7 @@ UnkStruct_ov63_0222BB38 *ov63_0222B0C0(UnkStruct_ov63_0222AE60 *param0, const Un
         v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     }
 
-    v0->unk_04 = SpriteList_AddEx(&v1);
+    v0->unk_04 = SpriteList_AddAffine(&v1);
     Sprite_SetExplicitPriority(v0->unk_04, param1->unk_06);
 
     if (param0->unk_10[v2].unk_10 == 1) {
@@ -493,7 +493,7 @@ UnkStruct_ov63_0222BB38 *ov63_0222B0C0(UnkStruct_ov63_0222AE60 *param0, const Un
             v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         }
 
-        v0->unk_08 = SpriteList_AddEx(&v1);
+        v0->unk_08 = SpriteList_AddAffine(&v1);
 
         Sprite_SetExplicitPriority(v0->unk_08, param1->unk_06);
     } else {

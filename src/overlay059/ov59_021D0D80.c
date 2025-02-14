@@ -650,7 +650,7 @@ static void ov59_021D1598(UnkStruct_020961E8 *param0)
         v1.position.x = FX32_ONE * Unk_ov59_021D32C4[0][0];
         v1.position.y = FX32_ONE * Unk_ov59_021D32C4[0][1];
 
-        param0->unk_28C[0] = SpriteList_AddEx(&v1);
+        param0->unk_28C[0] = SpriteList_AddAffine(&v1);
 
         Sprite_SetAnimateFlag(param0->unk_28C[0], 1);
         Sprite_SetDrawFlag(param0->unk_28C[0], 1);
@@ -659,7 +659,7 @@ static void ov59_021D1598(UnkStruct_020961E8 *param0)
             v1.position.x = FX32_ONE * Unk_ov59_021D32C4[v0 + 1][0];
             v1.position.y = FX32_ONE * Unk_ov59_021D32C4[v0 + 1][1];
 
-            param0->unk_28C[v0 + 1] = SpriteList_AddEx(&v1);
+            param0->unk_28C[v0 + 1] = SpriteList_AddAffine(&v1);
 
             Sprite_SetAnimateFlag(param0->unk_28C[v0 + 1], 1);
             Sprite_SetAnim(param0->unk_28C[v0 + 1], 27 + (v0 - 1) * 2);

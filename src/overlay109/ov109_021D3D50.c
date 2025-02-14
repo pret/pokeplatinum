@@ -650,7 +650,7 @@ static void ov109_021D4518(UnkStruct_ov109_021D5140 *param0)
             v1.position.x = FX32_ONE * Unk_ov109_021D5DD0[v0 + 1][0];
             v1.position.y = FX32_ONE * Unk_ov109_021D5DD0[v0 + 1][1];
 
-            param0->unk_29C[v0 + 1] = SpriteList_AddEx(&v1);
+            param0->unk_29C[v0 + 1] = SpriteList_AddAffine(&v1);
 
             Sprite_SetAnimateFlag(param0->unk_29C[v0 + 1], 1);
             Sprite_SetAnim(param0->unk_29C[v0 + 1], 27 + (v0 - 1) * 2);

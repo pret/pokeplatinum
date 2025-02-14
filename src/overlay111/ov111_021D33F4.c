@@ -148,7 +148,7 @@ void ov111_021D350C(UnkStruct_ov111_021D33F4 *param0, int param1)
 
 void ov111_021D3530(UnkStruct_ov111_021D33F4 *param0, BOOL param1)
 {
-    Sprite_SetPixelated(param0->unk_0C, param1);
+    Sprite_SetMosaicFlag(param0->unk_0C, param1);
     return;
 }
 

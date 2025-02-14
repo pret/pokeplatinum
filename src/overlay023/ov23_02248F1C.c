@@ -115,7 +115,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
             v3.heapID = 4;
 
             for (v2 = 0; v2 < (7 + 1); v2++) {
-                v0->unk_390[v2] = SpriteList_AddEx(&v3);
+                v0->unk_390[v2] = SpriteList_AddAffine(&v3);
                 Sprite_SetAnimateFlag(v0->unk_390[v2], 1);
                 Sprite_SetDrawFlag(v0->unk_390[v2], 0);
 
@@ -125,7 +125,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
             }
 
             for (v2 = 0; v2 < 16 + 1; v2++) {
-                v0->unk_3B0[v2] = SpriteList_AddEx(&v3);
+                v0->unk_3B0[v2] = SpriteList_AddAffine(&v3);
                 Sprite_SetAnimateFlag(v0->unk_3B0[v2], 1);
                 Sprite_SetDrawFlag(v0->unk_3B0[v2], 0);
                 Sprite_SetAnim(v0->unk_3B0[v2], 2);

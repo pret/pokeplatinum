@@ -53,14 +53,14 @@ void ov94_02243EF8(UnkStruct_ov94_0223FD4C *param0, int param1)
     v0.position.x = FX32_ONE * 128;
     v0.position.y = FX32_ONE * 130 + (256 * FX32_ONE);
 
-    param0->unk_F34[0] = SpriteList_AddEx(&v0);
+    param0->unk_F34[0] = SpriteList_AddAffine(&v0);
 
     Sprite_SetAnimateFlag(param0->unk_F34[0], 1);
     Sprite_SetAnim(param0->unk_F34[0], 3 + param1 * 7);
     Sprite_SetDrawFlag(param0->unk_F34[0], 1);
 
     for (v1 = 0; v1 < 7; v1++) {
-        param0->unk_F34[v1 + 1] = SpriteList_AddEx(&v0);
+        param0->unk_F34[v1 + 1] = SpriteList_AddAffine(&v0);
 
         Sprite_SetAnimateFlag(param0->unk_F34[v1 + 1], 1);
         Sprite_SetAnim(param0->unk_F34[v1 + 1], 14 + v1 * 4);

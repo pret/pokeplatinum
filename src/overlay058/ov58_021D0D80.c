@@ -683,7 +683,7 @@ static void ov58_021D16D8(UnkStruct_02095EAC *param0)
             v1.position.y = FX32_ONE * (32 + 32);
             v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
 
-            param0->unk_23C[v0] = SpriteList_AddEx(&v1);
+            param0->unk_23C[v0] = SpriteList_AddAffine(&v1);
 
             Sprite_SetAnimateFlag(param0->unk_23C[v0], 1);
             Sprite_SetAnim(param0->unk_23C[v0], v0);
@@ -695,7 +695,7 @@ static void ov58_021D16D8(UnkStruct_02095EAC *param0)
             v1.position.x = FX32_ONE * (Unk_ov58_021D2EEC[v0][0]);
             v1.position.y = FX32_ONE * (Unk_ov58_021D2EEC[v0][1]);
 
-            param0->unk_2AC[v0] = SpriteList_AddEx(&v1);
+            param0->unk_2AC[v0] = SpriteList_AddAffine(&v1);
 
             Sprite_SetAnimateFlag(param0->unk_2AC[v0], 1);
             Sprite_SetAnim(param0->unk_2AC[v0], Unk_ov58_021D2EEC[v0][2]);
@@ -711,7 +711,7 @@ static void ov58_021D16D8(UnkStruct_02095EAC *param0)
             v1.position.x = FX32_ONE * 24;
             v1.position.y = FX32_ONE * (32 + 32 * v0) + (256 * FX32_ONE);
 
-            param0->unk_274[v0] = SpriteList_AddEx(&v1);
+            param0->unk_274[v0] = SpriteList_AddAffine(&v1);
 
             Sprite_SetAnimateFlag(param0->unk_274[v0], 1);
             Sprite_SetAnim(param0->unk_274[v0], v0);

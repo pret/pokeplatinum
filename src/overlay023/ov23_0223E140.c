@@ -2823,12 +2823,12 @@ static void ov23_0224108C(void)
 
         if (v0 == 0) {
             for (v1 = 2; v1 <= 7; v1++) {
-                Unk_ov23_02257740->unk_24C[v1] = SpriteList_AddEx(&v2);
+                Unk_ov23_02257740->unk_24C[v1] = SpriteList_AddAffine(&v2);
                 Sprite_SetAnimateFlag(Unk_ov23_02257740->unk_24C[v1], 1);
             }
         }
 
-        Unk_ov23_02257740->unk_24C[v0] = SpriteList_AddEx(&v2);
+        Unk_ov23_02257740->unk_24C[v0] = SpriteList_AddAffine(&v2);
         Sprite_SetAnimateFlag(Unk_ov23_02257740->unk_24C[v0], 1);
     }
 
