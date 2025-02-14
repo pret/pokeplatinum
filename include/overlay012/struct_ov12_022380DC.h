@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV12_022380DC_H
 #define POKEPLATINUM_STRUCT_OV12_022380DC_H
 
-#include "struct_decls/sprite_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/struct_ov16_0223E0C8.h"
 

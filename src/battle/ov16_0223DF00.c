@@ -13,12 +13,12 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"

@@ -7,11 +7,11 @@
 #include "constants/sound.h"
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/pokemon.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/species.h"
 #include "struct_defs/sprite_animation_frame.h"
 

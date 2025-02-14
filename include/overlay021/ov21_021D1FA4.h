@@ -4,7 +4,7 @@
 #include <nitro/gx.h>
 #include <nnsys.h>
 
-#include "struct_decls/sprite_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D22F8.h"

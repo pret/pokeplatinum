@@ -2,8 +2,8 @@
 #define POKEPLATINUM_OV12_0221FC20_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/struct_ov16_02264408.h"
 #include "battle/struct_ov16_02265BBC.h"

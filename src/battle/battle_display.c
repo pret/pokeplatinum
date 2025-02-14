@@ -7,10 +7,10 @@
 #include "constants/species.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/trainer.h"
 
@@ -97,7 +97,6 @@
 #include "battle/struct_ov16_0226C378.h"
 #include "battle/struct_ov16_0226D160_decl.h"
 #include "battle/trainer_ai.h"
-#include "functypes/funcptr_02007C34.h"
 #include "overlay012/const_ov12_0223B0A0.h"
 #include "overlay012/const_ov12_0223B0B8.h"
 #include "overlay012/const_ov12_0223B0DC.h"

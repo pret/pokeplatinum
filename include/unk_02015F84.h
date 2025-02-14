@@ -2,8 +2,8 @@
 #define POKEPLATINUM_UNK_02015F84_H
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_defs/poke_animation_settings.h"
+#include "struct_defs/pokemon_sprite.h"
 
 PokemonAnimationSys *sub_02015F84(const int param0, const int param1, const u8 param2);
 void sub_02015FB8(PokemonAnimationSys *param0);

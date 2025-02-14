@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV21_021E8D48_H
 #define POKEPLATINUM_OV21_021E8D48_H
 
-#include "struct_decls/sprite_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "overlay021/struct_ov21_021E8D48_decl.h"
 #include "overlay021/struct_ov21_021E8E0C.h"

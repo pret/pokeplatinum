@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sprite_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "overlay012/funcptr_ov12_02226274.h"
 #include "overlay012/ov12_0221FC20.h"

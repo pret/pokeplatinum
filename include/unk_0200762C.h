@@ -1,13 +1,11 @@
 #ifndef POKEPLATINUM_UNK_0200762C_H
 #define POKEPLATINUM_UNK_0200762C_H
 
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02008900.h"
-
-#include "functypes/funcptr_02007C34.h"
 
 void *sub_0200762C(int param0);
 void sub_02007768(UnkStruct_02007768 *param0);

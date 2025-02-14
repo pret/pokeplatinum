@@ -3,11 +3,11 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay012/struct_ball_rotation_decl.h"

@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sprite_decl.h"
 #include "struct_defs/poke_animation_settings.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "heap.h"
 #include "narc.h"

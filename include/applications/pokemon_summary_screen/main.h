@@ -6,10 +6,10 @@
 #include "constants/moves.h"
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 
 #include "bg_window.h"

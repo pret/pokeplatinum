@@ -4,12 +4,10 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02007768.h"
-#include "struct_defs/struct_02007C7C.h"
 #include "struct_defs/struct_02008900.h"
-
-#include "functypes/funcptr_02007C34.h"
 
 #include "heap.h"
 #include "inlines.h"

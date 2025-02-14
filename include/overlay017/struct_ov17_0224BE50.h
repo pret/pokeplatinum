@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_0224BE50_H
 #define POKEPLATINUM_STRUCT_OV17_0224BE50_H
 
-#include "struct_decls/sprite_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "overlay017/struct_ov17_0224B09C.h"
 

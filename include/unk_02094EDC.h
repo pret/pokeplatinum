@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_UNK_02094EDC_H
 #define POKEPLATINUM_UNK_02094EDC_H
 
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "battle/struct_ov16_0223E0C8.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV12_02225864_H
 #define POKEPLATINUM_OV12_02225864_H
 
-#include "struct_decls/sprite_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "overlay012/funcptr_ov12_02226274.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"

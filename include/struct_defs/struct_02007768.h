@@ -3,7 +3,7 @@
 
 #include <nnsys.h>
 
-#include "struct_defs/struct_02007C7C.h"
+#include "struct_defs/pokemon_sprite.h"
 
 typedef struct UnkStruct_02007768_t {
     PokemonSprite unk_00[4];

@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_02264408_H
 #define POKEPLATINUM_STRUCT_OV16_02264408_H
 
-#include "struct_decls/sprite_decl.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/struct_ov16_0223E0C8.h"
 #include "battle/struct_ov16_02264408_sub1.h"

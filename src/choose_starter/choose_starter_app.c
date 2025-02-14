@@ -8,7 +8,6 @@
 #include "constants/narc.h"
 #include "constants/species.h"
 
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
@@ -16,6 +15,7 @@
 #include "struct_decls/struct_02015214_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/choose_starter_data.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay021/struct_ov21_021E7F40.h"
