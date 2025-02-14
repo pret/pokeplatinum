@@ -4,8 +4,6 @@
 #include <string.h>
 
 #include "overlay025/ov25_02254560.h"
-#include "overlay025/struct_ov25_0225517C.h"
-#include "overlay025/struct_ov25_02255224_decl.h"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -15,39 +13,33 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
-struct UnkStruct_ov25_02255224_t {
-    u32 unk_00;
-    u32 unk_04;
-    void *unk_08;
-    void *unk_0C;
-    const void *unk_10;
-    SysTask *unk_14;
-};
+#define POKETCH_TASK_LIST_VALIDATOR 0x12345678 // If activeList[1] is not this value, tasks will not be added or removed.
+#define POKETCH_TASK_LIST_EMPTY 0xFFFFFFFF
 
-static BOOL ov25_022550B0(u32 *param0, u32 param1);
-static void ov25_022550F0(u32 *param0, u32 param1);
+static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId);
+static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId);
 
-void ov25_02255090(u32 *param0, u32 param1)
+void PoketchTask_InitActiveTaskList(u32 *activeList, u32 numTaskSlots)
 {
-    u32 v0;
+    u32 i;
 
-    param0[0] = param1;
-    param0[1] = 0x12345678;
+    activeList[0] = numTaskSlots;
+    activeList[1] = POKETCH_TASK_LIST_VALIDATOR;
 
-    for (v0 = 0; v0 < param1; v0++) {
-        param0[2 + v0] = 0xffffffff;
+    for (i = 0; i < numTaskSlots; i++) {
+        activeList[2 + i] = POKETCH_TASK_LIST_EMPTY;
     }
 }
 
-static BOOL ov25_022550B0(u32 *param0, u32 param1)
+static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId)
 {
     u32 v0;
 
-    GF_ASSERT(param0[1] == 0x12345678);
+    GF_ASSERT(activeList[1] == POKETCH_TASK_LIST_VALIDATOR);
 
-    for (v0 = 0; v0 < param0[0]; v0++) {
-        if (param0[2 + v0] == 0xffffffff) {
-            param0[2 + v0] = param1;
+    for (v0 = 0; v0 < activeList[0]; v0++) {
+        if (activeList[2 + v0] == POKETCH_TASK_LIST_EMPTY) {
+            activeList[2 + v0] = taskId;
             return 1;
         }
     }
@@ -55,15 +47,15 @@ static BOOL ov25_022550B0(u32 *param0, u32 param1)
     return 0;
 }
 
-static void ov25_022550F0(u32 *param0, u32 param1)
+static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId)
 {
-    u32 v0;
+    u32 i;
 
-    GF_ASSERT(param0[1] == 0x12345678);
+    GF_ASSERT(activeList[1] == POKETCH_TASK_LIST_VALIDATOR);
 
-    for (v0 = 0; v0 < param0[0]; v0++) {
-        if (param0[2 + v0] == param1) {
-            param0[2 + v0] = 0xffffffff;
+    for (i = 0; i < activeList[0]; i++) {
+        if (activeList[2 + i] == taskId) {
+            activeList[2 + i] = POKETCH_TASK_LIST_EMPTY;
             return;
         }
     }
@@ -71,110 +63,110 @@ static void ov25_022550F0(u32 *param0, u32 param1)
     GF_ASSERT(0);
 }
 
-BOOL ov25_02255130(u32 *param0, u32 param1)
+BOOL PoketchTask_TaskIsNotActive(u32 *activeList, u32 taskId)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < param0[0]; v0++) {
-        if (param0[2 + v0] == param1) {
-            return 0;
+    for (i = 0; i < activeList[0]; i++) {
+        if (activeList[2 + i] == taskId) {
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-BOOL ov25_02255154(u32 *param0)
+BOOL PoketchTask_NoActiveTasks(u32 *activeList)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < param0[0]; v0++) {
-        if (param0[2 + v0] != 0xffffffff) {
-            return 0;
+    for (i = 0; i < activeList[0]; i++) {
+        if (activeList[2 + i] != POKETCH_TASK_LIST_EMPTY) {
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-void ov25_0225517C(const UnkStruct_ov25_0225517C *param0, u32 param1, void *param2, const void *param3, u32 *param4, u32 param5, u32 param6)
+void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, const void *constTaskData, u32 *activeTasks, u32 taskPriority, u32 heapId)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; param0[v0].unk_00 != 0xffffffff; v0++) {
-        if (param0[v0].unk_00 == param1) {
-            UnkStruct_ov25_02255224 *v1;
-            u32 v2;
+    for (i = 0; appTasks[i].taskId != POKETCH_TASK_LIST_EMPTY; i++) {
+        if (appTasks[i].taskId == taskId) {
+            PoketchTaskManager *poketchTaskMan;
+            u32 size;
 
-            v2 = sizeof(UnkStruct_ov25_02255224) + param0[v0].unk_08;
-            v1 = Heap_AllocFromHeap(param6, v2);
+            size = sizeof(PoketchTaskManager) + appTasks[i].unk_08;
+            poketchTaskMan = Heap_AllocFromHeap(heapId, size);
 
-            if (v1 != NULL) {
-                if (param0[v0].unk_08 != 0) {
-                    v1->unk_0C = ((u8 *)v1) + sizeof(UnkStruct_ov25_02255224);
+            if (poketchTaskMan != NULL) {
+                if (appTasks[i].unk_08 != 0) {
+                    poketchTaskMan->unk_0C = ((u8 *)poketchTaskMan) + sizeof(PoketchTaskManager);
                 } else {
-                    v1->unk_0C = NULL;
+                    poketchTaskMan->unk_0C = NULL;
                 }
 
-                if (ov25_022550B0(param4, param1)) {
-                    v1->unk_08 = param2;
-                    v1->unk_04 = 0;
-                    v1->unk_00 = param1;
-                    v1->unk_10 = param3;
-                    v1->unk_14 = SysTask_Start(param0[v0].unk_04, v1, param5);
+                if (AddTaskToActiveList(activeTasks, taskId)) {
+                    poketchTaskMan->taskData = taskData;
+                    poketchTaskMan->unk_04 = 0;
+                    poketchTaskMan->taskId = taskId;
+                    poketchTaskMan->constTaskData = constTaskData;
+                    poketchTaskMan->task = SysTask_Start(appTasks[i].taskFunc, poketchTaskMan, taskPriority);
 
-                    if (v1->unk_14) {
-                        param0[v0].unk_04(v1->unk_14, v1);
+                    if (poketchTaskMan->task) {
+                        appTasks[i].taskFunc(poketchTaskMan->task, poketchTaskMan);
                     }
                 } else {
-                    Heap_FreeToHeap(v1);
+                    Heap_FreeToHeap(poketchTaskMan);
                 }
 
                 return;
             } else {
-                GF_ASSERT(0);
+                GF_ASSERT(FALSE);
                 break;
             }
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
-void ov25_02255224(u32 *param0, UnkStruct_ov25_02255224 *param1)
+void PoketchTask_EndTask(u32 *activeList, PoketchTaskManager *taskData)
 {
-    ov25_022550F0(param0, param1->unk_00);
+    RemoveTaskFromActiveList(activeList, taskData->taskId);
 
-    SysTask_Done(param1->unk_14);
-    Heap_FreeToHeap(param1);
+    SysTask_Done(taskData->task);
+    Heap_FreeToHeap(taskData);
 }
 
-void *ov25_0225523C(UnkStruct_ov25_02255224 *param0)
+void *PoketchTask_GetTaskData(PoketchTaskManager *taskMan)
 {
-    return param0->unk_08;
+    return taskMan->taskData;
 }
 
-const void *ov25_02255240(UnkStruct_ov25_02255224 *param0)
+const void *PoketchTask_GetConstTaskData(PoketchTaskManager *taskMan)
 {
-    return param0->unk_10;
+    return taskMan->constTaskData;
 }
 
-void *ov25_02255244(UnkStruct_ov25_02255224 *param0)
+void *ov25_02255244(PoketchTaskManager *param0)
 {
     return param0->unk_0C;
 }
 
-u32 ov25_02255248(UnkStruct_ov25_02255224 *param0)
+u32 ov25_02255248(PoketchTaskManager *param0)
 {
     return param0->unk_04;
 }
 
-void ov25_0225524C(UnkStruct_ov25_02255224 *param0)
+void ov25_0225524C(PoketchTaskManager *param0)
 {
     param0->unk_04++;
 }
 
-void ov25_02255254(UnkStruct_ov25_02255224 *param0, u32 param1)
+void ov25_02255254(PoketchTaskManager *param0, u32 param1)
 {
     param0->unk_04 = param1;
 }

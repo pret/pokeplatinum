@@ -4,8 +4,6 @@
 
 #include "overlay025/poketch_system.h"
 #include "overlay032/ov32_02256470.h"
-#include "overlay032/struct_ov32_02256470_1.h"
-#include "overlay032/struct_ov32_02256470_decl.h"
 
 #include "bg_window.h"
 #include "heap.h"
@@ -16,203 +14,203 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 
-typedef struct {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
-    UnkStruct_ov32_02256470_1 unk_04;
+typedef struct PoketchPartyStatus {
+    u8 sysTaskState; // picks which func to run in Task_PartyStatusMain stateFuncs[]
+    u8 taskFuncState; // controls the state of the func run by sysTaskState
+    u8 shouldExit;
+    PlayerPartyStatus playerParty;
     UnkStruct_ov32_02256470 *unk_74;
     PoketchSystem *poketchSys;
-} UnkStruct_ov32_0225621C;
+} PoketchPartyStatus;
 
 static void NitroStaticInit(void);
 
-static BOOL ov32_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
-static BOOL ov32_0225621C(UnkStruct_ov32_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3);
-static void ov32_02256264(UnkStruct_ov32_0225621C *param0);
-static void ov32_02256278(SysTask *param0, void *param1);
-static void ov32_022562AC(void *param0);
-static void ov32_022562B4(UnkStruct_ov32_0225621C *param0, u32 param1);
-static BOOL ov32_022562C8(UnkStruct_ov32_0225621C *param0);
-static BOOL ov32_02256308(UnkStruct_ov32_0225621C *param0);
-static BOOL ov32_02256394(UnkStruct_ov32_0225621C *param0);
-static void ov32_022563C8(UnkStruct_ov32_02256470_1 *param0, Party *param1);
+static BOOL PoketchPartyStatus_New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused);
+static BOOL PoketchPartyStatus_Init(PoketchPartyStatus *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused);
+static void FreeAppResources(PoketchPartyStatus *param0);
+static void Task_PartyStatusMain(SysTask *param0, void *param1);
+static void PoketchPartyStatus_Exit(void *appData);
+static void SetTaskState(PoketchPartyStatus *appData, u32 state);
+static BOOL Task_PartyStatusLoadAndWait(PoketchPartyStatus *param0);
+static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData);
+static BOOL Task_PartyStatusUnloadAndWait(PoketchPartyStatus *appData);
+static void InitPlayerPartyMons(PlayerPartyStatus *param0, Party *param1);
 
 static void NitroStaticInit(void)
 {
-    PoketchSystem_SetAppFunctions(ov32_022561D4, ov32_022562AC);
+    PoketchSystem_SetAppFunctions(PoketchPartyStatus_New, PoketchPartyStatus_Exit);
 }
 
-static BOOL ov32_022561D4(void **param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
+static BOOL PoketchPartyStatus_New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused)
 {
-    UnkStruct_ov32_0225621C *v0 = (UnkStruct_ov32_0225621C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov32_0225621C));
+    PoketchPartyStatus *partyStatusData = (PoketchPartyStatus *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchPartyStatus));
 
-    if (v0 != NULL) {
-        if (ov32_0225621C(v0, poketchSys, param2, param3)) {
-            if (SysTask_Start(ov32_02256278, v0, 1) != NULL) {
-                *param0 = v0;
-                return 1;
+    if (partyStatusData != NULL) {
+        if (PoketchPartyStatus_Init(partyStatusData, poketchSys, bgConfig, unused)) {
+            if (SysTask_Start(Task_PartyStatusMain, partyStatusData, 1) != NULL) {
+                *appData = partyStatusData;
+                return TRUE;
             }
         }
 
-        Heap_FreeToHeap(v0);
+        Heap_FreeToHeap(partyStatusData);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov32_0225621C(UnkStruct_ov32_0225621C *param0, PoketchSystem *poketchSys, BgConfig *param2, u32 param3)
+static BOOL PoketchPartyStatus_Init(PoketchPartyStatus *partyStatus, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused)
 {
-    if (ov32_02256470(&(param0->unk_74), &(param0->unk_04), param2)) {
-        param0->unk_00 = 0;
-        param0->unk_01 = 0;
-        param0->unk_02 = 0;
+    if (ov32_02256470(&(partyStatus->unk_74), &(partyStatus->playerParty), bgConfig)) {
+        partyStatus->sysTaskState = 0;
+        partyStatus->taskFuncState = 0;
+        partyStatus->shouldExit = 0;
 
-        ov32_022563C8(&param0->unk_04, Party_GetFromSavedata(PoketchSystem_GetSaveData(poketchSys)));
+        InitPlayerPartyMons(&partyStatus->playerParty, Party_GetFromSavedata(PoketchSystem_GetSaveData(poketchSys)));
 
-        param0->unk_04.unk_64 = 0;
-        param0->unk_04.unk_66 = 0;
-        param0->unk_04.unk_68 = 0;
-        param0->unk_04.unk_6C = 0;
-        param0->poketchSys = poketchSys;
+        partyStatus->playerParty.isTouchingPoketch = 0;
+        partyStatus->playerParty.screenTapped = 0;
+        partyStatus->playerParty.touchX = 0;
+        partyStatus->playerParty.touchY = 0;
+        partyStatus->poketchSys = poketchSys;
 
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov32_02256264(UnkStruct_ov32_0225621C *param0)
+static void FreeAppResources(PoketchPartyStatus *appData)
 {
-    ov32_02256508(param0->unk_74);
-    Heap_FreeToHeap(param0);
+    ov32_02256508(appData->unk_74); // removes graphics and kills task(?)
+    Heap_FreeToHeap(appData);
 }
 
-static void ov32_02256278(SysTask *param0, void *param1)
+static void Task_PartyStatusMain(SysTask *task, void *appData)
 {
-    static BOOL (*const v0[])(UnkStruct_ov32_0225621C *) = {
-        ov32_022562C8,
-        ov32_02256308,
-        ov32_02256394
+    static BOOL (*const stateFuncs[])(PoketchPartyStatus *) = {
+        Task_PartyStatusLoadAndWait,
+        Task_PartyStatusTryUpdateOnTap,
+        Task_PartyStatusUnloadAndWait
     };
 
-    UnkStruct_ov32_0225621C *v1 = (UnkStruct_ov32_0225621C *)param1;
+    PoketchPartyStatus *data = (PoketchPartyStatus *)appData;
 
-    if (v1->unk_00 < NELEMS(v0)) {
-        if (v0[v1->unk_00](v1)) {
-            ov32_02256264(v1);
-            SysTask_Done(param0);
-            PoketchSystem_NotifyAppUnloaded(v1->poketchSys);
+    if (data->sysTaskState < NELEMS(stateFuncs)) {
+        if (stateFuncs[data->sysTaskState](data)) {
+            FreeAppResources(data);
+            SysTask_Done(task);
+            PoketchSystem_NotifyAppUnloaded(data->poketchSys);
         }
     } else {
     }
 }
 
-static void ov32_022562AC(void *param0)
+static void PoketchPartyStatus_Exit(void *appData)
 {
-    ((UnkStruct_ov32_0225621C *)param0)->unk_02 = 1;
+    ((PoketchPartyStatus *)appData)->shouldExit = 1;
 }
 
-static void ov32_022562B4(UnkStruct_ov32_0225621C *param0, u32 param1)
+static void SetTaskState(PoketchPartyStatus *appData, u32 state)
 {
-    if (param0->unk_02 == 0) {
-        param0->unk_00 = param1;
+    if (appData->shouldExit == 0) {
+        appData->sysTaskState = state;
     } else {
-        param0->unk_00 = 2;
+        appData->sysTaskState = 2;
     }
 
-    param0->unk_01 = 0;
+    appData->taskFuncState = 0;
 }
 
-static BOOL ov32_022562C8(UnkStruct_ov32_0225621C *param0)
+static BOOL Task_PartyStatusLoadAndWait(PoketchPartyStatus *appData)
 {
-    switch (param0->unk_01) {
+    switch (appData->taskFuncState) {
     case 0:
-        ov32_02256538(param0->unk_74, 0);
-        param0->unk_01++;
+        PartyStatus_StartTaskById(appData->unk_74, 0);
+        appData->taskFuncState++;
         break;
     case 1:
-        if (ov32_0225655C(param0->unk_74, 0)) {
-            PoketchSystem_NotifyAppLoaded(param0->poketchSys);
-            ov32_022562B4(param0, 1);
+        if (PartyStatus_TaskIsNotActive(appData->unk_74, 0)) {
+            PoketchSystem_NotifyAppLoaded(appData->poketchSys);
+            SetTaskState(appData, 1);
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov32_02256308(UnkStruct_ov32_0225621C *param0)
+static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData)
 {
-    if (param0->unk_02) {
-        ov32_022562B4(param0, 2);
-        return 0;
+    if (appData->shouldExit) {
+        SetTaskState(appData, 2);
+        return FALSE;
     }
 
-    if (ov32_0225655C(param0->unk_74, 2)) {
-        param0->unk_04.unk_64 = PoketchSystem_GetDisplayHeldCoords(&(param0->unk_04.unk_68), &(param0->unk_04.unk_6C));
+    if (PartyStatus_TaskIsNotActive(appData->unk_74, 2)) {
+        appData->playerParty.isTouchingPoketch = PoketchSystem_GetDisplayHeldCoords(&(appData->playerParty.touchX), &(appData->playerParty.touchY));
 
-        if (param0->unk_04.unk_64) {
-            param0->unk_04.unk_66 = TouchScreen_Tapped();
+        if (appData->playerParty.isTouchingPoketch) {
+            appData->playerParty.screenTapped = TouchScreen_Tapped();
 
-            if (param0->unk_04.unk_66) {
-                u32 v0 = ov32_02256B78(param0->unk_04.unk_68, param0->unk_04.unk_6C, param0->unk_04.unk_00);
+            if (appData->playerParty.screenTapped) {
+                u32 touchedSlot = PoketchPartyStatus_CheckTouchingPartySlot(appData->playerParty.touchX, appData->playerParty.touchY, appData->playerParty.partyCount);
 
-                if (v0 >= param0->unk_04.unk_00) {
-                    ov32_022563C8(&param0->unk_04, Party_GetFromSavedata(PoketchSystem_GetSaveData(param0->poketchSys)));
-                    ov32_02256538(param0->unk_74, 2);
+                if (touchedSlot >= appData->playerParty.partyCount) {
+                    InitPlayerPartyMons(&appData->playerParty, Party_GetFromSavedata(PoketchSystem_GetSaveData(appData->poketchSys)));
+                    PartyStatus_StartTaskById(appData->unk_74, 2);
                 }
             }
 
-            return 0;
+            return FALSE;
         }
     }
 
-    param0->unk_04.unk_68 = 0;
-    param0->unk_04.unk_6C = 0;
-    param0->unk_04.unk_66 = 0;
+    appData->playerParty.touchX = 0;
+    appData->playerParty.touchY = 0;
+    appData->playerParty.screenTapped = 0;
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov32_02256394(UnkStruct_ov32_0225621C *param0)
+static BOOL Task_PartyStatusUnloadAndWait(PoketchPartyStatus *appData)
 {
-    switch (param0->unk_01) {
+    switch (appData->taskFuncState) {
     case 0:
-        ov32_02256538(param0->unk_74, 1);
-        param0->unk_01++;
+        PartyStatus_StartTaskById(appData->unk_74, 1);
+        appData->taskFuncState++;
         break;
     case 1:
-        if (ov32_02256568(param0->unk_74)) {
-            return 1;
+        if (PartyStatus_AllTasksDone(appData->unk_74)) {
+            return TRUE;
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov32_022563C8(UnkStruct_ov32_02256470_1 *param0, Party *param1)
+static void InitPlayerPartyMons(PlayerPartyStatus *data, Party *party)
 {
-    Pokemon *v0;
-    int v1;
-    BOOL v2;
+    Pokemon *mon;
+    int i;
+    BOOL decrypted;
 
-    param0->unk_00 = Party_GetCurrentCount(param1);
+    data->partyCount = Party_GetCurrentCount(party);
 
-    for (v1 = 0; v1 < param0->unk_00; v1++) {
-        v0 = Party_GetPokemonBySlotIndex(param1, v1);
-        v2 = Pokemon_EnterDecryptionContext(v0);
+    for (i = 0; i < data->partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(party, i);
+        decrypted = Pokemon_EnterDecryptionContext(mon);
 
-        param0->unk_04[v1].unk_00 = BoxPokemon_IconSpriteIndex((const BoxPokemon *)v0);
-        param0->unk_04[v1].unk_04 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
-        param0->unk_04[v1].unk_06 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
-        param0->unk_04[v1].unk_08 = Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
-        param0->unk_04[v1].unk_0A = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
-        param0->unk_04[v1].unk_0C = (Pokemon_GetValue(v0, MON_DATA_STATUS_CONDITION, NULL) != 0);
-        param0->unk_04[v1].unk_0E = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
-        param0->unk_04[v1].unk_0F = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
+        data->mons[i].iconSpriteIndex = BoxPokemon_IconSpriteIndex((const BoxPokemon *)mon);
+        data->mons[i].species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        data->mons[i].currentHp = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+        data->mons[i].maxHp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+        data->mons[i].heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+        data->mons[i].status = (Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL) != 0);
+        data->mons[i].isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
+        data->mons[i].form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-        Pokemon_ExitDecryptionContext(v0, v2);
+        Pokemon_ExitDecryptionContext(mon, decrypted);
     }
 }
