@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city.h"
 
     .data
@@ -92,9 +93,9 @@ _0168:
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _01CA
     CheckItem ITEM_MEMBER_CARD, 1, 0x4000
-    GoToIfEq 0x4000, 0, _01CA
-    ScrCmd_28B 0, 0x4000
-    GoToIfEq 0x4000, 0, _01CA
+    GoToIfEq 0x4000, FALSE, _01CA
+    CheckDistributionEvent DISTEVENT_DARKRAI, 0x4000
+    GoToIfEq 0x4000, FALSE, _01CA
     GoToIfUnset 0x12C, _01CA
     SetVar 0x4000, 1
     Return

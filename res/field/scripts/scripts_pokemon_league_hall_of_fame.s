@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/hidden_locations.h"
 #include "res/text/bank/pokemon_league_hall_of_fame.h"
 
     .data
@@ -65,7 +66,7 @@ _0102:
     Return
 
 _010A:
-    ScrCmd_270 2, 1
+    SetHiddenLocation HL_SPRINGPATH
     Return
 
 _0111:

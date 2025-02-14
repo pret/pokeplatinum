@@ -2354,16 +2354,14 @@ static __attribute__((aligned(4))) const u8 Unk_ov8_0224CA5C[5][21] = {
     { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
 
-static void ov8_0224AEDC(FieldSystem *fieldSystem, u16 param1)
+static void SetEternaGymFlowerClockState(FieldSystem *fieldSystem, u16 state)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    SystemVars_SetEternaGymFlowerClock(v0, param1);
+    SystemVars_SetEternaGymFlowerClockState(SaveData_GetVarsFlags(fieldSystem->saveData), state);
 }
 
-static u32 ov8_0224AEF0(FieldSystem *fieldSystem)
+static u32 GetEternaGymFlowerClockState(FieldSystem *fieldSystem)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    return SystemVars_GetEternaGymFlowerClock(v0);
+    return SystemVars_GetEternaGymFlowerClockState(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
 static void ov8_0224AF00(UnkStruct_ov8_0224AF00 *param0, fx32 param1)
@@ -2463,7 +2461,7 @@ void ov8_0224B020(FieldSystem *fieldSystem)
     {
         int v8[3] = { 2, 2, 0 };
 
-        v1->unk_00 = ov8_0224AEF0(fieldSystem);
+        v1->unk_00 = GetEternaGymFlowerClockState(fieldSystem);
 
         {
             const UnkStruct_ov8_0224C774 *v9 = &Unk_ov8_0224C774[v1->unk_00];
@@ -2887,7 +2885,7 @@ BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param
     }
 
     v1->unk_00++;
-    ov8_0224AEDC(fieldSystem, v1->unk_00);
+    SetEternaGymFlowerClockState(fieldSystem, v1->unk_00);
 
     {
         UnkStruct_ov8_0224B67C *v2;

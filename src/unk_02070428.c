@@ -122,12 +122,11 @@ void FieldSystem_SetEscapeFlags(FieldSystem *fieldSystem)
     SystemFlag_ClearSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
-void sub_020705B4(FieldSystem *fieldSystem)
+void FieldSystem_ClearPartnerTrainer(FieldSystem *fieldSystem)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-
-    SystemFlag_ClearHasPartner(v0);
-    SystemVars_SetPartnerTrainerID(v0, 0);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+    SystemFlag_ClearHasPartner(varsFlags);
+    SystemVars_SetPartnerTrainerID(varsFlags, 0);
 }
 
 void sub_020705CC(FieldSystem *fieldSystem)

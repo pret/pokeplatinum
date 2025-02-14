@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/forms.h"
+#include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
 #include "generated/abilities.h"
@@ -340,7 +341,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
-            battleParams->trainerIDs[2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
+            battleParams->trainerIDs[BATTLER_PLAYER_2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
             Trainer_Encounter(battleParams, fieldSystem->saveData, HEAP_ID_FIELDMAP);
             encounterSuccess = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
         }
@@ -527,8 +528,8 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
 
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
-            battleParams->trainerIDs[2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
-            Trainer_Encounter(battleParams, fieldSystem->saveData, 11);
+            battleParams->trainerIDs[BATTLER_PLAYER_2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
+            Trainer_Encounter(battleParams, fieldSystem->saveData, HEAP_ID_FIELDMAP);
             encounterSuccess = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
         }
     } else if (encounterType == ENCOUNTER_TYPE_SURF) {
@@ -657,10 +658,8 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
 
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, *battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
-            {
-                (*battleParams)->trainerIDs[2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
-                Trainer_Encounter(*battleParams, fieldSystem->saveData, 11);
-            }
+            (*battleParams)->trainerIDs[BATTLER_PLAYER_2] = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
+            Trainer_Encounter(*battleParams, fieldSystem->saveData, HEAP_ID_FIELDMAP);
             encounterSuccess = TryGenerateGrassEncounter_DoubleBattle(fieldSystem, firstPartyMon, *battleParams, encounterTable, &encounterFieldParams);
         }
     } else {

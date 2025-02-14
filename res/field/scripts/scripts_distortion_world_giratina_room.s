@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/hidden_locations.h"
 #include "res/text/bank/distortion_world_giratina_room.h"
 
     .data
@@ -41,7 +42,7 @@ _0061:
     BufferPlayerName 0
     Message 14
     CloseMessage
-    ScrCmd_270 2, 1
+    SetHiddenLocation HL_SPRINGPATH
     SetVar 0x40AA, 1
     PlayFanfare SEQ_SE_PL_SYUWA
     FadeScreen 6, 1, 0, 0

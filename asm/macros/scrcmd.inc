@@ -1222,9 +1222,9 @@
     .byte \unused2
     .endm
 
-    .macro ScrCmd_0DB arg0
+    .macro BufferPlayerStarterSpeciesName templateArg
     .short 219
-    .byte \arg0
+    .byte \templateArg
     .endm
 
     .macro BufferRivalStarterSpeciesName templateArg
@@ -1232,9 +1232,9 @@
     .byte \templateArg
     .endm
 
-    .macro ScrCmd_0DD arg0
+    .macro BufferPlayerCounterpartStarterSpeciesName templateArg
     .short 221
-    .byte \arg0
+    .byte \templateArg
     .endm
 
     .macro GetPlayerStarterSpecies destVar
@@ -2432,7 +2432,7 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_1C5
+    .macro InitSizeContestRecord
     .short 453
     .endm
 
@@ -2878,18 +2878,18 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_214 arg0
+    .macro GetSpiritombCounter resultVar
     .short 532
-    .short \arg0
+    .short \resultVar
     .endm
 
-    .macro ScrCmd_215
+    .macro ClearAmitySquareStepCount
     .short 533
     .endm
 
-    .macro ScrCmd_216 arg0
+    .macro GetAmitySquareStepCount resultVar
     .short 534
-    .short \arg0
+    .short \resultVar
     .endm
 
     .macro ScrCmd_217 arg0, arg1
@@ -2903,14 +2903,14 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_219 arg0
+    .macro SetNewsPressDeadline deadlineInDays
     .short 537
-    .short \arg0
+    .short \deadlineInDays
     .endm
 
-    .macro ScrCmd_21A arg0
+    .macro GetNewsPressDeadline resultVar
     .short 538
-    .short \arg0
+    .short \resultVar
     .endm
 
     .macro EnableSwarms
@@ -3219,9 +3219,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_24E arg0
+    .macro GetJubilifeLotteryTrainerID resultVar
     .short 590
-    .short \arg0
+    .short \resultVar
     .endm
 
     .macro ScrCmd_24F arg0, arg1, arg2, arg3
@@ -3232,7 +3232,7 @@
     .short \arg3
     .endm
 
-    .macro ScrCmd_250
+    .macro RandomizeJubilifeLottery
     .short 592
     .endm
 
@@ -3386,14 +3386,20 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_26F
+    .macro ClearSpiritombCounter
     .short 623
     .endm
 
-    .macro ScrCmd_270 arg0, arg1
-    .short 624
-    .short \arg0
-    .byte \arg1
+    .macro SetHiddenLocation hiddenLocation
+    .short 624 /* SetOrClearHiddenLocation */
+    .short \hiddenLocation
+    .byte TRUE /* Toggle On */
+    .endm
+
+    .macro ClearHiddenLocation hiddenLocation
+    .short 624 /* SetOrClearHiddenLocation */
+    .short \hiddenLocation
+    .byte FALSE /* Toggle Off */
     .endm
 
     .macro ScrCmd_271 arg0
@@ -3418,9 +3424,10 @@
     .long \arg1
     .endm
 
-    .macro ScrCmd_275 arg0
+    /* Returns TRUE in resultVar if the player has won at least 10 consecutive bonus rounds */
+    .macro CheckBonusRoundStreak resultVar
     .short 629
-    .short \arg0
+    .short \resultVar
     .endm
 
     .macro ScrCmd_276 arg0, arg1
@@ -3429,9 +3436,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_277 arg0
+    .macro GetDailyRandomLevel resultVar
     .short 631
-    .short \arg0
+    .short \resultVar
     .endm
 
     .macro ScrCmd_278 arg0, arg1
@@ -3450,7 +3457,7 @@
     .short 634
     .endm
 
-    .macro ScrCmd_27B
+    .macro InitDailyRandomLevel
     .short 635
     .endm
 
@@ -3466,9 +3473,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_27E arg0
+    /* Returns TRUE in resultVar if the player has bought at least 5 items at the Veilstone Department Store */
+    .macro CheckIsDepartmentStoreRegular resultVar
     .short 638
-    .short \arg0
+    .short \resultVar
     .endm
 
     .macro ScrCmd_27F arg0
@@ -3513,19 +3521,19 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_286 arg0
+    .macro GetUndergroundItemsGivenAway resultVar
     .short 646
-    .short \arg0
+    .short \resultVar
     .endm
 
-    .macro ScrCmd_287 arg0
+    .macro GetUndergroundFossilsUnearthed resultVar
     .short 647
-    .short \arg0
+    .short \resultVar
     .endm
 
-    .macro ScrCmd_288 arg0
+    .macro GetUndergroundTrapsSet resultVar
     .short 648
-    .short \arg0
+    .short \resultVar
     .endm
 
     .macro ScrCmd_289 arg0, arg1, arg2, arg3, arg4, arg5, arg6
@@ -3544,10 +3552,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_28B arg0, arg1
+    .macro CheckDistributionEvent eventID, resultVar
     .short 651
-    .byte \arg0
-    .short \arg1
+    .byte \eventID
+    .short \resultVar
     .endm
 
     .macro ScrCmd_28C arg0
@@ -3586,9 +3594,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_293 arg0
+    .macro GetUndergroundTalkCounter resultVar
     .short 659
-    .short \arg0
+    .short \resultVar
     .endm
 
     .macro ScrCmd_294 arg0, arg1
@@ -4549,9 +4557,9 @@
     .byte \arg3
     .endm
 
-    .macro ScrCmd_342 arg0
+    .macro BufferPlayerCounterpartStarterSpeciesNameWithArticle templateArg
     .short 834
-    .byte \arg0
+    .byte \templateArg
     .endm
 
     .macro ScrCmd_343 arg0, arg1
