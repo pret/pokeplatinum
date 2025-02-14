@@ -420,10 +420,10 @@ typedef struct PokemonSummaryScreen {
     ConditionRectangle maxRects[MAX_CONDITION_RECT];
     u32 conditionState;
 
-    SpriteSystem *renderer;
-    SpriteManager *gfxHandler;
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
     Sprite *sprites[SUMMARY_SPRITE_MAX];
-    ManagedSprite *sprite[SUMMARY_SPRITE_MAX];
+    ManagedSprite *managedSprites[SUMMARY_SPRITE_MAX];
 
     UnkStruct_0200C440 *unk_684;
     MessageLoader *msgLoader;

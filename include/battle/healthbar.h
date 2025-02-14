@@ -62,8 +62,8 @@ enum HealthbarGaugeType {
  * @param palette
  * @param healthbarType
  */
-void Healthbar_LoadResources(SpriteSystem *renderer, SpriteManager *gfxHandler, NARC *narc, PaletteData *palette, enum HealthbarType healthbarType);
-ManagedSprite *Healthbar_LoadCellActor(SpriteSystem *renderer, SpriteManager *handler, int type);
+void Healthbar_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, PaletteData *palette, enum HealthbarType healthbarType);
+ManagedSprite *Healthbar_DrawSprite(SpriteSystem *spriteSys, SpriteManager *spriteMan, int type);
 
 /**
  * @brief Draw the informational parts of the healthbar, according to a set

@@ -613,15 +613,15 @@ void SpriteSystem_FreeResourcesAndManager(SpriteSystem *spriteSys, SpriteManager
     SpriteSystem_FreeSpriteManager(spriteSys, spriteMan);
 }
 
-void Sprite_DeleteAndFreeResources(ManagedSprite *sprite)
+void Sprite_DeleteAndFreeResources(ManagedSprite *managedSprite)
 {
-    if (sprite->vramTransfer) {
-        SpriteTransfer_DeleteCharTransfer(sprite->resourceHeader->imageProxy);
+    if (managedSprite->vramTransfer) {
+        SpriteTransfer_DeleteCharTransfer(managedSprite->resourceHeader->imageProxy);
     }
 
-    Sprite_Delete(sprite->sprite);
-    SpriteResourcesHeaderList_Free(sprite->resourceHeaderList);
-    Heap_FreeToHeap(sprite);
+    Sprite_Delete(managedSprite->sprite);
+    SpriteResourcesHeaderList_Free(managedSprite->resourceHeaderList);
+    Heap_FreeToHeap(managedSprite);
 }
 
 static BOOL LoadResObjInternal(SpriteSystem *spriteSys, SpriteManager *spriteMan, int narcID, int memberIdx, int compressed, int type, int resourceID)

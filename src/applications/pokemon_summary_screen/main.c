@@ -328,7 +328,7 @@ static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state)
     PokemonSummaryScreen_UpdateArrowAndTapAnims(summaryScreen);
     PokemonSummaryScreen_DrawSheenSprites(summaryScreen);
     PokemonSummaryScreen_UpdateRibbonFlashAnim(summaryScreen);
-    SpriteSystem_DrawSprites(summaryScreen->gfxHandler);
+    SpriteSystem_DrawSprites(summaryScreen->spriteMan);
     PokemonSummaryScreen_Update3DGfx(summaryScreen);
 
     return FALSE;

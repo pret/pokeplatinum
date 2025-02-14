@@ -1,4 +1,4 @@
-#include "sprite.h"
+#include "applications/pokemon_summary_screen/sprites.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -8,7 +8,6 @@
 #include "generated/items.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "applications/pokemon_summary_screen/sprites.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "graphics/pokemon_summary_screen/pl_pst_gra.naix"
 
@@ -18,6 +17,7 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "ribbon.h"
+#include "sprite.h"
 #include "sprite_system.h"
 #include "unk_0207C908.h"
 #include "vram_transfer.h"
@@ -218,8 +218,8 @@ void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScree
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     VramTransfer_New(32, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
-    summaryScreen->renderer = SpriteSystem_Alloc(HEAP_ID_POKEMON_SUMMARY_SCREEN);
-    summaryScreen->gfxHandler = SpriteManager_New(summaryScreen->renderer);
+    summaryScreen->spriteSys = SpriteSystem_Alloc(HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->spriteMan = SpriteManager_New(summaryScreen->spriteSys);
 
     RenderOamTemplate v0 = {
         0,
@@ -240,8 +240,8 @@ void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScree
         GX_OBJVRAMMODE_CHAR_1D_32K
     };
 
-    SpriteSystem_Init(summaryScreen->renderer, &v0, &v1, 32);
-    SpriteSystem_InitSprites(summaryScreen->renderer, summaryScreen->gfxHandler, SUMMARY_SPRITE_MAX);
+    SpriteSystem_Init(summaryScreen->spriteSys, &v0, &v1, 32);
+    SpriteSystem_InitSprites(summaryScreen->spriteSys, summaryScreen->spriteMan, SUMMARY_SPRITE_MAX);
 
     SpriteResourceDataPaths v2 = {
         "data/pst_chr.resdat",
@@ -253,13 +253,13 @@ void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScree
         "data/pst_h.cldat"
     };
 
-    SpriteSystem_LoadResourceDataFromFilepaths(summaryScreen->renderer, summaryScreen->gfxHandler, &v2);
+    SpriteSystem_LoadResourceDataFromFilepaths(summaryScreen->spriteSys, summaryScreen->spriteMan, &v2);
 }
 
 void PokemonSummaryScreen_FreeSpriteResources(PokemonSummaryScreen *summaryScreen)
 {
-    SpriteSystem_DestroySpriteManager(summaryScreen->renderer, summaryScreen->gfxHandler);
-    SpriteSystem_Free(summaryScreen->renderer);
+    SpriteSystem_DestroySpriteManager(summaryScreen->spriteSys, summaryScreen->spriteMan);
+    SpriteSystem_Free(summaryScreen->spriteSys);
 }
 
 void PokemonSummaryScreen_UpdateArrowAndTapAnims(PokemonSummaryScreen *summaryScreen)
@@ -274,7 +274,7 @@ void PokemonSummaryScreen_UpdateArrowAndTapAnims(PokemonSummaryScreen *summarySc
 void PokemonSummaryScreen_SetDefaultSpriteStates(PokemonSummaryScreen *summaryScreen)
 {
     for (u16 i = 0; i < SUMMARY_SPRITE_MAX; i++) {
-        summaryScreen->sprites[i] = SpriteSystem_NewSpriteFromResourceHeader(summaryScreen->renderer, summaryScreen->gfxHandler, &Unk_020F41A8[i]);
+        summaryScreen->sprites[i] = SpriteSystem_NewSpriteFromResourceHeader(summaryScreen->spriteSys, summaryScreen->spriteMan, &Unk_020F41A8[i]);
     }
 
     SetMonAndTypeIcons(summaryScreen);
@@ -389,8 +389,8 @@ void PokemonSummaryScreen_SetCaughtBallGfx(PokemonSummaryScreen *summaryScreen)
         ballMember = master_ball_NCGR + summaryScreen->monData.caughtBall - 1;
     }
 
-    SpriteSystem_ReplaceCharResObj(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_GRAPHIC__PL_PST_GRA, ballMember, FALSE, 0);
-    SpriteSystem_ReplacePlttResObj(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_GRAPHIC__PL_PST_GRA, balls_0_NCLR + sBallIDToPaletteNum[summaryScreen->monData.caughtBall], FALSE, 6);
+    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, NARC_INDEX_GRAPHIC__PL_PST_GRA, ballMember, FALSE, 0);
+    SpriteSystem_ReplacePlttResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, NARC_INDEX_GRAPHIC__PL_PST_GRA, balls_0_NCLR + sBallIDToPaletteNum[summaryScreen->monData.caughtBall], FALSE, 6);
 }
 
 void PokemonSummaryScreen_UpdateStatusIcon(PokemonSummaryScreen *summaryScreen)
@@ -495,7 +495,7 @@ void PokemonSummaryScreen_SetMonTypeIcons(PokemonSummaryScreen *summaryScreen)
 
 static void SetTypeIcon(PokemonSummaryScreen *summaryScreen, u8 spriteIndex, u8 param2, u8 type)
 {
-    SpriteSystem_ReplaceCharResObj(summaryScreen->renderer, summaryScreen->gfxHandler, sub_0207C944(), sub_0207C908(type), 1, param2);
+    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, sub_0207C944(), sub_0207C908(type), 1, param2);
     Sprite_SetExplicitPalette2(summaryScreen->sprites[spriteIndex], sub_0207C92C(type) + 3);
 }
 
@@ -528,7 +528,7 @@ void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summarySc
 {
     u32 category = MoveTable_LoadParam(move, MOVEATTRIBUTE_CLASS);
 
-    SpriteSystem_ReplaceCharResObj(summaryScreen->renderer, summaryScreen->gfxHandler, sub_0207CAC0(), sub_0207CA90(category), 1, 10);
+    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, sub_0207CAC0(), sub_0207CA90(category), 1, 10);
     Sprite_SetExplicitPalette2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], sub_0207CAA8(category) + 3);
 }
 
@@ -725,14 +725,14 @@ void PokemonSummaryScreen_SetMonIcon(PokemonSummaryScreen *summaryScreen)
         iconIndex = Pokemon_IconSpriteIndex(monData);
     }
 
-    SpriteSystem_ReplaceCharResObj(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, iconIndex, 0, 11);
+    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, iconIndex, 0, 11);
     Sprite_SetExplicitPalette2(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], PokeIconPaletteIndex(summaryScreen->monData.species, summaryScreen->monData.form, summaryScreen->monData.isEgg) + 7);
     Sprite_SetFlipMode(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], (SpeciesData_GetFormValue(summaryScreen->monData.species, summaryScreen->monData.form, 28) ^ 1));
 }
 
 void PokemonSummaryScreen_ShowMonIcon(PokemonSummaryScreen *summaryScreen)
 {
-    SpriteSystem_ReplacePlttResObj(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 5);
+    SpriteSystem_ReplacePlttResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 5);
 
     if (summaryScreen->page == SUMMARY_PAGE_BATTLE_MOVES) {
         Sprite_SetPositionXY(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], 24, 48);
@@ -788,7 +788,7 @@ void PokemonSummaryScreen_HideContestStatDots(PokemonSummaryScreen *summaryScree
 
 static void SetRibbonSpriteGfx(PokemonSummaryScreen *summaryScreen, u8 ribbonNum, u8 ribbonIndex)
 {
-    SpriteSystem_ReplaceCharResObj(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_GRAPHIC__PL_PST_GRA, Ribbon_GetData(ribbonNum, RIBBON_DATA_SPRITE_ID), 0, 26 + ribbonIndex);
+    SpriteSystem_ReplaceCharResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, NARC_INDEX_GRAPHIC__PL_PST_GRA, Ribbon_GetData(ribbonNum, RIBBON_DATA_SPRITE_ID), 0, 26 + ribbonIndex);
     Sprite_SetExplicitPalette2(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_1 + ribbonIndex], Ribbon_GetData(ribbonNum, RIBBON_DATA_PALETTE_NUM) + 7);
 }
 
@@ -803,7 +803,7 @@ void PokemonSummaryScreen_UpdateRibbonSprites(PokemonSummaryScreen *summaryScree
         return;
     }
 
-    SpriteSystem_ReplacePlttResObj(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_GRAPHIC__PL_PST_GRA, ribbons_NCLR, FALSE, 5);
+    SpriteSystem_ReplacePlttResObj(summaryScreen->spriteSys, summaryScreen->spriteMan, NARC_INDEX_GRAPHIC__PL_PST_GRA, ribbons_NCLR, FALSE, 5);
 
     for (i = 0; i < RIBBONS_PER_PAGE; i++) {
         if (i < summaryScreen->ribbonMax) {

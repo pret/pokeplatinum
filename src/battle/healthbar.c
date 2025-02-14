@@ -88,7 +88,7 @@ static void Healthbar_DrawCaughtIcon(Healthbar *param0);
 static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1);
 static void Healthbar_DrawBallCount(Healthbar *param0, u32 param1);
 static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1);
-static void Healthbar_LoadMainPalette(SpriteSystem *renderer, SpriteManager *handler, NARC *narc, PaletteData *palette, int type);
+static void Healthbar_LoadMainPalette(SpriteSystem *spriteSys, SpriteManager *handler, NARC *narc, PaletteData *palette, int type);
 static void ov16_02267244(Healthbar *param0);
 static void ov16_0226728C(Healthbar *param0);
 static const SpriteTemplate *Healthbar_SpriteTemplate(u8 type);
@@ -511,40 +511,40 @@ static const SpriteTemplate sHealthbarTemplate_NoPlayerMon = {
 
 #include "battle/rodata_ov16_0226F6AC.h"
 
-void Healthbar_LoadResources(SpriteSystem *renderer, SpriteManager *gfxHandler, NARC *narc, PaletteData *palette, enum HealthbarType healthbarType)
+void Healthbar_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, PaletteData *palette, enum HealthbarType healthbarType)
 {
     const SpriteTemplate *template = Healthbar_SpriteTemplate(healthbarType);
 
-    SpriteSystem_LoadCharResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[SPRITE_RESOURCE_CHAR], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[SPRITE_RESOURCE_CHAR]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
-    SpriteSystem_LoadCellResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[SPRITE_RESOURCE_CELL], TRUE, template->resources[SPRITE_RESOURCE_CELL]);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(renderer, gfxHandler, narc, template->resources[SPRITE_RESOURCE_ANIM], TRUE, template->resources[SPRITE_RESOURCE_ANIM]);
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_EFFECTS_PALETTE_RESID);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, spriteMan, narc, template->resources[SPRITE_RESOURCE_CHAR], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[SPRITE_RESOURCE_CHAR]);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, spriteMan, narc, template->resources[SPRITE_RESOURCE_CELL], TRUE, template->resources[SPRITE_RESOURCE_CELL]);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, spriteMan, narc, template->resources[SPRITE_RESOURCE_ANIM], TRUE, template->resources[SPRITE_RESOURCE_ANIM]);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_EFFECTS_PALETTE_RESID);
 
     if (healthbarType == HEALTHBAR_TYPE_SAFARI_ZONE || healthbarType == HEALTHBAR_TYPE_PAL_PARK) {
-        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, gfxHandler, narc, 81, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_SAFARI_PALETTE_RESID);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, spriteMan, narc, 81, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_SAFARI_PALETTE_RESID);
     }
 }
 
-static void Healthbar_LoadMainPalette(SpriteSystem *renderer, SpriteManager *handler, NARC *narc, PaletteData *palette, int type)
+static void Healthbar_LoadMainPalette(SpriteSystem *spriteSys, SpriteManager *handler, NARC *narc, PaletteData *palette, int type)
 {
     const SpriteTemplate *template = ov16_02268314(type);
 
     if (template != NULL) {
-        SpriteSystem_LoadCharResObjFromOpenNarc(renderer, handler, narc, template->resources[SPRITE_RESOURCE_CHAR], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[SPRITE_RESOURCE_CHAR]);
-        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, renderer, handler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
-        SpriteSystem_LoadCellResObjFromOpenNarc(renderer, handler, narc, template->resources[SPRITE_RESOURCE_CELL], TRUE, template->resources[SPRITE_RESOURCE_CELL]);
-        SpriteSystem_LoadAnimResObjFromOpenNarc(renderer, handler, narc, template->resources[SPRITE_RESOURCE_ANIM], TRUE, template->resources[SPRITE_RESOURCE_ANIM]);
+        SpriteSystem_LoadCharResObjFromOpenNarc(spriteSys, handler, narc, template->resources[SPRITE_RESOURCE_CHAR], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, template->resources[SPRITE_RESOURCE_CHAR]);
+        SpriteSystem_LoadPaletteBufferFromOpenNarc(palette, PLTTBUF_MAIN_OBJ, spriteSys, handler, narc, 71, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, HEALTHBAR_MAIN_PALETTE_RESID);
+        SpriteSystem_LoadCellResObjFromOpenNarc(spriteSys, handler, narc, template->resources[SPRITE_RESOURCE_CELL], TRUE, template->resources[SPRITE_RESOURCE_CELL]);
+        SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSys, handler, narc, template->resources[SPRITE_RESOURCE_ANIM], TRUE, template->resources[SPRITE_RESOURCE_ANIM]);
     }
 }
 
-ManagedSprite *Healthbar_LoadCellActor(SpriteSystem *renderer, SpriteManager *handler, int type)
+ManagedSprite *Healthbar_DrawSprite(SpriteSystem *spriteSys, SpriteManager *handler, int type)
 {
     const SpriteTemplate *template = Healthbar_SpriteTemplate(type);
-    ManagedSprite *data = SpriteSystem_NewSprite(renderer, handler, template);
+    ManagedSprite *managedSprite = SpriteSystem_NewSprite(spriteSys, handler, template);
 
-    Sprite_TickFrame(data->sprite);
-    return data;
+    Sprite_TickFrame(managedSprite->sprite);
+    return managedSprite;
 }
 
 void Healthbar_DrawInfo(Healthbar *healthbar, u32 hp, u32 flags)
@@ -742,7 +742,7 @@ void ov16_022672C4(Healthbar *param0)
     v0 = Healthbar_SpriteTemplate(param0->type);
 
     Healthbar_LoadResources(v1, v2, v4, v3, param0->type);
-    param0->mainSprite = Healthbar_LoadCellActor(v1, v2, param0->type);
+    param0->mainSprite = Healthbar_DrawSprite(v1, v2, param0->type);
 
     Healthbar_LoadMainPalette(v1, v2, v4, v3, param0->type);
 

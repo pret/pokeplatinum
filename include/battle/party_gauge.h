@@ -39,14 +39,14 @@ enum HideArrowType {
  * @param gfxHandler
  * @param palette
  */
-void PartyGauge_LoadGraphics(SpriteSystem *renderer, SpriteManager *gfxHandler, PaletteData *palette);
+void PartyGauge_LoadGraphics(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *palette);
 
 /**
  * @brief Free the graphics resources needed for the Party Gauge from memory.
  *
  * @param gfxHandler
  */
-void PartyGauge_FreeGraphics(SpriteManager *gfxHandler);
+void PartyGauge_FreeGraphics(SpriteManager *spriteMan);
 
 /**
  * @brief Show the Party Gauge.
@@ -68,7 +68,7 @@ void PartyGauge_FreeGraphics(SpriteManager *gfxHandler);
  * @return              Pointer to the constructed PartyGauge struct, for tracking its progress
  *                      and eventually hiding it.
  */
-PartyGauge *PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteSystem *renderer, SpriteManager *gfxHandler);
+PartyGauge *PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteSystem *spriteSys, SpriteManager *spriteMan);
 
 /**
  * @brief Check if the Party Gauge has finished the inward scrolling animation.
