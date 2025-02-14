@@ -6,9 +6,9 @@
 #include "field/field_system_decl.h"
 #include "overlay005/bdhc.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
-#include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021EF76C_decl.h"
 
@@ -27,7 +27,7 @@ void ov5_021E92E4(UnkStruct_ov5_021E8F60 *param0);
 BOOL ov5_021E9300(const UnkStruct_ov5_021E8F60 *param0);
 void ov5_021E931C(VecFx32 const *param0, UnkStruct_ov5_021E8F60 *param1);
 void ov5_021E9338(UnkStruct_ov5_021E8F60 *param0);
-void ov5_021E9340(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, UnkStruct_ov5_021E1608 **param2);
+void ov5_021E9340(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, MapPropManager **param2);
 u8 ov5_021E9354(const UnkStruct_ov5_021E8F60 *param0);
 u8 ov5_021E935C(const u32 param0, const int param1);
 u8 ov5_021E9390(const int param0, const u8 param1, const UnkStruct_ov5_021E8F60 *param2);

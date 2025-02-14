@@ -7,11 +7,9 @@
 
 #include "field/field_system.h"
 #include "overlay005/bdhc.h"
-#include "overlay005/ov5_021E15F4.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EF250.h"
-#include "overlay005/struct_ov5_021E1608_decl.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 
 #include "map_matrix.h"
@@ -427,11 +425,11 @@ void sub_020550F4(const int param0, const int param1, const int param2, const in
     param6->unk_0C = v3 * 16 * FX32_ONE;
 }
 
-BOOL sub_02055130(const UnkStruct_ov5_021E1890 *param0, const UnkStruct_02055130 *param1, const VecFx32 *param2)
+BOOL sub_02055130(const MapProp *param0, const UnkStruct_02055130 *param1, const VecFx32 *param2)
 {
     VecFx32 v0;
 
-    v0 = ov5_021E1894(param0);
+    v0 = MapProp_GetPosition(param0);
 
     v0.x += param2->x;
     v0.z += param2->z;
@@ -443,10 +441,10 @@ BOOL sub_02055130(const UnkStruct_ov5_021E1890 *param0, const UnkStruct_02055130
     return 0;
 }
 
-BOOL sub_02055178(const FieldSystem *fieldSystem, const int param1, const UnkStruct_02055130 *param2, UnkStruct_ov5_021E1890 **param3)
+BOOL sub_02055178(const FieldSystem *fieldSystem, const int param1, const UnkStruct_02055130 *param2, MapProp **param3)
 {
     u8 v0;
-    UnkStruct_ov5_021E1608 *v1;
+    MapPropManager *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021E9340(v0, fieldSystem->unk_28, &v1);
@@ -468,15 +466,15 @@ BOOL sub_02055178(const FieldSystem *fieldSystem, const int param1, const UnkStr
             sub_020553A4(v4, v5, &v3);
 
             for (v2 = 0; v2 < 32; v2++) {
-                UnkStruct_ov5_021E1890 *v7;
+                MapProp *v7;
 
-                v7 = ov5_021E18C4(v1, v2);
+                v7 = MapPropManager_GetLoadedProp(v1, v2);
                 v6 = sub_02055130(v7, param2, &v3);
 
                 if (v6) {
                     int v8;
 
-                    v8 = ov5_021E18B8(v7);
+                    v8 = MapProp_GetId(v7);
 
                     if (v8 == param1) {
                         if (param3 != NULL) {
@@ -493,10 +491,10 @@ BOOL sub_02055178(const FieldSystem *fieldSystem, const int param1, const UnkStr
     return 0;
 }
 
-BOOL sub_02055208(const FieldSystem *fieldSystem, const int *param1, const u8 param2, const UnkStruct_02055130 *param3, UnkStruct_ov5_021E1890 **param4, int *param5)
+BOOL sub_02055208(const FieldSystem *fieldSystem, const int *param1, const u8 param2, const UnkStruct_02055130 *param3, MapProp **param4, int *param5)
 {
     u8 v0;
-    UnkStruct_ov5_021E1608 *v1;
+    MapPropManager *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021E9340(v0, fieldSystem->unk_28, &v1);
@@ -518,16 +516,16 @@ BOOL sub_02055208(const FieldSystem *fieldSystem, const int *param1, const u8 pa
             sub_020553A4(v4, v5, &v3);
 
             for (v2 = 0; v2 < 32; v2++) {
-                UnkStruct_ov5_021E1890 *v7;
+                MapProp *v7;
 
-                v7 = ov5_021E18C4(v1, v2);
+                v7 = MapPropManager_GetLoadedProp(v1, v2);
                 v6 = sub_02055130(v7, param3, &v3);
 
                 if (v6) {
                     u8 v8;
                     int v9;
 
-                    v9 = ov5_021E18B8(v7);
+                    v9 = MapProp_GetId(v7);
 
                     for (v8 = 0; v8 < param2; v8++) {
                         if (v9 == param1[v8]) {
@@ -550,10 +548,10 @@ BOOL sub_02055208(const FieldSystem *fieldSystem, const int *param1, const u8 pa
     return 0;
 }
 
-BOOL sub_020552B4(const FieldSystem *fieldSystem, const int param1, UnkStruct_ov5_021E1890 **param2, int *param3)
+BOOL sub_020552B4(const FieldSystem *fieldSystem, const int param1, MapProp **param2, int *param3)
 {
     u8 v0;
-    UnkStruct_ov5_021E1608 *v1;
+    MapPropManager *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021E9340(v0, fieldSystem->unk_28, &v1);
@@ -566,14 +564,14 @@ BOOL sub_020552B4(const FieldSystem *fieldSystem, const int param1, UnkStruct_ov
             u8 v2;
 
             for (v2 = 0; v2 < 32; v2++) {
-                UnkStruct_ov5_021E1890 *v3;
+                MapProp *v3;
 
-                v3 = ov5_021E18C4(v1, v2);
+                v3 = MapPropManager_GetLoadedProp(v1, v2);
                 {
                     u8 v4;
                     int v5;
 
-                    v5 = ov5_021E18B8(v3);
+                    v5 = MapProp_GetId(v3);
 
                     if (v5 == param1) {
                         if (param2 != NULL) {
@@ -594,10 +592,10 @@ BOOL sub_020552B4(const FieldSystem *fieldSystem, const int param1, UnkStruct_ov
     return 0;
 }
 
-BOOL sub_02055324(const FieldSystem *fieldSystem, const int *param1, const u8 param2, UnkStruct_ov5_021E1890 **param3, int *param4)
+BOOL sub_02055324(const FieldSystem *fieldSystem, const int *param1, const u8 param2, MapProp **param3, int *param4)
 {
     u8 v0;
-    UnkStruct_ov5_021E1608 *v1;
+    MapPropManager *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
         ov5_021E9340(v0, fieldSystem->unk_28, &v1);
@@ -610,14 +608,14 @@ BOOL sub_02055324(const FieldSystem *fieldSystem, const int *param1, const u8 pa
             u8 v2;
 
             for (v2 = 0; v2 < 32; v2++) {
-                UnkStruct_ov5_021E1890 *v3;
+                MapProp *v3;
 
-                v3 = ov5_021E18C4(v1, v2);
+                v3 = MapPropManager_GetLoadedProp(v1, v2);
                 {
                     u8 v4;
                     int v5;
 
-                    v5 = ov5_021E18B8(v3);
+                    v5 = MapProp_GetId(v3);
 
                     for (v4 = 0; v4 < param2; v4++) {
                         if (v5 == param1[v4]) {

@@ -21,6 +21,7 @@
 #include "overlay005/hblank_system.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/map_name_popup.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D521C.h"
@@ -31,7 +32,6 @@
 #include "overlay005/ov5_021D5CB0.h"
 #include "overlay005/ov5_021D5EB8.h"
 #include "overlay005/ov5_021DF440.h"
-#include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021E1B08.h"
 #include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EA714.h"
@@ -206,7 +206,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         ov5_021D1790(fieldSystem);
         ov5_021EF7A0(fieldSystem->unk_30);
 
-        fieldSystem->unk_A4 = ov5_021E15F4(4);
+        fieldSystem->mapPropManager = MapPropManager_New(HEAP_ID_FIELD);
 
         ov5_021F0824(fieldSystem);
         ov5_021D17EC(fieldSystem);
@@ -298,7 +298,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
 
         ov5_021D1A70(fieldSystem->unk_34);
         fieldSystem->unk_34 = NULL;
-        ov5_021E1608(fieldSystem->unk_A4);
+        MapPropManager_Free(fieldSystem->mapPropManager);
 
         (*param1)++;
         break;
@@ -714,7 +714,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
         ov9_0224CA50(fieldSystem);
     }
 
-    ov5_021E1A6C(fieldSystem->unk_A4, fieldSystem->unk_30);
+    MapPropManager_Render2(fieldSystem->mapPropManager, fieldSystem->unk_30);
 
     {
         const MtxFx44 *v2;

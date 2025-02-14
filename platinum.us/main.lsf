@@ -489,7 +489,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021DFB54.c.o
 	Object main.nef.p/src_overlay005_ov5_021E1154.c.o
 	Object main.nef.p/src_overlay005_ov5_021E135C.c.o
-	Object main.nef.p/src_overlay005_ov5_021E15F4.c.o
+	Object main.nef.p/src_overlay005_map_prop.c.o
 	Object main.nef.p/src_overlay005_ov5_021E1B08.c.o
 	Object main.nef.p/src_overlay005_save_info_window.c.o
 	Object main.nef.p/src_overlay005_motion_blur.c.o
