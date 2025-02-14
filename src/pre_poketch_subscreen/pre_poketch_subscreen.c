@@ -1,4 +1,4 @@
-#include "overlay024/pre_poketch_display.h"
+#include "pre_poketch_subscreen/pre_poketch_subscreen.h"
 
 #include "constants/heap.h"
 
@@ -14,7 +14,7 @@
 #define PRE_POKETCH_DISPLAY_NARC_TILEMAP_IDX 11
 #define PRE_POKETCH_DISPLAY_NARC_PALETTE_IDX 12
 
-void PrePoketchDisplay_DisplayBg(BgConfig *bgConfig)
+void PrePoketchSubscreen_Init(BgConfig *bgConfig)
 {
     static const BgTemplate template = {
         0,
@@ -52,13 +52,13 @@ void PrePoketchDisplay_DisplayBg(BgConfig *bgConfig)
     GXS_SetVisiblePlane(GX_PLANEMASK_BG0);
 }
 
-void PrePoketchDisplay_FreeBg(BgConfig *bgConfig)
+void PrePoketchSubscreen_Exit(BgConfig *bgConfig)
 {
     Bg_FreeTilemapBuffer(bgConfig, BG_LAYER_SUB_0);
     Heap_Destroy(PRE_POKETCH_DISPLAY_NARC_HEAP_ID);
 }
 
-BOOL PrePoketchDisplay_AlwaysTrue(BgConfig *bgConfig)
+BOOL PrePoketchSubscreen_IsDone(BgConfig *bgConfig)
 {
     return TRUE;
 }
