@@ -10,7 +10,7 @@
 
 _000A:
     SetFlag 0x9E4
-    SetHiddenLocation HL_NEWMOONISLAND
+    EnableHiddenLocation HIDDEN_LOCATION_NEWMOON_ISLAND
     ClearFlag 0x279
     CallIfUnset 0x158, _0024
     End

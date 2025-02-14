@@ -141,10 +141,10 @@ BOOL SystemVars_SetVsSeekerStepCount(VarsFlags *varsFlags, u16 stepCount)
 }
 
 static const u16 sDistributionEventMagicNumbers[] = {
-    [DISTEVENT_DARKRAI] = 0x1209,
-    [DISTEVENT_SHAYMIN] = 0x1112,
-    [DISTEVENT_ARCEUS] = 0x1123,
-    [DISTEVENT_ROTOM] = 0x1103,
+    [DISTRIBUTION_EVENT_DARKRAI] = 0x1209,
+    [DISTRIBUTION_EVENT_SHAYMIN] = 0x1112,
+    [DISTRIBUTION_EVENT_ARCEUS] = 0x1123,
+    [DISTRIBUTION_EVENT_ROTOM] = 0x1103,
 };
 
 static int GetDistributionEventMagicNumber(enum DistributionEvent eventID)
@@ -164,15 +164,15 @@ BOOL SystemVars_CheckDistributionEvent(VarsFlags *varsFlags, enum DistributionEv
 }
 
 static const u16 sHiddenLocationMagicNumbers[] = {
-    [HL_FULLMOONISLAND] = 0x0208,
-    [HL_NEWMOONISLAND] = 0x0229,
-    [HL_SPRINGPATH] = 0x0312,
-    [HL_SEABREAKPATH] = 0x1028,
+    [HIDDEN_LOCATION_FULLMOON_ISLAND] = 0x0208,
+    [HIDDEN_LOCATION_NEWMOON_ISLAND] = 0x0229,
+    [HIDDEN_LOCATION_SPRING_PATH] = 0x0312,
+    [HIDDEN_LOCATION_SEABREAK_PATH] = 0x1028,
 };
 
 static int GetHiddenLocationMagicNumber(enum HiddenLocation hiddenLocation)
 {
-    GF_ASSERT(0 <= hiddenLocation && hiddenLocation < HL_MAX);
+    GF_ASSERT(0 <= hiddenLocation && hiddenLocation < HIDDEN_LOCATION_MAX);
     return sHiddenLocationMagicNumbers[hiddenLocation];
 }
 
@@ -245,10 +245,12 @@ void SystemVars_RandomizeJubilifeLotteryTrainerID(VarsFlags *varsFlags)
     SetJubilifeLotteryTrainerID(varsFlags, HI_AND_LO(hiRand, loRand));
 }
 
+#define LCRNG_INCREMENT 12345
+
 void SystemVars_SynchronizeJubilifeLotteryTrainerID(SaveData *saveData, u16 trainerID)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(saveData);
-    u32 recordMixedRand = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(saveData)) * 1103515245L + 12345;
+    u32 recordMixedRand = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(saveData)) * LCRNG_MULTIPLIER + LCRNG_INCREMENT;
     SetJubilifeLotteryTrainerID(varsFlags, recordMixedRand);
 }
 

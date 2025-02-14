@@ -19,8 +19,8 @@ BOOL ScrCmd_ClearAmitySquareStepCount(ScriptContext *ctx)
 
 BOOL ScrCmd_GetAmitySquareStepCount(ScriptContext *ctx)
 {
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
-    *resultVar = SystemVars_GetAmitySquareStepCount(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemVars_GetAmitySquareStepCount(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return FALSE;
 }
 

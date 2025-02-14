@@ -42,7 +42,7 @@ _0061:
     BufferPlayerName 0
     Message 14
     CloseMessage
-    SetHiddenLocation HL_SPRINGPATH
+    EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
     SetVar 0x40AA, 1
     PlayFanfare SEQ_SE_PL_SYUWA
     FadeScreen 6, 1, 0, 0

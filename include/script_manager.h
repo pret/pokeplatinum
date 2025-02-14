@@ -83,10 +83,12 @@ enum ScriptContextType {
     NUM_SCRIPT_CONTEXTS
 };
 
+#define SCRIPT_ID(chunk, id)                    ((SCRIPT_ID_OFFSET_##chunk) + id)
 #define SCRIPT_ID_OFFSET_SINGLE_BATTLES         3000
 #define SCRIPT_ID_OFFSET_DOUBLE_BATTLES         5000
 #define SCRIPT_ID_OFFSET_HIDDEN_ITEMS           8000
 #define SCRIPT_ID_OFFSET_SAFARI_ZONE            8800
+#define SCRIPT_ID_OFFSET_INIT_NEW_GAME          9600
 #define SCRIPT_ID_POKEMON_CENTER_DAILY_TRAINERS 10400
 
 #define FLAG_OFFSET_HIDDEN_ITEMS     730

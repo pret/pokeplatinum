@@ -11,7 +11,7 @@
     ScriptEntryEnd
 
 _0012:
-    CheckDistributionEvent DISTEVENT_ARCEUS, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
     GoToIfEq 0x4000, FALSE, _0035
     GoToIfSet 0x11E, _0035
     ClearFlag 0x24E

@@ -15,7 +15,7 @@ _000E:
     GoToIfEq 0x4000, 0, _005C
     CheckItem ITEM_OAKS_LETTER, 1, 0x4000
     GoToIfEq 0x4000, FALSE, _005C
-    CheckDistributionEvent DISTEVENT_SHAYMIN, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
     GoToIfEq 0x4000, FALSE, _005C
     GoToIfSet 0x123, _005C
     ClearFlag 0x251

@@ -953,10 +953,10 @@ static BOOL FieldMenu_Pokedex(FieldTask *taskMan)
     v2->pokedex = pokedex;
     v2->trainerInfo = trainerInfo;
     v2->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
-    v2->fullmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HL_FULLMOONISLAND);
-    v2->newmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HL_NEWMOONISLAND);
-    v2->springPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HL_SPRINGPATH);
-    v2->seabreakPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HL_SEABREAKPATH);
+    v2->fullmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_FULLMOON_ISLAND);
+    v2->newmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_NEWMOON_ISLAND);
+    v2->springPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_SPRING_PATH);
+    v2->seabreakPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_SEABREAK_PATH);
     v2->unk_1C = fieldSystem->unk_B4;
 
     sub_0203E0AC(fieldSystem, v2);

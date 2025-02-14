@@ -66,7 +66,7 @@ _0102:
     Return
 
 _010A:
-    SetHiddenLocation HL_SPRINGPATH
+    EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
     Return
 
 _0111:

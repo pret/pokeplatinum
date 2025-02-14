@@ -538,14 +538,14 @@ static BOOL sub_0204C138(FieldSystem *fieldSystem, void *param1)
     return Bag_CanFitItem(v0, 454, 1, 32);
 }
 
-static void InitDarkraiEvent(FieldSystem *fieldSystem, void *param1)
+static void InitDarkraiEvent(FieldSystem *fieldSystem, void *dummy)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 *unused = sub_0204B844(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     Bag_TryAddItem(bag, ITEM_MEMBER_CARD, 1, HEAP_ID_FIELD_TASK);
-    SystemVars_SetDistributionEventMagic(varsFlags, DISTEVENT_DARKRAI);
+    SystemVars_SetDistributionEventMagic(varsFlags, DISTRIBUTION_EVENT_DARKRAI);
 }
 
 static void sub_0204C190(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
@@ -580,14 +580,14 @@ static BOOL sub_0204C1FC(FieldSystem *fieldSystem, void *param1)
     return Bag_CanFitItem(v0, 452, 1, 32);
 }
 
-static void InitShayminEvent(FieldSystem *fieldSystem, void *param1)
+static void InitShayminEvent(FieldSystem *fieldSystem, void *dummy)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 *unused = sub_0204B844(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     Bag_TryAddItem(bag, ITEM_OAKS_LETTER, 1, HEAP_ID_FIELD_TASK);
-    SystemVars_SetDistributionEventMagic(varsFlags, DISTEVENT_SHAYMIN);
+    SystemVars_SetDistributionEventMagic(varsFlags, DISTRIBUTION_EVENT_SHAYMIN);
 
     if (SystemVars_GetShayminEventState(varsFlags) == 0) {
         SystemVars_SetShayminEventState(varsFlags, 1);
@@ -626,14 +626,14 @@ static BOOL sub_0204C2D0(FieldSystem *fieldSystem, void *param1)
     return Bag_CanFitItem(v0, 467, 1, 32);
 }
 
-static void InitRotomEvent(FieldSystem *fieldSystem, void *param1)
+static void InitRotomEvent(FieldSystem *fieldSystem, void *dummy)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 *unused = sub_0204B844(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     Bag_TryAddItem(bag, ITEM_SECRET_KEY, 1, HEAP_ID_FIELD_TASK);
-    SystemVars_SetDistributionEventMagic(varsFlags, DISTEVENT_ROTOM);
+    SystemVars_SetDistributionEventMagic(varsFlags, DISTRIBUTION_EVENT_ROTOM);
 }
 
 static void sub_0204C328(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
@@ -668,14 +668,14 @@ static BOOL sub_0204C394(FieldSystem *fieldSystem, void *param1)
     return Bag_CanFitItem(v0, 455, 1, 32);
 }
 
-static void InitArceusEvent(FieldSystem *fieldSystem, void *param1)
+static void InitArceusEvent(FieldSystem *fieldSystem, void *dummy)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
     UnkUnion_0204C4D0 *unused = sub_0204B844(fieldSystem);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
     Bag_TryAddItem(bag, ITEM_AZURE_FLUTE, 1, HEAP_ID_FIELD_TASK);
-    SystemVars_SetDistributionEventMagic(varsFlags, DISTEVENT_ARCEUS);
+    SystemVars_SetDistributionEventMagic(varsFlags, DISTRIBUTION_EVENT_ARCEUS);
 }
 
 static void sub_0204C3EC(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)

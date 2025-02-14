@@ -678,20 +678,20 @@
     .short \arg0
     .endm
 
-    // If the player has no space left in the bag, resultVar will be set to FALSE
-    .macro AddItem item, count, resultVar
+    // If the player has no space left in the bag, destVarID will be set to FALSE
+    .macro AddItem item, count, destVarID
     .short 123
     .short \item
     .short \count
-    .short \resultVar
+    .short \destVarID
     .endm
 
-    // resultVar will be set to TRUE if the player had at least 'count' items of the specified type in their bag
-    .macro RemoveItem item, count, resultVar
+    // destVarID will be set to TRUE if the player had at least 'count' items of the specified type in their bag
+    .macro RemoveItem item, count, destVarID
     .short 124
     .short \item
     .short \count
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro ScrCmd_07D arg0, arg1, arg2
@@ -701,12 +701,12 @@
     .short \arg2
     .endm
 
-    // resultVar will be set to TRUE if the player has at least 'count' items of the specified type in their bag
-    .macro CheckItem item, count, resultVar
+    // destVarID will be set to TRUE if the player has at least 'count' items of the specified type in their bag
+    .macro CheckItem item, count, destVarID
     .short 126
     .short \item
     .short \count
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro ScrCmd_07F arg0, arg1
@@ -2878,18 +2878,18 @@
     .short \arg1
     .endm
 
-    .macro GetSpiritombCounter resultVar
+    .macro GetSpiritombCounter destVarID
     .short 532
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro ClearAmitySquareStepCount
     .short 533
     .endm
 
-    .macro GetAmitySquareStepCount resultVar
+    .macro GetAmitySquareStepCount destVarID
     .short 534
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro ScrCmd_217 arg0, arg1
@@ -2908,9 +2908,9 @@
     .short \deadlineInDays
     .endm
 
-    .macro GetNewsPressDeadline resultVar
+    .macro GetNewsPressDeadline destVarID
     .short 538
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro EnableSwarms
@@ -3219,9 +3219,9 @@
     .byte \arg0
     .endm
 
-    .macro GetJubilifeLotteryTrainerID resultVar
+    .macro GetJubilifeLotteryTrainerID destVarID
     .short 590
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro ScrCmd_24F arg0, arg1, arg2, arg3
@@ -3390,16 +3390,18 @@
     .short 623
     .endm
 
-    .macro SetHiddenLocation hiddenLocation
-    .short 624 /* SetOrClearHiddenLocation */
-    .short \hiddenLocation
-    .byte TRUE /* Toggle On */
+    /* Enable a given hidden location */
+    .macro EnableHiddenLocation hiddenLocation
+    .short 624 /* SetHiddenLocation */
+    .short \hiddenLocation /* Refer to generated/hidden_locations.txt */
+    .byte TRUE /* Enable */
     .endm
 
-    .macro ClearHiddenLocation hiddenLocation
-    .short 624 /* SetOrClearHiddenLocation */
-    .short \hiddenLocation
-    .byte FALSE /* Toggle Off */
+    /* Disable a given hidden location */
+    .macro DisableHiddenLocation hiddenLocation
+    .short 624 /* SetHiddenLocation */
+    .short \hiddenLocation /* Refer to generated/hidden_locations.txt */
+    .byte FALSE /* Disable */
     .endm
 
     .macro ScrCmd_271 arg0
@@ -3424,10 +3426,10 @@
     .long \arg1
     .endm
 
-    /* Returns TRUE in resultVar if the player has won at least 10 consecutive bonus rounds */
-    .macro CheckBonusRoundStreak resultVar
+    /* Returns TRUE in destVarID if the player has won at least 10 consecutive bonus rounds */
+    .macro CheckBonusRoundStreak destVarID
     .short 629
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro ScrCmd_276 arg0, arg1
@@ -3436,9 +3438,9 @@
     .short \arg1
     .endm
 
-    .macro GetDailyRandomLevel resultVar
+    .macro GetDailyRandomLevel destVarID
     .short 631
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro ScrCmd_278 arg0, arg1
@@ -3473,10 +3475,10 @@
     .short \arg1
     .endm
 
-    /* Returns TRUE in resultVar if the player has bought at least 5 items at the Veilstone Department Store */
-    .macro CheckIsDepartmentStoreRegular resultVar
+    /* Returns TRUE in destVarID if the player has bought at least 5 items at the Veilstone Department Store */
+    .macro CheckIsDepartmentStoreRegular destVarID
     .short 638
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro ScrCmd_27F arg0
@@ -3521,19 +3523,19 @@
     .short \arg1
     .endm
 
-    .macro GetUndergroundItemsGivenAway resultVar
+    .macro GetUndergroundItemsGivenAway destVarID
     .short 646
-    .short \resultVar
+    .short \destVarID
     .endm
 
-    .macro GetUndergroundFossilsUnearthed resultVar
+    .macro GetUndergroundFossilsUnearthed destVarID
     .short 647
-    .short \resultVar
+    .short \destVarID
     .endm
 
-    .macro GetUndergroundTrapsSet resultVar
+    .macro GetUndergroundTrapsSet destVarID
     .short 648
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro ScrCmd_289 arg0, arg1, arg2, arg3, arg4, arg5, arg6
@@ -3552,10 +3554,11 @@
     .short \arg0
     .endm
 
-    .macro CheckDistributionEvent eventID, resultVar
+    /* Check if a given distribution event has been enabled and return the boolean-state in destVarID. */
+    .macro CheckDistributionEvent eventID, destVarID
     .short 651
-    .byte \eventID
-    .short \resultVar
+    .byte \eventID /* Refer to generated/distrubtion_events.txt */
+    .short \destVarID
     .endm
 
     .macro ScrCmd_28C arg0
@@ -3594,9 +3597,9 @@
     .short \arg1
     .endm
 
-    .macro GetUndergroundTalkCounter resultVar
+    .macro GetUndergroundTalkCounter destVarID
     .short 659
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro ScrCmd_294 arg0, arg1
@@ -4040,12 +4043,12 @@
     .short \arg2
     .endm
 
-    // resultVar will be set to TRUE if the pokemon has at least one move it can learn at the given location and doesn't know yet
-    .macro CheckHasLearnableTutorMoves partySlot, location, resultVar
+    // destVarID will be set to TRUE if the pokemon has at least one move it can learn at the given location and doesn't know yet
+    .macro CheckHasLearnableTutorMoves partySlot, location, destVarID
     .short 741
     .short \partySlot
     .short \location
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro ShowMoveTutorMoveSelectionMenu partySlot, location, outSelectedOption
@@ -4073,11 +4076,11 @@
     .short \moveSlot
     .endm
 
-    // resultVar will be set to TRUE if the move is available at a shards move tutor and the player can afford it
-    .macro CheckCanAffordMove moveID, resultVar
+    // destVarID will be set to TRUE if the move is available at a shards move tutor and the player can afford it
+    .macro CheckCanAffordMove moveID, destVarID
     .short 746
     .short \moveID
-    .short \resultVar
+    .short \destVarID
     .endm
 
     .macro PayShardsCost moveID

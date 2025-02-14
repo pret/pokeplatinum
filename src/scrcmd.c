@@ -647,7 +647,7 @@ static BOOL ScrCmd_26A(ScriptContext *ctx);
 static BOOL ScrCmd_26B(ScriptContext *ctx);
 static BOOL ScrCmd_26C(ScriptContext *ctx);
 static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx);
-static BOOL ScrCmd_SetOrClearHiddenLocation(ScriptContext *ctx);
+static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx);
 static BOOL ScrCmd_273(ScriptContext *ctx);
 static BOOL ScrCmd_CheckBonusRoundStreak(ScriptContext *ctx);
 static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx);
@@ -1387,7 +1387,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_26D,
     ScrCmd_GetGBACartridgeVersion,
     ScrCmd_ClearSpiritombCounter,
-    ScrCmd_SetOrClearHiddenLocation,
+    ScrCmd_SetHiddenLocation,
     ScrCmd_271,
     ScrCmd_272,
     ScrCmd_273,
@@ -6453,8 +6453,8 @@ static BOOL ScrCmd_211(ScriptContext *ctx)
 static BOOL ScrCmd_GetSpiritombCounter(ScriptContext *ctx)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
-    *resultVar = SystemVars_GetSpiritombCounter(varsFlags);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemVars_GetSpiritombCounter(varsFlags);
     return FALSE;
 }
 
@@ -6486,13 +6486,13 @@ static BOOL ScrCmd_SetNewsPressDeadline(ScriptContext *ctx)
 {
     u16 deadlineInDays = ScriptContext_GetVar(ctx);
     SystemVars_SetNewsPressDeadline(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), deadlineInDays);
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_GetNewsPressDeadline(ScriptContext *ctx)
 {
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
-    *resultVar = SystemVars_GetNewsPressDeadline(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemVars_GetNewsPressDeadline(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return FALSE;
 }
 
@@ -7060,13 +7060,13 @@ static BOOL ScrCmd_ClearSpiritombCounter(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_SetOrClearHiddenLocation(ScriptContext *ctx)
+static BOOL ScrCmd_SetHiddenLocation(ScriptContext *ctx)
 {
     u16 hiddenLocation = ScriptContext_GetVar(ctx);
-    u8 toggleOn = ScriptContext_ReadByte(ctx);
+    u8 enable = ScriptContext_ReadByte(ctx);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
-    if (toggleOn) {
+    if (enable) {
         SystemVars_SetHiddenLocationMagic(varsFlags, hiddenLocation);
     } else {
         SystemVars_ClearHiddenLocation(varsFlags, hiddenLocation);
@@ -7088,12 +7088,12 @@ static BOOL ScrCmd_273(ScriptContext *ctx)
 static BOOL ScrCmd_CheckBonusRoundStreak(ScriptContext *ctx)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     if (SystemVars_GetConsecutiveBonusRoundWins(varsFlags) >= 10) {
-        *resultVar = TRUE;
+        *destVar = TRUE;
     } else {
-        *resultVar = FALSE;
+        *destVar = FALSE;
     }
 
     return FALSE;
@@ -7101,8 +7101,8 @@ static BOOL ScrCmd_CheckBonusRoundStreak(ScriptContext *ctx)
 
 static BOOL ScrCmd_GetDailyRandomLevel(ScriptContext *ctx)
 {
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
-    *resultVar = SystemVars_GetDailyRandomLevel(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemVars_GetDailyRandomLevel(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     return FALSE;
 }
 
@@ -7181,12 +7181,12 @@ static BOOL ScrCmd_27F(ScriptContext *ctx)
 static BOOL ScrCmd_CheckIsDepartmentStoreRegular(ScriptContext *ctx)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     if (SystemVars_GetDepartmentStoreBuyCount(varsFlags) >= 5) {
-        *resultVar = TRUE;
+        *destVar = TRUE;
     } else {
-        *resultVar = FALSE;
+        *destVar = FALSE;
     }
 
     return FALSE;
@@ -7312,24 +7312,24 @@ static BOOL ScrCmd_285(ScriptContext *ctx)
 static BOOL ScrCmd_GetUndergroundItemsGivenAway(ScriptContext *ctx)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
-    *resultVar = SystemVars_GetUndergroundItemsGivenAway(varsFlags);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemVars_GetUndergroundItemsGivenAway(varsFlags);
     return FALSE;
 }
 
 static BOOL ScrCmd_GetUndergroundFossilsUnearthed(ScriptContext *ctx)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
-    *resultVar = SystemVars_GetUndergroundFossilsUnearthed(varsFlags);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemVars_GetUndergroundFossilsUnearthed(varsFlags);
     return FALSE;
 }
 
 static BOOL ScrCmd_GetUndergroundTrapsSet(ScriptContext *ctx)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
-    *resultVar = SystemVars_GetUndergroundTrapsSet(varsFlags);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemVars_GetUndergroundTrapsSet(varsFlags);
     return FALSE;
 }
 
@@ -7399,11 +7399,11 @@ static BOOL ScrCmd_307(ScriptContext *ctx)
 static BOOL ScrCmd_CheckDistributionEvent(ScriptContext *ctx)
 {
     u8 eventID = ScriptContext_ReadByte(ctx);
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
 
-    GF_ASSERT(eventID <= DISTEVENT_MAX);
-    *resultVar = SystemVars_CheckDistributionEvent(varsFlags, eventID);
+    GF_ASSERT(eventID <= DISTRIBUTION_EVENT_MAX);
+    *destVar = SystemVars_CheckDistributionEvent(varsFlags, eventID);
     return FALSE;
 }
 
@@ -7524,8 +7524,8 @@ static BOOL ScrCmd_29E(ScriptContext *ctx)
 static BOOL ScrCmd_GetUndergroundTalkCounter(ScriptContext *ctx)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
-    *resultVar = SystemVars_GetUndergroundTalkCounter(varsFlags);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemVars_GetUndergroundTalkCounter(varsFlags);
     return FALSE;
 }
 

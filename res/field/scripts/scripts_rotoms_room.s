@@ -26,7 +26,7 @@ _0030:
     SetFlag 0x2BD
     SetFlag 0x2BE
     SetFlag 0x2BF
-    CheckDistributionEvent DISTEVENT_ROTOM, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x4000
     GoToIfEq 0x4000, FALSE, _00A5
     ScrCmd_302 0x4000, 0x4001, 0x4002, 0x4003, 0x4004
     CallIfEq 0x4000, 0, _00CF
@@ -104,7 +104,7 @@ _0151:
     GoToIfEq 0x800C, 0, _06DE
     CheckItem ITEM_SECRET_KEY, 1, 0x800C
     GoToIfEq 0x800C, 0, _06DE
-    CheckDistributionEvent DISTEVENT_ROTOM, 0x800C
+    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x800C
     GoToIfEq 0x800C, FALSE, _06DE
     CallIfEq 0x8004, 1, _06C5
     CallIfEq 0x8004, 3, _06CA

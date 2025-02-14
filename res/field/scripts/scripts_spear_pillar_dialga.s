@@ -19,7 +19,7 @@ _0012:
     GoToIfEq 0x4000, 0, _0075
     CheckItem ITEM_AZURE_FLUTE, 1, 0x4000
     GoToIfEq 0x4000, FALSE, _0075
-    CheckDistributionEvent DISTEVENT_ARCEUS, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
     GoToIfEq 0x4000, FALSE, _0075
     GoToIfSet 0x11E, _0075
     SetVar 0x4118, 1

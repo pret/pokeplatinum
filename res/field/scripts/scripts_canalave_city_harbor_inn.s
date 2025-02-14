@@ -29,7 +29,7 @@ _0040:
     End
 
 _0057:
-    CheckDistributionEvent DISTEVENT_DARKRAI, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
     GoToIfEq 0x4000, TRUE, _006B
     End
 

@@ -97,7 +97,7 @@ static BOOL ov47_0225621C(UnkStruct_ov47_0225621C *param0, PoketchSystem *poketc
     {
         VarsFlags *v1 = SaveData_GetVarsFlags(PoketchSystem_GetSaveData(poketchSys));
 
-        for (v0 = 0; v0 < HL_MAX; v0++) {
+        for (v0 = 0; v0 < HIDDEN_LOCATION_MAX; v0++) {
             param0->unk_04.unk_2C[v0] = SystemVars_CheckHiddenLocation(v1, v0);
         }
     }

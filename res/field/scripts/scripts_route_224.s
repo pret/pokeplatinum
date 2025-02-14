@@ -22,7 +22,7 @@ _001A:
     GoToIfEq 0x4000, 0, _0080
     CheckItem ITEM_OAKS_LETTER, 1, 0x4000
     GoToIfEq 0x4000, FALSE, _0080
-    CheckDistributionEvent DISTEVENT_SHAYMIN, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
     GoToIfEq 0x4000, FALSE, _0080
     ClearFlag 0x252
 _0080:
@@ -103,7 +103,7 @@ _0124:
     FadeOutMusic 0, 10
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
-    SetHiddenLocation HL_SEABREAKPATH
+    EnableHiddenLocation HIDDEN_LOCATION_SEABREAK_PATH
     ScrCmd_333 0
     Warp MAP_HEADER_ROUTE_224, 0, 0x38C, 0x1EC, 0
     WaitTime 15, 0x800C
