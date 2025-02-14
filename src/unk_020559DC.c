@@ -102,16 +102,16 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
     }
 
     {
-        VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
-        u16 v2 = SystemVars_GetNewsPressDeadline(v1);
+        VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+        u16 deadlineInDays = SystemVars_GetNewsPressDeadline(varsFlags);
 
-        if (v2 > param1) {
-            v2 -= param1;
+        if (deadlineInDays > param1) {
+            deadlineInDays -= param1;
         } else {
-            v2 = 0;
+            deadlineInDays = 0;
         }
 
-        SystemVars_SetNewsPressDeadline(v1, v2);
+        SystemVars_SetNewsPressDeadline(varsFlags, deadlineInDays);
     }
 
     {
@@ -119,7 +119,7 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
     }
 
     {
-        SystemVars_SetDailyRandomLevel(fieldSystem->saveData);
+        SystemVars_InitDailyRandomLevel(fieldSystem->saveData);
     }
 
     SystemVars_UpdateVillaVisitor(fieldSystem->saveData);

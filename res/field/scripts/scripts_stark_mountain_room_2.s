@@ -33,7 +33,7 @@ _0031:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x263
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_BUCK_STARK_MOUNTAIN
     SetHasPartner
     ScrCmd_06D 14, 48
     ReleaseAll

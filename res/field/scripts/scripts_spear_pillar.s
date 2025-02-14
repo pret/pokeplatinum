@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/spear_pillar.h"
 
     .data
@@ -36,9 +37,9 @@ _0062:
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _00C5
     CheckItem ITEM_AZURE_FLUTE, 1, 0x4000
-    GoToIfEq 0x4000, 0, _00C5
-    ScrCmd_28B 2, 0x4000
-    GoToIfEq 0x4000, 0, _00C5
+    GoToIfEq 0x4000, FALSE, _00C5
+    CheckDistributionEvent DISTEVENT_ARCEUS, 0x4000
+    GoToIfEq 0x4000, FALSE, _00C5
     GoToIfSet 0x11E, _00C5
     SetVar 0x4118, 1
     GoTo _00C5

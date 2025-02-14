@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/hidden_locations.h"
 #include "res/text/bank/fullmoon_island.h"
 
     .data
@@ -9,7 +10,7 @@
 
 _000A:
     SetFlag 0x9D0
-    ScrCmd_270 0, 1
+    SetHiddenLocation HL_FULLMOONISLAND
     End
 
 _0015:

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/rotoms_room.h"
 
     .data
@@ -25,8 +26,8 @@ _0030:
     SetFlag 0x2BD
     SetFlag 0x2BE
     SetFlag 0x2BF
-    ScrCmd_28B 3, 0x4000
-    GoToIfEq 0x4000, 0, _00A5
+    CheckDistributionEvent DISTEVENT_ROTOM, 0x4000
+    GoToIfEq 0x4000, FALSE, _00A5
     ScrCmd_302 0x4000, 0x4001, 0x4002, 0x4003, 0x4004
     CallIfEq 0x4000, 0, _00CF
     CallIfEq 0x4001, 0, _00D5
@@ -103,8 +104,8 @@ _0151:
     GoToIfEq 0x800C, 0, _06DE
     CheckItem ITEM_SECRET_KEY, 1, 0x800C
     GoToIfEq 0x800C, 0, _06DE
-    ScrCmd_28B 3, 0x800C
-    GoToIfEq 0x800C, 0, _06DE
+    CheckDistributionEvent DISTEVENT_ROTOM, 0x800C
+    GoToIfEq 0x800C, FALSE, _06DE
     CallIfEq 0x8004, 1, _06C5
     CallIfEq 0x8004, 3, _06CA
     CallIfEq 0x8004, 2, _06CF

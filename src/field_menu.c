@@ -5,6 +5,7 @@
 
 #include "constants/field/map_load.h"
 #include "generated/journal_location_events.h"
+#include "generated/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
@@ -360,7 +361,7 @@ static u32 sub_0203ABD0(FieldSystem *fieldSystem)
         v0 |= 0x1;
     }
 
-    if (SystemVars_GetPlayerStarter(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
+    if (SystemVars_GetPlayerStarter(SaveData_GetVarsFlags(fieldSystem->saveData)) == SPECIES_NONE) {
         v0 |= 0x2;
     }
 

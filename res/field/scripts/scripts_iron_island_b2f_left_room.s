@@ -53,7 +53,7 @@ _0064:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x261
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_RILEY_IRON_ISLAND
     SetHasPartner
     ScrCmd_06D 4, 48
     ReleaseAll

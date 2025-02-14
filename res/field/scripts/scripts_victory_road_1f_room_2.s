@@ -74,7 +74,7 @@ _00EC:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x262
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MARLEY_VICTORY_ROAD
     SetHasPartner
     ScrCmd_06D 28, 48
     ReleaseAll

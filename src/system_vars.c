@@ -262,7 +262,7 @@ static BOOL SetDailyRandomLevel(VarsFlags *varsFlags, u16 level)
     return TrySetVarToValue(varsFlags, VAR_DAILY_RANDOM_LEVEL, level);
 }
 
-void SystemVars_SetDailyRandomLevel(SaveData *saveData)
+void SystemVars_InitDailyRandomLevel(SaveData *saveData)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(saveData);
     u32 level = (LCRNG_Next() % 98) + 2;
@@ -299,7 +299,7 @@ BOOL SystemVars_SetConsecutiveBonusRoundWins(VarsFlags *varsFlags, u16 wins)
     return TrySetVarToValue(varsFlags, VAR_CONSECUTIVE_BONUS_ROUND_WINS, wins);
 }
 
-BOOL SystemVars_IncrementDepartmentStoreRegularCount(VarsFlags *varsFlags)
+BOOL SystemVars_IncrementDepartmentStoreBuyCount(VarsFlags *varsFlags)
 {
     u16 counter = TryGetVarValue(varsFlags, VAR_DEPARTMENT_STORE_REGULAR_COUNTER);
     if (counter < 10000) {
@@ -311,7 +311,7 @@ BOOL SystemVars_IncrementDepartmentStoreRegularCount(VarsFlags *varsFlags)
     return TrySetVarToValue(varsFlags, VAR_DEPARTMENT_STORE_REGULAR_COUNTER, counter);
 }
 
-u16 SystemVars_GetDepartmentStoreRegularCount(VarsFlags *varsFlags)
+u16 SystemVars_GetDepartmentStoreBuyCount(VarsFlags *varsFlags)
 {
     return TryGetVarValue(varsFlags, VAR_DEPARTMENT_STORE_REGULAR_COUNTER);
 }
@@ -356,12 +356,12 @@ void SystemVars_SetFriendshipStepCount(VarsFlags *varsFlags, u16 value)
     TrySetVarToValue(varsFlags, VAR_FRIENDSHIP_INCREMENT_STEP_COUNTER, value);
 }
 
-void SystemVars_SetEternaGymFlowerClock(VarsFlags *varsFlags, u16 state)
+void SystemVars_SetEternaGymFlowerClockState(VarsFlags *varsFlags, u16 state)
 {
     TrySetVarToValue(varsFlags, VAR_ETERNA_GYM_FLOWER_CLOCK_STATE, state);
 }
 
-u16 SystemVars_GetEternaGymFlowerClock(VarsFlags *varsFlags)
+u16 SystemVars_GetEternaGymFlowerClockState(VarsFlags *varsFlags)
 {
     return TryGetVarValue(varsFlags, VAR_ETERNA_GYM_FLOWER_CLOCK_STATE);
 }

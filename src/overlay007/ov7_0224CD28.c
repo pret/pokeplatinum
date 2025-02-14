@@ -1214,7 +1214,7 @@ static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         if (param0->unk_28C == 1) {
-            SystemVars_IncrementDepartmentStoreRegularCount(param0->unk_288);
+            SystemVars_IncrementDepartmentStoreBuyCount(param0->unk_288);
         }
 
         if (((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) && (param0->unk_2AA == 4) && (param0->unk_2AC >= 10)) {

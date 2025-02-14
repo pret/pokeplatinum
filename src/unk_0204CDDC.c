@@ -11,22 +11,17 @@
 #include "system_vars.h"
 #include "vars_flags.h"
 
-BOOL ScrCmd_2DF(ScriptContext *param0);
-BOOL ScrCmd_2E0(ScriptContext *param0);
-BOOL ScrCmd_2E1(ScriptContext *param0);
-
-BOOL ScrCmd_215(ScriptContext *param0)
+BOOL ScrCmd_ClearAmitySquareStepCount(ScriptContext *ctx)
 {
-    SystemVars_ClearAmitySquareStepCount(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    SystemVars_ClearAmitySquareStepCount(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-BOOL ScrCmd_216(ScriptContext *param0)
+BOOL ScrCmd_GetAmitySquareStepCount(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(param0);
-
-    *v0 = SystemVars_GetAmitySquareStepCount(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
+    *resultVar = SystemVars_GetAmitySquareStepCount(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
 static const u16 Unk_020EBF84[6][10] = {

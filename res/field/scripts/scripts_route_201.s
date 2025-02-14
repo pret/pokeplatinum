@@ -1018,7 +1018,7 @@ _0BBB:
 
 _0BF5:
     BufferCounterpartName 0
-    ScrCmd_0DB 1
+    BufferPlayerStarterSpeciesName 1
     BufferRivalStarterSpeciesName 2
     ApplyMovement 5, _0D70
     WaitMovement
