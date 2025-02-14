@@ -14,7 +14,7 @@ _000E:
     GoToIfEq 0x4000, 0, _0058
     CheckItem ITEM_MEMBER_CARD, 1, 0x4000
     GoToIfEq 0x4000, FALSE, _0058
-    CheckDistributionEvent DISTEVENT_DARKRAI, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
     GoToIfEq 0x4000, FALSE, _0058
     GoToIfSet 0x158, _0058
     ClearFlag 0x240

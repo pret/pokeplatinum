@@ -10,7 +10,7 @@
 
 _000A:
     SetFlag 0x9D0
-    SetHiddenLocation HL_FULLMOONISLAND
+    EnableHiddenLocation HIDDEN_LOCATION_FULLMOON_ISLAND
     End
 
 _0015:

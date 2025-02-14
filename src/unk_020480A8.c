@@ -21,9 +21,9 @@ static u8 sub_02048268(u16 param0, u16 param1);
 BOOL ScrCmd_GetJubilifeLotteryTrainerID(ScriptContext *ctx)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
-    u16 *resultVar = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u32 trainerID = SystemVars_GetJubilifeLotteryTrainerID(varsFlags);
-    *resultVar = LO_HALF(trainerID);
+    *destVar = LO_HALF(trainerID);
     return FALSE;
 }
 

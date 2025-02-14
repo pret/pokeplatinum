@@ -1570,7 +1570,7 @@ _14AC:
     GoToIfEq 0x4000, FALSE, _1570
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _1570
-    CheckDistributionEvent DISTEVENT_ARCEUS, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
     GoToIfEq 0x4000, FALSE, _1570
     GoToIfSet 0x11E, _1570
     BufferPlayerName 0

@@ -94,7 +94,7 @@ _0168:
     GoToIfEq 0x4000, 0, _01CA
     CheckItem ITEM_MEMBER_CARD, 1, 0x4000
     GoToIfEq 0x4000, FALSE, _01CA
-    CheckDistributionEvent DISTEVENT_DARKRAI, 0x4000
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
     GoToIfEq 0x4000, FALSE, _01CA
     GoToIfUnset 0x12C, _01CA
     SetVar 0x4000, 1

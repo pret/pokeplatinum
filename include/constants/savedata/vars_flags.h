@@ -8,7 +8,7 @@
 #define VARS_START 0x4000
 
 #define SYSTEM_VARS_START                     (VARS_START + 0x0030)
-#define SYSTEM_VARS_BLOCK_SIZE                64
+#define NUM_SYSTEM_VARS                       64
 #define VAR_PLAYER_STARTER                    (SYSTEM_VARS_START + 0)
 #define VAR_UNUSED_0x4031                     (SYSTEM_VARS_START + 1)
 #define VAR_UNK_0x4032                        (SYSTEM_VARS_START + 2)

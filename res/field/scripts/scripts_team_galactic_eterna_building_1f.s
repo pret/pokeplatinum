@@ -115,7 +115,7 @@ _0110:
 _0134:
     CheckItem ITEM_SECRET_KEY, 1, 0x800C
     GoToIfEq 0x800C, FALSE, _01AA
-    CheckDistributionEvent DISTEVENT_ROTOM, 0x800C
+    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x800C
     GoToIfEq 0x800C, FALSE, _01AA
     GoToIfUnset 129, _01AA
     PlayFanfare SEQ_SE_CONFIRM
