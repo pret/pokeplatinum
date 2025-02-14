@@ -3,14 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200D0F4.h"
-
 #include "overlay013/ov13_02227A4C.h"
 #include "overlay013/struct_ov13_02227244.h"
 
 #include "bg_window.h"
 #include "heap.h"
-#include "unk_0200C6E4.h"
+#include "sprite_system.h"
 
 typedef struct {
     u8 unk_00;
@@ -390,7 +388,7 @@ static void ov13_0222872C(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
 
 static void ov13_022287A4(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     u8 v1;
 
     if ((param1 >= 6) && (param1 <= 11)) {
@@ -399,7 +397,7 @@ static void ov13_022287A4(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
         for (v1 = 0; v1 < 6; v1++) {
             v0 = param0->unk_310[v1];
 
-            if (sub_0200D408(v0) != 0) {
+            if (ManagedSprite_GetDrawFlag(v0) != 0) {
                 break;
             }
         }
@@ -410,10 +408,10 @@ static void ov13_022287A4(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2)
     switch (param2) {
     case 0:
     case 2:
-        sub_0200D5DC(v0, 0, 2);
+        ManagedSprite_OffsetPositionXY(v0, 0, 2);
         break;
     case 1:
-        sub_0200D5DC(v0, 0, -4);
+        ManagedSprite_OffsetPositionXY(v0, 0, -4);
         break;
     }
 }

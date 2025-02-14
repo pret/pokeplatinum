@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200D0F4.h"
-
 #include "overlay099/const_ov99_021D4CAC.h"
 #include "overlay099/ov99_021D4134.h"
 #include "overlay099/struct_ov99_021D2CB0.h"
@@ -12,10 +10,10 @@
 #include "overlay099/struct_ov99_021D35E8.h"
 #include "overlay099/struct_ov99_021D3A40.h"
 
+#include "brightness_controller.h"
 #include "math.h"
 #include "palette.h"
-#include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
+#include "sprite_system.h"
 
 typedef struct {
     s16 unk_00;
@@ -35,7 +33,7 @@ typedef struct {
 
 static void ov99_021D3588(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1);
 static void ov99_021D35C8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1);
-static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, CellActorData *param2, int param3);
+static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, ManagedSprite *param2, int param3);
 static void ov99_021D3930(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1);
 static void ov99_021D36B0(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D36D4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1);
@@ -110,23 +108,23 @@ BOOL ov99_021D340C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
     }
         ov99_021D3588(param0, v0);
         ov99_021D36B0(param0);
-        sub_0200AAE0(24, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+        BrightnessController_StartTransition(24, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
         param1->unk_00++;
         break;
     case 1:
-        if (sub_0200AC1C(3) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) {
             G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, 31, 0);
             param1->unk_00++;
         }
         break;
     case 2:
         if (param0->unk_10FC >= 7980) {
-            sub_0200AAE0(24, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+            BrightnessController_StartTransition(24, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
             param1->unk_00++;
         }
         break;
     case 3:
-        if (sub_0200AC1C(3) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) {
             return 1;
         }
         break;
@@ -159,8 +157,8 @@ static void ov99_021D3588(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     GF_ASSERT(NELEMS(Unk_ov99_021D4C90) == 2 - 2 + 1);
 
     for (v0 = 2; v0 <= 2; v0++, v1++) {
-        sub_0200D6A4(param0->unk_10E0[v0], 2);
-        sub_0200D500(param0->unk_10E0[v0], Unk_ov99_021D4C90[v1].unk_00, Unk_ov99_021D4C90[v1].unk_02, ((192 + 80) << FX32_SHIFT));
+        ManagedSprite_SetAffineOverwriteMode(param0->unk_10E0[v0], AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_10E0[v0], Unk_ov99_021D4C90[v1].unk_00, Unk_ov99_021D4C90[v1].unk_02, ((192 + 80) << FX32_SHIFT));
         param1->unk_124[v1].unk_00 = Unk_ov99_021D4C90[v1].unk_00 * FX32_ONE;
         param1->unk_124[v1].unk_04 = Unk_ov99_021D4C90[v1].unk_02 * FX32_ONE;
     }
@@ -179,7 +177,7 @@ static void ov99_021D35C8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     }
 }
 
-static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, CellActorData *param2, int param3)
+static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1, ManagedSprite *param2, int param3)
 {
     UnkStruct_ov99_021D35E8 *v0 = &param1->unk_124[param3];
     const UnkStruct_ov99_021D4C90 *v1 = &Unk_ov99_021D4C90[param3];
@@ -200,12 +198,12 @@ static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     v0->unk_00 += v1->unk_04;
     v0->unk_04 += v1->unk_08;
 
-    sub_0200D650(param2, v0->unk_00, v0->unk_04 + v2, ((192 + 80) << FX32_SHIFT));
+    ManagedSprite_SetPositionFxXYWithSubscreenOffset(param2, v0->unk_00, v0->unk_04 + v2, ((192 + 80) << FX32_SHIFT));
 
     if (v0->unk_0E == 0) {
-        sub_0200D7C0(param2, v1->unk_14);
+        ManagedSprite_OffsetAffineZRotation(param2, v1->unk_14);
     } else {
-        sub_0200D7C0(param2, -v1->unk_14);
+        ManagedSprite_OffsetAffineZRotation(param2, -v1->unk_14);
     }
 
     v0->unk_0C++;
@@ -218,8 +216,8 @@ static void ov99_021D35E8(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
 
 static void ov99_021D36B0(UnkStruct_ov99_021D2CB0 *param0)
 {
-    SpriteActor_SetOAMMode(param0->unk_10E0[3], GX_OAM_MODE_XLU);
-    SpriteActor_SetOAMMode(param0->unk_10E0[4], GX_OAM_MODE_XLU);
+    ManagedSprite_SetExplicitOamMode(param0->unk_10E0[3], GX_OAM_MODE_XLU);
+    ManagedSprite_SetExplicitOamMode(param0->unk_10E0[4], GX_OAM_MODE_XLU);
 }
 
 static void ov99_021D36D4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D340C *param1)
@@ -249,9 +247,9 @@ static void ov99_021D372C(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
     param1->unk_11E = 0;
     param1->unk_11F = 31;
 
-    sub_0200D500(param0->unk_10E0[4], Unk_ov99_021D4C84[param2].unk_00, Unk_ov99_021D4C84[param2].unk_02, ((192 + 80) << FX32_SHIFT));
-    SpriteActor_EnableObject(param0->unk_10E0[4], 1);
-    SpriteActor_EnableObject(param0->unk_10E0[3], 0);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_10E0[4], Unk_ov99_021D4C84[param2].unk_00, Unk_ov99_021D4C84[param2].unk_02, ((192 + 80) << FX32_SHIFT));
+    ManagedSprite_SetDrawFlag(param0->unk_10E0[4], 1);
+    ManagedSprite_SetDrawFlag(param0->unk_10E0[3], 0);
 
     G2S_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, param1->unk_11E, param1->unk_11F);
     G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, param1->unk_11F, param1->unk_11E);
@@ -279,13 +277,13 @@ static void ov99_021D37E0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
 
         G2S_ChangeBlendAlpha(param1->unk_11E, param1->unk_11F);
 
-        sub_0200D5E8(param0->unk_10E0[4], -0x6000, 0xd000);
-        sub_0200D5A0(param0->unk_10E0[4], &v0, &v1, ((192 + 80) << FX32_SHIFT));
+        ManagedSprite_OffsetPositionFxXY(param0->unk_10E0[4], -0x6000, 0xd000);
+        Sprite_GetPositionXYWithSubscreenOffset2(param0->unk_10E0[4], &v0, &v1, ((192 + 80) << FX32_SHIFT));
 
         if (v1 > 192 + 32) {
-            SpriteActor_EnableObject(param0->unk_10E0[4], 0);
-            SpriteActor_EnableObject(param0->unk_10E0[3], 1);
-            sub_0200D500(param0->unk_10E0[3], v0, -32, ((192 + 80) << FX32_SHIFT));
+            ManagedSprite_SetDrawFlag(param0->unk_10E0[4], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_10E0[3], 1);
+            ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_10E0[3], v0, -32, ((192 + 80) << FX32_SHIFT));
             param1->unk_11D = 1;
         }
     } else {
@@ -302,11 +300,11 @@ static void ov99_021D37E0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D34
 
         G2_ChangeBlendAlpha(param1->unk_11E, param1->unk_11F);
 
-        sub_0200D5E8(param0->unk_10E0[3], -0x6000, 0xd000);
-        sub_0200D5A0(param0->unk_10E0[3], &v0, &v1, ((192 + 80) << FX32_SHIFT));
+        ManagedSprite_OffsetPositionFxXY(param0->unk_10E0[3], -0x6000, 0xd000);
+        Sprite_GetPositionXYWithSubscreenOffset2(param0->unk_10E0[3], &v0, &v1, ((192 + 80) << FX32_SHIFT));
 
         if (v1 > 192 + 32) {
-            SpriteActor_EnableObject(param0->unk_10E0[3], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_10E0[3], 0);
             param1->unk_11D = 0;
             param1->unk_11C = 0;
         }

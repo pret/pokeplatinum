@@ -1,0 +1,41 @@
+#ifndef POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITES_H
+#define POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITES_H
+
+#include "applications/pokemon_summary_screen/main.h"
+
+#include "bg_window.h"
+
+void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_FreeSpriteResources(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateArrowAndTapAnims(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_SetDefaultSpriteStates(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdatePageTabSprites(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_SetPageArrowsPos(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdatePageArrows(PokemonSummaryScreen *summaryScreen, BOOL showArrows);
+void PokemonSummaryScreen_SetCaughtBallGfx(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateStatusIcon(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateTypeIcons(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_SetMonTypeIcons(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_SwapMoveTypeIcons(PokemonSummaryScreen *summaryScreen, u8 moveIndex1, u8 moveIndex2);
+void PokemonSummaryScreen_UpdateMoveCategoryIcon(PokemonSummaryScreen *summaryScreen, u32 move);
+void PokemonSummaryScreen_UpdateMoveSelectorPos(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_SetMoveSelector2Pos(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_InitSheenSprites(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_DrawSheenSprites(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateMiscMonDataSprites(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_ButtonTapAnim(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_HideButtonTapCircle(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateConditionArrowSprites(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateAButtonSprite(PokemonSummaryScreen *summaryScreen, Window *window);
+void PokemonSummaryScreen_SetMonIcon(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_ShowMonIcon(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_DrawContestStatDots(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_HideContestStatDots(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateRibbonSprites(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateShownRibbonRows(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateRibbonCursorPos(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateRibbonFlashAnim(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_UpdateConditionFlashSprites(PokemonSummaryScreen *summaryScreen, BOOL showFlashes);
+void PokemonSummaryScreen_UpdateConditionFlashAnim(PokemonSummaryScreen *summaryScreen);
+
+#endif // POKEPLATINUM_POKEMON_SUMMARY_SCREEN_SPRITES_H

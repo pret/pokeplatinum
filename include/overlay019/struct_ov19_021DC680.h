@@ -10,12 +10,12 @@
 #include "overlay019/struct_ov19_021DCD18.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "sprite.h"
 
 typedef struct {
     UnkStruct_ov19_021D61B0 *unk_00;
     BgConfig *unk_04;
-    CellActorCollection *unk_08;
+    SpriteList *unk_08;
     const UnkStruct_ov19_021D4DF0 *unk_0C;
     UnkStruct_ov19_021D8318 *unk_10;
     void *unk_14;

@@ -4,10 +4,9 @@
 #include <string.h>
 
 #include "field/field_system.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
 
 #include "field_task.h"
 #include "heap.h"
@@ -51,7 +50,7 @@ static BOOL ov6_02246F40(FieldTask *param0)
     case 0: {
         NNSG3dResMdl *v2;
         NNSG3dResFileHeader **v3;
-        UnkStruct_ov5_021E1890 *v4;
+        MapProp *v4;
         NNSG3dRenderObj *v5;
         BOOL v6;
 
@@ -60,7 +59,7 @@ static BOOL ov6_02246F40(FieldTask *param0)
 
         v6 = sub_020552B4(fieldSystem, 498, &v4, NULL);
         GF_ASSERT(v6);
-        v5 = ov5_021E18BC(v4);
+        v5 = MapProp_GetRenderObj(v4);
 
         ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 0x1, 498, v5, v2, ov5_021EFAA0(fieldSystem->unk_30), 2, v1->unk_00, 0);
     }

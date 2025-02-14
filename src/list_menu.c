@@ -290,8 +290,8 @@ u32 ListMenu_GetAttribute(ListMenu *menu, u8 attribute)
         result = (u32)menu->template.window;
         break;
 
-    case LIST_MENU_TMP:
-        result = (u32)menu->template.tmp;
+    case LIST_MENU_PARENT:
+        result = (u32)menu->template.parent;
         break;
 
     default:

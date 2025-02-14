@@ -3,10 +3,10 @@
 
 #include "overlay022/funcptr_ov22_02259D78.h"
 
-#include "cell_actor.h"
+#include "sprite.h"
 
 typedef struct {
-    CellActorInitParamsEx *unk_00;
+    AffineSpriteListTemplate *unk_00;
     UnkFuncPtr_ov22_02259D78 unk_04;
     void *unk_08;
     int unk_0C;

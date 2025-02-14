@@ -12,12 +12,12 @@
 #include "overlay065/struct_ov65_022354D8.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -48,7 +48,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     int unk_180;
     Menu *unk_184;
     void *unk_188;
-    CellActorCollection *unk_18C;
+    SpriteList *unk_18C;
     G2dRenderer unk_190;
     SpriteResourceCollection *unk_31C[4];
     UnkStruct_02012744 *unk_32C;

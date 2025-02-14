@@ -3,19 +3,19 @@
 #include "constants/heap.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "heap.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "render_view.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 
 #define RESDAT_TABLE_TERMINATOR 0xFFFFFFFE
 
-void SpriteResourcesHeader_Init(CellActorResourceData *resourceHeader, int charResourceID, int plttResourceID, int cellResourceID, int animResourceID, int mcellResourceID, int manimResourceID, BOOL vramTransfer, int priority, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources)
+void SpriteResourcesHeader_Init(SpriteResourcesHeader *resourceHeader, int charResourceID, int plttResourceID, int cellResourceID, int animResourceID, int mcellResourceID, int manimResourceID, BOOL vramTransfer, int priority, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources)
 {
     SpriteResource *charResource;
     SpriteResource *plttResource;
@@ -84,10 +84,10 @@ void SpriteResourcesHeader_Init(CellActorResourceData *resourceHeader, int charR
     resourceHeader->priority = priority;
 }
 
-void SpriteResourcesHeader_Clear(CellActorResourceData *resourceHeader)
+void SpriteResourcesHeader_Clear(SpriteResourcesHeader *resourceHeader)
 {
     SpriteTransfer_DeleteCharTransfer(resourceHeader->imageProxy);
-    memset(resourceHeader, 0, sizeof(CellActorResourceData));
+    memset(resourceHeader, 0, sizeof(SpriteResourcesHeader));
 }
 
 SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatTableEntry *resdatEntries, enum HeapId heapID, SpriteResourceCollection *charResources, SpriteResourceCollection *plttResources, SpriteResourceCollection *cellResources, SpriteResourceCollection *animResources, SpriteResourceCollection *mcellResources, SpriteResourceCollection *manimResources)
@@ -98,7 +98,7 @@ SpriteResourcesHeaderList *SpriteResourcesHeaderList_NewFromResdat(const ResdatT
     }
 
     SpriteResourcesHeaderList *headerList = Heap_AllocFromHeap(heapID, sizeof(SpriteResourcesHeaderList));
-    headerList->headers = Heap_AllocFromHeap(heapID, sizeof(CellActorResourceData) * resdatLength);
+    headerList->headers = Heap_AllocFromHeap(heapID, sizeof(SpriteResourcesHeader) * resdatLength);
     headerList->length = resdatLength;
 
     for (int i = 0; i < headerList->length; i++) {
@@ -132,9 +132,9 @@ void SpriteResourcesHeaderList_Free(SpriteResourcesHeaderList *headerList)
     Heap_FreeToHeap(headerList);
 }
 
-CellActorCollection *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapId heapID)
+SpriteList *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dRenderer, enum HeapId heapID)
 {
-    CellActorCollectionParams template;
+    SpriteListParams template;
     NNSG2dViewRect viewRect;
 
     InitRenderer(&g2dRenderer->renderer, -FX32_ONE);
@@ -154,7 +154,7 @@ CellActorCollection *SpriteList_InitRendering(int maxElements, G2dRenderer *g2dR
     template.maxElements = maxElements;
     template.renderer = &g2dRenderer->renderer;
     template.heapID = heapID;
-    return CellActorCollection_New(&template);
+    return SpriteList_New(&template);
 }
 
 void SetMainScreenViewRect(G2dRenderer *g2dRenderer, fx32 x, fx32 y)

@@ -3,19 +3,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200D0F4.h"
-
 #include "overlay099/struct_ov99_021D2CB0.h"
 #include "overlay099/struct_ov99_021D5434.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "easy3d_object.h"
 #include "graphics.h"
 #include "heap.h"
 #include "math.h"
 #include "palette.h"
-#include "unk_0200C6E4.h"
+#include "sprite.h"
+#include "sprite_system.h"
 
 typedef struct {
     u16 unk_00;
@@ -204,7 +202,7 @@ void ov99_021D439C(UnkStruct_ov99_021D2CB0 *param0, int param1, int param2, int 
     Bg_SetOffset(v0, param2, 3, v3->unk_08);
 }
 
-void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1)
+void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite *param1)
 {
     void *v0;
     u32 v1;
@@ -219,7 +217,7 @@ void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1)
             param0->unk_1114.unk_00--;
         } else {
             v0 = G2_GetOBJCharPtr();
-            v2 = SpriteActor_ImageProxy(param1->unk_00);
+            v2 = Sprite_GetImageProxy(param1->sprite);
 
             if (param0->unk_00->unk_00 == 0) {
                 MI_CpuCopy32(&param0->unk_10F4[param0->unk_1114.unk_02 * ((0x20 * 8) / 2)], (void *)((u32)v0 + 0x1d * 0x20 + v2->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 0x20);
@@ -253,7 +251,7 @@ void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1)
         }
     }
 
-    if (sub_0200D3B8(param1) == 0) {
+    if (ManagedSprite_IsAnimated(param1) == 0) {
         if (param0->unk_1114.unk_04 != -1) {
             param0->unk_1114.unk_04++;
 
@@ -264,10 +262,10 @@ void ov99_021D44CC(UnkStruct_ov99_021D2CB0 *param0, CellActorData *param1)
                 v1 = 0;
             }
 
-            sub_0200D364(param1, v1);
+            ManagedSprite_SetAnim(param1, v1);
         } else {
             param0->unk_1114.unk_04 = 0;
-            sub_0200D364(param1, 0);
+            ManagedSprite_SetAnim(param1, 0);
         }
     }
 }

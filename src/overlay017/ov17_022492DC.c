@@ -4,10 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_02095C48.h"
 
@@ -20,13 +17,13 @@
 #include "heap.h"
 #include "message.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02094EDC.h"
 
@@ -62,7 +59,7 @@ typedef struct {
         struct {
             UnkStruct_ov17_02249B30 *unk_00;
             const UnkStruct_ov17_02254630 *unk_04[3];
-            CellActorData *unk_10[3];
+            ManagedSprite *unk_10[3];
             u32 unk_1C[3];
             int unk_28;
             u16 unk_2C;
@@ -409,8 +406,8 @@ void ov17_02249640(UnkStruct_ov17_022492DC *param0, int param1, int param2, void
     const UnkStruct_ov17_02254578 *v0, *v1;
     int v2;
     BgConfig *v3;
-    SpriteRenderer *v4;
-    SpriteGfxHandler *v5;
+    SpriteSystem *v4;
+    SpriteManager *v5;
 
     param0->unk_08 = param3;
 
@@ -680,7 +677,7 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
     int v3;
     FontOAM *v4;
     BgConfig *v5;
-    SpriteGfxHandler *v6;
+    SpriteManager *v6;
     int v7, v8;
 
     GF_ASSERT(param1->unk_00 == NULL);
@@ -714,8 +711,8 @@ static void ov17_02249BC4(UnkStruct_ov17_022492DC *param0, UnkStruct_ov17_02249B
 
     v0.unk_00 = param0->unk_18;
     v0.unk_04 = &v1;
-    v0.unk_08 = sub_0200D9B0(v6);
-    v0.unk_0C = sub_0200D04C(v6, param6);
+    v0.unk_08 = SpriteManager_GetSpriteList(v6);
+    v0.unk_0C = SpriteManager_FindPlttResourceProxy(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.offset;
     v0.unk_18 = param7;
@@ -751,7 +748,7 @@ static void ov17_02249CD0(UnkStruct_ov17_022492DC *param0)
 
 static void ov17_02249CFC(UnkStruct_ov17_022492DC *param0, int param1)
 {
-    SpriteGfxHandler *v0;
+    SpriteManager *v0;
     int v1;
     int v2, v3;
 
@@ -821,7 +818,7 @@ static void ov17_02249DA0(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_8C.unk_04_val1.unk_10[v4] != NULL) {
-                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->unk_00, 0, 16);
+                Sprite_OffsetPositionXY(v0->unk_8C.unk_04_val1.unk_10[v4]->sprite, 0, 16);
             }
         }
 
@@ -850,7 +847,7 @@ static void ov17_02249DA0(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_8C.unk_04_val1.unk_10[v4] != NULL) {
-                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->unk_00, 0, -4);
+                Sprite_OffsetPositionXY(v0->unk_8C.unk_04_val1.unk_10[v4]->sprite, 0, -4);
             }
         }
 
@@ -879,7 +876,7 @@ static void ov17_02249DA0(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_8C.unk_04_val1.unk_10[v4] != NULL) {
-                sub_0200D5AC(v0->unk_8C.unk_04_val1.unk_10[v4]->unk_00, 0, (-(16 + -4)));
+                Sprite_OffsetPositionXY(v0->unk_8C.unk_04_val1.unk_10[v4]->sprite, 0, (-(16 + -4)));
             }
         }
 

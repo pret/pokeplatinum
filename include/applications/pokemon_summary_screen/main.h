@@ -5,24 +5,22 @@
 
 #include "constants/moves.h"
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 
 #include "bg_window.h"
 #include "camera.h"
-#include "cell_actor.h"
 #include "game_options.h"
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -403,7 +401,7 @@ typedef struct PokemonSummaryMonSpriteData {
     void *spriteManager;
     SpriteAnimationFrame frames[MAX_ANIMATION_FRAMES];
     PokemonAnimationSys *animationSys;
-    Sprite *sprite;
+    PokemonSprite *sprite;
     BOOL flip;
 } PokemonSummaryMonSpriteData;
 
@@ -422,10 +420,10 @@ typedef struct PokemonSummaryScreen {
     ConditionRectangle maxRects[MAX_CONDITION_RECT];
     u32 conditionState;
 
-    SpriteRenderer *renderer;
-    SpriteGfxHandler *gfxHandler;
-    CellActor *sprites[SUMMARY_SPRITE_MAX];
-    CellActorData *actor[SUMMARY_SPRITE_MAX];
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    Sprite *sprites[SUMMARY_SPRITE_MAX];
+    ManagedSprite *managedSprites[SUMMARY_SPRITE_MAX];
 
     UnkStruct_0200C440 *unk_684;
     MessageLoader *msgLoader;

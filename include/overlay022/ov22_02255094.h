@@ -9,8 +9,8 @@
 #include "overlay022/struct_ov22_0225A0E4.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "narc.h"
+#include "sprite.h"
 
 void ov22_02255094(void);
 void ov22_022550B4(void);
@@ -19,7 +19,7 @@ void ov22_02255134(UnkStruct_ov22_0225A0E4 *param0);
 void ov22_02255180(UnkStruct_ov22_0225A0E4 *param0);
 void ov22_022551B4(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1);
 void ov22_022551D0(UnkStruct_ov22_0225A0E4 *param0);
-CellActor *ov22_022551E4(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, int param3, int param4, int param5);
+Sprite *ov22_022551E4(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, int param3, int param4, int param5);
 void ov22_02255248(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5);
 void ov22_02255268(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5, int param6);
 void ov22_0225528C(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4);

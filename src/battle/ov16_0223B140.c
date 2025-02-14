@@ -34,9 +34,6 @@
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay011/ov11_0221F840.h"
 #include "overlay012/ov12_0221FC20.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -62,6 +59,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -74,7 +72,6 @@
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0201567C.h"
@@ -139,7 +136,7 @@ static BOOL ov16_0223CD3C(u16 param0);
 static void ov16_0223DD90(BattleSystem *param0, FieldBattleDTO *param1);
 static void ov16_0223DECC(void);
 
-static const UnkStruct_ov104_0224133C Unk_ov16_0226E2E4 = {
+static const RenderOamTemplate Unk_ov16_0226E2E4 = {
     0x0,
     0x80,
     0x0,
@@ -150,7 +147,7 @@ static const UnkStruct_ov104_0224133C Unk_ov16_0226E2E4 = {
     0x20
 };
 
-static const UnkStruct_ov104_022412F4 Unk_ov16_0226E29C = {
+static const CharTransferTemplateWithModes Unk_ov16_0226E29C = {
     0x60,
     0x10000,
     0x4000,
@@ -158,7 +155,7 @@ static const UnkStruct_ov104_022412F4 Unk_ov16_0226E29C = {
     GX_OBJVRAMMODE_CHAR_1D_32K
 };
 
-const UnkStruct_ov104_02241308 Unk_ov16_0226E2B0 = {
+const SpriteResourceCapacities Unk_ov16_0226E2B0 = {
     0x60,
     0x20,
     0x40,
@@ -320,8 +317,8 @@ void ov16_0223B3E4(BattleSystem *param0)
     ov16_0223C288(param0->unk_04);
     ov16_0223C2BC(param0);
 
-    sub_0200D0B0(param0->unk_90, param0->unk_94);
-    sub_0200C8D4(param0->unk_90);
+    SpriteSystem_FreeResourcesAndManager(param0->unk_90, param0->unk_94);
+    SpriteSystem_Free(param0->unk_90);
     VramTransfer_Free();
     Font_Free(FONT_SUBSCREEN);
 }
@@ -362,7 +359,7 @@ void ov16_0223B430(BattleSystem *param0)
     NARC_dtor(v1);
     TextPrinter_SetScrollArrowBaseTile(1);
     ov16_0223DD4C(param0);
-    SetSubScreenViewRect(sub_0200C738(param0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 }
 
 void ov16_0223B53C(BattleSystem *param0)
@@ -575,17 +572,17 @@ static void ov16_0223B790(OverlayManager *param0)
     Window_FillTilemap(&v0->windows[0], 0xff);
     Window_DrawMessageBoxWithScrollCursor(&v0->windows[0], 0, 1, 10);
 
-    v0->unk_90 = sub_0200C6E4(5);
+    v0->unk_90 = SpriteSystem_Alloc(5);
 
-    sub_0200C73C(v0->unk_90, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, (16 + 16));
+    SpriteSystem_Init(v0->unk_90, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, (16 + 16));
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_94 = sub_0200C704(v0->unk_90);
+    v0->unk_94 = SpriteManager_New(v0->unk_90);
 
-    sub_0200C7C0(v0->unk_90, v0->unk_94, (64 + 64));
-    sub_0200CB30(v0->unk_90, v0->unk_94, &Unk_ov16_0226E2B0);
-    SetSubScreenViewRect(sub_0200C738(v0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteSystem_InitSprites(v0->unk_90, v0->unk_94, (64 + 64));
+    SpriteSystem_InitManagerWithCapacities(v0->unk_90, v0->unk_94, &Unk_ov16_0226E2B0);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 
     ov16_02268A88(v0->unk_198);
 
@@ -1523,7 +1520,7 @@ static void ov16_0223CE68(void *param0)
 
     sub_02008A94(v0->unk_88);
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_28);
     Bg_RunScheduledUpdates(v0->unk_04);
 
@@ -1553,8 +1550,8 @@ static void ov16_0223CF48(SysTask *param0, void *param1)
         }
 
         sub_02007768(v0->unk_88);
-        sub_0200C7EC(v0->unk_94);
-        sub_0200C808();
+        SpriteSystem_DrawSprites(v0->unk_94);
+        SpriteSystem_UpdateTransfer();
         G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 }

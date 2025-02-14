@@ -149,7 +149,7 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
     v0.maxDisplay = v3 + 2;
     v0.choices = param0->unk_08;
     v0.window = &param0->unk_34;
-    v0.tmp = param0;
+    v0.parent = param0;
 
     param0->unk_00 = ListMenu_New(&v0, 0, param0->unk_78, 4);
     Window_CopyToVRAM(&param0->unk_34);
@@ -239,7 +239,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     v0.maxDisplay = v1;
     v0.choices = param0->unk_0C;
     v0.window = &param0->unk_44;
-    v0.tmp = param0;
+    v0.parent = param0;
 
     param0->unk_04 = ListMenu_New(&v0, 0, param0->unk_7A, 4);
     Window_CopyToVRAM(&param0->unk_44);

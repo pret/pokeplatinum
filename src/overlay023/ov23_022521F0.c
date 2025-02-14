@@ -431,7 +431,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
     v0.count = v1;
     v0.maxDisplay = v1;
     v0.cursorCallback = ov23_0225265C;
-    v0.tmp = param0;
+    v0.parent = param0;
 
     param0->unk_268 = ov23_02252A04;
     param0->unk_294 = ov23_02243154(13 + param0->unk_2AC);

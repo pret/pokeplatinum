@@ -10,6 +10,7 @@
 #include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "camera.h"
 #include "easy3d.h"
 #include "easy3d_object.h"
@@ -28,7 +29,6 @@
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -1005,7 +1005,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         param0->unk_29C = 1;
         param0->unk_2A0 = 0;
         sub_0200F2C0();
-        sub_0200ABB0(3);
+        BrightnessController_ResetScreenController(BRIGHTNESS_BOTH_SCREENS);
         return 1;
     }
 
@@ -1028,10 +1028,10 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         }
         break;
     case 2:
-        if ((sub_0200AC1C(1) == 1) && (sub_0200AC1C(2) == 1)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             if (param0->unk_22A) {
-                sub_0200AAE0(10, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2), 1);
-                sub_0200AAE0(10, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD), 2);
+                BrightnessController_StartTransition(10, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2), BRIGHTNESS_MAIN_SCREEN);
+                BrightnessController_StartTransition(10, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
                 param0->unk_296 = 2;
                 param0->unk_22A--;
                 param0->unk_00 = 3;
@@ -1042,9 +1042,9 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         }
         break;
     case 3:
-        if ((sub_0200AC1C(1) == 1) && (sub_0200AC1C(2) == 1)) {
-            sub_0200AAE0(10, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2), 1);
-            sub_0200AAE0(10, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD), 2);
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
+            BrightnessController_StartTransition(10, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2), BRIGHTNESS_MAIN_SCREEN);
+            BrightnessController_StartTransition(10, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_SUB_SCREEN);
             param0->unk_296 = 3;
             param0->unk_00 = 2;
         }

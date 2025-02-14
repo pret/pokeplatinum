@@ -22,7 +22,7 @@
 #include "overlay107/struct_ov107_02249B8C_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "sprite.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "system.h"
@@ -364,7 +364,7 @@ int ov107_02245FD0 (OverlayManager * param0, int * param1)
     }
 
     ov107_022492A8(v0);
-    CellActorCollection_Update(v0->unk_158.unk_00);
+    SpriteList_Update(v0->unk_158.unk_00);
 
     return 0;
 }
@@ -1472,7 +1472,7 @@ static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, Window * param1, in
     Window_FillTilemap(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
-    
+
     switch (param10) {
     case 1:
         param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
@@ -1498,7 +1498,7 @@ static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, Window * param1, in
     u8 v0;
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
-    
+
     switch (param10) {
     case 1:
         param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
@@ -1975,7 +1975,7 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
 
     v1.choices = param0->unk_13C;
     v1.window = &param0->unk_50[5];
-    v1.tmp = param0;
+    v1.parent = param0;
     v1.cursorCallback = ov107_02247F14;
     v1.printCallback = NULL;
     v1.count = (NELEMS(Unk_ov107_0224A1BC));
@@ -2037,7 +2037,7 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
 
     v1.choices = param0->unk_13C;
     v1.window = &param0->unk_50[6];
-    v1.tmp = param0;
+    v1.parent = param0;
     v1.cursorCallback = ov107_02248028;
     v1.printCallback = ov107_022480A0;
     v1.count = (NELEMS(Unk_ov107_0224A19C));

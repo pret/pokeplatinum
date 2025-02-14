@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/map_prop.h"
+
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
@@ -17,10 +19,10 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021DF440.h"
-#include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EF250.h"
 #include "overlay005/ov5_021F4018.h"
@@ -30,7 +32,6 @@
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D3CE4_decl.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
 #include "overlay008/struct_ov8_02249FB8.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
@@ -148,7 +149,7 @@ typedef struct {
     VecFx32 unk_00;
     u32 unk_0C;
     u16 unk_10;
-    UnkStruct_ov5_021E1890 *unk_14;
+    MapProp *unk_14;
 } UnkStruct_ov8_0224AF58;
 
 typedef struct {
@@ -409,7 +410,7 @@ BOOL ov8_02249A40(FieldSystem *fieldSystem, const int param1, const int param2, 
 
 static BOOL ov8_02249A94(FieldTask *taskMan)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
 
@@ -429,12 +430,12 @@ static BOOL ov8_02249A94(FieldTask *taskMan)
         v5 = ov5_021D3DA0(3, fieldSystem->unk_50);
 
         if (ov5_021D3F70(v3) && ov5_021D3F70(v4) && ov5_021D3F70(v5)) {
-            v0 = ov5_021E18CC(fieldSystem->unk_A4, 242);
+            v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
 
             {
                 VecFx32 v6;
 
-                v6 = ov5_021E1894(v0);
+                v6 = MapProp_GetPosition(v0);
                 v6.y -= (FX32_ONE);
 
                 if (v6.y <= (FX32_ONE * 0)) {
@@ -442,7 +443,7 @@ static BOOL ov8_02249A94(FieldTask *taskMan)
                     (v2->unk_00)++;
                 }
 
-                ov5_021E18A4(v0, &v6);
+                MapProp_SetPosition(v0, &v6);
             }
         }
     } break;
@@ -461,7 +462,7 @@ static BOOL ov8_02249A94(FieldTask *taskMan)
 
 static BOOL ov8_02249B74(FieldTask *taskMan)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
 
@@ -480,11 +481,11 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
         v5 = ov5_021D3DA0(3, fieldSystem->unk_50);
 
         if (ov5_021D3F70(v3) && ov5_021D3F70(v4) && ov5_021D3F70(v5)) {
-            v0 = ov5_021E18CC(fieldSystem->unk_A4, 242);
+            v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
             {
                 VecFx32 v6;
 
-                v6 = ov5_021E1894(v0);
+                v6 = MapProp_GetPosition(v0);
 
                 if (v6.y == (FX32_ONE * 0)) {
                     (v2->unk_00) = 2;
@@ -500,12 +501,12 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
         }
     } break;
     case 2:
-        v0 = ov5_021E18CC(fieldSystem->unk_A4, 242);
+        v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
 
         {
             VecFx32 v7;
 
-            v7 = ov5_021E1894(v0);
+            v7 = MapProp_GetPosition(v0);
             v7.y += (FX32_ONE);
 
             if (v7.y >= (FX32_ONE * 16 * 2)) {
@@ -513,16 +514,16 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
                 (v2->unk_00) = 4;
             }
 
-            ov5_021E18A4(v0, &v7);
+            MapProp_SetPosition(v0, &v7);
         }
         break;
     case 3:
-        v0 = ov5_021E18CC(fieldSystem->unk_A4, 242);
+        v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
 
         {
             VecFx32 v8;
 
-            v8 = ov5_021E1894(v0);
+            v8 = MapProp_GetPosition(v0);
             v8.y -= (FX32_ONE);
 
             if (v8.y <= (FX32_ONE * 16 * 2)) {
@@ -530,7 +531,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
                 (v2->unk_00) = 4;
             }
 
-            ov5_021E18A4(v0, &v8);
+            MapProp_SetPosition(v0, &v8);
         }
         break;
     case 4:
@@ -548,7 +549,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
 
 static BOOL ov8_02249CD8(FieldTask *taskMan)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
 
@@ -567,12 +568,12 @@ static BOOL ov8_02249CD8(FieldTask *taskMan)
         v5 = ov5_021D3DA0(3, fieldSystem->unk_50);
 
         if (ov5_021D3F70(v3) && ov5_021D3F70(v4) && ov5_021D3F70(v5)) {
-            v0 = ov5_021E18CC(fieldSystem->unk_A4, 242);
+            v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
 
             {
                 VecFx32 v6;
 
-                v6 = ov5_021E1894(v0);
+                v6 = MapProp_GetPosition(v0);
                 v6.y += (FX32_ONE);
 
                 if (v6.y >= (FX32_ONE * 16 * 4)) {
@@ -580,7 +581,7 @@ static BOOL ov8_02249CD8(FieldTask *taskMan)
                     (v2->unk_00)++;
                 }
 
-                ov5_021E18A4(v0, &v6);
+                MapProp_SetPosition(v0, &v6);
             }
         }
     } break;
@@ -600,7 +601,7 @@ static BOOL ov8_02249CD8(FieldTask *taskMan)
 void ov8_02249DBC(FieldSystem *fieldSystem)
 {
     u8 v0;
-    UnkStruct_ov5_021E1890 *v1;
+    MapProp *v1;
     fx32 v2;
     fx32 v3;
     BOOL v4, v5, v6;
@@ -612,7 +613,7 @@ void ov8_02249DBC(FieldSystem *fieldSystem)
 
     {
         VecFx32 v9 = { FX32_ONE * 16 * 16, 0, FX32_ONE * 16 * 16 };
-        ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, 242, &v9, NULL, fieldSystem->unk_50);
+        MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, 242, &v9, NULL, fieldSystem->unk_50);
     }
 
     ov5_021EF2CC(0, 1, 2, 25, 38, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
@@ -650,15 +651,15 @@ void ov8_02249DBC(FieldSystem *fieldSystem)
         v6 = 0;
     }
 
-    v1 = ov5_021E18CC(fieldSystem->unk_A4, 242);
+    v1 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
 
     {
         VecFx32 v10;
 
-        v10 = ov5_021E1894(v1);
+        v10 = MapProp_GetPosition(v1);
         v10.y = v2;
 
-        ov5_021E18A4(v1, &v10);
+        MapProp_SetPosition(v1, &v10);
     }
 
     ov5_021EF388(0, v3, fieldSystem->unk_A0);
@@ -772,7 +773,7 @@ void ov8_02249FB8(FieldSystem *fieldSystem)
 
 static BOOL ov8_0224A018(FieldTask *taskMan)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
 
@@ -783,12 +784,12 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = ov5_021E18CC(fieldSystem->unk_A4, 258);
+        v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_258);
 
         {
             VecFx32 v3;
 
-            v3 = ov5_021E1894(v0);
+            v3 = MapProp_GetPosition(v0);
             v3.y += (FX32_ONE);
 
             if (v3.y >= (FX32_ONE * 16 * 10)) {
@@ -799,7 +800,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
             }
 
             sub_0205ED0C(fieldSystem->playerAvatar, v3.y);
-            ov5_021E18A4(v0, &v3);
+            MapProp_SetPosition(v0, &v3);
         }
     } break;
     case 2:
@@ -818,7 +819,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
 
 static BOOL ov8_0224A0E8(FieldTask *taskMan)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
 
@@ -829,12 +830,12 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = ov5_021E18CC(fieldSystem->unk_A4, 258);
+        v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_258);
 
         {
             VecFx32 v3;
 
-            v3 = ov5_021E1894(v0);
+            v3 = MapProp_GetPosition(v0);
             v3.y -= (FX32_ONE);
 
             if (v3.y <= (FX32_ONE * 0)) {
@@ -844,7 +845,7 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
             }
 
             sub_0205ED0C(fieldSystem->playerAvatar, v3.y);
-            ov5_021E18A4(v0, &v3);
+            MapProp_SetPosition(v0, &v3);
         }
     } break;
     case 2:
@@ -1199,13 +1200,13 @@ static const UnkStruct_ov8_0224CB68 Unk_ov8_0224CB68[24] = {
 
 static void ov8_0224A1B4(const UnkStruct_ov8_0224A1E4 *param0, const BOOL param1, const int param2)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     int v1;
 
     for (v1 = 0; v1 < 24; v1++) {
         if (param0->unk_10[v1] == param2) {
-            v0 = ov5_021E18C4(param0->fieldSystem->unk_A4, param0->unk_28[v1]);
-            ov5_021E18B4(v0, param1);
+            v0 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_28[v1]);
+            MapProp_SetHidden(v0, param1);
         }
     }
 }
@@ -1297,42 +1298,42 @@ static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
 
 static void ov8_0224A434(UnkStruct_ov8_0224A1E4 *param0, const fx32 param1)
 {
-    UnkStruct_ov5_021E1890 *v0;
-    UnkStruct_ov5_021E1890 *v1;
-    UnkStruct_ov5_021E1890 *v2;
+    MapProp *v0;
+    MapProp *v1;
+    MapProp *v2;
 
-    v0 = ov5_021E18C4(param0->fieldSystem->unk_A4, param0->unk_04);
-    v1 = ov5_021E18C4(param0->fieldSystem->unk_A4, param0->unk_08);
-    v2 = ov5_021E18C4(param0->fieldSystem->unk_A4, param0->unk_0C);
+    v0 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_04);
+    v1 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_08);
+    v2 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_0C);
 
     if (param1 >= (FX32_ONE * 16) * (10 - 9)) {
-        ov5_021E18B4(v0, 0);
+        MapProp_SetHidden(v0, 0);
         ov8_0224A1B4(param0, 0, 1);
     } else {
-        ov5_021E18B4(v0, 1);
+        MapProp_SetHidden(v0, 1);
         ov8_0224A1B4(param0, 1, 1);
     }
 
     if (param1 >= (FX32_ONE * 16) * (10 * 2 - 9)) {
-        ov5_021E18B4(v1, 0);
+        MapProp_SetHidden(v1, 0);
         ov8_0224A1B4(param0, 0, 2);
     } else {
-        ov5_021E18B4(v1, 1);
+        MapProp_SetHidden(v1, 1);
         ov8_0224A1B4(param0, 1, 2);
     }
 
     if (param1 >= (FX32_ONE * 16) * (10 * 3 - 9)) {
-        ov5_021E18B4(v2, 0);
+        MapProp_SetHidden(v2, 0);
         ov8_0224A1B4(param0, 0, 3);
     } else {
-        ov5_021E18B4(v2, 1);
+        MapProp_SetHidden(v2, 1);
         ov8_0224A1B4(param0, 1, 3);
     }
 }
 
 static BOOL ov8_0224A4FC(FieldTask *taskMan)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
     UnkStruct_ov8_0224A1E4 *v3;
@@ -1349,12 +1350,12 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
         int v4;
 
         v4 = v3->unk_28[v3->unk_E8];
-        v0 = ov5_021E18C4(fieldSystem->unk_A4, v4);
+        v0 = MapPropManager_GetLoadedProp(fieldSystem->mapPropManager, v4);
 
         {
             VecFx32 v5;
 
-            v5 = ov5_021E1894(v0);
+            v5 = MapProp_GetPosition(v0);
 
             if (v3->unk_F0 == 0) {
                 v5.y += (FX32_ONE * 8);
@@ -1379,7 +1380,7 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
 
             sub_0205ED0C(fieldSystem->playerAvatar, v5.y);
 
-            ov5_021E18A4(v0, &v5);
+            MapProp_SetPosition(v0, &v5);
             ov8_0224A434(v3, v5.y);
         }
     } break;
@@ -1398,7 +1399,7 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
 
 static BOOL ov8_0224A620(FieldTask *taskMan)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     MapObject *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v3 = FieldTask_GetEnv(taskMan);
@@ -1420,12 +1421,12 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
         int v5;
 
         v5 = v4->unk_28[v4->unk_E8];
-        v0 = ov5_021E18C4(fieldSystem->unk_A4, v5);
+        v0 = MapPropManager_GetLoadedProp(fieldSystem->mapPropManager, v5);
 
         {
             VecFx32 v6, v7;
 
-            v6 = ov5_021E1894(v0);
+            v6 = MapProp_GetPosition(v0);
             PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v7);
             v6.x = v7.x;
 
@@ -1455,7 +1456,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
                 GF_ASSERT(FALSE);
             }
 
-            ov5_021E18A4(v0, &v6);
+            MapProp_SetPosition(v0, &v6);
         }
     } break;
     case 2:
@@ -1480,7 +1481,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
 
 static BOOL ov8_0224A770(FieldTask *taskMan)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     MapObject *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v3 = FieldTask_GetEnv(taskMan);
@@ -1502,12 +1503,12 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
         int v5;
 
         v5 = v4->unk_28[v4->unk_E8];
-        v0 = ov5_021E18C4(fieldSystem->unk_A4, v5);
+        v0 = MapPropManager_GetLoadedProp(fieldSystem->mapPropManager, v5);
 
         {
             VecFx32 v6, v7;
 
-            v6 = ov5_021E1894(v0);
+            v6 = MapProp_GetPosition(v0);
             PlayerAvatar_PosVectorOut(fieldSystem->playerAvatar, &v7);
             v6.z = v7.z;
 
@@ -1537,7 +1538,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
                 GF_ASSERT(FALSE);
             }
 
-            ov5_021E18A4(v0, &v6);
+            MapProp_SetPosition(v0, &v6);
         }
     } break;
     case 2:
@@ -1583,13 +1584,13 @@ void ov8_0224A8C8(FieldSystem *fieldSystem)
         VecFx32 v3 = { FX32_ONE * (16 * 16), 0, FX32_ONE * (16 * 16) };
 
         v3.y = (FX32_ONE * 16) * 10;
-        v0->unk_04 = ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, 300, &v3, NULL, fieldSystem->unk_50);
+        v0->unk_04 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, 300, &v3, NULL, fieldSystem->unk_50);
 
         v3.y = (FX32_ONE * 16) * 10 * 2;
-        v0->unk_08 = ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, 301, &v3, NULL, fieldSystem->unk_50);
+        v0->unk_08 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, 301, &v3, NULL, fieldSystem->unk_50);
 
         v3.y = (FX32_ONE * 16) * 10 * 3;
-        v0->unk_0C = ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, 302, &v3, NULL, fieldSystem->unk_50);
+        v0->unk_0C = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, 302, &v3, NULL, fieldSystem->unk_50);
     }
 
     {
@@ -1616,7 +1617,7 @@ void ov8_0224A8C8(FieldSystem *fieldSystem)
             v4.x += (FX32_ONE * 8);
             v4.z += (FX32_ONE * 8);
 
-            v0->unk_28[v5] = ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, Unk_ov8_0224CB68[v5].unk_00, &v4, NULL, fieldSystem->unk_50);
+            v0->unk_28[v5] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, Unk_ov8_0224CB68[v5].unk_00, &v4, NULL, fieldSystem->unk_50);
             v0->unk_88[v5] = Unk_ov8_0224CB68[v5].unk_00;
         }
     }
@@ -2122,7 +2123,7 @@ void ov8_0224ABD4(FieldSystem *fieldSystem)
                 ov8_0224AB64(&(v7[v5]), v2->unk_00, &v4);
             }
 
-            v0->unk_04[v5] = ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, v7[v5].unk_00, &v3, &v4, fieldSystem->unk_50);
+            v0->unk_04[v5] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, v7[v5].unk_00, &v3, &v4, fieldSystem->unk_50);
         }
     }
 }
@@ -2212,7 +2213,7 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
 
 static BOOL ov8_0224ADE8(FieldTask *param0)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(param0);
     UnkStruct_ov8_0224ABD4 *v3;
@@ -2242,12 +2243,12 @@ static BOOL ov8_0224ADE8(FieldTask *param0)
             int v7;
 
             v7 = v3->unk_04[v4];
-            v0 = ov5_021E18C4(fieldSystem->unk_A4, v7);
+            v0 = MapPropManager_GetLoadedProp(fieldSystem->mapPropManager, v7);
 
             {
                 VecFx32 *v8;
 
-                v8 = ov5_021E1890(v0);
+                v8 = MapProp_GetRotation(v0);
 
                 {
                     const UnkStruct_ov8_0224C788 *v9;
@@ -2385,7 +2386,7 @@ static void ov8_0224AF00(UnkStruct_ov8_0224AF00 *param0, fx32 param1)
 static void ov8_0224AF58(UnkStruct_ov8_0224AF58 *param0)
 {
     VecFx32 v0 = param0->unk_00;
-    VecFx32 *v1 = ov5_021E1890(param0->unk_14);
+    VecFx32 *v1 = MapProp_GetRotation(param0->unk_14);
 
     v1->x = param0->unk_00.x;
     v1->y = (0x10000 - param0->unk_00.y) % 0x10000;
@@ -2452,10 +2453,10 @@ void ov8_0224B020(FieldSystem *fieldSystem)
         for (v3 = 0; v3 < 2; v3++, v4++, v5++, v6++) {
             v4->unk_0C = *v5;
 
-            v4->unk_10 = ov5_021E19CC(
-                fieldSystem->unk_A4, fieldSystem->unk_30, *v5, v6, &v7, fieldSystem->unk_50);
+            v4->unk_10 = MapPropManager_LoadOne(
+                fieldSystem->mapPropManager, fieldSystem->unk_30, *v5, v6, &v7, fieldSystem->unk_50);
 
-            v4->unk_14 = ov5_021E18CC(fieldSystem->unk_A4, *v5);
+            v4->unk_14 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, *v5);
         }
     }
 

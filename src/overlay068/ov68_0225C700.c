@@ -20,7 +20,6 @@
 #include "overlay068/struct_ov68_0225DC74.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "font.h"
 #include "game_options.h"
@@ -36,6 +35,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -62,7 +62,7 @@ typedef struct {
 typedef struct {
     Window unk_00[1];
     s32 unk_10;
-    CellActor *unk_14;
+    Sprite *unk_14;
     SpriteResource *unk_18[4];
     u16 unk_28;
     u16 unk_2A;
@@ -108,7 +108,7 @@ typedef struct {
 
 typedef struct {
     BgConfig *unk_00;
-    CellActorCollection *unk_04;
+    SpriteList *unk_04;
     G2dRenderer unk_08;
     SpriteResourceCollection *unk_194[4];
     NARC *unk_1A4;
@@ -455,7 +455,7 @@ static void ov68_0225C960(UnkStruct_ov68_0225C91C *param0)
 
 static void ov68_0225C980(UnkStruct_ov68_0225C91C *param0)
 {
-    CellActorCollection_Update(param0->unk_04);
+    SpriteList_Update(param0->unk_04);
 }
 
 static void ov68_0225C98C(UnkStruct_ov68_0225C91C *param0)
@@ -542,7 +542,7 @@ static void ov68_0225CB44(UnkStruct_ov68_0225C91C *param0)
 {
     int v0;
 
-    CellActorCollection_Delete(param0->unk_04);
+    SpriteList_Delete(param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_194[v0]);
@@ -686,19 +686,19 @@ static void ov68_0225CCD0(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
     }
 
     {
-        CellActorResourceData v1;
-        CellActorInitParams v2 = { 0 };
+        SpriteResourcesHeader v1;
+        SpriteListTemplate v2 = { 0 };
 
         SpriteResourcesHeader_Init(&v1, 20, 20, 20, 20, 0xffffffff, 0xffffffff, 0, 0, param2->unk_194[0], param2->unk_194[1], param2->unk_194[2], param2->unk_194[3], NULL, NULL);
 
-        v2.collection = param2->unk_04;
+        v2.list = param2->unk_04;
         v2.resourceData = &v1;
         v2.priority = 0;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
         v2.heapID = param3;
 
-        param0->unk_14 = CellActorCollection_Add(&v2);
-        CellActor_SetDrawFlag(param0->unk_14, 0);
+        param0->unk_14 = SpriteList_Add(&v2);
+        Sprite_SetDrawFlag(param0->unk_14, 0);
     }
 
     {
@@ -854,7 +854,7 @@ static void ov68_0225D02C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
     }
 
     {
-        CellActor_Delete(param0->unk_14);
+        Sprite_Delete(param0->unk_14);
     }
 
     {
@@ -888,13 +888,13 @@ static void ov68_0225D06C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 
 static void ov68_0225D0F8(UnkStruct_ov68_0225D0F8 *param0)
 {
-    CellActor_SetDrawFlag(param0->unk_14, 1);
-    CellActor_SetPosition(param0->unk_14, &Unk_ov68_0225DD78[param0->unk_10]);
+    Sprite_SetDrawFlag(param0->unk_14, 1);
+    Sprite_SetPosition(param0->unk_14, &Unk_ov68_0225DD78[param0->unk_10]);
 }
 
 static void ov68_0225D11C(UnkStruct_ov68_0225D0F8 *param0)
 {
-    CellActor_SetAnimateFlag(param0->unk_14, 1);
+    Sprite_SetAnimateFlag(param0->unk_14, 1);
 }
 
 static void ov68_0225D128(UnkStruct_ov68_0225D128 *param0, UnkStruct_ov68_0225C91C *param1, SaveData *param2, u32 param3)

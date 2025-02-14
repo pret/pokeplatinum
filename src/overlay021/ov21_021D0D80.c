@@ -50,7 +50,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "brightness_controller.h"
 #include "char_transfer.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -61,6 +61,7 @@
 #include "pokedex_data_index.h"
 #include "pokemon.h"
 #include "render_oam.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "strbuf.h"
@@ -68,7 +69,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"
@@ -171,7 +171,7 @@ int ov21_021D0E3C(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
         ov21_021D0F18(v0);
-        sub_0200AB4C(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+        BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
         (*param1)++;
         break;
     case 1:
@@ -533,22 +533,22 @@ UnkStruct_ov21_021E68F4 *ov21_021D1430(UnkStruct_ov21_021D0F60 *param0, int para
     return &param0->unk_1C24[param1];
 }
 
-void ov21_021D144C(CellActor *param0, int param1)
+void ov21_021D144C(Sprite *param0, int param1)
 {
     switch (param1) {
     case 0:
-        SpriteActor_SetAnimFrame(param0, 1);
+        Sprite_SetAnimFrame(param0, 1);
         break;
     case 2:
-        SpriteActor_SetAnimFrame(param0, 2);
+        Sprite_SetAnimFrame(param0, 2);
         break;
     case 1:
-        SpriteActor_SetAnimFrame(param0, 3);
+        Sprite_SetAnimFrame(param0, 3);
         break;
     case 3:
     case (3 + 1):
-        if (CellActor_GetAnimFrame(param0) > 0) {
-            CellActor_UpdateAnim(param0, -(FX32_ONE * 2));
+        if (Sprite_GetAnimFrame(param0) > 0) {
+            Sprite_UpdateAnim(param0, -(FX32_ONE * 2));
         }
         break;
     default:
@@ -556,9 +556,9 @@ void ov21_021D144C(CellActor *param0, int param1)
     }
 }
 
-void ov21_021D1498(CellActor *param0, UnkStruct_ov21_021D4CA0 *param1, int param2)
+void ov21_021D1498(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2)
 {
-    int v0 = CellActor_GetAnimFrame(param0);
+    int v0 = Sprite_GetAnimFrame(param0);
     int v1, v2;
 
     switch (v0) {
@@ -585,12 +585,12 @@ void ov21_021D1498(CellActor *param0, UnkStruct_ov21_021D4CA0 *param1, int param
     }
 }
 
-void ov21_021D1524(CellActor *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4)
+void ov21_021D1524(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4)
 {
     int v0;
 
     ov21_021D1498(param0, param1, param2);
-    v0 = CellActor_GetAnimFrame(param0);
+    v0 = Sprite_GetAnimFrame(param0);
 
     if (v0 < 2) {
         sub_02012AC0(param1->unk_00, param3);
@@ -713,8 +713,8 @@ Window *ov21_021D172C(UnkStruct_ov21_021D4C0C *param0, int param1, int param2)
 
 void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D3320 *param1, int param2, int statusIndex, fx32 param4, fx32 param5)
 {
-    CellActor *v0;
-    CellActor *v1;
+    Sprite *v0;
+    Sprite *v1;
     UnkStruct_ov21_021D4CB8 v2;
     Window *v3;
     SpriteResource *v4;
@@ -729,17 +729,17 @@ void ov21_021D1778(UnkStruct_ov21_021D13FC *param0, const UnkStruct_ov21_021D332
     v5.x = param4;
     v5.y = param5;
 
-    CellActor_SetPosition(v0, &v5);
-    CellActor_SetDrawFlag(v0, 1);
+    Sprite_SetPosition(v0, &v5);
+    Sprite_SetDrawFlag(v0, 1);
 
     if (speciesCaughtStatus->caughtStatus == CS_CAUGHT) {
         v5.x = param4 + (-54 * FX32_ONE);
         v5.y = param5;
 
-        CellActor_SetPosition(v1, &v5);
-        CellActor_SetDrawFlag(v1, 1);
+        Sprite_SetPosition(v1, &v5);
+        Sprite_SetDrawFlag(v1, 1);
     } else {
-        CellActor_SetDrawFlag(v1, 0);
+        Sprite_SetDrawFlag(v1, 0);
     }
 
     v4 = ov21_021D2344(param0, 1);
@@ -773,9 +773,9 @@ void ov21_021D1858(UnkStruct_ov21_021D22F8 *param0, int param1, int param2)
     v0.x = param1 << FX32_SHIFT;
     v0.y = param2 << FX32_SHIFT;
 
-    CellActor_SetPosition(param0->unk_00, &v0);
+    Sprite_SetPosition(param0->unk_00, &v0);
     v0.x += (-54 * FX32_ONE);
-    CellActor_SetPosition(param0->unk_04, &v0);
+    Sprite_SetPosition(param0->unk_04, &v0);
 
     if (param0->unk_08->unk_00) {
         sub_02012938(param0->unk_08->unk_00);

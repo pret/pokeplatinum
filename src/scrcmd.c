@@ -63,11 +63,11 @@
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 #include "overlay005/vs_seeker.h"
+#include "overlay006/npc_trade.h"
 #include "overlay006/ov6_0223E140.h"
 #include "overlay006/ov6_02242AF0.h"
 #include "overlay006/ov6_02243004.h"
 #include "overlay006/ov6_02243258.h"
-#include "overlay006/ov6_02246184.h"
 #include "overlay006/ov6_02246C24.h"
 #include "overlay006/ov6_02246F00.h"
 #include "overlay006/ov6_02247078.h"
@@ -75,7 +75,6 @@
 #include "overlay006/ov6_02247D30.h"
 #include "overlay006/ov6_02247F5C.h"
 #include "overlay006/ov6_02248948.h"
-#include "overlay006/struct_ov6_02246204_decl.h"
 #include "overlay006/swarm.h"
 #include "overlay006/trophy_garden_daily_encounters.h"
 #include "overlay007/communication_club.h"
@@ -128,6 +127,7 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_system_flags.h"
 #include "script_manager.h"
 #include "special_encounter.h"
@@ -180,7 +180,6 @@
 #include "unk_0204E75C.h"
 #include "unk_0204E974.h"
 #include "unk_0204EDA4.h"
-#include "unk_0204F02C.h"
 #include "unk_0204F04C.h"
 #include "unk_0204F13C.h"
 #include "unk_0204FAB4.h"
@@ -601,11 +600,11 @@ static BOOL ScrCmd_219(ScriptContext *ctx);
 static BOOL ScrCmd_21A(ScriptContext *ctx);
 static BOOL ScrCmd_EnableSwarms(ScriptContext *ctx);
 static BOOL ScrCmd_21C(ScriptContext *ctx);
-static BOOL ScrCmd_226(ScriptContext *ctx);
-static BOOL ScrCmd_227(ScriptContext *ctx);
-static BOOL ScrCmd_228(ScriptContext *ctx);
+static BOOL ScrCmd_StartNpcTrade(ScriptContext *ctx);
+static BOOL ScrCmd_GetNpcTradeSpecies(ScriptContext *ctx);
+static BOOL ScrCmd_GetNpcTradeRequestedSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_229(ScriptContext *ctx);
-static BOOL ScrCmd_22A(ScriptContext *ctx);
+static BOOL ScrCmd_FinishNpcTrade(ScriptContext *ctx);
 static BOOL ScrCmd_22B(ScriptContext *ctx);
 static BOOL ScrCmd_22C(ScriptContext *ctx);
 static BOOL ScrCmd_22D(ScriptContext *ctx);
@@ -1313,11 +1312,11 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_223,
     ScrCmd_224,
     ScrCmd_225,
-    ScrCmd_226,
-    ScrCmd_227,
-    ScrCmd_228,
+    ScrCmd_StartNpcTrade,
+    ScrCmd_GetNpcTradeSpecies,
+    ScrCmd_GetNpcTradeRequestedSpecies,
     ScrCmd_229,
-    ScrCmd_22A,
+    ScrCmd_FinishNpcTrade,
     ScrCmd_22B,
     ScrCmd_22C,
     ScrCmd_22D,
@@ -1338,10 +1337,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_23C,
     ScrCmd_23D,
     ScrCmd_23E,
-    ScrCmd_23F,
-    ScrCmd_240,
-    ScrCmd_241,
-    ScrCmd_242,
+    ScrCmd_Dummy23F,
+    ScrCmd_Dummy240,
+    ScrCmd_Dummy241,
+    ScrCmd_Dummy242,
     ScrCmd_243,
     ScrCmd_244,
     ScrCmd_245,
@@ -6516,48 +6515,41 @@ static BOOL ScrCmd_21C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_226(ScriptContext *ctx)
+static BOOL ScrCmd_StartNpcTrade(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    u8 v1 = ScriptContext_ReadByte(ctx);
-
-    *v0 = ov6_02246184(11, v1);
-    return 0;
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    *data = NpcTrade_Init(HEAP_ID_FIELDMAP, ScriptContext_ReadByte(ctx));
+    return FALSE;
 }
 
-static BOOL ScrCmd_227(ScriptContext *ctx)
+static BOOL ScrCmd_GetNpcTradeSpecies(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-
-    *v1 = ov6_02246224((UnkStruct_ov6_02246204 *)*v0);
-    return 0;
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = NpcTrade_GetSpecies((NpcTradeData *)*data);
+    return FALSE;
 }
 
-static BOOL ScrCmd_228(ScriptContext *ctx)
+static BOOL ScrCmd_GetNpcTradeRequestedSpecies(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-
-    *v1 = ov6_0224622C((UnkStruct_ov6_02246204 *)*v0);
-    return 0;
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = NpcTrade_GetRequestedSpecies((NpcTradeData *)*data);
+    return FALSE;
 }
 
 static BOOL ScrCmd_229(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    u16 v1 = ScriptContext_GetVar(ctx);
-
-    sub_0206C740(ctx->task, (UnkStruct_ov6_02246204 *)*v0, v1, 11);
-    return 1;
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    sub_0206C740(ctx->task, (NpcTradeData *)*data, ScriptContext_GetVar(ctx), HEAP_ID_FIELDMAP);
+    return TRUE;
 }
 
-static BOOL ScrCmd_22A(ScriptContext *ctx)
+static BOOL ScrCmd_FinishNpcTrade(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-
-    ov6_02246204((UnkStruct_ov6_02246204 *)*v0);
-    return 0;
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    NpcTrade_Free((NpcTradeData *)*data);
+    return FALSE;
 }
 
 static BOOL ScrCmd_22B(ScriptContext *ctx)

@@ -4,8 +4,6 @@
 #include <nitro/fx/fx.h>
 #include <nnsys.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay100/struct_ov100_021D36CC.h"
@@ -18,11 +16,12 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 
 typedef struct {
     NARC *unk_00;
-    SpriteRenderer *unk_04;
-    SpriteGfxHandler *unk_08;
+    SpriteSystem *unk_04;
+    SpriteManager *unk_08;
     BgConfig *unk_0C;
     PaletteData *unk_10;
     GenericPointerData *unk_14;

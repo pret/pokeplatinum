@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_020708E0_H
 #define POKEPLATINUM_STRUCT_020708E0_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_defs/struct_020684D0.h"
 #include "struct_defs/struct_02070950.h"
 
@@ -10,6 +9,7 @@
 #include "bg_window.h"
 #include "field_task.h"
 #include "menu.h"
+#include "sprite_system.h"
 #include "string_list.h"
 
 typedef struct {
@@ -22,7 +22,7 @@ typedef struct {
     u32 unk_2C;
     u8 unk_30[7];
     UnkStruct_ov5_021D30A8 unk_38;
-    CellActorData *unk_200[8];
+    ManagedSprite *unk_200[8];
     u32 unk_220;
     u32 unk_224;
     u32 unk_228;

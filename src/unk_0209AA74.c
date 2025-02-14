@@ -8,6 +8,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -17,7 +18,6 @@
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 
 static const UnkStruct_02099F80 Unk_020F8B54 = {
@@ -126,7 +126,7 @@ void sub_0209AA74(int param0, int param1)
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);
     sub_0200F338(1);
-    sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+    BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
 
     while (TRUE) {
         HandleConsoleFold();

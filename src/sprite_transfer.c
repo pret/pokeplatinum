@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "nnsys/g2d/fmt/g2d_Cell_data.h"
-#include "nnsys/g2d/g2d_Image.h"
-
 #include "char_transfer.h"
 #include "pltt_transfer.h"
 #include "sprite_resource.h"
@@ -13,7 +10,7 @@
 BOOL SpriteTransfer_RequestChar(const SpriteResource *resource)
 {
     GF_ASSERT(resource);
-    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_CHAR);
 
     CharTransferTaskTemplate template;
     template.data = SpriteResource_GetTileData(resource);
@@ -36,7 +33,7 @@ void SpriteTransfer_RequestCharList(const SpriteResourceList *resourceList)
 BOOL SpriteTransfer_RequestCharWithHardwareMappingType(const SpriteResource *resource)
 {
     GF_ASSERT(resource);
-    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_CHAR);
 
     CharTransferTaskTemplate template;
     template.data = SpriteResource_GetTileData(resource);
@@ -49,7 +46,7 @@ BOOL SpriteTransfer_RequestCharWithHardwareMappingType(const SpriteResource *res
 BOOL SpriteTransfer_RequestCharAtEnd(const SpriteResource *resource)
 {
     GF_ASSERT(resource);
-    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_CHAR);
 
     CharTransferTaskTemplate template;
     template.data = SpriteResource_GetTileData(resource);
@@ -72,7 +69,7 @@ void SpriteTransfer_RequestCharListAtEnd(const SpriteResourceList *resourceList)
 BOOL SpriteTransfer_RequestCharAtEndWithHardwareMappingType(const SpriteResource *resource)
 {
     GF_ASSERT(resource);
-    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_CHAR);
 
     CharTransferTaskTemplate template;
     template.data = SpriteResource_GetTileData(resource);
@@ -98,7 +95,7 @@ void SpriteTransfer_RetransferCharData(const SpriteResource *resource)
 void SpriteTransfer_ResetCharTransfer(SpriteResource *resource)
 {
     GF_ASSERT(resource);
-    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_CHAR);
     CharTransfer_ResetTask(SpriteResource_GetID(resource));
 }
 
@@ -115,16 +112,16 @@ void SpriteTransfer_ResetCharTransferList(SpriteResourceList *resourceList)
 NNSG2dImageProxy *SpriteTransfer_GetImageProxy(const SpriteResource *resource)
 {
     GF_ASSERT(resource);
-    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_CHAR);
     return CharTransfer_GetImageProxy(SpriteResource_GetID(resource));
 }
 
 NNSG2dImageProxy *SpriteTransfer_GetCellTransferProxy(const SpriteResource *charResource, const SpriteResource *cellResource)
 {
     GF_ASSERT(charResource);
-    GF_ASSERT(SpriteResource_GetType(charResource) == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(SpriteResource_GetType(charResource) == SPRITE_RESOURCE_CHAR);
     GF_ASSERT(cellResource);
-    GF_ASSERT(SpriteResource_GetType(cellResource) == SPRITE_RESOURCE_SPRITE);
+    GF_ASSERT(SpriteResource_GetType(cellResource) == SPRITE_RESOURCE_CELL);
 
     int resourceID = SpriteResource_GetID(charResource);
     NNSG2dCellDataBank *cellData = SpriteResource_GetSpriteData(cellResource);
@@ -146,7 +143,7 @@ void SpriteTransfer_DeleteCharTransfer(const NNSG2dImageProxy *imageProxy)
 BOOL SpriteTransfer_RequestPlttWholeRange(const SpriteResource *resource)
 {
     GF_ASSERT(resource);
-    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_PALETTE);
+    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_PLTT);
 
     PlttTransferTaskTemplate template;
     template.data = SpriteResource_GetPaletteFade(resource);
@@ -169,7 +166,7 @@ void SpriteTransfer_RequestPlttWholeRangeList(const SpriteResourceList *resource
 BOOL SpriteTransfer_RequestPlttFreeSpace(const SpriteResource *resource)
 {
     GF_ASSERT(resource);
-    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_PALETTE);
+    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_PLTT);
 
     PlttTransferTaskTemplate template;
     template.data = SpriteResource_GetPaletteFade(resource);
@@ -198,7 +195,7 @@ void SpriteTransfer_ReplacePlttData(const SpriteResource *resource)
 void SpriteTransfer_ResetPlttTransfer(SpriteResource *resource)
 {
     GF_ASSERT(resource);
-    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_PALETTE);
+    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_PLTT);
     PlttTransfer_ResetTask(SpriteResource_GetID(resource));
 }
 
@@ -215,7 +212,7 @@ void SpriteTransfer_ResetPlttTransferList(SpriteResourceList *resourceList)
 const NNSG2dImagePaletteProxy *SpriteTransfer_GetPaletteProxy(const SpriteResource *resource, NNSG2dImageProxy *imageProxy)
 {
     GF_ASSERT(resource);
-    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_PALETTE);
+    GF_ASSERT(SpriteResource_GetType(resource) == SPRITE_RESOURCE_PLTT);
 
     int resourceID = SpriteResource_GetID(resource);
     if (imageProxy) {

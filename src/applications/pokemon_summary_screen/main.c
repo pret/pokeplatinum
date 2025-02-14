@@ -15,12 +15,11 @@
 
 #include "applications/pokemon_summary_screen/3d_anim.h"
 #include "applications/pokemon_summary_screen/main.h"
-#include "applications/pokemon_summary_screen/sprite.h"
+#include "applications/pokemon_summary_screen/sprites.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
 #include "applications/pokemon_summary_screen/window.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -37,6 +36,8 @@
 #include "render_window.h"
 #include "ribbon.h"
 #include "savedata.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
@@ -47,7 +48,6 @@
 #include "unk_02006224.h"
 #include "unk_0200762C.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_0201E3D8.h"
@@ -328,7 +328,7 @@ static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state)
     PokemonSummaryScreen_UpdateArrowAndTapAnims(summaryScreen);
     PokemonSummaryScreen_DrawSheenSprites(summaryScreen);
     PokemonSummaryScreen_UpdateRibbonFlashAnim(summaryScreen);
-    sub_0200C7EC(summaryScreen->gfxHandler);
+    SpriteSystem_DrawSprites(summaryScreen->spriteMan);
     PokemonSummaryScreen_Update3DGfx(summaryScreen);
 
     return FALSE;
@@ -364,7 +364,7 @@ static void PokemonSummaryScreenVBlank(void *data)
     Bg_RunScheduledUpdates(summaryScreen->bgConfig);
     sub_02008A94(summaryScreen->monSprite.spriteManager);
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -756,7 +756,7 @@ static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen)
     }
 
     if (JOY_NEW(PAD_BUTTON_A)) {
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_2], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_2], FALSE);
 
         if (summaryScreen->cursor != LEARNED_MOVES_MAX && summaryScreen->cursor != summaryScreen->cursorTmp) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
@@ -773,7 +773,7 @@ static int HandleInput_MoveSwap(PokemonSummaryScreen *summaryScreen)
 
     if (JOY_NEW(PAD_BUTTON_B)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE);
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_2], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_2], FALSE);
         return SUMMARY_STATE_MOVE_SELECT;
     }
 
@@ -815,7 +815,7 @@ static int HandleInput_LearnMove(PokemonSummaryScreen *summaryScreen)
 
         if (summaryScreen->cursor != LEARNED_MOVES_MAX) {
             if (Item_IsHMMove(summaryScreen->monData.moves[summaryScreen->cursor]) == TRUE && summaryScreen->data->move != MOVE_NONE) {
-                SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
+                Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
                 DrawEmptyHearts(summaryScreen);
                 PokemonSummaryScreen_PrintHMMovesCantBeForgotten(summaryScreen);
                 return SUMMARY_STATE_WAIT_HM_MSG_INPUT;
@@ -1666,14 +1666,14 @@ static u8 SetupBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
         }
 
         UpdateMoveAttributes(summaryScreen);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
+        Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
         PokemonSummaryScreen_ShowMonIcon(summaryScreen);
 
         if (summaryScreen->monData.type1 != summaryScreen->monData.type2) {
-            SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
+            Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
         }
 
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], TRUE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], TRUE);
         return TRUE;
     }
 
@@ -1684,11 +1684,11 @@ static u8 HideBattleMoveInfo(PokemonSummaryScreen *summaryScreen)
 {
     switch (summaryScreen->pageState) {
     case PAGE_STATE_INITIAL:
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], FALSE);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], FALSE);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], FALSE);
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], FALSE);
+        Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], FALSE);
+        Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], FALSE);
+        Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
+        Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], FALSE);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, NULL);
         PokemonSummaryScreen_HideMoveCancelText(summaryScreen);
@@ -1775,11 +1775,11 @@ static void UpdateBattleMoveAttributes(PokemonSummaryScreen *summaryScreen, u32 
 {
     if (move == SUMMARY_MOVE_NONE) {
         PokemonSummaryScreen_ClearBattleAttributeWindows(summaryScreen);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
+        Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
     } else {
         PokemonSummaryScreen_PrintBattleMoveAttributes(summaryScreen, move);
         PokemonSummaryScreen_UpdateMoveCategoryIcon(summaryScreen, move);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], TRUE);
+        Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], TRUE);
     }
 }
 
@@ -1828,14 +1828,14 @@ static void SetupMoveInfoNoTransition(PokemonSummaryScreen *summaryScreen)
     PokemonSummaryScreen_ShowMove5OrCancel(summaryScreen);
     UpdateMoveAttributes(summaryScreen);
 
-    SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
+    Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
     PokemonSummaryScreen_ShowMonIcon(summaryScreen);
 
     if (summaryScreen->monData.type1 != summaryScreen->monData.type2) {
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
+        Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
     }
 
-    CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], TRUE);
+    Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], TRUE);
 }
 
 static u8 SetupContestMoveInfo(PokemonSummaryScreen *summaryScreen)
@@ -1875,7 +1875,7 @@ static u8 SetupContestMoveInfo(PokemonSummaryScreen *summaryScreen)
         UpdateMoveAttributes(summaryScreen);
         PokemonSummaryScreen_ShowMonIcon(summaryScreen);
         PokemonSummaryScreen_DrawContestStatDots(summaryScreen);
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], TRUE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], TRUE);
 
         return TRUE;
     }
@@ -1888,9 +1888,9 @@ static u8 HideContestMoveInfo(PokemonSummaryScreen *summaryScreen)
     switch (summaryScreen->pageState) {
     case PAGE_STATE_INITIAL:
         PokemonSummaryScreen_HideContestStatDots(summaryScreen);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], FALSE);
+        Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], FALSE);
         UpdateAppealHearts(summaryScreen, SUMMARY_MOVE_NONE);
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_SELECTOR_1], FALSE);
         Window_ClearAndScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, NULL);
         PokemonSummaryScreen_HideMoveCancelText(summaryScreen);
@@ -1976,10 +1976,10 @@ static void SetupMoveInfoFromSubscreenButton(PokemonSummaryScreen *summaryScreen
 
     if (summaryScreen->page == SUMMARY_PAGE_BATTLE_MOVES) {
         PokemonSummaryScreen_HideContestStatDots(summaryScreen);
-        SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
+        Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_1], TRUE);
 
         if (summaryScreen->monData.type1 != summaryScreen->monData.type2) {
-            SpriteActor_DrawSprite(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
+            Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MON_TYPE_ICON_2], TRUE);
         }
 
         Bg_ScheduleScroll(summaryScreen->bgConfig, BG_LAYER_MAIN_2, 3, 0);
@@ -2021,12 +2021,12 @@ static u8 SetupRibbonInfo(PokemonSummaryScreen *summaryScreen)
     case PAGE_STATE_SCROLL_FINISHED:
         PokemonSummaryScreen_ClearAndPrintButtonPrompt(summaryScreen, 181);
         PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_CURSOR], TRUE);
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_FLASH], TRUE);
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_9], FALSE);
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_10], FALSE);
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_11], FALSE);
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_12], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_CURSOR], TRUE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_FLASH], TRUE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_9], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_10], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_11], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_12], FALSE);
         ChangeSelectedRibbon(summaryScreen, 0);
 
         return TRUE;
@@ -2136,15 +2136,15 @@ static void ChangeSelectedRibbon(PokemonSummaryScreen *summaryScreen, s8 delta)
     PokemonSummaryScreen_PrintRibbonIndexAndMax(summaryScreen);
 
     if (summaryScreen->ribbonRow != 0) {
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_ARROW_UP], TRUE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_ARROW_UP], TRUE);
     } else {
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_ARROW_UP], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_ARROW_UP], FALSE);
     }
 
     if ((summaryScreen->ribbonRow * RIBBONS_PER_ROW + RIBBONS_PER_ROW * 2) < summaryScreen->ribbonMax) {
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_ARROW_DOWN], TRUE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_ARROW_DOWN], TRUE);
     } else {
-        CellActor_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_ARROW_DOWN], FALSE);
+        Sprite_SetDrawFlag(summaryScreen->sprites[SUMMARY_SPRITE_RIBBON_ARROW_DOWN], FALSE);
     }
 }
 

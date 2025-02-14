@@ -6,14 +6,14 @@
 #include "overlay022/struct_ov22_0225AB54.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "strbuf.h"
 
 typedef struct {
     UnkStruct_ov22_022597BC unk_00;
     Window *unk_2C;
-    CellActorCollection *unk_30;
+    SpriteList *unk_30;
     SpriteResourceCollection **unk_34;
     UnkStruct_ov22_0225A914 unk_38;
     UnkStruct_ov22_0225AB54 unk_A0;
