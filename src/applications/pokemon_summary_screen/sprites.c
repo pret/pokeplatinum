@@ -922,29 +922,29 @@ void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScree
     summaryScreen->spriteSys = SpriteSystem_Alloc(HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->spriteMan = SpriteManager_New(summaryScreen->spriteSys);
 
-    RenderOamTemplate v0 = {
-        0,
-        128,
-        0,
-        32,
-        0,
-        128,
-        0,
-        32,
+    RenderOamTemplate renderOamTemplate = {
+        .mainOamStart = 0,
+        .mainOamCount = 128,
+        .mainAffineOamStart = 0,
+        .mainAffineOamCount = 32,
+        .subOamStart = 0,
+        .subOamCount = 128,
+        .subAffineOamStart = 0,
+        .subAffineOamCount = 32,
     };
 
-    CharTransferTemplateWithModes v1 = {
-        77,
-        1024,
-        1024,
-        GX_OBJVRAMMODE_CHAR_1D_32K,
-        GX_OBJVRAMMODE_CHAR_1D_32K
+    CharTransferTemplateWithModes charTransferTemplate = {
+        .maxTasks = 77,
+        .sizeMain = 1024,
+        .sizeSub = 1024,
+        .modeMain = GX_OBJVRAMMODE_CHAR_1D_32K,
+        .modeSub = GX_OBJVRAMMODE_CHAR_1D_32K
     };
 
-    SpriteSystem_Init(summaryScreen->spriteSys, &v0, &v1, 32);
+    SpriteSystem_Init(summaryScreen->spriteSys, &renderOamTemplate, &charTransferTemplate, 32);
     SpriteSystem_InitSprites(summaryScreen->spriteSys, summaryScreen->spriteMan, SUMMARY_SPRITE_MAX);
 
-    SpriteResourceDataPaths v2 = {
+    SpriteResourceDataPaths resourcePaths = {
         "data/pst_chr.resdat",
         "data/pst_pal.resdat",
         "data/pst_cell.resdat",
@@ -954,7 +954,7 @@ void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScree
         "data/pst_h.cldat"
     };
 
-    SpriteSystem_LoadResourceDataFromFilepaths(summaryScreen->spriteSys, summaryScreen->spriteMan, &v2);
+    SpriteSystem_LoadResourceDataFromFilepaths(summaryScreen->spriteSys, summaryScreen->spriteMan, &resourcePaths);
 }
 
 void PokemonSummaryScreen_FreeSpriteResources(PokemonSummaryScreen *summaryScreen)

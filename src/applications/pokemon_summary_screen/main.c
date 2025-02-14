@@ -398,10 +398,10 @@ static void SetVRAMBanks(void)
 static void SetupBgs(BgConfig *bgConfig)
 {
     GraphicsModes graphicsModes = {
-        GX_DISPMODE_GRAPHICS,
-        GX_BGMODE_0,
-        GX_BGMODE_0,
-        GX_BG0_AS_3D,
+        .displayMode = GX_DISPMODE_GRAPHICS,
+        .mainBgMode = GX_BGMODE_0,
+        .subBgMode = GX_BGMODE_0,
+        .bg0As2DOr3D = GX_BG0_AS_3D,
     };
 
     SetAllGraphicsModes(&graphicsModes);
