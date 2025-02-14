@@ -110,7 +110,7 @@ static u32 Pokemon_GetExpRateBaseExpAt(enum ExpRate monExpRate, int monLevel);
 static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statType);
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon);
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality);
-static void BuildArchivedDPPokemonSprite(PokemonSpriteTemplate *spriteTemplate, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 static u8 LoadPokemonDPSpriteHeight(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
 static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon);
 static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID);
@@ -2500,17 +2500,17 @@ u32 Pokemon_FindShinyPersonality(u32 monOTID)
     return rndLow | (rndHigh << 16);
 }
 
-void Pokemon_BuildArchivedSprite(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face)
+void Pokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face)
 {
-    BoxPokemon_BuildArchivedSprite(spriteTemplate, &mon->box, face, FALSE);
+    BoxPokemon_BuildSpriteTemplate(spriteTemplate, &mon->box, face, FALSE);
 }
 
-void Pokemon_BuildArchivedDPSprite(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face)
+void Pokemon_BuildSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face)
 {
-    BoxPokemon_BuildArchivedSprite(spriteTemplate, &mon->box, face, TRUE);
+    BoxPokemon_BuildSpriteTemplate(spriteTemplate, &mon->box, face, TRUE);
 }
 
-void BoxPokemon_BuildArchivedSprite(PokemonSpriteTemplate *spriteTemplate, BoxPokemon *mon, u8 face, BOOL preferDP)
+void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPokemon *mon, u8 face, BOOL preferDP)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(mon);
 
@@ -2531,15 +2531,15 @@ void BoxPokemon_BuildArchivedSprite(PokemonSpriteTemplate *spriteTemplate, BoxPo
     }
 
     if (preferDP == TRUE) {
-        BuildArchivedDPPokemonSprite(spriteTemplate, monSpeciesEgg, monGender, face, monShininess, monForm, monPersonality);
+        BuildPokemonSpriteTemplateDP(spriteTemplate, monSpeciesEgg, monGender, face, monShininess, monForm, monPersonality);
     } else {
-        BuildArchivedPokemonSprite(spriteTemplate, monSpeciesEgg, monGender, face, monShininess, monForm, monPersonality);
+        BuildPokemonSpriteTemplate(spriteTemplate, monSpeciesEgg, monGender, face, monShininess, monForm, monPersonality);
     }
 
     BoxPokemon_ExitDecryptionContext(mon, reencrypt);
 }
 
-void BuildArchivedPokemonSprite(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
+void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
 {
     spriteTemplate->spindaSpots = 0;
     spriteTemplate->dummy = 0;
@@ -2737,7 +2737,7 @@ u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm)
  * @param form           The Pokemon's form
  * @param personality    The Pokemon's personality value
  */
-static void BuildArchivedDPPokemonSprite(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
+static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
 {
     spriteTemplate->spindaSpots = 0;
     spriteTemplate->dummy = 0;

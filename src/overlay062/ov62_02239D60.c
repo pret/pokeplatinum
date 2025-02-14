@@ -1202,7 +1202,7 @@ static void ov62_0223B050(UnkStruct_0208C06C *param0)
     v9 = LoadPokemonSpriteYOffset(v7, v3, v10, v6, v8);
     v9 = 0;
 
-    BuildArchivedPokemonSprite(&v2, v7, v3, v10, v4, v6, v8);
+    BuildPokemonSpriteTemplate(&v2, v7, v3, v10, v4, v6, v8);
     v0->unk_32C = sub_02007C34(param0->unk_14.unk_50, &v2, 42, 91 + v9, 0, 0, NULL, NULL);
     SpeciesData_Free(v1);
 }

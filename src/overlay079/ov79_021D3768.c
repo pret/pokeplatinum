@@ -88,7 +88,7 @@ static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38
 
     param0->unk_04 = sub_0200762C(heapID);
 
-    Pokemon_BuildArchivedSprite(&v0, param1->unk_00, 2);
+    Pokemon_BuildSpriteTemplate(&v0, param1->unk_00, 2);
 
     v1 = sub_02007C34(param0->unk_04, &v0, 128, 96, 0, 0, NULL, NULL);
     sub_02007DEC(v1, 35, param1->unk_08);

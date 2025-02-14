@@ -397,7 +397,7 @@ u32 Pokemon_FindShinyPersonality(u32 monOTID);
  * @param mon            The Pokemon whose data will be used to build the sprite
  * @param face           Which face of the Pokemon the player sees
  */
-void Pokemon_BuildArchivedSprite(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face);
+void Pokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face);
 
 /**
  * @brief Build a PokemonSpriteTemplate for a Pokemon, preferring sprites from
@@ -407,7 +407,7 @@ void Pokemon_BuildArchivedSprite(PokemonSpriteTemplate *spriteTemplate, Pokemon 
  * @param mon            The Pokemon whose data will be used to build the sprite
  * @param face           Which face of the Pokemon the player sees
  */
-void Pokemon_BuildArchivedDPSprite(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face);
+void Pokemon_BuildSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face);
 
 /**
  * @brief Build a PokemonSpriteTemplate for a BoxPokemon.
@@ -417,7 +417,7 @@ void Pokemon_BuildArchivedDPSprite(PokemonSpriteTemplate *spriteTemplate, Pokemo
  * @param face           Which face of the Pokemon the player sees
  * @param preferDP       If TRUE, prefer sprites from Diamond/Pearl over Platinum
  */
-void BoxPokemon_BuildArchivedSprite(PokemonSpriteTemplate *spriteTemplate, BoxPokemon *boxMon, u8 face, BOOL preferDP);
+void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPokemon *boxMon, u8 face, BOOL preferDP);
 
 /**
  * @brief Build a PokemonSpriteTemplate for a Pokemon sprite according to the input
@@ -431,7 +431,7 @@ void BoxPokemon_BuildArchivedSprite(PokemonSpriteTemplate *spriteTemplate, BoxPo
  * @param form           The Pokemon's form
  * @param personality    The Pokemon's personality value
  */
-void BuildArchivedPokemonSprite(PokemonSpriteTemplate *spriteTemplate, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged

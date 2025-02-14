@@ -752,7 +752,7 @@ void ov119_021D1858(UnkStruct_ov119_021D0FD0 *param0)
         Pokemon_SetValue(v2, MON_DATA_IS_EGG, &v5);
     }
 
-    Pokemon_BuildArchivedSprite(&v0, v2, 2);
+    Pokemon_BuildSpriteTemplate(&v0, v2, 2);
     PokeSprite_LoadAnimationFrames(param0->unk_04.unk_3C, &v1[0], v3, 1);
 
     param0->unk_70 = sub_02007C34(param0->unk_04.unk_38, &v0, 128, 96 + v4, 0, 0, &v1[0], NULL);

@@ -1103,7 +1103,7 @@ static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
     int v6 = 8;
     int v7 = 10;
 
-    BuildArchivedPokemonSprite(&v0, 427, 0, 2, 0, 0, 0);
+    BuildPokemonSpriteTemplate(&v0, 427, 0, 2, 0, 0, 0);
 
     v1 = Heap_AllocFromHeap(param0->heapId, (10 * 10) * 2);
 

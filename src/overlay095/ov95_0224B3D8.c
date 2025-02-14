@@ -502,7 +502,7 @@ static PokemonSprite *ov95_0224BA8C(UnkStruct_ov95_0224B4D4 *param0)
 
     v1 = (BoxPokemon *)ov95_0224763C(param0->unk_00);
 
-    BoxPokemon_BuildArchivedSprite(&v0, v1, 2, 0);
+    BoxPokemon_BuildSpriteTemplate(&v0, v1, 2, 0);
     PokeSprite_LoadAnimationFrames(param0->unk_84, param0->unk_18, ov95_02247660(param0->unk_00), 1);
 
     v2 = (100 - 20) + BoxPokemon_SpriteYOffset(v1, 2, 0);

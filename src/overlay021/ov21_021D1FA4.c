@@ -169,7 +169,7 @@ void Pokedex_LoadPokemonSprite(PokedexGraphicData *param0, int species, int gend
         gender = Pokemon_GetGenderOf(species, 0);
     }
 
-    BuildArchivedPokemonSprite(&spriteTemplate, species, gender, face, shiny, form, personality);
+    BuildPokemonSpriteTemplate(&spriteTemplate, species, gender, face, shiny, form, personality);
 
     if (face == 0) {
         yOffset = LoadPokemonSpriteYOffset(species, gender, face, form, personality);

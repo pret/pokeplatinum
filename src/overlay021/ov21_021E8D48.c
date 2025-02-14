@@ -757,7 +757,7 @@ static PokemonSprite *ov21_021E99E0(UnkStruct_02007768 *param0, Pokemon *param1,
 {
     PokemonSpriteTemplate v0;
 
-    Pokemon_BuildArchivedSprite(&v0, param1, 2);
+    Pokemon_BuildSpriteTemplate(&v0, param1, 2);
     return sub_02007C34(param0, &v0, param2, param3, 0, 0, NULL, NULL);
 }
 

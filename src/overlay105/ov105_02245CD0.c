@@ -57,7 +57,7 @@ PokemonSprite *ov105_02245D88(UnkStruct_02007768 *param0, int param1, Pokemon *p
     int v2;
     u32 v3;
 
-    Pokemon_BuildArchivedSprite(&v0, param2, 2);
+    Pokemon_BuildSpriteTemplate(&v0, param2, 2);
 
     v2 = 0;
     v1 = sub_02007C34(param0, &v0, param3, (param4 + v2), param5, param1, NULL, NULL);

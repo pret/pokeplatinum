@@ -92,7 +92,7 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
         }
     }
 
-    BuildArchivedPokemonSprite(&v0, v2, v3, v4, v5, v6, v7);
+    BuildPokemonSpriteTemplate(&v0, v2, v3, v4, v5, v6, v7);
 
     v1 = sub_02008A90(param0->unk_18[param0->unk_00]);
     *v1 = v0;

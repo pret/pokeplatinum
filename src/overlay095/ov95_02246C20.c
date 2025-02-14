@@ -569,7 +569,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
         v5 = (BoxPokemon *)((param1 == 0) ? param0->unk_00->unk_00 : param0->unk_00->unk_04);
         v6 = BoxPokemon_EnterDecryptionContext(v5);
 
-        BoxPokemon_BuildArchivedSprite(&v0, v5, 2, 0);
+        BoxPokemon_BuildSpriteTemplate(&v0, v5, 2, 0);
 
         v7 = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
         v8 = BoxPokemon_GetValue(v5, MON_DATA_SPECIES, NULL);

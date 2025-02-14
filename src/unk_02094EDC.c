@@ -668,7 +668,7 @@ PokemonSprite *sub_02095484(UnkStruct_02007768 *param0, int param1, Pokemon *par
     PokemonSprite *v1;
     int v2, v3, v4;
 
-    Pokemon_BuildArchivedSprite(&v0, param2, param3);
+    Pokemon_BuildSpriteTemplate(&v0, param2, param3);
 
     v2 = Pokemon_SpriteYOffset(param2, param3);
 

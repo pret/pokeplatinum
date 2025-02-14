@@ -159,7 +159,7 @@ void ov19_021DAA90(UnkStruct_ov19_021DA9E0 *param0)
 {
     PokemonSpriteTemplate v0;
 
-    BuildArchivedPokemonSprite(&v0, 1, 0, 0, 0, 0, 0);
+    BuildPokemonSpriteTemplate(&v0, 1, 0, 0, 0, 0, 0);
     param0->unk_24 = sub_02007C34(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
 }
 
@@ -546,7 +546,7 @@ static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
         sub_0200C648(param0->unk_1C, 1, preview->level, 3, 1, &(param0->unk_04[2]), 0, 16);
     }
 
-    BoxPokemon_BuildArchivedSprite(&v0, preview->mon, 2, 0);
+    BoxPokemon_BuildSpriteTemplate(&v0, preview->mon, 2, 0);
     param0->unk_24 = sub_02007C34(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
     ov19_021DB24C(param0, preview->markings);
 }
