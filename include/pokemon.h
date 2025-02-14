@@ -391,47 +391,47 @@ u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality);
 u32 Pokemon_FindShinyPersonality(u32 monOTID);
 
 /**
- * @brief Build an PokemonSpriteTemplate for a Pokemon.
+ * @brief Build a PokemonSpriteTemplate for a Pokemon.
  *
- * @param sprite    Pointer to the sprite structure to be populated
- * @param mon       The Pokemon whose data will be used to build the sprite
- * @param face      Which face of the Pokemon the player sees
+ * @param spriteTemplate Pointer to the sprite template to be populated
+ * @param mon            The Pokemon whose data will be used to build the sprite
+ * @param face           Which face of the Pokemon the player sees
  */
-void Pokemon_BuildArchivedSprite(PokemonSpriteTemplate *sprite, Pokemon *mon, u8 face);
+void Pokemon_BuildArchivedSprite(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face);
 
 /**
- * @brief Build an PokemonSpriteTemplate for a Pokemon, preferring sprites from
+ * @brief Build a PokemonSpriteTemplate for a Pokemon, preferring sprites from
  * Diamond/Pearl where possible.
  *
- * @param sprite    Pointer to the sprite structure to be populated
- * @param mon       The Pokemon whose data will be used to build the sprite
- * @param face      Which face of the Pokemon the player sees
+ * @param spriteTemplate Pointer to the sprite template to be populated
+ * @param mon            The Pokemon whose data will be used to build the sprite
+ * @param face           Which face of the Pokemon the player sees
  */
-void Pokemon_BuildArchivedDPSprite(PokemonSpriteTemplate *sprite, Pokemon *mon, u8 face);
+void Pokemon_BuildArchivedDPSprite(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face);
 
 /**
- * @brief Build an PokemonSpriteTemplate for a BoxPokemon.
+ * @brief Build a PokemonSpriteTemplate for a BoxPokemon.
  *
- * @param sprite    Pointer to the sprite structure to be populated
- * @param mon       The Pokemon whose data will be used to build the sprite
- * @param face      Which face of the Pokemon the player sees
- * @param preferDP  If TRUE, prefer sprites from Diamond/Pearl over Platinum
+ * @param spriteTemplate Pointer to the sprite template to be populated
+ * @param mon            The Pokemon whose data will be used to build the sprite
+ * @param face           Which face of the Pokemon the player sees
+ * @param preferDP       If TRUE, prefer sprites from Diamond/Pearl over Platinum
  */
-void BoxPokemon_BuildArchivedSprite(PokemonSpriteTemplate *sprite, BoxPokemon *boxMon, u8 face, BOOL preferDP);
+void BoxPokemon_BuildArchivedSprite(PokemonSpriteTemplate *spriteTemplate, BoxPokemon *boxMon, u8 face, BOOL preferDP);
 
 /**
- * @brief Build an PokemonSpriteTemplate for a Pokemon sprite according to the input
+ * @brief Build a PokemonSpriteTemplate for a Pokemon sprite according to the input
  * species, form, and gender.
  *
- * @param sprite        Pointer to the sprite structure to be populated
- * @param species       The Pokemon's species
- * @param gender        The Pokemon's gender
- * @param face          Which face of the Pokemon the player sees
- * @param shiny         1 if the Pokemon is shiny, 0 if not
- * @param form          The Pokemon's form
- * @param personality   The Pokemon's personality value
+ * @param spriteTemplate Pointer to the sprite template to be populated
+ * @param species        The Pokemon's species
+ * @param gender         The Pokemon's gender
+ * @param face           Which face of the Pokemon the player sees
+ * @param shiny          1 if the Pokemon is shiny, 0 if not
+ * @param form           The Pokemon's form
+ * @param personality    The Pokemon's personality value
  */
-void BuildArchivedPokemonSprite(PokemonSpriteTemplate *sprite, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+void BuildArchivedPokemonSprite(PokemonSpriteTemplate *spriteTemplate, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged

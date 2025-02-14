@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_ARCHIVED_SPRITE_H
-#define POKEPLATINUM_STRUCT_ARCHIVED_SPRITE_H
+#ifndef POKEPLATINUM_STRUCT_POKEMON_SPRITE_TEMPLATE_H
+#define POKEPLATINUM_STRUCT_POKEMON_SPRITE_TEMPLATE_H
 
 typedef struct PokemonSpriteTemplate {
     u16 archive; //< ID of the sprite archive
@@ -12,4 +12,4 @@ typedef struct PokemonSpriteTemplate {
     u32 personality; //< Cached personality value for Pokemon front-sprites. Specifically used for Spinda spots.
 } PokemonSpriteTemplate;
 
-#endif // POKEPLATINUM_STRUCT_ARCHIVED_SPRITE_H
+#endif // POKEPLATINUM_STRUCT_POKEMON_SPRITE_TEMPLATE_H

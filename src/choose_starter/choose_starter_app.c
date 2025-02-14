@@ -697,11 +697,11 @@ static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int
 {
     int gender = Pokemon_GetGenderOf(species, 0);
 
-    PokemonSpriteTemplate archivedSprite;
-    BuildArchivedPokemonSprite(&archivedSprite, species, gender, FACE_FRONT, FALSE, NULL, NULL);
+    PokemonSpriteTemplate spriteTemplate;
+    BuildArchivedPokemonSprite(&spriteTemplate, species, gender, FACE_FRONT, FALSE, NULL, NULL);
 
     *sprite = sub_02007C34(app->spriteManager,
-        &archivedSprite,
+        &spriteTemplate,
         POKEMON_SPRITE_POS_X,
         POKEMON_SPRITE_POS_Y,
         POKEMON_SPRITE_POS_Z,

@@ -348,18 +348,18 @@ void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
 
     void *monData = PokemonSummaryScreen_MonData(summaryScreen);
 
-    PokemonSpriteTemplate sprite;
+    PokemonSpriteTemplate spriteTemplate;
 
     if (summaryScreen->data->dataType == SUMMARY_DATA_BOX_MON) {
-        BoxPokemon_BuildArchivedSprite(&sprite, monData, 2, 0);
+        BoxPokemon_BuildArchivedSprite(&spriteTemplate, monData, 2, 0);
     } else {
-        Pokemon_BuildArchivedSprite(&sprite, monData, 2);
+        Pokemon_BuildArchivedSprite(&spriteTemplate, monData, 2);
     }
 
     PokeSprite_LoadAnimationFrames(summaryScreen->narcPlPokeData, summaryScreen->monSprite.frames, summaryScreen->monData.species, 1);
 
     summaryScreen->monSprite.flip = SpeciesData_GetFormValue(summaryScreen->monData.species, summaryScreen->monData.form, SPECIES_DATA_FLIP_SPRITE) ^ 1;
-    summaryScreen->monSprite.sprite = sub_02007C34(summaryScreen->monSprite.spriteManager, &sprite, 52, 104, 0, 0, summaryScreen->monSprite.frames, NULL);
+    summaryScreen->monSprite.sprite = sub_02007C34(summaryScreen->monSprite.spriteManager, &spriteTemplate, 52, 104, 0, 0, summaryScreen->monSprite.frames, NULL);
 
     sub_02007DEC(summaryScreen->monSprite.sprite, 35, summaryScreen->monSprite.flip);
 }
