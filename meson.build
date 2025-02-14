@@ -216,29 +216,16 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         'pokeplatinum.us.nlf'
     ],
     input: [
-        main,
         banner_bnr,
         rom_header_template,
         rom_rsf,
         ichneumon_sub,
         ichneumon_sub_defs,
-        fixrom_exe,
-        nitrofs_files # Make sure this is always listed last
     ],
-    command : [
-        makerom_exe,
-        '-DTITLE_NAME=POKEMON PL',
-        '-DBNR=@INPUT1@',
-        '-DHEADER_TEMPLATE=@INPUT2@',
-        '-DARM7=@INPUT4@',
-        '-DARM7_DEFS=@INPUT5@',
-        '@INPUT3@',
-        '@OUTPUT0@',
-        '@OUTPUT1@',
-        '&&','sh', '-c',
-        '@INPUT6@ @OUTPUT0@ --secure-crc 0xF8B8 --game-code CPUE'
-    ],
-    build_by_default: true
+    # makerom_exe must always be last, as it may contain a wine component
+    command : [ make_rom_sh, '@INPUT@', '@OUTPUT@', fixrom_exe, makerom_exe ],
+    build_by_default: true,
+    depends: [ main, nitrofs_files ],
 )
 
 ############################################################
