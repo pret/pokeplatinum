@@ -3910,13 +3910,7 @@ static BOOL sub_02041D3C(ScriptContext *ctx)
 
 BOOL ScriptContext_WaitForApplicationExit(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = ctx->fieldSystem;
-
-    if (FieldSystem_IsRunningApplication(fieldSystem)) {
-        return FALSE;
-    }
-
-    return TRUE;
+    return !FieldSystem_IsRunningApplication(ctx->fieldSystem);
 }
 
 static BOOL ScrCmd_ReturnToField(ScriptContext *ctx)
