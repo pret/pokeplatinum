@@ -15,7 +15,7 @@
 #include "poketch.h"
 #include "render_oam.h"
 
-FS_EXTERN_OVERLAY(overlay24);
+FS_EXTERN_OVERLAY(pre_poketch_subscreen);
 FS_EXTERN_OVERLAY(overlay25);
 
 typedef struct {
@@ -42,7 +42,7 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
         if (PrePoketchSubscreen_IsDone(fieldSystem->bgConfig)) {
             Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
 
-            Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
+            Overlay_UnloadByID(FS_OVERLAY_ID(pre_poketch_subscreen));
             Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
             Poketch_Enable(poketch);
             PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, RenderOam_GetScreenOam(1));
