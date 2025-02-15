@@ -3,12 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/items.h"
+
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
 #include "overlay025/poketch_system.h"
-
-#include "generated/items.h"
 
 #include "graphics.h"
 #include "heap.h"
@@ -16,8 +16,6 @@
 #include "narc.h"
 #include "pokemon_icon.h"
 #include "sys_task_manager.h"
-
-
 
 static void EndPoketchTask(PoketchTaskManager *poketchTaskMan);
 static void DrawAppScreen(SysTask *param0, void *param1);
@@ -33,7 +31,7 @@ static void ov32_02256BD4(PoketchPartyStatusGraphics *param0);
 static void FreeAppScreen(SysTask *param0, void *param1);
 static void RedrawAppScreen(SysTask *param0, void *param1);
 
-static const struct MonIconCoords{
+static const struct MonIconCoords {
     u16 x; // horizontal center of the icon
     u16 y; // 8px above the vertical center
 } sMonIconCoords[] = {

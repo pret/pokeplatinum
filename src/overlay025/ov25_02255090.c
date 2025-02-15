@@ -14,7 +14,7 @@
 #include "sys_task_manager.h"
 
 #define POKETCH_TASK_LIST_VALIDATOR 0x12345678 // If activeList[1] is not this value, tasks will not be added or removed.
-#define POKETCH_TASK_LIST_EMPTY 0xFFFFFFFF
+#define POKETCH_TASK_LIST_EMPTY     0xFFFFFFFF
 
 static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId);
 static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId);

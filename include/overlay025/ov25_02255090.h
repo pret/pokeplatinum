@@ -3,7 +3,7 @@
 
 #include "sys_task_manager.h"
 
-typedef struct PoketchTask{
+typedef struct PoketchTask {
     u32 taskId;
     SysTaskFunc taskFunc;
     u32 unk_08;

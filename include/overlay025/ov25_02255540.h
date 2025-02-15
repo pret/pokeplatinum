@@ -3,12 +3,12 @@
 
 #include <nnsys.h>
 
+#include "constants/heap.h"
+
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_02255810.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
 #include "overlay025/struct_ov25_02255958.h"
-
-#include "constants/heap.h"
 
 UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *param0, u32 param1);
 void ov25_022555E8(UnkStruct_ov25_022555E8 *param0);
