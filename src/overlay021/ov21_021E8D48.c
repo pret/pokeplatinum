@@ -9,11 +9,11 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
 
-#include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1F90.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021DE668.h"
+#include "overlay021/pokedex_main.h"
 #include "overlay021/struct_ov21_021D1FA4.h"
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
@@ -415,9 +415,9 @@ static void ov21_021E9240(UnkStruct_ov21_021D22F8 *param0, UnkStruct_ov21_021D4C
     v0.heapID = param2;
 
     if (param4 == 0) {
-        v1 = ov21_021D172C(param1, param2, param3);
+        v1 = PokedexMain_DisplayNameNumberLocal(param1, param2, param3);
     } else {
-        v1 = ov21_021D170C(param1, param2, param3);
+        v1 = PokedexMain_DisplayNameNumberNational(param1, param2, param3);
     }
 
     v0.unk_04 = v1;

@@ -53,7 +53,7 @@
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay020/ov20_021D0D80.h"
-#include "overlay021/ov21_021D0D80.h"
+#include "overlay021/pokedex_main.h"
 #include "overlay022/ov22_02255D44.h"
 #include "overlay022/ov22_0225B660.h"
 #include "overlay058/ov58_021D0D80.h"
@@ -1306,14 +1306,14 @@ BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1)
 {
     FS_EXTERN_OVERLAY(overlay21);
 
-    static const OverlayManagerTemplate v0 = {
-        ov21_021D0D80,
-        ov21_021D0E3C,
-        ov21_021D0EC8,
+    static const OverlayManagerTemplate template = {
+        PokedexMain_Init,
+        PokedexMain_Main,
+        PokedexMain_Exit,
         FS_OVERLAY_ID(overlay21)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &v0, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, param1);
     return 1;
 }
 

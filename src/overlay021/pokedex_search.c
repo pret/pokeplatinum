@@ -7,13 +7,13 @@
 
 #include "struct_decls/sprite_decl.h"
 
-#include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
+#include "overlay021/pokedex_main.h"
 #include "overlay021/pokedex_sort.h"
+#include "overlay021/pokedex_sort_data.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
-#include "overlay021/struct_ov21_021D3320.h"
 #include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021D5B68.h"
 #include "overlay021/struct_ov21_021E68F4.h"
@@ -48,7 +48,7 @@ enum ScreenState {
 
 typedef struct {
     int *exitFlag;
-    UnkStruct_ov21_021D3320 *unk_04;
+    PokedexSortData *unk_04;
     UnkStruct_ov21_021D5B68 *unk_08;
     enum FilterMethod filterMethod;
     enum SortOrder sortOrder;
@@ -64,7 +64,7 @@ typedef struct {
 } PokedexSearchSettings;
 
 typedef struct {
-    UnkStruct_ov21_021D13FC *unk_00;
+    PokedexGraphicData *unk_00;
 } UnkStruct_ov21_021D879C;
 
 typedef struct {
@@ -84,9 +84,9 @@ typedef struct {
     NNSG2dScreenData *screenData;
 } PokedexSearchDisplay;
 
-static PokedexSearchSettings *InitSearchSettings(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
-static UnkStruct_ov21_021D879C *ov21_021D8724(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
-static UnkStruct_ov21_021D4660 *ov21_021D874C(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
+static PokedexSearchSettings *InitSearchSettings(enum HeapId heapID, PokedexApp *param1);
+static UnkStruct_ov21_021D879C *ov21_021D8724(enum HeapId heapID, PokedexApp *param1);
+static UnkStruct_ov21_021D4660 *ov21_021D874C(enum HeapId heapID, PokedexApp *param1);
 static void FreeSearchSettings(PokedexSearchSettings *searchSettings);
 static void ov21_021D879C(UnkStruct_ov21_021D879C *param0);
 static void ov21_021D87B0(UnkStruct_ov21_021D4660 *param0);
@@ -122,7 +122,7 @@ static void FilterFormSilhouette(PokedexSearchDisplay *searchDisplay, int filter
 static void EmptyDexMessage(UnkStruct_ov21_021D879C *param0, enum HeapId heapID);
 static void ov21_021D8C00(UnkStruct_ov21_021D879C *param0);
 
-void PokedexSearch_TransitionFunctions(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, enum HeapId heapID)
+void PokedexSearch_TransitionFunctions(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
 {
     PokedexSearchSettings *searchSettings = InitSearchSettings(heapID, param1);
     UnkStruct_ov21_021D879C *v1 = ov21_021D8724(heapID, param1);
@@ -254,7 +254,7 @@ int PokedexSearch_GetScreenTimer(const UnkStruct_ov21_021E68F4 *param0)
     return searchSettings->screenTimer;
 }
 
-static PokedexSearchSettings *InitSearchSettings(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
+static PokedexSearchSettings *InitSearchSettings(enum HeapId heapID, PokedexApp *param1)
 {
     PokedexSearchSettings *searchSettings = Heap_AllocFromHeap(heapID, sizeof(PokedexSearchSettings));
 
@@ -269,7 +269,7 @@ static PokedexSearchSettings *InitSearchSettings(enum HeapId heapID, UnkStruct_o
     return searchSettings;
 }
 
-static UnkStruct_ov21_021D879C *ov21_021D8724(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021D879C *ov21_021D8724(enum HeapId heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021D879C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D879C));
 
@@ -281,7 +281,7 @@ static UnkStruct_ov21_021D879C *ov21_021D8724(enum HeapId heapID, UnkStruct_ov21
     return v0;
 }
 
-static UnkStruct_ov21_021D4660 *ov21_021D874C(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021D4660 *ov21_021D874C(enum HeapId heapID, PokedexApp *param1)
 {
     int v1 = ov21_021D87C8();
 
@@ -394,7 +394,7 @@ static int UpdateScreenState(UnkStruct_ov21_021E6A68 *param0, void *param1)
         break;
     case 3:
         BOOL dexExists = TRUE;
-        dexExists = PokedexSort_Sort(searchSettings->unk_04, searchSettings->sortOrder, searchSettings->filterName, searchSettings->typeFilter1, searchSettings->typeFilter2, searchSettings->filterForm, PokedexStatus_IsNationalDex(searchSettings->unk_04), param0->heapID, TRUE);
+        dexExists = PokedexSort_Sort(searchSettings->unk_04, searchSettings->sortOrder, searchSettings->filterName, searchSettings->typeFilter1, searchSettings->typeFilter2, searchSettings->filterForm, PokedexSort_IsNationalDex(searchSettings->unk_04), param0->heapID, TRUE);
 
         if (dexExists == TRUE) {
             *searchSettings->exitFlag |= EXITSEARCH;
@@ -530,7 +530,7 @@ static void DefaultDisplay(PokedexSearchDisplay *searchDisplay, UnkStruct_ov21_0
 
     ov21_021D8C00(param1);
     ov21_021D8B8C(param1, searchSettings, heapID);
-    GetDisplayMap(searchDisplay, param1, searchSettings, heapID, PokedexStatus_IsNationalDex(searchSettings->unk_04));
+    GetDisplayMap(searchDisplay, param1, searchSettings, heapID, PokedexSort_IsNationalDex(searchSettings->unk_04));
     GetSearchGraphics(searchDisplay, param1, heapID);
     InitCellActors(searchDisplay, param1, searchSettings, heapID);
 
@@ -595,7 +595,7 @@ static void ov21_021D8C00(UnkStruct_ov21_021D879C *param0)
 
 static void GetSearchGraphics(PokedexSearchDisplay *searchDisplay, UnkStruct_ov21_021D879C *param1, enum HeapId heapID)
 {
-    UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
+    PokedexGraphicData *v0 = param1->unk_00;
     NARC *pokedexGraphics = ov21_021D26E0(v0);
 
     searchDisplay->searchGraphics[SPRITE_RESOURCE_TILES] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], pokedexGraphics, 81, 1, 81 + 15000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
@@ -614,7 +614,7 @@ static void GetSearchGraphics(PokedexSearchDisplay *searchDisplay, UnkStruct_ov2
 
 static void FreeSearchGraphics(PokedexSearchDisplay *searchDisplay, UnkStruct_ov21_021D879C *param1)
 {
-    UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
+    PokedexGraphicData *v0 = param1->unk_00;
 
     SpriteTransfer_ResetCharTransfer(searchDisplay->searchGraphics[SPRITE_RESOURCE_TILES]);
     SpriteTransfer_ResetPlttTransfer(searchDisplay->searchGraphics[SPRITE_RESOURCE_PALETTE]);
@@ -629,7 +629,7 @@ static void InitCellActors(PokedexSearchDisplay *searchDisplay, UnkStruct_ov21_0
 {
     CellActorResourceData v0;
     CellActorInitParams v1;
-    UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
+    PokedexGraphicData *v2 = param1->unk_00;
 
     SpriteResourcesHeader_Init(&v0, 81 + 15000, 3 + 15000, 79 + 15000, 80 + 15000, 0xffffffff, 0xffffffff, 0, 2, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
@@ -664,7 +664,7 @@ static void FreeCellActors(PokedexSearchDisplay *searchDisplay)
 
 static void DescriptionMessage(UnkStruct_ov21_021D879C *param0, int filterMethod, enum HeapId heapID)
 {
-    UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
+    PokedexGraphicData *v0 = param0->unk_00;
     int entryID;
 
     Window_FillRectWithColor(&v0->unk_04, 0, 24, 8, 208, 32);
@@ -686,7 +686,7 @@ static void DescriptionMessage(UnkStruct_ov21_021D879C *param0, int filterMethod
         break;
     }
 
-    Strbuf *descriptionMessage = GetPokedexMessage(entryID, heapID);
+    Strbuf *descriptionMessage = PokedexMain_GetMessage(entryID, heapID);
 
     u32 xOffset = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, descriptionMessage, 0)) / 2;
     u32 yOffset = 8 + (32 - Strbuf_NumLines(descriptionMessage) * 16) / 2;
@@ -697,11 +697,11 @@ static void DescriptionMessage(UnkStruct_ov21_021D879C *param0, int filterMethod
 
 static void EmptyDexMessage(UnkStruct_ov21_021D879C *param0, enum HeapId heapID)
 {
-    UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
+    PokedexGraphicData *v0 = param0->unk_00;
 
     Window_FillRectWithColor(&v0->unk_04, 0, 24, 8, 208, 32);
 
-    Strbuf *noneMessage = GetPokedexMessage(pl_msg_pokedex_nonefound, heapID);
+    Strbuf *noneMessage = PokedexMain_GetMessage(pl_msg_pokedex_nonefound, heapID);
 
     {
         u32 xOffset = 24 + (208 - Font_CalcMaxLineWidth(FONT_SYSTEM, noneMessage, 0)) / 2;
@@ -804,12 +804,12 @@ static void FilterMethodMap(UnkStruct_ov21_021D879C *param0, int filterMethod, e
 
 static void SortOrderMessage(UnkStruct_ov21_021D879C *param0, int sortOrder, enum HeapId heapID)
 {
-    UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
+    PokedexGraphicData *v0 = param0->unk_00;
 
     Window_FillRectWithColor(&v0->unk_04, 0, 88, 52, 80, 16);
 
     int entryID = pl_msg_pokedex_numerical + sortOrder;
-    Strbuf *sortMessage = GetPokedexMessage(entryID, heapID);
+    Strbuf *sortMessage = PokedexMain_GetMessage(entryID, heapID);
 
     u32 xOffset = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, sortMessage, 0, 80);
     Text_AddPrinterWithParamsAndColor(&v0->unk_04, FONT_SYSTEM, sortMessage, xOffset, 52, TEXT_SPEED_INSTANT, TEXT_COLOR(4, 3, 0), NULL);
@@ -819,7 +819,7 @@ static void SortOrderMessage(UnkStruct_ov21_021D879C *param0, int sortOrder, enu
 
 static void FilterNameMessage(UnkStruct_ov21_021D879C *param0, int filterName, enum HeapId heapID)
 {
-    UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
+    PokedexGraphicData *v0 = param0->unk_00;
     int entryID;
 
     Window_FillRectWithColor(&v0->unk_04, 0, 88, 77, 80, 16);
@@ -857,7 +857,7 @@ static void FilterNameMessage(UnkStruct_ov21_021D879C *param0, int filterName, e
         break;
     }
 
-    Strbuf *filterMessage = GetPokedexMessage(entryID, heapID);
+    Strbuf *filterMessage = PokedexMain_GetMessage(entryID, heapID);
 
     {
         u32 xOffset = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, filterMessage, 0, 80);
@@ -869,7 +869,7 @@ static void FilterNameMessage(UnkStruct_ov21_021D879C *param0, int filterName, e
 
 static void FilterTypeMessage(UnkStruct_ov21_021D879C *param0, int typeFilter, enum HeapId heapID, int y)
 {
-    UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
+    PokedexGraphicData *v0 = param0->unk_00;
     int entryID;
 
     Window_FillRectWithColor(&v0->unk_04, 0, 88, y, 80, 16);
@@ -931,7 +931,7 @@ static void FilterTypeMessage(UnkStruct_ov21_021D879C *param0, int typeFilter, e
         break;
     }
 
-    Strbuf *filterMessage = GetPokedexMessage(entryID, heapID);
+    Strbuf *filterMessage = PokedexMain_GetMessage(entryID, heapID);
 
     {
         u32 x = 88 + Font_CalcCenterAlignment(FONT_SYSTEM, filterMessage, 0, 80);
@@ -1011,15 +1011,15 @@ static void LoadingScreenTransition(PokedexSearchDisplay *searchDisplay, UnkStru
 {
     if (searchSettings->screenTimer == 4) {
         if (searchSettings->screenState == SS_SEARCH) {
-            Pokedex_SetLoadingScreenParams(&searchDisplay->loadingScreen, param1->unk_00->unk_00, 2, searchDisplay->screenData, 0, 12, 0, 20, 4);
+            PokedexMain_SetLoadingScreenParams(&searchDisplay->loadingScreen, param1->unk_00->unk_00, 2, searchDisplay->screenData, 0, 12, 0, 20, 4);
         } else {
             ReturnSearchDisplay(param1, searchDisplay, heapID);
 
-            Pokedex_SetLoadingScreenParams(&searchDisplay->loadingScreen, param1->unk_00->unk_00, 2, searchDisplay->screenData, 12, 0, 20, 0, 4);
+            PokedexMain_SetLoadingScreenParams(&searchDisplay->loadingScreen, param1->unk_00->unk_00, 2, searchDisplay->screenData, 12, 0, 20, 0, 4);
         }
     }
 
-    Pokedex_LoadingScreenMove(&searchDisplay->loadingScreen);
+    PokedexMain_LoadingScreenMove(&searchDisplay->loadingScreen);
 }
 
 static void LoadingScreenAnimation(PokedexSearchDisplay *searchDisplay, UnkStruct_ov21_021D879C *param1, const PokedexSearchSettings *searchSettings, enum HeapId heapID)
@@ -1042,11 +1042,11 @@ static void LoadingScreenAnimation(PokedexSearchDisplay *searchDisplay, UnkStruc
 
 static void SearchingMessage(UnkStruct_ov21_021D879C *param0, enum HeapId heapID)
 {
-    UnkStruct_ov21_021D13FC *v0 = param0->unk_00;
+    PokedexGraphicData *v0 = param0->unk_00;
 
     Window_FillTilemap(&param0->unk_00->unk_04, 0);
 
-    Strbuf *searchingMessage = GetPokedexMessage(pl_msg_pokedex_searching, heapID);
+    Strbuf *searchingMessage = PokedexMain_GetMessage(pl_msg_pokedex_searching, heapID);
 
     u32 xOffset = (256 - Font_CalcMaxLineWidth(FONT_SYSTEM, searchingMessage, 0)) / 2;
 
