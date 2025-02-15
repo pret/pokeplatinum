@@ -7,7 +7,6 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_decls/struct_0209ACBC_decl.h"
 #include "struct_decls/terrain_collision_manager_decl.h"
 #include "struct_defs/map_load_mode.h"
 #include "struct_defs/struct_0202610C.h"
@@ -39,6 +38,7 @@
 #include "map_header_data.h"
 #include "map_matrix.h"
 #include "overlay_manager.h"
+#include "pokedex_memory.h"
 #include "pokeradar.h"
 #include "savedata.h"
 
@@ -112,7 +112,7 @@ typedef struct FieldSystem_t {
     HoneyTreeShakeList *unk_A8;
     UnkStruct_0204AFC4 *unk_AC;
     const BattleRegulation *unk_B0;
-    UnkStruct_0209ACBC *unk_B4;
+    PokedexMemory *pokedexMemory;
     BOOL unk_B8;
     u8 *battleSubscreenCursorOn;
     u32 unk_C0;

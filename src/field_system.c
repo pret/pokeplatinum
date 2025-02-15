@@ -31,11 +31,11 @@
 #include "map_header_data.h"
 #include "map_matrix.h"
 #include "overlay_manager.h"
+#include "pokedex_memory.h"
 #include "pokeradar.h"
 #include "savedata.h"
 #include "system.h"
 #include "unk_0205F180.h"
-#include "unk_0209ACBC.h"
 #include "unk_0209C370.h"
 
 FS_EXTERN_OVERLAY(overlay5);
@@ -169,7 +169,7 @@ static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
     fieldSystem->chain = RadarChain_Init(HEAP_ID_FIELDMAP);
     RadarChain_Clear(fieldSystem->chain);
 
-    fieldSystem->unk_B4 = sub_0209ACBC(HEAP_ID_FIELDMAP);
+    fieldSystem->pokedexMemory = PokedexMemory_New(HEAP_ID_FIELDMAP);
     fieldSystem->battleSubscreenCursorOn = sub_0209C370(HEAP_ID_FIELDMAP);
 
     return fieldSystem;
@@ -183,7 +183,7 @@ static void TeardownFieldSystem(OverlayManager *ovyManager)
     MapHeaderData_Free(fieldSystem);
     Heap_FreeToHeap(fieldSystem->unk_98);
     RadarChain_Free(fieldSystem->chain);
-    sub_0209ACDC(fieldSystem->unk_B4);
+    PokedexMemory_Free(fieldSystem->pokedexMemory);
     sub_0209C388(fieldSystem->battleSubscreenCursorOn);
 
     Heap_FreeToHeap(fieldSystem->processManager);

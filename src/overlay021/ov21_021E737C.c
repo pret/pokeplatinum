@@ -9,13 +9,13 @@
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"
 
-#include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021E29DC.h"
+#include "overlay021/pokedex_main.h"
 #include "overlay021/pokedex_sort.h"
+#include "overlay021/pokedex_sort_data.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D13FC.h"
-#include "overlay021/struct_ov21_021D3320.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
@@ -24,6 +24,7 @@
 #include "overlay022/struct_ov22_02255800.h"
 
 #include "bg_window.h"
+#include "cell_actor.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
@@ -33,7 +34,6 @@
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "pokemon_icon.h"
-#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -56,12 +56,12 @@ typedef struct {
 } UnkStruct_ov21_021E9DB0;
 
 typedef struct {
-    UnkStruct_ov21_021D3320 *unk_00;
+    PokedexSortData *unk_00;
     UnkStruct_ov21_021E68F4 *unk_04;
 } UnkStruct_ov21_021E7468;
 
 typedef struct {
-    UnkStruct_ov21_021D13FC *unk_00;
+    PokedexGraphicData *unk_00;
     UnkStruct_02015128 *unk_04;
     UnkStruct_020151A4 *unk_08;
     UnkStruct_02015214 *unk_0C;
@@ -78,10 +78,10 @@ typedef struct {
 
 typedef struct {
     UnkStruct_02015214 *unk_00;
-    Sprite *unk_04;
-    Sprite *unk_08;
-    Sprite *unk_0C;
-    Sprite *unk_10;
+    CellActor *unk_04;
+    CellActor *unk_08;
+    CellActor *unk_0C;
+    CellActor *unk_10;
     int unk_14;
     int unk_18;
     int unk_1C;
@@ -94,10 +94,10 @@ typedef struct {
 
 typedef struct {
     UnkStruct_02015214 *unk_00;
-    Sprite *unk_04;
-    Sprite *unk_08;
-    Sprite *unk_0C;
-    Sprite *unk_10;
+    CellActor *unk_04;
+    CellActor *unk_08;
+    CellActor *unk_0C;
+    CellActor *unk_10;
     int unk_14;
     int unk_18;
     int unk_1C;
@@ -105,7 +105,7 @@ typedef struct {
 } UnkStruct_ov21_021E81F8;
 
 typedef struct {
-    Sprite *unk_00;
+    CellActor *unk_00;
     fx32 unk_04;
     fx32 unk_08;
     s16 unk_0C;
@@ -116,10 +116,10 @@ typedef struct {
 } UnkStruct_ov21_021E82C8;
 
 typedef struct {
-    Sprite *unk_00;
-    Sprite *unk_04;
-    Sprite *unk_08;
-    Sprite *unk_0C[2];
+    CellActor *unk_00;
+    CellActor *unk_04;
+    CellActor *unk_08;
+    CellActor *unk_0C[2];
     SpriteResource *unk_14[4];
     SpriteResource *unk_24[4];
     const UnkStruct_ov21_021E9DB0 *unk_34;
@@ -133,8 +133,8 @@ typedef struct {
     u16 *unk_C0;
 } UnkStruct_ov21_021E7714;
 
-static UnkStruct_ov21_021E7468 *ov21_021E73E8(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
-static UnkStruct_ov21_021E747C *ov21_021E7424(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021E7468 *ov21_021E73E8(enum HeapId heapID, PokedexApp *param1);
+static UnkStruct_ov21_021E747C *ov21_021E7424(enum HeapId heapID, PokedexApp *param1);
 static void ov21_021E7468(UnkStruct_ov21_021E7468 *param0);
 static void ov21_021E747C(UnkStruct_ov21_021E747C *param0);
 static int ov21_021E749C(void);
@@ -164,7 +164,7 @@ static void ov21_021E7F20(UnkStruct_ov21_021E747C *param0);
 static void ov21_021E7F40(UnkStruct_ov21_021E747C *param0, int param1);
 static void ov21_021E7F7C(UnkStruct_ov21_021E747C *param0);
 static const UnkStruct_ov21_021E9DB0 *ov21_021E83D8(const UnkStruct_ov21_021E9DB0 *param0, int param1, int param2);
-static void ov21_021E80D4(UnkStruct_02015214 *param0, Sprite *param1, Sprite *param2, Sprite *param3, Sprite *param4, u16 param5);
+static void ov21_021E80D4(UnkStruct_02015214 *param0, CellActor *param1, CellActor *param2, CellActor *param3, CellActor *param4, u16 param5);
 static void ov21_021E7F88(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E747C *param1, int param2);
 static void ov21_021E7FD0(SysTask *param0, void *param1);
 static void ov21_021E8084(UnkStruct_ov21_021E8084 *param0);
@@ -194,7 +194,7 @@ const static UnkStruct_ov21_021E9DB0 Unk_ov21_021E9DB0[17] = {
     { 0xFFFF, 0x0, 0x480, 0xAAA, 0x1, 0xFFFFFFFFFFFFFFF0 }
 };
 
-void ov21_021E737C(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, enum HeapId heapID)
+void ov21_021E737C(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID)
 {
     UnkStruct_ov21_021E7468 *v0;
     UnkStruct_ov21_021E747C *v1;
@@ -220,7 +220,7 @@ void ov21_021E73D4(UnkStruct_ov21_021E68F4 *param0)
     ov21_021E747C(param0->unk_04);
 }
 
-static UnkStruct_ov21_021E7468 *ov21_021E73E8(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021E7468 *ov21_021E73E8(enum HeapId heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021E7468 *v0;
 
@@ -234,7 +234,7 @@ static UnkStruct_ov21_021E7468 *ov21_021E73E8(enum HeapId heapID, UnkStruct_ov21
     return v0;
 }
 
-UnkStruct_ov21_021E747C *ov21_021E7424(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
+UnkStruct_ov21_021E747C *ov21_021E7424(enum HeapId heapID, PokedexApp *param1)
 {
     UnkStruct_ov21_021E747C *v0;
     UnkStruct_ov21_021E68F4 *v1;
@@ -549,7 +549,7 @@ static void ov21_021E789C(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_
 
 static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E747C *param1, const UnkStruct_ov21_021E7468 *param2, enum HeapId heapID)
 {
-    UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
+    PokedexGraphicData *v0 = param1->unk_00;
     int v1, v2, v3, v4;
     int species = PokedexSort_CurrentSpecies(param2->unk_00);
     BOOL v6;
@@ -601,7 +601,7 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 
 static void ov21_021E7AA0(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E747C *param1)
 {
-    UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
+    PokedexGraphicData *v0 = param1->unk_00;
 
     SpriteTransfer_ResetCharTransfer(param0->unk_14[0]);
     SpriteTransfer_ResetPlttTransfer(param0->unk_14[1]);
@@ -625,9 +625,9 @@ static void ov21_021E7AA0(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 
 static void ov21_021E7B34(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E747C *param1, const UnkStruct_ov21_021E7468 *param2, enum HeapId heapID)
 {
-    SpriteResourcesHeader v0;
-    SpriteListTemplate v1;
-    UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
+    CellActorResourceData v0;
+    CellActorInitParams v1;
+    PokedexGraphicData *v2 = param1->unk_00;
     VecFx32 v3;
     short v4;
     short v5;
@@ -636,7 +636,7 @@ static void ov21_021E7B34(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 
     SpriteResourcesHeader_Init(&v0, 93 + 7000, 14 + 7000, 91 + 7000, 92 + 7000, 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.list = v2->unk_138;
+    v1.collection = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -644,37 +644,37 @@ static void ov21_021E7B34(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     v1.position.x = 184 << FX32_SHIFT;
     v1.position.y = 64 << FX32_SHIFT;
 
-    param0->unk_00 = SpriteList_Add(&v1);
+    param0->unk_00 = CellActorCollection_Add(&v1);
 
     if (PokedexSort_TrainerGender(param2->unk_00) == 0) {
-        Sprite_SetAnim(param0->unk_00, 3);
+        CellActor_SetAnim(param0->unk_00, 3);
     } else {
-        Sprite_SetAnim(param0->unk_00, 4);
+        CellActor_SetAnim(param0->unk_00, 4);
     }
 
     v1.position.x = 128 << FX32_SHIFT;
     v1.position.y = (96 + 10) << FX32_SHIFT;
 
-    param0->unk_08 = SpriteList_Add(&v1);
+    param0->unk_08 = CellActorCollection_Add(&v1);
 
-    Sprite_SetAnim(param0->unk_08, 1);
-    Sprite_SetExplicitPriority(param0->unk_08, 1);
+    CellActor_SetAnim(param0->unk_08, 1);
+    CellActor_SetExplicitPriority(param0->unk_08, 1);
 
     v1.position.x = 184 << FX32_SHIFT;
     v1.position.y = (64 + 24) << FX32_SHIFT;
 
-    param0->unk_0C[0] = SpriteList_Add(&v1);
-    Sprite_SetAnim(param0->unk_0C[0], 0);
+    param0->unk_0C[0] = CellActorCollection_Add(&v1);
+    CellActor_SetAnim(param0->unk_0C[0], 0);
 
     v1.position.x = 72 << FX32_SHIFT;
     v1.position.y = (64 + 24) << FX32_SHIFT;
 
-    param0->unk_0C[1] = SpriteList_Add(&v1);
+    param0->unk_0C[1] = CellActorCollection_Add(&v1);
 
-    Sprite_SetAnim(param0->unk_0C[1], 0);
+    CellActor_SetAnim(param0->unk_0C[1], 0);
     SpriteResourcesHeader_Init(&v0, SpriteResource_GetID(param0->unk_14[0]), SpriteResource_GetID(param0->unk_14[1]), SpriteResource_GetID(param0->unk_14[2]), SpriteResource_GetID(param0->unk_14[3]), 0xffffffff, 0xffffffff, 0, 3, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.list = v2->unk_138;
+    v1.collection = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -682,17 +682,17 @@ static void ov21_021E7B34(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     v1.position.x = 72 << FX32_SHIFT;
     v1.position.y = 64 << FX32_SHIFT;
 
-    param0->unk_04 = SpriteList_Add(&v1);
-    Sprite_SetExplicitPaletteWithOffset(param0->unk_04, PokeIconPaletteIndex(species, v7, 0));
+    param0->unk_04 = CellActorCollection_Add(&v1);
+    CellActor_SetExplicitPaletteWithOffset(param0->unk_04, PokeIconPaletteIndex(species, v7, 0));
 }
 
 static void ov21_021E7CCC(UnkStruct_ov21_021E7714 *param0)
 {
-    Sprite_Delete(param0->unk_00);
-    Sprite_Delete(param0->unk_04);
-    Sprite_Delete(param0->unk_08);
-    Sprite_Delete(param0->unk_0C[0]);
-    Sprite_Delete(param0->unk_0C[1]);
+    CellActor_Delete(param0->unk_00);
+    CellActor_Delete(param0->unk_04);
+    CellActor_Delete(param0->unk_08);
+    CellActor_Delete(param0->unk_0C[0]);
+    CellActor_Delete(param0->unk_0C[1]);
 }
 
 static void ov21_021E7CF0(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E747C *param1, const UnkStruct_ov21_021E7468 *param2, enum HeapId heapID)
@@ -904,7 +904,7 @@ static void ov21_021E8084(UnkStruct_ov21_021E8084 *param0)
     ov21_021E80D4(param0->unk_00, param0->unk_04, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_1C);
 }
 
-static void ov21_021E80D4(UnkStruct_02015214 *param0, Sprite *param1, Sprite *param2, Sprite *param3, Sprite *param4, u16 param5)
+static void ov21_021E80D4(UnkStruct_02015214 *param0, CellActor *param1, CellActor *param2, CellActor *param3, CellActor *param4, u16 param5)
 {
     fx32 v0, v1;
     VecFx32 v2;
@@ -917,16 +917,16 @@ static void ov21_021E80D4(UnkStruct_02015214 *param0, Sprite *param1, Sprite *pa
     v2.x = (128 << FX32_SHIFT) + v0;
     v2.y = (64 << FX32_SHIFT) + v1;
 
-    Sprite_SetPosition(param3, &v2);
+    CellActor_SetPosition(param3, &v2);
     v2.y += 24 << FX32_SHIFT;
-    Sprite_SetPosition(param1, &v2);
+    CellActor_SetPosition(param1, &v2);
 
     v2.x = (128 << FX32_SHIFT) - v0;
     v2.y = (64 << FX32_SHIFT) - v1;
 
-    Sprite_SetPosition(param4, &v2);
+    CellActor_SetPosition(param4, &v2);
     v2.y += 24 << FX32_SHIFT;
-    Sprite_SetPosition(param2, &v2);
+    CellActor_SetPosition(param2, &v2);
 }
 
 static void ov21_021E8188(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E747C *param1, u16 param2, u16 param3, int param4)
@@ -992,7 +992,7 @@ static void ov21_021E8258(UnkStruct_ov21_021E7714 *param0, s16 param1, int param
 
     param0->unk_98.unk_10 = (-param1 / 1) * 2;
 
-    v0 = Sprite_GetPosition(param0->unk_98.unk_00);
+    v0 = CellActor_GetPosition(param0->unk_98.unk_00);
 
     param0->unk_98.unk_04 = v0->x;
     param0->unk_98.unk_08 = v0->y;
@@ -1018,7 +1018,7 @@ static void ov21_021E82C8(SysTask *param0, void *param1)
         v2.x = v0->unk_04;
         v2.y = v0->unk_08 + (v1 << FX32_SHIFT);
 
-        Sprite_SetPosition(v0->unk_00, &v2);
+        CellActor_SetPosition(v0->unk_00, &v2);
 
         if (v0->unk_14 >= v0->unk_10) {
             v0->unk_14 = 0;
@@ -1030,7 +1030,7 @@ static void ov21_021E82C8(SysTask *param0, void *param1)
         if (v0->unk_14 == 0) {
             v2.x = v0->unk_04 + (2 * FX32_ONE);
             v2.y = v0->unk_08;
-            Sprite_SetPosition(v0->unk_00, &v2);
+            CellActor_SetPosition(v0->unk_00, &v2);
         }
 
         v0->unk_14++;
@@ -1044,7 +1044,7 @@ static void ov21_021E82C8(SysTask *param0, void *param1)
         if (v0->unk_14 == 0) {
             v2.x = v0->unk_04 - (2 * FX32_ONE);
             v2.y = v0->unk_08;
-            Sprite_SetPosition(v0->unk_00, &v2);
+            CellActor_SetPosition(v0->unk_00, &v2);
         }
 
         v0->unk_14++;
@@ -1063,7 +1063,7 @@ static void ov21_021E82C8(SysTask *param0, void *param1)
     case 3:
         v2.x = v0->unk_04;
         v2.y = v0->unk_08;
-        Sprite_SetPosition(v0->unk_00, &v2);
+        CellActor_SetPosition(v0->unk_00, &v2);
         SysTask_Done(param0);
         *v0->unk_1C = 1;
         break;

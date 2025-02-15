@@ -358,7 +358,7 @@ Static main
 	Object main.nef.p/src_unk_0209A74C.c.o
 	Object main.nef.p/src_unk_0209AA74.c.o
 	Object main.nef.p/src_unk_0209AC14.c.o
-	Object main.nef.p/src_unk_0209ACBC.c.o
+	Object main.nef.p/src_pokedex_memory.c.o
 	Object main.nef.p/src_unk_0209ACF4.c.o
 	Object main.nef.p/src_unk_0209B344.c.o
 	Object main.nef.p/src_error_message_reset.c.o
@@ -782,7 +782,7 @@ Overlay overlay20
 Overlay overlay21
 {
 	After main
-	Object main.nef.p/src_overlay021_ov21_021D0D80.c.o
+	Object main.nef.p/src_overlay021_pokedex_main.c.o
 	Object main.nef.p/src_overlay021_ov21_021D1F90.c.o
 	Object main.nef.p/src_overlay021_ov21_021D1FA4.c.o
 	Object main.nef.p/src_overlay021_pokedex_sort.c.o
