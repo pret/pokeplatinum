@@ -2,8 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV62_0223118C_H
 
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0207C690.h"
@@ -17,12 +15,13 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "touch_screen.h"
 
 typedef struct {
     NARC *unk_00;
-    SpriteRenderer *unk_04;
-    SpriteGfxHandler *unk_08;
+    SpriteSystem *unk_04;
+    SpriteManager *unk_08;
     u8 padding_0C[4];
     BgConfig *unk_10;
     PaletteData *unk_14;

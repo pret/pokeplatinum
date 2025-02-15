@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "gx_layers.h"
 #include "pokemon.h"
@@ -12,8 +12,8 @@
 
 void ov105_02245CD0(void);
 void ov105_02245D50(UnkStruct_02007768 *param0);
-Sprite *ov105_02245D88(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, int param4, int param5);
-void ov105_02245DB8(Sprite *param0, int param1);
+PokemonSprite *ov105_02245D88(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, int param4, int param5);
+void ov105_02245DB8(PokemonSprite *param0, int param1);
 
 void ov105_02245CD0(void)
 {
@@ -50,10 +50,10 @@ void ov105_02245D50(UnkStruct_02007768 *param0)
     return;
 }
 
-Sprite *ov105_02245D88(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, int param4, int param5)
+PokemonSprite *ov105_02245D88(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, int param4, int param5)
 {
     ArchivedSprite v0;
-    Sprite *v1;
+    PokemonSprite *v1;
     int v2;
     u32 v3;
 
@@ -65,7 +65,7 @@ Sprite *ov105_02245D88(UnkStruct_02007768 *param0, int param1, Pokemon *param2, 
     return v1;
 }
 
-void ov105_02245DB8(Sprite *param0, int param1)
+void ov105_02245DB8(PokemonSprite *param0, int param1)
 {
     sub_02007DEC(param0, 35, param1);
     return;

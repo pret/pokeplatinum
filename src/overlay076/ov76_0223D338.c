@@ -8,7 +8,6 @@
 #include "struct_decls/font_oam.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_0202CA64.h"
@@ -33,6 +32,7 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -40,7 +40,6 @@
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
@@ -52,7 +51,7 @@
 
 typedef struct {
     int unk_00;
-    CellActorData *unk_04;
+    ManagedSprite *unk_04;
     FontOAM *unk_08;
 } UnkStruct_ov76_0223D9AC;
 
@@ -243,7 +242,7 @@ BOOL ov76_0223D550(UnkStruct_ov76_0223DE00 *param0)
     BOOL v0;
 
     v0 = Unk_ov76_0223EE04[param0->unk_3CC](param0);
-    sub_0200C7EC(param0->unk_D4.unk_0C);
+    SpriteSystem_DrawSprites(param0->unk_D4.unk_0C);
 
     return v0;
 }
@@ -292,12 +291,12 @@ static void ov76_0223D600(UnkStruct_ov76_0223DE00 *param0, int param1, BOOL para
     }
 
     ov76_0223C0EC(param0->unk_3C4[param1], &v0, &v1);
-    SpriteActor_SetSpritePositionXY(param0->unk_2F4[param1], v0, v1);
+    ManagedSprite_SetPositionXY(param0->unk_2F4[param1], v0, v1);
 
     if (param2 == 1) {
         param0->unk_3C4[v2] = param0->unk_3C4[param1];
         ov76_0223C0EC(param0->unk_3C4[v2], &v0, &v1);
-        SpriteActor_SetSpritePositionXY(param0->unk_2F4[v2], v0, v1);
+        ManagedSprite_SetPositionXY(param0->unk_2F4[v2], v0, v1);
     }
 }
 
@@ -447,18 +446,18 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
     return 1;
 }
 
-void ov76_0223D94C(CellActorData *param0, int param1)
+void ov76_0223D94C(ManagedSprite *param0, int param1)
 {
     switch (param1) {
     case 0:
-        sub_0200D3CC(param0, 1);
+        ManagedSprite_SetAnimationFrame(param0, 1);
         break;
     case 2:
-        sub_0200D3CC(param0, 2);
+        ManagedSprite_SetAnimationFrame(param0, 2);
         break;
     case 1:
     case 3:
-        sub_0200D3CC(param0, 0);
+        ManagedSprite_SetAnimationFrame(param0, 0);
         break;
     default:
         GF_ASSERT(0);
@@ -484,12 +483,12 @@ static void ov76_0223D9AC(SysTask *param0, void *param1)
     switch (v0->unk_00) {
     case 3:
         ov76_0223D984(v0->unk_08, 0, -1);
-        sub_0200D3CC(v0->unk_04, 2);
+        ManagedSprite_SetAnimationFrame(v0->unk_04, 2);
         v0->unk_00++;
         break;
     case 6:
         ov76_0223D984(v0->unk_08, 0, +2);
-        sub_0200D3CC(v0->unk_04, 0);
+        ManagedSprite_SetAnimationFrame(v0->unk_04, 0);
         SysTask_Done(param0);
         Heap_FreeToHeap(v0);
         break;
@@ -499,7 +498,7 @@ static void ov76_0223D9AC(SysTask *param0, void *param1)
     }
 }
 
-static void ov76_0223DA00(CellActorData *param0, FontOAM *param1)
+static void ov76_0223DA00(ManagedSprite *param0, FontOAM *param1)
 {
     UnkStruct_ov76_0223D9AC *v0;
 
@@ -1124,7 +1123,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             break;
         }
 
-        SpriteActor_EnableObject(param0->unk_2F4[1], 0);
+        ManagedSprite_SetDrawFlag(param0->unk_2F4[1], 0);
         ov76_0223D494(param0, 0, 0xff, 0);
         ov76_0223CA30(&param0->unk_D4.unk_18[0], 7);
         ov76_0223CDA4(param0);
@@ -1147,7 +1146,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
 
             v15 = sub_02098164(param0->unk_324[v13].unk_04);
             ov76_0223CDC4(&param0->unk_D4.unk_18[0], v15);
-            SpriteActor_SetSpritePositionXY(param0->unk_324[v13].unk_08, v11, v12);
+            ManagedSprite_SetPositionXY(param0->unk_324[v13].unk_08, v11, v12);
             ov76_0223B758(param0, v13);
             ov76_0223B7D4(param0, v13);
         } else {
@@ -1253,11 +1252,11 @@ static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
 {
     switch (param0->unk_3D4) {
     case 0:
-        sub_0200D474(param0->unk_2F4[0], 25);
-        sub_0200D474(param0->unk_2F4[1], 20);
-        sub_0200D364(param0->unk_2F4[0], 1);
+        ManagedSprite_SetPriority(param0->unk_2F4[0], 25);
+        ManagedSprite_SetPriority(param0->unk_2F4[1], 20);
+        ManagedSprite_SetAnim(param0->unk_2F4[0], 1);
         ov76_0223CA30(&param0->unk_D4.unk_18[0], 10);
-        SpriteActor_EnableObject(param0->unk_2F4[1], 1);
+        ManagedSprite_SetDrawFlag(param0->unk_2F4[1], 1);
         param0->unk_3D4++;
     case 1: {
         BOOL v0;
@@ -1275,7 +1274,7 @@ static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
             param0->unk_3D4 = 2;
             Sound_PlayEffect(1500);
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            SpriteActor_EnableObject(param0->unk_2F4[1], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_2F4[1], 0);
             ov76_0223D600(param0, 0, 1);
             param0->unk_3D4 = 3;
             Sound_PlayEffect(1501);
@@ -1287,10 +1286,10 @@ static BOOL ov76_0223E9C4(UnkStruct_ov76_0223DE00 *param0)
         }
         break;
     case 3:
-        sub_0200D474(param0->unk_2F4[0], 20);
-        sub_0200D474(param0->unk_2F4[1], 25);
+        ManagedSprite_SetPriority(param0->unk_2F4[0], 20);
+        ManagedSprite_SetPriority(param0->unk_2F4[1], 25);
         ov76_0223D494(param0, 0, 0xff, 0);
-        sub_0200D364(param0->unk_2F4[0], 0);
+        ManagedSprite_SetAnim(param0->unk_2F4[0], 0);
         ov76_0223CA30(&param0->unk_D4.unk_18[0], 7);
         break;
     }
@@ -1502,7 +1501,7 @@ void ov76_0223ECB0(void *param0)
 
     sub_02008A94(v0->unk_D4.unk_D0);
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_D4.unk_14);
     Bg_RunScheduledUpdates(v0->unk_D4.unk_10);
 

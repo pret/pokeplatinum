@@ -3,16 +3,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0206A844.h"
 
 #include "overlay005/ov5_021D2F14.h"
-#include "overlay104/struct_ov104_02241308.h"
 
-#include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
-#include "unk_0200C6E4.h"
+#include "sprite.h"
+#include "sprite_system.h"
 
 static const SpriteTemplate Unk_020EFA04[] = {
     {
@@ -43,7 +41,7 @@ static const SpriteTemplate Unk_020EFA04[] = {
 
 UnkStruct_0206A844 *sub_0206A780(int param0)
 {
-    UnkStruct_ov104_02241308 v0 = {
+    SpriteResourceCapacities v0 = {
         1, 1, 1, 1, 0, 0
     };
     u32 v1;
@@ -76,7 +74,7 @@ void sub_0206A844(UnkStruct_0206A844 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_1C8[v0] != NULL) {
-            sub_0200D0F4(param0->unk_1C8[v0]);
+            Sprite_DeleteAndFreeResources(param0->unk_1C8[v0]);
         }
     }
 
@@ -90,17 +88,17 @@ void sub_0206A870(UnkStruct_0206A844 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_1C8[v0] != NULL) {
-            CellActor_UpdateAnim(param0->unk_1C8[v0]->unk_00, FX32_ONE);
+            Sprite_UpdateAnim(param0->unk_1C8[v0]->sprite, FX32_ONE);
         }
     }
 
-    CellActorCollection_Update(param0->unk_00.unk_00);
+    SpriteList_Update(param0->unk_00.unk_00);
 }
 
 void sub_0206A8A0(UnkStruct_0206A844 *param0, s16 param1, s16 param2, s16 param3)
 {
-    SpriteActor_SetSpritePositionXY(param0->unk_1C8[0], param1, param2);
-    SpriteActor_SetSpritePositionXY(param0->unk_1C8[1], param1, param3);
+    ManagedSprite_SetPositionXY(param0->unk_1C8[0], param1, param2);
+    ManagedSprite_SetPositionXY(param0->unk_1C8[1], param1, param3);
 }
 
 void sub_0206A8C4(UnkStruct_0206A844 *param0, u16 param1, BOOL param2)
@@ -109,5 +107,5 @@ void sub_0206A8C4(UnkStruct_0206A844 *param0, u16 param1, BOOL param2)
         return;
     }
 
-    SpriteActor_EnableObject(param0->unk_1C8[param1], param2);
+    ManagedSprite_SetDrawFlag(param0->unk_1C8[param1], param2);
 }

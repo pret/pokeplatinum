@@ -32,10 +32,10 @@
 
 #include "bg_window.h"
 #include "brightness_controller.h"
-#include "cell_actor.h"
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -107,7 +107,7 @@ typedef struct {
 } UnkStruct_ov21_021E37B4;
 
 typedef struct {
-    CellActor *unk_00[6];
+    Sprite *unk_00[6];
     SpriteResource *unk_18[4];
 } UnkStruct_ov21_021E3900;
 
@@ -1276,14 +1276,14 @@ static void ov21_021E3AAC(UnkStruct_ov21_021E3900 *param0, UnkStruct_ov21_021E34
 
 static void ov21_021E3AF0(UnkStruct_ov21_021E3900 *param0, UnkStruct_ov21_021E3440 *param1, int param2)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int v3;
 
     SpriteResourcesHeader_Init(&v0, 96 + 2100, 11 + 2100, 94 + 2100, 95 + 2100, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.collection = v2->unk_138;
+    v1.list = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 32;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
@@ -1312,8 +1312,8 @@ static void ov21_021E3AF0(UnkStruct_ov21_021E3900 *param0, UnkStruct_ov21_021E34
             break;
         }
 
-        param0->unk_00[v3] = CellActorCollection_Add(&v1);
-        CellActor_SetAnim(param0->unk_00[v3], v3);
+        param0->unk_00[v3] = SpriteList_Add(&v1);
+        Sprite_SetAnim(param0->unk_00[v3], v3);
     }
 }
 
@@ -1322,7 +1322,7 @@ static void ov21_021E3BC0(UnkStruct_ov21_021E3900 *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        CellActor_Delete(param0->unk_00[v0]);
+        Sprite_Delete(param0->unk_00[v0]);
     }
 }
 
@@ -1602,6 +1602,6 @@ static void ov21_021E3FC0(UnkStruct_ov21_021E326C *param0, int param1, int param
 static void ov21_021E3FE4(UnkStruct_ov21_021E3900 *param0, const UnkStruct_ov21_021E342C *param1)
 {
     if (PokedexSort_CanDetectForms(param1->unk_08) == 0) {
-        CellActor_SetDrawFlag(param0->unk_00[4], 0);
+        Sprite_SetDrawFlag(param0->unk_00[4], 0);
     }
 }

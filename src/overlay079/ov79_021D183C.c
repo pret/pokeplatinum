@@ -9,18 +9,18 @@
 #include "overlay079/struct_ov79_021D0E1C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "list_menu.h"
 #include "menu.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_020158A8.h"
 #include "unk_02098FFC.h"
 
@@ -212,30 +212,30 @@ void ov79_021D1B24(UnkStruct_ov79_021D0E1C *param0, u8 param1, u8 param2)
 {
     switch (param2) {
     case 0:
-        CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3);
-        CellActor_SetAnimateFlag(param0->unk_1E0[param1], 0);
+        Sprite_SetAnim(param0->unk_1E0[param1], param1 * 3);
+        Sprite_SetAnimateFlag(param0->unk_1E0[param1], 0);
         Window_Scroll(
             &param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
         break;
     case 1:
-        CellActor_RestartAnim(param0->unk_1E0[param1]);
-        CellActor_SetAnimateFlag(param0->unk_1E0[param1], 1);
+        Sprite_RestartAnim(param0->unk_1E0[param1]);
+        Sprite_SetAnimateFlag(param0->unk_1E0[param1], 1);
         Window_Scroll(&param0->unk_E8[7 + param1], 0, 4, ((0 << 4) | 0));
         param0->unk_14 = 1;
         break;
     case 2:
-        CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 1);
+        Sprite_SetAnim(param0->unk_1E0[param1], param1 * 3 + 1);
         Window_Scroll(&param0->unk_E8[7 + param1], 1, 2, ((0 << 4) | 0));
         param0->unk_14 = 0;
         break;
     case 3:
-        CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 2);
+        Sprite_SetAnim(param0->unk_1E0[param1], param1 * 3 + 2);
         Window_Scroll(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
         param0->unk_14 = 1;
         break;
     case 4:
-        CellActor_SetAnim(param0->unk_1E0[param1], param1 * 3 + 1);
-        CellActor_SetAnimateFlag(param0->unk_1E0[param1], 1);
+        Sprite_SetAnim(param0->unk_1E0[param1], param1 * 3 + 1);
+        Sprite_SetAnimateFlag(param0->unk_1E0[param1], 1);
         Window_Scroll(&param0->unk_E8[7 + param1], 0, 2, ((0 << 4) | 0));
         param0->unk_14 = 0;
         break;
@@ -286,16 +286,16 @@ static void ov79_021D1D20(UnkStruct_ov79_021D0E1C *param0, UnkStruct_020989DC *p
 
     if (param1 == NULL) {
         for (v0 = 0; v0 < 5; v0++) {
-            CellActor_SetDrawFlag(param0->unk_1CC[v0], 0);
+            Sprite_SetDrawFlag(param0->unk_1CC[v0], 0);
         }
         return;
     }
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param1->unk_20_val2 & v1) {
-            CellActor_SetDrawFlag(param0->unk_1CC[v0], 1);
+            Sprite_SetDrawFlag(param0->unk_1CC[v0], 1);
         } else {
-            CellActor_SetDrawFlag(param0->unk_1CC[v0], 0);
+            Sprite_SetDrawFlag(param0->unk_1CC[v0], 0);
         }
 
         v1 <<= 1;
@@ -324,18 +324,18 @@ static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
     }
 
     ListMenu_GetListAndCursorPos(param0, &v2, &v3);
-    SpriteActor_SetPositionXY(v0->unk_1C0[0], 105, v3 * 16 + 40);
+    Sprite_SetPositionXY(v0->unk_1C0[0], 105, v3 * 16 + 40);
 
     if (v2 == 0) {
-        CellActor_SetDrawFlag(v0->unk_1C0[1], 0);
+        Sprite_SetDrawFlag(v0->unk_1C0[1], 0);
     } else {
-        CellActor_SetDrawFlag(v0->unk_1C0[1], 1);
+        Sprite_SetDrawFlag(v0->unk_1C0[1], 1);
     }
 
     if (v2 < (v0->unk_1C - 6)) {
-        CellActor_SetDrawFlag(v0->unk_1C0[2], 1);
+        Sprite_SetDrawFlag(v0->unk_1C0[2], 1);
     } else {
-        CellActor_SetDrawFlag(v0->unk_1C0[2], 0);
+        Sprite_SetDrawFlag(v0->unk_1C0[2], 0);
     }
 
     Window_FillRectWithColor(&(v0->unk_E8[1]), ((0 << 4) | 0), 0, 0, 10 * 8, 2 * 8);
@@ -343,7 +343,7 @@ static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
     if (param1 == 0xFF) {
         ov79_021D1D20(v0, NULL);
         Window_CopyToVRAM(&v0->unk_E8[1]);
-        SpriteActor_EnableObject(v0->unk_1FC->unk_04, 0);
+        ManagedSprite_SetDrawFlag(v0->unk_1FC->unk_04, 0);
         return;
     }
 
@@ -360,7 +360,7 @@ static void ov79_021D1D94(ListMenu *param0, u32 param1, u8 param2)
     StringTemplate_Format(v0->unk_30.unk_00, v0->unk_30.unk_04, v0->unk_30.unk_10);
     Text_AddPrinterWithParamsAndColor(&v0->unk_E8[1], FONT_SYSTEM, v0->unk_30.unk_04, 8, 0, TEXT_SPEED_INSTANT, v1, NULL);
     sub_0209933C(v0->unk_1F8, v0->unk_1FC, v0->unk_20->unk_1C[param1].unk_02);
-    SpriteActor_EnableObject(v0->unk_1FC->unk_04, 1);
+    ManagedSprite_SetDrawFlag(v0->unk_1FC->unk_04, 1);
 }
 
 void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)

@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_OV104_02231F74_H
 #define POKEPLATINUM_OV104_02231F74_H
 
-#include "struct_decls/cell_actor_data.h"
-
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
@@ -13,6 +11,7 @@
 
 #include "message.h"
 #include "pokemon.h"
+#include "sprite_system.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 
@@ -32,12 +31,12 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param
 void ov104_02232E80(UnkStruct_ov104_0223C4CC *param0, int param1);
 void ov104_02232EC0(UnkStruct_ov104_0223C4CC *param0);
 void ov104_02232F28(UnkStruct_ov104_0223C4CC *param0);
-CellActorData *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param2, int param3, int param4);
-void ov104_02232FD4(UnkStruct_ov104_0223C4CC *param0, CellActorData *param1, int param2);
+ManagedSprite *ov104_02232F4C(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param2, int param3, int param4);
+void ov104_02232FD4(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1, int param2);
 void ov104_02232FEC(UnkStruct_ov104_0223C4CC *param0);
 void ov104_0223307C(UnkStruct_ov104_0223C4CC *param0);
-CellActorData *ov104_022330AC(UnkStruct_ov104_0223C4CC *param0, int param1, int param2);
-void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, CellActorData *param1);
+ManagedSprite *ov104_022330AC(UnkStruct_ov104_0223C4CC *param0, int param1, int param2);
+void ov104_022330F0(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1);
 void ov104_022330FC(UnkStruct_ov104_0222E930 *param0, u16 *param1);
 void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2);
 void ov104_0223319C(SysTask *param0, void *param1);

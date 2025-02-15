@@ -5,10 +5,10 @@
 
 #include "overlay101/struct_ov101_021D8544.h"
 
-#include "cell_actor.h"
 #include "cell_transfer.h"
 #include "heap.h"
 #include "narc.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -30,7 +30,7 @@ typedef struct UnkStruct_ov101_021D7E48_t {
     u8 unk_09;
     u8 unk_0A;
     u8 unk_0B;
-    CellActorCollection *unk_0C;
+    SpriteList *unk_0C;
     G2dRenderer unk_10;
     NNSG2dCellTransferState *unk_19C;
     SpriteResourceCollection *unk_1A0;
@@ -133,14 +133,14 @@ void ov101_021D7FB4(UnkStruct_ov101_021D7E48 *param0)
     Heap_FreeToHeap(param0->unk_1BC);
     VramTransfer_Free();
     CellTransfer_Free(param0->unk_19C);
-    CellActorCollection_DeleteAll(param0->unk_0C);
-    CellActorCollection_Delete(param0->unk_0C);
+    SpriteList_DeleteAll(param0->unk_0C);
+    SpriteList_Delete(param0->unk_0C);
     Heap_FreeToHeap(param0);
 }
 
 void ov101_021D80D4(UnkStruct_ov101_021D7E48 *param0)
 {
-    CellActorCollection_Update(param0->unk_0C);
+    SpriteList_Update(param0->unk_0C);
     CellTransfer_Update();
 }
 
@@ -317,9 +317,9 @@ void ov101_021D8358(UnkStruct_ov101_021D7E48 *param0, u32 param1, u32 param2, u3
 
 void ov101_021D84A4(UnkStruct_ov101_021D7E48 *param0, UnkStruct_ov101_021D8544 *param1, const VecFx32 *param2, u32 param3, int param4, u32 param5, u32 param6, u32 param7, u32 param8, int param9, int param10)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
-    CellActor *v2;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
+    Sprite *v2;
 
     if (param8 == param0->unk_0B) {
         param8 = 0xffffffff;
@@ -335,14 +335,14 @@ void ov101_021D84A4(UnkStruct_ov101_021D7E48 *param0, UnkStruct_ov101_021D8544 *
         param1->unk_00 = 0;
     }
 
-    v1.collection = param0->unk_0C;
+    v1.list = param0->unk_0C;
     v1.resourceData = &v0;
     v1.position = *param2;
     v1.priority = param10;
     v1.vramType = param3;
     v1.heapID = param0->unk_00;
 
-    param1->unk_04 = CellActorCollection_Add(&v1);
+    param1->unk_04 = SpriteList_Add(&v1);
     GF_ASSERT(param1->unk_04 != NULL);
 }
 
@@ -352,18 +352,18 @@ void ov101_021D8544(UnkStruct_ov101_021D8544 *param0)
         SpriteTransfer_DeleteCharTransfer(param0->unk_08);
     }
 
-    CellActor_Delete(param0->unk_04);
+    Sprite_Delete(param0->unk_04);
     param0->unk_04 = NULL;
 }
 
-void ov101_021D8560(CellActor *param0, VecFx32 *param1)
+void ov101_021D8560(Sprite *param0, VecFx32 *param1)
 {
-    const VecFx32 *v0 = CellActor_GetPosition(param0);
+    const VecFx32 *v0 = Sprite_GetPosition(param0);
     *param1 = *v0;
 }
 
-void ov101_021D8574(CellActor *param0, VecFx32 *param1)
+void ov101_021D8574(Sprite *param0, VecFx32 *param1)
 {
-    const VecFx32 *v0 = CellActor_GetAffineScale(param0);
+    const VecFx32 *v0 = Sprite_GetAffineScale(param0);
     *param1 = *v0;
 }

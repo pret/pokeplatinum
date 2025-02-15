@@ -4,16 +4,15 @@
 #include <string.h>
 
 #include "constants/map_object.h"
+#include "constants/map_prop.h"
 #include "generated/map_headers.h"
 
 #include "struct_defs/struct_02055130.h"
 
 #include "field/field_system.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021E779C.h"
-#include "overlay005/struct_ov5_021E1608_decl.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
 
 #include "heap.h"
 #include "inlines.h"
@@ -32,7 +31,7 @@
 
 static void GetTreeEncounterGroup(const BOOL isMunchlaxTree, u8 *param1);
 static void GetTreeEncounterSlot(u8 *slot);
-static void DoTreeShakingAnimation(FieldSystem *fieldSystem, UnkStruct_ov5_021E1608 *param1, const int param2);
+static void DoTreeShakingAnimation(FieldSystem *fieldSystem, MapPropManager *param1, const int param2);
 static u8 GetTreeIdFromMapId(const int param0);
 static const int GetEncounterTableFromGroup(const u8 param0);
 static const int GetShakesFromGroup(const u8 param0);
@@ -189,16 +188,16 @@ void HoneyTree_StopShaking(FieldSystem *fieldSystem)
 
     if (fieldSystem->unk_A8->trees[treeId].isShaking) {
         u8 v1;
-        UnkStruct_ov5_021E1890 *v2;
-        UnkStruct_ov5_021E1608 *v3;
+        MapProp *v2;
+        MapPropManager *v3;
         NNSG3dRenderObj *v4;
 
         v1 = ov5_021E9354(fieldSystem->unk_28);
 
         ov5_021E9340(v1, fieldSystem->unk_28, &v3);
 
-        v2 = ov5_021E18CC(v3, 26);
-        v4 = ov5_021E18BC(v2);
+        v2 = MapPropManager_FindLoadedPropById(v3, MAP_PROP_ID_HONEY_TREE);
+        v4 = MapProp_GetRenderObj(v2);
 
         if (v2 != NULL) {
             ov5_021D3D18(fieldSystem->unk_50, v4, 26, fieldSystem->unk_A8->trees[treeId].shakeValue);
@@ -341,7 +340,7 @@ static const BOOL GetShakingValue(const int numShakes, u8 *value)
     return isShaking;
 }
 
-static void DoTreeShakingAnimation(FieldSystem *fieldSystem, UnkStruct_ov5_021E1608 *param1, const int param2)
+static void DoTreeShakingAnimation(FieldSystem *fieldSystem, MapPropManager *param1, const int param2)
 {
     u16 mapId;
     u8 treeId;
@@ -352,7 +351,7 @@ static void DoTreeShakingAnimation(FieldSystem *fieldSystem, UnkStruct_ov5_021E1
     if (treeId != NUM_HONEY_TREES) {
         PlayerHoneyTreeStates *treeDat;
         HoneyTree *tree;
-        UnkStruct_ov5_021E1890 *v4;
+        MapProp *v4;
 
         treeDat = SpecialEncounter_GetPlayerHoneyTreeStates(SaveData_GetSpecialEncounters(fieldSystem->saveData));
         tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
@@ -367,12 +366,12 @@ static void DoTreeShakingAnimation(FieldSystem *fieldSystem, UnkStruct_ov5_021E1
                 return;
             }
 
-            v4 = ov5_021E18CC(param1, 26);
+            v4 = MapPropManager_FindLoadedPropById(param1, MAP_PROP_ID_HONEY_TREE);
 
             if (v4 != NULL) {
                 NNSG3dRenderObj *v7;
 
-                v7 = ov5_021E18BC(v4);
+                v7 = MapProp_GetRenderObj(v4);
 
                 ov5_021D3D18(fieldSystem->unk_50, v7, 26, fieldSystem->unk_A8->trees[treeId].shakeValue);
 
@@ -469,7 +468,7 @@ int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
     return species;
 }
 
-void ov5_021F0030(void *param0, const int param1, UnkStruct_ov5_021E1608 *const param2)
+void ov5_021F0030(void *param0, const int param1, MapPropManager *const mapPropManager)
 {
     FieldSystem *fieldSystem;
 
@@ -478,7 +477,7 @@ void ov5_021F0030(void *param0, const int param1, UnkStruct_ov5_021E1608 *const 
     }
 
     fieldSystem = (FieldSystem *)param0;
-    DoTreeShakingAnimation(fieldSystem, param2, param1);
+    DoTreeShakingAnimation(fieldSystem, mapPropManager, param1);
 }
 
 void HoneyTree_Unslather(FieldSystem *fieldSystem)

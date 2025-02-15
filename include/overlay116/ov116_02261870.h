@@ -3,14 +3,13 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_decls/cell_actor_data.h"
-
 #include "overlay116/struct_ov116_0226139C.h"
 #include "overlay116/struct_ov116_02262A8C.h"
 #include "overlay116/struct_ov116_0226501C.h"
 
 #include "easy3d_object.h"
 #include "narc.h"
+#include "sprite_system.h"
 
 void ov116_02261870(Easy3DObject *param0, MtxFx43 *param1, VecFx32 *param2);
 void ov116_022618A8(UnkStruct_ov116_0226501C *param0, NARC *param1, int param2);
@@ -36,7 +35,7 @@ void ov116_022620AC(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *
 void ov116_02262264(UnkStruct_ov116_02262A8C *param0);
 void ov116_022622C8(UnkStruct_ov116_0226139C *param0);
 void ov116_022625A8(UnkStruct_ov116_0226139C *param0, UnkStruct_ov116_02262A8C *param1);
-CellActorData *ov116_022626E8(UnkStruct_ov116_02262A8C *param0, s16 param1, s16 param2);
+ManagedSprite *ov116_022626E8(UnkStruct_ov116_02262A8C *param0, s16 param1, s16 param2);
 void ov116_02262724(UnkStruct_ov116_02262A8C *param0);
 void ov116_0226281C(UnkStruct_ov116_02262A8C *param0);
 void ov116_02262840(UnkStruct_ov116_02262A8C *param0);

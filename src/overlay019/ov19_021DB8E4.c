@@ -16,7 +16,6 @@
 #include "overlay019/struct_ov19_021DBA9C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
@@ -24,6 +23,7 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -70,7 +70,7 @@ static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C *param0, u32 param1);
 static void ov19_021DC5B8(UnkStruct_ov19_021DBA9C *param0, fx32 param1);
 static void ov19_021DC5E0(UnkStruct_ov19_021DBA9C *param0);
 
-BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4, NARC *param5)
+BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, NARC *param5)
 {
     int v0;
 
@@ -357,7 +357,7 @@ static void ov19_021DBD9C(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param
 
 static void ov19_021DBDF4(UnkStruct_ov19_021DBA9C *param0)
 {
-    CellActorResourceData v0;
+    SpriteResourcesHeader v0;
     UnkStruct_ov19_021DA384 *v1;
     NNSG2dImageProxy v2;
     VecFx32 v3;
@@ -377,9 +377,9 @@ static void ov19_021DBDF4(UnkStruct_ov19_021DBA9C *param0)
 
         GF_ASSERT(param0->unk_48[v4] != NULL);
 
-        CellActor_SetDrawFlag(param0->unk_48[v4], 0);
+        Sprite_SetDrawFlag(param0->unk_48[v4], 0);
         VEC_Set(&v3, FX32_CONST(32 + v4 * 32), FX32_CONST(88), 0);
-        CellActor_SetPosition(param0->unk_48[v4], &v3);
+        Sprite_SetPosition(param0->unk_48[v4], &v3);
         ov19_021DBD68(param0, v5);
 
         if (++v5 >= 18) {
@@ -398,7 +398,7 @@ static void ov19_021DBEF8(UnkStruct_ov19_021DBA9C *param0)
 
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_48[v0] != NULL) {
-            CellActor_Delete(param0->unk_48[v0]);
+            Sprite_Delete(param0->unk_48[v0]);
             param0->unk_48[v0] = NULL;
         }
     }
@@ -412,7 +412,7 @@ static void ov19_021DBF18(UnkStruct_ov19_021DBA9C *param0)
 
     for (v1 = 0; v1 < 7; v1++) {
         ov19_021DBD9C(param0, v1, v0);
-        CellActor_SetDrawFlag(param0->unk_48[v1], 1);
+        Sprite_SetDrawFlag(param0->unk_48[v1], 1);
 
         if (++v0 >= 18) {
             v0 = 0;
@@ -710,7 +710,7 @@ static void ov19_021DC46C(SysTask *param0, void *param1)
 static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C *param0, u32 param1)
 {
     if (param1 != 0) {
-        CellActorResourceData v0;
+        SpriteResourcesHeader v0;
         UnkStruct_ov19_021DA384 *v1;
         NNSG2dImageProxy v2;
         NNSG2dCharacterData *v3;
@@ -728,7 +728,7 @@ static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C *param0, u32 param1)
         param0->unk_90 = ov19_021D785C(param0->unk_08, &v0, 18, 224, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         if (param0->unk_90) {
-            CellActor_SetExplicitPalette(param0->unk_90, 6);
+            Sprite_SetExplicitPalette(param0->unk_90, 6);
         }
 
         Heap_FreeToHeap(v4);
@@ -744,13 +744,13 @@ static void ov19_021DC5B8(UnkStruct_ov19_021DBA9C *param0, fx32 param1)
         v0.y = param1;
         v0.z = 0;
 
-        CellActor_SetPosition(param0->unk_90, &v0);
+        Sprite_SetPosition(param0->unk_90, &v0);
     }
 }
 
 static void ov19_021DC5E0(UnkStruct_ov19_021DBA9C *param0)
 {
     if (param0->unk_90) {
-        CellActor_Delete(param0->unk_90);
+        Sprite_Delete(param0->unk_90);
     }
 }

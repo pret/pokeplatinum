@@ -12,9 +12,6 @@
 #include "overlay062/ov62_02231690.h"
 #include "overlay062/ov62_0224112C.h"
 #include "overlay062/ov62_const_funcptr_tables.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "gx_layers.h"
@@ -24,12 +21,12 @@
 #include "palette.h"
 #include "render_text.h"
 #include "savedata_misc.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
@@ -170,8 +167,8 @@ void ov62_0222F514(UnkStruct_0208C06C *param0)
 
     NARC_dtor(param0->unk_14.unk_00);
     SysTask_Done(param0->unk_41E8);
-    sub_0200D0B0(param0->unk_14.unk_04, param0->unk_14.unk_08);
-    sub_0200C8D4(param0->unk_14.unk_04);
+    SpriteSystem_FreeResourcesAndManager(param0->unk_14.unk_04, param0->unk_14.unk_08);
+    SpriteSystem_Free(param0->unk_14.unk_04);
     sub_02039794();
 
     {
@@ -314,9 +311,9 @@ void ov62_0222F834(UnkStruct_0208C06C *param0)
 
 static void ov62_0222F848(UnkStruct_0208C06C *param0)
 {
-    param0->unk_14.unk_04 = sub_0200C6E4(102);
+    param0->unk_14.unk_04 = SpriteSystem_Alloc(102);
     {
-        const UnkStruct_ov104_0224133C v0 = {
+        const RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -327,16 +324,16 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
             32,
         };
 
-        const UnkStruct_ov104_022412F4 v1 = {
+        const CharTransferTemplateWithModes v1 = {
             128, 0x10000, 0x4000, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K
         };
 
-        sub_0200C73C(param0->unk_14.unk_04, &v0, &v1, 16 + 16);
+        SpriteSystem_Init(param0->unk_14.unk_04, &v0, &v1, 16 + 16);
     }
 
     {
         BOOL v2;
-        const UnkStruct_ov104_02241308 v3 = {
+        const SpriteResourceCapacities v3 = {
             128,
             32,
             128,
@@ -345,16 +342,16 @@ static void ov62_0222F848(UnkStruct_0208C06C *param0)
             16,
         };
 
-        param0->unk_14.unk_08 = sub_0200C704(param0->unk_14.unk_04);
+        param0->unk_14.unk_08 = SpriteManager_New(param0->unk_14.unk_04);
 
-        v2 = sub_0200C7C0(param0->unk_14.unk_04, param0->unk_14.unk_08, 64 + 64 + 64);
+        v2 = SpriteSystem_InitSprites(param0->unk_14.unk_04, param0->unk_14.unk_08, 64 + 64 + 64);
         GF_ASSERT(v2);
 
-        v2 = sub_0200CB30(param0->unk_14.unk_04, param0->unk_14.unk_08, &v3);
+        v2 = SpriteSystem_InitManagerWithCapacities(param0->unk_14.unk_04, param0->unk_14.unk_08, &v3);
         GF_ASSERT(v2);
     }
 
-    SetSubScreenViewRect(sub_0200C738(param0->unk_14.unk_04), 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(param0->unk_14.unk_04), 0, (256 * FX32_ONE));
 }
 
 void ov62_0222F8E4(void *param0)
@@ -711,7 +708,7 @@ void ov62_0222FF7C(UnkStruct_0208C06C *param0)
             continue;
         }
 
-        SpriteActor_GetSpritePositionXY(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
+        ManagedSprite_GetPositionXY(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
 
         param0->unk_534.unk_C8[v0].unk_10->rect.top = v2 - 16;
         param0->unk_534.unk_C8[v0].unk_10->rect.bottom = v2 + 16;
@@ -726,7 +723,7 @@ void ov62_02230014(UnkStruct_0208C06C *param0)
     s16 v1, v2;
 
     for (v0 = 0; v0 < 5; v0++) {
-        SpriteActor_GetSpritePositionXY(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
+        ManagedSprite_GetPositionXY(param0->unk_534.unk_C8[v0].unk_00, &v1, &v2);
         param0->unk_534.unk_C8[v0].unk_10->rect.top = 0;
         param0->unk_534.unk_C8[v0].unk_10->rect.bottom = 0;
         param0->unk_534.unk_C8[v0].unk_10->rect.left = 0;

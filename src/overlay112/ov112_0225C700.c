@@ -17,7 +17,6 @@
 #include "overlay066/struct_ov66_02232068.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "enums.h"
 #include "font.h"
@@ -30,6 +29,7 @@
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -113,7 +113,7 @@ typedef struct {
 
 typedef struct {
     BgConfig *unk_00;
-    CellActorCollection *unk_04;
+    SpriteList *unk_04;
     G2dRenderer unk_08;
     SpriteResourceCollection *unk_194[4];
     NARC *unk_1A4;
@@ -476,7 +476,7 @@ static void ov112_0225C9F4(UnkStruct_ov112_0225C9BC *param0)
 
 static void ov112_0225CA14(UnkStruct_ov112_0225C9BC *param0)
 {
-    CellActorCollection_Update(param0->unk_04);
+    SpriteList_Update(param0->unk_04);
 }
 
 static void ov112_0225CA20(UnkStruct_ov112_0225C9BC *param0)
@@ -566,7 +566,7 @@ static void ov112_0225CC38(UnkStruct_ov112_0225C9BC *param0)
 {
     int v0;
 
-    CellActorCollection_Delete(param0->unk_04);
+    SpriteList_Delete(param0->unk_04);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_194[v0]);

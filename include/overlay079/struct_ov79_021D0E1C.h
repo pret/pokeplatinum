@@ -3,8 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/struct_020158A8.h"
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0209903C.h"
@@ -13,10 +11,11 @@
 #include "overlay079/struct_ov79_021D0E1C_sub1.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "string_list.h"
 
 typedef struct UnkStruct_ov79_021D0E1C_t {
@@ -53,11 +52,11 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     NNSG2dScreenData *unk_E0;
     NNSG2dScreenData *unk_E4;
     Window unk_E8[13];
-    SpriteRenderer *unk_1B8;
-    SpriteGfxHandler *unk_1BC;
-    CellActor *unk_1C0[3];
-    CellActor *unk_1CC[5];
-    CellActor *unk_1E0[6];
+    SpriteSystem *unk_1B8;
+    SpriteManager *unk_1BC;
+    Sprite *unk_1C0[3];
+    Sprite *unk_1CC[5];
+    Sprite *unk_1E0[6];
     UnkStruct_0209903C *unk_1F8;
     UnkStruct_0209916C *unk_1FC;
 } UnkStruct_ov79_021D0E1C;

@@ -9,7 +9,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "field_message.h"
 #include "font.h"
 #include "game_options.h"
@@ -21,6 +20,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -94,7 +94,7 @@ typedef struct {
     void (*unk_134)(void *, u32);
     SpriteResourceCollection *unk_138[4];
     SpriteResource *unk_148[4];
-    CellActor *unk_158[2];
+    Sprite *unk_158[2];
 } UnkStruct_ov7_0224C768;
 
 typedef void (*UnkFuncPtr_ov7_0224C768)(void *, u32);
@@ -121,7 +121,7 @@ typedef struct UnkStruct_ov7_0224BEFC_t {
     Bag *unk_10;
     BgConfig *unk_14;
     u32 unk_18;
-    CellActorCollection *unk_1C;
+    SpriteList *unk_1C;
     G2dRenderer unk_20;
     MessageLoader *unk_1AC;
     u32 unk_1B0;
@@ -147,12 +147,12 @@ static void ov7_0224C580(UnkStruct_ov7_0224C3EC *param0, MessageLoader *param1, 
 static void ov7_0224C620(UnkStruct_ov7_0224C620 *param0, BgConfig *param1, MessageLoader *param2, u32 param3);
 static void ov7_0224C698(UnkStruct_ov7_0224C620 *param0);
 static void ov7_0224C6DC(UnkStruct_ov7_0224C620 *param0, u32 param1, u32 param2, u32 param3);
-static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, CellActorCollection *param8);
+static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, SpriteList *param8);
 static void ov7_0224C934(UnkStruct_ov7_0224C768 *param0);
 static u32 ov7_0224C9A4(UnkStruct_ov7_0224C768 *param0);
 static void ov7_0224CA0C(UnkStruct_ov7_0224C768 *param0);
 static void ov7_0224CA34(UnkStruct_ov7_0224C768 *param0);
-static void ov7_0224CA54(CellActorResourceData *param0, UnkStruct_ov7_0224C768 *param1, u32 param2);
+static void ov7_0224CA54(SpriteResourcesHeader *param0, UnkStruct_ov7_0224C768 *param1, u32 param2);
 static void ov7_0224CB40(UnkStruct_ov7_0224C768 *param0);
 static void ov7_0224CB70(UnkStruct_ov7_0224C768 *param0);
 static void ov7_0224CC44(UnkStruct_ov7_0224CC44 *param0, BgConfig *param1, u32 param2);
@@ -344,7 +344,7 @@ BOOL ov7_0224BF2C(UnkStruct_ov7_0224BEFC *param0)
         break;
     }
 
-    CellActorCollection_Update(param0->unk_1C);
+    SpriteList_Update(param0->unk_1C);
 
     return 0;
 }
@@ -379,7 +379,7 @@ static void ov7_0224C3CC(UnkStruct_ov7_0224BEFC *param0)
 
 static void ov7_0224C3E0(UnkStruct_ov7_0224BEFC *param0)
 {
-    CellActorCollection_Delete(param0->unk_1C);
+    SpriteList_Delete(param0->unk_1C);
 }
 
 static void ov7_0224C3EC(UnkStruct_ov7_0224C3EC *param0, BgConfig *param1, u32 param2, u32 param3)
@@ -550,12 +550,12 @@ static void ov7_0224C6DC(UnkStruct_ov7_0224C620 *param0, u32 param1, u32 param2,
     Window_DrawStandardFrame(param0->unk_04, 0, (1 + (18 + 12)), 11);
 }
 
-static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, CellActorCollection *param8)
+static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 param2, const UnkStruct_ov7_0224F1B4 *param3, u32 param4, MessageLoader *param5, void *param6, UnkFuncPtr_ov7_0224C768 param7, SpriteList *param8)
 {
     int v0;
     Strbuf *v1;
-    CellActorResourceData v2;
-    CellActorInitParams v3;
+    SpriteResourcesHeader v2;
+    SpriteListTemplate v3;
     static const u8 v4[2] = {
         8, 136
     };
@@ -629,7 +629,7 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 p
 
     ov7_0224CA54(&v2, param0, param2);
 
-    v3.collection = param8;
+    v3.list = param8;
     v3.resourceData = &v2;
     v3.priority = 0;
     v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -638,10 +638,10 @@ static void ov7_0224C768(UnkStruct_ov7_0224C768 *param0, BgConfig *param1, u32 p
 
     for (v0 = 0; v0 < 2; v0++) {
         v3.position.y = v4[v0] * FX32_ONE;
-        param0->unk_158[v0] = CellActorCollection_Add(&v3);
+        param0->unk_158[v0] = SpriteList_Add(&v3);
 
-        CellActor_SetAnim(param0->unk_158[v0], v0);
-        CellActor_SetAnimateFlag(param0->unk_158[v0], 1);
+        Sprite_SetAnim(param0->unk_158[v0], v0);
+        Sprite_SetAnimateFlag(param0->unk_158[v0], 1);
     }
 }
 
@@ -654,7 +654,7 @@ static void ov7_0224C934(UnkStruct_ov7_0224C768 *param0)
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        CellActor_Delete(param0->unk_158[v0]);
+        Sprite_Delete(param0->unk_158[v0]);
     }
 
     ov7_0224CB40(param0);
@@ -707,11 +707,11 @@ static void ov7_0224CA0C(UnkStruct_ov7_0224C768 *param0)
 
 static void ov7_0224CA34(UnkStruct_ov7_0224C768 *param0)
 {
-    CellActor_SetDrawFlag(param0->unk_158[0], 0);
-    CellActor_SetDrawFlag(param0->unk_158[1], 0);
+    Sprite_SetDrawFlag(param0->unk_158[0], 0);
+    Sprite_SetDrawFlag(param0->unk_158[1], 0);
 }
 
-static void ov7_0224CA54(CellActorResourceData *param0, UnkStruct_ov7_0224C768 *param1, u32 param2)
+static void ov7_0224CA54(SpriteResourcesHeader *param0, UnkStruct_ov7_0224C768 *param1, u32 param2)
 {
     NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, param2);
 
@@ -745,15 +745,15 @@ static void ov7_0224CB70(UnkStruct_ov7_0224C768 *param0)
     ListMenu_GetListAndCursorPos(param0->unk_08, &v0, NULL);
 
     if (v0 <= 0) {
-        CellActor_SetDrawFlag(param0->unk_158[0], 0);
+        Sprite_SetDrawFlag(param0->unk_158[0], 0);
     } else {
-        CellActor_SetDrawFlag(param0->unk_158[0], 1);
+        Sprite_SetDrawFlag(param0->unk_158[0], 1);
     }
 
     if (v0 >= (param0->unk_120 - 7)) {
-        CellActor_SetDrawFlag(param0->unk_158[1], 0);
+        Sprite_SetDrawFlag(param0->unk_158[1], 0);
     } else {
-        CellActor_SetDrawFlag(param0->unk_158[1], 1);
+        Sprite_SetDrawFlag(param0->unk_158[1], 1);
     }
 }
 

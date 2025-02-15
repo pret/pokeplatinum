@@ -18,7 +18,6 @@
 #include "overlay108/struct_ov108_02243594_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "communication_system.h"
 #include "font.h"
 #include "game_options.h"
@@ -37,6 +36,7 @@
 #include "render_oam.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -394,7 +394,7 @@ int ov108_02241C38(OverlayManager *param0, int *param1)
         v0->unk_13_0 ^= 1;
     }
 
-    CellActorCollection_Update(v0->unk_E8.unk_00);
+    SpriteList_Update(v0->unk_E8.unk_00);
 
     return 0;
 }

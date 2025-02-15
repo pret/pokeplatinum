@@ -30,6 +30,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -39,7 +40,6 @@
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 
@@ -283,7 +283,7 @@ static void ov13_0221FCAC(SysTask *param0, void *param1)
     }
 
     ov13_0222537C(v0);
-    sub_0200C7EC(v0->unk_1FB0);
+    SpriteSystem_DrawSprites(v0->unk_1FB0);
     ov13_0222601C(v0);
 }
 
@@ -883,7 +883,7 @@ static u8 ov13_022208A4(UnkStruct_ov13_022213F0 *param0)
             param0->unk_04[v0->unk_11].unk_17_3 = PokemonSummaryScreen_StatusIconAnimIdx(param0->unk_04[v0->unk_11].unk_00);
 
             if (param0->unk_04[v0->unk_11].unk_17_3 == 7) {
-                SpriteActor_EnableObject(param0->unk_1FB4[13 + v0->unk_11], 0);
+                ManagedSprite_SetDrawFlag(param0->unk_1FB4[13 + v0->unk_11], 0);
                 ov13_022234A8(param0, v0->unk_11);
             }
 
@@ -1715,7 +1715,7 @@ static u8 ov13_022219DC(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02221A04(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteActor_EnableObject(param0->unk_1FB4[26], 0);
+    ManagedSprite_SetDrawFlag(param0->unk_1FB4[26], 0);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_206C[10]);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_206C[6]);
     Window_ClearAndScheduleCopyToVRAM(&param0->unk_206C[7]);

@@ -3,14 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/map_prop.h"
+
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
 #include "overlay006/struct_ov6_02242AF0.h"
 
 #include "field_system.h"
@@ -105,7 +106,7 @@ void ov6_02242AF0(FieldSystem *fieldSystem)
         break;
     }
 
-    ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, 475, &v2, NULL, fieldSystem->unk_50);
+    MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, 475, &v2, NULL, fieldSystem->unk_50);
 }
 
 void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
@@ -204,11 +205,11 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
     {
         NNSG3dResMdl *v2;
         NNSG3dResFileHeader **v3;
-        UnkStruct_ov5_021E1890 *v4;
+        MapProp *v4;
         NNSG3dRenderObj *v5;
 
-        v4 = ov5_021E18CC(fieldSystem->unk_A4, 475);
-        v5 = ov5_021E18BC(v4);
+        v4 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_475);
+        v5 = MapProp_GetRenderObj(v4);
         v3 = ov5_021EF9E8(475, fieldSystem->unk_30);
         v2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v3), 0);
 
@@ -231,17 +232,17 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
     case 3:
 
     {
-        UnkStruct_ov5_021E1890 *v6;
+        MapProp *v6;
         VecFx32 v7;
 
-        v6 = ov5_021E18CC(fieldSystem->unk_A4, 475);
-        v7 = ov5_021E1894(v6);
+        v6 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_475);
+        v7 = MapProp_GetPosition(v6);
 
         if (v1->unk_00(fieldSystem, v1, &v1->unk_0C, &v7)) {
             (v1->unk_05)++;
         }
 
-        ov5_021E18A4(v6, &v7);
+        MapProp_SetPosition(v6, &v7);
     } break;
     case 4:
         ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 16);

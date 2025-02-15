@@ -16,7 +16,6 @@
 #include "overlay022/struct_ov22_0225B1BC_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -24,6 +23,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
@@ -40,7 +40,7 @@ typedef struct {
     u32 unk_0C;
     UnkStruct_ov22_0225B1BC *unk_10;
     UnkStruct_ov22_0225A0E4 unk_14;
-    CellActor *unk_1FC;
+    Sprite *unk_1FC;
     Window *unk_200;
 } UnkStruct_ov22_0225B85C;
 
@@ -224,7 +224,7 @@ static void ov22_0225B964(UnkStruct_ov22_0225B85C *param0)
 
     param0->unk_1FC = ov22_022551E4(&param0->unk_14, 1000, 0, 144, 100, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    CellActor_SetExplicitPriority(param0->unk_1FC, 1);
+    Sprite_SetExplicitPriority(param0->unk_1FC, 1);
 }
 
 static void ov22_0225BA00(UnkStruct_ov22_0225B85C *param0)
@@ -233,7 +233,7 @@ static void ov22_0225BA00(UnkStruct_ov22_0225B85C *param0)
     ov22_022552D8(&param0->unk_14, 1000);
     ov22_022552EC(&param0->unk_14, 1000);
     ov22_02255300(&param0->unk_14, 1000);
-    CellActor_Delete(param0->unk_1FC);
+    Sprite_Delete(param0->unk_1FC);
 }
 
 static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
@@ -283,11 +283,11 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     GF_ASSERT(v8);
     v5 = StringTemplate_Default(13);
 
-    CellActor_SetAnim(param0->unk_1FC, 5);
+    Sprite_SetAnim(param0->unk_1FC, 5);
     v0.x = 48 << FX32_SHIFT;
     v0.y = 144 << FX32_SHIFT;
     v0.z = 0;
-    CellActor_SetPosition(param0->unk_1FC, &v0);
+    Sprite_SetPosition(param0->unk_1FC, &v0);
 
     v7 = Strbuf_Init(12, 13);
     sub_0202A1A0(param0->unk_00, v7);
@@ -330,7 +330,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     int v8, v9;
     int v10;
 
-    CellActor_SetAnim(param0->unk_1FC, param0->unk_08);
+    Sprite_SetAnim(param0->unk_1FC, param0->unk_08);
 
     v0 = sub_0202A5D0(param0->unk_04);
     v1 = StringTemplate_Default(13);

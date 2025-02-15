@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_02095C48.h"
@@ -664,10 +664,10 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
     }
 }
 
-Sprite *sub_02095484(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int param5, int param6, int param7, int param8)
+PokemonSprite *sub_02095484(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int param5, int param6, int param7, int param8)
 {
     ArchivedSprite v0;
-    Sprite *v1;
+    PokemonSprite *v1;
     int v2, v3, v4;
 
     Pokemon_BuildArchivedSprite(&v0, param2, param3);

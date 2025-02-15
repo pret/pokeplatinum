@@ -1,9 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV13_02227244_H
 #define POKEPLATINUM_STRUCT_OV13_02227244_H
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 
 #include "battle/struct_ov16_0226DEEC_decl.h"
 #include "overlay013/struct_ov13_022264F4.h"
@@ -13,6 +11,7 @@
 #include "bg_window.h"
 #include "message.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 
@@ -32,8 +31,8 @@ typedef struct {
     UnkStruct_ov13_02228A50 *unk_34;
     UnkStruct_ov16_0226DEEC *unk_38;
     BagItem unk_3C[5][36];
-    SpriteGfxHandler *unk_30C;
-    CellActorData *unk_310[6];
+    SpriteManager *unk_30C;
+    ManagedSprite *unk_310[6];
     u16 unk_328[3][144];
     u16 unk_688[4][130];
     u16 unk_A98[3][25];
