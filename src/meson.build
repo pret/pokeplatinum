@@ -660,7 +660,7 @@ pokeplatinum_c = files(
     'overlay023/ov23_0225429C.c',
     'overlay023/ov23_022542CC.c',
     'overlay023/ov23_02254A14.c',
-    'overlay024/ov24_02253CE0.c',
+    'pre_poketch_subscreen/pre_poketch_subscreen.c',
     'overlay025/poketch_system.c',
     'overlay025/ov25_02254560.c',
     'overlay025/ov25_02255090.c',

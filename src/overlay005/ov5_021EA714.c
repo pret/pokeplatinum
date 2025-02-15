@@ -5,7 +5,7 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay024/ov24_02253CE0.h"
+#include "pre_poketch_subscreen/pre_poketch_subscreen.h"
 
 #include "game_overlay.h"
 #include "poketch.h"
@@ -13,7 +13,7 @@
 #include "system_flags.h"
 #include "vars_flags.h"
 
-FS_EXTERN_OVERLAY(overlay24);
+FS_EXTERN_OVERLAY(pre_poketch_subscreen);
 FS_EXTERN_OVERLAY(overlay25);
 
 void ov5_021EA714(FieldSystem *fieldSystem, enum PoketchEventID eventID, u32 dummy)
@@ -33,8 +33,8 @@ void ov5_021EA728(FieldSystem *fieldSystem)
         Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
         PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, RenderOam_GetScreenOam(1));
     } else {
-        Overlay_LoadByID(FS_OVERLAY_ID(overlay24), 2);
-        ov24_02253CE0(fieldSystem->bgConfig);
+        Overlay_LoadByID(FS_OVERLAY_ID(pre_poketch_subscreen), 2);
+        PrePoketchSubscreen_Init(fieldSystem->bgConfig);
     }
 }
 
@@ -47,7 +47,7 @@ void ov5_021EA790(FieldSystem *fieldSystem)
         && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
         PoketchSystem_StartShutdown(fieldSystem->unk_04->poketchSys);
     } else {
-        ov24_02253DA4(fieldSystem->bgConfig);
+        PrePoketchSubscreen_Exit(fieldSystem->bgConfig);
     }
 }
 
@@ -64,8 +64,8 @@ u8 ov5_021EA7CC(FieldSystem *fieldSystem)
             return 1;
         }
     } else {
-        if (ov24_02253DB4(fieldSystem->bgConfig)) {
-            Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
+        if (PrePoketchSubscreen_IsDone(fieldSystem->bgConfig)) {
+            Overlay_UnloadByID(FS_OVERLAY_ID(pre_poketch_subscreen));
             return 1;
         }
     }
@@ -75,19 +75,19 @@ u8 ov5_021EA7CC(FieldSystem *fieldSystem)
 
 void ov5_021EA830(FieldSystem *fieldSystem)
 {
-    Overlay_LoadByID(FS_OVERLAY_ID(overlay24), 2);
-    ov24_02253CE0(fieldSystem->bgConfig);
+    Overlay_LoadByID(FS_OVERLAY_ID(pre_poketch_subscreen), 2);
+    PrePoketchSubscreen_Init(fieldSystem->bgConfig);
 }
 
 void ov5_021EA848(FieldSystem *fieldSystem)
 {
-    ov24_02253DA4(fieldSystem->bgConfig);
+    PrePoketchSubscreen_Exit(fieldSystem->bgConfig);
 }
 
 BOOL ov5_021EA854(FieldSystem *fieldSystem)
 {
-    if (ov24_02253DB4(fieldSystem->bgConfig)) {
-        Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
+    if (PrePoketchSubscreen_IsDone(fieldSystem->bgConfig)) {
+        Overlay_UnloadByID(FS_OVERLAY_ID(pre_poketch_subscreen));
         return 1;
     }
 

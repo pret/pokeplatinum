@@ -5,8 +5,8 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
-#include "overlay024/ov24_02253CE0.h"
 #include "overlay025/poketch_system.h"
+#include "pre_poketch_subscreen/pre_poketch_subscreen.h"
 
 #include "brightness_controller.h"
 #include "field_task.h"
@@ -15,7 +15,7 @@
 #include "poketch.h"
 #include "render_oam.h"
 
-FS_EXTERN_OVERLAY(overlay24);
+FS_EXTERN_OVERLAY(pre_poketch_subscreen);
 FS_EXTERN_OVERLAY(overlay25);
 
 typedef struct {
@@ -34,15 +34,15 @@ static BOOL ov5_021DDAE4(FieldTask *param0)
         break;
     case 1:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN)) {
-            ov24_02253DA4(fieldSystem->bgConfig);
+            PrePoketchSubscreen_Exit(fieldSystem->bgConfig);
             v1->unk_00++;
         }
         break;
     case 2:
-        if (ov24_02253DB4(fieldSystem->bgConfig)) {
+        if (PrePoketchSubscreen_IsDone(fieldSystem->bgConfig)) {
             Poketch *poketch = SaveData_PoketchData(fieldSystem->saveData);
 
-            Overlay_UnloadByID(FS_OVERLAY_ID(overlay24));
+            Overlay_UnloadByID(FS_OVERLAY_ID(pre_poketch_subscreen));
             Overlay_LoadByID(FS_OVERLAY_ID(overlay25), 2);
             Poketch_Enable(poketch);
             PoketchSystem_Create(fieldSystem, &fieldSystem->unk_04->poketchSys, fieldSystem->saveData, fieldSystem->bgConfig, RenderOam_GetScreenOam(1));
