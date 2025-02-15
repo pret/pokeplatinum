@@ -6,6 +6,7 @@
 #include "generated/journal_online_events.h"
 #include "generated/map_headers.h"
 #include "generated/moves.h"
+#include "generated/npc_trades.h"
 #include "generated/poketch_apps.h"
 #include "generated/save_types.h"
 #include "generated/sdat.h"
@@ -277,7 +278,7 @@
     .short 48
     .endm
 
-    // This also sets the player's direction appropriately when a pad 
+    // This also sets the player's direction appropriately when a pad
     // button is pressed, unlike the WaitABPadPress command.
     .macro WaitABXPadPress
     .short 49
@@ -557,9 +558,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_065 arg0
+    .macro RemoveObject localID
     .short 101
-    .short \arg0
+    .short \localID
     .endm
 
     .macro ScrCmd_066 arg0, arg1
@@ -671,7 +672,7 @@
     .short \arg0
     .endm
 
-    // If the player has no space left in the bag, resultVar will be set to FALSE 
+    // If the player has no space left in the bag, resultVar will be set to FALSE
     .macro AddItem item, count, resultVar
     .short 123
     .short \item
@@ -852,18 +853,19 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_096 arg0, arg1, arg2, arg3
+    .macro GivePokemon species, level, heldItem, successVar
     .short 150
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \species
+    .short \level
+    .short \heldItem
+    .short \successVar
     .endm
 
-    .macro ScrCmd_097 arg0, arg1
+    @ eggGiverTextId corresponds to an entry in special_met_location_names.gmm.
+    .macro GiveEgg species, eggGiverTextId
     .short 151
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \eggGiverTextId
     .endm
 
     .macro ScrCmd_098 arg0, arg1, arg2
@@ -912,7 +914,7 @@
     .short 160
     .endm
 
-    .macro ScrCmd_0A1
+    .macro ReturnToField
     .short 161
     .endm
 
@@ -1000,11 +1002,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_0B4
+    .macro StartChooseStarterScene
     .short 180
     .endm
 
-    .macro ScrCmd_0B5
+    .macro SaveChosenStarter
     .short 181
     .endm
 
@@ -1206,9 +1208,9 @@
     .byte \arg0
     .endm
 
-    .macro BufferSpeciesNameFromVar bufferId, var, unused1, unused2
+    .macro BufferSpeciesNameFromVar templateArg, var, unused1, unused2
     .short 218
-    .byte \bufferId
+    .byte \templateArg
     .short \var
     .short \unused1
     .byte \unused2
@@ -1219,9 +1221,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_0DC arg0
+    .macro BufferRivalStarterSpeciesName templateArg
     .short 220
-    .byte \arg0
+    .byte \templateArg
     .endm
 
     .macro ScrCmd_0DD arg0
@@ -1229,9 +1231,9 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_0DE arg0
+    .macro GetPlayerStarterSpecies destVar
     .short 222
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro BufferUndergroundGoodsName templateArg, goods
@@ -2195,7 +2197,7 @@
     .short \destVarID
     .endm
 
-    // Counts alive mons in the party and stores the result in the destVar, 
+    // Counts alive mons in the party and stores the result in the destVar,
     // but excludes the one at the party slot provided.
     .macro CountAliveMonsExcept destVarID, partySlot
     .short 411
@@ -2966,19 +2968,19 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_226 arg0
+    .macro StartNpcTrade npcTradeID
     .short 550
-    .byte \arg0
+    .byte \npcTradeID
     .endm
 
-    .macro ScrCmd_227 arg0
+    .macro GetNpcTradeSpecies destVar
     .short 551
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_228 arg0
+    .macro GetNpcTradeRequestedSpecies destVar
     .short 552
-    .short \arg0
+    .short \destVar
     .endm
 
     .macro ScrCmd_229 arg0
@@ -2986,7 +2988,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_22A
+    .macro FinishNpcTrade
     .short 554
     .endm
 
@@ -3128,19 +3130,19 @@
     .endif
     .endm
 
-    .macro ScrCmd_23F
+    .macro Dummy23F
     .short 575
     .endm
 
-    .macro ScrCmd_240
+    .macro Dummy240
     .short 576
     .endm
 
-    .macro ScrCmd_241
+    .macro Dummy241
     .short 577
     .endm
 
-    .macro ScrCmd_242
+    .macro Dummy242
     .short 578
     .endm
 
@@ -4024,18 +4026,19 @@
     .short \arg2
     .endm
 
-    .macro ScrCmd_2E5 arg0, arg1, arg2
+    // resultVar will be set to TRUE if the pokemon has at least one move it can learn at the given location and doesn't know yet
+    .macro CheckHasLearnableTutorMoves partySlot, location, resultVar
     .short 741
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \partySlot
+    .short \location
+    .short \resultVar
     .endm
 
-    .macro ScrCmd_2E6 arg0, arg1, arg2
+    .macro ShowMoveTutorMoveSelectionMenu partySlot, location, outSelectedOption
     .short 742
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \partySlot
+    .short \location
+    .short \outSelectedOption
     .endm
 
     .macro ScrCmd_2E7 arg0, arg1
@@ -4049,33 +4052,34 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2E9 arg0, arg1, arg2
+    .macro ResetMoveSlot partySlot, moveID, moveSlot
     .short 745
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \partySlot
+    .short \moveID
+    .short \moveSlot
     .endm
 
-    .macro ScrCmd_2EA arg0, arg1
+    // resultVar will be set to TRUE if the move is available at a shards move tutor and the player can afford it
+    .macro CheckCanAffordMove moveID, resultVar
     .short 746
-    .short \arg0
-    .short \arg1
+    .short \moveID
+    .short \resultVar
     .endm
 
-    .macro ScrCmd_2EB arg0
+    .macro PayShardsCost moveID
     .short 747
-    .short \arg0
+    .short \moveID
     .endm
 
-    .macro ScrCmd_2EC arg0, arg1, arg2, arg3
+    .macro ShowShardsCost arg0, arg1, selectedMove, outSelectedOption
     .short 748
     .byte \arg0
     .byte \arg1
-    .short \arg2
-    .short \arg3
+    .short \selectedMove
+    .short \outSelectedOption
     .endm
 
-    .macro ScrCmd_2ED
+    .macro CloseShardsCostWindow
     .short 749
     .endm
 
@@ -4477,7 +4481,7 @@
     .short \arg0
     .endm
 
-    .macro HasSeenSpecies species, ret
+    .macro CheckHasSeenSpecies species, ret
     .short 823
     .short \species
     .short \ret

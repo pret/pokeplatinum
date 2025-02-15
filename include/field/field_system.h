@@ -13,6 +13,7 @@
 #include "struct_defs/struct_0204AFC4.h"
 
 #include "field/field_system_sub2_decl.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D41B4_decl.h"
@@ -20,7 +21,6 @@
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
-#include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021E1B20_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
@@ -109,7 +109,7 @@ typedef struct FieldSystem_t {
     BagCursor *unk_98;
     JournalEntry *journalEntry;
     UnkStruct_ov5_021EF300 *unk_A0;
-    UnkStruct_ov5_021E1608 *unk_A4;
+    MapPropManager *mapPropManager;
     HoneyTreeShakeList *unk_A8;
     UnkStruct_0204AFC4 *unk_AC;
     const BattleRegulation *unk_B0;

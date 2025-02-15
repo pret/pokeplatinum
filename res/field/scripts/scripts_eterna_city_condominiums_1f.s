@@ -26,7 +26,7 @@ _0032:
     WaitFadeScreen
     ScrCmd_191
     ScrCmd_193 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0xFF, _00B3
@@ -109,17 +109,17 @@ _0168:
     WaitFadeScreen
     ScrCmd_2A5
     ScrCmd_193 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0xFF, _01D9
-    ScrCmd_226 1
+    StartNpcTrade NPC_TRADE_CHARAP_CHATOT
     SetVar 0x8004, 0x800C
     ScrCmd_198 0x8004, 0x8005
-    ScrCmd_228 0x800C
+    GetNpcTradeRequestedSpecies 0x800C
     GoToIfNe 0x8005, 0x800C, _01CC
     ScrCmd_229 0x8004
-    ScrCmd_22A
+    FinishNpcTrade
     SetFlag 134
     Message 10
     WaitABXPadPress
@@ -128,7 +128,7 @@ _0168:
     End
 
 _01CC:
-    ScrCmd_22A
+    FinishNpcTrade
     Message 11
     WaitABXPadPress
     CloseMessage

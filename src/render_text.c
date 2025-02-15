@@ -8,14 +8,14 @@
 
 #include "bg_window.h"
 #include "charcode.h"
-#include "core_sys.h"
 #include "font.h"
 #include "render_text.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 
-#define SPEED_UP_ON_TOUCH_PRESS (gCoreSys.touchPressed && sRenderControlFlags.speedUpOnTouch)
-#define SPEED_UP_ON_TOUCH_HOLD  (gCoreSys.touchHeld && sRenderControlFlags.speedUpOnTouch)
+#define SPEED_UP_ON_TOUCH_PRESS (gSystem.touchPressed && sRenderControlFlags.speedUpOnTouch)
+#define SPEED_UP_ON_TOUCH_HOLD  (gSystem.touchHeld && sRenderControlFlags.speedUpOnTouch)
 
 typedef struct RenderControlFlags {
     u8 canABSpeedUpPrint : 1;
@@ -381,7 +381,7 @@ void TextPrinter_ClearScrollArrow(TextPrinter *printer)
 static BOOL TextPrinter_Continue(TextPrinter *printer)
 {
     if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)
-        || (gCoreSys.touchPressed && sRenderControlFlags.speedUpOnTouch)) {
+        || (gSystem.touchPressed && sRenderControlFlags.speedUpOnTouch)) {
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         sRenderControlFlags.waitBattle = TRUE;
         return TRUE;

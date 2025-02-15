@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_OV21_021D4EE4_H
 #define POKEPLATINUM_OV21_021D4EE4_H
 
+#include "constants/heap.h"
+
 #include "overlay021/struct_ov21_021D4EE4_decl.h"
 #include "overlay021/struct_ov21_021D4FE4.h"
-
-#include "heap.h"
 
 UnkStruct_ov21_021D4EE4 *ov21_021D4EE4(enum HeapId heapID);
 void ov21_021D4EFC(UnkStruct_ov21_021D4EE4 *param0);

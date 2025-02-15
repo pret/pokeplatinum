@@ -15,8 +15,6 @@
 
 #include "bg_window.h"
 #include "camera.h"
-#include "cell_actor.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
@@ -31,11 +29,13 @@
 #include "play_time.h"
 #include "pokemon.h"
 #include "render_oam.h"
+#include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -43,7 +43,6 @@
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02017728.h"
 
 typedef struct {
     fx32 unk_00;
@@ -60,10 +59,10 @@ typedef struct {
     UnkStruct_0203E234 *unk_0C;
     BgConfig *unk_10;
     Window unk_14;
-    CellActorCollection *unk_24;
+    SpriteList *unk_24;
     G2dRenderer unk_28;
-    CellActor *unk_1B4[6];
-    CellActor *unk_1CC;
+    Sprite *unk_1B4[6];
+    Sprite *unk_1CC;
     void *unk_1D0;
     void *unk_1D4;
     SpriteAnimationFrame unk_1D8[6][10];
@@ -113,14 +112,14 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
-    CellActor *unk_08;
+    Sprite *unk_08;
     VecFx32 unk_0C;
     UnkStruct_ov86_0223D264 unk_18;
 } UnkStruct_ov86_0223BDE0;
 
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
-    CellActor *unk_08;
+    Sprite *unk_08;
     VecFx32 unk_0C;
     UnkStruct_ov86_0223D264 unk_18;
 } UnkStruct_ov86_0223BEA0;
@@ -156,7 +155,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
-    CellActor *unk_08;
+    Sprite *unk_08;
     const SpriteAnimationFrame *unk_0C;
     UnkStruct_02008900 unk_10;
     NNSG2dImageProxy unk_24[2];
@@ -193,7 +192,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
-    CellActor **unk_08;
+    Sprite **unk_08;
     UnkStruct_ov86_0223B3C8 *unk_0C;
     int unk_10;
     int unk_14;
@@ -290,7 +289,7 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov86_0223B3C8 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Create(3, 63, 196608);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov86_0223B3C8), 63);
@@ -475,7 +474,7 @@ static BOOL ov86_0223B464(UnkStruct_ov86_0223B3C8 *param0)
         break;
     case 6:
         if (ov86_0223B6B4(param0, 0)) {
-            CellActor_SetDrawFlag(param0->unk_1B4[v0], 0);
+            Sprite_SetDrawFlag(param0->unk_1B4[v0], 0);
 
             if (++v0 < param0->unk_04) {
                 param0->unk_08 = 30;
@@ -540,7 +539,7 @@ static BOOL ov86_0223B574(UnkStruct_ov86_0223B3C8 *param0)
         param0->unk_00++;
         break;
     case 8:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             return 1;
         }
         break;
@@ -595,7 +594,7 @@ static void ov86_0223B6CC(SysTask *param0, void *param1)
     NNS_G3dGePopMtx(1);
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
-    CellActorCollection_Update(v0->unk_24);
+    SpriteList_Update(v0->unk_24);
     RenderOam_Transfer();
 }
 
@@ -795,8 +794,8 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
         { 0 + 10, 0, 10, 10 }
     };
     ArchivedSprite v1;
-    CellActorResourceData v2;
-    CellActorInitParams v3;
+    SpriteResourcesHeader v2;
+    SpriteListTemplate v3;
     UnkStruct_ov5_021DE5D0 v4;
     NNSG2dImageProxy v5;
     NNSG2dImagePaletteProxy v6;
@@ -817,7 +816,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     v2.imageProxy = &v5;
     v2.paletteProxy = &v6;
 
-    v3.collection = param0->unk_24;
+    v3.list = param0->unk_24;
     v3.resourceData = &v2;
 
     VEC_Set(&(v3.position), 0, 0, 0);
@@ -835,9 +834,9 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
         NNS_G2dLoadPalette(v8, v12 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v6);
 
         v3.priority = 1 + v12;
-        param0->unk_1B4[v12] = CellActorCollection_Add(&v3);
+        param0->unk_1B4[v12] = SpriteList_Add(&v3);
 
-        CellActor_SetDrawFlag(param0->unk_1B4[v12], 0);
+        Sprite_SetDrawFlag(param0->unk_1B4[v12], 0);
         v11 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, param0->unk_2C8[v12]);
         Pokemon_BuildArchivedSprite(&v1, (Pokemon *)v11, 2);
 
@@ -872,9 +871,9 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     Graphics_LoadPalette(v4.unk_00, v4.unk_08, 1, 192, 0x20, 63);
 
     v3.priority = 0;
-    param0->unk_1CC = CellActorCollection_Add(&v3);
+    param0->unk_1CC = SpriteList_Add(&v3);
 
-    CellActor_SetDrawFlag(param0->unk_1CC, 0);
+    Sprite_SetDrawFlag(param0->unk_1CC, 0);
     Heap_FreeToHeap(v10);
     Heap_FreeToHeap(v9);
 }
@@ -884,12 +883,12 @@ static void ov86_0223BD68(UnkStruct_ov86_0223B3C8 *param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        CellActor_Delete(param0->unk_1B4[v0]);
+        Sprite_Delete(param0->unk_1B4[v0]);
     }
 
     Heap_FreeToHeap(param0->unk_1D4);
     Heap_FreeToHeap(param0->unk_1D0);
-    CellActorCollection_Delete(param0->unk_24);
+    SpriteList_Delete(param0->unk_24);
     RenderOam_Free();
 }
 
@@ -935,8 +934,8 @@ static void ov86_0223BDE0(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
 
     VEC_Set(&v1->unk_0C, v0[v2].unk_00, 393216, 0);
 
-    CellActor_SetPosition(v1->unk_08, &v1->unk_0C);
-    CellActor_SetDrawFlag(v1->unk_08, 1);
+    Sprite_SetPosition(v1->unk_08, &v1->unk_0C);
+    Sprite_SetDrawFlag(v1->unk_08, 1);
 
     param0->unk_1C34[param2] = ov86_0223B744(ov86_0223BE6C, v1, 0);
 }
@@ -946,7 +945,7 @@ static void ov86_0223BE6C(SysTask *param0, void *param1)
     UnkStruct_ov86_0223BDE0 *v0 = param1;
 
     v0->unk_0C.x = ov86_0223D284(&v0->unk_18);
-    CellActor_SetPosition(v0->unk_08, &v0->unk_0C);
+    Sprite_SetPosition(v0->unk_08, &v0->unk_0C);
 
     if (ov86_0223D2A4(&v0->unk_18)) {
         ov86_0223BDCC(&v0->unk_00);
@@ -966,8 +965,8 @@ static void ov86_0223BEA0(UnkStruct_ov86_0223B3C8 *param0, int param1)
 
     VEC_Set(&v0->unk_0C, FX32_CONST(128), FX32_CONST(232), 0);
 
-    CellActor_SetPosition(v0->unk_08, &v0->unk_0C);
-    CellActor_SetDrawFlag(v0->unk_08, 1);
+    Sprite_SetPosition(v0->unk_08, &v0->unk_0C);
+    Sprite_SetDrawFlag(v0->unk_08, 1);
 
     param0->unk_1C34[param1] = ov86_0223B744(ov86_0223BF10, v0, 0);
 }
@@ -977,7 +976,7 @@ static void ov86_0223BF10(SysTask *param0, void *param1)
     UnkStruct_ov86_0223BEA0 *v0 = param1;
 
     v0->unk_0C.y = ov86_0223D284(&v0->unk_18);
-    CellActor_SetPosition(v0->unk_08, &v0->unk_0C);
+    Sprite_SetPosition(v0->unk_08, &v0->unk_0C);
 
     if (ov86_0223D2A4(&v0->unk_18)) {
         ov86_0223BDCC(&v0->unk_00);
@@ -1216,7 +1215,7 @@ static void ov86_0223C2CC(UnkStruct_ov86_0223B3C8 *param0, int param1, BOOL para
     v0->unk_6C = param2;
     v0->unk_70 = param0->unk_2E0[param1];
     v0->unk_74 = param0->unk_2F8[param1];
-    v0->unk_24[0] = *SpriteActor_ImageProxy(v0->unk_08);
+    v0->unk_24[0] = *Sprite_GetImageProxy(v0->unk_08);
     v0->unk_24[1] = v0->unk_24[0];
 
     NNS_G2dInitImageProxy(&v0->unk_24[1]);
@@ -1238,7 +1237,7 @@ static void ov86_0223C398(SysTask *param0, void *param1)
     v1 = sub_02008900(&v0->unk_10);
 
     if (v1 >= 0) {
-        CellActor_SetImageProxy(v0->unk_08, &v0->unk_24[v1]);
+        Sprite_SetImageProxy(v0->unk_08, &v0->unk_24[v1]);
     } else {
         ov86_0223BDCC(&v0->unk_00);
         SysTask_Done(param0);
@@ -1461,8 +1460,8 @@ static void ov86_0223C840(UnkStruct_ov86_0223B3C8 *param0, int param1)
 
     for (v3 = 0; v3 < v2->unk_14; v3++) {
         v2->unk_94[v3] = v0[v3];
-        CellActor_SetPosition(v2->unk_08[v3], &v0[v3]);
-        CellActor_SetDrawFlag(v2->unk_08[v3], 1);
+        Sprite_SetPosition(v2->unk_08[v3], &v0[v3]);
+        Sprite_SetDrawFlag(v2->unk_08[v3], 1);
     }
 
     for (v3 = 0; v3 < 6; v3++) {
@@ -1481,7 +1480,7 @@ static void ov86_0223C914(SysTask *param0, void *param1)
         v0->unk_94[v1].x = ov86_0223D284(&v0->unk_1C[v1]);
 
         if (v1 < v0->unk_14) {
-            CellActor_SetPosition(v0->unk_08[v1], &(v0->unk_94[v1]));
+            Sprite_SetPosition(v0->unk_08[v1], &(v0->unk_94[v1]));
         }
     }
 

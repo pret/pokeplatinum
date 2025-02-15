@@ -27,7 +27,6 @@
 #include "bag.h"
 #include "charcode_util.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_overworld_state.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -45,6 +44,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "strbuf.h"
+#include "system.h"
 #include "system_data.h"
 #include "system_flags.h"
 #include "trainer_info.h"
@@ -121,7 +121,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapId heapID, u32 battleType)
         + date.month * 0x100 * date.day * 0x10000
         + time.hour * 0x10000
         + (time.minute + time.second) * 0x1000000
-        + gCoreSys.vblankCounter;
+        + gSystem.vblankCounter;
 
     if (CommSys_IsInitialized() == TRUE) {
         for (i = 0; i < CommSys_ConnectedCount(); i++) {
@@ -169,9 +169,9 @@ FieldBattleDTO *FieldBattleDTO_NewCatchingTutorial(enum HeapId heapID, const Fie
     Bag_TryAddItem(dto->bag, ITEM_POKE_BALL, 20, heapID);
 
     mon = Pokemon_New(heapID);
-    Pokemon_InitWith(mon, VarsFlags_GetPlayerCounterpartStarterSpecies(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, 32, FALSE, 0, OTID_NOT_SHINY, 0);
+    Pokemon_InitWith(mon, VarsFlags_GetPlayerCounterpartStarterSpecies(SaveData_GetVarsFlags(fieldSystem->saveData)), 5, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SHINY, 0);
     Party_AddPokemon(dto->parties[BATTLER_PLAYER_1], mon);
-    Pokemon_InitWith(mon, SPECIES_BIDOOF, 2, 32, FALSE, 0, OTID_NOT_SHINY, 0);
+    Pokemon_InitWith(mon, SPECIES_BIDOOF, 2, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SHINY, 0);
     Party_AddPokemon(dto->parties[BATTLER_ENEMY_1], mon);
     Heap_FreeToHeap(mon);
 

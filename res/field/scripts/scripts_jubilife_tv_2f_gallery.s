@@ -81,7 +81,7 @@ _0121:
     WaitFadeScreen
     ScrCmd_191
     ScrCmd_193 0x4002
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4002, 0xFF, _02B3
@@ -124,7 +124,7 @@ _01EC:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A6 0x4002, 0x8005, 0x8007
-    ScrCmd_0A1
+    ReturnToField
     ApplyMovement 0xFF, _0360
     WaitMovement
     FadeScreen 6, 1, 1, 0
@@ -178,7 +178,7 @@ _02C7:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8004
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _0328
@@ -292,7 +292,7 @@ _03CC:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A7 0, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -306,7 +306,7 @@ _0409:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A7 1, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -320,7 +320,7 @@ _0446:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A7 2, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -334,7 +334,7 @@ _0483:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A7 3, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -348,7 +348,7 @@ _04C0:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A7 4, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -362,7 +362,7 @@ _04FD:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A7 5, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -376,7 +376,7 @@ _053A:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A7 6, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -390,7 +390,7 @@ _0577:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A7 7, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -404,7 +404,7 @@ _05B4:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A7 8, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -418,7 +418,7 @@ _05F1:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A7 9, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -432,7 +432,7 @@ _062E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0A7 10, 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

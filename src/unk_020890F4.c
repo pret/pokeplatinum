@@ -4,21 +4,22 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02089688.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "strbuf.h"
-#include "unk_0200C6E4.h"
-#include "unk_02017728.h"
+#include "system.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
 #include "unk_020393C8.h"
@@ -51,7 +52,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     memset(v0, 0, sizeof(UnkStruct_02089688));
     v0->unk_38C = *((UnkStruct_02089438 *)OverlayManager_Args(param0));
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -86,7 +87,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 15, 7);
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 
-    SetMainCallback(sub_020895CC, v0);
+    SetVBlankCallback(sub_020895CC, v0);
 
     return 1;
 }
@@ -145,8 +146,8 @@ static int sub_0208927C(OverlayManager *param0, int *param1)
         v1 = sub_0201E530();
     }
 
-    sub_0200D0B0(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);
-    sub_0200C8D4(v0->unk_2C0.unk_04);
+    SpriteSystem_FreeResourcesAndManager(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);
+    SpriteSystem_Free(v0->unk_2C0.unk_04);
     sub_02024034(v0->unk_2C0.unk_14);
     OverlayManager_FreeData(param0);
     Heap_Destroy(101);
@@ -340,7 +341,7 @@ static void sub_0208945C(BgConfig *param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
-    gCoreSys.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -352,7 +353,7 @@ static void sub_020895CC(void *param0)
     UnkStruct_02089688 *v0 = param0;
 
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_2C0.unk_10);
     Bg_RunScheduledUpdates(v0->unk_2C0.unk_0C);
 

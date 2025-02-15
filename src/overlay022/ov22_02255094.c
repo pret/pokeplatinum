@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_defs/struct_02099F80.h"
@@ -14,9 +16,7 @@
 #include "overlay022/struct_ov22_0225A0E4.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -24,9 +24,11 @@
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "resource_collection.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
+#include "system.h"
 #include "unk_0200762C.h"
 #include "unk_02015064.h"
 #include "unk_0202419C.h"
@@ -63,14 +65,14 @@ void ov22_02255094(void)
     ov22_02255654();
     ov22_022556DC();
 
-    gCoreSys.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
 }
 
 void ov22_022550B4(void)
 {
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
     ov22_02255738();
@@ -147,14 +149,14 @@ void ov22_022551D0(UnkStruct_ov22_0225A0E4 *param0)
     sub_020151EC(param0->unk_00);
 }
 
-CellActor *ov22_022551E4(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, int param3, int param4, int param5)
+Sprite *ov22_022551E4(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, int param3, int param4, int param5)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
 
     SpriteResourcesHeader_Init(&v0, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_48[0], param0->unk_48[1], param0->unk_48[2], param0->unk_48[3], NULL, NULL);
 
-    v1.collection = param0->unk_44;
+    v1.list = param0->unk_44;
     v1.resourceData = &v0;
     v1.position.x = param2 << FX32_SHIFT;
     v1.position.y = param3 << FX32_SHIFT;
@@ -163,7 +165,7 @@ CellActor *ov22_022551E4(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2
     v1.vramType = param5;
     v1.heapID = 14;
 
-    return CellActorCollection_Add(&v1);
+    return SpriteList_Add(&v1);
 }
 
 void ov22_02255248(UnkStruct_ov22_0225A0E4 *param0, NARC *param1, int param2, BOOL param3, int param4, int param5)
@@ -717,7 +719,7 @@ static void ov22_022559F8(UnkStruct_ov22_0225A0E4 *param0)
 
 static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0)
 {
-    CellActorCollection_Delete(param0->unk_44);
+    SpriteList_Delete(param0->unk_44);
 
     {
         int v0;
@@ -734,7 +736,7 @@ static void ov22_02255A98(UnkStruct_ov22_0225A0E4 *param0)
 
 static void ov22_02255AC0(UnkStruct_ov22_0225A0E4 *param0)
 {
-    CellActorCollection_Update(param0->unk_44);
+    SpriteList_Update(param0->unk_44);
 }
 
 static void ov22_02255ACC(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1)

@@ -24,7 +24,7 @@ _0026:
 _0033:
     ScrCmd_31F
     SetVar 0x4055, 14
-    ScrCmd_065 128
+    RemoveObject 128
     End
 
 _0041:

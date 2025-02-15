@@ -16,10 +16,10 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "heap.h"
 #include "overlay_manager.h"
 #include "pokedex_memory.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
@@ -72,9 +72,9 @@ PokedexSortData *ov21_021D13EC(PokedexApp *pokedexApp);
 PokedexGraphicData *ov21_021D13FC(PokedexApp *pokedexApp);
 UnkStruct_ov21_021E68F4 *ov21_021D1410(PokedexApp *pokedexApp, int param1);
 UnkStruct_ov21_021E68F4 *ov21_021D1430(PokedexApp *pokedexApp, int param1);
-void ov21_021D144C(CellActor *param0, int param1);
-void ov21_021D1498(CellActor *param0, UnkStruct_ov21_021D4CA0 *param1, int param2);
-void ov21_021D1524(CellActor *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4);
+void ov21_021D144C(Sprite *param0, int param1);
+void ov21_021D1498(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2);
+void ov21_021D1524(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4);
 void ov21_021D154C(TouchScreenHitTable *hitTable, int param1, int param2, int param3, int param4);
 void PokedexMain_SetLoadingScreenParams(PokedexLoadingScreen *pokedexLoadingScreen, BgConfig *bgConfig, int layer, NNSG2dScreenData *screenData, int topStart, int topEnd, int bottomStart, int bottomEnd, int duration);
 BOOL PokedexMain_LoadingScreenMove(PokedexLoadingScreen *pokedexLoadingScreen);

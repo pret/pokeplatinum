@@ -15,7 +15,6 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "encounter.h"
 #include "field_battle_data_transfer.h"
 #include "field_message.h"
@@ -34,6 +33,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_020655F4.h"
 #include "unk_0206CCB0.h"
@@ -483,7 +483,7 @@ static void *ov5_021F0D1C(u32 param0)
 
 static int ov5_021F0D40(void)
 {
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         return 1;
     }
 
@@ -492,7 +492,7 @@ static int ov5_021F0D40(void)
 
 static int ov5_021F0D54(void)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 

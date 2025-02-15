@@ -6,10 +6,10 @@
 
 #include "bg_window.h"
 #include "colored_arrow.h"
-#include "core_sys.h"
 #include "font.h"
 #include "heap.h"
 #include "string_list.h"
+#include "system.h"
 #include "text.h"
 
 static void PrintEntry(ListMenu *menu, void *strbuf, u8 xOffset, u8 yOffset);
@@ -290,8 +290,8 @@ u32 ListMenu_GetAttribute(ListMenu *menu, u8 attribute)
         result = (u32)menu->template.window;
         break;
 
-    case LIST_MENU_TMP:
-        result = (u32)menu->template.tmp;
+    case LIST_MENU_PARENT:
+        result = (u32)menu->template.parent;
         break;
 
     default:

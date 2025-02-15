@@ -35,7 +35,7 @@
 
 #include "assert.h"
 #include "bg_window.h"
-#include "core_sys.h"
+#include "brightness_controller.h"
 #include "graphics.h"
 #include "heap.h"
 #include "palette.h"
@@ -44,9 +44,9 @@
 #include "spl.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200A9DC.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
@@ -1272,12 +1272,12 @@ static void ov17_02248EC4(SysTask *param0, void *param1)
             v0->unk_00->unk_F5F = 16;
         }
 
-        sub_0200AAE0(v0->unk_13, v0->unk_12, v0->unk_11, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) ^ GX_BLEND_PLANEMASK_BG1, 1);
+        BrightnessController_StartTransition(v0->unk_13, v0->unk_12, v0->unk_11, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD) ^ GX_BLEND_PLANEMASK_BG1, BRIGHTNESS_MAIN_SCREEN);
 
         v0->unk_10++;
         break;
     case 1:
-        if (sub_0200AC1C(1) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
             PaletteData_FillBufferRange(v0->unk_00->unk_0C.unk_44, 0, 0, 0x0, 0, (13 * 16));
             PaletteData_FillBufferRange(v0->unk_00->unk_0C.unk_44, 2, 0, 0x0, 0, ((16 - 2) * 16));
             v0->unk_10++;
@@ -1328,7 +1328,7 @@ static void ov17_02249014(SysTask *param0, void *param1)
         v0->unk_15 = 1;
     }
 
-    if ((v0->unk_00->unk_00->unk_155 == 0) && (v0->unk_18 < 30) && ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.touchPressed))) {
+    if ((v0->unk_00->unk_00->unk_155 == 0) && (v0->unk_18 < 30) && ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.touchPressed))) {
         v0->unk_18 = 30;
         v1 = 0;
         v0->unk_13 = 0;

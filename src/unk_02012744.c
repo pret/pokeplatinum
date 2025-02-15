@@ -6,13 +6,13 @@
 #include "struct_defs/struct_020127E8.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "graphics.h"
 #include "heap.h"
+#include "sprite.h"
 
 typedef struct {
-    CellActor *unk_00;
+    Sprite *unk_00;
     int unk_04;
     int unk_08;
 } UnkStruct_02012CE0_sub1;
@@ -20,7 +20,7 @@ typedef struct {
 typedef struct FontOAM {
     UnkStruct_02012CE0_sub1 *unk_00;
     int unk_04;
-    const CellActor *unk_08;
+    const Sprite *unk_08;
     int unk_0C;
     int unk_10;
 } FontOAM;
@@ -67,7 +67,7 @@ static void sub_02012E6C(const Window *param0, const UnkStruct_02013034 *param1,
 static int sub_02012EE0(const Window *param0, const UnkStruct_02013034 *param1, NNSG2dImageProxy *param2, int param3, int param4, int param5, int param6, int param7);
 static int sub_02013034(const UnkStruct_02013034 *param0, int param1);
 static void sub_02013088(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2, FontOAM *param3);
-static CellActor *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2);
+static Sprite *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2);
 static void sub_020130DC(FontOAM *param0);
 static UnkStruct_02013034 *sub_02013188(int param0);
 static void sub_020131A4(UnkStruct_02013034 *param0);
@@ -202,7 +202,7 @@ void sub_020128C4(FontOAM *param0, int param1, int param2)
     param2 *= FX32_ONE;
 
     if (param0->unk_08) {
-        v2 = CellActor_GetPosition(param0->unk_08);
+        v2 = Sprite_GetPosition(param0->unk_08);
 
         param1 += v2->x;
         param2 += v2->y;
@@ -214,7 +214,7 @@ void sub_020128C4(FontOAM *param0, int param1, int param2)
         v1.x = param1 + (param0->unk_00[v0].unk_04 << FX32_SHIFT);
         v1.y = param2 + (param0->unk_00[v0].unk_08 << FX32_SHIFT);
 
-        CellActor_SetPosition(param0->unk_00[v0].unk_00, &v1);
+        Sprite_SetPosition(param0->unk_00[v0].unk_00, &v1);
     }
 }
 
@@ -230,7 +230,7 @@ void sub_02012938(FontOAM *param0)
     if (param0->unk_08) {
         v3 = param0->unk_0C << FX32_SHIFT;
         v4 = param0->unk_10 << FX32_SHIFT;
-        v2 = CellActor_GetPosition(param0->unk_08);
+        v2 = Sprite_GetPosition(param0->unk_08);
 
         v3 += v2->x;
         v4 += v2->y;
@@ -241,7 +241,7 @@ void sub_02012938(FontOAM *param0)
             v1.x = v3 + (param0->unk_00[v0].unk_04 << FX32_SHIFT);
             v1.y = v4 + (param0->unk_00[v0].unk_08 << FX32_SHIFT);
 
-            CellActor_SetPosition(param0->unk_00[v0].unk_00, &v1);
+            Sprite_SetPosition(param0->unk_00[v0].unk_00, &v1);
         }
     }
 }
@@ -263,7 +263,7 @@ void sub_020129D0(FontOAM *param0, BOOL param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        CellActor_SetDrawFlag(param0->unk_00[v0].unk_00, param1);
+        Sprite_SetDrawFlag(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -274,7 +274,7 @@ void sub_02012A00(FontOAM *param0, u8 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        CellActor_SetExplicitPriority(param0->unk_00[v0].unk_00, param1);
+        Sprite_SetExplicitPriority(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -285,7 +285,7 @@ void sub_02012A30(FontOAM *param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        CellActor_SetPriority(param0->unk_00[v0].unk_00, param1);
+        Sprite_SetPriority(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -296,7 +296,7 @@ void sub_02012A60(FontOAM *param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        CellActor_SetExplicitPalette(param0->unk_00[v0].unk_00, param1);
+        Sprite_SetExplicitPalette(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -307,7 +307,7 @@ void sub_02012A90(FontOAM *param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        CellActor_SetExplicitPaletteOffset(param0->unk_00[v0].unk_00, param1);
+        Sprite_SetExplicitPaletteOffset(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -318,7 +318,7 @@ void sub_02012AC0(FontOAM *param0, u32 param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        CellActor_SetExplicitPaletteOffsetAutoAdjust(param0->unk_00[v0].unk_00, param1);
+        Sprite_SetExplicitPaletteOffsetAutoAdjust(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -329,7 +329,7 @@ void sub_02012AF0(FontOAM *param0, GXOamMode param1)
     GF_ASSERT(param0);
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        CellActor_SetExplicitOAMMode(param0->unk_00[v0].unk_00, param1);
+        Sprite_SetExplicitOAMMode(param0->unk_00[v0].unk_00, param1);
     }
 }
 
@@ -393,10 +393,10 @@ void sub_02012BE0(FontOAM *param0, const UnkStruct_02012B20 *param1, const Windo
     int v0;
     char *v1;
     NNSG2dImageProxy *v2;
-    CellActor *v3 = param0->unk_00[0].unk_00;
+    Sprite *v3 = param0->unk_00[0].unk_00;
     int v4;
 
-    v4 = CellActor_GetVRamType(v3);
+    v4 = Sprite_GetVRamType(v3);
     v0 = sub_02012B58(param1, v4);
     v1 = (char *)Heap_AllocFromHeapAtEnd(param3, v0);
 
@@ -405,7 +405,7 @@ void sub_02012BE0(FontOAM *param0, const UnkStruct_02012B20 *param1, const Windo
     sub_02012F98(param2, v1, &param1->unk_00, v4, param3);
     DC_FlushRange(v1, v0);
 
-    v2 = SpriteActor_ImageProxy(v3);
+    v2 = Sprite_GetImageProxy(v3);
 
     if (v4 == NNS_G2D_VRAM_TYPE_2DMAIN) {
         GX_LoadOBJ(v1, NNS_G2dGetImageLocation(v2, NNS_G2D_VRAM_TYPE_2DMAIN), v0);
@@ -718,14 +718,14 @@ static void sub_020130DC(FontOAM *param0)
     int v0;
 
     for (v0 = 0; v0 < param0->unk_04; v0++) {
-        CellActor_Delete(param0->unk_00[v0].unk_00);
+        Sprite_Delete(param0->unk_00[v0].unk_00);
     }
 }
 
-static CellActor *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2)
+static Sprite *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2)
 {
-    CellActorInitParams v0;
-    CellActorResourceData v1;
+    SpriteListTemplate v0;
+    SpriteResourcesHeader v1;
 
     v1.imageProxy = param2;
     v1.charData = NULL;
@@ -737,7 +737,7 @@ static CellActor *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct
     v1.isVRamTransfer = 0;
     v1.priority = param0->unk_20;
 
-    v0.collection = param0->unk_08;
+    v0.list = param0->unk_08;
     v0.resourceData = &v1;
     v0.priority = param0->unk_24;
     v0.vramType = param0->unk_28;
@@ -749,14 +749,14 @@ static CellActor *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct
     if (param0->unk_10) {
         const VecFx32 *v2;
 
-        v2 = CellActor_GetPosition(param0->unk_10);
+        v2 = Sprite_GetPosition(param0->unk_10);
         v0.position = *v2;
     }
 
     v0.position.x += (param0->unk_18 << FX32_SHIFT) + ((param1->unk_00 * 8) << FX32_SHIFT);
     v0.position.y += (param0->unk_1C << FX32_SHIFT) + ((param1->unk_04 * 8) << FX32_SHIFT);
 
-    return CellActorCollection_Add(&v0);
+    return SpriteList_Add(&v0);
 }
 
 static UnkStruct_02013034 *sub_02013188(int param0)
@@ -800,7 +800,7 @@ static void sub_020131D0(UnkStruct_02013034 *param0, UnkStruct_02013034 *param1)
     param1->unk_0C = param0;
 }
 
-void sub_020131E0(FontOAM *param0, const CellActor *param1)
+void sub_020131E0(FontOAM *param0, const Sprite *param1)
 {
     param0->unk_08 = param1;
     sub_02012938(param0);

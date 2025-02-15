@@ -115,7 +115,7 @@ _0183:
     CallIfEq 0x8005, 8, _01E9
     CallIfEq 0x8005, 9, _01FD
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 1
+    RemoveObject 1
     SetFlag 231
     SetFlag 0x1D6
     ReleaseAll

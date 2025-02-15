@@ -51,7 +51,7 @@ _0085:
     Return
 
 _0097:
-    ScrCmd_0A1
+    ReturnToField
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer

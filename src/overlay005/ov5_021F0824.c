@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02029894_decl.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021E15F4.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay023/ov23_02241F74.h"
 
@@ -54,7 +54,7 @@ void ov5_021F0824(FieldSystem *fieldSystem)
             v9.z += (v8 * FX32_ONE * 8);
             v10 = ov5_021EFAE8(fieldSystem->unk_30, v1);
 
-            ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, v10, &v9, NULL, fieldSystem->unk_50);
+            MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, v10, &v9, NULL, fieldSystem->unk_50);
         }
     }
 }

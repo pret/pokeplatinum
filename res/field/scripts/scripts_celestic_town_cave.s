@@ -117,7 +117,7 @@ _01C3:
     WaitTime 15, 0x800C
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 1
+    RemoveObject 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GetPlayerMapPos 0x8004, 0x8005
@@ -138,7 +138,7 @@ _01C3:
     CallIfEq 0x8004, 9, _0357
     CallIfEq 0x8004, 10, _036B
     CallIfEq 0x8004, 11, _037F
-    ScrCmd_065 0
+    RemoveObject 0
     Return
 
 _0285:
@@ -592,7 +592,7 @@ _075E:
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 9, _0788
     CallIfEq 0x8004, 10, _079C
-    ScrCmd_065 2
+    RemoveObject 2
     ReleaseAll
     End
 

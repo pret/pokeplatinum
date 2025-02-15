@@ -241,7 +241,7 @@ _03C1:
     ScrCmd_1F8
     ScrCmd_2C4 3
     CallIfEq 0x40B8, 2, _042A
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ScrCmd_313 1

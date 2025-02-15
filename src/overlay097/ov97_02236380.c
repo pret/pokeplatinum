@@ -10,9 +10,9 @@
 #include "overlay097/box_pokemon_gba.h"
 #include "overlay097/ov97_022392E4.h"
 
-#include "core_sys.h"
 #include "item.h"
 #include "pokemon.h"
+#include "system.h"
 
 typedef struct {
     u16 unk_00;
@@ -1566,7 +1566,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
     }
 
     if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_DEOXYS) {
-        switch (gCoreSys.gbaCartridgeVersion) {
+        switch (gSystem.gbaCartridgeVersion) {
         default:
         case RUBY:
         case SAPPHIRE:

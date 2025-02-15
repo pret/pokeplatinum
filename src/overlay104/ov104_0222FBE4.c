@@ -5,12 +5,9 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay063/ov63_0222BE18.h"
@@ -58,9 +55,9 @@
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "field_battle_data_transfer.h"
 #include "field_comm_manager.h"
@@ -76,18 +73,17 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
-#include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
-#include "unk_02017728.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
@@ -133,7 +129,7 @@ typedef struct {
     UnkStruct_ov104_0223EBD0 *unk_2C;
 } UnkStruct_ov104_02231148;
 
-void ov104_0223DC7C(int param0, BgConfig *param1, SpriteRenderer *param2, SpriteGfxHandler *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7);
+void ov104_0223DC7C(int param0, BgConfig *param1, SpriteSystem *param2, SpriteManager *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7);
 u16 ov104_0222FC8C(UnkStruct_ov104_0222E930 *param0, u16 param1);
 u16 *ov104_0222FC14(UnkStruct_ov104_0222E930 *param0, u16 param1);
 static BOOL ov104_0222FCA0(UnkStruct_ov104_0222E930 *param0);
@@ -1303,7 +1299,7 @@ static BOOL ov104_0223066C(UnkStruct_ov104_0222E930 *param0)
     const u8 *v2;
     s32 v3;
     u16 v4, v5, v6, v7, v8, v9;
-    CellActorData *v10;
+    ManagedSprite *v10;
 
     v3 = ov104_0222EA60(param0);
     v2 = param0->unk_1C;
@@ -1324,8 +1320,8 @@ static BOOL ov104_0223066C(UnkStruct_ov104_0222E930 *param0)
         v9 = (*((param0)->unk_1C++));
         v10 = ov104_0223D2FC(v1, v9, v4);
 
-        SpriteActor_SetSpritePositionXY(v10, v5, v6);
-        SpriteActor_EnableObject(v10, v7);
+        ManagedSprite_SetPositionXY(v10, v5, v6);
+        ManagedSprite_SetDrawFlag(v10, v7);
 
         ov104_0223D378(v1, v9, v8);
     }
@@ -1352,12 +1348,12 @@ static BOOL ov104_02230728(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
     u16 v2 = ov104_0222FC00(param0);
     u8 v3 = (*((param0)->unk_1C++));
-    CellActorData *v4;
+    ManagedSprite *v4;
 
     v4 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v4 != NULL);
-    SpriteActor_EnableObject(v4, v3);
+    ManagedSprite_SetDrawFlag(v4, v3);
 
     return 0;
 }
@@ -1367,19 +1363,19 @@ static BOOL ov104_02230760(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
     u16 v2 = ov104_0222FC00(param0);
-    CellActorData *v3;
+    ManagedSprite *v3;
 
     v3 = ov104_0223D370(v1, v2);
 
     GF_ASSERT(v3 != NULL);
-    sub_0200D7CC(v3->unk_00, 1);
+    Sprite_SetFlipMode2(v3->sprite, 1);
 
     return 0;
 }
 
 static BOOL ov104_02230790(UnkStruct_ov104_0222E930 *param0)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     UnkStruct_ov104_022320B4 *v1 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v2 = sub_0209B974(v1->unk_00);
     u16 v3 = ov104_0222FC00(param0);
@@ -1389,9 +1385,9 @@ static BOOL ov104_02230790(UnkStruct_ov104_0222E930 *param0)
     GF_ASSERT(v0 != NULL);
 
     if (v4 == 0) {
-        sub_0200D808(v0->unk_00, GX_OAM_MODE_NORMAL);
+        Sprite_SetExplicitOamMode2(v0->sprite, GX_OAM_MODE_NORMAL);
     } else {
-        sub_0200D808(v0->unk_00, GX_OAM_MODE_XLU);
+        Sprite_SetExplicitOamMode2(v0->sprite, GX_OAM_MODE_XLU);
     }
 
     return 0;
@@ -1401,12 +1397,12 @@ static BOOL ov104_022307D8(UnkStruct_ov104_0222E930 *param0)
 {
     u16 v0 = ov104_0222FC00(param0);
     u16 v1 = ov104_0222FC00(param0);
-    CellActorData *v2;
+    ManagedSprite *v2;
     UnkStruct_ov104_0223C4CC *v3 = sub_0209B974(param0->unk_00->unk_00);
 
     v2 = ov104_0223D370(v3, v0);
 
-    sub_0200D364(v2, v1);
+    ManagedSprite_SetAnim(v2, v1);
     ov104_0223D378(v3, v0, 1);
 
     return 0;
@@ -1433,12 +1429,12 @@ static BOOL ov104_02230830(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02230850(UnkStruct_ov104_0222E930 *param0)
 {
-    CellActorData *v0;
+    ManagedSprite *v0;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(param0->unk_00->unk_00);
 
     v0 = ov104_0223D370(v1, param0->unk_78[0]);
 
-    if ((ov104_0223D3A4(v1, param0->unk_78[0]) == 0) || (sub_0200D3B8(v0) == 0)) {
+    if ((ov104_0223D3A4(v1, param0->unk_78[0]) == 0) || (ManagedSprite_IsAnimated(v0) == 0)) {
         return 1;
     }
 
@@ -2009,7 +2005,7 @@ static BOOL ov104_02231068(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02231078(UnkStruct_ov104_0222E930 *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
@@ -2025,7 +2021,7 @@ static BOOL ov104_02231090(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_022310B0(UnkStruct_ov104_0222E930 *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
@@ -2396,13 +2392,13 @@ static BOOL ov104_02231720(UnkStruct_ov104_02231148 *param0)
             }
         }
 
-        sub_0200AAE0(40, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 1);
+        BrightnessController_StartTransition(40, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_MAIN_SCREEN);
         SysTask_Start(ov104_022313FC, param0, 0x1000);
 
         param0->unk_04++;
         break;
     case 2:
-        if (sub_0200AC1C(1) == 0) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
             break;
         }
 
@@ -2466,13 +2462,13 @@ static BOOL ov104_02231864(UnkStruct_ov104_02231148 *param0)
             }
         }
 
-        sub_0200AAE0(40, -16, 0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 1);
+        BrightnessController_StartTransition(40, -16, 0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_MAIN_SCREEN);
         SysTask_Start(ov104_022313FC, param0, 0x1000);
 
         param0->unk_04++;
         break;
     case 2:
-        if (sub_0200AC1C(1) == 0) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
             break;
         }
 

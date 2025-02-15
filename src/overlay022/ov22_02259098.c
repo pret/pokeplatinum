@@ -11,10 +11,10 @@
 #include "overlay022/struct_ov22_022596B0.h"
 #include "overlay022/struct_ov22_0225A0E4.h"
 
-#include "core_sys.h"
 #include "graphics.h"
 #include "heap.h"
 #include "pokemon.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_0200762C.h"
 
@@ -156,8 +156,8 @@ BOOL ov22_02259278(UnkStruct_020298D8 *param0, int *param1, int *param2, NNSG2dC
     v3 -= (v1 / 2);
     v4 -= (v2 / 2);
 
-    *param1 = gCoreSys.touchX - v3;
-    *param2 = gCoreSys.touchY - v4;
+    *param1 = gSystem.touchX - v3;
+    *param2 = gSystem.touchY - v4;
 
     v0 = ov22_02255420(param3, *param1, *param2, 0);
 

@@ -62,7 +62,7 @@ MapObject *sub_02061A74(const MapObjectManager *mapObjMan, int param1, int objEv
 void sub_02061AB4(MapObject *mapObj, int graphicsID);
 void sub_02061AD4(MapObject *mapObj, int param1);
 void MapObject_Delete(MapObject *mapObj);
-void sub_02061B28(MapObject *mapObj);
+void MapObject_SetFlagAndDeleteObject(MapObject *mapObj);
 void sub_02061B48(MapObject *mapObj);
 void MapObjectMan_DeleteAll(MapObjectManager *mapObjMan);
 void sub_02061BF0(MapObjectManager *mapObjMan);

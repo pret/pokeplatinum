@@ -58,16 +58,16 @@
 #include "overlay005/ov5_021EE7D4.h"
 #include "overlay005/ov5_021F0E84.h"
 #include "overlay005/ov5_021F6454.h"
-#include "overlay005/ov5_021F77A8.h"
 #include "overlay005/save_info_window.h"
+#include "overlay005/scrcmd_move_tutor.h"
 #include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 #include "overlay005/vs_seeker.h"
+#include "overlay006/npc_trade.h"
 #include "overlay006/ov6_0223E140.h"
 #include "overlay006/ov6_02242AF0.h"
 #include "overlay006/ov6_02243004.h"
 #include "overlay006/ov6_02243258.h"
-#include "overlay006/ov6_02246184.h"
 #include "overlay006/ov6_02246C24.h"
 #include "overlay006/ov6_02246F00.h"
 #include "overlay006/ov6_02247078.h"
@@ -75,7 +75,6 @@
 #include "overlay006/ov6_02247D30.h"
 #include "overlay006/ov6_02247F5C.h"
 #include "overlay006/ov6_02248948.h"
-#include "overlay006/struct_ov6_02246204_decl.h"
 #include "overlay006/swarm.h"
 #include "overlay006/trophy_garden_daily_encounters.h"
 #include "overlay007/communication_club.h"
@@ -94,7 +93,6 @@
 #include "camera.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "encounter.h"
 #include "field_comm_manager.h"
 #include "field_map_change.h"
@@ -129,6 +127,7 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "scrcmd_dummy_23F_242.h"
 #include "scrcmd_system_flags.h"
 #include "script_manager.h"
 #include "special_encounter.h"
@@ -136,6 +135,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "system_data.h"
 #include "system_flags.h"
 #include "text.h"
@@ -180,7 +180,6 @@
 #include "unk_0204E75C.h"
 #include "unk_0204E974.h"
 #include "unk_0204EDA4.h"
-#include "unk_0204F02C.h"
 #include "unk_0204F04C.h"
 #include "unk_0204F13C.h"
 #include "unk_0204FAB4.h"
@@ -337,7 +336,7 @@ static BOOL ScrCmd_ReleaseAll(ScriptContext *ctx);
 static BOOL ScrCmd_062(ScriptContext *ctx);
 static BOOL ScrCmd_063(ScriptContext *ctx);
 static BOOL ScrCmd_064(ScriptContext *ctx);
-static BOOL ScrCmd_065(ScriptContext *ctx);
+static BOOL ScrCmd_RemoveObject(ScriptContext *ctx);
 static BOOL ScrCmd_066(ScriptContext *ctx);
 static BOOL ScrCmd_067(ScriptContext *ctx);
 static BOOL ScrCmd_308(ScriptContext *ctx);
@@ -360,7 +359,7 @@ static BOOL ScrCmd_09C(ScriptContext *ctx);
 static BOOL ScrCmd_09D(ScriptContext *ctx);
 static BOOL ScrCmd_09E(ScriptContext *ctx);
 static BOOL ScrCmd_09F(ScriptContext *ctx);
-static BOOL ScrCmd_0A1(ScriptContext *ctx);
+static BOOL ScrCmd_ReturnToField(ScriptContext *ctx);
 static BOOL ScrCmd_1F8(ScriptContext *ctx);
 static BOOL ScrCmd_0A2(ScriptContext *ctx);
 static BOOL ScrCmd_0A3(ScriptContext *ctx);
@@ -394,8 +393,8 @@ static BOOL ScrCmd_0B1(ScriptContext *ctx);
 static BOOL ScrCmd_336(ScriptContext *ctx);
 static BOOL ScrCmd_0B2(ScriptContext *ctx);
 static BOOL ScrCmd_0B3(ScriptContext *ctx);
-static BOOL ScrCmd_0B4(ScriptContext *ctx);
-static BOOL ScrCmd_0B5(ScriptContext *ctx);
+static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx);
+static BOOL ScrCmd_SaveChosenStarter(ScriptContext *ctx);
 static BOOL ScrCmd_0BA(ScriptContext *ctx);
 static BOOL ScrCmd_0BB(ScriptContext *ctx);
 static BOOL ScrCmd_271(ScriptContext *ctx);
@@ -418,7 +417,7 @@ static BOOL ScrCmd_0C9(ScriptContext *ctx);
 static BOOL ScrCmd_GetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx);
-static BOOL ScrCmd_0DE(ScriptContext *ctx);
+static BOOL ScrCmd_GetPlayerStarterSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_GetSwarmMapAndSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_0E6(ScriptContext *ctx);
 static BOOL ScrCmd_0F2(ScriptContext *ctx);
@@ -601,11 +600,11 @@ static BOOL ScrCmd_219(ScriptContext *ctx);
 static BOOL ScrCmd_21A(ScriptContext *ctx);
 static BOOL ScrCmd_EnableSwarms(ScriptContext *ctx);
 static BOOL ScrCmd_21C(ScriptContext *ctx);
-static BOOL ScrCmd_226(ScriptContext *ctx);
-static BOOL ScrCmd_227(ScriptContext *ctx);
-static BOOL ScrCmd_228(ScriptContext *ctx);
+static BOOL ScrCmd_StartNpcTrade(ScriptContext *ctx);
+static BOOL ScrCmd_GetNpcTradeSpecies(ScriptContext *ctx);
+static BOOL ScrCmd_GetNpcTradeRequestedSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_229(ScriptContext *ctx);
-static BOOL ScrCmd_22A(ScriptContext *ctx);
+static BOOL ScrCmd_FinishNpcTrade(ScriptContext *ctx);
 static BOOL ScrCmd_22B(ScriptContext *ctx);
 static BOOL ScrCmd_22C(ScriptContext *ctx);
 static BOOL ScrCmd_22D(ScriptContext *ctx);
@@ -864,7 +863,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_062,
     ScrCmd_063,
     ScrCmd_064,
-    ScrCmd_065,
+    ScrCmd_RemoveObject,
     ScrCmd_066,
     ScrCmd_067,
     ScrCmd_FacePlayer,
@@ -913,8 +912,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_093,
     ScrCmd_094,
     ScrCmd_095,
-    ScrCmd_096,
-    ScrCmd_097,
+    ScrCmd_GivePokemon,
+    ScrCmd_GiveEgg,
     ScrCmd_098,
     ScrCmd_099,
     ScrCmd_09A,
@@ -924,7 +923,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_09E,
     ScrCmd_09F,
     ScrCmd_0A0,
-    ScrCmd_0A1,
+    ScrCmd_ReturnToField,
     ScrCmd_0A2,
     ScrCmd_0A3,
     ScrCmd_0A4,
@@ -943,8 +942,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0B1,
     ScrCmd_0B2,
     ScrCmd_0B3,
-    ScrCmd_0B4,
-    ScrCmd_0B5,
+    ScrCmd_StartChooseStarterScene,
+    ScrCmd_SaveChosenStarter,
     ScrCmd_0B6,
     ScrCmd_0B7,
     ScrCmd_0B8,
@@ -983,9 +982,9 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0D9,
     ScrCmd_BufferSpeciesNameFromVar,
     ScrCmd_0DB,
-    ScrCmd_0DC,
+    ScrCmd_BufferRivalStarterSpeciesName,
     ScrCmd_0DD,
-    ScrCmd_0DE,
+    ScrCmd_GetPlayerStarterSpecies,
     ScrCmd_BufferUndergroundGoodsName,
     ScrCmd_BufferUndergroundTrapName,
     ScrCmd_BufferUndergroundItemName,
@@ -1313,11 +1312,11 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_223,
     ScrCmd_224,
     ScrCmd_225,
-    ScrCmd_226,
-    ScrCmd_227,
-    ScrCmd_228,
+    ScrCmd_StartNpcTrade,
+    ScrCmd_GetNpcTradeSpecies,
+    ScrCmd_GetNpcTradeRequestedSpecies,
     ScrCmd_229,
-    ScrCmd_22A,
+    ScrCmd_FinishNpcTrade,
     ScrCmd_22B,
     ScrCmd_22C,
     ScrCmd_22D,
@@ -1338,10 +1337,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_23C,
     ScrCmd_23D,
     ScrCmd_23E,
-    ScrCmd_23F,
-    ScrCmd_240,
-    ScrCmd_241,
-    ScrCmd_242,
+    ScrCmd_Dummy23F,
+    ScrCmd_Dummy240,
+    ScrCmd_Dummy241,
+    ScrCmd_Dummy242,
     ScrCmd_243,
     ScrCmd_244,
     ScrCmd_245,
@@ -1504,15 +1503,15 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2E2,
     ScrCmd_2E3,
     ScrCmd_2E4,
-    ScrCmd_2E5,
-    ScrCmd_2E6,
+    ScrCmd_CheckHasLearnableTutorMoves,
+    ScrCmd_ShowMoveTutorMoveSelectionMenu,
     ScrCmd_2E7,
     ScrCmd_2E8,
-    ScrCmd_2E9,
-    ScrCmd_2EA,
-    ScrCmd_2EB,
-    ScrCmd_2EC,
-    ScrCmd_2ED,
+    ScrCmd_ResetMoveSlot,
+    ScrCmd_CheckCanAffordMove,
+    ScrCmd_PayShardsCost,
+    ScrCmd_ShowShardsCost,
+    ScrCmd_CloseShardCostWindow,
     ScrCmd_JudgeStats,
     ScrCmd_2EF,
     ScrCmd_2F0,
@@ -1586,7 +1585,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_334,
     ScrCmd_335,
     ScrCmd_336,
-    ScrCmd_HasSeenSpecies,
+    ScrCmd_CheckHasSeenSpecies,
     ScrCmd_338,
     ScrCmd_339,
     ScrCmd_33A,
@@ -2280,7 +2279,7 @@ static BOOL ScrCmd_WaitABPress(ScriptContext *ctx)
 static BOOL ScriptContext_CheckABPress(ScriptContext *ctx)
 {
     // this doesn't match using == TRUE or leaving off a comparison entirely
-    return (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) != FALSE;
+    return (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) != FALSE;
 }
 
 static BOOL ScrCmd_WaitABPressTime(ScriptContext *ctx)
@@ -2292,7 +2291,7 @@ static BOOL ScrCmd_WaitABPressTime(ScriptContext *ctx)
 
 static BOOL ScriptContext_DecrementABPressTimer(ScriptContext *ctx)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return TRUE;
     }
 
@@ -2309,19 +2308,19 @@ static BOOL ScrCmd_WaitABXPadPress(ScriptContext *ctx)
 
 static BOOL ScriptContext_CheckABXPadPress(ScriptContext *ctx)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return TRUE;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_NORTH);
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_SOUTH);
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_WEST);
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         Player_SetDir(ctx->fieldSystem->playerAvatar, DIR_EAST);
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_X) {
         sub_0203F0C0(ctx->fieldSystem);
     } else {
         return FALSE;
@@ -2339,10 +2338,10 @@ static BOOL ScrCmd_WaitABPadPress(ScriptContext *ctx)
 static BOOL ScriptContext_CheckABPadPress(ScriptContext *ctx)
 {
     // this function doesn't match simplified further, using == TRUE, or leaving off a comparison entirely
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return TRUE;
     }
-    return (gCoreSys.pressedKeys & PAD_KEY) != FALSE;
+    return (gSystem.pressedKeys & PAD_KEY) != FALSE;
 }
 
 static BOOL ScrCmd_OpenMessage(ScriptContext *ctx)
@@ -2569,13 +2568,13 @@ static BOOL sub_02040670(ScriptContext *ctx)
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         v4 = 0;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         v4 = 1;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         v4 = 2;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         v4 = 3;
     }
 
@@ -2586,7 +2585,7 @@ static BOOL sub_02040670(ScriptContext *ctx)
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+    if (gSystem.pressedKeys & PAD_BUTTON_X) {
         Text_RemovePrinter(*v1);
         *v2 = 1;
         return 1;
@@ -2611,18 +2610,18 @@ static BOOL sub_02040730(ScriptContext *ctx)
     u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
     int v2 = 0xffff;
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         *v1 = 0;
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         v2 = 0;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         v2 = 1;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         v2 = 2;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         v2 = 3;
     }
 
@@ -2632,7 +2631,7 @@ static BOOL sub_02040730(ScriptContext *ctx)
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+    if (gSystem.pressedKeys & PAD_BUTTON_X) {
         *v1 = 1;
         return 1;
     }
@@ -3278,7 +3277,7 @@ static BOOL ScrCmd_064(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_065(ScriptContext *ctx)
+static BOOL ScrCmd_RemoveObject(ScriptContext *ctx)
 {
     MapObject *mapObj;
     FieldSystem *fieldSystem = ctx->fieldSystem;
@@ -3288,10 +3287,10 @@ static BOOL ScrCmd_065(ScriptContext *ctx)
     if (mapObj == NULL) {
         GF_ASSERT(FALSE);
     } else {
-        sub_02061B28(mapObj);
+        MapObject_SetFlagAndDeleteObject(mapObj);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_066(ScriptContext *ctx)
@@ -3534,7 +3533,7 @@ static BOOL ScrCmd_191(ScriptContext *ctx)
     v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
     *v0 = sub_0203D3C0(32, ctx->fieldSystem);
 
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return 1;
 }
 
@@ -3545,7 +3544,7 @@ static BOOL ScrCmd_2A5(ScriptContext *ctx)
     v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
     *v0 = sub_0203D3E4(32, ctx->fieldSystem);
 
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return 1;
 }
 
@@ -3712,7 +3711,7 @@ static BOOL ScrCmd_194(ScriptContext *ctx)
     u16 v4 = ScriptContext_GetVar(ctx);
 
     *v0 = sub_0203D578(32, ctx->fieldSystem, v3, v2, v4, v1);
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -3754,7 +3753,7 @@ static BOOL ScrCmd_196(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
 
     *v0 = sub_0203D5C8(32, ctx->fieldSystem, v1);
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -3784,7 +3783,7 @@ static BOOL ScrCmd_2E7(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
 
     *v0 = sub_0203E63C(32, ctx->fieldSystem, v1, v2);
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -3908,21 +3907,21 @@ static BOOL sub_02041D3C(ScriptContext *ctx)
     return 1;
 }
 
-BOOL sub_02041D60(ScriptContext *ctx)
+BOOL ScriptContext_WaitForApplicationExit(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_0A1(ScriptContext *ctx)
+static BOOL ScrCmd_ReturnToField(ScriptContext *ctx)
 {
     FieldTransition_StartMap(ctx->fieldSystem->task);
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_1F8(ScriptContext *ctx)
@@ -4216,7 +4215,7 @@ static BOOL ScrCmd_130(ScriptContext *ctx)
 static BOOL ScrCmd_205(ScriptContext *ctx)
 {
     sub_0203E224(ctx->fieldSystem);
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -4224,7 +4223,7 @@ static BOOL ScrCmd_205(ScriptContext *ctx)
 static BOOL ScrCmd_310(ScriptContext *ctx)
 {
     sub_0203E704(ctx->fieldSystem);
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -4322,7 +4321,7 @@ static BOOL ScrCmd_0AC(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     sub_0203DDFC(fieldSystem);
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -4391,7 +4390,7 @@ static BOOL ScrCmd_0B2(ScriptContext *ctx)
     if (sub_02039074(ctx->fieldSystem->saveData)) {
         *v1 = 1;
         sub_0203E0FC(ctx->fieldSystem, v0);
-        ScriptContext_Pause(ctx, sub_02041D60);
+        ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     } else {
         *v1 = 0;
     }
@@ -4407,34 +4406,34 @@ static BOOL ScrCmd_0B3(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_0B4(ScriptContext *ctx)
+static BOOL ScrCmd_StartChooseStarterScene(ScriptContext *ctx)
 {
-    ChooseStarterData *v0;
-    void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    ChooseStarterData *chooseStarterData;
+    void **fieldSysDataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    *v1 = Heap_AllocFromHeap(11, sizeof(ChooseStarterData));
-    v0 = *v1;
+    *fieldSysDataPtr = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ChooseStarterData));
+    chooseStarterData = *fieldSysDataPtr;
 
-    v0->options = SaveData_Options(ctx->fieldSystem->saveData);
+    chooseStarterData->options = SaveData_Options(ctx->fieldSystem->saveData);
 
-    sub_0203E0C0(ctx->fieldSystem, *v1);
-    ScriptContext_Pause(ctx, sub_02041D60);
+    FieldSystem_LaunchChooseStarterApp(ctx->fieldSystem, *fieldSysDataPtr);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_0B5(ScriptContext *ctx)
+static BOOL ScrCmd_SaveChosenStarter(ScriptContext *ctx)
 {
-    ChooseStarterData *v0;
-    void **v1 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    ChooseStarterData *chooseStarterData;
+    void **fieldSysDataPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
 
-    v0 = (*v1);
+    chooseStarterData = (*fieldSysDataPtr);
 
-    sub_0206B044(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), v0->species);
+    VarsFlags_SetPlayerStarterSpecies(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), chooseStarterData->species);
 
-    Heap_FreeToHeap(*v1);
+    Heap_FreeToHeap(*fieldSysDataPtr);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_178(ScriptContext *ctx)
@@ -4452,7 +4451,7 @@ static BOOL ScrCmd_178(ScriptContext *ctx)
     GF_ASSERT(*v0 == 0);
 
     *v0 = sub_0203D264(ctx->fieldSystem, v1);
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -4809,12 +4808,12 @@ static BOOL ScrCmd_GetSwarmMapAndSpecies(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_0DE(ScriptContext *ctx)
+static BOOL ScrCmd_GetPlayerStarterSpecies(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *species = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_0206B054(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
-    return 0;
+    *species = VarsFlags_GetPlayerStarterSpecies(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
 static BOOL ScrCmd_0E6(ScriptContext *ctx)
@@ -5124,7 +5123,7 @@ static BOOL ScrCmd_12A(ScriptContext *ctx)
 static BOOL ScrCmd_12B(ScriptContext *ctx)
 {
     sub_0203E0D0(ctx->fieldSystem);
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return 1;
 }
 
@@ -5460,7 +5459,7 @@ static BOOL sub_02043A4C(ScriptContext *ctx)
     u16 *v0 = FieldSystem_GetVarPointer(ctx->fieldSystem, ctx->data[0]);
     u32 v1 = sub_0205B91C(ctx->fieldSystem->unk_7C);
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         v1 = sub_0205B9EC(ctx->fieldSystem->unk_7C, 8);
 
         if (v1) {
@@ -6516,48 +6515,41 @@ static BOOL ScrCmd_21C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_226(ScriptContext *ctx)
+static BOOL ScrCmd_StartNpcTrade(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    u8 v1 = ScriptContext_ReadByte(ctx);
-
-    *v0 = ov6_02246184(11, v1);
-    return 0;
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    *data = NpcTrade_Init(HEAP_ID_FIELDMAP, ScriptContext_ReadByte(ctx));
+    return FALSE;
 }
 
-static BOOL ScrCmd_227(ScriptContext *ctx)
+static BOOL ScrCmd_GetNpcTradeSpecies(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-
-    *v1 = ov6_02246224((UnkStruct_ov6_02246204 *)*v0);
-    return 0;
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = NpcTrade_GetSpecies((NpcTradeData *)*data);
+    return FALSE;
 }
 
-static BOOL ScrCmd_228(ScriptContext *ctx)
+static BOOL ScrCmd_GetNpcTradeRequestedSpecies(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-
-    *v1 = ov6_0224622C((UnkStruct_ov6_02246204 *)*v0);
-    return 0;
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = NpcTrade_GetRequestedSpecies((NpcTradeData *)*data);
+    return FALSE;
 }
 
 static BOOL ScrCmd_229(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-    u16 v1 = ScriptContext_GetVar(ctx);
-
-    sub_0206C740(ctx->task, (UnkStruct_ov6_02246204 *)*v0, v1, 11);
-    return 1;
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    sub_0206C740(ctx->task, (NpcTradeData *)*data, ScriptContext_GetVar(ctx), HEAP_ID_FIELDMAP);
+    return TRUE;
 }
 
-static BOOL ScrCmd_22A(ScriptContext *ctx)
+static BOOL ScrCmd_FinishNpcTrade(ScriptContext *ctx)
 {
-    void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
-
-    ov6_02246204((UnkStruct_ov6_02246204 *)*v0);
-    return 0;
+    void **data = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_DATA_PTR);
+    NpcTrade_Free((NpcTradeData *)*data);
+    return FALSE;
 }
 
 static BOOL ScrCmd_22B(ScriptContext *ctx)
@@ -6769,7 +6761,7 @@ static void sub_020451B4(FieldSystem *fieldSystem, u16 param1)
     Pokemon *v1 = Pokemon_New(32);
 
     Pokemon_Init(v1);
-    Pokemon_InitWith(v1, param1, 50, 32, FALSE, 0, OTID_NOT_SET, 0);
+    Pokemon_InitWith(v1, param1, 50, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
     Pokedex_Encounter(v0, v1);
     Heap_FreeToHeap(v1);
 
@@ -7062,7 +7054,7 @@ static BOOL ScrCmd_GetGBACartridgeVersion(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *destVar = gCoreSys.gbaCartridgeVersion;
+    *destVar = gSystem.gbaCartridgeVersion;
     return TRUE;
 }
 
@@ -7471,7 +7463,7 @@ static BOOL ScrCmd_290(ScriptContext *ctx)
     v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
     *v0 = sub_0203D410(32, ctx->fieldSystem, v1);
 
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return 1;
 }
 
@@ -7902,7 +7894,7 @@ BOOL ScrCmd_2E2(ScriptContext *ctx)
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
 
     *v0 = sub_0203E608(ctx->fieldSystem, 32);
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }
@@ -8058,7 +8050,7 @@ static BOOL ScrCmd_2F6(ScriptContext *ctx)
     if (sub_02039074(ctx->fieldSystem->saveData)) {
         *v2 = 1;
         sub_0203E6C0(ctx->fieldSystem, v1, v0);
-        ScriptContext_Pause(ctx, sub_02041D60);
+        ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     } else {
         *v2 = 0;
     }
@@ -8090,11 +8082,11 @@ static BOOL ScrCmd_2FC(ScriptContext *ctx)
 
     *v0 = 0;
 
-    if (gCoreSys.heldKeys & PAD_BUTTON_A) {
+    if (gSystem.heldKeys & PAD_BUTTON_A) {
         *v0 = 1;
     }
 
-    if (gCoreSys.heldKeys & PAD_BUTTON_B) {
+    if (gSystem.heldKeys & PAD_BUTTON_B) {
         *v0 = 1;
     }
 
@@ -8271,7 +8263,7 @@ static BOOL ScrCmd_313(ScriptContext *ctx)
 static BOOL ScrCmd_320(ScriptContext *ctx)
 {
     sub_0203E714(ctx->fieldSystem);
-    ScriptContext_Pause(ctx, sub_02041D60);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;
 }

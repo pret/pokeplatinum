@@ -23,7 +23,7 @@ BOOL ScrCmd_0D8(ScriptContext *param0);
 BOOL ScrCmd_0D9(ScriptContext *param0);
 BOOL ScrCmd_BufferSpeciesNameFromVar(ScriptContext *ctx);
 BOOL ScrCmd_0DB(ScriptContext *param0);
-BOOL ScrCmd_0DC(ScriptContext *param0);
+BOOL ScrCmd_BufferRivalStarterSpeciesName(ScriptContext *ctx);
 BOOL ScrCmd_0DD(ScriptContext *param0);
 BOOL ScrCmd_BufferUndergroundGoodsName(ScriptContext *ctx);
 BOOL ScrCmd_BufferUndergroundTrapName(ScriptContext *ctx);

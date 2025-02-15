@@ -1,0 +1,6 @@
+; x86_64-w64-mingw32-gcc -m32 -shared -s -o lmgr8c.dll lmgr8c.def lmgr8c.c
+LIBRARY   LMGR8C
+EXPORTS
+   lp_checkout   @190
+   lp_checkin   @189
+   lp_errstring   @191

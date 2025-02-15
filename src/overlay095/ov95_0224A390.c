@@ -14,17 +14,17 @@
 #include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "enums.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "math.h"
+#include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
 
@@ -84,7 +84,7 @@ typedef struct {
     int unk_08;
     BOOL unk_0C;
     UnkStruct_ov95_02247568 unk_10;
-    CellActor *unk_20[1];
+    Sprite *unk_20[1];
     BgConfig *unk_24;
     UnkStruct_ov95_0224773C *unk_28;
     UnkStruct_ov95_02247958 *unk_2C;
@@ -126,7 +126,7 @@ void *ov95_0224A390(UnkStruct_ov95_02247628 *param0)
         v0->unk_0C = 0;
 
         ov95_0224A848(&(v0->unk_34));
-        SetMainCallback(ov95_0224AB50, v0);
+        SetVBlankCallback(ov95_0224AB50, v0);
     }
 
     return v0;
@@ -139,7 +139,7 @@ void ov95_0224A3CC(void *param0)
     if (v0) {
         int v1;
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
 
         ov95_0224A678(v0);
         ov95_0224A7A0(v0);
@@ -187,13 +187,13 @@ static int ov95_0224A464(UnkStruct_ov95_0224A42C *param0, int *param1)
     switch (*param1) {
     case 0:
         if (IsScreenTransitionDone()) {
-            CellActor_SetAnim(param0->unk_20[0], 3);
-            CellActor_SetDrawFlag(param0->unk_20[0], 1);
+            Sprite_SetAnim(param0->unk_20[0], 3);
+            Sprite_SetDrawFlag(param0->unk_20[0], 1);
             (*param1)++;
         }
         break;
     case 1:
-        if (CellActor_IsAnimated(param0->unk_20[0]) == 0) {
+        if (Sprite_IsAnimated(param0->unk_20[0]) == 0) {
             Sound_PlayEffect(1707);
             ov95_0224A864(param0, &(param0->unk_34));
             ov95_022479A8(param0->unk_2C, 1);
@@ -380,7 +380,7 @@ static void ov95_0224A7B0(UnkStruct_ov95_0224A42C *param0)
 {
     NNSG2dImagePaletteProxy v0;
     NNSG2dImageProxy v1;
-    CellActorResourceData v2;
+    SpriteResourcesHeader v2;
     int v3;
 
     ov95_02247568(&param0->unk_10, 93, 7, 8);
@@ -393,7 +393,7 @@ static void ov95_0224A7B0(UnkStruct_ov95_0224A42C *param0)
 
     ov95_022475C4(&v2, &param0->unk_10, &v1, &v0, 1);
     param0->unk_20[0] = ov95_022475E4(param0->unk_00, &v2, 128, 96, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
-    CellActor_SetDrawFlag(param0->unk_20[0], 0);
+    Sprite_SetDrawFlag(param0->unk_20[0], 0);
 }
 
 static void ov95_0224A830(UnkStruct_ov95_0224A42C *param0)
@@ -402,7 +402,7 @@ static void ov95_0224A830(UnkStruct_ov95_0224A42C *param0)
 
     for (v0 = 0; v0 < 1; v0++) {
         if (param0->unk_20[v0]) {
-            CellActor_Delete(param0->unk_20[v0]);
+            Sprite_Delete(param0->unk_20[v0]);
         }
     }
 

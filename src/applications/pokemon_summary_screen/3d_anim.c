@@ -8,7 +8,7 @@
 #include "struct_defs/archived_sprite.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "applications/pokemon_summary_screen/sprite.h"
+#include "applications/pokemon_summary_screen/sprites.h"
 #include "overlay115/camera_angle.h"
 
 #include "camera.h"

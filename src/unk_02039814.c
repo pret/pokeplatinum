@@ -3,10 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
+#include "brightness_controller.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -14,10 +16,9 @@
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 
 void sub_02039834(int param0, int param1, int param2);
 
@@ -115,7 +116,7 @@ void sub_02039834(int param0, int param1, int param2)
     OS_SetIrqFunction(OS_IE_V_BLANK, sub_02039814);
     (void)OS_EnableIrqMask(OS_IE_V_BLANK);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -124,7 +125,7 @@ void sub_02039834(int param0, int param1, int param2)
     GXS_SetVisiblePlane(0);
 
     SetAutorepeat(4, 8);
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
     G2_BlendNone();
@@ -164,7 +165,7 @@ void sub_02039834(int param0, int param1, int param2)
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);
     sub_0200F338(1);
-    sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+    BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
 
     Window_Remove(&v1);
     MessageLoader_Free(v2);

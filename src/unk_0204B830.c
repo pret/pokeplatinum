@@ -155,7 +155,7 @@ static BOOL sub_0204BA50(FieldSystem *fieldSystem, void *param1)
 
 static void sub_0204BA68(FieldSystem *fieldSystem, void *param1)
 {
-    sub_02054930(HEAP_ID_FIELD_TASK, fieldSystem->saveData, 490, 1, 2, 1);
+    sub_02054930(HEAP_ID_FIELD_TASK, fieldSystem->saveData, SPECIES_MANAPHY, 1, 2, 1);
 }
 
 static void sub_0204BA88(UnkStruct_0204B830 *param0, u16 *param1, u16 *param2)
@@ -285,7 +285,7 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
         Strbuf_Free(v15);
     }
 
-    sub_0209304C(v4, v1, 4, sub_02017070(2, v12), 32);
+    sub_0209304C(v4, v1, 4, SpecialMetLoc_GetId(2, v12), 32);
 
     if (Pokemon_GetValue(v4, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {

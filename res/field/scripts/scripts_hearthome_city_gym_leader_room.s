@@ -17,8 +17,8 @@ _001A:
 
 _0027:
     SetFlag 0x29C
-    ScrCmd_065 2
-    ScrCmd_065 1
+    RemoveObject 2
+    RemoveObject 1
     ClearFlag 142
     End
 

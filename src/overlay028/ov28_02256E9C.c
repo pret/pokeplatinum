@@ -1,8 +1,6 @@
 #include "overlay028/ov28_02256E9C.h"
 
-#include <nitro.h>
-#include <nitro/cp.h>
-#include <string.h>
+#include "constants/heap.h"
 
 #include "overlay028/struct_ov28_02256E9C_decl.h"
 

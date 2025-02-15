@@ -38,14 +38,14 @@
 #include "message.h"
 #include "palette.h"
 #include "pokedex.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02017728.h"
 #include "unk_02023FCC.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
@@ -306,7 +306,7 @@ static BOOL ov62_02237F08(UnkStruct_0208C06C *param0)
         ov62_02234540(param0, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        SetMainCallback(ov62_022394D8, param0);
+        SetVBlankCallback(ov62_022394D8, param0);
         param0->unk_08++;
         break;
     case 1:
@@ -478,7 +478,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
 
             Heap_FreeToHeap(v0);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
-            SetMainCallback(ov62_0222F8E4, param0);
+            SetVBlankCallback(ov62_0222F8E4, param0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
@@ -567,7 +567,7 @@ static BOOL ov62_022383E4(UnkStruct_0208C06C *param0)
 
             Heap_FreeToHeap(v0);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
-            SetMainCallback(ov62_0222F8E4, param0);
+            SetVBlankCallback(ov62_0222F8E4, param0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
@@ -817,7 +817,7 @@ static BOOL ov62_0223896C(UnkStruct_0208C06C *param0)
 
             Heap_FreeToHeap(v0);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay22));
-            SetMainCallback(ov62_0222F8E4, param0);
+            SetVBlankCallback(ov62_0222F8E4, param0);
         } else {
             PaletteData_BlendMulti(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
             PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
@@ -920,7 +920,7 @@ static BOOL ov62_02238D04(UnkStruct_0208C06C *param0)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
-        SetMainCallback(ov62_022394D8, param0);
+        SetVBlankCallback(ov62_022394D8, param0);
         param0->unk_08++;
         break;
     case 1:
@@ -1303,13 +1303,13 @@ static void ov62_0223958C(UnkStruct_0208C06C *param0, int param1)
     UnkStruct_ov62_02237D24 *v0 = param0->unk_860;
 
     if (param1 == 0) {
-        SpriteActor_EnableObject(v0->unk_198[1].unk_08, 1);
+        ManagedSprite_SetDrawFlag(v0->unk_198[1].unk_08, 1);
         sub_020129D0(v0->unk_198[1].unk_0C, 1);
-        SpriteActor_SetSpritePositionXY(v0->unk_198[0].unk_08, 32, 232);
+        ManagedSprite_SetPositionXY(v0->unk_198[0].unk_08, 32, 232);
     } else {
-        SpriteActor_EnableObject(v0->unk_198[1].unk_08, 0);
+        ManagedSprite_SetDrawFlag(v0->unk_198[1].unk_08, 0);
         sub_020129D0(v0->unk_198[1].unk_0C, 0);
-        SpriteActor_SetSpritePositionXY(v0->unk_198[0].unk_08, 80, 232);
+        ManagedSprite_SetPositionXY(v0->unk_198[0].unk_08, 80, 232);
     }
 
     sub_020128C4(v0->unk_198[0].unk_0C, 36, -8);
@@ -1330,10 +1330,10 @@ static void ov62_02239608(UnkStruct_0208C06C *param0)
     ov62_0223124C(&v0->unk_198[0], &param0->unk_14, 3);
     ov62_0223124C(&v0->unk_198[1], &param0->unk_14, 53);
 
-    sub_0200D364(v0->unk_198[0].unk_08, 0);
-    sub_0200D364(v0->unk_198[1].unk_08, 4);
-    SpriteActor_SetSpritePositionXY(v0->unk_198[0].unk_08, 32, 232);
-    SpriteActor_SetSpritePositionXY(v0->unk_198[1].unk_08, 128, 232);
+    ManagedSprite_SetAnim(v0->unk_198[0].unk_08, 0);
+    ManagedSprite_SetAnim(v0->unk_198[1].unk_08, 4);
+    ManagedSprite_SetPositionXY(v0->unk_198[0].unk_08, 32, 232);
+    ManagedSprite_SetPositionXY(v0->unk_198[1].unk_08, 128, 232);
     sub_020128C4(v0->unk_198[0].unk_0C, 36, -8);
     sub_020128C4(v0->unk_198[1].unk_0C, 36, -8);
     sub_020129D0(v0->unk_198[0].unk_0C, 1);
@@ -1349,8 +1349,8 @@ static void ov62_022396E8(UnkStruct_0208C06C *param0)
     ov62_022312B0(&v0->unk_198[0]);
     ov62_022312B0(&v0->unk_198[1]);
 
-    sub_0200D0F4(v0->unk_198[0].unk_08);
-    sub_0200D0F4(v0->unk_198[1].unk_08);
+    Sprite_DeleteAndFreeResources(v0->unk_198[0].unk_08);
+    Sprite_DeleteAndFreeResources(v0->unk_198[1].unk_08);
 
     ov62_022313BC(param0);
 }

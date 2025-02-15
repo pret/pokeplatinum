@@ -50,8 +50,8 @@ _0086:
     ApplyMovement 2, _00C8
     ApplyMovement 3, _00D0
     WaitMovement
-    ScrCmd_065 2
-    ScrCmd_065 3
+    RemoveObject 2
+    RemoveObject 3
     CloseMessage
     ReleaseAll
     End
@@ -163,15 +163,15 @@ _0197:
     ApplyMovement 2, _00C8
     ApplyMovement 3, _00D0
     WaitMovement
-    ScrCmd_065 2
-    ScrCmd_065 3
+    RemoveObject 2
+    RemoveObject 3
     CallIfEq 0x8004, 8, _0282
     CallIfEq 0x8004, 9, _028E
     Message 6
     CloseMessage
     CallIfEq 0x8004, 8, _029A
     CallIfEq 0x8004, 9, _02AE
-    ScrCmd_065 4
+    RemoveObject 4
     SetFlag 0x28A
     SetVar 0x411F, 4
     ReleaseAll

@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/iron_island_b2f_left_room.h"
+#include "res/text/bank/special_met_location_names.h"
 
     .data
 
@@ -187,8 +188,8 @@ _01AA:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 5
-    ScrCmd_065 6
+    RemoveObject 5
+    RemoveObject 6
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GetPlayerMapPos 0x8004, 0x8005
@@ -261,7 +262,7 @@ _031C:
     PlaySound SEQ_FANFA4
     WaitSound
     Message 12
-    ScrCmd_097 0x1BF, 10
+    GiveEgg SPECIES_RIOLU, SPECIAL_METLOC_NAME_RILEY
     SetFlag 0x1E5
     ClearFlag 226
     Call _0371

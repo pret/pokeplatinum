@@ -120,7 +120,7 @@ _016A:
     GoTo _0182
 
 _0182:
-    ScrCmd_065 4
+    RemoveObject 4
     SetFlag 228
     SetVar 0x4091, 2
     ReleaseAll

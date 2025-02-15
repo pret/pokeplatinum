@@ -160,7 +160,7 @@ _00FF:
     CloseMessage
     ApplyMovement 5, _0414
     WaitMovement
-    ScrCmd_065 5
+    RemoveObject 5
     ApplyMovement 2, _0408
     WaitMovement
     BufferNumber 0, 0x404C
@@ -190,7 +190,7 @@ _00FF:
     CloseMessage
     ApplyMovement 4, _0414
     WaitMovement
-    ScrCmd_065 4
+    RemoveObject 4
     ApplyMovement 2, _0408
     WaitMovement
     CallIfEq 0x8006, 0, _03E1

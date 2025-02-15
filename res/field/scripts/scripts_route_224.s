@@ -201,7 +201,7 @@ _02B8:
     ApplyMovement 16, _0448
     WaitMovement
     SetFlag 0x25C
-    ScrCmd_065 16
+    RemoveObject 16
     ScrCmd_04C 0x1EC, 0
     ScrCmd_04D
     ApplyMovement 3, _03C0

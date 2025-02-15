@@ -74,11 +74,11 @@ _0014:
     ApplyMovement 15, _0210
     ApplyMovement 16, _021C
     WaitMovement
-    ScrCmd_065 14
-    ScrCmd_065 0
-    ScrCmd_065 4
-    ScrCmd_065 15
-    ScrCmd_065 16
+    RemoveObject 14
+    RemoveObject 0
+    RemoveObject 4
+    RemoveObject 15
+    RemoveObject 16
     SetVar 0x40AD, 1
     ReleaseAll
     End

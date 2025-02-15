@@ -7,15 +7,15 @@
 #include "overlay105/struct_ov105_02245AAC.h"
 #include "overlay105/struct_ov105_02245EA8_decl.h"
 
-#include "cell_actor.h"
 #include "heap.h"
+#include "sprite.h"
 
 struct UnkStruct_ov105_02245EA8_t {
     u16 unk_00;
     u16 unk_02;
     int unk_04;
     int unk_08;
-    CellActor *unk_0C;
+    Sprite *unk_0C;
 };
 
 UnkStruct_ov105_02245EA8 *ov105_02245E54(UnkStruct_ov105_02245AAC *param0, int param1, int param2, u32 param3);
@@ -47,14 +47,14 @@ UnkStruct_ov105_02245EA8 *ov105_02245E54(UnkStruct_ov105_02245AAC *param0, int p
     v0->unk_0C = ov105_02245BA4(param0, 0, 6, 0, 0, 0);
 
     ov105_02245F14(v0, param1, param2);
-    CellActor_SetExplicitPalette(v0->unk_0C, 1);
+    Sprite_SetExplicitPalette(v0->unk_0C, 1);
 
     return v0;
 }
 
 void *ov105_02245EA8(UnkStruct_ov105_02245EA8 *param0)
 {
-    CellActor_Delete(param0->unk_0C);
+    Sprite_Delete(param0->unk_0C);
     Heap_FreeToHeap(param0);
 
     return NULL;
@@ -62,7 +62,7 @@ void *ov105_02245EA8(UnkStruct_ov105_02245EA8 *param0)
 
 void ov105_02245EBC(UnkStruct_ov105_02245EA8 *param0, int param1)
 {
-    CellActor_SetDrawFlag(param0->unk_0C, param1);
+    Sprite_SetDrawFlag(param0->unk_0C, param1);
     return;
 }
 
@@ -70,12 +70,12 @@ VecFx32 ov105_02245EC8(UnkStruct_ov105_02245EA8 *param0, int param1, int param2)
 {
     VecFx32 v0;
 
-    v0 = *(CellActor_GetPosition(param0->unk_0C));
+    v0 = *(Sprite_GetPosition(param0->unk_0C));
     v0.x += (param1 * FX32_ONE);
     v0.y += (param2 * FX32_ONE);
 
-    CellActor_SetPosition(param0->unk_0C, &v0);
-    return *(CellActor_GetPosition(param0->unk_0C));
+    Sprite_SetPosition(param0->unk_0C, &v0);
+    return *(Sprite_GetPosition(param0->unk_0C));
 }
 
 void ov105_02245F14(UnkStruct_ov105_02245EA8 *param0, int param1, int param2)
@@ -85,13 +85,13 @@ void ov105_02245F14(UnkStruct_ov105_02245EA8 *param0, int param1, int param2)
     v0.x = (param1 * FX32_ONE);
     v0.y = (param2 * FX32_ONE);
 
-    CellActor_SetPosition(param0->unk_0C, &v0);
+    Sprite_SetPosition(param0->unk_0C, &v0);
     return;
 }
 
 const VecFx32 *ov105_02245F2C(UnkStruct_ov105_02245EA8 *param0)
 {
-    return CellActor_GetPosition(param0->unk_0C);
+    return Sprite_GetPosition(param0->unk_0C);
 }
 
 void ov105_02245F38(UnkStruct_ov105_02245EA8 *param0, u8 param1)
@@ -127,7 +127,7 @@ void ov105_02245F5C(UnkStruct_ov105_02245EA8 *param0)
     v0.x = ((v1->x / FX32_ONE) + 248) * FX32_ONE;
     v0.y = v1->y;
 
-    CellActor_SetPosition(param0->unk_0C, &v0);
+    Sprite_SetPosition(param0->unk_0C, &v0);
     return;
 }
 
@@ -143,14 +143,14 @@ int ov105_02245F8C(UnkStruct_ov105_02245EA8 *param0)
 
 void ov105_02245F90(UnkStruct_ov105_02245EA8 *param0, u32 param1)
 {
-    CellActor_SetAnimSpeed(param0->unk_0C, FX32_ONE);
-    CellActor_SetAnim(param0->unk_0C, param1);
+    Sprite_SetAnimSpeed(param0->unk_0C, FX32_ONE);
+    Sprite_SetAnim(param0->unk_0C, param1);
 
     return;
 }
 
 void ov105_02245FAC(UnkStruct_ov105_02245EA8 *param0, u32 param1)
 {
-    CellActor_SetExplicitPalette(param0->unk_0C, param1);
+    Sprite_SetExplicitPalette(param0->unk_0C, param1);
     return;
 }

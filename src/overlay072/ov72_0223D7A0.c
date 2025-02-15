@@ -19,9 +19,7 @@
 
 #include "assert.h"
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -38,11 +36,13 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
@@ -50,7 +50,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202C7FC.h"
 #include "vram_transfer.h"
@@ -85,8 +84,8 @@ static void ov72_0223E910(Window *param0, int param1, u32 param2, UnkStruct_ov72
 static void ov72_0223E914(UnkStruct_ov72_0223DB98 *param0);
 static void ov72_0223E930(UnkStruct_ov72_0223DB98 *param0, int param1);
 static int ov72_0223E99C(int param0);
-static void ov72_0223E388(CellActor **param0, int param1);
-static void ov72_0223E3A8(CellActor **param0, BOOL param1);
+static void ov72_0223E388(Sprite **param0, int param1);
+static void ov72_0223E3A8(Sprite **param0, BOOL param1);
 static int ov72_0223E528(UnkStruct_ov72_0223DB98 *param0, int param1);
 static void ov72_0223E430(BgConfig *param0, UnkStruct_02015920 *param1);
 static void ov72_0223E9B4(u8 *param0, u8 *param1);
@@ -114,7 +113,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
     case 0:
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -148,7 +147,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
 
         sub_0201E3D8();
         sub_0201E450(1);
-        SetMainCallback(ov72_0223DA48, v0->unk_00);
+        SetVBlankCallback(ov72_0223DA48, v0->unk_00);
         Font_InitManager(FONT_SUBSCREEN, 39);
 
         ov72_0223DB98(v0);
@@ -197,7 +196,7 @@ int ov72_0223D920(OverlayManager *param0, int *param1)
         break;
     }
 
-    CellActorCollection_Update(v0->unk_3C);
+    SpriteList_Update(v0->unk_3C);
 
     return 0;
 }
@@ -209,7 +208,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
 
     ov72_0223E9B4(v0->unk_5BFC, v0->unk_328.pixels);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SpriteTransfer_ResetCharTransfer(v0->unk_1DC[0][0]);
     SpriteTransfer_ResetCharTransfer(v0->unk_1DC[1][0]);
     SpriteTransfer_ResetPlttTransfer(v0->unk_1DC[0][1]);
@@ -219,7 +218,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
         SpriteResourceCollection_Delete(v0->unk_1CC[v1]);
     }
 
-    CellActorCollection_Delete(v0->unk_3C);
+    SpriteList_Delete(v0->unk_3C);
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
@@ -235,7 +234,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(39);
 
     return 1;
@@ -512,9 +511,9 @@ static void ov72_0223DF58(UnkStruct_ov72_0223DB98 *param0)
     SpriteResourcesHeader_Init(&param0->unk_220, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1CC[0], param0->unk_1CC[1], param0->unk_1CC[2], param0->unk_1CC[3], NULL, NULL);
 
     {
-        CellActorInitParamsEx v1;
+        AffineSpriteListTemplate v1;
 
-        v1.collection = param0->unk_3C;
+        v1.list = param0->unk_3C;
         v1.resourceData = &param0->unk_1FC;
         v1.position.z = 0;
         v1.affineScale.x = FX32_ONE;
@@ -530,14 +529,14 @@ static void ov72_0223DF58(UnkStruct_ov72_0223DB98 *param0)
             v1.position.x = FX32_ONE * (Unk_ov72_0223EB3C[v0][0]);
             v1.position.y = FX32_ONE * (Unk_ov72_0223EB3C[v0][1]);
 
-            param0->unk_2B4[v0] = CellActorCollection_AddEx(&v1);
+            param0->unk_2B4[v0] = SpriteList_AddAffine(&v1);
 
-            CellActor_SetAnimateFlag(param0->unk_2B4[v0], 1);
-            CellActor_SetAnim(param0->unk_2B4[v0], Unk_ov72_0223EB3C[v0][2]);
-            CellActor_SetExplicitPalette(param0->unk_2B4[v0], 0);
+            Sprite_SetAnimateFlag(param0->unk_2B4[v0], 1);
+            Sprite_SetAnim(param0->unk_2B4[v0], Unk_ov72_0223EB3C[v0][2]);
+            Sprite_SetExplicitPalette(param0->unk_2B4[v0], 0);
 
             if (v0 == 0) {
-                CellActor_SetExplicitPriority(param0->unk_2B4[v0], 2);
+                Sprite_SetExplicitPriority(param0->unk_2B4[v0], 2);
             }
         }
     }
@@ -687,25 +686,25 @@ static void ov72_0223E2A8(UnkStruct_ov72_0223DB98 *param0)
     }
 }
 
-static void ov72_0223E388(CellActor **param0, int param1)
+static void ov72_0223E388(Sprite **param0, int param1)
 {
     int v0;
 
     for (v0 = 0; v0 < 1; v0++) {
         if (v0 == param1) {
-            CellActor_SetAnim(param0[v0], Unk_ov72_0223EB3C[v0][2] + 1);
+            Sprite_SetAnim(param0[v0], Unk_ov72_0223EB3C[v0][2] + 1);
         } else {
-            CellActor_SetAnim(param0[v0], Unk_ov72_0223EB3C[v0][2]);
+            Sprite_SetAnim(param0[v0], Unk_ov72_0223EB3C[v0][2]);
         }
     }
 }
 
-static void ov72_0223E3A8(CellActor **param0, BOOL param1)
+static void ov72_0223E3A8(Sprite **param0, BOOL param1)
 {
     if (param1 == 1) {
-        CellActor_SetAnim(param0[0], Unk_ov72_0223EB3C[0][2] + 1);
+        Sprite_SetAnim(param0[0], Unk_ov72_0223EB3C[0][2] + 1);
     } else {
-        CellActor_SetAnim(param0[0], Unk_ov72_0223EB3C[0][2]);
+        Sprite_SetAnim(param0[0], Unk_ov72_0223EB3C[0][2]);
     }
 }
 
@@ -1166,21 +1165,21 @@ static void ov72_0223EA18(UnkStruct_ov72_0223DB98 *param0)
 
     v0 = 0;
 
-    if ((gCoreSys.touchX != 0xffff) && (gCoreSys.touchY != 0xffff) && (param0->unk_5D0C != 0xffff) && (param0->unk_5D10 != 0xffff)) {
-        if (param0->unk_5D0C > gCoreSys.touchX) {
-            v1 = param0->unk_5D0C - gCoreSys.touchX;
+    if ((gSystem.touchX != 0xffff) && (gSystem.touchY != 0xffff) && (param0->unk_5D0C != 0xffff) && (param0->unk_5D10 != 0xffff)) {
+        if (param0->unk_5D0C > gSystem.touchX) {
+            v1 = param0->unk_5D0C - gSystem.touchX;
             param0->unk_5D04.unk_02 = -1;
         } else {
-            v1 = gCoreSys.touchX - param0->unk_5D0C;
+            v1 = gSystem.touchX - param0->unk_5D0C;
             param0->unk_5D04.unk_02 = 1;
         }
 
         if ((v1 >= 3) && (v1 <= 40)) {
-            if (param0->unk_5D10 > gCoreSys.touchY) {
-                v1 = param0->unk_5D10 - gCoreSys.touchY;
+            if (param0->unk_5D10 > gSystem.touchY) {
+                v1 = param0->unk_5D10 - gSystem.touchY;
                 param0->unk_5D04.unk_03 = -1;
             } else {
-                v1 = gCoreSys.touchY - param0->unk_5D10;
+                v1 = gSystem.touchY - param0->unk_5D10;
                 param0->unk_5D04.unk_03 = 1;
             }
 
@@ -1191,11 +1190,11 @@ static void ov72_0223EA18(UnkStruct_ov72_0223DB98 *param0)
                 (void)0;
             }
         } else if (v1 <= 40) {
-            if (param0->unk_5D10 > gCoreSys.touchY) {
-                v1 = param0->unk_5D10 - gCoreSys.touchY;
+            if (param0->unk_5D10 > gSystem.touchY) {
+                v1 = param0->unk_5D10 - gSystem.touchY;
                 param0->unk_5D04.unk_03 = -1;
             } else {
-                v1 = gCoreSys.touchY - param0->unk_5D10;
+                v1 = gSystem.touchY - param0->unk_5D10;
                 param0->unk_5D04.unk_03 = 1;
             }
 
@@ -1208,8 +1207,8 @@ static void ov72_0223EA18(UnkStruct_ov72_0223DB98 *param0)
         }
     }
 
-    param0->unk_5D0C = gCoreSys.touchX;
-    param0->unk_5D10 = gCoreSys.touchY;
+    param0->unk_5D0C = gSystem.touchX;
+    param0->unk_5D10 = gSystem.touchY;
 }
 
 static void ov72_0223EAD8(UnkStruct_ov72_0223EAD8 *param0)

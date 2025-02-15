@@ -3,7 +3,7 @@
 
 #include "struct_defs/struct_0209903C_sub1.h"
 
-#include "cell_actor.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 
@@ -14,7 +14,7 @@ typedef struct {
     u16 unk_0A;
     u16 unk_0C;
     u16 unk_0E;
-    CellActorCollection *unk_10;
+    SpriteList *unk_10;
     G2dRenderer unk_14;
     SpriteResourcesHeaderList *unk_1A0;
     SpriteResourceCollection *unk_1A4[4];

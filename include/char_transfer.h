@@ -13,6 +13,14 @@ typedef struct CharTransferTemplate {
     enum HeapId heapID;
 } CharTransferTemplate;
 
+typedef struct CharTransferTemplateWithModes {
+    int maxTasks;
+    int sizeMain;
+    int sizeSub;
+    GXOBJVRamModeChar modeMain;
+    GXOBJVRamModeChar modeSub;
+} CharTransferTemplateWithModes;
+
 typedef struct CharTransferTaskTemplate {
     NNSG2dCharacterData *data;
     NNS_G2D_VRAM_TYPE vramType;

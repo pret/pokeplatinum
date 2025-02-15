@@ -22,7 +22,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "core_sys.h"
 #include "game_options.h"
 #include "game_records.h"
 #include "graphics.h"
@@ -44,13 +43,13 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02028124.h"
@@ -192,7 +191,7 @@ void sub_0207B0E0(UnkStruct_0207AE68 *param0)
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Windows_Delete(param0->unk_04, 1);
     PaletteData_FreeBuffer(param0->unk_14, 0);
     PaletteData_FreeBuffer(param0->unk_14, 1);
@@ -242,7 +241,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         }
     }
 
-    if ((param0->unk_7C & 0x1) && (param0->unk_64 == 8) && (gCoreSys.pressedKeys & PAD_BUTTON_B)) {
+    if ((param0->unk_7C & 0x1) && (param0->unk_64 == 8) && (gSystem.pressedKeys & PAD_BUTTON_B)) {
         PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), (0xc00 ^ 0xffff), 0, 0, 16, 0x7fff);
         param0->unk_64 = 41;
     }
@@ -921,7 +920,7 @@ static void sub_0207C1CC(UnkStruct_0207AE68 *param0, BgConfig *param1)
 
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    SetMainCallback(sub_0207C520, param0);
+    SetVBlankCallback(sub_0207C520, param0);
 }
 
 static void sub_0207C460(BgConfig *param0)

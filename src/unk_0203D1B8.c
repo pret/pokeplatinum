@@ -1317,7 +1317,7 @@ BOOL sub_0203E0AC(FieldSystem *fieldSystem, void *param1)
     return 1;
 }
 
-void sub_0203E0C0(FieldSystem *fieldSystem, ChooseStarterData *param1)
+void FieldSystem_LaunchChooseStarterApp(FieldSystem *fieldSystem, ChooseStarterData *chooseStarterData)
 {
     FS_EXTERN_OVERLAY(choose_starter);
 
@@ -1328,7 +1328,7 @@ void sub_0203E0C0(FieldSystem *fieldSystem, ChooseStarterData *param1)
         FS_OVERLAY_ID(choose_starter)
     };
 
-    FieldSystem_StartChildProcess(fieldSystem, &template, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &template, chooseStarterData);
 }
 
 void sub_0203E0D0(FieldSystem *fieldSystem)

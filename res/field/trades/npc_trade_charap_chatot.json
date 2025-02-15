@@ -1,0 +1,22 @@
+{
+    "species": "SPECIES_CHATOT",
+    "hpIV": 15,
+    "atkIV": 20,
+    "defIV": 15,
+    "speedIV": 25,
+    "spAtkIV": 25,
+    "spDefIV": 15,
+    "unused1": 77,
+    "otID": 44142,
+    "cool": 20,
+    "beauty": 20,
+    "cute": 20,
+    "smart": 20,
+    "tough": 20,
+    "personality": 2151,
+    "heldItem": "ITEM_LEPPA_BERRY",
+    "otGender": "GENDER_MALE",
+    "unused2": 50,
+    "language": 2,
+    "requestedSpecies": "SPECIES_BUIZEL"
+}

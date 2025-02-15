@@ -19,9 +19,6 @@
 #include "overlay017/struct_ov17_02252FC4.h"
 #include "overlay017/struct_ov17_02253084.h"
 #include "overlay022/ov22_0225AF8C.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -37,19 +34,19 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -191,7 +188,7 @@ static int (*const Unk_ov17_02253050[])(UnkStruct_ov17_0224DF54 *, UnkStruct_ov1
     ov17_0223F03C
 };
 
-static const UnkStruct_ov104_0224133C Unk_ov17_02253008 = {
+static const RenderOamTemplate Unk_ov17_02253008 = {
     0x0,
     0x80,
     0x0,
@@ -202,7 +199,7 @@ static const UnkStruct_ov104_0224133C Unk_ov17_02253008 = {
     0x20
 };
 
-static const UnkStruct_ov104_022412F4 Unk_ov17_02252FDC = {
+static const CharTransferTemplateWithModes Unk_ov17_02252FDC = {
     0x60,
     0x10000,
     0x4000,
@@ -210,7 +207,7 @@ static const UnkStruct_ov104_022412F4 Unk_ov17_02252FDC = {
     GX_OBJVRAMMODE_CHAR_1D_32K
 };
 
-static const UnkStruct_ov104_02241308 Unk_ov17_02252FF0 = {
+static const SpriteResourceCapacities Unk_ov17_02252FF0 = {
     0x60,
     0x20,
     0x40,
@@ -223,7 +220,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov17_0224DF54 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -269,17 +266,17 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     sub_0201E450(4);
     Font_InitManager(FONT_SUBSCREEN, 23);
 
-    v0->unk_14.unk_58 = sub_0200C6E4(23);
+    v0->unk_14.unk_58 = SpriteSystem_Alloc(23);
 
-    sub_0200C73C(v0->unk_14.unk_58, &Unk_ov17_02253008, &Unk_ov17_02252FDC, (16 + 16));
+    SpriteSystem_Init(v0->unk_14.unk_58, &Unk_ov17_02253008, &Unk_ov17_02252FDC, (16 + 16));
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_14.unk_5C = sub_0200C704(v0->unk_14.unk_58);
+    v0->unk_14.unk_5C = SpriteManager_New(v0->unk_14.unk_58);
 
-    sub_0200C7C0(v0->unk_14.unk_58, v0->unk_14.unk_5C, (64 + 64));
-    sub_0200CB30(v0->unk_14.unk_58, v0->unk_14.unk_5C, &Unk_ov17_02252FF0);
-    SetSubScreenViewRect(sub_0200C738(v0->unk_14.unk_58), 0, (256 * FX32_ONE));
+    SpriteSystem_InitSprites(v0->unk_14.unk_58, v0->unk_14.unk_5C, (64 + 64));
+    SpriteSystem_InitManagerWithCapacities(v0->unk_14.unk_58, v0->unk_14.unk_5C, &Unk_ov17_02252FF0);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_14.unk_58), 0, (256 * FX32_ONE));
 
     v0->unk_14.unk_44 = sub_0200762C(23);
     ov17_0223E450();
@@ -328,7 +325,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ), -6);
 
     Sound_PlayEffect(1765);
-    SetMainCallback(ov17_0223E09C, v0);
+    SetVBlankCallback(ov17_0223E09C, v0);
 
     return 1;
 }
@@ -419,8 +416,8 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
     ov17_02249358(v0->unk_14.unk_60);
     ov17_022493A4(v0->unk_1074);
 
-    sub_0200D0B0(v0->unk_14.unk_58, v0->unk_14.unk_5C);
-    sub_0200C8D4(v0->unk_14.unk_58);
+    SpriteSystem_FreeResourcesAndManager(v0->unk_14.unk_58, v0->unk_14.unk_5C);
+    SpriteSystem_Free(v0->unk_14.unk_58);
     VramTransfer_Free();
 
     ov17_0224A1EC(&v0->unk_14);
@@ -444,7 +441,7 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
 
     sub_0201E530();
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(23);
     sub_02095A24();
@@ -496,7 +493,7 @@ static void ov17_0223E09C(void *param0)
     }
 
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_14.unk_90);
     Bg_RunScheduledUpdates(v0->unk_14.unk_60);
 
@@ -556,8 +553,8 @@ static void ov17_0223E1FC(SysTask *param0, void *param1)
         }
 
         ov11_0221F8F0();
-        sub_0200C7EC(v0->unk_14.unk_5C);
-        sub_0200C808();
+        SpriteSystem_DrawSprites(v0->unk_14.unk_5C);
+        SpriteSystem_UpdateTransfer();
 
         G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
@@ -723,7 +720,7 @@ static void ov17_0223E458(UnkStruct_ov17_0224DF54 *param0)
 
 static void ov17_0223E4B0(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 {
-    SpriteRenderer_LoadPalette(param0->unk_14.unk_90, 2, param0->unk_14.unk_58, param0->unk_14.unk_5C, param1, 6, 0, 8, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_14.unk_90, 2, param0->unk_14.unk_58, param0->unk_14.unk_5C, param1, 6, 0, 8, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
 
     ov17_0224A20C(param0->unk_14.unk_58, param0->unk_14.unk_5C);
     ov17_0224A390(param0->unk_14.unk_58, param0->unk_14.unk_5C, param1);
@@ -763,13 +760,13 @@ static void ov17_0223E588(UnkStruct_ov17_0224DF54 *param0)
     ov17_0224AFF8(param0->unk_14.unk_5C);
     ov17_0224B058(param0);
 
-    SpriteGfxHandler_UnloadPlttObjById(param0->unk_14.unk_5C, 33001);
+    SpriteManager_UnloadPlttObjById(param0->unk_14.unk_5C, 33001);
 }
 
 static void ov17_0223E60C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 {
-    sub_0200CD7C(param0->unk_14.unk_90, 3, param0->unk_14.unk_58, param0->unk_14.unk_5C, 46, 6, 0, 2, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
-    sub_0200CD7C(param0->unk_14.unk_90, 3, param0->unk_14.unk_58, param0->unk_14.unk_5C, 46, 9, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33003);
+    SpriteSystem_LoadPaletteBuffer(param0->unk_14.unk_90, 3, param0->unk_14.unk_58, param0->unk_14.unk_5C, 46, 6, 0, 2, NNS_G2D_VRAM_TYPE_2DSUB, 33002);
+    SpriteSystem_LoadPaletteBuffer(param0->unk_14.unk_90, 3, param0->unk_14.unk_58, param0->unk_14.unk_5C, 46, 9, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 33003);
 
     ov17_022493C4(param0->unk_1074);
 }

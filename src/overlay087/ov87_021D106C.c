@@ -12,7 +12,6 @@
 #include "overlay087/struct_ov87_021D1640.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
@@ -22,15 +21,16 @@
 #include "pokemon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02017728.h"
 
 typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_ov87_021D0D80 *unk_00;
@@ -39,9 +39,9 @@ typedef struct UnkStruct_ov87_021D106C_t {
     int unk_0C;
     BgConfig *unk_10;
     Window unk_14[2];
-    CellActorCollection *unk_34;
+    SpriteList *unk_34;
     G2dRenderer unk_38;
-    CellActor *unk_1C4[6];
+    Sprite *unk_1C4[6];
     void *unk_1DC;
     void *unk_1E0;
     MessageLoader *unk_1E4;
@@ -103,7 +103,7 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
         v0->unk_1F8 = Strbuf_Init(256, 61);
         v0->unk_1FC = Pokemon_New(61);
 
-        SetMainCallback(ov87_021D11AC, v0);
+        SetVBlankCallback(ov87_021D11AC, v0);
     }
 
     return v0;
@@ -112,7 +112,7 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
 void ov87_021D1140(UnkStruct_ov87_021D106C *param0)
 {
     if (param0) {
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         Heap_FreeToHeap(param0->unk_1FC);
         Strbuf_Free(param0->unk_1F8);
         Strbuf_Free(param0->unk_1F4);
@@ -120,7 +120,7 @@ void ov87_021D1140(UnkStruct_ov87_021D106C *param0)
         MessageLoader_Free(param0->unk_1EC);
         MessageLoader_Free(param0->unk_1E8);
         MessageLoader_Free(param0->unk_1E4);
-        CellActorCollection_Delete(param0->unk_34);
+        SpriteList_Delete(param0->unk_34);
         RenderOam_Free();
         Heap_FreeToHeap(param0->unk_10);
         Heap_FreeToHeap(param0);
@@ -131,7 +131,7 @@ static void ov87_021D11AC(void *param0)
 {
     UnkStruct_ov87_021D106C *v0 = param0;
 
-    CellActorCollection_Update(v0->unk_34);
+    SpriteList_Update(v0->unk_34);
     RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -198,14 +198,14 @@ static BOOL ov87_021D12C0(UnkStruct_ov87_021D106C *param0, int *param1)
 
     for (v1 = 0; v1 < v0->unk_14; v1++) {
         if (v1 == v0->unk_18) {
-            CellActor_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
-            CellActor_SetPriority(param0->unk_1C4[v1], 0);
+            Sprite_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_NORMAL);
+            Sprite_SetPriority(param0->unk_1C4[v1], 0);
             Sound_FlagDefaultChatotCry(1);
 
             sub_02005844(v0->unk_20[v1].unk_10, v0->unk_20[v1].unk_13);
         } else {
-            CellActor_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
-            CellActor_SetPriority(param0->unk_1C4[v1], v1 + 1);
+            Sprite_SetExplicitOAMMode(param0->unk_1C4[v1], GX_OAM_MODE_XLU);
+            Sprite_SetPriority(param0->unk_1C4[v1], v1 + 1);
         }
     }
 
@@ -457,7 +457,7 @@ static void ov87_021D186C(UnkStruct_ov87_021D106C *param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_1C4[v0]) {
-            CellActor_Delete(param0->unk_1C4[v0]);
+            Sprite_Delete(param0->unk_1C4[v0]);
         }
     }
 
@@ -478,8 +478,8 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
         { 216, 112 },
         { 56, 112 },
     };
-    CellActorResourceData v1;
-    CellActorInitParams v2;
+    SpriteResourcesHeader v1;
+    SpriteListTemplate v2;
     NNSG2dImageProxy v3;
     NNSG2dImagePaletteProxy v4;
     NNSG2dCharacterData *v5;
@@ -497,7 +497,7 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
     v1.priority = 0;
     v1.imageProxy = &v3;
     v1.paletteProxy = &v4;
-    v2.collection = param0->unk_34;
+    v2.list = param0->unk_34;
     v2.resourceData = &v1;
     v2.position.z = 0;
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -516,8 +516,8 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
         v2.position.y = v0[v9].y << FX32_SHIFT;
         v2.priority = v9 + 1;
 
-        param0->unk_1C4[v9] = CellActorCollection_Add(&v2);
-        CellActor_SetDrawFlag(param0->unk_1C4[v9], 0);
+        param0->unk_1C4[v9] = SpriteList_Add(&v2);
+        Sprite_SetDrawFlag(param0->unk_1C4[v9], 0);
     }
 
     Heap_FreeToHeap(v8);
@@ -539,7 +539,7 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
     v2 = param0->unk_04;
 
     for (v3 = 0; v3 < v2->unk_14; v3++) {
-        Pokemon_InitWith(param0->unk_1FC, v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_12, 32, TRUE, v2->unk_20[v3].unk_08, OTID_SET, v2->unk_20[v3].unk_0C);
+        Pokemon_InitWith(param0->unk_1FC, v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_12, INIT_IVS_RANDOM, TRUE, v2->unk_20[v3].unk_08, OTID_SET, v2->unk_20[v3].unk_0C);
         Pokemon_SetValue(param0->unk_1FC, MON_DATA_FORM, (void *)(&(v2->unk_20[v3].unk_13)));
         Pokemon_BuildArchivedSprite(&v1, param0->unk_1FC, 2);
         sub_02013720(v1.archive, v1.character, 61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].unk_10);
@@ -552,16 +552,16 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
         if (v3 == v2->unk_18) {
             Sound_FlagDefaultChatotCry(1);
             sub_02005844(v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_13);
-            CellActor_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
+            Sprite_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_NORMAL);
         } else {
-            CellActor_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
+            Sprite_SetExplicitOAMMode(param0->unk_1C4[v3], GX_OAM_MODE_XLU);
         }
 
-        CellActor_SetDrawFlag(param0->unk_1C4[v3], 1);
+        Sprite_SetDrawFlag(param0->unk_1C4[v3], 1);
     }
 
     for (; v3 < 6; v3++) {
-        CellActor_SetDrawFlag(param0->unk_1C4[v3], 0);
+        Sprite_SetDrawFlag(param0->unk_1C4[v3], 0);
     }
 }
 
@@ -570,6 +570,6 @@ static void ov87_021D1AB8(UnkStruct_ov87_021D106C *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        CellActor_SetDrawFlag(param0->unk_1C4[v0], 0);
+        Sprite_SetDrawFlag(param0->unk_1C4[v0], 0);
     }
 }

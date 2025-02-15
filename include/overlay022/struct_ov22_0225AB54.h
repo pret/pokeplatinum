@@ -6,13 +6,13 @@
 #include "overlay022/struct_ov22_0225AE9C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sys_task_manager.h"
 
 typedef struct {
     SpriteResource *unk_00[4];
-    CellActor *unk_10[2];
+    Sprite *unk_10[2];
     Window *unk_18;
     int unk_1C;
     int unk_20;

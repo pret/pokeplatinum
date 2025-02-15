@@ -23,15 +23,15 @@
 #include "overlay065/struct_ov65_022376D0.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
-#include "core_sys.h"
 #include "graphics.h"
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
+#include "system.h"
 #include "vram_transfer.h"
 
 #define MCR_PCANM_DESTPL(x) ((7 * 32) + (((x) + 1) * 2))
@@ -196,12 +196,12 @@ u32 ov65_02235198(UnkStruct_ov65_02235130 *param0)
         if (v0 == 1) {
             ov65_02235B30(param0);
 
-            if (gCoreSys.heldKeys & PAD_KEY_DOWN) {
+            if (gSystem.heldKeys & PAD_KEY_DOWN) {
                 return 1;
             }
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov65_02235254(param0) > 0) {
                 return 2;
             } else if (ov65_02235654(param0) == 1) {
@@ -216,7 +216,7 @@ u32 ov65_02235198(UnkStruct_ov65_02235130 *param0)
 void ov65_02235244(UnkStruct_ov65_02235130 *param0)
 {
     if (param0->unk_00) {
-        CellActorCollection_Update(param0->unk_14.unk_00);
+        SpriteList_Update(param0->unk_14.unk_00);
     }
 }
 
@@ -602,7 +602,7 @@ static void ov65_022358CC(UnkStruct_ov65_022358CC *param0)
         SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
-    CellActorCollection_Delete(param0->unk_00);
+    SpriteList_Delete(param0->unk_00);
 }
 
 static void ov65_022358F8(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2)
@@ -676,11 +676,11 @@ static void ov65_02235A60(UnkStruct_ov65_022358CC *param0)
 
 static void ov65_02235A94(UnkStruct_ov65_022358CC *param0, u32 param1)
 {
-    CellActorInitParamsEx v0;
+    AffineSpriteListTemplate v0;
 
-    memset(&v0, 0, sizeof(CellActorInitParamsEx));
+    memset(&v0, 0, sizeof(AffineSpriteListTemplate));
 
-    v0.collection = param0->unk_00;
+    v0.list = param0->unk_00;
     v0.resourceData = &param0->unk_1A0.unk_10;
     v0.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v0.affineScale.x = FX32_ONE;
@@ -688,19 +688,19 @@ static void ov65_02235A94(UnkStruct_ov65_022358CC *param0, u32 param1)
     v0.priority = 0;
     v0.heapID = param1;
 
-    param0->unk_1A0.unk_34 = CellActorCollection_AddEx(&v0);
-    param0->unk_1A0.unk_38 = CellActorCollection_AddEx(&v0);
+    param0->unk_1A0.unk_34 = SpriteList_AddAffine(&v0);
+    param0->unk_1A0.unk_38 = SpriteList_AddAffine(&v0);
 
-    CellActor_SetDrawFlag(param0->unk_1A0.unk_34, 0);
-    CellActor_SetDrawFlag(param0->unk_1A0.unk_38, 0);
-    CellActor_SetAnimateFlag(param0->unk_1A0.unk_34, 1);
-    CellActor_SetAnim(param0->unk_1A0.unk_38, 1);
+    Sprite_SetDrawFlag(param0->unk_1A0.unk_34, 0);
+    Sprite_SetDrawFlag(param0->unk_1A0.unk_38, 0);
+    Sprite_SetAnimateFlag(param0->unk_1A0.unk_34, 1);
+    Sprite_SetAnim(param0->unk_1A0.unk_38, 1);
 }
 
 static void ov65_02235B14(UnkStruct_ov65_022358CC *param0)
 {
-    CellActor_Delete(param0->unk_1A0.unk_34);
-    CellActor_Delete(param0->unk_1A0.unk_38);
+    Sprite_Delete(param0->unk_1A0.unk_34);
+    Sprite_Delete(param0->unk_1A0.unk_38);
 }
 
 static void ov65_02235B30(UnkStruct_ov65_02235130 *param0)
@@ -716,13 +716,13 @@ static void ov65_02235B30(UnkStruct_ov65_02235130 *param0)
     v1.x = v0.unk_00 << FX32_SHIFT;
     v1.y = v0.unk_02 << FX32_SHIFT;
 
-    CellActor_SetPosition(param0->unk_14.unk_1A0.unk_34, &v1);
-    CellActor_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 1);
+    Sprite_SetPosition(param0->unk_14.unk_1A0.unk_34, &v1);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 1);
 }
 
 static void ov65_02235B78(UnkStruct_ov65_02235130 *param0)
 {
-    CellActor_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 0);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_34, 0);
 }
 
 static void ov65_02235B88(UnkStruct_ov65_02235130 *param0, UnkStruct_ov63_0222CC3C param1, u32 param2)
@@ -735,14 +735,14 @@ static void ov65_02235B88(UnkStruct_ov65_02235130 *param0, UnkStruct_ov63_0222CC
     v0.x = param1.unk_00 << FX32_SHIFT;
     v0.y = param1.unk_02 << FX32_SHIFT;
 
-    CellActor_SetPosition(param0->unk_14.unk_1A0.unk_38, &v0);
-    CellActor_SetPriority(param0->unk_14.unk_1A0.unk_38, param2);
-    CellActor_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 1);
+    Sprite_SetPosition(param0->unk_14.unk_1A0.unk_38, &v0);
+    Sprite_SetPriority(param0->unk_14.unk_1A0.unk_38, param2);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 1);
 }
 
 static void ov65_02235BD8(UnkStruct_ov65_02235130 *param0)
 {
-    CellActor_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 0);
+    Sprite_SetDrawFlag(param0->unk_14.unk_1A0.unk_38, 0);
 }
 
 static BOOL ov65_02235BE8(UnkStruct_ov65_02235130 *param0)
@@ -984,7 +984,7 @@ static BOOL ov65_02236044(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022354
         return 0;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         v4 = ov65_022357A8(param0, param1, v0);
 
         if (v4 != NULL) {
@@ -1002,31 +1002,31 @@ static BOOL ov65_02236044(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022354
         return 0;
     }
 
-    if (gCoreSys.heldKeys & PAD_BUTTON_B) {
+    if (gSystem.heldKeys & PAD_BUTTON_B) {
         v3 = 3;
     } else {
         v3 = 2;
     }
 
-    if (gCoreSys.heldKeys & PAD_KEY_UP) {
+    if (gSystem.heldKeys & PAD_KEY_UP) {
         if (v0 == 0) {
             ov65_02236230(param0, v3, v0, v1);
         } else {
             ov65_02236230(param0, 1, 0, v1);
         }
-    } else if (gCoreSys.heldKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.heldKeys & PAD_KEY_DOWN) {
         if (v0 == 1) {
             ov65_02236230(param0, v3, v0, v1);
         } else {
             ov65_02236230(param0, 1, 1, v1);
         }
-    } else if (gCoreSys.heldKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.heldKeys & PAD_KEY_LEFT) {
         if (v0 == 2) {
             ov65_02236230(param0, v3, v0, v1);
         } else {
             ov65_02236230(param0, 1, 2, v1);
         }
-    } else if (gCoreSys.heldKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.heldKeys & PAD_KEY_RIGHT) {
         if (v0 == 3) {
             ov65_02236230(param0, v3, v0, v1);
         } else {

@@ -1308,7 +1308,7 @@ _1263:
     ApplyMovement 1, _1468
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 1
+    RemoveObject 1
     Return
 
 _12A3:
@@ -1461,7 +1461,7 @@ _1485:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 15
+    RemoveObject 15
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ApplyMovement 14, _14FC
@@ -1471,7 +1471,7 @@ _1485:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 14
+    RemoveObject 14
     Call _156D
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -1518,7 +1518,7 @@ _1532:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 15
+    RemoveObject 15
     Call _156D
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -2299,74 +2299,74 @@ _2209:
     Return
 
 _22CE:
-    ScrCmd_065 1
+    RemoveObject 1
     Return
 
 _22D4:
-    ScrCmd_065 0
+    RemoveObject 0
     Return
 
 _22DA:
     GoToIfUnset 0x9AB, _2395
-    ScrCmd_065 2
+    RemoveObject 2
     Return
 
 _22EB:
-    ScrCmd_065 3
+    RemoveObject 3
     Return
 
 _22F1:
     GoToIfUnset 0x9AB, _2395
-    ScrCmd_065 4
+    RemoveObject 4
     Return
 
 _2302:
     GoToIfUnset 0x9AB, _2395
-    ScrCmd_065 5
+    RemoveObject 5
     Return
 
 _2313:
     GoToIfUnset 0x9AC, _2393
-    ScrCmd_065 6
+    RemoveObject 6
     Return
 
 _2324:
     GoToIfUnset 0x9AB, _2395
-    ScrCmd_065 7
+    RemoveObject 7
     Return
 
 _2335:
     GoToIfUnset 0x9AC, _2393
-    ScrCmd_065 9
+    RemoveObject 9
     Return
 
 _2346:
     GoToIfUnset 0x9AB, _2395
-    ScrCmd_065 8
+    RemoveObject 8
     Return
 
 _2357:
     GoToIfUnset 0x9AC, _2393
-    ScrCmd_065 10
+    RemoveObject 10
     Return
 
 _2368:
-    ScrCmd_065 11
+    RemoveObject 11
     Return
 
 _236E:
     GoToIfUnset 0x9AC, _2393
-    ScrCmd_065 12
+    RemoveObject 12
     Return
 
 _237F:
-    ScrCmd_065 13
-    ScrCmd_065 11
+    RemoveObject 13
+    RemoveObject 11
     Return
 
 _2389:
-    ScrCmd_065 7
-    ScrCmd_065 10
+    RemoveObject 7
+    RemoveObject 10
     Return
 
 _2393:

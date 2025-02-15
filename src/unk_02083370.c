@@ -5,7 +5,6 @@
 
 #include "generated/items.h"
 
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_020831B4.h"
 #include "struct_defs/struct_02083D1C.h"
@@ -16,8 +15,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "heap.h"
 #include "menu.h"
@@ -25,11 +22,13 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0207070C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
@@ -219,10 +218,10 @@ static void sub_020834B0(GameWindowLayout *param0, int *param1)
 int sub_02083658(GameWindowLayout *param0)
 {
     if (Text_IsPrinterActive(param0->unk_B10) == 0) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             sub_020826E0(param0, 29, 1);
-            sub_0200D414(param0->unk_5B0[6], 0);
+            Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
             return 1;
         }
     }
@@ -233,7 +232,7 @@ int sub_02083658(GameWindowLayout *param0)
 int sub_020836A8(GameWindowLayout *param0)
 {
     if (Text_IsPrinterActive(param0->unk_B10) == 0) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseMessageBox(&param0->unk_04[34], 1);
             LoadOverlay118(param0);
             return 19;
@@ -371,17 +370,17 @@ static int sub_02083990(void *param0)
 
     Window_EraseMessageBox(&v0->unk_04[34], 1);
     sub_020826E0(v0, 29, 1);
-    sub_0200D414(v0->unk_5B0[6], 0);
+    Sprite_SetExplicitPalette2(v0->unk_5B0[6], 0);
 
     return 1;
 }
 
 int sub_020839BC(GameWindowLayout *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
-        sub_0200D414(param0->unk_5B0[6], 0);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
         return 1;
     }
 
@@ -427,7 +426,7 @@ int sub_02083AA4(void *param0)
 
     Window_EraseMessageBox(&v0->unk_04[34], 1);
     sub_020826E0(v0, 29, 1);
-    sub_0200D414(v0->unk_5B0[6], 0);
+    Sprite_SetExplicitPalette2(v0->unk_5B0[6], 0);
 
     return 1;
 }
@@ -439,11 +438,11 @@ static void sub_02083AD0(GameWindowLayout *param0, int *param1)
     param0->unk_B0F_6 = 1;
     param0->unk_B0F_0 = param0->unk_B11;
 
-    sub_0200D414(param0->unk_5B0[6], 0);
-    sub_0200D50C(param0->unk_5B0[6], &v0, &v1);
-    SpriteActor_SetPositionXY(param0->unk_5B0[7], v0, v1);
-    CellActor_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
-    CellActor_SetDrawFlag(param0->unk_5B0[7], 1);
+    Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
+    Sprite_GetPositionXY(param0->unk_5B0[6], &v0, &v1);
+    Sprite_SetPositionXY(param0->unk_5B0[7], v0, v1);
+    Sprite_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
+    Sprite_SetDrawFlag(param0->unk_5B0[7], 1);
     sub_0207F8F8(param0, param0->unk_B0F_0);
     Window_EraseMessageBox(&param0->unk_04[33], 1);
     sub_0208337C(param0);
@@ -455,7 +454,7 @@ static void sub_02083AD0(GameWindowLayout *param0, int *param1)
 void sub_02083B88(GameWindowLayout *param0)
 {
     param0->unk_B0F_6 = 0;
-    CellActor_SetDrawFlag(param0->unk_5B0[7], 0);
+    Sprite_SetDrawFlag(param0->unk_5B0[7], 0);
 
     if (param0->unk_B11 < 6) {
         sub_0207F8F8(param0, param0->unk_B11);
@@ -505,8 +504,8 @@ void sub_02083BD4(GameWindowLayout *param0)
         memcpy(&param0->unk_7F8.unk_180[1][v6 * 16], &v1[v4 + (v5 + v6) * 32], 16 * 2);
     }
 
-    CellActor_SetDrawFlag(param0->unk_5B0[6], 0);
-    CellActor_SetDrawFlag(param0->unk_5B0[7], 0);
+    Sprite_SetDrawFlag(param0->unk_5B0[6], 0);
+    Sprite_SetDrawFlag(param0->unk_5B0[7], 0);
 }
 
 BOOL sub_02083D1C(GameWindowLayout *param0)
@@ -555,7 +554,7 @@ BOOL sub_02083D1C(GameWindowLayout *param0)
 
     case 4:
         Party_SwapSlots(param0->unk_5A4->unk_00, v0->unk_300[0], v0->unk_300[1]);
-        CellActor_SetDrawFlag(param0->unk_5B0[6], 1);
+        Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
 
         v0->unk_304 = 0;
         param0->unk_B0F_6 = 0;
@@ -599,7 +598,7 @@ static void sub_02083FDC(GameWindowLayout *param0, u8 param1, u8 param2)
 
     v0 = &param0->unk_7F8;
 
-    sub_0200D50C(param0->unk_5B0[0 + v0->unk_300[param1]], &v1, &v2);
+    Sprite_GetPositionXY(param0->unk_5B0[0 + v0->unk_300[param1]], &v1, &v2);
 
     if (param2 == 0) {
         param0->unk_704[v0->unk_300[param1]].unk_16 -= 8;
@@ -613,18 +612,18 @@ static void sub_02083FDC(GameWindowLayout *param0, u8 param1, u8 param2)
         v1 += 8;
     }
 
-    SpriteActor_SetPositionXY(param0->unk_704[v0->unk_300[param1]].unk_24, param0->unk_704[v0->unk_300[param1]].unk_16, param0->unk_704[v0->unk_300[param1]].unk_18);
-    SpriteActor_SetPositionXY(param0->unk_5B0[10 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1A, param0->unk_704[v0->unk_300[param1]].unk_1C);
-    SpriteActor_SetPositionXY(param0->unk_5B0[16 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1E, param0->unk_704[v0->unk_300[param1]].unk_20);
-    SpriteActor_SetPositionXY(param0->unk_5B0[22 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1E + 8, param0->unk_704[v0->unk_300[param1]].unk_20);
-    SpriteActor_SetPositionXY(param0->unk_5B0[0 + v0->unk_300[param1]], v1, v2);
+    Sprite_SetPositionXY(param0->unk_704[v0->unk_300[param1]].unk_24, param0->unk_704[v0->unk_300[param1]].unk_16, param0->unk_704[v0->unk_300[param1]].unk_18);
+    Sprite_SetPositionXY(param0->unk_5B0[10 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1A, param0->unk_704[v0->unk_300[param1]].unk_1C);
+    Sprite_SetPositionXY(param0->unk_5B0[16 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1E, param0->unk_704[v0->unk_300[param1]].unk_20);
+    Sprite_SetPositionXY(param0->unk_5B0[22 + v0->unk_300[param1]], param0->unk_704[v0->unk_300[param1]].unk_1E + 8, param0->unk_704[v0->unk_300[param1]].unk_20);
+    Sprite_SetPositionXY(param0->unk_5B0[0 + v0->unk_300[param1]], v1, v2);
 }
 
 static void sub_02084134(GameWindowLayout *param0)
 {
     StrBufWrapper *v0;
     DualArrayShortData *v1;
-    CellActorData *v2;
+    ManagedSprite *v2;
     s16 v3;
 
     v1 = &param0->unk_7F8;
@@ -728,7 +727,7 @@ static void sub_020844B0(GameWindowLayout *param0, int *param1)
 
         sub_02082508(param0, param0->unk_B11);
         sub_020826E0(param0, 34, 1);
-        sub_0200D414(param0->unk_5B0[6], 0);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
 
         if (v0 == param0->unk_5A4->unk_32_4 - 1) {
             sub_0207FD68(param0, 6);
@@ -762,10 +761,10 @@ static void sub_020844B0(GameWindowLayout *param0, int *param1)
 
 int sub_020845A8(GameWindowLayout *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 34, 1);
-        sub_0200D414(param0->unk_5B0[6], 0);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
         return 1;
     }
 
@@ -799,7 +798,7 @@ static void sub_020845E8(GameWindowLayout *param0, int *param1)
     Window_EraseMessageBox(&param0->unk_04[33], 1);
     sub_0208337C(param0);
     sub_020826E0(param0, 29, 1);
-    sub_0200D414(param0->unk_5B0[6], 0);
+    Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
 
     *param1 = 1;
 }
@@ -848,7 +847,7 @@ int sub_02084780(GameWindowLayout *param0)
 
     if (Pokemon_GetValue(v0, MON_DATA_MAIL_ID, NULL) == 0) {
         MessageLoader_GetStrbuf(param0->unk_69C, 129, param0->unk_6A4);
-        CellActor_SetDrawFlag(param0->unk_5B0[22 + param0->unk_B11], 1);
+        Sprite_SetDrawFlag(param0->unk_5B0[22 + param0->unk_B11], 1);
     } else {
         MessageLoader_GetStrbuf(param0->unk_69C, 130, param0->unk_6A4);
         param0->unk_B11 = 7;
@@ -1018,11 +1017,11 @@ static int sub_02084A18(GameWindowLayout *param0)
         param0->unk_B0F_6 = 1;
         param0->unk_B0F_0 = param0->unk_B11;
 
-        sub_0200D414(param0->unk_5B0[6], 0);
-        sub_0200D50C(param0->unk_5B0[6], &v0, &v1);
-        SpriteActor_SetPositionXY(param0->unk_5B0[7], v0, v1);
-        CellActor_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
-        CellActor_SetDrawFlag(param0->unk_5B0[7], 1);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
+        Sprite_GetPositionXY(param0->unk_5B0[6], &v0, &v1);
+        Sprite_SetPositionXY(param0->unk_5B0[7], v0, v1);
+        Sprite_SetAnim(param0->unk_5B0[7], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B0F_0) + 2);
+        Sprite_SetDrawFlag(param0->unk_5B0[7], 1);
         sub_0207F8F8(param0, param0->unk_B0F_0);
         sub_020826E0(param0, 36, 1);
 
@@ -1033,10 +1032,10 @@ static int sub_02084A18(GameWindowLayout *param0)
 
 int sub_02084B34(GameWindowLayout *param0)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
-        sub_0200D414(param0->unk_5B0[6], 0);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
         return 1;
     }
 

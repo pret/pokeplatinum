@@ -11,7 +11,6 @@
 
 #include "bg_window.h"
 #include "colored_arrow.h"
-#include "core_sys.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "heap.h"
@@ -20,6 +19,7 @@
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -239,7 +239,7 @@ static BOOL sub_0209AE14(FieldTask *param0)
         break;
     case 12:
         if (sub_0209B100(v0)) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_PLUS_KEY_MASK)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_PLUS_KEY_MASK)) {
                 sub_0209B110(v0);
                 v0->unk_54 = 13;
             }
@@ -356,7 +356,7 @@ static void sub_0209B27C(UnkStruct_0209AD84 *param0)
 static int sub_0209B288(UnkStruct_0209AD84 *param0)
 {
     do {
-        if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+        if (gSystem.pressedKeys & PAD_KEY_UP) {
             param0->unk_5C--;
 
             if (param0->unk_5C < 0) {
@@ -369,7 +369,7 @@ static int sub_0209B288(UnkStruct_0209AD84 *param0)
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+        if (gSystem.pressedKeys & PAD_KEY_DOWN) {
             param0->unk_5C++;
 
             if (param0->unk_5C >= param0->unk_60) {
@@ -382,12 +382,12 @@ static int sub_0209B288(UnkStruct_0209AD84 *param0)
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(1500);
             return param0->unk_5C;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1500);
             return param0->unk_60 - 1;
         }

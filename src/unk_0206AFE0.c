@@ -5,6 +5,7 @@
 
 #include "constants/savedata/vars_flags.h"
 #include "generated/map_headers.h"
+#include "generated/species.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
 
@@ -18,9 +19,9 @@
 
 static BOOL sub_0206AFE0(VarsFlags *param0, u16 param1, u16 param2);
 static u16 sub_0206B010(VarsFlags *param0, u16 param1);
-BOOL sub_0206B044(VarsFlags *param0, u16 param1);
-u16 sub_0206B054(VarsFlags *param0);
-u16 sub_0206B064(VarsFlags *param0);
+BOOL VarsFlags_SetPlayerStarterSpecies(VarsFlags *param0, u16 param1);
+u16 VarsFlags_GetPlayerStarterSpecies(VarsFlags *param0);
+u16 VarsFlags_GetRivalStarterSpecies(VarsFlags *param0);
 u16 VarsFlags_GetPlayerCounterpartStarterSpecies(VarsFlags *param0);
 void sub_0206B558(VarsFlags *param0, u16 param1);
 void sub_0206B514(SaveData *param0);
@@ -64,30 +65,30 @@ u16 sub_0206B034(VarsFlags *param0)
     return sub_0206B010(param0, (15 + (((0 + VARS_START) + 32) + 16)));
 }
 
-BOOL sub_0206B044(VarsFlags *param0, u16 param1)
+BOOL VarsFlags_SetPlayerStarterSpecies(VarsFlags *var, u16 species)
 {
-    return sub_0206AFE0(param0, (0 + (((0 + VARS_START) + 32) + 16)), param1);
+    return sub_0206AFE0(var, (0 + (((0 + VARS_START) + 32) + 16)), species);
 }
 
-u16 sub_0206B054(VarsFlags *param0)
+u16 VarsFlags_GetPlayerStarterSpecies(VarsFlags *param0)
 {
     return sub_0206B010(param0, (0 + (((0 + VARS_START) + 32) + 16)));
 }
 
-u16 sub_0206B064(VarsFlags *param0)
+u16 VarsFlags_GetRivalStarterSpecies(VarsFlags *vars)
 {
-    u16 v0;
-    u16 v1 = sub_0206B010(param0, (0 + (((0 + VARS_START) + 32) + 16)));
+    u16 rivalStarter;
+    u16 playerStarter = sub_0206B010(vars, (0 + (((0 + VARS_START) + 32) + 16)));
 
-    if (v1 == 387) {
-        v0 = 390;
-    } else if (v1 == 390) {
-        v0 = 393;
+    if (playerStarter == SPECIES_TURTWIG) {
+        rivalStarter = SPECIES_CHIMCHAR;
+    } else if (playerStarter == SPECIES_CHIMCHAR) {
+        rivalStarter = SPECIES_PIPLUP;
     } else {
-        v0 = 387;
+        rivalStarter = SPECIES_TURTWIG;
     }
 
-    return v0;
+    return rivalStarter;
 }
 
 u16 VarsFlags_GetPlayerCounterpartStarterSpecies(VarsFlags *param0)

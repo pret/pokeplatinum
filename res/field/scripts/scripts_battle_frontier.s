@@ -285,7 +285,7 @@ _027E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2E2
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

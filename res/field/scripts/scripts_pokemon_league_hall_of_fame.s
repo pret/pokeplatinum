@@ -54,7 +54,7 @@ _008C:
     ScrCmd_260 24
     Call _0174
     ScrCmd_0B0
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

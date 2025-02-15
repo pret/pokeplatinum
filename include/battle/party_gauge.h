@@ -1,12 +1,10 @@
 #ifndef POKEPLATINUM_BATTLE_PARTY_GAUGE_H
 #define POKEPLATINUM_BATTLE_PARTY_GAUGE_H
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-
 #include "battle/struct_ov16_0226D160_decl.h"
 
 #include "palette.h"
+#include "sprite_system.h"
 
 enum PartyGaugeSide {
     PARTY_GAUGE_OURS,
@@ -41,14 +39,14 @@ enum HideArrowType {
  * @param gfxHandler
  * @param palette
  */
-void PartyGauge_LoadGraphics(SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler, PaletteData *palette);
+void PartyGauge_LoadGraphics(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *palette);
 
 /**
  * @brief Free the graphics resources needed for the Party Gauge from memory.
  *
  * @param gfxHandler
  */
-void PartyGauge_FreeGraphics(SpriteGfxHandler *gfxHandler);
+void PartyGauge_FreeGraphics(SpriteManager *spriteMan);
 
 /**
  * @brief Show the Party Gauge.
@@ -70,7 +68,7 @@ void PartyGauge_FreeGraphics(SpriteGfxHandler *gfxHandler);
  * @return              Pointer to the constructed PartyGauge struct, for tracking its progress
  *                      and eventually hiding it.
  */
-PartyGauge *PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteRenderer *renderer, SpriteGfxHandler *gfxHandler);
+PartyGauge *PartyGauge_Show(u8 ballStatus[], enum PartyGaugeSide side, enum ShowPartyGaugeType showType, enum PartyGaugePosition pos, SpriteSystem *spriteSys, SpriteManager *spriteMan);
 
 /**
  * @brief Check if the Party Gauge has finished the inward scrolling animation.

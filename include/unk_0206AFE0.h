@@ -13,9 +13,9 @@ enum HiddenLocations {
 
 BOOL sub_0206B024(VarsFlags *varsFlags, u16 param1);
 u16 sub_0206B034(VarsFlags *varsFlags);
-BOOL sub_0206B044(VarsFlags *varsFlags, u16 param1);
-u16 sub_0206B054(VarsFlags *varsFlags);
-u16 sub_0206B064(VarsFlags *varsFlags);
+BOOL VarsFlags_SetPlayerStarterSpecies(VarsFlags *varsFlags, u16 param1);
+u16 VarsFlags_GetPlayerStarterSpecies(VarsFlags *varsFlags);
+u16 VarsFlags_GetRivalStarterSpecies(VarsFlags *varsFlags);
 u16 VarsFlags_GetPlayerCounterpartStarterSpecies(VarsFlags *varsFlags);
 u16 sub_0206B0B4(VarsFlags *varsFlags);
 BOOL sub_0206B0C4(VarsFlags *varsFlags, u16 param1);

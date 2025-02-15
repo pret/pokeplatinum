@@ -23,7 +23,7 @@ _000E:
     ApplyMovement 0xFF, _0080
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 0
+    RemoveObject 0
     CallCommonScript 0x7FB
     SetFlag 234
     SetVar 0x40A3, 1

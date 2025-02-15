@@ -1,23 +1,23 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_02264408_H
 #define POKEPLATINUM_STRUCT_OV16_02264408_H
 
-#include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/struct_ov16_0223E0C8.h"
 #include "battle/struct_ov16_02264408_sub1.h"
 
 #include "bg_window.h"
 #include "palette.h"
+#include "sprite_system.h"
 
 typedef struct {
-    SpriteRenderer *unk_00;
+    SpriteSystem *unk_00;
     BgConfig *unk_04;
     PaletteData *unk_08;
     UnkStruct_ov16_0223E0C8 *unk_0C[4];
     u8 unk_1C[4];
-    Sprite *unk_20[4];
+    PokemonSprite *unk_20[4];
     u32 unk_30;
     u16 unk_34[4];
     u8 unk_3C[4];

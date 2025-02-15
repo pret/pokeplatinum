@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02017E74.h"
-
 #include "error_message_reset.h"
 #include "unk_020366A0.h"
 
@@ -32,34 +30,31 @@ static void *AllocFromHeapInternal(NNSFndHeapHandle heap, u32 size, s32 alignmen
 
 static HeapInfo sHeapInfo = { 0 };
 
-void Heap_InitSystem(const HeapParam *templates, u32 nTemplates, u32 totalNumHeaps, u32 pre_size)
+void Heap_InitSystem(const HeapParam *templates, u32 nTemplates, u32 totalNumHeaps, u32 preSize)
 {
     void *ptr;
-    u32 unk_size, i;
-
-    unk_size = nTemplates + 24;
-
-    if (totalNumHeaps < unk_size) {
-        totalNumHeaps = unk_size;
+    u32 i;
+    u32 usableHeaps = nTemplates + 24;
+    if (totalNumHeaps < usableHeaps) {
+        totalNumHeaps = usableHeaps;
     }
 
-    if (pre_size) {
-        while (pre_size & 3) {
-            pre_size++;
+    if (preSize) {
+        while (preSize & 3) {
+            preSize++;
         }
-
-        OS_AllocFromMainArenaLo(pre_size, 4);
+        OS_AllocFromMainArenaLo(preSize, 4);
     }
 
-    sHeapInfo.heapHandles = OS_AllocFromMainArenaLo(sizeof(NNSFndHeapHandle) * (unk_size + 1) + sizeof(NNSFndHeapHandle) * (unk_size) + sizeof(void *) * (unk_size) + sizeof(u16) * (totalNumHeaps) + totalNumHeaps, 4);
-    sHeapInfo.parentHeapHandles = sHeapInfo.heapHandles + (unk_size + 1);
-    sHeapInfo.subHeapRawPtrs = (void **)((u8 *)(sHeapInfo.parentHeapHandles) + (sizeof(NNSFndHeapHandle) * unk_size));
-    sHeapInfo.numMemBlocks = (u16 *)((u8 *)(sHeapInfo.subHeapRawPtrs) + (sizeof(void *) * unk_size));
+    sHeapInfo.heapHandles = OS_AllocFromMainArenaLo((sizeof(NNSFndHeapHandle) * (usableHeaps + 1)) + (sizeof(NNSFndHeapHandle) * usableHeaps) + (sizeof(void *) * usableHeaps) + (sizeof(u16) * (totalNumHeaps)) + totalNumHeaps, 4);
+    sHeapInfo.parentHeapHandles = sHeapInfo.heapHandles + (usableHeaps + 1);
+    sHeapInfo.subHeapRawPtrs = (void **)((u8 *)(sHeapInfo.parentHeapHandles) + (sizeof(NNSFndHeapHandle) * usableHeaps));
+    sHeapInfo.numMemBlocks = (u16 *)((u8 *)(sHeapInfo.subHeapRawPtrs) + (sizeof(void *) * usableHeaps));
     sHeapInfo.heapIdxs = (u8 *)(sHeapInfo.numMemBlocks) + (sizeof(u16) * (totalNumHeaps));
     sHeapInfo.totalNumHeaps = totalNumHeaps;
     sHeapInfo.nTemplates = nTemplates;
-    sHeapInfo.unallocatedHeapID = unk_size;
-    sHeapInfo.maxHeaps = unk_size;
+    sHeapInfo.unallocatedHeapID = usableHeaps;
+    sHeapInfo.maxHeaps = usableHeaps;
 
     for (i = 0; i < nTemplates; i++) {
         switch (templates[i].arena) {
@@ -80,7 +75,7 @@ void Heap_InitSystem(const HeapParam *templates, u32 nTemplates, u32 totalNumHea
         }
     }
 
-    for (i = nTemplates; i < (unk_size + 1); i++) {
+    for (i = nTemplates; i < (usableHeaps + 1); i++) {
         sHeapInfo.heapHandles[i] = NNS_FND_HEAP_INVALID_HANDLE;
         sHeapInfo.heapIdxs[i] = sHeapInfo.unallocatedHeapID;
     }
@@ -96,9 +91,7 @@ void Heap_InitSystem(const HeapParam *templates, u32 nTemplates, u32 totalNumHea
 
 static int FindFirstAvailableHeapHandle(void)
 {
-    int i;
-
-    for (i = sHeapInfo.nTemplates; i < sHeapInfo.maxHeaps; i++) {
+    for (int i = sHeapInfo.nTemplates; i < sHeapInfo.maxHeaps; i++) {
         if (sHeapInfo.heapHandles[i] == NNS_FND_HEAP_INVALID_HANDLE) {
             return i;
         }
@@ -202,7 +195,7 @@ static void *AllocFromHeapInternal(NNSFndHeapHandle heap, u32 size, s32 alignmen
 
     if (ptr != NULL) {
         ((MemoryBlock *)ptr)->heapID = heapID;
-        (u8 *)ptr += sizeof(MemoryBlock);
+        ptr += sizeof(MemoryBlock);
     }
 
     return ptr;
@@ -255,7 +248,7 @@ void *Heap_AllocFromHeapAtEnd(u32 heapID, u32 size)
 
 void Heap_FreeToHeap(void *ptr)
 {
-    (u8 *)ptr -= sizeof(MemoryBlock);
+    ptr -= sizeof(MemoryBlock);
     u32 heapID = ((MemoryBlock *)ptr)->heapID;
 
     if (heapID < sHeapInfo.totalNumHeaps) {
@@ -294,7 +287,7 @@ void Heap_FreeToHeapExplicit(u32 heapID, void *ptr)
 
         GF_ASSERT(heap != NNS_FND_HEAP_INVALID_HANDLE);
 
-        (u8 *)ptr -= sizeof(MemoryBlock);
+        ptr -= sizeof(MemoryBlock);
 
         if (((MemoryBlock *)ptr)->heapID != heapID) {
             GF_ASSERT(0);
@@ -337,7 +330,7 @@ void Heap_ReallocFromHeap(void *ptr, u32 newSize)
     GF_ASSERT(OS_GetProcMode() != OS_PROCMODE_IRQ);
 
     newSize += sizeof(MemoryBlock);
-    (u8 *)ptr -= sizeof(MemoryBlock);
+    ptr -= sizeof(MemoryBlock);
 
     if (NNS_FndGetSizeForMBlockExpHeap(ptr) >= newSize) {
         u32 heapID = ((MemoryBlock *)ptr)->heapID;
@@ -351,7 +344,6 @@ void Heap_ReallocFromHeap(void *ptr, u32 newSize)
 }
 
 BOOL GF_heap_c_dummy_return_true(u32 heapID)
-#pragma unused(heapID)
 {
     return TRUE;
 }

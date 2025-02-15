@@ -10,7 +10,7 @@
 #include "inlines.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02017728.h"
+#include "system.h"
 #include "unk_02033200.h"
 #include "unk_020366A0.h"
 

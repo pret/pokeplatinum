@@ -4,11 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_02095C48.h"
 
@@ -24,7 +20,6 @@
 #include "assert.h"
 #include "bg_window.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
@@ -34,13 +29,14 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02094EDC.h"
 
@@ -70,7 +66,7 @@ typedef struct {
     s16 unk_02;
     union {
         struct {
-            CellActorData *unk_00[3];
+            ManagedSprite *unk_00[3];
             const s16 *unk_0C;
             const UnkStruct_ov17_02253388 *unk_10;
             int unk_14;
@@ -127,9 +123,9 @@ typedef struct UnkStruct_ov17_0223F7E4_t {
     u16 *unk_34[2];
     UnkStruct_02012744 *unk_3C;
     UnkStruct_ov17_02240138 unk_40[12];
-    CellActorData *unk_118[4];
-    CellActorData *unk_128;
-    CellActorData *unk_12C[4][6];
+    ManagedSprite *unk_118[4];
+    ManagedSprite *unk_128;
+    ManagedSprite *unk_12C[4][6];
     UnkStruct_ov17_0223FF38 unk_18C;
     void *unk_2C0;
     NNSG2dCharacterData *unk_2C4;
@@ -632,8 +628,8 @@ void ov17_0223F9C4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2, void
     const UnkStruct_ov17_02253558 *v0, *v1;
     int v2;
     BgConfig *v3;
-    SpriteRenderer *v4;
-    SpriteGfxHandler *v5;
+    SpriteSystem *v4;
+    SpriteManager *v5;
 
     param0->unk_0C = param3;
 
@@ -951,7 +947,7 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
     int v3;
     FontOAM *v4;
     BgConfig *v5;
-    SpriteGfxHandler *v6;
+    SpriteManager *v6;
     int v7, v8;
 
     GF_ASSERT(param1->unk_00 == NULL);
@@ -985,8 +981,8 @@ static void ov17_02240138(UnkStruct_ov17_0223F7E4 *param0, UnkStruct_ov17_022401
 
     v0.unk_00 = param0->unk_3C;
     v0.unk_04 = &v1;
-    v0.unk_08 = sub_0200D9B0(v6);
-    v0.unk_0C = sub_0200D04C(v6, param6);
+    v0.unk_08 = SpriteManager_GetSpriteList(v6);
+    v0.unk_0C = SpriteManager_FindPlttResourceProxy(v6, param6);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.offset;
     v0.unk_18 = param7;
@@ -1048,8 +1044,8 @@ static void ov17_022402A8(UnkStruct_ov17_0223F7E4 *param0)
 static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
 {
     int v0;
-    SpriteRenderer *v1;
-    SpriteGfxHandler *v2;
+    SpriteSystem *v1;
+    SpriteManager *v2;
     SpriteTemplate v3;
     int v4;
 
@@ -1068,7 +1064,7 @@ static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
             v3.y = Unk_ov17_02253298[v0][1];
 
             param0->unk_118[v0] = ov17_0224F154(v1, v2, v4, &v3);
-            sub_0200D500(param0->unk_118[v0], v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
+            ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_118[v0], v3.x, v3.y, ((192 + 80) << FX32_SHIFT));
         }
     }
 }
@@ -1076,8 +1072,8 @@ static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
 static void ov17_02240388(UnkStruct_ov17_0223F7E4 *param0)
 {
     int v0;
-    SpriteRenderer *v1;
-    SpriteGfxHandler *v2;
+    SpriteSystem *v1;
+    SpriteManager *v2;
 
     v1 = param0->unk_04->unk_18;
     v2 = param0->unk_04->unk_1C;
@@ -1180,7 +1176,7 @@ static void ov17_0224051C(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_2CC.unk_04_val1.unk_00[v4] != NULL) {
-                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->unk_00, 0, -2);
+                Sprite_OffsetPositionXY(v0->unk_2CC.unk_04_val1.unk_00[v4]->sprite, 0, -2);
             }
         }
 
@@ -1203,7 +1199,7 @@ static void ov17_0224051C(SysTask *param0, void *param1)
 
         for (v4 = 0; v4 < 3; v4++) {
             if (v0->unk_2CC.unk_04_val1.unk_00[v4] != NULL) {
-                sub_0200D5AC(v0->unk_2CC.unk_04_val1.unk_00[v4]->unk_00, 0, 1);
+                Sprite_OffsetPositionXY(v0->unk_2CC.unk_04_val1.unk_00[v4]->sprite, 0, 1);
             }
         }
 
@@ -1292,11 +1288,11 @@ static void ov17_02240658(SysTask *param0, void *param1)
             sub_020128C4(v0->unk_40[v6].unk_00, v2, v3 + -2);
 
             if (v8 != 0) {
-                sub_0200D5AC(v0->unk_118[v7]->unk_00, 0, -2);
+                Sprite_OffsetPositionXY(v0->unk_118[v7]->sprite, 0, -2);
 
                 for (v10 = 0; v10 < 6; v10++) {
                     if (v0->unk_12C[v11][v10] != NULL) {
-                        sub_0200D5AC(v0->unk_12C[v11][v10]->unk_00, 0, -2);
+                        Sprite_OffsetPositionXY(v0->unk_12C[v11][v10]->sprite, 0, -2);
                     }
                 }
             }
@@ -1327,11 +1323,11 @@ static void ov17_02240658(SysTask *param0, void *param1)
             sub_020128C4(v0->unk_40[v6].unk_00, v2, v3 + 1);
 
             if (v8 != 0) {
-                sub_0200D5AC(v0->unk_118[v7]->unk_00, 0, 1);
+                Sprite_OffsetPositionXY(v0->unk_118[v7]->sprite, 0, 1);
 
                 for (v10 = 0; v10 < 6; v10++) {
                     if (v0->unk_12C[v11][v10] != NULL) {
-                        sub_0200D5AC(v0->unk_12C[v11][v10]->unk_00, 0, 1);
+                        Sprite_OffsetPositionXY(v0->unk_12C[v11][v10]->sprite, 0, 1);
                     }
                 }
             }
@@ -1536,7 +1532,7 @@ static int ov17_02240C90(UnkStruct_ov17_0223F7E4 *param0)
     }
 
     if (v0->unk_00 == 0) {
-        if ((param0->unk_304 == 1) || (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
+        if ((param0->unk_304 == 1) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
             if (param0->unk_304 == 0) {
                 Sound_PlayEffect(1500);
             }
@@ -1697,7 +1693,7 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
     v1 = param0->unk_02;
     v0 = param0->unk_01;
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         param0->unk_01--;
 
         if (param0->unk_01 < 0) {
@@ -1716,7 +1712,7 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_UP;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         param0->unk_01++;
 
         if (param0->unk_01 >= param2) {
@@ -1735,7 +1731,7 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_DOWN;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         param0->unk_02--;
 
         if (param0->unk_02 < 0) {
@@ -1754,7 +1750,7 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_LEFT;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         param0->unk_02++;
 
         if (param0->unk_02 >= param1) {
@@ -1773,9 +1769,9 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
         }
 
         v2 = PAD_KEY_RIGHT;
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         v2 = PAD_BUTTON_A;
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         v2 = PAD_BUTTON_B;
     } else {
         return 0;

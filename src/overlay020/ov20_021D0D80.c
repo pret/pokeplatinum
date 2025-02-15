@@ -12,10 +12,10 @@
 #include "overlay020/ov20_021D5044.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
 
-#include "core_sys.h"
 #include "heap.h"
 #include "overlay_manager.h"
 #include "strbuf.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -154,9 +154,9 @@ int ov20_021D0DF8(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov20_021D16E8 *v0 = OverlayManager_Data(param0);
 
-    v0->unk_30 = gCoreSys.pressedKeys;
-    v0->unk_32 = gCoreSys.heldKeys;
-    v0->unk_34 = gCoreSys.pressedKeysRepeatable;
+    v0->unk_30 = gSystem.pressedKeys;
+    v0->unk_32 = gSystem.heldKeys;
+    v0->unk_34 = gSystem.pressedKeysRepeatable;
 
     sub_0202404C(v0->unk_40);
 

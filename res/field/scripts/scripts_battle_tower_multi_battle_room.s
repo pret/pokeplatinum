@@ -321,8 +321,8 @@ _0541:
     WaitMovement
     SetFlag 0x1EA
     SetFlag 0x1EB
-    ScrCmd_065 5
-    ScrCmd_065 4
+    RemoveObject 5
+    RemoveObject 4
     Return
 
 _0565:

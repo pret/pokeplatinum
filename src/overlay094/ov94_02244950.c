@@ -10,7 +10,6 @@
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -22,6 +21,7 @@
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "system_data.h"
 #include "text.h"
 #include "unk_0200F174.h"
@@ -745,7 +745,7 @@ static int ov94_02245540(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02245564(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A || gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A || gSystem.pressedKeys & PAD_BUTTON_B) {
         Window_EraseStandardFrame(&param0->unk_F8C, 0);
         param0->unk_2C = 0;
     }

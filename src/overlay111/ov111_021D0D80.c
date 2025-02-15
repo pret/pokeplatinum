@@ -19,7 +19,6 @@
 #include "overlay111/struct_ov111_021D3620.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -34,8 +33,10 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
@@ -44,7 +45,6 @@
 #include "unk_0200F174.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "vram_transfer.h"
 
@@ -416,7 +416,7 @@ int ov111_021D0E34(OverlayManager *param0, int *param1)
         break;
     }
 
-    CellActorCollection_Update(v0->unk_16C.unk_00);
+    SpriteList_Update(v0->unk_16C.unk_00);
 
     return 0;
 }
@@ -433,7 +433,7 @@ int ov111_021D0F40(OverlayManager *param0, int *param1)
     ov111_021D1C0C(v1);
 
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(115);
 
     return 1;
@@ -1128,7 +1128,7 @@ static void ov111_021D1C0C(UnkStruct_ov111_021D0F7C *param0)
 
 static void ov111_021D1D30(void)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -1195,7 +1195,7 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
 
     sub_0201E3D8();
     sub_0201E450(1);
-    SetMainCallback(ov111_021D2090, (void *)param0);
+    SetVBlankCallback(ov111_021D2090, (void *)param0);
 
     return;
 }

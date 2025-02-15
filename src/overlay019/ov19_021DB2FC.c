@@ -9,7 +9,6 @@
 #include "overlay019/struct_ov19_021DF964.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "enums.h"
 #include "graphics.h"
 #include "heap.h"
@@ -17,6 +16,7 @@
 #include "message.h"
 #include "narc.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -28,7 +28,7 @@ static void ov19_021DB7BC(BgConfig *param0, u32 param1, u32 param2, u32 param3, 
 static void ov19_021DB84C(BgConfig *param0, Window *param1);
 static void ov19_021DB898(BgConfig *param0, Window *param1);
 
-BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4, MessageLoader *param5, const StringTemplate *param6, int param7, NARC *param8)
+BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, MessageLoader *param5, const StringTemplate *param6, int param7, NARC *param8)
 {
     param0->unk_0C = param1;
     param0->unk_00 = param3;

@@ -23,7 +23,7 @@ _0010:
     WaitFadeScreen
     ScrCmd_191
     ScrCmd_193 0x8002
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x8002, 0xFF, _011E

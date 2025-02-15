@@ -100,7 +100,7 @@ _019F:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AD
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     MessageInstant 16
     GoTo _00D0
@@ -125,7 +125,7 @@ _0219:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AE
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     GoTo _00D0
     End
@@ -155,7 +155,7 @@ _02A4:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_192
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 202
@@ -191,7 +191,7 @@ _0351:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AC
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     GoTo _0476
     End
@@ -212,7 +212,7 @@ _03B1:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AF
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     GoTo _0476
     End
@@ -237,7 +237,7 @@ _0433:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2C6
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     GoTo _0476
     End
@@ -294,7 +294,7 @@ _04AD:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AC
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     GoTo _0476
     End
@@ -325,7 +325,7 @@ _053A:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AF
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     GoTo _0476
     End
@@ -351,7 +351,7 @@ _05AF:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2C6
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     GoTo _0476
     End
@@ -543,7 +543,7 @@ _0853:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AD
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     GoTo _07D4
     End
@@ -572,7 +572,7 @@ _08C7:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AE
-    ScrCmd_0A1
+    ReturnToField
     ScrCmd_139 11
     Call _0BB2
     GoTo _07D4
@@ -608,7 +608,7 @@ _095C:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_192
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 202
@@ -651,7 +651,7 @@ _0A28:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AF
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     ReleaseAll
     End
@@ -674,7 +674,7 @@ _0A82:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2C6
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     ReleaseAll
     End
@@ -695,7 +695,7 @@ _0AED:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AC
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     ReleaseAll
     End

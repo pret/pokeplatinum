@@ -55,7 +55,7 @@ _00B5:
     End
 
 _00DB:
-    ScrCmd_065 13
+    RemoveObject 13
     SetFlag 0x2CB
     Return
 
@@ -107,7 +107,7 @@ _0196:
     Return
 
 _019C:
-    ScrCmd_065 10
+    RemoveObject 10
     SetFlag 0x2C1
     Return
 
@@ -257,7 +257,7 @@ _03F5:
     WaitFadeScreen
     ScrCmd_2CC 4, 0x40BB, 0x800C
     ScrCmd_2D0 0x4002, 0x4005
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4002, 0xFF, _034D
@@ -408,7 +408,7 @@ _06C3:
     ScrCmd_1F8
     ScrCmd_2C4 9
     CallIfEq 0x40BB, 2, _072C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ScrCmd_313 1

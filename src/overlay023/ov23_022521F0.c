@@ -19,7 +19,6 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_system.h"
 #include "heap.h"
 #include "list_menu.h"
@@ -35,6 +34,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
@@ -431,7 +431,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
     v0.count = v1;
     v0.maxDisplay = v1;
     v0.cursorCallback = ov23_0225265C;
-    v0.tmp = param0;
+    v0.parent = param0;
 
     param0->unk_268 = ov23_02252A04;
     param0->unk_294 = ov23_02243154(13 + param0->unk_2AC);
@@ -712,7 +712,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         break;
     case 6:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v0->unk_2AA = 7;
             }
         }
@@ -780,7 +780,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         break;
     case 9:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 if (v0->unk_2AC == 1) {
                     ov23_02252CF4(2, v0->unk_2A8);
                 } else if (v0->unk_2AC == 0) {
@@ -796,7 +796,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         break;
     case 10:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 ov23_02252C9C(8);
                 v0->unk_2AA = 2;
             }
@@ -877,7 +877,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         break;
     case 16:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 ov23_0225412C(ov23_022421BC(), v0->unk_27E[0]);
                 ov23_02252CE0(2, v0->unk_279[0]);
                 ov23_02252C9C(7);
@@ -894,7 +894,7 @@ static void ov23_02252E70(SysTask *param0, void *param1)
         break;
     case 18:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 ov23_02252CD4();
                 ov23_02252C78(v0);
                 ov23_02243204();

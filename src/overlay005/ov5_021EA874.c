@@ -283,7 +283,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
     v1.choices = param0->unk_00;
     v1.window = &param0->unk_20;
     v1.cursorCallback = ov5_021EAF90;
-    v1.tmp = param0;
+    v1.parent = param0;
 
     param0->unk_04 = ListMenu_New(&v1, 0, 0, 4);
     Window_CopyToVRAM(&param0->unk_20);

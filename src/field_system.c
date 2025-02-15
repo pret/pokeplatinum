@@ -21,7 +21,6 @@
 #include "bg_window.h"
 #include "comm_player_manager.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -35,6 +34,7 @@
 #include "pokedex_memory.h"
 #include "pokeradar.h"
 #include "savedata.h"
+#include "system.h"
 #include "unk_0205F180.h"
 #include "unk_0209C370.h"
 
@@ -239,7 +239,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     FieldInput fieldInput;
     if (processInput) {
         sub_0205F490(fieldSystem->playerAvatar);
-        FieldInput_Update(&fieldInput, fieldSystem, gCoreSys.pressedKeys, gCoreSys.heldKeys);
+        FieldInput_Update(&fieldInput, fieldSystem, gSystem.pressedKeys, gSystem.heldKeys);
     }
 
     enum MapLoadType loadType = fieldSystem->mapLoadType;
@@ -286,7 +286,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
                 ov5_021E0EEC(fieldSystem->playerAvatar);
                 ov5_021EA714(fieldSystem, 0, 1);
             } else {
-                if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+                if (gSystem.pressedKeys & PAD_BUTTON_A) {
                     MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
                 }
 
@@ -310,7 +310,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
                 ov5_021E0EEC(fieldSystem->playerAvatar);
                 ov5_021EA714(fieldSystem, 0, 1);
             } else {
-                if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+                if (gSystem.pressedKeys & PAD_BUTTON_A) {
                     MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
                 }
 

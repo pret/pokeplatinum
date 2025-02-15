@@ -83,7 +83,7 @@ _00FB:
     CloseMessage
     ApplyMovement 2, _01F0
     WaitMovement
-    ScrCmd_065 2
+    RemoveObject 2
     SetVar 0x400B, 1
     Call _016C
     SetFlag 0xAA2
@@ -306,7 +306,7 @@ _0399:
 _03C2:
     Message 20
     GoToIfSet 251, _0408
-    HasSeenSpecies SPECIES_MANAPHY, 0x800C
+    CheckHasSeenSpecies SPECIES_MANAPHY, 0x800C
     GoToIfEq 0x800C, 1, _03FC
     ScrCmd_208 SPECIES_MANAPHY, 0
     WaitABPress

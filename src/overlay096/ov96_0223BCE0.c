@@ -16,8 +16,6 @@
 #include "overlay096/struct_ov96_0223BF40_t.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -28,8 +26,10 @@
 #include "narc.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "system_data.h"
 #include "text.h"
 #include "unk_02005474.h"
@@ -881,7 +881,7 @@ static int ov96_0223CA28(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223CA70(UnkStruct_ov96_0223BF40 *param0)
 {
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         param0->unk_98++;
 
         if (param0->unk_98 > param0->unk_94) {
@@ -890,7 +890,7 @@ static int ov96_0223CA70(UnkStruct_ov96_0223BF40 *param0)
 
         ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
         Sound_PlayEffect(1500);
-    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         param0->unk_98--;
 
         if (param0->unk_98 < 1) {
@@ -899,7 +899,7 @@ static int ov96_0223CA70(UnkStruct_ov96_0223BF40 *param0)
 
         ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
         Sound_PlayEffect(1500);
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         {
             RTCTime v0;
             RTCDate v1;
@@ -915,7 +915,7 @@ static int ov96_0223CA70(UnkStruct_ov96_0223BF40 *param0)
 
         ov96_0223D950(param0, 0, 0);
         Sound_PlayEffect(1500);
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov96_0223D950(param0, 0, 0);
         param0->unk_1C = 21;
         Sound_PlayEffect(1500);
@@ -1146,7 +1146,7 @@ static int ov96_0223CF5C(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223CFAC(UnkStruct_ov96_0223BF40 *param0)
 {
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         param0->unk_90++;
 
         if (param0->unk_90 > 10) {
@@ -1155,7 +1155,7 @@ static int ov96_0223CFAC(UnkStruct_ov96_0223BF40 *param0)
 
         ov96_0223D90C(&param0->unk_E48, param0->unk_BE8, param0->unk_90, 2);
         Sound_PlayEffect(1500);
-    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         param0->unk_90--;
 
         if (param0->unk_90 < 1) {
@@ -1164,11 +1164,11 @@ static int ov96_0223CFAC(UnkStruct_ov96_0223BF40 *param0)
 
         ov96_0223D90C(&param0->unk_E48, param0->unk_BE8, param0->unk_90, 2);
         Sound_PlayEffect(1500);
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov96_0223D950(param0, 0, 0);
         ov96_0223BBFC(param0, 11, 32);
         Sound_PlayEffect(1500);
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov96_0223D950(param0, 0, 0);
         param0->unk_1C = 23;
         Sound_PlayEffect(1500);
@@ -1201,7 +1201,7 @@ static int ov96_0223D0B0(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D100(UnkStruct_ov96_0223BF40 *param0)
 {
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         param0->unk_98++;
 
         if (param0->unk_98 == param0->unk_94 + 1) {
@@ -1210,7 +1210,7 @@ static int ov96_0223D100(UnkStruct_ov96_0223BF40 *param0)
 
         ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
         Sound_PlayEffect(1500);
-    } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         param0->unk_98--;
 
         if (param0->unk_98 < 1) {
@@ -1219,11 +1219,11 @@ static int ov96_0223D100(UnkStruct_ov96_0223BF40 *param0)
 
         ov96_0223D90C(&param0->unk_E58, param0->unk_BE4, param0->unk_98, 3);
         Sound_PlayEffect(1500);
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov96_0223D950(param0, 0, 0);
         param0->unk_1C = 35;
         Sound_PlayEffect(1500);
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov96_0223D950(param0, 0, 0);
         param0->unk_1C = 29;
         Sound_PlayEffect(1500);
@@ -1580,7 +1580,7 @@ static int ov96_0223D7B8(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223D7E4(UnkStruct_ov96_0223BF40 *param0)
 {
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A || gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A || gSystem.pressedKeys & PAD_BUTTON_B) {
         Window_EraseStandardFrame(&param0->unk_E78, 0);
         param0->unk_1C = 0;
     }
@@ -1642,8 +1642,8 @@ void ov96_0223D948(UnkStruct_ov96_0223BF40 *param0)
 static void ov96_0223D950(UnkStruct_ov96_0223BF40 *param0, int param1, int param2)
 {
     if ((param1 == 0) || (param1 == 1)) {
-        CellActor_SetDrawFlag(param0->unk_E30[0], param2);
-        CellActor_SetDrawFlag(param0->unk_E30[1], param2);
+        Sprite_SetDrawFlag(param0->unk_E30[0], param2);
+        Sprite_SetDrawFlag(param0->unk_E30[1], param2);
     }
 }
 

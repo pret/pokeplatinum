@@ -114,7 +114,7 @@ _0115:
     CallIfEq 0x8000, 2, _0169
     CallIfEq 0x8000, 3, _0175
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 2
+    RemoveObject 2
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ReleaseAll
     End

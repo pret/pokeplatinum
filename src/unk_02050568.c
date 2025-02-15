@@ -12,7 +12,6 @@
 #include "overlay115/camera_angle.h"
 
 #include "camera.h"
-#include "core_sys.h"
 #include "field_map_change.h"
 #include "field_task.h"
 #include "field_transition.h"
@@ -21,6 +20,7 @@
 #include "location.h"
 #include "map_object.h"
 #include "player_avatar.h"
+#include "system.h"
 #include "system_flags.h"
 #include "unk_02005474.h"
 #include "unk_02056B30.h"
@@ -88,7 +88,7 @@ static BOOL sub_020505A0(FieldTask *taskMan)
         v1->unk_08++;
         break;
     case 5:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             v1->unk_08++;
         }
         break;

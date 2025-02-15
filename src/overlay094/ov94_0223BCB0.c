@@ -22,7 +22,6 @@
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -37,14 +36,15 @@
 #include "pokemon_icon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "string_template.h"
+#include "system.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02033200.h"
 #include "unk_020797C8.h"
 #include "unk_02099550.h"
@@ -87,7 +87,7 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -194,7 +194,7 @@ int ov94_0223BE2C(OverlayManager *param0, int *param1)
     ov94_0223C598(v0);
 
     if (v0->unk_BE4 != NULL) {
-        CellActorCollection_Update(v0->unk_BE4);
+        SpriteList_Update(v0->unk_BE4);
     }
 
     return 0;
@@ -224,7 +224,7 @@ int ov94_0223BF54(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->unk_04);
     Heap_FreeToHeap(v0->unk_00);
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(62);
 
     return 1;
@@ -371,9 +371,9 @@ static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
     NARC_dtor(v1);
 }
 
-void ov94_0223C300(CellActorInitParamsEx *param0, UnkStruct_ov94_0223FD4C *param1, CellActorResourceData *param2, int param3)
+void ov94_0223C300(AffineSpriteListTemplate *param0, UnkStruct_ov94_0223FD4C *param1, SpriteResourcesHeader *param2, int param3)
 {
-    param0->collection = param1->unk_BE4;
+    param0->list = param1->unk_BE4;
     param0->resourceData = param2;
     param0->position.z = 0;
     param0->affineScale.x = FX32_ONE;
@@ -422,7 +422,7 @@ void ov94_0223C3F4(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
     param0->unk_30 = param2;
 }
 
-void ov94_0223C3FC(CellActor *param0, int param1, int param2)
+void ov94_0223C3FC(Sprite *param0, int param1, int param2)
 {
     VecFx32 v0;
 
@@ -430,7 +430,7 @@ void ov94_0223C3FC(CellActor *param0, int param1, int param2)
     v0.y = FX32_CONST(param2);
     v0.z = 0;
 
-    CellActor_SetPosition(param0, &v0);
+    Sprite_SetPosition(param0, &v0);
 }
 
 static void *ov94_0223C468(DWCAllocType param0, u32 param1, int param2)
@@ -495,7 +495,7 @@ static void ov94_0223C4E0(UnkStruct_ov94_0223FD4C *param0)
     ov94_0223C0D4(param0);
     ov94_0223C32C(param0);
 
-    SetMainCallback(ov94_0223BFE4, param0);
+    SetVBlankCallback(ov94_0223BFE4, param0);
 }
 
 static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0)
@@ -513,7 +513,7 @@ static void ov94_0223C508(UnkStruct_ov94_0223FD4C *param0)
         SpriteResourceCollection_Delete(param0->unk_D74[v0]);
     }
 
-    CellActorCollection_Delete(param0->unk_BE4);
+    SpriteList_Delete(param0->unk_BE4);
     param0->unk_BE4 = NULL;
 
     RenderOam_Free();

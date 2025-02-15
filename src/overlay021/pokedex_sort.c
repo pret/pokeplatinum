@@ -1,7 +1,8 @@
 #include "overlay021/pokedex_sort.h"
 
-#include <nitro.h>
 #include <string.h>
+
+#include "constants/heap.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 
@@ -9,15 +10,14 @@
 #include "overlay021/sorted_pokedex.h"
 #include "overlay021/species_caught_status.h"
 
-#include "core_sys.h"
 #include "graphics.h"
 #include "heap.h"
-#include "narc.h"
 #include "pokedex.h"
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "pokedex_memory.h"
 #include "strbuf.h"
+#include "system.h"
 #include "trainer_info.h"
 
 #define NUMSTATFILES 11
@@ -611,12 +611,12 @@ BOOL PokedexSort_CanDetectForms(const PokedexSortData *param0)
 
 void ov21_021D3960(PokedexSortData *param0)
 {
-    if (gCoreSys.touchHeld) {
+    if (gSystem.touchHeld) {
         param0->unk_1758 = 0;
         return;
     }
 
-    if (gCoreSys.pressedKeys) {
+    if (gSystem.pressedKeys) {
         if (param0->unk_1758 == 0) {
             param0->unk_1758 = 1;
         } else {

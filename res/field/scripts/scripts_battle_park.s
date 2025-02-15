@@ -51,7 +51,7 @@ _0032:
     CallIfEq 0x8004, 24, _0204
     CallIfEq 0x8004, 25, _0218
     CallIfEq 0x8004, 26, _022C
-    ScrCmd_065 11
+    RemoveObject 11
     ClearFlag 0x277
     ScrCmd_064 12
     ScrCmd_062 12
@@ -72,7 +72,7 @@ _0032:
     CallIfEq 0x8004, 24, _0254
     CallIfEq 0x8004, 25, _0268
     CallIfEq 0x8004, 26, _027C
-    ScrCmd_065 12
+    RemoveObject 12
     SetVar 0x410E, 1
     ReleaseAll
     End

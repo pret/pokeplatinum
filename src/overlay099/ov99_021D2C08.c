@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200D0F4.h"
-
 #include "overlay099/ov99_021D4134.h"
 #include "overlay099/struct_ov99_021D2C08.h"
 #include "overlay099/struct_ov99_021D2CB0.h"
@@ -12,9 +10,9 @@
 #include "overlay099/struct_ov99_021D3A40.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "math.h"
-#include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
+#include "sprite_system.h"
 
 typedef struct {
     s32 unk_00;
@@ -32,7 +30,7 @@ typedef struct {
 static void ov99_021D2CB0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1);
 static void ov99_021D2CEC(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1);
 static void ov99_021D2DF4(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1);
-static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1, CellActorData *param2, int param3);
+static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1, ManagedSprite *param2, int param3);
 
 static const UnkStruct_ov99_021D4B70 Unk_ov99_021D4B70[] = {
     {
@@ -77,17 +75,17 @@ BOOL ov99_021D2C08(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
     switch (param1->unk_00) {
     case 0:
         ov99_021D2CB0(param0, v0);
-        sub_0200AAE0(24, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+        BrightnessController_StartTransition(24, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
         param1->unk_00++;
         break;
     case 1:
         if (param0->unk_10FC >= 1830) {
-            sub_0200AAE0(24, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+            BrightnessController_StartTransition(24, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
             param1->unk_00++;
         }
         break;
     case 2:
-        if (sub_0200AC1C(3) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) {
             return 1;
         }
         break;
@@ -108,7 +106,7 @@ static void ov99_021D2CB0(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C
     GF_ASSERT(NELEMS(Unk_ov99_021D4B70) == 4 - 2 + 1);
 
     for (v0 = 2; v0 <= 4; v0++, v1++) {
-        sub_0200D650(param0->unk_10E0[v0], Unk_ov99_021D4B70[v1].unk_04, Unk_ov99_021D4B70[v1].unk_08, ((192 + 80) << FX32_SHIFT));
+        ManagedSprite_SetPositionFxXYWithSubscreenOffset(param0->unk_10E0[v0], Unk_ov99_021D4B70[v1].unk_04, Unk_ov99_021D4B70[v1].unk_08, ((192 + 80) << FX32_SHIFT));
         param1->unk_08[v1].unk_00 = Unk_ov99_021D4B70[v1].unk_04;
         param1->unk_08[v1].unk_04 = Unk_ov99_021D4B70[v1].unk_08;
     }
@@ -123,7 +121,7 @@ static void ov99_021D2CEC(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C
     }
 }
 
-static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1, CellActorData *param2, int param3)
+static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C08 *param1, ManagedSprite *param2, int param3)
 {
     UnkStruct_ov99_021D2D18 *v0 = &param1->unk_08[param3];
     const UnkStruct_ov99_021D4B70 *v1 = &Unk_ov99_021D4B70[param3];
@@ -145,12 +143,12 @@ static void ov99_021D2D18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D2C
     v0->unk_00 += v1->unk_0C;
     v0->unk_04 += v1->unk_10;
 
-    sub_0200D650(param2, v0->unk_00, v0->unk_04 + v2, ((192 + 80) << FX32_SHIFT));
+    ManagedSprite_SetPositionFxXYWithSubscreenOffset(param2, v0->unk_00, v0->unk_04 + v2, ((192 + 80) << FX32_SHIFT));
 
     if (v0->unk_12 == 0) {
-        sub_0200D74C(param2, v1->unk_1C, v1->unk_1C);
+        ManagedSprite_OffsetAffineScale(param2, v1->unk_1C, v1->unk_1C);
     } else {
-        sub_0200D74C(param2, -v1->unk_1C, -v1->unk_1C);
+        ManagedSprite_OffsetAffineScale(param2, -v1->unk_1C, -v1->unk_1C);
     }
 
     v0->unk_10++;

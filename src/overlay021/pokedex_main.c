@@ -47,7 +47,7 @@
 #include "overlay021/struct_ov21_021E68F4.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "brightness_controller.h"
 #include "char_transfer.h"
 #include "genders.h"
 #include "gx_layers.h"
@@ -60,16 +60,16 @@
 #include "pokedex_memory.h"
 #include "pokemon.h"
 #include "render_oam.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "strbuf.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "vram_transfer.h"
@@ -139,7 +139,7 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
 
     Pokedex_SetupGiratina(Pokedex_GetDisplayForm(overlayArgsInput->pokedex, SPECIES_GIRATINA, 0));
 
-    SetMainCallback(CallBack, pokedexOverlayData);
+    SetVBlankCallback(CallBack, pokedexOverlayData);
     DisableHBlank();
     sub_0201E3D8();
 
@@ -170,7 +170,7 @@ int PokedexMain_Main(OverlayManager *overlayMan, int *state)
     switch (*state) {
     case POKEDEX_STATE_TRANSITION_IN:
         EntranceTransition(pokedexOverlayData);
-        sub_0200AB4C(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+        BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
         (*state)++;
         break;
     case POKEDEX_STATE_USE:
@@ -201,7 +201,7 @@ int PokedexMain_Exit(OverlayManager *overlayMan, int *state)
 {
     OverlayManager_Data(overlayMan);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     GF_ASSERT(sub_0201E530() == TRUE);
 
@@ -527,22 +527,22 @@ UnkStruct_ov21_021E68F4 *ov21_021D1430(PokedexApp *pokedexApp, int param1)
     return &pokedexApp->unk_1C24[param1];
 }
 
-void ov21_021D144C(CellActor *param0, int param1)
+void ov21_021D144C(Sprite *param0, int param1)
 {
     switch (param1) {
     case 0:
-        SpriteActor_SetAnimFrame(param0, 1);
+        Sprite_SetAnimFrame(param0, 1);
         break;
     case 2:
-        SpriteActor_SetAnimFrame(param0, 2);
+        Sprite_SetAnimFrame(param0, 2);
         break;
     case 1:
-        SpriteActor_SetAnimFrame(param0, 3);
+        Sprite_SetAnimFrame(param0, 3);
         break;
     case 3:
     case (3 + 1):
-        if (CellActor_GetAnimFrame(param0) > 0) {
-            CellActor_UpdateAnim(param0, -(FX32_ONE * 2));
+        if (Sprite_GetAnimFrame(param0) > 0) {
+            Sprite_UpdateAnim(param0, -(FX32_ONE * 2));
         }
         break;
     default:
@@ -550,9 +550,9 @@ void ov21_021D144C(CellActor *param0, int param1)
     }
 }
 
-void ov21_021D1498(CellActor *param0, UnkStruct_ov21_021D4CA0 *param1, int param2)
+void ov21_021D1498(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2)
 {
-    int v0 = CellActor_GetAnimFrame(param0);
+    int v0 = Sprite_GetAnimFrame(param0);
     int v1, v2;
 
     switch (v0) {
@@ -579,12 +579,12 @@ void ov21_021D1498(CellActor *param0, UnkStruct_ov21_021D4CA0 *param1, int param
     }
 }
 
-void ov21_021D1524(CellActor *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4)
+void ov21_021D1524(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4)
 {
     int v0;
 
     ov21_021D1498(param0, param1, param2);
-    v0 = CellActor_GetAnimFrame(param0);
+    v0 = Sprite_GetAnimFrame(param0);
 
     if (v0 < 2) {
         sub_02012AC0(param1->unk_00, param3);
@@ -707,23 +707,23 @@ void PokedexMain_EntryNameNumber(PokedexGraphicData *param0, const PokedexSortDa
     u32 isNationalDex = PokedexSort_IsNationalDex(pokedexSortData);
 
     const SpeciesCaughtStatus *speciesCaughtStatus = PokedexSort_StatusIndexToCaughtStatus(pokedexSortData, statusIndex);
-    CellActor *v0 = ov21_021D22A8(param0);
-    CellActor *v1 = ov21_021D22C4(param0);
+    Sprite *v0 = ov21_021D22A8(param0);
+    Sprite *v1 = ov21_021D22C4(param0);
 
     position.x = x;
     position.y = y;
 
-    CellActor_SetPosition(v0, &position);
-    CellActor_SetDrawFlag(v0, TRUE);
+    Sprite_SetPosition(v0, &position);
+    Sprite_SetDrawFlag(v0, TRUE);
 
     if (speciesCaughtStatus->caughtStatus == CS_CAUGHT) {
         position.x = x + (-54 * FX32_ONE);
         position.y = y;
 
-        CellActor_SetPosition(v1, &position);
-        CellActor_SetDrawFlag(v1, TRUE);
+        Sprite_SetPosition(v1, &position);
+        Sprite_SetDrawFlag(v1, TRUE);
     } else {
-        CellActor_SetDrawFlag(v1, FALSE);
+        Sprite_SetDrawFlag(v1, FALSE);
     }
 
     SpriteResource *v4 = ov21_021D2344(param0, 1);
@@ -757,9 +757,9 @@ void ov21_021D1858(UnkStruct_ov21_021D22F8 *param0, int param1, int param2)
     v0.x = param1 << FX32_SHIFT;
     v0.y = param2 << FX32_SHIFT;
 
-    CellActor_SetPosition(param0->unk_00, &v0);
+    Sprite_SetPosition(param0->unk_00, &v0);
     v0.x += (-54 * FX32_ONE);
-    CellActor_SetPosition(param0->unk_04, &v0);
+    Sprite_SetPosition(param0->unk_04, &v0);
 
     if (param0->unk_08->unk_00) {
         sub_02012938(param0->unk_08->unk_00);

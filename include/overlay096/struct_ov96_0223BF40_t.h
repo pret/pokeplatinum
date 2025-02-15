@@ -13,10 +13,10 @@
 #include "overlay096/struct_ov96_0223B574_1.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "menu.h"
 #include "message.h"
 #include "pokemon.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -58,14 +58,14 @@ struct UnkStruct_ov96_0223BF40_t {
     Strbuf *unk_BE8;
     Strbuf *unk_BEC;
     int unk_BF0;
-    CellActorCollection *unk_BF4;
+    SpriteList *unk_BF4;
     G2dRenderer unk_BF8;
     SpriteResourceCollection *unk_D84[4];
     SpriteResource *unk_D94[3][4];
-    CellActorResourceData unk_DC4;
-    CellActorResourceData unk_DE8;
-    CellActorResourceData unk_E0C;
-    CellActor *unk_E30[2];
+    SpriteResourcesHeader unk_DC4;
+    SpriteResourcesHeader unk_DE8;
+    SpriteResourcesHeader unk_E0C;
+    Sprite *unk_E30[2];
     Window unk_E38;
     Window unk_E48;
     Window unk_E58;

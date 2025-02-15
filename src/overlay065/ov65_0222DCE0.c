@@ -29,11 +29,10 @@
 #include "assert.h"
 #include "bag.h"
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "sprite.h"
 #include "char_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "error_handling.h"
 #include "font.h"
@@ -51,33 +50,32 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "party.h"
+#include "pltt_transfer.h"
 #include "poffin.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "system_flags.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "sprite_util.h"
-#include "sprite_transfer.h"
-#include "render_oam.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02017728.h"
-#include "vram_transfer.h"
 #include "unk_0201E3D8.h"
-#include "pltt_transfer.h"
 #include "unk_02023FCC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
@@ -92,6 +90,7 @@
 #include "unk_02099550.h"
 #include "unk_0209C390.h"
 #include "vars_flags.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay63);
 
@@ -688,7 +687,7 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
 {
     NARC *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -711,7 +710,7 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
 
     inline_ov61_0222C3B0(&param0->unk_E2C, v0, 4, 54);
 
-    SetMainCallback(ov65_0222E5E0, param0);
+    SetVBlankCallback(ov65_0222E5E0, param0);
 
     ov65_0222EDD0();
     ov65_0222EE18(param0, v0);
@@ -830,7 +829,7 @@ int ov65_0222E3FC(OverlayManager *param0, int *param1)
     }
 
     if (v0->unk_18C) {
-        CellActorCollection_Update(v0->unk_18C);
+        SpriteList_Update(v0->unk_18C);
     }
 
     if (ov65_02235194(&v0->unk_3EC) == 1) {
@@ -846,7 +845,7 @@ static void ov65_0222E47C(UnkStruct_ov65_0222EBE0 *param0)
 {
     int v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     inline_ov61_0222C160(&param0->unk_E2C);
 
@@ -865,7 +864,7 @@ static void ov65_0222E47C(UnkStruct_ov65_0222EBE0 *param0)
         SpriteResourceCollection_Delete(param0->unk_31C[v0]);
     }
 
-    CellActorCollection_Delete(param0->unk_18C);
+    SpriteList_Delete(param0->unk_18C);
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
@@ -1680,7 +1679,7 @@ static int ov65_0222F1A8(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static int ov65_0222F21C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         ov65_02232CA8(param0, 21);
         Bg_SetPriority(3, 0);
         Bg_SetPriority(2, 1);
@@ -1952,7 +1951,7 @@ static void ov65_0222F6EC(UnkStruct_ov65_0222EBE0 *param0)
 
 static int ov65_0222F7AC(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         if (Window_IsInUse(&param0->unk_360)) {
             Window_EraseMessageBox(&param0->unk_360, 0);
             Window_Remove(&param0->unk_360);
@@ -1983,7 +1982,7 @@ static int ov65_0222F808(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     }
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         if (Window_IsInUse(&param0->unk_360)) {
             Window_EraseMessageBox(&param0->unk_360, 0);
             Window_Remove(&param0->unk_360);
@@ -2266,7 +2265,7 @@ static int ov65_0222FCB8(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
 static int ov65_0222FCDC(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         if (param0->unk_3B4 == 1) {
             param0->unk_3AC = 10;
             param0->unk_3A8 = 34;
@@ -2595,7 +2594,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     if (ov65_0223537C(&param0->unk_3EC) == 0) {
         if (ov4_021D2568() == -1) {
-            if (PAD_BUTTON_X & gCoreSys.pressedKeys) {
+            if (PAD_BUTTON_X & gSystem.pressedKeys) {
                 if (ov65_02232F00(param0)) {
                     ov65_02232B58(param0, 90, 0);
                 } else {
@@ -2654,7 +2653,7 @@ static int ov65_022302C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     v4 = ov65_0222DD20(param0, &param0->unk_04->unk_00);
 
     if (param0->unk_3D0 == -1) {
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             if (ov65_0222DDFC(v4)) {
                 Sound_PlayEffect(1501);
                 param0->unk_3A8 = 39;
@@ -2825,7 +2824,7 @@ static int ov65_022307B0(UnkStruct_ov65_0222EBE0 *param0, int param1)
     }
 
     if (Text_IsPrinterActive(param0->unk_180) == 0) {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
             ov65_02232DFC(param0);
             param0->unk_3A8 = 24;
         } else {
@@ -2871,7 +2870,7 @@ static int ov65_02230860(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_02232DC0(param0, ov4_021D2388());
         ov65_02232B58(param0, 16, 0);
         param0->unk_3A8 = 27;
-    } else if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+    } else if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         ov65_02232B58(param0, 20, 0);
         param0->unk_3A8 = 25;
     } else {
@@ -2961,7 +2960,7 @@ static int ov65_02230AF8(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     param0->unk_3BC--;
 
-    if ((gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) || (param0->unk_3BC == 0)) {
+    if ((gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) || (param0->unk_3BC == 0)) {
         ov65_02232DFC(param0);
         sub_02038378();
         sub_02038B60();
@@ -2989,7 +2988,7 @@ static int ov65_02230BB4(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     }
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         ov65_02232DFC(param0);
         ov65_02232E58(param0, 16);
         sub_02038378();
@@ -3014,7 +3013,7 @@ static int ov65_02230C04(UnkStruct_ov65_0222EBE0 *param0, int param1)
 
     param0->unk_3BC--;
 
-    if ((gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) || (param0->unk_3BC == 0)) {
+    if ((gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) || (param0->unk_3BC == 0)) {
         ov65_02232DFC(param0);
         ov65_02232E58(param0, 16);
 
@@ -3058,7 +3057,7 @@ static int ov65_02230CB8(UnkStruct_ov65_0222EBE0 *param0, int param1)
         return param1;
     }
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         ov65_02232B58(param0, 26, 1);
         param0->unk_3A8 = 59;
         param0->unk_3BC = 1;
@@ -4423,7 +4422,7 @@ static int ov65_02232564(UnkStruct_ov65_0222EBE0 *param0, int param1)
         param0->unk_3A8 = 56;
     }
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         param0->unk_3A8 = 56;
     }
 
@@ -5062,7 +5061,7 @@ static BOOL ov65_02233208(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
         return 0;
     }
 
-    if ((gCoreSys.heldKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN)) || (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X)) || (param1 == 2)) {
+    if ((gSystem.heldKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_KEY_UP | PAD_KEY_DOWN)) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X)) || (param1 == 2)) {
         return 1;
     }
 
@@ -6641,14 +6640,14 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 par
 {
     BOOL v0;
     int v1;
-    CellActorResourceData v2;
+    SpriteResourcesHeader v2;
     Window v3;
     Strbuf *v4;
     UnkStruct_02012B20 *v5;
     int v6;
     UnkStruct_020127E8 v7;
     u32 v8;
-    CellActorInitParamsEx v9[3] = {
+    AffineSpriteListTemplate v9[3] = {
         { NULL,
             NULL,
             { FX32_CONST(40), FX32_CONST(172) + (256 * FX32_ONE), 0 },
@@ -6693,13 +6692,13 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 par
     SpriteResourcesHeader_Init(&v2, 30, 30, 30, 30, 0xffffffff, 0xffffffff, 0, 0, param0->unk_31C[0], param0->unk_31C[1], param0->unk_31C[2], param0->unk_31C[3], NULL, NULL);
 
     for (v1 = 0; v1 < 3; v1++) {
-        v9[v1].collection = param0->unk_18C;
+        v9[v1].list = param0->unk_18C;
         v9[v1].resourceData = &v2;
         v9[v1].heapID = param2;
 
-        param0->unk_BE0.unk_21C[v1] = CellActorCollection_AddEx(&v9[v1]);
+        param0->unk_BE0.unk_21C[v1] = SpriteList_AddAffine(&v9[v1]);
 
-        CellActor_SetAnim(param0->unk_BE0.unk_21C[v1], Unk_ov65_02238930[v1]);
+        Sprite_SetAnim(param0->unk_BE0.unk_21C[v1], Unk_ov65_02238930[v1]);
     }
 
     Font_InitManager(FONT_SUBSCREEN, param2);
@@ -6753,7 +6752,7 @@ static void ov65_02234CFC(UnkStruct_ov65_0222EBE0 *param0)
     CharTransfer_ClearRange(&param0->unk_BE0.unk_228);
 
     for (v0 = 0; v0 < 3; v0++) {
-        CellActor_Delete(param0->unk_BE0.unk_21C[v0]);
+        Sprite_Delete(param0->unk_BE0.unk_21C[v0]);
     }
 
     SpriteTransfer_ResetCharTransfer(param0->unk_BE0.unk_20C[0]);
@@ -6780,7 +6779,7 @@ static void ov65_02234D6C(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_02234DA0(UnkStruct_ov65_0222EBE0 *param0)
 {
     if (param0->unk_BE0.unk_238 == 2) {
-        CellActor_SetDrawFlag(param0->unk_BE0.unk_21C[1], 1);
+        Sprite_SetDrawFlag(param0->unk_BE0.unk_21C[1], 1);
         sub_020129D0(param0->unk_BE0.unk_234, 1);
     }
 
@@ -6828,8 +6827,8 @@ static void ov65_02234E40(u32 param0, u32 param1, void *param2)
 
 static void ov65_02234E50(UnkStruct_ov65_02234E50 *param0, u32 param1)
 {
-    CellActor_SetAnim(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
-    SpriteActor_SetAnimFrame(param0->unk_21C[param1], (5 - 1));
+    Sprite_SetAnim(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
+    Sprite_SetAnimFrame(param0->unk_21C[param1], (5 - 1));
 
     if (param1 == 1) {
         sub_020128C4(param0->unk_234, -18, Unk_ov65_0223893C[0]);
@@ -6843,16 +6842,16 @@ static BOOL ov65_02234E8C(UnkStruct_ov65_02234E50 *param0, u32 param1, u32 param
     u32 v2;
 
     if (param2 == param1) {
-        v1 = CellActor_GetAnimFrame(param0->unk_21C[param1]);
+        v1 = Sprite_GetAnimFrame(param0->unk_21C[param1]);
 
         if ((param3 == 0) || (param3 == 2)) {
             if (param3 == 0) {
-                CellActor_SetAnim(param0->unk_21C[param1], Unk_ov65_0223892C[param1]);
+                Sprite_SetAnim(param0->unk_21C[param1], Unk_ov65_0223892C[param1]);
             }
 
             if (v1 < 3) {
-                CellActor_UpdateAnim(param0->unk_21C[param1], FX32_CONST(2));
-                v1 = CellActor_GetAnimFrame(param0->unk_21C[param1]);
+                Sprite_UpdateAnim(param0->unk_21C[param1], FX32_CONST(2));
+                v1 = Sprite_GetAnimFrame(param0->unk_21C[param1]);
 
                 if (param1 == 1) {
                     sub_020128C4(param0->unk_234, -18, Unk_ov65_0223893C[v1]);
@@ -6868,15 +6867,15 @@ static BOOL ov65_02234E8C(UnkStruct_ov65_02234E50 *param0, u32 param1, u32 param
             }
         }
     } else {
-        v2 = CellActor_GetActiveAnim(param0->unk_21C[param1]);
-        v1 = CellActor_GetAnimFrame(param0->unk_21C[param1]);
+        v2 = Sprite_GetActiveAnim(param0->unk_21C[param1]);
+        v1 = Sprite_GetAnimFrame(param0->unk_21C[param1]);
 
         if (v2 == Unk_ov65_0223892C[param1]) {
-            CellActor_SetAnim(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
-            SpriteActor_SetAnimFrame(param0->unk_21C[param1], (5 - 1) - v1);
+            Sprite_SetAnim(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
+            Sprite_SetAnimFrame(param0->unk_21C[param1], (5 - 1) - v1);
         }
 
-        CellActor_UpdateAnim(param0->unk_21C[param1], FX32_CONST(2));
+        Sprite_UpdateAnim(param0->unk_21C[param1], FX32_CONST(2));
     }
 
     return v0;

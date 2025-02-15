@@ -10,7 +10,7 @@
 #include "struct_defs/struct_02090800.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "applications/pokemon_summary_screen/sprite.h"
+#include "applications/pokemon_summary_screen/sprites.h"
 
 #include "bg_window.h"
 #include "font.h"

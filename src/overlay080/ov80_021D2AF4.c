@@ -3,19 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/struct_ov80_021D2AF4.h"
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
 #include "overlay080/struct_ov80_021D2C5C_sub1.h"
 #include "overlay080/struct_ov80_021D2E10.h"
 
-#include "cell_actor.h"
 #include "heap.h"
-#include "unk_0200C6E4.h"
+#include "sprite.h"
+#include "sprite_system.h"
 
 const UnkStruct_ov80_021D2C5C_sub1 Unk_ov80_021D31D8[20] = {
     { 0x19B, 0x0, 0x0, 0x0, 0x0, 0x15, 0xBD },
@@ -40,13 +36,13 @@ const UnkStruct_ov80_021D2C5C_sub1 Unk_ov80_021D31D8[20] = {
     { 0xAC, 0x44, 0x0, 0x1, 0x3, 0xB6, 0x77 }
 };
 
-UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteRenderer *param0, SpriteGfxHandler *param1, u8 *param2, short param3, int param4)
+UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteSystem *param0, SpriteManager *param1, u8 *param2, short param3, int param4)
 {
     UnkStruct_ov80_021D2C1C *v0;
     UnkStruct_ov80_021D2C5C *v1;
     const UnkStruct_ov80_021D2C5C_sub1 *v2;
     short v3;
-    static const UnkStruct_ov7_0224F358 v4 = {
+    static const SpriteTemplateFromResourceHeader v4 = {
         4, 0, 0, 0, 0, 10, 5, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
     };
 
@@ -68,20 +64,20 @@ UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteRenderer *param0, SpriteGfxHandler 
         v1->unk_00.unk_0C = v2[v3].unk_0C;
         v1->unk_00.unk_10 = v2[v3].unk_10;
         v1->unk_14 = param2[v3];
-        v1->unk_18 = sub_0200CA08(param0, param1, &v4);
+        v1->unk_18 = SpriteSystem_NewSpriteFromResourceHeader(param0, param1, &v4);
 
-        CellActor_SetDrawFlag(v1->unk_18, 1);
+        Sprite_SetDrawFlag(v1->unk_18, 1);
 
         if (v1->unk_14) {
-            CellActor_SetExplicitPalette(v1->unk_18, 5 + v1->unk_00.unk_09 + v1->unk_14);
+            Sprite_SetExplicitPalette(v1->unk_18, 5 + v1->unk_00.unk_09 + v1->unk_14);
         } else {
             if ((v1->unk_00.unk_0A == 1) || (v1->unk_00.unk_0A == 2)) {
-                CellActor_SetDrawFlag(v1->unk_18, 0);
+                Sprite_SetDrawFlag(v1->unk_18, 0);
             }
         }
 
-        CellActor_UpdateAnim(v1->unk_18, FX32_CONST(v1->unk_00.unk_08));
-        SpriteActor_SetPositionXY(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
+        Sprite_UpdateAnim(v1->unk_18, FX32_CONST(v1->unk_00.unk_08));
+        Sprite_SetPositionXY(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
     }
 
     return v0;
@@ -94,8 +90,8 @@ void ov80_021D2C1C(UnkStruct_ov80_021D2C1C *param0)
 
     for (v1 = 0; v1 < param0->unk_00; v1++) {
         v0 = &param0->unk_08[v1];
-        CellActor_SetAffineZRotationEx(v0->unk_18, 0, 0);
-        CellActor_Delete(v0->unk_18);
+        Sprite_SetAffineZRotationEx(v0->unk_18, 0, 0);
+        Sprite_Delete(v0->unk_18);
     }
 
     Heap_FreeToHeap(param0->unk_08);
@@ -153,7 +149,7 @@ int ov80_021D2CC0(UnkStruct_ov80_021D2C1C *param0, int param1, int param2, int p
 
     if ((v0 == NULL) || (v0->unk_14 == 0)) {
         if (param0->unk_04 != NULL) {
-            CellActor_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+            Sprite_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
         }
 
         param0->unk_04 = NULL;
@@ -165,7 +161,7 @@ int ov80_021D2CC0(UnkStruct_ov80_021D2C1C *param0, int param1, int param2, int p
         param0->unk_03 = 0;
     } else {
         if ((v0->unk_00.unk_0A == 2) || (v0->unk_00.unk_0A == 3)) {
-            CellActor_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+            Sprite_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
         }
     }
 
@@ -183,9 +179,9 @@ void ov80_021D2D28(UnkStruct_ov80_021D2C1C *param0, int param1)
     }
 
     if (param0->unk_03 == 0) {
-        CellActor_SetExplicitPalette(param0->unk_04->unk_18, 8 + param0->unk_04->unk_00.unk_09);
+        Sprite_SetExplicitPalette(param0->unk_04->unk_18, 8 + param0->unk_04->unk_00.unk_09);
     } else {
-        CellActor_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+        Sprite_SetExplicitPalette(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
     }
 
     param0->unk_02++;

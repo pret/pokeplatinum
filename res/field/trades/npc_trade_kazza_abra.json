@@ -1,0 +1,22 @@
+{
+    "species": "SPECIES_ABRA",
+    "hpIV": 15,
+    "atkIV": 15,
+    "defIV": 15,
+    "speedIV": 20,
+    "spAtkIV": 25,
+    "spDefIV": 25,
+    "unused1": 28,
+    "otID": 25643,
+    "cool": 0,
+    "beauty": 0,
+    "cute": 0,
+    "smart": 0,
+    "tough": 0,
+    "personality": 142,
+    "heldItem": "ITEM_ORAN_BERRY",
+    "otGender": "GENDER_FEMALE",
+    "unused2": 0,
+    "language": 2,
+    "requestedSpecies": "SPECIES_MACHOP"
+}

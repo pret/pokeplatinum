@@ -28,21 +28,21 @@
 #include "unk_0206CCB0.h"
 #include "unk_020797C8.h"
 
-BOOL ScrCmd_096(ScriptContext *param0)
+BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
 {
-    int v0 = MapHeader_GetMapLabelTextID(param0->fieldSystem->location->mapId);
-    int v1 = 24;
-    Party *v2;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    u16 v4 = ScriptContext_GetVar(param0);
-    u16 v5 = ScriptContext_GetVar(param0);
-    u16 v6 = ScriptContext_GetVar(param0);
-    u16 *v7 = ScriptContext_GetVarPointer(param0);
+    int metLocation = MapHeader_GetMapLabelTextID(ctx->fieldSystem->location->mapId);
+    int metTerrain = TERRAIN_MAX;
+    Party *playerParty;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u16 species = ScriptContext_GetVar(ctx);
+    u16 level = ScriptContext_GetVar(ctx);
+    u16 heldItem = ScriptContext_GetVar(ctx);
+    u16 *partyHasRoom = ScriptContext_GetVarPointer(ctx);
 
-    v2 = Party_GetFromSavedata(fieldSystem->saveData);
-    *v7 = sub_020548B0(HEAP_ID_FIELDMAP, fieldSystem->saveData, v4, v5, v6, v0, v1);
+    playerParty = Party_GetFromSavedata(fieldSystem->saveData);
+    *partyHasRoom = Pokemon_GiveMonFromScript(HEAP_ID_FIELDMAP, fieldSystem->saveData, species, level, heldItem, metLocation, metTerrain);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_198(ScriptContext *param0)
@@ -85,33 +85,33 @@ BOOL ScrCmd_199(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_097(ScriptContext *param0)
+BOOL ScrCmd_GiveEgg(ScriptContext *ctx)
 {
-    int v0;
-    u8 v1;
-    BOOL v2;
-    Party *v3;
-    Pokemon *v4;
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    TrainerInfo *v6 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    u16 v7 = ScriptContext_GetVar(param0);
-    u16 v8 = ScriptContext_GetVar(param0);
+    int specialMetLoc;
+    u8 partyCount;
+    BOOL partyHasRoom;
+    Party *playerParty;
+    Pokemon *egg;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    TrainerInfo *trainer = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    u16 species = ScriptContext_GetVar(ctx);
+    u16 eggGiver = ScriptContext_GetVar(ctx);
 
-    v3 = Party_GetFromSavedata(fieldSystem->saveData);
-    v1 = Party_GetCurrentCount(v3);
+    playerParty = Party_GetFromSavedata(fieldSystem->saveData);
+    partyCount = Party_GetCurrentCount(playerParty);
 
-    if (v1 < 6) {
-        v4 = Pokemon_New(11);
-        Pokemon_Init(v4);
+    if (partyCount < 6) {
+        egg = Pokemon_New(HEAP_ID_FIELDMAP);
+        Pokemon_Init(egg);
 
-        v0 = sub_02017070(1, v8);
-        ov5_021E6CF0(v4, v7, 1, v6, 3, v0);
+        specialMetLoc = SpecialMetLoc_GetId(1, eggGiver);
+        Egg_CreateEgg(egg, species, 1, trainer, 3, specialMetLoc);
 
-        v2 = Party_AddPokemon(v3, v4);
-        Heap_FreeToHeap(v4);
+        partyHasRoom = Party_AddPokemon(playerParty, egg);
+        Heap_FreeToHeap(egg);
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_098(ScriptContext *param0)

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/tutor_locations.h"
 #include "res/text/bank/common_strings.h"
 
     .data
@@ -1007,35 +1008,35 @@ _0DC2:
     CloseMessage
     Call _0F94
     ScrCmd_0AB 0
-    ScrCmd_0A1
+    ReturnToField
     GoTo _0E21
 
 _0DD5:
     CloseMessage
     Call _0F94
     ScrCmd_0AB 1
-    ScrCmd_0A1
+    ReturnToField
     GoTo _0E21
 
 _0DE8:
     CloseMessage
     Call _0F94
     ScrCmd_0AB 2
-    ScrCmd_0A1
+    ReturnToField
     GoTo _0E21
 
 _0DFB:
     CloseMessage
     Call _0F94
     ScrCmd_0AB 3
-    ScrCmd_0A1
+    ReturnToField
     GoTo _0E21
 
 _0E0E:
     CloseMessage
     Call _0F94
     ScrCmd_0AB 4
-    ScrCmd_0A1
+    ReturnToField
     GoTo _0E21
 
 _0E21:
@@ -1115,7 +1116,7 @@ _0F2C:
     GoToIfEq 0x800C, 1, _0F59
     Call _0F94
     ScrCmd_0B1
-    ScrCmd_0A1
+    ReturnToField
     Call _0F80
     GoTo _0C1C
 
@@ -1375,7 +1376,7 @@ _1282:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_205
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -1653,14 +1654,14 @@ _15E7:
     SetVar 0x8004, 0x800C
     ScrCmd_2F6 0x8005, 0x8004, 0x800C
     GoToIfEq 0x800C, 0, _1624
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReturnCommonScript
     End
 
 _1624:
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReturnCommonScript
@@ -1669,32 +1670,32 @@ _1624:
 _1636:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    SetVar 0x8004, 0
+    SetVar 0x8004, TUTOR_LOCATION_ROUTE_212
     GoTo _1672
     End
 
 _164A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    SetVar 0x8004, 1
+    SetVar 0x8004, TUTOR_LOCATION_SURVIVAL_AREA
     GoTo _1672
     End
 
 _165E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    SetVar 0x8004, 2
+    SetVar 0x8004, TUTOR_LOCATION_SNOWPOINT_CITY
     GoTo _1672
     End
 
 _1672:
     Message 129
-    ScrCmd_2E6 0xFF, 0x8004, 0x800C
+    ShowMoveTutorMoveSelectionMenu 0xFF, 0x8004, 0x800C
     SetVar 0x8003, 0x800C
     GoToIfEq 0x8003, -2, _16A4
-    ScrCmd_2EC 21, 1, 0x8003, 0x800C
+    ShowShardsCost 21, 1, 0x8003, 0x800C
     WaitABPress
-    ScrCmd_2ED
+    CloseShardsCostWindow
     GoTo _16A4
     End
 

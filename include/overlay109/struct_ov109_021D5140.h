@@ -11,9 +11,9 @@
 #include "overlay109/struct_ov109_021D5140_sub3.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "menu.h"
 #include "message.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -38,15 +38,15 @@ typedef struct UnkStruct_ov109_021D5140_t {
     Strbuf *unk_54;
     Strbuf *unk_58;
     int unk_5C;
-    CellActorCollection *unk_60;
+    SpriteList *unk_60;
     G2dRenderer unk_64;
     SpriteResourceCollection *unk_1F0[4];
     SpriteResource *unk_200[3][4];
-    CellActorResourceData unk_230;
-    CellActorResourceData unk_254;
-    CellActorResourceData unk_278;
-    CellActor *unk_29C[14];
-    CellActor *unk_2D4[14];
+    SpriteResourcesHeader unk_230;
+    SpriteResourcesHeader unk_254;
+    SpriteResourcesHeader unk_278;
+    Sprite *unk_29C[14];
+    Sprite *unk_2D4[14];
     Window unk_30C[5];
     Window unk_35C;
     Window unk_36C;

@@ -8,12 +8,11 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D1A94.h"
-#include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EAFA4.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 #include "overlay023/ov23_0224B05C.h"
@@ -21,14 +20,13 @@
 #include "overlay023/struct_ov23_022542D8_decl.h"
 #include "overlay023/struct_ov23_02254594_decl.h"
 
-#include "core_sys.h"
 #include "easy3d.h"
 #include "field_task.h"
 #include "heap.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
 
@@ -181,7 +179,7 @@ static void ov23_02254A14(FieldSystem *fieldSystem, const int param1, UnkStruct_
     v1.y = FX32_ONE;
     v1.z = (FX32_ONE * 16) * ((0 * 32) + 13) + ((FX32_ONE * 8) * v0->unk_1C);
 
-    v0->unk_10 = ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, ov23_02255E14(fieldSystem, param1), &v1, NULL, fieldSystem->unk_50);
+    v0->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, ov23_02255E14(fieldSystem, param1), &v1, NULL, fieldSystem->unk_50);
     v0->unk_00.unk_00 = 16;
     v0->unk_00.unk_04 = 13;
     v0->unk_00.unk_08 = 16 + (v0->unk_18 - 1);
@@ -191,7 +189,7 @@ static void ov23_02254A14(FieldSystem *fieldSystem, const int param1, UnkStruct_
 
 static void ov23_02254A94(FieldSystem *fieldSystem, const int param1)
 {
-    ov5_021E1674(param1, fieldSystem->unk_A4);
+    MapPropManager_InitOne(param1, fieldSystem->mapPropManager);
 }
 
 static void ov23_02254AA4(const int param0, UnkStruct_ov23_02256098 *param1)
@@ -351,7 +349,7 @@ void ov23_02254D98(FieldSystem *fieldSystem, FieldTask *param1)
 static BOOL ov23_02254DF8(FieldTask *param0)
 {
     fx32 v0, v1;
-    UnkStruct_ov5_021E1890 *v2;
+    MapProp *v2;
     BOOL v3;
     BOOL v4;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
@@ -413,22 +411,22 @@ static BOOL ov23_02254DF8(FieldTask *param0)
             v12 = 1;
             v13 = v6->unk_3C.unk_00;
 
-            if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+            if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
                 v0 = -(FX32_ONE * 16);
                 v1 = 0;
                 v13.unk_00--;
                 v13.unk_08--;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
                 v0 = (FX32_ONE * 16);
                 v1 = 0;
                 v13.unk_00++;
                 v13.unk_08++;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
                 v0 = 0;
                 v1 = -(FX32_ONE * 16);
                 v13.unk_04--;
                 v13.unk_0C--;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
                 v0 = 0;
                 v1 = (FX32_ONE * 16);
                 v13.unk_04++;
@@ -442,19 +440,19 @@ static BOOL ov23_02254DF8(FieldTask *param0)
                     VecFx32 v14;
 
                     v6->unk_3C.unk_00 = v13;
-                    v2 = ov5_021E18E0(fieldSystem->unk_A4, v6->unk_3C.unk_10);
-                    v14 = ov5_021E1894(v2);
+                    v2 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, v6->unk_3C.unk_10);
+                    v14 = MapProp_GetPosition(v2);
                     v14.x += (v0);
                     v14.z += (v1);
                     v14.y = FX32_ONE;
 
-                    ov5_021E18A4(v2, &v14);
+                    MapProp_SetPosition(v2, &v14);
                 }
             }
 
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v4 = 1;
-            } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+            } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
                 ov23_02254A94(fieldSystem, v6->unk_3C.unk_10);
                 v6->unk_04 = 0;
                 return 0;
@@ -568,22 +566,22 @@ static BOOL ov23_02255100(FieldTask *param0)
         v3 = v7->unk_4FC->unk_58.z;
 
         if (!v4) {
-            if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+            if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
                 Sound_PlayEffect(1509);
                 v2 -= (FX32_ONE * 16);
                 v1.unk_00--;
                 v1.unk_08--;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
                 Sound_PlayEffect(1509);
                 v2 += (FX32_ONE * 16);
                 v1.unk_00++;
                 v1.unk_08++;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
                 Sound_PlayEffect(1509);
                 v3 -= (FX32_ONE * 16);
                 v1.unk_04--;
                 v1.unk_0C--;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
                 Sound_PlayEffect(1509);
                 v3 += (FX32_ONE * 16);
                 v1.unk_04++;
@@ -592,9 +590,9 @@ static BOOL ov23_02255100(FieldTask *param0)
                 v0 = 0;
             }
 
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v5 = 1;
-            } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+            } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
                 ov23_02255F20(v7->unk_4FC);
                 ov23_0225628C(fieldSystem, &v7->unk_4DC);
                 ov23_02255EBC(3, v7);
@@ -803,22 +801,22 @@ static BOOL ov23_02255580(FieldTask *param0)
         v3 = v7->unk_4FC->unk_58.z;
 
         if (!v4) {
-            if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+            if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
                 Sound_PlayEffect(1509);
                 v2 -= (FX32_ONE * 16);
                 v1.unk_00--;
                 v1.unk_08--;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
                 Sound_PlayEffect(1509);
                 v2 += (FX32_ONE * 16);
                 v1.unk_00++;
                 v1.unk_08++;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
                 Sound_PlayEffect(1509);
                 v3 -= (FX32_ONE * 16);
                 v1.unk_04--;
                 v1.unk_0C--;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
                 Sound_PlayEffect(1509);
                 v3 += (FX32_ONE * 16);
                 v1.unk_04++;
@@ -827,9 +825,9 @@ static BOOL ov23_02255580(FieldTask *param0)
                 v0 = 0;
             }
 
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v5 = 1;
-            } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+            } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
                 ov23_02255F20(v7->unk_4FC);
                 ov23_0225628C(fieldSystem, &v7->unk_4DC);
                 ov23_02255EBC(3, v7);
@@ -918,7 +916,7 @@ static BOOL ov23_02255580(FieldTask *param0)
 static BOOL ov23_02255850(FieldTask *param0)
 {
     fx32 v0, v1;
-    UnkStruct_ov5_021E1890 *v2;
+    MapProp *v2;
     BOOL v3;
     BOOL v4;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
@@ -941,22 +939,22 @@ static BOOL ov23_02255850(FieldTask *param0)
             v7 = 1;
             v8 = v6->unk_3C.unk_00;
 
-            if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+            if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
                 v0 = -(FX32_ONE * 16);
                 v1 = 0;
                 v8.unk_00--;
                 v8.unk_08--;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
                 v0 = (FX32_ONE * 16);
                 v1 = 0;
                 v8.unk_00++;
                 v8.unk_08++;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
                 v0 = 0;
                 v1 = -(FX32_ONE * 16);
                 v8.unk_04--;
                 v8.unk_0C--;
-            } else if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+            } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
                 v0 = 0;
                 v1 = (FX32_ONE * 16);
                 v8.unk_04++;
@@ -970,19 +968,19 @@ static BOOL ov23_02255850(FieldTask *param0)
                     VecFx32 v9;
 
                     v6->unk_3C.unk_00 = v8;
-                    v2 = ov5_021E18E0(fieldSystem->unk_A4, v6->unk_3C.unk_10);
-                    v9 = ov5_021E1894(v2);
+                    v2 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, v6->unk_3C.unk_10);
+                    v9 = MapProp_GetPosition(v2);
                     v9.x += (v0);
                     v9.z += (v1);
                     v9.y = FX32_ONE;
 
-                    ov5_021E18A4(v2, &v9);
+                    MapProp_SetPosition(v2, &v9);
                 }
             }
 
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v4 = 1;
-            } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+            } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
                 ov23_02255BB8(&v6->unk_0C.unk_10, v6->unk_0C.unk_00, v6->unk_5C);
                 ov23_02255E8C(v6);
                 ov23_0225628C(fieldSystem, &v6->unk_4DC);
@@ -1213,7 +1211,7 @@ static void ov23_02255D78(FieldSystem *fieldSystem, UnkStruct_ov23_02255BF4 *par
     VecFx32 v4;
     UnkStruct_ov23_02255A98 *v5;
 
-    ov5_021E1610(fieldSystem->unk_A4);
+    MapPropManager_Init(fieldSystem->mapPropManager);
 
     for (v3 = 0; v3 < 32; v3++) {
         if (!param1[v3].unk_00) {
@@ -1230,7 +1228,7 @@ static void ov23_02255D78(FieldSystem *fieldSystem, UnkStruct_ov23_02255BF4 *par
         v4.z = (FX32_ONE * 16) * (v5->unk_00.unk_04) + (FX32_ONE * 8) * v2;
         v4.y = FX32_ONE;
 
-        v5->unk_10 = ov5_021E19CC(fieldSystem->unk_A4, fieldSystem->unk_30, v0, &v4, NULL, fieldSystem->unk_50);
+        v5->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, v0, &v4, NULL, fieldSystem->unk_50);
     }
 }
 
@@ -1270,22 +1268,22 @@ static const int ov23_02255E14(FieldSystem *fieldSystem, const int param1)
 
 static void ov23_02255E2C(const int param0, UnkStruct_ov23_02256098 *param1)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     UnkStruct_ov23_02255A98 *v1;
 
     GF_ASSERT(param1->unk_5C[param0].unk_00);
 
     v1 = &(param1->unk_5C[param0].unk_04);
-    v0 = ov5_021E18E0(param1->fieldSystem->unk_A4, v1->unk_10);
+    v0 = MapPropManager_GetLoadedPropSafely(param1->fieldSystem->mapPropManager, v1->unk_10);
 
-    param1->unk_0C.unk_04 = ov5_021E1894(v0);
+    param1->unk_0C.unk_04 = MapProp_GetPosition(v0);
     param1->unk_0C.unk_00 = param0;
     param1->unk_0C.unk_10 = (*v1);
 }
 
 static void ov23_02255E8C(UnkStruct_ov23_02256098 *param0)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
     UnkStruct_ov23_02255A98 *v1;
     int v2;
 
@@ -1293,9 +1291,9 @@ static void ov23_02255E8C(UnkStruct_ov23_02256098 *param0)
     GF_ASSERT(param0->unk_5C[v2].unk_00);
 
     v1 = &(param0->unk_0C.unk_10);
-    v0 = ov5_021E18E0(param0->fieldSystem->unk_A4, v1->unk_10);
+    v0 = MapPropManager_GetLoadedPropSafely(param0->fieldSystem->mapPropManager, v1->unk_10);
 
-    ov5_021E18A4(v0, &param0->unk_0C.unk_04);
+    MapProp_SetPosition(v0, &param0->unk_0C.unk_04);
 }
 
 static void ov23_02255EBC(const int param0, UnkStruct_ov23_02256098 *param1)
@@ -1363,7 +1361,7 @@ static void ov23_02255F40(FieldSystem *fieldSystem, UnkStruct_ov23_02255A98 *par
 
     v6 = fieldSystem->unk_8C;
 
-    ov23_02255F28(gCoreSys.touchX, gCoreSys.touchY, param2);
+    ov23_02255F28(gSystem.touchX, gSystem.touchY, param2);
 
     v1 = ov5_021EAFA4(param2->unk_00, param2->unk_04, v6);
     v2 = v1.x / (FX32_ONE * 16);
@@ -1388,10 +1386,10 @@ static void ov23_02255F40(FieldSystem *fieldSystem, UnkStruct_ov23_02255A98 *par
         v1.y = FX32_ONE;
 
         {
-            UnkStruct_ov5_021E1890 *v7;
+            MapProp *v7;
 
-            v7 = ov5_021E18E0(fieldSystem->unk_A4, param1->unk_10);
-            ov5_021E18A4(v7, &v1);
+            v7 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, param1->unk_10);
+            MapProp_SetPosition(v7, &v1);
         }
     }
 }
@@ -1405,7 +1403,7 @@ static void ov23_02256000(FieldSystem *fieldSystem, UnkStruct_ov23_02256000 *par
 
     v4 = fieldSystem->unk_8C;
 
-    ov23_02255F28(gCoreSys.touchX, gCoreSys.touchY, param1);
+    ov23_02255F28(gSystem.touchX, gSystem.touchY, param1);
 
     v1 = ov5_021EAFA4(param1->unk_00, param1->unk_04, v4);
     v2 = v1.x / (FX32_ONE * 16);
@@ -1435,14 +1433,14 @@ static BOOL ov23_02256098(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSys
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchPressed) {
-        if (!gCoreSys.heldKeys) {
+    if (gSystem.touchPressed) {
+        if (!gSystem.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             ov23_02255F40(fieldSystem, &(param0->unk_3C), &param0->unk_4F0);
         }
 
         v1 = 1;
-    } else if (gCoreSys.touchHeld) {
+    } else if (gSystem.touchHeld) {
         if (param0->unk_4F0.unk_08) {
             ov23_02255F40(fieldSystem, &(param0->unk_3C), &param0->unk_4F0);
         }
@@ -1466,14 +1464,14 @@ static BOOL ov23_02256104(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSys
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchPressed) {
-        if (!gCoreSys.heldKeys) {
+    if (gSystem.touchPressed) {
+        if (!gSystem.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             ov23_02256000(fieldSystem, &param0->unk_4F0, param0->unk_4FC);
         }
 
         v1 = 1;
-    } else if (gCoreSys.touchHeld) {
+    } else if (gSystem.touchHeld) {
         if (param0->unk_4F0.unk_08) {
             ov23_02256000(fieldSystem, &param0->unk_4F0, param0->unk_4FC);
         }
@@ -1497,8 +1495,8 @@ static BOOL ov23_02256174(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSys
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchPressed) {
-        if (!gCoreSys.heldKeys) {
+    if (gSystem.touchPressed) {
+        if (!gSystem.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             *param2 = 1;
             ov23_02256000(fieldSystem, &param0->unk_4F0, param0->unk_4FC);
@@ -1520,14 +1518,14 @@ static BOOL ov23_022561BC(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSys
     v1 = 0;
     *param2 = 0;
 
-    if (gCoreSys.touchPressed) {
-        if (!gCoreSys.heldKeys) {
+    if (gSystem.touchPressed) {
+        if (!gSystem.heldKeys) {
             param0->unk_4F0.unk_08 = 1;
             ov23_02255F40(fieldSystem, &(param0->unk_3C), &param0->unk_4F0);
         }
 
         v1 = 1;
-    } else if (gCoreSys.touchHeld) {
+    } else if (gSystem.touchHeld) {
         if (param0->unk_4F0.unk_08) {
             ov23_02255F40(fieldSystem, &(param0->unk_3C), &param0->unk_4F0);
         }
@@ -1563,7 +1561,7 @@ static void ov23_0225623C(const int param0, const int param1, UnkStruct_ov23_022
 
 static void ov23_0225624C(FieldSystem *fieldSystem, UnkStruct_ov23_02256228 *param1)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
 
     if (!param1->unk_10) {
         return;
@@ -1574,21 +1572,21 @@ static void ov23_0225624C(FieldSystem *fieldSystem, UnkStruct_ov23_02256228 *par
     if (param1->unk_04 >= param1->unk_08) {
         param1->unk_04 = 0;
         param1->unk_0C = (param1->unk_0C + 1) % 2;
-        v0 = ov5_021E18E0(fieldSystem->unk_A4, param1->unk_00);
-        ov5_021E18B4(v0, param1->unk_0C);
+        v0 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, param1->unk_00);
+        MapProp_SetHidden(v0, param1->unk_0C);
     }
 }
 
 static void ov23_0225628C(FieldSystem *fieldSystem, UnkStruct_ov23_02256228 *param1)
 {
-    UnkStruct_ov5_021E1890 *v0;
+    MapProp *v0;
 
     if (!param1->unk_10) {
         return;
     }
 
-    v0 = ov5_021E18E0(fieldSystem->unk_A4, param1->unk_00);
-    ov5_021E18B4(v0, 0);
+    v0 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, param1->unk_00);
+    MapProp_SetHidden(v0, 0);
 }
 
 static const int ov23_022562A8(UnkStruct_ov23_02256228 *param0)

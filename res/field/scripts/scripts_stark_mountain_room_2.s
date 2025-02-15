@@ -162,7 +162,7 @@ _01AB:
     WaitMovement
     WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 14
+    RemoveObject 14
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x4094, 2
     ReleaseAll

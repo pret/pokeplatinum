@@ -3,10 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "overlay021/struct_ov21_021D4FE4.h"
 
 #include "heap.h"
-#include "inlines.h"
 
 typedef struct UnkStruct_ov21_021D4EE4_t {
     const UnkStruct_ov21_021D4FE4 *unk_00;

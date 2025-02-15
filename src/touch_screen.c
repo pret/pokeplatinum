@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
+#include "system.h"
 
 static int sub_02022594(const TouchScreenRect *rect, u32 param1, u32 param2);
 static BOOL sub_020225E0(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);
@@ -45,8 +45,8 @@ static BOOL sub_0202260C(const TouchScreenHitTable *hitTable, u32 param1, u32 pa
 
 int sub_02022644(const TouchScreenRect *rect)
 {
-    if (gCoreSys.touchHeld) {
-        return sub_02022594(rect, gCoreSys.touchX, gCoreSys.touchY);
+    if (gSystem.touchHeld) {
+        return sub_02022594(rect, gSystem.touchX, gSystem.touchY);
     }
 
     return TOUCHSCREEN_INPUT_NONE;
@@ -54,8 +54,8 @@ int sub_02022644(const TouchScreenRect *rect)
 
 int sub_02022664(const TouchScreenRect *rect)
 {
-    if (gCoreSys.touchPressed) {
-        return sub_02022594(rect, gCoreSys.touchX, gCoreSys.touchY);
+    if (gSystem.touchPressed) {
+        return sub_02022594(rect, gSystem.touchX, gSystem.touchY);
     }
 
     return TOUCHSCREEN_INPUT_NONE;
@@ -63,16 +63,16 @@ int sub_02022664(const TouchScreenRect *rect)
 
 int sub_02022684(const TouchScreenHitTable *hitTable)
 {
-    if (gCoreSys.touchHeld) {
+    if (gSystem.touchHeld) {
         int v0;
 
         for (v0 = 0; hitTable[v0].circle.code != 0xff; v0++) {
             if (hitTable[v0].circle.code == TOUCHSCREEN_USE_CIRCLE) {
-                if (sub_020225E0(&hitTable[v0], gCoreSys.touchX, gCoreSys.touchY)) {
+                if (sub_020225E0(&hitTable[v0], gSystem.touchX, gSystem.touchY)) {
                     return v0;
                 }
             } else {
-                if (sub_0202260C(&hitTable[v0], gCoreSys.touchX, gCoreSys.touchY)) {
+                if (sub_0202260C(&hitTable[v0], gSystem.touchX, gSystem.touchY)) {
                     return v0;
                 }
             }
@@ -84,16 +84,16 @@ int sub_02022684(const TouchScreenHitTable *hitTable)
 
 int sub_020226DC(const TouchScreenHitTable *hitTable)
 {
-    if (gCoreSys.touchPressed) {
+    if (gSystem.touchPressed) {
         int v0;
 
         for (v0 = 0; hitTable[v0].circle.code != 0xff; v0++) {
             if (hitTable[v0].circle.code == TOUCHSCREEN_USE_CIRCLE) {
-                if (sub_020225E0(&hitTable[v0], gCoreSys.touchX, gCoreSys.touchY)) {
+                if (sub_020225E0(&hitTable[v0], gSystem.touchX, gSystem.touchY)) {
                     return v0;
                 }
             } else {
-                if (sub_0202260C(&hitTable[v0], gCoreSys.touchX, gCoreSys.touchY)) {
+                if (sub_0202260C(&hitTable[v0], gSystem.touchX, gSystem.touchY)) {
                     return v0;
                 }
             }
@@ -105,11 +105,11 @@ int sub_020226DC(const TouchScreenHitTable *hitTable)
 
 BOOL TouchScreen_LocationHeld(const TouchScreenHitTable *hitTable)
 {
-    if (gCoreSys.touchHeld) {
+    if (gSystem.touchHeld) {
         if (hitTable->circle.code == TOUCHSCREEN_USE_CIRCLE) {
-            return sub_020225E0(hitTable, gCoreSys.touchX, gCoreSys.touchY);
+            return sub_020225E0(hitTable, gSystem.touchX, gSystem.touchY);
         } else {
-            return sub_0202260C(hitTable, gCoreSys.touchX, gCoreSys.touchY);
+            return sub_0202260C(hitTable, gSystem.touchX, gSystem.touchY);
         }
     }
 
@@ -118,11 +118,11 @@ BOOL TouchScreen_LocationHeld(const TouchScreenHitTable *hitTable)
 
 BOOL TouchScreen_LocationPressed(const TouchScreenHitTable *hitTable)
 {
-    if (gCoreSys.touchPressed) {
+    if (gSystem.touchPressed) {
         if (hitTable->circle.code == TOUCHSCREEN_USE_CIRCLE) {
-            return sub_020225E0(hitTable, gCoreSys.touchX, gCoreSys.touchY);
+            return sub_020225E0(hitTable, gSystem.touchX, gSystem.touchY);
         } else {
-            return sub_0202260C(hitTable, gCoreSys.touchX, gCoreSys.touchY);
+            return sub_0202260C(hitTable, gSystem.touchX, gSystem.touchY);
         }
     }
 
@@ -131,19 +131,19 @@ BOOL TouchScreen_LocationPressed(const TouchScreenHitTable *hitTable)
 
 BOOL TouchScreen_Touched(void)
 {
-    return gCoreSys.touchHeld;
+    return gSystem.touchHeld;
 }
 
 BOOL TouchScreen_Tapped(void)
 {
-    return gCoreSys.touchPressed;
+    return gSystem.touchPressed;
 }
 
 BOOL TouchScreen_GetHoldState(u32 *x, u32 *y)
 {
-    if (gCoreSys.touchHeld) {
-        *x = gCoreSys.touchX;
-        *y = gCoreSys.touchY;
+    if (gSystem.touchHeld) {
+        *x = gSystem.touchX;
+        *y = gSystem.touchY;
         return TRUE;
     }
 
@@ -152,9 +152,9 @@ BOOL TouchScreen_GetHoldState(u32 *x, u32 *y)
 
 BOOL TouchScreen_GetTapState(u32 *x, u32 *y)
 {
-    if (gCoreSys.touchPressed) {
-        *x = gCoreSys.touchX;
-        *y = gCoreSys.touchY;
+    if (gSystem.touchPressed) {
+        *x = gSystem.touchX;
+        *y = gSystem.touchY;
         return TRUE;
     }
 

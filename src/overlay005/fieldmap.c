@@ -21,6 +21,7 @@
 #include "overlay005/hblank_system.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/map_name_popup.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D521C.h"
@@ -31,7 +32,6 @@
 #include "overlay005/ov5_021D5CB0.h"
 #include "overlay005/ov5_021D5EB8.h"
 #include "overlay005/ov5_021DF440.h"
-#include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021E1B08.h"
 #include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EA714.h"
@@ -52,7 +52,6 @@
 #include "camera.h"
 #include "char_transfer.h"
 #include "comm_player_manager.h"
-#include "core_sys.h"
 #include "easy3d.h"
 #include "field_map_change.h"
 #include "field_message.h"
@@ -75,8 +74,8 @@
 #include "render_oam.h"
 #include "savedata_misc.h"
 #include "script_manager.h"
+#include "system.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "unk_02027F50.h"
@@ -154,7 +153,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
 
     switch (*param1) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
 
         G2_BlendNone();
@@ -207,7 +206,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         ov5_021D1790(fieldSystem);
         ov5_021EF7A0(fieldSystem->unk_30);
 
-        fieldSystem->unk_A4 = ov5_021E15F4(4);
+        fieldSystem->mapPropManager = MapPropManager_New(HEAP_ID_FIELD);
 
         ov5_021F0824(fieldSystem);
         ov5_021D17EC(fieldSystem);
@@ -299,7 +298,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
 
         ov5_021D1A70(fieldSystem->unk_34);
         fieldSystem->unk_34 = NULL;
-        ov5_021E1608(fieldSystem->unk_A4);
+        MapPropManager_Free(fieldSystem->mapPropManager);
 
         (*param1)++;
         break;
@@ -335,7 +334,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             VramTransfer_Free();
             Easy3D_Shutdown();
             ov5_021D1AE4(fieldSystem->unk_04->unk_04);
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             Heap_FreeToHeap(fieldSystem->bgConfig);
             Heap_FreeToHeap(fieldSystem->unk_04);
 
@@ -715,7 +714,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
         ov9_0224CA50(fieldSystem);
     }
 
-    ov5_021E1A6C(fieldSystem->unk_A4, fieldSystem->unk_30);
+    MapPropManager_Render2(fieldSystem->mapPropManager, fieldSystem->unk_30);
 
     {
         const MtxFx44 *v2;
@@ -916,7 +915,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     ov5_021D5CE4(fieldSystem->unk_04->unk_10, ov5_021EFA8C(fieldSystem->unk_30));
     sub_02068344(fieldSystem);
     ov5_021EE7C0(fieldSystem);
-    SetMainCallback(fieldmap, fieldSystem);
+    SetVBlankCallback(fieldmap, fieldSystem);
 }
 
 static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1)
