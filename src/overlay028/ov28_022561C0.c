@@ -170,7 +170,7 @@ static void ov28_022562CC(SysTask *param0, void *param1)
 
     if (v1->unk_00 < NELEMS(v0)) {
         v1->unk_06 = 17;
-        ov25_02254518(v1->poketchSys, v1->buttonManager);
+        PoketechSystem_UpdateButtonManager(v1->poketchSys, v1->buttonManager);
 
         if (v0[v1->unk_00](v1)) {
             ov28_02256298(v1);
