@@ -288,10 +288,10 @@ static void ov40_022566B0(SysTask *param0, void *param1)
 {
     UnkStruct_ov40_0225645C *v0 = PoketchTask_GetTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_84 = 1;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         if (ov40_022565EC(v0, 2)) {
@@ -309,25 +309,25 @@ static void ov40_02256704(SysTask *param0, void *param1)
     UnkStruct_ov40_0225645C *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov40_0225645C_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_84 = 0;
         v0->unk_80 = 0;
         v0->unk_7C = 10;
         ov40_022567D8(v0);
         PoketchSystem_PlaySoundEffect(1656);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         ov40_02256808(v0->unk_78, v1);
         ov40_02256848(v0, v1);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 2:
         if (v0->unk_84) {
             v0->unk_7C = 0;
             ov40_022567D8(v0);
-            ov25_0225524C(param1);
+            PoketchTask_IncrementState(param1);
             break;
         }
 
@@ -338,7 +338,7 @@ static void ov40_02256704(SysTask *param0, void *param1)
             ov40_022567D8(v0);
 
             if (v0->unk_7C == 0) {
-                ov25_0225524C(param1);
+                PoketchTask_IncrementState(param1);
             }
         }
         break;

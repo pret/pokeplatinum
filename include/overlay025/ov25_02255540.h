@@ -8,6 +8,8 @@
 #include "overlay025/struct_ov25_022558C4_decl.h"
 #include "overlay025/struct_ov25_02255958.h"
 
+#include "constants/heap.h"
+
 UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *param0, u32 param1);
 void ov25_022555E8(UnkStruct_ov25_022555E8 *param0);
 void ov25_02255614(UnkStruct_ov25_022555E8 *param0);
@@ -24,7 +26,7 @@ void ov25_02255938(UnkStruct_ov25_022558C4 *param0, u32 param1);
 void ov25_02255940(UnkStruct_ov25_022558C4 *param0, u32 param1);
 void ov25_02255948(UnkStruct_ov25_022558C4 *param0, BOOL param1);
 void ov25_02255950(UnkStruct_ov25_022558C4 *param0, u16 param1);
-BOOL ov25_02255958(UnkStruct_ov25_02255958 *param0, u32 param1, u32 param2, u32 param3, int param4);
+BOOL ov25_02255958(UnkStruct_ov25_02255958 *param0, u32 param1, u32 param2, u32 param3, enum HeapId param4);
 void ov25_022559B0(UnkStruct_ov25_02255958 *param0);
 
 #endif // POKEPLATINUM_OV25_02255540_H

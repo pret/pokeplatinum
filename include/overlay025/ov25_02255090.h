@@ -11,9 +11,9 @@ typedef struct PoketchTask{
 
 typedef struct PoketchTaskManager {
     u32 taskId;
-    u32 unk_04;
+    u32 poketchTaskState;
     void *taskData;
-    void *unk_0C;
+    void *extraData; // only used by ov25, ov27, ov34
     const void *constTaskData;
     SysTask *task;
 } PoketchTaskManager;
@@ -27,10 +27,10 @@ void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, 
 void PoketchTask_EndTask(u32 *activeList, PoketchTaskManager *task);
 void *PoketchTask_GetTaskData(PoketchTaskManager *taskMan);
 const void *PoketchTask_GetConstTaskData(PoketchTaskManager *taskMan);
-void *ov25_02255244(PoketchTaskManager *taskMan);
-u32 ov25_02255248(PoketchTaskManager *taskMan);
-void ov25_0225524C(PoketchTaskManager *taskMan);
-void ov25_02255254(PoketchTaskManager *taskMan, u32 param1);
+void *PoketchTask_GetExtraData(PoketchTaskManager *taskMan);
+u32 PoketchTask_GetState(PoketchTaskManager *taskMan);
+void PoketchTask_IncrementState(PoketchTaskManager *taskMan);
+void PoketchTask_SetState(PoketchTaskManager *taskMan, u32 state);
 void ov25_02255258(u16 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6);
 void ov25_02255290(u16 *param0, u32 param1);
 void ov25_02255308(u32 param0, u32 param1);

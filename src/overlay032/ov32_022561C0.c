@@ -19,7 +19,7 @@ typedef struct PoketchPartyStatus {
     u8 taskFuncState; // controls the state of the func run by sysTaskState
     u8 shouldExit;
     PlayerPartyStatus playerParty;
-    UnkStruct_ov32_02256470 *unk_74;
+    PoketchPartyStatusGraphics *graphicsData;
     PoketchSystem *poketchSys;
 } PoketchPartyStatus;
 
@@ -27,14 +27,14 @@ static void NitroStaticInit(void);
 
 static BOOL PoketchPartyStatus_New(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused);
 static BOOL PoketchPartyStatus_Init(PoketchPartyStatus *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused);
-static void FreeAppResources(PoketchPartyStatus *param0);
-static void Task_PartyStatusMain(SysTask *param0, void *param1);
+static void FreeAppResources(PoketchPartyStatus *appData);
+static void Task_PartyStatusMain(SysTask *task, void *appData);
 static void PoketchPartyStatus_Exit(void *appData);
 static void SetTaskState(PoketchPartyStatus *appData, u32 state);
-static BOOL Task_PartyStatusLoadAndWait(PoketchPartyStatus *param0);
+static BOOL Task_PartyStatusLoadAndWait(PoketchPartyStatus *appData);
 static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData);
 static BOOL Task_PartyStatusUnloadAndWait(PoketchPartyStatus *appData);
-static void InitPlayerPartyMons(PlayerPartyStatus *param0, Party *param1);
+static void InitPlayerPartyMons(PlayerPartyStatus *data, Party *playerParty);
 
 static void NitroStaticInit(void)
 {
@@ -61,7 +61,7 @@ static BOOL PoketchPartyStatus_New(void **appData, PoketchSystem *poketchSys, Bg
 
 static BOOL PoketchPartyStatus_Init(PoketchPartyStatus *partyStatus, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 unused)
 {
-    if (ov32_02256470(&(partyStatus->unk_74), &(partyStatus->playerParty), bgConfig)) {
+    if (PartyStatusGraphics_New(&(partyStatus->graphicsData), &(partyStatus->playerParty), bgConfig)) {
         partyStatus->sysTaskState = 0;
         partyStatus->taskFuncState = 0;
         partyStatus->shouldExit = 0;
@@ -82,7 +82,7 @@ static BOOL PoketchPartyStatus_Init(PoketchPartyStatus *partyStatus, PoketchSyst
 
 static void FreeAppResources(PoketchPartyStatus *appData)
 {
-    ov32_02256508(appData->unk_74); // removes graphics and kills task(?)
+    PartyStatusGraphics_UnloadAndFree(appData->graphicsData);
     Heap_FreeToHeap(appData);
 }
 
@@ -102,7 +102,6 @@ static void Task_PartyStatusMain(SysTask *task, void *appData)
             SysTask_Done(task);
             PoketchSystem_NotifyAppUnloaded(data->poketchSys);
         }
-    } else {
     }
 }
 
@@ -126,11 +125,11 @@ static BOOL Task_PartyStatusLoadAndWait(PoketchPartyStatus *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
-        PartyStatus_StartTaskById(appData->unk_74, 0);
+        PartyStatus_StartTaskById(appData->graphicsData, 0);
         appData->taskFuncState++;
         break;
     case 1:
-        if (PartyStatus_TaskIsNotActive(appData->unk_74, 0)) {
+        if (PartyStatus_TaskIsNotActive(appData->graphicsData, 0)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
             SetTaskState(appData, 1);
         }
@@ -147,7 +146,7 @@ static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData)
         return FALSE;
     }
 
-    if (PartyStatus_TaskIsNotActive(appData->unk_74, 2)) {
+    if (PartyStatus_TaskIsNotActive(appData->graphicsData, 2)) {
         appData->playerParty.isTouchingPoketch = PoketchSystem_GetDisplayHeldCoords(&(appData->playerParty.touchX), &(appData->playerParty.touchY));
 
         if (appData->playerParty.isTouchingPoketch) {
@@ -156,9 +155,9 @@ static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData)
             if (appData->playerParty.screenTapped) {
                 u32 touchedSlot = PoketchPartyStatus_CheckTouchingPartySlot(appData->playerParty.touchX, appData->playerParty.touchY, appData->playerParty.partyCount);
 
-                if (touchedSlot >= appData->playerParty.partyCount) {
+                if (touchedSlot >= appData->playerParty.partyCount) { // Tapped the screen but not any mon icons
                     InitPlayerPartyMons(&appData->playerParty, Party_GetFromSavedata(PoketchSystem_GetSaveData(appData->poketchSys)));
-                    PartyStatus_StartTaskById(appData->unk_74, 2);
+                    PartyStatus_StartTaskById(appData->graphicsData, 2);
                 }
             }
 
@@ -177,11 +176,11 @@ static BOOL Task_PartyStatusUnloadAndWait(PoketchPartyStatus *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
-        PartyStatus_StartTaskById(appData->unk_74, 1);
+        PartyStatus_StartTaskById(appData->graphicsData, 1);
         appData->taskFuncState++;
         break;
     case 1:
-        if (PartyStatus_AllTasksDone(appData->unk_74)) {
+        if (PartyStatus_AllTasksDone(appData->graphicsData)) {
             return TRUE;
         }
         break;

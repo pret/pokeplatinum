@@ -33,41 +33,37 @@ void PoketchTask_InitActiveTaskList(u32 *activeList, u32 numTaskSlots)
 
 static BOOL AddTaskToActiveList(u32 *activeList, u32 taskId)
 {
-    u32 v0;
-
-    GF_ASSERT(activeList[1] == POKETCH_TASK_LIST_VALIDATOR);
-
-    for (v0 = 0; v0 < activeList[0]; v0++) {
-        if (activeList[2 + v0] == POKETCH_TASK_LIST_EMPTY) {
-            activeList[2 + v0] = taskId;
-            return 1;
-        }
-    }
-
-    return 0;
-}
-
-static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId)
-{
     u32 i;
 
     GF_ASSERT(activeList[1] == POKETCH_TASK_LIST_VALIDATOR);
 
     for (i = 0; i < activeList[0]; i++) {
+        if (activeList[2 + i] == POKETCH_TASK_LIST_EMPTY) {
+            activeList[2 + i] = taskId;
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+static void RemoveTaskFromActiveList(u32 *activeList, u32 taskId)
+{
+    GF_ASSERT(activeList[1] == POKETCH_TASK_LIST_VALIDATOR);
+
+    for (u32 i = 0; i < activeList[0]; i++) {
         if (activeList[2 + i] == taskId) {
             activeList[2 + i] = POKETCH_TASK_LIST_EMPTY;
             return;
         }
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
 }
 
 BOOL PoketchTask_TaskIsNotActive(u32 *activeList, u32 taskId)
 {
-    u32 i;
-
-    for (i = 0; i < activeList[0]; i++) {
+    for (u32 i = 0; i < activeList[0]; i++) {
         if (activeList[2 + i] == taskId) {
             return FALSE;
         }
@@ -78,9 +74,7 @@ BOOL PoketchTask_TaskIsNotActive(u32 *activeList, u32 taskId)
 
 BOOL PoketchTask_NoActiveTasks(u32 *activeList)
 {
-    u32 i;
-
-    for (i = 0; i < activeList[0]; i++) {
+    for (u32 i = 0; i < activeList[0]; i++) {
         if (activeList[2 + i] != POKETCH_TASK_LIST_EMPTY) {
             return FALSE;
         }
@@ -91,9 +85,7 @@ BOOL PoketchTask_NoActiveTasks(u32 *activeList)
 
 void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, const void *constTaskData, u32 *activeTasks, u32 taskPriority, u32 heapId)
 {
-    u32 i;
-
-    for (i = 0; appTasks[i].taskId != POKETCH_TASK_LIST_EMPTY; i++) {
+    for (u32 i = 0; appTasks[i].taskId != POKETCH_TASK_LIST_EMPTY; i++) {
         if (appTasks[i].taskId == taskId) {
             PoketchTaskManager *poketchTaskMan;
             u32 size;
@@ -103,14 +95,14 @@ void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, 
 
             if (poketchTaskMan != NULL) {
                 if (appTasks[i].unk_08 != 0) {
-                    poketchTaskMan->unk_0C = ((u8 *)poketchTaskMan) + sizeof(PoketchTaskManager);
+                    poketchTaskMan->extraData = ((u8 *)poketchTaskMan) + sizeof(PoketchTaskManager);
                 } else {
-                    poketchTaskMan->unk_0C = NULL;
+                    poketchTaskMan->extraData = NULL;
                 }
 
                 if (AddTaskToActiveList(activeTasks, taskId)) {
                     poketchTaskMan->taskData = taskData;
-                    poketchTaskMan->unk_04 = 0;
+                    poketchTaskMan->poketchTaskState = 0;
                     poketchTaskMan->taskId = taskId;
                     poketchTaskMan->constTaskData = constTaskData;
                     poketchTaskMan->task = SysTask_Start(appTasks[i].taskFunc, poketchTaskMan, taskPriority);
@@ -151,34 +143,34 @@ const void *PoketchTask_GetConstTaskData(PoketchTaskManager *taskMan)
     return taskMan->constTaskData;
 }
 
-void *ov25_02255244(PoketchTaskManager *param0)
+void *PoketchTask_GetExtraData(PoketchTaskManager *taskMan)
 {
-    return param0->unk_0C;
+    return taskMan->extraData;
 }
 
-u32 ov25_02255248(PoketchTaskManager *param0)
+u32 PoketchTask_GetState(PoketchTaskManager *taskMan)
 {
-    return param0->unk_04;
+    return taskMan->poketchTaskState;
 }
 
-void ov25_0225524C(PoketchTaskManager *param0)
+void PoketchTask_IncrementState(PoketchTaskManager *taskMan)
 {
-    param0->unk_04++;
+    taskMan->poketchTaskState++;
 }
 
-void ov25_02255254(PoketchTaskManager *param0, u32 param1)
+void PoketchTask_SetState(PoketchTaskManager *taskMan, u32 state)
 {
-    param0->unk_04 = param1;
+    taskMan->poketchTaskState = state;
 }
 
-void ov25_02255258(u16 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
+void ov25_02255258(u16 *tileBuffer, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
-    param6 <<= 12;
-    param0 += ((param3 * param2) + param1);
-    param0[0] = param6 | param4;
-    param0[1] = param6 | (param4 + 1);
-    param0[param3] = param6 | (param4 + param5);
-    param0[param3 + 1] = param6 | (param4 + param5 + 1);
+    param6 <<= FX32_SHIFT;
+    tileBuffer += ((param3 * param2) + param1);
+    tileBuffer[0] = param6 | param4;
+    tileBuffer[1] = param6 | (param4 + 1);
+    tileBuffer[param3] = param6 | (param4 + param5);
+    tileBuffer[param3 + 1] = param6 | (param4 + param5 + 1);
 }
 
 void ov25_02255290(u16 *param0, u32 param1)
@@ -245,7 +237,7 @@ void ov25_02255360(u32 param0)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &v1, 8);
+    v0 = Graphics_GetPlttData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), &v1, HEAP_ID_POKETCH_APP);
 
     if (v0) {
         ov25_02255290(v1->pRawData, 4 * 0x10);

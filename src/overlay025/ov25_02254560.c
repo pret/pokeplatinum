@@ -336,15 +336,15 @@ static void ov25_02254944(SysTask *param0, void *param1)
     UnkStruct_ov25_02254560 *v1;
     u32 v2;
 
-    v0 = ov25_02255244(param1);
+    v0 = PoketchTask_GetExtraData(param1);
     v1 = PoketchTask_GetTaskData(param1);
-    v2 = ov25_02255248(param1);
+    v2 = PoketchTask_GetState(param1);
 
     switch (v2) {
     case 0:
         v0->unk_00 = 0;
         v0->unk_02 = 0;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
     case 1:
         if (++(v0->unk_00) > 0) {
             u32 v3, v4, v5;
@@ -370,7 +370,7 @@ static void ov25_02254944(SysTask *param0, void *param1)
             Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
 
             if (v0->unk_02 == 40) {
-                ov25_0225524C(param1);
+                PoketchTask_IncrementState(param1);
             }
         }
         break;
@@ -385,15 +385,15 @@ static void ov25_02254A5C(SysTask *param0, void *param1)
     UnkStruct_ov25_02254560 *v1;
     u32 v2;
 
-    v0 = ov25_02255244(param1);
+    v0 = PoketchTask_GetExtraData(param1);
     v1 = PoketchTask_GetTaskData(param1);
-    v2 = ov25_02255248(param1);
+    v2 = PoketchTask_GetState(param1);
 
     switch (v2) {
     case 0:
         v0->unk_00 = 0;
         v0->unk_02 = 0;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
     case 1:
         if (++(v0->unk_00) > 0) {
             u32 v3, v4, v5;
@@ -422,7 +422,7 @@ static void ov25_02254A5C(SysTask *param0, void *param1)
             Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
 
             if (v0->unk_02 == 40) {
-                ov25_0225524C(param1);
+                PoketchTask_IncrementState(param1);
             }
         }
         break;
@@ -437,14 +437,14 @@ static void ov25_02254B8C(SysTask *param0, void *param1)
     UnkStruct_ov25_02254560 *v1;
     u32 v2;
 
-    v0 = ov25_02255244(param1);
+    v0 = PoketchTask_GetExtraData(param1);
     v1 = PoketchTask_GetTaskData(param1);
-    v2 = ov25_02255248(param1);
+    v2 = PoketchTask_GetState(param1);
 
     if (v2 < 4) {
         Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 164 - v2 - 1, 2, 2, 24, 20, 15);
         Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
     } else {
         ov25_0225480C(param1);
     }
@@ -456,14 +456,14 @@ static void ov25_02254BF0(SysTask *param0, void *param1)
     UnkStruct_ov25_02254560 *v1;
     u32 v2;
 
-    v0 = ov25_02255244(param1);
+    v0 = PoketchTask_GetExtraData(param1);
     v1 = PoketchTask_GetTaskData(param1);
-    v2 = ov25_02255248(param1);
+    v2 = PoketchTask_GetState(param1);
 
     if (v2 < 4) {
         Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 167 - v2, 2, 2, 24, 20, 15);
         Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
     } else {
         ov25_0225480C(param1);
     }
@@ -656,8 +656,8 @@ static void ov25_02254F68(SysTask *param0, void *param1)
     UnkStruct_ov25_02254944 *v1;
     UnkStruct_ov25_02254560 *v2 = PoketchTask_GetTaskData(param1);
 
-    v1 = ov25_02255244(param1);
-    v0 = ov25_02255248(param1);
+    v1 = PoketchTask_GetExtraData(param1);
+    v0 = PoketchTask_GetState(param1);
 
     switch (v0) {
     case 0:
@@ -672,7 +672,7 @@ static void ov25_02254F68(SysTask *param0, void *param1)
         if (v0 == 3) {
             ov25_0225480C(param1);
         } else {
-            ov25_0225524C(param1);
+            PoketchTask_IncrementState(param1);
         }
         break;
     }

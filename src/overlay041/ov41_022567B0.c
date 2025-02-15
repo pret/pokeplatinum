@@ -261,10 +261,10 @@ static void ov41_02256A1C(SysTask *param0, void *param1)
 {
     UnkStruct_ov41_022567B0 *v0 = PoketchTask_GetTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_5C = 1;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         sub_02099DA8(v0->unk_00->unk_08, v0->unk_48.pixels, (20 * 19 * 0x20));
@@ -335,7 +335,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
     const UnkStruct_ov41_022567B0_1 *v1 = PoketchTask_GetConstTaskData(param1);
     u32 v2;
 
-    v2 = ov25_02255248(param1);
+    v2 = PoketchTask_GetState(param1);
 
     if ((v2 != 0) && v0->unk_5C) {
         ov41_022568C8(param1);
@@ -350,7 +350,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
         v0->unk_64 = 0;
         v0->unk_60 = 0;
         v0->unk_5C = 0;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         v0->unk_68 += v0->unk_6A;
@@ -360,7 +360,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
         if (v0->unk_6A >= 12288) {
             v0->unk_6A = 12288;
             v0->unk_64 = 1;
-            ov25_0225524C(param1);
+            PoketchTask_IncrementState(param1);
         }
         break;
     case 2:
@@ -374,7 +374,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
                 v0->unk_6A = 6656;
             }
 
-            ov25_0225524C(param1);
+            PoketchTask_IncrementState(param1);
         }
         break;
     case 3:
@@ -384,7 +384,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
         if (v0->unk_6C == 0) {
             v0->unk_6C--;
         } else {
-            ov25_0225524C(param1);
+            PoketchTask_IncrementState(param1);
         }
         break;
     case 4:
@@ -405,10 +405,10 @@ static void ov41_02256D1C(SysTask *param0, void *param1)
     UnkStruct_ov41_022567B0 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov41_022567B0_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_60 = 1;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         if (ov41_022568B0(v0, 7)) {

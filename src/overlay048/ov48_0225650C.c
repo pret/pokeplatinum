@@ -170,10 +170,10 @@ static void ov48_022566D0(SysTask *param0, void *param1)
 {
     UnkStruct_ov48_0225650C *v0 = PoketchTask_GetTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_15C = 1;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         if (ov48_0225657C(v0, 2)) {
@@ -192,7 +192,7 @@ static void ov48_0225672C(SysTask *param0, void *param1)
     UnkStruct_ov48_0225650C *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov48_0225650C_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_154 = 6;
         v0->unk_158 = 0;
@@ -201,11 +201,11 @@ static void ov48_0225672C(SysTask *param0, void *param1)
         G2S_SetBGMosaicSize(v0->unk_154, v0->unk_154);
         G2S_SetOBJMosaicSize(v0->unk_154, v0->unk_154);
         PoketchSystem_PlaySoundEffect(1656);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         ov48_02256920(v0);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 2:
         if (v0->unk_15C) {

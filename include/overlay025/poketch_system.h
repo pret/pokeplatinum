@@ -127,7 +127,7 @@ void PoketchSystem_NotifyAppUnloaded(PoketchSystem *poketchSys);
 void PoketchSystem_SetSaveFunction(PoketchAppSaveFunction saveFunction, void *saveData);
 UnkStruct_ov25_02254560 *ov25_02254418(void);
 void PoketchSystem_PlaySoundEffect(u32 soundID);
-void PoketchSystem_PlayCry(u32 param0, u32 param1);
+void PoketchSystem_PlayCry(u32 species, u32 form);
 BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y);
 BOOL PoketchSystem_GetDisplayTappedCoords(u32 *x, u32 *y);
 BOOL ov25_0225450C(const PoketchSystem *poketchSys);

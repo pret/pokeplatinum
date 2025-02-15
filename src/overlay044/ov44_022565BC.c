@@ -253,10 +253,10 @@ static void ov44_02256828(SysTask *param0, void *param1)
 {
     UnkStruct_ov44_022565BC *v0 = PoketchTask_GetTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_68 = 1;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         if (ov44_02256768(v0, 6)) {
@@ -351,19 +351,19 @@ static void ov44_022569E4(SysTask *param0, void *param1)
 {
     UnkStruct_ov44_022565BC *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov44_022565BC_1 *v1 = PoketchTask_GetConstTaskData(param1);
-    u32 v2 = ov25_02255248(param1);
+    u32 v2 = PoketchTask_GetState(param1);
 
     if ((v2 != 0) && v0->unk_68) {
         ov44_02256780(param1);
         return;
     }
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_68 = 0;
         ov44_022569AC(v0);
         ov44_02256A50(v0, v1);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         if (ov44_02256AC8(v0, v1)) {

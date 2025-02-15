@@ -350,10 +350,10 @@ static void ov46_02256E58(SysTask *param0, void *param1)
     UnkStruct_ov46_02256BCC *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov46_02256BCC_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_A0 = 1;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
     case 1:
         if (ov46_02256D48(v0, 6)) {
             Bg_FreeTilemapBuffer(v0->unk_04, 6);
@@ -407,13 +407,13 @@ static void ov46_02256F54(SysTask *param0, void *param1)
     UnkStruct_ov46_02256BCC *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov46_02256BCC_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         ov25_022558C4(v0->unk_34[0], 2);
         ov25_022558C4(v0->unk_34[1], 0);
         v0->unk_A4 = 0;
         v0->unk_A0 = 0;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
     case 1:
         if (v0->unk_A0) {
             ov46_02256D60(param1);
@@ -443,10 +443,10 @@ static void ov46_02257010(SysTask *param0, void *param1)
     UnkStruct_ov46_02256BCC *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov46_02256BCC_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_A0 = 1;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
     case 1:
         if (ov46_02256D48(v0, 6)) {
             ov46_02256D60(param1);

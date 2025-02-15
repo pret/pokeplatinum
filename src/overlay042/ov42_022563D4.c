@@ -166,10 +166,10 @@ static void ov42_02256580(SysTask *param0, void *param1)
 {
     UnkStruct_ov42_022563D4 *v0 = PoketchTask_GetTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_44 = 1;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
     case 1:
         if (ov42_022564C4(v0, 2)) {
             Bg_FreeTilemapBuffer(v0->unk_04, 6);
@@ -184,14 +184,14 @@ static void ov42_022565C4(SysTask *param0, void *param1)
     UnkStruct_ov42_022563D4 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov42_022563D4_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         PoketchSystem_PlaySoundEffect(1653);
         ov25_022558C4(v0->unk_24, 0);
         v0->unk_3C = 144 << FX32_SHIFT;
         v0->unk_40 = Unk_ov42_02256720;
         v0->unk_44 = 0;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
     case 1:
         if (v0->unk_44) {
             ov42_022564DC(param1);
@@ -211,7 +211,7 @@ static void ov42_022565C4(SysTask *param0, void *param1)
                 PoketchSystem_PlaySoundEffect(1654);
                 ov25_022558C4(v0->unk_24, (v1->unk_00) ? 1 : 2);
                 v0->unk_3C = 144 << FX32_SHIFT;
-                ov25_0225524C(param1);
+                PoketchTask_IncrementState(param1);
             }
         }
 

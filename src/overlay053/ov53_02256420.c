@@ -176,7 +176,7 @@ static void ov53_022565E0(SysTask *param0, void *param1)
 
     v0 = PoketchTask_GetTaskData(param1);
     v1 = PoketchTask_GetConstTaskData(param1);
-    v2 = ov25_02255248(param1);
+    v2 = PoketchTask_GetState(param1);
 
     switch (v2) {
     case 0: {
@@ -186,7 +186,7 @@ static void ov53_022565E0(SysTask *param0, void *param1)
 
         PoketchSystem_PlayCry(v1->unk_08[v1->unk_24], 0);
         ov25_022558C4(v0->unk_9C, 6);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         v2++;
     default: {
         int v3;
@@ -196,7 +196,7 @@ static void ov53_022565E0(SysTask *param0, void *param1)
         v4 = CalcSineDegrees(v3) * 24;
         ov25_02255900(v0->unk_9C, v0->unk_A4, v0->unk_A0 - v4);
     }
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 16:
         ov25_02255900(v0->unk_9C, v0->unk_A4, v0->unk_A0);
