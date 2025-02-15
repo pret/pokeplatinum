@@ -138,7 +138,7 @@ static void ov48_022565A8(SysTask *param0, void *param1)
 
     Graphics_LoadTilemapToBgLayer(12, 116, v2->unk_04, 6, 0, 0, 1, 8);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
     ov48_02256650(v2, v4);
 
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);

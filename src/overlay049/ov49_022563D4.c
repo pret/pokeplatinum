@@ -150,7 +150,7 @@ static void ov49_022564E4(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 66, v2->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 65, v2->unk_04, 6, 0, 0, 1, 8);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
@@ -173,7 +173,7 @@ static void ov49_02256594(SysTask *param0, void *param1)
     const UnkStruct_ov49_022563D4_1 *v1 = ov25_02255240(param1);
 
     PoketchSystem_PlaySoundEffect(1635);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
     ov25_02255900(v0->unk_24, (56 + (16 * v1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
     ov49_022564D0(param1);
 }

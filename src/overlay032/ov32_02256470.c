@@ -181,7 +181,7 @@ static void ov32_02256588(SysTask *param0, void *param1)
     v3 /= 0x20;
 
     Bg_FillTilemapRect(v2->unk_04, 6, 0x5, 0, 0, 32, 24, 0);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     v2->unk_34 = v3;
     ov32_02256648(v2, v2->unk_00, v3);

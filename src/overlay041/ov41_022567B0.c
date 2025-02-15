@@ -226,7 +226,7 @@ static void ov41_022568DC(SysTask *param0, void *param1)
     v4 /= 0x20;
 
     Graphics_LoadTilemapToBgLayer(12, 85, v3->unk_04, 6, 0, 0, 1, 8);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
 

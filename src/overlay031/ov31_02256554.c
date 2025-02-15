@@ -107,7 +107,7 @@ static void ov31_022565E0(SysTask *param0, void *param1)
 
     ov31_02256644(v2->unk_04);
     ov31_0225672C(v2->unk_04, v2->unk_00);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 

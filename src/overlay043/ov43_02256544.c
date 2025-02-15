@@ -244,7 +244,7 @@ static void ov43_02256700(SysTask *param0, void *param1)
 
     v6 = Graphics_LoadTilesToBgLayer(12, 61, v2->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 60, v2->unk_04, 6, 0, 0, 1, 8);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     v6 /= 0x20;
     ov43_022567A4(v2, v3, v6);

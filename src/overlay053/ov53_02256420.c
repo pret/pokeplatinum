@@ -129,7 +129,7 @@ static void ov53_022564B0(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 122, v2->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 121, v2->unk_04, 6, 0, 0, 1, 8);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
     ov53_022566AC(v2, v3);
 
     v1 = GXS_GetDispCnt();

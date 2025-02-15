@@ -274,7 +274,7 @@ static void ov40_02256618(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 81, v2->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 80, v2->unk_04, 6, 0, 0, 1, 8);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     G2S_SetBGMosaicSize(0, 0);

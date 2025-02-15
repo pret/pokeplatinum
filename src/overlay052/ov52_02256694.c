@@ -211,7 +211,7 @@ static void ov52_022567F4(SysTask *param0, void *param1)
     v5 /= 0x20;
 
     Graphics_LoadTilemapToBgLayer(12, 95, v2->unk_04, 6, 0, 0, 1, 8);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     Window_Add(v2->unk_04, &v2->unk_20, 6, 2, 2, 24, 20, 0, v5);
     Window_PutToTilemap(&v2->unk_20);

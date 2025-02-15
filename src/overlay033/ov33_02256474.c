@@ -220,7 +220,7 @@ static void ov33_02256598(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 7, v2->unk_04, 6, 0, 0, 1, 8);
     Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     ov33_02256634(v2, v2->unk_00);

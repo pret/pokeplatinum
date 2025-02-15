@@ -184,10 +184,10 @@ static void ov34_02256690(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 39, v2->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 38, v2->unk_04, 6, 0, 0, 1, 8);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     {
-        ov25_02254728(v2->unk_70);
+        Poketch_CopyActivePalette(v2->unk_70);
 
         v2->unk_70[1] = v2->unk_70[8];
         DC_FlushRange(v2->unk_70, sizeof(v2->unk_70));

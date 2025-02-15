@@ -546,7 +546,7 @@ static void ov28_02256A08(SysTask *param0, void *param1)
     Graphics_LoadTilemapToBgLayer(12, 17, v3->unk_04, 6, 0, 0, 1, 8);
 
     ov28_02256AA4(v3);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     Bg_CopyTilemapBufferToVRAM(v3->unk_04, 6);
 
