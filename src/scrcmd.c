@@ -7,6 +7,7 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
+#include "constants/scrcmd.h"
 #include "constants/species.h"
 #include "generated/journal_location_events.h"
 #include "generated/save_types.h"
@@ -315,7 +316,7 @@ static BOOL ScrCmd_03C(ScriptContext *ctx);
 static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx);
 static BOOL ScrCmd_ScrollBG3(ScriptContext *ctx);
 static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx);
-static BOOL sub_02040824(ScriptContext *ctx);
+static BOOL ScriptContext_WaitForYesNoResult(ScriptContext *ctx);
 static BOOL ScrCmd_040(ScriptContext *ctx);
 static BOOL ScrCmd_041(ScriptContext *ctx);
 static BOOL ScrCmd_042(ScriptContext *ctx);
@@ -2652,38 +2653,38 @@ static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Menu **menu = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
-    u16 v2 = ScriptContext_ReadHalfWord(ctx);
+    u16 destVarID = ScriptContext_ReadHalfWord(ctx);
 
     LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
 
     *menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_020EAB84, 1024 - (18 + 12) - 9, 11, 4);
-    ctx->data[0] = v2;
+    ctx->data[0] = destVarID;
 
-    ScriptContext_Pause(ctx, sub_02040824);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForYesNoResult);
 
     return TRUE;
 }
 
-static BOOL sub_02040824(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForYesNoResult(ScriptContext *ctx)
 {
-    u32 v0;
+    u32 result;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Menu **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
-    u16 *v3 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
+    Menu **menu = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
+    u16 *destVar = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    v0 = Menu_ProcessInputAndHandleExit(*v2, 4);
+    result = Menu_ProcessInputAndHandleExit(*menu, HEAP_ID_FIELD);
 
-    if (v0 == 0xffffffff) {
-        return 0;
+    if (result == MENU_NOTHING_CHOSEN) {
+        return FALSE;
     }
 
-    if (v0 == 0) {
-        *v3 = 0;
+    if (result == 0) {
+        *destVar = MENU_YES;
     } else {
-        *v3 = 1;
+        *destVar = MENU_NO;
     }
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_18D(ScriptContext *ctx)

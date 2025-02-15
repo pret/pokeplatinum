@@ -224,8 +224,8 @@ PokemonCenterDailyTrainers_IntroMessageSecondNPC:
 
 PokemonCenterDailyTrainers_AskForBattle:
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, YES, PokemonCenterDailyTrainers_BattleAccepted
-    GoToIfEq 0x800C, NO, PokemonCenterDailyTrainers_BattleDeclined
+    GoToIfEq 0x800C, MENU_YES, PokemonCenterDailyTrainers_BattleAccepted
+    GoToIfEq 0x800C, MENU_NO, PokemonCenterDailyTrainers_BattleDeclined
     End
 
 PokemonCenterDailyTrainers_NotEnoughAliveMons:

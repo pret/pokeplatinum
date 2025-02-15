@@ -1,10 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_SCRCMD_H
 #define POKEPLATINUM_CONSTANTS_SCRCMD_H
 
-#define YES 0
-#define NO  1
-
-#define FALSE 0
-#define TRUE  1
+#define MENU_YES 0
+#define MENU_NO  1
 
 #endif // POKEPLATINUM_CONSTANTS_SCRCMD_H

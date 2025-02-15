@@ -18,6 +18,9 @@
 
 #include "macros/movement.inc"
 
+    .set FALSE, 0
+    .set TRUE, 1
+
     .macro Noop
     .short 0
     .endm
@@ -2771,14 +2774,14 @@
     .byte \arg3
     .endm
 
-    .macro GetPreviousMapID arg0
+    .macro GetPreviousMapID destVarID
     .short 512
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro GetCurrentMapID arg0
+    .macro GetCurrentMapID destVarID
     .short 513
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_202 arg0
