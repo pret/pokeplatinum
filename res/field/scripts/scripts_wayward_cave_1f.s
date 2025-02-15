@@ -36,7 +36,7 @@ _002B:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x264
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MIRA_WAYWARD_CAVE
     SetHasPartner
     ScrCmd_06D 4, 48
     ReleaseAll

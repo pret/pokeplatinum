@@ -29,11 +29,11 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -728,7 +728,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
         ov23_0224E124(v0);
         {
             VarsFlags *v2 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
-            sub_0206B3FC(v2, sub_0206B3EC(v2) + 1);
+            SystemVars_SetUndergroundItemsGivenAway(v2, SystemVars_GetUndergroundItemsGivenAway(v2) + 1);
         }
 
         GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_31);

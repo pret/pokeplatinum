@@ -251,7 +251,7 @@ pokeplatinum_c = files(
     'unk_02069BE0.c',
     'unk_0206A780.c',
     'system_flags.c',
-    'unk_0206AFE0.c',
+    'system_vars.c',
     'unk_0206B70C.c',
     'unk_0206B9D8.c',
     'great_marsh_lookout.c',

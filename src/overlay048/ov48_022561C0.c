@@ -14,7 +14,7 @@
 #include "savedata_misc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0206AFE0.h"
+#include "system_vars.h"
 #include "vars_flags.h"
 
 static const struct {
@@ -354,7 +354,7 @@ static void ov48_022564E0(UnkStruct_ov48_0225621C *param0, PoketchSystem *poketc
     VarsFlags *v0 = SaveData_GetVarsFlags(PoketchSystem_GetSaveData(poketchSys));
     int v1;
 
-    for (v1 = 0; v1 < 4; v1++) {
-        param0->unk_04.unk_94[v1] = VarFlags_HiddenLocationsUnlocked(v0, v1);
+    for (v1 = 0; v1 < HIDDEN_LOCATION_MAX; v1++) {
+        param0->unk_04.unk_94[v1] = SystemVars_CheckHiddenLocation(v0, v1);
     }
 }

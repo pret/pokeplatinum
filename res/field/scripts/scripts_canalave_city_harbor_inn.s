@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city_harbor_inn.h"
 
     .data
@@ -28,8 +29,8 @@ _0040:
     End
 
 _0057:
-    ScrCmd_28B 0, 0x4000
-    GoToIfEq 0x4000, 1, _006B
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
+    GoToIfEq 0x4000, TRUE, _006B
     End
 
 _006B:

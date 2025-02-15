@@ -15,7 +15,7 @@
 #include "pokemon.h"
 #include "roaming_pokemon.h"
 #include "special_encounter.h"
-#include "unk_0206AFE0.h"
+#include "system_vars.h"
 #include "vars_flags.h"
 
 static void MoveRoamersOffMap(SpecialEncounter *param0, const int param1);
@@ -43,10 +43,10 @@ void RoamerAfterBattle_UpdateRoamers(FieldSystem *fieldSystem, FieldBattleDTO *b
 
         if ((battleParams->resultMask == BATTLE_RESULT_WIN) && (roamerHP == 0)) {
             SpecialEncounter_ZeroRoamerData(&roamer);
-            sub_0206B688(SaveData_GetVarsFlags(fieldSystem->saveData), wildSpecies, 2);
+            SystemVars_SetRoamingSpeciesState(SaveData_GetVarsFlags(fieldSystem->saveData), wildSpecies, 2);
         } else if (battleParams->resultMask == BATTLE_RESULT_CAPTURED_MON) {
             SpecialEncounter_ZeroRoamerData(&roamer);
-            sub_0206B688(SaveData_GetVarsFlags(fieldSystem->saveData), wildSpecies, 1);
+            SystemVars_SetRoamingSpeciesState(SaveData_GetVarsFlags(fieldSystem->saveData), wildSpecies, 1);
         } else {
             Roamer_SetData(roamer, ROAMER_DATA_CURRENT_HP, roamerHP);
             Roamer_SetData(roamer, ROAMER_DATA_STATUS, roamerStatus);

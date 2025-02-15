@@ -5,6 +5,7 @@
 
 #include "constants/field/map_load.h"
 #include "generated/journal_location_events.h"
+#include "generated/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
@@ -60,6 +61,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -77,7 +79,6 @@
 #include "unk_0205C22C.h"
 #include "unk_0205F180.h"
 #include "unk_020683F4.h"
-#include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
 #include "unk_0207064C.h"
 #include "unk_0207070C.h"
@@ -360,7 +361,7 @@ static u32 sub_0203ABD0(FieldSystem *fieldSystem)
         v0 |= 0x1;
     }
 
-    if (VarsFlags_GetPlayerStarterSpecies(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
+    if (SystemVars_GetPlayerStarter(SaveData_GetVarsFlags(fieldSystem->saveData)) == SPECIES_NONE) {
         v0 |= 0x2;
     }
 
@@ -952,10 +953,10 @@ static BOOL FieldMenu_Pokedex(FieldTask *taskMan)
     v2->pokedex = pokedex;
     v2->trainerInfo = trainerInfo;
     v2->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
-    v2->fullmoonIslandVisible = VarFlags_HiddenLocationsUnlocked(varsFlags, HL_FULLMOONISLAND);
-    v2->newmoonIslandVisible = VarFlags_HiddenLocationsUnlocked(varsFlags, HL_NEWMOONISLAND);
-    v2->springPathVisible = VarFlags_HiddenLocationsUnlocked(varsFlags, HL_SPRINGPATH);
-    v2->seabreakPathVisible = VarFlags_HiddenLocationsUnlocked(varsFlags, HL_SEABREAKPATH);
+    v2->fullmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_FULLMOON_ISLAND);
+    v2->newmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_NEWMOON_ISLAND);
+    v2->springPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_SPRING_PATH);
+    v2->seabreakPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_SEABREAK_PATH);
     v2->unk_1C = fieldSystem->unk_B4;
 
     sub_0203E0AC(fieldSystem, v2);

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/team_galactic_eterna_building_1f.h"
 
     .data
@@ -113,9 +114,9 @@ _0110:
 
 _0134:
     CheckItem ITEM_SECRET_KEY, 1, 0x800C
-    GoToIfEq 0x800C, 0, _01AA
-    ScrCmd_28B 3, 0x800C
-    GoToIfEq 0x800C, 0, _01AA
+    GoToIfEq 0x800C, FALSE, _01AA
+    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x800C
+    GoToIfEq 0x800C, FALSE, _01AA
     GoToIfUnset 129, _01AA
     PlayFanfare SEQ_SE_CONFIRM
     LockAll

@@ -1,11 +1,12 @@
 #ifndef POKEPLATINUM_VARS_FLAGS_H
 #define POKEPLATINUM_VARS_FLAGS_H
 
+#include "constants/savedata/vars_flags.h"
+
 #include "savedata.h"
 
-#define VARS_START 0x4000
-#define NUM_VARS   288
-#define NUM_FLAGS  2912
+#define NUM_VARS  288
+#define NUM_FLAGS 2912
 
 #define SPECIAL_VARS_START 0x8000
 

@@ -19,9 +19,9 @@
 #include "save_player.h"
 #include "special_encounter.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "unk_0203A7D8.h"
 #include "unk_020556C4.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 static BOOL sub_020705DC(FieldSystem *fieldSystem);
@@ -122,12 +122,11 @@ void FieldSystem_SetEscapeFlags(FieldSystem *fieldSystem)
     SystemFlag_ClearSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
 }
 
-void sub_020705B4(FieldSystem *fieldSystem)
+void FieldSystem_ClearPartnerTrainer(FieldSystem *fieldSystem)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(fieldSystem->saveData);
-
-    SystemFlag_ClearHasPartner(v0);
-    sub_0206B024(v0, 0);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+    SystemFlag_ClearHasPartner(varsFlags);
+    SystemVars_SetPartnerTrainerID(varsFlags, 0);
 }
 
 void sub_020705CC(FieldSystem *fieldSystem)

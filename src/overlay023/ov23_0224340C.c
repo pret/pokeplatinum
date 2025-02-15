@@ -47,13 +47,13 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_020366A0.h"
 #include "unk_02054D00.h"
-#include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
 #include "vars_flags.h"
@@ -1590,7 +1590,7 @@ void ov23_0224448C(int param0, int param1, void *param2, void *param3)
 
         {
             VarsFlags *v2 = SaveData_GetVarsFlags(Unk_ov23_02257764->fieldSystem->saveData);
-            sub_0206B43C(v2, sub_0206B42C(v2) + 1);
+            SystemVars_SetUndergroundTrapsSet(v2, SystemVars_GetUndergroundTrapsSet(v2) + 1);
         }
 
         ov23_02243E20(&v0->unk_00);

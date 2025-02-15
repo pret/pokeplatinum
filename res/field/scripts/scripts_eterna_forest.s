@@ -55,7 +55,7 @@ _008E:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x260
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_CHERYL_ETERNA_FOREST
     SetHasPartner
     ScrCmd_06D 0, 48
     ScrCmd_06C 0, 1

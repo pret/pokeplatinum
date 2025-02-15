@@ -58,6 +58,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
+#include "system_vars.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
@@ -77,7 +78,6 @@
 #include "unk_02038F8C.h"
 #include "unk_0203909C.h"
 #include "unk_020393C8.h"
-#include "unk_0206AFE0.h"
 #include "unk_02092494.h"
 #include "unk_02095CD4.h"
 #include "vars_flags.h"
@@ -2489,8 +2489,8 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             VarsFlags *v2 = SaveData_GetVarsFlags(param4->unk_10);
 
-            if (sub_0206B5F8(v2) == 0) {
-                sub_0206B608(v2, 1);
+            if (SystemVars_GetArceusEventState(v2) == 0) {
+                SystemVars_SetArceusEventState(v2, 1);
             }
         }
     }

@@ -3,8 +3,8 @@
 
 #include "field_script_context.h"
 
-BOOL ScrCmd_215(ScriptContext *param0);
-BOOL ScrCmd_216(ScriptContext *param0);
+BOOL ScrCmd_ClearAmitySquareStepCount(ScriptContext *ctx);
+BOOL ScrCmd_GetAmitySquareStepCount(ScriptContext *ctx);
 BOOL ScrCmd_217(ScriptContext *param0);
 BOOL ScrCmd_2DF(ScriptContext *param0);
 BOOL ScrCmd_2E0(ScriptContext *param0);

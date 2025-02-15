@@ -39,6 +39,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
+#include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -49,7 +50,6 @@
 #include "unk_0202D05C.h"
 #include "unk_0203D1B8.h"
 #include "unk_020573FC.h"
-#include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_0207CB08.h"
 #include "unk_0208C098.h"
@@ -1214,7 +1214,7 @@ static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         if (param0->unk_28C == 1) {
-            sub_0206B3B4(param0->unk_288);
+            SystemVars_IncrementDepartmentStoreBuyCount(param0->unk_288);
         }
 
         if (((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) && (param0->unk_2AA == 4) && (param0->unk_2AC >= 10)) {

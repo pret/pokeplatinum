@@ -290,7 +290,7 @@ _03F6:
 
 _042B:
     BufferPlayerName 0
-    ScrCmd_342 1
+    BufferPlayerCounterpartStarterSpeciesNameWithArticle 1
     Message 19
     GoTo _044D
     End

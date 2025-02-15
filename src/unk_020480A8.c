@@ -12,22 +12,19 @@
 #include "inlines.h"
 #include "party.h"
 #include "pokemon.h"
-#include "unk_0206AFE0.h"
+#include "system_vars.h"
 #include "unk_020797C8.h"
 #include "vars_flags.h"
 
 static u8 sub_02048268(u16 param0, u16 param1);
 
-BOOL ScrCmd_24E(ScriptContext *param0)
+BOOL ScrCmd_GetJubilifeLotteryTrainerID(ScriptContext *ctx)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
-    u32 v2;
-
-    v2 = sub_0206B2A4(v0);
-    *v1 = (u16)(v2 % (65535 + 1));
-
-    return 0;
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(ctx->fieldSystem->saveData);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u32 trainerID = SystemVars_GetJubilifeLotteryTrainerID(varsFlags);
+    *destVar = LO_HALF(trainerID);
+    return FALSE;
 }
 
 BOOL ScrCmd_24F(ScriptContext *param0)
@@ -103,12 +100,10 @@ BOOL ScrCmd_24F(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_250(ScriptContext *param0)
+BOOL ScrCmd_RandomizeJubilifeLottery(ScriptContext *ctx)
 {
-    VarsFlags *v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
-
-    sub_0206B2C8(v0);
-    return 0;
+    SystemVars_RandomizeJubilifeLotteryTrainerID(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
 static u16 Unk_021C07F0 = 0, Unk_021C07F2 = 0;

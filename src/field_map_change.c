@@ -52,6 +52,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -68,7 +69,6 @@
 #include "unk_0205B33C.h"
 #include "unk_0205C22C.h"
 #include "unk_0205CA94.h"
-#include "unk_0206AFE0.h"
 #include "unk_02070428.h"
 #include "vars_flags.h"
 
@@ -248,7 +248,7 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
         FieldSystem_InitFlagsOnMapChange(fieldSystem);
     }
 
-    VsSeeker_Reset(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemVars_ResetVsSeeker(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     if (!noWarp) {
         sub_020559DC(fieldSystem);
@@ -305,7 +305,7 @@ void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL
         FieldSystem_InitFlagsOnMapChange(fieldSystem);
     }
 
-    VsSeeker_Reset(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemVars_ResetVsSeeker(SaveData_GetVarsFlags(fieldSystem->saveData));
 
     if (!param1) {
         sub_020559DC(fieldSystem);
@@ -372,11 +372,11 @@ static void FieldMapChange_InitTerrainCollisionManager(FieldSystem *fieldSystem)
     GF_ASSERT(fieldSystem->terrainCollisionMan == NULL);
     MapMatrix_Load(fieldSystem->location->mapId, fieldSystem->mapMatrix);
 
-    if (VarFlags_HiddenLocationsUnlocked(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SEABREAKPATH)) {
+    if (SystemVars_CheckHiddenLocation(SaveData_GetVarsFlags(fieldSystem->saveData), HIDDEN_LOCATION_SEABREAK_PATH)) {
         MapMatrix_RevealSeabreakPath(fieldSystem->mapMatrix); // reveal Seabreak Path if Oak's Letter has been used
     }
 
-    if (!VarFlags_HiddenLocationsUnlocked(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SPRINGPATH)) {
+    if (!SystemVars_CheckHiddenLocation(SaveData_GetVarsFlags(fieldSystem->saveData), HIDDEN_LOCATION_SPRING_PATH)) {
         MapMatrix_RevealSpringPath(fieldSystem->mapMatrix);
     }
 

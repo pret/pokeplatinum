@@ -21,12 +21,12 @@
 #include "palette.h"
 #include "sprite.h"
 #include "sprite_system.h"
+#include "system_vars.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_02012744.h"
 #include "unk_0202D05C.h"
 #include "unk_02030A80.h"
-#include "unk_0206AFE0.h"
 #include "unk_0208B284.h"
 #include "vars_flags.h"
 
@@ -229,11 +229,11 @@ static void ov62_0223712C(UnkStruct_0208C06C *param0)
     {
         VarsFlags *v7 = SaveData_GetVarsFlags(param0->unk_830);
 
-        v6[0] = sub_0206B5C8(v7);
-        v6[1] = sub_0206B588(v7);
-        v6[2] = sub_0206B5B8(v7);
-        v6[3] = sub_0206B5A8(v7);
-        v6[4] = sub_0206B598(v7);
+        v6[0] = SystemVars_GetBattleTowerPrintState(v7);
+        v6[1] = SystemVars_GetBattleFactoryPrintState(v7);
+        v6[2] = SystemVars_GetBattleArcadePrintState(v7);
+        v6[3] = SystemVars_GetBattleCastlePrintState(v7);
+        v6[4] = SystemVars_GetBattleHallPrintState(v7);
     }
 
     for (v5 = 0; v5 < 5; v5++) {
@@ -325,11 +325,11 @@ static void ov62_022371CC(UnkStruct_0208C06C *param0)
     {
         VarsFlags *v10 = SaveData_GetVarsFlags(param0->unk_830);
 
-        v3[0] = sub_0206B5C8(v10);
-        v3[1] = sub_0206B588(v10);
-        v3[2] = sub_0206B5B8(v10);
-        v3[3] = sub_0206B5A8(v10);
-        v3[4] = sub_0206B598(v10);
+        v3[0] = SystemVars_GetBattleTowerPrintState(v10);
+        v3[1] = SystemVars_GetBattleFactoryPrintState(v10);
+        v3[2] = SystemVars_GetBattleArcadePrintState(v10);
+        v3[3] = SystemVars_GetBattleCastlePrintState(v10);
+        v3[4] = SystemVars_GetBattleHallPrintState(v10);
     }
 
     for (v0 = 0; v0 < 5; v0++) {

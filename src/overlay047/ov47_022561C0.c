@@ -16,7 +16,7 @@
 #include "special_encounter.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0206AFE0.h"
+#include "system_vars.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -97,8 +97,8 @@ static BOOL ov47_0225621C(UnkStruct_ov47_0225621C *param0, PoketchSystem *poketc
     {
         VarsFlags *v1 = SaveData_GetVarsFlags(PoketchSystem_GetSaveData(poketchSys));
 
-        for (v0 = 0; v0 < 4; v0++) {
-            param0->unk_04.unk_2C[v0] = VarFlags_HiddenLocationsUnlocked(v1, v0);
+        for (v0 = 0; v0 < HIDDEN_LOCATION_MAX; v0++) {
+            param0->unk_04.unk_2C[v0] = SystemVars_CheckHiddenLocation(v1, v0);
         }
     }
 

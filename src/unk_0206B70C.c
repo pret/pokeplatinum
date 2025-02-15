@@ -23,8 +23,8 @@
 #include "save_player.h"
 #include "script_manager.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "trainer_info.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -135,8 +135,8 @@ void sub_0206B70C(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, int para
         }
     }
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (VarFlags_HiddenLocationsUnlocked(v8, v1)) {
+    for (v1 = 0; v1 < HIDDEN_LOCATION_MAX; v1++) {
+        if (SystemVars_CheckHiddenLocation(v8, v1)) {
             param1->unk_13C |= (0x1 << v1);
         }
     }

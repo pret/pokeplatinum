@@ -110,6 +110,7 @@
 #include "strbuf.h"
 #include "system_data.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02017498.h"
 #include "unk_02028124.h"
@@ -125,7 +126,6 @@
 #include "unk_020553DC.h"
 #include "unk_020559DC.h"
 #include "unk_0205B33C.h"
-#include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"
 #include "unk_0206CCB0.h"
 #include "unk_0207A274.h"
@@ -1568,10 +1568,10 @@ static BOOL sub_0203E35C(FieldTask *param0)
             sub_0206DD38(fieldSystem, Coins_GetValue(v5), v2->unk_00, TimeElapsed(v2->unk_04, v6) / 60);
             Coins_SetValue(SaveData_GetCoins(fieldSystem->saveData), v2->unk_00);
 
-            v4 = sub_0206B394(v1);
+            v4 = SystemVars_GetConsecutiveBonusRoundWins(v1);
 
             if ((v2->unk_0C.unk_0C) > v4) {
-                sub_0206B3A4(v1, v2->unk_0C.unk_0C);
+                SystemVars_SetConsecutiveBonusRoundWins(v1, v2->unk_0C.unk_0C);
             }
 
             Heap_FreeToHeap(v2);

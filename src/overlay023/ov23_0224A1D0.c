@@ -35,11 +35,11 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
-#include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_020711EC.h"
 #include "vars_flags.h"
@@ -228,8 +228,8 @@ void ov23_0224A410(int param0, int param1, void *param2, void *param3)
 
         if (commPlayerMan->unk_5A[v1->unk_02] == 0) {
             sub_020294F4(SaveData_SecretBaseRecord(FieldSystem_GetSaveData(commPlayerMan->fieldSystem)), v1->unk_02);
-            sub_0206B364(v2, sub_0206B354(v2) + 1);
-            sub_0206B384(v2, sub_0206B374(v2) + 1);
+            SystemVars_SetSpiritombCounter(v2, SystemVars_GetSpiritombCounter(v2) + 1);
+            SystemVars_SetUndergroundTalkCounter(v2, SystemVars_GetUndergroundTalkCounter(v2) + 1);
 
             commPlayerMan->unk_5A[v1->unk_02]++;
         }

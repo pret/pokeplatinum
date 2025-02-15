@@ -8,25 +8,20 @@
 #include "field_script_context.h"
 #include "inlines.h"
 #include "math.h"
-#include "unk_0206AFE0.h"
+#include "system_vars.h"
 #include "vars_flags.h"
 
-BOOL ScrCmd_2DF(ScriptContext *param0);
-BOOL ScrCmd_2E0(ScriptContext *param0);
-BOOL ScrCmd_2E1(ScriptContext *param0);
-
-BOOL ScrCmd_215(ScriptContext *param0)
+BOOL ScrCmd_ClearAmitySquareStepCount(ScriptContext *ctx)
 {
-    sub_0206B218(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    SystemVars_ClearAmitySquareStepCount(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
-BOOL ScrCmd_216(ScriptContext *param0)
+BOOL ScrCmd_GetAmitySquareStepCount(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(param0);
-
-    *v0 = sub_0206B228(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    return 0;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    *destVar = SystemVars_GetAmitySquareStepCount(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
 static const u16 Unk_020EBF84[6][10] = {
