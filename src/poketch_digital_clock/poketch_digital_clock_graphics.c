@@ -5,8 +5,6 @@
 
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
-#include "overlay025/struct_ov25_0225517C.h"
-#include "overlay025/struct_ov25_02255224_decl.h"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -38,7 +36,7 @@ struct DisplayData_t {
 };
 
 static void PoketchDigitalClock_CopyDigitTilemap(const u16 *rawScreenData, u16 *dst);
-static void PoketchDigitalClock_FinishTask(UnkStruct_ov25_02255224 *sysTaskData);
+static void PoketchDigitalClock_FinishTask(PoketchTaskManager *sysTaskData);
 static void PoketchDigitalClock_SetupBackground(SysTask *sysTask, void *sysTaskData);
 static void PoketchDigitalClock_UpdateClockDigits(SysTask *sysTask, void *sysTaskData);
 static void PoketchDigitalClock_ToggleBacklightPalette(SysTask *sysTask, void *sysTaskData);
@@ -52,7 +50,7 @@ BOOL PoketchDigitalClock_SetupDisplayData(DisplayData **displayData, const Clock
     if (newDisplayData != NULL) {
         NNSG2dScreenData *screenData;
 
-        ov25_02255090(newDisplayData->unk_08, 8);
+        PoketchTask_InitActiveTaskList(newDisplayData->unk_08, 8);
 
         newDisplayData->clockData = clockData;
         newDisplayData->bgConfig = ov25_02254674();
@@ -97,7 +95,7 @@ void PoketchDigitalClock_FreeDisplayData(DisplayData *displayData)
     }
 }
 
-static const UnkStruct_ov25_0225517C sysTaskFunctions[] = {
+static const PoketchTask sysTaskFunctions[] = {
     { SYS_TASK_FUNC_SETUP_BACKGROUND, PoketchDigitalClock_SetupBackground, 0x0 },
     { SYS_TASK_FUNC_UPDATE_CLOCK_DIGITS, PoketchDigitalClock_UpdateClockDigits, 0x0 },
     { SYS_TASK_FUNC_TOGGLE_BACKLIGHT_PALETTE, PoketchDigitalClock_ToggleBacklightPalette, 0x0 },
@@ -107,23 +105,23 @@ static const UnkStruct_ov25_0225517C sysTaskFunctions[] = {
 
 void PoketchDigitalClock_RunTaskFunction(DisplayData *displayData, u32 functionID)
 {
-    ov25_0225517C(sysTaskFunctions, functionID, displayData, displayData->clockData, displayData->unk_08, 2, HEAP_ID_POKETCH_APP);
+    PoketchTask_Start(sysTaskFunctions, functionID, displayData, displayData->clockData, displayData->unk_08, 2, HEAP_ID_POKETCH_APP);
 }
 
 BOOL ov26_022564CC(DisplayData *displayData, u32 param1)
 {
-    return ov25_02255130(displayData->unk_08, param1);
+    return PoketchTask_TaskIsNotActive(displayData->unk_08, param1);
 }
 
 BOOL ov26_022564D8(DisplayData *displayData)
 {
-    return ov25_02255154(displayData->unk_08);
+    return PoketchTask_NoActiveTasks(displayData->unk_08);
 }
 
-static void PoketchDigitalClock_FinishTask(UnkStruct_ov25_02255224 *sysTaskData)
+static void PoketchDigitalClock_FinishTask(PoketchTaskManager *sysTaskData)
 {
-    DisplayData *displayData = ov25_0225523C(sysTaskData);
-    ov25_02255224(displayData->unk_08, sysTaskData);
+    DisplayData *displayData = PoketchTask_GetTaskData(sysTaskData);
+    PoketchTask_EndTask(displayData->unk_08, sysTaskData);
 }
 
 static void PoketchDigitalClock_SetupBackground(SysTask *sysTask, void *sysTaskData)
@@ -143,7 +141,7 @@ static void PoketchDigitalClock_SetupBackground(SysTask *sysTask, void *sysTaskD
         .mosaic = FALSE,
     };
 
-    DisplayData *displayData = ov25_0225523C(sysTaskData);
+    DisplayData *displayData = PoketchTask_GetTaskData(sysTaskData);
 
     Bg_InitFromTemplate(displayData->bgConfig, BG_LAYER_SUB_2, &template, BG_TYPE_STATIC);
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, PRE_POKETCH_DISPLAY_NARC_TILES_IDX, displayData->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
@@ -161,7 +159,7 @@ static void PoketchDigitalClock_SetupBackground(SysTask *sysTask, void *sysTaskD
 
 static void PoketchDigitalClock_UpdateClockDigits(SysTask *sysTask, void *sysTaskData)
 {
-    DisplayData *displayData = ov25_0225523C(sysTaskData);
+    DisplayData *displayData = PoketchTask_GetTaskData(sysTaskData);
 
     PoketchDigitalClock_DrawClockDigits(displayData);
     Bg_CopyTilemapBufferToVRAM(displayData->bgConfig, BG_LAYER_SUB_2);
@@ -170,7 +168,7 @@ static void PoketchDigitalClock_UpdateClockDigits(SysTask *sysTask, void *sysTas
 
 static void PoketchDigitalClock_ToggleBacklightPalette(SysTask *sysTask, void *sysTaskData)
 {
-    DisplayData *displayData = ov25_0225523C(sysTaskData);
+    DisplayData *displayData = PoketchTask_GetTaskData(sysTaskData);
 
     if (displayData->clockData->backlightActive) {
         ov25_022546F0(0, 0);
@@ -183,7 +181,7 @@ static void PoketchDigitalClock_ToggleBacklightPalette(SysTask *sysTask, void *s
 
 static void PoketchDigitalClock_FreeBackground(SysTask *sysTask, void *sysTaskData)
 {
-    DisplayData *displayData = ov25_0225523C(sysTaskData);
+    DisplayData *displayData = PoketchTask_GetTaskData(sysTaskData);
 
     Bg_FreeTilemapBuffer(displayData->bgConfig, BG_LAYER_SUB_2);
     PoketchDigitalClock_FinishTask(sysTaskData);
