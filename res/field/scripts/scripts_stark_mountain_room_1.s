@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0014
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     SetFlag 0x9D2
@@ -84,7 +84,7 @@ _0014:
     End
 
 _0150:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

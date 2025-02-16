@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/hall_of_origin.h"
 
     .data
@@ -7,11 +8,11 @@
     ScriptEntry _0056
     ScriptEntry _0012
     ScriptEntry _0056
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
-    ScrCmd_28B 2, 0x4000
-    GoToIfEq 0x4000, 0, _0035
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
+    GoToIfEq 0x4000, FALSE, _0035
     GoToIfSet 0x11E, _0035
     ClearFlag 0x24E
     End
@@ -67,7 +68,7 @@ _00D0:
 
 _00DF:
     ClearFlag 0x24E
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city.h"
 
     .data
@@ -28,7 +29,7 @@
     ScriptEntry _0959
     ScriptEntry _01D2
     ScriptEntry _09BC
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0066:
     SetFlag 0x1BD
@@ -92,9 +93,9 @@ _0168:
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _01CA
     CheckItem ITEM_MEMBER_CARD, 1, 0x4000
-    GoToIfEq 0x4000, 0, _01CA
-    ScrCmd_28B 0, 0x4000
-    GoToIfEq 0x4000, 0, _01CA
+    GoToIfEq 0x4000, FALSE, _01CA
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
+    GoToIfEq 0x4000, FALSE, _01CA
     GoToIfUnset 0x12C, _01CA
     SetVar 0x4000, 1
     Return
@@ -188,7 +189,7 @@ _0303:
 
 _0334:
     SetFlag 0x1B2
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -667,7 +668,7 @@ _0900:
     CheckItem ITEM_LUNAR_WING, 1, 0x800C
     GoToIfEq 0x800C, 1, _094E
     Message 31
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0938
     GoToIfEq 0x800C, 1, _0943
     End

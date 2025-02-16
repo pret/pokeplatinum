@@ -644,7 +644,7 @@ static void ov28_02256914(UnkStruct_ov28_02256210 *param0, const UnkStruct_ov28_
         }
 
         if (v2 > 0 && v2 <= NATIONAL_DEX_COUNT && Pokedex_HasSeenSpecies(pokedex, v2)) {
-            ov25_02254444(v2, 0);
+            PoketchSystem_PlayCry(v2, 0);
         }
     }
 }

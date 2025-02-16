@@ -15,7 +15,7 @@
     ScriptEntry _050C
     ScriptEntry _0032
     ScriptEntry _051D
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0032:
     GoToIfUnset 227, _003F
@@ -55,7 +55,7 @@ _008E:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x260
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_CHERYL_ETERNA_FOREST
     SetHasPartner
     ScrCmd_06D 0, 48
     ScrCmd_06C 0, 1

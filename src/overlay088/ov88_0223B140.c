@@ -58,6 +58,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
+#include "system_vars.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
@@ -77,7 +78,6 @@
 #include "unk_02038F8C.h"
 #include "unk_0203909C.h"
 #include "unk_020393C8.h"
-#include "unk_0206AFE0.h"
 #include "unk_02092494.h"
 #include "unk_02095CD4.h"
 #include "vars_flags.h"
@@ -457,7 +457,7 @@ int ov88_0223B57C(OverlayManager *param0, int *param1)
                 ov88_0223B3C0(v0);
 
                 v0->unk_44 = 0;
-                v0->unk_88[0] = v0->unk_0C.pos + v0->unk_3C * 6;
+                v0->unk_88[0] = v0->unk_0C.monIndex + v0->unk_3C * 6;
 
                 ov88_0223BE28(v0);
                 ov88_0223CF68(v0->unk_88[0], v0->unk_39C[0], 0);
@@ -1509,7 +1509,7 @@ static void ov88_0223CE74(UnkStruct_02095E80 *param0)
         return;
     }
 
-    v2 = sub_02022664(Unk_ov88_0223EE28);
+    v2 = TouchScreen_CheckRectanglePressed(Unk_ov88_0223EE28);
 
     if (v2 != 0xffffffff) {
         if (param0->unk_6F4[param0->unk_88[0]].unk_05) {
@@ -1726,20 +1726,20 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
 {
     if (param1 == 0) {
         param0->unk_0C.monData = param0->unk_2270;
-        param0->unk_0C.max = Party_GetCurrentCount(param0->unk_08->unk_08);
+        param0->unk_0C.monMax = Party_GetCurrentCount(param0->unk_08->unk_08);
 
         param0->unk_0C.chatotCry = NULL;
         PokemonSummaryScreen_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId()));
     } else {
         param0->unk_0C.monData = param0->unk_2274;
-        param0->unk_0C.max = Party_GetCurrentCount(param0->unk_2274);
+        param0->unk_0C.monMax = Party_GetCurrentCount(param0->unk_2274);
         param0->unk_0C.chatotCry = (ChatotCry *)param0->unk_2E6C[CommSys_CurNetId() ^ 1];
         PokemonSummaryScreen_SetPlayerProfile(&param0->unk_0C, CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1));
     }
 
-    param0->unk_0C.dataType = 1;
-    param0->unk_0C.pos = param0->unk_88[0] % 6;
-    param0->unk_0C.mode = 1;
+    param0->unk_0C.dataType = SUMMARY_DATA_PARTY_MON;
+    param0->unk_0C.monIndex = param0->unk_88[0] % 6;
+    param0->unk_0C.mode = SUMMARY_MODE_LOCK_MOVES;
     param0->unk_0C.move = 0;
     param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->unk_10);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
@@ -2489,8 +2489,8 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         if (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(v1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(v1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             VarsFlags *v2 = SaveData_GetVarsFlags(param4->unk_10);
 
-            if (sub_0206B5F8(v2) == 0) {
-                sub_0206B608(v2, 1);
+            if (SystemVars_GetArceusEventState(v2) == 0) {
+                SystemVars_SetArceusEventState(v2, 1);
             }
         }
     }

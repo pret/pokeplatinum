@@ -43,6 +43,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_vars.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -52,7 +53,6 @@
 #include "unk_02038F8C.h"
 #include "unk_0205DFC4.h"
 #include "unk_020677F4.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/battle_tower.h"
@@ -838,23 +838,23 @@ BOOL ScrCmd_30F(ScriptContext *param0)
     case 14:
         *v4 = 0;
 
-        if (sub_0206B588(v0) >= 2) {
+        if (SystemVars_GetBattleFactoryPrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B598(v0) >= 2) {
+        if (SystemVars_GetBattleHallPrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B5A8(v0) >= 2) {
+        if (SystemVars_GetBattleCastlePrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B5B8(v0) >= 2) {
+        if (SystemVars_GetBattleArcadePrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B5C8(v0) >= 2) {
+        if (SystemVars_GetBattleTowerPrintState(v0) >= 2) {
             *v4 = 1;
         }
         break;

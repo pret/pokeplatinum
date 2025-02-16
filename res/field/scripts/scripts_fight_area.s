@@ -28,7 +28,7 @@
     ScriptEntry _089D
     ScriptEntry _08B0
     ScriptEntry _083C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0066:
     GoToIfEq 0x4081, 1, _0082
@@ -123,7 +123,7 @@ _00D8:
     SetVar 0x4081, 1
     ScrCmd_32E
     Message 1
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _02EE
     Call _014E
     GoToIfEq 0x800C, 0, _0306
@@ -243,7 +243,7 @@ _02EE:
     End
 
 _0306:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -541,7 +541,7 @@ _0521:
     BufferItemName 0, 0x1BF
     GoToIfSet 107, _057A
     Message 42
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _056F
     Message 43
     SetVar 0x8004, 0x1BF
@@ -599,7 +599,7 @@ _05CA:
     FacePlayer
     ScrCmd_1BD 0x8004
     Message 38
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0606
     GoToIfEq 0x800C, 1, _05FB
     End
@@ -698,7 +698,7 @@ _06F0:
     CallIfEq 0x8004, 0, _0792
     BufferRivalName 0
     Message 4
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _02EE
     Call _014E
     GoToIfEq 0x800C, 0, _0306

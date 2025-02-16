@@ -264,7 +264,7 @@ Static main
 	Object main.nef.p/src_unk_02069BE0.c.o
 	Object main.nef.p/src_unk_0206A780.c.o
 	Object main.nef.p/src_system_flags.c.o
-	Object main.nef.p/src_unk_0206AFE0.c.o
+	Object main.nef.p/src_system_vars.c.o
 	Object main.nef.p/src_unk_0206B70C.c.o
 	Object main.nef.p/src_unk_0206B9D8.c.o
 	Object main.nef.p/src_great_marsh_lookout.c.o
@@ -861,7 +861,7 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_ov23_02254A14.c.o
 }
 
-Overlay overlay24
+Overlay pre_poketch_subscreen
 {
 	After overlay9
 	Object main.nef.p/src_pre_poketch_subscreen_pre_poketch_subscreen.c.o

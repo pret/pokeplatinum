@@ -10,7 +10,7 @@
     ScriptEntry _01DA
     ScriptEntry _02EF
     ScriptEntry _0306
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     SetFlag 0x9CE
@@ -32,7 +32,7 @@ _0024:
     End
 
 _006E:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

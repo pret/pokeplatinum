@@ -12,7 +12,7 @@
     ScriptEntry _06B8
     ScriptEntry _06CF
     ScriptEntry _06E2
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0026:
     CallIfSet 0x106, _004B
@@ -120,7 +120,7 @@ _01C5:
     End
 
 _01D9:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -228,7 +228,7 @@ _0248:
     CallIfEq 0x8000, 2, _042C
     CallIfEq 0x8000, 3, _0438
     Message 9
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _04EC
     GoToIfEq 0x800C, 1, _04F7
     End

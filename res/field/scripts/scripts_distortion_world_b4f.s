@@ -4,7 +4,7 @@
 
     ScriptEntry _000A
     ScriptEntry _000E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     ScrCmd_2F2

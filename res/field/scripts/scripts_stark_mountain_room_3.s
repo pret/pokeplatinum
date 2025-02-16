@@ -8,7 +8,7 @@
     ScriptEntry _00D0
     ScriptEntry _00E6
     ScriptEntry _019C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     SetVar 0x4000, 0x409E
@@ -134,7 +134,7 @@ _015D:
 
 _0168:
     SetVar 0x409E, 1
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -143,7 +143,7 @@ _0174:
     Return
 
 _017A:
-    SetFlag 0x983
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_5
     Return
 
     .byte 12

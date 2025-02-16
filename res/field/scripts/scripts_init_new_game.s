@@ -3,7 +3,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     SetFlag 0x173
@@ -102,9 +102,9 @@ _0006:
     SetFlag 0x21B
     SetFlag 0x1B1
     SetFlag 0x25E
-    ScrCmd_1C5
-    ScrCmd_250
-    ScrCmd_27B
+    InitSizeContestRecord
+    RandomizeJubilifeLottery
+    InitDailyRandomLevel
     SetFlag 0x24D
     SetFlag 0x25B
     SetFlag 0x252

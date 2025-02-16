@@ -9,7 +9,7 @@
     ScriptEntry _043C
     ScriptEntry _048E
     ScriptEntry _0650
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     LockAll
@@ -73,7 +73,7 @@ _00F4:
     LockAll
     FacePlayer
     Message 5
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0123
     GoTo _0118
     End
@@ -153,7 +153,7 @@ _022C:
 
 _0245:
     Message 11
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0277
     GoTo _026C
     End
@@ -344,7 +344,7 @@ _048E:
     FacePlayer
     ScrCmd_323 0x800C
     GoToIfEq 0x800C, 0, _04BC
-    ScrCmd_201 0x405C
+    GetCurrentMapID 0x405C
     SetVar 0x405D, 0x800D
     Message 17
     GoTo _04C7

@@ -6,8 +6,6 @@
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
-#include "overlay025/struct_ov25_0225517C.h"
-#include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_02255810.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -33,7 +31,7 @@ struct UnkStruct_ov34_02256540_t {
 };
 
 static BOOL ov34_02256588(UnkStruct_ov34_02256540 *param0);
-static void ov34_0225667C(UnkStruct_ov25_02255224 *param0);
+static void ov34_0225667C(PoketchTaskManager *param0);
 static void ov34_02256690(SysTask *param0, void *param1);
 static void ov34_02256774(SysTask *param0, void *param1);
 static void ov34_02256790(SysTask *param0, void *param1);
@@ -52,7 +50,7 @@ BOOL ov34_02256540(UnkStruct_ov34_02256540 **param0, const UnkStruct_ov34_022565
     if (v0 != NULL) {
         int v1;
 
-        ov25_02255090(v0->unk_08, 8);
+        PoketchTask_InitActiveTaskList(v0->unk_08, 8);
 
         v0->unk_00 = param1;
         v0->unk_04 = ov25_02254674();
@@ -128,7 +126,7 @@ void ov34_02256604(UnkStruct_ov34_02256540 *param0)
     }
 }
 
-static const UnkStruct_ov25_0225517C Unk_ov34_02256A7C[] = {
+static const PoketchTask Unk_ov34_02256A7C[] = {
     { 0x0, ov34_02256690, 0x0 },
     { 0x1, ov34_02256774, 0x0 },
     { 0x2, ov34_02256790, sizeof(u32) },
@@ -137,23 +135,23 @@ static const UnkStruct_ov25_0225517C Unk_ov34_02256A7C[] = {
 
 void ov34_02256640(UnkStruct_ov34_02256540 *param0, u32 param1)
 {
-    ov25_0225517C(Unk_ov34_02256A7C, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
+    PoketchTask_Start(Unk_ov34_02256A7C, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
 BOOL ov34_02256664(UnkStruct_ov34_02256540 *param0, u32 param1)
 {
-    return ov25_02255130(param0->unk_08, param1);
+    return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
 BOOL ov34_02256670(UnkStruct_ov34_02256540 *param0)
 {
-    return ov25_02255154(param0->unk_08);
+    return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov34_0225667C(UnkStruct_ov25_02255224 *param0)
+static void ov34_0225667C(PoketchTaskManager *param0)
 {
-    UnkStruct_ov34_02256540 *v0 = ov25_0225523C(param0);
-    ov25_02255224(v0->unk_08, param0);
+    UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param0);
+    PoketchTask_EndTask(v0->unk_08, param0);
 }
 
 static void ov34_02256690(SysTask *param0, void *param1)
@@ -178,7 +176,7 @@ static void ov34_02256690(SysTask *param0, void *param1)
     void *v3;
     NNSG2dPaletteData *v4;
 
-    v2 = ov25_0225523C(param1);
+    v2 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     Graphics_LoadTilesToBgLayer(12, 39, v2->unk_04, 6, 0, 0, 1, 8);
@@ -209,7 +207,7 @@ static void ov34_02256690(SysTask *param0, void *param1)
 
 static void ov34_02256774(SysTask *param0, void *param1)
 {
-    UnkStruct_ov34_02256540 *v0 = ov25_0225523C(param1);
+    UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param1);
 
     Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov34_0225667C(param1);
@@ -222,11 +220,11 @@ static void ov34_02256790(SysTask *param0, void *param1)
         ov34_0225684C,
         ov34_022568C0
     };
-    UnkStruct_ov34_02256540 *v1 = ov25_0225523C(param1);
-    const UnkStruct_ov34_02256540_1 *v2 = ov25_02255240(param1);
-    u32 *v3 = ov25_02255244(param1);
+    UnkStruct_ov34_02256540 *v1 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov34_02256540_1 *v2 = PoketchTask_GetConstTaskData(param1);
+    u32 *v3 = PoketchTask_GetExtraData(param1);
 
-    if (ov25_02255248(param1) == 0) {
+    if (PoketchTask_GetState(param1) == 0) {
         v1->unk_6C = 1;
         *v3 = v2->unk_08;
     }
@@ -236,15 +234,15 @@ static void ov34_02256790(SysTask *param0, void *param1)
 
 static void ov34_022567D4(SysTask *param0, void *param1)
 {
-    UnkStruct_ov34_02256540 *v0 = ov25_0225523C(param1);
-    const UnkStruct_ov34_02256540_1 *v1 = ov25_02255240(param1);
+    UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov34_02256540_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         ov25_02255900(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
         ov25_02255914(v0->unk_34, 0);
         ov25_022558C4(v0->unk_34, 0);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         if (v0->unk_6C == 0) {
@@ -263,15 +261,15 @@ static void ov34_022567D4(SysTask *param0, void *param1)
 
 static void ov34_0225684C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov34_02256540 *v0 = ov25_0225523C(param1);
-    const UnkStruct_ov34_02256540_1 *v1 = ov25_02255240(param1);
+    UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov34_02256540_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         ov25_02255900(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
         ov25_022558C4(v0->unk_34, 0);
         ov25_02255914(v0->unk_34, 0);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         if (v0->unk_6C == 0) {
@@ -289,16 +287,16 @@ static void ov34_0225684C(SysTask *param0, void *param1)
 
 static void ov34_022568C0(SysTask *param0, void *param1)
 {
-    UnkStruct_ov34_02256540 *v0 = ov25_0225523C(param1);
-    const UnkStruct_ov34_02256540_1 *v1 = ov25_02255240(param1);
+    UnkStruct_ov34_02256540 *v0 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov34_02256540_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         ov34_02256974(v0, v1);
         ov25_02255900(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
         ov25_022558C4(v0->unk_34, 0);
         ov25_02255914(v0->unk_34, 0);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         if (v0->unk_6C == 0) {
@@ -309,7 +307,7 @@ static void ov34_022568C0(SysTask *param0, void *param1)
 
         if (ov25_022558E0(v0->unk_34)) {
             ov34_022569A0(v0, v1);
-            ov25_0225524C(param1);
+            PoketchTask_IncrementState(param1);
         }
         break;
     case 2:
@@ -321,7 +319,7 @@ static void ov34_022568C0(SysTask *param0, void *param1)
 
         if (ov34_022569DC(v0)) {
             ov25_022558C4(v0->unk_34, 0);
-            ov25_02255254(param1, 1);
+            PoketchTask_SetState(param1, 1);
         }
         break;
     }

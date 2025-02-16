@@ -35,7 +35,7 @@
     ScriptEntry _095A
     ScriptEntry _0971
     ScriptEntry _0997
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0082:
     End
@@ -139,7 +139,7 @@ _013B:
     FacePlayer
     GoToIfSet 1, _01A7
     Message 14
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _01B2
     Message 15
     CloseMessage
@@ -423,7 +423,7 @@ _0562:
 
 _05AA:
     GoToIfSet 0x151, _05F8
-    ScrCmd_293 0x800C
+    GetUndergroundTalkCounter 0x800C
     GoToIfLt 0x800C, 100, _05F8
     Message 40
     SetVar 0x8004, 77
@@ -438,7 +438,7 @@ _05AA:
 
 _05F8:
     GoToIfSet 0x152, _0646
-    ScrCmd_286 0x800C
+    GetUndergroundItemsGivenAway 0x800C
     GoToIfLt 0x800C, 100, _0646
     Message 41
     SetVar 0x8004, 78
@@ -453,7 +453,7 @@ _05F8:
 
 _0646:
     GoToIfSet 0x153, _0694
-    ScrCmd_287 0x800C
+    GetUndergroundFossilsUnearthed 0x800C
     GoToIfLt 0x800C, 100, _0694
     Message 42
     SetVar 0x8004, 79
@@ -468,7 +468,7 @@ _0646:
 
 _0694:
     GoToIfSet 0x154, _06E2
-    ScrCmd_288 0x800C
+    GetUndergroundTrapsSet 0x800C
     GoToIfLt 0x800C, 100, _06E2
     Message 43
     SetVar 0x8004, 80

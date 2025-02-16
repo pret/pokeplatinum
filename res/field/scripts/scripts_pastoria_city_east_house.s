@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0125
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM

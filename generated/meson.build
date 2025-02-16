@@ -37,6 +37,8 @@ metang_generators = {
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
+    'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
+    'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
     'egg_groups': { 'type': 'enum', 'tag': 'EggGroup' },
     'evolution_methods': { 'type': 'enum', 'tag': 'EvolutionMethod' },
     'exp_rates': { 'type': 'enum', 'tag': 'ExpRate' },
@@ -46,6 +48,7 @@ metang_generators = {
     'gender_ratios': { 'type': 'enum', 'tag': 'GenderRatio' },
     'genders': { 'type': 'enum', 'tag': 'Gender' },
     'giratina_shadow_animations': {'type': 'enum', 'tag': 'GiratinaShadowAnimation'},
+    'hidden_locations': { 'type': 'enum', 'tag': 'HiddenLocation' },
     'item_ai_categories': { 'type': 'enum', 'tag': 'ItemAICategory' },
     'item_battle_categories': { 'type': 'enum', 'tag': 'ItemBattleCategory' },
     'item_hold_effects': { 'type': 'enum', 'tag': 'ItemHoldEffect' },
