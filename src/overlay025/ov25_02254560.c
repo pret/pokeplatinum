@@ -23,13 +23,15 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
+#include "palette.h"
 
-#define POKETCH_PALETTE_NARC_IDX          0
-#define NUM_POKETCH_PALETTES              16
-#define NUM_POKETCH_PALETTE_COLOUR_SETS   8
-#define POKETCH_PALETTE_SIZE              0x20
-#define POKETCH_BACKLIGHT_PALETTE_OFFSET  16
-#define POKETCH_PALETTE_COLOUR_SET_LENGTH 32
+#define POKETCH_PALETTE_NARC_IDX 0
+
+#define NUM_PALETTES                       16
+#define NUM_PALETTES_PER_PALETTE_COLOUR_SET 2
+#define NUM_PALETTE_COLOUR_SETS            (NUM_PALETTES / NUM_PALETTES_PER_PALETTE_COLOUR_SET)
+#define SLOTS_PER_PALETTE_COLOUR_SET       (SLOTS_PER_PALETTE * NUM_PALETTES_PER_PALETTE_COLOUR_SET)
+#define BACKLIGHT_PALETTE_SLOT_OFFSET      (SLOTS_PER_PALETTE)
 
 typedef struct {
     BOOL unk_00;
@@ -54,7 +56,7 @@ struct UnkStruct_ov25_02254560_t {
     UnkStruct_ov25_02254DD8 unk_1D4;
     BgConfig *unk_1F8;
     PoketchSystem *poketchSys;
-    u16 poketchPalettes[256];
+    u16 poketchPalettes[NUM_PALETTE_COLOUR_SETS * SLOTS_PER_PALETTE_COLOUR_SET];
     u16 unk_400[16];
 };
 
@@ -159,8 +161,8 @@ static void Poketch_InitPaletteData(UnkStruct_ov25_02254560 *param0)
     void *poketchPalettes = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_PALETTE_NARC_IDX, &paletteData, HEAP_ID_POKETCH_MAIN);
 
     if (poketchPalettes) {
-        MI_CpuCopy32(paletteData->pRawData, param0->poketchPalettes, NUM_POKETCH_PALETTES * POKETCH_PALETTE_SIZE);
-        DC_FlushRange(param0->poketchPalettes, NUM_POKETCH_PALETTES * POKETCH_PALETTE_SIZE);
+        MI_CpuCopy32(paletteData->pRawData, param0->poketchPalettes, NUM_PALETTES * PALETTE_SIZE_BYTES);
+        DC_FlushRange(param0->poketchPalettes, NUM_PALETTES * PALETTE_SIZE_BYTES);
         Heap_FreeToHeap(poketchPalettes);
     }
 }
@@ -171,8 +173,8 @@ void Poketch_LoadActivePalette(u32 bgOffset, u32 objOffset)
     Poketch *poketch = PoketchSystem_GetPoketchData(v0->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
-    GXS_LoadBGPltt(&v0->poketchPalettes[screenColour * POKETCH_PALETTE_COLOUR_SET_LENGTH], bgOffset * POKETCH_PALETTE_SIZE, POKETCH_PALETTE_SIZE);
-    GXS_LoadOBJPltt(&v0->poketchPalettes[screenColour * POKETCH_PALETTE_COLOUR_SET_LENGTH], objOffset, POKETCH_PALETTE_SIZE);
+    GXS_LoadBGPltt(&v0->poketchPalettes[screenColour * SLOTS_PER_PALETTE_COLOUR_SET], bgOffset * PALETTE_SIZE_BYTES, PALETTE_SIZE_BYTES);
+    GXS_LoadOBJPltt(&v0->poketchPalettes[screenColour * SLOTS_PER_PALETTE_COLOUR_SET], objOffset, PALETTE_SIZE_BYTES);
 }
 
 void Poketch_LoadActiveBacklightPalette(u32 unused_1, u32 unused_2)
@@ -181,8 +183,8 @@ void Poketch_LoadActiveBacklightPalette(u32 unused_1, u32 unused_2)
     Poketch *poketch = PoketchSystem_GetPoketchData(v0->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
-    GXS_LoadBGPltt(&v0->poketchPalettes[screenColour * POKETCH_PALETTE_COLOUR_SET_LENGTH + POKETCH_BACKLIGHT_PALETTE_OFFSET], 0, POKETCH_PALETTE_SIZE);
-    GXS_LoadOBJPltt(&v0->poketchPalettes[screenColour * POKETCH_PALETTE_COLOUR_SET_LENGTH + POKETCH_BACKLIGHT_PALETTE_OFFSET], 0, POKETCH_PALETTE_SIZE);
+    GXS_LoadBGPltt(&v0->poketchPalettes[screenColour * SLOTS_PER_PALETTE_COLOUR_SET + BACKLIGHT_PALETTE_SLOT_OFFSET], 0, PALETTE_SIZE_BYTES);
+    GXS_LoadOBJPltt(&v0->poketchPalettes[screenColour * SLOTS_PER_PALETTE_COLOUR_SET + BACKLIGHT_PALETTE_SLOT_OFFSET], 0, PALETTE_SIZE_BYTES);
 }
 
 void Poketch_CopyActivePalette(u16 *dest)
@@ -191,7 +193,7 @@ void Poketch_CopyActivePalette(u16 *dest)
     Poketch *poketch = PoketchSystem_GetPoketchData(v0->poketchSys);
     u32 screenColour = Poketch_CurrentScreenColor(poketch);
 
-    MI_CpuCopy16(&v0->poketchPalettes[screenColour * POKETCH_PALETTE_COLOUR_SET_LENGTH], dest, POKETCH_PALETTE_SIZE);
+    MI_CpuCopy16(&v0->poketchPalettes[screenColour * SLOTS_PER_PALETTE_COLOUR_SET], dest, PALETTE_SIZE_BYTES);
 }
 
 void ov25_02254754(UnkStruct_ov25_02254560 *param0)
