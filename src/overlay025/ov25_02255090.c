@@ -90,11 +90,11 @@ void PoketchTask_Start(const PoketchTask *appTasks, u32 taskId, void *taskData, 
             PoketchTaskManager *poketchTaskMan;
             u32 size;
 
-            size = sizeof(PoketchTaskManager) + appTasks[i].unk_08;
+            size = sizeof(PoketchTaskManager) + appTasks[i].extraDataSize;
             poketchTaskMan = Heap_AllocFromHeap(heapId, size);
 
             if (poketchTaskMan != NULL) {
-                if (appTasks[i].unk_08 != 0) {
+                if (appTasks[i].extraDataSize != 0) {
                     poketchTaskMan->extraData = ((u8 *)poketchTaskMan) + sizeof(PoketchTaskManager);
                 } else {
                     poketchTaskMan->extraData = NULL;

@@ -29,7 +29,7 @@ typedef struct PlayerPartyStatus {
     u32 touchY;
 } PlayerPartyStatus;
 
-typedef struct PoketchPartyStatusGraphics PoketchPartyStatusGraphics; // MonIconBounceAnim and PoketchPartyStatusGraphics contain each other, so this is necessary
+typedef struct PoketchPartyStatusGraphics PoketchPartyStatusGraphics;
 
 typedef struct MonIconBounceAnim {
     PoketchPartyStatusGraphics *graphicsDataPtr;
@@ -60,11 +60,17 @@ struct PoketchPartyStatusGraphics {
     u8 iconSpriteBuffer[640];
 };
 
+enum PartyStatusTask {
+    TASK_DRAW_SCREEN = 0,
+    TASK_UNLOAD_AND_FREE,
+    TASK_REDRAW_ON_TAP,
+};
+
 #include "bg_window.h"
 
 BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPartyStatus *playerParty, BgConfig *bgConfig);
 void PartyStatusGraphics_UnloadAndFree(PoketchPartyStatusGraphics *param0);
-void PartyStatus_StartTaskById(PoketchPartyStatusGraphics *appData, u32 taskId);
+void PartyStatus_StartTaskById(PoketchPartyStatusGraphics *appData, enum PartyStatusTask taskId);
 BOOL PartyStatus_TaskIsNotActive(PoketchPartyStatusGraphics *appData, u32 taskId);
 BOOL PartyStatus_AllTasksDone(PoketchPartyStatusGraphics *appData);
 u32 PoketchPartyStatus_CheckTouchingPartySlot(u32 touchX, u32 touchY, u32 partyCount);

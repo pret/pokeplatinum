@@ -46,11 +46,10 @@ static BOOL PoketchPartyStatus_New(void **appData, PoketchSystem *poketchSys, Bg
     PoketchPartyStatus *partyStatusData = (PoketchPartyStatus *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchPartyStatus));
 
     if (partyStatusData != NULL) {
-        if (PoketchPartyStatus_Init(partyStatusData, poketchSys, bgConfig, unused)) {
-            if (SysTask_Start(Task_PartyStatusMain, partyStatusData, 1) != NULL) {
-                *appData = partyStatusData;
-                return TRUE;
-            }
+        if (PoketchPartyStatus_Init(partyStatusData, poketchSys, bgConfig, unused)
+            && SysTask_Start(Task_PartyStatusMain, partyStatusData, 1) != NULL) {
+            *appData = partyStatusData;
+            return TRUE;
         }
 
         Heap_FreeToHeap(partyStatusData);
@@ -107,7 +106,7 @@ static void Task_PartyStatusMain(SysTask *task, void *appData)
 
 static void PoketchPartyStatus_Exit(void *appData)
 {
-    ((PoketchPartyStatus *)appData)->shouldExit = 1;
+    ((PoketchPartyStatus *)appData)->shouldExit = TRUE;
 }
 
 static void SetTaskState(PoketchPartyStatus *appData, u32 state)
@@ -125,7 +124,7 @@ static BOOL Task_PartyStatusLoadAndWait(PoketchPartyStatus *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
-        PartyStatus_StartTaskById(appData->graphicsData, 0);
+        PartyStatus_StartTaskById(appData->graphicsData, TASK_DRAW_SCREEN);
         appData->taskFuncState++;
         break;
     case 1:
@@ -157,7 +156,7 @@ static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData)
 
                 if (touchedSlot >= appData->playerParty.partyCount) { // Tapped the screen but not any mon icons
                     InitPlayerPartyMons(&appData->playerParty, Party_GetFromSavedata(PoketchSystem_GetSaveData(appData->poketchSys)));
-                    PartyStatus_StartTaskById(appData->graphicsData, 2);
+                    PartyStatus_StartTaskById(appData->graphicsData, TASK_REDRAW_ON_TAP);
                 }
             }
 
@@ -167,7 +166,7 @@ static BOOL Task_PartyStatusTryUpdateOnTap(PoketchPartyStatus *appData)
 
     appData->playerParty.touchX = 0;
     appData->playerParty.touchY = 0;
-    appData->playerParty.screenTapped = 0;
+    appData->playerParty.screenTapped = FALSE;
 
     return FALSE;
 }
@@ -176,7 +175,7 @@ static BOOL Task_PartyStatusUnloadAndWait(PoketchPartyStatus *appData)
 {
     switch (appData->taskFuncState) {
     case 0:
-        PartyStatus_StartTaskById(appData->graphicsData, 1);
+        PartyStatus_StartTaskById(appData->graphicsData, TASK_UNLOAD_AND_FREE);
         appData->taskFuncState++;
         break;
     case 1:

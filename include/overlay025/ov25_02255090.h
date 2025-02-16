@@ -6,7 +6,7 @@
 typedef struct PoketchTask {
     u32 taskId;
     SysTaskFunc taskFunc;
-    u32 unk_08;
+    u32 extraDataSize;
 } PoketchTask;
 
 typedef struct PoketchTaskManager {

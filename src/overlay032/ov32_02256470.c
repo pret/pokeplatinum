@@ -48,8 +48,6 @@ BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPart
     PoketchPartyStatusGraphics *graphicsData = (PoketchPartyStatusGraphics *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(PoketchPartyStatusGraphics));
 
     if (graphicsData != NULL) {
-        int i;
-
         PoketchTask_InitActiveTaskList(graphicsData->activeTaskIds, 8);
 
         graphicsData->playerParty = playerParty;
@@ -58,7 +56,7 @@ BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPart
         graphicsData->partyCount = 0;
         graphicsData->bounceAnimTask = NULL;
 
-        for (i = 0; i < MAX_PARTY_SIZE; i++) {
+        for (int i = 0; i < MAX_PARTY_SIZE; i++) {
             Window_Init(&(graphicsData->hpBarWindows[i]));
             graphicsData->unk_9C[i] = NULL;
             graphicsData->unk_B4[i] = NULL;
@@ -89,13 +87,13 @@ void PartyStatusGraphics_UnloadAndFree(PoketchPartyStatusGraphics *graphicsData)
 }
 
 static const PoketchTask sPartyStatusTasks[] = {
-    { 0x0, DrawAppScreen, 0x0 },
-    { 0x1, FreeAppScreen, 0x0 },
-    { 0x2, RedrawAppScreen, 0x0 },
-    { 0x0, NULL, 0x0 }
+    { TASK_DRAW_SCREEN, DrawAppScreen, 0 },
+    { TASK_UNLOAD_AND_FREE, FreeAppScreen, 0 },
+    { TASK_REDRAW_ON_TAP, RedrawAppScreen, 0 },
+    { 0, NULL, 0 }
 };
 
-void PartyStatus_StartTaskById(PoketchPartyStatusGraphics *appData, u32 taskId)
+void PartyStatus_StartTaskById(PoketchPartyStatusGraphics *appData, enum PartyStatusTask taskId)
 {
     PoketchTask_Start(sPartyStatusTasks, taskId, appData, appData->playerParty, appData->activeTaskIds, 2, HEAP_ID_POKETCH_APP);
 }
@@ -140,8 +138,8 @@ static void DrawAppScreen(SysTask *param0, void *param1)
     v2 = PoketchTask_GetTaskData(param1);
     Bg_InitFromTemplate(v2->bgConfig, 6, &v0, 0);
 
-    v3 = Graphics_LoadTilesToBgLayer(12, 106, v2->bgConfig, 6, 0, 0, 1, 8);
-    v3 /= 0x20;
+    v3 = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 106, v2->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    v3 /= TILE_SIZE_4BPP;
 
     Bg_FillTilemapRect(v2->bgConfig, 6, 0x5, 0, 0, 32, 24, 0);
     ov25_022546B8(0, 0);
@@ -241,7 +239,7 @@ static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyS
     int v0;
     UnkStruct_ov25_02255810 v1;
 
-    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 109, 1, 0 * 0x20, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(NARC_INDEX_GRAPHIC__POKETCH, 109, DS_SCREEN_SUB, 0 * TILE_SIZE_4BPP, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     v1.unk_0A = 0;
     v1.unk_0B = 2;
@@ -277,11 +275,11 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
         v1.unk_0D = 1;
 
         for (v3 = 0; v3 < param1->partyCount; v3++) {
-            NARC_ReadFromMember(v0, param1->mons[v3].iconSpriteIndex, 0, ((16 * 0x20) + 0x80), param0->iconSpriteBuffer);
+            NARC_ReadFromMember(v0, param1->mons[v3].iconSpriteIndex, 0, ((16 * TILE_SIZE_4BPP) + 0x80), param0->iconSpriteBuffer);
 
             NNS_G2dGetUnpackedCharacterData(param0->iconSpriteBuffer, &v2);
-            DC_FlushRange(v2->pRawData, (16 * 0x20));
-            GXS_LoadOBJ(v2->pRawData, (0 + 8) * 0x20 + (16 * 0x20) * v3, (16 * 0x20));
+            DC_FlushRange(v2->pRawData, (16 * TILE_SIZE_4BPP));
+            GXS_LoadOBJ(v2->pRawData, (0 + 8) * TILE_SIZE_4BPP + (16 * TILE_SIZE_4BPP) * v3, (16 * TILE_SIZE_4BPP));
 
             v1.unk_00.x = ((sMonIconCoords[v3].x) << FX32_SHIFT);
             v1.unk_00.y = ((sMonIconCoords[v3].y) << FX32_SHIFT);
@@ -386,7 +384,7 @@ u32 PoketchPartyStatus_CheckTouchingPartySlot(u32 touchX, u32 touchY, u32 partyC
 
         // Creates a bounding box around the party icon and checks if the tapped coordinates are within it.
         // Since the Poketch mon icons are double-sized, this box does not necessarily contain the whole sprite.
-        if (((u32)(touchX - upperBoundX) < (u32)(lowerBoundX - upperBoundX)) & ((u32)(touchY - upperBoundY) < (u32)(lowerBoundY - upperBoundY))) {
+        if (((touchX - upperBoundX) < (lowerBoundX - upperBoundX)) & ((touchY - upperBoundY) < (lowerBoundY - upperBoundY))) {
             return i;
         }
     }
