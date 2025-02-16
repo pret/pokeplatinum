@@ -1,15 +1,24 @@
 #ifndef POKEPLATINUM_OV26_02256404_H
 #define POKEPLATINUM_OV26_02256404_H
 
-#include "overlay026/struct_ov26_02256404_1.h"
-#include "overlay026/struct_ov26_02256404_decl.h"
-
 #include "bg_window.h"
 
-BOOL ov26_02256404(UnkStruct_ov26_02256404 **param0, const UnkStruct_ov26_02256404_1 *param1, BgConfig *param2);
-void ov26_0225649C(UnkStruct_ov26_02256404 *param0);
-void ov26_022564A8(UnkStruct_ov26_02256404 *param0, u32 param1);
-BOOL ov26_022564CC(UnkStruct_ov26_02256404 *param0, u32 param1);
-BOOL ov26_022564D8(UnkStruct_ov26_02256404 *param0);
+#define SYS_TASK_FUNC_SETUP_BACKGROUND         0
+#define SYS_TASK_FUNC_UPDATE_CLOCK_DIGITS      1
+#define SYS_TASK_FUNC_TOGGLE_BACKLIGHT_PALETTE 2
+#define SYS_TASK_FUNC_FREE_BACKGROUND          3
+
+typedef struct DisplayData_t DisplayData;
+
+typedef struct {
+    RTCTime time;
+    u32 backlightActive;
+} ClockData;
+
+BOOL ov26_02256404(DisplayData **param0, const ClockData *param1, BgConfig *param2);
+void PoketchDigitalClock_FreeDisplayData(DisplayData *param0);
+void PoketchDigitalClock_RunTaskFunction(DisplayData *param0, u32 param1);
+BOOL ov26_022564CC(DisplayData *param0, u32 param1);
+BOOL ov26_022564D8(DisplayData *param0);
 
 #endif // POKEPLATINUM_OV26_02256404_H
