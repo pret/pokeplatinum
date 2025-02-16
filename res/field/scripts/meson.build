@@ -417,7 +417,7 @@ scr_seq_files = files(
     'scripts_unk_0409.s',
     'scripts_wifi_plaza_entrance.s',
     'scripts_unk_0411.s',
-    'scripts_unk_0412.s',
+    'scripts_init_new_game.s',
     'scripts_unk_0413.s',
     'scripts_verity_lakefront.s',
     'scripts_verity_lakefront_unknown_house.s',

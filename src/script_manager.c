@@ -203,7 +203,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         retScriptID -= 10450;
     } else if (retScriptID >= SCRIPT_ID_POKEMON_CENTER_DAILY_TRAINERS) {
         ScriptContext_Load(fieldSystem, ctx, scripts_pokemon_center_daily_trainers, TEXT_BANK_POKEMON_CENTER_DAILY_TRAINERS);
-        retScriptID -= 10400;
+        retScriptID -= SCRIPT_ID_POKEMON_CENTER_DAILY_TRAINERS;
     } else if (retScriptID >= 10300) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_1051, TEXT_BANK_UNK_0552);
         retScriptID -= 10300;
@@ -231,9 +231,9 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     } else if (retScriptID >= 9700) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0422, TEXT_BANK_UNK_0429);
         retScriptID -= 9700;
-    } else if (retScriptID >= 9600) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0412, TEXT_BANK_COMMON_STRINGS);
-        retScriptID -= 9600;
+    } else if (retScriptID >= SCRIPT_ID_OFFSET_INIT_NEW_GAME) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_init_new_game, TEXT_BANK_COMMON_STRINGS);
+        retScriptID -= SCRIPT_ID_OFFSET_INIT_NEW_GAME;
     } else if (retScriptID >= 9500) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0501, TEXT_BANK_UNK_0547);
         retScriptID -= 9500;
@@ -732,7 +732,7 @@ UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int param1)
 
 void FieldSystem_InitNewGameState(FieldSystem *fieldSystem)
 {
-    FieldSystem_RunScript(fieldSystem, 9600);
+    FieldSystem_RunScript(fieldSystem, SCRIPT_ID(INIT_NEW_GAME, 0));
 }
 
 void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID)

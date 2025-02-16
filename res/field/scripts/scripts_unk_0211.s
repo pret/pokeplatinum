@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "generated/tutor_locations.h"
 #include "res/text/bank/common_strings.h"
 
@@ -1566,11 +1567,11 @@ _14AC:
     GoToIfNe 0x8004, 31, _1570
     GoToIfNe 0x8005, 52, _1570
     CheckGameCompleted 0x4000
-    GoToIfEq 0x4000, 0, _1570
+    GoToIfEq 0x4000, FALSE, _1570
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _1570
-    ScrCmd_28B 2, 0x4000
-    GoToIfEq 0x4000, 0, _1570
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
+    GoToIfEq 0x4000, FALSE, _1570
     GoToIfSet 0x11E, _1570
     BufferPlayerName 0
     Message 122

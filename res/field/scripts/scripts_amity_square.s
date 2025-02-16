@@ -191,7 +191,7 @@ _02C9:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x4099, 1
-    ScrCmd_215
+    ClearAmitySquareStepCount
     Call _03DC
     ScrCmd_27C 0, 0x409D
     Message 3
@@ -368,7 +368,7 @@ _04D0:
 
 _04D8:
     SetVar 0x8000, 0x409B
-    ScrCmd_215
+    ClearAmitySquareStepCount
     Call _03DC
     GoToIfEq 0x8000, 0, _04FB
     GoTo _056C
@@ -990,7 +990,7 @@ _1084:
     LockAll
     FacePlayer
     BufferPartyMonNickname 0, 0x409D
-    ScrCmd_216 0x800C
+    GetAmitySquareStepCount 0x800C
     GoToIfGe 0x800C, 200, _04D8
     GoTo _05DD
     End

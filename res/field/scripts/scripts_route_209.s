@@ -71,7 +71,7 @@ _00E6:
     End
 
 _0102:
-    ScrCmd_214 0x800C
+    GetSpiritombCounter 0x800C
     GoToIfGe 0x800C, 32, _014D
     GoToIfGe 0x800C, 29, _01B1
     GoToIfGe 0x800C, 22, _01A6
@@ -89,7 +89,7 @@ _014D:
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _017F
     SetVar 0x408A, 0
-    ScrCmd_26F
+    ClearSpiritombCounter
     End
 
 _017F:

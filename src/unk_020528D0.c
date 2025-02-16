@@ -217,7 +217,7 @@ BOOL sub_02052B2C(FieldTask *task)
             sub_0203A824(warpId, &location);
             sub_0203A7F0(warpId, FieldOverworldState_GetExitLocation(fieldState));
             FieldTask_ChangeMapByLocation(task, &location);
-            sub_020705B4(fieldSystem);
+            FieldSystem_ClearPartnerTrainer(fieldSystem);
         }
         (*state)++;
         break;
