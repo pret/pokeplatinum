@@ -1,4 +1,4 @@
-#include "overlay026/ov26_02256404.h"
+#include "poketch_digital_clock/poketch_digital_clock_graphics.h"
 
 #include <nitro.h>
 #include <string.h>

@@ -878,11 +878,11 @@ Overlay overlay25
 	Object main.nef.p/src_overlay025_ov25_02255DBC.c.o
 }
 
-Overlay overlay26
+Overlay poketch_digital_clock
 {
 	After overlay25
-	Object main.nef.p/src_overlay026_ov26_022561C0.c.o
-	Object main.nef.p/src_overlay026_ov26_02256404.c.o
+	Object main.nef.p/src_poketch_digital_clock_poketch_digital_clock_manager.c.o
+	Object main.nef.p/src_poketch_digital_clock_poketch_digital_clock_graphics.c.o
 }
 
 Overlay overlay27

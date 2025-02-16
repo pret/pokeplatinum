@@ -4,7 +4,7 @@
 
 #include "overlay025/poketch_button.h"
 #include "overlay025/poketch_system.h"
-#include "overlay026/ov26_02256404.h"
+#include "poketch_digital_clock/poketch_digital_clock_graphics.h"
 
 #include "bg_window.h"
 #include "heap.h"
