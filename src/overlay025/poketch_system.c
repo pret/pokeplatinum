@@ -675,7 +675,7 @@ void PoketchSystem_PlayCry(u32 species, u32 form)
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if (poketchSys->appChanging == FALSE && PoketechSystem_IsRunningTask(poketchSys) == 0) {
-        sub_02005844(param0, param1);
+        sub_02005844(species, form);
     }
 }
 
