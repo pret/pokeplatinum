@@ -6,6 +6,7 @@
 #include "generated/moves.h"
 
 #define LEARNED_MOVES_MAX 4
+#define MOVE_NOT_SELECTED 0xFF
 
 #define NUM_MOVES MOVE_SHADOW_FORCE
 

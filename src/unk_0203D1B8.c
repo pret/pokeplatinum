@@ -611,7 +611,7 @@ static const u8 Unk_020EA160[] = {
     0x8
 };
 
-void *FieldSystem_OpenSummaryScreenSelectMove(int heapID, FieldSystem *fieldSystem, u8 partySlot)
+void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapId heapID, FieldSystem *fieldSystem, u8 partySlot)
 {
     PokemonSummary *summary = Heap_AllocFromHeap(heapID, sizeof(PokemonSummary));
 
