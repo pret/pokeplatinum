@@ -25,7 +25,7 @@
     ScriptEntry _0D14
     ScriptEntry _00A6
     ScriptEntry _005A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _005A:
     ScrCmd_325 0x4000
@@ -324,7 +324,7 @@ _054A:
 
 _058E:
     Message 31
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _054A
     CloseMessage
     ScrCmd_0F2 30, 0, 0, 0x800C
@@ -344,7 +344,7 @@ _05D8:
 
 _05E2:
     Message 31
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _054A
     CloseMessage
     ScrCmd_0F3 30, 0, 0, 0x800C

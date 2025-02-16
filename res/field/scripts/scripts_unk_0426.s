@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0008
-    .short 0xFD13
+    ScriptEntryEnd
     End
 
 _0008:
@@ -117,7 +117,7 @@ _0173:
 
 _01B7:
     Message 2
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0173
     CloseMessage
     ScrCmd_0F2 6, 0, 0, 0x800C
@@ -138,7 +138,7 @@ _0203:
 
 _020D:
     Message 2
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0173
     CloseMessage
     ScrCmd_0F3 6, 0, 0, 0x800C

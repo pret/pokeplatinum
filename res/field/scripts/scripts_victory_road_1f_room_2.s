@@ -7,7 +7,7 @@
     ScriptEntry _0190
     ScriptEntry _02E4
     ScriptEntry _0012
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     GoToIfUnset 230, _001F

@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _000E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     ScrCmd_2F2
@@ -17,7 +17,7 @@ _000E:
     ApplyMovement 128, _0060
     WaitMovement
     Message 0
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _003B
     Message 1
     GoTo _003E

@@ -11,7 +11,7 @@
     ScriptEntry _0210
     ScriptEntry _0223
     ScriptEntry _0236
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     SetFlag 0x9C7
@@ -108,7 +108,7 @@ _0154:
     ApplyMovement 0, _01E4
     ApplyMovement 3, _01F4
     WaitMovement
-    ScrCmd_0EE 0x800C
+    CheckHasTwoAliveMons 0x800C
     GoToIfNe 0x800C, 0, _01A6
     GoTo _0181
     End
@@ -142,7 +142,7 @@ _01CA:
     Return
 
 _01DB:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -239,7 +239,7 @@ _0249:
 
 _02D0:
     SetVar 0x4098, 1
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -473,7 +473,7 @@ _0567:
     SetFlag 0x1C9
     SetFlag 0x1CA
     SetVar 0x4098, 3
-    SetFlag 0x981
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_3
     ClearFlag 0x1C7
     SetFlag 0x132
     SetVar 0x40C3, 1

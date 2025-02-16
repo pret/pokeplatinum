@@ -9,7 +9,7 @@
     ScriptEntry _0087
     ScriptEntry _048A
     ScriptEntry _04C8
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     SetFlag 0x9EB
@@ -80,7 +80,7 @@ _00FF:
     CallIfUnset 0x166, _045A
     CallIfSet 0x166, _0467
     SetFlag 0x166
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0471
     SetTrainerFlag TRAINER_RICH_BOY_LIAM
     SetTrainerFlag TRAINER_LADY_CELESTE
@@ -318,7 +318,7 @@ _047C:
     End
 
 _0484:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

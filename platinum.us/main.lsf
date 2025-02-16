@@ -861,7 +861,7 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_ov23_02254A14.c.o
 }
 
-Overlay overlay24
+Overlay pre_poketch_subscreen
 {
 	After overlay9
 	Object main.nef.p/src_pre_poketch_subscreen_pre_poketch_subscreen.c.o

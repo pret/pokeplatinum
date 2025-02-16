@@ -5,7 +5,7 @@
 
     ScriptEntry _0068
     ScriptEntry _000A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     ScrCmd_1B7 0x4032, 4

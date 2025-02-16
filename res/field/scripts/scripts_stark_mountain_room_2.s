@@ -9,7 +9,7 @@
     ScriptEntry _021C
     ScriptEntry _022F
     ScriptEntry _001A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     GoToIfLt 0x4094, 2, _0029

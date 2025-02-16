@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _00B7
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -47,7 +47,7 @@ _0098:
     Return
 
 _00A6:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

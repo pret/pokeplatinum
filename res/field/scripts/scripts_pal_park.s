@@ -9,7 +9,7 @@
     ScriptEntry _00B9
     ScriptEntry _00E9
     ScriptEntry _012C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     SetFlag 0x9CB
@@ -78,7 +78,7 @@ _00B9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 8
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 0, _00D9
     ReleaseAll
@@ -137,7 +137,7 @@ _0168:
 
 _0170:
     Message 0
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _01B5
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, 1, _01A5

@@ -8,7 +8,7 @@
     ScriptEntry _0184
     ScriptEntry _0016
     ScriptEntry _0197
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     CallIfLt 0x411F, 2, _0025
@@ -34,7 +34,7 @@ _003B:
 
 _0063:
     Message 8
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0086
     GoToIfEq 0x800C, 1, _00C2
     End

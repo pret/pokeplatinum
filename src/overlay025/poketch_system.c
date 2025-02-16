@@ -670,7 +670,7 @@ void PoketchSystem_PlaySoundEffect(u32 soundID)
     }
 }
 
-void ov25_02254444(u32 param0, u32 param1)
+void PoketchSystem_PlayCry(u32 species, u32 form)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 

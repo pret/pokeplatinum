@@ -19,7 +19,7 @@
     ScriptEntry _08E8
     ScriptEntry _0EA1
     ScriptEntry _0EB4
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0042:
     GetPlayerGender 0x4000
@@ -144,7 +144,7 @@ _016F:
     ApplyMovement 5, _07D0
     WaitMovement
     Message 11
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0298
     GoToIfEq 0x800C, 1, _0259
     End
@@ -158,7 +158,7 @@ _0259:
     ApplyMovement 2, _0758
     WaitMovement
     Message 13
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0298
     GoToIfEq 0x800C, 1, _0259
     End
@@ -183,7 +183,7 @@ _02B3:
     WaitMovement
     BufferPlayerName 1
     Message 17
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _030B
     GoToIfEq 0x800C, 1, _02FD
     End
@@ -347,7 +347,7 @@ _0512:
 _0554:
     BufferPlayerName 1
     Message 44
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _057A
     GoToIfEq 0x800C, 1, _0656
     End

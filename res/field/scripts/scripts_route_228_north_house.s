@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _02C6
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -14,13 +14,13 @@ _000A:
     GoToIfSet 0x108, _003B
     SetFlag 0x108
     Message 0
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0055
     GoTo _028F
 
 _003B:
     Message 1
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0055
     GoTo _028F
 
@@ -51,21 +51,21 @@ _0055:
 
 _00FE:
     Message 9
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _028F
     SetVar 0x8003, 0x133
     GoTo _015E
 
 _011E:
     Message 10
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _028F
     SetVar 0x8003, 0x134
     GoTo _015E
 
 _013E:
     Message 11
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _028F
     SetVar 0x8003, 0x152
     GoTo _015E

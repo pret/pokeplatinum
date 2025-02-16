@@ -15,7 +15,7 @@
     ScriptEntry _0374
     ScriptEntry _0387
     ScriptEntry _039A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0032:
     LockAll

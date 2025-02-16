@@ -224,7 +224,7 @@ static BOOL ov54_022563AC(UnkStruct_ov54_0225621C *param0)
         int v0 = 12 - 1 - param0->unk_A8;
 
         if (v0 < param0->unk_04.unk_90) {
-            ov25_02254444(param0->unk_04.unk_00[v0].unk_00, param0->unk_04.unk_00[v0].unk_04);
+            PoketchSystem_PlayCry(param0->unk_04.unk_00[v0].unk_00, param0->unk_04.unk_00[v0].unk_04);
         }
 
         param0->unk_A4 = 0;

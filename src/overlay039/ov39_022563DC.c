@@ -5,8 +5,6 @@
 
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
-#include "overlay025/struct_ov25_0225517C.h"
-#include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay039/struct_ov39_022563DC_1.h"
 #include "overlay039/struct_ov39_022563DC_decl.h"
 
@@ -21,7 +19,7 @@ struct UnkStruct_ov39_022563DC_t {
     u32 unk_08[6];
 };
 
-static void ov39_02256454(UnkStruct_ov25_02255224 *param0);
+static void ov39_02256454(PoketchTaskManager *param0);
 static void ov39_02256468(SysTask *param0, void *param1);
 static void ov39_02256518(SysTask *param0, void *param1);
 static void ov39_02256534(SysTask *param0, void *param1);
@@ -33,7 +31,7 @@ BOOL ov39_022563DC(UnkStruct_ov39_022563DC **param0, const UnkStruct_ov39_022563
     UnkStruct_ov39_022563DC *v0 = (UnkStruct_ov39_022563DC *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov39_022563DC));
 
     if (v0 != NULL) {
-        ov25_02255090(v0->unk_08, 4);
+        PoketchTask_InitActiveTaskList(v0->unk_08, 4);
 
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
@@ -54,7 +52,7 @@ void ov39_0225640C(UnkStruct_ov39_022563DC *param0)
     }
 }
 
-static const UnkStruct_ov25_0225517C Unk_ov39_0225663C[] = {
+static const PoketchTask Unk_ov39_0225663C[] = {
     { 0x0, ov39_02256468, 0x0 },
     { 0x1, ov39_02256518, 0x0 },
     { 0x2, ov39_02256534, 0x0 },
@@ -64,23 +62,23 @@ static const UnkStruct_ov25_0225517C Unk_ov39_0225663C[] = {
 
 void ov39_02256418(UnkStruct_ov39_022563DC *param0, u32 param1)
 {
-    ov25_0225517C(Unk_ov39_0225663C, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
+    PoketchTask_Start(Unk_ov39_0225663C, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
 BOOL ov39_0225643C(UnkStruct_ov39_022563DC *param0, u32 param1)
 {
-    return ov25_02255130(param0->unk_08, param1);
+    return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
 BOOL ov39_02256448(UnkStruct_ov39_022563DC *param0)
 {
-    return ov25_02255154(param0->unk_08);
+    return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov39_02256454(UnkStruct_ov25_02255224 *param0)
+static void ov39_02256454(PoketchTaskManager *param0)
 {
-    UnkStruct_ov39_022563DC *v0 = ov25_0225523C(param0);
-    ov25_02255224(v0->unk_08, param0);
+    UnkStruct_ov39_022563DC *v0 = PoketchTask_GetTaskData(param0);
+    PoketchTask_EndTask(v0->unk_08, param0);
 }
 
 static void ov39_02256468(SysTask *param0, void *param1)
@@ -107,8 +105,8 @@ static void ov39_02256468(SysTask *param0, void *param1)
     NNSG2dPaletteData *v5;
     int v6;
 
-    v2 = ov25_0225523C(param1);
-    v3 = ov25_02255240(param1);
+    v2 = PoketchTask_GetTaskData(param1);
+    v3 = PoketchTask_GetConstTaskData(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     Graphics_LoadTilesToBgLayer(12, 59, v2->unk_04, 6, 0, 0, 1, 8);
@@ -130,7 +128,7 @@ static void ov39_02256468(SysTask *param0, void *param1)
 
 static void ov39_02256518(SysTask *param0, void *param1)
 {
-    UnkStruct_ov39_022563DC *v0 = ov25_0225523C(param1);
+    UnkStruct_ov39_022563DC *v0 = PoketchTask_GetTaskData(param1);
 
     Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov39_02256454(param1);
@@ -138,8 +136,8 @@ static void ov39_02256518(SysTask *param0, void *param1)
 
 static void ov39_02256534(SysTask *param0, void *param1)
 {
-    UnkStruct_ov39_022563DC *v0 = ov25_0225523C(param1);
-    const UnkStruct_ov39_022563DC_1 *v1 = ov25_02255240(param1);
+    UnkStruct_ov39_022563DC *v0 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov39_022563DC_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
     ov39_0225659C(v0, v1->unk_1C, v1->unk_04[v1->unk_1C], 1);
     Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
@@ -148,8 +146,8 @@ static void ov39_02256534(SysTask *param0, void *param1)
 
 static void ov39_02256568(SysTask *param0, void *param1)
 {
-    UnkStruct_ov39_022563DC *v0 = ov25_0225523C(param1);
-    const UnkStruct_ov39_022563DC_1 *v1 = ov25_02255240(param1);
+    UnkStruct_ov39_022563DC *v0 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov39_022563DC_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
     ov39_0225659C(v0, v1->unk_1C, v1->unk_04[v1->unk_1C], 0);
     Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);

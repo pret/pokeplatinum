@@ -405,7 +405,7 @@ scr_seq_files = files(
     'scripts_unk_0397.s',
     'scripts_communication_club_colosseum_2p.s',
     'scripts_communication_club_colosseum_4p.s',
-    'scripts_unk_0400.s',
+    'scripts_pokemon_center_daily_trainers.s',
     'scripts_empty.s',
     'scripts_unk_0402.s',
     'scripts_unk_0403.s',

@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _000C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     End

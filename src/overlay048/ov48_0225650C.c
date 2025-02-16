@@ -8,8 +8,6 @@
 #include "overlay025/ov25_02255540.h"
 #include "overlay025/ov25_02255DBC.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_0225517C.h"
-#include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_02255810.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -42,7 +40,7 @@ struct UnkStruct_ov48_0225650C_t {
     BOOL unk_15C;
 };
 
-static void ov48_02256594(UnkStruct_ov25_02255224 *param0);
+static void ov48_02256594(PoketchTaskManager *param0);
 static void ov48_022565A8(SysTask *param0, void *param1);
 static void ov48_02256650(UnkStruct_ov48_0225650C *param0, u32 param1);
 static void ov48_022566D0(SysTask *param0, void *param1);
@@ -57,7 +55,7 @@ BOOL ov48_0225650C(UnkStruct_ov48_0225650C **param0, const UnkStruct_ov48_022565
     UnkStruct_ov48_0225650C *v0 = (UnkStruct_ov48_0225650C *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov48_0225650C));
 
     if (v0 != NULL) {
-        ov25_02255090(v0->unk_08, 4);
+        PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_20 = ov25_02254664();
@@ -76,7 +74,7 @@ void ov48_0225654C(UnkStruct_ov48_0225650C *param0)
     }
 }
 
-static const UnkStruct_ov25_0225517C Unk_ov48_02256B40[] = {
+static const PoketchTask Unk_ov48_02256B40[] = {
     { 0x0, ov48_022565A8, 0x0 },
     { 0x1, ov48_022566D0, 0x0 },
     { 0x2, ov48_0225672C, 0x0 },
@@ -85,23 +83,23 @@ static const UnkStruct_ov25_0225517C Unk_ov48_02256B40[] = {
 
 void ov48_02256558(UnkStruct_ov48_0225650C *param0, u32 param1)
 {
-    ov25_0225517C(Unk_ov48_02256B40, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
+    PoketchTask_Start(Unk_ov48_02256B40, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
 BOOL ov48_0225657C(UnkStruct_ov48_0225650C *param0, u32 param1)
 {
-    return ov25_02255130(param0->unk_08, param1);
+    return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
 BOOL ov48_02256588(UnkStruct_ov48_0225650C *param0)
 {
-    return ov25_02255154(param0->unk_08);
+    return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov48_02256594(UnkStruct_ov25_02255224 *param0)
+static void ov48_02256594(PoketchTaskManager *param0)
 {
-    UnkStruct_ov48_0225650C *v0 = ov25_0225523C(param0);
-    ov25_02255224(v0->unk_08, param0);
+    UnkStruct_ov48_0225650C *v0 = PoketchTask_GetTaskData(param0);
+    PoketchTask_EndTask(v0->unk_08, param0);
 }
 
 static void ov48_022565A8(SysTask *param0, void *param1)
@@ -126,7 +124,7 @@ static void ov48_022565A8(SysTask *param0, void *param1)
     NNSG2dPaletteData *v3;
     u32 v4;
 
-    v2 = ov25_0225523C(param1);
+    v2 = PoketchTask_GetTaskData(param1);
 
     G2S_SetBGMosaicSize(0, 0);
     G2S_SetOBJMosaicSize(0, 0);
@@ -170,12 +168,12 @@ static void ov48_02256650(UnkStruct_ov48_0225650C *param0, u32 param1)
 
 static void ov48_022566D0(SysTask *param0, void *param1)
 {
-    UnkStruct_ov48_0225650C *v0 = ov25_0225523C(param1);
+    UnkStruct_ov48_0225650C *v0 = PoketchTask_GetTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_15C = 1;
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         if (ov48_0225657C(v0, 2)) {
@@ -191,10 +189,10 @@ static void ov48_022566D0(SysTask *param0, void *param1)
 
 static void ov48_0225672C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov48_0225650C *v0 = ov25_0225523C(param1);
-    const UnkStruct_ov48_0225650C_1 *v1 = ov25_02255240(param1);
+    UnkStruct_ov48_0225650C *v0 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov48_0225650C_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    switch (ov25_02255248(param1)) {
+    switch (PoketchTask_GetState(param1)) {
     case 0:
         v0->unk_154 = 6;
         v0->unk_158 = 0;
@@ -203,11 +201,11 @@ static void ov48_0225672C(SysTask *param0, void *param1)
         G2S_SetBGMosaicSize(v0->unk_154, v0->unk_154);
         G2S_SetOBJMosaicSize(v0->unk_154, v0->unk_154);
         PoketchSystem_PlaySoundEffect(1656);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 1:
         ov48_02256920(v0);
-        ov25_0225524C(param1);
+        PoketchTask_IncrementState(param1);
         break;
     case 2:
         if (v0->unk_15C) {

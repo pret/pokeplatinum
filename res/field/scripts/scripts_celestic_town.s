@@ -15,10 +15,10 @@
     ScriptEntry _0350
     ScriptEntry _0367
     ScriptEntry _0378
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0032:
-    SetFlag 0x980
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_2
     End
 
 _0038:
@@ -26,7 +26,7 @@ _0038:
     LockAll
     FacePlayer
     Message 1
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _006E
     GoToIfEq 0x800C, 1, _0063
     End
@@ -107,7 +107,7 @@ _0166:
     End
 
 _0191:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

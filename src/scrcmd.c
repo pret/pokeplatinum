@@ -7,6 +7,7 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
+#include "constants/scrcmd.h"
 #include "constants/species.h"
 #include "generated/journal_location_events.h"
 #include "generated/save_types.h"
@@ -313,8 +314,8 @@ static BOOL sub_02040730(ScriptContext *ctx);
 static BOOL ScrCmd_03C(ScriptContext *ctx);
 static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx);
 static BOOL ScrCmd_ScrollBG3(ScriptContext *ctx);
-static BOOL ScrCmd_03E(ScriptContext *ctx);
-static BOOL sub_02040824(ScriptContext *ctx);
+static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx);
+static BOOL ScriptContext_WaitForYesNoResult(ScriptContext *ctx);
 static BOOL ScrCmd_040(ScriptContext *ctx);
 static BOOL ScrCmd_041(ScriptContext *ctx);
 static BOOL ScrCmd_042(ScriptContext *ctx);
@@ -579,8 +580,8 @@ static BOOL ScrCmd_1E7(ScriptContext *ctx);
 static BOOL ScrCmd_334(ScriptContext *ctx);
 static BOOL ScrCmd_335(ScriptContext *ctx);
 static BOOL ScrCmd_Dummy1F9(ScriptContext *ctx);
-static BOOL ScrCmd_200(ScriptContext *ctx);
-static BOOL ScrCmd_201(ScriptContext *ctx);
+static BOOL ScrCmd_GetPreviousMapID(ScriptContext *ctx);
+static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx);
 static BOOL ScrCmd_202(ScriptContext *ctx);
 static BOOL ScrCmd_203(ScriptContext *ctx);
 static BOOL ScrCmd_204(ScriptContext *ctx);
@@ -609,7 +610,7 @@ static BOOL ScrCmd_22B(ScriptContext *ctx);
 static BOOL ScrCmd_22C(ScriptContext *ctx);
 static BOOL ScrCmd_22D(ScriptContext *ctx);
 static BOOL ScrCmd_233(ScriptContext *ctx);
-static BOOL ScrCmd_234(ScriptContext *ctx);
+static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx);
 static BOOL ScrCmd_239(ScriptContext *ctx);
 static BOOL ScrCmd_23A(ScriptContext *ctx);
 static BOOL ScrCmd_23B(ScriptContext *ctx);
@@ -824,7 +825,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_03B,
     ScrCmd_03C,
     ScrCmd_ScrollBG3,
-    ScrCmd_03E,
+    ScrCmd_ShowYesNoMenu,
     ScrCmd_03F,
     ScrCmd_040,
     ScrCmd_041,
@@ -997,10 +998,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_0E8,
     ScrCmd_0E9,
     ScrCmd_0EA,
-    ScrCmd_0EB,
+    ScrCmd_BlackOutFromBattle,
     ScrCmd_CheckWonBattle,
     ScrCmd_CheckLostBattle,
-    ScrCmd_0EE,
+    ScrCmd_CheckHasTwoAliveMons,
     ScrCmd_StartDummyTrainerBattle,
     ScrCmd_0F0,
     ScrCmd_0F1,
@@ -1274,8 +1275,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1FD,
     ScrCmd_1FE,
     ScrCmd_1FF,
-    ScrCmd_200,
-    ScrCmd_201,
+    ScrCmd_GetPreviousMapID,
+    ScrCmd_GetCurrentMapID,
     ScrCmd_202,
     ScrCmd_203,
     ScrCmd_204,
@@ -1326,7 +1327,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_231,
     ScrCmd_232,
     ScrCmd_233,
-    ScrCmd_234,
+    ScrCmd_GetDayOfWeek,
     ScrCmd_235,
     ScrCmd_236,
     ScrCmd_237,
@@ -2647,42 +2648,42 @@ static BOOL ScrCmd_03C(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_03E(ScriptContext *ctx)
+static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Menu **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
-    u16 v2 = ScriptContext_ReadHalfWord(ctx);
+    Menu **menu = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
+    u16 destVarID = ScriptContext_ReadHalfWord(ctx);
 
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD);
 
-    *v1 = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_020EAB84, 1024 - (18 + 12) - 9, 11, 4);
-    ctx->data[0] = v2;
+    *menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &Unk_020EAB84, 1024 - (18 + 12) - 9, 11, 4);
+    ctx->data[0] = destVarID;
 
-    ScriptContext_Pause(ctx, sub_02040824);
+    ScriptContext_Pause(ctx, ScriptContext_WaitForYesNoResult);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL sub_02040824(ScriptContext *ctx)
+static BOOL ScriptContext_WaitForYesNoResult(ScriptContext *ctx)
 {
-    u32 v0;
+    u32 result;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    Menu **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
-    u16 *v3 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
+    Menu **menu = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_UI_CONTROL);
+    u16 *destVar = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    v0 = Menu_ProcessInputAndHandleExit(*v2, 4);
+    result = Menu_ProcessInputAndHandleExit(*menu, HEAP_ID_FIELD);
 
-    if (v0 == 0xffffffff) {
-        return 0;
+    if (result == MENU_NOTHING_CHOSEN) {
+        return FALSE;
     }
 
-    if (v0 == 0) {
-        *v3 = 0;
+    if (result == 0) {
+        *destVar = MENU_YES;
     } else {
-        *v3 = 1;
+        *destVar = MENU_NO;
     }
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_18D(ScriptContext *ctx)
@@ -4626,22 +4627,22 @@ static BOOL ScrCmd_204(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_200(ScriptContext *ctx)
+static BOOL ScrCmd_GetPreviousMapID(ScriptContext *ctx)
 {
     FieldOverworldState *fieldState = SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData);
     Location *location = FieldOverworldState_GetPrevLocation(fieldState);
     u16 *mapId = ScriptContext_GetVarPointer(ctx);
 
     *mapId = location->mapId;
-    return 0;
+    return FALSE;
 }
 
-static BOOL ScrCmd_201(ScriptContext *ctx)
+static BOOL ScrCmd_GetCurrentMapID(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *mapID = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = ctx->fieldSystem->location->mapId;
-    return 0;
+    *mapID = ctx->fieldSystem->location->mapId;
+    return FALSE;
 }
 
 static BOOL ScrCmd_0BF(ScriptContext *ctx)
@@ -6603,15 +6604,15 @@ static BOOL ScrCmd_233(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_234(ScriptContext *ctx)
+static BOOL ScrCmd_GetDayOfWeek(ScriptContext *ctx)
 {
-    RTCDate v0;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    RTCDate date;
+    u16 *weekDay = ScriptContext_GetVarPointer(ctx);
 
-    GetCurrentDate(&v0);
-    *v1 = v0.week;
+    GetCurrentDate(&date);
+    *weekDay = date.week;
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_239(ScriptContext *ctx)

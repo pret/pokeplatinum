@@ -8,7 +8,7 @@
     ScriptEntry _018F
     ScriptEntry _0225
     ScriptEntry _0289
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     ScrCmd_14F
