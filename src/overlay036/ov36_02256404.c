@@ -45,7 +45,7 @@ BOOL ov36_02256404(UnkStruct_ov36_02256404 **param0, const UnkStruct_ov36_022564
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 4);
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_20 = ov25_02254664();
         ov36_02256454(v0, param1);
         *param0 = v0;

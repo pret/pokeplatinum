@@ -64,7 +64,7 @@ BOOL ov43_02256544(UnkStruct_ov43_02256544 **param0, const UnkStruct_ov43_022565
     if (v0 != NULL) {
         ov25_02255090(v0->unk_08, 8);
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_30 = ov25_02254664();
         v0->unk_B4 = MessageLoader_Init(1, 26, 624, 8);
         v0->unk_B8 = MessageLoader_Init(1, 26, 456, 8);

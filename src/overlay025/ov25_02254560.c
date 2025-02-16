@@ -146,7 +146,7 @@ UnkStruct_ov25_022555E8 *ov25_02254664(void)
     return v0->unk_1CC;
 }
 
-BgConfig *ov25_02254674(void)
+BgConfig *Poketch_GetBgConfig(void)
 {
     UnkStruct_ov25_02254560 *v0 = ov25_02254418();
     return v0->unk_1F8;

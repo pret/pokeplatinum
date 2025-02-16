@@ -12,7 +12,7 @@
 
 BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_02254560_1 *param1, NNSG2dOamManagerInstance *param2, PoketchSystem *poketchSys);
 UnkStruct_ov25_022555E8 *ov25_02254664(void);
-BgConfig *ov25_02254674(void);
+BgConfig *Poketch_GetBgConfig(void);
 void Poketch_LoadActivePalette(u32 param0, u32 param1);
 void Poketch_LoadActiveBacklightPalette(u32 param0, u32 param1);
 void Poketch_CopuActivePalette(u16 *param0);

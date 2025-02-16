@@ -53,7 +53,7 @@ BOOL ov29_022566C8(UnkStruct_ov29_022566C8 **param0, const UnkStruct_ov29_022566
 
         GF_ASSERT(GF_heap_c_dummy_return_true(7));
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_50 = ov25_02254664();
 
         GF_ASSERT(GF_heap_c_dummy_return_true(7));
