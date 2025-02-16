@@ -81,7 +81,7 @@ static BOOL PoketchDigitalClock_Init(void **appData, PoketchSystem *poketchSys, 
 
 static BOOL PoketchDigitalClock_SetupAppData(AppData *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
-    if (ov26_02256404(&(appData->displayData), &(appData->clockData), bgConfig)) {
+    if (PoketchDigitalClock_SetupDisplayData(&(appData->displayData), &(appData->clockData), bgConfig)) {
         appData->appTaskFunctionID = APP_TASK_LOAD_APP;
         appData->taskStage = 0;
         appData->shutdown = FALSE;

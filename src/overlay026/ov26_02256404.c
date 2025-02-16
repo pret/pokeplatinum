@@ -13,187 +13,237 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
+#define POKETCH_CLOCK_DIGITS_TILEMAP_IDX        25
+#define POKETCH_CLOCK_DIGITS_32_TILE_ROW_OFFSET 288
+#define POKETCH_NUM_CLOCK_DIGITS                10
+
+#define PRE_POKETCH_DISPLAY_NARC_TILES_IDX   23
+#define PRE_POKETCH_DISPLAY_NARC_TILEMAP_IDX 24
+
+#define TILE_SIZE 2
+
+#define POKETCH_CLOCK_DIGIT_WIDTH     4
+#define POKETCH_CLOCK_DIGIT_HEIGHT    9
+#define POKETCH_CLOCK_DIGIT_GAP       1
+#define POKETCH_CLOCK_HOURS_DIGIT_X   3
+#define POKETCH_CLOCK_HOURS_DIGIT_Y   7
+#define POKETCH_CLOCK_MINUETS_DIGIT_X 15
+#define POKETCH_CLOCK_MINUETS_DIGIT_Y 7
+
 struct DisplayData_t {
-    const ClockData *unk_00;
-    BgConfig *unk_04;
+    const ClockData *clockData;
+    BgConfig *bgConfig;
     u32 unk_08[10];
-    u16 unk_30[360];
+    u16 digitsTilemap[360];
 };
 
-static void ov26_0225646C(const u16 *param0, u16 *param1);
-static void ov26_022564E4(UnkStruct_ov25_02255224 *param0);
-static void ov26_022564F8(SysTask *param0, void *param1);
-static void ov26_0225658C(SysTask *param0, void *param1);
-static void ov26_022565AC(SysTask *param0, void *param1);
-static void ov26_022565D8(SysTask *param0, void *param1);
-static void ov26_022565F4(DisplayData *param0);
+static void PoketchDigitalClock_CopyDigitTilemap(const u16 *rawScreenData, u16 *dst);
+static void PoketchDigitalClock_FinishTask(UnkStruct_ov25_02255224 *sysTaskData);
+static void PoketchDigitalClock_SetupBackground(SysTask *sysTask, void *sysTaskData);
+static void PoketchDigitalClock_UpdateClockDigits(SysTask *sysTask, void *sysTaskData);
+static void PoketchDigitalClock_ToggleBacklightPalette(SysTask *sysTask, void *sysTaskData);
+static void PoketchDigitalClock_FreeBackground(SysTask *sysTask, void *sysTaskData);
+static void PoketchDigitalClock_DrawClockDigits(DisplayData *displayData);
 
-BOOL ov26_02256404(DisplayData **param0, const ClockData *param1, BgConfig *param2)
+BOOL PoketchDigitalClock_SetupDisplayData(DisplayData **displayData, const ClockData *clockData, BgConfig *bgConfig)
 {
-    DisplayData *v0 = (DisplayData *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(DisplayData));
+    DisplayData *newDisplayData = (DisplayData *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(DisplayData));
 
-    if (v0 != NULL) {
-        NNSG2dScreenData *v1;
-        void *v2;
+    if (newDisplayData != NULL) {
+        NNSG2dScreenData *screenData;
 
-        ov25_02255090(v0->unk_08, 8);
+        ov25_02255090(newDisplayData->unk_08, 8);
 
-        v0->unk_00 = param1;
-        v0->unk_04 = Poketch_GetBgConfig();
+        newDisplayData->clockData = clockData;
+        newDisplayData->bgConfig = Poketch_GetBgConfig();
 
-        v2 = Graphics_GetScrnData(12, 25, 1, &v1, 8);
+        void *nscrBuffer = Graphics_GetScrnData(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_CLOCK_DIGITS_TILEMAP_IDX, TRUE, &screenData, HEAP_ID_POKETCH_APP);
 
-        if (v2 == NULL) {
-            Heap_FreeToHeap(v0);
-            return 0;
+        if (nscrBuffer == NULL) {
+            Heap_FreeToHeap(newDisplayData);
+            return FALSE;
         }
 
-        ov26_0225646C((const u16 *)(v1->rawData), v0->unk_30);
-        Heap_FreeToHeap(v2);
+        PoketchDigitalClock_CopyDigitTilemap((const u16 *)(screenData->rawData), newDisplayData->digitsTilemap);
+        Heap_FreeToHeap(nscrBuffer);
 
-        *param0 = v0;
-        return 1;
+        *displayData = newDisplayData;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static void ov26_0225646C(const u16 *param0, u16 *param1)
+static void PoketchDigitalClock_CopyDigitTilemap(const u16 *rawScreenData, u16 *dst)
 {
-    int v0, v1;
+    int row_offset = POKETCH_CLOCK_DIGITS_32_TILE_ROW_OFFSET;
+    int row;
 
-    v1 = 288;
+    for (row = 0; row < POKETCH_NUM_CLOCK_DIGITS - 1; row++) {
+        MI_CpuCopy16(rawScreenData, dst, 32 * TILE_SIZE);
+        MI_CpuCopy16(&rawScreenData[row_offset], &dst[32], 8 * TILE_SIZE);
 
-    for (v0 = 0; v0 < 9; v0++) {
-        MI_CpuCopy16(param0, param1, 32 * 2);
-        MI_CpuCopy16(&param0[v1], &param1[32], 8 * 2);
+        rawScreenData += 32;
+        dst += 40;
 
-        param0 += 32;
-        param1 += (4 * 10);
-
-        v1 = (v1 - 32 + 8);
+        row_offset = row_offset - 32 + 8;
     }
 }
 
-void PoketchDigitalClock_FreeDisplayData(DisplayData *param0)
+void PoketchDigitalClock_FreeDisplayData(DisplayData *displayData)
 {
-    if (param0 != NULL) {
-        Heap_FreeToHeap(param0);
+    if (displayData != NULL) {
+        Heap_FreeToHeap(displayData);
     }
 }
 
-static const UnkStruct_ov25_0225517C Unk_ov26_02256744[] = {
-    { 0x0, ov26_022564F8, 0x0 },
-    { 0x1, ov26_0225658C, 0x0 },
-    { 0x2, ov26_022565AC, 0x0 },
-    { 0x3, ov26_022565D8, 0x0 },
+static const UnkStruct_ov25_0225517C sysTaskFunctions[] = {
+    { SYS_TASK_FUNC_SETUP_BACKGROUND, PoketchDigitalClock_SetupBackground, 0x0 },
+    { SYS_TASK_FUNC_UPDATE_CLOCK_DIGITS, PoketchDigitalClock_UpdateClockDigits, 0x0 },
+    { SYS_TASK_FUNC_TOGGLE_BACKLIGHT_PALETTE, PoketchDigitalClock_ToggleBacklightPalette, 0x0 },
+    { SYS_TASK_FUNC_FREE_BACKGROUND, PoketchDigitalClock_FreeBackground, 0x0 },
     { 0x0, NULL, 0x0 }
 };
 
-void PoketchDigitalClock_RunTaskFunction(DisplayData *param0, u32 param1)
+void PoketchDigitalClock_RunTaskFunction(DisplayData *displayData, u32 functionID)
 {
-    ov25_0225517C(Unk_ov26_02256744, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
+    ov25_0225517C(sysTaskFunctions, functionID, displayData, displayData->clockData, displayData->unk_08, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL ov26_022564CC(DisplayData *param0, u32 param1)
+BOOL ov26_022564CC(DisplayData *displayData, u32 param1)
 {
-    return ov25_02255130(param0->unk_08, param1);
+    return ov25_02255130(displayData->unk_08, param1);
 }
 
-BOOL ov26_022564D8(DisplayData *param0)
+BOOL ov26_022564D8(DisplayData *displayData)
 {
-    return ov25_02255154(param0->unk_08);
+    return ov25_02255154(displayData->unk_08);
 }
 
-static void ov26_022564E4(UnkStruct_ov25_02255224 *param0)
+static void PoketchDigitalClock_FinishTask(UnkStruct_ov25_02255224 *sysTaskData)
 {
-    DisplayData *v0 = ov25_0225523C(param0);
-    ov25_02255224(v0->unk_08, param0);
+    DisplayData *displayData = ov25_0225523C(sysTaskData);
+    ov25_02255224(displayData->unk_08, sysTaskData);
 }
 
-static void ov26_022564F8(SysTask *param0, void *param1)
+static void PoketchDigitalClock_SetupBackground(SysTask *sysTask, void *sysTaskData)
 {
-    static const BgTemplate v0 = {
-        0,
-        0,
-        0x800,
-        0,
-        1,
-        GX_BG_COLORMODE_16,
-        GX_BG_SCRBASE_0x7000,
-        GX_BG_CHARBASE_0x00000,
-        GX_BG_EXTPLTT_01,
-        2,
-        0,
-        0,
-        0
+    static const BgTemplate template = {
+        .x = 0,
+        .y = 0,
+        .bufferSize = 0x800,
+        .baseTile = 0,
+        .screenSize = BG_SCREEN_SIZE_256x256,
+        .colorMode = GX_BG_COLORMODE_16,
+        .screenBase = GX_BG_SCRBASE_0x7000,
+        .charBase = GX_BG_CHARBASE_0x00000,
+        .bgExtPltt = GX_BG_EXTPLTT_01,
+        .priority = 2,
+        .areaOver = 0,
+        .mosaic = FALSE,
     };
-    GXSDispCnt v1;
-    DisplayData *v2;
 
-    v2 = ov25_0225523C(param1);
+    DisplayData *displayData = ov25_0225523C(sysTaskData);
 
-    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    Graphics_LoadTilesToBgLayer(12, 23, v2->unk_04, 6, 0, 0, 1, 8);
-    Graphics_LoadTilemapToBgLayer(12, 24, v2->unk_04, 6, 0, 0, 1, 8);
+    Bg_InitFromTemplate(displayData->bgConfig, BG_LAYER_SUB_2, &template, BG_TYPE_STATIC);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, PRE_POKETCH_DISPLAY_NARC_TILES_IDX, displayData->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, PRE_POKETCH_DISPLAY_NARC_TILEMAP_IDX, displayData->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     Poketch_LoadActivePalette(0, 0);
-    ov26_022565F4(v2);
+    PoketchDigitalClock_DrawClockDigits(displayData);
 
-    Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
+    Bg_CopyTilemapBufferToVRAM(displayData->bgConfig, BG_LAYER_SUB_2);
 
-    v1 = GXS_GetDispCnt();
-    GXS_SetVisiblePlane(v1.visiblePlane | GX_PLANEMASK_BG2);
-    ov26_022564E4(param1);
+    GXSDispCnt displayControler = GXS_GetDispCnt();
+    GXS_SetVisiblePlane(displayControler.visiblePlane | GX_PLANEMASK_BG2);
+    PoketchDigitalClock_FinishTask(sysTaskData);
 }
 
-static void ov26_0225658C(SysTask *param0, void *param1)
+static void PoketchDigitalClock_UpdateClockDigits(SysTask *sysTask, void *sysTaskData)
 {
-    DisplayData *v0 = ov25_0225523C(param1);
+    DisplayData *displayData = ov25_0225523C(sysTaskData);
 
-    ov26_022565F4(v0);
-    Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
-    ov26_022564E4(param1);
+    PoketchDigitalClock_DrawClockDigits(displayData);
+    Bg_CopyTilemapBufferToVRAM(displayData->bgConfig, BG_LAYER_SUB_2);
+    PoketchDigitalClock_FinishTask(sysTaskData);
 }
 
-static void ov26_022565AC(SysTask *param0, void *param1)
+static void PoketchDigitalClock_ToggleBacklightPalette(SysTask *sysTask, void *sysTaskData)
 {
-    DisplayData *v0 = ov25_0225523C(param1);
+    DisplayData *displayData = ov25_0225523C(sysTaskData);
 
-    if (v0->unk_00->backlightActive) {
+    if (displayData->clockData->backlightActive) {
         Poketch_LoadActiveBacklightPalette(0, 0);
     } else {
         Poketch_LoadActivePalette(0, 0);
     }
 
-    ov26_022564E4(param1);
+    PoketchDigitalClock_FinishTask(sysTaskData);
 }
 
-static void ov26_022565D8(SysTask *param0, void *param1)
+static void PoketchDigitalClock_FreeBackground(SysTask *sysTask, void *sysTaskData)
 {
-    DisplayData *v0 = ov25_0225523C(param1);
+    DisplayData *displayData = ov25_0225523C(sysTaskData);
 
-    Bg_FreeTilemapBuffer(v0->unk_04, 6);
-    ov26_022564E4(param1);
+    Bg_FreeTilemapBuffer(displayData->bgConfig, BG_LAYER_SUB_2);
+    PoketchDigitalClock_FinishTask(sysTaskData);
 }
 
-static void ov26_022565F4(DisplayData *param0)
+static void PoketchDigitalClock_DrawClockDigits(DisplayData *displayData)
 {
-    u32 v0, v1;
+    CP_SetDiv32_32(displayData->clockData->time.hour, POKETCH_NUM_CLOCK_DIGITS);
 
-    CP_SetDiv32_32(param0->unk_00->time.hour, 10);
+    u32 tensDigitOffset = CP_GetDivResult32();
+    u32 onesDigitOffset = CP_GetDivRemainder32();
 
-    v0 = CP_GetDivResult32();
-    v1 = CP_GetDivRemainder32();
+    Bg_CopyToTilemapRect(displayData->bgConfig,
+        BG_LAYER_SUB_2,
+        POKETCH_CLOCK_HOURS_DIGIT_X,
+        POKETCH_CLOCK_HOURS_DIGIT_Y,
+        POKETCH_CLOCK_DIGIT_WIDTH,
+        POKETCH_CLOCK_DIGIT_HEIGHT,
+        displayData->digitsTilemap,
+        POKETCH_CLOCK_DIGIT_WIDTH * tensDigitOffset,
+        0,
+        (POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS),
+        POKETCH_CLOCK_DIGIT_HEIGHT);
+    Bg_CopyToTilemapRect(displayData->bgConfig,
+        BG_LAYER_SUB_2,
+        (POKETCH_CLOCK_HOURS_DIGIT_X + POKETCH_CLOCK_DIGIT_WIDTH + POKETCH_CLOCK_DIGIT_GAP),
+        POKETCH_CLOCK_HOURS_DIGIT_Y,
+        POKETCH_CLOCK_DIGIT_WIDTH,
+        POKETCH_CLOCK_DIGIT_HEIGHT,
+        displayData->digitsTilemap,
+        POKETCH_CLOCK_DIGIT_WIDTH * onesDigitOffset,
+        0,
+        (POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS),
+        POKETCH_CLOCK_DIGIT_HEIGHT);
 
-    Bg_CopyToTilemapRect(param0->unk_04, 6, 3, 7, 4, 9, param0->unk_30, 4 * v0, 0, (4 * 10), 9);
-    Bg_CopyToTilemapRect(param0->unk_04, 6, (3 + (4 + 1)), 7, 4, 9, param0->unk_30, 4 * v1, 0, (4 * 10), 9);
+    CP_SetDiv32_32(displayData->clockData->time.minute, POKETCH_NUM_CLOCK_DIGITS);
 
-    CP_SetDiv32_32(param0->unk_00->time.minute, 10);
+    tensDigitOffset = CP_GetDivResult32();
+    onesDigitOffset = CP_GetDivRemainder32();
 
-    v0 = CP_GetDivResult32();
-    v1 = CP_GetDivRemainder32();
-
-    Bg_CopyToTilemapRect(param0->unk_04, 6, 15, 7, 4, 9, param0->unk_30, 4 * v0, 0, (4 * 10), 9);
-    Bg_CopyToTilemapRect(param0->unk_04, 6, (15 + (4 + 1)), 7, 4, 9, param0->unk_30, 4 * v1, 0, (4 * 10), 9);
+    Bg_CopyToTilemapRect(displayData->bgConfig,
+        BG_LAYER_SUB_2,
+        POKETCH_CLOCK_MINUETS_DIGIT_X,
+        POKETCH_CLOCK_MINUETS_DIGIT_Y,
+        POKETCH_CLOCK_DIGIT_WIDTH,
+        POKETCH_CLOCK_DIGIT_HEIGHT,
+        displayData->digitsTilemap,
+        POKETCH_CLOCK_DIGIT_WIDTH * tensDigitOffset,
+        0,
+        (POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS),
+        POKETCH_CLOCK_DIGIT_HEIGHT);
+    Bg_CopyToTilemapRect(displayData->bgConfig,
+        BG_LAYER_SUB_2,
+        (POKETCH_CLOCK_MINUETS_DIGIT_X + POKETCH_CLOCK_DIGIT_WIDTH + POKETCH_CLOCK_DIGIT_GAP),
+        POKETCH_CLOCK_MINUETS_DIGIT_Y,
+        POKETCH_CLOCK_DIGIT_WIDTH,
+        POKETCH_CLOCK_DIGIT_HEIGHT,
+        displayData->digitsTilemap,
+        POKETCH_CLOCK_DIGIT_WIDTH * onesDigitOffset,
+        0,
+        (POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS),
+        POKETCH_CLOCK_DIGIT_HEIGHT);
 }
