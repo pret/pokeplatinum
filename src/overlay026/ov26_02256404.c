@@ -5,8 +5,6 @@
 
 #include "overlay025/ov25_02254560.h"
 #include "overlay025/ov25_02255090.h"
-#include "overlay025/struct_ov25_0225517C.h"
-#include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay026/struct_ov26_02256404_1.h"
 #include "overlay026/struct_ov26_02256404_decl.h"
 
@@ -23,7 +21,7 @@ struct UnkStruct_ov26_02256404_t {
 };
 
 static void ov26_0225646C(const u16 *param0, u16 *param1);
-static void ov26_022564E4(UnkStruct_ov25_02255224 *param0);
+static void ov26_022564E4(PoketchTaskManager *param0);
 static void ov26_022564F8(SysTask *param0, void *param1);
 static void ov26_0225658C(SysTask *param0, void *param1);
 static void ov26_022565AC(SysTask *param0, void *param1);
@@ -38,7 +36,7 @@ BOOL ov26_02256404(UnkStruct_ov26_02256404 **param0, const UnkStruct_ov26_022564
         NNSG2dScreenData *v1;
         void *v2;
 
-        ov25_02255090(v0->unk_08, 8);
+        PoketchTask_InitActiveTaskList(v0->unk_08, 8);
 
         v0->unk_00 = param1;
         v0->unk_04 = ov25_02254674();
@@ -84,7 +82,7 @@ void ov26_0225649C(UnkStruct_ov26_02256404 *param0)
     }
 }
 
-static const UnkStruct_ov25_0225517C Unk_ov26_02256744[] = {
+static const PoketchTask Unk_ov26_02256744[] = {
     { 0x0, ov26_022564F8, 0x0 },
     { 0x1, ov26_0225658C, 0x0 },
     { 0x2, ov26_022565AC, 0x0 },
@@ -94,23 +92,23 @@ static const UnkStruct_ov25_0225517C Unk_ov26_02256744[] = {
 
 void ov26_022564A8(UnkStruct_ov26_02256404 *param0, u32 param1)
 {
-    ov25_0225517C(Unk_ov26_02256744, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
+    PoketchTask_Start(Unk_ov26_02256744, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
 BOOL ov26_022564CC(UnkStruct_ov26_02256404 *param0, u32 param1)
 {
-    return ov25_02255130(param0->unk_08, param1);
+    return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
 BOOL ov26_022564D8(UnkStruct_ov26_02256404 *param0)
 {
-    return ov25_02255154(param0->unk_08);
+    return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov26_022564E4(UnkStruct_ov25_02255224 *param0)
+static void ov26_022564E4(PoketchTaskManager *param0)
 {
-    UnkStruct_ov26_02256404 *v0 = ov25_0225523C(param0);
-    ov25_02255224(v0->unk_08, param0);
+    UnkStruct_ov26_02256404 *v0 = PoketchTask_GetTaskData(param0);
+    PoketchTask_EndTask(v0->unk_08, param0);
 }
 
 static void ov26_022564F8(SysTask *param0, void *param1)
@@ -133,7 +131,7 @@ static void ov26_022564F8(SysTask *param0, void *param1)
     GXSDispCnt v1;
     UnkStruct_ov26_02256404 *v2;
 
-    v2 = ov25_0225523C(param1);
+    v2 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     Graphics_LoadTilesToBgLayer(12, 23, v2->unk_04, 6, 0, 0, 1, 8);
@@ -151,7 +149,7 @@ static void ov26_022564F8(SysTask *param0, void *param1)
 
 static void ov26_0225658C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov26_02256404 *v0 = ov25_0225523C(param1);
+    UnkStruct_ov26_02256404 *v0 = PoketchTask_GetTaskData(param1);
 
     ov26_022565F4(v0);
     Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
@@ -160,7 +158,7 @@ static void ov26_0225658C(SysTask *param0, void *param1)
 
 static void ov26_022565AC(SysTask *param0, void *param1)
 {
-    UnkStruct_ov26_02256404 *v0 = ov25_0225523C(param1);
+    UnkStruct_ov26_02256404 *v0 = PoketchTask_GetTaskData(param1);
 
     if (v0->unk_00->unk_0C) {
         ov25_022546F0(0, 0);
@@ -173,7 +171,7 @@ static void ov26_022565AC(SysTask *param0, void *param1)
 
 static void ov26_022565D8(SysTask *param0, void *param1)
 {
-    UnkStruct_ov26_02256404 *v0 = ov25_0225523C(param1);
+    UnkStruct_ov26_02256404 *v0 = PoketchTask_GetTaskData(param1);
 
     Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov26_022564E4(param1);
