@@ -55,7 +55,7 @@ BOOL PoketchDigitalClock_SetupDisplayData(DisplayData **displayData, const Clock
         ov25_02255090(newDisplayData->unk_08, 8);
 
         newDisplayData->clockData = clockData;
-        newDisplayData->bgConfig = Poketch_GetBgConfig();
+        newDisplayData->bgConfig = ov25_02254674();
 
         void *nscrBuffer = Graphics_GetScrnData(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_CLOCK_DIGITS_TILEMAP_IDX, TRUE, &screenData, HEAP_ID_POKETCH_APP);
 
@@ -149,7 +149,7 @@ static void PoketchDigitalClock_SetupBackground(SysTask *sysTask, void *sysTaskD
     Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, PRE_POKETCH_DISPLAY_NARC_TILES_IDX, displayData->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, PRE_POKETCH_DISPLAY_NARC_TILEMAP_IDX, displayData->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
-    Poketch_LoadActivePalette(0, 0);
+    ov25_022546B8(0, 0);
     PoketchDigitalClock_DrawClockDigits(displayData);
 
     Bg_CopyTilemapBufferToVRAM(displayData->bgConfig, BG_LAYER_SUB_2);
@@ -173,9 +173,9 @@ static void PoketchDigitalClock_ToggleBacklightPalette(SysTask *sysTask, void *s
     DisplayData *displayData = ov25_0225523C(sysTaskData);
 
     if (displayData->clockData->backlightActive) {
-        Poketch_LoadActiveBacklightPalette(0, 0);
+        ov25_022546F0(0, 0);
     } else {
-        Poketch_LoadActivePalette(0, 0);
+        ov25_022546B8(0, 0);
     }
 
     PoketchDigitalClock_FinishTask(sysTaskData);

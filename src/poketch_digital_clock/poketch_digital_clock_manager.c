@@ -133,7 +133,7 @@ static void PoketchDigitalClock_AppTaskRunner(SysTask *sysTask, void *sysTaskDat
     AppData *appData = (AppData *)sysTaskData;
 
     if (appData->appTaskFunctionID < NELEMS(funcArray)) {
-        PoketechSystem_UpdateButtonManager(appData->poketchSys, appData->buttonManager);
+        ov25_02254518(appData->poketchSys, appData->buttonManager);
 
         if (funcArray[appData->appTaskFunctionID](appData)) {
             PoketchDigitalClock_FreeAppData(appData);
