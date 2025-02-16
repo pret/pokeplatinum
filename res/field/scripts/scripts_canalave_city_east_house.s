@@ -1,3 +1,4 @@
+#include "constants/moves.h"
 #include "macros/scrcmd.inc"
 #include "res/text/bank/canalave_city_east_house.h"
 
@@ -49,7 +50,7 @@ _0054:
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    GoToIfEq 0x8001, 0xFF, _0049
+    GoToIfEq 0x8001, MOVE_NOT_SELECTED, _0049
     ScrCmd_1CB 0, 0x8002, 0x8001
     Message 7
     ShowYesNoMenu 0x800C
