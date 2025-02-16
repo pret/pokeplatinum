@@ -648,7 +648,7 @@ static void ov72_0223E2A8(UnkStruct_ov72_0223DB98 *param0)
 {
     int v0 = -1, v1;
 
-    v0 = sub_02022664(Unk_ov72_0223EB4A);
+    v0 = TouchScreen_CheckRectanglePressed(Unk_ov72_0223EB4A);
 
     if (v0 != 0xffffffff) {
         if (v0 == 0) {
@@ -664,7 +664,7 @@ static void ov72_0223E2A8(UnkStruct_ov72_0223DB98 *param0)
         }
     }
 
-    v1 = sub_02022644(Unk_ov72_0223EB42);
+    v1 = TouchScreen_CheckRectangleHeld(Unk_ov72_0223EB42);
 
     if (v1 != 0xffffffff) {
         ov72_0223EA18(param0);

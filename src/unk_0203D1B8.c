@@ -374,9 +374,9 @@ void sub_0203D30C(FieldSystem *fieldSystem, void *param1)
     FieldSystem_StartChildProcess(fieldSystem, &template, fieldSystem->saveData);
 }
 
-void sub_0203D334(FieldSystem *fieldSystem, void *param1)
+void FieldSystem_OpenSummaryScreen(FieldSystem *fieldSystem, void *overlayArgs)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &gPokemonSummaryScreenApp, overlayArgs);
 }
 
 static PartyManagementData *sub_0203D344(int param0, FieldSystem *fieldSystem, int param2, int param3)
@@ -449,7 +449,7 @@ int sub_0203D438(void *param0)
 int sub_0203D440(void *param0)
 {
     PokemonSummary *v0 = param0;
-    return v0->pos;
+    return v0->monIndex;
 }
 
 static BOOL sub_0203D444(FieldTask *param0)
@@ -485,8 +485,8 @@ static BOOL sub_0203D444(FieldTask *param0)
         break;
     case 2:
         v1->unk_08 = sub_0203D670(fieldSystem, v1->unk_00, 0);
-        v1->unk_08->pos = v1->unk_04->unk_22;
-        sub_0203D334(fieldSystem, v1->unk_08);
+        v1->unk_08->monIndex = v1->unk_04->unk_22;
+        FieldSystem_OpenSummaryScreen(fieldSystem, v1->unk_08);
         *v2 = 3;
         break;
     case 3:
@@ -544,15 +544,15 @@ void *sub_0203D578(int param0, FieldSystem *fieldSystem, int param2, int param3,
 
 void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
 {
-    PokemonSummary *v0 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
+    PokemonSummary *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
     v0->monData = Party_GetFromSavedata(fieldSystem->saveData);
     v0->options = SaveData_Options(fieldSystem->saveData);
-    v0->dataType = 1;
-    v0->pos = param2;
-    v0->max = (u8)Party_GetCurrentCount(v0->monData);
+    v0->dataType = SUMMARY_DATA_PARTY_MON;
+    v0->monIndex = param2;
+    v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
-    v0->mode = 0;
+    v0->mode = SUMMARY_MODE_NORMAL;
     v0->specialRibbons = sub_0202D79C(fieldSystem->saveData);
     v0->dexMode = sub_0207A274(fieldSystem->saveData);
     v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
@@ -590,9 +590,9 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int param1, int param2)
 
     v0->options = SaveData_Options(v1);
     v0->monData = Party_GetFromSavedata(v1);
-    v0->dataType = 1;
-    v0->pos = 0;
-    v0->max = Party_GetCurrentCount(v0->monData);
+    v0->dataType = SUMMARY_DATA_PARTY_MON;
+    v0->monIndex = 0;
+    v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = param2;
     v0->dexMode = sub_0207A274(v1);
@@ -611,33 +611,32 @@ static const u8 Unk_020EA160[] = {
     0x8
 };
 
-void *sub_0203D6E4(int param0, FieldSystem *fieldSystem, u8 param2)
+void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapId heapID, FieldSystem *fieldSystem, u8 partySlot)
 {
-    PokemonSummary *v0 = Heap_AllocFromHeap(param0, sizeof(PokemonSummary));
+    PokemonSummary *summary = Heap_AllocFromHeap(heapID, sizeof(PokemonSummary));
 
-    memset(v0, 0, sizeof(PokemonSummary));
+    memset(summary, 0, sizeof(PokemonSummary));
 
-    v0->monData = Party_GetFromSavedata(fieldSystem->saveData);
-    v0->options = SaveData_Options(fieldSystem->saveData);
-    v0->dataType = 1;
-    v0->pos = param2;
-    v0->max = 1;
-    v0->move = 0;
-    v0->mode = 2;
-    v0->dexMode = sub_0207A274(fieldSystem->saveData);
-    v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
+    summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
+    summary->options = SaveData_Options(fieldSystem->saveData);
+    summary->dataType = SUMMARY_DATA_PARTY_MON;
+    summary->monIndex = partySlot;
+    summary->monMax = 1;
+    summary->move = 0;
+    summary->mode = SUMMARY_MODE_SELECT_MOVE;
+    summary->dexMode = sub_0207A274(fieldSystem->saveData);
+    summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
 
-    PokemonSummaryScreen_FlagVisiblePages(v0, Unk_020EA160);
-    PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-    sub_0203D334(fieldSystem, v0);
+    PokemonSummaryScreen_FlagVisiblePages(summary, Unk_020EA160);
+    PokemonSummaryScreen_SetPlayerProfile(summary, SaveData_GetTrainerInfo(fieldSystem->saveData));
+    FieldSystem_OpenSummaryScreen(fieldSystem, summary);
 
-    return v0;
+    return summary;
 }
 
-int sub_0203D750(void *param0)
+int PokemonSummary_GetSelectedMoveSlot(void *summary)
 {
-    PokemonSummary *v0 = param0;
-    return v0->selectedSlot;
+    return ((PokemonSummary *)summary)->selectedMoveSlot;
 }
 
 void sub_0203D754(FieldSystem *fieldSystem, UnkStruct_02042434 *param1)
@@ -1767,11 +1766,11 @@ void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3)
 
     v0->monData = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), param2);
     v0->options = SaveData_Options(fieldSystem->saveData);
-    v0->dataType = 0;
-    v0->pos = 0;
-    v0->max = 1;
+    v0->dataType = SUMMARY_DATA_MON;
+    v0->monIndex = 0;
+    v0->monMax = 1;
     v0->move = param3;
-    v0->mode = 2;
+    v0->mode = SUMMARY_MODE_SELECT_MOVE;
     v0->specialRibbons = sub_0202D79C(fieldSystem->saveData);
     v0->dexMode = sub_0207A274(fieldSystem->saveData);
     v0->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));

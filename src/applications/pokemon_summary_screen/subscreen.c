@@ -13,6 +13,9 @@
 #include "touch_screen.h"
 #include "unk_02005474.h"
 
+#define MAX_BUTTON_ANIM_FRAMES 3
+#define BUTTON_TILE_COUNT      5
+
 typedef struct SummarySubscreenButton {
     u8 page;
     u8 paletteNum;
@@ -20,7 +23,6 @@ typedef struct SummarySubscreenButton {
     u8 y;
 } SummarySubscreenButton;
 
-static void sub_0223D0BC(PokemonSummaryScreen *summaryScreen);
 static int CheckSubscreenRectanglePress(PokemonSummaryScreen *summaryScreen);
 
 static const SummarySubscreenButton sSubscreenButtons_Normal[] = {
@@ -102,7 +104,7 @@ void PokemonSummaryScreen_SetSubscreenType(PokemonSummaryScreen *summaryScreen)
         }
         break;
     case SUMMARY_MODE_SELECT_MOVE:
-    case SUMMARY_MODE_POFFIN:
+    case SUMMARY_MODE_FEED_POFFIN:
     default:
         summaryScreen->subscreenType = SUMMARY_SUBSCREEN_TYPE_NO_BUTTONS;
     }
@@ -116,8 +118,8 @@ static void UpdateSubscreenButtonTilemap(PokemonSummaryScreen *summaryScreen, co
     u16 baseTile = (button->page & 1) * 15 + (button->page / 2) * (30 * 5) + animID * 5 + 30;
     u8 y, x;
 
-    for (y = 0; y < 5; y++) {
-        for (x = 0; x < 5; x++) {
+    for (y = 0; y < BUTTON_TILE_COUNT; y++) {
+        for (x = 0; x < BUTTON_TILE_COUNT; x++) {
             bgSub0Tilemap[(y + button->y) * 32 + x + button->x] = baseTile + y * 30 + x + (button->paletteNum << 12);
         }
     }
@@ -161,28 +163,26 @@ static int CheckSubscreenRectanglePress(PokemonSummaryScreen *summaryScreen)
         return TOUCHSCREEN_INPUT_NONE;
     }
 
-    return sub_02022664(sSubscreenRectangles[summaryScreen->subscreenType]);
+    return TouchScreen_CheckRectanglePressed(sSubscreenRectangles[summaryScreen->subscreenType]);
 }
 
-static int sub_02092224(PokemonSummaryScreen *summaryScreen)
+static int CheckSubscreenRectangleHeld(PokemonSummaryScreen *summaryScreen)
 {
-    int v0;
-
     if (summaryScreen->subscreenType == SUMMARY_SUBSCREEN_TYPE_NO_BUTTONS) {
         return TOUCHSCREEN_INPUT_NONE;
     }
 
-    v0 = sub_02022644(sSubscreenRectangles[summaryScreen->subscreenType]);
+    int rectHeld = TouchScreen_CheckRectangleHeld(sSubscreenRectangles[summaryScreen->subscreenType]);
 
-    if (v0 != TOUCHSCREEN_INPUT_NONE) {
+    if (rectHeld != TOUCHSCREEN_INPUT_NONE) {
         u16 v1 = 0xFFFE;
 
-        if (Bg_DoesPixelAtXYMatchVal(summaryScreen->bgConfig, BG_LAYER_SUB_0, gSystem.touchX, gSystem.touchY, &v1) == 0) {
+        if (Bg_DoesPixelAtXYMatchVal(summaryScreen->bgConfig, BG_LAYER_SUB_0, gSystem.touchX, gSystem.touchY, &v1) == FALSE) {
             return TOUCHSCREEN_INPUT_NONE;
         }
     }
 
-    return v0;
+    return rectHeld;
 }
 
 u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScreen)
@@ -190,29 +190,27 @@ u8 PokemonSummaryScreen_DrawSubscreenButtonAnim(PokemonSummaryScreen *summaryScr
     const SummarySubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
 
     switch (summaryScreen->buttonState) {
-    case 0:
+    case SUMMARY_BUTTON_STATE_INIT_ANIM:
         Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         PokemonSummaryScreen_UpdateSubscreenButtonGfx(summaryScreen);
         UpdateSubscreenButtonTilemap(summaryScreen, &buttonList[summaryScreen->buttonCurrent], 2);
         Bg_ScheduleTilemapTransfer(summaryScreen->bgConfig, BG_LAYER_SUB_0);
-        PokemonSummaryScreen_ButtonTapAnim(summaryScreen);
-        summaryScreen->buttonCount = 0;
-        summaryScreen->buttonState = 1;
+        PokemonSummaryScreen_InitButtonTapAnim(summaryScreen);
+        summaryScreen->buttonAnimFrame = 0;
+        summaryScreen->buttonState = SUMMARY_BUTTON_STATE_SETUP_PAGE;
         break;
-
-    case 1:
-        summaryScreen->buttonState = 2;
+    case SUMMARY_BUTTON_STATE_SETUP_PAGE:
+        summaryScreen->buttonState = SUMMARY_BUTTON_STATE_RUN_ANIM;
         break;
-
-    case 2:
-        if (summaryScreen->buttonCount != 3) {
-            summaryScreen->buttonCount++;
+    case SUMMARY_BUTTON_STATE_RUN_ANIM:
+        if (summaryScreen->buttonAnimFrame != MAX_BUTTON_ANIM_FRAMES) {
+            summaryScreen->buttonAnimFrame++;
             break;
         }
 
         PokemonSummaryScreen_HideButtonTapCircle(summaryScreen);
 
-        if (sub_02092224(summaryScreen) != summaryScreen->buttonCurrent) {
+        if (CheckSubscreenRectangleHeld(summaryScreen) != summaryScreen->buttonCurrent) {
             if (summaryScreen->monData.isEgg != FALSE
                 && buttonList[summaryScreen->buttonCurrent].page != SUMMARY_PAGE_MEMO
                 && buttonList[summaryScreen->buttonCurrent].page != SUMMARY_PAGE_EXIT) {
@@ -233,8 +231,8 @@ void PokemonSummaryScreen_CalcSubscreenButtonTapAnimPos(PokemonSummaryScreen *su
 {
     const SummarySubscreenButton *buttonList = sSubscreenButtonTypes[summaryScreen->subscreenType];
 
-    *outX = buttonList[summaryScreen->buttonCurrent].x * 8 + (5 * 8) / 2;
-    *outY = buttonList[summaryScreen->buttonCurrent].y * 8 + (5 * 8) / 2;
+    *outX = buttonList[summaryScreen->buttonCurrent].x * 8 + (BUTTON_TILE_COUNT * 8) / 2;
+    *outY = buttonList[summaryScreen->buttonCurrent].y * 8 + (BUTTON_TILE_COUNT * 8) / 2;
 }
 
 u8 PokemonSummaryScreen_GetSubscreenButtonPage(PokemonSummaryScreen *summaryScreen, u8 button)

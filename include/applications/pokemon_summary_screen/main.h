@@ -30,8 +30,8 @@ enum SummaryMode {
     SUMMARY_MODE_NORMAL = 0,
     SUMMARY_MODE_LOCK_MOVES,
     SUMMARY_MODE_SELECT_MOVE,
-    SUMMARY_MODE_POFFIN,
-    SUMMARY_MODE_CONDITION,
+    SUMMARY_MODE_FEED_POFFIN,
+    SUMMARY_MODE_SHOW_CONDITION_CHANGE,
 };
 
 enum SummaryPage {
@@ -285,6 +285,17 @@ enum SummarySprite {
     SUMMARY_SPRITE_MAX = 77,
 };
 
+enum SummaryStatus {
+    SUMMARY_CONDITION_POKERUS = 0,
+    SUMMARY_CONDITION_PARALYSIS,
+    SUMMARY_CONDITION_FREEZE,
+    SUMMARY_CONDITION_SLEEP,
+    SUMMARY_CONDITION_POISON,
+    SUMMARY_CONDITION_BURN,
+    SUMMARY_CONDITION_FAINTED,
+    SUMMARY_CONDITION_NONE,
+};
+
 enum SummaryPokerusState {
     SUMMARY_POKERUS_NONE = 0,
     SUMMARY_POKERUS_INFECTED,
@@ -326,10 +337,10 @@ typedef struct PokemonSummary {
     u8 OTGender;
     u8 dataType;
     u8 mode;
-    u8 max;
-    u8 pos;
+    u8 monMax;
+    u8 monIndex;
     u8 pageFlags;
-    u8 selectedSlot;
+    u8 selectedMoveSlot;
     u8 returnMode;
     u16 move;
 
@@ -447,7 +458,7 @@ typedef struct PokemonSummaryScreen {
     u8 sheenPos;
     u8 sheenCount;
 
-    u8 buttonCount;
+    u8 buttonAnimFrame;
     u8 buttonState;
     u8 buttonCurrent;
 

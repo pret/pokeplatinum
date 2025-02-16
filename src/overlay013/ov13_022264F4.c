@@ -818,7 +818,7 @@ static void ov13_022271D0(UnkStruct_ov13_02227244 *param0, u8 param1)
 
 static int ov13_02227238(UnkStruct_ov13_02227244 *param0, const TouchScreenRect *rect)
 {
-    int v0 = sub_02022664(rect);
+    int v0 = TouchScreen_CheckRectanglePressed(rect);
     return v0;
 }
 
