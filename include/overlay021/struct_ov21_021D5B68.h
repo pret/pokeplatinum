@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV21_021D5B68_H
 #define POKEPLATINUM_STRUCT_OV21_021D5B68_H
 
-#include "overlay021/struct_ov21_021D3320.h"
+#include "overlay021/pokedex_sort_data.h"
 
 typedef struct {
     int *unk_00;
-    UnkStruct_ov21_021D3320 *unk_04;
+    PokedexSortData *unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;

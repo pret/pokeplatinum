@@ -22,6 +22,7 @@ enum HeapId {
 
     HEAP_ID_FIELD_TASK = 32,
 
+    HEAP_ID_POKEDEX = 37,
     HEAP_ID_OPTIONS_MENU = 38,
 
     HEAP_ID_JOURNAL = 42,

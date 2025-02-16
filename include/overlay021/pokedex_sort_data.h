@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV21_021D3320_H
-#define POKEPLATINUM_STRUCT_OV21_021D3320_H
+#ifndef POKEPLATINUM_POKEDEX_SORT_DATA_H
+#define POKEPLATINUM_POKEDEX_SORT_DATA_H
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
@@ -22,12 +22,12 @@ typedef struct {
     u32 trainerGender;
     Strbuf *trainerName;
     int unk_1758;
-    u16 unk_175C;
-    u16 unk_175E;
+    u16 currentSpecies;
+    u16 bootMode;
     BOOL fullmoonIslandVisible;
     BOOL newmoonIslandVisible;
     BOOL springPathVisible;
     BOOL seabreakPathVisible;
-} UnkStruct_ov21_021D3320;
+} PokedexSortData;
 
-#endif // POKEPLATINUM_STRUCT_OV21_021D3320_H
+#endif // POKEPLATINUM_POKEDEX_SORT_DATA_H

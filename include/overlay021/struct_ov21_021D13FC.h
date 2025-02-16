@@ -36,6 +36,6 @@ typedef struct {
     SysTask *unk_270;
     SysTask *unk_274;
     NARC *pokedexGraphics;
-} UnkStruct_ov21_021D13FC;
+} PokedexGraphicData;
 
 #endif // POKEPLATINUM_STRUCT_OV21_021D13FC_H
