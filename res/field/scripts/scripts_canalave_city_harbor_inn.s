@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0093
     ScriptEntry _0160
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     SetFlag 0x241

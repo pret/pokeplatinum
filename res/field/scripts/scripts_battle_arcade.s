@@ -20,7 +20,7 @@
     ScriptEntry _0046
     ScriptEntry _0834
     ScriptEntry _0845
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0046:
     ScrCmd_238 19, 0x4000
@@ -181,7 +181,7 @@ _02F1:
 
 _0335:
     Message 44
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _02F1
     CloseMessage
     ScrCmd_0F2 32, 0, 0, 0x800C
@@ -201,7 +201,7 @@ _037F:
 
 _0389:
     Message 44
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _02F1
     CloseMessage
     ScrCmd_0F3 32, 0, 0, 0x800C

@@ -13,7 +13,7 @@
     ScriptEntry _00B6
     ScriptEntry _00C4
     ScriptEntry _00D2
-    .short 0xFD13
+    ScriptEntryEnd
 
 _002A:
     GoToIfEq 0x40F9, 0, _0039

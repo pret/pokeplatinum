@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0021
     ScriptEntry _005C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     CallIfSet 254, _001B

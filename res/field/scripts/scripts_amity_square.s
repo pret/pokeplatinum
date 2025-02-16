@@ -48,7 +48,7 @@
     ScriptEntry _12E9
     ScriptEntry _12F7
     ScriptEntry _174A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _00B6:
     SetFlag 0x9CC
@@ -146,7 +146,7 @@ _01CE:
 _0229:
     AddVar 0x400C, 1
     Message 2
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0299
     GoTo _026D
     End
@@ -154,7 +154,7 @@ _0229:
 _024B:
     AddVar 0x400C, 1
     Message 4
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0299
     GoTo _026D
     End
@@ -1010,7 +1010,7 @@ _10AA:
 _10E1:
     BufferItemName 0, 0x8004
     Message 37
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _1161
     SetVar 0x8005, 5
     ScrCmd_07D 0x8004, 0x8005, 0x800C
@@ -1027,7 +1027,7 @@ _10E1:
 _1136:
     ScrCmd_261 0, 0x8004
     Message 37
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _1161
     SetVar 0x8005, 1
     CallCommonScript 0x7DF

@@ -7,7 +7,7 @@
     ScriptEntry _0018
     ScriptEntry _002B
     ScriptEntry _016A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     SetFlag 0x9E9

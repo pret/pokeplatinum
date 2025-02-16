@@ -47,7 +47,7 @@
     ScriptEntry _0EB4
     ScriptEntry _15F3
     ScriptEntry _1624
-    .short 0xFD13
+    ScriptEntryEnd
 
 _00B2:
     ScrCmd_2F0
@@ -1615,7 +1615,7 @@ _1667:
     GoToIfEq 0x8002, -2, _18DE
     GoToIfEq 0x8003, 0, _18C8
     Message 121
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _18DE
     CallIfEq 0x8002, 0, _1FB1
     CallIfEq 0x8002, 1, _1FBB

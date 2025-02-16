@@ -1,5 +1,6 @@
 #include "generated/badges.h"
 #include "generated/catching_show_points_category.h"
+#include "generated/days_of_week.h"
 #include "generated/game_records.h"
 #include "generated/items.h"
 #include "generated/journal_location_events.h"
@@ -13,8 +14,13 @@
 #include "generated/species.h"
 #include "generated/trainers.h"
 #include "constants/honey_tree.h"
+#include "constants/savedata/vars_flags.h"
+#include "constants/scrcmd.h"
 
 #include "macros/movement.inc"
+
+    .set FALSE, 0
+    .set TRUE, 1
 
     .macro Noop
     .short 0
@@ -349,9 +355,9 @@
     .byte \directionY
     .endm
 
-    .macro ScrCmd_03E arg0
+    .macro ShowYesNoMenu destVarID
     .short 62
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_03F
@@ -1307,7 +1313,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_0EB
+    .macro BlackOutFromBattle
     .short 235
     .endm
 
@@ -1321,9 +1327,9 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_0EE arg0
+    .macro CheckHasTwoAliveMons destVarID
     .short 238
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro StartDummyTrainerBattle
@@ -2769,14 +2775,14 @@
     .byte \arg3
     .endm
 
-    .macro ScrCmd_200 arg0
+    .macro GetPreviousMapID destVarID
     .short 512
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_201 arg0
+    .macro GetCurrentMapID destVarID
     .short 513
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_202 arg0
@@ -3042,9 +3048,9 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_234 arg0
+    .macro GetDayOfWeek destVarID
     .short 564
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_235 arg0, arg1=0, arg2=0, arg3=0
@@ -4671,4 +4677,8 @@
 
     .macro ScriptEntry name
     .long \name-.-4
+    .endm
+
+    .macro ScriptEntryEnd
+    .short 0xFD13
     .endm

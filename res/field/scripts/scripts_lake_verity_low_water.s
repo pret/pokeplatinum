@@ -10,7 +10,7 @@
     ScriptEntry _044B
     ScriptEntry _048A
     ScriptEntry _048C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     GetPlayerGender 0x4000

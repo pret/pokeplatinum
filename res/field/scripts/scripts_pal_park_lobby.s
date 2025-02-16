@@ -16,7 +16,7 @@
     ScriptEntry _057C
     ScriptEntry _02D8
     ScriptEntry _0662
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0036:
     ClearFlag 0x995
@@ -53,7 +53,7 @@ _009D:
     SetFlag 211
     BufferPlayerName 0
     Message 21
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0107
     GoToIfEq 0x800C, 1, _01CB
     End
@@ -63,7 +63,7 @@ _00D2:
     SetFlag 211
     BufferPlayerName 0
     Message 22
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0107
     GoToIfEq 0x800C, 1, _01CB
     End
@@ -98,7 +98,7 @@ _012B:
 
 _0172:
     Message 28
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _01CB
 _0186:
     SetVar 0x800C, 0
@@ -237,10 +237,10 @@ _035B:
 
 _0370:
     Message 41
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _03AB
     Message 46
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _039E
     GoTo _0370
 

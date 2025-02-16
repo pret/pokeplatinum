@@ -28,7 +28,7 @@
     ScriptEntry _0959
     ScriptEntry _01D2
     ScriptEntry _09BC
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0066:
     SetFlag 0x1BD
@@ -188,7 +188,7 @@ _0303:
 
 _0334:
     SetFlag 0x1B2
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -667,7 +667,7 @@ _0900:
     CheckItem ITEM_LUNAR_WING, 1, 0x800C
     GoToIfEq 0x800C, 1, _094E
     Message 31
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0938
     GoToIfEq 0x800C, 1, _0943
     End

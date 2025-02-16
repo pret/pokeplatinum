@@ -5,7 +5,7 @@
 
     ScriptEntry _0077
     ScriptEntry _000A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     Call _0012
@@ -34,7 +34,7 @@ _0077:
     GoToIfGe 0x40C5, 1, _00F4
     GoToIfSet 209, _00F4
     Message 0
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0101
     ScrCmd_04C 0x1E4, 0
     Message 1
@@ -50,7 +50,7 @@ _0077:
     End
 
 _00E8:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

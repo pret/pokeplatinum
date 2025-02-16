@@ -83,15 +83,15 @@ _00D9:
     End
 
 _00E4:
-    ScrCmd_234 0x800C
+    GetDayOfWeek 0x800C
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _016F
-    GoToIfEq 0x8008, 1, _014B
-    GoToIfEq 0x8008, 2, _0151
-    GoToIfEq 0x8008, 3, _0157
-    GoToIfEq 0x8008, 4, _015D
-    GoToIfEq 0x8008, 5, _0163
-    GoToIfEq 0x8008, 6, _0169
+    GoToIfEq 0x8008, DAY_OF_WEEK_SUNDAY, _016F
+    GoToIfEq 0x8008, DAY_OF_WEEK_MONDAY, _014B
+    GoToIfEq 0x8008, DAY_OF_WEEK_TUESDAY, _0151
+    GoToIfEq 0x8008, DAY_OF_WEEK_WEDNESDAY, _0157
+    GoToIfEq 0x8008, DAY_OF_WEEK_THURSDAY, _015D
+    GoToIfEq 0x8008, DAY_OF_WEEK_FRIDAY, _0163
+    GoToIfEq 0x8008, DAY_OF_WEEK_SATURDAY, _0169
     End
 
 _014B:
@@ -127,11 +127,11 @@ _0175:
     LockAll
     FacePlayer
     Message 9
-    ScrCmd_234 0x4000
-    GoToIfEq 0x4000, 0, _01BE
-    GoToIfEq 0x4000, 1, _01BE
-    GoToIfEq 0x4000, 2, _01BE
-    GoToIfEq 0x4000, 3, _01BE
+    GetDayOfWeek 0x4000
+    GoToIfEq 0x4000, DAY_OF_WEEK_SUNDAY, _01BE
+    GoToIfEq 0x4000, DAY_OF_WEEK_MONDAY, _01BE
+    GoToIfEq 0x4000, DAY_OF_WEEK_TUESDAY, _01BE
+    GoToIfEq 0x4000, DAY_OF_WEEK_WEDNESDAY, _01BE
     GoTo _01C9
 
 _01BE:
