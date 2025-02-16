@@ -39,7 +39,7 @@ void ov25_02255090(u32 *param0, u32 param1)
     }
 }
 
-static BOOL ov25_022550B0(u32 *param0, u32 param1)
+static BOOL ov25_022550B0(u32 *param0, u32 functionID)
 {
     u32 v0;
 
@@ -47,12 +47,12 @@ static BOOL ov25_022550B0(u32 *param0, u32 param1)
 
     for (v0 = 0; v0 < param0[0]; v0++) {
         if (param0[2 + v0] == 0xffffffff) {
-            param0[2 + v0] = param1;
-            return 1;
+            param0[2 + v0] = functionID;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static void ov25_022550F0(u32 *param0, u32 param1)
@@ -77,11 +77,11 @@ BOOL ov25_02255130(u32 *param0, u32 param1)
 
     for (v0 = 0; v0 < param0[0]; v0++) {
         if (param0[2 + v0] == param1) {
-            return 0;
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
 BOOL ov25_02255154(u32 *param0)
@@ -97,37 +97,35 @@ BOOL ov25_02255154(u32 *param0)
     return 1;
 }
 
-void ov25_0225517C(const UnkStruct_ov25_0225517C *param0, u32 param1, void *param2, const void *param3, u32 *param4, u32 param5, u32 param6)
+void ov25_0225517C(const UnkStruct_ov25_0225517C *functionList, u32 functionID, void *param2, const void *param3, u32 *param4, u32 priority, u32 heapID)
 {
-    u32 v0;
+    u32 idx;
 
-    for (v0 = 0; param0[v0].unk_00 != 0xffffffff; v0++) {
-        if (param0[v0].unk_00 == param1) {
-            UnkStruct_ov25_02255224 *v1;
-            u32 v2;
+    for (idx = 0; functionList[idx].unk_00 != 0xffffffff; idx++) {
+        if (functionList[idx].unk_00 == functionID) {
+            u32 size = sizeof(UnkStruct_ov25_02255224) + functionList[idx].unk_08;
 
-            v2 = sizeof(UnkStruct_ov25_02255224) + param0[v0].unk_08;
-            v1 = Heap_AllocFromHeap(param6, v2);
+            UnkStruct_ov25_02255224 *sysTaskData = Heap_AllocFromHeap(heapID, size);
 
-            if (v1 != NULL) {
-                if (param0[v0].unk_08 != 0) {
-                    v1->unk_0C = ((u8 *)v1) + sizeof(UnkStruct_ov25_02255224);
+            if (sysTaskData != NULL) {
+                if (functionList[idx].unk_08 != 0) {
+                    sysTaskData->unk_0C = ((u8 *)sysTaskData) + sizeof(UnkStruct_ov25_02255224);
                 } else {
-                    v1->unk_0C = NULL;
+                    sysTaskData->unk_0C = NULL;
                 }
 
-                if (ov25_022550B0(param4, param1)) {
-                    v1->unk_08 = param2;
-                    v1->unk_04 = 0;
-                    v1->unk_00 = param1;
-                    v1->unk_10 = param3;
-                    v1->unk_14 = SysTask_Start(param0[v0].unk_04, v1, param5);
+                if (ov25_022550B0(param4, functionID)) {
+                    sysTaskData->unk_08 = param2;
+                    sysTaskData->unk_04 = 0;
+                    sysTaskData->unk_00 = functionID;
+                    sysTaskData->unk_10 = param3;
+                    sysTaskData->unk_14 = SysTask_Start(functionList[idx].unk_04, sysTaskData, priority);
 
-                    if (v1->unk_14) {
-                        param0[v0].unk_04(v1->unk_14, v1);
+                    if (sysTaskData->unk_14) {
+                        functionList[idx].unk_04(sysTaskData->unk_14, sysTaskData);
                     }
                 } else {
-                    Heap_FreeToHeap(v1);
+                    Heap_FreeToHeap(sysTaskData);
                 }
 
                 return;
