@@ -253,7 +253,7 @@ static void ov46_02256408(SysTask *param0, void *param1)
     UnkStruct_ov46_0225621C *v1 = (UnkStruct_ov46_0225621C *)param1;
 
     if (v1->unk_00 < NELEMS(v0)) {
-        ov25_02254518(v1->poketchSys, v1->buttonManager);
+        PoketechSystem_UpdateButtonManager(v1->poketchSys, v1->buttonManager);
 
         if (v1->unk_44) {
             ov46_02256D24(v1->unk_08, 4);

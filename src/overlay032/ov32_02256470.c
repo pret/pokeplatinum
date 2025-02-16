@@ -90,7 +90,7 @@ BOOL ov32_02256470(UnkStruct_ov32_02256470 **param0, const UnkStruct_ov32_022564
         ov25_02255090(v0->unk_0C, 8);
 
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_08 = ov25_02254664();
         v0->unk_38 = 0;
         v0->unk_F4 = NULL;
@@ -181,7 +181,7 @@ static void ov32_02256588(SysTask *param0, void *param1)
     v3 /= 0x20;
 
     Bg_FillTilemapRect(v2->unk_04, 6, 0x5, 0, 0, 32, 24, 0);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     v2->unk_34 = v3;
     ov32_02256648(v2, v2->unk_00, v3);

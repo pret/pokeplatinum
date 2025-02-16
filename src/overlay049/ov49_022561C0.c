@@ -164,7 +164,7 @@ static BOOL ov49_022562FC(UnkStruct_ov49_0225621C *param0)
 
 static BOOL ov49_02256348(UnkStruct_ov49_0225621C *param0)
 {
-    if (ov25_0225450C(param0->poketchSys) == 0) {
+    if (PoketechSystem_IsRunningTask(param0->poketchSys) == 0) {
         u32 v0, v1;
 
         if (TouchScreen_GetHoldState(&v0, &v1)) {

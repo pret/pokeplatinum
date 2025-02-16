@@ -41,7 +41,7 @@ BOOL ov26_02256404(UnkStruct_ov26_02256404 **param0, const UnkStruct_ov26_022564
         ov25_02255090(v0->unk_08, 8);
 
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
 
         v2 = Graphics_GetScrnData(12, 25, 1, &v1, 8);
 
@@ -139,7 +139,7 @@ static void ov26_022564F8(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 23, v2->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 24, v2->unk_04, 6, 0, 0, 1, 8);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
     ov26_022565F4(v2);
 
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
@@ -163,9 +163,9 @@ static void ov26_022565AC(SysTask *param0, void *param1)
     UnkStruct_ov26_02256404 *v0 = ov25_0225523C(param1);
 
     if (v0->unk_00->unk_0C) {
-        ov25_022546F0(0, 0);
+        Poketch_LoadActiveBacklightPalette(0, 0);
     } else {
-        ov25_022546B8(0, 0);
+        Poketch_LoadActivePalette(0, 0);
     }
 
     ov26_022564E4(param1);
