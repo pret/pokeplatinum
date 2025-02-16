@@ -19,19 +19,19 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "palette.h"
 #include "poketch.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "palette.h"
 
 #define POKETCH_PALETTE_NARC_IDX 0
 
-#define NUM_PALETTES                       16
+#define NUM_PALETTES                        16
 #define NUM_PALETTES_PER_PALETTE_COLOUR_SET 2
-#define NUM_PALETTE_COLOUR_SETS            (NUM_PALETTES / NUM_PALETTES_PER_PALETTE_COLOUR_SET)
-#define SLOTS_PER_PALETTE_COLOUR_SET       (SLOTS_PER_PALETTE * NUM_PALETTES_PER_PALETTE_COLOUR_SET)
-#define BACKLIGHT_PALETTE_SLOT_OFFSET      (SLOTS_PER_PALETTE)
+#define NUM_PALETTE_COLOUR_SETS             (NUM_PALETTES / NUM_PALETTES_PER_PALETTE_COLOUR_SET)
+#define SLOTS_PER_PALETTE_COLOUR_SET        (SLOTS_PER_PALETTE * NUM_PALETTES_PER_PALETTE_COLOUR_SET)
+#define BACKLIGHT_PALETTE_SLOT_OFFSET       (SLOTS_PER_PALETTE)
 
 typedef struct {
     BOOL unk_00;
