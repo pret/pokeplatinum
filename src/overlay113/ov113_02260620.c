@@ -130,7 +130,7 @@ int ov113_02260748(UnkStruct_ov113_02260818 *param0, int param1)
     int v0;
     int v1 = 0xff;
 
-    v0 = sub_02022664(Unk_ov113_02260D4C);
+    v0 = TouchScreen_CheckRectanglePressed(Unk_ov113_02260D4C);
 
     if (v0 < 6) {
         if ((param1 != v0) && (param0[v0].unk_02 != 0) && (param0[v0].unk_02 <= NATIONAL_DEX_COUNT)) {

@@ -2436,14 +2436,14 @@
     .short 453
     .endm
 
-    .macro ScrCmd_1C6 arg0
+    .macro SelectPartyMonMove partySlot
     .short 454
-    .short \arg0
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_1C7 arg0
+    .macro GetSelectedPartyMonMove destVarID
     .short 455
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_1C8 arg0, arg1
@@ -2935,7 +2935,7 @@
     .endif
     .endm
 
-    .macro ScrCmd_21E
+    .macro ScrCmd_Dummy21E
     .short 542
     .endm
 

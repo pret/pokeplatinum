@@ -378,7 +378,7 @@ static BOOL ov106_02241E14(UnkStruct_ov106_02243118 *param0)
     case 0:
 
         if (OverlayManager_Exec(param0->unk_04) == 1) {
-            param0->unk_288 = param0->unk_BC->pos;
+            param0->unk_288 = param0->unk_BC->monIndex;
             Heap_FreeToHeap(param0->unk_BC);
             Heap_FreeToHeap(param0->unk_04);
             param0->unk_04 = NULL;
@@ -1210,11 +1210,11 @@ static void ov106_02242CA4(UnkStruct_ov106_02243118 *param0)
     memset(param0->unk_BC, 0, sizeof(PokemonSummary));
 
     param0->unk_BC->monData = param0->unk_290;
-    param0->unk_BC->dataType = 1;
+    param0->unk_BC->dataType = SUMMARY_DATA_PARTY_MON;
     param0->unk_BC->options = param0->unk_B4;
-    param0->unk_BC->mode = 1;
-    param0->unk_BC->max = Party_GetCurrentCount(param0->unk_290);
-    param0->unk_BC->pos = 0;
+    param0->unk_BC->mode = SUMMARY_MODE_LOCK_MOVES;
+    param0->unk_BC->monMax = Party_GetCurrentCount(param0->unk_290);
+    param0->unk_BC->monIndex = 0;
     param0->unk_BC->move = 0;
     param0->unk_BC->dexMode = sub_0207A274(param0->unk_B8);
     param0->unk_BC->showContest = PokemonSummaryScreen_ShowContestData(param0->unk_B8);

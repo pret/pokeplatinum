@@ -542,47 +542,47 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 6, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00135" index="135">
+	<row id="summary_label_pp" index="135">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">PP</language>
 	</row>
-	<row id="pl_msg_00000455_00136" index="136">
+	<row id="summary_template_current_pp_0" index="136">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00137" index="137">
+	<row id="summary_template_current_pp_1" index="137">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00138" index="138">
+	<row id="summary_template_current_pp_2" index="138">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00139" index="139">
+	<row id="summary_template_current_pp_3" index="139">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00140" index="140">
+	<row id="summary_template_current_pp_4" index="140">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00141" index="141">
+	<row id="summary_template_max_pp_0" index="141">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00142" index="142">
+	<row id="summary_template_max_pp_1" index="142">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00143" index="143">
+	<row id="summary_template_max_pp_2" index="143">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00144" index="144">
+	<row id="summary_template_max_pp_3" index="144">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00145" index="145">
+	<row id="summary_template_max_pp_4" index="145">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 51, 0, 0}</language>
 	</row>
@@ -610,11 +610,11 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}</language>
 	</row>
-	<row id="pl_msg_00000455_00152" index="152">
+	<row id="summary_move_switch" index="152">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">SWITCH</language>
 	</row>
-	<row id="pl_msg_00000455_00153" index="153">
+	<row id="summary_two_dashes" index="153">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">--</language>
 	</row>
@@ -626,7 +626,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">OK</language>
 	</row>
-	<row id="pl_msg_00000455_00156" index="156">
+	<row id="summary_hm_moves_cant_be_forgotten" index="156">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">HM moves can’t be\nforgotten now.</language>
 	</row>
@@ -667,27 +667,27 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">FAVORITE FOOD</language>
 	</row>
-	<row id="summary_template_likes_spicy" index="166">
+	<row id="summary_likes_it_spicy" index="166">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}spicy{COLOR 0}.</language>
 	</row>
-	<row id="summary_template_likes_dry" index="167">
+	<row id="summary_likes_it_dry" index="167">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}dry{COLOR 0}.</language>
 	</row>
-	<row id="summary_template_likes_sweet" index="168">
+	<row id="summary_likes_it_sweet" index="168">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}sweet{COLOR 0}.</language>
 	</row>
-	<row id="summary_template_likes_bitter" index="169">
+	<row id="summary_likes_it_bitter" index="169">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}bitter{COLOR 0}.</language>
 	</row>
-	<row id="summary_template_likes_sour" index="170">
+	<row id="summary_likes_it_sour" index="170">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Likes it {COLOR 2}sour{COLOR 0}.</language>
 	</row>
-	<row id="pl_msg_00000455_00171" index="171">
+	<row id="summary_eats_anything" index="171">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Eats anything.</language>
 	</row>
@@ -727,7 +727,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">INFO</language>
 	</row>
-	<row id="pl_msg_00000455_00181" index="181">
+	<row id="summary_ribbon_select_cancel" index="181">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">CANCEL</language>
 	</row>

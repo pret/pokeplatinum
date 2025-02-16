@@ -695,7 +695,7 @@ int ov17_0223FAF8(UnkStruct_ov17_0223F7E4 *param0)
 
     GF_ASSERT(v4->unk_18 != NULL);
 
-    v1 = sub_02022664(v4->unk_14);
+    v1 = TouchScreen_CheckRectanglePressed(v4->unk_14);
 
     if (v1 == 0xffffffff) {
         v1 = ov17_02240C90(param0);

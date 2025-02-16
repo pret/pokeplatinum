@@ -29,10 +29,10 @@ static const u8 Unk_ov94_02246360[] = {
 int ov94_022443E0(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
     param0->unk_B8.monData = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
-    param0->unk_B8.dataType = 2;
-    param0->unk_B8.max = 1;
-    param0->unk_B8.pos = 0;
-    param0->unk_B8.mode = 1;
+    param0->unk_B8.dataType = SUMMARY_DATA_BOX_MON;
+    param0->unk_B8.monMax = 1;
+    param0->unk_B8.monIndex = 0;
+    param0->unk_B8.mode = SUMMARY_MODE_LOCK_MOVES;
     param0->unk_B8.move = 0;
     param0->unk_B8.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_00->unk_20);
     param0->unk_B8.dexMode = param0->unk_00->unk_34;

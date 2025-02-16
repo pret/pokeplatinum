@@ -222,7 +222,7 @@ static const TouchScreenRect Unk_ov94_0224633E[] = {
 
 int ov94_02244214(int param0)
 {
-    int v0 = sub_02022664(Unk_ov94_0224633E);
+    int v0 = TouchScreen_CheckRectanglePressed(Unk_ov94_0224633E);
 
     if (v0 != 0xffffffff) {
         if (v0 < param0) {
