@@ -184,7 +184,7 @@ static BOOL PoketchDigitalClock_LoadApp(AppData *appData)
         appData->taskStage++;
         break;
     case 1:
-        if (PoketchDigitalClock_TaskIsNotActive(appData->displayData, 0)) {
+        if (PoketchDigitalClock_TaskIsNotActive(appData->displayData, SYS_TASK_FUNC_SETUP_BACKGROUND)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
             PoketchDigitalClock_SetAppTaskFunction(appData, APP_TASK_UPDATE_APP);
         }
@@ -206,7 +206,7 @@ static BOOL PoketchDigitalClock_UpdateApp(AppData *appData)
         PoketchDigitalClock_StartTask(appData->displayData, SYS_TASK_FUNC_TOGGLE_BACKLIGHT_PALETTE);
     }
 
-    if (PoketchDigitalClock_TaskIsNotActive(appData->displayData, 1)) {
+    if (PoketchDigitalClock_TaskIsNotActive(appData->displayData, SYS_TASK_FUNC_UPDATE_CLOCK_DIGITS)) {
         appData->minute = appData->clockData.time.minute;
         appData->hour = appData->clockData.time.hour;
         GetCurrentTime(&(appData->clockData.time));

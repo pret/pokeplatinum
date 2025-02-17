@@ -79,12 +79,12 @@ BOOL PoketchDigitalClock_SetupDisplayData(DisplayData **displayData, const Clock
 
 static void PoketchDigitalClock_CopyDigitTilemap(const u16 *rawScreenData, u16 *dst)
 {
-    int offset = POKETCH_DIGIT_TILEMAP_HEIGHT * 32;
+    int offset = 9 * 32;
     int row;
 
-    for (row = 0; row < POKETCH_DIGIT_TILEMAP_HEIGHT; row++) {
-        MI_CpuCopy16(rawScreenData, dst, 32 * TILE_SIZE_BYTES);
-        MI_CpuCopy16(&rawScreenData[offset], &dst[32], 8 * TILE_SIZE_BYTES);
+    for (row = 0; row < 9; row++) {
+        MI_CpuCopy16(rawScreenData, dst, 32 * sizeof(u16));
+        MI_CpuCopy16(&rawScreenData[offset], &dst[32], 8 * sizeof(u16));
 
         rawScreenData += 32;
         dst += 40;
