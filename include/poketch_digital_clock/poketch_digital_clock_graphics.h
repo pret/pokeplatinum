@@ -17,8 +17,8 @@ typedef struct {
 
 BOOL PoketchDigitalClock_SetupDisplayData(DisplayData **displayData, const ClockData *clockData, BgConfig *bgConfig);
 void PoketchDigitalClock_FreeDisplayData(DisplayData *displayData);
-void PoketchDigitalClock_RunTaskFunction(DisplayData *displayData, u32 functionID);
-BOOL ov26_022564CC(DisplayData *displayData, u32 param1);
-BOOL ov26_022564D8(DisplayData *displayData);
+void PoketchDigitalClock_StartTask(DisplayData *displayData, u32 taskID);
+BOOL PoketchDigitalClock_TaskIsNotActive(DisplayData *displayData, u32 taskID);
+BOOL PoketchDigitalClock_NoActiveTasks(DisplayData *displayData);
 
 #endif // POKEPLATINUM_POKETCH_DIGITAL_CLOCK_GRAPHICS_H

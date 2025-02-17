@@ -23,7 +23,7 @@
 #define APP_TASK_UNLOAD_APP 2
 
 typedef struct {
-    u8 appTaskFunctionID;
+    u8 appTasktaskID;
     u8 taskStage;
     u8 shutdown;
     u8 unk_03;
@@ -44,10 +44,10 @@ static void NitroStaticInit(void);
 static BOOL PoketchDigitalClock_Init(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID);
 static BOOL PoketchDigitalClock_SetupAppData(AppData *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID);
 static void PoketchDigitalClock_FreeAppData(AppData *appData);
-static void PoketchDigitalClock_AppTaskRunner(SysTask *sysTask, void *sysTaskData);
+static void PoketchDigitalClock_AppTaskRunner(SysTask *sysTask, void *taskManager);
 static void PoketchDigitalClock_Shutdown(void *appData);
 static void PoketchDigitalClock_ToggleBacklight(u32 btnNumber, u32 buttonState, u32 touchState, void *appDataIn);
-static void PoketchDigitalClock_SetAppTaskFunction(AppData *appData, u32 functionID);
+static void PoketchDigitalClock_SetAppTaskFunction(AppData *appData, u32 taskID);
 static BOOL PoketchDigitalClock_LoadApp(AppData *appData);
 static BOOL PoketchDigitalClock_UpdateApp(AppData *appData);
 static BOOL PoketchDigitalClock_UnloadApp(AppData *appData);
@@ -82,7 +82,7 @@ static BOOL PoketchDigitalClock_Init(void **appData, PoketchSystem *poketchSys, 
 static BOOL PoketchDigitalClock_SetupAppData(AppData *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
     if (PoketchDigitalClock_SetupDisplayData(&(appData->displayData), &(appData->clockData), bgConfig)) {
-        appData->appTaskFunctionID = APP_TASK_LOAD_APP;
+        appData->appTasktaskID = APP_TASK_LOAD_APP;
         appData->taskStage = 0;
         appData->shutdown = FALSE;
         appData->unk_03 = 1;
@@ -122,7 +122,7 @@ static void PoketchDigitalClock_FreeAppData(AppData *appData)
     Heap_FreeToHeap(appData);
 }
 
-static void PoketchDigitalClock_AppTaskRunner(SysTask *sysTask, void *sysTaskData)
+static void PoketchDigitalClock_AppTaskRunner(SysTask *sysTask, void *callbackData)
 {
     static BOOL (*const funcArray[])(AppData *) = {
         PoketchDigitalClock_LoadApp,
@@ -130,12 +130,12 @@ static void PoketchDigitalClock_AppTaskRunner(SysTask *sysTask, void *sysTaskDat
         PoketchDigitalClock_UnloadApp,
     };
 
-    AppData *appData = (AppData *)sysTaskData;
+    AppData *appData = (AppData *)callbackData;
 
-    if (appData->appTaskFunctionID < NELEMS(funcArray)) {
+    if (appData->appTasktaskID < NELEMS(funcArray)) {
         ov25_02254518(appData->poketchSys, appData->buttonManager);
 
-        if (funcArray[appData->appTaskFunctionID](appData)) {
+        if (funcArray[appData->appTasktaskID](appData)) {
             PoketchDigitalClock_FreeAppData(appData);
             SysTask_Done(sysTask);
             PoketchSystem_NotifyAppUnloaded(appData->poketchSys);
@@ -165,12 +165,12 @@ static void PoketchDigitalClock_ToggleBacklight(u32 btnNumber, u32 buttonState, 
     }
 }
 
-static void PoketchDigitalClock_SetAppTaskFunction(AppData *appData, u32 functionID)
+static void PoketchDigitalClock_SetAppTaskFunction(AppData *appData, u32 taskID)
 {
     if (appData->shutdown == FALSE) {
-        appData->appTaskFunctionID = functionID;
+        appData->appTasktaskID = taskID;
     } else {
-        appData->appTaskFunctionID = APP_TASK_UNLOAD_APP;
+        appData->appTasktaskID = APP_TASK_UNLOAD_APP;
     }
 
     appData->taskStage = 0;
@@ -180,11 +180,11 @@ static BOOL PoketchDigitalClock_LoadApp(AppData *appData)
 {
     switch (appData->taskStage) {
     case 0:
-        PoketchDigitalClock_RunTaskFunction(appData->displayData, SYS_TASK_FUNC_SETUP_BACKGROUND);
+        PoketchDigitalClock_StartTask(appData->displayData, SYS_TASK_FUNC_SETUP_BACKGROUND);
         appData->taskStage++;
         break;
     case 1:
-        if (ov26_022564CC(appData->displayData, 0)) {
+        if (PoketchDigitalClock_TaskIsNotActive(appData->displayData, 0)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
             PoketchDigitalClock_SetAppTaskFunction(appData, APP_TASK_UPDATE_APP);
         }
@@ -203,16 +203,16 @@ static BOOL PoketchDigitalClock_UpdateApp(AppData *appData)
 
     if (appData->backlightChange) {
         appData->backlightChange = FALSE;
-        PoketchDigitalClock_RunTaskFunction(appData->displayData, SYS_TASK_FUNC_TOGGLE_BACKLIGHT_PALETTE);
+        PoketchDigitalClock_StartTask(appData->displayData, SYS_TASK_FUNC_TOGGLE_BACKLIGHT_PALETTE);
     }
 
-    if (ov26_022564CC(appData->displayData, 1)) {
+    if (PoketchDigitalClock_TaskIsNotActive(appData->displayData, 1)) {
         appData->minute = appData->clockData.time.minute;
         appData->hour = appData->clockData.time.hour;
         GetCurrentTime(&(appData->clockData.time));
 
         if ((appData->minute != appData->clockData.time.minute) || (appData->hour != appData->clockData.time.hour)) {
-            PoketchDigitalClock_RunTaskFunction(appData->displayData, SYS_TASK_FUNC_UPDATE_CLOCK_DIGITS);
+            PoketchDigitalClock_StartTask(appData->displayData, SYS_TASK_FUNC_UPDATE_CLOCK_DIGITS);
         }
     }
 
@@ -223,12 +223,12 @@ static BOOL PoketchDigitalClock_UnloadApp(AppData *appData)
 {
     switch (appData->taskStage) {
     case 0:
-        PoketchDigitalClock_RunTaskFunction(appData->displayData, SYS_TASK_FUNC_FREE_BACKGROUND);
+        PoketchDigitalClock_StartTask(appData->displayData, SYS_TASK_FUNC_FREE_BACKGROUND);
         appData->taskStage++;
         break;
 
     case 1:
-        if (ov26_022564D8(appData->displayData)) {
+        if (PoketchDigitalClock_NoActiveTasks(appData->displayData)) {
             return TRUE;
         }
 
