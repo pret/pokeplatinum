@@ -46,7 +46,6 @@ struct DisplayData_t {
     u16 digitsTilemap[POKETCH_DIGIT_TILEMAP_SIZE_BYTES];
 };
 
-
 BOOL PoketchDigitalClock_SetupDisplayData(DisplayData **displayData, const ClockData *clockData, BgConfig *bgConfig)
 {
     DisplayData *newDisplayData = (DisplayData *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(DisplayData));

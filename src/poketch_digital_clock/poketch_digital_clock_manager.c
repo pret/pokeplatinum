@@ -66,7 +66,7 @@ static BOOL PoketchDigitalClock_Init(void **appData, PoketchSystem *poketchSys, 
 
     if (newAppData != NULL) {
         if (PoketchDigitalClock_SetupAppData(newAppData, poketchSys, bgConfig, appID)
-        &&  SysTask_Start(PoketchDigitalClock_AppTaskRunner, newAppData, 1) != NULL) {
+            && SysTask_Start(PoketchDigitalClock_AppTaskRunner, newAppData, 1) != NULL) {
             *appData = newAppData;
             return TRUE;
         }
