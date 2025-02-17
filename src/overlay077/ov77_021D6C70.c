@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/pokemon_sprite.h"
 
 #include "camera.h"

@@ -13,7 +13,6 @@
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02099F80.h"

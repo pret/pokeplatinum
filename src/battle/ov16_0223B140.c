@@ -11,7 +11,6 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207A778.h"
 #include "struct_defs/struct_0207C690.h"

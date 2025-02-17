@@ -5,7 +5,6 @@
 
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
-#include "struct_defs/archived_sprite.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F0EB0.h"

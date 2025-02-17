@@ -5,7 +5,6 @@
 
 #include "constants/species.h"
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_0202DF40.h"
 
 #include "overlay097/struct_ov97_0222D250.h"

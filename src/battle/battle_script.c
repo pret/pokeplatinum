@@ -14,7 +14,6 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/fraction.h"
 #include "struct_defs/pokemon_sprite.h"

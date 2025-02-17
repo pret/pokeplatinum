@@ -5,8 +5,6 @@
 
 #include "constants/pokemon.h"
 
-#include "struct_defs/archived_sprite.h"
-
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/sprites.h"
 #include "overlay115/camera_angle.h"

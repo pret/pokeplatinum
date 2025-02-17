@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV16_0225EA80_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/archived_sprite.h"
 
 #include "battle/struct_ov16_0225BFFC_decl.h"
 #include "battle/struct_ov16_02265BBC.h"

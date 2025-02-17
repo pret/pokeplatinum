@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/pokemon_sprite.h"
 
 #include "overlay021/ov21_021D4C0C.h"

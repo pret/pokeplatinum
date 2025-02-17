@@ -6,8 +6,6 @@
 #include "generated/gender_ratios.h"
 #include "generated/genders.h"
 
-#include "struct_defs/archived_sprite.h"
-
 #include "heap.h"
 #include "math.h"
 #include "narc.h"

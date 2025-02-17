@@ -7,7 +7,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
 #include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"

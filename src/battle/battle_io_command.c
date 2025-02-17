@@ -6,7 +6,6 @@
 #include "constants/battle/battle_io.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
 
 #include "battle/battle_display.h"

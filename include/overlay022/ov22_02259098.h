@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_020298D8.h"
 
 #include "overlay022/struct_ov22_022596B0.h"

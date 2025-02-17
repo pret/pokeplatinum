@@ -8,7 +8,6 @@
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/pokemon_sprite.h"

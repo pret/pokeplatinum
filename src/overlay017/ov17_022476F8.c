@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
-
 #include "overlay017/struct_ov17_022476F8.h"
 #include "overlay017/struct_ov17_0224792C.h"
 #include "overlay017/struct_ov17_02247A48.h"

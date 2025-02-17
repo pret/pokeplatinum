@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02008900.h"
 #include "struct_defs/struct_02013610.h"

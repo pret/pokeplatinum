@@ -4,8 +4,6 @@
 #include <nitro/gx.h>
 #include <nnsys.h>
 
-#include "struct_defs/archived_sprite.h"
-
 #include "overlay022/struct_ov22_02257964.h"
 #include "overlay022/struct_ov22_02259560.h"
 #include "overlay022/struct_ov22_0225B388.h"

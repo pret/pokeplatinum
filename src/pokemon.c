@@ -20,7 +20,6 @@
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/poke_animation_settings.h"
 #include "struct_defs/pokemon_sprite.h"

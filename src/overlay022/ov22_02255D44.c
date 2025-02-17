@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_02093BBC.h"

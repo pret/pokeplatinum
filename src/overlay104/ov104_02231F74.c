@@ -5,7 +5,6 @@
 
 #include "constants/narc.h"
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/sentence.h"
 
 #include "overlay063/ov63_0222BE18.h"

@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"

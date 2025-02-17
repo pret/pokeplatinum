@@ -6,7 +6,6 @@
 #include "generated/trainer_score_events.h"
 
 #include "struct_decls/font_oam.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0202CA28.h"
