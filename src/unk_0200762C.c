@@ -318,48 +318,48 @@ void *sub_0200762C(int heapID)
 
     v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02007768));
 
-    v0->unk_2E8 = heapID;
-    v0->unk_330 = 0;
-    v0->unk_2EC = 0;
-    v0->unk_2F0 = (32 * 32 * 0x20);
-    v0->unk_2F4 = 0;
-    v0->unk_2F8 = (0x20 * 4);
-    v0->unk_2FC = Heap_AllocFromHeap(heapID, (32 * 32 * 0x20));
-    v0->unk_300 = Heap_AllocFromHeap(heapID, (0x20 * 6));
+    v0->heapID = heapID;
+    v0->dummy330 = 0;
+    v0->charBaseAddr = 0;
+    v0->charSize = (32 * 32 * 0x20);
+    v0->plttBaseAddr = 0;
+    v0->plttSize = (0x20 * 4);
+    v0->charRawData = Heap_AllocFromHeap(heapID, (32 * 32 * 0x20));
+    v0->plttRawData = Heap_AllocFromHeap(heapID, (0x20 * 6));
 
-    MI_CpuClearFast(v0->unk_300, sizeof(0x20 * 6));
-    v0->unk_304 = Heap_AllocFromHeap(heapID, (0x20 * 6));
-    MI_CpuClearFast(v0->unk_304, sizeof(0x20 * 6));
+    MI_CpuClearFast(v0->plttRawData, sizeof(0x20 * 6));
+    v0->plttRawDataUnfaded = Heap_AllocFromHeap(heapID, (0x20 * 6));
+    MI_CpuClearFast(v0->plttRawDataUnfaded, sizeof(0x20 * 6));
 
     for (v1 = 0; v1 < 4; v1++) {
-        MI_CpuClearFast(&v0->unk_00[v1], sizeof(PokemonSprite));
+        MI_CpuClearFast(&v0->sprites[v1], sizeof(PokemonSprite));
     }
 
     NNS_G2dSetupSoftwareSpriteCamera();
 
-    v0->unk_333 = 0;
+    v0->needG3Identity = FALSE;
 
-    v7 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, 251, v0->unk_2E8);
+    v7 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, 251, v0->heapID);
     NNS_G2dGetUnpackedCharacterData(v7, &v5);
 
-    v0->unk_308.pixelFmt = v5->pixelFmt;
-    v0->unk_308.mapingType = v5->mapingType;
-    v0->unk_308.characterFmt = v5->characterFmt;
+    v0->charData.pixelFmt = v5->pixelFmt;
+    v0->charData.mapingType = v5->mapingType;
+    v0->charData.characterFmt = v5->characterFmt;
     v6 = v5->pRawData;
 
     sub_02009348(v6);
-    MI_CpuFill8(&v0->unk_2FC[0], v6[0], (32 * 32 * 0x20));
+    MI_CpuFill8(&v0->charRawData[0], v6[0], (32 * 32 * 0x20));
 
     for (v4 = 0; v4 < 80; v4++) {
         for (v3 = 0; v3 < 160 / 4; v3++) {
-            v0->unk_2FC[v4 * 0x80 + v3 + 0x5050] = v6[v4 * 0x50 + v3];
+            v0->charRawData[v4 * 0x80 + v3 + 0x5050] = v6[v4 * 0x50 + v3];
         }
     }
 
     Heap_FreeToHeap(v7);
 
-    v0->unk_331 = 1;
-    v0->unk_332 = 1;
+    v0->needLoadImage = TRUE;
+    v0->needLoadPltt = TRUE;
 
     return v0;
 }
@@ -402,77 +402,77 @@ void sub_02007768(UnkStruct_02007768 *param0)
     NNS_G3dGeFlushBuffer();
 
     G3_PushMtx();
-    G3_TexImageParam(param0->unk_2B0.attr.fmt, GX_TEXGEN_TEXCOORD, param0->unk_2B0.attr.sizeS, param0->unk_2B0.attr.sizeT, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, param0->unk_2B0.attr.plttUse, param0->unk_2EC);
+    G3_TexImageParam(param0->imageProxy.attr.fmt, GX_TEXGEN_TEXCOORD, param0->imageProxy.attr.sizeS, param0->imageProxy.attr.sizeT, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, param0->imageProxy.attr.plttUse, param0->charBaseAddr);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if ((param0->unk_00[v0].unk_00_0) && (param0->unk_00[v0].unk_24.unk_30_0 == 0) && (param0->unk_00[v0].unk_24.unk_30_11 == 0)) {
-            if (param0->unk_00[v0].unk_68 != NULL) {
-                param0->unk_00[v0].unk_68(&param0->unk_00[v0], &param0->unk_00[v0].unk_24);
+        if ((param0->sprites[v0].unk_00_0) && (param0->sprites[v0].unk_24.unk_30_0 == 0) && (param0->sprites[v0].unk_24.unk_30_11 == 0)) {
+            if (param0->sprites[v0].unk_68 != NULL) {
+                param0->sprites[v0].unk_68(&param0->sprites[v0], &param0->sprites[v0].unk_24);
             }
 
             NNS_G3dGeFlushBuffer();
 
-            if (param0->unk_333 != 1) {
+            if (param0->needG3Identity != TRUE) {
                 G3_Identity();
             }
 
-            sub_020088D8(&param0->unk_00[v0]);
+            sub_020088D8(&param0->sprites[v0]);
 
-            G3_TexPlttBase((u32)(param0->unk_2F4 + 32 * v0), param0->unk_2B0.attr.fmt);
-            G3_Translate((param0->unk_00[v0].unk_24.unk_00 + param0->unk_00[v0].unk_24.unk_1C) << FX32_SHIFT, (param0->unk_00[v0].unk_24.unk_02 + param0->unk_00[v0].unk_24.unk_1E) << FX32_SHIFT, param0->unk_00[v0].unk_24.unk_04 << FX32_SHIFT);
-            G3_RotX(FX_SinIdx(param0->unk_00[v0].unk_24.unk_14), FX_CosIdx(param0->unk_00[v0].unk_24.unk_14));
-            G3_RotY(FX_SinIdx(param0->unk_00[v0].unk_24.unk_16), FX_CosIdx(param0->unk_00[v0].unk_24.unk_16));
-            G3_RotZ(FX_SinIdx(param0->unk_00[v0].unk_24.unk_18), FX_CosIdx(param0->unk_00[v0].unk_24.unk_18));
-            G3_Translate(-((param0->unk_00[v0].unk_24.unk_00 + param0->unk_00[v0].unk_24.unk_1C) << FX32_SHIFT), -((param0->unk_00[v0].unk_24.unk_02 + param0->unk_00[v0].unk_24.unk_1E) << FX32_SHIFT), -(param0->unk_00[v0].unk_24.unk_04 << FX32_SHIFT));
-            G3_MaterialColorDiffAmb(GX_RGB(param0->unk_00[v0].unk_24.unk_2C_0, param0->unk_00[v0].unk_24.unk_2C_5, param0->unk_00[v0].unk_24.unk_2C_10), GX_RGB(param0->unk_00[v0].unk_24.unk_2C_15, param0->unk_00[v0].unk_24.unk_2C_20, param0->unk_00[v0].unk_24.unk_2C_25), 1);
+            G3_TexPlttBase((u32)(param0->plttBaseAddr + 32 * v0), param0->imageProxy.attr.fmt);
+            G3_Translate((param0->sprites[v0].unk_24.unk_00 + param0->sprites[v0].unk_24.unk_1C) << FX32_SHIFT, (param0->sprites[v0].unk_24.unk_02 + param0->sprites[v0].unk_24.unk_1E) << FX32_SHIFT, param0->sprites[v0].unk_24.unk_04 << FX32_SHIFT);
+            G3_RotX(FX_SinIdx(param0->sprites[v0].unk_24.unk_14), FX_CosIdx(param0->sprites[v0].unk_24.unk_14));
+            G3_RotY(FX_SinIdx(param0->sprites[v0].unk_24.unk_16), FX_CosIdx(param0->sprites[v0].unk_24.unk_16));
+            G3_RotZ(FX_SinIdx(param0->sprites[v0].unk_24.unk_18), FX_CosIdx(param0->sprites[v0].unk_24.unk_18));
+            G3_Translate(-((param0->sprites[v0].unk_24.unk_00 + param0->sprites[v0].unk_24.unk_1C) << FX32_SHIFT), -((param0->sprites[v0].unk_24.unk_02 + param0->sprites[v0].unk_24.unk_1E) << FX32_SHIFT), -(param0->sprites[v0].unk_24.unk_04 << FX32_SHIFT));
+            G3_MaterialColorDiffAmb(GX_RGB(param0->sprites[v0].unk_24.unk_2C_0, param0->sprites[v0].unk_24.unk_2C_5, param0->sprites[v0].unk_24.unk_2C_10), GX_RGB(param0->sprites[v0].unk_24.unk_2C_15, param0->sprites[v0].unk_24.unk_2C_20, param0->sprites[v0].unk_24.unk_2C_25), 1);
             G3_MaterialColorSpecEmi(GX_RGB(16, 16, 16), GX_RGB(0, 0, 0), 0);
-            G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, param0->unk_00[v0].unk_00_1, param0->unk_00[v0].unk_24.unk_30_2, 0);
+            G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, param0->sprites[v0].unk_00_1, param0->sprites[v0].unk_24.unk_30_2, 0);
 
-            if (param0->unk_00[v0].unk_24.unk_30_1) {
-                v3 = Unk_020E4ECC[v0][param0->unk_00[v0].unk_5B][0] + param0->unk_00[v0].unk_24.unk_20;
-                v5 = Unk_020E4ECC[v0][param0->unk_00[v0].unk_5B][0] + param0->unk_00[v0].unk_24.unk_20 + param0->unk_00[v0].unk_24.unk_22;
-                v4 = Unk_020E4ECC[v0][param0->unk_00[v0].unk_5B][1] + param0->unk_00[v0].unk_24.unk_21;
-                v6 = Unk_020E4ECC[v0][param0->unk_00[v0].unk_5B][1] + param0->unk_00[v0].unk_24.unk_21 + param0->unk_00[v0].unk_24.unk_23;
-                NNS_G2dDrawSpriteFast(param0->unk_00[v0].unk_24.unk_00 - 80 / 2 + param0->unk_00[v0].unk_24.unk_20 + param0->unk_00[v0].unk_24.unk_08, param0->unk_00[v0].unk_24.unk_02 - 80 / 2 + param0->unk_00[v0].unk_24.unk_21 + param0->unk_00[v0].unk_24.unk_0A - param0->unk_00[v0].unk_6C.unk_02, param0->unk_00[v0].unk_24.unk_04 + param0->unk_00[v0].unk_24.unk_0C, param0->unk_00[v0].unk_24.unk_22, param0->unk_00[v0].unk_24.unk_23, v3, v4, v5, v6);
+            if (param0->sprites[v0].unk_24.unk_30_1) {
+                v3 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][0] + param0->sprites[v0].unk_24.unk_20;
+                v5 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][0] + param0->sprites[v0].unk_24.unk_20 + param0->sprites[v0].unk_24.unk_22;
+                v4 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][1] + param0->sprites[v0].unk_24.unk_21;
+                v6 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][1] + param0->sprites[v0].unk_24.unk_21 + param0->sprites[v0].unk_24.unk_23;
+                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_24.unk_00 - 80 / 2 + param0->sprites[v0].unk_24.unk_20 + param0->sprites[v0].unk_24.unk_08, param0->sprites[v0].unk_24.unk_02 - 80 / 2 + param0->sprites[v0].unk_24.unk_21 + param0->sprites[v0].unk_24.unk_0A - param0->sprites[v0].unk_6C.unk_02, param0->sprites[v0].unk_24.unk_04 + param0->sprites[v0].unk_24.unk_0C, param0->sprites[v0].unk_24.unk_22, param0->sprites[v0].unk_24.unk_23, v3, v4, v5, v6);
             } else {
-                v1 = (80 * param0->unk_00[v0].unk_24.unk_10) >> 8;
-                v2 = (80 * param0->unk_00[v0].unk_24.unk_12) >> 8;
-                v3 = Unk_020E4ECC[v0][param0->unk_00[v0].unk_5B][0];
-                v5 = Unk_020E4ECC[v0][param0->unk_00[v0].unk_5B][2];
-                v4 = Unk_020E4ECC[v0][param0->unk_00[v0].unk_5B][1];
-                v6 = Unk_020E4ECC[v0][param0->unk_00[v0].unk_5B][3];
-                NNS_G2dDrawSpriteFast(param0->unk_00[v0].unk_24.unk_00 - v1 / 2 + param0->unk_00[v0].unk_24.unk_08, param0->unk_00[v0].unk_24.unk_02 - v2 / 2 + param0->unk_00[v0].unk_24.unk_0A - param0->unk_00[v0].unk_6C.unk_02, param0->unk_00[v0].unk_24.unk_04 + param0->unk_00[v0].unk_24.unk_0C, v1, v2, v3, v4, v5, v6);
+                v1 = (80 * param0->sprites[v0].unk_24.unk_10) >> 8;
+                v2 = (80 * param0->sprites[v0].unk_24.unk_12) >> 8;
+                v3 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][0];
+                v5 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][2];
+                v4 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][1];
+                v6 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][3];
+                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_24.unk_00 - v1 / 2 + param0->sprites[v0].unk_24.unk_08, param0->sprites[v0].unk_24.unk_02 - v2 / 2 + param0->sprites[v0].unk_24.unk_0A - param0->sprites[v0].unk_6C.unk_02, param0->sprites[v0].unk_24.unk_04 + param0->sprites[v0].unk_24.unk_0C, v1, v2, v3, v4, v5, v6);
             }
 
-            if ((param0->unk_00[v0].unk_6C.unk_00_0) && (param0->unk_00[v0].unk_6C.unk_00_5) && (param0->unk_00[v0].unk_24.unk_30_1 == 0) && ((param0->unk_334 & 0x1) == 0)) {
-                if (param0->unk_333 != 1) {
+            if ((param0->sprites[v0].unk_6C.unk_00_0) && (param0->sprites[v0].unk_6C.unk_00_5) && (param0->sprites[v0].unk_24.unk_30_1 == 0) && ((param0->flags & 0x1) == 0)) {
+                if (param0->needG3Identity != TRUE) {
                     G3_Identity();
                 }
 
-                G3_TexPlttBase((u32)(param0->unk_2F4 + 32 * (3 + param0->unk_00[v0].unk_6C.unk_00_0)), param0->unk_2B0.attr.fmt);
+                G3_TexPlttBase((u32)(param0->plttBaseAddr + 32 * (3 + param0->sprites[v0].unk_6C.unk_00_0)), param0->imageProxy.attr.fmt);
 
-                if (param0->unk_00[v0].unk_6C.unk_00_4) {
-                    v1 = (64 * param0->unk_00[v0].unk_24.unk_10) >> 8;
-                    v2 = (16 * param0->unk_00[v0].unk_24.unk_12) >> 8;
+                if (param0->sprites[v0].unk_6C.unk_00_4) {
+                    v1 = (64 * param0->sprites[v0].unk_24.unk_10) >> 8;
+                    v2 = (16 * param0->sprites[v0].unk_24.unk_12) >> 8;
                 } else {
                     v1 = 64;
                     v2 = 16;
                 }
 
-                if (param0->unk_00[v0].unk_6C.unk_00_2) {
-                    param0->unk_00[v0].unk_6C.unk_04 = param0->unk_00[v0].unk_24.unk_00 + param0->unk_00[v0].unk_24.unk_08 + param0->unk_00[v0].unk_6C.unk_08;
+                if (param0->sprites[v0].unk_6C.unk_00_2) {
+                    param0->sprites[v0].unk_6C.unk_04 = param0->sprites[v0].unk_24.unk_00 + param0->sprites[v0].unk_24.unk_08 + param0->sprites[v0].unk_6C.unk_08;
                 }
 
-                if (param0->unk_00[v0].unk_6C.unk_00_3) {
-                    param0->unk_00[v0].unk_6C.unk_06 = param0->unk_00[v0].unk_24.unk_02 + param0->unk_00[v0].unk_24.unk_0A + param0->unk_00[v0].unk_6C.unk_0A;
+                if (param0->sprites[v0].unk_6C.unk_00_3) {
+                    param0->sprites[v0].unk_6C.unk_06 = param0->sprites[v0].unk_24.unk_02 + param0->sprites[v0].unk_24.unk_0A + param0->sprites[v0].unk_6C.unk_0A;
                 }
 
-                v3 = Unk_020E4D50[param0->unk_00[v0].unk_6C.unk_00_5][0];
-                v4 = Unk_020E4D50[param0->unk_00[v0].unk_6C.unk_00_5][1];
-                v5 = Unk_020E4D50[param0->unk_00[v0].unk_6C.unk_00_5][2];
-                v6 = Unk_020E4D50[param0->unk_00[v0].unk_6C.unk_00_5][3];
+                v3 = Unk_020E4D50[param0->sprites[v0].unk_6C.unk_00_5][0];
+                v4 = Unk_020E4D50[param0->sprites[v0].unk_6C.unk_00_5][1];
+                v5 = Unk_020E4D50[param0->sprites[v0].unk_6C.unk_00_5][2];
+                v6 = Unk_020E4D50[param0->sprites[v0].unk_6C.unk_00_5][3];
 
-                NNS_G2dDrawSpriteFast(param0->unk_00[v0].unk_6C.unk_04 - v1 / 2, param0->unk_00[v0].unk_6C.unk_06 - v2 / 2, -1000, v1, v2, v3, v4, v5, v6);
+                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_6C.unk_04 - v1 / 2, param0->sprites[v0].unk_6C.unk_06 - v2 / 2, -1000, v1, v2, v3, v4, v5, v6);
             }
         }
     }
@@ -482,9 +482,9 @@ void sub_02007768(UnkStruct_02007768 *param0)
 
 void sub_02007B6C(UnkStruct_02007768 *param0)
 {
-    Heap_FreeToHeap(param0->unk_2FC);
-    Heap_FreeToHeap(param0->unk_300);
-    Heap_FreeToHeap(param0->unk_304);
+    Heap_FreeToHeap(param0->charRawData);
+    Heap_FreeToHeap(param0->plttRawData);
+    Heap_FreeToHeap(param0->plttRawDataUnfaded);
     Heap_FreeToHeap(param0);
 }
 
@@ -523,7 +523,7 @@ PokemonSprite *sub_02007C34(UnkStruct_02007768 *param0, PokemonSpriteTemplate *p
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_00[v0].unk_00_0 == 0) {
+        if (param0->sprites[v0].unk_00_0 == 0) {
             break;
         }
     }
@@ -535,40 +535,40 @@ PokemonSprite *sub_02007C34(UnkStruct_02007768 *param0, PokemonSpriteTemplate *p
 
 PokemonSprite *sub_02007C7C(UnkStruct_02007768 *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8)
 {
-    GF_ASSERT(param0->unk_00[param6].unk_00_0 == 0);
+    GF_ASSERT(param0->sprites[param6].unk_00_0 == 0);
 
-    MI_CpuClearFast(&param0->unk_00[param6], sizeof(PokemonSprite));
+    MI_CpuClearFast(&param0->sprites[param6], sizeof(PokemonSprite));
 
-    param0->unk_00[param6].unk_00_0 = 1;
-    param0->unk_00[param6].unk_00_7 = 1;
-    param0->unk_00[param6].unk_00_8 = 1;
-    param0->unk_00[param6].unk_00_1 = param5;
-    param0->unk_00[param6].unk_04 = *param1;
-    param0->unk_00[param6].unk_14 = *param1;
-    param0->unk_00[param6].unk_24.unk_00 = param2;
-    param0->unk_00[param6].unk_24.unk_02 = param3;
-    param0->unk_00[param6].unk_24.unk_04 = param4;
-    param0->unk_00[param6].unk_24.unk_10 = 0x100;
-    param0->unk_00[param6].unk_24.unk_12 = 0x100;
-    param0->unk_00[param6].unk_24.unk_30_2 = 31;
-    param0->unk_00[param6].unk_24.unk_2C_0 = 31;
-    param0->unk_00[param6].unk_24.unk_2C_5 = 31;
-    param0->unk_00[param6].unk_24.unk_2C_10 = 31;
-    param0->unk_00[param6].unk_24.unk_2C_15 = 16;
-    param0->unk_00[param6].unk_24.unk_2C_20 = 16;
-    param0->unk_00[param6].unk_24.unk_2C_25 = 16;
-    param0->unk_00[param6].unk_68 = param8;
-    param0->unk_00[param6].unk_6C.unk_04 = param2;
-    param0->unk_00[param6].unk_6C.unk_06 = param3;
-    param0->unk_00[param6].unk_6C.unk_00_2 = 1;
-    param0->unk_00[param6].unk_6C.unk_00_3 = 1;
-    param0->unk_00[param6].unk_6C.unk_00_4 = 1;
+    param0->sprites[param6].unk_00_0 = 1;
+    param0->sprites[param6].unk_00_7 = 1;
+    param0->sprites[param6].unk_00_8 = 1;
+    param0->sprites[param6].unk_00_1 = param5;
+    param0->sprites[param6].unk_04 = *param1;
+    param0->sprites[param6].unk_14 = *param1;
+    param0->sprites[param6].unk_24.unk_00 = param2;
+    param0->sprites[param6].unk_24.unk_02 = param3;
+    param0->sprites[param6].unk_24.unk_04 = param4;
+    param0->sprites[param6].unk_24.unk_10 = 0x100;
+    param0->sprites[param6].unk_24.unk_12 = 0x100;
+    param0->sprites[param6].unk_24.unk_30_2 = 31;
+    param0->sprites[param6].unk_24.unk_2C_0 = 31;
+    param0->sprites[param6].unk_24.unk_2C_5 = 31;
+    param0->sprites[param6].unk_24.unk_2C_10 = 31;
+    param0->sprites[param6].unk_24.unk_2C_15 = 16;
+    param0->sprites[param6].unk_24.unk_2C_20 = 16;
+    param0->sprites[param6].unk_24.unk_2C_25 = 16;
+    param0->sprites[param6].unk_68 = param8;
+    param0->sprites[param6].unk_6C.unk_04 = param2;
+    param0->sprites[param6].unk_6C.unk_06 = param3;
+    param0->sprites[param6].unk_6C.unk_00_2 = 1;
+    param0->sprites[param6].unk_6C.unk_00_3 = 1;
+    param0->sprites[param6].unk_6C.unk_00_4 = 1;
 
     if (param7 != NULL) {
-        MI_CpuCopy8(param7, &param0->unk_00[param6].unk_84, sizeof(SpriteAnimationFrame) * 10);
+        MI_CpuCopy8(param7, &param0->sprites[param6].unk_84, sizeof(SpriteAnimationFrame) * 10);
     }
 
-    return &param0->unk_00[param6];
+    return &param0->sprites[param6];
 }
 
 void sub_02007DC8(PokemonSprite *param0)
@@ -581,7 +581,7 @@ void sub_02007DD4(UnkStruct_02007768 *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02007DC8(&param0->unk_00[v0]);
+        sub_02007DC8(&param0->sprites[v0]);
     }
 }
 
@@ -1016,13 +1016,13 @@ void sub_0200872C(UnkStruct_02007768 *param0, int param1, int param2, int param3
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_00[v0].unk_00_0) {
-            param0->unk_00[v0].unk_24.unk_30_12 = 1;
-            param0->unk_00[v0].unk_24.unk_24 = param1;
-            param0->unk_00[v0].unk_24.unk_25 = param2;
-            param0->unk_00[v0].unk_24.unk_26 = 0;
-            param0->unk_00[v0].unk_24.unk_27 = param3;
-            param0->unk_00[v0].unk_24.unk_28 = param4;
+        if (param0->sprites[v0].unk_00_0) {
+            param0->sprites[v0].unk_24.unk_30_12 = 1;
+            param0->sprites[v0].unk_24.unk_24 = param1;
+            param0->sprites[v0].unk_24.unk_25 = param2;
+            param0->sprites[v0].unk_24.unk_26 = 0;
+            param0->sprites[v0].unk_24.unk_27 = param3;
+            param0->sprites[v0].unk_24.unk_28 = param4;
         }
     }
 }
@@ -1165,14 +1165,14 @@ void sub_02008A0C(PokemonSprite *param0)
 
 void sub_02008A78(UnkStruct_02007768 *param0, u32 param1, u32 param2)
 {
-    param0->unk_2EC = param1;
-    param0->unk_2F0 = param2;
+    param0->charBaseAddr = param1;
+    param0->charSize = param2;
 }
 
 void sub_02008A84(UnkStruct_02007768 *param0, u32 param1, u32 param2)
 {
-    param0->unk_2F4 = param1;
-    param0->unk_2F8 = param2;
+    param0->plttBaseAddr = param1;
+    param0->plttSize = param2;
 }
 
 PokemonSpriteTemplate *sub_02008A90(PokemonSprite *param0)
@@ -1182,34 +1182,34 @@ PokemonSpriteTemplate *sub_02008A90(PokemonSprite *param0)
 
 void sub_02008A94(UnkStruct_02007768 *param0)
 {
-    if (param0->unk_331) {
-        param0->unk_331 = 0;
+    if (param0->needLoadImage) {
+        param0->needLoadImage = FALSE;
 
-        NNS_G2dInitImageProxy(&param0->unk_2B0);
+        NNS_G2dInitImageProxy(&param0->imageProxy);
 
-        param0->unk_308.H = 32;
-        param0->unk_308.W = 32;
-        param0->unk_308.szByte = param0->unk_2F0;
-        param0->unk_308.pRawData = param0->unk_2FC;
+        param0->charData.H = 32;
+        param0->charData.W = 32;
+        param0->charData.szByte = param0->charSize;
+        param0->charData.pRawData = param0->charRawData;
 
-        NNS_G2dLoadImage2DMapping(&param0->unk_308, param0->unk_2EC, NNS_G2D_VRAM_TYPE_3DMAIN, &param0->unk_2B0);
+        NNS_G2dLoadImage2DMapping(&param0->charData, param0->charBaseAddr, NNS_G2D_VRAM_TYPE_3DMAIN, &param0->imageProxy);
     }
 
-    if (param0->unk_332) {
-        param0->unk_332 = 0;
+    if (param0->needLoadPltt) {
+        param0->needLoadPltt = FALSE;
 
-        NNS_G2dInitImagePaletteProxy(&param0->unk_2D4);
+        NNS_G2dInitImagePaletteProxy(&param0->paletteProxy);
 
-        param0->unk_320.szByte = param0->unk_2F8;
-        param0->unk_320.pRawData = param0->unk_300;
+        param0->plttData.szByte = param0->plttSize;
+        param0->plttData.pRawData = param0->plttRawData;
 
-        NNS_G2dLoadPalette(&param0->unk_320, param0->unk_2F4, NNS_G2D_VRAM_TYPE_3DMAIN, &param0->unk_2D4);
+        NNS_G2dLoadPalette(&param0->plttData, param0->plttBaseAddr, NNS_G2D_VRAM_TYPE_3DMAIN, &param0->paletteProxy);
     }
 }
 
 void sub_02008B2C(UnkStruct_02007768 *param0, int param1)
 {
-    param0->unk_333 = param1;
+    param0->needG3Identity = param1;
 }
 
 BOOL sub_02008B38(PokemonSprite *param0)
@@ -1220,12 +1220,12 @@ BOOL sub_02008B38(PokemonSprite *param0)
 
 void sub_02008B54(UnkStruct_02007768 *param0, u32 param1)
 {
-    param0->unk_334 |= param1;
+    param0->flags |= param1;
 }
 
 void sub_02008B60(UnkStruct_02007768 *param0, u32 param1)
 {
-    param0->unk_334 &= (param1 ^ 0xffffffff);
+    param0->flags &= (param1 ^ 0xffffffff);
 }
 
 static void sub_02008B78(UnkStruct_02007768 *param0)
@@ -1237,65 +1237,65 @@ static void sub_02008B78(UnkStruct_02007768 *param0)
     u8 v6 = 0;
 
     for (v1 = 0; v1 < 4; v1++) {
-        if ((param0->unk_00[v1].unk_00_0) && (param0->unk_00[v1].unk_00_7)) {
-            param0->unk_00[v1].unk_00_7 = 0;
+        if ((param0->sprites[v1].unk_00_0) && (param0->sprites[v1].unk_00_7)) {
+            param0->sprites[v1].unk_00_7 = 0;
 
             v6 = 1;
-            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->unk_00[v1].unk_04.archive, param0->unk_00[v1].unk_04.character, param0->unk_2E8);
+            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->sprites[v1].unk_04.archive, param0->sprites[v1].unk_04.character, param0->heapID);
 
             NNS_G2dGetUnpackedCharacterData(v5, &v0);
 
-            param0->unk_308.pixelFmt = v0->pixelFmt;
-            param0->unk_308.mapingType = v0->mapingType;
-            param0->unk_308.characterFmt = v0->characterFmt;
+            param0->charData.pixelFmt = v0->pixelFmt;
+            param0->charData.mapingType = v0->mapingType;
+            param0->charData.characterFmt = v0->characterFmt;
 
             v4 = v0->pRawData;
 
-            sub_020093A0(v4, param0->unk_00[v1].unk_04.archive);
-            sub_020091C0(&param0->unk_00[v1], v4);
+            sub_020093A0(v4, param0->sprites[v1].unk_04.archive);
+            sub_020091C0(&param0->sprites[v1], v4);
 
             if (v1 == 3) {
                 for (v3 = 0; v3 < 80; v3++) {
                     for (v2 = 0; v2 < 160 / 2; v2++) {
                         if (v2 < 160 / 4) {
-                            if ((param0->unk_00[v1].unk_24.unk_30_9) && (param0->unk_00[v1].unk_24.unk_30_10)) {
-                                param0->unk_2FC[v3 * 0x80 + v2 + 0x50] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 4 - 1) - v2)]);
-                            } else if (param0->unk_00[v1].unk_24.unk_30_9) {
-                                param0->unk_2FC[v3 * 0x80 + v2 + 0x50] = sub_020091AC(v4[v3 * 0x50 + ((160 / 4 - 1) - v2)]);
-                            } else if (param0->unk_00[v1].unk_24.unk_30_10) {
-                                param0->unk_2FC[v3 * 0x80 + v2 + 0x50] = v4[((80 - 1) - v3) * 0x50 + v2];
-                            } else if (param0->unk_00[v1].unk_24.unk_30_13) {
-                                if (v3 % (param0->unk_00[v1].unk_24.unk_30_13 * 2)) {
-                                    param0->unk_2FC[v3 * 0x80 + v2 + 0x50] = param0->unk_2FC[(v3 - 1) * 0x80 + v2 + 0x50];
+                            if ((param0->sprites[v1].unk_24.unk_30_9) && (param0->sprites[v1].unk_24.unk_30_10)) {
+                                param0->charRawData[v3 * 0x80 + v2 + 0x50] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 4 - 1) - v2)]);
+                            } else if (param0->sprites[v1].unk_24.unk_30_9) {
+                                param0->charRawData[v3 * 0x80 + v2 + 0x50] = sub_020091AC(v4[v3 * 0x50 + ((160 / 4 - 1) - v2)]);
+                            } else if (param0->sprites[v1].unk_24.unk_30_10) {
+                                param0->charRawData[v3 * 0x80 + v2 + 0x50] = v4[((80 - 1) - v3) * 0x50 + v2];
+                            } else if (param0->sprites[v1].unk_24.unk_30_13) {
+                                if (v3 % (param0->sprites[v1].unk_24.unk_30_13 * 2)) {
+                                    param0->charRawData[v3 * 0x80 + v2 + 0x50] = param0->charRawData[(v3 - 1) * 0x80 + v2 + 0x50];
                                 } else {
-                                    if (v2 % (param0->unk_00[v1].unk_24.unk_30_13)) {
-                                        param0->unk_2FC[v3 * 0x80 + v2 + 0x50] = param0->unk_2FC[v3 * 0x80 + (v2 - 1) + 0x50];
+                                    if (v2 % (param0->sprites[v1].unk_24.unk_30_13)) {
+                                        param0->charRawData[v3 * 0x80 + v2 + 0x50] = param0->charRawData[v3 * 0x80 + (v2 - 1) + 0x50];
                                     } else {
-                                        param0->unk_2FC[v3 * 0x80 + v2 + 0x50] = ((v4[v3 * 0x50 + v2] & 0xf) | (v4[v3 * 0x50 + v2] & 0xf) << 4);
+                                        param0->charRawData[v3 * 0x80 + v2 + 0x50] = ((v4[v3 * 0x50 + v2] & 0xf) | (v4[v3 * 0x50 + v2] & 0xf) << 4);
                                     }
                                 }
                             } else {
-                                param0->unk_2FC[v3 * 0x80 + v2 + 0x50] = v4[v3 * 0x50 + v2];
+                                param0->charRawData[v3 * 0x80 + v2 + 0x50] = v4[v3 * 0x50 + v2];
                             }
                         } else {
-                            if ((param0->unk_00[v1].unk_24.unk_30_9) && (param0->unk_00[v1].unk_24.unk_30_10)) {
-                                param0->unk_2FC[v3 * 0x80 + v2 + 0x2828] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
-                            } else if (param0->unk_00[v1].unk_24.unk_30_9) {
-                                param0->unk_2FC[v3 * 0x80 + v2 + 0x2828] = sub_020091AC(v4[v3 * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
-                            } else if (param0->unk_00[v1].unk_24.unk_30_10) {
-                                param0->unk_2FC[v3 * 0x80 + v2 + 0x2828] = v4[((80 - 1) - v3) * 0x50 + v2];
-                            } else if (param0->unk_00[v1].unk_24.unk_30_13) {
-                                if (v3 % (param0->unk_00[v1].unk_24.unk_30_13 * 2)) {
-                                    param0->unk_2FC[v3 * 0x80 + v2 + 0x2828] = param0->unk_2FC[(v3 - 1) * 0x80 + v2 + 0x2828];
+                            if ((param0->sprites[v1].unk_24.unk_30_9) && (param0->sprites[v1].unk_24.unk_30_10)) {
+                                param0->charRawData[v3 * 0x80 + v2 + 0x2828] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
+                            } else if (param0->sprites[v1].unk_24.unk_30_9) {
+                                param0->charRawData[v3 * 0x80 + v2 + 0x2828] = sub_020091AC(v4[v3 * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
+                            } else if (param0->sprites[v1].unk_24.unk_30_10) {
+                                param0->charRawData[v3 * 0x80 + v2 + 0x2828] = v4[((80 - 1) - v3) * 0x50 + v2];
+                            } else if (param0->sprites[v1].unk_24.unk_30_13) {
+                                if (v3 % (param0->sprites[v1].unk_24.unk_30_13 * 2)) {
+                                    param0->charRawData[v3 * 0x80 + v2 + 0x2828] = param0->charRawData[(v3 - 1) * 0x80 + v2 + 0x2828];
                                 } else {
-                                    if (v2 % (param0->unk_00[v1].unk_24.unk_30_13)) {
-                                        param0->unk_2FC[v3 * 0x80 + v2 + 0x2828] = param0->unk_2FC[v3 * 0x80 + (v2 - 1) + 0x2828];
+                                    if (v2 % (param0->sprites[v1].unk_24.unk_30_13)) {
+                                        param0->charRawData[v3 * 0x80 + v2 + 0x2828] = param0->charRawData[v3 * 0x80 + (v2 - 1) + 0x2828];
                                     } else {
-                                        param0->unk_2FC[v3 * 0x80 + v2 + 0x2828] = ((v4[v3 * 0x50 + v2] & 0xf) | (v4[v3 * 0x50 + v2] & 0xf) << 4);
+                                        param0->charRawData[v3 * 0x80 + v2 + 0x2828] = ((v4[v3 * 0x50 + v2] & 0xf) | (v4[v3 * 0x50 + v2] & 0xf) << 4);
                                     }
                                 }
                             } else {
-                                param0->unk_2FC[v3 * 0x80 + v2 + 0x2828] = v4[v3 * 0x50 + v2];
+                                param0->charRawData[v3 * 0x80 + v2 + 0x2828] = v4[v3 * 0x50 + v2];
                             }
                         }
                     }
@@ -1303,32 +1303,32 @@ static void sub_02008B78(UnkStruct_02007768 *param0)
             } else {
                 for (v3 = 0; v3 < 80; v3++) {
                     for (v2 = 0; v2 < 160 / 2; v2++) {
-                        if ((param0->unk_00[v1].unk_24.unk_30_9) && (param0->unk_00[v1].unk_24.unk_30_10)) {
+                        if ((param0->sprites[v1].unk_24.unk_30_9) && (param0->sprites[v1].unk_24.unk_30_10)) {
                             if (v2 < 160 / 4) {
-                                param0->unk_2FC[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 4 - 1) - v2)]);
+                                param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 4 - 1) - v2)]);
                             } else {
-                                param0->unk_2FC[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
+                                param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
                             }
-                        } else if (param0->unk_00[v1].unk_24.unk_30_9) {
+                        } else if (param0->sprites[v1].unk_24.unk_30_9) {
                             if (v2 < 160 / 4) {
-                                param0->unk_2FC[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[v3 * 0x50 + ((160 / 4 - 1) - v2)]);
+                                param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[v3 * 0x50 + ((160 / 4 - 1) - v2)]);
                             } else {
-                                param0->unk_2FC[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[v3 * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
+                                param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[v3 * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
                             }
-                        } else if (param0->unk_00[v1].unk_24.unk_30_10) {
-                            param0->unk_2FC[v3 * 0x80 + v2 + v1 * 0x2800] = v4[((80 - 1) - v3) * 0x50 + v2];
-                        } else if (param0->unk_00[v1].unk_24.unk_30_13) {
-                            if (v3 % (param0->unk_00[v1].unk_24.unk_30_13 * 2)) {
-                                param0->unk_2FC[v3 * 0x80 + v2 + v1 * 0x2800] = param0->unk_2FC[(v3 - 1) * 0x80 + v2 + v1 * 0x2800];
+                        } else if (param0->sprites[v1].unk_24.unk_30_10) {
+                            param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = v4[((80 - 1) - v3) * 0x50 + v2];
+                        } else if (param0->sprites[v1].unk_24.unk_30_13) {
+                            if (v3 % (param0->sprites[v1].unk_24.unk_30_13 * 2)) {
+                                param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = param0->charRawData[(v3 - 1) * 0x80 + v2 + v1 * 0x2800];
                             } else {
-                                if (v2 % (param0->unk_00[v1].unk_24.unk_30_13)) {
-                                    param0->unk_2FC[v3 * 0x80 + v2 + v1 * 0x2800] = param0->unk_2FC[v3 * 0x80 + (v2 - 1) + v1 * 0x2800];
+                                if (v2 % (param0->sprites[v1].unk_24.unk_30_13)) {
+                                    param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = param0->charRawData[v3 * 0x80 + (v2 - 1) + v1 * 0x2800];
                                 } else {
-                                    param0->unk_2FC[v3 * 0x80 + v2 + v1 * 0x2800] = ((v4[v3 * 0x50 + v2] & 0xf) | (v4[v3 * 0x50 + v2] & 0xf) << 4);
+                                    param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = ((v4[v3 * 0x50 + v2] & 0xf) | (v4[v3 * 0x50 + v2] & 0xf) << 4);
                                 }
                             }
                         } else {
-                            param0->unk_2FC[v3 * 0x80 + v2 + v1 * 0x2800] = v4[v3 * 0x50 + v2];
+                            param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = v4[v3 * 0x50 + v2];
                         }
                     }
                 }
@@ -1338,7 +1338,7 @@ static void sub_02008B78(UnkStruct_02007768 *param0)
         }
     }
 
-    param0->unk_331 = v6;
+    param0->needLoadImage = v6;
 }
 
 static void sub_02008FC8(UnkStruct_02007768 *param0)
@@ -1350,63 +1350,63 @@ static void sub_02008FC8(UnkStruct_02007768 *param0)
     u8 v6 = 0;
 
     for (v1 = 0; v1 < 4; v1++) {
-        if ((param0->unk_00[v1].unk_00_0) && (param0->unk_00[v1].unk_00_8)) {
-            param0->unk_00[v1].unk_00_8 = 0;
+        if ((param0->sprites[v1].unk_00_0) && (param0->sprites[v1].unk_00_8)) {
+            param0->sprites[v1].unk_00_8 = 0;
 
             v6 = 1;
-            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->unk_00[v1].unk_04.archive, param0->unk_00[v1].unk_04.palette, param0->unk_2E8);
+            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->sprites[v1].unk_04.archive, param0->sprites[v1].unk_04.palette, param0->heapID);
 
             NNS_G2dGetUnpackedPaletteData(v5, &v0);
 
-            param0->unk_320.fmt = v0->fmt;
+            param0->plttData.fmt = v0->fmt;
             v4 = v0->pRawData;
 
             for (v2 = 0; v2 < 0x10; v2++) {
-                param0->unk_300[v2 + 0x10 * v1] = v4[v2];
-                param0->unk_304[v2 + 0x10 * v1] = v4[v2];
+                param0->plttRawData[v2 + 0x10 * v1] = v4[v2];
+                param0->plttRawDataUnfaded[v2 + 0x10 * v1] = v4[v2];
             }
 
             Heap_FreeToHeap(v5);
 
-            if (param0->unk_00[v1].unk_6C.unk_00_0) {
-                v5 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, 252, param0->unk_2E8);
+            if (param0->sprites[v1].unk_6C.unk_00_0) {
+                v5 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, 252, param0->heapID);
                 NNS_G2dGetUnpackedPaletteData(v5, &v0);
                 v4 = v0->pRawData;
 
                 for (v2 = 0; v2 < 0x10; v2++) {
-                    param0->unk_300[v2 + 0x10 * (3 + param0->unk_00[v1].unk_6C.unk_00_0)] = v4[v2];
-                    param0->unk_304[v2 + 0x10 * (3 + param0->unk_00[v1].unk_6C.unk_00_0)] = v4[v2];
+                    param0->plttRawData[v2 + 0x10 * (3 + param0->sprites[v1].unk_6C.unk_00_0)] = v4[v2];
+                    param0->plttRawDataUnfaded[v2 + 0x10 * (3 + param0->sprites[v1].unk_6C.unk_00_0)] = v4[v2];
                 }
 
                 Heap_FreeToHeap(v5);
             }
         }
 
-        if ((param0->unk_00[v1].unk_00_0) && (param0->unk_00[v1].unk_24.unk_30_12)) {
-            if (param0->unk_00[v1].unk_24.unk_26 == 0) {
+        if ((param0->sprites[v1].unk_00_0) && (param0->sprites[v1].unk_24.unk_30_12)) {
+            if (param0->sprites[v1].unk_24.unk_26 == 0) {
                 v6 = 1;
-                param0->unk_00[v1].unk_24.unk_26 = param0->unk_00[v1].unk_24.unk_27;
+                param0->sprites[v1].unk_24.unk_26 = param0->sprites[v1].unk_24.unk_27;
 
-                BlendPalette((void *)&param0->unk_304[0x10 * v1], (void *)&param0->unk_300[0x10 * v1], 16, param0->unk_00[v1].unk_24.unk_24, param0->unk_00[v1].unk_24.unk_28);
+                BlendPalette((void *)&param0->plttRawDataUnfaded[0x10 * v1], (void *)&param0->plttRawData[0x10 * v1], 16, param0->sprites[v1].unk_24.unk_24, param0->sprites[v1].unk_24.unk_28);
 
-                if (param0->unk_00[v1].unk_6C.unk_00_0) {
-                    BlendPalette((void *)&param0->unk_304[0x10 * (3 + param0->unk_00[v1].unk_6C.unk_00_0)], (void *)&param0->unk_300[0x10 * (3 + param0->unk_00[v1].unk_6C.unk_00_0)], 16, param0->unk_00[v1].unk_24.unk_24, param0->unk_00[v1].unk_24.unk_28);
+                if (param0->sprites[v1].unk_6C.unk_00_0) {
+                    BlendPalette((void *)&param0->plttRawDataUnfaded[0x10 * (3 + param0->sprites[v1].unk_6C.unk_00_0)], (void *)&param0->plttRawData[0x10 * (3 + param0->sprites[v1].unk_6C.unk_00_0)], 16, param0->sprites[v1].unk_24.unk_24, param0->sprites[v1].unk_24.unk_28);
                 }
 
-                if (param0->unk_00[v1].unk_24.unk_24 == param0->unk_00[v1].unk_24.unk_25) {
-                    param0->unk_00[v1].unk_24.unk_30_12 = 0;
-                } else if (param0->unk_00[v1].unk_24.unk_24 > param0->unk_00[v1].unk_24.unk_25) {
-                    param0->unk_00[v1].unk_24.unk_24--;
+                if (param0->sprites[v1].unk_24.unk_24 == param0->sprites[v1].unk_24.unk_25) {
+                    param0->sprites[v1].unk_24.unk_30_12 = 0;
+                } else if (param0->sprites[v1].unk_24.unk_24 > param0->sprites[v1].unk_24.unk_25) {
+                    param0->sprites[v1].unk_24.unk_24--;
                 } else {
-                    param0->unk_00[v1].unk_24.unk_24++;
+                    param0->sprites[v1].unk_24.unk_24++;
                 }
             } else {
-                param0->unk_00[v1].unk_24.unk_26--;
+                param0->sprites[v1].unk_24.unk_26--;
             }
         }
     }
 
-    param0->unk_332 = v6;
+    param0->needLoadPltt = v6;
 }
 
 static u8 sub_020091AC(u8 param0)
