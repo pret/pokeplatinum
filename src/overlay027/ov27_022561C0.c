@@ -165,7 +165,7 @@ static void ov27_022562FC(SysTask *param0, void *param1)
             v1->unk_02 = 0;
         }
 
-        ov25_02254518(v1->poketchSys, v1->buttonManager);
+        PoketechSystem_UpdateButtonManager(v1->poketchSys, v1->buttonManager);
         ov27_022566D8(v1, &(v1->unk_1C));
 
         if (v0[v1->unk_00](v1)) {

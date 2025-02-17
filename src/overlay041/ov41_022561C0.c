@@ -116,7 +116,7 @@ static void ov41_022562B8(SysTask *param0, void *param1)
     UnkStruct_ov41_02256220 *v1 = (UnkStruct_ov41_02256220 *)param1;
 
     if (v1->unk_00 < NELEMS(v0)) {
-        ov25_02254518(v1->poketchSys, v1->buttonManager);
+        PoketechSystem_UpdateButtonManager(v1->poketchSys, v1->buttonManager);
 
         if (v0[v1->unk_00](v1)) {
             ov41_02256294(v1);
@@ -177,7 +177,7 @@ static BOOL ov41_02256378(UnkStruct_ov41_02256220 *param0)
 
     switch (param0->unk_01) {
     case 0:
-        if (ov25_0225450C(param0->poketchSys)) {
+        if (PoketechSystem_IsRunningTask(param0->poketchSys)) {
             break;
         }
 

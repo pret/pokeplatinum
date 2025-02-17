@@ -240,7 +240,7 @@ static BOOL ov52_02256364(UnkStruct_ov52_0225621C *param0)
 
 static BOOL ov52_02256430(UnkStruct_ov52_0225621C *param0)
 {
-    if (ov25_0225450C(param0->poketchSys)) {
+    if (PoketechSystem_IsRunningTask(param0->poketchSys)) {
         return 1;
     }
 
@@ -327,7 +327,7 @@ static BOOL ov52_02256508(UnkStruct_ov52_0225621C *param0)
 
 static BOOL ov52_02256554(UnkStruct_ov52_0225621C *param0)
 {
-    if (ov25_0225450C(param0->poketchSys) == 0) {
+    if (PoketechSystem_IsRunningTask(param0->poketchSys) == 0) {
         u32 v0, v1;
 
         if (TouchScreen_GetTapState(&v0, &v1)) {

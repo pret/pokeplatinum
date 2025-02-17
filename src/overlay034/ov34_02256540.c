@@ -53,7 +53,7 @@ BOOL ov34_02256540(UnkStruct_ov34_02256540 **param0, const UnkStruct_ov34_022565
         PoketchTask_InitActiveTaskList(v0->unk_08, 8);
 
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_6C = 0;
         v0->unk_30 = ov25_02254664();
         v0->unk_34 = NULL;
@@ -182,10 +182,10 @@ static void ov34_02256690(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 39, v2->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 38, v2->unk_04, 6, 0, 0, 1, 8);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     {
-        ov25_02254728(v2->unk_70);
+        Poketch_CopyActivePalette(v2->unk_70);
 
         v2->unk_70[1] = v2->unk_70[8];
         DC_FlushRange(v2->unk_70, sizeof(v2->unk_70));

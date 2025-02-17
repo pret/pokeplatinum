@@ -53,7 +53,7 @@ BOOL ov53_02256420(UnkStruct_ov53_02256420 **param0, const UnkStruct_ov53_022564
     if (v0 != NULL) {
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_20 = ov25_02254664();
         *param0 = v0;
 
@@ -127,7 +127,7 @@ static void ov53_022564B0(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 122, v2->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 121, v2->unk_04, 6, 0, 0, 1, 8);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
     ov53_022566AC(v2, v3);
 
     v1 = GXS_GetDispCnt();
