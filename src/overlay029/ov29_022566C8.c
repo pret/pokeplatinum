@@ -51,7 +51,7 @@ BOOL ov29_022566C8(UnkStruct_ov29_022566C8 **param0, const UnkStruct_ov29_022566
 
         GF_ASSERT(GF_heap_c_dummy_return_true(7));
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_50 = ov25_02254664();
 
         GF_ASSERT(GF_heap_c_dummy_return_true(7));
@@ -175,7 +175,7 @@ static void ov29_02256804(SysTask *param0, void *param1)
 
     Graphics_LoadTilesToBgLayer(12, 30, v3->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 31, v3->unk_04, 6, 0, 0, 1, 8);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
 

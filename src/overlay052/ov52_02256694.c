@@ -59,7 +59,7 @@ BOOL ov52_02256694(UnkStruct_ov52_02256694 **param0, const UnkStruct_ov52_022566
     if (v0 != NULL) {
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_30 = ov25_02254664();
         v0->unk_58 = MessageLoader_Init(1, 26, 461, 8);
         v0->unk_5C = Strbuf_Init(96, 8);
@@ -209,7 +209,7 @@ static void ov52_022567F4(SysTask *param0, void *param1)
     v5 /= 0x20;
 
     Graphics_LoadTilemapToBgLayer(12, 95, v2->unk_04, 6, 0, 0, 1, 8);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     Window_Add(v2->unk_04, &v2->unk_20, 6, 2, 2, 24, 20, 0, v5);
     Window_PutToTilemap(&v2->unk_20);

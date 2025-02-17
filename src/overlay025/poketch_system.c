@@ -304,7 +304,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
 {
     switch (poketchSys->subState) {
     case 0:
-        if (ov25_0225450C(poketchSys)) {
+        if (PoketechSystem_IsRunningTask(poketchSys)) {
             return;
         }
 
@@ -573,7 +573,7 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
 {
     PoketchSystem *poketchSys = (PoketchSystem *)system;
 
-    if (ov25_0225450C(poketchSys) == FALSE) {
+    if (PoketechSystem_IsRunningTask(poketchSys) == FALSE) {
         switch (touchEvent) {
         case BUTTON_TOUCH_RELEASED:
             poketchSys->touchingScreen = TRUE;
@@ -587,7 +587,7 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
     }
 
     if (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_SCREEN) {
-        if (ov25_0225450C(poketchSys) && touchEvent == BUTTON_TOUCH_RELEASED) {
+        if (PoketechSystem_IsRunningTask(poketchSys) && touchEvent == BUTTON_TOUCH_RELEASED) {
             Sound_PlayEffect(SEQ_SE_DP_BEEP);
         }
     } else {
@@ -598,7 +598,7 @@ static void PoketchSystem_OnButtonEvent(u32 buttonID, u32 buttonEvent, u32 touch
             v1 = (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_UP) ? 8 : 11;
             break;
         case BUTTON_TOUCH_RELEASED:
-            if (ov25_0225450C(poketchSys) || poketchSys->unk_06) {
+            if (PoketechSystem_IsRunningTask(poketchSys) || poketchSys->unk_06) {
                 v1 = (buttonID == POKETCH_SYSTEM_MAIN_BUTTON_UP) ? 6 : 9;
                 buttonEvent = 0;
             } else {
@@ -665,7 +665,7 @@ void PoketchSystem_PlaySoundEffect(u32 soundID)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if ((poketchSys->appChanging == FALSE) && (ov25_0225450C(poketchSys) == FALSE)) {
+    if ((poketchSys->appChanging == FALSE) && (PoketechSystem_IsRunningTask(poketchSys) == FALSE)) {
         Sound_PlayEffect(soundID);
     }
 }
@@ -674,7 +674,7 @@ void PoketchSystem_PlayCry(u32 species, u32 form)
 {
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
-    if (poketchSys->appChanging == FALSE && ov25_0225450C(poketchSys) == 0) {
+    if (poketchSys->appChanging == FALSE && PoketechSystem_IsRunningTask(poketchSys) == 0) {
         sub_02005844(species, form);
     }
 }
@@ -693,7 +693,7 @@ BOOL PoketchSystem_GetDisplayHeldCoords(u32 *x, u32 *y)
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if (!poketchSys->appChanging
-        && !ov25_0225450C(poketchSys)
+        && !PoketechSystem_IsRunningTask(poketchSys)
         && TouchScreen_GetHoldState(x, y)) {
         return PoketchSystem_InsideScreenBounds(*x, *y);
     }
@@ -706,7 +706,7 @@ BOOL PoketchSystem_GetDisplayTappedCoords(u32 *x, u32 *y)
     PoketchSystem *poketchSys = PoketchSystem_GetFromFieldSystem();
 
     if (!poketchSys->appChanging
-        && !ov25_0225450C(poketchSys)
+        && !PoketechSystem_IsRunningTask(poketchSys)
         && TouchScreen_GetTapState(x, y)) {
         return PoketchSystem_InsideScreenBounds(*x, *y);
     }
@@ -714,14 +714,14 @@ BOOL PoketchSystem_GetDisplayTappedCoords(u32 *x, u32 *y)
     return FALSE;
 }
 
-BOOL ov25_0225450C(const PoketchSystem *poketchSys)
+BOOL PoketechSystem_IsRunningTask(const PoketchSystem *poketchSys)
 {
     return FieldSystem_IsRunningTask(poketchSys->fieldSystem);
 }
 
-void ov25_02254518(const PoketchSystem *poketchSys, PoketchButtonManager *buttonManager)
+void PoketechSystem_UpdateButtonManager(const PoketchSystem *poketchSys, PoketchButtonManager *buttonManager)
 {
-    if (ov25_0225450C(poketchSys) == 0 && poketchSys->appChanging == FALSE) {
+    if (PoketechSystem_IsRunningTask(poketchSys) == FALSE && poketchSys->appChanging == FALSE) {
         PoketchButtonManager_Update(buttonManager);
     }
 }

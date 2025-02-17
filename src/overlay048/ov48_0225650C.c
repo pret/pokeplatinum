@@ -57,7 +57,7 @@ BOOL ov48_0225650C(UnkStruct_ov48_0225650C **param0, const UnkStruct_ov48_022565
     if (v0 != NULL) {
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_20 = ov25_02254664();
         v0->unk_150 = param1->unk_8C;
         *param0 = v0;
@@ -136,7 +136,7 @@ static void ov48_022565A8(SysTask *param0, void *param1)
 
     Graphics_LoadTilemapToBgLayer(12, 116, v2->unk_04, 6, 0, 0, 1, 8);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
     ov48_02256650(v2, v4);
 
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);

@@ -185,7 +185,7 @@ void ov25_02255290(u16 *param0, u32 param1)
         };
         u32 v2, v3, v4, v5, v6;
 
-        ov25_02254728(v0);
+        Poketch_CopyActivePalette(v0);
 
         for (v2 = 0; v2 < param1; v2++) {
             v3 = (param0[v2] & GX_RGB_R_MASK) >> GX_RGB_R_SHIFT;
@@ -214,7 +214,7 @@ void ov25_02255308(u32 param0, u32 param1)
     if (v0) {
         u16 *v1 = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, 0x20);
 
-        ov25_02254728(v0);
+        Poketch_CopyActivePalette(v0);
 
         if (v1) {
             int v2;

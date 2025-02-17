@@ -34,7 +34,7 @@ BOOL ov39_022563DC(UnkStruct_ov39_022563DC **param0, const UnkStruct_ov39_022563
         PoketchTask_InitActiveTaskList(v0->unk_08, 4);
 
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
 
         if (v0->unk_04 != NULL) {
             *param0 = v0;
@@ -112,7 +112,7 @@ static void ov39_02256468(SysTask *param0, void *param1)
     Graphics_LoadTilesToBgLayer(12, 59, v2->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 58, v2->unk_04, 6, 0, 0, 1, 8);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     for (v6 = 0; v6 < 6; v6++) {
         ov39_0225659C(v2, v6, v3->unk_04[v6], 0);

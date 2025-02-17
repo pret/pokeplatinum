@@ -51,7 +51,7 @@ BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPart
         PoketchTask_InitActiveTaskList(graphicsData->activeTaskIds, 8);
 
         graphicsData->playerParty = playerParty;
-        graphicsData->bgConfig = ov25_02254674();
+        graphicsData->bgConfig = Poketch_GetBgConfig();
         graphicsData->unk_08 = ov25_02254664();
         graphicsData->partyCount = 0;
         graphicsData->bounceAnimTask = NULL;
@@ -142,7 +142,7 @@ static void DrawAppScreen(SysTask *param0, void *param1)
     v3 /= TILE_SIZE_4BPP;
 
     Bg_FillTilemapRect(v2->bgConfig, 6, 0x5, 0, 0, 32, 24, 0);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     v2->hpBarBaseTile = v3;
     CreateHpBars(v2, v2->playerParty, v3);
