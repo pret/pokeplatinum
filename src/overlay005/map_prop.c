@@ -5,13 +5,11 @@
 
 #include "constants/heap.h"
 
+#include "overlay005/map_prop_material_shape.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021D56BC.h"
 #include "overlay005/ov5_021D5878.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
-#include "overlay005/struct_ov5_021D5778_decl.h"
-#include "overlay005/struct_ov5_021D57B4.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021EF76C_decl.h"
 
@@ -22,7 +20,7 @@
 #include "unk_0201CED8.h"
 
 static void MapPropManager_InitRenderObj(const int loadedPropId, UnkStruct_ov5_021EF76C *const param1, NNSG3dRenderObj *renderObj, NNSG3dResMdl **resMdl);
-static void ov5_021E1944(const NNSG3dResMdl *resMdl, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const UnkStruct_ov5_021D5778 *param4, const int param5);
+static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *resMdl, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const MapPropMaterialShape *propMatShp, const int mapPropID);
 
 typedef struct {
     int id;
@@ -155,21 +153,19 @@ void MapPropManager_Render(const VecFx32 *positionOffset, const UnkStruct_ov5_02
             position.z += positionOffset->z;
 
             if (sub_0201CED8(loadedProp->model, &position, &rotationMatrix, &loadedProp->scale)) {
-                const UnkStruct_ov5_021D5778 *v4;
-                u16 v5;
-
-                v4 = ov5_021EFAB4(param1);
+                const MapPropMaterialShape *propMatShp = ov5_021EFAB4(param1);
+                u16 propMatShpIDsCount;
 
                 if (param2 == TRUE) {
                     ov5_021D5948(param3, loadedProp->model, (1 | 1 << 1 | 1 << 4 | 1 << 5 | 1 << 8 | 1 << 9 | 1 << 10 | 1 << 11));
                 }
 
-                ov5_021D5790(loadedProp->id, v4, &v5);
+                MapProp_GetMaterialShapeIDsCount(loadedProp->id, propMatShp, &propMatShpIDsCount);
 
-                if (v5 == 0) {
+                if (propMatShpIDsCount == 0) {
                     Easy3D_DrawRenderObj(&loadedProp->renderObj, &position, &rotationMatrix, &loadedProp->scale);
                 } else {
-                    ov5_021E1944(loadedProp->model, &position, &rotationMatrix, &loadedProp->scale, v4, loadedProp->id);
+                    MapPropManager_RenderUsing1Mat1Shp(loadedProp->model, &position, &rotationMatrix, &loadedProp->scale, propMatShp, loadedProp->id);
                 }
             }
         }
@@ -246,35 +242,35 @@ static void MapPropManager_InitRenderObj(const int loadedPropId, UnkStruct_ov5_0
     NNS_G3dRenderObjInit(renderObj, *resMdl);
 }
 
-static void ov5_021E1944(const NNSG3dResMdl *resMdl, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const UnkStruct_ov5_021D5778 *param4, const int param5)
+static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *resMdl, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const MapPropMaterialShape *propMatShp, const int mapPropID)
 {
     u8 i;
-    u16 v1;
-    u16 v2;
-    u8 v3;
-    BOOL v4;
-    UnkStruct_ov5_021D57B4 const *v5;
+    u16 propMatShpIDsCount;
+    u16 propMatShpIDsIndex;
+    u8 materialID;
+    BOOL sendMaterial;
+    MapPropMaterialShapeIDs const *propMatShpIDs;
 
     NNS_G3dGlbSetBaseTrans(position);
     NNS_G3dGlbSetBaseRot(rotation);
     NNS_G3dGlbSetBaseScale(scale);
     NNS_G3dGlbFlush();
 
-    ov5_021D579C(param5, param4, &v1, &v2);
+    MapProp_GetMaterialShapeIDsLocator(mapPropID, propMatShp, &propMatShpIDsCount, &propMatShpIDsIndex);
 
-    v5 = ov5_021D57B4(v2, param4);
-    v3 = 0xFF;
-    v4 = TRUE;
+    propMatShpIDs = MapPropMaterialShape_GetMaterialShapeIDsAt(propMatShpIDsIndex, propMatShp);
+    materialID = 0xFF;
+    sendMaterial = TRUE;
 
-    for (i = 0; i < v1; i++) {
-        if (v3 != v5[i].unk_00) {
-            v3 = v5[i].unk_00;
-            v4 = TRUE;
+    for (i = 0; i < propMatShpIDsCount; i++) {
+        if (materialID != propMatShpIDs[i].materialID) {
+            materialID = propMatShpIDs[i].materialID;
+            sendMaterial = TRUE;
         } else {
-            v4 = FALSE;
+            sendMaterial = FALSE;
         }
 
-        NNS_G3dDraw1Mat1Shp(resMdl, v3, v5[i].unk_02, v4);
+        NNS_G3dDraw1Mat1Shp(resMdl, materialID, propMatShpIDs[i].shapeID, sendMaterial);
     }
 }
 
@@ -334,20 +330,19 @@ void MapPropManager_Render2(MapPropManager *mapPropManager, UnkStruct_ov5_021EF7
                 continue;
             }
 
-            const UnkStruct_ov5_021D5778 *v3;
-            u16 v4;
+            const MapPropMaterialShape *propMatShp = ov5_021EFAB4(param1);
+            u16 propMatShpIDsCount;
 
-            v3 = ov5_021EFAB4(param1);
-            ov5_021D5790(loadedProp->id, v3, &v4);
+            MapProp_GetMaterialShapeIDsCount(loadedProp->id, propMatShp, &propMatShpIDsCount);
 
             if (loadedProp->applyRotation) {
                 MTX_Rot33Vec(&rotationMatrix, &loadedProp->rotation);
             }
 
-            if (v4 == 0) {
+            if (propMatShpIDsCount == 0) {
                 Easy3D_DrawRenderObj(&loadedProp->renderObj, &loadedProp->position, &rotationMatrix, &loadedProp->scale);
             } else {
-                ov5_021E1944(loadedProp->model, &loadedProp->position, &rotationMatrix, &loadedProp->scale, v3, loadedProp->id);
+                MapPropManager_RenderUsing1Mat1Shp(loadedProp->model, &loadedProp->position, &rotationMatrix, &loadedProp->scale, propMatShp, loadedProp->id);
             }
         }
     }
