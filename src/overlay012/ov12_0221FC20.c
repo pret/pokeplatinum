@@ -4182,8 +4182,8 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *param0, int param1, int par
 
     v2->unk_00 = param1;
     v2->unk_04 = param2;
-    v2->unk_08.unk_00 = BattleSystem_GetSpriteRenderer(param0);
-    v2->unk_08.unk_04 = BattleSystem_GetSpriteGfxHandler(param0);
+    v2->unk_08.unk_00 = BattleSystem_GetSpriteSystem(param0);
+    v2->unk_08.unk_04 = BattleSystem_GetSpriteManager(param0);
     v2->unk_08.unk_08 = BattleSystem_GetPaletteData(param0);
 
     {

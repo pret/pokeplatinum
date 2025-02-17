@@ -5,13 +5,8 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 
 #include "battle/battle_display.h"
@@ -26,13 +21,11 @@
 #include "battle/struct_ov16_0226C378.h"
 #include "battle/struct_ov16_0226DC24_decl.h"
 #include "battle/struct_ov16_0226DEEC_decl.h"
-#include "gmm/message_bank_battle_strings.h"
 #include "overlay011/ov11_0221F800.h"
 
 #include "assert.h"
 #include "bg_window.h"
-#include "cell_actor.h"
-#include "core_sys.h"
+#include "char_transfer.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
@@ -52,15 +45,15 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
-#include "unk_02017728.h"
-#include "unk_0201E86C.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
+
+#include "res/text/bank/battle_strings.h"
 
 typedef struct {
     BattleInput *battleInput;
@@ -152,7 +145,7 @@ typedef struct {
 
 typedef struct {
     FontOAM *fontOAM;
-    SpriteManagerAllocation spriteManAlloc;
+    CharTransferAllocation charTransferAlloc;
     u16 unk_10;
 } BattleInputTextObject;
 
@@ -212,11 +205,11 @@ struct BattleInput_t {
     UnkStruct_02012744 *unk_4C8;
     BattleInputTextObject textObj[13];
     UnkStruct_02012B20 *unk_5B8;
-    CellActorData *actorBallGague[6];
-    CellActorData *actorBallGagueOpponent[6];
-    CellActorData *actorTypeIcons[4];
-    CellActorData *unk_5FC[4];
-    CellActorData *unk_60C[4];
+    ManagedSprite *spriteBallGauge[6];
+    ManagedSprite *spriteBallGaugeOpponent[6];
+    ManagedSprite *spriteTypeIcons[4];
+    ManagedSprite *unk_5FC[4];
+    ManagedSprite *unk_60C[4];
     SysTask *unk_61C[4];
     BallGaugeAnimation ballGaugeAnimations[6];
     SysTask *unk_664;
@@ -338,8 +331,8 @@ static void BattleInput_DestroyTextObjects(BattleInput *battleInput);
 static void ov16_0226A698(BattleInput *battleInput);
 static void ov16_0226A718(BattleInput *battleInput);
 static void ov16_0226A768(BattleInput *battleInput);
-static CellActorData *ov16_0226A7A4(BattleInput *battleInput, Pokemon *param1, int param2, int param3, int param4, int param5);
-static void ov16_0226A928(SysTask *task, void *param1);
+static ManagedSprite *ov16_0226A7A4(BattleInput *battleInput, Pokemon *param1, int param2, int param3, int param4, int param5);
+static void Task_SpriteTickFrame(SysTask *task, void *data);
 static void ov16_0226B988(SysTask *task, void *param1);
 static void ov16_0226BA88(SysTask *task, void *param1);
 static void ov16_0226BB94(void *data);
@@ -826,7 +819,7 @@ static const BattleMenuTemplate sBattleMenuTemplates[] = {
     },
 };
 
-static const SpriteTemplate sBallGagueTemplate = {
+static const SpriteTemplate sBallGaugeTemplate = {
     0xC,
     0xD,
     0x0,
@@ -1186,13 +1179,13 @@ void BattleInput_Free(BattleInput *battleInput)
 void ov16_02268A88(BattleInput *battleInput)
 {
     BgConfig *bgConfig;
-    SpriteRenderer *spriteRenderer;
-    SpriteGfxHandler *gfxHandler;
+    SpriteSystem *spriteSystem;
+    SpriteManager *spriteManager;
     PaletteData *palette;
     int i;
 
-    spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
-    gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    spriteSystem = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
     bgConfig = BattleSystem_GetBgConfig(battleInput->battleSystem);
     palette = BattleSystem_GetPaletteData(battleInput->battleSystem);
 
@@ -1206,35 +1199,35 @@ void ov16_02268A88(BattleInput *battleInput)
 
     Graphics_LoadTilesToBgLayer(7, v5, bgConfig, 4, 0, 0x6000, 1, HEAP_ID_BATTLE);
 
-    sub_0207C9EC(spriteRenderer, gfxHandler, 20017, 20017);
-    MoveTypeIcon_LoadPalette(BattleSystem_GetPaletteData(battleInput->battleSystem), 3, spriteRenderer, gfxHandler, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
+    sub_0207C9EC(spriteSystem, spriteManager, 20017, 20017);
+    MoveTypeIcon_LoadPalette(BattleSystem_GetPaletteData(battleInput->battleSystem), 3, spriteSystem, spriteManager, NNS_G2D_VRAM_TYPE_2DSUB, 20020);
 
     for (i = 0; i < 4; i++) {
-        sub_0207C948(spriteRenderer, gfxHandler, NNS_G2D_VRAM_TYPE_2DSUB, TYPE_NORMAL, 20025 + i);
+        sub_0207C948(spriteSystem, spriteManager, NNS_G2D_VRAM_TYPE_2DSUB, TYPE_NORMAL, 20025 + i);
     }
 
     if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_CATCH_TUTORIAL) {
-        CatchingTutorialFinger_LoadResources(spriteRenderer, gfxHandler, HEAP_ID_BATTLE, palette, 20412, 20036, 20406, 20395);
-        battleInput->catchingTutorial.finger = CatchingTutorialFinger_Create(spriteRenderer, gfxHandler, HEAP_ID_BATTLE, 20412, 20036, 20406, 20395, 10, 0);
+        CatchingTutorialFinger_LoadResources(spriteSystem, spriteManager, HEAP_ID_BATTLE, palette, 20412, 20036, 20406, 20395);
+        battleInput->catchingTutorial.finger = CatchingTutorialFinger_Create(spriteSystem, spriteManager, HEAP_ID_BATTLE, 20412, 20036, 20406, 20395, 10, 0);
     }
 }
 
 void ov16_02268B8C(BattleInput *battleInput)
 {
     int i;
-    SpriteRenderer *spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
-    SpriteGfxHandler *spriteGfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    SpriteManager *spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
 
     for (i = 0; i < 4; i++) {
-        sub_0207CA34(spriteGfxHandler, 20025 + i);
+        sub_0207CA34(spriteManager, 20025 + i);
     }
 
-    sub_0207CA3C(spriteGfxHandler, 20020);
-    sub_0207CA44(spriteGfxHandler, 20017, 20017);
+    sub_0207CA3C(spriteManager, 20020);
+    sub_0207CA44(spriteManager, 20017, 20017);
 
     if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_CATCH_TUTORIAL) {
         CatchingTutorialFinger_Free(battleInput->catchingTutorial.finger);
-        CatchingTutorialFinger_FreeResources(spriteGfxHandler, 20412, 20036, 20406, 20395);
+        CatchingTutorialFinger_FreeResources(spriteManager, 20412, 20036, 20406, 20395);
     }
 }
 
@@ -1243,8 +1236,8 @@ void BattleInput_ChangeMenu(NARC *narcUnused, NARC *param1, BattleInput *battleI
     const BattleMenuTemplate *menuTemplate, *prevMenuTemplate;
     int i;
     BgConfig *bgConfig;
-    SpriteRenderer *spriteRenderer;
-    SpriteGfxHandler *gfxHandler;
+    SpriteSystem *spriteSystem;
+    SpriteManager *spriteManager;
 
     if (param5 != NULL) {
         MI_CpuCopy8(param5, &battleInput->menu, sizeof(BattleInputMenu));
@@ -1253,8 +1246,8 @@ void BattleInput_ChangeMenu(NARC *narcUnused, NARC *param1, BattleInput *battleI
     battleInput->touchDisabled = FALSE;
 
     bgConfig = BattleSystem_GetBgConfig(battleInput->battleSystem);
-    spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
-    gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    spriteSystem = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
 
     if (battleInput->curMenuId == -1) {
         param4 = 1;
@@ -1274,7 +1267,7 @@ void BattleInput_ChangeMenu(NARC *narcUnused, NARC *param1, BattleInput *battleI
         }
     }
 
-    SpriteRenderer_LoadPalette(BattleSystem_GetPaletteData(battleInput->battleSystem), 3, spriteRenderer, gfxHandler, param1, 72, 0, 7, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_GetPaletteData(battleInput->battleSystem), 3, spriteSystem, spriteManager, param1, 72, 0, 7, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
     battleInput->curMenuId = menuId;
 
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_BGALL), 8, 12);
@@ -1290,29 +1283,29 @@ void BattleInput_ChangeMenu(NARC *narcUnused, NARC *param1, BattleInput *battleI
 void BattleInput_CreateBallGagueObjects(NARC *narc, BattleInput *battleInput)
 {
     int i;
-    SpriteRenderer *spriteRenderer;
-    SpriteGfxHandler *spriteGfxHandler;
+    SpriteSystem *spriteSystem;
+    SpriteManager *spriteManager;
 
-    GF_ASSERT(battleInput->actorBallGague[0] == NULL && battleInput->actorBallGagueOpponent[0] == NULL);
+    GF_ASSERT(battleInput->spriteBallGauge[0] == NULL && battleInput->spriteBallGaugeOpponent[0] == NULL);
 
-    spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
-    spriteGfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    spriteSystem = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, narc, 208, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, narc, 207, 1, 20015);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, narc, 209, 1, 20015);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, spriteManager, narc, 208, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSystem, spriteManager, narc, 207, 1, 20015);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSystem, spriteManager, narc, 209, 1, 20015);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, narc, 205, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20024);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, narc, 204, 1, 20016);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(spriteRenderer, spriteGfxHandler, narc, 206, 1, 20016);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, spriteManager, narc, 205, 1, NNS_G2D_VRAM_TYPE_2DSUB, 20024);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSystem, spriteManager, narc, 204, 1, 20016);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSystem, spriteManager, narc, 206, 1, 20016);
 
     for (i = 0; i < 6; i++) {
-        battleInput->actorBallGague[i] = SpriteActor_LoadResources(spriteRenderer, spriteGfxHandler, &sBallGagueTemplate);
-        sub_0200D4D0(battleInput->actorBallGague[i]->unk_00, 12 + 19 * i, 13, ((192 + 80) << FX32_SHIFT));
-        sub_0200D6A4(battleInput->actorBallGague[i], 1);
+        battleInput->spriteBallGauge[i] = SpriteSystem_NewSprite(spriteSystem, spriteManager, &sBallGaugeTemplate);
+        Sprite_SetPositionXYWithSubscreenOffset(battleInput->spriteBallGauge[i]->sprite, 12 + 19 * i, 13, ((192 + 80) << FX32_SHIFT));
+        ManagedSprite_SetAffineOverwriteMode(battleInput->spriteBallGauge[i], 1);
 
-        battleInput->actorBallGagueOpponent[i] = SpriteActor_LoadResources(spriteRenderer, spriteGfxHandler, &sBallGagueOpponentTemplate);
-        sub_0200D4D0(battleInput->actorBallGagueOpponent[i]->unk_00, 246 + -12 * i, 9, ((192 + 80) << FX32_SHIFT));
+        battleInput->spriteBallGaugeOpponent[i] = SpriteSystem_NewSprite(spriteSystem, spriteManager, &sBallGagueOpponentTemplate);
+        Sprite_SetPositionXYWithSubscreenOffset(battleInput->spriteBallGaugeOpponent[i]->sprite, 246 + -12 * i, 9, ((192 + 80) << FX32_SHIFT));
     }
 
     BattleInput_DisableBallGauge(battleInput);
@@ -1321,41 +1314,41 @@ void BattleInput_CreateBallGagueObjects(NARC *narc, BattleInput *battleInput)
     battleInput->unk_08 = SysTask_Start(Task_AnimateBallGauge, battleInput, 1300);
 
     PaletteData *palette = BattleSystem_GetPaletteData(battleInput->battleSystem);
-    BattleCursor_LoadResources(spriteRenderer, spriteGfxHandler, palette, 5, 20411, 20035, 20405, 20394);
-    battleInput->cursor = BattleCursor_New(spriteRenderer, spriteGfxHandler, 5, 20411, 20035, 20405, 20394, 5, 0);
+    BattleCursor_LoadResources(spriteSystem, spriteManager, palette, 5, 20411, 20035, 20405, 20394);
+    battleInput->cursor = BattleCursor_New(spriteSystem, spriteManager, 5, 20411, 20035, 20405, 20394, 5, 0);
 }
 
 static void BattleInput_FreeBallGagueObjects(BattleInput *battleInput)
 {
     int i;
-    SpriteRenderer *spriteRenderer;
-    SpriteGfxHandler *spriteGfxHandler;
+    SpriteSystem *spriteSystem;
+    SpriteManager *spriteManager;
 
-    GF_ASSERT(battleInput->actorBallGague[0] != NULL && battleInput->actorBallGagueOpponent[0] != NULL);
+    GF_ASSERT(battleInput->spriteBallGauge[0] != NULL && battleInput->spriteBallGaugeOpponent[0] != NULL);
 
-    spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
-    spriteGfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    spriteSystem = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
 
-    SpriteGfxHandler_UnloadCharObjById(spriteGfxHandler, 20023);
-    SpriteGfxHandler_UnloadCellObjById(spriteGfxHandler, 20015);
-    SpriteGfxHandler_UnloadAnimObjById(spriteGfxHandler, 20015);
-    SpriteGfxHandler_UnloadCharObjById(spriteGfxHandler, 20024);
-    SpriteGfxHandler_UnloadCellObjById(spriteGfxHandler, 20016);
-    SpriteGfxHandler_UnloadAnimObjById(spriteGfxHandler, 20016);
-    SpriteGfxHandler_UnloadPlttObjById(spriteGfxHandler, 20023);
+    SpriteManager_UnloadCharObjById(spriteManager, 20023);
+    SpriteManager_UnloadCellObjById(spriteManager, 20015);
+    SpriteManager_UnloadAnimObjById(spriteManager, 20015);
+    SpriteManager_UnloadCharObjById(spriteManager, 20024);
+    SpriteManager_UnloadCellObjById(spriteManager, 20016);
+    SpriteManager_UnloadAnimObjById(spriteManager, 20016);
+    SpriteManager_UnloadPlttObjById(spriteManager, 20023);
 
     for (i = 0; i < 6; i++) {
-        sub_0200D0F4(battleInput->actorBallGague[i]);
-        battleInput->actorBallGague[i] = NULL;
+        Sprite_DeleteAndFreeResources(battleInput->spriteBallGauge[i]);
+        battleInput->spriteBallGauge[i] = NULL;
 
-        sub_0200D0F4(battleInput->actorBallGagueOpponent[i]);
-        battleInput->actorBallGagueOpponent[i] = NULL;
+        Sprite_DeleteAndFreeResources(battleInput->spriteBallGaugeOpponent[i]);
+        battleInput->spriteBallGaugeOpponent[i] = NULL;
     }
 
     SysTask_Done(battleInput->unk_08);
     battleInput->unk_08 = NULL;
 
-    BattleCursor_FreeResources(spriteGfxHandler, 20411, 20035, 20405, 20394);
+    BattleCursor_FreeResources(spriteManager, 20411, 20035, 20405, 20394);
     BattleCursor_Free(battleInput->cursor);
 }
 
@@ -1371,7 +1364,7 @@ static void Task_AnimateBallGauge(SysTask *task, void *data)
         switch (ballAnim->state) {
         case 0:
         default:
-            if (sub_0200D400(battleInput->actorBallGague[i]->unk_00) == 0) {
+            if (Sprite_GetDrawFlag2(battleInput->spriteBallGauge[i]->sprite) == 0) {
                 break;
             }
 
@@ -1396,10 +1389,10 @@ static void Task_AnimateBallGauge(SysTask *task, void *data)
             break;
         case 2:
         case 4:
-            sub_0200D7C0(battleInput->actorBallGague[i], 0x800);
+            ManagedSprite_OffsetAffineZRotation(battleInput->spriteBallGauge[i], 0x800);
             ballAnim->dx += 0x180;
 
-            sub_0200D500(battleInput->actorBallGague[i], 12 + 19 * i + ballAnim->dx / 0x100, 13, ((192 + 80) << FX32_SHIFT));
+            ManagedSprite_SetPositionXYWithSubscreenOffset(battleInput->spriteBallGauge[i], 12 + 19 * i + ballAnim->dx / 0x100, 13, ((192 + 80) << FX32_SHIFT));
             ballAnim->unk_06++;
 
             if (ballAnim->unk_06 >= ballAnim->unk_07) {
@@ -1408,8 +1401,8 @@ static void Task_AnimateBallGauge(SysTask *task, void *data)
                 if (ballAnim->state == 2) {
                     ballAnim->state++;
                 } else {
-                    sub_0200D79C(battleInput->actorBallGague[i], 0);
-                    sub_0200D500(battleInput->actorBallGague[i], 12 + 19 * i, 13, ((192 + 80) << FX32_SHIFT));
+                    ManagedSprite_SetAffineZRotation(battleInput->spriteBallGauge[i], 0);
+                    ManagedSprite_SetPositionXYWithSubscreenOffset(battleInput->spriteBallGauge[i], 12 + 19 * i, 13, ((192 + 80) << FX32_SHIFT));
 
                     ballAnim->dx = 0;
 
@@ -1430,10 +1423,10 @@ static void Task_AnimateBallGauge(SysTask *task, void *data)
 
             break;
         case 3:
-            sub_0200D7C0(battleInput->actorBallGague[i], -0x800);
+            ManagedSprite_OffsetAffineZRotation(battleInput->spriteBallGauge[i], -0x800);
             ballAnim->dx -= 0x180;
 
-            sub_0200D500(battleInput->actorBallGague[i], 12 + 19 * i + ballAnim->dx / 0x100, 13, ((192 + 80) << FX32_SHIFT));
+            ManagedSprite_SetPositionXYWithSubscreenOffset(battleInput->spriteBallGauge[i], 12 + 19 * i + ballAnim->dx / 0x100, 13, ((192 + 80) << FX32_SHIFT));
             ballAnim->unk_06++;
 
             if (ballAnim->unk_06 >= ballAnim->unk_07 * 2) {
@@ -1459,13 +1452,13 @@ void ov16_02269168(BattleInput *battleInput, u8 param1[], u8 param2[])
     for (i = 0; i < 6; i++) {
         anim = ov16_0226A934(param1[i]);
 
-        CellActor_SetAnim(battleInput->actorBallGague[i]->unk_00, anim);
-        SpriteActor_UpdateObject(battleInput->actorBallGague[i]->unk_00);
+        Sprite_SetAnim(battleInput->spriteBallGauge[i]->sprite, anim);
+        Sprite_TickFrame(battleInput->spriteBallGauge[i]->sprite);
 
         anim = ov16_0226A934(param2[i]);
 
-        CellActor_SetAnim(battleInput->actorBallGagueOpponent[i]->unk_00, anim);
-        SpriteActor_UpdateObject(battleInput->actorBallGagueOpponent[i]->unk_00);
+        Sprite_SetAnim(battleInput->spriteBallGaugeOpponent[i]->sprite, anim);
+        Sprite_TickFrame(battleInput->spriteBallGaugeOpponent[i]->sprite);
     }
 }
 
@@ -1473,15 +1466,15 @@ void BattleInput_EnableBallGauge(BattleInput *battleInput)
 {
     int i;
 
-    GF_ASSERT(battleInput->actorBallGague[0] != NULL && battleInput->actorBallGagueOpponent[0] != NULL);
+    GF_ASSERT(battleInput->spriteBallGauge[0] != NULL && battleInput->spriteBallGaugeOpponent[0] != NULL);
 
     for (i = 0; i < 6; i++) {
-        SpriteActor_DrawSprite(battleInput->actorBallGague[i]->unk_00, 1);
+        Sprite_SetDrawFlag2(battleInput->spriteBallGauge[i]->sprite, 1);
     }
 
     if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_TRAINER) {
         for (i = 0; i < 6; i++) {
-            SpriteActor_DrawSprite(battleInput->actorBallGagueOpponent[i]->unk_00, 1);
+            Sprite_SetDrawFlag2(battleInput->spriteBallGaugeOpponent[i]->sprite, 1);
         }
     }
 }
@@ -1490,11 +1483,11 @@ void BattleInput_DisableBallGauge(BattleInput *battleInput)
 {
     int i;
 
-    GF_ASSERT(battleInput->actorBallGague[0] != NULL && battleInput->actorBallGagueOpponent[0] != NULL);
+    GF_ASSERT(battleInput->spriteBallGauge[0] != NULL && battleInput->spriteBallGaugeOpponent[0] != NULL);
 
     for (i = 0; i < 6; i++) {
-        SpriteActor_DrawSprite(battleInput->actorBallGague[i]->unk_00, 0);
-        SpriteActor_DrawSprite(battleInput->actorBallGagueOpponent[i]->unk_00, 0);
+        Sprite_SetDrawFlag2(battleInput->spriteBallGauge[i]->sprite, 0);
+        Sprite_SetDrawFlag2(battleInput->spriteBallGaugeOpponent[i]->sprite, 0);
     }
 }
 
@@ -1509,7 +1502,7 @@ int BattleInput_CheckTouch(BattleInput *battleInput)
     menuTemplate = &sBattleMenuTemplates[battleInput->curMenuId];
 
     if ((menuTemplate->touchscreenRect == NULL) || (battleInput->touchDisabled == TRUE)) {
-        return 0xffffffff;
+        return TOUCHSCREEN_INPUT_NONE;
     }
 
     GF_ASSERT(menuTemplate->unk_18 != NULL);
@@ -1517,16 +1510,16 @@ int BattleInput_CheckTouch(BattleInput *battleInput)
     if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_CATCH_TUTORIAL) {
         rectHit = BattleInput_CatchingTutorialMain(battleInput);
     } else {
-        rectHit = sub_02022664(menuTemplate->touchscreenRect);
+        rectHit = TouchScreen_CheckRectanglePressed(menuTemplate->touchscreenRect);
 
-        if (rectHit == 0xffffffff) {
+        if (rectHit == TOUCHSCREEN_INPUT_NONE) {
             rectHit = ov16_0226BE48(battleInput);
             v5++;
         }
     }
 
-    if (rectHit == 0xffffffff) {
-        ret = 0xffffffff;
+    if (rectHit == TOUCHSCREEN_INPUT_NONE) {
+        ret = TOUCHSCREEN_INPUT_NONE;
         paletteId = 0xff;
     } else {
         ret = menuTemplate->unk_18[rectHit];
@@ -1536,7 +1529,7 @@ int BattleInput_CheckTouch(BattleInput *battleInput)
     if (menuTemplate->unk_2C != NULL) {
         ret = menuTemplate->unk_2C(battleInput, ret, paletteId);
 
-        if (ret != 0xffffffff) {
+        if (ret != TOUCHSCREEN_INPUT_NONE) {
             if (menuTemplate->funcSaveCursorPos != NULL) {
                 menuTemplate->funcSaveCursorPos(battleInput, rectHit);
             }
@@ -1738,13 +1731,13 @@ static void BattleInput_CreateCommandSelectObjects(BattleInput *battleInput, int
     Strbuf_Free(strRun);
 
     if ((BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_NO_MOVES) == 0) {
-        Pokemon *v7;
-        CellActorData *v8;
+        Pokemon *pokemon;
+        ManagedSprite *v8;
         int v9, v10;
 
-        v7 = BattleSystem_PartyPokemon(battleInput->battleSystem, v6->unk_01, v6->unk_02);
+        pokemon = BattleSystem_PartyPokemon(battleInput->battleSystem, v6->unk_01, v6->unk_02);
         ov16_0226A698(battleInput);
-        v8 = ov16_0226A7A4(battleInput, v7, v5, v6->unk_04, v6->unk_06, v6->unk_03);
+        v8 = ov16_0226A7A4(battleInput, pokemon, v5, v6->unk_04, v6->unk_06, v6->unk_03);
 
         sub_020129A4(battleInput->textObj[0].fontOAM, &v9, &v10);
 
@@ -1754,7 +1747,7 @@ static void BattleInput_CreateCommandSelectObjects(BattleInput *battleInput, int
             v9 -= 32 / 2;
         }
 
-        sub_0200D500(v8, v9, v10 - (((192 + 80) << FX32_SHIFT) >> FX32_SHIFT), ((192 + 80) << FX32_SHIFT));
+        ManagedSprite_SetPositionXYWithSubscreenOffset(v8, v9, v10 - (((192 + 80) << FX32_SHIFT) >> FX32_SHIFT), ((192 + 80) << FX32_SHIFT));
     }
 }
 
@@ -1862,9 +1855,7 @@ static void BattleInput_CreateMoveObjects(BattleInput *battleInput, int param1, 
     }
 
     {
-        BgConfig *v7;
-
-        v7 = BattleSystem_GetBgConfig(battleInput->battleSystem);
+        BgConfig *bgConfig = BattleSystem_GetBgConfig(battleInput->battleSystem);
 
         if (moveMenu->unk_00[0] == 0) {
             FontOAM_SetDrawFlag(battleInput->textObj[0].fontOAM, 0);
@@ -2052,7 +2043,7 @@ static void ov16_0226A12C(BattleInput *battleInput, int param1, int param2)
     u8 v3[4];
     Strbuf *v4, *genderMarker;
     Pokemon *pokemon;
-    BoxPokemon *v7;
+    BoxPokemon *boxMon;
     StringTemplate *stringTemplate;
     TextColor v9;
     u8 v10[6];
@@ -2088,9 +2079,9 @@ static void ov16_0226A12C(BattleInput *battleInput, int param1, int param2)
             }
 
             pokemon = BattleSystem_PartyPokemon(battleInput->battleSystem, v12, pokemonMenu->unk_00[v12].unk_00);
-            v7 = Pokemon_GetBoxPokemon(pokemon);
+            boxMon = Pokemon_GetBoxPokemon(pokemon);
 
-            StringTemplate_SetNickname(stringTemplate, 0, v7);
+            StringTemplate_SetNickname(stringTemplate, 0, boxMon);
             StringTemplate_Format(stringTemplate, v4, genderMarker);
 
             if (i & 1) {
@@ -2357,30 +2348,30 @@ static int ov16_0226A634(BattleInput *battleInput, int param1, int param2)
 
 static void ov16_0226A698(BattleInput *battleInput)
 {
-    SpriteRenderer *spriteRenderer;
-    SpriteGfxHandler *gfxHandler;
+    SpriteSystem *spriteSystem;
+    SpriteManager *spriteManager;
     int v2, v3, v4;
     PaletteData *palette;
 
-    spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
-    gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    spriteSystem = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
     palette = BattleSystem_GetPaletteData(battleInput->battleSystem);
 
-    sub_0200CD7C(palette, 3, spriteRenderer, gfxHandler, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 20022);
-    sub_0200CE0C(spriteRenderer, gfxHandler, 19, PokeIcon32KCellsFileIndex(), 0, 20021);
-    sub_0200CE3C(spriteRenderer, gfxHandler, 19, PokeIcon32KAnimationFileIndex(), 0, 20021);
+    SpriteSystem_LoadPaletteBuffer(palette, 3, spriteSystem, spriteManager, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 20022);
+    SpriteSystem_LoadCellResObj(spriteSystem, spriteManager, 19, PokeIcon32KCellsFileIndex(), 0, 20021);
+    SpriteSystem_LoadAnimResObj(spriteSystem, spriteManager, 19, PokeIcon32KAnimationFileIndex(), 0, 20021);
 }
 
 static void ov16_0226A718(BattleInput *battleInput)
 {
-    SpriteGfxHandler *gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    SpriteManager *spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
 
-    SpriteGfxHandler_UnloadCharObjById(gfxHandler, 20036);
-    SpriteGfxHandler_UnloadCharObjById(gfxHandler, 20037);
-    SpriteGfxHandler_UnloadCharObjById(gfxHandler, 20038);
-    SpriteGfxHandler_UnloadCellObjById(gfxHandler, 20021);
-    SpriteGfxHandler_UnloadAnimObjById(gfxHandler, 20021);
-    SpriteGfxHandler_UnloadPlttObjById(gfxHandler, 20022);
+    SpriteManager_UnloadCharObjById(spriteManager, 20036);
+    SpriteManager_UnloadCharObjById(spriteManager, 20037);
+    SpriteManager_UnloadCharObjById(spriteManager, 20038);
+    SpriteManager_UnloadCellObjById(spriteManager, 20021);
+    SpriteManager_UnloadAnimObjById(spriteManager, 20021);
+    SpriteManager_UnloadPlttObjById(spriteManager, 20022);
 }
 
 static void ov16_0226A768(BattleInput *battleInput)
@@ -2389,7 +2380,7 @@ static void ov16_0226A768(BattleInput *battleInput)
 
     for (i = 0; i < 4; i++) {
         if (battleInput->unk_60C[i] != NULL) {
-            sub_0200D0F4(battleInput->unk_60C[i]);
+            Sprite_DeleteAndFreeResources(battleInput->unk_60C[i]);
             battleInput->unk_60C[i] = NULL;
         }
 
@@ -2400,13 +2391,13 @@ static void ov16_0226A768(BattleInput *battleInput)
     }
 }
 
-static CellActorData *ov16_0226A7A4(BattleInput *battleInput, Pokemon *pokemon, int battlerType, int hp, int maxHp, int status)
+static ManagedSprite *ov16_0226A7A4(BattleInput *battleInput, Pokemon *pokemon, int battlerType, int hp, int maxHp, int status)
 {
-    SpriteRenderer *spriteRenderer;
-    SpriteGfxHandler *gfxHandler;
+    SpriteSystem *spriteSystem;
+    SpriteManager *spriteManager;
     u32 v2;
     SpriteTemplate spriteTemplate;
-    CellActorData *v4;
+    ManagedSprite *sprite;
     int battler;
 
     if (battlerType >= 2) {
@@ -2435,19 +2426,19 @@ static CellActorData *ov16_0226A7A4(BattleInput *battleInput, Pokemon *pokemon, 
         return NULL;
     }
 
-    spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
-    gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    spriteSystem = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
 
-    sub_0200CBDC(spriteRenderer, gfxHandler, 19, Pokemon_IconSpriteIndex(pokemon), 0, NNS_G2D_VRAM_TYPE_2DSUB, v2);
+    SpriteSystem_LoadCharResObj(spriteSystem, spriteManager, 19, Pokemon_IconSpriteIndex(pokemon), 0, NNS_G2D_VRAM_TYPE_2DSUB, v2);
 
     spriteTemplate = Unk_ov16_022704B0;
     spriteTemplate.resources[0] = v2;
     spriteTemplate.x = Unk_ov16_02270304[battler][0];
     spriteTemplate.y = Unk_ov16_02270304[battler][1];
-    v4 = SpriteActor_LoadResources(spriteRenderer, gfxHandler, &spriteTemplate);
+    sprite = SpriteSystem_NewSprite(spriteSystem, spriteManager, &spriteTemplate);
 
-    sub_0200D500(v4, spriteTemplate.x, spriteTemplate.y, ((192 + 80) << FX32_SHIFT));
-    CellActor_SetExplicitPaletteOffsetAutoAdjust(v4->unk_00, Pokemon_IconPaletteIndex(pokemon));
+    ManagedSprite_SetPositionXYWithSubscreenOffset(sprite, spriteTemplate.x, spriteTemplate.y, ((192 + 80) << FX32_SHIFT));
+    Sprite_SetExplicitPaletteOffsetAutoAdjust(sprite->sprite, Pokemon_IconPaletteIndex(pokemon));
 
     {
         int v6 = 0;
@@ -2472,22 +2463,22 @@ static CellActorData *ov16_0226A7A4(BattleInput *battleInput, Pokemon *pokemon, 
                 break;
             }
 
-            sub_0200D364(v4, v6);
+            ManagedSprite_SetAnim(sprite, v6);
         }
     }
 
-    sub_0200D330(v4);
+    ManagedSprite_TickFrame(sprite);
 
-    battleInput->unk_60C[battler] = v4;
-    battleInput->unk_61C[battler] = SysTask_Start(ov16_0226A928, v4, 1300);
+    battleInput->unk_60C[battler] = sprite;
+    battleInput->unk_61C[battler] = SysTask_Start(Task_SpriteTickFrame, sprite, 1300);
 
-    return v4;
+    return sprite;
 }
 
-static void ov16_0226A928(SysTask *task, void *data)
+static void Task_SpriteTickFrame(SysTask *task, void *data)
 {
-    CellActorData *actor = data;
-    sub_0200D330(actor);
+    ManagedSprite *sprite = data;
+    ManagedSprite_TickFrame(sprite);
 }
 
 static int ov16_0226A934(u8 task)
@@ -2532,16 +2523,16 @@ static void BattleInput_CreateTextObject(BattleInput *battleInput, BattleInputTe
 {
     FontOAMInitData fontInit;
     Window window;
-    SpriteManagerAllocation spriteManAlloc;
-    int v3;
+    CharTransferAllocation charTransferAlloc;
+    int size;
     FontOAM *fontOAM;
     BgConfig *bgConfig;
-    SpriteGfxHandler *gfxHandler;
+    SpriteManager *spriteManager;
     int v7, v8;
 
     GF_ASSERT(textObj->fontOAM == NULL);
 
-    gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
     bgConfig = BattleSystem_GetBgConfig(battleInput->battleSystem);
 
     if (param10 == NULL) {
@@ -2559,8 +2550,8 @@ static void BattleInput_CreateTextObject(BattleInput *battleInput, BattleInputTe
         window = param10->unk_00;
     }
 
-    v3 = sub_02012898(&window, NNS_G2D_VRAM_TYPE_2DSUB, 5);
-    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &spriteManAlloc);
+    size = sub_02012898(&window, NNS_G2D_VRAM_TYPE_2DSUB, 5);
+    CharTransfer_AllocRange(size, 1, NNS_G2D_VRAM_TYPE_2DSUB, &charTransferAlloc);
 
     if (param9 == 1) {
         x -= v7 / 2;
@@ -2570,10 +2561,10 @@ static void BattleInput_CreateTextObject(BattleInput *battleInput, BattleInputTe
 
     fontInit.unk_00 = battleInput->unk_4C8;
     fontInit.unk_04 = &window;
-    fontInit.unk_08 = sub_0200D9B0(gfxHandler);
-    fontInit.unk_0C = sub_0200D04C(gfxHandler, param6);
+    fontInit.unk_08 = SpriteManager_GetSpriteList(spriteManager);
+    fontInit.unk_0C = SpriteManager_FindPlttResourceProxy(spriteManager, param6);
     fontInit.unk_10 = NULL;
-    fontInit.unk_14 = spriteManAlloc.unk_04;
+    fontInit.unk_14 = charTransferAlloc.offset;
     fontInit.unk_18 = x;
     fontInit.unk_1C = y;
     fontInit.unk_20 = 0;
@@ -2591,7 +2582,7 @@ static void BattleInput_CreateTextObject(BattleInput *battleInput, BattleInputTe
     }
 
     textObj->fontOAM = fontOAM;
-    textObj->spriteManAlloc = spriteManAlloc;
+    textObj->charTransferAlloc = charTransferAlloc;
     textObj->unk_10 = v7;
 }
 
@@ -2600,7 +2591,7 @@ static void BattleInput_DestroyTextObjects(BattleInput *battleInput)
     for (int i = 0; i < 13; i++) {
         if (battleInput->textObj[i].fontOAM != NULL) {
             sub_02012870(battleInput->textObj[i].fontOAM);
-            sub_0201EE28(&battleInput->textObj[i].spriteManAlloc);
+            CharTransfer_ClearRange(&battleInput->textObj[i].charTransferAlloc);
             battleInput->textObj[i].fontOAM = NULL;
         }
     }
@@ -2780,8 +2771,8 @@ static void ov16_0226AEA0(BattleInput *battleInput, const Strbuf *param1, enum F
 static void BattleInput_CreateTypeIcons(BattleInput *battleInput)
 {
     int i;
-    SpriteRenderer *renderer;
-    SpriteGfxHandler *gfxHandler;
+    SpriteSystem *renderer;
+    SpriteManager *spriteManager;
     SpriteTemplate typeIconTemplate;
     BattleInputMoveMenu *moveMenu;
     int type;
@@ -2789,13 +2780,13 @@ static void BattleInput_CreateTypeIcons(BattleInput *battleInput)
     MoveDisplayObject *moveDisplayObj;
 
     moveMenu = &battleInput->menu.moveMenu;
-    renderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
-    gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    renderer = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
     moveDisplayObj = BattleInput_GetBattlerMoveDisplayObject(battleInput, battleInput->unk_66A);
     typeIconTemplate = sTypeIconSpriteTemplate;
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        GF_ASSERT(battleInput->actorTypeIcons[i] == NULL);
+        GF_ASSERT(battleInput->spriteTypeIcons[i] == NULL);
 
         if (moveMenu->unk_00[i] != 0) {
             type = MoveTable_LoadParam(moveMenu->unk_00[i], MOVEATTRIBUTE_TYPE);
@@ -2803,17 +2794,17 @@ static void BattleInput_CreateTypeIcons(BattleInput *battleInput)
             typeIconTemplate.x = sTypeIconPositions[i][0];
             typeIconTemplate.y = sTypeIconPositions[i][1];
 
-            battleInput->actorTypeIcons[i] = sub_0207CA58(renderer, gfxHandler, type, &typeIconTemplate);
+            battleInput->spriteTypeIcons[i] = sub_0207CA58(renderer, spriteManager, type, &typeIconTemplate);
 
-            sub_0200D500(battleInput->actorTypeIcons[i], typeIconTemplate.x, typeIconTemplate.y, ((192 + 80) << FX32_SHIFT));
+            ManagedSprite_SetPositionXYWithSubscreenOffset(battleInput->spriteTypeIcons[i], typeIconTemplate.x, typeIconTemplate.y, ((192 + 80) << FX32_SHIFT));
 
             void *v8;
-            NNSG2dImageProxy *v9;
+            NNSG2dImageProxy *proxy;
 
             v8 = G2S_GetOBJCharPtr();
-            v9 = SpriteActor_ImageProxy(battleInput->actorTypeIcons[i]->unk_00);
+            proxy = Sprite_GetImageProxy(battleInput->spriteTypeIcons[i]->sprite);
 
-            MI_CpuCopy16(moveDisplayObj->typeIcon[i], (void *)((u32)v8 + v9->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DSUB]), sub_0208C098(6));
+            MI_CpuCopy16(moveDisplayObj->typeIcon[i], (void *)((u32)v8 + proxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DSUB]), sub_0208C098(6));
         }
     }
 }
@@ -2821,16 +2812,16 @@ static void BattleInput_CreateTypeIcons(BattleInput *battleInput)
 static void BattleInput_DestroyTypeIcons(BattleInput *battleInput)
 {
     int i;
-    SpriteRenderer *renderer;
-    SpriteGfxHandler *gfxHandler;
+    SpriteSystem *renderer;
+    SpriteManager *spriteManager;
 
-    renderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
-    gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    renderer = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
 
     for (i = 0; i < 4; i++) {
-        if (battleInput->actorTypeIcons[i] != NULL) {
-            sub_0207CA88(battleInput->actorTypeIcons[i]);
-            battleInput->actorTypeIcons[i] = NULL;
+        if (battleInput->spriteTypeIcons[i] != NULL) {
+            sub_0207CA88(battleInput->spriteTypeIcons[i]);
+            battleInput->spriteTypeIcons[i] = NULL;
         }
     }
 }
@@ -2838,16 +2829,16 @@ static void BattleInput_DestroyTypeIcons(BattleInput *battleInput)
 static void ov16_0226B028(BattleInput *battleInput)
 {
     int i;
-    SpriteRenderer *renderer;
-    SpriteGfxHandler *gfxHandler;
+    SpriteSystem *renderer;
+    SpriteManager *spriteManager;
 
-    renderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
-    gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    renderer = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
 
     for (i = 0; i < 4; i++) {
         if (battleInput->unk_5FC[i] != NULL) {
             sub_0207CB00(battleInput->unk_5FC[i]);
-            sub_0207CAF8(gfxHandler, 20029 + i);
+            sub_0207CAF8(spriteManager, 20029 + i);
             battleInput->unk_5FC[i] = NULL;
         }
     }
@@ -3137,7 +3128,7 @@ static void EffectTask_ButtonDown(SysTask *task, void *data)
         sub_020128C4(battleInput->textObj[battleInput->effect.unk_04_val3.unk_0D].fontOAM, x, y + -2);
 
         if ((battleInput->effect.unk_04_val3.unk_0E != 0xff) && (battleInput->unk_60C[battleInput->effect.unk_04_val3.unk_0E] != NULL)) {
-            sub_0200D5DC(battleInput->unk_60C[battleInput->effect.unk_04_val3.unk_0E], 0, -2);
+            ManagedSprite_OffsetPositionXY(battleInput->unk_60C[battleInput->effect.unk_04_val3.unk_0E], 0, -2);
         }
 
         battleInput->effect.state++;
@@ -3157,7 +3148,7 @@ static void EffectTask_ButtonDown(SysTask *task, void *data)
         sub_020128C4(battleInput->textObj[battleInput->effect.unk_04_val3.unk_0D].fontOAM, x, y + 1);
 
         if ((battleInput->effect.unk_04_val3.unk_0E != 0xff) && (battleInput->unk_60C[battleInput->effect.unk_04_val3.unk_0E] != NULL)) {
-            sub_0200D5DC(battleInput->unk_60C[battleInput->effect.unk_04_val3.unk_0E], 0, 1);
+            ManagedSprite_OffsetPositionXY(battleInput->unk_60C[battleInput->effect.unk_04_val3.unk_0E], 0, 1);
         }
 
         battleInput->effect.state++;
@@ -3243,10 +3234,10 @@ static void EffectTask_MoveButtonDown(SysTask *task, void *data)
             sub_020128C4(battleInput->textObj[v6].fontOAM, x, y + -2);
 
             if (moveNo != 0) {
-                sub_0200D5AC(battleInput->actorTypeIcons[v7]->unk_00, 0, -2);
+                Sprite_OffsetPositionXY(battleInput->spriteTypeIcons[v7]->sprite, 0, -2);
 
                 if (battleInput->unk_5FC[v7] != NULL) {
-                    sub_0200D5AC(battleInput->unk_5FC[v7]->unk_00, 0, -2);
+                    Sprite_OffsetPositionXY(battleInput->unk_5FC[v7]->sprite, 0, -2);
                 }
             }
         } else {
@@ -3277,10 +3268,10 @@ static void EffectTask_MoveButtonDown(SysTask *task, void *data)
             sub_020128C4(battleInput->textObj[v6].fontOAM, x, y + 1);
 
             if (moveNo != 0) {
-                sub_0200D5AC(battleInput->actorTypeIcons[v7]->unk_00, 0, 1);
+                Sprite_OffsetPositionXY(battleInput->spriteTypeIcons[v7]->sprite, 0, 1);
 
                 if (battleInput->unk_5FC[v7] != NULL) {
-                    sub_0200D5AC(battleInput->unk_5FC[v7]->unk_00, 0, 1);
+                    Sprite_OffsetPositionXY(battleInput->unk_5FC[v7]->sprite, 0, 1);
                 }
             }
         } else {
@@ -3325,7 +3316,7 @@ static void EffectTask_PokemonButtonDown(SysTask *task, void *data)
                 }
 
                 if (battleInput->unk_60C[i] != NULL) {
-                    sub_0200D5DC(battleInput->unk_60C[i], 0, -2);
+                    ManagedSprite_OffsetPositionXY(battleInput->unk_60C[i], 0, -2);
                 }
             }
         }
@@ -3354,7 +3345,7 @@ static void EffectTask_PokemonButtonDown(SysTask *task, void *data)
                 }
 
                 if (battleInput->unk_60C[i] != NULL) {
-                    sub_0200D5DC(battleInput->unk_60C[i], 0, 1);
+                    ManagedSprite_OffsetPositionXY(battleInput->unk_60C[i], 0, 1);
                 }
             }
         }
@@ -3655,7 +3646,7 @@ static void ov16_0226BD74(SysTask *task, void *data)
     v2 = PaletteData_GetFadedBuffer(palette, 1);
     v3 = (16 - 8) * 2;
 
-    if (gCoreSys.touchHeld && ((v4 == 1) || (v5 == 1))) {
+    if (gSystem.touchHeld && ((v4 == 1) || (v5 == 1))) {
         if (memcmp(&v2[8], &battleInput->unk_5C[8], v3) == 0) {
             if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_FRONTIER) {
                 MI_CpuCopy16(&battleInput->unk_60[0], &v2[0], 0x20);
@@ -3689,7 +3680,7 @@ static int ov16_0226BE48(BattleInput *battleInput)
     }
 
     if (cursorMove->unk_00 == 0) {
-        if ((battleInput->keyPressed == 1) || (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
+        if ((battleInput->keyPressed == 1) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
             if (battleInput->keyPressed == 0) {
                 Sound_PlayEffect(1500);
             }
@@ -3734,18 +3725,18 @@ static int ov16_0226BEC0(BattleInput *battleInput, int param1)
     default:
         v4 = Unk_ov16_022701EC[cursorMove->y][cursorMove->x];
 
-        if ((v4 == 3) && (gCoreSys.pressedKeys & PAD_KEY_UP)) {
+        if ((v4 == 3) && (gSystem.pressedKeys & PAD_KEY_UP)) {
             (void)0;
         } else {
             key = CursorMove_CheckKeyPress(cursorMove, 3, 2, Unk_ov16_022701EC[0]);
 
             if ((key == 0) && (v4 == 0)) {
-                if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+                if (gSystem.pressedKeys & PAD_KEY_LEFT) {
                     cursorMove->x = 0;
                     cursorMove->y = 1;
                     Sound_PlayEffect(1500);
                     key = PAD_KEY_LEFT;
-                } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+                } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
                     cursorMove->x = 2;
                     cursorMove->y = 1;
                     Sound_PlayEffect(1500);
@@ -4256,7 +4247,7 @@ static u32 CursorMove_CheckKeyPress(BattleCursorMove *cursorMove, int xMax, int 
     x = cursorMove->x;
     y = cursorMove->y;
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         cursorMove->y--;
 
         if (cursorMove->y < 0) {
@@ -4275,7 +4266,7 @@ static u32 CursorMove_CheckKeyPress(BattleCursorMove *cursorMove, int xMax, int 
         }
 
         key = PAD_KEY_UP;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         cursorMove->y++;
 
         if (cursorMove->y >= yMax) {
@@ -4294,7 +4285,7 @@ static u32 CursorMove_CheckKeyPress(BattleCursorMove *cursorMove, int xMax, int 
         }
 
         key = PAD_KEY_DOWN;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         cursorMove->x--;
 
         if (cursorMove->x < 0) {
@@ -4313,7 +4304,7 @@ static u32 CursorMove_CheckKeyPress(BattleCursorMove *cursorMove, int xMax, int 
         }
 
         key = PAD_KEY_LEFT;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         cursorMove->x++;
 
         if (cursorMove->x >= xMax) {
@@ -4332,9 +4323,9 @@ static u32 CursorMove_CheckKeyPress(BattleCursorMove *cursorMove, int xMax, int 
         }
 
         key = PAD_KEY_RIGHT;
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         key = PAD_BUTTON_A;
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         key = PAD_BUTTON_B;
     } else {
         return 0;
@@ -4378,8 +4369,8 @@ static int (*const sCatchingTutorialStateFuncs[])(BattleInput *) = {
 
 static int BattleInput_CatchingTutorialMain(BattleInput *battleInput)
 {
-    SpriteRenderer *spriteRenderer = BattleSystem_GetSpriteRenderer(battleInput->battleSystem);
-    SpriteGfxHandler *gfxHandler = BattleSystem_GetSpriteGfxHandler(battleInput->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    SpriteManager *spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
     PaletteData *palette = BattleSystem_GetPaletteData(battleInput->battleSystem);
     int ret = 0xffffffff;
 
