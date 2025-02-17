@@ -3,7 +3,6 @@
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C8C4.h"

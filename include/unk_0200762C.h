@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_UNK_0200762C_H
 #define POKEPLATINUM_UNK_0200762C_H
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"

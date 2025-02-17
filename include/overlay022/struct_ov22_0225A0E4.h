@@ -3,10 +3,10 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "bg_window.h"
 #include "narc.h"

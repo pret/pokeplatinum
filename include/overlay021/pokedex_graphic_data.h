@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_POKEDEX_GRAPHIC_DATA_H
 #define POKEPLATINUM_POKEDEX_GRAPHIC_DATA_H
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_defs/pokemon_sprite.h"
 

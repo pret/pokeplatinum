@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/pokemon_sprite.h"
 

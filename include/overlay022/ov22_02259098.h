@@ -3,7 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_020298D8.h"
 

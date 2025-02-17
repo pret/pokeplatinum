@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_0223118C_H
 #define POKEPLATINUM_STRUCT_OV62_0223118C_H
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay062/struct_ov62_0223118C_sub1.h"

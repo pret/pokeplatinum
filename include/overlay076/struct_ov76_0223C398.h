@@ -3,7 +3,6 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"

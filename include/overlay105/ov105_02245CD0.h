@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_OV105_02245CD0_H
 #define POKEPLATINUM_OV105_02245CD0_H
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/pokemon_sprite.h"
 
 #include "pokemon.h"

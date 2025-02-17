@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_022476F8_H
 #define POKEPLATINUM_STRUCT_OV17_022476F8_H
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 

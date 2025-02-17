@@ -3,8 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02007768_decl.h"
-
 #include "overlay019/funcptr_ov19_021D79B8.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"

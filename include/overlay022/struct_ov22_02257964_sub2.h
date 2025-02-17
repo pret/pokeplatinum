@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV22_02257964_SUB2_H
 #define POKEPLATINUM_STRUCT_OV22_02257964_SUB2_H
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"

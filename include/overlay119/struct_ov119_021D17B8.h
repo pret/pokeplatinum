@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV119_021D17B8_H
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay119/struct_ov119_021D14DC.h"

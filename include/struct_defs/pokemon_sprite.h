@@ -1,6 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_POKEMON_SPRITE_H
 #define POKEPLATINUM_STRUCT_POKEMON_SPRITE_H
 
+#include <nnsys.h>
+
+#include "constants/heap.h"
+
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02007C7C_sub1.h"
@@ -30,5 +34,26 @@ struct PokemonSprite {
     UnkStruct_02007C7C_sub2 unk_78;
     SpriteAnimationFrame unk_84[10];
 };
+
+typedef struct PokemonSpriteManager {
+    PokemonSprite sprites[4];
+    NNSG2dImageProxy imageProxy;
+    NNSG2dImagePaletteProxy paletteProxy;
+    enum HeapId heapID;
+    u32 charBaseAddr;
+    u32 charSize;
+    u32 plttBaseAddr;
+    u32 plttSize;
+    u8 *charRawData;
+    u16 *plttRawData;
+    u16 *plttRawDataUnfaded;
+    NNSG2dCharacterData charData;
+    NNSG2dPaletteData plttData;
+    u8 dummy330;
+    u8 needLoadImage;
+    u8 needLoadPltt;
+    u8 needG3Identity;
+    u32 flags;
+} PokemonSpriteManager;
 
 #endif // POKEPLATINUM_STRUCT_POKEMON_SPRITE_H
