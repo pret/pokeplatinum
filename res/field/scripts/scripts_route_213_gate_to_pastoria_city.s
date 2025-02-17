@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_213_gate_to_pastoria_city.h"
 
     .data
 

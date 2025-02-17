@@ -1,5 +1,4 @@
 {
-    "name": "Granbull",
     "base_stats": {
         "hp": 90,
         "attack": 120,
@@ -8,10 +7,7 @@
         "special_attack": 60,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 75,
     "base_exp_reward": 178,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_QUICK_FEET"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_QUICK_FEET" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ICE_FANG" ],
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_SCARY_FACE" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 7, "MOVE_BITE" ],
+            [ 13, "MOVE_LICK" ],
+            [ 19, "MOVE_HEADBUTT" ],
+            [ 27, "MOVE_ROAR" ],
+            [ 35, "MOVE_RAGE" ],
+            [ 43, "MOVE_TAKE_DOWN" ],
+            [ 51, "MOVE_PAYBACK" ],
+            [ 59, "MOVE_CRUNCH" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM05",
@@ -96,26 +101,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ICE_FANG",
-                "MOVE_FIRE_FANG",
-                "MOVE_THUNDER_FANG",
-                "MOVE_TACKLE",
-                "MOVE_SCARY_FACE",
-                "MOVE_TAIL_WHIP",
-                "MOVE_CHARM"
-            ],
-            "7": "MOVE_BITE",
-            "13": "MOVE_LICK",
-            "19": "MOVE_HEADBUTT",
-            "27": "MOVE_ROAR",
-            "35": "MOVE_RAGE",
-            "43": "MOVE_TAKE_DOWN",
-            "51": "MOVE_PAYBACK",
-            "59": "MOVE_CRUNCH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -125,9 +111,10 @@
             "MOVE_LAST_RESORT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 14,
@@ -141,10 +128,62 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "It is timid in spite of its looks.\nIf it becomes enraged, however,\nit will strike with its huge fangs.",
-        "category": "Fairy Pokémon"
+        "en": {
+            "name": "GRANBULL",
+            "category": "Fairy Pokémon",
+            "entry_text": [
+                "It is timid in spite of its looks.\n",
+                "If it becomes enraged, however,\n",
+                "it will strike with its huge fangs."
+            ]
+        },
+        "fr": {
+            "name": "GRANBULL",
+            "category": "Pokémon Fée",
+            "entry_text": [
+                "En dépit des apparences, c’est un\n",
+                "grand timide. Quand il s’énerve, il\n",
+                "mord de ses énormes crocs."
+            ]
+        },
+        "de": {
+            "name": "GRANBULL",
+            "category": "Fee",
+            "entry_text": [
+                "Es ist trotz seines Äußeren\n",
+                "schüchtern. Wird es wütend,\n",
+                "schnappt es mit seinen Fängen zu."
+            ]
+        },
+        "it": {
+            "name": "GRANBULL",
+            "category": "Pokémon Fata",
+            "entry_text": [
+                "Malgrado il suo aspetto, è molto\n",
+                "timido. Se si arrabbia, tuttavia,\n",
+                "colpisce con le sue enormi zanne."
+            ]
+        },
+        "es": {
+            "name": "GRANBULL",
+            "category": "Pokémon Hada",
+            "entry_text": [
+                "A pesar de su aspecto, es muy\n",
+                "tímido. Sin embargo, cuando se\n",
+                "enfada ataca con sus colmillos."
+            ]
+        },
+        "jp": {
+            "name": "グランブル",
+            "category": "ようせいポケモン",
+            "entry_text": [
+                "かおに　にあわず　おくびょう。\n",
+                "しかし　ひとたび　おこりはじめると\n",
+                "おおきな　キバで　はんげきする。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

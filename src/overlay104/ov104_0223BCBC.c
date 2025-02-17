@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0204B184.h"
 
 #include "overlay104/ov104_0222DCE0.h"
@@ -217,7 +216,7 @@ FieldBattleDTO *ov104_0223BDD8(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104
     Party_InitWithCapacity(v5->parties[1], ov104_0223BDA4(param0->unk_10, 0));
 
     for (v0 = 0; v0 < 4; v0++) {
-        v5->trainer[v0].aiMask = ov104_0223C0D0(param0);
+        v5->trainer[v0].header.aiMask = ov104_0223C0D0(param0);
     }
 
     v6 = Pokemon_New(11);

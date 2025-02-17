@@ -42,17 +42,17 @@
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "spl.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201F834.h"
+#include "vram_transfer.h"
 
 typedef struct UnkStruct_ov12_02223178_t {
     u8 unk_00;
@@ -2106,7 +2106,7 @@ static void ov12_0222144C(UnkStruct_ov12_0221FCDC *param0)
     param0->unk_134 = sub_0200C704(param0->unk_BC->unk_AC);
 
     sub_0200C7C0(param0->unk_BC->unk_AC, param0->unk_134, v0);
-    sub_0200964C(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
     sub_0200CB30(param0->unk_BC->unk_AC, param0->unk_134, &v1);
 }
 
@@ -2221,7 +2221,7 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
         NNSG2dImageProxy *v18;
 
         v18 = SpriteActor_ImageProxy(v1->unk_00);
-        sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v18->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v0, (10 * 10 * ((8 / 2) * 8)));
+        VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v18->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v0, (10 * 10 * ((8 / 2) * 8)));
     }
 
     if (ov12_022232FC(param0, v7) != NULL) {
@@ -2229,7 +2229,7 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
         int v20;
 
         v19 = CellActor_GetPaletteProxy(v1->unk_00);
-        v20 = sub_0201FAB4(v19, NNS_G2D_VRAM_TYPE_2DMAIN);
+        v20 = PlttTransfer_GetPlttOffset(v19, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         PaletteData_LoadBufferFromFileStart(param0->unk_C4, v8, v9, param0->unk_00, 2, 0x20, v20 * 16);
     }
@@ -3571,7 +3571,7 @@ static void ov12_02222CE8(UnkStruct_ov12_0221FCDC *param0)
     GF_ASSERT(param0->unk_C8[v1] != NULL);
 
     sub_0200C7C0(param0->unk_BC->unk_AC, param0->unk_C8[v1], v2);
-    sub_0200964C(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(param0->unk_BC->unk_AC), 0, ((192 + 80) << FX32_SHIFT));
 
     {
         UnkStruct_ov104_02241308 v3;
@@ -4307,7 +4307,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *param0, int param1, int par
                     NNSG2dImageProxy *v17;
 
                     v17 = SpriteActor_ImageProxy(v10->unk_00);
-                    sub_0201DC68(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v17->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v8, (10 * 10 * ((8 / 2) * 8)));
+                    VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, v17->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], v8, (10 * 10 * ((8 / 2) * 8)));
                 }
 
                 if (v13 != NULL) {
@@ -4315,7 +4315,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *param0, int param1, int par
                     int v19;
 
                     v18 = CellActor_GetPaletteProxy(v10->unk_00);
-                    v19 = sub_0201FAB4(v18, NNS_G2D_VRAM_TYPE_2DMAIN);
+                    v19 = PlttTransfer_GetPlttOffset(v18, NNS_G2D_VRAM_TYPE_2DMAIN);
 
                     PaletteData_LoadBufferFromFileStart(v2->unk_08.unk_08, v6, v7, v2->unk_00, 2, 0x20, v19 * 16);
                 }

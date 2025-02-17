@@ -1,5 +1,4 @@
 {
-    "name": "Chatot",
     "base_stats": {
         "hp": 76,
         "attack": 65,
@@ -8,10 +7,7 @@
         "special_attack": 92,
         "special_defense": 42
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 30,
     "base_exp_reward": 107,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_TANGLED_FEET"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_TANGLED_FEET" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PECK" ],
+            [ 5, "MOVE_GROWL" ],
+            [ 9, "MOVE_MIRROR_MOVE" ],
+            [ 13, "MOVE_SING" ],
+            [ 17, "MOVE_FURY_ATTACK" ],
+            [ 21, "MOVE_CHATTER" ],
+            [ 25, "MOVE_TAUNT" ],
+            [ 29, "MOVE_MIMIC" ],
+            [ 33, "MOVE_ROOST" ],
+            [ 37, "MOVE_UPROAR" ],
+            [ 41, "MOVE_FEATHER_DANCE" ],
+            [ 45, "MOVE_HYPER_VOICE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -74,21 +76,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": "MOVE_PECK",
-            "5": "MOVE_GROWL",
-            "9": "MOVE_MIRROR_MOVE",
-            "13": "MOVE_SING",
-            "17": "MOVE_FURY_ATTACK",
-            "21": "MOVE_CHATTER",
-            "25": "MOVE_TAUNT",
-            "29": "MOVE_MIMIC",
-            "33": "MOVE_ROOST",
-            "37": "MOVE_UPROAR",
-            "41": "MOVE_FEATHER_DANCE",
-            "45": "MOVE_HYPER_VOICE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -99,9 +87,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -115,10 +104,62 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "Its tongue is just like a human’s.\nAs a result, it can cleverly mimic\nhuman speech.",
-        "category": "Music Note Pokémon"
+        "en": {
+            "name": "CHATOT",
+            "category": "Music Note Pokémon",
+            "entry_text": [
+                "Its tongue is just like a human’s.\n",
+                "As a result, it can cleverly mimic\n",
+                "human speech."
+            ]
+        },
+        "fr": {
+            "name": "PIJAKO",
+            "category": "Pokémon Note Musique",
+            "entry_text": [
+                "On peut lui enseigner quelques\n",
+                "mots. S’il s’agit d’un groupe, ils\n",
+                "retiendront les mêmes phrases."
+            ]
+        },
+        "de": {
+            "name": "PLAUDAGEI",
+            "category": "Musiknote",
+            "entry_text": [
+                "Es kann die menschliche Sprache\n",
+                "lernen. Versammeln sie sich,\n",
+                "bringen sie sich alle dasselbe bei."
+            ]
+        },
+        "it": {
+            "name": "CHATOT",
+            "category": "Pokémon Musicale",
+            "entry_text": [
+                "Può imparare il linguaggio umano.\n",
+                "Se un gruppo si raduna, tutti\n",
+                "imparano le stesse parole."
+            ]
+        },
+        "es": {
+            "name": "CHATOT",
+            "category": "Pokémon Corchea",
+            "entry_text": [
+                "Pueden aprender y hablar lenguas\n",
+                "humanas. Si se juntan, todos\n",
+                "aprenden las mismas palabras."
+            ]
+        },
+        "jp": {
+            "name": "ペラップ",
+            "category": "おんぷポケモン",
+            "entry_text": [
+                "ひとの　ことばを　おぼえて　なく。\n",
+                "なかまが　いっかしょに　あつまると\n",
+                "みんな　おなじ　ことばを　おぼえる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

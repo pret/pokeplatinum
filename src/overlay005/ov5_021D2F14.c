@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_0200D0F4.h"
 
 #include "overlay005/struct_ov5_021D30A8.h"
@@ -16,8 +15,8 @@
 #include "heap.h"
 #include "narc.h"
 #include "sprite_resource.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "unk_02017728.h"
 
 static BOOL ov5_021D3478(SpriteResourceList *param0, SpriteResource *param1);
@@ -32,7 +31,7 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *
     u32 v3;
     u32 v4;
 
-    param0->unk_00 = sub_020095C4(param2, &param0->unk_04, param3);
+    param0->unk_00 = SpriteList_InitRendering(param2, &param0->unk_04, param3);
     param0->unk_1C6 = param3;
 
     if (param1->val2.unk_10 == NULL) {
@@ -70,11 +69,11 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224F2EC *
     }
 
     Heap_FreeToHeap(v1);
-    sub_0200A41C(param0->unk_1AC[0]);
-    sub_0200A684(param0->unk_1AC[1]);
+    SpriteTransfer_RequestCharListAtEnd(param0->unk_1AC[0]);
+    SpriteTransfer_RequestPlttFreeSpaceList(param0->unk_1AC[1]);
 
     v2 = ReadFileToHeap(param3, param1->val2.unk_18);
-    param0->unk_190 = sub_02009508(v2, param3, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
+    param0->unk_190 = SpriteResourcesHeaderList_NewFromResdat(v2, param3, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
     Heap_FreeToHeap(v2);
 }
@@ -84,9 +83,9 @@ void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0)
     u32 v0;
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_020095A8(param0->unk_190);
-    sub_0200A508(param0->unk_1AC[0]);
-    sub_0200A700(param0->unk_1AC[1]);
+    SpriteResourcesHeaderList_Free(param0->unk_190);
+    SpriteTransfer_ResetCharTransferList(param0->unk_1AC[0]);
+    SpriteTransfer_ResetPlttTransferList(param0->unk_1AC[1]);
 
     for (v0 = 0; v0 < param0->unk_1C4; v0++) {
         SpriteResourceList_Delete(param0->unk_1AC[v0]);
@@ -106,7 +105,7 @@ CellActor *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const UnkStruct_ov7_0224
     v3.z = param1->unk_08 * FX32_ONE;
 
     v0.collection = param0->unk_00;
-    v0.resourceData = &param0->unk_190->unk_00[param1->unk_00];
+    v0.resourceData = &param0->unk_190->headers[param1->unk_00];
     v0.position = v3;
     v0.affineScale = v2;
     v0.affineZRotation = 0;
@@ -131,7 +130,7 @@ void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, UnkStruct_ov104_02241308 *para
     u32 v3;
     u32 v4, v5;
 
-    param0->unk_00 = sub_020095C4(param2, &param0->unk_04, param3);
+    param0->unk_00 = SpriteList_InitRendering(param2, &param0->unk_04, param3);
     param0->unk_1C6 = param3;
 
     if ((param1->val2.unk_10 == 0) || (param1->val2.unk_14 == 0)) {
@@ -172,11 +171,11 @@ void ov5_021D3270(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int pa
     v0 = SpriteResourceCollection_AddPalette(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
-        v1 = sub_0200A640(v0);
+        v1 = SpriteTransfer_RequestPlttFreeSpace(v0);
         GF_ASSERT(v1 == 1);
 
         ov5_021D3478(param0->unk_1AC[1], v0);
-        sub_0200A760(v0, param5);
+        SpriteTransfer_GetPlttOffset(v0, param5);
         return;
     }
 
@@ -196,11 +195,11 @@ void ov5_021D32E8(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int 
     v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
-        v1 = sub_0200A640(v0);
+        v1 = SpriteTransfer_RequestPlttFreeSpace(v0);
         GF_ASSERT(v1 == 1);
 
         ov5_021D3478(param0->unk_1AC[1], v0);
-        sub_0200A760(v0, param5);
+        SpriteTransfer_GetPlttOffset(v0, param5);
         return;
     }
 
@@ -239,7 +238,7 @@ void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL p
     v0 = SpriteResourceCollection_AddTiles(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
-        sub_0200A3DC(v0);
+        SpriteTransfer_RequestCharAtEnd(v0);
         ov5_021D3478(param0->unk_1AC[0], v0);
         return;
     }
@@ -259,7 +258,7 @@ void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, BOOL
     v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
 
     if (v0 != NULL) {
-        sub_0200A3DC(v0);
+        SpriteTransfer_RequestCharAtEnd(v0);
         ov5_021D3478(param0->unk_1AC[0], v0);
 
         return;
@@ -339,9 +338,9 @@ CellActorData *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
 
     v2 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorData));
 
-    v2->unk_08 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(UnkStruct_02009508));
-    v2->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorResourceData));
-    v2->unk_04 = v2->unk_08->unk_00;
+    v2->unk_08 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(SpriteResourcesHeaderList));
+    v2->unk_08->headers = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorResourceData));
+    v2->unk_04 = v2->unk_08->headers;
 
     for (v0 = 0; v0 < 6; v0++) {
         v4[v0] = param1->resources[v0];
@@ -360,7 +359,7 @@ CellActorData *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
         }
     }
 
-    sub_020093B4(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->transferToVRAM, param1->bgPriority, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
+    SpriteResourcesHeader_Init(v2->unk_04, v4[0], v4[1], v4[2], v4[3], v4[4], v4[5], param1->transferToVRAM, param1->bgPriority, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
     v3.collection = param0->unk_00;
     v3.resourceData = v2->unk_04;
@@ -398,8 +397,8 @@ void ov5_021D375C(UnkStruct_ov5_021D30A8 *param0)
     u32 v0;
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_0200A508(param0->unk_1AC[0]);
-    sub_0200A700(param0->unk_1AC[1]);
+    SpriteTransfer_ResetCharTransferList(param0->unk_1AC[0]);
+    SpriteTransfer_ResetPlttTransferList(param0->unk_1AC[1]);
 
     for (v0 = 0; v0 < param0->unk_1C4; v0++) {
         SpriteResourceList_Delete(param0->unk_1AC[v0]);

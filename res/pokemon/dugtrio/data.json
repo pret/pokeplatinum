@@ -1,5 +1,4 @@
 {
-    "name": "Dugtrio",
     "base_stats": {
         "hp": 35,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_GROUND" ],
     "catch_rate": 50,
     "base_exp_reward": 153,
     "ev_yields": {
@@ -30,21 +26,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SAND_VEIL",
-        "ABILITY_ARENA_TRAP"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SAND_VEIL", "ABILITY_ARENA_TRAP" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_NIGHT_SLASH" ],
+            [ 1, "MOVE_TRI_ATTACK" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 4, "MOVE_GROWL" ],
+            [ 7, "MOVE_ASTONISH" ],
+            [ 12, "MOVE_MAGNITUDE" ],
+            [ 15, "MOVE_MUD_SLAP" ],
+            [ 18, "MOVE_DIG" ],
+            [ 23, "MOVE_SUCKER_PUNCH" ],
+            [ 26, "MOVE_SAND_TOMB" ],
+            [ 28, "MOVE_EARTH_POWER" ],
+            [ 33, "MOVE_MUD_BOMB" ],
+            [ 40, "MOVE_SLASH" ],
+            [ 45, "MOVE_EARTHQUAKE" ],
+            [ 50, "MOVE_FISSURE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -78,37 +85,17 @@
             "HM01",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_NIGHT_SLASH",
-                "MOVE_TRI_ATTACK",
-                "MOVE_SCRATCH",
-                "MOVE_SAND_ATTACK",
-                "MOVE_GROWL"
-            ],
-            "4": "MOVE_GROWL",
-            "7": "MOVE_ASTONISH",
-            "12": "MOVE_MAGNITUDE",
-            "15": "MOVE_MUD_SLAP",
-            "18": "MOVE_DIG",
-            "23": "MOVE_SUCKER_PUNCH",
-            "26": "MOVE_SAND_TOMB",
-            "28": "MOVE_EARTH_POWER",
-            "33": "MOVE_MUD_BOMB",
-            "40": "MOVE_SLASH",
-            "45": "MOVE_EARTHQUAKE",
-            "50": "MOVE_FISSURE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_EARTH_POWER",
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 7,
@@ -122,10 +109,62 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Its three heads move alternately,\ndriving it through tough soil to\ndepths of over 60 miles.",
-        "category": "Mole Pokémon"
+        "en": {
+            "name": "DUGTRIO",
+            "category": "Mole Pokémon",
+            "entry_text": [
+                "Its three heads move alternately,\n",
+                "driving it through tough soil to\n",
+                "depths of over 60 miles."
+            ]
+        },
+        "fr": {
+            "name": "TRIOPIKEUR",
+            "category": "Pokémon Taupe",
+            "entry_text": [
+                "Ses trois têtes creusent le sol à\n",
+                "tour de rôle. Il peut atteindre des\n",
+                "profondeurs de 100 kilomètres."
+            ]
+        },
+        "de": {
+            "name": "DIGDRI",
+            "category": "Maulwurf",
+            "entry_text": [
+                "Die drei Köpfe bewegen sich abwech-\n",
+                "selnd, um sich durch harte Erde in\n",
+                "Tiefen von bis zu 100 km zu graben."
+            ]
+        },
+        "it": {
+            "name": "DUGTRIO",
+            "category": "Pokémon Talpa",
+            "entry_text": [
+                "Le sue tre teste si muovono a\n",
+                "turno per scavare nel duro suolo\n",
+                "fino ad una profondità di 100 km."
+            ]
+        },
+        "es": {
+            "name": "DUGTRIO",
+            "category": "Pokémon Topo",
+            "entry_text": [
+                "Sus tres cabezas se mueven por\n",
+                "turnos para excavar la tierra a\n",
+                "una profundidad de unos 100 km."
+            ]
+        },
+        "jp": {
+            "name": "ダグトリオ",
+            "category": "もぐらポケモン",
+            "entry_text": [
+                "３つの　あたまが　たがいちがいに\n",
+                "うごいて　どんなに　かたい　ちそうも\n",
+                "ちか１００キロまで　ほりすすむ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

@@ -1,5 +1,4 @@
 {
-    "name": "Mew",
     "base_stats": {
         "hp": 100,
         "attack": 100,
@@ -8,10 +7,7 @@
         "special_attack": 100,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 45,
     "base_exp_reward": 64,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 120,
     "base_friendship": 100,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_SYNCHRONIZE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_SYNCHRONIZE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_TRANSFORM" ],
+            [ 10, "MOVE_MEGA_PUNCH" ],
+            [ 20, "MOVE_METRONOME" ],
+            [ 30, "MOVE_PSYCHIC" ],
+            [ 40, "MOVE_BARRIER" ],
+            [ 50, "MOVE_ANCIENT_POWER" ],
+            [ 60, "MOVE_AMNESIA" ],
+            [ 70, "MOVE_ME_FIRST" ],
+            [ 80, "MOVE_BATON_PASS" ],
+            [ 90, "MOVE_NASTY_PLOT" ],
+            [ 100, "MOVE_AURA_SPHERE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM02",
             "TM03",
@@ -146,23 +148,7 @@
             "HM07",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_TRANSFORM"
-            ],
-            "10": "MOVE_MEGA_PUNCH",
-            "20": "MOVE_METRONOME",
-            "30": "MOVE_PSYCHIC",
-            "40": "MOVE_BARRIER",
-            "50": "MOVE_ANCIENT_POWER",
-            "60": "MOVE_AMNESIA",
-            "70": "MOVE_ME_FIRST",
-            "80": "MOVE_BATON_PASS",
-            "90": "MOVE_NASTY_PLOT",
-            "100": "MOVE_AURA_SPHERE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -203,9 +189,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -219,10 +206,62 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "entry_text": "Because it can use all kinds of\nmoves, many scientists believe MEW\nto be the ancestor of Pokémon.",
-        "category": "New Species Pokémon"
+        "en": {
+            "name": "MEW",
+            "category": "New Species Pokémon",
+            "entry_text": [
+                "Because it can use all kinds of\n",
+                "moves, many scientists believe MEW\n",
+                "to be the ancestor of Pokémon."
+            ]
+        },
+        "fr": {
+            "name": "MEW",
+            "category": "Pokémon Nouveau",
+            "entry_text": [
+                "Nombre de scientifiques voient en\n",
+                "lui l’ancêtre des Pokémon car il\n",
+                "maîtrise toutes leurs capacités."
+            ]
+        },
+        "de": {
+            "name": "MEW",
+            "category": "Neue Art",
+            "entry_text": [
+                "Es beherrscht alle möglichen\n",
+                "Attacken, daher sieht man in ihm\n",
+                "den Vorfahren aller Pokémon."
+            ]
+        },
+        "it": {
+            "name": "MEW",
+            "category": "Pokémon Novaspecie",
+            "entry_text": [
+                "Poiché sa usare qualsiasi mossa,\n",
+                "molti scienziati ritengono che MEW\n",
+                "sia l’antenato di tutti i Pokémon."
+            ]
+        },
+        "es": {
+            "name": "MEW",
+            "category": "Pokémon N. Especie",
+            "entry_text": [
+                "Varios científicos lo consideran el\n",
+                "antecesor de los Pokémon porque\n",
+                "usa todo tipo de movimientos. "
+            ]
+        },
+        "jp": {
+            "name": "ミュウ",
+            "category": "しんしゅポケモン",
+            "entry_text": [
+                "あらゆる　わざを　つかうため\n",
+                "ポケモンの　せんぞと　かんがえる\n",
+                "がくしゃが　たくさん　いる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 100,

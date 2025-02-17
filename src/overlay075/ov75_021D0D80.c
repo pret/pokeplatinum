@@ -27,6 +27,7 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "pokemon_icon.h"
+#include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "strbuf.h"
@@ -34,13 +35,12 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200A784.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
+#include "vram_transfer.h"
 
 enum {
     UnkEnum_ov75_021D1598_00,
@@ -869,7 +869,7 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         return;
     }
 
-    VRAMTransferManager_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->unk_00);
 
     param0->unk_A8 = sub_0200C6E4(param0->unk_00);
     param0->unk_AC = sub_0200C704(param0->unk_A8);
@@ -904,7 +904,7 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         sub_0200C73C(param0->unk_A8, &v3, &v4, 32);
         sub_0200C7C0(param0->unk_A8, param0->unk_AC, 3);
         sub_0200CB30(param0->unk_A8, param0->unk_AC, &v5);
-        sub_0200A93C(param0->unk_00);
+        RenderOam_ClearMain(param0->unk_00);
     }
 
     sub_0200CC9C(param0->unk_A8, param0->unk_AC, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
@@ -957,6 +957,6 @@ static void ov75_021D1CB8(UnkStruct_ov75_021D1184 *param0)
 
         sub_0200D0B0(param0->unk_A8, param0->unk_AC);
         sub_0200C8D4(param0->unk_A8);
-        VRAMTransferManager_Destroy();
+        VramTransfer_Free();
     }
 }

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/valor_lakefront.h"
 
     .data
 
@@ -84,7 +85,7 @@ _013A:
     FacePlayer
     Message 2
     CloseMessage
-    StartTrainerBattle trainer_galactic_grunt_valor_lakefront
+    StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _01D9
     Message 3

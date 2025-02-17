@@ -1172,7 +1172,7 @@ static void ov62_0223AFEC(UnkStruct_0208C06C *param0)
 static void ov62_0223B050(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
-    PokemonPersonalData *v1;
+    SpeciesData *v1;
     ArchivedSprite v2;
     u8 v3;
     u8 v4;
@@ -1198,7 +1198,7 @@ static void ov62_0223B050(UnkStruct_0208C06C *param0)
         v7 = SPECIES_EGG;
     }
 
-    v1 = PokemonPersonalData_FromMonSpecies(v7, 102);
+    v1 = SpeciesData_FromMonSpecies(v7, 102);
     v3 = Pokemon_GetGenderOf(v7, v8);
     v4 = Pokemon_IsPersonalityShiny(v5, v8);
     v9 = LoadPokemonSpriteYOffset(v7, v3, v10, v6, v8);
@@ -1206,7 +1206,7 @@ static void ov62_0223B050(UnkStruct_0208C06C *param0)
 
     BuildArchivedPokemonSprite(&v2, v7, v3, v10, v4, v6, v8);
     v0->unk_32C = sub_02007C34(param0->unk_14.unk_50, &v2, 42, 91 + v9, 0, 0, NULL, NULL);
-    PokemonPersonalData_Free(v1);
+    SpeciesData_Free(v1);
 }
 
 static void ov62_0223B124(UnkStruct_0208C06C *param0, int param1)

@@ -7,13 +7,13 @@
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
 #include "narc.h"
 #include "resource_collection.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 
 typedef struct {
     UnkStruct_02015064 *unk_00;
@@ -35,7 +35,7 @@ typedef struct {
     BgConfig *unk_40;
     CellActorCollection *unk_44;
     SpriteResourceCollection *unk_48[4];
-    UnkStruct_0200C738 unk_58;
+    G2dRenderer unk_58;
     NARC *unk_5C;
 } UnkStruct_ov22_0225A0E4;
 

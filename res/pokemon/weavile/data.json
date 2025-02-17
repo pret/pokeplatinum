@@ -1,5 +1,4 @@
 {
-    "name": "Weavile",
     "base_stats": {
         "hp": 70,
         "attack": 120,
@@ -8,10 +7,7 @@
         "special_attack": 45,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_DARK",
-        "TYPE_ICE"
-    ],
+    "types": [ "TYPE_DARK", "TYPE_ICE" ],
     "catch_rate": 45,
     "base_exp_reward": 199,
     "ev_yields": {
@@ -30,21 +26,32 @@
     "hatch_cycles": 20,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_PRESSURE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_PRESSURE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_EMBARGO" ],
+            [ 1, "MOVE_REVENGE" ],
+            [ 1, "MOVE_ASSURANCE" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_TAUNT" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 8, "MOVE_QUICK_ATTACK" ],
+            [ 10, "MOVE_SCREECH" ],
+            [ 14, "MOVE_FAINT_ATTACK" ],
+            [ 21, "MOVE_FURY_SWIPES" ],
+            [ 24, "MOVE_NASTY_PLOT" ],
+            [ 28, "MOVE_ICY_WIND" ],
+            [ 35, "MOVE_NIGHT_SLASH" ],
+            [ 38, "MOVE_FLING" ],
+            [ 42, "MOVE_METAL_CLAW" ],
+            [ 49, "MOVE_DARK_PULSE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -97,28 +104,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_EMBARGO",
-                "MOVE_REVENGE",
-                "MOVE_ASSURANCE",
-                "MOVE_SCRATCH",
-                "MOVE_LEER",
-                "MOVE_TAUNT",
-                "MOVE_QUICK_ATTACK"
-            ],
-            "8": "MOVE_QUICK_ATTACK",
-            "10": "MOVE_SCREECH",
-            "14": "MOVE_FAINT_ATTACK",
-            "21": "MOVE_FURY_SWIPES",
-            "24": "MOVE_NASTY_PLOT",
-            "28": "MOVE_ICY_WIND",
-            "35": "MOVE_NIGHT_SLASH",
-            "38": "MOVE_FLING",
-            "42": "MOVE_METAL_CLAW",
-            "49": "MOVE_DARK_PULSE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -129,9 +115,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -145,10 +132,62 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "Evolution made it even more\ndevious. It communicates by clawing\nsigns in boulders.",
-        "category": "Sharp Claw Pokémon"
+        "en": {
+            "name": "WEAVILE",
+            "category": "Sharp Claw Pokémon",
+            "entry_text": [
+                "Evolution made it even more\n",
+                "devious. It communicates by clawing\n",
+                "signs in boulders."
+            ]
+        },
+        "fr": {
+            "name": "DIMORET",
+            "category": "Pokémon Grifacérée",
+            "entry_text": [
+                "Ils vivent par groupe de 4 ou 5\n",
+                "en région froide et chassent de\n",
+                "façon très organisée."
+            ]
+        },
+        "de": {
+            "name": "SNIBUNNA",
+            "category": "Stichklaue",
+            "entry_text": [
+                "Es lebt in kalten Gebieten in\n",
+                "Gruppen von 4 oder 5 PKMN, die bei\n",
+                "der Jagd großes Geschick zeigen."
+            ]
+        },
+        "it": {
+            "name": "WEAVILE",
+            "category": "Pokémon Lamartigli",
+            "entry_text": [
+                "Questi Pokémon vivono in zone fred-\n",
+                "de in gruppi di quattro o cinque.\n",
+                "Insieme sono cacciatori abilissimi."
+            ]
+        },
+        "es": {
+            "name": "WEAVILE",
+            "category": "Pokémon Garra Filo",
+            "entry_text": [
+                "Viven en zonas frías y forman\n",
+                "grupos de cuatro o cinco para\n",
+                "cazar con gran coordinación."
+            ]
+        },
+        "jp": {
+            "name": "マニュ－ラ",
+            "category": "かぎづめポケモン",
+            "entry_text": [
+                "さむい　ちいきで　くらす　ポケモン。\n",
+                "４、５ひきの　グル－プは　みごとな\n",
+                "れんけいで　えものを　おいつめる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

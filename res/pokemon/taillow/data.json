@@ -1,5 +1,4 @@
 {
-    "name": "Taillow",
     "base_stats": {
         "hp": 40,
         "attack": 55,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 200,
     "base_exp_reward": 59,
     "ev_yields": {
@@ -30,21 +26,25 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_GUTS",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_GUTS", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 4, "MOVE_FOCUS_ENERGY" ],
+            [ 8, "MOVE_QUICK_ATTACK" ],
+            [ 13, "MOVE_WING_ATTACK" ],
+            [ 19, "MOVE_DOUBLE_TEAM" ],
+            [ 26, "MOVE_ENDEAVOR" ],
+            [ 34, "MOVE_AERIAL_ACE" ],
+            [ 43, "MOVE_AGILITY" ],
+            [ 53, "MOVE_AIR_SLASH" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -72,21 +72,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PECK",
-                "MOVE_GROWL"
-            ],
-            "4": "MOVE_FOCUS_ENERGY",
-            "8": "MOVE_QUICK_ATTACK",
-            "13": "MOVE_WING_ATTACK",
-            "19": "MOVE_DOUBLE_TEAM",
-            "26": "MOVE_ENDEAVOR",
-            "34": "MOVE_AERIAL_ACE",
-            "43": "MOVE_AGILITY",
-            "53": "MOVE_AIR_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -99,14 +85,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             22,
             "SPECIES_SWELLOW"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 3,
@@ -120,10 +106,62 @@
         "pokemon_pos_f": 65519,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65519,
-        "entry_text": "It has a gutsy spirit that makes\nit bravely take on tough foes. It\nflies in search of warm climates.",
-        "category": "TinySwallow Pokémon"
+        "en": {
+            "name": "TAILLOW",
+            "category": "TinySwallow Pokémon",
+            "entry_text": [
+                "It has a gutsy spirit that makes\n",
+                "it bravely take on tough foes. It\n",
+                "flies in search of warm climates."
+            ]
+        },
+        "fr": {
+            "name": "NIRONDELLE",
+            "category": "Pokémon Minirondel",
+            "entry_text": [
+                "Ce Pokémon téméraire n’a pas peur\n",
+                "d’affronter des ennemis puissants.\n",
+                "Il vole en quête de climats chauds."
+            ]
+        },
+        "de": {
+            "name": "SCHWALBINI",
+            "category": "Schwälblein",
+            "entry_text": [
+                "Es ist sehr mutig und stellt sich\n",
+                "auch starken Gegnern. Es sucht\n",
+                "ständig nach warmen Regionen."
+            ]
+        },
+        "it": {
+            "name": "TAILLOW",
+            "category": "Pokémon Rondinella",
+            "entry_text": [
+                "È molto coraggioso e affronta\n",
+                "spavaldo i nemici più forti.\n",
+                "Migra verso i paesi caldi."
+            ]
+        },
+        "es": {
+            "name": "TAILLOW",
+            "category": "Pokémon Pequebuche",
+            "entry_text": [
+                "Es un Pokémon valiente que no\n",
+                "teme a los rivales fuertes. Vuela\n",
+                "en busca de climas templados. "
+            ]
+        },
+        "jp": {
+            "name": "スバメ",
+            "category": "こツバメポケモン",
+            "entry_text": [
+                "つよい　あいてにも　ゆうかんに\n",
+                "たちむかう　こんじょうの　もちぬし。\n",
+                "あたたかい　とちを　めざして　とぶ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 30,

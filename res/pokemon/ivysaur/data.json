@@ -1,5 +1,4 @@
 {
-    "name": "Ivysaur",
     "base_stats": {
         "hp": 60,
         "attack": 62,
@@ -8,10 +7,7 @@
         "special_attack": 80,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_POISON" ],
     "catch_rate": 45,
     "base_exp_reward": 141,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_OVERGROW",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_OVERGROW", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_LEECH_SEED" ],
+            [ 3, "MOVE_GROWL" ],
+            [ 7, "MOVE_LEECH_SEED" ],
+            [ 9, "MOVE_VINE_WHIP" ],
+            [ 13, "MOVE_POISON_POWDER" ],
+            [ 13, "MOVE_SLEEP_POWDER" ],
+            [ 15, "MOVE_TAKE_DOWN" ],
+            [ 20, "MOVE_RAZOR_LEAF" ],
+            [ 23, "MOVE_SWEET_SCENT" ],
+            [ 28, "MOVE_GROWTH" ],
+            [ 31, "MOVE_DOUBLE_EDGE" ],
+            [ 36, "MOVE_WORRY_SEED" ],
+            [ 39, "MOVE_SYNTHESIS" ],
+            [ 44, "MOVE_SOLAR_BEAM" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -74,29 +80,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL",
-                "MOVE_LEECH_SEED"
-            ],
-            "3": "MOVE_GROWL",
-            "7": "MOVE_LEECH_SEED",
-            "9": "MOVE_VINE_WHIP",
-            "13": [
-                "MOVE_POISON_POWDER",
-                "MOVE_SLEEP_POWDER"
-            ],
-            "15": "MOVE_TAKE_DOWN",
-            "20": "MOVE_RAZOR_LEAF",
-            "23": "MOVE_SWEET_SCENT",
-            "28": "MOVE_GROWTH",
-            "31": "MOVE_DOUBLE_EDGE",
-            "36": "MOVE_WORRY_SEED",
-            "39": "MOVE_SYNTHESIS",
-            "44": "MOVE_SOLAR_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -107,14 +91,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             32,
             "SPECIES_VENUSAUR"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -128,10 +112,62 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "When the bud on its back starts\nswelling, a sweet aroma wafts to\nindicate the flower’s coming bloom.",
-        "category": "Seed Pokémon"
+        "en": {
+            "name": "IVYSAUR",
+            "category": "Seed Pokémon",
+            "entry_text": [
+                "When the bud on its back starts\n",
+                "swelling, a sweet aroma wafts to\n",
+                "indicate the flower’s coming bloom."
+            ]
+        },
+        "fr": {
+            "name": "HERBIZARRE",
+            "category": "Pokémon Graine",
+            "entry_text": [
+                "Lorsque le bourgeon sur son dos\n",
+                "éclot, il répand un doux parfum\n",
+                "pour célébrer sa floraison."
+            ]
+        },
+        "de": {
+            "name": "BISAKNOSP",
+            "category": "Samen",
+            "entry_text": [
+                "Sobald die Knospe auf seinem Rücken\n",
+                "ein süßes Aroma abgibt, steht die\n",
+                "Blüte kurz bevor."
+            ]
+        },
+        "it": {
+            "name": "IVYSAUR",
+            "category": "Pokémon Seme",
+            "entry_text": [
+                "Quando il bocciolo che ha sul dorso\n",
+                "si gonfia, emana un dolce profumo.\n",
+                "È indice dell’imminente fioritura."
+            ]
+        },
+        "es": {
+            "name": "IVYSAUR",
+            "category": "Pokémon Semilla",
+            "entry_text": [
+                "Cuando el bulbo de su lomo se\n",
+                "hincha, desprende un dulce aroma\n",
+                "para indicar el florecimiento."
+            ]
+        },
+        "jp": {
+            "name": "フシギソウ",
+            "category": "たねポケモン",
+            "entry_text": [
+                "せなかの　つぼみが　ふくらみだすと\n",
+                "あまい　においが　ただよいはじめる。\n",
+                "たいりんの　はなが　さく　まえぶれ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

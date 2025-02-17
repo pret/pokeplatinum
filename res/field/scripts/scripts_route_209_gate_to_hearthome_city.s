@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/route_209_gate_to_hearthome_city.h"
 
     .data
 
@@ -38,17 +39,17 @@ _001D:
     End
 
 _00A5:
-    StartTrainerBattle trainer_rival_route_209_piplup
+    StartTrainerBattle TRAINER_RIVAL_ROUTE_209_PIPLUP
     GoTo _00CF
     End
 
 _00B3:
-    StartTrainerBattle trainer_rival_route_209_turtwig
+    StartTrainerBattle TRAINER_RIVAL_ROUTE_209_TURTWIG
     GoTo _00CF
     End
 
 _00C1:
-    StartTrainerBattle trainer_rival_route_209_chimchar
+    StartTrainerBattle TRAINER_RIVAL_ROUTE_209_CHIMCHAR
     GoTo _00CF
     End
 

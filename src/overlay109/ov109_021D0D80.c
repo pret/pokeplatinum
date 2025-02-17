@@ -3,12 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
-#include "consts/journal.h"
+#include "generated/game_records.h"
+#include "generated/journal_online_events.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02073838.h"
@@ -47,6 +47,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -55,11 +56,9 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_020363E8.h"
@@ -69,6 +68,7 @@
 #include "unk_02073838.h"
 #include "unk_02092494.h"
 #include "unk_0209BDF8.h"
+#include "vram_transfer.h"
 
 typedef struct {
     VecFx32 unk_00;
@@ -454,7 +454,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_24 = Party_GetFromSavedata(v0->unk_CC->unk_14.unk_08);
     v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, 95);
 
-    VRAMTransferManager_New(8, 95);
+    VramTransfer_New(8, 95);
     sub_0201E3D8();
     sub_0201E450(4);
     ov109_021D1C28(v0);
@@ -514,7 +514,7 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
     ov109_021D1C68(v0);
 
     SetMainCallback(NULL, NULL);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     NARC_dtor(v0->unk_D80);
     OverlayManager_FreeData(param0);
     Heap_Destroy(95);
@@ -1551,7 +1551,7 @@ static void ov109_021D1C00(void *param0)
 {
     UnkStruct_ov109_021D0F70 *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_D9C);
     Bg_RunScheduledUpdates(v0->unk_D84);
@@ -1972,7 +1972,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
     NARC *v3 = param0->unk_D80;
 
     {
-        sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+        ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
     }
 
     {

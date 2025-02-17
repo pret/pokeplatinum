@@ -24,6 +24,7 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
@@ -32,15 +33,14 @@
 #include "string_template.h"
 #include "system_data.h"
 #include "text.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202ACE0.h"
 #include "unk_020366A0.h"
 #include "unk_02038FFC.h"
 #include "unk_020393C8.h"
+#include "vram_transfer.h"
 
 typedef struct {
     UnkStruct_02017498 *unk_00;
@@ -159,7 +159,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_04 = BgConfig_New(117);
 
-    VRAMTransferManager_New(64, 117);
+    VramTransfer_New(64, 117);
     SetAutorepeat(4, 8);
     ov61_0222C224(v0->unk_04);
     sub_0201E3D8();
@@ -260,7 +260,7 @@ int ov61_0222C160(OverlayManager *param0, int *param1)
     ov61_0222C38C(v0->unk_04);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     sub_0201E530();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -276,8 +276,8 @@ static void ov61_0222C1FC(void *param0)
 {
     UnkStruct_ov61_0222C664 *v0 = param0;
 
-    sub_0201DCAC();
-    sub_0200A858();
+    VramTransfer_Process();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates(v0->unk_04);
 
     inline_ov61_0222C1FC(&v0->unk_A4);

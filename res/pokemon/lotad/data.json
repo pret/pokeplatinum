@@ -1,5 +1,4 @@
 {
-    "name": "Lotad",
     "base_stats": {
         "hp": 40,
         "attack": 30,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_GRASS" ],
     "catch_rate": 255,
     "base_exp_reward": 74,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_RAIN_DISH"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_RAIN_DISH" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ASTONISH" ],
+            [ 3, "MOVE_GROWL" ],
+            [ 5, "MOVE_ABSORB" ],
+            [ 7, "MOVE_NATURE_POWER" ],
+            [ 11, "MOVE_MIST" ],
+            [ 15, "MOVE_NATURAL_GIFT" ],
+            [ 19, "MOVE_MEGA_DRAIN" ],
+            [ 25, "MOVE_BUBBLE_BEAM" ],
+            [ 31, "MOVE_ZEN_HEADBUTT" ],
+            [ 37, "MOVE_RAIN_DANCE" ],
+            [ 45, "MOVE_ENERGY_BALL" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -77,20 +78,7 @@
             "TM90",
             "HM03"
         ],
-        "level_up": {
-            "1": "MOVE_ASTONISH",
-            "3": "MOVE_GROWL",
-            "5": "MOVE_ABSORB",
-            "7": "MOVE_NATURE_POWER",
-            "11": "MOVE_MIST",
-            "15": "MOVE_NATURAL_GIFT",
-            "19": "MOVE_MEGA_DRAIN",
-            "25": "MOVE_BUBBLE_BEAM",
-            "31": "MOVE_ZEN_HEADBUTT",
-            "37": "MOVE_RAIN_DANCE",
-            "45": "MOVE_ENERGY_BALL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
             "MOVE_SYNTHESIS",
@@ -101,14 +89,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             14,
             "SPECIES_LOMBRE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -122,10 +110,62 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It looks like an aquatic plant and\nserves as a ferry to Pokémon\nthat can’t swim.",
-        "category": "Water Weed Pokémon"
+        "en": {
+            "name": "LOTAD",
+            "category": "Water Weed Pokémon",
+            "entry_text": [
+                "It looks like an aquatic plant and\n",
+                "serves as a ferry to Pokémon\n",
+                "that can’t swim."
+            ]
+        },
+        "fr": {
+            "name": "NENUPIOT",
+            "category": "Pokémon Aquaplante",
+            "entry_text": [
+                "Il ressemble à une plante aquatique\n",
+                "et fait la navette pour les\n",
+                "Pokémon qui ne savent pas nager."
+            ]
+        },
+        "de": {
+            "name": "LOTURZEL",
+            "category": "Wasserlinse",
+            "entry_text": [
+                "Es sieht aus wie eine Wasser-\n",
+                "pflanze. Es dient den PKMN, die\n",
+                "nicht schwimmen können, als Fähre."
+            ]
+        },
+        "it": {
+            "name": "LOTAD",
+            "category": "Pokémon Alga",
+            "entry_text": [
+                "Sembra una pianta acquatica e\n",
+                "viene usato come traghetto dai\n",
+                "Pokémon che non sanno nuotare."
+            ]
+        },
+        "es": {
+            "name": "LOTAD",
+            "category": "Pokémon Alga",
+            "entry_text": [
+                "Parece una planta acuática. Hace\n",
+                "de ferry para los Pokémon que no\n",
+                "saben nadar."
+            ]
+        },
+        "jp": {
+            "name": "ハスボ－",
+            "category": "うきくさポケモン",
+            "entry_text": [
+                "みずくさに　そっくりな　ポケモン。\n",
+                "およげない　ポケモンを　はっぱに\n",
+                "のせて　むこうぎしまで　はこぶ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 30,

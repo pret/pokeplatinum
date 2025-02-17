@@ -1,5 +1,4 @@
 {
-    "name": "Sunkern",
     "base_stats": {
         "hp": 30,
         "attack": 30,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 235,
     "base_exp_reward": 52,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_GRASS",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_CHLOROPHYLL",
-        "ABILITY_SOLAR_POWER"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_SOLAR_POWER" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ABSORB" ],
+            [ 1, "MOVE_GROWTH" ],
+            [ 5, "MOVE_MEGA_DRAIN" ],
+            [ 9, "MOVE_INGRAIN" ],
+            [ 13, "MOVE_GRASS_WHISTLE" ],
+            [ 17, "MOVE_LEECH_SEED" ],
+            [ 21, "MOVE_ENDEAVOR" ],
+            [ 25, "MOVE_WORRY_SEED" ],
+            [ 29, "MOVE_RAZOR_LEAF" ],
+            [ 33, "MOVE_SYNTHESIS" ],
+            [ 37, "MOVE_SUNNY_DAY" ],
+            [ 41, "MOVE_GIGA_DRAIN" ],
+            [ 45, "MOVE_SEED_BOMB" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -74,24 +77,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ABSORB",
-                "MOVE_GROWTH"
-            ],
-            "5": "MOVE_MEGA_DRAIN",
-            "9": "MOVE_INGRAIN",
-            "13": "MOVE_GRASS_WHISTLE",
-            "17": "MOVE_LEECH_SEED",
-            "21": "MOVE_ENDEAVOR",
-            "25": "MOVE_WORRY_SEED",
-            "29": "MOVE_RAZOR_LEAF",
-            "33": "MOVE_SYNTHESIS",
-            "37": "MOVE_SUNNY_DAY",
-            "41": "MOVE_GIGA_DRAIN",
-            "45": "MOVE_SEED_BOMB"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
             "MOVE_ENDEAVOR",
@@ -108,8 +94,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 3,
@@ -123,10 +109,62 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "It suddenly falls out of the sky in\nthe morning. A year after a cold\nsummer, their population explodes.",
-        "category": "Seed Pokémon"
+        "en": {
+            "name": "SUNKERN",
+            "category": "Seed Pokémon",
+            "entry_text": [
+                "It suddenly falls out of the sky in\n",
+                "the morning. A year after a cold\n",
+                "summer, their population explodes."
+            ]
+        },
+        "fr": {
+            "name": "TOURNEGRIN",
+            "category": "Pokémon Graine",
+            "entry_text": [
+                "Il tombe du ciel sans crier gare en\n",
+                "matinée. On en croise énormément \n",
+                "l’année suivant un été froid."
+            ]
+        },
+        "de": {
+            "name": "SONNKERN",
+            "category": "Samen",
+            "entry_text": [
+                "Morgens fällt es plötzlich aus dem\n",
+                "Himmel. War der Sommer kalt,\n",
+                "explodiert seine Population."
+            ]
+        },
+        "it": {
+            "name": "SUNKERN",
+            "category": "Pokémon Seme",
+            "entry_text": [
+                "Cade improvvisamente giù dal cielo\n",
+                "al mattino. Dopo un’estate fredda,\n",
+                "la popolazione di SUNKERN esplode."
+            ]
+        },
+        "es": {
+            "name": "SUNKERN",
+            "category": "Pokémon Semilla",
+            "entry_text": [
+                "Cae de repente del cielo por las\n",
+                "mañanas. Los años de veranos\n",
+                "suaves su número se multiplica."
+            ]
+        },
+        "jp": {
+            "name": "ヒマナッツ",
+            "category": "たねポケモン",
+            "entry_text": [
+                "あるあさ　とつぜん　ふってくる。\n",
+                "なつが　さむかった　つぎの　としは\n",
+                "かずが　ばくはつてきに　ふえる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

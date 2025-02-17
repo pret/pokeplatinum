@@ -1,5 +1,4 @@
 {
-    "name": "Wobbuffet",
     "base_stats": {
         "hp": 190,
         "attack": 33,
@@ -8,10 +7,7 @@
         "special_attack": 33,
         "special_defense": 58
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 45,
     "base_exp_reward": 177,
     "ev_yields": {
@@ -30,34 +26,25 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_SHADOW_TAG",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_SHADOW_TAG", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": [
-                "MOVE_COUNTER",
-                "MOVE_MIRROR_COAT",
-                "MOVE_SAFEGUARD",
-                "MOVE_DESTINY_BOND"
-            ]
-        },
-        "tutor": []
+        "by_level": [
+            [ 1, "MOVE_COUNTER" ],
+            [ 1, "MOVE_MIRROR_COAT" ],
+            [ 1, "MOVE_SAFEGUARD" ],
+            [ 1, "MOVE_DESTINY_BOND" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [  ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 13,
@@ -71,10 +58,62 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "It desperately tries to keep its\nblack tail hidden. It is said to be\nproof the tail hides a secret.",
-        "category": "Patient Pokémon"
+        "en": {
+            "name": "WOBBUFFET",
+            "category": "Patient Pokémon",
+            "entry_text": [
+                "It desperately tries to keep its\n",
+                "black tail hidden. It is said to be\n",
+                "proof the tail hides a secret."
+            ]
+        },
+        "fr": {
+            "name": "QULBUTOKE",
+            "category": "Pokémon Patient",
+            "entry_text": [
+                "Il cherche désespérément à cacher\n",
+                "sa queue noire. Certains pensent\n",
+                "qu’elle renferme un secret. "
+            ]
+        },
+        "de": {
+            "name": "WOINGENAU",
+            "category": "Geduld",
+            "entry_text": [
+                "Verzweifelt versucht es, seinen\n",
+                "schwarzen Schweif zu verstecken.\n",
+                "Er soll ein Geheimnis enthalten."
+            ]
+        },
+        "it": {
+            "name": "WOBBUFFET",
+            "category": "Pokémon Pazienza",
+            "entry_text": [
+                "Cerca di tenere nascosta la sua\n",
+                "coda nera ad ogni costo. Pare\n",
+                "che essa celi un segreto."
+            ]
+        },
+        "es": {
+            "name": "WOBBUFFET",
+            "category": "Pokémon Paciente",
+            "entry_text": [
+                "Siempre intenta ocultar su cola,\n",
+                "por lo que muchos creen que\n",
+                "contiene un secreto."
+            ]
+        },
+        "jp": {
+            "name": "ソ－ナンス",
+            "category": "がまんポケモン",
+            "entry_text": [
+                "くろい　しっぽを　ひっしになって\n",
+                "かくすのは　しっぽに　ひみつがある\n",
+                "しょうこだと　かんぐられている。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

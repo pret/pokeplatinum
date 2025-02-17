@@ -1,5 +1,4 @@
 {
-    "name": "Squirtle",
     "base_stats": {
         "hp": 44,
         "attack": 48,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 64
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 66,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 4, "MOVE_TAIL_WHIP" ],
+            [ 7, "MOVE_BUBBLE" ],
+            [ 10, "MOVE_WITHDRAW" ],
+            [ 13, "MOVE_WATER_GUN" ],
+            [ 16, "MOVE_BITE" ],
+            [ 19, "MOVE_RAPID_SPIN" ],
+            [ 22, "MOVE_PROTECT" ],
+            [ 25, "MOVE_WATER_PULSE" ],
+            [ 28, "MOVE_AQUA_TAIL" ],
+            [ 31, "MOVE_SKULL_BASH" ],
+            [ 34, "MOVE_IRON_DEFENSE" ],
+            [ 37, "MOVE_RAIN_DANCE" ],
+            [ 40, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -79,23 +83,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "4": "MOVE_TAIL_WHIP",
-            "7": "MOVE_BUBBLE",
-            "10": "MOVE_WITHDRAW",
-            "13": "MOVE_WATER_GUN",
-            "16": "MOVE_BITE",
-            "19": "MOVE_RAPID_SPIN",
-            "22": "MOVE_PROTECT",
-            "25": "MOVE_WATER_PULSE",
-            "28": "MOVE_AQUA_TAIL",
-            "31": "MOVE_SKULL_BASH",
-            "34": "MOVE_IRON_DEFENSE",
-            "37": "MOVE_RAIN_DANCE",
-            "40": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -109,14 +97,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             16,
             "SPECIES_WARTORTLE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 5,
@@ -130,10 +118,62 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It shelters itself in its shell,\nthen strikes back with spouts of\nwater at every opportunity.",
-        "category": "Tiny Turtle Pokémon"
+        "en": {
+            "name": "SQUIRTLE",
+            "category": "Tiny Turtle Pokémon",
+            "entry_text": [
+                "It shelters itself in its shell,\n",
+                "then strikes back with spouts of\n",
+                "water at every opportunity."
+            ]
+        },
+        "fr": {
+            "name": "CARAPUCE",
+            "category": "Pokémon Minitortue",
+            "entry_text": [
+                "Il se réfugie dans sa carapace\n",
+                "et réplique en éclaboussant\n",
+                "l’ennemi à la première occasion."
+            ]
+        },
+        "de": {
+            "name": "SCHIGGY",
+            "category": "Minikröte",
+            "entry_text": [
+                "Es zieht sich in seinen Panzer\n",
+                "zurück und greift dann mit\n",
+                "Wasserstrahlen seine Gegner an."
+            ]
+        },
+        "it": {
+            "name": "SQUIRTLE",
+            "category": "Pokémon Tartaghina",
+            "entry_text": [
+                "Si ritira nel suo guscio e, alla prima\n",
+                "occasione, contrattacca colpendo\n",
+                "il nemico con spruzzi d’acqua."
+            ]
+        },
+        "es": {
+            "name": "SQUIRTLE",
+            "category": "Pokémon Tortuguita",
+            "entry_text": [
+                "Se protege con su caparazón y\n",
+                "luego contraataca lanzando agua a\n",
+                "presión cuando tiene oportunidad."
+            ]
+        },
+        "jp": {
+            "name": "ゼニガメ",
+            "category": "かめのこポケモン",
+            "entry_text": [
+                "こうらに　とじこもり　みを　まもる。\n",
+                "あいての　すきを　みのがさず\n",
+                "みずを　ふきだして　はんげきする。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

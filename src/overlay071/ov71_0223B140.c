@@ -20,16 +20,16 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_oam.h"
 #include "strbuf.h"
 #include "touch_screen.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_020393C8.h"
+#include "vram_transfer.h"
 
 typedef struct {
     const TouchScreenRect *unk_00[2];
@@ -1068,8 +1068,8 @@ static void ov71_0223C128(UnkStruct_ov71_0223B620 *param0, const u8 param1)
 
 static void ov71_0223C18C(void *param0)
 {
-    sub_0201DCAC();
-    sub_0200A858();
+    VramTransfer_Process();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

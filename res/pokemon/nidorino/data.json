@@ -1,5 +1,4 @@
 {
-    "name": "Nidorino",
     "base_stats": {
         "hp": 61,
         "attack": 72,
@@ -8,10 +7,7 @@
         "special_attack": 55,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 120,
     "base_exp_reward": 118,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_POISON_POINT",
-        "ABILITY_RIVALRY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_POISON_POINT", "ABILITY_RIVALRY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_PECK" ],
+            [ 7, "MOVE_FOCUS_ENERGY" ],
+            [ 9, "MOVE_DOUBLE_KICK" ],
+            [ 13, "MOVE_POISON_STING" ],
+            [ 20, "MOVE_FURY_ATTACK" ],
+            [ 23, "MOVE_HORN_ATTACK" ],
+            [ 28, "MOVE_HELPING_HAND" ],
+            [ 35, "MOVE_TOXIC_SPIKES" ],
+            [ 38, "MOVE_FLATTER" ],
+            [ 43, "MOVE_POISON_JAB" ],
+            [ 50, "MOVE_CAPTIVATE" ],
+            [ 58, "MOVE_HORN_DRILL" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -79,24 +82,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LEER",
-                "MOVE_PECK"
-            ],
-            "7": "MOVE_FOCUS_ENERGY",
-            "9": "MOVE_DOUBLE_KICK",
-            "13": "MOVE_POISON_STING",
-            "20": "MOVE_FURY_ATTACK",
-            "23": "MOVE_HORN_ATTACK",
-            "28": "MOVE_HELPING_HAND",
-            "35": "MOVE_TOXIC_SPIKES",
-            "38": "MOVE_FLATTER",
-            "43": "MOVE_POISON_JAB",
-            "50": "MOVE_CAPTIVATE",
-            "58": "MOVE_HORN_DRILL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -111,8 +97,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -126,10 +112,62 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "It has a violent disposition and\nstabs foes with its horn, which\noozes poison upon impact.",
-        "category": "Poison Pin Pokémon"
+        "en": {
+            "name": "NIDORINO",
+            "category": "Poison Pin Pokémon",
+            "entry_text": [
+                "It has a violent disposition and\n",
+                "stabs foes with its horn, which\n",
+                "oozes poison upon impact."
+            ]
+        },
+        "fr": {
+            "name": "NIDORINO",
+            "category": "Pokémon Venepic",
+            "entry_text": [
+                "D’un tempérament violent, il\n",
+                "empale l’ennemi sur sa corne qui\n",
+                "distille un poison puissant."
+            ]
+        },
+        "de": {
+            "name": "NIDORINO",
+            "category": "Giftdorn",
+            "entry_text": [
+                "Es ist aggressiv und greift seine\n",
+                "Gegner mit dem Horn an, welches\n",
+                "bei Berührung Gift absondert."
+            ]
+        },
+        "it": {
+            "name": "NIDORINO",
+            "category": "Pokémon Velenago",
+            "entry_text": [
+                "Ha un temperamento violento e\n",
+                "infilza i nemici con il corno, che,\n",
+                "all’impatto, rilascia veleno."
+            ]
+        },
+        "es": {
+            "name": "NIDORINO",
+            "category": "Pokémon Pin Veneno",
+            "entry_text": [
+                "Se muestra violento y ataca\n",
+                "a los enemigos con un cuerno\n",
+                "que desprende veneno."
+            ]
+        },
+        "jp": {
+            "name": "ニドリ－ノ",
+            "category": "どくばりポケモン",
+            "entry_text": [
+                "きしょうが　あらい　ポケモン。\n",
+                "あいてに　つきさした　しょうげきで\n",
+                "ツノから　もうどくが　にじみでる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

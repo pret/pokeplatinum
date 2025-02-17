@@ -1,5 +1,4 @@
 {
-    "name": "Ninetales",
     "base_stats": {
         "hp": 73,
         "attack": 76,
@@ -8,10 +7,7 @@
         "special_attack": 81,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 75,
     "base_exp_reward": 178,
     "ev_yields": {
@@ -30,21 +26,20 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_FLASH_FIRE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_FLASH_FIRE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_NASTY_PLOT" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_CONFUSE_RAY" ],
+            [ 1, "MOVE_SAFEGUARD" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM05",
             "TM06",
@@ -79,16 +74,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_NASTY_PLOT",
-                "MOVE_EMBER",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_SAFEGUARD"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_SPITE",
@@ -97,9 +83,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -113,10 +100,62 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "Its nine tails are said to be\nimbued with a mystic power.\nIt can live for a thousand years.",
-        "category": "Fox Pokémon"
+        "en": {
+            "name": "NINETALES",
+            "category": "Fox Pokémon",
+            "entry_text": [
+                "Its nine tails are said to be\n",
+                "imbued with a mystic power.\n",
+                "It can live for a thousand years."
+            ]
+        },
+        "fr": {
+            "name": "FEUNARD",
+            "category": "Pokémon Renard",
+            "entry_text": [
+                "On raconte que ses neuf queues\n",
+                "détiennent un pouvoir mystique.\n",
+                "Il peut vivre pendant mille ans."
+            ]
+        },
+        "de": {
+            "name": "VULNONA",
+            "category": "Fuchs",
+            "entry_text": [
+                "Seine neun Schweife sollen\n",
+                "mystische Kräfte besitzen. Es kann\n",
+                "tausend Jahre leben."
+            ]
+        },
+        "it": {
+            "name": "NINETALES",
+            "category": "Pokémon Volpe",
+            "entry_text": [
+                "Si dice che le sue nove code\n",
+                "posseggano un potere magico.\n",
+                "Vive anche 1000 anni."
+            ]
+        },
+        "es": {
+            "name": "NINETALES",
+            "category": "Pokémon Zorro",
+            "entry_text": [
+                "Se dice que sus nueve colas están\n",
+                "revestidas de poder místico.\n",
+                "Puede vivir mil años."
+            ]
+        },
+        "jp": {
+            "name": "キュウコン",
+            "category": "きつねポケモン",
+            "entry_text": [
+                "９ほんの　しっぽには　しんぴてきな\n",
+                "ちからが　やどっていると　つたわる。\n",
+                "１０００ねん　いきつづけるらしい。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

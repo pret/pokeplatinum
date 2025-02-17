@@ -1,5 +1,4 @@
 {
-    "name": "Silcoon",
     "base_stats": {
         "hp": 50,
         "attack": 35,
@@ -8,10 +7,7 @@
         "special_attack": 25,
         "special_defense": 25
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_BUG"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_BUG" ],
     "catch_rate": 120,
     "base_exp_reward": 72,
     "ev_yields": {
@@ -30,39 +26,29 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SHED_SKIN",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SHED_SKIN", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": "MOVE_HARDEN",
-            "7": "MOVE_HARDEN"
-        },
-        "tutor": [
-            "MOVE_IRON_DEFENSE"
-        ]
+        "by_level": [
+            [ 1, "MOVE_HARDEN" ],
+            [ 7, "MOVE_HARDEN" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [ "MOVE_IRON_DEFENSE" ]
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             10,
             "SPECIES_BEAUTIFLY"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 6,
@@ -76,10 +62,62 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "It wraps silk around the branches\nof a tree. It drinks rainwater on\nits silk while awaiting evolution.",
-        "category": "Cocoon Pokémon"
+        "en": {
+            "name": "SILCOON",
+            "category": "Cocoon Pokémon",
+            "entry_text": [
+                "It wraps silk around the branches\n",
+                "of a tree. It drinks rainwater on\n",
+                "its silk while awaiting evolution."
+            ]
+        },
+        "fr": {
+            "name": "ARMULYS",
+            "category": "Pokémon Cocon",
+            "entry_text": [
+                "Il s’accroche en enroulant sa soie\n",
+                "autour des branches. Il reste\n",
+                "immobile en attendant d’évoluer."
+            ]
+        },
+        "de": {
+            "name": "SCHALOKO",
+            "category": "Kokon",
+            "entry_text": [
+                "Es bindet sich mit Seidenfäden an\n",
+                "Ästen fest und wartet so starr auf\n",
+                "seine Entwicklung."
+            ]
+        },
+        "it": {
+            "name": "SILCOON",
+            "category": "Pokémon Bozzolo",
+            "entry_text": [
+                "SILCOON si ancora ai rami con\n",
+                "fili di seta. In questa posizione\n",
+                "aspetta immobile l’evoluzione."
+            ]
+        },
+        "es": {
+            "name": "SILCOON",
+            "category": "Pokémon Capullo",
+            "entry_text": [
+                "La seda que segrega su cuerpo le\n",
+                "permite agarrarse a los árboles y\n",
+                "esperar su evolución."
+            ]
+        },
+        "jp": {
+            "name": "カラサリス",
+            "category": "さなぎポケモン",
+            "entry_text": [
+                "からだから　のびる　いとを　えだに\n",
+                "まきつけて　おちないように　こてい。\n",
+                "じっと　うごかずに　しんかを　まつ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

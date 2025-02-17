@@ -14,20 +14,20 @@
 #include "camera.h"
 #include "cell_actor.h"
 #include "enums.h"
+#include "fx_util.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
+#include "render_oam.h"
+#include "render_view.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
-#include "unk_0200A784.h"
-#include "unk_0201E190.h"
-#include "unk_0202309C.h"
 
 typedef struct UnkStruct_ov5_021D5EF8_t {
     UnkStruct_ov5_021D6594 *unk_00;
@@ -768,14 +768,14 @@ static void ov5_021D61D0(UnkStruct_ov5_021D61D0 *param0)
     int v1;
     int v2;
 
-    sub_0202309C(&param0->unk_14, -FX32_ONE);
+    InitRenderer(&param0->unk_14, -FX32_ONE);
 
     v0.posTopLeft.x = 0;
     v0.posTopLeft.y = 0;
     v0.sizeView.x = (255 << FX32_SHIFT);
     v0.sizeView.y = (192 << FX32_SHIFT);
 
-    sub_0200A8B0(&param0->unk_C0, &v0, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_14);
+    RenderOam_InitSurface(&param0->unk_C0, &v0, NNS_G2D_SURFACETYPE_MAIN2D, &param0->unk_14);
 
     for (v1 = 0; v1 < 4; v1++) {
         param0->unk_00[v1] = SpriteResourceCollection_New(31, v1, 4);
@@ -1069,11 +1069,11 @@ static void ov5_021D6690(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
 
     if (param1 != 0xffff) {
         if (param2->unk_00[0]) {
-            sub_0200A4E4(param2->unk_00[0]);
+            SpriteTransfer_ResetCharTransfer(param2->unk_00[0]);
         }
 
         if (param2->unk_00[1]) {
-            sub_0200A6DC(param2->unk_00[1]);
+            SpriteTransfer_ResetPlttTransfer(param2->unk_00[1]);
         }
 
         for (v0 = 0; v0 < 4; v0++) {
@@ -1433,7 +1433,7 @@ static void ov5_021D6C64(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
     if (param1 != 0xffff) {
         param2->unk_00[0] = ov5_021D65C0(param0->unk_08.unk_10, 0, param1, param0->unk_08.unk_00[0], param0->unk_144, 1);
 
-        sub_0200A3DC(param2->unk_00[0]);
+        SpriteTransfer_RequestCharAtEnd(param2->unk_00[0]);
         SpriteResource_ReleaseData(param2->unk_00[0]);
     }
 }
@@ -1443,7 +1443,7 @@ static void ov5_021D6CA0(UnkStruct_ov5_021D6594 *param0, int param1, UnkStruct_o
     if (param1 != 0xffff) {
         param2->unk_00[1] = ov5_021D65C0(param0->unk_08.unk_10, 1, param1, param0->unk_08.unk_00[1], param0->unk_144, 1);
 
-        sub_0200A640(param2->unk_00[1]);
+        SpriteTransfer_RequestPlttFreeSpace(param2->unk_00[1]);
         SpriteResource_ReleaseData(param2->unk_00[1]);
     }
 }
@@ -1593,7 +1593,7 @@ static void ov5_021D6F4C(CellActorResourceData *param0, UnkStruct_ov5_021D6594 *
         v0[v1] = SpriteResource_GetID(param2->unk_00[v1]);
     }
 
-    sub_020093B4(param0, v0[0], v0[1], v0[2], v0[3], 0xffffffff, 0xffffffff, param3, param4, param1->unk_08.unk_00[0], param1->unk_08.unk_00[1], param1->unk_08.unk_00[2], param1->unk_08.unk_00[3], NULL, NULL);
+    SpriteResourcesHeader_Init(param0, v0[0], v0[1], v0[2], v0[3], 0xffffffff, 0xffffffff, param3, param4, param1->unk_08.unk_00[0], param1->unk_08.unk_00[1], param1->unk_08.unk_00[2], param1->unk_08.unk_00[3], NULL, NULL);
 }
 
 static void ov5_021D6FA8(UnkStruct_ov5_021D6FA8 *param0)
@@ -1667,7 +1667,7 @@ static void ov5_021D7028(fx32 *param0, fx32 *param1, UnkStruct_ov5_021DB4B8 *par
     v6 = (v0.z - param2->unk_B8C.z);
     v8 = FX_Div(FX32_CONST(4), FX32_CONST(3));
 
-    sub_0201E34C(Camera_GetFOV(param2->unk_00->fieldSystem->camera), Camera_GetDistance(param2->unk_00->fieldSystem->camera), v8, &v3, &v4);
+    CalcLinearFov(Camera_GetFOV(param2->unk_00->fieldSystem->camera), Camera_GetDistance(param2->unk_00->fieldSystem->camera), v8, &v3, &v4);
     v3 = FX_Div(v3, 256 * FX32_ONE);
 
     if (v6 <= 0) {

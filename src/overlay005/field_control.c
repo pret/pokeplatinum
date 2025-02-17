@@ -5,26 +5,26 @@
 
 #include "constants/field_poison.h"
 #include "constants/player_avatar.h"
-#include "consts/game_records.h"
-#include "consts/sdat.h"
+#include "generated/game_records.h"
+#include "generated/sdat.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_decls/struct_party_decl.h"
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/honey_tree.h"
 #include "overlay005/ov5_021DFB54.h"
 #include "overlay005/ov5_021E1154.h"
 #include "overlay005/ov5_021E622C.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/ov5_021EF4BC.h"
-#include "overlay005/ov5_021EFB0C.h"
 #include "overlay005/ov5_021F8370.h"
 #include "overlay005/vs_seeker.h"
-#include "overlay006/ov6_02240C9C.h"
-#include "overlay006/ov6_02246BF4.h"
+#include "overlay006/repel_step_update.h"
+#include "overlay006/wild_encounters.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
 #include "overlay023/ov23_02241F74.h"
@@ -291,7 +291,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         if (distortionState == AVATAR_DISTORTION_STATE_NONE) {
             int event;
 
-            if (ov5_021EFB40(fieldSystem, &event)) {
+            if (HoneyTree_TryInteract(fieldSystem, &event)) {
                 ScriptManager_Set(fieldSystem, event, NULL);
                 return TRUE;
             }
@@ -556,7 +556,7 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
         }
     }
 
-    return MapHeader_HasWildEncounters(fieldSystem->location->mapId) && ov6_02240D5C(fieldSystem) == TRUE;
+    return MapHeader_HasWildEncounters(fieldSystem->location->mapId) && WildEncounters_TryWildEncounter(fieldSystem) == TRUE;
 }
 
 static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput *input)
@@ -856,7 +856,7 @@ static BOOL Field_UpdatePokeRadar(FieldSystem *fieldSystem)
 
 static BOOL Field_UpdateRepel(FieldSystem *fieldSystem)
 {
-    return ov6_02246BF4(fieldSystem->saveData, fieldSystem);
+    return Repel_UpdateSteps(fieldSystem->saveData, fieldSystem);
 }
 
 static BOOL Field_UpdateFriendship(FieldSystem *fieldSystem)

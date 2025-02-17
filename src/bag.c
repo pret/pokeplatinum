@@ -6,7 +6,7 @@
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/savedata/save_table.h"
-#include "consts/items.h"
+#include "generated/items.h"
 
 #include "struct_decls/struct_0207CB08_decl.h"
 
@@ -466,11 +466,11 @@ void BagCursor_SetBattleCategoryPosition(BagCursor *cursor, u32 category, u8 ind
 
 void BagCursor_ResetBattle(BagCursor *cursor)
 {
-    for (u32 i = 0; i < BATTLE_ITEM_CATEGORY_MAX + 1; i++) {
+    for (u32 i = 0; i < ITEM_BATTLE_CATEGORY_MAX + 1; i++) {
         BagCursor_SetBattleCategoryPosition(cursor, i, 0, 0);
     }
 
-    BagCursor_SetBattleCurrentCategory(cursor, BATTLE_ITEM_CATEGORY_RECOVER_HP);
+    BagCursor_SetBattleCurrentCategory(cursor, ITEM_BATTLE_CATEGORY_RECOVER_HP);
 }
 
 void Bag_SetLastBattleItemUsed(BagCursor *cursor, u16 itemID, u16 category)

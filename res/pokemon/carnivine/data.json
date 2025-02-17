@@ -1,5 +1,4 @@
 {
-    "name": "Carnivine",
     "base_stats": {
         "hp": 74,
         "attack": 100,
@@ -8,10 +7,7 @@
         "special_attack": 90,
         "special_defense": 72
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 200,
     "base_exp_reward": 164,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_GRASS",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 60,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_GRASS", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 60,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BIND" ],
+            [ 1, "MOVE_GROWTH" ],
+            [ 7, "MOVE_BITE" ],
+            [ 11, "MOVE_VINE_WHIP" ],
+            [ 17, "MOVE_SWEET_SCENT" ],
+            [ 21, "MOVE_INGRAIN" ],
+            [ 27, "MOVE_FAINT_ATTACK" ],
+            [ 31, "MOVE_STOCKPILE" ],
+            [ 31, "MOVE_SPIT_UP" ],
+            [ 31, "MOVE_SWALLOW" ],
+            [ 37, "MOVE_CRUNCH" ],
+            [ 41, "MOVE_WRING_OUT" ],
+            [ 47, "MOVE_POWER_WHIP" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -77,26 +80,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BIND",
-                "MOVE_GROWTH"
-            ],
-            "7": "MOVE_BITE",
-            "11": "MOVE_VINE_WHIP",
-            "17": "MOVE_SWEET_SCENT",
-            "21": "MOVE_INGRAIN",
-            "27": "MOVE_FAINT_ATTACK",
-            "31": [
-                "MOVE_STOCKPILE",
-                "MOVE_SPIT_UP",
-                "MOVE_SWALLOW"
-            ],
-            "37": "MOVE_CRUNCH",
-            "41": "MOVE_WRING_OUT",
-            "47": "MOVE_POWER_WHIP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_GASTRO_ACID",
@@ -106,9 +90,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 14,
@@ -122,10 +107,62 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "entry_text": "It binds itself to trees in marshes.\nIt attracts prey with its sweet-\nsmelling drool and gulps them down.",
-        "category": "Bug Catcher Pokémon"
+        "en": {
+            "name": "CARNIVINE",
+            "category": "Bug Catcher Pokémon",
+            "entry_text": [
+                "It binds itself to trees in marshes.\n",
+                "It attracts prey with its sweet-\n",
+                "smelling drool and gulps them down."
+            ]
+        },
+        "fr": {
+            "name": "VORTENTE",
+            "category": "Pokémon Chopinsecte",
+            "entry_text": [
+                "Il attire sa proie avec sa salive\n",
+                "odorante avant de la croquer. Il\n",
+                "lui faut une journée pour l’avaler."
+            ]
+        },
+        "de": {
+            "name": "VENUFLIBIS",
+            "category": "Käfertot",
+            "entry_text": [
+                "Sein süßlich riechender Speichel\n",
+                "zieht Beute an, die es frisst. Es\n",
+                "braucht einen Tag, sie zu fressen."
+            ]
+        },
+        "it": {
+            "name": "CARNIVINE",
+            "category": "Pokémon Insettivoro",
+            "entry_text": [
+                "Attira le prede con il dolce aroma\n",
+                "della saliva e poi le ingoia. Impiega\n",
+                "un giorno per mangiare una preda."
+            ]
+        },
+        "es": {
+            "name": "CARNIVINE",
+            "category": "Pokémon Caza Bichos",
+            "entry_text": [
+                "Atrae a sus presas con saliva de\n",
+                "olor dulce y las mastica. Tarda\n",
+                "todo un día en comérselas."
+            ]
+        },
+        "jp": {
+            "name": "マスキッパ",
+            "category": "むしとりポケモン",
+            "entry_text": [
+                "あまい　においの　だえきで　えものを\n",
+                "おびきよせ　おおあごで　がぶり。\n",
+                "１にち　かけて　えものを　たべる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

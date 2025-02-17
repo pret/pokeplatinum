@@ -1,5 +1,4 @@
 {
-    "name": "Huntail",
     "base_stats": {
         "hp": 55,
         "attack": 104,
@@ -8,10 +7,7 @@
         "special_attack": 94,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 60,
     "base_exp_reward": 178,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WHIRLPOOL" ],
+            [ 6, "MOVE_BITE" ],
+            [ 10, "MOVE_SCREECH" ],
+            [ 15, "MOVE_WATER_PULSE" ],
+            [ 19, "MOVE_SCARY_FACE" ],
+            [ 24, "MOVE_ICE_FANG" ],
+            [ 28, "MOVE_BRINE" ],
+            [ 33, "MOVE_BATON_PASS" ],
+            [ 37, "MOVE_DIVE" ],
+            [ 42, "MOVE_CRUNCH" ],
+            [ 46, "MOVE_AQUA_TAIL" ],
+            [ 51, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -74,21 +76,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_WHIRLPOOL",
-            "6": "MOVE_BITE",
-            "10": "MOVE_SCREECH",
-            "15": "MOVE_WATER_PULSE",
-            "19": "MOVE_SCARY_FACE",
-            "24": "MOVE_ICE_FANG",
-            "28": "MOVE_BRINE",
-            "33": "MOVE_BATON_PASS",
-            "37": "MOVE_DIVE",
-            "42": "MOVE_CRUNCH",
-            "46": "MOVE_AQUA_TAIL",
-            "51": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -99,9 +87,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 17,
@@ -115,10 +104,62 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "It lives deep in the sea. With a\ntail shaped like a small fish, it\nattracts unsuspecting prey.",
-        "category": "Deep Sea Pokémon"
+        "en": {
+            "name": "HUNTAIL",
+            "category": "Deep Sea Pokémon",
+            "entry_text": [
+                "It lives deep in the sea. With a\n",
+                "tail shaped like a small fish, it\n",
+                "attracts unsuspecting prey."
+            ]
+        },
+        "fr": {
+            "name": "SERPANG",
+            "category": "Pokémon Abysse",
+            "entry_text": [
+                "Il vit loin sous la mer. Il appâte\n",
+                "les proies crédules avec sa\n",
+                "queue qui rappelle un petit poisson."
+            ]
+        },
+        "de": {
+            "name": "AALABYSS",
+            "category": "Tiefsee",
+            "entry_text": [
+                "Es lebt tief im Meer. Sein Schweif\n",
+                "ist wie ein kleiner Fisch geformt.\n",
+                "Mit ihm lockt es Beute an."
+            ]
+        },
+        "it": {
+            "name": "HUNTAIL",
+            "category": "Pokémon Abissi",
+            "entry_text": [
+                "Vive nei mari profondi. Con la coda\n",
+                "a forma di pesciolino attrae prede\n",
+                "ignare del pericolo."
+            ]
+        },
+        "es": {
+            "name": "HUNTAIL",
+            "category": "Pokémon Abisal",
+            "entry_text": [
+                "Vive en los fondos marinos. Atrae\n",
+                "a sus confiadas presas con\n",
+                "la cola, que tiene forma de pez."
+            ]
+        },
+        "jp": {
+            "name": "ハンテ－ル",
+            "category": "しんかいポケモン",
+            "entry_text": [
+                "しんかいに　せいそくする　ポケモン。\n",
+                "こざかなの　かたちをした　しっぽで\n",
+                "えものを　おびきよせ　つかまえる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 80,

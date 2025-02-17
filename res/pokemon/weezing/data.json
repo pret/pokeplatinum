@@ -1,5 +1,4 @@
 {
-    "name": "Weezing",
     "base_stats": {
         "hp": 65,
         "attack": 90,
@@ -8,10 +7,7 @@
         "special_attack": 85,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 60,
     "base_exp_reward": 173,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_GAS" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_SMOG" ],
+            [ 1, "MOVE_SMOKE_SCREEN" ],
+            [ 6, "MOVE_SMOG" ],
+            [ 10, "MOVE_SMOKE_SCREEN" ],
+            [ 15, "MOVE_ASSURANCE" ],
+            [ 19, "MOVE_SELFDESTRUCT" ],
+            [ 24, "MOVE_SLUDGE" ],
+            [ 28, "MOVE_HAZE" ],
+            [ 33, "MOVE_DOUBLE_HIT" ],
+            [ 40, "MOVE_EXPLOSION" ],
+            [ 48, "MOVE_SLUDGE_BOMB" ],
+            [ 55, "MOVE_DESTINY_BOND" ],
+            [ 63, "MOVE_MEMENTO" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -82,35 +87,17 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_GAS",
-                "MOVE_TACKLE",
-                "MOVE_SMOG",
-                "MOVE_SMOKE_SCREEN"
-            ],
-            "6": "MOVE_SMOG",
-            "10": "MOVE_SMOKE_SCREEN",
-            "15": "MOVE_ASSURANCE",
-            "19": "MOVE_SELFDESTRUCT",
-            "24": "MOVE_SLUDGE",
-            "28": "MOVE_HAZE",
-            "33": "MOVE_DOUBLE_HIT",
-            "40": "MOVE_EXPLOSION",
-            "48": "MOVE_SLUDGE_BOMB",
-            "55": "MOVE_DESTINY_BOND",
-            "63": "MOVE_MEMENTO"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_SPITE",
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -124,10 +111,62 @@
         "pokemon_pos_f": 65526,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65526,
-        "entry_text": "It grows by feeding on gases\nreleased by garbage. Though very\nrare, triplets have been found.",
-        "category": "Poison Gas Pokémon"
+        "en": {
+            "name": "WEEZING",
+            "category": "Poison Gas Pokémon",
+            "entry_text": [
+                "It grows by feeding on gases\n",
+                "released by garbage. Though very\n",
+                "rare, triplets have been found."
+            ]
+        },
+        "fr": {
+            "name": "SMOGOGO",
+            "category": "Pokémon Gaz Mortel",
+            "entry_text": [
+                "Il grandit en absorbant les gaz des\n",
+                "détritus. Des triplés existent, bien\n",
+                "qu’ils soient fort rares."
+            ]
+        },
+        "de": {
+            "name": "SMOGMOG",
+            "category": "Giftwolke",
+            "entry_text": [
+                "Es wächst, indem es Gase aufnimmt,\n",
+                "die aus dem Müll aufsteigen. Selten\n",
+                "kann man Drillinge von ihnen finden."
+            ]
+        },
+        "it": {
+            "name": "WEEZING",
+            "category": "Pokémon Velenuvola",
+            "entry_text": [
+                "Cresce nutrendosi dei gas emanati\n",
+                "dai rifiuti. Anche se rarissimi, ne\n",
+                "hanno trovati in gruppi di tre."
+            ]
+        },
+        "es": {
+            "name": "WEEZING",
+            "category": "Pokémon Gas Veneno",
+            "entry_text": [
+                "Crece alimentándose de los gases\n",
+                "emanados por la basura. Se han\n",
+                "dado raros casos de trillizos."
+            ]
+        },
+        "jp": {
+            "name": "マタドガス",
+            "category": "どくガスポケモン",
+            "entry_text": [
+                "ゴミから　はっせいする　ガスを\n",
+                "たべて　おおきくなる。ごくまれに\n",
+                "３つごの　マタドガスが　みつかる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

@@ -1,5 +1,4 @@
 {
-    "name": "Octillery",
     "base_stats": {
         "hp": 75,
         "attack": 105,
@@ -8,10 +7,7 @@
         "special_attack": 105,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 75,
     "base_exp_reward": 164,
     "ev_yields": {
@@ -30,21 +26,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_SUCTION_CUPS",
-        "ABILITY_SNIPER"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_SUCTION_CUPS", "ABILITY_SNIPER" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GUNK_SHOT" ],
+            [ 1, "MOVE_ROCK_BLAST" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_CONSTRICT" ],
+            [ 1, "MOVE_PSYBEAM" ],
+            [ 1, "MOVE_AURORA_BEAM" ],
+            [ 6, "MOVE_CONSTRICT" ],
+            [ 10, "MOVE_PSYBEAM" ],
+            [ 14, "MOVE_AURORA_BEAM" ],
+            [ 19, "MOVE_BUBBLE_BEAM" ],
+            [ 23, "MOVE_FOCUS_ENERGY" ],
+            [ 25, "MOVE_OCTAZOOKA" ],
+            [ 29, "MOVE_BULLET_SEED" ],
+            [ 36, "MOVE_WRING_OUT" ],
+            [ 42, "MOVE_SIGNAL_BEAM" ],
+            [ 48, "MOVE_ICE_BEAM" ],
+            [ 55, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM09",
@@ -83,28 +90,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GUNK_SHOT",
-                "MOVE_ROCK_BLAST",
-                "MOVE_WATER_GUN",
-                "MOVE_CONSTRICT",
-                "MOVE_PSYBEAM",
-                "MOVE_AURORA_BEAM"
-            ],
-            "6": "MOVE_CONSTRICT",
-            "10": "MOVE_PSYBEAM",
-            "14": "MOVE_AURORA_BEAM",
-            "19": "MOVE_BUBBLE_BEAM",
-            "23": "MOVE_FOCUS_ENERGY",
-            "25": "MOVE_OCTAZOOKA",
-            "29": "MOVE_BULLET_SEED",
-            "36": "MOVE_WRING_OUT",
-            "42": "MOVE_SIGNAL_BEAM",
-            "48": "MOVE_ICE_BEAM",
-            "55": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -116,9 +102,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 9,
@@ -132,10 +119,62 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "It loves to lurk inside holes in\nrocks. It sometimes sprays ink on\nprey by sticking out only its mouth.",
-        "category": "Jet Pokémon"
+        "en": {
+            "name": "OCTILLERY",
+            "category": "Jet Pokémon",
+            "entry_text": [
+                "It loves to lurk inside holes in\n",
+                "rocks. It sometimes sprays ink on\n",
+                "prey by sticking out only its mouth."
+            ]
+        },
+        "fr": {
+            "name": "OCTILLERY",
+            "category": "Pokémon Jet",
+            "entry_text": [
+                "Il hante les fissures dans la roche\n",
+                "et les trous au fond de la mer. Ses\n",
+                "ventouses ne lâchent jamais prise."
+            ]
+        },
+        "de": {
+            "name": "OCTILLERY",
+            "category": "Hochdruck",
+            "entry_text": [
+                "Es lebt in Gesteinsritzen und\n",
+                "Löchern auf dem Meeresboden. Mit\n",
+                "Saugnäpfen hält es Beute fest."
+            ]
+        },
+        "it": {
+            "name": "OCTILLERY",
+            "category": "Pokémon Jet",
+            "entry_text": [
+                "Vive nelle spaccature delle rocce\n",
+                "e del fondo marino. Con le sue ven-\n",
+                "tose afferra saldamente la preda."
+            ]
+        },
+        "es": {
+            "name": "OCTILLERY",
+            "category": "Pokémon Reactor",
+            "entry_text": [
+                "Se refugia en los agujeros de las\n",
+                "rocas y el fondo marino. Sus\n",
+                "ventosas son muy potentes."
+            ]
+        },
+        "jp": {
+            "name": "オクタン",
+            "category": "ふんしゃポケモン",
+            "entry_text": [
+                "かいていの　いわかげや　あなを\n",
+                "すみかにして　くらす。きゅうばんで\n",
+                "えものに　すいつき　にがさない。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 70,

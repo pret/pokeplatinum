@@ -1,5 +1,4 @@
 {
-    "name": "Dialga",
     "base_stats": {
         "hp": 100,
         "attack": 120,
@@ -8,10 +7,7 @@
         "special_attack": 150,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_DRAGON"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_DRAGON" ],
     "catch_rate": 30,
     "base_exp_reward": 220,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_DRAGON_BREATH" ],
+            [ 1, "MOVE_SCARY_FACE" ],
+            [ 10, "MOVE_METAL_CLAW" ],
+            [ 20, "MOVE_ANCIENT_POWER" ],
+            [ 30, "MOVE_DRAGON_CLAW" ],
+            [ 40, "MOVE_ROAR_OF_TIME" ],
+            [ 50, "MOVE_HEAL_BLOCK" ],
+            [ 60, "MOVE_EARTH_POWER" ],
+            [ 70, "MOVE_SLASH" ],
+            [ 80, "MOVE_FLASH_CANNON" ],
+            [ 90, "MOVE_AURA_SPHERE" ]
+        ],
+        "by_tm": [
             "TM02",
             "TM05",
             "TM06",
@@ -95,22 +96,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_DRAGON_BREATH",
-                "MOVE_SCARY_FACE"
-            ],
-            "10": "MOVE_METAL_CLAW",
-            "20": "MOVE_ANCIENT_POWER",
-            "30": "MOVE_DRAGON_CLAW",
-            "40": "MOVE_ROAR_OF_TIME",
-            "50": "MOVE_HEAL_BLOCK",
-            "60": "MOVE_EARTH_POWER",
-            "70": "MOVE_SLASH",
-            "80": "MOVE_FLASH_CANNON",
-            "90": "MOVE_AURA_SPHERE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_IRON_HEAD",
@@ -124,9 +110,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 54,
@@ -140,10 +127,62 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 26,
         "pokemon_pos_m": 2,
-        "entry_text": "A legendary Pokémon of Sinnoh.\nIt is said that time flows when\nDIALGA’s heart beats.",
-        "category": "Temporal Pokémon"
+        "en": {
+            "name": "DIALGA",
+            "category": "Temporal Pokémon",
+            "entry_text": [
+                "A legendary Pokémon of Sinnoh.\n",
+                "It is said that time flows when\n",
+                "DIALGA’s heart beats."
+            ]
+        },
+        "fr": {
+            "name": "DIALGA",
+            "category": "Pokémon Temps",
+            "entry_text": [
+                "Il peut contrôler le temps. Les\n",
+                "mythes de Sinnoh en parlent\n",
+                "comme d’une divinité ancienne."
+            ]
+        },
+        "de": {
+            "name": "DIALGA",
+            "category": "Zeitweilig",
+            "entry_text": [
+                "Es besitzt die Macht, die Zeit zu\n",
+                "kontrollieren. In den Mythen von\n",
+                "Sinnoh erscheint es als Gottheit."
+            ]
+        },
+        "it": {
+            "name": "DIALGA",
+            "category": "Pokémon Tempo",
+            "entry_text": [
+                "Ha il potere di controllare il tempo.\n",
+                "Descritto nei miti della regione di\n",
+                "Sinnoh come un’antica divinità."
+            ]
+        },
+        "es": {
+            "name": "DIALGA",
+            "category": "Pokémon Temporal",
+            "entry_text": [
+                "Tiene el poder de controlar el\n",
+                "tiempo. Aparece en los mitos de\n",
+                "Sinnoh como una vieja deidad."
+            ]
+        },
+        "jp": {
+            "name": "ディアルガ",
+            "category": "じかんポケモン",
+            "entry_text": [
+                "じかんを　あやつる　ちからを　もつ。\n",
+                "シンオウちほうでは　かみさまと\n",
+                "よばれ　しんわに　とうじょうする。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

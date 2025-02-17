@@ -4,11 +4,11 @@ import json
 import pathlib
 import sys
 
-from consts import species
 from convert import pad, u8, u32
+from generated import species
 
 def as_species(s: str) -> bytes:
-    return u32(species.PokemonSpecies[s].value)
+    return u32(species.Species[s].value)
 
 def convert_land(encs: list) -> bytes:
     return b''.join(itertools.chain.from_iterable([

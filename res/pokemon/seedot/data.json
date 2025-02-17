@@ -1,5 +1,4 @@
 {
-    "name": "Seedot",
     "base_stats": {
         "hp": 40,
         "attack": 40,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 255,
     "base_exp_reward": 74,
     "ev_yields": {
@@ -30,21 +26,22 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_CHLOROPHYLL",
-        "ABILITY_EARLY_BIRD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_EARLY_BIRD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BIDE" ],
+            [ 3, "MOVE_HARDEN" ],
+            [ 7, "MOVE_GROWTH" ],
+            [ 13, "MOVE_NATURE_POWER" ],
+            [ 21, "MOVE_SYNTHESIS" ],
+            [ 31, "MOVE_SUNNY_DAY" ],
+            [ 43, "MOVE_EXPLOSION" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -74,16 +71,7 @@
             "TM90",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_BIDE",
-            "3": "MOVE_HARDEN",
-            "7": "MOVE_GROWTH",
-            "13": "MOVE_NATURE_POWER",
-            "21": "MOVE_SYNTHESIS",
-            "31": "MOVE_SUNNY_DAY",
-            "43": "MOVE_EXPLOSION"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_SPITE",
@@ -93,14 +81,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             14,
             "SPECIES_NUZLEAF"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -114,10 +102,62 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "When it dangles from a tree\nbranch, it looks just like an acorn.\nIt enjoys scaring other Pokémon.",
-        "category": "Acorn Pokémon"
+        "en": {
+            "name": "SEEDOT",
+            "category": "Acorn Pokémon",
+            "entry_text": [
+                "When it dangles from a tree\n",
+                "branch, it looks just like an acorn.\n",
+                "It enjoys scaring other Pokémon."
+            ]
+        },
+        "fr": {
+            "name": "GRAINIPIOT",
+            "category": "Pokémon Gland",
+            "entry_text": [
+                "Il ressemble à un gland pendu\n",
+                "à une branche. Il adore effrayer\n",
+                "les autres Pokémon."
+            ]
+        },
+        "de": {
+            "name": "SAMURZEL",
+            "category": "Eichelnuss",
+            "entry_text": [
+                "Es sieht aus wie eine Eichel, die am\n",
+                "Baum hängt. Es liebt es, andere\n",
+                "PKMN zu erschrecken."
+            ]
+        },
+        "it": {
+            "name": "SEEDOT",
+            "category": "Pokémon Ghianda",
+            "entry_text": [
+                "Quando si attacca a un ramo,\n",
+                "sembra una vera ghianda. Si diverte\n",
+                "a spaventare gli altri Pokémon."
+            ]
+        },
+        "es": {
+            "name": "SEEDOT",
+            "category": "Pokémon Bellota",
+            "entry_text": [
+                "Cuando cuelga de las ramas\n",
+                "parece una bellota. Le encanta\n",
+                "asustar a otros Pokémon."
+            ]
+        },
+        "jp": {
+            "name": "タネボ－",
+            "category": "どんぐりポケモン",
+            "entry_text": [
+                "えだに　ぶらさがっていると\n",
+                "きのみに　そっくり。ついばもうとした\n",
+                "ポケモンを　おどろかせて　よろこぶ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 30,

@@ -23,12 +23,12 @@
 #include "narc.h"
 #include "render_window.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_02095AF0.h"
 
 static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1);
@@ -349,12 +349,12 @@ static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **pa
 {
     param0[0] = SpriteResourceCollection_AddTilesFrom(param1[0], param3, param4, 0, param9 + param4, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
-    sub_0200A3DC(param0[0]);
+    SpriteTransfer_RequestCharAtEnd(param0[0]);
     SpriteResource_ReleaseData(param0[0]);
 
     param0[1] = SpriteResourceCollection_AddPaletteFrom(param1[1], param3, param5, 0, param9 + param5, NNS_G2D_VRAM_TYPE_2DSUB, param8, param2);
 
-    sub_0200A640(param0[1]);
+    SpriteTransfer_RequestPlttFreeSpace(param0[1]);
     SpriteResource_ReleaseData(param0[1]);
 
     param0[2] = SpriteResourceCollection_AddFrom(param1[2], param3, param6, 0, param9 + param6, 2, param2);
@@ -363,8 +363,8 @@ static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **pa
 
 static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **param1)
 {
-    sub_0200A4E4(param0[0]);
-    sub_0200A6DC(param0[1]);
+    SpriteTransfer_ResetCharTransfer(param0[0]);
+    SpriteTransfer_ResetPlttTransfer(param0[1]);
     SpriteResourceCollection_Remove(param1[0], param0[0]);
     SpriteResourceCollection_Remove(param1[1], param0[1]);
     SpriteResourceCollection_Remove(param1[2], param0[2]);
@@ -373,7 +373,7 @@ static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **pa
 
 static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, CellActorResourceData *param2, int param3)
 {
-    sub_020093B4(param2, SpriteResource_GetID(param0[0]), SpriteResource_GetID(param0[1]), SpriteResource_GetID(param0[2]), SpriteResource_GetID(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
+    SpriteResourcesHeader_Init(param2, SpriteResource_GetID(param0[0]), SpriteResource_GetID(param0[1]), SpriteResource_GetID(param0[2]), SpriteResource_GetID(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
 }
 
 static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6)

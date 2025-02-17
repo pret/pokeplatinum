@@ -1,5 +1,4 @@
 {
-    "name": "Arbok",
     "base_stats": {
         "hp": 60,
         "attack": 85,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 79
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 90,
     "base_exp_reward": 147,
     "ev_yields": {
@@ -30,21 +26,35 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_SHED_SKIN"
-    ],
-    "great_marsh_flee_rate": 60,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_SHED_SKIN" ],
+    "safari_flee_rate": 60,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ICE_FANG" ],
+            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_WRAP" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_BITE" ],
+            [ 4, "MOVE_POISON_STING" ],
+            [ 9, "MOVE_BITE" ],
+            [ 12, "MOVE_GLARE" ],
+            [ 17, "MOVE_SCREECH" ],
+            [ 20, "MOVE_ACID" ],
+            [ 22, "MOVE_CRUNCH" ],
+            [ 28, "MOVE_STOCKPILE" ],
+            [ 28, "MOVE_SWALLOW" ],
+            [ 28, "MOVE_SPIT_UP" ],
+            [ 34, "MOVE_MUD_BOMB" ],
+            [ 42, "MOVE_GASTRO_ACID" ],
+            [ 48, "MOVE_HAZE" ],
+            [ 56, "MOVE_GUNK_SHOT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -80,33 +90,7 @@
             "TM90",
             "HM04"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ICE_FANG",
-                "MOVE_THUNDER_FANG",
-                "MOVE_FIRE_FANG",
-                "MOVE_WRAP",
-                "MOVE_LEER",
-                "MOVE_POISON_STING",
-                "MOVE_BITE"
-            ],
-            "4": "MOVE_POISON_STING",
-            "9": "MOVE_BITE",
-            "12": "MOVE_GLARE",
-            "17": "MOVE_SCREECH",
-            "20": "MOVE_ACID",
-            "22": "MOVE_CRUNCH",
-            "28": [
-                "MOVE_STOCKPILE",
-                "MOVE_SWALLOW",
-                "MOVE_SPIT_UP"
-            ],
-            "34": "MOVE_MUD_BOMB",
-            "42": "MOVE_GASTRO_ACID",
-            "48": "MOVE_HAZE",
-            "56": "MOVE_GUNK_SHOT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_AQUA_TAIL",
             "MOVE_GASTRO_ACID",
             "MOVE_SNORE",
@@ -115,9 +99,10 @@
             "MOVE_SEED_BOMB"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 35,
@@ -131,10 +116,62 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "The pattern on its belly is for\nintimidation. It constricts foes\nwhile they are frozen in fear.",
-        "category": "Cobra Pokémon"
+        "en": {
+            "name": "ARBOK",
+            "category": "Cobra Pokémon",
+            "entry_text": [
+                "The pattern on its belly is for\n",
+                "intimidation. It constricts foes\n",
+                "while they are frozen in fear."
+            ]
+        },
+        "fr": {
+            "name": "ARBOK",
+            "category": "Pokémon Cobra",
+            "entry_text": [
+                "Il utilise la marque sur son ventre\n",
+                "pour intimider l’ennemi. Il étouffe\n",
+                "l’ennemi pétrifié par la peur."
+            ]
+        },
+        "de": {
+            "name": "ARBOK",
+            "category": "Kobra",
+            "entry_text": [
+                "Das Muster auf seinem Bauch\n",
+                "schüchtert Gegner ein. Sind sie vor\n",
+                "Angst erstarrt, umklammert es sie."
+            ]
+        },
+        "it": {
+            "name": "ARBOK",
+            "category": "Pokémon Cobra",
+            "entry_text": [
+                "Prima paralizza i nemici con il terri-\n",
+                "ficante disegno che ha sul ventre,\n",
+                "poi gli si avvinghia intorno."
+            ]
+        },
+        "es": {
+            "name": "ARBOK",
+            "category": "Pokémon Cobra",
+            "entry_text": [
+                "ARBOK intimida a sus presas con el\n",
+                "dibujo de su panza y luego las\n",
+                "asfixia con su cuerpo."
+            ]
+        },
+        "jp": {
+            "name": "ア－ボック",
+            "category": "コブラポケモン",
+            "entry_text": [
+                "おなかの　もようで　てきを　いかく。\n",
+                "もように　おびえて　うごけなくなった\n",
+                "すきに　からだで　しめつける。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

@@ -6,11 +6,9 @@
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay077/const_ov77_021D742C.h"
 #include "overlay097/box_pokemon_gba.h"
 #include "overlay097/ov97_02235D18.h"
@@ -23,6 +21,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
@@ -34,13 +33,17 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -48,17 +51,12 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_0202EEC0.h"
 #include "unk_0209A74C.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay77);
 
@@ -121,7 +119,7 @@ typedef struct {
     BgConfig *unk_20;
     int unk_24;
     CellActorCollection *unk_28;
-    UnkStruct_0200C738 unk_2C;
+    G2dRenderer unk_2C;
     SpriteResourceCollection *unk_1B8[6];
     SpriteResource *unk_1D0[6];
     CellActorResourceData unk_1E8;
@@ -491,19 +489,19 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
 static void ov97_02233F74(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             20,
             2048,
             2048,
             78,
         };
 
-        sub_0201E86C(&v0);
+        CharTransfer_Init(&v0);
     }
 
-    sub_0201F834(20, 78);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(20, 78);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
@@ -512,9 +510,9 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 78);
-    param0->unk_28 = sub_020095C4(80, &param0->unk_2C, 78);
-    sub_0200964C(&param0->unk_2C, 0, (256 * FX32_ONE));
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 78);
+    param0->unk_28 = SpriteList_InitRendering(80, &param0->unk_2C, 78);
+    SetSubScreenViewRect(&param0->unk_2C, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_1B8[v0] = SpriteResourceCollection_New(3, v0, 78);
@@ -525,14 +523,14 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
     param0->unk_1D0[2] = SpriteResourceCollection_Add(param0->unk_1B8[2], 116, 25, 1, 0, 2, 78);
     param0->unk_1D0[3] = SpriteResourceCollection_Add(param0->unk_1B8[3], 116, 24, 1, 0, 3, 78);
 
-    sub_0200A328(param0->unk_1D0[0]);
-    sub_0200A5C8(param0->unk_1D0[1]);
+    SpriteTransfer_RequestChar(param0->unk_1D0[0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1D0[1]);
     Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, 78);
 }
 
 static void ov97_022340B0(UnkStruct_ov97_02234A2C *param0)
 {
-    sub_020093B4(&param0->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
@@ -1560,8 +1558,8 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
     ov97_02235158(&param0->unk_4FC);
 
     Font_Free(FONT_SUBSCREEN);
-    sub_0200A4E4(param0->unk_1D0[0]);
-    sub_0200A6DC(param0->unk_1D0[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_1D0[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_1D0[1]);
 
     for (v0 = 0; v0 < 6; v0++) {
         SpriteResourceCollection_Delete(param0->unk_1B8[v0]);
@@ -1570,9 +1568,9 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
     CellActorCollection_Delete(param0->unk_28);
     param0->unk_28 = NULL;
 
-    sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    RenderOam_Free();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 
     sub_02015938(param0->unk_E8EC);
     gCoreSys.unk_65 = 0;
@@ -1635,8 +1633,8 @@ static void ov97_022353CC(void *param0)
         v0->unk_12664 = NULL;
     }
 
-    sub_0201DCAC();
-    sub_0200A858();
+    VramTransfer_Process();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates(v0->unk_20);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

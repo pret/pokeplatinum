@@ -15,10 +15,9 @@
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_0207C690.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/struct_ov16_0223E0C8.h"
@@ -35,6 +34,7 @@
 #include "game_options.h"
 #include "message.h"
 #include "palette.h"
+#include "party.h"
 #include "poketch.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -111,7 +111,7 @@ struct BattleSystem {
     u8 unk_23FB_2 : 1;
     u8 unk_23FB_3 : 2;
     u8 unk_23FB_5 : 3;
-    enum Terrain terrain;
+    enum BattleTerrain terrain;
     int unk_2400;
     int unk_2404;
     u32 battleStatusMask;

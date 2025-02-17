@@ -1,5 +1,4 @@
 {
-    "name": "Salamence",
     "base_stats": {
         "hp": 95,
         "attack": 135,
@@ -8,10 +7,7 @@
         "special_attack": 110,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_DRAGON",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_DRAGON", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 218,
     "ev_yields": {
@@ -30,21 +26,34 @@
     "hatch_cycles": 40,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_DRAGON",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_DRAGON", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_RAGE" ],
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_HEADBUTT" ],
+            [ 5, "MOVE_BITE" ],
+            [ 10, "MOVE_LEER" ],
+            [ 16, "MOVE_HEADBUTT" ],
+            [ 20, "MOVE_FOCUS_ENERGY" ],
+            [ 25, "MOVE_EMBER" ],
+            [ 30, "MOVE_PROTECT" ],
+            [ 32, "MOVE_DRAGON_BREATH" ],
+            [ 37, "MOVE_ZEN_HEADBUTT" ],
+            [ 43, "MOVE_SCARY_FACE" ],
+            [ 50, "MOVE_FLY" ],
+            [ 53, "MOVE_CRUNCH" ],
+            [ 61, "MOVE_DRAGON_CLAW" ],
+            [ 70, "MOVE_DOUBLE_EDGE" ]
+        ],
+        "by_tm": [
             "TM02",
             "TM05",
             "TM06",
@@ -86,30 +95,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FIRE_FANG",
-                "MOVE_THUNDER_FANG",
-                "MOVE_RAGE",
-                "MOVE_BITE",
-                "MOVE_LEER",
-                "MOVE_HEADBUTT"
-            ],
-            "5": "MOVE_BITE",
-            "10": "MOVE_LEER",
-            "16": "MOVE_HEADBUTT",
-            "20": "MOVE_FOCUS_ENERGY",
-            "25": "MOVE_EMBER",
-            "30": "MOVE_PROTECT",
-            "32": "MOVE_DRAGON_BREATH",
-            "37": "MOVE_ZEN_HEADBUTT",
-            "43": "MOVE_SCARY_FACE",
-            "50": "MOVE_FLY",
-            "53": "MOVE_CRUNCH",
-            "61": "MOVE_DRAGON_CLAW",
-            "70": "MOVE_DOUBLE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -124,9 +110,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -140,10 +127,62 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "As a result of its long-held dream\nof flying, its cellular structure\nchanged, and wings grew out.",
-        "category": "Dragon Pokémon"
+        "en": {
+            "name": "SALAMENCE",
+            "category": "Dragon Pokémon",
+            "entry_text": [
+                "As a result of its long-held dream\n",
+                "of flying, its cellular structure\n",
+                "changed, and wings grew out."
+            ]
+        },
+        "fr": {
+            "name": "DRATTAK",
+            "category": "Pokémon Dragon",
+            "entry_text": [
+                "A force de rêver de pouvoir voler,\n",
+                "sa structure cellulaire a évolué\n",
+                "et il s’est vu pousser des ailes."
+            ]
+        },
+        "de": {
+            "name": "BRUTALANDA",
+            "category": "Drache",
+            "entry_text": [
+                "Seine Zellstruktur änderte sich, es\n",
+                "wuchsen ihm Flügel, da es immer\n",
+                "davon träumte, fliegen zu können."
+            ]
+        },
+        "it": {
+            "name": "SALAMENCE",
+            "category": "Pokémon Drago",
+            "entry_text": [
+                "Il suo forte desiderio di volare ha\n",
+                "provocato una mutazione cellulare\n",
+                "e gli sono spuntate le ali."
+            ]
+        },
+        "es": {
+            "name": "SALAMENCE",
+            "category": "Pokémon Dragón",
+            "entry_text": [
+                "Siempre soñó con volar, por lo\n",
+                "que su estructura celular cambió\n",
+                "y le crecieron alas."
+            ]
+        },
+        "jp": {
+            "name": "ボ－マンダ",
+            "category": "ドラゴンポケモン",
+            "entry_text": [
+                "そらを　とぶことを　ねがいつづけた\n",
+                "けっか　からだの　さいぼうが\n",
+                "へんかして　つばさが　はえてきた。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

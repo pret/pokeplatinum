@@ -1,5 +1,4 @@
 {
-    "name": "Qwilfish",
     "base_stats": {
         "hp": 65,
         "attack": 95,
@@ -8,10 +7,7 @@
         "special_attack": 55,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_POISON" ],
     "catch_rate": 45,
     "base_exp_reward": 100,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_POISON_POINT",
-        "ABILITY_SWIFT_SWIM"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_POISON_POINT", "ABILITY_SWIFT_SWIM" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SPIKES" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_POISON_STING" ],
+            [ 9, "MOVE_HARDEN" ],
+            [ 9, "MOVE_MINIMIZE" ],
+            [ 13, "MOVE_WATER_GUN" ],
+            [ 17, "MOVE_ROLLOUT" ],
+            [ 21, "MOVE_TOXIC_SPIKES" ],
+            [ 25, "MOVE_STOCKPILE" ],
+            [ 25, "MOVE_SPIT_UP" ],
+            [ 29, "MOVE_REVENGE" ],
+            [ 33, "MOVE_BRINE" ],
+            [ 37, "MOVE_PIN_MISSILE" ],
+            [ 41, "MOVE_TAKE_DOWN" ],
+            [ 45, "MOVE_AQUA_TAIL" ],
+            [ 49, "MOVE_POISON_JAB" ],
+            [ 53, "MOVE_DESTINY_BOND" ],
+            [ 57, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -79,33 +87,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SPIKES",
-                "MOVE_TACKLE",
-                "MOVE_POISON_STING"
-            ],
-            "9": [
-                "MOVE_HARDEN",
-                "MOVE_MINIMIZE"
-            ],
-            "13": "MOVE_WATER_GUN",
-            "17": "MOVE_ROLLOUT",
-            "21": "MOVE_TOXIC_SPIKES",
-            "25": [
-                "MOVE_STOCKPILE",
-                "MOVE_SPIT_UP"
-            ],
-            "29": "MOVE_REVENGE",
-            "33": "MOVE_BRINE",
-            "37": "MOVE_PIN_MISSILE",
-            "41": "MOVE_TAKE_DOWN",
-            "45": "MOVE_AQUA_TAIL",
-            "49": "MOVE_POISON_JAB",
-            "53": "MOVE_DESTINY_BOND",
-            "57": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -116,9 +98,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 5,
@@ -132,10 +115,62 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 4,
-        "entry_text": "It shoots the poison spines on its\nbody in all directions. Its round\nform makes it a poor swimmer.",
-        "category": "Balloon Pokémon"
+        "en": {
+            "name": "QWILFISH",
+            "category": "Balloon Pokémon",
+            "entry_text": [
+                "It shoots the poison spines on its\n",
+                "body in all directions. Its round\n",
+                "form makes it a poor swimmer."
+            ]
+        },
+        "fr": {
+            "name": "QWILFISH",
+            "category": "Pokémon Bouboule",
+            "entry_text": [
+                "Il envoie ses piquants empoisonnés\n",
+                "à la ronde. Sa forme sphérique en\n",
+                "fait un piètre nageur."
+            ]
+        },
+        "de": {
+            "name": "BALDORFISH",
+            "category": "Ballon",
+            "entry_text": [
+                "Es verschießt die giftigen Stacheln\n",
+                "seines Körpers in alle Richtungen.\n",
+                "Es ist kein guter Schwimmer."
+            ]
+        },
+        "it": {
+            "name": "QWILFISH",
+            "category": "Pokémon Pallone",
+            "entry_text": [
+                "Spara i suoi aculei velenosi in\n",
+                "tutte le direzioni. Essendo un po’\n",
+                "tondetto, non è un gran nuotatore."
+            ]
+        },
+        "es": {
+            "name": "QWILFISH",
+            "category": "Pokémon Globo",
+            "entry_text": [
+                "Lanza púas venenosas en todas\n",
+                "direcciones. Debido a su forma\n",
+                "redonda, es muy mal nadador."
+            ]
+        },
+        "jp": {
+            "name": "ハリ－セン",
+            "category": "ふうせんポケモン",
+            "entry_text": [
+                "ぜんしんの　どくバリを\n",
+                "しほうはっぽうに　うちだす。\n",
+                "まるい　からだは　およぎが　にがて。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 80,

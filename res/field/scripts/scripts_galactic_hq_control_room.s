@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/galactic_hq_control_room.h"
 
     .data
 
@@ -39,7 +40,7 @@ _0059:
     GoToIfSet 173, _0114
     Message 0
     CloseMessage
-    StartTrainerBattle trainer_commander_saturn_galactic_hq
+    StartTrainerBattle TRAINER_COMMANDER_SATURN_GALACTIC_HQ
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _011F
     SetFlag 173

@@ -1,5 +1,4 @@
 {
-    "name": "Slowking",
     "base_stats": {
         "hp": 95,
         "attack": 75,
@@ -8,10 +7,7 @@
         "special_attack": 100,
         "special_defense": 110
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_PSYCHIC" ],
     "catch_rate": 70,
     "base_exp_reward": 164,
     "ev_yields": {
@@ -30,21 +26,32 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_OWN_TEMPO"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_OWN_TEMPO" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POWER_GEM" ],
+            [ 1, "MOVE_HIDDEN_POWER" ],
+            [ 1, "MOVE_CURSE" ],
+            [ 1, "MOVE_YAWN" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 6, "MOVE_GROWL" ],
+            [ 11, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_CONFUSION" ],
+            [ 20, "MOVE_DISABLE" ],
+            [ 25, "MOVE_HEADBUTT" ],
+            [ 29, "MOVE_WATER_PULSE" ],
+            [ 34, "MOVE_ZEN_HEADBUTT" ],
+            [ 39, "MOVE_NASTY_PLOT" ],
+            [ 43, "MOVE_SWAGGER" ],
+            [ 48, "MOVE_PSYCHIC" ],
+            [ 53, "MOVE_TRUMP_CARD" ],
+            [ 57, "MOVE_PSYCH_UP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM04",
@@ -98,28 +105,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POWER_GEM",
-                "MOVE_HIDDEN_POWER",
-                "MOVE_CURSE",
-                "MOVE_YAWN",
-                "MOVE_TACKLE"
-            ],
-            "6": "MOVE_GROWL",
-            "11": "MOVE_WATER_GUN",
-            "15": "MOVE_CONFUSION",
-            "20": "MOVE_DISABLE",
-            "25": "MOVE_HEADBUTT",
-            "29": "MOVE_WATER_PULSE",
-            "34": "MOVE_ZEN_HEADBUTT",
-            "39": "MOVE_NASTY_PLOT",
-            "43": "MOVE_SWAGGER",
-            "48": "MOVE_PSYCHIC",
-            "53": "MOVE_TRUMP_CARD",
-            "57": "MOVE_PSYCH_UP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -134,9 +120,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 20,
@@ -150,10 +137,62 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 4,
-        "entry_text": "Being bitten by SHELLDER gave it\nintelligence comparable to that of\naward-winning scientists.",
-        "category": "Royal Pokémon"
+        "en": {
+            "name": "SLOWKING",
+            "category": "Royal Pokémon",
+            "entry_text": [
+                "Being bitten by SHELLDER gave it\n",
+                "intelligence comparable to that of\n",
+                "award-winning scientists."
+            ]
+        },
+        "fr": {
+            "name": "ROIGADA",
+            "category": "Pokémon Royal",
+            "entry_text": [
+                "La morsure de KOKIYAS a fait\n",
+                "de lui un génie dont l’intelligence\n",
+                "rivalise avec celle d’un prix Nobel."
+            ]
+        },
+        "de": {
+            "name": "LASCHOKING",
+            "category": "Monarch",
+            "entry_text": [
+                "Wird es von MUSCHAS gebissen, wird\n",
+                "es so intelligent, dass es sich mit\n",
+                "Nobelpreisträgern messen kann."
+            ]
+        },
+        "it": {
+            "name": "SLOWKING",
+            "category": "Pokémon Reale",
+            "entry_text": [
+                "Il morso di SHELLDER gli ha infuso\n",
+                "un’intelligenza pari a quella di\n",
+                "rinomati scienziati."
+            ]
+        },
+        "es": {
+            "name": "SLOWKING",
+            "category": "Pokémon Regio",
+            "entry_text": [
+                "Al ser mordido por un SHELLDER\n",
+                "desarrolló una inteligencia propia\n",
+                "de un ganador del premio Nobel."
+            ]
+        },
+        "jp": {
+            "name": "ヤドキング",
+            "category": "おうじゃポケモン",
+            "entry_text": [
+                "シェルダ－に　かまれたことによって\n",
+                "ノ－ベルしょうを　じゅしょうした\n",
+                "かがくしゃなみの　ちのうを　えた。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 80,

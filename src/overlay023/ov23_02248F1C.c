@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_0205E884_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"
@@ -22,12 +21,12 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_0200679C.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200F174.h"
 
 typedef struct {
@@ -47,7 +46,7 @@ struct UnkStruct_ov23_0224942C_t {
     FieldSystem *fieldSystem;
     BgConfig *unk_1B8;
     CellActorCollection *unk_1BC;
-    UnkStruct_0200C738 unk_1C0;
+    G2dRenderer unk_1C0;
     SpriteResourceCollection *unk_34C[4];
     SpriteResource *unk_35C[4];
     CellActorResourceData unk_36C;
@@ -97,7 +96,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         break;
     case 1:
         ov23_02249584(v0);
-        sub_020093B4(&v0->unk_36C, 1000, 1000, 1000, 1000, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34C[0], v0->unk_34C[1], v0->unk_34C[2], v0->unk_34C[3], NULL, NULL);
+        SpriteResourcesHeader_Init(&v0->unk_36C, 1000, 1000, 1000, 1000, 0xffffffff, 0xffffffff, 0, 0, v0->unk_34C[0], v0->unk_34C[1], v0->unk_34C[2], v0->unk_34C[3], NULL, NULL);
 
         {
             CellActorInitParamsEx v3;
@@ -164,8 +163,8 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         }
         break;
     case 7:
-        sub_0200A4E4(v0->unk_35C[0]);
-        sub_0200A6DC(v0->unk_35C[1]);
+        SpriteTransfer_ResetCharTransfer(v0->unk_35C[0]);
+        SpriteTransfer_ResetPlttTransfer(v0->unk_35C[1]);
 
         for (v2 = 0; v2 < 4; v2++) {
             SpriteResourceCollection_Delete(v0->unk_34C[v2]);
@@ -433,7 +432,7 @@ static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
 {
     int v0;
 
-    param0->unk_1BC = sub_020095C4(((7 + 1) + 16 + 1), &param0->unk_1C0, 4);
+    param0->unk_1BC = SpriteList_InitRendering(((7 + 1) + 16 + 1), &param0->unk_1C0, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_34C[v0] = SpriteResourceCollection_New(1, v0, 4);
@@ -452,8 +451,8 @@ static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
         NARC_dtor(v1);
     }
 
-    sub_0200A3DC(param0->unk_35C[0]);
-    sub_0200A640(param0->unk_35C[1]);
+    SpriteTransfer_RequestCharAtEnd(param0->unk_35C[0]);
+    SpriteTransfer_RequestPlttFreeSpace(param0->unk_35C[1]);
 }
 
 static void ov23_0224966C(BgConfig *param0, Window *param1, int *param2, int *param3, int *param4, UnkStruct_ov23_02249724 *param5)

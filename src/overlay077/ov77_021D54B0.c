@@ -3,22 +3,20 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
-
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay077/ov77_021D6670.h"
 #include "overlay077/struct_ov77_021D6734_decl.h"
 
 #include "cell_actor.h"
+#include "cell_transfer.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "gx_layers.h"
+#include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
-#include "unk_0200A784.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
+#include "vram_transfer.h"
 
 SDK_COMPILER_ASSERT(((3 + 1 + 1 + 2 + 4) + 6) == 17);
 
@@ -26,7 +24,7 @@ void include_data_ov77_021D79B8(void);
 
 typedef struct UnkStruct_ov77_021D5564_t {
     CellActorCollection *unk_00;
-    UnkStruct_0200C738 unk_04;
+    G2dRenderer unk_04;
     SpriteResourceCollection *unk_190[4];
     SpriteResource *unk_1A0[11][4];
     CellActor *unk_250[17];
@@ -94,22 +92,22 @@ static void ov77_021D54B0()
     const int v0 = 76;
 
     {
-        UnkStruct_ov22_022559F8 v1 = {
+        CharTransferTemplate v1 = {
             11, 0x8000, 0x4000, v0
         };
 
-        sub_0201E86C(&v1);
+        CharTransfer_Init(&v1);
     }
 
-    sub_0201F834(11, v0);
-    sub_0201E994();
-    sub_0201F8E4();
-    VRAMTransferManager_New((3 * 2), v0);
+    PlttTransfer_Init(11, v0);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
+    VramTransfer_New((3 * 2), v0);
 }
 
 static void ov77_021D54E8(const int param0, UnkStruct_ov77_021D5564 *param1, const int param2, CellActorInitParamsEx *param3, CellActorResourceData *param4, int param5, int param6)
 {
-    sub_020093B4(param4, param0, param0, param0, param0, 0xffffffff, 0xffffffff, param5, param2, param1->unk_190[0], param1->unk_190[1], param1->unk_190[2], param1->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(param4, param0, param0, param0, param0, 0xffffffff, 0xffffffff, param5, param2, param1->unk_190[0], param1->unk_190[1], param1->unk_190[2], param1->unk_190[3], NULL, NULL);
 
     {
         param3->collection = param1->unk_00;
@@ -142,10 +140,10 @@ void ov77_021D5564(UnkStruct_ov77_021D5564 *param0)
 
     ov77_021D54B0();
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, v1);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, v1);
 
-    param0->unk_00 = sub_020095C4(((3 + 1 + 1 + 2 + 4) + 6 + 16), &param0->unk_04, v1);
-    param0->unk_300 = sub_0201DCC8(3, v1);
+    param0->unk_00 = SpriteList_InitRendering(((3 + 1 + 1 + 2 + 4) + 6 + 16), &param0->unk_04, v1);
+    param0->unk_300 = CellTransfer_New(3, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov77_021D7914[v0], v0, v1);
@@ -197,8 +195,8 @@ void ov77_021D5564(UnkStruct_ov77_021D5564 *param0)
     param0->unk_1A0[10][3] = SpriteResourceCollection_Add(param0->unk_190[3], 128, 56, 0, 10, 3, v1);
 
     for (v0 = 0; v0 < 11; v0++) {
-        sub_0200A3DC(param0->unk_1A0[v0][0]);
-        sub_0200A640(param0->unk_1A0[v0][1]);
+        SpriteTransfer_RequestCharAtEnd(param0->unk_1A0[v0][0]);
+        SpriteTransfer_RequestPlttFreeSpace(param0->unk_1A0[v0][1]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -209,8 +207,8 @@ void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 11; v0++) {
-        sub_0200A4E4(param0->unk_1A0[v0][0]);
-        sub_0200A6DC(param0->unk_1A0[v0][1]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_1A0[v0][0]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[v0][1]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -220,18 +218,18 @@ void ov77_021D5BAC(UnkStruct_ov77_021D5564 *param0)
     CellActorCollection_Delete(param0->unk_00);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_020094F0(&param0->unk_294[v0]);
+        SpriteResourcesHeader_Clear(&param0->unk_294[v0]);
     }
 
     if (param0->unk_300 != NULL) {
-        sub_0201DCF0(param0->unk_300);
+        CellTransfer_Free(param0->unk_300);
         param0->unk_300 = NULL;
     }
 
-    sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
-    VRAMTransferManager_Destroy();
+    RenderOam_Free();
+    CharTransfer_Free();
+    PlttTransfer_Free();
+    VramTransfer_Free();
 }
 
 void ov77_021D5C3C(UnkStruct_ov77_021D5564 *param0)
@@ -406,7 +404,7 @@ void ov77_021D6020(UnkStruct_ov77_021D5564 *param0)
     CellActorCollection_Update(param0->unk_00);
 
     if (param0->unk_300 != NULL) {
-        sub_0201DCE8();
+        CellTransfer_Update();
     }
 }
 

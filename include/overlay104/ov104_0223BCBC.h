@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_OV104_0223BCBC_H
 #define POKEPLATINUM_OV104_0223BCBC_H
 
-#include "struct_decls/struct_party_decl.h"
-
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_0223BFFC.h"
 
 #include "field_battle_data_transfer.h"
+#include "party.h"
 #include "pokemon.h"
 
 void ov104_0223BD28(u8 param0, int param1, u16 param2[], u8 param3);

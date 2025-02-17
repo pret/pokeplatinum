@@ -1,5 +1,4 @@
 {
-    "name": "Wynaut",
     "base_stats": {
         "hp": 95,
         "attack": 23,
@@ -8,10 +7,7 @@
         "special_attack": 23,
         "special_defense": 48
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 125,
     "base_exp_reward": 44,
     "ev_yields": {
@@ -30,46 +26,34 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_SHADOW_TAG",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_SHADOW_TAG", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": [
-                "MOVE_SPLASH",
-                "MOVE_CHARM",
-                "MOVE_ENCORE"
-            ],
-            "15": [
-                "MOVE_COUNTER",
-                "MOVE_MIRROR_COAT",
-                "MOVE_SAFEGUARD",
-                "MOVE_DESTINY_BOND"
-            ]
-        },
-        "tutor": []
+        "by_level": [
+            [ 1, "MOVE_SPLASH" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 1, "MOVE_ENCORE" ],
+            [ 15, "MOVE_COUNTER" ],
+            [ 15, "MOVE_MIRROR_COAT" ],
+            [ 15, "MOVE_SAFEGUARD" ],
+            [ 15, "MOVE_DESTINY_BOND" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [  ]
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             15,
             "SPECIES_WOBBUFFET"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -83,10 +67,62 @@
         "pokemon_pos_f": 24,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 24,
-        "entry_text": "It grows strong by pushing up\nagainst others en masse.\nIt loves eating sweet fruit.",
-        "category": "Bright Pokémon"
+        "en": {
+            "name": "WYNAUT",
+            "category": "Bright Pokémon",
+            "entry_text": [
+                "It grows strong by pushing up\n",
+                "against others en masse.\n",
+                "It loves eating sweet fruit."
+            ]
+        },
+        "fr": {
+            "name": "OKEOKE",
+            "category": "Pokémon Ravi",
+            "entry_text": [
+                "Il se muscle en bousculant ses\n",
+                "semblables lors de mêlées. Il\n",
+                "raffole des fruits sucrés."
+            ]
+        },
+        "de": {
+            "name": "ISSO",
+            "category": "Strahlekind",
+            "entry_text": [
+                "Es wird stärker, indem es andere\n",
+                "ständig anrempelt. Es liebt\n",
+                "Süßigkeiten."
+            ]
+        },
+        "it": {
+            "name": "WYNAUT",
+            "category": "Pokémon Brillante",
+            "entry_text": [
+                "Questi Pokémon si allenano in\n",
+                "gruppo caricandosi l’un l’altro per\n",
+                "rafforzarsi. Amano i frutti dolci."
+            ]
+        },
+        "es": {
+            "name": "WYNAUT",
+            "category": "Pokémon Radiante",
+            "entry_text": [
+                "Se fortalecen empujándose unos\n",
+                "a otros en grupos. Les encantan\n",
+                "los dulces."
+            ]
+        },
+        "jp": {
+            "name": "ソ－ナノ",
+            "category": "ほがらかポケモン",
+            "entry_text": [
+                "なかまたちと　おしくらまんじゅうを\n",
+                "やることで　がまんづよく　そだつ。\n",
+                "あまい　くだものが　だいこうぶつ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

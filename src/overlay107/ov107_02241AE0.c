@@ -7,7 +7,7 @@
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_party_decl.h"
+#include "party.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay104/ov104_0222DCE0.h"
@@ -49,12 +49,12 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
+#include "sprite_util.h"
+#include "render_oam.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
 #include "unk_020363E8.h"
@@ -582,7 +582,7 @@ int ov107_02241D2C (OverlayManager * param0, int * param1)
 
     *(v1->unk_438) = v1->unk_0D;
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     ov107_02242E14(v1);
 
     OverlayManager_FreeData(param0);
@@ -1515,8 +1515,8 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
     ov107_02249BAC(param0->unk_434, 0);
 
     if (CommSys_IsInitialized()) {
-        sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
-        sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+        ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
+        ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
         sub_02039734();
     }
 
@@ -1575,8 +1575,8 @@ static void ov107_022433EC (void * param0)
     }
 
     Bg_RunScheduledUpdates(v0->unk_4C);
-    sub_0201DCAC();
-    sub_0200A858();
+    VramTransfer_Process();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/sandgem_town_pokemon_research_lab.h"
 
     .data
 

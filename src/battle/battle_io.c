@@ -5,10 +5,9 @@
 
 #include "constants/pokemon.h"
 #include "constants/species.h"
-#include "consts/gender.h"
+#include "generated/genders.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/battle_io.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207A81C.h"
@@ -420,7 +419,7 @@ void BattleIO_SetTrainerEncounter(BattleSystem *param0, int param1)
     UnkStruct_ov16_02265124 v0;
 
     v0.unk_00 = 8;
-    v0.unk_02 = param0->trainers[param1].class;
+    v0.unk_02 = param0->trainers[param1].header.trainerType;
     v0.unk_01 = param0->unk_A8[param1];
 
     SendMessage(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265124));
@@ -449,7 +448,7 @@ void BattleIO_SlideTrainerIn(BattleSystem *param0, int param1, int param2)
     UnkStruct_ov16_022651A8 v0;
 
     v0.unk_00 = 11;
-    v0.unk_02 = param0->trainers[param1].class;
+    v0.unk_02 = param0->trainers[param1].header.trainerType;
     v0.unk_01 = param0->unk_A8[param1];
     v0.unk_04 = param2;
 

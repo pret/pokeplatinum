@@ -1,5 +1,4 @@
 {
-    "name": "Chinchou",
     "base_stats": {
         "hp": 75,
         "attack": 38,
@@ -8,10 +7,7 @@
         "special_attack": 56,
         "special_defense": 56
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_ELECTRIC" ],
     "catch_rate": 190,
     "base_exp_reward": 90,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_VOLT_ABSORB",
-        "ABILITY_ILLUMINATE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_VOLT_ABSORB", "ABILITY_ILLUMINATE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_SUPERSONIC" ],
+            [ 6, "MOVE_THUNDER_WAVE" ],
+            [ 9, "MOVE_FLAIL" ],
+            [ 12, "MOVE_WATER_GUN" ],
+            [ 17, "MOVE_CONFUSE_RAY" ],
+            [ 20, "MOVE_SPARK" ],
+            [ 23, "MOVE_TAKE_DOWN" ],
+            [ 28, "MOVE_BUBBLE_BEAM" ],
+            [ 31, "MOVE_SIGNAL_BEAM" ],
+            [ 34, "MOVE_DISCHARGE" ],
+            [ 39, "MOVE_AQUA_RING" ],
+            [ 42, "MOVE_HYDRO_PUMP" ],
+            [ 45, "MOVE_CHARGE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -76,25 +80,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BUBBLE",
-                "MOVE_SUPERSONIC"
-            ],
-            "6": "MOVE_THUNDER_WAVE",
-            "9": "MOVE_FLAIL",
-            "12": "MOVE_WATER_GUN",
-            "17": "MOVE_CONFUSE_RAY",
-            "20": "MOVE_SPARK",
-            "23": "MOVE_TAKE_DOWN",
-            "28": "MOVE_BUBBLE_BEAM",
-            "31": "MOVE_SIGNAL_BEAM",
-            "34": "MOVE_DISCHARGE",
-            "39": "MOVE_AQUA_RING",
-            "42": "MOVE_HYDRO_PUMP",
-            "45": "MOVE_CHARGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -105,14 +91,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             27,
             "SPECIES_LANTURN"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 5,
@@ -126,10 +112,62 @@
         "pokemon_pos_f": 5,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 5,
-        "entry_text": "It discharges positive and\nnegative electricity from its\nantenna tips to shock its foes.",
-        "category": "Angler Pokémon"
+        "en": {
+            "name": "CHINCHOU",
+            "category": "Angler Pokémon",
+            "entry_text": [
+                "It discharges positive and\n",
+                "negative electricity from its\n",
+                "antenna tips to shock its foes."
+            ]
+        },
+        "fr": {
+            "name": "LOUPIO",
+            "category": "Pokémon Poisson",
+            "entry_text": [
+                "Il envoie des décharges électriques\n",
+                "positives et négatives du bout des\n",
+                "antennes pour paralyser sa proie."
+            ]
+        },
+        "de": {
+            "name": "LAMPI",
+            "category": "Angler",
+            "entry_text": [
+                "Über seine Antennen entlädt es\n",
+                "Elektrizität, mit der es seinen\n",
+                "Gegnern einen Schlag versetzt."
+            ]
+        },
+        "it": {
+            "name": "CHINCHOU",
+            "category": "Pokémon Pescatore",
+            "entry_text": [
+                "Dalle antenne emette scariche\n",
+                "elettriche positive e negative con\n",
+                "le quali colpisce i nemici."
+            ]
+        },
+        "es": {
+            "name": "CHINCHOU",
+            "category": "Pokémon Rape",
+            "entry_text": [
+                "Libera cargas eléctricas positivas\n",
+                "y negativas con sus antenas para\n",
+                "aturdir a sus enemigos."
+            ]
+        },
+        "jp": {
+            "name": "チョンチ－",
+            "category": "あんこうポケモン",
+            "entry_text": [
+                "プラスと　マイナスの　でんきを\n",
+                "しょくしゅの　さきから　ながす。\n",
+                "てきを　かんでんさせてしまうのだ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 50,

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/floaroma_meadow.h"
 
     .data
 
@@ -18,11 +19,11 @@ _001E:
 _0024:
     LockAll
     Call _00CC
-    StartTrainerBattle trainer_galactic_grunt_floaroma_meadow_1
+    StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_1
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _006E
     Call _00EE
-    StartTrainerBattle trainer_galactic_grunt_floaroma_meadow_2
+    StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_2
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _006E
     Call _010E

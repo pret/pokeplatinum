@@ -1,5 +1,4 @@
 {
-    "name": "Aron",
     "base_stats": {
         "hp": 50,
         "attack": 70,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_ROCK"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_ROCK" ],
     "catch_rate": 180,
     "base_exp_reward": 96,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 35,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_MONSTER"
-    ],
-    "abilities": [
-        "ABILITY_STURDY",
-        "ABILITY_ROCK_HEAD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
+    "abilities": [ "ABILITY_STURDY", "ABILITY_ROCK_HEAD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 4, "MOVE_HARDEN" ],
+            [ 8, "MOVE_MUD_SLAP" ],
+            [ 11, "MOVE_HEADBUTT" ],
+            [ 15, "MOVE_METAL_CLAW" ],
+            [ 18, "MOVE_IRON_DEFENSE" ],
+            [ 22, "MOVE_ROAR" ],
+            [ 25, "MOVE_TAKE_DOWN" ],
+            [ 29, "MOVE_IRON_HEAD" ],
+            [ 32, "MOVE_PROTECT" ],
+            [ 36, "MOVE_METAL_SOUND" ],
+            [ 39, "MOVE_IRON_TAIL" ],
+            [ 43, "MOVE_DOUBLE_EDGE" ],
+            [ 46, "MOVE_METAL_BURST" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -80,23 +84,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "4": "MOVE_HARDEN",
-            "8": "MOVE_MUD_SLAP",
-            "11": "MOVE_HEADBUTT",
-            "15": "MOVE_METAL_CLAW",
-            "18": "MOVE_IRON_DEFENSE",
-            "22": "MOVE_ROAR",
-            "25": "MOVE_TAKE_DOWN",
-            "29": "MOVE_IRON_HEAD",
-            "32": "MOVE_PROTECT",
-            "36": "MOVE_METAL_SOUND",
-            "39": "MOVE_IRON_TAIL",
-            "43": "MOVE_DOUBLE_EDGE",
-            "46": "MOVE_METAL_BURST"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -114,14 +102,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             32,
             "SPECIES_LAIRON"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -135,10 +123,62 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "It usually lives deep in mountains.\nHowever, hunger may drive it to\neat railroad tracks and cars.",
-        "category": "Iron Armor Pokémon"
+        "en": {
+            "name": "ARON",
+            "category": "Iron Armor Pokémon",
+            "entry_text": [
+                "It usually lives deep in mountains.\n",
+                "However, hunger may drive it to\n",
+                "eat railroad tracks and cars."
+            ]
+        },
+        "fr": {
+            "name": "GALEKID",
+            "category": "Pokémon Armurfer",
+            "entry_text": [
+                "Il vit habituellement au cœur des\n",
+                "montagnes. Affamé, il dévore\n",
+                "parfois des rails et des voitures."
+            ]
+        },
+        "de": {
+            "name": "STOLLUNIOR",
+            "category": "Eisenpanzer",
+            "entry_text": [
+                "Normalerweise lebt es in dunklen\n",
+                "Bergen. Ist es hungrig, frisst es\n",
+                "auch Eisenbahnschienen und Autos."
+            ]
+        },
+        "it": {
+            "name": "ARON",
+            "category": "Pokémon Corazza",
+            "entry_text": [
+                "Vive generalmente sui monti ma,\n",
+                "spinto dalla fame, scende per\n",
+                "cibarsi di ferrovie e automobili."
+            ]
+        },
+        "es": {
+            "name": "ARON",
+            "category": "Pokémon Cor. Férrea",
+            "entry_text": [
+                "Suele vivir en lugares inaccesibles\n",
+                "de las montañas, pero el hambre\n",
+                "lo empuja a comer raíles y coches."
+            ]
+        },
+        "jp": {
+            "name": "ココドラ",
+            "category": "てつヨロイポケモン",
+            "entry_text": [
+                "ふだんは　やまおくで　くらしているが\n",
+                "おなかが　すくと　ふもとに　あらわれ\n",
+                "せんろや　くるまを　たべてしまう。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

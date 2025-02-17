@@ -5,14 +5,14 @@
 
 #include "constants/field/map_load.h"
 #include "constants/overworld_weather.h"
-#include "consts/map.h"
+#include "generated/map_headers.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/map_load_mode.h"
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DD6FC.h"
+#include "overlay005/map_name_popup.h"
 #include "overlay005/ov5_021E135C.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/struct_ov5_021D432C_decl.h"
@@ -37,6 +37,7 @@
 #include "location.h"
 #include "map_header.h"
 #include "map_header_data.h"
+#include "map_matrix.h"
 #include "map_object.h"
 #include "menu.h"
 #include "message.h"
@@ -57,7 +58,6 @@
 #include "unk_0200F174.h"
 #include "unk_02027F50.h"
 #include "unk_0202854C.h"
-#include "unk_02039C80.h"
 #include "unk_0203A7D8.h"
 #include "unk_0203A944.h"
 #include "unk_0203D1B8.h"
@@ -287,8 +287,8 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
 
     sub_0203F5C0(fieldSystem, 2);
 
-    fieldSystem->unk_78.unk_00 = 0;
-    fieldSystem->unk_78.unk_02 = 0;
+    fieldSystem->wildBattleMetadata.encounterAttempts = 0;
+    fieldSystem->wildBattleMetadata.wildMonDefeated = 0;
 }
 
 void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL param1)
@@ -323,8 +323,8 @@ void FieldMapChange_UpdateGameDataDistortionWorld(FieldSystem *fieldSystem, BOOL
         }
     }
 
-    fieldSystem->unk_78.unk_00 = 0;
-    fieldSystem->unk_78.unk_02 = 0;
+    fieldSystem->wildBattleMetadata.encounterAttempts = 0;
+    fieldSystem->wildBattleMetadata.wildMonDefeated = 0;
 }
 
 static void FieldMapChange_CreateObjects(FieldSystem *fieldSystem)
@@ -370,14 +370,14 @@ static void FieldMapChange_InitTerrainCollisionManager(FieldSystem *fieldSystem)
 {
     sub_020530C8(fieldSystem);
     GF_ASSERT(fieldSystem->terrainCollisionMan == NULL);
-    sub_02039DC0(fieldSystem->location->mapId, fieldSystem->unk_2C);
+    MapMatrix_Load(fieldSystem->location->mapId, fieldSystem->mapMatrix);
 
     if (VarFlags_HiddenLocationsUnlocked(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SEABREAKPATH)) {
-        sub_02039FE0(fieldSystem->unk_2C); // reveal Seabreak Path if Oak's Letter has been used
+        MapMatrix_RevealSeabreakPath(fieldSystem->mapMatrix); // reveal Seabreak Path if Oak's Letter has been used
     }
 
     if (!VarFlags_HiddenLocationsUnlocked(SaveData_GetVarsFlags(fieldSystem->saveData), HL_SPRINGPATH)) {
-        sub_02039F8C(fieldSystem->unk_2C);
+        MapMatrix_RevealSpringPath(fieldSystem->mapMatrix);
     }
 
     GF_ASSERT(fieldSystem->mapLoadType < MAP_LOAD_TYPE_MAX);

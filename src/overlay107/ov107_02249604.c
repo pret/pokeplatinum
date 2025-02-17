@@ -3,26 +3,23 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_party_decl.h"
-
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay107/struct_ov107_02249954.h"
 
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "gx_layers.h"
 #include "item.h"
 #include "narc.h"
 #include "party.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
-#include "unk_0200A784.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "unk_0207E0B8.h"
+#include "vram_transfer.h"
 
 void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2);
 CellActor *ov107_022498A4(UnkStruct_ov107_02249954 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, u8 param7);
@@ -45,13 +42,13 @@ void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2)
     NARC *v1;
     Pokemon *v2;
 
-    VRAMTransferManager_New(32, 100);
+    VramTransfer_New(32, 100);
     ov107_02249A3C();
 
     NNS_G2dInitOamManagerModule();
 
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 100);
-    param0->unk_00 = sub_020095C4(40, &param0->unk_04, 100);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 100);
+    param0->unk_00 = SpriteList_InitRendering(40, &param0->unk_04, 100);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov107_0224A204[v0], v0, 100);
@@ -95,11 +92,11 @@ void ov107_02249604(UnkStruct_ov107_02249954 *param0, Party *param1, u8 param2)
     NARC_dtor(v1);
 
     for (v0 = 0; v0 < 7; v0++) {
-        sub_0200A328(param0->unk_1A0[v0][0]);
+        SpriteTransfer_RequestChar(param0->unk_1A0[v0][0]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200A5C8(param0->unk_1A0[v0][1]);
+        SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[v0][1]);
     }
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -114,7 +111,7 @@ CellActor *ov107_022498A4(UnkStruct_ov107_02249954 *param0, u32 param1, u32 para
     CellActorResourceData v1;
     CellActor *v2;
 
-    sub_020093B4(&v1, param1, param2, param3, param3, 0xffffffff, 0xffffffff, 0, param6, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v1, param1, param2, param3, param3, 0xffffffff, 0xffffffff, 0, param6, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v3;
@@ -157,11 +154,11 @@ void ov107_02249954(UnkStruct_ov107_02249954 *param0)
     u8 v0;
 
     for (v0 = 0; v0 < 7; v0++) {
-        sub_0200A4E4(param0->unk_1A0[v0][0]);
+        SpriteTransfer_ResetCharTransfer(param0->unk_1A0[v0][0]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200A6DC(param0->unk_1A0[v0][1]);
+        SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[v0][1]);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -169,9 +166,9 @@ void ov107_02249954(UnkStruct_ov107_02249954 *param0)
     }
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    RenderOam_Free();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 
     return;
 }
@@ -183,7 +180,7 @@ void ov107_022499BC(UnkStruct_ov107_02249954 *param0, u16 param1)
     v0 = SpriteResourceCollection_Find(param0->unk_190[0], 1);
 
     SpriteResourceCollection_ModifyTiles(param0->unk_190[0], v0, 16, Item_FileID(param1, 1), 0, 100);
-    sub_0200A4C0(v0);
+    SpriteTransfer_RetransferCharData(v0);
 
     return;
 }
@@ -195,7 +192,7 @@ void ov107_022499FC(UnkStruct_ov107_02249954 *param0, u16 param1)
     v0 = SpriteResourceCollection_Find(param0->unk_190[1], 1);
 
     SpriteResourceCollection_ModifyPalette(param0->unk_190[1], v0, 16, Item_FileID(param1, 2), 0, 100);
-    sub_0200A6B8(v0);
+    SpriteTransfer_ReplacePlttData(v0);
 
     return;
 }
@@ -203,16 +200,16 @@ void ov107_022499FC(UnkStruct_ov107_02249954 *param0, u16 param1)
 static void ov107_02249A3C(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             32, 1024, 1024, 100
         };
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834((4 + 1 + 3), 100);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init((4 + 1 + 3), 100);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 
     return;
 }

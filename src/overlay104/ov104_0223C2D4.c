@@ -47,19 +47,19 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
-#include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020393C8.h"
 #include "unk_0209B6F8.h"
+#include "vram_transfer.h"
 
 static void ov104_0223C6EC(void *param0);
 static void ov104_0223C71C(SysTask *param0, void *param1);
@@ -163,7 +163,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
 
     v0->unk_00 = BgConfig_New(94);
 
-    VRAMTransferManager_New(64, 94);
+    VramTransfer_New(64, 94);
     SetAutorepeat(4, 8);
 
     ov104_0223C948(v0->unk_00, v2);
@@ -223,7 +223,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
     ov104_0223D058(param0);
     ov104_0223D5F0(param0->unk_10);
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     PaletteData_FreeBuffer(param0->unk_04, 0);
     PaletteData_FreeBuffer(param0->unk_04, 1);
@@ -323,7 +323,7 @@ static void ov104_0223C6EC(void *param0)
 {
     UnkStruct_ov104_0223C4CC *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_04);
     Bg_RunScheduledUpdates(v0->unk_00);
@@ -419,7 +419,7 @@ static void ov104_0223C7EC(UnkStruct_ov104_0223C4CC *param0)
     v1 = ov63_0222D1B0(&param0->unk_1C) + param0->unk_A4.unk_06;
     v0 = ov63_0222D1B8(&param0->unk_1C) + param0->unk_A4.unk_04;
 
-    sub_0200962C(sub_0200C738(param0->unk_34.unk_00), FX32_CONST(v0), FX32_CONST(v1));
+    SetMainScreenViewRect(sub_0200C738(param0->unk_34.unk_00), FX32_CONST(v0), FX32_CONST(v1));
     Bg_ScheduleScroll(param0->unk_00, 3, 0, v0);
     Bg_ScheduleScroll(param0->unk_00, 3, 3, v1);
 
@@ -814,14 +814,14 @@ static void ov104_0223CFF4(UnkStruct_ov104_0223C4CC *param0)
     param0->unk_34.unk_00 = sub_0200C6E4(94);
 
     sub_0200C73C(param0->unk_34.unk_00, &Unk_ov104_0224133C, &Unk_ov104_022412F4, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     param0->unk_34.unk_04 = sub_0200C704(param0->unk_34.unk_00);
 
     sub_0200C7C0(param0->unk_34.unk_00, param0->unk_34.unk_04, (64 + 64));
     sub_0200CB30(param0->unk_34.unk_00, param0->unk_34.unk_04, &Unk_ov104_02241308);
-    sub_0200964C(sub_0200C738(param0->unk_34.unk_00), 0, (512 * FX32_ONE));
+    SetSubScreenViewRect(sub_0200C738(param0->unk_34.unk_00), 0, (512 * FX32_ONE));
 }
 
 static void ov104_0223D058(UnkStruct_ov104_0223C4CC *param0)

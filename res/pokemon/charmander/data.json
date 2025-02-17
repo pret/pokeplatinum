@@ -1,5 +1,4 @@
 {
-    "name": "Charmander",
     "base_stats": {
         "hp": 39,
         "attack": 52,
@@ -8,10 +7,7 @@
         "special_attack": 60,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 45,
     "base_exp_reward": 65,
     "ev_yields": {
@@ -30,21 +26,25 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_BLAZE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 7, "MOVE_EMBER" ],
+            [ 10, "MOVE_SMOKE_SCREEN" ],
+            [ 16, "MOVE_DRAGON_RAGE" ],
+            [ 19, "MOVE_SCARY_FACE" ],
+            [ 25, "MOVE_FIRE_FANG" ],
+            [ 28, "MOVE_SLASH" ],
+            [ 34, "MOVE_FLAMETHROWER" ],
+            [ 37, "MOVE_FIRE_SPIN" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM02",
             "TM06",
@@ -81,21 +81,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_GROWL"
-            ],
-            "7": "MOVE_EMBER",
-            "10": "MOVE_SMOKE_SCREEN",
-            "16": "MOVE_DRAGON_RAGE",
-            "19": "MOVE_SCARY_FACE",
-            "25": "MOVE_FIRE_FANG",
-            "28": "MOVE_SLASH",
-            "34": "MOVE_FLAMETHROWER",
-            "37": "MOVE_FIRE_SPIN"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -107,14 +93,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             16,
             "SPECIES_CHARMELEON"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -128,10 +114,62 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "The fire on the tip of its tail is a\nmeasure of its life. If healthy,\nits tail burns intensely.",
-        "category": "Lizard Pokémon"
+        "en": {
+            "name": "CHARMANDER",
+            "category": "Lizard Pokémon",
+            "entry_text": [
+                "The fire on the tip of its tail is a\n",
+                "measure of its life. If healthy,\n",
+                "its tail burns intensely."
+            ]
+        },
+        "fr": {
+            "name": "SALAMECHE",
+            "category": "Pokémon Lézard",
+            "entry_text": [
+                "La flamme de sa queue symbolise sa\n",
+                "vitalité. Elle est intense quand il\n",
+                "est en bonne santé."
+            ]
+        },
+        "de": {
+            "name": "GLUMANDA",
+            "category": "Echse",
+            "entry_text": [
+                "Lodert die Flamme auf seiner\n",
+                "Schweifspitze hell, ist GLUMANDA\n",
+                "gesund."
+            ]
+        },
+        "it": {
+            "name": "CHARMANDER",
+            "category": "Pokémon Lucertola",
+            "entry_text": [
+                "La fiamma sulla punta della coda\n",
+                "indica la sua vitalità. Se sta bene,\n",
+                "la fiamma è più ardente."
+            ]
+        },
+        "es": {
+            "name": "CHARMANDER",
+            "category": "Pokémon Lagartija",
+            "entry_text": [
+                "La llama de la punta de su cola\n",
+                "indica su salud. Si CHARMANDER\n",
+                "está sano, arderá con más fuerza."
+            ]
+        },
+        "jp": {
+            "name": "ヒトカゲ",
+            "category": "とかげポケモン",
+            "entry_text": [
+                "ヒトカゲの　しっぽの　ほのおは\n",
+                "いのちの　ともしび。げんきな　ときは\n",
+                "ほのおも　ちからづよく　もえあがる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

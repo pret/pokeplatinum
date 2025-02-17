@@ -1,5 +1,4 @@
 {
-    "name": "Porygon2",
     "base_stats": {
         "hp": 85,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 105,
         "special_defense": 95
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 45,
     "base_exp_reward": 180,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_TRACE",
-        "ABILITY_DOWNLOAD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_TRACE", "ABILITY_DOWNLOAD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_CONVERSION_2" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_CONVERSION" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 7, "MOVE_PSYBEAM" ],
+            [ 12, "MOVE_AGILITY" ],
+            [ 18, "MOVE_RECOVER" ],
+            [ 23, "MOVE_MAGNET_RISE" ],
+            [ 29, "MOVE_SIGNAL_BEAM" ],
+            [ 34, "MOVE_RECYCLE" ],
+            [ 40, "MOVE_DISCHARGE" ],
+            [ 45, "MOVE_LOCK_ON" ],
+            [ 51, "MOVE_TRI_ATTACK" ],
+            [ 56, "MOVE_MAGIC_COAT" ],
+            [ 62, "MOVE_ZAP_CANNON" ],
+            [ 67, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -82,27 +88,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_CONVERSION_2",
-                "MOVE_TACKLE",
-                "MOVE_CONVERSION",
-                "MOVE_DEFENSE_CURL"
-            ],
-            "7": "MOVE_PSYBEAM",
-            "12": "MOVE_AGILITY",
-            "18": "MOVE_RECOVER",
-            "23": "MOVE_MAGNET_RISE",
-            "29": "MOVE_SIGNAL_BEAM",
-            "34": "MOVE_RECYCLE",
-            "40": "MOVE_DISCHARGE",
-            "45": "MOVE_LOCK_ON",
-            "51": "MOVE_TRI_ATTACK",
-            "56": "MOVE_MAGIC_COAT",
-            "62": "MOVE_ZAP_CANNON",
-            "67": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
@@ -114,14 +100,14 @@
     },
     "evolutions": [
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_DUBIOUS_DISC",
             "SPECIES_PORYGON_Z"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -135,10 +121,62 @@
         "pokemon_pos_f": 65529,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65529,
-        "entry_text": "It was upgraded to enable the\nexploration of other planets.\nHowever, it failed to measure up.",
-        "category": "Virtual Pokémon"
+        "en": {
+            "name": "PORYGON2",
+            "category": "Virtual Pokémon",
+            "entry_text": [
+                "It was upgraded to enable the\n",
+                "exploration of other planets.\n",
+                "However, it failed to measure up."
+            ]
+        },
+        "fr": {
+            "name": "PORYGON2",
+            "category": "Pokémon Virtuel",
+            "entry_text": [
+                "On lui a installé un logiciel de\n",
+                "terraformation pour lui permettre\n",
+                "de travailler dans l’espace."
+            ]
+        },
+        "de": {
+            "name": "PORYGON2",
+            "category": "Virtuell",
+            "entry_text": [
+                "Interstellare Software wurde\n",
+                "installiert, so dass dieses PKMN\n",
+                "sich auch im All bewegen kann."
+            ]
+        },
+        "it": {
+            "name": "PORYGON2",
+            "category": "Pokémon Virtuale",
+            "entry_text": [
+                "Gli è stato installato un programma\n",
+                "di sviluppo planetario che lo rende\n",
+                "capace di lavorare nello spazio."
+            ]
+        },
+        "es": {
+            "name": "PORYGON2",
+            "category": "Pokémon Virtual",
+            "entry_text": [
+                "Tiene instalado un avanzado\n",
+                "software astrofísico que le\n",
+                "permite trabajar en el espacio."
+            ]
+        },
+        "jp": {
+            "name": "ポリゴン２",
+            "category": "バ－チャルポケモン",
+            "entry_text": [
+                "わくせいかいはつようの　プログラムが\n",
+                "インスト－ルされている。しんくうの\n",
+                "うちゅうでも　かつどうできるのだ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

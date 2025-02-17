@@ -1,5 +1,4 @@
 {
-    "name": "Drifblim",
     "base_stats": {
         "hp": 150,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 90,
         "special_defense": 54
     },
-    "types": [
-        "TYPE_GHOST",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_GHOST", "TYPE_FLYING" ],
     "catch_rate": 60,
     "base_exp_reward": 204,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 30,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_AFTERMATH",
-        "ABILITY_UNBURDEN"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_AFTERMATH", "ABILITY_UNBURDEN" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_CONSTRICT" ],
+            [ 1, "MOVE_MINIMIZE" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_GUST" ],
+            [ 6, "MOVE_ASTONISH" ],
+            [ 11, "MOVE_GUST" ],
+            [ 14, "MOVE_FOCUS_ENERGY" ],
+            [ 17, "MOVE_PAYBACK" ],
+            [ 22, "MOVE_STOCKPILE" ],
+            [ 27, "MOVE_SWALLOW" ],
+            [ 27, "MOVE_SPIT_UP" ],
+            [ 32, "MOVE_OMINOUS_WIND" ],
+            [ 37, "MOVE_BATON_PASS" ],
+            [ 44, "MOVE_SHADOW_BALL" ],
+            [ 51, "MOVE_EXPLOSION" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -89,28 +94,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_CONSTRICT",
-                "MOVE_MINIMIZE",
-                "MOVE_ASTONISH",
-                "MOVE_GUST"
-            ],
-            "6": "MOVE_ASTONISH",
-            "11": "MOVE_GUST",
-            "14": "MOVE_FOCUS_ENERGY",
-            "17": "MOVE_PAYBACK",
-            "22": "MOVE_STOCKPILE",
-            "27": [
-                "MOVE_SWALLOW",
-                "MOVE_SPIT_UP"
-            ],
-            "32": "MOVE_OMINOUS_WIND",
-            "37": "MOVE_BATON_PASS",
-            "44": "MOVE_SHADOW_BALL",
-            "51": "MOVE_EXPLOSION"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -124,9 +108,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -140,10 +125,62 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "At dusk, swarms of them are\ncarried aloft on winds. When\nnoticed, they suddenly vanish.",
-        "category": "Blimp Pokémon"
+        "en": {
+            "name": "DRIFBLIM",
+            "category": "Blimp Pokémon",
+            "entry_text": [
+                "At dusk, swarms of them are\n",
+                "carried aloft on winds. When\n",
+                "noticed, they suddenly vanish."
+            ]
+        },
+        "fr": {
+            "name": "GRODRIVE",
+            "category": "Pokémon Ballon",
+            "entry_text": [
+                "Il somnole la journée et s’envole\n",
+                "en grands groupes le soir venu. Nul\n",
+                "ne sait où ils vont."
+            ]
+        },
+        "de": {
+            "name": "DRIFZEPELI",
+            "category": "Luftschiff",
+            "entry_text": [
+                "Tagsüber treibt es faul vor sich\n",
+                "hin, nachts fliegt es mit anderen\n",
+                "umher. Niemand weiß wohin."
+            ]
+        },
+        "it": {
+            "name": "DRIFBLIM",
+            "category": "Pokémon Dirigibile",
+            "entry_text": [
+                "Di giorno fluttua con aria\n",
+                "sonnolenta, ma di notte vola via\n",
+                "in gruppo. Nessuno sa dove vada."
+            ]
+        },
+        "es": {
+            "name": "DRIFBLIM",
+            "category": "Pokémon Dirigible",
+            "entry_text": [
+                "Durante el día está somnoliento,\n",
+                "pero por la noche sale volando en\n",
+                "grupo, aunque nadie sabe adónde."
+            ]
+        },
+        "jp": {
+            "name": "フワライド",
+            "category": "ききゅうポケモン",
+            "entry_text": [
+                "ひるまは　ねぼけて　うかんでいるが\n",
+                "ゆうがた　たいぐんで　とんでいく。\n",
+                "いきさきは　だれも　しらない。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

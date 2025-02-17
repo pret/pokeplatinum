@@ -1,5 +1,4 @@
 {
-    "name": "Togekiss",
     "base_stats": {
         "hp": 85,
         "attack": 50,
@@ -8,10 +7,7 @@
         "special_attack": 120,
         "special_defense": 115
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 30,
     "base_exp_reward": 220,
     "ev_yields": {
@@ -30,21 +26,19 @@
     "hatch_cycles": 10,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_HUSTLE",
-        "ABILITY_SERENE_GRACE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_HUSTLE", "ABILITY_SERENE_GRACE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SKY_ATTACK" ],
+            [ 1, "MOVE_EXTREME_SPEED" ],
+            [ 1, "MOVE_AURA_SPHERE" ],
+            [ 1, "MOVE_AIR_SLASH" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -93,15 +87,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SKY_ATTACK",
-                "MOVE_EXTREME_SPEED",
-                "MOVE_AURA_SPHERE",
-                "MOVE_AIR_SLASH"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_OMINOUS_WIND",
@@ -118,9 +104,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -134,10 +121,62 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "It shares many blessings with\npeople who respect one another’s\nrights and avoid needless strife.",
-        "category": "Jubilee Pokémon"
+        "en": {
+            "name": "TOGEKISS",
+            "category": "Jubilee Pokémon",
+            "entry_text": [
+                "It shares many blessings with\n",
+                "people who respect one another’s\n",
+                "rights and avoid needless strife."
+            ]
+        },
+        "fr": {
+            "name": "TOGEKISS",
+            "category": "Pokémon Célébration",
+            "entry_text": [
+                "Il n’apparaît jamais en temps\n",
+                "de conflit. Récemment, il se\n",
+                "fait plus rare."
+            ]
+        },
+        "de": {
+            "name": "TOGEKISS",
+            "category": "Jubilierer",
+            "entry_text": [
+                "Es zeigt sich niemals dort, wo\n",
+                "es Streitigkeiten gibt. In letzter\n",
+                "Zeit wurde es nur selten gesehen."
+            ]
+        },
+        "it": {
+            "name": "TOGEKISS",
+            "category": "Pokémon Festa",
+            "entry_text": [
+                "Non si presenta mai dove c’è un\n",
+                "conflitto. Di recente le sue\n",
+                "apparizioni sono diventate rare."
+            ]
+        },
+        "es": {
+            "name": "TOGEKISS",
+            "category": "Pokémon Festejo",
+            "entry_text": [
+                "Nunca aparece donde hay peleas.\n",
+                "Últimamente no se deja ver muy\n",
+                "a menudo."
+            ]
+        },
+        "jp": {
+            "name": "トゲキッス",
+            "category": "しゅくふくポケモン",
+            "entry_text": [
+                "もめごとの　おこる　ばしょには\n",
+                "けっして　あらわれない。ちかごろは\n",
+                "すがたを　みかけなくなった。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

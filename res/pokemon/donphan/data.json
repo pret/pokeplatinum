@@ -1,5 +1,4 @@
 {
-    "name": "Donphan",
     "base_stats": {
         "hp": 90,
         "attack": 120,
@@ -8,10 +7,7 @@
         "special_attack": 60,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_GROUND" ],
     "catch_rate": 60,
     "base_exp_reward": 189,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_STURDY",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_STURDY", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_HORN_ATTACK" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_FLAIL" ],
+            [ 6, "MOVE_RAPID_SPIN" ],
+            [ 10, "MOVE_KNOCK_OFF" ],
+            [ 15, "MOVE_ROLLOUT" ],
+            [ 19, "MOVE_MAGNITUDE" ],
+            [ 24, "MOVE_SLAM" ],
+            [ 25, "MOVE_FURY_ATTACK" ],
+            [ 31, "MOVE_ASSURANCE" ],
+            [ 39, "MOVE_SCARY_FACE" ],
+            [ 46, "MOVE_EARTHQUAKE" ],
+            [ 54, "MOVE_GIGA_IMPACT" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM10",
@@ -78,27 +84,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FIRE_FANG",
-                "MOVE_THUNDER_FANG",
-                "MOVE_HORN_ATTACK",
-                "MOVE_GROWL",
-                "MOVE_DEFENSE_CURL",
-                "MOVE_FLAIL"
-            ],
-            "6": "MOVE_RAPID_SPIN",
-            "10": "MOVE_KNOCK_OFF",
-            "15": "MOVE_ROLLOUT",
-            "19": "MOVE_MAGNITUDE",
-            "24": "MOVE_SLAM",
-            "25": "MOVE_FURY_ATTACK",
-            "31": "MOVE_ASSURANCE",
-            "39": "MOVE_SCARY_FACE",
-            "46": "MOVE_EARTHQUAKE",
-            "54": "MOVE_GIGA_IMPACT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SUPERPOWER",
@@ -113,9 +99,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -129,10 +116,62 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It attacks by curling up, then\nrolling into its foe. It can blow\napart a house in one hit.",
-        "category": "Armor Pokémon"
+        "en": {
+            "name": "DONPHAN",
+            "category": "Armor Pokémon",
+            "entry_text": [
+                "It attacks by curling up, then\n",
+                "rolling into its foe. It can blow\n",
+                "apart a house in one hit."
+            ]
+        },
+        "fr": {
+            "name": "DONPHAN",
+            "category": "Pokémon Armure",
+            "entry_text": [
+                "Il attaque en se roulant en boule\n",
+                "pour percuter l’ennemi. Il peut\n",
+                "abattre une maison d’un seul coup."
+            ]
+        },
+        "de": {
+            "name": "DONPHAN",
+            "category": "Panzer",
+            "entry_text": [
+                "Wenn es angreift, rollt es sich\n",
+                "zusammen und auf den Gegner zu. Es\n",
+                "kann Häuser zum Einsturz bringen."
+            ]
+        },
+        "it": {
+            "name": "DONPHAN",
+            "category": "Pokémon Armatura",
+            "entry_text": [
+                "Si arrotola a palla e attacca il\n",
+                "nemico. Riesce ad abbattere\n",
+                "una casa con un solo colpo."
+            ]
+        },
+        "es": {
+            "name": "DONPHAN",
+            "category": "Pokémon Coraza",
+            "entry_text": [
+                "Se enrolla sobre sí mismo y se\n",
+                "lanza rodando contra el enemigo.\n",
+                "Puede derribar casas de un golpe."
+            ]
+        },
+        "jp": {
+            "name": "ドンファン",
+            "category": "よろいポケモン",
+            "entry_text": [
+                "からだを　まるめて　かいてんしながら\n",
+                "とっしんする　こうげき。いちげきで\n",
+                "みんかを　ばらばらに　ふきとばす。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

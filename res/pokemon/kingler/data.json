@@ -1,5 +1,4 @@
 {
-    "name": "Kingler",
     "base_stats": {
         "hp": 55,
         "attack": 130,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 60,
     "base_exp_reward": 206,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_HYPER_CUTTER",
-        "ABILITY_SHELL_ARMOR"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_SHELL_ARMOR" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_VICE_GRIP" ],
+            [ 5, "MOVE_VICE_GRIP" ],
+            [ 9, "MOVE_LEER" ],
+            [ 11, "MOVE_HARDEN" ],
+            [ 15, "MOVE_BUBBLE_BEAM" ],
+            [ 19, "MOVE_MUD_SHOT" ],
+            [ 21, "MOVE_METAL_CLAW" ],
+            [ 25, "MOVE_STOMP" ],
+            [ 32, "MOVE_PROTECT" ],
+            [ 37, "MOVE_GUILLOTINE" ],
+            [ 44, "MOVE_SLAM" ],
+            [ 51, "MOVE_BRINE" ],
+            [ 56, "MOVE_CRABHAMMER" ],
+            [ 63, "MOVE_FLAIL" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -83,27 +89,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_MUD_SPORT",
-                "MOVE_BUBBLE",
-                "MOVE_VICE_GRIP"
-            ],
-            "5": "MOVE_VICE_GRIP",
-            "9": "MOVE_LEER",
-            "11": "MOVE_HARDEN",
-            "15": "MOVE_BUBBLE_BEAM",
-            "19": "MOVE_MUD_SHOT",
-            "21": "MOVE_METAL_CLAW",
-            "25": "MOVE_STOMP",
-            "32": "MOVE_PROTECT",
-            "37": "MOVE_GUILLOTINE",
-            "44": "MOVE_SLAM",
-            "51": "MOVE_BRINE",
-            "56": "MOVE_CRABHAMMER",
-            "63": "MOVE_FLAIL"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -115,9 +101,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -131,10 +118,62 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "entry_text": "The larger pincer has 10,000-\nhorsepower strength. However, it\nis so heavy, it is difficult to aim.",
-        "category": "Pincer Pokémon"
+        "en": {
+            "name": "KINGLER",
+            "category": "Pincer Pokémon",
+            "entry_text": [
+                "The larger pincer has 10,000-\n",
+                "horsepower strength. However, it\n",
+                "is so heavy, it is difficult to aim."
+            ]
+        },
+        "fr": {
+            "name": "KRABBOSS",
+            "category": "Pokémon Pince",
+            "entry_text": [
+                "Sa grande pince possède une\n",
+                "puissance de 10 000 chevaux. Son\n",
+                "poids la rend difficile à manier."
+            ]
+        },
+        "de": {
+            "name": "KINGLER",
+            "category": "Kneifer",
+            "entry_text": [
+                "Die großen Scheren haben eine\n",
+                "Stärke von 10 000 PS. Aber sie sind\n",
+                "schwer und kaum zu handhaben."
+            ]
+        },
+        "it": {
+            "name": "KINGLER",
+            "category": "Pokémon Chela",
+            "entry_text": [
+                "La chela più grande ha una potenza\n",
+                "di 10000 cavalli, ma è così pesante\n",
+                "che non permette di mirare bene."
+            ]
+        },
+        "es": {
+            "name": "KINGLER",
+            "category": "Pokémon Tenaza",
+            "entry_text": [
+                "La pinza mayor tiene 10000\n",
+                "caballos de potencia, pero es tan\n",
+                "grande que le cuesta usarla."
+            ]
+        },
+        "jp": {
+            "name": "キングラ－",
+            "category": "はさみポケモン",
+            "entry_text": [
+                "おおきいほうの　ハサミの　パワ－は\n",
+                "１まんばりき。しかし　おもすぎるため\n",
+                "ねらいを　つけることが　にがてだ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 70,

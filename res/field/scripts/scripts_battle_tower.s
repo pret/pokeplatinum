@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/battle_tower.h"
 
     .data
 
@@ -1289,7 +1290,7 @@ _140A:
     GoToIfEq 0x8000, 0xFF, _1549
     ScrCmd_198 0x8000, 0x8004
     GoToIfEq 0x8004, 0, _149C
-    ScrCmd_2EE 0x8000, 0x8001, 0x8002, 0x8003
+    JudgeStats 0x8000, 0x8001, 0x8002, 0x8003
     GoToIfLe 0x8001, 90, _14E9
     GoToIfLe 0x8001, 120, _14F4
     GoToIfLe 0x8001, 150, _14FF

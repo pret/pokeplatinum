@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "gx_layers.h"
 #include "heap.h"
 #include "math.h"

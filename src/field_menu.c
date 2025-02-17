@@ -4,13 +4,12 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
-#include "consts/journal.h"
+#include "generated/journal_location_events.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/sentence.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
@@ -26,7 +25,6 @@
 #include "field/field_system.h"
 #include "functypes/funcptr_0203B7C0.h"
 #include "functypes/funcptr_0203BC5C.h"
-#include "gmm/message_bank_unk_0367.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/save_info_window.h"
@@ -98,6 +96,7 @@
 
 #include "constdata/const_020EA02C.h"
 #include "constdata/const_020F1E88.h"
+#include "res/text/bank/unk_0367.h"
 
 typedef enum FieldMenuPos {
     MENU_POS_POKEDEX,

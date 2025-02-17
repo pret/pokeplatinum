@@ -36,13 +36,13 @@
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
 #include "unk_02024220.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
 #include "unk_0206CCB0.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F64C0.h"
@@ -142,7 +142,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     }
 
     v0->unk_D4.unk_10 = BgConfig_New(53);
-    VRAMTransferManager_New(64, 53);
+    VramTransfer_New(64, 53);
     v0->unk_D4.unk_14 = PaletteData_New(53);
     PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
     PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, 53);
@@ -253,7 +253,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     sub_02015FB8(v0->unk_D4.unk_188);
     ov76_0223B8C4(v0);
     ov76_0223C424(&v0->unk_D4);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     sub_020242C4(v0->unk_D4.unk_15C);
     ov76_0223EB54(53);
     NARC_dtor(v0->unk_42C);

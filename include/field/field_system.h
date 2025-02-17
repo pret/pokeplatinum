@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 #define POKEPLATINUM_FIELD_SYSTEM_STRUCT_H
 
-#include "struct_decls/struct_02039E30_decl.h"
 #include "struct_decls/struct_02054C18_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
@@ -15,7 +14,6 @@
 #include "struct_defs/struct_0204AFC4.h"
 
 #include "field/field_system_sub2_decl.h"
-#include "field/field_system_sub3.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D41B4_decl.h"
@@ -29,7 +27,6 @@
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
 #include "overlay005/struct_ov5_021EF300_decl.h"
 #include "overlay005/struct_ov5_021EF76C_decl.h"
-#include "overlay005/struct_ov5_021EFB30_decl.h"
 #include "overlay023/struct_ov23_0224942C_decl.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
@@ -41,9 +38,27 @@
 #include "journal.h"
 #include "location.h"
 #include "map_header_data.h"
+#include "map_matrix.h"
 #include "overlay_manager.h"
 #include "pokeradar.h"
 #include "savedata.h"
+
+#define NUM_HONEY_TREES 21
+
+typedef struct HoneyTreeShake {
+    u8 shakeValue;
+    BOOL isShaking;
+} HoneyTreeShake;
+
+typedef struct HoneyTreeShakeList {
+    HoneyTreeShake trees[NUM_HONEY_TREES];
+    int unused[NUM_HONEY_TREES];
+} HoneyTreeShakeList;
+
+typedef struct FieldWildBattleMetadata {
+    u16 encounterAttempts;
+    u16 wildMonDefeated;
+} FieldWildBattleMetadata;
 
 typedef struct FieldProcessManager {
     OverlayManager *parent;
@@ -64,7 +79,7 @@ typedef struct FieldSystem_t {
     int unk_20;
     Camera *camera;
     UnkStruct_ov5_021E8F60 *unk_28;
-    UnkStruct_02039E30 *unk_2C;
+    MapMatrix *mapMatrix;
     UnkStruct_ov5_021EF76C *unk_30;
     UnkStruct_ov5_021D1A68 *unk_34;
     MapObjectManager *mapObjMan;
@@ -83,7 +98,7 @@ typedef struct FieldSystem_t {
     UnkStruct_ov23_0224942C *unk_6C;
     int mapLoadType;
     const MapLoadMode *mapLoadMode;
-    FieldSystem_sub3 unk_78;
+    FieldWildBattleMetadata wildBattleMetadata;
     UnkStruct_0205B43C *unk_7C;
     UnkStruct_0205C22C *unk_80;
     UnkStruct_ov56_02256468 *unk_84;
@@ -95,7 +110,7 @@ typedef struct FieldSystem_t {
     JournalEntry *journalEntry;
     UnkStruct_ov5_021EF300 *unk_A0;
     UnkStruct_ov5_021E1608 *unk_A4;
-    UnkStruct_ov5_021EFB30 *unk_A8;
+    HoneyTreeShakeList *unk_A8;
     UnkStruct_0204AFC4 *unk_AC;
     const BattleRegulation *unk_B0;
     UnkStruct_0209ACBC *unk_B4;

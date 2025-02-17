@@ -1,5 +1,4 @@
 {
-    "name": "Charizard",
     "base_stats": {
         "hp": 78,
         "attack": 84,
@@ -8,10 +7,7 @@
         "special_attack": 109,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 209,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_BLAZE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_DRAGON_CLAW" ],
+            [ 1, "MOVE_SHADOW_CLAW" ],
+            [ 1, "MOVE_AIR_SLASH" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 1, "MOVE_SMOKE_SCREEN" ],
+            [ 7, "MOVE_EMBER" ],
+            [ 10, "MOVE_SMOKE_SCREEN" ],
+            [ 17, "MOVE_DRAGON_RAGE" ],
+            [ 21, "MOVE_SCARY_FACE" ],
+            [ 28, "MOVE_FIRE_FANG" ],
+            [ 32, "MOVE_SLASH" ],
+            [ 36, "MOVE_WING_ATTACK" ],
+            [ 42, "MOVE_FLAMETHROWER" ],
+            [ 49, "MOVE_FIRE_SPIN" ],
+            [ 59, "MOVE_HEAT_WAVE" ],
+            [ 66, "MOVE_FLARE_BLITZ" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM02",
             "TM05",
@@ -92,29 +100,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_DRAGON_CLAW",
-                "MOVE_SHADOW_CLAW",
-                "MOVE_AIR_SLASH",
-                "MOVE_SCRATCH",
-                "MOVE_GROWL",
-                "MOVE_EMBER",
-                "MOVE_SMOKE_SCREEN"
-            ],
-            "7": "MOVE_EMBER",
-            "10": "MOVE_SMOKE_SCREEN",
-            "17": "MOVE_DRAGON_RAGE",
-            "21": "MOVE_SCARY_FACE",
-            "28": "MOVE_FIRE_FANG",
-            "32": "MOVE_SLASH",
-            "36": "MOVE_WING_ATTACK",
-            "42": "MOVE_FLAMETHROWER",
-            "49": "MOVE_FIRE_SPIN",
-            "59": "MOVE_HEAT_WAVE",
-            "66": "MOVE_FLARE_BLITZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -128,9 +114,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 17,
@@ -144,10 +131,62 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "It is said that CHARIZARD’s fire\nburns hotter if it has\nexperienced harsh battles.",
-        "category": "Flame Pokémon"
+        "en": {
+            "name": "CHARIZARD",
+            "category": "Flame Pokémon",
+            "entry_text": [
+                "It is said that CHARIZARD’s fire\n",
+                "burns hotter if it has\n",
+                "experienced harsh battles."
+            ]
+        },
+        "fr": {
+            "name": "DRACAUFEU",
+            "category": "Pokémon Flamme",
+            "entry_text": [
+                "On raconte que la flamme du\n",
+                "DRACAUFEU s’intensifie après\n",
+                "un combat difficile."
+            ]
+        },
+        "de": {
+            "name": "GLURAK",
+            "category": "Flamme",
+            "entry_text": [
+                "Man sagt, GLURAKs Feuer lodert\n",
+                "stärker, wenn es harte Kämpfe\n",
+                "überstanden hat."
+            ]
+        },
+        "it": {
+            "name": "CHARIZARD",
+            "category": "Pokémon Fiamma",
+            "entry_text": [
+                "Pare che la temperatura della\n",
+                "fiamma di CHARIZARD aumenti\n",
+                "dopo che ha affrontato dure lotte."
+            ]
+        },
+        "es": {
+            "name": "CHARIZARD",
+            "category": "Pokémon Llama",
+            "entry_text": [
+                "Se dice que el fuego de CHARIZARD\n",
+                "arde con más fuerza si ha vivido\n",
+                "duras batallas."
+            ]
+        },
+        "jp": {
+            "name": "リザ－ドン",
+            "category": "かえんポケモン",
+            "entry_text": [
+                "くるしい　たたかいを　けいけんした\n",
+                "リザ－ドンほど　ほのおの　おんどが\n",
+                "たかくなると　いわれている。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

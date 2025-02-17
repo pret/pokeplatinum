@@ -1,5 +1,4 @@
 {
-    "name": "Gyarados",
     "base_stats": {
         "hp": 95,
         "attack": 125,
@@ -8,10 +7,7 @@
         "special_attack": 60,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 214,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 5,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 60,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 60,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_THRASH" ],
+            [ 20, "MOVE_BITE" ],
+            [ 23, "MOVE_DRAGON_RAGE" ],
+            [ 26, "MOVE_LEER" ],
+            [ 29, "MOVE_TWISTER" ],
+            [ 32, "MOVE_ICE_FANG" ],
+            [ 35, "MOVE_AQUA_TAIL" ],
+            [ 38, "MOVE_RAIN_DANCE" ],
+            [ 41, "MOVE_HYDRO_PUMP" ],
+            [ 44, "MOVE_DRAGON_DANCE" ],
+            [ 47, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -89,20 +90,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_THRASH",
-            "20": "MOVE_BITE",
-            "23": "MOVE_DRAGON_RAGE",
-            "26": "MOVE_LEER",
-            "29": "MOVE_TWISTER",
-            "32": "MOVE_ICE_FANG",
-            "35": "MOVE_AQUA_TAIL",
-            "38": "MOVE_RAIN_DANCE",
-            "41": "MOVE_HYDRO_PUMP",
-            "44": "MOVE_DRAGON_DANCE",
-            "47": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_IRON_HEAD",
@@ -115,9 +103,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 65,
@@ -131,10 +120,62 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 22,
         "pokemon_pos_m": 0,
-        "entry_text": "Once it begins to rampage, a\nGYARADOS will burn everything\ndown, even in a harsh storm.",
-        "category": "Atrocious Pokémon"
+        "en": {
+            "name": "GYARADOS",
+            "category": "Atrocious Pokémon",
+            "entry_text": [
+                "Once it begins to rampage, a\n",
+                "GYARADOS will burn everything\n",
+                "down, even in a harsh storm."
+            ]
+        },
+        "fr": {
+            "name": "LEVIATOR",
+            "category": "Pokémon Terrifiant",
+            "entry_text": [
+                "Lorsqu’il apparaît, sa rage ne\n",
+                "cesse qu’après qu’il a rasé les\n",
+                "plaines et montagnes alentour."
+            ]
+        },
+        "de": {
+            "name": "GARADOS",
+            "category": "Grausam",
+            "entry_text": [
+                "Sobald es erscheint, nimmt seine\n",
+                "Wut nicht eher ab, bis es die Felder\n",
+                "und Berge ringsum zerstört hat."
+            ]
+        },
+        "it": {
+            "name": "GYARADOS",
+            "category": "Pokémon Atroce",
+            "entry_text": [
+                "La sua ira non si placa finché non\n",
+                "ha raso al suolo campi e monti\n",
+                "attorno a sé."
+            ]
+        },
+        "es": {
+            "name": "GYARADOS",
+            "category": "Pokémon Atrocidad",
+            "entry_text": [
+                "Cuando se enfada, su rabia solo\n",
+                "se disipa tras arrasar los\n",
+                "campos y montañas vecinos."
+            ]
+        },
+        "jp": {
+            "name": "ギャラドス",
+            "category": "きょうあくポケモン",
+            "entry_text": [
+                "ひとたび　すがたを　あらわすと\n",
+                "のやまの　すべてを　やきつくすまで\n",
+                "いかりが　しずまらない。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 90,

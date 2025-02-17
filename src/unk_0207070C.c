@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "constants/field/map_load.h"
-#include "consts/journal.h"
+#include "generated/journal_location_events.h"
 
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -201,7 +201,7 @@ void sub_02070728(FieldSystem *fieldSystem, UnkStruct_02070950 *param1)
     v2 = Player_GetZPos(fieldSystem->playerAvatar);
     v4 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
-    sub_020615AC(fieldSystem->playerAvatar, &v1, &v2);
+    PlayerAvatar_GetFacingTileCoords(fieldSystem->playerAvatar, &v1, &v2);
     v3 = FieldSystem_GetTileBehavior(fieldSystem, v1, v2);
 
     if (ov5_021E0118(fieldSystem->playerAvatar, v4, v3)) {

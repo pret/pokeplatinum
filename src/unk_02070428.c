@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0202D7B0.h"
+#include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_0205EC34.h"
 
@@ -17,8 +17,8 @@
 #include "player_avatar.h"
 #include "roaming_pokemon.h"
 #include "save_player.h"
+#include "special_encounter.h"
 #include "system_flags.h"
-#include "unk_0202D7A8.h"
 #include "unk_0203A7D8.h"
 #include "unk_020556C4.h"
 #include "unk_0206AFE0.h"
@@ -40,16 +40,16 @@ void FieldSystem_InitFlagsOnMapChange(FieldSystem *fieldSystem)
     SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
     sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
-    sub_0202D9EC(sub_0202D834(fieldSystem->saveData), 0);
+    SpecialEncounter_SetFluteFactor(SaveData_GetSpecialEncounters(fieldSystem->saveData), FLUTE_FACTOR_NONE);
 
-    fieldSystem->unk_78.unk_00 = 0;
+    fieldSystem->wildBattleMetadata.encounterAttempts = 0;
 
     if (!SystemFlag_CheckSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData))) {
-        UnkStruct_0202D7B0 *v0;
+        SpecialEncounter *v0;
 
-        v0 = sub_0202D834(fieldSystem->saveData);
-        sub_0206C404(v0, fieldSystem->location->mapId);
-        sub_0206C37C(v0);
+        v0 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+        RoamingPokemon_UpdatePlayerRecentRoutes(v0, fieldSystem->location->mapId);
+        RoamingPokemon_MoveAllLocations(v0);
     }
 }
 
@@ -69,15 +69,15 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
     SystemFlag_HandleStrengthActive(SaveData_GetVarsFlags(fieldSystem->saveData), HANDLE_FLAG_CLEAR);
 
     sub_0203A8E8(fieldSystem, fieldSystem->location->mapId);
-    sub_0202D9EC(sub_0202D834(fieldSystem->saveData), 0);
+    SpecialEncounter_SetFluteFactor(SaveData_GetSpecialEncounters(fieldSystem->saveData), FLUTE_FACTOR_NONE);
 
-    fieldSystem->unk_78.unk_00 = 0;
+    fieldSystem->wildBattleMetadata.encounterAttempts = 0;
 
     {
-        UnkStruct_0202D7B0 *v0;
+        SpecialEncounter *v0;
 
-        v0 = sub_0202D834(fieldSystem->saveData);
-        sub_0206C404(v0, fieldSystem->location->mapId);
+        v0 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+        RoamingPokemon_UpdatePlayerRecentRoutes(v0, fieldSystem->location->mapId);
     }
 
     if (!MapHeader_IsCave(fieldSystem->location->mapId)) {
@@ -108,13 +108,13 @@ void FieldSystem_InitFlagsWarp(FieldSystem *fieldSystem)
 void sub_0207056C(FieldSystem *fieldSystem)
 {
     SystemFlag_ClearSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
-    sub_0206C354(sub_0202D834(fieldSystem->saveData));
+    RoamingPokemon_RandomizeAllLocations(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 }
 
 void FieldSystem_SetTeleportFlags(FieldSystem *fieldSystem)
 {
     SystemFlag_ClearSafariGameActive(SaveData_GetVarsFlags(fieldSystem->saveData));
-    sub_0206C354(sub_0202D834(fieldSystem->saveData));
+    RoamingPokemon_RandomizeAllLocations(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 }
 
 void FieldSystem_SetEscapeFlags(FieldSystem *fieldSystem)
@@ -132,7 +132,7 @@ void sub_020705B4(FieldSystem *fieldSystem)
 
 void sub_020705CC(FieldSystem *fieldSystem)
 {
-    sub_0206C354(sub_0202D834(fieldSystem->saveData));
+    RoamingPokemon_RandomizeAllLocations(SaveData_GetSpecialEncounters(fieldSystem->saveData));
 }
 
 static BOOL sub_020705DC(FieldSystem *fieldSystem)

@@ -1,5 +1,4 @@
 {
-    "name": "Corsola",
     "base_stats": {
         "hp": 55,
         "attack": 55,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_ROCK"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_ROCK" ],
     "catch_rate": 60,
     "base_exp_reward": 113,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_HUSTLE",
-        "ABILITY_NATURAL_CURE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_HUSTLE", "ABILITY_NATURAL_CURE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 4, "MOVE_HARDEN" ],
+            [ 8, "MOVE_BUBBLE" ],
+            [ 13, "MOVE_RECOVER" ],
+            [ 16, "MOVE_REFRESH" ],
+            [ 20, "MOVE_ROCK_BLAST" ],
+            [ 25, "MOVE_BUBBLE_BEAM" ],
+            [ 28, "MOVE_LUCKY_CHANT" ],
+            [ 32, "MOVE_ANCIENT_POWER" ],
+            [ 37, "MOVE_AQUA_RING" ],
+            [ 40, "MOVE_SPIKE_CANNON" ],
+            [ 44, "MOVE_POWER_GEM" ],
+            [ 48, "MOVE_MIRROR_COAT" ],
+            [ 53, "MOVE_EARTH_POWER" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM06",
@@ -87,23 +91,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "4": "MOVE_HARDEN",
-            "8": "MOVE_BUBBLE",
-            "13": "MOVE_RECOVER",
-            "16": "MOVE_REFRESH",
-            "20": "MOVE_ROCK_BLAST",
-            "25": "MOVE_BUBBLE_BEAM",
-            "28": "MOVE_LUCKY_CHANT",
-            "32": "MOVE_ANCIENT_POWER",
-            "37": "MOVE_AQUA_RING",
-            "40": "MOVE_SPIKE_CANNON",
-            "44": "MOVE_POWER_GEM",
-            "48": "MOVE_MIRROR_COAT",
-            "53": "MOVE_EARTH_POWER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -114,9 +102,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 6,
@@ -130,10 +119,62 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Many live in the clean seas of the\nsouth. They apparently can’t live\nin polluted waters.",
-        "category": "Coral Pokémon"
+        "en": {
+            "name": "CORSOLA",
+            "category": "Coral Pokémon",
+            "entry_text": [
+                "Many live in the clean seas of the\n",
+                "south. They apparently can’t live\n",
+                "in polluted waters."
+            ]
+        },
+        "fr": {
+            "name": "CORAYON",
+            "category": "Pokémon Corail",
+            "entry_text": [
+                "On en trouve beaucoup dans les\n",
+                "mers claires du sud. On dirait qu’il\n",
+                "ne peut pas vivre en eau polluée."
+            ]
+        },
+        "de": {
+            "name": "CORASONN",
+            "category": "Koralle",
+            "entry_text": [
+                "Viele von ihnen leben in den\n",
+                "sauberen Seen im Süden. In ver-\n",
+                "schmutzten können sie nicht leben."
+            ]
+        },
+        "it": {
+            "name": "CORSOLA",
+            "category": "Pokémon Corallo",
+            "entry_text": [
+                "Vivono numerosi nei limpidi mari del\n",
+                "sud. Pare che non riescano a\n",
+                "sopravvivere nelle acque inquinate."
+            ]
+        },
+        "es": {
+            "name": "CORSOLA",
+            "category": "Pokémon Coral",
+            "entry_text": [
+                "Muchos viven en los cristalinos\n",
+                "mares del sur. Son incapaces de\n",
+                "vivir en aguas contaminadas."
+            ]
+        },
+        "jp": {
+            "name": "サニ－ゴ",
+            "category": "さんごポケモン",
+            "entry_text": [
+                "みなみの　きれいな　うみには\n",
+                "たくさんの　サニ－ゴが　いる。\n",
+                "よごれた　うみでは　いきられない。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 70,

@@ -45,7 +45,6 @@
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
 #include "unk_0201E3D8.h"
 #include "unk_02024220.h"
@@ -60,6 +59,7 @@
 #include "unk_02084B70.h"
 #include "unk_0208C098.h"
 #include "unk_02096420.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F1E88.h"
 
@@ -649,7 +649,7 @@ static int sub_0207E7E0(OverlayManager *param0, int *param1)
     sub_02081B90(v0);
     sub_0207EA24(v0->unk_00);
     sub_0201E530();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     for (v1 = 0; v1 < 6; v1++) {
         Strbuf_Free(v0->unk_704[v1].unk_00);
@@ -681,7 +681,7 @@ static void sub_0207E898(void *param0)
     GameWindowLayout *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_00);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -2596,7 +2596,7 @@ static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
         if (Item_Get(v0, 26) != 0) {
             Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
-            param0->unk_5A4->unk_38 = sub_02076B94(NULL, v1, 3, param0->unk_5A4->unk_24, &param0->unk_5A4->unk_3C);
+            param0->unk_5A4->unk_38 = Pokemon_GetEvolutionTargetSpecies(NULL, v1, EVO_CLASS_BY_ITEM, param0->unk_5A4->unk_24, &param0->unk_5A4->unk_3C);
             param0->unk_5A4->unk_23 = 8;
             Heap_FreeToHeap(v0);
             return 32;

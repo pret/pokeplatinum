@@ -24,6 +24,7 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -45,7 +46,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
-#include "unk_0201E86C.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202C9F4.h"
@@ -115,9 +115,9 @@ void ov76_0223B8C4(UnkStruct_ov76_0223DE00 *param0)
 {
     Font_Free(FONT_SUBSCREEN);
     sub_02012870(param0->unk_D4.unk_164[0]);
-    sub_0201EE28(&param0->unk_D4.unk_16C[0]);
+    CharTransfer_ClearRange(&param0->unk_D4.unk_16C[0]);
     sub_02012870(param0->unk_D4.unk_164[1]);
-    sub_0201EE28(&param0->unk_D4.unk_16C[1]);
+    CharTransfer_ClearRange(&param0->unk_D4.unk_16C[1]);
     sub_020127BC(param0->unk_D4.unk_160);
 }
 
@@ -159,14 +159,14 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
 
     v2 = 30000;
     v3 = sub_02012898(&v5, NNS_G2D_VRAM_TYPE_2DSUB, 53);
-    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &param0->unk_D4.unk_16C[param1]);
+    CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &param0->unk_D4.unk_16C[param1]);
 
     v0.unk_00 = param0->unk_D4.unk_160;
     v0.unk_04 = &v5;
     v0.unk_08 = sub_0200D9B0(param0->unk_D4.unk_0C);
     v0.unk_0C = sub_0200D04C(param0->unk_D4.unk_0C, v2);
     v0.unk_10 = NULL;
-    v0.unk_14 = param0->unk_D4.unk_16C[param1].unk_04;
+    v0.unk_14 = param0->unk_D4.unk_16C[param1].offset;
     v0.unk_18 = param2 - Font_CalcStrbufWidth(FONT_SUBSCREEN, v1, 0) / 2;
     v0.unk_1C = param3 + 192;
     v0.unk_20 = 1;

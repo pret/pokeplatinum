@@ -2,7 +2,13 @@
 import collections
 import functools
 
-from consts import items, moves, species, trainer, trainer_ai
+from generated import (
+    ai_flags,
+    items,
+    moves,
+    species,
+    trainer_classes
+)
 
 def pad(len: int) -> bytes:
     return (0).to_bytes(len, 'little')
@@ -23,13 +29,13 @@ def from_move(s: str) -> int:
     return moves.Move[s].value
 
 def from_species(s: str) -> int:
-    return species.PokemonSpecies[s].value
+    return species.Species[s].value
 
 def from_trainer_class(s: str) -> int:
-    return trainer.TrainerClass[s].value
+    return trainer_classes.TrainerClass[s].value
 
 def from_trainer_ai_flag(s: str) -> int:
-    return trainer_ai.AIFlag[s].value
+    return ai_flags.AIFlag[s].value
 
 TrainerDataFlags = collections.namedtuple('TrainerDataFlags', ['has_moves', 'has_items'])
 

@@ -10,8 +10,8 @@
 #include "narc.h"
 #include "palette.h"
 #include "sprite_resource.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 
 typedef struct {
     int unk_00;
@@ -766,10 +766,10 @@ static void ov63_0222B510(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
         }
     }
 
-    v1 = sub_0200A450(param0->unk_10[param1].unk_04[0]);
+    v1 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_10[param1].unk_04[0]);
     GF_ASSERT(v1);
 
-    v1 = sub_0200A640(param0->unk_10[param1].unk_04[1]);
+    v1 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_10[param1].unk_04[1]);
     GF_ASSERT(v1);
 
     if (param0->unk_04) {
@@ -786,7 +786,7 @@ static void ov63_0222B510(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
     v3 = ov63_0222B49C(param3, 2, v2);
     v4 = ov63_0222B49C(param3, 3, v2);
 
-    sub_020093B4(&param0->unk_10[param1].unk_14, 0x200 + param1, 0x200 + param1, v3, v4, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_10[param1].unk_14, 0x200 + param1, 0x200 + param1, v3, v4, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
 }
 
 static void ov63_0222B664(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param2, int param3, u32 param4)
@@ -807,7 +807,7 @@ static void ov63_0222B664(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
         v0->szByte = 0x1400;
     }
 
-    v1 = sub_0200A450(param0->unk_10[param1].unk_04[0]);
+    v1 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_10[param1].unk_04[0]);
     GF_ASSERT(v1);
     SpriteResource_ReleaseData(param0->unk_10[param1].unk_04[0]);
 
@@ -816,7 +816,7 @@ static void ov63_0222B664(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
     param0->unk_10[param1].unk_10 = param3;
     param0->unk_10[param1].unk_00 = 1;
 
-    sub_020093B4(&param0->unk_10[param1].unk_14, 0x200 + param1, 0x402, 0x180 + v2, 0x180 + v2, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_10[param1].unk_14, 0x200 + param1, 0x402, 0x180 + v2, 0x180 + v2, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
 }
 
 static void ov63_0222B738(UnkStruct_ov63_0222AE60 *param0, u32 param1)
@@ -832,8 +832,8 @@ static void ov63_0222B738(UnkStruct_ov63_0222AE60 *param0, u32 param1)
 
 static void ov63_0222B76C(UnkStruct_ov63_0222AE60 *param0, u32 param1)
 {
-    sub_0200A4E4(param0->unk_10[param1].unk_04[0]);
-    sub_0200A6DC(param0->unk_10[param1].unk_04[1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_10[param1].unk_04[0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_10[param1].unk_04[1]);
 
     SpriteResourceCollection_Remove(param0->unk_2280[0], param0->unk_10[param1].unk_04[0]);
     SpriteResourceCollection_Remove(param0->unk_2280[1], param0->unk_10[param1].unk_04[1]);
@@ -844,7 +844,7 @@ static void ov63_0222B76C(UnkStruct_ov63_0222AE60 *param0, u32 param1)
 
 static void ov63_0222B7AC(UnkStruct_ov63_0222AE60 *param0, u32 param1)
 {
-    sub_0200A4E4(param0->unk_10[param1].unk_04[0]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_10[param1].unk_04[0]);
     SpriteResourceCollection_Remove(param0->unk_2280[0], param0->unk_10[param1].unk_04[0]);
 
     param0->unk_10[param1].unk_04[0] = NULL;
@@ -892,11 +892,11 @@ static void ov63_0222B7E8(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
 
     param0->unk_2248.unk_00[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_2280[0], param0->unk_2294[0], 2, 0, 0x120, param1, param2);
 
-    v1 = sub_0200A450(param0->unk_2248.unk_00[0]);
+    v1 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_2248.unk_00[0]);
     GF_ASSERT(v1);
 
     SpriteResource_ReleaseData(param0->unk_2248.unk_00[0]);
-    sub_020093B4(&param0->unk_2248.unk_10, 0x120, 0x200 + v3, 0x120, 0x120, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_2248.unk_10, 0x120, 0x200 + v3, 0x120, 0x120, 0xffffffff, 0xffffffff, 0, 0, param0->unk_2280[0], param0->unk_2280[1], param0->unk_2280[2], param0->unk_2280[3], NULL, NULL);
 }
 
 static void ov63_0222B914(UnkStruct_ov63_0222AE60 *param0)
@@ -905,7 +905,7 @@ static void ov63_0222B914(UnkStruct_ov63_0222AE60 *param0)
 
     if (ov63_0222B96C(&param0->unk_2248) == 1) {
         {
-            sub_0200A4E4(param0->unk_2248.unk_00[0]);
+            SpriteTransfer_ResetCharTransfer(param0->unk_2248.unk_00[0]);
             SpriteResourceCollection_Remove(param0->unk_2280[0], param0->unk_2248.unk_00[0]);
             param0->unk_2248.unk_00[0] = NULL;
         }
@@ -934,7 +934,7 @@ static void ov63_0222B97C(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
 
     param0->unk_2290 = SpriteResourceCollection_AddPaletteFrom(param0->unk_2280[1], param0->unk_2294[1], 0, 0, 0x402, param1, 8, param2);
 
-    v0 = sub_0200A640(param0->unk_2290);
+    v0 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_2290);
     GF_ASSERT(v0);
 
     if (param0->unk_04) {
@@ -948,7 +948,7 @@ static void ov63_0222B9EC(UnkStruct_ov63_0222AE60 *param0)
 {
     GF_ASSERT(param0->unk_2290 != NULL);
 
-    sub_0200A6DC(param0->unk_2290);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_2290);
     SpriteResourceCollection_Remove(param0->unk_2280[1], param0->unk_2290);
 
     param0->unk_2290 = NULL;
@@ -1128,8 +1128,8 @@ static void ov63_0222BC80(UnkStruct_ov63_0222AE60 *param0, SpriteResource *param
     u32 v1[2];
 
     v0 = SpriteResource_GetPaletteFade(param1);
-    v1[0] = sub_0200A760(param1, NNS_G2D_VRAM_TYPE_2DMAIN);
-    v1[1] = sub_0200A760(param1, NNS_G2D_VRAM_TYPE_2DSUB);
+    v1[0] = SpriteTransfer_GetPlttOffset(param1, NNS_G2D_VRAM_TYPE_2DMAIN);
+    v1[1] = SpriteTransfer_GetPlttOffset(param1, NNS_G2D_VRAM_TYPE_2DSUB);
 
     if (v1[0] != (NNS_G2D_VRAM_ADDR_NOT_INITIALIZED)) {
         PaletteData_LoadBuffer(param0->unk_04, v0->pRawData, 2, v1[0] * 16, param2 * 32);

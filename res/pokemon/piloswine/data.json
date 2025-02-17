@@ -1,5 +1,4 @@
 {
-    "name": "Piloswine",
     "base_stats": {
         "hp": 100,
         "attack": 100,
@@ -8,10 +7,7 @@
         "special_attack": 60,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_GROUND" ],
     "catch_rate": 75,
     "base_exp_reward": 160,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_SNOW_CLOAK"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_SNOW_CLOAK" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ANCIENT_POWER" ],
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_ODOR_SLEUTH" ],
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 4, "MOVE_MUD_SPORT" ],
+            [ 8, "MOVE_POWDER_SNOW" ],
+            [ 13, "MOVE_MUD_SLAP" ],
+            [ 16, "MOVE_ENDURE" ],
+            [ 20, "MOVE_MUD_BOMB" ],
+            [ 25, "MOVE_ICY_WIND" ],
+            [ 28, "MOVE_ICE_FANG" ],
+            [ 32, "MOVE_TAKE_DOWN" ],
+            [ 33, "MOVE_FURY_ATTACK" ],
+            [ 40, "MOVE_EARTHQUAKE" ],
+            [ 48, "MOVE_MIST" ],
+            [ 56, "MOVE_BLIZZARD" ],
+            [ 65, "MOVE_AMNESIA" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM07",
@@ -81,29 +89,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ANCIENT_POWER",
-                "MOVE_PECK",
-                "MOVE_ODOR_SLEUTH",
-                "MOVE_MUD_SPORT",
-                "MOVE_POWDER_SNOW"
-            ],
-            "4": "MOVE_MUD_SPORT",
-            "8": "MOVE_POWDER_SNOW",
-            "13": "MOVE_MUD_SLAP",
-            "16": "MOVE_ENDURE",
-            "20": "MOVE_MUD_BOMB",
-            "25": "MOVE_ICY_WIND",
-            "28": "MOVE_ICE_FANG",
-            "32": "MOVE_TAKE_DOWN",
-            "33": "MOVE_FURY_ATTACK",
-            "40": "MOVE_EARTHQUAKE",
-            "48": "MOVE_MIST",
-            "56": "MOVE_BLIZZARD",
-            "65": "MOVE_AMNESIA"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_SUPERPOWER",
@@ -115,14 +101,14 @@
     },
     "evolutions": [
         [
-            "EVO_KNOW_MOVE",
+            "EVO_LEVEL_KNOW_MOVE",
             "MOVE_ANCIENT_POWER",
             "SPECIES_MAMOSWINE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -136,10 +122,62 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "Covered by a shaggy coat, it is\nstrong against the cold. Its tusks\nof ice thicken when it snows.",
-        "category": "Swine Pokémon"
+        "en": {
+            "name": "PILOSWINE",
+            "category": "Swine Pokémon",
+            "entry_text": [
+                "Covered by a shaggy coat, it is\n",
+                "strong against the cold. Its tusks\n",
+                "of ice thicken when it snows."
+            ]
+        },
+        "fr": {
+            "name": "COCHIGNON",
+            "category": "Pokémon Porc",
+            "entry_text": [
+                "Il ne voit rien à cause de sa\n",
+                "fourrure touffue et se repère\n",
+                "à l’aide de son nez délicat."
+            ]
+        },
+        "de": {
+            "name": "KEIFEL",
+            "category": "Schwein",
+            "entry_text": [
+                "Sein dichtes Fell verdeckt seine\n",
+                "Augen. Es untersucht seine\n",
+                "Umgebung mit seiner Nase."
+            ]
+        },
+        "it": {
+            "name": "PILOSWINE",
+            "category": "Pokémon Suino",
+            "entry_text": [
+                "Poiché il lungo pelo gli impedisce di\n",
+                "vedere, sonda il terreno circo-\n",
+                "stante con il sensibilissimo naso."
+            ]
+        },
+        "es": {
+            "name": "PILOSWINE",
+            "category": "Pokémon Puerco",
+            "entry_text": [
+                "Como su pelaje le impide ver,\n",
+                "estudia lo que le rodea con su\n",
+                "potente olfato."
+            ]
+        },
+        "jp": {
+            "name": "イノム－",
+            "category": "いのししポケモン",
+            "entry_text": [
+                "ながい　たいもうで　おおわれていて\n",
+                "めが　みえないが　びんかんな　はなを\n",
+                "つかって　まわりの　ようすを　しる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

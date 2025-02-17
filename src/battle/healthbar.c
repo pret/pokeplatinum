@@ -13,7 +13,6 @@
 
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_022674C4.h"
-#include "gmm/message_bank_battle_strings.h"
 
 #include "assert.h"
 #include "bg_window.h"
@@ -32,6 +31,8 @@
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0208C098.h"
+
+#include "res/text/bank/battle_strings.h"
 
 #define HEALTHBAR_SCROLL_SPEED      24
 #define HEALTHBAR_SCROLL_OUT_OFFSET 160

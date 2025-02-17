@@ -1,5 +1,4 @@
 {
-    "name": "Armaldo",
     "base_stats": {
         "hp": 75,
         "attack": 125,
@@ -8,10 +7,7 @@
         "special_attack": 70,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_BUG"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_BUG" ],
     "catch_rate": 45,
     "base_exp_reward": 199,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 30,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_WATER_3",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_BATTLE_ARMOR",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_BATTLE_ARMOR", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 7, "MOVE_MUD_SPORT" ],
+            [ 13, "MOVE_WATER_GUN" ],
+            [ 19, "MOVE_METAL_CLAW" ],
+            [ 25, "MOVE_PROTECT" ],
+            [ 31, "MOVE_ANCIENT_POWER" ],
+            [ 37, "MOVE_FURY_CUTTER" ],
+            [ 46, "MOVE_SLASH" ],
+            [ 55, "MOVE_ROCK_BLAST" ],
+            [ 67, "MOVE_CRUSH_CLAW" ],
+            [ 73, "MOVE_X_SCISSOR" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -84,25 +88,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_HARDEN",
-                "MOVE_MUD_SPORT",
-                "MOVE_WATER_GUN"
-            ],
-            "7": "MOVE_MUD_SPORT",
-            "13": "MOVE_WATER_GUN",
-            "19": "MOVE_METAL_CLAW",
-            "25": "MOVE_PROTECT",
-            "31": "MOVE_ANCIENT_POWER",
-            "37": "MOVE_FURY_CUTTER",
-            "46": "MOVE_SLASH",
-            "55": "MOVE_ROCK_BLAST",
-            "67": "MOVE_CRUSH_CLAW",
-            "73": "MOVE_X_SCISSOR"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SUPERPOWER",
@@ -114,9 +100,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -130,10 +117,62 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 6,
-        "entry_text": "It went ashore after evolving.\nIts entire body is clad in a sturdy\narmor.",
-        "category": "Plate Pokémon"
+        "en": {
+            "name": "ARMALDO",
+            "category": "Plate Pokémon",
+            "entry_text": [
+                "It went ashore after evolving.\n",
+                "Its entire body is clad in a sturdy\n",
+                "armor."
+            ]
+        },
+        "fr": {
+            "name": "ARMALDO",
+            "category": "Pokémon Blindage",
+            "entry_text": [
+                "Il a gagné la côte après son \n",
+                "évolution. Une armure robuste\n",
+                "recouvre son corps."
+            ]
+        },
+        "de": {
+            "name": "ARMALDO",
+            "category": "Schild",
+            "entry_text": [
+                "Nach seiner Entwicklung ging es an\n",
+                "Land. Sein Körper ist von einer\n",
+                "robusten Rüstung umgeben."
+            ]
+        },
+        "it": {
+            "name": "ARMALDO",
+            "category": "Pokémon Piastre",
+            "entry_text": [
+                "Dopo essersi evoluto, è andato a\n",
+                "vivere a riva. Tutto il suo corpo è\n",
+                "rivestito da un’armatura robusta."
+            ]
+        },
+        "es": {
+            "name": "ARMALDO",
+            "category": "Pokémon Armadura",
+            "entry_text": [
+                "Tras evolucionar, este Pokémon\n",
+                "fue a tierra firme. Una dura coraza\n",
+                "protege todo su cuerpo."
+            ]
+        },
+        "jp": {
+            "name": "ア－マルド",
+            "category": "かっちゅうポケモン",
+            "entry_text": [
+                "しんかして　ちじょうで　くらすように\n",
+                "なった。ぜんしんが　がんじょうな\n",
+                "よろいに　おおわれている。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 80,

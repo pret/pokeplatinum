@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/iron_island_b2f_left_room.h"
 
     .data
 
@@ -172,7 +173,7 @@ _01AA:
     Message 8
     CloseMessage
     SetHasPartner
-    StartTrainerBattle trainer_galactic_grunt_iron_island_1, trainer_galactic_grunt_iron_island_2
+    StartTrainerBattle TRAINER_GALACTIC_GRUNT_IRON_ISLAND_1, TRAINER_GALACTIC_GRUNT_IRON_ISLAND_2
     ClearHasPartner
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _037D

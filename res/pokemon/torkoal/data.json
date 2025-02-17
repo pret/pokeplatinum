@@ -1,5 +1,4 @@
 {
-    "name": "Torkoal",
     "base_stats": {
         "hp": 70,
         "attack": 85,
@@ -8,10 +7,7 @@
         "special_attack": 85,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 90,
     "base_exp_reward": 161,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_WHITE_SMOKE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_WHITE_SMOKE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_EMBER" ],
+            [ 4, "MOVE_SMOG" ],
+            [ 7, "MOVE_WITHDRAW" ],
+            [ 12, "MOVE_CURSE" ],
+            [ 17, "MOVE_FIRE_SPIN" ],
+            [ 20, "MOVE_SMOKE_SCREEN" ],
+            [ 23, "MOVE_RAPID_SPIN" ],
+            [ 28, "MOVE_FLAMETHROWER" ],
+            [ 33, "MOVE_BODY_SLAM" ],
+            [ 36, "MOVE_PROTECT" ],
+            [ 39, "MOVE_LAVA_PLUME" ],
+            [ 44, "MOVE_IRON_DEFENSE" ],
+            [ 49, "MOVE_AMNESIA" ],
+            [ 52, "MOVE_FLAIL" ],
+            [ 55, "MOVE_HEAT_WAVE" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -81,24 +86,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_EMBER",
-            "4": "MOVE_SMOG",
-            "7": "MOVE_WITHDRAW",
-            "12": "MOVE_CURSE",
-            "17": "MOVE_FIRE_SPIN",
-            "20": "MOVE_SMOKE_SCREEN",
-            "23": "MOVE_RAPID_SPIN",
-            "28": "MOVE_FLAMETHROWER",
-            "33": "MOVE_BODY_SLAM",
-            "36": "MOVE_PROTECT",
-            "39": "MOVE_LAVA_PLUME",
-            "44": "MOVE_IRON_DEFENSE",
-            "49": "MOVE_AMNESIA",
-            "52": "MOVE_FLAIL",
-            "55": "MOVE_HEAT_WAVE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -107,9 +95,10 @@
             "MOVE_HEAT_WAVE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 5,
@@ -123,10 +112,62 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "It burns coal inside its shell for\nenergy. It blows out black soot if\nit is endangered.",
-        "category": "Coal Pokémon"
+        "en": {
+            "name": "TORKOAL",
+            "category": "Coal Pokémon",
+            "entry_text": [
+                "It burns coal inside its shell for\n",
+                "energy. It blows out black soot if\n",
+                "it is endangered."
+            ]
+        },
+        "fr": {
+            "name": "CHARTOR",
+            "category": "Pokémon Charbon",
+            "entry_text": [
+                "Il tire son énergie du charbon qu’il\n",
+                "brûle dans sa carapace et crache\n",
+                "de la suie noire en cas de danger."
+            ]
+        },
+        "de": {
+            "name": "QURTEL",
+            "category": "Kohle",
+            "entry_text": [
+                "In seinem Panzer verbrennt es\n",
+                "Kohle und gewinnt daraus Energie.\n",
+                "Bei Gefahr sondert es Ruß ab."
+            ]
+        },
+        "it": {
+            "name": "TORKOAL",
+            "category": "Pokémon Carbone",
+            "entry_text": [
+                "Genera energia bruciando carbone\n",
+                "all’interno della corazza. Se è in\n",
+                "pericolo, emette fuliggine scura."
+            ]
+        },
+        "es": {
+            "name": "TORKOAL",
+            "category": "Pokémon Carbón",
+            "entry_text": [
+                "Quema carbón en su caparazón\n",
+                "para obtener energía. Si le atacan,\n",
+                "echa un denso humo negro."
+            ]
+        },
+        "jp": {
+            "name": "コ－タス",
+            "category": "せきたんポケモン",
+            "entry_text": [
+                "こうらの　なかで　せきたんを　もやし\n",
+                "エネルギ－に　している。ピンチの\n",
+                "ときは　くろい　ススを　ふきだす。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

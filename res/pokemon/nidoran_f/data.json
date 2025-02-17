@@ -1,5 +1,4 @@
 {
-    "name": "Nidoran♀",
     "base_stats": {
         "hp": 55,
         "attack": 47,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 235,
     "base_exp_reward": 59,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_POISON_POINT",
-        "ABILITY_RIVALRY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_POISON_POINT", "ABILITY_RIVALRY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_SCRATCH" ],
+            [ 7, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_DOUBLE_KICK" ],
+            [ 13, "MOVE_POISON_STING" ],
+            [ 19, "MOVE_FURY_SWIPES" ],
+            [ 21, "MOVE_BITE" ],
+            [ 25, "MOVE_HELPING_HAND" ],
+            [ 31, "MOVE_TOXIC_SPIKES" ],
+            [ 33, "MOVE_FLATTER" ],
+            [ 37, "MOVE_CRUNCH" ],
+            [ 43, "MOVE_CAPTIVATE" ],
+            [ 45, "MOVE_POISON_FANG" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM10",
@@ -80,24 +83,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_SCRATCH"
-            ],
-            "7": "MOVE_TAIL_WHIP",
-            "9": "MOVE_DOUBLE_KICK",
-            "13": "MOVE_POISON_STING",
-            "19": "MOVE_FURY_SWIPES",
-            "21": "MOVE_BITE",
-            "25": "MOVE_HELPING_HAND",
-            "31": "MOVE_TOXIC_SPIKES",
-            "33": "MOVE_FLATTER",
-            "37": "MOVE_CRUNCH",
-            "43": "MOVE_CAPTIVATE",
-            "45": "MOVE_POISON_FANG"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND"
@@ -105,14 +91,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             16,
             "SPECIES_NIDORINA"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -126,10 +112,62 @@
         "pokemon_pos_f": 25,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 25,
-        "entry_text": "While it does not prefer to fight,\neven one drop of the poison it\nsecretes from barbs can be fatal.",
-        "category": "Poison Pin Pokémon"
+        "en": {
+            "name": "NIDORAN♀",
+            "category": "Poison Pin Pokémon",
+            "entry_text": [
+                "While it does not prefer to fight,\n",
+                "even one drop of the poison it\n",
+                "secretes from barbs can be fatal."
+            ]
+        },
+        "fr": {
+            "name": "NIDORAN♀",
+            "category": "Pokémon Venepic",
+            "entry_text": [
+                "Bien qu’il rechigne à se battre,\n",
+                "une goutte du poison sécrété par\n",
+                "ses piquants peut s’avérer fatale."
+            ]
+        },
+        "de": {
+            "name": "NIDORAN♀",
+            "category": "Giftdorn",
+            "entry_text": [
+                "Es mag keine Kämpfe. Ein einziger\n",
+                "Tropfen des Gifts aus seinen\n",
+                "Widerhaken hat eine fatale Wirkung."
+            ]
+        },
+        "it": {
+            "name": "NIDORAN♀",
+            "category": "Pokémon Velenago",
+            "entry_text": [
+                "Non ama combattere, ma anche una\n",
+                "sola goccia del veleno che secerne\n",
+                "dagli aculei può essere fatale."
+            ]
+        },
+        "es": {
+            "name": "NIDORAN♀",
+            "category": "Pokémon Pin Veneno",
+            "entry_text": [
+                "Aunque no le gusta luchar, una\n",
+                "sola gota del veneno de sus púas\n",
+                "puede resultar fatal."
+            ]
+        },
+        "jp": {
+            "name": "ニドラン㊛",
+            "category": "どくばりポケモン",
+            "entry_text": [
+                "たたかいを　このまない　せいかく。\n",
+                "どくバリから　ぶんぴつされる　どくは\n",
+                "ひとしずくでも　いのちとりだ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 30,

@@ -12,12 +12,12 @@
 #include "constants/pokemon.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
-#include "consts/abilities.h"
-#include "consts/game_records.h"
-#include "consts/sdat.h"
+#include "generated/abilities.h"
+#include "generated/game_records.h"
+#include "generated/sdat.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/ai_context.h"
 #include "battle/battle_context.h"
@@ -1910,15 +1910,15 @@ static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext 
     int nextSeq;
     if (Battler_Side(battleSys, battleCtx->attacker)) {
         switch (battleCtx->aiContext.usedItemType[battleCtx->attacker >> 1]) {
-        case ITEM_TYPE_FULL_RESTORE:
+        case ITEM_AI_CATEGORY_FULL_RESTORE:
             nextSeq = subscript_use_full_restore;
             break;
 
-        case ITEM_TYPE_RECOVER_HP:
+        case ITEM_AI_CATEGORY_RECOVER_HP:
             nextSeq = subscript_use_potion;
             break;
 
-        case ITEM_TYPE_RECOVER_STATUS:
+        case ITEM_AI_CATEGORY_RECOVER_STATUS:
             if ((battleCtx->aiContext.usedItemCondition[battleCtx->attacker >> 1] & ITEM_RECOVER_CONFUSION)
                 && (battleCtx->aiContext.usedItemCondition[battleCtx->attacker >> 1] & ITEM_RECOVER_FULL)) {
                 battleCtx->msgTemp = 6;
@@ -1929,12 +1929,12 @@ static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext 
             nextSeq = subscript_use_status_recovery;
             break;
 
-        case ITEM_TYPE_STAT_BOOSTER:
+        case ITEM_AI_CATEGORY_STAT_BOOSTER:
             battleCtx->msgTemp = battleCtx->aiContext.usedItemCondition[battleCtx->attacker >> 1];
             nextSeq = subscript_use_stat_booster;
             break;
 
-        case ITEM_TYPE_GUARD_SPEC:
+        case ITEM_AI_CATEGORY_GUARD_SPEC:
             nextSeq = subscript_use_guard_spec;
             break;
         }
@@ -1942,9 +1942,9 @@ static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext 
         battleCtx->msgItemTemp = battleCtx->aiContext.usedItem[battleCtx->attacker >> 1];
     } else {
         switch (used->category) {
-        case BATTLE_ITEM_CATEGORY_RECOVER_STATUS:
-        case BATTLE_ITEM_CATEGORY_RECOVER_HP:
-        case BATTLE_ITEM_CATEGORY_BATTLE_ITEMS:
+        case ITEM_BATTLE_CATEGORY_RECOVER_STATUS:
+        case ITEM_BATTLE_CATEGORY_RECOVER_HP:
+        case ITEM_BATTLE_CATEGORY_BATTLE_ITEMS:
             if (used->item == ITEM_POKE_DOLL || used->item == ITEM_FLUFFY_TAIL) {
                 nextSeq = subscript_escape_item;
             } else {
@@ -1953,7 +1953,7 @@ static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext 
 
             break;
 
-        case BATTLE_ITEM_CATEGORY_POKE_BALLS:
+        case ITEM_BATTLE_CATEGORY_POKE_BALLS:
             nextSeq = subscript_throw_pokeball;
             if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE
                 && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL) == FALSE) {
@@ -4268,7 +4268,7 @@ static BOOL BattleController_CheckBattleOver(BattleSystem *battleSys, BattleCont
         || (battleResult == BATTLE_RESULT_WIN && (battleType & BATTLE_TYPE_FRONTIER) && (battleType & BATTLE_TYPE_LINK) == FALSE)) {
         Trainer *trainer = BattleSystem_GetTrainer(battleSys, BATTLER_ENEMY_1);
 
-        switch (trainer->class) {
+        switch (trainer->header.trainerType) {
         case TRAINER_CLASS_LEADER_ROARK:
         case TRAINER_CLASS_LEADER_GARDENIA:
         case TRAINER_CLASS_LEADER_WAKE:

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/valley_windworks_outside.h"
 
     .data
 
@@ -63,7 +64,7 @@ _00CF:
     FacePlayer
     Message 0
     CloseMessage
-    StartTrainerBattle trainer_galactic_grunt_valley_windworks_1
+    StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_1
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, 0, _0133
     Message 1

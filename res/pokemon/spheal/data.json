@@ -1,5 +1,4 @@
 {
-    "name": "Spheal",
     "base_stats": {
         "hp": 70,
         "attack": 40,
@@ -8,10 +7,7 @@
         "special_attack": 55,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_WATER" ],
     "catch_rate": 255,
     "base_exp_reward": 75,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_ICE_BODY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_ICE_BODY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 7, "MOVE_ENCORE" ],
+            [ 13, "MOVE_ICE_BALL" ],
+            [ 19, "MOVE_BODY_SLAM" ],
+            [ 25, "MOVE_AURORA_BEAM" ],
+            [ 31, "MOVE_HAIL" ],
+            [ 37, "MOVE_REST" ],
+            [ 37, "MOVE_SNORE" ],
+            [ 43, "MOVE_BLIZZARD" ],
+            [ 49, "MOVE_SHEER_COLD" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -76,26 +79,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_DEFENSE_CURL",
-                "MOVE_POWDER_SNOW",
-                "MOVE_GROWL",
-                "MOVE_WATER_GUN"
-            ],
-            "7": "MOVE_ENCORE",
-            "13": "MOVE_ICE_BALL",
-            "19": "MOVE_BODY_SLAM",
-            "25": "MOVE_AURORA_BEAM",
-            "31": "MOVE_HAIL",
-            "37": [
-                "MOVE_REST",
-                "MOVE_SNORE"
-            ],
-            "43": "MOVE_BLIZZARD",
-            "49": "MOVE_SHEER_COLD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -107,14 +91,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             32,
             "SPECIES_SEALEO"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 8,
@@ -128,10 +112,62 @@
         "pokemon_pos_f": 20,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 20,
-        "entry_text": "It rolls across ice floes to reach\nshore because its body is poorly\nshaped for swimming.",
-        "category": "Clap Pokémon"
+        "en": {
+            "name": "SPHEAL",
+            "category": "Clap Pokémon",
+            "entry_text": [
+                "It rolls across ice floes to reach\n",
+                "shore because its body is poorly\n",
+                "shaped for swimming."
+            ]
+        },
+        "fr": {
+            "name": "OBALIE",
+            "category": "Pokémon Clap Clap",
+            "entry_text": [
+                "Il gagne la côte en roulant sur les\n",
+                "blocs de glace car sa morphologie\n",
+                "n’est pas adaptée à la nage."
+            ]
+        },
+        "de": {
+            "name": "SEEMOPS",
+            "category": "Applaus",
+            "entry_text": [
+                "Es rollt über Eisschollen, um Land\n",
+                "zu erreichen, da sein Körper zum\n",
+                "Schwimmen nicht geeignet ist."
+            ]
+        },
+        "it": {
+            "name": "SPHEAL",
+            "category": "Pokémon Rotolante",
+            "entry_text": [
+                "Poiché il suo corpo non è adatto al\n",
+                "nuoto, rotola su lastre di ghiaccio\n",
+                "per raggiungere la riva."
+            ]
+        },
+        "es": {
+            "name": "SPHEAL",
+            "category": "Pokémon Aplauso",
+            "entry_text": [
+                "Rueda por los témpanos de hielo\n",
+                "hasta la orilla, ya que su cuerpo\n",
+                "no está bien adaptado para nadar."
+            ]
+        },
+        "jp": {
+            "name": "タマザラシ",
+            "category": "てたたきポケモン",
+            "entry_text": [
+                "りゅうひょうの　うえを　コロコロと\n",
+                "ころがって　かいがんに　たどりつく。\n",
+                "およぐには　ふべんな　たいけい。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 50,

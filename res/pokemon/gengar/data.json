@@ -1,5 +1,4 @@
 {
-    "name": "Gengar",
     "base_stats": {
         "hp": 60,
         "attack": 65,
@@ -8,10 +7,7 @@
         "special_attack": 130,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_GHOST",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_GHOST", "TYPE_POISON" ],
     "catch_rate": 45,
     "base_exp_reward": 190,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_HYPNOSIS" ],
+            [ 1, "MOVE_LICK" ],
+            [ 1, "MOVE_SPITE" ],
+            [ 5, "MOVE_SPITE" ],
+            [ 8, "MOVE_MEAN_LOOK" ],
+            [ 12, "MOVE_CURSE" ],
+            [ 15, "MOVE_NIGHT_SHADE" ],
+            [ 19, "MOVE_CONFUSE_RAY" ],
+            [ 22, "MOVE_SUCKER_PUNCH" ],
+            [ 25, "MOVE_SHADOW_PUNCH" ],
+            [ 28, "MOVE_PAYBACK" ],
+            [ 33, "MOVE_SHADOW_BALL" ],
+            [ 39, "MOVE_DREAM_EATER" ],
+            [ 44, "MOVE_DARK_PULSE" ],
+            [ 50, "MOVE_DESTINY_BOND" ],
+            [ 55, "MOVE_NIGHTMARE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -95,27 +101,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_HYPNOSIS",
-                "MOVE_LICK",
-                "MOVE_SPITE"
-            ],
-            "5": "MOVE_SPITE",
-            "8": "MOVE_MEAN_LOOK",
-            "12": "MOVE_CURSE",
-            "15": "MOVE_NIGHT_SHADE",
-            "19": "MOVE_CONFUSE_RAY",
-            "22": "MOVE_SUCKER_PUNCH",
-            "25": "MOVE_SHADOW_PUNCH",
-            "28": "MOVE_PAYBACK",
-            "33": "MOVE_SHADOW_BALL",
-            "39": "MOVE_DREAM_EATER",
-            "44": "MOVE_DARK_PULSE",
-            "50": "MOVE_DESTINY_BOND",
-            "55": "MOVE_NIGHTMARE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -129,9 +115,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 15,
@@ -145,10 +132,62 @@
         "pokemon_pos_f": 65535,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65535,
-        "entry_text": "The leer that floats in darkness\nbelongs to a GENGAR delighting in\ncasting curses on people.",
-        "category": "Shadow Pokémon"
+        "en": {
+            "name": "GENGAR",
+            "category": "Shadow Pokémon",
+            "entry_text": [
+                "The leer that floats in darkness\n",
+                "belongs to a GENGAR delighting in\n",
+                "casting curses on people."
+            ]
+        },
+        "fr": {
+            "name": "ECTOPLASMA",
+            "category": "Pokémon Ombre",
+            "entry_text": [
+                "On dit que lorsqu’ECTOPLASMA se \n",
+                "cache dans l’ombre, la température\n",
+                "alentour chute de 5 °C."
+            ]
+        },
+        "de": {
+            "name": "GENGAR",
+            "category": "Schatten",
+            "entry_text": [
+                "Es versteckt sich im Schatten. Man\n",
+                "sagt, wenn sich ein GENGAR ver-\n",
+                "steckt, kühlt es sich um 5 Grad ab."
+            ]
+        },
+        "it": {
+            "name": "GENGAR",
+            "category": "Pokémon Ombra",
+            "entry_text": [
+                "Si nasconde nell’ombra. Pare che\n",
+                "nei luoghi in cui GENGAR si cela,\n",
+                "la temperatura si abbassi di 5°C."
+            ]
+        },
+        "es": {
+            "name": "GENGAR",
+            "category": "Pokémon Sombra",
+            "entry_text": [
+                "Se esconde entre las sombras.\n",
+                "Se dice que donde GENGAR acecha,\n",
+                "la temperatura baja 5 grados."
+            ]
+        },
+        "jp": {
+            "name": "ゲンガ－",
+            "category": "シャド－ポケモン",
+            "entry_text": [
+                "ものかげに　すがたを　かくす。\n",
+                "ゲンガ－の　ひそんでいる　へやは\n",
+                "おんどが　５ど　さがると　いわれる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

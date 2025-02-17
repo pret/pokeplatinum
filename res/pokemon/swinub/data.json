@@ -1,5 +1,4 @@
 {
-    "name": "Swinub",
     "base_stats": {
         "hp": 50,
         "attack": 50,
@@ -8,10 +7,7 @@
         "special_attack": 30,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_GROUND" ],
     "catch_rate": 225,
     "base_exp_reward": 78,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_SNOW_CLOAK"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_SNOW_CLOAK" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_ODOR_SLEUTH" ],
+            [ 4, "MOVE_MUD_SPORT" ],
+            [ 8, "MOVE_POWDER_SNOW" ],
+            [ 13, "MOVE_MUD_SLAP" ],
+            [ 16, "MOVE_ENDURE" ],
+            [ 20, "MOVE_MUD_BOMB" ],
+            [ 25, "MOVE_ICY_WIND" ],
+            [ 28, "MOVE_ICE_SHARD" ],
+            [ 32, "MOVE_TAKE_DOWN" ],
+            [ 37, "MOVE_EARTHQUAKE" ],
+            [ 40, "MOVE_MIST" ],
+            [ 44, "MOVE_BLIZZARD" ],
+            [ 49, "MOVE_AMNESIA" ]
+        ],
+        "by_tm": [
             "TM05",
             "TM06",
             "TM07",
@@ -77,25 +81,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_ODOR_SLEUTH"
-            ],
-            "4": "MOVE_MUD_SPORT",
-            "8": "MOVE_POWDER_SNOW",
-            "13": "MOVE_MUD_SLAP",
-            "16": "MOVE_ENDURE",
-            "20": "MOVE_MUD_BOMB",
-            "25": "MOVE_ICY_WIND",
-            "28": "MOVE_ICE_SHARD",
-            "32": "MOVE_TAKE_DOWN",
-            "37": "MOVE_EARTHQUAKE",
-            "40": "MOVE_MIST",
-            "44": "MOVE_BLIZZARD",
-            "49": "MOVE_AMNESIA"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_SUPERPOWER",
@@ -107,14 +93,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             33,
             "SPECIES_PILOSWINE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 4,
@@ -128,10 +114,62 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "It has a very sensitive nose. It\ncan locate mushrooms, berries, and\neven hot springs buried under ice.",
-        "category": "Pig Pokémon"
+        "en": {
+            "name": "SWINUB",
+            "category": "Pig Pokémon",
+            "entry_text": [
+                "It has a very sensitive nose. It\n",
+                "can locate mushrooms, berries, and\n",
+                "even hot springs buried under ice."
+            ]
+        },
+        "fr": {
+            "name": "MARCACRIN",
+            "category": "Pokémon Cochon",
+            "entry_text": [
+                "Il adore les champignons qui\n",
+                "poussent sous l’herbe morte. Il\n",
+                "trouve aussi des sources chaudes."
+            ]
+        },
+        "de": {
+            "name": "QUIEKEL",
+            "category": "Ferkel",
+            "entry_text": [
+                "Es liebt Pilze, die unter totem Gras\n",
+                "wachsen. Auf der Suche nach\n",
+                "Nahrung findet es heiße Quellen."
+            ]
+        },
+        "it": {
+            "name": "SWINUB",
+            "category": "Pokémon Maiale",
+            "entry_text": [
+                "Ama mangiare i funghi che crescono\n",
+                "sotto l’erba secca. Mentre cerca,\n",
+                "talvolta trova sorgenti termali."
+            ]
+        },
+        "es": {
+            "name": "SWINUB",
+            "category": "Pokémon Cerdo",
+            "entry_text": [
+                "Le encanta comer las setas que\n",
+                "crecen bajo la hierba seca. A\n",
+                "veces descubre aguas termales."
+            ]
+        },
+        "jp": {
+            "name": "ウリム－",
+            "category": "いのぶたポケモン",
+            "entry_text": [
+                "かれくさの　したに　はえた　キノコが\n",
+                "だいこうぶつ。においで　キノコを\n",
+                "さがすうちに　おんせんを　みつける。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

@@ -15,6 +15,7 @@
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "map_matrix.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -23,7 +24,6 @@
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "unk_0201E3D8.h"
-#include "unk_02039C80.h"
 #include "unk_0208C098.h"
 
 int ov80_021D0D80(OverlayManager *param0, int *param1);
@@ -221,7 +221,7 @@ static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
         param0->unk_80 = MessageLoader_Init(1, 26, 433, param0->unk_04);
         param0->unk_84 = MessageLoader_Init(1, 26, 615, param0->unk_04);
         param0->unk_88 = Strbuf_Init(22, param0->unk_04);
-        param0->unk_30 = sub_02039EBC(param0->unk_04);
+        param0->unk_30 = MainMapMatrixData_Load(param0->unk_04);
         param0->unk_40 = ov80_021D2D70("data/tmap_block.dat", param0->unk_04);
         break;
     case 1:
@@ -263,7 +263,7 @@ static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 *param0)
 
     Heap_FreeToHeap(param0->unk_28);
     ov80_021D2E10(param0->unk_40);
-    sub_02039EF0(param0->unk_30);
+    MainMapMatrixData_Free(param0->unk_30);
     Strbuf_Free(param0->unk_88);
     MessageLoader_Free(param0->unk_84);
     MessageLoader_Free(param0->unk_80);

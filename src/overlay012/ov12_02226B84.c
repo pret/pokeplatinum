@@ -30,12 +30,12 @@
 #include "inlines.h"
 #include "math.h"
 #include "palette.h"
+#include "pltt_transfer.h"
 #include "spl.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
 #include "unk_02014000.h"
-#include "unk_0201F834.h"
 
 typedef struct {
     int unk_00;
@@ -2395,7 +2395,7 @@ void ov12_022291AC(UnkStruct_ov12_0221FCDC *param0)
 
         ov12_02235D74(param0, v3, &(v1->unk_1C), &v0);
 
-        v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v1->unk_1C.unk_0C->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+        v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v1->unk_1C.unk_0C->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
         v1->unk_30 = ov12_02226870(v1->unk_00.unk_18, ov12_0221FDE4(param0), 2, v2 * 16, 16, v4, v5, v6, v7, v8, 1100);
     }
 

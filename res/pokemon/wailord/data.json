@@ -1,5 +1,4 @@
 {
-    "name": "Wailord",
     "base_stats": {
         "hp": 170,
         "attack": 90,
@@ -8,10 +7,7 @@
         "special_attack": 90,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 60,
     "base_exp_reward": 206,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 40,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_WATER_VEIL",
-        "ABILITY_OBLIVIOUS"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_WATER_VEIL", "ABILITY_OBLIVIOUS" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SPLASH" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_ROLLOUT" ],
+            [ 4, "MOVE_GROWL" ],
+            [ 7, "MOVE_WATER_GUN" ],
+            [ 11, "MOVE_ROLLOUT" ],
+            [ 14, "MOVE_WHIRLPOOL" ],
+            [ 17, "MOVE_ASTONISH" ],
+            [ 21, "MOVE_WATER_PULSE" ],
+            [ 24, "MOVE_MIST" ],
+            [ 27, "MOVE_REST" ],
+            [ 31, "MOVE_BRINE" ],
+            [ 34, "MOVE_WATER_SPOUT" ],
+            [ 37, "MOVE_AMNESIA" ],
+            [ 46, "MOVE_DIVE" ],
+            [ 54, "MOVE_BOUNCE" ],
+            [ 62, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -78,29 +86,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SPLASH",
-                "MOVE_GROWL",
-                "MOVE_WATER_GUN",
-                "MOVE_ROLLOUT"
-            ],
-            "4": "MOVE_GROWL",
-            "7": "MOVE_WATER_GUN",
-            "11": "MOVE_ROLLOUT",
-            "14": "MOVE_WHIRLPOOL",
-            "17": "MOVE_ASTONISH",
-            "21": "MOVE_WATER_PULSE",
-            "24": "MOVE_MIST",
-            "27": "MOVE_REST",
-            "31": "MOVE_BRINE",
-            "34": "MOVE_WATER_SPOUT",
-            "37": "MOVE_AMNESIA",
-            "46": "MOVE_DIVE",
-            "54": "MOVE_BOUNCE",
-            "62": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -109,9 +95,10 @@
             "MOVE_BOUNCE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 145,
@@ -125,10 +112,62 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 18,
         "pokemon_pos_m": 1,
-        "entry_text": "The biggest of all Pokémon.\nIt can dive to a depth of almost\n10,000 feet on only one breath.",
-        "category": "Float Whale Pokémon"
+        "en": {
+            "name": "WAILORD",
+            "category": "Float Whale Pokémon",
+            "entry_text": [
+                "The biggest of all Pokémon.\n",
+                "It can dive to a depth of almost\n",
+                "10,000 feet on only one breath."
+            ]
+        },
+        "fr": {
+            "name": "WAILORD",
+            "category": "Pokémon Cachabouée",
+            "entry_text": [
+                "Le plus grand des Pokémon. Il peut\n",
+                "plonger à une profondeur de \n",
+                "3 000 m en retenant son souffle."
+            ]
+        },
+        "de": {
+            "name": "WAILORD",
+            "category": "Flutwal",
+            "entry_text": [
+                "Das größte PKMN. Es kann mit nur\n",
+                "einem Atemzug in Tiefen bis\n",
+                "3 000 Meter tauchen."
+            ]
+        },
+        "it": {
+            "name": "WAILORD",
+            "category": "Pokémon Megabalena",
+            "entry_text": [
+                "Il Pokémon più grande che esista.\n",
+                "Dopo aver inalato aria, si immerge a\n",
+                "una profondità di 3000 metri."
+            ]
+        },
+        "es": {
+            "name": "WAILORD",
+            "category": "Pokémon Ballenaflot",
+            "entry_text": [
+                "Es el más grande de los Pokémon.\n",
+                "Puede nadar a una profundidad de\n",
+                "3000 m aguantando la respiración."
+            ]
+        },
+        "jp": {
+            "name": "ホエルオ－",
+            "category": "うきくじらポケモン",
+            "entry_text": [
+                "いちばん　おおきい　ポケモン。\n",
+                "いきつぎせずに　３０００メ－トルの\n",
+                "ふかさまで　もぐることが　できる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 80,

@@ -1,5 +1,4 @@
 {
-    "name": "Chimecho",
     "base_stats": {
         "hp": 65,
         "attack": 50,
@@ -8,10 +7,7 @@
         "special_attack": 95,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 45,
     "base_exp_reward": 147,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WRAP" ],
+            [ 6, "MOVE_GROWL" ],
+            [ 9, "MOVE_ASTONISH" ],
+            [ 14, "MOVE_CONFUSION" ],
+            [ 17, "MOVE_UPROAR" ],
+            [ 22, "MOVE_TAKE_DOWN" ],
+            [ 25, "MOVE_YAWN" ],
+            [ 30, "MOVE_PSYWAVE" ],
+            [ 33, "MOVE_DOUBLE_EDGE" ],
+            [ 38, "MOVE_HEAL_BELL" ],
+            [ 41, "MOVE_SAFEGUARD" ],
+            [ 46, "MOVE_EXTRASENSORY" ],
+            [ 49, "MOVE_HEALING_WISH" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -84,22 +87,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": "MOVE_WRAP",
-            "6": "MOVE_GROWL",
-            "9": "MOVE_ASTONISH",
-            "14": "MOVE_CONFUSION",
-            "17": "MOVE_UPROAR",
-            "22": "MOVE_TAKE_DOWN",
-            "25": "MOVE_YAWN",
-            "30": "MOVE_PSYWAVE",
-            "33": "MOVE_DOUBLE_EDGE",
-            "38": "MOVE_HEAL_BELL",
-            "41": "MOVE_SAFEGUARD",
-            "46": "MOVE_EXTRASENSORY",
-            "49": "MOVE_HEALING_WISH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
@@ -112,9 +100,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 6,
@@ -128,10 +117,62 @@
         "pokemon_pos_f": 65523,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65523,
-        "entry_text": "Its cries echo inside its hollow\nbody to emerge as beautiful notes\nfor startling and repelling foes.",
-        "category": "Wind Chime Pokémon"
+        "en": {
+            "name": "CHIMECHO",
+            "category": "Wind Chime Pokémon",
+            "entry_text": [
+                "Its cries echo inside its hollow\n",
+                "body to emerge as beautiful notes\n",
+                "for startling and repelling foes."
+            ]
+        },
+        "fr": {
+            "name": "EOKO",
+            "category": "Pokémon Carillon",
+            "entry_text": [
+                "Son langage comporte sept cris.\n",
+                "Il les utilise pour faire vibrer\n",
+                "l’air et projeter son ennemi."
+            ]
+        },
+        "de": {
+            "name": "PALIMPALIM",
+            "category": "Windspiel",
+            "entry_text": [
+                "Um die Gegner fortzuwehen, setzt\n",
+                "es die Luft mit Schreien in\n",
+                "Bewegung."
+            ]
+        },
+        "it": {
+            "name": "CHIMECHO",
+            "category": "Pokémon Vencampana",
+            "entry_text": [
+                "Le sue urla sono così potenti da\n",
+                "far volar via i nemici. Comunica con\n",
+                "sette versi differenti."
+            ]
+        },
+        "es": {
+            "name": "CHIMECHO",
+            "category": "Pokémon Sonido Aire",
+            "entry_text": [
+                "Sus gritos sacuden el aire para\n",
+                "derribar a los rivales voladores.\n",
+                "Habla con siete tipos de gritos."
+            ]
+        },
+        "jp": {
+            "name": "チリ－ン",
+            "category": "ふうりんポケモン",
+            "entry_text": [
+                "なきごえで　くうきを　しんどうさせ\n",
+                "あいてを　ふきとばす。７しゅるいの\n",
+                "こえで　なかまと　かいわする。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

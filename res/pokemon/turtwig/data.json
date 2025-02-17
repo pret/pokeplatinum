@@ -1,5 +1,4 @@
 {
-    "name": "Turtwig",
     "base_stats": {
         "hp": 55,
         "attack": 68,
@@ -8,10 +7,7 @@
         "special_attack": 45,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 45,
     "base_exp_reward": 64,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_OVERGROW",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_OVERGROW", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 5, "MOVE_WITHDRAW" ],
+            [ 9, "MOVE_ABSORB" ],
+            [ 13, "MOVE_RAZOR_LEAF" ],
+            [ 17, "MOVE_CURSE" ],
+            [ 21, "MOVE_BITE" ],
+            [ 25, "MOVE_MEGA_DRAIN" ],
+            [ 29, "MOVE_LEECH_SEED" ],
+            [ 33, "MOVE_SYNTHESIS" ],
+            [ 37, "MOVE_CRUNCH" ],
+            [ 41, "MOVE_GIGA_DRAIN" ],
+            [ 45, "MOVE_LEAF_STORM" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -79,21 +81,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "5": "MOVE_WITHDRAW",
-            "9": "MOVE_ABSORB",
-            "13": "MOVE_RAZOR_LEAF",
-            "17": "MOVE_CURSE",
-            "21": "MOVE_BITE",
-            "25": "MOVE_MEGA_DRAIN",
-            "29": "MOVE_LEECH_SEED",
-            "33": "MOVE_SYNTHESIS",
-            "37": "MOVE_CRUNCH",
-            "41": "MOVE_GIGA_DRAIN",
-            "45": "MOVE_LEAF_STORM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SUPERPOWER",
             "MOVE_SNORE",
@@ -104,14 +92,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             18,
             "SPECIES_GROTLE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 4,
@@ -125,10 +113,62 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "The shell on its back is made of\nsoil. On a very healthy TURTWIG,\nthe shell should feel moist.",
-        "category": "Tiny Leaf Pokémon"
+        "en": {
+            "name": "TURTWIG",
+            "category": "Tiny Leaf Pokémon",
+            "entry_text": [
+                "The shell on its back is made of\n",
+                "soil. On a very healthy TURTWIG,\n",
+                "the shell should feel moist."
+            ]
+        },
+        "fr": {
+            "name": "TORTIPOUSS",
+            "category": "Pokémon Minifeuille",
+            "entry_text": [
+                "La coquille sur son dos est faite\n",
+                "de terre. Elle durcit lorsqu’il \n",
+                "s’abreuve. Il vit le long des lacs."
+            ]
+        },
+        "de": {
+            "name": "CHELAST",
+            "category": "Winziglaub",
+            "entry_text": [
+                "Es besteht aus Erdreich. Trinkt es\n",
+                "Wasser, verhärtet sich der Panzer\n",
+                "auf seinem Rücken. Es lebt an Seen."
+            ]
+        },
+        "it": {
+            "name": "TURTWIG",
+            "category": "Pokémon Fogliolina",
+            "entry_text": [
+                "Il suo guscio, che è fatto di terra,\n",
+                "s’indurisce quando il Pokémon beve.\n",
+                "Vive sulle rive dei laghi."
+            ]
+        },
+        "es": {
+            "name": "TURTWIG",
+            "category": "Pokémon Hojita",
+            "entry_text": [
+                "La concha de su espalda es de\n",
+                "tierra y se endurece cuando bebe\n",
+                "agua. Vive cerca de los lagos."
+            ]
+        },
+        "jp": {
+            "name": "ナエトル",
+            "category": "わかばポケモン",
+            "entry_text": [
+                "つちで　できた　せなかの　こうらは\n",
+                "みずを　のむと　さらに　かたくなる。\n",
+                "みずうみの　ほとりで　くらしている。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

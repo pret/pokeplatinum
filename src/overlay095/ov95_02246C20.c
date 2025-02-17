@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02013610.h"
 
 #include "overlay006/struct_ov6_02246254.h"
@@ -29,14 +28,14 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "render_oam.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02017728.h"
@@ -50,7 +49,7 @@ struct UnkStruct_ov95_02247628_t {
     MessageLoader *unk_10;
     Strbuf *unk_14;
     CellActorCollection *unk_18;
-    UnkStruct_0200C738 unk_1C;
+    G2dRenderer unk_1C;
     SysTask *unk_1A8;
     BOOL unk_1AC;
     u16 unk_1B0;
@@ -163,9 +162,9 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
 
             NNS_G2dInitOamManagerModule();
 
-            sub_0200A784(0, 128, 0, 32, 1, 127, 0, 32, 57);
-            v0->unk_18 = sub_020095C4(64, &v0->unk_1C, 57);
-            sub_0200964C(&(v0->unk_1C), 0, (192 + 40 << FX32_SHIFT));
+            RenderOam_Init(0, 128, 0, 32, 1, 127, 0, 32, 57);
+            v0->unk_18 = SpriteList_InitRendering(64, &v0->unk_1C, 57);
+            SetSubScreenViewRect(&(v0->unk_1C), 0, (192 + 40 << FX32_SHIFT));
 
             v0->unk_1B0 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_SPECIES, NULL);
             v0->unk_1B2 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_FORM, NULL);
@@ -196,7 +195,7 @@ static BOOL ov95_02246DEC(BoxPokemon *param0)
     int v0 = BoxPokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
     int v1 = BoxPokemon_GetValue(param0, MON_DATA_FORM, NULL);
 
-    return PokemonPersonalData_GetFormValue(v0, v1, 28) == 0;
+    return SpeciesData_GetFormValue(v0, v1, 28) == 0;
 }
 
 int ov95_02246E1C(OverlayManager *param0, int *param1)
@@ -214,7 +213,7 @@ int ov95_02246E1C(OverlayManager *param0, int *param1)
     Strbuf_Free(v1->unk_14);
     Heap_FreeToHeap(v1->unk_08);
     CellActorCollection_Delete(v1->unk_18);
-    sub_0200A878();
+    RenderOam_Free();
     OverlayManager_FreeData(param0);
     Heap_Destroy(57);
     Heap_Destroy(58);
@@ -259,7 +258,7 @@ static void ov95_02246F0C(SysTask *param0, void *param1)
     UnkStruct_ov95_02247628 *v0 = param1;
 
     CellActorCollection_Update(v0->unk_18);
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

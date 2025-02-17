@@ -1,5 +1,4 @@
 {
-    "name": "Magneton",
     "base_stats": {
         "hp": 50,
         "attack": 60,
@@ -8,10 +7,7 @@
         "special_attack": 120,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_STEEL"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_STEEL" ],
     "catch_rate": 60,
     "base_exp_reward": 161,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_MAGNET_PULL",
-        "ABILITY_STURDY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_MAGNET_PULL", "ABILITY_STURDY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TRI_ATTACK" ],
+            [ 1, "MOVE_METAL_SOUND" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_THUNDER_SHOCK" ],
+            [ 1, "MOVE_SUPERSONIC" ],
+            [ 6, "MOVE_THUNDER_SHOCK" ],
+            [ 11, "MOVE_SUPERSONIC" ],
+            [ 14, "MOVE_SONIC_BOOM" ],
+            [ 17, "MOVE_THUNDER_WAVE" ],
+            [ 22, "MOVE_SPARK" ],
+            [ 27, "MOVE_LOCK_ON" ],
+            [ 30, "MOVE_MAGNET_BOMB" ],
+            [ 34, "MOVE_SCREECH" ],
+            [ 40, "MOVE_DISCHARGE" ],
+            [ 46, "MOVE_MIRROR_SHOT" ],
+            [ 50, "MOVE_MAGNET_RISE" ],
+            [ 54, "MOVE_GYRO_BALL" ],
+            [ 60, "MOVE_ZAP_CANNON" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -77,29 +85,7 @@
             "TM90",
             "TM91"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TRI_ATTACK",
-                "MOVE_METAL_SOUND",
-                "MOVE_TACKLE",
-                "MOVE_THUNDER_SHOCK",
-                "MOVE_SUPERSONIC"
-            ],
-            "6": "MOVE_THUNDER_SHOCK",
-            "11": "MOVE_SUPERSONIC",
-            "14": "MOVE_SONIC_BOOM",
-            "17": "MOVE_THUNDER_WAVE",
-            "22": "MOVE_SPARK",
-            "27": "MOVE_LOCK_ON",
-            "30": "MOVE_MAGNET_BOMB",
-            "34": "MOVE_SCREECH",
-            "40": "MOVE_DISCHARGE",
-            "46": "MOVE_MIRROR_SHOT",
-            "50": "MOVE_MAGNET_RISE",
-            "54": "MOVE_GYRO_BALL",
-            "60": "MOVE_ZAP_CANNON"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
@@ -109,14 +95,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_ELECTRIC_FIELD",
-            "SPECIES_MAGNEZONE"
-        ]
+        [ "EVO_LEVEL_MAGNETIC_FIELD", "SPECIES_MAGNEZONE" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -130,10 +113,62 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "Many mysteriously appear when more\nsunspots dot the sun. They stop\nTV sets from displaying properly.",
-        "category": "Magnet Pokémon"
+        "en": {
+            "name": "MAGNETON",
+            "category": "Magnet Pokémon",
+            "entry_text": [
+                "Many mysteriously appear when more\n",
+                "sunspots dot the sun. They stop\n",
+                "TV sets from displaying properly."
+            ]
+        },
+        "fr": {
+            "name": "MAGNETON",
+            "category": "Pokémon Magnétique",
+            "entry_text": [
+                "Il est formé de trois MAGNETI liés\n",
+                "par magnétisme. En groupe, ils\n",
+                "déclenchent un orage magnétique."
+            ]
+        },
+        "de": {
+            "name": "MAGNETON",
+            "category": "Magnet",
+            "entry_text": [
+                "Eigentlich sind es drei MAGNETILO,\n",
+                "die durch Magnetismus verbunden\n",
+                "sind."
+            ]
+        },
+        "it": {
+            "name": "MAGNETON",
+            "category": "Pokémon Calamita",
+            "entry_text": [
+                "Pokémon formato da tre MAGNEMITE\n",
+                "uniti dalla forza magnetica. Più di\n",
+                "tre creano una tempesta magnetica."
+            ]
+        },
+        "es": {
+            "name": "MAGNETON",
+            "category": "Pokémon Imán",
+            "entry_text": [
+                "Realmente son tres MAGNEMITE\n",
+                "unidos por un campo magnético.\n",
+                "Provocan tormentas magnéticas."
+            ]
+        },
+        "jp": {
+            "name": "レアコイル",
+            "category": "じしゃくポケモン",
+            "entry_text": [
+                "３びきの　コイルが　じりょくで\n",
+                "れんけつした　ポケモン。レアコイルが\n",
+                "ふえると　じきあらしが　おこる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

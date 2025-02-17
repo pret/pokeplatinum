@@ -1,5 +1,4 @@
 {
-    "name": "Budew",
     "base_stats": {
         "hp": 40,
         "attack": 30,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_POISON" ],
     "catch_rate": 255,
     "base_exp_reward": 68,
     "ev_yields": {
@@ -30,21 +26,21 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_NATURAL_CURE",
-        "ABILITY_POISON_POINT"
-    ],
-    "great_marsh_flee_rate": 120,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_POISON_POINT" ],
+    "safari_flee_rate": 120,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ABSORB" ],
+            [ 4, "MOVE_GROWTH" ],
+            [ 7, "MOVE_WATER_SPORT" ],
+            [ 10, "MOVE_STUN_SPORE" ],
+            [ 13, "MOVE_MEGA_DRAIN" ],
+            [ 16, "MOVE_WORRY_SEED" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -75,15 +71,7 @@
             "TM90",
             "HM01"
         ],
-        "level_up": {
-            "1": "MOVE_ABSORB",
-            "4": "MOVE_GROWTH",
-            "7": "MOVE_WATER_SPORT",
-            "10": "MOVE_STUN_SPORE",
-            "13": "MOVE_MEGA_DRAIN",
-            "16": "MOVE_WORRY_SEED"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_SYNTHESIS",
@@ -93,14 +81,11 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_HAPPINESS_DAY",
-            "SPECIES_ROSELIA"
-        ]
+        [ "EVO_LEVEL_HAPPINESS_DAY", "SPECIES_ROSELIA" ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 2,
@@ -114,10 +99,62 @@
         "pokemon_pos_f": 29,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 29,
-        "entry_text": "Sensitive to changing temperature,\nthe bud is said to bloom when it\nfeels the sun’s warm touch.",
-        "category": "Bud Pokémon"
+        "en": {
+            "name": "BUDEW",
+            "category": "Bud Pokémon",
+            "entry_text": [
+                "Sensitive to changing temperature,\n",
+                "the bud is said to bloom when it\n",
+                "feels the sun’s warm touch."
+            ]
+        },
+        "fr": {
+            "name": "ROZBOUTON",
+            "category": "Pokémon Bourgeon",
+            "entry_text": [
+                "En hiver, son bourgeon se referme\n",
+                "pour résister au froid. Il s’ouvre\n",
+                "au printemps et libère du pollen."
+            ]
+        },
+        "de": {
+            "name": "KNOSPI",
+            "category": "Knospe",
+            "entry_text": [
+                "Im Winter schließt es die Knospe.\n",
+                "Im Frühjahr öffnet es die Knospe\n",
+                "und gibt Pollen ab."
+            ]
+        },
+        "it": {
+            "name": "BUDEW",
+            "category": "Pokémon Germoglio",
+            "entry_text": [
+                "D’inverno chiude la sua gemma e\n",
+                "resiste al freddo. In primavera la\n",
+                "gemma si riapre e rilascia polline."
+            ]
+        },
+        "es": {
+            "name": "BUDEW",
+            "category": "Pokémon Brote",
+            "entry_text": [
+                "En invierno cierra su capullo para\n",
+                "protegerse del frío. En primavera,\n",
+                "el capullo se abre y esparce polen."
+            ]
+        },
+        "jp": {
+            "name": "スボミ－",
+            "category": "つぼみポケモン",
+            "entry_text": [
+                "ふゆの　あいだは　つぼみを　とざして\n",
+                "さむさに　たえる。はるになると\n",
+                "つぼみを　ひらき　かふんを　とばす。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

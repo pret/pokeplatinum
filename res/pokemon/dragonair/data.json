@@ -1,5 +1,4 @@
 {
-    "name": "Dragonair",
     "base_stats": {
         "hp": 61,
         "attack": 84,
@@ -8,10 +7,7 @@
         "special_attack": 70,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_DRAGON",
-        "TYPE_DRAGON"
-    ],
+    "types": [ "TYPE_DRAGON", "TYPE_DRAGON" ],
     "catch_rate": 45,
     "base_exp_reward": 144,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 40,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_SHED_SKIN",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_SHED_SKIN", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WRAP" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_THUNDER_WAVE" ],
+            [ 1, "MOVE_TWISTER" ],
+            [ 5, "MOVE_THUNDER_WAVE" ],
+            [ 11, "MOVE_TWISTER" ],
+            [ 15, "MOVE_DRAGON_RAGE" ],
+            [ 21, "MOVE_SLAM" ],
+            [ 25, "MOVE_AGILITY" ],
+            [ 33, "MOVE_AQUA_TAIL" ],
+            [ 39, "MOVE_DRAGON_RUSH" ],
+            [ 47, "MOVE_SAFEGUARD" ],
+            [ 53, "MOVE_DRAGON_DANCE" ],
+            [ 61, "MOVE_OUTRAGE" ],
+            [ 67, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -80,26 +85,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_WRAP",
-                "MOVE_LEER",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_TWISTER"
-            ],
-            "5": "MOVE_THUNDER_WAVE",
-            "11": "MOVE_TWISTER",
-            "15": "MOVE_DRAGON_RAGE",
-            "21": "MOVE_SLAM",
-            "25": "MOVE_AGILITY",
-            "33": "MOVE_AQUA_TAIL",
-            "39": "MOVE_DRAGON_RUSH",
-            "47": "MOVE_SAFEGUARD",
-            "53": "MOVE_DRAGON_DANCE",
-            "61": "MOVE_OUTRAGE",
-            "67": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
@@ -110,14 +96,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             55,
             "SPECIES_DRAGONITE"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 40,
@@ -131,10 +117,62 @@
         "pokemon_pos_f": 4,
         "trainer_pos_m": 15,
         "pokemon_pos_m": 4,
-        "entry_text": "If its body takes on an aura, the\nweather changes instantly. It is\nsaid to live in seas and lakes.",
-        "category": "Dragon Pokémon"
+        "en": {
+            "name": "DRAGONAIR",
+            "category": "Dragon Pokémon",
+            "entry_text": [
+                "If its body takes on an aura, the\n",
+                "weather changes instantly. It is\n",
+                "said to live in seas and lakes."
+            ]
+        },
+        "fr": {
+            "name": "DRACO",
+            "category": "Pokémon Dragon",
+            "entry_text": [
+                "La météo change brusquement quand\n",
+                "il est entouré d’une aura. On dit\n",
+                "qu’il peuple les mers et les lacs."
+            ]
+        },
+        "de": {
+            "name": "DRAGONIR",
+            "category": "Drache",
+            "entry_text": [
+                "Erscheint um seinen Körper eine\n",
+                "Aura, gibt es einen Wetterwechsel.\n",
+                "Es soll in Seen und Meeren leben."
+            ]
+        },
+        "it": {
+            "name": "DRAGONAIR",
+            "category": "Pokémon Drago",
+            "entry_text": [
+                "Se il suo corpo emana un’aura, il\n",
+                "tempo cambia all’istante. Si dice\n",
+                "che viva nei mari e nei laghi."
+            ]
+        },
+        "es": {
+            "name": "DRAGONAIR",
+            "category": "Pokémon Dragón",
+            "entry_text": [
+                "Si su cuerpo está rodeado de un\n",
+                "aura, el tiempo cambia de repente.\n",
+                "Se dice que vive en mares y lagos."
+            ]
+        },
+        "jp": {
+            "name": "ハクリュ－",
+            "category": "ドラゴンポケモン",
+            "entry_text": [
+                "ぜんしんが　オ－ラに　つつまれるとき\n",
+                "まわりの　てんきが　いっぺんする。\n",
+                "うみや　みずうみに　すむという。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 80,

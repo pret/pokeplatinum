@@ -1,5 +1,4 @@
 {
-    "name": "Delcatty",
     "base_stats": {
         "hp": 70,
         "attack": 65,
@@ -8,10 +7,7 @@
         "special_attack": 55,
         "special_defense": 55
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 60,
     "base_exp_reward": 138,
     "ev_yields": {
@@ -30,21 +26,19 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_CUTE_CHARM",
-        "ABILITY_NORMALIZE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_CUTE_CHARM", "ABILITY_NORMALIZE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FAKE_OUT" ],
+            [ 1, "MOVE_ATTRACT" ],
+            [ 1, "MOVE_SING" ],
+            [ 1, "MOVE_DOUBLE_SLAP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM04",
             "TM06",
@@ -87,15 +81,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FAKE_OUT",
-                "MOVE_ATTRACT",
-                "MOVE_SING",
-                "MOVE_DOUBLE_SLAP"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -107,9 +93,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -123,10 +110,62 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "It is highly popular among female\nTrainers for its sublime fur.\nIt does not keep a nest.",
-        "category": "Prim Pokémon"
+        "en": {
+            "name": "DELCATTY",
+            "category": "Prim Pokémon",
+            "entry_text": [
+                "It is highly popular among female\n",
+                "Trainers for its sublime fur.\n",
+                "It does not keep a nest."
+            ]
+        },
+        "fr": {
+            "name": "DELCATTY",
+            "category": "Pokémon Guindé",
+            "entry_text": [
+                "Les femmes Dresseurs raffolent\n",
+                "de sa sublime fourrure. Il ne\n",
+                "possède pas de nid."
+            ]
+        },
+        "de": {
+            "name": "ENEKORO",
+            "category": "Eingebildet",
+            "entry_text": [
+                "Dieses PKMN ist bei weiblichen\n",
+                "Trainern aufgrund seines Fells\n",
+                "beliebt."
+            ]
+        },
+        "it": {
+            "name": "DELCATTY",
+            "category": "Pokémon Finezza",
+            "entry_text": [
+                "Ha successo fra gli Allenatori di\n",
+                "sesso femminile per la sua bellissima\n",
+                "pelliccia. Non ha una tana fissa."
+            ]
+        },
+        "es": {
+            "name": "DELCATTY",
+            "category": "Pokémon Cursi",
+            "entry_text": [
+                "Tiene mucho éxito entre las\n",
+                "entrenadoras por su suave pelaje.\n",
+                "No vive en un sitio fijo."
+            ]
+        },
+        "jp": {
+            "name": "エネコロロ",
+            "category": "おすましポケモン",
+            "entry_text": [
+                "うつくしい　けなみを　もち\n",
+                "じょせいトレ－ナ－に　だいにんき。\n",
+                "きまった　すみかを　もたない。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

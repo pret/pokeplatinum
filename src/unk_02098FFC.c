@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0209903C.h"
 #include "struct_defs/struct_0209903C_sub1.h"
@@ -13,8 +12,8 @@
 #include "heap.h"
 #include "narc.h"
 #include "sprite_resource.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "unk_0200C6E4.h"
 
 static void sub_02099058(UnkStruct_0209903C *param0);
@@ -57,7 +56,7 @@ static void sub_02099058(UnkStruct_0209903C *param0)
     u32 v0, v1;
     u8 v2[] = { 1, 1, 1, 1 };
 
-    param0->unk_10 = sub_020095C4(param0->unk_0C, &param0->unk_14, param0->unk_00);
+    param0->unk_10 = SpriteList_InitRendering(param0->unk_0C, &param0->unk_14, param0->unk_00);
 
     v2[1] = param0->unk_0A;
 
@@ -82,8 +81,8 @@ static void sub_02099118(UnkStruct_0209903C *param0)
 
     Heap_FreeToHeap(param0->unk_1C4);
     CellActorCollection_Delete(param0->unk_10);
-    sub_0200A508(param0->unk_1B4[0]);
-    sub_0200A700(param0->unk_1B4[1]);
+    SpriteTransfer_ResetCharTransferList(param0->unk_1B4[0]);
+    SpriteTransfer_ResetPlttTransferList(param0->unk_1B4[1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceList_Delete(param0->unk_1B4[v0]);
@@ -126,15 +125,15 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
     v6 = param0->unk_1B4[1]->resources[v1];
 
     SpriteResourceCollection_ModifyPalette(param0->unk_1A4[1], param0->unk_1B4[1]->resources[v1], 88, 3 + param1, 0, param0->unk_00);
-    sub_0200A6B8(param0->unk_1B4[1]->resources[v1]);
+    SpriteTransfer_ReplacePlttData(param0->unk_1B4[1]->resources[v1]);
 
     v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorData));
 
-    v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02009508));
-    v4->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
-    v4->unk_04 = v4->unk_08->unk_00;
+    v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(SpriteResourcesHeaderList));
+    v4->unk_08->headers = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorResourceData));
+    v4->unk_04 = v4->unk_08->headers;
 
-    sub_020093B4(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
+    SpriteResourcesHeader_Init(v4->unk_04, 0xe000, 0xe000 + v1, 0xe000, 0xe000, 0xffffffff, 0xffffffff, 0, param5, param0->unk_1A4[0], param0->unk_1A4[1], param0->unk_1A4[2], param0->unk_1A4[3], NULL, NULL);
 
     v5.collection = param0->unk_10;
     v5.resourceData = v4->unk_04;
@@ -158,7 +157,7 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
 
     if (v4->unk_00 != NULL) {
         CellActor_SetAnim(v4->unk_00, 0);
-        v2 = sub_0200A760(
+        v2 = SpriteTransfer_GetPlttOffset(
             v6, v0);
         CellActor_SetExplicitPalette(v4->unk_00, v2);
     } else {
@@ -176,7 +175,7 @@ void sub_0209933C(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1, int pa
     v0 = param0->unk_1B4[1]->resources[param1->unk_00];
 
     SpriteResourceCollection_ModifyPalette(param0->unk_1A4[1], v0, 88, 3 + param2, 0, param0->unk_00);
-    sub_0200A6B8(v0);
+    SpriteTransfer_ReplacePlttData(v0);
 }
 
 void sub_02099370(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1)
@@ -207,14 +206,14 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
 
     switch (param0->unk_04) {
     case 1:
-        sub_0200A3DC(v2->resources[0]);
+        SpriteTransfer_RequestCharAtEnd(v2->resources[0]);
         break;
     case 2:
-        sub_0200A450(v2->resources[0]);
+        SpriteTransfer_RequestCharAtEndWithHardwareMappingType(v2->resources[0]);
         break;
     case 0:
     default:
-        sub_0200A328(v2->resources[0]);
+        SpriteTransfer_RequestChar(v2->resources[0]);
         break;
     }
 
@@ -231,7 +230,7 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
         v2->resources[v0] = SpriteResourceCollection_AddPaletteFrom(param0->unk_1A4[1], v4, 3 + 1, 0, 0xe000 + v0, param0->unk_0E, 1, param0->unk_00);
 
         GF_ASSERT(v2->resources[v0] != NULL);
-        sub_0200A5C8(v2->resources[v0]);
+        SpriteTransfer_RequestPlttWholeRange(v2->resources[v0]);
     }
 
     NARC_dtor(v4);

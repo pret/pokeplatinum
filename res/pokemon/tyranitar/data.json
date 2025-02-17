@@ -1,5 +1,4 @@
 {
-    "name": "Tyranitar",
     "base_stats": {
         "hp": 100,
         "attack": 134,
@@ -8,10 +7,7 @@
         "special_attack": 95,
         "special_defense": 100
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_DARK" ],
     "catch_rate": 45,
     "base_exp_reward": 218,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 40,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_MONSTER"
-    ],
-    "abilities": [
-        "ABILITY_SAND_STREAM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
+    "abilities": [ "ABILITY_SAND_STREAM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_ICE_FANG" ],
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_SANDSTORM" ],
+            [ 1, "MOVE_SCREECH" ],
+            [ 5, "MOVE_SANDSTORM" ],
+            [ 10, "MOVE_SCREECH" ],
+            [ 14, "MOVE_ROCK_SLIDE" ],
+            [ 19, "MOVE_SCARY_FACE" ],
+            [ 23, "MOVE_THRASH" ],
+            [ 28, "MOVE_DARK_PULSE" ],
+            [ 34, "MOVE_PAYBACK" ],
+            [ 41, "MOVE_CRUNCH" ],
+            [ 47, "MOVE_EARTHQUAKE" ],
+            [ 54, "MOVE_STONE_EDGE" ],
+            [ 70, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM02",
             "TM03",
@@ -103,29 +111,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_THUNDER_FANG",
-                "MOVE_ICE_FANG",
-                "MOVE_FIRE_FANG",
-                "MOVE_BITE",
-                "MOVE_LEER",
-                "MOVE_SANDSTORM",
-                "MOVE_SCREECH"
-            ],
-            "5": "MOVE_SANDSTORM",
-            "10": "MOVE_SCREECH",
-            "14": "MOVE_ROCK_SLIDE",
-            "19": "MOVE_SCARY_FACE",
-            "23": "MOVE_THRASH",
-            "28": "MOVE_DARK_PULSE",
-            "34": "MOVE_PAYBACK",
-            "41": "MOVE_CRUNCH",
-            "47": "MOVE_EARTHQUAKE",
-            "54": "MOVE_STONE_EDGE",
-            "70": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -142,9 +128,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 20,
@@ -158,10 +145,62 @@
         "pokemon_pos_f": 3,
         "trainer_pos_m": 16,
         "pokemon_pos_m": 3,
-        "entry_text": "If it rampages, it knocks down\nmountains and buries rivers. Maps\nmust be redrawn afterward.",
-        "category": "Armor Pokémon"
+        "en": {
+            "name": "TYRANITAR",
+            "category": "Armor Pokémon",
+            "entry_text": [
+                "If it rampages, it knocks down\n",
+                "mountains and buries rivers. Maps\n",
+                "must be redrawn afterward."
+            ]
+        },
+        "fr": {
+            "name": "TYRANOCIF",
+            "category": "Pokémon Armure",
+            "entry_text": [
+                "Lorsqu’il est en colère, il abat des\n",
+                "montagnes et enterre des fleuves.\n",
+                "On doit alors modifier les cartes."
+            ]
+        },
+        "de": {
+            "name": "DESPOTAR",
+            "category": "Panzer",
+            "entry_text": [
+                "Bei einem Tobsuchtsanfall zerstört\n",
+                "es ganze Gebirge und legt Flüsse\n",
+                "trocken."
+            ]
+        },
+        "it": {
+            "name": "TYRANITAR",
+            "category": "Pokémon Armatura",
+            "entry_text": [
+                "Se s’infuria, abbatte le montagne e\n",
+                "seppellisce i fiumi. In seguito, le\n",
+                "mappe devono essere riscritte. "
+            ]
+        },
+        "es": {
+            "name": "TYRANITAR",
+            "category": "Pokémon Coraza",
+            "entry_text": [
+                "Puede alterar el paisaje derribando\n",
+                "montañas y enterrando ríos. Da\n",
+                "mucho trabajo a los cartógrafos."
+            ]
+        },
+        "jp": {
+            "name": "バンギラス",
+            "category": "よろいポケモン",
+            "entry_text": [
+                "バンギラスが　あばれると\n",
+                "やまが　くずれ　かわが　うまるため\n",
+                "ちずを　かきかえる　ことになる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

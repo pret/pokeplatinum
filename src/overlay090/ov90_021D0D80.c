@@ -30,20 +30,20 @@
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "render_oam.h"
 #include "save_player.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200A784.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0202D05C.h"
 #include "unk_0203061C.h"
 #include "unk_0208C098.h"
+#include "vram_transfer.h"
 
 typedef struct {
     MessageLoader *unk_00;
@@ -854,7 +854,7 @@ static void ov90_021D1A9C(UnkStruct_ov90_021D0ECC *param0)
 
 static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
 {
-    VRAMTransferManager_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->unk_00);
 
     param0->unk_29C = sub_0200C6E4(param0->unk_00);
     param0->unk_2A0 = sub_0200C704(param0->unk_29C);
@@ -881,8 +881,8 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
 
         sub_0200C73C(param0->unk_29C, &v0, &v1, 32);
         sub_0200C7C0(param0->unk_29C, param0->unk_2A0, 4);
-        sub_0200A93C(param0->unk_00);
-        sub_0200A944(param0->unk_00);
+        RenderOam_ClearMain(param0->unk_00);
+        RenderOam_ClearSub(param0->unk_00);
     }
 
     {
@@ -905,7 +905,7 @@ static void ov90_021D1B6C(UnkStruct_ov90_021D0ECC *param0)
 {
     sub_0200C8B0(param0->unk_29C, param0->unk_2A0);
     sub_0200C8D4(param0->unk_29C);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 }
 
 static void ov90_021D1B90(UnkStruct_ov90_021D0ECC *param0)

@@ -1,5 +1,4 @@
 {
-    "name": "Infernape",
     "base_stats": {
         "hp": 76,
         "attack": 104,
@@ -8,10 +7,7 @@
         "special_attack": 104,
         "special_defense": 71
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIGHTING" ],
     "catch_rate": 45,
     "base_exp_reward": 209,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_BLAZE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 1, "MOVE_TAUNT" ],
+            [ 7, "MOVE_EMBER" ],
+            [ 9, "MOVE_TAUNT" ],
+            [ 14, "MOVE_MACH_PUNCH" ],
+            [ 17, "MOVE_FURY_SWIPES" ],
+            [ 21, "MOVE_FLAME_WHEEL" ],
+            [ 29, "MOVE_FEINT" ],
+            [ 33, "MOVE_PUNISHMENT" ],
+            [ 41, "MOVE_CLOSE_COMBAT" ],
+            [ 45, "MOVE_FIRE_SPIN" ],
+            [ 53, "MOVE_CALM_MIND" ],
+            [ 57, "MOVE_FLARE_BLITZ" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM05",
@@ -96,26 +101,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_LEER",
-                "MOVE_EMBER",
-                "MOVE_TAUNT"
-            ],
-            "7": "MOVE_EMBER",
-            "9": "MOVE_TAUNT",
-            "14": "MOVE_MACH_PUNCH",
-            "17": "MOVE_FURY_SWIPES",
-            "21": "MOVE_FLAME_WHEEL",
-            "29": "MOVE_FEINT",
-            "33": "MOVE_PUNISHMENT",
-            "41": "MOVE_CLOSE_COMBAT",
-            "45": "MOVE_FIRE_SPIN",
-            "53": "MOVE_CALM_MIND",
-            "57": "MOVE_FLARE_BLITZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -129,9 +115,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -145,10 +132,62 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "It uses unique fighting moves with\nfire on its hands and feet. It will\ntake on any opponent.",
-        "category": "Flame Pokémon"
+        "en": {
+            "name": "INFERNAPE",
+            "category": "Flame Pokémon",
+            "entry_text": [
+                "It uses unique fighting moves with\n",
+                "fire on its hands and feet. It will\n",
+                "take on any opponent."
+            ]
+        },
+        "fr": {
+            "name": "SIMIABRAZ",
+            "category": "Pokémon Flamme",
+            "entry_text": [
+                "Il pratique un art martial spécial\n",
+                "qui utilise tous ses membres.\n",
+                "Sa flamme ne s’éteint jamais."
+            ]
+        },
+        "de": {
+            "name": "PANFERNO",
+            "category": "Flamme",
+            "entry_text": [
+                "Es kämpft auf besondere Art, indem\n",
+                "es alle Gliedmaßen einsetzt. Sein\n",
+                "Feuer erlischt nie."
+            ]
+        },
+        "it": {
+            "name": "INFERNAPE",
+            "category": "Pokémon Fiamma",
+            "entry_text": [
+                "Usa un tipo speciale di arte marzia-\n",
+                "le che coinvolge tutti gli arti. Le\n",
+                "sue fiamme non si estinguono mai."
+            ]
+        },
+        "es": {
+            "name": "INFERNAPE",
+            "category": "Pokémon Llama",
+            "entry_text": [
+                "Utiliza un tipo especial de artes\n",
+                "marciales con todos sus miembros.\n",
+                "Su fuego nunca se extingue."
+            ]
+        },
+        "jp": {
+            "name": "ゴウカザル",
+            "category": "かえんポケモン",
+            "entry_text": [
+                "りょうて　りょうあしを　つかった\n",
+                "とくしゅな　かくとうわざを　つかう。\n",
+                "ほのおは　いっしょう　きえない。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

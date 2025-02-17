@@ -3,7 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/species.h"
+#include "generated/pokemon_colors.h"
+#include "generated/species.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
 
@@ -227,35 +228,35 @@ BOOL ov19_021DBBA0(UnkStruct_ov19_021DBA9C *param0)
 
 void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_G2D_VRAM_TYPE param3, NNSG2dImageProxy *param4)
 {
-    const PCBoxes *v0;
-    BoxPokemon *v1;
-    u32 v2, v3, v4, v5;
-    u8 v6, v7;
+    const PCBoxes *pcBoxes;
+    BoxPokemon *boxMon;
+    u32 v2, v3, v4, species;
+    u8 color, v7;
     int v8;
 
-    v0 = ov19_021D5E90(param0->unk_0C);
-    v8 = sub_02079AA8(v0, param1);
+    pcBoxes = ov19_021D5E90(param0->unk_0C);
+    v8 = sub_02079AA8(pcBoxes, param1);
 
     if (v8 >= (16 + 8)) {
         v8 -= 8;
     }
 
-    v6 = 13 * 0x10 + v8;
-    Bitmap_FillRect8bpp(&(param0->unk_3C), 9, 10, 14, 12, v6);
+    color = 13 * 0x10 + v8;
+    Bitmap_FillRect8bpp(&(param0->unk_3C), 9, 10, 14, 12, color);
 
     for (v3 = 0, v4 = 0; v3 < 5; v3++) {
         for (v2 = 0; v2 < 6; v2++) {
-            v1 = sub_02079C9C(v0, param1, v4++);
-            v7 = BoxPokemon_EnterDecryptionContext(v1);
-            v5 = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+            boxMon = sub_02079C9C(pcBoxes, param1, v4++);
+            v7 = BoxPokemon_EnterDecryptionContext(boxMon);
+            species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
-            if (v5) {
-                if (BoxPokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
-                    u16 v9 = BoxPokemon_GetValue(v1, MON_DATA_FORM, NULL);
+            if (species) {
+                if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+                    u16 form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
 
-                    v6 = PokemonPersonalData_GetFormValue(v5, v9, MON_DATA_PERSONAL_COLOR);
+                    color = SpeciesData_GetFormValue(species, form, SPECIES_DATA_BODY_COLOR);
                 } else {
-                    v6 = (v5 != SPECIES_MANAPHY) ? 8 : 1;
+                    color = (species != SPECIES_MANAPHY) ? MON_COLOR_WHITE : MON_COLOR_BLUE;
                 }
 
                 {
@@ -272,13 +273,13 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
                         0x9,
                     };
 
-                    v6 = 14 * 0x10 + v10[v6];
+                    color = 14 * 0x10 + v10[color];
                 }
 
-                Bitmap_FillRect8bpp(&(param0->unk_3C), 10 + v2 * 2, 11 + v3 * 2, 2, 2, v6);
+                Bitmap_FillRect8bpp(&(param0->unk_3C), 10 + v2 * 2, 11 + v3 * 2, 2, 2, color);
             }
 
-            BoxPokemon_ExitDecryptionContext(v1, v7);
+            BoxPokemon_ExitDecryptionContext(boxMon, v7);
         }
     }
 

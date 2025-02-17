@@ -13,6 +13,7 @@ fs = import('fs')
 ###                    INCLUDE PATHS                     ###
 ############################################################
 public_includes = include_directories('include', 'asm', 'res')
+toplevel_includes = include_directories('.')
 
 
 ############################################################
@@ -31,7 +32,8 @@ c_args = [
     '-char', 'signed',
     '-nosyspath',
     '-stdinc',
-    '-sym', 'on'
+    '-sym', 'on',
+    '-DPOKEPLATINUM_GENERATED_ENUM',
 ]
 
 if get_option('gdb_debugging')
@@ -113,6 +115,11 @@ libcrypto_dep = dependency('libcrypto')
 libsyscall_dep = dependency('libsyscall')
 ppwlobby_dep = dependency('ppwlobby')
 
+############################################################
+###                       CONSTS                         ###
+############################################################
+subdir('generated')
+
 
 ############################################################
 ###                        TOOLS                         ###
@@ -133,16 +140,12 @@ subdir('lib')
 
 
 ############################################################
-###                       CONSTS                         ###
-############################################################
-subdir('consts')
-
-
-############################################################
 ###                     FILE SYSTEM                      ###
 ############################################################
 subdir('res')
 
+# Phony-like target to build all generated data files
+alias_target('data', nitrofs_files)
 
 ############################################################
 ###                     ARM9 BINARY                      ###
@@ -155,10 +158,10 @@ main = executable('main',
         pokeplatinum_c,
         pokeplatinum_asm,
         c_consts_generators,
-        asm_consts_generators,
         naix_headers,
-        gen_species_headers,
         tutorable_moves_h,
+        species_learnsets_by_tutor_h,
+        species_footprints_h,
     ],
     c_args: [
         pokeplatinum_args,
@@ -170,7 +173,6 @@ main = executable('main',
         public_includes,
         libgds_public_includes,
         libspl_public_includes,
-        gmm_header_includes,
     ],
     dependencies: [
         nitrosdk_dep,
@@ -224,9 +226,6 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         nitrofs_files # Make sure this is always listed last
     ],
     command : [
-        'sh', '-c',
-        '"$@" && @INPUT6@ @OUTPUT0@ --secure-crc 0xF8B8 --game-code CPUE',
-        '--',
         makerom_exe,
         '-DTITLE_NAME=POKEMON PL',
         '-DBNR=@INPUT1@',
@@ -235,7 +234,9 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         '-DARM7_DEFS=@INPUT5@',
         '@INPUT3@',
         '@OUTPUT0@',
-        '@OUTPUT1@'
+        '@OUTPUT1@',
+        '&&','sh', '-c',
+        '@INPUT6@ @OUTPUT0@ --secure-crc 0xF8B8 --game-code CPUE'
     ],
     build_by_default: true
 )

@@ -26,11 +26,11 @@
 #include "cell_actor.h"
 #include "heap.h"
 #include "palette.h"
+#include "pltt_transfer.h"
 #include "pokemon.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201F834.h"
 
 typedef struct {
     UnkStruct_ov12_0223595C unk_00;
@@ -174,14 +174,14 @@ void ov12_0222EAA0(UnkStruct_ov12_0221FCDC *param0)
 
         v1 = v0->unk_1C.unk_0C;
         sub_0200D460(v1, ov12_0222339C(v0->unk_00.unk_04) + 1);
-        v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v1->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+        v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v1->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
 
         PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
         SpriteActor_SetOAMMode(v1, GX_OAM_MODE_XLU);
 
         v1 = v0->unk_30;
         sub_0200D460(v1, ov12_0222339C(v0->unk_00.unk_04) + 1);
-        v2 = sub_0201FAB4(CellActor_GetPaletteProxy(v1->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+        v2 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v1->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
 
         PaletteData_LoadBufferFromFileStartWithTint(ov12_0222332C(v0->unk_00.unk_04), v4, v3, ov12_0221FDE4(v0->unk_00.unk_04), 2, 0x20, v2 * 16, 196, 196, 196);
         SpriteActor_SetOAMMode(v1, GX_OAM_MODE_XLU);
@@ -361,7 +361,7 @@ static void ov12_0222EE50(SysTask *param0, void *param1)
             ov12_02226858(v0->unk_38[0]);
             ov12_02226858(v0->unk_38[1]);
 
-            v1 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_1C[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+            v1 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_1C[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
 
             v0->unk_38[1] = ov12_02226870(v0->unk_00.unk_18, ov12_0221FDE4(v0->unk_00.unk_04), 2, v1 * 16, 16, 0, 1, 15, 0, 0xFFFFFF, 1100);
             v0->unk_00.unk_00++;
@@ -424,10 +424,10 @@ void ov12_0222EFB0(UnkStruct_ov12_0221FCDC *param0)
     {
         int v6;
 
-        v6 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_1C[0]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+        v6 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_1C[0]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
         v0->unk_38[0] = ov12_02226870(v0->unk_00.unk_18, ov12_0221FDE4(param0), 2, v6 * 16, 16, 0, 1, 0, 15, 0xFFFFFF, 1100);
 
-        v6 = sub_0201FAB4(CellActor_GetPaletteProxy(v0->unk_1C[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+        v6 = PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(v0->unk_1C[2]->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
         v0->unk_38[1] = ov12_02226870(v0->unk_00.unk_18, ov12_0221FDE4(param0), 2, v6 * 16, 16, 0, 1, 0, 15, 0xFFFFFF, 1100);
     }
 

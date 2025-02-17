@@ -1,5 +1,4 @@
 {
-    "name": "Baltoy",
     "base_stats": {
         "hp": 40,
         "attack": 40,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_GROUND",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_GROUND", "TYPE_PSYCHIC" ],
     "catch_rate": 255,
     "base_exp_reward": 58,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_CONFUSION" ],
+            [ 3, "MOVE_HARDEN" ],
+            [ 5, "MOVE_RAPID_SPIN" ],
+            [ 7, "MOVE_MUD_SLAP" ],
+            [ 11, "MOVE_PSYBEAM" ],
+            [ 15, "MOVE_ROCK_TOMB" ],
+            [ 19, "MOVE_SELFDESTRUCT" ],
+            [ 25, "MOVE_ANCIENT_POWER" ],
+            [ 31, "MOVE_POWER_TRICK" ],
+            [ 37, "MOVE_SANDSTORM" ],
+            [ 45, "MOVE_COSMIC_POWER" ],
+            [ 53, "MOVE_EARTH_POWER" ],
+            [ 61, "MOVE_HEAL_BLOCK" ],
+            [ 71, "MOVE_EXPLOSION" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -87,23 +91,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": "MOVE_CONFUSION",
-            "3": "MOVE_HARDEN",
-            "5": "MOVE_RAPID_SPIN",
-            "7": "MOVE_MUD_SLAP",
-            "11": "MOVE_PSYBEAM",
-            "15": "MOVE_ROCK_TOMB",
-            "19": "MOVE_SELFDESTRUCT",
-            "25": "MOVE_ANCIENT_POWER",
-            "31": "MOVE_POWER_TRICK",
-            "37": "MOVE_SANDSTORM",
-            "45": "MOVE_COSMIC_POWER",
-            "53": "MOVE_EARTH_POWER",
-            "61": "MOVE_HEAL_BLOCK",
-            "71": "MOVE_EXPLOSION"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_ANCIENT_POWER",
@@ -115,14 +103,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             36,
             "SPECIES_CLAYDOL"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 5,
@@ -136,10 +124,62 @@
         "pokemon_pos_f": 26,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 26,
-        "entry_text": "It moves by spinning on its foot.\nIt is a rare Pokémon that was\ndiscovered in ancient ruins.",
-        "category": "Clay Doll Pokémon"
+        "en": {
+            "name": "BALTOY",
+            "category": "Clay Doll Pokémon",
+            "entry_text": [
+                "It moves by spinning on its foot.\n",
+                "It is a rare Pokémon that was\n",
+                "discovered in ancient ruins."
+            ]
+        },
+        "fr": {
+            "name": "BALBUTO",
+            "category": "Pokémon Poupargile",
+            "entry_text": [
+                "Il se déplace en tournoyant sur\n",
+                "son pied. Ce Pokémon rare fut\n",
+                "découvert dans de vieilles ruines."
+            ]
+        },
+        "de": {
+            "name": "PUPPANCE",
+            "category": "Lehmpuppe",
+            "entry_text": [
+                "Es bewegt sich, indem es sich auf\n",
+                "seinem Fuß dreht. Ein seltenes\n",
+                "PKMN, das in alten Ruinen lebte."
+            ]
+        },
+        "it": {
+            "name": "BALTOY",
+            "category": "Pokémon Argilla",
+            "entry_text": [
+                "Pokémon raro che si muove rotean-\n",
+                "do su se stesso. È stato scoperto\n",
+                "nei pressi di antiche rovine."
+            ]
+        },
+        "es": {
+            "name": "BALTOY",
+            "category": "Pokémon Muñ. Barro",
+            "entry_text": [
+                "Se mueve girando sobre su eje.\n",
+                "Es un extraño Pokémon que fue\n",
+                "encontrado en unas viejas ruinas."
+            ]
+        },
+        "jp": {
+            "name": "ヤジロン",
+            "category": "どぐうポケモン",
+            "entry_text": [
+                "いっぽんあしで　かいてんしながら\n",
+                "いどうする。こだいの　いせきから\n",
+                "みつかった　めずらしい　ポケモン。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

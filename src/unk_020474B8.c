@@ -4,6 +4,9 @@
 #include <nitro/code16.h>
 #include <string.h>
 
+#include "constants/narc.h"
+#include "generated/text_banks.h"
+
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "field/field_system.h"
@@ -14,6 +17,7 @@
 #include "field_system.h"
 #include "inlines.h"
 #include "item.h"
+#include "map_header_util.h"
 #include "message.h"
 #include "party.h"
 #include "pokemon.h"
@@ -27,11 +31,10 @@
 #include "unk_0205C980.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
-#include "unk_02071CFC.h"
 #include "unk_020797C8.h"
 #include "vars_flags.h"
 
-static Strbuf *sub_02047998(u16 param0, u32 param1);
+static Strbuf *GetSpeciesNameStrbuf(u16 param0, u32 param1);
 
 BOOL ScrCmd_2EF(ScriptContext *param0)
 {
@@ -254,32 +257,32 @@ BOOL ScrCmd_0D9(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_0DA(ScriptContext *param0)
+BOOL ScrCmd_BufferSpeciesNameFromVar(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
-    u16 v4 = ScriptContext_ReadHalfWord(param0);
-    u8 v5 = ScriptContext_ReadByte(param0);
-    Strbuf *v6 = sub_02047998(v3, 4);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    StringTemplate **template = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 bufferId = ScriptContext_ReadByte(ctx);
+    u16 species = ScriptContext_GetVar(ctx);
+    u16 v4 = ScriptContext_ReadHalfWord(ctx);
+    u8 v5 = ScriptContext_ReadByte(ctx);
+    Strbuf *buffer = GetSpeciesNameStrbuf(species, HEAP_ID_FIELD);
 
-    StringTemplate_SetStrbuf(*v1, v2, v6, v4, v5, GAME_LANGUAGE);
-    Strbuf_Free(v6);
+    StringTemplate_SetStrbuf(*template, bufferId, buffer, v4, v5, GAME_LANGUAGE);
+    Strbuf_Free(buffer);
 
     return 0;
 }
 
-static Strbuf *sub_02047998(u16 param0, u32 param1)
+static Strbuf *GetSpeciesNameStrbuf(u16 speciesId, u32 heapId)
 {
-    MessageLoader *v0;
-    Strbuf *v1;
+    MessageLoader *speciesNames;
+    Strbuf *buffer;
 
-    v0 = MessageLoader_Init(1, 26, 412, param1);
-    v1 = MessageLoader_GetNewStrbuf(v0, param0);
+    speciesNames = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapId);
+    buffer = MessageLoader_GetNewStrbuf(speciesNames, speciesId);
 
-    MessageLoader_Free(v0);
-    return v1;
+    MessageLoader_Free(speciesNames);
+    return buffer;
 }
 
 BOOL ScrCmd_0DB(ScriptContext *param0)
@@ -287,7 +290,7 @@ BOOL ScrCmd_0DB(ScriptContext *param0)
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
     u16 v2 = sub_0206B054(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    Strbuf *v3 = sub_02047998(v2, 4);
+    Strbuf *v3 = GetSpeciesNameStrbuf(v2, HEAP_ID_FIELD);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v3);
@@ -300,7 +303,7 @@ BOOL ScrCmd_0DC(ScriptContext *param0)
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
     u16 v2 = sub_0206B064(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    Strbuf *v3 = sub_02047998(v2, 4);
+    Strbuf *v3 = GetSpeciesNameStrbuf(v2, HEAP_ID_FIELD);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v3);
@@ -313,7 +316,7 @@ BOOL ScrCmd_0DD(ScriptContext *param0)
     StringTemplate **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v1 = ScriptContext_ReadByte(param0);
     u16 v2 = VarsFlags_GetPlayerCounterpartStarterSpecies(SaveData_GetVarsFlags(param0->fieldSystem->saveData));
-    Strbuf *v3 = sub_02047998(v2, 4);
+    Strbuf *v3 = GetSpeciesNameStrbuf(v2, HEAP_ID_FIELD);
 
     StringTemplate_SetStrbuf(*v0, v1, v3, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v3);
@@ -361,7 +364,7 @@ BOOL ScrCmd_0E2(ScriptContext *param0)
     u8 v2 = ScriptContext_ReadByte(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
-    sub_02071D10(v3, 4, v0);
+    MapHeader_LoadName(v3, 4, v0);
     StringTemplate_SetStrbuf(*v1, v2, v0, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v0);
 

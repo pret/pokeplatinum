@@ -3535,7 +3535,7 @@ BOOL ov8_0224BF4C(FieldSystem *fieldSystem)
         int v5 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
         UnkStruct_ov8_0224B8D0 *v6 = fieldSystem->unk_04->unk_24;
 
-        sub_0206157C(fieldSystem->playerAvatar, v5, &v1, &v2);
+        PlayerAvatar_MoveCoordsInDirection(fieldSystem->playerAvatar, v5, &v1, &v2);
         v4 = ov8_0224B854(v6, v1, v2);
 
         if (v4 == NULL) {

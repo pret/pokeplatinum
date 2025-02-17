@@ -38,10 +38,10 @@
 #include "system_data.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200A784.h"
+#include "render_oam.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
+#include "vram_transfer.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202ACE0.h"
 #include "unk_02030CE8.h"
@@ -302,7 +302,7 @@ int ov98_022471C8 (OverlayManager * param0, int * param1)
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_04 = BgConfig_New(109);
 
-    VRAMTransferManager_New(64, 109);
+    VramTransfer_New(64, 109);
     SetAutorepeat(4, 8);
     ov98_02247510(v0->unk_04);
     sub_0201E3D8();
@@ -419,7 +419,7 @@ int ov98_02247440 (OverlayManager * param0, int * param1)
     ov98_022476D0(v0->unk_04);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     sub_0201E530();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -435,8 +435,8 @@ static void ov98_022474E8 (void * param0)
 {
     UnkStruct_ov98_02247704 * v0 = param0;
 
-    sub_0201DCAC();
-    sub_0200A858();
+    VramTransfer_Process();
+    RenderOam_Transfer();
 
     Bg_RunScheduledUpdates(v0->unk_04);
     inline_ov61_0222C1FC(&v0->unk_EC);

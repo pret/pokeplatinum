@@ -11,11 +11,11 @@
 #include "cell_actor.h"
 #include "communication_system.h"
 #include "gx_layers.h"
-#include "unk_0200A784.h"
+#include "render_oam.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
 #include "unk_02098FFC.h"
+#include "vram_transfer.h"
 
 void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0);
 void ov79_021D21CC(UnkStruct_ov79_021D0E1C *param0);
@@ -23,7 +23,7 @@ void ov79_021D21F8(UnkStruct_ov79_021D0E1C *param0);
 
 void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
 {
-    VRAMTransferManager_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->unk_00);
 
     param0->unk_1B8 = sub_0200C6E4(param0->unk_00);
     param0->unk_1BC = sub_0200C704(param0->unk_1B8);
@@ -50,8 +50,8 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
         sub_0200C73C(param0->unk_1B8, &v0, &v1, 32);
         sub_0200C7C0(param0->unk_1B8, param0->unk_1BC, 3 + 5 + 6);
 
-        sub_0200A93C(param0->unk_00);
-        sub_0200A944(param0->unk_00);
+        RenderOam_ClearMain(param0->unk_00);
+        RenderOam_ClearSub(param0->unk_00);
     }
 
     {
@@ -83,7 +83,7 @@ void ov79_021D21CC(UnkStruct_ov79_021D0E1C *param0)
     sub_0209903C(param0->unk_1F8);
     sub_0200C8B0(param0->unk_1B8, param0->unk_1BC);
     sub_0200C8D4(param0->unk_1B8);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 }
 
 void ov79_021D21F8(UnkStruct_ov79_021D0E1C *param0)

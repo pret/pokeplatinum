@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/snowpoint_city_east_house.h"
 
     .data
 

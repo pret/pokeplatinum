@@ -26,18 +26,18 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_020041CC.h"
-#include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
+#include "vram_transfer.h"
 
 static const CameraAngle Unk_ov99_021D46CC = {
     ((0 * 0xffff) / 360),
@@ -120,7 +120,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     v0->unk_08 = BgConfig_New(75);
 
-    VRAMTransferManager_New(64, 75);
+    VramTransfer_New(64, 75);
     SetAutorepeat(4, 8);
 
     ov99_021D1380(v0->unk_08);
@@ -136,14 +136,14 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_18 = sub_0200C6E4(75);
 
     sub_0200C73C(v0->unk_18, &Unk_ov99_021D4760, &Unk_ov99_021D4718, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_1C = sub_0200C704(v0->unk_18);
 
     sub_0200C7C0(v0->unk_18, v0->unk_1C, (64 + 64));
     sub_0200CB30(v0->unk_18, v0->unk_1C, &Unk_ov99_021D472C);
-    sub_0200964C(sub_0200C738(v0->unk_18), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(v0->unk_18), 0, ((192 + 80) << FX32_SHIFT));
 
     ov99_021D16E4(v0);
 
@@ -282,7 +282,7 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     NARC_dtor(v0->unk_10F8);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     sub_0201E530();
     OverlayManager_FreeData(param0);
     Heap_Destroy(75);
@@ -353,7 +353,7 @@ static void ov99_021D1350(void *param0)
 {
     UnkStruct_ov99_021D2CB0 *v0 = param0;
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C);
     Bg_RunScheduledUpdates(v0->unk_08);

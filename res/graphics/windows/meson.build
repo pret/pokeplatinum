@@ -86,5 +86,5 @@ pl_winframe_narc = custom_target('pl_winframe.narc',
     ]
 )
 
-nitrofs_files += pl_winframe_narc[0]
+nitrofs_files += pl_winframe_narc
 naix_headers += pl_winframe_narc[1]

@@ -2,8 +2,7 @@
 
 #include "constants/items.h"
 #include "constants/narc.h"
-
-#include "text/pl_msg.naix"
+#include "generated/text_banks.h"
 
 #include "message.h"
 #include "narc.h"
@@ -66,7 +65,7 @@ u32 BerryData_GetAttribute(BerryData *berryData, u32 attributeID)
 
 Strbuf *BerryData_AllocAndGetName(u16 memberIdx, u32 heapID)
 {
-    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_berry_names, heapID);
+    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BERRY_NAMES, heapID);
     Strbuf *name = MessageLoader_GetNewStrbuf(loader, memberIdx);
     MessageLoader_Free(loader);
     return name;
@@ -74,7 +73,7 @@ Strbuf *BerryData_AllocAndGetName(u16 memberIdx, u32 heapID)
 
 Strbuf *BerryData_AllocAndGetDescription(u16 memberIdx, u16 heapID)
 {
-    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, message_bank_berry_descriptions, heapID);
+    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BERRY_DESCRIPTIONS, heapID);
     Strbuf *desc = MessageLoader_GetNewStrbuf(loader, memberIdx);
     MessageLoader_Free(loader);
     return desc;

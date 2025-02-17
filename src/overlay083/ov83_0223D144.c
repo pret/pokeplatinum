@@ -16,7 +16,7 @@ static const CommCmdTable Unk_ov83_02240390[] = {
     { ov83_0223D258, ov83_0223D4B8, NULL },
     { ov83_0223D2E8, ov83_0223D4BC, NULL },
     { ov83_0223D3D8, ov83_0223D4C0, NULL },
-    { ov83_0223D3F8, Poffin_sizeof, NULL },
+    { ov83_0223D3F8, Poffin_SizeOf, NULL },
     { ov83_0223D410, ov83_0223D4B0, NULL },
     { ov83_0223D430, ov83_0223D4B0, NULL },
     { ov83_0223D354, ov83_0223D4C4, NULL },

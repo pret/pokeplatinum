@@ -1,5 +1,4 @@
 {
-    "name": "Swablu",
     "base_stats": {
         "hp": 45,
         "attack": 40,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 255,
     "base_exp_reward": 74,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_NATURAL_CURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_ASTONISH" ],
+            [ 9, "MOVE_SING" ],
+            [ 13, "MOVE_FURY_ATTACK" ],
+            [ 18, "MOVE_SAFEGUARD" ],
+            [ 23, "MOVE_MIST" ],
+            [ 28, "MOVE_TAKE_DOWN" ],
+            [ 32, "MOVE_NATURAL_GIFT" ],
+            [ 36, "MOVE_MIRROR_MOVE" ],
+            [ 40, "MOVE_REFRESH" ],
+            [ 45, "MOVE_DRAGON_PULSE" ],
+            [ 50, "MOVE_PERISH_SONG" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -76,24 +79,7 @@
             "TM90",
             "HM02"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PECK",
-                "MOVE_GROWL"
-            ],
-            "5": "MOVE_ASTONISH",
-            "9": "MOVE_SING",
-            "13": "MOVE_FURY_ATTACK",
-            "18": "MOVE_SAFEGUARD",
-            "23": "MOVE_MIST",
-            "28": "MOVE_TAKE_DOWN",
-            "32": "MOVE_NATURAL_GIFT",
-            "36": "MOVE_MIRROR_MOVE",
-            "40": "MOVE_REFRESH",
-            "45": "MOVE_DRAGON_PULSE",
-            "50": "MOVE_PERISH_SONG"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -107,14 +93,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             35,
             "SPECIES_ALTARIA"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 4,
@@ -128,10 +114,62 @@
         "pokemon_pos_f": 65522,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65522,
-        "entry_text": "It can’t relax if it or its\nsurroundings are not clean.\nIt wipes off dirt with its wings.",
-        "category": "Cotton Bird Pokémon"
+        "en": {
+            "name": "SWABLU",
+            "category": "Cotton Bird Pokémon",
+            "entry_text": [
+                "It can’t relax if it or its\n",
+                "surroundings are not clean.\n",
+                "It wipes off dirt with its wings."
+            ]
+        },
+        "fr": {
+            "name": "TYLTON",
+            "category": "Pokémon Oiseaucoton",
+            "entry_text": [
+                "Ses ailes sont comme des balles\n",
+                "de coton. Perché sur la tête de \n",
+                "quelqu’un, on dirait un chapeau."
+            ]
+        },
+        "de": {
+            "name": "WABLU",
+            "category": "Wollvogel",
+            "entry_text": [
+                "Seine Flügel sehen aus wie Baum-\n",
+                "wolle. Legt es sie jemandem auf den\n",
+                "Kopf, sehen sie wie ein Wollhut aus."
+            ]
+        },
+        "it": {
+            "name": "SWABLU",
+            "category": "Pokémon Alidicotone",
+            "entry_text": [
+                "Le sue ali sono come batuffoli. Se si\n",
+                "appoggia sulla testa di qualcuno,\n",
+                "sembra un cappello di cotone."
+            ]
+        },
+        "es": {
+            "name": "SWABLU",
+            "category": "Pokémon Ave Algodón",
+            "entry_text": [
+                "Sus alas parecen nubes de\n",
+                "algodón. Si se posa sobre una\n",
+                "cabeza, tiene pinta de gorro."
+            ]
+        },
+        "jp": {
+            "name": "チルット",
+            "category": "わたどりポケモン",
+            "entry_text": [
+                "わたのような　つばさを　もつ。\n",
+                "ひとの　あたまに　ちょこんと　のると\n",
+                "わたの　ぼうしみたいに　みえる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

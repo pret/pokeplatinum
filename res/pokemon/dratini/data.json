@@ -1,5 +1,4 @@
 {
-    "name": "Dratini",
     "base_stats": {
         "hp": 41,
         "attack": 64,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_DRAGON",
-        "TYPE_DRAGON"
-    ],
+    "types": [ "TYPE_DRAGON", "TYPE_DRAGON" ],
     "catch_rate": 45,
     "base_exp_reward": 67,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 40,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_SHED_SKIN",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_SHED_SKIN", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WRAP" ],
+            [ 1, "MOVE_LEER" ],
+            [ 5, "MOVE_THUNDER_WAVE" ],
+            [ 11, "MOVE_TWISTER" ],
+            [ 15, "MOVE_DRAGON_RAGE" ],
+            [ 21, "MOVE_SLAM" ],
+            [ 25, "MOVE_AGILITY" ],
+            [ 31, "MOVE_AQUA_TAIL" ],
+            [ 35, "MOVE_DRAGON_RUSH" ],
+            [ 41, "MOVE_SAFEGUARD" ],
+            [ 45, "MOVE_DRAGON_DANCE" ],
+            [ 51, "MOVE_OUTRAGE" ],
+            [ 55, "MOVE_HYPER_BEAM" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -80,24 +83,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_WRAP",
-                "MOVE_LEER"
-            ],
-            "5": "MOVE_THUNDER_WAVE",
-            "11": "MOVE_TWISTER",
-            "15": "MOVE_DRAGON_RAGE",
-            "21": "MOVE_SLAM",
-            "25": "MOVE_AGILITY",
-            "31": "MOVE_AQUA_TAIL",
-            "35": "MOVE_DRAGON_RUSH",
-            "41": "MOVE_SAFEGUARD",
-            "45": "MOVE_DRAGON_DANCE",
-            "51": "MOVE_OUTRAGE",
-            "55": "MOVE_HYPER_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
@@ -108,14 +94,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_DRAGONAIR"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 18,
@@ -129,10 +115,62 @@
         "pokemon_pos_f": 6,
         "trainer_pos_m": 5,
         "pokemon_pos_m": 6,
-        "entry_text": "It is called the “Mirage Pokémon”\nbecause so few have seen it.\nIts shed skin has been found.",
-        "category": "Dragon Pokémon"
+        "en": {
+            "name": "DRATINI",
+            "category": "Dragon Pokémon",
+            "entry_text": [
+                "It is called the “Mirage Pokémon”\n",
+                "because so few have seen it.\n",
+                "Its shed skin has been found."
+            ]
+        },
+        "fr": {
+            "name": "MINIDRACO",
+            "category": "Pokémon Dragon",
+            "entry_text": [
+                "On l’appelle “Pokémon mirage”\n",
+                "en raison de sa rareté. On a\n",
+                "découvert sa mue."
+            ]
+        },
+        "de": {
+            "name": "DRATINI",
+            "category": "Drache",
+            "entry_text": [
+                "Man nennt es “Illusion-Pokémon”,\n",
+                "denn nur wenige haben es gesehen.\n",
+                "Nur seine Haut wurde oft gefunden."
+            ]
+        },
+        "it": {
+            "name": "DRATINI",
+            "category": "Pokémon Drago",
+            "entry_text": [
+                "Detto “Pokémon miraggio” perché\n",
+                "è stato avvistato da pochi. È facile\n",
+                "trovare la sua pelle della muta."
+            ]
+        },
+        "es": {
+            "name": "DRATINI",
+            "category": "Pokémon Dragón",
+            "entry_text": [
+                "Se le llama el “Pokémon espejismo”\n",
+                "porque son muy pocos los que lo\n",
+                "han visto. Se encontró su muda."
+            ]
+        },
+        "jp": {
+            "name": "ミニリュウ",
+            "category": "ドラゴンポケモン",
+            "entry_text": [
+                "もくげきしゃが　すくないために\n",
+                "まぼろしのポケモンと　よばれていた。\n",
+                "だっぴした　かわが　みつかっている。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 70,

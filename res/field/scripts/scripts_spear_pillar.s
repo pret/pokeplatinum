@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/spear_pillar.h"
 
     .data
 
@@ -136,7 +137,7 @@ _01A6:
 _01CA:
     Message 0
     CloseMessage
-    StartTrainerBattle trainer_galactic_grunt_spear_pillar_1, trainer_galactic_grunt_spear_pillar_2
+    StartTrainerBattle TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_1, TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_2
     CheckWonBattle 0x800C
     Return
 

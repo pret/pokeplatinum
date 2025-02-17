@@ -30,6 +30,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -38,15 +39,14 @@
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200A784.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_020989DC.h"
 #include "unk_02098FFC.h"
+#include "vram_transfer.h"
 
 typedef struct {
     StringTemplate *unk_00;
@@ -333,7 +333,7 @@ static void ov79_021D252C(void *param0)
     sub_02008A94(v0->unk_40.unk_04);
 
     OAMManager_ApplyAndResetBuffers();
-    sub_0201DCAC();
+    VramTransfer_Process();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -517,7 +517,7 @@ static void ov79_021D27D8(UnkStruct_ov79_021D2928 *param0)
     param0->unk_30.unk_04 = Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_SPECIES, NULL);
     param0->unk_30.unk_07 = Pokemon_GetGender(param0->unk_10->unk_00);
     param0->unk_30.unk_06 = Pokemon_GetNature(param0->unk_10->unk_00);
-    param0->unk_30.unk_08 = PokemonPersonalData_GetFormValue(param0->unk_30.unk_04, Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_FORM, NULL), 28) ^ 1;
+    param0->unk_30.unk_08 = SpeciesData_GetFormValue(param0->unk_30.unk_04, Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_FORM, NULL), 28) ^ 1;
     param0->unk_30.unk_0C = Strbuf_Init(12, param0->unk_00);
 
     Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_NICKNAME_STRBUF, param0->unk_30.unk_0C);
@@ -532,7 +532,7 @@ static void ov79_021D2858(UnkStruct_ov79_021D2928 *param0)
 
 static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
 {
-    VRAMTransferManager_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->unk_00);
 
     param0->unk_7C = sub_0200C6E4(param0->unk_00);
 
@@ -556,7 +556,7 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
         };
 
         sub_0200C73C(param0->unk_7C, &v0, &v1, 32);
-        sub_0200A93C(param0->unk_00);
+        RenderOam_ClearMain(param0->unk_00);
     }
 
     param0->unk_5C = sub_02098FFC(param0->unk_00, 2, 2, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
@@ -576,7 +576,7 @@ static void ov79_021D2908(UnkStruct_ov79_021D2928 *param0)
     sub_02099370(param0->unk_5C, param0->unk_60[0]);
     sub_0209903C(param0->unk_5C);
     sub_0200C8D4(param0->unk_7C);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 }
 
 static int ov79_021D2928(UnkStruct_ov79_021D2928 *param0)

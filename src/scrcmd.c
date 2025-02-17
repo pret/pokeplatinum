@@ -8,8 +8,8 @@
 #include "constants/heap.h"
 #include "constants/overworld_weather.h"
 #include "constants/species.h"
-#include "consts/journal.h"
-#include "consts/scrcmd.h"
+#include "generated/journal_location_events.h"
+#include "generated/save_types.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
@@ -23,7 +23,6 @@
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_decls/struct_0202AB28_decl.h"
 #include "struct_decls/struct_0202CA1C_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_0205C22C_decl.h"
@@ -31,10 +30,8 @@
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/struct_0202A93C.h"
-#include "struct_defs/struct_0202D7B0.h"
+#include "struct_defs/special_encounter.h"
 #include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_0203E608.h"
@@ -46,6 +43,7 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/honey_tree.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021D5EB8.h"
@@ -58,7 +56,6 @@
 #include "overlay005/ov5_021EA874.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021EE7D4.h"
-#include "overlay005/ov5_021EFB0C.h"
 #include "overlay005/ov5_021F0E84.h"
 #include "overlay005/ov5_021F6454.h"
 #include "overlay005/ov5_021F77A8.h"
@@ -69,18 +66,18 @@
 #include "overlay006/ov6_0223E140.h"
 #include "overlay006/ov6_02242AF0.h"
 #include "overlay006/ov6_02243004.h"
-#include "overlay006/ov6_02243218.h"
 #include "overlay006/ov6_02243258.h"
 #include "overlay006/ov6_02246184.h"
 #include "overlay006/ov6_02246C24.h"
 #include "overlay006/ov6_02246F00.h"
 #include "overlay006/ov6_02247078.h"
-#include "overlay006/ov6_022475B0.h"
 #include "overlay006/ov6_02247830.h"
 #include "overlay006/ov6_02247D30.h"
 #include "overlay006/ov6_02247F5C.h"
 #include "overlay006/ov6_02248948.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
+#include "overlay006/swarm.h"
+#include "overlay006/trophy_garden_daily_encounters.h"
 #include "overlay007/communication_club.h"
 #include "overlay007/ov7_0224B4E8.h"
 #include "overlay007/ov7_0224CD28.h"
@@ -108,6 +105,7 @@
 #include "field_task.h"
 #include "field_transition.h"
 #include "game_records.h"
+#include "great_marsh_lookout.h"
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
@@ -133,6 +131,7 @@
 #include "savedata.h"
 #include "scrcmd_system_flags.h"
 #include "script_manager.h"
+#include "special_encounter.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -151,7 +150,6 @@
 #include "unk_020298BC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C9F4.h"
-#include "unk_0202D7A8.h"
 #include "unk_0202DF8C.h"
 #include "unk_02033200.h"
 #include "unk_020363E8.h"
@@ -201,7 +199,6 @@
 #include "unk_02069BE0.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"
-#include "unk_0206C0E8.h"
 #include "unk_0206C660.h"
 #include "unk_0206C784.h"
 #include "unk_0206CCB0.h"
@@ -422,7 +419,7 @@ static BOOL ScrCmd_GetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_SetPlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx);
 static BOOL ScrCmd_0DE(ScriptContext *ctx);
-static BOOL ScrCmd_0E3(ScriptContext *ctx);
+static BOOL ScrCmd_GetSwarmMapAndSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_0E6(ScriptContext *ctx);
 static BOOL ScrCmd_0F2(ScriptContext *ctx);
 static BOOL sub_02042F74(ScriptContext *ctx);
@@ -446,8 +443,8 @@ static BOOL ScrCmd_StartLegendaryBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartFatefulEncounter(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
-static BOOL ScrCmd_127(ScriptContext *ctx);
-static BOOL ScrCmd_128(ScriptContext *ctx);
+static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
+static BOOL ScrCmd_GetHoneyTreeStatus(ScriptContext *ctx);
 static BOOL ScrCmd_StartHoneyTreeBattle(ScriptContext *ctx);
 static BOOL ScrCmd_12A(ScriptContext *ctx);
 static BOOL ScrCmd_12B(ScriptContext *ctx);
@@ -574,8 +571,8 @@ static BOOL ScrCmd_1E8(ScriptContext *ctx);
 static BOOL ScrCmd_1E9(ScriptContext *ctx);
 static BOOL ScrCmd_1EA(ScriptContext *ctx);
 static BOOL ScrCmd_1EB(ScriptContext *ctx);
-static BOOL ScrCmd_1EC(ScriptContext *ctx);
-static BOOL ScrCmd_1ED(ScriptContext *ctx);
+static BOOL ScrCmd_AddTrophyGardenMon(ScriptContext *ctx);
+static BOOL ScrCmd_GetTrophyGardenSlot1Species(ScriptContext *ctx);
 static BOOL ScrCmd_1EF(ScriptContext *ctx);
 static BOOL ScrCmd_IncrementGameRecord(ScriptContext *ctx);
 static BOOL ScrCmd_1E6(ScriptContext *ctx);
@@ -590,7 +587,7 @@ static BOOL ScrCmd_203(ScriptContext *ctx);
 static BOOL ScrCmd_204(ScriptContext *ctx);
 static BOOL ScrCmd_205(ScriptContext *ctx);
 static BOOL ScrCmd_310(ScriptContext *ctx);
-static BOOL ScrCmd_206(ScriptContext *ctx);
+static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx);
 static BOOL ScrCmd_20C(ScriptContext *ctx);
 static BOOL ScrCmd_20D(ScriptContext *ctx);
 static BOOL ScrCmd_20E(ScriptContext *ctx);
@@ -602,7 +599,7 @@ static BOOL ScrCmd_26F(ScriptContext *ctx);
 static BOOL ScrCmd_218(ScriptContext *ctx);
 static BOOL ScrCmd_219(ScriptContext *ctx);
 static BOOL ScrCmd_21A(ScriptContext *ctx);
-static BOOL ScrCmd_21B(ScriptContext *ctx);
+static BOOL ScrCmd_EnableSwarms(ScriptContext *ctx);
 static BOOL ScrCmd_21C(ScriptContext *ctx);
 static BOOL ScrCmd_226(ScriptContext *ctx);
 static BOOL ScrCmd_227(ScriptContext *ctx);
@@ -984,7 +981,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferPoketchAppName,
     ScrCmd_0D8,
     ScrCmd_0D9,
-    ScrCmd_0DA,
+    ScrCmd_BufferSpeciesNameFromVar,
     ScrCmd_0DB,
     ScrCmd_0DC,
     ScrCmd_0DD,
@@ -993,7 +990,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_BufferUndergroundTrapName,
     ScrCmd_BufferUndergroundItemName,
     ScrCmd_0E2,
-    ScrCmd_0E3,
+    ScrCmd_GetSwarmMapAndSpecies,
     ScrCmd_0E4,
     ScrCmd_StartTrainerBattle,
     ScrCmd_0E6,
@@ -1061,8 +1058,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_StartWildBattle,
     ScrCmd_StartFirstBattle,
     ScrCmd_StartCatchingTutorial,
-    ScrCmd_127,
-    ScrCmd_128,
+    ScrCmd_SlatherHoneyTree,
+    ScrCmd_GetHoneyTreeStatus,
     ScrCmd_StartHoneyTreeBattle,
     ScrCmd_12A,
     ScrCmd_12B,
@@ -1258,8 +1255,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1E9,
     ScrCmd_1EA,
     ScrCmd_1EB,
-    ScrCmd_1EC,
-    ScrCmd_1ED,
+    ScrCmd_AddTrophyGardenMon,
+    ScrCmd_GetTrophyGardenSlot1Species,
     ScrCmd_1EE,
     ScrCmd_1EF,
     ScrCmd_1F0,
@@ -1284,7 +1281,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_203,
     ScrCmd_204,
     ScrCmd_205,
-    ScrCmd_206,
+    ScrCmd_StartGreatMarshLookout,
     ScrCmd_207,
     ScrCmd_208,
     ScrCmd_209,
@@ -1305,7 +1302,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_218,
     ScrCmd_219,
     ScrCmd_21A,
-    ScrCmd_21B,
+    ScrCmd_EnableSwarms,
     ScrCmd_21C,
     ScrCmd_21D,
     ScrCmd_21E,
@@ -1516,7 +1513,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2EB,
     ScrCmd_2EC,
     ScrCmd_2ED,
-    ScrCmd_2EE,
+    ScrCmd_JudgeStats,
     ScrCmd_2EF,
     ScrCmd_2F0,
     ScrCmd_2F1,
@@ -4274,7 +4271,7 @@ static BOOL ScrCmd_1D8(ScriptContext *ctx)
         return 0;
     }
 
-    if (sub_0202AC98(Poffin_GetSavedataBlock(ctx->fieldSystem->saveData)) >= 100) {
+    if (Poffin_GetNumberOfFilledSlots(Poffin_GetSavedataBlock(ctx->fieldSystem->saveData)) >= MAX_POFFINS) {
         *v0 = 2;
         return 0;
     }
@@ -4802,14 +4799,14 @@ static BOOL ScrCmd_ChangePlayerState(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_0E3(ScriptContext *ctx)
+static BOOL ScrCmd_GetSwarmMapAndSpecies(ScriptContext *ctx)
 {
-    UnkStruct_0202D7B0 *v0 = sub_0202D834(ctx->fieldSystem->saveData);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(ctx->fieldSystem->saveData);
+    u16 *mapDest = ScriptContext_GetVarPointer(ctx);
+    u16 *speciesDest = ScriptContext_GetVarPointer(ctx);
 
-    ov6_0224322C(sub_0202D814(v0, 2), v1, v2);
-    return 0;
+    Swarm_GetMapIdAndSpecies(SpecialEncounter_GetDailyMon(speEnc, DAILY_SWARM), mapDest, speciesDest);
+    return FALSE;
 }
 
 static BOOL ScrCmd_0DE(ScriptContext *ctx)
@@ -5091,21 +5088,21 @@ static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx)
     return TRUE;
 }
 
-static BOOL ScrCmd_127(ScriptContext *ctx)
+static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov5_021EFBDC(fieldSystem);
-    return 0;
+    HoneyTree_SlatherTree(fieldSystem);
+    return FALSE;
 }
 
-static BOOL ScrCmd_128(ScriptContext *ctx)
+static BOOL ScrCmd_GetHoneyTreeStatus(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *var = ScriptContext_GetVarPointer(ctx);
 
-    *v1 = ov5_021EFB94(fieldSystem);
-    return 0;
+    *var = HoneyTree_GetTreeSlatherStatus(fieldSystem);
+    return FALSE;
 }
 
 static BOOL ScrCmd_StartHoneyTreeBattle(ScriptContext *ctx)
@@ -5120,7 +5117,7 @@ static BOOL ScrCmd_12A(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    ov5_021EFC90(fieldSystem);
+    HoneyTree_StopShaking(fieldSystem);
     return 0;
 }
 
@@ -6284,18 +6281,18 @@ static BOOL ScrCmd_1EB(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_1EC(ScriptContext *ctx)
+static BOOL ScrCmd_AddTrophyGardenMon(ScriptContext *ctx)
 {
-    ov6_022475B0(ctx->fieldSystem->saveData);
-    return 0;
+    TrophyGarden_AddNewMon(ctx->fieldSystem->saveData);
+    return FALSE;
 }
 
-static BOOL ScrCmd_1ED(ScriptContext *ctx)
+static BOOL ScrCmd_GetTrophyGardenSlot1Species(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *var = ScriptContext_GetVarPointer(ctx);
 
-    (*v0) = ov6_02247624(ctx->fieldSystem->saveData);
-    return 0;
+    *var = TrophyGarden_GetSlot1Species(ctx->fieldSystem->saveData);
+    return FALSE;
 }
 
 static BOOL ScrCmd_1EF(ScriptContext *ctx)
@@ -6406,10 +6403,10 @@ static BOOL ScrCmd_202(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_206(ScriptContext *ctx)
+static BOOL ScrCmd_StartGreatMarshLookout(ScriptContext *ctx)
 {
-    sub_0206C0E8(ctx->fieldSystem);
-    return 1;
+    GreatMarshLookout_Init(ctx->fieldSystem);
+    return TRUE;
 }
 
 static BOOL ScrCmd_20D(ScriptContext *ctx)
@@ -6504,9 +6501,9 @@ static BOOL ScrCmd_21A(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_21B(ScriptContext *ctx)
+static BOOL ScrCmd_EnableSwarms(ScriptContext *ctx)
 {
-    sub_0202D884(ctx->fieldSystem->saveData);
+    SpecialEncounter_EnableSwarms(ctx->fieldSystem->saveData);
 
     return 0;
 }
@@ -7369,7 +7366,7 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
 {
     Poffin *v0;
     int v1;
-    UnkStruct_0202AB28 *v2;
+    PoffinCase *v2;
     u8 v3[5];
     u8 v4;
     u16 v5;
@@ -7383,14 +7380,14 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
     }
 
     v4 = ScriptContext_GetVar(ctx);
-    v0 = Poffin_malloc(4);
+    v0 = Poffin_New(4);
     v1 = sub_0202A9E4(v0, v3, v4, 0);
     v2 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
-    v5 = sub_0202AB74(v2, v0);
+    v5 = Poffin_AddToCase(v2, v0);
 
     Heap_FreeToHeap(v0);
 
-    if (v5 == 0xFFFF) {
+    if (v5 == POFFIN_NONE) {
         *v6 = 0xffff;
     } else {
         *v6 = v1;
@@ -7401,13 +7398,13 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
 
 static BOOL ScrCmd_28A(ScriptContext *ctx)
 {
-    UnkStruct_0202AB28 *v0;
+    PoffinCase *poffinCase;
     u16 *v1;
 
     v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
+    poffinCase = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
 
-    if (sub_0202AB54(v0) == 0xFFFF) {
+    if (Poffin_GetEmptyCaseSlot(poffinCase) == POFFIN_NONE) {
         *v1 = 0;
     } else {
         *v1 = 1;
@@ -7418,12 +7415,12 @@ static BOOL ScrCmd_28A(ScriptContext *ctx)
 
 static BOOL ScrCmd_307(ScriptContext *ctx)
 {
-    UnkStruct_0202AB28 *v0;
+    PoffinCase *poffinCase;
     u16 *v1;
 
     v1 = ScriptContext_GetVarPointer(ctx);
-    v0 = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
-    *v1 = sub_0202ACC0(v0);
+    poffinCase = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
+    *v1 = Poffin_GetNumberOfEmptySlots(poffinCase);
 
     return 0;
 }

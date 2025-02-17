@@ -1,5 +1,4 @@
 {
-    "name": "Whiscash",
     "base_stats": {
         "hp": 110,
         "attack": 78,
@@ -8,10 +7,7 @@
         "special_attack": 76,
         "special_defense": 71
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_GROUND" ],
     "catch_rate": 75,
     "base_exp_reward": 158,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_OBLIVIOUS",
-        "ABILITY_ANTICIPATION"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_OBLIVIOUS", "ABILITY_ANTICIPATION" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ZEN_HEADBUTT" ],
+            [ 1, "MOVE_TICKLE" ],
+            [ 1, "MOVE_MUD_SLAP" ],
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_WATER_SPORT" ],
+            [ 6, "MOVE_MUD_SPORT" ],
+            [ 6, "MOVE_WATER_SPORT" ],
+            [ 10, "MOVE_WATER_GUN" ],
+            [ 14, "MOVE_MUD_BOMB" ],
+            [ 18, "MOVE_AMNESIA" ],
+            [ 22, "MOVE_WATER_PULSE" ],
+            [ 26, "MOVE_MAGNITUDE" ],
+            [ 33, "MOVE_REST" ],
+            [ 33, "MOVE_SNORE" ],
+            [ 39, "MOVE_AQUA_TAIL" ],
+            [ 45, "MOVE_EARTHQUAKE" ],
+            [ 51, "MOVE_FUTURE_SIGHT" ],
+            [ 57, "MOVE_FISSURE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -78,33 +86,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_TICKLE",
-                "MOVE_MUD_SLAP",
-                "MOVE_MUD_SPORT",
-                "MOVE_WATER_SPORT"
-            ],
-            "6": [
-                "MOVE_MUD_SPORT",
-                "MOVE_WATER_SPORT"
-            ],
-            "10": "MOVE_WATER_GUN",
-            "14": "MOVE_MUD_BOMB",
-            "18": "MOVE_AMNESIA",
-            "22": "MOVE_WATER_PULSE",
-            "26": "MOVE_MAGNITUDE",
-            "33": [
-                "MOVE_REST",
-                "MOVE_SNORE"
-            ],
-            "39": "MOVE_AQUA_TAIL",
-            "45": "MOVE_EARTHQUAKE",
-            "51": "MOVE_FUTURE_SIGHT",
-            "57": "MOVE_FISSURE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -115,9 +97,10 @@
             "MOVE_BOUNCE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 9,
@@ -131,10 +114,62 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "It is extremely protective of its\nterritory. If any foe approaches,\nit attacks using vicious tremors.",
-        "category": "Whiskers Pokémon"
+        "en": {
+            "name": "WHISCASH",
+            "category": "Whiskers Pokémon",
+            "entry_text": [
+                "It is extremely protective of its\n",
+                "territory. If any foe approaches,\n",
+                "it attacks using vicious tremors."
+            ]
+        },
+        "fr": {
+            "name": "BARBICHA",
+            "category": "Pokémon Barbillon",
+            "entry_text": [
+                "Il est attaché à son territoire.\n",
+                "Il repousse l’ennemi en provoquant\n",
+                "des secousses qui portent à 5 km."
+            ]
+        },
+        "de": {
+            "name": "WELSAR",
+            "category": "Barthaar",
+            "entry_text": [
+                "Es verteidigt sein Revier, indem es\n",
+                "Erschütterungen auslöst, die noch\n",
+                "in 5 km Entfernung zu spüren sind."
+            ]
+        },
+        "it": {
+            "name": "WHISCASH",
+            "category": "Pokémon Baffetti",
+            "entry_text": [
+                "Ha un senso del territorio molto\n",
+                "sviluppato. Respinge i nemici scate-\n",
+                "nando terremoti del raggio di 5 km."
+            ]
+        },
+        "es": {
+            "name": "WHISCASH",
+            "category": "Pokémon Bigotudo",
+            "entry_text": [
+                "Es muy territorial. Expulsa a los\n",
+                "intrusos con unos temblores que\n",
+                "se sienten en un radio de 5 km."
+            ]
+        },
+        "jp": {
+            "name": "ナマズン",
+            "category": "ひげうおポケモン",
+            "entry_text": [
+                "なわばり　いしきが　とても　つよい。\n",
+                "しゅうい　５キロの　はんいで\n",
+                "じしんを　おこし　げきたいする。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 70,

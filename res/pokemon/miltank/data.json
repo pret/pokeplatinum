@@ -1,5 +1,4 @@
 {
-    "name": "Miltank",
     "base_stats": {
         "hp": 95,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 45,
     "base_exp_reward": 200,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_SCRAPPY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_SCRAPPY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 3, "MOVE_GROWL" ],
+            [ 5, "MOVE_DEFENSE_CURL" ],
+            [ 8, "MOVE_STOMP" ],
+            [ 11, "MOVE_MILK_DRINK" ],
+            [ 15, "MOVE_BIDE" ],
+            [ 19, "MOVE_ROLLOUT" ],
+            [ 24, "MOVE_BODY_SLAM" ],
+            [ 29, "MOVE_ZEN_HEADBUTT" ],
+            [ 35, "MOVE_CAPTIVATE" ],
+            [ 41, "MOVE_GYRO_BALL" ],
+            [ 48, "MOVE_HEAL_BELL" ],
+            [ 55, "MOVE_WAKE_UP_SLAP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -90,22 +93,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "3": "MOVE_GROWL",
-            "5": "MOVE_DEFENSE_CURL",
-            "8": "MOVE_STOMP",
-            "11": "MOVE_MILK_DRINK",
-            "15": "MOVE_BIDE",
-            "19": "MOVE_ROLLOUT",
-            "24": "MOVE_BODY_SLAM",
-            "29": "MOVE_ZEN_HEADBUTT",
-            "35": "MOVE_CAPTIVATE",
-            "41": "MOVE_GYRO_BALL",
-            "48": "MOVE_HEAL_BELL",
-            "55": "MOVE_WAKE_UP_SLAP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -118,9 +106,10 @@
             "MOVE_ZEN_HEADBUTT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 12,
@@ -134,10 +123,62 @@
         "pokemon_pos_f": 11,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 11,
-        "entry_text": "It is said that kids who drink\nMILTANK’s milk grow up to become\nhearty, healthy adults.",
-        "category": "Milk Cow Pokémon"
+        "en": {
+            "name": "MILTANK",
+            "category": "Milk Cow Pokémon",
+            "entry_text": [
+                "It is said that kids who drink\n",
+                "MILTANK’s milk grow up to become\n",
+                "hearty, healthy adults."
+            ]
+        },
+        "fr": {
+            "name": "ECREMEUH",
+            "category": "Pokémon Vachalait",
+            "entry_text": [
+                "On raconte que les enfants élevés\n",
+                "au lait d’ECREMEUH deviennent des\n",
+                "adultes braves et robustes."
+            ]
+        },
+        "de": {
+            "name": "MILTANK",
+            "category": "Milchkuh",
+            "entry_text": [
+                "Man sagt, dass Kinder, die MILTANKs\n",
+                "Milch trinken, zu gesunden\n",
+                "Erwachsenen heranwachsen."
+            ]
+        },
+        "it": {
+            "name": "MILTANK",
+            "category": "Pokémon Bovino",
+            "entry_text": [
+                "Si dice che se un bambino beve\n",
+                "il latte di MILTANK crescerà bene\n",
+                "e da adulto sarà sano e buono."
+            ]
+        },
+        "es": {
+            "name": "MILTANK",
+            "category": "Pokémon Lechera",
+            "entry_text": [
+                "Se dice que si un niño bebe leche\n",
+                "de MILTANK crecerá y se convertirá\n",
+                "en un adulto sano y campechano."
+            ]
+        },
+        "jp": {
+            "name": "ミルタンク",
+            "category": "ちちうしポケモン",
+            "entry_text": [
+                "ミルタンクの　ミルクを　のんで\n",
+                "そだった　こどもは　けんこうで\n",
+                "たくましい　おとなに　なるという。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

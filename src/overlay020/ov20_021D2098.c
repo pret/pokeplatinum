@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_decls/struct_020998EC_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay020/ov20_021D0D80.h"
@@ -26,10 +25,10 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "render_oam.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 
@@ -41,7 +40,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
     const UnkStruct_020998EC *unk_1C;
     BgConfig *unk_20;
     CellActorCollection *unk_24;
-    UnkStruct_0200C738 unk_28;
+    G2dRenderer unk_28;
     NNSG2dImageProxy unk_1B4[2];
     NNSG2dImagePaletteProxy unk_1FC[2];
     NNSG2dCellDataBank *unk_224[2];
@@ -113,9 +112,9 @@ UnkStruct_ov20_021D2128 *ov20_021D2098(const UnkStruct_ov20_021D16E8 *param0, co
         v0->unk_1C = param1;
 
         NNS_G2dInitOamManagerModule();
-        sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 35);
+        RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 35);
 
-        v0->unk_24 = sub_020095C4(128, &v0->unk_28, 35);
+        v0->unk_24 = SpriteList_InitRendering(128, &v0->unk_28, 35);
         v0->unk_20 = BgConfig_New(35);
         v0->unk_00 = SysTask_Start(ov20_021D2178, v0, 2);
         v0->unk_04 = ov20_021D2170(ov20_021D217C, v0, 1);
@@ -144,7 +143,7 @@ void ov20_021D2128(UnkStruct_ov20_021D2128 *param0)
         SysTask_Done(param0->unk_00);
         SysTask_Done(param0->unk_04);
 
-        sub_0200A878();
+        RenderOam_Free();
         CellActorCollection_Delete(param0->unk_24);
 
         Heap_FreeToHeap(param0->unk_20);
@@ -167,7 +166,7 @@ static void ov20_021D217C(SysTask *param0, void *param1)
     UnkStruct_ov20_021D2128 *v0 = param1;
 
     CellActorCollection_Update(v0->unk_24);
-    sub_0200A858();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

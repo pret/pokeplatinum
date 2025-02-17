@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207F248.h"
 #include "struct_defs/struct_020831B4.h"
 
@@ -21,18 +20,18 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "unk_020093B4.h"
+#include "sprite_util.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E010.h"
 #include "unk_0207E0B8.h"
 #include "unk_0208C098.h"
+#include "vram_transfer.h"
 
 void sub_02082C2C(GameWindowLayout *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    VRAMTransferManager_New(32, 12);
+    VramTransfer_New(32, 12);
 
     param0->unk_5A8 = sub_0200C6E4(12);
     param0->unk_5AC = sub_0200C704(param0->unk_5A8);
@@ -57,8 +56,8 @@ void sub_02082C2C(GameWindowLayout *param0)
     }
 
     {
-        UnkStruct_0200C738 *v2 = sub_0200C738(param0->unk_5A8);
-        sub_0200964C(v2, 0, (256 * FX32_ONE));
+        G2dRenderer *v2 = sub_0200C738(param0->unk_5A8);
+        SetSubScreenViewRect(v2, 0, (256 * FX32_ONE));
     }
 
     {

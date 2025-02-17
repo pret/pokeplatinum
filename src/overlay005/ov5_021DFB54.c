@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/game_records.h"
 
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -19,9 +19,9 @@
 #include "overlay005/ov5_021F2850.h"
 #include "overlay005/ov5_021F8560.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
-#include "overlay006/ov6_02240C9C.h"
 #include "overlay006/ov6_02243258.h"
 #include "overlay006/ov6_02248050.h"
+#include "overlay006/wild_encounters.h"
 #include "overlay009/ov9_02249960.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
@@ -889,7 +889,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
                 FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
                 FieldBattleDTO *v9;
 
-                if (ov6_022413E4(fieldSystem, &v9) == 1) {
+                if (WildEncounters_TryMudEncounter(fieldSystem, &v9) == 1) {
                     PlayerAvatar_SetInDeepSwamp(v0->playerAvatar, 1);
                     ov5_021E1134(v0);
                     Encounter_StartVsWild(fieldSystem, param0, v9);

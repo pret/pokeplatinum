@@ -6,7 +6,8 @@
 #include <string.h>
 
 #include "constants/battle.h"
-#include "consts/game_records.h"
+#include "constants/heap.h"
+#include "generated/game_records.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207AE68_decl.h"
@@ -39,6 +40,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "cell_transfer.h"
 #include "communication_system.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
@@ -60,6 +62,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -69,7 +72,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
@@ -77,7 +79,6 @@
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -90,6 +91,7 @@
 #include "unk_0207A6DC.h"
 #include "unk_0207AE68.h"
 #include "unk_0208C098.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay10);
 FS_EXTERN_OVERLAY(overlay11);
@@ -263,7 +265,7 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
         int v3;
         Pokemon *v4;
 
-        v2 = ov16_0223ECC4(v0, &v1, &v3);
+        v2 = Battle_FindEvolvingPartyMember(v0, &v1, &v3);
 
         if (v2) {
             Heap_Create(3, 73, 0x30000);
@@ -320,7 +322,7 @@ void ov16_0223B3E4(BattleSystem *param0)
 
     sub_0200D0B0(param0->unk_90, param0->unk_94);
     sub_0200C8D4(param0->unk_90);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     Font_Free(FONT_SUBSCREEN);
 }
 
@@ -360,7 +362,7 @@ void ov16_0223B430(BattleSystem *param0)
     NARC_dtor(v1);
     TextPrinter_SetScrollArrowBaseTile(1);
     ov16_0223DD4C(param0);
-    sub_0200964C(sub_0200C738(param0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(param0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 }
 
 void ov16_0223B53C(BattleSystem *param0)
@@ -531,7 +533,7 @@ static void ov16_0223B790(OverlayManager *param0)
     v0->unk_00 = ov16_0223CD7C();
 
     DisableHBlank();
-    Font_InitManager(FONT_SUBSCREEN, 5);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
     if (v0->battleType & 0x20) {
         v0->unk_1A4 = sub_0200C440(0xe, 2, 0xf, 5);
@@ -555,7 +557,7 @@ static void ov16_0223B790(OverlayManager *param0)
         v0->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(5, (32 * 10 * 10));
     }
 
-    VRAMTransferManager_New(64, 5);
+    VramTransfer_New(64, HEAP_ID_BATTLE);
 
     {
         NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
@@ -576,14 +578,14 @@ static void ov16_0223B790(OverlayManager *param0)
     v0->unk_90 = sub_0200C6E4(5);
 
     sub_0200C73C(v0->unk_90, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_94 = sub_0200C704(v0->unk_90);
 
     sub_0200C7C0(v0->unk_90, v0->unk_94, (64 + 64));
     sub_0200CB30(v0->unk_90, v0->unk_94, &Unk_ov16_0226E2B0);
-    sub_0200964C(sub_0200C738(v0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(v0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 
     ov16_02268A88(v0->battleInput);
 
@@ -647,7 +649,7 @@ static void ov16_0223B790(OverlayManager *param0)
     BagCursor_ResetBattle(BattleSystem_BagCursor(v0));
 
     v0->unk_1C4 = sub_02015F84(5, 4, 0);
-    v0->cellTransferState = sub_0201DCC8(4, 5);
+    v0->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (v0->battleStatusMask & 0x10) {
         for (v3 = 0; v3 < 4; v3++) {
@@ -798,7 +800,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
         Sound_StopEffect(1796, 0);
     }
 
-    sub_0201DCF0(battleSystem->cellTransferState);
+    CellTransfer_Free(battleSystem->cellTransferState);
 
     if (BattleSystem_RecordingStopped(battleSystem)) {
         sub_0200500C(127);
@@ -1386,7 +1388,7 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
     }
 
     if (param0->battleType & 0x1) {
-        if ((ov16_0223CD3C(param0->trainers[1].class) == 1) || (ov16_0223CD3C(param0->trainers[3].class) == 1)) {
+        if ((ov16_0223CD3C(param0->trainers[1].header.trainerType) == 1) || (ov16_0223CD3C(param0->trainers[3].header.trainerType) == 1)) {
             for (v0 = 0; v0 < Party_GetCurrentCount(param0->parties[0]); v0++) {
                 v3 = Party_GetPokemonBySlotIndex(param0->parties[0], v0);
                 Pokemon_UpdateFriendship(v3, 3, param0->unk_2404);
@@ -1520,7 +1522,7 @@ static void ov16_0223CE68(void *param0)
     }
 
     sub_02008A94(v0->unk_88);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_28);
     Bg_RunScheduledUpdates(v0->unk_04);
@@ -1533,7 +1535,7 @@ static void ov16_0223CF1C(void *param0)
     UnkStruct_0207A778 *v0 = param0;
 
     PaletteData_CommitFadedBuffers(v0->unk_0C);
-    sub_0201DCAC();
+    VramTransfer_Process();
     Bg_RunScheduledUpdates(v0->unk_04);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);

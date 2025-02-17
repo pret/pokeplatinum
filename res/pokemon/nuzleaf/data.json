@@ -1,5 +1,4 @@
 {
-    "name": "Nuzleaf",
     "base_stats": {
         "hp": 70,
         "attack": 70,
@@ -8,10 +7,7 @@
         "special_attack": 60,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_DARK"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_DARK" ],
     "catch_rate": 120,
     "base_exp_reward": 141,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_CHLOROPHYLL",
-        "ABILITY_EARLY_BIRD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_CHLOROPHYLL", "ABILITY_EARLY_BIRD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_RAZOR_LEAF" ],
+            [ 1, "MOVE_POUND" ],
+            [ 3, "MOVE_HARDEN" ],
+            [ 7, "MOVE_GROWTH" ],
+            [ 13, "MOVE_NATURE_POWER" ],
+            [ 19, "MOVE_FAKE_OUT" ],
+            [ 25, "MOVE_TORMENT" ],
+            [ 31, "MOVE_FAINT_ATTACK" ],
+            [ 37, "MOVE_RAZOR_WIND" ],
+            [ 43, "MOVE_SWAGGER" ],
+            [ 49, "MOVE_EXTRASENSORY" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -87,22 +88,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_RAZOR_LEAF",
-                "MOVE_POUND"
-            ],
-            "3": "MOVE_HARDEN",
-            "7": "MOVE_GROWTH",
-            "13": "MOVE_NATURE_POWER",
-            "19": "MOVE_FAKE_OUT",
-            "25": "MOVE_TORMENT",
-            "31": "MOVE_FAINT_ATTACK",
-            "37": "MOVE_RAZOR_WIND",
-            "43": "MOVE_SWAGGER",
-            "49": "MOVE_EXTRASENSORY"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -121,8 +107,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -136,10 +122,62 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "The sound of its grass flute makes\nits listeners uneasy. It lives deep\nin forests.",
-        "category": "Wily Pokémon"
+        "en": {
+            "name": "NUZLEAF",
+            "category": "Wily Pokémon",
+            "entry_text": [
+                "The sound of its grass flute makes\n",
+                "its listeners uneasy. It lives deep\n",
+                "in forests."
+            ]
+        },
+        "fr": {
+            "name": "PIFEUIL",
+            "category": "Pokémon Malin",
+            "entry_text": [
+                "Le son de sa flûte d’herbe\n",
+                "déstabilise l’auditeur. Il vit au \n",
+                "plus profond des forêts."
+            ]
+        },
+        "de": {
+            "name": "BLANAS",
+            "category": "Hinterlist",
+            "entry_text": [
+                "Der Ton seiner Grasflöte\n",
+                "beunruhigt die, die ihn hören.\n",
+                "Es lebt tief in den Wäldern."
+            ]
+        },
+        "it": {
+            "name": "NUZLEAF",
+            "category": "Pokémon Scaltro",
+            "entry_text": [
+                "Il fischio del suo flauto di foglia\n",
+                "mette a disagio chi lo sente.\n",
+                "Vive nelle foreste più fitte."
+            ]
+        },
+        "es": {
+            "name": "NUZLEAF",
+            "category": "Pokémon Astuto",
+            "entry_text": [
+                "Cuando usa la hoja de su cabeza\n",
+                "como flauta asusta a la gente. Vive\n",
+                "en lo más profundo de los bosques."
+            ]
+        },
+        "jp": {
+            "name": "コノハナ",
+            "category": "いじわるポケモン",
+            "entry_text": [
+                "コノハナが　かなでる　くさぶえの\n",
+                "ねいろは　ひとを　ふあんにさせる。\n",
+                "もりの　おくに　すんでいる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

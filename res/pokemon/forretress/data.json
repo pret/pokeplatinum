@@ -1,5 +1,4 @@
 {
-    "name": "Forretress",
     "base_stats": {
         "hp": 75,
         "attack": 90,
@@ -8,10 +7,7 @@
         "special_attack": 60,
         "special_defense": 60
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_STEEL"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_STEEL" ],
     "catch_rate": 75,
     "base_exp_reward": 118,
     "ev_yields": {
@@ -30,21 +26,35 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_STURDY",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_STURDY", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TOXIC_SPIKES" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_PROTECT" ],
+            [ 1, "MOVE_SELFDESTRUCT" ],
+            [ 1, "MOVE_BUG_BITE" ],
+            [ 6, "MOVE_SELFDESTRUCT" ],
+            [ 9, "MOVE_BUG_BITE" ],
+            [ 12, "MOVE_TAKE_DOWN" ],
+            [ 17, "MOVE_RAPID_SPIN" ],
+            [ 20, "MOVE_BIDE" ],
+            [ 23, "MOVE_NATURAL_GIFT" ],
+            [ 28, "MOVE_SPIKES" ],
+            [ 31, "MOVE_MIRROR_SHOT" ],
+            [ 33, "MOVE_PAYBACK" ],
+            [ 38, "MOVE_EXPLOSION" ],
+            [ 45, "MOVE_IRON_DEFENSE" ],
+            [ 50, "MOVE_GYRO_BALL" ],
+            [ 55, "MOVE_DOUBLE_EDGE" ],
+            [ 62, "MOVE_MAGNET_RISE" ],
+            [ 67, "MOVE_ZAP_CANNON" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -82,31 +92,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TOXIC_SPIKES",
-                "MOVE_TACKLE",
-                "MOVE_PROTECT",
-                "MOVE_SELFDESTRUCT",
-                "MOVE_BUG_BITE"
-            ],
-            "6": "MOVE_SELFDESTRUCT",
-            "9": "MOVE_BUG_BITE",
-            "12": "MOVE_TAKE_DOWN",
-            "17": "MOVE_RAPID_SPIN",
-            "20": "MOVE_BIDE",
-            "23": "MOVE_NATURAL_GIFT",
-            "28": "MOVE_SPIKES",
-            "31": "MOVE_MIRROR_SHOT",
-            "33": "MOVE_PAYBACK",
-            "38": "MOVE_EXPLOSION",
-            "45": "MOVE_IRON_DEFENSE",
-            "50": "MOVE_GYRO_BALL",
-            "55": "MOVE_DOUBLE_EDGE",
-            "62": "MOVE_MAGNET_RISE",
-            "67": "MOVE_ZAP_CANNON"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
@@ -114,9 +100,10 @@
             "MOVE_MAGNET_RISE"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 12,
@@ -130,10 +117,62 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "It is encased in a steel shell. Its\npeering eyes are all that can be\nseen of its mysterious innards.",
-        "category": "Bagworm Pokémon"
+        "en": {
+            "name": "FORRETRESS",
+            "category": "Bagworm Pokémon",
+            "entry_text": [
+                "It is encased in a steel shell. Its\n",
+                "peering eyes are all that can be\n",
+                "seen of its mysterious innards."
+            ]
+        },
+        "fr": {
+            "name": "FORETRESS",
+            "category": "Pokémon Ver Caché",
+            "entry_text": [
+                "Il est prisonnier d’une coquille \n",
+                "d’acier. Ses yeux vigilants sont la\n",
+                "seule partie visible de son corps."
+            ]
+        },
+        "de": {
+            "name": "FORSTELLKA",
+            "category": "Beutelwurm",
+            "entry_text": [
+                "Dieses PKMN ist von einer Stahlhülle\n",
+                "umgeben. Seine stechenden Augen\n",
+                "sind alles, was man von ihm sieht."
+            ]
+        },
+        "it": {
+            "name": "FORRETRESS",
+            "category": "Pokémon Larva",
+            "entry_text": [
+                "È incassato in una conchiglia d’ac-\n",
+                "ciaio. A parte gli occhi scrutatori,\n",
+                "nessuno sa cosa ci sia all’interno."
+            ]
+        },
+        "es": {
+            "name": "FORRETRESS",
+            "category": "Pokémon Larva",
+            "entry_text": [
+                "Se protege con su concha de\n",
+                "acero de tal manera que solo se\n",
+                "pueden ver sus ojos."
+            ]
+        },
+        "jp": {
+            "name": "フォレトス",
+            "category": "みのむしポケモン",
+            "entry_text": [
+                "こうてつの　カラで　まもられている。\n",
+                "すきまから　めだまが　のぞいているが\n",
+                "なかみの　しょうたいは　なぞのまま。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

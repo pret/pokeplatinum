@@ -1,5 +1,4 @@
 {
-    "name": "Seaking",
     "base_stats": {
         "hp": 80,
         "attack": 92,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 60,
     "base_exp_reward": 170,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_WATER_VEIL"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_WATER_VEIL" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_JAB" ],
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_WATER_SPORT" ],
+            [ 1, "MOVE_SUPERSONIC" ],
+            [ 7, "MOVE_SUPERSONIC" ],
+            [ 11, "MOVE_HORN_ATTACK" ],
+            [ 17, "MOVE_WATER_PULSE" ],
+            [ 21, "MOVE_FLAIL" ],
+            [ 27, "MOVE_AQUA_RING" ],
+            [ 31, "MOVE_FURY_ATTACK" ],
+            [ 40, "MOVE_WATERFALL" ],
+            [ 47, "MOVE_HORN_DRILL" ],
+            [ 56, "MOVE_AGILITY" ],
+            [ 63, "MOVE_MEGAHORN" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -72,26 +77,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_JAB",
-                "MOVE_PECK",
-                "MOVE_TAIL_WHIP",
-                "MOVE_WATER_SPORT",
-                "MOVE_SUPERSONIC"
-            ],
-            "7": "MOVE_SUPERSONIC",
-            "11": "MOVE_HORN_ATTACK",
-            "17": "MOVE_WATER_PULSE",
-            "21": "MOVE_FLAIL",
-            "27": "MOVE_AQUA_RING",
-            "31": "MOVE_FURY_ATTACK",
-            "40": "MOVE_WATERFALL",
-            "47": "MOVE_HORN_DRILL",
-            "56": "MOVE_AGILITY",
-            "63": "MOVE_MEGAHORN"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -103,9 +89,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 13,
@@ -119,10 +106,62 @@
         "pokemon_pos_f": 65533,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65533,
-        "entry_text": "In autumn, its body becomes more\nfatty in preparing to propose to a\nmate. It takes on beautiful colors.",
-        "category": "Goldfish Pokémon"
+        "en": {
+            "name": "SEAKING",
+            "category": "Goldfish Pokémon",
+            "entry_text": [
+                "In autumn, its body becomes more\n",
+                "fatty in preparing to propose to a\n",
+                "mate. It takes on beautiful colors."
+            ]
+        },
+        "fr": {
+            "name": "POISSOROY",
+            "category": "Pokémon Poisson",
+            "entry_text": [
+                "Il niche dans des rochers du \n",
+                "ruisseau qu’il évide avec sa corne.\n",
+                "Il donnerait sa vie pour ses œufs."
+            ]
+        },
+        "de": {
+            "name": "GOLKING",
+            "category": "Goldfisch",
+            "entry_text": [
+                "Es baut Nester, indem es Steine im\n",
+                "Fluss mit seinem Horn aushöhlt. Es\n",
+                "verteidigt seine Eier mit dem Leben."
+            ]
+        },
+        "it": {
+            "name": "SEAKING",
+            "category": "Pokémon Pescerosso",
+            "entry_text": [
+                "Con il suo corno, perfora le rocce\n",
+                "sul letto dei fiumi per farsi il nido.\n",
+                "Difende le uova a costo della vita."
+            ]
+        },
+        "es": {
+            "name": "SEAKING",
+            "category": "Pokémon Pez Color",
+            "entry_text": [
+                "Hace su nido en los agujeros\n",
+                "que cava con el cuerno. Defiende\n",
+                "sus huevos con su vida."
+            ]
+        },
+        "jp": {
+            "name": "アズマオウ",
+            "category": "きんぎょポケモン",
+            "entry_text": [
+                "あたまの　ツノで　かわぞこにある\n",
+                "いわを　くりぬいて　すを　つくる。\n",
+                "タマゴを　いのちがけで　まもる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 70,

@@ -6,23 +6,22 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay022/struct_ov22_022550D4.h"
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay083/ov83_0223D6A8.h"
 #include "overlay083/struct_ov83_0223B784.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "pltt_transfer.h"
+#include "render_oam.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_0200A784.h"
 #include "unk_02015064.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_0202419C.h"
 
 static void ov83_0223CC30(BgConfig **param0, int param1);
@@ -137,7 +136,7 @@ void ov83_0223CBA4(UnkStruct_ov83_0223B784 *param0)
 
 void ov83_0223CBFC(UnkStruct_ov83_0223B784 *param0)
 {
-    sub_0200A858();
+    RenderOam_Transfer();
 
     if (param0->unk_20) {
         Bg_RunScheduledUpdates(param0->unk_20);
@@ -297,30 +296,30 @@ static void ov83_0223CD54(UnkStruct_ov83_0223B784 *param0)
 static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)
 {
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, param0->unk_00);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, param0->unk_00);
 
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             32,
             0x20000,
             0x0,
         };
 
-        v0.unk_0C = param0->unk_00;
+        v0.heapID = param0->unk_00;
 
-        sub_0201E88C(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
+        CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    sub_0201F834(32, param0->unk_00);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(32, param0->unk_00);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 static void ov83_0223CDC0(UnkStruct_ov83_0223B784 *param0)
 {
-    sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    RenderOam_Free();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 }
 
 static void ov83_0223CDD0(UnkStruct_ov83_0223B784 *param0, NARC *param1)

@@ -1,5 +1,4 @@
 {
-    "name": "Bayleef",
     "base_stats": {
         "hp": 60,
         "attack": 62,
@@ -8,10 +7,7 @@
         "special_attack": 63,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_GRASS",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_GRASS", "TYPE_GRASS" ],
     "catch_rate": 45,
     "base_exp_reward": 141,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_OVERGROW",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_OVERGROW", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_RAZOR_LEAF" ],
+            [ 1, "MOVE_POISON_POWDER" ],
+            [ 6, "MOVE_RAZOR_LEAF" ],
+            [ 9, "MOVE_POISON_POWDER" ],
+            [ 12, "MOVE_SYNTHESIS" ],
+            [ 18, "MOVE_REFLECT" ],
+            [ 22, "MOVE_MAGICAL_LEAF" ],
+            [ 26, "MOVE_NATURAL_GIFT" ],
+            [ 32, "MOVE_SWEET_SCENT" ],
+            [ 36, "MOVE_LIGHT_SCREEN" ],
+            [ 40, "MOVE_BODY_SLAM" ],
+            [ 46, "MOVE_SAFEGUARD" ],
+            [ 50, "MOVE_AROMATHERAPY" ],
+            [ 54, "MOVE_SOLAR_BEAM" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM09",
             "TM10",
@@ -77,27 +83,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL",
-                "MOVE_RAZOR_LEAF",
-                "MOVE_POISON_POWDER"
-            ],
-            "6": "MOVE_RAZOR_LEAF",
-            "9": "MOVE_POISON_POWDER",
-            "12": "MOVE_SYNTHESIS",
-            "18": "MOVE_REFLECT",
-            "22": "MOVE_MAGICAL_LEAF",
-            "26": "MOVE_NATURAL_GIFT",
-            "32": "MOVE_SWEET_SCENT",
-            "36": "MOVE_LIGHT_SCREEN",
-            "40": "MOVE_BODY_SLAM",
-            "46": "MOVE_SAFEGUARD",
-            "50": "MOVE_AROMATHERAPY",
-            "54": "MOVE_SOLAR_BEAM"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
@@ -108,14 +94,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             32,
             "SPECIES_MEGANIUM"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -129,10 +115,62 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "The buds that ring its neck give\noff a spicy aroma that perks\npeople up.",
-        "category": "Leaf Pokémon"
+        "en": {
+            "name": "BAYLEEF",
+            "category": "Leaf Pokémon",
+            "entry_text": [
+                "The buds that ring its neck give\n",
+                "off a spicy aroma that perks\n",
+                "people up."
+            ]
+        },
+        "fr": {
+            "name": "MACRONIUM",
+            "category": "Pokémon Feuille",
+            "entry_text": [
+                "Le collier de bourgeons à son cou\n",
+                "répand un arôme épicé qui vous\n",
+                "donne du tonus."
+            ]
+        },
+        "de": {
+            "name": "LORBLATT",
+            "category": "Laub",
+            "entry_text": [
+                "Die Knospen an seinem Hals\n",
+                "geben ein würziges Aroma ab,\n",
+                "das andere aufheitert."
+            ]
+        },
+        "it": {
+            "name": "BAYLEEF",
+            "category": "Pokémon Foglia",
+            "entry_text": [
+                "Le foglie attorno al suo collo\n",
+                "emanano un aroma speziato\n",
+                "dall’effetto energizzante."
+            ]
+        },
+        "es": {
+            "name": "BAYLEEF",
+            "category": "Pokémon Hoja",
+            "entry_text": [
+                "Su cuello desprende un dulce\n",
+                "aroma que anima a quien lo\n",
+                "huele."
+            ]
+        },
+        "jp": {
+            "name": "ベイリ－フ",
+            "category": "はっぱポケモン",
+            "entry_text": [
+                "くびまわりの　つぼみから　におう\n",
+                "スパイシ－な　かおりは\n",
+                "かいだ　ひとを　げんきに　させる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

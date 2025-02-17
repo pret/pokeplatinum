@@ -7,9 +7,9 @@
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "graphics.h"
 #include "heap.h"
-#include "unk_0201E86C.h"
 
 typedef struct {
     CellActor *unk_00;
@@ -559,7 +559,7 @@ static void sub_02012E6C(const Window *param0, const UnkStruct_02013034 *param1,
         v3 = GXS_GetOBJVRamModeChar();
     }
 
-    v2 = sub_0201F6F4(v3);
+    v2 = CharTransfer_GetBlockSize(v3);
     v1 = 0;
     v0 = param1->unk_0C;
 
@@ -628,7 +628,7 @@ static void sub_02012F98(const Window *param0, char *param1, const UnkStruct_020
         v4 = GXS_GetOBJVRamModeChar();
     }
 
-    v2 = sub_0201F6F4(v4);
+    v2 = CharTransfer_GetBlockSize(v4);
     v3 = 0;
     v0 = param2->unk_0C;
 
@@ -673,7 +673,7 @@ static int sub_02013034(const UnkStruct_02013034 *param0, int param1)
         v2 = GXS_GetOBJVRamModeChar();
     }
 
-    v1 = sub_0201F6F4(v2);
+    v1 = CharTransfer_GetBlockSize(v2);
     v3 = 0;
     v0 = param0->unk_0C;
 

@@ -1,5 +1,4 @@
 {
-    "name": "Whismur",
     "base_stats": {
         "hp": 64,
         "attack": 51,
@@ -8,10 +7,7 @@
         "special_attack": 51,
         "special_defense": 23
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 190,
     "base_exp_reward": 68,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_SOUNDPROOF",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_SOUNDPROOF", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 5, "MOVE_UPROAR" ],
+            [ 11, "MOVE_ASTONISH" ],
+            [ 15, "MOVE_HOWL" ],
+            [ 21, "MOVE_SUPERSONIC" ],
+            [ 25, "MOVE_STOMP" ],
+            [ 31, "MOVE_SCREECH" ],
+            [ 35, "MOVE_ROAR" ],
+            [ 41, "MOVE_REST" ],
+            [ 41, "MOVE_SLEEP_TALK" ],
+            [ 45, "MOVE_HYPER_VOICE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -74,22 +75,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": "MOVE_POUND",
-            "5": "MOVE_UPROAR",
-            "11": "MOVE_ASTONISH",
-            "15": "MOVE_HOWL",
-            "21": "MOVE_SUPERSONIC",
-            "25": "MOVE_STOMP",
-            "31": "MOVE_SCREECH",
-            "35": "MOVE_ROAR",
-            "41": [
-                "MOVE_REST",
-                "MOVE_SLEEP_TALK"
-            ],
-            "45": "MOVE_HYPER_VOICE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -103,14 +89,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             20,
             "SPECIES_LOUDRED"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -124,10 +110,62 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Usually, its cries are like quiet\nmurmurs. If frightened, it shrieks\nat the same volume as a jet plane.",
-        "category": "Whisper Pokémon"
+        "en": {
+            "name": "WHISMUR",
+            "category": "Whisper Pokémon",
+            "entry_text": [
+                "Usually, its cries are like quiet\n",
+                "murmurs. If frightened, it shrieks\n",
+                "at the same volume as a jet plane."
+            ]
+        },
+        "fr": {
+            "name": "CHUCHMUR",
+            "category": "Pokémon Chuchoteur",
+            "entry_text": [
+                "En temps normal, son cri est pareil\n",
+                "à un murmure. Effrayé, il atteint le\n",
+                "volume d’un avion à réaction."
+            ]
+        },
+        "de": {
+            "name": "FLURMEL",
+            "category": "Flüster",
+            "entry_text": [
+                "Normalerweise klingen seine Rufe\n",
+                "wie Gemurmel. Hat es aber Angst,\n",
+                "ist es so laut wie ein Flugzeug."
+            ]
+        },
+        "it": {
+            "name": "WHISMUR",
+            "category": "Pokémon Sussurro",
+            "entry_text": [
+                "Di solito ha una voce molto tenue,\n",
+                "ma se si spaventa, emette un suono\n",
+                "assordante quanto un jet."
+            ]
+        },
+        "es": {
+            "name": "WHISMUR",
+            "category": "Pokémon Susurro",
+            "entry_text": [
+                "Suele murmurar a un volumen casi\n",
+                "inaudible, pero cuando se asusta\n",
+                "grita con el volumen de un reactor."
+            ]
+        },
+        "jp": {
+            "name": "ゴニョニョ",
+            "category": "ささやきポケモン",
+            "entry_text": [
+                "ふだんは　ささやくような　なきごえ。\n",
+                "ふあんになると　ジェットきと　おなじ\n",
+                "おんりょうで　なきつづける。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

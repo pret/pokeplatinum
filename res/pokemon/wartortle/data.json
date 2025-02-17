@@ -1,5 +1,4 @@
 {
-    "name": "Wartortle",
     "base_stats": {
         "hp": 59,
         "attack": 63,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 143,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_TORRENT",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_TORRENT", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_BUBBLE" ],
+            [ 4, "MOVE_TAIL_WHIP" ],
+            [ 7, "MOVE_BUBBLE" ],
+            [ 10, "MOVE_WITHDRAW" ],
+            [ 13, "MOVE_WATER_GUN" ],
+            [ 16, "MOVE_BITE" ],
+            [ 20, "MOVE_RAPID_SPIN" ],
+            [ 24, "MOVE_PROTECT" ],
+            [ 28, "MOVE_WATER_PULSE" ],
+            [ 32, "MOVE_AQUA_TAIL" ],
+            [ 36, "MOVE_SKULL_BASH" ],
+            [ 40, "MOVE_IRON_DEFENSE" ],
+            [ 44, "MOVE_RAIN_DANCE" ],
+            [ 48, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -79,27 +85,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_TAIL_WHIP",
-                "MOVE_BUBBLE"
-            ],
-            "4": "MOVE_TAIL_WHIP",
-            "7": "MOVE_BUBBLE",
-            "10": "MOVE_WITHDRAW",
-            "13": "MOVE_WATER_GUN",
-            "16": "MOVE_BITE",
-            "20": "MOVE_RAPID_SPIN",
-            "24": "MOVE_PROTECT",
-            "28": "MOVE_WATER_PULSE",
-            "32": "MOVE_AQUA_TAIL",
-            "36": "MOVE_SKULL_BASH",
-            "40": "MOVE_IRON_DEFENSE",
-            "44": "MOVE_RAIN_DANCE",
-            "48": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -113,14 +99,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             36,
             "SPECIES_BLASTOISE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -134,10 +120,62 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It is said to live 10,000 years.\nIts furry tail is popular as a\nsymbol of longevity.",
-        "category": "Turtle Pokémon"
+        "en": {
+            "name": "WARTORTLE",
+            "category": "Turtle Pokémon",
+            "entry_text": [
+                "It is said to live 10,000 years.\n",
+                "Its furry tail is popular as a\n",
+                "symbol of longevity."
+            ]
+        },
+        "fr": {
+            "name": "CARABAFFE",
+            "category": "Pokémon Tortue",
+            "entry_text": [
+                "On prétend qu’il vit 10 000 ans.\n",
+                "Sa queue duveteuse est un\n",
+                "symbole de longévité populaire."
+            ]
+        },
+        "de": {
+            "name": "SCHILLOK",
+            "category": "Kröte",
+            "entry_text": [
+                "Man sagt, es werde 10 000 Jahre\n",
+                "alt. Sein buschiger Schweif ist ein\n",
+                "Symbol für langes Leben."
+            ]
+        },
+        "it": {
+            "name": "WARTORTLE",
+            "category": "Pokémon Tartaruga",
+            "entry_text": [
+                "Pare che viva 10000 anni. Ha\n",
+                "la coda ricoperta da una folta\n",
+                "pelliccia, indice di longevità."
+            ]
+        },
+        "es": {
+            "name": "WARTORTLE",
+            "category": "Pokémon Tortuga",
+            "entry_text": [
+                "Se dice que vive 10000 años.\n",
+                "Su peluda cola es un símbolo de\n",
+                "longevidad."
+            ]
+        },
+        "jp": {
+            "name": "カメ－ル",
+            "category": "かめポケモン",
+            "entry_text": [
+                "いちまんねんの　じゅみょうを　もつと\n",
+                "いわれている。ふさふさの　しっぽは\n",
+                "ながいきの　シンボルとして　にんき。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 80,

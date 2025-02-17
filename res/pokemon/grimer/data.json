@@ -1,5 +1,4 @@
 {
-    "name": "Grimer",
     "base_stats": {
         "hp": 80,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_POISON"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 190,
     "base_exp_reward": 90,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_STENCH",
-        "ABILITY_STICKY_HOLD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_STENCH", "ABILITY_STICKY_HOLD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POISON_GAS" ],
+            [ 1, "MOVE_POUND" ],
+            [ 4, "MOVE_HARDEN" ],
+            [ 7, "MOVE_MUD_SLAP" ],
+            [ 12, "MOVE_DISABLE" ],
+            [ 17, "MOVE_MINIMIZE" ],
+            [ 20, "MOVE_SLUDGE" ],
+            [ 23, "MOVE_MUD_BOMB" ],
+            [ 28, "MOVE_FLING" ],
+            [ 33, "MOVE_SCREECH" ],
+            [ 36, "MOVE_SLUDGE_BOMB" ],
+            [ 39, "MOVE_ACID_ARMOR" ],
+            [ 44, "MOVE_GUNK_SHOT" ],
+            [ 49, "MOVE_MEMENTO" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -83,25 +87,7 @@
             "TM90",
             "HM04"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POISON_GAS",
-                "MOVE_POUND"
-            ],
-            "4": "MOVE_HARDEN",
-            "7": "MOVE_MUD_SLAP",
-            "12": "MOVE_DISABLE",
-            "17": "MOVE_MINIMIZE",
-            "20": "MOVE_SLUDGE",
-            "23": "MOVE_MUD_BOMB",
-            "28": "MOVE_FLING",
-            "33": "MOVE_SCREECH",
-            "36": "MOVE_SLUDGE_BOMB",
-            "39": "MOVE_ACID_ARMOR",
-            "44": "MOVE_GUNK_SHOT",
-            "49": "MOVE_MEMENTO"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -112,14 +98,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             38,
             "SPECIES_MUK"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 9,
@@ -133,10 +119,62 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "It was born when sludge in a dirty\nstream was exposed to the moon’s\nX-rays. It appears among filth.",
-        "category": "Sludge Pokémon"
+        "en": {
+            "name": "GRIMER",
+            "category": "Sludge Pokémon",
+            "entry_text": [
+                "It was born when sludge in a dirty\n",
+                "stream was exposed to the moon’s\n",
+                "X-rays. It appears among filth."
+            ]
+        },
+        "fr": {
+            "name": "TADMORV",
+            "category": "Pokémon Dégueu",
+            "entry_text": [
+                "Il est né d’un torrent de boue\n",
+                "exposé aux rayons X de la lune.\n",
+                "Il vit dans les ordures."
+            ]
+        },
+        "de": {
+            "name": "SLEIMA",
+            "category": "Schlamm",
+            "entry_text": [
+                "Es wurde geboren, als Schlamm von\n",
+                "den Strahlen des Mondes getroffen\n",
+                "wurde. Es erscheint, wo Unrat ist. "
+            ]
+        },
+        "it": {
+            "name": "GRIMER",
+            "category": "Pokémon Melma",
+            "entry_text": [
+                "Nacque quando il fango di un fiume\n",
+                "sudicio fu esposto ai raggi X della\n",
+                "luna. Vive nella sporcizia."
+            ]
+        },
+        "es": {
+            "name": "GRIMER",
+            "category": "Pokémon Lodo",
+            "entry_text": [
+                "Emergió del lodo que se formó en\n",
+                "agua contaminada expuesta a los\n",
+                "rayos X lunares. Vive en la basura."
+            ]
+        },
+        "jp": {
+            "name": "ベトベタ－",
+            "category": "ヘドロポケモン",
+            "entry_text": [
+                "どぶがわの　ヘドロが　つきからの\n",
+                "エックスせんを　あびて　うまれた。\n",
+                "きたない　ばしょに　あらわれる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

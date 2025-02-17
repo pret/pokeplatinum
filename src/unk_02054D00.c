@@ -6,6 +6,7 @@
 #include "struct_defs/struct_02055130.h"
 
 #include "field/field_system.h"
+#include "overlay005/bdhc.h"
 #include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EEC68.h"
@@ -13,10 +14,9 @@
 #include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
-#include "overlay005/struct_ov5_021EF13C_decl.h"
 
+#include "map_matrix.h"
 #include "map_tile_behavior.h"
-#include "unk_02039C80.h"
 #include "unk_02054BD0.h"
 #include "unk_02068344.h"
 
@@ -82,7 +82,7 @@ static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1
         int v19;
         int v20;
 
-        v19 = sub_02039E10(fieldSystem->unk_2C);
+        v19 = MapMatrix_GetWidth(fieldSystem->mapMatrix);
         v20 = v19 * 32;
         v3 = (param2 - v17.x) / (16 * FX32_ONE);
         v4 = (param3 - v17.z) / (16 * FX32_ONE);
@@ -104,7 +104,7 @@ static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1
             v1 = 0;
         } else {
             {
-                const UnkStruct_ov5_021EF13C *v21 = ov5_021E9610(v18, v8);
+                const BDHC *v21 = ov5_021E9610(v18, v8);
                 v1 = ov5_021EED9C(v16, v11.x, v11.z, v21, &v11.y);
             }
         }
@@ -233,7 +233,7 @@ static BOOL sub_02054EF4(const FieldSystem *fieldSystem, const int param1, const
         int v8;
         const UnkStruct_ov5_021E8F60 *v9 = fieldSystem->unk_28;
 
-        v7 = sub_02039E10(fieldSystem->unk_2C);
+        v7 = MapMatrix_GetWidth(fieldSystem->mapMatrix);
         v8 = v7 * 32;
         v1 = param1 / 32;
         v2 = param2 / 32;
@@ -464,7 +464,7 @@ BOOL sub_02055178(const FieldSystem *fieldSystem, const int param1, const UnkStr
             BOOL v6;
 
             v4 = ov5_021E9560(fieldSystem->unk_28, v0);
-            v5 = sub_02039E10(fieldSystem->unk_2C);
+            v5 = MapMatrix_GetWidth(fieldSystem->mapMatrix);
 
             sub_020553A4(v4, v5, &v3);
 
@@ -514,7 +514,7 @@ BOOL sub_02055208(const FieldSystem *fieldSystem, const int *param1, const u8 pa
             BOOL v6;
 
             v4 = ov5_021E9560(fieldSystem->unk_28, v0);
-            v5 = sub_02039E10(fieldSystem->unk_2C);
+            v5 = MapMatrix_GetWidth(fieldSystem->mapMatrix);
 
             sub_020553A4(v4, v5, &v3);
 

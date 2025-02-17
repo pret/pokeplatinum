@@ -24,13 +24,13 @@
 #include "heap.h"
 #include "narc.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200A9DC.h"
-#include "unk_0201DBEC.h"
 #include "unk_02023FCC.h"
+#include "vram_transfer.h"
 
 typedef struct {
     UnkStruct_ov21_021E68F4 *unk_00;
@@ -70,9 +70,9 @@ typedef struct {
     int unk_28;
 } UnkStruct_ov21_021DDEC8;
 
-static UnkStruct_ov21_021DDDA4 *ov21_021DDDA4(int param0, UnkStruct_ov21_021D0F60 *param1);
-static UnkStruct_ov21_021DDDF0 *ov21_021DDDF0(int param0, UnkStruct_ov21_021D0F60 *param1);
-static UnkStruct_ov21_021D4660 *ov21_021DDE18(int param0, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021DDDA4 *ov21_021DDDA4(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021DDDF0 *ov21_021DDDF0(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
+static UnkStruct_ov21_021D4660 *ov21_021DDE18(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1);
 static void ov21_021DDE1C(UnkStruct_ov21_021DDDA4 *param0);
 static void ov21_021DDE30(UnkStruct_ov21_021DDDF0 *param0);
 static void ov21_021DDE44(UnkStruct_ov21_021D4660 *param0);
@@ -87,7 +87,7 @@ static void ov21_021DE040(UnkStruct_ov21_021DDEC8 *param0);
 static void ov21_021DE04C(UnkStruct_ov21_021DDEC8 *param0);
 static void ov21_021DE058(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1, const UnkStruct_ov21_021DDDA4 *param2, BOOL param3);
 static BOOL ov21_021DE0C4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1, const UnkStruct_ov21_021DDDA4 *param2, BOOL param3);
-static void ov21_021DE2EC(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDDA4 *param1, int param2);
+static void ov21_021DE2EC(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDDA4 *param1, enum HeapId heapID);
 static void ov21_021DE334(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDDA4 *param1);
 static void ov21_021DE44C(u32 param0, u32 param1, void *param2);
 static void ov21_021DE484(UnkStruct_ov21_021DDE4C *param0);
@@ -106,15 +106,15 @@ static void ov21_021DE49C(UnkStruct_ov21_021DDEC8 *param0, const UnkStruct_ov21_
 static int ov21_021DE5DC(int param0);
 static void ov21_021DE4D4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1, const UnkStruct_ov21_021DDDA4 *param2, int param3);
 
-void ov21_021DDD2C(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, int param2)
+void ov21_021DDD2C(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, enum HeapId heapID)
 {
     UnkStruct_ov21_021DDDA4 *v0;
     UnkStruct_ov21_021DDDF0 *v1;
     UnkStruct_ov21_021D4660 *v2;
 
-    v0 = ov21_021DDDA4(param2, param1);
-    v1 = ov21_021DDDF0(param2, param1);
-    v2 = ov21_021DDE18(param2, param1);
+    v0 = ov21_021DDDA4(heapID, param1);
+    v1 = ov21_021DDDF0(heapID, param1);
+    v2 = ov21_021DDE18(heapID, param1);
 
     param0->unk_00 = v0;
     param0->unk_04 = v1;
@@ -136,11 +136,11 @@ void ov21_021DDD8C(UnkStruct_ov21_021E68F4 *param0)
     ov21_021DDE44(param0->unk_20);
 }
 
-static UnkStruct_ov21_021DDDA4 *ov21_021DDDA4(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021DDDA4 *ov21_021DDDA4(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
     UnkStruct_ov21_021DDDA4 *v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021DDDA4));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DDDA4));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DDDA4));
@@ -152,11 +152,11 @@ static UnkStruct_ov21_021DDDA4 *ov21_021DDDA4(int param0, UnkStruct_ov21_021D0F6
     return v0;
 }
 
-static UnkStruct_ov21_021DDDF0 *ov21_021DDDF0(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021DDDF0 *ov21_021DDDF0(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
     UnkStruct_ov21_021DDDF0 *v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov21_021DDDF0));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DDDF0));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DDDF0));
@@ -166,7 +166,7 @@ static UnkStruct_ov21_021DDDF0 *ov21_021DDDF0(int param0, UnkStruct_ov21_021D0F6
     return v0;
 }
 
-static UnkStruct_ov21_021D4660 *ov21_021DDE18(int param0, UnkStruct_ov21_021D0F60 *param1)
+static UnkStruct_ov21_021D4660 *ov21_021DDE18(enum HeapId heapID, UnkStruct_ov21_021D0F60 *param1)
 {
     return NULL;
 }
@@ -408,7 +408,7 @@ static void ov21_021DE1A4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
 
     param0->unk_04[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 105, 1, 105 + 6000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
-    sub_0200A3DC(param0->unk_04[0]);
+    SpriteTransfer_RequestCharAtEnd(param0->unk_04[0]);
     SpriteResource_ReleaseData(param0->unk_04[0]);
 
     param0->unk_04[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v1, 103, 1, 103 + 6000, 2, param2);
@@ -419,7 +419,7 @@ static void ov21_021DE224(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
 {
     UnkStruct_ov21_021D13FC *v0 = param1->unk_00;
 
-    sub_0200A4E4(param0->unk_04[0]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_04[0]);
 
     SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_04[0]);
     SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_04[2]);
@@ -432,7 +432,7 @@ static void ov21_021DE258(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
     CellActorInitParams v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
 
-    sub_020093B4(&v0, 105 + 6000, 11 + 2100, 103 + 6000, 104 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 105 + 6000, 11 + 2100, 103 + 6000, 104 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
     v1.collection = v2->unk_138;
     v1.resourceData = &v0;
@@ -453,16 +453,16 @@ static void ov21_021DE2E0(UnkStruct_ov21_021DDEC8 *param0)
     CellActor_Delete(param0->unk_00);
 }
 
-static void ov21_021DE2EC(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDDA4 *param1, int param2)
+static void ov21_021DE2EC(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDDA4 *param1, enum HeapId heapID)
 {
-    param0->unk_14 = Heap_AllocFromHeap(param2, sizeof(TouchScreenHitTable) * 1);
+    param0->unk_14 = Heap_AllocFromHeap(heapID, sizeof(TouchScreenHitTable) * 1);
     param0->unk_14[0].circle.code = TOUCHSCREEN_USE_CIRCLE;
     param0->unk_14[0].circle.x = param0->unk_00;
     param0->unk_14[0].circle.y = param0->unk_04;
     param0->unk_14[0].circle.r = 32;
     param0->unk_18.unk_00 = param1;
     param0->unk_18.unk_04 = param0;
-    param0->unk_10 = sub_02023FCC(param0->unk_14, 1, ov21_021DE44C, &param0->unk_18, param2);
+    param0->unk_10 = sub_02023FCC(param0->unk_14, 1, ov21_021DE44C, &param0->unk_18, heapID);
 }
 
 static void ov21_021DE334(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDDA4 *param1)
@@ -649,7 +649,7 @@ static void ov21_021DE4D4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
             break;
         }
 
-        v2 = sub_0201DC68(NNS_GFD_DST_2D_BG_PLTT_SUB, 2 * 32, &((u8 *)(param0->unk_20->pRawData))[(v1 * 32)], 32);
+        v2 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_SUB, 2 * 32, &((u8 *)(param0->unk_20->pRawData))[(v1 * 32)], 32);
         GF_ASSERT(v2);
     }
 }

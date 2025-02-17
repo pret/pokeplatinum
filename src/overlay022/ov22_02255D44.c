@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -61,6 +61,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
@@ -69,7 +70,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_020093B4.h"
 #include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
@@ -442,8 +442,8 @@ int ov22_02256174(OverlayManager *param0, int *param1)
 
     CellActorCollection_SetActive(v0->unk_00.unk_44, 0);
     sub_02039734();
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), 13);
 

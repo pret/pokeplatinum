@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/heap.h"
+#include "constants/screen.h"
 
 #include "overlay077/const_ov77_021D742C.h"
 
@@ -55,7 +56,7 @@ static void RunApplication(void);
 static void WaitFrame(void);
 static void TrySystemReset(enum OSResetParameter resetParam);
 static void SoftReset(enum OSResetParameter resetParam);
-static void HeapCanaryFailed(int param0, int param1);
+static void HeapCanaryFailed(int resetParam, int param1);
 static void CheckHeapCanary(void);
 
 static Application sApplication;
@@ -92,7 +93,7 @@ void NitroMain(void)
         sub_02039A64(3, 0);
     }
 
-    if (SaveData_BackupExists(sApplication.args.saveData) == 0) {
+    if (SaveData_BackupExists(sApplication.args.saveData) == FALSE) {
         sub_0209A74C(0);
     } else {
         switch (OS_GetResetParameter()) {
@@ -224,10 +225,8 @@ static void WaitFrame(void)
 
 static void TrySystemReset(enum OSResetParameter resetParam)
 {
-    if (sub_02038AB8()) {
-        if (CARD_TryWaitBackupAsync() == TRUE) {
-            OS_ResetSystem(resetParam);
-        }
+    if (sub_02038AB8() && CARD_TryWaitBackupAsync() == TRUE) {
+        OS_ResetSystem(resetParam);
     }
 
     WaitFrame();
@@ -271,7 +270,7 @@ static void HeapCanaryFailed(int resetParam, int param1)
 
     if (param1 == 3) {
         sub_02039834(0, 3, 0);
-    } else if (0 == resetParam) {
+    } else if (resetParam == RESET_CLEAN) {
         if (sub_020389B8() == TRUE) {
             sub_02039834(0, 6, 0);
         } else {
@@ -295,10 +294,8 @@ static void HeapCanaryFailed(int resetParam, int param1)
         HandleConsoleFold();
         ReadKeypadAndTouchpad();
 
-        if (elapsed >= 30) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
-                break;
-            }
+        if (elapsed >= 30 && gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            break;
         }
 
         WaitFrame();

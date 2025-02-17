@@ -1,5 +1,4 @@
 {
-    "name": "Ponyta",
     "base_stats": {
         "hp": 50,
         "attack": 85,
@@ -8,10 +7,7 @@
         "special_attack": 65,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 190,
     "base_exp_reward": 152,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_RUN_AWAY",
-        "ABILITY_FLASH_FIRE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_RUN_AWAY", "ABILITY_FLASH_FIRE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 6, "MOVE_TAIL_WHIP" ],
+            [ 10, "MOVE_EMBER" ],
+            [ 15, "MOVE_FLAME_WHEEL" ],
+            [ 19, "MOVE_STOMP" ],
+            [ 24, "MOVE_FIRE_SPIN" ],
+            [ 28, "MOVE_TAKE_DOWN" ],
+            [ 33, "MOVE_AGILITY" ],
+            [ 37, "MOVE_FIRE_BLAST" ],
+            [ 42, "MOVE_BOUNCE" ],
+            [ 46, "MOVE_FLARE_BLITZ" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -70,23 +72,7 @@
             "TM90",
             "HM04"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_TACKLE"
-            ],
-            "6": "MOVE_TAIL_WHIP",
-            "10": "MOVE_EMBER",
-            "15": "MOVE_FLAME_WHEEL",
-            "19": "MOVE_STOMP",
-            "24": "MOVE_FIRE_SPIN",
-            "28": "MOVE_TAKE_DOWN",
-            "33": "MOVE_AGILITY",
-            "37": "MOVE_FIRE_BLAST",
-            "42": "MOVE_BOUNCE",
-            "46": "MOVE_FLARE_BLITZ"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_SNORE",
             "MOVE_BOUNCE",
             "MOVE_HEAT_WAVE",
@@ -95,14 +81,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             40,
             "SPECIES_RAPIDASH"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -116,10 +102,62 @@
         "pokemon_pos_f": 17,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 17,
-        "entry_text": "As a newborn, it can barely stand.\nHowever, through galloping, its\nlegs are made tougher and faster.",
-        "category": "Fire Horse Pokémon"
+        "en": {
+            "name": "PONYTA",
+            "category": "Fire Horse Pokémon",
+            "entry_text": [
+                "As a newborn, it can barely stand.\n",
+                "However, through galloping, its\n",
+                "legs are made tougher and faster."
+            ]
+        },
+        "fr": {
+            "name": "PONYTA",
+            "category": "Pokémon Cheval Feu",
+            "entry_text": [
+                "La crinière et la queue ardentes\n",
+                "lui donnant sa superbe poussent \n",
+                "une heure après sa naissance."
+            ]
+        },
+        "de": {
+            "name": "PONITA",
+            "category": "Feuerpferd",
+            "entry_text": [
+                "Bereits eine Stunde nach seiner\n",
+                "Geburt wachsen seine feurige\n",
+                "Mähne und sein feuriger Schweif. "
+            ]
+        },
+        "it": {
+            "name": "PONYTA",
+            "category": "Pokémon Cavalfuoco",
+            "entry_text": [
+                "Un’ora dopo la nascita, gli\n",
+                "crescono criniera e coda, che gli\n",
+                "donano un aspetto solenne."
+            ]
+        },
+        "es": {
+            "name": "PONYTA",
+            "category": "Pokémon Caballo F.",
+            "entry_text": [
+                "Sus impresionantes cola y crin\n",
+                "de fuego le crecen una hora\n",
+                "después de nacer."
+            ]
+        },
+        "jp": {
+            "name": "ポニ－タ",
+            "category": "ひのうまポケモン",
+            "entry_text": [
+                "うまれてから　１じかんも　すると\n",
+                "ほのおの　たてがみや　しっぽが\n",
+                "はえそろい　りっぱな　すがたになる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

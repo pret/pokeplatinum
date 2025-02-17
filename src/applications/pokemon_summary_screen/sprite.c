@@ -5,7 +5,7 @@
 
 #include "constants/narc.h"
 #include "constants/pokemon.h"
-#include "consts/items.h"
+#include "generated/items.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/pokemon_summary_screen/subscreen.h"
@@ -23,8 +23,8 @@
 #include "pokemon_icon.h"
 #include "ribbon.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201DBEC.h"
 #include "unk_0207C908.h"
+#include "vram_transfer.h"
 
 static void SetTypeIcon(PokemonSummaryScreen *summaryScreen, u8 spriteIndex, u8 param2, u8 type);
 static void SetMonAndTypeIcons(PokemonSummaryScreen *summaryScreen);
@@ -220,7 +220,7 @@ void PokemonSummaryScreen_InitSpriteResources(PokemonSummaryScreen *summaryScree
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, TRUE);
-    VRAMTransferManager_New(32, HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    VramTransfer_New(32, HEAP_ID_POKEMON_SUMMARY_SCREEN);
 
     summaryScreen->renderer = sub_0200C6E4(HEAP_ID_POKEMON_SUMMARY_SCREEN);
     summaryScreen->gfxHandler = sub_0200C704(summaryScreen->renderer);
@@ -731,7 +731,7 @@ void PokemonSummaryScreen_SetMonIcon(PokemonSummaryScreen *summaryScreen)
 
     sub_0200D948(summaryScreen->renderer, summaryScreen->gfxHandler, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, iconIndex, 0, 11);
     sub_0200D414(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], PokeIconPaletteIndex(summaryScreen->monData.species, summaryScreen->monData.form, summaryScreen->monData.isEgg) + 7);
-    CellActor_SetFlipMode(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], (PokemonPersonalData_GetFormValue(summaryScreen->monData.species, summaryScreen->monData.form, 28) ^ 1));
+    CellActor_SetFlipMode(summaryScreen->sprites[SUMMARY_SPRITE_MON_ICON], (SpeciesData_GetFormValue(summaryScreen->monData.species, summaryScreen->monData.form, 28) ^ 1));
 }
 
 void PokemonSummaryScreen_ShowMonIcon(PokemonSummaryScreen *summaryScreen)

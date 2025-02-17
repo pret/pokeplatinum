@@ -7,12 +7,13 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/font_oam.h"
-#include "struct_defs/sprite_manager_allocation.h"
 
 #include "battle/ai_context.h"
 #include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 #include "overlay012/struct_ball_rotation_decl.h"
+
+#include "char_transfer.h"
 
 typedef struct BattleContext BattleContext;
 
@@ -108,7 +109,7 @@ typedef struct BattleScriptTaskData {
     BallRotation *ballRotation;
     CellActorData *cellActorData[2];
     FontOAM *fontOAM;
-    SpriteManagerAllocation spriteMgrAlloc;
+    CharTransferAllocation charTransferAllocation;
     int flag;
     int seqNum;
     int ball;

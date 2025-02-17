@@ -1,5 +1,4 @@
 {
-    "name": "Snubbull",
     "base_stats": {
         "hp": 60,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 190,
     "base_exp_reward": 63,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_RUN_AWAY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_RUN_AWAY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ICE_FANG" ],
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_SCARY_FACE" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 7, "MOVE_BITE" ],
+            [ 13, "MOVE_LICK" ],
+            [ 19, "MOVE_HEADBUTT" ],
+            [ 25, "MOVE_ROAR" ],
+            [ 31, "MOVE_RAGE" ],
+            [ 37, "MOVE_TAKE_DOWN" ],
+            [ 43, "MOVE_PAYBACK" ],
+            [ 49, "MOVE_CRUNCH" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM05",
@@ -88,26 +93,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_ICE_FANG",
-                "MOVE_FIRE_FANG",
-                "MOVE_THUNDER_FANG",
-                "MOVE_TACKLE",
-                "MOVE_SCARY_FACE",
-                "MOVE_TAIL_WHIP",
-                "MOVE_CHARM"
-            ],
-            "7": "MOVE_BITE",
-            "13": "MOVE_LICK",
-            "19": "MOVE_HEADBUTT",
-            "25": "MOVE_ROAR",
-            "31": "MOVE_RAGE",
-            "37": "MOVE_TAKE_DOWN",
-            "43": "MOVE_PAYBACK",
-            "49": "MOVE_CRUNCH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -119,14 +105,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             23,
             "SPECIES_GRANBULL"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -140,10 +126,62 @@
         "pokemon_pos_f": 22,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 22,
-        "entry_text": "Small Pokémon flee from its scary\nface. It is, however, considered\nby women to be cute.",
-        "category": "Fairy Pokémon"
+        "en": {
+            "name": "SNUBBULL",
+            "category": "Fairy Pokémon",
+            "entry_text": [
+                "Small Pokémon flee from its scary\n",
+                "face. It is, however, considered\n",
+                "by women to be cute."
+            ]
+        },
+        "fr": {
+            "name": "SNUBBULL",
+            "category": "Pokémon Fée",
+            "entry_text": [
+                "Son visage horrible fait fuir les\n",
+                "petits Pokémon. Par contre, les\n",
+                "femmes le trouvent mignon."
+            ]
+        },
+        "de": {
+            "name": "SNUBBULL",
+            "category": "Fee",
+            "entry_text": [
+                "Kleine PKMN fliehen beim Anblick\n",
+                "seines Gesichts. Frauen aber finden\n",
+                "es niedlich."
+            ]
+        },
+        "it": {
+            "name": "SNUBBULL",
+            "category": "Pokémon Fata",
+            "entry_text": [
+                "I Pokémon più piccoli fuggono alla\n",
+                "vista della sua faccia terrificante.\n",
+                "Ma le donne lo trovano carino."
+            ]
+        },
+        "es": {
+            "name": "SNUBBULL",
+            "category": "Pokémon Hada",
+            "entry_text": [
+                "Los Pokémon pequeños huyen al\n",
+                "ver su cara agresiva. No obstante,\n",
+                "para muchas féminas es mono."
+            ]
+        },
+        "jp": {
+            "name": "ブル－",
+            "category": "ようせいポケモン",
+            "entry_text": [
+                "ちいさな　ポケモンが　にげだすほどの\n",
+                "こわいかおが　ぎゃくに　かわいいと\n",
+                "じょせいに　にんきの　ポケモン。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

@@ -1,5 +1,4 @@
 {
-    "name": "Wigglytuff",
     "base_stats": {
         "hp": 140,
         "attack": 70,
@@ -8,10 +7,7 @@
         "special_attack": 75,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 50,
     "base_exp_reward": 109,
     "ev_yields": {
@@ -30,21 +26,19 @@
     "hatch_cycles": 10,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_CUTE_CHARM",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PINK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_CUTE_CHARM", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SING" ],
+            [ 1, "MOVE_DISABLE" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_DOUBLE_SLAP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -97,15 +91,7 @@
             "TM90",
             "HM04"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SING",
-                "MOVE_DISABLE",
-                "MOVE_DEFENSE_CURL",
-                "MOVE_DOUBLE_SLAP"
-            ]
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
@@ -120,9 +106,10 @@
             "MOVE_KNOCK_OFF"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -136,10 +123,62 @@
         "pokemon_pos_f": 16,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 16,
-        "entry_text": "Its fine fur feels sublime to the\ntouch. It can expand its body by\ninhaling air.",
-        "category": "Balloon Pokémon"
+        "en": {
+            "name": "WIGGLYTUFF",
+            "category": "Balloon Pokémon",
+            "entry_text": [
+                "Its fine fur feels sublime to the\n",
+                "touch. It can expand its body by\n",
+                "inhaling air."
+            ]
+        },
+        "fr": {
+            "name": "GRODOUDOU",
+            "category": "Pokémon Bouboule",
+            "entry_text": [
+                "Sa fourrure est d’une douceur\n",
+                "incomparable au toucher. Il \n",
+                "peut gonfler en aspirant de l’air."
+            ]
+        },
+        "de": {
+            "name": "KNUDDELUFF",
+            "category": "Ballon",
+            "entry_text": [
+                "Sein feines Fell fühlt sich herrlich\n",
+                "an. Es kann sich größer machen,\n",
+                "indem es Luft einatmet."
+            ]
+        },
+        "it": {
+            "name": "WIGGLYTUFF",
+            "category": "Pokémon Pallone",
+            "entry_text": [
+                "Il suo pelo è morbidissimo.\n",
+                "Riesce a gonfiarsi e a ingrandirsi\n",
+                "semplicemente inalando aria."
+            ]
+        },
+        "es": {
+            "name": "WIGGLYTUFF",
+            "category": "Pokémon Globo",
+            "entry_text": [
+                "Tiene un pelaje muy agradable al\n",
+                "tacto. Puede hinchar su cuerpo\n",
+                "tragando aire."
+            ]
+        },
+        "jp": {
+            "name": "プクリン",
+            "category": "ふうせんポケモン",
+            "entry_text": [
+                "キメこまやかな　たいもうは\n",
+                "ごくじょうの　はだざわり。\n",
+                "いきを　すいこんで　ふくらむ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

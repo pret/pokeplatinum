@@ -11,12 +11,11 @@
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/trainer_data.h"
+#include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_input.h"
@@ -555,7 +554,7 @@ void ov16_0225D360(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
         {
             Trainer *trainer = BattleSystem_GetTrainer(param0, param1->battler);
             v0->unk_0B = 0;
-            v0->unk_0C = sub_020788D0(ov16_02264768(param0, param1->battler, trainer->class));
+            v0->unk_0C = sub_020788D0(ov16_02264768(param0, param1->battler, trainer->header.trainerType));
         }
     }
 
@@ -3172,7 +3171,7 @@ static void ov16_02260B04(SysTask *param0, void *param1)
 
     v3 = ov16_0223ED6C(v0->unk_00);
     v2 = BattleMon_Get(BattleSystem_Context(v0->unk_00), v0->unk_09, 0, NULL);
-    v1 = PokemonPersonalData_GetSpeciesValue(v2, 26);
+    v1 = SpeciesData_GetSpeciesValue(v2, SPECIES_DATA_SAFARI_FLEE_RATE);
     v1 = v1 * Unk_ov16_0226F194[v3][0] / Unk_ov16_0226F194[v3][1];
 
     if ((BattleSystem_RandNext(v0->unk_00) % 255) <= v1) {

@@ -1,5 +1,4 @@
 {
-    "name": "Poliwag",
     "base_stats": {
         "hp": 40,
         "attack": 50,
@@ -8,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 40
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 255,
     "base_exp_reward": 77,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_1"
-    ],
-    "abilities": [
-        "ABILITY_WATER_ABSORB",
-        "ABILITY_DAMP"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": true
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_1" ],
+    "abilities": [ "ABILITY_WATER_ABSORB", "ABILITY_DAMP" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": true,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WATER_SPORT" ],
+            [ 5, "MOVE_BUBBLE" ],
+            [ 8, "MOVE_HYPNOSIS" ],
+            [ 11, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_DOUBLE_SLAP" ],
+            [ 18, "MOVE_RAIN_DANCE" ],
+            [ 21, "MOVE_BODY_SLAM" ],
+            [ 25, "MOVE_BUBBLE_BEAM" ],
+            [ 28, "MOVE_MUD_SHOT" ],
+            [ 31, "MOVE_BELLY_DRUM" ],
+            [ 35, "MOVE_WAKE_UP_SLAP" ],
+            [ 38, "MOVE_HYDRO_PUMP" ],
+            [ 41, "MOVE_MUD_BOMB" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -72,22 +75,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_WATER_SPORT",
-            "5": "MOVE_BUBBLE",
-            "8": "MOVE_HYPNOSIS",
-            "11": "MOVE_WATER_GUN",
-            "15": "MOVE_DOUBLE_SLAP",
-            "18": "MOVE_RAIN_DANCE",
-            "21": "MOVE_BODY_SLAM",
-            "25": "MOVE_BUBBLE_BEAM",
-            "28": "MOVE_MUD_SHOT",
-            "31": "MOVE_BELLY_DRUM",
-            "35": "MOVE_WAKE_UP_SLAP",
-            "38": "MOVE_HYDRO_PUMP",
-            "41": "MOVE_MUD_BOMB"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
@@ -96,14 +84,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             25,
             "SPECIES_POLIWHIRL"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_SMALL"
+        "has": true,
+        "size": "FOOTPRINT_SMALL"
     },
     "pokedex_data": {
         "height": 6,
@@ -117,10 +105,62 @@
         "pokemon_pos_f": 21,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 21,
-        "entry_text": "Its skin is so thin, its internal\norgans are visible. It has trouble\nwalking on its newly grown feet.",
-        "category": "Tadpole Pokémon"
+        "en": {
+            "name": "POLIWAG",
+            "category": "Tadpole Pokémon",
+            "entry_text": [
+                "Its skin is so thin, its internal\n",
+                "organs are visible. It has trouble\n",
+                "walking on its newly grown feet."
+            ]
+        },
+        "fr": {
+            "name": "PTITARD",
+            "category": "Pokémon Têtard",
+            "entry_text": [
+                "Sa peau est si mince qu’on\n",
+                "voit ses organes internes. Il tient\n",
+                "à peine sur ses nouveaux pieds."
+            ]
+        },
+        "de": {
+            "name": "QUAPSEL",
+            "category": "Kaulquappe",
+            "entry_text": [
+                "Seine Haut ist so dünn, dass man die\n",
+                "inneren Organe sehen kann. Es hat\n",
+                "Schwierigkeiten beim Laufen."
+            ]
+        },
+        "it": {
+            "name": "POLIWAG",
+            "category": "Pokémon Girino",
+            "entry_text": [
+                "La sua pelle è così sottile che si\n",
+                "intravedono gli organi. Cammina a\n",
+                "fatica sulle zampe poco sviluppate."
+            ]
+        },
+        "es": {
+            "name": "POLIWAG",
+            "category": "Pokémon Renacuajo",
+            "entry_text": [
+                "Su piel es tan fina que permite\n",
+                "ver sus órganos. Le cuesta andar\n",
+                "con sus nuevas patas."
+            ]
+        },
+        "jp": {
+            "name": "ニョロモ",
+            "category": "おたまポケモン",
+            "entry_text": [
+                "ないぞうが　すけて　みえるほど\n",
+                "ひふが　うすい。はえたばかりの\n",
+                "あしは　あるくことが　にがて。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

@@ -6,7 +6,6 @@
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay104/ov104_0223BCBC.h"
@@ -36,24 +35,24 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "unk_0209BA80.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay104);
 
@@ -408,7 +407,7 @@ int ov108_02241D70(OverlayManager *param0, int *param1)
 
     *(v1->unk_3C4) = v1->unk_0D;
 
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     ov108_02242238(v1);
     OverlayManager_FreeData(param0);
     SetMainCallback(NULL, NULL);
@@ -859,8 +858,8 @@ static void ov108_0224237C(UnkStruct_ov108_02241DB0 *param0)
     param0->unk_3BC = ov108_0224351C(&param0->unk_E8, 0, 0, 0, 2, 128, 96, 0, 0, 1);
 
     if (CommSys_IsInitialized()) {
-        sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
-        sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+        ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
+        ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
         sub_02039734();
     }
 
@@ -913,8 +912,8 @@ static void ov108_02242708(void *param0)
     }
 
     Bg_RunScheduledUpdates(v0->unk_90);
-    sub_0201DCAC();
-    sub_0200A858();
+    VramTransfer_Process();
+    RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }

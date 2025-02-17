@@ -1,5 +1,4 @@
 {
-    "name": "Golem",
     "base_stats": {
         "hp": 80,
         "attack": 110,
@@ -8,10 +7,7 @@
         "special_attack": 55,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_ROCK",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_ROCK", "TYPE_GROUND" ],
     "catch_rate": 45,
     "base_exp_reward": 177,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_ROCK_HEAD",
-        "ABILITY_STURDY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_ROCK_HEAD", "ABILITY_STURDY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_MUD_SPORT" ],
+            [ 1, "MOVE_ROCK_POLISH" ],
+            [ 4, "MOVE_MUD_SPORT" ],
+            [ 8, "MOVE_ROCK_POLISH" ],
+            [ 11, "MOVE_ROCK_THROW" ],
+            [ 15, "MOVE_MAGNITUDE" ],
+            [ 18, "MOVE_SELFDESTRUCT" ],
+            [ 22, "MOVE_ROLLOUT" ],
+            [ 27, "MOVE_ROCK_BLAST" ],
+            [ 33, "MOVE_EARTHQUAKE" ],
+            [ 38, "MOVE_EXPLOSION" ],
+            [ 44, "MOVE_DOUBLE_EDGE" ],
+            [ 49, "MOVE_STONE_EDGE" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM05",
             "TM06",
@@ -85,26 +90,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_DEFENSE_CURL",
-                "MOVE_MUD_SPORT",
-                "MOVE_ROCK_POLISH"
-            ],
-            "4": "MOVE_MUD_SPORT",
-            "8": "MOVE_ROCK_POLISH",
-            "11": "MOVE_ROCK_THROW",
-            "15": "MOVE_MAGNITUDE",
-            "18": "MOVE_SELFDESTRUCT",
-            "22": "MOVE_ROLLOUT",
-            "27": "MOVE_ROCK_BLAST",
-            "33": "MOVE_EARTHQUAKE",
-            "38": "MOVE_EXPLOSION",
-            "44": "MOVE_DOUBLE_EDGE",
-            "49": "MOVE_STONE_EDGE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
@@ -118,9 +104,10 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 14,
@@ -134,10 +121,62 @@
         "pokemon_pos_f": 7,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 7,
-        "entry_text": "Even dynamite can’t harm its hard,\nboulderlike body. It sheds its hide\njust once a year.",
-        "category": "Megaton Pokémon"
+        "en": {
+            "name": "GOLEM",
+            "category": "Megaton Pokémon",
+            "entry_text": [
+                "Even dynamite can’t harm its hard,\n",
+                "boulderlike body. It sheds its hide\n",
+                "just once a year."
+            ]
+        },
+        "fr": {
+            "name": "GROLEM",
+            "category": "Pokémon Titanesque",
+            "entry_text": [
+                "Il mue une fois par an. Son corps\n",
+                "rocailleux est si dur qu’il résiste\n",
+                "même à la dynamite."
+            ]
+        },
+        "de": {
+            "name": "GEOWAZ",
+            "category": "Urgestein",
+            "entry_text": [
+                "Einmal im Jahr wechselt es seine\n",
+                "Haut. Seinem Körper kann\n",
+                "selbst Dynamit nichts anhaben."
+            ]
+        },
+        "it": {
+            "name": "GOLEM",
+            "category": "Pokémon Megatone",
+            "entry_text": [
+                "Muta il guscio una volta all’anno. Il\n",
+                "suo corpo duro come la roccia non\n",
+                "è scalfito neanche dalla dinamite."
+            ]
+        },
+        "es": {
+            "name": "GOLEM",
+            "category": "Pokémon Megatón",
+            "entry_text": [
+                "Muda su piel una vez al año.\n",
+                "Su cuerpo rocoso es tan duro\n",
+                "que ni la dinamita lo daña."
+            ]
+        },
+        "jp": {
+            "name": "ゴロ－ニャ",
+            "category": "メガトンポケモン",
+            "entry_text": [
+                "１ねんに　１かい　だっぴする。\n",
+                "がんせきのような　かたい　からだは\n",
+                "ダイナマイトでも　きずつかない。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

@@ -11,8 +11,6 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_party_decl.h"
-#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/sprite_template.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -41,9 +39,11 @@
 #include "bg_window.h"
 #include "camera.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "core_sys.h"
 #include "easy3d_object.h"
 #include "font.h"
+#include "fx_util.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -58,25 +58,23 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02015920.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E190.h"
 #include "unk_0201E3D8.h"
-#include "unk_0201E86C.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020393C8.h"
+#include "vram_transfer.h"
 
 typedef struct {
     Easy3DModel unk_00;
@@ -85,7 +83,7 @@ typedef struct {
 
 typedef struct {
     FontOAM *unk_00;
-    SpriteManagerAllocation unk_04;
+    CharTransferAllocation unk_04;
     u16 unk_10;
 } UnkStruct_ov113_0225E250;
 
@@ -380,7 +378,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     v0->unk_08 = BgConfig_New(118);
 
-    VRAMTransferManager_New(64, 118);
+    VramTransfer_New(64, 118);
     SetAutorepeat(4, 8);
 
     ov113_0225CF58(v0->unk_08);
@@ -404,14 +402,14 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     v0->unk_1C = sub_0200C6E4(118);
 
     sub_0200C73C(v0->unk_1C, &Unk_ov113_02260954, &Unk_ov113_022608E8, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_20 = sub_0200C704(v0->unk_1C);
 
     sub_0200C7C0(v0->unk_1C, v0->unk_20, (64 + 64));
     sub_0200CB30(v0->unk_1C, v0->unk_20, &Unk_ov113_022608FC);
-    sub_0200964C(sub_0200C738(v0->unk_1C), 0, ((192 + 80) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(v0->unk_1C), 0, ((192 + 80) << FX32_SHIFT));
     sub_02039734();
 
     ov113_0225E368(&v0->unk_194, v0->unk_19E0);
@@ -661,7 +659,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     NARC_dtor(v0->unk_164);
     SetMainCallback(NULL, NULL);
     DisableHBlank();
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     sub_0201E530();
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -691,7 +689,7 @@ static void ov113_0225CF18(void *param0)
 
     ov113_0225E65C(&v0->unk_194, v0->unk_9BC);
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_0C);
     Bg_RunScheduledUpdates(v0->unk_08);
@@ -1175,7 +1173,7 @@ static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0)
         v2 = Camera_GetDistance(param0->camera);
         v3 = FX32_ONE * 4 / 3;
 
-        sub_0201E34C(v1, v2, v3, &v4, &v5);
+        CalcLinearFov(v1, v2, v3, &v4, &v5);
 
         param0->unk_D0 = v4;
         param0->unk_D4 = v5;
@@ -1505,7 +1503,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
 {
     FontOAMInitData v0;
     Window v1;
-    SpriteManagerAllocation v2;
+    CharTransferAllocation v2;
     int v3;
     FontOAM *v4;
     BgConfig *v5;
@@ -1524,7 +1522,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     Text_AddPrinterWithParamsColorAndSpacing(&v1, param3, param2, 0, 0, TEXT_SPEED_NO_TRANSFER, param4, 0, 0, NULL);
 
     v3 = sub_02012898(&v1, NNS_G2D_VRAM_TYPE_2DMAIN, 118);
-    sub_0201ED94(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
+    CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
     if (param9 == 1) {
         param7 -= v7 / 2;
@@ -1537,7 +1535,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
     v0.unk_08 = sub_0200D9B0(v6);
     v0.unk_0C = sub_0200D04C(v6, param6);
     v0.unk_10 = NULL;
-    v0.unk_14 = v2.unk_04;
+    v0.unk_14 = v2.offset;
     v0.unk_18 = param7;
     v0.unk_1C = param8;
     v0.unk_20 = 0;
@@ -1559,7 +1557,7 @@ static void ov113_0225E15C(UnkStruct_ov113_0225DBCC *param0, UnkStruct_ov113_022
 static void ov113_0225E250(UnkStruct_ov113_0225E250 *param0)
 {
     sub_02012870(param0->unk_00);
-    sub_0201EE28(&param0->unk_04);
+    CharTransfer_ClearRange(&param0->unk_04);
 }
 
 static void ov113_0225E264(const Strbuf *param0, int param1, int *param2, int *param3)

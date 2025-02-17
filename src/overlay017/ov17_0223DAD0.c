@@ -37,6 +37,7 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -44,18 +45,17 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(overlay12);
@@ -258,7 +258,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     ov17_0224CDB4(v0, 1);
     v0->unk_14.unk_60 = BgConfig_New(23);
 
-    VRAMTransferManager_New(64, 23);
+    VramTransfer_New(64, 23);
     SetAutorepeat(4, 8);
 
     v0->unk_1074 = ov17_02249380(v0->unk_00, &v0->unk_14);
@@ -272,14 +272,14 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     v0->unk_14.unk_58 = sub_0200C6E4(23);
 
     sub_0200C73C(v0->unk_14.unk_58, &Unk_ov17_02253008, &Unk_ov17_02252FDC, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_14.unk_5C = sub_0200C704(v0->unk_14.unk_58);
 
     sub_0200C7C0(v0->unk_14.unk_58, v0->unk_14.unk_5C, (64 + 64));
     sub_0200CB30(v0->unk_14.unk_58, v0->unk_14.unk_5C, &Unk_ov17_02252FF0);
-    sub_0200964C(sub_0200C738(v0->unk_14.unk_58), 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(sub_0200C738(v0->unk_14.unk_58), 0, (256 * FX32_ONE));
 
     v0->unk_14.unk_44 = sub_0200762C(23);
     ov17_0223E450();
@@ -421,7 +421,7 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
 
     sub_0200D0B0(v0->unk_14.unk_58, v0->unk_14.unk_5C);
     sub_0200C8D4(v0->unk_14.unk_58);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     ov17_0224A1EC(&v0->unk_14);
 
@@ -495,7 +495,7 @@ static void ov17_0223E09C(void *param0)
         }
     }
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_14.unk_90);
     Bg_RunScheduledUpdates(v0->unk_14.unk_60);

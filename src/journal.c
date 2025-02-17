@@ -3,12 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/badges.h"
-#include "consts/journal.h"
-#include "consts/map.h"
-
-#include "text/gmm/message_bank_location_names.h"
-#include "trainers/trdata.naix"
+#include "generated/badges.h"
+#include "generated/journal_location_events.h"
+#include "generated/journal_online_events.h"
+#include "generated/map_headers.h"
+#include "generated/trainers.h"
 
 #include "heap.h"
 #include "map_header.h"
@@ -16,6 +15,8 @@
 #include "rtc.h"
 #include "savedata.h"
 #include "trainer_info.h"
+
+#include "res/text/bank/location_names.h"
 
 #define LOCATION_EVENT(locationID, trainerID, eventType) ((locationID << 16) | ((trainerID & 0x3ff) << 6) | (eventType & 0x3f))
 
@@ -112,14 +113,14 @@ static const MapInfo sMapsInfo[] = {
 };
 
 static const GymInfo sGymsInfo[] = {
-    { trainer_leader_roark, MAP_HEADER_OREBURGH_CITY_GYM, BADGE_ID_COAL },
-    { trainer_leader_gardenia, MAP_HEADER_ETERNA_CITY_GYM, BADGE_ID_FOREST },
-    { trainer_leader_wake, MAP_HEADER_PASTORIA_CITY_GYM, BADGE_ID_FEN },
-    { trainer_leader_maylene, MAP_HEADER_VEILSTONE_CITY_GYM, BADGE_ID_COBBLE },
-    { trainer_leader_fantina, MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM, BADGE_ID_RELIC },
-    { trainer_leader_candice, MAP_HEADER_SNOWPOINT_CITY_GYM, BADGE_ID_ICICLE },
-    { trainer_leader_byron, MAP_HEADER_CANALAVE_CITY_GYM, BADGE_ID_MINE },
-    { trainer_leader_volkner, MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1, BADGE_ID_BEACON }
+    { TRAINER_LEADER_ROARK, MAP_HEADER_OREBURGH_CITY_GYM, BADGE_ID_COAL },
+    { TRAINER_LEADER_GARDENIA, MAP_HEADER_ETERNA_CITY_GYM, BADGE_ID_FOREST },
+    { TRAINER_LEADER_WAKE, MAP_HEADER_PASTORIA_CITY_GYM, BADGE_ID_FEN },
+    { TRAINER_LEADER_MAYLENE, MAP_HEADER_VEILSTONE_CITY_GYM, BADGE_ID_COBBLE },
+    { TRAINER_LEADER_FANTINA, MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM, BADGE_ID_RELIC },
+    { TRAINER_LEADER_CANDICE, MAP_HEADER_SNOWPOINT_CITY_GYM, BADGE_ID_ICICLE },
+    { TRAINER_LEADER_BYRON, MAP_HEADER_CANALAVE_CITY_GYM, BADGE_ID_MINE },
+    { TRAINER_LEADER_VOLKNER, MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1, BADGE_ID_BEACON }
 };
 
 int Journal_SaveSize(void)
@@ -1384,14 +1385,14 @@ static u8 JournalEntry_TrainerType(u32 trainerID)
         }
     }
 
-    if (trainerID == trainer_elite_four_aaron || trainerID == trainer_elite_four_aaron_rematch
-        || trainerID == trainer_elite_four_bertha || trainerID == trainer_elite_four_bertha_rematch
-        || trainerID == trainer_elite_four_flint || trainerID == trainer_elite_four_flint_rematch
-        || trainerID == trainer_elite_four_lucian || trainerID == trainer_elite_four_lucian_rematch) {
+    if (trainerID == TRAINER_ELITE_FOUR_AARON || trainerID == TRAINER_ELITE_FOUR_AARON_REMATCH
+        || trainerID == TRAINER_ELITE_FOUR_BERTHA || trainerID == TRAINER_ELITE_FOUR_BERTHA_REMATCH
+        || trainerID == TRAINER_ELITE_FOUR_FLINT || trainerID == TRAINER_ELITE_FOUR_FLINT_REMATCH
+        || trainerID == TRAINER_ELITE_FOUR_LUCIAN || trainerID == TRAINER_ELITE_FOUR_LUCIAN_REMATCH) {
         return TRAINER_TYPE_ELITE_FOUR;
     }
 
-    if (trainerID == trainer_champion_cynthia || trainerID == trainer_champion_cynthia_rematch) {
+    if (trainerID == TRAINER_CHAMPION_CYNTHIA || trainerID == TRAINER_CHAMPION_CYNTHIA_REMATCH) {
         return TRAINER_TYPE_CHAMPION;
     }
 

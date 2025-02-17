@@ -1,5 +1,4 @@
 {
-    "name": "Pidgey",
     "base_stats": {
         "hp": 40,
         "attack": 45,
@@ -8,10 +7,7 @@
         "special_attack": 35,
         "special_defense": 35
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 255,
     "base_exp_reward": 55,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_TANGLED_FEET"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_TANGLED_FEET" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 5, "MOVE_SAND_ATTACK" ],
+            [ 9, "MOVE_GUST" ],
+            [ 13, "MOVE_QUICK_ATTACK" ],
+            [ 17, "MOVE_WHIRLWIND" ],
+            [ 21, "MOVE_TWISTER" ],
+            [ 25, "MOVE_FEATHER_DANCE" ],
+            [ 29, "MOVE_AGILITY" ],
+            [ 33, "MOVE_WING_ATTACK" ],
+            [ 37, "MOVE_ROOST" ],
+            [ 41, "MOVE_TAILWIND" ],
+            [ 45, "MOVE_MIRROR_MOVE" ],
+            [ 49, "MOVE_AIR_SLASH" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -72,22 +75,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "5": "MOVE_SAND_ATTACK",
-            "9": "MOVE_GUST",
-            "13": "MOVE_QUICK_ATTACK",
-            "17": "MOVE_WHIRLWIND",
-            "21": "MOVE_TWISTER",
-            "25": "MOVE_FEATHER_DANCE",
-            "29": "MOVE_AGILITY",
-            "33": "MOVE_WING_ATTACK",
-            "37": "MOVE_ROOST",
-            "41": "MOVE_TAILWIND",
-            "45": "MOVE_MIRROR_MOVE",
-            "49": "MOVE_AIR_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -100,14 +88,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             18,
             "SPECIES_PIDGEOTTO"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 3,
@@ -121,10 +109,58 @@
         "pokemon_pos_f": 31,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 31,
-        "entry_text": "It is docile and prefers to avoid\nconflict. If disturbed, however,\nit can ferociously strike back.",
-        "category": "Tiny Bird Pokémon"
+        "en": {
+            "name": "PIDGEY",
+            "category": "Tiny Bird Pokémon",
+            "entry_text": [
+                "It is docile and prefers to avoid\n",
+                "conflict. If disturbed, however,\n",
+                "it can ferociously strike back."
+            ]
+        },
+        "fr": {
+            "name": "ROUCOOL",
+            "category": "Pokémon Minoiseau",
+            "entry_text": [
+                "Ce Pokémon docile préfère éviter\n",
+                "le combat. Toutefois, il se montre\n",
+                "très féroce quand on l’agresse."
+            ]
+        },
+        "de": {
+            "name": "TAUBSI",
+            "category": "Kleinvogel",
+            "entry_text": [ "Reizt man dieses an sich gutmütige\n", "Pokémon, wehrt es sich wütend." ]
+        },
+        "it": {
+            "name": "PIDGEY",
+            "category": "Pokémon Uccellino",
+            "entry_text": [
+                "È docile e preferisce evitare i\n",
+                "conflitti. Ma se viene disturbato,\n",
+                "contrattacca ferocemente."
+            ]
+        },
+        "es": {
+            "name": "PIDGEY",
+            "category": "Pokémon Pajarito",
+            "entry_text": [
+                "Es manso y prefiere evitar los\n",
+                "problemas. Sin embargo, si le\n",
+                "molestan atacará ferozmente."
+            ]
+        },
+        "jp": {
+            "name": "ポッポ",
+            "category": "ことりポケモン",
+            "entry_text": [
+                "たたかいを　このまない　おとなしい\n",
+                "せいかくだが　へたに　てを　だすと\n",
+                "きょうれつに　はんげきされるぞ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 30,

@@ -1,5 +1,4 @@
 {
-    "name": "Dusclops",
     "base_stats": {
         "hp": 40,
         "attack": 70,
@@ -8,10 +7,7 @@
         "special_attack": 60,
         "special_defense": 130
     },
-    "types": [
-        "TYPE_GHOST",
-        "TYPE_GHOST"
-    ],
+    "types": [ "TYPE_GHOST", "TYPE_GHOST" ],
     "catch_rate": 90,
     "base_exp_reward": 179,
     "ev_yields": {
@@ -30,21 +26,35 @@
     "hatch_cycles": 25,
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_AMORPHOUS",
-        "EGG_GROUP_AMORPHOUS"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLACK",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FIRE_PUNCH" ],
+            [ 1, "MOVE_ICE_PUNCH" ],
+            [ 1, "MOVE_THUNDER_PUNCH" ],
+            [ 1, "MOVE_GRAVITY" ],
+            [ 1, "MOVE_BIND" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_NIGHT_SHADE" ],
+            [ 1, "MOVE_DISABLE" ],
+            [ 6, "MOVE_DISABLE" ],
+            [ 9, "MOVE_FORESIGHT" ],
+            [ 14, "MOVE_ASTONISH" ],
+            [ 17, "MOVE_CONFUSE_RAY" ],
+            [ 22, "MOVE_SHADOW_SNEAK" ],
+            [ 25, "MOVE_PURSUIT" ],
+            [ 30, "MOVE_CURSE" ],
+            [ 33, "MOVE_WILL_O_WISP" ],
+            [ 37, "MOVE_SHADOW_PUNCH" ],
+            [ 43, "MOVE_MEAN_LOOK" ],
+            [ 51, "MOVE_PAYBACK" ],
+            [ 61, "MOVE_FUTURE_SIGHT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -93,31 +103,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FIRE_PUNCH",
-                "MOVE_ICE_PUNCH",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_GRAVITY",
-                "MOVE_BIND",
-                "MOVE_LEER",
-                "MOVE_NIGHT_SHADE",
-                "MOVE_DISABLE"
-            ],
-            "6": "MOVE_DISABLE",
-            "9": "MOVE_FORESIGHT",
-            "14": "MOVE_ASTONISH",
-            "17": "MOVE_CONFUSE_RAY",
-            "22": "MOVE_SHADOW_SNEAK",
-            "25": "MOVE_PURSUIT",
-            "30": "MOVE_CURSE",
-            "33": "MOVE_WILL_O_WISP",
-            "37": "MOVE_SHADOW_PUNCH",
-            "43": "MOVE_MEAN_LOOK",
-            "51": "MOVE_PAYBACK",
-            "61": "MOVE_FUTURE_SIGHT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
@@ -132,14 +118,14 @@
     },
     "evolutions": [
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_REAPER_CLOTH",
             "SPECIES_DUSKNOIR"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 16,
@@ -153,10 +139,62 @@
         "pokemon_pos_f": 2,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 2,
-        "entry_text": "It seeks drifting will-o’-the-wisps\nand sucks them into its empty body.\nWhat happens inside is a mystery.",
-        "category": "Beckon Pokémon"
+        "en": {
+            "name": "DUSCLOPS",
+            "category": "Beckon Pokémon",
+            "entry_text": [
+                "It seeks drifting will-o’-the-wisps\n",
+                "and sucks them into its empty body.\n",
+                "What happens inside is a mystery."
+            ]
+        },
+        "fr": {
+            "name": "TERACLOPE",
+            "category": "Pokémon Appel",
+            "entry_text": [
+                "Son corps est creux. On raconte\n",
+                "que celui qui regarde à l’intérieur\n",
+                "finira aspiré par le néant."
+            ]
+        },
+        "de": {
+            "name": "ZWIRRKLOP",
+            "category": "Wink",
+            "entry_text": [
+                "Sein Körper ist hohl. Man sagt,\n",
+                "dass diejenigen, die in den Körper\n",
+                "blicken, hineingezogen werden."
+            ]
+        },
+        "it": {
+            "name": "DUSCLOPS",
+            "category": "Pokémon Ipnosguardo",
+            "entry_text": [
+                "Il suo corpo è vuoto. Pare che\n",
+                "chiunque si avvicini per guardare\n",
+                "dentro venga risucchiato."
+            ]
+        },
+        "es": {
+            "name": "DUSCLOPS",
+            "category": "Pokémon Atrayente",
+            "entry_text": [
+                "Su cuerpo está hueco. Se dice\n",
+                "que quien mire dentro, será\n",
+                "tragado por un agujero negro."
+            ]
+        },
+        "jp": {
+            "name": "サマヨ－ル",
+            "category": "てまねきポケモン",
+            "entry_text": [
+                "からだの　なかみは　くうどうに\n",
+                "なっていて　のぞきこんだ　あいてを\n",
+                "すいこんでしまうと　いわれている。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

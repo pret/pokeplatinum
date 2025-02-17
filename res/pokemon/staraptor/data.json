@@ -1,5 +1,4 @@
 {
-    "name": "Staraptor",
     "base_stats": {
         "hp": 85,
         "attack": 120,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 172,
     "ev_yields": {
@@ -30,21 +26,29 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_INTIMIDATE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BROWN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_INTIMIDATE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_WING_ATTACK" ],
+            [ 5, "MOVE_QUICK_ATTACK" ],
+            [ 9, "MOVE_WING_ATTACK" ],
+            [ 13, "MOVE_DOUBLE_TEAM" ],
+            [ 18, "MOVE_ENDEAVOR" ],
+            [ 23, "MOVE_WHIRLWIND" ],
+            [ 28, "MOVE_AERIAL_ACE" ],
+            [ 33, "MOVE_TAKE_DOWN" ],
+            [ 34, "MOVE_CLOSE_COMBAT" ],
+            [ 41, "MOVE_AGILITY" ],
+            [ 49, "MOVE_BRAVE_BIRD" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM11",
@@ -74,25 +78,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_GROWL",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_WING_ATTACK"
-            ],
-            "5": "MOVE_QUICK_ATTACK",
-            "9": "MOVE_WING_ATTACK",
-            "13": "MOVE_DOUBLE_TEAM",
-            "18": "MOVE_ENDEAVOR",
-            "23": "MOVE_WHIRLWIND",
-            "28": "MOVE_AERIAL_ACE",
-            "33": "MOVE_TAKE_DOWN",
-            "34": "MOVE_CLOSE_COMBAT",
-            "41": "MOVE_AGILITY",
-            "49": "MOVE_BRAVE_BIRD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -103,9 +89,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -119,10 +106,62 @@
         "pokemon_pos_f": 12,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 12,
-        "entry_text": "It never stops attacking even\nif it is injured. It fusses over the\nshape of its comb.",
-        "category": "Predator Pokémon"
+        "en": {
+            "name": "STARAPTOR",
+            "category": "Predator Pokémon",
+            "entry_text": [
+                "It never stops attacking even\n",
+                "if it is injured. It fusses over the\n",
+                "shape of its comb."
+            ]
+        },
+        "fr": {
+            "name": "ETOURAPTOR",
+            "category": "Pokémon Rapace",
+            "entry_text": [
+                "Un Pokémon sauvage qui a le\n",
+                "courage de défier des ennemis\n",
+                "beaucoup plus grands que lui."
+            ]
+        },
+        "de": {
+            "name": "STARAPTOR",
+            "category": "Raubtier",
+            "entry_text": [
+                "Es hat ein wildes Wesen. Mutig\n",
+                "fordert es immer wieder Gegner\n",
+                "heraus, die viel größer sind."
+            ]
+        },
+        "it": {
+            "name": "STARAPTOR",
+            "category": "Pokémon Rapace",
+            "entry_text": [
+                "Ha un’indole selvaggia. Sfida\n",
+                "coraggiosamente i nemici più\n",
+                "grossi di lui."
+            ]
+        },
+        "es": {
+            "name": "STARAPTOR",
+            "category": "Pokémon Depredador",
+            "entry_text": [
+                "Tiene un carácter salvaje.\n",
+                "No duda en desafiar a rivales\n",
+                "mucho mayores."
+            ]
+        },
+        "jp": {
+            "name": "ムクホ－ク",
+            "category": "もうきんポケモン",
+            "entry_text": [
+                "どうもうな　せいかくの　ポケモン。\n",
+                "じぶんよりも　からだの　おおきい\n",
+                "あいてにも　かかんに　いどみかかる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

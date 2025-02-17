@@ -1,5 +1,4 @@
 {
-    "name": "Smeargle",
     "base_stats": {
         "hp": 55,
         "attack": 20,
@@ -8,10 +7,7 @@
         "special_attack": 20,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 45,
     "base_exp_reward": 106,
     "ev_yields": {
@@ -30,38 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FIELD",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_OWN_TEMPO",
-        "ABILITY_TECHNICIAN"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_OWN_TEMPO", "ABILITY_TECHNICIAN" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": "MOVE_SKETCH",
-            "11": "MOVE_SKETCH",
-            "21": "MOVE_SKETCH",
-            "31": "MOVE_SKETCH",
-            "41": "MOVE_SKETCH",
-            "51": "MOVE_SKETCH",
-            "61": "MOVE_SKETCH",
-            "71": "MOVE_SKETCH",
-            "81": "MOVE_SKETCH",
-            "91": "MOVE_SKETCH"
-        },
-        "tutor": []
+        "by_level": [
+            [ 1, "MOVE_SKETCH" ],
+            [ 11, "MOVE_SKETCH" ],
+            [ 21, "MOVE_SKETCH" ],
+            [ 31, "MOVE_SKETCH" ],
+            [ 41, "MOVE_SKETCH" ],
+            [ 51, "MOVE_SKETCH" ],
+            [ 61, "MOVE_SKETCH" ],
+            [ 71, "MOVE_SKETCH" ],
+            [ 81, "MOVE_SKETCH" ],
+            [ 91, "MOVE_SKETCH" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [  ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -75,10 +64,62 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "It marks its territory by using its\ntail like a paintbrush. There are\nmore than 5,000 different marks.",
-        "category": "Painter Pokémon"
+        "en": {
+            "name": "SMEARGLE",
+            "category": "Painter Pokémon",
+            "entry_text": [
+                "It marks its territory by using its\n",
+                "tail like a paintbrush. There are\n",
+                "more than 5,000 different marks."
+            ]
+        },
+        "fr": {
+            "name": "QUEULORIOR",
+            "category": "Pokémon Peintre",
+            "entry_text": [
+                "Il marque son territoire en maniant\n",
+                "sa queue comme un pinceau. On\n",
+                "dénombre plus de 5 000 marques."
+            ]
+        },
+        "de": {
+            "name": "FARBEAGLE",
+            "category": "Maler",
+            "entry_text": [
+                "Sein Revier markiert es mit seinem\n",
+                "pinselartigen Schweif. Es kennt\n",
+                "mehr als 5 000 Markierungen."
+            ]
+        },
+        "it": {
+            "name": "SMEARGLE",
+            "category": "Pokémon Pittore",
+            "entry_text": [
+                "Delimita il suo territorio usando la\n",
+                "coda come se fosse un pennello. Ha\n",
+                "lasciato oltre 5000 segni diversi."
+            ]
+        },
+        "es": {
+            "name": "SMEARGLE",
+            "category": "Pokémon Pintor",
+            "entry_text": [
+                "Marca su territorio usando su\n",
+                "cola a modo de pincel. Ha hecho\n",
+                "más de 5000 marcas diferentes."
+            ]
+        },
+        "jp": {
+            "name": "ド－ブル",
+            "category": "えかきポケモン",
+            "entry_text": [
+                "しっぽを　ふでのように　つかって\n",
+                "なわばりに　マ－クを　えがく。\n",
+                "その　しゅるいは　５０００いじょう。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

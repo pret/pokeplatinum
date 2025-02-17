@@ -1,5 +1,4 @@
 {
-    "name": "Altaria",
     "base_stats": {
         "hp": 75,
         "attack": 70,
@@ -8,10 +7,7 @@
         "special_attack": 70,
         "special_defense": 105
     },
-    "types": [
-        "TYPE_DRAGON",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_DRAGON", "TYPE_FLYING" ],
     "catch_rate": 45,
     "base_exp_reward": 188,
     "ev_yields": {
@@ -30,21 +26,33 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_FLYING",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_NATURAL_CURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FLYING", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_NATURAL_CURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_PLUCK" ],
+            [ 1, "MOVE_PECK" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_SING" ],
+            [ 5, "MOVE_ASTONISH" ],
+            [ 9, "MOVE_SING" ],
+            [ 13, "MOVE_FURY_ATTACK" ],
+            [ 18, "MOVE_SAFEGUARD" ],
+            [ 23, "MOVE_MIST" ],
+            [ 28, "MOVE_TAKE_DOWN" ],
+            [ 32, "MOVE_NATURAL_GIFT" ],
+            [ 35, "MOVE_DRAGON_BREATH" ],
+            [ 39, "MOVE_DRAGON_DANCE" ],
+            [ 46, "MOVE_REFRESH" ],
+            [ 54, "MOVE_DRAGON_PULSE" ],
+            [ 62, "MOVE_PERISH_SONG" ],
+            [ 70, "MOVE_SKY_ATTACK" ]
+        ],
+        "by_tm": [
             "TM02",
             "TM05",
             "TM06",
@@ -85,29 +93,7 @@
             "HM02",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_PLUCK",
-                "MOVE_PECK",
-                "MOVE_GROWL",
-                "MOVE_ASTONISH",
-                "MOVE_SING"
-            ],
-            "5": "MOVE_ASTONISH",
-            "9": "MOVE_SING",
-            "13": "MOVE_FURY_ATTACK",
-            "18": "MOVE_SAFEGUARD",
-            "23": "MOVE_MIST",
-            "28": "MOVE_TAKE_DOWN",
-            "32": "MOVE_NATURAL_GIFT",
-            "35": "MOVE_DRAGON_BREATH",
-            "39": "MOVE_DRAGON_DANCE",
-            "46": "MOVE_REFRESH",
-            "54": "MOVE_DRAGON_PULSE",
-            "62": "MOVE_PERISH_SONG",
-            "70": "MOVE_SKY_ATTACK"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
@@ -119,9 +105,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 11,
@@ -135,10 +122,62 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 0,
-        "entry_text": "If it bonds with a person, it will\ngently envelop the friend with its\nsoft wings, then hum.",
-        "category": "Humming Pokémon"
+        "en": {
+            "name": "ALTARIA",
+            "category": "Humming Pokémon",
+            "entry_text": [
+                "If it bonds with a person, it will\n",
+                "gently envelop the friend with its\n",
+                "soft wings, then hum."
+            ]
+        },
+        "fr": {
+            "name": "ALTARIA",
+            "category": "Pokémon Virevolteur",
+            "entry_text": [
+                "En vol, il ressemble à un nuage\n",
+                "cotonneux. Il fredonne d’une voix\n",
+                "de soprano."
+            ]
+        },
+        "de": {
+            "name": "ALTARIA",
+            "category": "Summsel",
+            "entry_text": [
+                "Im Flug sieht es aus wie eine\n",
+                "watteweiche Wolke. Es singt mit\n",
+                "einer Sopranstimme."
+            ]
+        },
+        "it": {
+            "name": "ALTARIA",
+            "category": "Pokémon Canterino",
+            "entry_text": [
+                "Quando lotta, sembra una morbida\n",
+                "nuvola. Canticchia con la sua\n",
+                "voce da soprano."
+            ]
+        },
+        "es": {
+            "name": "ALTARIA",
+            "category": "Pokémon Cantor",
+            "entry_text": [
+                "Cuando vuela, parece una nube\n",
+                "de algodón. Entona bellas\n",
+                "melodías con su voz de soprano."
+            ]
+        },
+        "jp": {
+            "name": "チルタリス",
+            "category": "ハミングポケモン",
+            "entry_text": [
+                "そらを　とぶ　すがたは\n",
+                "まるで　わたぐものように　みえる。\n",
+                "ソプラノの　こえで　ハミングする。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

@@ -39,6 +39,7 @@
 #include "palette.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -46,19 +47,18 @@
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
+#include "vram_transfer.h"
 
 static void ov117_02260DA0(void *param0);
 static GenericPointerData *ov117_02260E14(int param0);
@@ -210,7 +210,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
 
     v0->unk_2C = BgConfig_New(110);
 
-    VRAMTransferManager_New(64, 110);
+    VramTransfer_New(64, 110);
     SetAutorepeat(4, 8);
     ov117_022610D8(v0->unk_2C);
     sub_0201E3D8();
@@ -220,14 +220,14 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     v0->unk_24 = sub_0200C6E4(110);
 
     sub_0200C73C(v0->unk_24, &Unk_ov117_022669A8, &Unk_ov117_0226697C, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_28 = sub_0200C704(v0->unk_24);
 
     sub_0200C7C0(v0->unk_24, v0->unk_28, (96 + 128));
     sub_0200CB30(v0->unk_24, v0->unk_28, &Unk_ov117_02266990);
-    sub_0200964C(sub_0200C738(v0->unk_24), 0, ((192 + 160) << FX32_SHIFT));
+    SetSubScreenViewRect(sub_0200C738(v0->unk_24), 0, ((192 + 160) << FX32_SHIFT));
     ov117_02261574(v0);
 
     v0->unk_80 = MessageLoader_Init(0, 26, 9, 110);
@@ -462,7 +462,7 @@ int ov117_02260C10(OverlayManager *param0, int *param1)
     sub_020127BC(v0->unk_90);
     sub_0200D0B0(v0->unk_24, v0->unk_28);
     sub_0200C8D4(v0->unk_24);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
     PaletteData_FreeBuffer(v0->unk_8C, 0);
     PaletteData_FreeBuffer(v0->unk_8C, 1);
     PaletteData_FreeBuffer(v0->unk_8C, 2);
@@ -495,7 +495,7 @@ static void ov117_02260DA0(void *param0)
 
     ov117_02262950(v0, v0->unk_D4);
 
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_8C);
 

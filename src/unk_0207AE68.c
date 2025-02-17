@@ -3,13 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
-#include "consts/items.h"
-#include "consts/species.h"
+#include "generated/game_records.h"
+#include "generated/items.h"
+#include "generated/species.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "struct_decls/struct_party_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0202818C.h"
@@ -51,12 +51,12 @@
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_02028124.h"
 #include "unk_020393C8.h"
 #include "unk_0207C63C.h"
+#include "vram_transfer.h"
 
 #include "constdata/const_020F410C.h"
 
@@ -963,7 +963,7 @@ static void sub_0207C520(void *param0)
     G2_SetWnd0Position(v0->unk_72, v0->unk_73, v0->unk_74, v0->unk_75);
 
     sub_02008A94(v0->unk_18);
-    sub_0201DCAC();
+    VramTransfer_Process();
     PaletteData_CommitFadedBuffers(v0->unk_14);
     Bg_RunScheduledUpdates(v0->unk_00);
 

@@ -25,6 +25,7 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -32,18 +33,17 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_020093B4.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
 #include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(overlay12);
@@ -170,7 +170,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
 
     v0->unk_10.unk_20 = BgConfig_New(24);
 
-    VRAMTransferManager_New(64, 24);
+    VramTransfer_New(64, 24);
     SetAutorepeat(4, 8);
 
     ov17_0224FB34(v0->unk_10.unk_20);
@@ -182,8 +182,8 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     v0->unk_10.unk_18 = sub_0200C6E4(24);
 
     sub_0200C73C(v0->unk_10.unk_18, &Unk_ov17_02254B0C, &Unk_ov17_02254AC4, (16 + 16));
-    sub_0200966C(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
-    sub_02009704(NNS_G2D_VRAM_TYPE_2DMAIN);
+    ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
+    ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0->unk_10.unk_1C = sub_0200C704(v0->unk_10.unk_18);
     sub_0200C7C0(v0->unk_10.unk_18, v0->unk_10.unk_1C, (64 + 64));
@@ -300,7 +300,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v0->unk_10.unk_20, 4);
     sub_0200D0B0(v0->unk_10.unk_18, v0->unk_10.unk_1C);
     sub_0200C8D4(v0->unk_10.unk_18);
-    VRAMTransferManager_Destroy();
+    VramTransfer_Free();
 
     ov17_022507C4(&v0->unk_10);
 
@@ -359,7 +359,7 @@ static void ov17_0224FA24(void *param0)
     }
 
     sub_02008A94(v0->unk_10.unk_04);
-    sub_0201DCAC();
+    VramTransfer_Process();
     OAMManager_ApplyAndResetBuffers();
     PaletteData_CommitFadedBuffers(v0->unk_10.unk_C0);
     Bg_RunScheduledUpdates(v0->unk_10.unk_20);

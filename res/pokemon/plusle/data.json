@@ -1,5 +1,4 @@
 {
-    "name": "Plusle",
     "base_stats": {
         "hp": 60,
         "attack": 50,
@@ -8,10 +7,7 @@
         "special_attack": 85,
         "special_defense": 75
     },
-    "types": [
-        "TYPE_ELECTRIC",
-        "TYPE_ELECTRIC"
-    ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
     "catch_rate": 200,
     "base_exp_reward": 120,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_FAIRY",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_PLUS",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_FAIRY", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_PLUS", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 3, "MOVE_THUNDER_WAVE" ],
+            [ 7, "MOVE_QUICK_ATTACK" ],
+            [ 10, "MOVE_HELPING_HAND" ],
+            [ 15, "MOVE_SPARK" ],
+            [ 17, "MOVE_ENCORE" ],
+            [ 21, "MOVE_FAKE_TEARS" ],
+            [ 24, "MOVE_COPYCAT" ],
+            [ 29, "MOVE_SWIFT" ],
+            [ 31, "MOVE_FAKE_TEARS" ],
+            [ 35, "MOVE_CHARGE" ],
+            [ 38, "MOVE_THUNDER" ],
+            [ 42, "MOVE_BATON_PASS" ],
+            [ 44, "MOVE_AGILITY" ],
+            [ 48, "MOVE_LAST_RESORT" ],
+            [ 51, "MOVE_NASTY_PLOT" ]
+        ],
+        "by_tm": [
             "TM06",
             "TM10",
             "TM16",
@@ -73,25 +79,7 @@
             "TM87",
             "TM90"
         ],
-        "level_up": {
-            "1": "MOVE_GROWL",
-            "3": "MOVE_THUNDER_WAVE",
-            "7": "MOVE_QUICK_ATTACK",
-            "10": "MOVE_HELPING_HAND",
-            "15": "MOVE_SPARK",
-            "17": "MOVE_ENCORE",
-            "21": "MOVE_FAKE_TEARS",
-            "24": "MOVE_COPYCAT",
-            "29": "MOVE_SWIFT",
-            "31": "MOVE_FAKE_TEARS",
-            "35": "MOVE_CHARGE",
-            "38": "MOVE_THUNDER",
-            "42": "MOVE_BATON_PASS",
-            "44": "MOVE_AGILITY",
-            "48": "MOVE_LAST_RESORT",
-            "51": "MOVE_NASTY_PLOT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_THUNDER_PUNCH",
@@ -104,9 +92,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -120,10 +109,62 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "It cheers on friends with pom-poms\nmade of sparks. It drains power\nfrom telephone poles.",
-        "category": "Cheering Pokémon"
+        "en": {
+            "name": "PLUSLE",
+            "category": "Cheering Pokémon",
+            "entry_text": [
+                "It cheers on friends with pom-poms\n",
+                "made of sparks. It drains power\n",
+                "from telephone poles."
+            ]
+        },
+        "fr": {
+            "name": "POSIPI",
+            "category": "Pokémon Acclameur",
+            "entry_text": [
+                "Il absorbe l’énergie des poteaux\n",
+                "électriques et encourage ses amis\n",
+                "avec des pompons d’étincelles. "
+            ]
+        },
+        "de": {
+            "name": "PLUSLE",
+            "category": "Jubel",
+            "entry_text": [
+                "Es feuert Freunde mit Pompons an,\n",
+                "die aus Funken bestehen. Es holt\n",
+                "sich Energie aus Telegrafenmasten."
+            ]
+        },
+        "it": {
+            "name": "PLUSLE",
+            "category": "Pokémon Incitamento",
+            "entry_text": [
+                "Incoraggia gli amici con un vivace\n",
+                "scoppiettio di scintille. Assorbe\n",
+                "elettricità dai pali telefonici."
+            ]
+        },
+        "es": {
+            "name": "PLUSLE",
+            "category": "Pokémon Ánimo",
+            "entry_text": [
+                "Anima a sus compañeros con\n",
+                "pompones de chispas. Roba\n",
+                "energía de los postes telefónicos."
+            ]
+        },
+        "jp": {
+            "name": "プラスル",
+            "category": "おうえんポケモン",
+            "entry_text": [
+                "ひばなの　ボンボンを　つくって\n",
+                "なかまを　おうえんする。\n",
+                "でんちゅうから　でんきを　すいとる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

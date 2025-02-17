@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/struct_02009508.h"
-#include "struct_defs/struct_0200C738.h"
-
 #include "field/field_system.h"
 
 #include "bg_window.h"
@@ -17,21 +14,21 @@
 #include "player_avatar.h"
 #include "save_player.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "sys_task_manager.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200F174.h"
 
 typedef struct {
     CellActorCollection *unk_00;
-    UnkStruct_02009508 *unk_04;
+    SpriteResourcesHeaderList *unk_04;
     SpriteResourceCollection *unk_08[4];
     SpriteResourceList *unk_18[2];
     int unk_20[4];
-    UnkStruct_0200C738 unk_30;
+    G2dRenderer unk_30;
 } UnkStruct_0205D094;
 
 typedef struct UnkStruct_0205D3AC_t {
@@ -423,7 +420,7 @@ void sub_0205D0AC(UnkStruct_0205D094 *param0)
 
 static void sub_0205D0B4(UnkStruct_0205D094 *param0)
 {
-    param0->unk_00 = sub_020095C4(2, &param0->unk_30, 4);
+    param0->unk_00 = SpriteList_InitRendering(2, &param0->unk_30, 4);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -453,11 +450,11 @@ static void sub_0205D0D8(UnkStruct_0205D094 *param0, int param1, u32 param2)
     param0->unk_20[2] = sub_0205D1C4(param0->unk_08[2], NULL, 0);
     param0->unk_20[3] = sub_0205D1C4(param0->unk_08[3], NULL, 1);
 
-    sub_0200A41C(param0->unk_18[0]);
-    sub_0200A684(param0->unk_18[1]);
+    SpriteTransfer_RequestCharListAtEnd(param0->unk_18[0]);
+    SpriteTransfer_RequestPlttFreeSpaceList(param0->unk_18[1]);
 
     v1 = LoadMemberFromNARC(177, 4, 0, 4, 0);
-    param0->unk_04 = sub_02009508(v1, 4, param0->unk_08[0], param0->unk_08[1], param0->unk_08[2], param0->unk_08[3], NULL, NULL);
+    param0->unk_04 = SpriteResourcesHeaderList_NewFromResdat(v1, 4, param0->unk_08[0], param0->unk_08[1], param0->unk_08[2], param0->unk_08[3], NULL, NULL);
 
     Heap_FreeToHeap(v1);
 }
@@ -498,11 +495,11 @@ static void sub_0205D22C(UnkStruct_0205D094 *param0)
     CellActorCollection_Delete(param0->unk_00);
     param0->unk_00 = NULL;
 
-    sub_020095A8(param0->unk_04);
+    SpriteResourcesHeaderList_Free(param0->unk_04);
     param0->unk_04 = NULL;
 
-    sub_0200A508(param0->unk_18[0]);
-    sub_0200A700(param0->unk_18[1]);
+    SpriteTransfer_ResetCharTransferList(param0->unk_18[0]);
+    SpriteTransfer_ResetPlttTransferList(param0->unk_18[1]);
 
     for (v0 = 0; v0 < 2; v0++) {
         SpriteResourceList_Delete(param0->unk_18[v0]);
@@ -562,7 +559,7 @@ static CellActor *sub_0205D344(UnkStruct_0205D094 *param0, int param1, VecFx32 *
     memset(&v0, 0, sizeof(CellActorInitParamsEx));
 
     v0.collection = param0->unk_00;
-    v0.resourceData = &param0->unk_04->unk_00[param1];
+    v0.resourceData = &param0->unk_04->headers[param1];
     v0.position = *param2;
     v0.affineScale = v2;
     v0.priority = param3;

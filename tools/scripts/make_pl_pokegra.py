@@ -58,9 +58,9 @@ for i, subdir in enumerate(args.subdirs):
 
             j += 1
 
-    if i == 0:  # species 000 has special palette files
-        shutil.copy(source_dir / '000/normal_pal.NCLR', private_dir / '0000-04.NCLR')
-        shutil.copy(source_dir / '000/shiny_pal.NCLR', private_dir / '0000-05.NCLR')
+    if i == 0:  # species none has special palette files
+        shutil.copy(source_dir / 'none/normal_pal.NCLR', private_dir / '0000-04.NCLR')
+        shutil.copy(source_dir / 'none/shiny_pal.NCLR', private_dir / '0000-05.NCLR')
         continue
 
     normal_pal_src = source_dir / subdir / 'normal.pal'

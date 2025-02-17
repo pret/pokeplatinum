@@ -1,5 +1,4 @@
 {
-    "name": "Magmar",
     "base_stats": {
         "hp": 65,
         "attack": 95,
@@ -8,10 +7,7 @@
         "special_attack": 100,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 45,
     "base_exp_reward": 167,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 25,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_FLAME_BODY",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_FLAME_BODY", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SMOG" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 7, "MOVE_EMBER" ],
+            [ 10, "MOVE_SMOKE_SCREEN" ],
+            [ 16, "MOVE_FAINT_ATTACK" ],
+            [ 19, "MOVE_FIRE_SPIN" ],
+            [ 25, "MOVE_CONFUSE_RAY" ],
+            [ 28, "MOVE_FIRE_PUNCH" ],
+            [ 36, "MOVE_LAVA_PLUME" ],
+            [ 41, "MOVE_FLAMETHROWER" ],
+            [ 49, "MOVE_SUNNY_DAY" ],
+            [ 54, "MOVE_FIRE_BLAST" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM10",
@@ -79,24 +82,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SMOG",
-                "MOVE_LEER",
-                "MOVE_EMBER"
-            ],
-            "7": "MOVE_EMBER",
-            "10": "MOVE_SMOKE_SCREEN",
-            "16": "MOVE_FAINT_ATTACK",
-            "19": "MOVE_FIRE_SPIN",
-            "25": "MOVE_CONFUSE_RAY",
-            "28": "MOVE_FIRE_PUNCH",
-            "36": "MOVE_LAVA_PLUME",
-            "41": "MOVE_FLAMETHROWER",
-            "49": "MOVE_SUNNY_DAY",
-            "54": "MOVE_FIRE_BLAST"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -107,14 +93,14 @@
     },
     "evolutions": [
         [
-            "EVO_TRADE_WITH_ITEM",
+            "EVO_TRADE_WITH_HELD_ITEM",
             "ITEM_MAGMARIZER",
             "SPECIES_MAGMORTAR"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 13,
@@ -128,10 +114,62 @@
         "pokemon_pos_f": 10,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 10,
-        "entry_text": "When it breathes deeply, heat\nwaves form around its body, making\nit hard to see clearly.",
-        "category": "Spitfire Pokémon"
+        "en": {
+            "name": "MAGMAR",
+            "category": "Spitfire Pokémon",
+            "entry_text": [
+                "When it breathes deeply, heat\n",
+                "waves form around its body, making\n",
+                "it hard to see clearly."
+            ]
+        },
+        "fr": {
+            "name": "MAGMAR",
+            "category": "Pokémon Crache-Feu",
+            "entry_text": [
+                "Il est né au milieu d’un volcan.\n",
+                "Son corps est couvert de flammes\n",
+                "qui flambent comme un soleil."
+            ]
+        },
+        "de": {
+            "name": "MAGMAR",
+            "category": "Brenner",
+            "entry_text": [
+                "Es wurde bei einem Vulkanausbruch\n",
+                "geboren. Sein Körper ist von\n",
+                "hellen Flammen umgeben."
+            ]
+        },
+        "it": {
+            "name": "MAGMAR",
+            "category": "Pokémon Sputafuoco",
+            "entry_text": [
+                "È nato dallo zampillo di un vulcano.\n",
+                "Ha il corpo ricoperto da fiamme\n",
+                "che brillano come i raggi solari."
+            ]
+        },
+        "es": {
+            "name": "MAGMAR",
+            "category": "Pokémon Escupfuego",
+            "entry_text": [
+                "Nació en el centro de un volcán.\n",
+                "Su cuerpo está cubierto de llamas\n",
+                "que brillan como el Sol."
+            ]
+        },
+        "jp": {
+            "name": "ブ－バ－",
+            "category": "ひふきポケモン",
+            "entry_text": [
+                "かざんの　かこうで　うまれそだった。\n",
+                "たいようと　おなじような　ほのおの\n",
+                "ゆらめきが　ぜんしんを　おおう。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

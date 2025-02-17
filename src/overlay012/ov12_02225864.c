@@ -20,12 +20,12 @@
 #include "heap.h"
 #include "inlines.h"
 #include "palette.h"
+#include "pltt_transfer.h"
 #include "screen_scroll_manager.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200762C.h"
 #include "unk_0200C6E4.h"
-#include "unk_0201F834.h"
 
 typedef struct {
     s16 unk_00;
@@ -149,7 +149,7 @@ s16 ov12_022258E0(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
 
 u8 ov12_02225950(CellActorData *param0)
 {
-    return sub_0201FAB4(CellActor_GetPaletteProxy(param0->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
+    return PlttTransfer_GetPlttOffset(CellActor_GetPaletteProxy(param0->unk_00), NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
 int ov12_02225964(UnkStruct_ov12_0221FCDC *param0, int param1)

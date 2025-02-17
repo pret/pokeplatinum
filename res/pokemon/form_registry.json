@@ -1,0 +1,104 @@
+{
+    "deoxys": {
+        "attack": "data",
+        "defense": "data",
+        "speed": "data",
+        "__shared_palette": true
+    },
+    "unown": {
+        "b": "icon",
+        "c": "icon",
+        "d": "icon",
+        "e": "icon",
+        "f": "icon",
+        "g": "icon",
+        "h": "icon",
+        "i": "icon",
+        "j": "icon",
+        "k": "icon",
+        "l": "icon",
+        "m": "icon",
+        "n": "icon",
+        "o": "icon",
+        "p": "icon",
+        "q": "icon",
+        "r": "icon",
+        "s": "icon",
+        "t": "icon",
+        "u": "icon",
+        "v": "icon",
+        "w": "icon",
+        "x": "icon",
+        "y": "icon",
+        "z": "icon",
+        "exc": "icon",
+        "que": "icon",
+        "__shared_palette": true,
+        "__dupe_base_icon": true
+    },
+    "castform": {
+        "sunny": "sprite",
+        "rainy": "sprite",
+        "snowy": "sprite",
+        "__all_back_then_front": true,
+        "__all_normal_then_shiny": true
+    },
+    "burmy": {
+        "sandy": "icon",
+        "trash": "icon"
+    },
+    "wormadam": {
+        "sandy": "data",
+        "trash": "data"
+    },
+    "shellos": {
+        "east_sea": "icon",
+        "__all_back_then_front": true
+    },
+    "gastrodon": {
+        "east_sea": "icon",
+        "__all_back_then_front": true
+    },
+    "cherrim": {
+        "sunny": "sprite",
+        "__all_back_then_front": true,
+        "__all_normal_then_shiny": true
+    },
+    "arceus": {
+        "fighting": "sprite",
+        "flying": "sprite",
+        "poison": "sprite",
+        "ground": "sprite",
+        "rock": "sprite",
+        "bug": "sprite",
+        "ghost": "sprite",
+        "steel": "sprite",
+        "mystery": "sprite",
+        "fire": "sprite",
+        "water": "sprite",
+        "grass": "sprite",
+        "electric": "sprite",
+        "psychic": "sprite",
+        "ice": "sprite",
+        "dragon": "sprite",
+        "dark": "sprite"
+    },
+    "egg": {
+        "manaphy": "sprite",
+        "__front_only": true
+    },
+    "giratina": {
+        "origin": "data",
+        "__last_sprite": true
+    },
+    "shaymin": {
+        "sky": "data"
+    },
+    "rotom": {
+        "heat": "data",
+        "wash": "data",
+        "frost": "data",
+        "fan": "data",
+        "mow": "data"
+    }
+}

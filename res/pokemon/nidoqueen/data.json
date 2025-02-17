@@ -1,5 +1,4 @@
 {
-    "name": "Nidoqueen",
     "base_stats": {
         "hp": 90,
         "attack": 82,
@@ -8,10 +7,7 @@
         "special_attack": 75,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_POISON",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_POISON", "TYPE_GROUND" ],
     "catch_rate": 45,
     "base_exp_reward": 194,
     "ev_yields": {
@@ -30,21 +26,22 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_POISON_POINT",
-        "ABILITY_RIVALRY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_POISON_POINT", "ABILITY_RIVALRY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_DOUBLE_KICK" ],
+            [ 1, "MOVE_POISON_STING" ],
+            [ 23, "MOVE_BODY_SLAM" ],
+            [ 43, "MOVE_EARTH_POWER" ],
+            [ 58, "MOVE_SUPERPOWER" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM05",
@@ -102,18 +99,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_TAIL_WHIP",
-                "MOVE_DOUBLE_KICK",
-                "MOVE_POISON_STING"
-            ],
-            "23": "MOVE_BODY_SLAM",
-            "43": "MOVE_EARTH_POWER",
-            "58": "MOVE_SUPERPOWER"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -129,9 +115,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": true,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 13,
@@ -145,10 +132,62 @@
         "pokemon_pos_f": 9,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 9,
-        "entry_text": "Its entire body is armored with\nhard scales. It will protect the\nyoung in its burrow with its life.",
-        "category": "Drill Pokémon"
+        "en": {
+            "name": "NIDOQUEEN",
+            "category": "Drill Pokémon",
+            "entry_text": [
+                "Its entire body is armored with\n",
+                "hard scales. It will protect the\n",
+                "young in its burrow with its life."
+            ]
+        },
+        "fr": {
+            "name": "NIDOQUEEN",
+            "category": "Pokémon Perceur",
+            "entry_text": [
+                "Son corps est recouvert d’écailles\n",
+                "solides. Il donnera sa vie pour\n",
+                "secourir les petits de son terrier. "
+            ]
+        },
+        "de": {
+            "name": "NIDOQUEEN",
+            "category": "Bohrer",
+            "entry_text": [
+                "Sein ganzer Körper ist mit harten\n",
+                "Schuppen bedeckt. Es beschützt\n",
+                "sein Junges mit seinem Leben."
+            ]
+        },
+        "it": {
+            "name": "NIDOQUEEN",
+            "category": "Pokémon Trapano",
+            "entry_text": [
+                "Una robusta armatura ricopre\n",
+                "l’intero corpo. Protegge i propri\n",
+                "cuccioli a costo della vita."
+            ]
+        },
+        "es": {
+            "name": "NIDOQUEEN",
+            "category": "Pokémon Taladro",
+            "entry_text": [
+                "Tiene el cuerpo cubierto de duras\n",
+                "escamas. Protege a su cría con\n",
+                "toda su fuerza."
+            ]
+        },
+        "jp": {
+            "name": "ニドクイン",
+            "category": "ドリルポケモン",
+            "entry_text": [
+                "よろいのように　かたい　ウロコが\n",
+                "ぜんしんを　つつむ。すあなの\n",
+                "こどもを　いのちがけで　まもる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

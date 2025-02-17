@@ -1,5 +1,4 @@
 {
-    "name": "Phione",
     "base_stats": {
         "hp": 80,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 80,
         "special_defense": 80
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 30,
     "base_exp_reward": 165,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 40,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_HYDRATION",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_HYDRATION", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_WATER_SPORT" ],
+            [ 9, "MOVE_CHARM" ],
+            [ 16, "MOVE_SUPERSONIC" ],
+            [ 24, "MOVE_BUBBLE_BEAM" ],
+            [ 31, "MOVE_ACID_ARMOR" ],
+            [ 39, "MOVE_WHIRLPOOL" ],
+            [ 46, "MOVE_WATER_PULSE" ],
+            [ 54, "MOVE_AQUA_RING" ],
+            [ 61, "MOVE_DIVE" ],
+            [ 69, "MOVE_RAIN_DANCE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -73,22 +74,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_BUBBLE",
-                "MOVE_WATER_SPORT"
-            ],
-            "9": "MOVE_CHARM",
-            "16": "MOVE_SUPERSONIC",
-            "24": "MOVE_BUBBLE_BEAM",
-            "31": "MOVE_ACID_ARMOR",
-            "39": "MOVE_WHIRLPOOL",
-            "46": "MOVE_WATER_PULSE",
-            "54": "MOVE_AQUA_RING",
-            "61": "MOVE_DIVE",
-            "69": "MOVE_RAIN_DANCE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -103,9 +89,10 @@
             "MOVE_UPROAR"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 4,
@@ -119,10 +106,62 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 1,
-        "entry_text": "It drifts in warm seas. It always\nreturns to where it was born, no\nmatter how far it may have drifted.",
-        "category": "Sea Drifter Pokémon"
+        "en": {
+            "name": "PHIONE",
+            "category": "Sea Drifter Pokémon",
+            "entry_text": [
+                "It drifts in warm seas. It always\n",
+                "returns to where it was born, no\n",
+                "matter how far it may have drifted."
+            ]
+        },
+        "fr": {
+            "name": "PHIONE",
+            "category": "Pokémon Dérivenmer",
+            "entry_text": [
+                "Un Pokémon des mers chaudes. Il\n",
+                "gonfle la bouée sur sa tête et\n",
+                "dérive en quête de vivres."
+            ]
+        },
+        "de": {
+            "name": "PHIONE",
+            "category": "Seedrift",
+            "entry_text": [
+                "Es lebt in warmen Meeren. Geht\n",
+                "es auf Nahrungssuche, füllt es den\n",
+                "Beutel auf seinem Kopf mit Luft."
+            ]
+        },
+        "it": {
+            "name": "PHIONE",
+            "category": "Pokémon Oceanbondo",
+            "entry_text": [
+                "Vive nei mari caldi. Sulla testa ha\n",
+                "un galleggiante gonfiabile grazie al\n",
+                "quale nuota alla ricerca di cibo."
+            ]
+        },
+        "es": {
+            "name": "PHIONE",
+            "category": "Pokémon Marino",
+            "entry_text": [
+                "Vive en los mares cálidos.\n",
+                "Infla el flotador de la cabeza\n",
+                "para nadar en busca de comida."
+            ]
+        },
+        "jp": {
+            "name": "フィオネ",
+            "category": "かいようポケモン",
+            "entry_text": [
+                "あたたかい　うみに　すむ　ポケモン。\n",
+                "あたまの　うきぶくろを　ふくらませて\n",
+                "なみまを　ただよい　えさを　さがす。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 90,

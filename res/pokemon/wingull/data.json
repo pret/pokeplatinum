@@ -1,5 +1,4 @@
 {
-    "name": "Wingull",
     "base_stats": {
         "hp": 40,
         "attack": 30,
@@ -8,10 +7,7 @@
         "special_attack": 55,
         "special_defense": 30
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_FLYING" ],
     "catch_rate": 190,
     "base_exp_reward": 64,
     "ev_yields": {
@@ -30,21 +26,27 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FLYING"
-    ],
-    "abilities": [
-        "ABILITY_KEEN_EYE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FLYING" ],
+    "abilities": [ "ABILITY_KEEN_EYE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 6, "MOVE_SUPERSONIC" ],
+            [ 11, "MOVE_WING_ATTACK" ],
+            [ 16, "MOVE_MIST" ],
+            [ 19, "MOVE_WATER_PULSE" ],
+            [ 24, "MOVE_QUICK_ATTACK" ],
+            [ 29, "MOVE_ROOST" ],
+            [ 34, "MOVE_PURSUIT" ],
+            [ 37, "MOVE_AGILITY" ],
+            [ 42, "MOVE_AERIAL_ACE" ],
+            [ 47, "MOVE_AIR_SLASH" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -77,23 +79,7 @@
             "HM02",
             "HM05"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_WATER_GUN"
-            ],
-            "6": "MOVE_SUPERSONIC",
-            "11": "MOVE_WING_ATTACK",
-            "16": "MOVE_MIST",
-            "19": "MOVE_WATER_PULSE",
-            "24": "MOVE_QUICK_ATTACK",
-            "29": "MOVE_ROOST",
-            "34": "MOVE_PURSUIT",
-            "37": "MOVE_AGILITY",
-            "42": "MOVE_AERIAL_ACE",
-            "47": "MOVE_AIR_SLASH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_OMINOUS_WIND",
@@ -107,14 +93,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             25,
             "SPECIES_PELIPPER"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -128,10 +114,62 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "It soars high in the sky, riding on\nupdrafts like a glider. It carries\nfood tucked in its bill.",
-        "category": "Seagull Pokémon"
+        "en": {
+            "name": "WINGULL",
+            "category": "Seagull Pokémon",
+            "entry_text": [
+                "It soars high in the sky, riding on\n",
+                "updrafts like a glider. It carries\n",
+                "food tucked in its bill."
+            ]
+        },
+        "fr": {
+            "name": "GOELISE",
+            "category": "Pokémon Mouette",
+            "entry_text": [
+                "Il niche sur les falaises escarpées\n",
+                "face à la mer. Il vole en altitude\n",
+                "grâce aux courants ascendants."
+            ]
+        },
+        "de": {
+            "name": "WINGULL",
+            "category": "Seemöwe",
+            "entry_text": [
+                "Es baut sein Nest auf steilen\n",
+                "Klippen. Es nutzt die Aufwinde, um\n",
+                "in größerer Höhe fliegen zu können."
+            ]
+        },
+        "it": {
+            "name": "WINGULL",
+            "category": "Pokémon Gabbiano",
+            "entry_text": [
+                "Nidifica su scogliere a picco sul\n",
+                "mare. Si fa trasportare ad alta\n",
+                "quota dalle correnti ascensionali."
+            ]
+        },
+        "es": {
+            "name": "WINGULL",
+            "category": "Pokémon Gaviota",
+            "entry_text": [
+                "Anida en acantilados y alcanza\n",
+                "gran altura aprovechando las\n",
+                "corrientes ascendentes."
+            ]
+        },
+        "jp": {
+            "name": "キャモメ",
+            "category": "うみねこポケモン",
+            "entry_text": [
+                "うみべの　だんがいぜっぺきに\n",
+                "すを　つくる。じょうしょうきりゅうを\n",
+                "りようして　おおぞらに　まいあがる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 30,

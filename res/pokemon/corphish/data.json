@@ -1,5 +1,4 @@
 {
-    "name": "Corphish",
     "base_stats": {
         "hp": 43,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 50,
         "special_defense": 35
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 205,
     "base_exp_reward": 111,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FLUCTUATING",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_WATER_3"
-    ],
-    "abilities": [
-        "ABILITY_HYPER_CUTTER",
-        "ABILITY_SHELL_ARMOR"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_WATER_3" ],
+    "abilities": [ "ABILITY_HYPER_CUTTER", "ABILITY_SHELL_ARMOR" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_BUBBLE" ],
+            [ 7, "MOVE_HARDEN" ],
+            [ 10, "MOVE_VICE_GRIP" ],
+            [ 13, "MOVE_LEER" ],
+            [ 20, "MOVE_BUBBLE_BEAM" ],
+            [ 23, "MOVE_PROTECT" ],
+            [ 26, "MOVE_KNOCK_OFF" ],
+            [ 32, "MOVE_TAUNT" ],
+            [ 35, "MOVE_NIGHT_SLASH" ],
+            [ 38, "MOVE_CRABHAMMER" ],
+            [ 44, "MOVE_SWORDS_DANCE" ],
+            [ 47, "MOVE_CRUNCH" ],
+            [ 53, "MOVE_GUILLOTINE" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -84,22 +87,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_BUBBLE",
-            "7": "MOVE_HARDEN",
-            "10": "MOVE_VICE_GRIP",
-            "13": "MOVE_LEER",
-            "20": "MOVE_BUBBLE_BEAM",
-            "23": "MOVE_PROTECT",
-            "26": "MOVE_KNOCK_OFF",
-            "32": "MOVE_TAUNT",
-            "35": "MOVE_NIGHT_SLASH",
-            "38": "MOVE_CRABHAMMER",
-            "44": "MOVE_SWORDS_DANCE",
-            "47": "MOVE_CRUNCH",
-            "53": "MOVE_GUILLOTINE"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
@@ -114,14 +102,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             30,
             "SPECIES_CRAWDAUNT"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 6,
@@ -135,10 +123,62 @@
         "pokemon_pos_f": 23,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 23,
-        "entry_text": "Its hardy vitality enables it to\nadapt to any environment. Its\npincers will never release prey.",
-        "category": "Ruffian Pokémon"
+        "en": {
+            "name": "CORPHISH",
+            "category": "Ruffian Pokémon",
+            "entry_text": [
+                "Its hardy vitality enables it to\n",
+                "adapt to any environment. Its\n",
+                "pincers will never release prey."
+            ]
+        },
+        "fr": {
+            "name": "ECRAPINCE",
+            "category": "Pokémon Brute",
+            "entry_text": [
+                "Sa nature robuste lui permet de\n",
+                "vivre sur n’importe quel terrain. \n",
+                "Ses pinces ne lâchent jamais prise."
+            ]
+        },
+        "de": {
+            "name": "KREBSCORPS",
+            "category": "Grobian",
+            "entry_text": [
+                "Ein robustes PKMN, das sich jeder\n",
+                "Umgebung anpassen kann. Seine\n",
+                "Zangen geben keine Beute frei."
+            ]
+        },
+        "it": {
+            "name": "CORPHISH",
+            "category": "Pokémon Birbone",
+            "entry_text": [
+                "La sua grande vitalità gli permette\n",
+                "di adattarsi ad ogni habitat. Le sue\n",
+                "chele non rilasciano mai la preda."
+            ]
+        },
+        "es": {
+            "name": "CORPHISH",
+            "category": "Pokémon Rufián",
+            "entry_text": [
+                "Su organismo le permite adaptarse\n",
+                "a cualquier entorno. Sus pinzas\n",
+                "nunca sueltan a su presa."
+            ]
+        },
+        "jp": {
+            "name": "ヘイガニ",
+            "category": "ごろつきポケモン",
+            "entry_text": [
+                "どんな　かんきょうにも　てきおうする\n",
+                "つよい　せいめいりょくの　もちぬし。\n",
+                "はさんだ　えものは　はなさない。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

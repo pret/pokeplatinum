@@ -1,5 +1,4 @@
 {
-    "name": "Seel",
     "base_stats": {
         "hp": 65,
         "attack": 45,
@@ -8,10 +7,7 @@
         "special_attack": 45,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 190,
     "base_exp_reward": 100,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_HYDRATION"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_WHITE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_HYDRATION" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_HEADBUTT" ],
+            [ 3, "MOVE_GROWL" ],
+            [ 7, "MOVE_WATER_SPORT" ],
+            [ 11, "MOVE_ICY_WIND" ],
+            [ 13, "MOVE_ENCORE" ],
+            [ 17, "MOVE_ICE_SHARD" ],
+            [ 21, "MOVE_REST" ],
+            [ 23, "MOVE_AQUA_RING" ],
+            [ 27, "MOVE_AURORA_BEAM" ],
+            [ 31, "MOVE_AQUA_JET" ],
+            [ 33, "MOVE_BRINE" ],
+            [ 37, "MOVE_TAKE_DOWN" ],
+            [ 41, "MOVE_DIVE" ],
+            [ 43, "MOVE_AQUA_TAIL" ],
+            [ 47, "MOVE_ICE_BEAM" ],
+            [ 51, "MOVE_SAFEGUARD" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -73,25 +79,7 @@
             "HM03",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_HEADBUTT",
-            "3": "MOVE_GROWL",
-            "7": "MOVE_WATER_SPORT",
-            "11": "MOVE_ICY_WIND",
-            "13": "MOVE_ENCORE",
-            "17": "MOVE_ICE_SHARD",
-            "21": "MOVE_REST",
-            "23": "MOVE_AQUA_RING",
-            "27": "MOVE_AURORA_BEAM",
-            "31": "MOVE_AQUA_JET",
-            "33": "MOVE_BRINE",
-            "37": "MOVE_TAKE_DOWN",
-            "41": "MOVE_DIVE",
-            "43": "MOVE_AQUA_TAIL",
-            "47": "MOVE_ICE_BEAM",
-            "51": "MOVE_SAFEGUARD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_AQUA_TAIL",
@@ -101,14 +89,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             34,
             "SPECIES_DEWGONG"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 11,
@@ -122,10 +110,62 @@
         "pokemon_pos_f": 13,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 13,
-        "entry_text": "A Pokémon that lives on icebergs.\nIt swims in the sea using the point\non its head to break up ice.",
-        "category": "Sea Lion Pokémon"
+        "en": {
+            "name": "SEEL",
+            "category": "Sea Lion Pokémon",
+            "entry_text": [
+                "A Pokémon that lives on icebergs.\n",
+                "It swims in the sea using the point\n",
+                "on its head to break up ice."
+            ]
+        },
+        "fr": {
+            "name": "OTARIA",
+            "category": "Pokémon Otarie",
+            "entry_text": [
+                "Un habitant des icebergs. \n",
+                "En mer, il utilise la corne sur \n",
+                "sa tête pour briser la banquise."
+            ]
+        },
+        "de": {
+            "name": "JUROB",
+            "category": "Seehund",
+            "entry_text": [
+                "Dieses Pokémon lebt auf Eisbergen.\n",
+                "Es schwimmt im Eiswasser und bricht\n",
+                "das Eis mithilfe seines Horns."
+            ]
+        },
+        "it": {
+            "name": "SEEL",
+            "category": "Pokémon Otaria",
+            "entry_text": [
+                "Pokémon che vive sugli iceberg.\n",
+                "Nuota spaccando il ghiaccio\n",
+                "con la punta che ha sulla testa."
+            ]
+        },
+        "es": {
+            "name": "SEEL",
+            "category": "Pokémon León Mar.",
+            "entry_text": [
+                "Este Pokémon vive en icebergs.\n",
+                "Nada en el mar y usa el cuerno de\n",
+                "su cabeza para romper el hielo."
+            ]
+        },
+        "jp": {
+            "name": "パウワウ",
+            "category": "あしかポケモン",
+            "entry_text": [
+                "ひょうざんで　くらす　ポケモン。\n",
+                "あたまの　とがった　でっぱりで\n",
+                "こおりを　わって　うみを　およぐ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 50,

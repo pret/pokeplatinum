@@ -34,7 +34,7 @@
 #include "unk_0200F174.h"
 #include "unk_02054884.h"
 
-#include "res/pokemon/tutor_movesets.h"
+#include "res/pokemon/species_learnsets_by_tutor.h"
 
 struct UnkStruct_ov5_021F7ED8_t {
     FieldSystem *fieldSystem;
@@ -271,7 +271,7 @@ static u8 ReadMovesetMaskByte(Pokemon *pokemon, u8 offset)
         break;
     }
 
-    return sTeachableMovesets[moveset - 1].maskData[offset];
+    return sSpeciesLearnsetsByTutor[moveset - 1].maskData[offset];
 }
 
 static u16 ov5_021F7B60(Pokemon *param0, u16 param1)

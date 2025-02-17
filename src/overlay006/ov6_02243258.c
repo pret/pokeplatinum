@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021F0EB0.h"
@@ -24,11 +23,11 @@
 #include "player_avatar.h"
 #include "pokemon.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_020711EC.h"
@@ -64,7 +63,7 @@ typedef struct {
     NNSG2dCharacterData *unk_68;
     NNSG2dPaletteData *unk_6C;
     CellActorCollection *unk_70;
-    UnkStruct_0200C738 unk_74;
+    G2dRenderer unk_74;
     SpriteResourceCollection *unk_200;
     SpriteResourceCollection *unk_204;
     SpriteResourceCollection *unk_208;
@@ -151,7 +150,7 @@ typedef struct {
     s8 unk_06;
     s8 unk_07;
     CellActorCollection *unk_08;
-    UnkStruct_0200C738 unk_0C;
+    G2dRenderer unk_0C;
     SpriteResourceCollection *unk_198;
     SpriteResourceCollection *unk_19C;
     SpriteResourceCollection *unk_1A0;
@@ -337,9 +336,9 @@ static void ov6_02243258(UnkStruct_ov6_02243258 *param0, int param1, int param2,
     param0->unk_05 = param7;
     param0->unk_06 = param8;
     param0->unk_07 = param9;
-    param0->unk_08 = sub_020095C4(param1, &param0->unk_0C, 4);
+    param0->unk_08 = SpriteList_InitRendering(param1, &param0->unk_0C, 4);
 
-    sub_0200964C(&param0->unk_0C, 0, FX32_CONST(512));
+    SetSubScreenViewRect(&param0->unk_0C, 0, FX32_CONST(512));
 
     param0->unk_198 = SpriteResourceCollection_New(param2, 0, 4);
     param0->unk_19C = SpriteResourceCollection_New(param3, 1, 4);
@@ -373,13 +372,13 @@ static void ov6_0224339C(UnkStruct_ov6_02243258 *param0)
 
     for (v0 = 0; v0 < param0->unk_00; v0++) {
         if (param0->unk_1A8[v0].unk_00 != param0->unk_04) {
-            sub_0200A4E4(param0->unk_1A8[v0].unk_04);
+            SpriteTransfer_ResetCharTransfer(param0->unk_1A8[v0].unk_04);
         }
     }
 
     for (v0 = 0; v0 < param0->unk_01; v0++) {
         if (param0->unk_1AC[v0].unk_00 != param0->unk_05) {
-            sub_0200A6DC(param0->unk_1AC[v0].unk_04);
+            SpriteTransfer_ResetPlttTransfer(param0->unk_1AC[v0].unk_04);
         }
     }
 
@@ -429,7 +428,7 @@ static void ov6_02243520(UnkStruct_ov6_02243258 *param0, int param1)
 
     for (v0 = 0; v0 < param0->unk_00; v0++) {
         if (param0->unk_1A8[v0].unk_00 == param1) {
-            sub_0200A3DC(param0->unk_1A8[v0].unk_04);
+            SpriteTransfer_RequestCharAtEnd(param0->unk_1A8[v0].unk_04);
             return;
         }
     }
@@ -474,7 +473,7 @@ static void ov6_022435F8(UnkStruct_ov6_02243258 *param0, int param1)
 
     for (v0 = 0; v0 < param0->unk_01; v0++) {
         if (param0->unk_1AC[v0].unk_00 == param1) {
-            sub_0200A640(param0->unk_1AC[v0].unk_04);
+            SpriteTransfer_RequestPlttFreeSpace(param0->unk_1AC[v0].unk_04);
             return;
         }
     }
@@ -540,7 +539,7 @@ static CellActor *ov6_02243740(UnkStruct_ov6_02243258 *param0, const VecFx32 *pa
         param5 = 0xffffffff;
     }
 
-    sub_020093B4(
+    SpriteResourcesHeader_Init(
         &v0, param2, param3, param4, param5, 0xffffffff, 0xffffffff, 0, param6, param0->unk_198, param0->unk_19C, param0->unk_1A0, param0->unk_1A4, NULL, NULL);
 
     v1.collection = param0->unk_08;
@@ -1596,13 +1595,13 @@ static void ov6_022446B8(SysTask *param0, void *param1)
     case 0:
         for (v0 = 0; v0 < 4; v0++) {
             if (v1->unk_210[v0] != NULL) {
-                sub_0200A3DC(v1->unk_210[v0]);
+                SpriteTransfer_RequestCharAtEnd(v1->unk_210[v0]);
             }
         }
 
         for (v0 = 0; v0 < 3; v0++) {
             if (v1->unk_220[v0] != NULL) {
-                sub_0200A640(v1->unk_220[v0]);
+                SpriteTransfer_RequestPlttFreeSpace(v1->unk_220[v0]);
             }
         }
 
@@ -1661,7 +1660,7 @@ static void ov6_022447B4(SysTask *param0, void *param1)
 
     switch (v0->unk_268) {
     case 0:
-        sub_0200A3DC(v1);
+        SpriteTransfer_RequestCharAtEnd(v1);
         SysTask_ExecuteAfterVBlank(ov6_022447EC, v0, 0x80);
         v0->unk_268++;
         break;
@@ -1730,8 +1729,8 @@ static void ov6_02244928(UnkStruct_ov6_02243FFC *param0, NARC *param1)
     int v0;
 
     ov6_0224508C(param0, &param0->unk_258);
-    param0->unk_70 = sub_020095C4(32, &param0->unk_74, 4);
-    sub_0200964C(&param0->unk_74, 0, FX32_CONST(512));
+    param0->unk_70 = SpriteList_InitRendering(32, &param0->unk_74, 4);
+    SetSubScreenViewRect(&param0->unk_74, 0, FX32_CONST(512));
 
     param0->unk_200 = SpriteResourceCollection_New(4, 0, 4);
     param0->unk_204 = SpriteResourceCollection_New(3, 1, 4);
@@ -1798,13 +1797,13 @@ static void ov6_02244B6C(UnkStruct_ov6_02243FFC *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_210[v0] != NULL) {
-            sub_0200A4E4(param0->unk_210[v0]);
+            SpriteTransfer_ResetCharTransfer(param0->unk_210[v0]);
         }
     }
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_220[v0] != NULL) {
-            sub_0200A6DC(param0->unk_220[v0]);
+            SpriteTransfer_ResetPlttTransfer(param0->unk_220[v0]);
         }
     }
 
@@ -1842,10 +1841,10 @@ static CellActor *ov6_02244C20(UnkStruct_ov6_02243FFC *param0, const VecFx32 *pa
     CellActor *v2;
 
     if (param5 == 4) {
-        sub_020093B4(
+        SpriteResourcesHeader_Init(
             &v0, param2, param3, param4, 0xffffffff, 0xffffffff, 0xffffffff, 0, param6, param0->unk_200, param0->unk_204, param0->unk_208, NULL, NULL, NULL);
     } else {
-        sub_020093B4(
+        SpriteResourcesHeader_Init(
             &v0, param2, param3, param4, param5, 0xffffffff, 0xffffffff, 0, param6, param0->unk_200, param0->unk_204, param0->unk_208, param0->unk_20C, NULL, NULL);
     }
 
@@ -2092,7 +2091,7 @@ static void ov6_02245118(UnkStruct_ov6_02243FFC *param0, void *param1)
     const NNSG2dImageProxy *v2;
 
     v1 = SpriteResourceCollection_Find(param0->unk_200, 3);
-    v2 = sub_0200A534(v1);
+    v2 = SpriteTransfer_GetImageProxy(v1);
     v0 = NNS_G2dGetImageLocation(v2, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     DC_FlushRange((void *)param1, ((32 * 10) * 10));
@@ -2116,9 +2115,9 @@ static void ov6_02245170(UnkStruct_ov6_02243FFC *param0, void *param1)
     const NNSG2dImagePaletteProxy *v4;
 
     v2 = SpriteResourceCollection_Find(param0->unk_200, 3);
-    v3 = sub_0200A534(v2);
+    v3 = SpriteTransfer_GetImageProxy(v2);
     v1 = SpriteResourceCollection_Find(param0->unk_204, 2);
-    v4 = sub_0200A72C(v1, v3);
+    v4 = SpriteTransfer_GetPaletteProxy(v1, v3);
     v0 = NNS_G2dGetImagePaletteLocation(v4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     DC_FlushRange((void *)param1, 32);
@@ -2130,7 +2129,7 @@ static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
     int v0;
     SpriteResource *v1 = SpriteResourceCollection_Find(param0->unk_200, 3);
 
-    sub_0200A4E4(v1);
+    SpriteTransfer_ResetCharTransfer(v1);
     SpriteResourceCollection_Remove(param0->unk_200, v1);
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -2143,7 +2142,7 @@ static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
     GF_ASSERT(v0 < 4);
 
     v1 = SpriteResourceCollection_Find(param0->unk_204, 2);
-    sub_0200A6DC(v1);
+    SpriteTransfer_ResetPlttTransfer(v1);
     SpriteResourceCollection_Remove(param0->unk_204, v1);
 
     for (v0 = 0; v0 < 3; v0++) {

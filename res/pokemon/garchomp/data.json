@@ -1,5 +1,4 @@
 {
-    "name": "Garchomp",
     "base_stats": {
         "hp": 108,
         "attack": 130,
@@ -8,10 +7,7 @@
         "special_attack": 80,
         "special_defense": 85
     },
-    "types": [
-        "TYPE_DRAGON",
-        "TYPE_GROUND"
-    ],
+    "types": [ "TYPE_DRAGON", "TYPE_GROUND" ],
     "catch_rate": 45,
     "base_exp_reward": 218,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 40,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_SAND_VEIL",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_SAND_VEIL", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_FIRE_FANG" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_DRAGON_RAGE" ],
+            [ 1, "MOVE_SANDSTORM" ],
+            [ 3, "MOVE_SAND_ATTACK" ],
+            [ 7, "MOVE_DRAGON_RAGE" ],
+            [ 13, "MOVE_SANDSTORM" ],
+            [ 15, "MOVE_TAKE_DOWN" ],
+            [ 19, "MOVE_SAND_TOMB" ],
+            [ 28, "MOVE_SLASH" ],
+            [ 33, "MOVE_DRAGON_CLAW" ],
+            [ 40, "MOVE_DIG" ],
+            [ 48, "MOVE_CRUNCH" ],
+            [ 55, "MOVE_DRAGON_RUSH" ]
+        ],
+        "by_tm": [
             "TM02",
             "TM05",
             "TM06",
@@ -91,26 +96,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_FIRE_FANG",
-                "MOVE_TACKLE",
-                "MOVE_SAND_ATTACK",
-                "MOVE_DRAGON_RAGE",
-                "MOVE_SANDSTORM"
-            ],
-            "3": "MOVE_SAND_ATTACK",
-            "7": "MOVE_DRAGON_RAGE",
-            "13": "MOVE_SANDSTORM",
-            "15": "MOVE_TAKE_DOWN",
-            "19": "MOVE_SAND_TOMB",
-            "28": "MOVE_SLASH",
-            "33": "MOVE_DRAGON_CLAW",
-            "40": "MOVE_DIG",
-            "48": "MOVE_CRUNCH",
-            "55": "MOVE_DRAGON_RUSH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_IRON_HEAD",
@@ -122,9 +108,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 19,
@@ -138,10 +125,62 @@
         "pokemon_pos_f": 1,
         "trainer_pos_m": 14,
         "pokemon_pos_m": 1,
-        "entry_text": "It is said that when one runs at\nhigh speed, its wings create blades\nof wind that can fell nearby trees.",
-        "category": "Mach Pokémon"
+        "en": {
+            "name": "GARCHOMP",
+            "category": "Mach Pokémon",
+            "entry_text": [
+                "It is said that when one runs at\n",
+                "high speed, its wings create blades\n",
+                "of wind that can fell nearby trees."
+            ]
+        },
+        "fr": {
+            "name": "CARCHACROK",
+            "category": "Pokémon Supersonic",
+            "entry_text": [
+                "Quand il se recroqueville et étend\n",
+                "ses ailes, on dirait un chasseur.\n",
+                "Sa vitesse est supersonique."
+            ]
+        },
+        "de": {
+            "name": "KNAKRACK",
+            "category": "Rasanz",
+            "entry_text": [
+                "Spannt es seinen Körper und seine\n",
+                "Flügel, sieht es aus wie ein Jet.\n",
+                "Es fliegt mit Schallgeschwindigkeit."
+            ]
+        },
+        "it": {
+            "name": "GARCHOMP",
+            "category": "Pokémon Mach",
+            "entry_text": [
+                "Quando si piega e distende le ali,\n",
+                "sembra un jet. Vola a una velocità\n",
+                "supersonica."
+            ]
+        },
+        "es": {
+            "name": "GARCHOMP",
+            "category": "Pokémon Mach",
+            "entry_text": [
+                "Cuando despliega su cuerpo y sus\n",
+                "alas, parece un avión a reacción.\n",
+                "Vuela a velocidad sónica."
+            ]
+        },
+        "jp": {
+            "name": "ガブリアス",
+            "category": "マッハポケモン",
+            "entry_text": [
+                "からだを　おりたたみ　つばさを\n",
+                "のばすと　まるで　ジェットき。\n",
+                "おんそくで　とぶことが　できる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

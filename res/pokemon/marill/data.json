@@ -1,5 +1,4 @@
 {
-    "name": "Marill",
     "base_stats": {
         "hp": 70,
         "attack": 20,
@@ -8,10 +7,7 @@
         "special_attack": 20,
         "special_defense": 50
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 190,
     "base_exp_reward": 58,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 10,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FAIRY"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_HUGE_POWER"
-    ],
-    "great_marsh_flee_rate": 60,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FAIRY" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_HUGE_POWER" ],
+    "safari_flee_rate": 60,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 2, "MOVE_DEFENSE_CURL" ],
+            [ 7, "MOVE_TAIL_WHIP" ],
+            [ 10, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_ROLLOUT" ],
+            [ 18, "MOVE_BUBBLE_BEAM" ],
+            [ 23, "MOVE_AQUA_RING" ],
+            [ 27, "MOVE_DOUBLE_EDGE" ],
+            [ 32, "MOVE_RAIN_DANCE" ],
+            [ 37, "MOVE_AQUA_TAIL" ],
+            [ 42, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM03",
             "TM06",
@@ -77,20 +78,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_TACKLE",
-            "2": "MOVE_DEFENSE_CURL",
-            "7": "MOVE_TAIL_WHIP",
-            "10": "MOVE_WATER_GUN",
-            "15": "MOVE_ROLLOUT",
-            "18": "MOVE_BUBBLE_BEAM",
-            "23": "MOVE_AQUA_RING",
-            "27": "MOVE_DOUBLE_EDGE",
-            "32": "MOVE_RAIN_DANCE",
-            "37": "MOVE_AQUA_TAIL",
-            "42": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -106,14 +94,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             18,
             "SPECIES_AZUMARILL"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 4,
@@ -127,10 +115,62 @@
         "pokemon_pos_f": 27,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 27,
-        "entry_text": "The oil-filled end of its tail floats\non water. It keeps MARILL from\ndrowning even in a strong current.",
-        "category": "Aqua Mouse Pokémon"
+        "en": {
+            "name": "MARILL",
+            "category": "Aqua Mouse Pokémon",
+            "entry_text": [
+                "The oil-filled end of its tail floats\n",
+                "on water. It keeps MARILL from\n",
+                "drowning even in a strong current."
+            ]
+        },
+        "fr": {
+            "name": "MARILL",
+            "category": "Pokémon Aquasouris",
+            "entry_text": [
+                "Il plonge sous l’eau en utilisant sa\n",
+                "queue comme un flotteur. Il aime\n",
+                "les plantes du fond des rivières."
+            ]
+        },
+        "de": {
+            "name": "MARILL",
+            "category": "Aquamaus",
+            "entry_text": [
+                "Seinen Schweif verwendet es als\n",
+                "eine Art Rettungsring, wenn es\n",
+                "taucht. Es liebt Wasserpflanzen."
+            ]
+        },
+        "it": {
+            "name": "MARILL",
+            "category": "Pokémon Acquatopo",
+            "entry_text": [
+                "Si tuffa in acqua e usa la coda come\n",
+                "galleggiante. Ama mangiare le piante\n",
+                "che crescono sul fondo dei fiumi."
+            ]
+        },
+        "es": {
+            "name": "MARILL",
+            "category": "Pokémon Ratón Agua",
+            "entry_text": [
+                "Bucea usando su cola a modo\n",
+                "de boya. Le gusta comer las\n",
+                "plantas del fondo fluvial."
+            ]
+        },
+        "jp": {
+            "name": "マリル",
+            "category": "みずねずみポケモン",
+            "entry_text": [
+                "しっぽを　うきぶくろにして\n",
+                "すいちゅうに　もぐる。\n",
+                "かわぞこの　みずくさが　こうぶつ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

@@ -1,5 +1,4 @@
 {
-    "name": "Drowzee",
     "base_stats": {
         "hp": 60,
         "attack": 48,
@@ -8,10 +7,7 @@
         "special_attack": 43,
         "special_defense": 90
     },
-    "types": [
-        "TYPE_PSYCHIC",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 190,
     "base_exp_reward": 102,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_INSOMNIA",
-        "ABILITY_FOREWARN"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_YELLOW",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_INSOMNIA", "ABILITY_FOREWARN" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_HYPNOSIS" ],
+            [ 7, "MOVE_DISABLE" ],
+            [ 9, "MOVE_CONFUSION" ],
+            [ 15, "MOVE_HEADBUTT" ],
+            [ 18, "MOVE_POISON_GAS" ],
+            [ 21, "MOVE_MEDITATE" ],
+            [ 26, "MOVE_PSYBEAM" ],
+            [ 29, "MOVE_PSYCH_UP" ],
+            [ 32, "MOVE_HEADBUTT" ],
+            [ 37, "MOVE_SWAGGER" ],
+            [ 40, "MOVE_PSYCHIC" ],
+            [ 43, "MOVE_NASTY_PLOT" ],
+            [ 50, "MOVE_ZEN_HEADBUTT" ],
+            [ 53, "MOVE_FUTURE_SIGHT" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM04",
             "TM06",
@@ -86,26 +91,7 @@
             "TM90",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_POUND",
-                "MOVE_HYPNOSIS"
-            ],
-            "7": "MOVE_DISABLE",
-            "9": "MOVE_CONFUSION",
-            "15": "MOVE_HEADBUTT",
-            "18": "MOVE_POISON_GAS",
-            "21": "MOVE_MEDITATE",
-            "26": "MOVE_PSYBEAM",
-            "29": "MOVE_PSYCH_UP",
-            "32": "MOVE_HEADBUTT",
-            "37": "MOVE_SWAGGER",
-            "40": "MOVE_PSYCHIC",
-            "43": "MOVE_NASTY_PLOT",
-            "50": "MOVE_ZEN_HEADBUTT",
-            "53": "MOVE_FUTURE_SIGHT"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
@@ -116,14 +102,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             26,
             "SPECIES_HYPNO"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 10,
@@ -137,10 +123,62 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "It can tell what people are\ndreaming by sniffing with its big\nnose. It loves fun dreams.",
-        "category": "Hypnosis Pokémon"
+        "en": {
+            "name": "DROWZEE",
+            "category": "Hypnosis Pokémon",
+            "entry_text": [
+                "It can tell what people are\n",
+                "dreaming by sniffing with its big\n",
+                "nose. It loves fun dreams."
+            ]
+        },
+        "fr": {
+            "name": "SOPORIFIK",
+            "category": "Pokémon Hypnose",
+            "entry_text": [
+                "Son grand nez lui permet de lire\n",
+                "les rêves d’autrui. Il adore les\n",
+                "songes amusants."
+            ]
+        },
+        "de": {
+            "name": "TRAUMATO",
+            "category": "Hypnose",
+            "entry_text": [
+                "Mit seiner großen Nase kann es die\n",
+                "Träume anderer erkennen.\n",
+                "Es liebt lustige Träume."
+            ]
+        },
+        "it": {
+            "name": "DROWZEE",
+            "category": "Pokémon Ipnosi",
+            "entry_text": [
+                "Riesce ad indovinare cosa sognano\n",
+                "le persone annusandole con il suo\n",
+                "grande naso. Ama i sogni divertenti."
+            ]
+        },
+        "es": {
+            "name": "DROWZEE",
+            "category": "Pokémon Hipnosis",
+            "entry_text": [
+                "Puede oler los sueños de la\n",
+                "gente con su gran nariz. Le\n",
+                "encantan los sueños divertidos."
+            ]
+        },
+        "jp": {
+            "name": "スリ－プ",
+            "category": "さいみんポケモン",
+            "entry_text": [
+                "つきでた　はなを　ひくひくさせると\n",
+                "みている　ユメが　わかるという。\n",
+                "だいこうぶつは　たのしい　ユメだ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

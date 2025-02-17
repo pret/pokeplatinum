@@ -1,5 +1,4 @@
 {
-    "name": "Walrein",
     "base_stats": {
         "hp": 110,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 95,
         "special_defense": 90
     },
-    "types": [
-        "TYPE_ICE",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_ICE", "TYPE_WATER" ],
     "catch_rate": 45,
     "base_exp_reward": 192,
     "ev_yields": {
@@ -30,21 +26,31 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_FIELD"
-    ],
-    "abilities": [
-        "ABILITY_THICK_FAT",
-        "ABILITY_ICE_BODY"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
+    "abilities": [ "ABILITY_THICK_FAT", "ABILITY_ICE_BODY" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_CRUNCH" ],
+            [ 1, "MOVE_POWDER_SNOW" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_ENCORE" ],
+            [ 7, "MOVE_ENCORE" ],
+            [ 13, "MOVE_ICE_BALL" ],
+            [ 19, "MOVE_BODY_SLAM" ],
+            [ 25, "MOVE_AURORA_BEAM" ],
+            [ 31, "MOVE_HAIL" ],
+            [ 32, "MOVE_SWAGGER" ],
+            [ 39, "MOVE_REST" ],
+            [ 39, "MOVE_SNORE" ],
+            [ 44, "MOVE_ICE_FANG" ],
+            [ 52, "MOVE_BLIZZARD" ],
+            [ 65, "MOVE_SHEER_COLD" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM05",
             "TM06",
@@ -80,29 +86,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_CRUNCH",
-                "MOVE_POWDER_SNOW",
-                "MOVE_GROWL",
-                "MOVE_WATER_GUN",
-                "MOVE_ENCORE"
-            ],
-            "7": "MOVE_ENCORE",
-            "13": "MOVE_ICE_BALL",
-            "19": "MOVE_BODY_SLAM",
-            "25": "MOVE_AURORA_BEAM",
-            "31": "MOVE_HAIL",
-            "32": "MOVE_SWAGGER",
-            "39": [
-                "MOVE_REST",
-                "MOVE_SNORE"
-            ],
-            "44": "MOVE_ICE_FANG",
-            "52": "MOVE_BLIZZARD",
-            "65": "MOVE_SHEER_COLD"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
@@ -114,9 +98,10 @@
             "MOVE_SIGNAL_BEAM"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 14,
@@ -130,10 +115,62 @@
         "pokemon_pos_f": 8,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 8,
-        "entry_text": "It shatters ice with its big tusks.\nIts thick blubber repels not only\nthe cold, but also enemy attacks.",
-        "category": "Ice Break Pokémon"
+        "en": {
+            "name": "WALREIN",
+            "category": "Ice Break Pokémon",
+            "entry_text": [
+                "It shatters ice with its big tusks.\n",
+                "Its thick blubber repels not only\n",
+                "the cold, but also enemy attacks."
+            ]
+        },
+        "fr": {
+            "name": "KAIMORSE",
+            "category": "Pokémon Brise Glace",
+            "entry_text": [
+                "Il brise la glace avec ses grosses\n",
+                "défenses. Sa graisse le protège du \n",
+                "froid, mais aussi des attaques."
+            ]
+        },
+        "de": {
+            "name": "WALRAISA",
+            "category": "Eisbrecher",
+            "entry_text": [
+                "Mit seinen Stoßzähnen bricht es\n",
+                "durch Eis. Eine Speckschicht\n",
+                "schützt es vor Kälte und Angriffen."
+            ]
+        },
+        "it": {
+            "name": "WALREIN",
+            "category": "Pokémon Spaccagelo",
+            "entry_text": [
+                "Frantuma il ghiaccio con le zanne.\n",
+                "Lo spesso strato adiposo respinge\n",
+                "il freddo e gli attacchi nemici."
+            ]
+        },
+        "es": {
+            "name": "WALREIN",
+            "category": "Pokémon Rompehielo",
+            "entry_text": [
+                "Rompe el hielo con sus colmillos.\n",
+                "Su gruesa capa de grasa le protege\n",
+                "del frío y de los enemigos."
+            ]
+        },
+        "jp": {
+            "name": "トドゼルガ",
+            "category": "こおりわりポケモン",
+            "entry_text": [
+                "おおきな　こおりを　キバで　くだく。\n",
+                "あつい　しぼうは　さむさだけでなく\n",
+                "てきの　こうげきも　はねかえす。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_SOUTH_EAST",
         "catching_points": 80,

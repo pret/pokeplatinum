@@ -3,20 +3,20 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "consts/game_records.h"
-#include "consts/journal.h"
+#include "generated/journal_online_events.h"
+#include "generated/trainer_score_events.h"
 
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/struct_0209BF64.h"
 #include "struct_defs/struct_0209C194.h"
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay109/struct_ov109_021D5140.h"
 #include "overlay109/struct_ov109_021D5140_sub1.h"
 #include "overlay109/struct_ov109_021D5140_sub2.h"
 
 #include "bg_window.h"
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "core_sys.h"
@@ -33,9 +33,13 @@
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pltt_transfer.h"
+#include "render_oam.h"
 #include "render_window.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
@@ -44,14 +48,8 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
-#include "unk_0200A784.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
-#include "unk_0201DBEC.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
 #include "unk_02030EE0.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -60,6 +58,7 @@
 #include "unk_0205B33C.h"
 #include "unk_0205C980.h"
 #include "unk_0209BDF8.h"
+#include "vram_transfer.h"
 
 static void ov109_021D40A8(void *param0);
 static void ov109_021D40D0(void);
@@ -295,17 +294,17 @@ int ov109_021D3F9C(OverlayManager *param0, int *param1)
     UnkStruct_ov109_021D5140 *v1 = OverlayManager_Data(param0);
 
     SysTask_Done(v1->unk_30);
-    sub_0200A4E4(v1->unk_200[2][0]);
-    sub_0200A6DC(v1->unk_200[2][1]);
+    SpriteTransfer_ResetCharTransfer(v1->unk_200[2][0]);
+    SpriteTransfer_ResetPlttTransfer(v1->unk_200[2][1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(v1->unk_1F0[v0]);
     }
 
     CellActorCollection_Delete(v1->unk_60);
-    sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    RenderOam_Free();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 
     ov109_021D471C(v1);
     ov109_021D42CC(v1->unk_14);
@@ -364,8 +363,8 @@ static void ov109_021D4044(SysTask *param0, void *param1)
 
 static void ov109_021D40A8(void *param0)
 {
-    sub_0201DCAC();
-    sub_0200A858();
+    VramTransfer_Process();
+    RenderOam_Transfer();
     Bg_RunScheduledUpdates((BgConfig *)param0);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -582,16 +581,16 @@ static void ov109_021D4300(UnkStruct_ov109_021D5140 *param0, NARC *param1)
 static void ov109_021D43EC(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             20, 2048, 2048, 95
         };
 
-        sub_0201E86C(&v0);
+        CharTransfer_Init(&v0);
     }
 
-    sub_0201F834(20, 95);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(20, 95);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }
 
 static void ov109_021D441C(UnkStruct_ov109_021D5140 *param0, NARC *param1)
@@ -599,12 +598,12 @@ static void ov109_021D441C(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 95);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 95);
 
-    param0->unk_60 = sub_020095C4(30, &param0->unk_64, 95);
+    param0->unk_60 = SpriteList_InitRendering(30, &param0->unk_64, 95);
     GF_ASSERT(param0->unk_60);
 
-    sub_0200964C(&param0->unk_64, 0, (256 * FX32_ONE));
+    SetSubScreenViewRect(&param0->unk_64, 0, (256 * FX32_ONE));
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_1F0[v0] = SpriteResourceCollection_New(3, v0, 95);
@@ -615,8 +614,8 @@ static void ov109_021D441C(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     param0->unk_200[2][2] = SpriteResourceCollection_AddFrom(param0->unk_1F0[2], param1, 13, 1, 2, 2, 95);
     param0->unk_200[2][3] = SpriteResourceCollection_AddFrom(param0->unk_1F0[3], param1, 14, 1, 2, 3, 95);
 
-    sub_0200A328(param0->unk_200[2][0]);
-    sub_0200A5C8(param0->unk_200[2][1]);
+    SpriteTransfer_RequestChar(param0->unk_200[2][0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_200[2][1]);
 }
 
 static const u16 Unk_ov109_021D5DD0[][2] = {
@@ -632,7 +631,7 @@ static void ov109_021D4518(UnkStruct_ov109_021D5140 *param0)
 {
     int v0;
 
-    sub_020093B4(&param0->unk_278, 2, 2, 2, 2, 0xffffffff, 0xffffffff, 0, 1, param0->unk_1F0[0], param0->unk_1F0[1], param0->unk_1F0[2], param0->unk_1F0[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&param0->unk_278, 2, 2, 2, 2, 0xffffffff, 0xffffffff, 0, 1, param0->unk_1F0[0], param0->unk_1F0[1], param0->unk_1F0[2], param0->unk_1F0[3], NULL, NULL);
 
     {
         CellActorInitParamsEx v1;

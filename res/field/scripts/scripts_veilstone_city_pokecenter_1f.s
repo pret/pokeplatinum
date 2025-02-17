@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/veilstone_city_pokecenter_1f.h"
 
     .data
 

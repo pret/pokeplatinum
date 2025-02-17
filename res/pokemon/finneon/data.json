@@ -1,5 +1,4 @@
 {
-    "name": "Finneon",
     "base_stats": {
         "hp": 49,
         "attack": 49,
@@ -8,10 +7,7 @@
         "special_attack": 49,
         "special_defense": 61
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_WATER" ],
     "catch_rate": 190,
     "base_exp_reward": 90,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
-    "egg_groups": [
-        "EGG_GROUP_WATER_2",
-        "EGG_GROUP_WATER_2"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_STORM_DRAIN"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_BLUE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_STORM_DRAIN" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_POUND" ],
+            [ 6, "MOVE_WATER_GUN" ],
+            [ 10, "MOVE_ATTRACT" ],
+            [ 13, "MOVE_RAIN_DANCE" ],
+            [ 17, "MOVE_GUST" ],
+            [ 22, "MOVE_WATER_PULSE" ],
+            [ 26, "MOVE_CAPTIVATE" ],
+            [ 29, "MOVE_SAFEGUARD" ],
+            [ 33, "MOVE_AQUA_RING" ],
+            [ 38, "MOVE_WHIRLPOOL" ],
+            [ 42, "MOVE_U_TURN" ],
+            [ 45, "MOVE_BOUNCE" ],
+            [ 49, "MOVE_SILVER_WIND" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -77,22 +80,7 @@
             "HM05",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_POUND",
-            "6": "MOVE_WATER_GUN",
-            "10": "MOVE_ATTRACT",
-            "13": "MOVE_RAIN_DANCE",
-            "17": "MOVE_GUST",
-            "22": "MOVE_WATER_PULSE",
-            "26": "MOVE_CAPTIVATE",
-            "29": "MOVE_SAFEGUARD",
-            "33": "MOVE_AQUA_RING",
-            "38": "MOVE_WHIRLPOOL",
-            "42": "MOVE_U_TURN",
-            "45": "MOVE_BOUNCE",
-            "49": "MOVE_SILVER_WIND"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_AQUA_TAIL",
@@ -106,14 +94,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             31,
             "SPECIES_LUMINEON"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 4,
@@ -127,10 +115,62 @@
         "pokemon_pos_f": 65534,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65534,
-        "entry_text": "The line running down its side can\nstore sunlight. It shines vividly at\nnight.",
-        "category": "Wing Fish Pokémon"
+        "en": {
+            "name": "FINNEON",
+            "category": "Wing Fish Pokémon",
+            "entry_text": [
+                "The line running down its side can\n",
+                "store sunlight. It shines vividly at\n",
+                "night."
+            ]
+        },
+        "fr": {
+            "name": "ECAYON",
+            "category": "Pokémon Poisson Ailé",
+            "entry_text": [
+                "Après une longue exposition au\n",
+                "soleil, les motifs de ses nageoires\n",
+                "caudales luisent à la nuit tombée."
+            ]
+        },
+        "de": {
+            "name": "FINNEON",
+            "category": "Flügelfisch",
+            "entry_text": [
+                "Wurden die Flossen lange dem\n",
+                "Sonnenlicht ausgesetzt, leuchten\n",
+                "sie in der Dunkelheit."
+            ]
+        },
+        "it": {
+            "name": "FINNEON",
+            "category": "Pokémon Pescealato",
+            "entry_text": [
+                "Dopo una lunga esposizione al sole,\n",
+                "i motivi sulle sue pinne brillano\n",
+                "vividamente al calar dell’oscurità."
+            ]
+        },
+        "es": {
+            "name": "FINNEON",
+            "category": "Pokémon Pez Ala",
+            "entry_text": [
+                "Si se expone mucho al sol, los\n",
+                "dibujos de sus aletas brillan\n",
+                "en la oscuridad."
+            ]
+        },
+        "jp": {
+            "name": "ケイコウオ",
+            "category": "はねうおポケモン",
+            "entry_text": [
+                "たいようを　いっぱいに　あびた\n",
+                "おびれの　もようは　くらくなると\n",
+                "あざやかな　いろで　ひかりだす。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

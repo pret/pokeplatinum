@@ -1,5 +1,4 @@
 {
-    "name": "Machop",
     "base_stats": {
         "hp": 70,
         "attack": 80,
@@ -8,10 +7,7 @@
         "special_attack": 35,
         "special_defense": 35
     },
-    "types": [
-        "TYPE_FIGHTING",
-        "TYPE_FIGHTING"
-    ],
+    "types": [ "TYPE_FIGHTING", "TYPE_FIGHTING" ],
     "catch_rate": 180,
     "base_exp_reward": 75,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_HUMAN_LIKE",
-        "EGG_GROUP_HUMAN_LIKE"
-    ],
-    "abilities": [
-        "ABILITY_GUTS",
-        "ABILITY_NO_GUARD"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GRAY",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_HUMAN_LIKE", "EGG_GROUP_HUMAN_LIKE" ],
+    "abilities": [ "ABILITY_GUTS", "ABILITY_NO_GUARD" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_LOW_KICK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 7, "MOVE_FOCUS_ENERGY" ],
+            [ 10, "MOVE_KARATE_CHOP" ],
+            [ 13, "MOVE_FORESIGHT" ],
+            [ 19, "MOVE_SEISMIC_TOSS" ],
+            [ 22, "MOVE_REVENGE" ],
+            [ 25, "MOVE_VITAL_THROW" ],
+            [ 31, "MOVE_SUBMISSION" ],
+            [ 34, "MOVE_WAKE_UP_SLAP" ],
+            [ 37, "MOVE_CROSS_CHOP" ],
+            [ 43, "MOVE_SCARY_FACE" ],
+            [ 46, "MOVE_DYNAMIC_PUNCH" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM06",
             "TM08",
@@ -81,24 +84,7 @@
             "HM06",
             "HM08"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_LOW_KICK",
-                "MOVE_LEER"
-            ],
-            "7": "MOVE_FOCUS_ENERGY",
-            "10": "MOVE_KARATE_CHOP",
-            "13": "MOVE_FORESIGHT",
-            "19": "MOVE_SEISMIC_TOSS",
-            "22": "MOVE_REVENGE",
-            "25": "MOVE_VITAL_THROW",
-            "31": "MOVE_SUBMISSION",
-            "34": "MOVE_WAKE_UP_SLAP",
-            "37": "MOVE_CROSS_CHOP",
-            "43": "MOVE_SCARY_FACE",
-            "46": "MOVE_DYNAMIC_PUNCH"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
@@ -111,14 +97,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             28,
             "SPECIES_MACHOKE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 8,
@@ -132,10 +118,62 @@
         "pokemon_pos_f": 19,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 19,
-        "entry_text": "Though small in stature, it is\npowerful enough to easily heft and\nthrow a number of GEODUDE at once.",
-        "category": "Superpower Pokémon"
+        "en": {
+            "name": "MACHOP",
+            "category": "Superpower Pokémon",
+            "entry_text": [
+                "Though small in stature, it is\n",
+                "powerful enough to easily heft and\n",
+                "throw a number of GEODUDE at once."
+            ]
+        },
+        "fr": {
+            "name": "MACHOC",
+            "category": "Pokémon Colosse",
+            "entry_text": [
+                "Il muscle son corps en soulevant\n",
+                "régulièrement un GRAVALANCH. Il\n",
+                "est rompu à tous les arts martiaux."
+            ]
+        },
+        "de": {
+            "name": "MACHOLLO",
+            "category": "Kraftprotz",
+            "entry_text": [
+                "Es hebt GEOROK hoch, um seinen\n",
+                "Körper zu trainieren. Außerdem übt\n",
+                "es sich in jeder Art v. Kampfsport."
+            ]
+        },
+        "it": {
+            "name": "MACHOP",
+            "category": "Pokémon Megaforza",
+            "entry_text": [
+                "Solleva GRAVELER ripetutamente\n",
+                "per mantenersi forte. Conosce\n",
+                "ogni tipo di arte marziale."
+            ]
+        },
+        "es": {
+            "name": "MACHOP",
+            "category": "Pokémon Superpoder",
+            "entry_text": [
+                "Levanta un GRAVELER para mantener\n",
+                "sus músculos en forma. Domina\n",
+                "todas las artes marciales."
+            ]
+        },
+        "jp": {
+            "name": "ワンリキ－",
+            "category": "かいりきポケモン",
+            "entry_text": [
+                "ゴロ－ンを　なんども　あげおろしして\n",
+                "ぜんしんの　きんにくを　きたえる。\n",
+                "あらゆる　かくとうぎを　つかう。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

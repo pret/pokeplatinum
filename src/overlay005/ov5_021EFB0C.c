@@ -16,12 +16,12 @@
 
 #include "heap.h"
 #include "inlines.h"
+#include "map_matrix.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0202D7A8.h"
-#include "unk_02039C80.h"
 #include "unk_02054D00.h"
 
 typedef struct {
@@ -133,7 +133,7 @@ u16 ov5_021EFB94(FieldSystem *fieldSystem)
     v0 = ov5_021EFF10(fieldSystem->location->mapId);
     GF_ASSERT(v0 != 21);
 
-    v1 = sub_0202D840(sub_0202D834(fieldSystem->saveData));
+    v1 = sub_0202D840(SaveData_GetSpecialEncounters(fieldSystem->saveData));
     v2 = sub_0202D84C(v0, v1);
 
     if (ov5_021EFF34(v2->unk_00)) {
@@ -157,7 +157,7 @@ void ov5_021EFBDC(FieldSystem *fieldSystem)
     v0 = ov5_021EFF10(fieldSystem->location->mapId);
     GF_ASSERT(v0 != 21);
 
-    v1 = sub_0202D840(sub_0202D834(fieldSystem->saveData));
+    v1 = sub_0202D840(SaveData_GetSpecialEncounters(fieldSystem->saveData));
     v2 = sub_0202D84C(v0, v1);
 
     v2->unk_00 = (24 * 60);
@@ -168,7 +168,7 @@ void ov5_021EFBDC(FieldSystem *fieldSystem)
     }
 
     if (sub_0202D844(v1) == v0) {
-        if ((inline_020564D0(100)) < 90) {
+        if ((LCRNG_RandMod(100)) < 90) {
             ov5_021EFD58(&v2->unk_04);
             v2->unk_07 = ov5_021EFDC0(v2->unk_06);
             return;
@@ -226,7 +226,7 @@ static void ov5_021EFCF8(const BOOL param0, u8 *param1)
 {
     int v0;
 
-    v0 = inline_020564D0(100);
+    v0 = LCRNG_RandMod(100);
 
     if (param0) {
         if (v0 < 1) {
@@ -253,7 +253,7 @@ static void ov5_021EFD58(u8 *param0)
 {
     int v0;
 
-    v0 = inline_020564D0(100);
+    v0 = LCRNG_RandMod(100);
 
     if (v0 < 5) {
         *param0 = 5;
@@ -290,7 +290,7 @@ static const int ov5_021EFDC0(const u8 param0)
     int v0;
     int v1;
 
-    v1 = inline_020564D0(100);
+    v1 = LCRNG_RandMod(100);
 
     if (param0 == 3) {
         if (v1 < 5) {
@@ -362,7 +362,7 @@ static void ov5_021EFE7C(FieldSystem *fieldSystem, UnkStruct_ov5_021E1608 *param
     u16 v0;
     u8 v1;
 
-    v0 = sub_02039E68(fieldSystem->unk_2C, param2);
+    v0 = MapMatrix_GetMapHeaderIDAtIndex(fieldSystem->mapMatrix, param2);
     v1 = ov5_021EFF10(v0);
 
     if (v1 != 21) {
@@ -370,7 +370,7 @@ static void ov5_021EFE7C(FieldSystem *fieldSystem, UnkStruct_ov5_021E1608 *param
         UnkStruct_0202D84C *v3;
         UnkStruct_ov5_021E1890 *v4;
 
-        v2 = sub_0202D840(sub_0202D834(fieldSystem->saveData));
+        v2 = sub_0202D840(SaveData_GetSpecialEncounters(fieldSystem->saveData));
         v3 = sub_0202D84C(v1, v2);
 
         if (ov5_021EFF34(v3->unk_00)) {
@@ -472,7 +472,7 @@ int ov5_021EFFE4(FieldSystem *fieldSystem)
         UnkStruct_0202D844 *v3;
         UnkStruct_0202D84C *v4;
 
-        v3 = sub_0202D840(sub_0202D834(fieldSystem->saveData));
+        v3 = sub_0202D840(SaveData_GetSpecialEncounters(fieldSystem->saveData));
         v4 = sub_0202D84C(v0, v3);
 
         if ((GAME_VERSION == DIAMOND) || (GAME_VERSION == PLATINUM)) {
@@ -512,7 +512,7 @@ void ov5_021F0040(FieldSystem *fieldSystem)
 
     fieldSystem->unk_A8->unk_00[v2].unk_04 = 0;
 
-    v0 = sub_0202D840(sub_0202D834(fieldSystem->saveData));
+    v0 = sub_0202D840(SaveData_GetSpecialEncounters(fieldSystem->saveData));
     v1 = sub_0202D84C(v2, v0);
 
     v1->unk_00 = 0;

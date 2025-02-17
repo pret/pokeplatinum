@@ -1,5 +1,4 @@
 {
-    "name": "Lombre",
     "base_stats": {
         "hp": 60,
         "attack": 50,
@@ -8,10 +7,7 @@
         "special_attack": 60,
         "special_defense": 70
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_GRASS"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_GRASS" ],
     "catch_rate": 120,
     "base_exp_reward": 141,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_WATER_1",
-        "EGG_GROUP_GRASS"
-    ],
-    "abilities": [
-        "ABILITY_SWIFT_SWIM",
-        "ABILITY_RAIN_DISH"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_GRASS" ],
+    "abilities": [ "ABILITY_SWIFT_SWIM", "ABILITY_RAIN_DISH" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_ASTONISH" ],
+            [ 3, "MOVE_GROWL" ],
+            [ 5, "MOVE_ABSORB" ],
+            [ 7, "MOVE_NATURE_POWER" ],
+            [ 11, "MOVE_FAKE_OUT" ],
+            [ 15, "MOVE_FURY_SWIPES" ],
+            [ 19, "MOVE_WATER_SPORT" ],
+            [ 25, "MOVE_BUBBLE_BEAM" ],
+            [ 31, "MOVE_ZEN_HEADBUTT" ],
+            [ 37, "MOVE_UPROAR" ],
+            [ 45, "MOVE_HYDRO_PUMP" ]
+        ],
+        "by_tm": [
             "TM03",
             "TM06",
             "TM07",
@@ -83,20 +84,7 @@
             "HM06",
             "HM07"
         ],
-        "level_up": {
-            "1": "MOVE_ASTONISH",
-            "3": "MOVE_GROWL",
-            "5": "MOVE_ABSORB",
-            "7": "MOVE_NATURE_POWER",
-            "11": "MOVE_FAKE_OUT",
-            "15": "MOVE_FURY_SWIPES",
-            "19": "MOVE_WATER_SPORT",
-            "25": "MOVE_BUBBLE_BEAM",
-            "31": "MOVE_ZEN_HEADBUTT",
-            "37": "MOVE_UPROAR",
-            "45": "MOVE_HYDRO_PUMP"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
@@ -118,8 +106,8 @@
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 12,
@@ -133,10 +121,62 @@
         "pokemon_pos_f": 14,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 14,
-        "entry_text": "It has a mischievous spirit. If it\nspots an angler, it will tug on the\nfishing line to interfere.",
-        "category": "Jolly Pokémon"
+        "en": {
+            "name": "LOMBRE",
+            "category": "Jolly Pokémon",
+            "entry_text": [
+                "It has a mischievous spirit. If it\n",
+                "spots an angler, it will tug on the\n",
+                "fishing line to interfere."
+            ]
+        },
+        "fr": {
+            "name": "LOMBRE",
+            "category": "Pokémon Jovial",
+            "entry_text": [
+                "C’est un mauvais plaisantin. Quand\n",
+                "il repère un pêcheur, il tire sur sa\n",
+                "ligne pour le déranger. "
+            ]
+        },
+        "de": {
+            "name": "LOMBRERO",
+            "category": "Frohmut",
+            "entry_text": [
+                "Es hat ein spitzbübisches Wesen.\n",
+                "Sieht es einen Angler, zieht es an\n",
+                "der Angelschnur, um ihn zu ärgern."
+            ]
+        },
+        "it": {
+            "name": "LOMBRE",
+            "category": "Pokémon Giocoso",
+            "entry_text": [
+                "È un po’ dispettoso. Se vede un\n",
+                "pescatore, gli tira la lenza solo\n",
+                "per dargli fastidio."
+            ]
+        },
+        "es": {
+            "name": "LOMBRE",
+            "category": "Pokémon Alegre",
+            "entry_text": [
+                "Tiene carácter travieso. Si ve un\n",
+                "pescador, tira del anzuelo para\n",
+                "confundirlo."
+            ]
+        },
+        "jp": {
+            "name": "ハスブレロ",
+            "category": "ようきポケモン",
+            "entry_text": [
+                "つりびとを　みつけると\n",
+                "すいちゅうから　つりいとを　ひっぱり\n",
+                "ジャマして　よろこぶ　いたずらもの。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NORTH_EAST",
         "catching_points": 50,

@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
-#include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207DFAC.h"
 
 #include "overlay061/struct_ov61_0222C3B0.h"
@@ -20,6 +19,7 @@
 #include "overlay_manager.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "trainer_info.h"
@@ -49,7 +49,7 @@ struct UnkStruct_ov65_0222EBE0_t {
     Menu *unk_184;
     void *unk_188;
     CellActorCollection *unk_18C;
-    UnkStruct_0200C738 unk_190;
+    G2dRenderer unk_190;
     SpriteResourceCollection *unk_31C[4];
     UnkStruct_02012744 *unk_32C;
     Window unk_330;

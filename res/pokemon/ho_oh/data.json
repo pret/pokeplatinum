@@ -1,5 +1,4 @@
 {
-    "name": "Ho-Oh",
     "base_stats": {
         "hp": 106,
         "attack": 130,
@@ -8,10 +7,7 @@
         "special_attack": 110,
         "special_defense": 154
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FLYING"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FLYING" ],
     "catch_rate": 3,
     "base_exp_reward": 220,
     "ev_yields": {
@@ -30,21 +26,30 @@
     "hatch_cycles": 120,
     "base_friendship": 0,
     "exp_rate": "EXP_RATE_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_UNDISCOVERED",
-        "EGG_GROUP_UNDISCOVERED"
-    ],
-    "abilities": [
-        "ABILITY_PRESSURE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
+    "abilities": [ "ABILITY_PRESSURE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_WHIRLWIND" ],
+            [ 9, "MOVE_SAFEGUARD" ],
+            [ 15, "MOVE_GUST" ],
+            [ 23, "MOVE_RECOVER" ],
+            [ 29, "MOVE_FIRE_BLAST" ],
+            [ 37, "MOVE_SUNNY_DAY" ],
+            [ 43, "MOVE_SWIFT" ],
+            [ 51, "MOVE_NATURAL_GIFT" ],
+            [ 57, "MOVE_ANCIENT_POWER" ],
+            [ 65, "MOVE_EXTRASENSORY" ],
+            [ 71, "MOVE_PUNISHMENT" ],
+            [ 79, "MOVE_FUTURE_SIGHT" ],
+            [ 85, "MOVE_SACRED_FIRE" ],
+            [ 93, "MOVE_CALM_MIND" ],
+            [ 99, "MOVE_SKY_ATTACK" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM05",
             "TM06",
@@ -95,24 +100,7 @@
             "HM05",
             "HM06"
         ],
-        "level_up": {
-            "1": "MOVE_WHIRLWIND",
-            "9": "MOVE_SAFEGUARD",
-            "15": "MOVE_GUST",
-            "23": "MOVE_RECOVER",
-            "29": "MOVE_FIRE_BLAST",
-            "37": "MOVE_SUNNY_DAY",
-            "43": "MOVE_SWIFT",
-            "51": "MOVE_NATURAL_GIFT",
-            "57": "MOVE_ANCIENT_POWER",
-            "65": "MOVE_EXTRASENSORY",
-            "71": "MOVE_PUNISHMENT",
-            "79": "MOVE_FUTURE_SIGHT",
-            "85": "MOVE_SACRED_FIRE",
-            "93": "MOVE_CALM_MIND",
-            "99": "MOVE_SKY_ATTACK"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_IRON_HEAD",
             "MOVE_OMINOUS_WIND",
@@ -127,9 +115,10 @@
             "MOVE_SWIFT"
         ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 38,
@@ -143,10 +132,62 @@
         "pokemon_pos_f": 0,
         "trainer_pos_m": 21,
         "pokemon_pos_m": 0,
-        "entry_text": "Its feathers are in seven colors.\nIt is said that anyone seeing it is\npromised eternal happiness.",
-        "category": "Rainbow Pokémon"
+        "en": {
+            "name": "HO-OH",
+            "category": "Rainbow Pokémon",
+            "entry_text": [
+                "Its feathers are in seven colors.\n",
+                "It is said that anyone seeing it is\n",
+                "promised eternal happiness."
+            ]
+        },
+        "fr": {
+            "name": "HO-OH",
+            "category": "Pokémon Arcenciel",
+            "entry_text": [
+                "Ses plumes possèdent sept \n",
+                "couleurs. On prétend que sa vue\n",
+                "apporte la joie éternelle."
+            ]
+        },
+        "de": {
+            "name": "HO-OH",
+            "category": "Regenbogen",
+            "entry_text": [
+                "Seine Federn besitzen 7 Farben.\n",
+                "Man sagt, dass demjenigen, der es\n",
+                "sieht, ewiges Glück beschieden ist."
+            ]
+        },
+        "it": {
+            "name": "HO-OH",
+            "category": "Pokémon Arcobaleno",
+            "entry_text": [
+                "Le sue piume sono di sette colori.\n",
+                "Si dice che chiunque lo veda\n",
+                "sarà per sempre felice."
+            ]
+        },
+        "es": {
+            "name": "HO-OH",
+            "category": "Pokémon Arco Iris",
+            "entry_text": [
+                "Su plumaje tiene siete colores.\n",
+                "Se dice que verlo proporciona\n",
+                "felicidad eterna."
+            ]
+        },
+        "jp": {
+            "name": "ホウオウ",
+            "category": "にじいろポケモン",
+            "entry_text": [
+                "なないろの　つばさを　もつ。\n",
+                "ホウオウを　みた　ものは　えいえんの\n",
+                "しあわせが　やくそくされるという。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 90,

@@ -1,5 +1,4 @@
 {
-    "name": "Ditto",
     "base_stats": {
         "hp": 48,
         "attack": 48,
@@ -8,10 +7,7 @@
         "special_attack": 48,
         "special_defense": 48
     },
-    "types": [
-        "TYPE_NORMAL",
-        "TYPE_NORMAL"
-    ],
+    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
     "catch_rate": 35,
     "base_exp_reward": 61,
     "ev_yields": {
@@ -30,29 +26,22 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_DITTO",
-        "EGG_GROUP_DITTO"
-    ],
-    "abilities": [
-        "ABILITY_LIMBER",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_PURPLE",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_DITTO", "EGG_GROUP_DITTO" ],
+    "abilities": [ "ABILITY_LIMBER", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": "MOVE_TRANSFORM"
-        },
-        "tutor": []
+        "by_level": [
+            [ 1, "MOVE_TRANSFORM" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [  ]
     },
+    "evolutions": [  ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 3,
@@ -66,10 +55,62 @@
         "pokemon_pos_f": 30,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 30,
-        "entry_text": "It has the ability to reconstitute\nits entire cellular structure to\ntransform into whatever it sees.",
-        "category": "Transform Pokémon"
+        "en": {
+            "name": "DITTO",
+            "category": "Transform Pokémon",
+            "entry_text": [
+                "It has the ability to reconstitute\n",
+                "its entire cellular structure to\n",
+                "transform into whatever it sees."
+            ]
+        },
+        "fr": {
+            "name": "METAMORPH",
+            "category": "Pokémon Morphing",
+            "entry_text": [
+                "Il a la capacité de modifier sa\n",
+                "structure cellulaire pour prendre\n",
+                "l’apparence de ce qu’il voit."
+            ]
+        },
+        "de": {
+            "name": "DITTO",
+            "category": "Transform",
+            "entry_text": [
+                "Es kann seine Zellstruktur so\n",
+                "verändern, dass es sich in alles\n",
+                "verwandeln kann, was es sieht."
+            ]
+        },
+        "it": {
+            "name": "DITTO",
+            "category": "Pokémon Mutante",
+            "entry_text": [
+                "Ha la capacità di modificare la sua\n",
+                "struttura cellulare per trasfor-\n",
+                "marsi in qualsiasi cosa veda."
+            ]
+        },
+        "es": {
+            "name": "DITTO",
+            "category": "Pokémon Transform.",
+            "entry_text": [
+                "Puede alterar por completo su\n",
+                "estructura celular para emular\n",
+                "cualquier objeto que vea."
+            ]
+        },
+        "jp": {
+            "name": "メタモン",
+            "category": "へんしんポケモン",
+            "entry_text": [
+                "ぜんしんの　さいぼうを　くみかえて\n",
+                "みたものの　かたち　そっくりに\n",
+                "へんしんする　のうりょくを　もつ。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

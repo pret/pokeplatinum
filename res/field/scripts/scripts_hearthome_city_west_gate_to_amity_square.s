@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/text/bank/hearthome_city_west_gate_to_amity_square.h"
 
     .data
 

@@ -1,5 +1,4 @@
 {
-    "name": "Kricketot",
     "base_stats": {
         "hp": 37,
         "attack": 25,
@@ -8,10 +7,7 @@
         "special_attack": 25,
         "special_defense": 41
     },
-    "types": [
-        "TYPE_BUG",
-        "TYPE_BUG"
-    ],
+    "types": [ "TYPE_BUG", "TYPE_BUG" ],
     "catch_rate": 255,
     "base_exp_reward": 54,
     "ev_yields": {
@@ -30,29 +26,19 @@
     "hatch_cycles": 15,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_BUG",
-        "EGG_GROUP_BUG"
-    ],
-    "abilities": [
-        "ABILITY_SHED_SKIN",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
+    "abilities": [ "ABILITY_SHED_SKIN", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [],
-        "level_up": {
-            "1": [
-                "MOVE_GROWL",
-                "MOVE_BIDE"
-            ],
-            "16": "MOVE_BUG_BITE"
-        },
-        "tutor": [
+        "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_BIDE" ],
+            [ 16, "MOVE_BUG_BITE" ]
+        ],
+        "by_tm": [  ],
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_ENDEAVOR",
@@ -61,14 +47,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             10,
             "SPECIES_KRICKETUNE"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 3,
@@ -82,10 +68,62 @@
         "pokemon_pos_f": 28,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 28,
-        "entry_text": "Its legs are short. Whenever it\nstumbles, its stiff antennae clack\nwith a xylophone-like sound.",
-        "category": "Cricket Pokémon"
+        "en": {
+            "name": "KRICKETOT",
+            "category": "Cricket Pokémon",
+            "entry_text": [
+                "Its legs are short. Whenever it\n",
+                "stumbles, its stiff antennae clack\n",
+                "with a xylophone-like sound."
+            ]
+        },
+        "fr": {
+            "name": "CRIKZIK",
+            "category": "Pokémon Criquet",
+            "entry_text": [
+                "Quand il bascule sa tête d’avant \n",
+                "en arrière, ses antennes se\n",
+                "heurtent dans un son de xylophone."
+            ]
+        },
+        "de": {
+            "name": "ZIRPURZE",
+            "category": "Zirper",
+            "entry_text": [
+                "Es schüttelt seinen Kopf, so dass\n",
+                "die beiden Antennen sich berühren\n",
+                "und wie ein Xylophon klingen."
+            ]
+        },
+        "it": {
+            "name": "KRICKETOT",
+            "category": "Pokémon Grillo",
+            "entry_text": [
+                "Muove la testa avanti e indietro\n",
+                "e le antenne, scontrandosi, produ-\n",
+                "cono un suono simile allo xilofono."
+            ]
+        },
+        "es": {
+            "name": "KRICKETOT",
+            "category": "Pokémon Grillo",
+            "entry_text": [
+                "Al agitar la cabeza de atrás hacia\n",
+                "delante, sus antenas chocan\n",
+                "y suenan como un xilófono."
+            ]
+        },
+        "jp": {
+            "name": "コロボ－シ",
+            "category": "こおろぎポケモン",
+            "entry_text": [
+                "あたまを　ぜんごに　ゆすって\n",
+                "しょっかくを　ぶつけあうことで\n",
+                "もっきんのような　おとを　ならす。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 50,

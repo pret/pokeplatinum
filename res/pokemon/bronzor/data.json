@@ -1,5 +1,4 @@
 {
-    "name": "Bronzor",
     "base_stats": {
         "hp": 57,
         "attack": 24,
@@ -8,10 +7,7 @@
         "special_attack": 24,
         "special_defense": 86
     },
-    "types": [
-        "TYPE_STEEL",
-        "TYPE_PSYCHIC"
-    ],
+    "types": [ "TYPE_STEEL", "TYPE_PSYCHIC" ],
     "catch_rate": 255,
     "base_exp_reward": 72,
     "ev_yields": {
@@ -30,21 +26,28 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
-    "egg_groups": [
-        "EGG_GROUP_MINERAL",
-        "EGG_GROUP_MINERAL"
-    ],
-    "abilities": [
-        "ABILITY_LEVITATE",
-        "ABILITY_HEATPROOF"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_GREEN",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MINERAL", "EGG_GROUP_MINERAL" ],
+    "abilities": [ "ABILITY_LEVITATE", "ABILITY_HEATPROOF" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 7, "MOVE_HYPNOSIS" ],
+            [ 12, "MOVE_IMPRISON" ],
+            [ 14, "MOVE_CONFUSE_RAY" ],
+            [ 19, "MOVE_EXTRASENSORY" ],
+            [ 26, "MOVE_IRON_DEFENSE" ],
+            [ 30, "MOVE_SAFEGUARD" ],
+            [ 35, "MOVE_GYRO_BALL" ],
+            [ 37, "MOVE_FUTURE_SIGHT" ],
+            [ 41, "MOVE_FAINT_ATTACK" ],
+            [ 49, "MOVE_PAYBACK" ],
+            [ 52, "MOVE_HEAL_BLOCK" ]
+        ],
+        "by_tm": [
             "TM04",
             "TM06",
             "TM10",
@@ -86,24 +89,7 @@
             "TM91",
             "TM92"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_TACKLE",
-                "MOVE_CONFUSION"
-            ],
-            "7": "MOVE_HYPNOSIS",
-            "12": "MOVE_IMPRISON",
-            "14": "MOVE_CONFUSE_RAY",
-            "19": "MOVE_EXTRASENSORY",
-            "26": "MOVE_IRON_DEFENSE",
-            "30": "MOVE_SAFEGUARD",
-            "35": "MOVE_GYRO_BALL",
-            "37": "MOVE_FUTURE_SIGHT",
-            "41": "MOVE_FAINT_ATTACK",
-            "49": "MOVE_PAYBACK",
-            "52": "MOVE_HEAL_BLOCK"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_ANCIENT_POWER",
@@ -113,14 +99,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             33,
             "SPECIES_BRONZONG"
         ]
     ],
     "footprint": {
-        "has_footprint": false,
-        "footprint_size": "FOOTPRINT_LARGE"
+        "has": false,
+        "size": "FOOTPRINT_LARGE"
     },
     "pokedex_data": {
         "height": 5,
@@ -134,10 +120,62 @@
         "pokemon_pos_f": 65528,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 65528,
-        "entry_text": "There are researchers who believe\nthis Pokémon reflected like a mirror\nin the distant past.",
-        "category": "Bronze Pokémon"
+        "en": {
+            "name": "BRONZOR",
+            "category": "Bronze Pokémon",
+            "entry_text": [
+                "There are researchers who believe\n",
+                "this Pokémon reflected like a mirror\n",
+                "in the distant past."
+            ]
+        },
+        "fr": {
+            "name": "ARCHEOMIRE",
+            "category": "Pokémon Bronze",
+            "entry_text": [
+                "Il rappelle des objets trouvés\n",
+                "dans des sépultures anciennes.\n",
+                "Nul ne sait s’ils sont liés."
+            ]
+        },
+        "de": {
+            "name": "BRONZEL",
+            "category": "Bronze",
+            "entry_text": [
+                "Sein Körper sieht aus, als seien\n",
+                "Teile davon in alten Gräbern\n",
+                "gefunden worden."
+            ]
+        },
+        "it": {
+            "name": "BRONZOR",
+            "category": "Pokémon Bronzo",
+            "entry_text": [
+                "Il suo aspetto ricorda alcuni\n",
+                "oggetti ritrovati in antiche tombe,\n",
+                "ma non si sa se ci sia una relazione."
+            ]
+        },
+        "es": {
+            "name": "BRONZOR",
+            "category": "Pokémon Bronce",
+            "entry_text": [
+                "Se descubrieron herramientas con\n",
+                "su forma en tumbas antiguas, pero\n",
+                "se desconoce si tiene relación."
+            ]
+        },
+        "jp": {
+            "name": "ド－ミラ－",
+            "category": "せいどうポケモン",
+            "entry_text": [
+                "ふるい　おはかから　ド－ミラ－に\n",
+                "そっくりな　どうぐが　ほりだされたが\n",
+                "かんけいは　わかっていない。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_NORTH_EAST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 70,

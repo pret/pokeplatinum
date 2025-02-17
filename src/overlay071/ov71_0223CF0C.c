@@ -3,19 +3,18 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay022/struct_ov22_022559F8.h"
 #include "overlay071/struct_ov71_0223D238.h"
 
 #include "cell_actor.h"
+#include "char_transfer.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
+#include "pltt_transfer.h"
+#include "render_oam.h"
 #include "sprite_resource.h"
-#include "unk_020093B4.h"
-#include "unk_0200A328.h"
-#include "unk_0200A784.h"
-#include "unk_0201E86C.h"
-#include "unk_0201F834.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 
 typedef struct {
     int unk_00;
@@ -59,9 +58,9 @@ void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
 
     ov71_0223D2F4();
     NNS_G2dInitOamManagerModule();
-    sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 25);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 25);
 
-    param0->unk_00 = sub_020095C4((8 + 8 + 8 + 1), &param0->unk_04, 25);
+    param0->unk_00 = SpriteList_InitRendering((8 + 8 + 8 + 1), &param0->unk_04, 25);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_190[v0] = SpriteResourceCollection_New(Unk_ov71_0223D6C8[v0], v0, 25);
@@ -72,8 +71,8 @@ void ov71_0223CF0C(UnkStruct_ov71_0223D238 *param0, NARC *param1)
     param0->unk_1A0[0][2] = SpriteResourceCollection_AddFrom(param0->unk_190[2], param1, 44, 0, 1, 2, 25);
     param0->unk_1A0[0][3] = SpriteResourceCollection_AddFrom(param0->unk_190[3], param1, 46, 0, 1, 3, 25);
 
-    sub_0200A328(param0->unk_1A0[0][0]);
-    sub_0200A5C8(param0->unk_1A0[0][1]);
+    SpriteTransfer_RequestChar(param0->unk_1A0[0][0]);
+    SpriteTransfer_RequestPlttWholeRange(param0->unk_1A0[0][1]);
 
     {
         u8 v1;
@@ -103,7 +102,7 @@ void ov71_0223D070(UnkStruct_ov71_0223D238 *param0, const u8 *param1)
     int v0;
     CellActorResourceData v1;
 
-    sub_020093B4(&v1, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 1, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v1, 1, 1, 1, 1, 0xffffffff, 0xffffffff, 0, 1, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
         u8 v2;
@@ -182,17 +181,17 @@ void ov71_0223D238(UnkStruct_ov71_0223D238 *param0)
         Heap_FreeToHeap(param0->unk_224[v0]);
     }
 
-    sub_0200A4E4(param0->unk_1A0[0][0]);
-    sub_0200A6DC(param0->unk_1A0[0][1]);
+    SpriteTransfer_ResetCharTransfer(param0->unk_1A0[0][0]);
+    SpriteTransfer_ResetPlttTransfer(param0->unk_1A0[0][1]);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
     CellActorCollection_Delete(param0->unk_00);
-    sub_0200A878();
-    sub_0201E958();
-    sub_0201F8B4();
+    RenderOam_Free();
+    CharTransfer_Free();
+    PlttTransfer_Free();
 }
 
 void ov71_0223D298(UnkStruct_ov71_0223D238 *param0, const u8 param1, const u8 param2)
@@ -217,14 +216,14 @@ void ov71_0223D298(UnkStruct_ov71_0223D238 *param0, const u8 param1, const u8 pa
 static void ov71_0223D2F4(void)
 {
     {
-        UnkStruct_ov22_022559F8 v0 = {
+        CharTransferTemplate v0 = {
             1, 2048, 0, 25
         };
 
-        sub_0201E86C(&v0);
+        CharTransfer_Init(&v0);
     }
 
-    sub_0201F834(2, 25);
-    sub_0201E994();
-    sub_0201F8E4();
+    PlttTransfer_Init(2, 25);
+    CharTransfer_ClearBuffers();
+    PlttTransfer_Clear();
 }

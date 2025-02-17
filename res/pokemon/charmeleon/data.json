@@ -1,5 +1,4 @@
 {
-    "name": "Charmeleon",
     "base_stats": {
         "hp": 58,
         "attack": 64,
@@ -8,10 +7,7 @@
         "special_attack": 80,
         "special_defense": 65
     },
-    "types": [
-        "TYPE_FIRE",
-        "TYPE_FIRE"
-    ],
+    "types": [ "TYPE_FIRE", "TYPE_FIRE" ],
     "catch_rate": 45,
     "base_exp_reward": 142,
     "ev_yields": {
@@ -30,21 +26,26 @@
     "hatch_cycles": 20,
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_SLOW",
-    "egg_groups": [
-        "EGG_GROUP_MONSTER",
-        "EGG_GROUP_DRAGON"
-    ],
-    "abilities": [
-        "ABILITY_BLAZE",
-        "ABILITY_NONE"
-    ],
-    "great_marsh_flee_rate": 0,
-    "sprite": {
-        "color": "MON_COLOR_RED",
-        "flip_sprite": false
-    },
+    "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_DRAGON" ],
+    "abilities": [ "ABILITY_BLAZE", "ABILITY_NONE" ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
     "learnset": {
-        "tms": [
+        "by_level": [
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 7, "MOVE_EMBER" ],
+            [ 10, "MOVE_SMOKE_SCREEN" ],
+            [ 17, "MOVE_DRAGON_RAGE" ],
+            [ 21, "MOVE_SCARY_FACE" ],
+            [ 28, "MOVE_FIRE_FANG" ],
+            [ 32, "MOVE_SLASH" ],
+            [ 39, "MOVE_FLAMETHROWER" ],
+            [ 43, "MOVE_FIRE_SPIN" ]
+        ],
+        "by_tm": [
             "TM01",
             "TM02",
             "TM06",
@@ -81,22 +82,7 @@
             "HM04",
             "HM06"
         ],
-        "level_up": {
-            "1": [
-                "MOVE_SCRATCH",
-                "MOVE_GROWL",
-                "MOVE_EMBER"
-            ],
-            "7": "MOVE_EMBER",
-            "10": "MOVE_SMOKE_SCREEN",
-            "17": "MOVE_DRAGON_RAGE",
-            "21": "MOVE_SCARY_FACE",
-            "28": "MOVE_FIRE_FANG",
-            "32": "MOVE_SLASH",
-            "39": "MOVE_FLAMETHROWER",
-            "43": "MOVE_FIRE_SPIN"
-        },
-        "tutor": [
+        "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_THUNDER_PUNCH",
@@ -108,14 +94,14 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_UP",
+            "EVO_LEVEL",
             36,
             "SPECIES_CHARIZARD"
         ]
     ],
     "footprint": {
-        "has_footprint": true,
-        "footprint_size": "FOOTPRINT_MEDIUM"
+        "has": true,
+        "size": "FOOTPRINT_MEDIUM"
     },
     "pokedex_data": {
         "height": 11,
@@ -129,10 +115,62 @@
         "pokemon_pos_f": 15,
         "trainer_pos_m": 9,
         "pokemon_pos_m": 15,
-        "entry_text": "In the rocky mountains where\nCHARMELEON live, their fiery\ntails shine at night like stars.",
-        "category": "Flame Pokémon"
+        "en": {
+            "name": "CHARMELEON",
+            "category": "Flame Pokémon",
+            "entry_text": [
+                "In the rocky mountains where\n",
+                "CHARMELEON live, their fiery\n",
+                "tails shine at night like stars."
+            ]
+        },
+        "fr": {
+            "name": "REPTINCEL",
+            "category": "Pokémon Flamme",
+            "entry_text": [
+                "La nuit, la queue ardente du\n",
+                "REPTINCEL brille comme une étoile\n",
+                "dans son repaire montagneux."
+            ]
+        },
+        "de": {
+            "name": "GLUTEXO",
+            "category": "Flamme",
+            "entry_text": [
+                "GLUTEXO leben in den Bergen. Die\n",
+                "Flammen auf ihren Schweifspitzen\n",
+                "leuchten in der Nacht wie Sterne."
+            ]
+        },
+        "it": {
+            "name": "CHARMELEON",
+            "category": "Pokémon Fiamma",
+            "entry_text": [
+                "Sui monti rocciosi, sua dimora,\n",
+                "la coda di CHARMELEON brilla\n",
+                "come una stella nella notte."
+            ]
+        },
+        "es": {
+            "name": "CHARMELEON",
+            "category": "Pokémon Llama",
+            "entry_text": [
+                "En las montañas rocosas donde\n",
+                "viven los CHARMELEON, sus colas\n",
+                "ardientes brillan como estrellas."
+            ]
+        },
+        "jp": {
+            "name": "リザ－ド",
+            "category": "かえんポケモン",
+            "entry_text": [
+                "リザ－ドが　くらす　いわやまを\n",
+                "よなかに　みあげると　しっぽの\n",
+                "ほのおが　ほしのように　みえる。"
+            ]
+        }
     },
-    "catching_show_data": {
+    "catching_show": {
         "pal_park_land_area": "PAL_PARK_AREA_LAND_SOUTH_WEST",
         "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
         "catching_points": 80,

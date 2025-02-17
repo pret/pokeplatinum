@@ -4,7 +4,6 @@
 #include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
-#include "struct_defs/struct_0200C738.h"
 
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D23F8.h"
@@ -16,12 +15,13 @@
 #include "cell_actor.h"
 #include "narc.h"
 #include "sprite_resource.h"
+#include "sprite_util.h"
 #include "sys_task_manager.h"
 
 typedef struct {
     BgConfig *unk_00;
     Window unk_04;
-    UnkStruct_0200C738 unk_14;
+    G2dRenderer unk_14;
     CellActorCollection *unk_138;
     SpriteResourceCollection *unk_13C[4];
     UnkStruct_ov21_021D4C0C *unk_14C;
@@ -35,7 +35,7 @@ typedef struct {
     UnkStruct_ov21_021D3124 unk_218;
     SysTask *unk_270;
     SysTask *unk_274;
-    NARC *unk_278;
+    NARC *pokedexGraphics;
 } UnkStruct_ov21_021D13FC;
 
 #endif // POKEPLATINUM_STRUCT_OV21_021D13FC_H
