@@ -19,7 +19,7 @@
 
 typedef struct {
     UnkStruct_02095C48_sub1 *unk_00;
-    UnkStruct_02007768 *unk_04;
+    PokemonSpriteManager *unk_04;
     PokemonSprite *unk_08[4];
     SpriteSystem *unk_18;
     SpriteManager *unk_1C;

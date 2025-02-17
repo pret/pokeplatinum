@@ -206,7 +206,7 @@ typedef struct ChooseStarterApp {
     G2dRenderer unk_BC;
     SpriteList *unk_248;
     SpriteResourceCollection *unk_24C[6];
-    UnkStruct_02007768 *spriteManager;
+    PokemonSpriteManager *spriteManager;
     PokemonSprite *sprites[NUM_STARTER_OPTIONS];
     StarterPreviewGraphics unk_274;
     NNSFndAllocator unk_2B4;

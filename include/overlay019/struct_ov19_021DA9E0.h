@@ -24,7 +24,7 @@ typedef struct {
     UnkStruct_ov19_021D61B0 *unk_14;
     UnkStruct_0200C440 *unk_18;
     UnkStruct_0200C440 *unk_1C;
-    UnkStruct_02007768 *unk_20;
+    PokemonSpriteManager *unk_20;
     PokemonSprite *unk_24;
     void *unk_28;
     NNSG2dCellDataBank *unk_2C;

@@ -7,7 +7,7 @@
 
 #include "struct_defs/pokemon_sprite.h"
 
-typedef struct UnkStruct_02007768_t {
+typedef struct PokemonSpriteManager_t {
     PokemonSprite sprites[4];
     NNSG2dImageProxy imageProxy;
     NNSG2dImagePaletteProxy paletteProxy;
@@ -26,6 +26,6 @@ typedef struct UnkStruct_02007768_t {
     u8 needLoadPltt;
     u8 needG3Identity;
     u32 flags;
-} UnkStruct_02007768;
+} PokemonSpriteManager;
 
 #endif // POKEPLATINUM_STRUCT_02007768_H

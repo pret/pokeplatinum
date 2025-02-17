@@ -56,7 +56,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     BOOL unk_0C;
-    UnkStruct_02007768 *unk_10;
+    PokemonSpriteManager *unk_10;
     PokemonSprite *unk_14;
     SpriteAnimationFrame unk_18[10];
     Sprite *unk_40[2];

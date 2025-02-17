@@ -196,7 +196,7 @@ static void ShowPartyGaugeTask(SysTask *param0, void *param1);
 static void HidePartyGaugeTask(SysTask *param0, void *param1);
 static void ov16_02263688(SysTask *param0, void *param1);
 static void ov16_022636D4(SysTask *param0, void *param1);
-static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, UnkStruct_02007768 *param1, PokemonSpriteTemplate *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, SpriteAnimationFrame *param11, UnkFuncPtr_02007C34 *param12);
+static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManager *param1, PokemonSpriteTemplate *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, SpriteAnimationFrame *param11, UnkFuncPtr_02007C34 *param12);
 static void ov16_02263C1C(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C3F8 *param2, BattleMessage *param3);
 static void ov16_02263CF0(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C40C *param2, BattleMessage *param3);
 static void ov16_02263DD0(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
@@ -249,7 +249,7 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 {
     int v0;
     PokemonSpriteTemplate v1;
-    UnkStruct_02007768 *v2;
+    PokemonSpriteManager *v2;
     SpriteAnimationFrame v3[10];
     UnkStruct_ov16_0225E4E8 *v4;
     int battleType;
@@ -568,7 +568,7 @@ void ov16_0225D414(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 {
     int v0;
     PokemonSpriteTemplate v1;
-    UnkStruct_02007768 *v2;
+    PokemonSpriteManager *v2;
     UnkStruct_ov16_02260384 *v3;
     u32 v4;
 
@@ -1752,7 +1752,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
             }
 
             {
-                UnkStruct_02007768 *v2;
+                PokemonSpriteManager *v2;
                 SpriteAnimationFrame v3[10];
 
                 v2 = ov16_0223E000(v0->unk_00);
@@ -1920,7 +1920,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         v0->unk_0C = ov12_02237728(&v2);
     }
         {
-            UnkStruct_02007768 *v3;
+            PokemonSpriteManager *v3;
             SpriteAnimationFrame v4[10];
 
             v3 = ov16_0223E000(v0->unk_00);
@@ -4841,7 +4841,7 @@ static void ov16_02262D28(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225DC7C *v0 = (UnkStruct_ov16_0225DC7C *)param1;
     PaletteData *v1;
-    UnkStruct_02007768 *v2;
+    PokemonSpriteManager *v2;
 
     v1 = BattleSystem_PaletteSys(v0->unk_00);
     v2 = ov16_0223E000(v0->unk_00);
@@ -5638,7 +5638,7 @@ void ov16_02263B20(BattlerData *param0, int param1)
     ManagedSprite_SetDrawFlag(param0->unk_18, param1);
 }
 
-static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, UnkStruct_02007768 *param1, PokemonSpriteTemplate *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, SpriteAnimationFrame *param11, UnkFuncPtr_02007C34 *param12)
+static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, PokemonSpriteManager *param1, PokemonSpriteTemplate *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, SpriteAnimationFrame *param11, UnkFuncPtr_02007C34 *param12)
 {
     PokemonSprite *v0;
     u8 *v1 = ov16_0223F2B8(ov16_0223E0C8(battleSys), param10);

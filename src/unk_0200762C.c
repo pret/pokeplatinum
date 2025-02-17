@@ -271,12 +271,12 @@ static const UnkStruct_020E4E62 *Unk_021007A4[] = {
     (UnkStruct_020E4E62 *)&Unk_020E4F4C
 };
 
-void sub_02007768(UnkStruct_02007768 *param0);
-void sub_02007B6C(UnkStruct_02007768 *param0);
-PokemonSprite *sub_02007C34(UnkStruct_02007768 *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7);
-PokemonSprite *sub_02007C7C(UnkStruct_02007768 *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8);
+void sub_02007768(PokemonSpriteManager *param0);
+void sub_02007B6C(PokemonSpriteManager *param0);
+PokemonSprite *sub_02007C34(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7);
+PokemonSprite *sub_02007C7C(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8);
 void sub_02007DC8(PokemonSprite *param0);
-void sub_02007DD4(UnkStruct_02007768 *param0);
+void sub_02007DD4(PokemonSpriteManager *param0);
 void sub_02007B98(PokemonSprite *param0, int param1);
 void sub_02007C10(PokemonSprite *param0, SpriteAnimationFrame *param1);
 BOOL sub_02007C24(PokemonSprite *param0);
@@ -285,38 +285,38 @@ int sub_020080C0(PokemonSprite *param0, int param1);
 void sub_02008274(PokemonSprite *param0, int param1, int param2);
 void sub_020086D4(PokemonSprite *param0, int param1, int param2, int param3, int param4);
 void sub_020086FC(PokemonSprite *param0, int param1, int param2, int param3, int param4);
-void sub_0200872C(UnkStruct_02007768 *param0, int param1, int param2, int param3, int param4);
+void sub_0200872C(PokemonSpriteManager *param0, int param1, int param2, int param3, int param4);
 void sub_02008780(PokemonSprite *param0);
 BOOL sub_020087B4(PokemonSprite *param0);
 void sub_020087C8(PokemonSprite *param0, int param1);
 void sub_020089A0(PokemonSprite *param0);
 void sub_020089B0(PokemonSprite *param0);
 void sub_02008A0C(PokemonSprite *param0);
-void sub_02008A78(UnkStruct_02007768 *param0, u32 param1, u32 param2);
-void sub_02008A84(UnkStruct_02007768 *param0, u32 param1, u32 param2);
+void sub_02008A78(PokemonSpriteManager *param0, u32 param1, u32 param2);
+void sub_02008A84(PokemonSpriteManager *param0, u32 param1, u32 param2);
 PokemonSpriteTemplate *sub_02008A90(PokemonSprite *param0);
-void sub_02008A94(UnkStruct_02007768 *param0);
-void sub_02008B2C(UnkStruct_02007768 *param0, int param1);
+void sub_02008A94(PokemonSpriteManager *param0);
+void sub_02008B2C(PokemonSpriteManager *param0, int param1);
 BOOL sub_02008B38(PokemonSprite *param0);
-void sub_02008B54(UnkStruct_02007768 *param0, u32 param1);
-void sub_02008B60(UnkStruct_02007768 *param0, u32 param1);
+void sub_02008B54(PokemonSpriteManager *param0, u32 param1);
+void sub_02008B60(PokemonSpriteManager *param0, u32 param1);
 void sub_020091D8(u8 *param0, u32 param1, BOOL param2);
 void sub_02009348(u8 *param0);
-static void sub_02008B78(UnkStruct_02007768 *param0);
-static void sub_02008FC8(UnkStruct_02007768 *param0);
+static void sub_02008B78(PokemonSpriteManager *param0);
+static void sub_02008FC8(PokemonSpriteManager *param0);
 static void sub_020088D8(PokemonSprite *param0);
 static u8 sub_020091AC(u8 param0);
 static void sub_020091C0(PokemonSprite *param0, u8 *param1);
 
 void *sub_0200762C(int heapID)
 {
-    UnkStruct_02007768 *v0;
+    PokemonSpriteManager *v0;
     int v1, v2, v3, v4;
     NNSG2dCharacterData *v5;
     u8 *v6;
     void *v7;
 
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02007768));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(PokemonSpriteManager));
 
     v0->heapID = heapID;
     v0->dummy330 = 0;
@@ -390,7 +390,7 @@ static const int Unk_020E4D50[4][4] = {
     { 0xA0, 0xC0, 0xE0, 0xD0 }
 };
 
-void sub_02007768(UnkStruct_02007768 *param0)
+void sub_02007768(PokemonSpriteManager *param0)
 {
     int v0;
     int v1, v2;
@@ -480,7 +480,7 @@ void sub_02007768(UnkStruct_02007768 *param0)
     G3_PopMtx(1);
 }
 
-void sub_02007B6C(UnkStruct_02007768 *param0)
+void sub_02007B6C(PokemonSpriteManager *param0)
 {
     Heap_FreeToHeap(param0->charRawData);
     Heap_FreeToHeap(param0->plttRawData);
@@ -518,7 +518,7 @@ BOOL sub_02007C24(PokemonSprite *param0)
     return param0->unk_58 != 0;
 }
 
-PokemonSprite *sub_02007C34(UnkStruct_02007768 *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7)
+PokemonSprite *sub_02007C34(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7)
 {
     int v0;
 
@@ -533,7 +533,7 @@ PokemonSprite *sub_02007C34(UnkStruct_02007768 *param0, PokemonSpriteTemplate *p
     return sub_02007C7C(param0, param1, param2, param3, param4, param5, v0, param6, param7);
 }
 
-PokemonSprite *sub_02007C7C(UnkStruct_02007768 *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8)
+PokemonSprite *sub_02007C7C(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8)
 {
     GF_ASSERT(param0->sprites[param6].unk_00_0 == 0);
 
@@ -576,7 +576,7 @@ void sub_02007DC8(PokemonSprite *param0)
     param0->unk_00_0 = 0;
 }
 
-void sub_02007DD4(UnkStruct_02007768 *param0)
+void sub_02007DD4(PokemonSpriteManager *param0)
 {
     int v0;
 
@@ -1011,7 +1011,7 @@ void sub_020086FC(PokemonSprite *param0, int param1, int param2, int param3, int
     param0->unk_24.unk_28 = param4;
 }
 
-void sub_0200872C(UnkStruct_02007768 *param0, int param1, int param2, int param3, int param4)
+void sub_0200872C(PokemonSpriteManager *param0, int param1, int param2, int param3, int param4)
 {
     int v0;
 
@@ -1163,13 +1163,13 @@ void sub_02008A0C(PokemonSprite *param0)
     param0->unk_00_8 = 1;
 }
 
-void sub_02008A78(UnkStruct_02007768 *param0, u32 param1, u32 param2)
+void sub_02008A78(PokemonSpriteManager *param0, u32 param1, u32 param2)
 {
     param0->charBaseAddr = param1;
     param0->charSize = param2;
 }
 
-void sub_02008A84(UnkStruct_02007768 *param0, u32 param1, u32 param2)
+void sub_02008A84(PokemonSpriteManager *param0, u32 param1, u32 param2)
 {
     param0->plttBaseAddr = param1;
     param0->plttSize = param2;
@@ -1180,7 +1180,7 @@ PokemonSpriteTemplate *sub_02008A90(PokemonSprite *param0)
     return &param0->unk_04;
 }
 
-void sub_02008A94(UnkStruct_02007768 *param0)
+void sub_02008A94(PokemonSpriteManager *param0)
 {
     if (param0->needLoadImage) {
         param0->needLoadImage = FALSE;
@@ -1207,7 +1207,7 @@ void sub_02008A94(UnkStruct_02007768 *param0)
     }
 }
 
-void sub_02008B2C(UnkStruct_02007768 *param0, int param1)
+void sub_02008B2C(PokemonSpriteManager *param0, int param1)
 {
     param0->needG3Identity = param1;
 }
@@ -1218,17 +1218,17 @@ BOOL sub_02008B38(PokemonSprite *param0)
     return param0->unk_00_0 != 0;
 }
 
-void sub_02008B54(UnkStruct_02007768 *param0, u32 param1)
+void sub_02008B54(PokemonSpriteManager *param0, u32 param1)
 {
     param0->flags |= param1;
 }
 
-void sub_02008B60(UnkStruct_02007768 *param0, u32 param1)
+void sub_02008B60(PokemonSpriteManager *param0, u32 param1)
 {
     param0->flags &= (param1 ^ 0xffffffff);
 }
 
-static void sub_02008B78(UnkStruct_02007768 *param0)
+static void sub_02008B78(PokemonSpriteManager *param0)
 {
     NNSG2dCharacterData *v0;
     int v1, v2, v3;
@@ -1341,7 +1341,7 @@ static void sub_02008B78(UnkStruct_02007768 *param0)
     param0->needLoadImage = v6;
 }
 
-static void sub_02008FC8(UnkStruct_02007768 *param0)
+static void sub_02008FC8(PokemonSpriteManager *param0)
 {
     NNSG2dPaletteData *v0;
     int v1, v2, v3;

@@ -103,7 +103,7 @@ struct UnkStruct_ov105_02241FF4_t {
     StringList unk_100[4];
     PaletteData *unk_120;
     GenericPointerData *unk_124;
-    UnkStruct_02007768 *unk_128;
+    PokemonSpriteManager *unk_128;
     PokemonSprite *unk_12C[3];
     Options *unk_138;
     SaveData *unk_13C;

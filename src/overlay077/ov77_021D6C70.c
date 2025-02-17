@@ -18,7 +18,7 @@
 #include "unk_0202419C.h"
 
 typedef struct UnkStruct_ov77_021D6CFC_t {
-    UnkStruct_02007768 *unk_00;
+    PokemonSpriteManager *unk_00;
     PokemonSprite *unk_04[3];
     BOOL unk_10;
     void *unk_14;

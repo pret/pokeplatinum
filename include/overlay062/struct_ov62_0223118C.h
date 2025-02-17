@@ -36,7 +36,7 @@ typedef struct {
     u8 unk_48;
     u8 padding_49[3];
     GenericPointerData *unk_4C;
-    UnkStruct_02007768 *unk_50;
+    PokemonSpriteManager *unk_50;
     UnkStruct_ov62_022349A8 unk_54;
     UnkStruct_ov62_0223359C unk_46C;
     UnkStruct_ov62_02233310 unk_48C;

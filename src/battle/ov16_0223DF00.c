@@ -77,7 +77,7 @@ int BattleSystem_MaxBattlers(BattleSystem *battleSystem);
 Party *BattleSystem_Party(BattleSystem *battleSystem, int param1);
 int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
-UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSystem);
+PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSystem);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem);
 SpriteSystem *ov16_0223E010(BattleSystem *battleSystem);
 SpriteManager *ov16_0223E018(BattleSystem *battleSystem);
@@ -289,7 +289,7 @@ Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slo
     return Party_GetPokemonBySlotIndex(battleSys->parties[battler], slot);
 }
 
-UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSystem)
+PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSystem)
 {
     return battleSystem->unk_88;
 }

@@ -25,7 +25,7 @@ typedef struct PokedexGraphicData {
     SpriteList *spriteList;
     SpriteResourceCollection *spriteResourceCollection[4];
     UnkStruct_ov21_021D4C0C *unk_14C;
-    UnkStruct_02007768 *unk_150;
+    PokemonSpriteManager *unk_150;
     PokemonSprite *pokemonSprite[4];
     UnkStruct_02015064 *unk_164;
     UnkStruct_ov21_021D23F8 unk_168;

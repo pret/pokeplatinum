@@ -31,7 +31,7 @@ struct UnkStruct_0207AE68_t {
     StringTemplate *unk_0C;
     Strbuf *unk_10;
     PaletteData *unk_14;
-    UnkStruct_02007768 *unk_18;
+    PokemonSpriteManager *unk_18;
     PokemonSprite *unk_1C[2];
     Party *unk_24;
     Pokemon *unk_28;

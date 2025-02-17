@@ -662,7 +662,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
     }
 }
 
-PokemonSprite *sub_02095484(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int heapID, int param6, int param7, int param8)
+PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int heapID, int param6, int param7, int param8)
 {
     PokemonSpriteTemplate v0;
     PokemonSprite *v1;

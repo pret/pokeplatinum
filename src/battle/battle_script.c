@@ -10546,7 +10546,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     BattleScriptTaskData *v2 = param1;
     Pokemon *v3;
     PaletteData *v4;
-    UnkStruct_02007768 *v5;
+    PokemonSpriteManager *v5;
     MessageLoader *v6 = BattleSystem_MessageLoader(v2->battleSys);
     v4 = BattleSystem_PaletteSys(v2->battleSys);
     v5 = ov16_0223E000(v2->battleSys);

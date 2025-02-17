@@ -11,8 +11,8 @@
 #include "unk_0202419C.h"
 
 void ov105_02245CD0(void);
-void ov105_02245D50(UnkStruct_02007768 *param0);
-PokemonSprite *ov105_02245D88(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, int param4, int param5);
+void ov105_02245D50(PokemonSpriteManager *param0);
+PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, int param4, int param5);
 void ov105_02245DB8(PokemonSprite *param0, int param1);
 
 void ov105_02245CD0(void)
@@ -32,7 +32,7 @@ void ov105_02245CD0(void)
     return;
 }
 
-void ov105_02245D50(UnkStruct_02007768 *param0)
+void ov105_02245D50(PokemonSpriteManager *param0)
 {
     sub_020241B4();
 
@@ -50,7 +50,7 @@ void ov105_02245D50(UnkStruct_02007768 *param0)
     return;
 }
 
-PokemonSprite *ov105_02245D88(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, int param4, int param5)
+PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon *param2, int param3, int param4, int param5)
 {
     PokemonSpriteTemplate v0;
     PokemonSprite *v1;

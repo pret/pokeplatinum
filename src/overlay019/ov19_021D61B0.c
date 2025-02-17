@@ -58,7 +58,7 @@ struct UnkStruct_ov19_021D61B0_t {
     SpriteList *unk_18;
     G2dRenderer unk_1C;
     NNSG2dImagePaletteProxy unk_1A8;
-    UnkStruct_02007768 *unk_1BC;
+    PokemonSpriteManager *unk_1BC;
     BgConfig *unk_1C0;
     const UnkStruct_ov19_021D4DF0 *unk_1C4;
     UnkStruct_ov19_021DA384 unk_1C8;
@@ -1850,7 +1850,7 @@ UnkStruct_ov19_021DBA9C *ov19_021D780C(UnkStruct_ov19_021D61B0 *param0)
     return &(param0->unk_6690);
 }
 
-UnkStruct_02007768 *ov19_021D7818(UnkStruct_ov19_021D61B0 *param0)
+PokemonSpriteManager *ov19_021D7818(UnkStruct_ov19_021D61B0 *param0)
 {
     return param0->unk_1BC;
 }

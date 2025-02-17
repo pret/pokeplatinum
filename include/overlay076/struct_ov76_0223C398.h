@@ -32,7 +32,7 @@ typedef struct {
     Window unk_18[11];
     StringList *unk_C8;
     Menu *unk_CC;
-    UnkStruct_02007768 *unk_D0;
+    PokemonSpriteManager *unk_D0;
     PokemonSprite *unk_D4;
     int unk_D8;
     UnkStruct_ov22_02258A48 unk_DC;

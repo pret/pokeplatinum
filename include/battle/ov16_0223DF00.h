@@ -83,7 +83,7 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
  * @return Pointer to the Pokemon struct in that battler's party slot.
  */
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
-UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSys);
+PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSys);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSys);
 SpriteSystem *ov16_0223E010(BattleSystem *battleSys);
 SpriteManager *ov16_0223E018(BattleSystem *battleSys);

@@ -24,7 +24,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     BOOL unk_1C;
-    UnkStruct_02007768 *unk_20;
+    PokemonSpriteManager *unk_20;
     NNSGfdTexKey unk_24;
     NNSGfdPlttKey unk_28;
     BOOL unk_2C;

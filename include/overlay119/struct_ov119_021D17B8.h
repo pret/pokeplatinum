@@ -22,7 +22,7 @@ typedef struct {
     int unk_10;
     Window unk_14[2];
     GenericPointerData *unk_34;
-    UnkStruct_02007768 *unk_38;
+    PokemonSpriteManager *unk_38;
     NARC *unk_3C;
     UnkStruct_ov119_021D14DC *unk_40;
     StringList *unk_44;
