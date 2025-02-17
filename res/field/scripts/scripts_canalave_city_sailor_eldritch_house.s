@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _010B
     ScriptEntry _00A5
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     GoToIfEq 0x4106, 0, _0037
@@ -179,7 +179,7 @@ _026E:
     ApplyMovement 2, _02DC
     WaitMovement
     SetFlag 0x25B
-    ScrCmd_065 2
+    RemoveObject 2
     PlayFanfare SEQ_SE_DP_KAIDAN2
     WaitFanfare SEQ_SE_DP_KAIDAN2
     Return

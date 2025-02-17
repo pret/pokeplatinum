@@ -9,7 +9,6 @@
 #include "field/field_system.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "field_message.h"
 #include "field_task.h"
 #include "font.h"
@@ -22,6 +21,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0202602C.h"
@@ -149,7 +149,7 @@ static void ov7_0224B5A8(UnkStruct_ov7_0224B4E8 *param0)
     v0.maxDisplay = v3 + 2;
     v0.choices = param0->unk_08;
     v0.window = &param0->unk_34;
-    v0.tmp = param0;
+    v0.parent = param0;
 
     param0->unk_00 = ListMenu_New(&v0, 0, param0->unk_78, 4);
     Window_CopyToVRAM(&param0->unk_34);
@@ -239,7 +239,7 @@ static void ov7_0224B788(UnkStruct_ov7_0224B4E8 *param0)
     v0.maxDisplay = v1;
     v0.choices = param0->unk_0C;
     v0.window = &param0->unk_44;
-    v0.tmp = param0;
+    v0.parent = param0;
 
     param0->unk_04 = ListMenu_New(&v0, 0, param0->unk_7A, 4);
     Window_CopyToVRAM(&param0->unk_44);
@@ -503,7 +503,7 @@ static BOOL ov7_0224BC74(FieldTask *param0)
         break;
     case 6:
         if (FieldMessage_FinishedPrinting(v1->unk_74)) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 v1->unk_7C = 0;
             }
         }
@@ -514,7 +514,7 @@ static BOOL ov7_0224BC74(FieldTask *param0)
         v1->unk_7C++;
         break;
     case 8:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov7_0224BBA0(v1);
             ov7_0224B4E8(v1, 106);
             ov7_0224B5A8(v1);

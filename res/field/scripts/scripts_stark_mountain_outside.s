@@ -7,7 +7,7 @@
     ScriptEntry _0018
     ScriptEntry _002F
     ScriptEntry _0118
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     SetFlag 0x9D1
@@ -43,8 +43,8 @@ _002F:
     ApplyMovement 7, _0108
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 6
-    ScrCmd_065 7
+    RemoveObject 6
+    RemoveObject 7
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x40A0, 1
     ReleaseAll
@@ -137,7 +137,7 @@ _0118:
     ApplyMovement 5, _0214
     ApplyMovement 0xFF, _0238
     WaitMovement
-    ScrCmd_065 5
+    RemoveObject 5
     ApplyMovement 4, _01E8
     ApplyMovement 0xFF, _0240
     WaitMovement
@@ -146,7 +146,7 @@ _0118:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 4
+    RemoveObject 4
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x40A0, 3

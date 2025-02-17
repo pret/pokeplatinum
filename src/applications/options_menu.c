@@ -11,7 +11,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -24,13 +23,13 @@
 #include "palette.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
+#include "system.h"
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_020393C8.h"
 #include "vram_transfer.h"
 
@@ -342,7 +341,7 @@ static void OptionsMenuVBlank(void *data)
         menuData->redrawMessageBox = FALSE;
     }
 
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     NNS_GfdDoVramTransfer();
     Bg_RunScheduledUpdates(menuData->bgConfig);
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -352,7 +351,7 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
 {
     switch (menuData->subState) {
     case 0:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -381,7 +380,7 @@ static int SetupMenuVisuals(OptionsMenuData *menuData)
         VramTransfer_New(32, menuData->heapID);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, TRUE);
         DrawWifiConnectionIcon();
-        SetMainCallback(OptionsMenuVBlank, menuData);
+        SetVBlankCallback(OptionsMenuVBlank, menuData);
         menuData->subState = 0;
         return TRUE;
     }
@@ -411,7 +410,7 @@ static int TeardownMenuData(OptionsMenuData *menuData)
         break;
 
     case 1:
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();

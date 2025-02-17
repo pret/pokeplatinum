@@ -2,8 +2,8 @@
 #define POKEPLATINUM_OV16_0225CBB8_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_defs/battle_io.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/battle_message.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
@@ -153,7 +153,7 @@ void ov16_0225E4C8(BattleSystem *param0, BattlerData *param1, UnkStruct_ov16_022
 void ov16_02263730(BattleSystem *param0, BattlerData *param1);
 u8 Battler_Type(BattlerData *param0);
 u8 Battler_BootState(BattlerData *param0);
-Sprite *ov16_02263AFC(BattlerData *param0);
+PokemonSprite *ov16_02263AFC(BattlerData *param0);
 Healthbar *ov16_02263B08(BattlerData *param0);
 BattleCursorPosition *Battler_GetCursorPosition(BattlerData *param0);
 void ov16_02263B10(BattlerData *param0);

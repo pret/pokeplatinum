@@ -6,7 +6,7 @@
     ScriptEntry _0146
     ScriptEntry _015C
     ScriptEntry _0172
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     CallIfNe 0x40DB, 0, _008A
@@ -45,7 +45,7 @@ _00A6:
     GoToIfEq 0x800C, 5, _01F8
     ScrCmd_1F8
     ScrCmd_2C4 5
-    ScrCmd_0A1
+    ReturnToField
     Warp MAP_HEADER_BATTLE_TOWER, 0, 15, 6, 0
     End
 
@@ -54,7 +54,7 @@ _00E9:
     WaitFadeScreen
     ScrCmd_1F8
     ScrCmd_2C4 6
-    ScrCmd_0A1
+    ReturnToField
     Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
     End
 
@@ -153,7 +153,7 @@ _01E4:
 _01F8:
     ScrCmd_1F8
     ScrCmd_2C4 5
-    ScrCmd_0A1
+    ReturnToField
     Warp MAP_HEADER_BATTLE_TOWER, 0, 19, 6, 0
     End
 

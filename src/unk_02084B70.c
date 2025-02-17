@@ -10,7 +10,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "heap.h"
 #include "item.h"
@@ -24,6 +23,7 @@
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0207E0B8.h"
@@ -405,7 +405,7 @@ int sub_02085348(void *param0)
         return 5;
     }
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         v0->unk_5A4->unk_23 = 0;
         return 32;
     }
@@ -632,7 +632,7 @@ int sub_02085804(GameWindowLayout *param0)
             break;
         }
 
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             v3 = param0->unk_B11;
             param0->unk_B11 = sub_020857C0(param0, param0->unk_B11 + 1);
@@ -718,7 +718,7 @@ static int sub_02085C50(void *param0)
     switch (v0->unk_B13) {
     case 0:
         if (Text_IsPrinterActive(v0->unk_B10) == 0) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(1500);
                 sub_020829DC(v0);
                 v0->unk_B13 = 1;
@@ -726,14 +726,14 @@ static int sub_02085C50(void *param0)
         }
         break;
     case 1:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             sub_02082B58(v0);
             v0->unk_B13 = 2;
         }
         break;
     case 2:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             sub_02082C10(v0);
             v0->unk_B13 = 3;
@@ -779,14 +779,14 @@ static int sub_02085C50(void *param0)
         break;
     case 4:
         if (Text_IsPrinterActive(v0->unk_B10) == 0) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(1500);
                 v0->unk_B13 = 3;
             }
         }
         break;
     case 5:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
             sub_02086590(v0, v1, v0->unk_5A4->unk_28);
             v2 = MessageLoader_GetNewStrbuf(v0->unk_69C, 61);
@@ -1036,7 +1036,7 @@ int sub_020863A0(GameWindowLayout *param0)
     Pokemon *v0;
     Strbuf *v1;
 
-    if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
         sub_02086590(param0, v0, param0->unk_5A4->unk_28);

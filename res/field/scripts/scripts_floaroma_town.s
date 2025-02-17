@@ -14,7 +14,7 @@
     ScriptEntry _0113
     ScriptEntry _012A
     ScriptEntry _0141
-    .short 0xFD13
+    ScriptEntryEnd
 
 _002E:
     End

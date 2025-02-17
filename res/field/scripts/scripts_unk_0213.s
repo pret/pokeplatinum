@@ -20,7 +20,7 @@
     ScriptEntry _005B
     ScriptEntry _005B
     ScriptEntry _0763
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0046:
     CallIfNe 0x40D5, 0, _0055
@@ -293,7 +293,7 @@ _037F:
 
 _0384:
     Message 124
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0305
     CloseMessage
     ScrCmd_0F2 0x8004, 0x8005, 0, 0x800C
@@ -326,7 +326,7 @@ _03EA:
 
 _03F7:
     Message 124
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0305
     CloseMessage
     ScrCmd_0F3 0x8004, 0x8005, 0, 0x800C
@@ -446,7 +446,7 @@ _0565:
 
 _05B3:
     Message 58
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _05CF
     GoTo _01D3
     End
@@ -455,7 +455,7 @@ _05CF:
     SetVar 0x8004, 9
     HealParty
     Message 124
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _01D3
     ScrCmd_31D 0x800C
     GoToIfEq 0x800C, 0xFF, _068E
@@ -514,7 +514,7 @@ _069E:
 _06A0:
     ScrCmd_1F8
     ScrCmd_0A3
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     End
@@ -552,7 +552,7 @@ _0724:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_12B
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoTo _074A

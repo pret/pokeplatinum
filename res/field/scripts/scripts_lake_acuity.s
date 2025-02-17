@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     LockAll
@@ -32,7 +32,7 @@ _0006:
     CallIfEq 0x8004, 14, _0168
     CallIfEq 0x8004, 15, _0174
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 1
+    RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 14, _0180
@@ -55,7 +55,7 @@ _0006:
     ApplyMovement 0xFF, _01B8
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 2
+    RemoveObject 2
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 0x98F
     ClearFlag 0x223

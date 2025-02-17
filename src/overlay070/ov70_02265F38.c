@@ -19,10 +19,10 @@
 
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "list_menu.h"
 #include "strbuf.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -340,7 +340,7 @@ BOOL ov70_02265F38(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         }
 
         if (v0->unk_14 == 0) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+            if (gSystem.pressedKeys & PAD_BUTTON_B) {
                 Sound_PlayEffect(1500);
 
                 if (ov66_02233374() == 0) {
@@ -805,7 +805,7 @@ BOOL ov70_022669FC(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
         ov70_02262E8C(param0);
     } break;
     case 1:
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_A) || (gCoreSys.pressedKeys & PAD_KEY_RIGHT) || (gCoreSys.pressedKeys & PAD_KEY_LEFT) || (gCoreSys.pressedKeys & PAD_KEY_DOWN)) {
+        if ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_KEY_RIGHT) || (gSystem.pressedKeys & PAD_KEY_LEFT) || (gSystem.pressedKeys & PAD_KEY_DOWN)) {
             ov70_02266CB0(&v0->unk_00, param1);
             ov70_0225DFEC(param1);
 

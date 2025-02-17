@@ -6,14 +6,14 @@
     ScriptEntry _000E
     ScriptEntry _0139
     ScriptEntry _01EF
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
     Message 0
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0032
     GoTo _00B3
     End
@@ -26,7 +26,7 @@ _0032:
     WaitFadeScreen
     ScrCmd_191
     ScrCmd_193 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0xFF, _00B3
@@ -37,7 +37,7 @@ _0032:
     GoToIfEq 0x800C, 1, _00C9
     BufferPartyMonNickname 0, 0x8005
     Message 2
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00D9
     GoTo _00B3
     End
@@ -98,7 +98,7 @@ _0139:
     FacePlayer
     GoToIfSet 134, _01E4
     Message 9
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0168
     GoTo _01D9
     End
@@ -109,17 +109,17 @@ _0168:
     WaitFadeScreen
     ScrCmd_2A5
     ScrCmd_193 0x800C
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0xFF, _01D9
-    ScrCmd_226 1
+    StartNpcTrade NPC_TRADE_CHARAP_CHATOT
     SetVar 0x8004, 0x800C
     ScrCmd_198 0x8004, 0x8005
-    ScrCmd_228 0x800C
+    GetNpcTradeRequestedSpecies 0x800C
     GoToIfNe 0x8005, 0x800C, _01CC
     ScrCmd_229 0x8004
-    ScrCmd_22A
+    FinishNpcTrade
     SetFlag 134
     Message 10
     WaitABXPadPress
@@ -128,7 +128,7 @@ _0168:
     End
 
 _01CC:
-    ScrCmd_22A
+    FinishNpcTrade
     Message 11
     WaitABXPadPress
     CloseMessage

@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0010
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     SetFlag 0x9DF
@@ -22,25 +22,25 @@ _0010:
     Message 0
     CloseMessage
     SetFlag 0x1DF
-    ScrCmd_065 0
+    RemoveObject 0
     WaitTime 8, 0x800C
     ClearFlag 0x1DF
     ScrCmd_064 0
     WaitTime 8, 0x800C
     SetFlag 0x1DF
-    ScrCmd_065 0
+    RemoveObject 0
     WaitTime 8, 0x800C
     ClearFlag 0x1DF
     ScrCmd_064 0
     WaitTime 8, 0x800C
     SetFlag 0x1DF
-    ScrCmd_065 0
+    RemoveObject 0
     WaitTime 8, 0x800C
     ClearFlag 0x1DF
     ScrCmd_064 0
     WaitTime 8, 0x800C
     SetFlag 0x1DF
-    ScrCmd_065 0
+    RemoveObject 0
     ScrCmd_21C 0
     Message 1
     CloseMessage
@@ -94,7 +94,7 @@ _011E:
     CloseMessage
     ApplyMovement 1, _01A8
     WaitMovement
-    ScrCmd_065 1
+    RemoveObject 1
     ReleaseAll
     End
 

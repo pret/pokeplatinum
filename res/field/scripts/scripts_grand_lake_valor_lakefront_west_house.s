@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
@@ -36,7 +36,7 @@ _0057:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_1EA
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -53,7 +53,7 @@ _0095:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_1EB
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

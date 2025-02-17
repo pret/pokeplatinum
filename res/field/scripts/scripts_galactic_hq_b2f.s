@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0021
     ScriptEntry _0034
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -42,7 +42,7 @@ _0034:
 
 _005C:
     Message 3
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _007F
     GoToIfEq 0x800C, 1, _00B3
     End
@@ -57,8 +57,8 @@ _007F:
     ApplyMovement 7, _00C4
     WaitMovement
     SetFlag 0x227
-    ScrCmd_065 6
-    ScrCmd_065 7
+    RemoveObject 6
+    RemoveObject 7
     CloseMessage
     ReleaseAll
     End

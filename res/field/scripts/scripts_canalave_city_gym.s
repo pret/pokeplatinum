@@ -7,7 +7,7 @@
     ScriptEntry _0016
     ScriptEntry _0126
     ScriptEntry _015A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     ScrCmd_173
@@ -81,7 +81,7 @@ _0107:
     End
 
 _0120:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

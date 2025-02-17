@@ -3,7 +3,7 @@
 
 #include "struct_defs/archived_sprite.h"
 
-#include "cell_actor.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 
@@ -13,9 +13,9 @@ typedef struct GreatMarshLookout_SpriteResources {
     void *unk_20;
     void *unk_24;
     ArchivedSprite unk_28;
-    CellActorCollection *unk_38;
+    SpriteList *unk_38;
     G2dRenderer unk_3C;
-    CellActor *unk_1C8;
+    Sprite *unk_1C8;
     BOOL unk_1CC;
     BOOL unk_1D0;
 } GreatMarshLookout_SpriteResources;

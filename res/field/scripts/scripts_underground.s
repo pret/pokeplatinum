@@ -8,7 +8,7 @@
     ScriptEntry _018F
     ScriptEntry _0225
     ScriptEntry _0289
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     ScrCmd_14F
@@ -180,7 +180,7 @@ _0289:
     PlayFanfare SEQ_SE_DP_PYUU2
     ApplyMovement 16, _02F0
     WaitMovement
-    ScrCmd_065 16
+    RemoveObject 16
     SetVar 0x40D0, 1
     SetFlag 0x992
     End

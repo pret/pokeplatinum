@@ -8,9 +8,9 @@
 #include "overlay105/struct_ov105_02246060_decl.h"
 #include "overlay105/struct_ov105_02246394.h"
 
-#include "cell_actor.h"
-#include "core_sys.h"
 #include "heap.h"
+#include "sprite.h"
+#include "system.h"
 
 struct UnkStruct_ov105_02246060_t {
     u8 unk_00;
@@ -19,7 +19,7 @@ struct UnkStruct_ov105_02246060_t {
     u8 unk_03;
     const UnkStruct_ov105_02246394 *unk_04;
     const u8 *unk_08;
-    CellActor *unk_0C;
+    Sprite *unk_0C;
     u8 unk_10;
 };
 
@@ -59,13 +59,13 @@ UnkStruct_ov105_02246060 *ov105_02245FB8(UnkStruct_ov105_02245AAC *param0, u8 pa
     v1.x = (v0->unk_04[v0->unk_02].unk_00 * FX32_ONE);
     v1.y = (v0->unk_04[v0->unk_02].unk_02 * FX32_ONE);
 
-    CellActor_SetPosition(v0->unk_0C, &v1);
+    Sprite_SetPosition(v0->unk_0C, &v1);
     return v0;
 }
 
 void *ov105_02246060(UnkStruct_ov105_02246060 *param0)
 {
-    CellActor_Delete(param0->unk_0C);
+    Sprite_Delete(param0->unk_0C);
     Heap_FreeToHeap(param0);
 
     return NULL;
@@ -73,7 +73,7 @@ void *ov105_02246060(UnkStruct_ov105_02246060 *param0)
 
 void ov105_02246074(UnkStruct_ov105_02246060 *param0, int param1)
 {
-    CellActor_SetDrawFlag(param0->unk_0C, param1);
+    Sprite_SetDrawFlag(param0->unk_0C, param1);
     return;
 }
 
@@ -86,24 +86,24 @@ void ov105_02246080(UnkStruct_ov105_02246060 *param0)
         return;
     }
 
-    if (gCoreSys.pressedKeys == 0) {
+    if (gSystem.pressedKeys == 0) {
         return;
     }
 
     if (param0->unk_01 == 2) {
-        if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+        if (gSystem.pressedKeys & PAD_KEY_LEFT) {
             if (param0->unk_02 == 0) {
                 param0->unk_02 = (param0->unk_00 - 1);
             } else {
                 param0->unk_02--;
             }
-        } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+        } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
             if (param0->unk_02 == (param0->unk_00 - 1)) {
                 param0->unk_02 = 0;
             } else {
                 param0->unk_02++;
             }
-        } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+        } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
             if (param0->unk_02 < (param0->unk_10)) {
                 param0->unk_02 = param0->unk_10;
             } else if (param0->unk_02 == (param0->unk_00 - 1)) {
@@ -111,7 +111,7 @@ void ov105_02246080(UnkStruct_ov105_02246060 *param0)
             } else {
                 param0->unk_02++;
             }
-        } else if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+        } else if (gSystem.pressedKeys & PAD_KEY_UP) {
             if (param0->unk_02 < (param0->unk_10)) {
                 param0->unk_02 = (param0->unk_00 - 1);
             } else {
@@ -127,13 +127,13 @@ void ov105_02246080(UnkStruct_ov105_02246060 *param0)
             v2 = PAD_KEY_UP;
         }
 
-        if (gCoreSys.pressedKeys & v1) {
+        if (gSystem.pressedKeys & v1) {
             param0->unk_02++;
 
             if (param0->unk_02 >= param0->unk_00) {
                 param0->unk_02 = 0;
             }
-        } else if (gCoreSys.pressedKeys & v2) {
+        } else if (gSystem.pressedKeys & v2) {
             if (param0->unk_02 == 0) {
                 param0->unk_02 = param0->unk_00;
             }
@@ -143,14 +143,14 @@ void ov105_02246080(UnkStruct_ov105_02246060 *param0)
     }
 
     if (param0->unk_08 != NULL) {
-        CellActor_SetAnimNoRestart(param0->unk_0C, param0->unk_08[param0->unk_02]);
+        Sprite_SetAnimNoRestart(param0->unk_0C, param0->unk_08[param0->unk_02]);
     }
 
-    v0 = *(CellActor_GetPosition(param0->unk_0C));
+    v0 = *(Sprite_GetPosition(param0->unk_0C));
     v0.x = (param0->unk_04[param0->unk_02].unk_00 * FX32_ONE);
     v0.y = (param0->unk_04[param0->unk_02].unk_02 * FX32_ONE);
 
-    CellActor_SetPosition(param0->unk_0C, &v0);
+    Sprite_SetPosition(param0->unk_0C, &v0);
     return;
 }
 
@@ -164,9 +164,9 @@ void ov105_022461A4(UnkStruct_ov105_02246060 *param0, int param1)
     param0->unk_03 = param1;
 
     if (param1 == 0) {
-        CellActor_SetAnimNoRestart(param0->unk_0C, 8);
+        Sprite_SetAnimNoRestart(param0->unk_0C, 8);
     } else {
-        CellActor_SetAnimNoRestart(param0->unk_0C, 13);
+        Sprite_SetAnimNoRestart(param0->unk_0C, 13);
     }
 
     return;
@@ -179,14 +179,14 @@ void ov105_022461C0(UnkStruct_ov105_02246060 *param0, u8 param1)
     param0->unk_02 = param1;
 
     if (param0->unk_08 != NULL) {
-        CellActor_SetAnimNoRestart(param0->unk_0C, param0->unk_08[param0->unk_02]);
+        Sprite_SetAnimNoRestart(param0->unk_0C, param0->unk_08[param0->unk_02]);
     }
 
-    v0 = *(CellActor_GetPosition(param0->unk_0C));
+    v0 = *(Sprite_GetPosition(param0->unk_0C));
 
     v0.x = (param0->unk_04[param0->unk_02].unk_00 * FX32_ONE);
     v0.y = (param0->unk_04[param0->unk_02].unk_02 * FX32_ONE);
 
-    CellActor_SetPosition(param0->unk_0C, &v0);
+    Sprite_SetPosition(param0->unk_0C, &v0);
     return;
 }

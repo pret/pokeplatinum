@@ -19,7 +19,7 @@
     ScriptEntry _0582
     ScriptEntry _0595
     ScriptEntry _05A8
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0042:
     PlayFanfare SEQ_SE_CONFIRM
@@ -42,7 +42,7 @@ _0055:
     ScrCmd_1F1 0x8000
     GoToIfEq 0x8000, 0, _04AB
     Message 2
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _03E7
     GoToIfEq 0x8000, 1, _03BC
     SetVar 0x8001, 0
@@ -231,11 +231,11 @@ _03F2:
     PlaySound SEQ_FANFA4
     Message 8
     WaitSound
-    ScrCmd_096 0x40B4, 20, 0, 0x800C
+    GivePokemon 0x40B4, 20, ITEM_NONE, 0x800C
     IncrementGameRecord RECORD_UNK_115
     SetVar 0x40B4, 0
     Message 9
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0459
     GoToIfEq 0x800C, 1, _049A
     End

@@ -22,7 +22,7 @@
     ScriptEntry _0791
     ScriptEntry _0850
     ScriptEntry _004E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _004E:
     CallIfEq 0x40A6, 2, _0077
@@ -110,7 +110,7 @@ _017C:
     CallIfEq 0x8004, 0x357, _0322
     CallIfEq 0x8004, 0x358, _032E
     CallIfEq 0x8004, 0x359, _0342
-    ScrCmd_065 20
+    RemoveObject 20
     CallIfEq 0x8004, 0x355, _0356
     CallIfEq 0x8004, 0x356, _0362
     CallIfEq 0x8004, 0x357, _036E
@@ -476,7 +476,7 @@ _05D7:
     WaitTime 15, 0x800C
     ApplyMovement 18, _0678
     WaitMovement
-    ScrCmd_065 18
+    RemoveObject 18
     WaitTime 1, 0x800C
     ScrCmd_186 18, 0x34D, 0x2EC
     ScrCmd_188 18, 15
@@ -641,15 +641,15 @@ _0791:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_234 0x800C
+    GetDayOfWeek 0x800C
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _0806
-    GoToIfEq 0x8008, 1, _0810
-    GoToIfEq 0x8008, 2, _081A
-    GoToIfEq 0x8008, 3, _0824
-    GoToIfEq 0x8008, 4, _082E
-    GoToIfEq 0x8008, 5, _0838
-    GoToIfEq 0x8008, 6, _0842
+    GoToIfEq 0x8008, DAY_OF_WEEK_SUNDAY, _0806
+    GoToIfEq 0x8008, DAY_OF_WEEK_MONDAY, _0810
+    GoToIfEq 0x8008, DAY_OF_WEEK_TUESDAY, _081A
+    GoToIfEq 0x8008, DAY_OF_WEEK_WEDNESDAY, _0824
+    GoToIfEq 0x8008, DAY_OF_WEEK_THURSDAY, _082E
+    GoToIfEq 0x8008, DAY_OF_WEEK_FRIDAY, _0838
+    GoToIfEq 0x8008, DAY_OF_WEEK_SATURDAY, _0842
     End
 
 _0806:
@@ -724,7 +724,7 @@ _08D6:
     GoTo _08EE
 
 _08EE:
-    ScrCmd_065 18
+    RemoveObject 18
     ReleaseAll
     End
 

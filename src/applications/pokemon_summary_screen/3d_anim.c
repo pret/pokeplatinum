@@ -8,7 +8,7 @@
 #include "struct_defs/archived_sprite.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "applications/pokemon_summary_screen/sprite.h"
+#include "applications/pokemon_summary_screen/sprites.h"
 #include "overlay115/camera_angle.h"
 
 #include "camera.h"
@@ -358,7 +358,7 @@ void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
 
     PokeSprite_LoadAnimationFrames(summaryScreen->narcPlPokeData, summaryScreen->monSprite.frames, summaryScreen->monData.species, 1);
 
-    summaryScreen->monSprite.flip = SpeciesData_GetFormValue(summaryScreen->monData.species, summaryScreen->monData.form, 28) ^ 1;
+    summaryScreen->monSprite.flip = SpeciesData_GetFormValue(summaryScreen->monData.species, summaryScreen->monData.form, SPECIES_DATA_FLIP_SPRITE) ^ 1;
     summaryScreen->monSprite.sprite = sub_02007C34(summaryScreen->monSprite.spriteManager, &sprite, 52, 104, 0, 0, summaryScreen->monSprite.frames, NULL);
 
     sub_02007DEC(summaryScreen->monSprite.sprite, 35, summaryScreen->monSprite.flip);

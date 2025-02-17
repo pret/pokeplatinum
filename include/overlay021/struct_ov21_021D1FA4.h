@@ -2,10 +2,10 @@
 #define POKEPLATINUM_STRUCT_OV21_021D1FA4_H
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "sprite.h"
 
 typedef struct {
-    CellActorCollection *unk_00;
+    SpriteList *unk_00;
     BgConfig *unk_04;
     int unk_08;
     int unk_0C;

@@ -13,7 +13,6 @@
 #include "overlay101/struct_ov101_021D86B0.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "field_message.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -22,6 +21,7 @@
 #include "narc.h"
 #include "player_avatar.h"
 #include "pokemon.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -62,7 +62,7 @@ typedef struct {
     NNSG2dScreenData *unk_64;
     NNSG2dCharacterData *unk_68;
     NNSG2dPaletteData *unk_6C;
-    CellActorCollection *unk_70;
+    SpriteList *unk_70;
     G2dRenderer unk_74;
     SpriteResourceCollection *unk_200;
     SpriteResourceCollection *unk_204;
@@ -73,8 +73,8 @@ typedef struct {
     SpriteResource *unk_22C[4];
     SpriteResource *unk_23C[2];
     UnkStruct_020711EC *unk_244;
-    CellActor *unk_248;
-    CellActor *unk_24C;
+    Sprite *unk_248;
+    Sprite *unk_24C;
     UnkStruct_ov101_021D5D90 *unk_250;
     UnkStruct_ov101_021D5D90 *unk_254;
     ArchivedSprite unk_258;
@@ -113,7 +113,7 @@ typedef struct {
     fx32 unk_4C;
     fx32 unk_50;
     fx32 unk_54;
-    CellActor *unk_58;
+    Sprite *unk_58;
     UnkStruct_ov6_0224543C unk_5C;
     UnkStruct_ov101_021D5D90 *unk_60;
     SysTask *unk_64;
@@ -121,7 +121,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov6_02243FFC *unk_00;
-    CellActor *unk_04;
+    Sprite *unk_04;
 } UnkStruct_ov6_02245B4C;
 
 typedef struct {
@@ -131,7 +131,7 @@ typedef struct {
     int unk_0C;
     VecFx32 unk_10;
     UnkStruct_ov6_02243FFC *unk_1C;
-    CellActor *unk_20;
+    Sprite *unk_20;
 } UnkStruct_ov6_02245B74;
 
 typedef struct {
@@ -149,7 +149,7 @@ typedef struct {
     s8 unk_05;
     s8 unk_06;
     s8 unk_07;
-    CellActorCollection *unk_08;
+    SpriteList *unk_08;
     G2dRenderer unk_0C;
     SpriteResourceCollection *unk_198;
     SpriteResourceCollection *unk_19C;
@@ -169,7 +169,7 @@ typedef struct {
     int unk_10;
     FieldSystem *fieldSystem;
     UnkStruct_ov6_02243258 unk_18;
-    CellActor *unk_1D0;
+    Sprite *unk_1D0;
     UnkStruct_020711EC *unk_1D4;
     UnkStruct_ov101_021D5D90 *unk_1D8;
     SysTask *unk_1DC;
@@ -178,7 +178,7 @@ typedef struct {
 typedef struct {
     UnkStruct_020711EC *unk_00;
     FieldSystem *fieldSystem;
-    CellActor *unk_08;
+    Sprite *unk_08;
     UnkStruct_ov6_02243258 *unk_0C;
 } UnkStruct_ov6_02243888;
 
@@ -201,7 +201,7 @@ typedef struct {
     fx32 unk_50;
     fx32 unk_54;
     UnkStruct_ov6_02243888 unk_58;
-    CellActor *unk_68;
+    Sprite *unk_68;
     UnkStruct_ov101_021D5D90 *unk_6C;
     SysTask *unk_70;
 } UnkStruct_ov6_02249110;
@@ -216,7 +216,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    CellActor *unk_08;
+    Sprite *unk_08;
     UnkStruct_ov6_02245328 unk_0C;
 } UnkStruct_ov6_02245364;
 
@@ -241,7 +241,7 @@ typedef struct {
 } UnkStruct_ov100_021D4890;
 
 typedef struct {
-    CellActor *unk_00;
+    Sprite *unk_00;
     UnkStruct_ov6_02243FFC *unk_04;
 } UnkStruct_ov6_02245F80;
 
@@ -262,11 +262,11 @@ static NARC *ov6_0224491C(void);
 static void ov6_02244928(UnkStruct_ov6_02243FFC *param0, NARC *param1);
 static void ov6_02244B6C(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244C10(UnkStruct_ov6_02243FFC *param0);
-static CellActor *ov6_02244C20(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7);
-static CellActor *ov6_02244CD4(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, int param2, int param3);
-static CellActor *ov6_02244CFC(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1);
-static void ov6_02244D34(CellActor *param0);
-static CellActor *ov6_02244D4C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, int param2, int param3);
+static Sprite *ov6_02244C20(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7);
+static Sprite *ov6_02244CD4(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, int param2, int param3);
+static Sprite *ov6_02244CFC(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1);
+static void ov6_02244D34(Sprite *param0);
+static Sprite *ov6_02244D4C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, int param2, int param3);
 static void ov6_02244DB4(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2);
 static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3);
@@ -289,7 +289,7 @@ static void ov6_02245118(UnkStruct_ov6_02243FFC *param0, void *param1);
 static SpriteResource *ov6_0224514C(UnkStruct_ov6_02243FFC *param0, NARC *param1);
 static void ov6_02245170(UnkStruct_ov6_02243FFC *param0, void *param1);
 static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0);
-static CellActor *ov6_0224529C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1);
+static Sprite *ov6_0224529C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1);
 static void ov6_022452BC(UnkStruct_ov6_02243FFC *param0, int param1);
 static void ov6_02245328(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, const VecFx32 *param2, int param3, int param4, int param5);
 static void ov6_0224543C(UnkStruct_ov6_02243FFC *param0);
@@ -298,7 +298,7 @@ static int ov6_02245470(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02245480(UnkStruct_ov6_02243FFC *param0);
 static void ov6_0224551C(UnkStruct_ov6_02243FFC *param0);
 static void ov6_022456D4(UnkStruct_ov6_02243FFC *param0);
-static UnkStruct_ov101_021D5D90 *ov6_02245B4C(UnkStruct_020711EC *param0, CellActor *param1);
+static UnkStruct_ov101_021D5D90 *ov6_02245B4C(UnkStruct_020711EC *param0, Sprite *param1);
 static void ov6_02245B74(UnkStruct_ov101_021D5D90 *param0);
 static void ov6_02245B80(UnkStruct_ov101_021D5D90 *param0);
 static void ov6_02245BC8(UnkStruct_ov101_021D5D90 *param0);
@@ -402,8 +402,8 @@ static void ov6_0224339C(UnkStruct_ov6_02243258 *param0)
     Heap_FreeToHeap(param0->unk_1AC);
     Heap_FreeToHeap(param0->unk_1B0);
     Heap_FreeToHeap(param0->unk_1B4);
-    CellActorCollection_DeleteAll(param0->unk_08);
-    CellActorCollection_Delete(param0->unk_08);
+    SpriteList_DeleteAll(param0->unk_08);
+    SpriteList_Delete(param0->unk_08);
 }
 
 static void ov6_022434B0(UnkStruct_ov6_02243258 *param0, NARC *param1, int param2, int param3)
@@ -529,11 +529,11 @@ static void ov6_022436D0(UnkStruct_ov6_02243258 *param0, NARC *param1, int param
     GF_ASSERT(FALSE);
 }
 
-static CellActor *ov6_02243740(UnkStruct_ov6_02243258 *param0, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
+static Sprite *ov6_02243740(UnkStruct_ov6_02243258 *param0, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
-    CellActor *v2;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
+    Sprite *v2;
 
     if (param5 == param0->unk_07) {
         param5 = 0xffffffff;
@@ -542,45 +542,45 @@ static CellActor *ov6_02243740(UnkStruct_ov6_02243258 *param0, const VecFx32 *pa
     SpriteResourcesHeader_Init(
         &v0, param2, param3, param4, param5, 0xffffffff, 0xffffffff, 0, param6, param0->unk_198, param0->unk_19C, param0->unk_1A0, param0->unk_1A4, NULL, NULL);
 
-    v1.collection = param0->unk_08;
+    v1.list = param0->unk_08;
     v1.resourceData = &v0;
     v1.position = *param1;
     v1.priority = param7;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.heapID = 4;
-    v2 = CellActorCollection_Add(&v1);
+    v2 = SpriteList_Add(&v1);
 
     GF_ASSERT(v2 != NULL);
     return v2;
 }
 
-static void ov6_022437C8(CellActor *param0, VecFx32 *param1)
+static void ov6_022437C8(Sprite *param0, VecFx32 *param1)
 {
-    const VecFx32 *v0 = CellActor_GetPosition(param0);
+    const VecFx32 *v0 = Sprite_GetPosition(param0);
     *param1 = *v0;
 }
 
-static CellActor *ov6_022437DC(UnkStruct_ov6_02243258 *param0)
+static Sprite *ov6_022437DC(UnkStruct_ov6_02243258 *param0)
 {
-    CellActor *v0;
+    Sprite *v0;
     VecFx32 v1 = { 0, 0, 0 };
     VecFx32 v2 = { 0, 0, 0 };
     VecFx32 v3 = { 0x1000, 0x1000, 0 };
 
     v0 = ov6_02243740(param0, &v1, 0, 0, 0, 2, 0, 132);
 
-    CellActor_SetAffineOverwriteMode(v0, 2);
-    CellActor_SetAffineTranslation(v0, &v2);
-    CellActor_SetAffineScale(v0, &v3);
-    CellActor_SetAffineZRotation(v0, CalcAngleRotationIdx_Wraparound(0));
+    Sprite_SetAffineOverwriteMode(v0, 2);
+    Sprite_SetAffineTranslation(v0, &v2);
+    Sprite_SetAffineScale(v0, &v3);
+    Sprite_SetAffineZRotation(v0, CalcAngleRotationIdx_Wraparound(0));
 
     return v0;
 }
 
-static CellActor *ov6_02243848(UnkStruct_ov6_02243258 *param0, int param1)
+static Sprite *ov6_02243848(UnkStruct_ov6_02243258 *param0, int param1)
 {
     VecFx32 v0 = { 0, 0, 0 };
-    CellActor *v1;
+    Sprite *v1;
     u32 v2 = 0;
 
     if (param1 == 1) {
@@ -589,8 +589,8 @@ static CellActor *ov6_02243848(UnkStruct_ov6_02243258 *param0, int param1)
 
     v1 = ov6_02243740(param0, &v0, 2, v2, 2, 1, 0, 131);
 
-    CellActor_SetDrawFlag(v1, 0);
-    CellActor_SetAnim(v1, 6);
+    Sprite_SetDrawFlag(v1, 0);
+    Sprite_SetAnim(v1, 6);
 
     return v1;
 }
@@ -598,7 +598,7 @@ static CellActor *ov6_02243848(UnkStruct_ov6_02243258 *param0, int param1)
 static const UnkStruct_ov101_021D86B0 Unk_ov6_0224925C;
 int (*const *const Unk_ov6_02249110[])(UnkStruct_ov6_02249110 *);
 
-static UnkStruct_ov101_021D5D90 *ov6_02243888(FieldSystem *fieldSystem, UnkStruct_020711EC *param1, UnkStruct_ov6_02243258 *param2, CellActor *param3)
+static UnkStruct_ov101_021D5D90 *ov6_02243888(FieldSystem *fieldSystem, UnkStruct_020711EC *param1, UnkStruct_ov6_02243258 *param2, Sprite *param3)
 {
     UnkStruct_ov101_021D5D90 *v0;
     VecFx32 v1 = { 0, 0, 0 };
@@ -649,7 +649,7 @@ static void ov6_022438EC(UnkStruct_ov101_021D5D90 *param0)
 static void ov6_02243914(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     UnkStruct_ov6_02249110 *v0 = param1;
-    CellActor_Delete(v0->unk_68);
+    Sprite_Delete(v0->unk_68);
 }
 
 static void ov6_02243920(UnkStruct_ov101_021D5D90 *param0, void *param1)
@@ -675,7 +675,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov6_0224925C = {
 static int ov6_02243940(UnkStruct_ov6_02249110 *param0)
 {
     param0->unk_02 = 0;
-    CellActor_SetDrawFlag(param0->unk_68, 0);
+    Sprite_SetDrawFlag(param0->unk_68, 0);
     return 0;
 }
 
@@ -709,11 +709,11 @@ static void ov6_02243950(UnkStruct_ov101_021D5D90 *param0)
     v0.x = v2->unk_08.x + v2->unk_14.x;
     v0.y = v2->unk_08.y + v2->unk_14.y;
 
-    CellActor_SetPosition(v2->unk_68, &v0);
-    CellActor_SetAffineScale(v2->unk_68, &v1);
-    CellActor_SetAffineZRotation(v2->unk_68, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
-    CellActor_SetPriority(v2->unk_68, 132);
-    CellActor_SetDrawFlag(v2->unk_68, 1);
+    Sprite_SetPosition(v2->unk_68, &v0);
+    Sprite_SetAffineScale(v2->unk_68, &v1);
+    Sprite_SetAffineZRotation(v2->unk_68, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
+    Sprite_SetPriority(v2->unk_68, 132);
+    Sprite_SetDrawFlag(v2->unk_68, 1);
 
     v2->unk_6C = ov6_02245B4C(v2->unk_58.unk_00, v2->unk_58.unk_08);
     v2->unk_70 = ov5_021F0EB0(v2->unk_58.fieldSystem, 4);
@@ -721,17 +721,17 @@ static void ov6_02243950(UnkStruct_ov101_021D5D90 *param0)
     ov5_021F0F10(v2->unk_70, 1, -(FX32_ONE * 120), 12);
 
     {
-        CellActor *v3;
+        Sprite *v3;
         VecFx32 v4 = { 0, 0, 0 };
         VecFx32 v5 = { 0x2000, 0x2000, 0 };
 
         v3 = v2->unk_58.unk_08;
 
-        CellActor_SetAffineOverwriteMode(v3, 2);
-        CellActor_SetAffineTranslation(v3, &v4);
-        CellActor_SetAffineScale(v3, &v5);
-        CellActor_SetAffineZRotation(v3, CalcAngleRotationIdx_Wraparound(0));
-        CellActor_SetAnim(v3, 2);
+        Sprite_SetAffineOverwriteMode(v3, 2);
+        Sprite_SetAffineTranslation(v3, &v4);
+        Sprite_SetAffineScale(v3, &v5);
+        Sprite_SetAffineZRotation(v3, CalcAngleRotationIdx_Wraparound(0));
+        Sprite_SetAnim(v3, 2);
     }
 
     ov6_02243F2C();
@@ -740,8 +740,8 @@ static void ov6_02243950(UnkStruct_ov101_021D5D90 *param0)
 static int ov6_02243AB8(UnkStruct_ov6_02249110 *param0)
 {
     VecFx32 v0;
-    CellActor *v1 = param0->unk_68;
-    CellActor *v2 = param0->unk_58.unk_08;
+    Sprite *v1 = param0->unk_68;
+    Sprite *v2 = param0->unk_58.unk_08;
 
     param0->unk_48 -= param0->unk_4C;
 
@@ -776,15 +776,15 @@ static int ov6_02243AB8(UnkStruct_ov6_02249110 *param0)
         param0->unk_2C.y = 0x1000;
     }
 
-    CellActor_SetAffineScale(v1, &param0->unk_2C);
-    CellActor_SetAffineScale(v2, &param0->unk_2C);
+    Sprite_SetAffineScale(v1, &param0->unk_2C);
+    Sprite_SetAffineScale(v2, &param0->unk_2C);
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
 
-    CellActor_SetPosition(v1, &v0);
+    Sprite_SetPosition(v1, &v0);
     v0.y -= (FX32_ONE * 18);
-    CellActor_SetPosition(v2, &v0);
+    Sprite_SetPosition(v2, &v0);
 
     if (param0->unk_48 == 0) {
         param0->unk_04 = 0;
@@ -813,7 +813,7 @@ static int ov6_02243BB8(UnkStruct_ov6_02249110 *param0)
 static int ov6_02243BEC(UnkStruct_ov6_02249110 *param0)
 {
     VecFx32 v0;
-    CellActor *v1 = param0->unk_68;
+    Sprite *v1 = param0->unk_68;
 
     param0->unk_48 += param0->unk_4C;
     param0->unk_4C += 0x1000;
@@ -830,7 +830,7 @@ static int ov6_02243BEC(UnkStruct_ov6_02249110 *param0)
     }
 
     param0->unk_38 += 0x2000;
-    CellActor_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
+    Sprite_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
     param0->unk_2C.x += param0->unk_50;
 
     if (param0->unk_2C.x > 0x1000) {
@@ -843,12 +843,12 @@ static int ov6_02243BEC(UnkStruct_ov6_02249110 *param0)
         param0->unk_2C.y = 0x1000;
     }
 
-    CellActor_SetAffineScale(v1, &param0->unk_2C);
+    Sprite_SetAffineScale(v1, &param0->unk_2C);
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y - param0->unk_14.y;
 
-    CellActor_SetPosition(v1, &v0);
+    Sprite_SetPosition(v1, &v0);
 
     if (((v0.y) / FX32_ONE) <= -16) {
         param0->unk_01++;
@@ -859,8 +859,8 @@ static int ov6_02243BEC(UnkStruct_ov6_02249110 *param0)
 
 static int ov6_02243CD8(UnkStruct_ov6_02249110 *param0)
 {
-    CellActor_SetDrawFlag(param0->unk_68, 0);
-    CellActor_SetAnim(param0->unk_58.unk_08, 1);
+    Sprite_SetDrawFlag(param0->unk_68, 0);
+    Sprite_SetAnim(param0->unk_58.unk_08, 1);
 
     param0->unk_04 = 0;
     param0->unk_01++;
@@ -892,12 +892,12 @@ static int ov6_02243CFC(UnkStruct_ov6_02249110 *param0)
         param0->unk_48 = (FX32_ONE * 128);
         param0->unk_4C = 0x2000;
 
-        CellActor_SetPosition(param0->unk_68, &v0);
-        CellActor_SetAffineScale(param0->unk_68, &v1);
-        CellActor_SetAffineZRotation(param0->unk_68, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
-        CellActor_SetDrawFlag(param0->unk_68, 1);
-        CellActor_SetAnim(param0->unk_58.unk_08, 6);
-        CellActor_SetAnimateFlag(param0->unk_58.unk_08, 1);
+        Sprite_SetPosition(param0->unk_68, &v0);
+        Sprite_SetAffineScale(param0->unk_68, &v1);
+        Sprite_SetAffineZRotation(param0->unk_68, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
+        Sprite_SetDrawFlag(param0->unk_68, 1);
+        Sprite_SetAnim(param0->unk_58.unk_08, 6);
+        Sprite_SetAnimateFlag(param0->unk_58.unk_08, 1);
     }
 
     param0->unk_01++;
@@ -907,7 +907,7 @@ static int ov6_02243CFC(UnkStruct_ov6_02249110 *param0)
 static int ov6_02243DC0(UnkStruct_ov6_02249110 *param0)
 {
     VecFx32 v0;
-    CellActor *v1 = param0->unk_68;
+    Sprite *v1 = param0->unk_68;
 
     param0->unk_48 -= param0->unk_4C;
 
@@ -938,22 +938,22 @@ static int ov6_02243DC0(UnkStruct_ov6_02249110 *param0)
         param0->unk_2C.y = 0x400;
     }
 
-    CellActor_SetAffineScale(v1, &param0->unk_2C);
+    Sprite_SetAffineScale(v1, &param0->unk_2C);
     param0->unk_38 += 0x6000;
 
     if (((param0->unk_38) / FX32_ONE) > 60) {
         param0->unk_38 = (FX32_ONE * 60);
     }
 
-    CellActor_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
+    Sprite_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
 
-    CellActor_SetPosition(v1, &v0);
+    Sprite_SetPosition(v1, &v0);
 
     if (param0->unk_48 <= 0) {
-        CellActor_SetDrawFlag(v1, 0);
+        Sprite_SetDrawFlag(v1, 0);
         param0->unk_01++;
     }
 
@@ -965,12 +965,12 @@ static int ov6_02243ECC(UnkStruct_ov6_02249110 *param0)
     param0->unk_04++;
 
     if (param0->unk_04 == 8) {
-        CellActor_SetAnim(param0->unk_58.unk_08, 1);
+        Sprite_SetAnim(param0->unk_58.unk_08, 1);
         ov6_02243F74(param0->unk_58.fieldSystem, 0);
     }
 
     if (param0->unk_04 == 10) {
-        CellActor_SetDrawFlag(param0->unk_58.unk_08, 0);
+        Sprite_SetDrawFlag(param0->unk_58.unk_08, 0);
     }
 
     if ((param0->unk_04 > 15) && (ov5_021F0EF0(param0->unk_70) == 1)) {
@@ -1202,7 +1202,7 @@ static int ov6_022441DC(UnkStruct_ov6_02243FFC *param0)
     const VecFx32 *v0;
     VecFx32 v1;
 
-    v0 = CellActor_GetPosition(param0->unk_24C);
+    v0 = Sprite_GetPosition(param0->unk_24C);
     v1 = *v0;
     v1.x += param0->unk_58;
 
@@ -1211,7 +1211,7 @@ static int ov6_022441DC(UnkStruct_ov6_02243FFC *param0)
         param0->unk_00++;
     }
 
-    CellActor_SetPosition(param0->unk_24C, &v1);
+    Sprite_SetPosition(param0->unk_24C, &v1);
     return 0;
 }
 
@@ -1231,11 +1231,11 @@ static int ov6_02244228(UnkStruct_ov6_02243FFC *param0)
         }
     }
 
-    v0 = CellActor_GetPosition(param0->unk_24C);
+    v0 = Sprite_GetPosition(param0->unk_24C);
     v1 = *v0;
     v1.x += param0->unk_58;
 
-    CellActor_SetPosition(param0->unk_24C, &v1);
+    Sprite_SetPosition(param0->unk_24C, &v1);
     return 0;
 }
 
@@ -1263,11 +1263,11 @@ static int ov6_022442A4(UnkStruct_ov6_02243FFC *param0)
         param0->unk_58 = (FX32_ONE * -64);
     }
 
-    v0 = CellActor_GetPosition(param0->unk_24C);
+    v0 = Sprite_GetPosition(param0->unk_24C);
     v1 = *v0;
     v1.x += param0->unk_58;
 
-    CellActor_SetPosition(param0->unk_24C, &v1);
+    Sprite_SetPosition(param0->unk_24C, &v1);
 
     if (v1.x <= (FX32_ONE * -40)) {
         param0->unk_54 = 0x1000;
@@ -1429,7 +1429,7 @@ static int ov6_022444D0(UnkStruct_ov6_02243FFC *param0)
         return 0;
     }
 
-    CellActor_SetAnim(param0->unk_248, 1);
+    Sprite_SetAnim(param0->unk_248, 1);
     param0->unk_00++;
 
     return 0;
@@ -1823,22 +1823,22 @@ static void ov6_02244B6C(UnkStruct_ov6_02243FFC *param0)
     SpriteResourceCollection_Delete(param0->unk_204);
     SpriteResourceCollection_Delete(param0->unk_208);
     SpriteResourceCollection_Delete(param0->unk_20C);
-    CellActorCollection_DeleteAll(param0->unk_70);
-    CellActorCollection_Delete(param0->unk_70);
+    SpriteList_DeleteAll(param0->unk_70);
+    SpriteList_Delete(param0->unk_70);
 }
 
 static void ov6_02244C10(UnkStruct_ov6_02243FFC *param0)
 {
     if (param0->unk_70 != NULL) {
-        CellActorCollection_Update(param0->unk_70);
+        SpriteList_Update(param0->unk_70);
     }
 }
 
-static CellActor *ov6_02244C20(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
+static Sprite *ov6_02244C20(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, u32 param2, u32 param3, u32 param4, u32 param5, int param6, int param7)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
-    CellActor *v2;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
+    Sprite *v2;
 
     if (param5 == 4) {
         SpriteResourcesHeader_Init(
@@ -1848,32 +1848,32 @@ static CellActor *ov6_02244C20(UnkStruct_ov6_02243FFC *param0, const VecFx32 *pa
             &v0, param2, param3, param4, param5, 0xffffffff, 0xffffffff, 0, param6, param0->unk_200, param0->unk_204, param0->unk_208, param0->unk_20C, NULL, NULL);
     }
 
-    v1.collection = param0->unk_70;
+    v1.list = param0->unk_70;
     v1.resourceData = &v0;
     v1.position = *param1;
     v1.priority = param7;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v1.heapID = 4;
 
-    v2 = CellActorCollection_Add(&v1);
+    v2 = SpriteList_Add(&v1);
     GF_ASSERT(v2 != NULL);
 
     return v2;
 }
 
-static CellActor *ov6_02244CD4(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, int param2, int param3)
+static Sprite *ov6_02244CD4(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, int param2, int param3)
 {
-    CellActor *v0;
+    Sprite *v0;
 
     v0 = ov6_02244C20(param0, param1, 1, 0, 1, 0, 0, param2);
-    CellActor_SetAnim(v0, param3);
+    Sprite_SetAnim(v0, param3);
 
     return v0;
 }
 
-static CellActor *ov6_02244CFC(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1)
+static Sprite *ov6_02244CFC(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1)
 {
-    CellActor *v0;
+    Sprite *v0;
     u32 v1 = 0;
 
     if (param0->unk_0C == 1) {
@@ -1882,30 +1882,30 @@ static CellActor *ov6_02244CFC(UnkStruct_ov6_02243FFC *param0, const VecFx32 *pa
 
     v0 = ov6_02244C20(param0, param1, 2, v1, 2, 1, 0, 131);
 
-    CellActor_SetDrawFlag(v0, 0);
-    CellActor_SetAnim(v0, 6);
+    Sprite_SetDrawFlag(v0, 0);
+    Sprite_SetAnim(v0, 6);
 
     return v0;
 }
 
-static void ov6_02244D34(CellActor *param0)
+static void ov6_02244D34(Sprite *param0)
 {
-    CellActor_SetAnimateFlag(param0, 1);
-    CellActor_SetAnimSpeed(param0, FX32_ONE);
+    Sprite_SetAnimateFlag(param0, 1);
+    Sprite_SetAnimSpeed(param0, FX32_ONE);
 }
 
-static CellActor *ov6_02244D4C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, int param2, int param3)
+static Sprite *ov6_02244D4C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, int param2, int param3)
 {
-    CellActor *v0;
+    Sprite *v0;
     VecFx32 v1 = { 0, 0, 0 };
     VecFx32 v2 = { 0x1000, 0x1000, 0 };
 
     v0 = ov6_02244C20(param0, param1, 0, 0, 0, 0xffffffff, 0, param2);
 
-    CellActor_SetAffineOverwriteMode(v0, 2);
-    CellActor_SetAffineTranslation(v0, &v1);
-    CellActor_SetAffineScale(v0, &v2);
-    CellActor_SetAffineZRotation(v0, CalcAngleRotationIdx_Wraparound(0));
+    Sprite_SetAffineOverwriteMode(v0, 2);
+    Sprite_SetAffineTranslation(v0, &v1);
+    Sprite_SetAffineScale(v0, &v2);
+    Sprite_SetAffineZRotation(v0, CalcAngleRotationIdx_Wraparound(0));
 
     return v0;
 }
@@ -2168,9 +2168,9 @@ static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
     GF_ASSERT(v0 < 4);
 }
 
-static CellActor *ov6_0224529C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1)
+static Sprite *ov6_0224529C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1)
 {
-    CellActor *v0;
+    Sprite *v0;
 
     v0 = ov6_02244C20(param0, param1, 3, 2, 3, 0xffffffff, 0, 129);
     return v0;
@@ -2242,7 +2242,7 @@ static int ov6_02245364(UnkStruct_ov101_021D5D90 *param0, void *param1)
     sub_020715E4(param0, &v0);
 
     v1->unk_08 = ov6_02244CD4(v1->unk_0C.unk_08, &v0, v1->unk_0C.unk_00, v1->unk_04);
-    CellActor_SetDrawFlag(v1->unk_08, 0);
+    Sprite_SetDrawFlag(v1->unk_08, 0);
 
     return 1;
 }
@@ -2250,7 +2250,7 @@ static int ov6_02245364(UnkStruct_ov101_021D5D90 *param0, void *param1)
 static void ov6_022453AC(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     UnkStruct_ov6_02245364 *v0 = param1;
-    CellActor_Delete(v0->unk_08);
+    Sprite_Delete(v0->unk_08);
 }
 
 static void ov6_022453B8(UnkStruct_ov101_021D5D90 *param0, void *param1)
@@ -2264,7 +2264,7 @@ static void ov6_022453B8(UnkStruct_ov101_021D5D90 *param0, void *param1)
     v0.x %= (FX32_ONE * 512);
 
     sub_020715D4(param0, &v0);
-    CellActor_SetPosition(v1->unk_08, &v0);
+    Sprite_SetPosition(v1->unk_08, &v0);
 
     if (v1->unk_0C.unk_04 == 1) {
         UnkStruct_ov6_02243FFC *v2 = v1->unk_0C.unk_08;
@@ -2277,9 +2277,9 @@ static void ov6_022453B8(UnkStruct_ov101_021D5D90 *param0, void *param1)
                 v3 = 1;
             }
 
-            CellActor_SetDrawFlag(v1->unk_08, v3);
+            Sprite_SetDrawFlag(v1->unk_08, v3);
         } else if (v2->unk_14 == 1) {
-            CellActor_SetDrawFlag(v1->unk_08, 0);
+            Sprite_SetDrawFlag(v1->unk_08, 0);
         }
     }
 }
@@ -2343,7 +2343,7 @@ static int ov6_022454B0(UnkStruct_ov101_021D5D90 *param0, void *param1)
 static void ov6_022454DC(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     UnkStruct_ov6_02249198 *v0 = param1;
-    CellActor_Delete(v0->unk_58);
+    Sprite_Delete(v0->unk_58);
 }
 
 static void ov6_022454E8(UnkStruct_ov101_021D5D90 *param0, void *param1)
@@ -2380,7 +2380,7 @@ static int (*const *const Unk_ov6_02249198[])(UnkStruct_ov6_02249198 *) = {
 static int ov6_0224550C(UnkStruct_ov6_02249198 *param0)
 {
     param0->unk_02 = 0;
-    CellActor_SetDrawFlag(param0->unk_58, 0);
+    Sprite_SetDrawFlag(param0->unk_58, 0);
     return 0;
 }
 
@@ -2408,16 +2408,16 @@ static void ov6_0224551C(UnkStruct_ov6_02243FFC *param0)
     v2->unk_48 = 0;
     v2->unk_4C = 0x2000;
 
-    CellActor_SetPosition(v2->unk_58, &v0);
-    CellActor_SetAffineScale(v2->unk_58, &v1);
-    CellActor_SetAffineZRotation(v2->unk_58, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
-    CellActor_SetDrawFlag(v2->unk_58, 1);
+    Sprite_SetPosition(v2->unk_58, &v0);
+    Sprite_SetAffineScale(v2->unk_58, &v1);
+    Sprite_SetAffineZRotation(v2->unk_58, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
+    Sprite_SetDrawFlag(v2->unk_58, 1);
 }
 
 static int ov6_022455C4(UnkStruct_ov6_02249198 *param0)
 {
     VecFx32 v0;
-    CellActor *v1 = param0->unk_58;
+    Sprite *v1 = param0->unk_58;
 
     param0->unk_48 += param0->unk_4C;
 
@@ -2444,22 +2444,22 @@ static int ov6_022455C4(UnkStruct_ov6_02249198 *param0)
         param0->unk_2C.y = 0x1000;
     }
 
-    CellActor_SetAffineScale(v1, &param0->unk_2C);
+    Sprite_SetAffineScale(v1, &param0->unk_2C);
     param0->unk_38 -= 0x6000;
 
     if (((param0->unk_38) / FX32_ONE) < 0) {
         param0->unk_38 = 0;
     }
 
-    CellActor_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
+    Sprite_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
 
-    CellActor_SetPosition(v1, &v0);
+    Sprite_SetPosition(v1, &v0);
 
     if (v0.y < (FX32_ONE * -64)) {
-        CellActor_SetDrawFlag(v1, 0);
+        Sprite_SetDrawFlag(v1, 0);
         param0->unk_02 = 2;
         param0->unk_01++;
     }
@@ -2503,10 +2503,10 @@ static void ov6_022456D4(UnkStruct_ov6_02243FFC *param0)
     v0.x = v2->unk_08.x + v2->unk_14.x;
     v0.y = v2->unk_08.y + v2->unk_14.y;
 
-    CellActor_SetPosition(v2->unk_58, &v0);
-    CellActor_SetAffineScale(v2->unk_58, &v1);
-    CellActor_SetAffineZRotation(v2->unk_58, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
-    CellActor_SetDrawFlag(v2->unk_58, 1);
+    Sprite_SetPosition(v2->unk_58, &v0);
+    Sprite_SetAffineScale(v2->unk_58, &v1);
+    Sprite_SetAffineZRotation(v2->unk_58, CalcAngleRotationIdx_Wraparound((v2->unk_38) / FX32_ONE));
+    Sprite_SetDrawFlag(v2->unk_58, 1);
 
     v2->unk_60 = ov6_02245B4C(param0->unk_244, param0->unk_248);
     param0->unk_1C = 1;
@@ -2515,23 +2515,23 @@ static void ov6_022456D4(UnkStruct_ov6_02243FFC *param0)
     ov5_021F0F10(v2->unk_64, 1, -(FX32_ONE * 120), 12);
 
     {
-        CellActor *v3;
+        Sprite *v3;
         VecFx32 v4 = { 0, 0, 0 };
         VecFx32 v5 = { 0x1000, 0x1000, 0 };
 
         v3 = v2->unk_5C.unk_00->unk_248;
 
-        CellActor_SetAffineOverwriteMode(v3, 2);
-        CellActor_SetAffineTranslation(v3, &v4);
-        CellActor_SetAffineScale(v3, &v5);
-        CellActor_SetAffineZRotation(v3, CalcAngleRotationIdx_Wraparound(0));
+        Sprite_SetAffineOverwriteMode(v3, 2);
+        Sprite_SetAffineTranslation(v3, &v4);
+        Sprite_SetAffineScale(v3, &v5);
+        Sprite_SetAffineZRotation(v3, CalcAngleRotationIdx_Wraparound(0));
     }
 }
 
 static int ov6_02245840(UnkStruct_ov6_02249198 *param0)
 {
     VecFx32 v0;
-    CellActor *v1 = param0->unk_58;
+    Sprite *v1 = param0->unk_58;
 
     param0->unk_48 -= param0->unk_4C;
 
@@ -2566,19 +2566,19 @@ static int ov6_02245840(UnkStruct_ov6_02249198 *param0)
         param0->unk_2C.y = 0x1800;
     }
 
-    CellActor_SetAffineScale(v1, &param0->unk_2C);
+    Sprite_SetAffineScale(v1, &param0->unk_2C);
     param0->unk_38 += 0x8000;
 
     if (((param0->unk_38) / FX32_ONE) > 360) {
         param0->unk_38 = (FX32_ONE * 360);
     }
 
-    CellActor_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
+    Sprite_SetAffineZRotation(v1, CalcAngleRotationIdx_Wraparound((param0->unk_38) / FX32_ONE));
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
 
-    CellActor_SetPosition(v1, &v0);
+    Sprite_SetPosition(v1, &v0);
 
     if (param0->unk_48 == 0) {
         param0->unk_04 = 0;
@@ -2592,8 +2592,8 @@ static int ov6_02245840(UnkStruct_ov6_02249198 *param0)
     }
 
     {
-        CellActor *v2 = param0->unk_5C.unk_00->unk_248;
-        const VecFx32 *v3 = CellActor_GetAffineScale(v2);
+        Sprite *v2 = param0->unk_5C.unk_00->unk_248;
+        const VecFx32 *v3 = Sprite_GetAffineScale(v2);
         VecFx32 v4 = *v3;
 
         v4.x += 0x80;
@@ -2608,7 +2608,7 @@ static int ov6_02245840(UnkStruct_ov6_02249198 *param0)
             v4.y = 0x1400;
         }
 
-        CellActor_SetAffineScale(v2, &v4);
+        Sprite_SetAffineScale(v2, &v4);
     }
 
     return 0;
@@ -2616,16 +2616,16 @@ static int ov6_02245840(UnkStruct_ov6_02249198 *param0)
 
 static int ov6_022459B0(UnkStruct_ov6_02249198 *param0)
 {
-    CellActor *v0 = param0->unk_5C.unk_00->unk_248;
+    Sprite *v0 = param0->unk_5C.unk_00->unk_248;
 
-    CellActor_SetAnim(v0, 3);
+    Sprite_SetAnim(v0, 3);
 
     {
         fx32 v1, v2;
-        const VecFx32 *v3 = CellActor_GetPosition(v0);
+        const VecFx32 *v3 = Sprite_GetPosition(v0);
 
         v1 = v3->y;
-        v3 = CellActor_GetPosition(param0->unk_58);
+        v3 = Sprite_GetPosition(param0->unk_58);
         v2 = v3->y;
 
         param0->unk_54 = v1 - v2;
@@ -2647,7 +2647,7 @@ static int ov6_022459B0(UnkStruct_ov6_02249198 *param0)
 static int ov6_02245A0C(UnkStruct_ov6_02249198 *param0)
 {
     VecFx32 v0;
-    CellActor *v1 = param0->unk_58;
+    Sprite *v1 = param0->unk_58;
 
     param0->unk_48 += param0->unk_4C;
     param0->unk_4C += 0x1000;
@@ -2675,23 +2675,23 @@ static int ov6_02245A0C(UnkStruct_ov6_02249198 *param0)
         param0->unk_2C.y = 0x2000;
     }
 
-    CellActor_SetAffineScale(v1, &param0->unk_2C);
+    Sprite_SetAffineScale(v1, &param0->unk_2C);
 
     v0.x = param0->unk_08.x + param0->unk_14.x;
     v0.y = param0->unk_08.y + param0->unk_14.y;
 
-    CellActor_SetPosition(v1, &v0);
+    Sprite_SetPosition(v1, &v0);
 
     {
-        CellActor *v2 = param0->unk_5C.unk_00->unk_248;
-        const VecFx32 *v3 = CellActor_GetAffineScale(v2);
+        Sprite *v2 = param0->unk_5C.unk_00->unk_248;
+        const VecFx32 *v3 = Sprite_GetAffineScale(v2);
         VecFx32 v4 = v0;
         VecFx32 v5 = *v3;
 
         param0->unk_54 -= 0x1000;
 
         v4.y += param0->unk_54;
-        CellActor_SetPosition(v2, &v4);
+        Sprite_SetPosition(v2, &v4);
         v5.x += 0x100;
 
         if (v5.x > 0x2000) {
@@ -2704,7 +2704,7 @@ static int ov6_02245A0C(UnkStruct_ov6_02249198 *param0)
             v5.y = 0x2000;
         }
 
-        CellActor_SetAffineScale(v2, &v5);
+        Sprite_SetAffineScale(v2, &v5);
     }
 
     if (((v0.y) / FX32_ONE) >= 240) {
@@ -2727,7 +2727,7 @@ static int (*const Unk_ov6_022491EC[])(UnkStruct_ov6_02249198 *) = {
     ov6_02245B48
 };
 
-static UnkStruct_ov101_021D5D90 *ov6_02245B4C(UnkStruct_020711EC *param0, CellActor *param1)
+static UnkStruct_ov101_021D5D90 *ov6_02245B4C(UnkStruct_020711EC *param0, Sprite *param1)
 {
     UnkStruct_ov101_021D5D90 *v0;
     UnkStruct_ov6_02245B4C v1;
@@ -2758,11 +2758,11 @@ static void ov6_02245B80(UnkStruct_ov101_021D5D90 *param0)
     v2->unk_10.x = 0;
     v2->unk_10.y = 0;
     v2->unk_10.z = 0;
-    v1 = CellActor_GetPosition(v2->unk_20);
+    v1 = Sprite_GetPosition(v2->unk_20);
     v0 = *v1;
 
     sub_020715D4(param0, &v0);
-    CellActor_SetAnim(v2->unk_20, 5);
+    Sprite_SetAnim(v2->unk_20, 5);
 }
 
 static void ov6_02245BC8(UnkStruct_ov101_021D5D90 *param0)
@@ -2781,7 +2781,7 @@ static void ov6_02245BC8(UnkStruct_ov101_021D5D90 *param0)
     ov6_022437C8(v1->unk_20, &v0);
 
     sub_020715D4(param0, &v0);
-    CellActor_SetAnim(v1->unk_20, 4);
+    Sprite_SetAnim(v1->unk_20, 4);
 }
 
 static int ov6_02245C04(UnkStruct_ov101_021D5D90 *param0, void *param1)
@@ -2826,7 +2826,7 @@ static void ov6_02245C18(UnkStruct_ov101_021D5D90 *param0, UnkStruct_ov6_02245B7
         param1->unk_10.y = Unk_ov6_022492A8[param1->unk_0C];
         sub_020715E4(param0, &v0);
         v0.y += param1->unk_10.y;
-        CellActor_SetPosition(param1->unk_20, &v0);
+        Sprite_SetPosition(param1->unk_20, &v0);
         param1->unk_0C++;
 
         if (param1->unk_0C >= 12) {
@@ -2846,7 +2846,7 @@ static void ov6_02245C64(UnkStruct_ov101_021D5D90 *param0, UnkStruct_ov6_02245B7
         param1->unk_10.y = Unk_ov6_022491FC[param1->unk_0C];
         sub_020715E4(param0, &v0);
         v0.y += param1->unk_10.y;
-        CellActor_SetPosition(param1->unk_20, &v0);
+        Sprite_SetPosition(param1->unk_20, &v0);
         param1->unk_0C++;
 
         if (param1->unk_0C >= 4) {
@@ -2931,7 +2931,7 @@ static void ov6_02245D10(SysTask *param0, void *param1)
         }
 
         if (v1->unk_18.unk_08 != NULL) {
-            CellActorCollection_Update(v1->unk_18.unk_08);
+            SpriteList_Update(v1->unk_18.unk_08);
         }
     }
 }
@@ -2989,7 +2989,7 @@ static int ov6_02245D60(UnkStruct_ov6_02249270 *param0)
 static int ov6_02245EA4(UnkStruct_ov6_02249270 *param0)
 {
     param0->unk_1D0 = ov6_02243848(&param0->unk_18, param0->unk_0C);
-    CellActor_SetDrawFlag(param0->unk_1D0, 1);
+    Sprite_SetDrawFlag(param0->unk_1D0, 1);
 
     param0->unk_1D8 = ov6_02243888(param0->fieldSystem, param0->unk_1D4, &param0->unk_18, param0->unk_1D0);
     ov6_02243950(param0->unk_1D8);
@@ -3071,19 +3071,19 @@ static void ov6_02245F94(UnkStruct_ov101_021D5D90 *param0, void *param1)
     const VecFx32 *v3;
     UnkStruct_ov6_02245F80 *v4 = param1;
 
-    v3 = CellActor_GetPosition(v4->unk_00);
+    v3 = Sprite_GetPosition(v4->unk_00);
     v0 = v3->y;
     v1 = v4->unk_04->unk_4C;
     v2 = v4->unk_04->unk_50;
 
     if (v4->unk_04->unk_1C == 0) {
         if (((v0 - (FX32_ONE * 8)) >= v1) && ((v0 + (FX32_ONE * 8)) <= v2)) {
-            CellActor_SetDrawFlag(v4->unk_00, 1);
+            Sprite_SetDrawFlag(v4->unk_00, 1);
         } else {
-            CellActor_SetDrawFlag(v4->unk_00, 0);
+            Sprite_SetDrawFlag(v4->unk_00, 0);
         }
     } else {
-        CellActor_SetDrawFlag(v4->unk_00, 1);
+        Sprite_SetDrawFlag(v4->unk_00, 1);
     }
 }
 

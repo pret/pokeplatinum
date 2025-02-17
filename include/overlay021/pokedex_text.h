@@ -1,7 +1,8 @@
 #ifndef POKEPLATINUM_POKEDEX_TEXT_H
 #define POKEPLATINUM_POKEDEX_TEXT_H
 
-#include "heap.h"
+#include "constants/heap.h"
+
 #include "strbuf.h"
 
 void PokedexText_Free(Strbuf *strbuf);

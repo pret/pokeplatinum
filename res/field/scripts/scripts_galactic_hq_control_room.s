@@ -18,7 +18,7 @@
     ScriptEntry _03EA
     ScriptEntry _0394
     ScriptEntry _03FD
-    .short 0xFD13
+    ScriptEntryEnd
 
 _003E:
     GoToIfSet 0x97D, _004B
@@ -88,7 +88,7 @@ _0114:
     End
 
 _011F:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -175,7 +175,7 @@ _01C7:
     LockAll
     GoToIfSet 0x97D, _0347
     Message 10
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _01FB
     GoToIfEq 0x800C, 1, _0341
     End
@@ -200,18 +200,18 @@ _01FB:
     Call _0296
     Call _0296
     Call _0296
-    ScrCmd_065 2
-    ScrCmd_065 1
-    ScrCmd_065 3
+    RemoveObject 2
+    RemoveObject 1
+    RemoveObject 3
     GoToIfEq 0x4002, 0, _02C0
     GoToIfEq 0x4002, 2, _02DA
     GoToIfEq 0x4002, 3, _02F4
     End
 
 _0296:
-    ScrCmd_065 2
-    ScrCmd_065 1
-    ScrCmd_065 3
+    RemoveObject 2
+    RemoveObject 1
+    RemoveObject 3
     WaitTime 2, 0x800C
     ClearFlag 0x236
     ScrCmd_064 2
@@ -246,7 +246,7 @@ _030E:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 0
+    RemoveObject 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetFlag 0x235

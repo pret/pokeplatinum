@@ -8,7 +8,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
+#include "brightness_controller.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_start.h"
@@ -30,16 +30,15 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
-#include "unk_02017728.h"
 #include "unk_0208694C.h"
 
 #include "constdata/const_020F2DAC.h"
@@ -163,7 +162,7 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
 
         GXLayers_DisableEngineALayers();
@@ -177,7 +176,7 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
         ov73_021D12C4(v0);
         ov73_021D1318(v0);
 
-        SetMainCallback(ov73_021D0FF0, (void *)v0);
+        SetVBlankCallback(ov73_021D0FF0, (void *)v0);
         GXLayers_TurnBothDispOn();
 
         *param1 = 1;
@@ -198,7 +197,7 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
             ov73_021D1300(v0);
             ov73_021D1238(v0);
             ov73_021D1328(v0);
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
 
             v1 = 1;
         }
@@ -208,7 +207,7 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
             ov73_021D1300(v0);
             ov73_021D1238(v0);
             ov73_021D1328(v0);
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             *param1 = 4;
         }
         break;
@@ -264,18 +263,18 @@ static BOOL ov73_021D0FFC(void)
     BOOL v0 = 0;
     u16 v1, v2;
 
-    if (gCoreSys.touchPressed) {
-        if ((gCoreSys.touchX < 256) && (gCoreSys.touchY < 192)) {
-            if (gCoreSys.touchX < 128) {
-                v1 = 128 - gCoreSys.touchX;
+    if (gSystem.touchPressed) {
+        if ((gSystem.touchX < 256) && (gSystem.touchY < 192)) {
+            if (gSystem.touchX < 128) {
+                v1 = 128 - gSystem.touchX;
             } else {
-                v1 = gCoreSys.touchX - 128;
+                v1 = gSystem.touchX - 128;
             }
 
-            if (gCoreSys.touchY < 100) {
-                v2 = 100 - gCoreSys.touchY;
+            if (gSystem.touchY < 100) {
+                v2 = 100 - gSystem.touchY;
             } else {
-                v2 = gCoreSys.touchY - 100;
+                v2 = gSystem.touchY - 100;
             }
 
             if ((v1 * v1 + v2 * v2) <= 16 * 16) {
@@ -722,7 +721,7 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
         }
         break;
     case 2:
-        if ((param2 != 0) || ((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A)) {
+        if ((param2 != 0) || ((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A)) {
             Window_Remove(&param0->unk_1C);
             param0->unk_50 = 0;
             v0 = 1;
@@ -876,7 +875,7 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
         }
         break;
     case 3:
-        if (((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) {
+        if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             param0->unk_54 = 4;
         }
@@ -1570,7 +1569,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         param0->unk_0C = 22;
         break;
     case 22:
-        if (gCoreSys.pressedKeys) {
+        if (gSystem.pressedKeys) {
             param0->unk_0C = 27;
             break;
         }
@@ -1744,7 +1743,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
                 Bg_ClearTilemap(param0->unk_18, 0);
             }
             param0->unk_0C = 48;
-        } else if (gCoreSys.pressedKeys) {
+        } else if (gSystem.pressedKeys) {
             param0->unk_0C = 49;
         }
         break;
@@ -1773,26 +1772,26 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         }
         break;
     case 50:
-        sub_0200AAE0(1, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), 1);
-        sub_0200AAE0(1, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 2);
+        BrightnessController_StartTransition(1, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_StartTransition(1, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
         param0->unk_0C = 51;
         break;
     case 51:
-        if ((sub_0200AC1C(1) == 1) && (sub_0200AC1C(2) == 1)) {
-            sub_0200AAE0(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), 1);
-            sub_0200AAE0(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 2);
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
+            BrightnessController_StartTransition(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
+            BrightnessController_StartTransition(1, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
             param0->unk_0C = 52;
         }
         break;
     case 52:
-        if ((sub_0200AC1C(1) == 1) && (sub_0200AC1C(2) == 1)) {
-            sub_0200AAE0(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), 1);
-            sub_0200AAE0(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 2);
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
+            BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
+            BrightnessController_StartTransition(4, 16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
             param0->unk_0C = 53;
         }
         break;
     case 53:
-        if ((sub_0200AC1C(1) == 1) && (sub_0200AC1C(2) == 1)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             param0->unk_0C = 54;
         }
         break;
@@ -1803,14 +1802,14 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         ov73_021D200C(param0, &param0->unk_94[0]);
         param0->unk_8B = 0;
         ov73_021D1B14(param0);
-        sub_0200AAE0(16, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), 1);
-        sub_0200AAE0(16, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), 2);
+        BrightnessController_StartTransition(16, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_MAIN_SCREEN);
+        BrightnessController_StartTransition(16, 0, 16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3), BRIGHTNESS_SUB_SCREEN);
         param0->unk_0C = 55;
         break;
     case 55:
         ov73_021D200C(param0, &param0->unk_94[0]);
 
-        if ((sub_0200AC1C(1) == 1) && (sub_0200AC1C(2) == 1)) {
+        if ((BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) && (BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN) == TRUE)) {
             param0->unk_0C = 56;
         }
         break;
@@ -1879,7 +1878,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
         }
         break;
     case 67:
-        if ((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) {
+        if ((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) {
             param0->unk_7C = 6;
             param0->unk_80 = 10;
             param0->unk_78 = 2;
@@ -1892,7 +1891,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
             break;
         }
 
-        if ((gCoreSys.pressedKeys & PAD_KEY_LEFT) == PAD_KEY_LEFT || (gCoreSys.pressedKeys & PAD_KEY_RIGHT) == PAD_KEY_RIGHT) {
+        if ((gSystem.pressedKeys & PAD_KEY_LEFT) == PAD_KEY_LEFT || (gSystem.pressedKeys & PAD_KEY_RIGHT) == PAD_KEY_RIGHT) {
             if (param0->unk_84 == 0) {
                 param0->unk_84 = 1;
             } else {

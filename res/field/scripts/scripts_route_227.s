@@ -7,7 +7,7 @@
     ScriptEntry _01CC
     ScriptEntry _01F6
     ScriptEntry _01E3
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     LockAll
@@ -40,7 +40,7 @@ _0012:
     ApplyMovement 0xFF, _012C
     ApplyMovement 3, _0168
     WaitMovement
-    ScrCmd_065 4
+    RemoveObject 4
     ApplyMovement 3, _0170
     ApplyMovement 0xFF, _0108
     WaitMovement
@@ -52,7 +52,7 @@ _0012:
     ApplyMovement 3, _0178
     ApplyMovement 0xFF, _0118
     WaitMovement
-    ScrCmd_065 3
+    RemoveObject 3
     SetVar 0x408B, 1
     ReleaseAll
     End
@@ -240,7 +240,7 @@ _01F6:
 _0212:
     BufferPlayerName 0
     Message 0
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0243
     GoToIfEq 0x800C, 1, _0238
     End

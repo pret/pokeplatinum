@@ -11,7 +11,7 @@
     ScriptEntry _03A7
     ScriptEntry _03D2
     ScriptEntry _03DA
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     SetFlag 0x9C3
@@ -36,7 +36,7 @@ _005F:
     ApplyMovement 0, _0098
     ApplyMovement 0xFF, _00A0
     WaitMovement
-    ScrCmd_065 0
+    RemoveObject 0
     SetVar 0x40CF, 1
     ReleaseAll
     End
@@ -107,11 +107,11 @@ _0107:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 1
-    ScrCmd_065 7
-    ScrCmd_065 6
-    ScrCmd_065 3
-    ScrCmd_065 4
+    RemoveObject 1
+    RemoveObject 7
+    RemoveObject 6
+    RemoveObject 3
+    RemoveObject 4
     SetFlag 0x1A2
     ClearFlag 0x17F
     SetVar 0x4089, 2
@@ -195,7 +195,7 @@ _0297:
     End
 
 _02B9:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

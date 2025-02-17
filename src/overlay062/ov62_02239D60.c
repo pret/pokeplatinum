@@ -3,16 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/narc.h"
 #include "constants/species.h"
 
-#include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/archived_sprite.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0208C06C.h"
 
@@ -42,13 +39,14 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "savedata.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "unk_02030A80.h"
@@ -71,8 +69,8 @@ typedef struct {
     int unk_1B0;
     Window unk_1B4[8];
     Window unk_234[8];
-    CellActorData *unk_2B4[30];
-    Sprite *unk_32C;
+    ManagedSprite *unk_2B4[30];
+    PokemonSprite *unk_32C;
     UnkStruct_02023FCC *unk_330[5];
     UnkStruct_02023FCC *unk_344;
     UnkStruct_ov62_022312B0 unk_348[2];
@@ -577,13 +575,13 @@ static void ov62_0223A4C8(UnkStruct_0208C06C *param0, int param1)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     if (param1 == 0) {
-        SpriteActor_EnableObject(v0->unk_348[1].unk_08, 1);
+        ManagedSprite_SetDrawFlag(v0->unk_348[1].unk_08, 1);
         FontOAM_SetDrawFlag(v0->unk_348[1].unk_0C, 1);
-        SpriteActor_SetSpritePositionXY(v0->unk_348[0].unk_08, 32, 232);
+        ManagedSprite_SetPositionXY(v0->unk_348[0].unk_08, 32, 232);
     } else {
-        SpriteActor_EnableObject(v0->unk_348[1].unk_08, 0);
+        ManagedSprite_SetDrawFlag(v0->unk_348[1].unk_08, 0);
         FontOAM_SetDrawFlag(v0->unk_348[1].unk_0C, 0);
-        SpriteActor_SetSpritePositionXY(v0->unk_348[0].unk_08, 80, 232);
+        ManagedSprite_SetPositionXY(v0->unk_348[0].unk_08, 80, 232);
     }
 
     sub_020128C4(v0->unk_348[0].unk_0C, 36, -8);
@@ -1068,8 +1066,8 @@ static void ov62_0223ADC0(UnkStruct_0208C06C *param0, int param1)
 static void ov62_0223AE60(UnkStruct_0208C06C *param0)
 {
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
-    SpriteRenderer *v1;
-    SpriteGfxHandler *v2;
+    SpriteSystem *v1;
+    SpriteManager *v2;
     PaletteData *v3;
     SpriteTemplate v4;
 
@@ -1077,9 +1075,9 @@ static void ov62_0223AE60(UnkStruct_0208C06C *param0)
     v2 = param0->unk_14.unk_08;
     v3 = param0->unk_14.unk_14;
 
-    sub_0200CD7C(v3, 2, v1, v2, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
-    sub_0200CE0C(v1, v2, 19, PokeIcon64KCellsFileIndex(), 0, 100000);
-    sub_0200CE3C(v1, v2, 19, PokeIcon64KAnimationFileIndex(), 0, 100000);
+    SpriteSystem_LoadPaletteBuffer(v3, PLTTBUF_MAIN_OBJ, v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
+    SpriteSystem_LoadCellResObj(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KCellsFileIndex(), FALSE, 100000);
+    SpriteSystem_LoadAnimResObj(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KAnimationFileIndex(), FALSE, 100000);
 
     {
         int v5;
@@ -1097,7 +1095,7 @@ static void ov62_0223AE60(UnkStruct_0208C06C *param0)
                 continue;
             }
 
-            sub_0200D888(v1, v2, 19, PokeIconSpriteIndex(v7, v9, v6), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + v5);
+            SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(v7, v9, v6), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + v5);
 
             v4.x = 110 + ((v5 % 6) * 24);
             v4.y = 48 + ((v5 / 6) * 22);
@@ -1107,7 +1105,7 @@ static void ov62_0223AE60(UnkStruct_0208C06C *param0)
             v4.plttIdx = 0;
             v4.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
             v4.bgPriority = 0;
-            v4.transferToVRAM = FALSE;
+            v4.vramTransfer = FALSE;
             v4.resources[0] = 100000 + v5;
             v4.resources[1] = 100000;
             v4.resources[2] = 100000;
@@ -1115,12 +1113,12 @@ static void ov62_0223AE60(UnkStruct_0208C06C *param0)
             v4.resources[4] = SPRITE_RESOURCE_NONE;
             v4.resources[5] = SPRITE_RESOURCE_NONE;
 
-            v0->unk_2B4[v5] = SpriteActor_LoadResources(v1, v2, &v4);
+            v0->unk_2B4[v5] = SpriteSystem_NewSprite(v1, v2, &v4);
             v8 = PokeIconPaletteIndex(v7, v6, v9);
 
-            sub_0200D430(v0->unk_2B4[v5], 4 + v8);
-            sub_0200D364(v0->unk_2B4[v5], 1);
-            sub_0200D474(v0->unk_2B4[v5], 30 - v5);
+            ManagedSprite_SetExplicitPaletteOffset(v0->unk_2B4[v5], 4 + v8);
+            ManagedSprite_SetAnim(v0->unk_2B4[v5], 1);
+            ManagedSprite_SetPriority(v0->unk_2B4[v5], 30 - v5);
         }
     }
 }
@@ -1138,7 +1136,7 @@ static void ov62_0223AFC0(UnkStruct_0208C06C *param0, int param1)
             continue;
         }
 
-        SpriteActor_EnableObject(v0->unk_2B4[v1], param1);
+        ManagedSprite_SetDrawFlag(v0->unk_2B4[v1], param1);
     }
 }
 
@@ -1148,9 +1146,9 @@ static void ov62_0223AFEC(UnkStruct_0208C06C *param0)
     int v1;
     int v2;
 
-    SpriteGfxHandler_UnloadPlttObjById(param0->unk_14.unk_08, 100000);
-    SpriteGfxHandler_UnloadCellObjById(param0->unk_14.unk_08, 100000);
-    SpriteGfxHandler_UnloadAnimObjById(param0->unk_14.unk_08, 100000);
+    SpriteManager_UnloadPlttObjById(param0->unk_14.unk_08, 100000);
+    SpriteManager_UnloadCellObjById(param0->unk_14.unk_08, 100000);
+    SpriteManager_UnloadAnimObjById(param0->unk_14.unk_08, 100000);
 
     for (v1 = 0; v1 < 30; v1++) {
         v2 = v0->unk_04.unk_28[v1];
@@ -1163,8 +1161,8 @@ static void ov62_0223AFEC(UnkStruct_0208C06C *param0)
             continue;
         }
 
-        SpriteGfxHandler_UnloadCharObjById(param0->unk_14.unk_08, 100000 + v1);
-        sub_0200D0F4(v0->unk_2B4[v1]);
+        SpriteManager_UnloadCharObjById(param0->unk_14.unk_08, 100000 + v1);
+        Sprite_DeleteAndFreeResources(v0->unk_2B4[v1]);
         v0->unk_2B4[v1] = NULL;
     }
 }

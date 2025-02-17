@@ -16,12 +16,12 @@
 #include "overlay022/struct_ov22_0225A154.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "error_handling.h"
 #include "font.h"
 #include "message.h"
 #include "pltt_transfer.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -52,7 +52,7 @@ void ov22_02259C58(UnkStruct_ov22_02259C58 *param0, UnkStruct_ov22_02259C58_1 *p
     GF_ASSERT(param0);
     GF_ASSERT(param1);
 
-    param0->unk_00 = CellActorCollection_AddEx(param1->unk_00);
+    param0->unk_00 = SpriteList_AddAffine(param1->unk_00);
     GF_ASSERT(param0->unk_00);
 
     param0->unk_04 = param1->unk_0C;
@@ -73,7 +73,7 @@ void ov22_02259C9C(UnkStruct_ov22_0225A154 *param0, UnkStruct_ov22_02259C9C *par
 
     v0.unk_00 = param1->unk_14;
     v0.unk_04 = param1->unk_10;
-    v0.unk_08 = param1->unk_00.unk_00->collection;
+    v0.unk_08 = param1->unk_00.unk_00->list;
     v0.unk_0C = param1->unk_18;
     v0.unk_10 = param0->unk_00.unk_00;
     v0.unk_14 = param1->unk_24;
@@ -89,7 +89,7 @@ void ov22_02259C9C(UnkStruct_ov22_0225A154 *param0, UnkStruct_ov22_02259C9C *par
 
 void ov22_02259CE8(UnkStruct_ov22_02259C58 *param0)
 {
-    CellActor_Delete(param0->unk_00);
+    Sprite_Delete(param0->unk_00);
     memset(param0, 0, sizeof(UnkStruct_ov22_02259C58));
 }
 
@@ -147,17 +147,17 @@ static void ov22_02259D94(UnkStruct_ov22_02259C58 *param0, void *param1)
 
 void ov22_02259D98(UnkStruct_ov22_02259C58 *param0)
 {
-    SpriteActor_SetAnimFrame(param0->unk_00, 2);
+    Sprite_SetAnimFrame(param0->unk_00, 2);
 }
 
 void ov22_02259DA4(UnkStruct_ov22_02259C58 *param0)
 {
-    SpriteActor_SetAnimFrame(param0->unk_00, 0);
+    Sprite_SetAnimFrame(param0->unk_00, 0);
 }
 
 void ov22_02259DB0(UnkStruct_ov22_02259C58 *param0)
 {
-    SpriteActor_SetAnimFrame(param0->unk_00, 1);
+    Sprite_SetAnimFrame(param0->unk_00, 1);
 }
 
 void ov22_02259DBC(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *param1)
@@ -297,12 +297,12 @@ static void ov22_0225A02C(u32 param0, u32 param1, void *param2)
 static void ov22_0225A0E4(UnkStruct_ov22_02259C58 *param0, int param1, UnkStruct_ov22_0225A0E4 *param2, int param3, int param4, int param5, int param6)
 {
     UnkStruct_ov22_02259C58_1 v0;
-    CellActorResourceData v1;
-    CellActorInitParamsEx v2;
+    SpriteResourcesHeader v1;
+    AffineSpriteListTemplate v2;
 
     SpriteResourcesHeader_Init(&v1, param1, 0, param1, param1, 0xFFFFFFFF, 0xFFFFFFFF, 0, 0, param2->unk_48[0], param2->unk_48[1], param2->unk_48[2], param2->unk_48[3], NULL, NULL);
 
-    v2.collection = param2->unk_44;
+    v2.list = param2->unk_44;
     v2.resourceData = &v1;
     v2.position.x = param3 << 12;
     v2.position.y = param4 << 12;
@@ -322,13 +322,13 @@ static void ov22_0225A0E4(UnkStruct_ov22_02259C58 *param0, int param1, UnkStruct
 static void ov22_0225A154(UnkStruct_ov22_0225A154 *param0, int param1, UnkStruct_ov22_0225A0E4 *param2, const UnkStruct_02012744 *param3, const Window *param4, int param5, int param6, int param7, int param8)
 {
     UnkStruct_ov22_02259C9C v0;
-    CellActorResourceData v1;
-    CellActorInitParamsEx v2;
+    SpriteResourcesHeader v1;
+    AffineSpriteListTemplate v2;
     SpriteResource *v3;
 
     SpriteResourcesHeader_Init(&v1, param1, 0, param1, param1, 0xFFFFFFFF, 0xFFFFFFFF, 0, 0, param2->unk_48[0], param2->unk_48[1], param2->unk_48[2], param2->unk_48[3], NULL, NULL);
 
-    v2.collection = param2->unk_44;
+    v2.list = param2->unk_44;
     v2.resourceData = &v1;
     v2.position.x = param5 << 12;
     v2.position.y = param6 << 12;
@@ -460,11 +460,11 @@ static void ov22_0225A3DC(UnkStruct_ov22_02259C58 *param0, int param1, int param
     const VecFx32 *v0;
     VecFx32 v1;
 
-    v0 = CellActor_GetPosition(param0->unk_00);
+    v0 = Sprite_GetPosition(param0->unk_00);
     v1 = *v0;
     v1.x += param1 << FX32_SHIFT;
     v1.y += param2 << FX32_SHIFT;
-    CellActor_SetPosition(param0->unk_00, &v1);
+    Sprite_SetPosition(param0->unk_00, &v1);
 }
 
 static void ov22_0225A418(UnkStruct_ov22_0225A154 *param0, int param1, int param2)

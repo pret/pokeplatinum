@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0138
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -22,7 +22,7 @@ _000A:
     GoToIfEq 0x800C, 0, _00CC
     SetFlag 178
     PlayFanfare SEQ_SE_DP_KI_GASYAN
-    ScrCmd_065 1
+    RemoveObject 1
     CallIfUnset 214, _00B0
     CallIfSet 214, _00BE
     CallIfUnset 0x964, _0109
@@ -49,7 +49,7 @@ _00BE:
     Return
 
 _00CC:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

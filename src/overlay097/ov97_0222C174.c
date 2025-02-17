@@ -17,8 +17,6 @@
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "font.h"
 #include "game_options.h"
@@ -34,8 +32,10 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -370,7 +370,7 @@ typedef struct {
     int unk_168;
     u8 unk_16C[12288];
     OverlayManager *unk_316C;
-    CellActor *unk_3170;
+    Sprite *unk_3170;
     MysteryGift *unk_3174;
     int unk_3178;
     int unk_317C;
@@ -574,7 +574,7 @@ static BOOL ov97_0222C404(UnkStruct_ov97_0222C388 *param0)
         ov97_0223795C(param0->unk_04, &v0, 5, 4, 2);
         return 1;
     } else {
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Window_EraseStandardFrame(&param0->unk_18, 0);
             Window_Remove(&param0->unk_18);
             return 0;
@@ -732,7 +732,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
         }
         break;
     case UnkEnum_ov97_0222C78C_03:
-        if ((Text_IsPrinterActive(v0->unk_317C) == 0) && gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if ((Text_IsPrinterActive(v0->unk_317C) == 0) && gSystem.pressedKeys & PAD_BUTTON_A) {
             ov97_02237784(1);
             ov97_02237790(0, UnkEnum_ov97_0222C78C_12, param1, UnkEnum_ov97_0222C78C_13);
         }
@@ -759,7 +759,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
         v0->unk_3180.unk_104.unk_4E_2 = 0;
         break;
     case UnkEnum_ov97_0222C78C_06:
-        if (gCoreSys.pressedKeys) {
+        if (gSystem.pressedKeys) {
             ov97_02237790(0, UnkEnum_ov97_0222C78C_11, param1, UnkEnum_ov97_0222C78C_13);
         }
         break;
@@ -859,7 +859,7 @@ static int ov97_0222CAB4(UnkStruct_ov97_0222C388 *param0, int *param1, int param
         }
     }
 
-    if (param3 && gCoreSys.pressedKeys & param3) {
+    if (param3 && gSystem.pressedKeys & param3) {
         ov97_022333BC();
         *param1 = UnkEnum_ov97_0222C6F8_26;
         return 1;
@@ -931,7 +931,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         break;
     case UnkEnum_ov97_0222C6F8_29:
         ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 30);
-        CellActor_SetDrawFlag(param0->unk_3170, 0);
+        Sprite_SetDrawFlag(param0->unk_3170, 0);
         DestroyWaitDial(param0->unk_34D8);
         param0->unk_34D8 = NULL;
         Sound_PlayEffect(1500);
@@ -939,7 +939,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         *v3 = UnkEnum_ov97_0222C6F8_30;
         break;
     case UnkEnum_ov97_0222C6F8_30:
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             *v3 = UnkEnum_ov97_0222C6F8_08;
         }
 
@@ -968,7 +968,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     case UnkEnum_ov97_0222C6F8_10:
         if (ov97_022332F4()) {
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 71);
-            CellActor_SetDrawFlag(param0->unk_3170, 1);
+            Sprite_SetDrawFlag(param0->unk_3170, 1);
             ov97_0222C578(param0);
             *v3 = UnkEnum_ov97_0222C6F8_11;
         }
@@ -1062,7 +1062,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
 
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 73);
 
-            CellActor_SetDrawFlag(param0->unk_3170, 0);
+            Sprite_SetDrawFlag(param0->unk_3170, 0);
             DestroyWaitDial(param0->unk_34D8);
             Sound_PlayEffect(1500);
 
@@ -1077,7 +1077,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
                 param0->unk_148 = 0;
             }
 
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 *v3 = UnkEnum_ov97_0222C6F8_27;
                 return 4;
             }
@@ -1087,7 +1087,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
         *v3 = UnkEnum_ov97_0222C6F8_23;
     case UnkEnum_ov97_0222C6F8_23:
         ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 74);
-        CellActor_SetDrawFlag(param0->unk_3170, 0);
+        Sprite_SetDrawFlag(param0->unk_3170, 0);
 
         if (param0->unk_34D8) {
             DestroyWaitDial(param0->unk_34D8);
@@ -1104,7 +1104,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
                 param0->unk_148 = 0;
             }
 
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 OS_ResetSystem(0);
             }
         }

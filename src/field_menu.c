@@ -5,14 +5,13 @@
 
 #include "constants/field/map_load.h"
 #include "generated/journal_location_events.h"
+#include "generated/species.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/sentence.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_02068630.h"
 #include "struct_defs/struct_020708E0.h"
@@ -29,12 +28,10 @@
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/save_info_window.h"
 #include "overlay021/struct_ov21_021D0D80.h"
-#include "overlay104/struct_ov104_02241308.h"
 
 #include "bag.h"
 #include "bg_window.h"
 #include "catching_show.h"
-#include "cell_actor.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -58,15 +55,17 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_02028124.h"
@@ -80,7 +79,6 @@
 #include "unk_0205C22C.h"
 #include "unk_0205F180.h"
 #include "unk_020683F4.h"
-#include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
 #include "unk_0207064C.h"
 #include "unk_0207070C.h"
@@ -144,10 +142,10 @@ static u32 sub_0203AC3C(FieldSystem *fieldSystem);
 static void sub_0203B318(FieldMenu *menu, u8 *param1, u32 param2, u8 param3);
 static void sub_0203B4E8(FieldMenu *menu);
 static void sub_0203B520(FieldMenu *menu);
-static void sub_0203B558(CellActor *graphicElement, u32 param1);
-static void sub_0203B588(CellActor *graphicElement, u16 param1, u16 param2);
+static void sub_0203B558(Sprite *graphicElement, u32 param1);
+static void sub_0203B588(Sprite *graphicElement, u16 param1, u16 param2);
 static void sub_0203B5B4(FieldMenu *menu, u16 param1, u16 param2);
-static void sub_0203B5E8(CellActor *graphicElement);
+static void sub_0203B5E8(Sprite *graphicElement);
 static BOOL sub_0203AC44(FieldTask *taskMan);
 static void sub_0203ADFC(FieldTask *taskMan);
 static BOOL FieldMenu_Select(FieldTask *taskMan);
@@ -363,7 +361,7 @@ static u32 sub_0203ABD0(FieldSystem *fieldSystem)
         v0 |= 0x1;
     }
 
-    if (sub_0206B054(SaveData_GetVarsFlags(fieldSystem->saveData)) == 0) {
+    if (SystemVars_GetPlayerStarter(SaveData_GetVarsFlags(fieldSystem->saveData)) == SPECIES_NONE) {
         v0 |= 0x2;
     }
 
@@ -506,7 +504,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
 
     if (menu->unk_20 != NULL) {
         sub_0203B520(menu);
-        CellActorCollection_Update(menu->unk_38.unk_00);
+        SpriteList_Update(menu->unk_38.unk_00);
     }
 
     return FALSE;
@@ -735,12 +733,12 @@ static BOOL FieldMenu_Select(FieldTask *taskMan)
     menu->unk_28 = Menu_GetCursorPos(menu->unk_20);
 
     if (v2 != menu->unk_28) {
-        sub_0203B558(menu->unk_200[0]->unk_00, menu->unk_28);
+        sub_0203B558(menu->unk_200[0]->sprite, menu->unk_28);
         sub_0203B5B4(menu, v2, menu->unk_28);
         fieldSystem->unk_90 = menu->unk_30[menu->unk_28];
     }
 
-    sub_0203B5E8(menu->unk_200[1 + menu->unk_28]->unk_00);
+    sub_0203B5E8(menu->unk_200[1 + menu->unk_28]->sprite);
 
     switch (menu->unk_2C) {
     case 0xffffffff:
@@ -775,7 +773,7 @@ static void sub_0203B2EC(FieldMenu *menu, FieldSystem *fieldSystem)
 
 static void sub_0203B318(FieldMenu *menu, u8 *param1, u32 param2, u8 param3)
 {
-    UnkStruct_ov104_02241308 v0 = {
+    SpriteResourceCapacities v0 = {
         8, 1, 2, 2, 0, 0
     };
     u32 i;
@@ -792,7 +790,7 @@ static void sub_0203B318(FieldMenu *menu, u8 *param1, u32 param2, u8 param3)
 
     menu->unk_200[0] = ov5_021D3584(&menu->unk_38, &Unk_020EA0A4[0]);
 
-    sub_0203B558(menu->unk_200[0]->unk_00, menu->unk_28);
+    sub_0203B558(menu->unk_200[0]->sprite, menu->unk_28);
 
     ov5_021D3374(&menu->unk_38, v2, 4, 0, 13529);
     ov5_021D339C(&menu->unk_38, v2, 3, 0, 13529);
@@ -814,11 +812,11 @@ static void sub_0203B318(FieldMenu *menu, u8 *param1, u32 param2, u8 param3)
 
         {
             VecFx32 v4 = { FX32_ONE, FX32_ONE, FX32_ONE };
-            CellActor_SetAffineScaleEx(menu->unk_200[1 + i]->unk_00, &v4, 1);
+            Sprite_SetAffineScaleEx(menu->unk_200[1 + i]->sprite, &v4, 1);
         }
     }
 
-    sub_0203B588(menu->unk_200[1 + menu->unk_28]->unk_00, 2, 1);
+    sub_0203B588(menu->unk_200[1 + menu->unk_28]->sprite, 2, 1);
 
     menu->unk_220 = param2 + 1;
 
@@ -831,7 +829,7 @@ static void sub_0203B4E8(FieldMenu *menu)
     u16 v0;
 
     for (v0 = 0; v0 < menu->unk_220; v0++) {
-        sub_0200D0F4(menu->unk_200[v0]);
+        Sprite_DeleteAndFreeResources(menu->unk_200[v0]);
     }
 
     ov5_021D375C(&menu->unk_38);
@@ -842,41 +840,41 @@ static void sub_0203B520(FieldMenu *menu)
     u16 v0;
 
     for (v0 = 0; v0 < menu->unk_220; v0++) {
-        CellActor_UpdateAnim(menu->unk_200[v0]->unk_00, FX32_ONE);
+        Sprite_UpdateAnim(menu->unk_200[v0]->sprite, FX32_ONE);
     }
 }
 
-static void sub_0203B558(CellActor *graphicElement, u32 param1)
+static void sub_0203B558(Sprite *graphicElement, u32 param1)
 {
     VecFx32 vec;
 
-    vec = *(CellActor_GetPosition(graphicElement));
+    vec = *(Sprite_GetPosition(graphicElement));
     vec.y = (20 + 24 * param1) * FX32_ONE;
 
-    CellActor_SetPosition(graphicElement, &vec);
+    Sprite_SetPosition(graphicElement, &vec);
 }
 
-static void sub_0203B588(CellActor *graphicElement, u16 param1, u16 param2)
+static void sub_0203B588(Sprite *graphicElement, u16 param1, u16 param2)
 {
-    u32 v0 = CellActor_GetActiveAnim(graphicElement);
+    u32 v0 = Sprite_GetActiveAnim(graphicElement);
 
-    CellActor_SetAnim(graphicElement, (v0 / 3) * 3 + param1);
-    CellActor_SetExplicitPaletteWithOffset(graphicElement, param2);
+    Sprite_SetAnim(graphicElement, (v0 / 3) * 3 + param1);
+    Sprite_SetExplicitPaletteWithOffset(graphicElement, param2);
 }
 
 static void sub_0203B5B4(FieldMenu *menu, u16 param1, u16 param2)
 {
-    sub_0203B588(menu->unk_200[1 + param1]->unk_00, 0, 0);
-    sub_0203B588(menu->unk_200[1 + param2]->unk_00, 1, 1);
+    sub_0203B588(menu->unk_200[1 + param1]->sprite, 0, 0);
+    sub_0203B588(menu->unk_200[1 + param2]->sprite, 1, 1);
 }
 
-static void sub_0203B5E8(CellActor *graphicElement)
+static void sub_0203B5E8(Sprite *graphicElement)
 {
-    if ((CellActor_GetActiveAnim(graphicElement) % 3) != 1) {
+    if ((Sprite_GetActiveAnim(graphicElement) % 3) != 1) {
         return;
     }
 
-    if (CellActor_IsAnimated(graphicElement) == 0) {
+    if (Sprite_IsAnimated(graphicElement) == 0) {
         sub_0203B588(graphicElement, 2, 1);
     }
 }
@@ -955,10 +953,10 @@ static BOOL FieldMenu_Pokedex(FieldTask *taskMan)
     v2->pokedex = pokedex;
     v2->trainerInfo = trainerInfo;
     v2->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
-    v2->fullmoonIslandVisible = VarFlags_HiddenLocationsUnlocked(varsFlags, HL_FULLMOONISLAND);
-    v2->newmoonIslandVisible = VarFlags_HiddenLocationsUnlocked(varsFlags, HL_NEWMOONISLAND);
-    v2->springPathVisible = VarFlags_HiddenLocationsUnlocked(varsFlags, HL_SPRINGPATH);
-    v2->seabreakPathVisible = VarFlags_HiddenLocationsUnlocked(varsFlags, HL_SEABREAKPATH);
+    v2->fullmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_FULLMOON_ISLAND);
+    v2->newmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_NEWMOON_ISLAND);
+    v2->springPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_SPRING_PATH);
+    v2->seabreakPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_SEABREAK_PATH);
     v2->unk_1C = fieldSystem->unk_B4;
 
     sub_0203E0AC(fieldSystem, v2);
@@ -1031,15 +1029,15 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
     switch (partyMan->unk_23) {
     case 1: {
-        PokemonSummary *summary = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
+        PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
         summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
         summary->options = SaveData_Options(fieldSystem->saveData);
-        summary->dataType = 1;
-        summary->pos = partyMan->unk_22;
-        summary->max = (u8)Party_GetCurrentCount(summary->monData);
+        summary->dataType = SUMMARY_DATA_PARTY_MON;
+        summary->monIndex = partyMan->unk_22;
+        summary->monMax = Party_GetCurrentCount(summary->monData);
         summary->move = 0;
-        summary->mode = 0;
+        summary->mode = SUMMARY_MODE_NORMAL;
         summary->specialRibbons = sub_0202D79C(fieldSystem->saveData);
         summary->dexMode = sub_0207A274(fieldSystem->saveData);
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
@@ -1047,67 +1045,63 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         PokemonSummaryScreen_FlagVisiblePages(summary, Unk_020EA02C);
         PokemonSummaryScreen_SetPlayerProfile(summary, SaveData_GetTrainerInfo(fieldSystem->saveData));
-        sub_0203D334(fieldSystem, summary);
+        FieldSystem_OpenSummaryScreen(fieldSystem, summary);
 
         menu->unk_25C = summary;
         sub_0203B674(menu, sub_0203C1C8);
     } break;
     case 4: {
-        PokemonSummary *v4 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
+        PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
-        v4->monData = Party_GetFromSavedata(fieldSystem->saveData);
-        v4->options = SaveData_Options(fieldSystem->saveData);
-        v4->dataType = 1;
-        v4->pos = partyMan->unk_22;
-        v4->max = 1;
-        v4->move = partyMan->unk_26;
-        v4->mode = 2;
-        v4->dexMode = sub_0207A274(fieldSystem->saveData);
-        v4->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
-        v4->chatotCry = NULL;
+        summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
+        summary->options = SaveData_Options(fieldSystem->saveData);
+        summary->dataType = SUMMARY_DATA_PARTY_MON;
+        summary->monIndex = partyMan->unk_22;
+        summary->monMax = 1;
+        summary->move = partyMan->unk_26;
+        summary->mode = SUMMARY_MODE_SELECT_MOVE;
+        summary->dexMode = sub_0207A274(fieldSystem->saveData);
+        summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
+        summary->chatotCry = NULL;
 
-        PokemonSummaryScreen_FlagVisiblePages(v4, Unk_020EA01C);
-        PokemonSummaryScreen_SetPlayerProfile(v4, SaveData_GetTrainerInfo(fieldSystem->saveData));
-        sub_0203D334(fieldSystem, v4);
+        PokemonSummaryScreen_FlagVisiblePages(summary, Unk_020EA01C);
+        PokemonSummaryScreen_SetPlayerProfile(summary, SaveData_GetTrainerInfo(fieldSystem->saveData));
+        FieldSystem_OpenSummaryScreen(fieldSystem, summary);
 
-        {
-            UnkStruct_0203C1C8 *v5 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203C1C8));
+        UnkStruct_0203C1C8 *v5 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203C1C8));
 
-            v5->unk_00 = partyMan->unk_24;
-            v5->unk_02 = 0;
-            menu->unk_260 = v5;
-        }
+        v5->unk_00 = partyMan->unk_24;
+        v5->unk_02 = 0;
+        menu->unk_260 = v5;
 
-        menu->unk_25C = v4;
+        menu->unk_25C = summary;
         sub_0203B674(menu, sub_0203C1C8);
     } break;
     case 5: {
-        PokemonSummary *v6 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
+        PokemonSummary *summary = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
-        v6->monData = Party_GetFromSavedata(fieldSystem->saveData);
-        v6->options = SaveData_Options(fieldSystem->saveData);
-        v6->dataType = 1;
-        v6->pos = partyMan->unk_22;
-        v6->max = 1;
-        v6->move = partyMan->unk_26;
-        v6->mode = 2;
-        v6->dexMode = sub_0207A274(fieldSystem->saveData);
-        v6->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
-        v6->chatotCry = NULL;
+        summary->monData = Party_GetFromSavedata(fieldSystem->saveData);
+        summary->options = SaveData_Options(fieldSystem->saveData);
+        summary->dataType = SUMMARY_DATA_PARTY_MON;
+        summary->monIndex = partyMan->unk_22;
+        summary->monMax = 1;
+        summary->move = partyMan->unk_26;
+        summary->mode = SUMMARY_MODE_SELECT_MOVE;
+        summary->dexMode = sub_0207A274(fieldSystem->saveData);
+        summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
+        summary->chatotCry = NULL;
 
-        PokemonSummaryScreen_FlagVisiblePages(v6, Unk_020EA01C);
-        PokemonSummaryScreen_SetPlayerProfile(v6, SaveData_GetTrainerInfo(fieldSystem->saveData));
-        sub_0203D334(fieldSystem, v6);
+        PokemonSummaryScreen_FlagVisiblePages(summary, Unk_020EA01C);
+        PokemonSummaryScreen_SetPlayerProfile(summary, SaveData_GetTrainerInfo(fieldSystem->saveData));
+        FieldSystem_OpenSummaryScreen(fieldSystem, summary);
 
-        {
-            UnkStruct_0203C1C8 *v7 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203C1C8));
+        UnkStruct_0203C1C8 *v7 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203C1C8));
 
-            v7->unk_00 = 0;
-            v7->unk_02 = (u16)partyMan->unk_34;
-            menu->unk_260 = v7;
-        }
+        v7->unk_00 = 0;
+        v7->unk_02 = (u16)partyMan->unk_34;
+        menu->unk_260 = v7;
 
-        menu->unk_25C = v6;
+        menu->unk_25C = summary;
         sub_0203B674(menu, sub_0203C1C8);
     } break;
     case 6: {
@@ -1152,11 +1146,10 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         menu->unk_25C = sub_0207D824(v11, Unk_020EA020, 11);
 
         sub_0207CB2C(menu->unk_25C, fieldSystem->saveData, 1, fieldSystem->unk_98);
-    }
 
         sub_0203D1E4(fieldSystem, menu->unk_25C);
         sub_0203B674(menu, sub_0203BC5C);
-        break;
+    } break;
     case 8: {
         UnkStruct_0203C7B8 *v14 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203C7B8));
 
@@ -1192,7 +1185,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
     case 20:
     case 21:
     case 22:
-    case 23: {
+    case 23:
         UnkFuncPtr_0203B7C0 v16;
         UnkStruct_020709CC v17;
 
@@ -1202,7 +1195,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         v16 = (UnkFuncPtr_0203B7C0)sub_0207070C(0, v17.unk_06);
         v16(&v17, &menu->unk_24C);
-    } break;
+        break;
     case 10:
         menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
         sub_0203B674(menu, sub_0203BC5C);
@@ -1614,7 +1607,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
     Heap_FreeToHeap(menu->unk_25C);
 
     switch (v2->mode) {
-    case 2: {
+    case SUMMARY_MODE_SELECT_MOVE: {
         PartyManagementData *v3;
         UnkStruct_0203C1C8 *v4;
 
@@ -1640,9 +1633,9 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         }
 
         v3->unk_24 = v4->unk_00;
-        v3->unk_22 = v2->pos;
+        v3->unk_22 = v2->monIndex;
         v3->unk_26 = v2->move;
-        v3->unk_28 = v2->selectedSlot;
+        v3->unk_28 = v2->selectedMoveSlot;
 
         FieldSystem_StartChildProcess(fieldSystem, &Unk_020F1E88, v3);
         Heap_FreeToHeap(menu->unk_260);
@@ -1650,7 +1643,7 @@ static BOOL sub_0203C1C8(FieldTask *taskMan)
         sub_0203B674(menu, sub_0203B7C0);
     } break;
     default:
-        menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, v2->pos);
+        menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, v2->monIndex);
         sub_0203B674(menu, sub_0203B7C0);
     }
 

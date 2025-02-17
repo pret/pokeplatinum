@@ -1,15 +1,10 @@
 #include "overlay021/pokedex_text.h"
 
-#include <nitro.h>
-#include <string.h>
-
+#include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/species.h"
 #include "generated/text_banks.h"
 
-#include "error_handling.h"
-#include "heap.h"
-#include "inlines.h"
 #include "message.h"
 #include "message_util.h"
 #include "pokedex_language.h"

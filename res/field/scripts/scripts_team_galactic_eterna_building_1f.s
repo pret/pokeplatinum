@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/team_galactic_eterna_building_1f.h"
 
     .data
@@ -10,7 +11,7 @@
     ScriptEntry _006A
     ScriptEntry _0134
     ScriptEntry _001E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     End
@@ -68,7 +69,7 @@ _006A:
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2
     ScrCmd_064 5
-    ScrCmd_065 4
+    RemoveObject 4
     SetFlag 113
     SetVar 0x411D, 1
     WaitTime 30, 0x800C
@@ -80,7 +81,7 @@ _006A:
     ScrCmd_188 4, 16
     ScrCmd_189 4, 2
     ScrCmd_064 4
-    ScrCmd_065 5
+    RemoveObject 5
     CloseMessage
     ReleaseAll
     End
@@ -113,9 +114,9 @@ _0110:
 
 _0134:
     CheckItem ITEM_SECRET_KEY, 1, 0x800C
-    GoToIfEq 0x800C, 0, _01AA
-    ScrCmd_28B 3, 0x800C
-    GoToIfEq 0x800C, 0, _01AA
+    GoToIfEq 0x800C, FALSE, _01AA
+    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x800C
+    GoToIfEq 0x800C, FALSE, _01AA
     GoToIfUnset 129, _01AA
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
@@ -127,7 +128,7 @@ _0134:
     PlayFanfare SEQ_SE_DP_W062
     FadeScreen 6, 1, 0, 0x7FFF
     WaitFadeScreen
-    ScrCmd_065 6
+    RemoveObject 6
     WaitFanfare SEQ_SE_DP_W062
     FadeScreen 6, 1, 1, 0x7FFF
     WaitFadeScreen

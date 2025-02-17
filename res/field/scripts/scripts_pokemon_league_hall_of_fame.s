@@ -1,10 +1,11 @@
 #include "macros/scrcmd.inc"
+#include "generated/hidden_locations.h"
 #include "res/text/bank/pokemon_league_hall_of_fame.h"
 
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     LockAll
@@ -43,7 +44,7 @@ _008C:
     WaitMovement
     Message 6
     CloseMessage
-    SetFlag 0x982
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_4
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 1, _010A
     CallIfEq 0x40F4, 0, _0102
@@ -54,7 +55,7 @@ _008C:
     ScrCmd_260 24
     Call _0174
     ScrCmd_0B0
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -65,7 +66,7 @@ _0102:
     Return
 
 _010A:
-    ScrCmd_270 2, 1
+    EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
     Return
 
 _0111:

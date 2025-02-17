@@ -9,7 +9,7 @@
     ScriptEntry _0104
     ScriptEntry _01FD
     ScriptEntry _024B
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -194,7 +194,7 @@ _032B:
 
 _0341:
     ScrCmd_2C8 0x8001, 0x8000, 0x8003
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Return

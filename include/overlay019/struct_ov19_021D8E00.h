@@ -11,14 +11,14 @@
 #include "overlay019/struct_ov19_021DCD18.h"
 #include "overlay019/struct_ov19_021DE3E8_decl.h"
 
-#include "cell_actor.h"
+#include "sprite.h"
 
 typedef struct {
-    CellActorCollection *unk_00;
-    CellActor *unk_04;
-    CellActor *unk_08;
-    CellActor *unk_0C;
-    CellActor *unk_10;
+    SpriteList *unk_00;
+    Sprite *unk_04;
+    Sprite *unk_08;
+    Sprite *unk_0C;
+    Sprite *unk_10;
     void *unk_14;
     void *unk_18;
     NNSG2dCellDataBank *unk_1C;

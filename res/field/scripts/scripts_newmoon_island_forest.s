@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/newmoon_island_forest.h"
 
     .data
@@ -6,15 +7,15 @@
     ScriptEntry _000E
     ScriptEntry _005E
     ScriptEntry _0079
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _0058
     CheckItem ITEM_MEMBER_CARD, 1, 0x4000
-    GoToIfEq 0x4000, 0, _0058
-    ScrCmd_28B 0, 0x4000
-    GoToIfEq 0x4000, 0, _0058
+    GoToIfEq 0x4000, FALSE, _0058
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
+    GoToIfEq 0x4000, FALSE, _0058
     GoToIfSet 0x158, _0058
     ClearFlag 0x240
     End
@@ -29,7 +30,7 @@ _005E:
 
 _006B:
     SetFlag 0x240
-    ScrCmd_065 0
+    RemoveObject 0
     ClearFlag 142
     End
 
@@ -83,7 +84,7 @@ _00E3:
     End
 
 _014C:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

@@ -5,7 +5,7 @@
 
 #include "generated/text_banks.h"
 
-#include "struct_decls/sprite_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
@@ -25,12 +25,12 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
 #include "rtc.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -114,10 +114,10 @@ typedef struct {
 
 typedef struct {
     int encounterTime;
-    CellActor *cellActorArray[NUMDUNGEONS * 2];
+    Sprite *cellActorArray[NUMDUNGEONS * 2];
     SpriteResource *unk_B4[4];
     int numDungeons;
-    CellActor *AreaUnknownCellActor;
+    Sprite *AreaUnknownCellActor;
     UnkStruct_ov21_021D4CA0 *AreaUnknownSpriteManager;
     SpriteResource *unk_D0[4];
     UnkStruct_ov21_021D4CA0 *unk_E0[3];
@@ -586,14 +586,14 @@ static void ov21_021DD114(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 
 static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, enum HeapId heapID)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
     int v3;
 
     SpriteResourcesHeader_Init(&v0, 93 + 6000, 14 + 6000, 91 + 6000, 92 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.collection = v2->unk_138;
+    v1.list = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -601,12 +601,12 @@ static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     v1.position.x = 160 * FX32_ONE;
     v1.position.y = 96 * FX32_ONE;
 
-    mapDisplay->AreaUnknownCellActor = CellActorCollection_Add(&v1);
+    mapDisplay->AreaUnknownCellActor = SpriteList_Add(&v1);
 
-    CellActor_SetAnim(mapDisplay->AreaUnknownCellActor, 2);
+    Sprite_SetAnim(mapDisplay->AreaUnknownCellActor, 2);
     SpriteResourcesHeader_Init(&v0, 108 + 6000, 14 + 6000, 106 + 6000, 107 + 6000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.collection = v2->unk_138;
+    v1.list = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -615,9 +615,9 @@ static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     v1.position.y = 0;
 
     for (v3 = 0; v3 < (NUMDUNGEONS * 2); v3++) {
-        mapDisplay->cellActorArray[v3] = CellActorCollection_Add(&v1);
-        CellActor_SetDrawFlag(mapDisplay->cellActorArray[v3], 0);
-        CellActor_SetExplicitOAMMode(mapDisplay->cellActorArray[v3], GX_OAM_MODE_XLU);
+        mapDisplay->cellActorArray[v3] = SpriteList_Add(&v1);
+        Sprite_SetDrawFlag(mapDisplay->cellActorArray[v3], 0);
+        Sprite_SetExplicitOAMMode(mapDisplay->cellActorArray[v3], GX_OAM_MODE_XLU);
     }
 }
 
@@ -625,11 +625,11 @@ static void PokedexMapDisplay_DeleteCellActors(PokedexMapDisplay *mapDisplay)
 {
     int cellActorIndex;
 
-    CellActor_Delete(mapDisplay->AreaUnknownCellActor);
+    Sprite_Delete(mapDisplay->AreaUnknownCellActor);
     mapDisplay->AreaUnknownCellActor = NULL;
 
     for (cellActorIndex = 0; cellActorIndex < (NUMDUNGEONS * 2); cellActorIndex++) {
-        CellActor_Delete(mapDisplay->cellActorArray[cellActorIndex]);
+        Sprite_Delete(mapDisplay->cellActorArray[cellActorIndex]);
         mapDisplay->cellActorArray[cellActorIndex] = NULL;
     }
 }
@@ -700,7 +700,7 @@ static void PokedexMapDisplay_OAMMode_XLU(PokedexMapDisplay *mapDisplay)
 {
     int v0;
 
-    CellActor_SetExplicitOAMMode(mapDisplay->AreaUnknownCellActor, GX_OAM_MODE_XLU);
+    Sprite_SetExplicitOAMMode(mapDisplay->AreaUnknownCellActor, GX_OAM_MODE_XLU);
     sub_02012AF0(mapDisplay->AreaUnknownSpriteManager->unk_00, GX_OAM_MODE_XLU);
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -712,7 +712,7 @@ static void PokedexMapDisplay_OAMMode_Normal(PokedexMapDisplay *mapDisplay)
 {
     int v0;
 
-    CellActor_SetExplicitOAMMode(mapDisplay->AreaUnknownCellActor, GX_OAM_MODE_NORMAL);
+    Sprite_SetExplicitOAMMode(mapDisplay->AreaUnknownCellActor, GX_OAM_MODE_NORMAL);
     sub_02012AF0(mapDisplay->AreaUnknownSpriteManager->unk_00, GX_OAM_MODE_NORMAL);
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -907,7 +907,7 @@ static void ov21_021DD8B4(PokedexMapDisplay *mapDisplay)
     memset(mapDisplay->pokedexFieldMap_2, 0, sizeof(u8) * (POKEDEXMAPHEIGHT * POKEDEXMAPWIDTH));
 
     for (v0 = 0; v0 < mapDisplay->numDungeons; v0++) {
-        CellActor_SetDrawFlag(mapDisplay->cellActorArray[v0], 0);
+        Sprite_SetDrawFlag(mapDisplay->cellActorArray[v0], 0);
     }
 
     mapDisplay->numDungeons = 0;
@@ -1120,10 +1120,10 @@ static void ov21_021DD964(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 static void ov21_021DD9E8(PokedexMapDisplay *mapDisplay, const EncounterCollection *encounterCollection)
 {
     if ((mapDisplay->numVisibleDungeons <= 0) && (mapDisplay->numVisibleFields <= 0) && (mapDisplay->dungeonsZero <= 0) && (mapDisplay->fieldsZero <= 0)) {
-        CellActor_SetDrawFlag(mapDisplay->AreaUnknownCellActor, 1);
+        Sprite_SetDrawFlag(mapDisplay->AreaUnknownCellActor, 1);
         FontOAM_SetDrawFlag(mapDisplay->AreaUnknownSpriteManager->unk_00, 1);
     } else {
-        CellActor_SetDrawFlag(mapDisplay->AreaUnknownCellActor, 0);
+        Sprite_SetDrawFlag(mapDisplay->AreaUnknownCellActor, 0);
         FontOAM_SetDrawFlag(mapDisplay->AreaUnknownSpriteManager->unk_00, 0);
     }
 }
@@ -1206,7 +1206,7 @@ static void ov21_021DDB8C(PokedexMapDisplay *mapDisplay)
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
 
     for (dungeonIndex = 0; dungeonIndex < mapDisplay->numDungeons; dungeonIndex++) {
-        CellActor_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 0);
+        Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 0);
     }
 }
 
@@ -1218,7 +1218,7 @@ static void ov21_021DDBCC(PokedexMapDisplay *mapDisplay)
     GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 1);
 
     for (dungeonIndex = 0; dungeonIndex < mapDisplay->numDungeons; dungeonIndex++) {
-        CellActor_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 0);
+        Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 0);
     }
 }
 
@@ -1233,7 +1233,7 @@ static void ov21_021DDC14(PokedexMapDisplay *mapDisplay)
 
         if (mapDisplay->unk_810 == 0) {
             for (dungeonIndex = 0; dungeonIndex < mapDisplay->numDungeons; dungeonIndex++) {
-                CellActor_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 1);
+                Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 1);
             }
 
             mapDisplay->unk_810 = 1;
@@ -1261,7 +1261,7 @@ static void ov21_021DDC14(PokedexMapDisplay *mapDisplay)
             GXLayers_EngineAToggleLayers(GX_BLEND_PLANEMASK_BG1, 0);
         } else {
             for (dungeonIndex = 0; dungeonIndex < mapDisplay->numDungeons; dungeonIndex++) {
-                CellActor_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 0);
+                Sprite_SetDrawFlag(mapDisplay->cellActorArray[dungeonIndex], 0);
             }
         }
     }
@@ -1269,7 +1269,7 @@ static void ov21_021DDC14(PokedexMapDisplay *mapDisplay)
 
 static void ov21_021DDCF4(UnkStruct_ov21_021DCAE0 *param0, const UnkStruct_ov21_021DCACC *param1)
 {
-    Sprite *v0 = ov21_021D2170(param0->unk_00);
+    PokemonSprite *v0 = ov21_021D2170(param0->unk_00);
     int species = PokedexSort_CurrentSpecies(param1->unk_00);
 
     ov21_021D1890(param0->unk_00, param1->unk_00, species, 2, 40, 120);

@@ -7,7 +7,7 @@
     ScriptEntry _0044
     ScriptEntry _00CC
     ScriptEntry _0012
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     ScrCmd_238 9, 0x4000
@@ -34,10 +34,10 @@ _0044:
     LockAll
     FacePlayer
     GoToIfSet 0x13D, _00A4
-    ScrCmd_0DE 0x800C
-    CallIfEq 0x800C, 0x183, _00B4
-    CallIfEq 0x800C, 0x186, _00BC
-    CallIfEq 0x800C, 0x189, _00C4
+    GetPlayerStarterSpecies 0x800C
+    CallIfEq 0x800C, SPECIES_TURTWIG, _00B4
+    CallIfEq 0x800C, SPECIES_CHIMCHAR, _00BC
+    CallIfEq 0x800C, SPECIES_PIPLUP, _00C4
     SetVar 0x410A, 0x8004
     ScrCmd_343 0, 0x8004
     Message 1

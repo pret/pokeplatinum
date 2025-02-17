@@ -8,12 +8,12 @@
 
 #include "bg_window.h"
 #include "colored_arrow.h"
-#include "core_sys.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
 #include "render_window.h"
 #include "string_list.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 

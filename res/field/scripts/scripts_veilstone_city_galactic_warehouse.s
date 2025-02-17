@@ -8,7 +8,7 @@
     ScriptEntry _0184
     ScriptEntry _0016
     ScriptEntry _0197
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     CallIfLt 0x411F, 2, _0025
@@ -34,7 +34,7 @@ _003B:
 
 _0063:
     Message 8
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0086
     GoToIfEq 0x800C, 1, _00C2
     End
@@ -50,8 +50,8 @@ _0086:
     ApplyMovement 2, _00C8
     ApplyMovement 3, _00D0
     WaitMovement
-    ScrCmd_065 2
-    ScrCmd_065 3
+    RemoveObject 2
+    RemoveObject 3
     CloseMessage
     ReleaseAll
     End
@@ -163,15 +163,15 @@ _0197:
     ApplyMovement 2, _00C8
     ApplyMovement 3, _00D0
     WaitMovement
-    ScrCmd_065 2
-    ScrCmd_065 3
+    RemoveObject 2
+    RemoveObject 3
     CallIfEq 0x8004, 8, _0282
     CallIfEq 0x8004, 9, _028E
     Message 6
     CloseMessage
     CallIfEq 0x8004, 8, _029A
     CallIfEq 0x8004, 9, _02AE
-    ScrCmd_065 4
+    RemoveObject 4
     SetFlag 0x28A
     SetVar 0x411F, 4
     ReleaseAll

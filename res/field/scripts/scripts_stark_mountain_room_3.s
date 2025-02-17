@@ -8,7 +8,7 @@
     ScriptEntry _00D0
     ScriptEntry _00E6
     ScriptEntry _019C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     SetVar 0x4000, 0x409E
@@ -41,7 +41,7 @@ _0089:
 
 _0096:
     SetFlag 0x1DD
-    ScrCmd_065 1
+    RemoveObject 1
     ClearFlag 142
     End
 
@@ -134,7 +134,7 @@ _015D:
 
 _0168:
     SetVar 0x409E, 1
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -143,7 +143,7 @@ _0174:
     Return
 
 _017A:
-    SetFlag 0x983
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_5
     Return
 
     .byte 12
@@ -192,7 +192,7 @@ _019C:
     CloseMessage
     ApplyMovement 5, _03B0
     WaitMovement
-    ScrCmd_065 3
+    RemoveObject 3
     Message 2
     Message 3
     ScrCmd_04C 0x1C5, 0
@@ -211,8 +211,8 @@ _019C:
     WaitTime 15, 0x800C
     Message 5
     CloseMessage
-    ScrCmd_065 0
-    ScrCmd_065 6
+    RemoveObject 0
+    RemoveObject 6
     ClearFlag 0x231
     ScrCmd_064 4
     CallCommonScript 0x807
@@ -262,9 +262,9 @@ _019C:
     ApplyMovement 7, _04E0
     ApplyMovement 8, _0510
     WaitMovement
-    ScrCmd_065 5
-    ScrCmd_065 7
-    ScrCmd_065 8
+    RemoveObject 5
+    RemoveObject 7
+    RemoveObject 8
     BufferPlayerName 0
     Message 14
     CloseMessage

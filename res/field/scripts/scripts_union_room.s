@@ -11,7 +11,7 @@
     ScriptEntry _0BC0
     ScriptEntry _0BD3
     ScriptEntry _0BE3
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     End
@@ -100,7 +100,7 @@ _019F:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AD
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     MessageInstant 16
     GoTo _00D0
@@ -125,7 +125,7 @@ _0219:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AE
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     GoTo _00D0
     End
@@ -155,7 +155,7 @@ _02A4:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_192
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 202
@@ -191,7 +191,7 @@ _0351:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AC
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     GoTo _0476
     End
@@ -212,7 +212,7 @@ _03B1:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AF
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     GoTo _0476
     End
@@ -237,7 +237,7 @@ _0433:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2C6
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     GoTo _0476
     End
@@ -281,7 +281,7 @@ _04AD:
     ScrCmd_13A
     ScrCmd_13F 10, 0x800C
     MessageVar 0x800C
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0522
     ScrCmd_146 0x8004, 0x800C
     GoToIfEq 0x800C, 5, _0486
@@ -294,7 +294,7 @@ _04AD:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AC
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     GoTo _0476
     End
@@ -312,7 +312,7 @@ _053A:
     ScrCmd_13A
     ScrCmd_13F 11, 0x800C
     MessageVar 0x800C
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0646
     ScrCmd_146 0x8004, 0x800C
     GoToIfEq 0x800C, 5, _0486
@@ -325,7 +325,7 @@ _053A:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AF
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     GoTo _0476
     End
@@ -334,7 +334,7 @@ _05AF:
     ScrCmd_13A
     ScrCmd_13F 12, 0x800C
     MessageVar 0x800C
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _065E
     ScrCmd_19D 0x800C
     GoToIfEq 0x800C, 0, _068A
@@ -351,7 +351,7 @@ _05AF:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2C6
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     GoTo _0476
     End
@@ -528,7 +528,7 @@ _07D4:
 
 _0853:
     Message 11
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _08B6
     ScrCmd_143 1, 0
     CloseMessage
@@ -543,7 +543,7 @@ _0853:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AD
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     GoTo _07D4
     End
@@ -556,7 +556,7 @@ _08B6:
 
 _08C7:
     Message 26
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _093A
     GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 2, _094B
@@ -572,7 +572,7 @@ _08C7:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AE
-    ScrCmd_0A1
+    ReturnToField
     ScrCmd_139 11
     Call _0BB2
     GoTo _07D4
@@ -592,7 +592,7 @@ _094B:
 
 _095C:
     Message 21
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0A06
     ScrCmd_1F6 0x800C, 30
     GoToIfLt 0x800C, 2, _0A17
@@ -608,7 +608,7 @@ _095C:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_192
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 202
@@ -637,7 +637,7 @@ _0A17:
 
 _0A28:
     Message 30
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0A06
     ScrCmd_143 1, 0
     CloseMessage
@@ -651,14 +651,14 @@ _0A28:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AF
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     ReleaseAll
     End
 
 _0A82:
     Message 33
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0A06
     ScrCmd_143 1, 0
     CloseMessage
@@ -674,14 +674,14 @@ _0A82:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2C6
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     ReleaseAll
     End
 
 _0AED:
     Message 18
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0B47
     ScrCmd_143 1, 0
     CloseMessage
@@ -695,7 +695,7 @@ _0AED:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_0AC
-    ScrCmd_0A1
+    ReturnToField
     Call _0BB2
     ReleaseAll
     End

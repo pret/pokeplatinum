@@ -321,7 +321,7 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
     roamerMonData = Pokemon_New(4);
 
     Pokemon_Init(roamerMonData);
-    Pokemon_InitWith(roamerMonData, species, level, 32, FALSE, 0, OTID_SET, TrainerInfo_ID_LowHalf(trainer));
+    Pokemon_InitWith(roamerMonData, species, level, INIT_IVS_RANDOM, FALSE, 0, OTID_SET, TrainerInfo_ID_LowHalf(trainer));
     Roamer_SetData(newRoamer, ROAMER_DATA_STATUS, 0);
     Roamer_SetData(newRoamer, ROAMER_DATA_ACTIVE, 1);
     Roamer_SetData(newRoamer, ROAMER_DATA_IVS, Pokemon_GetValue(roamerMonData, MON_DATA_COMBINED_IVS, NULL));

@@ -37,13 +37,18 @@ metang_generators = {
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
+    'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
+    'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
     'egg_groups': { 'type': 'enum', 'tag': 'EggGroup' },
     'evolution_methods': { 'type': 'enum', 'tag': 'EvolutionMethod' },
     'exp_rates': { 'type': 'enum', 'tag': 'ExpRate' },
     'game_records': { 'type': 'enum', 'tag': 'GameRecord' },
+    'first_arrival_to_zones': { 'type': 'enum', 'tag': 'FirstArrivalToZone' },
     'footprint_sizes': { 'type': 'enum', 'tag': 'FootprintSize' },
     'gender_ratios': { 'type': 'enum', 'tag': 'GenderRatio' },
     'genders': { 'type': 'enum', 'tag': 'Gender' },
+    'giratina_shadow_animations': {'type': 'enum', 'tag': 'GiratinaShadowAnimation'},
+    'hidden_locations': { 'type': 'enum', 'tag': 'HiddenLocation' },
     'item_ai_categories': { 'type': 'enum', 'tag': 'ItemAICategory' },
     'item_battle_categories': { 'type': 'enum', 'tag': 'ItemBattleCategory' },
     'item_hold_effects': { 'type': 'enum', 'tag': 'ItemHoldEffect' },
@@ -57,6 +62,7 @@ metang_generators = {
     'move_ranges': { 'type': 'mask', 'tag': 'MoveRange', 'extra': ['--no-auto'] },
     'movement_actions': { 'type': 'enum', 'tag': 'MovementAction' },
     'moves': { 'type': 'enum', 'tag': 'Move' },
+    'npc_trades': { 'type': 'enum', 'tag': 'NpcTradeID' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },
     'pokemon_body_shapes': { 'type': 'enum', 'tag': 'PokemonBodyShape' },
@@ -73,6 +79,8 @@ metang_generators = {
     'trainers': { 'type': 'enum', 'tag': 'Trainer' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
+    'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
+    'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'}
 }
 
 c_consts_generators = []
@@ -112,6 +120,7 @@ foreach gen_key : metang_generators.keys()
     )
 endforeach
 
+npc_trades_txt = files('npc_trades.txt')
 species_txt = files('species.txt')
 text_banks_txt = files('text_banks.txt')
 trainers_txt = files('trainers.txt')

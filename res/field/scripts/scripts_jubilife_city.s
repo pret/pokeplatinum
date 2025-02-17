@@ -31,7 +31,7 @@
     ScriptEntry _1096
     ScriptEntry _10AD
     ScriptEntry _14CF
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0072:
     CallIfEq 0x4077, 0, _00AC
@@ -186,7 +186,7 @@ _02BB:
     ApplyMovement 7, _0474
     ApplyMovement 0xFF, _04F8
     WaitMovement
-    ScrCmd_065 7
+    RemoveObject 7
     SetVar 0x4077, 1
     ReleaseAll
     End
@@ -240,7 +240,7 @@ _036E:
 _0390:
     Message 16
     Message 17
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _03B6
     GoToIfEq 0x800C, 1, _03BB
     End
@@ -889,8 +889,8 @@ _0AFE:
     ApplyMovement 17, _0EA4
     ApplyMovement 18, _0EAC
     WaitMovement
-    ScrCmd_065 17
-    ScrCmd_065 18
+    RemoveObject 17
+    RemoveObject 18
     SetFlag 0x19C
     ApplyMovement 16, _0EF8
     ApplyMovement 7, _0E54
@@ -911,20 +911,20 @@ _0BAA:
     End
 
 _0BCA:
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x268
-    GoToIfEq 0x800C, 0x186, _0C2E
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0C2E
     SetVar 0x8004, 0x269
-    GoToIfEq 0x800C, 0x189, _0C2E
+    GoToIfEq 0x800C, SPECIES_PIPLUP, _0C2E
     SetVar 0x8004, 0x26A
     Return
 
 _0BFC:
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x265
-    GoToIfEq 0x800C, 0x186, _0C2E
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0C2E
     SetVar 0x8004, 0x266
-    GoToIfEq 0x800C, 0x189, _0C2E
+    GoToIfEq 0x800C, SPECIES_PIPLUP, _0C2E
     SetVar 0x8004, 0x267
     Return
 
@@ -957,15 +957,15 @@ _0C52:
     End
 
 _0C7C:
-    ScrCmd_065 7
-    ScrCmd_065 16
+    RemoveObject 7
+    RemoveObject 16
     ClearFlag 0x198
     SetVar 0x4077, 4
     SetVar 0x4076, 2
     SetVar 0x4079, 3
-    ScrCmd_065 24
-    ScrCmd_065 25
-    ScrCmd_065 27
+    RemoveObject 24
+    RemoveObject 25
+    RemoveObject 27
     ScrCmd_186 30, 174, 0x2EE
     ScrCmd_188 30, 14
     ClearFlag 0x18B
@@ -980,7 +980,7 @@ _0C7C:
     WaitTime 15, 0x800C
     ApplyMovement 30, _0DC8
     WaitMovement
-    ScrCmd_065 30
+    RemoveObject 30
     ReleaseAll
     End
 
@@ -1029,7 +1029,7 @@ _0D8C:
     Return
 
 _0DB7:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -1372,7 +1372,7 @@ _0FE6:
     LockAll
     FacePlayer
     Message 88
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1011
     GoToIfEq 0x800C, 1, _101C
     End
@@ -1599,10 +1599,10 @@ _12BB:
     End
 
 _12D5:
-    ScrCmd_065 23
+    RemoveObject 23
     SetFlag 243
     ClearFlag 0x1F7
-    ScrCmd_065 31
+    RemoveObject 31
     SetFlag 0x181
     ReleaseAll
     End
@@ -1637,7 +1637,7 @@ _1320:
     FacePlayer
     GoToIfSet 237, _138C
     Message 45
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1356
     GoToIfEq 0x800C, 1, _137D
     End
@@ -1676,7 +1676,7 @@ _1397:
     FacePlayer
     GoToIfSet 238, _1403
     Message 51
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _13CD
     GoToIfEq 0x800C, 1, _13F4
     End
@@ -1716,7 +1716,7 @@ _140E:
     GoToIfLt 0x40E7, 2, _149E
     GoToIfSet 239, _1493
     Message 57
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _1451
     GoToIfEq 0x800C, 1, _1484
     End
@@ -1795,7 +1795,7 @@ _14CF:
     CloseMessage
     ApplyMovement 31, _154C
     WaitMovement
-    ScrCmd_065 31
+    RemoveObject 31
     CallCommonScript 0x808
     SetVar 0x4076, 2
     ReleaseAll

@@ -10,7 +10,7 @@
     ScriptEntry _01DA
     ScriptEntry _02EF
     ScriptEntry _0306
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     SetFlag 0x9CE
@@ -32,7 +32,7 @@ _0024:
     End
 
 _006E:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -113,8 +113,8 @@ _010E:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 0
-    ScrCmd_065 1
+    RemoveObject 0
+    RemoveObject 1
     SetVar 0x40E9, 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -123,7 +123,7 @@ _010E:
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 12, _01BA
     CallIfEq 0x8004, 13, _01C6
-    ScrCmd_065 3
+    RemoveObject 3
     Message 7
     SetVar 0x8004, 0x1B6
     SetVar 0x8005, 1
@@ -260,6 +260,6 @@ _0306:
     CallCommonScript 0x7FC
     CloseMessage
     SetFlag 159
-    ScrCmd_065 3
+    RemoveObject 3
     ReleaseAll
     End

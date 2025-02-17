@@ -16,12 +16,12 @@
 #include "overlay022/struct_ov22_0225AE9C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "message.h"
 #include "narc.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
@@ -40,10 +40,10 @@ static s32 ov22_0225A7CC(Window *param0, int param1, int param2, int param3, int
 static s32 ov22_0225A814(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, Strbuf **param7);
 static s32 ov22_0225A860(Window *param0, int param1, int param2, int param3, int param4, int param5, TextColor param6, u32 param7);
 static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int param4, int param5, u32 param6, u32 param7, Strbuf **param8);
-static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, NARC *param4);
+static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, SpriteResourceCollection **param2, int param3, NARC *param4);
 static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1);
 static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollection **param1);
-static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6);
+static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, SpriteList *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6);
 static void ov22_0225AC58(UnkStruct_ov22_0225AB54 *param0, SpriteResourceCollection **param1);
 static void ov22_0225AC8C(UnkStruct_ov22_0225AB54 *param0);
 static void ov22_0225AD5C(UnkStruct_ov22_0225AB54 *param0);
@@ -54,7 +54,7 @@ static void ov22_0225AE9C(UnkStruct_ov22_0225AE9C *param0);
 static BOOL ov22_0225AF34(const UnkStruct_ov22_0225AE9C *param0);
 static void ov22_0225AA34(SpriteResource **param0, SpriteResourceCollection **param1, int param2, NARC *param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **param1);
-static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, CellActorResourceData *param2, int param3);
+static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, SpriteResourcesHeader *param2, int param3);
 static void ov22_0225AD68(UnkStruct_ov22_0225AD68 *param0, fx32 param1, fx32 param2, int param3);
 static BOOL ov22_0225AD78(UnkStruct_ov22_0225AD68 *param0);
 
@@ -283,16 +283,16 @@ static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int
     return v1;
 }
 
-static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, NARC *param4)
+static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, SpriteList *param1, SpriteResourceCollection **param2, int param3, NARC *param4)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
     int v2, v3;
 
     ov22_0225AA34(param0->unk_00, param2, 14, param4, 103, 225, 102, 101, 2, 2000);
     ov22_0225AAF4(param0->unk_00, param2, &v0, 0);
 
-    v1.collection = param1;
+    v1.list = param1;
     v1.resourceData = &v0;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v1.priority = 0;
@@ -307,11 +307,11 @@ static void ov22_0225A914(UnkStruct_ov22_0225A914 *param0, CellActorCollection *
             v1.position.x = 38 + (18 * v3);
             v1.position.x *= FX32_ONE;
 
-            param0->unk_10[(v2 * 10) + v3] = CellActorCollection_Add(&v1);
-            CellActor_SetAnim(param0->unk_10[(v2 * 10) + v3], 1);
+            param0->unk_10[(v2 * 10) + v3] = SpriteList_Add(&v1);
+            Sprite_SetAnim(param0->unk_10[(v2 * 10) + v3], 1);
 
             if (((v2 * 10) + v3) >= param3) {
-                CellActor_SetDrawFlag(param0->unk_10[(v2 * 10) + v3], 0);
+                Sprite_SetDrawFlag(param0->unk_10[(v2 * 10) + v3], 0);
             }
         }
     }
@@ -323,11 +323,11 @@ static void ov22_0225A9C8(UnkStruct_ov22_0225A914 *param0, int param1)
 
     if (param0->unk_60 < param1) {
         for (v0 = param0->unk_60; v0 < param1; v0++) {
-            CellActor_SetAnim(param0->unk_10[v0], 0);
+            Sprite_SetAnim(param0->unk_10[v0], 0);
         }
     } else if (param0->unk_60 > param1) {
         for (v0 = param0->unk_60 - 1; v0 >= param1; v0--) {
-            CellActor_SetAnim(param0->unk_10[v0], 1);
+            Sprite_SetAnim(param0->unk_10[v0], 1);
         }
     }
 
@@ -339,7 +339,7 @@ static void ov22_0225AA10(UnkStruct_ov22_0225A914 *param0, SpriteResourceCollect
     int v0;
 
     for (v0 = 0; v0 < 20; v0++) {
-        CellActor_Delete(param0->unk_10[v0]);
+        Sprite_Delete(param0->unk_10[v0]);
     }
 
     ov22_0225AAC0(param0->unk_00, param1);
@@ -371,21 +371,21 @@ static void ov22_0225AAC0(SpriteResource **param0, SpriteResourceCollection **pa
     SpriteResourceCollection_Remove(param1[3], param0[3]);
 }
 
-static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, CellActorResourceData *param2, int param3)
+static void ov22_0225AAF4(SpriteResource **param0, SpriteResourceCollection **param1, SpriteResourcesHeader *param2, int param3)
 {
     SpriteResourcesHeader_Init(param2, SpriteResource_GetID(param0[0]), SpriteResource_GetID(param0[1]), SpriteResource_GetID(param0[2]), SpriteResource_GetID(param0[3]), 0xffffffff, 0xffffffff, 0, param3, param1[0], param1[1], param1[2], param1[3], NULL, NULL);
 }
 
-static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6)
+static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, SpriteList *param1, SpriteResourceCollection **param2, int param3, BgConfig *param4, UnkStruct_02095C60 *param5, NARC *param6)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
     int v2;
 
     ov22_0225AA34(param0->unk_00, param2, 14, param6, 229, 230, 228, 227, 2, 3000);
     ov22_0225AAF4(param0->unk_00, param2, &v0, 0);
 
-    v1.collection = param1;
+    v1.list = param1;
     v1.resourceData = &v0;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
     v1.priority = 0;
@@ -396,7 +396,7 @@ static void ov22_0225AB54(UnkStruct_ov22_0225AB54 *param0, CellActorCollection *
     for (v2 = 0; v2 < 2; v2++) {
         v1.position.x = 103 + (v2 * 24);
         v1.position.x *= FX32_ONE;
-        param0->unk_10[v2] = CellActorCollection_Add(&v1);
+        param0->unk_10[v2] = SpriteList_Add(&v1);
     }
 
     param0->unk_1C = param3;
@@ -475,14 +475,14 @@ static void ov22_0225ACE4(UnkStruct_ov22_0225AB54 *param0)
         v1 = v2 / v3;
 
         GF_ASSERT(v1 <= 10);
-        CellActor_SetAnim(param0->unk_10[v0], 0 + v1);
+        Sprite_SetAnim(param0->unk_10[v0], 0 + v1);
 
         v2 -= v1 * v3;
         v3 /= 10;
 
         if (param0->unk_90 == 0) {
             if (param0->unk_1C <= 10) {
-                CellActor_SetExplicitPaletteWithOffset(param0->unk_10[v0], 1);
+                Sprite_SetExplicitPaletteWithOffset(param0->unk_10[v0], 1);
 
                 if (v0 == 2 - 1) {
                     param0->unk_90 = 1;
@@ -540,7 +540,7 @@ static void ov22_0225ADC0(UnkStruct_ov22_0225AB54 *param0, UnkStruct_ov22_0225AE
 
     for (v0 = 0; v0 < 2; v0++) {
         param1->unk_04[v0] = param0->unk_10[v0];
-        CellActor_SetAffineOverwriteMode(param1->unk_04[v0], 2);
+        Sprite_SetAffineOverwriteMode(param1->unk_04[v0], 2);
         v4.x = 103 + (v0 * 24);
         v4.x *= FX32_ONE;
         param1->unk_0C[v0] = v4;
@@ -586,19 +586,19 @@ static void ov22_0225AE9C(UnkStruct_ov22_0225AE9C *param0)
     v0.y = param0->unk_24.unk_00;
     v0.z = param0->unk_24.unk_00;
 
-    CellActor_SetAffineScale(param0->unk_04[0], &v0);
-    CellActor_SetAffineScale(param0->unk_04[1], &v0);
+    Sprite_SetAffineScale(param0->unk_04[0], &v0);
+    Sprite_SetAffineScale(param0->unk_04[1], &v0);
 
     v1 = param0->unk_0C[0];
     v1.x -= param0->unk_38.unk_00;
     v1.y -= param0->unk_4C.unk_00;
 
-    CellActor_SetPosition(param0->unk_04[0], &v1);
+    Sprite_SetPosition(param0->unk_04[0], &v1);
 
     v1 = param0->unk_0C[1];
     v1.y -= param0->unk_4C.unk_00;
 
-    CellActor_SetPosition(param0->unk_04[1], &v1);
+    Sprite_SetPosition(param0->unk_04[1], &v1);
 
     if (v2) {
         param0->unk_00 = 0;

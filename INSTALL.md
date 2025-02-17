@@ -18,11 +18,8 @@ This document details the steps necessary to build a copy of Pokémon Platinum
     - [Fedora (and derivatives)](#fedora-and-derivatives)
   - [Docker](#docker)
 - [2. Downloading the Repository](#2-downloading-the-repository)
-- [3. Specifying a Compiler License](#3-specifying-a-compiler-license)
-  - [Windows (including WSL 1)](#windows-including-wsl-1)
-  - [Unix Systems](#unix-systems)
-- [4. Building the Repository](#4-building-the-repository)
-- [5. Debugger Support](#5-debugger-support)
+- [3. Building the Repository](#3-building-the-repository)
+- [4. Debugger Support](#4-debugger-support)
 - [Troubleshooting FAQ](#troubleshooting-faq)
   - [My Build is Failing After Merging from Main](#my-build-is-failing-after-merging-from-main)
 
@@ -304,41 +301,7 @@ git clone https://github.com/pret/pokeplatinum
 cd pokeplatinum
 ```
 
-## 3. Specifying a Compiler License
-
-Before building the repository, some final setup is required for the compiler.
-Create an environment variable called `LM_LICENSE_FILE` with its value as the
-path to which you cloned the repository, plus `/tools/cw/license.dat`. For
-example, if you cloned your repository to `C:\Users\myuser\Desktop\pokeplatinum`,
-then the value would be `C:\Users\myuser\Desktop\pokeplatinum\tools\cw\license.dat`.
-
-### Windows (including WSL 1)
-
-1. Search for "environment variables" in the Start menu. Click the option which
-says "Edit the system environment variables".
-
-2. In the window that opens, click the button that says "Environment Variables..."
-in the lower right corner.
-
-3. In the window that opens, click "New..." in the lower right corner.
-
-4. Input the environment variable name and value as above, then click "OK".
-
-5. Restart your computer.
-
-### Unix Systems
-
-Export the environment variable as above to your terminal profile. To do so, run the
-following commands from the root of your repository:
-
-```bash
-echo "export LM_LICENSE_FILE=\"$(pwd)/tools/cw/license.dat\"" >> ~/.bashrc
-source ~/.bashrc
-```
-
-Users of MacOS should replace `~/.bashrc` above with `~/.zshrc`.
-
-## 4. Building the Repository
+## 3. Building the Repository
 
 To build the ROM, run:
 
@@ -354,7 +317,7 @@ If you need further assistance, feel free to ask a question in the `#pokeplatinu
 channel of the `pret` Discord (see `README.md` for contact information) or [open
 an issue](https://github.com/pret/pokeplatinum/issues/new).
 
-## 5. Debugger Support
+## 4. Debugger Support
 
 This step is optional, but useful. `pokeplatinum` ships with support for GDB
 debugging and a target to build a debug-enabled ROM:

@@ -6,13 +6,11 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -33,6 +31,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
@@ -86,8 +85,8 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSys);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSys);
-SpriteRenderer *BattleSystem_GetSpriteRenderer(BattleSystem *battleSys);
-SpriteGfxHandler *BattleSystem_GetSpriteGfxHandler(BattleSystem *battleSys);
+SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSys);
+SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSys, int param1);
 BattleInput *BattleSystem_GetBattleInput(BattleSystem *battleSys);
 PartyGauge *ov16_0223E034(BattleSystem *battleSys, enum PartyGaugeSide param1);
@@ -271,7 +270,7 @@ void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSys);
 u8 BattleSystem_RecordedChatter(BattleSystem *battleSys, int param1);
 void ov16_0223F858(BattleSystem *battleSys, u8 *param1);
 void ov16_0223F87C(BattleSystem *battleSys, u8 *param1);
-void ov16_0223F8AC(BattleSystem *battleSys, Sprite **param1);
+void ov16_0223F8AC(BattleSystem *battleSys, PokemonSprite **param1);
 void BattleSystem_SetGaugePriority(BattleSystem *battleSys, int param1);
 
 /**

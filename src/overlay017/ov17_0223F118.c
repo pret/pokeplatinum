@@ -7,11 +7,7 @@
 #include "generated/items.h"
 
 #include "struct_decls/font_oam.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02095C48.h"
@@ -22,6 +18,7 @@
 #include "overlay017/struct_ov17_0223F744.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "char_transfer.h"
 #include "font.h"
 #include "game_overlay.h"
@@ -30,13 +27,12 @@
 #include "message.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02024220.h"
 
@@ -110,7 +106,7 @@ void ov17_0223F1E0(GenericPointerData *param0)
     sub_020242C4(param0);
 }
 
-void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8(int param0, BgConfig *param1, SpriteManager *param2, UnkStruct_02012744 *param3, UnkStruct_ov17_0223F2E4 *param4, const Strbuf *param5, enum Font param6, TextColor param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     FontOAMInitData v0;
     Window v1;
@@ -146,8 +142,8 @@ void ov17_0223F1E8(int param0, BgConfig *param1, SpriteGfxHandler *param2, UnkSt
 
     v0.unk_00 = param3;
     v0.unk_04 = &v1;
-    v0.unk_08 = sub_0200D9B0(param2);
-    v0.unk_0C = sub_0200D04C(param2, param9);
+    v0.unk_08 = SpriteManager_GetSpriteList(param2);
+    v0.unk_0C = SpriteManager_FindPlttResourceProxy(param2, param9);
     v0.unk_10 = NULL;
     v0.unk_14 = v2.offset;
     v0.unk_18 = param10;
@@ -313,45 +309,45 @@ void ov17_0223F374(UnkStruct_02095C48 *param0)
     }
 }
 
-void ov17_0223F560(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6)
+void ov17_0223F560(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6)
 {
     if (param3 != -1) {
-        sub_0200CBDC(param0, param1, 46, 73, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+        SpriteSystem_LoadCharResObj(param0, param1, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 73, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
     }
 
     if (param4 != -1) {
-        sub_0200CD7C(param2, 2, param0, param1, 46, 7, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param4);
+        SpriteSystem_LoadPaletteBuffer(param2, PLTTBUF_MAIN_OBJ, param0, param1, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 7, 0, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, param4);
     }
 
     if (param5 != -1) {
-        sub_0200CE0C(param0, param1, 46, 74, 1, param5);
+        SpriteSystem_LoadCellResObj(param0, param1, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 74, TRUE, param5);
     }
 
     if (param6 != -1) {
-        sub_0200CE3C(param0, param1, 46, 75, 1, param6);
+        SpriteSystem_LoadAnimResObj(param0, param1, NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 75, TRUE, param6);
     }
 }
 
-void ov17_0223F5E8(SpriteGfxHandler *param0, int param1, int param2, int param3, int param4)
+void ov17_0223F5E8(SpriteManager *param0, int param1, int param2, int param3, int param4)
 {
     if (param1 != -1) {
-        SpriteGfxHandler_UnloadCharObjById(param0, param1);
+        SpriteManager_UnloadCharObjById(param0, param1);
     }
 
     if (param2 != -1) {
-        SpriteGfxHandler_UnloadPlttObjById(param0, param2);
+        SpriteManager_UnloadPlttObjById(param0, param2);
     }
 
     if (param3 != -1) {
-        SpriteGfxHandler_UnloadCellObjById(param0, param3);
+        SpriteManager_UnloadCellObjById(param0, param3);
     }
 
     if (param4 != -1) {
-        SpriteGfxHandler_UnloadAnimObjById(param0, param4);
+        SpriteManager_UnloadAnimObjById(param0, param4);
     }
 }
 
-void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteRenderer *param1, SpriteGfxHandler *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
+void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteSystem *param1, SpriteManager *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10)
 {
     int v0;
     SpriteTemplate v1;
@@ -369,12 +365,12 @@ void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteRenderer *param1, Spri
     v1.bgPriority = param9;
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_00[v0] = SpriteActor_LoadResources(param1, param2, &v1);
+        param0->unk_00[v0] = SpriteSystem_NewSprite(param1, param2, &v1);
 
-        SpriteActor_SetSpritePositionXY(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
-        sub_0200D364(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
-        sub_0200D6A4(param0->unk_00[v0], 1);
-        SpriteActor_UpdateObject(param0->unk_00[v0]->unk_00);
+        ManagedSprite_SetPositionXY(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_00, Unk_ov17_022531CC[v0].unk_02);
+        ManagedSprite_SetAnim(param0->unk_00[v0], Unk_ov17_022531CC[v0].unk_06);
+        ManagedSprite_SetAffineOverwriteMode(param0->unk_00[v0], AFFINE_OVERWRITE_MODE_NORMAL);
+        Sprite_TickFrame(param0->unk_00[v0]->sprite);
     }
 
     param0->unk_18 = SysTask_Start(ov17_0223F6E8, param0, param10);
@@ -385,7 +381,7 @@ void ov17_0223F6C4(UnkStruct_ov17_0223F6E8 *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_0200D0F4(param0->unk_00[v0]);
+        Sprite_DeleteAndFreeResources(param0->unk_00[v0]);
     }
 
     SysTask_Done(param0->unk_18);
@@ -398,7 +394,7 @@ static void ov17_0223F6E8(SysTask *param0, void *param1)
     int v1;
 
     for (v1 = 0; v1 < 6; v1++) {
-        sub_0200D7C0(v0->unk_00[v1], Unk_ov17_022531CC[v1].unk_04);
+        ManagedSprite_OffsetAffineZRotation(v0->unk_00[v1], Unk_ov17_022531CC[v1].unk_04);
     }
 }
 
@@ -428,7 +424,7 @@ void ov17_0223F744(UnkStruct_ov17_0223F744 *param0)
 
 BOOL ov17_0223F760(void)
 {
-    if (sub_0200AC1C(1) == 1) {
+    if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
         return 1;
     }
 
@@ -439,14 +435,14 @@ static void ov17_0223F774(SysTask *param0, void *param1)
 {
     UnkStruct_ov17_0223F744 *v0 = param1;
 
-    if (sub_0200AC1C(1) == 0) {
+    if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
         return;
     }
 
     v0->unk_08++;
 
     if (v0->unk_08 > v0->unk_0C[v0->unk_11]) {
-        sub_0200AAE0(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+        BrightnessController_StartTransition(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
         Sound_PlayEffect(1528);
 
         v0->unk_08 = 0;

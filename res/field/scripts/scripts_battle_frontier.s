@@ -41,7 +41,7 @@
     ScriptEntry _03E0
     ScriptEntry _0420
     ScriptEntry _009A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _009A:
     SetFlag 0x2CB
@@ -285,7 +285,7 @@ _027E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_2E2
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll

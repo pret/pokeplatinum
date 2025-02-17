@@ -5,19 +5,19 @@
 
 #include "overlay111/struct_ov111_021D2F80.h"
 
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "gx_layers.h"
 #include "narc.h"
 #include "pltt_transfer.h"
 #include "render_oam.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "vram_transfer.h"
 
 void ov111_021D2F80(UnkStruct_ov111_021D2F80 *param0);
-CellActor *ov111_021D3280(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u8 param5);
+Sprite *ov111_021D3280(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u8 param5);
 void ov111_021D3320(UnkStruct_ov111_021D2F80 *param0);
 void ov111_021D33B0(UnkStruct_ov111_021D2F80 *param0, int param1);
 static void ov111_021D3378(void);
@@ -108,18 +108,18 @@ static void ov111_021D31F4(UnkStruct_ov111_021D2F80 *param0, int param1)
     return;
 }
 
-CellActor *ov111_021D3280(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u8 param5)
+Sprite *ov111_021D3280(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u8 param5)
 {
     int v0;
-    CellActorResourceData v1;
-    CellActor *v2;
+    SpriteResourcesHeader v1;
+    Sprite *v2;
 
     SpriteResourcesHeader_Init(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, param3, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
-        CellActorInitParamsEx v3;
+        AffineSpriteListTemplate v3;
 
-        v3.collection = param0->unk_00;
+        v3.list = param0->unk_00;
         v3.resourceData = &v1;
         v3.position.x = 0;
         v3.position.y = 0;
@@ -137,11 +137,11 @@ CellActor *ov111_021D3280(UnkStruct_ov111_021D2F80 *param0, u32 param1, u32 para
             v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
         }
 
-        v2 = CellActorCollection_AddEx(&v3);
+        v2 = SpriteList_AddAffine(&v3);
 
-        CellActor_SetAnimateFlag(v2, 0);
-        CellActor_SetAnimSpeed(v2, FX32_ONE);
-        CellActor_SetAnim(v2, param2);
+        Sprite_SetAnimateFlag(v2, 0);
+        Sprite_SetAnimSpeed(v2, FX32_ONE);
+        Sprite_SetAnim(v2, param2);
     }
 
     return v2;
@@ -160,7 +160,7 @@ void ov111_021D3320(UnkStruct_ov111_021D2F80 *param0)
         SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
-    CellActorCollection_Delete(param0->unk_00);
+    SpriteList_Delete(param0->unk_00);
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();

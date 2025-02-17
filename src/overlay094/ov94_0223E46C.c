@@ -16,8 +16,6 @@
 #include "overlay094/struct_ov94_0223FD4C_sub3.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -29,8 +27,10 @@
 #include "narc.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_list.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -285,24 +285,24 @@ static void ov94_0223E6B8(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_0223E770(UnkStruct_ov94_0223FD4C *param0)
 {
-    CellActorInitParamsEx v0;
+    AffineSpriteListTemplate v0;
 
     ov94_0223C300(&v0, param0, &param0->unk_DB4, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0.position.x = FX32_ONE;
     v0.position.y = FX32_ONE;
 
-    param0->unk_E20 = CellActorCollection_AddEx(&v0);
+    param0->unk_E20 = SpriteList_AddAffine(&v0);
 
-    CellActor_SetAnimateFlag(param0->unk_E20, 1);
-    CellActor_SetAnim(param0->unk_E20, 0);
-    CellActor_SetExplicitPriority(param0->unk_E20, 1);
+    Sprite_SetAnimateFlag(param0->unk_E20, 1);
+    Sprite_SetAnim(param0->unk_E20, 0);
+    Sprite_SetExplicitPriority(param0->unk_E20, 1);
     sub_02039734();
 }
 
 static void ov94_0223E7C4(UnkStruct_ov94_0223FD4C *param0)
 {
-    CellActor_Delete(param0->unk_E20);
+    Sprite_Delete(param0->unk_E20);
 }
 
 static const u16 Unk_ov94_02245D94[6][2] = {
@@ -409,7 +409,7 @@ static int ov94_0223EA84(UnkStruct_ov94_0223FD4C *param0)
 {
     ov94_0223EFAC(param0);
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         int v0 = ov94_0223EF94(param0);
 
         switch (v0) {
@@ -446,7 +446,7 @@ static int ov94_0223EA84(UnkStruct_ov94_0223FD4C *param0)
             Sound_PlayEffect(1500);
             break;
         }
-    } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         ov94_0223F9A4(param0, 15, TEXT_SPEED_FAST, 0, 0xf0f);
         ov94_0223C3F4(param0, 23, 25);
         Sound_PlayEffect(1500);
@@ -455,7 +455,7 @@ static int ov94_0223EA84(UnkStruct_ov94_0223FD4C *param0)
 
         if (param0->unk_10F2) {
             if (v1 >= 0) {
-                CellActor_SetAnim(param0->unk_F34[v1 + 1], 16 + v1 * 4);
+                Sprite_SetAnim(param0->unk_F34[v1 + 1], 16 + v1 * 4);
                 param0->unk_2C = 2;
                 ov94_0223C4C0(param0, 3, 0);
                 param0->unk_11C = v1;
@@ -681,7 +681,7 @@ static void ov94_0223EFAC(UnkStruct_ov94_0223FD4C *param0)
 {
     int v0;
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         if (param0->unk_10E4->unk_24 == 0) {
             if (param0->unk_10E4->unk_28 > 0) {
                 param0->unk_10E4->unk_28--;
@@ -694,7 +694,7 @@ static void ov94_0223EFAC(UnkStruct_ov94_0223FD4C *param0)
 
             param0->unk_10E4->unk_2C = 0;
         }
-    } else if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (param0->unk_10E4->unk_24 == 0) {
             if (param0->unk_10E4->unk_28 < 3) {
                 param0->unk_10E4->unk_28++;
@@ -707,13 +707,13 @@ static void ov94_0223EFAC(UnkStruct_ov94_0223FD4C *param0)
 
             param0->unk_10E4->unk_2C = 1;
         }
-    } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (param0->unk_10E4->unk_24 != 1) {
             Sound_PlayEffect(1500);
         }
 
         param0->unk_10E4->unk_24 = 1;
-    } else if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (param0->unk_10E4->unk_24 != 0) {
             Sound_PlayEffect(1500);
         }
@@ -727,7 +727,7 @@ static void ov94_0223EFAC(UnkStruct_ov94_0223FD4C *param0)
         v1.x = FX32_ONE * Unk_ov94_02246848[ov94_0223EF94(param0)][0];
         v1.y = FX32_ONE * Unk_ov94_02246848[ov94_0223EF94(param0)][1];
 
-        CellActor_SetPosition(param0->unk_E20, &v1);
+        Sprite_SetPosition(param0->unk_E20, &v1);
     }
 }
 

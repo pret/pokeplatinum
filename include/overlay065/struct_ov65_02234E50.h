@@ -7,8 +7,8 @@
 #include "struct_decls/struct_02023FCC_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "string_template.h"
 
@@ -35,7 +35,7 @@ typedef struct {
     Window unk_FC[8][2];
     Window unk_1FC;
     SpriteResource *unk_20C[4];
-    CellActor *unk_21C[3];
+    Sprite *unk_21C[3];
     CharTransferAllocation unk_228;
     FontOAM *unk_234;
     u32 unk_238;

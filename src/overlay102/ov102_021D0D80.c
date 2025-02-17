@@ -7,7 +7,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -18,10 +17,10 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 
 typedef struct {
     int unk_00;
@@ -72,7 +71,7 @@ int ov102_021D0D80(OverlayManager *param0, int *param1)
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -85,7 +84,7 @@ int ov102_021D0D80(OverlayManager *param0, int *param1)
     ov102_021D0F8C(v0);
     ov102_021D1174(v0);
 
-    SetMainCallback(ov102_021D0F80, (void *)v0);
+    SetVBlankCallback(ov102_021D0F80, (void *)v0);
     GXLayers_TurnBothDispOn();
 
     return 1;
@@ -141,7 +140,7 @@ int ov102_021D0E2C(OverlayManager *param0, int *param1)
         }
         break;
     case 4:
-        if (((gCoreSys.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B) || (gCoreSys.touchPressed)) {
+        if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B) || (gSystem.touchPressed)) {
             StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 5;
         }
@@ -164,7 +163,7 @@ int ov102_021D0F50(OverlayManager *param0, int *param1)
     ov102_021D1204(v0);
     ov102_021D10F8(v0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     OverlayManager_FreeData(param0);
     Heap_Destroy(v1);
 

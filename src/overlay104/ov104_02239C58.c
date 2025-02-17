@@ -202,11 +202,11 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
     param1->unk_AC->monData = Party_GetFromSavedata(param1->unk_00);
     param1->unk_AC->dexMode = sub_0207A274(param1->unk_00);
     param1->unk_AC->showContest = PokemonSummaryScreen_ShowContestData(param1->unk_00);
-    param1->unk_AC->dataType = 1;
-    param1->unk_AC->pos = param1->unk_9F;
-    param1->unk_AC->max = (u8)Party_GetCurrentCount(param1->unk_AC->monData);
+    param1->unk_AC->dataType = SUMMARY_DATA_PARTY_MON;
+    param1->unk_AC->monIndex = param1->unk_9F;
+    param1->unk_AC->monMax = (u8)Party_GetCurrentCount(param1->unk_AC->monData);
     param1->unk_AC->move = 0;
-    param1->unk_AC->mode = 0;
+    param1->unk_AC->mode = SUMMARY_MODE_NORMAL;
     param1->unk_AC->specialRibbons = sub_0202D79C(param1->unk_00);
 
     PokemonSummaryScreen_FlagVisiblePages(param1->unk_AC, v0);
@@ -218,7 +218,7 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 
 static void ov104_0223A090(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param1, FieldSystem *fieldSystem, int param3)
 {
-    param1->unk_9F = param1->unk_AC->pos;
+    param1->unk_9F = param1->unk_AC->monIndex;
     Heap_FreeToHeap(param1->unk_AC);
     param1->unk_AC = NULL;
     *param1->unk_B0 = 0;

@@ -339,7 +339,7 @@ void MapObject_Delete(MapObject *mapObj)
     sub_0206243C(mapObj);
 }
 
-void sub_02061B28(MapObject *mapObj)
+void MapObject_SetFlagAndDeleteObject(MapObject *mapObj)
 {
     int flag = MapObject_GetFlag(mapObj);
     FieldSystem_SetFlag(MapObject_FieldSystem(mapObj), flag);

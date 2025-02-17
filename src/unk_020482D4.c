@@ -3,9 +3,9 @@
 
 #include "field/field_system.h"
 
-#include "core_sys.h"
 #include "field_script_context.h"
 #include "inlines.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
@@ -242,7 +242,7 @@ BOOL ScrCmd_283(ScriptContext *param0)
 
 BOOL ScrCmd_2F8(ScriptContext *param0)
 {
-    if (gCoreSys.heldKeys & PAD_KEY_UP) {
+    if (gSystem.heldKeys & PAD_KEY_UP) {
         sub_02004550(22, 1218, 1);
     } else {
         sub_02004550(22, 1218, 1);

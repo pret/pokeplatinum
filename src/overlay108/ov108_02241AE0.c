@@ -18,9 +18,7 @@
 #include "overlay108/struct_ov108_02243594_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -38,15 +36,16 @@
 #include "render_oam.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 #include "unk_020363E8.h"
@@ -395,7 +394,7 @@ int ov108_02241C38(OverlayManager *param0, int *param1)
         v0->unk_13_0 ^= 1;
     }
 
-    CellActorCollection_Update(v0->unk_E8.unk_00);
+    SpriteList_Update(v0->unk_E8.unk_00);
 
     return 0;
 }
@@ -410,7 +409,7 @@ int ov108_02241D70(OverlayManager *param0, int *param1)
     VramTransfer_Free();
     ov108_02242238(v1);
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(103);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
@@ -592,7 +591,7 @@ static BOOL ov108_02241F28(UnkStruct_ov108_02241DB0 *param0)
         param0->unk_08 = 6;
         break;
     case 6:
-        ov108_02242964(param0, gCoreSys.pressedKeys);
+        ov108_02242964(param0, gSystem.pressedKeys);
 
         if (CommSys_CurNetId() == 0) {
             if (param0->unk_18 > 0) {
@@ -785,7 +784,7 @@ static void ov108_02242238(UnkStruct_ov108_02241DB0 *param0)
 
 static void ov108_02242344(void)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
 
     GXLayers_DisableEngineALayers();
@@ -863,7 +862,7 @@ static void ov108_0224237C(UnkStruct_ov108_02241DB0 *param0)
         sub_02039734();
     }
 
-    SetMainCallback(ov108_02242708, (void *)param0);
+    SetVBlankCallback(ov108_02242708, (void *)param0);
     return;
 }
 

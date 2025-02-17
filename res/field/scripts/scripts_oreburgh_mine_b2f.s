@@ -8,7 +8,7 @@
     ScriptEntry _011B
     ScriptEntry _013A
     ScriptEntry _0159
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     PlayFanfare SEQ_SE_CONFIRM
@@ -43,7 +43,7 @@ _0044:
     CloseMessage
     ScrCmd_29E 2, 0x8005
     WaitTime 10, 0x800C
-    ScrCmd_065 1
+    RemoveObject 1
 _0059:
     WaitTime 1, 0x800C
     GoToIfEq 0x8005, 0, _0059
@@ -83,7 +83,7 @@ _0091:
     GoTo _00A1
 
 _00A1:
-    ScrCmd_065 0
+    RemoveObject 0
     SetFlag 122
     SetFlag 0x17C
     ReleaseAll

@@ -15,7 +15,6 @@
 
 #include "bag.h"
 #include "berry_patches.h"
-#include "core_sys.h"
 #include "easy3d.h"
 #include "field_task.h"
 #include "heap.h"
@@ -23,6 +22,7 @@
 #include "player_avatar.h"
 #include "savedata_misc.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_0201CED8.h"
 #include "unk_02054D00.h"
 #include "unk_020655F4.h"
@@ -398,7 +398,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
         v1->unk_08 = 0;
         v1->unk_00 = 2;
     case 2:
-        if (gCoreSys.heldKeys & PAD_KEY_LEFT) {
+        if (gSystem.heldKeys & PAD_KEY_LEFT) {
             MapObject *v2 = sub_02056074(v0, 2);
 
             if ((v2 == NULL) || !sub_020560E4(v2)) {
@@ -409,7 +409,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
                 v1->unk_00 = 3;
                 break;
             }
-        } else if (gCoreSys.heldKeys & PAD_KEY_RIGHT) {
+        } else if (gSystem.heldKeys & PAD_KEY_RIGHT) {
             MapObject *v2 = sub_02056074(v0, 3);
 
             if ((v2 == NULL) || !sub_020560E4(v2)) {
@@ -420,11 +420,11 @@ static BOOL sub_02056124(FieldTask *taskMan)
                 v1->unk_00 = 3;
                 break;
             }
-        } else if ((gCoreSys.heldKeys & PAD_KEY_UP) && (v1->unk_04 == 1)) {
+        } else if ((gSystem.heldKeys & PAD_KEY_UP) && (v1->unk_04 == 1)) {
             Player_SetDir(v0->playerAvatar, 0);
             v1->unk_00 = 4;
             break;
-        } else if ((gCoreSys.heldKeys & PAD_KEY_DOWN) && (v1->unk_04 == 0)) {
+        } else if ((gSystem.heldKeys & PAD_KEY_DOWN) && (v1->unk_04 == 0)) {
             v1->unk_00 = 4;
             break;
         }

@@ -8,7 +8,7 @@
     ScriptEntry _012C
     ScriptEntry _0058
     ScriptEntry _0037
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     GoToIfEq 0x40D9, 0, _0035
@@ -169,7 +169,7 @@ _02AD:
 
 _02BB:
     Message 2
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 0, _01AC
     GoTo _0241
@@ -177,7 +177,7 @@ _02BB:
 
 _02D9:
     Message 3
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 0, _01E7
     GoTo _0241
@@ -275,7 +275,7 @@ _0492:
     ApplyMovement 1, _0550
     WaitMovement
     SetFlag 0x1CB
-    ScrCmd_065 1
+    RemoveObject 1
     Return
 
 _04A6:

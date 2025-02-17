@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_0225BFFC_T_H
 #define POKEPLATINUM_STRUCT_OV16_0225BFFC_T_H
 
-#include "struct_decls/cell_actor_data.h"
-#include "struct_decls/sprite_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/struct_ov16_0225BFFC_sub1.h"
 #include "battle/struct_ov16_022674C4.h"
@@ -12,15 +11,16 @@
 
 #include "bg_window.h"
 #include "narc.h"
+#include "sprite.h"
 #include "sys_task_manager.h"
 
 #define DATA_BUF_SIZE 256
 
 struct BattlerData {
     UnkStruct_ov16_0225BFFC_sub1 unk_00;
-    CellActorData *unk_18;
-    Sprite *unk_1C;
-    Sprite *unk_20;
+    ManagedSprite *unk_18;
+    PokemonSprite *unk_1C;
+    PokemonSprite *unk_20;
     Window *unk_24;
     Healthbar healthbar;
     BattleCursorPosition unk_7B;

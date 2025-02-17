@@ -1,15 +1,16 @@
 #include "macros/scrcmd.inc"
+#include "generated/hidden_locations.h"
 #include "res/text/bank/fullmoon_island.h"
 
     .data
 
     ScriptEntry _000A
     ScriptEntry _0015
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     SetFlag 0x9D0
-    ScrCmd_270 0, 1
+    EnableHiddenLocation HIDDEN_LOCATION_FULLMOON_ISLAND
     End
 
 _0015:
@@ -20,7 +21,7 @@ _0015:
     CheckItem ITEM_LUNAR_WING, 1, 0x800C
     GoToIfEq 0x800C, 1, _0052
     Message 1
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
     GoToIfEq 0x800C, 0, _005D
     GoTo _0098

@@ -27,7 +27,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "core_sys.h"
 #include "field_map_change.h"
 #include "field_menu.h"
 #include "field_message.h"
@@ -49,7 +48,9 @@
 #include "save_player.h"
 #include "script_manager.h"
 #include "strbuf.h"
+#include "system.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "unk_0200F174.h"
 #include "unk_02028124.h"
 #include "unk_0203C954.h"
@@ -58,7 +59,6 @@
 #include "unk_020553DC.h"
 #include "unk_02055C50.h"
 #include "unk_0205F180.h"
-#include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
 #include "unk_0207CB08.h"
 #include "unk_020989DC.h"
@@ -957,7 +957,7 @@ static BOOL sub_02068F48(FieldTask *task)
         break;
     case 1:
         if (FieldMessage_FinishedPrinting(v1->unk_14) == 1) {
-            if (gCoreSys.pressedKeys & (PAD_KEY | PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_KEY | PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Window_EraseMessageBox(&v1->unk_00, 0);
                 v1->unk_16++;
             }
@@ -1061,7 +1061,7 @@ static u32 sub_02069130(const UnkStruct_020684D0 *param0)
         return -1;
     }
 
-    if (sub_0206B16C(v0, 2) == 0) {
+    if (SystemVars_CheckDistributionEvent(v0, DISTRIBUTION_EVENT_ARCEUS) == FALSE) {
         return -1;
     }
 

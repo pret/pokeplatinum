@@ -19,7 +19,7 @@
     ScriptEntry _08E8
     ScriptEntry _0EA1
     ScriptEntry _0EB4
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0042:
     GetPlayerGender 0x4000
@@ -144,7 +144,7 @@ _016F:
     ApplyMovement 5, _07D0
     WaitMovement
     Message 11
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0298
     GoToIfEq 0x800C, 1, _0259
     End
@@ -158,7 +158,7 @@ _0259:
     ApplyMovement 2, _0758
     WaitMovement
     Message 13
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0298
     GoToIfEq 0x800C, 1, _0259
     End
@@ -183,7 +183,7 @@ _02B3:
     WaitMovement
     BufferPlayerName 1
     Message 17
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _030B
     GoToIfEq 0x800C, 1, _02FD
     End
@@ -277,20 +277,20 @@ _042E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     SetFlag 0x17D
-    ScrCmd_065 12
-    ScrCmd_0B4
-    ScrCmd_0B5
-    ScrCmd_0A1
+    RemoveObject 12
+    StartChooseStarterScene
+    SaveChosenStarter
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    ScrCmd_0DE 0x8000
-    ScrCmd_096 0x8000, 5, 0, 0x800C
+    GetPlayerStarterSpecies 0x8000
+    GivePokemon 0x8000, 5, ITEM_NONE, 0x800C
     ApplyMovement 5, _07F8
     ApplyMovement 2, _0760
     ApplyMovement 0xFF, _0884
     WaitMovement
     BufferRivalName 0
-    ScrCmd_0DC 2
+    BufferRivalStarterSpeciesName 2
     Message 36
     Message 37
     Message 38
@@ -300,7 +300,7 @@ _042E:
     ApplyMovement 0xFF, _089C
     WaitMovement
     SetFlag 0x178
-    ScrCmd_065 5
+    RemoveObject 5
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, 0, _04CA
     GoTo _04EE
@@ -333,7 +333,7 @@ _0512:
     ApplyMovement 6, _08E0
     WaitMovement
     SetFlag 0x179
-    ScrCmd_065 6
+    RemoveObject 6
     BufferRivalName 0
     Message 43
     CloseMessage
@@ -347,7 +347,7 @@ _0512:
 _0554:
     BufferPlayerName 1
     Message 44
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _057A
     GoToIfEq 0x800C, 1, _0656
     End
@@ -358,9 +358,9 @@ _057A:
     Message 47
     CloseMessage
     ScrCmd_06D 2, 15
-    ScrCmd_0DE 0x800C
-    GoToIfEq 0x800C, 0x183, _05BB
-    GoToIfEq 0x800C, 0x186, _05C5
+    GetPlayerStarterSpecies 0x800C
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _05BB
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _05C5
     GoTo _05B1
     End
 
@@ -387,7 +387,7 @@ _05CF:
     End
 
 _05F5:
-    ScrCmd_0A1
+    ReturnToField
     ScrCmd_062 2
     FadeScreen 6, 3, 1, 0
     WaitFadeScreen
@@ -1018,8 +1018,8 @@ _0BBB:
 
 _0BF5:
     BufferCounterpartName 0
-    ScrCmd_0DB 1
-    ScrCmd_0DC 2
+    BufferPlayerStarterSpeciesName 1
+    BufferRivalStarterSpeciesName 2
     ApplyMovement 5, _0D70
     WaitMovement
     GoToIfEq 0x8005, 0x355, _0C3E
@@ -1071,8 +1071,8 @@ _0CE1:
     GoTo _0CF1
 
 _0CF1:
-    ScrCmd_065 6
-    ScrCmd_065 5
+    RemoveObject 6
+    RemoveObject 5
     SetVar 0x4086, 3
     ScrCmd_06C 254, 0
     ClearHasPartner

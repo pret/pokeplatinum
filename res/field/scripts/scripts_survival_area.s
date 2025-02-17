@@ -13,7 +13,7 @@
     ScriptEntry _002A
     ScriptEntry _0045
     ScriptEntry _0141
-    .short 0xFD13
+    ScriptEntryEnd
 
 _002A:
     GoTo _0032
@@ -105,7 +105,7 @@ _00D5:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    ScrCmd_065 8
+    RemoveObject 8
     ReleaseAll
     End
 
@@ -133,9 +133,9 @@ _0141:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_234 0x4000
-    GoToIfEq 0x4000, 0, _01BE
-    GoToIfEq 0x4000, 6, _01BE
+    GetDayOfWeek 0x4000
+    GoToIfEq 0x4000, DAY_OF_WEEK_SUNDAY, _01BE
+    GoToIfEq 0x4000, DAY_OF_WEEK_SATURDAY, _01BE
     BufferRivalName 0
     BufferPlayerName 1
     SetVar 0x8008, 0x40C2
@@ -171,9 +171,9 @@ _01BE:
     BufferPlayerName 1
     Message 2
     CloseMessage
-    ScrCmd_0DE 0x800C
-    GoToIfEq 0x800C, 0x183, _0236
-    GoToIfEq 0x800C, 0x186, _0272
+    GetPlayerStarterSpecies 0x800C
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _0236
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0272
     GoTo _01FA
     End
 
@@ -242,7 +242,7 @@ _02CB:
     End
 
 _02DC:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

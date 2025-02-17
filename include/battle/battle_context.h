@@ -5,7 +5,6 @@
 #include "constants/pokemon.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/font_oam.h"
 
 #include "battle/ai_context.h"
@@ -14,6 +13,7 @@
 #include "overlay012/struct_ball_rotation_decl.h"
 
 #include "char_transfer.h"
+#include "sprite_system.h"
 
 typedef struct BattleContext BattleContext;
 
@@ -107,7 +107,7 @@ typedef struct BattleScriptTaskData {
     BattleSystem *battleSys;
     BattleContext *battleCtx;
     BallRotation *ballRotation;
-    CellActorData *cellActorData[2];
+    ManagedSprite *sprites[2];
     FontOAM *fontOAM;
     CharTransferAllocation charTransferAllocation;
     int flag;

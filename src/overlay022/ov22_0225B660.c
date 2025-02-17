@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_defs/struct_02041DC8.h"
@@ -14,8 +16,6 @@
 #include "overlay022/struct_ov22_0225B1BC_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -23,11 +23,12 @@
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
 #include "unk_02094EDC.h"
@@ -39,7 +40,7 @@ typedef struct {
     u32 unk_0C;
     UnkStruct_ov22_0225B1BC *unk_10;
     UnkStruct_ov22_0225A0E4 unk_14;
-    CellActor *unk_1FC;
+    Sprite *unk_1FC;
     Window *unk_200;
 } UnkStruct_ov22_0225B85C;
 
@@ -65,7 +66,7 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_0225B85C), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B85C));
 
-    SetMainCallback(ov22_0225B848, v0);
+    SetVBlankCallback(ov22_0225B848, v0);
     DisableHBlank();
 
     v1 = OverlayManager_Args(param0);
@@ -80,7 +81,7 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
     v0->unk_0C = v1->unk_08;
 
     ov22_02255094();
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
     ov22_022555D4(&v0->unk_14, 14);
 
@@ -136,7 +137,7 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
         }
         break;
     case 3:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             (*param1)++;
         }
         break;
@@ -164,7 +165,7 @@ int ov22_0225B7FC(OverlayManager *param0, int *param1)
     ov22_022555FC(&v0->unk_14);
     ov22_022550B4();
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     OverlayManager_FreeData(param0);
     Heap_Destroy(13);
@@ -223,7 +224,7 @@ static void ov22_0225B964(UnkStruct_ov22_0225B85C *param0)
 
     param0->unk_1FC = ov22_022551E4(&param0->unk_14, 1000, 0, 144, 100, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    CellActor_SetExplicitPriority(param0->unk_1FC, 1);
+    Sprite_SetExplicitPriority(param0->unk_1FC, 1);
 }
 
 static void ov22_0225BA00(UnkStruct_ov22_0225B85C *param0)
@@ -232,7 +233,7 @@ static void ov22_0225BA00(UnkStruct_ov22_0225B85C *param0)
     ov22_022552D8(&param0->unk_14, 1000);
     ov22_022552EC(&param0->unk_14, 1000);
     ov22_02255300(&param0->unk_14, 1000);
-    CellActor_Delete(param0->unk_1FC);
+    Sprite_Delete(param0->unk_1FC);
 }
 
 static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
@@ -282,11 +283,11 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     GF_ASSERT(v8);
     v5 = StringTemplate_Default(13);
 
-    CellActor_SetAnim(param0->unk_1FC, 5);
+    Sprite_SetAnim(param0->unk_1FC, 5);
     v0.x = 48 << FX32_SHIFT;
     v0.y = 144 << FX32_SHIFT;
     v0.z = 0;
-    CellActor_SetPosition(param0->unk_1FC, &v0);
+    Sprite_SetPosition(param0->unk_1FC, &v0);
 
     v7 = Strbuf_Init(12, 13);
     sub_0202A1A0(param0->unk_00, v7);
@@ -329,7 +330,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     int v8, v9;
     int v10;
 
-    CellActor_SetAnim(param0->unk_1FC, param0->unk_08);
+    Sprite_SetAnim(param0->unk_1FC, param0->unk_08);
 
     v0 = sub_0202A5D0(param0->unk_04);
     v1 = StringTemplate_Default(13);

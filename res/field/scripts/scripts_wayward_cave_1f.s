@@ -7,7 +7,7 @@
     ScriptEntry _002B
     ScriptEntry _00E0
     ScriptEntry _00E2
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     SetFlag 0x9D7
@@ -36,7 +36,7 @@ _002B:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x264
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MIRA_WAYWARD_CAVE
     SetHasPartner
     ScrCmd_06D 4, 48
     ReleaseAll
@@ -120,7 +120,7 @@ _016A:
     GoTo _0182
 
 _0182:
-    ScrCmd_065 4
+    RemoveObject 4
     SetFlag 228
     SetVar 0x4091, 2
     ReleaseAll

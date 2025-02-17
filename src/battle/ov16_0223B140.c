@@ -34,9 +34,6 @@
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay011/ov11_0221F840.h"
 #include "overlay012/ov12_0221FC20.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -62,23 +59,23 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0201567C.h"
 #include "unk_02015F84.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -139,7 +136,7 @@ static BOOL ov16_0223CD3C(u16 param0);
 static void ov16_0223DD90(BattleSystem *param0, FieldBattleDTO *param1);
 static void ov16_0223DECC(void);
 
-static const UnkStruct_ov104_0224133C Unk_ov16_0226E2E4 = {
+static const RenderOamTemplate Unk_ov16_0226E2E4 = {
     0x0,
     0x80,
     0x0,
@@ -150,7 +147,7 @@ static const UnkStruct_ov104_0224133C Unk_ov16_0226E2E4 = {
     0x20
 };
 
-static const UnkStruct_ov104_022412F4 Unk_ov16_0226E29C = {
+static const CharTransferTemplateWithModes Unk_ov16_0226E29C = {
     0x60,
     0x10000,
     0x4000,
@@ -158,7 +155,7 @@ static const UnkStruct_ov104_022412F4 Unk_ov16_0226E29C = {
     GX_OBJVRAMMODE_CHAR_1D_32K
 };
 
-const UnkStruct_ov104_02241308 Unk_ov16_0226E2B0 = {
+const SpriteResourceCapacities Unk_ov16_0226E2B0 = {
     0x60,
     0x20,
     0x40,
@@ -292,17 +289,17 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
     return 0;
 }
 
-void ov16_0223B384(BattleSystem *param0)
+void ov16_0223B384(BattleSystem *battleSystem)
 {
-    BattleInput_Free(param0->battleInput);
-    ov16_022687A0(param0->unk_04);
+    BattleInput_Free(battleSystem->battleInput);
+    ov16_022687A0(battleSystem->unk_04);
 
-    param0->unk_23FB_2 = 1;
+    battleSystem->unk_23FB_2 = 1;
 
     Font_Free(FONT_SUBSCREEN);
-    ov16_0223F314(param0, 3);
+    ov16_0223F314(battleSystem, 3);
 
-    if (param0->overlayFlags == 0) {
+    if (battleSystem->overlayFlags == 0) {
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
     } else {
         Overlay_UnloadByID(FS_OVERLAY_ID(trainer_ai));
@@ -311,75 +308,73 @@ void ov16_0223B384(BattleSystem *param0)
     Overlay_LoadByID(FS_OVERLAY_ID(overlay13), 2);
 }
 
-void ov16_0223B3E4(BattleSystem *param0)
+void ov16_0223B3E4(BattleSystem *battleSystem)
 {
-    SetMainCallback(NULL, NULL);
-    BattleInput_Free(param0->battleInput);
-    Window_Remove(&param0->windows[0]);
+    SetVBlankCallback(NULL, NULL);
+    BattleInput_Free(battleSystem->battleInput);
+    Window_Remove(&battleSystem->windows[0]);
 
-    ov16_0223C288(param0->unk_04);
-    ov16_0223C2BC(param0);
+    ov16_0223C288(battleSystem->unk_04);
+    ov16_0223C2BC(battleSystem);
 
-    sub_0200D0B0(param0->unk_90, param0->unk_94);
-    sub_0200C8D4(param0->unk_90);
+    SpriteSystem_FreeResourcesAndManager(battleSystem->unk_90, battleSystem->unk_94);
+    SpriteSystem_Free(battleSystem->unk_90);
     VramTransfer_Free();
     Font_Free(FONT_SUBSCREEN);
 }
 
-void ov16_0223B430(BattleSystem *param0)
+void ov16_0223B430(BattleSystem *battleSystem)
 {
     NARC *v0;
     NARC *v1;
 
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay13));
 
-    if (param0->overlayFlags == 0) {
+    if (battleSystem->overlayFlags == 0) {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay12), 2);
     } else {
         Overlay_LoadByID(FS_OVERLAY_ID(trainer_ai), 2);
     }
 
-    ov16_0223F314(param0, 0);
+    ov16_0223F314(battleSystem, 0);
     MI_CpuFill16((void *)GetHardwareSubBgPaletteAddress(), 0x0, GetHardwareSubBgPaletteSize());
 
     v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
     v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
-    param0->battleInput = BattleInput_NewInit(v0, v1, param0, BattleSystem_GetTrainerGender(param0, ov16_0223F6E4(param0)), param0->unk_1BC);
+    battleSystem->battleInput = BattleInput_NewInit(v0, v1, battleSystem, BattleSystem_GetTrainerGender(battleSystem, ov16_0223F6E4(battleSystem)), battleSystem->unk_1BC);
 
     Font_InitManager(FONT_SUBSCREEN, 5);
 
-    param0->unk_23FB_1 = 1;
+    battleSystem->unk_23FB_1 = 1;
 
-    {
-        ov16_02268744(param0->unk_04);
-    }
+    ov16_02268744(battleSystem->unk_04);
 
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    ov16_02268A88(param0->battleInput);
-    BattleInput_ChangeMenu(v0, v1, param0->battleInput, 0, 1, NULL);
-    BattleInput_CreateBallGagueObjects(v1, param0->battleInput);
+    ov16_02268A88(battleSystem->battleInput);
+    BattleInput_ChangeMenu(v0, v1, battleSystem->battleInput, 0, 1, NULL);
+    BattleInput_CreateBallGagueObjects(v1, battleSystem->battleInput);
     NARC_dtor(v0);
     NARC_dtor(v1);
     TextPrinter_SetScrollArrowBaseTile(1);
-    ov16_0223DD4C(param0);
-    SetSubScreenViewRect(sub_0200C738(param0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
+    ov16_0223DD4C(battleSystem);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(battleSystem->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 }
 
-void ov16_0223B53C(BattleSystem *param0)
+void ov16_0223B53C(BattleSystem *battleSystem)
 {
-    Window_Remove(&param0->windows[0]);
+    Window_Remove(&battleSystem->windows[0]);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Bg_FreeTilemapBuffer(param0->unk_04, 1);
-    Bg_FreeTilemapBuffer(param0->unk_04, 2);
-    Bg_FreeTilemapBuffer(param0->unk_04, 3);
-    ov16_0223F3EC(param0);
+    Bg_FreeTilemapBuffer(battleSystem->unk_04, 1);
+    Bg_FreeTilemapBuffer(battleSystem->unk_04, 2);
+    Bg_FreeTilemapBuffer(battleSystem->unk_04, 3);
+    ov16_0223F3EC(battleSystem);
 }
 
-void ov16_0223B578(BattleSystem *param0)
+void ov16_0223B578(BattleSystem *battleSystem)
 {
     {
-        param0->unk_23FB_0 = 1;
+        battleSystem->unk_23FB_0 = 1;
     }
 
     {
@@ -431,12 +426,12 @@ void ov16_0223B578(BattleSystem *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0->unk_04, 1, &v0[0], 0);
-        Bg_ClearTilemap(param0->unk_04, 1);
-        Bg_InitFromTemplate(param0->unk_04, 2, &v0[1], 0);
-        Bg_ClearTilemap(param0->unk_04, 2);
-        Bg_InitFromTemplate(param0->unk_04, 3, &v0[2], 0);
-        Bg_ClearTilemap(param0->unk_04, 3);
+        Bg_InitFromTemplate(battleSystem->unk_04, 1, &v0[0], 0);
+        Bg_ClearTilemap(battleSystem->unk_04, 1);
+        Bg_InitFromTemplate(battleSystem->unk_04, 2, &v0[1], 0);
+        Bg_ClearTilemap(battleSystem->unk_04, 2);
+        Bg_InitFromTemplate(battleSystem->unk_04, 3, &v0[2], 0);
+        Bg_ClearTilemap(battleSystem->unk_04, 3);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -445,14 +440,14 @@ void ov16_0223B578(BattleSystem *param0)
     {
         int v1;
 
-        v1 = ov16_0223EDE0(param0);
+        v1 = ov16_0223EDE0(battleSystem);
 
-        ReplaceTransparentTiles(param0->unk_04, 1, 1, 10, v1, 5);
-        Graphics_LoadTilesToBgLayer(7, 3 + param0->unk_2400, param0->unk_04, 3, 0, 0, 1, 5);
-        PaletteData_LoadBufferFromFileStart(param0->unk_28, 7, 172 + (param0->unk_2400 * 3) + ov16_0223EC04(param0), 5, 0, 0, 0);
-        PaletteData_LoadBufferFromFileStart(param0->unk_28, 38, GetMessageBoxPaletteNARCMember(v1), 5, 0, 0x20, 10 * 0x10);
-        PaletteData_LoadBufferFromFileStart(param0->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
-        Graphics_LoadTilemapToBgLayer(7, 2, param0->unk_04, 3, 0, 0, 1, 5);
+        ReplaceTransparentTiles(battleSystem->unk_04, 1, 1, 10, v1, 5);
+        Graphics_LoadTilesToBgLayer(7, 3 + battleSystem->unk_2400, battleSystem->unk_04, 3, 0, 0, 1, 5);
+        PaletteData_LoadBufferFromFileStart(battleSystem->unk_28, 7, 172 + (battleSystem->unk_2400 * 3) + ov16_0223EC04(battleSystem), 5, 0, 0, 0);
+        PaletteData_LoadBufferFromFileStart(battleSystem->unk_28, 38, GetMessageBoxPaletteNARCMember(v1), 5, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(battleSystem->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
+        Graphics_LoadTilemapToBgLayer(7, 2, battleSystem->unk_04, 3, 0, 0, 1, 5);
     }
 
     {
@@ -466,15 +461,15 @@ void ov16_0223B578(BattleSystem *param0)
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    SetMainCallback(ov16_0223CE68, param0);
+    SetVBlankCallback(ov16_0223CE68, battleSystem);
 
-    param0->unk_23FB_1 = 1;
+    battleSystem->unk_23FB_1 = 1;
 
-    Window_Add(param0->unk_04, param0->windows, 1, 0x2, 0x13, 27, 4, 0xb, (18 + 12) + 1);
-    Window_FillTilemap(param0->windows, 0xff);
-    Window_DrawMessageBoxWithScrollCursor(&param0->windows[0], 0, 1, 10);
+    Window_Add(battleSystem->unk_04, battleSystem->windows, 1, 0x2, 0x13, 27, 4, 0xb, (18 + 12) + 1);
+    Window_FillTilemap(battleSystem->windows, 0xff);
+    Window_DrawMessageBoxWithScrollCursor(&battleSystem->windows[0], 0, 1, 10);
 
-    ov16_0223DD4C(param0);
+    ov16_0223DD4C(battleSystem);
 }
 
 void BattleSystem_LoadFightOverlay(BattleSystem *battleSys, int flags)
@@ -518,10 +513,10 @@ static const int Unk_ov16_0226E44C[][3] = {
     { 0x7fff, 0x7fff, 0x7fff },
 };
 
-static void ov16_0223B790(OverlayManager *param0)
+static void ov16_0223B790(OverlayManager *overlayManager)
 {
-    BattleSystem *v0 = OverlayManager_Data(param0);
-    FieldBattleDTO *v1 = OverlayManager_Args(param0);
+    BattleSystem *v0 = OverlayManager_Data(overlayManager);
+    FieldBattleDTO *v1 = OverlayManager_Args(overlayManager);
     ArchivedSprite v2;
     int v3;
     RTCDate v4;
@@ -575,17 +570,17 @@ static void ov16_0223B790(OverlayManager *param0)
     Window_FillTilemap(&v0->windows[0], 0xff);
     Window_DrawMessageBoxWithScrollCursor(&v0->windows[0], 0, 1, 10);
 
-    v0->unk_90 = sub_0200C6E4(5);
+    v0->unk_90 = SpriteSystem_Alloc(5);
 
-    sub_0200C73C(v0->unk_90, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, (16 + 16));
+    SpriteSystem_Init(v0->unk_90, &Unk_ov16_0226E2E4, &Unk_ov16_0226E29C, (16 + 16));
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_94 = sub_0200C704(v0->unk_90);
+    v0->unk_94 = SpriteManager_New(v0->unk_90);
 
-    sub_0200C7C0(v0->unk_90, v0->unk_94, (64 + 64));
-    sub_0200CB30(v0->unk_90, v0->unk_94, &Unk_ov16_0226E2B0);
-    SetSubScreenViewRect(sub_0200C738(v0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteSystem_InitSprites(v0->unk_90, v0->unk_94, (64 + 64));
+    SpriteSystem_InitManagerWithCapacities(v0->unk_90, v0->unk_94, &Unk_ov16_0226E2B0);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_90), 0, ((192 + 80) << FX32_SHIFT));
 
     ov16_02268A88(v0->battleInput);
 
@@ -658,9 +653,9 @@ static void ov16_0223B790(OverlayManager *param0)
     }
 }
 
-static int ov16_0223BBD0(OverlayManager *param0)
+static int ov16_0223BBD0(OverlayManager *overlayManager)
 {
-    BattleSystem *v0 = OverlayManager_Data(param0);
+    BattleSystem *v0 = OverlayManager_Data(overlayManager);
     int v1;
 
     if ((v0->battleType & 0x4) && ((v0->battleStatusMask & 0x10) == 0)) {
@@ -698,10 +693,10 @@ static int ov16_0223BBD0(OverlayManager *param0)
     return v0->unk_23FA;
 }
 
-static void ov16_0223BCB4(OverlayManager *param0)
+static void ov16_0223BCB4(OverlayManager *overlayManager)
 {
-    BattleSystem *battleSystem = OverlayManager_Data(param0);
-    FieldBattleDTO *v1 = OverlayManager_Args(param0);
+    BattleSystem *battleSystem = OverlayManager_Data(overlayManager);
+    FieldBattleDTO *v1 = OverlayManager_Args(overlayManager);
     int battlerId;
 
     v1->seed = battleSystem->unk_2448;
@@ -819,7 +814,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
     }
 }
 
-static void ov16_0223C004(BattleSystem *param0, BgConfig *param1)
+static void ov16_0223C004(BattleSystem *battleSystem, BgConfig *param1)
 {
     GXLayers_DisableEngineALayers();
     sub_0200F338(0);
@@ -859,7 +854,7 @@ static void ov16_0223C004(BattleSystem *param0, BgConfig *param1)
     }
 
     {
-        param0->unk_23FB_0 = 1;
+        battleSystem->unk_23FB_0 = 1;
     }
 
     {
@@ -929,13 +924,13 @@ static void ov16_0223C004(BattleSystem *param0, BgConfig *param1)
     {
         int v3;
 
-        v3 = ov16_0223EDE0(param0);
+        v3 = ov16_0223EDE0(battleSystem);
 
         ReplaceTransparentTiles(param1, 1, 1, 10, v3, 5);
-        Graphics_LoadTilesToBgLayer(7, 3 + param0->unk_2400, param1, 3, 0, 0, 1, 5);
-        PaletteData_LoadBufferFromFileStart(param0->unk_28, 7, 172 + (param0->unk_2400 * 3) + ov16_0223EC04(param0), 5, 0, 0, 0);
-        PaletteData_LoadBufferFromFileStart(param0->unk_28, 38, GetMessageBoxPaletteNARCMember(v3), 5, 0, 0x20, 10 * 0x10);
-        PaletteData_LoadBufferFromFileStart(param0->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
+        Graphics_LoadTilesToBgLayer(7, 3 + battleSystem->unk_2400, param1, 3, 0, 0, 1, 5);
+        PaletteData_LoadBufferFromFileStart(battleSystem->unk_28, 7, 172 + (battleSystem->unk_2400 * 3) + ov16_0223EC04(battleSystem), 5, 0, 0, 0);
+        PaletteData_LoadBufferFromFileStart(battleSystem->unk_28, 38, GetMessageBoxPaletteNARCMember(v3), 5, 0, 0x20, 10 * 0x10);
+        PaletteData_LoadBufferFromFileStart(battleSystem->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
         Graphics_LoadTilemapToBgLayer(7, 2, param1, 3, 0, 0, 1, 5);
     }
 
@@ -949,10 +944,10 @@ static void ov16_0223C004(BattleSystem *param0, BgConfig *param1)
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    SetMainCallback(ov16_0223CE68, param0);
+    SetVBlankCallback(ov16_0223CE68, battleSystem);
 }
 
-static void ov16_0223C210(BattleSystem *param0)
+static void ov16_0223C210(BattleSystem *battleSystem)
 {
     int v0;
     int v1;
@@ -960,34 +955,34 @@ static void ov16_0223C210(BattleSystem *param0)
     BattleContext *v3;
     Pokemon *v4;
 
-    v0 = BattleSystem_Terrain(param0);
+    v0 = BattleSystem_Terrain(battleSystem);
 
-    ov16_022686CC(&param0->unk_17C[0], param0, 0, v0);
-    ov16_022686CC(&param0->unk_17C[1], param0, 1, v0);
+    ov16_022686CC(&battleSystem->unk_17C[0], battleSystem, 0, v0);
+    ov16_022686CC(&battleSystem->unk_17C[1], battleSystem, 1, v0);
 
-    v3 = BattleSystem_Context(param0);
+    v3 = BattleSystem_Context(battleSystem);
 
-    for (v1 = 0; v1 < param0->maxBattlers; v1++) {
-        v2 = BattleContext_Get(param0, v3, 2, v1);
-        v4 = BattleSystem_PartyPokemon(param0, v1, v2);
-        ov16_0225C038(param0, param0->battlers[v1], Pokemon_GetValue(v4, MON_DATA_POKEBALL, NULL), v2);
+    for (v1 = 0; v1 < battleSystem->maxBattlers; v1++) {
+        v2 = BattleContext_Get(battleSystem, v3, 2, v1);
+        v4 = BattleSystem_PartyPokemon(battleSystem, v1, v2);
+        ov16_0225C038(battleSystem, battleSystem->battlers[v1], Pokemon_GetValue(v4, MON_DATA_POKEBALL, NULL), v2);
     }
 
     ov16_0223DECC();
 }
 
-static void ov16_0223C288(BgConfig *param0)
+static void ov16_0223C288(BgConfig *bgConfig)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 3);
+    Bg_FreeTilemapBuffer(bgConfig, 1);
+    Bg_FreeTilemapBuffer(bgConfig, 2);
+    Bg_FreeTilemapBuffer(bgConfig, 3);
 
-    ov16_022687A0(param0);
+    ov16_022687A0(bgConfig);
 }
 
-static void ov16_0223C2BC(BattleSystem *param0)
+static void ov16_0223C2BC(BattleSystem *battleSystem)
 {
     int v0;
 }
@@ -1057,67 +1052,67 @@ static const u8 Unk_ov16_0226E28C[][4] = {
     },
 };
 
-static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
+static void ov16_0223C2C0(BattleSystem *battleSystem, FieldBattleDTO *param1)
 {
     int v0, v1;
     UnkStruct_ov16_0223C2C0 v2;
     Pokemon *v3;
     Pokemon *v4;
 
-    param0->battleType = param1->battleType;
+    battleSystem->battleType = param1->battleType;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->trainerInfo[v0] = TrainerInfo_New(5);
-        TrainerInfo_Copy(param1->trainerInfo[v0], param0->trainerInfo[v0]);
-        param0->unk_78[v0] = param1->chatotCries[v0];
+        battleSystem->trainerInfo[v0] = TrainerInfo_New(5);
+        TrainerInfo_Copy(param1->trainerInfo[v0], battleSystem->trainerInfo[v0]);
+        battleSystem->unk_78[v0] = param1->chatotCries[v0];
     }
 
-    param0->unk_2442 = param1->networkID;
+    battleSystem->unk_2442 = param1->networkID;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_2464[v0] = param1->unk_178[v0];
+        battleSystem->unk_2464[v0] = param1->unk_178[v0];
     }
 
-    param0->unk_2430 = LCRNG_GetSeed();
-    param0->unk_2444 = param1->seed;
-    param0->unk_2448 = param1->seed;
-    param0->battleStatusMask = param1->battleStatusMask;
-    param0->unk_58 = Bag_New(5);
+    battleSystem->unk_2430 = LCRNG_GetSeed();
+    battleSystem->unk_2444 = param1->seed;
+    battleSystem->unk_2448 = param1->seed;
+    battleSystem->battleStatusMask = param1->battleStatusMask;
+    battleSystem->unk_58 = Bag_New(5);
 
-    Bag_Copy(param1->bag, param0->unk_58);
-    param0->pokedex = Pokedex_New(5);
-    Pokedex_Copy(param1->pokedex, param0->pokedex);
+    Bag_Copy(param1->bag, battleSystem->unk_58);
+    battleSystem->pokedex = Pokedex_New(5);
+    Pokedex_Copy(param1->pokedex, battleSystem->pokedex);
 
-    param0->pcBoxes = param1->pcBoxes;
-    param0->unk_1B0 = param1->options;
-    param0->unk_1B4 = param1->unk_124;
-    param0->unk_5C = param1->bagCursor;
-    param0->unk_1BC = param1->subscreenCursorOn;
-    param0->poketch = param1->poketch;
-    param0->unk_2420 = param1->mapEvolutionMethod;
-    param0->unk_9C = param1->unk_10C;
-    param0->safariBalls = param1->countSafariBalls;
-    param0->terrain = param1->terrain;
-    param0->unk_2400 = param1->background;
-    param0->unk_2404 = param1->mapLabelTextID;
-    param0->time = param1->timeOfDay;
-    param0->unk_2418 = param1->rulesetMask;
-    param0->unk_2424 = param1->visitedContestHall;
-    param0->unk_242C = param1->metBebe;
-    param0->fieldWeather = param1->fieldWeather;
-    param0->records = param1->records;
+    battleSystem->pcBoxes = param1->pcBoxes;
+    battleSystem->unk_1B0 = param1->options;
+    battleSystem->unk_1B4 = param1->unk_124;
+    battleSystem->unk_5C = param1->bagCursor;
+    battleSystem->unk_1BC = param1->subscreenCursorOn;
+    battleSystem->poketch = param1->poketch;
+    battleSystem->unk_2420 = param1->mapEvolutionMethod;
+    battleSystem->unk_9C = param1->unk_10C;
+    battleSystem->safariBalls = param1->countSafariBalls;
+    battleSystem->terrain = param1->terrain;
+    battleSystem->unk_2400 = param1->background;
+    battleSystem->unk_2404 = param1->mapLabelTextID;
+    battleSystem->time = param1->timeOfDay;
+    battleSystem->unk_2418 = param1->rulesetMask;
+    battleSystem->unk_2424 = param1->visitedContestHall;
+    battleSystem->unk_242C = param1->metBebe;
+    battleSystem->fieldWeather = param1->fieldWeather;
+    battleSystem->records = param1->records;
 
     GF_ASSERT(param1->records != NULL);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->trainerIDs[v0] = param1->trainerIDs[v0];
-        param0->trainers[v0] = param1->trainer[v0];
+        battleSystem->trainerIDs[v0] = param1->trainerIDs[v0];
+        battleSystem->trainers[v0] = param1->trainer[v0];
     }
 
-    param0->battleCtx = BattleContext_New(param0);
+    battleSystem->battleCtx = BattleContext_New(battleSystem);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->parties[v0] = Party_New(5);
+        battleSystem->parties[v0] = Party_New(5);
     }
 
     {
@@ -1132,88 +1127,88 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
         }
     }
 
-    if (param0->battleType & 0x4) {
-        sub_0207A6DC(param0);
+    if (battleSystem->battleType & 0x4) {
+        sub_0207A6DC(battleSystem);
         {
-            u8 v6 = ov16_0223F6E4(param0);
+            u8 v6 = ov16_0223F6E4(battleSystem);
             int v7;
 
-            ov16_0223DD90(param0, param1);
+            ov16_0223DD90(battleSystem, param1);
 
-            if (param0->battleType & 0x80) {
+            if (battleSystem->battleType & 0x80) {
                 for (v0 = 0; v0 < 4; v0++) {
                     v2.unk_00 = v0;
                     v2.unk_01 = Unk_ov16_0226E560[v0];
-                    param0->battlers[v0] = ov16_0225BFFC(param0, &v2);
+                    battleSystem->battlers[v0] = ov16_0225BFFC(battleSystem, &v2);
                 }
 
-                param0->maxBattlers = v0;
+                battleSystem->maxBattlers = v0;
 
                 for (v0 = 0; v0 < 4; v0++) {
-                    ov16_02263730(param0, param0->battlers[v0]);
-                    Party_Copy(param1->parties[v0], param0->parties[v0]);
+                    ov16_02263730(battleSystem, battleSystem->battlers[v0]);
+                    Party_Copy(param1->parties[v0], battleSystem->parties[v0]);
                 }
 
-                for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-                    for (v1 = 0; v1 < Party_GetCurrentCount(param0->parties[v0]); v1++) {
-                        v3 = Party_GetPokemonBySlotIndex(param0->parties[v0], v1);
+                for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+                    for (v1 = 0; v1 < Party_GetCurrentCount(battleSystem->parties[v0]); v1++) {
+                        v3 = Party_GetPokemonBySlotIndex(battleSystem->parties[v0], v1);
 
                         if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
                             break;
                         }
                     }
 
-                    BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
+                    BattleContext_Set(battleSystem, battleSystem->battleCtx, 2, v0, v1);
                 }
 
-                BattleSystem_InitPartyOrder(param0, param0->battleCtx);
-            } else if (param0->battleType & 0x8) {
+                BattleSystem_InitPartyOrder(battleSystem, battleSystem->battleCtx);
+            } else if (battleSystem->battleType & 0x8) {
                 for (v0 = 0; v0 < 4; v0++) {
                     v2.unk_00 = v0;
-                    v2.unk_01 = Unk_ov16_0226E28C[ov16_0223F6F0(param0, v6)][ov16_0223F6F0(param0, v0)];
-                    param0->battlers[v0] = ov16_0225BFFC(param0, &v2);
+                    v2.unk_01 = Unk_ov16_0226E28C[ov16_0223F6F0(battleSystem, v6)][ov16_0223F6F0(battleSystem, v0)];
+                    battleSystem->battlers[v0] = ov16_0225BFFC(battleSystem, &v2);
                 }
 
-                param0->maxBattlers = v0;
+                battleSystem->maxBattlers = v0;
 
                 for (v0 = 0; v0 < 4; v0++) {
-                    ov16_02263730(param0, param0->battlers[v0]);
-                    Party_Copy(param1->parties[v0], param0->parties[v0]);
+                    ov16_02263730(battleSystem, battleSystem->battlers[v0]);
+                    Party_Copy(param1->parties[v0], battleSystem->parties[v0]);
                 }
 
-                for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-                    for (v1 = 0; v1 < Party_GetCurrentCount(param0->parties[v0]); v1++) {
-                        v3 = Party_GetPokemonBySlotIndex(param0->parties[v0], v1);
+                for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+                    for (v1 = 0; v1 < Party_GetCurrentCount(battleSystem->parties[v0]); v1++) {
+                        v3 = Party_GetPokemonBySlotIndex(battleSystem->parties[v0], v1);
 
                         if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
                             break;
                         }
                     }
 
-                    BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
+                    BattleContext_Set(battleSystem, battleSystem->battleCtx, 2, v0, v1);
                 }
 
-                BattleSystem_InitPartyOrder(param0, param0->battleCtx);
-            } else if (param0->battleType & 0x2) {
+                BattleSystem_InitPartyOrder(battleSystem, battleSystem->battleCtx);
+            } else if (battleSystem->battleType & 0x2) {
                 for (v0 = 0; v0 < 4; v0++) {
                     v2.unk_00 = v0;
                     v2.unk_01 = Unk_ov16_0226E264[v6][v0];
-                    param0->battlers[v0] = ov16_0225BFFC(param0, &v2);
-                    ov16_02263730(param0, param0->battlers[v0]);
+                    battleSystem->battlers[v0] = ov16_0225BFFC(battleSystem, &v2);
+                    ov16_02263730(battleSystem, battleSystem->battlers[v0]);
                 }
 
-                param0->maxBattlers = v0;
+                battleSystem->maxBattlers = v0;
 
                 for (v0 = 0; v0 < 4; v0++) {
-                    Party_Copy(param1->parties[v0], param0->parties[v0]);
+                    Party_Copy(param1->parties[v0], battleSystem->parties[v0]);
                 }
 
-                for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-                    for (v1 = 0; v1 < Party_GetCurrentCount(param0->parties[v0 & 1]); v1++) {
-                        v3 = Party_GetPokemonBySlotIndex(param0->parties[v0 & 1], v1);
+                for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+                    for (v1 = 0; v1 < Party_GetCurrentCount(battleSystem->parties[v0 & 1]); v1++) {
+                        v3 = Party_GetPokemonBySlotIndex(battleSystem->parties[v0 & 1], v1);
 
                         if (v0 > 1) {
-                            if ((BattleContext_Get(param0, param0->battleCtx, 2, v0 & 1) != v1) && (Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                            if ((BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, v0 & 1) != v1) && (Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
                                 break;
                             }
                         } else {
@@ -1223,54 +1218,54 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
                         }
                     }
 
-                    BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
+                    BattleContext_Set(battleSystem, battleSystem->battleCtx, 2, v0, v1);
                 }
             } else {
                 for (v0 = 0; v0 < 2; v0++) {
                     v2.unk_00 = v0;
                     v2.unk_01 = Unk_ov16_0226E260[v6][v0];
-                    param0->battlers[v0] = ov16_0225BFFC(param0, &v2);
-                    ov16_02263730(param0, param0->battlers[v0]);
+                    battleSystem->battlers[v0] = ov16_0225BFFC(battleSystem, &v2);
+                    ov16_02263730(battleSystem, battleSystem->battlers[v0]);
                 }
 
-                param0->maxBattlers = v0;
+                battleSystem->maxBattlers = v0;
 
                 for (v0 = 0; v0 < 4; v0++) {
-                    Party_Copy(param1->parties[v0], param0->parties[v0]);
+                    Party_Copy(param1->parties[v0], battleSystem->parties[v0]);
 
-                    for (v1 = 0; v1 < Party_GetCurrentCount(param0->parties[v0]); v1++) {
-                        v3 = Party_GetPokemonBySlotIndex(param0->parties[v0], v1);
+                    for (v1 = 0; v1 < Party_GetCurrentCount(battleSystem->parties[v0]); v1++) {
+                        v3 = Party_GetPokemonBySlotIndex(battleSystem->parties[v0], v1);
 
                         if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
                             break;
                         }
                     }
 
-                    BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
+                    BattleContext_Set(battleSystem, battleSystem->battleCtx, 2, v0, v1);
                 }
             }
         }
-        BattleSystem_InitPartyOrder(param0, param0->battleCtx);
-    } else if (param0->battleType & 0x10) {
+        BattleSystem_InitPartyOrder(battleSystem, battleSystem->battleCtx);
+    } else if (battleSystem->battleType & 0x10) {
         {
             int v8;
 
             for (v0 = 0; v0 < 4; v0++) {
                 v2.unk_00 = v0;
                 v2.unk_01 = Unk_ov16_0226E560[v0];
-                param0->battlers[v0] = ov16_0225BFFC(param0, &v2);
-                ov16_02263730(param0, param0->battlers[v0]);
+                battleSystem->battlers[v0] = ov16_0225BFFC(battleSystem, &v2);
+                ov16_02263730(battleSystem, battleSystem->battlers[v0]);
             }
 
-            param0->maxBattlers = v0;
+            battleSystem->maxBattlers = v0;
 
             for (v0 = 0; v0 < 4; v0++) {
-                Party_Copy(param1->parties[v0], param0->parties[v0]);
+                Party_Copy(param1->parties[v0], battleSystem->parties[v0]);
             }
 
-            for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-                for (v1 = 0; v1 < BattleSystem_PartyCount(param0, v0); v1++) {
-                    v3 = BattleSystem_PartyPokemon(param0, v0, v1);
+            for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+                for (v1 = 0; v1 < BattleSystem_PartyCount(battleSystem, v0); v1++) {
+                    v3 = BattleSystem_PartyPokemon(battleSystem, v0, v1);
 
                     if (v0 == 2) {
                         if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL)) && (v8 != v1)) {
@@ -1283,63 +1278,63 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
                     }
                 }
 
-                BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
+                BattleContext_Set(battleSystem, battleSystem->battleCtx, 2, v0, v1);
 
                 if (v0 == 0) {
                     v8 = v1;
                 }
             }
         }
-        BattleSystem_InitPartyOrder(param0, param0->battleCtx);
-        param0->unk_23F8 = 1;
-    } else if (param0->battleType & 0x8) {
+        BattleSystem_InitPartyOrder(battleSystem, battleSystem->battleCtx);
+        battleSystem->unk_23F8 = 1;
+    } else if (battleSystem->battleType & 0x8) {
         for (v0 = 0; v0 < 4; v0++) {
             v2.unk_00 = v0;
             v2.unk_01 = Unk_ov16_0226E560[v0];
-            param0->battlers[v0] = ov16_0225BFFC(param0, &v2);
-            ov16_02263730(param0, param0->battlers[v0]);
+            battleSystem->battlers[v0] = ov16_0225BFFC(battleSystem, &v2);
+            ov16_02263730(battleSystem, battleSystem->battlers[v0]);
         }
 
-        param0->maxBattlers = v0;
+        battleSystem->maxBattlers = v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            Party_Copy(param1->parties[v0], param0->parties[v0]);
+            Party_Copy(param1->parties[v0], battleSystem->parties[v0]);
         }
 
-        for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-            for (v1 = 0; v1 < Party_GetCurrentCount(param0->parties[v0]); v1++) {
-                v3 = Party_GetPokemonBySlotIndex(param0->parties[v0], v1);
+        for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+            for (v1 = 0; v1 < Party_GetCurrentCount(battleSystem->parties[v0]); v1++) {
+                v3 = Party_GetPokemonBySlotIndex(battleSystem->parties[v0], v1);
 
                 if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
                     break;
                 }
             }
 
-            BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
+            BattleContext_Set(battleSystem, battleSystem->battleCtx, 2, v0, v1);
         }
 
-        BattleSystem_InitPartyOrder(param0, param0->battleCtx);
-        param0->unk_23F8 = 1;
-    } else if (param0->battleType & 0x2) {
+        BattleSystem_InitPartyOrder(battleSystem, battleSystem->battleCtx);
+        battleSystem->unk_23F8 = 1;
+    } else if (battleSystem->battleType & 0x2) {
         for (v0 = 0; v0 < 4; v0++) {
             v2.unk_00 = v0;
             v2.unk_01 = Unk_ov16_0226E560[v0];
-            param0->battlers[v0] = ov16_0225BFFC(param0, &v2);
-            ov16_02263730(param0, param0->battlers[v0]);
+            battleSystem->battlers[v0] = ov16_0225BFFC(battleSystem, &v2);
+            ov16_02263730(battleSystem, battleSystem->battlers[v0]);
         }
 
-        param0->maxBattlers = v0;
+        battleSystem->maxBattlers = v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            Party_Copy(param1->parties[v0], param0->parties[v0]);
+            Party_Copy(param1->parties[v0], battleSystem->parties[v0]);
         }
 
-        for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-            for (v1 = 0; v1 < Party_GetCurrentCount(param0->parties[v0 & 1]); v1++) {
-                v3 = Party_GetPokemonBySlotIndex(param0->parties[v0 & 1], v1);
+        for (v0 = 0; v0 < battleSystem->maxBattlers; v0++) {
+            for (v1 = 0; v1 < Party_GetCurrentCount(battleSystem->parties[v0 & 1]); v1++) {
+                v3 = Party_GetPokemonBySlotIndex(battleSystem->parties[v0 & 1], v1);
 
                 if (v0 > 1) {
-                    if ((BattleContext_Get(param0, param0->battleCtx, 2, v0 & 1) != v1) && (Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
+                    if ((BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, v0 & 1) != v1) && (Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
                         break;
                     }
                 } else {
@@ -1349,54 +1344,54 @@ static void ov16_0223C2C0(BattleSystem *param0, FieldBattleDTO *param1)
                 }
             }
 
-            BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
+            BattleContext_Set(battleSystem, battleSystem->battleCtx, 2, v0, v1);
         }
 
-        BattleSystem_InitPartyOrder(param0, param0->battleCtx);
-        param0->unk_23F8 = 1;
+        BattleSystem_InitPartyOrder(battleSystem, battleSystem->battleCtx);
+        battleSystem->unk_23F8 = 1;
     } else {
         for (v0 = 0; v0 < 2; v0++) {
             v2.unk_00 = v0;
             v2.unk_01 = Unk_ov16_0226E25C[v0];
-            param0->battlers[v0] = ov16_0225BFFC(param0, &v2);
-            ov16_02263730(param0, param0->battlers[v0]);
+            battleSystem->battlers[v0] = ov16_0225BFFC(battleSystem, &v2);
+            ov16_02263730(battleSystem, battleSystem->battlers[v0]);
         }
 
-        param0->maxBattlers = v0;
+        battleSystem->maxBattlers = v0;
 
         for (v0 = 0; v0 < 4; v0++) {
-            Party_Copy(param1->parties[v0], param0->parties[v0]);
+            Party_Copy(param1->parties[v0], battleSystem->parties[v0]);
 
-            for (v1 = 0; v1 < Party_GetCurrentCount(param0->parties[v0]); v1++) {
-                v3 = Party_GetPokemonBySlotIndex(param0->parties[v0], v1);
+            for (v1 = 0; v1 < Party_GetCurrentCount(battleSystem->parties[v0]); v1++) {
+                v3 = Party_GetPokemonBySlotIndex(battleSystem->parties[v0], v1);
 
                 if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL))) {
                     break;
                 }
             }
 
-            BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
+            BattleContext_Set(battleSystem, battleSystem->battleCtx, 2, v0, v1);
         }
 
-        BattleSystem_InitPartyOrder(param0, param0->battleCtx);
-        param0->unk_23F8 = 1;
+        BattleSystem_InitPartyOrder(battleSystem, battleSystem->battleCtx);
+        battleSystem->unk_23F8 = 1;
     }
 
-    if (param0->battleType & 0x200) {
-        v3 = Party_GetPokemonBySlotIndex(param0->parties[1], 0);
-        Pokemon_GetValue(v3, MON_DATA_OTNAME, (u8 *)&param0->trainers[1].name);
+    if (battleSystem->battleType & 0x200) {
+        v3 = Party_GetPokemonBySlotIndex(battleSystem->parties[1], 0);
+        Pokemon_GetValue(v3, MON_DATA_OTNAME, (u8 *)&battleSystem->trainers[1].name);
     }
 
-    if (param0->battleType & 0x1) {
-        if ((ov16_0223CD3C(param0->trainers[1].header.trainerType) == 1) || (ov16_0223CD3C(param0->trainers[3].header.trainerType) == 1)) {
-            for (v0 = 0; v0 < Party_GetCurrentCount(param0->parties[0]); v0++) {
-                v3 = Party_GetPokemonBySlotIndex(param0->parties[0], v0);
-                Pokemon_UpdateFriendship(v3, 3, param0->unk_2404);
+    if (battleSystem->battleType & 0x1) {
+        if ((ov16_0223CD3C(battleSystem->trainers[1].header.trainerType) == 1) || (ov16_0223CD3C(battleSystem->trainers[3].header.trainerType) == 1)) {
+            for (v0 = 0; v0 < Party_GetCurrentCount(battleSystem->parties[0]); v0++) {
+                v3 = Party_GetPokemonBySlotIndex(battleSystem->parties[0], v0);
+                Pokemon_UpdateFriendship(v3, 3, battleSystem->unk_2404);
             }
 
-            for (v0 = 0; v0 < Party_GetCurrentCount(param0->parties[2]); v0++) {
-                v3 = Party_GetPokemonBySlotIndex(param0->parties[2], v0);
-                Pokemon_UpdateFriendship(v3, 3, param0->unk_2404);
+            for (v0 = 0; v0 < Party_GetCurrentCount(battleSystem->parties[2]); v0++) {
+                v3 = Party_GetPokemonBySlotIndex(battleSystem->parties[2], v0);
+                Pokemon_UpdateFriendship(v3, 3, battleSystem->unk_2404);
             }
         }
     }
@@ -1523,7 +1518,7 @@ static void ov16_0223CE68(void *param0)
 
     sub_02008A94(v0->unk_88);
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_28);
     Bg_RunScheduledUpdates(v0->unk_04);
 
@@ -1553,8 +1548,8 @@ static void ov16_0223CF48(SysTask *param0, void *param1)
         }
 
         sub_02007768(v0->unk_88);
-        sub_0200C7EC(v0->unk_94);
-        sub_0200C808();
+        SpriteSystem_DrawSprites(v0->unk_94);
+        SpriteSystem_UpdateTransfer();
         G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
     }
 }
@@ -1749,7 +1744,7 @@ static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
         MessageLoader_Free(v5);
     }
 
-    SetMainCallback(ov16_0223CF1C, v0);
+    SetVBlankCallback(ov16_0223CF1C, v0);
     PaletteData_StartFade(v0->unk_0C, (0x1 | 0x4), 0xffff, 0, 16, 0, 0x0);
 
     v0->unk_1024 = Window_AddWaitDial(v0->unk_08, 1);
@@ -1988,7 +1983,7 @@ static void ov16_0223D7B4(OverlayManager *param0)
 {
     UnkStruct_0207A778 *v0 = OverlayManager_Data(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     sub_0200F344(0, 0x0);
     PaletteData_FreeBuffer(v0->unk_0C, 0);
     PaletteData_Free(v0->unk_0C);

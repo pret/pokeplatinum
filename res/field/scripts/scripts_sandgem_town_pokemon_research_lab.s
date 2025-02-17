@@ -18,7 +18,7 @@
     ScriptEntry _05EC
     ScriptEntry _05FD
     ScriptEntry _0114
-    .short 0xFD13
+    ScriptEntryEnd
 
 _003E:
     CallIfEq 0x40A6, 2, _005A
@@ -163,7 +163,7 @@ _022B:
     BufferPartyMonSpecies 0, 0
     Message 3
     Message 4
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _02BC
     GoTo _0261
     End
@@ -178,7 +178,7 @@ _0261:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Message 5
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0261
     CallIfNe 0x8002, 1, _02B6
     GoTo _02BC
@@ -231,7 +231,7 @@ _0330:
     PlayMusic SEQ_OPENING2
     Message 9
     Message 10
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0375
     GoTo _0394
     End
@@ -239,7 +239,7 @@ _0330:
 _0375:
     BufferPlayerName 0
     Message 11
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0375
     GoTo _0394
     End
@@ -290,14 +290,14 @@ _03F6:
 
 _042B:
     BufferPlayerName 0
-    ScrCmd_342 1
+    BufferPlayerCounterpartStarterSpeciesNameWithArticle 1
     Message 19
     GoTo _044D
     End
 
 _043C:
     BufferPlayerName 0
-    ScrCmd_0DC 1
+    BufferRivalStarterSpeciesName 1
     Message 20
     GoTo _044D
     End
@@ -307,7 +307,7 @@ _044D:
     ApplyMovement 0xFF, _04C4
     ApplyMovement 3, _04D8
     WaitMovement
-    ScrCmd_065 3
+    RemoveObject 3
     ClearFlag 0x177
     SetVar 0x40A6, 1
     ReleaseAll
@@ -528,7 +528,7 @@ _0621:
 _0631:
     BufferPlayerName 0
     Message 27
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0650
     GoTo _065B
     End
@@ -591,7 +591,7 @@ _0677:
     CloseMessage
     ApplyMovement 4, _0898
     WaitMovement
-    ScrCmd_065 4
+    RemoveObject 4
     Message 42
     CloseMessage
     WaitTime 15, 0x800C

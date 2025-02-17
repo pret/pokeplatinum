@@ -26,7 +26,6 @@
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
-#include "core_sys.h"
 #include "encounter.h"
 #include "field_battle_data_transfer.h"
 #include "field_task.h"
@@ -40,6 +39,7 @@
 #include "pokemon.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_020553DC.h"
 #include "unk_0205F180.h"
@@ -872,7 +872,7 @@ static BOOL ov5_021E0560(FieldTask *param0)
         v0->unk_00++;
     case 2: {
         int v2 = PlayerAvatar_GetDir(v0->playerAvatar);
-        u32 v3, v4 = gCoreSys.pressedKeys, v5 = gCoreSys.heldKeys;
+        u32 v3, v4 = gSystem.pressedKeys, v5 = gSystem.heldKeys;
         int v6 = sub_02061308(v0->playerAvatar, v4, v5);
 
         if ((v6 == -1) || (v6 == v2)) {

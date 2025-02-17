@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0025
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     GoToIfSet 142, _0017
@@ -13,7 +13,7 @@ _000A:
 
 _0017:
     SetFlag 0x243
-    ScrCmd_065 0
+    RemoveObject 0
     ClearFlag 142
     End
 
@@ -66,7 +66,7 @@ _00C6:
     End
 
 _00D1:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

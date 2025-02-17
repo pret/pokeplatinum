@@ -2,11 +2,12 @@
 #define POKEPLATINUM_STRUCT_OV16_02260384_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/cell_actor_data.h"
+
+#include "sprite_system.h"
 
 typedef struct {
     BattleSystem *unk_00;
-    CellActorData *unk_04;
+    ManagedSprite *unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;

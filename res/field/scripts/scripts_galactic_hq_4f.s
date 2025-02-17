@@ -7,7 +7,7 @@
     ScriptEntry _012C
     ScriptEntry _01C4
     ScriptEntry _01D5
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     LockAll
@@ -51,7 +51,7 @@ _0074:
     CloseMessage
     ApplyMovement 0, _0124
     WaitMovement
-    ScrCmd_065 0
+    RemoveObject 0
     SetVar 0x40D6, 1
     ReleaseAll
     End
@@ -61,7 +61,7 @@ _00DB:
     Return
 
 _00E1:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -114,7 +114,7 @@ _012C:
 
 _0154:
     Message 6
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0177
     GoToIfEq 0x800C, 1, _01AB
     End
@@ -129,8 +129,8 @@ _0177:
     ApplyMovement 2, _01BC
     WaitMovement
     SetFlag 0x226
-    ScrCmd_065 1
-    ScrCmd_065 2
+    RemoveObject 1
+    RemoveObject 2
     CloseMessage
     ReleaseAll
     End

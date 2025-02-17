@@ -11,7 +11,7 @@
     ScriptEntry _02D9
     ScriptEntry _003F
     ScriptEntry _0022
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     GoToIfSet 250, _002F
@@ -86,7 +86,7 @@ _00D6:
 _012F:
     ScrCmd_072 20, 2
     Message 3
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _025C
     ScrCmd_071 0x800C, 0x2710
     GoToIfEq 0x800C, 0, _024F
@@ -107,7 +107,7 @@ _012F:
 _018A:
     ScrCmd_072 20, 2
     Message 4
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _025C
     ScrCmd_071 0x800C, 0x186A0
     GoToIfEq 0x800C, 0, _024F
@@ -128,7 +128,7 @@ _018A:
 _01E7:
     ScrCmd_072 20, 2
     Message 5
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _025C
     ScrCmd_071 0x800C, 0xF423F
     GoToIfEq 0x800C, 0, _024F

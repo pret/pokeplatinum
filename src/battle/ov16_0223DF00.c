@@ -13,15 +13,12 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_0200D0F4.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -43,7 +40,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "enums.h"
 #include "field_battle_data_transfer.h"
 #include "flags.h"
@@ -59,6 +55,8 @@
 #include "pokemon.h"
 #include "poketch.h"
 #include "render_text.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -81,8 +79,8 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSystem);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem);
-SpriteRenderer *BattleSystem_GetSpriteRenderer(BattleSystem *battleSystem);
-SpriteGfxHandler *BattleSystem_GetSpriteGfxHandler(BattleSystem *battleSystem);
+SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSystem);
+SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSystem);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSystem, int param1);
 UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *battleSystem);
 UnkStruct_0200C440 *ov16_0223E054(BattleSystem *battleSystem);
@@ -192,7 +190,7 @@ void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSystem);
 u8 BattleSystem_RecordedChatter(BattleSystem *battleSystem, int param1);
 void ov16_0223F858(BattleSystem *battleSystem, u8 *param1);
 void ov16_0223F87C(BattleSystem *battleSystem, u8 *param1);
-void ov16_0223F8AC(BattleSystem *battleSystem, Sprite **param1);
+void ov16_0223F8AC(BattleSystem *battleSystem, PokemonSprite **param1);
 void BattleSystem_SetGaugePriority(BattleSystem *battleSystem, int param1);
 u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo);
 void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1);
@@ -300,12 +298,12 @@ UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem)
     return battleSystem->unk_8C;
 }
 
-SpriteRenderer *BattleSystem_GetSpriteRenderer(BattleSystem *battleSystem)
+SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSystem)
 {
     return battleSystem->unk_90;
 }
 
-SpriteGfxHandler *BattleSystem_GetSpriteGfxHandler(BattleSystem *battleSystem)
+SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSystem)
 {
     return battleSystem->unk_94;
 }
@@ -1135,7 +1133,7 @@ void ov16_0223EF8C(BattleSystem *battleSystem)
     MI_CpuCopy32(PaletteData_GetUnfadedBuffer(battleSystem->unk_28, 0), battleSystem->unk_220, HW_BG_PLTT_SIZE);
 
     v7 = G2_GetOBJCharPtr();
-    v0 = SpriteActor_ImageProxy(battleSystem->unk_17C[1].unk_00->unk_00);
+    v0 = Sprite_GetImageProxy(battleSystem->unk_17C[1].unk_00->sprite);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v2 = 20; v2 < 20 + 8; v2++) {
@@ -1166,7 +1164,7 @@ void ov16_0223EF8C(BattleSystem *battleSystem)
     }
 
     v7 = G2_GetOBJCharPtr();
-    v0 = SpriteActor_ImageProxy(battleSystem->unk_17C[0].unk_00->unk_00);
+    v0 = Sprite_GetImageProxy(battleSystem->unk_17C[0].unk_00->sprite);
     v7 += v0->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
     for (v6 = 0; v6 < 0x40 * 32; v6++) {
@@ -1626,7 +1624,7 @@ void ov16_0223F87C(BattleSystem *battleSystem, u8 *param1)
     }
 }
 
-void ov16_0223F8AC(BattleSystem *battleSystem, Sprite **param1)
+void ov16_0223F8AC(BattleSystem *battleSystem, PokemonSprite **param1)
 {
     int v0;
 

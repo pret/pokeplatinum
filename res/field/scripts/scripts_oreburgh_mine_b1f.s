@@ -7,7 +7,7 @@
     ScriptEntry _002F
     ScriptEntry _0042
     ScriptEntry _0055
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     SetFlag 0x9C2
@@ -82,7 +82,7 @@ _00F0:
 
 _0102:
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 3
+    RemoveObject 3
     SetVar 0x4056, 2
     ReleaseAll
     End

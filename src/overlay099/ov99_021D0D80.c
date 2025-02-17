@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -10,14 +12,11 @@
 #include "overlay099/ov99_021D3E78.h"
 #include "overlay099/struct_ov99_021D2CB0.h"
 #include "overlay099/struct_ov99_021D3A40.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 #include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
+#include "brightness_controller.h"
 #include "camera.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "enums.h"
 #include "gx_layers.h"
@@ -26,14 +25,13 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_020041CC.h"
-#include "unk_0200A9DC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -45,7 +43,7 @@ static const CameraAngle Unk_ov99_021D46CC = {
     ((0 * 0xffff) / 360)
 };
 
-static const UnkStruct_ov104_0224133C Unk_ov99_021D4760 = {
+static const RenderOamTemplate Unk_ov99_021D4760 = {
     0x0,
     0x80,
     0x0,
@@ -56,7 +54,7 @@ static const UnkStruct_ov104_0224133C Unk_ov99_021D4760 = {
     0x20
 };
 
-static const UnkStruct_ov104_022412F4 Unk_ov99_021D4718 = {
+static const CharTransferTemplateWithModes Unk_ov99_021D4718 = {
     0x60,
     0x10000,
     0x4000,
@@ -64,7 +62,7 @@ static const UnkStruct_ov104_022412F4 Unk_ov99_021D4718 = {
     GX_OBJVRAMMODE_CHAR_1D_128K
 };
 
-static const UnkStruct_ov104_02241308 Unk_ov99_021D472C = {
+static const SpriteResourceCapacities Unk_ov99_021D472C = {
     0x60,
     0x20,
     0x40,
@@ -91,7 +89,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov99_021D2CB0 *v0;
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -133,17 +131,17 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     ov99_021D1918(v0);
 
-    v0->unk_18 = sub_0200C6E4(75);
+    v0->unk_18 = SpriteSystem_Alloc(75);
 
-    sub_0200C73C(v0->unk_18, &Unk_ov99_021D4760, &Unk_ov99_021D4718, (16 + 16));
+    SpriteSystem_Init(v0->unk_18, &Unk_ov99_021D4760, &Unk_ov99_021D4718, (16 + 16));
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    v0->unk_1C = sub_0200C704(v0->unk_18);
+    v0->unk_1C = SpriteManager_New(v0->unk_18);
 
-    sub_0200C7C0(v0->unk_18, v0->unk_1C, (64 + 64));
-    sub_0200CB30(v0->unk_18, v0->unk_1C, &Unk_ov99_021D472C);
-    SetSubScreenViewRect(sub_0200C738(v0->unk_18), 0, ((192 + 80) << FX32_SHIFT));
+    SpriteSystem_InitSprites(v0->unk_18, v0->unk_1C, (64 + 64));
+    SpriteSystem_InitManagerWithCapacities(v0->unk_18, v0->unk_1C, &Unk_ov99_021D472C);
+    SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_18), 0, ((192 + 80) << FX32_SHIFT));
 
     ov99_021D16E4(v0);
 
@@ -159,7 +157,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     GXS_SetVisibleWnd(GX_WNDMASK_W0);
 
-    gCoreSys.unk_65 = 1;
+    gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
@@ -168,10 +166,10 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
 
     v0->unk_14 = SysTask_Start(ov99_021D1244, v0, 60000);
 
-    SetMainCallback(ov99_021D1350, v0);
+    SetVBlankCallback(ov99_021D1350, v0);
     sub_02004550(14, 1186, 1);
 
-    sub_0200AB4C(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+    BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
     sub_0200F44C(0, 0);
     sub_0200F44C(1, 0);
 
@@ -190,7 +188,7 @@ int ov99_021D1028(OverlayManager *param0, int *param1)
         v0->unk_1110 = ov99_021D3F6C(v0->unk_110C, 1);
     }
 
-    if (v0->unk_00->unk_04 && (gCoreSys.pressedKeys & PAD_BUTTON_START)) {
+    if (v0->unk_00->unk_04 && (gSystem.pressedKeys & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
             StartScreenTransition(0, 0, 0, 0x0, 6, 1, 75);
             v0->unk_1100 = 1;
@@ -207,8 +205,8 @@ int ov99_021D1028(OverlayManager *param0, int *param1)
                 v0->unk_1102 = 0;
             }
 
-            if (sub_0200AC1C(3) == 0) {
-                sub_0200ABB0(3);
+            if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == FALSE) {
+                BrightnessController_ResetScreenController(BRIGHTNESS_BOTH_SCREENS);
             }
 
             ov99_021D12F0(v0);
@@ -269,8 +267,8 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     }
 
     MessageLoader_Free(v0->unk_20);
-    sub_0200D0B0(v0->unk_18, v0->unk_1C);
-    sub_0200C8D4(v0->unk_18);
+    SpriteSystem_FreeResourcesAndManager(v0->unk_18, v0->unk_1C);
+    SpriteSystem_Free(v0->unk_18);
     PaletteData_FreeBuffer(v0->unk_0C, 0);
     PaletteData_FreeBuffer(v0->unk_0C, 1);
     PaletteData_FreeBuffer(v0->unk_0C, 2);
@@ -280,7 +278,7 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     ov99_021D19A0(v0);
 
     NARC_dtor(v0->unk_10F8);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     VramTransfer_Free();
     sub_0201E530();
@@ -299,8 +297,8 @@ static void ov99_021D1244(SysTask *param0, void *param1)
         G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
     }
 
-    sub_0200C7EC(v0->unk_1C);
-    sub_0200C808();
+    SpriteSystem_DrawSprites(v0->unk_1C);
+    SpriteSystem_UpdateTransfer();
 }
 
 static void ov99_021D1270(UnkStruct_ov99_021D2CB0 *param0)
@@ -354,7 +352,7 @@ static void ov99_021D1350(void *param0)
     UnkStruct_ov99_021D2CB0 *v0 = param0;
 
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_0C);
     Bg_RunScheduledUpdates(v0->unk_08);
 

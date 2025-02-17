@@ -7,7 +7,7 @@
     ScriptEntry _0025
     ScriptEntry _0038
     ScriptEntry _004C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM
@@ -80,7 +80,7 @@ _00D2:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    ScrCmd_065 2
+    RemoveObject 2
     SetFlag 0x162
     ReleaseAll
     End

@@ -15,7 +15,7 @@
     ScriptEntry _050C
     ScriptEntry _0032
     ScriptEntry _051D
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0032:
     GoToIfUnset 227, _003F
@@ -55,7 +55,7 @@ _008E:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x260
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_CHERYL_ETERNA_FOREST
     SetHasPartner
     ScrCmd_06D 0, 48
     ScrCmd_06C 0, 1
@@ -209,7 +209,7 @@ _02CB:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     ClearHasPartner
-    ScrCmd_065 0
+    RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag 227
     SetVar 0x40B1, 2
@@ -389,7 +389,7 @@ _04A2:
     End
 
 _04B4:
-    ScrCmd_065 24
+    RemoveObject 24
     ReleaseAll
     End
 

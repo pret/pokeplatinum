@@ -6,8 +6,6 @@
 #include "constants/battle/battle_io.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
 
@@ -75,8 +73,8 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "sprite_system.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
 
 typedef void (*UnkFuncPtr_ov16_0226F068)(BattleSystem *, BattlerData *);
@@ -189,7 +187,7 @@ void ov16_0225C038(BattleSystem *param0, BattlerData *param1, int param2, int pa
     ballThrow.mode = 4;
     ballThrow.target = param1->battler;
     ballThrow.ballID = param2;
-    ballThrow.cellActorSys = BattleSystem_GetSpriteRenderer(param0);
+    ballThrow.cellActorSys = BattleSystem_GetSpriteSystem(param0);
     ballThrow.paletteSys = BattleSystem_GetPaletteData(param0);
     ballThrow.surface = 0;
     ballThrow.bgPrio = 1;
@@ -287,7 +285,7 @@ void ov16_0225C104(BattleSystem *param0, BattlerData *param1, int param2)
     }
 
     if (param1->unk_18) {
-        sub_0200D0F4(param1->unk_18);
+        Sprite_DeleteAndFreeResources(param1->unk_18);
     }
 
     ov16_022647D8(param1);
@@ -846,26 +844,20 @@ static void ov16_0225C8A4(BattleSystem *param0, BattlerData *param1)
 
 static void ov16_0225C8E0(BattleSystem *param0, BattlerData *param1)
 {
-    SpriteRenderer *v0;
-    SpriteGfxHandler *v1;
-    PaletteData *palette;
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(param0);
+    SpriteManager *spriteManager = BattleSystem_GetSpriteManager(param0);
+    PaletteData *palette = BattleSystem_GetPaletteData(param0);
 
-    v0 = BattleSystem_GetSpriteRenderer(param0);
-    v1 = BattleSystem_GetSpriteGfxHandler(param0);
-    palette = BattleSystem_GetPaletteData(param0);
-
-    PartyGauge_LoadGraphics(v0, v1, palette);
+    PartyGauge_LoadGraphics(spriteSystem, spriteManager, palette);
     ClearCommand(param0, param1->battler, 52);
     ZeroDataBuffer(param1);
 }
 
 static void ov16_0225C91C(BattleSystem *param0, BattlerData *param1)
 {
-    SpriteGfxHandler *v0;
+    SpriteManager *spriteManager = BattleSystem_GetSpriteManager(param0);
 
-    v0 = BattleSystem_GetSpriteGfxHandler(param0);
-
-    PartyGauge_FreeGraphics(v0);
+    PartyGauge_FreeGraphics(spriteManager);
     ClearCommand(param0, param1->battler, 53);
     ZeroDataBuffer(param1);
 }

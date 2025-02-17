@@ -14,11 +14,11 @@
 
 #include "comm_ring.h"
 #include "communication_information.h"
-#include "core_sys.h"
 #include "heap.h"
 #include "rtc.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02030EE0.h"
 #include "unk_020322D8.h"
 #include "unk_0203266C.h"
@@ -509,7 +509,7 @@ BOOL CommSys_Update(void)
             sCommunicationSystem->unk_6B5++;
             Unk_021C07C5 = 0;
             CommSys_UpdateTransitionType();
-            sCommunicationSystem->sendHeldKeys |= (gCoreSys.heldKeys & 0x7fff);
+            sCommunicationSystem->sendHeldKeys |= (gSystem.heldKeys & 0x7fff);
             sub_02035534();
             sub_02034B50();
             sCommunicationSystem->sendHeldKeys &= 0x8000;
@@ -1827,7 +1827,7 @@ void CommSys_Seed(MATHRandContext32 *rand)
     RTCTime time;
 
     GetCurrentDateTime(&date, &time);
-    seed = (((((((u64)date.year * 16ULL + date.month) * 32ULL) + date.day) * 32ULL + time.hour) * 64ULL + time.minute) * 64ULL + (time.second + gCoreSys.vblankCounter));
+    seed = (((((((u64)date.year * 16ULL + date.month) * 32ULL) + date.day) * 32ULL + time.hour) * 64ULL + time.minute) * 64ULL + (time.second + gSystem.vblankCounter));
     MATH_InitRand32(rand, seed);
 }
 

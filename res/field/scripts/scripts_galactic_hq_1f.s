@@ -11,7 +11,7 @@
     ScriptEntry _00DF
     ScriptEntry _0174
     ScriptEntry _00CC
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     SetFlag 0x9DD
@@ -113,7 +113,7 @@ _00DF:
 
 _0107:
     Message 10
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _012A
     GoToIfEq 0x800C, 1, _015E
     End
@@ -128,8 +128,8 @@ _012A:
     ApplyMovement 6, _016C
     WaitMovement
     SetFlag 0x224
-    ScrCmd_065 5
-    ScrCmd_065 6
+    RemoveObject 5
+    RemoveObject 6
     CloseMessage
     ReleaseAll
     End

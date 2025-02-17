@@ -9,7 +9,7 @@
     ScriptEntry _01A0
     ScriptEntry _0248
     ScriptEntry _001A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     GoToIfSet 142, _0027
@@ -17,8 +17,8 @@ _001A:
 
 _0027:
     SetFlag 0x29C
-    ScrCmd_065 2
-    ScrCmd_065 1
+    RemoveObject 2
+    RemoveObject 1
     ClearFlag 142
     End
 
@@ -165,7 +165,7 @@ _0224:
 
 _0248:
     ClearFlag 0x29C
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

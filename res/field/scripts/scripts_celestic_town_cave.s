@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0538
     ScriptEntry _0585
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -57,7 +57,7 @@ _0040:
     Message 4
     Message 5
     Message 6
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _019D
     GoToIfEq 0x800C, 1, _013C
     End
@@ -117,7 +117,7 @@ _01C3:
     WaitTime 15, 0x800C
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 1
+    RemoveObject 1
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GetPlayerMapPos 0x8004, 0x8005
@@ -138,7 +138,7 @@ _01C3:
     CallIfEq 0x8004, 9, _0357
     CallIfEq 0x8004, 10, _036B
     CallIfEq 0x8004, 11, _037F
-    ScrCmd_065 0
+    RemoveObject 0
     Return
 
 _0285:
@@ -250,7 +250,7 @@ _037F:
     Return
 
 _0393:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -463,7 +463,7 @@ _0538:
     LockAll
     FacePlayer
     Message 7
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _057A
     Message 8
     CloseMessage
@@ -504,7 +504,7 @@ _0596:
     CallIfEq 0x8004, 9, _0713
     CallIfEq 0x8004, 10, _071F
     Message 17
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0753
     CloseMessage
     ApplyMovement 2, _07F0
@@ -517,7 +517,7 @@ _0596:
     CallIfEq 0x8004, 10, _071F
     CallIfEq 0x8004, 9, _06FB
     CallIfEq 0x8004, 10, _0707
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0753
     Message 19
     CloseMessage
@@ -530,7 +530,7 @@ _0596:
     CallIfEq 0x8004, 9, _072B
     CallIfEq 0x8004, 10, _073F
     Message 21
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0753
     Message 22
     GoTo _075E
@@ -592,7 +592,7 @@ _075E:
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 9, _0788
     CallIfEq 0x8004, 10, _079C
-    ScrCmd_065 2
+    RemoveObject 2
     ReleaseAll
     End
 

@@ -23,11 +23,9 @@
 #include "overlay065/struct_ov65_022376D0.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "enums.h"
 #include "font.h"
 #include "game_options.h"
@@ -44,16 +42,17 @@
 #include "render_oam.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
@@ -103,7 +102,7 @@ typedef struct {
     u8 unk_14;
     u8 unk_15;
     u16 unk_16;
-    CellActorCollection *unk_18;
+    SpriteList *unk_18;
     G2dRenderer unk_1C;
     SpriteResourceCollection *unk_1A8[4];
     UnkStruct_ov63_0222BE18 *unk_1B8;
@@ -418,7 +417,7 @@ int ov65_0223648C(OverlayManager *param0, int *param1)
     ov65_0223760C(v0);
     ov65_022367A8(v0, v1, 96);
 
-    SetMainCallback(ov65_02236780, v0);
+    SetVBlankCallback(ov65_02236780, v0);
     sub_02039734();
 
     v0->unk_00.unk_27 = 1;
@@ -488,7 +487,7 @@ int ov65_02236548(OverlayManager *param0, int *param1)
     }
 
     ov65_022372B0(&v0->unk_30);
-    CellActorCollection_Update(v0->unk_30.unk_18);
+    SpriteList_Update(v0->unk_30.unk_18);
 
     return 0;
 }
@@ -498,7 +497,7 @@ int ov65_0223668C(OverlayManager *param0, int *param1)
     UnkStruct_ov65_022367A8 *v0 = OverlayManager_Data(param0);
     UnkStruct_0207DE04 *v1 = OverlayManager_Args(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
 
     ov65_0223761C(v0);
     ov65_022377E8(v0);
@@ -868,7 +867,7 @@ static void ov65_02236E04(UnkStruct_ov65_02236840 *param0)
     ov63_0222CD9C(param0->unk_1BC);
     ov63_0222BE58(param0->unk_1B8);
 
-    CellActorCollection_Delete(param0->unk_18);
+    SpriteList_Delete(param0->unk_18);
 
     for (v0 = 0; v0 < 4; v0++) {
         SpriteResourceCollection_Delete(param0->unk_1A8[v0]);
@@ -1692,7 +1691,7 @@ static BOOL ov65_02237AC0(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     }
 
     do {
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(1501);
 
             if (ov65_02237450(param0) == 0) {
@@ -1709,7 +1708,7 @@ static BOOL ov65_02237AC0(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
             }
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             Sound_PlayEffect(1501);
             param0->unk_00.unk_05 = 22;
             break;
@@ -1721,7 +1720,7 @@ static BOOL ov65_02237AC0(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
             break;
         }
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+        if (gSystem.pressedKeys & PAD_BUTTON_X) {
             param0->unk_00.unk_05 = 30;
             Sound_PlayEffect(1501);
             break;
@@ -2427,7 +2426,7 @@ static BOOL ov65_022383D0(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
         ov65_0223789C(param0);
         param0->unk_00.unk_05 = 11;
     } else {
-        if (gCoreSys.pressedKeys & PAD_BUTTON_X) {
+        if (gSystem.pressedKeys & PAD_BUTTON_X) {
             ov65_022378C4(param0, param1, param2);
             param0->unk_00.unk_05 = 18;
         }

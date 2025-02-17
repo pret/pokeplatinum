@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _001D
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -32,9 +32,9 @@ _001D:
     BufferPlayerName 1
     Message 1
     CloseMessage
-    ScrCmd_0DE 0x800C
-    GoToIfEq 0x800C, 0x183, _00B3
-    GoToIfEq 0x800C, 0x186, _00C1
+    GetPlayerStarterSpecies 0x800C
+    GoToIfEq 0x800C, SPECIES_TURTWIG, _00B3
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _00C1
     GoTo _00A5
     End
 
@@ -67,14 +67,14 @@ _00CF:
     CallIfEq 0x8005, 8, _01AE
     CallIfEq 0x8005, 9, _01BA
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 1
+    RemoveObject 1
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetVar 0x407B, 2
     ReleaseAll
     End
 
 _0148:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

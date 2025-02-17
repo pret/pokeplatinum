@@ -1,0 +1,20 @@
+{
+    "name": "Valerie",
+    "class": "TRAINER_CLASS_REPORTER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_KIRLIA",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

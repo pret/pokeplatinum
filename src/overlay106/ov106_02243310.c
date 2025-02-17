@@ -5,7 +5,6 @@
 
 #include "overlay106/struct_ov106_02243310.h"
 
-#include "cell_actor.h"
 #include "char_transfer.h"
 #include "gx_layers.h"
 #include "narc.h"
@@ -13,12 +12,13 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_oam.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 
 void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1);
-CellActor *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2, u32 param3, u8 param4);
+Sprite *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2, u32 param3, u8 param4);
 void ov106_02243570(UnkStruct_ov106_02243310 *param0);
 static void ov106_022435C8(void);
 
@@ -68,18 +68,18 @@ void ov106_02243310(UnkStruct_ov106_02243310 *param0, Pokemon *param1)
     return;
 }
 
-CellActor *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2, u32 param3, u8 param4)
+Sprite *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 param2, u32 param3, u8 param4)
 {
     int v0;
-    CellActorResourceData v1;
-    CellActor *v2;
+    SpriteResourcesHeader v1;
+    Sprite *v2;
 
     SpriteResourcesHeader_Init(&v1, param1, param1, param1, param1, 0xffffffff, 0xffffffff, 0, 1, param0->unk_190[0], param0->unk_190[1], param0->unk_190[2], param0->unk_190[3], NULL, NULL);
 
     {
-        CellActorInitParamsEx v3;
+        AffineSpriteListTemplate v3;
 
-        v3.collection = param0->unk_00;
+        v3.list = param0->unk_00;
         v3.resourceData = &v1;
 
         v3.position.x = 0;
@@ -103,11 +103,11 @@ CellActor *ov106_022434BC(UnkStruct_ov106_02243310 *param0, u32 param1, u32 para
             v3.position.y += (192 << FX32_SHIFT);
         }
 
-        v2 = CellActorCollection_AddEx(&v3);
+        v2 = SpriteList_AddAffine(&v3);
 
-        CellActor_SetAnimateFlag(v2, 1);
-        CellActor_SetAnimSpeed(v2, FX32_ONE);
-        CellActor_SetAnim(v2, param2);
+        Sprite_SetAnimateFlag(v2, 1);
+        Sprite_SetAnimSpeed(v2, FX32_ONE);
+        Sprite_SetAnim(v2, param2);
     }
 
     return v2;
@@ -126,7 +126,7 @@ void ov106_02243570(UnkStruct_ov106_02243310 *param0)
         SpriteResourceCollection_Delete(param0->unk_190[v0]);
     }
 
-    CellActorCollection_Delete(param0->unk_00);
+    SpriteList_Delete(param0->unk_00);
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();

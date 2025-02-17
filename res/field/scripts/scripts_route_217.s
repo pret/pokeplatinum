@@ -7,7 +7,7 @@
     ScriptEntry _0023
     ScriptEntry _003A
     ScriptEntry _004D
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM
@@ -55,7 +55,7 @@ _004D:
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x12E, _00E2
     CallIfEq 0x8004, 0x12F, _00F6
-    ScrCmd_065 15
+    RemoveObject 15
     SetVar 0x40A8, 1
     SetFlag 0x298
     ReleaseAll

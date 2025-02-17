@@ -3,10 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
+#include "brightness_controller.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -14,12 +16,9 @@
 #include "message.h"
 #include "render_window.h"
 #include "strbuf.h"
+#include "system.h"
 #include "text.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
-
-void sub_0201777C(void);
 
 static const UnkStruct_02099F80 Unk_020F8B54 = {
     GX_VRAM_BG_256_AB,
@@ -83,8 +82,8 @@ void sub_0209AA74(int param0, int param1)
 
     sub_0200F344(0, 0);
     sub_0200F344(1, 0);
-    sub_0201777C();
-    SetMainCallback(NULL, NULL);
+    SetDummyVBlankIntr();
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -93,7 +92,7 @@ void sub_0209AA74(int param0, int param1)
     GXS_SetVisiblePlane(0);
 
     SetAutorepeat(4, 8);
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
     G2_BlendNone();
@@ -127,7 +126,7 @@ void sub_0209AA74(int param0, int param1)
     GXLayers_TurnBothDispOn();
     sub_0200F338(0);
     sub_0200F338(1);
-    sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+    BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
 
     while (TRUE) {
         HandleConsoleFold();

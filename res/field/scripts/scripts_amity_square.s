@@ -48,7 +48,7 @@
     ScriptEntry _12E9
     ScriptEntry _12F7
     ScriptEntry _174A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _00B6:
     SetFlag 0x9CC
@@ -146,7 +146,7 @@ _01CE:
 _0229:
     AddVar 0x400C, 1
     Message 2
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0299
     GoTo _026D
     End
@@ -154,7 +154,7 @@ _0229:
 _024B:
     AddVar 0x400C, 1
     Message 4
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0299
     GoTo _026D
     End
@@ -191,7 +191,7 @@ _02C9:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetVar 0x4099, 1
-    ScrCmd_215
+    ClearAmitySquareStepCount
     Call _03DC
     ScrCmd_27C 0, 0x409D
     Message 3
@@ -253,7 +253,7 @@ _0365:
     End
 
 _037D:
-    ScrCmd_065 5
+    RemoveObject 5
     GoTo _0389
     End
 
@@ -368,7 +368,7 @@ _04D0:
 
 _04D8:
     SetVar 0x8000, 0x409B
-    ScrCmd_215
+    ClearAmitySquareStepCount
     Call _03DC
     GoToIfEq 0x8000, 0, _04FB
     GoTo _056C
@@ -990,7 +990,7 @@ _1084:
     LockAll
     FacePlayer
     BufferPartyMonNickname 0, 0x409D
-    ScrCmd_216 0x800C
+    GetAmitySquareStepCount 0x800C
     GoToIfGe 0x800C, 200, _04D8
     GoTo _05DD
     End
@@ -1010,7 +1010,7 @@ _10AA:
 _10E1:
     BufferItemName 0, 0x8004
     Message 37
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _1161
     SetVar 0x8005, 5
     ScrCmd_07D 0x8004, 0x8005, 0x800C
@@ -1027,7 +1027,7 @@ _10E1:
 _1136:
     ScrCmd_261 0, 0x8004
     Message 37
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _1161
     SetVar 0x8005, 1
     CallCommonScript 0x7DF

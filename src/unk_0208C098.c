@@ -4,9 +4,9 @@
 #include <string.h>
 
 #include "bg_window.h"
-#include "core_sys.h"
 #include "heap.h"
 #include "narc.h"
+#include "system.h"
 #include "unk_0200F174.h"
 
 __attribute__((aligned(4))) static const u16 Unk_020F4030[] = {
@@ -94,7 +94,7 @@ u8 sub_0208C15C(s16 *param0, u16 param1)
 
     v0 = *param0;
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         *param0 += 1;
 
         if (*param0 > param1) {
@@ -108,7 +108,7 @@ u8 sub_0208C15C(s16 *param0, u16 param1)
         return 1;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
         *param0 -= 1;
 
         if (*param0 <= 0) {
@@ -122,7 +122,7 @@ u8 sub_0208C15C(s16 *param0, u16 param1)
         return 2;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
         *param0 -= 10;
 
         if (*param0 <= 0) {
@@ -136,7 +136,7 @@ u8 sub_0208C15C(s16 *param0, u16 param1)
         return 2;
     }
 
-    if (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT) {
+    if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
         *param0 += 10;
 
         if (*param0 > param1) {

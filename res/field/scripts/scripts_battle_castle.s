@@ -17,7 +17,7 @@
     ScriptEntry _07E7
     ScriptEntry _07FA
     ScriptEntry _003A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _003A:
     ScrCmd_238 19, 0x4000
@@ -131,7 +131,7 @@ _01FF:
     WaitFadeScreen
     ScrCmd_2D2 4, 0x40BD, 0x800C
     ScrCmd_2D4 0x4002, 0x4005, 0x4006
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x4002, 0xFF, _0139
@@ -178,7 +178,7 @@ _02E5:
 
 _0329:
     Message 44
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _02E5
     CloseMessage
     ScrCmd_0F2 31, 0, 0, 0x800C
@@ -198,7 +198,7 @@ _0373:
 
 _037D:
     Message 44
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _02E5
     CloseMessage
     ScrCmd_0F3 31, 0, 0, 0x800C
@@ -289,7 +289,7 @@ _04D0:
     ScrCmd_1F8
     ScrCmd_2C4 11
     CallIfEq 0x40BD, 2, _0539
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ScrCmd_313 1

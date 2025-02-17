@@ -25,7 +25,7 @@
     ScriptEntry _0722
     ScriptEntry _0735
     ScriptEntry _0754
-    .short 0xFD13
+    ScriptEntryEnd
 
 _005A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -177,7 +177,7 @@ _026D:
 
 _0287:
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_065 3
+    RemoveObject 3
     CallCommonScript 0x7FB
     SetVar 0x4079, 3
     ReleaseAll

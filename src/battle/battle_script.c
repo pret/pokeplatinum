@@ -13,16 +13,12 @@
 #include "generated/sdat.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/fraction.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/trainer.h"
@@ -48,9 +44,7 @@
 #include "overlay021/struct_ov21_021E8E0C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "char_transfer.h"
-#include "core_sys.h"
 #include "flags.h"
 #include "heap.h"
 #include "item.h"
@@ -62,9 +56,12 @@
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_data.h"
@@ -72,7 +69,6 @@
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
@@ -2055,7 +2051,7 @@ static BOOL BtlCmd_WaitButtonABTime(BattleSystem *battleSys, BattleContext *batt
     int frames = BattleScript_Read(battleCtx);
 
     if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
             battleCtx->waitCounter = frames;
         }
     }
@@ -10207,7 +10203,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF_WAIT:
     case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE_WAIT:
-        if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
+        if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             data->seqNum++;
         }
@@ -10574,7 +10570,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v7.heapID = 5;
                 v7.target = v1 + 20000;
                 v7.ballID = v2->ball;
-                v7.cellActorSys = BattleSystem_GetSpriteRenderer(v2->battleSys);
+                v7.cellActorSys = BattleSystem_GetSpriteSystem(v2->battleSys);
                 v7.paletteSys = BattleSystem_GetPaletteData(v2->battleSys);
                 v7.bgPrio = 1;
                 v7.surface = 0;
@@ -10784,7 +10780,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         break;
     case 13:
         if (ov21_021E8DEC(v2->tmpPtr[0])) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v2->seqNum = 14;
             } else if (TouchScreen_Tapped()) {
                 Sound_PlayEffect(1500);
@@ -10798,7 +10794,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         }
         break;
     case 14: {
-        Sprite *v13;
+        PokemonSprite *v13;
 
         v13 = ov21_021E8E00(v2->tmpPtr[0]);
         sub_02008274(v13, 0, 4);
@@ -10899,7 +10895,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                         v18 = BattleSystem_BattlerData(v2->battleSys, v17);
 
                         if (v18->unk_18) {
-                            sub_0200D0F4(v18->unk_18);
+                            Sprite_DeleteAndFreeResources(v18->unk_18);
                             v18->unk_18 = NULL;
                         }
                     }
@@ -12198,8 +12194,8 @@ static const SpriteTemplate Unk_ov16_0226E6F8 = {
 static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1, Pokemon *param2)
 {
     SpriteTemplate v0;
-    SpriteRenderer *v1;
-    SpriteGfxHandler *v2;
+    SpriteSystem *v1;
+    SpriteManager *v2;
     PaletteData *v3;
     MessageLoader *v4;
     StringTemplate *v5;
@@ -12215,27 +12211,27 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     v7 = ov16_0223E0D4(param0);
     v5 = BattleSystem_StringTemplate(param0);
     v8 = BattleSystem_GetBgConfig(param0);
-    v1 = BattleSystem_GetSpriteRenderer(param0);
-    v2 = BattleSystem_GetSpriteGfxHandler(param0);
+    v1 = BattleSystem_GetSpriteSystem(param0);
+    v2 = BattleSystem_GetSpriteManager(param0);
     v3 = BattleSystem_GetPaletteData(param0);
 
-    sub_0200CBDC(v1, v2, 27, 256, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
-    sub_0200CD7C(v3, 2, v1, v2, 27, 82, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 20016);
-    sub_0200CE0C(v1, v2, 27, 257, 1, 20013);
-    sub_0200CE3C(v1, v2, 27, 258, 1, 20013);
+    SpriteSystem_LoadCharResObj(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 256, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
+    SpriteSystem_LoadPaletteBuffer(v3, PLTTBUF_MAIN_OBJ, v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 82, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 20016);
+    SpriteSystem_LoadCellResObj(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 257, TRUE, 20013);
+    SpriteSystem_LoadAnimResObj(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 258, TRUE, 20013);
 
-    param1->cellActorData[0] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6C4);
+    param1->sprites[0] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_0226E6C4);
 
-    sub_0200D330(param1->cellActorData[0]);
-    sub_0200D888(v1, v2, 19, Pokemon_IconSpriteIndex(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
-    sub_0200CD7C(v3, 2, v1, v2, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 20017);
-    sub_0200CE0C(v1, v2, 19, PokeIcon64KCellsFileIndex(), 0, 20014);
-    sub_0200CE3C(v1, v2, 19, PokeIcon64KAnimationFileIndex(), 0, 20014);
+    ManagedSprite_TickFrame(param1->sprites[0]);
+    SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, Pokemon_IconSpriteIndex(param2), FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
+    SpriteSystem_LoadPaletteBuffer(v3, PLTTBUF_MAIN_OBJ, v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 20017);
+    SpriteSystem_LoadCellResObj(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KCellsFileIndex(), FALSE, 20014);
+    SpriteSystem_LoadAnimResObj(v1, v2, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIcon64KAnimationFileIndex(), FALSE, 20014);
 
-    param1->cellActorData[1] = SpriteActor_LoadResources(v1, v2, &Unk_ov16_0226E6F8);
+    param1->sprites[1] = SpriteSystem_NewSprite(v1, v2, &Unk_ov16_0226E6F8);
 
-    CellActor_SetExplicitPaletteOffsetAutoAdjust(param1->cellActorData[1]->unk_00, Pokemon_IconPaletteIndex(param2));
-    sub_0200D330(param1->cellActorData[1]);
+    Sprite_SetExplicitPaletteOffsetAutoAdjust(param1->sprites[1]->sprite, Pokemon_IconPaletteIndex(param2));
+    ManagedSprite_TickFrame(param1->sprites[1]);
 
     param1->tmpPtr[0] = sub_02012744(1, 5);
 
@@ -12266,8 +12262,8 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
 
     v12.unk_00 = param1->tmpPtr[0];
     v12.unk_04 = &v9;
-    v12.unk_08 = sub_0200D9B0(v2);
-    v12.unk_0C = sub_0200D04C(v2, 20016);
+    v12.unk_08 = SpriteManager_GetSpriteList(v2);
+    v12.unk_0C = SpriteManager_FindPlttResourceProxy(v2, 20016);
     v12.unk_10 = NULL;
     v12.unk_14 = v11.offset;
     v12.unk_18 = 176;
@@ -12286,22 +12282,22 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
 
 static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1)
 {
-    SpriteGfxHandler *v0;
+    SpriteManager *v0;
 
-    v0 = BattleSystem_GetSpriteGfxHandler(param0);
+    v0 = BattleSystem_GetSpriteManager(param0);
 
-    sub_0200D0F4(param1->cellActorData[0]);
-    sub_0200D0F4(param1->cellActorData[1]);
+    Sprite_DeleteAndFreeResources(param1->sprites[0]);
+    Sprite_DeleteAndFreeResources(param1->sprites[1]);
     sub_02012870(param1->fontOAM);
     CharTransfer_ClearRange(&param1->charTransferAllocation);
-    SpriteGfxHandler_UnloadCharObjById(v0, 20021);
-    SpriteGfxHandler_UnloadPlttObjById(v0, 20016);
-    SpriteGfxHandler_UnloadCellObjById(v0, 20013);
-    SpriteGfxHandler_UnloadAnimObjById(v0, 20013);
-    SpriteGfxHandler_UnloadCharObjById(v0, 20022);
-    SpriteGfxHandler_UnloadPlttObjById(v0, 20017);
-    SpriteGfxHandler_UnloadCellObjById(v0, 20014);
-    SpriteGfxHandler_UnloadAnimObjById(v0, 20014);
+    SpriteManager_UnloadCharObjById(v0, 20021);
+    SpriteManager_UnloadPlttObjById(v0, 20016);
+    SpriteManager_UnloadCellObjById(v0, 20013);
+    SpriteManager_UnloadAnimObjById(v0, 20013);
+    SpriteManager_UnloadCharObjById(v0, 20022);
+    SpriteManager_UnloadPlttObjById(v0, 20017);
+    SpriteManager_UnloadCellObjById(v0, 20014);
+    SpriteManager_UnloadAnimObjById(v0, 20014);
     sub_020127BC(param1->tmpPtr[0]);
 }
 

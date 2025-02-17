@@ -20,7 +20,6 @@
 #include "overlay095/struct_ov95_02247628_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -29,16 +28,17 @@
 #include "overlay_manager.h"
 #include "pokemon.h"
 #include "render_oam.h"
+#include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020131EC.h"
-#include "unk_02017728.h"
 #include "unk_020393C8.h"
 
 struct UnkStruct_ov95_02247628_t {
@@ -48,7 +48,7 @@ struct UnkStruct_ov95_02247628_t {
     StringTemplate *unk_0C;
     MessageLoader *unk_10;
     Strbuf *unk_14;
-    CellActorCollection *unk_18;
+    SpriteList *unk_18;
     G2dRenderer unk_1C;
     SysTask *unk_1A8;
     BOOL unk_1AC;
@@ -172,7 +172,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
             v0->unk_1B6 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_FORM, NULL);
             v0->unk_1B8 = NULL;
 
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             DisableHBlank();
             GXLayers_DisableEngineALayers();
             GXLayers_DisableEngineBLayers();
@@ -212,7 +212,7 @@ int ov95_02246E1C(OverlayManager *param0, int *param1)
     MessageLoader_Free(v1->unk_10);
     Strbuf_Free(v1->unk_14);
     Heap_FreeToHeap(v1->unk_08);
-    CellActorCollection_Delete(v1->unk_18);
+    SpriteList_Delete(v1->unk_18);
     RenderOam_Free();
     OverlayManager_FreeData(param0);
     Heap_Destroy(57);
@@ -257,7 +257,7 @@ static void ov95_02246F0C(SysTask *param0, void *param1)
 {
     UnkStruct_ov95_02247628 *v0 = param1;
 
-    CellActorCollection_Update(v0->unk_18);
+    SpriteList_Update(v0->unk_18);
     RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -630,7 +630,7 @@ void ov95_022475A0(UnkStruct_ov95_02247568 *param0)
     }
 }
 
-void ov95_022475C4(CellActorResourceData *param0, UnkStruct_ov95_02247568 *param1, NNSG2dImageProxy *param2, NNSG2dImagePaletteProxy *param3, u32 param4)
+void ov95_022475C4(SpriteResourcesHeader *param0, UnkStruct_ov95_02247568 *param1, NNSG2dImageProxy *param2, NNSG2dImagePaletteProxy *param3, u32 param4)
 {
     param0->imageProxy = param2;
     param0->paletteProxy = param3;
@@ -643,12 +643,12 @@ void ov95_022475C4(CellActorResourceData *param0, UnkStruct_ov95_02247568 *param
     param0->isVRamTransfer = 0;
 }
 
-CellActor *ov95_022475E4(UnkStruct_ov95_02247628 *param0, CellActorResourceData *param1, u32 param2, u32 param3, u32 param4, int param5)
+Sprite *ov95_022475E4(UnkStruct_ov95_02247628 *param0, SpriteResourcesHeader *param1, u32 param2, u32 param3, u32 param4, int param5)
 {
-    CellActor *v0;
-    CellActorInitParams v1;
+    Sprite *v0;
+    SpriteListTemplate v1;
 
-    v1.collection = param0->unk_18;
+    v1.list = param0->unk_18;
     v1.resourceData = param1;
     v1.position.x = param2 * FX32_ONE;
     v1.position.y = param3 * FX32_ONE;
@@ -657,11 +657,11 @@ CellActor *ov95_022475E4(UnkStruct_ov95_02247628 *param0, CellActorResourceData 
     v1.vramType = param5;
     v1.heapID = 57;
 
-    v0 = CellActorCollection_Add(&v1);
+    v0 = SpriteList_Add(&v1);
 
     if (v0) {
-        CellActor_SetAnimateFlag(v0, 1);
-        CellActor_SetAnimSpeed(v0, FX32_ONE);
+        Sprite_SetAnimateFlag(v0, 1);
+        Sprite_SetAnimSpeed(v0, FX32_ONE);
     }
 
     return v0;

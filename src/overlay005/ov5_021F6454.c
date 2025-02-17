@@ -43,6 +43,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system_vars.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -52,7 +53,6 @@
 #include "unk_02038F8C.h"
 #include "unk_0205DFC4.h"
 #include "unk_020677F4.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 #include "res/text/bank/battle_tower.h"
@@ -337,7 +337,7 @@ static void ov5_021F68BC(UnkStruct_ov5_021F6704 *param0)
     param0->unk_21C.pagerMode = PAGER_MODE_LEFT_RIGHT_PAD;
     param0->unk_21C.fontID = FONT_SYSTEM;
     param0->unk_21C.cursorType = 0;
-    param0->unk_21C.tmp = (void *)param0;
+    param0->unk_21C.parent = (void *)param0;
 
     return;
 }
@@ -838,23 +838,23 @@ BOOL ScrCmd_30F(ScriptContext *param0)
     case 14:
         *v4 = 0;
 
-        if (sub_0206B588(v0) >= 2) {
+        if (SystemVars_GetBattleFactoryPrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B598(v0) >= 2) {
+        if (SystemVars_GetBattleHallPrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B5A8(v0) >= 2) {
+        if (SystemVars_GetBattleCastlePrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B5B8(v0) >= 2) {
+        if (SystemVars_GetBattleArcadePrintState(v0) >= 2) {
             *v4 = 1;
         }
 
-        if (sub_0206B5C8(v0) >= 2) {
+        if (SystemVars_GetBattleTowerPrintState(v0) >= 2) {
             *v4 = 1;
         }
         break;

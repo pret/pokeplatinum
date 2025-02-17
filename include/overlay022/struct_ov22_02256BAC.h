@@ -4,14 +4,14 @@
 #include "struct_defs/struct_02095C60.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "game_options.h"
 #include "narc.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 
 typedef struct {
     BgConfig *unk_00;
-    CellActorCollection *unk_04;
+    SpriteList *unk_04;
     SpriteResourceCollection **unk_08;
     const Options *unk_0C;
     int unk_10;

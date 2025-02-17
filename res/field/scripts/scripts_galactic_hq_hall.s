@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     LockAll
@@ -45,46 +45,46 @@ _0006:
     WaitTime 15, 0x800C
     ApplyMovement 2, _01E8
     WaitMovement
-    ScrCmd_065 2
+    RemoveObject 2
     FadeScreen 6, 3, 0, 0
     WaitFadeScreen
     ApplyMovement 241, _0204
     WaitMovement
     ScrCmd_067
-    ScrCmd_065 0
-    ScrCmd_065 1
-    ScrCmd_065 4
-    ScrCmd_065 5
-    ScrCmd_065 6
-    ScrCmd_065 7
-    ScrCmd_065 8
-    ScrCmd_065 9
-    ScrCmd_065 10
-    ScrCmd_065 11
-    ScrCmd_065 12
-    ScrCmd_065 13
-    ScrCmd_065 14
-    ScrCmd_065 15
-    ScrCmd_065 16
-    ScrCmd_065 17
-    ScrCmd_065 18
-    ScrCmd_065 19
-    ScrCmd_065 20
-    ScrCmd_065 21
-    ScrCmd_065 22
-    ScrCmd_065 23
-    ScrCmd_065 24
-    ScrCmd_065 25
-    ScrCmd_065 26
-    ScrCmd_065 27
-    ScrCmd_065 28
-    ScrCmd_065 29
-    ScrCmd_065 30
-    ScrCmd_065 31
-    ScrCmd_065 32
-    ScrCmd_065 33
-    ScrCmd_065 34
-    ScrCmd_065 35
+    RemoveObject 0
+    RemoveObject 1
+    RemoveObject 4
+    RemoveObject 5
+    RemoveObject 6
+    RemoveObject 7
+    RemoveObject 8
+    RemoveObject 9
+    RemoveObject 10
+    RemoveObject 11
+    RemoveObject 12
+    RemoveObject 13
+    RemoveObject 14
+    RemoveObject 15
+    RemoveObject 16
+    RemoveObject 17
+    RemoveObject 18
+    RemoveObject 19
+    RemoveObject 20
+    RemoveObject 21
+    RemoveObject 22
+    RemoveObject 23
+    RemoveObject 24
+    RemoveObject 25
+    RemoveObject 26
+    RemoveObject 27
+    RemoveObject 28
+    RemoveObject 29
+    RemoveObject 30
+    RemoveObject 31
+    RemoveObject 32
+    RemoveObject 33
+    RemoveObject 34
+    RemoveObject 35
     ApplyMovement 3, _0248
     ApplyMovement 0xFF, _0224
     WaitMovement
@@ -96,7 +96,7 @@ _0006:
     ApplyMovement 3, _0250
     ApplyMovement 0xFF, _022C
     WaitMovement
-    ScrCmd_065 3
+    RemoveObject 3
     SetVar 0x408E, 1
     ReleaseAll
     End

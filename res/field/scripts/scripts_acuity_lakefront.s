@@ -7,7 +7,7 @@
     ScriptEntry _0012
     ScriptEntry _0083
     ScriptEntry _009A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     GoToIfUnset 186, _002A
@@ -57,7 +57,7 @@ _009A:
     CloseMessage
     ApplyMovement 2, _00F8
     WaitMovement
-    ScrCmd_065 2
+    RemoveObject 2
     ApplyMovement 241, _00F0
     WaitMovement
     ScrCmd_067

@@ -12,7 +12,7 @@
     ScriptEntry _0628
     ScriptEntry _063F
     ScriptEntry _0659
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0026:
     CallIfEq 0x40F4, 1, _004F
@@ -418,7 +418,7 @@ _04D0:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    ScrCmd_065 2
+    RemoveObject 2
     CallCommonScript 0x7FB
     SetVar 0x4070, 1
     SetVar 0x40E6, 1

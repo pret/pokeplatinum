@@ -24,7 +24,7 @@
     ScriptEntry _0601
     ScriptEntry _0652
     ScriptEntry _074C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0056:
     CallIfEq 0x40D5, 6, _0065
@@ -192,7 +192,7 @@ _020D:
     SetVar 0x8004, 0x800C
     ScrCmd_0B2 0x8004, 0x800C
     GoToIfEq 0x800C, 0, _02CE
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Call _0077
@@ -200,7 +200,7 @@ _020D:
     End
 
 _02CE:
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     Call _0077
@@ -458,7 +458,7 @@ _0546:
     GoToIfEq 0x800C, 0, _05CB
     BufferPartyMonSpecies 0, 0
     Message 18
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _05AB
     GoToIfEq 0x800C, 1, _05B8
     End
@@ -487,7 +487,7 @@ _05B8:
 
 _05CB:
     Message 19
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _05AB
     GoToIfEq 0x800C, 1, _05EE
     End
@@ -508,7 +508,7 @@ _0601:
     LockAll
     FacePlayer
     Message 29
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0647
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

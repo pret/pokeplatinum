@@ -31,11 +31,11 @@
 #include "pokemon.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "system.h"
 #include "unk_020041CC.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_02023FCC.h"
 #include "unk_02024220.h"
@@ -178,7 +178,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     }
 
     ov76_0223DCC0(v0);
-    SetMainCallback(ov76_0223ECB0, v0);
+    SetVBlankCallback(ov76_0223ECB0, v0);
     ov76_0223B8A8(v0);
     sub_02004550(59, 0, 0);
 

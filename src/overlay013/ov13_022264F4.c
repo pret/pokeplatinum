@@ -19,7 +19,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "core_sys.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -31,15 +30,16 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_020797C8.h"
 
 static void ov13_02226590(SysTask *param0, void *param1);
@@ -185,7 +185,7 @@ static void ov13_02226590(SysTask *param0, void *param1)
     }
 
     ov13_02228848(v0);
-    sub_0200C7EC(v0->unk_30C);
+    SpriteSystem_DrawSprites(v0->unk_30C);
 }
 
 static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0)
@@ -515,7 +515,7 @@ static u8 ov13_02226C7C(UnkStruct_ov13_02227244 *param0)
 
 static u8 ov13_02226C94(UnkStruct_ov13_02227244 *param0)
 {
-    if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || (TouchScreen_Tapped() == 1)) {
+    if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) || (TouchScreen_Tapped() == 1)) {
         return param0->unk_114B;
     }
 
@@ -818,7 +818,7 @@ static void ov13_022271D0(UnkStruct_ov13_02227244 *param0, u8 param1)
 
 static int ov13_02227238(UnkStruct_ov13_02227244 *param0, const TouchScreenRect *rect)
 {
-    int v0 = sub_02022664(rect);
+    int v0 = TouchScreen_CheckRectanglePressed(rect);
     return v0;
 }
 

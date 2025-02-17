@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="4839" />
+	<row id="npc_trade_names_kazza" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Kazza</language>
+	</row>
+	<row id="npc_trade_names_charap" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Charap</language>
+	</row>
+	<row id="npc_trade_names_gaspar" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gaspar</language>
+	</row>
+	<row id="npc_trade_names_foppa" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Foppa</language>
+	</row>
+	<row id="npc_trade_names_hilary" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hilary</language>
+	</row>
+	<row id="npc_trade_names_norton" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Norton</language>
+	</row>
+	<row id="npc_trade_names_mindy" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mindy</language>
+	</row>
+	<row id="npc_trade_names_meister" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Meister</language>
+	</row>
+</body>

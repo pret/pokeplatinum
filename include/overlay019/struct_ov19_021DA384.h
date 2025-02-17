@@ -6,8 +6,8 @@
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
-#include "cell_actor.h"
 #include "narc.h"
+#include "sprite.h"
 
 typedef struct {
     void *unk_00;
@@ -19,7 +19,7 @@ typedef struct {
     void *unk_18;
     NNSG2dCellDataBank *unk_1C;
     NNSG2dAnimBankData *unk_20;
-    CellActorCollection *unk_24;
+    SpriteList *unk_24;
     u8 padding_28[24];
     const UnkStruct_ov19_021D4DF0 *unk_40;
     UnkStruct_ov19_021D61B0 *unk_44;

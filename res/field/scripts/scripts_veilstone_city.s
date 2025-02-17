@@ -35,7 +35,7 @@
     ScriptEntry _0FB0
     ScriptEntry _1204
     ScriptEntry _123E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0082:
     CallIfSet 0x155, _00E0
@@ -109,7 +109,7 @@ _00F6:
     CallIfEq 0x8004, 0x2AA, _039D
     CallIfEq 0x8004, 0x2AB, _03B9
     CallIfEq 0x8004, 0x2AC, _03D5
-    ScrCmd_065 25
+    RemoveObject 25
     WaitTime 20, 0x800C
     GetPlayerGender 0x8004
     CallIfEq 0x8004, 0, _02A7
@@ -120,7 +120,7 @@ _00F6:
     CallIfEq 0x8004, 0x2AA, _0405
     CallIfEq 0x8004, 0x2AB, _0419
     CallIfEq 0x8004, 0x2AC, _042D
-    ScrCmd_065 6
+    RemoveObject 6
     SetVar 0x40F5, 1
     ReleaseAll
     End
@@ -468,7 +468,7 @@ _05CC:
 _05F4:
     BufferPlayerName 0
     Message 19
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0611
     GoTo _061A
 
@@ -486,7 +486,7 @@ _061A:
 _0625:
     BufferPlayerName 0
     Message 24
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0642
     GoTo _064B
 
@@ -521,13 +521,13 @@ _0656:
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _09F3
     CallIfEq 0x8005, 0x255, _09FF
-    ScrCmd_065 7
+    RemoveObject 7
     Message 18
     CloseMessage
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _0A0B
     CallIfEq 0x8005, 0x255, _0A17
-    ScrCmd_065 20
+    RemoveObject 20
     GetPlayerGender 0x8004
     CallIfEq 0x8004, 0, _0A23
     CallIfEq 0x8004, 1, _0A28
@@ -564,7 +564,7 @@ _0656:
     ApplyMovement 6, _0B44
     ApplyMovement 26, _0A88
     WaitMovement
-    ScrCmd_065 6
+    RemoveObject 6
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x253, _083A
     GoToIfEq 0x8005, 0x255, _0854
@@ -647,20 +647,20 @@ _0919:
     End
 
 _0939:
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x271
-    GoToIfEq 0x800C, 0x186, _099D
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _099D
     SetVar 0x8004, 0x272
-    GoToIfEq 0x800C, 0x189, _099D
+    GoToIfEq 0x800C, SPECIES_PIPLUP, _099D
     SetVar 0x8004, 0x270
     Return
 
 _096B:
-    ScrCmd_0DE 0x800C
+    GetPlayerStarterSpecies 0x800C
     SetVar 0x8004, 0x26E
-    GoToIfEq 0x800C, 0x186, _099D
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _099D
     SetVar 0x8004, 0x26F
-    GoToIfEq 0x800C, 0x189, _099D
+    GoToIfEq 0x800C, SPECIES_PIPLUP, _099D
     SetVar 0x8004, 0x26D
     Return
 
@@ -760,7 +760,7 @@ _0A5F:
     Return
 
 _0A73:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -1271,13 +1271,13 @@ _0EA4:
     End
 
 _0ECC:
-    ScrCmd_065 23
+    RemoveObject 23
     GoTo _0ED8
     End
 
 _0ED8:
     Message 38
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _0EF4
     GoTo _0F0B
     End
@@ -1536,7 +1536,7 @@ _1184:
     CloseMessage
     ApplyMovement 6, _11FC
     WaitMovement
-    ScrCmd_065 6
+    RemoveObject 6
     Call _00BA
     ClearFlag 0x1A8
     ScrCmd_064 6
@@ -1572,7 +1572,7 @@ _1204:
     LockAll
     FacePlayer
     Message 52
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _122B
     Message 53
     GoTo _1236

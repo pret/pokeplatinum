@@ -22,10 +22,10 @@
 #include "overlay107/struct_ov107_02249B8C_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "sprite.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
+#include "system.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -53,7 +53,7 @@
 #include "render_oam.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
+#include "system.h"
 #include "vram_transfer.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
@@ -364,7 +364,7 @@ int ov107_02245FD0 (OverlayManager * param0, int * param1)
     }
 
     ov107_022492A8(v0);
-    CellActorCollection_Update(v0->unk_158.unk_00);
+    SpriteList_Update(v0->unk_158.unk_00);
 
     return 0;
 }
@@ -380,7 +380,7 @@ int ov107_02246130 (OverlayManager * param0, int * param1)
     ov107_02246D84(v1);
 
     OverlayManager_FreeData(param0);
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     Heap_Destroy(100);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
@@ -492,9 +492,9 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         param0->unk_0F_3 = 0;
         break;
     case 1:
-        ov107_02248358(param0, gCoreSys.pressedKeys);
+        ov107_02248358(param0, gSystem.pressedKeys);
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+        if (gSystem.pressedKeys & PAD_BUTTON_A) {
             Sound_PlayEffect(1500);
 
             if (param0->unk_0D >= param0->unk_15) {
@@ -505,7 +505,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
                 param0->unk_08 = 2;
                 break;
             }
-        } else if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             if (param0->unk_0D != param0->unk_15) {
                 Sound_PlayEffect(1500);
                 param0->unk_0D = param0->unk_15;
@@ -850,7 +850,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 10:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             ov107_02248BB4(param0);
             ov107_022482FC(param0);
             ov107_02249C60(param0->unk_3C4, 211, 105);
@@ -875,14 +875,14 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 14:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             ov107_022482FC(param0);
             param0->unk_08 = 6;
         }
         break;
     case 15:
-        if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             ov107_02248860(&param0->unk_50[7]);
             ov107_02248240(param0);
@@ -890,11 +890,11 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 16:
-        if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+        if (gSystem.pressedKeys & PAD_KEY_LEFT) {
             ov107_0224877C(param0, -1);
-        } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+        } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
             ov107_0224877C(param0, 1);
-        } else if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        } else if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             ov107_02249238(param0);
             ov107_022482B0(param0);
@@ -902,11 +902,11 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
         }
         break;
     case 17:
-        if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+        if (gSystem.pressedKeys & PAD_KEY_LEFT) {
             ov107_022487DC(param0, -1);
-        } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+        } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
             ov107_022487DC(param0, 1);
-        } else if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        } else if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             ov107_02249238(param0);
             ov107_022482B0(param0);
@@ -1090,7 +1090,7 @@ static void ov107_02246D84 (UnkStruct_ov107_02246170 * param0)
 
 static void ov107_02246EAC (void)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SetHBlankCallback(NULL, NULL);
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -1187,7 +1187,7 @@ static void ov107_02246EE4 (UnkStruct_ov107_02246170 * param0)
         sub_02039734();
     }
 
-    SetMainCallback(ov107_022472E8, (void *)param0);
+    SetVBlankCallback(ov107_022472E8, (void *)param0);
     return;
 }
 
@@ -1472,7 +1472,7 @@ static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, Window * param1, in
     Window_FillTilemap(param1, param8);
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
-    
+
     switch (param10) {
     case 1:
         param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
@@ -1498,7 +1498,7 @@ static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, Window * param1, in
     u8 v0;
     MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
     StringTemplate_Format(param0->unk_24, param0->unk_28, param0->unk_2C);
-    
+
     switch (param10) {
     case 1:
         param3 -= (Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_28, 0) + 1) / 2;
@@ -1975,7 +1975,7 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
 
     v1.choices = param0->unk_13C;
     v1.window = &param0->unk_50[5];
-    v1.tmp = param0;
+    v1.parent = param0;
     v1.cursorCallback = ov107_02247F14;
     v1.printCallback = NULL;
     v1.count = (NELEMS(Unk_ov107_0224A1BC));
@@ -2037,7 +2037,7 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
 
     v1.choices = param0->unk_13C;
     v1.window = &param0->unk_50[6];
-    v1.tmp = param0;
+    v1.parent = param0;
     v1.cursorCallback = ov107_02248028;
     v1.printCallback = ov107_022480A0;
     v1.count = (NELEMS(Unk_ov107_0224A19C));
@@ -2257,7 +2257,7 @@ static void ov107_02248358 (UnkStruct_ov107_02246170 * param0, int param1)
     v1 = 0;
     v0 = ov107_02249C98(param0->unk_14, param0->unk_0D);
 
-    if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+    if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (param0->unk_0D == param0->unk_15) {
             return;
         }
@@ -2271,7 +2271,7 @@ static void ov107_02248358 (UnkStruct_ov107_02246170 * param0, int param1)
         v1 = 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+    if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (param0->unk_0D == param0->unk_15) {
             return;
         }
@@ -2285,7 +2285,7 @@ static void ov107_02248358 (UnkStruct_ov107_02246170 * param0, int param1)
         v1 = 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_UP) {
+    if (gSystem.pressedKeys & PAD_KEY_UP) {
         if (param0->unk_0D < param0->unk_14) {
             return;
         }
@@ -2294,7 +2294,7 @@ static void ov107_02248358 (UnkStruct_ov107_02246170 * param0, int param1)
         v1 = 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_KEY_DOWN) {
+    if (gSystem.pressedKeys & PAD_KEY_DOWN) {
         if (param0->unk_0D >= param0->unk_15) {
             return;
         }
@@ -2437,7 +2437,7 @@ static BOOL ov107_0224850C (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
         break;
     case 3:
         if (ov104_0223BA14(param0->unk_09) == 0) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(1500);
                 ov107_02248A2C(param0, param1);
                 param0->unk_0F_0 = 0;
@@ -2450,7 +2450,7 @@ static BOOL ov107_0224850C (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
         break;
     case 4:
         if (ov104_0223BA14(param0->unk_09) == 0) {
-            if (gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 Sound_PlayEffect(1500);
                 ov107_02248AF0(param0, param1);
                 param0->unk_0F_0 = 0;

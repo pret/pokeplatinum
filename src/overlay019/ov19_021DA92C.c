@@ -13,12 +13,12 @@
 #include "overlay019/struct_ov19_021DA9E0.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "graphics.h"
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -55,7 +55,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
 static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0);
 static void ov19_021DB24C(UnkStruct_ov19_021DA9E0 *param0, u8 param1);
 
-BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, CellActorCollection *param4, const MessageLoader *param5, NARC *param6)
+BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4, const MessageLoader *param5, NARC *param6)
 {
     int v0;
 
@@ -132,7 +132,7 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
     }
 
     if (param0->unk_30) {
-        CellActor_Delete(param0->unk_30);
+        Sprite_Delete(param0->unk_30);
     }
 
     if (param0->unk_34) {
@@ -141,7 +141,7 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         if (param0->unk_3C[v0] != NULL) {
-            CellActor_Delete(param0->unk_3C[v0]);
+            Sprite_Delete(param0->unk_3C[v0]);
         }
     }
 
@@ -212,7 +212,7 @@ void ov19_021DAADC(UnkStruct_ov19_021DA9E0 *param0)
 static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
 {
     NNSG2dImageProxy v0;
-    CellActorResourceData v1;
+    SpriteResourcesHeader v1;
     u32 v2, v3, v4;
 
     v2 = sub_0207C944();
@@ -228,7 +228,7 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
         param0->unk_3C[v4] = ov19_021D785C(param0->unk_0C, &v1, 24 + 36 * v4, 176, 46, NNS_G2D_VRAM_TYPE_2DMAIN);
         GF_ASSERT(param0->unk_3C[v4] != NULL);
 
-        CellActor_SetDrawFlag(param0->unk_3C[v4], 0);
+        Sprite_SetDrawFlag(param0->unk_3C[v4], 0);
     }
 
     NNS_G2dInitImageProxy(&v0);
@@ -349,12 +349,12 @@ static void ov19_021DADCC(UnkStruct_ov19_021DA9E0 *param0, fx32 param1)
     VecFx32 v1;
 
     for (v0 = 0; v0 < 2; v0++) {
-        v1 = *CellActor_GetPosition(param0->unk_3C[v0]);
+        v1 = *Sprite_GetPosition(param0->unk_3C[v0]);
         v1.y -= param1;
 
-        CellActor_SetPosition(param0->unk_3C[v0], &v1);
+        Sprite_SetPosition(param0->unk_3C[v0], &v1);
 
-        if ((v0 == 0) && CellActor_GetDrawFlag(param0->unk_3C[v0])) {
+        if ((v0 == 0) && Sprite_GetDrawFlag(param0->unk_3C[v0])) {
             u32 v2, v3;
 
             v2 = v1.x >> FX32_SHIFT;
@@ -368,7 +368,7 @@ static void ov19_021DAE10(UnkStruct_ov19_021DA9E0 *param0)
     int v0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        CellActor_SetDrawFlag(param0->unk_3C[v0], 0);
+        Sprite_SetDrawFlag(param0->unk_3C[v0], 0);
     }
 }
 
@@ -418,23 +418,23 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
 
         Graphics_LoadObjectTiles(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0C), 0, 1504 * 0x20, 0, 1, 10);
 
-        v2 = *CellActor_GetPosition(param1->unk_3C[0]);
+        v2 = *Sprite_GetPosition(param1->unk_3C[0]);
         v2.y = (176 + (16 * param3)) << FX32_SHIFT;
 
-        CellActor_SetPosition(param1->unk_3C[0], &v2);
-        CellActor_SetExplicitPalette(param1->unk_3C[0], 10 + sub_0207C92C(param1->unk_10->unk_4C.unk_0C));
-        CellActor_SetDrawFlag(param1->unk_3C[0], 1);
+        Sprite_SetPosition(param1->unk_3C[0], &v2);
+        Sprite_SetExplicitPalette(param1->unk_3C[0], 10 + sub_0207C92C(param1->unk_10->unk_4C.unk_0C));
+        Sprite_SetDrawFlag(param1->unk_3C[0], 1);
 
         if (param1->unk_10->unk_4C.unk_0C != param1->unk_10->unk_4C.unk_0D) {
             Graphics_LoadObjectTiles(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0D), 0, (1504 + 8) * 0x20, 0, 1, 10);
 
             v2.x += (36 << FX32_SHIFT);
 
-            CellActor_SetPosition(param1->unk_3C[1], &v2);
-            CellActor_SetExplicitPalette(param1->unk_3C[1], 10 + sub_0207C92C(param1->unk_10->unk_4C.unk_0D));
-            CellActor_SetDrawFlag(param1->unk_3C[1], 1);
+            Sprite_SetPosition(param1->unk_3C[1], &v2);
+            Sprite_SetExplicitPalette(param1->unk_3C[1], 10 + sub_0207C92C(param1->unk_10->unk_4C.unk_0D));
+            Sprite_SetDrawFlag(param1->unk_3C[1], 1);
         } else {
-            CellActor_SetDrawFlag(param1->unk_3C[1], 0);
+            Sprite_SetDrawFlag(param1->unk_3C[1], 0);
         }
     }
         return;

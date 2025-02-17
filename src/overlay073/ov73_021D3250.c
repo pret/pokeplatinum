@@ -4,7 +4,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "bg_window.h"
-#include "core_sys.h"
+#include "system.h"
 #include "font.h"
 #include "graphics.h"
 #include "gx_layers.h"
@@ -17,7 +17,7 @@
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
+#include "system.h"
 
 typedef struct {
     int unk_00;
@@ -67,7 +67,7 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         SetHBlankCallback(NULL, NULL);
 
         GXLayers_DisableEngineALayers();
@@ -79,7 +79,7 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         ov73_021D342C(v0);
         ov73_021D366C(v0);
 
-        SetMainCallback(ov73_021D3420, (void *)v0);
+        SetVBlankCallback(ov73_021D3420, (void *)v0);
         GXLayers_TurnBothDispOn();
 
         {
@@ -133,7 +133,7 @@ int ov73_021D3280 (OverlayManager * param0, int * param1)
         if (IsScreenTransitionDone() == 1) {
             ov73_021D368C(v0);
             ov73_021D35F4(v0);
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
 
             v1 = 1;
         }
@@ -444,7 +444,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     str r0, [r4, #0xc]
     b _021D3798
  _021D3768:
-    ldr r0, = gCoreSys
+    ldr r0, = gSystem
     ldr r1, [r0, #0x48]
     mov r0, #1
     and r0, r1

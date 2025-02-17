@@ -331,7 +331,7 @@
     ScriptEntry _1E86
     ScriptEntry _1E9A
     ScriptEntry _1EAE
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0522:
     SetVar 0x8008, 17
@@ -2314,7 +2314,7 @@ _1EEA:
 
 _1EF0:
     CallCommonScript 0x7D1
-    ScrCmd_065 0x800D
+    RemoveObject 0x800D
     AddItem 0x8004, 0x8005, 0x800C
     ScrCmd_2A2 0x8004
     CallIfEq 0x8004, 0x1CF, _20C0

@@ -22,12 +22,12 @@
 #include "overlay096/struct_ov96_0223B574_1.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "list_menu.h"
 #include "menu.h"
 #include "message.h"
 #include "overlay_manager.h"
 #include "pokemon.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -98,21 +98,21 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     Strbuf *unk_BB4[10];
     Strbuf *unk_BDC;
     int unk_BE0;
-    CellActorCollection *unk_BE4;
+    SpriteList *unk_BE4;
     G2dRenderer unk_BE8;
     SpriteResourceCollection *unk_D74[4];
     SpriteResource *unk_D84[3][4];
-    CellActorResourceData unk_DB4;
-    CellActorResourceData unk_DD8;
-    CellActorResourceData unk_DFC;
-    CellActor *unk_E20;
-    CellActor *unk_E24;
-    CellActor *unk_E28[30];
-    CellActor *unk_EA0[30];
-    CellActor *unk_F18[6];
-    CellActor *unk_F30;
-    CellActor *unk_F34[8];
-    CellActor *unk_F54[2];
+    SpriteResourcesHeader unk_DB4;
+    SpriteResourcesHeader unk_DD8;
+    SpriteResourcesHeader unk_DFC;
+    Sprite *unk_E20;
+    Sprite *unk_E24;
+    Sprite *unk_E28[30];
+    Sprite *unk_EA0[30];
+    Sprite *unk_F18[6];
+    Sprite *unk_F30;
+    Sprite *unk_F34[8];
+    Sprite *unk_F54[2];
     Window unk_F5C;
     Window unk_F6C;
     Window unk_F7C;

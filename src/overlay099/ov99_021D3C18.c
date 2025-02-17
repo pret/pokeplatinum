@@ -9,7 +9,7 @@
 #include "overlay099/struct_ov99_021D3C18.h"
 
 #include "bg_window.h"
-#include "unk_0200A9DC.h"
+#include "brightness_controller.h"
 
 static void ov99_021D3CF8(UnkStruct_ov99_021D3C18 *param0, u32 param1);
 static BOOL ov99_021D3D50(UnkStruct_ov99_021D3C18 *param0);
@@ -20,7 +20,7 @@ BOOL ov99_021D3C18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
 
     switch (param1->unk_00) {
     case 0:
-        sub_0200AAE0(24, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+        BrightnessController_StartTransition(24, 0, -16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
         param1->unk_00++;
         break;
     case 1:
@@ -33,7 +33,7 @@ BOOL ov99_021D3C18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
         break;
     case 2:
         if (v0->unk_04 >= 4 - 1) {
-            sub_0200AAE0(32, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
+            BrightnessController_StartTransition(32, -16, 0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
             param1->unk_00 = 4;
         } else {
             if (v0->unk_04 & 1) {
@@ -57,7 +57,7 @@ BOOL ov99_021D3C18(UnkStruct_ov99_021D2CB0 *param0, UnkStruct_ov99_021D3A40 *par
         }
         break;
     case 4:
-        if (sub_0200AC1C(3) == 1) {
+        if (BrightnessController_IsTransitionComplete(BRIGHTNESS_BOTH_SCREENS) == TRUE) {
             return 1;
         }
         break;

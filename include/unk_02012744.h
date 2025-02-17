@@ -9,7 +9,7 @@
 #include "struct_defs/struct_020127E8.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "sprite.h"
 
 UnkStruct_02012744 *sub_02012744(int param0, int param1);
 void sub_020127BC(UnkStruct_02012744 *param0);
@@ -33,6 +33,6 @@ FontOAM *sub_02012B60(const FontOAMInitData *param0, const UnkStruct_02012B20 *p
 void sub_02012BD8(FontOAM *param0);
 void sub_02012BE0(FontOAM *param0, const UnkStruct_02012B20 *param1, const Window *param2, int param3);
 void sub_02012C60(const Window *param0, int param1, int param2, int param3, int param4, char *param5);
-void sub_020131E0(FontOAM *param0, const CellActor *param1);
+void sub_020131E0(FontOAM *param0, const Sprite *param1);
 
 #endif // POKEPLATINUM_UNK_02012744_H

@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/flower_paradise.h"
 
     .data
@@ -6,16 +7,16 @@
     ScriptEntry _000E
     ScriptEntry _0062
     ScriptEntry _007D
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     SetFlag 0x9D5
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _005C
     CheckItem ITEM_OAKS_LETTER, 1, 0x4000
-    GoToIfEq 0x4000, 0, _005C
-    ScrCmd_28B 1, 0x4000
-    GoToIfEq 0x4000, 0, _005C
+    GoToIfEq 0x4000, FALSE, _005C
+    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
+    GoToIfEq 0x4000, FALSE, _005C
     GoToIfSet 0x123, _005C
     ClearFlag 0x251
     End
@@ -30,7 +31,7 @@ _0062:
 
 _006F:
     SetFlag 0x251
-    ScrCmd_065 0
+    RemoveObject 0
     ClearFlag 142
     End
 
@@ -61,7 +62,7 @@ _00C8:
     End
 
 _00D7:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ClearFlag 0x251
     ReleaseAll
     End

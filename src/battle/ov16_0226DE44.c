@@ -3,21 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
-
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200C6E4.h"
 
 typedef struct CatchingTutorialFinger_t {
-    CellActorData *unk_00;
+    ManagedSprite *unk_00;
     SysTask *unk_04;
     int unk_08;
     int unk_0C;
@@ -31,14 +26,14 @@ typedef struct CatchingTutorialFinger_t {
     u8 unk_1E;
 } CatchingTutorialFinger;
 
-void CatchingTutorialFinger_LoadResources(SpriteRenderer *param0, SpriteGfxHandler *param1, u32 param2, PaletteData *param3, u32 param4, u32 param5, u32 param6, u32 param7);
-void CatchingTutorialFinger_FreeResources(SpriteGfxHandler *param0, u32 param1, u32 param2, u32 param3, u32 param4);
-CatchingTutorialFinger *CatchingTutorialFinger_Create(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
-void CatchingTutorialFinger_Free(CatchingTutorialFinger *param0);
-void ov16_0226DFB0(CatchingTutorialFinger *param0, int param1, int param2);
-void ov16_0226DFBC(CatchingTutorialFinger *param0);
-static void ov16_0226DFD8(SysTask *param0, void *param1);
-static void ov16_0226E13C(CatchingTutorialFinger *param0);
+void CatchingTutorialFinger_LoadResources(SpriteSystem *spriteSystem, SpriteManager *param1, u32 param2, PaletteData *param3, u32 param4, u32 param5, u32 param6, u32 param7);
+void CatchingTutorialFinger_FreeResources(SpriteManager *spriteManager, u32 param1, u32 param2, u32 param3, u32 param4);
+CatchingTutorialFinger *CatchingTutorialFinger_Create(SpriteSystem *spriteSystem, SpriteManager *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
+void CatchingTutorialFinger_Free(CatchingTutorialFinger *finger);
+void ov16_0226DFB0(CatchingTutorialFinger *finger, int param1, int param2);
+void ov16_0226DFBC(CatchingTutorialFinger *finger);
+static void ov16_0226DFD8(SysTask *task, void *param1);
+static void ov16_0226E13C(CatchingTutorialFinger *finger);
 
 static const SpriteTemplate Unk_ov16_02270AD8 = {
     0x0,
@@ -53,28 +48,28 @@ static const SpriteTemplate Unk_ov16_02270AD8 = {
     0x0
 };
 
-void CatchingTutorialFinger_LoadResources(SpriteRenderer *param0, SpriteGfxHandler *param1, u32 param2, PaletteData *param3, u32 param4, u32 param5, u32 param6, u32 param7)
+void CatchingTutorialFinger_LoadResources(SpriteSystem *spriteSystem, SpriteManager *spriteManager, u32 param2, PaletteData *param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
 
-    SpriteRenderer_LoadPalette(param3, 3, param0, param1, v0, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, v0, 10, 0, NNS_G2D_VRAM_TYPE_2DSUB, param4);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, v0, 12, 0, param6);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, v0, 13, 0, param7);
-    NARC_dtor(v0);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param3, PLTTBUF_SUB_OBJ, spriteSystem, spriteManager, narc, 11, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, spriteManager, narc, 10, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, param4);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSystem, spriteManager, narc, 12, FALSE, param6);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSystem, spriteManager, narc, 13, FALSE, param7);
+    NARC_dtor(narc);
 }
 
-void CatchingTutorialFinger_FreeResources(SpriteGfxHandler *param0, u32 param1, u32 param2, u32 param3, u32 param4)
+void CatchingTutorialFinger_FreeResources(SpriteManager *spriteManager, u32 param1, u32 param2, u32 param3, u32 param4)
 {
-    SpriteGfxHandler_UnloadCharObjById(param0, param1);
-    SpriteGfxHandler_UnloadPlttObjById(param0, param2);
-    SpriteGfxHandler_UnloadCellObjById(param0, param3);
-    SpriteGfxHandler_UnloadAnimObjById(param0, param4);
+    SpriteManager_UnloadCharObjById(spriteManager, param1);
+    SpriteManager_UnloadPlttObjById(spriteManager, param2);
+    SpriteManager_UnloadCellObjById(spriteManager, param3);
+    SpriteManager_UnloadAnimObjById(spriteManager, param4);
 }
 
-CatchingTutorialFinger *CatchingTutorialFinger_Create(SpriteRenderer *param0, SpriteGfxHandler *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+CatchingTutorialFinger *CatchingTutorialFinger_Create(SpriteSystem *spriteSystem, SpriteManager *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
-    CatchingTutorialFinger *v0;
+    CatchingTutorialFinger *finger;
     SpriteTemplate v1;
 
     v1 = Unk_ov16_02270AD8;
@@ -86,129 +81,129 @@ CatchingTutorialFinger *CatchingTutorialFinger_Create(SpriteRenderer *param0, Sp
     v1.priority = param7;
     v1.bgPriority = param8;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(CatchingTutorialFinger));
-    MI_CpuClear8(v0, sizeof(CatchingTutorialFinger));
+    finger = Heap_AllocFromHeap(param2, sizeof(CatchingTutorialFinger));
+    MI_CpuClear8(finger, sizeof(CatchingTutorialFinger));
 
-    v0->unk_00 = SpriteActor_LoadResources(param0, param1, &v1);
-    SpriteActor_EnableObject(v0->unk_00, 0);
+    finger->unk_00 = SpriteSystem_NewSprite(spriteSystem, param1, &v1);
+    ManagedSprite_SetDrawFlag(finger->unk_00, 0);
 
-    v0->unk_14 = (192 << FX32_SHIFT);
-    v0->unk_04 = SysTask_Start(ov16_0226DFD8, v0, 999);
+    finger->unk_14 = (192 << FX32_SHIFT);
+    finger->unk_04 = SysTask_Start(ov16_0226DFD8, finger, 999);
 
-    return v0;
+    return finger;
 }
 
-void CatchingTutorialFinger_Free(CatchingTutorialFinger *param0)
+void CatchingTutorialFinger_Free(CatchingTutorialFinger *finger)
 {
-    sub_0200D0F4(param0->unk_00);
-    SysTask_Done(param0->unk_04);
-    Heap_FreeToHeap(param0);
+    Sprite_DeleteAndFreeResources(finger->unk_00);
+    SysTask_Done(finger->unk_04);
+    Heap_FreeToHeap(finger);
 }
 
-void CatchingTutorialFinger_SetPosition(CatchingTutorialFinger *param0, int param1, int param2, fx32 param3)
+void CatchingTutorialFinger_SetPosition(CatchingTutorialFinger *finger, int param1, int param2, fx32 param3)
 {
-    ov16_0226E13C(param0);
+    ov16_0226E13C(finger);
 
-    param0->unk_08 = param1;
-    param0->unk_0C = param2;
-    param0->unk_14 = param3;
+    finger->unk_08 = param1;
+    finger->unk_0C = param2;
+    finger->unk_14 = param3;
 
-    sub_0200D500(param0->unk_00, param1, param2, param3);
-    SpriteActor_EnableObject(param0->unk_00, 1);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(finger->unk_00, param1, param2, param3);
+    ManagedSprite_SetDrawFlag(finger->unk_00, 1);
 }
 
-void ov16_0226DFB0(CatchingTutorialFinger *param0, int param1, int param2)
+void ov16_0226DFB0(CatchingTutorialFinger *finger, int param1, int param2)
 {
-    CatchingTutorialFinger_SetPosition(param0, param1, param2, (192 << FX32_SHIFT));
+    CatchingTutorialFinger_SetPosition(finger, param1, param2, (192 << FX32_SHIFT));
 }
 
-void ov16_0226DFBC(CatchingTutorialFinger *param0)
+void ov16_0226DFBC(CatchingTutorialFinger *finger)
 {
-    SpriteActor_EnableObject(param0->unk_00, 0);
-    ov16_0226E13C(param0);
+    ManagedSprite_SetDrawFlag(finger->unk_00, 0);
+    ov16_0226E13C(finger);
 }
 
-void CatchingTutorialFinger_RequestTouch(CatchingTutorialFinger *param0, int param1)
+void CatchingTutorialFinger_RequestTouch(CatchingTutorialFinger *finger, int param1)
 {
-    param0->unk_18 = param1;
+    finger->unk_18 = param1;
 }
 
-BOOL CatchingTutorialFinger_CheckTouchAnimationFinished(CatchingTutorialFinger *param0)
+BOOL CatchingTutorialFinger_CheckTouchAnimationFinished(CatchingTutorialFinger *finger)
 {
-    return param0->unk_1B;
+    return finger->unk_1B;
 }
 
-static void ov16_0226DFD8(SysTask *param0, void *param1)
+static void ov16_0226DFD8(SysTask *task, void *param1)
 {
-    CatchingTutorialFinger *v0 = param1;
+    CatchingTutorialFinger *finger = param1;
 
-    if (v0->unk_1B == 1) {
-        v0->unk_1B = 0;
+    if (finger->unk_1B == 1) {
+        finger->unk_1B = 0;
     }
 
-    if (v0->unk_18 > 0) {
-        v0->unk_18--;
+    if (finger->unk_18 > 0) {
+        finger->unk_18--;
 
-        if (v0->unk_18 == 0) {
-            v0->unk_1A = 1;
+        if (finger->unk_18 == 0) {
+            finger->unk_1A = 1;
         }
     }
 
-    if (sub_0200D408(v0->unk_00) == 0) {
+    if (ManagedSprite_GetDrawFlag(finger->unk_00) == 0) {
         return;
     }
 
-    if (v0->unk_1C == 0) {
+    if (finger->unk_1C == 0) {
         int v1;
 
-        v0->unk_10 += (10 * 100);
+        finger->unk_10 += (10 * 100);
 
-        if (v0->unk_10 >= 180 * 100) {
-            v0->unk_10 -= 180 * 100;
+        if (finger->unk_10 >= 180 * 100) {
+            finger->unk_10 -= 180 * 100;
 
-            if (v0->unk_1A == 1) {
-                v0->unk_1C = 1;
-                v0->unk_1A = 0;
+            if (finger->unk_1A == 1) {
+                finger->unk_1C = 1;
+                finger->unk_1A = 0;
             }
         }
 
-        if (v0->unk_1C == 0) {
-            v1 = FX_Mul(CalcSineDegrees(v0->unk_10 / 100), 14 << FX32_SHIFT) / FX32_ONE;
-            sub_0200D500(v0->unk_00, v0->unk_08, v0->unk_0C - v1, v0->unk_14);
+        if (finger->unk_1C == 0) {
+            v1 = FX_Mul(CalcSineDegrees(finger->unk_10 / 100), 14 << FX32_SHIFT) / FX32_ONE;
+            ManagedSprite_SetPositionXYWithSubscreenOffset(finger->unk_00, finger->unk_08, finger->unk_0C - v1, finger->unk_14);
         }
     }
 
-    if (v0->unk_1C == 1) {
-        switch (v0->unk_1D) {
+    if (finger->unk_1C == 1) {
+        switch (finger->unk_1D) {
         case 0:
-            v0->unk_1E++;
+            finger->unk_1E++;
 
-            if (v0->unk_1E > 3) {
-                v0->unk_1E = 0;
-                v0->unk_1D++;
+            if (finger->unk_1E > 3) {
+                finger->unk_1E = 0;
+                finger->unk_1D++;
             }
             break;
         case 1:
-            sub_0200D500(v0->unk_00, v0->unk_08, v0->unk_0C + 8, v0->unk_14);
-            v0->unk_1B = 1;
-            v0->unk_1D++;
+            ManagedSprite_SetPositionXYWithSubscreenOffset(finger->unk_00, finger->unk_08, finger->unk_0C + 8, finger->unk_14);
+            finger->unk_1B = 1;
+            finger->unk_1D++;
             break;
         case 2:
-            v0->unk_1E++;
+            finger->unk_1E++;
 
-            if (v0->unk_1E > 2) {
-                sub_0200D500(v0->unk_00, v0->unk_08, v0->unk_0C + 2, v0->unk_14);
-                v0->unk_1E = 0;
-                v0->unk_1D++;
+            if (finger->unk_1E > 2) {
+                ManagedSprite_SetPositionXYWithSubscreenOffset(finger->unk_00, finger->unk_08, finger->unk_0C + 2, finger->unk_14);
+                finger->unk_1E = 0;
+                finger->unk_1D++;
             }
             break;
         case 3:
-            v0->unk_1E++;
+            finger->unk_1E++;
 
-            if (v0->unk_1E > 2) {
-                ov16_0226DFBC(v0);
-                v0->unk_1E = 0;
-                v0->unk_1D++;
+            if (finger->unk_1E > 2) {
+                ov16_0226DFBC(finger);
+                finger->unk_1E = 0;
+                finger->unk_1D++;
             }
             break;
         default:
@@ -216,13 +211,13 @@ static void ov16_0226DFD8(SysTask *param0, void *param1)
         }
     }
 
-    sub_0200D330(v0->unk_00);
+    ManagedSprite_TickFrame(finger->unk_00);
 }
 
-static void ov16_0226E13C(CatchingTutorialFinger *param0)
+static void ov16_0226E13C(CatchingTutorialFinger *finger)
 {
-    param0->unk_10 = 0;
-    param0->unk_1C = 0;
-    param0->unk_1D = 0;
-    param0->unk_1E = 0;
+    finger->unk_10 = 0;
+    finger->unk_1C = 0;
+    finger->unk_1D = 0;
+    finger->unk_1E = 0;
 }

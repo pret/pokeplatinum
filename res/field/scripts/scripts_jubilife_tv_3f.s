@@ -7,7 +7,7 @@
     ScriptEntry _0054
     ScriptEntry _0067
     ScriptEntry _007A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM
@@ -61,7 +61,7 @@ _007A:
     LockAll
     FacePlayer
     Message 4
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _009C
     GoTo _015B
 
@@ -70,7 +70,7 @@ _009C:
     WaitFadeScreen
     CloseMessage
     ScrCmd_244 0, 0x800C, 0x8000, 0x8001
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _015B
@@ -79,7 +79,7 @@ _009C:
     WaitFadeScreen
     CloseMessage
     ScrCmd_244 0, 0x800C, 0x8002, 0x8003
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _015B

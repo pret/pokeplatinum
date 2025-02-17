@@ -25,7 +25,7 @@
     ScriptEntry _0461
     ScriptEntry _0474
     ScriptEntry _04AD
-    .short 0xFD13
+    ScriptEntryEnd
 
 _005A:
     SetVar 0x8004, 0
@@ -84,7 +84,7 @@ _00EA:
     WaitFadeScreen
     CreateJournalEvent LOCATION_EVENT_GAME_CORNER, 0, 0, 0, 0
     ScrCmd_267 0x8004
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ReleaseAll
@@ -105,10 +105,10 @@ _013E:
     CheckItem ITEM_COIN_CASE, 1, 0x800C
     GoToIfEq 0x800C, 0, _018D
     GoToIfSet 0x130, _0198
-    GoToIfSet 0x165, _02CA
-    ScrCmd_275 0x800C
-    GoToIfEq 0x800C, 0, _0198
-    GoTo _02CA
+    GoToIfSet 0x165, GameCorner_GiveTM64
+    CheckBonusRoundStreak 0x800C
+    GoToIfEq 0x800C, FALSE, _0198
+    GoTo GameCorner_GiveTM64
     End
 
 _018D:
@@ -198,8 +198,8 @@ _02BB:
     ReleaseAll
     End
 
-_02CA:
-    SetVar 0x8004, 0x187
+GameCorner_GiveTM64:
+    SetVar 0x8004, ITEM_TM64
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _0327

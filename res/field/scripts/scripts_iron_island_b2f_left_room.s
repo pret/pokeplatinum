@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/iron_island_b2f_left_room.h"
+#include "res/text/bank/special_met_location_names.h"
 
     .data
 
@@ -12,7 +13,7 @@
     ScriptEntry _0466
     ScriptEntry _0468
     ScriptEntry _01AA
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0026:
     ScrCmd_25B
@@ -52,7 +53,7 @@ _0064:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x261
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_RILEY_IRON_ISLAND
     SetHasPartner
     ScrCmd_06D 4, 48
     ReleaseAll
@@ -187,8 +188,8 @@ _01AA:
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_065 5
-    ScrCmd_065 6
+    RemoveObject 5
+    RemoveObject 6
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GetPlayerMapPos 0x8004, 0x8005
@@ -250,7 +251,7 @@ _02E5:
 
 _02F9:
     Message 11
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _031C
     GoToIfEq 0x800C, 1, _0366
     End
@@ -261,7 +262,7 @@ _031C:
     PlaySound SEQ_FANFA4
     WaitSound
     Message 12
-    ScrCmd_097 0x1BF, 10
+    GiveEgg SPECIES_RIOLU, SPECIAL_METLOC_NAME_RILEY
     SetFlag 0x1E5
     ClearFlag 226
     Call _0371
@@ -289,7 +290,7 @@ _0371:
     Return
 
 _037D:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

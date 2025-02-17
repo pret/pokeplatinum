@@ -17,12 +17,12 @@
 #include "script_manager.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "unk_020041CC.h"
 #include "unk_020528D0.h"
 #include "unk_02054884.h"
 #include "unk_020553DC.h"
 #include "unk_02067A84.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 BOOL ScrCmd_0B6(ScriptContext *param0);
@@ -36,8 +36,8 @@ BOOL ScrCmd_0E7(ScriptContext *param0);
 BOOL ScrCmd_0E8(ScriptContext *param0);
 BOOL ScrCmd_0E9(ScriptContext *param0);
 BOOL ScrCmd_0EA(ScriptContext *param0);
-BOOL ScrCmd_0EB(ScriptContext *param0);
-BOOL ScrCmd_0EE(ScriptContext *param0);
+BOOL ScrCmd_BlackOutFromBattle(ScriptContext *param0);
+BOOL ScrCmd_CheckHasTwoAliveMons(ScriptContext *param0);
 BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *ctx);
 BOOL ScrCmd_0F0(ScriptContext *param0);
 BOOL ScrCmd_0F1(ScriptContext *param0);
@@ -148,7 +148,7 @@ BOOL ScrCmd_StartTrainerBattle(ScriptContext *ctx)
     u16 partnerTrainer = 0;
 
     if (SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(ctx->fieldSystem->saveData)) == TRUE) {
-        partnerTrainer = sub_0206B034(SaveData_GetVarsFlags(fieldSystem->saveData));
+        partnerTrainer = SystemVars_GetPartnerTrainerID(SaveData_GetVarsFlags(fieldSystem->saveData));
     }
 
     Encounter_NewVsTrainer(ctx->task,
@@ -264,7 +264,7 @@ BOOL ScrCmd_0EA(ScriptContext *param0)
     return 1;
 }
 
-BOOL ScrCmd_0EB(ScriptContext *param0)
+BOOL ScrCmd_BlackOutFromBattle(ScriptContext *param0)
 {
     sub_02052C5C(param0->task);
     return 1;
@@ -297,12 +297,12 @@ BOOL ScrCmd_CheckDidNotCapture(ScriptContext *ctx)
     return TRUE;
 }
 
-BOOL ScrCmd_0EE(ScriptContext *param0)
+BOOL ScrCmd_CheckHasTwoAliveMons(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(param0);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = Party_HasTwoAliveMons(Party_GetFromSavedata(param0->fieldSystem->saveData));
-    return 0;
+    *destVar = Party_HasTwoAliveMons(Party_GetFromSavedata(ctx->fieldSystem->saveData));
+    return FALSE;
 }
 
 BOOL ScrCmd_StartDummyTrainerBattle(ScriptContext *param0)

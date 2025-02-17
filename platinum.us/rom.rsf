@@ -506,7 +506,14 @@ RomSpec
 	File contest/graphic/contest_obj.narc
 	File demo/title/op_demo.narc
 	File demo/title/titledemo.narc
-	File fielddata/pokemon_trade/fld_trade.narc
+
+	Root /fielddata/pokemon_trade
+	HostRoot res/field/trades
+	File fld_trade.narc
+
+	Root /
+	HostRoot res/prebuilt
+
 	File resource/eng/zukan/zukan.narc
 	File resource/eng/batt_rec/batt_rec_gra.narc
 	File resource/eng/wifi_lobby_minigame/wlmngm_tool.narc

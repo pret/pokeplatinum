@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_OV76_0223B870_H
 #define POKEPLATINUM_OV76_0223B870_H
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay076/struct_ov76_0223C398.h"
@@ -11,6 +9,7 @@
 #include "bg_window.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 
 void ov76_0223B8A8(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223B8C4(UnkStruct_ov76_0223DE00 *param0);
@@ -42,7 +41,7 @@ void ov76_0223C4AC(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223C544(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223C568(UnkStruct_ov76_0223DE00 *param0, int param1);
 void ov76_0223C588(UnkStruct_ov76_0223DE00 *param0);
-void ov76_0223C5A4(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC *param10);
+void ov76_0223C5A4(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, NARC *param10);
 void ov76_0223C61C(UnkStruct_ov76_0223DE00 *param0, NARC *param1);
 void ov76_0223C7E0(UnkStruct_ov76_0223DE00 *param0);
 void ov76_0223C80C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2);

@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
+
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay100/ov100_021D13E4.h"
@@ -11,13 +13,9 @@
 #include "overlay100/ov100_021D46C8.h"
 #include "overlay100/struct_ov100_021D46C8.h"
 #include "overlay100/struct_ov100_021D4DD8.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "camera.h"
-#include "core_sys.h"
 #include "game_options.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -26,10 +24,10 @@
 #include "overlay_manager.h"
 #include "palette.h"
 #include "render_window.h"
+#include "sprite_system.h"
+#include "system.h"
 #include "unk_020041CC.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_02024220.h"
 #include "vram_transfer.h"
 
@@ -57,7 +55,7 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
 
     ov100_021D1034(&v0->unk_0C);
     StartScreenTransition(0, 1, 1, 0x0, 6 * 2, 1, 111);
-    SetMainCallback(ov100_021D13B4, v0);
+    SetVBlankCallback(ov100_021D13B4, v0);
 
     v0->unk_0C.unk_50.unk_00 = 31;
     v0->unk_0C.unk_50.unk_01 = 31;
@@ -131,7 +129,7 @@ int ov100_021D0EA8(OverlayManager *param0, int *param1)
         break;
     }
 
-    sub_0200C7EC(v0->unk_0C.unk_08);
+    SpriteSystem_DrawSprites(v0->unk_0C.unk_08);
 
     return 0;
 }
@@ -142,14 +140,14 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
 
     v0 = OverlayManager_Data(param0);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Window_EraseMessageBox(&v0->unk_0C.unk_30, 1);
     Window_ClearAndCopyToVRAM(&v0->unk_0C.unk_30);
     Window_Remove(&v0->unk_0C.unk_30);
 
     ov100_021D111C(&v0->unk_0C);
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
     OverlayManager_FreeData(param0);
@@ -161,10 +159,10 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
 
 static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
 {
-    param0->unk_04 = sub_0200C6E4(111);
+    param0->unk_04 = SpriteSystem_Alloc(111);
 
     {
-        const UnkStruct_ov104_0224133C v0 = {
+        const RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -174,21 +172,21 @@ static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
             0,
             32,
         };
-        const UnkStruct_ov104_022412F4 v1 = {
+        const CharTransferTemplateWithModes v1 = {
             48 + 48,
             1024 * 0x40,
             512 * 0x20,
             GX_OBJVRAMMODE_CHAR_1D_64K,
             GX_OBJVRAMMODE_CHAR_1D_32K
         };
-        BOOL v2 = sub_0200C73C(param0->unk_04, &v0, &v1, 16 + 16);
+        BOOL v2 = SpriteSystem_Init(param0->unk_04, &v0, &v1, 16 + 16);
 
         GF_ASSERT(v2);
     }
 
     {
         BOOL v3;
-        const UnkStruct_ov104_02241308 v4 = {
+        const SpriteResourceCapacities v4 = {
             48 + 48,
             16 + 16,
             64,
@@ -197,19 +195,19 @@ static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 *param0)
             16,
         };
 
-        param0->unk_08 = sub_0200C704(param0->unk_04);
+        param0->unk_08 = SpriteManager_New(param0->unk_04);
 
-        v3 = sub_0200C7C0(param0->unk_04, param0->unk_08, 64 + 64);
+        v3 = SpriteSystem_InitSprites(param0->unk_04, param0->unk_08, 64 + 64);
         GF_ASSERT(v3);
 
-        v3 = sub_0200CB30(param0->unk_04, param0->unk_08, &v4);
+        v3 = SpriteSystem_InitManagerWithCapacities(param0->unk_04, param0->unk_08, &v4);
         GF_ASSERT(v3);
     }
 }
 
 static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -265,8 +263,8 @@ static void ov100_021D111C(UnkStruct_ov100_021D46C8 *param0)
     NARC_dtor(param0->unk_00);
     sub_020242C4(param0->unk_14);
     Camera_Delete(param0->camera);
-    sub_0200D0B0(param0->unk_04, param0->unk_08);
-    sub_0200C8D4(param0->unk_04);
+    SpriteSystem_FreeResourcesAndManager(param0->unk_04, param0->unk_08);
+    SpriteSystem_Free(param0->unk_04);
     MessageLoader_Free(param0->unk_2C);
 
     G3X_AlphaBlend(0);
@@ -447,7 +445,7 @@ static void ov100_021D13B4(void *param0)
     UnkStruct_ov100_021D4DD8 *v0 = param0;
 
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_0C.unk_10);
     Bg_RunScheduledUpdates(v0->unk_0C.unk_0C);
 

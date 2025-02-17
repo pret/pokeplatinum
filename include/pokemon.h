@@ -6,15 +6,12 @@
 #include "constants/pokemon.h"
 #include "constants/sound.h"
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/pokemon.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/species.h"
 #include "struct_defs/sprite_animation_frame.h"
 
@@ -23,6 +20,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
+#include "sprite_system.h"
 #include "string.h"
 #include "trainer_info.h"
 
@@ -32,6 +30,8 @@
 
 #define FACE_BACK  0
 #define FACE_FRONT 2
+
+#define INIT_IVS_RANDOM 32
 
 enum EvolutionClass {
     EVO_CLASS_BY_LEVEL = 0,
@@ -482,7 +482,7 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
  */
 u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
 void sub_0207697C(ArchivedSprite *param0, u16 param1);
-CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
+ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
 
 /**
@@ -805,7 +805,7 @@ void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 specie
  */
 void Pokemon_PlayDelayedCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID, u8 delay);
 BOOL Pokemon_IsEligibleForAction(Pokemon *mon);
-void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
+void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapId);
 void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates);
 BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID);
@@ -850,7 +850,7 @@ void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u1
  * @param reverse       If TRUE, reverse the sprite + animation
  * @param frame         Which frame of the animation to initialize
  */
-void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, Sprite *sprite, u16 species, int face, int reverse, int frame);
+void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame);
 
 /**
  * @brief Load the cry delay for a given species and a client type.

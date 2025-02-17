@@ -17,7 +17,6 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "field_system.h"
 #include "game_records.h"
 #include "heap.h"
@@ -29,11 +28,12 @@
 #include "string_list.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
 #include "unk_020573FC.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -620,7 +620,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
         break;
     case 7:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if ((PAD_BUTTON_A)&gCoreSys.pressedKeys) {
+            if ((PAD_BUTTON_A)&gSystem.pressedKeys) {
                 v0->unk_37 = 4;
             }
         }
@@ -657,7 +657,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
         break;
     case 15:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if ((PAD_BUTTON_A)&gCoreSys.pressedKeys) {
+            if ((PAD_BUTTON_A)&gSystem.pressedKeys) {
                 v0->unk_37 = 14;
             }
         }
@@ -728,7 +728,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
         ov23_0224E124(v0);
         {
             VarsFlags *v2 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
-            sub_0206B3FC(v2, sub_0206B3EC(v2) + 1);
+            SystemVars_SetUndergroundItemsGivenAway(v2, SystemVars_GetUndergroundItemsGivenAway(v2) + 1);
         }
 
         GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(v0->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_31);
@@ -806,7 +806,7 @@ static void ov23_0224E2D8(SysTask *param0, void *param1)
         break;
     case 37:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v0->unk_37 = 38;
             }
         }
@@ -1084,7 +1084,7 @@ static void ov23_0224EC50(SysTask *param0, void *param1)
     case 2:
         v0->unk_2E = 12;
 
-        if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+        if (gSystem.pressedKeys & PAD_BUTTON_B) {
             ov23_0224DC40(v0, 8);
             v0->unk_34 = 8;
         } else if (v0->unk_35 == 5) {
@@ -1112,7 +1112,7 @@ static void ov23_0224EC50(SysTask *param0, void *param1)
         break;
     case 9:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if ((PAD_BUTTON_A)&gCoreSys.pressedKeys) {
+            if ((PAD_BUTTON_A)&gSystem.pressedKeys) {
                 v0->unk_34 = 4;
             }
         }
@@ -1170,7 +1170,7 @@ static void ov23_0224EC50(SysTask *param0, void *param1)
         break;
     case 21:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if ((PAD_BUTTON_A)&gCoreSys.pressedKeys) {
+            if ((PAD_BUTTON_A)&gSystem.pressedKeys) {
                 ov23_0224DC40(v0, 15);
                 v0->unk_34 = 15;
             }

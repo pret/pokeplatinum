@@ -35,7 +35,6 @@
 #include "overlay019/struct_ov19_021DEC04_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "enums.h"
 #include "font.h"
 #include "graphics.h"
@@ -43,19 +42,20 @@
 #include "heap.h"
 #include "narc.h"
 #include "render_oam.h"
+#include "sprite.h"
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 
 struct UnkStruct_ov19_021D61B0_t {
     SysTask *unk_00;
     SysTask *unk_04;
     SysTask *unk_08[4];
-    CellActorCollection *unk_18;
+    SpriteList *unk_18;
     G2dRenderer unk_1C;
     NNSG2dImagePaletteProxy unk_1A8;
     UnkStruct_02007768 *unk_1BC;
@@ -163,7 +163,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
 
             v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, 10);
 
-            SetMainCallback(NULL, NULL);
+            SetVBlankCallback(NULL, NULL);
             DisableHBlank();
             GXLayers_DisableEngineALayers();
             GXLayers_DisableEngineBLayers();
@@ -234,7 +234,7 @@ static void ov19_021D6474(SysTask *param0, void *param1)
 
 void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     SysTask_Done(param0->unk_00);
     SysTask_Done(param0->unk_04);
 
@@ -250,7 +250,7 @@ void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0)
     ov19_021D7A74(&(param0->unk_494));
     ov19_021DA384(&(param0->unk_1C8));
 
-    CellActorCollection_Delete(param0->unk_18);
+    SpriteList_Delete(param0->unk_18);
     Bg_FreeTilemapBuffer(param0->unk_1C0, 3);
     Bg_FreeTilemapBuffer(param0->unk_1C0, 2);
     Bg_FreeTilemapBuffer(param0->unk_1C0, 1);
@@ -396,7 +396,7 @@ static void ov19_021D6664(SysTask *param0, void *param1)
 
     ov19_021DAA80(&v0->unk_6604);
 
-    CellActorCollection_Update(v0->unk_18);
+    SpriteList_Update(v0->unk_18);
     RenderOam_Transfer();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -1914,7 +1914,7 @@ int ov19_021D7820(UnkStruct_ov19_021D61B0 *param0)
     }
 }
 
-void ov19_021D783C(CellActorResourceData *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, NNSG2dCellDataBank *param3, NNSG2dCellAnimBankData *param4, u32 param5)
+void ov19_021D783C(SpriteResourcesHeader *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, NNSG2dCellDataBank *param3, NNSG2dCellAnimBankData *param4, u32 param5)
 {
     param0->imageProxy = param1;
     param0->paletteProxy = param2;
@@ -1927,12 +1927,12 @@ void ov19_021D783C(CellActorResourceData *param0, NNSG2dImageProxy *param1, NNSG
     param0->isVRamTransfer = 0;
 }
 
-CellActor *ov19_021D785C(CellActorCollection *param0, CellActorResourceData *param1, u32 param2, u32 param3, u32 param4, int param5)
+Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 param2, u32 param3, u32 param4, int param5)
 {
-    CellActorInitParams v0;
-    CellActor *v1;
+    SpriteListTemplate v0;
+    Sprite *v1;
 
-    v0.collection = param0;
+    v0.list = param0;
     v0.resourceData = param1;
     v0.position.x = param2 * FX32_ONE;
     v0.position.y = param3 * FX32_ONE;
@@ -1944,23 +1944,23 @@ CellActor *ov19_021D785C(CellActorCollection *param0, CellActorResourceData *par
     {
         OSIntrMode v2 = OS_DisableInterrupts();
 
-        v1 = CellActorCollection_Add(&v0);
+        v1 = SpriteList_Add(&v0);
         OS_RestoreInterrupts(v2);
     }
 
     if (v1) {
-        CellActor_SetAnimateFlag(v1, 1);
-        CellActor_SetAnimSpeed(v1, (FX32_ONE * (2 / 2)));
+        Sprite_SetAnimateFlag(v1, 1);
+        Sprite_SetAnimSpeed(v1, (FX32_ONE * (2 / 2)));
     }
 
     return v1;
 }
 
-void ov19_021D78AC(CellActor *param0, u32 param1)
+void ov19_021D78AC(Sprite *param0, u32 param1)
 {
     OSIntrMode v0 = OS_DisableInterrupts();
 
-    CellActor_SetPriority(param0, param1);
+    Sprite_SetPriority(param0, param1);
     OS_RestoreInterrupts(v0);
 }
 

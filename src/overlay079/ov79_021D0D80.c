@@ -6,14 +6,11 @@
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay007/struct_ov7_0224F358.h"
 #include "overlay079/ov79_021D183C.h"
 #include "overlay079/ov79_021D20F4.h"
 #include "overlay079/struct_ov79_021D0E1C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
-#include "core_sys.h"
 #include "font.h"
 #include "game_options.h"
 #include "gx_layers.h"
@@ -24,15 +21,16 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_window.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_020158A8.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0208C098.h"
 #include "unk_02098FFC.h"
@@ -123,7 +121,7 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
     switch (param0->unk_04) {
     case 0:
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -179,7 +177,7 @@ static int ov79_021D0E1C(UnkStruct_ov79_021D0E1C *param0)
         sub_0201E530();
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
         GX_SetVisiblePlane(0);
@@ -198,7 +196,7 @@ static void ov79_021D0F7C(void *param0)
     UnkStruct_ov79_021D0E1C *v0 = (UnkStruct_ov79_021D0E1C *)param0;
 
     if (v0->unk_1B8 != NULL) {
-        OAMManager_ApplyAndResetBuffers();
+        SpriteSystem_TransferOam();
     }
 
     VramTransfer_Process();
@@ -221,13 +219,13 @@ static int ov79_021D0FB0(UnkStruct_ov79_021D0E1C *param0)
         { 0xFF, 0x0, 0x0, 0x0 }
     };
 
-    v0 = sub_02022664(v2);
+    v0 = TouchScreen_CheckRectanglePressed(v2);
 
     if (v0 != 0xffffffff) {
         return v0;
     }
 
-    v0 = sub_02022644(v2);
+    v0 = TouchScreen_CheckRectangleHeld(v2);
 
     if (v0 == 0xffffffff) {
         if (param0->unk_14 == 1) {
@@ -249,7 +247,7 @@ static int ov79_021D0FEC(UnkStruct_ov79_021D0E1C *param0)
 
     v1 = ov79_021D0FB0(param0);
 
-    if (gCoreSys.heldKeys != 0) {
+    if (gSystem.heldKeys != 0) {
         if (param0->unk_14 == 0) {
             v0 = ListMenu_ProcessInput(param0->unk_C4);
         }
@@ -264,14 +262,14 @@ static int ov79_021D0FEC(UnkStruct_ov79_021D0E1C *param0)
         return 0;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
         param0->unk_1A = 0xFF;
         param0->unk_10 = 0;
         return 1;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
 
         switch (v0) {
@@ -309,7 +307,7 @@ static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
 
     v0 = ListMenu_ProcessInput(param0->unk_C8);
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_B) {
+    if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
         ov79_021D1F60(param0);
         ov79_021D2214(param0, 0);
@@ -317,7 +315,7 @@ static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
         return 0;
     }
 
-    if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
+    if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Sound_PlayEffect(1500);
 
         switch (v0) {
@@ -377,7 +375,7 @@ static int ov79_021D11C0(UnkStruct_ov79_021D0E1C *param0)
         return 0;
     }
 
-    if ((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) == 0) {
+    if ((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) == 0) {
         return 0;
     }
 
@@ -417,7 +415,7 @@ static int ov79_021D122C(UnkStruct_ov79_021D0E1C *param0)
     case 5:
         ov79_021D196C(param0);
         ov79_021D1B24(param0, param0->unk_1B, 4);
-        SetMainCallback(ov79_021D0F7C, param0);
+        SetVBlankCallback(ov79_021D0F7C, param0);
         param0->unk_08 = 0;
         return 1;
     }
@@ -739,7 +737,7 @@ static void ov79_021D1618(UnkStruct_ov79_021D0E1C *param0)
 static void ov79_021D167C(UnkStruct_ov79_021D0E1C *param0)
 {
     int v0;
-    static const UnkStruct_ov7_0224F358 v1[] = {
+    static const SpriteTemplateFromResourceHeader v1[] = {
         { 0x0, 0x69, 0x28, 0x0, 0x0, 0x1, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
         { 0x0, 0x50, 0x12, 0x0, 0x1, 0x2, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
         { 0x0, 0x50, 0x8C, 0x0, 0x2, 0x2, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
@@ -748,13 +746,13 @@ static void ov79_021D167C(UnkStruct_ov79_021D0E1C *param0)
     };
 
     for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_1C0[v0] = sub_0200CA08(param0->unk_1B8, param0->unk_1BC, &v1[v0]);
-        CellActor_SetDrawFlag(param0->unk_1C0[v0], 1);
+        param0->unk_1C0[v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_1B8, param0->unk_1BC, &v1[v0]);
+        Sprite_SetDrawFlag(param0->unk_1C0[v0], 1);
     }
 
-    CellActor_SetAnimateFlag(param0->unk_1C0[0], 0);
-    CellActor_SetAnimateFlag(param0->unk_1C0[1], 1);
-    CellActor_SetAnimateFlag(param0->unk_1C0[2], 1);
+    Sprite_SetAnimateFlag(param0->unk_1C0[0], 0);
+    Sprite_SetAnimateFlag(param0->unk_1C0[1], 1);
+    Sprite_SetAnimateFlag(param0->unk_1C0[2], 1);
 
     for (v0 = 0; v0 < 5; v0++) {
         static const struct {
@@ -767,11 +765,11 @@ static void ov79_021D167C(UnkStruct_ov79_021D0E1C *param0)
             { 0x1A, 0xA5 }
         };
 
-        param0->unk_1CC[v0] = sub_0200CA08(param0->unk_1B8, param0->unk_1BC, &v1[3]);
+        param0->unk_1CC[v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_1B8, param0->unk_1BC, &v1[3]);
 
-        CellActor_SetDrawFlag(param0->unk_1CC[v0], 1);
-        CellActor_SetAnim(param0->unk_1CC[v0], v0 + 3);
-        SpriteActor_SetPositionXY(param0->unk_1CC[v0], v2[v0].unk_00, v2[v0].unk_02);
+        Sprite_SetDrawFlag(param0->unk_1CC[v0], 1);
+        Sprite_SetAnim(param0->unk_1CC[v0], v0 + 3);
+        Sprite_SetPositionXY(param0->unk_1CC[v0], v2[v0].unk_00, v2[v0].unk_02);
     }
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -786,19 +784,19 @@ static void ov79_021D167C(UnkStruct_ov79_021D0E1C *param0)
             { 0x80, 0x74 }
         };
 
-        param0->unk_1E0[v0] = sub_0200CA08(param0->unk_1B8, param0->unk_1BC, &v1[4]);
+        param0->unk_1E0[v0] = SpriteSystem_NewSpriteFromResourceHeader(param0->unk_1B8, param0->unk_1BC, &v1[4]);
 
-        CellActor_SetDrawFlag(param0->unk_1E0[v0], 1);
-        CellActor_SetAnim(param0->unk_1E0[v0], v0 * 3);
-        CellActor_SetAnimSpeed(param0->unk_1E0[v0], FX32_CONST(2));
-        CellActor_SetExplicitPalette(param0->unk_1E0[v0], v0 + 2);
-        CellActor_SetAnimateFlag(param0->unk_1E0[v0], 0);
-        SpriteActor_SetPositionXY(param0->unk_1E0[v0], v3[v0].unk_00, v3[v0].unk_02);
+        Sprite_SetDrawFlag(param0->unk_1E0[v0], 1);
+        Sprite_SetAnim(param0->unk_1E0[v0], v0 * 3);
+        Sprite_SetAnimSpeed(param0->unk_1E0[v0], FX32_CONST(2));
+        Sprite_SetExplicitPalette(param0->unk_1E0[v0], v0 + 2);
+        Sprite_SetAnimateFlag(param0->unk_1E0[v0], 0);
+        Sprite_SetPositionXY(param0->unk_1E0[v0], v3[v0].unk_00, v3[v0].unk_02);
     }
 
     param0->unk_1FC = sub_0209916C(param0->unk_1F8, 0, 231, 76, 0, 1, 0, 0);
 
-    SpriteActor_EnableObject(param0->unk_1FC->unk_04, 0);
+    ManagedSprite_SetDrawFlag(param0->unk_1FC->unk_04, 0);
 }
 
 static void ov79_021D17E8(UnkStruct_ov79_021D0E1C *param0)
@@ -808,14 +806,14 @@ static void ov79_021D17E8(UnkStruct_ov79_021D0E1C *param0)
     sub_02099370(param0->unk_1F8, param0->unk_1FC);
 
     for (v0 = 0; v0 < 6; v0++) {
-        sub_0200C7E4(param0->unk_1E0[v0]);
+        Sprite_Delete2(param0->unk_1E0[v0]);
     }
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0200C7E4(param0->unk_1CC[v0]);
+        Sprite_Delete2(param0->unk_1CC[v0]);
     }
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_0200C7E4(param0->unk_1C0[v0]);
+        Sprite_Delete2(param0->unk_1C0[v0]);
     }
 }

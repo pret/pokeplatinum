@@ -8,7 +8,6 @@
 
 #include "bg_window.h"
 #include "coins.h"
-#include "core_sys.h"
 #include "font.h"
 #include "heap.h"
 #include "list_menu.h"
@@ -21,6 +20,7 @@
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
@@ -493,7 +493,7 @@ static void ov5_021DC7E4(UnkStruct_ov5_021DC1A4 *param0)
     param0->unk_19C.pagerMode = PAGER_MODE_LEFT_RIGHT_PAD;
     param0->unk_19C.fontID = FONT_SYSTEM;
     param0->unk_19C.cursorType = 0;
-    param0->unk_19C.tmp = (void *)param0;
+    param0->unk_19C.parent = (void *)param0;
 
     return;
 }
@@ -550,7 +550,7 @@ static void ov5_021DC95C(SysTask *param0, void *param1)
         Sound_PlayEffect(1500);
     }
 
-    if ((gCoreSys.pressedKeysRepeatable & PAD_KEY_UP) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_DOWN) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_LEFT) || (gCoreSys.pressedKeysRepeatable & PAD_KEY_RIGHT)) {
+    if ((gSystem.pressedKeysRepeatable & PAD_KEY_UP) || (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) || (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) || (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT)) {
         ov5_021DCAF4(v2);
     }
 

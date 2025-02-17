@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
@@ -38,13 +38,13 @@ _006A:
     GoTo _012B
 
 _0070:
-    ScrCmd_234 0x800C
-    GoToIfEq 0x800C, 0, _00C8
-    GoToIfEq 0x800C, 1, _00D2
-    GoToIfEq 0x800C, 2, _00DC
-    GoToIfEq 0x800C, 3, _00E6
-    GoToIfEq 0x800C, 4, _00F0
-    GoToIfEq 0x800C, 5, _00FA
+    GetDayOfWeek 0x800C
+    GoToIfEq 0x800C, DAY_OF_WEEK_SUNDAY, _00C8
+    GoToIfEq 0x800C, DAY_OF_WEEK_MONDAY, _00D2
+    GoToIfEq 0x800C, DAY_OF_WEEK_TUESDAY, _00DC
+    GoToIfEq 0x800C, DAY_OF_WEEK_WEDNESDAY, _00E6
+    GoToIfEq 0x800C, DAY_OF_WEEK_THURSDAY, _00F0
+    GoToIfEq 0x800C, DAY_OF_WEEK_FRIDAY, _00FA
     GoTo _0104
 
 _00C8:
@@ -101,13 +101,13 @@ _0136:
     End
 
 _0146:
-    ScrCmd_234 0x800C
-    GoToIfEq 0x800C, 0, _019E
-    GoToIfEq 0x800C, 1, _01F2
-    GoToIfEq 0x800C, 2, _0246
-    GoToIfEq 0x800C, 3, _029A
-    GoToIfEq 0x800C, 4, _02EE
-    GoToIfEq 0x800C, 5, _0342
+    GetDayOfWeek 0x800C
+    GoToIfEq 0x800C, DAY_OF_WEEK_SUNDAY, _019E
+    GoToIfEq 0x800C, DAY_OF_WEEK_MONDAY, _01F2
+    GoToIfEq 0x800C, DAY_OF_WEEK_TUESDAY, _0246
+    GoToIfEq 0x800C, DAY_OF_WEEK_WEDNESDAY, _029A
+    GoToIfEq 0x800C, DAY_OF_WEEK_THURSDAY, _02EE
+    GoToIfEq 0x800C, DAY_OF_WEEK_FRIDAY, _0342
     GoTo _0396
 
 _019E:
@@ -117,7 +117,7 @@ _019E:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -135,7 +135,7 @@ _01F2:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -153,7 +153,7 @@ _0246:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -171,7 +171,7 @@ _029A:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -189,7 +189,7 @@ _02EE:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -207,7 +207,7 @@ _0342:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA
@@ -225,7 +225,7 @@ _0396:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     ScrCmd_243 0, 0x800C, 0x8000
-    ScrCmd_0A1
+    ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     GoToIfEq 0x800C, 0, _03EA

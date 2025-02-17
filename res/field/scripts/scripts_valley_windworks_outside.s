@@ -11,7 +11,7 @@
     ScriptEntry _01BF
     ScriptEntry _0022
     ScriptEntry _0201
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     End
@@ -22,7 +22,7 @@ _0024:
     CallIfUnset 0x10F, _00C5
     GoToIfLt 0x4089, 2, _007C
     GoToIfSet 0xAA8, _007C
-    ScrCmd_234 0x4000
+    GetDayOfWeek 0x4000
     GoToIfNe 0x4000, 5, _007C
     GoTo _0076
 
@@ -46,7 +46,7 @@ _008A:
 
 _00AD:
     SetFlag 0x20B
-    ScrCmd_065 4
+    RemoveObject 4
     ClearFlag 142
     End
 
@@ -80,13 +80,13 @@ _00CF:
     ScrCmd_169 77
     ScrCmd_16A 77
     Message 4
-    ScrCmd_065 0
+    RemoveObject 0
     CloseMessage
     ReleaseAll
     End
 
 _0133:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -114,7 +114,7 @@ _0150:
 _016C:
     BufferItemName 0, 0x1B6
     Message 6
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _01A2
     SetFlag 0x10F
     Call _00BB
@@ -156,7 +156,7 @@ _01BF:
     End
 
 _01FB:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -194,7 +194,7 @@ _0201:
     ApplyMovement 0xFF, _02C8
     ApplyMovement 6, _0324
     WaitMovement
-    ScrCmd_065 6
+    RemoveObject 6
     SetVar 0x411E, 2
     ReleaseAll
     End

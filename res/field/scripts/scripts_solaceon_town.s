@@ -15,7 +15,7 @@
     ScriptEntry _0034
     ScriptEntry _0032
     ScriptEntry _0168
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0032:
     End
@@ -168,7 +168,7 @@ _0168:
     CloseMessage
     ApplyMovement 18, _0210
     WaitMovement
-    ScrCmd_065 18
+    RemoveObject 18
     CallCommonScript 0x7FB
     SetVar 0x4073, 1
     ReleaseAll

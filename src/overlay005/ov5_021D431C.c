@@ -8,11 +8,10 @@
 
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/struct_ov5_021D3CE4_decl.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
 
 #include "camera.h"
 #include "field_task.h"
@@ -76,7 +75,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     switch (param1->unk_00) {
     case 0: {
         BOOL v1;
-        UnkStruct_ov5_021E1890 *v2;
+        MapProp *v2;
         UnkStruct_02055130 v3;
         int v4;
         int v5[] = {
@@ -120,7 +119,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
             param1->unk_1E = v7;
             v8 = ov5_021EFAA0(fieldSystem->unk_30);
 
-            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 1, v4, ov5_021E18BC(v2), ov5_021E18C0(v2), v8, v7, 1, 0);
+            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 1, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v8, v7, 1, 0);
         } else {
             GF_ASSERT(FALSE);
             return 1;
@@ -235,7 +234,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     switch (param1->unk_00) {
     case 0: {
         BOOL v1;
-        UnkStruct_ov5_021E1890 *v2;
+        MapProp *v2;
         UnkStruct_02055130 v3;
         int v4;
         int v5[] = {
@@ -277,7 +276,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
             param1->unk_1E = v7;
             v8 = ov5_021EFAA0(fieldSystem->unk_30);
 
-            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 1, v4, ov5_021E18BC(v2), ov5_021E18C0(v2), v8, v7, 1, 0);
+            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 1, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v8, v7, 1, 0);
         } else {
             GF_ASSERT(FALSE);
 
@@ -484,7 +483,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     switch (param1->unk_00) {
     case 0: {
         BOOL v1;
-        UnkStruct_ov5_021E1890 *v2;
+        MapProp *v2;
         UnkStruct_02055130 v3;
         int v4;
         int v5[] = { 130, 131, 425, 426 };
@@ -503,7 +502,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
             NNSG3dResTex *v7;
 
             v7 = ov5_021EFAA0(fieldSystem->unk_30);
-            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 2, v4, ov5_021E18BC(v2), ov5_021E18C0(v2), v7, 1, 1, 1);
+            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 2, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v7, 1, 1, 1);
         } else {
             GF_ASSERT(FALSE);
             return 1;
@@ -596,7 +595,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     switch (param1->unk_00) {
     case 0: {
         BOOL v1;
-        UnkStruct_ov5_021E1890 *v2;
+        MapProp *v2;
         UnkStruct_02055130 v3;
         int v4;
         int v5[] = { 130, 131, 425, 426 };
@@ -615,7 +614,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
             NNSG3dResTex *v7;
 
             v7 = ov5_021EFAA0(fieldSystem->unk_30);
-            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 2, v4, ov5_021E18BC(v2), ov5_021E18C0(v2), v7, 1, 1, 0);
+            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 2, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v7, 1, 1, 0);
         } else {
             GF_ASSERT(FALSE);
             return 1;
@@ -705,7 +704,7 @@ static BOOL ov5_021D4BC8(FieldTask *param0)
 void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, const u8 param3)
 {
     BOOL v0;
-    UnkStruct_ov5_021E1890 *v1;
+    MapProp *v1;
     UnkStruct_02055130 v2;
     int v3;
     int v4[] = {
@@ -742,7 +741,7 @@ void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, 
         v6 = ov5_021D3F94(fieldSystem->unk_50, v3);
         v7 = ov5_021EFAA0(fieldSystem->unk_30);
 
-        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, param3, v3, ov5_021E18BC(v1), ov5_021E18C0(v1), v7, v6, 1, 0);
+        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, param3, v3, MapProp_GetRenderObj(v1), MapProp_GetModel(v1), v7, v6, 1, 0);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -824,7 +823,7 @@ void ov5_021D4D68(FieldSystem *fieldSystem, const u8 param1)
 void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSystem *fieldSystem)
 {
     BOOL v0;
-    UnkStruct_ov5_021E1890 *v1;
+    MapProp *v1;
     UnkStruct_02055130 v2;
     int v3;
     int v4[] = { 303, 304 };
@@ -837,7 +836,7 @@ void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSys
     {
         NNSG3dRenderObj *v5;
 
-        v5 = ov5_021E18BC(v1);
+        v5 = MapProp_GetRenderObj(v1);
         v0 = ov5_021D3B24(v3, param2, 1, v5, fieldSystem->unk_50);
         GF_ASSERT(v0);
     }

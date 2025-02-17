@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/screen.h"
 #include "generated/sdat.h"
 
 #include "struct_defs/struct_0207C690.h"
@@ -11,7 +12,6 @@
 #include "overlay115/camera_angle.h"
 
 #include "camera.h"
-#include "core_sys.h"
 #include "easy3d_object.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -20,9 +20,9 @@
 #include "render_text.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
@@ -63,7 +63,7 @@ static void DWWarp_CameraMove(DistortionWorldWarp *warp);
 
 BOOL DWWarp_Init(OverlayManager *ovy, int *state)
 {
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -90,7 +90,7 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
     DWWarp_InitCamera(dww);
     StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_DISTORTION_WORLD_WARP);
 
-    gCoreSys.unk_65 = 0;
+    gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
@@ -99,7 +99,7 @@ BOOL DWWarp_Init(OverlayManager *ovy, int *state)
     RenderControlFlags_SetSpeedUpOnTouch(0);
 
     dww->task = SysTask_Start(DWWarp_Update, dww, 60000);
-    SetMainCallback(DWWarp_VBlankIntr, dww);
+    SetVBlankCallback(DWWarp_VBlankIntr, dww);
 
     return TRUE;
 }
@@ -159,7 +159,7 @@ BOOL DWWarp_Exit(OverlayManager *ovy, int *state)
     DWWarp_DeleteCamera(warp);
     DWWarp_Exit3D(warp->p3DCallback);
 
-    SetMainCallback(NULL, NULL);
+    SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     sub_0201E530();
     RenderControlFlags_SetCanABSpeedUpPrint(0);

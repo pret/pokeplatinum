@@ -12,7 +12,6 @@
 #include "overlay006/great_marsh_binoculars.h"
 #include "overlay006/ov6_022426AC.h"
 
-#include "core_sys.h"
 #include "field_map_change.h"
 #include "field_task.h"
 #include "field_transition.h"
@@ -20,6 +19,7 @@
 #include "location.h"
 #include "map_object.h"
 #include "player_avatar.h"
+#include "system.h"
 #include "system_flags.h"
 #include "unk_02005474.h"
 #include "unk_02056B30.h"
@@ -109,7 +109,7 @@ static BOOL Task_GreatMarshLookout(FieldTask *taskMan)
     case 5:
         lookout->timer++;
 
-        if ((lookout->timer >= 60) || (gCoreSys.pressedKeys & PAD_BUTTON_A)) {
+        if ((lookout->timer >= 60) || (gSystem.pressedKeys & PAD_BUTTON_A)) {
             GreatMarshBinoculars_SetNextLocationWithCoords(lookout->numCycles, lookout->binocularsData);
             lookout->nextLocation = GreatMarshBinoculars_GetLocation(lookout->binocularsData);
             Sound_PlayEffect(SEQ_SE_DP_KASYA);

@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_OV21_021D4340_H
 #define POKEPLATINUM_OV21_021D4340_H
 
+#include "constants/heap.h"
+
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D4340_1.h"
 #include "overlay021/struct_ov21_021D4660.h"
-
-#include "heap.h"
 
 BOOL ov21_021D4340(UnkStruct_ov21_021D4340_1 *param0);
 BOOL ov21_021D43A8(UnkStruct_ov21_021D4340_1 *param0);

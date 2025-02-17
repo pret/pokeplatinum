@@ -10,7 +10,7 @@
     ScriptEntry _0390
     ScriptEntry _03A7
     ScriptEntry _001E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     GetTimeOfDay 0x4000
@@ -45,7 +45,7 @@ _0079:
 
 _00A1:
     Message 1
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _00CA
     GoToIfEq 0x800C, 1, _00C4
     End
@@ -72,10 +72,10 @@ _00CA:
     ApplyMovement 26, _0280
     ApplyMovement 19, _02B4
     WaitMovement
-    ScrCmd_065 27
-    ScrCmd_065 28
-    ScrCmd_065 26
-    ScrCmd_065 19
+    RemoveObject 27
+    RemoveObject 28
+    RemoveObject 26
+    RemoveObject 19
     WaitTime 45, 0x800C
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 0x230, _015B
@@ -101,14 +101,14 @@ _0183:
     ApplyMovement 0xFF, _02DC
     WaitMovement
     Message 3
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _01E9
     GoToIfEq 0x800C, 1, _01C6
     End
 
 _01C6:
     Message 5
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 0, _01E9
     GoToIfEq 0x800C, 1, _01C6
     End
@@ -135,7 +135,7 @@ _0230:
     GoTo _0240
 
 _0240:
-    ScrCmd_065 20
+    RemoveObject 20
     SetFlag 0x107
     ReleaseAll
     End

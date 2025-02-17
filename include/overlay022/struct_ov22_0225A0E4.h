@@ -9,9 +9,9 @@
 #include "struct_decls/struct_020151A4_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "narc.h"
 #include "resource_collection.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 
@@ -33,7 +33,7 @@ typedef struct {
     NNSG2dCharacterData **unk_38;
     int unk_3C;
     BgConfig *unk_40;
-    CellActorCollection *unk_44;
+    SpriteList *unk_44;
     SpriteResourceCollection *unk_48[4];
     G2dRenderer unk_58;
     NARC *unk_5C;

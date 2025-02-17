@@ -18,24 +18,19 @@
 #include "generated/species_data_params.h"
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/poke_animation_settings.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
 #include "struct_defs/struct_02078B40.h"
 
 #include "overlay005/struct_ov5_021DE5D0.h"
 
-#include "cell_actor.h"
 #include "charcode_util.h"
 #include "flags.h"
 #include "heap.h"
@@ -50,12 +45,13 @@
 #include "party.h"
 #include "pokemon.h"
 #include "rtc.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_0200C6E4.h"
 #include "unk_02015F84.h"
 #include "unk_02017038.h"
 #include "unk_02028124.h"
@@ -124,7 +120,7 @@ static BOOL Pokemon_HasMove(Pokemon *mon, u16 moveID);
 static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, int flavor);
 static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon);
 static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon);
-static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
+static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapId);
 static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
@@ -291,7 +287,7 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
     v1 = ITEM_POKE_BALL;
     BoxPokemon_SetValue(boxMon, MON_DATA_POKEBALL, &v1);
 
-    if (monIVs < 32) {
+    if (monIVs < INIT_IVS_RANDOM) {
         BoxPokemon_SetValue(boxMon, MON_DATA_HP_IV, &monIVs);
         BoxPokemon_SetValue(boxMon, MON_DATA_ATK_IV, &monIVs);
         BoxPokemon_SetValue(boxMon, MON_DATA_DEF_IV, &monIVs);
@@ -3125,10 +3121,10 @@ static const int Unk_020F0588[] = {
     0x1
 };
 
-CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
+ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
 {
     SpriteTemplate v0;
-    CellActorData *v1;
+    ManagedSprite *v1;
     NARC *narc;
     UnkStruct_ov5_021DE5D0 v3;
     int v4 = 1;
@@ -3142,10 +3138,10 @@ CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, Pa
 
     narc = NARC_ctor(v3.unk_00, heapID);
 
-    SpriteRenderer_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
-    SpriteRenderer_LoadPalette(param2, 2, param0, param1, narc, v3.unk_08, 0, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
-    SpriteRenderer_LoadCellResObjFromOpenNarc(param0, param1, narc, v3.unk_0C, 0, 20007 + param7);
-    SpriteRenderer_LoadAnimResObjFromOpenNarc(param0, param1, narc, v3.unk_10, 0, 20007 + param7);
+    SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, narc, v3.unk_04, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 20015 + param7);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, PLTTBUF_MAIN_OBJ, param0, param1, narc, v3.unk_08, FALSE, v4, NNS_G2D_VRAM_TYPE_2DMAIN, 20010 + param7);
+    SpriteSystem_LoadCellResObjFromOpenNarc(param0, param1, narc, v3.unk_0C, FALSE, 20007 + param7);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(param0, param1, narc, v3.unk_10, FALSE, 20007 + param7);
     NARC_dtor(narc);
 
     v0 = Unk_020F05E4;
@@ -3157,12 +3153,12 @@ CellActorData *sub_02076994(SpriteRenderer *param0, SpriteGfxHandler *param1, Pa
     v0.resources[3] = 20007 + param7;
     v0.priority = Unk_020F0588[param7];
 
-    v1 = SpriteActor_LoadResources(param0, param1, &v0);
+    v1 = SpriteSystem_NewSprite(param0, param1, &v0);
 
-    CellActor_SetExplicitPaletteOffsetAutoAdjust(v1->unk_00, 0);
-    SpriteActor_SetSpritePositionXY(v1, param3, param4);
-    sub_0200D330(v1);
-    sub_0200D390(v1, 1);
+    Sprite_SetExplicitPaletteOffsetAutoAdjust(v1->sprite, 0);
+    ManagedSprite_SetPositionXY(v1, param3, param4);
+    ManagedSprite_TickFrame(v1);
+    ManagedSprite_SetAnimateFlag(v1, 1);
 
     return v1;
 }
@@ -4372,9 +4368,9 @@ BOOL Pokemon_IsEligibleForAction(Pokemon *mon)
     return sub_02005844(monSpecies, monForm);
 }
 
-void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
+void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapId)
 {
-    InitializeBoxPokemonAfterCapture(&mon->box, param1, monPokeball, param3, param4, param5);
+    InitializeBoxPokemonAfterCapture(&mon->box, trainerInfo, monPokeball, metLocation, metTerrain, heapId);
 
     if (monPokeball == ITEM_HEAL_BALL) {
         int monMaxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
@@ -4385,12 +4381,12 @@ void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *param1, int monPokeball, in
     }
 }
 
-static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
+static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapId heapId)
 {
-    UpdateBoxMonStatusAndTrainerInfo(boxMon, param1, 0, param3, param5);
+    UpdateBoxMonStatusAndTrainerInfo(boxMon, trainer, 0, metLocation, heapId);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &gGameVersion);
     BoxPokemon_SetValue(boxMon, MON_DATA_POKEBALL, &monPokeball);
-    BoxPokemon_SetValue(boxMon, MON_DATA_MET_TERRAIN, &param4);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MET_TERRAIN, &metTerrain);
 }
 
 void Pokemon_UpdateAfterCatch(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
@@ -4872,7 +4868,7 @@ void PokeSprite_LoadAnimationFrames(NARC *narc, SpriteAnimationFrame *frames, u1
     MI_CpuCopy8(data.faces[face].frames, frames, sizeof(SpriteAnimationFrame) * MAX_ANIMATION_FRAMES);
 }
 
-void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, Sprite *sprite, u16 species, int face, int reverse, int frame)
+void PokeSprite_LoadAnimation(NARC *narc, PokemonAnimationSys *animationSys, PokemonSprite *sprite, u16 species, int face, int reverse, int frame)
 {
     int faceType = (face == FACE_FRONT) ? 0 : 1;
 

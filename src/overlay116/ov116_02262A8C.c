@@ -19,11 +19,12 @@
 #include "heap.h"
 #include "inlines.h"
 #include "math.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 
 static const s16 Unk_ov116_02267BFC[] = {
@@ -514,7 +515,7 @@ void ov116_02262E50(SysTask *param0, void *param1)
 void ov116_02263158(SysTask *param0, void *param1)
 {
     UnkStruct_ov116_02262CB8 *v0 = param1;
-    int v1 = sub_0200D3E0(v0->unk_0C);
+    int v1 = ManagedSprite_GetAnimationFrame(v0->unk_0C);
 
     if ((IsScreenTransitionDone() == 0) || (v0->unk_2C->unk_2C.unk_00 == 1)) {
         SysTask_Done(param0);
@@ -528,7 +529,7 @@ void ov116_02263158(SysTask *param0, void *param1)
         fx32 v4;
 
         v0->unk_08 = 0;
-        sub_0200D638(v0->unk_0C, &v2, &v3);
+        ManagedSprite_GetPositionFxXY(v0->unk_0C, &v2, &v3);
 
         if (v0->unk_04 == 0) {
             ov116_02264764(&v0->unk_14, v3, v3 + FX32_CONST(32), 16);
@@ -543,8 +544,8 @@ void ov116_02263158(SysTask *param0, void *param1)
         BOOL v7;
 
         v7 = ov116_02264774(&v0->unk_14);
-        sub_0200D638(v0->unk_0C, &v5, &v6);
-        sub_0200D614(v0->unk_0C, v5, v0->unk_14.unk_00);
+        ManagedSprite_GetPositionFxXY(v0->unk_0C, &v5, &v6);
+        ManagedSprite_SetPositionFxXY(v0->unk_0C, v5, v0->unk_14.unk_00);
 
         if (v7) {
             v0->unk_00++;
@@ -581,15 +582,15 @@ static void ov116_0226323C(SysTask *param0, void *param1)
     case 0: {
         f32 v1, v2;
 
-        sub_0200D364(v0->unk_0C, 7);
-        sub_0200D474(v0->unk_0C, 0);
-        sub_0200D6A4(v0->unk_0C, 2);
-        sub_0200D788(v0->unk_0C, &v1, &v2);
+        ManagedSprite_SetAnim(v0->unk_0C, 7);
+        ManagedSprite_SetPriority(v0->unk_0C, 0);
+        ManagedSprite_SetAffineOverwriteMode(v0->unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_GetAffineScale(v0->unk_0C, &v1, &v2);
         ov116_02264764(&v0->unk_10, FX_F32_TO_FX32(v2), FX_F32_TO_FX32(2.0f), 2);
 
         {
             int v3 = (*v0->unk_2C) - 1;
-            sub_0200D430(v0->unk_0C, v3);
+            ManagedSprite_SetExplicitPaletteOffset(v0->unk_0C, v3);
         }
 
         v0->unk_00++;
@@ -599,7 +600,7 @@ static void ov116_0226323C(SysTask *param0, void *param1)
         BOOL v6;
 
         v6 = ov116_02264774(&v0->unk_10);
-        sub_0200D6E8(v0->unk_0C, 1.0f, FX_FX32_TO_F32(v0->unk_10.unk_00));
+        ManagedSprite_SetAffineScale(v0->unk_0C, 1.0f, FX_FX32_TO_F32(v0->unk_10.unk_00));
 
         if (v6) {
             v0->unk_00++;
@@ -613,7 +614,7 @@ static void ov116_0226323C(SysTask *param0, void *param1)
         BOOL v9;
 
         v9 = ov116_02264774(&v0->unk_10);
-        sub_0200D6E8(v0->unk_0C, 1.0f, FX_FX32_TO_F32(v0->unk_10.unk_00));
+        ManagedSprite_SetAffineScale(v0->unk_0C, 1.0f, FX_FX32_TO_F32(v0->unk_10.unk_00));
 
         if (v9) {
             v0->unk_00++;
@@ -640,7 +641,7 @@ static void ov116_0226323C(SysTask *param0, void *param1)
         break;
     case 5: {
         BOOL v10 = ov116_02264774(&v0->unk_10);
-        sub_0200D6E8(v0->unk_0C, 1.0f, FX_FX32_TO_F32(v0->unk_10.unk_00));
+        ManagedSprite_SetAffineScale(v0->unk_0C, 1.0f, FX_FX32_TO_F32(v0->unk_10.unk_00));
 
         if (v10) {
             v0->unk_00 = 4;
@@ -648,10 +649,10 @@ static void ov116_0226323C(SysTask *param0, void *param1)
         }
     } break;
     default:
-        sub_0200D6E8(v0->unk_0C, 1.0f, 1.0f);
-        sub_0200D364(v0->unk_0C, 5);
-        sub_0200D474(v0->unk_0C, 2);
-        sub_0200D6A4(v0->unk_0C, 0);
+        ManagedSprite_SetAffineScale(v0->unk_0C, 1.0f, 1.0f);
+        ManagedSprite_SetAnim(v0->unk_0C, 5);
+        ManagedSprite_SetPriority(v0->unk_0C, AFFINE_OVERWRITE_MODE_DOUBLE);
+        ManagedSprite_SetAffineOverwriteMode(v0->unk_0C, 0);
 
         v0->unk_30 = 0;
 

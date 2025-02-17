@@ -9,7 +9,7 @@
     ScriptEntry _0087
     ScriptEntry _048A
     ScriptEntry _04C8
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     SetFlag 0x9EB
@@ -80,7 +80,7 @@ _00FF:
     CallIfUnset 0x166, _045A
     CallIfSet 0x166, _0467
     SetFlag 0x166
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, 1, _0471
     SetTrainerFlag TRAINER_RICH_BOY_LIAM
     SetTrainerFlag TRAINER_LADY_CELESTE
@@ -160,7 +160,7 @@ _00FF:
     CloseMessage
     ApplyMovement 5, _0414
     WaitMovement
-    ScrCmd_065 5
+    RemoveObject 5
     ApplyMovement 2, _0408
     WaitMovement
     BufferNumber 0, 0x404C
@@ -190,7 +190,7 @@ _00FF:
     CloseMessage
     ApplyMovement 4, _0414
     WaitMovement
-    ScrCmd_065 4
+    RemoveObject 4
     ApplyMovement 2, _0408
     WaitMovement
     CallIfEq 0x8006, 0, _03E1
@@ -318,7 +318,7 @@ _047C:
     End
 
 _0484:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

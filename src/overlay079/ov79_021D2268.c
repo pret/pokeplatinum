@@ -3,9 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sprite_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_defs/struct_0200D0F4.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_020158A8.h"
 #include "struct_defs/struct_02098DE8.h"
 #include "struct_defs/struct_0209903C.h"
@@ -15,13 +13,9 @@
 #include "overlay079/ov79_021D3768.h"
 #include "overlay079/struct_ov79_021D3820.h"
 #include "overlay079/struct_ov79_021D38D0.h"
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "communication_system.h"
-#include "core_sys.h"
 #include "font.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -32,16 +26,17 @@
 #include "pokemon.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+#include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
-#include "unk_02017728.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_020989DC.h"
@@ -87,8 +82,8 @@ struct UnkStruct_ov79_021D29B4_t {
     int unk_08;
     UnkStruct_ov79_021D2C50 unk_0C;
     UnkStruct_ov79_021D2C50 unk_68;
-    CellActor *unk_C4;
-    Sprite *unk_C8;
+    Sprite *unk_C4;
+    PokemonSprite *unk_C8;
     UnkStruct_ov79_021D29E4 unk_CC[4];
 };
 
@@ -108,7 +103,7 @@ typedef struct {
     UnkStruct_0209916C *unk_60[2];
     BgConfig *unk_68;
     Window unk_6C;
-    SpriteRenderer *unk_7C;
+    SpriteSystem *unk_7C;
     UnkStruct_ov79_021D29B4 unk_80;
 } UnkStruct_ov79_021D2928;
 
@@ -196,7 +191,7 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
 
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         DisableHBlank();
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
@@ -214,7 +209,7 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
             return 0;
         }
 
-        SetMainCallback(ov79_021D252C, v0);
+        SetVBlankCallback(ov79_021D252C, v0);
         break;
     case 2:
         if (v0->unk_04++ < 4) {
@@ -252,7 +247,7 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
     case 7:
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        SetMainCallback(NULL, NULL);
+        SetVBlankCallback(NULL, NULL);
         GXLayers_DisableEngineALayers();
         GXLayers_DisableEngineBLayers();
 
@@ -332,7 +327,7 @@ static void ov79_021D252C(void *param0)
     Bg_RunScheduledUpdates(v0->unk_68);
     sub_02008A94(v0->unk_40.unk_04);
 
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
     VramTransfer_Process();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
@@ -534,10 +529,10 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
 {
     VramTransfer_New(32, param0->unk_00);
 
-    param0->unk_7C = sub_0200C6E4(param0->unk_00);
+    param0->unk_7C = SpriteSystem_Alloc(param0->unk_00);
 
     {
-        UnkStruct_ov104_0224133C v0 = {
+        RenderOamTemplate v0 = {
             0,
             128,
             0,
@@ -547,7 +542,7 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
             0,
             31,
         };
-        UnkStruct_ov104_022412F4 v1 = {
+        CharTransferTemplateWithModes v1 = {
             3,
             0,
             0,
@@ -555,14 +550,14 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
             GX_OBJVRAMMODE_CHAR_1D_32K,
         };
 
-        sub_0200C73C(param0->unk_7C, &v0, &v1, 32);
+        SpriteSystem_Init(param0->unk_7C, &v0, &v1, 32);
         RenderOam_ClearMain(param0->unk_00);
     }
 
     param0->unk_5C = sub_02098FFC(param0->unk_00, 2, 2, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
     param0->unk_60[0] = sub_0209916C(param0->unk_5C, param0->unk_10->unk_08, 100, 90, 0, 1, 0, 0);
 
-    SpriteActor_EnableObject(param0->unk_60[0]->unk_04, 0);
+    ManagedSprite_SetDrawFlag(param0->unk_60[0]->unk_04, 0);
 
     if (CommSys_IsInitialized()) {
         sub_02039734();
@@ -575,7 +570,7 @@ static void ov79_021D2908(UnkStruct_ov79_021D2928 *param0)
 {
     sub_02099370(param0->unk_5C, param0->unk_60[0]);
     sub_0209903C(param0->unk_5C);
-    sub_0200C8D4(param0->unk_7C);
+    SpriteSystem_Free(param0->unk_7C);
     VramTransfer_Free();
 }
 
@@ -643,7 +638,7 @@ static int ov79_021D2A04(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov79_021D29B4));
 
-    param1->unk_C4 = param0->unk_60[0]->unk_04->unk_00;
+    param1->unk_C4 = param0->unk_60[0]->unk_04->sprite;
     param1->unk_C8 = param0->unk_40.unk_18;
     param1->unk_08 = param0->unk_30.unk_09;
     param1->unk_00 = 24;
@@ -658,12 +653,12 @@ static int ov79_021D2A04(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
     param1->unk_0C.unk_58 = 24;
     param1->unk_0C.unk_54 = 0;
 
-    CellActor_SetPosition(param1->unk_C4, &param1->unk_0C.unk_00);
+    Sprite_SetPosition(param1->unk_C4, &param1->unk_0C.unk_00);
     VEC_Subtract(&param1->unk_0C.unk_00, &param1->unk_0C.unk_0C, &v0);
     ov79_021D2268(&param1->unk_0C.unk_3C, &v0, FX32_CONST(24));
 
-    CellActor_SetAffineOverwriteMode(param1->unk_C4, 1);
-    CellActor_SetAffineScale(param1->unk_C4, &param1->unk_0C.unk_24);
+    Sprite_SetAffineOverwriteMode(param1->unk_C4, 1);
+    Sprite_SetAffineScale(param1->unk_C4, &param1->unk_0C.unk_24);
 
     ov79_021D29B4(param1, 0, ov79_021D2C50);
     ov79_021D29B4(param1, 1, ov79_021D2D7C);
@@ -750,7 +745,7 @@ static int ov79_021D2C08(UnkStruct_ov79_021D2928 *param0)
         return 7;
     }
 
-    if (((gCoreSys.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) == 0) && (param0->unk_0E++ < 90)) {
+    if (((gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) == 0) && (param0->unk_0E++ < 90)) {
         return 7;
     }
 
@@ -777,9 +772,9 @@ static void ov79_021D2C50(SysTask *param0, void *param1)
     VEC_Subtract(&v2->unk_24, &v2->unk_30, &v3);
 
     ov79_021D2268(&v2->unk_3C, &v3, FX32_CONST(v0->unk_04));
-    CellActor_SetDrawFlag(v1->unk_C4, 1);
-    CellActor_SetAffineOverwriteMode(v1->unk_C4, 1);
-    CellActor_SetAffineScale(v1->unk_C4, &v2->unk_24);
+    Sprite_SetDrawFlag(v1->unk_C4, 1);
+    Sprite_SetAffineOverwriteMode(v1->unk_C4, 1);
+    Sprite_SetAffineScale(v1->unk_C4, &v2->unk_24);
     SysTask_SetCallback(param0, ov79_021D2CEC);
 }
 
@@ -793,13 +788,13 @@ static void ov79_021D2CEC(SysTask *param0, void *param1)
     v3.x = v2->unk_24.x - FX_Mul(v2->unk_3C.x, v0->unk_0C);
     v3.y = v2->unk_24.y - FX_Mul(v2->unk_3C.y, v0->unk_0C);
 
-    CellActor_SetAffineScale(v1->unk_C4, &v3);
+    Sprite_SetAffineScale(v1->unk_C4, &v3);
 
     v0->unk_0C += FX32_ONE;
     v0->unk_04--;
 
     if (v0->unk_04 == 0) {
-        CellActor_SetDrawFlag(v1->unk_C4, 0);
+        Sprite_SetDrawFlag(v1->unk_C4, 0);
         ov79_021D29E4(v0);
     }
 }
@@ -824,7 +819,7 @@ static void ov79_021D2D7C(SysTask *param0, void *param1)
     v2->unk_48 = FX_Div(FX32_CONST(180), FX32_CONST(v0->unk_04));
     v2->unk_4C = FX_Div(FX32_CONST(1), FX32_CONST(v0->unk_04));
 
-    CellActor_SetPosition(v1->unk_C4, &v2->unk_00);
+    Sprite_SetPosition(v1->unk_C4, &v2->unk_00);
     SysTask_SetCallback(param0, ov79_021D2E74);
 }
 
@@ -844,7 +839,7 @@ static void ov79_021D2E74(SysTask *param0, void *param1)
     v5 = FX32_ONE;
     v3.y += FX_Mul(v4, v5);
 
-    CellActor_SetPosition(v1->unk_C4, &v3);
+    Sprite_SetPosition(v1->unk_C4, &v3);
 
     v0->unk_0C += FX32_ONE;
     v0->unk_04--;
