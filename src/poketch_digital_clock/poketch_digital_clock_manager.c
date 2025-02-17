@@ -24,15 +24,14 @@
 
 typedef struct {
     u8 appTasktaskID;
-    u8 taskStage;
+    u8 state;
     u8 shutdown;
-    u8 unk_03;
-    u8 unk_04;
+    u8 unused_0; // Assigned value of 1
+    u8 unused_1;
     u8 hour;
     u8 minute;
     u8 backlightChange;
-    u32 unk_08;
-    u32 unk_0C;
+    u8 unused_2[8];
     PoketchButtonManager *buttonManager;
     ClockData clockData;
     DisplayData *displayData;
@@ -66,11 +65,10 @@ static BOOL PoketchDigitalClock_Init(void **appData, PoketchSystem *poketchSys, 
     AppData *newAppData = (AppData *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(AppData));
 
     if (newAppData != NULL) {
-        if (PoketchDigitalClock_SetupAppData(newAppData, poketchSys, bgConfig, appID)) {
-            if (SysTask_Start(PoketchDigitalClock_AppTaskRunner, newAppData, 1) != NULL) {
-                *appData = newAppData;
-                return TRUE;
-            }
+        if (PoketchDigitalClock_SetupAppData(newAppData, poketchSys, bgConfig, appID)
+        &&  SysTask_Start(PoketchDigitalClock_AppTaskRunner, newAppData, 1) != NULL) {
+            *appData = newAppData;
+            return TRUE;
         }
 
         Heap_FreeToHeap(newAppData);
@@ -83,9 +81,9 @@ static BOOL PoketchDigitalClock_SetupAppData(AppData *appData, PoketchSystem *po
 {
     if (PoketchDigitalClock_SetupDisplayData(&(appData->displayData), &(appData->clockData), bgConfig)) {
         appData->appTasktaskID = APP_TASK_LOAD_APP;
-        appData->taskStage = 0;
+        appData->state = 0;
         appData->shutdown = FALSE;
-        appData->unk_03 = 1;
+        appData->unused_0 = 1;
         appData->backlightChange = FALSE;
         appData->clockData.backlightActive = FALSE;
 
@@ -140,7 +138,6 @@ static void PoketchDigitalClock_AppTaskRunner(SysTask *sysTask, void *callbackDa
             SysTask_Done(sysTask);
             PoketchSystem_NotifyAppUnloaded(appData->poketchSys);
         }
-    } else {
     }
 }
 
@@ -173,15 +170,15 @@ static void PoketchDigitalClock_SetAppTaskFunction(AppData *appData, u32 taskID)
         appData->appTasktaskID = APP_TASK_UNLOAD_APP;
     }
 
-    appData->taskStage = 0;
+    appData->state = 0;
 }
 
 static BOOL PoketchDigitalClock_LoadApp(AppData *appData)
 {
-    switch (appData->taskStage) {
+    switch (appData->state) {
     case 0:
         PoketchDigitalClock_StartTask(appData->displayData, SYS_TASK_FUNC_SETUP_BACKGROUND);
-        appData->taskStage++;
+        appData->state++;
         break;
     case 1:
         if (PoketchDigitalClock_TaskIsNotActive(appData->displayData, SYS_TASK_FUNC_SETUP_BACKGROUND)) {
@@ -221,10 +218,10 @@ static BOOL PoketchDigitalClock_UpdateApp(AppData *appData)
 
 static BOOL PoketchDigitalClock_UnloadApp(AppData *appData)
 {
-    switch (appData->taskStage) {
+    switch (appData->state) {
     case 0:
         PoketchDigitalClock_StartTask(appData->displayData, SYS_TASK_FUNC_FREE_BACKGROUND);
-        appData->taskStage++;
+        appData->state++;
         break;
 
     case 1:

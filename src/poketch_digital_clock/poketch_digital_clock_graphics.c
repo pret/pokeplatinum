@@ -19,8 +19,6 @@
 #define PRE_POKETCH_DISPLAY_NARC_TILES_IDX   23
 #define PRE_POKETCH_DISPLAY_NARC_TILEMAP_IDX 24
 
-#define TILE_SIZE_BYTES 2
-
 #define POKETCH_CLOCK_DIGIT_WIDTH     4
 #define POKETCH_CLOCK_DIGIT_HEIGHT    9
 #define POKETCH_CLOCK_DIGIT_GAP       1
@@ -30,15 +28,8 @@
 #define POKETCH_CLOCK_MINUETS_DIGIT_Y 7
 
 #define POKETCH_DIGIT_TILEMAP_WIDTH      (POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS)
-#define POKETCH_DIGIT_TILEMAP_HEIGHT     POKETCH_CLOCK_DIGIT_HEIGHT
+#define POKETCH_DIGIT_TILEMAP_HEIGHT     (POKETCH_CLOCK_DIGIT_HEIGHT)
 #define POKETCH_DIGIT_TILEMAP_SIZE_BYTES (POKETCH_DIGIT_TILEMAP_WIDTH * POKETCH_DIGIT_TILEMAP_HEIGHT)
-
-struct DisplayData_t {
-    const ClockData *clockData;
-    BgConfig *bgConfig;
-    u32 taskList[2 + NUM_TASK_SLOTS];
-    u16 digitsTilemap[POKETCH_DIGIT_TILEMAP_SIZE_BYTES];
-};
 
 static void PoketchDigitalClock_CopyDigitTilemap(const u16 *rawScreenData, u16 *dst);
 static void PoketchDigitalClock_EndTask(PoketchTaskManager *taskManager);
@@ -47,6 +38,14 @@ static void PoketchDigitalClock_UpdateClockDigits(SysTask *sysTask, void *taskMa
 static void PoketchDigitalClock_ToggleBacklightPalette(SysTask *sysTask, void *taskManager);
 static void PoketchDigitalClock_FreeBackground(SysTask *sysTask, void *taskManager);
 static void PoketchDigitalClock_DrawClockDigits(DisplayData *displayData);
+
+struct DisplayData_t {
+    const ClockData *clockData;
+    BgConfig *bgConfig;
+    u32 taskList[2 + NUM_TASK_SLOTS];
+    u16 digitsTilemap[POKETCH_DIGIT_TILEMAP_SIZE_BYTES];
+};
+
 
 BOOL PoketchDigitalClock_SetupDisplayData(DisplayData **displayData, const ClockData *clockData, BgConfig *bgConfig)
 {
