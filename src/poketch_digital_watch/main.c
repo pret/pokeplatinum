@@ -4,7 +4,7 @@
 
 #include "overlay025/poketch_button.h"
 #include "overlay025/poketch_system.h"
-#include "poketch_digital_clock/poketch_digital_clock_graphics.h"
+#include "poketch_digital_watch/display.h"
 
 #include "bg_window.h"
 #include "heap.h"
@@ -81,7 +81,7 @@ static BOOL Init(void **appData, PoketchSystem *poketchSys, BgConfig *bgConfig, 
 
 static BOOL SetupAppData(AppData *appData, PoketchSystem *poketchSys, BgConfig *bgConfig, u32 appID)
 {
-    if (PoketchDigitalClock_SetupDisplayManager(&(appData->displayManager), &(appData->watchData), bgConfig)) {
+    if (PoketchDigitalWatch_SetupDisplayManager(&(appData->displayManager), &(appData->watchData), bgConfig)) {
         appData->activeTask = APP_TASK_LOAD;
         appData->state = 0;
         appData->shutdown = FALSE;
@@ -117,7 +117,7 @@ static BOOL SetupAppData(AppData *appData, PoketchSystem *poketchSys, BgConfig *
 
 static void FreeAppData(AppData *appData)
 {
-    PoketchDigitalClock_FreeDisplayManager(appData->displayManager);
+    PoketchDigitalWatch_FreeDisplayManager(appData->displayManager);
     PoketchButtonManager_Free(appData->buttonManager);
     Heap_FreeToHeap(appData);
 }
@@ -179,11 +179,11 @@ static BOOL LoadApp(AppData *appData)
 {
     switch (appData->state) {
     case 0:
-        PoketchDigitalClock_StartDisplayTask(appData->displayManager, POKETCH_TASK_SETUP_BACKGROUND);
+        PoketchDigitalWatch_StartDisplayTask(appData->displayManager, POKETCH_TASK_SETUP_BACKGROUND);
         appData->state++;
         break;
     case 1:
-        if (PoketchDigitalClock_DisplayTaskIsNotActive(appData->displayManager, POKETCH_TASK_SETUP_BACKGROUND)) {
+        if (PoketchDigitalWatch_DisplayTaskIsNotActive(appData->displayManager, POKETCH_TASK_SETUP_BACKGROUND)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
             ChangeActiveTask(appData, APP_TASK_UPDATE);
         }
@@ -202,16 +202,16 @@ static BOOL UpdateApp(AppData *appData)
 
     if (appData->backlightChange) {
         appData->backlightChange = FALSE;
-        PoketchDigitalClock_StartDisplayTask(appData->displayManager, POKETCH_TASK_TOGGLE_BACKLIGHT);
+        PoketchDigitalWatch_StartDisplayTask(appData->displayManager, POKETCH_TASK_TOGGLE_BACKLIGHT);
     }
 
-    if (PoketchDigitalClock_DisplayTaskIsNotActive(appData->displayManager, POKETCH_TASK_UPDATE_WATCH_DIGITS)) {
+    if (PoketchDigitalWatch_DisplayTaskIsNotActive(appData->displayManager, POKETCH_TASK_UPDATE_WATCH_DIGITS)) {
         appData->minute = appData->watchData.time.minute;
         appData->hour = appData->watchData.time.hour;
         GetCurrentTime(&(appData->watchData.time));
 
         if ((appData->minute != appData->watchData.time.minute) || (appData->hour != appData->watchData.time.hour)) {
-            PoketchDigitalClock_StartDisplayTask(appData->displayManager, POKETCH_TASK_UPDATE_WATCH_DIGITS);
+            PoketchDigitalWatch_StartDisplayTask(appData->displayManager, POKETCH_TASK_UPDATE_WATCH_DIGITS);
         }
     }
 
@@ -222,12 +222,12 @@ static BOOL UnloadApp(AppData *appData)
 {
     switch (appData->state) {
     case 0:
-        PoketchDigitalClock_StartDisplayTask(appData->displayManager, POKETCH_TASK_FREE_BACKGROUND);
+        PoketchDigitalWatch_StartDisplayTask(appData->displayManager, POKETCH_TASK_FREE_BACKGROUND);
         appData->state++;
         break;
 
     case 1:
-        if (PoketchDigitalClock_NoActiveDisplayTasks(appData->displayManager)) {
+        if (PoketchDigitalWatch_NoActiveDisplayTasks(appData->displayManager)) {
             return TRUE;
         }
 

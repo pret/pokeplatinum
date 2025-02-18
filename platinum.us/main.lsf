@@ -881,8 +881,8 @@ Overlay overlay25
 Overlay poketch_digital_clock
 {
 	After overlay25
-	Object main.nef.p/src_poketch_digital_clock_poketch_digital_clock_manager.c.o
-	Object main.nef.p/src_poketch_digital_clock_poketch_digital_clock_graphics.c.o
+	Object main.nef.p/src_poketch_digital_watch_main.c.o
+	Object main.nef.p/src_poketch_digital_watch_display.c.o
 }
 
 Overlay overlay27

@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_POKETCH_DIGITAL_CLOCK_GRAPHICS_H
-#define POKEPLATINUM_POKETCH_DIGITAL_CLOCK_GRAPHICS_H
+#ifndef POKEPLATINUM_POKETCH_DIGITAL_WATCH_DISPLAY_H
+#define POKEPLATINUM_POKETCH_DIGITAL_WATCH_DISPLAY_H
 
 #include "bg_window.h"
 
@@ -41,10 +41,10 @@ typedef struct DisplayManager {
     u16 digitsTilemap[POKETCH_DIGIT_TILEMAP_SIZE_BYTES];
 } DisplayManager;
 
-BOOL PoketchDigitalClock_SetupDisplayManager(DisplayManager **displayManager, const WatchData *watchData, BgConfig *bgConfig);
-void PoketchDigitalClock_FreeDisplayManager(DisplayManager *displayManager);
-void PoketchDigitalClock_StartDisplayTask(DisplayManager *displayManager, u32 taskID);
-BOOL PoketchDigitalClock_DisplayTaskIsNotActive(DisplayManager *displayManager, u32 taskID);
-BOOL PoketchDigitalClock_NoActiveDisplayTasks(DisplayManager *displayManager);
+BOOL PoketchDigitalWatch_SetupDisplayManager(DisplayManager **displayManager, const WatchData *watchData, BgConfig *bgConfig);
+void PoketchDigitalWatch_FreeDisplayManager(DisplayManager *displayManager);
+void PoketchDigitalWatch_StartDisplayTask(DisplayManager *displayManager, u32 taskID);
+BOOL PoketchDigitalWatch_DisplayTaskIsNotActive(DisplayManager *displayManager, u32 taskID);
+BOOL PoketchDigitalWatch_NoActiveDisplayTasks(DisplayManager *displayManager);
 
-#endif // POKEPLATINUM_POKETCH_DIGITAL_CLOCK_GRAPHICS_H
+#endif // POKEPLATINUM_POKETCH_DIGITAL_WATCH_DISPLAY_H

@@ -1,4 +1,4 @@
-#include "poketch_digital_clock/poketch_digital_clock_graphics.h"
+#include "poketch_digital_watch/display.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -19,7 +19,7 @@ static void ToggleBacklightPalette(SysTask *sysTask, void *taskManager);
 static void FreeBackground(SysTask *sysTask, void *taskManager);
 static void DrawClockDigits(DisplayManager *displayManager);
 
-BOOL PoketchDigitalClock_SetupDisplayManager(DisplayManager **displayManager, const WatchData *watchData, BgConfig *bgConfig)
+BOOL PoketchDigitalWatch_SetupDisplayManager(DisplayManager **displayManager, const WatchData *watchData, BgConfig *bgConfig)
 {
     DisplayManager *newDisplayManager = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(DisplayManager));
 
@@ -63,7 +63,7 @@ static void CopyDigitTilemap(const u16 *rawScreenData, u16 *dst)
     }
 }
 
-void PoketchDigitalClock_FreeDisplayManager(DisplayManager *displayManager)
+void PoketchDigitalWatch_FreeDisplayManager(DisplayManager *displayManager)
 {
     if (displayManager != NULL) {
         Heap_FreeToHeap(displayManager);
@@ -78,17 +78,17 @@ static const PoketchTask sDisplayTasks[] = {
     { 0, NULL, 0 }
 };
 
-void PoketchDigitalClock_StartDisplayTask(DisplayManager *displayManager, u32 taskID)
+void PoketchDigitalWatch_StartDisplayTask(DisplayManager *displayManager, u32 taskID)
 {
     PoketchTask_Start(sDisplayTasks, taskID, displayManager, displayManager->watchData, displayManager->taskList, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchDigitalClock_DisplayTaskIsNotActive(DisplayManager *displayManager, u32 taskID)
+BOOL PoketchDigitalWatch_DisplayTaskIsNotActive(DisplayManager *displayManager, u32 taskID)
 {
     return PoketchTask_TaskIsNotActive(displayManager->taskList, taskID);
 }
 
-BOOL PoketchDigitalClock_NoActiveDisplayTasks(DisplayManager *displayManager)
+BOOL PoketchDigitalWatch_NoActiveDisplayTasks(DisplayManager *displayManager)
 {
     return PoketchTask_NoActiveTasks(displayManager->taskList);
 }
