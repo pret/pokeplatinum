@@ -98,7 +98,7 @@ _00FF:
     CloseMessage
     StartTrainerBattle TRAINER_MAID_BELINDA
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     AddVar 0x8005, 0x404D
     Message 16
     CloseMessage
@@ -110,7 +110,7 @@ _00FF:
     CloseMessage
     StartTrainerBattle TRAINER_MAID_SOPHIE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     AddVar 0x8005, 0x404D
     Message 18
     CloseMessage
@@ -122,7 +122,7 @@ _00FF:
     CloseMessage
     StartTrainerBattle TRAINER_MAID_EMILY
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     AddVar 0x8005, 0x404D
     Message 20
     CloseMessage
@@ -134,7 +134,7 @@ _00FF:
     CloseMessage
     StartTrainerBattle TRAINER_MAID_ELENA
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     AddVar 0x8005, 0x404D
     Message 22
     CloseMessage
@@ -154,7 +154,7 @@ _00FF:
     CloseMessage
     StartTrainerBattle TRAINER_MAID_CLARE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     AddVar 0x8005, 0x404D
     Message 24
     CloseMessage
@@ -182,7 +182,7 @@ _00FF:
     CloseMessage
     StartTrainerBattle 0x8007
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     SetTrainerFlag TRAINER_RICH_BOY_LIAM
     SetTrainerFlag TRAINER_LADY_CELESTE
     CallIfEq 0x8006, 0, _03D7

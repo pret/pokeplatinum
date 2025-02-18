@@ -37,7 +37,7 @@ _0064:
 _0074:
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00E1
+    GoToIfEq 0x800C, FALSE, _00E1
     Message 2
     SetVar 0x8004, 1
     SetVar 0x8005, 1

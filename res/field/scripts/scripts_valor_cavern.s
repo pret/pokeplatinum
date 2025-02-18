@@ -47,9 +47,9 @@ _0077:
     StartLegendaryBattle SPECIES_AZELF, 50
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00CD
+    GoToIfEq 0x800C, FALSE, _00CD
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _00C2
+    GoToIfEq 0x800C, TRUE, _00C2
     SetFlag 0x126
     ReleaseAll
     End
@@ -79,7 +79,7 @@ _00D3:
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_SATURN_VALOR_CAVERN
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0144
+    GoToIfEq 0x800C, FALSE, _0144
     Message 2
     CloseMessage
     FadeScreen 6, 1, 0, 0

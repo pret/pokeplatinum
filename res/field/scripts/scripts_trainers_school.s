@@ -192,7 +192,7 @@ _022E:
 
 _023C:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02DE
+    GoToIfEq 0x800C, FALSE, _02DE
     SetFlag 0x10C
     GoToIfSet 0x10D, _0274
     GoToIfUnset 0x10D, _0269
@@ -286,7 +286,7 @@ _0361:
 
 _036F:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _03D3
+    GoToIfEq 0x800C, FALSE, _03D3
     SetFlag 0x10D
     GoToIfSet 0x10C, _03BD
     GoToIfUnset 0x10C, _03B2

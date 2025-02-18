@@ -359,26 +359,26 @@ _057A:
     CloseMessage
     ScrCmd_06D 2, 15
     GetPlayerStarterSpecies 0x800C
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _05BB
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _05C5
-    GoTo _05B1
+    GoToIfEq 0x800C, SPECIES_TURTWIG, Route201_StartFirstBattleTurtwig
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, Route201_StartFirstBattleChimchar
+    GoTo Route201_StartFirstBattlePiplup
     End
 
-_05B1:
-    StartFirstBattle 0x352
+Route201_StartFirstBattlePiplup:
+    StartFirstBattle TRAINER_RIVAL_ROUTE_201_PIPLUP
     GoTo _05CF
 
-_05BB:
-    StartFirstBattle 0x353
+Route201_StartFirstBattleTurtwig:
+    StartFirstBattle TRAINER_RIVAL_ROUTE_201_TURTWIG
     GoTo _05CF
 
-_05C5:
-    StartFirstBattle 0x354
+Route201_StartFirstBattleChimchar:
+    StartFirstBattle TRAINER_RIVAL_ROUTE_201_CHIMCHAR
     GoTo _05CF
 
 _05CF:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _05F5
+    GoToIfEq 0x800C, FALSE, _05F5
     ScrCmd_062 2
     BufferRivalName 0
     BufferPlayerName 1

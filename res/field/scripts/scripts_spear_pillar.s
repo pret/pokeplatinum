@@ -127,7 +127,7 @@ _0181:
 
 _01A6:
     Call _01CA
-    GoToIfEq 0x800C, 0, _01DB
+    GoToIfEq 0x800C, FALSE, _01DB
     SetVar 0x4098, 1
     Message 2
     WaitABXPadPress
@@ -216,10 +216,10 @@ _0249:
     Message 8
     Message 9
     CloseMessage
-    Call _0424
-    StartTagBattle 0x8004, 0x210, 0x197
+    Call SpearPillar_SetRivalPartnerTeam
+    StartTagBattle 0x8004, TRAINER_COMMANDER_MARS_SPEAR_PILLAR, TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02D0
+    GoToIfEq 0x800C, FALSE, _02D0
     Call _0456
     BufferRivalName 0
     BufferPlayerName 1
@@ -336,14 +336,14 @@ _041C:
     MoveAction_034
     EndMovement
 
-_0424:
+SpearPillar_SetRivalPartnerTeam:
     GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, 0x26C
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0454
-    SetVar 0x8004, 0x26B
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _0454
-    SetVar 0x8004, 0x25F
-_0454:
+    SetVar 0x8004, TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, SpearPillar_Return
+    SetVar 0x8004, TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG
+    GoToIfEq 0x800C, SPECIES_TURTWIG, SpearPillar_Return
+    SetVar 0x8004, TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP
+SpearPillar_Return:
     Return
 
 _0456:

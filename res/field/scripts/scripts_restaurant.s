@@ -231,7 +231,7 @@ _03E7:
     CloseMessage
     StartTrainerBattle TRAINER_ARTIST_ISMAEL, TRAINER_BEAUTY_HARLEY
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_ARTIST_ISMAEL
     SetTrainerFlag TRAINER_BEAUTY_HARLEY
     Call _04CF
@@ -353,7 +353,7 @@ _0591:
     CloseMessage
     StartTrainerBattle TRAINER_ARTIST_ISMAEL, TRAINER_BEAUTY_HARLEY
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_ARTIST_ISMAEL
     SetTrainerFlag TRAINER_BEAUTY_HARLEY
     Call _0679
@@ -475,7 +475,7 @@ _073B:
     CloseMessage
     StartTrainerBattle TRAINER_RICH_BOY_ROMAN, TRAINER_LADY_KYLIE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_RICH_BOY_ROMAN
     SetTrainerFlag TRAINER_LADY_KYLIE
     Call _0823
@@ -597,7 +597,7 @@ _08E5:
     CloseMessage
     StartTrainerBattle TRAINER_RICH_BOY_ROMAN, TRAINER_LADY_KYLIE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_RICH_BOY_ROMAN
     SetTrainerFlag TRAINER_LADY_KYLIE
     Call _09CD
@@ -719,7 +719,7 @@ _0A8F:
     CloseMessage
     StartTrainerBattle TRAINER_GENTLEMAN_LEONARDO, TRAINER_SOCIALITE_REBECCA
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_GENTLEMAN_LEONARDO
     SetTrainerFlag TRAINER_SOCIALITE_REBECCA
     Call _0B77
@@ -841,7 +841,7 @@ _0C39:
     CloseMessage
     StartTrainerBattle TRAINER_GENTLEMAN_LEONARDO, TRAINER_SOCIALITE_REBECCA
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_GENTLEMAN_LEONARDO
     SetTrainerFlag TRAINER_SOCIALITE_REBECCA
     Call _0D21
@@ -963,7 +963,7 @@ _0DE3:
     CloseMessage
     StartTrainerBattle TRAINER_COLLECTOR_EUGENE, TRAINER_AROMA_LADY_ALISON
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_COLLECTOR_EUGENE
     SetTrainerFlag TRAINER_AROMA_LADY_ALISON
     Call _0ECB
@@ -1085,7 +1085,7 @@ _0F8D:
     CloseMessage
     StartTrainerBattle TRAINER_COLLECTOR_EUGENE, TRAINER_AROMA_LADY_ALISON
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_COLLECTOR_EUGENE
     SetTrainerFlag TRAINER_AROMA_LADY_ALISON
     Call _1075
@@ -1207,7 +1207,7 @@ _1137:
     CloseMessage
     StartTrainerBattle TRAINER_SCHOOL_KID_ESTEBAN, TRAINER_POKEFAN_MEREDITH
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
     SetTrainerFlag TRAINER_POKEFAN_MEREDITH
     Call _121F
@@ -1329,7 +1329,7 @@ _12E1:
     CloseMessage
     StartTrainerBattle TRAINER_SCHOOL_KID_ESTEBAN, TRAINER_POKEFAN_MEREDITH
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_SCHOOL_KID_ESTEBAN
     SetTrainerFlag TRAINER_POKEFAN_MEREDITH
     Call _13C9
@@ -1451,7 +1451,7 @@ _148B:
     CloseMessage
     StartTrainerBattle TRAINER_VETERAN_EMANUEL, TRAINER_LASS_BLYTHE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_VETERAN_EMANUEL
     SetTrainerFlag TRAINER_LASS_BLYTHE
     Call _1573
@@ -1573,7 +1573,7 @@ _1635:
     CloseMessage
     StartTrainerBattle TRAINER_VETERAN_EMANUEL, TRAINER_LASS_BLYTHE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_VETERAN_EMANUEL
     SetTrainerFlag TRAINER_LASS_BLYTHE
     Call _171D
@@ -1695,7 +1695,7 @@ _17DF:
     CloseMessage
     StartTrainerBattle TRAINER_CAMERAMAN_DARRYL, TRAINER_REPORTER_VALERIE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_CAMERAMAN_DARRYL
     SetTrainerFlag TRAINER_REPORTER_VALERIE
     Call _18C7
@@ -1817,7 +1817,7 @@ _1989:
     CloseMessage
     StartTrainerBattle TRAINER_CAMERAMAN_DARRYL, TRAINER_REPORTER_VALERIE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_CAMERAMAN_DARRYL
     SetTrainerFlag TRAINER_REPORTER_VALERIE
     Call _1A71
@@ -1939,7 +1939,7 @@ _1B33:
     CloseMessage
     StartTrainerBattle TRAINER_PI_KENDRICK, TRAINER_BEAUTY_GABRIELLA
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_PI_KENDRICK
     SetTrainerFlag TRAINER_BEAUTY_GABRIELLA
     Call _1C1B
@@ -2061,7 +2061,7 @@ _1CDD:
     CloseMessage
     StartTrainerBattle TRAINER_PI_KENDRICK, TRAINER_BEAUTY_GABRIELLA
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_PI_KENDRICK
     SetTrainerFlag TRAINER_BEAUTY_GABRIELLA
     Call _1DC5
@@ -2183,7 +2183,7 @@ _1E87:
     CloseMessage
     StartTrainerBattle TRAINER_SCIENTIST_EMILIO, TRAINER_BREEDER_KAYLEE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_SCIENTIST_EMILIO
     SetTrainerFlag TRAINER_BREEDER_KAYLEE
     Call _1F6F
@@ -2305,7 +2305,7 @@ _2031:
     CloseMessage
     StartTrainerBattle TRAINER_SCIENTIST_EMILIO, TRAINER_BREEDER_KAYLEE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _2125
+    GoToIfEq 0x800C, FALSE, _2125
     SetTrainerFlag TRAINER_SCIENTIST_EMILIO
     SetTrainerFlag TRAINER_BREEDER_KAYLEE
     Call _2119

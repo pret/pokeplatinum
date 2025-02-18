@@ -4736,7 +4736,7 @@ static BOOL ScrCmd_0C6(ScriptContext *ctx)
 static BOOL ScrCmd_CheckPlayerOnBike(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
-    *destVar = PlayerAvatar_GetPlayerState(ctx->fieldSystem->playerAvatar) == 0x1;
+    *destVar = PlayerAvatar_GetPlayerState(ctx->fieldSystem->playerAvatar) == PLAYER_STATE_CYCLING;
     return FALSE;
 }
 

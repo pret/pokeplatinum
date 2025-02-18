@@ -91,7 +91,7 @@ _0107:
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02B9
+    GoToIfEq 0x800C, FALSE, _02B9
     Message 3
     CloseMessage
     ApplyMovement 7, _0374

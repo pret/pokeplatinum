@@ -126,7 +126,7 @@ _00D8:
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _02EE
     Call _014E
-    GoToIfEq 0x800C, 0, _0306
+    GoToIfEq 0x800C, FALSE, _0306
     Call _0198
     ReleaseAll
     End
@@ -145,8 +145,8 @@ _014E:
     WaitMovement
     Message 8
     CloseMessage
-    Call _030C
-    StartTagBattle 0x8004, 0x399, 0x39A
+    Call FightArea_SetRivalPartnerTeam
+    StartTagBattle 0x8004, TRAINER_LEADER_VOLKNER_FIGHT_AREA, TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA
     CheckWonBattle 0x800C
     Return
 
@@ -247,13 +247,13 @@ _0306:
     ReleaseAll
     End
 
-_030C:
+FightArea_SetRivalPartnerTeam:
     GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, 0x39D
+    SetVar 0x8004, TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR
     GoToIfEq 0x800C, SPECIES_CHIMCHAR, _033E
-    SetVar 0x8004, 0x39C
+    SetVar 0x8004, TRAINER_RIVAL_FIGHT_AREA_TURTWIG
     GoToIfEq 0x800C, SPECIES_TURTWIG, _033E
-    SetVar 0x8004, 0x39B
+    SetVar 0x8004, TRAINER_RIVAL_FIGHT_AREA_PIPLUP
     Return
 
 _033E:
@@ -701,7 +701,7 @@ _06F0:
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _02EE
     Call _014E
-    GoToIfEq 0x800C, 0, _0306
+    GoToIfEq 0x800C, FALSE, _0306
     Call _0198
     ReleaseAll
     End

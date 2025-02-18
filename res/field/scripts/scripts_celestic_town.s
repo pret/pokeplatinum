@@ -43,7 +43,7 @@ _006E:
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_CELESTIC_TOWN
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0191
+    GoToIfEq 0x800C, FALSE, _0191
     Message 4
     CloseMessage
     ScrCmd_1BD 0x800C

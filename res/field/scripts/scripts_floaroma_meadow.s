@@ -21,11 +21,11 @@ _0024:
     Call _00CC
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_1
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _006E
+    GoToIfEq 0x800C, FALSE, _006E
     Call _00EE
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_2
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _006E
+    GoToIfEq 0x800C, FALSE, _006E
     Call _010E
     SetFlag 0x989
     ReleaseAll

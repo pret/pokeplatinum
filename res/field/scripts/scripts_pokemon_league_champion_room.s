@@ -22,7 +22,7 @@ _000E:
     CallIfUnset 214, _00F5
     CallIfSet 214, _00FD
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0121
+    GoToIfEq 0x800C, FALSE, _0121
     Message 1
     SetFlag 180
     CallIfUnset 214, _0105

@@ -37,7 +37,7 @@ _0060:
 
 _0064:
     LockAll
-    SetPlayerBike 0
+    SetPlayerBike FALSE
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 2, _00D1
     CallIfEq 0x8005, 3, _00DD
@@ -177,7 +177,7 @@ _01AA:
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_IRON_ISLAND_1, TRAINER_GALACTIC_GRUNT_IRON_ISLAND_2
     ClearHasPartner
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _037D
+    GoToIfEq 0x800C, FALSE, _037D
     ApplyMovement 5, _0394
     WaitMovement
     Message 9

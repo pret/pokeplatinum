@@ -66,7 +66,7 @@ _00CF:
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_1
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0133
+    GoToIfEq 0x800C, FALSE, _0133
     Message 1
     CloseMessage
     ApplyMovement 0, _013C
@@ -150,7 +150,7 @@ _01BF:
     StartLegendaryBattle SPECIES_DRIFLOON, 15
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _01FB
+    GoToIfEq 0x800C, FALSE, _01FB
     SetFlag 0xAA8
     ReleaseAll
     End

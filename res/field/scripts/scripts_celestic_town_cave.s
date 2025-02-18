@@ -104,7 +104,7 @@ _019D:
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0393
+    GoToIfEq 0x800C, FALSE, _0393
     Call _01C3
     ReleaseAll
     End
@@ -469,7 +469,7 @@ _0538:
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0393
+    GoToIfEq 0x800C, FALSE, _0393
     Call _01C3
     ReleaseAll
     End

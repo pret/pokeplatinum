@@ -197,7 +197,7 @@ _0230:
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_MARS_LAKE_VERITY
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02DB
+    GoToIfEq 0x800C, FALSE, _02DB
     Message 10
     Message 11
     Message 12

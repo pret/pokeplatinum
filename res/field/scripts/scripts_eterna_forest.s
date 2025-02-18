@@ -27,7 +27,7 @@ _003F:
 
 _0047:
     LockAll
-    SetPlayerBike 0
+    SetPlayerBike FALSE
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 28, _006E
     GoToIfEq 0x8004, 29, _007E

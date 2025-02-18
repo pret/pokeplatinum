@@ -28,7 +28,7 @@ _0025:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_CANDICE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _010E
+    GoToIfEq 0x800C, FALSE, _010E
     Message 1
     BufferPlayerName 0
     Message 2

@@ -46,9 +46,9 @@ _007D:
     StartFatefulEncounter SPECIES_SHAYMIN, 30
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00D7
+    GoToIfEq 0x800C, FALSE, _00D7
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _00C8
+    GoToIfEq 0x800C, TRUE, _00C8
     SetFlag 0x123
     ReleaseAll
     End

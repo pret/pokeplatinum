@@ -35,9 +35,9 @@ _0037:
     StartLegendaryBattle SPECIES_GIRATINA, 47
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _009B
+    GoToIfEq 0x800C, FALSE, _009B
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _0090
+    GoToIfEq 0x800C, TRUE, _0090
     GoTo _0084
     End
 

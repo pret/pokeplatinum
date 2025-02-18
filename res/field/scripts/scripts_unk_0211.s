@@ -257,14 +257,14 @@ _034C:
 _0356:
     GetItemPocket 0x8004, 0x800C
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 7, _03D8
-    GoToIfEq 0x8008, 0, _03CC
-    GoToIfEq 0x8008, 4, _03CC
-    GoToIfEq 0x8008, 1, _03CC
-    GoToIfEq 0x8008, 2, _03CC
-    GoToIfEq 0x8008, 6, _03CC
-    GoToIfEq 0x8008, 5, _03DE
-    GoToIfEq 0x8008, 3, _03D2
+    GoToIfEq 0x8008, POCKET_KEY_ITEMS, _03D8
+    GoToIfEq 0x8008, POCKET_ITEMS, _03CC
+    GoToIfEq 0x8008, POCKET_BERRIES, _03CC
+    GoToIfEq 0x8008, POCKET_MEDICINE, _03CC
+    GoToIfEq 0x8008, POCKET_BALLS, _03CC
+    GoToIfEq 0x8008, POCKET_BATTLE_ITEMS, _03CC
+    GoToIfEq 0x8008, POCKET_MAIL, _03DE
+    GoToIfEq 0x8008, POCKET_TMHMS, _03D2
     End
 
 _03CC:
@@ -534,7 +534,7 @@ _06F4:
     IncrementGameRecord RECORD_UNK_117
     StartHoneyTreeBattle
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0713
+    GoToIfEq 0x800C, FALSE, _0713
     ScrCmd_12A
     GoTo _06A2
 
@@ -790,8 +790,8 @@ _09FF:
     Call _0356
     AddItem 0x8004, 0x8005, 0x800C
     GetItemPocket 0x8004, 0x800C
-    CallIfEq 0x800C, 7, _0A71
-    CallIfNe 0x800C, 7, _0A82
+    CallIfEq 0x800C, POCKET_KEY_ITEMS, _0A71
+    CallIfNe 0x800C, POCKET_KEY_ITEMS, _0A82
     Message 30
     WaitABXPadPress
     Return
@@ -805,8 +805,8 @@ _0A3E:
     Call _0356
     AddItem 0x8004, 0x8005, 0x800C
     GetItemPocket 0x8004, 0x800C
-    CallIfEq 0x800C, 7, _0A71
-    CallIfNe 0x800C, 7, _0A82
+    CallIfEq 0x800C, POCKET_KEY_ITEMS, _0A71
+    CallIfNe 0x800C, POCKET_KEY_ITEMS, _0A82
     Message 126
     Return
 
@@ -841,14 +841,14 @@ _0AD8:
 _0ADD:
     GetItemPocket 0x8004, 0x800C
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 7, _0B64
-    GoToIfEq 0x8008, 0, _0B53
-    GoToIfEq 0x8008, 4, _0BA8
-    GoToIfEq 0x8008, 1, _0B97
-    GoToIfEq 0x8008, 2, _0BB9
-    GoToIfEq 0x8008, 6, _0B75
-    GoToIfEq 0x8008, 5, _0B86
-    GoToIfEq 0x8008, 3, _0BCA
+    GoToIfEq 0x8008, POCKET_KEY_ITEMS, _0B64
+    GoToIfEq 0x8008, POCKET_ITEMS, _0B53
+    GoToIfEq 0x8008, POCKET_BERRIES, _0BA8
+    GoToIfEq 0x8008, POCKET_MEDICINE, _0B97
+    GoToIfEq 0x8008, POCKET_BALLS, _0BB9
+    GoToIfEq 0x8008, POCKET_BATTLE_ITEMS, _0B75
+    GoToIfEq 0x8008, POCKET_MAIL, _0B86
+    GoToIfEq 0x8008, POCKET_TMHMS, _0BCA
     End
 
 _0B53:
@@ -1429,11 +1429,11 @@ _12F3:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     CheckPlayerOnBike 0x800C
-    GoToIfEq 0x800C, 1, _133C
+    GoToIfEq 0x800C, TRUE, _133C
     Message 73
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _1359
-    SetPlayerBike 1
+    SetPlayerBike TRUE
     CloseMessage
     ReleaseAll
     End
@@ -1442,7 +1442,7 @@ _133C:
     Message 74
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _1359
-    SetPlayerBike 0
+    SetPlayerBike FALSE
     CloseMessage
     ReleaseAll
     End

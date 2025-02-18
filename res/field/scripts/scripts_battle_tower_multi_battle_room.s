@@ -174,7 +174,7 @@ _029E:
 
 _02B0:
     Call _019D
-    GoToIfEq 0x8004, 0, _022F
+    GoToIfEq 0x8004, FALSE, _022F
     Call _029E
     GoToIfEq 0x800C, 1, _0245
     Call _0541
@@ -221,7 +221,7 @@ _0380:
 
 _039E:
     Call _01DF
-    GoToIfEq 0x8004, 0, _022F
+    GoToIfEq 0x8004, FALSE, _022F
     Call _029E
     GoToIfEq 0x800C, 1, _0245
     Call _0541

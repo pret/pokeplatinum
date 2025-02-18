@@ -295,7 +295,7 @@ _03CA:
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _0445
     Call _032F
-    GoToIfEq 0x8000, 0, _0398
+    GoToIfEq 0x8000, FALSE, _0398
     SetFlag 6
     Call _1091
     GoTo _034D

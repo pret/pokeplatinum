@@ -878,10 +878,10 @@ _0AFE:
     ApplyMovement 7, _0E4C
     ApplyMovement 0xFF, _0F30
     WaitMovement
-    Call _0BAA
-    StartTagBattle 0x8004, 0x19E, 0x19F
+    Call JubilifeCity_SetAssistantPartnerTeam
+    StartTagBattle 0x8004, TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1, TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0DB7
+    GoToIfEq 0x800C, FALSE, _0DB7
     ApplyMovement 18, _0EB4
     WaitMovement
     Message 73
@@ -904,31 +904,31 @@ _0AFE:
     GoToIfEq 0x800C, GENDER_FEMALE, _0C41
     End
 
-_0BAA:
+JubilifeCity_SetAssistantPartnerTeam:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0BCA
-    GoToIfEq 0x800C, GENDER_FEMALE, _0BFC
+    GoToIfEq 0x800C, GENDER_MALE, JubilifeCity_SetDawnPartnerTeam
+    GoToIfEq 0x800C, GENDER_FEMALE, JubilifeCity_SetLucasPartnerTeam
     End
 
-_0BCA:
+JubilifeCity_SetDawnPartnerTeam:
     GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, 0x268
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0C2E
-    SetVar 0x8004, 0x269
-    GoToIfEq 0x800C, SPECIES_PIPLUP, _0C2E
-    SetVar 0x8004, 0x26A
+    SetVar 0x8004, TRAINER_DAWN_JUBILIFE_CITY_CHIMCHAR
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, JubilifeCity_Return
+    SetVar 0x8004, TRAINER_DAWN_JUBILIFE_CITY_PIPLUP
+    GoToIfEq 0x800C, SPECIES_PIPLUP, JubilifeCity_Return
+    SetVar 0x8004, TRAINER_DAWN_JUBILIFE_CITY_TURTWIG
     Return
 
-_0BFC:
+JubilifeCity_SetLucasPartnerTeam:
     GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, 0x265
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0C2E
-    SetVar 0x8004, 0x266
-    GoToIfEq 0x800C, SPECIES_PIPLUP, _0C2E
-    SetVar 0x8004, 0x267
+    SetVar 0x8004, TRAINER_LUCAS_JUBILIFE_CITY_CHIMCHAR
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, JubilifeCity_Return
+    SetVar 0x8004, TRAINER_LUCAS_JUBILIFE_CITY_PIPLUP
+    GoToIfEq 0x800C, SPECIES_PIPLUP, JubilifeCity_Return
+    SetVar 0x8004, TRAINER_LUCAS_JUBILIFE_CITY_TURTWIG
     Return
 
-_0C2E:
+JubilifeCity_Return:
     Return
 
 _0C30:

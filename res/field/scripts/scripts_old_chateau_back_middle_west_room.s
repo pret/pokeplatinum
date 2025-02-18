@@ -24,9 +24,9 @@ _0006:
     SetFlag 0xAB0
     StartWildBattle SPECIES_ROTOM, 20
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00A7
+    GoToIfEq 0x800C, FALSE, _00A7
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _008B
+    GoToIfEq 0x800C, TRUE, _008B
     SetFlag 0x149
     ReleaseAll
     End

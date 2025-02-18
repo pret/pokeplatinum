@@ -30,7 +30,7 @@ _0022:
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0135
+    GoToIfEq 0x800C, FALSE, _0135
     Message 1
     CloseMessage
     FadeScreen 6, 1, 0, 0

@@ -43,10 +43,10 @@ _0077:
     CloseMessage
     StartLegendaryBattle SPECIES_DIALGA, 70
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00E8
+    GoToIfEq 0x800C, FALSE, _00E8
     SetVar 0x40C4, 1
     CheckDidNotCapture 0x800C
-    CallIfEq 0x800C, 0, _00EE
+    CallIfEq 0x800C, FALSE, _00EE
     ReleaseAll
     End
 

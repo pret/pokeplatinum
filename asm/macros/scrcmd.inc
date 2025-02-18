@@ -15,6 +15,7 @@
 #include "generated/species.h"
 #include "generated/trainers.h"
 #include "constants/honey_tree.h"
+#include "constants/items.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
 

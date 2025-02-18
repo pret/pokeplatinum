@@ -51,7 +51,7 @@ _0076:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_WAKE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _016B
+    GoToIfEq 0x800C, FALSE, _016B
     Message 1
     BufferPlayerName 0
     Message 2

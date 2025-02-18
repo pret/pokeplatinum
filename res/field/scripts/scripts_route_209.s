@@ -87,7 +87,7 @@ _014D:
     CloseMessage
     StartWildBattle SPECIES_SPIRITOMB, 25
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _017F
+    GoToIfEq 0x800C, FALSE, _017F
     SetVar 0x408A, 0
     ClearSpiritombCounter
     End

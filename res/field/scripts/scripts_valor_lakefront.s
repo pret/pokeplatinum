@@ -87,7 +87,7 @@ _013A:
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _01D9
+    GoToIfEq 0x800C, FALSE, _01D9
     Message 3
     CloseMessage
     ScrCmd_1BD 0x8004

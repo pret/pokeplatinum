@@ -176,7 +176,7 @@ _02F7:
 
 _0303:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0334
+    GoToIfEq 0x800C, FALSE, _0334
     BufferRivalName 0
     Message 1
     CloseMessage

@@ -112,11 +112,11 @@ _00E6:
     StartLegendaryBattle SPECIES_HEATRAN, 50
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0168
+    GoToIfEq 0x800C, FALSE, _0168
     CheckLostBattle 0x800C
-    CallIfEq 0x800C, 0, _017A
+    CallIfEq 0x800C, FALSE, _017A
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _015D
+    GoToIfEq 0x800C, TRUE, _015D
     GoTo _0155
     End
 

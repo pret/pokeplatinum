@@ -42,7 +42,7 @@ _0059:
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_SATURN_GALACTIC_HQ
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _011F
+    GoToIfEq 0x800C, FALSE, _011F
     SetFlag 173
     SetVar 0x410D, 1
     Message 1

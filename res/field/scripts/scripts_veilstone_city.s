@@ -507,10 +507,10 @@ _0656:
     CallIfEq 0x800C, 3, _099F
     CallIfEq 0x800C, 1, _09B3
     CallIfEq 0x800C, 0, _09C7
-    Call _0919
-    StartTagBattle 0x8004, 0x350, 0x351
+    Call VeilstoneCity_SetAssistantPartnerTeam
+    StartTagBattle 0x8004, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0A73
+    GoToIfEq 0x800C, FALSE, _0A73
     Message 16
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _09DB
@@ -640,28 +640,28 @@ _08DD:
     WaitFadeScreen
     End
 
-_0919:
+VeilstoneCity_SetAssistantPartnerTeam:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _0939
-    GoToIfEq 0x800C, 1, _096B
+    GoToIfEq 0x800C, GENDER_MALE, VeilstoneCity_SetDawnPartnerTeam
+    GoToIfEq 0x800C, GENDER_FEMALE, VeilstoneCity_SetLucasPartnerTeam
     End
 
-_0939:
+VeilstoneCity_SetDawnPartnerTeam:
     GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, 0x271
+    SetVar 0x8004, TRAINER_DAWN_VEILSTONE_CITY_PIPLUP
     GoToIfEq 0x800C, SPECIES_CHIMCHAR, _099D
-    SetVar 0x8004, 0x272
+    SetVar 0x8004, TRAINER_DAWN_VEILSTONE_CITY_TURTWIG
     GoToIfEq 0x800C, SPECIES_PIPLUP, _099D
-    SetVar 0x8004, 0x270
+    SetVar 0x8004, TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR
     Return
 
-_096B:
+VeilstoneCity_SetLucasPartnerTeam:
     GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, 0x26E
+    SetVar 0x8004, TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP
     GoToIfEq 0x800C, SPECIES_CHIMCHAR, _099D
-    SetVar 0x8004, 0x26F
+    SetVar 0x8004, TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG
     GoToIfEq 0x800C, SPECIES_PIPLUP, _099D
-    SetVar 0x8004, 0x26D
+    SetVar 0x8004, TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR
     Return
 
 _099D:

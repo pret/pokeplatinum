@@ -135,7 +135,7 @@ _01EF:
 
 _0201:
     Call _015D
-    GoToIfEq 0x8004, 0, _018C
+    GoToIfEq 0x8004, FALSE, _018C
     Call _01EF
     GoToIfEq 0x800C, 1, _019C
     Call _0492
@@ -223,7 +223,7 @@ _03C7:
     ScrCmd_1DD 42, 0, 0
     CheckWonBattle 0x800C
     SetVar 0x8004, 0x800C
-    GoToIfEq 0x8004, 0, _018C
+    GoToIfEq 0x8004, FALSE, _018C
     ScrCmd_1DD 36, 0, 0x800C
     GoToIfEq 0x800C, 48, _0429
     Message 17
