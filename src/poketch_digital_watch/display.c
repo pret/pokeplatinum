@@ -71,10 +71,10 @@ void PoketchDigitalWatch_FreeDisplayManager(DisplayManager *displayManager)
 }
 
 static const PoketchTask sDisplayTasks[] = {
-    { POKETCH_TASK_SETUP_BACKGROUND, SetupBackground, 0 },
-    { POKETCH_TASK_UPDATE_WATCH_DIGITS, UpdateClockDigits, 0 },
-    { POKETCH_TASK_TOGGLE_BACKLIGHT, ToggleBacklightPalette, 0 },
-    { POKETCH_TASK_FREE_BACKGROUND, FreeBackground, 0 },
+    { DISPLAY_TASK_SETUP_BACKGROUND, SetupBackground, 0 },
+    { DISPLAY_TASK_UPDATE_WATCH_DIGITS, UpdateClockDigits, 0 },
+    { DISPLAY_TASK_TOGGLE_BACKLIGHT, ToggleBacklightPalette, 0 },
+    { DISPLAY_TASK_FREE_BACKGROUND, FreeBackground, 0 },
     { 0, NULL, 0 }
 };
 

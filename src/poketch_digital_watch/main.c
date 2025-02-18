@@ -179,11 +179,11 @@ static BOOL LoadApp(AppData *appData)
 {
     switch (appData->state) {
     case 0:
-        PoketchDigitalWatch_StartDisplayTask(appData->displayManager, POKETCH_TASK_SETUP_BACKGROUND);
+        PoketchDigitalWatch_StartDisplayTask(appData->displayManager, DISPLAY_TASK_SETUP_BACKGROUND);
         appData->state++;
         break;
     case 1:
-        if (PoketchDigitalWatch_DisplayTaskIsNotActive(appData->displayManager, POKETCH_TASK_SETUP_BACKGROUND)) {
+        if (PoketchDigitalWatch_DisplayTaskIsNotActive(appData->displayManager, DISPLAY_TASK_SETUP_BACKGROUND)) {
             PoketchSystem_NotifyAppLoaded(appData->poketchSys);
             ChangeActiveTask(appData, APP_TASK_UPDATE);
         }
@@ -202,16 +202,16 @@ static BOOL UpdateApp(AppData *appData)
 
     if (appData->backlightChange) {
         appData->backlightChange = FALSE;
-        PoketchDigitalWatch_StartDisplayTask(appData->displayManager, POKETCH_TASK_TOGGLE_BACKLIGHT);
+        PoketchDigitalWatch_StartDisplayTask(appData->displayManager, DISPLAY_TASK_TOGGLE_BACKLIGHT);
     }
 
-    if (PoketchDigitalWatch_DisplayTaskIsNotActive(appData->displayManager, POKETCH_TASK_UPDATE_WATCH_DIGITS)) {
+    if (PoketchDigitalWatch_DisplayTaskIsNotActive(appData->displayManager, DISPLAY_TASK_UPDATE_WATCH_DIGITS)) {
         appData->minute = appData->watchData.time.minute;
         appData->hour = appData->watchData.time.hour;
         GetCurrentTime(&(appData->watchData.time));
 
         if ((appData->minute != appData->watchData.time.minute) || (appData->hour != appData->watchData.time.hour)) {
-            PoketchDigitalWatch_StartDisplayTask(appData->displayManager, POKETCH_TASK_UPDATE_WATCH_DIGITS);
+            PoketchDigitalWatch_StartDisplayTask(appData->displayManager, DISPLAY_TASK_UPDATE_WATCH_DIGITS);
         }
     }
 
@@ -222,7 +222,7 @@ static BOOL UnloadApp(AppData *appData)
 {
     switch (appData->state) {
     case 0:
-        PoketchDigitalWatch_StartDisplayTask(appData->displayManager, POKETCH_TASK_FREE_BACKGROUND);
+        PoketchDigitalWatch_StartDisplayTask(appData->displayManager, DISPLAY_TASK_FREE_BACKGROUND);
         appData->state++;
         break;
 
