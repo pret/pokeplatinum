@@ -8,8 +8,8 @@
 #include "overlay114/struct_ov114_0225D678_decl.h"
 #include "overlay114/struct_ov114_0225E854_decl.h"
 
-#include "cell_actor.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "trainer_info.h"
 
 void ov114_0225C700(UnkStruct_ov114_0225C76C *param0, BOOL param1, SaveData *param2, BOOL param3, UnkStruct_ov66_02230DBC *param4);
@@ -35,7 +35,7 @@ void ov114_0225CA2C(UnkStruct_ov114_0225E854 *param0, u32 param1, BOOL param2);
 void ov114_0225CA44(UnkStruct_ov114_0225E854 *param0, BOOL param1);
 BOOL ov114_0225CA54(UnkStruct_ov114_0225C76C *param0);
 BOOL ov114_0225CA98(const UnkStruct_ov114_0225C76C *param0);
-UnkStruct_ov114_0225CAD4 *ov114_0225CAD4(CellActorCollection *param0, u32 param1);
+UnkStruct_ov114_0225CAD4 *ov114_0225CAD4(SpriteList *param0, u32 param1);
 void ov114_0225CB38(UnkStruct_ov114_0225CAD4 *param0);
 int ov114_0225CB74(UnkStruct_ov114_0225CAD4 *param0);
 void ov114_0225CB8C(UnkStruct_ov114_0225CAD4 *param0);

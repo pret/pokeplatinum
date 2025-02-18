@@ -6,8 +6,6 @@
 #include "constants/battle/battle_io.h"
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/battle_io.h"
 
@@ -75,8 +73,8 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "sprite_system.h"
 #include "unk_0200762C.h"
-#include "unk_0200C6E4.h"
 #include "unk_020131EC.h"
 
 typedef void (*UnkFuncPtr_ov16_0226F068)(BattleSystem *, BattlerData *);
@@ -287,7 +285,7 @@ void ov16_0225C104(BattleSystem *param0, BattlerData *param1, int param2)
     }
 
     if (param1->unk_18) {
-        sub_0200D0F4(param1->unk_18);
+        Sprite_DeleteAndFreeResources(param1->unk_18);
     }
 
     ov16_022647D8(param1);
@@ -848,8 +846,8 @@ static void ov16_0225C8A4(BattleSystem *param0, BattlerData *param1)
 
 static void ov16_0225C8E0(BattleSystem *param0, BattlerData *param1)
 {
-    SpriteRenderer *v0;
-    SpriteGfxHandler *v1;
+    SpriteSystem *v0;
+    SpriteManager *v1;
     PaletteData *v2;
 
     v0 = ov16_0223E010(param0);
@@ -863,7 +861,7 @@ static void ov16_0225C8E0(BattleSystem *param0, BattlerData *param1)
 
 static void ov16_0225C91C(BattleSystem *param0, BattlerData *param1)
 {
-    SpriteGfxHandler *v0;
+    SpriteManager *v0;
 
     v0 = ov16_0223E018(param0);
 

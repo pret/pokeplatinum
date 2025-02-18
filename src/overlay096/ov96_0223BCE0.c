@@ -16,7 +16,6 @@
 #include "overlay096/struct_ov96_0223BF40_t.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -27,6 +26,7 @@
 #include "narc.h"
 #include "render_window.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
@@ -1642,8 +1642,8 @@ void ov96_0223D948(UnkStruct_ov96_0223BF40 *param0)
 static void ov96_0223D950(UnkStruct_ov96_0223BF40 *param0, int param1, int param2)
 {
     if ((param1 == 0) || (param1 == 1)) {
-        CellActor_SetDrawFlag(param0->unk_E30[0], param2);
-        CellActor_SetDrawFlag(param0->unk_E30[1], param2);
+        Sprite_SetDrawFlag(param0->unk_E30[0], param2);
+        Sprite_SetDrawFlag(param0->unk_E30[1], param2);
     }
 }
 

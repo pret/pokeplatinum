@@ -19,7 +19,6 @@
 #include "overlay111/struct_ov111_021D3620.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
@@ -34,6 +33,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "system.h"
@@ -416,7 +416,7 @@ int ov111_021D0E34(OverlayManager *param0, int *param1)
         break;
     }
 
-    CellActorCollection_Update(v0->unk_16C.unk_00);
+    SpriteList_Update(v0->unk_16C.unk_00);
 
     return 0;
 }
@@ -518,7 +518,7 @@ static BOOL ov111_021D10B8(UnkStruct_ov111_021D0F7C *param0)
             param0->unk_0F--;
         }
 
-        v3 = sub_02022644((const TouchScreenRect *)Unk_ov111_021D364C);
+        v3 = TouchScreen_CheckRectangleHeld((const TouchScreenRect *)Unk_ov111_021D364C);
 
         if (v3 != 0xffffffff) {
             GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 0);
@@ -745,7 +745,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
         break;
     case 3:
         sub_0201E564(&param0->unk_424, 4, 2);
-        v1 = sub_02022644((const TouchScreenRect *)Unk_ov111_021D3794);
+        v1 = TouchScreen_CheckRectangleHeld((const TouchScreenRect *)Unk_ov111_021D3794);
 
         if (v1 != 0xffffffff) {
             if (ov111_021D2918(param0) < 3) {
@@ -802,7 +802,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
         }
 
         if (param0->unk_0E == (3 - 1)) {
-            v1 = sub_02022664((const TouchScreenRect *)Unk_ov111_021D3610);
+            v1 = TouchScreen_CheckRectanglePressed((const TouchScreenRect *)Unk_ov111_021D3610);
 
             if (v1 != 0xffffffff) {
                 ov111_021D350C(param0->unk_3A0, 1);
@@ -817,7 +817,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
                 break;
             }
         } else {
-            v1 = sub_02022664((const TouchScreenRect *)Unk_ov111_021D3618);
+            v1 = TouchScreen_CheckRectanglePressed((const TouchScreenRect *)Unk_ov111_021D3618);
 
             if (v1 != 0xffffffff) {
                 ov111_021D350C(param0->unk_3A0, 1);

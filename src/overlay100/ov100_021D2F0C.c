@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-
 #include "overlay100/ov100_021D46C8.h"
 #include "overlay100/ov100_021D4E04.h"
 #include "overlay100/struct_ov100_021D3084.h"
@@ -22,6 +19,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "palette.h"
+#include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
@@ -58,8 +56,8 @@ static void ov100_021D2F64(UnkStruct_ov100_021D3084 *param0)
 {
     NARC *v0 = param0->unk_1D28->unk_00;
     BgConfig *v1 = param0->unk_1D28->unk_0C;
-    SpriteRenderer *v2 = param0->unk_1D28->unk_04;
-    SpriteGfxHandler *v3 = param0->unk_1D28->unk_08;
+    SpriteSystem *v2 = param0->unk_1D28->unk_04;
+    SpriteManager *v3 = param0->unk_1D28->unk_08;
     PaletteData *v4 = param0->unk_1D28->unk_10;
 
     ov100_021D4AC8(&param0->unk_0C.unk_934[0], 84, param0->unk_1D28->unk_00);
@@ -86,8 +84,8 @@ static void ov100_021D3084(UnkStruct_ov100_021D3084 *param0)
 {
     NARC *v0 = param0->unk_1D28->unk_00;
     BgConfig *v1 = param0->unk_1D28->unk_0C;
-    SpriteRenderer *v2 = param0->unk_1D28->unk_04;
-    SpriteGfxHandler *v3 = param0->unk_1D28->unk_08;
+    SpriteSystem *v2 = param0->unk_1D28->unk_04;
+    SpriteManager *v3 = param0->unk_1D28->unk_08;
     PaletteData *v4 = param0->unk_1D28->unk_10;
 
     ov100_021D4AC8(&param0->unk_0C.unk_04, 46, param0->unk_1D28->unk_00);

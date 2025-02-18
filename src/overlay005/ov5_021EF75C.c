@@ -3,10 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "overlay005/map_prop_material_shape.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021D56BC.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
-#include "overlay005/struct_ov5_021D5778_decl.h"
 
 #include "easy3d.h"
 #include "heap.h"
@@ -33,7 +32,7 @@ typedef struct UnkStruct_ov5_021EF76C_t {
     void *unk_C08;
     NNSG3dResTex *unk_C0C;
     NNSG3dResTex *unk_C10;
-    UnkStruct_ov5_021D5778 *unk_C14;
+    MapPropMaterialShape *unk_C14;
     UnkStruct_ov5_021EF76C_sub1 unk_C18;
     UnkStruct_ov5_021EF7A0 *unk_C20;
     u16 *unk_C24;
@@ -200,9 +199,9 @@ void ov5_021EF7A0(UnkStruct_ov5_021EF76C *param0)
     {
         char v12[256];
 
-        param0->unk_C14 = ov5_021D56BC();
+        param0->unk_C14 = MapPropMaterialShape_Alloc();
         sprintf(v12, "fielddata/build_model/build_model_matshp.dat");
-        ov5_021D56D4(v12, param0->unk_C14);
+        MapPropMaterialShape_Load(v12, param0->unk_C14);
     }
 
     Heap_FreeToHeap(param0->unk_C20);
@@ -227,7 +226,7 @@ void ov5_021EFA10(UnkStruct_ov5_021EF76C **param0)
     int v0;
 
     if ((*param0)->unk_C14 != NULL) {
-        ov5_021D5778((*param0)->unk_C14);
+        MapPropMaterialShape_Free((*param0)->unk_C14);
     }
 
     for (v0 = 0; v0 < 768; v0++) {
@@ -260,7 +259,7 @@ NNSG3dResTex *ov5_021EFAA0(const UnkStruct_ov5_021EF76C *param0)
     return param0->unk_C10;
 }
 
-const UnkStruct_ov5_021D5778 *ov5_021EFAB4(const UnkStruct_ov5_021EF76C *param0)
+const MapPropMaterialShape *ov5_021EFAB4(const UnkStruct_ov5_021EF76C *param0)
 {
     return param0->unk_C14;
 }

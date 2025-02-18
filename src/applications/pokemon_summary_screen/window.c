@@ -10,7 +10,7 @@
 #include "struct_defs/struct_02090800.h"
 
 #include "applications/pokemon_summary_screen/main.h"
-#include "applications/pokemon_summary_screen/sprite.h"
+#include "applications/pokemon_summary_screen/sprites.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -36,6 +36,11 @@ enum SummaryTextAlignment {
     ALIGN_RIGHT,
     ALIGN_CENTER,
 };
+
+#define RIBBON_INDEX_TEXT_X 56
+
+#define PP_TEXT_X 60
+#define PP_TEXT_Y 16
 
 static void PrintStrbufToWindow(PokemonSummaryScreen *summaryScreen, Window *window, TextColor color, enum SummaryTextAlignment alignment);
 static void PrintTextToStaticWindow(PokemonSummaryScreen *summaryScreen, enum SummaryStaticWindow windowIndex, u32 entryID, TextColor color, enum SummaryTextAlignment alignment);
@@ -767,7 +772,7 @@ void PokemonSummaryScreen_AddExtraWindows(PokemonSummaryScreen *summaryScreen)
     case SUMMARY_PAGE_CONDITION:
     case SUMMARY_PAGE_EXIT:
         // the exit page shows the "favorite food" condition extra window when feeding poffins
-        if (summaryScreen->data->mode != SUMMARY_MODE_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_CONDITION) {
+        if (summaryScreen->data->mode != SUMMARY_MODE_FEED_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
             return;
         }
 
@@ -798,7 +803,7 @@ void PokemonSummaryScreen_RemoveExtraWindows(PokemonSummaryScreen *summaryScreen
     case SUMMARY_PAGE_CONDITION:
     case SUMMARY_PAGE_EXIT:
         // the exit page shows the "favorite food" condition extra window when feeding poffins
-        if (summaryScreen->data->mode != SUMMARY_MODE_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_CONDITION) {
+        if (summaryScreen->data->mode != SUMMARY_MODE_FEED_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
             return;
         }
         break;
@@ -1069,7 +1074,7 @@ static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen)
         Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_OT_NAME], FONT_SYSTEM, summaryScreen->monData.OTName, OTNameX, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_RED, NULL);
     }
 
-    SetAndFormatNumberBuf(summaryScreen, summary_template_ot_id, (summaryScreen->monData.OTID & 0xFFFF), 5, PADDING_MODE_ZEROES);
+    SetAndFormatNumberBuf(summaryScreen, summary_template_ot_id, summaryScreen->monData.OTID & 0xFFFF, 5, PADDING_MODE_ZEROES);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_OT_ID], SUMMARY_TEXT_BLACK, ALIGN_CENTER);
 
     SetAndFormatNumberBuf(summaryScreen, summary_template_exp, summaryScreen->monData.curExp, 7, PADDING_MODE_SPACES);
@@ -1198,18 +1203,18 @@ static void DrawConditionPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_CONDITION]);
     Window_ScheduleCopyToVRAM(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_SHEEN]);
 
-    if (summaryScreen->data->mode != SUMMARY_MODE_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_CONDITION) {
+    if (summaryScreen->data->mode != SUMMARY_MODE_FEED_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
         return;
     }
 
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], 0);
     MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_favorite_food, summaryScreen->strbuf);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], SUMMARY_TEXT_WHITE, ALIGN_LEFT);
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_template_likes_spicy + summaryScreen->monData.preferredFlavor, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_likes_it_spicy + summaryScreen->monData.preferredFlavor, summaryScreen->strbuf);
     Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], FONT_SYSTEM, summaryScreen->strbuf, 0, 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD]);
 
-    if (summaryScreen->data->mode == SUMMARY_MODE_POFFIN) {
+    if (summaryScreen->data->mode == SUMMARY_MODE_FEED_POFFIN) {
         Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_POFFIN_BUTTON_PROMPT], 0);
         MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_poffin_feed_ok, summaryScreen->strbuf);
         PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_POFFIN_BUTTON_PROMPT], SUMMARY_TEXT_WHITE, ALIGN_LEFT);
@@ -1297,7 +1302,7 @@ static void DrawExitPageWindows(PokemonSummaryScreen *summaryScreen)
     PokemonSummaryScreen_UpdateAButtonSprite(summaryScreen, &summaryScreen->staticWindows[SUMMARY_WINDOW_BUTTON_PROMPT]);
 
     // the exit page shows the "favorite food" condition extra window when feeding poffins
-    if (summaryScreen->data->mode != SUMMARY_MODE_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_CONDITION) {
+    if (summaryScreen->data->mode != SUMMARY_MODE_FEED_POFFIN && summaryScreen->data->mode != SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
         return;
     }
 
@@ -1306,7 +1311,7 @@ static void DrawExitPageWindows(PokemonSummaryScreen *summaryScreen)
     MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_favorite_food, summaryScreen->strbuf);
     PrintStrbufToWindow(summaryScreen, &summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], SUMMARY_TEXT_WHITE, ALIGN_LEFT);
 
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_template_likes_spicy + summaryScreen->monData.preferredFlavor, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_likes_it_spicy + summaryScreen->monData.preferredFlavor, summaryScreen->strbuf);
     Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD], FONT_SYSTEM, summaryScreen->strbuf, 0, 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
 
     Window_ScheduleCopyToVRAM(&summaryScreen->extraWindows[SUMMARY_WINDOW_FAVORITE_FOOD]);
@@ -1323,7 +1328,7 @@ void PokemonSummaryScreen_PrintRibbonIndexAndMax(PokemonSummaryScreen *summarySc
     Strbuf_Free(buf);
 
     u8 strWidth = Font_CalcStrbufWidth(FONT_SYSTEM, summaryScreen->strbuf, 0);
-    u8 xOffset = 7 * 8 - strWidth;
+    u8 xOffset = RIBBON_INDEX_TEXT_X - strWidth;
 
     Text_AddPrinterWithParamsAndColor(&summaryScreen->extraWindows[SUMMARY_WINDOW_RIBBON_INDEX], FONT_SYSTEM, summaryScreen->strbuf, xOffset, 0, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
 
@@ -1383,13 +1388,13 @@ static void PrintMoveNameAndPP(PokemonSummaryScreen *summaryScreen, u32 moveInde
     Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->strbuf, 1, 2, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_WHITE, NULL);
 
     if (moveName != MOVE_NONE) {
-        MessageLoader_GetStrbuf(summaryScreen->msgLoader, 135, summaryScreen->strbuf);
+        MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_label_pp, summaryScreen->strbuf);
         Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->strbuf, 16, 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
-        PrintCurrentAndMaxInfo(summaryScreen, moveIndex, 117, 136 + moveIndex, 141 + moveIndex, curPP, maxPP, 2, (40 + 20), 16);
+        PrintCurrentAndMaxInfo(summaryScreen, moveIndex, summary_slash, summary_template_current_pp_0 + moveIndex, summary_template_max_pp_0 + moveIndex, curPP, maxPP, 2, PP_TEXT_X, PP_TEXT_Y);
     } else {
-        MessageLoader_GetStrbuf(summaryScreen->msgLoader, 153, summaryScreen->strbuf);
+        MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_two_dashes, summaryScreen->strbuf);
         u32 strWidth = Font_CalcStrbufWidth(FONT_SYSTEM, summaryScreen->strbuf, 0);
-        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->strbuf, (40 + 20) - strWidth / 2, 16, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
+        Text_AddPrinterWithParamsAndColor(window, FONT_SYSTEM, summaryScreen->strbuf, PP_TEXT_X - strWidth / 2, PP_TEXT_Y, TEXT_SPEED_NO_TRANSFER, SUMMARY_TEXT_BLACK, NULL);
     }
 }
 
@@ -1487,7 +1492,7 @@ void PokemonSummaryScreen_PrintHMMovesCantBeForgotten(PokemonSummaryScreen *summ
     }
 
     Window_FillTilemap(window, 0);
-    MessageLoader_GetStrbuf(summaryScreen->msgLoader, 156, summaryScreen->strbuf);
+    MessageLoader_GetStrbuf(summaryScreen->msgLoader, summary_hm_moves_cant_be_forgotten, summaryScreen->strbuf);
     PrintStrbufToWindow(summaryScreen, window, SUMMARY_TEXT_BLACK, ALIGN_LEFT);
     Window_ScheduleCopyToVRAM(window);
 }

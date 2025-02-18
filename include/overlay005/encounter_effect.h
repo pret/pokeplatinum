@@ -14,10 +14,10 @@
 #include "overlay005/struct_ov5_021DE5A4.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "enc_effects.h"
 #include "field_battle_data_transfer.h"
 #include "narc.h"
+#include "sprite.h"
 #include "sys_task_manager.h"
 
 typedef struct EncounterEffect {
@@ -140,8 +140,8 @@ void ov5_021DE47C(UnkStruct_ov5_021DE47C *param0, int param1, int param2);
 void ov5_021DE4AC(UnkStruct_ov5_021DE47C *param0);
 void ov5_021DE4CC(NARC *param0, UnkStruct_ov5_021DE47C *param1, UnkStruct_ov5_021DE5A4 *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 void ov5_021DE5A4(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1);
-void ov5_021DE5D0(CellActor *param0, u32 param1, u32 param2, u8 param3, u16 param4);
-CellActor *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1, fx32 param2, fx32 param3, fx32 param4, int param5);
+void ov5_021DE5D0(Sprite *param0, u32 param1, u32 param2, u8 param3, u16 param4);
+Sprite *ov5_021DE62C(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1, fx32 param2, fx32 param3, fx32 param4, int param5);
 VecFx32 VecFx32_FromXYZ(fx32 param0, fx32 param1, fx32 param2);
 UnkStruct_ov5_021DE6BC *ov5_021DE6A4(u32 param0);
 void ov5_021DE6BC(UnkStruct_ov5_021DE6BC *param0);

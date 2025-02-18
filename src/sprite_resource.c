@@ -145,7 +145,7 @@ SpriteResource *SpriteResourceCollection_AddFromTable(SpriteResourceCollection *
 SpriteResource *SpriteResourceCollection_AddTiles(SpriteResourceCollection *spriteResources, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_CHAR);
 
     SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
     GF_ASSERT(spriteRes);
@@ -159,7 +159,7 @@ SpriteResource *SpriteResourceCollection_AddTiles(SpriteResourceCollection *spri
         id,
         vramType,
         0,
-        SPRITE_RESOURCE_TILES,
+        SPRITE_RESOURCE_CHAR,
         heapID,
         FALSE);
 
@@ -170,7 +170,7 @@ SpriteResource *SpriteResourceCollection_AddTiles(SpriteResourceCollection *spri
 SpriteResource *SpriteResourceCollection_AddPalette(SpriteResourceCollection *spriteResources, int narcIdx, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_PALETTE);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_PLTT);
 
     SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
     GF_ASSERT(spriteRes);
@@ -184,7 +184,7 @@ SpriteResource *SpriteResourceCollection_AddPalette(SpriteResourceCollection *sp
         id,
         vramType,
         paletteIdx,
-        SPRITE_RESOURCE_PALETTE,
+        SPRITE_RESOURCE_PLTT,
         heapID,
         FALSE);
 
@@ -208,24 +208,24 @@ SpriteResource *SpriteResourceCollection_Add(SpriteResourceCollection *spriteRes
 void SpriteResourceCollection_ModifyTiles(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, int narcIdx, int memberIdx, BOOL compressed, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_CHAR);
     GF_ASSERT(spriteRes);
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CHAR);
 
     int id = SpriteResource_GetID(spriteRes);
     NNS_G2D_VRAM_TYPE vramType = SpriteResource_GetVRAMType(spriteRes);
 
     SpriteResourceCollection_Remove(spriteResources, spriteRes);
-    SpriteResourceCollection_InitRes(spriteResources, spriteRes, narcIdx, memberIdx, compressed, id, vramType, 0, SPRITE_RESOURCE_TILES, heapID, FALSE);
+    SpriteResourceCollection_InitRes(spriteResources, spriteRes, narcIdx, memberIdx, compressed, id, vramType, 0, SPRITE_RESOURCE_CHAR, heapID, FALSE);
 }
 
 void SpriteResourceCollection_ModifyPalette(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, int narcIdx, int memberIdx, BOOL compressed, enum HeapId heapID)
 {
 
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_PALETTE);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_PLTT);
     GF_ASSERT(spriteRes);
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_PALETTE);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_PLTT);
 
     int id = SpriteResource_GetID(spriteRes);
     NNS_G2D_VRAM_TYPE vramType = SpriteResource_GetVRAMType(spriteRes);
@@ -241,7 +241,7 @@ void SpriteResourceCollection_ModifyPalette(SpriteResourceCollection *spriteReso
         id,
         vramType,
         paletteIdx,
-        SPRITE_RESOURCE_PALETTE,
+        SPRITE_RESOURCE_PLTT,
         heapID,
         FALSE);
 }
@@ -249,7 +249,7 @@ void SpriteResourceCollection_ModifyPalette(SpriteResourceCollection *spriteReso
 SpriteResource *SpriteResourceCollection_AddTilesFrom(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_CHAR);
 
     SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
     GF_ASSERT(spriteRes);
@@ -263,7 +263,7 @@ SpriteResource *SpriteResourceCollection_AddTilesFrom(SpriteResourceCollection *
         id,
         vramType,
         0,
-        SPRITE_RESOURCE_TILES,
+        SPRITE_RESOURCE_CHAR,
         heapID,
         FALSE);
 
@@ -274,7 +274,7 @@ SpriteResource *SpriteResourceCollection_AddTilesFrom(SpriteResourceCollection *
 SpriteResource *SpriteResourceCollection_AddTilesFromEx(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, enum HeapId heapID, BOOL allocAtEnd)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_CHAR);
 
     SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
     GF_ASSERT(spriteRes);
@@ -288,7 +288,7 @@ SpriteResource *SpriteResourceCollection_AddTilesFromEx(SpriteResourceCollection
         id,
         vramType,
         0,
-        SPRITE_RESOURCE_TILES,
+        SPRITE_RESOURCE_CHAR,
         heapID,
         allocAtEnd);
 
@@ -299,7 +299,7 @@ SpriteResource *SpriteResourceCollection_AddTilesFromEx(SpriteResourceCollection
 SpriteResource *SpriteResourceCollection_AddPaletteFrom(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_PALETTE);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_PLTT);
 
     SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
     GF_ASSERT(spriteRes);
@@ -313,7 +313,7 @@ SpriteResource *SpriteResourceCollection_AddPaletteFrom(SpriteResourceCollection
         id,
         vramType,
         paletteIdx,
-        SPRITE_RESOURCE_PALETTE,
+        SPRITE_RESOURCE_PLTT,
         heapID,
         FALSE);
 
@@ -324,7 +324,7 @@ SpriteResource *SpriteResourceCollection_AddPaletteFrom(SpriteResourceCollection
 SpriteResource *SpriteResourceCollection_AddPaletteFromEx(SpriteResourceCollection *spriteResources, NARC *narc, int memberIdx, BOOL compressed, int id, NNS_G2D_VRAM_TYPE vramType, int paletteIdx, enum HeapId heapID, BOOL allocAtEnd)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_PALETTE);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_PLTT);
 
     SpriteResource *spriteRes = SpriteResourceCollection_AllocResource(spriteResources);
     GF_ASSERT(spriteRes);
@@ -338,7 +338,7 @@ SpriteResource *SpriteResourceCollection_AddPaletteFromEx(SpriteResourceCollecti
         id,
         vramType,
         paletteIdx,
-        SPRITE_RESOURCE_PALETTE,
+        SPRITE_RESOURCE_PLTT,
         heapID,
         allocAtEnd);
 
@@ -373,9 +373,9 @@ SpriteResource *SpriteResourceCollection_AddFrom(SpriteResourceCollection *sprit
 void SpriteResourceCollection_ModifyTilesFrom(SpriteResourceCollection *spriteResources, SpriteResource *spriteRes, NARC *narc, int memberIdx, BOOL compressed, enum HeapId heapID)
 {
     GF_ASSERT(spriteResources);
-    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(spriteResources->type == SPRITE_RESOURCE_CHAR);
     GF_ASSERT(spriteRes);
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CHAR);
 
     int id = SpriteResource_GetID(spriteRes);
     NNS_G2D_VRAM_TYPE vramType = SpriteResource_GetVRAMType(spriteRes);
@@ -390,7 +390,7 @@ void SpriteResourceCollection_ModifyTilesFrom(SpriteResourceCollection *spriteRe
         id,
         vramType,
         0,
-        SPRITE_RESOURCE_TILES,
+        SPRITE_RESOURCE_CHAR,
         heapID,
         FALSE);
 }
@@ -494,7 +494,7 @@ int SpriteResource_GetID(const SpriteResource *spriteRes)
 
 NNSG2dCharacterData *SpriteResource_GetTileData(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_TILES);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CHAR);
 
     TileResourceData *tileData = SpriteResource_GetData(spriteRes);
     return tileData->tileData;
@@ -502,7 +502,7 @@ NNSG2dCharacterData *SpriteResource_GetTileData(const SpriteResource *spriteRes)
 
 NNSG2dPaletteData *SpriteResource_GetPaletteFade(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_PALETTE);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_PLTT);
 
     PaletteResourceData *paletteData = SpriteResource_GetData(spriteRes);
     return paletteData->paletteData;
@@ -510,7 +510,7 @@ NNSG2dPaletteData *SpriteResource_GetPaletteFade(const SpriteResource *spriteRes
 
 NNSG2dCellDataBank *SpriteResource_GetSpriteData(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_SPRITE);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_CELL);
 
     SpriteResourceData *spriteData = SpriteResource_GetData(spriteRes);
     return spriteData->spriteBank;
@@ -518,7 +518,7 @@ NNSG2dCellDataBank *SpriteResource_GetSpriteData(const SpriteResource *spriteRes
 
 NNSG2dCellAnimBankData *SpriteResource_GetSpriteAnimData(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_SPRITE_ANIM);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_ANIM);
 
     SpriteAnimResourceData *spriteAnimData = SpriteResource_GetData(spriteRes);
     return spriteAnimData->animBank;
@@ -526,7 +526,7 @@ NNSG2dCellAnimBankData *SpriteResource_GetSpriteAnimData(const SpriteResource *s
 
 NNSG2dMultiCellDataBank *SpriteResource_GetMultiSpriteData(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_MULTI_SPRITE);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_MULTI_CELL);
 
     MultiSpriteResourceData *multiSpriteData = SpriteResource_GetData(spriteRes);
     return multiSpriteData->multiSpriteBank;
@@ -534,7 +534,7 @@ NNSG2dMultiCellDataBank *SpriteResource_GetMultiSpriteData(const SpriteResource 
 
 NNSG2dMultiCellAnimBankData *SpriteResource_GetMultiSpriteAnimData(const SpriteResource *spriteRes)
 {
-    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_MULTI_SPRITE_ANIM);
+    GF_ASSERT(spriteRes->type == SPRITE_RESOURCE_MULTI_ANIM);
 
     MultiSpriteAnimResourceData *multiSpriteAnimData = SpriteResource_GetData(spriteRes);
     return multiSpriteAnimData->multiSpriteAnimBank;
@@ -550,12 +550,12 @@ NNS_G2D_VRAM_TYPE SpriteResource_GetVRAMType(const SpriteResource *spriteRes)
 {
     GF_ASSERT(spriteRes);
 
-    if (spriteRes->type == SPRITE_RESOURCE_TILES) {
+    if (spriteRes->type == SPRITE_RESOURCE_CHAR) {
         TileResourceData *tileData = SpriteResource_GetData(spriteRes);
         return tileData->vramType;
     }
 
-    if (spriteRes->type == SPRITE_RESOURCE_PALETTE) {
+    if (spriteRes->type == SPRITE_RESOURCE_PLTT) {
         PaletteResourceData *paletteData = SpriteResource_GetData(spriteRes);
         return paletteData->vramType;
     }
@@ -567,7 +567,7 @@ int SpriteResource_GetPaletteIndex(const SpriteResource *spriteRes)
 {
     GF_ASSERT(spriteRes);
 
-    if (spriteRes->type == SPRITE_RESOURCE_PALETTE) {
+    if (spriteRes->type == SPRITE_RESOURCE_PLTT) {
         PaletteResourceData *paletteData = SpriteResource_GetData(spriteRes);
         return paletteData->paletteIndex;
     }
@@ -579,12 +579,12 @@ void SpriteResource_SetVRAMType(SpriteResource *spriteRes, NNS_G2D_VRAM_TYPE vra
 {
     GF_ASSERT(spriteRes);
 
-    if (spriteRes->type == SPRITE_RESOURCE_TILES) {
+    if (spriteRes->type == SPRITE_RESOURCE_CHAR) {
         TileResourceData *tileData = SpriteResource_GetData(spriteRes);
         tileData->vramType = vramType;
     }
 
-    if (spriteRes->type == SPRITE_RESOURCE_PALETTE) {
+    if (spriteRes->type == SPRITE_RESOURCE_PLTT) {
         PaletteResourceData *paletteData = SpriteResource_GetData(spriteRes);
         paletteData->vramType = vramType;
     }
@@ -724,22 +724,22 @@ static void SpriteResource_UnpackData(SpriteResource *spriteRes, enum SpriteReso
     void *rawData = Resource_GetData(spriteRes->rawResource);
 
     switch (type) {
-    case SPRITE_RESOURCE_TILES:
+    case SPRITE_RESOURCE_CHAR:
         spriteRes->data = SpriteUtil_UnpackTileResource(rawData, vramType, heapID);
         break;
-    case SPRITE_RESOURCE_PALETTE:
+    case SPRITE_RESOURCE_PLTT:
         spriteRes->data = SpriteUtil_UnpackPaletteResource(rawData, vramType, paletteIdx, heapID);
         break;
-    case SPRITE_RESOURCE_SPRITE:
+    case SPRITE_RESOURCE_CELL:
         spriteRes->data = SpriteUtil_UnpackSpriteResource(rawData, heapID);
         break;
-    case SPRITE_RESOURCE_SPRITE_ANIM:
+    case SPRITE_RESOURCE_ANIM:
         spriteRes->data = SpriteUtil_UnpackSpriteAnimResource(rawData, heapID);
         break;
-    case SPRITE_RESOURCE_MULTI_SPRITE:
+    case SPRITE_RESOURCE_MULTI_CELL:
         spriteRes->data = SpriteUtil_UnpackMultiSpriteResource(rawData, heapID);
         break;
-    case SPRITE_RESOURCE_MULTI_SPRITE_ANIM:
+    case SPRITE_RESOURCE_MULTI_ANIM:
         spriteRes->data = SpriteUtil_UnpackMultiSpriteAnimResource(rawData, heapID);
         break;
     }

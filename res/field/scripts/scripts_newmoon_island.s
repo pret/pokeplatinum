@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/hidden_locations.h"
 #include "res/text/bank/newmoon_island.h"
 
     .data
@@ -9,7 +10,7 @@
 
 _000A:
     SetFlag 0x9E4
-    ScrCmd_270 1, 1
+    EnableHiddenLocation HIDDEN_LOCATION_NEWMOON_ISLAND
     ClearFlag 0x279
     CallIfUnset 0x158, _0024
     End

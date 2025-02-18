@@ -21,7 +21,6 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
-#include "cell_actor.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "game_options.h"
@@ -31,6 +30,7 @@
 #include "journal.h"
 #include "overlay_manager.h"
 #include "poffin.h"
+#include "sprite.h"
 #include "system.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
@@ -411,7 +411,7 @@ static int ov83_0223B9EC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
     case 5:
         v2 = ov83_0223E32C(&param1->unk_5E4);
         {
-            int v3 = CellActor_GetAnimFrame(param1->unk_5E4.unk_08);
+            int v3 = Sprite_GetAnimFrame(param1->unk_5E4.unk_08);
 
             if (param1->unk_3BC != (v3 + 1) / 3) {
                 if (v3 < 10) {

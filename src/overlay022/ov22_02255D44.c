@@ -49,7 +49,7 @@
 #include "overlay022/struct_ov22_0225B388.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "brightness_controller.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_records.h"
@@ -60,6 +60,7 @@
 #include "pokemon.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -70,7 +71,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
-#include "unk_0200A9DC.h"
 #include "unk_0200F174.h"
 #include "unk_02015920.h"
 #include "unk_0201E3D8.h"
@@ -439,7 +439,7 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     ov22_0225894C(v2->unk_18, &v0->unk_1E8);
     ov22_022566C0(v0);
 
-    CellActorCollection_SetActive(v0->unk_00.unk_44, 0);
+    SpriteList_SetActive(v0->unk_00.unk_44, 0);
     sub_02039734();
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
@@ -1000,11 +1000,11 @@ static void ov22_02256C70(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        sub_0200AAE0(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
         v0->unk_0C++;
         break;
     case 3:
-        v1 = sub_0200AC1C(1);
+        v1 = BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN);
 
         if (v1) {
             v0->unk_0C++;
@@ -1032,11 +1032,11 @@ static void ov22_02256C70(SysTask *param0, void *param1)
         v0->unk_0C++;
         break;
     case 7:
-        sub_0200AAE0(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
         v0->unk_0C++;
         break;
     case 8:
-        v1 = sub_0200AC1C(1);
+        v1 = BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN);
 
         if (v1) {
             v0->unk_0C++;
@@ -1072,11 +1072,11 @@ static void ov22_02256DE0(SysTask *param0, void *param1)
 
     switch (v0->unk_0C) {
     case 0:
-        sub_0200AAE0(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
         v0->unk_0C++;
         break;
     case 1:
-        v1 = sub_0200AC1C(1);
+        v1 = BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN);
 
         if (v1) {
             v0->unk_0C++;
@@ -1106,11 +1106,11 @@ static void ov22_02256DE0(SysTask *param0, void *param1)
         }
         break;
     case 5:
-        sub_0200AAE0(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, 1);
+        BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3, BRIGHTNESS_MAIN_SCREEN);
         v0->unk_0C++;
         break;
     case 6:
-        v1 = sub_0200AC1C(1);
+        v1 = BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN);
 
         if (v1) {
             v0->unk_0C++;
@@ -1274,7 +1274,7 @@ static void ov22_0225718C(UnkStruct_ov22_02255D44 *param0)
     ov22_022568DC(param0);
 
     sub_0200F344(0, 0x0);
-    CellActorCollection_SetActive(param0->unk_00.unk_44, 1);
+    SpriteList_SetActive(param0->unk_00.unk_44, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);

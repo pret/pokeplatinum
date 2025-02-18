@@ -7,8 +7,6 @@
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_0225517C.h"
-#include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_02255810.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -34,7 +32,7 @@ struct UnkStruct_ov35_02256410_t {
 
 static void ov35_02256460(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_02256410_1 *param1);
 static void ov35_02256514(UnkStruct_ov35_02256410 *param0);
-static void ov35_02256584(UnkStruct_ov25_02255224 *param0);
+static void ov35_02256584(PoketchTaskManager *param0);
 static void ov35_02256598(SysTask *param0, void *param1);
 static void ov35_02256628(SysTask *param0, void *param1);
 static void ov35_02256644(SysTask *param0, void *param1);
@@ -46,9 +44,9 @@ BOOL ov35_02256410(UnkStruct_ov35_02256410 **param0, const UnkStruct_ov35_022564
     UnkStruct_ov35_02256410 *v0 = (UnkStruct_ov35_02256410 *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(UnkStruct_ov35_02256410));
 
     if (v0 != NULL) {
-        ov25_02255090(v0->unk_08, 4);
+        PoketchTask_InitActiveTaskList(v0->unk_08, 4);
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_20 = ov25_02254664();
 
         ov35_02256460(v0, param1);
@@ -121,7 +119,7 @@ static void ov35_02256514(UnkStruct_ov35_02256410 *param0)
     ov25_022559B0(&(param0->unk_4C));
 }
 
-static const UnkStruct_ov25_0225517C Unk_ov35_0225676C[] = {
+static const PoketchTask Unk_ov35_0225676C[] = {
     { 0x0, ov35_02256598, 0x0 },
     { 0x1, ov35_02256628, 0x0 },
     { 0x2, ov35_02256644, 0x0 },
@@ -131,24 +129,24 @@ static const UnkStruct_ov25_0225517C Unk_ov35_0225676C[] = {
 
 void ov35_02256548(UnkStruct_ov35_02256410 *param0, u32 param1)
 {
-    ov25_0225517C(Unk_ov35_0225676C, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
+    PoketchTask_Start(Unk_ov35_0225676C, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
 BOOL ov35_0225656C(UnkStruct_ov35_02256410 *param0, u32 param1)
 {
-    return ov25_02255130(param0->unk_08, param1);
+    return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
 BOOL ov35_02256578(UnkStruct_ov35_02256410 *param0)
 {
-    return ov25_02255154(param0->unk_08);
+    return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov35_02256584(UnkStruct_ov25_02255224 *param0)
+static void ov35_02256584(PoketchTaskManager *param0)
 {
-    UnkStruct_ov35_02256410 *v0 = ov25_0225523C(param0);
+    UnkStruct_ov35_02256410 *v0 = PoketchTask_GetTaskData(param0);
 
-    ov25_02255224(v0->unk_08, param0);
+    PoketchTask_EndTask(v0->unk_08, param0);
 }
 
 static void ov35_02256598(SysTask *param0, void *param1)
@@ -173,13 +171,13 @@ static void ov35_02256598(SysTask *param0, void *param1)
     void *v3;
     NNSG2dPaletteData *v4;
 
-    v2 = ov25_0225523C(param1);
+    v2 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     Graphics_LoadTilesToBgLayer(12, 44, v2->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 43, v2->unk_04, 6, 0, 0, 1, 8);
 
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
 
     v1 = GXS_GetDispCnt();
@@ -190,7 +188,7 @@ static void ov35_02256598(SysTask *param0, void *param1)
 
 static void ov35_02256628(SysTask *param0, void *param1)
 {
-    UnkStruct_ov35_02256410 *v0 = ov25_0225523C(param1);
+    UnkStruct_ov35_02256410 *v0 = PoketchTask_GetTaskData(param1);
 
     Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov35_02256584(param1);
@@ -198,7 +196,7 @@ static void ov35_02256628(SysTask *param0, void *param1)
 
 static void ov35_02256644(SysTask *param0, void *param1)
 {
-    UnkStruct_ov35_02256410 *v0 = ov25_0225523C(param1);
+    UnkStruct_ov35_02256410 *v0 = PoketchTask_GetTaskData(param1);
 
     switch (v0->unk_00->unk_04) {
     case 0:
@@ -215,8 +213,8 @@ static void ov35_02256644(SysTask *param0, void *param1)
 
 static void ov35_02256684(SysTask *param0, void *param1)
 {
-    UnkStruct_ov35_02256410 *v0 = ov25_0225523C(param1);
-    const UnkStruct_ov35_02256410_1 *v1 = ov25_02255240(param1);
+    UnkStruct_ov35_02256410 *v0 = PoketchTask_GetTaskData(param1);
+    const UnkStruct_ov35_02256410_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
     ov35_022566A8(v0, v1);
     ov35_02256584(param1);

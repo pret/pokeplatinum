@@ -7,9 +7,9 @@
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
 
-#include "cell_actor.h"
 #include "graphics.h"
 #include "heap.h"
+#include "sprite.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
@@ -25,7 +25,7 @@ typedef struct {
 
 static void ov94_0224400C(SysTask *param0, void *param1);
 static void ov94_022440FC(SysTask *param0, void *param1);
-static void ov94_022441A0(CellActor *param0, int param1, int param2);
+static void ov94_022441A0(Sprite *param0, int param1, int param2);
 static void ov94_02243FF0(UnkStruct_ov94_02243FF0 *param0, int param1);
 static void ov94_0224432C(UnkStruct_ov94_0223FD4C *param0);
 static void ov94_02244378(NNSG2dCharacterData *param0, NNSG2dPaletteData *param1, int param2, int param3, int param4);
@@ -43,7 +43,7 @@ static const u16 Unk_ov94_02246322[][2] = {
 
 void ov94_02243EF8(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
-    CellActorInitParamsEx v0;
+    AffineSpriteListTemplate v0;
     int v1;
 
     ov94_0224432C(param0);
@@ -53,18 +53,18 @@ void ov94_02243EF8(UnkStruct_ov94_0223FD4C *param0, int param1)
     v0.position.x = FX32_ONE * 128;
     v0.position.y = FX32_ONE * 130 + (256 * FX32_ONE);
 
-    param0->unk_F34[0] = CellActorCollection_AddEx(&v0);
+    param0->unk_F34[0] = SpriteList_AddAffine(&v0);
 
-    CellActor_SetAnimateFlag(param0->unk_F34[0], 1);
-    CellActor_SetAnim(param0->unk_F34[0], 3 + param1 * 7);
-    CellActor_SetDrawFlag(param0->unk_F34[0], 1);
+    Sprite_SetAnimateFlag(param0->unk_F34[0], 1);
+    Sprite_SetAnim(param0->unk_F34[0], 3 + param1 * 7);
+    Sprite_SetDrawFlag(param0->unk_F34[0], 1);
 
     for (v1 = 0; v1 < 7; v1++) {
-        param0->unk_F34[v1 + 1] = CellActorCollection_AddEx(&v0);
+        param0->unk_F34[v1 + 1] = SpriteList_AddAffine(&v0);
 
-        CellActor_SetAnimateFlag(param0->unk_F34[v1 + 1], 1);
-        CellActor_SetAnim(param0->unk_F34[v1 + 1], 14 + v1 * 4);
-        CellActor_SetDrawFlag(param0->unk_F34[v1 + 1], 0);
+        Sprite_SetAnimateFlag(param0->unk_F34[v1 + 1], 1);
+        Sprite_SetAnim(param0->unk_F34[v1 + 1], 14 + v1 * 4);
+        Sprite_SetDrawFlag(param0->unk_F34[v1 + 1], 0);
 
         ov94_022441A0(param0->unk_F34[v1 + 1], Unk_ov94_02246322[v1][0], Unk_ov94_02246322[v1][1]);
     }
@@ -92,7 +92,7 @@ void ov94_02243FA8(UnkStruct_ov94_0223FD4C *param0, int param1)
 
 static void ov94_02243FF0(UnkStruct_ov94_02243FF0 *param0, int param1)
 {
-    CellActor_SetAnim(param0->unk_0C->unk_F34[0], param1 + param0->unk_08 * 7);
+    Sprite_SetAnim(param0->unk_0C->unk_F34[0], param1 + param0->unk_08 * 7);
 }
 
 static void ov94_0224400C(SysTask *param0, void *param1)
@@ -114,7 +114,7 @@ static void ov94_0224400C(SysTask *param0, void *param1)
         ov94_022441A0(v2->unk_F34[0], 128, v1->unk_04);
         break;
     case 1:
-        if (!CellActor_IsAnimated(v2->unk_F34[0])) {
+        if (!Sprite_IsAnimated(v2->unk_F34[0])) {
             ov94_02243FF0(v1, 2);
             v1->unk_00 = 2;
         }
@@ -175,7 +175,7 @@ static void ov94_022440FC(SysTask *param0, void *param1)
         ov94_022441A0(v2->unk_F34[0], 128, v1->unk_04);
         break;
     case 1:
-        if (!CellActor_IsAnimated(v2->unk_F34[0])) {
+        if (!Sprite_IsAnimated(v2->unk_F34[0])) {
             ov94_02243FF0(v1, 0);
             v1->unk_00 = 2;
             Sound_PlayEffect(1584);
@@ -198,7 +198,7 @@ static void ov94_022440FC(SysTask *param0, void *param1)
     }
 }
 
-static void ov94_022441A0(CellActor *param0, int param1, int param2)
+static void ov94_022441A0(Sprite *param0, int param1, int param2)
 {
     VecFx32 v0;
 
@@ -206,7 +206,7 @@ static void ov94_022441A0(CellActor *param0, int param1, int param2)
     v0.y = FX32_CONST(param2 - 8) + (256 * FX32_ONE);
     v0.z = 0;
 
-    CellActor_SetPosition(param0, &v0);
+    Sprite_SetPosition(param0, &v0);
 }
 
 static const TouchScreenRect Unk_ov94_0224633E[] = {
@@ -222,7 +222,7 @@ static const TouchScreenRect Unk_ov94_0224633E[] = {
 
 int ov94_02244214(int param0)
 {
-    int v0 = sub_02022664(Unk_ov94_0224633E);
+    int v0 = TouchScreen_CheckRectanglePressed(Unk_ov94_0224633E);
 
     if (v0 != 0xffffffff) {
         if (v0 < param0) {
@@ -249,14 +249,14 @@ void ov94_02244234(UnkStruct_ov94_0223FD4C *param0, int param1, int param2)
             ov94_02244378(param0->unk_10F8, param0->unk_1100, v0, v1, v2);
 
             if (param2) {
-                CellActor_SetAnim(param0->unk_F34[v0 + 1], 14 + v0 * 4);
+                Sprite_SetAnim(param0->unk_F34[v0 + 1], 14 + v0 * 4);
             } else {
-                CellActor_SetAnim(param0->unk_F34[v0 + 1], 17 + v0 * 4);
+                Sprite_SetAnim(param0->unk_F34[v0 + 1], 17 + v0 * 4);
             }
 
-            CellActor_SetDrawFlag(param0->unk_F34[v0 + 1], 1);
+            Sprite_SetDrawFlag(param0->unk_F34[v0 + 1], 1);
         } else {
-            CellActor_SetDrawFlag(param0->unk_F34[v0 + 1], 0);
+            Sprite_SetDrawFlag(param0->unk_F34[v0 + 1], 0);
         }
     }
 }
@@ -271,9 +271,9 @@ void ov94_022442E4(UnkStruct_ov94_0223FD4C *param0)
     int v0;
 
     for (v0 = 0; v0 < 7; v0++) {
-        if (CellActor_GetDrawFlag(param0->unk_F34[v0 + 1])) {
-            if (CellActor_GetActiveAnim(param0->unk_F34[v0 + 1]) != ov94_022442DC(v0) + 1) {
-                CellActor_SetAnim(param0->unk_F34[v0 + 1], ov94_022442DC(v0) + 1);
+        if (Sprite_GetDrawFlag(param0->unk_F34[v0 + 1])) {
+            if (Sprite_GetActiveAnim(param0->unk_F34[v0 + 1]) != ov94_022442DC(v0) + 1) {
+                Sprite_SetAnim(param0->unk_F34[v0 + 1], ov94_022442DC(v0) + 1);
             }
         }
     }

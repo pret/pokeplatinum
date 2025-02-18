@@ -19,16 +19,16 @@
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "brightness_controller.h"
 #include "heap.h"
 #include "narc.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "system.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
 #include "unk_02023FCC.h"
 #include "vram_transfer.h"
 
@@ -60,7 +60,7 @@ typedef struct {
 } UnkStruct_ov21_021DDE4C;
 
 typedef struct {
-    CellActor *unk_00;
+    Sprite *unk_00;
     SpriteResource *unk_04[4];
     void *unk_14;
     int unk_18;
@@ -332,12 +332,12 @@ static int ov21_021DDFB4(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
 static void ov21_021DE040(UnkStruct_ov21_021DDEC8 *param0)
 {
-    CellActor_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_XLU);
+    Sprite_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_XLU);
 }
 
 static void ov21_021DE04C(UnkStruct_ov21_021DDEC8 *param0)
 {
-    CellActor_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_NORMAL);
+    Sprite_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_NORMAL);
 }
 
 static void ov21_021DE058(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1, const UnkStruct_ov21_021DDDA4 *param2, BOOL param3)
@@ -360,7 +360,7 @@ static BOOL ov21_021DE0C4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
     if (ov21_021E33A4(param2->unk_08)) {
         v0 = ov21_021D2424(&param1->unk_00->unk_18C);
     } else {
-        v0 = sub_0200AC1C(2);
+        v0 = BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN);
     }
 
     if (v0) {
@@ -428,13 +428,13 @@ static void ov21_021DE224(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
 
 static void ov21_021DE258(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1, int param2)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
     UnkStruct_ov21_021D13FC *v2 = param1->unk_00;
 
     SpriteResourcesHeader_Init(&v0, 105 + 6000, 11 + 2100, 103 + 6000, 104 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
 
-    v1.collection = v2->unk_138;
+    v1.list = v2->unk_138;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
@@ -443,14 +443,14 @@ static void ov21_021DE258(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
     v1.position.y = 0;
     v1.position.y += (192 << FX32_SHIFT);
 
-    param0->unk_00 = CellActorCollection_Add(&v1);
+    param0->unk_00 = SpriteList_Add(&v1);
 
-    CellActor_SetAnim(param0->unk_00, 0);
+    Sprite_SetAnim(param0->unk_00, 0);
 }
 
 static void ov21_021DE2E0(UnkStruct_ov21_021DDEC8 *param0)
 {
-    CellActor_Delete(param0->unk_00);
+    Sprite_Delete(param0->unk_00);
 }
 
 static void ov21_021DE2EC(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDDA4 *param1, enum HeapId heapID)
@@ -589,8 +589,8 @@ static void ov21_021DE49C(UnkStruct_ov21_021DDEC8 *param0, const UnkStruct_ov21_
     v0.y = param2->unk_04 << FX32_SHIFT;
     v0.y += (192 << FX32_SHIFT);
 
-    CellActor_SetPosition(param0->unk_00, &v0);
-    CellActor_SetAnim(param0->unk_00, ov21_021DCA28(param1->unk_00));
+    Sprite_SetPosition(param0->unk_00, &v0);
+    Sprite_SetAnim(param0->unk_00, ov21_021DCA28(param1->unk_00));
 }
 
 static void ov21_021DE4D4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1, const UnkStruct_ov21_021DDDA4 *param2, int param3)

@@ -27,6 +27,7 @@
 #include "savedata/save_table.h"
 
 #include "assert.h"
+#include "brightness_controller.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "field_task.h"
@@ -48,7 +49,6 @@
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
 #include "unk_020298BC.h"
 #include "unk_0202CC64.h"
 #include "unk_0202F108.h"
@@ -1506,7 +1506,7 @@ static void sub_02094B30(SysTask *param0, void *param1)
     UnkStruct_02095C48 *v0 = param1;
     UnkStruct_02094A58 *v1 = v0->unk_19A0;
 
-    if (sub_0200AC1C(1) == 0) {
+    if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == FALSE) {
         return;
     }
 
@@ -1515,7 +1515,7 @@ static void sub_02094B30(SysTask *param0, void *param1)
         v1->unk_08++;
 
         if (v1->unk_08 > v1->unk_04[v1->unk_0A]) {
-            sub_0200AAE0(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
+            BrightnessController_StartTransition(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
             Sound_PlayEffect(1528);
             v1->unk_0A++;
             v1->unk_08 = 0;

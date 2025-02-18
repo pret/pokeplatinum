@@ -12,7 +12,6 @@
 #include "overlay071/struct_ov71_0223C444.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -20,6 +19,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "render_oam.h"
+#include "sprite.h"
 #include "strbuf.h"
 #include "system.h"
 #include "touch_screen.h"
@@ -232,9 +232,9 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
                 }
 
                 if (v5 == 4 - 1) {
-                    CellActor_SetDrawFlag(v0->unk_30E4.unk_1C0[8 + v6], 1);
+                    Sprite_SetDrawFlag(v0->unk_30E4.unk_1C0[8 + v6], 1);
                 } else if (v5 == 4) {
-                    CellActor_SetDrawFlag(v0->unk_30E4.unk_1C0[(8 + 8) + v6], 1);
+                    Sprite_SetDrawFlag(v0->unk_30E4.unk_1C0[(8 + 8) + v6], 1);
                 }
             }
         }
@@ -273,9 +273,9 @@ int ov71_0223B388(OverlayManager *param0, int *param1)
                 v0->unk_3350 = 1;
                 v0->unk_3381 = 1;
 
-                CellActor_SetDrawFlag(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
-                CellActor_SetAnimateFlag(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
-                CellActor_SetAnim(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 10);
+                Sprite_SetDrawFlag(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
+                Sprite_SetAnimateFlag(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 1);
+                Sprite_SetAnim(v0->unk_30E4.unk_1C0[((8 + 8) + 8)], 10);
 
                 v0->unk_337E = 0;
                 v0->unk_3380 = 0;
@@ -370,7 +370,7 @@ int ov71_0223B388(OverlayManager *param0, int *param1)
     }
 
     ov71_0223C2F4(v0);
-    CellActorCollection_Update(v0->unk_30E4.unk_00);
+    SpriteList_Update(v0->unk_30E4.unk_00);
 
     return 0;
 }
@@ -1102,10 +1102,10 @@ static void ov71_0223C1AC(UnkStruct_ov71_0223B620 *param0, const u8 param1)
                 }
 
                 if (v1 == 4 - 1) {
-                    CellActor_SetDrawFlag(param0->unk_30E4.unk_1C0[8 + param1], 1);
+                    Sprite_SetDrawFlag(param0->unk_30E4.unk_1C0[8 + param1], 1);
                 } else if (v1 == 4) {
-                    CellActor_SetDrawFlag(param0->unk_30E4.unk_1C0[8 + param1], 0);
-                    CellActor_SetDrawFlag(param0->unk_30E4.unk_1C0[(8 + 8) + param1], 1);
+                    Sprite_SetDrawFlag(param0->unk_30E4.unk_1C0[8 + param1], 0);
+                    Sprite_SetDrawFlag(param0->unk_30E4.unk_1C0[(8 + 8) + param1], 1);
                 }
             }
         }
@@ -1317,7 +1317,7 @@ static void ov71_0223C5A4(UnkStruct_ov71_0223B620 *param0, const u8 param1)
 
 static int ov71_0223C60C(BgConfig *param0, const TouchScreenRect *rect)
 {
-    int v0 = sub_02022664(rect);
+    int v0 = TouchScreen_CheckRectanglePressed(rect);
 
     if (v0 != 0xffffffff) {
         if (v0 != 0) {
@@ -1336,7 +1336,7 @@ static int ov71_0223C60C(BgConfig *param0, const TouchScreenRect *rect)
 
 static int ov71_0223C654(BgConfig *param0, const TouchScreenRect *rect)
 {
-    int v0 = sub_02022644(rect);
+    int v0 = TouchScreen_CheckRectangleHeld(rect);
 
     if (v0 != 0xffffffff) {
         if (v0 != 0) {

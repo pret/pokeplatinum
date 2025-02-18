@@ -5,7 +5,7 @@
 
 #include "overlay083/struct_ov83_0223DA94.h"
 
-#include "cell_actor.h"
+#include "sprite.h"
 
 typedef struct {
     BOOL unk_00;
@@ -19,7 +19,7 @@ typedef struct {
     UnkStruct_ov83_0223DA94 unk_30;
     UnkStruct_ov83_0223DA94 unk_48;
     UnkStruct_ov83_0223DA94 unk_60;
-    CellActor *unk_78;
+    Sprite *unk_78;
     int unk_7C;
 } UnkStruct_ov83_0223F054;
 

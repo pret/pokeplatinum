@@ -5,24 +5,22 @@
 
 #include "constants/moves.h"
 
-#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 
 #include "bg_window.h"
 #include "camera.h"
-#include "cell_actor.h"
 #include "game_options.h"
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 #include "text.h"
@@ -32,8 +30,8 @@ enum SummaryMode {
     SUMMARY_MODE_NORMAL = 0,
     SUMMARY_MODE_LOCK_MOVES,
     SUMMARY_MODE_SELECT_MOVE,
-    SUMMARY_MODE_POFFIN,
-    SUMMARY_MODE_CONDITION,
+    SUMMARY_MODE_FEED_POFFIN,
+    SUMMARY_MODE_SHOW_CONDITION_CHANGE,
 };
 
 enum SummaryPage {
@@ -287,6 +285,17 @@ enum SummarySprite {
     SUMMARY_SPRITE_MAX = 77,
 };
 
+enum SummaryStatus {
+    SUMMARY_CONDITION_POKERUS = 0,
+    SUMMARY_CONDITION_PARALYSIS,
+    SUMMARY_CONDITION_FREEZE,
+    SUMMARY_CONDITION_SLEEP,
+    SUMMARY_CONDITION_POISON,
+    SUMMARY_CONDITION_BURN,
+    SUMMARY_CONDITION_FAINTED,
+    SUMMARY_CONDITION_NONE,
+};
+
 enum SummaryPokerusState {
     SUMMARY_POKERUS_NONE = 0,
     SUMMARY_POKERUS_INFECTED,
@@ -328,10 +337,10 @@ typedef struct PokemonSummary {
     u8 OTGender;
     u8 dataType;
     u8 mode;
-    u8 max;
-    u8 pos;
+    u8 monMax;
+    u8 monIndex;
     u8 pageFlags;
-    u8 selectedSlot;
+    u8 selectedMoveSlot;
     u8 returnMode;
     u16 move;
 
@@ -403,7 +412,7 @@ typedef struct PokemonSummaryMonSpriteData {
     void *spriteManager;
     SpriteAnimationFrame frames[MAX_ANIMATION_FRAMES];
     PokemonAnimationSys *animationSys;
-    Sprite *sprite;
+    PokemonSprite *sprite;
     BOOL flip;
 } PokemonSummaryMonSpriteData;
 
@@ -422,10 +431,10 @@ typedef struct PokemonSummaryScreen {
     ConditionRectangle maxRects[MAX_CONDITION_RECT];
     u32 conditionState;
 
-    SpriteRenderer *renderer;
-    SpriteGfxHandler *gfxHandler;
-    CellActor *sprites[SUMMARY_SPRITE_MAX];
-    CellActorData *actor[SUMMARY_SPRITE_MAX];
+    SpriteSystem *spriteSys;
+    SpriteManager *spriteMan;
+    Sprite *sprites[SUMMARY_SPRITE_MAX];
+    ManagedSprite *managedSprites[SUMMARY_SPRITE_MAX];
 
     UnkStruct_0200C440 *unk_684;
     MessageLoader *msgLoader;
@@ -449,7 +458,7 @@ typedef struct PokemonSummaryScreen {
     u8 sheenPos;
     u8 sheenCount;
 
-    u8 buttonCount;
+    u8 buttonAnimFrame;
     u8 buttonState;
     u8 buttonCurrent;
 

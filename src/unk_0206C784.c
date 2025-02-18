@@ -8,11 +8,10 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021E15F4.h"
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/struct_ov5_021D5894.h"
-#include "overlay005/struct_ov5_021E1890_decl.h"
 
 #include "camera.h"
 #include "field_map_change.h"
@@ -43,7 +42,7 @@ typedef struct {
     int unk_1C;
     int unk_20;
     VecFx32 unk_24;
-    UnkStruct_ov5_021E1890 *unk_30;
+    MapProp *unk_30;
     UnkStruct_ov5_021D5894 unk_34;
     fx32 unk_7C;
 } UnkStruct_0206CAD0;
@@ -243,7 +242,7 @@ static BOOL sub_0206CAD0(UnkStruct_0206CAD0 *param0)
 {
     VecFx32 v0;
 
-    v0 = ov5_021E1894(param0->unk_30);
+    v0 = MapProp_GetPosition(param0->unk_30);
 
     switch (param0->unk_01) {
     case 0:
@@ -276,7 +275,7 @@ static BOOL sub_0206CAD0(UnkStruct_0206CAD0 *param0)
         }
     }
 
-    ov5_021E18A4(param0->unk_30, &v0);
+    MapProp_SetPosition(param0->unk_30, &v0);
     param0->unk_14 += param0->unk_7C;
 
     if (param0->unk_0C <= param0->unk_14) {
@@ -309,7 +308,7 @@ static void sub_0206CBA0(FieldSystem *fieldSystem)
         if (v1) {
             NNSG3dResMdl *v4;
             NNSG3dResFileHeader **v5;
-            UnkStruct_ov5_021E1890 *v6;
+            MapProp *v6;
             NNSG3dRenderObj *v7;
 
             v5 = ov5_021EF9E8(v2[v0], fieldSystem->unk_30);
@@ -317,7 +316,7 @@ static void sub_0206CBA0(FieldSystem *fieldSystem)
             v1 = sub_020552B4(fieldSystem, v2[v0], &v6, NULL);
 
             GF_ASSERT(v1);
-            v7 = ov5_021E18BC(v6);
+            v7 = MapProp_GetRenderObj(v6);
 
             ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, v3[v0], v2[v0], v7, v4, ov5_021EFAA0(fieldSystem->unk_30), 1, 1, 0);
         } else {

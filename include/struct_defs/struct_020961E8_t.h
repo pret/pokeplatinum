@@ -10,10 +10,10 @@
 #include "overlay059/struct_ov59_021D30E0.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "menu.h"
 #include "message.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "strbuf.h"
@@ -34,15 +34,15 @@ struct UnkStruct_020961E8_t {
     Strbuf *unk_44;
     Strbuf *unk_48;
     int unk_4C;
-    CellActorCollection *unk_50;
+    SpriteList *unk_50;
     G2dRenderer unk_54;
     SpriteResourceCollection *unk_1E0[4];
     SpriteResource *unk_1F0[3][4];
-    CellActorResourceData unk_220;
-    CellActorResourceData unk_244;
-    CellActorResourceData unk_268;
-    CellActor *unk_28C[14];
-    CellActor *unk_2C4[14];
+    SpriteResourcesHeader unk_220;
+    SpriteResourcesHeader unk_244;
+    SpriteResourcesHeader unk_268;
+    Sprite *unk_28C[14];
+    Sprite *unk_2C4[14];
     Window unk_2FC[5];
     Window unk_34C;
     Window unk_35C;

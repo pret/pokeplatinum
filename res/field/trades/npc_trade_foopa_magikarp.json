@@ -1,0 +1,22 @@
+{
+    "species": "SPECIES_MAGIKARP",
+    "hpIV": 15,
+    "atkIV": 25,
+    "defIV": 15,
+    "speedIV": 20,
+    "spAtkIV": 25,
+    "spDefIV": 15,
+    "unused1": 33,
+    "otID": 53277,
+    "cool": 0,
+    "beauty": 0,
+    "cute": 0,
+    "smart": 0,
+    "tough": 0,
+    "personality": 1116,
+    "heldItem": "ITEM_LUM_BERRY",
+    "otGender": "GENDER_MALE",
+    "unused2": 0,
+    "language": 5,
+    "requestedSpecies": "SPECIES_FINNEON"
+}

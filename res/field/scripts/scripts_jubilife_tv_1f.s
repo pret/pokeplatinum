@@ -69,7 +69,7 @@ _00AB:
 _00B6:
     SetFlag 0xAA9
     Message 4
-    ScrCmd_24E 0x8000
+    GetJubilifeLotteryTrainerID 0x8000
     ScrCmd_280 0, 0x8000, 2, 5
     Message 5
     ScrCmd_24F 0x8001, 0x8002, 0x8003, 0x8000

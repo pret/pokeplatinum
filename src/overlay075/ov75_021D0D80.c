@@ -3,16 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200C6E4_decl.h"
-#include "struct_decls/struct_0200C704_decl.h"
-#include "struct_defs/sprite_template.h"
-#include "struct_defs/struct_0200D0F4.h"
+#include "constants/narc.h"
+
 #include "struct_defs/struct_020978D8.h"
 #include "struct_defs/struct_02099F80.h"
-
-#include "overlay104/struct_ov104_022412F4.h"
-#include "overlay104/struct_ov104_02241308.h"
-#include "overlay104/struct_ov104_0224133C.h"
 
 #include "bg_window.h"
 #include "enums.h"
@@ -29,13 +23,13 @@
 #include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_020393C8.h"
@@ -87,9 +81,9 @@ typedef struct {
     NNSG2dScreenData *unk_40;
     Window unk_44[6];
     Menu *unk_A4;
-    SpriteRenderer *unk_A8;
-    SpriteGfxHandler *unk_AC;
-    CellActorData *unk_B0[3];
+    SpriteSystem *unk_A8;
+    SpriteManager *unk_AC;
+    ManagedSprite *unk_B0[3];
 } UnkStruct_ov75_021D1184;
 
 typedef int (*UnkFuncPtr_ov75_021D1184)(UnkStruct_ov75_021D1184 *);
@@ -400,7 +394,7 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
         break;
     case 2:
         if (param0->unk_AC != NULL) {
-            sub_0200C7EC(param0->unk_AC);
+            SpriteSystem_DrawSprites(param0->unk_AC);
         }
 
         if (PaletteData_GetSelectedBuffersMask(param0->unk_30)) {
@@ -416,7 +410,7 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
         };
 
         if (param0->unk_AC != NULL) {
-            sub_0200C7EC(param0->unk_AC);
+            SpriteSystem_DrawSprites(param0->unk_AC);
         }
 
         if (!v0[param0->unk_0C](param0)) {
@@ -428,7 +422,7 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 *param0)
     case 4:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_30)) {
             if (param0->unk_AC != NULL) {
-                sub_0200C7EC(param0->unk_AC);
+                SpriteSystem_DrawSprites(param0->unk_AC);
             }
 
             return 0;
@@ -464,7 +458,7 @@ static void ov75_021D131C(void *param0)
     }
 
     if (v0->unk_A8 != NULL) {
-        OAMManager_ApplyAndResetBuffers();
+        SpriteSystem_TransferOam();
     }
 
     NNS_GfdDoVramTransfer();
@@ -870,11 +864,11 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
 
     VramTransfer_New(32, param0->unk_00);
 
-    param0->unk_A8 = sub_0200C6E4(param0->unk_00);
-    param0->unk_AC = sub_0200C704(param0->unk_A8);
+    param0->unk_A8 = SpriteSystem_Alloc(param0->unk_00);
+    param0->unk_AC = SpriteManager_New(param0->unk_A8);
 
     {
-        UnkStruct_ov104_0224133C v3 = {
+        RenderOamTemplate v3 = {
             0,
             7,
             1,
@@ -884,14 +878,14 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
             1,
             1,
         };
-        UnkStruct_ov104_022412F4 v4 = {
+        CharTransferTemplateWithModes v4 = {
             3,
             1024,
             0,
             GX_OBJVRAMMODE_CHAR_1D_32K,
             GX_OBJVRAMMODE_CHAR_1D_32K,
         };
-        const UnkStruct_ov104_02241308 v5 = {
+        const SpriteResourceCapacities v5 = {
             3,
             1,
             1,
@@ -900,22 +894,22 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
             0,
         };
 
-        sub_0200C73C(param0->unk_A8, &v3, &v4, 32);
-        sub_0200C7C0(param0->unk_A8, param0->unk_AC, 3);
-        sub_0200CB30(param0->unk_A8, param0->unk_AC, &v5);
+        SpriteSystem_Init(param0->unk_A8, &v3, &v4, 32);
+        SpriteSystem_InitSprites(param0->unk_A8, param0->unk_AC, 3);
+        SpriteSystem_InitManagerWithCapacities(param0->unk_A8, param0->unk_AC, &v5);
         RenderOam_ClearMain(param0->unk_00);
     }
 
-    sub_0200CC9C(param0->unk_A8, param0->unk_AC, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
-    sub_0200CE0C(param0->unk_A8, param0->unk_AC, 19, PokeIconCellsFileIndex(), 0, 0);
-    sub_0200CE3C(param0->unk_A8, param0->unk_AC, 19, PokeIconAnimationFileIndex(), 0, 0);
+    SpriteSystem_LoadPlttResObj(param0->unk_A8, param0->unk_AC, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 0);
+    SpriteSystem_LoadCellResObj(param0->unk_A8, param0->unk_AC, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconCellsFileIndex(), FALSE, 0);
+    SpriteSystem_LoadAnimResObj(param0->unk_A8, param0->unk_AC, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconAnimationFileIndex(), FALSE, 0);
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_1C->unk_14[v0].val2 == 0xFFFF) {
             break;
         }
 
-        sub_0200D828(param0->unk_A8, param0->unk_AC, 19, param0->unk_1C->unk_14[v0].val1_0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, v0);
+        SpriteSystem_LoadCharResObjWithHardwareMappingType(param0->unk_A8, param0->unk_AC, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_1C->unk_14[v0].val1_0, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, v0);
         MI_CpuClear8(&v2, sizeof(SpriteTemplate));
 
         v2.x = (16 * 8) - (40 * v0);
@@ -925,7 +919,7 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         v2.animIdx = 0;
         v2.bgPriority = 2;
         v2.plttIdx = param0->unk_1C->unk_14[v0].val1_12;
-        v2.transferToVRAM = FALSE;
+        v2.vramTransfer = FALSE;
         v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
 
         v2.resources[0] = v0;
@@ -935,10 +929,10 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         v2.resources[4] = SPRITE_RESOURCE_NONE;
         v2.resources[5] = SPRITE_RESOURCE_NONE;
 
-        param0->unk_B0[v0] = SpriteActor_LoadResources(param0->unk_A8, param0->unk_AC, &v2);
+        param0->unk_B0[v0] = SpriteSystem_NewSprite(param0->unk_A8, param0->unk_AC, &v2);
 
         if (param0->unk_1C->unk_14[v0].val1_0 == 7) {
-            SpriteActor_EnableObject(param0->unk_B0[v0], 0);
+            ManagedSprite_SetDrawFlag(param0->unk_B0[v0], 0);
         }
     }
 }
@@ -950,12 +944,12 @@ static void ov75_021D1CB8(UnkStruct_ov75_021D1184 *param0)
     if (param0->unk_0C == 0) {
         for (v0 = 0; v0 < 3; v0++) {
             if (param0->unk_B0[v0] != NULL) {
-                sub_0200D0F4(param0->unk_B0[v0]);
+                Sprite_DeleteAndFreeResources(param0->unk_B0[v0]);
             }
         }
 
-        sub_0200D0B0(param0->unk_A8, param0->unk_AC);
-        sub_0200C8D4(param0->unk_A8);
+        SpriteSystem_FreeResourcesAndManager(param0->unk_A8, param0->unk_AC);
+        SpriteSystem_Free(param0->unk_A8);
         VramTransfer_Free();
     }
 }

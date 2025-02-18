@@ -853,25 +853,25 @@ static void ov19_021D1C84(UnkStruct_ov19_021D5DF8 *param0)
         UnkStruct_ov19_021D5594 *v1 = &param0->unk_00.unk_14;
 
         param0->unk_12C.monData = param0->unk_00.unk_14.unk_00;
-        param0->unk_12C.dataType = (v1->unk_0B) ? 0 : 2;
-        param0->unk_12C.max = 1;
-        param0->unk_12C.pos = 0;
-        param0->unk_12C.mode = 0;
+        param0->unk_12C.dataType = (v1->unk_0B) ? SUMMARY_DATA_MON : SUMMARY_DATA_BOX_MON;
+        param0->unk_12C.monMax = 1;
+        param0->unk_12C.monIndex = 0;
+        param0->unk_12C.mode = SUMMARY_MODE_NORMAL;
         param0->unk_12C.move = 0;
         param0->unk_12C.options = param0->unk_1A4;
     } else if (ov19_021D5E10(&param0->unk_00) == 0) {
         param0->unk_12C.monData = sub_02079C9C(param0->unk_120, sub_0207999C(param0->unk_120), 0);
-        param0->unk_12C.dataType = 2;
-        param0->unk_12C.max = (5 * 6);
-        param0->unk_12C.pos = ov19_021D5E24(&param0->unk_00);
-        param0->unk_12C.mode = 0;
+        param0->unk_12C.dataType = SUMMARY_DATA_BOX_MON;
+        param0->unk_12C.monMax = MAX_MONS_PER_BOX;
+        param0->unk_12C.monIndex = ov19_021D5E24(&param0->unk_00);
+        param0->unk_12C.mode = SUMMARY_MODE_NORMAL;
         param0->unk_12C.move = 0;
     } else {
         param0->unk_12C.monData = param0->unk_124;
-        param0->unk_12C.dataType = 1;
-        param0->unk_12C.max = Party_GetCurrentCount(param0->unk_124);
-        param0->unk_12C.pos = ov19_021D5E2C(&param0->unk_00);
-        param0->unk_12C.mode = 0;
+        param0->unk_12C.dataType = SUMMARY_DATA_PARTY_MON;
+        param0->unk_12C.monMax = Party_GetCurrentCount(param0->unk_124);
+        param0->unk_12C.monIndex = ov19_021D5E2C(&param0->unk_00);
+        param0->unk_12C.mode = SUMMARY_MODE_NORMAL;
         param0->unk_12C.move = 0;
     }
 
@@ -2410,12 +2410,12 @@ static void ov19_021D3CFC(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5D
 
     switch (v0->unk_04) {
     case 0:
-        v0->unk_07 = param1->unk_12C.pos;
+        v0->unk_07 = param1->unk_12C.monIndex;
         v0->unk_05 = v0->unk_07 % 6;
         v0->unk_06 = v0->unk_07 / 6;
         break;
     case 1:
-        v0->unk_08 = param1->unk_12C.pos;
+        v0->unk_08 = param1->unk_12C.monIndex;
         break;
     default:
         return;

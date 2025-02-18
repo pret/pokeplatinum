@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
-#include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0204B184.h"
 
 #include "overlay104/ov104_0222DCE0.h"
@@ -22,7 +21,6 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -32,10 +30,11 @@
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "sprite.h"
+#include "system_vars.h"
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 #include "unk_0205DFC4.h"
-#include "unk_0206AFE0.h"
 #include "vars_flags.h"
 
 typedef struct {
@@ -175,7 +174,7 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2
         sub_02030494(v4);
 
         if (v9->unk_10 == 3) {
-            v5 = sub_0206B6FC(SaveData_GetVarsFlags(v9->unk_04));
+            v5 = SystemVars_GetWiFiFrontierCleared(SaveData_GetVarsFlags(v9->unk_04));
         } else {
             v5 = (u8)sub_02030600(v10, 8, v9->unk_10, 0, NULL);
         }
@@ -707,13 +706,13 @@ void ov104_02238764(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
         for (v2 = 0; v2 < v0; v2++) {
             v3 = Party_GetPokemonBySlotIndex(param0->unk_70, v2);
             param0->unk_30[v2] = ov104_02232F4C(param1, v3, v2, Unk_ov104_0223FB18[v2].unk_00, Unk_ov104_0223FB18[v2].unk_02);
-            CellActor_SetAnimateFlag(param0->unk_30[v2]->unk_00, 0);
+            Sprite_SetAnimateFlag(param0->unk_30[v2]->sprite, 0);
         }
     } else {
         for (v2 = 0; v2 < v1; v2++) {
             v3 = Party_GetPokemonBySlotIndex(param0->unk_74, v2);
             param0->unk_40[v2] = ov104_02232F4C(param1, v3, v2 + v0, Unk_ov104_0223FB28[v2].unk_00, Unk_ov104_0223FB28[v2].unk_02);
-            CellActor_SetAnimateFlag(param0->unk_40[v2]->unk_00, 0);
+            Sprite_SetAnimateFlag(param0->unk_40[v2]->sprite, 0);
         }
     }
 
@@ -752,9 +751,9 @@ void ov104_0223886C(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     }
 
     if (param2 == 1) {
-        CellActor_SetDrawFlag(param0->unk_30[param3]->unk_00, 1);
+        Sprite_SetDrawFlag(param0->unk_30[param3]->sprite, 1);
     } else {
-        CellActor_SetDrawFlag(param0->unk_30[param3]->unk_00, 0);
+        Sprite_SetDrawFlag(param0->unk_30[param3]->sprite, 0);
     }
 
     return;
@@ -771,9 +770,9 @@ void ov104_022388A4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
     }
 
     if (param2 == 1) {
-        CellActor_SetDrawFlag(param0->unk_40[param3]->unk_00, 1);
+        Sprite_SetDrawFlag(param0->unk_40[param3]->sprite, 1);
     } else {
-        CellActor_SetDrawFlag(param0->unk_40[param3]->unk_00, 0);
+        Sprite_SetDrawFlag(param0->unk_40[param3]->sprite, 0);
     }
 
     return;
@@ -795,7 +794,7 @@ void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
             v3 = Party_GetPokemonBySlotIndex(param0->unk_70, v2);
 
             if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
-                CellActor_SetDrawFlag(param0->unk_50[v2]->unk_00, 0);
+                Sprite_SetDrawFlag(param0->unk_50[v2]->sprite, 0);
             }
         }
     } else {
@@ -805,7 +804,7 @@ void ov104_022388DC(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
             v3 = Party_GetPokemonBySlotIndex(param0->unk_74, v2);
 
             if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
-                CellActor_SetDrawFlag(param0->unk_60[v2]->unk_00, 0);
+                Sprite_SetDrawFlag(param0->unk_60[v2]->sprite, 0);
             }
         }
     }
@@ -853,12 +852,12 @@ void ov104_022389F4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
 
         if (param4 == 1) {
             if (v0 == 0) {
-                CellActor_SetDrawFlag(param0->unk_50[param3]->unk_00, 0);
+                Sprite_SetDrawFlag(param0->unk_50[param3]->sprite, 0);
             } else {
-                CellActor_SetDrawFlag(param0->unk_50[param3]->unk_00, 1);
+                Sprite_SetDrawFlag(param0->unk_50[param3]->sprite, 1);
             }
         } else {
-            CellActor_SetDrawFlag(param0->unk_50[param3]->unk_00, 0);
+            Sprite_SetDrawFlag(param0->unk_50[param3]->sprite, 0);
         }
     } else {
         if (param3 >= v2) {
@@ -870,12 +869,12 @@ void ov104_022389F4(UnkStruct_ov104_0223BFFC *param0, UnkStruct_ov104_0223C4CC *
 
         if (param4 == 1) {
             if (v0 == 0) {
-                CellActor_SetDrawFlag(param0->unk_60[param3]->unk_00, 0);
+                Sprite_SetDrawFlag(param0->unk_60[param3]->sprite, 0);
             } else {
-                CellActor_SetDrawFlag(param0->unk_60[param3]->unk_00, 1);
+                Sprite_SetDrawFlag(param0->unk_60[param3]->sprite, 1);
             }
         } else {
-            CellActor_SetDrawFlag(param0->unk_60[param3]->unk_00, 0);
+            Sprite_SetDrawFlag(param0->unk_60[param3]->sprite, 0);
         }
     }
 

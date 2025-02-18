@@ -8,11 +8,11 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "cell_actor.h"
 #include "field_battle_data_transfer.h"
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "string_template.h"
 #include "trainer_info.h"
 
@@ -24,8 +24,8 @@ void ov104_0222DF40(const UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1
 u16 ov104_0222E10C(u8 param0);
 void ov104_0222E134(SaveData *param0, Pokemon *param1);
 void ov104_0222E1C0(SaveData *param0, Party *param1, Pokemon *param2);
-void ov104_0222E1D8(CellActor *param0, u8 param1);
-void ov104_0222E204(CellActor *param0, s16 param1, s16 param2, u8 param3);
+void ov104_0222E1D8(Sprite *param0, u8 param1);
+void ov104_0222E204(Sprite *param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);
 void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int param2, int param3);
 void ov104_0222E284(FieldBattleDTO *param0, UnkStruct_ov104_0223A348_sub1 *param1, int param2, int param3, int param4);

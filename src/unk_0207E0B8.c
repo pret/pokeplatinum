@@ -17,7 +17,6 @@
 
 #include "bag.h"
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -33,6 +32,8 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "sprite.h"
+#include "sprite_system.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
@@ -42,7 +43,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0200C440.h"
-#include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_0201E010.h"
 #include "unk_0201E3D8.h"
@@ -286,7 +286,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     } else if ((v0->unk_5A4->unk_20 == 9) || (v0->unk_5A4->unk_20 == 14)) {
         sub_020826E0(v0, 31, 1);
     } else if ((v0->unk_5A4->unk_20 == 7) || (v0->unk_5A4->unk_20 == 8) || (v0->unk_5A4->unk_20 == 11) || (v0->unk_5A4->unk_20 == 12)) {
-        sub_0200D414(v0->unk_5B0[6], 1);
+        Sprite_SetExplicitPalette2(v0->unk_5B0[6], 1);
     } else if ((v0->unk_5A4->unk_20 == 2) || (v0->unk_5A4->unk_20 == 17)) {
         sub_020826E0(v0, 34, 1);
     } else if (v0->unk_5A4->unk_20 == 15) {
@@ -300,7 +300,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     } else if (v0->unk_5A4->unk_20 != 10) {
         sub_020826E0(v0, 29, 1);
     } else {
-        sub_0200D414(v0->unk_5B0[6], 1);
+        Sprite_SetExplicitPalette2(v0->unk_5B0[6], 1);
     }
 
     sub_02081BC0(v0);
@@ -448,7 +448,7 @@ static int sub_0207E2A8(OverlayManager *param0, int *param1)
     sub_020831B4(v0);
     sub_02083334(v0);
     sub_0207FE1C(v0);
-    sub_0200C7EC(v0->unk_5AC);
+    SpriteSystem_DrawSprites(v0->unk_5AC);
 
     return 0;
 }
@@ -509,7 +509,7 @@ static int sub_0207E518(GameWindowLayout *param0)
             param0->unk_5A4->unk_23 = 1;
             return 32;
         } else {
-            sub_0200D414(param0->unk_5B0[6], 1);
+            Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
             return sub_02084780(param0);
         }
     }
@@ -522,7 +522,7 @@ static int sub_0207E5B4(GameWindowLayout *param0)
     u8 v0 = HandleSpecialInput(param0);
 
     if ((v0 == 0) || (v0 == 2)) {
-        sub_0200D414(param0->unk_5B0[6], 1);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
         return ApplyItemEffectOnPokemon(param0);
     } else if (v0 == 3) {
         param0->unk_5A4->unk_23 = 0;
@@ -537,7 +537,7 @@ static int sub_0207E5F4(GameWindowLayout *param0)
     u8 v0 = HandleSpecialInput(param0);
 
     if ((v0 == 0) || (v0 == 2)) {
-        sub_0200D414(param0->unk_5B0[6], 1);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
         return ProcessItemApplication(param0);
     } else if (v0 == 3) {
         param0->unk_5A4->unk_23 = 0;
@@ -561,7 +561,7 @@ static int sub_0207E634(GameWindowLayout *param0)
         Menu_Free(param0->unk_700, NULL);
         StringList_Free(param0->unk_6FC);
         sub_020826E0(param0, 29, 1);
-        sub_0200D414(param0->unk_5B0[6], 0);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
         return 1;
     default: {
         UnkFuncPtr_0207E634 v1;
@@ -619,7 +619,7 @@ static int sub_0207E750(GameWindowLayout *param0)
     u8 v0 = HandleSpecialInput(param0);
 
     if ((v0 == 0) || (v0 == 2)) {
-        sub_0200D414(param0->unk_5B0[6], 1);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 
         if (param0->unk_704[param0->unk_B11].unk_10 != 1) {
             return sub_0208615C(param0);
@@ -681,7 +681,7 @@ static void sub_0207E898(void *param0)
 
     Bg_RunScheduledUpdates(v0->unk_00);
     VramTransfer_Process();
-    OAMManager_ApplyAndResetBuffers();
+    SpriteSystem_TransferOam();
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -1004,21 +1004,21 @@ static void sub_0207EE14(GameWindowLayout *param0)
     }
 
     if ((param0->unk_5A4->unk_20 != 2) && (param0->unk_5A4->unk_20 != 17) && (param0->unk_5A4->unk_20 != 23) && (param0->unk_5A4->unk_20 != 22)) {
-        CellActor_SetDrawFlag(param0->unk_5B0[8], 0);
-        CellActor_SetAnim(param0->unk_5B0[9], 0);
+        Sprite_SetDrawFlag(param0->unk_5B0[8], 0);
+        Sprite_SetAnim(param0->unk_5B0[9], 0);
 
         {
             s16 v1, v2;
 
-            sub_0200D50C(param0->unk_5B0[9], &v1, &v2);
-            SpriteActor_SetPositionXY(param0->unk_5B0[9], v1, v2 - 8);
+            Sprite_GetPositionXY(param0->unk_5B0[9], &v1, &v2);
+            Sprite_SetPositionXY(param0->unk_5B0[9], v1, v2 - 8);
         }
 
         v0 ^= 1;
     }
 
     if ((param0->unk_5A4->unk_20 == 4) || (param0->unk_5A4->unk_20 == 21)) {
-        CellActor_SetDrawFlag(param0->unk_5B0[9], 0);
+        Sprite_SetDrawFlag(param0->unk_5B0[9], 0);
         v0 ^= 2;
     }
 
@@ -1390,8 +1390,8 @@ static void sub_0207F9A0(GameWindowLayout *param0)
     u8 v0, v1;
 
     sub_0201E028(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->unk_B11, 4);
-    CellActor_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B11));
-    SpriteActor_SetPositionXY(param0->unk_5B0[6], v0, v1);
+    Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B11));
+    Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);
 }
 
 static const u8 Unk_020F1BD4[][6] = {
@@ -1458,11 +1458,11 @@ static u8 sub_0207FA24(GameWindowLayout *param0)
 
     if ((v0 != param0->unk_B11) && (v0 != 0xff)) {
         if ((v0 == 6) || (v0 == 7)) {
-            CellActor_SetDrawFlag(param0->unk_5B0[6], 0);
+            Sprite_SetDrawFlag(param0->unk_5B0[6], 0);
         } else {
-            CellActor_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, v0));
-            CellActor_SetDrawFlag(param0->unk_5B0[6], 1);
-            SpriteActor_SetPositionXY(param0->unk_5B0[6], v2, v3);
+            Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, v0));
+            Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
+            Sprite_SetPositionXY(param0->unk_5B0[6], v2, v3);
         }
 
         {
@@ -1548,9 +1548,9 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
         }
 
         sub_0201E028(param0->unk_7F4, &v1, &v2, NULL, NULL, param0->unk_B11, 4);
-        CellActor_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B11));
-        CellActor_SetDrawFlag(param0->unk_5B0[6], 1);
-        SpriteActor_SetPositionXY(param0->unk_5B0[6], v1, v2);
+        Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param0->unk_B11));
+        Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
+        Sprite_SetPositionXY(param0->unk_5B0[6], v1, v2);
 
         param0->unk_B0C = 1;
         param0->unk_B0D = param0->unk_B11;
@@ -1570,14 +1570,14 @@ static u8 sub_0207FC94(GameWindowLayout *param0)
 void sub_0207FD68(GameWindowLayout *param0, u8 param1)
 {
     if ((param1 == 6) || (param1 == 7)) {
-        CellActor_SetDrawFlag(param0->unk_5B0[6], 0);
+        Sprite_SetDrawFlag(param0->unk_5B0[6], 0);
     } else {
         u8 v0, v1;
 
         sub_0201E028(param0->unk_7F4, &v0, &v1, NULL, NULL, param0->unk_B11, 4);
-        CellActor_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
-        CellActor_SetDrawFlag(param0->unk_5B0[6], 1);
-        SpriteActor_SetPositionXY(param0->unk_5B0[6], v0, v1);
+        Sprite_SetAnim(param0->unk_5B0[6], sub_020805D0(param0->unk_5A4->unk_21, param1));
+        Sprite_SetDrawFlag(param0->unk_5B0[6], 1);
+        Sprite_SetPositionXY(param0->unk_5B0[6], v0, v1);
     }
 
     {
@@ -1725,7 +1725,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     Heap_FreeToHeapExplicit(12, v0);
     sub_02081E08(param0);
     sub_020826F4(param0, 0xffffffff, 1);
-    sub_0200D414(param0->unk_5B0[6], 1);
+    Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 }
 
 static u8 sub_020800B4(GameWindowLayout *param0, u8 *param1)
@@ -1979,7 +1979,7 @@ u8 sub_02080488(GameWindowLayout *param0, u8 param1)
 static void sub_02080500(GameWindowLayout *param0, u8 param1, u8 param2)
 {
     if (param1 == 6) {
-        u8 v0 = CellActor_GetActiveAnim(param0->unk_5B0[8]);
+        u8 v0 = Sprite_GetActiveAnim(param0->unk_5B0[8]);
 
         if (param2 == 0) {
             v0 = (v0 & 2);
@@ -1987,12 +1987,12 @@ static void sub_02080500(GameWindowLayout *param0, u8 param1, u8 param2)
             v0 = (v0 & 2) + 1;
         }
 
-        CellActor_SetAnim(param0->unk_5B0[8], v0);
+        Sprite_SetAnim(param0->unk_5B0[8], v0);
         return;
     }
 
     if (param1 == 7) {
-        u8 v1 = CellActor_GetActiveAnim(param0->unk_5B0[9]);
+        u8 v1 = Sprite_GetActiveAnim(param0->unk_5B0[9]);
 
         if (param2 == 0) {
             v1 = (v1 & 2);
@@ -2000,7 +2000,7 @@ static void sub_02080500(GameWindowLayout *param0, u8 param1, u8 param2)
             v1 = (v1 & 2) + 1;
         }
 
-        CellActor_SetAnim(param0->unk_5B0[9], v1);
+        Sprite_SetAnim(param0->unk_5B0[9], v1);
         return;
     }
 
@@ -2008,12 +2008,12 @@ static void sub_02080500(GameWindowLayout *param0, u8 param1, u8 param2)
         param0->unk_704[param1].unk_16 -= 2;
         param0->unk_704[param1].unk_18 -= 2;
 
-        CellActor_SetAnim(param0->unk_5B0[0 + param1], 0);
+        Sprite_SetAnim(param0->unk_5B0[0 + param1], 0);
     } else {
         param0->unk_704[param1].unk_16 += 2;
         param0->unk_704[param1].unk_18 += 2;
 
-        CellActor_SetAnim(param0->unk_5B0[0 + param1], 1);
+        Sprite_SetAnim(param0->unk_5B0[0 + param1], 1);
     }
 
     sub_0207F8F8(param0, param1);
@@ -2302,7 +2302,7 @@ static int GetValidWindowLayout(GameWindowLayout *param0)
         return 0xffffffff;
     }
 
-    v0 = sub_02022664(Unk_020F1C94);
+    v0 = TouchScreen_CheckRectanglePressed(Unk_020F1C94);
 
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
@@ -2334,7 +2334,7 @@ static u8 HandleWindowInputEvent(GameWindowLayout *param0, int *param1)
             sub_020826E0(param0, 29, 1);
         }
 
-        sub_0200D414(param0->unk_5B0[6], 0);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
         return 1;
     default: {
         UnkFuncPtr_0207E634 v1 = (UnkFuncPtr_0207E634)v0;
@@ -2371,7 +2371,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
                 switch (CheckPokemonCondition(param0)) {
                 case 0:
                     Sound_PlayEffect(1516);
-                    sub_0200D414(param0->unk_5B0[6], 1);
+                    Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 
                     if (param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06 < param0->unk_B14[0]) {
                         param0->unk_B14[0] = param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06;
@@ -2405,7 +2405,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
                 switch (CheckPokemonCondition(param0)) {
                 case 0:
                     Sound_PlayEffect(1516);
-                    sub_0200D414(param0->unk_5B0[6], 1);
+                    Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
 
                     if (param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06 < param0->unk_B14[0]) {
                         param0->unk_B14[0] = param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06;
@@ -2428,7 +2428,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             Window_EraseMessageBox(&param0->unk_04[34], 1);
-            sub_0200D414(param0->unk_5B0[6], 0);
+            Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
             sub_020826E0(param0, 36, 1);
             param0->unk_B14[1] = 0;
         }
@@ -2468,7 +2468,7 @@ static int ProcessWindowInput(GameWindowLayout *param0)
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(1500);
             Window_EraseMessageBox(&param0->unk_04[34], 1);
-            sub_0200D414(param0->unk_5B0[6], 0);
+            Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
             sub_02083B88(param0);
             return 1;
         }
@@ -2485,7 +2485,7 @@ static u8 CheckPokemonCondition(GameWindowLayout *param0)
     }
 
     if ((param0->unk_B11 == param0->unk_B0F_0) || (param0->unk_704[param0->unk_B11].unk_06 == 0) || (param0->unk_704[param0->unk_B11].unk_06 == param0->unk_704[param0->unk_B11].unk_08)) {
-        sub_0200D414(param0->unk_5B0[6], 1);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
         sub_02082708(param0, 131, 1);
 
         param0->unk_B14[1] = 1;
@@ -2831,7 +2831,7 @@ static int ResetWindowOnInput(GameWindowLayout *param0)
     if (param0->unk_5A4->unk_20 == 10) {
         Window_EraseMessageBox(&param0->unk_04[34], 1);
         sub_020826E0(param0, 29, 1);
-        sub_0200D414(param0->unk_5B0[6], 0);
+        Sprite_SetExplicitPalette2(param0->unk_5B0[6], 0);
         param0->unk_5A4->unk_20 = 0;
         return 1;
     }
@@ -2889,7 +2889,7 @@ static int CheckForItemApplication(GameWindowLayout *param0)
         return 32;
     }
 
-    sub_0200D414(param0->unk_5B0[6], 1);
+    Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
     sub_02082708(param0, 195, 1);
     param0->unk_B04.unk_00 = sub_02083A78;
     param0->unk_B04.unk_04 = sub_02083AA4;

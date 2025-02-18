@@ -37,12 +37,12 @@ Static main
 	Object main.nef.p/src_sprite_resource.c.o
 	Object main.nef.p/src_sprite_transfer.c.o
 	Object main.nef.p/src_render_oam.c.o
-	Object main.nef.p/src_unk_0200A9DC.c.o
+	Object main.nef.p/src_brightness_controller.c.o
 	Object main.nef.p/src_message.c.o
 	Object main.nef.p/src_message_util.c.o
 	Object main.nef.p/src_string_template.c.o
 	Object main.nef.p/src_unk_0200C440.c.o
-	Object main.nef.p/src_unk_0200C6E4.c.o
+	Object main.nef.p/src_sprite_system.c.o
 	Object main.nef.p/src_sys_task.c.o
 	Object main.nef.p/src_render_window.c.o
 	Object main.nef.p/src_unk_0200F174.c.o
@@ -88,7 +88,7 @@ Static main
 	Object main.nef.p/src_gx_layers.c.o
 	Object main.nef.p/src_camera.c.o
 	Object main.nef.p/src_unk_02020AEC.c.o
-	Object main.nef.p/src_cell_actor.c.o
+	Object main.nef.p/src_sprite.c.o
 	Object main.nef.p/src_touch_screen.c.o
 	Object main.nef.p/src_unk_02022844.c.o
 	Object main.nef.p/src_error_handling.c.o
@@ -208,7 +208,7 @@ Static main
 	Object main.nef.p/src_unk_0204E75C.c.o
 	Object main.nef.p/src_unk_0204E974.c.o
 	Object main.nef.p/src_unk_0204EDA4.c.o
-	Object main.nef.p/src_unk_0204F02C.c.o
+	Object main.nef.p/src_scrcmd_dummy_23F_242.c.o
 	Object main.nef.p/src_unk_0204F04C.c.o
 	Object main.nef.p/src_unk_0204F13C.c.o
 	Object main.nef.p/src_unk_0204FA34.c.o
@@ -264,7 +264,7 @@ Static main
 	Object main.nef.p/src_unk_02069BE0.c.o
 	Object main.nef.p/src_unk_0206A780.c.o
 	Object main.nef.p/src_system_flags.c.o
-	Object main.nef.p/src_unk_0206AFE0.c.o
+	Object main.nef.p/src_system_vars.c.o
 	Object main.nef.p/src_unk_0206B70C.c.o
 	Object main.nef.p/src_unk_0206B9D8.c.o
 	Object main.nef.p/src_great_marsh_lookout.c.o
@@ -320,7 +320,7 @@ Static main
 	Object main.nef.p/src_unk_0208C010.c.o
 	Object main.nef.p/src_unk_0208C098.c.o
 	Object main.nef.p/src_applications_pokemon_summary_screen_main.c.o
-	Object main.nef.p/src_applications_pokemon_summary_screen_sprite.c.o
+	Object main.nef.p/src_applications_pokemon_summary_screen_sprites.c.o
 	Object main.nef.p/src_applications_pokemon_summary_screen_window.c.o
 	Object main.nef.p/src_applications_pokemon_summary_screen_3d_anim.c.o
 	Object main.nef.p/src_applications_pokemon_summary_screen_subscreen.c.o
@@ -472,7 +472,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021D37AC.c.o
 	Object main.nef.p/src_overlay005_ov5_021D431C.c.o
 	Object main.nef.p/src_overlay005_ov5_021D521C.c.o
-	Object main.nef.p/src_overlay005_ov5_021D56BC.c.o
+	Object main.nef.p/src_overlay005_map_prop_material_shape.c.o
 	Object main.nef.p/src_overlay005_ov5_021D57BC.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5878.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5B40.c.o
@@ -489,7 +489,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021DFB54.c.o
 	Object main.nef.p/src_overlay005_ov5_021E1154.c.o
 	Object main.nef.p/src_overlay005_ov5_021E135C.c.o
-	Object main.nef.p/src_overlay005_ov5_021E15F4.c.o
+	Object main.nef.p/src_overlay005_map_prop.c.o
 	Object main.nef.p/src_overlay005_ov5_021E1B08.c.o
 	Object main.nef.p/src_overlay005_save_info_window.c.o
 	Object main.nef.p/src_overlay005_motion_blur.c.o
@@ -574,7 +574,7 @@ Overlay overlay6
 	Object main.nef.p/src_overlay006_swarm.c.o
 	Object main.nef.p/src_overlay006_ov6_02243258.c.o
 	Object main.nef.p/src_overlay006_roamer_after_battle.c.o
-	Object main.nef.p/src_overlay006_ov6_02246184.c.o
+	Object main.nef.p/src_overlay006_npc_trade.c.o
 	Object main.nef.p/src_overlay006_ov6_02246444.c.o
 	Object main.nef.p/src_overlay006_ov6_022465FC.c.o
 	Object main.nef.p/src_overlay006_ov6_02246A30.c.o
@@ -861,10 +861,10 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_ov23_02254A14.c.o
 }
 
-Overlay overlay24
+Overlay pre_poketch_subscreen
 {
 	After overlay9
-	Object main.nef.p/src_overlay024_ov24_02253CE0.c.o
+	Object main.nef.p/src_pre_poketch_subscreen_pre_poketch_subscreen.c.o
 }
 
 Overlay overlay25

@@ -29,11 +29,10 @@
 #include "assert.h"
 #include "bag.h"
 #include "bg_window.h"
-#include "cell_actor.h"
+#include "sprite.h"
 #include "char_transfer.h"
 #include "communication_information.h"
 #include "communication_system.h"
-#include "system.h"
 #include "enums.h"
 #include "error_handling.h"
 #include "font.h"
@@ -51,33 +50,32 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "party.h"
+#include "pltt_transfer.h"
 #include "poffin.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "render_oam.h"
 #include "render_text.h"
 #include "render_window.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sprite_resource.h"
+#include "sprite_transfer.h"
+#include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
 #include "string_template.h"
+#include "system.h"
 #include "system_flags.h"
 #include "text.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "sprite_util.h"
-#include "sprite_transfer.h"
-#include "render_oam.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "system.h"
-#include "vram_transfer.h"
 #include "unk_0201E3D8.h"
-#include "pltt_transfer.h"
 #include "unk_02023FCC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202C858.h"
@@ -92,6 +90,7 @@
 #include "unk_02099550.h"
 #include "unk_0209C390.h"
 #include "vars_flags.h"
+#include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay63);
 
@@ -830,7 +829,7 @@ int ov65_0222E3FC(OverlayManager *param0, int *param1)
     }
 
     if (v0->unk_18C) {
-        CellActorCollection_Update(v0->unk_18C);
+        SpriteList_Update(v0->unk_18C);
     }
 
     if (ov65_02235194(&v0->unk_3EC) == 1) {
@@ -865,7 +864,7 @@ static void ov65_0222E47C(UnkStruct_ov65_0222EBE0 *param0)
         SpriteResourceCollection_Delete(param0->unk_31C[v0]);
     }
 
-    CellActorCollection_Delete(param0->unk_18C);
+    SpriteList_Delete(param0->unk_18C);
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
@@ -6641,14 +6640,14 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 par
 {
     BOOL v0;
     int v1;
-    CellActorResourceData v2;
+    SpriteResourcesHeader v2;
     Window v3;
     Strbuf *v4;
     UnkStruct_02012B20 *v5;
     int v6;
     UnkStruct_020127E8 v7;
     u32 v8;
-    CellActorInitParamsEx v9[3] = {
+    AffineSpriteListTemplate v9[3] = {
         { NULL,
             NULL,
             { FX32_CONST(40), FX32_CONST(172) + (256 * FX32_ONE), 0 },
@@ -6693,13 +6692,13 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 par
     SpriteResourcesHeader_Init(&v2, 30, 30, 30, 30, 0xffffffff, 0xffffffff, 0, 0, param0->unk_31C[0], param0->unk_31C[1], param0->unk_31C[2], param0->unk_31C[3], NULL, NULL);
 
     for (v1 = 0; v1 < 3; v1++) {
-        v9[v1].collection = param0->unk_18C;
+        v9[v1].list = param0->unk_18C;
         v9[v1].resourceData = &v2;
         v9[v1].heapID = param2;
 
-        param0->unk_BE0.unk_21C[v1] = CellActorCollection_AddEx(&v9[v1]);
+        param0->unk_BE0.unk_21C[v1] = SpriteList_AddAffine(&v9[v1]);
 
-        CellActor_SetAnim(param0->unk_BE0.unk_21C[v1], Unk_ov65_02238930[v1]);
+        Sprite_SetAnim(param0->unk_BE0.unk_21C[v1], Unk_ov65_02238930[v1]);
     }
 
     Font_InitManager(FONT_SUBSCREEN, param2);
@@ -6753,7 +6752,7 @@ static void ov65_02234CFC(UnkStruct_ov65_0222EBE0 *param0)
     CharTransfer_ClearRange(&param0->unk_BE0.unk_228);
 
     for (v0 = 0; v0 < 3; v0++) {
-        CellActor_Delete(param0->unk_BE0.unk_21C[v0]);
+        Sprite_Delete(param0->unk_BE0.unk_21C[v0]);
     }
 
     SpriteTransfer_ResetCharTransfer(param0->unk_BE0.unk_20C[0]);
@@ -6780,7 +6779,7 @@ static void ov65_02234D6C(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_02234DA0(UnkStruct_ov65_0222EBE0 *param0)
 {
     if (param0->unk_BE0.unk_238 == 2) {
-        CellActor_SetDrawFlag(param0->unk_BE0.unk_21C[1], 1);
+        Sprite_SetDrawFlag(param0->unk_BE0.unk_21C[1], 1);
         sub_020129D0(param0->unk_BE0.unk_234, 1);
     }
 
@@ -6828,8 +6827,8 @@ static void ov65_02234E40(u32 param0, u32 param1, void *param2)
 
 static void ov65_02234E50(UnkStruct_ov65_02234E50 *param0, u32 param1)
 {
-    CellActor_SetAnim(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
-    SpriteActor_SetAnimFrame(param0->unk_21C[param1], (5 - 1));
+    Sprite_SetAnim(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
+    Sprite_SetAnimFrame(param0->unk_21C[param1], (5 - 1));
 
     if (param1 == 1) {
         sub_020128C4(param0->unk_234, -18, Unk_ov65_0223893C[0]);
@@ -6843,16 +6842,16 @@ static BOOL ov65_02234E8C(UnkStruct_ov65_02234E50 *param0, u32 param1, u32 param
     u32 v2;
 
     if (param2 == param1) {
-        v1 = CellActor_GetAnimFrame(param0->unk_21C[param1]);
+        v1 = Sprite_GetAnimFrame(param0->unk_21C[param1]);
 
         if ((param3 == 0) || (param3 == 2)) {
             if (param3 == 0) {
-                CellActor_SetAnim(param0->unk_21C[param1], Unk_ov65_0223892C[param1]);
+                Sprite_SetAnim(param0->unk_21C[param1], Unk_ov65_0223892C[param1]);
             }
 
             if (v1 < 3) {
-                CellActor_UpdateAnim(param0->unk_21C[param1], FX32_CONST(2));
-                v1 = CellActor_GetAnimFrame(param0->unk_21C[param1]);
+                Sprite_UpdateAnim(param0->unk_21C[param1], FX32_CONST(2));
+                v1 = Sprite_GetAnimFrame(param0->unk_21C[param1]);
 
                 if (param1 == 1) {
                     sub_020128C4(param0->unk_234, -18, Unk_ov65_0223893C[v1]);
@@ -6868,15 +6867,15 @@ static BOOL ov65_02234E8C(UnkStruct_ov65_02234E50 *param0, u32 param1, u32 param
             }
         }
     } else {
-        v2 = CellActor_GetActiveAnim(param0->unk_21C[param1]);
-        v1 = CellActor_GetAnimFrame(param0->unk_21C[param1]);
+        v2 = Sprite_GetActiveAnim(param0->unk_21C[param1]);
+        v1 = Sprite_GetAnimFrame(param0->unk_21C[param1]);
 
         if (v2 == Unk_ov65_0223892C[param1]) {
-            CellActor_SetAnim(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
-            SpriteActor_SetAnimFrame(param0->unk_21C[param1], (5 - 1) - v1);
+            Sprite_SetAnim(param0->unk_21C[param1], Unk_ov65_02238930[param1]);
+            Sprite_SetAnimFrame(param0->unk_21C[param1], (5 - 1) - v1);
         }
 
-        CellActor_UpdateAnim(param0->unk_21C[param1], FX32_CONST(2));
+        Sprite_UpdateAnim(param0->unk_21C[param1], FX32_CONST(2));
     }
 
     return v0;

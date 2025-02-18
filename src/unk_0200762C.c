@@ -4,12 +4,10 @@
 #include <string.h>
 
 #include "struct_defs/archived_sprite.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02007768.h"
-#include "struct_defs/struct_02007C7C.h"
 #include "struct_defs/struct_02008900.h"
-
-#include "functypes/funcptr_02007C34.h"
 
 #include "heap.h"
 #include "inlines.h"
@@ -276,40 +274,40 @@ static const UnkStruct_020E4E62 *Unk_021007A4[] = {
 void *sub_0200762C(int param0);
 void sub_02007768(UnkStruct_02007768 *param0);
 void sub_02007B6C(UnkStruct_02007768 *param0);
-Sprite *sub_02007C34(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7);
-Sprite *sub_02007C7C(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8);
-void sub_02007DC8(Sprite *param0);
+PokemonSprite *sub_02007C34(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7);
+PokemonSprite *sub_02007C7C(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8);
+void sub_02007DC8(PokemonSprite *param0);
 void sub_02007DD4(UnkStruct_02007768 *param0);
-void sub_02007B98(Sprite *param0, int param1);
-void sub_02007C10(Sprite *param0, SpriteAnimationFrame *param1);
-BOOL sub_02007C24(Sprite *param0);
-void sub_02007DEC(Sprite *param0, int param1, int param2);
-int sub_020080C0(Sprite *param0, int param1);
-void sub_02008274(Sprite *param0, int param1, int param2);
-void sub_020086D4(Sprite *param0, int param1, int param2, int param3, int param4);
-void sub_020086FC(Sprite *param0, int param1, int param2, int param3, int param4);
+void sub_02007B98(PokemonSprite *param0, int param1);
+void sub_02007C10(PokemonSprite *param0, SpriteAnimationFrame *param1);
+BOOL sub_02007C24(PokemonSprite *param0);
+void sub_02007DEC(PokemonSprite *param0, int param1, int param2);
+int sub_020080C0(PokemonSprite *param0, int param1);
+void sub_02008274(PokemonSprite *param0, int param1, int param2);
+void sub_020086D4(PokemonSprite *param0, int param1, int param2, int param3, int param4);
+void sub_020086FC(PokemonSprite *param0, int param1, int param2, int param3, int param4);
 void sub_0200872C(UnkStruct_02007768 *param0, int param1, int param2, int param3, int param4);
-void sub_02008780(Sprite *param0);
-BOOL sub_020087B4(Sprite *param0);
-void sub_020087C8(Sprite *param0, int param1);
-void sub_020089A0(Sprite *param0);
-void sub_020089B0(Sprite *param0);
-void sub_02008A0C(Sprite *param0);
+void sub_02008780(PokemonSprite *param0);
+BOOL sub_020087B4(PokemonSprite *param0);
+void sub_020087C8(PokemonSprite *param0, int param1);
+void sub_020089A0(PokemonSprite *param0);
+void sub_020089B0(PokemonSprite *param0);
+void sub_02008A0C(PokemonSprite *param0);
 void sub_02008A78(UnkStruct_02007768 *param0, u32 param1, u32 param2);
 void sub_02008A84(UnkStruct_02007768 *param0, u32 param1, u32 param2);
-ArchivedSprite *sub_02008A90(Sprite *param0);
+ArchivedSprite *sub_02008A90(PokemonSprite *param0);
 void sub_02008A94(UnkStruct_02007768 *param0);
 void sub_02008B2C(UnkStruct_02007768 *param0, int param1);
-BOOL sub_02008B38(Sprite *param0);
+BOOL sub_02008B38(PokemonSprite *param0);
 void sub_02008B54(UnkStruct_02007768 *param0, u32 param1);
 void sub_02008B60(UnkStruct_02007768 *param0, u32 param1);
 void sub_020091D8(u8 *param0, u32 param1, BOOL param2);
 void sub_02009348(u8 *param0);
 static void sub_02008B78(UnkStruct_02007768 *param0);
 static void sub_02008FC8(UnkStruct_02007768 *param0);
-static void sub_020088D8(Sprite *param0);
+static void sub_020088D8(PokemonSprite *param0);
 static u8 sub_020091AC(u8 param0);
-static void sub_020091C0(Sprite *param0, u8 *param1);
+static void sub_020091C0(PokemonSprite *param0, u8 *param1);
 
 void *sub_0200762C(int param0)
 {
@@ -335,7 +333,7 @@ void *sub_0200762C(int param0)
     MI_CpuClearFast(v0->unk_304, sizeof(0x20 * 6));
 
     for (v1 = 0; v1 < 4; v1++) {
-        MI_CpuClearFast(&v0->unk_00[v1], sizeof(Sprite));
+        MI_CpuClearFast(&v0->unk_00[v1], sizeof(PokemonSprite));
     }
 
     NNS_G2dSetupSoftwareSpriteCamera();
@@ -491,7 +489,7 @@ void sub_02007B6C(UnkStruct_02007768 *param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02007B98(Sprite *param0, int param1)
+void sub_02007B98(PokemonSprite *param0, int param1)
 {
     int v0;
 
@@ -511,17 +509,17 @@ void sub_02007B98(Sprite *param0, int param1)
     }
 }
 
-void sub_02007C10(Sprite *param0, SpriteAnimationFrame *param1)
+void sub_02007C10(PokemonSprite *param0, SpriteAnimationFrame *param1)
 {
     MI_CpuCopy8(param1, &param0->unk_84, sizeof(SpriteAnimationFrame) * 10);
 }
 
-BOOL sub_02007C24(Sprite *param0)
+BOOL sub_02007C24(PokemonSprite *param0)
 {
     return param0->unk_58 != 0;
 }
 
-Sprite *sub_02007C34(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7)
+PokemonSprite *sub_02007C34(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7)
 {
     int v0;
 
@@ -536,11 +534,11 @@ Sprite *sub_02007C34(UnkStruct_02007768 *param0, ArchivedSprite *param1, int par
     return sub_02007C7C(param0, param1, param2, param3, param4, param5, v0, param6, param7);
 }
 
-Sprite *sub_02007C7C(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8)
+PokemonSprite *sub_02007C7C(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8)
 {
     GF_ASSERT(param0->unk_00[param6].unk_00_0 == 0);
 
-    MI_CpuClearFast(&param0->unk_00[param6], sizeof(Sprite));
+    MI_CpuClearFast(&param0->unk_00[param6], sizeof(PokemonSprite));
 
     param0->unk_00[param6].unk_00_0 = 1;
     param0->unk_00[param6].unk_00_7 = 1;
@@ -574,7 +572,7 @@ Sprite *sub_02007C7C(UnkStruct_02007768 *param0, ArchivedSprite *param1, int par
     return &param0->unk_00[param6];
 }
 
-void sub_02007DC8(Sprite *param0)
+void sub_02007DC8(PokemonSprite *param0)
 {
     param0->unk_00_0 = 0;
 }
@@ -588,7 +586,7 @@ void sub_02007DD4(UnkStruct_02007768 *param0)
     }
 }
 
-void sub_02007DEC(Sprite *param0, int param1, int param2)
+void sub_02007DEC(PokemonSprite *param0, int param1, int param2)
 {
     switch (param1) {
     case 0:
@@ -740,7 +738,7 @@ void sub_02007DEC(Sprite *param0, int param1, int param2)
     }
 }
 
-int sub_020080C0(Sprite *param0, int param1)
+int sub_020080C0(PokemonSprite *param0, int param1)
 {
     switch (param1) {
     case 0:
@@ -843,7 +841,7 @@ int sub_020080C0(Sprite *param0, int param1)
     return 0;
 }
 
-void sub_02008274(Sprite *param0, int param1, int param2)
+void sub_02008274(PokemonSprite *param0, int param1, int param2)
 {
     switch (param1) {
     case 0:
@@ -995,7 +993,7 @@ void sub_02008274(Sprite *param0, int param1, int param2)
     }
 }
 
-void sub_020086D4(Sprite *param0, int param1, int param2, int param3, int param4)
+void sub_020086D4(PokemonSprite *param0, int param1, int param2, int param3, int param4)
 {
     param0->unk_24.unk_30_1 = 1;
     param0->unk_24.unk_20 = param1;
@@ -1004,7 +1002,7 @@ void sub_020086D4(Sprite *param0, int param1, int param2, int param3, int param4
     param0->unk_24.unk_23 = param4;
 }
 
-void sub_020086FC(Sprite *param0, int param1, int param2, int param3, int param4)
+void sub_020086FC(PokemonSprite *param0, int param1, int param2, int param3, int param4)
 {
     param0->unk_24.unk_30_12 = 1;
     param0->unk_24.unk_24 = param1;
@@ -1030,7 +1028,7 @@ void sub_0200872C(UnkStruct_02007768 *param0, int param1, int param2, int param3
     }
 }
 
-void sub_02008780(Sprite *param0)
+void sub_02008780(PokemonSprite *param0)
 {
     param0->unk_24.unk_30_12 = 0;
     param0->unk_24.unk_24 = 0;
@@ -1041,12 +1039,12 @@ void sub_02008780(Sprite *param0)
     param0->unk_00_8 = 1;
 }
 
-BOOL sub_020087B4(Sprite *param0)
+BOOL sub_020087B4(PokemonSprite *param0)
 {
     return param0->unk_24.unk_30_12 == 1;
 }
 
-void sub_020087C8(Sprite *param0, int param1)
+void sub_020087C8(PokemonSprite *param0, int param1)
 {
     param0->unk_24.unk_0A = ((80 / 2) - param1) - ((((80 / 2) - param1) * param0->unk_24.unk_12) >> 8);
 }
@@ -1082,7 +1080,7 @@ static inline void inline_02008900(u8 *param0, u8 *param1, u8 *param2, u8 *param
     }
 }
 
-static void sub_020087DC(Sprite *param0)
+static void sub_020087DC(PokemonSprite *param0)
 {
     if (param0->unk_58) {
         if (param0->unk_5A == 0) {
@@ -1116,7 +1114,7 @@ static void sub_020087DC(Sprite *param0)
     }
 }
 
-static void sub_020088D8(Sprite *param0)
+static void sub_020088D8(PokemonSprite *param0)
 {
     sub_020087DC(param0);
 }
@@ -1146,19 +1144,19 @@ int sub_02008900(UnkStruct_02008900 *param0)
     return -1;
 }
 
-void sub_020089A0(Sprite *param0)
+void sub_020089A0(PokemonSprite *param0)
 {
     param0->unk_00_7 = 1;
     param0->unk_00_8 = 1;
 }
 
-void sub_020089B0(Sprite *param0)
+void sub_020089B0(PokemonSprite *param0)
 {
     param0->unk_14 = param0->unk_04;
     param0->unk_78 = param0->unk_6C;
 }
 
-void sub_02008A0C(Sprite *param0)
+void sub_02008A0C(PokemonSprite *param0)
 {
     param0->unk_04 = param0->unk_14;
     param0->unk_6C = param0->unk_78;
@@ -1178,7 +1176,7 @@ void sub_02008A84(UnkStruct_02007768 *param0, u32 param1, u32 param2)
     param0->unk_2F8 = param2;
 }
 
-ArchivedSprite *sub_02008A90(Sprite *param0)
+ArchivedSprite *sub_02008A90(PokemonSprite *param0)
 {
     return &param0->unk_04;
 }
@@ -1215,7 +1213,7 @@ void sub_02008B2C(UnkStruct_02007768 *param0, int param1)
     param0->unk_333 = param1;
 }
 
-BOOL sub_02008B38(Sprite *param0)
+BOOL sub_02008B38(PokemonSprite *param0)
 {
     GF_ASSERT(param0 != NULL);
     return param0->unk_00_0 != 0;
@@ -1426,7 +1424,7 @@ static u8 sub_020091AC(u8 param0)
     return v0;
 }
 
-static void sub_020091C0(Sprite *param0, u8 *param1)
+static void sub_020091C0(PokemonSprite *param0, u8 *param1)
 {
     if (param0->unk_04.spindaSpots == 0) {
         return;

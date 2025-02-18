@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/sprite_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
+#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -25,7 +25,6 @@
 #include "overlay105/struct_ov105_02246060_decl.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
 #include "communication_information.h"
 #include "communication_system.h"
 #include "font.h"
@@ -45,6 +44,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sprite.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "string_list.h"
@@ -104,7 +104,7 @@ struct UnkStruct_ov105_02241FF4_t {
     PaletteData *unk_120;
     GenericPointerData *unk_124;
     UnkStruct_02007768 *unk_128;
-    Sprite *unk_12C[3];
+    PokemonSprite *unk_12C[3];
     Options *unk_138;
     SaveData *unk_13C;
     PokemonSummary *unk_140;
@@ -571,7 +571,7 @@ int ov105_02241BD8(OverlayManager *param0, int *param1)
         break;
     }
 
-    CellActorCollection_Update(v0->unk_144.unk_00);
+    SpriteList_Update(v0->unk_144.unk_00);
     ov105_02245D50(v0->unk_128);
 
     return 0;
@@ -861,7 +861,7 @@ static BOOL ov105_02242698(UnkStruct_ov105_02241FF4 *param0)
     case 0:
 
         if (OverlayManager_Exec(param0->unk_04) == 1) {
-            param0->unk_334 = param0->unk_140->pos;
+            param0->unk_334 = param0->unk_140->monIndex;
             Heap_FreeToHeap(param0->unk_140);
             Heap_FreeToHeap(param0->unk_04);
             param0->unk_04 = NULL;
@@ -2893,10 +2893,10 @@ static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
 
     param0->unk_140->monData = param0->unk_31C;
     param0->unk_140->options = param0->unk_138;
-    param0->unk_140->dataType = 1;
-    param0->unk_140->mode = 1;
-    param0->unk_140->max = param0->unk_12;
-    param0->unk_140->pos = ov105_022461A0(param0->unk_30C);
+    param0->unk_140->dataType = SUMMARY_DATA_PARTY_MON;
+    param0->unk_140->mode = SUMMARY_MODE_LOCK_MOVES;
+    param0->unk_140->monMax = param0->unk_12;
+    param0->unk_140->monIndex = ov105_022461A0(param0->unk_30C);
     param0->unk_140->move = 0;
     param0->unk_140->dexMode = sub_0207A274(param0->unk_13C);
     param0->unk_140->showContest = FALSE;
