@@ -124,7 +124,7 @@ _00D8:
     ScrCmd_32E
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _02EE
+    GoToIfEq 0x800C, MENU_NO, _02EE
     Call _014E
     GoToIfEq 0x800C, 0, _0306
     Call _0198
@@ -542,7 +542,7 @@ _0521:
     GoToIfSet 107, _057A
     Message 42
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _056F
+    GoToIfEq 0x800C, MENU_NO, _056F
     Message 43
     SetVar 0x8004, 0x1BF
     SetVar 0x8005, 1
@@ -600,8 +600,8 @@ _05CA:
     ScrCmd_1BD 0x8004
     Message 38
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0606
-    GoToIfEq 0x800C, 1, _05FB
+    GoToIfEq 0x800C, MENU_YES, _0606
+    GoToIfEq 0x800C, MENU_NO, _05FB
     End
 
 _05FB:
@@ -699,7 +699,7 @@ _06F0:
     BufferRivalName 0
     Message 4
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _02EE
+    GoToIfEq 0x800C, MENU_NO, _02EE
     Call _014E
     GoToIfEq 0x800C, 0, _0306
     Call _0198

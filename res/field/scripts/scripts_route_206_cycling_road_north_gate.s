@@ -83,7 +83,7 @@ _00C0:
     BufferPlayerName 0
     BufferCounterpartName 1
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _00F0
+    GoToIfEq 0x4000, GENDER_MALE, _00F0
     GoTo _00F9
 
 _00F0:

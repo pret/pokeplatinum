@@ -43,8 +43,8 @@ _0034:
 _005C:
     Message 3
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _007F
-    GoToIfEq 0x800C, 1, _00B3
+    GoToIfEq 0x800C, MENU_YES, _007F
+    GoToIfEq 0x800C, MENU_NO, _00B3
     End
 
 _007F:

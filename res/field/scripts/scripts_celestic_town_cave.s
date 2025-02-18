@@ -58,8 +58,8 @@ _0040:
     Message 5
     Message 6
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _019D
-    GoToIfEq 0x800C, 1, _013C
+    GoToIfEq 0x800C, MENU_YES, _019D
+    GoToIfEq 0x800C, MENU_NO, _013C
     End
 
 _0110:
@@ -464,7 +464,7 @@ _0538:
     FacePlayer
     Message 7
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _057A
+    GoToIfEq 0x800C, MENU_NO, _057A
     Message 8
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS
@@ -505,7 +505,7 @@ _0596:
     CallIfEq 0x8004, 10, _071F
     Message 17
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0753
+    GoToIfEq 0x800C, MENU_NO, _0753
     CloseMessage
     ApplyMovement 2, _07F0
     ApplyMovement 0xFF, _0858
@@ -518,7 +518,7 @@ _0596:
     CallIfEq 0x8004, 9, _06FB
     CallIfEq 0x8004, 10, _0707
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0753
+    GoToIfEq 0x800C, MENU_NO, _0753
     Message 19
     CloseMessage
     ApplyMovement 0xFF, _0864
@@ -531,7 +531,7 @@ _0596:
     CallIfEq 0x8004, 10, _073F
     Message 21
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0753
+    GoToIfEq 0x800C, MENU_NO, _0753
     Message 22
     GoTo _075E
     End

@@ -15,13 +15,13 @@ _000A:
     SetFlag 0x108
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0055
+    GoToIfEq 0x800C, MENU_YES, _0055
     GoTo _028F
 
 _003B:
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0055
+    GoToIfEq 0x800C, MENU_YES, _0055
     GoTo _028F
 
 _0055:
@@ -52,21 +52,21 @@ _0055:
 _00FE:
     Message 9
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _028F
+    GoToIfEq 0x800C, MENU_NO, _028F
     SetVar 0x8003, 0x133
     GoTo _015E
 
 _011E:
     Message 10
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _028F
+    GoToIfEq 0x800C, MENU_NO, _028F
     SetVar 0x8003, 0x134
     GoTo _015E
 
 _013E:
     Message 11
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _028F
+    GoToIfEq 0x800C, MENU_NO, _028F
     SetVar 0x8003, 0x152
     GoTo _015E
 

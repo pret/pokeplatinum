@@ -42,7 +42,7 @@ _0085:
     BufferNumber 2, 1
     Message 7
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0152
+    GoToIfEq 0x800C, MENU_NO, _0152
     ScrCmd_29A 1, 0x800C
     GoToIfEq 0x800C, 0, _0147
     ScrCmd_299 1

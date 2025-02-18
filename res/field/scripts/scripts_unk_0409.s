@@ -31,7 +31,7 @@ _0042:
     GoToIfEq 0x800C, 0, _008E
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00AE
+    GoToIfEq 0x800C, MENU_YES, _00AE
     CloseMessage
     GoTo _066D
     End
@@ -136,7 +136,7 @@ _0223:
     GoToIfEq 0x800C, 0, _0275
     Message 3
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0284
+    GoToIfEq 0x800C, MENU_YES, _0284
     CloseMessage
     GoTo _066D
     End
@@ -193,7 +193,7 @@ _0314:
     GoToIfEq 0x800C, 0, _0372
     Message 6
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0381
+    GoToIfEq 0x800C, MENU_YES, _0381
     CloseMessage
     GoTo _066D
     End
@@ -255,7 +255,7 @@ _040E:
     GoToIfEq 0x800C, 1, _0478
     Message 18
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0487
+    GoToIfEq 0x800C, MENU_YES, _0487
     CloseMessage
     GoTo _0671
     End
@@ -304,7 +304,7 @@ _04DD:
     GoToIfEq 0x800C, 1, _0512
     Message 12
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _051F
+    GoToIfEq 0x800C, MENU_YES, _051F
     CloseMessage
     GoTo _0671
     End
@@ -347,7 +347,7 @@ _057D:
     GoToIfEq 0x800C, 6, _05B4
     Message 15
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _05C3
+    GoToIfEq 0x800C, MENU_YES, _05C3
     CloseMessage
     GoTo _0671
     End
@@ -424,7 +424,7 @@ _0679:
     GoToIfEq 0x800C, 0, _06C3
     Message 22
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _06D2
+    GoToIfEq 0x800C, MENU_YES, _06D2
     CloseMessage
     GoTo _0671
     End

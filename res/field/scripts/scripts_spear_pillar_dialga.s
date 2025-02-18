@@ -36,7 +36,7 @@ _0077:
     GoToIfSet 208, _00F4
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0101
+    GoToIfEq 0x800C, MENU_NO, _0101
     ScrCmd_04C 0x1E3, 0
     Message 1
     ScrCmd_04D

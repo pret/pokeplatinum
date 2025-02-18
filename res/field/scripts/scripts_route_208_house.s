@@ -53,8 +53,8 @@ _007C:
     GoToIfEq 0x800C, 1, _00FD
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00C7
-    GoToIfEq 0x800C, 1, _00E2
+    GoToIfEq 0x800C, MENU_YES, _00C7
+    GoToIfEq 0x800C, MENU_NO, _00E2
     End
 
 _00C7:

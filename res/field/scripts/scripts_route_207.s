@@ -14,8 +14,8 @@
 
 _001E:
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _003E
-    GoToIfEq 0x4000, 1, _0046
+    GoToIfEq 0x4000, GENDER_MALE, _003E
+    GoToIfEq 0x4000, GENDER_FEMALE, _0046
     End
 
 _003E:
@@ -49,7 +49,7 @@ _008E:
 
 _009C:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _00B3
+    GoToIfEq 0x800C, GENDER_MALE, _00B3
     GoTo _00F1
 
 _00B3:

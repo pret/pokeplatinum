@@ -37,8 +37,8 @@ _0072:
     CallIfEq 0x4077, 0, _00AC
     CallIfGe 0x4077, 3, _00C2
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _00D8
-    GoToIfEq 0x4000, 1, _00E0
+    GoToIfEq 0x4000, GENDER_MALE, _00D8
+    GoToIfEq 0x4000, GENDER_FEMALE, _00E0
     End
 
 _00AC:
@@ -94,8 +94,8 @@ _0149:
     WaitMovement
     CallCommonScript 0x7F8
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _018D
-    GoToIfEq 0x800C, 1, _0224
+    GoToIfEq 0x800C, GENDER_MALE, _018D
+    GoToIfEq 0x800C, GENDER_FEMALE, _0224
     End
 
 _018D:
@@ -241,8 +241,8 @@ _0390:
     Message 16
     Message 17
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _03B6
-    GoToIfEq 0x800C, 1, _03BB
+    GoToIfEq 0x800C, MENU_YES, _03B6
+    GoToIfEq 0x800C, MENU_NO, _03BB
     End
 
 _03B6:
@@ -853,8 +853,8 @@ _0A6A:
     ApplyMovement 7, _0E44
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0ADC
-    GoToIfEq 0x800C, 1, _0AED
+    GoToIfEq 0x800C, GENDER_MALE, _0ADC
+    GoToIfEq 0x800C, GENDER_FEMALE, _0AED
     End
 
 _0ADC:
@@ -900,14 +900,14 @@ _0AFE:
     ApplyMovement 7, _0E60
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0C30
-    GoToIfEq 0x800C, 1, _0C41
+    GoToIfEq 0x800C, GENDER_MALE, _0C30
+    GoToIfEq 0x800C, GENDER_FEMALE, _0C41
     End
 
 _0BAA:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0BCA
-    GoToIfEq 0x800C, 1, _0BFC
+    GoToIfEq 0x800C, GENDER_MALE, _0BCA
+    GoToIfEq 0x800C, GENDER_FEMALE, _0BFC
     End
 
 _0BCA:
@@ -1373,8 +1373,8 @@ _0FE6:
     FacePlayer
     Message 88
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _1011
-    GoToIfEq 0x800C, 1, _101C
+    GoToIfEq 0x800C, MENU_YES, _1011
+    GoToIfEq 0x800C, MENU_NO, _101C
     End
 
 _1011:
@@ -1638,8 +1638,8 @@ _1320:
     GoToIfSet 237, _138C
     Message 45
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _1356
-    GoToIfEq 0x800C, 1, _137D
+    GoToIfEq 0x800C, MENU_YES, _1356
+    GoToIfEq 0x800C, MENU_NO, _137D
     End
 
 _1356:
@@ -1677,8 +1677,8 @@ _1397:
     GoToIfSet 238, _1403
     Message 51
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _13CD
-    GoToIfEq 0x800C, 1, _13F4
+    GoToIfEq 0x800C, MENU_YES, _13CD
+    GoToIfEq 0x800C, MENU_NO, _13F4
     End
 
 _13CD:
@@ -1717,8 +1717,8 @@ _140E:
     GoToIfSet 239, _1493
     Message 57
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _1451
-    GoToIfEq 0x800C, 1, _1484
+    GoToIfEq 0x800C, MENU_YES, _1451
+    GoToIfEq 0x800C, MENU_NO, _1484
     End
 
 _1451:

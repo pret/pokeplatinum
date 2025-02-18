@@ -426,7 +426,7 @@ _05C1:
 _05E4:
     Message 215
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0291
+    GoToIfEq 0x800C, MENU_YES, _0291
     GoTo _0562
     End
 
@@ -460,7 +460,7 @@ _0625:
 _0669:
     Message 212
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0625
+    GoToIfEq 0x800C, MENU_NO, _0625
     CloseMessage
     ScrCmd_0F2 8, 0x8005, 0x8004, 0x800C
     GoToIfEq 0x800C, 1, _06AB
@@ -479,7 +479,7 @@ _06B3:
 _06BB:
     Message 212
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0625
+    GoToIfEq 0x800C, MENU_NO, _0625
     CloseMessage
     ScrCmd_0F3 8, 0x8005, 0x8004, 0x800C
     GoToIfEq 0x800C, 1, _06FD
@@ -578,7 +578,7 @@ _086A:
     GoToIfEq 0x4003, 2, _08CD
     ScrCmd_0C6
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0892
+    GoToIfEq 0x800C, GENDER_MALE, _0892
     GoTo _08A0
     End
 
@@ -622,7 +622,7 @@ _08CD:
     SetVar 0x800C, 28
     Call _0052
     Call _008B
-    GoToIfEq 0x800C, 0, _070D
+    GoToIfEq 0x800C, MENU_YES, _070D
     Message 116
     WaitABXPadPress
     CloseMessage

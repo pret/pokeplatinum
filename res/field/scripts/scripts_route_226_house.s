@@ -30,7 +30,7 @@ _0014:
 _0046:
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0060
+    GoToIfEq 0x800C, MENU_YES, _0060
     GoTo _00D1
 
 _0060:

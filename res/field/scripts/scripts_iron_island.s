@@ -21,7 +21,7 @@ _0014:
     Message 3
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _003E
+    GoToIfEq 0x800C, MENU_YES, _003E
     GoTo _0071
 
 _003E:

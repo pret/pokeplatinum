@@ -252,8 +252,8 @@ _02E5:
 _02F9:
     Message 11
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _031C
-    GoToIfEq 0x800C, 1, _0366
+    GoToIfEq 0x800C, MENU_YES, _031C
+    GoToIfEq 0x800C, MENU_NO, _0366
     End
 
 _031C:

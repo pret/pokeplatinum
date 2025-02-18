@@ -40,7 +40,7 @@ _000A:
     WaitMovement
     Message 4
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _00B1
+    GoToIfEq 0x800C, GENDER_MALE, _00B1
     GoToIfEq 0x800C, 1, _00BD
     End
 

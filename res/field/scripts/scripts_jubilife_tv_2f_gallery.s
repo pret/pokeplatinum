@@ -44,8 +44,8 @@ _0080:
 _0089:
     Message 3
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00AC
-    GoToIfEq 0x800C, 1, _00F5
+    GoToIfEq 0x800C, MENU_YES, _00AC
+    GoToIfEq 0x800C, MENU_NO, _00F5
     End
 
 _00AC:
@@ -54,14 +54,14 @@ _00AC:
 
 _00B5:
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0089
-    GoToIfEq 0x800C, 1, _02B3
+    GoToIfEq 0x800C, MENU_YES, _0089
+    GoToIfEq 0x800C, MENU_NO, _02B3
     End
 
 _00D5:
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00F5
-    GoToIfEq 0x800C, 1, _02B3
+    GoToIfEq 0x800C, MENU_YES, _00F5
+    GoToIfEq 0x800C, MENU_NO, _02B3
     End
 
 _00F5:

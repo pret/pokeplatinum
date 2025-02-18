@@ -15,7 +15,7 @@ _000E:
     GoToIfSet 0xAAC, _00D5
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _00EB
+    GoToIfEq 0x800C, MENU_NO, _00EB
     Message 1
     CloseMessage
     FadeScreen 6, 1, 0, 0

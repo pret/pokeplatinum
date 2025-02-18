@@ -111,7 +111,7 @@ _01EA:
 _01F2:
     Message 17
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _053A
+    GoToIfEq 0x800C, MENU_NO, _053A
     CloseMessage
     ScrCmd_184 0
     Message 20
@@ -131,7 +131,7 @@ _023B:
     Message 21
 _0243:
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _02F7
+    GoToIfEq 0x800C, MENU_NO, _02F7
     ScrCmd_07D 0x8000, 0x8001, 0x800C
     GoToIfEq 0x800C, 0, _02CF
     BufferNumber 1, 0x8001
@@ -230,7 +230,7 @@ _03B4:
 _0413:
     Message 5
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _042D
+    GoToIfEq 0x800C, MENU_YES, _042D
     GoTo _053A
 
 _042D:
@@ -268,7 +268,7 @@ _04CA:
 _04DA:
     Message 8
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _053A
+    GoToIfEq 0x800C, MENU_NO, _053A
 _04EE:
     CloseMessage
     FadeScreen 6, 1, 0, 0

@@ -81,7 +81,7 @@ _00FF:
     CallIfSet 0x166, _0467
     SetFlag 0x166
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0471
+    GoToIfEq 0x800C, MENU_NO, _0471
     SetTrainerFlag TRAINER_RICH_BOY_LIAM
     SetTrainerFlag TRAINER_LADY_CELESTE
     Message 5

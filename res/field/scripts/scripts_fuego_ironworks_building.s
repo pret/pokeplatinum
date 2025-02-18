@@ -38,8 +38,8 @@ _0082:
     SetFlag 219
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00FF
-    GoToIfEq 0x800C, 1, _00F4
+    GoToIfEq 0x800C, MENU_YES, _00FF
+    GoToIfEq 0x800C, MENU_NO, _00F4
     End
 
 _00A9:
@@ -47,8 +47,8 @@ _00A9:
     GoToIfEq 0x800C, 0, _00E1
     Message 4
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00FF
-    GoToIfEq 0x800C, 1, _00F4
+    GoToIfEq 0x800C, MENU_YES, _00FF
+    GoToIfEq 0x800C, MENU_NO, _00F4
     End
 
 _00E1:

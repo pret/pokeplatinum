@@ -15,7 +15,7 @@ _0006:
     GoToIfLt 0x800C, 3, _009C
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0096
+    GoToIfEq 0x800C, MENU_NO, _0096
     BufferPlayerName 0
     Message 2
     CloseMessage

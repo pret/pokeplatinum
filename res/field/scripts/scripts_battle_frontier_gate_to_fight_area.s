@@ -113,8 +113,8 @@ _0154:
     FacePlayer
     Message 17
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _017F
-    GoToIfEq 0x800C, 1, _018A
+    GoToIfEq 0x800C, MENU_YES, _017F
+    GoToIfEq 0x800C, MENU_NO, _018A
     End
 
 _017F:
@@ -139,8 +139,8 @@ _019D:
     FacePlayer
     Message 20
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _01C8
-    GoToIfEq 0x800C, 1, _01D3
+    GoToIfEq 0x800C, MENU_YES, _01C8
+    GoToIfEq 0x800C, MENU_NO, _01D3
     End
 
 _01C8:
@@ -165,8 +165,8 @@ _01E6:
     FacePlayer
     Message 23
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0211
-    GoToIfEq 0x800C, 1, _021C
+    GoToIfEq 0x800C, MENU_YES, _0211
+    GoToIfEq 0x800C, MENU_NO, _021C
     End
 
 _0211:
@@ -191,8 +191,8 @@ _022F:
     FacePlayer
     Message 26
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _025A
-    GoToIfEq 0x800C, 1, _0265
+    GoToIfEq 0x800C, MENU_YES, _025A
+    GoToIfEq 0x800C, MENU_NO, _0265
     End
 
 _025A:
@@ -217,8 +217,8 @@ _0278:
     FacePlayer
     Message 29
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _02A3
-    GoToIfEq 0x800C, 1, _02AE
+    GoToIfEq 0x800C, MENU_YES, _02A3
+    GoToIfEq 0x800C, MENU_NO, _02AE
     End
 
 _02A3:

@@ -15,8 +15,8 @@
 _001E:
     CallIfGe 0x4087, 2, _005B
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _004B
-    GoToIfEq 0x4000, 1, _0053
+    GoToIfEq 0x4000, GENDER_MALE, _004B
+    GoToIfEq 0x4000, GENDER_FEMALE, _0053
     End
 
 _004B:
@@ -108,8 +108,8 @@ _0164:
 _0174:
     GoToIfUnset 143, _027C
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _019F
-    GoToIfEq 0x800C, 1, _01B2
+    GoToIfEq 0x800C, GENDER_MALE, _019F
+    GoToIfEq 0x800C, GENDER_FEMALE, _01B2
     End
 
 _019F:
@@ -135,8 +135,8 @@ _01C5:
     ApplyMovement 3, _0490
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0205
-    GoToIfEq 0x800C, 1, _0211
+    GoToIfEq 0x800C, GENDER_MALE, _0205
+    GoToIfEq 0x800C, GENDER_FEMALE, _0211
     End
 
 _0205:
@@ -154,8 +154,8 @@ _021D:
     SetVar 0x8005, 5
     CallCommonScript 0x7FC
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _024D
-    GoToIfEq 0x800C, 1, _0259
+    GoToIfEq 0x800C, GENDER_MALE, _024D
+    GoToIfEq 0x800C, GENDER_FEMALE, _0259
     End
 
 _024D:
@@ -178,8 +178,8 @@ _0262:
 
 _027C:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _029C
-    GoToIfEq 0x800C, 1, _02C8
+    GoToIfEq 0x800C, GENDER_MALE, _029C
+    GoToIfEq 0x800C, GENDER_FEMALE, _02C8
     End
 
 _029C:
@@ -383,8 +383,8 @@ _04C4:
     BufferPlayerName 0
     ScrCmd_1BD 0x8002
     GetPlayerGender 0x8000
-    CallIfEq 0x8000, 0, _0653
-    CallIfEq 0x8000, 1, _0658
+    CallIfEq 0x8000, GENDER_MALE, _0653
+    CallIfEq 0x8000, GENDER_FEMALE, _0658
     CloseMessage
     PlayMusic SEQ_POKERADAR
     ScrCmd_308 189, 0x332

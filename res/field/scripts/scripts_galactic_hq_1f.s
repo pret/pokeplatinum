@@ -114,8 +114,8 @@ _00DF:
 _0107:
     Message 10
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _012A
-    GoToIfEq 0x800C, 1, _015E
+    GoToIfEq 0x800C, MENU_YES, _012A
+    GoToIfEq 0x800C, MENU_NO, _015E
     End
 
 _012A:

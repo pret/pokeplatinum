@@ -162,8 +162,8 @@ _01A6:
     GoToIfSet 0x10C, _02BD
     Message 9
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _01E7
-    GoToIfEq 0x800C, 1, _02D3
+    GoToIfEq 0x800C, MENU_YES, _01E7
+    GoToIfEq 0x800C, MENU_NO, _02D3
     End
 
 _01E7:
@@ -256,8 +256,8 @@ _02E4:
     GoToIfSet 0x10D, _039C
     Message 15
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _031A
-    GoToIfEq 0x800C, 1, _03A7
+    GoToIfEq 0x800C, MENU_YES, _031A
+    GoToIfEq 0x800C, MENU_NO, _03A7
     End
 
 _031A:

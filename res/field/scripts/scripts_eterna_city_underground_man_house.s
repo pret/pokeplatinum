@@ -26,14 +26,14 @@ _001A:
     ClearFlag 0x111
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _009C
+    GoToIfEq 0x800C, MENU_NO, _009C
     SetFlag 0x113
     GoTo _0164
 
 _007E:
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _009C
+    GoToIfEq 0x800C, MENU_NO, _009C
     SetFlag 0x113
     GoTo _0164
 

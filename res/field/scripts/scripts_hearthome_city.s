@@ -140,7 +140,7 @@ _013B:
     GoToIfSet 1, _01A7
     Message 14
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _01B2
+    GoToIfEq 0x800C, MENU_NO, _01B2
     Message 15
     CloseMessage
     WaitTime 15, 0x800C

@@ -30,8 +30,8 @@ _004F:
     WaitMovement
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _007C
-    GoToIfEq 0x800C, 1, _00B8
+    GoToIfEq 0x800C, MENU_YES, _007C
+    GoToIfEq 0x800C, MENU_NO, _00B8
     End
 
 _007C:

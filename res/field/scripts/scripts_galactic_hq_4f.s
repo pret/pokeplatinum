@@ -115,8 +115,8 @@ _012C:
 _0154:
     Message 6
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0177
-    GoToIfEq 0x800C, 1, _01AB
+    GoToIfEq 0x800C, MENU_YES, _0177
+    GoToIfEq 0x800C, MENU_NO, _01AB
     End
 
 _0177:

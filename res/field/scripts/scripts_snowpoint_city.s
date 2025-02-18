@@ -221,8 +221,8 @@ _022A:
     GoToIfUnset 0x964, _0260
     Message 10
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0276
-    GoToIfEq 0x800C, 1, _026B
+    GoToIfEq 0x800C, MENU_YES, _0276
+    GoToIfEq 0x800C, MENU_NO, _026B
     End
 
 _0260:

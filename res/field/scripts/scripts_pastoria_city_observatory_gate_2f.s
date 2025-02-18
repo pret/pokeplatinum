@@ -17,7 +17,7 @@ _0016:
     Message 0
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _003E
+    GoToIfEq 0x800C, MENU_YES, _003E
     ScrCmd_073
     ReleaseAll
     End

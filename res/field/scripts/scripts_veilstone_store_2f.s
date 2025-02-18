@@ -114,7 +114,7 @@ _012B:
     GoToIfEq 0x800C, 1, _016F
     Message 10
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _017A
+    GoToIfEq 0x800C, MENU_NO, _017A
     Message 11
     SetVar 0x8004, 10
     CallCommonScript 0x7D9

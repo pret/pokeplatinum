@@ -2,6 +2,7 @@
 #include "generated/catching_show_points_category.h"
 #include "generated/days_of_week.h"
 #include "generated/game_records.h"
+#include "generated/genders.h"
 #include "generated/items.h"
 #include "generated/journal_location_events.h"
 #include "generated/journal_online_events.h"

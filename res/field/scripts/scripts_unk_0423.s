@@ -74,7 +74,7 @@ _00F4:
     FacePlayer
     Message 5
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0123
+    GoToIfEq 0x800C, MENU_YES, _0123
     GoTo _0118
     End
 
@@ -154,7 +154,7 @@ _022C:
 _0245:
     Message 11
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0277
+    GoToIfEq 0x800C, MENU_YES, _0277
     GoTo _026C
     End
 

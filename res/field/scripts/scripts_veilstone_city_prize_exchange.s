@@ -29,7 +29,7 @@ _0039:
     CallIfLt 0x8000, 0x148, _0100
     CallIfGe 0x8000, 0x148, _010A
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0039
+    GoToIfEq 0x800C, MENU_NO, _0039
     ScrCmd_2A9 0x800C, 0x8001
     GoToIfEq 0x800C, 0, _00F5
     ScrCmd_07D 0x8000, 1, 0x800C
@@ -103,14 +103,14 @@ _017C:
     SetFlag 196
     Message 8
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0250
+    GoToIfEq 0x800C, MENU_NO, _0250
     GoTo _01CB
     End
 
 _01AF:
     Message 9
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0250
+    GoToIfEq 0x800C, MENU_NO, _0250
     GoTo _01CB
     End
 

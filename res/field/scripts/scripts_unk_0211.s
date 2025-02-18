@@ -88,8 +88,8 @@ _00EE:
 _0141:
     MessageVar 0x8004
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0172
-    GoToIfEq 0x800C, 1, _0165
+    GoToIfEq 0x800C, MENU_YES, _0172
+    GoToIfEq 0x800C, MENU_NO, _0165
     End
 
 _0165:
@@ -186,7 +186,7 @@ _027A:
     BufferPlayerName 0
     Message 5
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _02D4
+    GoToIfEq 0x800C, MENU_YES, _02D4
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -198,7 +198,7 @@ _02B0:
     BufferPlayerName 0
     Message 6
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _02D4
+    GoToIfEq 0x800C, MENU_YES, _02D4
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -352,7 +352,7 @@ _04A8:
     ScrCmd_2C1
     Message 13
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, SAVE_TYPE_NO_DATA_EXISTS, _05A0
+    GoToIfEq 0x800C, MENU_NO, _05A0
     CheckSaveType 0x800C
     GoToIfEq 0x800C, SAVE_TYPE_NO_DATA_EXISTS, _051D
     GoToIfEq 0x800C, SAVE_TYPE_FULL_SAVE, _0509
@@ -368,7 +368,7 @@ _04FC:
 _0509:
     Message 14
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _05A0
+    GoToIfEq 0x800C, MENU_NO, _05A0
 _051D:
     Message 21
     GoTo _0552
@@ -376,7 +376,7 @@ _051D:
 _0526:
     Message 14
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _05A0
+    GoToIfEq 0x800C, MENU_NO, _05A0
     GoToIfUnset 31, _05C6
     GoToIfSet 31, _05D1
     End
@@ -515,7 +515,7 @@ _06BB:
     Message 50
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _06D5
+    GoToIfEq 0x800C, MENU_YES, _06D5
     ReleaseAll
     End
 
@@ -1432,7 +1432,7 @@ _12F3:
     GoToIfEq 0x800C, 1, _133C
     Message 73
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _1359
+    GoToIfEq 0x800C, MENU_NO, _1359
     SetPlayerBike 1
     CloseMessage
     ReleaseAll
@@ -1441,7 +1441,7 @@ _12F3:
 _133C:
     Message 74
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _1359
+    GoToIfEq 0x800C, MENU_NO, _1359
     SetPlayerBike 0
     CloseMessage
     ReleaseAll
@@ -1576,7 +1576,7 @@ _14AC:
     BufferPlayerName 0
     Message 122
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _157B
+    GoToIfEq 0x800C, MENU_NO, _157B
     BufferPlayerName 0
     Message 123
     CloseMessage
@@ -1610,8 +1610,8 @@ _157B:
 _1581:
     StopMusic 0
     GetPlayerGender 0x800C
-    CallIfEq 0x800C, 0, _15A7
-    CallIfEq 0x800C, 1, _15AD
+    CallIfEq 0x800C, GENDER_MALE, _15A7
+    CallIfEq 0x800C, GENDER_FEMALE, _15AD
     ReturnCommonScript
     End
 

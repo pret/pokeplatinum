@@ -22,8 +22,8 @@ _0021:
     LockAll
     Message 9
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0046
-    GoToIfEq 0x800C, 1, _0059
+    GoToIfEq 0x800C, MENU_YES, _0046
+    GoToIfEq 0x800C, MENU_NO, _0059
     End
 
 _0046:

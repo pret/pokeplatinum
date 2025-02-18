@@ -104,7 +104,7 @@ _0127:
     LockAll
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0149
+    GoToIfEq 0x800C, MENU_YES, _0149
     GoTo _017F
     End
 

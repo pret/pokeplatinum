@@ -229,8 +229,8 @@ _0248:
     CallIfEq 0x8000, 3, _0438
     Message 9
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _04EC
-    GoToIfEq 0x800C, 1, _04F7
+    GoToIfEq 0x800C, MENU_YES, _04EC
+    GoToIfEq 0x800C, MENU_NO, _04F7
     End
 
 _03EC:

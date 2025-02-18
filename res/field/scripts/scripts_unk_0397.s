@@ -130,7 +130,7 @@ _01D1:
 _01DF:
     Message 8
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0175
+    GoToIfEq 0x800C, MENU_NO, _0175
     GoTo _01FB
     End
 

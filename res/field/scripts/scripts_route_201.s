@@ -23,8 +23,8 @@
 
 _0042:
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _0062
-    GoToIfEq 0x4000, 1, _006A
+    GoToIfEq 0x4000, GENDER_MALE, _0062
+    GoToIfEq 0x4000, GENDER_FEMALE, _006A
     End
 
 _0062:
@@ -145,8 +145,8 @@ _016F:
     WaitMovement
     Message 11
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0298
-    GoToIfEq 0x800C, 1, _0259
+    GoToIfEq 0x800C, MENU_YES, _0298
+    GoToIfEq 0x800C, MENU_NO, _0259
     End
 
 _0259:
@@ -159,8 +159,8 @@ _0259:
     WaitMovement
     Message 13
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0298
-    GoToIfEq 0x800C, 1, _0259
+    GoToIfEq 0x800C, MENU_YES, _0298
+    GoToIfEq 0x800C, MENU_NO, _0259
     End
 
 _0298:
@@ -184,8 +184,8 @@ _02B3:
     BufferPlayerName 1
     Message 17
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _030B
-    GoToIfEq 0x800C, 1, _02FD
+    GoToIfEq 0x800C, MENU_YES, _030B
+    GoToIfEq 0x800C, MENU_NO, _02FD
     End
 
 _02FD:
@@ -213,7 +213,7 @@ _030B:
     ApplyMovement 6, _08C8
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _036E
+    GoToIfEq 0x800C, GENDER_MALE, _036E
     GoTo _03A6
     End
 
@@ -302,7 +302,7 @@ _042E:
     SetFlag 0x178
     RemoveObject 5
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _04CA
+    GoToIfEq 0x800C, GENDER_MALE, _04CA
     GoTo _04EE
     End
 
@@ -348,8 +348,8 @@ _0554:
     BufferPlayerName 1
     Message 44
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _057A
-    GoToIfEq 0x800C, 1, _0656
+    GoToIfEq 0x800C, MENU_YES, _057A
+    GoToIfEq 0x800C, MENU_NO, _0656
     End
 
 _057A:
@@ -1048,7 +1048,7 @@ _0C6E:
 
 _0C86:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0C9D
+    GoToIfEq 0x800C, GENDER_MALE, _0C9D
     GoTo _0CA3
 
 _0C9D:

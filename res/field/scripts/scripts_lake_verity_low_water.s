@@ -14,8 +14,8 @@
 
 _001E:
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _003E
-    GoToIfEq 0x4000, 1, _0046
+    GoToIfEq 0x4000, GENDER_MALE, _003E
+    GoToIfEq 0x4000, GENDER_FEMALE, _0046
     End
 
 _003E:
@@ -652,7 +652,7 @@ _044B:
     LockAll
     FacePlayer
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _046A
+    GoToIfEq 0x800C, GENDER_MALE, _046A
     GoTo _0476
 
 _046A:

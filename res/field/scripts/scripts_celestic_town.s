@@ -27,8 +27,8 @@ _0038:
     FacePlayer
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _006E
-    GoToIfEq 0x800C, 1, _0063
+    GoToIfEq 0x800C, MENU_YES, _006E
+    GoToIfEq 0x800C, MENU_NO, _0063
     End
 
 _0063:

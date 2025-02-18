@@ -20,8 +20,8 @@
 _0032:
     CallIfEq 0x4071, 1, _005F
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _0075
-    GoToIfEq 0x4000, 1, _007D
+    GoToIfEq 0x4000, GENDER_MALE, _0075
+    GoToIfEq 0x4000, GENDER_FEMALE, _007D
     End
 
 _005F:
@@ -88,8 +88,8 @@ _014F:
 
 _0169:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0189
-    GoToIfEq 0x800C, 1, _0195
+    GoToIfEq 0x800C, GENDER_MALE, _0189
+    GoToIfEq 0x800C, GENDER_FEMALE, _0195
     End
 
 _0189:
@@ -150,8 +150,8 @@ _026B:
 
 _0283:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _02A3
-    GoToIfEq 0x800C, 1, _02AC
+    GoToIfEq 0x800C, GENDER_MALE, _02A3
+    GoToIfEq 0x800C, GENDER_FEMALE, _02AC
     End
 
 _02A3:
@@ -188,8 +188,8 @@ _02B5:
     RemoveObject 3
     CallCommonScript 0x7FB
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0344
-    GoToIfEq 0x800C, 1, _0352
+    GoToIfEq 0x800C, GENDER_MALE, _0344
+    GoToIfEq 0x800C, GENDER_FEMALE, _0352
     End
 
 _0344:
@@ -477,8 +477,8 @@ _057C:
     RemoveObject 14
     WaitTime 30, 0x800C
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0610
-    GoToIfEq 0x800C, 1, _061D
+    GoToIfEq 0x800C, GENDER_MALE, _0610
+    GoToIfEq 0x800C, GENDER_FEMALE, _061D
     End
 
 _0610:
@@ -498,8 +498,8 @@ _062A:
     ApplyMovement 4, _0800
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _065C
-    GoToIfEq 0x800C, 1, _066B
+    GoToIfEq 0x800C, GENDER_MALE, _065C
+    GoToIfEq 0x800C, GENDER_FEMALE, _066B
     End
 
 _065C:
@@ -521,8 +521,8 @@ _067A:
     ApplyMovement 0xFF, _07C0
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _06B2
-    GoToIfEq 0x800C, 1, _06C1
+    GoToIfEq 0x800C, GENDER_MALE, _06B2
+    GoToIfEq 0x800C, GENDER_FEMALE, _06C1
     End
 
 _06B2:
@@ -543,8 +543,8 @@ _06D0:
     ApplyMovement 0xFF, _07D0
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0704
-    GoToIfEq 0x800C, 1, _0710
+    GoToIfEq 0x800C, GENDER_MALE, _0704
+    GoToIfEq 0x800C, GENDER_FEMALE, _0710
     End
 
 _0704:
@@ -565,8 +565,8 @@ _071C:
     ApplyMovement 4, _0828
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _075A
-    GoToIfEq 0x800C, 1, _0766
+    GoToIfEq 0x800C, GENDER_MALE, _075A
+    GoToIfEq 0x800C, GENDER_FEMALE, _0766
     End
 
 _075A:

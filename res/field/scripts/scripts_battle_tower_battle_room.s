@@ -171,7 +171,7 @@ _02BB:
     Message 2
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _01AC
+    GoToIfEq 0x800C, MENU_YES, _01AC
     GoTo _0241
     End
 
@@ -179,7 +179,7 @@ _02D9:
     Message 3
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _01E7
+    GoToIfEq 0x800C, MENU_YES, _01E7
     GoTo _0241
     End
 

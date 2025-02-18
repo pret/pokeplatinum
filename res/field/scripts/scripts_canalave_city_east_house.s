@@ -19,8 +19,8 @@ _0006:
 _0026:
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0049
-    GoToIfEq 0x800C, 1, _0130
+    GoToIfEq 0x800C, MENU_YES, _0049
+    GoToIfEq 0x800C, MENU_NO, _0130
     End
 
 _0049:
@@ -54,8 +54,8 @@ _0054:
     ScrCmd_1CB 0, 0x8002, 0x8001
     Message 7
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0105
-    GoToIfEq 0x800C, 1, _0049
+    GoToIfEq 0x800C, MENU_YES, _0105
+    GoToIfEq 0x800C, MENU_NO, _0049
     End
 
 _0105:

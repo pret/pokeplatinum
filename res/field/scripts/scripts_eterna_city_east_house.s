@@ -34,10 +34,10 @@ _0034:
     FacePlayer
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _006F
+    GoToIfEq 0x800C, MENU_NO, _006F
     Message 3
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _006F
+    GoToIfEq 0x800C, MENU_NO, _006F
     Message 4
     GoTo _007A
     End

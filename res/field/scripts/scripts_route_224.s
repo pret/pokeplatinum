@@ -77,7 +77,7 @@ _00E4:
     SetVar 0x408D, 1
     BufferPlayerName 0
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 1, _0219
+    GoToIfEq 0x800C, GENDER_FEMALE, _0219
     Message 0
 _0114:
     CloseMessage
@@ -97,7 +97,7 @@ _0124:
     Message 3
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 1, _0124
+    GoToIfEq 0x800C, MENU_NO, _0124
     Call _029A
     WaitTime 15, 0x800C
     FadeOutMusic 0, 10

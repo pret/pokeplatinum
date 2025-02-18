@@ -14,7 +14,7 @@ _000E:
     FacePlayer
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0032
+    GoToIfEq 0x800C, MENU_YES, _0032
     GoTo _00B3
     End
 
@@ -38,7 +38,7 @@ _0032:
     BufferPartyMonNickname 0, 0x8005
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00D9
+    GoToIfEq 0x800C, MENU_YES, _00D9
     GoTo _00B3
     End
 
@@ -99,7 +99,7 @@ _0139:
     GoToIfSet 134, _01E4
     Message 9
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0168
+    GoToIfEq 0x800C, MENU_YES, _0168
     GoTo _01D9
     End
 

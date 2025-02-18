@@ -142,7 +142,7 @@ _0184:
     CallIfEq 0x8005, 0x1DA, _0274
     Message 6
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _02BC
+    GoToIfEq 0x800C, MENU_NO, _02BC
     ScrCmd_30C
     Message 7
     CloseMessage
@@ -321,7 +321,7 @@ _03D4:
     FacePlayer
     Message 10
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0429
+    GoToIfEq 0x800C, MENU_NO, _0429
     Message 11
     CloseMessage
     SetFlag 0x2AA
@@ -351,7 +351,7 @@ _043C:
     FacePlayer
     Message 13
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0491
+    GoToIfEq 0x800C, MENU_NO, _0491
     Message 14
     CloseMessage
     SetFlag 0x2AD
@@ -375,7 +375,7 @@ _049C:
     FacePlayer
     Message 16
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _04F1
+    GoToIfEq 0x800C, MENU_NO, _04F1
     Message 17
     CloseMessage
     SetFlag 0x2AF
@@ -399,7 +399,7 @@ _04FC:
     FacePlayer
     Message 19
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0551
+    GoToIfEq 0x800C, MENU_NO, _0551
     Message 20
     CloseMessage
     SetFlag 0x2B2
@@ -423,7 +423,7 @@ _055C:
     FacePlayer
     Message 22
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _05B1
+    GoToIfEq 0x800C, MENU_NO, _05B1
     Message 23
     CloseMessage
     SetFlag 0x2B5

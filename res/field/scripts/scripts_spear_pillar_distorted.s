@@ -57,8 +57,8 @@ _0088:
 _00DA:
     Message 6
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00FD
-    GoToIfEq 0x800C, 1, _0130
+    GoToIfEq 0x800C, MENU_YES, _00FD
+    GoToIfEq 0x800C, MENU_NO, _0130
     End
 
 _00FD:
@@ -123,8 +123,8 @@ _0184:
     FacePlayer
     Message 6
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00FD
-    GoToIfEq 0x800C, 1, _01AF
+    GoToIfEq 0x800C, MENU_YES, _00FD
+    GoToIfEq 0x800C, MENU_NO, _01AF
     End
 
 _01AF:

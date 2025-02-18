@@ -115,7 +115,7 @@ _016C:
     BufferItemName 0, 0x1B6
     Message 6
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _01A2
+    GoToIfEq 0x800C, MENU_NO, _01A2
     SetFlag 0x10F
     Call _00BB
     ScrCmd_18A 0, 243, 0x28E

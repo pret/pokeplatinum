@@ -394,7 +394,7 @@ _057C:
     BufferPlayerName 0
     BufferRivalName 1
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _059B
+    GoToIfEq 0x800C, GENDER_MALE, _059B
     GoTo _05A6
     End
 

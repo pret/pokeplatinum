@@ -19,8 +19,8 @@
 
 _0032:
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _0052
-    GoToIfEq 0x4000, 1, _005A
+    GoToIfEq 0x4000, GENDER_MALE, _0052
+    GoToIfEq 0x4000, GENDER_FEMALE, _005A
     End
 
 _0052:
@@ -73,7 +73,7 @@ _0062:
     Message 7
     Message 8
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0116
+    GoToIfEq 0x800C, GENDER_MALE, _0116
     GoTo _0124
     End
 
@@ -96,7 +96,7 @@ _0132:
     ApplyMovement 3, _03D8
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0162
+    GoToIfEq 0x800C, GENDER_MALE, _0162
     GoTo _0173
     End
 
@@ -374,8 +374,8 @@ _043A:
     LockAll
     Message 30
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0471
-    GoToIfEq 0x800C, 1, _0463
+    GoToIfEq 0x800C, MENU_YES, _0471
+    GoToIfEq 0x800C, MENU_NO, _0463
     End
 
 _0463:
@@ -398,8 +398,8 @@ _047C:
     LockAll
     Message 33
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _04B3
-    GoToIfEq 0x800C, 1, _04A5
+    GoToIfEq 0x800C, MENU_YES, _04B3
+    GoToIfEq 0x800C, MENU_NO, _04A5
     End
 
 _04A5:
@@ -422,8 +422,8 @@ _04BE:
     LockAll
     Message 36
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _04F5
-    GoToIfEq 0x800C, 1, _04E7
+    GoToIfEq 0x800C, MENU_YES, _04F5
+    GoToIfEq 0x800C, MENU_NO, _04E7
     End
 
 _04E7:
@@ -446,8 +446,8 @@ _0500:
     LockAll
     Message 39
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0537
-    GoToIfEq 0x800C, 1, _0529
+    GoToIfEq 0x800C, MENU_YES, _0537
+    GoToIfEq 0x800C, MENU_NO, _0529
     End
 
 _0529:
@@ -461,10 +461,10 @@ _0529:
 _0537:
     Message 41
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0529
+    GoToIfEq 0x800C, MENU_NO, _0529
     Message 42
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0529
+    GoToIfEq 0x800C, MENU_NO, _0529
     Message 43
     WaitABXPadPress
     CloseMessage
@@ -476,8 +476,8 @@ _056A:
     LockAll
     Message 44
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _05A1
-    GoToIfEq 0x800C, 1, _0593
+    GoToIfEq 0x800C, MENU_YES, _05A1
+    GoToIfEq 0x800C, MENU_NO, _0593
     End
 
 _0593:
@@ -491,10 +491,10 @@ _0593:
 _05A1:
     Message 46
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0593
+    GoToIfEq 0x800C, MENU_NO, _0593
     Message 47
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0593
+    GoToIfEq 0x800C, MENU_NO, _0593
     Message 48
     WaitABXPadPress
     CloseMessage
@@ -506,8 +506,8 @@ _05D4:
     LockAll
     Message 49
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _060B
-    GoToIfEq 0x800C, 1, _05FD
+    GoToIfEq 0x800C, MENU_YES, _060B
+    GoToIfEq 0x800C, MENU_NO, _05FD
     End
 
 _05FD:

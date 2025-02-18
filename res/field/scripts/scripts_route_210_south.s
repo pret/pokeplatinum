@@ -46,8 +46,8 @@ _0079:
 _00A1:
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00CA
-    GoToIfEq 0x800C, 1, _00C4
+    GoToIfEq 0x800C, MENU_YES, _00CA
+    GoToIfEq 0x800C, MENU_NO, _00C4
     End
 
 _00C4:
@@ -102,15 +102,15 @@ _0183:
     WaitMovement
     Message 3
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _01E9
-    GoToIfEq 0x800C, 1, _01C6
+    GoToIfEq 0x800C, MENU_YES, _01E9
+    GoToIfEq 0x800C, MENU_NO, _01C6
     End
 
 _01C6:
     Message 5
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _01E9
-    GoToIfEq 0x800C, 1, _01C6
+    GoToIfEq 0x800C, MENU_YES, _01E9
+    GoToIfEq 0x800C, MENU_NO, _01C6
     End
 
 _01E9:

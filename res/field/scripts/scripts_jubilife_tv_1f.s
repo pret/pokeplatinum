@@ -42,13 +42,13 @@ _003F:
     GoToIfSet 0xAA9, _0084
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00B6
+    GoToIfEq 0x800C, MENU_YES, _00B6
     GoTo _00AB
 
 _0084:
     Message 18
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00B6
+    GoToIfEq 0x800C, MENU_YES, _00B6
     GoTo _00AB
     End
 

@@ -62,7 +62,7 @@ _007A:
     FacePlayer
     Message 4
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _009C
+    GoToIfEq 0x800C, MENU_YES, _009C
     GoTo _015B
 
 _009C:

@@ -19,8 +19,8 @@ _0022:
     Call _00C7
     Call _0062
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _0052
-    GoToIfEq 0x4000, 1, _005A
+    GoToIfEq 0x4000, GENDER_MALE, _0052
+    GoToIfEq 0x4000, GENDER_FEMALE, _005A
     End
 
 _0052:

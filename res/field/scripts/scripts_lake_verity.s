@@ -17,7 +17,7 @@ _001E:
     CallIfUnset 186, _0087
     CallIfEq 0x4097, 0, _0071
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _0061
+    GoToIfEq 0x4000, GENDER_MALE, _0061
     GoToIfEq 0x4000, 1, _0069
     End
 
@@ -63,7 +63,7 @@ _00CB:
     Message 2
     FacePlayer
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0104
+    GoToIfEq 0x800C, GENDER_MALE, _0104
     GoTo _0112
     End
 
@@ -101,7 +101,7 @@ _013B:
     FacePlayer
     GoToIfSet 186, _018B
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0167
+    GoToIfEq 0x800C, GENDER_MALE, _0167
     GoTo _0175
     End
 
@@ -125,7 +125,7 @@ _0183:
 
 _018B:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _01A4
+    GoToIfEq 0x800C, GENDER_MALE, _01A4
     GoTo _01B2
     End
 
@@ -157,7 +157,7 @@ _01D0:
     ApplyMovement 5, _0220
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _01F5
+    GoToIfEq 0x800C, GENDER_MALE, _01F5
     GoTo _0203
     End
 
