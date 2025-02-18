@@ -11,71 +11,44 @@
 #include "heap.h"
 #include "sys_task_manager.h"
 
-#define NUM_TASK_SLOTS 8
+static void CopyDigitTilemap(const u16 *rawScreenData, u16 *dst);
+static void EndTask(PoketchTaskManager *taskManager);
+static void SetupBackground(SysTask *sysTask, void *taskManager);
+static void UpdateClockDigits(SysTask *sysTask, void *taskManager);
+static void ToggleBacklightPalette(SysTask *sysTask, void *taskManager);
+static void FreeBackground(SysTask *sysTask, void *taskManager);
+static void DrawClockDigits(DisplayManager *displayManager);
 
-#define POKETCH_CLOCK_DIGITS_TILEMAP_IDX 25
-#define POKETCH_NUM_CLOCK_DIGITS         10
-
-#define PRE_POKETCH_DISPLAY_NARC_TILES_IDX   23
-#define PRE_POKETCH_DISPLAY_NARC_TILEMAP_IDX 24
-
-#define POKETCH_CLOCK_DIGIT_WIDTH     4
-#define POKETCH_CLOCK_DIGIT_HEIGHT    9
-#define POKETCH_CLOCK_DIGIT_GAP       1
-#define POKETCH_CLOCK_HOURS_DIGIT_X   3
-#define POKETCH_CLOCK_HOURS_DIGIT_Y   7
-#define POKETCH_CLOCK_MINUETS_DIGIT_X 15
-#define POKETCH_CLOCK_MINUETS_DIGIT_Y 7
-
-#define POKETCH_DIGIT_TILEMAP_WIDTH      (POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS)
-#define POKETCH_DIGIT_TILEMAP_HEIGHT     (POKETCH_CLOCK_DIGIT_HEIGHT)
-#define POKETCH_DIGIT_TILEMAP_SIZE_BYTES (POKETCH_DIGIT_TILEMAP_WIDTH * POKETCH_DIGIT_TILEMAP_HEIGHT)
-
-static void PoketchDigitalClock_CopyDigitTilemap(const u16 *rawScreenData, u16 *dst);
-static void PoketchDigitalClock_EndTask(PoketchTaskManager *taskManager);
-static void PoketchDigitalClock_SetupBackground(SysTask *sysTask, void *taskManager);
-static void PoketchDigitalClock_UpdateClockDigits(SysTask *sysTask, void *taskManager);
-static void PoketchDigitalClock_ToggleBacklightPalette(SysTask *sysTask, void *taskManager);
-static void PoketchDigitalClock_FreeBackground(SysTask *sysTask, void *taskManager);
-static void PoketchDigitalClock_DrawClockDigits(DisplayData *displayData);
-
-struct DisplayData_t {
-    const ClockData *clockData;
-    BgConfig *bgConfig;
-    u32 taskList[2 + NUM_TASK_SLOTS];
-    u16 digitsTilemap[POKETCH_DIGIT_TILEMAP_SIZE_BYTES];
-};
-
-BOOL PoketchDigitalClock_SetupDisplayData(DisplayData **displayData, const ClockData *clockData, BgConfig *bgConfig)
+BOOL PoketchDigitalClock_SetupDisplayManager(DisplayManager **displayManager, const WatchData *watchData, BgConfig *bgConfig)
 {
-    DisplayData *newDisplayData = (DisplayData *)Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(DisplayData));
+    DisplayManager *newDisplayManager = Heap_AllocFromHeap(HEAP_ID_POKETCH_APP, sizeof(DisplayManager));
 
-    if (newDisplayData != NULL) {
+    if (newDisplayManager != NULL) {
         NNSG2dScreenData *screenData;
 
-        PoketchTask_InitActiveTaskList(newDisplayData->taskList, NUM_TASK_SLOTS);
+        PoketchTask_InitActiveTaskList(newDisplayManager->taskList, NUM_TASK_SLOTS);
 
-        newDisplayData->clockData = clockData;
-        newDisplayData->bgConfig = Poketch_GetBgConfig();
+        newDisplayManager->watchData = watchData;
+        newDisplayManager->bgConfig = Poketch_GetBgConfig();
 
         void *nscrBuffer = Graphics_GetScrnData(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_CLOCK_DIGITS_TILEMAP_IDX, TRUE, &screenData, HEAP_ID_POKETCH_APP);
 
         if (nscrBuffer == NULL) {
-            Heap_FreeToHeap(newDisplayData);
+            Heap_FreeToHeap(newDisplayManager);
             return FALSE;
         }
 
-        PoketchDigitalClock_CopyDigitTilemap((const u16 *)(screenData->rawData), newDisplayData->digitsTilemap);
+        CopyDigitTilemap((const u16 *)(screenData->rawData), newDisplayManager->digitsTilemap);
         Heap_FreeToHeap(nscrBuffer);
 
-        *displayData = newDisplayData;
+        *displayManager = newDisplayManager;
         return TRUE;
     }
 
     return FALSE;
 }
 
-static void PoketchDigitalClock_CopyDigitTilemap(const u16 *rawScreenData, u16 *dst)
+static void CopyDigitTilemap(const u16 *rawScreenData, u16 *dst)
 {
     int offset = 9 * 32;
     int row;
@@ -90,43 +63,43 @@ static void PoketchDigitalClock_CopyDigitTilemap(const u16 *rawScreenData, u16 *
     }
 }
 
-void PoketchDigitalClock_FreeDisplayData(DisplayData *displayData)
+void PoketchDigitalClock_FreeDisplayManager(DisplayManager *displayManager)
 {
-    if (displayData != NULL) {
-        Heap_FreeToHeap(displayData);
+    if (displayManager != NULL) {
+        Heap_FreeToHeap(displayManager);
     }
 }
 
-static const PoketchTask appTasks[] = {
-    { SYS_TASK_FUNC_SETUP_BACKGROUND, PoketchDigitalClock_SetupBackground, 0x0 },
-    { SYS_TASK_FUNC_UPDATE_CLOCK_DIGITS, PoketchDigitalClock_UpdateClockDigits, 0x0 },
-    { SYS_TASK_FUNC_TOGGLE_BACKLIGHT_PALETTE, PoketchDigitalClock_ToggleBacklightPalette, 0x0 },
-    { SYS_TASK_FUNC_FREE_BACKGROUND, PoketchDigitalClock_FreeBackground, 0x0 },
-    { 0x0, NULL, 0x0 }
+static const PoketchTask sDisplayTasks[] = {
+    { POKETCH_TASK_SETUP_BACKGROUND, SetupBackground, 0 },
+    { POKETCH_TASK_UPDATE_WATCH_DIGITS, UpdateClockDigits, 0 },
+    { POKETCH_TASK_TOGGLE_BACKLIGHT, ToggleBacklightPalette, 0 },
+    { POKETCH_TASK_FREE_BACKGROUND, FreeBackground, 0 },
+    { 0, NULL, 0 }
 };
 
-void PoketchDigitalClock_StartTask(DisplayData *displayData, u32 taskID)
+void PoketchDigitalClock_StartDisplayTask(DisplayManager *displayManager, u32 taskID)
 {
-    PoketchTask_Start(appTasks, taskID, displayData, displayData->clockData, displayData->taskList, 2, HEAP_ID_POKETCH_APP);
+    PoketchTask_Start(sDisplayTasks, taskID, displayManager, displayManager->watchData, displayManager->taskList, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PoketchDigitalClock_TaskIsNotActive(DisplayData *displayData, u32 taskID)
+BOOL PoketchDigitalClock_DisplayTaskIsNotActive(DisplayManager *displayManager, u32 taskID)
 {
-    return PoketchTask_TaskIsNotActive(displayData->taskList, taskID);
+    return PoketchTask_TaskIsNotActive(displayManager->taskList, taskID);
 }
 
-BOOL PoketchDigitalClock_NoActiveTasks(DisplayData *displayData)
+BOOL PoketchDigitalClock_NoActiveDisplayTasks(DisplayManager *displayManager)
 {
-    return PoketchTask_NoActiveTasks(displayData->taskList);
+    return PoketchTask_NoActiveTasks(displayManager->taskList);
 }
 
-static void PoketchDigitalClock_EndTask(PoketchTaskManager *taskManager)
+static void EndTask(PoketchTaskManager *taskManager)
 {
-    DisplayData *displayData = PoketchTask_GetTaskData(taskManager);
-    PoketchTask_EndTask(displayData->taskList, taskManager);
+    DisplayManager *displayManager = PoketchTask_GetTaskData(taskManager);
+    PoketchTask_EndTask(displayManager->taskList, taskManager);
 }
 
-static void PoketchDigitalClock_SetupBackground(SysTask *sysTask, void *taskManager)
+static void SetupBackground(SysTask *sysTask, void *taskManager)
 {
     static const BgTemplate template = {
         .x = 0,
@@ -143,107 +116,107 @@ static void PoketchDigitalClock_SetupBackground(SysTask *sysTask, void *taskMana
         .mosaic = FALSE,
     };
 
-    DisplayData *displayData = PoketchTask_GetTaskData(taskManager);
+    DisplayManager *displayManager = PoketchTask_GetTaskData(taskManager);
 
-    Bg_InitFromTemplate(displayData->bgConfig, BG_LAYER_SUB_2, &template, BG_TYPE_STATIC);
-    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, PRE_POKETCH_DISPLAY_NARC_TILES_IDX, displayData->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, PRE_POKETCH_DISPLAY_NARC_TILEMAP_IDX, displayData->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Bg_InitFromTemplate(displayManager->bgConfig, BG_LAYER_SUB_2, &template, BG_TYPE_STATIC);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DIGITAL_WATCH_NARC_TILES_IDX, displayManager->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, POKETCH_DIGITAL_WATCH_NARC_TILEMAP_IDX, displayManager->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
 
     Poketch_LoadActivePalette(0, 0);
-    PoketchDigitalClock_DrawClockDigits(displayData);
+    DrawClockDigits(displayManager);
 
-    Bg_CopyTilemapBufferToVRAM(displayData->bgConfig, BG_LAYER_SUB_2);
+    Bg_CopyTilemapBufferToVRAM(displayManager->bgConfig, BG_LAYER_SUB_2);
 
     GXSDispCnt displayControler = GXS_GetDispCnt();
     GXS_SetVisiblePlane(displayControler.visiblePlane | GX_PLANEMASK_BG2);
-    PoketchDigitalClock_EndTask(taskManager);
+    EndTask(taskManager);
 }
 
-static void PoketchDigitalClock_UpdateClockDigits(SysTask *sysTask, void *taskManager)
+static void UpdateClockDigits(SysTask *sysTask, void *taskManager)
 {
-    DisplayData *displayData = PoketchTask_GetTaskData(taskManager);
+    DisplayManager *displayManager = PoketchTask_GetTaskData(taskManager);
 
-    PoketchDigitalClock_DrawClockDigits(displayData);
-    Bg_CopyTilemapBufferToVRAM(displayData->bgConfig, BG_LAYER_SUB_2);
-    PoketchDigitalClock_EndTask(taskManager);
+    DrawClockDigits(displayManager);
+    Bg_CopyTilemapBufferToVRAM(displayManager->bgConfig, BG_LAYER_SUB_2);
+    EndTask(taskManager);
 }
 
-static void PoketchDigitalClock_ToggleBacklightPalette(SysTask *sysTask, void *taskManager)
+static void ToggleBacklightPalette(SysTask *sysTask, void *taskManager)
 {
-    DisplayData *displayData = PoketchTask_GetTaskData(taskManager);
+    DisplayManager *displayManager = PoketchTask_GetTaskData(taskManager);
 
-    if (displayData->clockData->backlightActive) {
+    if (displayManager->watchData->backlightActive) {
         Poketch_LoadActiveBacklightPalette(0, 0);
     } else {
         Poketch_LoadActivePalette(0, 0);
     }
 
-    PoketchDigitalClock_EndTask(taskManager);
+    EndTask(taskManager);
 }
 
-static void PoketchDigitalClock_FreeBackground(SysTask *sysTask, void *taskManager)
+static void FreeBackground(SysTask *sysTask, void *taskManager)
 {
-    DisplayData *displayData = PoketchTask_GetTaskData(taskManager);
+    DisplayManager *displayManager = PoketchTask_GetTaskData(taskManager);
 
-    Bg_FreeTilemapBuffer(displayData->bgConfig, BG_LAYER_SUB_2);
-    PoketchDigitalClock_EndTask(taskManager);
+    Bg_FreeTilemapBuffer(displayManager->bgConfig, BG_LAYER_SUB_2);
+    EndTask(taskManager);
 }
 
-static void PoketchDigitalClock_DrawClockDigits(DisplayData *displayData)
+static void DrawClockDigits(DisplayManager *displayManager)
 {
-    CP_SetDiv32_32(displayData->clockData->time.hour, POKETCH_NUM_CLOCK_DIGITS);
+    CP_SetDiv32_32(displayManager->watchData->time.hour, POKETCH_NUM_CLOCK_DIGITS);
 
     u32 tensDigitOffset = CP_GetDivResult32();
     u32 onesDigitOffset = CP_GetDivRemainder32();
 
-    Bg_CopyToTilemapRect(displayData->bgConfig,
+    Bg_CopyToTilemapRect(displayManager->bgConfig,
         BG_LAYER_SUB_2,
         POKETCH_CLOCK_HOURS_DIGIT_X,
         POKETCH_CLOCK_HOURS_DIGIT_Y,
         POKETCH_CLOCK_DIGIT_WIDTH,
         POKETCH_CLOCK_DIGIT_HEIGHT,
-        displayData->digitsTilemap,
+        displayManager->digitsTilemap,
         POKETCH_CLOCK_DIGIT_WIDTH * tensDigitOffset,
         0,
-        (POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS),
+        POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS,
         POKETCH_CLOCK_DIGIT_HEIGHT);
-    Bg_CopyToTilemapRect(displayData->bgConfig,
+    Bg_CopyToTilemapRect(displayManager->bgConfig,
         BG_LAYER_SUB_2,
-        (POKETCH_CLOCK_HOURS_DIGIT_X + POKETCH_CLOCK_DIGIT_WIDTH + POKETCH_CLOCK_DIGIT_GAP),
+        POKETCH_CLOCK_HOURS_DIGIT_X + POKETCH_CLOCK_DIGIT_WIDTH + POKETCH_CLOCK_DIGIT_GAP,
         POKETCH_CLOCK_HOURS_DIGIT_Y,
         POKETCH_CLOCK_DIGIT_WIDTH,
         POKETCH_CLOCK_DIGIT_HEIGHT,
-        displayData->digitsTilemap,
+        displayManager->digitsTilemap,
         POKETCH_CLOCK_DIGIT_WIDTH * onesDigitOffset,
         0,
-        (POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS),
+        POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS,
         POKETCH_CLOCK_DIGIT_HEIGHT);
 
-    CP_SetDiv32_32(displayData->clockData->time.minute, POKETCH_NUM_CLOCK_DIGITS);
+    CP_SetDiv32_32(displayManager->watchData->time.minute, POKETCH_NUM_CLOCK_DIGITS);
 
     tensDigitOffset = CP_GetDivResult32();
     onesDigitOffset = CP_GetDivRemainder32();
 
-    Bg_CopyToTilemapRect(displayData->bgConfig,
+    Bg_CopyToTilemapRect(displayManager->bgConfig,
         BG_LAYER_SUB_2,
-        POKETCH_CLOCK_MINUETS_DIGIT_X,
-        POKETCH_CLOCK_MINUETS_DIGIT_Y,
+        POKETCH_CLOCK_MINUTES_DIGIT_X,
+        POKETCH_CLOCK_MINUTES_DIGIT_Y,
         POKETCH_CLOCK_DIGIT_WIDTH,
         POKETCH_CLOCK_DIGIT_HEIGHT,
-        displayData->digitsTilemap,
+        displayManager->digitsTilemap,
         POKETCH_CLOCK_DIGIT_WIDTH * tensDigitOffset,
         0,
-        (POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS),
+        POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS,
         POKETCH_CLOCK_DIGIT_HEIGHT);
-    Bg_CopyToTilemapRect(displayData->bgConfig,
+    Bg_CopyToTilemapRect(displayManager->bgConfig,
         BG_LAYER_SUB_2,
-        (POKETCH_CLOCK_MINUETS_DIGIT_X + POKETCH_CLOCK_DIGIT_WIDTH + POKETCH_CLOCK_DIGIT_GAP),
-        POKETCH_CLOCK_MINUETS_DIGIT_Y,
+        POKETCH_CLOCK_MINUTES_DIGIT_X + POKETCH_CLOCK_DIGIT_WIDTH + POKETCH_CLOCK_DIGIT_GAP,
+        POKETCH_CLOCK_MINUTES_DIGIT_Y,
         POKETCH_CLOCK_DIGIT_WIDTH,
         POKETCH_CLOCK_DIGIT_HEIGHT,
-        displayData->digitsTilemap,
+        displayManager->digitsTilemap,
         POKETCH_CLOCK_DIGIT_WIDTH * onesDigitOffset,
         0,
-        (POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS),
+        POKETCH_CLOCK_DIGIT_WIDTH * POKETCH_NUM_CLOCK_DIGITS,
         POKETCH_CLOCK_DIGIT_HEIGHT);
 }
