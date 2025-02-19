@@ -7841,7 +7841,7 @@ static BOOL ScrCmd_2D8(ScriptContext *ctx)
         v2,
     };
 
-    ov7_0224CDA4(ctx->task, ctx->fieldSystem, (u16 *)v3[v0], MART_TYPE_FRONTIER, 0);
+    Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)v3[v0], MART_TYPE_FRONTIER, 0);
     return 1;
 }
 

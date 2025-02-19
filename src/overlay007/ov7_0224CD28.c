@@ -232,44 +232,44 @@ static void ov7_0224CD28(UnkStruct_ov7_0224D008 *param0, u16 *param1)
     }
 }
 
-static UnkStruct_ov7_0224D008 *ov7_0224CD88(void)
+static UnkStruct_ov7_0224D008 *Shop_Allocate(void)
 {
-    UnkStruct_ov7_0224D008 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov7_0224D008));
+    UnkStruct_ov7_0224D008 *shop = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov7_0224D008));
 
-    memset(v0, 0, sizeof(UnkStruct_ov7_0224D008));
-    return v0;
+    memset(shop, 0, sizeof(UnkStruct_ov7_0224D008));
+    return shop;
 }
 
-void ov7_0224CDA4(FieldTask *param0, FieldSystem *fieldSystem, u16 *param2, u8 martType, BOOL param4)
+void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incDeptStoreBuyCount)
 {
-    UnkStruct_ov7_0224D008 *v0 = ov7_0224CD88();
+    UnkStruct_ov7_0224D008 *shop = Shop_Allocate();
 
-    v0->unk_00 = fieldSystem->bgConfig;
+    shop->unk_00 = fieldSystem->bgConfig;
 
-    v0->unk_298 = Strbuf_Init((24 * 2 * 2), HEAP_ID_FIELDMAP);
-    v0->unk_270 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v0->unk_278 = SaveData_Options(fieldSystem->saveData);
-    v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    v0->unk_288 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    v0->unk_28C = param4;
-    v0->unk_2A6 = ov7_0224CE90(fieldSystem);
-    v0->unk_27C = fieldSystem->journalEntry;
-    v0->martType = martType;
-    v0->unk_284 = fieldSystem->saveData;
-    v0->unk_2B4 = sub_0200C440(1, 2, 0, 11);
+    shop->unk_298 = Strbuf_Init((24 * 2 * 2), HEAP_ID_FIELDMAP);
+    shop->unk_270 = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    shop->unk_278 = SaveData_Options(fieldSystem->saveData);
+    shop->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    shop->unk_288 = SaveData_GetVarsFlags(fieldSystem->saveData);
+    shop->unk_28C = incDeptStoreBuyCount;
+    shop->unk_2A6 = ov7_0224CE90(fieldSystem);
+    shop->unk_27C = fieldSystem->journalEntry;
+    shop->martType = martType;
+    shop->unk_284 = fieldSystem->saveData;
+    shop->unk_2B4 = sub_0200C440(1, 2, 0, 11);
 
-    if (v0->martType == MART_TYPE_NORMAL) {
-        v0->unk_274 = SaveData_GetBag(fieldSystem->saveData);
-    } else if (v0->martType == MART_TYPE_FRONTIER) {
-        v0->unk_274 = SaveData_GetBag(fieldSystem->saveData);
-    } else if (v0->martType == MART_TYPE_DECOR) {
-        v0->unk_274 = sub_020298B0(fieldSystem->saveData);
+    if (shop->martType == MART_TYPE_NORMAL) {
+        shop->unk_274 = SaveData_GetBag(fieldSystem->saveData);
+    } else if (shop->martType == MART_TYPE_FRONTIER) {
+        shop->unk_274 = SaveData_GetBag(fieldSystem->saveData);
+    } else if (shop->martType == MART_TYPE_DECOR) {
+        shop->unk_274 = sub_020298B0(fieldSystem->saveData);
     } else {
-        v0->unk_274 = sub_0202CA1C(fieldSystem->saveData);
+        shop->unk_274 = sub_0202CA1C(fieldSystem->saveData);
     }
 
-    ov7_0224CD28(v0, param2);
-    FieldTask_InitCall(param0, ov7_0224CEAC, v0);
+    ov7_0224CD28(shop, shopItems);
+    FieldTask_InitCall(task, ov7_0224CEAC, shop);
 }
 
 static u8 ov7_0224CE90(FieldSystem *fieldSystem)
