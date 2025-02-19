@@ -12,20 +12,20 @@
 #include "heap.h"
 #include "unk_0207CB08.h"
 
-static u8 sub_0209AC50(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
+static u8 sub_0209AC50(FieldSystem *fieldSystem, ShopMenu *param1);
 static void sub_0209AC80(FieldTask *param0);
 
 BOOL sub_0209AC14(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
-    UnkStruct_ov7_0224D008 *v1;
+    ShopMenu *shopMenu;
 
     fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetEnv(param0);
+    shopMenu = FieldTask_GetEnv(param0);
 
-    switch (v1->unk_297) {
+    switch (shopMenu->state) {
     case 16:
-        v1->unk_297 = sub_0209AC50(fieldSystem, v1);
+        shopMenu->state = sub_0209AC50(fieldSystem, shopMenu);
         break;
     case 17:
         sub_0209AC80(param0);
@@ -35,15 +35,15 @@ BOOL sub_0209AC14(FieldTask *param0)
     return 0;
 }
 
-static u8 sub_0209AC50(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static u8 sub_0209AC50(FieldSystem *fieldSystem, ShopMenu *shopMenu)
 {
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
         return 16;
     }
 
-    param1->unk_2A8 = sub_0207CBAC(param1->unk_04);
+    shopMenu->unk_2A8 = sub_0207CBAC(shopMenu->unk_04);
 
-    Heap_FreeToHeap(param1->unk_04);
+    Heap_FreeToHeap(shopMenu->unk_04);
     FieldSystem_StartFieldMap(fieldSystem);
 
     return 17;
@@ -52,14 +52,14 @@ static u8 sub_0209AC50(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
 static void sub_0209AC80(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
-    UnkStruct_ov7_0224D008 *v1;
+    ShopMenu *shopMenu;
 
     fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetEnv(param0);
+    shopMenu = FieldTask_GetEnv(param0);
 
     if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
         ov5_021D1744(1);
-        FieldTask_InitJump(param0, ov7_0224CEAC, v1);
-        v1->unk_297 = 18;
+        FieldTask_InitJump(param0, ov7_0224CEAC, shopMenu);
+        shopMenu->state = 18;
     }
 }
