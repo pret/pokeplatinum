@@ -22,34 +22,34 @@
 #include "vars_flags.h"
 
 typedef struct {
-    BgConfig *unk_00;
+    BgConfig *bgConfig;
     void *unk_04;
-    Window unk_08[6];
-    Window unk_68;
-    ListMenu *unk_78;
-    StringList *unk_7C;
-    Menu *unk_80;
-    StringList *unk_84;
+    Window windows[SHOP_WINDOW_MAX];
+    Window unused;
+    ListMenu *menu;
+    StringList *itemsList;
+    Menu *yesNoChoice;
+    StringList *optionsList;
     MessageLoader *unk_88;
     StringTemplate *unk_8C;
     Camera *camera;
     UnkStruct_ov5_021D30A8 unk_94;
     Sprite *unk_25C[4];
     u16 unk_26C[2];
-    TrainerInfo *unk_270;
-    void *unk_274;
-    Options *unk_278;
-    JournalEntry *unk_27C;
+    TrainerInfo *trainerInfo;
+    void *inventory;
+    Options *options;
+    JournalEntry *journalEntry;
     GameRecords *records;
-    SaveData *unk_284;
-    VarsFlags *unk_288;
-    BOOL unk_28C;
+    SaveData *saveData;
+    VarsFlags *varsFlags;
+    BOOL incDeptStoreBuyCount;
     u16 *unk_290;
-    u8 unk_294;
+    u8 itemsCount;
     u8 unk_295;
     u8 unk_296;
-    u8 unk_297;
-    Strbuf *unk_298;
+    u8 state;
+    Strbuf *strbuf;
     u8 unk_29C[4];
     int unk_2A0;
     u8 unk_2A4;
@@ -63,6 +63,6 @@ typedef struct {
     u16 unk_2AE;
     u32 unk_2B0;
     UnkStruct_0200C440 *unk_2B4;
-} UnkStruct_ov7_0224D008;
+} ShopMenu;
 
 #endif // POKEPLATINUM_STRUCT_OV7_0224D008_H

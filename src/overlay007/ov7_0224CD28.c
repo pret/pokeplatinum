@@ -59,61 +59,48 @@
 #include "unk_0209AC14.h"
 #include "vars_flags.h"
 
-enum ShopStaticWindow {
-    SHOP_WINDOW_ITEM_LIST = 0,
-    SHOP_WINDOW_ITEM_DESCRIPTION,
-    SHOP_WINDOW_CURRENT_MONEY,
-    SHOP_WINDOW_QUANTITY_TOTAL_PRICE,
-    SHOP_WINDOW_ITEMS_IN_BAG,
-    SHOP_WINDOW_MESSAGE,
-
-    SHOP_WINDOW_MAX
-};
-
-#define MAX_ITEM_SHOWN 7
-
 static u8 ov7_0224CE90(FieldSystem *fieldSystem);
-static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
-static void ov7_0224D008(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224D018(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224D1EC(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224D21C(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224D388(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
-static void ov7_0224D3E8(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224D474(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224D620(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E950(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
-static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0);
+static u8 ov7_0224D250(FieldSystem *fieldSystem, ShopMenu *param1);
+static void ov7_0224D008(ShopMenu *param0);
+static void ov7_0224D018(ShopMenu *param0);
+static void ov7_0224D040(ShopMenu *param0);
+static u8 ov7_0224D1EC(ShopMenu *param0);
+static void ov7_0224D21C(ShopMenu *param0);
+static void ov7_0224D388(FieldSystem *fieldSystem, ShopMenu *param1);
+static void ov7_0224D3E8(ShopMenu *param0);
+static void ov7_0224D474(ShopMenu *param0);
+static u8 ov7_0224D620(ShopMenu *param0);
+static u8 ov7_0224DC84(ShopMenu *param0);
+static u8 ov7_0224E950(FieldSystem *fieldSystem, ShopMenu *param1);
+static void ov7_0224D6BC(ShopMenu *param0);
 static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2);
 static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2);
-static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1);
-static u8 ov7_0224DE94(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1);
-static void ov7_0224DED4(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E7C8(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E3A0(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E5B0(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224EA2C(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224EA54(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
-static void ov7_0224EC20(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
+static void ov7_0224DAF8(ShopMenu *param0, u8 param1);
+static u8 ov7_0224DE94(ShopMenu *param0);
+static u8 ov7_0224DFB0(ShopMenu *param0);
+static void ov7_0224E28C(ShopMenu *param0, u8 param1);
+static void ov7_0224DED4(ShopMenu *param0);
+static u8 ov7_0224E6B8(ShopMenu *param0);
+static u8 ov7_0224E7C8(ShopMenu *param0);
+static u8 ov7_0224E3A0(ShopMenu *param0);
+static u8 ov7_0224E3D8(ShopMenu *param0);
+static u8 ov7_0224E5B0(ShopMenu *param0);
+static u8 ov7_0224EA2C(ShopMenu *param0);
+static void ov7_0224EA54(FieldSystem *fieldSystem, ShopMenu *param1);
+static void ov7_0224EC20(FieldSystem *fieldSystem, ShopMenu *param1);
 static void ov7_0224EC38(FieldTask *param0);
-static u8 ov7_0224EC9C(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
-static void ov7_0224EAD0(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224EB14(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224EB38(UnkStruct_ov7_0224D008 *param0, u8 param1);
-static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1);
-static void ov7_0224EC10(UnkStruct_ov7_0224D008 *param0, u8 param1);
-static u8 ov7_0224E098(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224E834(UnkStruct_ov7_0224D008 *param0, u16 param1, u16 param2);
-static u32 ov7_0224E890(UnkStruct_ov7_0224D008 *param0, u16 param1);
-static u16 ov7_0224E8CC(UnkStruct_ov7_0224D008 *param0, u16 param1);
-static u32 ov7_0224E8F4(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224E920(UnkStruct_ov7_0224D008 *param0, u32 param1);
+static u8 ov7_0224EC9C(FieldSystem *fieldSystem, ShopMenu *param1);
+static void ov7_0224EAD0(ShopMenu *param0);
+static void ov7_0224EB14(ShopMenu *param0);
+static void ov7_0224EB38(ShopMenu *param0, u8 param1);
+static void ov7_0224EB7C(ShopMenu *param0, u16 param1);
+static void ov7_0224EC10(ShopMenu *param0, u8 param1);
+static u8 ov7_0224E098(ShopMenu *param0);
+static void ov7_0224E834(ShopMenu *param0, u16 param1, u16 param2);
+static u32 ov7_0224E890(ShopMenu *param0, u16 param1);
+static u16 ov7_0224E8CC(ShopMenu *param0, u16 param1);
+static u32 ov7_0224E8F4(ShopMenu *param0);
+static void ov7_0224E920(ShopMenu *param0, u32 param1);
 
 static const WindowTemplate sShop_DefaultWindowTemplates[] = {
     [SHOP_WINDOW_ITEM_LIST] = {
@@ -214,7 +201,7 @@ static const WindowTemplate sShop_FrontierCurrMoneyWindowTemplate = {
     .baseTile = 0x28
 };
 
-static void ov7_0224CD28(UnkStruct_ov7_0224D008 *param0, u16 *param1)
+static void ov7_0224CD28(ShopMenu *param0, u16 *param1)
 {
     u16 v0;
 
@@ -224,52 +211,52 @@ static void ov7_0224CD28(UnkStruct_ov7_0224D008 *param0, u16 *param1)
         }
     }
 
-    param0->unk_294 = v0;
-    param0->unk_290 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, param0->unk_294 * 2);
+    param0->itemsCount = v0;
+    param0->unk_290 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, param0->itemsCount * 2);
 
-    for (v0 = 0; v0 < param0->unk_294; v0++) {
+    for (v0 = 0; v0 < param0->itemsCount; v0++) {
         param0->unk_290[v0] = param1[v0];
     }
 }
 
-static UnkStruct_ov7_0224D008 *Shop_Allocate(void)
+static ShopMenu *Shop_Allocate(void)
 {
-    UnkStruct_ov7_0224D008 *shop = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov7_0224D008));
+    ShopMenu *shopMenu = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ShopMenu));
 
-    memset(shop, 0, sizeof(UnkStruct_ov7_0224D008));
-    return shop;
+    memset(shopMenu, 0, sizeof(ShopMenu));
+    return shopMenu;
 }
 
 void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incDeptStoreBuyCount)
 {
-    UnkStruct_ov7_0224D008 *shop = Shop_Allocate();
+    ShopMenu *shopMenu = Shop_Allocate();
 
-    shop->unk_00 = fieldSystem->bgConfig;
+    shopMenu->bgConfig = fieldSystem->bgConfig;
 
-    shop->unk_298 = Strbuf_Init((24 * 2 * 2), HEAP_ID_FIELDMAP);
-    shop->unk_270 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    shop->unk_278 = SaveData_Options(fieldSystem->saveData);
-    shop->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    shop->unk_288 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    shop->unk_28C = incDeptStoreBuyCount;
-    shop->unk_2A6 = ov7_0224CE90(fieldSystem);
-    shop->unk_27C = fieldSystem->journalEntry;
-    shop->martType = martType;
-    shop->unk_284 = fieldSystem->saveData;
-    shop->unk_2B4 = sub_0200C440(1, 2, 0, 11);
+    shopMenu->strbuf = Strbuf_Init((24 * 2 * 2), HEAP_ID_FIELDMAP);
+    shopMenu->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    shopMenu->options = SaveData_Options(fieldSystem->saveData);
+    shopMenu->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    shopMenu->varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+    shopMenu->incDeptStoreBuyCount = incDeptStoreBuyCount;
+    shopMenu->unk_2A6 = ov7_0224CE90(fieldSystem);
+    shopMenu->journalEntry = fieldSystem->journalEntry;
+    shopMenu->martType = martType;
+    shopMenu->saveData = fieldSystem->saveData;
+    shopMenu->unk_2B4 = sub_0200C440(1, 2, 0, 11);
 
-    if (shop->martType == MART_TYPE_NORMAL) {
-        shop->unk_274 = SaveData_GetBag(fieldSystem->saveData);
-    } else if (shop->martType == MART_TYPE_FRONTIER) {
-        shop->unk_274 = SaveData_GetBag(fieldSystem->saveData);
-    } else if (shop->martType == MART_TYPE_DECOR) {
-        shop->unk_274 = sub_020298B0(fieldSystem->saveData);
+    if (shopMenu->martType == MART_TYPE_NORMAL) {
+        shopMenu->inventory = SaveData_GetBag(fieldSystem->saveData);
+    } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
+        shopMenu->inventory = SaveData_GetBag(fieldSystem->saveData);
+    } else if (shopMenu->martType == MART_TYPE_DECOR) {
+        shopMenu->inventory = sub_020298B0(fieldSystem->saveData);
     } else {
-        shop->unk_274 = sub_0202CA1C(fieldSystem->saveData);
+        shopMenu->inventory = sub_0202CA1C(fieldSystem->saveData);
     }
 
-    ov7_0224CD28(shop, shopItems);
-    FieldTask_InitCall(task, ov7_0224CEAC, shop);
+    ov7_0224CD28(shopMenu, shopItems);
+    FieldTask_InitCall(task, ov7_0224CEAC, shopMenu);
 }
 
 static u8 ov7_0224CE90(FieldSystem *fieldSystem)
@@ -286,55 +273,55 @@ static u8 ov7_0224CE90(FieldSystem *fieldSystem)
 BOOL ov7_0224CEAC(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
-    UnkStruct_ov7_0224D008 *v1;
+    ShopMenu *v1;
 
     fieldSystem = FieldTask_GetFieldSystem(param0);
     v1 = FieldTask_GetEnv(param0);
 
-    switch (v1->unk_297) {
+    switch (v1->state) {
     case 0:
         ov7_0224D008(v1);
-        v1->unk_297 = 1;
+        v1->state = 1;
         break;
     case 1:
-        v1->unk_297 = ov7_0224D1EC(v1);
+        v1->state = ov7_0224D1EC(v1);
         break;
     case 2:
         ov7_0224D388(fieldSystem, v1);
-        v1->unk_297 = 3;
+        v1->state = 3;
         break;
     case 3:
-        v1->unk_297 = ov7_0224D620(v1);
+        v1->state = ov7_0224D620(v1);
         break;
     case 4:
-        v1->unk_297 = ov7_0224DC84(v1);
+        v1->state = ov7_0224DC84(v1);
         break;
     case 5:
-        v1->unk_297 = ov7_0224DE94(v1);
+        v1->state = ov7_0224DE94(v1);
         break;
     case 6:
-        v1->unk_297 = ov7_0224DFB0(v1);
+        v1->state = ov7_0224DFB0(v1);
         break;
     case 7:
-        v1->unk_297 = ov7_0224E3A0(v1);
+        v1->state = ov7_0224E3A0(v1);
         break;
     case 8:
-        v1->unk_297 = ov7_0224E3D8(v1);
+        v1->state = ov7_0224E3D8(v1);
         break;
     case 9:
-        v1->unk_297 = ov7_0224E5B0(v1);
+        v1->state = ov7_0224E5B0(v1);
         break;
     case 10:
-        v1->unk_297 = ov7_0224E6B8(v1);
+        v1->state = ov7_0224E6B8(v1);
         break;
     case 11:
-        v1->unk_297 = ov7_0224E7C8(v1);
+        v1->state = ov7_0224E7C8(v1);
         break;
     case 12:
-        v1->unk_297 = ov7_0224E950(fieldSystem, v1);
+        v1->state = ov7_0224E950(fieldSystem, v1);
         break;
     case 13:
-        v1->unk_297 = ov7_0224EA2C(v1);
+        v1->state = ov7_0224EA2C(v1);
         break;
     case 14:
         ov7_0224EC20(fieldSystem, v1);
@@ -346,17 +333,17 @@ BOOL ov7_0224CEAC(FieldTask *param0)
     case 17:
         break;
     case 18:
-        v1->unk_297 = ov7_0224EC9C(fieldSystem, v1);
+        v1->state = ov7_0224EC9C(fieldSystem, v1);
         break;
     case 19:
         ov7_0224EA54(fieldSystem, v1);
-        v1->unk_297 = 20;
+        v1->state = 20;
         break;
     case 20:
         return ov7_0224D250(fieldSystem, v1);
     }
 
-    if ((v1->unk_297 >= 4) && (v1->unk_297 <= 11)) {
+    if ((v1->state >= 4) && (v1->state <= 11)) {
         Sprite_UpdateAnim(v1->unk_25C[0], FX32_ONE);
         Sprite_UpdateAnim(v1->unk_25C[1], FX32_ONE);
         SpriteList_Update(v1->unk_94.unk_00);
@@ -365,49 +352,49 @@ BOOL ov7_0224CEAC(FieldTask *param0)
     return 0;
 }
 
-static void ov7_0224D008(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D008(ShopMenu *shopMenu)
 {
-    ov7_0224D018(param0);
-    ov7_0224D040(param0);
+    ov7_0224D018(shopMenu);
+    ov7_0224D040(shopMenu);
 }
 
-static void ov7_0224D018(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D018(ShopMenu *param0)
 {
     param0->unk_88 = MessageLoader_Init(0, 26, 543, HEAP_ID_FIELDMAP);
     param0->unk_8C = StringTemplate_Default(HEAP_ID_FIELDMAP);
 }
 
-static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D040(ShopMenu *param0)
 {
     MenuTemplate v0;
     u8 v1;
 
     if (param0->martType == MART_TYPE_NORMAL) {
         v1 = 3;
-        param0->unk_84 = StringList_New(v1, HEAP_ID_FIELDMAP);
+        param0->optionsList = StringList_New(v1, HEAP_ID_FIELDMAP);
 
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 15, 2);
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 16, 14);
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 17, 0xfffffffe);
-        Window_Add(param0->unk_00, &param0->unk_08[0], 3, 1, 1, 13, 6, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
+        StringList_AddFromMessageBank(param0->optionsList, param0->unk_88, 15, 2);
+        StringList_AddFromMessageBank(param0->optionsList, param0->unk_88, 16, 14);
+        StringList_AddFromMessageBank(param0->optionsList, param0->unk_88, 17, 0xfffffffe);
+        Window_Add(param0->bgConfig, &param0->windows[0], 3, 1, 1, 13, 6, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
     } else if (param0->martType == MART_TYPE_FRONTIER) {
         v1 = 2;
-        param0->unk_84 = StringList_New(v1, HEAP_ID_FIELDMAP);
+        param0->optionsList = StringList_New(v1, HEAP_ID_FIELDMAP);
 
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 29, 2);
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 30, 0xfffffffe);
-        Window_Add(param0->unk_00, &param0->unk_08[0], 3, 23, 13, 7, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
+        StringList_AddFromMessageBank(param0->optionsList, param0->unk_88, 29, 2);
+        StringList_AddFromMessageBank(param0->optionsList, param0->unk_88, 30, 0xfffffffe);
+        Window_Add(param0->bgConfig, &param0->windows[0], 3, 23, 13, 7, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
     } else {
         v1 = 2;
-        param0->unk_84 = StringList_New(v1, HEAP_ID_FIELDMAP);
+        param0->optionsList = StringList_New(v1, HEAP_ID_FIELDMAP);
 
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 15, 2);
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 17, 0xfffffffe);
-        Window_Add(param0->unk_00, &param0->unk_08[0], 3, 1, 1, 13, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
+        StringList_AddFromMessageBank(param0->optionsList, param0->unk_88, 15, 2);
+        StringList_AddFromMessageBank(param0->optionsList, param0->unk_88, 17, 0xfffffffe);
+        Window_Add(param0->bgConfig, &param0->windows[0], 3, 1, 1, 13, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
     }
 
-    v0.choices = param0->unk_84;
-    v0.window = &param0->unk_08[0];
+    v0.choices = param0->optionsList;
+    v0.window = &param0->windows[0];
     v0.fontID = FONT_SYSTEM;
     v0.xSize = 1;
     v0.ySize = v1;
@@ -415,15 +402,15 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    LoadStandardWindowGraphics(param0->unk_00, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELDMAP);
-    Window_DrawStandardFrame(&param0->unk_08[0], 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(param0->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELDMAP);
+    Window_DrawStandardFrame(&param0->windows[0], 1, 1024 - (18 + 12) - 9, 11);
 
-    param0->unk_80 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, HEAP_ID_FIELDMAP, PAD_BUTTON_B);
+    param0->yesNoChoice = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, HEAP_ID_FIELDMAP, PAD_BUTTON_B);
 }
 
-static u8 ov7_0224D1EC(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224D1EC(ShopMenu *param0)
 {
-    u32 input = Menu_ProcessInput(param0->unk_80);
+    u32 input = Menu_ProcessInput(param0->yesNoChoice);
 
     switch (input) {
     case MENU_NOTHING_CHOSEN:
@@ -438,16 +425,16 @@ static u8 ov7_0224D1EC(UnkStruct_ov7_0224D008 *param0)
     return 1;
 }
 
-static void ov7_0224D21C(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D21C(ShopMenu *param0)
 {
-    Window_EraseStandardFrame(&param0->unk_08[0], 1);
-    Window_ClearAndCopyToVRAM(&param0->unk_08[0]);
-    Menu_Free(param0->unk_80, NULL);
-    StringList_Free(param0->unk_84);
-    Window_Remove(&param0->unk_08[0]);
+    Window_EraseStandardFrame(&param0->windows[0], 1);
+    Window_ClearAndCopyToVRAM(&param0->windows[0]);
+    Menu_Free(param0->yesNoChoice, NULL);
+    StringList_Free(param0->optionsList);
+    Window_Remove(&param0->windows[0]);
 }
 
-static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static u8 ov7_0224D250(FieldSystem *fieldSystem, ShopMenu *param1)
 {
     if (FieldMessage_FinishedPrinting(param1->unk_2A4) == 0) {
         return 0;
@@ -456,30 +443,30 @@ static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         void *journalEntryLocationEvent;
 
-        Window_EraseMessageBox(&param1->unk_08[1], 0);
-        Window_Remove(&param1->unk_08[1]);
+        Window_EraseMessageBox(&param1->windows[1], 0);
+        Window_Remove(&param1->windows[1]);
         MessageLoader_Free(param1->unk_88);
         StringTemplate_Free(param1->unk_8C);
-        Strbuf_Free(param1->unk_298);
+        Strbuf_Free(param1->strbuf);
 
         if (param1->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != 101
             && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_NORTH_HOUSE
             && fieldSystem->location->mapId != MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE) {
             if (param1->unk_2A7 != 0 && param1->unk_2A8 != 0) {
                 journalEntryLocationEvent = JournalEntry_CreateEventBusinessAtMart(HEAP_ID_FIELDMAP);
-                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
+                JournalEntry_SaveData(param1->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
             } else if (param1->unk_2A7 > 1) {
                 journalEntryLocationEvent = JournalEntry_CreateEventLotsOfShopping(HEAP_ID_FIELDMAP);
-                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
+                JournalEntry_SaveData(param1->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
             } else if (param1->unk_2A8 > 1) {
                 journalEntryLocationEvent = JournalEntry_CreateEventSoldALot(HEAP_ID_FIELDMAP);
-                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
+                JournalEntry_SaveData(param1->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
             } else if (param1->unk_2A7 != 0) {
                 journalEntryLocationEvent = JournalEntry_CreateEventShoppedAtMart(HEAP_ID_FIELDMAP);
-                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
+                JournalEntry_SaveData(param1->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
             } else if (param1->unk_2A8 != 0) {
                 journalEntryLocationEvent = JournalEntry_CreateEventSoldALittle(HEAP_ID_FIELDMAP);
-                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
+                JournalEntry_SaveData(param1->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
             }
         }
 
@@ -493,9 +480,9 @@ static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
     return 0;
 }
 
-static void ov7_0224D388(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static void ov7_0224D388(FieldSystem *fieldSystem, ShopMenu *param1)
 {
-    Bg_FillTilemapRect(param1->unk_00, 3, 0, 2 - 2, 19 - 1, 27 + 5, 4 + 2, 0);
+    Bg_FillTilemapRect(param1->bgConfig, 3, 0, 2 - 2, 19 - 1, 27 + 5, 4 + 2, 0);
 
     ov7_0224D21C(param1);
     ov7_0224D3E8(param1);
@@ -508,45 +495,45 @@ static void ov7_0224D388(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param
     param1->unk_2A5 = 0;
 }
 
-static void ov7_0224D3E8(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D3E8(ShopMenu *param0)
 {
     u32 i;
 
     for (i = 0; i < SHOP_WINDOW_MAX; i++) {
         if ((param0->martType != MART_TYPE_NORMAL) && (param0->martType != 3) && (i == SHOP_WINDOW_ITEM_DESCRIPTION)) {
-            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_NormalItemDescWindowTemplate);
+            Window_AddFromTemplate(param0->bgConfig, &param0->windows[i], &sShop_NormalItemDescWindowTemplate);
         } else if ((param0->martType == MART_TYPE_FRONTIER) && (i == SHOP_WINDOW_CURRENT_MONEY)) {
-            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_FrontierCurrMoneyWindowTemplate);
+            Window_AddFromTemplate(param0->bgConfig, &param0->windows[i], &sShop_FrontierCurrMoneyWindowTemplate);
         } else {
-            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_DefaultWindowTemplates[i]);
+            Window_AddFromTemplate(param0->bgConfig, &param0->windows[i], &sShop_DefaultWindowTemplates[i]);
         }
     }
 }
 
-static void ov7_0224D44C(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D44C(ShopMenu *param0)
 {
     u32 v0;
 
-    Window_EraseStandardFrame(&param0->unk_08[2], 1);
+    Window_EraseStandardFrame(&param0->windows[2], 1);
 
     for (v0 = 0; v0 < 6; v0++) {
-        Window_ClearAndCopyToVRAM(&param0->unk_08[v0]);
-        Window_Remove(&param0->unk_08[v0]);
+        Window_ClearAndCopyToVRAM(&param0->windows[v0]);
+        Window_Remove(&param0->windows[v0]);
     }
 }
 
-static void ov7_0224D474(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D474(ShopMenu *param0)
 {
     NARC *v0;
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, HEAP_ID_FIELDMAP);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->unk_00, 1, 0, 0, 0, HEAP_ID_FIELDMAP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->bgConfig, 1, 0, 0, 0, HEAP_ID_FIELDMAP);
 
     if ((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_00, 1, 0, 0, 0, HEAP_ID_FIELDMAP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->bgConfig, 1, 0, 0, 0, HEAP_ID_FIELDMAP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_00, 1, 0, 0, 0, HEAP_ID_FIELDMAP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->bgConfig, 1, 0, 0, 0, HEAP_ID_FIELDMAP);
     }
 
     if (param0->martType == MART_TYPE_FRONTIER) {
@@ -555,18 +542,18 @@ static void ov7_0224D474(UnkStruct_ov7_0224D008 *param0)
         Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 32, HEAP_ID_FIELDMAP);
     }
 
-    LoadStandardWindowGraphics(param0->unk_00, 3, (1 + (18 + 12)), 11, 0, HEAP_ID_FIELDMAP);
-    LoadMessageBoxGraphics(param0->unk_00, 3, 1, 10, Options_Frame(param0->unk_278), HEAP_ID_FIELDMAP);
+    LoadStandardWindowGraphics(param0->bgConfig, 3, (1 + (18 + 12)), 11, 0, HEAP_ID_FIELDMAP);
+    LoadMessageBoxGraphics(param0->bgConfig, 3, 1, 10, Options_Frame(param0->options), HEAP_ID_FIELDMAP);
     NARC_dtor(v0);
 }
 
-static void ov7_0224D548(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D548(ShopMenu *param0)
 {
     param0->unk_2A0 = GXLayers_EngineAGetLayers();
-    param0->unk_29C[0] = Bg_GetPriority(param0->unk_00, 0);
-    param0->unk_29C[1] = Bg_GetPriority(param0->unk_00, 1);
-    param0->unk_29C[2] = Bg_GetPriority(param0->unk_00, 2);
-    param0->unk_29C[3] = Bg_GetPriority(param0->unk_00, 3);
+    param0->unk_29C[0] = Bg_GetPriority(param0->bgConfig, 0);
+    param0->unk_29C[1] = Bg_GetPriority(param0->bgConfig, 1);
+    param0->unk_29C[2] = Bg_GetPriority(param0->bgConfig, 2);
+    param0->unk_29C[3] = Bg_GetPriority(param0->bgConfig, 3);
 
     Bg_SetPriority(0, 3);
     Bg_SetPriority(1, 2);
@@ -579,7 +566,7 @@ static void ov7_0224D548(UnkStruct_ov7_0224D008 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
-static void ov7_0224D5D8(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D5D8(ShopMenu *param0)
 {
     Bg_SetPriority(0, param0->unk_29C[0]);
     Bg_SetPriority(1, param0->unk_29C[1]);
@@ -588,7 +575,7 @@ static void ov7_0224D5D8(UnkStruct_ov7_0224D008 *param0)
     GXLayers_EngineASetLayers(param0->unk_2A0);
 }
 
-static u8 ov7_0224D620(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224D620(ShopMenu *param0)
 {
     if (param0->unk_2A5 != param0->unk_2A6) {
         VecFx32 v0 = { 8 * FX32_ONE, 0, 0 };
@@ -632,7 +619,7 @@ static const ListMenuTemplate sShop_ItemListMenuTemplate = {
     .parent = NULL,
 };
 
-static u32 ov7_0224D698(UnkStruct_ov7_0224D008 *param0, u16 param1)
+static u32 ov7_0224D698(ShopMenu *param0, u16 param1)
 {
     if (param0->martType == MART_TYPE_DECOR) {
         return 1 + param1 - 1;
@@ -643,7 +630,7 @@ static u32 ov7_0224D698(UnkStruct_ov7_0224D008 *param0, u16 param1)
     return (u32)param1;
 }
 
-static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D6BC(ShopMenu *param0)
 {
     MessageLoader *v0;
     Strbuf *v1;
@@ -662,28 +649,28 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
         v0 = MessageLoader_Init(0, 26, 12, HEAP_ID_FIELDMAP);
     }
 
-    param0->unk_7C = StringList_New(param0->unk_294 + 1, HEAP_ID_FIELDMAP);
+    param0->itemsList = StringList_New(param0->itemsCount + 1, HEAP_ID_FIELDMAP);
 
-    for (v3 = 0; v3 < param0->unk_294; v3++) {
+    for (v3 = 0; v3 < param0->itemsCount; v3++) {
         v4 = ov7_0224D698(param0, param0->unk_290[v3]);
 
         if ((v4 <= 420) && (v4 >= 328)) {
             v1 = MessageLoader_GetNewStrbuf(v5, Item_MoveForTMHM(v4));
-            StringList_AddFromStrbuf(param0->unk_7C, v1, param0->unk_290[v3]);
+            StringList_AddFromStrbuf(param0->itemsList, v1, param0->unk_290[v3]);
             Strbuf_Free(v1);
 
             v6 = 1;
         } else {
             v1 = MessageLoader_GetNewStrbuf(v0, v4);
-            StringList_AddFromStrbuf(param0->unk_7C, v1, param0->unk_290[v3]);
+            StringList_AddFromStrbuf(param0->itemsList, v1, param0->unk_290[v3]);
             Strbuf_Free(v1);
         }
     }
 
     if (v6) {
-        StringList_AddFromMessageBank(param0->unk_7C, param0->unk_88, 26, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->itemsList, param0->unk_88, 26, 0xfffffffe);
     } else {
-        StringList_AddFromMessageBank(param0->unk_7C, param0->unk_88, 8, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->itemsList, param0->unk_88, 8, 0xfffffffe);
     }
 
     MessageLoader_Free(v0);
@@ -700,23 +687,23 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
         v2.textXOffset = 0;
     }
 
-    v2.choices = param0->unk_7C;
-    v2.window = &param0->unk_08[0];
-    v2.count = param0->unk_294 + 1;
+    v2.choices = param0->itemsList;
+    v2.window = &param0->windows[0];
+    v2.count = param0->itemsCount + 1;
     v2.parent = (void *)param0;
 
-    param0->unk_78 = ListMenu_New(&v2, 0, 0, HEAP_ID_FIELDMAP);
+    param0->menu = ListMenu_New(&v2, 0, 0, HEAP_ID_FIELDMAP);
 }
 
 static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov7_0224D008 *v0 = (UnkStruct_ov7_0224D008 *)ListMenu_GetAttribute(param0, 19);
+    ShopMenu *v0 = (ShopMenu *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 != 1) {
         Sound_PlayEffect(1592);
     }
 
-    Window_FillTilemap(&v0->unk_08[1], 0);
+    Window_FillTilemap(&v0->windows[1], 0);
 
     if (param1 != 0xfffffffe) {
         Strbuf *v1;
@@ -742,7 +729,7 @@ static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
             MessageLoader_Free(v3);
         }
 
-        Text_AddPrinterWithParamsAndColor(&v0->unk_08[1], FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->windows[1], FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         Strbuf_Free(v1);
 
         ov7_0224EB7C(v0, (u16)param1);
@@ -770,12 +757,12 @@ static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
             Sprite_SetDrawFlag(v0->unk_25C[1], 0);
         }
     }
-    Window_ScheduleCopyToVRAM(&v0->unk_08[1]);
+    Window_ScheduleCopyToVRAM(&v0->windows[1]);
 }
 
 static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov7_0224D008 *v0 = (UnkStruct_ov7_0224D008 *)ListMenu_GetAttribute(param0, 19);
+    ShopMenu *v0 = (ShopMenu *)ListMenu_GetAttribute(param0, 19);
 
     if (param1 != 0xfffffffe) {
         Strbuf *v1;
@@ -787,7 +774,7 @@ static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2)
         if ((v5 <= 420) && (v5 >= 328)) {
             v5 = v5 - 328 + 1;
 
-            sub_0200C648(v0->unk_2B4, 2, v5, 2, 2, &v0->unk_08[0], 0, param2 + 4);
+            sub_0200C648(v0->unk_2B4, 2, v5, 2, 2, &v0->windows[0], 0, param2 + 4);
         }
 
         v3 = ov7_0224E890(v0, (u16)param1);
@@ -804,7 +791,7 @@ static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2)
 
         v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
 
-        Text_AddPrinterWithParamsAndColor(&v0->unk_08[0], FONT_SYSTEM, v1, (19 * 8) - v4, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->windows[0], FONT_SYSTEM, v1, (19 * 8) - v4, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         Strbuf_Free(v2);
         Strbuf_Free(v1);
     }
@@ -812,13 +799,13 @@ static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2)
     if (param1 == 0xfffffffe) {
         Strbuf *v6 = MessageLoader_GetNewStrbuf(v0->unk_88, 8);
 
-        Window_FillRectWithColor(&v0->unk_08[0], 15, 0, param2, 19 * 8, 16);
-        Text_AddPrinterWithParamsAndColor(&v0->unk_08[0], FONT_SYSTEM, v6, 0, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Window_FillRectWithColor(&v0->windows[0], 15, 0, param2, 19 * 8, 16);
+        Text_AddPrinterWithParamsAndColor(&v0->windows[0], FONT_SYSTEM, v6, 0, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         Strbuf_Free(v6);
     }
 }
 
-static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
+static void ov7_0224DAF8(ShopMenu *param0, u8 param1)
 {
     Strbuf *v0;
     Strbuf *v1;
@@ -827,11 +814,11 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
     if (param0->martType == MART_TYPE_FRONTIER) {
         if (param1 == 0) {
-            Window_FillTilemap(&param0->unk_08[2], 15);
+            Window_FillTilemap(&param0->windows[2], 15);
             Window_DrawStandardFrame(
-                &param0->unk_08[2], 1, (1 + (18 + 12)), 11);
+                &param0->windows[2], 1, (1 + (18 + 12)), 11);
         } else {
-            Window_FillRectWithColor(&param0->unk_08[2], 15, 0, 0, (9 * 8), 16);
+            Window_FillRectWithColor(&param0->windows[2], 15, 0, 0, (9 * 8), 16);
         }
 
         v0 = Strbuf_Init(16, HEAP_ID_FIELDMAP);
@@ -843,18 +830,18 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
         v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-        Text_AddPrinterWithParams(&param0->unk_08[2], FONT_SYSTEM, v0, (9 * 8) - v3 - 8, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(&param0->windows[2], FONT_SYSTEM, v0, (9 * 8) - v3 - 8, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     } else {
         if (param1 == 0) {
-            Window_FillTilemap(&param0->unk_08[2], 15);
-            Window_DrawStandardFrame(&param0->unk_08[2], 1, (1 + (18 + 12)), 11);
+            Window_FillTilemap(&param0->windows[2], 15);
+            Window_DrawStandardFrame(&param0->windows[2], 1, (1 + (18 + 12)), 11);
 
             v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 18);
 
-            Text_AddPrinterWithParams(&param0->unk_08[2], FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+            Text_AddPrinterWithParams(&param0->windows[2], FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
             Strbuf_Free(v1);
         } else {
-            Window_FillRectWithColor(&param0->unk_08[2], 15, 0, 16, (9 * 8), 16);
+            Window_FillRectWithColor(&param0->windows[2], 15, 0, 16, (9 * 8), 16);
         }
 
         v0 = Strbuf_Init(16, HEAP_ID_FIELDMAP);
@@ -866,22 +853,22 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
         v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-        Text_AddPrinterWithParams(&param0->unk_08[2], FONT_SYSTEM, v0, (9 * 8) - v3, 16, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(&param0->windows[2], FONT_SYSTEM, v0, (9 * 8) - v3, 16, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
     Strbuf_Free(v1);
     Strbuf_Free(v0);
-    Window_ScheduleCopyToVRAM(&param0->unk_08[2]);
+    Window_ScheduleCopyToVRAM(&param0->windows[2]);
 }
 
-static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224DC84(ShopMenu *param0)
 {
     u32 v0;
     u16 v1, v2;
 
-    ListMenu_GetListAndCursorPos(param0->unk_78, NULL, &v1);
-    v0 = ListMenu_ProcessInput(param0->unk_78);
-    ListMenu_GetListAndCursorPos(param0->unk_78, NULL, &v2);
+    ListMenu_GetListAndCursorPos(param0->menu, NULL, &v1);
+    v0 = ListMenu_ProcessInput(param0->menu);
+    ListMenu_GetListAndCursorPos(param0->menu, NULL, &v2);
 
     if (v1 != v2) {
         Sprite_SetPositionXY(param0->unk_25C[2], (176 - 4), 24 + v2 * 16);
@@ -891,11 +878,11 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        ListMenu_Free(param0->unk_78, NULL, NULL);
-        StringList_Free(param0->unk_7C);
+        ListMenu_Free(param0->menu, NULL, NULL);
+        StringList_Free(param0->itemsList);
         ov7_0224D44C(param0);
         ov7_0224D5D8(param0);
-        Bg_ClearTilemap(param0->unk_00, 1);
+        Bg_ClearTilemap(param0->bgConfig, 1);
         Sound_PlayEffect(1500);
         return 12;
 
@@ -911,9 +898,9 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
 
         ov7_0224EC10(param0, 1);
 
-        Window_FillTilemap(&param0->unk_08[5], 15);
-        Window_ClearAndCopyToVRAM(&param0->unk_08[1]);
-        Window_DrawMessageBoxWithScrollCursor(&param0->unk_08[5], 0, 1, 10);
+        Window_FillTilemap(&param0->windows[5], 15);
+        Window_ClearAndCopyToVRAM(&param0->windows[1]);
+        Window_DrawMessageBoxWithScrollCursor(&param0->windows[5], 0, 1, 10);
 
         param0->unk_2AA = (u16)v0;
         param0->unk_2AC = 1;
@@ -928,10 +915,10 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
                 v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 3);
             }
 
-            StringTemplate_Format(param0->unk_8C, param0->unk_298, v3);
+            StringTemplate_Format(param0->unk_8C, param0->strbuf, v3);
             Strbuf_Free(v3);
 
-            param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+            param0->unk_2A4 = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
             return 10;
         }
 
@@ -955,10 +942,10 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
             v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 4);
         }
 
-        StringTemplate_Format(param0->unk_8C, param0->unk_298, v3);
+        StringTemplate_Format(param0->unk_8C, param0->strbuf, v3);
         Strbuf_Free(v3);
 
-        param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+        param0->unk_2A4 = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
 
         ov7_0224EB38(param0, 1);
         Sound_PlayEffect(1500);
@@ -970,7 +957,7 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
     return 4;
 }
 
-static u8 ov7_0224DE94(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224DE94(ShopMenu *param0)
 {
     if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 5;
@@ -985,37 +972,37 @@ static u8 ov7_0224DE94(UnkStruct_ov7_0224D008 *param0)
     return 6;
 }
 
-static void ov7_0224DED4(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224DED4(ShopMenu *param0)
 {
     Strbuf *v0;
     Strbuf *v1;
     u16 v2;
 
     if (param0->martType == MART_TYPE_NORMAL) {
-        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, HEAP_ID_FIELDMAP);
+        v2 = Bag_GetItemQuantity(param0->inventory, param0->unk_2AA, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_FRONTIER) {
-        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, HEAP_ID_FIELDMAP);
+        v2 = Bag_GetItemQuantity(param0->inventory, param0->unk_2AA, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_SEAL) {
-        v2 = sub_0202CBC8(param0->unk_274, param0->unk_2AA);
+        v2 = sub_0202CBC8(param0->inventory, param0->unk_2AA);
     } else {
         v2 = 0;
     }
 
-    Window_FillTilemap(&param0->unk_08[4], 15);
-    Window_DrawStandardFrame(&param0->unk_08[4], 1, (1 + (18 + 12)), 11);
+    Window_FillTilemap(&param0->windows[4], 15);
+    Window_DrawStandardFrame(&param0->windows[4], 1, (1 + (18 + 12)), 11);
 
     v0 = Strbuf_Init((12 * 2), HEAP_ID_FIELDMAP);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 20);
 
     StringTemplate_SetNumber(param0->unk_8C, 0, v2, 3, 1, 1);
     StringTemplate_Format(param0->unk_8C, v0, v1);
-    Text_AddPrinterWithParams(&param0->unk_08[4], FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(&param0->windows[4], FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
-    Window_ScheduleCopyToVRAM(&param0->unk_08[4]);
+    Window_ScheduleCopyToVRAM(&param0->windows[4]);
 }
 
-static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224DFB0(ShopMenu *param0)
 {
     if (sub_0208C15C(&param0->unk_2AC, param0->unk_2AE) != 0) {
         Sound_PlayEffect(1592);
@@ -1026,18 +1013,18 @@ static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         Sprite_SetDrawFlag(param0->unk_25C[0], 0);
         Sprite_SetDrawFlag(param0->unk_25C[1], 0);
-        Window_EraseStandardFrame(&param0->unk_08[4], 1);
-        Window_EraseStandardFrame(&param0->unk_08[3], 1);
-        Window_FillTilemap(&param0->unk_08[5], 15);
+        Window_EraseStandardFrame(&param0->windows[4], 1);
+        Window_EraseStandardFrame(&param0->windows[3], 1);
+        Window_FillTilemap(&param0->windows[5], 15);
         Sound_PlayEffect(1500);
 
         return ov7_0224E098(param0);
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Window_EraseStandardFrame(&param0->unk_08[4], 1);
-        Window_EraseStandardFrame(&param0->unk_08[3], 1);
-        Window_EraseMessageBox(&param0->unk_08[5], 0);
+        Window_EraseStandardFrame(&param0->windows[4], 1);
+        Window_EraseStandardFrame(&param0->windows[3], 1);
+        Window_EraseMessageBox(&param0->windows[5], 0);
 
         ov7_0224EB38(param0, 0);
 
@@ -1046,7 +1033,7 @@ static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
 
         ov7_0224EC10(param0, 0);
 
-        Window_ScheduleCopyToVRAM(&param0->unk_08[1]);
+        Window_ScheduleCopyToVRAM(&param0->windows[1]);
         Sound_PlayEffect(1500);
 
         return 4;
@@ -1055,23 +1042,23 @@ static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
     return 6;
 }
 
-static u8 ov7_0224E098(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E098(ShopMenu *param0)
 {
     Strbuf *v0;
     BOOL v1;
 
     if (param0->martType == MART_TYPE_NORMAL) {
-        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
+        v1 = Bag_CanFitItem(param0->inventory, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_FRONTIER) {
-        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
+        v1 = Bag_CanFitItem(param0->inventory, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_DECOR) {
-        if (sub_020289A0(param0->unk_274) == 200) {
+        if (sub_020289A0(param0->inventory) == 200) {
             v1 = 0;
         } else {
             v1 = 1;
         }
     } else {
-        v1 = sub_0202CB70(param0->unk_274, param0->unk_2AA, param0->unk_2AC);
+        v1 = sub_0202CB70(param0->inventory, param0->unk_2AA, param0->unk_2AC);
     }
 
     if (v1 == 0) {
@@ -1087,10 +1074,10 @@ static u8 ov7_0224E098(UnkStruct_ov7_0224D008 *param0)
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 14);
         }
 
-        StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
+        StringTemplate_Format(param0->unk_8C, param0->strbuf, v0);
         Strbuf_Free(v0);
 
-        param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+        param0->unk_2A4 = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
         return 10;
     }
 
@@ -1117,23 +1104,23 @@ static u8 ov7_0224E098(UnkStruct_ov7_0224D008 *param0)
         }
     }
 
-    StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
+    StringTemplate_Format(param0->unk_8C, param0->strbuf, v0);
     Strbuf_Free(v0);
 
-    param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+    param0->unk_2A4 = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
     return 7;
 }
 
-static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
+static void ov7_0224E28C(ShopMenu *param0, u8 param1)
 {
     Strbuf *v0;
     Strbuf *v1;
     u32 v2;
 
-    Window_FillTilemap(&param0->unk_08[3], 15);
+    Window_FillTilemap(&param0->windows[3], 15);
 
     if (param1 == 0) {
-        Window_DrawStandardFrame(&param0->unk_08[3], 1, (1 + (18 + 12)), 11);
+        Window_DrawStandardFrame(&param0->windows[3], 1, (1 + (18 + 12)), 11);
     }
 
     v0 = Strbuf_Init(24, HEAP_ID_FIELDMAP);
@@ -1141,7 +1128,7 @@ static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
     StringTemplate_SetNumber(param0->unk_8C, 0, param0->unk_2AC, 2, 2, 1);
     StringTemplate_Format(param0->unk_8C, v0, v1);
-    Text_AddPrinterWithParams(&param0->unk_08[3], FONT_SYSTEM, v0, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(&param0->windows[3], FONT_SYSTEM, v0, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v1);
 
     if (param0->martType == MART_TYPE_FRONTIER) {
@@ -1155,25 +1142,25 @@ static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
 
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-    Text_AddPrinterWithParams(&param0->unk_08[3], FONT_SYSTEM, v0, (12 * 8) - v2, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(&param0->windows[3], FONT_SYSTEM, v0, (12 * 8) - v2, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
-    Window_ScheduleCopyToVRAM(&param0->unk_08[3]);
+    Window_ScheduleCopyToVRAM(&param0->windows[3]);
 }
 
-static u8 ov7_0224E3A0(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E3A0(ShopMenu *param0)
 {
     if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 7;
     }
 
-    param0->unk_80 = Menu_MakeYesNoChoice(param0->unk_00, &sShop_YesNoChoiceWindowTemplate, (1 + (18 + 12)), 11, HEAP_ID_FIELDMAP);
+    param0->yesNoChoice = Menu_MakeYesNoChoice(param0->bgConfig, &sShop_YesNoChoiceWindowTemplate, (1 + (18 + 12)), 11, HEAP_ID_FIELDMAP);
     return 8;
 }
 
-static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E3D8(ShopMenu *param0)
 {
-    switch (Menu_ProcessInputAndHandleExit(param0->unk_80, HEAP_ID_FIELDMAP)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->yesNoChoice, HEAP_ID_FIELDMAP)) {
     case 0: {
         Strbuf *v0;
 
@@ -1211,41 +1198,41 @@ static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
             }
         }
 
-        StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
+        StringTemplate_Format(param0->unk_8C, param0->strbuf, v0);
         Strbuf_Free(v0);
     }
-        Window_FillTilemap(&param0->unk_08[5], 15);
-        param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+        Window_FillTilemap(&param0->windows[5], 15);
+        param0->unk_2A4 = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
         Sound_PlayEffect(1604);
         return 9;
     case 0xfffffffe:
-        Window_EraseMessageBox(&param0->unk_08[5], 0);
+        Window_EraseMessageBox(&param0->windows[5], 0);
         ov7_0224EB38(param0, 0);
         Sprite_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
         Sprite_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
         ov7_0224EC10(param0, 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_08[1]);
+        Window_ScheduleCopyToVRAM(&param0->windows[1]);
         return 4;
     }
 
     return 8;
 }
 
-static u8 ov7_0224E5B0(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E5B0(ShopMenu *param0)
 {
     if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 9;
     }
 
     if (param0->martType == MART_TYPE_NORMAL) {
-        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
-        sub_0206D504(param0->unk_284, param0->unk_2AA, param0->unk_2AC);
+        Bag_TryAddItem(param0->inventory, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
+        sub_0206D504(param0->saveData, param0->unk_2AA, param0->unk_2AC);
     } else if (param0->martType == MART_TYPE_FRONTIER) {
-        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
+        Bag_TryAddItem(param0->inventory, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_DECOR) {
-        sub_0202895C(param0->unk_274, param0->unk_2AA);
+        sub_0202895C(param0->inventory, param0->unk_2AA);
     } else {
-        sub_0202CAE0(param0->unk_274, param0->unk_2AA, param0->unk_2AC);
+        sub_0202CAE0(param0->inventory, param0->unk_2AA, param0->unk_2AC);
     }
 
     ov7_0224E920(param0, param0->unk_2B0 * param0->unk_2AC);
@@ -1269,29 +1256,29 @@ static u8 ov7_0224E5B0(UnkStruct_ov7_0224D008 *param0)
     return 10;
 }
 
-static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E6B8(ShopMenu *param0)
 {
     if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 10;
     }
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        if (param0->unk_28C == 1) {
-            SystemVars_IncrementDepartmentStoreBuyCount(param0->unk_288);
+        if (param0->incDeptStoreBuyCount == TRUE) {
+            SystemVars_IncrementDepartmentStoreBuyCount(param0->varsFlags);
         }
 
         if (((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) && (param0->unk_2AA == 4) && (param0->unk_2AC >= 10)) {
-            if (Bag_TryAddItem(param0->unk_274, 12, 1, HEAP_ID_FIELDMAP) == 1) {
+            if (Bag_TryAddItem(param0->inventory, 12, 1, HEAP_ID_FIELDMAP) == 1) {
                 Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 10);
 
-                StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
+                StringTemplate_Format(param0->unk_8C, param0->strbuf, v0);
                 Strbuf_Free(v0);
-                Window_FillTilemap(&param0->unk_08[5], 15);
+                Window_FillTilemap(&param0->windows[5], 15);
 
-                param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+                param0->unk_2A4 = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
 
                 {
-                    GameRecords *v1 = SaveData_GetGameRecordsPtr(param0->unk_284);
+                    GameRecords *v1 = SaveData_GetGameRecordsPtr(param0->saveData);
                     GameRecords_IncrementRecordValue(v1, RECORD_UNK_050);
                 }
 
@@ -1299,12 +1286,12 @@ static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
             }
         }
 
-        Window_EraseMessageBox(&param0->unk_08[5], 0);
+        Window_EraseMessageBox(&param0->windows[5], 0);
         ov7_0224EB38(param0, 0);
         Sprite_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
         Sprite_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
         ov7_0224EC10(param0, 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_08[1]);
+        Window_ScheduleCopyToVRAM(&param0->windows[1]);
 
         return 4;
     }
@@ -1312,19 +1299,19 @@ static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
     return 10;
 }
 
-static u8 ov7_0224E7C8(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E7C8(ShopMenu *param0)
 {
     if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 11;
     }
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Window_EraseMessageBox(&param0->unk_08[5], 0);
+        Window_EraseMessageBox(&param0->windows[5], 0);
         ov7_0224EB38(param0, 0);
         Sprite_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
         Sprite_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
         ov7_0224EC10(param0, 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_08[1]);
+        Window_ScheduleCopyToVRAM(&param0->windows[1]);
 
         return 4;
     }
@@ -1332,7 +1319,7 @@ static u8 ov7_0224E7C8(UnkStruct_ov7_0224D008 *param0)
     return 11;
 }
 
-static void ov7_0224E834(UnkStruct_ov7_0224D008 *param0, u16 param1, u16 param2)
+static void ov7_0224E834(ShopMenu *param0, u16 param1, u16 param2)
 {
     if (param0->martType == MART_TYPE_NORMAL) {
         StringTemplate_SetItemName(param0->unk_8C, param2, param1);
@@ -1345,7 +1332,7 @@ static void ov7_0224E834(UnkStruct_ov7_0224D008 *param0, u16 param1, u16 param2)
     }
 }
 
-static u32 ov7_0224E890(UnkStruct_ov7_0224D008 *param0, u16 param1)
+static u32 ov7_0224E890(ShopMenu *param0, u16 param1)
 {
     if (param0->martType == MART_TYPE_NORMAL) {
         return Item_LoadParam(param1, 0, HEAP_ID_FIELDMAP);
@@ -1358,7 +1345,7 @@ static u32 ov7_0224E890(UnkStruct_ov7_0224D008 *param0, u16 param1)
     return sub_020981D0((u8)param1);
 }
 
-static u16 ov7_0224E8CC(UnkStruct_ov7_0224D008 *param0, u16 param1)
+static u16 ov7_0224E8CC(ShopMenu *param0, u16 param1)
 {
     int v0;
     static const u16 v1[][2] = {
@@ -1414,25 +1401,25 @@ static u16 ov7_0224E8CC(UnkStruct_ov7_0224D008 *param0, u16 param1)
     return 0;
 }
 
-u32 ov7_0224E8F4(UnkStruct_ov7_0224D008 *param0)
+u32 ov7_0224E8F4(ShopMenu *param0)
 {
     if (param0->martType == MART_TYPE_FRONTIER) {
-        return sub_0202D230(sub_0202D750(param0->unk_284), 0, 0);
+        return sub_0202D230(sub_0202D750(param0->saveData), 0, 0);
     } else {
-        return TrainerInfo_Money(param0->unk_270);
+        return TrainerInfo_Money(param0->trainerInfo);
     }
 }
 
-void ov7_0224E920(UnkStruct_ov7_0224D008 *param0, u32 param1)
+void ov7_0224E920(ShopMenu *param0, u32 param1)
 {
     if (param0->martType == MART_TYPE_FRONTIER) {
-        sub_0202D230(sub_0202D750(param0->unk_284), (u16)param1, 6);
+        sub_0202D230(sub_0202D750(param0->saveData), (u16)param1, 6);
     } else {
-        TrainerInfo_TakeMoney(param0->unk_270, param1);
+        TrainerInfo_TakeMoney(param0->trainerInfo, param1);
     }
 }
 
-static u8 ov7_0224E950(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static u8 ov7_0224E950(FieldSystem *fieldSystem, ShopMenu *param1)
 {
     if (param1->unk_2A5 != param1->unk_2A6) {
         VecFx32 v0 = { -8 * FX32_ONE, 0, 0 };
@@ -1454,34 +1441,34 @@ static u8 ov7_0224E950(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
         return 19;
     }
 
-    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_08[1], 3);
-    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->windows[1], 3);
+    FieldMessage_DrawWindow(&param1->windows[1], param1->options);
 
     {
         Strbuf *v1 = MessageLoader_GetNewStrbuf(param1->unk_88, 2);
 
-        StringTemplate_Format(param1->unk_8C, param1->unk_298, v1);
+        StringTemplate_Format(param1->unk_8C, param1->strbuf, v1);
         Strbuf_Free(v1);
     }
 
-    param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
+    param1->unk_2A4 = FieldMessage_Print(&param1->windows[1], param1->strbuf, param1->options, 1);
 
     return 13;
 }
 
-static u8 ov7_0224EA2C(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224EA2C(ShopMenu *param0)
 {
     if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
         return 13;
     }
 
-    Window_Remove(&param0->unk_08[1]);
+    Window_Remove(&param0->windows[1]);
     ov7_0224D040(param0);
 
     return 1;
 }
 
-static void ov7_0224EA54(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static void ov7_0224EA54(FieldSystem *fieldSystem, ShopMenu *param1)
 {
     Strbuf *v0;
 
@@ -1491,12 +1478,12 @@ static void ov7_0224EA54(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param
         v0 = MessageLoader_GetNewStrbuf(param1->unk_88, 1);
     }
 
-    StringTemplate_Format(param1->unk_8C, param1->unk_298, v0);
+    StringTemplate_Format(param1->unk_8C, param1->strbuf, v0);
     Strbuf_Free(v0);
-    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_08[1], 3);
-    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->windows[1], 3);
+    FieldMessage_DrawWindow(&param1->windows[1], param1->options);
 
-    param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
+    param1->unk_2A4 = FieldMessage_Print(&param1->windows[1], param1->strbuf, param1->options, 1);
 }
 
 static const SpriteResourceDataPaths sShop_SpriteResourcePaths = {
@@ -1569,7 +1556,7 @@ static const SpriteTemplateFromResourceHeader sShop_SpriteTemplates[] = {
     },
 };
 
-static void ov7_0224EAD0(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224EAD0(ShopMenu *param0)
 {
     u32 v0;
 
@@ -1582,7 +1569,7 @@ static void ov7_0224EAD0(UnkStruct_ov7_0224D008 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov7_0224EB14(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224EB14(ShopMenu *param0)
 {
     u32 v0;
 
@@ -1593,7 +1580,7 @@ static void ov7_0224EB14(UnkStruct_ov7_0224D008 *param0)
     ov5_021D30A8(&param0->unk_94);
 }
 
-static void ov7_0224EB38(UnkStruct_ov7_0224D008 *param0, u8 param1)
+static void ov7_0224EB38(ShopMenu *param0, u8 param1)
 {
     if (param1 == 0) {
         Sprite_SetPositionXY(param0->unk_25C[0], 177, 8);
@@ -1604,7 +1591,7 @@ static void ov7_0224EB38(UnkStruct_ov7_0224D008 *param0, u8 param1)
     }
 }
 
-static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
+static void ov7_0224EB7C(ShopMenu *param0, u16 param1)
 {
     SpriteResource *v0;
 
@@ -1624,21 +1611,21 @@ static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
     SpriteTransfer_ReplacePlttData(v0);
 }
 
-static void ov7_0224EC10(UnkStruct_ov7_0224D008 *param0, u8 param1)
+static void ov7_0224EC10(ShopMenu *param0, u8 param1)
 {
     Sprite_SetExplicitPalette2(param0->unk_25C[2], param1);
 }
 
-static void ov7_0224EC20(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static void ov7_0224EC20(FieldSystem *fieldSystem, ShopMenu *param1)
 {
     ov5_021D1744(0);
-    param1->unk_297 = 15;
+    param1->state = 15;
 }
 
 static void ov7_0224EC38(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
-    UnkStruct_ov7_0224D008 *v1;
+    ShopMenu *v1;
 
     if (IsScreenTransitionDone() == 0) {
         return;
@@ -1661,25 +1648,25 @@ static void ov7_0224EC38(FieldTask *param0)
     sub_0203D1E4(fieldSystem, v1->unk_04);
     FieldTask_InitJump(param0, sub_0209AC14, v1);
 
-    v1->unk_297 = 16;
+    v1->state = 16;
 }
 
-static u8 ov7_0224EC9C(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static u8 ov7_0224EC9C(FieldSystem *fieldSystem, ShopMenu *param1)
 {
     if (IsScreenTransitionDone() == 0) {
         return 18;
     }
 
-    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_08[1], 3);
-    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->windows[1], 3);
+    FieldMessage_DrawWindow(&param1->windows[1], param1->options);
 
     {
         Strbuf *v0 = MessageLoader_GetNewStrbuf(param1->unk_88, 2);
 
-        StringTemplate_Format(param1->unk_8C, param1->unk_298, v0);
+        StringTemplate_Format(param1->unk_8C, param1->strbuf, v0);
         Strbuf_Free(v0);
     }
 
-    param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
+    param1->unk_2A4 = FieldMessage_Print(&param1->windows[1], param1->strbuf, param1->options, 1);
     return 13;
 }
