@@ -64,7 +64,7 @@ BOOL ScrCmd_147(ScriptContext *param0)
 
     v0[v3] = 0xffff;
 
-    ov7_0224CDA4(param0->task, param0->fieldSystem, v0, 0, 0);
+    ov7_0224CDA4(param0->task, param0->fieldSystem, v0, MART_TYPE_NORMAL, 0);
     return 1;
 }
 
@@ -79,7 +79,7 @@ BOOL ScrCmd_148(ScriptContext *param0)
         v1 = 0;
     }
 
-    ov7_0224CDA4(param0->task, param0->fieldSystem, (u16 *)PokeMartSpecialties[v0], 0, v1);
+    ov7_0224CDA4(param0->task, param0->fieldSystem, (u16 *)PokeMartSpecialties[v0], MART_TYPE_NORMAL, v1);
     return 1;
 }
 
@@ -94,7 +94,7 @@ BOOL ScrCmd_149(ScriptContext *param0)
         v1 = 0;
     }
 
-    ov7_0224CDA4(param0->task, param0->fieldSystem, (u16 *)VeilstoneDeptStoreDecorationStocks[v0], 1, v1);
+    ov7_0224CDA4(param0->task, param0->fieldSystem, (u16 *)VeilstoneDeptStoreDecorationStocks[v0], MART_TYPE_DECOR, v1);
     return 1;
 }
 
@@ -102,7 +102,7 @@ BOOL ScrCmd_14A(ScriptContext *param0)
 {
     u16 v0 = ScriptContext_GetVar(param0);
 
-    ov7_0224CDA4(param0->task, param0->fieldSystem, (u16 *)SunyshoreMarketDailyStocks[v0], 2, 0);
+    ov7_0224CDA4(param0->task, param0->fieldSystem, (u16 *)SunyshoreMarketDailyStocks[v0], MART_TYPE_SEAL, 0);
     return 1;
 }
 

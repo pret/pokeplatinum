@@ -239,7 +239,7 @@ static UnkStruct_ov7_0224D008 *ov7_0224CD88(void)
     return v0;
 }
 
-void ov7_0224CDA4(FieldTask *param0, FieldSystem *fieldSystem, u16 *param2, u8 param3, BOOL param4)
+void ov7_0224CDA4(FieldTask *param0, FieldSystem *fieldSystem, u16 *param2, u8 martType, BOOL param4)
 {
     UnkStruct_ov7_0224D008 *v0 = ov7_0224CD88();
 
@@ -253,15 +253,15 @@ void ov7_0224CDA4(FieldTask *param0, FieldSystem *fieldSystem, u16 *param2, u8 p
     v0->unk_28C = param4;
     v0->unk_2A6 = ov7_0224CE90(fieldSystem);
     v0->unk_27C = fieldSystem->journalEntry;
-    v0->unk_2A9 = param3;
+    v0->martType = martType;
     v0->unk_284 = fieldSystem->saveData;
     v0->unk_2B4 = sub_0200C440(1, 2, 0, 11);
 
-    if (v0->unk_2A9 == 0) {
+    if (v0->martType == MART_TYPE_NORMAL) {
         v0->unk_274 = SaveData_GetBag(fieldSystem->saveData);
-    } else if (v0->unk_2A9 == 3) {
+    } else if (v0->martType == MART_TYPE_FRONTIER) {
         v0->unk_274 = SaveData_GetBag(fieldSystem->saveData);
-    } else if (v0->unk_2A9 == 1) {
+    } else if (v0->martType == MART_TYPE_DECOR) {
         v0->unk_274 = sub_020298B0(fieldSystem->saveData);
     } else {
         v0->unk_274 = sub_0202CA1C(fieldSystem->saveData);
@@ -381,7 +381,7 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
     MenuTemplate v0;
     u8 v1;
 
-    if (param0->unk_2A9 == 0) {
+    if (param0->martType == MART_TYPE_NORMAL) {
         v1 = 3;
         param0->unk_84 = StringList_New(v1, 11);
 
@@ -389,7 +389,7 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
         StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 16, 14);
         StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 17, 0xfffffffe);
         Window_Add(param0->unk_00, &param0->unk_08[0], 3, 1, 1, 13, 6, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
-    } else if (param0->unk_2A9 == 3) {
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
         v1 = 2;
         param0->unk_84 = StringList_New(v1, 11);
 
@@ -461,7 +461,7 @@ static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
         StringTemplate_Free(param1->unk_8C);
         Strbuf_Free(param1->unk_298);
 
-        if (param1->unk_2A9 == 0 && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != 101
+        if (param1->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != 101
             && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_NORTH_HOUSE
             && fieldSystem->location->mapId != MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE) {
             if (param1->unk_2A7 != 0 && param1->unk_2A8 != 0) {
@@ -512,9 +512,9 @@ static void ov7_0224D3E8(UnkStruct_ov7_0224D008 *param0)
     u32 i;
 
     for (i = 0; i < SHOP_WINDOW_MAX; i++) {
-        if ((param0->unk_2A9 != 0) && (param0->unk_2A9 != 3) && (i == SHOP_WINDOW_ITEM_DESCRIPTION)) {
+        if ((param0->martType != MART_TYPE_NORMAL) && (param0->martType != 3) && (i == SHOP_WINDOW_ITEM_DESCRIPTION)) {
             Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_AltItemDescWindowTemplate);
-        } else if ((param0->unk_2A9 == 3) && (i == SHOP_WINDOW_CURRENT_MONEY)) {
+        } else if ((param0->martType == MART_TYPE_FRONTIER) && (i == SHOP_WINDOW_CURRENT_MONEY)) {
             Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_AltCurrentMoneyWindowTemplate);
         } else {
             Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_DefaultWindowTemplates[i]);
@@ -542,13 +542,13 @@ static void ov7_0224D474(UnkStruct_ov7_0224D008 *param0)
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->unk_00, 1, 0, 0, 0, 11);
 
-    if ((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) {
+    if ((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_00, 1, 0, 0, 0, 11);
     } else {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_00, 1, 0, 0, 0, 11);
     }
 
-    if (param0->unk_2A9 == 3) {
+    if (param0->martType == MART_TYPE_FRONTIER) {
         Graphics_LoadPaletteFromOpenNARC(v0, 11, 0, 0, 32, 11);
     } else {
         Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 32, 11);
@@ -633,9 +633,9 @@ static const ListMenuTemplate sShop_ItemListMenuTemplate = {
 
 static u32 ov7_0224D698(UnkStruct_ov7_0224D008 *param0, u16 param1)
 {
-    if (param0->unk_2A9 == 1) {
+    if (param0->martType == MART_TYPE_DECOR) {
         return 1 + param1 - 1;
-    } else if (param0->unk_2A9 == 2) {
+    } else if (param0->martType == MART_TYPE_SEAL) {
         return (u32)sub_02098164((u8)param1);
     }
 
@@ -652,10 +652,10 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
     MessageLoader *v5;
     BOOL v6 = 0;
 
-    if ((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) {
+    if ((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) {
         v0 = MessageLoader_Init(0, 26, 392, 11);
         v5 = MessageLoader_Init(0, 26, 647, 11);
-    } else if (param0->unk_2A9 == 1) {
+    } else if (param0->martType == MART_TYPE_DECOR) {
         v0 = MessageLoader_Init(0, 26, 626, 11);
     } else {
         v0 = MessageLoader_Init(0, 26, 12, 11);
@@ -687,7 +687,7 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
 
     MessageLoader_Free(v0);
 
-    if ((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) {
+    if ((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) {
         MessageLoader_Free(v5);
     }
 
@@ -720,13 +720,13 @@ static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
     if (param1 != 0xfffffffe) {
         Strbuf *v1;
 
-        if (v0->unk_2A9 == 0) {
+        if (v0->martType == MART_TYPE_NORMAL) {
             v1 = Strbuf_Init(130, 11);
             Item_LoadDescription(v1, (u16)param1, 11);
-        } else if (v0->unk_2A9 == 3) {
+        } else if (v0->martType == MART_TYPE_FRONTIER) {
             v1 = Strbuf_Init(130, 11);
             Item_LoadDescription(v1, (u16)param1, 11);
-        } else if (v0->unk_2A9 == 1) {
+        } else if (v0->martType == MART_TYPE_DECOR) {
             MessageLoader *v2;
 
             v2 = MessageLoader_Init(0, 26, 626, 11);
@@ -792,7 +792,7 @@ static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2)
         v3 = ov7_0224E890(v0, (u16)param1);
         v1 = Strbuf_Init(12, 11);
 
-        if (v0->unk_2A9 == 3) {
+        if (v0->martType == MART_TYPE_FRONTIER) {
             v2 = MessageLoader_GetNewStrbuf(v0->unk_88, 32);
         } else {
             v2 = MessageLoader_GetNewStrbuf(v0->unk_88, 9);
@@ -824,7 +824,7 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
     u32 v2;
     u32 v3;
 
-    if (param0->unk_2A9 == 3) {
+    if (param0->martType == MART_TYPE_FRONTIER) {
         if (param1 == 0) {
             Window_FillTilemap(&param0->unk_08[2], 15);
             Window_DrawStandardFrame(
@@ -921,7 +921,7 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
         v4 = ov7_0224E8F4(param0);
 
         if (v4 < param0->unk_2B0) {
-            if (param0->unk_2A9 == 3) {
+            if (param0->martType == MART_TYPE_FRONTIER) {
                 v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 37);
             } else {
                 v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 3);
@@ -934,7 +934,7 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
             return 10;
         }
 
-        if (param0->unk_2A9 == 1) {
+        if (param0->martType == MART_TYPE_DECOR) {
             Sound_PlayEffect(1500);
 
             return ov7_0224E098(param0);
@@ -948,7 +948,7 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
 
         ov7_0224E834(param0, param0->unk_2AA, 0);
 
-        if (param0->unk_2A9 == 3) {
+        if (param0->martType == MART_TYPE_FRONTIER) {
             v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 33);
         } else {
             v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 4);
@@ -990,11 +990,11 @@ static void ov7_0224DED4(UnkStruct_ov7_0224D008 *param0)
     Strbuf *v1;
     u16 v2;
 
-    if (param0->unk_2A9 == 0) {
+    if (param0->martType == MART_TYPE_NORMAL) {
         v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, 11);
-    } else if (param0->unk_2A9 == 3) {
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
         v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, 11);
-    } else if (param0->unk_2A9 == 2) {
+    } else if (param0->martType == MART_TYPE_SEAL) {
         v2 = sub_0202CBC8(param0->unk_274, param0->unk_2AA);
     } else {
         v2 = 0;
@@ -1059,11 +1059,11 @@ static u8 ov7_0224E098(UnkStruct_ov7_0224D008 *param0)
     Strbuf *v0;
     BOOL v1;
 
-    if (param0->unk_2A9 == 0) {
+    if (param0->martType == MART_TYPE_NORMAL) {
         v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
-    } else if (param0->unk_2A9 == 3) {
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
         v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
-    } else if (param0->unk_2A9 == 1) {
+    } else if (param0->martType == MART_TYPE_DECOR) {
         if (sub_020289A0(param0->unk_274) == 200) {
             v1 = 0;
         } else {
@@ -1076,11 +1076,11 @@ static u8 ov7_0224E098(UnkStruct_ov7_0224D008 *param0)
     if (v1 == 0) {
         param0->unk_2AC = 0;
 
-        if (param0->unk_2A9 == 0) {
+        if (param0->martType == MART_TYPE_NORMAL) {
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 7);
-        } else if (param0->unk_2A9 == 3) {
+        } else if (param0->martType == MART_TYPE_FRONTIER) {
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 7);
-        } else if (param0->unk_2A9 == 1) {
+        } else if (param0->martType == MART_TYPE_DECOR) {
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 12);
         } else {
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 14);
@@ -1103,13 +1103,13 @@ static u8 ov7_0224E098(UnkStruct_ov7_0224D008 *param0)
 
         StringTemplate_SetMoveName(param0->unk_8C, 3, v2);
 
-        if (param0->unk_2A9 == 3) {
+        if (param0->martType == MART_TYPE_FRONTIER) {
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 36);
         } else {
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 27);
         }
     } else {
-        if (param0->unk_2A9 == 3) {
+        if (param0->martType == MART_TYPE_FRONTIER) {
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 35);
         } else {
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 5);
@@ -1143,7 +1143,7 @@ static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
     Text_AddPrinterWithParams(&param0->unk_08[3], FONT_SYSTEM, v0, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v1);
 
-    if (param0->unk_2A9 == 3) {
+    if (param0->martType == MART_TYPE_FRONTIER) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 34);
     } else {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 22);
@@ -1176,7 +1176,7 @@ static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
     case 0: {
         Strbuf *v0;
 
-        if (param0->unk_2A9 == 0) {
+        if (param0->martType == MART_TYPE_NORMAL) {
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 6);
 
             if (param0->unk_2AC == 1) {
@@ -1186,7 +1186,7 @@ static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
             }
 
             StringTemplate_SetBagPocketName(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, 11));
-        } else if (param0->unk_2A9 == 3) {
+        } else if (param0->martType == MART_TYPE_FRONTIER) {
             if (param0->unk_2AC == 1) {
                 StringTemplate_SetItemName(param0->unk_8C, 0, param0->unk_2AA);
             } else {
@@ -1196,7 +1196,7 @@ static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 6);
             StringTemplate_SetBagPocketName(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, 11));
         } else {
-            if (param0->unk_2A9 == 1) {
+            if (param0->martType == MART_TYPE_DECOR) {
                 ov7_0224E834(param0, param0->unk_2AA, 0);
                 v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 11);
             } else {
@@ -1236,12 +1236,12 @@ static u8 ov7_0224E5B0(UnkStruct_ov7_0224D008 *param0)
         return 9;
     }
 
-    if (param0->unk_2A9 == 0) {
+    if (param0->martType == MART_TYPE_NORMAL) {
         Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
         sub_0206D504(param0->unk_284, param0->unk_2AA, param0->unk_2AC);
-    } else if (param0->unk_2A9 == 3) {
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
         Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
-    } else if (param0->unk_2A9 == 1) {
+    } else if (param0->martType == MART_TYPE_DECOR) {
         sub_0202895C(param0->unk_274, param0->unk_2AA);
     } else {
         sub_0202CAE0(param0->unk_274, param0->unk_2AA, param0->unk_2AC);
@@ -1249,7 +1249,7 @@ static u8 ov7_0224E5B0(UnkStruct_ov7_0224D008 *param0)
 
     ov7_0224E920(param0, param0->unk_2B0 * param0->unk_2AC);
 
-    if (param0->unk_2A9 == 3) {
+    if (param0->martType == MART_TYPE_FRONTIER) {
         GameRecords_AddToRecordValue(param0->records, RECORD_UNK_069, param0->unk_2B0 * param0->unk_2AC);
     } else {
         GameRecords_AddToRecordValue(param0->records, RECORD_UNK_035, param0->unk_2B0 * param0->unk_2AC);
@@ -1279,7 +1279,7 @@ static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
             SystemVars_IncrementDepartmentStoreBuyCount(param0->unk_288);
         }
 
-        if (((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) && (param0->unk_2AA == 4) && (param0->unk_2AC >= 10)) {
+        if (((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) && (param0->unk_2AA == 4) && (param0->unk_2AC >= 10)) {
             if (Bag_TryAddItem(param0->unk_274, 12, 1, 11) == 1) {
                 Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 10);
 
@@ -1333,11 +1333,11 @@ static u8 ov7_0224E7C8(UnkStruct_ov7_0224D008 *param0)
 
 static void ov7_0224E834(UnkStruct_ov7_0224D008 *param0, u16 param1, u16 param2)
 {
-    if (param0->unk_2A9 == 0) {
+    if (param0->martType == MART_TYPE_NORMAL) {
         StringTemplate_SetItemName(param0->unk_8C, param2, param1);
-    } else if (param0->unk_2A9 == 3) {
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
         StringTemplate_SetItemName(param0->unk_8C, param2, param1);
-    } else if (param0->unk_2A9 == 1) {
+    } else if (param0->martType == MART_TYPE_DECOR) {
         StringTemplate_SetUndergroundGoodsName(param0->unk_8C, param2, param1);
     } else {
         StringTemplate_SetBallSealName(param0->unk_8C, param2, sub_02098164((u8)param1));
@@ -1346,11 +1346,11 @@ static void ov7_0224E834(UnkStruct_ov7_0224D008 *param0, u16 param1, u16 param2)
 
 static u32 ov7_0224E890(UnkStruct_ov7_0224D008 *param0, u16 param1)
 {
-    if (param0->unk_2A9 == 0) {
+    if (param0->martType == MART_TYPE_NORMAL) {
         return Item_LoadParam(param1, 0, 11);
-    } else if (param0->unk_2A9 == 3) {
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
         return ov7_0224E8CC(param0, param1);
-    } else if (param0->unk_2A9 == 1) {
+    } else if (param0->martType == MART_TYPE_DECOR) {
         return sub_0205745C((const int)param1);
     }
 
@@ -1415,7 +1415,7 @@ static u16 ov7_0224E8CC(UnkStruct_ov7_0224D008 *param0, u16 param1)
 
 u32 ov7_0224E8F4(UnkStruct_ov7_0224D008 *param0)
 {
-    if (param0->unk_2A9 == 3) {
+    if (param0->martType == MART_TYPE_FRONTIER) {
         return sub_0202D230(sub_0202D750(param0->unk_284), 0, 0);
     } else {
         return TrainerInfo_Money(param0->unk_270);
@@ -1424,7 +1424,7 @@ u32 ov7_0224E8F4(UnkStruct_ov7_0224D008 *param0)
 
 void ov7_0224E920(UnkStruct_ov7_0224D008 *param0, u32 param1)
 {
-    if (param0->unk_2A9 == 3) {
+    if (param0->martType == MART_TYPE_FRONTIER) {
         sub_0202D230(sub_0202D750(param0->unk_284), (u16)param1, 6);
     } else {
         TrainerInfo_TakeMoney(param0->unk_270, param1);
@@ -1449,7 +1449,7 @@ static u8 ov7_0224E950(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
 
     ov7_0224EB14(param1);
 
-    if (param1->unk_2A9 == 3) {
+    if (param1->martType == MART_TYPE_FRONTIER) {
         return 19;
     }
 
@@ -1484,7 +1484,7 @@ static void ov7_0224EA54(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param
 {
     Strbuf *v0;
 
-    if (param1->unk_2A9 == 3) {
+    if (param1->martType == MART_TYPE_FRONTIER) {
         v0 = MessageLoader_GetNewStrbuf(param1->unk_88, 31);
     } else {
         v0 = MessageLoader_GetNewStrbuf(param1->unk_88, 1);
@@ -1607,7 +1607,7 @@ static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
 {
     SpriteResource *v0;
 
-    if ((param0->unk_2A9 != 0) && (param0->unk_2A9 != 3)) {
+    if ((param0->martType != MART_TYPE_NORMAL) && (param0->martType != MART_TYPE_FRONTIER)) {
         Sprite_SetDrawFlag(param0->unk_25C[3], 0);
         return;
     }
