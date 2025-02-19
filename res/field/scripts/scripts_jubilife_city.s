@@ -878,7 +878,7 @@ _0AFE:
     ApplyMovement 7, _0E4C
     ApplyMovement 0xFF, _0F30
     WaitMovement
-    Call JubilifeCity_SetAssistantPartnerTeam
+    Call JubilifeCity_SetPlayerCounterpartPartnerTeam
     StartTagBattle 0x8004, TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1, TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _0DB7
@@ -904,7 +904,7 @@ _0AFE:
     GoToIfEq 0x800C, GENDER_FEMALE, _0C41
     End
 
-JubilifeCity_SetAssistantPartnerTeam:
+JubilifeCity_SetPlayerCounterpartPartnerTeam:
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, GENDER_MALE, JubilifeCity_SetDawnPartnerTeam
     GoToIfEq 0x800C, GENDER_FEMALE, JubilifeCity_SetLucasPartnerTeam

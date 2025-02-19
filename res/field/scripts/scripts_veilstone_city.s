@@ -507,7 +507,7 @@ _0656:
     CallIfEq 0x800C, 3, _099F
     CallIfEq 0x800C, 1, _09B3
     CallIfEq 0x800C, 0, _09C7
-    Call VeilstoneCity_SetAssistantPartnerTeam
+    Call VeilstoneCity_SetPlayerCounterpartPartnerTeam
     StartTagBattle 0x8004, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2
     CheckWonBattle 0x800C
     GoToIfEq 0x800C, FALSE, _0A73
@@ -640,7 +640,7 @@ _08DD:
     WaitFadeScreen
     End
 
-VeilstoneCity_SetAssistantPartnerTeam:
+VeilstoneCity_SetPlayerCounterpartPartnerTeam:
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, GENDER_MALE, VeilstoneCity_SetDawnPartnerTeam
     GoToIfEq 0x800C, GENDER_FEMALE, VeilstoneCity_SetLucasPartnerTeam
