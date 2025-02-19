@@ -57,7 +57,7 @@ typedef struct {
     u8 unk_2A6;
     u8 unk_2A7;
     u8 unk_2A8;
-    u8 unk_2A9;
+    u8 martType;
     u16 unk_2AA;
     s16 unk_2AC;
     u16 unk_2AE;
