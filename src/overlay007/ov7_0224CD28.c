@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/window.h"
 #include "generated/game_records.h"
 
 #include "field/field_system.h"
@@ -57,6 +58,19 @@
 #include "unk_0209AC14.h"
 #include "vars_flags.h"
 
+enum ShopStaticWindow {
+    SHOP_WINDOW_ITEM_LIST = 0,
+    SHOP_WINDOW_ITEM_DESCRIPTION,
+    SHOP_WINDOW_CURRENT_MONEY,
+    SHOP_WINDOW_QUANTITY_TOTAL_PRICE,
+    SHOP_WINDOW_ITEMS_IN_BAG,
+    SHOP_WINDOW_MESSAGE,
+
+    SHOP_WINDOW_MAX
+};
+
+#define MAX_ITEM_SHOWN 7
+
 static u8 ov7_0224CE90(FieldSystem *fieldSystem);
 static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
 static void ov7_0224D008(UnkStruct_ov7_0224D008 *param0);
@@ -100,55 +114,103 @@ static u16 ov7_0224E8CC(UnkStruct_ov7_0224D008 *param0, u16 param1);
 static u32 ov7_0224E8F4(UnkStruct_ov7_0224D008 *param0);
 static void ov7_0224E920(UnkStruct_ov7_0224D008 *param0, u32 param1);
 
-static const WindowTemplate Unk_ov7_0224F328[] = {
-    { 0x2, 0xC, 0x2, 0x13, 0xE, 0xD, 0x1 },
-    { 0x2, 0x5, 0x12, 0x1B, 0x6, 0xD, 0x10B },
-    { 0x3, 0x1, 0x1, 0x9, 0x4, 0xD, 0x28 },
-    { 0x3, 0x13, 0xD, 0xC, 0x4, 0xD, 0x4C },
-    { 0x3, 0x1, 0xF, 0xE, 0x2, 0xD, 0x7C },
-    { 0x3, 0x2, 0x13, 0x1B, 0x4, 0xC, 0x98 }
+static const WindowTemplate sShop_DefaultWindowTemplates[] = {
+    [SHOP_WINDOW_ITEM_LIST] = {
+        .bgLayer = BG_LAYER_MAIN_2,
+        .tilemapLeft = 12,
+        .tilemapTop = 2,
+        .width = 19,
+        .height = 14,
+        .palette = FIELD_MESSAGE_PALETTE_INDEX,
+        .baseTile = 0x1,
+    },
+    [SHOP_WINDOW_ITEM_DESCRIPTION] = {
+        .bgLayer = BG_LAYER_MAIN_2,
+        .tilemapLeft = 5,
+        .tilemapTop = 18,
+        .width = 27,
+        .height = 6,
+        .palette = FIELD_MESSAGE_PALETTE_INDEX,
+        .baseTile = 0x10B,
+    },
+    [SHOP_WINDOW_CURRENT_MONEY] = {
+        .bgLayer = BG_LAYER_MAIN_3,
+        .tilemapLeft = 1,
+        .tilemapTop = 1,
+        .width = 9,
+        .height = 4,
+        .palette = FIELD_MESSAGE_PALETTE_INDEX,
+        .baseTile = 0x28,
+    },
+    [SHOP_WINDOW_QUANTITY_TOTAL_PRICE] = {
+        .bgLayer = BG_LAYER_MAIN_3,
+        .tilemapLeft = 19,
+        .tilemapTop = 13,
+        .width = 12,
+        .height = 4,
+        .palette = FIELD_MESSAGE_PALETTE_INDEX,
+        .baseTile = 0x4C,
+    },
+    [SHOP_WINDOW_ITEMS_IN_BAG] = {
+        .bgLayer = BG_LAYER_MAIN_3,
+        .tilemapLeft = 1,
+        .tilemapTop = 15,
+        .width = 14,
+        .height = 2,
+        .palette = FIELD_MESSAGE_PALETTE_INDEX,
+        .baseTile = 0x7C,
+    },
+    [SHOP_WINDOW_MESSAGE] = {
+        .bgLayer = BG_LAYER_MAIN_3,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 27,
+        .height = 4,
+        .palette = 12,
+        .baseTile = 0x98,
+    },
 };
 
-static const WindowTemplate Unk_ov7_0224F2BC = {
-    0x2,
-    0x1,
-    0x12,
-    0x1B,
-    0x6,
-    0xD,
-    0x10B
+static const WindowTemplate sShop_AltItemDescWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_2,
+    .tilemapLeft = 1,
+    .tilemapTop = 18,
+    .width = 27,
+    .height = 6,
+    .palette = FIELD_MESSAGE_PALETTE_INDEX,
+    .baseTile = 0x10B
 };
 
-static const WindowTemplate Unk_ov7_0224F2CC = {
-    0x3,
-    0x17,
-    0xD,
-    0x7,
-    0x4,
-    0xD,
-    0x104
+static const WindowTemplate sShop_YesNoChoiceWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_3,
+    .tilemapLeft = 23,
+    .tilemapTop = 13,
+    .width = 7,
+    .height = 4,
+    .palette = FIELD_MESSAGE_PALETTE_INDEX,
+    .baseTile = 0x104
 };
 
 static const u8 Unk_ov7_0224F49C[] = {
-    0x0,
-    0x1,
-    0x2,
-    0x3,
-    0x4,
-    0x5,
-    0x6,
-    0x7,
-    0xff
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    -1
 };
 
-static const WindowTemplate Unk_ov7_0224F2C4 = {
-    0x3,
-    0x1,
-    0x1,
-    0x9,
-    0x2,
-    0xD,
-    0x28
+static const WindowTemplate sShop_AltCurrentMoneyWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_3,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 9,
+    .height = 2,
+    .palette = FIELD_MESSAGE_PALETTE_INDEX,
+    .baseTile = 0x28
 };
 
 static void ov7_0224CD28(UnkStruct_ov7_0224D008 *param0, u16 *param1)
@@ -360,16 +422,16 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
 
 static u8 ov7_0224D1EC(UnkStruct_ov7_0224D008 *param0)
 {
-    u32 v0 = Menu_ProcessInput(param0->unk_80);
+    u32 input = Menu_ProcessInput(param0->unk_80);
 
-    switch (v0) {
-    case 0xffffffff:
+    switch (input) {
+    case MENU_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
+    case MENU_CANCELED:
         ov7_0224D21C(param0);
         return 19;
     default:
-        return (u8)v0;
+        return (u8)input;
     }
 
     return 1;
@@ -447,15 +509,15 @@ static void ov7_0224D388(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param
 
 static void ov7_0224D3E8(UnkStruct_ov7_0224D008 *param0)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if ((param0->unk_2A9 != 0) && (param0->unk_2A9 != 3) && (v0 == 1)) {
-            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[v0], &Unk_ov7_0224F2BC);
-        } else if ((param0->unk_2A9 == 3) && (v0 == 2)) {
-            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[v0], &Unk_ov7_0224F2C4);
+    for (i = 0; i < SHOP_WINDOW_MAX; i++) {
+        if ((param0->unk_2A9 != 0) && (param0->unk_2A9 != 3) && (i == SHOP_WINDOW_ITEM_DESCRIPTION)) {
+            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_AltItemDescWindowTemplate);
+        } else if ((param0->unk_2A9 == 3) && (i == SHOP_WINDOW_CURRENT_MONEY)) {
+            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_AltCurrentMoneyWindowTemplate);
         } else {
-            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[v0], &Unk_ov7_0224F328[v0]);
+            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_DefaultWindowTemplates[i]);
         }
     }
 }
@@ -547,26 +609,26 @@ static u8 ov7_0224D620(UnkStruct_ov7_0224D008 *param0)
     return 4;
 }
 
-static const ListMenuTemplate Unk_ov7_0224F308 = {
-    NULL,
-    ov7_0224D85C,
-    ov7_0224D9B8,
-    NULL,
-    0x0,
-    0x7,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x1,
-    0x0,
-    0x2,
-    0x0,
-    0x10,
-    0x0,
-    0x0,
-    0x1,
-    NULL
+static const ListMenuTemplate sShop_ItemListMenuTemplate = {
+    .choices = NULL,
+    .cursorCallback = ov7_0224D85C,
+    .printCallback = ov7_0224D9B8,
+    .window = NULL,
+    .count = 0,
+    .maxDisplay = MAX_ITEM_SHOWN,
+    .headerXOffset = 0,
+    .textXOffset = 0,
+    .cursorXOffset = 0,
+    .yOffset = 0,
+    .textColorFg = 1,
+    .textColorBg = 0,
+    .textColorShadow = 2,
+    .letterSpacing = 0,
+    .lineSpacing = 16, // truncates to 0 but needed to match, unused as its set to 0 anyways
+    .pagerMode = PAGER_MODE_NONE,
+    .fontID = FONT_SYSTEM,
+    .cursorType = 1,
+    .parent = NULL,
 };
 
 static u32 ov7_0224D698(UnkStruct_ov7_0224D008 *param0, u16 param1)
@@ -629,7 +691,7 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
         MessageLoader_Free(v5);
     }
 
-    v2 = Unk_ov7_0224F308;
+    v2 = sShop_ItemListMenuTemplate;
 
     if ((v4 <= 420) && (v4 >= 328)) {
         v2.textXOffset = 35;
@@ -1104,7 +1166,7 @@ static u8 ov7_0224E3A0(UnkStruct_ov7_0224D008 *param0)
         return 7;
     }
 
-    param0->unk_80 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov7_0224F2CC, (1 + (18 + 12)), 11, 11);
+    param0->unk_80 = Menu_MakeYesNoChoice(param0->unk_00, &sShop_YesNoChoiceWindowTemplate, (1 + (18 + 12)), 11, 11);
     return 8;
 }
 
@@ -1436,7 +1498,7 @@ static void ov7_0224EA54(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param
     param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
 }
 
-static const SpriteResourceDataPaths Unk_ov7_0224F2EC = {
+static const SpriteResourceDataPaths sShop_SpriteResourcePaths = {
     "data/shop_chr.resdat",
     "data/shop_pal.resdat",
     "data/shop_cell.resdat",
@@ -1446,21 +1508,74 @@ static const SpriteResourceDataPaths Unk_ov7_0224F2EC = {
     "data/shop_h.cldat"
 };
 
-static const SpriteTemplateFromResourceHeader Unk_ov7_0224F358[] = {
-    { 0, 0xB1, 0x8, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0, 0xB1, 0x84, 0x0, 0x1, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 1, 0xAC, 0x18, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 2, 0x16, 0xAC, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 }
+// sSummaryScreenSpriteTemplates
+static const SpriteTemplateFromResourceHeader sShop_SpriteTemplates[] = {
+    {
+        .resourceHeaderID = 0,
+        .x = 0xB1,
+        .y = 0x8,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .dummy18 = 0,
+        .dummy1C = 0,
+        .dummy20 = 0,
+        .dummy24 = 0,
+    },
+    {
+        .resourceHeaderID = 0,
+        .x = 0xB1,
+        .y = 0x84,
+        .z = 0,
+        .animIdx = 1,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .dummy18 = 0,
+        .dummy1C = 0,
+        .dummy20 = 0,
+        .dummy24 = 0,
+    },
+    {
+        .resourceHeaderID = 1,
+        .x = 0xAC,
+        .y = 0x18,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .dummy18 = 0,
+        .dummy1C = 0,
+        .dummy20 = 0,
+        .dummy24 = 0,
+    },
+    {
+        .resourceHeaderID = 2,
+        .x = 0x16,
+        .y = 0xAC,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .dummy18 = 0,
+        .dummy1C = 0,
+        .dummy20 = 0,
+        .dummy24 = 0,
+    },
 };
 
 static void ov7_0224EAD0(UnkStruct_ov7_0224D008 *param0)
 {
     u32 v0;
 
-    ov5_021D2F14(&param0->unk_94, &Unk_ov7_0224F2EC, 4, 11);
+    ov5_021D2F14(&param0->unk_94, &sShop_SpriteResourcePaths, 4, 11);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_25C[v0] = ov5_021D3104(&param0->unk_94, &Unk_ov7_0224F358[v0]);
+        param0->unk_25C[v0] = ov5_021D3104(&param0->unk_94, &sShop_SpriteTemplates[v0]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
