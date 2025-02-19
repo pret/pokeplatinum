@@ -172,7 +172,7 @@ static const WindowTemplate sShop_DefaultWindowTemplates[] = {
     },
 };
 
-static const WindowTemplate sShop_AltItemDescWindowTemplate = {
+static const WindowTemplate sShop_NormalItemDescWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_2,
     .tilemapLeft = 1,
     .tilemapTop = 18,
@@ -204,7 +204,7 @@ static const u8 Unk_ov7_0224F49C[] = {
     -1
 };
 
-static const WindowTemplate sShop_AltCurrentMoneyWindowTemplate = {
+static const WindowTemplate sShop_FrontierCurrMoneyWindowTemplate = {
     .bgLayer = BG_LAYER_MAIN_3,
     .tilemapLeft = 1,
     .tilemapTop = 1,
@@ -514,9 +514,9 @@ static void ov7_0224D3E8(UnkStruct_ov7_0224D008 *param0)
 
     for (i = 0; i < SHOP_WINDOW_MAX; i++) {
         if ((param0->martType != MART_TYPE_NORMAL) && (param0->martType != 3) && (i == SHOP_WINDOW_ITEM_DESCRIPTION)) {
-            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_AltItemDescWindowTemplate);
+            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_NormalItemDescWindowTemplate);
         } else if ((param0->martType == MART_TYPE_FRONTIER) && (i == SHOP_WINDOW_CURRENT_MONEY)) {
-            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_AltCurrentMoneyWindowTemplate);
+            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_FrontierCurrMoneyWindowTemplate);
         } else {
             Window_AddFromTemplate(param0->unk_00, &param0->unk_08[i], &sShop_DefaultWindowTemplates[i]);
         }
