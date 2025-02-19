@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/window.h"
+#include "constants/heap.h"
 #include "generated/game_records.h"
 
 #include "field/field_system.h"
@@ -224,7 +225,7 @@ static void ov7_0224CD28(UnkStruct_ov7_0224D008 *param0, u16 *param1)
     }
 
     param0->unk_294 = v0;
-    param0->unk_290 = Heap_AllocFromHeap(11, param0->unk_294 * 2);
+    param0->unk_290 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, param0->unk_294 * 2);
 
     for (v0 = 0; v0 < param0->unk_294; v0++) {
         param0->unk_290[v0] = param1[v0];
@@ -233,7 +234,7 @@ static void ov7_0224CD28(UnkStruct_ov7_0224D008 *param0, u16 *param1)
 
 static UnkStruct_ov7_0224D008 *ov7_0224CD88(void)
 {
-    UnkStruct_ov7_0224D008 *v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov7_0224D008));
+    UnkStruct_ov7_0224D008 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov7_0224D008));
 
     memset(v0, 0, sizeof(UnkStruct_ov7_0224D008));
     return v0;
@@ -245,7 +246,7 @@ void ov7_0224CDA4(FieldTask *param0, FieldSystem *fieldSystem, u16 *param2, u8 m
 
     v0->unk_00 = fieldSystem->bgConfig;
 
-    v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
+    v0->unk_298 = Strbuf_Init((24 * 2 * 2), HEAP_ID_FIELDMAP);
     v0->unk_270 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v0->unk_278 = SaveData_Options(fieldSystem->saveData);
     v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
@@ -372,8 +373,8 @@ static void ov7_0224D008(UnkStruct_ov7_0224D008 *param0)
 
 static void ov7_0224D018(UnkStruct_ov7_0224D008 *param0)
 {
-    param0->unk_88 = MessageLoader_Init(0, 26, 543, 11);
-    param0->unk_8C = StringTemplate_Default(11);
+    param0->unk_88 = MessageLoader_Init(0, 26, 543, HEAP_ID_FIELDMAP);
+    param0->unk_8C = StringTemplate_Default(HEAP_ID_FIELDMAP);
 }
 
 static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
@@ -383,7 +384,7 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
 
     if (param0->martType == MART_TYPE_NORMAL) {
         v1 = 3;
-        param0->unk_84 = StringList_New(v1, 11);
+        param0->unk_84 = StringList_New(v1, HEAP_ID_FIELDMAP);
 
         StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 15, 2);
         StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 16, 14);
@@ -391,14 +392,14 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
         Window_Add(param0->unk_00, &param0->unk_08[0], 3, 1, 1, 13, 6, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
     } else if (param0->martType == MART_TYPE_FRONTIER) {
         v1 = 2;
-        param0->unk_84 = StringList_New(v1, 11);
+        param0->unk_84 = StringList_New(v1, HEAP_ID_FIELDMAP);
 
         StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 29, 2);
         StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 30, 0xfffffffe);
         Window_Add(param0->unk_00, &param0->unk_08[0], 3, 23, 13, 7, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
     } else {
         v1 = 2;
-        param0->unk_84 = StringList_New(v1, 11);
+        param0->unk_84 = StringList_New(v1, HEAP_ID_FIELDMAP);
 
         StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 15, 2);
         StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 17, 0xfffffffe);
@@ -414,10 +415,10 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    LoadStandardWindowGraphics(param0->unk_00, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
+    LoadStandardWindowGraphics(param0->unk_00, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELDMAP);
     Window_DrawStandardFrame(&param0->unk_08[0], 1, 1024 - (18 + 12) - 9, 11);
 
-    param0->unk_80 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 11, PAD_BUTTON_B);
+    param0->unk_80 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, HEAP_ID_FIELDMAP, PAD_BUTTON_B);
 }
 
 static u8 ov7_0224D1EC(UnkStruct_ov7_0224D008 *param0)
@@ -499,7 +500,7 @@ static void ov7_0224D388(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param
     ov7_0224D21C(param1);
     ov7_0224D3E8(param1);
 
-    param1->camera = Camera_Alloc(11);
+    param1->camera = Camera_Alloc(HEAP_ID_FIELDMAP);
 
     Camera_Copy(fieldSystem->camera, param1->camera);
     Camera_SetAsActive(param1->camera);
@@ -538,24 +539,24 @@ static void ov7_0224D474(UnkStruct_ov7_0224D008 *param0)
 {
     NARC *v0;
 
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, 11);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, HEAP_ID_FIELDMAP);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->unk_00, 1, 0, 0, 0, 11);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->unk_00, 1, 0, 0, 0, HEAP_ID_FIELDMAP);
 
     if ((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_00, 1, 0, 0, 0, 11);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_00, 1, 0, 0, 0, HEAP_ID_FIELDMAP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_00, 1, 0, 0, 0, 11);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_00, 1, 0, 0, 0, HEAP_ID_FIELDMAP);
     }
 
     if (param0->martType == MART_TYPE_FRONTIER) {
-        Graphics_LoadPaletteFromOpenNARC(v0, 11, 0, 0, 32, 11);
+        Graphics_LoadPaletteFromOpenNARC(v0, 11, 0, 0, 32, HEAP_ID_FIELDMAP);
     } else {
-        Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 32, 11);
+        Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 32, HEAP_ID_FIELDMAP);
     }
 
-    LoadStandardWindowGraphics(param0->unk_00, 3, (1 + (18 + 12)), 11, 0, 11);
-    LoadMessageBoxGraphics(param0->unk_00, 3, 1, 10, Options_Frame(param0->unk_278), 11);
+    LoadStandardWindowGraphics(param0->unk_00, 3, (1 + (18 + 12)), 11, 0, HEAP_ID_FIELDMAP);
+    LoadMessageBoxGraphics(param0->unk_00, 3, 1, 10, Options_Frame(param0->unk_278), HEAP_ID_FIELDMAP);
     NARC_dtor(v0);
 }
 
@@ -653,15 +654,15 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
     BOOL v6 = 0;
 
     if ((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) {
-        v0 = MessageLoader_Init(0, 26, 392, 11);
-        v5 = MessageLoader_Init(0, 26, 647, 11);
+        v0 = MessageLoader_Init(0, 26, 392, HEAP_ID_FIELDMAP);
+        v5 = MessageLoader_Init(0, 26, 647, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_DECOR) {
-        v0 = MessageLoader_Init(0, 26, 626, 11);
+        v0 = MessageLoader_Init(0, 26, 626, HEAP_ID_FIELDMAP);
     } else {
-        v0 = MessageLoader_Init(0, 26, 12, 11);
+        v0 = MessageLoader_Init(0, 26, 12, HEAP_ID_FIELDMAP);
     }
 
-    param0->unk_7C = StringList_New(param0->unk_294 + 1, 11);
+    param0->unk_7C = StringList_New(param0->unk_294 + 1, HEAP_ID_FIELDMAP);
 
     for (v3 = 0; v3 < param0->unk_294; v3++) {
         v4 = ov7_0224D698(param0, param0->unk_290[v3]);
@@ -704,7 +705,7 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
     v2.count = param0->unk_294 + 1;
     v2.parent = (void *)param0;
 
-    param0->unk_78 = ListMenu_New(&v2, 0, 0, 11);
+    param0->unk_78 = ListMenu_New(&v2, 0, 0, HEAP_ID_FIELDMAP);
 }
 
 static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
@@ -721,21 +722,21 @@ static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
         Strbuf *v1;
 
         if (v0->martType == MART_TYPE_NORMAL) {
-            v1 = Strbuf_Init(130, 11);
-            Item_LoadDescription(v1, (u16)param1, 11);
+            v1 = Strbuf_Init(130, HEAP_ID_FIELDMAP);
+            Item_LoadDescription(v1, (u16)param1, HEAP_ID_FIELDMAP);
         } else if (v0->martType == MART_TYPE_FRONTIER) {
-            v1 = Strbuf_Init(130, 11);
-            Item_LoadDescription(v1, (u16)param1, 11);
+            v1 = Strbuf_Init(130, HEAP_ID_FIELDMAP);
+            Item_LoadDescription(v1, (u16)param1, HEAP_ID_FIELDMAP);
         } else if (v0->martType == MART_TYPE_DECOR) {
             MessageLoader *v2;
 
-            v2 = MessageLoader_Init(0, 26, 626, 11);
+            v2 = MessageLoader_Init(0, 26, 626, HEAP_ID_FIELDMAP);
             v1 = MessageLoader_GetNewStrbuf(v2, 139 + param1 - 1);
             MessageLoader_Free(v2);
         } else {
             MessageLoader *v3;
 
-            v3 = MessageLoader_Init(0, 26, 542, 11);
+            v3 = MessageLoader_Init(0, 26, 542, HEAP_ID_FIELDMAP);
             v1 = MessageLoader_GetNewStrbuf(v3, sub_020981F4((u8)param1));
 
             MessageLoader_Free(v3);
@@ -790,7 +791,7 @@ static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2)
         }
 
         v3 = ov7_0224E890(v0, (u16)param1);
-        v1 = Strbuf_Init(12, 11);
+        v1 = Strbuf_Init(12, HEAP_ID_FIELDMAP);
 
         if (v0->martType == MART_TYPE_FRONTIER) {
             v2 = MessageLoader_GetNewStrbuf(v0->unk_88, 32);
@@ -833,7 +834,7 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
             Window_FillRectWithColor(&param0->unk_08[2], 15, 0, 0, (9 * 8), 16);
         }
 
-        v0 = Strbuf_Init(16, 11);
+        v0 = Strbuf_Init(16, HEAP_ID_FIELDMAP);
         v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 38);
         v2 = ov7_0224E8F4(param0);
 
@@ -856,7 +857,7 @@ static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
             Window_FillRectWithColor(&param0->unk_08[2], 15, 0, 16, (9 * 8), 16);
         }
 
-        v0 = Strbuf_Init(16, 11);
+        v0 = Strbuf_Init(16, HEAP_ID_FIELDMAP);
         v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 19);
         v2 = ov7_0224E8F4(param0);
 
@@ -991,9 +992,9 @@ static void ov7_0224DED4(UnkStruct_ov7_0224D008 *param0)
     u16 v2;
 
     if (param0->martType == MART_TYPE_NORMAL) {
-        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, 11);
+        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_FRONTIER) {
-        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, 11);
+        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_SEAL) {
         v2 = sub_0202CBC8(param0->unk_274, param0->unk_2AA);
     } else {
@@ -1003,7 +1004,7 @@ static void ov7_0224DED4(UnkStruct_ov7_0224D008 *param0)
     Window_FillTilemap(&param0->unk_08[4], 15);
     Window_DrawStandardFrame(&param0->unk_08[4], 1, (1 + (18 + 12)), 11);
 
-    v0 = Strbuf_Init((12 * 2), 11);
+    v0 = Strbuf_Init((12 * 2), HEAP_ID_FIELDMAP);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 20);
 
     StringTemplate_SetNumber(param0->unk_8C, 0, v2, 3, 1, 1);
@@ -1060,9 +1061,9 @@ static u8 ov7_0224E098(UnkStruct_ov7_0224D008 *param0)
     BOOL v1;
 
     if (param0->martType == MART_TYPE_NORMAL) {
-        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_FRONTIER) {
-        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_DECOR) {
         if (sub_020289A0(param0->unk_274) == 200) {
             v1 = 0;
@@ -1135,7 +1136,7 @@ static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
         Window_DrawStandardFrame(&param0->unk_08[3], 1, (1 + (18 + 12)), 11);
     }
 
-    v0 = Strbuf_Init(24, 11);
+    v0 = Strbuf_Init(24, HEAP_ID_FIELDMAP);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 21);
 
     StringTemplate_SetNumber(param0->unk_8C, 0, param0->unk_2AC, 2, 2, 1);
@@ -1166,13 +1167,13 @@ static u8 ov7_0224E3A0(UnkStruct_ov7_0224D008 *param0)
         return 7;
     }
 
-    param0->unk_80 = Menu_MakeYesNoChoice(param0->unk_00, &sShop_YesNoChoiceWindowTemplate, (1 + (18 + 12)), 11, 11);
+    param0->unk_80 = Menu_MakeYesNoChoice(param0->unk_00, &sShop_YesNoChoiceWindowTemplate, (1 + (18 + 12)), 11, HEAP_ID_FIELDMAP);
     return 8;
 }
 
 static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
 {
-    switch (Menu_ProcessInputAndHandleExit(param0->unk_80, 11)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_80, HEAP_ID_FIELDMAP)) {
     case 0: {
         Strbuf *v0;
 
@@ -1185,7 +1186,7 @@ static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
                 StringTemplate_SetItemNamePlural(param0->unk_8C, 0, param0->unk_2AA);
             }
 
-            StringTemplate_SetBagPocketName(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, 11));
+            StringTemplate_SetBagPocketName(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, HEAP_ID_FIELDMAP));
         } else if (param0->martType == MART_TYPE_FRONTIER) {
             if (param0->unk_2AC == 1) {
                 StringTemplate_SetItemName(param0->unk_8C, 0, param0->unk_2AA);
@@ -1194,7 +1195,7 @@ static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
             }
 
             v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 6);
-            StringTemplate_SetBagPocketName(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, 11));
+            StringTemplate_SetBagPocketName(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, HEAP_ID_FIELDMAP));
         } else {
             if (param0->martType == MART_TYPE_DECOR) {
                 ov7_0224E834(param0, param0->unk_2AA, 0);
@@ -1237,10 +1238,10 @@ static u8 ov7_0224E5B0(UnkStruct_ov7_0224D008 *param0)
     }
 
     if (param0->martType == MART_TYPE_NORMAL) {
-        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
         sub_0206D504(param0->unk_284, param0->unk_2AA, param0->unk_2AC);
     } else if (param0->martType == MART_TYPE_FRONTIER) {
-        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
+        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_DECOR) {
         sub_0202895C(param0->unk_274, param0->unk_2AA);
     } else {
@@ -1280,7 +1281,7 @@ static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
         }
 
         if (((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) && (param0->unk_2AA == 4) && (param0->unk_2AC >= 10)) {
-            if (Bag_TryAddItem(param0->unk_274, 12, 1, 11) == 1) {
+            if (Bag_TryAddItem(param0->unk_274, 12, 1, HEAP_ID_FIELDMAP) == 1) {
                 Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 10);
 
                 StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
@@ -1347,7 +1348,7 @@ static void ov7_0224E834(UnkStruct_ov7_0224D008 *param0, u16 param1, u16 param2)
 static u32 ov7_0224E890(UnkStruct_ov7_0224D008 *param0, u16 param1)
 {
     if (param0->martType == MART_TYPE_NORMAL) {
-        return Item_LoadParam(param1, 0, 11);
+        return Item_LoadParam(param1, 0, HEAP_ID_FIELDMAP);
     } else if (param0->martType == MART_TYPE_FRONTIER) {
         return ov7_0224E8CC(param0, param1);
     } else if (param0->martType == MART_TYPE_DECOR) {
@@ -1614,12 +1615,12 @@ static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
 
     v0 = SpriteResourceCollection_Find(param0->unk_94.unk_194[0], 2);
 
-    SpriteResourceCollection_ModifyTiles(param0->unk_94.unk_194[0], v0, 16, Item_FileID(param1, 1), 0, 11);
+    SpriteResourceCollection_ModifyTiles(param0->unk_94.unk_194[0], v0, 16, Item_FileID(param1, 1), 0, HEAP_ID_FIELDMAP);
     SpriteTransfer_RetransferCharData(v0);
 
     v0 = SpriteResourceCollection_Find(param0->unk_94.unk_194[1], 1);
 
-    SpriteResourceCollection_ModifyPalette(param0->unk_94.unk_194[1], v0, 16, Item_FileID(param1, 2), 0, 11);
+    SpriteResourceCollection_ModifyPalette(param0->unk_94.unk_194[1], v0, 16, Item_FileID(param1, 2), 0, HEAP_ID_FIELDMAP);
     SpriteTransfer_ReplacePlttData(v0);
 }
 
@@ -1652,7 +1653,7 @@ static void ov7_0224EC38(FieldTask *param0)
         Bag *v2;
 
         v2 = SaveData_GetBag(fieldSystem->saveData);
-        v1->unk_04 = sub_0207D824(v2, Unk_ov7_0224F49C, 11);
+        v1->unk_04 = sub_0207D824(v2, Unk_ov7_0224F49C, HEAP_ID_FIELDMAP);
 
         sub_0207CB2C(v1->unk_04, fieldSystem->saveData, 2, fieldSystem->unk_98);
     }
