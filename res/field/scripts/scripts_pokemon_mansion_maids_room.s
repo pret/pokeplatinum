@@ -52,7 +52,7 @@ _007B:
     LockAll
     Message 3
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _009D
+    GoToIfEq 0x800C, MENU_YES, _009D
     GoTo _00D3
     End
 

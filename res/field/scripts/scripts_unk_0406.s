@@ -95,7 +95,7 @@ _01CF:
     GoToIfEq 0x800C, 0, _01F8
     Message 5
     ShowYesNoMenu 0x800C
-    GoToIfNe 0x800C, 0, _03E5
+    GoToIfNe 0x800C, MENU_YES, _03E5
 _01F8:
     Message 6
     WaitABPress
@@ -165,7 +165,7 @@ _037A:
     ScrCmd_21D 3, 0x8004, 1
     Message 8
     ShowYesNoMenu 0x800C
-    GoToIfNe 0x800C, 0, _0261
+    GoToIfNe 0x800C, MENU_YES, _0261
     ScrCmd_21D 5, 0x8004
     BufferPlayerName 0
     ScrCmd_21D 2, 0x8004, 1

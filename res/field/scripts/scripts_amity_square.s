@@ -147,7 +147,7 @@ _0229:
     AddVar 0x400C, 1
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0299
+    GoToIfEq 0x800C, MENU_YES, _0299
     GoTo _026D
     End
 
@@ -155,7 +155,7 @@ _024B:
     AddVar 0x400C, 1
     Message 4
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0299
+    GoToIfEq 0x800C, MENU_YES, _0299
     GoTo _026D
     End
 
@@ -1011,7 +1011,7 @@ _10E1:
     BufferItemName 0, 0x8004
     Message 37
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _1161
+    GoToIfEq 0x800C, MENU_NO, _1161
     SetVar 0x8005, 5
     ScrCmd_07D 0x8004, 0x8005, 0x800C
     GoToIfEq 0x800C, 0, _1172
@@ -1028,7 +1028,7 @@ _1136:
     ScrCmd_261 0, 0x8004
     Message 37
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _1161
+    GoToIfEq 0x800C, MENU_NO, _1161
     SetVar 0x8005, 1
     CallCommonScript 0x7DF
     GoTo _117C

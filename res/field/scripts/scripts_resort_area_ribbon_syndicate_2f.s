@@ -20,7 +20,7 @@ _0012:
     BufferPartyMonNickname 1, 0x4000
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0058
+    GoToIfEq 0x800C, MENU_NO, _0058
     GoTo _0063
 
 _0058:

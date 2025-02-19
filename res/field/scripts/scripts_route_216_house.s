@@ -14,8 +14,8 @@ _000E:
     FacePlayer
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0039
-    GoToIfEq 0x800C, 1, _0066
+    GoToIfEq 0x800C, MENU_YES, _0039
+    GoToIfEq 0x800C, MENU_NO, _0066
     End
 
 _0039:
@@ -55,8 +55,8 @@ _0084:
     LockAll
     Message 4
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00AD
-    GoToIfEq 0x800C, 1, _00E3
+    GoToIfEq 0x800C, MENU_YES, _00AD
+    GoToIfEq 0x800C, MENU_NO, _00E3
     End
 
 _00AD:

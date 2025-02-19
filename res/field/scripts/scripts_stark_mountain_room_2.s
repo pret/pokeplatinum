@@ -21,7 +21,7 @@ _0029:
 
 _0031:
     LockAll
-    SetPlayerBike 0
+    SetPlayerBike FALSE
     CallIfUnset 221, _007D
     CallIfSet 221, _00B7
     BufferPlayerName 0

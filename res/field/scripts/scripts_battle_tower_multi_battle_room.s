@@ -174,7 +174,7 @@ _029E:
 
 _02B0:
     Call _019D
-    GoToIfEq 0x8004, 0, _022F
+    GoToIfEq 0x8004, FALSE, _022F
     Call _029E
     GoToIfEq 0x800C, 1, _0245
     Call _0541
@@ -207,7 +207,7 @@ _0362:
     Message 4
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _025B
+    GoToIfEq 0x800C, MENU_YES, _025B
     GoTo _02E8
     End
 
@@ -215,13 +215,13 @@ _0380:
     Message 5
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _0296
+    GoToIfEq 0x800C, MENU_YES, _0296
     GoTo _02E8
     End
 
 _039E:
     Call _01DF
-    GoToIfEq 0x8004, 0, _022F
+    GoToIfEq 0x8004, FALSE, _022F
     Call _029E
     GoToIfEq 0x800C, 1, _0245
     Call _0541
@@ -255,7 +255,7 @@ _0418:
 _0452:
     Message 5
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _03D6
+    GoToIfEq 0x800C, MENU_NO, _03D6
     SetVar 0x4000, 1
     GoTo _0418
     End

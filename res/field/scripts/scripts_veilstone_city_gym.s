@@ -27,7 +27,7 @@ _0022:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_MAYLENE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0118
+    GoToIfEq 0x800C, FALSE, _0118
     Message 1
     BufferPlayerName 0
     Message 2

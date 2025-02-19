@@ -44,9 +44,9 @@ _0079:
     StartLegendaryBattle SPECIES_DARKRAI, 50
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _014C
+    GoToIfEq 0x800C, FALSE, _014C
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _00D8
+    GoToIfEq 0x800C, TRUE, _00D8
     SetFlag 0x158
 _00BC:
     SetFlag 0x241

@@ -19,7 +19,7 @@ _001F:
 
 _0027:
     LockAll
-    SetPlayerBike 0
+    SetPlayerBike FALSE
     ApplyMovement 28, _0140
     WaitMovement
     GetPlayerMapPos 0x8004, 0x8005

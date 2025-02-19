@@ -2,6 +2,7 @@
 #include "generated/catching_show_points_category.h"
 #include "generated/days_of_week.h"
 #include "generated/game_records.h"
+#include "generated/genders.h"
 #include "generated/items.h"
 #include "generated/journal_location_events.h"
 #include "generated/journal_online_events.h"
@@ -14,6 +15,7 @@
 #include "generated/species.h"
 #include "generated/trainers.h"
 #include "constants/honey_tree.h"
+#include "constants/items.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
 

@@ -69,7 +69,7 @@ _0078:
     ScrCmd_346 0
     Message 4
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00F4
+    GoToIfEq 0x800C, MENU_YES, _00F4
     GoTo _0078
 
 _00E9:

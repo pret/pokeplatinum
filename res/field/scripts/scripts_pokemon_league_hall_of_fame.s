@@ -22,8 +22,8 @@ _0006:
     WaitMovement
     WaitTime 15, 0x800C
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0074
-    GoToIfEq 0x800C, 1, _0080
+    GoToIfEq 0x800C, GENDER_MALE, _0074
+    GoToIfEq 0x800C, GENDER_FEMALE, _0080
     End
 
 _0074:

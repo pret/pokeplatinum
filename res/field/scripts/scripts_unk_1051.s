@@ -21,8 +21,8 @@ _0027:
     End
 
 _003A:
-    CallIfEq 0x8004, 0, _005C
-    CallIfEq 0x8004, 1, _0064
+    CallIfEq 0x8004, GENDER_MALE, _005C
+    CallIfEq 0x8004, GENDER_FEMALE, _0064
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -202,8 +202,8 @@ _03A1:
 _03A9:
     Message 10
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _03CC
-    GoToIfEq 0x800C, 1, _03D1
+    GoToIfEq 0x800C, MENU_YES, _03CC
+    GoToIfEq 0x800C, MENU_NO, _03D1
     End
 
 _03CC:
@@ -217,8 +217,8 @@ _03D1:
 _03D6:
     Message 24
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _03F9
-    GoToIfEq 0x800C, 1, _03FE
+    GoToIfEq 0x800C, MENU_YES, _03F9
+    GoToIfEq 0x800C, MENU_NO, _03FE
     End
 
 _03F9:

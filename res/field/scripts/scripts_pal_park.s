@@ -80,7 +80,7 @@ _00B9:
     Message 8
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _00D9
+    GoToIfEq 0x800C, MENU_YES, _00D9
     ReleaseAll
     End
 
@@ -138,9 +138,9 @@ _0168:
 _0170:
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _01B5
+    GoToIfEq 0x800C, MENU_YES, _01B5
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 1, _01A5
+    GoToIfEq 0x800C, GENDER_FEMALE, _01A5
     BufferPlayerName 0
     Message 2
     WaitABXPadPress

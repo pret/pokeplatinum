@@ -82,15 +82,15 @@ _00B2:
     WaitMovement
     Message 5
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0104
-    GoToIfEq 0x800C, 1, _00E1
+    GoToIfEq 0x800C, MENU_YES, _0104
+    GoToIfEq 0x800C, MENU_NO, _00E1
     End
 
 _00E1:
     Message 6
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0104
-    GoToIfEq 0x800C, 1, _00E1
+    GoToIfEq 0x800C, MENU_YES, _0104
+    GoToIfEq 0x800C, MENU_NO, _00E1
     End
 
 _0104:
@@ -100,15 +100,15 @@ _0104:
     WaitMovement
     Message 8
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0159
-    GoToIfEq 0x800C, 1, _0136
+    GoToIfEq 0x800C, MENU_YES, _0159
+    GoToIfEq 0x800C, MENU_NO, _0136
     End
 
 _0136:
     Message 9
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0159
-    GoToIfEq 0x800C, 1, _0136
+    GoToIfEq 0x800C, MENU_YES, _0159
+    GoToIfEq 0x800C, MENU_NO, _0136
     End
 
 _0159:

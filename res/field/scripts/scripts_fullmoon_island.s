@@ -23,7 +23,7 @@ _0015:
     Message 1
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _005D
+    GoToIfEq 0x800C, MENU_YES, _005D
     GoTo _0098
 
 _0052:

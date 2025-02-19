@@ -37,7 +37,7 @@ _003D:
 _0050:
     LockAll
     CheckPlayerOnBike 0x800C
-    GoToIfEq 0x800C, 1, _0080
+    GoToIfEq 0x800C, TRUE, _0080
     ApplyMovement 0, _0090
     WaitMovement
     Message 1

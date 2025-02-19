@@ -13,7 +13,7 @@ _0012:
     BufferPlayerName 0
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0031
+    GoToIfEq 0x800C, MENU_NO, _0031
     GoTo _003E
     End
 
@@ -35,10 +35,10 @@ _003E:
 _004C:
     BufferPlayerName 0
     GetPlayerGender 0x800C
-    CallIfEq 0x800C, 0, _0086
-    CallIfEq 0x800C, 1, _008B
+    CallIfEq 0x800C, GENDER_MALE, _0086
+    CallIfEq 0x800C, GENDER_FEMALE, _008B
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0090
+    GoToIfEq 0x800C, MENU_NO, _0090
     GoTo _009D
     End
 

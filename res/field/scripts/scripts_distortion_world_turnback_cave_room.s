@@ -16,7 +16,7 @@ _000E:
     LockAll
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _002E
+    GoToIfEq 0x800C, MENU_YES, _002E
     CloseMessage
     ReleaseAll
     End

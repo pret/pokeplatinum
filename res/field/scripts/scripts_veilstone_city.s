@@ -41,8 +41,8 @@ _0082:
     CallIfSet 0x155, _00E0
     CallIfGe 0x411A, 2, _00BA
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _00D0
-    GoToIfEq 0x4000, 1, _00D8
+    GoToIfEq 0x4000, GENDER_MALE, _00D0
+    GoToIfEq 0x4000, GENDER_FEMALE, _00D8
     End
 
 _00BA:
@@ -76,8 +76,8 @@ _00F6:
     CallIfEq 0x8004, 0x2AB, _02F9
     CallIfEq 0x8004, 0x2AC, _0305
     GetPlayerGender 0x8004
-    CallIfEq 0x8004, 0, _0297
-    CallIfEq 0x8004, 1, _029F
+    CallIfEq 0x8004, GENDER_MALE, _0297
+    CallIfEq 0x8004, GENDER_FEMALE, _029F
     CloseMessage
     CallCommonScript 0x7F9
     ScrCmd_168 21, 19, 12, 3, 77
@@ -112,8 +112,8 @@ _00F6:
     RemoveObject 25
     WaitTime 20, 0x800C
     GetPlayerGender 0x8004
-    CallIfEq 0x8004, 0, _02A7
-    CallIfEq 0x8004, 1, _02C4
+    CallIfEq 0x8004, GENDER_MALE, _02A7
+    CallIfEq 0x8004, GENDER_FEMALE, _02C4
     CloseMessage
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x2A9, _03F1
@@ -469,7 +469,7 @@ _05F4:
     BufferPlayerName 0
     Message 19
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0611
+    GoToIfEq 0x800C, MENU_YES, _0611
     GoTo _061A
 
 _0611:
@@ -487,7 +487,7 @@ _0625:
     BufferPlayerName 0
     Message 24
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0642
+    GoToIfEq 0x800C, MENU_YES, _0642
     GoTo _064B
 
 _0642:
@@ -507,10 +507,10 @@ _0656:
     CallIfEq 0x800C, 3, _099F
     CallIfEq 0x800C, 1, _09B3
     CallIfEq 0x800C, 0, _09C7
-    Call _0919
-    StartTagBattle 0x8004, 0x350, 0x351
+    Call VeilstoneCity_SetPlayerCounterpartPartnerTeam
+    StartTagBattle 0x8004, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1, TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0A73
+    GoToIfEq 0x800C, FALSE, _0A73
     Message 16
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _09DB
@@ -529,8 +529,8 @@ _0656:
     CallIfEq 0x8005, 0x255, _0A17
     RemoveObject 20
     GetPlayerGender 0x8004
-    CallIfEq 0x8004, 0, _0A23
-    CallIfEq 0x8004, 1, _0A28
+    CallIfEq 0x8004, GENDER_MALE, _0A23
+    CallIfEq 0x8004, GENDER_FEMALE, _0A28
     CloseMessage
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8005, 0x253, _0A4B
@@ -538,8 +538,8 @@ _0656:
     WaitTime 10, 0x800C
     BufferPlayerName 0
     GetPlayerGender 0x8004
-    CallIfEq 0x8004, 0, _0A2D
-    CallIfEq 0x8004, 1, _0A32
+    CallIfEq 0x8004, GENDER_MALE, _0A2D
+    CallIfEq 0x8004, GENDER_FEMALE, _0A32
     CloseMessage
     WaitTime 15, 0x800C
     ClearFlag 0x28A
@@ -554,12 +554,12 @@ _0656:
     ApplyMovement 0xFF, _0B9C
     WaitMovement
     GetPlayerGender 0x8004
-    CallIfEq 0x8004, 0, _0A37
-    CallIfEq 0x8004, 1, _0A3C
+    CallIfEq 0x8004, GENDER_MALE, _0A37
+    CallIfEq 0x8004, GENDER_FEMALE, _0A3C
     Message 32
     GetPlayerGender 0x8004
-    CallIfEq 0x8004, 0, _0A41
-    CallIfEq 0x8004, 1, _0A46
+    CallIfEq 0x8004, GENDER_MALE, _0A41
+    CallIfEq 0x8004, GENDER_FEMALE, _0A46
     CloseMessage
     ApplyMovement 6, _0B44
     ApplyMovement 26, _0A88
@@ -640,28 +640,28 @@ _08DD:
     WaitFadeScreen
     End
 
-_0919:
+VeilstoneCity_SetPlayerCounterpartPartnerTeam:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0939
-    GoToIfEq 0x800C, 1, _096B
+    GoToIfEq 0x800C, GENDER_MALE, VeilstoneCity_SetDawnPartnerTeam
+    GoToIfEq 0x800C, GENDER_FEMALE, VeilstoneCity_SetLucasPartnerTeam
     End
 
-_0939:
+VeilstoneCity_SetDawnPartnerTeam:
     GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, 0x271
+    SetVar 0x8004, TRAINER_DAWN_VEILSTONE_CITY_PIPLUP
     GoToIfEq 0x800C, SPECIES_CHIMCHAR, _099D
-    SetVar 0x8004, 0x272
+    SetVar 0x8004, TRAINER_DAWN_VEILSTONE_CITY_TURTWIG
     GoToIfEq 0x800C, SPECIES_PIPLUP, _099D
-    SetVar 0x8004, 0x270
+    SetVar 0x8004, TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR
     Return
 
-_096B:
+VeilstoneCity_SetLucasPartnerTeam:
     GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, 0x26E
+    SetVar 0x8004, TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP
     GoToIfEq 0x800C, SPECIES_CHIMCHAR, _099D
-    SetVar 0x8004, 0x26F
+    SetVar 0x8004, TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG
     GoToIfEq 0x800C, SPECIES_PIPLUP, _099D
-    SetVar 0x8004, 0x26D
+    SetVar 0x8004, TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR
     Return
 
 _099D:
@@ -1278,7 +1278,7 @@ _0ECC:
 _0ED8:
     Message 38
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0EF4
+    GoToIfEq 0x800C, MENU_YES, _0EF4
     GoTo _0F0B
     End
 
@@ -1531,8 +1531,8 @@ _1184:
     ApplyMovement 6, _11E8
     WaitMovement
     GetPlayerGender 0x8004
-    CallIfEq 0x8004, 0, _11D6
-    CallIfEq 0x8004, 1, _11DE
+    CallIfEq 0x8004, GENDER_MALE, _11D6
+    CallIfEq 0x8004, GENDER_FEMALE, _11DE
     CloseMessage
     ApplyMovement 6, _11FC
     WaitMovement
@@ -1573,7 +1573,7 @@ _1204:
     FacePlayer
     Message 52
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _122B
+    GoToIfEq 0x800C, MENU_NO, _122B
     Message 53
     GoTo _1236
     End

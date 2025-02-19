@@ -49,8 +49,8 @@ _009F:
 _00AA:
     Message 3
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00D8
-    GoToIfEq 0x800C, 1, _00CD
+    GoToIfEq 0x800C, MENU_YES, _00D8
+    GoToIfEq 0x800C, MENU_NO, _00CD
     End
 
 _00CD:
@@ -63,8 +63,8 @@ _00CD:
 _00D8:
     Message 5
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00FB
-    GoToIfEq 0x800C, 1, _00CD
+    GoToIfEq 0x800C, MENU_YES, _00FB
+    GoToIfEq 0x800C, MENU_NO, _00CD
     End
 
 _00FB:
@@ -299,8 +299,8 @@ _0399:
     LockAll
     Message 19
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _03C2
-    GoToIfEq 0x800C, 1, _0408
+    GoToIfEq 0x800C, MENU_YES, _03C2
+    GoToIfEq 0x800C, MENU_NO, _0408
     End
 
 _03C2:

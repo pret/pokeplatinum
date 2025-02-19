@@ -33,9 +33,9 @@ _002F:
     StartLegendaryBattle SPECIES_UXIE, 50
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0085
+    GoToIfEq 0x800C, FALSE, _0085
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _007A
+    GoToIfEq 0x800C, TRUE, _007A
     SetFlag 0x127
     ReleaseAll
     End

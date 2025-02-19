@@ -27,8 +27,8 @@ _0022:
     ScrCmd_072 20, 2
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _006A
-    GoToIfEq 0x800C, 1, _0156
+    GoToIfEq 0x800C, MENU_YES, _006A
+    GoToIfEq 0x800C, MENU_NO, _0156
     End
 
 _006A:
@@ -142,8 +142,8 @@ _01CC:
     LockAll
     Message 9
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _01F1
-    GoToIfEq 0x800C, 1, _024E
+    GoToIfEq 0x800C, MENU_YES, _01F1
+    GoToIfEq 0x800C, MENU_NO, _024E
     End
 
 _01F1:
@@ -213,8 +213,8 @@ _02BF:
     FacePlayer
     Message 12
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _02EA
-    GoToIfEq 0x800C, 1, _02F5
+    GoToIfEq 0x800C, MENU_YES, _02EA
+    GoToIfEq 0x800C, MENU_NO, _02F5
     End
 
 _02EA:

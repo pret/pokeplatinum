@@ -111,7 +111,7 @@ _0159:
     GoToIfEq 0x800C, 0, _02A1
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0190
+    GoToIfEq 0x800C, MENU_YES, _0190
     GoTo _02AE
     End
 

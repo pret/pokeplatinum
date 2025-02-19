@@ -16,8 +16,8 @@ _000E:
     GoToIfEq 0x800C, 1, _006A
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _004C
-    GoToIfEq 0x800C, 1, _0057
+    GoToIfEq 0x800C, MENU_YES, _004C
+    GoToIfEq 0x800C, MENU_NO, _0057
     End
 
 _004C:

@@ -87,7 +87,7 @@ _012F:
     ScrCmd_072 20, 2
     Message 3
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _025C
+    GoToIfEq 0x800C, MENU_NO, _025C
     ScrCmd_071 0x800C, 0x2710
     GoToIfEq 0x800C, 0, _024F
     ScrCmd_334 35, 0x2710
@@ -108,7 +108,7 @@ _018A:
     ScrCmd_072 20, 2
     Message 4
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _025C
+    GoToIfEq 0x800C, MENU_NO, _025C
     ScrCmd_071 0x800C, 0x186A0
     GoToIfEq 0x800C, 0, _024F
     ScrCmd_335 35, 0x186A0
@@ -129,7 +129,7 @@ _01E7:
     ScrCmd_072 20, 2
     Message 5
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _025C
+    GoToIfEq 0x800C, MENU_NO, _025C
     ScrCmd_071 0x800C, 0xF423F
     GoToIfEq 0x800C, 0, _024F
     ScrCmd_335 35, 0xF423F
@@ -184,8 +184,8 @@ _027C:
     LockAll
     FacePlayer
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _02A4
-    GoToIfEq 0x800C, 1, _02AF
+    GoToIfEq 0x800C, GENDER_MALE, _02A4
+    GoToIfEq 0x800C, GENDER_FEMALE, _02AF
     End
 
 _02A4:

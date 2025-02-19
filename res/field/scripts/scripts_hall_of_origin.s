@@ -46,9 +46,9 @@ _0056:
     StartLegendaryBattle SPECIES_ARCEUS, 80
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00DF
+    GoToIfEq 0x800C, FALSE, _00DF
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _00D0
+    GoToIfEq 0x800C, TRUE, _00D0
     CallIfEq 0x4056, 0, _00C8
     SetFlag 0x11E
     ReleaseAll

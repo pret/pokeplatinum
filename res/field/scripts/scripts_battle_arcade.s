@@ -182,7 +182,7 @@ _02F1:
 _0335:
     Message 44
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _02F1
+    GoToIfEq 0x800C, MENU_NO, _02F1
     CloseMessage
     ScrCmd_0F2 32, 0, 0, 0x800C
     GoToIfEq 0x800C, 1, _0377
@@ -202,7 +202,7 @@ _037F:
 _0389:
     Message 44
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _02F1
+    GoToIfEq 0x800C, MENU_NO, _02F1
     CloseMessage
     ScrCmd_0F3 32, 0, 0, 0x800C
     GoToIfEq 0x800C, 1, _03CB

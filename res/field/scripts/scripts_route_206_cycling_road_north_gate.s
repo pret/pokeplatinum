@@ -42,7 +42,7 @@ _004E:
 _0061:
     LockAll
     CheckPlayerOnBike 0x800C
-    GoToIfEq 0x800C, 1, _0091
+    GoToIfEq 0x800C, TRUE, _0091
     ApplyMovement 1, _00A0
     WaitMovement
     Message 1
@@ -83,7 +83,7 @@ _00C0:
     BufferPlayerName 0
     BufferCounterpartName 1
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _00F0
+    GoToIfEq 0x4000, GENDER_MALE, _00F0
     GoTo _00F9
 
 _00F0:

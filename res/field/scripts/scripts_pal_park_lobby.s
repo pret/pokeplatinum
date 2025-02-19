@@ -45,7 +45,7 @@ _007E:
     LockAll
     FacePlayer
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _009D
+    GoToIfEq 0x800C, GENDER_MALE, _009D
     GoTo _00D2
 
 _009D:
@@ -54,8 +54,8 @@ _009D:
     BufferPlayerName 0
     Message 21
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0107
-    GoToIfEq 0x800C, 1, _01CB
+    GoToIfEq 0x800C, MENU_YES, _0107
+    GoToIfEq 0x800C, MENU_NO, _01CB
     End
 
 _00D2:
@@ -64,8 +64,8 @@ _00D2:
     BufferPlayerName 0
     Message 22
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0107
-    GoToIfEq 0x800C, 1, _01CB
+    GoToIfEq 0x800C, MENU_YES, _0107
+    GoToIfEq 0x800C, MENU_NO, _01CB
     End
 
 _0107:
@@ -99,7 +99,7 @@ _012B:
 _0172:
     Message 28
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _01CB
+    GoToIfEq 0x800C, MENU_NO, _01CB
 _0186:
     SetVar 0x800C, 0
     ScrCmd_252 0x800C
@@ -108,7 +108,7 @@ _0186:
     ScrCmd_254 0x800C
     GoToIfEq 0x800C, 0, _0299
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0231
+    GoToIfEq 0x800C, GENDER_MALE, _0231
     GoTo _0245
 
 _01CB:
@@ -238,10 +238,10 @@ _035B:
 _0370:
     Message 41
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _03AB
+    GoToIfEq 0x800C, MENU_YES, _03AB
     Message 46
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _039E
+    GoToIfEq 0x800C, MENU_YES, _039E
     GoTo _0370
 
 _039E:
@@ -378,7 +378,7 @@ _04B4:
     WaitMovement
     GetPlayerGender 0x4000
     BufferPlayerName 0
-    GoToIfEq 0x4000, 0, _04E4
+    GoToIfEq 0x4000, GENDER_MALE, _04E4
     GoTo _04ED
 
 _04E4:

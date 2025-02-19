@@ -57,7 +57,7 @@ _002E:
     CloseMessage
     PlaySound SEQ_FANFA4
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _00EE
+    GoToIfEq 0x800C, GENDER_MALE, _00EE
     GoTo _00F9
     End
 

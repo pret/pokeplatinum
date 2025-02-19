@@ -22,7 +22,7 @@ _0014:
     WaitMovement
     StartTrainerBattle TRAINER_COMMANDER_MARS_STARK_MOUNTAIN
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0150
+    GoToIfEq 0x800C, FALSE, _0150
     Message 1
     CloseMessage
     ApplyMovement 0, _0168
@@ -35,7 +35,7 @@ _0014:
     WaitMovement
     StartTrainerBattle TRAINER_COMMANDER_JUPITER_STARK_MOUNTAIN
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0150
+    GoToIfEq 0x800C, FALSE, _0150
     Message 3
     CloseMessage
     WaitTime 15, 0x800C

@@ -12,8 +12,8 @@ _0006:
     FacePlayer
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0031
-    GoToIfEq 0x800C, 1, _0079
+    GoToIfEq 0x800C, MENU_YES, _0031
+    GoToIfEq 0x800C, MENU_NO, _0079
     End
 
 _0031:
@@ -28,8 +28,8 @@ _0031:
     WaitFadeScreen
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0031
-    GoToIfEq 0x800C, 1, _0079
+    GoToIfEq 0x800C, MENU_YES, _0031
+    GoToIfEq 0x800C, MENU_NO, _0079
     End
 
 _0079:

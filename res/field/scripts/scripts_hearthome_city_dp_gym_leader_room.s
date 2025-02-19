@@ -48,7 +48,7 @@ _0096:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_FANTINA
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _01DC
+    GoToIfEq 0x800C, FALSE, _01DC
     Message 1
     BufferPlayerName 0
     Message 2

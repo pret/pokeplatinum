@@ -85,7 +85,7 @@ _0114:
     ApplyMovement 3, _019C
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _014E
+    GoToIfEq 0x800C, GENDER_MALE, _014E
     GoTo _015C
     End
 
@@ -164,7 +164,7 @@ _022B:
     Message 3
     Message 4
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _02BC
+    GoToIfEq 0x800C, MENU_NO, _02BC
     GoTo _0261
     End
 
@@ -179,7 +179,7 @@ _0261:
     WaitFadeScreen
     Message 5
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0261
+    GoToIfEq 0x800C, MENU_NO, _0261
     CallIfNe 0x8002, 1, _02B6
     GoTo _02BC
     End
@@ -199,7 +199,7 @@ _02BC:
     WaitMovement
     WaitTime 15, 0x800C
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _02FC
+    GoToIfEq 0x800C, GENDER_MALE, _02FC
     GoTo _0316
     End
 
@@ -232,7 +232,7 @@ _0330:
     Message 9
     Message 10
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0375
+    GoToIfEq 0x800C, MENU_NO, _0375
     GoTo _0394
     End
 
@@ -240,7 +240,7 @@ _0375:
     BufferPlayerName 0
     Message 11
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0375
+    GoToIfEq 0x800C, MENU_NO, _0375
     GoTo _0394
     End
 
@@ -259,7 +259,7 @@ _0394:
     WaitMovement
     WaitTime 15, 0x800C
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _03DA
+    GoToIfEq 0x800C, GENDER_MALE, _03DA
     GoTo _03E8
     End
 
@@ -284,7 +284,7 @@ _03F6:
     ApplyMovement 0xFF, _04BC
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _042B
+    GoToIfEq 0x800C, GENDER_MALE, _042B
     GoTo _043C
     End
 
@@ -529,7 +529,7 @@ _0631:
     BufferPlayerName 0
     Message 27
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0650
+    GoToIfEq 0x800C, MENU_NO, _0650
     GoTo _065B
     End
 
@@ -586,8 +586,8 @@ _0677:
     Message 39
     BufferPlayerName 0
     GetPlayerGender 0x8004
-    CallIfEq 0x8004, 0, _07A4
-    CallIfEq 0x8004, 1, _07A9
+    CallIfEq 0x8004, GENDER_MALE, _07A4
+    CallIfEq 0x8004, GENDER_FEMALE, _07A9
     CloseMessage
     ApplyMovement 4, _0898
     WaitMovement

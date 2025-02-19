@@ -33,8 +33,8 @@ _0021:
 _0049:
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _006C
-    GoToIfEq 0x800C, 1, _00A0
+    GoToIfEq 0x800C, MENU_YES, _006C
+    GoToIfEq 0x800C, MENU_NO, _00A0
     End
 
 _006C:

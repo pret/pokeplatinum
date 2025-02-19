@@ -19,7 +19,7 @@ _000E:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_ROARK
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0119
+    GoToIfEq 0x800C, FALSE, _0119
     Message 1
     BufferPlayerName 0
     Message 2

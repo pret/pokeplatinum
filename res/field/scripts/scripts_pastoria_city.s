@@ -595,7 +595,7 @@ _0557:
 
 _0563:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0597
+    GoToIfEq 0x800C, FALSE, _0597
     BufferRivalName 0
     BufferPlayerName 1
     Message 6

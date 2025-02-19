@@ -563,7 +563,7 @@ _08FF:
 _0922:
     Message 61
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0967
+    GoToIfEq 0x800C, MENU_NO, _0967
     Call _049C
     GoToIfEq 0x800C, 0, _0784
     Call _096F
@@ -611,10 +611,10 @@ _09B3:
 _09FB:
     Message 47
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _05EC
+    GoToIfEq 0x800C, MENU_YES, _05EC
     Message 48
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _09FB
+    GoToIfEq 0x800C, MENU_NO, _09FB
     SetVar 0x40D8, 2
     ScrCmd_1DD 39, 0, 0
     ScrCmd_1DC
@@ -691,7 +691,7 @@ _0B2B:
 _0B50:
     Message 26
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0B80
+    GoToIfEq 0x800C, MENU_YES, _0B80
     GoTo _0B6C
     End
 
@@ -757,7 +757,7 @@ _0C70:
 _0CB4:
     Message 112
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0C70
+    GoToIfEq 0x800C, MENU_NO, _0C70
     CloseMessage
     ScrCmd_0F2 16, 0, 0, 0x800C
     GoToIfEq 0x800C, 1, _0CF6
@@ -777,7 +777,7 @@ _0CFE:
 _0D08:
     Message 112
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0C70
+    GoToIfEq 0x800C, MENU_NO, _0C70
     CloseMessage
     ScrCmd_0F3 16, 0, 0, 0x800C
     GoToIfEq 0x800C, 1, _0D4A
@@ -1084,7 +1084,7 @@ _1205:
     Call _0734
     Message 57
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0784
+    GoToIfEq 0x800C, MENU_NO, _0784
     Call _096F
     GoToIfNe 0x800C, 0, _0784
     Message 60

@@ -15,7 +15,7 @@ _000E:
     GoToIfSet 133, _00B7
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _003B
+    GoToIfEq 0x800C, MENU_YES, _003B
     GoTo _00AC
 
 _003B:

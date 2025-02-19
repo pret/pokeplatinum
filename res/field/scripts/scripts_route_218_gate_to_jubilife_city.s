@@ -26,16 +26,16 @@ _001D:
     GoToIfSet 132, _005E
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00A7
-    GoToIfEq 0x800C, 1, _009C
+    GoToIfEq 0x800C, MENU_YES, _00A7
+    GoToIfEq 0x800C, MENU_NO, _009C
     End
 
 _005E:
     BufferItemName 0, 0x8004
     Message 3
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0086
-    GoToIfEq 0x800C, 1, _0091
+    GoToIfEq 0x800C, MENU_YES, _0086
+    GoToIfEq 0x800C, MENU_NO, _0091
     End
 
 _0086:

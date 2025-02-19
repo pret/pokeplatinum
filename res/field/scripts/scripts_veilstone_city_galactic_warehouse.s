@@ -35,8 +35,8 @@ _003B:
 _0063:
     Message 8
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0086
-    GoToIfEq 0x800C, 1, _00C2
+    GoToIfEq 0x800C, MENU_YES, _0086
+    GoToIfEq 0x800C, MENU_NO, _00C2
     End
 
 _0086:

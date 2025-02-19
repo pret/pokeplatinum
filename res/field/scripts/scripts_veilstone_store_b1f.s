@@ -193,8 +193,8 @@ _022A:
     ScrCmd_072 20, 2
     Message 17
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _025B
-    GoToIfEq 0x800C, 1, _0306
+    GoToIfEq 0x800C, MENU_YES, _025B
+    GoToIfEq 0x800C, MENU_NO, _0306
     End
 
 _025B:

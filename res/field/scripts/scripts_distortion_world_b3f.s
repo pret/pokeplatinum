@@ -18,7 +18,7 @@ _000E:
     WaitMovement
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _003B
+    GoToIfEq 0x800C, MENU_NO, _003B
     Message 1
     GoTo _003E
 

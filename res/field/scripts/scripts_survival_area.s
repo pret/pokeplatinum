@@ -227,7 +227,7 @@ _02A0:
 
 _02AE:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02DC
+    GoToIfEq 0x800C, FALSE, _02DC
     SetFlag 0xAB2
     GoTo _02CB
     End

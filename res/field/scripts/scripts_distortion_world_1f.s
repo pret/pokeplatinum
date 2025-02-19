@@ -19,7 +19,7 @@ _001A:
     LockAll
     Message 7
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _003A
+    GoToIfEq 0x800C, MENU_YES, _003A
     CloseMessage
     ReleaseAll
     End

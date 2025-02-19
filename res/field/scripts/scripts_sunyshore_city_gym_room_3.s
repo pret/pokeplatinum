@@ -33,7 +33,7 @@ _0027:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_VOLKNER
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _011A
+    GoToIfEq 0x800C, FALSE, _011A
     Message 1
     BufferPlayerName 0
     Message 2

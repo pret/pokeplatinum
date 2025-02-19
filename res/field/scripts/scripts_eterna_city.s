@@ -1164,7 +1164,7 @@ _0DF6:
     WaitMovement
     Message 9
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0E75
+    GoToIfEq 0x800C, MENU_NO, _0E75
     GetPartyCount 0x800C
     GoToIfGe 0x800C, 6, _0E67
     Call _0E4B
@@ -1229,7 +1229,7 @@ _0EB4:
 _0ECD:
     Message 14
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0FAC
+    GoToIfEq 0x800C, MENU_NO, _0FAC
     GetPartyCount 0x800C
     GoToIfGe 0x800C, 6, _0F9E
     Call _0E4B

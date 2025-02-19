@@ -24,7 +24,7 @@ _0033:
 
 _003E:
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0057
+    GoToIfEq 0x800C, MENU_YES, _0057
     GoTo _00FA
     End
 
@@ -40,8 +40,8 @@ _0057:
     SetFlag 0x131
     Message 4
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00A8
-    GoToIfEq 0x800C, 1, _00E9
+    GoToIfEq 0x800C, MENU_YES, _00A8
+    GoToIfEq 0x800C, MENU_NO, _00E9
     End
 
 _00A8:

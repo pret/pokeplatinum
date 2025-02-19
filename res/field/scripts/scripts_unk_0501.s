@@ -25,10 +25,10 @@ _000A:
 _004A:
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0083
+    GoToIfEq 0x800C, MENU_YES, _0083
     Message 10
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0083
+    GoToIfEq 0x800C, MENU_YES, _0083
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -108,7 +108,7 @@ _0124:
     GoToIfEq 0x800C, 3, _04A0
     Message 15
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _017E
+    GoToIfEq 0x800C, MENU_YES, _017E
     Message 20
     WaitABXPadPress
     CloseMessage
@@ -189,7 +189,7 @@ _0292:
 _029F:
     Message 18
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _017E
+    GoToIfEq 0x800C, MENU_YES, _017E
     GoTo _0292
     End
 
@@ -240,10 +240,10 @@ _0309:
     Call _02F4
     Message 18
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _017E
+    GoToIfEq 0x800C, MENU_YES, _017E
     Message 32
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0346
+    GoToIfEq 0x800C, MENU_YES, _0346
     GoTo _0292
 
 _0346:
@@ -268,7 +268,7 @@ _03BE:
     ScrCmd_1AA 0x8004, 0x8001
     Message 28
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _03DE
+    GoToIfEq 0x800C, MENU_YES, _03DE
     GoTo _0292
 
 _03DE:
@@ -301,7 +301,7 @@ _03FE:
 _0444:
     Message 22
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0346
+    GoToIfEq 0x800C, MENU_YES, _0346
     GoTo _0292
 
 _045E:
@@ -336,7 +336,7 @@ _04A0:
     Call _02F4
     Message 32
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0346
+    GoToIfEq 0x800C, MENU_YES, _0346
     Message 23
     WaitABXPadPress
     CloseMessage

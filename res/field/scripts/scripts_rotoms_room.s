@@ -114,7 +114,7 @@ _0151:
     ScrCmd_303 0x8003, 0x800C
     GoToIfGe 0x8003, 1, _0254
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0740
+    GoToIfEq 0x800C, MENU_NO, _0740
     GoTo _01F8
     End
 
@@ -290,7 +290,7 @@ _051B:
     BufferMoveName 1, 0x8001
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _05FE
+    GoToIfEq 0x800C, MENU_NO, _05FE
     GoTo _0541
     End
 
@@ -308,7 +308,7 @@ _0541:
     BufferMoveName 1, 0x800C
     Message 3
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _05FE
+    GoToIfEq 0x800C, MENU_NO, _05FE
     BufferPartyMonNickname 0, 0x8000
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
@@ -330,7 +330,7 @@ _05DD:
     BufferMoveName 1, 0x8001
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0541
+    GoToIfEq 0x800C, MENU_NO, _0541
     GoTo _05FE
     End
 
@@ -621,31 +621,31 @@ _0908:
     FacePlayer
     Message 38
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 39
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 40
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 41
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 42
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 43
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 44
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 45
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 46
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 47
     GoTo _09D5
     End

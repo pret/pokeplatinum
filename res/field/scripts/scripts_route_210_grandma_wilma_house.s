@@ -19,13 +19,13 @@ _0010:
     SetFlag 0x100
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _005B
+    GoToIfEq 0x800C, MENU_NO, _005B
     GoTo _00A2
 
 _0041:
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _005B
+    GoToIfEq 0x800C, MENU_NO, _005B
     GoTo _00A2
 
 _005B:

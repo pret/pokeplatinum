@@ -33,7 +33,7 @@ _0041:
     LockAll
     Message 13
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0061
+    GoToIfEq 0x800C, MENU_YES, _0061
     CloseMessage
     ReleaseAll
     End

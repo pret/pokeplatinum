@@ -19,8 +19,8 @@ _0006:
 _0031:
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0054
-    GoToIfEq 0x800C, 1, _00B2
+    GoToIfEq 0x800C, MENU_YES, _0054
+    GoToIfEq 0x800C, MENU_NO, _00B2
     End
 
 _0054:
@@ -56,8 +56,8 @@ _00BA:
     Message 3
     Message 4
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0054
-    GoToIfEq 0x800C, 1, _00B2
+    GoToIfEq 0x800C, MENU_YES, _0054
+    GoToIfEq 0x800C, MENU_NO, _00B2
     End
 
     .byte 0

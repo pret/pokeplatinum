@@ -51,9 +51,9 @@ _0081:
     StartLegendaryBattle SPECIES_REGIGIGAS, 1
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00D1
+    GoToIfEq 0x800C, FALSE, _00D1
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _00C6
+    GoToIfEq 0x800C, TRUE, _00C6
     SetFlag 0x11B
     ReleaseAll
     End

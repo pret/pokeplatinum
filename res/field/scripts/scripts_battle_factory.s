@@ -156,7 +156,7 @@ _022C:
 _0270:
     Message 25
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _022C
+    GoToIfEq 0x800C, MENU_NO, _022C
     CloseMessage
     CallIfEq 0x40B9, 0, _02C2
     CallIfEq 0x40B9, 1, _02CE
@@ -185,7 +185,7 @@ _02E2:
 _02EC:
     Message 25
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _022C
+    GoToIfEq 0x800C, MENU_NO, _022C
     CloseMessage
     CallIfEq 0x40B9, 0, _033E
     CallIfEq 0x40B9, 1, _034A

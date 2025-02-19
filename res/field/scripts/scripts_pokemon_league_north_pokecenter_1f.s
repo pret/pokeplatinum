@@ -168,7 +168,7 @@ _020F:
 
 _021B:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02AC
+    GoToIfEq 0x800C, FALSE, _02AC
     BufferRivalName 0
     BufferPlayerName 1
     Message 1

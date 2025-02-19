@@ -218,7 +218,7 @@ _02B4:
     CallIfUnset 1, _036E
     CallIfSet 1, _0376
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0386
+    GoToIfEq 0x800C, MENU_NO, _0386
     Call _032F
     GoToIfEq 0x8000, 0, _0398
     SetFlag 5
@@ -293,9 +293,9 @@ _03CA:
     CallIfUnset 2, _036E
     CallIfSet 2, _0376
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0445
+    GoToIfEq 0x800C, MENU_NO, _0445
     Call _032F
-    GoToIfEq 0x8000, 0, _0398
+    GoToIfEq 0x8000, FALSE, _0398
     SetFlag 6
     Call _1091
     GoTo _034D
@@ -319,7 +319,7 @@ _0457:
     CallIfUnset 3, _036E
     CallIfSet 3, _0376
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _04D2
+    GoToIfEq 0x800C, MENU_NO, _04D2
     Call _032F
     GoToIfEq 0x8000, 0, _0398
     SetFlag 7
@@ -345,7 +345,7 @@ _04E4:
     CallIfUnset 4, _036E
     CallIfSet 4, _0376
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _055F
+    GoToIfEq 0x800C, MENU_NO, _055F
     Call _032F
     GoToIfEq 0x8000, 0, _0398
     SetFlag 8

@@ -22,7 +22,7 @@ _002B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetPlayerBike 0
+    SetPlayerBike FALSE
     GoToIfGe 0x4091, 1, _0095
     BufferPlayerName 0
     CallIfUnset 224, _008B

@@ -43,8 +43,8 @@ _0066:
     CallIfEq 0x4078, 4, _011C
     CallIfEq 0x4078, 5, _0158
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _0148
-    GoToIfEq 0x4000, 1, _0150
+    GoToIfEq 0x4000, GENDER_MALE, _0148
+    GoToIfEq 0x4000, GENDER_FEMALE, _0150
     End
 
 _00F8:
@@ -176,7 +176,7 @@ _02F7:
 
 _0303:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0334
+    GoToIfEq 0x800C, FALSE, _0334
     BufferRivalName 0
     Message 1
     CloseMessage
@@ -283,7 +283,7 @@ _03C8:
     WaitMovement
     WaitTime 15, 0x800C
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _045E
+    GoToIfEq 0x800C, GENDER_MALE, _045E
     GoTo _046A
 
 _045E:
@@ -358,7 +358,7 @@ _04E7:
     LockAll
     FacePlayer
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0506
+    GoToIfEq 0x800C, GENDER_MALE, _0506
     GoTo _050F
 
 _0506:
@@ -669,8 +669,8 @@ _0900:
     GoToIfEq 0x800C, 1, _094E
     Message 31
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0938
-    GoToIfEq 0x800C, 1, _0943
+    GoToIfEq 0x800C, MENU_YES, _0938
+    GoToIfEq 0x800C, MENU_NO, _0943
     End
 
 _0938:

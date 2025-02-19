@@ -25,8 +25,8 @@ _0021:
     GoToIfSet 131, _0094
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0062
-    GoToIfEq 0x800C, 1, _0057
+    GoToIfEq 0x800C, MENU_YES, _0062
+    GoToIfEq 0x800C, MENU_NO, _0057
     End
 
 _0057:

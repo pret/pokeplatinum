@@ -459,8 +459,8 @@ _0546:
     BufferPartyMonSpecies 0, 0
     Message 18
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _05AB
-    GoToIfEq 0x800C, 1, _05B8
+    GoToIfEq 0x800C, MENU_YES, _05AB
+    GoToIfEq 0x800C, MENU_NO, _05B8
     End
 
 _05A0:
@@ -488,8 +488,8 @@ _05B8:
 _05CB:
     Message 19
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _05AB
-    GoToIfEq 0x800C, 1, _05EE
+    GoToIfEq 0x800C, MENU_YES, _05AB
+    GoToIfEq 0x800C, MENU_NO, _05EE
     End
 
 _05EE:
@@ -509,7 +509,7 @@ _0601:
     FacePlayer
     Message 29
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0647
+    GoToIfEq 0x800C, MENU_NO, _0647
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage

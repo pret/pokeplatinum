@@ -55,7 +55,7 @@ _00A4:
     GoToIfEq 0x800C, 0, _01BC
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _00E6
+    GoToIfEq 0x800C, MENU_YES, _00E6
     CloseMessage
     ReleaseAll
     End
@@ -87,7 +87,7 @@ _014D:
     CloseMessage
     StartWildBattle SPECIES_SPIRITOMB, 25
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _017F
+    GoToIfEq 0x800C, FALSE, _017F
     SetVar 0x408A, 0
     ClearSpiritombCounter
     End
@@ -149,16 +149,16 @@ _01C7:
     GoToIfSet 162, _020B
     Message 10
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0254
-    GoToIfEq 0x800C, 1, _0249
+    GoToIfEq 0x800C, MENU_YES, _0254
+    GoToIfEq 0x800C, MENU_NO, _0249
     End
 
 _020B:
     BufferItemName 0, 0x8004
     Message 12
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0233
-    GoToIfEq 0x800C, 1, _023E
+    GoToIfEq 0x800C, MENU_YES, _0233
+    GoToIfEq 0x800C, MENU_NO, _023E
     End
 
 _0233:

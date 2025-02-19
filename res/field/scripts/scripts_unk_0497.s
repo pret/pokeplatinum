@@ -92,7 +92,7 @@ _012B:
     Message 5
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfNe 0x800C, 0, _0174
+    GoToIfNe 0x800C, MENU_YES, _0174
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1

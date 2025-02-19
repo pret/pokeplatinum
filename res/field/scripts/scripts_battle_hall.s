@@ -113,8 +113,8 @@ _019C:
 
 _01A6:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, 0, _025D
-    CallIfEq 0x4000, 1, _0265
+    CallIfEq 0x4000, GENDER_MALE, _025D
+    CallIfEq 0x4000, GENDER_FEMALE, _0265
     Call _01DF
     ScrCmd_238 14, 0x4000
     CallIfEq 0x4000, 0, _0196
@@ -129,8 +129,8 @@ _01DF:
 
 _0215:
     GetPlayerGender 0x4009
-    GoToIfEq 0x4009, 0, _0235
-    GoToIfEq 0x4009, 1, _023D
+    GoToIfEq 0x4009, GENDER_MALE, _0235
+    GoToIfEq 0x4009, GENDER_FEMALE, _023D
     Return
 
 _0235:
@@ -325,7 +325,7 @@ _054A:
 _058E:
     Message 31
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _054A
+    GoToIfEq 0x800C, MENU_NO, _054A
     CloseMessage
     ScrCmd_0F2 30, 0, 0, 0x800C
     GoToIfEq 0x800C, 1, _05D0
@@ -345,7 +345,7 @@ _05D8:
 _05E2:
     Message 31
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _054A
+    GoToIfEq 0x800C, MENU_NO, _054A
     CloseMessage
     ScrCmd_0F3 30, 0, 0, 0x800C
     GoToIfEq 0x800C, 1, _0624
@@ -804,7 +804,7 @@ _0AEE:
     LockAll
     FacePlayer
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0C22
+    GoToIfEq 0x800C, GENDER_MALE, _0C22
     GoTo _0B0F
     End
 
@@ -880,7 +880,7 @@ _0C01:
     LockAll
     FacePlayer
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 1, _0B0F
+    GoToIfEq 0x800C, GENDER_FEMALE, _0B0F
     GoTo _0C22
     End
 

@@ -36,17 +36,17 @@ _0077:
     GoToIfSet 209, _00F4
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0101
+    GoToIfEq 0x800C, MENU_NO, _0101
     ScrCmd_04C 0x1E4, 0
     Message 1
     ScrCmd_04D
     CloseMessage
     StartLegendaryBattle SPECIES_PALKIA, 70
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00E8
+    GoToIfEq 0x800C, FALSE, _00E8
     SetVar 0x40C5, 1
     CheckDidNotCapture 0x800C
-    CallIfEq 0x800C, 0, _00EE
+    CallIfEq 0x800C, FALSE, _00EE
     ReleaseAll
     End
 

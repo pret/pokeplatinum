@@ -63,7 +63,7 @@ _00BB:
     StartTrainerBattle TRAINER_LEADER_FANTINA
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0248
+    GoToIfEq 0x800C, FALSE, _0248
     Message 1
     BufferPlayerName 0
     Message 2

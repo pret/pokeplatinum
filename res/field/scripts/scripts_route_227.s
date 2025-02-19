@@ -241,8 +241,8 @@ _0212:
     BufferPlayerName 0
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0243
-    GoToIfEq 0x800C, 1, _0238
+    GoToIfEq 0x800C, MENU_YES, _0243
+    GoToIfEq 0x800C, MENU_NO, _0238
     End
 
 _0238:

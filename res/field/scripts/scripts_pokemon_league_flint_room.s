@@ -19,7 +19,7 @@ _000A:
     CallIfUnset 214, _00A0
     CallIfSet 214, _00A8
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00CC
+    GoToIfEq 0x800C, FALSE, _00CC
     SetFlag 178
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     RemoveObject 1

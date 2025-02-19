@@ -43,7 +43,7 @@ _0055:
     GoToIfEq 0x8000, 0, _04AB
     Message 2
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _03E7
+    GoToIfEq 0x800C, MENU_NO, _03E7
     GoToIfEq 0x8000, 1, _03BC
     SetVar 0x8001, 0
     CheckItem ITEM_OLD_AMBER, 1, 0x800C
@@ -236,8 +236,8 @@ _03F2:
     SetVar 0x40B4, 0
     Message 9
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0459
-    GoToIfEq 0x800C, 1, _049A
+    GoToIfEq 0x800C, MENU_YES, _0459
+    GoToIfEq 0x800C, MENU_NO, _049A
     End
 
 _0459:

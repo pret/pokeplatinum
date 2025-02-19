@@ -28,7 +28,7 @@ _0037:
     ScrCmd_1BD 0x8004
     Message 0
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _005D
+    GoToIfEq 0x800C, MENU_YES, _005D
     GoTo _009D
 
 _005D:

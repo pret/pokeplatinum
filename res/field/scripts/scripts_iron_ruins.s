@@ -47,9 +47,9 @@ _00AE:
     CloseMessage
     StartLegendaryBattle SPECIES_REGISTEEL, 30
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0109
+    GoToIfEq 0x800C, FALSE, _0109
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _00F8
+    GoToIfEq 0x800C, TRUE, _00F8
     SetVar 0x4069, 0x122
     ReleaseAll
     End

@@ -52,8 +52,8 @@
 _00B2:
     ScrCmd_2F0
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, 0, _01EF
-    CallIfEq 0x4000, 1, _01F7
+    CallIfEq 0x4000, GENDER_MALE, _01EF
+    CallIfEq 0x4000, GENDER_FEMALE, _01F7
     GoToIfSet 0x9AC, _01ED
     SetFlag 0x2A7
     SetFlag 0x2A8
@@ -219,32 +219,32 @@ _030C:
 
 _0360:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, 0, _0400
-    CallIfEq 0x4000, 1, _0405
+    CallIfEq 0x4000, GENDER_MALE, _0400
+    CallIfEq 0x4000, GENDER_FEMALE, _0405
     Return
 
 _0380:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, 0, _040A
-    CallIfEq 0x4000, 1, _040F
+    CallIfEq 0x4000, GENDER_MALE, _040A
+    CallIfEq 0x4000, GENDER_FEMALE, _040F
     Return
 
 _03A0:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, 0, _0414
-    CallIfEq 0x4000, 1, _0419
+    CallIfEq 0x4000, GENDER_MALE, _0414
+    CallIfEq 0x4000, GENDER_FEMALE, _0419
     Return
 
 _03C0:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, 0, _041E
-    CallIfEq 0x4000, 1, _0423
+    CallIfEq 0x4000, GENDER_MALE, _041E
+    CallIfEq 0x4000, GENDER_FEMALE, _0423
     Return
 
 _03E0:
     GetPlayerGender 0x4000
-    CallIfEq 0x4000, 0, _0428
-    CallIfEq 0x4000, 1, _042D
+    CallIfEq 0x4000, GENDER_MALE, _0428
+    CallIfEq 0x4000, GENDER_FEMALE, _042D
     Return
 
 _0400:
@@ -1327,8 +1327,8 @@ _12BF:
     BufferRivalName 0
     BufferPlayerName 1
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _12FC
-    GoToIfEq 0x800C, 1, _1307
+    GoToIfEq 0x800C, GENDER_MALE, _12FC
+    GoToIfEq 0x800C, GENDER_FEMALE, _1307
     End
 
 _12FC:
@@ -1616,7 +1616,7 @@ _1667:
     GoToIfEq 0x8003, 0, _18C8
     Message 121
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _18DE
+    GoToIfEq 0x800C, MENU_NO, _18DE
     CallIfEq 0x8002, 0, _1FB1
     CallIfEq 0x8002, 1, _1FBB
     CallIfEq 0x8002, 2, _1FC5

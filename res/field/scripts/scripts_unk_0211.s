@@ -88,8 +88,8 @@ _00EE:
 _0141:
     MessageVar 0x8004
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _0172
-    GoToIfEq 0x800C, 1, _0165
+    GoToIfEq 0x800C, MENU_YES, _0172
+    GoToIfEq 0x800C, MENU_NO, _0165
     End
 
 _0165:
@@ -186,7 +186,7 @@ _027A:
     BufferPlayerName 0
     Message 5
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _02D4
+    GoToIfEq 0x800C, MENU_YES, _02D4
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -198,7 +198,7 @@ _02B0:
     BufferPlayerName 0
     Message 6
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 0, _02D4
+    GoToIfEq 0x800C, MENU_YES, _02D4
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -257,14 +257,14 @@ _034C:
 _0356:
     GetItemPocket 0x8004, 0x800C
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 7, _03D8
-    GoToIfEq 0x8008, 0, _03CC
-    GoToIfEq 0x8008, 4, _03CC
-    GoToIfEq 0x8008, 1, _03CC
-    GoToIfEq 0x8008, 2, _03CC
-    GoToIfEq 0x8008, 6, _03CC
-    GoToIfEq 0x8008, 5, _03DE
-    GoToIfEq 0x8008, 3, _03D2
+    GoToIfEq 0x8008, POCKET_KEY_ITEMS, _03D8
+    GoToIfEq 0x8008, POCKET_ITEMS, _03CC
+    GoToIfEq 0x8008, POCKET_BERRIES, _03CC
+    GoToIfEq 0x8008, POCKET_MEDICINE, _03CC
+    GoToIfEq 0x8008, POCKET_BALLS, _03CC
+    GoToIfEq 0x8008, POCKET_BATTLE_ITEMS, _03CC
+    GoToIfEq 0x8008, POCKET_MAIL, _03DE
+    GoToIfEq 0x8008, POCKET_TMHMS, _03D2
     End
 
 _03CC:
@@ -352,7 +352,7 @@ _04A8:
     ScrCmd_2C1
     Message 13
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, SAVE_TYPE_NO_DATA_EXISTS, _05A0
+    GoToIfEq 0x800C, MENU_NO, _05A0
     CheckSaveType 0x800C
     GoToIfEq 0x800C, SAVE_TYPE_NO_DATA_EXISTS, _051D
     GoToIfEq 0x800C, SAVE_TYPE_FULL_SAVE, _0509
@@ -368,7 +368,7 @@ _04FC:
 _0509:
     Message 14
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _05A0
+    GoToIfEq 0x800C, MENU_NO, _05A0
 _051D:
     Message 21
     GoTo _0552
@@ -376,7 +376,7 @@ _051D:
 _0526:
     Message 14
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _05A0
+    GoToIfEq 0x800C, MENU_NO, _05A0
     GoToIfUnset 31, _05C6
     GoToIfSet 31, _05D1
     End
@@ -515,7 +515,7 @@ _06BB:
     Message 50
     ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _06D5
+    GoToIfEq 0x800C, MENU_YES, _06D5
     ReleaseAll
     End
 
@@ -534,7 +534,7 @@ _06F4:
     IncrementGameRecord RECORD_UNK_117
     StartHoneyTreeBattle
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0713
+    GoToIfEq 0x800C, FALSE, _0713
     ScrCmd_12A
     GoTo _06A2
 
@@ -790,8 +790,8 @@ _09FF:
     Call _0356
     AddItem 0x8004, 0x8005, 0x800C
     GetItemPocket 0x8004, 0x800C
-    CallIfEq 0x800C, 7, _0A71
-    CallIfNe 0x800C, 7, _0A82
+    CallIfEq 0x800C, POCKET_KEY_ITEMS, _0A71
+    CallIfNe 0x800C, POCKET_KEY_ITEMS, _0A82
     Message 30
     WaitABXPadPress
     Return
@@ -805,8 +805,8 @@ _0A3E:
     Call _0356
     AddItem 0x8004, 0x8005, 0x800C
     GetItemPocket 0x8004, 0x800C
-    CallIfEq 0x800C, 7, _0A71
-    CallIfNe 0x800C, 7, _0A82
+    CallIfEq 0x800C, POCKET_KEY_ITEMS, _0A71
+    CallIfNe 0x800C, POCKET_KEY_ITEMS, _0A82
     Message 126
     Return
 
@@ -841,14 +841,14 @@ _0AD8:
 _0ADD:
     GetItemPocket 0x8004, 0x800C
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 7, _0B64
-    GoToIfEq 0x8008, 0, _0B53
-    GoToIfEq 0x8008, 4, _0BA8
-    GoToIfEq 0x8008, 1, _0B97
-    GoToIfEq 0x8008, 2, _0BB9
-    GoToIfEq 0x8008, 6, _0B75
-    GoToIfEq 0x8008, 5, _0B86
-    GoToIfEq 0x8008, 3, _0BCA
+    GoToIfEq 0x8008, POCKET_KEY_ITEMS, _0B64
+    GoToIfEq 0x8008, POCKET_ITEMS, _0B53
+    GoToIfEq 0x8008, POCKET_BERRIES, _0BA8
+    GoToIfEq 0x8008, POCKET_MEDICINE, _0B97
+    GoToIfEq 0x8008, POCKET_BALLS, _0BB9
+    GoToIfEq 0x8008, POCKET_BATTLE_ITEMS, _0B75
+    GoToIfEq 0x8008, POCKET_MAIL, _0B86
+    GoToIfEq 0x8008, POCKET_TMHMS, _0BCA
     End
 
 _0B53:
@@ -1429,11 +1429,11 @@ _12F3:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     CheckPlayerOnBike 0x800C
-    GoToIfEq 0x800C, 1, _133C
+    GoToIfEq 0x800C, TRUE, _133C
     Message 73
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _1359
-    SetPlayerBike 1
+    GoToIfEq 0x800C, MENU_NO, _1359
+    SetPlayerBike TRUE
     CloseMessage
     ReleaseAll
     End
@@ -1441,8 +1441,8 @@ _12F3:
 _133C:
     Message 74
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _1359
-    SetPlayerBike 0
+    GoToIfEq 0x800C, MENU_NO, _1359
+    SetPlayerBike FALSE
     CloseMessage
     ReleaseAll
     End
@@ -1576,7 +1576,7 @@ _14AC:
     BufferPlayerName 0
     Message 122
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _157B
+    GoToIfEq 0x800C, MENU_NO, _157B
     BufferPlayerName 0
     Message 123
     CloseMessage
@@ -1610,8 +1610,8 @@ _157B:
 _1581:
     StopMusic 0
     GetPlayerGender 0x800C
-    CallIfEq 0x800C, 0, _15A7
-    CallIfEq 0x800C, 1, _15AD
+    CallIfEq 0x800C, GENDER_MALE, _15A7
+    CallIfEq 0x800C, GENDER_FEMALE, _15AD
     ReturnCommonScript
     End
 

@@ -23,7 +23,7 @@ _001D:
     FacePlayer
     Message 1
     ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, 1, _0044
+    GoToIfEq 0x800C, MENU_NO, _0044
     Message 2
     GoTo _004F
     End

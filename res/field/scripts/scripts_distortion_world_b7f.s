@@ -57,7 +57,7 @@ _0096:
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _01CE
+    GoToIfEq 0x800C, FALSE, _01CE
     SetVar 0x4055, 10
     Message 6
     CloseMessage
