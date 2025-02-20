@@ -3,7 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/field/window.h"
+#include "constants/heap.h"
+#include "constants/map_object.h"
 #include "generated/game_records.h"
+#include "generated/text_banks.h"
 
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
@@ -57,294 +61,342 @@
 #include "unk_0209AC14.h"
 #include "vars_flags.h"
 
-static u8 ov7_0224CE90(FieldSystem *fieldSystem);
-static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
-static void ov7_0224D008(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224D018(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224D1EC(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224D21C(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224D388(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
-static void ov7_0224D3E8(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224D474(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224D620(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E950(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
-static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0);
+static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem);
+static u8 ov7_0224D250(FieldSystem *fieldSystem, ShopMenu *param1);
+static void ov7_0224D008(ShopMenu *param0);
+static void ov7_0224D018(ShopMenu *param0);
+static void ov7_0224D040(ShopMenu *param0);
+static u8 ov7_0224D1EC(ShopMenu *param0);
+static void ov7_0224D21C(ShopMenu *param0);
+static void ov7_0224D388(FieldSystem *fieldSystem, ShopMenu *param1);
+static void ov7_0224D3E8(ShopMenu *param0);
+static void ov7_0224D474(ShopMenu *param0);
+static u8 ov7_0224D620(ShopMenu *param0);
+static u8 ov7_0224DC84(ShopMenu *param0);
+static u8 ov7_0224E950(FieldSystem *fieldSystem, ShopMenu *param1);
+static void ov7_0224D6BC(ShopMenu *param0);
 static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2);
 static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2);
-static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1);
-static u8 ov7_0224DE94(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1);
-static void ov7_0224DED4(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E7C8(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E3A0(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224E5B0(UnkStruct_ov7_0224D008 *param0);
-static u8 ov7_0224EA2C(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224EA54(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
-static void ov7_0224EC20(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
+static void ov7_0224DAF8(ShopMenu *param0, u8 param1);
+static u8 ov7_0224DE94(ShopMenu *param0);
+static u8 ov7_0224DFB0(ShopMenu *param0);
+static void ov7_0224E28C(ShopMenu *param0, u8 param1);
+static void ov7_0224DED4(ShopMenu *param0);
+static u8 ov7_0224E6B8(ShopMenu *param0);
+static u8 ov7_0224E7C8(ShopMenu *param0);
+static u8 ov7_0224E3A0(ShopMenu *param0);
+static u8 ov7_0224E3D8(ShopMenu *param0);
+static u8 ov7_0224E5B0(ShopMenu *param0);
+static u8 ov7_0224EA2C(ShopMenu *param0);
+static void ov7_0224EA54(FieldSystem *fieldSystem, ShopMenu *param1);
+static void ov7_0224EC20(FieldSystem *fieldSystem, ShopMenu *param1);
 static void ov7_0224EC38(FieldTask *param0);
-static u8 ov7_0224EC9C(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1);
-static void ov7_0224EAD0(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224EB14(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224EB38(UnkStruct_ov7_0224D008 *param0, u8 param1);
-static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1);
-static void ov7_0224EC10(UnkStruct_ov7_0224D008 *param0, u8 param1);
-static u8 ov7_0224E098(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224E834(UnkStruct_ov7_0224D008 *param0, u16 param1, u16 param2);
-static u32 ov7_0224E890(UnkStruct_ov7_0224D008 *param0, u16 param1);
-static u16 ov7_0224E8CC(UnkStruct_ov7_0224D008 *param0, u16 param1);
-static u32 ov7_0224E8F4(UnkStruct_ov7_0224D008 *param0);
-static void ov7_0224E920(UnkStruct_ov7_0224D008 *param0, u32 param1);
+static u8 ov7_0224EC9C(FieldSystem *fieldSystem, ShopMenu *param1);
+static void ov7_0224EAD0(ShopMenu *param0);
+static void ov7_0224EB14(ShopMenu *param0);
+static void ov7_0224EB38(ShopMenu *param0, u8 param1);
+static void ov7_0224EB7C(ShopMenu *param0, u16 param1);
+static void ov7_0224EC10(ShopMenu *param0, u8 param1);
+static u8 ov7_0224E098(ShopMenu *param0);
+static void ov7_0224E834(ShopMenu *param0, u16 param1, u16 param2);
+static u32 ov7_0224E890(ShopMenu *param0, u16 param1);
+static u16 ov7_0224E8CC(ShopMenu *param0, u16 param1);
+static u32 ov7_0224E8F4(ShopMenu *param0);
+static void ov7_0224E920(ShopMenu *param0, u32 param1);
 
-static const WindowTemplate Unk_ov7_0224F328[] = {
-    { 0x2, 0xC, 0x2, 0x13, 0xE, 0xD, 0x1 },
-    { 0x2, 0x5, 0x12, 0x1B, 0x6, 0xD, 0x10B },
-    { 0x3, 0x1, 0x1, 0x9, 0x4, 0xD, 0x28 },
-    { 0x3, 0x13, 0xD, 0xC, 0x4, 0xD, 0x4C },
-    { 0x3, 0x1, 0xF, 0xE, 0x2, 0xD, 0x7C },
-    { 0x3, 0x2, 0x13, 0x1B, 0x4, 0xC, 0x98 }
+static const WindowTemplate sShop_DefaultWindowTemplates[] = {
+    [SHOP_WINDOW_ITEM_LIST] = {
+        .bgLayer = BG_LAYER_MAIN_2,
+        .tilemapLeft = 12,
+        .tilemapTop = 2,
+        .width = 19,
+        .height = 14,
+        .palette = FIELD_MESSAGE_PALETTE_INDEX,
+        .baseTile = 0x1,
+    },
+    [SHOP_WINDOW_ITEM_DESCRIPTION] = {
+        .bgLayer = BG_LAYER_MAIN_2,
+        .tilemapLeft = 5,
+        .tilemapTop = 18,
+        .width = 27,
+        .height = 6,
+        .palette = FIELD_MESSAGE_PALETTE_INDEX,
+        .baseTile = 0x10B,
+    },
+    [SHOP_WINDOW_CURRENT_MONEY] = {
+        .bgLayer = BG_LAYER_MAIN_3,
+        .tilemapLeft = 1,
+        .tilemapTop = 1,
+        .width = 9,
+        .height = 4,
+        .palette = FIELD_MESSAGE_PALETTE_INDEX,
+        .baseTile = 0x28,
+    },
+    [SHOP_WINDOW_QUANTITY_TOTAL_PRICE] = {
+        .bgLayer = BG_LAYER_MAIN_3,
+        .tilemapLeft = 19,
+        .tilemapTop = 13,
+        .width = 12,
+        .height = 4,
+        .palette = FIELD_MESSAGE_PALETTE_INDEX,
+        .baseTile = 0x4C,
+    },
+    [SHOP_WINDOW_ITEMS_IN_BAG] = {
+        .bgLayer = BG_LAYER_MAIN_3,
+        .tilemapLeft = 1,
+        .tilemapTop = 15,
+        .width = 14,
+        .height = 2,
+        .palette = FIELD_MESSAGE_PALETTE_INDEX,
+        .baseTile = 0x7C,
+    },
+    [SHOP_WINDOW_MESSAGE] = {
+        .bgLayer = BG_LAYER_MAIN_3,
+        .tilemapLeft = 2,
+        .tilemapTop = 19,
+        .width = 27,
+        .height = 4,
+        .palette = 12,
+        .baseTile = 0x98,
+    },
 };
 
-static const WindowTemplate Unk_ov7_0224F2BC = {
-    0x2,
-    0x1,
-    0x12,
-    0x1B,
-    0x6,
-    0xD,
-    0x10B
+static const WindowTemplate sShop_NormalItemDescWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_2,
+    .tilemapLeft = 1,
+    .tilemapTop = 18,
+    .width = 27,
+    .height = 6,
+    .palette = FIELD_MESSAGE_PALETTE_INDEX,
+    .baseTile = 0x10B
 };
 
-static const WindowTemplate Unk_ov7_0224F2CC = {
-    0x3,
-    0x17,
-    0xD,
-    0x7,
-    0x4,
-    0xD,
-    0x104
+static const WindowTemplate sShop_YesNoChoiceWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_3,
+    .tilemapLeft = 23,
+    .tilemapTop = 13,
+    .width = 7,
+    .height = 4,
+    .palette = FIELD_MESSAGE_PALETTE_INDEX,
+    .baseTile = 0x104
 };
 
 static const u8 Unk_ov7_0224F49C[] = {
-    0x0,
-    0x1,
-    0x2,
-    0x3,
-    0x4,
-    0x5,
-    0x6,
-    0x7,
-    0xff
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    -1
 };
 
-static const WindowTemplate Unk_ov7_0224F2C4 = {
-    0x3,
-    0x1,
-    0x1,
-    0x9,
-    0x2,
-    0xD,
-    0x28
+static const WindowTemplate sShop_FrontierCurrMoneyWindowTemplate = {
+    .bgLayer = BG_LAYER_MAIN_3,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 9,
+    .height = 2,
+    .palette = FIELD_MESSAGE_PALETTE_INDEX,
+    .baseTile = 0x28
 };
 
-static void ov7_0224CD28(UnkStruct_ov7_0224D008 *param0, u16 *param1)
+static void Shop_SetItemsForSale(ShopMenu *shopMenu, u16 *itemsPtr)
 {
-    u16 v0;
+    u16 i;
 
-    for (v0 = 0; v0 < 256; v0++) {
-        if (param1[v0] == 0xffff) {
+    for (i = 0; i < MAX_SHOP_ITEMS; i++) {
+        if (itemsPtr[i] == ITEM_RETURN_ID) {
             break;
         }
     }
 
-    param0->unk_294 = v0;
-    param0->unk_290 = Heap_AllocFromHeap(11, param0->unk_294 * 2);
+    shopMenu->itemsCount = i;
+    shopMenu->itemsPtr = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, shopMenu->itemsCount * sizeof(u16));
 
-    for (v0 = 0; v0 < param0->unk_294; v0++) {
-        param0->unk_290[v0] = param1[v0];
+    for (i = 0; i < shopMenu->itemsCount; i++) {
+        shopMenu->itemsPtr[i] = itemsPtr[i];
     }
 }
 
-static UnkStruct_ov7_0224D008 *ov7_0224CD88(void)
+static ShopMenu *Shop_Alloc(void)
 {
-    UnkStruct_ov7_0224D008 *v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov7_0224D008));
+    ShopMenu *shopMenu = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ShopMenu));
 
-    memset(v0, 0, sizeof(UnkStruct_ov7_0224D008));
-    return v0;
+    memset(shopMenu, 0, sizeof(ShopMenu));
+    return shopMenu;
 }
 
-void ov7_0224CDA4(FieldTask *param0, FieldSystem *fieldSystem, u16 *param2, u8 param3, BOOL param4)
+void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incDeptStoreBuyCount)
 {
-    UnkStruct_ov7_0224D008 *v0 = ov7_0224CD88();
+    ShopMenu *shopMenu = Shop_Alloc();
 
-    v0->unk_00 = fieldSystem->bgConfig;
+    shopMenu->bgConfig = fieldSystem->bgConfig;
 
-    v0->unk_298 = Strbuf_Init((24 * 2 * 2), 11);
-    v0->unk_270 = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    v0->unk_278 = SaveData_Options(fieldSystem->saveData);
-    v0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
-    v0->unk_288 = SaveData_GetVarsFlags(fieldSystem->saveData);
-    v0->unk_28C = param4;
-    v0->unk_2A6 = ov7_0224CE90(fieldSystem);
-    v0->unk_27C = fieldSystem->journalEntry;
-    v0->unk_2A9 = param3;
-    v0->unk_284 = fieldSystem->saveData;
-    v0->unk_2B4 = sub_0200C440(1, 2, 0, 11);
+    shopMenu->strbuf = Strbuf_Init((24 * 2 * 2), HEAP_ID_FIELDMAP);
+    shopMenu->trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    shopMenu->options = SaveData_Options(fieldSystem->saveData);
+    shopMenu->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    shopMenu->varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+    shopMenu->incDeptStoreBuyCount = incDeptStoreBuyCount;
+    shopMenu->cameraPosDest = Shop_GetCameraPosDest(fieldSystem);
+    shopMenu->journalEntry = fieldSystem->journalEntry;
+    shopMenu->martType = martType;
+    shopMenu->saveData = fieldSystem->saveData;
+    shopMenu->unk_2B4 = sub_0200C440(1, 2, 0, 11);
 
-    if (v0->unk_2A9 == 0) {
-        v0->unk_274 = SaveData_GetBag(fieldSystem->saveData);
-    } else if (v0->unk_2A9 == 3) {
-        v0->unk_274 = SaveData_GetBag(fieldSystem->saveData);
-    } else if (v0->unk_2A9 == 1) {
-        v0->unk_274 = sub_020298B0(fieldSystem->saveData);
+    if (shopMenu->martType == MART_TYPE_NORMAL) {
+        shopMenu->destInventory = SaveData_GetBag(fieldSystem->saveData);
+    } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
+        shopMenu->destInventory = SaveData_GetBag(fieldSystem->saveData);
+    } else if (shopMenu->martType == MART_TYPE_DECOR) {
+        shopMenu->destInventory = sub_020298B0(fieldSystem->saveData);
     } else {
-        v0->unk_274 = sub_0202CA1C(fieldSystem->saveData);
+        shopMenu->destInventory = sub_0202CA1C(fieldSystem->saveData);
     }
 
-    ov7_0224CD28(v0, param2);
-    FieldTask_InitCall(param0, ov7_0224CEAC, v0);
+    Shop_SetItemsForSale(shopMenu, shopItems);
+    FieldTask_InitCall(task, FieldTask_InitShop, shopMenu);
 }
 
-static u8 ov7_0224CE90(FieldSystem *fieldSystem)
+static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem)
 {
-    int v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int dir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    if ((v0 == 0) || (v0 == 1) || (v0 == 3)) {
+    if ((dir == DIR_NORTH) || (dir == DIR_SOUTH) || (dir == DIR_EAST)) {
         return 10;
     }
 
     return 8;
 }
 
-BOOL ov7_0224CEAC(FieldTask *param0)
+BOOL FieldTask_InitShop(FieldTask *task)
 {
     FieldSystem *fieldSystem;
-    UnkStruct_ov7_0224D008 *v1;
+    ShopMenu *shopMenu;
 
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetEnv(param0);
+    fieldSystem = FieldTask_GetFieldSystem(task);
+    shopMenu = FieldTask_GetEnv(task);
 
-    switch (v1->unk_297) {
+    switch (shopMenu->state) {
     case 0:
-        ov7_0224D008(v1);
-        v1->unk_297 = 1;
+        ov7_0224D008(shopMenu);
+        shopMenu->state = 1;
         break;
     case 1:
-        v1->unk_297 = ov7_0224D1EC(v1);
+        shopMenu->state = ov7_0224D1EC(shopMenu);
         break;
     case 2:
-        ov7_0224D388(fieldSystem, v1);
-        v1->unk_297 = 3;
+        ov7_0224D388(fieldSystem, shopMenu);
+        shopMenu->state = 3;
         break;
     case 3:
-        v1->unk_297 = ov7_0224D620(v1);
+        shopMenu->state = ov7_0224D620(shopMenu);
         break;
     case 4:
-        v1->unk_297 = ov7_0224DC84(v1);
+        shopMenu->state = ov7_0224DC84(shopMenu);
         break;
     case 5:
-        v1->unk_297 = ov7_0224DE94(v1);
+        shopMenu->state = ov7_0224DE94(shopMenu);
         break;
     case 6:
-        v1->unk_297 = ov7_0224DFB0(v1);
+        shopMenu->state = ov7_0224DFB0(shopMenu);
         break;
     case 7:
-        v1->unk_297 = ov7_0224E3A0(v1);
+        shopMenu->state = ov7_0224E3A0(shopMenu);
         break;
     case 8:
-        v1->unk_297 = ov7_0224E3D8(v1);
+        shopMenu->state = ov7_0224E3D8(shopMenu);
         break;
     case 9:
-        v1->unk_297 = ov7_0224E5B0(v1);
+        shopMenu->state = ov7_0224E5B0(shopMenu);
         break;
     case 10:
-        v1->unk_297 = ov7_0224E6B8(v1);
+        shopMenu->state = ov7_0224E6B8(shopMenu);
         break;
     case 11:
-        v1->unk_297 = ov7_0224E7C8(v1);
+        shopMenu->state = ov7_0224E7C8(shopMenu);
         break;
     case 12:
-        v1->unk_297 = ov7_0224E950(fieldSystem, v1);
+        shopMenu->state = ov7_0224E950(fieldSystem, shopMenu);
         break;
     case 13:
-        v1->unk_297 = ov7_0224EA2C(v1);
+        shopMenu->state = ov7_0224EA2C(shopMenu);
         break;
     case 14:
-        ov7_0224EC20(fieldSystem, v1);
+        ov7_0224EC20(fieldSystem, shopMenu);
         break;
     case 15:
-        ov7_0224EC38(param0);
+        ov7_0224EC38(task);
         break;
     case 16:
     case 17:
         break;
     case 18:
-        v1->unk_297 = ov7_0224EC9C(fieldSystem, v1);
+        shopMenu->state = ov7_0224EC9C(fieldSystem, shopMenu);
         break;
     case 19:
-        ov7_0224EA54(fieldSystem, v1);
-        v1->unk_297 = 20;
+        ov7_0224EA54(fieldSystem, shopMenu);
+        shopMenu->state = 20;
         break;
     case 20:
-        return ov7_0224D250(fieldSystem, v1);
+        return ov7_0224D250(fieldSystem, shopMenu);
     }
 
-    if ((v1->unk_297 >= 4) && (v1->unk_297 <= 11)) {
-        Sprite_UpdateAnim(v1->unk_25C[0], FX32_ONE);
-        Sprite_UpdateAnim(v1->unk_25C[1], FX32_ONE);
-        SpriteList_Update(v1->unk_94.unk_00);
+    if ((shopMenu->state >= 4) && (shopMenu->state <= 11)) {
+        Sprite_UpdateAnim(shopMenu->sprites[0], FX32_ONE);
+        Sprite_UpdateAnim(shopMenu->sprites[1], FX32_ONE);
+        SpriteList_Update(shopMenu->unk_94.unk_00);
     }
 
     return 0;
 }
 
-static void ov7_0224D008(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D008(ShopMenu *shopMenu)
 {
-    ov7_0224D018(param0);
-    ov7_0224D040(param0);
+    ov7_0224D018(shopMenu);
+    ov7_0224D040(shopMenu);
 }
 
-static void ov7_0224D018(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D018(ShopMenu *param0)
 {
-    param0->unk_88 = MessageLoader_Init(0, 26, 543, 11);
-    param0->unk_8C = StringTemplate_Default(11);
+    param0->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0543, HEAP_ID_FIELDMAP);
+    param0->strTemplate = StringTemplate_Default(HEAP_ID_FIELDMAP);
 }
 
-static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D040(ShopMenu *param0)
 {
     MenuTemplate v0;
     u8 v1;
 
-    if (param0->unk_2A9 == 0) {
+    if (param0->martType == MART_TYPE_NORMAL) {
         v1 = 3;
-        param0->unk_84 = StringList_New(v1, 11);
+        param0->optionsList = StringList_New(v1, HEAP_ID_FIELDMAP);
 
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 15, 2);
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 16, 14);
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 17, 0xfffffffe);
-        Window_Add(param0->unk_00, &param0->unk_08[0], 3, 1, 1, 13, 6, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
-    } else if (param0->unk_2A9 == 3) {
+        StringList_AddFromMessageBank(param0->optionsList, param0->msgLoader, 15, 2);
+        StringList_AddFromMessageBank(param0->optionsList, param0->msgLoader, 16, 14);
+        StringList_AddFromMessageBank(param0->optionsList, param0->msgLoader, 17, LIST_CANCEL);
+        Window_Add(param0->bgConfig, &param0->windows[0], 3, 1, 1, 13, 6, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
         v1 = 2;
-        param0->unk_84 = StringList_New(v1, 11);
+        param0->optionsList = StringList_New(v1, HEAP_ID_FIELDMAP);
 
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 29, 2);
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 30, 0xfffffffe);
-        Window_Add(param0->unk_00, &param0->unk_08[0], 3, 23, 13, 7, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
+        StringList_AddFromMessageBank(param0->optionsList, param0->msgLoader, 29, 2);
+        StringList_AddFromMessageBank(param0->optionsList, param0->msgLoader, 30, LIST_CANCEL);
+        Window_Add(param0->bgConfig, &param0->windows[0], 3, 23, 13, 7, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
     } else {
         v1 = 2;
-        param0->unk_84 = StringList_New(v1, 11);
+        param0->optionsList = StringList_New(v1, HEAP_ID_FIELDMAP);
 
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 15, 2);
-        StringList_AddFromMessageBank(param0->unk_84, param0->unk_88, 17, 0xfffffffe);
-        Window_Add(param0->unk_00, &param0->unk_08[0], 3, 1, 1, 13, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
+        StringList_AddFromMessageBank(param0->optionsList, param0->msgLoader, 15, 2);
+        StringList_AddFromMessageBank(param0->optionsList, param0->msgLoader, 17, LIST_CANCEL);
+        Window_Add(param0->bgConfig, &param0->windows[0], 3, 1, 1, 13, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (13 * 6)));
     }
 
-    v0.choices = param0->unk_84;
-    v0.window = &param0->unk_08[0];
+    v0.choices = param0->optionsList;
+    v0.window = &param0->windows[0];
     v0.fontID = FONT_SYSTEM;
     v0.xSize = 1;
     v0.ySize = v1;
@@ -352,76 +404,76 @@ static void ov7_0224D040(UnkStruct_ov7_0224D008 *param0)
     v0.suppressCursor = FALSE;
     v0.loopAround = FALSE;
 
-    LoadStandardWindowGraphics(param0->unk_00, 3, 1024 - (18 + 12) - 9, 11, 0, 11);
-    Window_DrawStandardFrame(&param0->unk_08[0], 1, 1024 - (18 + 12) - 9, 11);
+    LoadStandardWindowGraphics(param0->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELDMAP);
+    Window_DrawStandardFrame(&param0->windows[0], 1, 1024 - (18 + 12) - 9, 11);
 
-    param0->unk_80 = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, 11, PAD_BUTTON_B);
+    param0->yesNoChoice = Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, HEAP_ID_FIELDMAP, PAD_BUTTON_B);
 }
 
-static u8 ov7_0224D1EC(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224D1EC(ShopMenu *param0)
 {
-    u32 v0 = Menu_ProcessInput(param0->unk_80);
+    u32 input = Menu_ProcessInput(param0->yesNoChoice);
 
-    switch (v0) {
-    case 0xffffffff:
+    switch (input) {
+    case MENU_NOTHING_CHOSEN:
         break;
-    case 0xfffffffe:
+    case MENU_CANCELED:
         ov7_0224D21C(param0);
         return 19;
     default:
-        return (u8)v0;
+        return (u8)input;
     }
 
     return 1;
 }
 
-static void ov7_0224D21C(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D21C(ShopMenu *param0)
 {
-    Window_EraseStandardFrame(&param0->unk_08[0], 1);
-    Window_ClearAndCopyToVRAM(&param0->unk_08[0]);
-    Menu_Free(param0->unk_80, NULL);
-    StringList_Free(param0->unk_84);
-    Window_Remove(&param0->unk_08[0]);
+    Window_EraseStandardFrame(&param0->windows[0], 1);
+    Window_ClearAndCopyToVRAM(&param0->windows[0]);
+    Menu_Free(param0->yesNoChoice, NULL);
+    StringList_Free(param0->optionsList);
+    Window_Remove(&param0->windows[0]);
 }
 
-static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static u8 ov7_0224D250(FieldSystem *fieldSystem, ShopMenu *param1)
 {
-    if (FieldMessage_FinishedPrinting(param1->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param1->fieldMsgPrinterId) == 0) {
         return 0;
     }
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         void *journalEntryLocationEvent;
 
-        Window_EraseMessageBox(&param1->unk_08[1], 0);
-        Window_Remove(&param1->unk_08[1]);
-        MessageLoader_Free(param1->unk_88);
-        StringTemplate_Free(param1->unk_8C);
-        Strbuf_Free(param1->unk_298);
+        Window_EraseMessageBox(&param1->windows[1], 0);
+        Window_Remove(&param1->windows[1]);
+        MessageLoader_Free(param1->msgLoader);
+        StringTemplate_Free(param1->strTemplate);
+        Strbuf_Free(param1->strbuf);
 
-        if (param1->unk_2A9 == 0 && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != 101
+        if (param1->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != 101
             && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_NORTH_HOUSE
             && fieldSystem->location->mapId != MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE) {
-            if (param1->unk_2A7 != 0 && param1->unk_2A8 != 0) {
+            if (param1->itemPurchaseCount != 0 && param1->itemSoldCount != 0) {
                 journalEntryLocationEvent = JournalEntry_CreateEventBusinessAtMart(HEAP_ID_FIELDMAP);
-                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
-            } else if (param1->unk_2A7 > 1) {
+                JournalEntry_SaveData(param1->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
+            } else if (param1->itemPurchaseCount > 1) {
                 journalEntryLocationEvent = JournalEntry_CreateEventLotsOfShopping(HEAP_ID_FIELDMAP);
-                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
-            } else if (param1->unk_2A8 > 1) {
+                JournalEntry_SaveData(param1->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
+            } else if (param1->itemSoldCount > 1) {
                 journalEntryLocationEvent = JournalEntry_CreateEventSoldALot(HEAP_ID_FIELDMAP);
-                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
-            } else if (param1->unk_2A7 != 0) {
+                JournalEntry_SaveData(param1->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
+            } else if (param1->itemPurchaseCount != 0) {
                 journalEntryLocationEvent = JournalEntry_CreateEventShoppedAtMart(HEAP_ID_FIELDMAP);
-                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
-            } else if (param1->unk_2A8 != 0) {
+                JournalEntry_SaveData(param1->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
+            } else if (param1->itemSoldCount != 0) {
                 journalEntryLocationEvent = JournalEntry_CreateEventSoldALittle(HEAP_ID_FIELDMAP);
-                JournalEntry_SaveData(param1->unk_27C, journalEntryLocationEvent, JOURNAL_LOCATION);
+                JournalEntry_SaveData(param1->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
             }
         }
 
         sub_0200C560(param1->unk_2B4);
-        Heap_FreeToHeap(param1->unk_290);
+        Heap_FreeToHeap(param1->itemsPtr);
         Heap_FreeToHeap(param1);
 
         return 1;
@@ -430,85 +482,85 @@ static u8 ov7_0224D250(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
     return 0;
 }
 
-static void ov7_0224D388(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static void ov7_0224D388(FieldSystem *fieldSystem, ShopMenu *param1)
 {
-    Bg_FillTilemapRect(param1->unk_00, 3, 0, 2 - 2, 19 - 1, 27 + 5, 4 + 2, 0);
+    Bg_FillTilemapRect(param1->bgConfig, BG_LAYER_MAIN_3, 0, 0, 19 - 1, 27 + 5, 4 + 2, 0);
 
     ov7_0224D21C(param1);
     ov7_0224D3E8(param1);
 
-    param1->camera = Camera_Alloc(11);
+    param1->camera = Camera_Alloc(HEAP_ID_FIELDMAP);
 
     Camera_Copy(fieldSystem->camera, param1->camera);
     Camera_SetAsActive(param1->camera);
 
-    param1->unk_2A5 = 0;
+    param1->cameraPosCurr = 0;
 }
 
-static void ov7_0224D3E8(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D3E8(ShopMenu *param0)
 {
-    u32 v0;
+    u32 i;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if ((param0->unk_2A9 != 0) && (param0->unk_2A9 != 3) && (v0 == 1)) {
-            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[v0], &Unk_ov7_0224F2BC);
-        } else if ((param0->unk_2A9 == 3) && (v0 == 2)) {
-            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[v0], &Unk_ov7_0224F2C4);
+    for (i = 0; i < SHOP_WINDOW_MAX; i++) {
+        if ((param0->martType != MART_TYPE_NORMAL) && (param0->martType != 3) && (i == SHOP_WINDOW_ITEM_DESCRIPTION)) {
+            Window_AddFromTemplate(param0->bgConfig, &param0->windows[i], &sShop_NormalItemDescWindowTemplate);
+        } else if ((param0->martType == MART_TYPE_FRONTIER) && (i == SHOP_WINDOW_CURRENT_MONEY)) {
+            Window_AddFromTemplate(param0->bgConfig, &param0->windows[i], &sShop_FrontierCurrMoneyWindowTemplate);
         } else {
-            Window_AddFromTemplate(param0->unk_00, &param0->unk_08[v0], &Unk_ov7_0224F328[v0]);
+            Window_AddFromTemplate(param0->bgConfig, &param0->windows[i], &sShop_DefaultWindowTemplates[i]);
         }
     }
 }
 
-static void ov7_0224D44C(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D44C(ShopMenu *param0)
 {
     u32 v0;
 
-    Window_EraseStandardFrame(&param0->unk_08[2], 1);
+    Window_EraseStandardFrame(&param0->windows[2], 1);
 
     for (v0 = 0; v0 < 6; v0++) {
-        Window_ClearAndCopyToVRAM(&param0->unk_08[v0]);
-        Window_Remove(&param0->unk_08[v0]);
+        Window_ClearAndCopyToVRAM(&param0->windows[v0]);
+        Window_Remove(&param0->windows[v0]);
     }
 }
 
-static void ov7_0224D474(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D474(ShopMenu *param0)
 {
     NARC *v0;
 
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, 11);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, HEAP_ID_FIELDMAP);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->unk_00, 1, 0, 0, 0, 11);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 0, param0->bgConfig, 1, 0, 0, FALSE, HEAP_ID_FIELDMAP);
 
-    if ((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_00, 1, 0, 0, 0, 11);
+    if ((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) {
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->bgConfig, 1, 0, 0, FALSE, HEAP_ID_FIELDMAP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->unk_00, 1, 0, 0, 0, 11);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 3, param0->bgConfig, 1, 0, 0, FALSE, HEAP_ID_FIELDMAP);
     }
 
-    if (param0->unk_2A9 == 3) {
-        Graphics_LoadPaletteFromOpenNARC(v0, 11, 0, 0, 32, 11);
+    if (param0->martType == MART_TYPE_FRONTIER) {
+        Graphics_LoadPaletteFromOpenNARC(v0, 11, 0, 0, 32, HEAP_ID_FIELDMAP);
     } else {
-        Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 32, 11);
+        Graphics_LoadPaletteFromOpenNARC(v0, 1, 0, 0, 32, HEAP_ID_FIELDMAP);
     }
 
-    LoadStandardWindowGraphics(param0->unk_00, 3, (1 + (18 + 12)), 11, 0, 11);
-    LoadMessageBoxGraphics(param0->unk_00, 3, 1, 10, Options_Frame(param0->unk_278), 11);
+    LoadStandardWindowGraphics(param0->bgConfig, 3, (1 + (18 + 12)), 11, 0, HEAP_ID_FIELDMAP);
+    LoadMessageBoxGraphics(param0->bgConfig, 3, 1, 10, Options_Frame(param0->options), HEAP_ID_FIELDMAP);
     NARC_dtor(v0);
 }
 
-static void ov7_0224D548(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D548(ShopMenu *param0)
 {
-    param0->unk_2A0 = GXLayers_EngineAGetLayers();
-    param0->unk_29C[0] = Bg_GetPriority(param0->unk_00, 0);
-    param0->unk_29C[1] = Bg_GetPriority(param0->unk_00, 1);
-    param0->unk_29C[2] = Bg_GetPriority(param0->unk_00, 2);
-    param0->unk_29C[3] = Bg_GetPriority(param0->unk_00, 3);
+    param0->engineALayers = GXLayers_EngineAGetLayers();
+    param0->bgPriorities[BG_LAYER_MAIN_0] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_0);
+    param0->bgPriorities[BG_LAYER_MAIN_1] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_1);
+    param0->bgPriorities[BG_LAYER_MAIN_2] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_2);
+    param0->bgPriorities[BG_LAYER_MAIN_3] = Bg_GetPriority(param0->bgConfig, BG_LAYER_MAIN_3);
 
-    Bg_SetPriority(0, 3);
-    Bg_SetPriority(1, 2);
-    Bg_SetPriority(2, 1);
-    Bg_SetPriority(3, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 3);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_2, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_3, 0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -516,26 +568,26 @@ static void ov7_0224D548(UnkStruct_ov7_0224D008 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
-static void ov7_0224D5D8(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D5D8(ShopMenu *param0)
 {
-    Bg_SetPriority(0, param0->unk_29C[0]);
-    Bg_SetPriority(1, param0->unk_29C[1]);
-    Bg_SetPriority(2, param0->unk_29C[2]);
-    Bg_SetPriority(3, param0->unk_29C[3]);
-    GXLayers_EngineASetLayers(param0->unk_2A0);
+    Bg_SetPriority(BG_LAYER_MAIN_0, param0->bgPriorities[0]);
+    Bg_SetPriority(BG_LAYER_MAIN_1, param0->bgPriorities[1]);
+    Bg_SetPriority(BG_LAYER_MAIN_2, param0->bgPriorities[2]);
+    Bg_SetPriority(BG_LAYER_MAIN_3, param0->bgPriorities[3]);
+    GXLayers_EngineASetLayers(param0->engineALayers);
 }
 
-static u8 ov7_0224D620(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224D620(ShopMenu *param0)
 {
-    if (param0->unk_2A5 != param0->unk_2A6) {
+    if (param0->cameraPosCurr != param0->cameraPosDest) {
         VecFx32 v0 = { 8 * FX32_ONE, 0, 0 };
 
         Camera_Move(&v0, param0->camera);
-        param0->unk_2A5++;
+        param0->cameraPosCurr++;
         return 3;
     }
 
-    param0->unk_2A5 = 0;
+    param0->cameraPosCurr = 0;
     MI_CpuClear32((void *)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 
     ov7_0224EAD0(param0);
@@ -547,40 +599,40 @@ static u8 ov7_0224D620(UnkStruct_ov7_0224D008 *param0)
     return 4;
 }
 
-static const ListMenuTemplate Unk_ov7_0224F308 = {
-    NULL,
-    ov7_0224D85C,
-    ov7_0224D9B8,
-    NULL,
-    0x0,
-    0x7,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x1,
-    0x0,
-    0x2,
-    0x0,
-    0x10,
-    0x0,
-    0x0,
-    0x1,
-    NULL
+static const ListMenuTemplate sShop_ItemListMenuTemplate = {
+    .choices = NULL,
+    .cursorCallback = ov7_0224D85C,
+    .printCallback = ov7_0224D9B8,
+    .window = NULL,
+    .count = 0,
+    .maxDisplay = MAX_ITEM_SHOWN,
+    .headerXOffset = 0,
+    .textXOffset = 0,
+    .cursorXOffset = 0,
+    .yOffset = 0,
+    .textColorFg = 1,
+    .textColorBg = 0,
+    .textColorShadow = 2,
+    .letterSpacing = 0,
+    .lineSpacing = 0,
+    .pagerMode = PAGER_MODE_NONE,
+    .fontID = FONT_SYSTEM,
+    .cursorType = 1,
+    .parent = NULL,
 };
 
-static u32 ov7_0224D698(UnkStruct_ov7_0224D008 *param0, u16 param1)
+static u32 ov7_0224D698(ShopMenu *param0, u16 param1)
 {
-    if (param0->unk_2A9 == 1) {
-        return 1 + param1 - 1;
-    } else if (param0->unk_2A9 == 2) {
+    if (param0->martType == MART_TYPE_DECOR) {
+        return param1;
+    } else if (param0->martType == MART_TYPE_SEAL) {
         return (u32)sub_02098164((u8)param1);
     }
 
     return (u32)param1;
 }
 
-static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224D6BC(ShopMenu *param0)
 {
     MessageLoader *v0;
     Strbuf *v1;
@@ -590,46 +642,46 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
     MessageLoader *v5;
     BOOL v6 = 0;
 
-    if ((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) {
-        v0 = MessageLoader_Init(0, 26, 392, 11);
-        v5 = MessageLoader_Init(0, 26, 647, 11);
-    } else if (param0->unk_2A9 == 1) {
-        v0 = MessageLoader_Init(0, 26, 626, 11);
+    if ((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) {
+        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_ITEM_NAMES, HEAP_ID_FIELDMAP);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_FIELDMAP);
+    } else if (param0->martType == MART_TYPE_DECOR) {
+        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELDMAP);
     } else {
-        v0 = MessageLoader_Init(0, 26, 12, 11);
+        v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BALL_SEAL_NAMES, HEAP_ID_FIELDMAP);
     }
 
-    param0->unk_7C = StringList_New(param0->unk_294 + 1, 11);
+    param0->itemsList = StringList_New(param0->itemsCount + 1, HEAP_ID_FIELDMAP);
 
-    for (v3 = 0; v3 < param0->unk_294; v3++) {
-        v4 = ov7_0224D698(param0, param0->unk_290[v3]);
+    for (v3 = 0; v3 < param0->itemsCount; v3++) {
+        v4 = ov7_0224D698(param0, param0->itemsPtr[v3]);
 
         if ((v4 <= 420) && (v4 >= 328)) {
             v1 = MessageLoader_GetNewStrbuf(v5, Item_MoveForTMHM(v4));
-            StringList_AddFromStrbuf(param0->unk_7C, v1, param0->unk_290[v3]);
+            StringList_AddFromStrbuf(param0->itemsList, v1, param0->itemsPtr[v3]);
             Strbuf_Free(v1);
 
             v6 = 1;
         } else {
             v1 = MessageLoader_GetNewStrbuf(v0, v4);
-            StringList_AddFromStrbuf(param0->unk_7C, v1, param0->unk_290[v3]);
+            StringList_AddFromStrbuf(param0->itemsList, v1, param0->itemsPtr[v3]);
             Strbuf_Free(v1);
         }
     }
 
     if (v6) {
-        StringList_AddFromMessageBank(param0->unk_7C, param0->unk_88, 26, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->itemsList, param0->msgLoader, 26, LIST_CANCEL);
     } else {
-        StringList_AddFromMessageBank(param0->unk_7C, param0->unk_88, 8, 0xfffffffe);
+        StringList_AddFromMessageBank(param0->itemsList, param0->msgLoader, 8, LIST_CANCEL);
     }
 
     MessageLoader_Free(v0);
 
-    if ((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) {
+    if ((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) {
         MessageLoader_Free(v5);
     }
 
-    v2 = Unk_ov7_0224F308;
+    v2 = sShop_ItemListMenuTemplate;
 
     if ((v4 <= 420) && (v4 >= 328)) {
         v2.textXOffset = 35;
@@ -637,49 +689,49 @@ static void ov7_0224D6BC(UnkStruct_ov7_0224D008 *param0)
         v2.textXOffset = 0;
     }
 
-    v2.choices = param0->unk_7C;
-    v2.window = &param0->unk_08[0];
-    v2.count = param0->unk_294 + 1;
+    v2.choices = param0->itemsList;
+    v2.window = &param0->windows[0];
+    v2.count = param0->itemsCount + 1;
     v2.parent = (void *)param0;
 
-    param0->unk_78 = ListMenu_New(&v2, 0, 0, 11);
+    param0->menu = ListMenu_New(&v2, 0, 0, HEAP_ID_FIELDMAP);
 }
 
 static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov7_0224D008 *v0 = (UnkStruct_ov7_0224D008 *)ListMenu_GetAttribute(param0, 19);
+    ShopMenu *v0 = (ShopMenu *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 != 1) {
         Sound_PlayEffect(1592);
     }
 
-    Window_FillTilemap(&v0->unk_08[1], 0);
+    Window_FillTilemap(&v0->windows[1], 0);
 
     if (param1 != 0xfffffffe) {
         Strbuf *v1;
 
-        if (v0->unk_2A9 == 0) {
-            v1 = Strbuf_Init(130, 11);
-            Item_LoadDescription(v1, (u16)param1, 11);
-        } else if (v0->unk_2A9 == 3) {
-            v1 = Strbuf_Init(130, 11);
-            Item_LoadDescription(v1, (u16)param1, 11);
-        } else if (v0->unk_2A9 == 1) {
+        if (v0->martType == MART_TYPE_NORMAL) {
+            v1 = Strbuf_Init(130, HEAP_ID_FIELDMAP);
+            Item_LoadDescription(v1, (u16)param1, HEAP_ID_FIELDMAP);
+        } else if (v0->martType == MART_TYPE_FRONTIER) {
+            v1 = Strbuf_Init(130, HEAP_ID_FIELDMAP);
+            Item_LoadDescription(v1, (u16)param1, HEAP_ID_FIELDMAP);
+        } else if (v0->martType == MART_TYPE_DECOR) {
             MessageLoader *v2;
 
-            v2 = MessageLoader_Init(0, 26, 626, 11);
+            v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_GOODS, HEAP_ID_FIELDMAP);
             v1 = MessageLoader_GetNewStrbuf(v2, 139 + param1 - 1);
             MessageLoader_Free(v2);
         } else {
             MessageLoader *v3;
 
-            v3 = MessageLoader_Init(0, 26, 542, 11);
+            v3 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0542, HEAP_ID_FIELDMAP);
             v1 = MessageLoader_GetNewStrbuf(v3, sub_020981F4((u8)param1));
 
             MessageLoader_Free(v3);
         }
 
-        Text_AddPrinterWithParamsAndColor(&v0->unk_08[1], FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->windows[1], FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
         Strbuf_Free(v1);
 
         ov7_0224EB7C(v0, (u16)param1);
@@ -694,25 +746,25 @@ static void ov7_0224D85C(ListMenu *param0, u32 param1, u8 param2)
         ListMenu_GetListAndCursorPos(param0, &v5, &v6);
 
         if (v5 == 0) {
-            Sprite_SetDrawFlag(v0->unk_25C[0], 0);
+            Sprite_SetDrawFlag(v0->sprites[0], 0);
         } else {
-            Sprite_SetDrawFlag(v0->unk_25C[0], 1);
+            Sprite_SetDrawFlag(v0->sprites[0], 1);
         }
 
         v4 = ListMenu_GetAttribute(param0, 2);
 
         if ((v4 > 7) && (v4 > v5 + 7)) {
-            Sprite_SetDrawFlag(v0->unk_25C[1], 1);
+            Sprite_SetDrawFlag(v0->sprites[1], 1);
         } else {
-            Sprite_SetDrawFlag(v0->unk_25C[1], 0);
+            Sprite_SetDrawFlag(v0->sprites[1], 0);
         }
     }
-    Window_ScheduleCopyToVRAM(&v0->unk_08[1]);
+    Window_ScheduleCopyToVRAM(&v0->windows[1]);
 }
 
 static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2)
 {
-    UnkStruct_ov7_0224D008 *v0 = (UnkStruct_ov7_0224D008 *)ListMenu_GetAttribute(param0, 19);
+    ShopMenu *v0 = (ShopMenu *)ListMenu_GetAttribute(param0, 19);
 
     if (param1 != 0xfffffffe) {
         Strbuf *v1;
@@ -724,115 +776,115 @@ static void ov7_0224D9B8(ListMenu *param0, u32 param1, u8 param2)
         if ((v5 <= 420) && (v5 >= 328)) {
             v5 = v5 - 328 + 1;
 
-            sub_0200C648(v0->unk_2B4, 2, v5, 2, 2, &v0->unk_08[0], 0, param2 + 4);
+            sub_0200C648(v0->unk_2B4, 2, v5, 2, 2, &v0->windows[0], 0, param2 + 4);
         }
 
         v3 = ov7_0224E890(v0, (u16)param1);
-        v1 = Strbuf_Init(12, 11);
+        v1 = Strbuf_Init(12, HEAP_ID_FIELDMAP);
 
-        if (v0->unk_2A9 == 3) {
-            v2 = MessageLoader_GetNewStrbuf(v0->unk_88, 32);
+        if (v0->martType == MART_TYPE_FRONTIER) {
+            v2 = MessageLoader_GetNewStrbuf(v0->msgLoader, 32);
         } else {
-            v2 = MessageLoader_GetNewStrbuf(v0->unk_88, 9);
+            v2 = MessageLoader_GetNewStrbuf(v0->msgLoader, 9);
         }
 
-        StringTemplate_SetNumber(v0->unk_8C, 0, v3, 4, 1, 1);
-        StringTemplate_Format(v0->unk_8C, v1, v2);
+        StringTemplate_SetNumber(v0->strTemplate, 0, v3, 4, 1, 1);
+        StringTemplate_Format(v0->strTemplate, v1, v2);
 
         v4 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
 
-        Text_AddPrinterWithParamsAndColor(&v0->unk_08[0], FONT_SYSTEM, v1, (19 * 8) - v4, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Text_AddPrinterWithParamsAndColor(&v0->windows[0], FONT_SYSTEM, v1, (19 * 8) - v4, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         Strbuf_Free(v2);
         Strbuf_Free(v1);
     }
 
     if (param1 == 0xfffffffe) {
-        Strbuf *v6 = MessageLoader_GetNewStrbuf(v0->unk_88, 8);
+        Strbuf *v6 = MessageLoader_GetNewStrbuf(v0->msgLoader, 8);
 
-        Window_FillRectWithColor(&v0->unk_08[0], 15, 0, param2, 19 * 8, 16);
-        Text_AddPrinterWithParamsAndColor(&v0->unk_08[0], FONT_SYSTEM, v6, 0, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+        Window_FillRectWithColor(&v0->windows[0], 15, 0, param2, 19 * 8, 16);
+        Text_AddPrinterWithParamsAndColor(&v0->windows[0], FONT_SYSTEM, v6, 0, param2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
         Strbuf_Free(v6);
     }
 }
 
-static void ov7_0224DAF8(UnkStruct_ov7_0224D008 *param0, u8 param1)
+static void ov7_0224DAF8(ShopMenu *param0, u8 param1)
 {
     Strbuf *v0;
     Strbuf *v1;
     u32 v2;
     u32 v3;
 
-    if (param0->unk_2A9 == 3) {
+    if (param0->martType == MART_TYPE_FRONTIER) {
         if (param1 == 0) {
-            Window_FillTilemap(&param0->unk_08[2], 15);
+            Window_FillTilemap(&param0->windows[2], 15);
             Window_DrawStandardFrame(
-                &param0->unk_08[2], 1, (1 + (18 + 12)), 11);
+                &param0->windows[2], 1, (1 + (18 + 12)), 11);
         } else {
-            Window_FillRectWithColor(&param0->unk_08[2], 15, 0, 0, (9 * 8), 16);
+            Window_FillRectWithColor(&param0->windows[2], 15, 0, 0, (9 * 8), 16);
         }
 
-        v0 = Strbuf_Init(16, 11);
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 38);
+        v0 = Strbuf_Init(16, HEAP_ID_FIELDMAP);
+        v1 = MessageLoader_GetNewStrbuf(param0->msgLoader, 38);
         v2 = ov7_0224E8F4(param0);
 
-        StringTemplate_SetNumber(param0->unk_8C, 0, v2, 6, 1, 1);
-        StringTemplate_Format(param0->unk_8C, v0, v1);
+        StringTemplate_SetNumber(param0->strTemplate, 0, v2, 6, 1, 1);
+        StringTemplate_Format(param0->strTemplate, v0, v1);
 
         v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-        Text_AddPrinterWithParams(&param0->unk_08[2], FONT_SYSTEM, v0, (9 * 8) - v3 - 8, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(&param0->windows[2], FONT_SYSTEM, v0, (9 * 8) - v3 - 8, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     } else {
         if (param1 == 0) {
-            Window_FillTilemap(&param0->unk_08[2], 15);
-            Window_DrawStandardFrame(&param0->unk_08[2], 1, (1 + (18 + 12)), 11);
+            Window_FillTilemap(&param0->windows[2], 15);
+            Window_DrawStandardFrame(&param0->windows[2], 1, (1 + (18 + 12)), 11);
 
-            v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 18);
+            v1 = MessageLoader_GetNewStrbuf(param0->msgLoader, 18);
 
-            Text_AddPrinterWithParams(&param0->unk_08[2], FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+            Text_AddPrinterWithParams(&param0->windows[2], FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
             Strbuf_Free(v1);
         } else {
-            Window_FillRectWithColor(&param0->unk_08[2], 15, 0, 16, (9 * 8), 16);
+            Window_FillRectWithColor(&param0->windows[2], 15, 0, 16, (9 * 8), 16);
         }
 
-        v0 = Strbuf_Init(16, 11);
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 19);
+        v0 = Strbuf_Init(16, HEAP_ID_FIELDMAP);
+        v1 = MessageLoader_GetNewStrbuf(param0->msgLoader, 19);
         v2 = ov7_0224E8F4(param0);
 
-        StringTemplate_SetNumber(param0->unk_8C, 0, v2, 6, 1, 1);
-        StringTemplate_Format(param0->unk_8C, v0, v1);
+        StringTemplate_SetNumber(param0->strTemplate, 0, v2, 6, 1, 1);
+        StringTemplate_Format(param0->strTemplate, v0, v1);
 
         v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-        Text_AddPrinterWithParams(&param0->unk_08[2], FONT_SYSTEM, v0, (9 * 8) - v3, 16, TEXT_SPEED_NO_TRANSFER, NULL);
+        Text_AddPrinterWithParams(&param0->windows[2], FONT_SYSTEM, v0, (9 * 8) - v3, 16, TEXT_SPEED_NO_TRANSFER, NULL);
     }
 
     Strbuf_Free(v1);
     Strbuf_Free(v0);
-    Window_ScheduleCopyToVRAM(&param0->unk_08[2]);
+    Window_ScheduleCopyToVRAM(&param0->windows[2]);
 }
 
-static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224DC84(ShopMenu *param0)
 {
     u32 v0;
     u16 v1, v2;
 
-    ListMenu_GetListAndCursorPos(param0->unk_78, NULL, &v1);
-    v0 = ListMenu_ProcessInput(param0->unk_78);
-    ListMenu_GetListAndCursorPos(param0->unk_78, NULL, &v2);
+    ListMenu_GetListAndCursorPos(param0->menu, NULL, &v1);
+    v0 = ListMenu_ProcessInput(param0->menu);
+    ListMenu_GetListAndCursorPos(param0->menu, NULL, &v2);
 
     if (v1 != v2) {
-        Sprite_SetPositionXY(param0->unk_25C[2], (176 - 4), 24 + v2 * 16);
+        Sprite_SetPositionXY(param0->sprites[2], (176 - 4), 24 + v2 * 16);
     }
 
     switch (v0) {
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        ListMenu_Free(param0->unk_78, NULL, NULL);
-        StringList_Free(param0->unk_7C);
+        ListMenu_Free(param0->menu, NULL, NULL);
+        StringList_Free(param0->itemsList);
         ov7_0224D44C(param0);
         ov7_0224D5D8(param0);
-        Bg_ClearTilemap(param0->unk_00, 1);
+        Bg_ClearTilemap(param0->bgConfig, BG_LAYER_MAIN_1);
         Sound_PlayEffect(1500);
         return 12;
 
@@ -840,62 +892,62 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
         Strbuf *v3;
         u32 v4;
 
-        param0->unk_26C[0] = (u16)Sprite_GetDrawFlag(param0->unk_25C[0]);
-        param0->unk_26C[1] = (u16)Sprite_GetDrawFlag(param0->unk_25C[1]);
+        param0->spriteDrawFlags[0] = (u16)Sprite_GetDrawFlag(param0->sprites[0]);
+        param0->spriteDrawFlags[1] = (u16)Sprite_GetDrawFlag(param0->sprites[1]);
 
-        Sprite_SetDrawFlag(param0->unk_25C[0], 0);
-        Sprite_SetDrawFlag(param0->unk_25C[1], 0);
+        Sprite_SetDrawFlag(param0->sprites[0], 0);
+        Sprite_SetDrawFlag(param0->sprites[1], 0);
 
         ov7_0224EC10(param0, 1);
 
-        Window_FillTilemap(&param0->unk_08[5], 15);
-        Window_ClearAndCopyToVRAM(&param0->unk_08[1]);
-        Window_DrawMessageBoxWithScrollCursor(&param0->unk_08[5], 0, 1, 10);
+        Window_FillTilemap(&param0->windows[5], 15);
+        Window_ClearAndCopyToVRAM(&param0->windows[1]);
+        Window_DrawMessageBoxWithScrollCursor(&param0->windows[5], 0, 1, 10);
 
-        param0->unk_2AA = (u16)v0;
-        param0->unk_2AC = 1;
-        param0->unk_2B0 = ov7_0224E890(param0, param0->unk_2AA);
+        param0->itemId = (u16)v0;
+        param0->itemAmount = 1;
+        param0->itemPrice = ov7_0224E890(param0, param0->itemId);
 
         v4 = ov7_0224E8F4(param0);
 
-        if (v4 < param0->unk_2B0) {
-            if (param0->unk_2A9 == 3) {
-                v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 37);
+        if (v4 < param0->itemPrice) {
+            if (param0->martType == MART_TYPE_FRONTIER) {
+                v3 = MessageLoader_GetNewStrbuf(param0->msgLoader, 37);
             } else {
-                v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 3);
+                v3 = MessageLoader_GetNewStrbuf(param0->msgLoader, 3);
             }
 
-            StringTemplate_Format(param0->unk_8C, param0->unk_298, v3);
+            StringTemplate_Format(param0->strTemplate, param0->strbuf, v3);
             Strbuf_Free(v3);
 
-            param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+            param0->fieldMsgPrinterId = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
             return 10;
         }
 
-        if (param0->unk_2A9 == 1) {
+        if (param0->martType == MART_TYPE_DECOR) {
             Sound_PlayEffect(1500);
 
             return ov7_0224E098(param0);
         }
 
-        param0->unk_2AE = v4 / param0->unk_2B0;
+        param0->itemAmountMax = v4 / param0->itemPrice;
 
-        if (param0->unk_2AE > 99) {
-            param0->unk_2AE = 99;
+        if (param0->itemAmountMax > 99) {
+            param0->itemAmountMax = 99;
         }
 
-        ov7_0224E834(param0, param0->unk_2AA, 0);
+        ov7_0224E834(param0, param0->itemId, 0);
 
-        if (param0->unk_2A9 == 3) {
-            v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 33);
+        if (param0->martType == MART_TYPE_FRONTIER) {
+            v3 = MessageLoader_GetNewStrbuf(param0->msgLoader, 33);
         } else {
-            v3 = MessageLoader_GetNewStrbuf(param0->unk_88, 4);
+            v3 = MessageLoader_GetNewStrbuf(param0->msgLoader, 4);
         }
 
-        StringTemplate_Format(param0->unk_8C, param0->unk_298, v3);
+        StringTemplate_Format(param0->strTemplate, param0->strbuf, v3);
         Strbuf_Free(v3);
 
-        param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+        param0->fieldMsgPrinterId = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
 
         ov7_0224EB38(param0, 1);
         Sound_PlayEffect(1500);
@@ -907,83 +959,83 @@ static u8 ov7_0224DC84(UnkStruct_ov7_0224D008 *param0)
     return 4;
 }
 
-static u8 ov7_0224DE94(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224DE94(ShopMenu *param0)
 {
-    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->fieldMsgPrinterId) == 0) {
         return 5;
     }
 
     ov7_0224DED4(param0);
     ov7_0224E28C(param0, 0);
 
-    Sprite_SetDrawFlag(param0->unk_25C[0], 1);
-    Sprite_SetDrawFlag(param0->unk_25C[1], 1);
+    Sprite_SetDrawFlag(param0->sprites[0], 1);
+    Sprite_SetDrawFlag(param0->sprites[1], 1);
 
     return 6;
 }
 
-static void ov7_0224DED4(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224DED4(ShopMenu *param0)
 {
     Strbuf *v0;
     Strbuf *v1;
     u16 v2;
 
-    if (param0->unk_2A9 == 0) {
-        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, 11);
-    } else if (param0->unk_2A9 == 3) {
-        v2 = Bag_GetItemQuantity(param0->unk_274, param0->unk_2AA, 11);
-    } else if (param0->unk_2A9 == 2) {
-        v2 = sub_0202CBC8(param0->unk_274, param0->unk_2AA);
+    if (param0->martType == MART_TYPE_NORMAL) {
+        v2 = Bag_GetItemQuantity(param0->destInventory, param0->itemId, HEAP_ID_FIELDMAP);
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
+        v2 = Bag_GetItemQuantity(param0->destInventory, param0->itemId, HEAP_ID_FIELDMAP);
+    } else if (param0->martType == MART_TYPE_SEAL) {
+        v2 = sub_0202CBC8(param0->destInventory, param0->itemId);
     } else {
         v2 = 0;
     }
 
-    Window_FillTilemap(&param0->unk_08[4], 15);
-    Window_DrawStandardFrame(&param0->unk_08[4], 1, (1 + (18 + 12)), 11);
+    Window_FillTilemap(&param0->windows[4], 15);
+    Window_DrawStandardFrame(&param0->windows[4], 1, (1 + (18 + 12)), 11);
 
-    v0 = Strbuf_Init((12 * 2), 11);
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 20);
+    v0 = Strbuf_Init((12 * 2), HEAP_ID_FIELDMAP);
+    v1 = MessageLoader_GetNewStrbuf(param0->msgLoader, 20);
 
-    StringTemplate_SetNumber(param0->unk_8C, 0, v2, 3, 1, 1);
-    StringTemplate_Format(param0->unk_8C, v0, v1);
-    Text_AddPrinterWithParams(&param0->unk_08[4], FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
+    StringTemplate_SetNumber(param0->strTemplate, 0, v2, 3, 1, 1);
+    StringTemplate_Format(param0->strTemplate, v0, v1);
+    Text_AddPrinterWithParams(&param0->windows[4], FONT_SYSTEM, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
-    Window_ScheduleCopyToVRAM(&param0->unk_08[4]);
+    Window_ScheduleCopyToVRAM(&param0->windows[4]);
 }
 
-static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224DFB0(ShopMenu *param0)
 {
-    if (sub_0208C15C(&param0->unk_2AC, param0->unk_2AE) != 0) {
+    if (sub_0208C15C(&param0->itemAmount, param0->itemAmountMax) != 0) {
         Sound_PlayEffect(1592);
         ov7_0224E28C(param0, 1);
         return 6;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sprite_SetDrawFlag(param0->unk_25C[0], 0);
-        Sprite_SetDrawFlag(param0->unk_25C[1], 0);
-        Window_EraseStandardFrame(&param0->unk_08[4], 1);
-        Window_EraseStandardFrame(&param0->unk_08[3], 1);
-        Window_FillTilemap(&param0->unk_08[5], 15);
+        Sprite_SetDrawFlag(param0->sprites[0], 0);
+        Sprite_SetDrawFlag(param0->sprites[1], 0);
+        Window_EraseStandardFrame(&param0->windows[4], 1);
+        Window_EraseStandardFrame(&param0->windows[3], 1);
+        Window_FillTilemap(&param0->windows[5], 15);
         Sound_PlayEffect(1500);
 
         return ov7_0224E098(param0);
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Window_EraseStandardFrame(&param0->unk_08[4], 1);
-        Window_EraseStandardFrame(&param0->unk_08[3], 1);
-        Window_EraseMessageBox(&param0->unk_08[5], 0);
+        Window_EraseStandardFrame(&param0->windows[4], 1);
+        Window_EraseStandardFrame(&param0->windows[3], 1);
+        Window_EraseMessageBox(&param0->windows[5], 0);
 
         ov7_0224EB38(param0, 0);
 
-        Sprite_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
-        Sprite_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
+        Sprite_SetDrawFlag(param0->sprites[0], param0->spriteDrawFlags[0]);
+        Sprite_SetDrawFlag(param0->sprites[1], param0->spriteDrawFlags[1]);
 
         ov7_0224EC10(param0, 0);
 
-        Window_ScheduleCopyToVRAM(&param0->unk_08[1]);
+        Window_ScheduleCopyToVRAM(&param0->windows[1]);
         Sound_PlayEffect(1500);
 
         return 4;
@@ -992,243 +1044,243 @@ static u8 ov7_0224DFB0(UnkStruct_ov7_0224D008 *param0)
     return 6;
 }
 
-static u8 ov7_0224E098(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E098(ShopMenu *param0)
 {
     Strbuf *v0;
     BOOL v1;
 
-    if (param0->unk_2A9 == 0) {
-        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
-    } else if (param0->unk_2A9 == 3) {
-        v1 = Bag_CanFitItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
-    } else if (param0->unk_2A9 == 1) {
-        if (sub_020289A0(param0->unk_274) == 200) {
+    if (param0->martType == MART_TYPE_NORMAL) {
+        v1 = Bag_CanFitItem(param0->destInventory, param0->itemId, param0->itemAmount, HEAP_ID_FIELDMAP);
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
+        v1 = Bag_CanFitItem(param0->destInventory, param0->itemId, param0->itemAmount, HEAP_ID_FIELDMAP);
+    } else if (param0->martType == MART_TYPE_DECOR) {
+        if (sub_020289A0(param0->destInventory) == 200) {
             v1 = 0;
         } else {
             v1 = 1;
         }
     } else {
-        v1 = sub_0202CB70(param0->unk_274, param0->unk_2AA, param0->unk_2AC);
+        v1 = sub_0202CB70(param0->destInventory, param0->itemId, param0->itemAmount);
     }
 
     if (v1 == 0) {
-        param0->unk_2AC = 0;
+        param0->itemAmount = 0;
 
-        if (param0->unk_2A9 == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 7);
-        } else if (param0->unk_2A9 == 3) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 7);
-        } else if (param0->unk_2A9 == 1) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 12);
+        if (param0->martType == MART_TYPE_NORMAL) {
+            v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 7);
+        } else if (param0->martType == MART_TYPE_FRONTIER) {
+            v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 7);
+        } else if (param0->martType == MART_TYPE_DECOR) {
+            v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 12);
         } else {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 14);
+            v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 14);
         }
 
-        StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
+        StringTemplate_Format(param0->strTemplate, param0->strbuf, v0);
         Strbuf_Free(v0);
 
-        param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+        param0->fieldMsgPrinterId = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
         return 10;
     }
 
-    ov7_0224E834(param0, param0->unk_2AA, 0);
+    ov7_0224E834(param0, param0->itemId, 0);
 
-    StringTemplate_SetNumber(param0->unk_8C, 1, param0->unk_2AC, 2, 0, 1);
-    StringTemplate_SetNumber(param0->unk_8C, 2, param0->unk_2B0 * param0->unk_2AC, 6, 0, 1);
+    StringTemplate_SetNumber(param0->strTemplate, 1, param0->itemAmount, 2, 0, 1);
+    StringTemplate_SetNumber(param0->strTemplate, 2, param0->itemPrice * param0->itemAmount, 6, 0, 1);
 
-    if ((param0->unk_2AA <= 420) && (param0->unk_2AA >= 328)) {
-        u16 v2 = Item_MoveForTMHM(param0->unk_2AA);
+    if ((param0->itemId <= 420) && (param0->itemId >= 328)) {
+        u16 v2 = Item_MoveForTMHM(param0->itemId);
 
-        StringTemplate_SetMoveName(param0->unk_8C, 3, v2);
+        StringTemplate_SetMoveName(param0->strTemplate, 3, v2);
 
-        if (param0->unk_2A9 == 3) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 36);
+        if (param0->martType == MART_TYPE_FRONTIER) {
+            v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 36);
         } else {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 27);
+            v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 27);
         }
     } else {
-        if (param0->unk_2A9 == 3) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 35);
+        if (param0->martType == MART_TYPE_FRONTIER) {
+            v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 35);
         } else {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 5);
+            v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 5);
         }
     }
 
-    StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
+    StringTemplate_Format(param0->strTemplate, param0->strbuf, v0);
     Strbuf_Free(v0);
 
-    param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+    param0->fieldMsgPrinterId = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
     return 7;
 }
 
-static void ov7_0224E28C(UnkStruct_ov7_0224D008 *param0, u8 param1)
+static void ov7_0224E28C(ShopMenu *param0, u8 param1)
 {
     Strbuf *v0;
     Strbuf *v1;
     u32 v2;
 
-    Window_FillTilemap(&param0->unk_08[3], 15);
+    Window_FillTilemap(&param0->windows[3], 15);
 
     if (param1 == 0) {
-        Window_DrawStandardFrame(&param0->unk_08[3], 1, (1 + (18 + 12)), 11);
+        Window_DrawStandardFrame(&param0->windows[3], 1, (1 + (18 + 12)), 11);
     }
 
-    v0 = Strbuf_Init(24, 11);
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 21);
+    v0 = Strbuf_Init(24, HEAP_ID_FIELDMAP);
+    v1 = MessageLoader_GetNewStrbuf(param0->msgLoader, 21);
 
-    StringTemplate_SetNumber(param0->unk_8C, 0, param0->unk_2AC, 2, 2, 1);
-    StringTemplate_Format(param0->unk_8C, v0, v1);
-    Text_AddPrinterWithParams(&param0->unk_08[3], FONT_SYSTEM, v0, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    StringTemplate_SetNumber(param0->strTemplate, 0, param0->itemAmount, 2, 2, 1);
+    StringTemplate_Format(param0->strTemplate, v0, v1);
+    Text_AddPrinterWithParams(&param0->windows[3], FONT_SYSTEM, v0, 0, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v1);
 
-    if (param0->unk_2A9 == 3) {
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 34);
+    if (param0->martType == MART_TYPE_FRONTIER) {
+        v1 = MessageLoader_GetNewStrbuf(param0->msgLoader, 34);
     } else {
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_88, 22);
+        v1 = MessageLoader_GetNewStrbuf(param0->msgLoader, 22);
     }
 
-    StringTemplate_SetNumber(param0->unk_8C, 0, param0->unk_2B0 * param0->unk_2AC, 6, 1, 1);
-    StringTemplate_Format(param0->unk_8C, v0, v1);
+    StringTemplate_SetNumber(param0->strTemplate, 0, param0->itemPrice * param0->itemAmount, 6, 1, 1);
+    StringTemplate_Format(param0->strTemplate, v0, v1);
 
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
-    Text_AddPrinterWithParams(&param0->unk_08[3], FONT_SYSTEM, v0, (12 * 8) - v2, 8, TEXT_SPEED_NO_TRANSFER, NULL);
+    Text_AddPrinterWithParams(&param0->windows[3], FONT_SYSTEM, v0, (12 * 8) - v2, 8, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v0);
-    Window_ScheduleCopyToVRAM(&param0->unk_08[3]);
+    Window_ScheduleCopyToVRAM(&param0->windows[3]);
 }
 
-static u8 ov7_0224E3A0(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E3A0(ShopMenu *param0)
 {
-    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->fieldMsgPrinterId) == 0) {
         return 7;
     }
 
-    param0->unk_80 = Menu_MakeYesNoChoice(param0->unk_00, &Unk_ov7_0224F2CC, (1 + (18 + 12)), 11, 11);
+    param0->yesNoChoice = Menu_MakeYesNoChoice(param0->bgConfig, &sShop_YesNoChoiceWindowTemplate, (1 + (18 + 12)), 11, HEAP_ID_FIELDMAP);
     return 8;
 }
 
-static u8 ov7_0224E3D8(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E3D8(ShopMenu *param0)
 {
-    switch (Menu_ProcessInputAndHandleExit(param0->unk_80, 11)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->yesNoChoice, HEAP_ID_FIELDMAP)) {
     case 0: {
         Strbuf *v0;
 
-        if (param0->unk_2A9 == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 6);
+        if (param0->martType == MART_TYPE_NORMAL) {
+            v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 6);
 
-            if (param0->unk_2AC == 1) {
-                StringTemplate_SetItemName(param0->unk_8C, 0, param0->unk_2AA);
+            if (param0->itemAmount == 1) {
+                StringTemplate_SetItemName(param0->strTemplate, 0, param0->itemId);
             } else {
-                StringTemplate_SetItemNamePlural(param0->unk_8C, 0, param0->unk_2AA);
+                StringTemplate_SetItemNamePlural(param0->strTemplate, 0, param0->itemId);
             }
 
-            StringTemplate_SetBagPocketName(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, 11));
-        } else if (param0->unk_2A9 == 3) {
-            if (param0->unk_2AC == 1) {
-                StringTemplate_SetItemName(param0->unk_8C, 0, param0->unk_2AA);
+            StringTemplate_SetBagPocketName(param0->strTemplate, 1, Item_LoadParam(param0->itemId, 5, HEAP_ID_FIELDMAP));
+        } else if (param0->martType == MART_TYPE_FRONTIER) {
+            if (param0->itemAmount == 1) {
+                StringTemplate_SetItemName(param0->strTemplate, 0, param0->itemId);
             } else {
-                StringTemplate_SetItemNamePlural(param0->unk_8C, 0, param0->unk_2AA);
+                StringTemplate_SetItemNamePlural(param0->strTemplate, 0, param0->itemId);
             }
 
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 6);
-            StringTemplate_SetBagPocketName(param0->unk_8C, 1, Item_LoadParam(param0->unk_2AA, 5, 11));
+            v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 6);
+            StringTemplate_SetBagPocketName(param0->strTemplate, 1, Item_LoadParam(param0->itemId, 5, HEAP_ID_FIELDMAP));
         } else {
-            if (param0->unk_2A9 == 1) {
-                ov7_0224E834(param0, param0->unk_2AA, 0);
-                v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 11);
+            if (param0->martType == MART_TYPE_DECOR) {
+                ov7_0224E834(param0, param0->itemId, 0);
+                v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 11);
             } else {
-                if (param0->unk_2AC == 1) {
-                    StringTemplate_SetBallSealName(param0->unk_8C, 0, sub_02098164((u8)param0->unk_2AA));
+                if (param0->itemAmount == 1) {
+                    StringTemplate_SetBallSealName(param0->strTemplate, 0, sub_02098164((u8)param0->itemId));
                 } else {
-                    StringTemplate_SetBallSealNamePlural(param0->unk_8C, 0, sub_02098164((u8)param0->unk_2AA));
+                    StringTemplate_SetBallSealNamePlural(param0->strTemplate, 0, sub_02098164((u8)param0->itemId));
                 }
 
-                v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 13);
+                v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 13);
             }
         }
 
-        StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
+        StringTemplate_Format(param0->strTemplate, param0->strbuf, v0);
         Strbuf_Free(v0);
     }
-        Window_FillTilemap(&param0->unk_08[5], 15);
-        param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+        Window_FillTilemap(&param0->windows[5], 15);
+        param0->fieldMsgPrinterId = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
         Sound_PlayEffect(1604);
         return 9;
     case 0xfffffffe:
-        Window_EraseMessageBox(&param0->unk_08[5], 0);
+        Window_EraseMessageBox(&param0->windows[5], 0);
         ov7_0224EB38(param0, 0);
-        Sprite_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
-        Sprite_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
+        Sprite_SetDrawFlag(param0->sprites[0], param0->spriteDrawFlags[0]);
+        Sprite_SetDrawFlag(param0->sprites[1], param0->spriteDrawFlags[1]);
         ov7_0224EC10(param0, 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_08[1]);
+        Window_ScheduleCopyToVRAM(&param0->windows[1]);
         return 4;
     }
 
     return 8;
 }
 
-static u8 ov7_0224E5B0(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E5B0(ShopMenu *param0)
 {
-    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->fieldMsgPrinterId) == 0) {
         return 9;
     }
 
-    if (param0->unk_2A9 == 0) {
-        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
-        sub_0206D504(param0->unk_284, param0->unk_2AA, param0->unk_2AC);
-    } else if (param0->unk_2A9 == 3) {
-        Bag_TryAddItem(param0->unk_274, param0->unk_2AA, param0->unk_2AC, 11);
-    } else if (param0->unk_2A9 == 1) {
-        sub_0202895C(param0->unk_274, param0->unk_2AA);
+    if (param0->martType == MART_TYPE_NORMAL) {
+        Bag_TryAddItem(param0->destInventory, param0->itemId, param0->itemAmount, HEAP_ID_FIELDMAP);
+        sub_0206D504(param0->saveData, param0->itemId, param0->itemAmount);
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
+        Bag_TryAddItem(param0->destInventory, param0->itemId, param0->itemAmount, HEAP_ID_FIELDMAP);
+    } else if (param0->martType == MART_TYPE_DECOR) {
+        sub_0202895C(param0->destInventory, param0->itemId);
     } else {
-        sub_0202CAE0(param0->unk_274, param0->unk_2AA, param0->unk_2AC);
+        sub_0202CAE0(param0->destInventory, param0->itemId, param0->itemAmount);
     }
 
-    ov7_0224E920(param0, param0->unk_2B0 * param0->unk_2AC);
+    ov7_0224E920(param0, param0->itemPrice * param0->itemAmount);
 
-    if (param0->unk_2A9 == 3) {
-        GameRecords_AddToRecordValue(param0->records, RECORD_UNK_069, param0->unk_2B0 * param0->unk_2AC);
+    if (param0->martType == MART_TYPE_FRONTIER) {
+        GameRecords_AddToRecordValue(param0->records, RECORD_UNK_069, param0->itemPrice * param0->itemAmount);
     } else {
-        GameRecords_AddToRecordValue(param0->records, RECORD_UNK_035, param0->unk_2B0 * param0->unk_2AC);
+        GameRecords_AddToRecordValue(param0->records, RECORD_UNK_035, param0->itemPrice * param0->itemAmount);
     }
 
     ov7_0224DAF8(param0, 1);
 
-    if (param0->unk_2AC > 1) {
-        param0->unk_2A7 = 2;
+    if (param0->itemAmount > 1) {
+        param0->itemPurchaseCount = 2;
     } else {
-        if (param0->unk_2A7 != 0xff) {
-            param0->unk_2A7++;
+        if (param0->itemPurchaseCount != 0xff) {
+            param0->itemPurchaseCount++;
         }
     }
 
     return 10;
 }
 
-static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E6B8(ShopMenu *param0)
 {
-    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->fieldMsgPrinterId) == 0) {
         return 10;
     }
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        if (param0->unk_28C == 1) {
-            SystemVars_IncrementDepartmentStoreBuyCount(param0->unk_288);
+        if (param0->incDeptStoreBuyCount == TRUE) {
+            SystemVars_IncrementDepartmentStoreBuyCount(param0->varsFlags);
         }
 
-        if (((param0->unk_2A9 == 0) || (param0->unk_2A9 == 3)) && (param0->unk_2AA == 4) && (param0->unk_2AC >= 10)) {
-            if (Bag_TryAddItem(param0->unk_274, 12, 1, 11) == 1) {
-                Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_88, 10);
+        if (((param0->martType == MART_TYPE_NORMAL) || (param0->martType == MART_TYPE_FRONTIER)) && (param0->itemId == 4) && (param0->itemAmount >= 10)) {
+            if (Bag_TryAddItem(param0->destInventory, 12, 1, HEAP_ID_FIELDMAP) == 1) {
+                Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->msgLoader, 10);
 
-                StringTemplate_Format(param0->unk_8C, param0->unk_298, v0);
+                StringTemplate_Format(param0->strTemplate, param0->strbuf, v0);
                 Strbuf_Free(v0);
-                Window_FillTilemap(&param0->unk_08[5], 15);
+                Window_FillTilemap(&param0->windows[5], 15);
 
-                param0->unk_2A4 = FieldMessage_Print(&param0->unk_08[5], param0->unk_298, param0->unk_278, 1);
+                param0->fieldMsgPrinterId = FieldMessage_Print(&param0->windows[5], param0->strbuf, param0->options, 1);
 
                 {
-                    GameRecords *v1 = SaveData_GetGameRecordsPtr(param0->unk_284);
+                    GameRecords *v1 = SaveData_GetGameRecordsPtr(param0->saveData);
                     GameRecords_IncrementRecordValue(v1, RECORD_UNK_050);
                 }
 
@@ -1236,12 +1288,12 @@ static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
             }
         }
 
-        Window_EraseMessageBox(&param0->unk_08[5], 0);
+        Window_EraseMessageBox(&param0->windows[5], 0);
         ov7_0224EB38(param0, 0);
-        Sprite_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
-        Sprite_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
+        Sprite_SetDrawFlag(param0->sprites[0], param0->spriteDrawFlags[0]);
+        Sprite_SetDrawFlag(param0->sprites[1], param0->spriteDrawFlags[1]);
         ov7_0224EC10(param0, 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_08[1]);
+        Window_ScheduleCopyToVRAM(&param0->windows[1]);
 
         return 4;
     }
@@ -1249,19 +1301,19 @@ static u8 ov7_0224E6B8(UnkStruct_ov7_0224D008 *param0)
     return 10;
 }
 
-static u8 ov7_0224E7C8(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224E7C8(ShopMenu *param0)
 {
-    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->fieldMsgPrinterId) == 0) {
         return 11;
     }
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Window_EraseMessageBox(&param0->unk_08[5], 0);
+        Window_EraseMessageBox(&param0->windows[5], 0);
         ov7_0224EB38(param0, 0);
-        Sprite_SetDrawFlag(param0->unk_25C[0], param0->unk_26C[0]);
-        Sprite_SetDrawFlag(param0->unk_25C[1], param0->unk_26C[1]);
+        Sprite_SetDrawFlag(param0->sprites[0], param0->spriteDrawFlags[0]);
+        Sprite_SetDrawFlag(param0->sprites[1], param0->spriteDrawFlags[1]);
         ov7_0224EC10(param0, 0);
-        Window_ScheduleCopyToVRAM(&param0->unk_08[1]);
+        Window_ScheduleCopyToVRAM(&param0->windows[1]);
 
         return 4;
     }
@@ -1269,33 +1321,33 @@ static u8 ov7_0224E7C8(UnkStruct_ov7_0224D008 *param0)
     return 11;
 }
 
-static void ov7_0224E834(UnkStruct_ov7_0224D008 *param0, u16 param1, u16 param2)
+static void ov7_0224E834(ShopMenu *param0, u16 param1, u16 param2)
 {
-    if (param0->unk_2A9 == 0) {
-        StringTemplate_SetItemName(param0->unk_8C, param2, param1);
-    } else if (param0->unk_2A9 == 3) {
-        StringTemplate_SetItemName(param0->unk_8C, param2, param1);
-    } else if (param0->unk_2A9 == 1) {
-        StringTemplate_SetUndergroundGoodsName(param0->unk_8C, param2, param1);
+    if (param0->martType == MART_TYPE_NORMAL) {
+        StringTemplate_SetItemName(param0->strTemplate, param2, param1);
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
+        StringTemplate_SetItemName(param0->strTemplate, param2, param1);
+    } else if (param0->martType == MART_TYPE_DECOR) {
+        StringTemplate_SetUndergroundGoodsName(param0->strTemplate, param2, param1);
     } else {
-        StringTemplate_SetBallSealName(param0->unk_8C, param2, sub_02098164((u8)param1));
+        StringTemplate_SetBallSealName(param0->strTemplate, param2, sub_02098164((u8)param1));
     }
 }
 
-static u32 ov7_0224E890(UnkStruct_ov7_0224D008 *param0, u16 param1)
+static u32 ov7_0224E890(ShopMenu *param0, u16 param1)
 {
-    if (param0->unk_2A9 == 0) {
-        return Item_LoadParam(param1, 0, 11);
-    } else if (param0->unk_2A9 == 3) {
+    if (param0->martType == MART_TYPE_NORMAL) {
+        return Item_LoadParam(param1, 0, HEAP_ID_FIELDMAP);
+    } else if (param0->martType == MART_TYPE_FRONTIER) {
         return ov7_0224E8CC(param0, param1);
-    } else if (param0->unk_2A9 == 1) {
+    } else if (param0->martType == MART_TYPE_DECOR) {
         return sub_0205745C((const int)param1);
     }
 
     return sub_020981D0((u8)param1);
 }
 
-static u16 ov7_0224E8CC(UnkStruct_ov7_0224D008 *param0, u16 param1)
+static u16 ov7_0224E8CC(ShopMenu *param0, u16 param1)
 {
     int v0;
     static const u16 v1[][2] = {
@@ -1351,35 +1403,35 @@ static u16 ov7_0224E8CC(UnkStruct_ov7_0224D008 *param0, u16 param1)
     return 0;
 }
 
-u32 ov7_0224E8F4(UnkStruct_ov7_0224D008 *param0)
+u32 ov7_0224E8F4(ShopMenu *param0)
 {
-    if (param0->unk_2A9 == 3) {
-        return sub_0202D230(sub_0202D750(param0->unk_284), 0, 0);
+    if (param0->martType == MART_TYPE_FRONTIER) {
+        return sub_0202D230(sub_0202D750(param0->saveData), 0, 0);
     } else {
-        return TrainerInfo_Money(param0->unk_270);
+        return TrainerInfo_Money(param0->trainerInfo);
     }
 }
 
-void ov7_0224E920(UnkStruct_ov7_0224D008 *param0, u32 param1)
+void ov7_0224E920(ShopMenu *param0, u32 param1)
 {
-    if (param0->unk_2A9 == 3) {
-        sub_0202D230(sub_0202D750(param0->unk_284), (u16)param1, 6);
+    if (param0->martType == MART_TYPE_FRONTIER) {
+        sub_0202D230(sub_0202D750(param0->saveData), (u16)param1, 6);
     } else {
-        TrainerInfo_TakeMoney(param0->unk_270, param1);
+        TrainerInfo_TakeMoney(param0->trainerInfo, param1);
     }
 }
 
-static u8 ov7_0224E950(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static u8 ov7_0224E950(FieldSystem *fieldSystem, ShopMenu *param1)
 {
-    if (param1->unk_2A5 != param1->unk_2A6) {
+    if (param1->cameraPosCurr != param1->cameraPosDest) {
         VecFx32 v0 = { -8 * FX32_ONE, 0, 0 };
 
         Camera_Move(&v0, param1->camera);
-        param1->unk_2A5++;
+        param1->cameraPosCurr++;
         return 12;
     }
 
-    param1->unk_2A5 = 0;
+    param1->cameraPosCurr = 0;
 
     Camera_Copy(param1->camera, fieldSystem->camera);
     Camera_Delete(param1->camera);
@@ -1387,56 +1439,56 @@ static u8 ov7_0224E950(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
 
     ov7_0224EB14(param1);
 
-    if (param1->unk_2A9 == 3) {
+    if (param1->martType == MART_TYPE_FRONTIER) {
         return 19;
     }
 
-    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_08[1], 3);
-    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->windows[1], 3);
+    FieldMessage_DrawWindow(&param1->windows[1], param1->options);
 
     {
-        Strbuf *v1 = MessageLoader_GetNewStrbuf(param1->unk_88, 2);
+        Strbuf *v1 = MessageLoader_GetNewStrbuf(param1->msgLoader, 2);
 
-        StringTemplate_Format(param1->unk_8C, param1->unk_298, v1);
+        StringTemplate_Format(param1->strTemplate, param1->strbuf, v1);
         Strbuf_Free(v1);
     }
 
-    param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
+    param1->fieldMsgPrinterId = FieldMessage_Print(&param1->windows[1], param1->strbuf, param1->options, 1);
 
     return 13;
 }
 
-static u8 ov7_0224EA2C(UnkStruct_ov7_0224D008 *param0)
+static u8 ov7_0224EA2C(ShopMenu *param0)
 {
-    if (FieldMessage_FinishedPrinting(param0->unk_2A4) == 0) {
+    if (FieldMessage_FinishedPrinting(param0->fieldMsgPrinterId) == 0) {
         return 13;
     }
 
-    Window_Remove(&param0->unk_08[1]);
+    Window_Remove(&param0->windows[1]);
     ov7_0224D040(param0);
 
     return 1;
 }
 
-static void ov7_0224EA54(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static void ov7_0224EA54(FieldSystem *fieldSystem, ShopMenu *param1)
 {
     Strbuf *v0;
 
-    if (param1->unk_2A9 == 3) {
-        v0 = MessageLoader_GetNewStrbuf(param1->unk_88, 31);
+    if (param1->martType == MART_TYPE_FRONTIER) {
+        v0 = MessageLoader_GetNewStrbuf(param1->msgLoader, 31);
     } else {
-        v0 = MessageLoader_GetNewStrbuf(param1->unk_88, 1);
+        v0 = MessageLoader_GetNewStrbuf(param1->msgLoader, 1);
     }
 
-    StringTemplate_Format(param1->unk_8C, param1->unk_298, v0);
+    StringTemplate_Format(param1->strTemplate, param1->strbuf, v0);
     Strbuf_Free(v0);
-    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_08[1], 3);
-    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->windows[1], 3);
+    FieldMessage_DrawWindow(&param1->windows[1], param1->options);
 
-    param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
+    param1->fieldMsgPrinterId = FieldMessage_Print(&param1->windows[1], param1->strbuf, param1->options, 1);
 }
 
-static const SpriteResourceDataPaths Unk_ov7_0224F2EC = {
+static const SpriteResourceDataPaths sShop_SpriteResourcePaths = {
     "data/shop_chr.resdat",
     "data/shop_pal.resdat",
     "data/shop_cell.resdat",
@@ -1446,83 +1498,135 @@ static const SpriteResourceDataPaths Unk_ov7_0224F2EC = {
     "data/shop_h.cldat"
 };
 
-static const SpriteTemplateFromResourceHeader Unk_ov7_0224F358[] = {
-    { 0, 0xB1, 0x8, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 0, 0xB1, 0x84, 0x0, 0x1, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 1, 0xAC, 0x18, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 },
-    { 2, 0x16, 0xAC, 0x0, 0x0, 0x0, 0x0, NNS_G2D_VRAM_TYPE_2DMAIN, 0x0, 0x0, 0x0, 0x0 }
+static const SpriteTemplateFromResourceHeader sShop_SpriteTemplates[] = {
+    {
+        .resourceHeaderID = 0,
+        .x = 0xB1,
+        .y = 0x8,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .dummy18 = 0,
+        .dummy1C = 0,
+        .dummy20 = 0,
+        .dummy24 = 0,
+    },
+    {
+        .resourceHeaderID = 0,
+        .x = 0xB1,
+        .y = 0x84,
+        .z = 0,
+        .animIdx = 1,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .dummy18 = 0,
+        .dummy1C = 0,
+        .dummy20 = 0,
+        .dummy24 = 0,
+    },
+    {
+        .resourceHeaderID = 1,
+        .x = 0xAC,
+        .y = 0x18,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .dummy18 = 0,
+        .dummy1C = 0,
+        .dummy20 = 0,
+        .dummy24 = 0,
+    },
+    {
+        .resourceHeaderID = 2,
+        .x = 0x16,
+        .y = 0xAC,
+        .z = 0,
+        .animIdx = 0,
+        .priority = 0,
+        .plttIdx = 0,
+        .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+        .dummy18 = 0,
+        .dummy1C = 0,
+        .dummy20 = 0,
+        .dummy24 = 0,
+    },
 };
 
-static void ov7_0224EAD0(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224EAD0(ShopMenu *param0)
 {
     u32 v0;
 
-    ov5_021D2F14(&param0->unk_94, &Unk_ov7_0224F2EC, 4, 11);
+    ov5_021D2F14(&param0->unk_94, &sShop_SpriteResourcePaths, 4, 11);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_25C[v0] = ov5_021D3104(&param0->unk_94, &Unk_ov7_0224F358[v0]);
+        param0->sprites[v0] = ov5_021D3104(&param0->unk_94, &sShop_SpriteTemplates[v0]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov7_0224EB14(UnkStruct_ov7_0224D008 *param0)
+static void ov7_0224EB14(ShopMenu *param0)
 {
     u32 v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        Sprite_Delete(param0->unk_25C[v0]);
+        Sprite_Delete(param0->sprites[v0]);
     }
 
     ov5_021D30A8(&param0->unk_94);
 }
 
-static void ov7_0224EB38(UnkStruct_ov7_0224D008 *param0, u8 param1)
+static void ov7_0224EB38(ShopMenu *param0, u8 param1)
 {
     if (param1 == 0) {
-        Sprite_SetPositionXY(param0->unk_25C[0], 177, 8);
-        Sprite_SetPositionXY(param0->unk_25C[1], 177, 132);
+        Sprite_SetPositionXY(param0->sprites[0], 177, 8);
+        Sprite_SetPositionXY(param0->sprites[1], 177, 132);
     } else {
-        Sprite_SetPositionXY(param0->unk_25C[0], 162, 108);
-        Sprite_SetPositionXY(param0->unk_25C[1], 162, 132);
+        Sprite_SetPositionXY(param0->sprites[0], 162, 108);
+        Sprite_SetPositionXY(param0->sprites[1], 162, 132);
     }
 }
 
-static void ov7_0224EB7C(UnkStruct_ov7_0224D008 *param0, u16 param1)
+static void ov7_0224EB7C(ShopMenu *param0, u16 param1)
 {
     SpriteResource *v0;
 
-    if ((param0->unk_2A9 != 0) && (param0->unk_2A9 != 3)) {
-        Sprite_SetDrawFlag(param0->unk_25C[3], 0);
+    if ((param0->martType != MART_TYPE_NORMAL) && (param0->martType != MART_TYPE_FRONTIER)) {
+        Sprite_SetDrawFlag(param0->sprites[3], 0);
         return;
     }
 
     v0 = SpriteResourceCollection_Find(param0->unk_94.unk_194[0], 2);
 
-    SpriteResourceCollection_ModifyTiles(param0->unk_94.unk_194[0], v0, 16, Item_FileID(param1, 1), 0, 11);
+    SpriteResourceCollection_ModifyTiles(param0->unk_94.unk_194[0], v0, 16, Item_FileID(param1, 1), 0, HEAP_ID_FIELDMAP);
     SpriteTransfer_RetransferCharData(v0);
 
     v0 = SpriteResourceCollection_Find(param0->unk_94.unk_194[1], 1);
 
-    SpriteResourceCollection_ModifyPalette(param0->unk_94.unk_194[1], v0, 16, Item_FileID(param1, 2), 0, 11);
+    SpriteResourceCollection_ModifyPalette(param0->unk_94.unk_194[1], v0, 16, Item_FileID(param1, 2), 0, HEAP_ID_FIELDMAP);
     SpriteTransfer_ReplacePlttData(v0);
 }
 
-static void ov7_0224EC10(UnkStruct_ov7_0224D008 *param0, u8 param1)
+static void ov7_0224EC10(ShopMenu *param0, u8 param1)
 {
-    Sprite_SetExplicitPalette2(param0->unk_25C[2], param1);
+    Sprite_SetExplicitPalette2(param0->sprites[2], param1);
 }
 
-static void ov7_0224EC20(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static void ov7_0224EC20(FieldSystem *fieldSystem, ShopMenu *param1)
 {
     ov5_021D1744(0);
-    param1->unk_297 = 15;
+    param1->state = 15;
 }
 
 static void ov7_0224EC38(FieldTask *param0)
 {
     FieldSystem *fieldSystem;
-    UnkStruct_ov7_0224D008 *v1;
+    ShopMenu *v1;
 
     if (IsScreenTransitionDone() == 0) {
         return;
@@ -1537,7 +1641,7 @@ static void ov7_0224EC38(FieldTask *param0)
         Bag *v2;
 
         v2 = SaveData_GetBag(fieldSystem->saveData);
-        v1->unk_04 = sub_0207D824(v2, Unk_ov7_0224F49C, 11);
+        v1->unk_04 = sub_0207D824(v2, Unk_ov7_0224F49C, HEAP_ID_FIELDMAP);
 
         sub_0207CB2C(v1->unk_04, fieldSystem->saveData, 2, fieldSystem->unk_98);
     }
@@ -1545,25 +1649,25 @@ static void ov7_0224EC38(FieldTask *param0)
     sub_0203D1E4(fieldSystem, v1->unk_04);
     FieldTask_InitJump(param0, sub_0209AC14, v1);
 
-    v1->unk_297 = 16;
+    v1->state = 16;
 }
 
-static u8 ov7_0224EC9C(FieldSystem *fieldSystem, UnkStruct_ov7_0224D008 *param1)
+static u8 ov7_0224EC9C(FieldSystem *fieldSystem, ShopMenu *param1)
 {
     if (IsScreenTransitionDone() == 0) {
         return 18;
     }
 
-    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_08[1], 3);
-    FieldMessage_DrawWindow(&param1->unk_08[1], param1->unk_278);
+    FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->windows[1], 3);
+    FieldMessage_DrawWindow(&param1->windows[1], param1->options);
 
     {
-        Strbuf *v0 = MessageLoader_GetNewStrbuf(param1->unk_88, 2);
+        Strbuf *v0 = MessageLoader_GetNewStrbuf(param1->msgLoader, 2);
 
-        StringTemplate_Format(param1->unk_8C, param1->unk_298, v0);
+        StringTemplate_Format(param1->strTemplate, param1->strbuf, v0);
         Strbuf_Free(v0);
     }
 
-    param1->unk_2A4 = FieldMessage_Print(&param1->unk_08[1], param1->unk_298, param1->unk_278, 1);
+    param1->fieldMsgPrinterId = FieldMessage_Print(&param1->windows[1], param1->strbuf, param1->options, 1);
     return 13;
 }
