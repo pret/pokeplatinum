@@ -41,7 +41,7 @@ static u8 sub_0209AC50(FieldSystem *fieldSystem, ShopMenu *shopMenu)
         return 16;
     }
 
-    shopMenu->unk_2A8 = sub_0207CBAC(shopMenu->unk_04);
+    shopMenu->itemSoldCount = sub_0207CBAC(shopMenu->unk_04);
 
     Heap_FreeToHeap(shopMenu->unk_04);
     FieldSystem_StartFieldMap(fieldSystem);
