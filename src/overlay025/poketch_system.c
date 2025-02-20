@@ -27,7 +27,7 @@
 #include "unk_0201E3D8.h"
 #include "unk_02099D44.h"
 
-FS_EXTERN_OVERLAY(poketch_digital_clock);
+FS_EXTERN_OVERLAY(poketch_digital_watch);
 FS_EXTERN_OVERLAY(overlay27);
 FS_EXTERN_OVERLAY(overlay28);
 FS_EXTERN_OVERLAY(overlay29);
@@ -85,7 +85,7 @@ static const struct {
     int appID;
     FSOverlayID overlayID;
 } sAppOverlayIDs[] = {
-    { POKETCH_APPID_DIGITALWATCH, FS_OVERLAY_ID(poketch_digital_clock) },
+    { POKETCH_APPID_DIGITALWATCH, FS_OVERLAY_ID(poketch_digital_watch) },
     { POKETCH_APPID_UNUSED_STOPWATCH, FS_OVERLAY_ID(overlay27) },
     { POKETCH_APPID_CALCULATOR, FS_OVERLAY_ID(overlay28) },
     { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(overlay29) },

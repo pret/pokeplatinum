@@ -878,7 +878,7 @@ Overlay overlay25
 	Object main.nef.p/src_overlay025_ov25_02255DBC.c.o
 }
 
-Overlay poketch_digital_clock
+Overlay poketch_digital_watch
 {
 	After overlay25
 	Object main.nef.p/src_poketch_digital_watch_main.c.o
