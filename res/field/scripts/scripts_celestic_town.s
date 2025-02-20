@@ -46,7 +46,7 @@ _006E:
     GoToIfEq 0x800C, FALSE, _0191
     Message 4
     CloseMessage
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _00BC
     GoToIfEq 0x800C, 2, _00EC
     GoToIfEq 0x800C, 3, _0114
@@ -54,17 +54,17 @@ _006E:
 
 _00BC:
     ApplyMovement 2, _0198
-    ApplyMovement 0xFF, _01E0
+    ApplyMovement LOCALID_PLAYER, _01E0
     WaitMovement
     Call _013C
     ApplyMovement 3, _01B4
-    ApplyMovement 0xFF, _0204
+    ApplyMovement LOCALID_PLAYER, _0204
     WaitMovement
     GoTo _0166
 
 _00EC:
     ApplyMovement 2, _0198
-    ApplyMovement 0xFF, _01F0
+    ApplyMovement LOCALID_PLAYER, _01F0
     WaitMovement
     Call _013C
     ApplyMovement 3, _01C0
@@ -73,7 +73,7 @@ _00EC:
 
 _0114:
     ApplyMovement 2, _01A4
-    ApplyMovement 0xFF, _01FC
+    ApplyMovement LOCALID_PLAYER, _01FC
     WaitMovement
     Call _013C
     ApplyMovement 3, _01D0
@@ -83,11 +83,11 @@ _0114:
 _013C:
     RemoveObject 2
     RemoveObject 3
-    ScrCmd_186 3, 0x1D2, 0x213
+    SetObjectEventPos 3, 0x1D2, 0x213
     ScrCmd_189 3, 0
     ScrCmd_188 3, 14
     ClearFlag 0x1AC
-    ScrCmd_064 3
+    AddObject 3
     ScrCmd_062 3
     Return
 
@@ -196,7 +196,7 @@ _0204:
 
 _022C:
     LockAll
-    ApplyMovement 0xFF, _0264
+    ApplyMovement LOCALID_PLAYER, _0264
     ApplyMovement 3, _025C
     WaitMovement
     Call _024A
@@ -238,7 +238,7 @@ _0289:
 
 _0294:
     LockAll
-    ApplyMovement 0xFF, _02E0
+    ApplyMovement LOCALID_PLAYER, _02E0
     ApplyMovement 4, _02E8
     WaitMovement
     Message 9

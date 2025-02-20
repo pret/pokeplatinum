@@ -102,7 +102,7 @@ _00E9:
     End
 
 _0114:
-    ApplyMovement 0xFF, _0124
+    ApplyMovement LOCALID_PLAYER, _0124
     WaitMovement
     ReleaseAll
     End

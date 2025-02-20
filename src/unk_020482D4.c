@@ -24,7 +24,7 @@ BOOL ScrCmd_056(ScriptContext *param0);
 BOOL ScrCmd_057(ScriptContext *param0);
 BOOL ScrCmd_058(ScriptContext *param0);
 BOOL ScrCmd_04A(ScriptContext *param0);
-BOOL ScrCmd_04C(ScriptContext *param0);
+BOOL ScrCmd_PlayCry(ScriptContext *ctx);
 BOOL ScrCmd_04D(ScriptContext *param0);
 BOOL ScrCmd_059(ScriptContext *param0);
 BOOL ScrCmd_05A(ScriptContext *param0);
@@ -143,16 +143,16 @@ static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx)
     return Sound_IsEffectPlaying(ctx->data[0]) == FALSE;
 }
 
-BOOL ScrCmd_04C(ScriptContext *param0)
+BOOL ScrCmd_PlayCry(ScriptContext *ctx)
 {
-    u16 v0, v1;
+    u16 species, unused;
 
-    v0 = ScriptContext_GetVar(param0);
-    v1 = ScriptContext_GetVar(param0);
+    species = ScriptContext_GetVar(ctx);
+    unused = ScriptContext_GetVar(ctx);
 
-    sub_02005844(v0, 0);
+    sub_02005844(species, 0);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_04D(ScriptContext *param0)

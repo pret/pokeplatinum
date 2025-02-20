@@ -81,7 +81,7 @@ _0102:
 
 _014D:
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 0x1BA, 0
+    PlayCry 0x1BA, 0
     Message 9
     ScrCmd_04D
     CloseMessage

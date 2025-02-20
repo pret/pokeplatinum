@@ -15,7 +15,7 @@ _001A:
     LockAll
     Message 0
     CloseMessage
-    ApplyMovement 0xFF, _00D8
+    ApplyMovement LOCALID_PLAYER, _00D8
     WaitMovement
     Message 1
     SetVar 0x8004, 0x1B5
@@ -190,7 +190,7 @@ _02AF:
     Message 10
     CloseMessage
     GetPlayerMapPos 0x8004, 0x8005
-    ApplyMovement 0xFF, _03B8
+    ApplyMovement LOCALID_PLAYER, _03B8
     WaitMovement
     GoTo _02CC
     End
@@ -198,14 +198,14 @@ _02AF:
 _02CC:
     ScrCmd_168 0, 0, 9, 5, 77
     Call _0320
-    ApplyMovement 0xFF, _03C4
+    ApplyMovement LOCALID_PLAYER, _03C4
     WaitMovement
     Call _0328
-    ApplyMovement 0xFF, _03CC
+    ApplyMovement LOCALID_PLAYER, _03CC
     WaitMovement
     ScrCmd_168 0, 0, 9, 2, 77
     Call _0320
-    ApplyMovement 0xFF, _03D4
+    ApplyMovement LOCALID_PLAYER, _03D4
     WaitMovement
     Call _0328
     GoTo _0333
@@ -239,14 +239,14 @@ _035C:
     WaitFadeScreen
     ScrCmd_168 0, 0, 8, 2, 77
     Call _0320
-    ApplyMovement 0xFF, _03EC
+    ApplyMovement LOCALID_PLAYER, _03EC
     WaitMovement
     Call _0328
-    ApplyMovement 0xFF, _03FC
+    ApplyMovement LOCALID_PLAYER, _03FC
     WaitMovement
     ScrCmd_168 0, 0, 8, 5, 77
     Call _0320
-    ApplyMovement 0xFF, _0404
+    ApplyMovement LOCALID_PLAYER, _0404
     WaitMovement
     Call _0328
     End
@@ -391,19 +391,19 @@ _0526:
     GoToIfEq 0x800C, 0, _0508
     Message 19
     CloseMessage
-    ApplyMovement 0xFF, _03B8
+    ApplyMovement LOCALID_PLAYER, _03B8
     WaitMovement
     ScrCmd_168 0, 0, 5, 5, 77
     Call _0320
     ApplyMovement 0x800D, _040C
-    ApplyMovement 0xFF, _03C4
+    ApplyMovement LOCALID_PLAYER, _03C4
     WaitMovement
     Call _0328
     ApplyMovement 0x800D, _0414
     WaitMovement
     ScrCmd_168 0, 0, 5, 2, 77
     Call _0320
-    ApplyMovement 0xFF, _03E0
+    ApplyMovement LOCALID_PLAYER, _03E0
     ApplyMovement 0x800D, _0424
     WaitMovement
     Call _0328
@@ -542,14 +542,14 @@ _0650:
     LockAll
     ScrCmd_168 0, 0, 5, 2, 77
     Call _0320
-    ApplyMovement 0xFF, _03EC
+    ApplyMovement LOCALID_PLAYER, _03EC
     WaitMovement
     Call _0328
-    ApplyMovement 0xFF, _03FC
+    ApplyMovement LOCALID_PLAYER, _03FC
     WaitMovement
     ScrCmd_168 0, 0, 5, 5, 77
     Call _0320
-    ApplyMovement 0xFF, _0404
+    ApplyMovement LOCALID_PLAYER, _0404
     WaitMovement
     Call _0328
     SetVar 0x4080, 0

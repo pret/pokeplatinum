@@ -273,7 +273,7 @@ _0354:
     WaitMovement
     Message 17
     CloseMessage
-    ApplyMovement 0xFF, _037C
+    ApplyMovement LOCALID_PLAYER, _037C
     ApplyMovement 3, _0344
     WaitMovement
     ReleaseAll
@@ -308,7 +308,7 @@ _03C2:
     GoToIfSet 251, _0408
     CheckHasSeenSpecies SPECIES_MANAPHY, 0x800C
     GoToIfEq 0x800C, 1, _03FC
-    ScrCmd_208 SPECIES_MANAPHY, 0
+    DrawPokemonPreview SPECIES_MANAPHY, GENDER_MALE
     WaitABPress
     ScrCmd_209
     SetFlag 251

@@ -1021,7 +1021,7 @@ _0FCB:
 _0FE7:
     ApplyMovement 0x800D, _104C
     WaitMovement
-    ScrCmd_1BD 0x8000
+    GetPlayerDir 0x8000
     CallIfEq 0x8000, 0, _102B
     CallIfEq 0x8000, 1, _1033
     CallIfEq 0x8000, 2, _103B

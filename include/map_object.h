@@ -58,7 +58,7 @@ void MapObjectMan_Delete(MapObjectManager *mapObjMan);
 void sub_0206184C(MapObjectManager *mapObjMan, int mapID, int param2, int objEventCount, const ObjectEvent *objectEvent);
 MapObject *MapObjectMan_AddMapObjectFromHeader(const MapObjectManager *mapObjMan, const ObjectEvent *objectEvent, int mapID);
 MapObject *MapObjectMan_AddMapObject(const MapObjectManager *mapObjMan, int x, int z, int initialDir, int graphicsID, int movementType, int mapID);
-MapObject *sub_02061A74(const MapObjectManager *mapObjMan, int param1, int objEventCount, int mapID, const ObjectEvent *objectEvent);
+MapObject *MapObjectMan_AddMapObjectFromLocalID(const MapObjectManager *mapObjMan, int param1, int objEventCount, int mapID, const ObjectEvent *objectEvent);
 void sub_02061AB4(MapObject *mapObj, int graphicsID);
 void sub_02061AD4(MapObject *mapObj, int param1);
 void MapObject_Delete(MapObject *mapObj);

@@ -55,7 +55,7 @@ _00BB:
     Return
 
 _00C5:
-    ScrCmd_18A 0, 243, 0x28A
+    SetWarpEventPos 0, 243, 0x28A
     Return
 
 _00CF:
@@ -118,7 +118,7 @@ _016C:
     GoToIfEq 0x800C, MENU_NO, _01A2
     SetFlag 0x10F
     Call _00BB
-    ScrCmd_18A 0, 243, 0x28E
+    SetWarpEventPos 0, 243, 0x28E
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -142,7 +142,7 @@ _01BF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04C 0x1A9, 0
+    PlayCry 0x1A9, 0
     Message 8
     CloseMessage
     ScrCmd_04D
@@ -163,11 +163,11 @@ _01FB:
 _0201:
     LockAll
     ApplyMovement 6, _02D8
-    ApplyMovement 0xFF, _02AC
+    ApplyMovement LOCALID_PLAYER, _02AC
     WaitMovement
     Message 2
     CloseMessage
-    ApplyMovement 0xFF, _02BC
+    ApplyMovement LOCALID_PLAYER, _02BC
     ApplyMovement 6, _02EC
     WaitMovement
     ScrCmd_168 7, 20, 19, 14, 77
@@ -191,7 +191,7 @@ _0201:
     WaitMovement
     Message 3
     CloseMessage
-    ApplyMovement 0xFF, _02C8
+    ApplyMovement LOCALID_PLAYER, _02C8
     ApplyMovement 6, _0324
     WaitMovement
     RemoveObject 6

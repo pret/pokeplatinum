@@ -26,7 +26,7 @@ _0039:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _007B
     GoToIfEq 0x800C, 1, _008B
     GoToIfEq 0x800C, 2, _009B

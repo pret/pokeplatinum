@@ -42,7 +42,7 @@ _0050:
     WaitMovement
     Message 1
     CloseMessage
-    ApplyMovement 0xFF, _0098
+    ApplyMovement LOCALID_PLAYER, _0098
     WaitMovement
     ReleaseAll
     End

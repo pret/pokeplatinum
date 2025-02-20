@@ -30,22 +30,22 @@ _0069:
     End
 
 _0071:
-    ScrCmd_186 5, 46, 50
+    SetObjectEventPos 5, 46, 50
     ScrCmd_188 5, 14
     ScrCmd_189 5, 0
     Return
 
 _0087:
-    ScrCmd_186 5, 46, 51
+    SetObjectEventPos 5, 46, 51
     ScrCmd_188 5, 15
     ScrCmd_189 5, 1
     Return
 
 _009D:
-    ScrCmd_186 5, 50, 37
+    SetObjectEventPos 5, 50, 37
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2
-    ScrCmd_186 6, 50, 39
+    SetObjectEventPos 6, 50, 39
     ScrCmd_188 6, 16
     ScrCmd_189 6, 2
     Return
@@ -212,7 +212,7 @@ _0230:
     RemoveObject 3
     SetFlag 0x98E
     ApplyMovement 6, _02FC
-    ApplyMovement 0xFF, _0304
+    ApplyMovement LOCALID_PLAYER, _0304
     WaitMovement
     ScrCmd_187 5, 53, 1, 39, 3
     FadeScreen 6, 1, 1, 0

@@ -26,7 +26,7 @@ _001E:
 _0044:
     LockAll
     ApplyMovement 128, _028C
-    ApplyMovement 0xFF, _0204
+    ApplyMovement LOCALID_PLAYER, _0204
     WaitMovement
     Message 0
     CloseMessage
@@ -63,11 +63,11 @@ _0096:
     CloseMessage
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 86, _00E6
-    ApplyMovement 0xFF, _0210
+    ApplyMovement LOCALID_PLAYER, _0210
     GoTo _00EE
 
 _00E6:
-    ApplyMovement 0xFF, _0248
+    ApplyMovement LOCALID_PLAYER, _0248
 _00EE:
     ApplyMovement 129, _0314
     ApplyMovement 128, _02DC
@@ -77,24 +77,24 @@ _00EE:
     WaitMovement
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 74, _012F
-    ApplyMovement 0xFF, _0254
+    ApplyMovement LOCALID_PLAYER, _0254
     GoTo _013F
 
 _012F:
     ApplyMovement 128, _02E8
-    ApplyMovement 0xFF, _0264
+    ApplyMovement LOCALID_PLAYER, _0264
 _013F:
     Message 7
     WaitMovement
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 74, _016D
     ApplyMovement 128, _02F8
-    ApplyMovement 0xFF, _0274
+    ApplyMovement LOCALID_PLAYER, _0274
     GoTo _017D
 
 _016D:
     ApplyMovement 128, _0300
-    ApplyMovement 0xFF, _0280
+    ApplyMovement LOCALID_PLAYER, _0280
 _017D:
     BufferPlayerName 0
     Message 8
@@ -107,11 +107,11 @@ _017D:
     ApplyMovement 128, _02C8
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 74, _01BB
-    ApplyMovement 0xFF, _0220
+    ApplyMovement LOCALID_PLAYER, _0220
     GoTo _01C3
 
 _01BB:
-    ApplyMovement 0xFF, _0234
+    ApplyMovement LOCALID_PLAYER, _0234
 _01C3:
     WaitMovement
     Message 10

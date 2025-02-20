@@ -16,13 +16,13 @@
 _0022:
     LockAll
     ClearFlag 0x2BA
-    ScrCmd_064 1
+    AddObject 1
     ScrCmd_1B2 1
-    ScrCmd_186 0, 32, 34
+    SetObjectEventPos 0, 32, 34
     ScrCmd_189 0, 0
     ScrCmd_188 0, 14
     ClearFlag 0x1CD
-    ScrCmd_064 0
+    AddObject 0
     ScrCmd_066 30, 30
     ApplyMovement 241, _016C
     WaitMovement
@@ -42,7 +42,7 @@ _0088:
     ApplyMovement 241, _0178
     WaitMovement
     ScrCmd_067
-    ApplyMovement 0xFF, _013C
+    ApplyMovement LOCALID_PLAYER, _013C
     ApplyMovement 0, _014C
     WaitMovement
     Message 4

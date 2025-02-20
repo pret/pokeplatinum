@@ -83,18 +83,18 @@ _00E2:
     LockAll
     ClearHasPartner
     ScrCmd_06D 4, 16
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 2, _0103
     GoTo _011B
 
 _0103:
-    ApplyMovement 0xFF, _0194
+    ApplyMovement LOCALID_PLAYER, _0194
     ApplyMovement 4, _01D8
     WaitMovement
     GoTo _0133
 
 _011B:
-    ApplyMovement 0xFF, _019C
+    ApplyMovement LOCALID_PLAYER, _019C
     ApplyMovement 4, _01E4
     WaitMovement
     GoTo _0133
@@ -103,18 +103,18 @@ _0133:
     BufferPlayerName 0
     Message 5
     CloseMessage
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 3, _0152
     GoTo _016A
 
 _0152:
-    ApplyMovement 0xFF, _01A4
+    ApplyMovement LOCALID_PLAYER, _01A4
     ApplyMovement 4, _01F0
     WaitMovement
     GoTo _0182
 
 _016A:
-    ApplyMovement 0xFF, _01B0
+    ApplyMovement LOCALID_PLAYER, _01B0
     ApplyMovement 4, _0200
     WaitMovement
     GoTo _0182

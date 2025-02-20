@@ -28,22 +28,22 @@ _0036:
     End
 
 _0052:
-    ApplyMovement 0xFF, _0120
+    ApplyMovement LOCALID_PLAYER, _0120
     WaitMovement
     ScrCmd_168 0, 0, 0x800C, 5, 77
     Call _010D
-    ApplyMovement 0xFF, _0128
+    ApplyMovement LOCALID_PLAYER, _0128
     WaitMovement
     Call _0115
     Return
 
 _007F:
-    ApplyMovement 0xFF, _013C
+    ApplyMovement LOCALID_PLAYER, _013C
     WaitMovement
     Return
 
 _008B:
-    ApplyMovement 0xFF, _0130
+    ApplyMovement LOCALID_PLAYER, _0130
     WaitMovement
     CallIfEq 0x8007, 3, _00C8
     CallIfEq 0x8007, 5, _00DF
@@ -149,7 +149,7 @@ _01B1:
     Return
 
 _01BE:
-    ScrCmd_186 9, 24, 6
+    SetObjectEventPos 9, 24, 6
     ScrCmd_188 9, 15
     ScrCmd_189 9, 1
     Return
@@ -538,7 +538,7 @@ _07BC:
     ScrCmd_168 0, 0, 19, 5, 77
     Call _010D
     WaitMovement
-    ApplyMovement 0xFF, _0DA0
+    ApplyMovement LOCALID_PLAYER, _0DA0
     ApplyMovement 0, _0E08
     WaitMovement
     Call _0115
@@ -552,7 +552,7 @@ _07F1:
     ScrCmd_168 0, 0, 7, 5, 77
     Call _010D
     WaitMovement
-    ApplyMovement 0xFF, _0DB0
+    ApplyMovement LOCALID_PLAYER, _0DB0
     ApplyMovement 1, _0E18
     WaitMovement
     Call _0115
@@ -564,7 +564,7 @@ _0830:
     ScrCmd_168 0, 0, 28, 5, 77
     Call _010D
     WaitMovement
-    ApplyMovement 0xFF, _0DC0
+    ApplyMovement LOCALID_PLAYER, _0DC0
     ApplyMovement 2, _0E28
     WaitMovement
     Call _0115
@@ -595,7 +595,7 @@ _08A0:
     End
 
 _08AE:
-    ApplyMovement 0xFF, _0E00
+    ApplyMovement LOCALID_PLAYER, _0E00
     WaitMovement
     ScrCmd_02F 68
     ScrCmd_0F8 26
@@ -864,7 +864,7 @@ _0D3A:
     ScrCmd_108 0x800C
     ScrCmd_10A 0x800C, 0x4024
     ClearFlag 0x205
-    ScrCmd_064 5
+    AddObject 5
     ScrCmd_108 0x4000
     GoToIfEq 0x4000, 0, _0D86
     GoToIfEq 0x4000, 1, _0D8C

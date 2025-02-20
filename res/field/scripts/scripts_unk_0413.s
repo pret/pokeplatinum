@@ -81,7 +81,7 @@ _0146:
     GoTo _053A
 
 _0158:
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfNe 0x800C, 0, _0186
     CheckItem ITEM_SPRAYDUCK, 1, 0x800C
     GoToIfEq 0x800C, 0, _0186
@@ -203,7 +203,7 @@ _033E:
     GoTo _04DA
 
 _0374:
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfNe 0x800C, 0, _0540
     Call _018E
     GoToIfEq 0x800C, 1, _03B4

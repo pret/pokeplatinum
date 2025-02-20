@@ -117,7 +117,7 @@ _0154:
 _0181:
     Message 1
     CloseMessage
-    ApplyMovement 0xFF, _0204
+    ApplyMovement LOCALID_PLAYER, _0204
     WaitMovement
     ApplyMovement 0, _01EC
     ApplyMovement 3, _01FC
@@ -254,24 +254,24 @@ _02DC:
     Return
 
 _0315:
-    ScrCmd_186 5, 31, 40
-    ScrCmd_064 5
+    SetObjectEventPos 5, 31, 40
+    AddObject 5
     ApplyMovement 5, _04F4
     WaitMovement
     ScrCmd_18C 5, 3
     Return
 
 _0333:
-    ScrCmd_186 5, 30, 40
-    ScrCmd_064 5
+    SetObjectEventPos 5, 30, 40
+    AddObject 5
     ApplyMovement 5, _04F4
     WaitMovement
     ScrCmd_18C 5, 2
     Return
 
 _0351:
-    ScrCmd_186 5, 31, 40
-    ScrCmd_064 5
+    SetObjectEventPos 5, 31, 40
+    AddObject 5
     ApplyMovement 5, _04F4
     WaitMovement
     ScrCmd_18C 5, 2
@@ -445,7 +445,7 @@ _0500:
     EndMovement
 
 _0508:
-    ApplyMovement 0xFF, _05B8
+    ApplyMovement LOCALID_PLAYER, _05B8
     WaitMovement
     GetPlayerMapPos 0x8000, 0x8001
     ScrCmd_066 0x8000, 0x8001
@@ -478,8 +478,8 @@ _0567:
     ClearFlag 0x1C7
     SetFlag 0x132
     SetVar 0x40C3, 1
-    ScrCmd_31A 0x1E3
-    ScrCmd_31A 0x1E4
+    WriteSpeciesSeen SPECIES_DIALGA
+    WriteSpeciesSeen SPECIES_PALKIA
     ScrCmd_067
     Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, 0
     End

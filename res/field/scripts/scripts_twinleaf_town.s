@@ -86,49 +86,49 @@ _00CD:
     GoTo _01E8
 
 _0140:
-    ApplyMovement 0xFF, _02F0
+    ApplyMovement LOCALID_PLAYER, _02F0
     ApplyMovement 3, _03C4
     WaitMovement
     GoTo _0200
 
 _0158:
-    ApplyMovement 0xFF, _0308
+    ApplyMovement LOCALID_PLAYER, _0308
     ApplyMovement 3, _03E0
     WaitMovement
     GoTo _0200
 
 _0170:
-    ApplyMovement 0xFF, _0320
+    ApplyMovement LOCALID_PLAYER, _0320
     ApplyMovement 3, _03F4
     WaitMovement
     GoTo _0200
 
 _0188:
-    ApplyMovement 0xFF, _0338
+    ApplyMovement LOCALID_PLAYER, _0338
     ApplyMovement 3, _0408
     WaitMovement
     GoTo _0200
 
 _01A0:
-    ApplyMovement 0xFF, _0350
+    ApplyMovement LOCALID_PLAYER, _0350
     ApplyMovement 3, _041C
     WaitMovement
     GoTo _0200
 
 _01B8:
-    ApplyMovement 0xFF, _0368
+    ApplyMovement LOCALID_PLAYER, _0368
     ApplyMovement 3, _0430
     WaitMovement
     GoTo _0200
 
 _01D0:
-    ApplyMovement 0xFF, _0380
+    ApplyMovement LOCALID_PLAYER, _0380
     ApplyMovement 3, _0444
     WaitMovement
     GoTo _0200
 
 _01E8:
-    ApplyMovement 0xFF, _0398
+    ApplyMovement LOCALID_PLAYER, _0398
     ApplyMovement 3, _0458
     WaitMovement
     GoTo _0200
@@ -392,9 +392,9 @@ _04D0:
     ScrCmd_16B 77
     ScrCmd_169 77
     ClearFlag 0x174
-    ScrCmd_064 2
+    AddObject 2
     ApplyMovement 2, _05A4
-    ApplyMovement 0xFF, _0588
+    ApplyMovement LOCALID_PLAYER, _0588
     WaitMovement
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     Message 0
@@ -406,7 +406,7 @@ _04D0:
     BufferPlayerName 1
     Message 1
     CloseMessage
-    ApplyMovement 0xFF, _0570
+    ApplyMovement LOCALID_PLAYER, _0570
     ApplyMovement 2, _05B0
     WaitMovement
     WaitTime 15, 0x800C

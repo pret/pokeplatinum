@@ -100,11 +100,11 @@ _0120:
 
 _0138:
     LockAll
-    ApplyMovement 0xFF, _015C
+    ApplyMovement LOCALID_PLAYER, _015C
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag 0x284
-    ScrCmd_064 2
+    AddObject 2
     SetVar 0x4001, 1
     ReleaseAll
     End

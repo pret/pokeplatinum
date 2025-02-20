@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_SPECIAL_ENCOUNTER_H
 #define POKEPLATINUM_STRUCT_SPECIAL_ENCOUNTER_H
 
+#include "generated/roaming_slots.h"
+
 #include "struct_defs/radar_chain_records.h"
 
 #include "field/field_system.h"
@@ -8,16 +10,6 @@
 #define FLUTE_FACTOR_NONE       0
 #define FLUTE_FACTOR_USED_BLACK 1 // decreases encounter rate by 50%
 #define FLUTE_FACTOR_USED_WHITE 2 // increases encounter rate by 50%
-
-enum RoamingSlot {
-    ROAMING_SLOT_MESPRIT = 0,
-    ROAMING_SLOT_CRESSELIA,
-    ROAMING_SLOT_DARKRAI, // Unused in-game, see: https://tcrf.net/Pok%C3%A9mon_Platinum#Unused_Roaming_Darkrai
-    ROAMING_SLOT_MOLTRES,
-    ROAMING_SLOT_ZAPDOS,
-    ROAMING_SLOT_ARTICUNO,
-    ROAMING_SLOT_MAX
-};
 
 typedef struct TrophyGardenMons {
     BOOL unused;

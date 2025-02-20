@@ -52,7 +52,7 @@ _0006:
     Message 5
     CloseMessage
     ApplyMovement 2, _01DC
-    ApplyMovement 0xFF, _01B8
+    ApplyMovement LOCALID_PLAYER, _01B8
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 2
@@ -73,7 +73,7 @@ _0136:
     ApplyMovement 1, _01F4
     ApplyMovement 241, _0230
     WaitMovement
-    ApplyMovement 0xFF, _01B0
+    ApplyMovement LOCALID_PLAYER, _01B0
     WaitMovement
     Return
 
@@ -94,12 +94,12 @@ _0174:
     Return
 
 _0180:
-    ApplyMovement 0xFF, _0198
+    ApplyMovement LOCALID_PLAYER, _0198
     WaitMovement
     Return
 
 _018C:
-    ApplyMovement 0xFF, _01A4
+    ApplyMovement LOCALID_PLAYER, _01A4
     WaitMovement
     Return
 

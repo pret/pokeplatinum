@@ -116,25 +116,25 @@ _0160:
     GoTo _01DB
 
 _0193:
-    ApplyMovement 0xFF, _026C
+    ApplyMovement LOCALID_PLAYER, _026C
     ApplyMovement 2, _0210
     WaitMovement
     GoTo _01F3
 
 _01AB:
-    ApplyMovement 0xFF, _0280
+    ApplyMovement LOCALID_PLAYER, _0280
     ApplyMovement 2, _0224
     WaitMovement
     GoTo _01F3
 
 _01C3:
-    ApplyMovement 0xFF, _0294
+    ApplyMovement LOCALID_PLAYER, _0294
     ApplyMovement 2, _023C
     WaitMovement
     GoTo _01F3
 
 _01DB:
-    ApplyMovement 0xFF, _02AC
+    ApplyMovement LOCALID_PLAYER, _02AC
     ApplyMovement 2, _0250
     WaitMovement
     GoTo _01F3

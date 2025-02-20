@@ -166,7 +166,7 @@ _02DD:
 
 _02DF:
     LockAll
-    ApplyMovement 0xFF, _212C
+    ApplyMovement LOCALID_PLAYER, _212C
     WaitMovement
     WaitTime 20, 0x800C
     Message 1

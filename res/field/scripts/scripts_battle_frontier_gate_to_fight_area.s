@@ -254,7 +254,7 @@ _02F5:
     ApplyMovement 6, _0344
     ApplyMovement 7, _0344
     ApplyMovement 8, _0344
-    ApplyMovement 0xFF, _034C
+    ApplyMovement LOCALID_PLAYER, _034C
     WaitMovement
     Return
 

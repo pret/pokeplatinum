@@ -27,7 +27,7 @@ _002E:
     BufferPlayerName 0
     Message 1
     CloseMessage
-    ApplyMovement 0xFF, _0138
+    ApplyMovement LOCALID_PLAYER, _0138
     WaitMovement
     ApplyMovement 6, _014C
     WaitMovement
@@ -45,12 +45,12 @@ _002E:
     Message 6
     CloseMessage
     ApplyMovement 6, _0160
-    ApplyMovement 0xFF, _01DC
+    ApplyMovement LOCALID_PLAYER, _01DC
     WaitMovement
     RemoveObject 6
     SetVar 0x40F7, 1
     ApplyMovement 5, _0190
-    ApplyMovement 0xFF, _01E4
+    ApplyMovement LOCALID_PLAYER, _01E4
     WaitMovement
     BufferPlayerName 0
     Message 7
@@ -76,7 +76,7 @@ _0104:
     Message 10
     CloseMessage
     WaitTime 15, 0x800C
-    ApplyMovement 0xFF, _01C8
+    ApplyMovement LOCALID_PLAYER, _01C8
     ApplyMovement 5, _01B0
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
@@ -373,7 +373,7 @@ _0437:
     Return
 
 _0458:
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 2, _0475
     ApplyMovement 9, _0484
     WaitMovement
@@ -403,7 +403,7 @@ _04A4:
     LockAll
     FacePlayer
     WaitTime 30, 0x800C
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _052B
     GoToIfEq 0x800C, 1, _053D
     GoToIfEq 0x800C, 2, _054F
@@ -413,7 +413,7 @@ _04A4:
 _04EC:
     Message 11
     CloseMessage
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     GoToIfEq 0x8004, 1, _0573
     GoToIfEq 0x8004, 0, _058D
     GoToIfEq 0x8004, 2, _05A7
@@ -446,14 +446,14 @@ _0561:
 
 _0573:
     ApplyMovement 10, _05E8
-    ApplyMovement 0xFF, _0604
+    ApplyMovement LOCALID_PLAYER, _0604
     WaitMovement
     GoTo _05D3
     End
 
 _058D:
     ApplyMovement 10, _05E8
-    ApplyMovement 0xFF, _0604
+    ApplyMovement LOCALID_PLAYER, _0604
     WaitMovement
     GoTo _05D3
     End
@@ -466,7 +466,7 @@ _05A7:
 
 _05B9:
     ApplyMovement 10, _05F4
-    ApplyMovement 0xFF, _0610
+    ApplyMovement LOCALID_PLAYER, _0610
     WaitMovement
     GoTo _05D3
     End

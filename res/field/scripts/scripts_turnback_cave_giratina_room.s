@@ -28,7 +28,7 @@ _0037:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 0x1E7, 0
+    PlayCry 0x1E7, 0
     Message 0
     CloseMessage
     SetFlag 142

@@ -72,7 +72,7 @@ _00A2:
     End
 
 _00FE:
-    ScrCmd_134 0, 0x800C
+    IsAppRegistered 0, 0x800C
     GoToIfEq 0x800C, 0, _01D6
     ScrCmd_29D 233, 1
     Return
@@ -82,7 +82,7 @@ _0119:
     GoTo _0062
 
 _0122:
-    ScrCmd_134 11, 0x800C
+    IsAppRegistered 11, 0x800C
     GoToIfEq 0x800C, 0, _01D6
     ScrCmd_29D 237, 2
     Return
@@ -92,7 +92,7 @@ _013D:
     GoTo _0062
 
 _0146:
-    ScrCmd_134 23, 0x800C
+    IsAppRegistered 23, 0x800C
     GoToIfEq 0x800C, 0, _01D6
     ScrCmd_29D 234, 3
     Return
@@ -102,7 +102,7 @@ _0161:
     GoTo _0062
 
 _016A:
-    ScrCmd_134 20, 0x800C
+    IsAppRegistered 20, 0x800C
     GoToIfEq 0x800C, 0, _01D6
     ScrCmd_29D 250, 4
     Return
@@ -112,7 +112,7 @@ _0185:
     GoTo _0062
 
 _018E:
-    ScrCmd_134 24, 0x800C
+    IsAppRegistered 24, 0x800C
     GoToIfEq 0x800C, 0, _01D6
     ScrCmd_29D 249, 5
     Return
@@ -122,7 +122,7 @@ _01A9:
     GoTo _0062
 
 _01B2:
-    ScrCmd_134 16, 0x800C
+    IsAppRegistered 16, 0x800C
     GoToIfEq 0x800C, 0, _01D6
     ScrCmd_29D 254, 6
     Return
@@ -166,7 +166,7 @@ _0229:
     End
 
 _0292:
-    ScrCmd_134 1, 0x800C
+    IsAppRegistered 1, 0x800C
     GoToIfEq 0x800C, 0, _038E
     ScrCmd_29D 235, 1
     Return
@@ -176,7 +176,7 @@ _02AD:
     GoTo _01E3
 
 _02B6:
-    ScrCmd_134 2, 0x800C
+    IsAppRegistered 2, 0x800C
     GoToIfEq 0x800C, 0, _038E
     ScrCmd_29D 236, 2
     Return
@@ -186,7 +186,7 @@ _02D1:
     GoTo _01E3
 
 _02DA:
-    ScrCmd_134 5, 0x800C
+    IsAppRegistered 5, 0x800C
     GoToIfEq 0x800C, 0, _038E
     ScrCmd_29D 240, 3
     Return
@@ -196,7 +196,7 @@ _02F5:
     GoTo _01E3
 
 _02FE:
-    ScrCmd_134 8, 0x800C
+    IsAppRegistered 8, 0x800C
     GoToIfEq 0x800C, 0, _038E
     ScrCmd_29D 244, 4
     Return
@@ -206,7 +206,7 @@ _0319:
     GoTo _01E3
 
 _0322:
-    ScrCmd_134 22, 0x800C
+    IsAppRegistered 22, 0x800C
     GoToIfEq 0x800C, 0, _038E
     ScrCmd_29D 248, 5
     Return
@@ -216,7 +216,7 @@ _033D:
     GoTo _01E3
 
 _0346:
-    ScrCmd_134 9, 0x800C
+    IsAppRegistered 9, 0x800C
     GoToIfEq 0x800C, 0, _038E
     ScrCmd_29D 0x101, 6
     Return
@@ -226,7 +226,7 @@ _0361:
     GoTo _01E3
 
 _036A:
-    ScrCmd_134 7, 0x800C
+    IsAppRegistered 7, 0x800C
     GoToIfEq 0x800C, 0, _038E
     ScrCmd_29D 252, 7
     Return
@@ -268,7 +268,7 @@ _03DB:
     End
 
 _0437:
-    ScrCmd_134 4, 0x800C
+    IsAppRegistered 4, 0x800C
     GoToIfEq 0x800C, 0, _050F
     ScrCmd_29D 239, 1
     Return
@@ -278,7 +278,7 @@ _0452:
     GoTo _039B
 
 _045B:
-    ScrCmd_134 17, 0x800C
+    IsAppRegistered 17, 0x800C
     GoToIfEq 0x800C, 0, _050F
     ScrCmd_29D 238, 2
     Return
@@ -288,7 +288,7 @@ _0476:
     GoTo _039B
 
 _047F:
-    ScrCmd_134 14, 0x800C
+    IsAppRegistered 14, 0x800C
     GoToIfEq 0x800C, 0, _050F
     ScrCmd_29D 246, 3
     Return
@@ -298,7 +298,7 @@ _049A:
     GoTo _039B
 
 _04A3:
-    ScrCmd_134 18, 0x800C
+    IsAppRegistered 18, 0x800C
     GoToIfEq 0x800C, 0, _050F
     ScrCmd_29D 245, 4
     Return
@@ -308,7 +308,7 @@ _04BE:
     GoTo _039B
 
 _04C7:
-    ScrCmd_134 21, 0x800C
+    IsAppRegistered 21, 0x800C
     GoToIfEq 0x800C, 0, _050F
     ScrCmd_29D 253, 5
     Return
@@ -318,7 +318,7 @@ _04E2:
     GoTo _039B
 
 _04EB:
-    ScrCmd_134 12, 0x800C
+    IsAppRegistered 12, 0x800C
     GoToIfEq 0x800C, 0, _050F
     ScrCmd_29D 251, 6
     Return
@@ -360,7 +360,7 @@ _055C:
     End
 
 _05B8:
-    ScrCmd_134 3, 0x800C
+    IsAppRegistered 3, 0x800C
     GoToIfEq 0x800C, 0, _0690
     ScrCmd_29D 243, 1
     Return
@@ -370,7 +370,7 @@ _05D3:
     GoTo _051C
 
 _05DC:
-    ScrCmd_134 10, 0x800C
+    IsAppRegistered 10, 0x800C
     GoToIfEq 0x800C, 0, _0690
     ScrCmd_29D 242, 2
     Return
@@ -380,7 +380,7 @@ _05F7:
     GoTo _051C
 
 _0600:
-    ScrCmd_134 19, 0x800C
+    IsAppRegistered 19, 0x800C
     GoToIfEq 0x800C, 0, _0690
     ScrCmd_29D 0x100, 3
     Return
@@ -390,7 +390,7 @@ _061B:
     GoTo _051C
 
 _0624:
-    ScrCmd_134 13, 0x800C
+    IsAppRegistered 13, 0x800C
     GoToIfEq 0x800C, 0, _0690
     ScrCmd_29D 0xFF, 4
     Return
@@ -400,7 +400,7 @@ _063F:
     GoTo _051C
 
 _0648:
-    ScrCmd_134 15, 0x800C
+    IsAppRegistered 15, 0x800C
     GoToIfEq 0x800C, 0, _0690
     ScrCmd_29D 247, 5
     Return
@@ -410,7 +410,7 @@ _0663:
     GoTo _051C
 
 _066C:
-    ScrCmd_134 6, 0x800C
+    IsAppRegistered 6, 0x800C
     GoToIfEq 0x800C, 0, _0690
     ScrCmd_29D 241, 6
     Return

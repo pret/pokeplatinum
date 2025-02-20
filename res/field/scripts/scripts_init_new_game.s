@@ -14,9 +14,9 @@ _0006:
     SetFlag 0x175
     SetFlag 0x194
     SetFlag 0x195
-    SetFlag 0x1DF
-    SetFlag 0x1E0
-    SetFlag 0x1E1
+    SetFlag FLAG_MESPRIT_DISAPPEARED
+    SetFlag FLAG_AZELF_DISAPPEARED
+    SetFlag FLAG_UXIE_DISAPPEARED
     SetFlag 0x296
     SetFlag 0x293
     SetFlag 0x1BA

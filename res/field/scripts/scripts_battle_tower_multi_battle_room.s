@@ -290,8 +290,8 @@ _04C5:
     SetVar 0x4023, 0x800C
     ClearFlag 0x1EA
     ClearFlag 0x1EB
-    ScrCmd_064 5
-    ScrCmd_064 4
+    AddObject 5
+    AddObject 4
     ApplyMovement 5, _05D8
     ApplyMovement 4, _05EC
     WaitMovement

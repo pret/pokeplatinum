@@ -52,7 +52,7 @@ _0014:
     Message 6
     CloseMessage
     ApplyMovement 0, _0190
-    ApplyMovement 0xFF, _01A4
+    ApplyMovement LOCALID_PLAYER, _01A4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     WaitFanfare SEQ_SE_DP_KAIDAN2
@@ -65,7 +65,7 @@ _0014:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 14, _0200
-    ApplyMovement 0xFF, _01B4
+    ApplyMovement LOCALID_PLAYER, _01B4
     WaitMovement
     Message 8
     Message 9

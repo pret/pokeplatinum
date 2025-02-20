@@ -228,7 +228,7 @@ _02CF:
     End
 
 _02DA:
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     CallIfEq 0x800C, 0, _0314
     CallIfEq 0x800C, 1, _0322
     CallIfEq 0x800C, 2, _0330

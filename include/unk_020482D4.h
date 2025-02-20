@@ -16,7 +16,7 @@ BOOL ScrCmd_058(ScriptContext *param0);
 BOOL ScrCmd_PlayFanfare(ScriptContext *ctx);
 BOOL ScrCmd_04A(ScriptContext *param0);
 BOOL ScrCmd_WaitFanfare(ScriptContext *ctx);
-BOOL ScrCmd_04C(ScriptContext *param0);
+BOOL ScrCmd_PlayCry(ScriptContext *param0);
 BOOL ScrCmd_04D(ScriptContext *param0);
 BOOL ScrCmd_PlaySound(ScriptContext *ctx);
 BOOL ScrCmd_WaitSound(ScriptContext *ctx);

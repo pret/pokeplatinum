@@ -25,7 +25,7 @@ _0037:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     Message 0
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_YES, _005D
@@ -58,26 +58,26 @@ _00A8:
     Return
 
 _00C2:
-    ApplyMovement 0xFF, _0124
+    ApplyMovement LOCALID_PLAYER, _0124
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _011C
+    ApplyMovement LOCALID_PLAYER, _011C
     WaitMovement
     Return
 
 _00DC:
-    ApplyMovement 0xFF, _0134
+    ApplyMovement LOCALID_PLAYER, _0134
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _011C
+    ApplyMovement LOCALID_PLAYER, _011C
     WaitMovement
     Return
 
 _00F6:
-    ApplyMovement 0xFF, _0140
+    ApplyMovement LOCALID_PLAYER, _0140
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _011C
+    ApplyMovement LOCALID_PLAYER, _011C
     WaitMovement
     Return
 

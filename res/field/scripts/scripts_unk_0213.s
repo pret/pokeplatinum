@@ -49,14 +49,14 @@ _008F:
     ScrCmd_168 0, 0, 0x4000, 0x4002, 77
     Call _050B
     ScrCmd_1B1 0xFF
-    ApplyMovement 0xFF, _00F0
+    ApplyMovement LOCALID_PLAYER, _00F0
     WaitMovement
     Call _0513
-    ApplyMovement 0xFF, _00F8
+    ApplyMovement LOCALID_PLAYER, _00F8
     WaitMovement
     ScrCmd_168 0, 0, 0x4000, 0x4001, 77
     Call _050B
-    ApplyMovement 0xFF, _0100
+    ApplyMovement LOCALID_PLAYER, _0100
     WaitMovement
     Call _0513
     ClearFlag 0x966
@@ -366,14 +366,14 @@ _046A:
     CloseMessage
     ScrCmd_168 0, 0, 13, 5, 77
     Call _050B
-    ApplyMovement 0xFF, _0524
+    ApplyMovement LOCALID_PLAYER, _0524
     WaitMovement
     Call _0513
-    ApplyMovement 0xFF, _0530
+    ApplyMovement LOCALID_PLAYER, _0530
     WaitMovement
     ScrCmd_168 0, 0, 13, 2, 77
     Call _050B
-    ApplyMovement 0xFF, _0538
+    ApplyMovement LOCALID_PLAYER, _0538
     WaitMovement
     Call _0513
     GoToIfEq 0x8004, 4, _04F3
@@ -475,14 +475,14 @@ _062D:
     CloseMessage
     ScrCmd_168 0, 0, 8, 5, 77
     Call _050B
-    ApplyMovement 0xFF, _0524
+    ApplyMovement LOCALID_PLAYER, _0524
     WaitMovement
     Call _0513
-    ApplyMovement 0xFF, _0530
+    ApplyMovement LOCALID_PLAYER, _0530
     WaitMovement
     ScrCmd_168 0, 0, 8, 2, 77
     Call _050B
-    ApplyMovement 0xFF, _0538
+    ApplyMovement LOCALID_PLAYER, _0538
     WaitMovement
     Call _0513
     ReleaseAll

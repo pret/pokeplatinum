@@ -20,7 +20,7 @@ _000E:
     Message 1
     CloseMessage
     ApplyMovement 0, _006C
-    ApplyMovement 0xFF, _0080
+    ApplyMovement LOCALID_PLAYER, _0080
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 0

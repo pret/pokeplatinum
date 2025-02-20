@@ -119,7 +119,7 @@ _010E:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ClearFlag 0x19E
-    ScrCmd_064 3
+    AddObject 3
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 12, _01BA
     CallIfEq 0x8004, 13, _01C6

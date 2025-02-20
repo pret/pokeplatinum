@@ -21,7 +21,7 @@ _0028:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x15E, _0046
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _0046
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -39,7 +39,7 @@ _0051:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x15E, _006F
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _006F
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -57,7 +57,7 @@ _007A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x15E, _0098
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _0098
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -75,7 +75,7 @@ _00A3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x15E, _00C1
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _00C1
     Message 2
     WaitABXPadPress
     CloseMessage

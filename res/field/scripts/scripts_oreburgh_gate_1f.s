@@ -48,7 +48,7 @@ _006F:
 _007B:
     LockAll
     ApplyMovement 10, _00C0
-    ApplyMovement 0xFF, _00B4
+    ApplyMovement LOCALID_PLAYER, _00B4
     WaitMovement
     Message 0
     SetVar 0x8004, 0x1A9

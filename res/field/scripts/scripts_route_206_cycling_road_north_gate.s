@@ -47,7 +47,7 @@ _0061:
     WaitMovement
     Message 1
     CloseMessage
-    ApplyMovement 0xFF, _00A8
+    ApplyMovement LOCALID_PLAYER, _00A8
     WaitMovement
     ReleaseAll
     End

@@ -26,11 +26,11 @@ _0047:
     End
 
 _0067:
-    ScrCmd_18A 5, 0x30F, 0x153
+    SetWarpEventPos 5, 0x30F, 0x153
     End
 
 _0071:
-    ScrCmd_18A 4, 0x30F, 0x153
+    SetWarpEventPos 4, 0x30F, 0x153
     End
 
 _007B:

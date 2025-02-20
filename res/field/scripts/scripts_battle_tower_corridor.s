@@ -44,7 +44,7 @@ _008E:
     ApplyMovement 0, _0140
     WaitMovement
     ScrCmd_1B1 0xFF
-    ApplyMovement 0xFF, _014C
+    ApplyMovement LOCALID_PLAYER, _014C
     WaitMovement
     ScrCmd_16C 77
     ScrCmd_169 77
@@ -74,28 +74,28 @@ _008E:
 
 _00D6:
     ApplyMovement 0, _0178
-    ApplyMovement 0xFF, _0188
+    ApplyMovement LOCALID_PLAYER, _0188
     WaitMovement
     GoTo _0066
     End
 
 _00F0:
     ApplyMovement 0, _019C
-    ApplyMovement 0xFF, _01AC
+    ApplyMovement LOCALID_PLAYER, _01AC
     WaitMovement
     GoTo _0066
     End
 
 _010A:
     ApplyMovement 0, _01C0
-    ApplyMovement 0xFF, _01D0
+    ApplyMovement LOCALID_PLAYER, _01D0
     WaitMovement
     GoTo _0066
     End
 
 _0124:
     ApplyMovement 0, _01E4
-    ApplyMovement 0xFF, _01F4
+    ApplyMovement LOCALID_PLAYER, _01F4
     WaitMovement
     GoTo _0066
 

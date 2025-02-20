@@ -42,13 +42,13 @@ _0072:
     End
 
 _00AC:
-    ScrCmd_186 31, 177, 0x306
+    SetObjectEventPos 31, 177, 0x306
     ScrCmd_189 31, 1
     ScrCmd_188 31, 15
     Return
 
 _00C2:
-    ScrCmd_186 7, 176, 0x2E3
+    SetObjectEventPos 7, 176, 0x2E3
     ScrCmd_189 7, 2
     ScrCmd_188 7, 16
     Return
@@ -70,23 +70,23 @@ _00E8:
     End
 
 _0119:
-    ScrCmd_186 7, 173, 0x314
+    SetObjectEventPos 7, 173, 0x314
     GoTo _0149
     End
 
 _0129:
-    ScrCmd_186 7, 174, 0x314
+    SetObjectEventPos 7, 174, 0x314
     GoTo _0149
     End
 
 _0139:
-    ScrCmd_186 7, 175, 0x314
+    SetObjectEventPos 7, 175, 0x314
     GoTo _0149
     End
 
 _0149:
     ClearFlag 0x17A
-    ScrCmd_064 7
+    AddObject 7
     ScrCmd_062 7
     ApplyMovement 7, _043C
     WaitMovement
@@ -184,7 +184,7 @@ _02B6:
 
 _02BB:
     ApplyMovement 7, _0474
-    ApplyMovement 0xFF, _04F8
+    ApplyMovement LOCALID_PLAYER, _04F8
     WaitMovement
     RemoveObject 7
     SetVar 0x4077, 1
@@ -201,19 +201,19 @@ _02DB:
 
 _030C:
     ApplyMovement 7, _0454
-    ApplyMovement 0xFF, _04B4
+    ApplyMovement LOCALID_PLAYER, _04B4
     WaitMovement
     Return
 
 _0320:
     ApplyMovement 7, _046C
-    ApplyMovement 0xFF, _04D4
+    ApplyMovement LOCALID_PLAYER, _04D4
     WaitMovement
     Return
 
 _0334:
     ApplyMovement 7, _0460
-    ApplyMovement 0xFF, _04C4
+    ApplyMovement LOCALID_PLAYER, _04C4
     WaitMovement
     Return
 
@@ -222,7 +222,7 @@ _0348:
     WaitMovement
     ApplyMovement 31, _0544
     ApplyMovement 7, _047C
-    ApplyMovement 0xFF, _04DC
+    ApplyMovement LOCALID_PLAYER, _04DC
     WaitMovement
     Return
 
@@ -265,17 +265,17 @@ _03C0:
     Message 22
     CloseMessage
     ApplyMovement 7, _04A4
-    ApplyMovement 0xFF, _0504
+    ApplyMovement LOCALID_PLAYER, _0504
     ApplyMovement 31, _0574
     WaitMovement
     ScrCmd_187 31, 186, 0, 0x2F4, 1
-    ScrCmd_186 31, 186, 0x2F4
+    SetObjectEventPos 31, 186, 0x2F4
     CallCommonScript 0x808
     Return
 
 _041B:
     ApplyMovement 7, _048C
-    ApplyMovement 0xFF, _04EC
+    ApplyMovement LOCALID_PLAYER, _04EC
     WaitMovement
     Return
 
@@ -480,7 +480,7 @@ _0601:
     Message 91
     CloseMessage
     ApplyMovement 26, _06B0
-    ApplyMovement 0xFF, _06F8
+    ApplyMovement LOCALID_PLAYER, _06F8
     WaitMovement
     GoTo _067C
     End
@@ -491,7 +491,7 @@ _062A:
     Message 91
     CloseMessage
     ApplyMovement 26, _06C8
-    ApplyMovement 0xFF, _06F8
+    ApplyMovement LOCALID_PLAYER, _06F8
     WaitMovement
     GoTo _067C
     End
@@ -502,7 +502,7 @@ _0653:
     Message 91
     CloseMessage
     ApplyMovement 26, _06E0
-    ApplyMovement 0xFF, _06F8
+    ApplyMovement LOCALID_PLAYER, _06F8
     WaitMovement
     GoTo _067C
     End
@@ -574,28 +574,28 @@ _0700:
     End
 
 _073E:
-    ApplyMovement 0xFF, _0894
+    ApplyMovement LOCALID_PLAYER, _0894
     ApplyMovement 31, _08B4
     WaitMovement
     GoTo _07A6
     End
 
 _0758:
-    ApplyMovement 0xFF, _0894
+    ApplyMovement LOCALID_PLAYER, _0894
     ApplyMovement 31, _08CC
     WaitMovement
     GoTo _07A6
     End
 
 _0772:
-    ApplyMovement 0xFF, _0894
+    ApplyMovement LOCALID_PLAYER, _0894
     ApplyMovement 31, _08E4
     WaitMovement
     GoTo _07A6
     End
 
 _078C:
-    ApplyMovement 0xFF, _0894
+    ApplyMovement LOCALID_PLAYER, _0894
     ApplyMovement 31, _08FC
     WaitMovement
     GoTo _07A6
@@ -604,7 +604,7 @@ _078C:
 _07A6:
     Call _07FC
     CloseMessage
-    ApplyMovement 0xFF, _08AC
+    ApplyMovement LOCALID_PLAYER, _08AC
     ApplyMovement 31, _0914
     WaitMovement
     GetPlayerMapPos 0x8004, 0x8005
@@ -813,21 +813,21 @@ _09DC:
 
 _0A1C:
     ApplyMovement 16, _0EBC
-    ApplyMovement 0xFF, _0DD0
+    ApplyMovement LOCALID_PLAYER, _0DD0
     WaitMovement
     GoTo _0A6A
     End
 
 _0A36:
     ApplyMovement 16, _0EBC
-    ApplyMovement 0xFF, _0DE4
+    ApplyMovement LOCALID_PLAYER, _0DE4
     WaitMovement
     GoTo _0A6A
     End
 
 _0A50:
     ApplyMovement 16, _0EBC
-    ApplyMovement 0xFF, _0DF8
+    ApplyMovement LOCALID_PLAYER, _0DF8
     WaitMovement
     GoTo _0A6A
     End
@@ -876,7 +876,7 @@ _0AFE:
     ApplyMovement 16, _0F00
     WaitMovement
     ApplyMovement 7, _0E4C
-    ApplyMovement 0xFF, _0F30
+    ApplyMovement LOCALID_PLAYER, _0F30
     WaitMovement
     Call JubilifeCity_SetPlayerCounterpartPartnerTeam
     StartTagBattle 0x8004, TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1, TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2
@@ -951,7 +951,7 @@ _0C52:
     CloseMessage
     ApplyMovement 7, _0E68
     ApplyMovement 16, _0ED8
-    ApplyMovement 0xFF, _0E08
+    ApplyMovement LOCALID_PLAYER, _0E08
     WaitMovement
     GoTo _0C7C
     End
@@ -966,10 +966,10 @@ _0C7C:
     RemoveObject 24
     RemoveObject 25
     RemoveObject 27
-    ScrCmd_186 30, 174, 0x2EE
+    SetObjectEventPos 30, 174, 0x2EE
     ScrCmd_188 30, 14
     ClearFlag 0x18B
-    ScrCmd_064 30
+    AddObject 30
     ScrCmd_062 30
     ApplyMovement 30, _0DC0
     WaitMovement
@@ -1452,7 +1452,7 @@ _10AD:
 _10C4:
     LockAll
     ApplyMovement 23, _1178
-    ApplyMovement 0xFF, _1170
+    ApplyMovement LOCALID_PLAYER, _1170
     WaitMovement
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 172, _1133
@@ -1577,7 +1577,7 @@ _1223:
     WaitSound
     Message 44
     CloseMessage
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _12A1
     GoToIfEq 0x800C, 1, _12BB
     GoToIfEq 0x800C, 2, _12A1
@@ -1586,14 +1586,14 @@ _1223:
 
 _12A1:
     ApplyMovement 23, _12FC
-    ApplyMovement 0xFF, _1314
+    ApplyMovement LOCALID_PLAYER, _1314
     WaitMovement
     GoTo _12D5
     End
 
 _12BB:
     ApplyMovement 23, _12F0
-    ApplyMovement 0xFF, _1304
+    ApplyMovement LOCALID_PLAYER, _1304
     WaitMovement
     GoTo _12D5
     End
@@ -1780,16 +1780,16 @@ _14BC:
 _14CF:
     LockAll
     GetPlayerMapPos 0x8004, 0x8005
-    ScrCmd_186 31, 179, 0x8005
+    SetObjectEventPos 31, 179, 0x8005
     ScrCmd_189 31, 3
     ScrCmd_188 31, 17
     ClearFlag 0x181
-    ScrCmd_064 31
+    AddObject 31
     ApplyMovement 31, _1538
     WaitMovement
     CallCommonScript 0x807
     ApplyMovement 31, _1544
-    ApplyMovement 0xFF, _08A0
+    ApplyMovement LOCALID_PLAYER, _08A0
     WaitMovement
     Call _0994
     CloseMessage

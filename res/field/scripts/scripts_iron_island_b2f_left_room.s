@@ -26,7 +26,7 @@ _0035:
     End
 
 _004A:
-    ScrCmd_186 4, 19, 41
+    SetObjectEventPos 4, 19, 41
     ScrCmd_188 4, 17
     ScrCmd_189 4, 3
     End
@@ -79,7 +79,7 @@ _00EE:
 
 _00F3:
     LockAll
-    ApplyMovement 0xFF, _0158
+    ApplyMovement LOCALID_PLAYER, _0158
     ApplyMovement 4, _0160
     WaitMovement
     Message 4
@@ -202,13 +202,13 @@ _01AA:
 
 _0291:
     ApplyMovement 4, _03D4
-    ApplyMovement 0xFF, _0434
+    ApplyMovement LOCALID_PLAYER, _0434
     WaitMovement
     Return
 
 _02A5:
     ApplyMovement 4, _03E4
-    ApplyMovement 0xFF, _044C
+    ApplyMovement LOCALID_PLAYER, _044C
     WaitMovement
     Return
 
@@ -239,13 +239,13 @@ _02A5:
 
 _02D1:
     ApplyMovement 4, _0414
-    ApplyMovement 0xFF, _0424
+    ApplyMovement LOCALID_PLAYER, _0424
     WaitMovement
     Return
 
 _02E5:
     ApplyMovement 4, _041C
-    ApplyMovement 0xFF, _042C
+    ApplyMovement LOCALID_PLAYER, _042C
     WaitMovement
     Return
 
