@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV5_021DC1A4_DECL_H
 #define POKEPLATINUM_STRUCT_OV5_021DC1A4_DECL_H
 
-typedef struct UnkStruct_ov5_021DC1A4_t UnkStruct_ov5_021DC1A4;
+typedef struct GenericMenuManager_t GenericMenuManager;
 
 #endif // POKEPLATINUM_STRUCT_OV5_021DC1A4_DECL_H
