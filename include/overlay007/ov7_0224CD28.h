@@ -12,7 +12,7 @@ enum MartTypes {
     MART_TYPE_FRONTIER, // uses Battle Points instead of normal money
 };
 
-enum ShopStaticWindow {
+enum ShopStaticWindows {
     SHOP_WINDOW_ITEM_LIST = 0,
     SHOP_WINDOW_ITEM_DESCRIPTION,
     SHOP_WINDOW_CURRENT_MONEY,
@@ -23,9 +23,43 @@ enum ShopStaticWindow {
     SHOP_WINDOW_MAX
 };
 
+enum ShopStaticSprites {
+    SHOP_SPRITE_SCROLL_ARROW_UP = 0,
+    SHOP_SPRITE_SCROLL_ARROW_DOWN,
+    SHOP_SPRITE_CURSOR,
+    SHOP_SPRITE_ITEM_ICON,
+
+    SHOP_SPRITE_MAX
+};
+
+enum ShopStates {
+    SHOP_STATE_SHOW_CONTEXT_MENU = 0,
+    SHOP_STATE_SELECT_CONTEXT_MENU,
+    SHOP_STATE_INIT_CAMERA,
+    SHOP_STATE_MOVE_CAMERA, // also loads the buy menu interface
+    SHOP_STATE_SELECT_BUY_MENU,
+    SHOP_STATE_SHOW_PURCHASE_MENU,
+    SHOP_STATE_SELECT_PURCHASE_MENU,
+    SHOP_STATE_SHOW_CONFIRM_PURCHASE,
+    SHOP_STATE_SELECT_CONFIRM_PURCHASE,
+    SHOP_STATE_CONFIRM_PURCHASE,
+    SHOP_STATE_FINISH_PURCHASE, // also records the purchase
+    SHOP_STATE_FINISH_FREE_PREMIER, // handles message input when getting a free premier ball
+    SHOP_STATE_MOVE_CAMERA_BACK,
+    SHOP_STATE_REINIT_CONTEXT_MENU,
+    SHOP_STATE_START_SCREEN_TRANSITION,
+    SHOP_STATE_15,
+    SHOP_STATE_16,
+    SHOP_STATE_17,
+    SHOP_STATE_RESHOW_MERCHANT_MESSAGE,
+    SHOP_STATE_SHOW_EXIT_MESSAGE,
+    SHOP_STATE_EXIT
+};
+
 #define MAX_ITEM_SHOWN 7
+#define MAX_SHOP_ITEMS 256
 
 void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incDeptStoreBuyCount);
-BOOL ov7_0224CEAC(FieldTask *param0);
+BOOL FieldTask_InitShop(FieldTask *task);
 
 #endif // POKEPLATINUM_OV7_0224CD28_H

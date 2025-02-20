@@ -12,23 +12,23 @@
 #include "heap.h"
 #include "unk_0207CB08.h"
 
-static u8 sub_0209AC50(FieldSystem *fieldSystem, ShopMenu *param1);
-static void sub_0209AC80(FieldTask *param0);
+static u8 sub_0209AC50(FieldSystem *fieldSystem, ShopMenu *shopMenu);
+static void sub_0209AC80(FieldTask *task);
 
-BOOL sub_0209AC14(FieldTask *param0)
+BOOL sub_0209AC14(FieldTask *task)
 {
     FieldSystem *fieldSystem;
     ShopMenu *shopMenu;
 
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    shopMenu = FieldTask_GetEnv(param0);
+    fieldSystem = FieldTask_GetFieldSystem(task);
+    shopMenu = FieldTask_GetEnv(task);
 
     switch (shopMenu->state) {
-    case 16:
+    case SHOP_STATE_16:
         shopMenu->state = sub_0209AC50(fieldSystem, shopMenu);
         break;
-    case 17:
-        sub_0209AC80(param0);
+    case SHOP_STATE_17:
+        sub_0209AC80(task);
         break;
     }
 
@@ -38,7 +38,7 @@ BOOL sub_0209AC14(FieldTask *param0)
 static u8 sub_0209AC50(FieldSystem *fieldSystem, ShopMenu *shopMenu)
 {
     if (FieldSystem_IsRunningApplication(fieldSystem)) {
-        return 16;
+        return SHOP_STATE_16;
     }
 
     shopMenu->itemSoldCount = sub_0207CBAC(shopMenu->unk_04);
@@ -46,20 +46,20 @@ static u8 sub_0209AC50(FieldSystem *fieldSystem, ShopMenu *shopMenu)
     Heap_FreeToHeap(shopMenu->unk_04);
     FieldSystem_StartFieldMap(fieldSystem);
 
-    return 17;
+    return SHOP_STATE_17;
 }
 
-static void sub_0209AC80(FieldTask *param0)
+static void sub_0209AC80(FieldTask *task)
 {
     FieldSystem *fieldSystem;
     ShopMenu *shopMenu;
 
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    shopMenu = FieldTask_GetEnv(param0);
+    fieldSystem = FieldTask_GetFieldSystem(task);
+    shopMenu = FieldTask_GetEnv(task);
 
     if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
         ov5_021D1744(1);
-        FieldTask_InitJump(param0, ov7_0224CEAC, shopMenu);
-        shopMenu->state = 18;
+        FieldTask_InitJump(task, FieldTask_InitShop, shopMenu);
+        shopMenu->state = SHOP_STATE_RESHOW_MERCHANT_MESSAGE;
     }
 }

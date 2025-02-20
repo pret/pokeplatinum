@@ -25,15 +25,15 @@ typedef struct {
     BgConfig *bgConfig;
     void *unk_04;
     Window windows[SHOP_WINDOW_MAX + 1]; // beyond SHOP_WINDOW_MAX index here is unused
-    ListMenu *menu;
+    ListMenu *listMenu;
     StringList *itemsList;
-    Menu *yesNoChoice;
+    Menu *choiceMenu; // used both for the buy confirmation and the field options
     StringList *optionsList;
     MessageLoader *msgLoader;
     StringTemplate *strTemplate;
     Camera *camera;
     UnkStruct_ov5_021D30A8 unk_94;
-    Sprite *sprites[4];
+    Sprite *sprites[SHOP_SPRITE_MAX];
     u16 spriteDrawFlags[2];
     TrainerInfo *trainerInfo;
     void *destInventory;
