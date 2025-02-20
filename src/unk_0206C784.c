@@ -8,9 +8,9 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021EF75C.h"
 #include "overlay005/struct_ov5_021D5894.h"
 
 #include "camera.h"
@@ -311,14 +311,14 @@ static void sub_0206CBA0(FieldSystem *fieldSystem)
             MapProp *v6;
             NNSG3dRenderObj *v7;
 
-            v5 = ov5_021EF9E8(v2[v0], fieldSystem->unk_30);
+            v5 = AreaDataManager_GetMapPropModelFile(v2[v0], fieldSystem->areaDataManager);
             v4 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v5), 0);
             v1 = sub_020552B4(fieldSystem, v2[v0], &v6, NULL);
 
             GF_ASSERT(v1);
             v7 = MapProp_GetRenderObj(v6);
 
-            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, v3[v0], v2[v0], v7, v4, ov5_021EFAA0(fieldSystem->unk_30), 1, 1, 0);
+            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, v3[v0], v2[v0], v7, v4, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
         } else {
             GF_ASSERT(FALSE);
         }

@@ -6,9 +6,9 @@
 #include "struct_defs/struct_02055130.h"
 
 #include "field/field_system.h"
+#include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021EF75C.h"
 
 #include "unk_02054D00.h"
 
@@ -25,7 +25,7 @@ void ov6_02247078(FieldSystem *fieldSystem, const u8 param1)
     if (v0) {
         NNSG3dResTex *v5;
 
-        v5 = ov5_021EFAA0(fieldSystem->unk_30);
+        v5 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
         ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, param1, v3, MapProp_GetRenderObj(v1), MapProp_GetModel(v1), v5, 2, 1, 0);
     } else {
         GF_ASSERT(0);

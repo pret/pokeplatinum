@@ -6,16 +6,15 @@
 #include "constants/heap.h"
 
 #include "field/field_system.h"
+#include "overlay005/area_data.h"
 #include "overlay005/bdhc.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021EEAC8.h"
-#include "overlay005/ov5_021EF75C.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021EEB48_decl.h"
-#include "overlay005/struct_ov5_021EF76C_decl.h"
 
 #include "easy3d.h"
 #include "heap.h"
@@ -54,7 +53,7 @@ typedef struct {
 } UnkStruct_ov5_021E7814;
 
 typedef void (*UnkFuncPtr_ov5_021FAE98)(UnkStruct_ov5_021E8F60 *, const int, const int, const int, const int, const int);
-typedef void (*UnkFuncPtr_ov5_021FAE98_1)(const u8, UnkStruct_ov5_021EF76C *const, const MapMatrix *, const int, const int, UnkStruct_ov5_021E8F60 *, UnkStruct_ov5_021E7814 *);
+typedef void (*UnkFuncPtr_ov5_021FAE98_1)(const u8, AreaDataManager *const, const MapMatrix *, const int, const int, UnkStruct_ov5_021E8F60 *, UnkStruct_ov5_021E7814 *);
 
 typedef struct UnkStruct_ov5_021FAE98_t {
     UnkFuncPtr_ov5_021FAE98 unk_00;
@@ -100,7 +99,7 @@ typedef struct UnkStruct_ov5_021E8F60_t {
     u8 unk_A1;
     BOOL unk_A4;
     int unk_A8;
-    UnkStruct_ov5_021EF76C *unk_AC;
+    AreaDataManager *unk_AC;
     MapMatrix *unk_B0;
     int unk_B4;
     int unk_B8;
@@ -150,11 +149,11 @@ static void ov5_021E7AC4(UnkStruct_ov5_021E8F60 *param0);
 static void ov5_021E77E4(UnkStruct_ov5_021E8F60 *param0, const u8 param1);
 static BOOL ov5_021E80D0(UnkStruct_ov5_021E8F60 *param0, const int param1, const int param2, const u8 param3, const u8 param4, const u8 param5, const u8 param6);
 static void ov5_021E7BAC(NARC *param0, const int param1, UnkStruct_ov5_021E7BAC *param2);
-static void ov5_021E7C00(const u8 param0, UnkStruct_ov5_021EF76C *const param1, const MapMatrix *param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 *param5, UnkStruct_ov5_021E7814 *param6);
-static void ov5_021E7CD4(const u8 param0, UnkStruct_ov5_021EF76C *const param1, const MapMatrix *param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 *param5, UnkStruct_ov5_021E7814 *param6);
-static void ov5_021E7E28(const int param0, const u8 param1, UnkStruct_ov5_021EF76C *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, const UnkStruct_ov5_021E8F60 *param7);
-static void ov5_021E7F1C(const int param0, const u8 param1, UnkStruct_ov5_021EF76C *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7);
-static void ov5_021E7FF0(const int param0, const u8 param1, UnkStruct_ov5_021EF76C *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7);
+static void ov5_021E7C00(const u8 param0, AreaDataManager *const param1, const MapMatrix *param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 *param5, UnkStruct_ov5_021E7814 *param6);
+static void ov5_021E7CD4(const u8 param0, AreaDataManager *const param1, const MapMatrix *param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 *param5, UnkStruct_ov5_021E7814 *param6);
+static void ov5_021E7E28(const int param0, const u8 param1, AreaDataManager *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, const UnkStruct_ov5_021E8F60 *param7);
+static void ov5_021E7F1C(const int param0, const u8 param1, AreaDataManager *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7);
+static void ov5_021E7FF0(const int param0, const u8 param1, AreaDataManager *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7);
 static void ov5_021E86A0(const int param0, const u8 param1, UnkStruct_ov5_021E8F60 *param2);
 static void ov5_021E8668(const u8 param0, const u8 param1, const u8 param2, const u8 param3, UnkStruct_ov5_021E8F60 *param4);
 static void ov5_021E8614(const u8 param0, UnkStruct_ov5_021E8F60 *param1);
@@ -174,7 +173,7 @@ static void ov5_021E8D50(UnkStruct_ov5_021E8F60 *param0);
 static void ov5_021E8F90(const int param0, const int param1, const int param2, const int param3, UnkStruct_ov5_021E8F60 *param4);
 static void ov5_021E901C(const int param0, const int param1, const MapMatrix *param2, VecFx32 *param3);
 static void ov5_021E9A14(UnkStruct_ov5_021E8F60 *param0, const int param1, const int param2, const int param3, const int param4, const int param5);
-static void ov5_021E9B70(const int param0, const u8 param1, const UnkStruct_ov5_021EF76C *param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7);
+static void ov5_021E9B70(const int param0, const u8 param1, const AreaDataManager *param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7);
 static void ov5_021E9C40(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, const UnkStruct_ov5_021D5894 *param2);
 
 static const UnkStruct_ov5_021FAE98 Unk_ov5_021FAE98 = {
@@ -461,7 +460,7 @@ static void ov5_021E7BAC(NARC *param0, const int param1, UnkStruct_ov5_021E7BAC 
     Heap_FreeToHeap(v0);
 }
 
-static void ov5_021E7C00(const u8 param0, UnkStruct_ov5_021EF76C *const param1, const MapMatrix *param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 *param5, UnkStruct_ov5_021E7814 *param6)
+static void ov5_021E7C00(const u8 param0, AreaDataManager *const param1, const MapMatrix *param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 *param5, UnkStruct_ov5_021E7814 *param6)
 {
     int v0;
     u8 v1;
@@ -495,7 +494,7 @@ static void ov5_021E7C00(const u8 param0, UnkStruct_ov5_021EF76C *const param1, 
 
     {
         param6->unk_10.unk_00++;
-        param6->unk_08 = ov5_021E976C(param5->unk_EC, v3.unk_04, &param6->unk_00[param0]->unk_800, &(param6->unk_00[param0]->unk_854), ov5_021EFA8C(param1), &(param6->unk_00[param0]->unk_864), &param6->unk_10.unk_00);
+        param6->unk_08 = ov5_021E976C(param5->unk_EC, v3.unk_04, &param6->unk_00[param0]->unk_800, &(param6->unk_00[param0]->unk_854), AreaDataManager_GetMapTexture(param1), &(param6->unk_00[param0]->unk_864), &param6->unk_10.unk_00);
     }
 
     {
@@ -504,7 +503,7 @@ static void ov5_021E7C00(const u8 param0, UnkStruct_ov5_021EF76C *const param1, 
     }
 }
 
-static void ov5_021E7CD4(const u8 param0, UnkStruct_ov5_021EF76C *const param1, const MapMatrix *param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 *param5, UnkStruct_ov5_021E7814 *param6)
+static void ov5_021E7CD4(const u8 param0, AreaDataManager *const param1, const MapMatrix *param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 *param5, UnkStruct_ov5_021E7814 *param6)
 {
     int v0;
     u8 v1;
@@ -536,11 +535,11 @@ static void ov5_021E7CD4(const u8 param0, UnkStruct_ov5_021EF76C *const param1, 
 
     {
         param6->unk_10.unk_00++;
-        param6->unk_08 = ov5_021E976C(param5->unk_EC, v3.unk_04, &param6->unk_00[param0]->unk_800, &(param6->unk_00[param0]->unk_854), ov5_021EFA8C(param1), &(param6->unk_00[param0]->unk_864), &param6->unk_10.unk_00);
+        param6->unk_08 = ov5_021E976C(param5->unk_EC, v3.unk_04, &param6->unk_00[param0]->unk_800, &(param6->unk_00[param0]->unk_854), AreaDataManager_GetMapTexture(param1), &(param6->unk_00[param0]->unk_864), &param6->unk_10.unk_00);
     }
 }
 
-static void ov5_021E7D98(const u8 param0, const UnkStruct_ov5_021EF76C *param1, const MapMatrix *param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 *param5, UnkStruct_ov5_021E7814 *param6)
+static void ov5_021E7D98(const u8 param0, const AreaDataManager *param1, const MapMatrix *param2, const int param3, const int param4, UnkStruct_ov5_021E8F60 *param5, UnkStruct_ov5_021E7814 *param6)
 {
     int v0;
     u8 v1;
@@ -566,11 +565,11 @@ static void ov5_021E7D98(const u8 param0, const UnkStruct_ov5_021EF76C *param1, 
 
     {
         param6->unk_10.unk_00++;
-        param6->unk_08 = ov5_021E976C(param5->unk_EC, v3.unk_04, &param6->unk_00[param0]->unk_800, &(param6->unk_00[param0]->unk_854), ov5_021EFA8C(param1), &(param6->unk_00[param0]->unk_864), &param6->unk_10.unk_00);
+        param6->unk_08 = ov5_021E976C(param5->unk_EC, v3.unk_04, &param6->unk_00[param0]->unk_800, &(param6->unk_00[param0]->unk_854), AreaDataManager_GetMapTexture(param1), &(param6->unk_00[param0]->unk_864), &param6->unk_10.unk_00);
     }
 }
 
-static void ov5_021E7E28(const int param0, const u8 param1, UnkStruct_ov5_021EF76C *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, const UnkStruct_ov5_021E8F60 *param7)
+static void ov5_021E7E28(const int param0, const u8 param1, AreaDataManager *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, const UnkStruct_ov5_021E8F60 *param7)
 {
     int v0;
     NNSG3dResMdl *v1;
@@ -600,7 +599,7 @@ static void ov5_021E7E28(const int param0, const u8 param1, UnkStruct_ov5_021EF7
     }
 
     {
-        v1 = ov5_021E97AC(param7->unk_EC, v2.unk_04, &param7->unk_84[param1]->unk_800, &(param7->unk_84[param1]->unk_854), ov5_021EFA8C(param2));
+        v1 = ov5_021E97AC(param7->unk_EC, v2.unk_04, &param7->unk_84[param1]->unk_800, &(param7->unk_84[param1]->unk_854), AreaDataManager_GetMapTexture(param2));
 
         if (param6 == 1) {
             ov5_021D53A4(v1);
@@ -620,7 +619,7 @@ static void ov5_021E7E28(const int param0, const u8 param1, UnkStruct_ov5_021EF7
     }
 }
 
-static void ov5_021E7F1C(const int param0, const u8 param1, UnkStruct_ov5_021EF76C *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7)
+static void ov5_021E7F1C(const int param0, const u8 param1, AreaDataManager *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7)
 {
     int v0;
     UnkStruct_ov5_021E7BAC v1;
@@ -648,7 +647,7 @@ static void ov5_021E7F1C(const int param0, const u8 param1, UnkStruct_ov5_021EF7
     }
 
     {
-        v2 = ov5_021E97AC(param7->unk_EC, v1.unk_04, &param7->unk_84[param1]->unk_800, &(param7->unk_84[param1]->unk_854), ov5_021EFA8C(param2));
+        v2 = ov5_021E97AC(param7->unk_EC, v1.unk_04, &param7->unk_84[param1]->unk_800, &(param7->unk_84[param1]->unk_854), AreaDataManager_GetMapTexture(param2));
 
         if (param6 == 1) {
             ov5_021D53A4(v2);
@@ -660,7 +659,7 @@ static void ov5_021E7F1C(const int param0, const u8 param1, UnkStruct_ov5_021EF7
     param7->unk_84[param1]->unk_860 = param0;
 }
 
-static void ov5_021E7FF0(const int param0, const u8 param1, UnkStruct_ov5_021EF76C *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7)
+static void ov5_021E7FF0(const int param0, const u8 param1, AreaDataManager *const param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7)
 {
     int v0;
     UnkStruct_ov5_021E7BAC v1;
@@ -849,7 +848,7 @@ void ov5_021E8188(FieldSystem *fieldSystem, UnkStruct_ov5_021E8F60 *param1)
                 NNSG3dResMdlSet *v5 = NNS_G3dGetMdlSet(v1->unk_00[v1->unk_22 - 1]->unk_854);
                 NNSG3dResMdl *v6 = NNS_G3dGetMdlByIdx(v5, 0);
 
-                if (ov5_021EFAC0(param1->unk_AC) == 1) {
+                if (AreaDataManager_IsOutdoorsLighting(param1->unk_AC) == 1) {
                     ov5_021D53A4(v6);
                 }
             }
@@ -1153,7 +1152,7 @@ static void ov5_021E89D0(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, 
 
     if (param1->unk_84[param0]->unk_864 == 1) {
         if (param1->unk_84[param0]->unk_868 != NULL) {
-            MapPropManager_Render(&v0, param1->unk_AC, ov5_021EFAC0(param1->unk_AC), param2, param1->unk_84[param0]->unk_868);
+            MapPropManager_Render(&v0, param1->unk_AC, AreaDataManager_IsOutdoorsLighting(param1->unk_AC), param2, param1->unk_84[param0]->unk_868);
         }
     }
 }
@@ -1444,7 +1443,7 @@ static void ov5_021E8E28(UnkStruct_ov5_021E8F60 *param0, const int param1, const
         param0->unk_84[v0]->bdhc = BDHC_New();
 
         BDHC_MarkNotLoaded(param0->unk_84[v0]->bdhc);
-        ov5_021E7E28(v1[v0], v0, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
+        ov5_021E7E28(v1[v0], v0, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, AreaDataManager_IsOutdoorsLighting(param0->unk_AC), param0);
     }
 }
 
@@ -1458,7 +1457,7 @@ static void ov5_021E8ECC(UnkStruct_ov5_021E8F60 *param0, const int param1, const
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_84[v0]->bdhc = NULL;
-        ov5_021E7F1C(v1[v0], v0, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
+        ov5_021E7F1C(v1[v0], v0, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, AreaDataManager_IsOutdoorsLighting(param0->unk_AC), param0);
     }
 }
 
@@ -1532,7 +1531,7 @@ static void ov5_021E901C(const int param0, const int param1, const MapMatrix *pa
     param3->z += v1 * 32 * 16 * FX32_ONE;
 }
 
-UnkStruct_ov5_021E8F60 *ov5_021E9084(MapMatrix *param0, UnkStruct_ov5_021EF76C *param1, UnkStruct_ov5_021D3CAC *param2, const int param3)
+UnkStruct_ov5_021E8F60 *ov5_021E9084(MapMatrix *param0, AreaDataManager *param1, UnkStruct_ov5_021D3CAC *param2, const int param3)
 {
     UnkStruct_ov5_021E8F60 *v0;
     BOOL v1;
@@ -1979,7 +1978,7 @@ NARC *ov5_021E9828(UnkStruct_ov5_021E8F60 *param0)
     return param0->unk_EC;
 }
 
-UnkStruct_ov5_021E8F60 *ov5_021E9830(MapMatrix *param0, UnkStruct_ov5_021EF76C *param1, NARC *param2)
+UnkStruct_ov5_021E8F60 *ov5_021E9830(MapMatrix *param0, AreaDataManager *param1, NARC *param2)
 {
     UnkStruct_ov5_021E8F60 *v0;
     BOOL v1;
@@ -2010,7 +2009,7 @@ UnkStruct_ov5_021E8F60 *ov5_021E9830(MapMatrix *param0, UnkStruct_ov5_021EF76C *
     return v0;
 }
 
-void ov5_021E98C8(UnkStruct_ov5_021E8F60 *param0, MapMatrix *param1, UnkStruct_ov5_021EF76C *param2, NARC *param3)
+void ov5_021E98C8(UnkStruct_ov5_021E8F60 *param0, MapMatrix *param1, AreaDataManager *param2, NARC *param3)
 {
     BOOL v0;
 
@@ -2086,7 +2085,7 @@ static void ov5_021E9A14(UnkStruct_ov5_021E8F60 *param0, const int param1, const
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_84[v0]->bdhc = NULL;
-        ov5_021E9B70(v1[v0], v0, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
+        ov5_021E9B70(v1[v0], v0, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, AreaDataManager_IsOutdoorsLighting(param0->unk_AC), param0);
     }
 }
 
@@ -2105,11 +2104,11 @@ void ov5_021E9AAC(UnkStruct_ov5_021E8F60 *param0, const int param1, const int pa
 void ov5_021E9B10(UnkStruct_ov5_021E8F60 *param0, int param1, int param2)
 {
     param0->unk_84[param1]->bdhc = NULL;
-    ov5_021E9B70(param2, param1, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
+    ov5_021E9B70(param2, param1, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, AreaDataManager_IsOutdoorsLighting(param0->unk_AC), param0);
     param0->unk_84[param1]->unk_864 = 0;
 }
 
-static void ov5_021E9B70(const int param0, const u8 param1, const UnkStruct_ov5_021EF76C *param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7)
+static void ov5_021E9B70(const int param0, const u8 param1, const AreaDataManager *param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7)
 {
     int v0, v1;
     UnkStruct_ov5_021E7BAC v2;
@@ -2126,7 +2125,7 @@ static void ov5_021E9B70(const int param0, const u8 param1, const UnkStruct_ov5_
     NARC_Seek(param7->unk_EC, v1);
 
     DC_FlushRange((void *)param7->unk_84[param1]->unk_854, v2.unk_04);
-    v3 = ov5_021E97AC(param7->unk_EC, v2.unk_04, &param7->unk_84[param1]->unk_800, &(param7->unk_84[param1]->unk_854), ov5_021EFA8C(param2));
+    v3 = ov5_021E97AC(param7->unk_EC, v2.unk_04, &param7->unk_84[param1]->unk_800, &(param7->unk_84[param1]->unk_854), AreaDataManager_GetMapTexture(param2));
 
     if (param6 == 1) {
         ov5_021D53A4(v3);
@@ -2185,7 +2184,7 @@ void ov5_021E9CD8(UnkStruct_ov5_021E8F60 *param0)
     }
 }
 
-void ov5_021E9D3C(MapMatrix *param0, UnkStruct_ov5_021EF76C *param1, UnkStruct_ov5_021E8F60 *param2, UnkStruct_ov5_021E8F60 *param3, const int param4, const int param5)
+void ov5_021E9D3C(MapMatrix *param0, AreaDataManager *param1, UnkStruct_ov5_021E8F60 *param2, UnkStruct_ov5_021E8F60 *param3, const int param4, const int param5)
 {
     int v0;
     int v1[4];
@@ -2238,7 +2237,7 @@ void ov5_021E9D3C(MapMatrix *param0, UnkStruct_ov5_021EF76C *param1, UnkStruct_o
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        ov5_021E7FF0(v1[v0], v0, param3->unk_AC, param3->unk_B0, param3->unk_B4, param3->unk_B8, ov5_021EFAC0(param3->unk_AC), param3);
+        ov5_021E7FF0(v1[v0], v0, param3->unk_AC, param3->unk_B0, param3->unk_B4, param3->unk_B8, AreaDataManager_IsOutdoorsLighting(param3->unk_AC), param3);
     }
 }
 
@@ -2399,7 +2398,7 @@ void ov5_021EA174(FieldSystem *fieldSystem, UnkStruct_ov5_021E8F60 *param1)
                 NNSG3dResMdlSet *v5 = NNS_G3dGetMdlSet(v1->unk_00[v1->unk_22 - 1]->unk_854);
                 NNSG3dResMdl *v6 = NNS_G3dGetMdlByIdx(v5, 0);
 
-                if (ov5_021EFAC0(param1->unk_AC) == 1) {
+                if (AreaDataManager_IsOutdoorsLighting(param1->unk_AC) == 1) {
                     ov5_021D53A4(v6);
                 }
             }
@@ -2452,7 +2451,7 @@ void ov5_021EA174(FieldSystem *fieldSystem, UnkStruct_ov5_021E8F60 *param1)
     }
 }
 
-void ov5_021EA540(UnkStruct_ov5_021E8F60 *param0, MapMatrix *param1, UnkStruct_ov5_021EF76C *param2)
+void ov5_021EA540(UnkStruct_ov5_021E8F60 *param0, MapMatrix *param1, AreaDataManager *param2)
 {
     param0->unk_AC = param2;
     param0->unk_B0 = param1;
@@ -2487,7 +2486,7 @@ void ov5_021EA5E0(UnkStruct_ov5_021E8F60 *param0, int param1, int param2)
     MI_CpuFillFast(param0->unk_84[param1]->unk_00, 0xffffffff, 2 * 32 * 32);
 
     BDHC_MarkNotLoaded(param0->unk_84[param1]->bdhc);
-    ov5_021E7E28(param2, param1, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, ov5_021EFAC0(param0->unk_AC), param0);
+    ov5_021E7E28(param2, param1, param0->unk_AC, param0->unk_B0, param0->unk_B4, param0->unk_B8, AreaDataManager_IsOutdoorsLighting(param0->unk_AC), param0);
 }
 
 void ov5_021EA678(UnkStruct_ov5_021E8F60 *param0, int param1, int param2, int param3)

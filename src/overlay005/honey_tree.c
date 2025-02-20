@@ -196,7 +196,7 @@ void HoneyTree_StopShaking(FieldSystem *fieldSystem)
 
         ov5_021E9340(v1, fieldSystem->unk_28, &v3);
 
-        v2 = MapPropManager_FindLoadedPropById(v3, MAP_PROP_ID_HONEY_TREE);
+        v2 = MapPropManager_FindLoadedPropByModelID(v3, MAP_PROP_MODEL_ID_HONEY_TREE);
         v4 = MapProp_GetRenderObj(v2);
 
         if (v2 != NULL) {
@@ -366,7 +366,7 @@ static void DoTreeShakingAnimation(FieldSystem *fieldSystem, MapPropManager *par
                 return;
             }
 
-            v4 = MapPropManager_FindLoadedPropById(param1, MAP_PROP_ID_HONEY_TREE);
+            v4 = MapPropManager_FindLoadedPropByModelID(param1, MAP_PROP_MODEL_ID_HONEY_TREE);
 
             if (v4 != NULL) {
                 NNSG3dRenderObj *v7;

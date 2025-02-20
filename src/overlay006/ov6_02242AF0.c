@@ -9,9 +9,9 @@
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "field/field_system.h"
+#include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021EF75C.h"
 #include "overlay006/struct_ov6_02242AF0.h"
 
 #include "field_system.h"
@@ -106,7 +106,7 @@ void ov6_02242AF0(FieldSystem *fieldSystem)
         break;
     }
 
-    MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, 475, &v2, NULL, fieldSystem->unk_50);
+    MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 475, &v2, NULL, fieldSystem->unk_50);
 }
 
 void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
@@ -208,12 +208,12 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
         MapProp *v4;
         NNSG3dRenderObj *v5;
 
-        v4 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_475);
+        v4 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_475);
         v5 = MapProp_GetRenderObj(v4);
-        v3 = ov5_021EF9E8(475, fieldSystem->unk_30);
+        v3 = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_ID_UNK_475, fieldSystem->areaDataManager);
         v2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v3), 0);
 
-        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 16, 475, v5, v2, ov5_021EFAA0(fieldSystem->unk_30), 1, -1, 0);
+        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 16, 475, v5, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, -1, 0);
         ov5_021D4250(fieldSystem->unk_54, 16, 0);
     }
         (v1->unk_05)++;
@@ -235,7 +235,7 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
         MapProp *v6;
         VecFx32 v7;
 
-        v6 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_475);
+        v6 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_475);
         v7 = MapProp_GetPosition(v6);
 
         if (v1->unk_00(fieldSystem, v1, &v1->unk_0C, &v7)) {
