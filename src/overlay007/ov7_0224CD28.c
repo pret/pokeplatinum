@@ -202,21 +202,21 @@ static const WindowTemplate sShop_FrontierCurrMoneyWindowTemplate = {
     .baseTile = 0x28
 };
 
-static void ov7_0224CD28(ShopMenu *param0, u16 *param1)
+static void Shop_SetItemsForSale(ShopMenu *shopMenu, u16 *itemsPtr)
 {
-    u16 v0;
+    u16 i;
 
-    for (v0 = 0; v0 < 256; v0++) {
-        if (param1[v0] == 0xffff) {
+    for (i = 0; i < MAX_SHOP_ITEMS; i++) {
+        if (itemsPtr[i] == ITEM_RETURN_ID) {
             break;
         }
     }
 
-    param0->itemsCount = v0;
-    param0->itemsPtr = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, param0->itemsCount * 2);
+    shopMenu->itemsCount = i;
+    shopMenu->itemsPtr = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, shopMenu->itemsCount * 2);
 
-    for (v0 = 0; v0 < param0->itemsCount; v0++) {
-        param0->itemsPtr[v0] = param1[v0];
+    for (i = 0; i < shopMenu->itemsCount; i++) {
+        shopMenu->itemsPtr[i] = itemsPtr[i];
     }
 }
 
@@ -256,7 +256,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
         shopMenu->destInventory = sub_0202CA1C(fieldSystem->saveData);
     }
 
-    ov7_0224CD28(shopMenu, shopItems);
+    Shop_SetItemsForSale(shopMenu, shopItems);
     FieldTask_InitCall(task, ov7_0224CEAC, shopMenu);
 }
 

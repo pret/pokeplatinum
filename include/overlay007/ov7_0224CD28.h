@@ -24,6 +24,7 @@ enum ShopStaticWindow {
 };
 
 #define MAX_ITEM_SHOWN 7
+#define MAX_SHOP_ITEMS 256
 
 void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incDeptStoreBuyCount);
 BOOL ov7_0224CEAC(FieldTask *param0);
