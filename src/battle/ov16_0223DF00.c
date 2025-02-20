@@ -23,12 +23,12 @@
 
 #include "battle/battle_context.h"
 #include "battle/battle_display.h"
+#include "battle/battle_input.h"
 #include "battle/battle_lib.h"
 #include "battle/battle_message.h"
 #include "battle/common.h"
 #include "battle/healthbar.h"
 #include "battle/ov16_02268520.h"
-#include "battle/ov16_0226871C.h"
 #include "battle/ov16_0226E148.h"
 #include "battle/struct_ov16_0223E0C8.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
@@ -69,8 +69,8 @@
 #include "unk_0202F1D4.h"
 #include "unk_0206CCB0.h"
 
-BgConfig *BattleSystem_BGL(BattleSystem *battleSystem);
-u32 BattleSystem_BattleType(BattleSystem *battleSystem);
+BgConfig *BattleSystem_GetBgConfig(BattleSystem *battleSystem);
+u32 BattleSystem_GetBattleType(BattleSystem *battleSystem);
 BattleContext *BattleSystem_Context(BattleSystem *battleSystem);
 BattlerData *BattleSystem_BattlerData(BattleSystem *battleSystem, int param1);
 int BattleSystem_MaxBattlers(BattleSystem *battleSystem);
@@ -79,15 +79,14 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSystem);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem);
-SpriteSystem *ov16_0223E010(BattleSystem *battleSystem);
-SpriteManager *ov16_0223E018(BattleSystem *battleSystem);
+SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSystem);
+SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSystem);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSystem, int param1);
-UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSystem);
 UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *battleSystem);
 UnkStruct_0200C440 *ov16_0223E054(BattleSystem *battleSystem);
-MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSystem);
+MessageLoader *BattleSystem_GetMessageLoader(BattleSystem *battleSystem);
 MessageLoader *ov16_0223E060(BattleSystem *battleSystem);
-PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSystem);
+PaletteData *BattleSystem_GetPaletteData(BattleSystem *battleSystem);
 Pokedex *BattleSystem_GetPokedex(BattleSystem *battleSystem);
 u8 *ov16_0223E06C(BattleSystem *battleSystem);
 u8 *ov16_0223E074(BattleSystem *battleSystem);
@@ -112,7 +111,7 @@ u8 Battler_Side(BattleSystem *battleSystem, int param1);
 void *ov16_0223E220(BattleSystem *battleSystem);
 PCBoxes *ov16_0223E228(BattleSystem *battleSystem);
 enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
-int ov16_0223E240(BattleSystem *battleSystem);
+int BattleSystem_GetBackgroundId(BattleSystem *battleSystem);
 int BattleSystem_MapHeader(BattleSystem *battleSystem);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
 int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
@@ -144,8 +143,8 @@ int ov16_0223F1F8(BattleSystem *battleSystem);
 u16 *ov16_0223F204(BattleSystem *battleSystem);
 u16 *ov16_0223F210(BattleSystem *battleSystem);
 int BattleSystem_FieldWeather(BattleSystem *battleSystem);
-u8 ov16_0223F228(BattleSystem *battleSystem);
-void ov16_0223F234(BattleSystem *battleSystem, u8 param1);
+u8 BattleSystem_GetCatchingTutorialState(BattleSystem *battleSystem);
+void CatchingTutorial_SetCatchingTutorialState(BattleSystem *battleSystem, u8 param1);
 int ov16_0223F240(BattleSystem *battleSystem);
 void ov16_0223F24C(BattleSystem *battleSystem, int param1);
 void ov16_0223F268(BattleSystem *battleSystem);
@@ -221,7 +220,7 @@ static void BattleMessage_TrainerName(BattleSystem *battleSystem, u32 param1, in
 static void BattleMessage_PCBoxName(BattleSystem *battleSystem, u32 param1, int param2);
 static u8 ov16_0223F6D4(u8 *param0, u8 *param1, u16 *param2);
 
-BgConfig *BattleSystem_BGL(BattleSystem *battleSystem)
+BgConfig *BattleSystem_GetBgConfig(BattleSystem *battleSystem)
 {
     return battleSystem->unk_04;
 }
@@ -231,7 +230,7 @@ Window *BattleSystem_Window(BattleSystem *battleSys, int idx)
     return &battleSys->windows[idx];
 }
 
-u32 BattleSystem_BattleType(BattleSystem *battleSys)
+u32 BattleSystem_GetBattleType(BattleSystem *battleSys)
 {
     return battleSys->battleType;
 }
@@ -299,12 +298,12 @@ UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem)
     return battleSystem->unk_8C;
 }
 
-SpriteSystem *ov16_0223E010(BattleSystem *battleSystem)
+SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSystem)
 {
     return battleSystem->unk_90;
 }
 
-SpriteManager *ov16_0223E018(BattleSystem *battleSystem)
+SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSystem)
 {
     return battleSystem->unk_94;
 }
@@ -314,9 +313,9 @@ UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSystem, int param1)
     return &battleSystem->unk_17C[param1];
 }
 
-UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSystem)
+BattleInput *BattleSystem_GetBattleInput(BattleSystem *battleSystem)
 {
-    return battleSystem->unk_198;
+    return battleSystem->battleInput;
 }
 
 PartyGauge *ov16_0223E034(BattleSystem *battleSystem, enum PartyGaugeSide param1)
@@ -339,7 +338,7 @@ UnkStruct_0200C440 *ov16_0223E054(BattleSystem *battleSystem)
     return battleSystem->unk_1A8;
 }
 
-MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSystem)
+MessageLoader *BattleSystem_GetMessageLoader(BattleSystem *battleSystem)
 {
     return battleSystem->unk_0C;
 }
@@ -349,7 +348,7 @@ MessageLoader *ov16_0223E060(BattleSystem *battleSystem)
     return battleSystem->unk_10;
 }
 
-PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSystem)
+PaletteData *BattleSystem_GetPaletteData(BattleSystem *battleSystem)
 {
     return battleSystem->unk_28;
 }
@@ -511,7 +510,7 @@ enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys)
     return battleSys->terrain;
 }
 
-int ov16_0223E240(BattleSystem *battleSystem)
+int BattleSystem_GetBackgroundId(BattleSystem *battleSystem)
 {
     return battleSystem->unk_2400;
 }
@@ -525,7 +524,7 @@ int BattleSystem_Partner(BattleSystem *battleSys, int battler)
 {
     int i;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     if ((battleType & BATTLE_TYPE_DOUBLES) == FALSE) {
         return battler;
@@ -543,7 +542,7 @@ int BattleSystem_Partner(BattleSystem *battleSys, int battler)
 int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot)
 {
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     // In double battles, return the singular opponent
     if ((battleType & BATTLE_TYPE_DOUBLES) == FALSE) {
@@ -572,8 +571,8 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
     int selectedSlot = BattleContext_Get(battleSys, battleCtx, 2, battler);
 
     int targetSlot;
-    if (BattleSystem_BattleType(battleSys) == BATTLE_TYPE_TRAINER_DOUBLES
-        || ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG)
+    if (BattleSystem_GetBattleType(battleSys) == BATTLE_TYPE_TRAINER_DOUBLES
+        || ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TAG)
             && (BattleSystem_BattlerSlot(battleSys, battler) & BATTLER_THEM) == FALSE)) {
         targetSlot = BattleContext_Get(battleSys, battleCtx, BATTLECTX_SELECTED_PARTY_SLOT, BattleSystem_Partner(battleSys, battler));
         if (targetSlot == partySlot) {
@@ -1235,12 +1234,12 @@ int BattleSystem_FieldWeather(BattleSystem *battleSys)
     return battleSys->fieldWeather;
 }
 
-u8 ov16_0223F228(BattleSystem *battleSystem)
+u8 BattleSystem_GetCatchingTutorialState(BattleSystem *battleSystem)
 {
     return battleSystem->unk_241D;
 }
 
-void ov16_0223F234(BattleSystem *battleSystem, u8 param1)
+void CatchingTutorial_SetCatchingTutorialState(BattleSystem *battleSystem, u8 param1)
 {
     battleSystem->unk_241D = param1;
 }
@@ -1361,7 +1360,7 @@ void ov16_0223F36C(BattleSystem *battleSystem)
         v1 = ov16_02263B08(battleSystem->battlers[v0]);
 
         v1->battleSys = battleSystem;
-        v1->type = Healthbar_Type(Battler_Type(battleSystem->battlers[v0]), BattleSystem_BattleType(battleSystem));
+        v1->type = Healthbar_Type(Battler_Type(battleSystem->battlers[v0]), BattleSystem_GetBattleType(battleSystem));
 
         ov16_022672C4(v1);
         Healthbar_Enable(v1, 0);
@@ -1562,7 +1561,7 @@ void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag)
         return;
     }
 
-    ov16_0226CEB0(battleSys->unk_198, flag);
+    BattleInput_PrintRecordingStopMessage(battleSys->battleInput, flag);
 
     StartScreenTransition(3, 0, 0, 0, 16, 2, 5);
     sub_0200569C();
@@ -1837,7 +1836,7 @@ u8 BattleMessage_PrintToWindow(BattleSystem *battleSystem, Window *param1, Messa
  */
 static void BattleMessage_CheckSide(BattleSystem *battleSys, BattleMessage *battleMsg)
 {
-    u32 battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     if (battleMsg->tags & TAG_GLOBAL_MESSAGE) {
         return;

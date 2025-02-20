@@ -6,6 +6,6 @@ typedef struct {
     u8 unk_08[4];
     u8 unk_0C[4];
     u8 unk_10;
-} UnkStruct_ov16_02260C00;
+} BattleInputMoveMenu;
 
 #endif // POKEPLATINUM_STRUCT_OV16_02260C00_H

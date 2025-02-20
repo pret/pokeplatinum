@@ -15,7 +15,7 @@
 #include "unk_0201E010.h"
 
 struct UnkStruct_ov13_02228A50_t {
-    UnkStruct_ov16_0226DC24 *unk_00;
+    BattleCursor *unk_00;
     const ByteFlagSet *unk_04;
     u8 unk_08;
     u8 unk_09;
@@ -35,7 +35,7 @@ void ov13_02228A50(UnkStruct_ov13_02228A50 *param0)
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_ov16_0226DC24 *ov13_02228A58(UnkStruct_ov13_02228A50 *param0)
+BattleCursor *ov13_02228A58(UnkStruct_ov13_02228A50 *param0)
 {
     return param0->unk_00;
 }
@@ -50,7 +50,7 @@ void ov13_02228A60(UnkStruct_ov13_02228A50 *param0, u8 param1)
     param0->unk_08 = param1;
 }
 
-void ov13_02228A64(UnkStruct_ov13_02228A50 *param0, UnkStruct_ov16_0226DC24 *param1)
+void ov13_02228A64(UnkStruct_ov13_02228A50 *param0, BattleCursor *param1)
 {
     param0->unk_00 = param1;
 }

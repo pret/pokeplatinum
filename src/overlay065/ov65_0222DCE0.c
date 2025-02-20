@@ -6645,7 +6645,7 @@ static void ov65_02234A68(UnkStruct_ov65_0222EBE0 *param0, NARC *param1, u32 par
     Strbuf *v4;
     UnkStruct_02012B20 *v5;
     int v6;
-    UnkStruct_020127E8 v7;
+    FontOAMInitData v7;
     u32 v8;
     AffineSpriteListTemplate v9[3] = {
         { NULL,
@@ -6780,7 +6780,7 @@ static void ov65_02234DA0(UnkStruct_ov65_0222EBE0 *param0)
 {
     if (param0->unk_BE0.unk_238 == 2) {
         Sprite_SetDrawFlag(param0->unk_BE0.unk_21C[1], 1);
-        sub_020129D0(param0->unk_BE0.unk_234, 1);
+        FontOAM_SetDrawFlag(param0->unk_BE0.unk_234, 1);
     }
 
     param0->unk_BE0.unk_238 = 0;
