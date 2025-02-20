@@ -8,29 +8,29 @@
 #include "message.h"
 #include "string_template.h"
 
-GenericMenuManager *ov5_021DC150(FieldSystem *fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, Window *param7, MessageLoader *param8);
-void ov5_021DC1A4(GenericMenuManager *param0, u32 param1, u32 param2);
-void ov5_021DC1AC(GenericMenuManager *param0);
-void ov5_021DC424(GenericMenuManager *param0);
-GenericMenuManager *ov5_021DC48C(FieldSystem *fieldSystem, u8 param1, u8 param2, u8 param3, u8 param4, u16 *param5, StringTemplate *param6, Window *param7, MessageLoader *param8);
-void ov5_021DC4B0(GenericMenuManager *param0, u32 param1, u32 param2, u32 param3);
-void ov5_021DC4B8(GenericMenuManager *param0);
-void ov5_021DC528(GenericMenuManager *param0, u16 param1);
-void ov5_021DC600(GenericMenuManager *param0, u16 *param1, u16 *param2);
-void ov5_021DCB24(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 *param3, StringTemplate *param4, u16 param5);
-u16 ov5_021DCCC8(int param0);
-void ov5_021DCD94(GenericMenuManager *param0, u8 param1);
-Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 param1, u8 param2);
-void ov5_021DCF58(Window *param0);
-void ov5_021DCF6C(FieldSystem *fieldSystem, Window *param1);
-Window *ov5_021DD020(FieldSystem *fieldSystem, u8 param1, u8 param2);
-void ov5_021DD084(Window *param0);
-void ov5_021DD098(FieldSystem *fieldSystem, Window *param1);
-Window *ov5_021DD140(FieldSystem *fieldSystem, u8 param1, u8 param2);
-void ov5_021DD1A4(FieldSystem *fieldSystem, Window *param1);
-GenericMenuManager *ov5_021DD250(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 *param3, StringTemplate *param4, u8 param5, u8 param6, u8 param7, u8 param8);
-void ov5_021DD3A8(GenericMenuManager *param0);
-void ov5_021DD3F4(GenericMenuManager *param0, BOOL param1);
-void ov5_021DD410(GenericMenuManager *param0, BOOL param1);
+GenericMenuManager *ov5_021DC150(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader);
+void ov5_021DC1A4(GenericMenuManager *menuManager, u32 entryID, u32 index);
+void ov5_021DC1AC(GenericMenuManager *menuManager);
+void ov5_021DC424(GenericMenuManager *menuManager);
+GenericMenuManager *ov5_021DC48C(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader);
+void ov5_021DC4B0(GenericMenuManager *menuManager, u32 entryID, u32 altTextStringID, u32 entryIndex);
+void ov5_021DC4B8(GenericMenuManager *menuManager);
+void ov5_021DC528(GenericMenuManager *menuManager, u16 windowWidth);
+void ov5_021DC600(GenericMenuManager *menuManager, u16 *listOffsetPtr, u16 *cursorPosPtr);
+void ov5_021DCB24(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u16 *selectedOptionPtr, StringTemplate *stringTemplate, u16 unused);
+u16 ov5_021DCCC8(int location);
+void ov5_021DCD94(GenericMenuManager *menuManager, u8 columnsCount);
+Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 tilemapTop, u8 tilemapLeft);
+void ov5_021DCF58(Window *window);
+void ov5_021DCF6C(FieldSystem *fieldSystem, Window *window);
+Window *ov5_021DD020(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop);
+void ov5_021DD084(Window *window);
+void ov5_021DD098(FieldSystem *fieldSystem, Window *window);
+Window *ov5_021DD140(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop);
+void ov5_021DD1A4(FieldSystem *fieldSystem, Window *window);
+GenericMenuManager *ov5_021DD250(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u16 *selectedOptionPtr, StringTemplate *stringTemplate, u8 redCost, u8 blueCost, u8 yellowCost, u8 greenCost);
+void ov5_021DD3A8(GenericMenuManager *menuManager);
+void ov5_021DD3F4(GenericMenuManager *menuManager, BOOL horizontalAnchor);
+void ov5_021DD410(GenericMenuManager *menuManager, BOOL verticalAnchor);
 
 #endif // POKEPLATINUM_OV5_021DC018_H
