@@ -36,7 +36,6 @@
 #include "encounter.h"
 #include "field_comm_manager.h"
 #include "field_map_change.h"
-#include "field_menu.h"
 #include "field_overworld_state.h"
 #include "game_records.h"
 #include "inlines.h"
@@ -51,6 +50,7 @@
 #include "pokeradar.h"
 #include "save_player.h"
 #include "script_manager.h"
+#include "start_menu.h"
 #include "system.h"
 #include "system_flags.h"
 #include "system_vars.h"
@@ -331,7 +331,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
     if (input->menu && sub_0203A9C8(fieldSystem) == TRUE) {
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
-        FieldMenu_Init(fieldSystem);
+        StartMenu_Init(fieldSystem);
         return TRUE;
     }
 
@@ -534,7 +534,7 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
 
     if (input->menu) {
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
-        FieldMenu_Init(fieldSystem);
+        StartMenu_Init(fieldSystem);
         return TRUE;
     }
 
