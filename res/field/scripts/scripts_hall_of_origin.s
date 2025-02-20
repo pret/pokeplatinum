@@ -36,10 +36,10 @@ _0056:
     SetVar 0x4118, 0
     Call _00E9
     Call _0104
-    ScrCmd_04C 0x1ED, 0
+    PlayCry 0x1ED, 0
     ScrCmd_04D
     Call _016F
-    ScrCmd_04C 0x1ED, 0
+    PlayCry 0x1ED, 0
     Message 0
     CloseMessage
     SetFlag 142
@@ -73,7 +73,7 @@ _00DF:
     End
 
 _00E9:
-    ApplyMovement 0xFF, _00F8
+    ApplyMovement LOCALID_PLAYER, _00F8
     WaitMovement
     Return
 
@@ -93,25 +93,25 @@ _0137:
     Return
 
 _0139:
-    ApplyMovement 0xFF, _017C
+    ApplyMovement LOCALID_PLAYER, _017C
     WaitMovement
     GoTo _0137
     End
 
 _014B:
-    ApplyMovement 0xFF, _018C
+    ApplyMovement LOCALID_PLAYER, _018C
     WaitMovement
     GoTo _0137
     End
 
 _015D:
-    ApplyMovement 0xFF, _0194
+    ApplyMovement LOCALID_PLAYER, _0194
     WaitMovement
     GoTo _0137
     End
 
 _016F:
-    ApplyMovement 0xFF, _01A4
+    ApplyMovement LOCALID_PLAYER, _01A4
     WaitMovement
     Return
 

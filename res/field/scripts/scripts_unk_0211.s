@@ -103,7 +103,7 @@ _0165:
 _0172:
     SetPlayerState 0x100
     ChangePlayerState
-    ApplyMovement 0xFF, _02EC
+    ApplyMovement LOCALID_PLAYER, _02EC
     WaitMovement
     ScrCmd_2BE 0x800C
     CallIfGe 0x800C, 4, _01BC
@@ -133,7 +133,7 @@ _01C1:
 _01E1:
     GoToIfEq 0x8004, 1, _0218
     Message 2
-    ApplyMovement 0xFF, _02F4
+    ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
     SetPlayerState 1
     ChangePlayerState
@@ -148,7 +148,7 @@ _01E1:
 
 _0218:
     Message 8
-    ApplyMovement 0xFF, _02F4
+    ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
     SetPlayerState 1
     ChangePlayerState
@@ -168,7 +168,7 @@ _0242:
 
 _0259:
     SetFlag 106
-    ApplyMovement 0xFF, _02F4
+    ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
     SetPlayerState 1
     ChangePlayerState
@@ -1167,7 +1167,7 @@ _0FC3:
 
 _0FCA:
     LockAll
-    ApplyMovement 0xFF, _1250
+    ApplyMovement LOCALID_PLAYER, _1250
     ApplyMovement 0, _1258
     WaitMovement
     FadeScreen 6, 1, 1, 0
@@ -1203,7 +1203,7 @@ _103A:
     WaitFadeScreen
     SetPlayerState 0x100
     ChangePlayerState
-    ApplyMovement 0xFF, _02EC
+    ApplyMovement LOCALID_PLAYER, _02EC
     WaitMovement
     Message 43
     Call _10C7
@@ -1211,7 +1211,7 @@ _103A:
     CheckBadgeAcquired BADGE_ID_COAL, 0x800C
     GoToIfEq 0x800C, 1, _10A2
     Message 44
-    ApplyMovement 0xFF, _02F4
+    ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
     SetPlayerState 1
     ChangePlayerState
@@ -1224,7 +1224,7 @@ _103A:
     End
 
 _10A2:
-    ApplyMovement 0xFF, _02F4
+    ApplyMovement LOCALID_PLAYER, _02F4
     WaitMovement
     SetPlayerState 1
     ChangePlayerState

@@ -157,7 +157,7 @@ _0184:
     ScrCmd_16B 77
     ScrCmd_169 77
     ApplyMovement 13, _0390
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
     ScrCmd_16C 77
     ScrCmd_169 77
@@ -187,19 +187,19 @@ _0274:
 
 _0280:
     ApplyMovement 13, _0358
-    ApplyMovement 0xFF, _039C
+    ApplyMovement LOCALID_PLAYER, _039C
     WaitMovement
     Return
 
 _0294:
     ApplyMovement 13, _0368
-    ApplyMovement 0xFF, _03A8
+    ApplyMovement LOCALID_PLAYER, _03A8
     WaitMovement
     Return
 
 _02A8:
     ApplyMovement 13, _0378
-    ApplyMovement 0xFF, _03B4
+    ApplyMovement LOCALID_PLAYER, _03B4
     WaitMovement
     Return
 
@@ -215,18 +215,18 @@ _02BC:
 
 _02F2:
     ApplyMovement 13, _0340
-    ApplyMovement 0xFF, _03CC
+    ApplyMovement LOCALID_PLAYER, _03CC
     WaitMovement
     Return
 
 _0306:
-    ApplyMovement 0xFF, _03CC
+    ApplyMovement LOCALID_PLAYER, _03CC
     WaitMovement
     Return
 
 _0312:
     ApplyMovement 13, _034C
-    ApplyMovement 0xFF, _03CC
+    ApplyMovement LOCALID_PLAYER, _03CC
     WaitMovement
     Return
 

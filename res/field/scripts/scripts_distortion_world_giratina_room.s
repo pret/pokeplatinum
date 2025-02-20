@@ -63,7 +63,7 @@ _009E:
 _00C4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_04C 0x1E7, 0
+    PlayCry 0x1E7, 0
     Message 2
     ScrCmd_04D
     CloseMessage
@@ -114,7 +114,7 @@ _0194:
     ApplyMovement 241, _0280
     ApplyMovement 130, _026C
     ApplyMovement 129, _0258
-    ApplyMovement 0xFF, _0244
+    ApplyMovement LOCALID_PLAYER, _0244
     WaitMovement
     Message 7
     Message 8
@@ -153,7 +153,7 @@ _020A:
 
 _021D:
     LockAll
-    ScrCmd_04C 0x1E7, 0
+    PlayCry 0x1E7, 0
     Message 0
     ScrCmd_04D
     WaitABPadPress

@@ -25,7 +25,7 @@ _0036:
     End
 
 _004D:
-    ScrCmd_186 7, 8, 9
+    SetObjectEventPos 7, 8, 9
     ScrCmd_189 7, 2
     End
 
@@ -156,7 +156,7 @@ _0245:
 _0259:
     ApplyMovement 7, _02B8
     WaitMovement
-    ApplyMovement 0xFF, _02CC
+    ApplyMovement LOCALID_PLAYER, _02CC
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
@@ -202,7 +202,7 @@ _02CC:
 _02D8:
     LockAll
     SetVar 0x40F3, 0
-    ApplyMovement 0xFF, _03E4
+    ApplyMovement LOCALID_PLAYER, _03E4
     WaitMovement
     ApplyMovement 7, _03D8
     WaitMovement
@@ -212,7 +212,7 @@ _02D8:
 _02F8:
     LockAll
     SetVar 0x40F3, 0
-    ApplyMovement 0xFF, _03EC
+    ApplyMovement LOCALID_PLAYER, _03EC
     WaitMovement
     CalcCatchingShowPoints CATCHING_SHOW_CATCHING_POINTS, 0x800C
     BufferNumber 0, 0x800C
@@ -259,7 +259,7 @@ _03AB:
     GoTo _03BD
 
 _03BD:
-    ApplyMovement 0xFF, _03F8
+    ApplyMovement LOCALID_PLAYER, _03F8
     WaitMovement
     ApplyMovement 7, _03D8
     WaitMovement
@@ -400,7 +400,7 @@ _04F6:
     Message 4
     CloseMessage
     WaitTime 15, 0x800C
-    ApplyMovement 0xFF, _0570
+    ApplyMovement LOCALID_PLAYER, _0570
     WaitMovement
     ApplyMovement 1, _0564
     WaitMovement
@@ -442,11 +442,11 @@ _057C:
     FacePlayer
     GoToIfEq 0x400A, 1, _062C
     GoToIfEq 0x400A, 2, _063C
-    ScrCmd_134 21, 0x800C
+    IsAppRegistered 21, 0x800C
     GoToIfEq 0x800C, 1, _0657
     Message 5
     Message 6
-    ScrCmd_134 20, 0x800C
+    IsAppRegistered 20, 0x800C
     GoToIfEq 0x800C, 1, _05FB
     Message 10
     ScrCmd_1C0 0x800C, 143

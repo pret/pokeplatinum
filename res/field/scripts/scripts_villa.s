@@ -161,8 +161,8 @@ _0276:
     Return
 
 _0280:
-    ScrCmd_186 7, 6, 8
-    ScrCmd_186 10, 7, 8
+    SetObjectEventPos 7, 6, 8
+    SetObjectEventPos 10, 7, 8
     ClearFlag 0x2B1
     ClearFlag 0x2B6
     Return
@@ -799,12 +799,12 @@ _0AF4:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag 0x2B0
-    ScrCmd_186 6, 11, 11
+    SetObjectEventPos 6, 11, 11
     ScrCmd_188 6, 14
     ScrCmd_189 6, 0
-    ScrCmd_064 6
+    AddObject 6
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement 0xFF, _0B3C
+    ApplyMovement LOCALID_PLAYER, _0B3C
     ApplyMovement 6, _0B4C
     WaitMovement
     SetFlag 0x9AC
@@ -830,12 +830,12 @@ _0B5C:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag 0x2B3
-    ScrCmd_186 9, 11, 11
+    SetObjectEventPos 9, 11, 11
     ScrCmd_188 9, 14
     ScrCmd_189 9, 0
-    ScrCmd_064 9
+    AddObject 9
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement 0xFF, _0BAC
+    ApplyMovement LOCALID_PLAYER, _0BAC
     ApplyMovement 9, _0BA4
     WaitMovement
     SetFlag 0x9AC
@@ -859,12 +859,12 @@ _0BBC:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag 0x2B6
-    ScrCmd_186 10, 11, 11
+    SetObjectEventPos 10, 11, 11
     ScrCmd_188 10, 14
     ScrCmd_189 10, 0
-    ScrCmd_064 10
+    AddObject 10
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement 0xFF, _0C14
+    ApplyMovement LOCALID_PLAYER, _0C14
     ApplyMovement 10, _0C04
     WaitMovement
     SetFlag 0x9AC
@@ -890,12 +890,12 @@ _0C24:
     LockAll
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag 0x2B8
-    ScrCmd_186 12, 11, 11
+    SetObjectEventPos 12, 11, 11
     ScrCmd_188 12, 14
     ScrCmd_189 12, 0
-    ScrCmd_064 12
+    AddObject 12
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
-    ApplyMovement 0xFF, _0C78
+    ApplyMovement LOCALID_PLAYER, _0C78
     ApplyMovement 12, _0C6C
     WaitMovement
     SetFlag 0x9AC
@@ -1208,33 +1208,33 @@ _1092:
 _10DA:
     Call _2209
     GoToIfEq 0x404E, 0, _1103
-    ScrCmd_186 1, 11, 11
+    SetObjectEventPos 1, 11, 11
     ScrCmd_188 1, 14
     ScrCmd_189 1, 0
     Return
 
 _1103:
-    ScrCmd_186 1, 10, 8
+    SetObjectEventPos 1, 10, 8
     ScrCmd_188 1, 14
     ScrCmd_189 1, 0
     ClearFlag 0x2A7
-    ScrCmd_064 1
+    AddObject 1
     Return
 
 _1121:
     Call _2209
     GoToIfEq 0x404E, 1, _114A
-    ScrCmd_186 0, 11, 11
+    SetObjectEventPos 0, 11, 11
     ScrCmd_188 0, 14
     ScrCmd_189 0, 0
     Return
 
 _114A:
-    ScrCmd_186 0, 10, 8
+    SetObjectEventPos 0, 10, 8
     ScrCmd_188 0, 14
     ScrCmd_189 0, 0
     ClearFlag 0x2A8
-    ScrCmd_064 0
+    AddObject 0
     Return
 
 _1168:
@@ -1244,18 +1244,18 @@ _1168:
     End
 
 _1183:
-    ScrCmd_186 2, 11, 11
+    SetObjectEventPos 2, 11, 11
     ScrCmd_188 2, 14
     ScrCmd_189 2, 0
     Return
 
 _1199:
     GoToIfUnset 0x9AB, _1183
-    ScrCmd_186 2, 10, 8
+    SetObjectEventPos 2, 10, 8
     ScrCmd_188 2, 14
     ScrCmd_189 2, 0
     ClearFlag 0x2A9
-    ScrCmd_064 2
+    AddObject 2
     Return
 
 _11C2:
@@ -1265,41 +1265,41 @@ _11C2:
     End
 
 _11DD:
-    ScrCmd_186 5, 11, 11
+    SetObjectEventPos 5, 11, 11
     ScrCmd_188 5, 14
     ScrCmd_189 5, 0
     Return
 
 _11F3:
     GoToIfUnset 0x9AB, _11DD
-    ScrCmd_186 5, 10, 8
+    SetObjectEventPos 5, 10, 8
     ScrCmd_188 5, 14
     ScrCmd_189 5, 0
     ClearFlag 0x2AE
-    ScrCmd_064 5
+    AddObject 5
     Return
 
 _121C:
     Call _2209
     GoToIfEq 0x404E, 12, _1245
-    ScrCmd_186 12, 11, 11
+    SetObjectEventPos 12, 11, 11
     ScrCmd_188 12, 14
     ScrCmd_189 12, 0
     Return
 
 _1245:
-    ScrCmd_186 12, 10, 8
+    SetObjectEventPos 12, 10, 8
     ScrCmd_188 12, 14
     ScrCmd_189 12, 0
     ClearFlag 0x2B8
-    ScrCmd_064 12
+    AddObject 12
     Return
 
 _1263:
     CallIfNe 0x404E, 0, _12A3
     SetFlag 0x9AB
     SetVar 0x404E, 0xFF
-    ApplyMovement 0xFF, _1454
+    ApplyMovement LOCALID_PLAYER, _1454
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
@@ -1313,7 +1313,7 @@ _1263:
 
 _12A3:
     ClearFlag 0x2A7
-    ScrCmd_064 1
+    AddObject 1
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 1, _145C
@@ -1347,7 +1347,7 @@ _1312:
 
 _1316:
     ClearFlag 0x2A8
-    ScrCmd_064 0
+    AddObject 0
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0, _145C
@@ -1372,7 +1372,7 @@ _1367:
 
 _1374:
     ClearFlag 0x2A9
-    ScrCmd_064 2
+    AddObject 2
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 2, _145C
@@ -1397,7 +1397,7 @@ _13C5:
 
 _13D2:
     ClearFlag 0x2AE
-    ScrCmd_064 5
+    AddObject 5
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 5, _145C
@@ -1423,7 +1423,7 @@ _1429:
 
 _1436:
     ClearFlag 0x2B8
-    ScrCmd_064 12
+    AddObject 12
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 12, _145C
@@ -1465,7 +1465,7 @@ _1485:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ApplyMovement 14, _14FC
-    ApplyMovement 0xFF, _14F0
+    ApplyMovement LOCALID_PLAYER, _14F0
     WaitMovement
     Message 4
     CloseMessage
@@ -1553,7 +1553,7 @@ _15F3:
     WaitMovement
     Message 2
     CloseMessage
-    ApplyMovement 0xFF, _161C
+    ApplyMovement LOCALID_PLAYER, _161C
     WaitMovement
     ReleaseAll
     End

@@ -291,10 +291,10 @@ MapObject *MapObjectMan_AddMapObject(const MapObjectManager *mapObjMan, int x, i
     return mapObj;
 }
 
-MapObject *sub_02061A74(const MapObjectManager *mapObjMan, int param1, int objEventCount, int mapID, const ObjectEvent *objectEvent)
+MapObject *MapObjectMan_AddMapObjectFromLocalID(const MapObjectManager *mapObjMan, int localID, int objEventCount, int mapID, const ObjectEvent *objectEvent)
 {
     MapObject *mapObj = NULL;
-    const ObjectEvent *v1 = sub_020631A4(param1, objEventCount, objectEvent);
+    const ObjectEvent *v1 = sub_020631A4(localID, objEventCount, objectEvent);
 
     if (v1 != NULL) {
         int flag = ObjectEvent_GetFlag(v1);
@@ -2312,12 +2312,12 @@ int ObjectEvent_GetZ(const ObjectEvent *objectEvent)
     return objectEvent->z;
 }
 
-static const ObjectEvent *sub_020631A4(int param0, int objEventCount, const ObjectEvent *objectEvent)
+static const ObjectEvent *sub_020631A4(int localID, int objEventCount, const ObjectEvent *objectEvent)
 {
     int i = 0;
 
     do {
-        if (ObjectEvent_HasNoScript(&objectEvent[i]) == FALSE && ObjectEvent_GetLocalID(&objectEvent[i]) == param0) {
+        if (ObjectEvent_HasNoScript(&objectEvent[i]) == FALSE && ObjectEvent_GetLocalID(&objectEvent[i]) == localID) {
             return &objectEvent[i];
         }
 

@@ -18,7 +18,7 @@ _0022:
     End
 
 _0040:
-    ScrCmd_18A 2, 7, 5
+    SetWarpEventPos 2, 7, 5
     End
 
 _004A:
@@ -27,7 +27,7 @@ _004A:
     End
 
 _005F:
-    ScrCmd_18A 1, 7, 5
+    SetWarpEventPos 1, 7, 5
     End
 
 _0069:
@@ -52,18 +52,18 @@ _00BC:
     End
 
 _0104:
-    ScrCmd_18A 3, 7, 5
+    SetWarpEventPos 3, 7, 5
     End
 
 _010E:
-    ScrCmd_18A 4, 7, 5
+    SetWarpEventPos 4, 7, 5
     End
 
 _0118:
-    ScrCmd_18A 1, 1, 5
-    ScrCmd_18A 2, 1, 5
-    ScrCmd_18A 3, 1, 5
-    ScrCmd_18A 4, 1, 5
+    SetWarpEventPos 1, 1, 5
+    SetWarpEventPos 2, 1, 5
+    SetWarpEventPos 3, 1, 5
+    SetWarpEventPos 4, 1, 5
     Return
 
     .byte 0

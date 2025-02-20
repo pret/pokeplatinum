@@ -303,7 +303,7 @@ _053D:
     Message 32
     WaitABPress
     CloseMessage
-    ApplyMovement 0xFF, _05E4
+    ApplyMovement LOCALID_PLAYER, _05E4
     ApplyMovement 0x800D, _0604
     WaitMovement
     Return
@@ -312,7 +312,7 @@ _0558:
     Message 32
     WaitABPress
     CloseMessage
-    ApplyMovement 0xFF, _05E4
+    ApplyMovement LOCALID_PLAYER, _05E4
     ApplyMovement 0x800D, _0604
     WaitMovement
     Return
@@ -323,25 +323,25 @@ _0573:
     ScrCmd_136
     ScrCmd_135 137
     CloseMessage
-    ApplyMovement 0xFF, _05F0
+    ApplyMovement LOCALID_PLAYER, _05F0
     ApplyMovement 0x800D, _0610
     WaitMovement
     Return
 
 _0599:
-    ApplyMovement 0xFF, _0624
+    ApplyMovement LOCALID_PLAYER, _0624
     ApplyMovement 0x800D, _0648
     WaitMovement
     Return
 
 _05AD:
-    ApplyMovement 0xFF, _0624
+    ApplyMovement LOCALID_PLAYER, _0624
     ApplyMovement 0x800D, _0648
     WaitMovement
     Return
 
 _05C1:
-    ApplyMovement 0xFF, _0634
+    ApplyMovement LOCALID_PLAYER, _0634
     ApplyMovement 0x800D, _0654
     WaitMovement
     Return

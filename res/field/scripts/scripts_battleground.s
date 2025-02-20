@@ -122,19 +122,19 @@ _0183:
     End
 
 _01D5:
-    ApplyMovement 0xFF, _0214
+    ApplyMovement LOCALID_PLAYER, _0214
     ApplyMovement 1, _0240
     WaitMovement
     Return
 
 _01E9:
-    ApplyMovement 0xFF, _0220
+    ApplyMovement LOCALID_PLAYER, _0220
     ApplyMovement 1, _0254
     WaitMovement
     Return
 
 _01FD:
-    ApplyMovement 0xFF, _0234
+    ApplyMovement LOCALID_PLAYER, _0234
     ApplyMovement 1, _0264
     WaitMovement
     Return
@@ -187,7 +187,7 @@ _0278:
     SetVar 0x40C1, 1
     ApplyMovement 0, _02A0
     WaitMovement
-    ApplyMovement 0xFF, _02A8
+    ApplyMovement LOCALID_PLAYER, _02A8
     WaitMovement
     Message 0
     WaitABXPadPress

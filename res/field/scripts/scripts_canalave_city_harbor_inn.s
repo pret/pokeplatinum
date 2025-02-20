@@ -52,7 +52,7 @@ _0093:
     Message 0
     CloseMessage
     ApplyMovement 0, _0148
-    ApplyMovement 0xFF, _0130
+    ApplyMovement LOCALID_PLAYER, _0130
     WaitMovement
     WaitTime 15, 0x800C
     BufferPlayerName 0

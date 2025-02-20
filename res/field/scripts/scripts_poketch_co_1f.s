@@ -28,13 +28,13 @@ _0042:
     Message 0
     CountBadgesAcquired 0x8000
     GoToIfEq 0x8000, 0, _0181
-    ScrCmd_134 2, 0x800C
+    IsAppRegistered 2, 0x800C
     GoToIfEq 0x800C, 0, _00C5
-    ScrCmd_134 12, 0x800C
+    IsAppRegistered 12, 0x800C
     GoToIfEq 0x800C, 0, _00DC
-    ScrCmd_134 13, 0x800C
+    IsAppRegistered 13, 0x800C
     GoToIfEq 0x800C, 0, _00F3
-    ScrCmd_134 15, 0x800C
+    IsAppRegistered 15, 0x800C
     GoToIfEq 0x800C, 0, _010A
     CheckItem ITEM_POKE_RADAR, 1, 0x800C
     GoToIfEq 0x800C, 1, _01B8

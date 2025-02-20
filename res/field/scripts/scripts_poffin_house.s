@@ -33,7 +33,7 @@ _0055:
 
 _0066:
     ClearFlag 0x217
-    ScrCmd_064 4
+    AddObject 4
     End
 
 _0070:

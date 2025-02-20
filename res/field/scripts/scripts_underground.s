@@ -12,26 +12,26 @@
 
 _001A:
     ScrCmd_14F
-    ScrCmd_186 1, 72, 104
-    ScrCmd_186 2, 0x1A8, 87
-    ScrCmd_186 3, 200, 185
-    ScrCmd_186 4, 0x14F, 0x108
-    ScrCmd_186 8, 175, 0x117
-    ScrCmd_186 9, 0x1A8, 0x1B7
-    ScrCmd_186 10, 87, 0x1C8
-    ScrCmd_186 11, 0x137, 0x166
-    ScrCmd_186 0, 232, 87
-    ScrCmd_186 5, 0x148, 151
-    ScrCmd_186 6, 232, 215
-    ScrCmd_186 7, 232, 0x12A
-    ScrCmd_186 12, 0x117, 0x148
-    ScrCmd_186 13, 0x117, 0x1C8
-    ScrCmd_186 14, 183, 0x188
-    ScrCmd_186 15, 0x117, 245
-    ScrCmd_186 17, 40, 0x1D7
-    ScrCmd_186 18, 0x1D7, 72
-    ScrCmd_186 19, 0x1D7, 0x1D7
-    ScrCmd_186 20, 40, 72
+    SetObjectEventPos 1, 72, 104
+    SetObjectEventPos 2, 0x1A8, 87
+    SetObjectEventPos 3, 200, 185
+    SetObjectEventPos 4, 0x14F, 0x108
+    SetObjectEventPos 8, 175, 0x117
+    SetObjectEventPos 9, 0x1A8, 0x1B7
+    SetObjectEventPos 10, 87, 0x1C8
+    SetObjectEventPos 11, 0x137, 0x166
+    SetObjectEventPos 0, 232, 87
+    SetObjectEventPos 5, 0x148, 151
+    SetObjectEventPos 6, 232, 215
+    SetObjectEventPos 7, 232, 0x12A
+    SetObjectEventPos 12, 0x117, 0x148
+    SetObjectEventPos 13, 0x117, 0x1C8
+    SetObjectEventPos 14, 183, 0x188
+    SetObjectEventPos 15, 0x117, 245
+    SetObjectEventPos 17, 40, 0x1D7
+    SetObjectEventPos 18, 0x1D7, 72
+    SetObjectEventPos 19, 0x1D7, 0x1D7
+    SetObjectEventPos 20, 40, 72
     End
 
 _00BE:

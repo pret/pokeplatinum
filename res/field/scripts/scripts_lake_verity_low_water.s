@@ -42,7 +42,7 @@ _006F:
     LockAll
     ClearHasPartner
     ApplyMovement 5, _0298
-    ApplyMovement 0xFF, _0368
+    ApplyMovement LOCALID_PLAYER, _0368
     WaitMovement
     BufferRivalName 0
     Message 0
@@ -61,31 +61,31 @@ _006F:
     Message 2
     CloseMessage
     ApplyMovement 5, _02A0
-    ApplyMovement 0xFF, _0370
+    ApplyMovement LOCALID_PLAYER, _0370
     WaitMovement
     ApplyMovement 4, _01F0
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 4
     WaitTime 50, 0x800C
-    ApplyMovement 0xFF, _0378
+    ApplyMovement LOCALID_PLAYER, _0378
     ApplyMovement 5, _02AC
     WaitMovement
     BufferRivalName 0
     Message 3
     CloseMessage
     ApplyMovement 5, _02B8
-    ApplyMovement 0xFF, _0380
+    ApplyMovement LOCALID_PLAYER, _0380
     WaitMovement
     WaitTime 30, 0x800C
     BufferPlayerName 1
     Message 4
-    ScrCmd_04C 0x1E1, 0
+    PlayCry 0x1E1, 0
     Message 5
     ScrCmd_04D
     CloseMessage
     ApplyMovement 5, _02C0
-    ApplyMovement 0xFF, _0388
+    ApplyMovement LOCALID_PLAYER, _0388
     WaitMovement
     WaitTime 15, 0x800C
     ApplyMovement 5, _02F0
@@ -101,7 +101,7 @@ _006F:
     Message 7
     CloseMessage
     ApplyMovement 5, _02F8
-    ApplyMovement 0xFF, _039C
+    ApplyMovement LOCALID_PLAYER, _039C
     WaitMovement
     SetFlag 0x196
     RemoveObject 5

@@ -18,7 +18,7 @@ _0022:
     End
 
 _002F:
-    ScrCmd_186 0, 16, 14
+    SetObjectEventPos 0, 16, 14
     ScrCmd_189 0, 1
     End
 
@@ -207,7 +207,7 @@ _02BA:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 0x12C, 0
+    PlayCry 0x12C, 0
     Message 18
     ScrCmd_04D
     WaitABXPadPress
@@ -220,7 +220,7 @@ _02D9:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 54, 0
+    PlayCry 54, 0
     Message 19
     ScrCmd_04D
     WaitABXPadPress

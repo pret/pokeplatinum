@@ -122,7 +122,7 @@ _0159:
     WaitMovement
     Message 12
     CloseMessage
-    ApplyMovement 0xFF, _01E0
+    ApplyMovement LOCALID_PLAYER, _01E0
     ApplyMovement 1, _01D4
     WaitMovement
     RemoveObject 1

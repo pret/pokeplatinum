@@ -58,17 +58,17 @@ _0057:
 _006A:
     LockAll
     ApplyMovement 4, _00FC
-    ApplyMovement 0xFF, _00F0
+    ApplyMovement LOCALID_PLAYER, _00F0
     WaitMovement
     Message 0
     CloseMessage
     ApplyMovement 4, _0110
     WaitMovement
     ClearFlag 0x1BB
-    ScrCmd_186 5, 12, 15
+    SetObjectEventPos 5, 12, 15
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2
-    ScrCmd_064 5
+    AddObject 5
     RemoveObject 4
     SetFlag 113
     SetVar 0x411D, 1
@@ -77,10 +77,10 @@ _006A:
     ApplyMovement 5, _0110
     WaitMovement
     ClearFlag 0x1C2
-    ScrCmd_186 4, 12, 15
+    SetObjectEventPos 4, 12, 15
     ScrCmd_188 4, 16
     ScrCmd_189 4, 2
-    ScrCmd_064 4
+    AddObject 4
     RemoveObject 5
     CloseMessage
     ReleaseAll

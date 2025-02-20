@@ -43,7 +43,7 @@ _006E:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 54, 0
+    PlayCry 54, 0
     Message 2
     ScrCmd_04D
     WaitABXPadPress

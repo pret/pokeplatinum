@@ -24,7 +24,7 @@ _0021:
     CloseMessage
     ApplyMovement 0, _00A0
     WaitMovement
-    ApplyMovement 0xFF, _0098
+    ApplyMovement LOCALID_PLAYER, _0098
     WaitMovement
     Message 1
     CloseMessage
@@ -43,7 +43,7 @@ _0021:
     SetFlag 0x29F
     SetFlag 0x986
     ClearFlag 0x292
-    SetFlag 0x15E
+    SetFlag FLAG_GALACTIC_LEFT_LAKE_VALOR
     SetFlag 0x295
     ReleaseAll
     End

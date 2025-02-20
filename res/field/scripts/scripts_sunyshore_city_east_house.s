@@ -19,11 +19,11 @@ _0006:
     End
 
 _002C:
-    ScrCmd_134 18, 0x800C
+    IsAppRegistered 18, 0x800C
     GoToIfEq 0x800C, 1, _0125
-    ScrCmd_134 17, 0x800C
+    IsAppRegistered 17, 0x800C
     GoToIfEq 0x800C, 1, _00A7
-    ScrCmd_134 16, 0x800C
+    IsAppRegistered 16, 0x800C
     GoToIfEq 0x800C, 1, _0089
     GoTo _006B
 
