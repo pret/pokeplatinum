@@ -7,10 +7,10 @@
 #include "struct_defs/struct_02055130.h"
 
 #include "field/field_system.h"
+#include "overlay005/area_data.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021EF75C.h"
 #include "overlay005/struct_ov5_021D3CE4_decl.h"
 
 #include "camera.h"
@@ -117,7 +117,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
 
             v7 = ov5_021D3F94(fieldSystem->unk_50, v4);
             param1->unk_1E = v7;
-            v8 = ov5_021EFAA0(fieldSystem->unk_30);
+            v8 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
 
             ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 1, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v8, v7, 1, 0);
         } else {
@@ -274,7 +274,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
 
             v7 = ov5_021D3F94(fieldSystem->unk_50, v4);
             param1->unk_1E = v7;
-            v8 = ov5_021EFAA0(fieldSystem->unk_30);
+            v8 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
 
             ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 1, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v8, v7, 1, 0);
         } else {
@@ -501,7 +501,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
             u8 v6;
             NNSG3dResTex *v7;
 
-            v7 = ov5_021EFAA0(fieldSystem->unk_30);
+            v7 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
             ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 2, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v7, 1, 1, 1);
         } else {
             GF_ASSERT(FALSE);
@@ -613,7 +613,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
             u8 v6;
             NNSG3dResTex *v7;
 
-            v7 = ov5_021EFAA0(fieldSystem->unk_30);
+            v7 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
             ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 2, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v7, 1, 1, 0);
         } else {
             GF_ASSERT(FALSE);
@@ -739,7 +739,7 @@ void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, 
         NNSG3dResTex *v7;
 
         v6 = ov5_021D3F94(fieldSystem->unk_50, v3);
-        v7 = ov5_021EFAA0(fieldSystem->unk_30);
+        v7 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
 
         ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, param3, v3, MapProp_GetRenderObj(v1), MapProp_GetModel(v1), v7, v6, 1, 0);
     } else {

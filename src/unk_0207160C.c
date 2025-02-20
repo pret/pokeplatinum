@@ -136,8 +136,8 @@ void sub_0207160C(FieldSystem *fieldSystem)
         };
 
         v6.y = v5;
-        MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, MAP_PROP_ID_UNK_258, &v6, NULL, fieldSystem->unk_50);
-        v1 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_258);
+        MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, MAP_PROP_MODEL_ID_UNK_258, &v6, NULL, fieldSystem->unk_50);
+        v1 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_258);
     } else {
         const int v7[2] = { 258, 502 };
 
@@ -330,7 +330,7 @@ static BOOL sub_020718D8(FieldTask *taskMan)
         break;
     case 1: {
         if (v2->unk_08) {
-            v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_258);
+            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_258);
         } else {
             const int v3[2] = { 258, 502 };
             BOOL v4 = sub_02055324(fieldSystem, v3, 2, &v0, NULL);
@@ -391,7 +391,7 @@ static BOOL sub_020719D8(FieldTask *taskMan)
         break;
     case 1: {
         if (v2->unk_08) {
-            v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_258);
+            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_258);
         } else {
             const int v3[2] = { 258, 502 };
             BOOL v4 = sub_02055324(fieldSystem, v3, 2, &v0, NULL);
