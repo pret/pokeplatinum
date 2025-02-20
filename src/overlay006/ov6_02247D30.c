@@ -3,10 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/map_prop.h"
+
 #include "field/field_system.h"
+#include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021EF75C.h"
 
 #include "field_task.h"
 #include "heap.h"
@@ -76,10 +78,10 @@ static BOOL ov6_02247DAC(FieldTask *param0)
         NNSG3dResFileHeader **v3;
         NNSG3dRenderObj *v4;
 
-        v3 = ov5_021EF9E8(517, fieldSystem->unk_30);
+        v3 = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_ID_UNK_517, fieldSystem->areaDataManager);
         v2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v3), 0);
 
-        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 0x10, 517, NULL, v2, ov5_021EFAA0(fieldSystem->unk_30), 1, 1, 0);
+        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 0x10, 517, NULL, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
     }
         (v1->unk_0F)++;
         break;
@@ -93,7 +95,7 @@ static BOOL ov6_02247DAC(FieldTask *param0)
         v7.y = v1->unk_00.y + Unk_ov6_022498E4[v1->unk_0D].y;
         v7.z = v1->unk_00.z + Unk_ov6_022498E4[v1->unk_0D].z;
 
-        v1->unk_10[v1->unk_0D] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, 517, &v7, &v8, fieldSystem->unk_50);
+        v1->unk_10[v1->unk_0D] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 517, &v7, &v8, fieldSystem->unk_50);
         v5 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, v1->unk_10[v1->unk_0D]);
         v6 = MapProp_GetRenderObj(v5);
         ov5_021D4220(fieldSystem->unk_54, 0x10, v1->unk_0D, v6);

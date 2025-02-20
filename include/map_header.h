@@ -4,7 +4,7 @@
 #include "generated/evolution_methods.h"
 
 typedef struct {
-    u8 unk_00;
+    u8 areaDataArchiveID;
     u8 unk_01;
     u16 mapMatrixID;
     u16 scriptsArchiveID;
@@ -27,7 +27,7 @@ typedef struct {
 } MapHeader;
 
 u32 MapHeader_IDBoundsCheck(u32 headerID);
-const u16 sub_0203A038(u32 headerID);
+const u16 MapHeader_GetAreaDataArchiveID(u32 headerID);
 const u16 sub_0203A04C(u32 headerID);
 const u16 MapHeader_GetMapMatrixID(u32 headerID);
 u32 MapHeader_GetMsgArchiveID(u32 headerID);

@@ -1491,7 +1491,7 @@ static void ov23_0224C5B4(SysTask *param0, void *param1)
                 v6.y = 0;
                 v6.z = (v2) * (FX32_ONE * 16) + (FX32_ONE * 8);
 
-                Unk_ov23_022577AC->unk_12D5[v0] = MapPropManager_LoadOne(Unk_ov23_022577AC->fieldSystem->mapPropManager, Unk_ov23_022577AC->fieldSystem->unk_30, 429 + v3, &v6, NULL, Unk_ov23_022577AC->fieldSystem->unk_50);
+                Unk_ov23_022577AC->unk_12D5[v0] = MapPropManager_LoadOne(Unk_ov23_022577AC->fieldSystem->mapPropManager, Unk_ov23_022577AC->fieldSystem->areaDataManager, 429 + v3, &v6, NULL, Unk_ov23_022577AC->fieldSystem->unk_50);
             }
         }
     }
@@ -2341,7 +2341,7 @@ static void ov23_0224D54C(UnkStruct_ov23_0224D54C *param0)
     v0 = MapProp_GetPosition(v1);
 
     MapPropManager_InitOne(0, Unk_ov23_022577AC->fieldSystem->mapPropManager);
-    MapPropManager_LoadOne(Unk_ov23_022577AC->fieldSystem->mapPropManager, Unk_ov23_022577AC->fieldSystem->unk_30, 317 + param0->unk_05, &v0, NULL, Unk_ov23_022577AC->fieldSystem->unk_50);
+    MapPropManager_LoadOne(Unk_ov23_022577AC->fieldSystem->mapPropManager, Unk_ov23_022577AC->fieldSystem->areaDataManager, 317 + param0->unk_05, &v0, NULL, Unk_ov23_022577AC->fieldSystem->unk_50);
 }
 
 static void ov23_0224D5A8(SysTask *param0, void *param1)

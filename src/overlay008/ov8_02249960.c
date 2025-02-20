@@ -430,7 +430,7 @@ static BOOL ov8_02249A94(FieldTask *taskMan)
         v5 = ov5_021D3DA0(3, fieldSystem->unk_50);
 
         if (ov5_021D3F70(v3) && ov5_021D3F70(v4) && ov5_021D3F70(v5)) {
-            v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
+            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_242);
 
             {
                 VecFx32 v6;
@@ -481,7 +481,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
         v5 = ov5_021D3DA0(3, fieldSystem->unk_50);
 
         if (ov5_021D3F70(v3) && ov5_021D3F70(v4) && ov5_021D3F70(v5)) {
-            v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
+            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_242);
             {
                 VecFx32 v6;
 
@@ -501,7 +501,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
         }
     } break;
     case 2:
-        v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_242);
 
         {
             VecFx32 v7;
@@ -518,7 +518,7 @@ static BOOL ov8_02249B74(FieldTask *taskMan)
         }
         break;
     case 3:
-        v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_242);
 
         {
             VecFx32 v8;
@@ -568,7 +568,7 @@ static BOOL ov8_02249CD8(FieldTask *taskMan)
         v5 = ov5_021D3DA0(3, fieldSystem->unk_50);
 
         if (ov5_021D3F70(v3) && ov5_021D3F70(v4) && ov5_021D3F70(v5)) {
-            v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
+            v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_242);
 
             {
                 VecFx32 v6;
@@ -613,7 +613,7 @@ void ov8_02249DBC(FieldSystem *fieldSystem)
 
     {
         VecFx32 v9 = { FX32_ONE * 16 * 16, 0, FX32_ONE * 16 * 16 };
-        MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, 242, &v9, NULL, fieldSystem->unk_50);
+        MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 242, &v9, NULL, fieldSystem->unk_50);
     }
 
     ov5_021EF2CC(0, 1, 2, 25, 38, (FX32_ONE * 16 * 0), fieldSystem->unk_A0);
@@ -651,7 +651,7 @@ void ov8_02249DBC(FieldSystem *fieldSystem)
         v6 = 0;
     }
 
-    v1 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_242);
+    v1 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_242);
 
     {
         VecFx32 v10;
@@ -784,7 +784,7 @@ static BOOL ov8_0224A018(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_258);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_258);
 
         {
             VecFx32 v3;
@@ -830,7 +830,7 @@ static BOOL ov8_0224A0E8(FieldTask *taskMan)
         (v2->unk_00)++;
         break;
     case 1: {
-        v0 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, MAP_PROP_ID_UNK_258);
+        v0 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_258);
 
         {
             VecFx32 v3;
@@ -1584,13 +1584,13 @@ void ov8_0224A8C8(FieldSystem *fieldSystem)
         VecFx32 v3 = { FX32_ONE * (16 * 16), 0, FX32_ONE * (16 * 16) };
 
         v3.y = (FX32_ONE * 16) * 10;
-        v0->unk_04 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, 300, &v3, NULL, fieldSystem->unk_50);
+        v0->unk_04 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 300, &v3, NULL, fieldSystem->unk_50);
 
         v3.y = (FX32_ONE * 16) * 10 * 2;
-        v0->unk_08 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, 301, &v3, NULL, fieldSystem->unk_50);
+        v0->unk_08 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 301, &v3, NULL, fieldSystem->unk_50);
 
         v3.y = (FX32_ONE * 16) * 10 * 3;
-        v0->unk_0C = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, 302, &v3, NULL, fieldSystem->unk_50);
+        v0->unk_0C = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 302, &v3, NULL, fieldSystem->unk_50);
     }
 
     {
@@ -1617,7 +1617,7 @@ void ov8_0224A8C8(FieldSystem *fieldSystem)
             v4.x += (FX32_ONE * 8);
             v4.z += (FX32_ONE * 8);
 
-            v0->unk_28[v5] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, Unk_ov8_0224CB68[v5].unk_00, &v4, NULL, fieldSystem->unk_50);
+            v0->unk_28[v5] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, Unk_ov8_0224CB68[v5].unk_00, &v4, NULL, fieldSystem->unk_50);
             v0->unk_88[v5] = Unk_ov8_0224CB68[v5].unk_00;
         }
     }
@@ -2123,7 +2123,7 @@ void ov8_0224ABD4(FieldSystem *fieldSystem)
                 ov8_0224AB64(&(v7[v5]), v2->unk_00, &v4);
             }
 
-            v0->unk_04[v5] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, v7[v5].unk_00, &v3, &v4, fieldSystem->unk_50);
+            v0->unk_04[v5] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, v7[v5].unk_00, &v3, &v4, fieldSystem->unk_50);
         }
     }
 }
@@ -2452,9 +2452,9 @@ void ov8_0224B020(FieldSystem *fieldSystem)
             v4->unk_0C = *v5;
 
             v4->unk_10 = MapPropManager_LoadOne(
-                fieldSystem->mapPropManager, fieldSystem->unk_30, *v5, v6, &v7, fieldSystem->unk_50);
+                fieldSystem->mapPropManager, fieldSystem->areaDataManager, *v5, v6, &v7, fieldSystem->unk_50);
 
-            v4->unk_14 = MapPropManager_FindLoadedPropById(fieldSystem->mapPropManager, *v5);
+            v4->unk_14 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, *v5);
         }
     }
 
