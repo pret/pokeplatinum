@@ -27,6 +27,6 @@ enum ShopStaticWindow {
 #define MAX_SHOP_ITEMS 256
 
 void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incDeptStoreBuyCount);
-BOOL ov7_0224CEAC(FieldTask *param0);
+BOOL FieldTask_InitShop(FieldTask *task);
 
 #endif // POKEPLATINUM_OV7_0224CD28_H

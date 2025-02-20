@@ -59,7 +59,7 @@ static void sub_0209AC80(FieldTask *param0)
 
     if (FieldSystem_IsRunningFieldMap(fieldSystem)) {
         ov5_021D1744(1);
-        FieldTask_InitJump(param0, ov7_0224CEAC, shopMenu);
+        FieldTask_InitJump(param0, FieldTask_InitShop, shopMenu);
         shopMenu->state = 18;
     }
 }

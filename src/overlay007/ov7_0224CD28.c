@@ -257,7 +257,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     }
 
     Shop_SetItemsForSale(shopMenu, shopItems);
-    FieldTask_InitCall(task, ov7_0224CEAC, shopMenu);
+    FieldTask_InitCall(task, FieldTask_InitShop, shopMenu);
 }
 
 static u8 ov7_0224CE90(FieldSystem *fieldSystem)
@@ -271,83 +271,83 @@ static u8 ov7_0224CE90(FieldSystem *fieldSystem)
     return 8;
 }
 
-BOOL ov7_0224CEAC(FieldTask *param0)
+BOOL FieldTask_InitShop(FieldTask *task)
 {
     FieldSystem *fieldSystem;
-    ShopMenu *v1;
+    ShopMenu *shopMenu;
 
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetEnv(param0);
+    fieldSystem = FieldTask_GetFieldSystem(task);
+    shopMenu = FieldTask_GetEnv(task);
 
-    switch (v1->state) {
+    switch (shopMenu->state) {
     case 0:
-        ov7_0224D008(v1);
-        v1->state = 1;
+        ov7_0224D008(shopMenu);
+        shopMenu->state = 1;
         break;
     case 1:
-        v1->state = ov7_0224D1EC(v1);
+        shopMenu->state = ov7_0224D1EC(shopMenu);
         break;
     case 2:
-        ov7_0224D388(fieldSystem, v1);
-        v1->state = 3;
+        ov7_0224D388(fieldSystem, shopMenu);
+        shopMenu->state = 3;
         break;
     case 3:
-        v1->state = ov7_0224D620(v1);
+        shopMenu->state = ov7_0224D620(shopMenu);
         break;
     case 4:
-        v1->state = ov7_0224DC84(v1);
+        shopMenu->state = ov7_0224DC84(shopMenu);
         break;
     case 5:
-        v1->state = ov7_0224DE94(v1);
+        shopMenu->state = ov7_0224DE94(shopMenu);
         break;
     case 6:
-        v1->state = ov7_0224DFB0(v1);
+        shopMenu->state = ov7_0224DFB0(shopMenu);
         break;
     case 7:
-        v1->state = ov7_0224E3A0(v1);
+        shopMenu->state = ov7_0224E3A0(shopMenu);
         break;
     case 8:
-        v1->state = ov7_0224E3D8(v1);
+        shopMenu->state = ov7_0224E3D8(shopMenu);
         break;
     case 9:
-        v1->state = ov7_0224E5B0(v1);
+        shopMenu->state = ov7_0224E5B0(shopMenu);
         break;
     case 10:
-        v1->state = ov7_0224E6B8(v1);
+        shopMenu->state = ov7_0224E6B8(shopMenu);
         break;
     case 11:
-        v1->state = ov7_0224E7C8(v1);
+        shopMenu->state = ov7_0224E7C8(shopMenu);
         break;
     case 12:
-        v1->state = ov7_0224E950(fieldSystem, v1);
+        shopMenu->state = ov7_0224E950(fieldSystem, shopMenu);
         break;
     case 13:
-        v1->state = ov7_0224EA2C(v1);
+        shopMenu->state = ov7_0224EA2C(shopMenu);
         break;
     case 14:
-        ov7_0224EC20(fieldSystem, v1);
+        ov7_0224EC20(fieldSystem, shopMenu);
         break;
     case 15:
-        ov7_0224EC38(param0);
+        ov7_0224EC38(task);
         break;
     case 16:
     case 17:
         break;
     case 18:
-        v1->state = ov7_0224EC9C(fieldSystem, v1);
+        shopMenu->state = ov7_0224EC9C(fieldSystem, shopMenu);
         break;
     case 19:
-        ov7_0224EA54(fieldSystem, v1);
-        v1->state = 20;
+        ov7_0224EA54(fieldSystem, shopMenu);
+        shopMenu->state = 20;
         break;
     case 20:
-        return ov7_0224D250(fieldSystem, v1);
+        return ov7_0224D250(fieldSystem, shopMenu);
     }
 
-    if ((v1->state >= 4) && (v1->state <= 11)) {
-        Sprite_UpdateAnim(v1->sprites[0], FX32_ONE);
-        Sprite_UpdateAnim(v1->sprites[1], FX32_ONE);
-        SpriteList_Update(v1->unk_94.unk_00);
+    if ((shopMenu->state >= 4) && (shopMenu->state <= 11)) {
+        Sprite_UpdateAnim(shopMenu->sprites[0], FX32_ONE);
+        Sprite_UpdateAnim(shopMenu->sprites[1], FX32_ONE);
+        SpriteList_Update(shopMenu->unk_94.unk_00);
     }
 
     return 0;
