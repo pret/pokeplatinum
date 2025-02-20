@@ -24,8 +24,7 @@
 typedef struct {
     BgConfig *bgConfig;
     void *unk_04;
-    Window windows[SHOP_WINDOW_MAX];
-    Window unused;
+    Window windows[SHOP_WINDOW_MAX + 1]; // beyond SHOP_WINDOW_MAX index here is unused
     ListMenu *menu;
     StringList *itemsList;
     Menu *yesNoChoice;
@@ -37,7 +36,7 @@ typedef struct {
     Sprite *sprites[4];
     u16 spriteDrawFlags[2];
     TrainerInfo *trainerInfo;
-    void *inventory;
+    void *destInventory;
     Options *options;
     JournalEntry *journalEntry;
     GameRecords *records;
@@ -46,8 +45,7 @@ typedef struct {
     BOOL incDeptStoreBuyCount;
     u16 *itemsPtr;
     u8 itemsCount;
-    u8 unused_295;
-    u8 unused_296;
+    u8 unused[2];
     u8 state;
     Strbuf *strbuf;
     u8 bgPriorities[4];
