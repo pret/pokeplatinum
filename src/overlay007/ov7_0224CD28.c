@@ -5,6 +5,7 @@
 
 #include "constants/field/window.h"
 #include "constants/heap.h"
+#include "constants/map_object.h"
 #include "generated/game_records.h"
 #include "generated/text_banks.h"
 
@@ -60,7 +61,7 @@
 #include "unk_0209AC14.h"
 #include "vars_flags.h"
 
-static u8 ov7_0224CE90(FieldSystem *fieldSystem);
+static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem);
 static u8 ov7_0224D250(FieldSystem *fieldSystem, ShopMenu *param1);
 static void ov7_0224D008(ShopMenu *param0);
 static void ov7_0224D018(ShopMenu *param0);
@@ -240,7 +241,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     shopMenu->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     shopMenu->varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
     shopMenu->incDeptStoreBuyCount = incDeptStoreBuyCount;
-    shopMenu->cameraPosDest = ov7_0224CE90(fieldSystem);
+    shopMenu->cameraPosDest = Shop_GetCameraPosDest(fieldSystem);
     shopMenu->journalEntry = fieldSystem->journalEntry;
     shopMenu->martType = martType;
     shopMenu->saveData = fieldSystem->saveData;
@@ -260,11 +261,11 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     FieldTask_InitCall(task, FieldTask_InitShop, shopMenu);
 }
 
-static u8 ov7_0224CE90(FieldSystem *fieldSystem)
+static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem)
 {
-    int v0 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    int dir = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    if ((v0 == 0) || (v0 == 1) || (v0 == 3)) {
+    if ((dir == DIR_NORTH) || (dir == DIR_SOUTH) || (dir == DIR_EAST)) {
         return 10;
     }
 
