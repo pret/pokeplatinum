@@ -4688,10 +4688,22 @@
     CallIf 1, \offset
     .endm
 
+    /*
+     * This flag is used by ScriptEntry and ScriptEntryEnd to control where
+     * a user can add ScriptEntry commands (i.e., only at the start of the
+     * input file). It is NOT meant for direct usage.
+     */
+    .set F_ACCEPT_SCRIPT_ENTRIES, TRUE
+
     .macro ScriptEntry name
-    .long \name-.-4
+    .if F_ACCEPT_SCRIPT_ENTRIES == TRUE
+        .long \name-.-4
+    .else
+        .error "cannot specify ScriptEntry after ScriptEntryEnd"
+    .endif
     .endm
 
     .macro ScriptEntryEnd
+    .set F_ACCEPT_SCRIPT_ENTRIES, FALSE
     .short 0xFD13
     .endm
