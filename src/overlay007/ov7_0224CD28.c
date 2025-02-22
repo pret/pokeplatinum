@@ -64,6 +64,7 @@
 #include "unk_0209AC14.h"
 #include "vars_flags.h"
 
+#include "res/graphics/shop_menu/shop_gra.naix"
 #include "res/text/bank/underground_goods.h"
 #include "res/text/bank/unk_0543.h"
 
@@ -533,18 +534,18 @@ static void Shop_LoadGraphics(ShopMenu *shopMenu)
 
     narc = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, HEAP_ID_FIELDMAP);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, 0, shopMenu->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_FIELDMAP);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(narc, tiles_NCGR, shopMenu->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_FIELDMAP);
 
     if ((shopMenu->martType == MART_TYPE_NORMAL) || (shopMenu->martType == MART_TYPE_FRONTIER)) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 2, shopMenu->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_FIELDMAP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, tilemap_NSCR, shopMenu->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_FIELDMAP);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, 3, shopMenu->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_FIELDMAP);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(narc, tilemap_no_item_NSCR, shopMenu->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_FIELDMAP);
     }
 
     if (shopMenu->martType == MART_TYPE_FRONTIER) {
-        Graphics_LoadPaletteFromOpenNARC(narc, 11, 0, PLTT_OFFSET(0), PALETTE_SIZE_BYTES, HEAP_ID_FIELDMAP);
+        Graphics_LoadPaletteFromOpenNARC(narc, frontier_NCLR, 0, PLTT_OFFSET(0), PALETTE_SIZE_BYTES, HEAP_ID_FIELDMAP);
     } else {
-        Graphics_LoadPaletteFromOpenNARC(narc, 1, 0, PLTT_OFFSET(0), PALETTE_SIZE_BYTES, HEAP_ID_FIELDMAP);
+        Graphics_LoadPaletteFromOpenNARC(narc, default_NCLR, 0, PLTT_OFFSET(0), PALETTE_SIZE_BYTES, HEAP_ID_FIELDMAP);
     }
 
     LoadStandardWindowGraphics(shopMenu->bgConfig, BG_LAYER_MAIN_3, (1 + (18 + 12)), FIELD_WINDOW_PALETTE_INDEX, 0, HEAP_ID_FIELDMAP);
