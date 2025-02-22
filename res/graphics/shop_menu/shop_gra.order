@@ -1,0 +1,13 @@
+tiles.NCGR
+default.NCLR
+tilemap.NSCR
+tilemap_no_item.NSCR
+scroll_arrow.NCGR
+scroll_arrow_cell.NCER
+scroll_arrow_anim.NANR
+cursor.NCGR
+cursor_cell.NCER
+cursor_anim.NANR
+sprites.NCLR
+frontier.NCLR
+
