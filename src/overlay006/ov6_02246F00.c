@@ -3,10 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/map_prop.h"
+
 #include "field/field_system.h"
+#include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021EF75C.h"
 
 #include "field_task.h"
 #include "heap.h"
@@ -54,14 +56,14 @@ static BOOL ov6_02246F40(FieldTask *param0)
         NNSG3dRenderObj *v5;
         BOOL v6;
 
-        v3 = ov5_021EF9E8(498, fieldSystem->unk_30);
+        v3 = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_ID_UNK_498, fieldSystem->areaDataManager);
         v2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v3), 0);
 
         v6 = sub_020552B4(fieldSystem, 498, &v4, NULL);
         GF_ASSERT(v6);
         v5 = MapProp_GetRenderObj(v4);
 
-        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 0x1, 498, v5, v2, ov5_021EFAA0(fieldSystem->unk_30), 2, v1->unk_00, 0);
+        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 0x1, 498, v5, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 2, v1->unk_00, 0);
     }
         (v1->unk_02)++;
         break;

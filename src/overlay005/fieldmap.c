@@ -15,6 +15,7 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_decl.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/area_data.h"
 #include "overlay005/const_ov5_021FF6B8.h"
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
@@ -40,7 +41,6 @@
 #include "overlay005/ov5_021EE75C.h"
 #include "overlay005/ov5_021EF250.h"
 #include "overlay005/ov5_021EF4BC.h"
-#include "overlay005/ov5_021EF75C.h"
 #include "overlay005/ov5_021F0824.h"
 #include "overlay005/ov5_021F10E8.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
@@ -204,7 +204,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         break;
     case 1:
         ov5_021D1790(fieldSystem);
-        ov5_021EF7A0(fieldSystem->unk_30);
+        AreaDataManager_Load(fieldSystem->areaDataManager);
 
         fieldSystem->mapPropManager = MapPropManager_New(HEAP_ID_FIELD);
 
@@ -304,7 +304,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
         break;
     case 1:
         if (ov5_021E9300(fieldSystem->unk_28) == 1) {
-            ov5_021EFA10(&fieldSystem->unk_30);
+            AreaDataManager_Free(&fieldSystem->areaDataManager);
             ov5_021E92E4(fieldSystem->unk_28);
             HoneyTree_FreeShakeData(&fieldSystem->unk_A8);
             ov5_021D5BA8(fieldSystem);
@@ -714,7 +714,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
         ov9_0224CA50(fieldSystem);
     }
 
-    MapPropManager_Render2(fieldSystem->mapPropManager, fieldSystem->unk_30);
+    MapPropManager_Render2(fieldSystem->mapPropManager, fieldSystem->areaDataManager);
 
     {
         const MtxFx44 *v2;
@@ -789,10 +789,10 @@ static void ov5_021D1790(FieldSystem *fieldSystem)
     fieldSystem->unk_54 = ov5_021D4194();
 
     {
-        u16 v0, v1;
+        u16 areaDataArchiveID, v1;
 
-        v0 = sub_0203A038(fieldSystem->location->mapId);
-        fieldSystem->unk_30 = ov5_021EF76C(v0, fieldSystem->unk_50);
+        areaDataArchiveID = MapHeader_GetAreaDataArchiveID(fieldSystem->location->mapId);
+        fieldSystem->areaDataManager = AreaDataManager_Alloc(areaDataArchiveID, fieldSystem->unk_50);
 
         v1 = sub_0203A04C(fieldSystem->location->mapId);
         GF_ASSERT(fieldSystem->unk_34 == NULL);
@@ -803,7 +803,7 @@ static void ov5_021D1790(FieldSystem *fieldSystem)
 
 static void ov5_021D17EC(FieldSystem *fieldSystem)
 {
-    fieldSystem->unk_28 = ov5_021E9084(fieldSystem->mapMatrix, fieldSystem->unk_30, fieldSystem->unk_50, fieldSystem->unk_60);
+    fieldSystem->unk_28 = ov5_021E9084(fieldSystem->mapMatrix, fieldSystem->areaDataManager, fieldSystem->unk_50, fieldSystem->unk_60);
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
         int v0 = 0, v1 = 0, v2 = 0;
@@ -900,7 +900,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
         ov5_021D5B40(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 
-    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, ov5_021EFAD8(fieldSystem->unk_30));
+    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, AreaDataManager_GetAreaLightArchiveID(fieldSystem->areaDataManager));
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
         fieldSystem->unk_04->unk_0C = NULL;
@@ -912,7 +912,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     fieldSystem->unk_64 = ov5_021E1B08(4);
     fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
 
-    ov5_021D5CE4(fieldSystem->unk_04->unk_10, ov5_021EFA8C(fieldSystem->unk_30));
+    ov5_021D5CE4(fieldSystem->unk_04->unk_10, AreaDataManager_GetMapTexture(fieldSystem->areaDataManager));
     sub_02068344(fieldSystem);
     ov5_021EE7C0(fieldSystem);
     SetVBlankCallback(fieldmap, fieldSystem);

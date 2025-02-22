@@ -4,6 +4,7 @@
 #include <nnsys.h>
 #include <string.h>
 
+#include "constants/gx_colors.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/species.h"
@@ -77,9 +78,6 @@
 #define OAM_NUM_BYTES               32
 #define OAM_VRAM_TRANSFER_MAIN_SIZE (0x14000)
 #define OAM_VRAM_TRANSFER_SUB_SIZE  (0x4000)
-
-#define COLOR_BLACK       GX_RGB(4, 4, 4)
-#define COLOR_TRANSPARENT GX_RGB(31, 31, 16)
 
 #define TRANSPARENT_DEPTH      0x7FFF
 #define TRANSPARENT_POLYGON_ID 63
@@ -561,7 +559,7 @@ static void Setup3D(ChooseStarterApp *app)
     G3X_EdgeMarking(TRUE);
 
     for (int i = 0; i < 8; i++) {
-        app->edgeMarkings[i] = COLOR_BLACK;
+        app->edgeMarkings[i] = COLOR_DARK_GRAY;
     }
 
     G3X_SetEdgeColorTable(app->edgeMarkings);
