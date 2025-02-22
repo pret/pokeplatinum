@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 help() {
     echo "Syntax: ./make_script_bin.sh [OPTIONS] FILE..."
     echo "options:"
