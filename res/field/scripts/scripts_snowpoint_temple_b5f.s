@@ -45,7 +45,7 @@ _0073:
 _0081:
     Message 2
     CloseMessage
-    PlayCry 0x1E6, 0
+    PlayCry SPECIES_REGIGIGAS
     ScrCmd_04D
     SetFlag 142
     StartLegendaryBattle SPECIES_REGIGIGAS, 1

@@ -37,7 +37,7 @@ _0077:
     Message 0
     ShowYesNoMenu 0x800C
     GoToIfEq 0x800C, MENU_NO, _0101
-    PlayCry 0x1E3, 0
+    PlayCry SPECIES_DIALGA
     Message 1
     ScrCmd_04D
     CloseMessage

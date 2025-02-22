@@ -442,11 +442,11 @@ _057C:
     FacePlayer
     GoToIfEq 0x400A, 1, _062C
     GoToIfEq 0x400A, 2, _063C
-    IsAppRegistered 21, 0x800C
+    CheckPoketchAppRegistered 21, 0x800C
     GoToIfEq 0x800C, 1, _0657
     Message 5
     Message 6
-    IsAppRegistered 20, 0x800C
+    CheckPoketchAppRegistered 20, 0x800C
     GoToIfEq 0x800C, 1, _05FB
     Message 10
     ScrCmd_1C0 0x800C, 143

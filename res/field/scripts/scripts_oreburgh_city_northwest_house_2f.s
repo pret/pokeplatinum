@@ -64,7 +64,7 @@ _0097:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 54, 0
+    PlayCry SPECIES_PSYDUCK
     Message 4
     ScrCmd_04D
     WaitABXPadPress

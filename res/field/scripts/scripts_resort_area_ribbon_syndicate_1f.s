@@ -207,7 +207,7 @@ _02BA:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 0x12C, 0
+    PlayCry SPECIES_SKITTY
     Message 18
     ScrCmd_04D
     WaitABXPadPress
@@ -220,7 +220,7 @@ _02D9:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 54, 0
+    PlayCry SPECIES_PSYDUCK
     Message 19
     ScrCmd_04D
     WaitABXPadPress

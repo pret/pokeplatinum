@@ -453,7 +453,7 @@ static BOOL ScrCmd_12D(ScriptContext *ctx);
 static BOOL ScrCmd_131(ScriptContext *ctx);
 static BOOL ScrCmd_132(ScriptContext *ctx);
 static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx);
-static BOOL ScrCmd_IsAppRegistered(ScriptContext *ctx);
+static BOOL ScrCmd_CheckPoketchAppRegistered(ScriptContext *ctx);
 static BOOL ScrCmd_135(ScriptContext *ctx);
 static BOOL sub_02043678(ScriptContext *ctx);
 static BOOL ScrCmd_136(ScriptContext *ctx);
@@ -1071,7 +1071,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_131,
     ScrCmd_132,
     ScrCmd_RegisterPoketchApp,
-    ScrCmd_IsAppRegistered,
+    ScrCmd_CheckPoketchAppRegistered,
     ScrCmd_135,
     ScrCmd_136,
     ScrCmd_137,
@@ -5185,7 +5185,7 @@ static BOOL ScrCmd_RegisterPoketchApp(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_IsAppRegistered(ScriptContext *ctx)
+static BOOL ScrCmd_CheckPoketchAppRegistered(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 appID = ScriptContext_GetVar(ctx);

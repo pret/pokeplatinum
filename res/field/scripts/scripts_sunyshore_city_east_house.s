@@ -19,11 +19,11 @@ _0006:
     End
 
 _002C:
-    IsAppRegistered 18, 0x800C
+    CheckPoketchAppRegistered 18, 0x800C
     GoToIfEq 0x800C, 1, _0125
-    IsAppRegistered 17, 0x800C
+    CheckPoketchAppRegistered 17, 0x800C
     GoToIfEq 0x800C, 1, _00A7
-    IsAppRegistered 16, 0x800C
+    CheckPoketchAppRegistered 16, 0x800C
     GoToIfEq 0x800C, 1, _0089
     GoTo _006B
 

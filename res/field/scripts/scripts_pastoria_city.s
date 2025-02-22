@@ -174,7 +174,7 @@ _01E5:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 35, 0
+    PlayCry SPECIES_CLEFAIRY
     Message 36
     ScrCmd_04D
     WaitABXPadPress
@@ -1160,7 +1160,7 @@ _0C22:
     ApplyMovement LOCALID_PLAYER, _0C78
     ApplyMovement 28, _0C64
     WaitMovement
-    PlayCry 0x1C5, 0
+    PlayCry SPECIES_CROAGUNK
     ScrCmd_04D
     WaitTime 30, 0x800C
     ApplyMovement 28, _0C70

@@ -105,7 +105,7 @@ _00E6:
     WaitFanfare SEQ_SE_CONFIRM
     CallIfUnset 215, _0174
     SetVar 0x409E, 2
-    PlayCry 0x1E5, 0
+    PlayCry SPECIES_HEATRAN
     Message 15
     CloseMessage
     SetFlag 142
@@ -195,7 +195,7 @@ _019C:
     RemoveObject 3
     Message 2
     Message 3
-    PlayCry 0x1C5, 0
+    PlayCry SPECIES_CROAGUNK
     ScrCmd_04D
     CloseMessage
     ClearFlag 0x232

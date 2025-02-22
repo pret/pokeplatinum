@@ -693,7 +693,7 @@ _09D1:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 0x1A1, 0
+    PlayCry SPECIES_PACHIRISU
     Message 62
     ScrCmd_04D
     WaitABXPadPress

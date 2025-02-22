@@ -37,7 +37,7 @@ _005D:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 35, 0
+    PlayCry SPECIES_CLEFAIRY, 0
     Message 2
     ScrCmd_04D
     WaitABXPadPress

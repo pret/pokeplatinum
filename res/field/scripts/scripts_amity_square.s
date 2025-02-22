@@ -430,13 +430,13 @@ _05BE:
 
 _05DD:
     BufferPartyMonNickname 0, 0x409D
-    PlayCry 0x409A, 0
-    GoToIfEq 0x409A, 0x184, _0719
-    GoToIfEq 0x409A, 0x185, _0719
-    GoToIfEq 0x409A, 0x187, _0719
-    GoToIfEq 0x409A, 0x188, _0719
-    GoToIfEq 0x409A, 0x18A, _0719
-    GoToIfEq 0x409A, 0x18B, _0719
+    PlayCry 0x409A
+    GoToIfEq 0x409A, SPECIES_GROTLE, _0719
+    GoToIfEq 0x409A, SPECIES_TORTERRA, _0719
+    GoToIfEq 0x409A, SPECIES_MONFERNO, _0719
+    GoToIfEq 0x409A, SPECIES_INFERNAPE, _0719
+    GoToIfEq 0x409A, SPECIES_PRINPLUP, _0719
+    GoToIfEq 0x409A, SPECIES_EMPOLEON, _0719
     ScrCmd_1B7 0x800C, 9
     GoToIfEq 0x800C, 0, _06AC
     GoToIfEq 0x800C, 1, _06B7
@@ -650,7 +650,7 @@ _08EB:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 0x1A9, 0
+    PlayCry SPECIES_DRIFLOON, 0
     Message 29
     ScrCmd_04D
     WaitABXPadPress
@@ -693,7 +693,7 @@ _0943:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 25, 0
+    PlayCry SPECIES_PIKACHU, 0
     Message 33
     ScrCmd_04D
     WaitABXPadPress
@@ -716,7 +716,7 @@ _0975:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 35, 0
+    PlayCry SPECIES_CLEFAIRY, 0
     Message 35
     ScrCmd_04D
     WaitABXPadPress

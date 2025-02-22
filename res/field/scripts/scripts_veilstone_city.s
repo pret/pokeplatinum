@@ -1469,7 +1469,7 @@ _10B9:
     ScrCmd_262 0x182, 0x800C
     GoToIfEq 0x800C, 0, _1179
     ScrCmd_263 3
-    PlayCry 0x182, 0
+    PlayCry SPECIES_DEOXYS
     Message 57
     WaitABXPadPress
     ScrCmd_04D
@@ -1483,7 +1483,7 @@ _10E9:
     ScrCmd_262 0x182, 0x800C
     GoToIfEq 0x800C, 0, _1179
     ScrCmd_263 2
-    PlayCry 0x182, 0
+    PlayCry SPECIES_DEOXYS
     Message 58
     WaitABXPadPress
     ScrCmd_04D
@@ -1497,7 +1497,7 @@ _1119:
     ScrCmd_262 0x182, 0x800C
     GoToIfEq 0x800C, 0, _1179
     ScrCmd_263 1
-    PlayCry 0x182, 0
+    PlayCry SPECIES_DEOXYS
     Message 59
     WaitABXPadPress
     ScrCmd_04D
@@ -1511,7 +1511,7 @@ _1149:
     ScrCmd_262 0x182, 0x800C
     GoToIfEq 0x800C, 0, _1179
     ScrCmd_263 0
-    PlayCry 0x182, 0
+    PlayCry SPECIES_DEOXYS
     Message 60
     WaitABXPadPress
     ScrCmd_04D

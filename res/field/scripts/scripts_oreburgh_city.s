@@ -604,7 +604,7 @@ _0703:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 66, 0
+    PlayCry SPECIES_MACHOP
     Message 24
     ScrCmd_04D
     WaitABXPadPress
@@ -627,7 +627,7 @@ _0735:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 66, 0
+    PlayCry SPECIES_MACHOP
     Message 25
     ScrCmd_04D
     WaitABXPadPress
@@ -640,7 +640,7 @@ _0754:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 66, 0
+    PlayCry SPECIES_MACHOP
     Message 26
     ScrCmd_04D
     WaitABXPadPress

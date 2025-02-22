@@ -205,10 +205,10 @@
     .short \flagID
     .endm
 
-    .macro ScrCmd_CheckFlagFromVar arg0, arg1
+    .macro CheckFlagFromVar flagID, destVarID
     .short 33
-    .short \arg0
-    .short \arg1
+    .short \flagID
+    .short \destVarID
     .endm
 
     .macro SetFlagFromVar varID
@@ -446,10 +446,10 @@
     .short \sdatID
     .endm
 
-    .macro PlayCry arg0, arg1
+    .macro PlayCry species, unused=0
     .short 76
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \unused
     .endm
 
     .macro ScrCmd_04D
@@ -1692,7 +1692,7 @@
     .short \appID
     .endm
 
-    .macro IsAppRegistered appID, destVarID
+    .macro CheckPoketchAppRegistered appID, destVarID
     .short 308
     .short \appID
     .short \destVarID

@@ -36,10 +36,10 @@ _0056:
     SetVar 0x4118, 0
     Call _00E9
     Call _0104
-    PlayCry 0x1ED, 0
+    PlayCry SPECIES_ARCEUS, 0
     ScrCmd_04D
     Call _016F
-    PlayCry 0x1ED, 0
+    PlayCry SPECIES_ARCEUS, 0
     Message 0
     CloseMessage
     SetFlag 142

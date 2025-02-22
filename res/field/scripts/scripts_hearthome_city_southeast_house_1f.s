@@ -44,7 +44,7 @@ _004B:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 0x11D, 0
+    PlayCry SPECIES_SHROOMISH, 0
     Message 3
     ScrCmd_04D
     WaitABXPadPress

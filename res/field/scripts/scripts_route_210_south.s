@@ -60,7 +60,7 @@ _00CA:
     BufferItemName 1, 0x1D0
     Message 2
     CloseMessage
-    PlayCry 54, 0
+    PlayCry SPECIES_PSYDUCK
     ScrCmd_04D
     ApplyMovement 27, _024C
     ApplyMovement 28, _024C

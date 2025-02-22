@@ -49,7 +49,7 @@ _007C:
     LockAll
     FacePlayer
     GoToIfEq 0x4000, 1, _00ED
-    IsAppRegistered 7, 0x800C
+    CheckPoketchAppRegistered 7, 0x800C
     GoToIfEq 0x800C, 1, _00FD
     Message 2
     ShowYesNoMenu 0x800C

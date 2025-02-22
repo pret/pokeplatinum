@@ -80,7 +80,7 @@ _006F:
     WaitTime 30, 0x800C
     BufferPlayerName 1
     Message 4
-    PlayCry 0x1E1, 0
+    PlayCry SPECIES_MESPRIT
     Message 5
     ScrCmd_04D
     CloseMessage

@@ -193,7 +193,7 @@ _02B8:
     ApplyMovement LOCALID_PLAYER, _03C8
     ApplyMovement 16, _0440
     WaitMovement
-    PlayCry 0x1EC, 0
+    PlayCry SPECIES_SHAYMIN
     ScrCmd_04D
     CallIfEq 0x4057, 2, _02AE
     ApplyMovement 3, _038C
@@ -204,7 +204,7 @@ _02B8:
     WaitMovement
     SetFlag 0x25C
     RemoveObject 16
-    PlayCry 0x1EC, 0
+    PlayCry SPECIES_SHAYMIN
     ScrCmd_04D
     ApplyMovement 3, _03C0
     WaitMovement

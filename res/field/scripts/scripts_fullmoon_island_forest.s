@@ -17,7 +17,7 @@ _000C:
     DrawPokemonPreview SPECIES_CRESSELIA, GENDER_FEMALE
     WaitABPress
     ScrCmd_209
-    PlayCry 0x1E8, 0
+    PlayCry SPECIES_CRESSELIA, 0
     GetPlayerDir 0x800C
     CallIfEq 0x800C, 0, _007E
     ScrCmd_063 0

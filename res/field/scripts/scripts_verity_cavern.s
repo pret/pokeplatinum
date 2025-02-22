@@ -90,7 +90,7 @@ VerityCavern_EnterProfessorRowan:
     WaitMovement
     BufferPlayerName 0
     Message verity_cavern_rowan_chase_after_mesprit
-    IsAppRegistered POKETCH_APPID_MARKINGMAP, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, 0x800C
     CallIfEq 0x800C, 0, VerityCavern_ProfessorRowanNoMarkingMap
     BufferPlayerName 0
     Message verity_cavern_rowan_go_on

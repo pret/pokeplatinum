@@ -40,7 +40,7 @@ _0054:
     BufferPartyMonNickname 0, 0x8005
     Message 2
     ScrCmd_28E 0x800C
-    PlayCry 0x1B9, 0
+    PlayCry SPECIES_CHATOT
     ScrCmd_04D
     GoTo _00B2
     End

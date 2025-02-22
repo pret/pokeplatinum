@@ -11,7 +11,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    IsAppRegistered 14, 0x800C
+    CheckPoketchAppRegistered 14, 0x800C
     GoToIfNe 0x800C, 0, _003A
     Message 0
     SetVar 0x8004, 14
@@ -32,7 +32,7 @@ _0045:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    IsAppRegistered 14, 0x800C
+    CheckPoketchAppRegistered 14, 0x800C
     GoToIfNe 0x800C, 0, _0071
     GoTo _0066
 

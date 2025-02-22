@@ -125,7 +125,7 @@ _011C:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry 0x1A1, 0
+    PlayCry SPECIES_PACHIRISU
     Message 22
     ScrCmd_04D
     WaitABXPadPress
@@ -593,13 +593,13 @@ _0820:
     AddObject 31
     ApplyMovement 31, _0884
     WaitMovement
-    PlayCry 0x1AB, 0
+    PlayCry SPECIES_BUNEARY
     ScrCmd_04D
     ApplyMovement 32, _0894
     WaitMovement
     Message 0
     Message 1
-    PlayCry 0x1AB, 0
+    PlayCry SPECIES_BUNEARY
     ScrCmd_04D
     RemoveObject 31
     Message 2

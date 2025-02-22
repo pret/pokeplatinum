@@ -28,7 +28,7 @@ AcuityCavern_Uxie:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PlayCry SPECIES_UXIE, 0
+    PlayCry SPECIES_UXIE
     Message acuity_cavern_uxie_battle_intro
     CloseMessage
     SetFlag 142

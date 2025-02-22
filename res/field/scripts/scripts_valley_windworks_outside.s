@@ -142,7 +142,7 @@ _01BF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PlayCry 0x1A9, 0
+    PlayCry SPECIES_DRIFLOON
     Message 8
     CloseMessage
     ScrCmd_04D

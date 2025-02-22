@@ -448,12 +448,12 @@ _05F3:
     LockAll
     FacePlayer
     GoToIfSet 168, _0615
-    PlayCry 54, 0
+    PlayCry SPECIES_PSYDUCK, 0
     Message 23
     GoTo _0545
 
 _0615:
-    PlayCry 54, 0
+    PlayCry SPECIES_PSYDUCK, 0
     Message 24
     GoTo _0545
 
