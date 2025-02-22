@@ -19,11 +19,11 @@ _0006:
     End
 
 _002C:
-    CheckPoketchAppRegistered 18, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_ROULETTE, 0x800C
     GoToIfEq 0x800C, 1, _0125
-    CheckPoketchAppRegistered 17, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_DOTART, 0x800C
     GoToIfEq 0x800C, 1, _00A7
-    CheckPoketchAppRegistered 16, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_CALENDAR, 0x800C
     GoToIfEq 0x800C, 1, _0089
     GoTo _006B
 

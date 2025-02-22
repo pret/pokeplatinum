@@ -41,7 +41,7 @@ _003D:
     End
 
 _00AE:
-    PlayCry 0x17A, 0
+    PlayCry 0x17A
     Message 2
     ScrCmd_04D
     CloseMessage

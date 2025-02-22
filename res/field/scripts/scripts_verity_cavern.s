@@ -21,7 +21,7 @@ VerityCavern_Mesprit:
     DrawPokemonPreview SPECIES_MESPRIT, GENDER_MALE
     WaitABPress
     ScrCmd_209
-    PlayCry SPECIES_MESPRIT, 0
+    PlayCry SPECIES_MESPRIT
     Message verity_cavern_mesprit_cry
     CloseMessage
     SetFlag FLAG_MESPRIT_DISAPPEARED

@@ -29,7 +29,7 @@ _0012:
 
 _004B:
     LockAll
-    PlayCry SPECIES_MESPRIT, 0
+    PlayCry SPECIES_MESPRIT
     Message 1
     CloseMessage
     ScrCmd_04D

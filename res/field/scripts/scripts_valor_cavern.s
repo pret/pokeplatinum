@@ -43,7 +43,7 @@ ValorCavern_Azelf:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PlayCry SPECIES_AZELF, 0
+    PlayCry SPECIES_AZELF
     Message valor_cavern_azelf_battle_intro
     CloseMessage
     SetFlag 142

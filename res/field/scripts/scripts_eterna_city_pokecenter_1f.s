@@ -48,7 +48,7 @@ _005E:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_BUNEARY, 0
+    PlayCry SPECIES_BUNEARY
     Message 3
     ScrCmd_04D
     WaitABXPadPress
@@ -61,7 +61,7 @@ _007D:
     LockAll
     FacePlayer
     GoToIfEq 0x4002, 1, _00F4
-    CheckPoketchAppRegistered 5, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, 0x800C
     GoToIfEq 0x800C, 0, _00D9
     ScrCmd_247 0x8000
     BufferPartyMonSpecies 0, 0x8000

@@ -478,8 +478,8 @@ _0567:
     ClearFlag 0x1C7
     SetFlag 0x132
     SetVar 0x40C3, 1
-    WriteSpeciesSeen SPECIES_DIALGA
-    WriteSpeciesSeen SPECIES_PALKIA
+    SetSpeciesSeen SPECIES_DIALGA
+    SetSpeciesSeen SPECIES_PALKIA
     ScrCmd_067
     Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, 0
     End

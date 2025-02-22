@@ -63,7 +63,7 @@ _009E:
 _00C4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    PlayCry SPECIES_GIRATINA, 0
+    PlayCry SPECIES_GIRATINA
     Message 2
     ScrCmd_04D
     CloseMessage
@@ -153,7 +153,7 @@ _020A:
 
 _021D:
     LockAll
-    PlayCry SPECIES_GIRATINA, 0
+    PlayCry SPECIES_GIRATINA
     Message 0
     ScrCmd_04D
     WaitABPadPress

@@ -4349,7 +4349,7 @@
     .short \level
     .endm
 
-    .macro WriteSpeciesSeen species
+    .macro SetSpeciesSeen species
     .short 794
     .short \species
     .endm

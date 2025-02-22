@@ -155,13 +155,13 @@ _01DE:
     GoTo _0270
 
 _025F:
-    PlayCry 0x8001, 0
+    PlayCry 0x8001
     Message 17
     ScrCmd_04D
     GoTo _029F
 
 _0270:
-    PlayCry 0x8001, 0
+    PlayCry 0x8001
     Message 36
     WaitABXPadPress
     CloseMessage
@@ -290,7 +290,7 @@ _03FE:
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     Message 29
-    PlayCry 0x8002, 0
+    PlayCry 0x8002
     BufferPlayerName 1
     Message 30
     ScrCmd_04D

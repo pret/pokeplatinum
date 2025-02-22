@@ -28,13 +28,13 @@ _0042:
     Message 0
     CountBadgesAcquired 0x8000
     GoToIfEq 0x8000, 0, _0181
-    CheckPoketchAppRegistered 2, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_MEMOPAD, 0x800C
     GoToIfEq 0x800C, 0, _00C5
-    CheckPoketchAppRegistered 12, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, 0x800C
     GoToIfEq 0x800C, 0, _00DC
-    CheckPoketchAppRegistered 13, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_LINKSEARCHER, 0x800C
     GoToIfEq 0x800C, 0, _00F3
-    CheckPoketchAppRegistered 15, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_MOVETESTER, 0x800C
     GoToIfEq 0x800C, 0, _010A
     CheckItem ITEM_POKE_RADAR, 1, 0x800C
     GoToIfEq 0x800C, 1, _01B8

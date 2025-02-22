@@ -19,7 +19,7 @@ _0006:
     BufferPlayerName 0
     Message 2
     CloseMessage
-    PlayCry SPECIES_ROTOM, 0
+    PlayCry SPECIES_ROTOM
     ScrCmd_04D
     SetFlag 0xAB0
     StartWildBattle SPECIES_ROTOM, 20

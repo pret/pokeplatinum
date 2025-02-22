@@ -98,7 +98,7 @@ _00BC:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PIKACHU, 0
+    PlayCry SPECIES_PIKACHU
     Message 8
     ScrCmd_04D
     WaitABXPadPress

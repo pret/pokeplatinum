@@ -39,7 +39,7 @@ _007D:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    PlayCry SPECIES_SHAYMIN, 0
+    PlayCry SPECIES_SHAYMIN
     Message 0
     CloseMessage
     SetFlag 142

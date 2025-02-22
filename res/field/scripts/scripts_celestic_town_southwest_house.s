@@ -11,7 +11,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckPoketchAppRegistered 11, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_ANALOGWATCH, 0x800C
     GoToIfEq 0x800C, 1, _003A
     Message 0
     SetVar 0x8004, 11
@@ -33,7 +33,7 @@ _0045:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_HAPPINY, 0
+    PlayCry SPECIES_HAPPINY
     Message 2
     ScrCmd_04D
     WaitABXPadPress

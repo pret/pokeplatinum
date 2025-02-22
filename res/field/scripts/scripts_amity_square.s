@@ -391,7 +391,7 @@ _0524:
     End
 
 _054D:
-    PlayCry 0x409A, 0
+    PlayCry 0x409A
     Message 22
     ScrCmd_04D
     ScrCmd_27C 1, 0x8004
@@ -418,7 +418,7 @@ _0595:
     End
 
 _05BE:
-    PlayCry 0x409A, 0
+    PlayCry 0x409A
     Message 22
     ScrCmd_04D
     ScrCmd_27C 2, 0x8004
@@ -650,7 +650,7 @@ _08EB:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_DRIFLOON, 0
+    PlayCry SPECIES_DRIFLOON
     Message 29
     ScrCmd_04D
     WaitABXPadPress
@@ -693,7 +693,7 @@ _0943:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_PIKACHU, 0
+    PlayCry SPECIES_PIKACHU
     Message 33
     ScrCmd_04D
     WaitABXPadPress
@@ -716,7 +716,7 @@ _0975:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    PlayCry SPECIES_CLEFAIRY, 0
+    PlayCry SPECIES_CLEFAIRY
     Message 35
     ScrCmd_04D
     WaitABXPadPress

@@ -92,7 +92,7 @@ _00CC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckPoketchAppRegistered 9, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, 0x800C
     GoToIfEq 0x800C, 1, _0118
     ScrCmd_11E 0x800C
     GoToIfLt 0x800C, 50, _010D

@@ -56,7 +56,7 @@ _0080:
 
 _0093:
     LockAll
-    PlayCry SPECIES_MESPRIT, 0
+    PlayCry SPECIES_MESPRIT
     Message 0
     CloseMessage
     ScrCmd_04D
@@ -68,7 +68,7 @@ _0093:
 
 _00B4:
     LockAll
-    PlayCry SPECIES_UXIE, 0
+    PlayCry SPECIES_UXIE
     Message 1
     CloseMessage
     ScrCmd_04D
@@ -80,7 +80,7 @@ _00B4:
 
 _00D5:
     LockAll
-    PlayCry SPECIES_AZELF, 0
+    PlayCry SPECIES_AZELF
     Message 2
     CloseMessage
     ScrCmd_04D
