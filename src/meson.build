@@ -164,7 +164,7 @@ pokeplatinum_c = files(
     'field_overworld_state.c',
     'unk_0203A7D8.c',
     'unk_0203A944.c',
-    'field_menu.c',
+    'start_menu.c',
     'unk_0203C954.c',
     'field_system.c',
     'location.c',
