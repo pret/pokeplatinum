@@ -96,7 +96,7 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
         }
     }
 
-    return TRUE;
+    return FALSE;
 }
 
 BOOL ScrCmd_RandomizeJubilifeLottery(ScriptContext *ctx)
