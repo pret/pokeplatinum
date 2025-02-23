@@ -7807,7 +7807,7 @@ static BOOL ScrCmd_PokeMartFrontier(ScriptContext *ctx)
         ITEM_TM59,
         ITEM_TM71,
         ITEM_TM26,
-        ITEM_RETURN_ID,
+        SHOP_ITEM_END,
     };
     static const u16 BattleFrontierLeftExchangeServiceCorner[] = {
         ITEM_PROTEIN,
@@ -7836,7 +7836,7 @@ static BOOL ScrCmd_PokeMartFrontier(ScriptContext *ctx)
         ITEM_RAZOR_CLAW,
         ITEM_RAZOR_FANG,
         ITEM_RARE_CANDY,
-        ITEM_RETURN_ID,
+        SHOP_ITEM_END,
     };
     static const u16 *BattleFrontierExchangeServiceCorners[] = {
         BattleFrontierRightExchangeServiceCorner,

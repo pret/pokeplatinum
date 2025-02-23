@@ -98,7 +98,7 @@ typedef struct {
     GameRecords *records;
     SaveData *saveData;
     VarsFlags *varsFlags;
-    BOOL incDeptStoreBuyCount;
+    BOOL incBuyCount;
     u16 *itemsPtr;
     u8 itemsCount;
     u8 unused[2];
@@ -119,7 +119,7 @@ typedef struct {
     UnkStruct_0200C440 *unk_2B4;
 } ShopMenu;
 
-void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incDeptStoreBuyCount);
+void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incBuyCount);
 BOOL FieldTask_InitShop(FieldTask *task);
 
 #endif // POKEPLATINUM_SHOP_MENU_H

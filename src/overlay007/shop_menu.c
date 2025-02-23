@@ -214,7 +214,7 @@ static void Shop_SetItemsForSale(ShopMenu *shopMenu, u16 *itemsPtr)
     u16 i;
 
     for (i = 0; i < MAX_SHOP_ITEMS; i++) {
-        if (itemsPtr[i] == ITEM_RETURN_ID) {
+        if (itemsPtr[i] == SHOP_ITEM_END) {
             break;
         }
     }
@@ -235,7 +235,7 @@ static ShopMenu *Shop_Alloc(void)
     return shopMenu;
 }
 
-void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incDeptStoreBuyCount)
+void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incBuyCount)
 {
     ShopMenu *shopMenu = Shop_Alloc();
 
@@ -246,7 +246,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     shopMenu->options = SaveData_Options(fieldSystem->saveData);
     shopMenu->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     shopMenu->varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
-    shopMenu->incDeptStoreBuyCount = incDeptStoreBuyCount;
+    shopMenu->incBuyCount = incBuyCount;
     shopMenu->cameraPosDest = Shop_GetCameraPosDest(fieldSystem);
     shopMenu->journalEntry = fieldSystem->journalEntry;
     shopMenu->martType = martType;
@@ -738,7 +738,7 @@ static void Shop_MenuCursorCallback(ListMenu *menu, u32 index, u8 onInit)
 
         Shop_ChangeItemIconGfx(shopMenu, index);
     } else {
-        Shop_ChangeItemIconGfx(shopMenu, ITEM_RETURN_ID);
+        Shop_ChangeItemIconGfx(shopMenu, SHOP_ITEM_END);
     }
 
     u32 count;
@@ -1258,7 +1258,7 @@ static u8 Shop_FinishPurchase(ShopMenu *shopMenu)
     }
 
     if (JOY_NEW(PAD_BUTTON_A | PAD_BUTTON_B)) {
-        if (shopMenu->incDeptStoreBuyCount == TRUE) {
+        if (shopMenu->incBuyCount == TRUE) {
             SystemVars_IncrementDepartmentStoreBuyCount(shopMenu->varsFlags);
         }
 
