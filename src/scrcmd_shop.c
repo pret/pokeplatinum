@@ -1,4 +1,4 @@
-#include "unk_02046AD4.h"
+#include "scrcmd_shop.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -73,15 +73,15 @@ BOOL ScrCmd_PokeMartCommon(ScriptContext *ctx)
 BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx)
 {
     u16 martID = ScriptContext_GetVar(ctx);
-    BOOL incDeptStoreBuyCount;
+    BOOL incBuyCount;
 
     if ((martID == 8) || (martID == 9) || (martID == 10) || (martID == 11) || (martID == 12) || (martID == 13) || (martID == 19)) {
-        incDeptStoreBuyCount = TRUE;
+        incBuyCount = TRUE;
     } else {
-        incDeptStoreBuyCount = FALSE;
+        incBuyCount = FALSE;
     }
 
-    Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)PokeMartSpecialties[martID], MART_TYPE_NORMAL, incDeptStoreBuyCount);
+    Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)PokeMartSpecialties[martID], MART_TYPE_NORMAL, incBuyCount);
     return TRUE;
 }
 
@@ -89,18 +89,18 @@ BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx)
 BOOL ScrCmd_PokeMartDecor(ScriptContext *ctx)
 {
     u16 martID = ScriptContext_GetVar(ctx);
-    BOOL incDeptStoreBuyCount;
+    BOOL incBuyCount;
 
     if ((martID == 0) || (martID == 1)) {
-        incDeptStoreBuyCount = TRUE;
+        incBuyCount = TRUE;
     } else {
         // never reached as the only two instances of
         // this command only sets martID to 0 and 1
         // respectively.
-        incDeptStoreBuyCount = FALSE;
+        incBuyCount = FALSE;
     }
 
-    Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)VeilstoneDeptStoreDecorationStocks[martID], MART_TYPE_DECOR, incDeptStoreBuyCount);
+    Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)VeilstoneDeptStoreDecorationStocks[martID], MART_TYPE_DECOR, incBuyCount);
     return TRUE;
 }
 
@@ -113,7 +113,7 @@ BOOL ScrCmd_PokeMartSeal(ScriptContext *ctx)
     return TRUE;
 }
 
-// does NOT use shop_menu
+// does NOT use shop_menu, but it is a shop of sort
 BOOL ScrCmd_257(ScriptContext *param0)
 {
     sub_0203E518(param0->fieldSystem->task);

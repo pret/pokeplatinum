@@ -183,7 +183,7 @@ Static main
 	Object main.nef.p/src_field_script_context.c.o
 	Object main.nef.p/src_script_manager.c.o
 	Object main.nef.p/src_scrcmd.c.o
-	Object main.nef.p/src_unk_02046AD4.c.o
+	Object main.nef.p/src_scrcmd_shop.c.o
 	Object main.nef.p/src_unk_02046C7C.c.o
 	Object main.nef.p/src_unk_020474B8.c.o
 	Object main.nef.p/src_scrcmd_jubilife_lottery.c.o
