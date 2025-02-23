@@ -10,7 +10,7 @@
 
 typedef struct PokemonSprite PokemonSprite;
 
-typedef void(UnkFuncPtr_02007C34)(PokemonSprite *, UnkStruct_02007C7C_sub1 *);
+typedef void(UnkFuncPtr_02007C34)(PokemonSprite *, PokemonSpriteTransforms *);
 
 typedef struct PokemonSpriteTemplate {
     u16 archive; //< ID of the sprite archive
@@ -46,7 +46,7 @@ struct PokemonSprite {
     u32 : 23;
     PokemonSpriteTemplate unk_04;
     PokemonSpriteTemplate unk_14;
-    UnkStruct_02007C7C_sub1 unk_24;
+    PokemonSpriteTransforms unk_24;
     u8 unk_58;
     u8 unk_59;
     u8 unk_5A;
