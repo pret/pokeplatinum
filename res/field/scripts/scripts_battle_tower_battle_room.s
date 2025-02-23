@@ -260,7 +260,7 @@ _045C:
     ScrCmd_1DD 41, 0, 0x800C
     SetVar 0x4021, 0x800C
     ClearFlag 0x1CB
-    ScrCmd_064 1
+    AddObject 1
     ApplyMovement 1, _0524
     WaitMovement
     Return
@@ -293,7 +293,7 @@ _04BA:
 _04CE:
     SetVar 0x4021, 169
     ClearFlag 0x1CB
-    ScrCmd_064 1
+    AddObject 1
     ApplyMovement 1, _05A8
     WaitMovement
     Return

@@ -62,25 +62,25 @@ _00B6:
     End
 
 _00FE:
-    ScrCmd_186 15, 28, 14
+    SetObjectEventPos 15, 28, 14
     End
 
 _0108:
-    ScrCmd_186 15, 38, 8
+    SetObjectEventPos 15, 38, 8
     End
 
 _0112:
-    ScrCmd_186 15, 40, 21
+    SetObjectEventPos 15, 40, 21
     End
 
 _011C:
-    ScrCmd_186 15, 48, 41
+    SetObjectEventPos 15, 48, 41
     End
 
 _0126:
     LockAll
     SetVar 0x8001, 1
-    ApplyMovement 0xFF, _03B0
+    ApplyMovement LOCALID_PLAYER, _03B0
     WaitMovement
     GoTo _015A
     End
@@ -88,7 +88,7 @@ _0126:
 _0140:
     LockAll
     SetVar 0x8001, 2
-    ApplyMovement 0xFF, _03B8
+    ApplyMovement LOCALID_PLAYER, _03B8
     WaitMovement
     GoTo _015A
     End
@@ -107,7 +107,7 @@ _0174:
 _0182:
     Message 0
     CloseMessage
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
     ReleaseAll
     End
@@ -120,7 +120,7 @@ _0195:
 _01A3:
     Message 1
     CloseMessage
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
     ReleaseAll
     End
@@ -165,7 +165,7 @@ _026D:
     GoToIfNe 0x400B, 0, _01CE
     Message 5
     CloseMessage
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
     ReleaseAll
     End
@@ -185,7 +185,7 @@ _02BB:
     End
 
 _02C9:
-    ScrCmd_064 0x8002
+    AddObject 0x8002
     CallIfEq 0x8001, 1, _032A
     CallIfEq 0x8001, 2, _0338
     FadeScreen 6, 1, 1, 0
@@ -196,7 +196,7 @@ _02C9:
     ScrCmd_27C 0, 0x409D
     Message 3
     CloseMessage
-    ApplyMovement 0xFF, _03C8
+    ApplyMovement LOCALID_PLAYER, _03C8
     ApplyMovement 0x8002, _03C8
     WaitMovement
     SetHasPartner
@@ -263,7 +263,7 @@ _0389:
     SetVar 0x4099, 0
     Message 6
     CloseMessage
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
     ReleaseAll
     End
@@ -391,7 +391,7 @@ _0524:
     End
 
 _054D:
-    ScrCmd_04C 0x409A, 0
+    PlayCry 0x409A
     Message 22
     ScrCmd_04D
     ScrCmd_27C 1, 0x8004
@@ -418,7 +418,7 @@ _0595:
     End
 
 _05BE:
-    ScrCmd_04C 0x409A, 0
+    PlayCry 0x409A
     Message 22
     ScrCmd_04D
     ScrCmd_27C 2, 0x8004
@@ -430,13 +430,13 @@ _05BE:
 
 _05DD:
     BufferPartyMonNickname 0, 0x409D
-    ScrCmd_04C 0x409A, 0
-    GoToIfEq 0x409A, 0x184, _0719
-    GoToIfEq 0x409A, 0x185, _0719
-    GoToIfEq 0x409A, 0x187, _0719
-    GoToIfEq 0x409A, 0x188, _0719
-    GoToIfEq 0x409A, 0x18A, _0719
-    GoToIfEq 0x409A, 0x18B, _0719
+    PlayCry 0x409A
+    GoToIfEq 0x409A, SPECIES_GROTLE, _0719
+    GoToIfEq 0x409A, SPECIES_TORTERRA, _0719
+    GoToIfEq 0x409A, SPECIES_MONFERNO, _0719
+    GoToIfEq 0x409A, SPECIES_INFERNAPE, _0719
+    GoToIfEq 0x409A, SPECIES_PRINPLUP, _0719
+    GoToIfEq 0x409A, SPECIES_EMPOLEON, _0719
     ScrCmd_1B7 0x800C, 9
     GoToIfEq 0x800C, 0, _06AC
     GoToIfEq 0x800C, 1, _06B7
@@ -650,7 +650,7 @@ _08EB:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 0x1A9, 0
+    PlayCry SPECIES_DRIFLOON
     Message 29
     ScrCmd_04D
     WaitABXPadPress
@@ -693,7 +693,7 @@ _0943:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 25, 0
+    PlayCry SPECIES_PIKACHU
     Message 33
     ScrCmd_04D
     WaitABXPadPress
@@ -716,7 +716,7 @@ _0975:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 35, 0
+    PlayCry SPECIES_CLEFAIRY
     Message 35
     ScrCmd_04D
     WaitABXPadPress
@@ -1234,14 +1234,14 @@ _1305:
     CallIfEq 0x8003, 25, _1702
     CallIfEq 0x8003, 26, _171A
     CallIfEq 0x8003, 27, _1732
-    ApplyMovement 0xFF, _1764
+    ApplyMovement LOCALID_PLAYER, _1764
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ApplyMovement 5, _1764
     WaitMovement
     ReleaseAll
-    ApplyMovement 0xFF, _1770
+    ApplyMovement LOCALID_PLAYER, _1770
     WaitMovement
     ScrCmd_32E
     ScrCmd_339
@@ -1249,163 +1249,163 @@ _1305:
     End
 
 _14C2:
-    ApplyMovement 0xFF, _1778
+    ApplyMovement LOCALID_PLAYER, _1778
     WaitMovement
     ScrCmd_187 5, 35, 2, 15, 1
     Return
 
 _14DA:
-    ApplyMovement 0xFF, _1780
+    ApplyMovement LOCALID_PLAYER, _1780
     WaitMovement
     ScrCmd_187 5, 35, 2, 15, 1
     Return
 
 _14F2:
-    ApplyMovement 0xFF, _178C
+    ApplyMovement LOCALID_PLAYER, _178C
     WaitMovement
     ScrCmd_187 5, 35, 2, 15, 1
     Return
 
 _150A:
-    ApplyMovement 0xFF, _1798
+    ApplyMovement LOCALID_PLAYER, _1798
     WaitMovement
     ScrCmd_187 5, 17, 2, 16, 1
     Return
 
 _1522:
-    ApplyMovement 0xFF, _17A4
+    ApplyMovement LOCALID_PLAYER, _17A4
     WaitMovement
     ScrCmd_187 5, 17, 2, 16, 1
     Return
 
 _153A:
-    ApplyMovement 0xFF, _17B0
+    ApplyMovement LOCALID_PLAYER, _17B0
     WaitMovement
     ScrCmd_187 5, 17, 2, 16, 1
     Return
 
 _1552:
-    ApplyMovement 0xFF, _17BC
+    ApplyMovement LOCALID_PLAYER, _17BC
     WaitMovement
     ScrCmd_187 5, 47, 4, 8, 1
     Return
 
 _156A:
-    ApplyMovement 0xFF, _17C8
+    ApplyMovement LOCALID_PLAYER, _17C8
     WaitMovement
     ScrCmd_187 5, 33, 5, 7, 1
     Return
 
 _1582:
-    ApplyMovement 0xFF, _17D4
+    ApplyMovement LOCALID_PLAYER, _17D4
     WaitMovement
     ScrCmd_187 5, 15, 4, 10, 1
     Return
 
 _159A:
-    ApplyMovement 0xFF, _17E0
+    ApplyMovement LOCALID_PLAYER, _17E0
     WaitMovement
     ScrCmd_187 5, 52, 4, 25, 1
     Return
 
 _15B2:
-    ApplyMovement 0xFF, _17EC
+    ApplyMovement LOCALID_PLAYER, _17EC
     WaitMovement
     ScrCmd_187 5, 15, 4, 10, 1
     Return
 
 _15CA:
-    ApplyMovement 0xFF, _17F8
+    ApplyMovement LOCALID_PLAYER, _17F8
     WaitMovement
     ScrCmd_187 5, 33, 5, 7, 1
     Return
 
 _15E2:
-    ApplyMovement 0xFF, _1804
+    ApplyMovement LOCALID_PLAYER, _1804
     WaitMovement
     ScrCmd_187 5, 52, 4, 25, 1
     Return
 
 _15FA:
-    ApplyMovement 0xFF, _1810
+    ApplyMovement LOCALID_PLAYER, _1810
     WaitMovement
     ScrCmd_187 5, 26, 6, 9, 1
     Return
 
 _1612:
-    ApplyMovement 0xFF, _181C
+    ApplyMovement LOCALID_PLAYER, _181C
     WaitMovement
     ScrCmd_187 5, 41, 3, 16, 1
     Return
 
 _162A:
-    ApplyMovement 0xFF, _1828
+    ApplyMovement LOCALID_PLAYER, _1828
     WaitMovement
     ScrCmd_187 5, 52, 4, 25, 1
     Return
 
 _1642:
-    ApplyMovement 0xFF, _1834
+    ApplyMovement LOCALID_PLAYER, _1834
     WaitMovement
     ScrCmd_187 5, 41, 3, 16, 1
     Return
 
 _165A:
-    ApplyMovement 0xFF, _1840
+    ApplyMovement LOCALID_PLAYER, _1840
     WaitMovement
     ScrCmd_187 5, 26, 6, 9, 1
     Return
 
 _1672:
-    ApplyMovement 0xFF, _184C
+    ApplyMovement LOCALID_PLAYER, _184C
     WaitMovement
     ScrCmd_187 5, 47, 4, 8, 1
     Return
 
 _168A:
-    ApplyMovement 0xFF, _1854
+    ApplyMovement LOCALID_PLAYER, _1854
     WaitMovement
     ScrCmd_187 5, 47, 2, 34, 1
     Return
 
 _16A2:
-    ApplyMovement 0xFF, _1860
+    ApplyMovement LOCALID_PLAYER, _1860
     WaitMovement
     ScrCmd_187 5, 15, 4, 10, 1
     Return
 
 _16BA:
-    ApplyMovement 0xFF, _186C
+    ApplyMovement LOCALID_PLAYER, _186C
     WaitMovement
     ScrCmd_187 5, 47, 4, 8, 1
     Return
 
 _16D2:
-    ApplyMovement 0xFF, _1878
+    ApplyMovement LOCALID_PLAYER, _1878
     WaitMovement
     ScrCmd_187 5, 33, 5, 7, 1
     Return
 
 _16EA:
-    ApplyMovement 0xFF, _1884
+    ApplyMovement LOCALID_PLAYER, _1884
     WaitMovement
     ScrCmd_187 5, 47, 2, 34, 1
     Return
 
 _1702:
-    ApplyMovement 0xFF, _1890
+    ApplyMovement LOCALID_PLAYER, _1890
     WaitMovement
     ScrCmd_187 5, 52, 4, 25, 1
     Return
 
 _171A:
-    ApplyMovement 0xFF, _189C
+    ApplyMovement LOCALID_PLAYER, _189C
     WaitMovement
     ScrCmd_187 5, 15, 4, 10, 1
     Return
 
 _1732:
-    ApplyMovement 0xFF, _18A8
+    ApplyMovement LOCALID_PLAYER, _18A8
     WaitMovement
     ScrCmd_187 5, 33, 5, 7, 1
     Return

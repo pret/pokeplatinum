@@ -125,7 +125,7 @@ _011C:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 0x1A1, 0
+    PlayCry SPECIES_PACHIRISU
     Message 22
     ScrCmd_04D
     WaitABXPadPress
@@ -144,7 +144,7 @@ _013B:
     Message 15
     CloseMessage
     WaitTime 15, 0x800C
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     GoToIfEq 0x8004, 0, _01BD
     GoToIfEq 0x8004, 1, _01D7
     GoToIfEq 0x8004, 2, _01F1
@@ -167,28 +167,28 @@ _01B2:
 
 _01BD:
     ApplyMovement 0, _0240
-    ApplyMovement 0xFF, _027C
+    ApplyMovement LOCALID_PLAYER, _027C
     WaitMovement
     GoTo _0225
     End
 
 _01D7:
     ApplyMovement 0, _0240
-    ApplyMovement 0xFF, _0294
+    ApplyMovement LOCALID_PLAYER, _0294
     WaitMovement
     GoTo _0225
     End
 
 _01F1:
     ApplyMovement 0, _0240
-    ApplyMovement 0xFF, _02AC
+    ApplyMovement LOCALID_PLAYER, _02AC
     WaitMovement
     GoTo _0225
     End
 
 _020B:
     ApplyMovement 0, _0258
-    ApplyMovement 0xFF, _02C4
+    ApplyMovement LOCALID_PLAYER, _02C4
     WaitMovement
     GoTo _0225
     End
@@ -546,7 +546,7 @@ _0740:
 
 _0753:
     LockAll
-    ApplyMovement 0xFF, _087C
+    ApplyMovement LOCALID_PLAYER, _087C
     WaitMovement
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 0x2D5, _07A8
@@ -557,49 +557,49 @@ _0753:
     End
 
 _07A8:
-    ScrCmd_186 32, 0x1D7, 0x2D5
-    ScrCmd_186 31, 0x1D7, 0x2D5
+    SetObjectEventPos 32, 0x1D7, 0x2D5
+    SetObjectEventPos 31, 0x1D7, 0x2D5
     GoTo _0820
     End
 
 _07C0:
-    ScrCmd_186 32, 0x1D7, 0x2D6
-    ScrCmd_186 31, 0x1D7, 0x2D6
+    SetObjectEventPos 32, 0x1D7, 0x2D6
+    SetObjectEventPos 31, 0x1D7, 0x2D6
     GoTo _0820
     End
 
 _07D8:
-    ScrCmd_186 32, 0x1D7, 0x2D7
-    ScrCmd_186 31, 0x1D7, 0x2D7
+    SetObjectEventPos 32, 0x1D7, 0x2D7
+    SetObjectEventPos 31, 0x1D7, 0x2D7
     GoTo _0820
     End
 
 _07F0:
-    ScrCmd_186 32, 0x1D7, 0x2D8
-    ScrCmd_186 31, 0x1D7, 0x2D8
+    SetObjectEventPos 32, 0x1D7, 0x2D8
+    SetObjectEventPos 31, 0x1D7, 0x2D8
     GoTo _0820
     End
 
 _0808:
-    ScrCmd_186 32, 0x1D7, 0x2D9
-    ScrCmd_186 31, 0x1D7, 0x2D9
+    SetObjectEventPos 32, 0x1D7, 0x2D9
+    SetObjectEventPos 31, 0x1D7, 0x2D9
     GoTo _0820
     End
 
 _0820:
     ClearFlag 0x23C
     ClearFlag 0x23D
-    ScrCmd_064 32
-    ScrCmd_064 31
+    AddObject 32
+    AddObject 31
     ApplyMovement 31, _0884
     WaitMovement
-    ScrCmd_04C 0x1AB, 0
+    PlayCry SPECIES_BUNEARY
     ScrCmd_04D
     ApplyMovement 32, _0894
     WaitMovement
     Message 0
     Message 1
-    ScrCmd_04C 0x1AB, 0
+    PlayCry SPECIES_BUNEARY
     ScrCmd_04D
     RemoveObject 31
     Message 2

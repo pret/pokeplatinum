@@ -34,12 +34,12 @@ _005A:
     End
 
 _007A:
-    ScrCmd_186 12, 8, 11
+    SetObjectEventPos 12, 8, 11
     ScrCmd_187 12, 8, 0, 11, 2
     Return
 
 _0090:
-    ScrCmd_186 12, 13, 11
+    SetObjectEventPos 12, 13, 11
     ScrCmd_187 12, 13, 0, 11, 2
     Return
 
@@ -89,7 +89,7 @@ _013F:
 _014D:
     ClearFlag 0x2CB
     Call _01DF
-    ScrCmd_064 13
+    AddObject 13
     End
 
 _015D:
@@ -99,7 +99,7 @@ _015D:
     ScrCmd_32A 0x4000
     GoToIfEq 0x4000, 0, _0196
     ClearFlag 0x2C1
-    ScrCmd_064 10
+    AddObject 10
     Return
 
 _0196:
@@ -422,7 +422,7 @@ _0730:
     Message 9
     WaitABPress
     CloseMessage
-    ApplyMovement 0xFF, _07D4
+    ApplyMovement LOCALID_PLAYER, _07D4
     ApplyMovement 0x800D, _07FC
     WaitMovement
     Return
@@ -431,7 +431,7 @@ _074B:
     Message 9
     WaitABPress
     CloseMessage
-    ApplyMovement 0xFF, _07D4
+    ApplyMovement LOCALID_PLAYER, _07D4
     ApplyMovement 0x800D, _07FC
     WaitMovement
     Return
@@ -442,25 +442,25 @@ _0766:
     ScrCmd_136
     ScrCmd_135 109
     CloseMessage
-    ApplyMovement 0xFF, _07E4
+    ApplyMovement LOCALID_PLAYER, _07E4
     ApplyMovement 0x800D, _080C
     WaitMovement
     Return
 
 _078C:
-    ApplyMovement 0xFF, _0824
+    ApplyMovement LOCALID_PLAYER, _0824
     ApplyMovement 0x800D, _0854
     WaitMovement
     Return
 
 _07A0:
-    ApplyMovement 0xFF, _0824
+    ApplyMovement LOCALID_PLAYER, _0824
     ApplyMovement 0x800D, _0854
     WaitMovement
     Return
 
 _07B4:
-    ApplyMovement 0xFF, _0838
+    ApplyMovement LOCALID_PLAYER, _0838
     ApplyMovement 0x800D, _0864
     WaitMovement
     Return
@@ -693,7 +693,7 @@ _09D1:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 0x1A1, 0
+    PlayCry SPECIES_PACHIRISU
     Message 62
     ScrCmd_04D
     WaitABXPadPress

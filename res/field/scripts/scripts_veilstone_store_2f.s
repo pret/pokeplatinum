@@ -110,7 +110,7 @@ _012B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_134 10, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_COUNTER, 0x800C
     GoToIfEq 0x800C, 1, _016F
     Message 10
     ShowYesNoMenu 0x800C

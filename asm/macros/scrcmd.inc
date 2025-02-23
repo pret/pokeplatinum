@@ -10,12 +10,14 @@
 #include "generated/moves.h"
 #include "generated/npc_trades.h"
 #include "generated/poketch_apps.h"
+#include "generated/roaming_slots.h"
 #include "generated/save_types.h"
 #include "generated/sdat.h"
 #include "generated/species.h"
 #include "generated/trainers.h"
 #include "constants/honey_tree.h"
 #include "constants/items.h"
+#include "constants/map_object.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
 
@@ -203,10 +205,10 @@
     .short \flagID
     .endm
 
-    .macro ScrCmd_021 arg0, arg1
+    .macro CheckFlagFromVar flagID, destVarID
     .short 33
-    .short \arg0
-    .short \arg1
+    .short \flagID
+    .short \destVarID
     .endm
 
     .macro SetFlagFromVar varID
@@ -444,10 +446,10 @@
     .short \sdatID
     .endm
 
-    .macro ScrCmd_04C arg0, arg1
+    .macro PlayCry species, unused=0
     .short 76
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \unused
     .endm
 
     .macro ScrCmd_04D
@@ -561,7 +563,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_064 arg0
+    .macro AddObject arg0
     .short 100
     .short \arg0
     .endm
@@ -1690,10 +1692,10 @@
     .short \appID
     .endm
 
-    .macro ScrCmd_134 arg0, arg1
+    .macro CheckPoketchAppRegistered appID, destVarID
     .short 308
-    .short \arg0
-    .short \arg1
+    .short \appID
+    .short \destVarID
     .endm
 
     .macro ScrCmd_135 arg0
@@ -2085,11 +2087,11 @@
     .short 389
     .endm
 
-    .macro ScrCmd_186 arg0, arg1, arg2
+    .macro SetObjectEventPos localID, x, z
     .short 390
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \localID
+    .short \x
+    .short \z
     .endm
 
     .macro ScrCmd_187 arg0, arg1, arg2, arg3, arg4
@@ -2113,11 +2115,11 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_18A arg0, arg1, arg2
+    .macro SetWarpEventPos index, x, z
     .short 394
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \index
+    .short \x
+    .short \z
     .endm
 
     .macro ScrCmd_18B arg0, arg1, arg2
@@ -2388,9 +2390,9 @@
     .short \arg3
     .endm
 
-    .macro ScrCmd_1BD arg0
+    .macro GetPlayerDir destVarID
     .short 445
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_1BE arg0
@@ -2403,10 +2405,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1C0 arg0, arg1
+    .macro ScrCmd_1C0 destVarID, species
     .short 448
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \species
     .endm
 
     .macro ScrCmd_1C1 arg0, arg1
@@ -2818,10 +2820,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_208 arg0, arg1
+    .macro DrawPokemonPreview species, gender
     .short 520
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \gender
     .endm
 
     .macro ScrCmd_209
@@ -2919,9 +2921,9 @@
     .short 539
     .endm
 
-    .macro ScrCmd_21C arg0
+    .macro ActivateRoamingPokemon slot
     .short 540
-    .byte \arg0
+    .byte \slot
     .endm
 
     .macro ScrCmd_21D arg0, arg1=0, arg2=0
@@ -3563,9 +3565,9 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_28C arg0
+    .macro DrawPokemonPreviewFromPartySlot partySlot
     .short 652
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_28D
@@ -4347,9 +4349,9 @@
     .short \level
     .endm
 
-    .macro ScrCmd_31A arg0
+    .macro SetSpeciesSeen species
     .short 794
-    .short \arg0
+    .short \species
     .endm
 
     .macro ScrCmd_31B arg0

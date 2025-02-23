@@ -131,7 +131,7 @@ _0184:
 
 _0190:
     LockAll
-    ApplyMovement 0xFF, _0274
+    ApplyMovement LOCALID_PLAYER, _0274
     ApplyMovement 28, _02DC
     WaitMovement
     Message 4
@@ -245,7 +245,7 @@ _02E4:
     LockAll
     ClearHasPartner
     ScrCmd_06D 28, 14
-    ApplyMovement 0xFF, _03B4
+    ApplyMovement LOCALID_PLAYER, _03B4
     ApplyMovement 28, _03E0
     WaitMovement
     Message 5
@@ -258,25 +258,25 @@ _02E4:
     End
 
 _0341:
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     ApplyMovement 28, _03EC
     WaitMovement
     GoTo _03A1
 
 _0359:
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     ApplyMovement 28, _0400
     WaitMovement
     GoTo _03A1
 
 _0371:
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     ApplyMovement 28, _0414
     WaitMovement
     GoTo _03A1
 
 _0389:
-    ApplyMovement 0xFF, _03D0
+    ApplyMovement LOCALID_PLAYER, _03D0
     ApplyMovement 28, _0428
     WaitMovement
     GoTo _03A1

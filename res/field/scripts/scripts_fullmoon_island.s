@@ -17,7 +17,7 @@ _0015:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     CheckItem ITEM_LUNAR_WING, 1, 0x800C
     GoToIfEq 0x800C, 1, _0052
     Message 1
@@ -56,26 +56,26 @@ _00A3:
     Return
 
 _00BD:
-    ApplyMovement 0xFF, _0120
+    ApplyMovement LOCALID_PLAYER, _0120
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _0118
+    ApplyMovement LOCALID_PLAYER, _0118
     WaitMovement
     Return
 
 _00D7:
-    ApplyMovement 0xFF, _0130
+    ApplyMovement LOCALID_PLAYER, _0130
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _0118
+    ApplyMovement LOCALID_PLAYER, _0118
     WaitMovement
     Return
 
 _00F1:
-    ApplyMovement 0xFF, _013C
+    ApplyMovement LOCALID_PLAYER, _013C
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _0118
+    ApplyMovement LOCALID_PLAYER, _0118
     WaitMovement
     Return
 

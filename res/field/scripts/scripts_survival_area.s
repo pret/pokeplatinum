@@ -29,7 +29,7 @@ _0045:
     End
 
 _0052:
-    ScrCmd_18A 0, 0x28C, 0x150
+    SetWarpEventPos 0, 0x28C, 0x150
     End
 
 _005C:

@@ -70,6 +70,7 @@ metang_generators = {
     'pokemon_contest_types': { 'type': 'enum', 'tag': 'PokemonContestType' },
     'pokemon_types': { 'type': 'enum', 'tag': 'PokemonType' },
     'poketch_apps': { 'type': 'enum', 'tag': 'PoketchAppID' },
+    'roaming_slots': { 'type': 'enum', 'tag': 'RoamingSlot' },
     'save_types': { 'type': 'enum', 'tag': 'SaveType' },
     'sdat': { 'type': 'enum', 'tag': 'SDATID' },
     'shadow_sizes': { 'type': 'enum', 'tag': 'ShadowSize' },

@@ -16,18 +16,18 @@ _0012:
     End
 
 _003F:
-    ScrCmd_18A 2, 0x2C6, 0x29E
-    ScrCmd_18A 3, 0x2C6, 0x29E
+    SetWarpEventPos 2, 0x2C6, 0x29E
+    SetWarpEventPos 3, 0x2C6, 0x29E
     End
 
 _0051:
-    ScrCmd_18A 2, 0x2C6, 0x29E
-    ScrCmd_18A 4, 0x2C6, 0x29E
+    SetWarpEventPos 2, 0x2C6, 0x29E
+    SetWarpEventPos 4, 0x2C6, 0x29E
     End
 
 _0063:
-    ScrCmd_18A 3, 0x2C6, 0x29E
-    ScrCmd_18A 4, 0x2C6, 0x29E
+    SetWarpEventPos 3, 0x2C6, 0x29E
+    SetWarpEventPos 4, 0x2C6, 0x29E
     End
 
 _0075:

@@ -33,7 +33,7 @@ _0034:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 25, 0
+    PlayCry SPECIES_PIKACHU
     Message 2
     ScrCmd_04D
     WaitABXPadPress
