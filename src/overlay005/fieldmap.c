@@ -23,8 +23,8 @@
 #include "overlay005/honey_tree.h"
 #include "overlay005/map_name_popup.h"
 #include "overlay005/map_prop.h"
+#include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021D1A94.h"
-#include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021D5878.h"
@@ -278,13 +278,13 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
         ov5_021EF300(fieldSystem->unk_A0);
 
         {
-            GF_ASSERT(fieldSystem->unk_50 != 0);
+            GF_ASSERT(fieldSystem->mapPropAnimMan != 0);
             ov5_021E924C(fieldSystem->unk_28);
         }
 
-        ov5_021D3CAC(fieldSystem->unk_50);
-        ov5_021D3D7C(fieldSystem->unk_50);
-        ov5_021D41B4(&fieldSystem->unk_54);
+        MapPropAnimationManager_UnloadAllAnimations(fieldSystem->mapPropAnimMan);
+        MapPropAnimationManager_Free(fieldSystem->mapPropAnimMan);
+        MapPropOneShotAnimationManager_Free(&fieldSystem->mapPropOneShotAnimMan);
         ov5_021D5E8C(fieldSystem->unk_04->unk_10);
         ov5_021D5EAC(fieldSystem->unk_04->unk_10);
 
@@ -495,7 +495,7 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
     }
 
     if ((param1 & 8) != 0) {
-        ov5_021D3F10(fieldSystem->unk_50);
+        MapPropAnimationManager_AdvanceAnimations(fieldSystem->mapPropAnimMan);
     }
 
     if ((param1 & 2) != 0) {
@@ -785,14 +785,14 @@ static void ov5_021D1790(FieldSystem *fieldSystem)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     G3_SwapBuffers(GX_SORTMODE_AUTO, gBufferMode);
 
-    fieldSystem->unk_50 = ov5_021D38B8();
-    fieldSystem->unk_54 = ov5_021D4194();
+    fieldSystem->mapPropAnimMan = MapPropAnimationManager_New();
+    fieldSystem->mapPropOneShotAnimMan = MapPropOneShotAnimationManager_New();
 
     {
         u16 areaDataArchiveID, v1;
 
         areaDataArchiveID = MapHeader_GetAreaDataArchiveID(fieldSystem->location->mapId);
-        fieldSystem->areaDataManager = AreaDataManager_Alloc(areaDataArchiveID, fieldSystem->unk_50);
+        fieldSystem->areaDataManager = AreaDataManager_Alloc(areaDataArchiveID, fieldSystem->mapPropAnimMan);
 
         v1 = sub_0203A04C(fieldSystem->location->mapId);
         GF_ASSERT(fieldSystem->unk_34 == NULL);
@@ -803,7 +803,7 @@ static void ov5_021D1790(FieldSystem *fieldSystem)
 
 static void ov5_021D17EC(FieldSystem *fieldSystem)
 {
-    fieldSystem->unk_28 = ov5_021E9084(fieldSystem->mapMatrix, fieldSystem->areaDataManager, fieldSystem->unk_50, fieldSystem->unk_60);
+    fieldSystem->unk_28 = ov5_021E9084(fieldSystem->mapMatrix, fieldSystem->areaDataManager, fieldSystem->mapPropAnimMan, fieldSystem->unk_60);
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
         int v0 = 0, v1 = 0, v2 = 0;

@@ -3,14 +3,14 @@
 
 #include <nnsys.h>
 
+#include "overlay005/map_prop_animation.h"
 #include "overlay005/map_prop_material_shape.h"
-#include "overlay005/struct_ov5_021D3CAC_decl.h"
 
 #define MAX_MAP_PROP_MODEL_FILES 768
 
 typedef struct AreaDataManagerLoadData {
     int areaDataArchiveID;
-    UnkStruct_ov5_021D3CAC *unk_04;
+    MapPropAnimationManager *mapPropAnimMan;
     u16 mapPropModelIDsCount;
     int dummy0C;
 } AreaDataManagerLoadData;
@@ -37,7 +37,7 @@ typedef struct AreaDataManager {
     u16 *mapPropModelIDs;
 } AreaDataManager;
 
-AreaDataManager *AreaDataManager_Alloc(int areaDataArchiveID, UnkStruct_ov5_021D3CAC *param1);
+AreaDataManager *AreaDataManager_Alloc(int areaDataArchiveID, MapPropAnimationManager *mapPropAnimMan);
 void AreaDataManager_Load(AreaDataManager *areaDataManager);
 NNSG3dResFileHeader **AreaDataManager_GetMapPropModelFile(const int mapPropModelID, AreaDataManager *const areaDataManager);
 void AreaDataManager_Free(AreaDataManager **areaDataManager);

@@ -159,7 +159,7 @@ static void ov5_021F8480(UnkStruct_ov5_021F8480 *param0, const u32 param1)
                 if (v2->unk_00 == 0) {
                     v2->unk_00 = 1;
                     v2->unk_04 = v4;
-                    v2->unk_02 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, v4, &v5->unk_04, &v3, fieldSystem->unk_50);
+                    v2->unk_02 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, v4, &v5->unk_04, &v3, fieldSystem->mapPropAnimMan);
                     v2->unk_08 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, v4);
                     break;
                 }

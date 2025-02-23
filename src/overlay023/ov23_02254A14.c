@@ -179,7 +179,7 @@ static void ov23_02254A14(FieldSystem *fieldSystem, const int param1, UnkStruct_
     v1.y = FX32_ONE;
     v1.z = (FX32_ONE * 16) * ((0 * 32) + 13) + ((FX32_ONE * 8) * v0->unk_1C);
 
-    v0->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, ov23_02255E14(fieldSystem, param1), &v1, NULL, fieldSystem->unk_50);
+    v0->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, ov23_02255E14(fieldSystem, param1), &v1, NULL, fieldSystem->mapPropAnimMan);
     v0->unk_00.unk_00 = 16;
     v0->unk_00.unk_04 = 13;
     v0->unk_00.unk_08 = 16 + (v0->unk_18 - 1);
@@ -1228,7 +1228,7 @@ static void ov23_02255D78(FieldSystem *fieldSystem, UnkStruct_ov23_02255BF4 *par
         v4.z = (FX32_ONE * 16) * (v5->unk_00.unk_04) + (FX32_ONE * 8) * v2;
         v4.y = FX32_ONE;
 
-        v5->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, v0, &v4, NULL, fieldSystem->unk_50);
+        v5->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, v0, &v4, NULL, fieldSystem->mapPropAnimMan);
     }
 }
 

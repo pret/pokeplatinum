@@ -8,7 +8,7 @@
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
-#include "overlay005/ov5_021D37AC.h"
+#include "overlay005/map_prop_animation.h"
 
 #include "field_task.h"
 #include "heap.h"
@@ -84,18 +84,18 @@ static BOOL ov6_02246C9C(FieldTask *param0)
         NNSG3dRenderObj *v7;
         BOOL v8;
 
-        v3 = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_ID_UNK_517, fieldSystem->areaDataManager);
-        v5 = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_ID_UNK_124, fieldSystem->areaDataManager);
+        v3 = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, fieldSystem->areaDataManager);
+        v5 = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_TV, fieldSystem->areaDataManager);
         v2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v3), 0);
         v4 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v5), 0);
 
-        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 0x10, 517, NULL, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
+        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 0x10, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, NULL, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
 
         v8 = sub_020552B4(fieldSystem, 124, &v6, NULL);
         GF_ASSERT(v8);
         v7 = MapProp_GetRenderObj(v6);
 
-        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 0x20, 124, v7, v4, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
+        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 0x20, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_TV, v7, v4, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, 1, 0);
     }
         (v1->unk_0F)++;
         break;
@@ -111,11 +111,11 @@ static BOOL ov6_02246C9C(FieldTask *param0)
 
         Sound_PlayEffect(1534);
 
-        v1->unk_10[v1->unk_0D] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 517, &v11, &v12, fieldSystem->unk_50);
+        v1->unk_10[v1->unk_0D] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, &v11, &v12, fieldSystem->mapPropAnimMan);
 
         v9 = MapPropManager_GetLoadedPropSafely(fieldSystem->mapPropManager, v1->unk_10[v1->unk_0D]);
         v10 = MapProp_GetRenderObj(v9);
-        ov5_021D4220(fieldSystem->unk_54, 0x10, v1->unk_0D, v10);
+        MapPropOneShotAnimationManager_SetAnimationRenderObj(fieldSystem->mapPropOneShotAnimMan, 0x10, v1->unk_0D, v10);
         (v1->unk_0F)++;
     } break;
     case 2:
@@ -136,17 +136,17 @@ static BOOL ov6_02246C9C(FieldTask *param0)
 
         break;
     case 3:
-        ov5_021D4250(fieldSystem->unk_54, 0x10, 0);
-        ov5_021D4250(fieldSystem->unk_54, 0x20, 0);
+        MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 0x10, 0);
+        MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 0x20, 0);
         sub_02006150(1166);
         (v1->unk_0F)++;
         break;
     case 4:
-        if ((ov5_021D42F0(fieldSystem->unk_54, 0x10)) && (ov5_021D42F0(fieldSystem->unk_54, 0x20)) && (sub_020061E4() == 0)) {
+        if ((MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 0x10)) && (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 0x20)) && (sub_020061E4() == 0)) {
             u8 v13;
 
-            ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 0x20);
-            ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 0x10);
+            MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 0x20);
+            MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 0x10);
 
             for (v13 = 0; v13 < v1->unk_0C; v13++) {
                 MapPropManager_InitOne(v1->unk_10[v13], fieldSystem->mapPropManager);

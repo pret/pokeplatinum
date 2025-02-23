@@ -8,7 +8,7 @@
 #include "overlay005/bdhc.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
 #include "overlay005/map_prop.h"
-#include "overlay005/struct_ov5_021D3CAC_decl.h"
+#include "overlay005/map_prop_animation.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 
@@ -17,7 +17,7 @@
 
 void ov5_021E7A54(UnkStruct_ov5_021E8F60 *param0);
 void ov5_021E8188(FieldSystem *fieldSystem, UnkStruct_ov5_021E8F60 *param1);
-UnkStruct_ov5_021E8F60 *ov5_021E9084(MapMatrix *param0, AreaDataManager *param1, UnkStruct_ov5_021D3CAC *param2, const int param3);
+UnkStruct_ov5_021E8F60 *ov5_021E9084(MapMatrix *param0, AreaDataManager *param1, MapPropAnimationManager *param2, const int param3);
 void ov5_021E9150(UnkStruct_ov5_021E8F60 *param0, const int param1, const int param2);
 void ov5_021E9190(const u8 param0, UnkStruct_ov5_021E8F60 *param1);
 void ov5_021E91FC(const UnkStruct_ov5_021E8F60 *param0, UnkStruct_ov5_021D5894 *const param1);

@@ -10,9 +10,9 @@
 #include "overlay005/bdhc.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
 #include "overlay005/map_prop.h"
+#include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021EEAC8.h"
-#include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021EEB48_decl.h"
 
@@ -105,7 +105,7 @@ typedef struct UnkStruct_ov5_021E8F60_t {
     int unk_B8;
     int unk_BC;
     UnkStruct_ov5_021EA174 unk_C0;
-    UnkStruct_ov5_021D3CAC *unk_E4;
+    MapPropAnimationManager *unk_E4;
     UnkStruct_ov5_021FAE98 const *unk_E8;
     NARC *unk_EC;
     UnkFuncPtr_ov5_021E9630 unk_F0;
@@ -1531,7 +1531,7 @@ static void ov5_021E901C(const int param0, const int param1, const MapMatrix *pa
     param3->z += v1 * 32 * 16 * FX32_ONE;
 }
 
-UnkStruct_ov5_021E8F60 *ov5_021E9084(MapMatrix *param0, AreaDataManager *param1, UnkStruct_ov5_021D3CAC *param2, const int param3)
+UnkStruct_ov5_021E8F60 *ov5_021E9084(MapMatrix *param0, AreaDataManager *param1, MapPropAnimationManager *param2, const int param3)
 {
     UnkStruct_ov5_021E8F60 *v0;
     BOOL v1;

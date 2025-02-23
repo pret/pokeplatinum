@@ -54,7 +54,7 @@ void ov5_021F0824(FieldSystem *fieldSystem)
             v9.z += (v8 * FX32_ONE * 8);
             v10 = AreaDataManager_GetMapPropModelID(fieldSystem->areaDataManager, v1);
 
-            MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, v10, &v9, NULL, fieldSystem->unk_50);
+            MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, v10, &v9, NULL, fieldSystem->mapPropAnimMan);
         }
     }
 }
