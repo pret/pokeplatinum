@@ -403,9 +403,9 @@ void sub_02007768(PokemonSpriteManager *param0)
     G3_TexImageParam(param0->imageProxy.attr.fmt, GX_TEXGEN_TEXCOORD, param0->imageProxy.attr.sizeS, param0->imageProxy.attr.sizeT, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, param0->imageProxy.attr.plttUse, param0->charBaseAddr);
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->sprites[v0].unk_00_0 && param0->sprites[v0].unk_24.hasVanished == FALSE && param0->sprites[v0].unk_24.dontDraw == FALSE) {
-            if (param0->sprites[v0].unk_68 != NULL) {
-                param0->sprites[v0].unk_68(&param0->sprites[v0], &param0->sprites[v0].unk_24);
+        if (param0->sprites[v0].active && param0->sprites[v0].transforms.hasVanished == FALSE && param0->sprites[v0].transforms.dontDraw == FALSE) {
+            if (param0->sprites[v0].callback != NULL) {
+                param0->sprites[v0].callback(&param0->sprites[v0], &param0->sprites[v0].transforms);
             }
 
             NNS_G3dGeFlushBuffer();
@@ -417,60 +417,60 @@ void sub_02007768(PokemonSpriteManager *param0)
             sub_020088D8(&param0->sprites[v0]);
 
             G3_TexPlttBase((u32)(param0->plttBaseAddr + 32 * v0), param0->imageProxy.attr.fmt);
-            G3_Translate((param0->sprites[v0].unk_24.xCenter + param0->sprites[v0].unk_24.xPivot) << FX32_SHIFT, (param0->sprites[v0].unk_24.yCenter + param0->sprites[v0].unk_24.yPivot) << FX32_SHIFT, param0->sprites[v0].unk_24.zCenter << FX32_SHIFT);
-            G3_RotX(FX_SinIdx(param0->sprites[v0].unk_24.rotationX), FX_CosIdx(param0->sprites[v0].unk_24.rotationX));
-            G3_RotY(FX_SinIdx(param0->sprites[v0].unk_24.rotationY), FX_CosIdx(param0->sprites[v0].unk_24.rotationY));
-            G3_RotZ(FX_SinIdx(param0->sprites[v0].unk_24.rotationZ), FX_CosIdx(param0->sprites[v0].unk_24.rotationZ));
-            G3_Translate(-((param0->sprites[v0].unk_24.xCenter + param0->sprites[v0].unk_24.xPivot) << FX32_SHIFT), -((param0->sprites[v0].unk_24.yCenter + param0->sprites[v0].unk_24.yPivot) << FX32_SHIFT), -(param0->sprites[v0].unk_24.zCenter << FX32_SHIFT));
-            G3_MaterialColorDiffAmb(GX_RGB(param0->sprites[v0].unk_24.diffuseR, param0->sprites[v0].unk_24.diffuseG, param0->sprites[v0].unk_24.diffuseB), GX_RGB(param0->sprites[v0].unk_24.ambientR, param0->sprites[v0].unk_24.ambientG, param0->sprites[v0].unk_24.ambientB), 1);
+            G3_Translate((param0->sprites[v0].transforms.xCenter + param0->sprites[v0].transforms.xPivot) << FX32_SHIFT, (param0->sprites[v0].transforms.yCenter + param0->sprites[v0].transforms.yPivot) << FX32_SHIFT, param0->sprites[v0].transforms.zCenter << FX32_SHIFT);
+            G3_RotX(FX_SinIdx(param0->sprites[v0].transforms.rotationX), FX_CosIdx(param0->sprites[v0].transforms.rotationX));
+            G3_RotY(FX_SinIdx(param0->sprites[v0].transforms.rotationY), FX_CosIdx(param0->sprites[v0].transforms.rotationY));
+            G3_RotZ(FX_SinIdx(param0->sprites[v0].transforms.rotationZ), FX_CosIdx(param0->sprites[v0].transforms.rotationZ));
+            G3_Translate(-((param0->sprites[v0].transforms.xCenter + param0->sprites[v0].transforms.xPivot) << FX32_SHIFT), -((param0->sprites[v0].transforms.yCenter + param0->sprites[v0].transforms.yPivot) << FX32_SHIFT), -(param0->sprites[v0].transforms.zCenter << FX32_SHIFT));
+            G3_MaterialColorDiffAmb(GX_RGB(param0->sprites[v0].transforms.diffuseR, param0->sprites[v0].transforms.diffuseG, param0->sprites[v0].transforms.diffuseB), GX_RGB(param0->sprites[v0].transforms.ambientR, param0->sprites[v0].transforms.ambientG, param0->sprites[v0].transforms.ambientB), 1);
             G3_MaterialColorSpecEmi(GX_RGB(16, 16, 16), GX_RGB(0, 0, 0), 0);
-            G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, param0->sprites[v0].unk_00_1, param0->sprites[v0].unk_24.alpha, 0);
+            G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, param0->sprites[v0].polygonID, param0->sprites[v0].transforms.alpha, 0);
 
-            if (param0->sprites[v0].unk_24.visible) {
-                v3 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][0] + param0->sprites[v0].unk_24.xOffset2;
-                v5 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][0] + param0->sprites[v0].unk_24.xOffset2 + param0->sprites[v0].unk_24.width;
-                v4 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][1] + param0->sprites[v0].unk_24.yOffset2;
-                v6 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][1] + param0->sprites[v0].unk_24.yOffset2 + param0->sprites[v0].unk_24.height;
-                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_24.xCenter - 80 / 2 + param0->sprites[v0].unk_24.xOffset2 + param0->sprites[v0].unk_24.xOffset, param0->sprites[v0].unk_24.yCenter - 80 / 2 + param0->sprites[v0].unk_24.yOffset2 + param0->sprites[v0].unk_24.yOffset - param0->sprites[v0].unk_6C.height, param0->sprites[v0].unk_24.zCenter + param0->sprites[v0].unk_24.zOffset, param0->sprites[v0].unk_24.width, param0->sprites[v0].unk_24.height, v3, v4, v5, v6);
+            if (param0->sprites[v0].transforms.visible) {
+                v3 = Unk_020E4ECC[v0][param0->sprites[v0].currSpriteFrame][0] + param0->sprites[v0].transforms.xOffset2;
+                v5 = Unk_020E4ECC[v0][param0->sprites[v0].currSpriteFrame][0] + param0->sprites[v0].transforms.xOffset2 + param0->sprites[v0].transforms.width;
+                v4 = Unk_020E4ECC[v0][param0->sprites[v0].currSpriteFrame][1] + param0->sprites[v0].transforms.yOffset2;
+                v6 = Unk_020E4ECC[v0][param0->sprites[v0].currSpriteFrame][1] + param0->sprites[v0].transforms.yOffset2 + param0->sprites[v0].transforms.height;
+                NNS_G2dDrawSpriteFast(param0->sprites[v0].transforms.xCenter - 80 / 2 + param0->sprites[v0].transforms.xOffset2 + param0->sprites[v0].transforms.xOffset, param0->sprites[v0].transforms.yCenter - 80 / 2 + param0->sprites[v0].transforms.yOffset2 + param0->sprites[v0].transforms.yOffset - param0->sprites[v0].shadow.height, param0->sprites[v0].transforms.zCenter + param0->sprites[v0].transforms.zOffset, param0->sprites[v0].transforms.width, param0->sprites[v0].transforms.height, v3, v4, v5, v6);
             } else {
-                v1 = (80 * param0->sprites[v0].unk_24.affineWidth) >> 8;
-                v2 = (80 * param0->sprites[v0].unk_24.affineHeight) >> 8;
-                v3 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][0];
-                v5 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][2];
-                v4 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][1];
-                v6 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][3];
-                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_24.xCenter - v1 / 2 + param0->sprites[v0].unk_24.xOffset, param0->sprites[v0].unk_24.yCenter - v2 / 2 + param0->sprites[v0].unk_24.yOffset - param0->sprites[v0].unk_6C.height, param0->sprites[v0].unk_24.zCenter + param0->sprites[v0].unk_24.zOffset, v1, v2, v3, v4, v5, v6);
+                v1 = (80 * param0->sprites[v0].transforms.affineWidth) >> 8;
+                v2 = (80 * param0->sprites[v0].transforms.affineHeight) >> 8;
+                v3 = Unk_020E4ECC[v0][param0->sprites[v0].currSpriteFrame][0];
+                v5 = Unk_020E4ECC[v0][param0->sprites[v0].currSpriteFrame][2];
+                v4 = Unk_020E4ECC[v0][param0->sprites[v0].currSpriteFrame][1];
+                v6 = Unk_020E4ECC[v0][param0->sprites[v0].currSpriteFrame][3];
+                NNS_G2dDrawSpriteFast(param0->sprites[v0].transforms.xCenter - v1 / 2 + param0->sprites[v0].transforms.xOffset, param0->sprites[v0].transforms.yCenter - v2 / 2 + param0->sprites[v0].transforms.yOffset - param0->sprites[v0].shadow.height, param0->sprites[v0].transforms.zCenter + param0->sprites[v0].transforms.zOffset, v1, v2, v3, v4, v5, v6);
             }
 
-            if (param0->sprites[v0].unk_6C.plttSlot && param0->sprites[v0].unk_6C.size && param0->sprites[v0].unk_24.visible == FALSE && (param0->flags & 0x1) == 0) {
+            if (param0->sprites[v0].shadow.plttSlot && param0->sprites[v0].shadow.size && param0->sprites[v0].transforms.visible == FALSE && (param0->flags & 0x1) == 0) {
                 if (param0->needG3Identity != TRUE) {
                     G3_Identity();
                 }
 
-                G3_TexPlttBase((u32)(param0->plttBaseAddr + 32 * (3 + param0->sprites[v0].unk_6C.plttSlot)), param0->imageProxy.attr.fmt);
+                G3_TexPlttBase((u32)(param0->plttBaseAddr + 32 * (3 + param0->sprites[v0].shadow.plttSlot)), param0->imageProxy.attr.fmt);
 
-                if (param0->sprites[v0].unk_6C.isAffine) {
-                    v1 = (64 * param0->sprites[v0].unk_24.affineWidth) >> 8;
-                    v2 = (16 * param0->sprites[v0].unk_24.affineHeight) >> 8;
+                if (param0->sprites[v0].shadow.isAffine) {
+                    v1 = (64 * param0->sprites[v0].transforms.affineWidth) >> 8;
+                    v2 = (16 * param0->sprites[v0].transforms.affineHeight) >> 8;
                 } else {
                     v1 = 64;
                     v2 = 16;
                 }
 
-                if (param0->sprites[v0].unk_6C.shouldAdjustX) {
-                    param0->sprites[v0].unk_6C.x = param0->sprites[v0].unk_24.xCenter + param0->sprites[v0].unk_24.xOffset + param0->sprites[v0].unk_6C.xOffset;
+                if (param0->sprites[v0].shadow.shouldAdjustX) {
+                    param0->sprites[v0].shadow.x = param0->sprites[v0].transforms.xCenter + param0->sprites[v0].transforms.xOffset + param0->sprites[v0].shadow.xOffset;
                 }
 
-                if (param0->sprites[v0].unk_6C.shouldAdjustY) {
-                    param0->sprites[v0].unk_6C.y = param0->sprites[v0].unk_24.yCenter + param0->sprites[v0].unk_24.yOffset + param0->sprites[v0].unk_6C.yOffset;
+                if (param0->sprites[v0].shadow.shouldAdjustY) {
+                    param0->sprites[v0].shadow.y = param0->sprites[v0].transforms.yCenter + param0->sprites[v0].transforms.yOffset + param0->sprites[v0].shadow.yOffset;
                 }
 
-                v3 = Unk_020E4D50[param0->sprites[v0].unk_6C.size][0];
-                v4 = Unk_020E4D50[param0->sprites[v0].unk_6C.size][1];
-                v5 = Unk_020E4D50[param0->sprites[v0].unk_6C.size][2];
-                v6 = Unk_020E4D50[param0->sprites[v0].unk_6C.size][3];
+                v3 = Unk_020E4D50[param0->sprites[v0].shadow.size][0];
+                v4 = Unk_020E4D50[param0->sprites[v0].shadow.size][1];
+                v5 = Unk_020E4D50[param0->sprites[v0].shadow.size][2];
+                v6 = Unk_020E4D50[param0->sprites[v0].shadow.size][3];
 
-                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_6C.x - v1 / 2, param0->sprites[v0].unk_6C.y - v2 / 2, -1000, v1, v2, v3, v4, v5, v6);
+                NNS_G2dDrawSpriteFast(param0->sprites[v0].shadow.x - v1 / 2, param0->sprites[v0].shadow.y - v2 / 2, -1000, v1, v2, v3, v4, v5, v6);
             }
         }
     }
@@ -490,30 +490,30 @@ void sub_02007B98(PokemonSprite *param0, int param1)
 {
     int v0;
 
-    param0->unk_59 = 0;
+    param0->currAnimFrame = 0;
 
     for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_5C[v0] = 0;
+        param0->animLoopTimers[v0] = 0;
     }
 
-    if (param0->unk_84[param0->unk_59].spriteFrame == -1) {
-        param0->unk_5B = 0;
+    if (param0->animFrames[param0->currAnimFrame].spriteFrame == -1) {
+        param0->currSpriteFrame = 0;
     } else {
-        param0->unk_58 = 1;
-        param0->unk_5B = param0->unk_84[param0->unk_59].spriteFrame;
-        param0->unk_5A = param0->unk_84[param0->unk_59].frameDelay;
-        param0->unk_24.xOffset = param0->unk_84[param0->unk_59].xOffset;
+        param0->animActive = TRUE;
+        param0->currSpriteFrame = param0->animFrames[param0->currAnimFrame].spriteFrame;
+        param0->animFrameDelay = param0->animFrames[param0->currAnimFrame].frameDelay;
+        param0->transforms.xOffset = param0->animFrames[param0->currAnimFrame].xOffset;
     }
 }
 
 void sub_02007C10(PokemonSprite *param0, SpriteAnimationFrame *param1)
 {
-    MI_CpuCopy8(param1, &param0->unk_84, sizeof(SpriteAnimationFrame) * 10);
+    MI_CpuCopy8(param1, &param0->animFrames, sizeof(SpriteAnimationFrame) * 10);
 }
 
 BOOL sub_02007C24(PokemonSprite *param0)
 {
-    return param0->unk_58 != 0;
+    return param0->animActive != FALSE;
 }
 
 PokemonSprite *sub_02007C34(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, PokemonSpriteCallback *param7)
@@ -521,7 +521,7 @@ PokemonSprite *sub_02007C34(PokemonSpriteManager *param0, PokemonSpriteTemplate 
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->sprites[v0].unk_00_0 == 0) {
+        if (param0->sprites[v0].active == FALSE) {
             break;
         }
     }
@@ -533,37 +533,37 @@ PokemonSprite *sub_02007C34(PokemonSpriteManager *param0, PokemonSpriteTemplate 
 
 PokemonSprite *sub_02007C7C(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, PokemonSpriteCallback *param8)
 {
-    GF_ASSERT(param0->sprites[param6].unk_00_0 == 0);
+    GF_ASSERT(param0->sprites[param6].active == FALSE);
 
     MI_CpuClearFast(&param0->sprites[param6], sizeof(PokemonSprite));
 
-    param0->sprites[param6].unk_00_0 = 1;
-    param0->sprites[param6].unk_00_7 = 1;
-    param0->sprites[param6].unk_00_8 = 1;
-    param0->sprites[param6].unk_00_1 = param5;
-    param0->sprites[param6].unk_04 = *param1;
-    param0->sprites[param6].unk_14 = *param1;
-    param0->sprites[param6].unk_24.xCenter = param2;
-    param0->sprites[param6].unk_24.yCenter = param3;
-    param0->sprites[param6].unk_24.zCenter = param4;
-    param0->sprites[param6].unk_24.affineWidth = 256;
-    param0->sprites[param6].unk_24.affineHeight = 256;
-    param0->sprites[param6].unk_24.alpha = 31;
-    param0->sprites[param6].unk_24.diffuseR = 31;
-    param0->sprites[param6].unk_24.diffuseG = 31;
-    param0->sprites[param6].unk_24.diffuseB = 31;
-    param0->sprites[param6].unk_24.ambientR = 16;
-    param0->sprites[param6].unk_24.ambientG = 16;
-    param0->sprites[param6].unk_24.ambientB = 16;
-    param0->sprites[param6].unk_68 = param8;
-    param0->sprites[param6].unk_6C.x = param2;
-    param0->sprites[param6].unk_6C.y = param3;
-    param0->sprites[param6].unk_6C.shouldAdjustX = TRUE;
-    param0->sprites[param6].unk_6C.shouldAdjustY = TRUE;
-    param0->sprites[param6].unk_6C.isAffine = TRUE;
+    param0->sprites[param6].active = TRUE;
+    param0->sprites[param6].needReloadChar = TRUE;
+    param0->sprites[param6].needReloadPltt = TRUE;
+    param0->sprites[param6].polygonID = param5;
+    param0->sprites[param6].template = *param1;
+    param0->sprites[param6].templateBackup = *param1;
+    param0->sprites[param6].transforms.xCenter = param2;
+    param0->sprites[param6].transforms.yCenter = param3;
+    param0->sprites[param6].transforms.zCenter = param4;
+    param0->sprites[param6].transforms.affineWidth = 256;
+    param0->sprites[param6].transforms.affineHeight = 256;
+    param0->sprites[param6].transforms.alpha = 31;
+    param0->sprites[param6].transforms.diffuseR = 31;
+    param0->sprites[param6].transforms.diffuseG = 31;
+    param0->sprites[param6].transforms.diffuseB = 31;
+    param0->sprites[param6].transforms.ambientR = 16;
+    param0->sprites[param6].transforms.ambientG = 16;
+    param0->sprites[param6].transforms.ambientB = 16;
+    param0->sprites[param6].callback = param8;
+    param0->sprites[param6].shadow.x = param2;
+    param0->sprites[param6].shadow.y = param3;
+    param0->sprites[param6].shadow.shouldAdjustX = TRUE;
+    param0->sprites[param6].shadow.shouldAdjustY = TRUE;
+    param0->sprites[param6].shadow.isAffine = TRUE;
 
     if (param7 != NULL) {
-        MI_CpuCopy8(param7, &param0->sprites[param6].unk_84, sizeof(SpriteAnimationFrame) * 10);
+        MI_CpuCopy8(param7, &param0->sprites[param6].animFrames, sizeof(SpriteAnimationFrame) * 10);
     }
 
     return &param0->sprites[param6];
@@ -571,7 +571,7 @@ PokemonSprite *sub_02007C7C(PokemonSpriteManager *param0, PokemonSpriteTemplate 
 
 void sub_02007DC8(PokemonSprite *param0)
 {
-    param0->unk_00_0 = 0;
+    param0->active = FALSE;
 }
 
 void sub_02007DD4(PokemonSpriteManager *param0)
@@ -587,150 +587,150 @@ void sub_02007DEC(PokemonSprite *param0, int param1, int param2)
 {
     switch (param1) {
     case 0:
-        param0->unk_24.xCenter = param2;
+        param0->transforms.xCenter = param2;
         break;
     case 1:
-        param0->unk_24.yCenter = param2;
+        param0->transforms.yCenter = param2;
         break;
     case 2:
-        param0->unk_24.zCenter = param2;
+        param0->transforms.zCenter = param2;
         break;
     case 3:
-        param0->unk_24.xOffset = param2;
+        param0->transforms.xOffset = param2;
         break;
     case 4:
-        param0->unk_24.yOffset = param2;
+        param0->transforms.yOffset = param2;
         break;
     case 5:
-        param0->unk_24.zOffset = param2;
+        param0->transforms.zOffset = param2;
         break;
     case 6:
-        param0->unk_24.hasVanished = param2;
+        param0->transforms.hasVanished = param2;
         break;
     case 7:
-        param0->unk_24.rotationX = param2;
+        param0->transforms.rotationX = param2;
         break;
     case 8:
-        param0->unk_24.rotationY = param2;
+        param0->transforms.rotationY = param2;
         break;
     case 9:
-        param0->unk_24.rotationZ = param2;
+        param0->transforms.rotationZ = param2;
         break;
     case 10:
-        param0->unk_24.xPivot = param2;
+        param0->transforms.xPivot = param2;
         break;
     case 11:
-        param0->unk_24.yPivot = param2;
+        param0->transforms.yPivot = param2;
         break;
     case 12:
-        param0->unk_24.affineWidth = param2;
+        param0->transforms.affineWidth = param2;
         break;
     case 13:
-        param0->unk_24.affineHeight = param2;
+        param0->transforms.affineHeight = param2;
         break;
     case 14:
-        param0->unk_24.visible = param2;
+        param0->transforms.visible = param2;
         break;
     case 15:
-        param0->unk_24.xOffset2 = param2;
+        param0->transforms.xOffset2 = param2;
         break;
     case 16:
-        param0->unk_24.yOffset2 = param2;
+        param0->transforms.yOffset2 = param2;
         break;
     case 17:
-        param0->unk_24.width = param2;
+        param0->transforms.width = param2;
         break;
     case 18:
-        param0->unk_24.height = param2;
+        param0->transforms.height = param2;
         break;
     case 19:
-        param0->unk_6C.x = param2;
+        param0->shadow.x = param2;
         break;
     case 20:
-        param0->unk_6C.y = param2;
+        param0->shadow.y = param2;
         break;
     case 21:
-        param0->unk_6C.xOffset = param2;
+        param0->shadow.xOffset = param2;
         break;
     case 22:
-        param0->unk_6C.yOffset = param2;
+        param0->shadow.yOffset = param2;
         break;
     case 23:
-        param0->unk_24.alpha = param2;
+        param0->transforms.alpha = param2;
         break;
     case 24:
-        param0->unk_24.diffuseR = param2;
+        param0->transforms.diffuseR = param2;
         break;
     case 25:
-        param0->unk_24.diffuseG = param2;
+        param0->transforms.diffuseG = param2;
         break;
     case 26:
-        param0->unk_24.diffuseB = param2;
+        param0->transforms.diffuseB = param2;
         break;
     case 27:
-        param0->unk_24.ambientR = param2;
+        param0->transforms.ambientR = param2;
         break;
     case 28:
-        param0->unk_24.ambientG = param2;
+        param0->transforms.ambientG = param2;
         break;
     case 29:
-        param0->unk_24.ambientB = param2;
+        param0->transforms.ambientB = param2;
         break;
     case 30:
-        param0->unk_24.fadeActive = param2;
-        param0->unk_00_8 = 1;
+        param0->transforms.fadeActive = param2;
+        param0->needReloadPltt = TRUE;
         break;
     case 31:
-        param0->unk_24.fadeTargetColor = param2;
-        param0->unk_00_8 = 1;
+        param0->transforms.fadeTargetColor = param2;
+        param0->needReloadPltt = TRUE;
         break;
     case 32:
-        param0->unk_24.fadeCurrent = param2;
-        param0->unk_00_8 = 1;
+        param0->transforms.fadeCurrent = param2;
+        param0->needReloadPltt = TRUE;
         break;
     case 33:
-        param0->unk_24.fadeEnd = param2;
-        param0->unk_00_8 = 1;
+        param0->transforms.fadeEnd = param2;
+        param0->needReloadPltt = TRUE;
         break;
     case 34:
-        param0->unk_24.fadeDelayCounter = param2;
+        param0->transforms.fadeDelayCounter = param2;
         break;
     case 35:
-        param0->unk_24.flipH = param2;
-        param0->unk_00_7 = 1;
+        param0->transforms.flipH = param2;
+        param0->needReloadChar = TRUE;
         break;
     case 36:
-        param0->unk_24.flipV = param2;
-        param0->unk_00_7 = 1;
+        param0->transforms.flipV = param2;
+        param0->needReloadChar = TRUE;
         break;
     case 37:
-        param0->unk_24.dontDraw = param2;
+        param0->transforms.dontDraw = param2;
         break;
     case 38:
-        param0->unk_5B = param2;
+        param0->currSpriteFrame = param2;
         break;
     case 40:
-        param0->unk_24.mosaicIntensity = param2;
-        param0->unk_00_7 = 1;
+        param0->transforms.mosaicIntensity = param2;
+        param0->needReloadChar = TRUE;
         break;
     case 41:
-        param0->unk_6C.height = param2;
+        param0->shadow.height = param2;
         break;
     case 42:
-        param0->unk_6C.plttSlot = param2;
-        param0->unk_00_8 = 1;
+        param0->shadow.plttSlot = param2;
+        param0->needReloadPltt = TRUE;
         break;
     case 43:
-        param0->unk_6C.shouldAdjustX = param2;
+        param0->shadow.shouldAdjustX = param2;
         break;
     case 44:
-        param0->unk_6C.shouldAdjustY = param2;
+        param0->shadow.shouldAdjustY = param2;
         break;
     case 45:
-        param0->unk_6C.isAffine = param2;
+        param0->shadow.isAffine = param2;
         break;
     case 46:
-        param0->unk_6C.size = param2;
+        param0->shadow.size = param2;
         break;
     }
 }
@@ -739,98 +739,98 @@ int sub_020080C0(PokemonSprite *param0, int param1)
 {
     switch (param1) {
     case 0:
-        return param0->unk_24.xCenter;
+        return param0->transforms.xCenter;
     case 1:
-        return param0->unk_24.yCenter;
+        return param0->transforms.yCenter;
     case 2:
-        return param0->unk_24.zCenter;
+        return param0->transforms.zCenter;
     case 3:
-        return param0->unk_24.xOffset;
+        return param0->transforms.xOffset;
     case 4:
-        return param0->unk_24.yOffset;
+        return param0->transforms.yOffset;
     case 5:
-        return param0->unk_24.zOffset;
+        return param0->transforms.zOffset;
     case 6:
-        return param0->unk_24.hasVanished;
+        return param0->transforms.hasVanished;
     case 7:
-        return param0->unk_24.rotationX;
+        return param0->transforms.rotationX;
     case 8:
-        return param0->unk_24.rotationY;
+        return param0->transforms.rotationY;
     case 9:
-        return param0->unk_24.rotationZ;
+        return param0->transforms.rotationZ;
     case 10:
-        return param0->unk_24.xPivot;
+        return param0->transforms.xPivot;
     case 11:
-        return param0->unk_24.yPivot;
+        return param0->transforms.yPivot;
     case 12:
-        return param0->unk_24.affineWidth;
+        return param0->transforms.affineWidth;
     case 13:
-        return param0->unk_24.affineHeight;
+        return param0->transforms.affineHeight;
     case 14:
-        return param0->unk_24.visible;
+        return param0->transforms.visible;
     case 15:
-        return param0->unk_24.xOffset2;
+        return param0->transforms.xOffset2;
     case 16:
-        return param0->unk_24.yOffset2;
+        return param0->transforms.yOffset2;
     case 17:
-        return param0->unk_24.width;
+        return param0->transforms.width;
     case 18:
-        return param0->unk_24.height;
+        return param0->transforms.height;
     case 19:
-        return param0->unk_6C.x;
+        return param0->shadow.x;
     case 20:
-        return param0->unk_6C.y;
+        return param0->shadow.y;
     case 21:
-        return param0->unk_6C.xOffset;
+        return param0->shadow.xOffset;
     case 22:
-        return param0->unk_6C.yOffset;
+        return param0->shadow.yOffset;
     case 23:
-        return param0->unk_24.alpha;
+        return param0->transforms.alpha;
     case 24:
-        return param0->unk_24.diffuseR;
+        return param0->transforms.diffuseR;
     case 25:
-        return param0->unk_24.diffuseG;
+        return param0->transforms.diffuseG;
     case 26:
-        return param0->unk_24.diffuseB;
+        return param0->transforms.diffuseB;
     case 27:
-        return param0->unk_24.ambientR;
+        return param0->transforms.ambientR;
     case 28:
-        return param0->unk_24.ambientG;
+        return param0->transforms.ambientG;
     case 29:
-        return param0->unk_24.ambientB;
+        return param0->transforms.ambientB;
     case 30:
-        return param0->unk_24.fadeActive;
+        return param0->transforms.fadeActive;
     case 31:
-        return param0->unk_24.fadeTargetColor;
+        return param0->transforms.fadeTargetColor;
     case 32:
-        return param0->unk_24.fadeCurrent;
+        return param0->transforms.fadeCurrent;
     case 33:
-        return param0->unk_24.fadeEnd;
+        return param0->transforms.fadeEnd;
     case 34:
-        return param0->unk_24.fadeDelayCounter;
+        return param0->transforms.fadeDelayCounter;
     case 35:
-        return param0->unk_24.flipH;
+        return param0->transforms.flipH;
     case 36:
-        return param0->unk_24.flipV;
+        return param0->transforms.flipV;
     case 37:
-        return param0->unk_24.dontDraw;
+        return param0->transforms.dontDraw;
     case 38:
-        return param0->unk_5B;
+        return param0->currSpriteFrame;
     case 40:
-        return param0->unk_24.mosaicIntensity;
+        return param0->transforms.mosaicIntensity;
     case 41:
-        return param0->unk_6C.height;
+        return param0->shadow.height;
     case 42:
-        return param0->unk_6C.plttSlot;
+        return param0->shadow.plttSlot;
     case 43:
-        return param0->unk_6C.shouldAdjustX;
+        return param0->shadow.shouldAdjustX;
     case 44:
-        return param0->unk_6C.shouldAdjustY;
+        return param0->shadow.shouldAdjustY;
     case 45:
-        return param0->unk_6C.isAffine;
+        return param0->shadow.isAffine;
         break;
     case 46:
-        return param0->unk_6C.size;
+        return param0->shadow.size;
         break;
     }
 
@@ -842,171 +842,171 @@ void sub_02008274(PokemonSprite *param0, int param1, int param2)
 {
     switch (param1) {
     case 0:
-        param0->unk_24.xCenter += param2;
+        param0->transforms.xCenter += param2;
         break;
     case 1:
-        param0->unk_24.yCenter += param2;
+        param0->transforms.yCenter += param2;
         break;
     case 2:
-        param0->unk_24.zCenter += param2;
+        param0->transforms.zCenter += param2;
         break;
     case 3:
-        param0->unk_24.xOffset += param2;
+        param0->transforms.xOffset += param2;
         break;
     case 4:
-        param0->unk_24.yOffset += param2;
+        param0->transforms.yOffset += param2;
         break;
     case 5:
-        param0->unk_24.zOffset += param2;
+        param0->transforms.zOffset += param2;
         break;
     case 6:
-        param0->unk_24.hasVanished += param2;
+        param0->transforms.hasVanished += param2;
         break;
     case 7:
-        param0->unk_24.rotationX += param2;
+        param0->transforms.rotationX += param2;
         break;
     case 8:
-        param0->unk_24.rotationY += param2;
+        param0->transforms.rotationY += param2;
         break;
     case 9:
-        param0->unk_24.rotationZ += param2;
+        param0->transforms.rotationZ += param2;
         break;
     case 10:
-        param0->unk_24.xPivot += param2;
+        param0->transforms.xPivot += param2;
         break;
     case 11:
-        param0->unk_24.yPivot += param2;
+        param0->transforms.yPivot += param2;
         break;
     case 12:
-        param0->unk_24.affineWidth += param2;
+        param0->transforms.affineWidth += param2;
         break;
     case 13:
-        param0->unk_24.affineHeight += param2;
+        param0->transforms.affineHeight += param2;
         break;
     case 14:
-        param0->unk_24.visible += param2;
+        param0->transforms.visible += param2;
         break;
     case 15:
-        param0->unk_24.xOffset2 += param2;
+        param0->transforms.xOffset2 += param2;
         break;
     case 16:
-        param0->unk_24.yOffset2 += param2;
+        param0->transforms.yOffset2 += param2;
         break;
     case 17:
-        param0->unk_24.width += param2;
+        param0->transforms.width += param2;
         break;
     case 18:
-        param0->unk_24.height += param2;
+        param0->transforms.height += param2;
         break;
     case 19:
-        param0->unk_6C.x += param2;
+        param0->shadow.x += param2;
         break;
     case 20:
-        param0->unk_6C.y += param2;
+        param0->shadow.y += param2;
         break;
     case 21:
-        param0->unk_6C.xOffset += param2;
+        param0->shadow.xOffset += param2;
         break;
     case 22:
-        param0->unk_6C.yOffset += param2;
+        param0->shadow.yOffset += param2;
         break;
     case 23:
-        param0->unk_24.alpha += param2;
+        param0->transforms.alpha += param2;
         break;
     case 24:
-        param0->unk_24.diffuseR += param2;
+        param0->transforms.diffuseR += param2;
         break;
     case 25:
-        param0->unk_24.diffuseG += param2;
+        param0->transforms.diffuseG += param2;
         break;
     case 26:
-        param0->unk_24.diffuseB += param2;
+        param0->transforms.diffuseB += param2;
         break;
     case 27:
-        param0->unk_24.ambientR += param2;
+        param0->transforms.ambientR += param2;
         break;
     case 28:
-        param0->unk_24.ambientG += param2;
+        param0->transforms.ambientG += param2;
         break;
     case 29:
-        param0->unk_24.ambientB += param2;
+        param0->transforms.ambientB += param2;
         break;
     case 30:
-        param0->unk_24.fadeActive += param2;
-        param0->unk_00_8 = 1;
+        param0->transforms.fadeActive += param2;
+        param0->needReloadPltt = TRUE;
         break;
     case 31:
-        param0->unk_24.fadeTargetColor += param2;
-        param0->unk_00_8 = 1;
+        param0->transforms.fadeTargetColor += param2;
+        param0->needReloadPltt = TRUE;
         break;
     case 32:
-        param0->unk_24.fadeCurrent += param2;
-        param0->unk_00_8 = 1;
+        param0->transforms.fadeCurrent += param2;
+        param0->needReloadPltt = TRUE;
         break;
     case 33:
-        param0->unk_24.fadeEnd += param2;
-        param0->unk_00_8 = 1;
+        param0->transforms.fadeEnd += param2;
+        param0->needReloadPltt = TRUE;
         break;
     case 34:
-        param0->unk_24.fadeDelayCounter += param2;
+        param0->transforms.fadeDelayCounter += param2;
         break;
     case 35:
-        param0->unk_24.flipH += param2;
-        param0->unk_00_7 = 1;
+        param0->transforms.flipH += param2;
+        param0->needReloadChar = TRUE;
         break;
     case 36:
-        param0->unk_24.flipV += param2;
-        param0->unk_00_7 = 1;
+        param0->transforms.flipV += param2;
+        param0->needReloadChar = TRUE;
         break;
     case 37:
-        param0->unk_24.dontDraw += param2;
+        param0->transforms.dontDraw += param2;
         break;
     case 38:
-        param0->unk_5B += param2;
+        param0->currSpriteFrame += param2;
         break;
     case 40:
-        param0->unk_24.mosaicIntensity += param2;
-        param0->unk_00_7 = 1;
+        param0->transforms.mosaicIntensity += param2;
+        param0->needReloadChar = TRUE;
         break;
     case 41:
-        param0->unk_6C.height += param2;
+        param0->shadow.height += param2;
         break;
     case 42:
-        param0->unk_6C.plttSlot += param2;
-        param0->unk_00_8 = 1;
+        param0->shadow.plttSlot += param2;
+        param0->needReloadPltt = TRUE;
         break;
     case 43:
-        param0->unk_6C.shouldAdjustX += param2;
+        param0->shadow.shouldAdjustX += param2;
         break;
     case 44:
-        param0->unk_6C.shouldAdjustY += param2;
+        param0->shadow.shouldAdjustY += param2;
         break;
     case 45:
-        param0->unk_6C.isAffine += param2;
+        param0->shadow.isAffine += param2;
         break;
     case 46:
-        param0->unk_6C.size += param2;
+        param0->shadow.size += param2;
         break;
     }
 }
 
 void sub_020086D4(PokemonSprite *param0, int param1, int param2, int param3, int param4)
 {
-    param0->unk_24.visible = TRUE;
-    param0->unk_24.xOffset2 = param1;
-    param0->unk_24.yOffset2 = param2;
-    param0->unk_24.width = param3;
-    param0->unk_24.height = param4;
+    param0->transforms.visible = TRUE;
+    param0->transforms.xOffset2 = param1;
+    param0->transforms.yOffset2 = param2;
+    param0->transforms.width = param3;
+    param0->transforms.height = param4;
 }
 
 void sub_020086FC(PokemonSprite *param0, int param1, int param2, int param3, int param4)
 {
-    param0->unk_24.fadeActive = TRUE;
-    param0->unk_24.fadeCurrent = param1;
-    param0->unk_24.fadeEnd = param2;
-    param0->unk_24.fadeDelayCounter = 0;
-    param0->unk_24.fadeDelayLength = param3;
-    param0->unk_24.fadeTargetColor = param4;
+    param0->transforms.fadeActive = TRUE;
+    param0->transforms.fadeCurrent = param1;
+    param0->transforms.fadeEnd = param2;
+    param0->transforms.fadeDelayCounter = 0;
+    param0->transforms.fadeDelayLength = param3;
+    param0->transforms.fadeTargetColor = param4;
 }
 
 void sub_0200872C(PokemonSpriteManager *param0, int param1, int param2, int param3, int param4)
@@ -1014,36 +1014,36 @@ void sub_0200872C(PokemonSpriteManager *param0, int param1, int param2, int para
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->sprites[v0].unk_00_0) {
-            param0->sprites[v0].unk_24.fadeActive = TRUE;
-            param0->sprites[v0].unk_24.fadeCurrent = param1;
-            param0->sprites[v0].unk_24.fadeEnd = param2;
-            param0->sprites[v0].unk_24.fadeDelayCounter = 0;
-            param0->sprites[v0].unk_24.fadeDelayLength = param3;
-            param0->sprites[v0].unk_24.fadeTargetColor = param4;
+        if (param0->sprites[v0].active) {
+            param0->sprites[v0].transforms.fadeActive = TRUE;
+            param0->sprites[v0].transforms.fadeCurrent = param1;
+            param0->sprites[v0].transforms.fadeEnd = param2;
+            param0->sprites[v0].transforms.fadeDelayCounter = 0;
+            param0->sprites[v0].transforms.fadeDelayLength = param3;
+            param0->sprites[v0].transforms.fadeTargetColor = param4;
         }
     }
 }
 
 void sub_02008780(PokemonSprite *param0)
 {
-    param0->unk_24.fadeActive = FALSE;
-    param0->unk_24.fadeCurrent = 0;
-    param0->unk_24.fadeEnd = 0;
-    param0->unk_24.fadeDelayCounter = 0;
-    param0->unk_24.fadeDelayLength = 0;
-    param0->unk_24.fadeTargetColor = 0;
-    param0->unk_00_8 = 1;
+    param0->transforms.fadeActive = FALSE;
+    param0->transforms.fadeCurrent = 0;
+    param0->transforms.fadeEnd = 0;
+    param0->transforms.fadeDelayCounter = 0;
+    param0->transforms.fadeDelayLength = 0;
+    param0->transforms.fadeTargetColor = 0;
+    param0->needReloadPltt = TRUE;
 }
 
 BOOL sub_020087B4(PokemonSprite *param0)
 {
-    return param0->unk_24.fadeActive == TRUE;
+    return param0->transforms.fadeActive == TRUE;
 }
 
 void sub_020087C8(PokemonSprite *param0, int param1)
 {
-    param0->unk_24.yOffset = ((80 / 2) - param1) - ((((80 / 2) - param1) * param0->unk_24.affineHeight) >> 8);
+    param0->transforms.yOffset = ((80 / 2) - param1) - ((((80 / 2) - param1) * param0->transforms.affineHeight) >> 8);
 }
 
 static inline void inline_02008900(u8 *param0, u8 *param1, u8 *param2, u8 *param3, u8 *param4, const SpriteAnimationFrame *param5)
@@ -1079,34 +1079,34 @@ static inline void inline_02008900(u8 *param0, u8 *param1, u8 *param2, u8 *param
 
 static void sub_020087DC(PokemonSprite *param0)
 {
-    if (param0->unk_58) {
-        if (param0->unk_5A == 0) {
-            param0->unk_59++;
+    if (param0->animActive) {
+        if (param0->animFrameDelay == 0) {
+            param0->currAnimFrame++;
 
-            while (param0->unk_84[param0->unk_59].spriteFrame < -1) {
-                param0->unk_5C[param0->unk_59]++;
+            while (param0->animFrames[param0->currAnimFrame].spriteFrame < -1) {
+                param0->animLoopTimers[param0->currAnimFrame]++;
 
-                if ((param0->unk_84[param0->unk_59].frameDelay == param0->unk_5C[param0->unk_59]) || (param0->unk_84[param0->unk_59].frameDelay == 0)) {
-                    param0->unk_5C[param0->unk_59] = 0;
-                    param0->unk_59++;
+                if ((param0->animFrames[param0->currAnimFrame].frameDelay == param0->animLoopTimers[param0->currAnimFrame]) || (param0->animFrames[param0->currAnimFrame].frameDelay == 0)) {
+                    param0->animLoopTimers[param0->currAnimFrame] = 0;
+                    param0->currAnimFrame++;
                 } else {
-                    param0->unk_59 = (param0->unk_84[param0->unk_59].spriteFrame * -1) - 2;
+                    param0->currAnimFrame = (param0->animFrames[param0->currAnimFrame].spriteFrame * -1) - 2;
                 }
             }
 
-            if (((param0->unk_59) >= 10) || (param0->unk_84[param0->unk_59].spriteFrame == -1)) {
-                param0->unk_5B = 0;
-                param0->unk_58 = 0;
-                param0->unk_24.xOffset = 0;
+            if (((param0->currAnimFrame) >= 10) || (param0->animFrames[param0->currAnimFrame].spriteFrame == -1)) {
+                param0->currSpriteFrame = 0;
+                param0->animActive = FALSE;
+                param0->transforms.xOffset = 0;
 
                 return;
             }
 
-            param0->unk_5B = param0->unk_84[param0->unk_59].spriteFrame;
-            param0->unk_5A = param0->unk_84[param0->unk_59].frameDelay;
-            param0->unk_24.xOffset = param0->unk_84[param0->unk_59].xOffset;
+            param0->currSpriteFrame = param0->animFrames[param0->currAnimFrame].spriteFrame;
+            param0->animFrameDelay = param0->animFrames[param0->currAnimFrame].frameDelay;
+            param0->transforms.xOffset = param0->animFrames[param0->currAnimFrame].xOffset;
         } else {
-            param0->unk_5A--;
+            param0->animFrameDelay--;
         }
     }
 }
@@ -1143,22 +1143,22 @@ int sub_02008900(UnkStruct_02008900 *param0)
 
 void sub_020089A0(PokemonSprite *param0)
 {
-    param0->unk_00_7 = 1;
-    param0->unk_00_8 = 1;
+    param0->needReloadChar = TRUE;
+    param0->needReloadPltt = TRUE;
 }
 
 void sub_020089B0(PokemonSprite *param0)
 {
-    param0->unk_14 = param0->unk_04;
-    param0->unk_78 = param0->unk_6C;
+    param0->templateBackup = param0->template;
+    param0->shadowBackup = param0->shadow;
 }
 
 void sub_02008A0C(PokemonSprite *param0)
 {
-    param0->unk_04 = param0->unk_14;
-    param0->unk_6C = param0->unk_78;
-    param0->unk_00_7 = 1;
-    param0->unk_00_8 = 1;
+    param0->template = param0->templateBackup;
+    param0->shadow = param0->shadowBackup;
+    param0->needReloadChar = TRUE;
+    param0->needReloadPltt = TRUE;
 }
 
 void sub_02008A78(PokemonSpriteManager *param0, u32 param1, u32 param2)
@@ -1175,7 +1175,7 @@ void sub_02008A84(PokemonSpriteManager *param0, u32 param1, u32 param2)
 
 PokemonSpriteTemplate *sub_02008A90(PokemonSprite *param0)
 {
-    return &param0->unk_04;
+    return &param0->template;
 }
 
 void sub_02008A94(PokemonSpriteManager *param0)
@@ -1213,7 +1213,7 @@ void sub_02008B2C(PokemonSpriteManager *param0, int param1)
 BOOL sub_02008B38(PokemonSprite *param0)
 {
     GF_ASSERT(param0 != NULL);
-    return param0->unk_00_0 != 0;
+    return param0->active != FALSE;
 }
 
 void sub_02008B54(PokemonSpriteManager *param0, u32 param1)
@@ -1235,11 +1235,11 @@ static void sub_02008B78(PokemonSpriteManager *param0)
     u8 v6 = 0;
 
     for (v1 = 0; v1 < 4; v1++) {
-        if ((param0->sprites[v1].unk_00_0) && (param0->sprites[v1].unk_00_7)) {
-            param0->sprites[v1].unk_00_7 = 0;
+        if (param0->sprites[v1].active && param0->sprites[v1].needReloadChar) {
+            param0->sprites[v1].needReloadChar = FALSE;
 
             v6 = 1;
-            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->sprites[v1].unk_04.archive, param0->sprites[v1].unk_04.character, param0->heapID);
+            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->sprites[v1].template.archive, param0->sprites[v1].template.character, param0->heapID);
 
             NNS_G2dGetUnpackedCharacterData(v5, &v0);
 
@@ -1249,24 +1249,24 @@ static void sub_02008B78(PokemonSpriteManager *param0)
 
             v4 = v0->pRawData;
 
-            sub_020093A0(v4, param0->sprites[v1].unk_04.archive);
+            sub_020093A0(v4, param0->sprites[v1].template.archive);
             sub_020091C0(&param0->sprites[v1], v4);
 
             if (v1 == 3) {
                 for (v3 = 0; v3 < 80; v3++) {
                     for (v2 = 0; v2 < 160 / 2; v2++) {
                         if (v2 < 160 / 4) {
-                            if ((param0->sprites[v1].unk_24.flipH) && (param0->sprites[v1].unk_24.flipV)) {
+                            if ((param0->sprites[v1].transforms.flipH) && (param0->sprites[v1].transforms.flipV)) {
                                 param0->charRawData[v3 * 0x80 + v2 + 0x50] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 4 - 1) - v2)]);
-                            } else if (param0->sprites[v1].unk_24.flipH) {
+                            } else if (param0->sprites[v1].transforms.flipH) {
                                 param0->charRawData[v3 * 0x80 + v2 + 0x50] = sub_020091AC(v4[v3 * 0x50 + ((160 / 4 - 1) - v2)]);
-                            } else if (param0->sprites[v1].unk_24.flipV) {
+                            } else if (param0->sprites[v1].transforms.flipV) {
                                 param0->charRawData[v3 * 0x80 + v2 + 0x50] = v4[((80 - 1) - v3) * 0x50 + v2];
-                            } else if (param0->sprites[v1].unk_24.mosaicIntensity) {
-                                if (v3 % (param0->sprites[v1].unk_24.mosaicIntensity * 2)) {
+                            } else if (param0->sprites[v1].transforms.mosaicIntensity) {
+                                if (v3 % (param0->sprites[v1].transforms.mosaicIntensity * 2)) {
                                     param0->charRawData[v3 * 0x80 + v2 + 0x50] = param0->charRawData[(v3 - 1) * 0x80 + v2 + 0x50];
                                 } else {
-                                    if (v2 % (param0->sprites[v1].unk_24.mosaicIntensity)) {
+                                    if (v2 % (param0->sprites[v1].transforms.mosaicIntensity)) {
                                         param0->charRawData[v3 * 0x80 + v2 + 0x50] = param0->charRawData[v3 * 0x80 + (v2 - 1) + 0x50];
                                     } else {
                                         param0->charRawData[v3 * 0x80 + v2 + 0x50] = ((v4[v3 * 0x50 + v2] & 0xf) | (v4[v3 * 0x50 + v2] & 0xf) << 4);
@@ -1276,17 +1276,17 @@ static void sub_02008B78(PokemonSpriteManager *param0)
                                 param0->charRawData[v3 * 0x80 + v2 + 0x50] = v4[v3 * 0x50 + v2];
                             }
                         } else {
-                            if ((param0->sprites[v1].unk_24.flipH) && (param0->sprites[v1].unk_24.flipV)) {
+                            if ((param0->sprites[v1].transforms.flipH) && (param0->sprites[v1].transforms.flipV)) {
                                 param0->charRawData[v3 * 0x80 + v2 + 0x2828] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
-                            } else if (param0->sprites[v1].unk_24.flipH) {
+                            } else if (param0->sprites[v1].transforms.flipH) {
                                 param0->charRawData[v3 * 0x80 + v2 + 0x2828] = sub_020091AC(v4[v3 * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
-                            } else if (param0->sprites[v1].unk_24.flipV) {
+                            } else if (param0->sprites[v1].transforms.flipV) {
                                 param0->charRawData[v3 * 0x80 + v2 + 0x2828] = v4[((80 - 1) - v3) * 0x50 + v2];
-                            } else if (param0->sprites[v1].unk_24.mosaicIntensity) {
-                                if (v3 % (param0->sprites[v1].unk_24.mosaicIntensity * 2)) {
+                            } else if (param0->sprites[v1].transforms.mosaicIntensity) {
+                                if (v3 % (param0->sprites[v1].transforms.mosaicIntensity * 2)) {
                                     param0->charRawData[v3 * 0x80 + v2 + 0x2828] = param0->charRawData[(v3 - 1) * 0x80 + v2 + 0x2828];
                                 } else {
-                                    if (v2 % (param0->sprites[v1].unk_24.mosaicIntensity)) {
+                                    if (v2 % (param0->sprites[v1].transforms.mosaicIntensity)) {
                                         param0->charRawData[v3 * 0x80 + v2 + 0x2828] = param0->charRawData[v3 * 0x80 + (v2 - 1) + 0x2828];
                                     } else {
                                         param0->charRawData[v3 * 0x80 + v2 + 0x2828] = ((v4[v3 * 0x50 + v2] & 0xf) | (v4[v3 * 0x50 + v2] & 0xf) << 4);
@@ -1301,25 +1301,25 @@ static void sub_02008B78(PokemonSpriteManager *param0)
             } else {
                 for (v3 = 0; v3 < 80; v3++) {
                     for (v2 = 0; v2 < 160 / 2; v2++) {
-                        if ((param0->sprites[v1].unk_24.flipH) && (param0->sprites[v1].unk_24.flipV)) {
+                        if ((param0->sprites[v1].transforms.flipH) && (param0->sprites[v1].transforms.flipV)) {
                             if (v2 < 160 / 4) {
                                 param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 4 - 1) - v2)]);
                             } else {
                                 param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[((80 - 1) - v3) * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
                             }
-                        } else if (param0->sprites[v1].unk_24.flipH) {
+                        } else if (param0->sprites[v1].transforms.flipH) {
                             if (v2 < 160 / 4) {
                                 param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[v3 * 0x50 + ((160 / 4 - 1) - v2)]);
                             } else {
                                 param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = sub_020091AC(v4[v3 * 0x50 + ((160 / 2 - 1) - (v2 - 160 / 4))]);
                             }
-                        } else if (param0->sprites[v1].unk_24.flipV) {
+                        } else if (param0->sprites[v1].transforms.flipV) {
                             param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = v4[((80 - 1) - v3) * 0x50 + v2];
-                        } else if (param0->sprites[v1].unk_24.mosaicIntensity) {
-                            if (v3 % (param0->sprites[v1].unk_24.mosaicIntensity * 2)) {
+                        } else if (param0->sprites[v1].transforms.mosaicIntensity) {
+                            if (v3 % (param0->sprites[v1].transforms.mosaicIntensity * 2)) {
                                 param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = param0->charRawData[(v3 - 1) * 0x80 + v2 + v1 * 0x2800];
                             } else {
-                                if (v2 % (param0->sprites[v1].unk_24.mosaicIntensity)) {
+                                if (v2 % (param0->sprites[v1].transforms.mosaicIntensity)) {
                                     param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = param0->charRawData[v3 * 0x80 + (v2 - 1) + v1 * 0x2800];
                                 } else {
                                     param0->charRawData[v3 * 0x80 + v2 + v1 * 0x2800] = ((v4[v3 * 0x50 + v2] & 0xf) | (v4[v3 * 0x50 + v2] & 0xf) << 4);
@@ -1348,11 +1348,11 @@ static void sub_02008FC8(PokemonSpriteManager *param0)
     u8 v6 = 0;
 
     for (v1 = 0; v1 < 4; v1++) {
-        if ((param0->sprites[v1].unk_00_0) && (param0->sprites[v1].unk_00_8)) {
-            param0->sprites[v1].unk_00_8 = 0;
+        if (param0->sprites[v1].active && param0->sprites[v1].needReloadPltt) {
+            param0->sprites[v1].needReloadPltt = FALSE;
 
             v6 = 1;
-            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->sprites[v1].unk_04.archive, param0->sprites[v1].unk_04.palette, param0->heapID);
+            v5 = NARC_AllocAndReadWholeMemberByIndexPair(param0->sprites[v1].template.archive, param0->sprites[v1].template.palette, param0->heapID);
 
             NNS_G2dGetUnpackedPaletteData(v5, &v0);
 
@@ -1366,40 +1366,40 @@ static void sub_02008FC8(PokemonSpriteManager *param0)
 
             Heap_FreeToHeap(v5);
 
-            if (param0->sprites[v1].unk_6C.plttSlot) {
+            if (param0->sprites[v1].shadow.plttSlot) {
                 v5 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, 252, param0->heapID);
                 NNS_G2dGetUnpackedPaletteData(v5, &v0);
                 v4 = v0->pRawData;
 
                 for (v2 = 0; v2 < 0x10; v2++) {
-                    param0->plttRawData[v2 + 0x10 * (3 + param0->sprites[v1].unk_6C.plttSlot)] = v4[v2];
-                    param0->plttRawDataUnfaded[v2 + 0x10 * (3 + param0->sprites[v1].unk_6C.plttSlot)] = v4[v2];
+                    param0->plttRawData[v2 + 0x10 * (3 + param0->sprites[v1].shadow.plttSlot)] = v4[v2];
+                    param0->plttRawDataUnfaded[v2 + 0x10 * (3 + param0->sprites[v1].shadow.plttSlot)] = v4[v2];
                 }
 
                 Heap_FreeToHeap(v5);
             }
         }
 
-        if ((param0->sprites[v1].unk_00_0) && (param0->sprites[v1].unk_24.fadeActive)) {
-            if (param0->sprites[v1].unk_24.fadeDelayCounter == 0) {
+        if ((param0->sprites[v1].active) && (param0->sprites[v1].transforms.fadeActive)) {
+            if (param0->sprites[v1].transforms.fadeDelayCounter == 0) {
                 v6 = 1;
-                param0->sprites[v1].unk_24.fadeDelayCounter = param0->sprites[v1].unk_24.fadeDelayLength;
+                param0->sprites[v1].transforms.fadeDelayCounter = param0->sprites[v1].transforms.fadeDelayLength;
 
-                BlendPalette((void *)&param0->plttRawDataUnfaded[0x10 * v1], (void *)&param0->plttRawData[0x10 * v1], 16, param0->sprites[v1].unk_24.fadeCurrent, param0->sprites[v1].unk_24.fadeTargetColor);
+                BlendPalette((void *)&param0->plttRawDataUnfaded[0x10 * v1], (void *)&param0->plttRawData[0x10 * v1], 16, param0->sprites[v1].transforms.fadeCurrent, param0->sprites[v1].transforms.fadeTargetColor);
 
-                if (param0->sprites[v1].unk_6C.plttSlot) {
-                    BlendPalette((void *)&param0->plttRawDataUnfaded[0x10 * (3 + param0->sprites[v1].unk_6C.plttSlot)], (void *)&param0->plttRawData[0x10 * (3 + param0->sprites[v1].unk_6C.plttSlot)], 16, param0->sprites[v1].unk_24.fadeCurrent, param0->sprites[v1].unk_24.fadeTargetColor);
+                if (param0->sprites[v1].shadow.plttSlot) {
+                    BlendPalette((void *)&param0->plttRawDataUnfaded[0x10 * (3 + param0->sprites[v1].shadow.plttSlot)], (void *)&param0->plttRawData[0x10 * (3 + param0->sprites[v1].shadow.plttSlot)], 16, param0->sprites[v1].transforms.fadeCurrent, param0->sprites[v1].transforms.fadeTargetColor);
                 }
 
-                if (param0->sprites[v1].unk_24.fadeCurrent == param0->sprites[v1].unk_24.fadeEnd) {
-                    param0->sprites[v1].unk_24.fadeActive = FALSE;
-                } else if (param0->sprites[v1].unk_24.fadeCurrent > param0->sprites[v1].unk_24.fadeEnd) {
-                    param0->sprites[v1].unk_24.fadeCurrent--;
+                if (param0->sprites[v1].transforms.fadeCurrent == param0->sprites[v1].transforms.fadeEnd) {
+                    param0->sprites[v1].transforms.fadeActive = FALSE;
+                } else if (param0->sprites[v1].transforms.fadeCurrent > param0->sprites[v1].transforms.fadeEnd) {
+                    param0->sprites[v1].transforms.fadeCurrent--;
                 } else {
-                    param0->sprites[v1].unk_24.fadeCurrent++;
+                    param0->sprites[v1].transforms.fadeCurrent++;
                 }
             } else {
-                param0->sprites[v1].unk_24.fadeDelayCounter--;
+                param0->sprites[v1].transforms.fadeDelayCounter--;
             }
         }
     }
@@ -1417,11 +1417,11 @@ static u8 sub_020091AC(u8 param0)
 
 static void sub_020091C0(PokemonSprite *param0, u8 *param1)
 {
-    if (param0->unk_04.spindaSpots == 0) {
+    if (param0->template.spindaSpots == 0) {
         return;
     }
 
-    sub_020091D8(param1, param0->unk_04.personality, 1);
+    sub_020091D8(param1, param0->template.personality, 1);
 }
 
 void sub_020091D8(u8 *param0, u32 param1, BOOL param2)

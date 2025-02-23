@@ -82,24 +82,24 @@ typedef struct PokemonSpriteShadow {
 } PokemonSpriteShadow;
 
 struct PokemonSprite {
-    u32 unk_00_0 : 1;
-    u32 unk_00_1 : 6;
-    u32 unk_00_7 : 1;
-    u32 unk_00_8 : 1;
-    u32 : 23;
-    PokemonSpriteTemplate unk_04;
-    PokemonSpriteTemplate unk_14;
-    PokemonSpriteTransforms unk_24;
-    u8 unk_58;
-    u8 unk_59;
-    u8 unk_5A;
-    u8 unk_5B;
-    u8 unk_5C[10];
-    u8 unk_66[2];
-    PokemonSpriteCallback *unk_68;
-    PokemonSpriteShadow unk_6C;
-    PokemonSpriteShadow unk_78;
-    SpriteAnimationFrame unk_84[10];
+    u32 active : 1;
+    u32 polygonID : 6;
+    u32 needReloadChar : 1;
+    u32 needReloadPltt : 1;
+    u32 padding_00_9 : 23;
+    PokemonSpriteTemplate template;
+    PokemonSpriteTemplate templateBackup;
+    PokemonSpriteTransforms transforms;
+    u8 animActive;
+    u8 currAnimFrame;
+    u8 animFrameDelay;
+    u8 currSpriteFrame;
+    u8 animLoopTimers[10];
+    u8 padding_66[2];
+    PokemonSpriteCallback *callback;
+    PokemonSpriteShadow shadow;
+    PokemonSpriteShadow shadowBackup;
+    SpriteAnimationFrame animFrames[10];
 };
 
 typedef struct PokemonSpriteManager {
