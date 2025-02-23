@@ -271,8 +271,8 @@ static const UnkStruct_020E4E62 *Unk_021007A4[] = {
 
 void sub_02007768(PokemonSpriteManager *param0);
 void sub_02007B6C(PokemonSpriteManager *param0);
-PokemonSprite *sub_02007C34(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7);
-PokemonSprite *sub_02007C7C(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8);
+PokemonSprite *sub_02007C34(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, PokemonSpriteCallback *param7);
+PokemonSprite *sub_02007C7C(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, PokemonSpriteCallback *param8);
 void sub_02007DC8(PokemonSprite *param0);
 void sub_02007DD4(PokemonSpriteManager *param0);
 void sub_02007B98(PokemonSprite *param0, int param1);
@@ -516,7 +516,7 @@ BOOL sub_02007C24(PokemonSprite *param0)
     return param0->unk_58 != 0;
 }
 
-PokemonSprite *sub_02007C34(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7)
+PokemonSprite *sub_02007C34(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, PokemonSpriteCallback *param7)
 {
     int v0;
 
@@ -531,7 +531,7 @@ PokemonSprite *sub_02007C34(PokemonSpriteManager *param0, PokemonSpriteTemplate 
     return sub_02007C7C(param0, param1, param2, param3, param4, param5, v0, param6, param7);
 }
 
-PokemonSprite *sub_02007C7C(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, UnkFuncPtr_02007C34 *param8)
+PokemonSprite *sub_02007C7C(PokemonSpriteManager *param0, PokemonSpriteTemplate *param1, int param2, int param3, int param4, int param5, int param6, SpriteAnimationFrame *param7, PokemonSpriteCallback *param8)
 {
     GF_ASSERT(param0->sprites[param6].unk_00_0 == 0);
 
