@@ -1,4 +1,4 @@
-#ifndef POKEPLATINUM_JubilifeLottery_H
+#ifndef POKEPLATINUM_SCRCMD_JUBILIFE_LOTTERY_H
 #define POKEPLATINUM_JubilifeLottery_H
 
 #include "field_script_context.h"

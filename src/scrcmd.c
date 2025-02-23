@@ -89,7 +89,7 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
 
-#include "JubilifeLottery.h"
+#include "scrcmd_jubilife_lottery.h"
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"

@@ -1,4 +1,4 @@
-#include "JubilifeLottery.h"
+#include "scrcmd_jubilife_lottery.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -18,7 +18,6 @@
 
 static u8 CheckTrainerIdForMatch(u16 winningLotteryId, u16 pokemonOtId);
 
-static const u16 BOX_WIDTH = 6, BOX_HEIGHT = 5, BOX_COUNT = 18;
 static const u16 TRAINER_ID_MAX_LENGTH = 5;
 
 BOOL ScrCmd_GetJubilifeLotteryTrainerID(ScriptContext *ctx)
@@ -61,11 +60,11 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
     }
 
     u16 highestBoxMatchedDigits = 0, winningBoxPokemonIndex = 0;
-    u32 pokemonBoxLocationIndex, boxIndex, boxPokemonSpeciesId;
+    u32 monPosInBox, boxIndex, boxPokemonSpeciesId;
     BoxPokemon *boxPokemon;
-    for (boxIndex = 0; boxIndex < BOX_COUNT; boxIndex++) {
-        for (pokemonBoxLocationIndex = 0; pokemonBoxLocationIndex < (BOX_HEIGHT * BOX_WIDTH); pokemonBoxLocationIndex++) {
-            boxPokemon = GetBoxedPokemonFrom(pcBoxes, boxIndex, pokemonBoxLocationIndex);
+    for (boxIndex = 0; boxIndex < MAX_PC_BOXES; boxIndex++) {
+        for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
+            boxPokemon = GetBoxedPokemonFrom(pcBoxes, boxIndex, monPosInBox);
             boxPokemonSpeciesId = BoxPokemon_GetValue(boxPokemon, MON_DATA_SPECIES, NULL);
 
             if (boxPokemonSpeciesId && BoxPokemon_GetValue(boxPokemon, MON_DATA_IS_EGG, NULL) == 0) {
@@ -74,7 +73,7 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
 
                 if (matchedTrainerIdDigits > 0 && highestBoxMatchedDigits < matchedTrainerIdDigits) {
                     highestBoxMatchedDigits = matchedTrainerIdDigits;
-                    winningBoxPokemonIndex = boxIndex * (BOX_HEIGHT * BOX_WIDTH) + pokemonBoxLocationIndex;
+                    winningBoxPokemonIndex = boxIndex * MAX_MONS_PER_BOX + monPosInBox;
                 }
             }
         }
