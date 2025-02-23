@@ -340,7 +340,7 @@ pokeplatinum_c = files(
     'unk_0209A2C4.c',
     'unk_0209A74C.c',
     'unk_0209AA74.c',
-    'unk_0209AC14.c',
+    'shop_misc.c',
     'pokedex_memory.c',
     'unk_0209ACF4.c',
     'unk_0209B344.c',

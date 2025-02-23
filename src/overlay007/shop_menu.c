@@ -37,6 +37,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "shop_misc.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_system.h"
@@ -60,7 +61,6 @@
 #include "unk_0207CB08.h"
 #include "unk_0208C098.h"
 #include "unk_02097B18.h"
-#include "unk_0209AC14.h"
 #include "vars_flags.h"
 
 #include "res/graphics/shop_menu/shop_gra.naix"
@@ -96,8 +96,8 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu);
 static u8 Shop_ReinitContextMenu(ShopMenu *shopMenu);
 static void Shop_PrintExit(FieldSystem *fieldSystem, ShopMenu *shopMenu);
 static void Shop_StartScreenTransition(FieldSystem *fieldSystem, ShopMenu *shopMenu);
-static void ov7_0224EC38(FieldTask *param0);
-static u8 Shop_ReshowMerchantMessage(FieldSystem *fieldSystem, ShopMenu *shopMenu);
+static void Shop_FinishScreenTransition(FieldTask *task);
+static u8 Shop_ReinitMerchantMessage(FieldSystem *fieldSystem, ShopMenu *shopMenu);
 static void Shop_DrawSprites(ShopMenu *shopMenu);
 static void Shop_DestroySprites(ShopMenu *shopMenu);
 static void Shop_SetScrollSpritesPositionXY(ShopMenu *shopMenu, u8 isBuyingItem);
@@ -334,14 +334,14 @@ BOOL FieldTask_InitShop(FieldTask *task)
     case SHOP_STATE_START_SCREEN_TRANSITION:
         Shop_StartScreenTransition(fieldSystem, shopMenu);
         break;
-    case SHOP_STATE_15:
-        ov7_0224EC38(task);
+    case SHOP_STATE_WAIT_SCREEN_TRANSITION:
+        Shop_FinishScreenTransition(task);
         break;
-    case SHOP_STATE_16:
-    case SHOP_STATE_17:
+    case SHOP_STATE_REINIT_FIELD_MAP:
+    case SHOP_STATE_REINIT_SHOP:
         break;
-    case SHOP_STATE_RESHOW_MERCHANT_MESSAGE:
-        shopMenu->state = Shop_ReshowMerchantMessage(fieldSystem, shopMenu);
+    case SHOP_STATE_REINIT_MERCHANT_MESSAGE:
+        shopMenu->state = Shop_ReinitMerchantMessage(fieldSystem, shopMenu);
         break;
     case SHOP_STATE_SHOW_EXIT_MESSAGE:
         Shop_PrintExit(fieldSystem, shopMenu);
@@ -1604,10 +1604,10 @@ static void Shop_SetCursorSpritePalette(ShopMenu *shopMenu, u8 selected)
 static void Shop_StartScreenTransition(FieldSystem *fieldSystem, ShopMenu *shopMenu)
 {
     ov5_021D1744(0);
-    shopMenu->state = SHOP_STATE_15;
+    shopMenu->state = SHOP_STATE_WAIT_SCREEN_TRANSITION;
 }
 
-static void ov7_0224EC38(FieldTask *task)
+static void Shop_FinishScreenTransition(FieldTask *task)
 {
     FieldSystem *fieldSystem;
     ShopMenu *shopMenu;
@@ -1626,15 +1626,15 @@ static void ov7_0224EC38(FieldTask *task)
 
     sub_0207CB2C(shopMenu->unk_04, fieldSystem->saveData, 2, fieldSystem->unk_98);
     sub_0203D1E4(fieldSystem, shopMenu->unk_04);
-    FieldTask_InitJump(task, sub_0209AC14, shopMenu);
+    FieldTask_InitJump(task, FieldTask_ShopMisc, shopMenu);
 
-    shopMenu->state = SHOP_STATE_16;
+    shopMenu->state = SHOP_STATE_REINIT_FIELD_MAP;
 }
 
-static u8 Shop_ReshowMerchantMessage(FieldSystem *fieldSystem, ShopMenu *shopMenu)
+static u8 Shop_ReinitMerchantMessage(FieldSystem *fieldSystem, ShopMenu *shopMenu)
 {
     if (IsScreenTransitionDone() == FALSE) {
-        return SHOP_STATE_RESHOW_MERCHANT_MESSAGE;
+        return SHOP_STATE_REINIT_MERCHANT_MESSAGE;
     }
 
     FieldMessage_AddWindow(fieldSystem->bgConfig, &shopMenu->windows[1], BG_LAYER_MAIN_3);
