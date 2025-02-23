@@ -50,10 +50,10 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
         partyPokemon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
 
         if (Pokemon_GetValue(partyPokemon, MON_DATA_IS_EGG, NULL) == 0) {
-            pokemonOtId = (Pokemon_GetValue(partyPokemon, MON_DATA_OT_ID, NULL) & 0xffff);
+            pokemonOtId = Pokemon_GetValue(partyPokemon, MON_DATA_OT_ID, NULL) & 0xffff;
             matchedTrainerIdDigits = CheckTrainerIdForMatch(winningLotteryId, pokemonOtId);
 
-            if ((matchedTrainerIdDigits > 0) && (highestPartyMatchedDigits < matchedTrainerIdDigits)) {
+            if (matchedTrainerIdDigits > 0 && highestPartyMatchedDigits < matchedTrainerIdDigits) {
                 highestPartyMatchedDigits = matchedTrainerIdDigits;
                 winningPartyIndex = i;
             }
@@ -69,10 +69,10 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
             boxPokemonSpeciesId = BoxPokemon_GetValue(boxPokemon, MON_DATA_SPECIES, NULL);
 
             if (boxPokemonSpeciesId && BoxPokemon_GetValue(boxPokemon, MON_DATA_IS_EGG, NULL) == 0) {
-                pokemonOtId = (BoxPokemon_GetValue(boxPokemon, MON_DATA_OT_ID, NULL) & 0xffff);
+                pokemonOtId = BoxPokemon_GetValue(boxPokemon, MON_DATA_OT_ID, NULL) & 0xffff;
                 matchedTrainerIdDigits = CheckTrainerIdForMatch(winningLotteryId, pokemonOtId);
 
-                if ((matchedTrainerIdDigits > 0) && (highestBoxMatchedDigits < matchedTrainerIdDigits)) {
+                if (matchedTrainerIdDigits > 0 && highestBoxMatchedDigits < matchedTrainerIdDigits) {
                     highestBoxMatchedDigits = matchedTrainerIdDigits;
                     winningBoxPokemonIndex = boxIndex * (BOX_HEIGHT * BOX_WIDTH) + pokemonBoxLocationIndex;
                 }
@@ -80,7 +80,7 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
         }
     }
 
-    if ((highestPartyMatchedDigits == 0) && (highestBoxMatchedDigits == 0)) {
+    if (highestPartyMatchedDigits == 0 && highestBoxMatchedDigits == 0) {
         *winningPokemonIndex = 0;
         *highestMatchedDigits = 0;
         *isResultInBox = 0;
@@ -96,7 +96,7 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
         }
     }
 
-    return 0;
+    return TRUE;
 }
 
 BOOL ScrCmd_RandomizeJubilifeLottery(ScriptContext *ctx)

@@ -89,6 +89,7 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
 
+#include "JubilifeLottery.h"
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
@@ -162,7 +163,6 @@
 #include "unk_02046AD4.h"
 #include "unk_02046C7C.h"
 #include "unk_020474B8.h"
-#include "JubilifeLottery.h"
 #include "unk_020482D4.h"
 #include "unk_02048614.h"
 #include "unk_02048BD0.h"

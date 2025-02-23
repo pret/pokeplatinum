@@ -72,7 +72,7 @@ _00B6:
     GetJubilifeLotteryTrainerID 0x8000
     ScrCmd_280 0, 0x8000, 2, 5
     Message 5
-    ScrCmd_CheckForJubilifeLotteryWinner 0x8001, 0x8002, 0x8003, 0x8000
+    CheckForJubilifeLotteryWinner 0x8001, 0x8002, 0x8003, 0x8000
     GoToIfEq 0x8002, 0, _00F5
     GoToIfEq 0x8003, 0, _0100
     GoTo _010E
