@@ -40,8 +40,8 @@ struct PokemonSprite {
     u8 unk_5C[10];
     u8 unk_66[2];
     UnkFuncPtr_02007C34 *unk_68;
-    UnkStruct_02007C7C_sub2 unk_6C;
-    UnkStruct_02007C7C_sub2 unk_78;
+    PokemonSpriteShadow unk_6C;
+    PokemonSpriteShadow unk_78;
     SpriteAnimationFrame unk_84[10];
 };
 

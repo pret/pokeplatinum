@@ -431,7 +431,7 @@ void sub_02007768(PokemonSpriteManager *param0)
                 v5 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][0] + param0->sprites[v0].unk_24.unk_20 + param0->sprites[v0].unk_24.unk_22;
                 v4 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][1] + param0->sprites[v0].unk_24.unk_21;
                 v6 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][1] + param0->sprites[v0].unk_24.unk_21 + param0->sprites[v0].unk_24.unk_23;
-                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_24.unk_00 - 80 / 2 + param0->sprites[v0].unk_24.unk_20 + param0->sprites[v0].unk_24.unk_08, param0->sprites[v0].unk_24.unk_02 - 80 / 2 + param0->sprites[v0].unk_24.unk_21 + param0->sprites[v0].unk_24.unk_0A - param0->sprites[v0].unk_6C.unk_02, param0->sprites[v0].unk_24.unk_04 + param0->sprites[v0].unk_24.unk_0C, param0->sprites[v0].unk_24.unk_22, param0->sprites[v0].unk_24.unk_23, v3, v4, v5, v6);
+                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_24.unk_00 - 80 / 2 + param0->sprites[v0].unk_24.unk_20 + param0->sprites[v0].unk_24.unk_08, param0->sprites[v0].unk_24.unk_02 - 80 / 2 + param0->sprites[v0].unk_24.unk_21 + param0->sprites[v0].unk_24.unk_0A - param0->sprites[v0].unk_6C.height, param0->sprites[v0].unk_24.unk_04 + param0->sprites[v0].unk_24.unk_0C, param0->sprites[v0].unk_24.unk_22, param0->sprites[v0].unk_24.unk_23, v3, v4, v5, v6);
             } else {
                 v1 = (80 * param0->sprites[v0].unk_24.unk_10) >> 8;
                 v2 = (80 * param0->sprites[v0].unk_24.unk_12) >> 8;
@@ -439,17 +439,17 @@ void sub_02007768(PokemonSpriteManager *param0)
                 v5 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][2];
                 v4 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][1];
                 v6 = Unk_020E4ECC[v0][param0->sprites[v0].unk_5B][3];
-                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_24.unk_00 - v1 / 2 + param0->sprites[v0].unk_24.unk_08, param0->sprites[v0].unk_24.unk_02 - v2 / 2 + param0->sprites[v0].unk_24.unk_0A - param0->sprites[v0].unk_6C.unk_02, param0->sprites[v0].unk_24.unk_04 + param0->sprites[v0].unk_24.unk_0C, v1, v2, v3, v4, v5, v6);
+                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_24.unk_00 - v1 / 2 + param0->sprites[v0].unk_24.unk_08, param0->sprites[v0].unk_24.unk_02 - v2 / 2 + param0->sprites[v0].unk_24.unk_0A - param0->sprites[v0].unk_6C.height, param0->sprites[v0].unk_24.unk_04 + param0->sprites[v0].unk_24.unk_0C, v1, v2, v3, v4, v5, v6);
             }
 
-            if ((param0->sprites[v0].unk_6C.unk_00_0) && (param0->sprites[v0].unk_6C.unk_00_5) && (param0->sprites[v0].unk_24.unk_30_1 == 0) && ((param0->flags & 0x1) == 0)) {
+            if ((param0->sprites[v0].unk_6C.plttSlot) && (param0->sprites[v0].unk_6C.size) && (param0->sprites[v0].unk_24.unk_30_1 == 0) && ((param0->flags & 0x1) == 0)) {
                 if (param0->needG3Identity != TRUE) {
                     G3_Identity();
                 }
 
-                G3_TexPlttBase((u32)(param0->plttBaseAddr + 32 * (3 + param0->sprites[v0].unk_6C.unk_00_0)), param0->imageProxy.attr.fmt);
+                G3_TexPlttBase((u32)(param0->plttBaseAddr + 32 * (3 + param0->sprites[v0].unk_6C.plttSlot)), param0->imageProxy.attr.fmt);
 
-                if (param0->sprites[v0].unk_6C.unk_00_4) {
+                if (param0->sprites[v0].unk_6C.isAffine) {
                     v1 = (64 * param0->sprites[v0].unk_24.unk_10) >> 8;
                     v2 = (16 * param0->sprites[v0].unk_24.unk_12) >> 8;
                 } else {
@@ -457,20 +457,20 @@ void sub_02007768(PokemonSpriteManager *param0)
                     v2 = 16;
                 }
 
-                if (param0->sprites[v0].unk_6C.unk_00_2) {
-                    param0->sprites[v0].unk_6C.unk_04 = param0->sprites[v0].unk_24.unk_00 + param0->sprites[v0].unk_24.unk_08 + param0->sprites[v0].unk_6C.unk_08;
+                if (param0->sprites[v0].unk_6C.shouldAdjustX) {
+                    param0->sprites[v0].unk_6C.x = param0->sprites[v0].unk_24.unk_00 + param0->sprites[v0].unk_24.unk_08 + param0->sprites[v0].unk_6C.xOffset;
                 }
 
-                if (param0->sprites[v0].unk_6C.unk_00_3) {
-                    param0->sprites[v0].unk_6C.unk_06 = param0->sprites[v0].unk_24.unk_02 + param0->sprites[v0].unk_24.unk_0A + param0->sprites[v0].unk_6C.unk_0A;
+                if (param0->sprites[v0].unk_6C.shouldAdjustY) {
+                    param0->sprites[v0].unk_6C.y = param0->sprites[v0].unk_24.unk_02 + param0->sprites[v0].unk_24.unk_0A + param0->sprites[v0].unk_6C.yOffset;
                 }
 
-                v3 = Unk_020E4D50[param0->sprites[v0].unk_6C.unk_00_5][0];
-                v4 = Unk_020E4D50[param0->sprites[v0].unk_6C.unk_00_5][1];
-                v5 = Unk_020E4D50[param0->sprites[v0].unk_6C.unk_00_5][2];
-                v6 = Unk_020E4D50[param0->sprites[v0].unk_6C.unk_00_5][3];
+                v3 = Unk_020E4D50[param0->sprites[v0].unk_6C.size][0];
+                v4 = Unk_020E4D50[param0->sprites[v0].unk_6C.size][1];
+                v5 = Unk_020E4D50[param0->sprites[v0].unk_6C.size][2];
+                v6 = Unk_020E4D50[param0->sprites[v0].unk_6C.size][3];
 
-                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_6C.unk_04 - v1 / 2, param0->sprites[v0].unk_6C.unk_06 - v2 / 2, -1000, v1, v2, v3, v4, v5, v6);
+                NNS_G2dDrawSpriteFast(param0->sprites[v0].unk_6C.x - v1 / 2, param0->sprites[v0].unk_6C.y - v2 / 2, -1000, v1, v2, v3, v4, v5, v6);
             }
         }
     }
@@ -556,11 +556,11 @@ PokemonSprite *sub_02007C7C(PokemonSpriteManager *param0, PokemonSpriteTemplate 
     param0->sprites[param6].unk_24.unk_2C_20 = 16;
     param0->sprites[param6].unk_24.unk_2C_25 = 16;
     param0->sprites[param6].unk_68 = param8;
-    param0->sprites[param6].unk_6C.unk_04 = param2;
-    param0->sprites[param6].unk_6C.unk_06 = param3;
-    param0->sprites[param6].unk_6C.unk_00_2 = 1;
-    param0->sprites[param6].unk_6C.unk_00_3 = 1;
-    param0->sprites[param6].unk_6C.unk_00_4 = 1;
+    param0->sprites[param6].unk_6C.x = param2;
+    param0->sprites[param6].unk_6C.y = param3;
+    param0->sprites[param6].unk_6C.shouldAdjustX = TRUE;
+    param0->sprites[param6].unk_6C.shouldAdjustY = TRUE;
+    param0->sprites[param6].unk_6C.isAffine = TRUE;
 
     if (param7 != NULL) {
         MI_CpuCopy8(param7, &param0->sprites[param6].unk_84, sizeof(SpriteAnimationFrame) * 10);
@@ -644,16 +644,16 @@ void sub_02007DEC(PokemonSprite *param0, int param1, int param2)
         param0->unk_24.unk_23 = param2;
         break;
     case 19:
-        param0->unk_6C.unk_04 = param2;
+        param0->unk_6C.x = param2;
         break;
     case 20:
-        param0->unk_6C.unk_06 = param2;
+        param0->unk_6C.y = param2;
         break;
     case 21:
-        param0->unk_6C.unk_08 = param2;
+        param0->unk_6C.xOffset = param2;
         break;
     case 22:
-        param0->unk_6C.unk_0A = param2;
+        param0->unk_6C.yOffset = param2;
         break;
     case 23:
         param0->unk_24.unk_30_2 = param2;
@@ -714,23 +714,23 @@ void sub_02007DEC(PokemonSprite *param0, int param1, int param2)
         param0->unk_00_7 = 1;
         break;
     case 41:
-        param0->unk_6C.unk_02 = param2;
+        param0->unk_6C.height = param2;
         break;
     case 42:
-        param0->unk_6C.unk_00_0 = param2;
+        param0->unk_6C.plttSlot = param2;
         param0->unk_00_8 = 1;
         break;
     case 43:
-        param0->unk_6C.unk_00_2 = param2;
+        param0->unk_6C.shouldAdjustX = param2;
         break;
     case 44:
-        param0->unk_6C.unk_00_3 = param2;
+        param0->unk_6C.shouldAdjustY = param2;
         break;
     case 45:
-        param0->unk_6C.unk_00_4 = param2;
+        param0->unk_6C.isAffine = param2;
         break;
     case 46:
-        param0->unk_6C.unk_00_5 = param2;
+        param0->unk_6C.size = param2;
         break;
     }
 }
@@ -777,13 +777,13 @@ int sub_020080C0(PokemonSprite *param0, int param1)
     case 18:
         return param0->unk_24.unk_23;
     case 19:
-        return param0->unk_6C.unk_04;
+        return param0->unk_6C.x;
     case 20:
-        return param0->unk_6C.unk_06;
+        return param0->unk_6C.y;
     case 21:
-        return param0->unk_6C.unk_08;
+        return param0->unk_6C.xOffset;
     case 22:
-        return param0->unk_6C.unk_0A;
+        return param0->unk_6C.yOffset;
     case 23:
         return param0->unk_24.unk_30_2;
     case 24:
@@ -819,18 +819,18 @@ int sub_020080C0(PokemonSprite *param0, int param1)
     case 40:
         return param0->unk_24.unk_30_13;
     case 41:
-        return param0->unk_6C.unk_02;
+        return param0->unk_6C.height;
     case 42:
-        return param0->unk_6C.unk_00_0;
+        return param0->unk_6C.plttSlot;
     case 43:
-        return param0->unk_6C.unk_00_2;
+        return param0->unk_6C.shouldAdjustX;
     case 44:
-        return param0->unk_6C.unk_00_3;
+        return param0->unk_6C.shouldAdjustY;
     case 45:
-        return param0->unk_6C.unk_00_4;
+        return param0->unk_6C.isAffine;
         break;
     case 46:
-        return param0->unk_6C.unk_00_5;
+        return param0->unk_6C.size;
         break;
     }
 
@@ -899,16 +899,16 @@ void sub_02008274(PokemonSprite *param0, int param1, int param2)
         param0->unk_24.unk_23 += param2;
         break;
     case 19:
-        param0->unk_6C.unk_04 += param2;
+        param0->unk_6C.x += param2;
         break;
     case 20:
-        param0->unk_6C.unk_06 += param2;
+        param0->unk_6C.y += param2;
         break;
     case 21:
-        param0->unk_6C.unk_08 += param2;
+        param0->unk_6C.xOffset += param2;
         break;
     case 22:
-        param0->unk_6C.unk_0A += param2;
+        param0->unk_6C.yOffset += param2;
         break;
     case 23:
         param0->unk_24.unk_30_2 += param2;
@@ -969,23 +969,23 @@ void sub_02008274(PokemonSprite *param0, int param1, int param2)
         param0->unk_00_7 = 1;
         break;
     case 41:
-        param0->unk_6C.unk_02 += param2;
+        param0->unk_6C.height += param2;
         break;
     case 42:
-        param0->unk_6C.unk_00_0 += param2;
+        param0->unk_6C.plttSlot += param2;
         param0->unk_00_8 = 1;
         break;
     case 43:
-        param0->unk_6C.unk_00_2 += param2;
+        param0->unk_6C.shouldAdjustX += param2;
         break;
     case 44:
-        param0->unk_6C.unk_00_3 += param2;
+        param0->unk_6C.shouldAdjustY += param2;
         break;
     case 45:
-        param0->unk_6C.unk_00_4 += param2;
+        param0->unk_6C.isAffine += param2;
         break;
     case 46:
-        param0->unk_6C.unk_00_5 += param2;
+        param0->unk_6C.size += param2;
         break;
     }
 }
@@ -1366,14 +1366,14 @@ static void sub_02008FC8(PokemonSpriteManager *param0)
 
             Heap_FreeToHeap(v5);
 
-            if (param0->sprites[v1].unk_6C.unk_00_0) {
+            if (param0->sprites[v1].unk_6C.plttSlot) {
                 v5 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, 252, param0->heapID);
                 NNS_G2dGetUnpackedPaletteData(v5, &v0);
                 v4 = v0->pRawData;
 
                 for (v2 = 0; v2 < 0x10; v2++) {
-                    param0->plttRawData[v2 + 0x10 * (3 + param0->sprites[v1].unk_6C.unk_00_0)] = v4[v2];
-                    param0->plttRawDataUnfaded[v2 + 0x10 * (3 + param0->sprites[v1].unk_6C.unk_00_0)] = v4[v2];
+                    param0->plttRawData[v2 + 0x10 * (3 + param0->sprites[v1].unk_6C.plttSlot)] = v4[v2];
+                    param0->plttRawDataUnfaded[v2 + 0x10 * (3 + param0->sprites[v1].unk_6C.plttSlot)] = v4[v2];
                 }
 
                 Heap_FreeToHeap(v5);
@@ -1387,8 +1387,8 @@ static void sub_02008FC8(PokemonSpriteManager *param0)
 
                 BlendPalette((void *)&param0->plttRawDataUnfaded[0x10 * v1], (void *)&param0->plttRawData[0x10 * v1], 16, param0->sprites[v1].unk_24.unk_24, param0->sprites[v1].unk_24.unk_28);
 
-                if (param0->sprites[v1].unk_6C.unk_00_0) {
-                    BlendPalette((void *)&param0->plttRawDataUnfaded[0x10 * (3 + param0->sprites[v1].unk_6C.unk_00_0)], (void *)&param0->plttRawData[0x10 * (3 + param0->sprites[v1].unk_6C.unk_00_0)], 16, param0->sprites[v1].unk_24.unk_24, param0->sprites[v1].unk_24.unk_28);
+                if (param0->sprites[v1].unk_6C.plttSlot) {
+                    BlendPalette((void *)&param0->plttRawDataUnfaded[0x10 * (3 + param0->sprites[v1].unk_6C.plttSlot)], (void *)&param0->plttRawData[0x10 * (3 + param0->sprites[v1].unk_6C.plttSlot)], 16, param0->sprites[v1].unk_24.unk_24, param0->sprites[v1].unk_24.unk_28);
                 }
 
                 if (param0->sprites[v1].unk_24.unk_24 == param0->sprites[v1].unk_24.unk_25) {
