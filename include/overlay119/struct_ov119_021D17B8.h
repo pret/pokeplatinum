@@ -10,9 +10,9 @@
 #include "menu.h"
 #include "narc.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "string_list.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     BgConfig *unk_00;

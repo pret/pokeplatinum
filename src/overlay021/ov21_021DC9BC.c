@@ -27,12 +27,12 @@
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "pokemon_sprite.h"
 #include "rtc.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
-#include "unk_0200762C.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"

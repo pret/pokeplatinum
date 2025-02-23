@@ -3,8 +3,8 @@
 
 #include "overlay017/struct_ov17_0224B09C.h"
 
+#include "pokemon_sprite.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 struct UnkStruct_ov17_0224DF54_t;
 

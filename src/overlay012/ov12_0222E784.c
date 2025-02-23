@@ -11,9 +11,9 @@
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
 
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     UnkStruct_ov12_0223595C unk_00;

@@ -10,9 +10,9 @@
 #include "battle/struct_ov16_0225BFFC_t.h"
 
 #include "math.h"
+#include "pokemon_sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 static void ov16_02264800(SysTask *param0, void *param1);
 

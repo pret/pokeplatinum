@@ -12,8 +12,8 @@
 #include "overlay012/struct_ov12_022267D4_decl.h"
 
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
-#include "unk_0200762C.h"
 
 void ov12_02225864(int param0, int param1, s16 *param2, s16 *param3);
 void ov12_02225898(UnkStruct_ov12_0221FCDC *param0, int param1, s16 *param2, s16 *param3);

@@ -36,6 +36,7 @@
 #include "palette.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -45,7 +46,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_02014000.h"
 #include "vram_transfer.h"
 

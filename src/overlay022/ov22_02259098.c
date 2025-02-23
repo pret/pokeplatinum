@@ -12,9 +12,9 @@
 #include "graphics.h"
 #include "heap.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_0200762C.h"
 
 static int ov22_0225936C(char *param0, int param1);
 static void ov22_02259448(TouchScreenRect *rect, int param1, int param2, int param3, int param4);

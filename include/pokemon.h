@@ -18,10 +18,10 @@
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "string.h"
 #include "trainer_info.h"
-#include "unk_0200762C.h"
 
 #define OTID_NOT_SET   0
 #define OTID_SET       1

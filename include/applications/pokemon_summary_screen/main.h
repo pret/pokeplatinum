@@ -17,6 +17,7 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "savedata.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -24,7 +25,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200762C.h"
 
 enum SummaryMode {
     SUMMARY_MODE_NORMAL = 0,

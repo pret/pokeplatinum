@@ -7,7 +7,7 @@
 #include "battle/struct_ov16_02265BBC.h"
 #include "overlay012/struct_ball_rotation_decl.h"
 
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 
 typedef struct {
     BattleSystem *unk_00;

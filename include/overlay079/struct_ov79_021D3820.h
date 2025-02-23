@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV79_021D3820_H
 
 #include "camera.h"
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 
 typedef struct {
     Camera *camera;

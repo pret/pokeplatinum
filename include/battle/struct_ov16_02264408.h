@@ -8,8 +8,8 @@
 
 #include "bg_window.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     SpriteSystem *unk_00;

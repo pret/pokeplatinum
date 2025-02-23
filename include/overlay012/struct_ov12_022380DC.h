@@ -3,7 +3,7 @@
 
 #include "battle/struct_ov16_0223E0C8.h"
 
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 
 typedef struct {
     int unk_00;

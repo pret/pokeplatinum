@@ -9,10 +9,10 @@
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "bg_window.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     BOOL unk_00;

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV105_02245CD0_H
 
 #include "pokemon.h"
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 
 void ov105_02245CD0(void);
 void ov105_02245D50(PokemonSpriteManager *param0);

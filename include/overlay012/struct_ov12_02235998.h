@@ -3,8 +3,8 @@
 
 #include "overlay012/struct_ov12_02235350.h"
 
+#include "pokemon_sprite.h"
 #include "sprite.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     UnkStruct_ov12_02235350 unk_00;

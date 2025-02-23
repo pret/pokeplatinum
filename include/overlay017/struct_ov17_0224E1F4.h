@@ -4,7 +4,7 @@
 #include "overlay017/struct_ov17_0224B09C.h"
 
 #include "pokemon.h"
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 
 typedef struct {
     Pokemon *unk_00;

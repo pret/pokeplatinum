@@ -14,10 +14,10 @@
 
 #include "bg_window.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "spl.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 UnkStruct_ov12_0221FCDC *ov12_0221FCDC(int heapID);
 void ov12_0221FDC0(UnkStruct_ov12_0221FCDC *param0, BOOL param1);

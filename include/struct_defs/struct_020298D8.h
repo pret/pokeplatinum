@@ -4,8 +4,8 @@
 #include "overlay022/struct_ov22_022596B0.h"
 
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "touch_screen.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     PokemonSprite *unk_00;

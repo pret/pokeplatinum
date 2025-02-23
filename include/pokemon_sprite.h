@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0200762C_H
-#define POKEPLATINUM_UNK_0200762C_H
+#ifndef POKEPLATINUM_POKEMON_SPRITE_H
+#define POKEPLATINUM_POKEMON_SPRITE_H
 
 #include <nnsys.h>
 
@@ -161,4 +161,4 @@ void sub_02009348(u8 *param0);
 void sub_02009370(u8 *param0);
 void sub_020093A0(u8 *param0, int param1);
 
-#endif // POKEPLATINUM_UNK_0200762C_H
+#endif // POKEPLATINUM_POKEMON_SPRITE_H

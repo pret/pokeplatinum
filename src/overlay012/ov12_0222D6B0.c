@@ -17,9 +17,9 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "math.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     u8 unk_00;

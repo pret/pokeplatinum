@@ -20,6 +20,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_text.h"
 #include "sprite.h"
 #include "sprite_resource.h"
@@ -28,7 +29,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_0200679C.h"
-#include "unk_0200762C.h"
 #include "unk_020131EC.h"
 
 #define SIGNPOST_CONTENT_WIDTH_TILES  6

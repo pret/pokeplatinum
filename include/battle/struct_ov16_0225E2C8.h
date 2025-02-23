@@ -5,7 +5,7 @@
 
 #include "battle/struct_ov16_0225BFFC_decl.h"
 
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 
 typedef struct {
     BattleSystem *unk_00;

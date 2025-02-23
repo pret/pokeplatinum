@@ -14,8 +14,8 @@
 #include "overlay017/struct_ov17_02253084.h"
 
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
-#include "unk_0200762C.h"
 
 s16 ov17_0224A0FC(int param0);
 s16 ov17_0224A10C(int param0);

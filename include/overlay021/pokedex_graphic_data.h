@@ -11,11 +11,11 @@
 
 #include "bg_window.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 typedef struct PokedexGraphicData {
     BgConfig *bgConfig;

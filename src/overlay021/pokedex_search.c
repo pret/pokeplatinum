@@ -23,6 +23,7 @@
 #include "font.h"
 #include "heap.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -30,7 +31,6 @@
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 
 #include "res/text/bank/pokedex.h"
 

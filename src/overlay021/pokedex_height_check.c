@@ -25,13 +25,13 @@
 #include "narc.h"
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_0200762C.h"
 
 #include "res/text/bank/pokedex.h"
 

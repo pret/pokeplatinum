@@ -6,8 +6,8 @@
 #include "overlay119/struct_ov119_021D16C0.h"
 #include "overlay119/struct_ov119_021D17B8.h"
 
+#include "pokemon_sprite.h"
 #include "sprite.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     UnkStruct_0209843C *unk_00;

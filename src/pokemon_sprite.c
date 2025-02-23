@@ -1,4 +1,4 @@
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -10,7 +10,7 @@
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 
 typedef struct {
     u8 unk_00;

@@ -10,7 +10,7 @@
 #include "camera.h"
 #include "gx_layers.h"
 #include "pokemon.h"
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 #include "unk_0202419C.h"
 
 static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1);

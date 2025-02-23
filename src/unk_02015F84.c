@@ -7,9 +7,9 @@
 
 #include "heap.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 typedef struct PokemonAnimationSys PokemonAnimationSys;
 typedef struct UnkStruct_02016DAC_t UnkStruct_02016DAC;

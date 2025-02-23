@@ -9,11 +9,11 @@
 
 #include "bg_window.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "resource_collection.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     UnkStruct_02015064 *unk_00;

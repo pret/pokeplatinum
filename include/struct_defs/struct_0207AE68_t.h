@@ -18,10 +18,10 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "poketch.h"
 #include "strbuf.h"
 #include "string_template.h"
-#include "unk_0200762C.h"
 
 struct UnkStruct_0207AE68_t {
     BgConfig *unk_00;

@@ -9,7 +9,7 @@
 
 #include "heap.h"
 #include "narc.h"
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 
 static void sub_020131EC(const u8 *param0, u8 *param1, int *param2, int *param3, int param4, int param5);
 

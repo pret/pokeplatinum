@@ -17,12 +17,12 @@
 #include "inlines.h"
 #include "palette.h"
 #include "pltt_transfer.h"
+#include "pokemon_sprite.h"
 #include "screen_scroll_manager.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     s16 unk_00;

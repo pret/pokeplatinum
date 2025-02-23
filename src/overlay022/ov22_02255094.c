@@ -22,6 +22,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "pokemon_sprite.h"
 #include "render_oam.h"
 #include "resource_collection.h"
 #include "sprite.h"
@@ -29,7 +30,6 @@
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "system.h"
-#include "unk_0200762C.h"
 #include "unk_02015064.h"
 #include "unk_0202419C.h"
 

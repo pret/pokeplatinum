@@ -10,7 +10,7 @@
 
 #include "narc.h"
 #include "pokemon.h"
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 #include "unk_020131EC.h"
 
 static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int heapID);

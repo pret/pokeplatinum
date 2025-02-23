@@ -26,11 +26,11 @@
 #include "math.h"
 #include "palette.h"
 #include "pltt_transfer.h"
+#include "pokemon_sprite.h"
 #include "spl.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 #include "unk_02014000.h"
 
 typedef struct {

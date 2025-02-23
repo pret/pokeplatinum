@@ -24,6 +24,7 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -33,7 +34,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 

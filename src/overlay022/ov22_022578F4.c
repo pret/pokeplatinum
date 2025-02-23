@@ -19,8 +19,8 @@
 #include "overlay022/struct_ov22_0225B388.h"
 
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "touch_screen.h"
-#include "unk_0200762C.h"
 #include "unk_02015064.h"
 
 static void ov22_02257DEC(UnkStruct_ov22_02257964 *param0, UnkStruct_ov22_02259560 *param1, BOOL param2, NNSG2dCharacterData **param3);

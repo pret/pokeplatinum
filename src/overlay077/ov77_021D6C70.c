@@ -8,9 +8,9 @@
 #include "camera.h"
 #include "heap.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "rtc.h"
 #include "spl.h"
-#include "unk_0200762C.h"
 #include "unk_02014000.h"
 #include "unk_0202419C.h"
 

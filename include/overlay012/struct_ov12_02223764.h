@@ -4,8 +4,8 @@
 #include "battle/struct_ov16_0223E0C8.h"
 #include "overlay012/struct_ov12_02223764_sub1.h"
 
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     int unk_00;

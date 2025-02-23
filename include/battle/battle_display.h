@@ -41,7 +41,7 @@
 #include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_0226C378.h"
 
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 
 void ov16_0225CBB8(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C168 *param2);

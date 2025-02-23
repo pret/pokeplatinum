@@ -14,9 +14,9 @@
 
 #include "bg_window.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
-#include "unk_0200762C.h"
 
 void ov21_021D1FA4(PokedexGraphicData *param0, int heapID);
 void ov21_021D2098(PokedexGraphicData *param0);

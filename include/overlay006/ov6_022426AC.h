@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_OV6_022426AC_H
 #define POKEPLATINUM_OV6_022426AC_H
 
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
-#include "unk_0200762C.h"
 
 typedef struct GreatMarshLookout_SpriteResources {
     SpriteResourceCollection *unk_00[4];

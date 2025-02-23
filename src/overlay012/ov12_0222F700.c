@@ -19,10 +19,10 @@
 #include "enums.h"
 #include "heap.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     UnkStruct_ov12_0221FCDC *unk_00;

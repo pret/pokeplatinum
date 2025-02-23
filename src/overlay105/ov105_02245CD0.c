@@ -3,7 +3,7 @@
 
 #include "gx_layers.h"
 #include "pokemon.h"
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 #include "unk_0202419C.h"
 
 void ov105_02245CD0(void);
