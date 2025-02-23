@@ -103,7 +103,7 @@ _0128:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_147 1
+    PokeMartCommon 1
     ReleaseAll
     End
 
@@ -113,7 +113,7 @@ _013E:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 18
+    PokeMartSpecialties 18
     ReleaseAll
     End
 

@@ -653,31 +653,31 @@ _0791:
     End
 
 _0806:
-    ScrCmd_14A 0
+    PokeMartSeal 0
     GoTo _084C
 
 _0810:
-    ScrCmd_14A 1
+    PokeMartSeal 1
     GoTo _084C
 
 _081A:
-    ScrCmd_14A 2
+    PokeMartSeal 2
     GoTo _084C
 
 _0824:
-    ScrCmd_14A 3
+    PokeMartSeal 3
     GoTo _084C
 
 _082E:
-    ScrCmd_14A 4
+    PokeMartSeal 4
     GoTo _084C
 
 _0838:
-    ScrCmd_14A 5
+    PokeMartSeal 5
     GoTo _084C
 
 _0842:
-    ScrCmd_14A 6
+    PokeMartSeal 6
     GoTo _084C
 
 _084C:

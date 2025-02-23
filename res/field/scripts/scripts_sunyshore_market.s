@@ -95,31 +95,31 @@ _00E4:
     End
 
 _014B:
-    ScrCmd_14A 0
+    PokeMartSeal 0
     Return
 
 _0151:
-    ScrCmd_14A 1
+    PokeMartSeal 1
     Return
 
 _0157:
-    ScrCmd_14A 2
+    PokeMartSeal 2
     Return
 
 _015D:
-    ScrCmd_14A 3
+    PokeMartSeal 3
     Return
 
 _0163:
-    ScrCmd_14A 4
+    PokeMartSeal 4
     Return
 
 _0169:
-    ScrCmd_14A 5
+    PokeMartSeal 5
     Return
 
 _016F:
-    ScrCmd_14A 6
+    PokeMartSeal 6
     Return
 
 _0175:

@@ -1785,24 +1785,24 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_147 arg0
+    .macro PokeMartCommon unused
     .short 327
-    .short \arg0
+    .short \unused
     .endm
 
-    .macro ScrCmd_148 arg0
+    .macro PokeMartSpecialties martID
     .short 328
-    .short \arg0
+    .short \martID
     .endm
 
-    .macro ScrCmd_149 arg0
+    .macro PokeMartDecor martID
     .short 329
-    .short \arg0
+    .short \martID
     .endm
 
-    .macro ScrCmd_14A arg0
+    .macro PokeMartSeal martID
     .short 330
-    .short \arg0
+    .short \martID
     .endm
 
     .macro ScrCmd_14B
@@ -3969,9 +3969,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2D8 arg0
+    .macro PokeMartFrontier martID
     .short 728
-    .byte \arg0
+    .byte \martID
     .endm
 
     .macro ScrCmd_2D9 arg0, arg1, arg2

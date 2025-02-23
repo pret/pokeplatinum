@@ -25,7 +25,7 @@ _0030:
     FacePlayer
     Message 15
     ScrCmd_035
-    ScrCmd_2D8 0
+    PokeMartFrontier 0
     ReleaseAll
     End
 
@@ -35,7 +35,7 @@ _0044:
     FacePlayer
     Message 15
     ScrCmd_035
-    ScrCmd_2D8 1
+    PokeMartFrontier 1
     ReleaseAll
     End
 

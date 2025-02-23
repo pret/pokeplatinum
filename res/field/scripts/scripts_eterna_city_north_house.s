@@ -14,7 +14,7 @@ _000E:
     FacePlayer
     Message 0
     ScrCmd_035
-    ScrCmd_148 4
+    PokeMartSpecialties 4
     ReleaseAll
     End
 

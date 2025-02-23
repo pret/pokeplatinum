@@ -109,7 +109,7 @@ _00E8:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 19
+    PokeMartSpecialties 19
     ReleaseAll
     End
 

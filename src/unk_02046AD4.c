@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/badges.h"
+
 #include "data/mart_items.h"
 #include "overlay007/shop_menu.h"
 
@@ -12,102 +14,108 @@
 #include "trainer_info.h"
 #include "unk_0203D1B8.h"
 
-BOOL ScrCmd_147(ScriptContext *param0)
+BOOL ScrCmd_PokeMartCommon(ScriptContext *ctx)
 {
-    u16 v0[64];
-    u8 v1, v2, v3, v4;
-    u16 v5 = ScriptContext_GetVar(param0);
+    u16 shopItems[64];
+    u8 requiredBadges, badgeNum, i, j;
+    u16 unused = ScriptContext_GetVar(ctx);
 
-    v3 = 0;
-    v2 = 0;
-    v1 = 0;
+    i = 0;
+    badgeNum = 0;
+    requiredBadges = 0;
 
-    for (v4 = 0; v4 < 8; v4++) {
-        if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), v4) == 1) {
-            v2++;
+    for (j = 0; j < MAX_BADGES; j++) {
+        if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData), j) == TRUE) {
+            badgeNum++;
         }
     }
 
-    switch (v2) {
+    switch (badgeNum) {
     case 0:
-        v1 = 1;
+        requiredBadges = 1;
         break;
     case 1:
     case 2:
-        v1 = 2;
+        requiredBadges = 2;
         break;
     case 3:
     case 4:
-        v1 = 3;
+        requiredBadges = 3;
         break;
     case 5:
     case 6:
-        v1 = 4;
+        requiredBadges = 4;
         break;
     case 7:
-        v1 = 5;
+        requiredBadges = 5;
         break;
     case 8:
-        v1 = 6;
+        requiredBadges = 6;
         break;
     default:
-        v1 = 1;
+        requiredBadges = 1;
         break;
     }
 
-    for (v4 = 0; v4 < (NELEMS(PokeMartCommonItems)); v4++) {
-        if (v1 >= PokeMartCommonItems[v4].requiredBadges) {
-            v0[v3] = PokeMartCommonItems[v4].itemID;
-            v3++;
+    for (j = 0; j < (NELEMS(PokeMartCommonItems)); j++) {
+        if (requiredBadges >= PokeMartCommonItems[j].requiredBadges) {
+            shopItems[i] = PokeMartCommonItems[j].itemID;
+            i++;
         }
     }
 
-    v0[v3] = 0xffff;
+    shopItems[i] = ITEM_RETURN_ID;
 
-    Shop_Start(param0->task, param0->fieldSystem, v0, MART_TYPE_NORMAL, 0);
-    return 1;
+    Shop_Start(ctx->task, ctx->fieldSystem, shopItems, MART_TYPE_NORMAL, FALSE);
+    return TRUE;
 }
 
-BOOL ScrCmd_148(ScriptContext *param0)
+BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
-    BOOL v1;
+    u16 martID = ScriptContext_GetVar(ctx);
+    BOOL incDeptStoreBuyCount;
 
-    if ((v0 == 8) || (v0 == 9) || (v0 == 10) || (v0 == 11) || (v0 == 12) || (v0 == 13) || (v0 == 19)) {
-        v1 = 1;
+    if ((martID == 8) || (martID == 9) || (martID == 10) || (martID == 11) || (martID == 12) || (martID == 13) || (martID == 19)) {
+        incDeptStoreBuyCount = TRUE;
     } else {
-        v1 = 0;
+        incDeptStoreBuyCount = FALSE;
     }
 
-    Shop_Start(param0->task, param0->fieldSystem, (u16 *)PokeMartSpecialties[v0], MART_TYPE_NORMAL, v1);
-    return 1;
+    Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)PokeMartSpecialties[martID], MART_TYPE_NORMAL, incDeptStoreBuyCount);
+    return TRUE;
 }
 
-BOOL ScrCmd_149(ScriptContext *param0)
+// Veilstone
+BOOL ScrCmd_PokeMartDecor(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
-    BOOL v1;
+    u16 martID = ScriptContext_GetVar(ctx);
+    BOOL incDeptStoreBuyCount;
 
-    if ((v0 == 0) || (v0 == 1)) {
-        v1 = 1;
+    if ((martID == 0) || (martID == 1)) {
+        incDeptStoreBuyCount = TRUE;
     } else {
-        v1 = 0;
+        // never reached as the only two instances of
+        // this command only sets martID to 0 and 1
+        // respectively.
+        incDeptStoreBuyCount = FALSE;
     }
 
-    Shop_Start(param0->task, param0->fieldSystem, (u16 *)VeilstoneDeptStoreDecorationStocks[v0], MART_TYPE_DECOR, v1);
-    return 1;
+    Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)VeilstoneDeptStoreDecorationStocks[martID], MART_TYPE_DECOR, incDeptStoreBuyCount);
+    return TRUE;
 }
 
-BOOL ScrCmd_14A(ScriptContext *param0)
+// Sunyshore
+BOOL ScrCmd_PokeMartSeal(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(param0);
+    u16 martID = ScriptContext_GetVar(ctx);
 
-    Shop_Start(param0->task, param0->fieldSystem, (u16 *)SunyshoreMarketDailyStocks[v0], MART_TYPE_SEAL, 0);
-    return 1;
+    Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)SunyshoreMarketDailyStocks[martID], MART_TYPE_SEAL, FALSE);
+    return TRUE;
 }
 
+// does NOT use shop_menu
 BOOL ScrCmd_257(ScriptContext *param0)
 {
     sub_0203E518(param0->fieldSystem->task);
-    return 1;
+    return TRUE;
 }

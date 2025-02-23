@@ -16,7 +16,7 @@ _0016:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_147 1
+    PokeMartCommon 1
     ReleaseAll
     End
 
@@ -26,7 +26,7 @@ _002C:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 7
+    PokeMartSpecialties 7
     ReleaseAll
     End
 

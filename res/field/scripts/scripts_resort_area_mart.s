@@ -12,7 +12,7 @@ _000A:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_147 1
+    PokeMartCommon 1
     ReleaseAll
     End
 
