@@ -41,7 +41,7 @@ _003D:
     End
 
 _00AE:
-    PlayCry 0x17B
+    PlayCry SPECIES_REGISTEEL
     Message 2
     ScrCmd_04D
     CloseMessage
