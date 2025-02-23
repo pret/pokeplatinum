@@ -89,7 +89,6 @@
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "savedata/save_table.h"
 
-#include "scrcmd_jubilife_lottery.h"
 #include "bag.h"
 #include "bg_window.h"
 #include "camera.h"
@@ -130,6 +129,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "scrcmd_dummy_23F_242.h"
+#include "scrcmd_jubilife_lottery.h"
 #include "scrcmd_system_flags.h"
 #include "script_manager.h"
 #include "special_encounter.h"
