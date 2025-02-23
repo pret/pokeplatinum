@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "data/mart_items.h"
-#include "overlay007/ov7_0224CD28.h"
+#include "overlay007/shop_menu.h"
 
 #include "field_script_context.h"
 #include "inlines.h"

@@ -80,7 +80,7 @@
 #include "overlay006/trophy_garden_daily_encounters.h"
 #include "overlay007/communication_club.h"
 #include "overlay007/ov7_0224B4E8.h"
-#include "overlay007/ov7_0224CD28.h"
+#include "overlay007/shop_menu.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
 #include "overlay023/ov23_022521F0.h"

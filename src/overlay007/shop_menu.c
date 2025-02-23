@@ -1,4 +1,4 @@
-#include "overlay007/ov7_0224CD28.h"
+#include "overlay007/shop_menu.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -14,7 +14,6 @@
 #include "field/field_system.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
-#include "overlay007/struct_ov7_0224D008.h"
 
 #include "bag.h"
 #include "bg_window.h"
