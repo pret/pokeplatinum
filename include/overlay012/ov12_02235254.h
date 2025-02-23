@@ -3,14 +3,13 @@
 
 #include <nitro/fx/fx.h>
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02235350.h"
 #include "overlay012/struct_ov12_0223595C.h"
 #include "overlay012/struct_ov12_02235998.h"
 
 #include "sprite.h"
+#include "unk_0200762C.h"
 
 int ov12_02235254(UnkStruct_ov12_0221FCDC *param0, int param1);
 int ov12_0223525C(UnkStruct_ov12_0221FCDC *param0, int param1);

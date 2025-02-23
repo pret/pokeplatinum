@@ -5,8 +5,6 @@
 
 #include "generated/text_banks.h"
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021E29DC.h"

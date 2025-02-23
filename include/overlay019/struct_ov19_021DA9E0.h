@@ -4,7 +4,6 @@
 #include <nnsys.h>
 
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
@@ -13,6 +12,7 @@
 #include "sprite.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
+#include "unk_0200762C.h"
 
 typedef struct {
     BOOL unk_00;

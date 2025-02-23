@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "gx_layers.h"
 #include "pokemon.h"
 #include "unk_0200762C.h"

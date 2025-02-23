@@ -3,7 +3,6 @@
 
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay062/struct_ov62_0223118C_sub1.h"
@@ -17,6 +16,7 @@
 #include "palette.h"
 #include "sprite_system.h"
 #include "touch_screen.h"
+#include "unk_0200762C.h"
 
 typedef struct {
     NARC *unk_00;

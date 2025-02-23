@@ -5,7 +5,6 @@
 
 #include "constants/narc.h"
 
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02095C48.h"
 
 #include "overlay017/ov17_0223F118.h"

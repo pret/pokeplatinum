@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay017/ov17_0223DAD0.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/struct_ov17_0224A1EC.h"
@@ -50,6 +48,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
+#include "unk_0200762C.h"
 #include "unk_02012744.h"
 #include "unk_02014000.h"
 #include "unk_020933F8.h"

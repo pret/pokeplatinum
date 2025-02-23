@@ -5,8 +5,6 @@
 
 #include "generated/sdat.h"
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/pokedex_app.h"

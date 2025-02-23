@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 
 #include "bg_window.h"
 #include "narc.h"
@@ -14,6 +13,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
+#include "unk_0200762C.h"
 
 typedef struct {
     UnkStruct_02015064 *unk_00;

@@ -1,9 +1,8 @@
 #ifndef POKEPLATINUM_OV105_02245CD0_H
 #define POKEPLATINUM_OV105_02245CD0_H
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "pokemon.h"
+#include "unk_0200762C.h"
 
 void ov105_02245CD0(void);
 void ov105_02245D50(PokemonSpriteManager *param0);

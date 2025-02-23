@@ -6,7 +6,6 @@
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/ov16_0223DF00.h"
 #include "battle/struct_ov16_0223E0C8.h"

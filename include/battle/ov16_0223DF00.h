@@ -9,7 +9,6 @@
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -34,6 +33,7 @@
 #include "strbuf.h"
 #include "string_template.h"
 #include "trainer_info.h"
+#include "unk_0200762C.h"
 
 #define ENEMY_IN_SLOT_RIGHT 0
 #define ENEMY_IN_SLOT_LEFT  2

@@ -1,12 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_020298D8_H
 #define POKEPLATINUM_STRUCT_020298D8_H
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay022/struct_ov22_022596B0.h"
 
 #include "pokemon.h"
 #include "touch_screen.h"
+#include "unk_0200762C.h"
 
 typedef struct {
     PokemonSprite *unk_00;

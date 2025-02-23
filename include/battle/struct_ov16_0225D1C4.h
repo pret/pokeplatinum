@@ -2,7 +2,8 @@
 #define POKEPLATINUM_STRUCT_OV16_0225D1C4_H
 
 #include "struct_decls/battle_system.h"
-#include "struct_defs/pokemon_sprite.h"
+
+#include "unk_0200762C.h"
 
 typedef struct {
     BattleSystem *unk_00;

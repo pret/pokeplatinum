@@ -3,7 +3,6 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/struct_ov16_02264408.h"
 #include "battle/struct_ov16_02265BBC.h"
@@ -18,6 +17,7 @@
 #include "spl.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
+#include "unk_0200762C.h"
 
 UnkStruct_ov12_0221FCDC *ov12_0221FCDC(int heapID);
 void ov12_0221FDC0(UnkStruct_ov12_0221FCDC *param0, BOOL param1);

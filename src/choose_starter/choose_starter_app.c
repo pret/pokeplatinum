@@ -14,7 +14,6 @@
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"
 #include "struct_defs/choose_starter_data.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay021/struct_ov21_021E7F40.h"

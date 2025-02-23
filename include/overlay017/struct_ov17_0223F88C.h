@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV17_0223F88C_H
 
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 
 #include "battle/struct_ov16_0223E0C8.h"
@@ -15,6 +14,7 @@
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "unk_0200762C.h"
 
 typedef struct {
     UnkStruct_02095C48_sub1 *unk_00;

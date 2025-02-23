@@ -10,7 +10,6 @@
 #include "struct_decls/struct_02078B40_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/pokemon.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/species.h"
 #include "struct_defs/sprite_animation_frame.h"
 
@@ -22,6 +21,7 @@
 #include "sprite_system.h"
 #include "string.h"
 #include "trainer_info.h"
+#include "unk_0200762C.h"
 
 #define OTID_NOT_SET   0
 #define OTID_SET       1

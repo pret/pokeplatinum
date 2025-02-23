@@ -2,7 +2,6 @@
 #define POKEPLATINUM_POKEDEX_GRAPHIC_DATA_H
 
 #include "struct_decls/struct_02015064_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D23F8.h"
@@ -16,6 +15,7 @@
 #include "sprite_resource.h"
 #include "sprite_util.h"
 #include "sys_task_manager.h"
+#include "unk_0200762C.h"
 
 typedef struct PokedexGraphicData {
     BgConfig *bgConfig;

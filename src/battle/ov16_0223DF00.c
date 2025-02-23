@@ -17,7 +17,6 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -63,6 +62,7 @@
 #include "trainer_info.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
+#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02014A84.h"
 #include "unk_0202F1D4.h"

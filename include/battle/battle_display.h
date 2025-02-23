@@ -3,7 +3,6 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_io.h"
-#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/battle_message.h"
 #include "battle/struct_ov16_0225BFFC_decl.h"
@@ -41,6 +40,8 @@
 #include "battle/struct_ov16_022664F8.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_0226C378.h"
+
+#include "unk_0200762C.h"
 
 void ov16_0225CBB8(BattleSystem *battleSys, BattlerData *param1);
 void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C168 *param2);

@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay012/struct_ball_rotation_decl.h"
@@ -20,6 +19,7 @@
 #include "sprite_system.h"
 #include "string_list.h"
 #include "touch_screen.h"
+#include "unk_0200762C.h"
 
 typedef struct {
     int unk_00;
