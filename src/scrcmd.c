@@ -162,7 +162,7 @@
 #include "unk_02046AD4.h"
 #include "unk_02046C7C.h"
 #include "unk_020474B8.h"
-#include "unk_020480A8.h"
+#include "JubilifeLottery.h"
 #include "unk_020482D4.h"
 #include "unk_02048614.h"
 #include "unk_02048BD0.h"
@@ -1354,7 +1354,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_24C,
     ScrCmd_24D,
     ScrCmd_GetJubilifeLotteryTrainerID,
-    ScrCmd_24F,
+    ScrCmd_CheckForJubilifeLotteryWinner,
     ScrCmd_RandomizeJubilifeLottery,
     ScrCmd_251,
     ScrCmd_252,
@@ -8152,7 +8152,7 @@ static u32 sub_0204676C(SaveData *saveData)
 
         for (v9 = 0; v9 < 18; v9++) {
             for (v0 = 0; v0 < (5 * 6); v0++) {
-                v2 = sub_02079C9C(v8, v9, v0);
+                v2 = GetBoxedPokemonFrom(v8, v9, v0);
 
                 if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
                     v3 |= 1 << BoxPokemon_GetValue(v2, MON_DATA_FORM, NULL);

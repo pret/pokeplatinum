@@ -175,7 +175,7 @@ pokeplatinum_c = files(
     'unk_02046AD4.c',
     'unk_02046C7C.c',
     'unk_020474B8.c',
-    'unk_020480A8.c',
+    'JubilifeLottery.c',
     'unk_020482D4.c',
     'unk_02048614.c',
     'unk_02048BD0.c',

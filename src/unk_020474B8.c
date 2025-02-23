@@ -215,7 +215,7 @@ BOOL ScrCmd_251(ScriptContext *param0)
 
     v6 = v5 % (5 * 6);
     v7 = v5 / (5 * 6);
-    v0 = sub_02079C9C(v2, v7, v6);
+    v0 = GetBoxedPokemonFrom(v2, v7, v6);
 
     StringTemplate_SetNickname(*v3, v4, v0);
     return 0;

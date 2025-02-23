@@ -3228,7 +3228,7 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_24F arg0, arg1, arg2, arg3
+    .macro ScrCmd_CheckForJubilifeLotteryWinner arg0, arg1, arg2, arg3
     .short 591
     .short \arg0
     .short \arg1
