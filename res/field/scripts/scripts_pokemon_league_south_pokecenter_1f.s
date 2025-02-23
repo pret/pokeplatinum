@@ -36,7 +36,7 @@ _0042:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    PokeMartSpecialties 18
+    PokeMartSpecialties MART_SPECIALTIES_ID_POKEMON_LEAGUE
     ReleaseAll
     End
 

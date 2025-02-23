@@ -109,7 +109,7 @@ _00E8:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    PokeMartSpecialties 19
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_B1F
     ReleaseAll
     End
 

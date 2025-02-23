@@ -4,6 +4,10 @@
 #include <string.h>
 
 #include "generated/badges.h"
+#include "generated/mart_decor_id.h"
+#include "generated/mart_frontier_id.h"
+#include "generated/mart_seal_id.h"
+#include "generated/mart_specialties_id.h"
 
 #include "data/mart_items.h"
 #include "overlay007/shop_menu.h"
@@ -64,7 +68,7 @@ BOOL ScrCmd_PokeMartCommon(ScriptContext *ctx)
         }
     }
 
-    shopItems[i] = ITEM_RETURN_ID;
+    shopItems[i] = SHOP_ITEM_END;
 
     Shop_Start(ctx->task, ctx->fieldSystem, shopItems, MART_TYPE_NORMAL, FALSE);
     return TRUE;
@@ -75,7 +79,10 @@ BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx)
     u16 martID = ScriptContext_GetVar(ctx);
     BOOL incBuyCount;
 
-    if ((martID == 8) || (martID == 9) || (martID == 10) || (martID == 11) || (martID == 12) || (martID == 13) || (martID == 19)) {
+    if ((martID == MART_SPECIALTIES_ID_VEILSTONE_1F_RIGHT) || (martID == MART_SPECIALTIES_ID_VEILSTONE_1F_LEFT)
+        || (martID == MART_SPECIALTIES_ID_VEILSTONE_2F_UP) || (martID == MART_SPECIALTIES_ID_VEILSTONE_2F_MID)
+        || (martID == MART_SPECIALTIES_ID_VEILSTONE_3F_UP) || (martID == MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN)
+        || (martID == MART_SPECIALTIES_ID_VEILSTONE_B1F)) {
         incBuyCount = TRUE;
     } else {
         incBuyCount = FALSE;
@@ -91,11 +98,11 @@ BOOL ScrCmd_PokeMartDecor(ScriptContext *ctx)
     u16 martID = ScriptContext_GetVar(ctx);
     BOOL incBuyCount;
 
-    if ((martID == 0) || (martID == 1)) {
+    if ((martID == MART_DECOR_ID_VEILSTONE_4F_UP) || (martID == MART_DECOR_ID_VEILSTONE_4F_DOWN)) {
         incBuyCount = TRUE;
     } else {
-        // never reached as the only two instances of
-        // this command only sets martID to 0 and 1
+        // never reached as the only two instances of this command only ever sets the
+        // martID to either MART_DECOR_ID_VEILSTONE_4F_UP or MART_DECOR_ID_VEILSTONE_4F_DOWN
         // respectively.
         incBuyCount = FALSE;
     }

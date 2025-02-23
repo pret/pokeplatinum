@@ -25,7 +25,7 @@ _0028:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    PokeMartSpecialties 3
+    PokeMartSpecialties MART_SPECIALTIES_ID_ETERNA_MART
     ReleaseAll
     End
 

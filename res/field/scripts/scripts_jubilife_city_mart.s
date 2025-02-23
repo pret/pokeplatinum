@@ -26,7 +26,7 @@ _002C:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    PokeMartSpecialties 0
+    PokeMartSpecialties MART_SPECIALTIES_ID_JUBILIFE
     ReleaseAll
     End
 

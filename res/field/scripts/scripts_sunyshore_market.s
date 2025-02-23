@@ -95,31 +95,31 @@ _00E4:
     End
 
 _014B:
-    PokeMartSeal 0
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_MONDAY
     Return
 
 _0151:
-    PokeMartSeal 1
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_TUESDAY
     Return
 
 _0157:
-    PokeMartSeal 2
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_WEDNESDAY
     Return
 
 _015D:
-    PokeMartSeal 3
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_THURSDAY
     Return
 
 _0163:
-    PokeMartSeal 4
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_FRIDAY
     Return
 
 _0169:
-    PokeMartSeal 5
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_SATURDAY
     Return
 
 _016F:
-    PokeMartSeal 6
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_SUNDAY
     Return
 
 _0175:

@@ -14,7 +14,7 @@ _000E:
     FacePlayer
     Message 0
     ScrCmd_035
-    PokeMartSpecialties 4
+    PokeMartSpecialties MART_SPECIALTIES_ID_ETERNA_HOUSE
     ReleaseAll
     End
 

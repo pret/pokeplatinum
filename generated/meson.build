@@ -85,7 +85,11 @@ metang_generators = {
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
     'trainer_types': { 'type': 'enum', 'tag': 'TrainerType' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
-    'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'}
+    'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'},
+    'mart_specialties_id': {'type': 'enum', 'tag': 'MartSpecialtiesID'},
+    'mart_decor_id': {'type': 'enum', 'tag': 'MartDecorID'},
+    'mart_seal_id': {'type': 'enum', 'tag': 'MartSealID'},
+    'mart_frontier_id': {'type': 'enum', 'tag': 'MartFrontierId'},
 }
 
 c_consts_generators = []
