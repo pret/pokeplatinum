@@ -534,7 +534,7 @@ _06B0:
     EndMovement
 
 _06B8:
-    ScrCmd_036 20, 2, 0, 0x800C
+    ShowSignpostMessage 20, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

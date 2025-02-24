@@ -42,7 +42,7 @@ _0084:
     End
 
 _008E:
-    ScrCmd_036 3, 1, 0, 0x800C
+    ShowSignpostMessage 3, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

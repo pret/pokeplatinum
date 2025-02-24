@@ -302,7 +302,7 @@ _02A6:
     End
 
 _02BA:
-    ScrCmd_036 24, 2, 0, 0x800C
+    ShowSignpostMessage 24, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -310,7 +310,7 @@ _02BA:
     End
 
 _02D1:
-    ScrCmd_036 25, 2, 0, 0x800C
+    ShowSignpostMessage 25, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -318,7 +318,7 @@ _02D1:
     End
 
 _02E8:
-    ScrCmd_036 26, 2, 0, 0x800C
+    ShowSignpostMessage 26, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -326,7 +326,7 @@ _02E8:
     End
 
 _02FF:
-    ScrCmd_036 27, 2, 0, 0x800C
+    ShowSignpostMessage 27, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -334,7 +334,7 @@ _02FF:
     End
 
 _0316:
-    ScrCmd_036 28, 2, 0, 0x800C
+    ShowSignpostMessage 28, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

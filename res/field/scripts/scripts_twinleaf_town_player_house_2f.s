@@ -55,7 +55,7 @@ _006E:
     End
 
 _0082:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 3, 0x800C

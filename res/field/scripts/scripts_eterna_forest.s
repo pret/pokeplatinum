@@ -412,7 +412,7 @@ _04D0:
     EndMovement
 
 _04E0:
-    ScrCmd_036 14, 2, 0, 0x800C
+    ShowSignpostMessage 14, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -420,7 +420,7 @@ _04E0:
     End
 
 _04F7:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 15, 0x800C

@@ -284,7 +284,7 @@ _036F:
     End
 
 _0379:
-    ScrCmd_036 10, 2, 0, 0x800C
+    ShowSignpostMessage 10, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -292,7 +292,7 @@ _0379:
     End
 
 _0390:
-    ScrCmd_036 11, 1, 0, 0x800C
+    ShowSignpostMessage 11, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

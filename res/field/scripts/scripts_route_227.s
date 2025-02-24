@@ -212,7 +212,7 @@ _01B8:
     .byte 0
 
 _01CC:
-    ScrCmd_036 12, 1, 0, 0x800C
+    ShowSignpostMessage 12, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

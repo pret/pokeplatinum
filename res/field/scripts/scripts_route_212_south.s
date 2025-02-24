@@ -63,7 +63,7 @@ _00A3:
     End
 
 _00B6:
-    ScrCmd_036 4, 1, 0, 0x800C
+    ShowSignpostMessage 4, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -71,7 +71,7 @@ _00B6:
     End
 
 _00CD:
-    ScrCmd_036 5, 2, 0, 0x800C
+    ShowSignpostMessage 5, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -79,7 +79,7 @@ _00CD:
     End
 
 _00E4:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 6, 0x800C

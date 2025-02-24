@@ -47,7 +47,7 @@ _0080:
     EndMovement
 
 _0088:
-    ScrCmd_036 3, 1, 0, 0x800C
+    ShowSignpostMessage 3, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -55,7 +55,7 @@ _0088:
     End
 
 _009F:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 4, 0x800C
@@ -63,7 +63,7 @@ _009F:
     End
 
 _00B4:
-    ScrCmd_036 5, 1, 0, 0x800C
+    ShowSignpostMessage 5, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

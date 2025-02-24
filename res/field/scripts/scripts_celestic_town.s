@@ -319,7 +319,7 @@ _033D:
     End
 
 _0350:
-    ScrCmd_036 15, 0, 0, 0x800C
+    ShowSignpostMessage 15, SIGNPOST_CITY_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

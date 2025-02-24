@@ -73,6 +73,7 @@ metang_generators = {
     'roaming_slots': { 'type': 'enum', 'tag': 'RoamingSlot' },
     'save_types': { 'type': 'enum', 'tag': 'SaveType' },
     'sdat': { 'type': 'enum', 'tag': 'SDATID' },
+    'signpost_types': { 'type': 'enum', 'tag': 'SignpostType' },
     'shadow_sizes': { 'type': 'enum', 'tag': 'ShadowSize' },
     'species': { 'type': 'enum', 'tag': 'Species' },
     'species_data_params': { 'type': 'enum', 'tag': 'SpeciesDataParam' },

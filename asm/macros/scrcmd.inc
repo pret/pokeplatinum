@@ -13,6 +13,7 @@
 #include "generated/roaming_slots.h"
 #include "generated/save_types.h"
 #include "generated/sdat.h"
+#include "generated/signpost_types.h"
 #include "generated/species.h"
 #include "generated/trainers.h"
 #include "constants/honey_tree.h"
@@ -311,18 +312,18 @@
     .short 53
     .endm
 
-    .macro ScrCmd_036 arg0, arg1, arg2, arg3
+    .macro ShowSignpostMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=0x800C
     .short 54
-    .byte \arg0
-    .byte \arg1
-    .short \arg2
-    .short \arg3
+    .byte \messageID
+    .byte \signpostType
+    .short \signpostNARCMemberIdx
+    .short \unused
     .endm
 
-    .macro ScrCmd_037 arg0, arg1
+    .macro ScrCmd_037 signpostType=3, signpostNARCMemberIdx=0
     .short 55
-    .byte \arg0
-    .short \arg1
+    .byte \signpostType
+    .short \signpostNARCMemberIdx
     .endm
 
     .macro ScrCmd_038 arg0
@@ -334,9 +335,9 @@
     .short 57
     .endm
 
-    .macro ScrCmd_03A arg0, arg1
+    .macro ScrCmd_03A messageID, arg1
     .short 58
-    .byte \arg0
+    .byte \messageID
     .short \arg1
     .endm
 

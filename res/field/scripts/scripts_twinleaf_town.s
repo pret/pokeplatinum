@@ -505,7 +505,7 @@ _061D:
     End
 
 _0628:
-    ScrCmd_036 12, 0, 0, 0x800C
+    ShowSignpostMessage 12, SIGNPOST_CITY_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -514,7 +514,7 @@ _0628:
 
 _063F:
     BufferPlayerName 0
-    ScrCmd_036 13, 2, 0, 0x800C
+    ShowSignpostMessage 13, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -523,7 +523,7 @@ _063F:
 
 _0659:
     BufferRivalName 0
-    ScrCmd_036 14, 2, 0, 0x800C
+    ShowSignpostMessage 14, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

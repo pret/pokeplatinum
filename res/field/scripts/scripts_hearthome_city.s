@@ -641,7 +641,7 @@ _089C:
     EndMovement
 
 _08A4:
-    ScrCmd_036 52, 0, 0, 0x800C
+    ShowSignpostMessage 52, SIGNPOST_CITY_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -649,7 +649,7 @@ _08A4:
     End
 
 _08BB:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 53, 0x800C
@@ -657,7 +657,7 @@ _08BB:
     End
 
 _08D0:
-    ScrCmd_036 54, 2, 0, 0x800C
+    ShowSignpostMessage 54, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -665,7 +665,7 @@ _08D0:
     End
 
 _08E7:
-    ScrCmd_036 55, 2, 0, 0x800C
+    ShowSignpostMessage 55, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -673,7 +673,7 @@ _08E7:
     End
 
 _08FE:
-    ScrCmd_036 56, 1, 0, 0x800C
+    ShowSignpostMessage 56, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -681,7 +681,7 @@ _08FE:
     End
 
 _0915:
-    ScrCmd_036 57, 1, 0, 0x800C
+    ShowSignpostMessage 57, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -689,7 +689,7 @@ _0915:
     End
 
 _092C:
-    ScrCmd_036 58, 2, 0, 0x800C
+    ShowSignpostMessage 58, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -697,7 +697,7 @@ _092C:
     End
 
 _0943:
-    ScrCmd_036 59, 2, 0, 0x800C
+    ShowSignpostMessage 59, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -705,7 +705,7 @@ _0943:
     End
 
 _095A:
-    ScrCmd_036 60, 2, 0, 0x800C
+    ShowSignpostMessage 60, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

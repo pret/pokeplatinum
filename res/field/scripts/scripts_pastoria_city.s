@@ -477,7 +477,7 @@ _0398:
     .byte 0
 
 _03E4:
-    ScrCmd_036 41, 0, 0, 0x800C
+    ShowSignpostMessage 41, SIGNPOST_CITY_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -485,7 +485,7 @@ _03E4:
     End
 
 _03FB:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 42, 0x800C
@@ -493,7 +493,7 @@ _03FB:
     End
 
 _0410:
-    ScrCmd_036 43, 2, 0, 0x800C
+    ShowSignpostMessage 43, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -501,7 +501,7 @@ _0410:
     End
 
 _0427:
-    ScrCmd_036 44, 2, 0, 0x800C
+    ShowSignpostMessage 44, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

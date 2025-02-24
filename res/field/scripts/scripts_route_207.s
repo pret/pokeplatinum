@@ -180,7 +180,7 @@ _01E1:
     End
 
 _01EC:
-    ScrCmd_036 11, 1, 0, 0x800C
+    ShowSignpostMessage 11, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -188,7 +188,7 @@ _01EC:
     End
 
 _0203:
-    ScrCmd_036 12, 1, 0, 0x800C
+    ShowSignpostMessage 12, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -196,7 +196,7 @@ _0203:
     End
 
 _021A:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 13, 0x800C

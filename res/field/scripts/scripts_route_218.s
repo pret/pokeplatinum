@@ -13,7 +13,7 @@
     ScriptEntryEnd
 
 _001E:
-    ScrCmd_036 5, 1, 0, 0x800C
+    ShowSignpostMessage 5, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -21,7 +21,7 @@ _001E:
     End
 
 _0035:
-    ScrCmd_036 6, 1, 0, 0x800C
+    ShowSignpostMessage 6, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

@@ -5,6 +5,8 @@
 #include "generated/giratina_shadow_animations.h"
 #include "generated/villa_furnitures.h"
 
+#define FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY 186
+
 #define FLAG_MESPRIT_CAUGHT 0x0125
 #define FLAG_AZELF_CAUGHT   0x0126
 #define FLAG_UXIE_CAUGHT    0x0127

@@ -81,7 +81,7 @@ _00B3:
     End
 
 _00BE:
-    ScrCmd_036 13, 0, 0, 0x800C
+    ShowSignpostMessage 13, SIGNPOST_CITY_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

@@ -109,7 +109,7 @@ _0130:
     End
 
 _0143:
-    ScrCmd_036 25, 0, 0, 0x800C
+    ShowSignpostMessage 25, SIGNPOST_CITY_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -117,7 +117,7 @@ _0143:
     End
 
 _015A:
-    ScrCmd_036 26, 2, 0, 0x800C
+    ShowSignpostMessage 26, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -442,7 +442,7 @@ _05B1:
     End
 
 _05BC:
-    ScrCmd_036 27, 2, 0, 0x800C
+    ShowSignpostMessage 27, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

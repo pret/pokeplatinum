@@ -12,7 +12,7 @@
 #include "overlay005/fieldmap.h"
 #include "overlay005/map_name_popup.h"
 #include "overlay005/ov5_021DFB54.h"
-#include "overlay005/ov5_021E1B08.h"
+#include "overlay005/signpost.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay025/poketch_system.h"
 #include "overlay077/const_ov77_021D742C.h"

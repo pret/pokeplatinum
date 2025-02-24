@@ -5,6 +5,8 @@
 
 #include "constants/narc.h"
 
+#include "generated/signpost_types.h"
+
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02013610.h"
 

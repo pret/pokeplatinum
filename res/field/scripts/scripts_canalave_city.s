@@ -470,7 +470,7 @@ _0640:
     GoTo _0545
 
 _0649:
-    ScrCmd_036 36, 0, 0, 0x800C
+    ShowSignpostMessage 36, SIGNPOST_CITY_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -478,7 +478,7 @@ _0649:
     End
 
 _0660:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 37, 0x800C
@@ -486,7 +486,7 @@ _0660:
     End
 
 _0675:
-    ScrCmd_036 38, 2, 0, 0x800C
+    ShowSignpostMessage 38, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -494,7 +494,7 @@ _0675:
     End
 
 _068C:
-    ScrCmd_036 39, 2, 0, 0x800C
+    ShowSignpostMessage 39, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -502,7 +502,7 @@ _068C:
     End
 
 _06A3:
-    ScrCmd_036 40, 2, 0, 0x800C
+    ShowSignpostMessage 40, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -512,7 +512,7 @@ _06A3:
 _06BA:
     Call _0168
     GoToIfEq 0x4000, 0, _06E2
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 42, 0x800C
@@ -520,7 +520,7 @@ _06BA:
     End
 
 _06E2:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 41, 0x800C

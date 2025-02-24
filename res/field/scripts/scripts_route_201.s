@@ -1306,7 +1306,7 @@ _0F4F:
     End
 
 _0F76:
-    ScrCmd_036 60, 1, 0, 0x800C
+    ShowSignpostMessage 60, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -1314,7 +1314,7 @@ _0F76:
     End
 
 _0F8D:
-    ScrCmd_036 61, 1, 0, 0x800C
+    ShowSignpostMessage 61, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -1322,7 +1322,7 @@ _0F8D:
     End
 
 _0FA4:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 62, 0x800C

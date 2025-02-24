@@ -298,7 +298,7 @@ _039A:
     End
 
 _03AD:
-    ScrCmd_036 7, 2, 0, 0x800C
+    ShowSignpostMessage 7, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -306,7 +306,7 @@ _03AD:
     End
 
 _03C4:
-    ScrCmd_036 8, 2, 0, 0x800C
+    ShowSignpostMessage 8, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

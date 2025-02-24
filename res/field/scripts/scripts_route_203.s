@@ -22,7 +22,7 @@ _001A:
     End
 
 _002D:
-    ScrCmd_036 3, 1, 0, 0x800C
+    ShowSignpostMessage 3, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -30,7 +30,7 @@ _002D:
     End
 
 _0044:
-    ScrCmd_036 4, 1, 0, 0x800C
+    ShowSignpostMessage 4, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -38,7 +38,7 @@ _0044:
     End
 
 _005B:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 5, 0x800C
@@ -46,7 +46,7 @@ _005B:
     End
 
 _0070:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 6, 0x800C

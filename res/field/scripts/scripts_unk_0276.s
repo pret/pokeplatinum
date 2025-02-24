@@ -10,7 +10,7 @@ _000A:
     End
 
 _000C:
-    ScrCmd_036 3, 2, 0, 0x800C
+    ShowSignpostMessage 3, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

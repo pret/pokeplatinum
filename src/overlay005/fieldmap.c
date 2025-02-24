@@ -32,7 +32,7 @@
 #include "overlay005/ov5_021D5CB0.h"
 #include "overlay005/ov5_021D5EB8.h"
 #include "overlay005/ov5_021DF440.h"
-#include "overlay005/ov5_021E1B08.h"
+#include "overlay005/signpost.h"
 #include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/ov5_021ECC20.h"
@@ -309,7 +309,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             HoneyTree_FreeShakeData(&fieldSystem->unk_A8);
             ov5_021D5BA8(fieldSystem);
             ov5_021D5278(&fieldSystem->unk_4C);
-            ov5_021E1B20(fieldSystem->unk_64);
+            Signpost_Free(fieldSystem->signpost);
             MapNamePopUp_Destroy(fieldSystem->unk_04->unk_08);
 
             if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -909,7 +909,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     }
 
     fieldSystem->unk_04->unk_08 = MapNamePopUp_Create(fieldSystem->bgConfig);
-    fieldSystem->unk_64 = ov5_021E1B08(4);
+    fieldSystem->signpost = Signpost_Init(HEAP_ID_FIELD);
     fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
 
     ov5_021D5CE4(fieldSystem->unk_04->unk_10, ov5_021EFA8C(fieldSystem->unk_30));

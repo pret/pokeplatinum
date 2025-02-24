@@ -569,7 +569,7 @@ _057A:
     End
 
 _0585:
-    ScrCmd_036 47, 0, 0, 0x800C
+    ShowSignpostMessage 47, SIGNPOST_CITY_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -577,7 +577,7 @@ _0585:
     End
 
 _059C:
-    ScrCmd_036 48, 1, 0, 0x800C
+    ShowSignpostMessage 48, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -585,7 +585,7 @@ _059C:
     End
 
 _05B3:
-    ScrCmd_036 49, 1, 0, 0x800C
+    ShowSignpostMessage 49, SIGNPOST_ROUTE_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C

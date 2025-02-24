@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/window.h"
+#include "generated/signpost_types.h"
 
 #include "bg_window.h"
 #include "font.h"

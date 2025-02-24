@@ -199,7 +199,7 @@ _01EB:
     End
 
 _01FE:
-    ScrCmd_036 18, 0, 0, 0x800C
+    ShowSignpostMessage 18, SIGNPOST_CITY_MAP
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -207,7 +207,7 @@ _01FE:
     End
 
 _0215:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 19, 0x800C

@@ -36,7 +36,7 @@ _004D:
     End
 
 _0058:
-    ScrCmd_036 2, 2, 0, 0x800C
+    ShowSignpostMessage 2, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
@@ -44,7 +44,7 @@ _0058:
     End
 
 _006F:
-    ScrCmd_037 3, 0
+    ScrCmd_037
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03A 3, 0x800C

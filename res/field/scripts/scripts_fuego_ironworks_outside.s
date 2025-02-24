@@ -6,7 +6,7 @@
     ScriptEntryEnd
 
 _0006:
-    ScrCmd_036 0, 2, 0, 0x800C
+    ShowSignpostMessage 0, SIGNPOST_BUILDING_INFO
     ScrCmd_038 3
     ScrCmd_039
     ScrCmd_03B 0x800C
