@@ -159,7 +159,7 @@ static void sub_0203B200(FieldTask *taskMan);
 static void FieldMenu_ApplicationStart(FieldTask *taskMan);
 static void FieldMenu_ApplicationRun(FieldTask *taskMan);
 static BOOL FieldMenu_SelectPokedex(FieldTask *taskMan);
-static BOOL FieldMenu_Pokedex(FieldTask *taskMan);
+static BOOL FieldMenu_OpenPokedex(FieldTask *taskMan);
 static BOOL FieldMenu_PokedexEnd(FieldTask *taskMan);
 static BOOL FieldMenu_SelectTrainerCard(FieldTask *taskMan);
 static BOOL FieldMenu_TrainerCard(FieldTask *taskMan);
@@ -930,13 +930,13 @@ static BOOL FieldMenu_SelectPokedex(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->unk_22C = FieldMenu_Pokedex;
+    menu->unk_22C = FieldMenu_OpenPokedex;
     menu->state = FIELD_MENU_STATE_APP_START;
 
     return TRUE;
 }
 
-static BOOL FieldMenu_Pokedex(FieldTask *taskMan)
+static BOOL FieldMenu_OpenPokedex(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     FieldMenu *menu = FieldTask_GetEnv(taskMan);

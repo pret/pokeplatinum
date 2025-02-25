@@ -75,7 +75,7 @@ enum FilterForm { // called form in game, but refers to body shape
     MAX_FILTER_FORM
 };
 
-typedef struct {
+typedef struct PokedexDefaultSortParams {
     const Pokedex *pokedex;
     const TrainerInfo *trainerInfo;
     int timeOfDay;

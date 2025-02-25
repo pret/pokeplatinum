@@ -7,9 +7,9 @@ typedef struct PokedexMemory {
 } PokedexMemory;
 
 enum PokedexBootMode {
-    PBM_LOCAL,
-    PBM_NATIONAL,
-    PBM_DEFAULT
+    POKEDEX_BOOT_REGIONAL,
+    POKEDEX_BOOT_NATIONAL,
+    POKEDEX_BOOT_DEFAULT
 };
 
 PokedexMemory *PokedexMemory_New(u32 heapID);

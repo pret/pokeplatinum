@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_POKEDEX_SEARCH_H
 #define POKEPLATINUM_POKEDEX_SEARCH_H
 
+#include "overlay021/pokedex_app.h"
 #include "overlay021/pokedex_sort.h"
-#include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 
 #include "heap.h"

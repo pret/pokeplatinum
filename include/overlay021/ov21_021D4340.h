@@ -3,7 +3,7 @@
 
 #include "constants/heap.h"
 
-#include "overlay021/struct_ov21_021D0F60_decl.h"
+#include "overlay021/pokedex_app.h"
 #include "overlay021/struct_ov21_021D4340_1.h"
 #include "overlay021/struct_ov21_021D4660.h"
 

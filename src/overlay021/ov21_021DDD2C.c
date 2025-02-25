@@ -8,27 +8,27 @@
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021DC9BC.h"
 #include "overlay021/ov21_021E29DC.h"
+#include "overlay021/pokedex_app.h"
+#include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/pokedex_main.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_sort_data.h"
-#include "overlay021/struct_ov21_021D0F60_decl.h"
-#include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 #include "overlay021/struct_ov21_021E6A68.h"
 #include "overlay021/struct_ov21_021E6B20.h"
 
 #include "bg_window.h"
-#include "cell_actor.h"
-#include "core_sys.h"
+#include "brightness_controller.h"
 #include "heap.h"
 #include "narc.h"
+#include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
+#include "system.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200A9DC.h"
 #include "unk_02023FCC.h"
 #include "vram_transfer.h"
 
@@ -60,7 +60,7 @@ typedef struct {
 } UnkStruct_ov21_021DDE4C;
 
 typedef struct {
-    CellActor *unk_00;
+    Sprite *unk_00;
     SpriteResource *unk_04[4];
     void *unk_14;
     int unk_18;
@@ -332,12 +332,12 @@ static int ov21_021DDFB4(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
 
 static void ov21_021DE040(UnkStruct_ov21_021DDEC8 *param0)
 {
-    CellActor_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_XLU);
+    Sprite_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_XLU);
 }
 
 static void ov21_021DE04C(UnkStruct_ov21_021DDEC8 *param0)
 {
-    CellActor_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_NORMAL);
+    Sprite_SetExplicitOAMMode(param0->unk_00, GX_OAM_MODE_NORMAL);
 }
 
 static void ov21_021DE058(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1, const UnkStruct_ov21_021DDDA4 *param2, BOOL param3)
@@ -360,7 +360,7 @@ static BOOL ov21_021DE0C4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
     if (ov21_021E33A4(param2->unk_08)) {
         v0 = ov21_021D2424(&param1->unk_00->unk_18C);
     } else {
-        v0 = sub_0200AC1C(2);
+        v0 = BrightnessController_IsTransitionComplete(BRIGHTNESS_SUB_SCREEN);
     }
 
     if (v0) {
@@ -392,13 +392,13 @@ static void ov21_021DE13C(UnkStruct_ov21_021DDDF0 *param0, int param1)
     void *v0;
     NNSG2dScreenData *v1;
 
-    ov21_021D2724(param0->unk_00, 34, param0->unk_00->unk_00, 6, 0, 0, 1, param1);
+    ov21_021D2724(param0->unk_00, 34, param0->unk_00->bgConfig, 6, 0, 0, 1, param1);
 
     v0 = ov21_021D27B8(param0->unk_00, 69, 1, &v1, param1);
 
-    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 6);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->bgConfig, 6);
 }
 
 static void ov21_021DE1A4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1, int param2)
@@ -406,13 +406,13 @@ static void ov21_021DE1A4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
     PokedexGraphicData *v0 = param1->unk_00;
     NARC *v1 = ov21_021D26E0(param1->unk_00);
 
-    param0->unk_04[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 105, 1, 105 + 6000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0->unk_04[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 105, 1, 105 + 6000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     SpriteTransfer_RequestCharAtEnd(param0->unk_04[0]);
     SpriteResource_ReleaseData(param0->unk_04[0]);
 
-    param0->unk_04[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v1, 103, 1, 103 + 6000, 2, param2);
-    param0->unk_04[3] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], v1, 104, 1, 104 + 6000, 3, param2);
+    param0->unk_04[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, 103, 1, 103 + 6000, 2, param2);
+    param0->unk_04[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 104, 1, 104 + 6000, 3, param2);
 }
 
 static void ov21_021DE224(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1)
@@ -421,20 +421,20 @@ static void ov21_021DE224(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
 
     SpriteTransfer_ResetCharTransfer(param0->unk_04[0]);
 
-    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_04[0]);
-    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_04[2]);
-    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_04[3]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[0], param0->unk_04[0]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[2], param0->unk_04[2]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], param0->unk_04[3]);
 }
 
 static void ov21_021DE258(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1, int param2)
 {
-    CellActorResourceData v0;
-    CellActorInitParams v1;
+    SpriteResourcesHeader v0;
+    SpriteListTemplate v1;
     PokedexGraphicData *v2 = param1->unk_00;
 
-    SpriteResourcesHeader_Init(&v0, 105 + 6000, 11 + 2100, 103 + 6000, 104 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 105 + 6000, 11 + 2100, 103 + 6000, 104 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
 
-    v1.collection = v2->unk_138;
+    v1.list = v2->spriteList;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
@@ -443,14 +443,14 @@ static void ov21_021DE258(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDD
     v1.position.y = 0;
     v1.position.y += (192 << FX32_SHIFT);
 
-    param0->unk_00 = CellActorCollection_Add(&v1);
+    param0->unk_00 = SpriteList_Add(&v1);
 
-    CellActor_SetAnim(param0->unk_00, 0);
+    Sprite_SetAnim(param0->unk_00, 0);
 }
 
 static void ov21_021DE2E0(UnkStruct_ov21_021DDEC8 *param0)
 {
-    CellActor_Delete(param0->unk_00);
+    Sprite_Delete(param0->unk_00);
 }
 
 static void ov21_021DE2EC(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDDA4 *param1, enum HeapId heapID)
@@ -478,14 +478,14 @@ static void ov21_021DE358(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDD
 {
     s32 v0;
 
-    if (gCoreSys.touchHeld) {
+    if (gSystem.touchHeld) {
         return;
     }
 
     if ((ov21_021E33BC(param1->unk_08) == 1) && (ov21_021D3998(param1->unk_04) == 2)) {
         v0 = ov21_021DCA28(param1->unk_00);
 
-        if (gCoreSys.pressedKeys & PAD_KEY_LEFT) {
+        if (gSystem.pressedKeys & PAD_KEY_LEFT) {
             v0--;
 
             if (v0 < 0) {
@@ -495,7 +495,7 @@ static void ov21_021DE358(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDD
             ov21_021DCA30(param1->unk_00, v0);
             ov21_021DE5A4(param0, param1);
             param0->unk_24 = 1;
-        } else if (gCoreSys.pressedKeys & PAD_KEY_RIGHT) {
+        } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
             v0++;
 
             if (v0 >= 3) {
@@ -517,9 +517,9 @@ static void ov21_021DE3D0(UnkStruct_ov21_021DDE4C *param0, UnkStruct_ov21_021DDD
     param0->unk_24 = 0;
 
     if (param0->unk_20) {
-        if (gCoreSys.touchHeld) {
-            param0->unk_00 = gCoreSys.touchX - param0->unk_08;
-            param0->unk_04 = gCoreSys.touchY - param0->unk_0C;
+        if (gSystem.touchHeld) {
+            param0->unk_00 = gSystem.touchX - param0->unk_08;
+            param0->unk_04 = gSystem.touchY - param0->unk_0C;
 
             if (param0->unk_00 < 24) {
                 param0->unk_00 = 24;
@@ -566,8 +566,8 @@ static void ov21_021DE44C(u32 param0, u32 param1, void *param2)
         Sound_PlayEffect(1501);
 
         v2->unk_20 = 1;
-        v2->unk_08 = gCoreSys.touchX - v2->unk_00;
-        v2->unk_0C = gCoreSys.touchY - v2->unk_04;
+        v2->unk_08 = gSystem.touchX - v2->unk_00;
+        v2->unk_0C = gSystem.touchY - v2->unk_04;
         break;
     default:
         break;
@@ -589,8 +589,8 @@ static void ov21_021DE49C(UnkStruct_ov21_021DDEC8 *param0, const UnkStruct_ov21_
     v0.y = param2->unk_04 << FX32_SHIFT;
     v0.y += (192 << FX32_SHIFT);
 
-    CellActor_SetPosition(param0->unk_00, &v0);
-    CellActor_SetAnim(param0->unk_00, ov21_021DCA28(param1->unk_00));
+    Sprite_SetPosition(param0->unk_00, &v0);
+    Sprite_SetAnim(param0->unk_00, ov21_021DCA28(param1->unk_00));
 }
 
 static void ov21_021DE4D4(UnkStruct_ov21_021DDEC8 *param0, UnkStruct_ov21_021DDDF0 *param1, const UnkStruct_ov21_021DDDA4 *param2, int param3)

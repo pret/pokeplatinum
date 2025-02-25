@@ -107,7 +107,7 @@ void PokedexSort_DefaultPokedexSort(PokedexSortData *param0, PokedexDefaultSortP
         param0->isNationalDexUnlocked = FALSE;
     }
 
-    if (param1->bootMode == PBM_DEFAULT) {
+    if (param1->bootMode == POKEDEX_BOOT_DEFAULT) {
         if (param0->isNationalDexUnlocked) {
             isNationalDex = TRUE;
         } else {
