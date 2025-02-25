@@ -1,12 +1,13 @@
 #ifndef POKEPLATINUM_POKEDEXSORT_H
 #define POKEPLATINUM_POKEDEXSORT_H
 
+#include "constants/heap.h"
+
 #include "struct_decls/pokedexdata_decl.h"
 
 #include "overlay021/pokedex_sort_data.h"
 #include "overlay021/species_caught_status.h"
 
-#include "heap.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 
