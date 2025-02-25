@@ -61,6 +61,7 @@ metang_generators = {
     'move_flags': { 'type': 'mask', 'tag': 'MoveFlag' },
     'move_ranges': { 'type': 'mask', 'tag': 'MoveRange', 'extra': ['--no-auto'] },
     'movement_actions': { 'type': 'enum', 'tag': 'MovementAction' },
+    'movement_types': { 'type': 'enum', 'tag': 'MovementType' },
     'moves': { 'type': 'enum', 'tag': 'Move' },
     'npc_trades': { 'type': 'enum', 'tag': 'NpcTradeID' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },

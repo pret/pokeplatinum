@@ -3,7 +3,7 @@
     "object_events": [
         {
             "graphics_id": 27,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 8,
@@ -17,7 +17,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 4,
@@ -31,7 +31,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 4,
@@ -45,7 +45,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 4,
@@ -59,7 +59,7 @@
         },
         {
             "graphics_id": 37,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 4,
@@ -73,7 +73,7 @@
         },
         {
             "graphics_id": 31,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 4,
@@ -87,7 +87,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 4,
@@ -101,7 +101,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 4,
@@ -115,7 +115,7 @@
         },
         {
             "graphics_id": 6,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 4,
@@ -129,7 +129,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 4,
@@ -143,7 +143,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 4,
@@ -157,7 +157,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -171,7 +171,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -185,7 +185,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -199,7 +199,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -213,7 +213,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -227,7 +227,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -241,7 +241,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -255,7 +255,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -269,7 +269,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -283,7 +283,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -297,7 +297,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -311,7 +311,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -325,7 +325,7 @@
         },
         {
             "graphics_id": 14,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -339,7 +339,7 @@
         },
         {
             "graphics_id": 42,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -353,7 +353,7 @@
         },
         {
             "graphics_id": 63,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -367,7 +367,7 @@
         },
         {
             "graphics_id": 35,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -381,7 +381,7 @@
         },
         {
             "graphics_id": 5,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -395,7 +395,7 @@
         },
         {
             "graphics_id": 50,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -409,7 +409,7 @@
         },
         {
             "graphics_id": 51,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -423,7 +423,7 @@
         },
         {
             "graphics_id": 11,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -437,7 +437,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -451,7 +451,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -465,7 +465,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -479,7 +479,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -493,7 +493,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -507,7 +507,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -521,7 +521,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -535,7 +535,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -549,7 +549,7 @@
         },
         {
             "graphics_id": 62,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -563,7 +563,7 @@
         },
         {
             "graphics_id": 7,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -577,7 +577,7 @@
         },
         {
             "graphics_id": 13,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -591,7 +591,7 @@
         },
         {
             "graphics_id": 70,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -605,7 +605,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -619,7 +619,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -633,7 +633,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -647,7 +647,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -661,7 +661,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -675,7 +675,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -689,7 +689,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,
@@ -703,7 +703,7 @@
         },
         {
             "graphics_id": 3,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 7,

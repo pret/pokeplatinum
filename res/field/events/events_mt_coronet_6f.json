@@ -3,7 +3,7 @@
     "object_events": [
         {
             "graphics_id": 125,
-            "movement_type": 16,
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 1,
             "flag": 655,
             "script": 3525,

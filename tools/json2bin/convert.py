@@ -7,6 +7,7 @@ from generated import (
     items,
     genders,
     moves,
+    movement_types,
     species,
     trainer_classes
 )
@@ -40,6 +41,9 @@ def from_trainer_ai_flag(s: str) -> int:
 
 def from_gender(s: str) -> int:
     return genders.Gender[s].value
+
+def from_movement_type(s: str) -> int:
+    return movement_types.MovementType[s].value
 
 TrainerDataFlags = collections.namedtuple('TrainerDataFlags', ['has_moves', 'has_items'])
 

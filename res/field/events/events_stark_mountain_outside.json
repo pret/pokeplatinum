@@ -3,7 +3,7 @@
     "object_events": [
         {
             "graphics_id": 87,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1225,
             "script": 7211,
@@ -17,7 +17,7 @@
         },
         {
             "graphics_id": 87,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1224,
             "script": 7210,
@@ -31,7 +31,7 @@
         },
         {
             "graphics_id": 11,
-            "movement_type": 46,
+            "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": 1,
             "flag": 0,
             "script": 3557,
@@ -47,7 +47,7 @@
         },
         {
             "graphics_id": 93,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
             "script": 2,
@@ -61,7 +61,7 @@
         },
         {
             "graphics_id": 213,
-            "movement_type": 15,
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 558,
             "script": 0,
@@ -75,7 +75,7 @@
         },
         {
             "graphics_id": 144,
-            "movement_type": 17,
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 0,
             "flag": 557,
             "script": 0,
@@ -89,7 +89,7 @@
         },
         {
             "graphics_id": 124,
-            "movement_type": 14,
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 556,
             "script": 0,
@@ -103,7 +103,7 @@
         },
         {
             "graphics_id": 124,
-            "movement_type": 14,
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 556,
             "script": 0,

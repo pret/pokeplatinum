@@ -3,7 +3,7 @@
     "object_events": [
         {
             "graphics_id": 87,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1107,
             "script": 7093,
@@ -17,7 +17,7 @@
         },
         {
             "graphics_id": 15,
-            "movement_type": 16,
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 1,
             "flag": 0,
             "script": 3529,
@@ -33,7 +33,7 @@
         },
         {
             "graphics_id": 31,
-            "movement_type": 7,
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": 1,
             "flag": 0,
             "script": 3528,

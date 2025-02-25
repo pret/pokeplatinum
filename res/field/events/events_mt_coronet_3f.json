@@ -12,7 +12,7 @@
     "object_events": [
         {
             "graphics_id": 125,
-            "movement_type": 2,
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 1,
             "flag": 655,
             "script": 3522,
@@ -28,7 +28,7 @@
         },
         {
             "graphics_id": 124,
-            "movement_type": 20,
+            "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
             "trainer_type": 4,
             "flag": 655,
             "script": 3514,

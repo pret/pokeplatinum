@@ -36,7 +36,7 @@
     "object_events": [
         {
             "graphics_id": 160,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 592,
             "script": 2,
@@ -50,7 +50,7 @@
         },
         {
             "graphics_id": 87,
-            "movement_type": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 632,
             "script": 3,

@@ -20,7 +20,7 @@
     "object_events": [
         {
             "graphics_id": 4,
-            "movement_type": 6,
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": 0,
             "flag": 0,
             "script": 2,
@@ -34,7 +34,7 @@
         },
         {
             "graphics_id": 29,
-            "movement_type": 9,
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": 0,
             "flag": 0,
             "script": 3,
@@ -48,7 +48,7 @@
         },
         {
             "graphics_id": 17,
-            "movement_type": 15,
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 0,
             "script": 1,
@@ -62,7 +62,7 @@
         },
         {
             "graphics_id": 5,
-            "movement_type": 6,
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": 0,
             "flag": 0,
             "script": 6,

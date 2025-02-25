@@ -44,7 +44,7 @@
     "object_events": [
         {
             "graphics_id": 148,
-            "movement_type": 16,
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 0,
             "flag": 371,
             "script": 0,

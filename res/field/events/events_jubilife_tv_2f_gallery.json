@@ -92,7 +92,7 @@
     "object_events": [
         {
             "graphics_id": 20,
-            "movement_type": 15,
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 0,
             "script": 1,
@@ -106,7 +106,7 @@
         },
         {
             "graphics_id": 9,
-            "movement_type": 3,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
             "script": 13,
@@ -120,7 +120,7 @@
         },
         {
             "graphics_id": 2,
-            "movement_type": 3,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
             "script": 14,

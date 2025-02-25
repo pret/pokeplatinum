@@ -3,7 +3,7 @@
     "object_events": [
         {
             "graphics_id": 4,
-            "movement_type": 3,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 1,
             "flag": 0,
             "script": 3356,
@@ -19,7 +19,7 @@
         },
         {
             "graphics_id": 6,
-            "movement_type": 3,
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 1,
             "flag": 0,
             "script": 3324,
