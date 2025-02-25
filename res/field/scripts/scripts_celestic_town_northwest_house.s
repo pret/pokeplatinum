@@ -16,7 +16,7 @@ _0012:
     Message 0
     CallCommonScript 0x7E3
     ScrCmd_035
-    PokeMartCommon 1
+    PokeMartCommon
     ReleaseAll
     End
 
@@ -26,7 +26,7 @@ _002B:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    PokeMartCommon 1
+    PokeMartCommon
     ReleaseAll
     End
 

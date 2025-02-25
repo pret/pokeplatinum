@@ -64,6 +64,7 @@
 #include "vars_flags.h"
 
 #include "res/graphics/shop_menu/shop_gra.naix"
+#include "res/text/bank/location_names.h"
 #include "res/text/bank/underground_goods.h"
 #include "res/text/bank/unk_0543.h"
 
@@ -457,8 +458,7 @@ static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
         StringTemplate_Free(shopMenu->strTemplate);
         Strbuf_Free(shopMenu->strbuf);
 
-        // NOTE: 101 seems to be closely related to Veilstone's Dept Store maps.
-        if (shopMenu->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != 101
+        if (shopMenu->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != location_names_00101
             && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_NORTH_HOUSE
             && fieldSystem->location->mapId != MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE) {
             if (shopMenu->itemPurchaseCount != 0 && shopMenu->itemSoldCount != 0) {
@@ -507,7 +507,7 @@ static void Shop_InitCamera(FieldSystem *fieldSystem, ShopMenu *shopMenu)
 static void Shop_LoadWindows(ShopMenu *shopMenu)
 {
     for (u32 i = 0; i < SHOP_WINDOW_MAX; i++) {
-        if ((shopMenu->martType != MART_TYPE_NORMAL) && (shopMenu->martType != 3) && (i == SHOP_WINDOW_ITEM_DESCRIPTION)) {
+        if ((shopMenu->martType != MART_TYPE_NORMAL) && (shopMenu->martType != MART_TYPE_FRONTIER) && (i == SHOP_WINDOW_ITEM_DESCRIPTION)) {
             Window_AddFromTemplate(shopMenu->bgConfig, &shopMenu->windows[i], &sShop_NormalItemDescWindowTemplate);
         } else if ((shopMenu->martType == MART_TYPE_FRONTIER) && (i == SHOP_WINDOW_CURRENT_MONEY)) {
             Window_AddFromTemplate(shopMenu->bgConfig, &shopMenu->windows[i], &sShop_FrontierCurrMoneyWindowTemplate);

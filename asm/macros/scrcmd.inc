@@ -1789,7 +1789,7 @@
     .short \arg1
     .endm
 
-    .macro PokeMartCommon unused
+    .macro PokeMartCommon unused=1
     .short 327
     .short \unused
     .endm

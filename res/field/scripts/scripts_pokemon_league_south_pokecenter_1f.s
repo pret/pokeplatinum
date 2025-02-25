@@ -26,7 +26,7 @@ _002C:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    PokeMartCommon 1
+    PokeMartCommon
     ReleaseAll
     End
 
