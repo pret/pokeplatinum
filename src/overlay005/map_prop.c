@@ -6,10 +6,9 @@
 #include "constants/heap.h"
 
 #include "overlay005/area_data.h"
+#include "overlay005/map_prop_animation.h"
 #include "overlay005/map_prop_material_shape.h"
-#include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D5878.h"
-#include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
 
 #include "easy3d.h"
@@ -74,7 +73,7 @@ void MapPropManager_InitOne(const int index, MapPropManager *mapPropManager)
     mapPropManager->loadedProps[index].model = NULL;
 }
 
-void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDataManager *const areaDataManager, MapPropManager *mapPropManager, UnkStruct_ov5_021D3CAC *param4)
+void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDataManager *const areaDataManager, MapPropManager *mapPropManager, MapPropAnimationManager *mapPropAnimMan)
 {
     MapPropFile *mapPropFiles = NULL;
     u32 mapPropFilesCount;
@@ -105,7 +104,7 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDat
                 loadedProp->modelID = 0;
             }
 
-            ov5_021D3BE4(loadedProp->modelID, &loadedProp->renderObj, param4);
+            MapPropAnimationManager_AddAllAnimationsToRenderObj(loadedProp->modelID, &loadedProp->renderObj, mapPropAnimMan);
         } else {
             VecFx32 nullVector = { 0, 0, 0 };
 
@@ -191,7 +190,7 @@ void MapProp_SetHidden(MapProp *mapProp, const BOOL hidden)
     mapProp->hidden = hidden;
 }
 
-int MapProp_GetId(const MapProp *mapProp)
+int MapProp_GetModelID(const MapProp *mapProp)
 {
     return mapProp->modelID;
 }
@@ -273,7 +272,7 @@ static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *model, VecFx3
     }
 }
 
-u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, AreaDataManager *const areaDataManager, const int modelID, const VecFx32 *position, const VecFx32 *rotation, UnkStruct_ov5_021D3CAC *param5)
+u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, AreaDataManager *const areaDataManager, const int modelID, const VecFx32 *position, const VecFx32 *rotation, MapPropAnimationManager *mapPropAnimMan)
 {
     u8 i;
     VecFx32 scale = { FX32_ONE, FX32_ONE, FX32_ONE };
@@ -296,7 +295,7 @@ u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, AreaDataManager *const
             loadedProp->modelID = modelID;
 
             MapPropManager_InitRenderObj(loadedProp->modelID, areaDataManager, &loadedProp->renderObj, &loadedProp->model);
-            ov5_021D3B24(loadedProp->modelID, 0, FALSE, &loadedProp->renderObj, param5);
+            MapPropAnimationManager_AddAnimationToRenderObj(loadedProp->modelID, 0, FALSE, &loadedProp->renderObj, mapPropAnimMan);
 
             return i;
         }

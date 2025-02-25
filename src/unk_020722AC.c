@@ -8,7 +8,7 @@
 #include "struct_defs/struct_02098C44.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021D37AC.h"
+#include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay006/ov6_02247078.h"
 
@@ -1174,7 +1174,7 @@ static int sub_02073480(UnkStruct_02072334 *param0)
         param0->unk_12++;
         break;
     case 2:
-        if (!ov5_021D42F0(param0->fieldSystem->unk_54, 90)) {
+        if (!MapPropOneShotAnimationManager_IsAnimationLoopFinished(param0->fieldSystem->mapPropOneShotAnimMan, 90)) {
             break;
         }
 

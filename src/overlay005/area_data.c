@@ -6,9 +6,8 @@
 #include "constants/gx_colors.h"
 #include "constants/heap.h"
 
+#include "overlay005/map_prop_animation.h"
 #include "overlay005/map_prop_material_shape.h"
-#include "overlay005/ov5_021D37AC.h"
-#include "overlay005/struct_ov5_021D3CAC_decl.h"
 
 #include "easy3d.h"
 #include "heap.h"
@@ -44,13 +43,13 @@ static void AreaData_StripTextureData(void *resourceFile, NNSG3dResTex *texture)
     Heap_ReallocFromHeap(resourceFile, strippedTextureDataSize);
 }
 
-AreaDataManager *AreaDataManager_Alloc(const int areaDataArchiveID, UnkStruct_ov5_021D3CAC *param1)
+AreaDataManager *AreaDataManager_Alloc(const int areaDataArchiveID, MapPropAnimationManager *mapPropAnimMan)
 {
     AreaDataManager *areaDataManager = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(AreaDataManager));
 
     areaDataManager->loadData = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(AreaDataManagerLoadData));
     areaDataManager->loadData->areaDataArchiveID = areaDataArchiveID;
-    areaDataManager->loadData->unk_04 = param1;
+    areaDataManager->loadData->mapPropAnimMan = mapPropAnimMan;
     areaDataManager->loadData->dummy0C = 0;
 
     return areaDataManager;
@@ -101,7 +100,7 @@ void AreaDataManager_Load(AreaDataManager *areaDataManager)
 
     int i;
     u16 mapPropModelID;
-    int mapPropModelAnimeListNARCFileCount = ov5_021D3F84(loadData->unk_04);
+    int mapPropModelAnimeListNARCFileCount = MapPropAnimationManager_GetAnimeListNARCFileCount(loadData->mapPropAnimMan);
 
     for (i = 0; i < loadData->mapPropModelIDsCount; i++) {
         mapPropModelID = areaDataManager->mapPropModelIDs[i + 1];
@@ -111,7 +110,7 @@ void AreaDataManager_Load(AreaDataManager *areaDataManager)
 
         if (mapPropModelID < mapPropModelAnimeListNARCFileCount) {
             NNSG3dResMdl *mapPropModel = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(areaDataManager->mapPropModelFiles[mapPropModelID]), 0);
-            ov5_021D3A50(mapPropModelID, mapPropModel, areaDataManager->mapPropTexture, loadData->unk_04);
+            MapPropAnimationManager_LoadPropAnimations(mapPropModelID, mapPropModel, areaDataManager->mapPropTexture, loadData->mapPropAnimMan);
         }
 
         BOOL textureBound = Easy3D_BindTextureToResource(areaDataManager->mapPropModelFiles[mapPropModelID], areaDataManager->mapPropTexture);

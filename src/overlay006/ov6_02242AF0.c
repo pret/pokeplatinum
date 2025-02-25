@@ -11,7 +11,7 @@
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
-#include "overlay005/ov5_021D37AC.h"
+#include "overlay005/map_prop_animation.h"
 #include "overlay006/struct_ov6_02242AF0.h"
 
 #include "field_system.h"
@@ -106,7 +106,7 @@ void ov6_02242AF0(FieldSystem *fieldSystem)
         break;
     }
 
-    MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 475, &v2, NULL, fieldSystem->unk_50);
+    MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, 475, &v2, NULL, fieldSystem->mapPropAnimMan);
 }
 
 void ov6_02242B58(FieldSystem *fieldSystem, const u16 param1, const u16 param2)
@@ -208,13 +208,13 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
         MapProp *v4;
         NNSG3dRenderObj *v5;
 
-        v4 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_475);
+        v4 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_GREAT_MARSH_TRAIN);
         v5 = MapProp_GetRenderObj(v4);
-        v3 = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_ID_UNK_475, fieldSystem->areaDataManager);
+        v3 = AreaDataManager_GetMapPropModelFile(MAP_PROP_MODEL_GREAT_MARSH_TRAIN, fieldSystem->areaDataManager);
         v2 = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*v3), 0);
 
-        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 16, 475, v5, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, -1, 0);
-        ov5_021D4250(fieldSystem->unk_54, 16, 0);
+        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 16, MAP_PROP_MODEL_GREAT_MARSH_TRAIN, v5, v2, AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager), 1, -1, 0);
+        MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 16, 0);
     }
         (v1->unk_05)++;
         break;
@@ -235,7 +235,7 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
         MapProp *v6;
         VecFx32 v7;
 
-        v6 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_ID_UNK_475);
+        v6 = MapPropManager_FindLoadedPropByModelID(fieldSystem->mapPropManager, MAP_PROP_MODEL_GREAT_MARSH_TRAIN);
         v7 = MapProp_GetPosition(v6);
 
         if (v1->unk_00(fieldSystem, v1, &v1->unk_0C, &v7)) {
@@ -245,7 +245,7 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
         MapProp_SetPosition(v6, &v7);
     } break;
     case 4:
-        ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 16);
+        MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 16);
         (v1->unk_05)++;
         break;
     case 5:

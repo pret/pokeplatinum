@@ -363,7 +363,7 @@ pokeplatinum_c = files(
     'overlay005/ov5_021D1A94.c',
     'overlay005/field_control.c',
     'overlay005/ov5_021D2F14.c',
-    'overlay005/ov5_021D37AC.c',
+    'overlay005/map_prop_animation.c',
     'overlay005/ov5_021D431C.c',
     'overlay005/ov5_021D521C.c',
     'overlay005/map_prop_material_shape.c',

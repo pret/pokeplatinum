@@ -11,7 +11,7 @@
 
 #include "field/field_system.h"
 #include "overlay005/map_prop.h"
-#include "overlay005/ov5_021D37AC.h"
+#include "overlay005/map_prop_animation.h"
 #include "overlay005/ov5_021E779C.h"
 
 #include "heap.h"
@@ -108,7 +108,7 @@ BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId)
 
     if (PlayerAvatar_GetDir(fieldSystem->playerAvatar) == DIR_NORTH) { // Honey Trees can only be interacted with from below.
         sub_020550F4(x, z, 0, -1, 1, 1, &v0);
-        isFacingHoneyTree = sub_02055178(fieldSystem, 26, &v0, NULL);
+        isFacingHoneyTree = sub_02055178(fieldSystem, MAP_PROP_MODEL_HONEY_TREE, &v0, NULL);
     } else {
         isFacingHoneyTree = FALSE;
     }
@@ -196,11 +196,11 @@ void HoneyTree_StopShaking(FieldSystem *fieldSystem)
 
         ov5_021E9340(v1, fieldSystem->unk_28, &v3);
 
-        v2 = MapPropManager_FindLoadedPropByModelID(v3, MAP_PROP_MODEL_ID_HONEY_TREE);
+        v2 = MapPropManager_FindLoadedPropByModelID(v3, MAP_PROP_MODEL_HONEY_TREE);
         v4 = MapProp_GetRenderObj(v2);
 
         if (v2 != NULL) {
-            ov5_021D3D18(fieldSystem->unk_50, v4, 26, fieldSystem->unk_A8->trees[treeId].shakeValue);
+            MapPropAnimationManager_RemoveAnimationFromRenderObj(fieldSystem->mapPropAnimMan, v4, MAP_PROP_MODEL_HONEY_TREE, fieldSystem->unk_A8->trees[treeId].shakeValue);
         }
 
         fieldSystem->unk_A8->trees[treeId].isShaking = FALSE;
@@ -366,19 +366,19 @@ static void DoTreeShakingAnimation(FieldSystem *fieldSystem, MapPropManager *par
                 return;
             }
 
-            v4 = MapPropManager_FindLoadedPropByModelID(param1, MAP_PROP_MODEL_ID_HONEY_TREE);
+            v4 = MapPropManager_FindLoadedPropByModelID(param1, MAP_PROP_MODEL_HONEY_TREE);
 
             if (v4 != NULL) {
                 NNSG3dRenderObj *v7;
 
                 v7 = MapProp_GetRenderObj(v4);
 
-                ov5_021D3D18(fieldSystem->unk_50, v7, 26, fieldSystem->unk_A8->trees[treeId].shakeValue);
+                MapPropAnimationManager_RemoveAnimationFromRenderObj(fieldSystem->mapPropAnimMan, v7, MAP_PROP_MODEL_HONEY_TREE, fieldSystem->unk_A8->trees[treeId].shakeValue);
 
                 fieldSystem->unk_A8->trees[treeId].shakeValue = shakeValue;
                 fieldSystem->unk_A8->trees[treeId].isShaking = isShaking;
 
-                ov5_021D3B24(26, shakeValue, 1, v7, fieldSystem->unk_50);
+                MapPropAnimationManager_AddAnimationToRenderObj(MAP_PROP_MODEL_HONEY_TREE, shakeValue, 1, v7, fieldSystem->mapPropAnimMan);
             }
         }
     }

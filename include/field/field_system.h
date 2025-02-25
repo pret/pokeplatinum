@@ -16,9 +16,8 @@
 #include "field/field_system_sub2_decl.h"
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
+#include "overlay005/map_prop_animation.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
-#include "overlay005/struct_ov5_021D3CAC_decl.h"
-#include "overlay005/struct_ov5_021D41B4_decl.h"
 #include "overlay005/struct_ov5_021D538C_decl.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
@@ -88,8 +87,8 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021D5894 *unk_44;
     UnkStruct_ov5_021D57D8 *unk_48;
     UnkStruct_ov5_021D538C *unk_4C;
-    UnkStruct_ov5_021D3CAC *unk_50;
-    UnkStruct_ov5_021D41B4 *unk_54;
+    MapPropAnimationManager *mapPropAnimMan;
+    MapPropOneShotAnimationManager *mapPropOneShotAnimMan;
     UnkStruct_02054C18 *unk_58;
     const TerrainCollisionManager *terrainCollisionMan;
     int unk_60;
