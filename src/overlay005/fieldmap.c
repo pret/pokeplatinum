@@ -24,10 +24,10 @@
 #include "overlay005/map_name_popup.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
+#include "overlay005/model_attributes.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021D57BC.h"
-#include "overlay005/ov5_021D5878.h"
 #include "overlay005/ov5_021D5B40.h"
 #include "overlay005/ov5_021D5BC0.h"
 #include "overlay005/ov5_021D5CB0.h"
@@ -44,7 +44,6 @@
 #include "overlay005/ov5_021F0824.h"
 #include "overlay005/ov5_021F10E8.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
-#include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/ov9_02249960.h"
 
@@ -100,7 +99,7 @@ static void ov5_021D1444(BgConfig *bgl);
 static void ov5_021D1524(BgConfig *bgl);
 static void ov5_021D154C(void);
 static void ov5_021D1570(void);
-static void ov5_021D1578(UnkStruct_ov5_021D5894 *param0);
+static void FieldMap_InitModelAttributes(ModelAttributes *modelAttrs);
 static void ov5_021D15F4(FieldSystem *fieldSystem);
 static void ov5_021D173C(FieldSystem *fieldSystem);
 static void ov5_021D1414(void);
@@ -320,7 +319,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             HBlankSystem_Delete(fieldSystem->unk_04->hBlankSystem);
             sub_02055CBC(fieldSystem->unk_04->unk_18);
             ov5_021D57D8(&fieldSystem->unk_48);
-            ov5_021D5894(&fieldSystem->unk_44);
+            ModelAttributes_Free(&fieldSystem->areaModelAttrs);
             ov5_021D1570();
             ov5_021D1524(fieldSystem->bgConfig);
             ov5_021D5C14(fieldSystem);
@@ -661,13 +660,13 @@ static void ov5_021D1570(void)
     RenderOam_Free();
 }
 
-static void ov5_021D1578(UnkStruct_ov5_021D5894 *param0)
+static void FieldMap_InitModelAttributes(ModelAttributes *modelAttrs)
 {
-    ov5_021D5ADC(param0, GX_POLYGONMODE_MODULATE, 0);
-    ov5_021D5AF0(param0, GX_CULL_BACK, 0);
-    ov5_021D5B04(param0, 31, 0);
-    ov5_021D5B18(param0, GX_POLYGON_ATTR_MISC_FOG, 1, 0);
-    ov5_021D58A8(param0, 1 << 22);
+    ModelAttributes_SetPolygonMode(modelAttrs, GX_POLYGONMODE_MODULATE, FALSE);
+    ModelAttributes_SetCullMode(modelAttrs, GX_CULL_BACK, FALSE);
+    ModelAttributes_SetAlpha(modelAttrs, 31, FALSE);
+    ModelAttributes_SetMiscAttrEnabled(modelAttrs, GX_POLYGON_ATTR_MISC_FOG, TRUE, FALSE);
+    ModelAttributes_ApplyGlobal(modelAttrs, MODEL_ATTRIBUTES_LAST_BIT);
 }
 
 void ov5_021D15B4(void)
@@ -708,7 +707,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
     }
 
     sub_0206979C(fieldSystem);
-    ov5_021E91FC(fieldSystem->unk_28, fieldSystem->unk_44);
+    ov5_021E91FC(fieldSystem->unk_28, fieldSystem->areaModelAttrs);
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
         ov9_0224CA50(fieldSystem);
@@ -891,8 +890,8 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_TurnBothDispOn();
-    fieldSystem->unk_44 = ov5_021D5878();
-    ov5_021D1578(fieldSystem->unk_44);
+    fieldSystem->areaModelAttrs = ModelAttributes_New();
+    FieldMap_InitModelAttributes(fieldSystem->areaModelAttrs);
     fieldSystem->unk_48 = ov5_021D57BC();
 
     {
@@ -900,7 +899,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
         ov5_021D5B40(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 
-    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, AreaDataManager_GetAreaLightArchiveID(fieldSystem->areaDataManager));
+    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->areaModelAttrs, AreaDataManager_GetAreaLightArchiveID(fieldSystem->areaDataManager));
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
         fieldSystem->unk_04->unk_0C = NULL;

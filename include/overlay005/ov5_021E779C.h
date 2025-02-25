@@ -9,7 +9,7 @@
 #include "overlay005/funcptr_ov5_021E9630.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
-#include "overlay005/struct_ov5_021D5894.h"
+#include "overlay005/model_attributes.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 
 #include "map_matrix.h"
@@ -20,7 +20,7 @@ void ov5_021E8188(FieldSystem *fieldSystem, UnkStruct_ov5_021E8F60 *param1);
 UnkStruct_ov5_021E8F60 *ov5_021E9084(MapMatrix *param0, AreaDataManager *param1, MapPropAnimationManager *param2, const int param3);
 void ov5_021E9150(UnkStruct_ov5_021E8F60 *param0, const int param1, const int param2);
 void ov5_021E9190(const u8 param0, UnkStruct_ov5_021E8F60 *param1);
-void ov5_021E91FC(const UnkStruct_ov5_021E8F60 *param0, UnkStruct_ov5_021D5894 *const param1);
+void ov5_021E91FC(const UnkStruct_ov5_021E8F60 *param0, ModelAttributes *const param1);
 void ov5_021E9230(fx32 param0, fx32 param1, int *param2, int *param3);
 void ov5_021E924C(UnkStruct_ov5_021E8F60 *param0);
 void ov5_021E92E4(UnkStruct_ov5_021E8F60 *param0);
@@ -45,7 +45,7 @@ void ov5_021E99C4(UnkStruct_ov5_021E8F60 *param0);
 void ov5_021E99D8(UnkStruct_ov5_021E8F60 *param0, const int param1, const int param2);
 void ov5_021E9AAC(UnkStruct_ov5_021E8F60 *param0, const int param1, const int param2, int *param3);
 void ov5_021E9B10(UnkStruct_ov5_021E8F60 *param0, int param1, int param2);
-void ov5_021E9C0C(const UnkStruct_ov5_021E8F60 *param0, const UnkStruct_ov5_021D5894 *param1);
+void ov5_021E9C0C(const UnkStruct_ov5_021E8F60 *param0, const ModelAttributes *param1);
 void ov5_021E9CD8(UnkStruct_ov5_021E8F60 *param0);
 void ov5_021E9D3C(MapMatrix *param0, AreaDataManager *param1, UnkStruct_ov5_021E8F60 *param2, UnkStruct_ov5_021E8F60 *param3, const int param4, const int param5);
 void ov5_021E9F98(UnkStruct_ov5_021E8F60 *param0, UnkStruct_ov5_021E8F60 *param1);

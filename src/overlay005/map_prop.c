@@ -8,8 +8,7 @@
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/map_prop_material_shape.h"
-#include "overlay005/ov5_021D5878.h"
-#include "overlay005/struct_ov5_021D5894.h"
+#include "overlay005/model_attributes.h"
 
 #include "easy3d.h"
 #include "fx_util.h"
@@ -122,7 +121,7 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDat
     }
 }
 
-void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager *areaDataManager, const BOOL param2, UnkStruct_ov5_021D5894 *const param3, MapPropManager *mapPropManager)
+void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager *areaDataManager, const BOOL applyAttrsToModel, ModelAttributes *const modelAttrs, MapPropManager *mapPropManager)
 {
     int i;
     VecFx32 position;
@@ -154,8 +153,11 @@ void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager 
                 const MapPropMaterialShape *propMatShp = AreaDataManager_GetMapPropMaterialShape(areaDataManager);
                 u16 propMatShpIDsCount;
 
-                if (param2 == TRUE) {
-                    ov5_021D5948(param3, loadedProp->model, (1 | 1 << 1 | 1 << 4 | 1 << 5 | 1 << 8 | 1 << 9 | 1 << 10 | 1 << 11));
+                if (applyAttrsToModel == TRUE) {
+                    ModelAttributes_ApplyToModel(
+                        modelAttrs,
+                        loadedProp->model,
+                        MODEL_LIGHT_VECTOR_1 | MODEL_LIGHT_VECTOR_2 | MODEL_LIGHT_COLOR_1 | MODEL_LIGHT_COLOR_2 | MODEL_DIFFUSE_REFLECT_COLOR | MODEL_AMBIENT_REFLECT_COLOR | MODEL_SPECULAR_REFLECT_COLOR | MODEL_EMISSION_COLOR);
                 }
 
                 MapProp_GetMaterialShapeIDsCount(loadedProp->modelID, propMatShp, &propMatShpIDsCount);

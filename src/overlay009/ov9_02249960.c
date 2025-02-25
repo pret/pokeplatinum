@@ -4448,7 +4448,7 @@ static void ov9_0224CA30(UnkStruct_ov9_02249B04 *param0)
     UnkStruct_ov9_0224C8E8 *v0 = &param0->unk_1E88;
 
     if (v0->unk_08) {
-        ov5_021E9C0C(v0->unk_18, param0->fieldSystem->unk_44);
+        ov5_021E9C0C(v0->unk_18, param0->fieldSystem->areaModelAttrs);
     }
 }
 

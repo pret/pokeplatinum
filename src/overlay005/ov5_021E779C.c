@@ -11,9 +11,9 @@
 #include "overlay005/funcptr_ov5_021E9630.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
+#include "overlay005/model_attributes.h"
 #include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021EEAC8.h"
-#include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021EEB48_decl.h"
 
 #include "easy3d.h"
@@ -157,7 +157,7 @@ static void ov5_021E7FF0(const int param0, const u8 param1, AreaDataManager *con
 static void ov5_021E86A0(const int param0, const u8 param1, UnkStruct_ov5_021E8F60 *param2);
 static void ov5_021E8668(const u8 param0, const u8 param1, const u8 param2, const u8 param3, UnkStruct_ov5_021E8F60 *param4);
 static void ov5_021E8614(const u8 param0, UnkStruct_ov5_021E8F60 *param1);
-static void ov5_021E89D0(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, UnkStruct_ov5_021D5894 *const param2);
+static void ov5_021E89D0(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, ModelAttributes *const param2);
 static BOOL ov5_021E8C58(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, u8 *param2);
 static BOOL ov5_021E8C8C(UnkStruct_ov5_021E8F60 *param0);
 static BOOL ov5_021E8DAC(const UnkStruct_ov5_021E8F60 *param0);
@@ -174,7 +174,7 @@ static void ov5_021E8F90(const int param0, const int param1, const int param2, c
 static void ov5_021E901C(const int param0, const int param1, const MapMatrix *param2, VecFx32 *param3);
 static void ov5_021E9A14(UnkStruct_ov5_021E8F60 *param0, const int param1, const int param2, const int param3, const int param4, const int param5);
 static void ov5_021E9B70(const int param0, const u8 param1, const AreaDataManager *param2, const MapMatrix *param3, const int param4, const int param5, const BOOL param6, UnkStruct_ov5_021E8F60 *param7);
-static void ov5_021E9C40(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, const UnkStruct_ov5_021D5894 *param2);
+static void ov5_021E9C40(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, const ModelAttributes *param2);
 
 static const UnkStruct_ov5_021FAE98 Unk_ov5_021FAE98 = {
     ov5_021E8E28,
@@ -1133,7 +1133,7 @@ static void ov5_021E86A0(const int param0, const u8 param1, UnkStruct_ov5_021E8F
     }
 }
 
-static void ov5_021E89D0(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, UnkStruct_ov5_021D5894 *const param2)
+static void ov5_021E89D0(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, ModelAttributes *const param2)
 {
     VecFx32 v0 = { 0, 0, 0 };
 
@@ -1594,7 +1594,7 @@ void ov5_021E9190(const u8 param0, UnkStruct_ov5_021E8F60 *param1)
     }
 }
 
-void ov5_021E91FC(const UnkStruct_ov5_021E8F60 *param0, UnkStruct_ov5_021D5894 *const param1)
+void ov5_021E91FC(const UnkStruct_ov5_021E8F60 *param0, ModelAttributes *const param1)
 {
     u8 v0;
 
@@ -2135,7 +2135,7 @@ static void ov5_021E9B70(const int param0, const u8 param1, const AreaDataManage
     param7->unk_84[param1]->unk_860 = param0;
 }
 
-void ov5_021E9C0C(const UnkStruct_ov5_021E8F60 *param0, const UnkStruct_ov5_021D5894 *param1)
+void ov5_021E9C0C(const UnkStruct_ov5_021E8F60 *param0, const ModelAttributes *param1)
 {
     int v0;
 
@@ -2146,7 +2146,7 @@ void ov5_021E9C0C(const UnkStruct_ov5_021E8F60 *param0, const UnkStruct_ov5_021D
     }
 }
 
-static void ov5_021E9C40(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, const UnkStruct_ov5_021D5894 *param2)
+static void ov5_021E9C40(const u8 param0, const UnkStruct_ov5_021E8F60 *param1, const ModelAttributes *param2)
 {
     VecFx32 v0 = { 0, 0, 0 };
     VecFx32 v1 = { FX32_ONE, FX32_ONE, FX32_ONE };
