@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
@@ -94,8 +94,8 @@ _01CF:
     ScrCmd_21D 0, 0, 0x800C
     GoToIfEq 0x800C, 0, _01F8
     Message 5
-    ScrCmd_03E 0x800C
-    GoToIfNe 0x800C, 0, _03E5
+    ShowYesNoMenu 0x800C
+    GoToIfNe 0x800C, MENU_YES, _03E5
 _01F8:
     Message 6
     WaitABPress
@@ -164,8 +164,8 @@ _037A:
     ScrCmd_21D 2, 0x8004, 0
     ScrCmd_21D 3, 0x8004, 1
     Message 8
-    ScrCmd_03E 0x800C
-    GoToIfNe 0x800C, 0, _0261
+    ShowYesNoMenu 0x800C
+    GoToIfNe 0x800C, MENU_YES, _0261
     ScrCmd_21D 5, 0x8004
     BufferPlayerName 0
     ScrCmd_21D 2, 0x8004, 1

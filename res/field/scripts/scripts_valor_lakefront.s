@@ -12,34 +12,34 @@
     ScriptEntry _06B8
     ScriptEntry _06CF
     ScriptEntry _06E2
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0026:
     CallIfSet 0x106, _004B
-    GoToIfUnset 0x15E, _0079
-    GoToIfSet 0x15E, _008B
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, _0079
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _008B
     End
     End
 
 _004B:
-    ScrCmd_186 5, 0x2D3, 0x301
+    SetObjectEventPos 5, 0x2D3, 0x301
     ScrCmd_189 5, 0
     ScrCmd_188 5, 14
     Return
 
 _0061:
-    GoToIfUnset 0x15E, _0079
-    GoToIfSet 0x15E, _008B
+    GoToIfUnset FLAG_GALACTIC_LEFT_LAKE_VALOR, _0079
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _008B
     End
 
 _0079:
-    ScrCmd_18A 5, 0x2C9, 0x2F8
-    ScrCmd_18A 6, 0x2C9, 0x2F9
+    SetWarpEventPos 5, 0x2C9, 0x2F8
+    SetWarpEventPos 6, 0x2C9, 0x2F9
     End
 
 _008B:
-    ScrCmd_18A 3, 0x2C9, 0x2F8
-    ScrCmd_18A 4, 0x2C9, 0x2F9
+    SetWarpEventPos 3, 0x2C9, 0x2F8
+    SetWarpEventPos 4, 0x2C9, 0x2F9
     End
 
 _009D:
@@ -52,14 +52,14 @@ _009D:
     WaitMovement
     Message 1
     CloseMessage
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     GoToIfEq 0x8004, 1, _00E6
     GoToIfEq 0x8004, 0, _00FE
     GoTo _010E
 
 _00E6:
     ApplyMovement 5, _021C
-    ApplyMovement 0xFF, _01E0
+    ApplyMovement LOCALID_PLAYER, _01E0
     WaitMovement
     GoTo _0126
 
@@ -70,7 +70,7 @@ _00FE:
 
 _010E:
     ApplyMovement 5, _0228
-    ApplyMovement 0xFF, _01EC
+    ApplyMovement LOCALID_PLAYER, _01EC
     WaitMovement
     GoTo _0126
 
@@ -81,23 +81,23 @@ _0126:
     End
 
 _013A:
-    ScrCmd_1BD 0x8000
+    GetPlayerDir 0x8000
     FacePlayer
     Message 2
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALOR_LAKEFRONT
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _01D9
+    GoToIfEq 0x800C, FALSE, _01D9
     Message 3
     CloseMessage
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     GoToIfEq 0x8004, 1, _0185
     GoToIfEq 0x8004, 0, _019D
     GoTo _01AD
 
 _0185:
     ApplyMovement 5, _0230
-    ApplyMovement 0xFF, _01F4
+    ApplyMovement LOCALID_PLAYER, _01F4
     WaitMovement
     GoTo _01C5
 
@@ -108,7 +108,7 @@ _019D:
 
 _01AD:
     ApplyMovement 5, _023C
-    ApplyMovement 0xFF, _0208
+    ApplyMovement LOCALID_PLAYER, _0208
     WaitMovement
     GoTo _01C5
 
@@ -120,7 +120,7 @@ _01C5:
     End
 
 _01D9:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -185,7 +185,7 @@ _0248:
     ClearFlag 0x1AD
     ScrCmd_189 0, 1
     ScrCmd_188 0, 15
-    ScrCmd_064 0
+    AddObject 0
     ApplyMovement 0, _0594
     WaitMovement
     Message 4
@@ -197,7 +197,7 @@ _0248:
     ClearFlag 0x1D5
     ScrCmd_189 10, 0
     ScrCmd_188 10, 14
-    ScrCmd_064 10
+    AddObject 10
     CallCommonScript 0x7FA
     CallIfEq 0x8000, 0, _046C
     CallIfEq 0x8000, 1, _0480
@@ -216,7 +216,7 @@ _0248:
     Message 7
     CloseMessage
     ApplyMovement 0, _05A8
-    ApplyMovement 0xFF, _05E8
+    ApplyMovement LOCALID_PLAYER, _05E8
     ApplyMovement 10, _058C
     WaitMovement
     RemoveObject 10
@@ -228,25 +228,25 @@ _0248:
     CallIfEq 0x8000, 2, _042C
     CallIfEq 0x8000, 3, _0438
     Message 9
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _04EC
-    GoToIfEq 0x800C, 1, _04F7
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _04EC
+    GoToIfEq 0x800C, MENU_NO, _04F7
     End
 
 _03EC:
-    ScrCmd_186 0, 0x2D3, 0x2F9
+    SetObjectEventPos 0, 0x2D3, 0x2F9
     Return
 
 _03F6:
-    ScrCmd_186 0, 0x2D3, 0x2F7
+    SetObjectEventPos 0, 0x2D3, 0x2F7
     Return
 
 _0400:
-    ScrCmd_186 0, 0x2D4, 0x2F8
+    SetObjectEventPos 0, 0x2D4, 0x2F8
     Return
 
 _040A:
-    ScrCmd_186 0, 0x2D2, 0x2F8
+    SetObjectEventPos 0, 0x2D2, 0x2F8
     Return
 
 _0414:
@@ -270,41 +270,41 @@ _0438:
     Return
 
 _0444:
-    ScrCmd_186 10, 0x2D4, 0x30C
+    SetObjectEventPos 10, 0x2D4, 0x30C
     Return
 
 _044E:
-    ScrCmd_186 10, 0x2D4, 0x30A
+    SetObjectEventPos 10, 0x2D4, 0x30A
     Return
 
 _0458:
-    ScrCmd_186 10, 0x2D3, 0x30B
+    SetObjectEventPos 10, 0x2D3, 0x30B
     Return
 
 _0462:
-    ScrCmd_186 10, 0x2D3, 0x30B
+    SetObjectEventPos 10, 0x2D3, 0x30B
     Return
 
 _046C:
-    ApplyMovement 0xFF, _05D0
+    ApplyMovement LOCALID_PLAYER, _05D0
     ApplyMovement 10, _055C
     WaitMovement
     Return
 
 _0480:
-    ApplyMovement 0xFF, _05D0
+    ApplyMovement LOCALID_PLAYER, _05D0
     ApplyMovement 10, _055C
     WaitMovement
     Return
 
 _0494:
-    ApplyMovement 0xFF, _05DC
+    ApplyMovement LOCALID_PLAYER, _05DC
     ApplyMovement 10, _0568
     WaitMovement
     Return
 
 _04A8:
-    ApplyMovement 0xFF, _05D0
+    ApplyMovement LOCALID_PLAYER, _05D0
     ApplyMovement 10, _055C
     WaitMovement
     Return
@@ -351,7 +351,7 @@ _0502:
 
 _0522:
     ApplyMovement 0, _05BC
-    ApplyMovement 0xFF, _0600
+    ApplyMovement LOCALID_PLAYER, _0600
     WaitMovement
     GoTo _053A
 
@@ -560,7 +560,7 @@ _06E2:
     CallIfEq 0x8001, 0x316, _0769
     CallIfEq 0x8001, 0x317, _0775
     ApplyMovement 9, _07FC
-    ApplyMovement 0xFF, _0804
+    ApplyMovement LOCALID_PLAYER, _0804
     WaitMovement
     Message 16
     CloseMessage

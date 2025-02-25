@@ -17,7 +17,7 @@
     ScriptEntry _07E7
     ScriptEntry _07FA
     ScriptEntry _003A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _003A:
     ScrCmd_238 19, 0x4000
@@ -178,8 +178,8 @@ _02E5:
 
 _0329:
     Message 44
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _02E5
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _02E5
     CloseMessage
     ScrCmd_0F2 31, 0, 0, 0x800C
     GoToIfEq 0x800C, 1, _036B
@@ -198,8 +198,8 @@ _0373:
 
 _037D:
     Message 44
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _02E5
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _02E5
     CloseMessage
     ScrCmd_0F3 31, 0, 0, 0x800C
     GoToIfEq 0x800C, 1, _03BF
@@ -303,7 +303,7 @@ _053D:
     Message 32
     WaitABPress
     CloseMessage
-    ApplyMovement 0xFF, _05E4
+    ApplyMovement LOCALID_PLAYER, _05E4
     ApplyMovement 0x800D, _0604
     WaitMovement
     Return
@@ -312,7 +312,7 @@ _0558:
     Message 32
     WaitABPress
     CloseMessage
-    ApplyMovement 0xFF, _05E4
+    ApplyMovement LOCALID_PLAYER, _05E4
     ApplyMovement 0x800D, _0604
     WaitMovement
     Return
@@ -323,25 +323,25 @@ _0573:
     ScrCmd_136
     ScrCmd_135 137
     CloseMessage
-    ApplyMovement 0xFF, _05F0
+    ApplyMovement LOCALID_PLAYER, _05F0
     ApplyMovement 0x800D, _0610
     WaitMovement
     Return
 
 _0599:
-    ApplyMovement 0xFF, _0624
+    ApplyMovement LOCALID_PLAYER, _0624
     ApplyMovement 0x800D, _0648
     WaitMovement
     Return
 
 _05AD:
-    ApplyMovement 0xFF, _0624
+    ApplyMovement LOCALID_PLAYER, _0624
     ApplyMovement 0x800D, _0648
     WaitMovement
     Return
 
 _05C1:
-    ApplyMovement 0xFF, _0634
+    ApplyMovement LOCALID_PLAYER, _0634
     ApplyMovement 0x800D, _0654
     WaitMovement
     Return

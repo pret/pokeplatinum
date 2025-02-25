@@ -17,7 +17,7 @@
     ScriptEntry _062E
     ScriptEntry _0676
     ScriptEntry _0689
-    .short 0xFD13
+    ScriptEntryEnd
 
 _003A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -43,9 +43,9 @@ _0080:
 
 _0089:
     Message 3
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _00AC
-    GoToIfEq 0x800C, 1, _00F5
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _00AC
+    GoToIfEq 0x800C, MENU_NO, _00F5
     End
 
 _00AC:
@@ -53,15 +53,15 @@ _00AC:
     GoTo _00D5
 
 _00B5:
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0089
-    GoToIfEq 0x800C, 1, _02B3
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0089
+    GoToIfEq 0x800C, MENU_NO, _02B3
     End
 
 _00D5:
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _00F5
-    GoToIfEq 0x800C, 1, _02B3
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _00F5
+    GoToIfEq 0x800C, MENU_NO, _02B3
     End
 
 _00F5:
@@ -92,7 +92,7 @@ _0121:
 _016C:
     Message 5
     CloseMessage
-    ScrCmd_1BD 0x8006
+    GetPlayerDir 0x8006
     GoToIfEq 0x8006, 0, _019E
     GoToIfEq 0x8006, 2, _01B8
     GoToIfEq 0x8006, 3, _01D2
@@ -101,21 +101,21 @@ _016C:
 _019E:
     ApplyMovement 0, _0374
     WaitMovement
-    ApplyMovement 0xFF, _0340
+    ApplyMovement LOCALID_PLAYER, _0340
     WaitMovement
     GoTo _01EC
 
 _01B8:
     ApplyMovement 0, _0380
     WaitMovement
-    ApplyMovement 0xFF, _0348
+    ApplyMovement LOCALID_PLAYER, _0348
     WaitMovement
     GoTo _01EC
 
 _01D2:
     ApplyMovement 0, _038C
     WaitMovement
-    ApplyMovement 0xFF, _0354
+    ApplyMovement LOCALID_PLAYER, _0354
     WaitMovement
     GoTo _01EC
 
@@ -125,7 +125,7 @@ _01EC:
     WaitFadeScreen
     ScrCmd_0A6 0x4002, 0x8005, 0x8007
     ReturnToField
-    ApplyMovement 0xFF, _0360
+    ApplyMovement LOCALID_PLAYER, _0360
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -135,21 +135,21 @@ _01EC:
     End
 
 _0245:
-    ApplyMovement 0xFF, _0368
+    ApplyMovement LOCALID_PLAYER, _0368
     WaitMovement
     ApplyMovement 0, _0398
     WaitMovement
     GoTo _0293
 
 _025F:
-    ApplyMovement 0xFF, _0368
+    ApplyMovement LOCALID_PLAYER, _0368
     WaitMovement
     ApplyMovement 0, _03A4
     WaitMovement
     GoTo _0293
 
 _0279:
-    ApplyMovement 0xFF, _0368
+    ApplyMovement LOCALID_PLAYER, _0368
     WaitMovement
     ApplyMovement 0, _03B0
     WaitMovement

@@ -5,7 +5,7 @@
         {
             "x": 16,
             "z": 29,
-            "dest_header_id": 67,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY_GYM",
             "dest_warp_id": 1
         }
     ],

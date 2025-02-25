@@ -55,6 +55,7 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
 #include "unk_020041CC.h"
@@ -63,7 +64,6 @@
 #include "unk_0202854C.h"
 #include "unk_020393C8.h"
 #include "unk_02054D00.h"
-#include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "vars_flags.h"
 #include "vram_transfer.h"
@@ -2606,7 +2606,7 @@ static BOOL ov23_02240A90(UnkStruct_ov23_0223EE80 *param0)
                     {
                         VarsFlags *v5 = SaveData_GetVarsFlags(Unk_ov23_02257740->fieldSystem->saveData);
 
-                        sub_0206B41C(v5, sub_0206B40C(v5) + 1);
+                        SystemVars_SetUndergroundFossilsUnearthed(v5, SystemVars_GetUndergroundFossilsUnearthed(v5) + 1);
                     }
                 } else {
                     sub_02029688(v3, 1);

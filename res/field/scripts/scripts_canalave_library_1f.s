@@ -8,7 +8,7 @@
     ScriptEntry _0080
     ScriptEntry _0091
     ScriptEntry _00A2
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     PlayFanfare SEQ_SE_CONFIRM
@@ -109,7 +109,7 @@ _0110:
 _0115:
     Message 8
     CloseMessage
-    ScrCmd_1BD 0x8000
+    GetPlayerDir 0x8000
     CallIfEq 0x8000, 0, _0155
     CallIfEq 0x8000, 2, _0169
     CallIfEq 0x8000, 3, _0175
@@ -121,7 +121,7 @@ _0115:
 
 _0155:
     ApplyMovement 2, _018C
-    ApplyMovement 0xFF, _01B0
+    ApplyMovement LOCALID_PLAYER, _01B0
     WaitMovement
     Return
 
@@ -132,7 +132,7 @@ _0169:
 
 _0175:
     ApplyMovement 2, _019C
-    ApplyMovement 0xFF, _01BC
+    ApplyMovement LOCALID_PLAYER, _01BC
     WaitMovement
     Return
 

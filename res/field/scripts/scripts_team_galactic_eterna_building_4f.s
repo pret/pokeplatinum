@@ -9,7 +9,7 @@
     ScriptEntry _01B7
     ScriptEntry _01D6
     ScriptEntry _01FF
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     ScrCmd_2CD
@@ -30,7 +30,7 @@ _0022:
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0135
+    GoToIfEq 0x800C, FALSE, _0135
     Message 1
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -39,7 +39,7 @@ _0022:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     WaitTime 15, 0x800C
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     GoToIfEq 0x8004, 0, _00A4
     GoToIfEq 0x8004, 2, _00BE
     GoToIfEq 0x8004, 3, _00D0
@@ -47,7 +47,7 @@ _0022:
 
 _00A4:
     ApplyMovement 2, _0144
-    ApplyMovement 0xFF, _0174
+    ApplyMovement LOCALID_PLAYER, _0174
     WaitMovement
     GoTo _00E2
     End
@@ -87,7 +87,7 @@ _00E2:
     End
 
 _0135:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -166,7 +166,7 @@ _0198:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 35, 0
+    PlayCry SPECIES_CLEFAIRY
     Message 2
     ScrCmd_04D
     WaitABXPadPress
@@ -179,7 +179,7 @@ _01B7:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 0x1AB, 0
+    PlayCry SPECIES_BUNEARY
     Message 5
     ScrCmd_04D
     WaitABXPadPress

@@ -1592,7 +1592,7 @@ static u8 ov84_0223CD40(UnkStruct_ov84_0223B5A0 *param0)
 
 static int ov84_0223CDB0(UnkStruct_ov84_0223B5A0 *param0)
 {
-    int v0 = sub_02022664(Unk_ov84_022410C8[param0->unk_424].unk_04);
+    int v0 = TouchScreen_CheckRectanglePressed(Unk_ov84_022410C8[param0->unk_424].unk_04);
 
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
@@ -1607,7 +1607,7 @@ static int ov84_0223CDB0(UnkStruct_ov84_0223B5A0 *param0)
 
 static int ov84_0223CE08(UnkStruct_ov84_0223B5A0 *param0)
 {
-    int v0 = sub_02022644(Unk_ov84_022410C8[param0->unk_424].unk_04);
+    int v0 = TouchScreen_CheckRectangleHeld(Unk_ov84_022410C8[param0->unk_424].unk_04);
 
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
@@ -1789,7 +1789,7 @@ static void ov84_0223D0FC(UnkStruct_ov84_0223B5A0 *param0)
 
 static BOOL ov84_0223D1F4(UnkStruct_ov84_0223B5A0 *param0)
 {
-    int v0 = sub_02022664(Unk_ov84_02240E98);
+    int v0 = TouchScreen_CheckRectanglePressed(Unk_ov84_02240E98);
 
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;

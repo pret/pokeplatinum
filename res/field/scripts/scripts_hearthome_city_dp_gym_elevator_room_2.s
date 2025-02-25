@@ -7,7 +7,7 @@
     ScriptEntry _0016
     ScriptEntry _001A
     ScriptEntry _002B
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     ScrCmd_171

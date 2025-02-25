@@ -17,11 +17,11 @@
 #include "script_manager.h"
 #include "special_encounter.h"
 #include "system_data.h"
+#include "system_vars.h"
 #include "unk_0202854C.h"
 #include "unk_0202C858.h"
 #include "unk_0202E2CC.h"
 #include "unk_02055C50.h"
-#include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
 #include "unk_0206C2D0.h"
 #include "unk_0206CCB0.h"
@@ -102,27 +102,27 @@ static void sub_02055AC0(FieldSystem *fieldSystem, s32 param1)
     }
 
     {
-        VarsFlags *v1 = SaveData_GetVarsFlags(fieldSystem->saveData);
-        u16 v2 = sub_0206B260(v1);
+        VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+        u16 deadlineInDays = SystemVars_GetNewsPressDeadline(varsFlags);
 
-        if (v2 > param1) {
-            v2 -= param1;
+        if (deadlineInDays > param1) {
+            deadlineInDays -= param1;
         } else {
-            v2 = 0;
+            deadlineInDays = 0;
         }
 
-        sub_0206B270(v1, v2);
+        SystemVars_SetNewsPressDeadline(varsFlags, deadlineInDays);
     }
 
     {
-        sub_0206B2E4(fieldSystem->saveData, param1);
+        SystemVars_SynchronizeJubilifeLotteryTrainerID(fieldSystem->saveData, param1);
     }
 
     {
-        sub_0206B334(fieldSystem->saveData);
+        SystemVars_InitDailyRandomLevel(fieldSystem->saveData);
     }
 
-    sub_0206B514(fieldSystem->saveData);
+    SystemVars_UpdateVillaVisitor(fieldSystem->saveData);
     FieldSystem_ClearDailyHiddenItemFlags(fieldSystem);
     sub_0206C008(fieldSystem->saveData);
     sub_0202C9A0(sub_0202C878(fieldSystem->saveData));

@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0035
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     GoToIfSet 0x11D, _0029
@@ -34,7 +34,7 @@ _0035:
     SetFlag 0x11D
     Message 1
     CloseMessage
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     GoToIfEq 0x8004, 2, _00B2
     GoToIfEq 0x8004, 3, _00D0
     GoToIfEq 0x8004, 0, _00B2

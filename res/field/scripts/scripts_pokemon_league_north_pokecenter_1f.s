@@ -11,7 +11,7 @@
     ScriptEntry _0310
     ScriptEntry _0323
     ScriptEntry _0336
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     SetFlag 0x9F4
@@ -31,7 +31,7 @@ _0022:
     End
 
 _0063:
-    ScrCmd_186 0, 12, 3
+    SetObjectEventPos 0, 12, 3
     End
 
 _006D:
@@ -43,7 +43,7 @@ _006D:
     CloseMessage
     PlaySound SEQ_BADGE
     WaitSound
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _00B8
     GoToIfEq 0x800C, 2, _00C8
     GoToIfEq 0x800C, 3, _00D8
@@ -120,7 +120,7 @@ _013E:
 _0154:
     LockAll
     ClearFlag 0x21D
-    ScrCmd_064 5
+    AddObject 5
     CallCommonScript 0x7FA
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 10, _0191
@@ -144,7 +144,7 @@ _01B1:
     GoTo _01C1
 
 _01C1:
-    ApplyMovement 0xFF, _02B8
+    ApplyMovement LOCALID_PLAYER, _02B8
     WaitMovement
     BufferRivalName 0
     Message 0
@@ -168,7 +168,7 @@ _020F:
 
 _021B:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02AC
+    GoToIfEq 0x800C, FALSE, _02AC
     BufferRivalName 0
     BufferPlayerName 1
     Message 1
@@ -204,7 +204,7 @@ _0296:
 
 _02AC:
     SetFlag 0x21D
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

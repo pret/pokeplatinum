@@ -175,7 +175,7 @@ Static main
 	Object main.nef.p/src_field_overworld_state.c.o
 	Object main.nef.p/src_unk_0203A7D8.c.o
 	Object main.nef.p/src_unk_0203A944.c.o
-	Object main.nef.p/src_field_menu.c.o
+	Object main.nef.p/src_start_menu.c.o
 	Object main.nef.p/src_unk_0203C954.c.o
 	Object main.nef.p/src_field_system.c.o
 	Object main.nef.p/src_location.c.o
@@ -186,7 +186,7 @@ Static main
 	Object main.nef.p/src_unk_02046AD4.c.o
 	Object main.nef.p/src_unk_02046C7C.c.o
 	Object main.nef.p/src_unk_020474B8.c.o
-	Object main.nef.p/src_unk_020480A8.c.o
+	Object main.nef.p/src_scrcmd_jubilife_lottery.c.o
 	Object main.nef.p/src_unk_020482D4.c.o
 	Object main.nef.p/src_unk_02048614.c.o
 	Object main.nef.p/src_unk_02048BD0.c.o
@@ -264,7 +264,7 @@ Static main
 	Object main.nef.p/src_unk_02069BE0.c.o
 	Object main.nef.p/src_unk_0206A780.c.o
 	Object main.nef.p/src_system_flags.c.o
-	Object main.nef.p/src_unk_0206AFE0.c.o
+	Object main.nef.p/src_system_vars.c.o
 	Object main.nef.p/src_unk_0206B70C.c.o
 	Object main.nef.p/src_unk_0206B9D8.c.o
 	Object main.nef.p/src_great_marsh_lookout.c.o
@@ -469,10 +469,10 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021D1A94.c.o
 	Object main.nef.p/src_overlay005_field_control.c.o
 	Object main.nef.p/src_overlay005_ov5_021D2F14.c.o
-	Object main.nef.p/src_overlay005_ov5_021D37AC.c.o
+	Object main.nef.p/src_overlay005_map_prop_animation.c.o
 	Object main.nef.p/src_overlay005_ov5_021D431C.c.o
 	Object main.nef.p/src_overlay005_ov5_021D521C.c.o
-	Object main.nef.p/src_overlay005_ov5_021D56BC.c.o
+	Object main.nef.p/src_overlay005_map_prop_material_shape.c.o
 	Object main.nef.p/src_overlay005_ov5_021D57BC.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5878.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5B40.c.o
@@ -512,7 +512,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021EF250.c.o
 	Object main.nef.p/src_overlay005_hblank_system.c.o
 	Object main.nef.p/src_overlay005_ov5_021EF4BC.c.o
-	Object main.nef.p/src_overlay005_ov5_021EF75C.c.o
+	Object main.nef.p/src_overlay005_area_data.c.o
 	Object main.nef.p/src_overlay005_honey_tree.c.o
 	Object main.nef.p/src_overlay005_ov5_021F007C.c.o
 	Object main.nef.p/src_overlay005_ov5_021FF6B8.c.o
@@ -878,11 +878,11 @@ Overlay overlay25
 	Object main.nef.p/src_overlay025_ov25_02255DBC.c.o
 }
 
-Overlay overlay26
+Overlay poketch_digital_watch
 {
 	After overlay25
-	Object main.nef.p/src_overlay026_ov26_022561C0.c.o
-	Object main.nef.p/src_overlay026_ov26_02256404.c.o
+	Object main.nef.p/src_poketch_digital_watch_main.c.o
+	Object main.nef.p/src_poketch_digital_watch_display.c.o
 }
 
 Overlay overlay27

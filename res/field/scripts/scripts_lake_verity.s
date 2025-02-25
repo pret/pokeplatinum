@@ -10,14 +10,14 @@
     ScriptEntry _01D0
     ScriptEntry _0230
     ScriptEntry _030C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     CallIfSet 186, _009D
     CallIfUnset 186, _0087
     CallIfEq 0x4097, 0, _0071
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _0061
+    GoToIfEq 0x4000, GENDER_MALE, _0061
     GoToIfEq 0x4000, 1, _0069
     End
 
@@ -30,22 +30,22 @@ _0069:
     End
 
 _0071:
-    ScrCmd_186 5, 46, 50
+    SetObjectEventPos 5, 46, 50
     ScrCmd_188 5, 14
     ScrCmd_189 5, 0
     Return
 
 _0087:
-    ScrCmd_186 5, 46, 51
+    SetObjectEventPos 5, 46, 51
     ScrCmd_188 5, 15
     ScrCmd_189 5, 1
     Return
 
 _009D:
-    ScrCmd_186 5, 50, 37
+    SetObjectEventPos 5, 50, 37
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2
-    ScrCmd_186 6, 50, 39
+    SetObjectEventPos 6, 50, 39
     ScrCmd_188 6, 16
     ScrCmd_189 6, 2
     Return
@@ -63,7 +63,7 @@ _00CB:
     Message 2
     FacePlayer
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0104
+    GoToIfEq 0x800C, GENDER_MALE, _0104
     GoTo _0112
     End
 
@@ -101,7 +101,7 @@ _013B:
     FacePlayer
     GoToIfSet 186, _018B
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0167
+    GoToIfEq 0x800C, GENDER_MALE, _0167
     GoTo _0175
     End
 
@@ -125,7 +125,7 @@ _0183:
 
 _018B:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _01A4
+    GoToIfEq 0x800C, GENDER_MALE, _01A4
     GoTo _01B2
     End
 
@@ -157,7 +157,7 @@ _01D0:
     ApplyMovement 5, _0220
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _01F5
+    GoToIfEq 0x800C, GENDER_MALE, _01F5
     GoTo _0203
     End
 
@@ -197,7 +197,7 @@ _0230:
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_MARS_LAKE_VERITY
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02DB
+    GoToIfEq 0x800C, FALSE, _02DB
     Message 10
     Message 11
     Message 12
@@ -212,7 +212,7 @@ _0230:
     RemoveObject 3
     SetFlag 0x98E
     ApplyMovement 6, _02FC
-    ApplyMovement 0xFF, _0304
+    ApplyMovement LOCALID_PLAYER, _0304
     WaitMovement
     ScrCmd_187 5, 53, 1, 39, 3
     FadeScreen 6, 1, 1, 0
@@ -229,7 +229,7 @@ _0230:
     End
 
 _02DB:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

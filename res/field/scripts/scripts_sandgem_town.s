@@ -15,17 +15,17 @@
     ScriptEntry _08BA
     ScriptEntry _08D4
     ScriptEntry _08EB
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0032:
     CallIfEq 0x4071, 1, _005F
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _0075
-    GoToIfEq 0x4000, 1, _007D
+    GoToIfEq 0x4000, GENDER_MALE, _0075
+    GoToIfEq 0x4000, GENDER_FEMALE, _007D
     End
 
 _005F:
-    ScrCmd_186 4, 168, 0x34D
+    SetObjectEventPos 4, 168, 0x34D
     ScrCmd_189 4, 0
     ScrCmd_188 4, 14
     Return
@@ -53,7 +53,7 @@ _0085:
 
 _00E7:
     ApplyMovement 4, _03B8
-    ApplyMovement 0xFF, _047C
+    ApplyMovement LOCALID_PLAYER, _047C
     WaitMovement
     GoTo _0169
 
@@ -69,27 +69,27 @@ _010F:
 
 _011F:
     ApplyMovement 4, _03DC
-    ApplyMovement 0xFF, _04A0
+    ApplyMovement LOCALID_PLAYER, _04A0
     WaitMovement
     GoTo _0169
 
 _0137:
     ApplyMovement 4, _03E8
-    ApplyMovement 0xFF, _04AC
+    ApplyMovement LOCALID_PLAYER, _04AC
     WaitMovement
     GoTo _0169
 
 _014F:
     ApplyMovement 4, _03F4
-    ApplyMovement 0xFF, _04B8
+    ApplyMovement LOCALID_PLAYER, _04B8
     WaitMovement
     GoTo _0169
     End
 
 _0169:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0189
-    GoToIfEq 0x800C, 1, _0195
+    GoToIfEq 0x800C, GENDER_MALE, _0189
+    GoToIfEq 0x800C, GENDER_FEMALE, _0195
     End
 
 _0189:
@@ -114,44 +114,44 @@ _01A1:
 
 _01F3:
     ApplyMovement 4, _0400
-    ApplyMovement 0xFF, _04C4
+    ApplyMovement LOCALID_PLAYER, _04C4
     WaitMovement
     GoTo _0283
 
 _020B:
     ApplyMovement 4, _040C
-    ApplyMovement 0xFF, _04D4
+    ApplyMovement LOCALID_PLAYER, _04D4
     WaitMovement
     GoTo _0283
 
 _0223:
     ApplyMovement 4, _0418
-    ApplyMovement 0xFF, _04E4
+    ApplyMovement LOCALID_PLAYER, _04E4
     WaitMovement
     GoTo _0283
 
 _023B:
     ApplyMovement 4, _0428
-    ApplyMovement 0xFF, _04F8
+    ApplyMovement LOCALID_PLAYER, _04F8
     WaitMovement
     GoTo _0283
 
 _0253:
     ApplyMovement 4, _043C
-    ApplyMovement 0xFF, _0510
+    ApplyMovement LOCALID_PLAYER, _0510
     WaitMovement
     GoTo _0283
 
 _026B:
     ApplyMovement 4, _044C
-    ApplyMovement 0xFF, _0520
+    ApplyMovement LOCALID_PLAYER, _0520
     WaitMovement
     GoTo _0283
 
 _0283:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _02A3
-    GoToIfEq 0x800C, 1, _02AC
+    GoToIfEq 0x800C, GENDER_MALE, _02A3
+    GoToIfEq 0x800C, GENDER_FEMALE, _02AC
     End
 
 _02A3:
@@ -167,7 +167,7 @@ _02B5:
     ScrCmd_16B 77
     ScrCmd_169 77
     ClearFlag 0x197
-    ScrCmd_064 3
+    AddObject 3
     ApplyMovement 3, _0554
     WaitMovement
     ApplyMovement 3, _055C
@@ -181,15 +181,15 @@ _02B5:
     BufferPlayerName 1
     Message 5
     CloseMessage
-    ApplyMovement 0xFF, _0548
+    ApplyMovement LOCALID_PLAYER, _0548
     ApplyMovement 4, _0470
     ApplyMovement 3, _056C
     WaitMovement
     RemoveObject 3
     CallCommonScript 0x7FB
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0344
-    GoToIfEq 0x800C, 1, _0352
+    GoToIfEq 0x800C, GENDER_MALE, _0344
+    GoToIfEq 0x800C, GENDER_FEMALE, _0352
     End
 
 _0344:
@@ -206,7 +206,7 @@ _0352:
 _035E:
     CloseMessage
     ApplyMovement 4, _045C
-    ApplyMovement 0xFF, _0530
+    ApplyMovement LOCALID_PLAYER, _0530
     WaitMovement
     ScrCmd_16C 77
     ScrCmd_169 77
@@ -454,13 +454,13 @@ _057C:
     ScrCmd_16B 77
     ScrCmd_169 77
     ClearFlag 0x2C4
-    ScrCmd_064 14
+    AddObject 14
     ApplyMovement 14, _0798
     WaitMovement
     BufferPlayerName 0
     Message 8
     CloseMessage
-    ApplyMovement 0xFF, _07AC
+    ApplyMovement LOCALID_PLAYER, _07AC
     ApplyMovement 4, _07F8
     WaitMovement
     Message 9
@@ -477,8 +477,8 @@ _057C:
     RemoveObject 14
     WaitTime 30, 0x800C
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0610
-    GoToIfEq 0x800C, 1, _061D
+    GoToIfEq 0x800C, GENDER_MALE, _0610
+    GoToIfEq 0x800C, GENDER_FEMALE, _061D
     End
 
 _0610:
@@ -494,12 +494,12 @@ _061D:
     End
 
 _062A:
-    ApplyMovement 0xFF, _07B8
+    ApplyMovement LOCALID_PLAYER, _07B8
     ApplyMovement 4, _0800
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _065C
-    GoToIfEq 0x800C, 1, _066B
+    GoToIfEq 0x800C, GENDER_MALE, _065C
+    GoToIfEq 0x800C, GENDER_FEMALE, _066B
     End
 
 _065C:
@@ -518,11 +518,11 @@ _067A:
     CloseMessage
     CallCommonScript 0x800
     ApplyMovement 4, _0808
-    ApplyMovement 0xFF, _07C0
+    ApplyMovement LOCALID_PLAYER, _07C0
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _06B2
-    GoToIfEq 0x800C, 1, _06C1
+    GoToIfEq 0x800C, GENDER_MALE, _06B2
+    GoToIfEq 0x800C, GENDER_FEMALE, _06C1
     End
 
 _06B2:
@@ -540,11 +540,11 @@ _06C1:
 _06D0:
     CloseMessage
     ApplyMovement 4, _0814
-    ApplyMovement 0xFF, _07D0
+    ApplyMovement LOCALID_PLAYER, _07D0
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0704
-    GoToIfEq 0x800C, 1, _0710
+    GoToIfEq 0x800C, GENDER_MALE, _0704
+    GoToIfEq 0x800C, GENDER_FEMALE, _0710
     End
 
 _0704:
@@ -560,13 +560,13 @@ _0710:
 _071C:
     CloseMessage
     ApplyMovement 4, _0820
-    ApplyMovement 0xFF, _07DC
+    ApplyMovement LOCALID_PLAYER, _07DC
     WaitMovement
     ApplyMovement 4, _0828
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _075A
-    GoToIfEq 0x800C, 1, _0766
+    GoToIfEq 0x800C, GENDER_MALE, _075A
+    GoToIfEq 0x800C, GENDER_FEMALE, _0766
     End
 
 _075A:
@@ -582,7 +582,7 @@ _0766:
 _0772:
     CloseMessage
     ApplyMovement 4, _0830
-    ApplyMovement 0xFF, _07E4
+    ApplyMovement LOCALID_PLAYER, _07E4
     WaitMovement
     CallCommonScript 0x801
     RemoveObject 4

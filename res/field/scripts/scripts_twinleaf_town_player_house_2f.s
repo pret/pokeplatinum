@@ -13,7 +13,7 @@
     ScriptEntry _00B6
     ScriptEntry _00C4
     ScriptEntry _00D2
-    .short 0xFD13
+    ScriptEntryEnd
 
 _002A:
     GoToIfEq 0x40F9, 0, _0039
@@ -94,7 +94,7 @@ _00D2:
 _00E0:
     LockAll
     ClearFlag 0x173
-    ScrCmd_064 0
+    AddObject 0
     ApplyMovement 0, _0394
     WaitMovement
     CallCommonScript 0x7FA
@@ -144,13 +144,13 @@ _00E0:
     End
 
 _0249:
-    ApplyMovement 0xFF, _04D4
+    ApplyMovement LOCALID_PLAYER, _04D4
     ApplyMovement 0, _03A4
     WaitMovement
     Return
 
 _025D:
-    ApplyMovement 0xFF, _04E4
+    ApplyMovement LOCALID_PLAYER, _04E4
     ApplyMovement 0, _03B4
     WaitMovement
     Return
@@ -161,31 +161,31 @@ _0271:
     Return
 
 _027D:
-    ApplyMovement 0xFF, _04E4
+    ApplyMovement LOCALID_PLAYER, _04E4
     ApplyMovement 0, _03D0
     WaitMovement
     Return
 
 _0291:
-    ApplyMovement 0xFF, _04F0
+    ApplyMovement LOCALID_PLAYER, _04F0
     ApplyMovement 0, _03EC
     WaitMovement
     Return
 
 _02A5:
-    ApplyMovement 0xFF, _04FC
+    ApplyMovement LOCALID_PLAYER, _04FC
     ApplyMovement 0, _03FC
     WaitMovement
     Return
 
 _02B9:
-    ApplyMovement 0xFF, _0508
+    ApplyMovement LOCALID_PLAYER, _0508
     ApplyMovement 0, _040C
     WaitMovement
     Return
 
 _02CD:
-    ApplyMovement 0xFF, _0514
+    ApplyMovement LOCALID_PLAYER, _0514
     ApplyMovement 0, _041C
     WaitMovement
     Return
@@ -231,25 +231,25 @@ _0335:
     Return
 
 _0341:
-    ApplyMovement 0xFF, _0520
+    ApplyMovement LOCALID_PLAYER, _0520
     ApplyMovement 0, _0484
     WaitMovement
     Return
 
 _0355:
-    ApplyMovement 0xFF, _0520
+    ApplyMovement LOCALID_PLAYER, _0520
     ApplyMovement 0, _0498
     WaitMovement
     Return
 
 _0369:
-    ApplyMovement 0xFF, _0520
+    ApplyMovement LOCALID_PLAYER, _0520
     ApplyMovement 0, _04AC
     WaitMovement
     Return
 
 _037D:
-    ApplyMovement 0xFF, _0520
+    ApplyMovement LOCALID_PLAYER, _0520
     ApplyMovement 0, _04C0
     WaitMovement
     Return

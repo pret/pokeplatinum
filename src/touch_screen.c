@@ -5,17 +5,15 @@
 
 #include "system.h"
 
-static int sub_02022594(const TouchScreenRect *rect, u32 param1, u32 param2);
+static int CheckRectangleTouch(const TouchScreenRect *rect, u32 x, u32 y);
 static BOOL sub_020225E0(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);
 static BOOL sub_0202260C(const TouchScreenHitTable *hitTable, u32 param1, u32 param2);
 
-static int sub_02022594(const TouchScreenRect *rect, u32 param1, u32 param2)
+static int CheckRectangleTouch(const TouchScreenRect *rect, u32 x, u32 y)
 {
-    int v0;
-
-    for (v0 = 0; rect[v0].rect.top != 0xff; v0++) {
-        if (((u32)(param1 - rect[v0].rect.left) < (u32)(rect[v0].rect.right - rect[v0].rect.left)) & ((u32)(param2 - rect[v0].rect.top) < (u32)(rect[v0].rect.bottom - rect[v0].rect.top))) {
-            return v0;
+    for (int i = 0; rect[i].rect.top != 0xFF; i++) {
+        if (((x - rect[i].rect.left) < (rect[i].rect.right - rect[i].rect.left)) & ((y - rect[i].rect.top) < (rect[i].rect.bottom - rect[i].rect.top))) {
+            return i;
         }
     }
 
@@ -43,19 +41,19 @@ static BOOL sub_0202260C(const TouchScreenHitTable *hitTable, u32 param1, u32 pa
     return 0;
 }
 
-int sub_02022644(const TouchScreenRect *rect)
+int TouchScreen_CheckRectangleHeld(const TouchScreenRect *rect)
 {
     if (gSystem.touchHeld) {
-        return sub_02022594(rect, gSystem.touchX, gSystem.touchY);
+        return CheckRectangleTouch(rect, gSystem.touchX, gSystem.touchY);
     }
 
     return TOUCHSCREEN_INPUT_NONE;
 }
 
-int sub_02022664(const TouchScreenRect *rect)
+int TouchScreen_CheckRectanglePressed(const TouchScreenRect *rect)
 {
     if (gSystem.touchPressed) {
-        return sub_02022594(rect, gSystem.touchX, gSystem.touchY);
+        return CheckRectangleTouch(rect, gSystem.touchX, gSystem.touchY);
     }
 
     return TOUCHSCREEN_INPUT_NONE;

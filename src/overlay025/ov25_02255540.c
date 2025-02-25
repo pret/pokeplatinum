@@ -301,11 +301,11 @@ void ov25_02255950(UnkStruct_ov25_022558C4 *param0, u16 param1)
     param0->unk_90 = param1;
 }
 
-BOOL ov25_02255958(UnkStruct_ov25_02255958 *param0, u32 param1, u32 param2, u32 param3, int param4)
+BOOL ov25_02255958(UnkStruct_ov25_02255958 *param0, u32 narcId, u32 memberId, u32 memberId2, enum HeapId heapId)
 {
-    param0->unk_10 = param4;
-    param0->unk_00 = LoadCompressedMemberFromNARC(param1, param2, param4);
-    param0->unk_04 = LoadCompressedMemberFromNARC(param1, param3, param4);
+    param0->unk_10 = heapId;
+    param0->unk_00 = LoadCompressedMemberFromNARC(narcId, memberId, heapId);
+    param0->unk_04 = LoadCompressedMemberFromNARC(narcId, memberId2, heapId);
 
     if ((param0->unk_00 != NULL) && (param0->unk_04 != NULL)) {
         if (!NNS_G2dGetUnpackedCellBank(param0->unk_00, &(param0->unk_08))) {

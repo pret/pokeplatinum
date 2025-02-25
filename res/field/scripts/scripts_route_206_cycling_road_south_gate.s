@@ -9,7 +9,7 @@
     ScriptEntry _00A0
     ScriptEntry _00B0
     ScriptEntry _001C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     End
@@ -37,12 +37,12 @@ _003D:
 _0050:
     LockAll
     CheckPlayerOnBike 0x800C
-    GoToIfEq 0x800C, 1, _0080
+    GoToIfEq 0x800C, TRUE, _0080
     ApplyMovement 0, _0090
     WaitMovement
     Message 1
     CloseMessage
-    ApplyMovement 0xFF, _0098
+    ApplyMovement LOCALID_PLAYER, _0098
     WaitMovement
     ReleaseAll
     End

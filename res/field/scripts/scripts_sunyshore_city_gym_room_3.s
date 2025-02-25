@@ -7,7 +7,7 @@
     ScriptEntry _001D
     ScriptEntry _0022
     ScriptEntry _0027
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     SetVar 0x4000, 0
@@ -33,7 +33,7 @@ _0027:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_VOLKNER
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _011A
+    GoToIfEq 0x800C, FALSE, _011A
     Message 1
     BufferPlayerName 0
     Message 2
@@ -85,6 +85,6 @@ _0104:
     End
 
 _011A:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End

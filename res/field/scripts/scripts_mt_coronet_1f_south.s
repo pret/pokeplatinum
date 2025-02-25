@@ -4,24 +4,24 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     LockAll
-    ApplyMovement 0xFF, _008C
+    ApplyMovement LOCALID_PLAYER, _008C
     ApplyMovement 6, _0064
     WaitMovement
     Message 0
     CloseMessage
     ApplyMovement 6, _0070
-    ApplyMovement 0xFF, _009C
+    ApplyMovement LOCALID_PLAYER, _009C
     WaitMovement
     Message 1
     ApplyMovement 6, _0078
     WaitMovement
     Message 2
     CloseMessage
-    ApplyMovement 0xFF, _00B0
+    ApplyMovement LOCALID_PLAYER, _00B0
     ApplyMovement 6, _0080
     WaitMovement
     RemoveObject 6

@@ -9,7 +9,7 @@
     ScriptEntry _01A0
     ScriptEntry _0248
     ScriptEntry _001A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     GoToIfSet 142, _0027
@@ -26,7 +26,7 @@ _0039:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _007B
     GoToIfEq 0x800C, 1, _008B
     GoToIfEq 0x800C, 2, _009B
@@ -63,7 +63,7 @@ _00BB:
     StartTrainerBattle TRAINER_LEADER_FANTINA
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0248
+    GoToIfEq 0x800C, FALSE, _0248
     Message 1
     BufferPlayerName 0
     Message 2
@@ -165,7 +165,7 @@ _0224:
 
 _0248:
     ClearFlag 0x29C
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

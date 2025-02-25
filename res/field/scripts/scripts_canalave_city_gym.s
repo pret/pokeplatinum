@@ -7,7 +7,7 @@
     ScriptEntry _0016
     ScriptEntry _0126
     ScriptEntry _015A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     ScrCmd_173
@@ -24,7 +24,7 @@ _0016:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_BYRON
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0120
+    GoToIfEq 0x800C, FALSE, _0120
     Message 1
     BufferPlayerName 0
     Message 2
@@ -81,7 +81,7 @@ _0107:
     End
 
 _0120:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

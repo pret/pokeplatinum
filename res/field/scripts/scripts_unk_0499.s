@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
@@ -41,8 +41,8 @@ _0041:
 _0085:
     BufferNumber 2, 1
     Message 7
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0152
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0152
     ScrCmd_29A 1, 0x800C
     GoToIfEq 0x800C, 0, _0147
     ScrCmd_299 1

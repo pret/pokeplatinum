@@ -7,7 +7,7 @@
     ScriptEntry _0018
     ScriptEntry _002F
     ScriptEntry _0118
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     SetFlag 0x9D1
@@ -135,11 +135,11 @@ _0118:
     Message 7
     CloseMessage
     ApplyMovement 5, _0214
-    ApplyMovement 0xFF, _0238
+    ApplyMovement LOCALID_PLAYER, _0238
     WaitMovement
     RemoveObject 5
     ApplyMovement 4, _01E8
-    ApplyMovement 0xFF, _0240
+    ApplyMovement LOCALID_PLAYER, _0240
     WaitMovement
     BufferPlayerName 0
     Message 8

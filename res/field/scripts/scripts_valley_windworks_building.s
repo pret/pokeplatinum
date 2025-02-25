@@ -11,7 +11,7 @@
     ScriptEntry _03A7
     ScriptEntry _03D2
     ScriptEntry _03DA
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     SetFlag 0x9C3
@@ -19,10 +19,10 @@ _0022:
     End
 
 _0035:
-    ScrCmd_186 5, 21, 5
+    SetObjectEventPos 5, 21, 5
     ScrCmd_189 5, 2
     ScrCmd_188 5, 16
-    ScrCmd_186 2, 18, 4
+    SetObjectEventPos 2, 18, 4
     ScrCmd_189 2, 1
     ScrCmd_188 2, 15
     End
@@ -34,7 +34,7 @@ _005F:
     Message 0
     CloseMessage
     ApplyMovement 0, _0098
-    ApplyMovement 0xFF, _00A0
+    ApplyMovement LOCALID_PLAYER, _00A0
     WaitMovement
     RemoveObject 0
     SetVar 0x40CF, 1
@@ -91,7 +91,7 @@ _0107:
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02B9
+    GoToIfEq 0x800C, FALSE, _02B9
     Message 3
     CloseMessage
     ApplyMovement 7, _0374
@@ -141,7 +141,7 @@ _01DB:
     SetFlag 0x1F8
     ClearFlag 0x1F9
     ScrCmd_188 5, 16
-    ScrCmd_064 5
+    AddObject 5
     ScrCmd_062 5
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8005, 6, _0218
@@ -195,7 +195,7 @@ _0297:
     End
 
 _02B9:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

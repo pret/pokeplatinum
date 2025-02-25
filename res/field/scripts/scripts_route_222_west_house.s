@@ -10,7 +10,7 @@
     ScriptEntry _0081
     ScriptEntry _00A0
     ScriptEntry _00BF
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     SetFlag 0x9EF
@@ -21,7 +21,7 @@ _0024:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 25, 0
+    PlayCry SPECIES_PIKACHU
     Message 0
     ScrCmd_04D
     WaitABXPadPress
@@ -34,7 +34,7 @@ _0043:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 25, 0
+    PlayCry SPECIES_PIKACHU
     Message 1
     ScrCmd_04D
     WaitABXPadPress
@@ -47,7 +47,7 @@ _0062:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 25, 0
+    PlayCry SPECIES_PIKACHU
     Message 2
     ScrCmd_04D
     WaitABXPadPress
@@ -60,7 +60,7 @@ _0081:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 25, 0
+    PlayCry SPECIES_PIKACHU
     Message 3
     ScrCmd_04D
     WaitABXPadPress
@@ -73,7 +73,7 @@ _00A0:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 25, 0
+    PlayCry SPECIES_PIKACHU
     Message 4
     ScrCmd_04D
     WaitABXPadPress

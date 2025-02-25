@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0010
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     SetFlag 0x9EA
@@ -18,14 +18,14 @@ _0010:
     GoToIfSet 0x100, _0041
     SetFlag 0x100
     Message 0
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _005B
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _005B
     GoTo _00A2
 
 _0041:
     Message 1
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _005B
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _005B
     GoTo _00A2
 
 _005B:

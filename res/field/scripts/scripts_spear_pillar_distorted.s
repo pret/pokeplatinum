@@ -11,18 +11,18 @@
     ScriptEntry _01F3
     ScriptEntry _0206
     ScriptEntry _0217
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     LockAll
     ClearFlag 0x2BA
-    ScrCmd_064 1
+    AddObject 1
     ScrCmd_1B2 1
-    ScrCmd_186 0, 32, 34
+    SetObjectEventPos 0, 32, 34
     ScrCmd_189 0, 0
     ScrCmd_188 0, 14
     ClearFlag 0x1CD
-    ScrCmd_064 0
+    AddObject 0
     ScrCmd_066 30, 30
     ApplyMovement 241, _016C
     WaitMovement
@@ -42,7 +42,7 @@ _0088:
     ApplyMovement 241, _0178
     WaitMovement
     ScrCmd_067
-    ApplyMovement 0xFF, _013C
+    ApplyMovement LOCALID_PLAYER, _013C
     ApplyMovement 0, _014C
     WaitMovement
     Message 4
@@ -56,9 +56,9 @@ _0088:
 
 _00DA:
     Message 6
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _00FD
-    GoToIfEq 0x800C, 1, _0130
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _00FD
+    GoToIfEq 0x800C, MENU_NO, _0130
     End
 
 _00FD:
@@ -122,9 +122,9 @@ _0184:
     LockAll
     FacePlayer
     Message 6
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _00FD
-    GoToIfEq 0x800C, 1, _01AF
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _00FD
+    GoToIfEq 0x800C, MENU_NO, _01AF
     End
 
 _01AF:

@@ -11,14 +11,14 @@
     ScriptEntry _0198
     ScriptEntry _01AE
     ScriptEntry _01C4
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_27E 0x800C
-    GoToIfEq 0x800C, 1, _0063
+    CheckIsDepartmentStoreRegular 0x800C
+    GoToIfEq 0x800C, TRUE, _0063
     Message 0
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 229, 1
@@ -110,11 +110,11 @@ _012B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_134 10, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_COUNTER, 0x800C
     GoToIfEq 0x800C, 1, _016F
     Message 10
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _017A
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _017A
     Message 11
     SetVar 0x8004, 10
     CallCommonScript 0x7D9

@@ -5,13 +5,13 @@
 
     ScriptEntry _000A
     ScriptEntry _0045
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_134 14, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, 0x800C
     GoToIfNe 0x800C, 0, _003A
     Message 0
     SetVar 0x8004, 14
@@ -32,7 +32,7 @@ _0045:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_134 14, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, 0x800C
     GoToIfNe 0x800C, 0, _0071
     GoTo _0066
 

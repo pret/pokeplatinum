@@ -9,7 +9,7 @@
     ScriptEntry _00B0
     ScriptEntry _00C0
     ScriptEntry _001A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     GetPlayerMapPos 0x4004, 0x4005
@@ -42,12 +42,12 @@ _004E:
 _0061:
     LockAll
     CheckPlayerOnBike 0x800C
-    GoToIfEq 0x800C, 1, _0091
+    GoToIfEq 0x800C, TRUE, _0091
     ApplyMovement 1, _00A0
     WaitMovement
     Message 1
     CloseMessage
-    ApplyMovement 0xFF, _00A8
+    ApplyMovement LOCALID_PLAYER, _00A8
     WaitMovement
     ReleaseAll
     End
@@ -83,7 +83,7 @@ _00C0:
     BufferPlayerName 0
     BufferCounterpartName 1
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _00F0
+    GoToIfEq 0x4000, GENDER_MALE, _00F0
     GoTo _00F9
 
 _00F0:

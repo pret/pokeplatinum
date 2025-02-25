@@ -26,7 +26,7 @@
     ScriptEntry _06B4
     ScriptEntry _012B
     ScriptEntry _00ED
-    .short 0xFD13
+    ScriptEntryEnd
 
 _005E:
     ScrCmd_20E
@@ -90,9 +90,9 @@ _00ED:
 _012B:
     LockAll
     Message 5
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfNe 0x800C, 0, _0174
+    GoToIfNe 0x800C, MENU_YES, _0174
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     Warp MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F, 0, 5, 2, 1
@@ -343,32 +343,32 @@ _06C2:
     End
 
 _06D0:
-    ApplyMovement 0xFF, _0718
+    ApplyMovement LOCALID_PLAYER, _0718
     WaitMovement
     Return
 
 _06DC:
-    ApplyMovement 0xFF, _0724
+    ApplyMovement LOCALID_PLAYER, _0724
     WaitMovement
     Return
 
 _06E8:
-    ApplyMovement 0xFF, _0730
+    ApplyMovement LOCALID_PLAYER, _0730
     WaitMovement
     Return
 
 _06F4:
-    ApplyMovement 0xFF, _073C
+    ApplyMovement LOCALID_PLAYER, _073C
     WaitMovement
     Return
 
 _0700:
-    ApplyMovement 0xFF, _0748
+    ApplyMovement LOCALID_PLAYER, _0748
     WaitMovement
     Return
 
 _070C:
-    ApplyMovement 0xFF, _0754
+    ApplyMovement LOCALID_PLAYER, _0754
     WaitMovement
     Return
 

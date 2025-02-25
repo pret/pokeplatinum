@@ -12,7 +12,7 @@
     ScriptEntry _0199
     ScriptEntry _01B4
     ScriptEntry _01CF
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0026:
     GoToIfLt 0x406B, 0x118, _0035
@@ -41,15 +41,15 @@ _003D:
     End
 
 _00AE:
-    ScrCmd_04C 0x179, 0
+    PlayCry SPECIES_REGIROCK
     Message 2
     ScrCmd_04D
     CloseMessage
     StartLegendaryBattle SPECIES_REGIROCK, 30
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0109
+    GoToIfEq 0x800C, FALSE, _0109
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _00F8
+    GoToIfEq 0x800C, TRUE, _00F8
     SetVar 0x406B, 0x122
     ReleaseAll
     End
@@ -66,7 +66,7 @@ _00F8:
     End
 
 _0109:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

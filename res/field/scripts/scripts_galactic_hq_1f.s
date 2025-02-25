@@ -11,7 +11,7 @@
     ScriptEntry _00DF
     ScriptEntry _0174
     ScriptEntry _00CC
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     SetFlag 0x9DD
@@ -21,7 +21,7 @@ _0028:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x15E, _0046
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _0046
     Message 0
     WaitABXPadPress
     CloseMessage
@@ -39,7 +39,7 @@ _0051:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x15E, _006F
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _006F
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -57,7 +57,7 @@ _007A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x15E, _0098
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _0098
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -75,7 +75,7 @@ _00A3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 0x15E, _00C1
+    GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, _00C1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -113,9 +113,9 @@ _00DF:
 
 _0107:
     Message 10
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _012A
-    GoToIfEq 0x800C, 1, _015E
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _012A
+    GoToIfEq 0x800C, MENU_NO, _015E
     End
 
 _012A:

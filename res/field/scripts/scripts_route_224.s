@@ -1,4 +1,6 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
+#include "generated/hidden_locations.h"
 #include "res/text/bank/route_224.h"
 
     .data
@@ -9,7 +11,7 @@
     ScriptEntry _00E4
     ScriptEntry _0458
     ScriptEntry _05F4
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     CallIfEq 0x4057, 1, _00AA
@@ -19,9 +21,9 @@ _001A:
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _0080
     CheckItem ITEM_OAKS_LETTER, 1, 0x4000
-    GoToIfEq 0x4000, 0, _0080
-    ScrCmd_28B 1, 0x4000
-    GoToIfEq 0x4000, 0, _0080
+    GoToIfEq 0x4000, FALSE, _0080
+    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, 0x4000
+    GoToIfEq 0x4000, FALSE, _0080
     ClearFlag 0x252
 _0080:
     End
@@ -75,7 +77,7 @@ _00E4:
     SetVar 0x408D, 1
     BufferPlayerName 0
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 1, _0219
+    GoToIfEq 0x800C, GENDER_FEMALE, _0219
     Message 0
 _0114:
     CloseMessage
@@ -93,15 +95,15 @@ _0124:
     BufferPlayerName 0
     ScrCmd_272 1
     Message 3
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 1, _0124
+    GoToIfEq 0x800C, MENU_NO, _0124
     Call _029A
     WaitTime 15, 0x800C
     FadeOutMusic 0, 10
     FadeScreen 6, 6, 0, 0x7FFF
     WaitFadeScreen
-    ScrCmd_270 3, 1
+    EnableHiddenLocation HIDDEN_LOCATION_SEABREAK_PATH
     ScrCmd_333 0
     Warp MAP_HEADER_ROUTE_224, 0, 0x38C, 0x1EC, 0
     WaitTime 15, 0x800C
@@ -130,7 +132,7 @@ _01F5:
     CloseMessage
     ApplyMovement 21, _05EC
     WaitMovement
-    ApplyMovement 0xFF, _0438
+    ApplyMovement LOCALID_PLAYER, _0438
     WaitMovement
     WaitTime 15, 0x800C
     Message 11
@@ -160,24 +162,24 @@ _0240:
     SetVar 0x8008, 0x8000
     GoToIfEq 0x8008, 0x38D, _0272
     GoToIfEq 0x8008, 0x38E, _0286
-    ApplyMovement 0xFF, _0328
+    ApplyMovement LOCALID_PLAYER, _0328
     WaitMovement
     Return
 
 _0272:
-    ApplyMovement 0xFF, _0338
+    ApplyMovement LOCALID_PLAYER, _0338
     ApplyMovement 3, _0364
     WaitMovement
     Return
 
 _0286:
-    ApplyMovement 0xFF, _034C
+    ApplyMovement LOCALID_PLAYER, _034C
     ApplyMovement 3, _0370
     WaitMovement
     Return
 
 _029A:
-    ApplyMovement 0xFF, _0384
+    ApplyMovement LOCALID_PLAYER, _0384
     ApplyMovement 3, _0384
     WaitMovement
     Return
@@ -188,21 +190,21 @@ _02AE:
 
 _02B8:
     ApplyMovement 3, _0404
-    ApplyMovement 0xFF, _03C8
+    ApplyMovement LOCALID_PLAYER, _03C8
     ApplyMovement 16, _0440
     WaitMovement
-    ScrCmd_04C 0x1EC, 0
+    PlayCry SPECIES_SHAYMIN
     ScrCmd_04D
     CallIfEq 0x4057, 2, _02AE
     ApplyMovement 3, _038C
     ApplyMovement 16, _03B0
-    ApplyMovement 0xFF, _039C
+    ApplyMovement LOCALID_PLAYER, _039C
     WaitMovement
     ApplyMovement 16, _0448
     WaitMovement
     SetFlag 0x25C
     RemoveObject 16
-    ScrCmd_04C 0x1EC, 0
+    PlayCry SPECIES_SHAYMIN
     ScrCmd_04D
     ApplyMovement 3, _03C0
     WaitMovement
@@ -346,8 +348,8 @@ _0458:
     End
 
 _048D:
-    ScrCmd_186 21, 0x386, 0x1F8
-    ScrCmd_064 21
+    SetObjectEventPos 21, 0x386, 0x1F8
+    AddObject 21
     ScrCmd_062 21
     ApplyMovement 21, _0598
     WaitMovement
@@ -355,8 +357,8 @@ _048D:
     End
 
 _04AF:
-    ScrCmd_186 21, 0x386, 0x1F9
-    ScrCmd_064 21
+    SetObjectEventPos 21, 0x386, 0x1F9
+    AddObject 21
     ScrCmd_062 21
     ApplyMovement 21, _05A4
     WaitMovement
@@ -364,8 +366,8 @@ _04AF:
     End
 
 _04D1:
-    ScrCmd_186 21, 0x386, 0x1FA
-    ScrCmd_064 21
+    SetObjectEventPos 21, 0x386, 0x1FA
+    AddObject 21
     ScrCmd_062 21
     ApplyMovement 21, _05B0
     WaitMovement
@@ -373,7 +375,7 @@ _04D1:
     End
 
 _04F3:
-    ApplyMovement 0xFF, _0628
+    ApplyMovement LOCALID_PLAYER, _0628
     WaitMovement
     Message 9
     CloseMessage
@@ -385,21 +387,21 @@ _04F3:
 
 _0531:
     ApplyMovement 21, _05BC
-    ApplyMovement 0xFF, _0630
+    ApplyMovement LOCALID_PLAYER, _0630
     WaitMovement
     GoTo _057F
     End
 
 _054B:
     ApplyMovement 21, _05CC
-    ApplyMovement 0xFF, _0644
+    ApplyMovement LOCALID_PLAYER, _0644
     WaitMovement
     GoTo _057F
     End
 
 _0565:
     ApplyMovement 21, _05DC
-    ApplyMovement 0xFF, _0658
+    ApplyMovement LOCALID_PLAYER, _0658
     WaitMovement
     GoTo _057F
     End

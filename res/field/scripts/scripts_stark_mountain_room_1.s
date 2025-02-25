@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0014
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     SetFlag 0x9D2
@@ -22,7 +22,7 @@ _0014:
     WaitMovement
     StartTrainerBattle TRAINER_COMMANDER_MARS_STARK_MOUNTAIN
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0150
+    GoToIfEq 0x800C, FALSE, _0150
     Message 1
     CloseMessage
     ApplyMovement 0, _0168
@@ -35,7 +35,7 @@ _0014:
     WaitMovement
     StartTrainerBattle TRAINER_COMMANDER_JUPITER_STARK_MOUNTAIN
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0150
+    GoToIfEq 0x800C, FALSE, _0150
     Message 3
     CloseMessage
     WaitTime 15, 0x800C
@@ -52,7 +52,7 @@ _0014:
     Message 6
     CloseMessage
     ApplyMovement 0, _0190
-    ApplyMovement 0xFF, _01A4
+    ApplyMovement LOCALID_PLAYER, _01A4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     WaitFanfare SEQ_SE_DP_KAIDAN2
@@ -65,7 +65,7 @@ _0014:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ApplyMovement 14, _0200
-    ApplyMovement 0xFF, _01B4
+    ApplyMovement LOCALID_PLAYER, _01B4
     WaitMovement
     Message 8
     Message 9
@@ -84,7 +84,7 @@ _0014:
     End
 
 _0150:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

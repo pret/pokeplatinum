@@ -219,13 +219,13 @@ static int ov79_021D0FB0(UnkStruct_ov79_021D0E1C *param0)
         { 0xFF, 0x0, 0x0, 0x0 }
     };
 
-    v0 = sub_02022664(v2);
+    v0 = TouchScreen_CheckRectanglePressed(v2);
 
     if (v0 != 0xffffffff) {
         return v0;
     }
 
-    v0 = sub_02022644(v2);
+    v0 = TouchScreen_CheckRectangleHeld(v2);
 
     if (v0 == 0xffffffff) {
         if (param0->unk_14 == 1) {

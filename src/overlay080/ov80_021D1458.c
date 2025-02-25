@@ -378,7 +378,7 @@ static int ov80_021D1848(UnkStruct_ov80_021D2A08 *param0, int param1)
         { 0xff, 0, 0, 0 }
     };
 
-    v0 = sub_02022664(&(v2[1 - param1]));
+    v0 = TouchScreen_CheckRectanglePressed(&(v2[1 - param1]));
 
     if ((v0 == 0xffffffff) || (param1 == 1)) {
         return v0;

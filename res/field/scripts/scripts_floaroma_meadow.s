@@ -10,7 +10,7 @@
     ScriptEntry _01DA
     ScriptEntry _02EF
     ScriptEntry _0306
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     SetFlag 0x9CE
@@ -21,18 +21,18 @@ _0024:
     Call _00CC
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_1
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _006E
+    GoToIfEq 0x800C, FALSE, _006E
     Call _00EE
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_FLOAROMA_MEADOW_2
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _006E
+    GoToIfEq 0x800C, FALSE, _006E
     Call _010E
     SetFlag 0x989
     ReleaseAll
     End
 
 _006E:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -119,7 +119,7 @@ _010E:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ClearFlag 0x19E
-    ScrCmd_064 3
+    AddObject 3
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 12, _01BA
     CallIfEq 0x8004, 13, _01C6

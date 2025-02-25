@@ -8,16 +8,16 @@
     ScriptEntry _008B
     ScriptEntry _009E
     ScriptEntry _00B1
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     ScrCmd_072 20, 2
     Message 0
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _003E
+    GoToIfEq 0x800C, MENU_YES, _003E
     ScrCmd_073
     ReleaseAll
     End

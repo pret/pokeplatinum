@@ -24,7 +24,7 @@
     ScriptEntry _0601
     ScriptEntry _0652
     ScriptEntry _074C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0056:
     CallIfEq 0x40D5, 6, _0065
@@ -44,12 +44,12 @@ _0077:
     ScrCmd_168 0, 0, 8, 2, 77
     Call _00C5
     ScrCmd_1B1 0xFF
-    ApplyMovement 0xFF, _00D8
+    ApplyMovement LOCALID_PLAYER, _00D8
     WaitMovement
     Call _00CD
     ScrCmd_168 0, 0, 8, 4, 77
     Call _00C5
-    ApplyMovement 0xFF, _00E8
+    ApplyMovement LOCALID_PLAYER, _00E8
     WaitMovement
     Call _00CD
     SetVar 0x40D5, 0
@@ -170,19 +170,19 @@ _020D:
     SetVar 0x40D5, 6
     Message 7
     CloseMessage
-    ApplyMovement 0xFF, _0344
+    ApplyMovement LOCALID_PLAYER, _0344
     WaitMovement
     ScrCmd_168 0, 0, 8, 4, 77
     Call _00C5
-    ApplyMovement 0xFF, _0358
+    ApplyMovement LOCALID_PLAYER, _0358
     WaitMovement
     Call _00CD
     ScrCmd_168 0, 0, 8, 2, 77
     Call _00C5
-    ApplyMovement 0xFF, _0350
+    ApplyMovement LOCALID_PLAYER, _0350
     WaitMovement
     ScrCmd_1B2 0xFF
-    ApplyMovement 0xFF, _0360
+    ApplyMovement LOCALID_PLAYER, _0360
     WaitMovement
     Call _00CD
     FadeScreen 6, 1, 0, 0
@@ -458,9 +458,9 @@ _0546:
     GoToIfEq 0x800C, 0, _05CB
     BufferPartyMonSpecies 0, 0
     Message 18
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _05AB
-    GoToIfEq 0x800C, 1, _05B8
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _05AB
+    GoToIfEq 0x800C, MENU_NO, _05B8
     End
 
 _05A0:
@@ -487,9 +487,9 @@ _05B8:
 
 _05CB:
     Message 19
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _05AB
-    GoToIfEq 0x800C, 1, _05EE
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _05AB
+    GoToIfEq 0x800C, MENU_NO, _05EE
     End
 
 _05EE:
@@ -508,8 +508,8 @@ _0601:
     LockAll
     FacePlayer
     Message 29
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0647
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0647
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage

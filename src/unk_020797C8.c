@@ -371,16 +371,16 @@ void sub_02079C50(PCBoxes *param0, u32 param1, u32 param2, int param3, void *par
     SaveData_SetFullSaveRequired();
 }
 
-BoxPokemon *sub_02079C9C(const PCBoxes *param0, u32 param1, u32 param2)
+BoxPokemon *GetBoxedPokemonFrom(const PCBoxes *pcBoxes, u32 boxIndex, u32 pokemonBoxLocationIndex)
 {
-    GF_ASSERT((param1 < 18) || (param1 == 0xffffffff));
-    GF_ASSERT(param2 < (5 * 6));
+    GF_ASSERT((boxIndex < 18) || (boxIndex == 0xffffffff));
+    GF_ASSERT(pokemonBoxLocationIndex < (5 * 6));
 
-    if (param1 == 0xffffffff) {
-        param1 = param0->unk_00;
+    if (boxIndex == 0xffffffff) {
+        boxIndex = pcBoxes->unk_00;
     }
 
-    return (BoxPokemon *)&(param0->unk_04[param1][param2]);
+    return (BoxPokemon *)&(pcBoxes->unk_04[boxIndex][pokemonBoxLocationIndex]);
 }
 
 void sub_02079CD8(PCBoxes *param0, u32 param1)

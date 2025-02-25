@@ -7,7 +7,7 @@
     ScriptEntry _0023
     ScriptEntry _003A
     ScriptEntry _004D
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM
@@ -39,14 +39,14 @@ _003A:
 _004D:
     LockAll
     ClearFlag 0x297
-    ScrCmd_064 15
+    AddObject 15
     GetPlayerMapPos 0x8004, 0x8005
     CallIfEq 0x8004, 0x12E, _00CA
     CallIfEq 0x8004, 0x12F, _00D6
     BufferPlayerName 0
     Message 0
     CloseMessage
-    ApplyMovement 0xFF, _010C
+    ApplyMovement LOCALID_PLAYER, _010C
     WaitMovement
     ApplyMovement 15, _014C
     WaitMovement
@@ -72,13 +72,13 @@ _00D6:
     Return
 
 _00E2:
-    ApplyMovement 0xFF, _0114
+    ApplyMovement LOCALID_PLAYER, _0114
     ApplyMovement 15, _0154
     WaitMovement
     Return
 
 _00F6:
-    ApplyMovement 0xFF, _0114
+    ApplyMovement LOCALID_PLAYER, _0114
     ApplyMovement 15, _0168
     WaitMovement
     Return

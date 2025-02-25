@@ -7,7 +7,7 @@
     ScriptEntry _0054
     ScriptEntry _0067
     ScriptEntry _007A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM
@@ -61,8 +61,8 @@ _007A:
     LockAll
     FacePlayer
     Message 4
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _009C
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _009C
     GoTo _015B
 
 _009C:

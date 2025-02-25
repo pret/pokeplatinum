@@ -9,7 +9,7 @@
     ScriptEntry _0674
     ScriptEntry _0685
     ScriptEntry _0747
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -25,15 +25,15 @@ _001A:
     SetFlag 121
     ClearFlag 0x111
     Message 1
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _009C
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _009C
     SetFlag 0x113
     GoTo _0164
 
 _007E:
     Message 2
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _009C
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _009C
     SetFlag 0x113
     GoTo _0164
 

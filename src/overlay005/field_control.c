@@ -36,7 +36,6 @@
 #include "encounter.h"
 #include "field_comm_manager.h"
 #include "field_map_change.h"
-#include "field_menu.h"
 #include "field_overworld_state.h"
 #include "game_records.h"
 #include "inlines.h"
@@ -51,8 +50,10 @@
 #include "pokeradar.h"
 #include "save_player.h"
 #include "script_manager.h"
+#include "start_menu.h"
 #include "system.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_020261E4.h"
@@ -67,7 +68,6 @@
 #include "unk_0205F180.h"
 #include "unk_02067A84.h"
 #include "unk_020683F4.h"
-#include "unk_0206AFE0.h"
 #include "unk_02071B10.h"
 #include "vars_flags.h"
 
@@ -331,7 +331,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 
     if (input->menu && sub_0203A9C8(fieldSystem) == TRUE) {
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
-        FieldMenu_Init(fieldSystem);
+        StartMenu_Init(fieldSystem);
         return TRUE;
     }
 
@@ -534,7 +534,7 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
 
     if (input->menu) {
         Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
-        FieldMenu_Init(fieldSystem);
+        StartMenu_Init(fieldSystem);
         return TRUE;
     }
 
@@ -761,7 +761,7 @@ static BOOL Field_ProcessStep(FieldSystem *fieldSystem)
         Field_CalculateFriendship(fieldSystem);
     }
 
-    sub_0206B238(SaveData_GetVarsFlags(fieldSystem->saveData));
+    SystemVars_IncrementAmitySquareStepCount(SaveData_GetVarsFlags(fieldSystem->saveData));
     return FALSE;
 }
 
@@ -865,7 +865,7 @@ static BOOL Field_UpdateFriendship(FieldSystem *fieldSystem)
     BOOL ret = FALSE;
 
     vars = SaveData_GetVarsFlags(fieldSystem->saveData);
-    u16 steps = sub_0206B44C(vars);
+    u16 steps = SystemVars_GetFriendshipStepCount(vars);
 
     steps++;
 
@@ -874,7 +874,7 @@ static BOOL Field_UpdateFriendship(FieldSystem *fieldSystem)
         ret = TRUE;
     }
 
-    sub_0206B45C(vars, steps);
+    SystemVars_SetFriendshipStepCount(vars, steps);
 
     return ret;
 }

@@ -11,7 +11,7 @@
     ScriptEntry _0BC0
     ScriptEntry _0BD3
     ScriptEntry _0BE3
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     End
@@ -281,8 +281,8 @@ _04AD:
     ScrCmd_13A
     ScrCmd_13F 10, 0x800C
     MessageVar 0x800C
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0522
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0522
     ScrCmd_146 0x8004, 0x800C
     GoToIfEq 0x800C, 5, _0486
     ScrCmd_141 0x800C
@@ -312,8 +312,8 @@ _053A:
     ScrCmd_13A
     ScrCmd_13F 11, 0x800C
     MessageVar 0x800C
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0646
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0646
     ScrCmd_146 0x8004, 0x800C
     GoToIfEq 0x800C, 5, _0486
     ScrCmd_141 0x800C
@@ -334,8 +334,8 @@ _05AF:
     ScrCmd_13A
     ScrCmd_13F 12, 0x800C
     MessageVar 0x800C
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _065E
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _065E
     ScrCmd_19D 0x800C
     GoToIfEq 0x800C, 0, _068A
     ScrCmd_2B7 0x800C
@@ -528,8 +528,8 @@ _07D4:
 
 _0853:
     Message 11
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _08B6
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _08B6
     ScrCmd_143 1, 0
     CloseMessage
     ScrCmd_144 0x800C
@@ -556,8 +556,8 @@ _08B6:
 
 _08C7:
     Message 26
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _093A
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _093A
     GetPartyCountHatched 0x800C
     GoToIfLt 0x800C, 2, _094B
     ScrCmd_143 1, 0
@@ -592,8 +592,8 @@ _094B:
 
 _095C:
     Message 21
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0A06
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0A06
     ScrCmd_1F6 0x800C, 30
     GoToIfLt 0x800C, 2, _0A17
     ScrCmd_143 1, 0
@@ -637,8 +637,8 @@ _0A17:
 
 _0A28:
     Message 30
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0A06
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0A06
     ScrCmd_143 1, 0
     CloseMessage
     ScrCmd_144 0x800C
@@ -658,8 +658,8 @@ _0A28:
 
 _0A82:
     Message 33
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0A06
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0A06
     ScrCmd_143 1, 0
     CloseMessage
     ScrCmd_19D 0x800C
@@ -681,8 +681,8 @@ _0A82:
 
 _0AED:
     Message 18
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0B47
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0B47
     ScrCmd_143 1, 0
     CloseMessage
     ScrCmd_144 0x800C

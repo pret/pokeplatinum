@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
@@ -42,9 +42,9 @@ _0091:
     End
 
 _009B:
-    ScrCmd_21C 3
-    ScrCmd_21C 4
-    ScrCmd_21C 5
+    ActivateRoamingPokemon ROAMING_SLOT_MOLTRES
+    ActivateRoamingPokemon ROAMING_SLOT_ZAPDOS
+    ActivateRoamingPokemon ROAMING_SLOT_ARTICUNO
     SetFlag 153
     Message 3
     GoTo _0150
@@ -60,17 +60,17 @@ _00B3:
 
 _00E5:
     SetVar 0x405E, 0
-    ScrCmd_21C 3
+    ActivateRoamingPokemon ROAMING_SLOT_MOLTRES
     Return
 
 _00F0:
     SetVar 0x405F, 0
-    ScrCmd_21C 4
+    ActivateRoamingPokemon ROAMING_SLOT_ZAPDOS
     Return
 
 _00FB:
     SetVar 0x4060, 0
-    ScrCmd_21C 5
+    ActivateRoamingPokemon ROAMING_SLOT_ARTICUNO
     Return
 
 _0106:

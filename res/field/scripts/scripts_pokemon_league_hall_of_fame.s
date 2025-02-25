@@ -1,14 +1,15 @@
 #include "macros/scrcmd.inc"
+#include "generated/hidden_locations.h"
 #include "res/text/bank/pokemon_league_hall_of_fame.h"
 
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     LockAll
-    ApplyMovement 0xFF, _0124
+    ApplyMovement LOCALID_PLAYER, _0124
     WaitMovement
     ApplyMovement 1, _0134
     WaitMovement
@@ -21,8 +22,8 @@ _0006:
     WaitMovement
     WaitTime 15, 0x800C
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0074
-    GoToIfEq 0x800C, 1, _0080
+    GoToIfEq 0x800C, GENDER_MALE, _0074
+    GoToIfEq 0x800C, GENDER_FEMALE, _0080
     End
 
 _0074:
@@ -37,13 +38,13 @@ _0080:
 
 _008C:
     CloseMessage
-    ApplyMovement 0xFF, _012C
+    ApplyMovement LOCALID_PLAYER, _012C
     ApplyMovement 1, _014C
     ApplyMovement 0, _0164
     WaitMovement
     Message 6
     CloseMessage
-    SetFlag 0x982
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_4
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 1, _010A
     CallIfEq 0x40F4, 0, _0102
@@ -65,7 +66,7 @@ _0102:
     Return
 
 _010A:
-    ScrCmd_270 2, 1
+    EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
     Return
 
 _0111:
@@ -126,10 +127,10 @@ _0174:
     CallIfUnset 209, _0244
     CallIfUnset 0x120, _024C
     CallIfUnset 0x11B, _0263
-    CallIfUnset 0x126, _027B
-    CallIfUnset 0x127, _0281
+    CallIfUnset FLAG_AZELF_CAUGHT, PokemonLeagueHallOfFame_ClearFlagAzelfDisappeared
+    CallIfUnset FLAG_UXIE_CAUGHT, PokemonLeagueHallOfFame_ClearFlagUxieDisappeared
     CallIfUnset 0x121, _0287
-    CallIfEq 0x4059, 2, _028D
+    CallIfEq VAR_ROAMING_MESPRIT_STATE, 2, PokemonLeagueHallOfFame_ClearFlagMespritDisappeared
     CallIfEq 0x4058, 2, _0299
     CallIfEq 0x405E, 2, _02A5
     CallIfEq 0x405F, 2, _02AD
@@ -168,21 +169,21 @@ _0263:
 _0279:
     Return
 
-_027B:
-    ClearFlag 0x1E0
+PokemonLeagueHallOfFame_ClearFlagAzelfDisappeared:
+    ClearFlag FLAG_AZELF_DISAPPEARED
     Return
 
-_0281:
-    ClearFlag 0x1E1
+PokemonLeagueHallOfFame_ClearFlagUxieDisappeared:
+    ClearFlag FLAG_UXIE_DISAPPEARED
     Return
 
 _0287:
     ClearFlag 0x250
     Return
 
-_028D:
-    ClearFlag 0x1DF
-    SetVar 0x4059, 3
+PokemonLeagueHallOfFame_ClearFlagMespritDisappeared:
+    ClearFlag FLAG_MESPRIT_DISAPPEARED
+    SetVar VAR_ROAMING_MESPRIT_STATE, 3
     Return
 
 _0299:

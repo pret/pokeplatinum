@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
@@ -14,19 +14,19 @@ _0006:
     GetTimeOfDay 0x800C
     GoToIfLt 0x800C, 3, _009C
     Message 1
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0096
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0096
     BufferPlayerName 0
     Message 2
     CloseMessage
-    ScrCmd_04C 0x1DF, 0
+    PlayCry SPECIES_ROTOM
     ScrCmd_04D
     SetFlag 0xAB0
     StartWildBattle SPECIES_ROTOM, 20
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00A7
+    GoToIfEq 0x800C, FALSE, _00A7
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _008B
+    GoToIfEq 0x800C, TRUE, _008B
     SetFlag 0x149
     ReleaseAll
     End
@@ -51,7 +51,7 @@ _009C:
     End
 
 _00A7:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

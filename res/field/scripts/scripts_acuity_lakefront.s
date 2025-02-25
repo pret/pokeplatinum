@@ -7,7 +7,7 @@
     ScriptEntry _0012
     ScriptEntry _0083
     ScriptEntry _009A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     GoToIfUnset 186, _002A
@@ -15,13 +15,13 @@ _0012:
     End
 
 _002A:
-    ScrCmd_18A 2, 0x131, 229
-    ScrCmd_18A 3, 0x132, 229
+    SetWarpEventPos 2, 0x131, 229
+    SetWarpEventPos 3, 0x132, 229
     End
 
 _003C:
-    ScrCmd_18A 0, 0x131, 229
-    ScrCmd_18A 1, 0x132, 229
+    SetWarpEventPos 0, 0x131, 229
+    SetWarpEventPos 1, 0x132, 229
     End
 
 _004E:

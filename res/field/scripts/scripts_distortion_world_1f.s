@@ -8,7 +8,7 @@
     ScriptEntry _0070
     ScriptEntry _011D
     ScriptEntry _012A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     ScrCmd_2F2
@@ -18,8 +18,8 @@ _001A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 7
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _003A
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _003A
     CloseMessage
     ReleaseAll
     End
@@ -39,9 +39,9 @@ _003A:
 
 _0070:
     LockAll
-    ApplyMovement 0xFF, _0140
+    ApplyMovement LOCALID_PLAYER, _0140
     WaitMovement
-    ApplyMovement 0xFF, _014C
+    ApplyMovement LOCALID_PLAYER, _014C
     WaitMovement
     ScrCmd_311 128
     ApplyMovement 128, _017C
@@ -56,11 +56,11 @@ _0070:
     WaitMovement
     Message 2
     CloseMessage
-    ApplyMovement 0xFF, _0154
+    ApplyMovement LOCALID_PLAYER, _0154
     ApplyMovement 128, _01AC
     WaitMovement
     ScrCmd_321 0
-    ApplyMovement 0xFF, _0160
+    ApplyMovement LOCALID_PLAYER, _0160
     ApplyMovement 128, _01B4
     WaitMovement
     WaitTime 30, 0x800C
@@ -68,7 +68,7 @@ _0070:
     Message 3
     WaitABXPadPress
     CloseMessage
-    ApplyMovement 0xFF, _0174
+    ApplyMovement LOCALID_PLAYER, _0174
     ApplyMovement 128, _01C4
     WaitMovement
     Message 4

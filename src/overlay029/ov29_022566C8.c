@@ -7,8 +7,6 @@
 #include "overlay025/ov25_02255090.h"
 #include "overlay025/ov25_02255540.h"
 #include "overlay025/poketch_system.h"
-#include "overlay025/struct_ov25_0225517C.h"
-#include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_02255810.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -33,7 +31,7 @@ struct UnkStruct_ov29_022566C8_t {
 };
 
 static BOOL ov29_02256728(UnkStruct_ov29_022566C8 *param0);
-static void ov29_022567F0(UnkStruct_ov25_02255224 *param0);
+static void ov29_022567F0(PoketchTaskManager *param0);
 static void ov29_02256804(SysTask *param0, void *param1);
 static void ov29_02256908(SysTask *param0, void *param1);
 static void ov29_02256950(SysTask *param0, void *param1);
@@ -49,11 +47,11 @@ BOOL ov29_022566C8(UnkStruct_ov29_022566C8 **param0, const UnkStruct_ov29_022566
 
     if (v0 != NULL) {
         GF_ASSERT(GF_heap_c_dummy_return_true(7));
-        ov25_02255090(v0->unk_08, 16);
+        PoketchTask_InitActiveTaskList(v0->unk_08, 16);
 
         GF_ASSERT(GF_heap_c_dummy_return_true(7));
         v0->unk_00 = param1;
-        v0->unk_04 = ov25_02254674();
+        v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_50 = ov25_02254664();
 
         GF_ASSERT(GF_heap_c_dummy_return_true(7));
@@ -100,7 +98,7 @@ void ov29_02256770(UnkStruct_ov29_022566C8 *param0)
     }
 }
 
-static const UnkStruct_ov25_0225517C Unk_ov29_02256BB0[] = {
+static const PoketchTask Unk_ov29_02256BB0[] = {
     { 0x0, ov29_02256804, 0x0 },
     { 0x1, ov29_02256908, 0x0 },
     { 0x2, ov29_02256950, 0x0 },
@@ -112,23 +110,23 @@ static const UnkStruct_ov25_0225517C Unk_ov29_02256BB0[] = {
 
 void ov29_022567B4(UnkStruct_ov29_022566C8 *param0, u32 param1)
 {
-    ov25_0225517C(Unk_ov29_02256BB0, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
+    PoketchTask_Start(Unk_ov29_02256BB0, param1, param0, param0->unk_00, param0->unk_08, 2, 8);
 }
 
 BOOL ov29_022567D8(UnkStruct_ov29_022566C8 *param0, u32 param1)
 {
-    return ov25_02255130(param0->unk_08, param1);
+    return PoketchTask_TaskIsNotActive(param0->unk_08, param1);
 }
 
 BOOL ov29_022567E4(UnkStruct_ov29_022566C8 *param0)
 {
-    return ov25_02255154(param0->unk_08);
+    return PoketchTask_NoActiveTasks(param0->unk_08);
 }
 
-static void ov29_022567F0(UnkStruct_ov25_02255224 *param0)
+static void ov29_022567F0(PoketchTaskManager *param0)
 {
-    UnkStruct_ov29_022566C8 *v0 = ov25_0225523C(param0);
-    ov25_02255224(v0->unk_08, param0);
+    UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param0);
+    PoketchTask_EndTask(v0->unk_08, param0);
 }
 
 static void ov29_02256804(SysTask *param0, void *param1)
@@ -168,7 +166,7 @@ static void ov29_02256804(SysTask *param0, void *param1)
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
-    v3 = ov25_0225523C(param1);
+    v3 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v3->unk_04, 6, &v0, 0);
     Bg_InitFromTemplate(v3->unk_04, 7, &v1, 0);
@@ -177,7 +175,7 @@ static void ov29_02256804(SysTask *param0, void *param1)
 
     Graphics_LoadTilesToBgLayer(12, 30, v3->unk_04, 6, 0, 0, 1, 8);
     Graphics_LoadTilemapToBgLayer(12, 31, v3->unk_04, 6, 0, 0, 1, 8);
-    ov25_022546B8(0, 0);
+    Poketch_LoadActivePalette(0, 0);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
@@ -203,7 +201,7 @@ static void ov29_02256908(SysTask *param0, void *param1)
 {
     UnkStruct_ov29_022566C8 *v0;
 
-    v0 = ov25_0225523C(param1);
+    v0 = PoketchTask_GetTaskData(param1);
 
     if (v0->unk_00->unk_00 == 1) {
         ov25_022558C4(v0->unk_68[0], 0);
@@ -221,7 +219,7 @@ static void ov29_02256950(SysTask *param0, void *param1)
 {
     UnkStruct_ov29_022566C8 *v0;
 
-    v0 = ov25_0225523C(param1);
+    v0 = PoketchTask_GetTaskData(param1);
     Window_LoadTiles(v0->unk_70);
     ov29_022567F0(param1);
 }
@@ -251,7 +249,7 @@ static void ov29_022569DC(SysTask *param0, void *param1)
     s32 v0, v1;
     UnkStruct_ov29_022566C8 *v2;
 
-    v2 = ov25_0225523C(param1);
+    v2 = PoketchTask_GetTaskData(param1);
 
     if (v2->unk_00->unk_00 == 0) {
         int v3, v4;
@@ -287,7 +285,7 @@ static void ov29_02256A7C(SysTask *param0, void *param1)
 {
     UnkStruct_ov29_022566C8 *v0;
 
-    v0 = ov25_0225523C(param1);
+    v0 = PoketchTask_GetTaskData(param1);
 
     Window_LoadTiles(v0->unk_70);
     ov29_022567F0(param1);
@@ -295,7 +293,7 @@ static void ov29_02256A7C(SysTask *param0, void *param1)
 
 static void ov29_02256A94(SysTask *param0, void *param1)
 {
-    UnkStruct_ov29_022566C8 *v0 = ov25_0225523C(param1);
+    UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param1);
 
     ov29_02256B18(v0);
     Bg_FreeTilemapBuffer(v0->unk_04, 6);

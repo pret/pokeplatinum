@@ -28,7 +28,7 @@
     ScriptEntry _089D
     ScriptEntry _08B0
     ScriptEntry _083C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0066:
     GoToIfEq 0x4081, 1, _0082
@@ -36,7 +36,7 @@ _0066:
     End
 
 _0082:
-    ScrCmd_186 7, 0x28F, 0x1AA
+    SetObjectEventPos 7, 0x28F, 0x1AA
     ScrCmd_188 7, 14
     ScrCmd_189 7, 0
     End
@@ -109,24 +109,24 @@ _00D8:
     ScrCmd_32D
     ApplyMovement 7, _0340
     WaitMovement
-    ApplyMovement 0xFF, _03DC
+    ApplyMovement LOCALID_PLAYER, _03DC
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
     Message 0
     CloseMessage
     CallCommonScript 0x800
-    ApplyMovement 0xFF, _03E4
+    ApplyMovement LOCALID_PLAYER, _03E4
     ApplyMovement 7, _0354
     WaitMovement
     CallCommonScript 0x801
     SetVar 0x4081, 1
     ScrCmd_32E
     Message 1
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _02EE
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _02EE
     Call _014E
-    GoToIfEq 0x800C, 0, _0306
+    GoToIfEq 0x800C, FALSE, _0306
     Call _0198
     ReleaseAll
     End
@@ -135,7 +135,7 @@ _014E:
     BufferRivalName 0
     Message 2
     CloseMessage
-    ApplyMovement 0xFF, _03F8
+    ApplyMovement LOCALID_PLAYER, _03F8
     ApplyMovement 7, _0370
     WaitMovement
     ApplyMovement 25, _0448
@@ -145,8 +145,8 @@ _014E:
     WaitMovement
     Message 8
     CloseMessage
-    Call _030C
-    StartTagBattle 0x8004, 0x399, 0x39A
+    Call FightArea_SetRivalPartnerTeam
+    StartTagBattle 0x8004, TRAINER_LEADER_VOLKNER_FIGHT_AREA, TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA
     CheckWonBattle 0x800C
     Return
 
@@ -171,18 +171,18 @@ _0198:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     ApplyMovement 7, _0378
-    ApplyMovement 0xFF, _0400
+    ApplyMovement LOCALID_PLAYER, _0400
     WaitMovement
     BufferRivalName 0
     Message 12
     ClearFlag 0x1E3
-    ScrCmd_064 26
+    AddObject 26
     ScrCmd_04A 0x5DC
     PlayFanfare SEQ_SE_DP_WALL_HIT2
     MessageInstant 13
     ApplyMovement 26, _03B4
     ApplyMovement 7, _0380
-    ApplyMovement 0xFF, _0408
+    ApplyMovement LOCALID_PLAYER, _0408
     WaitMovement
     ApplyMovement 26, _03BC
     WaitMovement
@@ -209,16 +209,16 @@ _0198:
     Message 20
     CloseMessage
     ApplyMovement 7, _03A4
-    ApplyMovement 0xFF, _0428
+    ApplyMovement LOCALID_PLAYER, _0428
     WaitMovement
     RemoveObject 7
     ApplyMovement 8, _0478
-    ApplyMovement 0xFF, _043C
+    ApplyMovement LOCALID_PLAYER, _043C
     WaitMovement
     Message 22
     CloseMessage
     ApplyMovement 8, _0484
-    ApplyMovement 0xFF, _041C
+    ApplyMovement LOCALID_PLAYER, _041C
     WaitMovement
     RemoveObject 8
     ScrCmd_22D 2, 0x800C
@@ -243,17 +243,17 @@ _02EE:
     End
 
 _0306:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
-_030C:
+FightArea_SetRivalPartnerTeam:
     GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, 0x39D
+    SetVar 0x8004, TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR
     GoToIfEq 0x800C, SPECIES_CHIMCHAR, _033E
-    SetVar 0x8004, 0x39C
+    SetVar 0x8004, TRAINER_RIVAL_FIGHT_AREA_TURTWIG
     GoToIfEq 0x800C, SPECIES_TURTWIG, _033E
-    SetVar 0x8004, 0x39B
+    SetVar 0x8004, TRAINER_RIVAL_FIGHT_AREA_PIPLUP
     Return
 
 _033E:
@@ -541,8 +541,8 @@ _0521:
     BufferItemName 0, 0x1BF
     GoToIfSet 107, _057A
     Message 42
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _056F
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _056F
     Message 43
     SetVar 0x8004, 0x1BF
     SetVar 0x8005, 1
@@ -597,11 +597,11 @@ _05CA:
     LockAll
     FacePlayer
     FacePlayer
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     Message 38
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0606
-    GoToIfEq 0x800C, 1, _05FB
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0606
+    GoToIfEq 0x800C, MENU_NO, _05FB
     End
 
 _05FB:
@@ -631,26 +631,26 @@ _0646:
     Return
 
 _0660:
-    ApplyMovement 0xFF, _06C4
+    ApplyMovement LOCALID_PLAYER, _06C4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _06BC
+    ApplyMovement LOCALID_PLAYER, _06BC
     WaitMovement
     Return
 
 _067A:
-    ApplyMovement 0xFF, _06D0
+    ApplyMovement LOCALID_PLAYER, _06D0
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _06BC
+    ApplyMovement LOCALID_PLAYER, _06BC
     WaitMovement
     Return
 
 _0694:
-    ApplyMovement 0xFF, _06E0
+    ApplyMovement LOCALID_PLAYER, _06E0
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _06BC
+    ApplyMovement LOCALID_PLAYER, _06BC
     WaitMovement
     Return
 
@@ -691,38 +691,38 @@ _06F0:
     FacePlayer
     ApplyMovement 7, _07A0
     WaitMovement
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     CallIfEq 0x8004, 3, _076E
     CallIfEq 0x8004, 2, _077A
     CallIfEq 0x8004, 1, _0786
     CallIfEq 0x8004, 0, _0792
     BufferRivalName 0
     Message 4
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _02EE
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _02EE
     Call _014E
-    GoToIfEq 0x800C, 0, _0306
+    GoToIfEq 0x800C, FALSE, _0306
     Call _0198
     ReleaseAll
     End
 
 _076E:
-    ApplyMovement 0xFF, _07A8
+    ApplyMovement LOCALID_PLAYER, _07A8
     WaitMovement
     Return
 
 _077A:
-    ApplyMovement 0xFF, _07B0
+    ApplyMovement LOCALID_PLAYER, _07B0
     WaitMovement
     Return
 
 _0786:
-    ApplyMovement 0xFF, _07C0
+    ApplyMovement LOCALID_PLAYER, _07C0
     WaitMovement
     Return
 
 _0792:
-    ApplyMovement 0xFF, _07D0
+    ApplyMovement LOCALID_PLAYER, _07D0
     WaitMovement
     Return
 

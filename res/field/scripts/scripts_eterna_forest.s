@@ -15,7 +15,7 @@
     ScriptEntry _050C
     ScriptEntry _0032
     ScriptEntry _051D
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0032:
     GoToIfUnset 227, _003F
@@ -27,7 +27,7 @@ _003F:
 
 _0047:
     LockAll
-    SetPlayerBike 0
+    SetPlayerBike FALSE
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 28, _006E
     GoToIfEq 0x8004, 29, _007E
@@ -55,7 +55,7 @@ _008E:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x260
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_CHERYL_ETERNA_FOREST
     SetHasPartner
     ScrCmd_06D 0, 48
     ScrCmd_06C 0, 1
@@ -136,7 +136,7 @@ _0190:
 _0198:
     LockAll
     ApplyMovement 0, _0300
-    ApplyMovement 0xFF, _0368
+    ApplyMovement LOCALID_PLAYER, _0368
     WaitMovement
     BufferPlayerName 0
     Message 5
@@ -166,37 +166,37 @@ _01EA:
 
 _023B:
     ApplyMovement 0, _030C
-    ApplyMovement 0xFF, _0374
+    ApplyMovement LOCALID_PLAYER, _0374
     WaitMovement
     GoTo _02CB
 
 _0253:
     ApplyMovement 0, _0318
-    ApplyMovement 0xFF, _0388
+    ApplyMovement LOCALID_PLAYER, _0388
     WaitMovement
     GoTo _02CB
 
 _026B:
     ApplyMovement 0, _0324
-    ApplyMovement 0xFF, _039C
+    ApplyMovement LOCALID_PLAYER, _039C
     WaitMovement
     GoTo _02CB
 
 _0283:
     ApplyMovement 0, _0330
-    ApplyMovement 0xFF, _03B0
+    ApplyMovement LOCALID_PLAYER, _03B0
     WaitMovement
     GoTo _02CB
 
 _029B:
     ApplyMovement 0, _033C
-    ApplyMovement 0xFF, _03C4
+    ApplyMovement LOCALID_PLAYER, _03C4
     WaitMovement
     GoTo _02CB
 
 _02B3:
     ApplyMovement 0, _0348
-    ApplyMovement 0xFF, _03D8
+    ApplyMovement LOCALID_PLAYER, _03D8
     WaitMovement
     GoTo _02CB
 
@@ -357,7 +357,7 @@ _0411:
     FacePlayer
     Message 13
     CloseMessage
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _046C
     GoToIfEq 0x800C, 1, _047E
     GoToIfEq 0x800C, 2, _0490

@@ -13,7 +13,7 @@ _0014:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _0056
     GoToIfEq 0x800C, 1, _0066
     GoToIfEq 0x800C, 2, _0076
@@ -48,7 +48,7 @@ _0096:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_FANTINA
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _01DC
+    GoToIfEq 0x800C, FALSE, _01DC
     Message 1
     BufferPlayerName 0
     Message 2
@@ -133,7 +133,7 @@ _01C8:
     EndMovement
 
 _01DC:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

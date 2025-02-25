@@ -9,7 +9,7 @@
     ScriptEntry _0028
     ScriptEntry _002A
     ScriptEntry _001E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     End

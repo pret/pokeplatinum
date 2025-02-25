@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     LockAll
@@ -18,35 +18,35 @@ _0006:
     End
 
 _0057:
-    ApplyMovement 0xFF, _0148
+    ApplyMovement LOCALID_PLAYER, _0148
     ApplyMovement 0, _01F0
     WaitMovement
     GoTo _00D9
     End
 
 _0071:
-    ApplyMovement 0xFF, _0154
+    ApplyMovement LOCALID_PLAYER, _0154
     ApplyMovement 0, _0200
     WaitMovement
     GoTo _00D9
     End
 
 _008B:
-    ApplyMovement 0xFF, _0160
+    ApplyMovement LOCALID_PLAYER, _0160
     ApplyMovement 0, _0210
     WaitMovement
     GoTo _00D9
     End
 
 _00A5:
-    ApplyMovement 0xFF, _016C
+    ApplyMovement LOCALID_PLAYER, _016C
     ApplyMovement 0, _0220
     WaitMovement
     GoTo _00D9
     End
 
 _00BF:
-    ApplyMovement 0xFF, _0178
+    ApplyMovement LOCALID_PLAYER, _0178
     ApplyMovement 0, _0230
     WaitMovement
     GoTo _00D9
@@ -56,11 +56,11 @@ _00D9:
     Message 0
     WaitABPress
     CloseMessage
-    ApplyMovement 0xFF, _0184
+    ApplyMovement LOCALID_PLAYER, _0184
     ApplyMovement 0, _0240
     WaitMovement
     PlayFanfare SEQ_SE_DP_TELE2
-    ApplyMovement 0xFF, _01E8
+    ApplyMovement LOCALID_PLAYER, _01E8
     WaitMovement
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen

@@ -7,7 +7,7 @@
     ScriptEntry _0025
     ScriptEntry _0114
     ScriptEntry _0148
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     GoToIfSet 235, _001F
@@ -28,7 +28,7 @@ _0025:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_CANDICE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _010E
+    GoToIfEq 0x800C, FALSE, _010E
     Message 1
     BufferPlayerName 0
     Message 2
@@ -77,7 +77,7 @@ _00F8:
     End
 
 _010E:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

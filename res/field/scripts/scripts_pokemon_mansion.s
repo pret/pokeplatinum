@@ -9,7 +9,7 @@
     ScriptEntry _0087
     ScriptEntry _048A
     ScriptEntry _04C8
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     SetFlag 0x9EB
@@ -56,7 +56,7 @@ _0087:
     FacePlayer
     GoToIfDefeated 0x37C, _0396
     GoToIfDefeated 0x37D, _0396
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _00CB
     GoToIfEq 0x800C, 1, _00E5
     GoTo _00FF
@@ -64,14 +64,14 @@ _0087:
 
 _00CB:
     ApplyMovement 2, _03EC
-    ApplyMovement 0xFF, _042C
+    ApplyMovement LOCALID_PLAYER, _042C
     WaitMovement
     GoTo _00FF
     End
 
 _00E5:
     ApplyMovement 2, _03F4
-    ApplyMovement 0xFF, _043C
+    ApplyMovement LOCALID_PLAYER, _043C
     WaitMovement
     GoTo _00FF
     End
@@ -80,8 +80,8 @@ _00FF:
     CallIfUnset 0x166, _045A
     CallIfSet 0x166, _0467
     SetFlag 0x166
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0471
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0471
     SetTrainerFlag TRAINER_RICH_BOY_LIAM
     SetTrainerFlag TRAINER_LADY_CELESTE
     Message 5
@@ -91,14 +91,14 @@ _00FF:
     SetVar 0x404D, 0
     SetVar 0x8005, 0
     ClearFlag 0x257
-    ScrCmd_064 5
+    AddObject 5
     ApplyMovement 5, _0420
     WaitMovement
     Message 15
     CloseMessage
     StartTrainerBattle TRAINER_MAID_BELINDA
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     AddVar 0x8005, 0x404D
     Message 16
     CloseMessage
@@ -110,7 +110,7 @@ _00FF:
     CloseMessage
     StartTrainerBattle TRAINER_MAID_SOPHIE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     AddVar 0x8005, 0x404D
     Message 18
     CloseMessage
@@ -122,7 +122,7 @@ _00FF:
     CloseMessage
     StartTrainerBattle TRAINER_MAID_EMILY
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     AddVar 0x8005, 0x404D
     Message 20
     CloseMessage
@@ -134,7 +134,7 @@ _00FF:
     CloseMessage
     StartTrainerBattle TRAINER_MAID_ELENA
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     AddVar 0x8005, 0x404D
     Message 22
     CloseMessage
@@ -154,7 +154,7 @@ _00FF:
     CloseMessage
     StartTrainerBattle TRAINER_MAID_CLARE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     AddVar 0x8005, 0x404D
     Message 24
     CloseMessage
@@ -174,7 +174,7 @@ _00FF:
     ApplyMovement 2, _03FC
     WaitMovement
     ClearFlag 0x258
-    ScrCmd_064 4
+    AddObject 4
     ApplyMovement 4, _0420
     WaitMovement
     CallIfEq 0x8006, 0, _03CD
@@ -182,7 +182,7 @@ _00FF:
     CloseMessage
     StartTrainerBattle 0x8007
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0484
+    GoToIfEq 0x800C, FALSE, _0484
     SetTrainerFlag TRAINER_RICH_BOY_LIAM
     SetTrainerFlag TRAINER_LADY_CELESTE
     CallIfEq 0x8006, 0, _03D7
@@ -318,7 +318,7 @@ _047C:
     End
 
 _0484:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

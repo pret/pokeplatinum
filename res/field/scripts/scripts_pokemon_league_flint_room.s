@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0138
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -19,7 +19,7 @@ _000A:
     CallIfUnset 214, _00A0
     CallIfSet 214, _00A8
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00CC
+    GoToIfEq 0x800C, FALSE, _00CC
     SetFlag 178
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     RemoveObject 1
@@ -49,7 +49,7 @@ _00BE:
     Return
 
 _00CC:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -100,11 +100,11 @@ _0120:
 
 _0138:
     LockAll
-    ApplyMovement 0xFF, _015C
+    ApplyMovement LOCALID_PLAYER, _015C
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag 0x284
-    ScrCmd_064 2
+    AddObject 2
     SetVar 0x4001, 1
     ReleaseAll
     End

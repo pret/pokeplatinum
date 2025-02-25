@@ -8,7 +8,7 @@
     ScriptEntry _00D0
     ScriptEntry _00E6
     ScriptEntry _019C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     SetVar 0x4000, 0x409E
@@ -105,18 +105,18 @@ _00E6:
     WaitFanfare SEQ_SE_CONFIRM
     CallIfUnset 215, _0174
     SetVar 0x409E, 2
-    ScrCmd_04C 0x1E5, 0
+    PlayCry SPECIES_HEATRAN
     Message 15
     CloseMessage
     SetFlag 142
     StartLegendaryBattle SPECIES_HEATRAN, 50
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0168
+    GoToIfEq 0x800C, FALSE, _0168
     CheckLostBattle 0x800C
-    CallIfEq 0x800C, 0, _017A
+    CallIfEq 0x800C, FALSE, _017A
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _015D
+    GoToIfEq 0x800C, TRUE, _015D
     GoTo _0155
     End
 
@@ -134,7 +134,7 @@ _015D:
 
 _0168:
     SetVar 0x409E, 1
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -143,7 +143,7 @@ _0174:
     Return
 
 _017A:
-    SetFlag 0x983
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_5
     Return
 
     .byte 12
@@ -184,7 +184,7 @@ _019C:
     ScrCmd_29F 0
     ScrCmd_04A 0x65C
     ApplyMovement 2, _03A4
-    ApplyMovement 0xFF, _0388
+    ApplyMovement LOCALID_PLAYER, _0388
     WaitMovement
     ApplyMovement 2, _00B4
     WaitMovement
@@ -195,11 +195,11 @@ _019C:
     RemoveObject 3
     Message 2
     Message 3
-    ScrCmd_04C 0x1C5, 0
+    PlayCry SPECIES_CROAGUNK
     ScrCmd_04D
     CloseMessage
     ClearFlag 0x232
-    ScrCmd_064 0
+    AddObject 0
     ApplyMovement 0, _0490
     WaitMovement
     ApplyMovement 5, _03C0
@@ -214,7 +214,7 @@ _019C:
     RemoveObject 0
     RemoveObject 6
     ClearFlag 0x231
-    ScrCmd_064 4
+    AddObject 4
     CallCommonScript 0x807
     Message 6
     CloseMessage
@@ -239,7 +239,7 @@ _019C:
     CloseMessage
     ApplyMovement 9, _0464
     ApplyMovement 10, _047C
-    ApplyMovement 0xFF, _0390
+    ApplyMovement LOCALID_PLAYER, _0390
     WaitMovement
     ApplyMovement 5, _03D8
     WaitMovement
@@ -247,10 +247,10 @@ _019C:
     Message 12
     CloseMessage
     ClearFlag 0x230
-    ScrCmd_064 7
+    AddObject 7
     ApplyMovement 7, _04C8
     WaitMovement
-    ScrCmd_064 8
+    AddObject 8
     ApplyMovement 8, _04FC
     WaitMovement
     Message 13

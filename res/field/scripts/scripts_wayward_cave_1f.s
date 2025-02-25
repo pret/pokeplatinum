@@ -7,7 +7,7 @@
     ScriptEntry _002B
     ScriptEntry _00E0
     ScriptEntry _00E2
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     SetFlag 0x9D7
@@ -22,7 +22,7 @@ _002B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    SetPlayerBike 0
+    SetPlayerBike FALSE
     GoToIfGe 0x4091, 1, _0095
     BufferPlayerName 0
     CallIfUnset 224, _008B
@@ -36,7 +36,7 @@ _002B:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x264
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MIRA_WAYWARD_CAVE
     SetHasPartner
     ScrCmd_06D 4, 48
     ReleaseAll
@@ -83,18 +83,18 @@ _00E2:
     LockAll
     ClearHasPartner
     ScrCmd_06D 4, 16
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 2, _0103
     GoTo _011B
 
 _0103:
-    ApplyMovement 0xFF, _0194
+    ApplyMovement LOCALID_PLAYER, _0194
     ApplyMovement 4, _01D8
     WaitMovement
     GoTo _0133
 
 _011B:
-    ApplyMovement 0xFF, _019C
+    ApplyMovement LOCALID_PLAYER, _019C
     ApplyMovement 4, _01E4
     WaitMovement
     GoTo _0133
@@ -103,18 +103,18 @@ _0133:
     BufferPlayerName 0
     Message 5
     CloseMessage
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 3, _0152
     GoTo _016A
 
 _0152:
-    ApplyMovement 0xFF, _01A4
+    ApplyMovement LOCALID_PLAYER, _01A4
     ApplyMovement 4, _01F0
     WaitMovement
     GoTo _0182
 
 _016A:
-    ApplyMovement 0xFF, _01B0
+    ApplyMovement LOCALID_PLAYER, _01B0
     ApplyMovement 4, _0200
     WaitMovement
     GoTo _0182

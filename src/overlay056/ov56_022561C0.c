@@ -557,7 +557,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
     WMBssDesc *v4;
     UnkStruct_0203330C *v5;
 
-    v0 = sub_02022644(Unk_ov56_02257264);
+    v0 = TouchScreen_CheckRectangleHeld(Unk_ov56_02257264);
     v3 = ov56_02257174(param0);
 
     if (v0 != 0xffffffff) {
@@ -633,7 +633,7 @@ static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0)
 {
     int v0;
 
-    v0 = sub_02022644(Unk_ov56_02257250);
+    v0 = TouchScreen_CheckRectangleHeld(Unk_ov56_02257250);
 
     if (v0 != 0xffffffff) {
         u32 v1, v2;

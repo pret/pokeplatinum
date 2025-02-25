@@ -5,28 +5,28 @@
 
     ScriptEntry _000A
     ScriptEntry _000A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     LockAll
-    ApplyMovement 0xFF, _016C
+    ApplyMovement LOCALID_PLAYER, _016C
     WaitMovement
-    ScrCmd_186 0, 6, 14
+    SetObjectEventPos 0, 6, 14
     ClearFlag 0x23A
-    ScrCmd_064 0
+    AddObject 0
     ScrCmd_062 0
     ApplyMovement 0, _0138
-    ApplyMovement 0xFF, _017C
+    ApplyMovement LOCALID_PLAYER, _017C
     WaitMovement
     Message 0
     CloseMessage
-    ScrCmd_186 1, 4, 14
+    SetObjectEventPos 1, 4, 14
     ClearFlag 0x23B
-    ScrCmd_064 1
+    AddObject 1
     ScrCmd_062 1
     ApplyMovement 1, _0114
     WaitMovement
-    ApplyMovement 0xFF, _0190
+    ApplyMovement LOCALID_PLAYER, _0190
     WaitMovement
     BufferPlayerName 0
     Message 1
@@ -40,7 +40,7 @@ _000A:
     WaitMovement
     Message 4
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _00B1
+    GoToIfEq 0x800C, GENDER_MALE, _00B1
     GoToIfEq 0x800C, 1, _00BD
     End
 
@@ -59,7 +59,7 @@ _00C9:
     CloseMessage
     ApplyMovement 0, _0158
     ApplyMovement 1, _0120
-    ApplyMovement 0xFF, _0198
+    ApplyMovement LOCALID_PLAYER, _0198
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0

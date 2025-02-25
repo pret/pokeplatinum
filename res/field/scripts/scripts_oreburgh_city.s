@@ -25,7 +25,7 @@
     ScriptEntry _0722
     ScriptEntry _0735
     ScriptEntry _0754
-    .short 0xFD13
+    ScriptEntryEnd
 
 _005A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -89,36 +89,36 @@ _00D7:
     End
 
 _011E:
-    ScrCmd_186 3, 0x10F, 0x2EC
-    ScrCmd_064 3
-    ApplyMovement 0xFF, _02A0
+    SetObjectEventPos 3, 0x10F, 0x2EC
+    AddObject 3
+    ApplyMovement LOCALID_PLAYER, _02A0
     ApplyMovement 3, _02B8
     WaitMovement
     GoTo _01B6
     End
 
 _0144:
-    ScrCmd_186 3, 0x10F, 0x2ED
-    ScrCmd_064 3
-    ApplyMovement 0xFF, _02A0
+    SetObjectEventPos 3, 0x10F, 0x2ED
+    AddObject 3
+    ApplyMovement LOCALID_PLAYER, _02A0
     ApplyMovement 3, _02B8
     WaitMovement
     GoTo _01B6
     End
 
 _016A:
-    ScrCmd_186 3, 0x10F, 0x2EE
-    ScrCmd_064 3
-    ApplyMovement 0xFF, _02A0
+    SetObjectEventPos 3, 0x10F, 0x2EE
+    AddObject 3
+    ApplyMovement LOCALID_PLAYER, _02A0
     ApplyMovement 3, _02B8
     WaitMovement
     GoTo _01B6
     End
 
 _0190:
-    ScrCmd_186 3, 0x10F, 0x2EF
-    ScrCmd_064 3
-    ApplyMovement 0xFF, _02A0
+    SetObjectEventPos 3, 0x10F, 0x2EF
+    AddObject 3
+    ApplyMovement LOCALID_PLAYER, _02A0
     ApplyMovement 3, _02B8
     WaitMovement
     GoTo _01B6
@@ -148,28 +148,28 @@ _01B6:
     End
 
 _021F:
-    ApplyMovement 0xFF, _0310
+    ApplyMovement LOCALID_PLAYER, _0310
     ApplyMovement 3, _02C0
     WaitMovement
     GoTo _0287
     End
 
 _0239:
-    ApplyMovement 0xFF, _031C
+    ApplyMovement LOCALID_PLAYER, _031C
     ApplyMovement 3, _02D0
     WaitMovement
     GoTo _0287
     End
 
 _0253:
-    ApplyMovement 0xFF, _0328
+    ApplyMovement LOCALID_PLAYER, _0328
     ApplyMovement 3, _02E8
     WaitMovement
     GoTo _0287
     End
 
 _026D:
-    ApplyMovement 0xFF, _0334
+    ApplyMovement LOCALID_PLAYER, _0334
     ApplyMovement 3, _02F8
     WaitMovement
     GoTo _0287
@@ -341,28 +341,28 @@ _03F8:
     End
 
 _042F:
-    ApplyMovement 0xFF, _055C
+    ApplyMovement LOCALID_PLAYER, _055C
     ApplyMovement 4, _0604
     WaitMovement
     GoTo _0497
     End
 
 _0449:
-    ApplyMovement 0xFF, _055C
+    ApplyMovement LOCALID_PLAYER, _055C
     ApplyMovement 4, _0610
     WaitMovement
     GoTo _0497
     End
 
 _0463:
-    ApplyMovement 0xFF, _055C
+    ApplyMovement LOCALID_PLAYER, _055C
     ApplyMovement 4, _061C
     WaitMovement
     GoTo _0497
     End
 
 _047D:
-    ApplyMovement 0xFF, _055C
+    ApplyMovement LOCALID_PLAYER, _055C
     ApplyMovement 4, _0628
     WaitMovement
     GoTo _0497
@@ -380,28 +380,28 @@ _0497:
     End
 
 _04DC:
-    ApplyMovement 0xFF, _0564
+    ApplyMovement LOCALID_PLAYER, _0564
     ApplyMovement 4, _05B4
     WaitMovement
     GoTo _0544
     End
 
 _04F6:
-    ApplyMovement 0xFF, _0578
+    ApplyMovement LOCALID_PLAYER, _0578
     ApplyMovement 4, _05C8
     WaitMovement
     GoTo _0544
     End
 
 _0510:
-    ApplyMovement 0xFF, _058C
+    ApplyMovement LOCALID_PLAYER, _058C
     ApplyMovement 4, _05DC
     WaitMovement
     GoTo _0544
     End
 
 _052A:
-    ApplyMovement 0xFF, _05A0
+    ApplyMovement LOCALID_PLAYER, _05A0
     ApplyMovement 4, _05F0
     WaitMovement
     GoTo _0544
@@ -604,7 +604,7 @@ _0703:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 66, 0
+    PlayCry SPECIES_MACHOP
     Message 24
     ScrCmd_04D
     WaitABXPadPress
@@ -627,7 +627,7 @@ _0735:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 66, 0
+    PlayCry SPECIES_MACHOP
     Message 25
     ScrCmd_04D
     WaitABXPadPress
@@ -640,7 +640,7 @@ _0754:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 66, 0
+    PlayCry SPECIES_MACHOP
     Message 26
     ScrCmd_04D
     WaitABXPadPress

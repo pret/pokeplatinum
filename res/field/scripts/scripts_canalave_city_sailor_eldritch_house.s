@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _010B
     ScriptEntry _00A5
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     GoToIfEq 0x4106, 0, _0037
@@ -30,10 +30,10 @@ _0073:
     Return
 
 _007B:
-    ScrCmd_186 0, 8, 6
+    SetObjectEventPos 0, 8, 6
     ScrCmd_189 0, 1
     ScrCmd_188 0, 0
-    ScrCmd_186 1, 9, 6
+    SetObjectEventPos 1, 9, 6
     ScrCmd_189 1, 2
     Return
 
@@ -148,19 +148,19 @@ _01FC:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     WaitFanfare SEQ_SE_DP_KAIDAN2
     ClearFlag 0x25B
-    ScrCmd_064 2
+    AddObject 2
     WaitTime 5, 0x800C
     ApplyMovement 1, _0294
     ApplyMovement 0, _0294
-    ApplyMovement 0xFF, _0294
+    ApplyMovement LOCALID_PLAYER, _0294
     WaitMovement
     ApplyMovement 2, _02B4
     WaitMovement
-    ApplyMovement 0xFF, _02C0
+    ApplyMovement LOCALID_PLAYER, _02C0
     WaitMovement
     ApplyMovement 2, _02D4
     WaitMovement
-    ApplyMovement 0xFF, _029C
+    ApplyMovement LOCALID_PLAYER, _029C
     WaitMovement
     Return
 
@@ -175,7 +175,7 @@ _0262:
     Return
 
 _026E:
-    ApplyMovement 0xFF, _0294
+    ApplyMovement LOCALID_PLAYER, _0294
     ApplyMovement 2, _02DC
     WaitMovement
     SetFlag 0x25B

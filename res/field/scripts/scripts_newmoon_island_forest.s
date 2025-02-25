@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/newmoon_island_forest.h"
 
     .data
@@ -6,15 +7,15 @@
     ScriptEntry _000E
     ScriptEntry _005E
     ScriptEntry _0079
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _0058
     CheckItem ITEM_MEMBER_CARD, 1, 0x4000
-    GoToIfEq 0x4000, 0, _0058
-    ScrCmd_28B 0, 0x4000
-    GoToIfEq 0x4000, 0, _0058
+    GoToIfEq 0x4000, FALSE, _0058
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
+    GoToIfEq 0x4000, FALSE, _0058
     GoToIfSet 0x158, _0058
     ClearFlag 0x240
     End
@@ -43,9 +44,9 @@ _0079:
     StartLegendaryBattle SPECIES_DARKRAI, 50
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _014C
+    GoToIfEq 0x800C, FALSE, _014C
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _00D8
+    GoToIfEq 0x800C, TRUE, _00D8
     SetFlag 0x158
 _00BC:
     SetFlag 0x241
@@ -83,7 +84,7 @@ _00E3:
     End
 
 _014C:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

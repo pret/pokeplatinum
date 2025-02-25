@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/hall_of_origin.h"
 
     .data
@@ -7,11 +8,11 @@
     ScriptEntry _0056
     ScriptEntry _0012
     ScriptEntry _0056
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
-    ScrCmd_28B 2, 0x4000
-    GoToIfEq 0x4000, 0, _0035
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
+    GoToIfEq 0x4000, FALSE, _0035
     GoToIfSet 0x11E, _0035
     ClearFlag 0x24E
     End
@@ -35,19 +36,19 @@ _0056:
     SetVar 0x4118, 0
     Call _00E9
     Call _0104
-    ScrCmd_04C 0x1ED, 0
+    PlayCry SPECIES_ARCEUS
     ScrCmd_04D
     Call _016F
-    ScrCmd_04C 0x1ED, 0
+    PlayCry SPECIES_ARCEUS
     Message 0
     CloseMessage
     SetFlag 142
     StartLegendaryBattle SPECIES_ARCEUS, 80
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00DF
+    GoToIfEq 0x800C, FALSE, _00DF
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _00D0
+    GoToIfEq 0x800C, TRUE, _00D0
     CallIfEq 0x4056, 0, _00C8
     SetFlag 0x11E
     ReleaseAll
@@ -67,12 +68,12 @@ _00D0:
 
 _00DF:
     ClearFlag 0x24E
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
 _00E9:
-    ApplyMovement 0xFF, _00F8
+    ApplyMovement LOCALID_PLAYER, _00F8
     WaitMovement
     Return
 
@@ -92,25 +93,25 @@ _0137:
     Return
 
 _0139:
-    ApplyMovement 0xFF, _017C
+    ApplyMovement LOCALID_PLAYER, _017C
     WaitMovement
     GoTo _0137
     End
 
 _014B:
-    ApplyMovement 0xFF, _018C
+    ApplyMovement LOCALID_PLAYER, _018C
     WaitMovement
     GoTo _0137
     End
 
 _015D:
-    ApplyMovement 0xFF, _0194
+    ApplyMovement LOCALID_PLAYER, _0194
     WaitMovement
     GoTo _0137
     End
 
 _016F:
-    ApplyMovement 0xFF, _01A4
+    ApplyMovement LOCALID_PLAYER, _01A4
     WaitMovement
     Return
 

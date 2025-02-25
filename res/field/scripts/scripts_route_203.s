@@ -9,7 +9,7 @@
     ScriptEntry _005B
     ScriptEntry _0070
     ScriptEntry _0085
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -109,7 +109,7 @@ _0158:
 
 _0164:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0207
+    GoToIfEq 0x800C, FALSE, _0207
     BufferRivalName 0
     Message 1
     CloseMessage
@@ -147,7 +147,7 @@ _01F9:
     End
 
 _0207:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

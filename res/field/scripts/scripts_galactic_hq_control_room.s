@@ -18,14 +18,14 @@
     ScriptEntry _03EA
     ScriptEntry _0394
     ScriptEntry _03FD
-    .short 0xFD13
+    ScriptEntryEnd
 
 _003E:
     GoToIfSet 0x97D, _004B
     End
 
 _004B:
-    ScrCmd_186 0, 9, 6
+    SetObjectEventPos 0, 9, 6
     End
 
 _0055:
@@ -42,12 +42,12 @@ _0059:
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_SATURN_GALACTIC_HQ
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _011F
+    GoToIfEq 0x800C, FALSE, _011F
     SetFlag 173
     SetVar 0x410D, 1
     Message 1
     CloseMessage
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     SetVar 0x4002, 0x8004
     GoToIfEq 0x8004, 0, _00D5
     GoToIfEq 0x8004, 2, _00E5
@@ -88,7 +88,7 @@ _0114:
     End
 
 _011F:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -175,9 +175,9 @@ _01C7:
     LockAll
     GoToIfSet 0x97D, _0347
     Message 10
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _01FB
-    GoToIfEq 0x800C, 1, _0341
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _01FB
+    GoToIfEq 0x800C, MENU_NO, _0341
     End
 
 _01FB:
@@ -194,9 +194,9 @@ _01FB:
     ApplyMovement 1, _0374
     ApplyMovement 3, _037C
     WaitMovement
-    ScrCmd_186 2, 2, 6
-    ScrCmd_186 1, 14, 6
-    ScrCmd_186 3, 8, 12
+    SetObjectEventPos 2, 2, 6
+    SetObjectEventPos 1, 14, 6
+    SetObjectEventPos 3, 8, 12
     Call _0296
     Call _0296
     Call _0296
@@ -214,29 +214,29 @@ _0296:
     RemoveObject 3
     WaitTime 2, 0x800C
     ClearFlag 0x236
-    ScrCmd_064 2
-    ScrCmd_064 1
-    ScrCmd_064 3
+    AddObject 2
+    AddObject 1
+    AddObject 3
     WaitTime 2, 0x800C
     Return
 
 _02C0:
     ApplyMovement 0, _0354
-    ApplyMovement 0xFF, _0384
+    ApplyMovement LOCALID_PLAYER, _0384
     WaitMovement
     GoTo _030E
     End
 
 _02DA:
     ApplyMovement 0, _0360
-    ApplyMovement 0xFF, _038C
+    ApplyMovement LOCALID_PLAYER, _038C
     WaitMovement
     GoTo _030E
     End
 
 _02F4:
     ApplyMovement 0, _0354
-    ApplyMovement 0xFF, _0384
+    ApplyMovement LOCALID_PLAYER, _0384
     WaitMovement
     GoTo _030E
     End
@@ -310,7 +310,7 @@ _0394:
     WaitMovement
     Message 4
     CloseMessage
-    ApplyMovement 0xFF, _03B4
+    ApplyMovement LOCALID_PLAYER, _03B4
     WaitMovement
     ReleaseAll
     End

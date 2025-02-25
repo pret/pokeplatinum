@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0034
     ScriptEntry _0047
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -40,8 +40,8 @@ _0047:
     LockAll
     FacePlayer
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _006F
-    GoToIfEq 0x800C, 1, _007A
+    GoToIfEq 0x800C, GENDER_MALE, _006F
+    GoToIfEq 0x800C, GENDER_FEMALE, _007A
     End
 
 _006F:

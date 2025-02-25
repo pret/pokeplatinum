@@ -7,7 +7,7 @@
     ScriptEntry _055F
     ScriptEntry _0583
     ScriptEntry _0598
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     PlayFanfare SEQ_SE_CONFIRM
@@ -81,7 +81,7 @@ _0146:
     GoTo _053A
 
 _0158:
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfNe 0x800C, 0, _0186
     CheckItem ITEM_SPRAYDUCK, 1, 0x800C
     GoToIfEq 0x800C, 0, _0186
@@ -110,8 +110,8 @@ _01EA:
 
 _01F2:
     Message 17
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _053A
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _053A
     CloseMessage
     ScrCmd_184 0
     Message 20
@@ -130,8 +130,8 @@ _023B:
     ScrCmd_33D 0, 0x8000
     Message 21
 _0243:
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _02F7
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _02F7
     ScrCmd_07D 0x8000, 0x8001, 0x800C
     GoToIfEq 0x800C, 0, _02CF
     BufferNumber 1, 0x8001
@@ -203,7 +203,7 @@ _033E:
     GoTo _04DA
 
 _0374:
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfNe 0x800C, 0, _0540
     Call _018E
     GoToIfEq 0x800C, 1, _03B4
@@ -229,8 +229,8 @@ _03B4:
 
 _0413:
     Message 5
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _042D
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _042D
     GoTo _053A
 
 _042D:
@@ -267,8 +267,8 @@ _04CA:
 
 _04DA:
     Message 8
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _053A
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _053A
 _04EE:
     CloseMessage
     FadeScreen 6, 1, 0, 0

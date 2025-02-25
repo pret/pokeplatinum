@@ -10,7 +10,7 @@
     ScriptEntry _0390
     ScriptEntry _03A7
     ScriptEntry _001E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     GetTimeOfDay 0x4000
@@ -45,9 +45,9 @@ _0079:
 
 _00A1:
     Message 1
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _00CA
-    GoToIfEq 0x800C, 1, _00C4
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _00CA
+    GoToIfEq 0x800C, MENU_NO, _00C4
     End
 
 _00C4:
@@ -60,7 +60,7 @@ _00CA:
     BufferItemName 1, 0x1D0
     Message 2
     CloseMessage
-    ScrCmd_04C 54, 0
+    PlayCry SPECIES_PSYDUCK
     ScrCmd_04D
     ApplyMovement 27, _024C
     ApplyMovement 28, _024C
@@ -83,34 +83,34 @@ _00CA:
     End
 
 _015B:
-    ScrCmd_186 20, 0x230, 0x254
+    SetObjectEventPos 20, 0x230, 0x254
     ScrCmd_188 20, 14
     GoTo _0183
 
 _016F:
-    ScrCmd_186 20, 0x231, 0x254
+    SetObjectEventPos 20, 0x231, 0x254
     ScrCmd_188 20, 14
     GoTo _0183
 
 _0183:
     ClearFlag 0x1B1
-    ScrCmd_064 20
+    AddObject 20
     ScrCmd_062 20
     ApplyMovement 20, _02C4
     WaitMovement
-    ApplyMovement 0xFF, _02DC
+    ApplyMovement LOCALID_PLAYER, _02DC
     WaitMovement
     Message 3
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _01E9
-    GoToIfEq 0x800C, 1, _01C6
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _01E9
+    GoToIfEq 0x800C, MENU_NO, _01C6
     End
 
 _01C6:
     Message 5
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _01E9
-    GoToIfEq 0x800C, 1, _01C6
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _01E9
+    GoToIfEq 0x800C, MENU_NO, _01C6
     End
 
 _01E9:

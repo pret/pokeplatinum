@@ -10,12 +10,12 @@
     ScriptEntry _01EC
     ScriptEntry _0203
     ScriptEntry _021A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _003E
-    GoToIfEq 0x4000, 1, _0046
+    GoToIfEq 0x4000, GENDER_MALE, _003E
+    GoToIfEq 0x4000, GENDER_FEMALE, _0046
     End
 
 _003E:
@@ -29,27 +29,27 @@ _0046:
 _004E:
     LockAll
     GetPlayerMapPos 0x8004, 0x8005
-    ScrCmd_186 18, 0x14B, 0x8005
+    SetObjectEventPos 18, 0x14B, 0x8005
     Call _008E
     ApplyMovement 18, _0194
     WaitMovement
     CallCommonScript 0x7F8
     ApplyMovement 18, _01A0
     WaitMovement
-    ApplyMovement 0xFF, _0174
+    ApplyMovement LOCALID_PLAYER, _0174
     WaitMovement
     GoTo _009C
     End
 
 _008E:
     ClearFlag 0x1CC
-    ScrCmd_064 18
+    AddObject 18
     ScrCmd_062 18
     Return
 
 _009C:
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _00B3
+    GoToIfEq 0x800C, GENDER_MALE, _00B3
     GoTo _00F1
 
 _00B3:
@@ -83,7 +83,7 @@ _00F1:
     GoTo _0156
 
 _012F:
-    SetFlag 0x97F
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_1
     SetVar 0x8004, 0x1BB
     SetVar 0x8005, 1
     CallCommonScript 0x7FC

@@ -11,7 +11,7 @@
     ScriptEntry _008A
     ScriptEntry _008C
     ScriptEntry _00A2
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     SetFlag 0x1A7
@@ -129,8 +129,8 @@ _01D1:
 
 _01DF:
     Message 8
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0175
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0175
     GoTo _01FB
     End
 

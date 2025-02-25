@@ -7,13 +7,13 @@
     ScriptEntry _00AB
     ScriptEntry _004C
     ScriptEntry _009D
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     BufferPlayerName 0
     Message 0
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0031
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0031
     GoTo _003E
     End
 
@@ -35,10 +35,10 @@ _003E:
 _004C:
     BufferPlayerName 0
     GetPlayerGender 0x800C
-    CallIfEq 0x800C, 0, _0086
-    CallIfEq 0x800C, 1, _008B
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0090
+    CallIfEq 0x800C, GENDER_MALE, _0086
+    CallIfEq 0x800C, GENDER_FEMALE, _008B
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0090
     GoTo _009D
     End
 

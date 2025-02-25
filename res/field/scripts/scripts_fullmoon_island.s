@@ -1,28 +1,29 @@
 #include "macros/scrcmd.inc"
+#include "generated/hidden_locations.h"
 #include "res/text/bank/fullmoon_island.h"
 
     .data
 
     ScriptEntry _000A
     ScriptEntry _0015
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     SetFlag 0x9D0
-    ScrCmd_270 0, 1
+    EnableHiddenLocation HIDDEN_LOCATION_FULLMOON_ISLAND
     End
 
 _0015:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     CheckItem ITEM_LUNAR_WING, 1, 0x800C
     GoToIfEq 0x800C, 1, _0052
     Message 1
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _005D
+    GoToIfEq 0x800C, MENU_YES, _005D
     GoTo _0098
 
 _0052:
@@ -55,26 +56,26 @@ _00A3:
     Return
 
 _00BD:
-    ApplyMovement 0xFF, _0120
+    ApplyMovement LOCALID_PLAYER, _0120
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _0118
+    ApplyMovement LOCALID_PLAYER, _0118
     WaitMovement
     Return
 
 _00D7:
-    ApplyMovement 0xFF, _0130
+    ApplyMovement LOCALID_PLAYER, _0130
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _0118
+    ApplyMovement LOCALID_PLAYER, _0118
     WaitMovement
     Return
 
 _00F1:
-    ApplyMovement 0xFF, _013C
+    ApplyMovement LOCALID_PLAYER, _013C
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _0118
+    ApplyMovement LOCALID_PLAYER, _0118
     WaitMovement
     Return
 

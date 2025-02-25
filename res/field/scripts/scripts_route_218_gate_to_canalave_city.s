@@ -5,7 +5,7 @@
 
     ScriptEntry _0208
     ScriptEntry _000A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     LockAll
@@ -13,7 +13,7 @@ _000A:
     BufferPlayerName 0
     BufferCounterpartName 1
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0031
+    GoToIfEq 0x800C, GENDER_MALE, _0031
     GoTo _003C
     End
 

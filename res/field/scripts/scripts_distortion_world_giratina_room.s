@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/hidden_locations.h"
 #include "res/text/bank/distortion_world_giratina_room.h"
 
     .data
@@ -11,7 +12,7 @@
     ScriptEntry _020A
     ScriptEntry _021D
     ScriptEntry _0232
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     ScrCmd_2F2
@@ -31,8 +32,8 @@ _0041:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 13
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0061
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0061
     CloseMessage
     ReleaseAll
     End
@@ -41,7 +42,7 @@ _0061:
     BufferPlayerName 0
     Message 14
     CloseMessage
-    ScrCmd_270 2, 1
+    EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH
     SetVar 0x40AA, 1
     PlayFanfare SEQ_SE_PL_SYUWA
     FadeScreen 6, 1, 0, 0
@@ -62,7 +63,7 @@ _009E:
 _00C4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_04C 0x1E7, 0
+    PlayCry SPECIES_GIRATINA
     Message 2
     ScrCmd_04D
     CloseMessage
@@ -113,7 +114,7 @@ _0194:
     ApplyMovement 241, _0280
     ApplyMovement 130, _026C
     ApplyMovement 129, _0258
-    ApplyMovement 0xFF, _0244
+    ApplyMovement LOCALID_PLAYER, _0244
     WaitMovement
     Message 7
     Message 8
@@ -136,7 +137,7 @@ _0194:
     End
 
 _0204:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -152,7 +153,7 @@ _020A:
 
 _021D:
     LockAll
-    ScrCmd_04C 0x1E7, 0
+    PlayCry SPECIES_GIRATINA
     Message 0
     ScrCmd_04D
     WaitABPadPress

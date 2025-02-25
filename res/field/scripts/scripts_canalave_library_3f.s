@@ -15,12 +15,12 @@
     ScriptEntry _05D4
     ScriptEntry _0616
     ScriptEntry _06A2
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0032:
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _0052
-    GoToIfEq 0x4000, 1, _005A
+    GoToIfEq 0x4000, GENDER_MALE, _0052
+    GoToIfEq 0x4000, GENDER_FEMALE, _005A
     End
 
 _0052:
@@ -38,7 +38,7 @@ _0062:
     Message 0
     CloseMessage
     ApplyMovement 4, _0364
-    ApplyMovement 0xFF, _0310
+    ApplyMovement LOCALID_PLAYER, _0310
     WaitMovement
     GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
@@ -73,7 +73,7 @@ _0062:
     Message 7
     Message 8
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0116
+    GoToIfEq 0x800C, GENDER_MALE, _0116
     GoTo _0124
     End
 
@@ -96,7 +96,7 @@ _0132:
     ApplyMovement 3, _03D8
     WaitMovement
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _0162
+    GoToIfEq 0x800C, GENDER_MALE, _0162
     GoTo _0173
     End
 
@@ -138,7 +138,7 @@ _0184:
     Message 21
     CloseMessage
     ApplyMovement 4, _03AC
-    ApplyMovement 0xFF, _0330
+    ApplyMovement LOCALID_PLAYER, _0330
     WaitMovement
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -158,7 +158,7 @@ _0184:
     WaitMovement
     BufferRivalName 0
     Message 23
-    ApplyMovement 0xFF, _0338
+    ApplyMovement LOCALID_PLAYER, _0338
     WaitMovement
     Message 24
     CloseMessage
@@ -170,7 +170,7 @@ _0184:
     RemoveObject 4
     RemoveObject 3
     ScrCmd_067
-    ApplyMovement 0xFF, _02C0
+    ApplyMovement LOCALID_PLAYER, _02C0
     WaitMovement
     Message 25
     CloseMessage
@@ -373,9 +373,9 @@ _043A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 30
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0471
-    GoToIfEq 0x800C, 1, _0463
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0471
+    GoToIfEq 0x800C, MENU_NO, _0463
     End
 
 _0463:
@@ -397,9 +397,9 @@ _047C:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 33
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _04B3
-    GoToIfEq 0x800C, 1, _04A5
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _04B3
+    GoToIfEq 0x800C, MENU_NO, _04A5
     End
 
 _04A5:
@@ -421,9 +421,9 @@ _04BE:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 36
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _04F5
-    GoToIfEq 0x800C, 1, _04E7
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _04F5
+    GoToIfEq 0x800C, MENU_NO, _04E7
     End
 
 _04E7:
@@ -445,9 +445,9 @@ _0500:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 39
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0537
-    GoToIfEq 0x800C, 1, _0529
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0537
+    GoToIfEq 0x800C, MENU_NO, _0529
     End
 
 _0529:
@@ -460,11 +460,11 @@ _0529:
 
 _0537:
     Message 41
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0529
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0529
     Message 42
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0529
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0529
     Message 43
     WaitABXPadPress
     CloseMessage
@@ -475,9 +475,9 @@ _056A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 44
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _05A1
-    GoToIfEq 0x800C, 1, _0593
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _05A1
+    GoToIfEq 0x800C, MENU_NO, _0593
     End
 
 _0593:
@@ -490,11 +490,11 @@ _0593:
 
 _05A1:
     Message 46
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0593
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0593
     Message 47
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0593
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0593
     Message 48
     WaitABXPadPress
     CloseMessage
@@ -505,9 +505,9 @@ _05D4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 49
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _060B
-    GoToIfEq 0x800C, 1, _05FD
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _060B
+    GoToIfEq 0x800C, MENU_NO, _05FD
     End
 
 _05FD:

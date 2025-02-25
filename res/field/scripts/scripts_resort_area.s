@@ -18,7 +18,7 @@
     ScriptEntry _055C
     ScriptEntry _003E
     ScriptEntry _05BC
-    .short 0xFD13
+    ScriptEntryEnd
 
 _003E:
     SetFlag 0x2AA
@@ -141,8 +141,8 @@ _0184:
     CallIfEq 0x8005, 0x1D9, _0272
     CallIfEq 0x8005, 0x1DA, _0274
     Message 6
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _02BC
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _02BC
     ScrCmd_30C
     Message 7
     CloseMessage
@@ -157,7 +157,7 @@ _0184:
     ScrCmd_16B 77
     ScrCmd_169 77
     ApplyMovement 13, _0390
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     WaitMovement
     ScrCmd_16C 77
     ScrCmd_169 77
@@ -187,19 +187,19 @@ _0274:
 
 _0280:
     ApplyMovement 13, _0358
-    ApplyMovement 0xFF, _039C
+    ApplyMovement LOCALID_PLAYER, _039C
     WaitMovement
     Return
 
 _0294:
     ApplyMovement 13, _0368
-    ApplyMovement 0xFF, _03A8
+    ApplyMovement LOCALID_PLAYER, _03A8
     WaitMovement
     Return
 
 _02A8:
     ApplyMovement 13, _0378
-    ApplyMovement 0xFF, _03B4
+    ApplyMovement LOCALID_PLAYER, _03B4
     WaitMovement
     Return
 
@@ -215,18 +215,18 @@ _02BC:
 
 _02F2:
     ApplyMovement 13, _0340
-    ApplyMovement 0xFF, _03CC
+    ApplyMovement LOCALID_PLAYER, _03CC
     WaitMovement
     Return
 
 _0306:
-    ApplyMovement 0xFF, _03CC
+    ApplyMovement LOCALID_PLAYER, _03CC
     WaitMovement
     Return
 
 _0312:
     ApplyMovement 13, _034C
-    ApplyMovement 0xFF, _03CC
+    ApplyMovement LOCALID_PLAYER, _03CC
     WaitMovement
     Return
 
@@ -320,8 +320,8 @@ _03D4:
     LockAll
     FacePlayer
     Message 10
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0429
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0429
     Message 11
     CloseMessage
     SetFlag 0x2AA
@@ -350,8 +350,8 @@ _043C:
     LockAll
     FacePlayer
     Message 13
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0491
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0491
     Message 14
     CloseMessage
     SetFlag 0x2AD
@@ -374,8 +374,8 @@ _049C:
     LockAll
     FacePlayer
     Message 16
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _04F1
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _04F1
     Message 17
     CloseMessage
     SetFlag 0x2AF
@@ -398,8 +398,8 @@ _04FC:
     LockAll
     FacePlayer
     Message 19
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0551
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0551
     Message 20
     CloseMessage
     SetFlag 0x2B2
@@ -422,8 +422,8 @@ _055C:
     LockAll
     FacePlayer
     Message 22
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _05B1
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _05B1
     Message 23
     CloseMessage
     SetFlag 0x2B5

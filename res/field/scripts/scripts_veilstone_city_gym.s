@@ -10,7 +10,7 @@
     ScriptEntry _0190
     ScriptEntry _01A1
     ScriptEntry _01B2
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     ScrCmd_174
@@ -27,7 +27,7 @@ _0022:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_MAYLENE
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0118
+    GoToIfEq 0x800C, FALSE, _0118
     Message 1
     BufferPlayerName 0
     Message 2
@@ -79,7 +79,7 @@ _00FF:
     End
 
 _0118:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

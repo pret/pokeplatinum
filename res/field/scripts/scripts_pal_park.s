@@ -9,7 +9,7 @@
     ScriptEntry _00B9
     ScriptEntry _00E9
     ScriptEntry _012C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     SetFlag 0x9CB
@@ -78,9 +78,9 @@ _00B9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 8
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _00D9
+    GoToIfEq 0x800C, MENU_YES, _00D9
     ReleaseAll
     End
 
@@ -102,7 +102,7 @@ _00E9:
     End
 
 _0114:
-    ApplyMovement 0xFF, _0124
+    ApplyMovement LOCALID_PLAYER, _0124
     WaitMovement
     ReleaseAll
     End
@@ -137,10 +137,10 @@ _0168:
 
 _0170:
     Message 0
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _01B5
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _01B5
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 1, _01A5
+    GoToIfEq 0x800C, GENDER_FEMALE, _01A5
     BufferPlayerName 0
     Message 2
     WaitABXPadPress

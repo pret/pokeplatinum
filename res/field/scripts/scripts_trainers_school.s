@@ -15,7 +15,7 @@
     ScriptEntry _02E4
     ScriptEntry _03D9
     ScriptEntry _049C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0032:
     PlayFanfare SEQ_SE_CONFIRM
@@ -38,7 +38,7 @@ _0032:
     BufferRivalName 1
     Message 3
     CloseMessage
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _00A4
     GoToIfEq 0x8008, 2, _00BE
@@ -47,21 +47,21 @@ _0032:
 
 _00A4:
     ApplyMovement 1, _0114
-    ApplyMovement 0xFF, _0138
+    ApplyMovement LOCALID_PLAYER, _0138
     WaitMovement
     GoTo _00F2
     End
 
 _00BE:
     ApplyMovement 1, _0124
-    ApplyMovement 0xFF, _0148
+    ApplyMovement LOCALID_PLAYER, _0148
     WaitMovement
     GoTo _00F2
     End
 
 _00D8:
     ApplyMovement 1, _0124
-    ApplyMovement 0xFF, _0148
+    ApplyMovement LOCALID_PLAYER, _0148
     WaitMovement
     GoTo _00F2
     End
@@ -161,9 +161,9 @@ _01A6:
     GoToIfSet 0x112, _02A8
     GoToIfSet 0x10C, _02BD
     Message 9
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _01E7
-    GoToIfEq 0x800C, 1, _02D3
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _01E7
+    GoToIfEq 0x800C, MENU_NO, _02D3
     End
 
 _01E7:
@@ -192,7 +192,7 @@ _022E:
 
 _023C:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02DE
+    GoToIfEq 0x800C, FALSE, _02DE
     SetFlag 0x10C
     GoToIfSet 0x10D, _0274
     GoToIfUnset 0x10D, _0269
@@ -245,7 +245,7 @@ _02D3:
     End
 
 _02DE:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -255,9 +255,9 @@ _02E4:
     FacePlayer
     GoToIfSet 0x10D, _039C
     Message 15
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _031A
-    GoToIfEq 0x800C, 1, _03A7
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _031A
+    GoToIfEq 0x800C, MENU_NO, _03A7
     End
 
 _031A:
@@ -286,7 +286,7 @@ _0361:
 
 _036F:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _03D3
+    GoToIfEq 0x800C, FALSE, _03D3
     SetFlag 0x10D
     GoToIfSet 0x10C, _03BD
     GoToIfUnset 0x10C, _03B2
@@ -322,7 +322,7 @@ _03BD:
     End
 
 _03D3:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

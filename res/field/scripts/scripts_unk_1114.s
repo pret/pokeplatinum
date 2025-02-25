@@ -932,7 +932,7 @@
     ScriptEntry _0E86
     ScriptEntry _0E86
     ScriptEntry _1054
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0E86:
     PlayFanfare SEQ_SE_CONFIRM
@@ -947,7 +947,7 @@ _0E86:
     GoToIfDefeated 0x8004, _0F40
     ScrCmd_0E9 0x800C
     GoToIfNe 0x800C, 1, _0F01
-    ScrCmd_0EE 0x800C
+    CheckHasTwoAliveMons 0x800C
     GoToIfEq 0x800C, 0, _0FCB
     GoTo _0F01
     End
@@ -965,7 +965,7 @@ _0F1D:
     ScrCmd_20B
     StartTrainerBattle 0x8004
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0FC5
+    GoToIfEq 0x800C, FALSE, _0FC5
     SetTrainerFlag 0x8004
     ReleaseAll
     End
@@ -989,7 +989,7 @@ _0F73:
     SetVar 0x8007, 0x800C
     ScrCmd_0E9 0x800C
     GoToIfNe 0x800C, 1, _0FA3
-    ScrCmd_0EE 0x800C
+    CheckHasTwoAliveMons 0x800C
     GoToIfEq 0x800C, 0, _0FCB
     GoTo _0FA3
     End
@@ -1004,7 +1004,7 @@ _0FA3:
     End
 
 _0FC5:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -1021,7 +1021,7 @@ _0FCB:
 _0FE7:
     ApplyMovement 0x800D, _104C
     WaitMovement
-    ScrCmd_1BD 0x8000
+    GetPlayerDir 0x8000
     CallIfEq 0x8000, 0, _102B
     CallIfEq 0x8000, 1, _1033
     CallIfEq 0x8000, 2, _103B
@@ -1070,7 +1070,7 @@ _1083:
     CloseMessage
     StartTrainerBattle 0x8004
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0FC5
+    GoToIfEq 0x800C, FALSE, _0FC5
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C
     SetTrainerFlag 0x8004
@@ -1101,7 +1101,7 @@ _10F3:
     CloseMessage
     StartTrainerBattle 0x8004, 0x8005
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0FC5
+    GoToIfEq 0x800C, FALSE, _0FC5
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C
     SetTrainerFlag 0x8004
@@ -1141,7 +1141,7 @@ _11A0:
     CloseMessage
     StartTrainerBattle 0x8004, 0x8005
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0FC5
+    GoToIfEq 0x800C, FALSE, _0FC5
     ScrCmd_0B9 0, 0x800C
     SetVar 0x8004, 0x800C
     SetTrainerFlag 0x8004

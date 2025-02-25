@@ -14,7 +14,7 @@
     ScriptEntry _09E9
     ScriptEntry _09FA
     ScriptEntry _00E0
-    .short 0xFD13
+    ScriptEntryEnd
 
 _002E:
     CallIfEq 0x40A4, 3, _0048
@@ -22,7 +22,7 @@ _002E:
     End
 
 _0048:
-    ScrCmd_186 0, 2, 4
+    SetObjectEventPos 0, 2, 4
     ScrCmd_189 0, 0
     ScrCmd_188 0, 14
     Return
@@ -33,7 +33,7 @@ _005E:
 
 _0064:
     LockAll
-    ApplyMovement 0xFF, _00A4
+    ApplyMovement LOCALID_PLAYER, _00A4
     ApplyMovement 0, _00B0
     WaitMovement
     SetFlag 135
@@ -80,7 +80,7 @@ _00E0:
     ScrCmd_22D 2, 0x800C
     GoToIfEq 0x800C, 0, _014B
 _0110:
-    ApplyMovement 0xFF, _0164
+    ApplyMovement LOCALID_PLAYER, _0164
     ApplyMovement 0, _0170
     WaitMovement
     BufferPlayerName 0
@@ -120,7 +120,7 @@ _017C:
     LockAll
     WaitTime 30, 0x800C
     ApplyMovement 0, _01D4
-    ApplyMovement 0xFF, _01F8
+    ApplyMovement LOCALID_PLAYER, _01F8
     WaitMovement
     WaitTime 30, 0x800C
     BufferRivalName 0
@@ -272,7 +272,7 @@ _036C:
     CallCommonScript 0x7FC
     GiveJournal
     Message 16
-    ScrCmd_1BD 0x8007
+    GetPlayerDir 0x8007
     GoToIfEq 0x8007, 1, _03A6
     GoTo _03B8
     End
@@ -297,10 +297,10 @@ _03CA:
     CloseMessage
     PlayFanfare SEQ_SE_DP_DOOR_OPEN
     ClearFlag 0x1F1
-    ScrCmd_064 1
+    AddObject 1
     WaitFanfare SEQ_SE_DP_DOOR_OPEN
     ApplyMovement 0, _07B4
-    ApplyMovement 0xFF, _0864
+    ApplyMovement LOCALID_PLAYER, _0864
     WaitMovement
     ApplyMovement 1, _07FC
     WaitMovement
@@ -321,34 +321,34 @@ _03CA:
     End
 
 _0465:
-    ApplyMovement 0xFF, _086C
+    ApplyMovement LOCALID_PLAYER, _086C
     WaitMovement
     Return
 
 _0471:
     ApplyMovement 0, _07C8
-    ApplyMovement 0xFF, _0874
+    ApplyMovement LOCALID_PLAYER, _0874
     WaitMovement
     GoTo _04D9
     End
 
 _048B:
     ApplyMovement 0, _07D0
-    ApplyMovement 0xFF, _087C
+    ApplyMovement LOCALID_PLAYER, _087C
     WaitMovement
     GoTo _04D9
     End
 
 _04A5:
     ApplyMovement 0, _07D8
-    ApplyMovement 0xFF, _0884
+    ApplyMovement LOCALID_PLAYER, _0884
     WaitMovement
     GoTo _04D9
     End
 
 _04BF:
     ApplyMovement 0, _07E0
-    ApplyMovement 0xFF, _088C
+    ApplyMovement LOCALID_PLAYER, _088C
     WaitMovement
     GoTo _04D9
     End
@@ -364,28 +364,28 @@ _04D9:
 
 _0514:
     ApplyMovement 1, _0808
-    ApplyMovement 0xFF, _0894
+    ApplyMovement LOCALID_PLAYER, _0894
     WaitMovement
     GoTo _057C
     End
 
 _052E:
     ApplyMovement 1, _0810
-    ApplyMovement 0xFF, _089C
+    ApplyMovement LOCALID_PLAYER, _089C
     WaitMovement
     GoTo _057C
     End
 
 _0548:
     ApplyMovement 1, _081C
-    ApplyMovement 0xFF, _08A8
+    ApplyMovement LOCALID_PLAYER, _08A8
     WaitMovement
     GoTo _057C
     End
 
 _0562:
     ApplyMovement 1, _0828
-    ApplyMovement 0xFF, _08B4
+    ApplyMovement LOCALID_PLAYER, _08B4
     WaitMovement
     GoTo _057C
     End
@@ -394,7 +394,7 @@ _057C:
     BufferPlayerName 0
     BufferRivalName 1
     GetPlayerGender 0x800C
-    GoToIfEq 0x800C, 0, _059B
+    GoToIfEq 0x800C, GENDER_MALE, _059B
     GoTo _05A6
     End
 
@@ -425,14 +425,14 @@ _05B1:
 
 _0606:
     ApplyMovement 1, _0830
-    ApplyMovement 0xFF, _08BC
+    ApplyMovement LOCALID_PLAYER, _08BC
     WaitMovement
     GoTo _0676
     End
 
 _0620:
     ApplyMovement 1, _083C
-    ApplyMovement 0xFF, _08C4
+    ApplyMovement LOCALID_PLAYER, _08C4
     ApplyMovement 0, _07E8
     WaitMovement
     GoTo _0676
@@ -447,7 +447,7 @@ _0642:
 
 _065C:
     ApplyMovement 1, _0858
-    ApplyMovement 0xFF, _08D8
+    ApplyMovement LOCALID_PLAYER, _08D8
     WaitMovement
     GoTo _0676
     End
@@ -803,7 +803,7 @@ _08E0:
     End
 
 _08EA:
-    ApplyMovement 0xFF, _0918
+    ApplyMovement LOCALID_PLAYER, _0918
     ApplyMovement 0, _0930
     WaitMovement
     GoTo _0904

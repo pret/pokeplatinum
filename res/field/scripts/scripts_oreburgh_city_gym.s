@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _011F
     ScriptEntry _0153
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -19,7 +19,7 @@ _000E:
     CloseMessage
     StartTrainerBattle TRAINER_LEADER_ROARK
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0119
+    GoToIfEq 0x800C, FALSE, _0119
     Message 1
     BufferPlayerName 0
     Message 2
@@ -75,7 +75,7 @@ _0103:
     End
 
 _0119:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

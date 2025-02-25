@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _0124
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -24,11 +24,11 @@ _000A:
 
 _004A:
     Message 1
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0083
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0083
     Message 10
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0083
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0083
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -107,8 +107,8 @@ _0124:
     GoToIfEq 0x800C, 2, _0309
     GoToIfEq 0x800C, 3, _04A0
     Message 15
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _017E
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _017E
     Message 20
     WaitABXPadPress
     CloseMessage
@@ -155,13 +155,13 @@ _01DE:
     GoTo _0270
 
 _025F:
-    ScrCmd_04C 0x8001, 0
+    PlayCry 0x8001
     Message 17
     ScrCmd_04D
     GoTo _029F
 
 _0270:
-    ScrCmd_04C 0x8001, 0
+    PlayCry 0x8001
     Message 36
     WaitABXPadPress
     CloseMessage
@@ -188,8 +188,8 @@ _0292:
 
 _029F:
     Message 18
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _017E
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _017E
     GoTo _0292
     End
 
@@ -239,11 +239,11 @@ _0309:
     SetVar 0x8000, 0
     Call _02F4
     Message 18
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _017E
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _017E
     Message 32
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0346
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0346
     GoTo _0292
 
 _0346:
@@ -267,8 +267,8 @@ _0346:
 _03BE:
     ScrCmd_1AA 0x8004, 0x8001
     Message 28
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _03DE
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _03DE
     GoTo _0292
 
 _03DE:
@@ -290,7 +290,7 @@ _03FE:
     PlayFanfare SEQ_SE_DP_REGI
     WaitFanfare SEQ_SE_DP_REGI
     Message 29
-    ScrCmd_04C 0x8002, 0
+    PlayCry 0x8002
     BufferPlayerName 1
     Message 30
     ScrCmd_04D
@@ -300,8 +300,8 @@ _03FE:
 
 _0444:
     Message 22
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0346
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0346
     GoTo _0292
 
 _045E:
@@ -335,8 +335,8 @@ _04A0:
     SetVar 0x8000, 1
     Call _02F4
     Message 32
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0346
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0346
     Message 23
     WaitABXPadPress
     CloseMessage

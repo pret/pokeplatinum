@@ -6,7 +6,7 @@
     ScriptEntry _0092
     ScriptEntry _0012
     ScriptEntry _0047
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     CallIfNe 0x406B, 0x122, _003F
@@ -26,11 +26,11 @@ _0047:
     End
 
 _0067:
-    ScrCmd_18A 5, 0x30F, 0x153
+    SetWarpEventPos 5, 0x30F, 0x153
     End
 
 _0071:
-    ScrCmd_18A 4, 0x30F, 0x153
+    SetWarpEventPos 4, 0x30F, 0x153
     End
 
 _007B:

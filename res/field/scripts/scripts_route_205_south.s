@@ -13,7 +13,7 @@
     ScriptEntry _0280
     ScriptEntry _0297
     ScriptEntry _02AE
-    .short 0xFD13
+    ScriptEntryEnd
 
 _002A:
     End
@@ -56,7 +56,7 @@ _0070:
     Message 3
     CloseMessage
     ApplyMovement 13, _00CC
-    ApplyMovement 0xFF, _00EC
+    ApplyMovement LOCALID_PLAYER, _00EC
     WaitMovement
     ApplyMovement 12, _00E4
     WaitMovement
@@ -156,14 +156,14 @@ _015D:
 _01A8:
     ApplyMovement 18, _0238
     WaitMovement
-    ApplyMovement 0xFF, _0228
+    ApplyMovement LOCALID_PLAYER, _0228
     WaitMovement
     GoTo _0216
 
 _01C2:
     ApplyMovement 18, _024C
     WaitMovement
-    ApplyMovement 0xFF, _0228
+    ApplyMovement LOCALID_PLAYER, _0228
     WaitMovement
     GoTo _0216
 
@@ -173,14 +173,14 @@ _01DC:
 _01E2:
     ApplyMovement 18, _025C
     WaitMovement
-    ApplyMovement 0xFF, _0230
+    ApplyMovement LOCALID_PLAYER, _0230
     WaitMovement
     GoTo _0216
 
 _01FC:
     ApplyMovement 18, _026C
     WaitMovement
-    ApplyMovement 0xFF, _0230
+    ApplyMovement LOCALID_PLAYER, _0230
     WaitMovement
     GoTo _0216
 

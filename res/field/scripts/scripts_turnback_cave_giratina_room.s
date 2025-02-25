@@ -9,7 +9,7 @@
     ScriptEntry _0116
     ScriptEntry _001A
     ScriptEntry _0127
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001A:
     End
@@ -28,16 +28,16 @@ _0037:
     LockAll
     PlayFanfare SEQ_SE_CONFIRM
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 0x1E7, 0
+    PlayCry SPECIES_GIRATINA
     Message 0
     CloseMessage
     SetFlag 142
     StartLegendaryBattle SPECIES_GIRATINA, 47
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _009B
+    GoToIfEq 0x800C, FALSE, _009B
     CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, 1, _0090
+    GoToIfEq 0x800C, TRUE, _0090
     GoTo _0084
     End
 
@@ -56,7 +56,7 @@ _0090:
 
 _009B:
     ClearFlag 0x250
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -103,8 +103,8 @@ _0127:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 2
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0149
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0149
     GoTo _017F
     End
 

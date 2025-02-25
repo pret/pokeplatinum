@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/rotoms_room.h"
 
     .data
@@ -14,7 +15,7 @@
     ScriptEntry _07BB
     ScriptEntry _0908
     ScriptEntry _081E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _002E:
     End
@@ -25,8 +26,8 @@ _0030:
     SetFlag 0x2BD
     SetFlag 0x2BE
     SetFlag 0x2BF
-    ScrCmd_28B 3, 0x4000
-    GoToIfEq 0x4000, 0, _00A5
+    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x4000
+    GoToIfEq 0x4000, FALSE, _00A5
     ScrCmd_302 0x4000, 0x4001, 0x4002, 0x4003, 0x4004
     CallIfEq 0x4000, 0, _00CF
     CallIfEq 0x4001, 0, _00D5
@@ -103,8 +104,8 @@ _0151:
     GoToIfEq 0x800C, 0, _06DE
     CheckItem ITEM_SECRET_KEY, 1, 0x800C
     GoToIfEq 0x800C, 0, _06DE
-    ScrCmd_28B 3, 0x800C
-    GoToIfEq 0x800C, 0, _06DE
+    CheckDistributionEvent DISTRIBUTION_EVENT_ROTOM, 0x800C
+    GoToIfEq 0x800C, FALSE, _06DE
     CallIfEq 0x8004, 1, _06C5
     CallIfEq 0x8004, 3, _06CA
     CallIfEq 0x8004, 2, _06CF
@@ -112,8 +113,8 @@ _0151:
     CallIfEq 0x8004, 5, _06D9
     ScrCmd_303 0x8003, 0x800C
     GoToIfGe 0x8003, 1, _0254
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0740
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0740
     GoTo _01F8
     End
 
@@ -166,7 +167,7 @@ _02B6:
 
 _0325:
     GetPlayerMapPos 0x8006, 0x8007
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     Warp MAP_HEADER_ROTOMS_ROOM, 0, 0x8006, 0x8007, 0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -174,27 +175,27 @@ _0325:
 
 _0349:
     ClearFlag 0x2BB
-    ScrCmd_064 0
+    AddObject 0
     Return
 
 _0353:
     ClearFlag 0x2BD
-    ScrCmd_064 2
+    AddObject 2
     Return
 
 _035D:
     ClearFlag 0x2BC
-    ScrCmd_064 3
+    AddObject 3
     Return
 
 _0367:
     ClearFlag 0x2BE
-    ScrCmd_064 1
+    AddObject 1
     Return
 
 _0371:
     ClearFlag 0x2BF
-    ScrCmd_064 4
+    AddObject 4
     Return
 
 _037B:
@@ -288,8 +289,8 @@ _051B:
     BufferPartyMonNickname 0, 0x8000
     BufferMoveName 1, 0x8001
     Message 0
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _05FE
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _05FE
     GoTo _0541
     End
 
@@ -306,8 +307,8 @@ _0541:
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
     Message 3
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _05FE
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _05FE
     BufferPartyMonNickname 0, 0x8000
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
@@ -328,8 +329,8 @@ _0541:
 _05DD:
     BufferMoveName 1, 0x8001
     Message 1
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0541
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0541
     GoTo _05FE
     End
 
@@ -520,9 +521,9 @@ _081E:
     LockAll
     ClearFlag 0x2C0
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_064 6
+    AddObject 6
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _08AC
+    ApplyMovement LOCALID_PLAYER, _08AC
     ApplyMovement 6, _08D4
     WaitMovement
     BufferPlayerName 0
@@ -619,32 +620,32 @@ _0908:
     LockAll
     FacePlayer
     Message 38
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 39
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 40
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 41
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 42
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 43
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 44
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 45
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 46
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _09CF
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _09CF
     Message 47
     GoTo _09D5
     End

@@ -3,11 +3,11 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     LockAll
-    ApplyMovement 0xFF, _00B8
+    ApplyMovement LOCALID_PLAYER, _00B8
     WaitMovement
     ScrCmd_11C 0x40CE
     SetVar 0x8008, 0x40CE
@@ -38,7 +38,7 @@ _006A:
 _009C:
     WaitFanfare SEQ_SE_CONFIRM
     ScrCmd_23C 0x8004, 4
-    ApplyMovement 0xFF, _00C4
+    ApplyMovement LOCALID_PLAYER, _00C4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     Return

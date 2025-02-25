@@ -8,7 +8,7 @@
     ScriptEntry _012C
     ScriptEntry _0058
     ScriptEntry _0037
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     GoToIfEq 0x40D9, 0, _0035
@@ -135,7 +135,7 @@ _01EF:
 
 _0201:
     Call _015D
-    GoToIfEq 0x8004, 0, _018C
+    GoToIfEq 0x8004, FALSE, _018C
     Call _01EF
     GoToIfEq 0x800C, 1, _019C
     Call _0492
@@ -169,17 +169,17 @@ _02AD:
 
 _02BB:
     Message 2
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _01AC
+    GoToIfEq 0x800C, MENU_YES, _01AC
     GoTo _0241
     End
 
 _02D9:
     Message 3
-    ScrCmd_03E 0x800C
+    ShowYesNoMenu 0x800C
     CloseMessage
-    GoToIfEq 0x800C, 0, _01E7
+    GoToIfEq 0x800C, MENU_YES, _01E7
     GoTo _0241
     End
 
@@ -223,7 +223,7 @@ _03C7:
     ScrCmd_1DD 42, 0, 0
     CheckWonBattle 0x800C
     SetVar 0x8004, 0x800C
-    GoToIfEq 0x8004, 0, _018C
+    GoToIfEq 0x8004, FALSE, _018C
     ScrCmd_1DD 36, 0, 0x800C
     GoToIfEq 0x800C, 48, _0429
     Message 17
@@ -260,7 +260,7 @@ _045C:
     ScrCmd_1DD 41, 0, 0x800C
     SetVar 0x4021, 0x800C
     ClearFlag 0x1CB
-    ScrCmd_064 1
+    AddObject 1
     ApplyMovement 1, _0524
     WaitMovement
     Return
@@ -293,7 +293,7 @@ _04BA:
 _04CE:
     SetVar 0x4021, 169
     ClearFlag 0x1CB
-    ScrCmd_064 1
+    AddObject 1
     ApplyMovement 1, _05A8
     WaitMovement
     Return

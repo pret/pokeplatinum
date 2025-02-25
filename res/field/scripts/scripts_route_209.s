@@ -12,7 +12,7 @@
     ScriptEntry _02C6
     ScriptEntry _0026
     ScriptEntry _029E
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0026:
     GetTimeOfDay 0x4000
@@ -54,8 +54,8 @@ _00A4:
     CheckItem ITEM_ODD_KEYSTONE, 1, 0x800C
     GoToIfEq 0x800C, 0, _01BC
     Message 2
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _00E6
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _00E6
     CloseMessage
     ReleaseAll
     End
@@ -71,7 +71,7 @@ _00E6:
     End
 
 _0102:
-    ScrCmd_214 0x800C
+    GetSpiritombCounter 0x800C
     GoToIfGe 0x800C, 32, _014D
     GoToIfGe 0x800C, 29, _01B1
     GoToIfGe 0x800C, 22, _01A6
@@ -81,19 +81,19 @@ _0102:
 
 _014D:
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 0x1BA, 0
+    PlayCry SPECIES_SPIRITOMB
     Message 9
     ScrCmd_04D
     CloseMessage
     StartWildBattle SPECIES_SPIRITOMB, 25
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _017F
+    GoToIfEq 0x800C, FALSE, _017F
     SetVar 0x408A, 0
-    ScrCmd_26F
+    ClearSpiritombCounter
     End
 
 _017F:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -148,17 +148,17 @@ _01C7:
     ScrCmd_346 0
     GoToIfSet 162, _020B
     Message 10
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0254
-    GoToIfEq 0x800C, 1, _0249
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0254
+    GoToIfEq 0x800C, MENU_NO, _0249
     End
 
 _020B:
     BufferItemName 0, 0x8004
     Message 12
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0233
-    GoToIfEq 0x800C, 1, _023E
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0233
+    GoToIfEq 0x800C, MENU_NO, _023E
     End
 
 _0233:

@@ -853,25 +853,25 @@ static void ov19_021D1C84(UnkStruct_ov19_021D5DF8 *param0)
         UnkStruct_ov19_021D5594 *v1 = &param0->unk_00.unk_14;
 
         param0->unk_12C.monData = param0->unk_00.unk_14.unk_00;
-        param0->unk_12C.dataType = (v1->unk_0B) ? 0 : 2;
-        param0->unk_12C.max = 1;
-        param0->unk_12C.pos = 0;
-        param0->unk_12C.mode = 0;
+        param0->unk_12C.dataType = (v1->unk_0B) ? SUMMARY_DATA_MON : SUMMARY_DATA_BOX_MON;
+        param0->unk_12C.monMax = 1;
+        param0->unk_12C.monIndex = 0;
+        param0->unk_12C.mode = SUMMARY_MODE_NORMAL;
         param0->unk_12C.move = 0;
         param0->unk_12C.options = param0->unk_1A4;
     } else if (ov19_021D5E10(&param0->unk_00) == 0) {
-        param0->unk_12C.monData = sub_02079C9C(param0->unk_120, sub_0207999C(param0->unk_120), 0);
-        param0->unk_12C.dataType = 2;
-        param0->unk_12C.max = (5 * 6);
-        param0->unk_12C.pos = ov19_021D5E24(&param0->unk_00);
-        param0->unk_12C.mode = 0;
+        param0->unk_12C.monData = GetBoxedPokemonFrom(param0->unk_120, sub_0207999C(param0->unk_120), 0);
+        param0->unk_12C.dataType = SUMMARY_DATA_BOX_MON;
+        param0->unk_12C.monMax = MAX_MONS_PER_BOX;
+        param0->unk_12C.monIndex = ov19_021D5E24(&param0->unk_00);
+        param0->unk_12C.mode = SUMMARY_MODE_NORMAL;
         param0->unk_12C.move = 0;
     } else {
         param0->unk_12C.monData = param0->unk_124;
-        param0->unk_12C.dataType = 1;
-        param0->unk_12C.max = Party_GetCurrentCount(param0->unk_124);
-        param0->unk_12C.pos = ov19_021D5E2C(&param0->unk_00);
-        param0->unk_12C.mode = 0;
+        param0->unk_12C.dataType = SUMMARY_DATA_PARTY_MON;
+        param0->unk_12C.monMax = Party_GetCurrentCount(param0->unk_124);
+        param0->unk_12C.monIndex = ov19_021D5E2C(&param0->unk_00);
+        param0->unk_12C.mode = SUMMARY_MODE_NORMAL;
         param0->unk_12C.move = 0;
     }
 
@@ -1655,7 +1655,7 @@ static BOOL ov19_021D2DD0(const UnkStruct_ov19_021D4DF0 *param0)
 
     for (v1 = 0; v1 < v6->unk_08; v1++) {
         v4 = v3 + (v6->unk_0C[v1] - v2);
-        v0 = sub_02079C9C(param0->unk_00, 0xffffffff, v4);
+        v0 = GetBoxedPokemonFrom(param0->unk_00, 0xffffffff, v4);
 
         if (BoxPokemon_GetValue(v0, MON_DATA_SPECIES_EXISTS, NULL)) {
             return 0;
@@ -2247,7 +2247,7 @@ static void ov19_021D3978(SysTask *param0, void *param1)
         }
 
         for (v2 = v0->unk_03; v2 < v4; v2++) {
-            v1 = sub_02079C9C(v0->unk_14, v0->unk_02, v2);
+            v1 = GetBoxedPokemonFrom(v0->unk_14, v0->unk_02, v2);
 
             if (BoxPokemon_GetValue(v1, MON_DATA_SPECIES_EXISTS, NULL)) {
                 for (v3 = 0; v3 < (NELEMS(Unk_ov19_021DFDF0)); v3++) {
@@ -2410,12 +2410,12 @@ static void ov19_021D3CFC(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5D
 
     switch (v0->unk_04) {
     case 0:
-        v0->unk_07 = param1->unk_12C.pos;
+        v0->unk_07 = param1->unk_12C.monIndex;
         v0->unk_05 = v0->unk_07 % 6;
         v0->unk_06 = v0->unk_07 / 6;
         break;
     case 1:
-        v0->unk_08 = param1->unk_12C.pos;
+        v0->unk_08 = param1->unk_12C.monIndex;
         break;
     default:
         return;
@@ -3615,7 +3615,7 @@ static BOOL ov19_021D52F4(UnkStruct_ov19_021D5DF8 *param0)
 
     switch (v2->unk_04) {
     case 0:
-        v2->unk_00 = sub_02079C9C(v0->unk_00, 0xffffffff, v2->unk_07);
+        v2->unk_00 = GetBoxedPokemonFrom(v0->unk_00, 0xffffffff, v2->unk_07);
         break;
     case 1:
         if (v2->unk_08 < Party_GetCurrentCount(param0->unk_124)) {
@@ -3737,7 +3737,7 @@ static void ov19_021D54A4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
         v6 = v1 * 6 + v2;
 
         for (v0 = v2; v0 <= v3; v0++) {
-            v10 = sub_02079C9C(param0->unk_120, 0xffffffff, v6);
+            v10 = GetBoxedPokemonFrom(param0->unk_120, 0xffffffff, v6);
 
             if (BoxPokemon_GetValue(v10, MON_DATA_SPECIES_EXISTS, NULL)) {
                 MI_CpuCopy32(v10, v12, v9);
@@ -3790,7 +3790,7 @@ static void ov19_021D55C4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
     if (ov19_021D5E10(param1) == 0) {
         v4 = BoxPokemon_GetValue(v0->unk_00, MON_DATA_FORM, NULL);
         sub_02079914(param0->unk_120, 0xffffffff, v1->unk_07, v0->unk_00);
-        v2 = sub_02079C9C(param0->unk_120, 0xffffffff, v1->unk_07);
+        v2 = GetBoxedPokemonFrom(param0->unk_120, 0xffffffff, v1->unk_07);
 
         if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_SHAYMIN) && (v4 == 1)) {
             v3 = 1;
@@ -3836,7 +3836,7 @@ static void ov19_021D56AC(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
         (u8 *)v0 += v5;
     }
 
-    ov19_021D5BA8(param1, sub_02079C9C(param0->unk_120, 0xffffffff, ov19_021D5E24(param1)));
+    ov19_021D5BA8(param1, GetBoxedPokemonFrom(param0->unk_120, 0xffffffff, ov19_021D5E24(param1)));
     ov19_021D52F4(param0);
 
     v7->unk_08 = 0;

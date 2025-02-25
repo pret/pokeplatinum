@@ -5,37 +5,37 @@
         {
             "x": 19,
             "z": 5,
-            "dest_header_id": 295,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU",
             "dest_warp_id": 3
         },
         {
             "x": 4,
             "z": 2,
-            "dest_header_id": 299,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU_BACK_WEST_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 11,
             "z": 2,
-            "dest_header_id": 300,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_WEST_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 19,
             "z": 2,
-            "dest_header_id": 301,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 27,
             "z": 2,
-            "dest_header_id": 302,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 34,
             "z": 2,
-            "dest_header_id": 303,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM",
             "dest_warp_id": 0
         }
     ],

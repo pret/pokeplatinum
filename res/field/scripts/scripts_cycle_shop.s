@@ -8,7 +8,7 @@
     ScriptEntry _007C
     ScriptEntry _00A5
     ScriptEntry _00B6
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     PlayFanfare SEQ_SE_CONFIRM
@@ -37,7 +37,7 @@ _005D:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 35, 0
+    PlayCry SPECIES_CLEFAIRY
     Message 2
     ScrCmd_04D
     WaitABXPadPress

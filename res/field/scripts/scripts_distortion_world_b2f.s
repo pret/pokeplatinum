@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0012
     ScriptEntry _0084
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     ScrCmd_2F2
@@ -32,7 +32,7 @@ _0059:
     Message 0
     CloseMessage
     ApplyMovement 128, _00F8
-    ApplyMovement 0xFF, _011C
+    ApplyMovement LOCALID_PLAYER, _011C
     WaitMovement
 _007A:
     SetVar 0x4055, 5

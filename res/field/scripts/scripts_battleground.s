@@ -11,7 +11,7 @@
     ScriptEntry _03CA
     ScriptEntry _0457
     ScriptEntry _04E4
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     SetFlag 200
@@ -122,19 +122,19 @@ _0183:
     End
 
 _01D5:
-    ApplyMovement 0xFF, _0214
+    ApplyMovement LOCALID_PLAYER, _0214
     ApplyMovement 1, _0240
     WaitMovement
     Return
 
 _01E9:
-    ApplyMovement 0xFF, _0220
+    ApplyMovement LOCALID_PLAYER, _0220
     ApplyMovement 1, _0254
     WaitMovement
     Return
 
 _01FD:
-    ApplyMovement 0xFF, _0234
+    ApplyMovement LOCALID_PLAYER, _0234
     ApplyMovement 1, _0264
     WaitMovement
     Return
@@ -187,7 +187,7 @@ _0278:
     SetVar 0x40C1, 1
     ApplyMovement 0, _02A0
     WaitMovement
-    ApplyMovement 0xFF, _02A8
+    ApplyMovement LOCALID_PLAYER, _02A8
     WaitMovement
     Message 0
     WaitABXPadPress
@@ -217,8 +217,8 @@ _02B4:
     GoToIfEq 0x800C, 1, _034D
     CallIfUnset 1, _036E
     CallIfSet 1, _0376
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0386
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0386
     Call _032F
     GoToIfEq 0x8000, 0, _0398
     SetFlag 5
@@ -263,7 +263,7 @@ _0386:
     End
 
 _0398:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -292,10 +292,10 @@ _03CA:
     GoToIfEq 0x800C, 1, _034D
     CallIfUnset 2, _036E
     CallIfSet 2, _0376
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _0445
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _0445
     Call _032F
-    GoToIfEq 0x8000, 0, _0398
+    GoToIfEq 0x8000, FALSE, _0398
     SetFlag 6
     Call _1091
     GoTo _034D
@@ -318,8 +318,8 @@ _0457:
     GoToIfEq 0x800C, 1, _034D
     CallIfUnset 3, _036E
     CallIfSet 3, _0376
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _04D2
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _04D2
     Call _032F
     GoToIfEq 0x8000, 0, _0398
     SetFlag 7
@@ -344,8 +344,8 @@ _04E4:
     GoToIfEq 0x800C, 1, _034D
     CallIfUnset 4, _036E
     CallIfSet 4, _0376
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _055F
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _055F
     Call _032F
     GoToIfEq 0x8000, 0, _0398
     SetFlag 8

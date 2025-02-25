@@ -15,6 +15,7 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/area_data.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D57BC.h"
@@ -28,7 +29,6 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
-#include "overlay005/struct_ov5_021EF76C_decl.h"
 #include "overlay005/struct_ov5_02201C58.h"
 #include "overlay009/struct_ov9_02249FF4.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
@@ -60,13 +60,13 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system_flags.h"
+#include "system_vars.h"
 #include "unk_02005474.h"
 #include "unk_0201CED8.h"
 #include "unk_02020AEC.h"
 #include "unk_02027F50.h"
 #include "unk_0205F180.h"
 #include "unk_020655F4.h"
-#include "unk_0206AFE0.h"
 #include "unk_020711EC.h"
 #include "unk_02073838.h"
 #include "vars_flags.h"
@@ -371,7 +371,7 @@ typedef struct {
     u32 unk_08;
     NARC *unk_0C;
     MapMatrix *unk_10;
-    UnkStruct_ov5_021EF76C *unk_14;
+    AreaDataManager *unk_14;
     UnkStruct_ov5_021E8F60 *unk_18;
 } UnkStruct_ov9_0224C8E8;
 
@@ -576,7 +576,7 @@ typedef struct {
     int unk_0C;
     int unk_10[4];
     int unk_20;
-    UnkStruct_ov5_021EF76C *unk_24;
+    AreaDataManager *unk_24;
     UnkStruct_ov9_0224E0DC *unk_28;
     SysTask *unk_2C;
 } UnkStruct_ov9_0224CBD8;
@@ -2093,7 +2093,7 @@ BOOL ov9_0224A67C(FieldSystem *fieldSystem, int param1)
         if (param1 == 0) {
             VarsFlags *v2 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
 
-            if (sub_0206B5D8(v2) >= 10) {
+            if (SystemVars_GetDistortionWorldProgress(v2) >= 10) {
                 int v3, v4, v5;
 
                 ov9_02250F44(v0, &v3, &v4, &v5);
@@ -2152,7 +2152,7 @@ BOOL ov9_0224A71C(FieldSystem *fieldSystem)
             VarsFlags *v7 = SaveData_GetVarsFlags(v5->fieldSystem->saveData);
 
             if ((v6 == 581) && (v4 == 0)) {
-                if (sub_0206B5D8(v7) >= 10) {
+                if (SystemVars_GetDistortionWorldProgress(v7) >= 10) {
                     if ((v1 == 89) && (v2 == 65) && ((v3 == 56) || (v3 == 57))) {
                         ScriptManager_Set(fieldSystem, 2, NULL);
                         return 1;
@@ -2180,7 +2180,7 @@ BOOL ov9_0224A800(FieldSystem *fieldSystem, int param1)
         if (param1 == 0) {
             VarsFlags *v2 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
 
-            if (sub_0206B5D8(v2) >= 10) {
+            if (SystemVars_GetDistortionWorldProgress(v2) >= 10) {
                 int v3, v4, v5;
 
                 ov9_02250F44(v0, &v3, &v4, &v5);
@@ -2768,7 +2768,7 @@ static void ov9_0224B1B4(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov5_021DF47C 
 
     if (ov9_022510D0(param0) == 582) {
         VarsFlags *v3 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
-        u32 v4 = sub_0206B5D8(v3);
+        u32 v4 = SystemVars_GetDistortionWorldProgress(v3);
 
         if (v4 >= 10) {
             if (v4 <= 12) {
@@ -4370,7 +4370,7 @@ static void ov9_0224C8E8(UnkStruct_ov9_02249B04 *param0)
     }
 
     {
-        v2->unk_14 = fieldSystem->unk_30;
+        v2->unk_14 = fieldSystem->areaDataManager;
     }
 
     {
@@ -4797,7 +4797,7 @@ static int ov9_0224CEBC(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
     }
 
     if (v1->unk_14 == NULL) {
-        v1->unk_14 = fieldSystem->unk_30;
+        v1->unk_14 = fieldSystem->areaDataManager;
     }
 
     if (v1->unk_04 == 0) {
@@ -4825,7 +4825,7 @@ static int ov9_0224CEBC(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
     {
         int v4 = 0, v5 = 0, v6 = 0;
 
-        ov5_021EA540(fieldSystem->unk_28, fieldSystem->mapMatrix, fieldSystem->unk_30);
+        ov5_021EA540(fieldSystem->unk_28, fieldSystem->mapMatrix, fieldSystem->areaDataManager);
         ov9_02251094(v2->unk_00, &v4, &v5, &v6);
         ov5_021EA678(fieldSystem->unk_28, v4, v5, v6);
         ov5_021EA6A4(fieldSystem->unk_28, 1);
@@ -4944,7 +4944,7 @@ static int ov9_0224D0C8(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224D078 *
 
         {
             VarsFlags *v4 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
-            u16 v5 = sub_0206B5D8(v4);
+            u16 v5 = SystemVars_GetDistortionWorldProgress(v4);
 
             if ((v0 == 573) && (v5 == 2)) {
                 param1->unk_68 = MapObjMan_LocalMapObjByIndex(param0->fieldSystem->mapObjMan, (0x80 + 1));
@@ -5265,7 +5265,7 @@ static int ov9_0224D5E8(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224D078 *
         if ((param1->unk_06 == 577) && (param1->unk_00 == 1) && (param1->unk_64->unk_04.unk_00 == 1)) {
             VarsFlags *v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
-            if (sub_0206B6DC(v1) == 0) {
+            if (SystemVars_GetDistortionWorldCyrusApperanceState(v1) == 0) {
                 param1->unk_04 = 6;
                 return 1;
             }
@@ -5331,7 +5331,7 @@ static int ov9_0224D6E0(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224D078 *
         ov9_0224EE70(param0, v1);
         v0 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
-        sub_0206B6EC(v0, 1);
+        SystemVars_SetDistortionWorldCyrusApperanceState(v0, 1);
         return 2;
     }
 
@@ -7764,7 +7764,7 @@ static void ov9_0224F724(UnkStruct_ov9_02249B04 *param0)
     if (v1 == 582) {
         VarsFlags *v2 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
-        if (sub_0206B5D8(v2) == 13) {
+        if (SystemVars_GetDistortionWorldProgress(v2) == 13) {
             v0->unk_06 = 1;
             v0->unk_00 = 12;
         }
@@ -8683,7 +8683,7 @@ static int ov9_022506D0(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
     const UnkStruct_ov9_022506D0 *v0 = param3;
     VarsFlags *v1 = SaveData_GetVarsFlags(param0->fieldSystem->saveData);
 
-    sub_0206B5E8(v1, v0->unk_00);
+    SystemVars_SetDistortionWorldProgress(v1, v0->unk_00);
     return 2;
 }
 
@@ -9624,17 +9624,17 @@ static BOOL ov9_02251104(UnkStruct_ov9_02249B04 *param0, u32 param1, u32 param2)
         }
         break;
     case 3:
-        if (sub_0206B5D8(v0) == param2) {
+        if (SystemVars_GetDistortionWorldProgress(v0) == param2) {
             return 1;
         }
         break;
     case 4:
-        if (sub_0206B5D8(v0) <= param2) {
+        if (SystemVars_GetDistortionWorldProgress(v0) <= param2) {
             return 1;
         }
         break;
     case 5:
-        if (sub_0206B5D8(v0) >= param2) {
+        if (SystemVars_GetDistortionWorldProgress(v0) >= param2) {
             return 1;
         }
         break;
@@ -9644,7 +9644,7 @@ static BOOL ov9_02251104(UnkStruct_ov9_02249B04 *param0, u32 param1, u32 param2)
         }
         break;
     case 8:
-        if (sub_0206B6DC(v0) == param2) {
+        if (SystemVars_GetDistortionWorldCyrusApperanceState(v0) == param2) {
             return 1;
         }
         break;
@@ -9660,7 +9660,7 @@ BOOL ov9_022511A0(FieldSystem *fieldSystem, int param1, int param2, int param3)
     if (ov9_022510D0(v0) == 582) {
         if ((param2 == 15) && (param1 == 15) && (param3 == 1)) {
             VarsFlags *v1 = SaveData_GetVarsFlags(v0->fieldSystem->saveData);
-            u32 v2 = sub_0206B5D8(v1);
+            u32 v2 = SystemVars_GetDistortionWorldProgress(v1);
 
             if (v2 == 14) {
                 return 1;

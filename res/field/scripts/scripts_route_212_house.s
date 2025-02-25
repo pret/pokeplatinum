@@ -9,7 +9,7 @@
     ScriptEntry _002F
     ScriptEntry _0042
     ScriptEntry _0053
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     SetFlag 0x9EC
@@ -49,9 +49,9 @@ _0053:
     LockAll
     FacePlayer
     Message 0
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _007E
-    GoToIfEq 0x800C, 1, _0264
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _007E
+    GoToIfEq 0x800C, MENU_NO, _0264
     End
 
 _007E:
@@ -86,8 +86,8 @@ _012F:
     BufferPartyMonNickname 0, 0x8000
     BufferMoveName 1, 0x8003
     Message 9
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _01E9
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _01E9
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     CloseMessage
@@ -100,8 +100,8 @@ _012F:
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
     Message 12
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _01E9
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _01E9
     BufferPartyMonNickname 0, 0x8000
     ScrCmd_1CA 0x800C, 0x8000, 0x8002
     BufferMoveName 1, 0x800C
@@ -123,8 +123,8 @@ _01E9:
     BufferPartyMonNickname 0, 0x8000
     BufferMoveName 1, 0x8003
     Message 10
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _020F
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _020F
     GoTo _012F
     End
 

@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0101
     ScriptEntry _0114
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     PlayFanfare SEQ_SE_CONFIRM
@@ -14,8 +14,8 @@ _000E:
     FacePlayer
     GoToIfSet 0xAAC, _00D5
     Message 0
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _00EB
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _00EB
     Message 1
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -90,7 +90,7 @@ _0114:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 0x1A1, 0
+    PlayCry SPECIES_PACHIRISU
     Message 10
     ScrCmd_04D
     WaitABXPadPress

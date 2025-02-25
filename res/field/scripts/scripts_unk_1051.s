@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     PlayFanfare SEQ_SE_CONFIRM
@@ -21,8 +21,8 @@ _0027:
     End
 
 _003A:
-    CallIfEq 0x8004, 0, _005C
-    CallIfEq 0x8004, 1, _0064
+    CallIfEq 0x8004, GENDER_MALE, _005C
+    CallIfEq 0x8004, GENDER_FEMALE, _0064
     WaitABXPadPress
     CloseMessage
     ReleaseAll
@@ -110,7 +110,7 @@ _01F4:
     CallIfEq 0x8004, 0, _043F
     CallIfEq 0x8004, 1, _0444
     CloseMessage
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _0251
     GoToIfEq 0x800C, 1, _026B
     GoToIfEq 0x800C, 2, _0285
@@ -119,21 +119,21 @@ _01F4:
 
 _0251:
     ApplyMovement 4, _0474
-    ApplyMovement 0xFF, _0488
+    ApplyMovement LOCALID_PLAYER, _0488
     WaitMovement
     GoTo _02B1
     End
 
 _026B:
     ApplyMovement 4, _0474
-    ApplyMovement 0xFF, _0488
+    ApplyMovement LOCALID_PLAYER, _0488
     WaitMovement
     GoTo _02B1
     End
 
 _0285:
     ApplyMovement 4, _047C
-    ApplyMovement 0xFF, _0494
+    ApplyMovement LOCALID_PLAYER, _0494
     WaitMovement
     GoTo _02B1
     End
@@ -201,9 +201,9 @@ _03A1:
 
 _03A9:
     Message 10
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _03CC
-    GoToIfEq 0x800C, 1, _03D1
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _03CC
+    GoToIfEq 0x800C, MENU_NO, _03D1
     End
 
 _03CC:
@@ -216,9 +216,9 @@ _03D1:
 
 _03D6:
     Message 24
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _03F9
-    GoToIfEq 0x800C, 1, _03FE
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _03F9
+    GoToIfEq 0x800C, MENU_NO, _03FE
     End
 
 _03F9:

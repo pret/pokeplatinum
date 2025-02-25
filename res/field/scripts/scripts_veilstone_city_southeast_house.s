@@ -5,7 +5,7 @@
 
     ScriptEntry _000A
     ScriptEntry _018C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000A:
     PlayFanfare SEQ_SE_CONFIRM
@@ -15,7 +15,7 @@ _000A:
     Message 0
     Message 1
     CloseMessage
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 2, _005F
     GoToIfEq 0x800C, 0, _006F
     GoToIfEq 0x800C, 3, _007F

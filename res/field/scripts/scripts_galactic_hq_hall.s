@@ -4,7 +4,7 @@
     .data
 
     ScriptEntry _0006
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0006:
     LockAll
@@ -23,7 +23,7 @@ _0006:
     WaitFadeScreen
     WaitTime 15, 0x800C
     ClearFlag 0x253
-    ScrCmd_064 2
+    AddObject 2
     ApplyMovement 2, _01D8
     WaitMovement
     PlayFanfare SEQ_SE_DP_DENDOU
@@ -86,7 +86,7 @@ _0006:
     RemoveObject 34
     RemoveObject 35
     ApplyMovement 3, _0248
-    ApplyMovement 0xFF, _0224
+    ApplyMovement LOCALID_PLAYER, _0224
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -94,7 +94,7 @@ _0006:
     Message 6
     CloseMessage
     ApplyMovement 3, _0250
-    ApplyMovement 0xFF, _022C
+    ApplyMovement LOCALID_PLAYER, _022C
     WaitMovement
     RemoveObject 3
     SetVar 0x408E, 1
@@ -103,13 +103,13 @@ _0006:
 
 _01AD:
     ApplyMovement 3, _0240
-    ApplyMovement 0xFF, _0210
+    ApplyMovement LOCALID_PLAYER, _0210
     WaitMovement
     Return
 
 _01C1:
     ApplyMovement 3, _0240
-    ApplyMovement 0xFF, _021C
+    ApplyMovement LOCALID_PLAYER, _021C
     WaitMovement
     Return
 

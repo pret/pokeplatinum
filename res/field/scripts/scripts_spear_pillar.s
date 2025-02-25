@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/spear_pillar.h"
 
     .data
@@ -11,15 +12,15 @@
     ScriptEntry _0210
     ScriptEntry _0223
     ScriptEntry _0236
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     SetFlag 0x9C7
     Call _00C7
     Call _0062
     GetPlayerGender 0x4000
-    GoToIfEq 0x4000, 0, _0052
-    GoToIfEq 0x4000, 1, _005A
+    GoToIfEq 0x4000, GENDER_MALE, _0052
+    GoToIfEq 0x4000, GENDER_FEMALE, _005A
     End
 
 _0052:
@@ -36,9 +37,9 @@ _0062:
     ScrCmd_22D 2, 0x4000
     GoToIfEq 0x4000, 0, _00C5
     CheckItem ITEM_AZURE_FLUTE, 1, 0x4000
-    GoToIfEq 0x4000, 0, _00C5
-    ScrCmd_28B 2, 0x4000
-    GoToIfEq 0x4000, 0, _00C5
+    GoToIfEq 0x4000, FALSE, _00C5
+    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, 0x4000
+    GoToIfEq 0x4000, FALSE, _00C5
     GoToIfSet 0x11E, _00C5
     SetVar 0x4118, 1
     GoTo _00C5
@@ -108,7 +109,7 @@ _0154:
     ApplyMovement 0, _01E4
     ApplyMovement 3, _01F4
     WaitMovement
-    ScrCmd_0EE 0x800C
+    CheckHasTwoAliveMons 0x800C
     GoToIfNe 0x800C, 0, _01A6
     GoTo _0181
     End
@@ -116,7 +117,7 @@ _0154:
 _0181:
     Message 1
     CloseMessage
-    ApplyMovement 0xFF, _0204
+    ApplyMovement LOCALID_PLAYER, _0204
     WaitMovement
     ApplyMovement 0, _01EC
     ApplyMovement 3, _01FC
@@ -126,7 +127,7 @@ _0181:
 
 _01A6:
     Call _01CA
-    GoToIfEq 0x800C, 0, _01DB
+    GoToIfEq 0x800C, FALSE, _01DB
     SetVar 0x4098, 1
     Message 2
     WaitABXPadPress
@@ -142,7 +143,7 @@ _01CA:
     Return
 
 _01DB:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -215,10 +216,10 @@ _0249:
     Message 8
     Message 9
     CloseMessage
-    Call _0424
-    StartTagBattle 0x8004, 0x210, 0x197
+    Call SpearPillar_SetRivalPartnerTeam
+    StartTagBattle 0x8004, TRAINER_COMMANDER_MARS_SPEAR_PILLAR, TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02D0
+    GoToIfEq 0x800C, FALSE, _02D0
     Call _0456
     BufferRivalName 0
     BufferPlayerName 1
@@ -239,7 +240,7 @@ _0249:
 
 _02D0:
     SetVar 0x4098, 1
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -253,24 +254,24 @@ _02DC:
     Return
 
 _0315:
-    ScrCmd_186 5, 31, 40
-    ScrCmd_064 5
+    SetObjectEventPos 5, 31, 40
+    AddObject 5
     ApplyMovement 5, _04F4
     WaitMovement
     ScrCmd_18C 5, 3
     Return
 
 _0333:
-    ScrCmd_186 5, 30, 40
-    ScrCmd_064 5
+    SetObjectEventPos 5, 30, 40
+    AddObject 5
     ApplyMovement 5, _04F4
     WaitMovement
     ScrCmd_18C 5, 2
     Return
 
 _0351:
-    ScrCmd_186 5, 31, 40
-    ScrCmd_064 5
+    SetObjectEventPos 5, 31, 40
+    AddObject 5
     ApplyMovement 5, _04F4
     WaitMovement
     ScrCmd_18C 5, 2
@@ -335,14 +336,14 @@ _041C:
     MoveAction_034
     EndMovement
 
-_0424:
+SpearPillar_SetRivalPartnerTeam:
     GetPlayerStarterSpecies 0x800C
-    SetVar 0x8004, 0x26C
-    GoToIfEq 0x800C, SPECIES_CHIMCHAR, _0454
-    SetVar 0x8004, 0x26B
-    GoToIfEq 0x800C, SPECIES_TURTWIG, _0454
-    SetVar 0x8004, 0x25F
-_0454:
+    SetVar 0x8004, TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR
+    GoToIfEq 0x800C, SPECIES_CHIMCHAR, SpearPillar_Return
+    SetVar 0x8004, TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG
+    GoToIfEq 0x800C, SPECIES_TURTWIG, SpearPillar_Return
+    SetVar 0x8004, TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP
+SpearPillar_Return:
     Return
 
 _0456:
@@ -444,7 +445,7 @@ _0500:
     EndMovement
 
 _0508:
-    ApplyMovement 0xFF, _05B8
+    ApplyMovement LOCALID_PLAYER, _05B8
     WaitMovement
     GetPlayerMapPos 0x8000, 0x8001
     ScrCmd_066 0x8000, 0x8001
@@ -473,12 +474,12 @@ _0567:
     SetFlag 0x1C9
     SetFlag 0x1CA
     SetVar 0x4098, 3
-    SetFlag 0x981
+    SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_3
     ClearFlag 0x1C7
     SetFlag 0x132
     SetVar 0x40C3, 1
-    ScrCmd_31A 0x1E3
-    ScrCmd_31A 0x1E4
+    SetSpeciesSeen SPECIES_DIALGA
+    SetSpeciesSeen SPECIES_PALKIA
     ScrCmd_067
     Warp MAP_HEADER_SPEAR_PILLAR_DISTORTED, 0, 30, 30, 0
     End

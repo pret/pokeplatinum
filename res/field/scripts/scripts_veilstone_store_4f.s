@@ -10,14 +10,14 @@
     ScriptEntry _0127
     ScriptEntry _013D
     ScriptEntry _0153
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_27E 0x800C
-    GoToIfEq 0x800C, 1, _005F
+    CheckIsDepartmentStoreRegular 0x800C
+    GoToIfEq 0x800C, TRUE, _005F
     Message 0
     ScrCmd_040 1, 1, 0, 1, 0x800C
     ScrCmd_042 229, 1

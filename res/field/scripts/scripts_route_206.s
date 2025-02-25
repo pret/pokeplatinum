@@ -8,7 +8,7 @@
     ScriptEntry _00A4
     ScriptEntry _00B7
     ScriptEntry _00CE
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0016:
     SetFlag 0x9E6
@@ -16,9 +16,9 @@ _0016:
 
 _001C:
     CallIfSet 0x994, _009F
-    ScrCmd_200 0x4000
-    GoToIfEq 0x4000, 80, _0047
-    GoToIfEq 0x4000, 0x15F, _0047
+    GetPreviousMapID 0x4000
+    GoToIfEq 0x4000, MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE, _0047
+    GoToIfEq 0x4000, MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE, _0047
     End
 
 _0047:

@@ -13,7 +13,7 @@
     ScriptEntry _002A
     ScriptEntry _0045
     ScriptEntry _0141
-    .short 0xFD13
+    ScriptEntryEnd
 
 _002A:
     GoTo _0032
@@ -29,7 +29,7 @@ _0045:
     End
 
 _0052:
-    ScrCmd_18A 0, 0x28C, 0x150
+    SetWarpEventPos 0, 0x28C, 0x150
     End
 
 _005C:
@@ -133,9 +133,9 @@ _0141:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_234 0x4000
-    GoToIfEq 0x4000, 0, _01BE
-    GoToIfEq 0x4000, 6, _01BE
+    GetDayOfWeek 0x4000
+    GoToIfEq 0x4000, DAY_OF_WEEK_SUNDAY, _01BE
+    GoToIfEq 0x4000, DAY_OF_WEEK_SATURDAY, _01BE
     BufferRivalName 0
     BufferPlayerName 1
     SetVar 0x8008, 0x40C2
@@ -227,7 +227,7 @@ _02A0:
 
 _02AE:
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _02DC
+    GoToIfEq 0x800C, FALSE, _02DC
     SetFlag 0xAB2
     GoTo _02CB
     End
@@ -242,7 +242,7 @@ _02CB:
     End
 
 _02DC:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 

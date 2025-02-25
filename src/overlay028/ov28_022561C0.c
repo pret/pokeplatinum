@@ -170,7 +170,7 @@ static void ov28_022562CC(SysTask *param0, void *param1)
 
     if (v1->unk_00 < NELEMS(v0)) {
         v1->unk_06 = 17;
-        ov25_02254518(v1->poketchSys, v1->buttonManager);
+        PoketechSystem_UpdateButtonManager(v1->poketchSys, v1->buttonManager);
 
         if (v0[v1->unk_00](v1)) {
             ov28_02256298(v1);
@@ -644,7 +644,7 @@ static void ov28_02256914(UnkStruct_ov28_02256210 *param0, const UnkStruct_ov28_
         }
 
         if (v2 > 0 && v2 <= NATIONAL_DEX_COUNT && Pokedex_HasSeenSpecies(pokedex, v2)) {
-            ov25_02254444(v2, 0);
+            PoketchSystem_PlayCry(v2, 0);
         }
     }
 }

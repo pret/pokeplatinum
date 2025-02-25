@@ -7,32 +7,32 @@
     ScriptEntry _004E
     ScriptEntry _0066
     ScriptEntry _014C
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
-    GoToIfUnset 0x13E, _002A
-    GoToIfSet 0x13E, _003C
+    GoToIfUnset FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, _002A
+    GoToIfSet FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, _003C
     End
 
 _002A:
-    ScrCmd_18A 2, 80, 0x348
-    ScrCmd_18A 3, 81, 0x348
+    SetWarpEventPos 2, 80, 0x348
+    SetWarpEventPos 3, 81, 0x348
     End
 
 _003C:
-    ScrCmd_18A 1, 80, 0x348
-    ScrCmd_18A 0, 81, 0x348
+    SetWarpEventPos 1, 80, 0x348
+    SetWarpEventPos 0, 81, 0x348
     End
 
 _004E:
-    GoToIfUnset 0x13E, _002A
-    GoToIfSet 0x13E, _003C
+    GoToIfUnset FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, _002A
+    GoToIfSet FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN, _003C
     End
 
 _0066:
     LockAll
     ApplyMovement 242, _0124
-    ApplyMovement 0xFF, _0144
+    ApplyMovement LOCALID_PLAYER, _0144
     WaitMovement
     BufferRivalName 0
     Message 0
@@ -47,7 +47,7 @@ _0066:
     End
 
 _00D8:
-    ApplyMovement 0xFF, _0138
+    ApplyMovement LOCALID_PLAYER, _0138
     ApplyMovement 242, _012C
     WaitMovement
     GoTo _00F0

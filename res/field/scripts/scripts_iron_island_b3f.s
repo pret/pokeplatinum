@@ -6,7 +6,7 @@
     ScriptEntry _0075
     ScriptEntry _0081
     ScriptEntry _0012
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     ScrCmd_32B 0x4004
@@ -23,11 +23,11 @@ _0032:
     End
 
 _0061:
-    ScrCmd_18A 3, 17, 1
+    SetWarpEventPos 3, 17, 1
     End
 
 _006B:
-    ScrCmd_18A 2, 17, 1
+    SetWarpEventPos 2, 17, 1
     End
 
 _0075:

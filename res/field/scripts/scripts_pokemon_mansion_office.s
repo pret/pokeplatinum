@@ -10,7 +10,7 @@
     ScriptEntry _0354
     ScriptEntry _0388
     ScriptEntry _0399
-    .short 0xFD13
+    ScriptEntryEnd
 
 _001E:
     ScrCmd_268 0x4000
@@ -48,9 +48,9 @@ _009F:
 
 _00AA:
     Message 3
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _00D8
-    GoToIfEq 0x800C, 1, _00CD
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _00D8
+    GoToIfEq 0x800C, MENU_NO, _00CD
     End
 
 _00CD:
@@ -62,9 +62,9 @@ _00CD:
 
 _00D8:
     Message 5
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _00FB
-    GoToIfEq 0x800C, 1, _00CD
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _00FB
+    GoToIfEq 0x800C, MENU_NO, _00CD
     End
 
 _00FB:
@@ -273,7 +273,7 @@ _0354:
     WaitMovement
     Message 17
     CloseMessage
-    ApplyMovement 0xFF, _037C
+    ApplyMovement LOCALID_PLAYER, _037C
     ApplyMovement 3, _0344
     WaitMovement
     ReleaseAll
@@ -298,9 +298,9 @@ _0399:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     Message 19
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _03C2
-    GoToIfEq 0x800C, 1, _0408
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _03C2
+    GoToIfEq 0x800C, MENU_NO, _0408
     End
 
 _03C2:
@@ -308,7 +308,7 @@ _03C2:
     GoToIfSet 251, _0408
     CheckHasSeenSpecies SPECIES_MANAPHY, 0x800C
     GoToIfEq 0x800C, 1, _03FC
-    ScrCmd_208 SPECIES_MANAPHY, 0
+    DrawPokemonPreview SPECIES_MANAPHY, GENDER_MALE
     WaitABPress
     ScrCmd_209
     SetFlag 251

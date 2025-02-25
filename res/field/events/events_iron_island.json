@@ -6,14 +6,14 @@
             "x": 114,
             "z": 504,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 56,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 3,
@@ -25,9 +25,9 @@
             "y": 0
         },
         {
-            "graphics_id": 142,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_RILEY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 532,
             "script": 3,
             "initial_dir": 1,
@@ -43,19 +43,19 @@
         {
             "x": 111,
             "z": 499,
-            "dest_header_id": 514,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 117,
             "z": 489,
-            "dest_header_id": 289,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_1F",
             "dest_warp_id": 0
         },
         {
             "x": 103,
             "z": 489,
-            "dest_header_id": 294,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B3F",
             "dest_warp_id": 0
         }
     ],

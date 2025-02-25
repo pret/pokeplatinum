@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city_harbor_inn.h"
 
     .data
@@ -6,7 +7,7 @@
     ScriptEntry _000E
     ScriptEntry _0093
     ScriptEntry _0160
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     SetFlag 0x241
@@ -28,8 +29,8 @@ _0040:
     End
 
 _0057:
-    ScrCmd_28B 0, 0x4000
-    GoToIfEq 0x4000, 1, _006B
+    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, 0x4000
+    GoToIfEq 0x4000, TRUE, _006B
     End
 
 _006B:
@@ -51,7 +52,7 @@ _0093:
     Message 0
     CloseMessage
     ApplyMovement 0, _0148
-    ApplyMovement 0xFF, _0130
+    ApplyMovement LOCALID_PLAYER, _0130
     WaitMovement
     WaitTime 15, 0x800C
     BufferPlayerName 0

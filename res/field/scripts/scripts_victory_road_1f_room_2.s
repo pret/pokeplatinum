@@ -7,7 +7,7 @@
     ScriptEntry _0190
     ScriptEntry _02E4
     ScriptEntry _0012
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     GoToIfUnset 230, _001F
@@ -19,7 +19,7 @@ _001F:
 
 _0027:
     LockAll
-    SetPlayerBike 0
+    SetPlayerBike FALSE
     ApplyMovement 28, _0140
     WaitMovement
     GetPlayerMapPos 0x8004, 0x8005
@@ -74,7 +74,7 @@ _00EC:
     Message 2
     WaitABXPadPress
     CloseMessage
-    SetVar 0x403F, 0x262
+    SetVar VAR_PARTNER_TRAINER_ID, TRAINER_MARLEY_VICTORY_ROAD
     SetHasPartner
     ScrCmd_06D 28, 48
     ReleaseAll
@@ -131,7 +131,7 @@ _0184:
 
 _0190:
     LockAll
-    ApplyMovement 0xFF, _0274
+    ApplyMovement LOCALID_PLAYER, _0274
     ApplyMovement 28, _02DC
     WaitMovement
     Message 4
@@ -245,7 +245,7 @@ _02E4:
     LockAll
     ClearHasPartner
     ScrCmd_06D 28, 14
-    ApplyMovement 0xFF, _03B4
+    ApplyMovement LOCALID_PLAYER, _03B4
     ApplyMovement 28, _03E0
     WaitMovement
     Message 5
@@ -258,25 +258,25 @@ _02E4:
     End
 
 _0341:
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     ApplyMovement 28, _03EC
     WaitMovement
     GoTo _03A1
 
 _0359:
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     ApplyMovement 28, _0400
     WaitMovement
     GoTo _03A1
 
 _0371:
-    ApplyMovement 0xFF, _03C0
+    ApplyMovement LOCALID_PLAYER, _03C0
     ApplyMovement 28, _0414
     WaitMovement
     GoTo _03A1
 
 _0389:
-    ApplyMovement 0xFF, _03D0
+    ApplyMovement LOCALID_PLAYER, _03D0
     ApplyMovement 28, _0428
     WaitMovement
     GoTo _03A1

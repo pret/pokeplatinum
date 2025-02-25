@@ -13,10 +13,10 @@
 #include "struct_defs/struct_0204AFC4.h"
 
 #include "field/field_system_sub2_decl.h"
+#include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
+#include "overlay005/map_prop_animation.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
-#include "overlay005/struct_ov5_021D3CAC_decl.h"
-#include "overlay005/struct_ov5_021D41B4_decl.h"
 #include "overlay005/struct_ov5_021D538C_decl.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
@@ -25,7 +25,6 @@
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
 #include "overlay005/struct_ov5_021EF300_decl.h"
-#include "overlay005/struct_ov5_021EF76C_decl.h"
 #include "overlay023/struct_ov23_0224942C_decl.h"
 #include "overlay056/struct_ov56_02256468_decl.h"
 #include "overlay066/struct_ov66_0222DCE0_sub1.h"
@@ -80,7 +79,7 @@ typedef struct FieldSystem_t {
     Camera *camera;
     UnkStruct_ov5_021E8F60 *unk_28;
     MapMatrix *mapMatrix;
-    UnkStruct_ov5_021EF76C *unk_30;
+    AreaDataManager *areaDataManager;
     UnkStruct_ov5_021D1A68 *unk_34;
     MapObjectManager *mapObjMan;
     PlayerAvatar *playerAvatar;
@@ -88,8 +87,8 @@ typedef struct FieldSystem_t {
     UnkStruct_ov5_021D5894 *unk_44;
     UnkStruct_ov5_021D57D8 *unk_48;
     UnkStruct_ov5_021D538C *unk_4C;
-    UnkStruct_ov5_021D3CAC *unk_50;
-    UnkStruct_ov5_021D41B4 *unk_54;
+    MapPropAnimationManager *mapPropAnimMan;
+    MapPropOneShotAnimationManager *mapPropOneShotAnimMan;
     UnkStruct_02054C18 *unk_58;
     const TerrainCollisionManager *terrainCollisionMan;
     int unk_60;

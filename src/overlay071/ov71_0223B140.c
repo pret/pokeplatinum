@@ -1317,7 +1317,7 @@ static void ov71_0223C5A4(UnkStruct_ov71_0223B620 *param0, const u8 param1)
 
 static int ov71_0223C60C(BgConfig *param0, const TouchScreenRect *rect)
 {
-    int v0 = sub_02022664(rect);
+    int v0 = TouchScreen_CheckRectanglePressed(rect);
 
     if (v0 != 0xffffffff) {
         if (v0 != 0) {
@@ -1336,7 +1336,7 @@ static int ov71_0223C60C(BgConfig *param0, const TouchScreenRect *rect)
 
 static int ov71_0223C654(BgConfig *param0, const TouchScreenRect *rect)
 {
-    int v0 = sub_02022644(rect);
+    int v0 = TouchScreen_CheckRectangleHeld(rect);
 
     if (v0 != 0xffffffff) {
         if (v0 != 0) {

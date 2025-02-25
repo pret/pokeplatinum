@@ -38,6 +38,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 #include "string_template.h"
+#include "system_vars.h"
 #include "text.h"
 #include "unk_0200F174.h"
 #include "unk_0202CC64.h"
@@ -47,7 +48,6 @@
 #include "unk_02038F8C.h"
 #include "unk_020393C8.h"
 #include "unk_02039814.h"
-#include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "unk_020797C8.h"
 #include "vars_flags.h"
@@ -1250,7 +1250,7 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
     if (param0->unk_110 != 18) {
         Pokemon *v0 = Pokemon_New(62);
 
-        Pokemon_FromBoxPokemon(sub_02079C9C(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
+        Pokemon_FromBoxPokemon(GetBoxedPokemonFrom(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);
         sub_02079968(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
         Heap_FreeToHeap(v0);
@@ -1290,8 +1290,8 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
             if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
                 VarsFlags *v2 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
 
-                if (sub_0206B5F8(v2) == 0) {
-                    sub_0206B608(v2, 1);
+                if (SystemVars_GetArceusEventState(v2) == 0) {
+                    SystemVars_SetArceusEventState(v2, 1);
                 }
             }
         }
@@ -1337,8 +1337,8 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
         if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) || ((Pokemon_GetValue(param1, MON_DATA_HATCH_LOCATION, NULL) == 86) && (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 0))) {
             VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_00->unk_20);
 
-            if (sub_0206B5F8(v0) == 0) {
-                sub_0206B608(v0, 1);
+            if (SystemVars_GetArceusEventState(v0) == 0) {
+                SystemVars_SetArceusEventState(v0, 1);
             }
         }
     }

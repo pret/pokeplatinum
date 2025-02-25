@@ -6,14 +6,14 @@
             "x": 11,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1151,
             "script": 7137,
             "initial_dir": 0,
@@ -25,9 +25,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1150,
             "script": 7136,
             "initial_dir": 0,
@@ -39,9 +39,9 @@
             "y": 0
         },
         {
-            "graphics_id": 53,
-            "movement_type": 4,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+            "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3456,
             "initial_dir": 0,
@@ -55,9 +55,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1304,
             "script": 7289,
             "initial_dir": 0,
@@ -73,19 +73,19 @@
         {
             "x": 6,
             "z": 26,
-            "dest_header_id": 293,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 16,
             "z": 26,
-            "dest_header_id": 292,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 2,
             "z": 3,
-            "dest_header_id": 289,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_1F",
             "dest_warp_id": 2
         }
     ],

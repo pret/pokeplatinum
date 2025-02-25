@@ -6,7 +6,7 @@
     ScriptEntry _000E
     ScriptEntry _0090
     ScriptEntry _00A1
-    .short 0xFD13
+    ScriptEntryEnd
 
 _000E:
     LockAll
@@ -20,7 +20,7 @@ _000E:
     Message 1
     CloseMessage
     ApplyMovement 0, _006C
-    ApplyMovement 0xFF, _0080
+    ApplyMovement LOCALID_PLAYER, _0080
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 0

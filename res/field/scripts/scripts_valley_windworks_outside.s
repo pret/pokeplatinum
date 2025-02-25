@@ -11,7 +11,7 @@
     ScriptEntry _01BF
     ScriptEntry _0022
     ScriptEntry _0201
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0022:
     End
@@ -22,7 +22,7 @@ _0024:
     CallIfUnset 0x10F, _00C5
     GoToIfLt 0x4089, 2, _007C
     GoToIfSet 0xAA8, _007C
-    ScrCmd_234 0x4000
+    GetDayOfWeek 0x4000
     GoToIfNe 0x4000, 5, _007C
     GoTo _0076
 
@@ -55,7 +55,7 @@ _00BB:
     Return
 
 _00C5:
-    ScrCmd_18A 0, 243, 0x28A
+    SetWarpEventPos 0, 243, 0x28A
     Return
 
 _00CF:
@@ -66,7 +66,7 @@ _00CF:
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_1
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _0133
+    GoToIfEq 0x800C, FALSE, _0133
     Message 1
     CloseMessage
     ApplyMovement 0, _013C
@@ -86,7 +86,7 @@ _00CF:
     End
 
 _0133:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -114,11 +114,11 @@ _0150:
 _016C:
     BufferItemName 0, 0x1B6
     Message 6
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 1, _01A2
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_NO, _01A2
     SetFlag 0x10F
     Call _00BB
-    ScrCmd_18A 0, 243, 0x28E
+    SetWarpEventPos 0, 243, 0x28E
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -142,7 +142,7 @@ _01BF:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_04C 0x1A9, 0
+    PlayCry SPECIES_DRIFLOON
     Message 8
     CloseMessage
     ScrCmd_04D
@@ -150,24 +150,24 @@ _01BF:
     StartLegendaryBattle SPECIES_DRIFLOON, 15
     ClearFlag 142
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _01FB
+    GoToIfEq 0x800C, FALSE, _01FB
     SetFlag 0xAA8
     ReleaseAll
     End
 
 _01FB:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
 _0201:
     LockAll
     ApplyMovement 6, _02D8
-    ApplyMovement 0xFF, _02AC
+    ApplyMovement LOCALID_PLAYER, _02AC
     WaitMovement
     Message 2
     CloseMessage
-    ApplyMovement 0xFF, _02BC
+    ApplyMovement LOCALID_PLAYER, _02BC
     ApplyMovement 6, _02EC
     WaitMovement
     ScrCmd_168 7, 20, 19, 14, 77
@@ -191,7 +191,7 @@ _0201:
     WaitMovement
     Message 3
     CloseMessage
-    ApplyMovement 0xFF, _02C8
+    ApplyMovement LOCALID_PLAYER, _02C8
     ApplyMovement 6, _0324
     WaitMovement
     RemoveObject 6

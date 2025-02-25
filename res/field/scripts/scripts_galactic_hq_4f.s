@@ -7,7 +7,7 @@
     ScriptEntry _012C
     ScriptEntry _01C4
     ScriptEntry _01D5
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     LockAll
@@ -37,7 +37,7 @@ _0064:
 _0074:
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ
     CheckWonBattle 0x800C
-    GoToIfEq 0x800C, 0, _00E1
+    GoToIfEq 0x800C, FALSE, _00E1
     Message 2
     SetVar 0x8004, 1
     SetVar 0x8005, 1
@@ -61,7 +61,7 @@ _00DB:
     Return
 
 _00E1:
-    ScrCmd_0EB
+    BlackOutFromBattle
     ReleaseAll
     End
 
@@ -114,9 +114,9 @@ _012C:
 
 _0154:
     Message 6
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0177
-    GoToIfEq 0x800C, 1, _01AB
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0177
+    GoToIfEq 0x800C, MENU_NO, _01AB
     End
 
 _0177:

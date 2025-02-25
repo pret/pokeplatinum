@@ -6,7 +6,7 @@
             "x": 24,
             "z": 35,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8119,
@@ -14,14 +14,14 @@
             "x": 5,
             "z": 24,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1204,
             "script": 7190,
             "initial_dir": 0,
@@ -33,9 +33,9 @@
             "y": 0
         },
         {
-            "graphics_id": 11,
-            "movement_type": 50,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
+            "movement_type": "MOVEMENT_TYPE_FOLLOW_PARTNER_TRAINER",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3235,
             "initial_dir": 1,
@@ -49,9 +49,9 @@
             "y": 0
         },
         {
-            "graphics_id": 14,
-            "movement_type": 43,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
+            "movement_type": "MOVEMENT_TYPE_WALK_WEST_NORTH_EAST_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 5235,
             "initial_dir": 2,
@@ -65,9 +65,9 @@
             "y": 0
         },
         {
-            "graphics_id": 11,
-            "movement_type": 14,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3229,
             "initial_dir": 0,
@@ -81,9 +81,9 @@
             "y": 0
         },
         {
-            "graphics_id": 70,
-            "movement_type": 16,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3234,
             "initial_dir": 2,
@@ -97,9 +97,9 @@
             "y": 0
         },
         {
-            "graphics_id": 11,
-            "movement_type": 20,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
+            "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3224,
             "initial_dir": 1,
@@ -113,9 +113,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1327,
             "script": 7312,
             "initial_dir": 0,
@@ -127,9 +127,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1328,
             "script": 7313,
             "initial_dir": 0,
@@ -145,19 +145,19 @@
         {
             "x": 4,
             "z": 39,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 2
         },
         {
             "x": 6,
             "z": 46,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 3
         },
         {
             "x": 3,
             "z": 22,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 4
         }
     ],

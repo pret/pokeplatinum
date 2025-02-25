@@ -5,13 +5,13 @@
         {
             "x": 5,
             "z": 2,
-            "dest_header_id": 65,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY",
             "dest_warp_id": 8
         },
         {
             "x": 5,
             "z": 12,
-            "dest_header_id": 350,
+            "dest_header_id": "MAP_HEADER_ROUTE_206",
             "dest_warp_id": 4
         }
     ],

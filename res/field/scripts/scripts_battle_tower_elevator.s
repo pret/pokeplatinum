@@ -6,7 +6,7 @@
     ScriptEntry _0146
     ScriptEntry _015C
     ScriptEntry _0172
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0012:
     CallIfNe 0x40DB, 0, _008A
@@ -95,13 +95,13 @@ _0172:
     End
 
 _0188:
-    ApplyMovement 0xFF, _01BC
+    ApplyMovement LOCALID_PLAYER, _01BC
     WaitMovement
     Return
 
 _0194:
     ApplyMovement 0, _01C8
-    ApplyMovement 0xFF, _01E4
+    ApplyMovement LOCALID_PLAYER, _01E4
     WaitMovement
     Return
 

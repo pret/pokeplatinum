@@ -15,7 +15,7 @@
     ScriptEntry _01FE
     ScriptEntry _0215
     ScriptEntry _022A
-    .short 0xFD13
+    ScriptEntryEnd
 
 _0032:
     GoToIfGe 0x407F, 1, _0041
@@ -38,7 +38,7 @@ _0047:
 
 _0072:
     ApplyMovement 6, _00A4
-    ApplyMovement 0xFF, _00AC
+    ApplyMovement LOCALID_PLAYER, _00AC
     WaitMovement
     ReleaseAll
     End
@@ -101,12 +101,12 @@ _0111:
 _011B:
     WaitTime 30, 0x800C
     ClearFlag 0x1F3
-    ScrCmd_064 7
+    AddObject 7
     ApplyMovement 7, _016C
     WaitMovement
     Message 3
     CloseMessage
-    ApplyMovement 0xFF, _0164
+    ApplyMovement LOCALID_PLAYER, _0164
     ApplyMovement 6, _015C
     WaitMovement
     SetVar 0x407F, 1
@@ -220,9 +220,9 @@ _022A:
     FacePlayer
     GoToIfUnset 0x964, _0260
     Message 10
-    ScrCmd_03E 0x800C
-    GoToIfEq 0x800C, 0, _0276
-    GoToIfEq 0x800C, 1, _026B
+    ShowYesNoMenu 0x800C
+    GoToIfEq 0x800C, MENU_YES, _0276
+    GoToIfEq 0x800C, MENU_NO, _026B
     End
 
 _0260:
@@ -251,13 +251,13 @@ _0276:
 
 _02A0:
     ClearFlag 0x256
-    ScrCmd_064 10
+    AddObject 10
     ScrCmd_062 10
     CloseMessage
     ApplyMovement 10, _0320
     WaitMovement
     Message 15
-    ApplyMovement 0xFF, _030C
+    ApplyMovement LOCALID_PLAYER, _030C
     WaitMovement
     CloseMessage
     ApplyMovement 10, _0334
@@ -272,7 +272,7 @@ _02A0:
     ApplyMovement 10, _0348
     WaitMovement
     RemoveObject 10
-    ApplyMovement 0xFF, _0318
+    ApplyMovement LOCALID_PLAYER, _0318
     WaitMovement
     SetFlag 0x157
     Return
@@ -324,10 +324,10 @@ _035C:
     Return
 
 _0376:
-    ApplyMovement 0xFF, _03A4
+    ApplyMovement LOCALID_PLAYER, _03A4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _039C
+    ApplyMovement LOCALID_PLAYER, _039C
     WaitMovement
     Return
 
