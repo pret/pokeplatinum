@@ -27,7 +27,7 @@
 #include "overlay005/fieldmap.h"
 #include "overlay005/ov5_021D2F14.h"
 #include "overlay005/save_info_window.h"
-#include "overlay021/struct_ov21_021D0D80.h"
+#include "overlay021/pokedex_main.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -157,7 +157,7 @@ static void sub_0203B200(FieldTask *taskMan);
 static void StartMenu_ApplicationStart(FieldTask *taskMan);
 static void StartMenu_ApplicationRun(FieldTask *taskMan);
 static BOOL StartMenu_SelectPokedex(FieldTask *taskMan);
-static BOOL StartMenu_Pokedex(FieldTask *taskMan);
+static BOOL StartMenu_OpenPokedex(FieldTask *taskMan);
 static BOOL StartMenu_PokedexEnd(FieldTask *taskMan);
 static BOOL StartMenu_SelectTrainerCard(FieldTask *taskMan);
 static BOOL StartMenu_TrainerCard(FieldTask *taskMan);
@@ -928,43 +928,36 @@ static BOOL StartMenu_SelectPokedex(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->unk_22C = StartMenu_Pokedex;
+    menu->unk_22C = StartMenu_OpenPokedex;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
 }
 
-static BOOL StartMenu_Pokedex(FieldTask *taskMan)
+static BOOL StartMenu_OpenPokedex(FieldTask *taskMan)
 {
-    FieldSystem *fieldSystem;
-    StartMenu *menu;
-    UnkStruct_ov21_021D0D80 *v2;
-    Pokedex *pokedex;
-    TrainerInfo *trainerInfo;
-    VarsFlags *varsFlags;
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
+    StartMenu *menu = FieldTask_GetEnv(taskMan);
+    PokedexOverlayArgs *pokedexArgs = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokedexOverlayArgs));
+    Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
+    VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
 
-    fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    menu = FieldTask_GetEnv(taskMan);
-    v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov21_021D0D80));
-    pokedex = SaveData_GetPokedex(fieldSystem->saveData);
-    trainerInfo = SaveData_GetTrainerInfo(fieldSystem->saveData);
-    varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+    pokedexArgs->pokedex = pokedex;
+    pokedexArgs->trainerInfo = trainerInfo;
+    pokedexArgs->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
+    pokedexArgs->fullmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_FULLMOON_ISLAND);
+    pokedexArgs->newmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_NEWMOON_ISLAND);
+    pokedexArgs->springPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_SPRING_PATH);
+    pokedexArgs->seabreakPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_SEABREAK_PATH);
+    pokedexArgs->pokedexMemory = fieldSystem->pokedexMemory;
 
-    v2->pokedex = pokedex;
-    v2->trainerInfo = trainerInfo;
-    v2->timeOfDay = FieldSystem_GetTimeOfDay(fieldSystem);
-    v2->fullmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_FULLMOON_ISLAND);
-    v2->newmoonIslandVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_NEWMOON_ISLAND);
-    v2->springPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_SPRING_PATH);
-    v2->seabreakPathVisible = SystemVars_CheckHiddenLocation(varsFlags, HIDDEN_LOCATION_SEABREAK_PATH);
-    v2->unk_1C = fieldSystem->unk_B4;
+    sub_0203E0AC(fieldSystem, pokedexArgs);
 
-    sub_0203E0AC(fieldSystem, v2);
-
-    menu->unk_25C = v2;
+    menu->unk_25C = pokedexArgs;
     menu->unk_22C = StartMenu_PokedexEnd;
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL StartMenu_PokedexEnd(FieldTask *taskMan)

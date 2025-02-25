@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV21_021D13FC_H
-#define POKEPLATINUM_STRUCT_OV21_021D13FC_H
+#ifndef POKEPLATINUM_POKEDEX_GRAPHIC_DATA_H
+#define POKEPLATINUM_POKEDEX_GRAPHIC_DATA_H
 
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02015064_decl.h"
@@ -18,15 +18,15 @@
 #include "sprite_util.h"
 #include "sys_task_manager.h"
 
-typedef struct {
-    BgConfig *unk_00;
-    Window unk_04;
-    G2dRenderer unk_14;
-    SpriteList *unk_138;
-    SpriteResourceCollection *unk_13C[4];
+typedef struct PokedexGraphicData {
+    BgConfig *bgConfig;
+    Window window;
+    G2dRenderer g2Renderer;
+    SpriteList *spriteList;
+    SpriteResourceCollection *spriteResourceCollection[4];
     UnkStruct_ov21_021D4C0C *unk_14C;
     UnkStruct_02007768 *unk_150;
-    PokemonSprite *unk_154[4];
+    PokemonSprite *pokemonSprite[4];
     UnkStruct_02015064 *unk_164;
     UnkStruct_ov21_021D23F8 unk_168;
     UnkStruct_ov21_021D23F8 unk_18C;
@@ -36,6 +36,6 @@ typedef struct {
     SysTask *unk_270;
     SysTask *unk_274;
     NARC *pokedexGraphics;
-} UnkStruct_ov21_021D13FC;
+} PokedexGraphicData;
 
-#endif // POKEPLATINUM_STRUCT_OV21_021D13FC_H
+#endif // POKEPLATINUM_POKEDEX_GRAPHIC_DATA_H
