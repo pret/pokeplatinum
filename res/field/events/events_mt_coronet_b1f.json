@@ -35,7 +35,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 32,
@@ -49,7 +49,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 33,
@@ -63,7 +63,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 34,
@@ -77,7 +77,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 35,
@@ -91,7 +91,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 36,
@@ -105,7 +105,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 37,
@@ -119,7 +119,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 38,
@@ -133,7 +133,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 39,
@@ -147,7 +147,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 40,
@@ -161,7 +161,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 41,
@@ -175,7 +175,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 42,
@@ -189,7 +189,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 43,
@@ -203,7 +203,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 45,
@@ -217,7 +217,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 46,
@@ -231,7 +231,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 47,
@@ -245,7 +245,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 48,
@@ -259,7 +259,7 @@
             "y": 0
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 49,
@@ -273,7 +273,7 @@
             "y": 0
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 50,
@@ -287,7 +287,7 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1170,
@@ -301,7 +301,7 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1165,
@@ -315,7 +315,7 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1166,
@@ -329,7 +329,7 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1169,
@@ -343,7 +343,7 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1168,
@@ -357,7 +357,7 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1167,

@@ -163,7 +163,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 96,
+            "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -177,7 +177,7 @@
             "y": 0
         },
         {
-            "graphics_id": 96,
+            "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -191,7 +191,7 @@
             "y": 0
         },
         {
-            "graphics_id": 12,
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -205,7 +205,7 @@
             "y": 0
         },
         {
-            "graphics_id": 18,
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -219,7 +219,7 @@
             "y": 0
         },
         {
-            "graphics_id": 17,
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -233,7 +233,7 @@
             "y": 0
         },
         {
-            "graphics_id": 2,
+            "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -247,7 +247,7 @@
             "y": 0
         },
         {
-            "graphics_id": 3,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": 0,
             "flag": 0,
@@ -261,7 +261,7 @@
             "y": 0
         },
         {
-            "graphics_id": 1,
+            "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -275,7 +275,7 @@
             "y": 0
         },
         {
-            "graphics_id": 35,
+            "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": 0,
             "flag": 0,
@@ -289,7 +289,7 @@
             "y": 0
         },
         {
-            "graphics_id": 31,
+            "graphics_id": "OBJ_EVENT_GFX_ROUGHNECK",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -303,7 +303,7 @@
             "y": 0
         },
         {
-            "graphics_id": 51,
+            "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -317,7 +317,7 @@
             "y": 0
         },
         {
-            "graphics_id": 233,
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -331,7 +331,7 @@
             "y": 0
         },
         {
-            "graphics_id": 233,
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -345,7 +345,7 @@
             "y": 0
         },
         {
-            "graphics_id": 233,
+            "graphics_id": "OBJ_EVENT_GFX_FRONTIER_BOOTH_ATTENDANT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -359,7 +359,7 @@
             "y": 0
         },
         {
-            "graphics_id": 15,
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -373,7 +373,7 @@
             "y": 0
         },
         {
-            "graphics_id": 19,
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -387,7 +387,7 @@
             "y": 0
         },
         {
-            "graphics_id": 36,
+            "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -401,7 +401,7 @@
             "y": 0
         },
         {
-            "graphics_id": 49,
+            "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -415,7 +415,7 @@
             "y": 0
         },
         {
-            "graphics_id": 11,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -429,7 +429,7 @@
             "y": 0
         },
         {
-            "graphics_id": 42,
+            "graphics_id": "OBJ_EVENT_GFX_COWGIRL",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -443,7 +443,7 @@
             "y": 0
         },
         {
-            "graphics_id": 54,
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -457,7 +457,7 @@
             "y": 0
         },
         {
-            "graphics_id": 53,
+            "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -471,7 +471,7 @@
             "y": 0
         },
         {
-            "graphics_id": 55,
+            "graphics_id": "OBJ_EVENT_GFX_PARASOL_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -485,7 +485,7 @@
             "y": 0
         },
         {
-            "graphics_id": 60,
+            "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -499,7 +499,7 @@
             "y": 0
         },
         {
-            "graphics_id": 96,
+            "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -513,7 +513,7 @@
             "y": 0
         },
         {
-            "graphics_id": 96,
+            "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -527,7 +527,7 @@
             "y": 0
         },
         {
-            "graphics_id": 96,
+            "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -541,7 +541,7 @@
             "y": 0
         },
         {
-            "graphics_id": 11,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -555,7 +555,7 @@
             "y": 0
         },
         {
-            "graphics_id": 69,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": 0,
             "flag": 0,
@@ -569,7 +569,7 @@
             "y": 0
         },
         {
-            "graphics_id": 22,
+            "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 707,

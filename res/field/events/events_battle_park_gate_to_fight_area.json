@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 175,
+            "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -16,7 +16,7 @@
             "y": 0
         },
         {
-            "graphics_id": 175,
+            "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -30,7 +30,7 @@
             "y": 0
         },
         {
-            "graphics_id": 175,
+            "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -44,7 +44,7 @@
             "y": 0
         },
         {
-            "graphics_id": 175,
+            "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -58,7 +58,7 @@
             "y": 0
         },
         {
-            "graphics_id": 19,
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": 0,
             "flag": 0,
@@ -72,7 +72,7 @@
             "y": 0
         },
         {
-            "graphics_id": 175,
+            "graphics_id": "OBJ_EVENT_GFX_MAID",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,

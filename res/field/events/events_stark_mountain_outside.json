@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1225,
@@ -16,7 +16,7 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1224,
@@ -30,7 +30,7 @@
             "y": 0
         },
         {
-            "graphics_id": 11,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_WEST_AND_EAST",
             "trainer_type": 1,
             "flag": 0,
@@ -46,7 +46,7 @@
             "y": 0
         },
         {
-            "graphics_id": 93,
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -60,7 +60,7 @@
             "y": 0
         },
         {
-            "graphics_id": 213,
+            "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 558,
@@ -74,7 +74,7 @@
             "y": 0
         },
         {
-            "graphics_id": 144,
+            "graphics_id": "OBJ_EVENT_GFX_BUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 0,
             "flag": 557,
@@ -88,7 +88,7 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 556,
@@ -102,7 +102,7 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 556,

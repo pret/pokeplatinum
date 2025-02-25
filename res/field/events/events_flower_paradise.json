@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 158,
+            "graphics_id": "OBJ_EVENT_GFX_SHAYMIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 593,

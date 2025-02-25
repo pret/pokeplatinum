@@ -19,7 +19,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 14,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -33,7 +33,7 @@
             "y": 0
         },
         {
-            "graphics_id": 148,
+            "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 500,
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "graphics_id": 4,
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -61,7 +61,7 @@
             "y": 0
         },
         {
-            "graphics_id": 6,
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 0,
             "flag": 0,
@@ -75,7 +75,7 @@
             "y": 0
         },
         {
-            "graphics_id": 4,
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 0,
             "flag": 0,
@@ -89,7 +89,7 @@
             "y": 0
         },
         {
-            "graphics_id": 183,
+            "graphics_id": "OBJ_EVENT_GFX_BOOK",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -103,7 +103,7 @@
             "y": 0
         },
         {
-            "graphics_id": 3,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -117,7 +117,7 @@
             "y": 0
         },
         {
-            "graphics_id": 8,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -131,7 +131,7 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1273,

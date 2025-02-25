@@ -27,7 +27,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 5,
+            "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -41,7 +41,7 @@
             "y": 0
         },
         {
-            "graphics_id": 83,
+            "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_WOMAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -55,7 +55,7 @@
             "y": 0
         },
         {
-            "graphics_id": 19,
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -69,7 +69,7 @@
             "y": 0
         },
         {
-            "graphics_id": 19,
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,

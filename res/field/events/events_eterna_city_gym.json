@@ -19,7 +19,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 168,
+            "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -33,7 +33,7 @@
             "y": 0
         },
         {
-            "graphics_id": 127,
+            "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 545,
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "graphics_id": 6,
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 0,
             "flag": 0,
@@ -61,7 +61,7 @@
             "y": 0
         },
         {
-            "graphics_id": 12,
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 0,
@@ -75,7 +75,7 @@
             "y": 0
         },
         {
-            "graphics_id": 12,
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 0,

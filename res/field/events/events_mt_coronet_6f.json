@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 125,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 1,
             "flag": 655,

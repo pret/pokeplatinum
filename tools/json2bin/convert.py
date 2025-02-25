@@ -8,6 +8,7 @@ from generated import (
     genders,
     moves,
     movement_types,
+    object_events,
     species,
     trainer_classes
 )
@@ -41,6 +42,9 @@ def from_trainer_ai_flag(s: str) -> int:
 
 def from_gender(s: str) -> int:
     return genders.Gender[s].value
+
+def from_object_event_gfx(s: str) -> int:
+    return object_events.ObjectEventGfx[s].value
 
 def from_movement_type(s: str) -> int:
     return movement_types.MovementType[s].value

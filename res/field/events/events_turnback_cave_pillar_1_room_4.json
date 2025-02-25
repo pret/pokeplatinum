@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 32,
@@ -16,7 +16,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 33,
@@ -30,7 +30,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 34,
@@ -44,7 +44,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 35,
@@ -58,7 +58,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 36,
@@ -72,7 +72,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 37,
@@ -86,7 +86,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 38,
@@ -100,7 +100,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 39,
@@ -114,7 +114,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 40,
@@ -128,7 +128,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 41,
@@ -142,7 +142,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 42,
@@ -156,7 +156,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 43,
@@ -170,7 +170,7 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 44,

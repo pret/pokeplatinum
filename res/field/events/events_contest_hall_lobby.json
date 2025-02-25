@@ -51,7 +51,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 26,
+            "graphics_id": "OBJ_EVENT_GFX_NURSE_JOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 0,
@@ -65,7 +65,7 @@
             "y": 0
         },
         {
-            "graphics_id": 26,
+            "graphics_id": "OBJ_EVENT_GFX_NURSE_JOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 0,
@@ -79,7 +79,7 @@
             "y": 0
         },
         {
-            "graphics_id": 26,
+            "graphics_id": "OBJ_EVENT_GFX_NURSE_JOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 0,
@@ -93,7 +93,7 @@
             "y": 0
         },
         {
-            "graphics_id": 14,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -107,7 +107,7 @@
             "y": 0
         },
         {
-            "graphics_id": 43,
+            "graphics_id": "OBJ_EVENT_GFX_CLOWN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": 0,
             "flag": 0,
@@ -121,7 +121,7 @@
             "y": 0
         },
         {
-            "graphics_id": 140,
+            "graphics_id": "OBJ_EVENT_GFX_MOM",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 0,
             "flag": 520,
@@ -135,7 +135,7 @@
             "y": 0
         },
         {
-            "graphics_id": 35,
+            "graphics_id": "OBJ_EVENT_GFX_IDOL",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 0,
             "flag": 521,
@@ -149,7 +149,7 @@
             "y": 0
         },
         {
-            "graphics_id": 22,
+            "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 531,
@@ -163,7 +163,7 @@
             "y": 0
         },
         {
-            "graphics_id": 8,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": 0,
             "flag": 0,
@@ -177,7 +177,7 @@
             "y": 0
         },
         {
-            "graphics_id": 62,
+            "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -191,7 +191,7 @@
             "y": 0
         },
         {
-            "graphics_id": 130,
+            "graphics_id": "OBJ_EVENT_GFX_FANTINA",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": 0,
             "flag": 400,

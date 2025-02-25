@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 1,
             "flag": 448,
@@ -18,7 +18,7 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 1,
             "flag": 448,
@@ -34,7 +34,7 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 1,
             "flag": 448,
@@ -50,7 +50,7 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 1,
             "flag": 448,
@@ -66,7 +66,7 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1253,
@@ -80,7 +80,7 @@
             "y": 0
         },
         {
-            "graphics_id": 99,
+            "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 0,
             "flag": 652,
@@ -94,7 +94,7 @@
             "y": 0
         },
         {
-            "graphics_id": 101,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_101",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 0,
             "flag": 653,
@@ -108,7 +108,7 @@
             "y": 0
         },
         {
-            "graphics_id": 121,
+            "graphics_id": "OBJ_EVENT_GFX_MARS",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 0,
             "flag": 448,
@@ -122,7 +122,7 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 0,
             "flag": 448,

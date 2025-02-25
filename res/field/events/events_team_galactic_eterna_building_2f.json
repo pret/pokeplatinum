@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 509,
@@ -25,7 +25,7 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 509,
@@ -39,7 +39,7 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 1,
             "flag": 509,
@@ -53,7 +53,7 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 1,
             "flag": 509,
@@ -67,7 +67,7 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1277,

@@ -43,7 +43,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1207,
@@ -57,7 +57,7 @@
             "y": 1
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1205,
@@ -71,7 +71,7 @@
             "y": 1
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1206,
@@ -85,7 +85,7 @@
             "y": 1
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1211,
@@ -99,7 +99,7 @@
             "y": 1
         },
         {
-            "graphics_id": 11,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 1,
             "flag": 0,
@@ -115,7 +115,7 @@
             "y": 1
         },
         {
-            "graphics_id": 14,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 1,
             "flag": 0,
@@ -131,7 +131,7 @@
             "y": 1
         },
         {
-            "graphics_id": 70,
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 1,
             "flag": 0,
@@ -147,7 +147,7 @@
             "y": 1
         },
         {
-            "graphics_id": 70,
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 1,
             "flag": 0,
@@ -163,7 +163,7 @@
             "y": 1
         },
         {
-            "graphics_id": 51,
+            "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 1,
             "flag": 0,
@@ -179,7 +179,7 @@
             "y": 1
         },
         {
-            "graphics_id": 17,
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 1,
             "flag": 0,
@@ -195,7 +195,7 @@
             "y": 1
         },
         {
-            "graphics_id": 11,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 1,
             "flag": 0,
@@ -211,7 +211,7 @@
             "y": 1
         },
         {
-            "graphics_id": 14,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 1,
             "flag": 0,
@@ -227,7 +227,7 @@
             "y": 1
         },
         {
-            "graphics_id": 70,
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 1,
             "flag": 0,
@@ -243,7 +243,7 @@
             "y": 1
         },
         {
-            "graphics_id": 70,
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 1,
             "flag": 0,
@@ -259,7 +259,7 @@
             "y": 1
         },
         {
-            "graphics_id": 14,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 1,
             "flag": 0,
@@ -275,7 +275,7 @@
             "y": 1
         },
         {
-            "graphics_id": 11,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 1,
             "flag": 0,
@@ -291,7 +291,7 @@
             "y": 1
         },
         {
-            "graphics_id": 51,
+            "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 1,
             "flag": 0,
@@ -307,7 +307,7 @@
             "y": 1
         },
         {
-            "graphics_id": 17,
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 1,
             "flag": 0,
@@ -323,7 +323,7 @@
             "y": 1
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 32,
@@ -337,7 +337,7 @@
             "y": 0
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 33,
@@ -351,7 +351,7 @@
             "y": 1
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 34,
@@ -365,7 +365,7 @@
             "y": 1
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 35,
@@ -379,7 +379,7 @@
             "y": 1
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 36,
@@ -393,7 +393,7 @@
             "y": 1
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 37,
@@ -407,7 +407,7 @@
             "y": 1
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 38,
@@ -421,7 +421,7 @@
             "y": 1
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 39,
@@ -435,7 +435,7 @@
             "y": 1
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 40,
@@ -449,7 +449,7 @@
             "y": 1
         },
         {
-            "graphics_id": 84,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 41,
@@ -463,7 +463,7 @@
             "y": 1
         },
         {
-            "graphics_id": 143,
+            "graphics_id": "OBJ_EVENT_GFX_MARLEY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 0,
             "flag": 486,

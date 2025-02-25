@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 82,
+            "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -16,7 +16,7 @@
             "y": 0
         },
         {
-            "graphics_id": 63,
+            "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
             "trainer_type": 0,
             "flag": 0,
@@ -30,7 +30,7 @@
             "y": 0
         },
         {
-            "graphics_id": 205,
+            "graphics_id": "OBJ_EVENT_GFX_SHROOMISH",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -44,7 +44,7 @@
             "y": 0
         },
         {
-            "graphics_id": 2,
+            "graphics_id": "OBJ_EVENT_GFX_TWIN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,

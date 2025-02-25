@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 17,
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -16,7 +16,7 @@
             "y": 0
         },
         {
-            "graphics_id": 144,
+            "graphics_id": "OBJ_EVENT_GFX_BUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 470,
@@ -30,7 +30,7 @@
             "y": 0
         },
         {
-            "graphics_id": 102,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 0,
             "flag": 674,
@@ -44,7 +44,7 @@
             "y": 0
         },
         {
-            "graphics_id": 103,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_103",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 675,
@@ -58,7 +58,7 @@
             "y": 0
         },
         {
-            "graphics_id": 104,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_104",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
             "trainer_type": 0,
             "flag": 676,
@@ -72,7 +72,7 @@
             "y": 0
         },
         {
-            "graphics_id": 105,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_105",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 677,

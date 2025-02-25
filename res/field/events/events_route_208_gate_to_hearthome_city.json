@@ -2,7 +2,7 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 9,
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 0,
@@ -16,7 +16,7 @@
             "y": 0
         },
         {
-            "graphics_id": 83,
+            "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_WOMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": 0,
             "flag": 0,
@@ -30,7 +30,7 @@
             "y": 0
         },
         {
-            "graphics_id": 72,
+            "graphics_id": "OBJ_EVENT_GFX_CLEFAIRY",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 0,

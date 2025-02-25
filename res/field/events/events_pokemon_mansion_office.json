@@ -19,7 +19,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1071,
@@ -33,7 +33,7 @@
             "y": 0
         },
         {
-            "graphics_id": 82,
+            "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "graphics_id": 164,
+            "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -61,7 +61,7 @@
             "y": 0
         },
         {
-            "graphics_id": 34,
+            "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 651,

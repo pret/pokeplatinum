@@ -19,7 +19,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 131,
+            "graphics_id": "OBJ_EVENT_GFX_CANDICE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 0,
@@ -33,7 +33,7 @@
             "y": 0
         },
         {
-            "graphics_id": 168,
+            "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 0,
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "graphics_id": 68,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
             "trainer_type": 1,
             "flag": 0,
@@ -63,7 +63,7 @@
             "y": 0
         },
         {
-            "graphics_id": 69,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
             "trainer_type": 1,
             "flag": 0,
@@ -79,7 +79,7 @@
             "y": 0
         },
         {
-            "graphics_id": 69,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
             "trainer_type": 1,
             "flag": 0,
@@ -95,7 +95,7 @@
             "y": 0
         },
         {
-            "graphics_id": 68,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 1,
             "flag": 0,
@@ -111,7 +111,7 @@
             "y": 0
         },
         {
-            "graphics_id": 69,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 1,
             "flag": 0,
@@ -127,7 +127,7 @@
             "y": 0
         },
         {
-            "graphics_id": 68,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 1,
             "flag": 0,
@@ -143,7 +143,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -157,7 +157,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -171,7 +171,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -185,7 +185,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -199,7 +199,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -213,7 +213,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -227,7 +227,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -241,7 +241,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -255,7 +255,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -269,7 +269,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -283,7 +283,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -297,7 +297,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -311,7 +311,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -325,7 +325,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -339,7 +339,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -353,7 +353,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -367,7 +367,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -381,7 +381,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,
@@ -395,7 +395,7 @@
             "y": 0
         },
         {
-            "graphics_id": 118,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_118",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 0,

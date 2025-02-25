@@ -19,7 +19,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 138,
+            "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 461,
@@ -33,7 +33,7 @@
             "y": 0
         },
         {
-            "graphics_id": 152,
+            "graphics_id": "OBJ_EVENT_GFX_MESPRIT",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": 0,
             "flag": 698,
@@ -47,7 +47,7 @@
             "y": 0
         },
         {
-            "graphics_id": 123,
+            "graphics_id": "OBJ_EVENT_GFX_JUPITER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 455,
@@ -61,7 +61,7 @@
             "y": 0
         },
         {
-            "graphics_id": 121,
+            "graphics_id": "OBJ_EVENT_GFX_MARS",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 455,
@@ -75,7 +75,7 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 455,
@@ -89,7 +89,7 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 0,
             "flag": 455,

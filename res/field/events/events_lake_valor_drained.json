@@ -11,7 +11,7 @@
     ],
     "object_events": [
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
             "trainer_type": 0,
             "flag": 444,
@@ -25,7 +25,7 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
             "trainer_type": 0,
             "flag": 444,
@@ -39,7 +39,7 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_WEST_AND_EAST",
             "trainer_type": 0,
             "flag": 444,
@@ -53,7 +53,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -67,7 +67,7 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
             "trainer_type": 1,
             "flag": 0,
@@ -83,7 +83,7 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
             "trainer_type": 1,
             "flag": 0,
@@ -99,7 +99,7 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
             "trainer_type": 1,
             "flag": 0,
@@ -115,7 +115,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 449,
@@ -129,7 +129,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -143,7 +143,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -157,7 +157,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -171,7 +171,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -185,7 +185,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -199,7 +199,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -213,7 +213,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -227,7 +227,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -241,7 +241,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -255,7 +255,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -269,7 +269,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -283,7 +283,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -297,7 +297,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -311,7 +311,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 449,
@@ -325,7 +325,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -339,7 +339,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -353,7 +353,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -367,7 +367,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -381,7 +381,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -395,7 +395,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 449,
@@ -409,7 +409,7 @@
             "y": 0
         },
         {
-            "graphics_id": 195,
+            "graphics_id": "OBJ_EVENT_GFX_MAGIKARP",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
             "trainer_type": 0,
             "flag": 449,
@@ -423,7 +423,7 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": 0,
             "flag": 1254,
