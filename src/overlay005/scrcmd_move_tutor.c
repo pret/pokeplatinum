@@ -14,7 +14,6 @@
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021DC018.h"
-#include "overlay005/struct_ov5_021DC1A4_decl.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -582,14 +581,14 @@ BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    GenericMenuManager **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
     u16 selectedMove = ScriptContext_GetVar(ctx);
     u16 *selectedOptionPtr = ScriptContext_GetVarPointer(ctx);
 
     selectedMove = GetMoveIndex(selectedMove);
-    *v2 = ov5_021DD250(fieldSystem, v3, v4, selectedOptionPtr, *strTemplate, sTeachableMoves[selectedMove].redCost, sTeachableMoves[selectedMove].blueCost, sTeachableMoves[selectedMove].yellowCost, sTeachableMoves[selectedMove].greenCost);
+    *v2 = FieldMenuManager_NewMoveTutorCostWindow(fieldSystem, v3, v4, selectedOptionPtr, *strTemplate, sTeachableMoves[selectedMove].redCost, sTeachableMoves[selectedMove].blueCost, sTeachableMoves[selectedMove].yellowCost, sTeachableMoves[selectedMove].greenCost);
 
     return FALSE;
 }
@@ -597,8 +596,8 @@ BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)
 BOOL ScrCmd_CloseShardCostWindow(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    GenericMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
 
-    ov5_021DD3A8(*v1);
+    FieldMenuManager_DeleteMoveTutorCost(*v1);
     return FALSE;
 }

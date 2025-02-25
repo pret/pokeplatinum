@@ -9,7 +9,6 @@
 #include "generated/text_banks.h"
 
 #include "field/field_system.h"
-#include "overlay005/struct_ov5_021DC1A4_decl.h"
 
 #include "bg_window.h"
 #include "coins.h"
@@ -35,63 +34,24 @@
 #include "res/text/bank/common_strings_2.h"
 #include "res/text/bank/unk_0543.h"
 
-#define GENERIC_MENU_ENTRIES_MAX 28
-#define NO_ALT_TEXT              0xff
-
-struct GenericMenuManager_t {
-    FieldSystem *fieldSystem;
-    SysTask *sysTask;
-    Window menuWindow;
-    Window *parentWindow;
-    Strbuf *choicesStringsBuffers[GENERIC_MENU_ENTRIES_MAX];
-    MessageLoader *messageLoader;
-    StringTemplate *stringTemplate;
-    u8 sysTaskDelay;
-    u8 unk_95;
-    u8 initialCursorPos;
-    u8 canExitWithB : 1;
-    u8 freeMsgLoaderOnDelete : 1;
-    u8 unk_97_2 : 4;
-    u8 horizontalAnchor : 1;
-    u8 verticalAnchor : 1;
-    u8 anchorX;
-    u8 anchorY;
-    u8 unk_9A;
-    u8 optionsCount;
-    u16 *unk_9C;
-    u16 *selectedOptionPtr;
-    u16 *listMenuListOffsetPtr;
-    u16 *listMenuCursorPosPtr;
-    MenuTemplate menuTemplate;
-    Menu *menu;
-    StringList menuChoicesStrings[GENERIC_MENU_ENTRIES_MAX];
-    ListMenuTemplate listMenuTemplate;
-    ListMenu *listMenu;
-    u16 unk_1C0;
-    u16 listMenuAltTextIndex;
-    StringList listMenuChoicesStrings[GENERIC_MENU_ENTRIES_MAX];
-    u16 choicesAltTextStringIDs[GENERIC_MENU_ENTRIES_MAX];
-    u16 cursorPos;
-};
-
-static void ov5_021DC018(FieldSystem *fieldSystem, GenericMenuManager *menuManager, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader);
-static void ov5_021DCE64(GenericMenuManager *menuManager, u8 columnsCount, u8 rowsCount);
-static void ov5_021DC290(GenericMenuManager *menuManager, u32 entryID, u32 index);
-static u32 CalcMenuWidth(GenericMenuManager *menuManager);
-static void ov5_021DC33C(GenericMenuManager *menuManager);
-static void ov5_021DC3B0(SysTask *sysTask, void *param);
-static void ov5_021DC530(GenericMenuManager *menuManager, u32 windowWidth);
-static void ov5_021DC708(GenericMenuManager *menuManager, u32 entryID, u32 altTextStringID, u32 entryIndex);
-static u32 CalcListMenuWidth(GenericMenuManager *menuManager);
-static void GenericMenuManager_InitListMenuTemplate(GenericMenuManager *menuManager);
+static void FieldMenuManager_Init(FieldSystem *fieldSystem, FieldMenuManager *menuManager, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader);
+static void FieldMenuManager_SetupMultiColumnMenu(FieldMenuManager *menuManager, u8 columnsCount, u8 rowsCount);
+static void _FieldMenuManager_AddMenuEntry(FieldMenuManager *menuManager, u32 entryID, u32 index);
+static u32 CalcMenuWidth(FieldMenuManager *menuManager);
+static void FieldMenuManager_SetupSingleColumnMenu(FieldMenuManager *menuManager);
+static void MenuSysTaskCallback(SysTask *sysTask, void *param);
+static void _FieldMenuManager_ShowListMenuWithWidth(FieldMenuManager *menuManager, u32 windowWidth);
+static void _FieldMenuManager_AddListMenuEntry(FieldMenuManager *menuManager, u32 entryID, u32 altTextStringID, u32 entryIndex);
+static u32 CalcListMenuWidth(FieldMenuManager *menuManager);
+static void FieldMenuManager_InitListMenuTemplate(FieldMenuManager *menuManager);
 static void ListMenuPrintCallback(ListMenu *listMenu, u32 index, u8 yOffset);
 static void ListMenuCursorCallback(ListMenu *listMenu, u32 index, u8 onInit);
 static void ListMenuSysTaskCallback(SysTask *sysTask, void *param);
-static void ov5_021DCA28(GenericMenuManager *menuManager);
-static void ov5_021DCA90(GenericMenuManager *menuManager, u16 entryID, u32 printerDelay);
-static void ov5_021DCAF4(GenericMenuManager *menuManager);
-static void ov5_021DCC64(SysTask *param0, void *param1);
-static void ov5_021DCC00(GenericMenuManager *menuManager, u16 entryID, u8 xOffset, u8 yOffset);
+static void FieldMenuManager_DeleteWithListMenu(FieldMenuManager *menuManager);
+static void FieldMenuManager_PrintListMenyAltText(FieldMenuManager *menuManager, u16 entryID, u32 printerDelay);
+static void FieldMenuManager_UpdateListMenuAltText(FieldMenuManager *menuManager);
+static void ElevatorCurrentFloorWindowSystaskCallback(SysTask *param0, void *param1);
+static void FieldMenuManager_PrintString(FieldMenuManager *menuManager, u16 entryID, u8 xOffset, u8 yOffset);
 
 static inline u32 PixelToTiles(u32 length)
 {
@@ -102,7 +62,7 @@ static inline u32 PixelToTiles(u32 length)
     }
 }
 
-static void ov5_021DC018(FieldSystem *fieldSystem, GenericMenuManager *menuManager, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader)
+static void FieldMenuManager_Init(FieldSystem *fieldSystem, FieldMenuManager *menuManager, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader)
 {
     int i;
 
@@ -151,26 +111,26 @@ static void ov5_021DC018(FieldSystem *fieldSystem, GenericMenuManager *menuManag
     *menuManager->selectedOptionPtr = 0xeeee;
 }
 
-GenericMenuManager *ov5_021DC150(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader)
+FieldMenuManager *FieldMenuManager_New(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader)
 {
-    GenericMenuManager *menuManager = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(GenericMenuManager));
+    FieldMenuManager *menuManager = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(FieldMenuManager));
 
     if (menuManager == NULL) {
         return NULL;
     }
 
-    memset(menuManager, 0, sizeof(GenericMenuManager));
-    ov5_021DC018(fieldSystem, menuManager, anchorX, anchorY, initialCursorPos, canExitWithB, selectedOptionPtr, stringTemplate, parentWindow, messageLoader);
+    memset(menuManager, 0, sizeof(FieldMenuManager));
+    FieldMenuManager_Init(fieldSystem, menuManager, anchorX, anchorY, initialCursorPos, canExitWithB, selectedOptionPtr, stringTemplate, parentWindow, messageLoader);
 
     return menuManager;
 }
 
-void ov5_021DC1A4(GenericMenuManager *menuManager, u32 entryID, u32 index) // Add Menu entry
+void FieldMenuManager_AddMenuEntry(FieldMenuManager *menuManager, u32 entryID, u32 index) // Add Menu entry
 {
-    ov5_021DC290(menuManager, entryID, index);
+    _FieldMenuManager_AddMenuEntry(menuManager, entryID, index);
 }
 
-void ov5_021DC1AC(GenericMenuManager *menuManager)
+void FieldMenuManager_ShowSingleColumnMenu(FieldMenuManager *menuManager)
 {
     u32 menuWidth = CalcMenuWidth(menuManager);
 
@@ -188,13 +148,13 @@ void ov5_021DC1AC(GenericMenuManager *menuManager)
     LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(&menuManager->menuWindow, 1, 1024 - (18 + 12) - 9, 11);
 
-    ov5_021DC33C(menuManager);
+    FieldMenuManager_SetupSingleColumnMenu(menuManager);
 
     menuManager->menu = Menu_NewSimple(&menuManager->menuTemplate, menuManager->initialCursorPos, HEAP_ID_FIELD);
-    menuManager->sysTask = SysTask_Start(ov5_021DC3B0, menuManager, 0);
+    menuManager->sysTask = SysTask_Start(MenuSysTaskCallback, menuManager, 0);
 }
 
-static void ov5_021DC290(GenericMenuManager *menuManager, u32 entryID, u32 index)
+static void _FieldMenuManager_AddMenuEntry(FieldMenuManager *menuManager, u32 entryID, u32 index)
 {
     {
         Strbuf *entryBuf = Strbuf_Init((40 * 2), HEAP_ID_FIELD);
@@ -209,7 +169,7 @@ static void ov5_021DC290(GenericMenuManager *menuManager, u32 entryID, u32 index
     menuManager->optionsCount++;
 }
 
-static u32 CalcMenuWidth(GenericMenuManager *menuManager)
+static u32 CalcMenuWidth(FieldMenuManager *menuManager)
 {
     u32 entryWidth = 0;
     u32 maxWidth = 0;
@@ -229,7 +189,7 @@ static u32 CalcMenuWidth(GenericMenuManager *menuManager)
     return maxWidth + 12;
 }
 
-static void ov5_021DC33C(GenericMenuManager *menuManager)
+static void FieldMenuManager_SetupSingleColumnMenu(FieldMenuManager *menuManager)
 {
     menuManager->menuTemplate.choices = menuManager->menuChoicesStrings;
     menuManager->menuTemplate.window = &menuManager->menuWindow;
@@ -246,9 +206,9 @@ static void ov5_021DC33C(GenericMenuManager *menuManager)
     }
 }
 
-static void ov5_021DC3B0(SysTask *sysTask, void *param)
+static void MenuSysTaskCallback(SysTask *sysTask, void *param)
 {
-    GenericMenuManager *menuManager = (GenericMenuManager *)param;
+    FieldMenuManager *menuManager = (FieldMenuManager *)param;
 
     if (menuManager->sysTaskDelay != 0) {
         menuManager->sysTaskDelay--;
@@ -267,17 +227,17 @@ static void ov5_021DC3B0(SysTask *sysTask, void *param)
     case MENU_CANCELED:
         if (menuManager->canExitWithB == TRUE) {
             *menuManager->selectedOptionPtr = MENU_CANCELED;
-            ov5_021DC424(menuManager);
+            FieldMenuManager_DeleteWithMenu(menuManager);
         }
         break;
     default:
         *menuManager->selectedOptionPtr = selectedEntry;
-        ov5_021DC424(menuManager);
+        FieldMenuManager_DeleteWithMenu(menuManager);
         break;
     }
 }
 
-void ov5_021DC424(GenericMenuManager *menuManager)
+void FieldMenuManager_DeleteWithMenu(FieldMenuManager *menuManager)
 {
     Sound_PlayEffect(SEQ_SE_CONFIRM);
     Menu_Free(menuManager->menu, NULL);
@@ -296,17 +256,17 @@ void ov5_021DC424(GenericMenuManager *menuManager)
     Heap_FreeToHeap(menuManager);
 }
 
-GenericMenuManager *ov5_021DC48C(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader)
+FieldMenuManager *FieldMenuManager_New2(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *parentWindow, MessageLoader *messageLoader)
 {
-    return ov5_021DC150(fieldSystem, anchorX, anchorY, initialCursorPos, canExitWithB, selectedOptionPtr, stringTemplate, parentWindow, messageLoader);
+    return FieldMenuManager_New(fieldSystem, anchorX, anchorY, initialCursorPos, canExitWithB, selectedOptionPtr, stringTemplate, parentWindow, messageLoader);
 }
 
-void ov5_021DC4B0(GenericMenuManager *menuManager, u32 entryID, u32 altTextStringID, u32 entryIndex) // Add ListMenu Entry
+void FieldMenuManager_AddListMenuEntry(FieldMenuManager *menuManager, u32 entryID, u32 altTextStringID, u32 entryIndex)
 {
-    ov5_021DC708(menuManager, entryID, altTextStringID, entryIndex);
+    _FieldMenuManager_AddListMenuEntry(menuManager, entryID, altTextStringID, entryIndex);
 }
 
-void ov5_021DC4B8(GenericMenuManager *menuManager)
+void FieldMenuManager_ShowListMenu(FieldMenuManager *menuManager)
 {
     u32 menuWidth = CalcListMenuWidth(menuManager);
 
@@ -324,15 +284,15 @@ void ov5_021DC4B8(GenericMenuManager *menuManager)
         }
     }
 
-    ov5_021DC530(menuManager, menuWidth);
+    _FieldMenuManager_ShowListMenuWithWidth(menuManager, menuWidth);
 }
 
-void ov5_021DC528(GenericMenuManager *menuManager, u16 windowWidth)
+void FieldMenuManager_ShowListMenuWithWidth(FieldMenuManager *menuManager, u16 windowWidth)
 {
-    ov5_021DC530(menuManager, windowWidth);
+    _FieldMenuManager_ShowListMenuWithWidth(menuManager, windowWidth);
 }
 
-static void ov5_021DC530(GenericMenuManager *menuManager, u32 windowWidth)
+static void _FieldMenuManager_ShowListMenuWithWidth(FieldMenuManager *menuManager, u32 windowWidth)
 {
     if (menuManager->optionsCount > 8) {
         Window_Add(menuManager->fieldSystem->bgConfig, &menuManager->menuWindow, 3, menuManager->anchorX, menuManager->anchorY, windowWidth, 8 * 2, 13, ((1 + (10 * 4)) + (10 * 2)));
@@ -343,14 +303,14 @@ static void ov5_021DC530(GenericMenuManager *menuManager, u32 windowWidth)
     LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD);
     Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, 1024 - (18 + 12) - 9, 11);
 
-    GenericMenuManager_InitListMenuTemplate(menuManager);
+    FieldMenuManager_InitListMenuTemplate(menuManager);
     menuManager->listMenu = ListMenu_New((const ListMenuTemplate *)&menuManager->listMenuTemplate, 0, menuManager->initialCursorPos, HEAP_ID_FIELD);
 
-    ov5_021DCAF4(menuManager);
+    FieldMenuManager_UpdateListMenuAltText(menuManager);
     menuManager->sysTask = SysTask_Start(ListMenuSysTaskCallback, menuManager, 0);
 }
 
-void ov5_021DC600(GenericMenuManager *menuManager, u16 *listOffsetPtr, u16 *cursorPosPtr)
+void FieldMenuManager_ShowListMenuWithCursorPosition(FieldMenuManager *menuManager, u16 *listOffsetPtr, u16 *cursorPosPtr)
 {
     u32 menuWidth = CalcListMenuWidth(menuManager);
 
@@ -365,19 +325,19 @@ void ov5_021DC600(GenericMenuManager *menuManager, u16 *listOffsetPtr, u16 *curs
     LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
     Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, 1024 - (18 + 12) - 9, 11);
 
-    GenericMenuManager_InitListMenuTemplate(menuManager);
+    FieldMenuManager_InitListMenuTemplate(menuManager);
 
     menuManager->listMenuListOffsetPtr = listOffsetPtr;
     menuManager->listMenuCursorPosPtr = cursorPosPtr;
     menuManager->cursorPos = ((*menuManager->listMenuListOffsetPtr) + (*menuManager->listMenuCursorPosPtr));
     menuManager->listMenu = ListMenu_New((const ListMenuTemplate *)&menuManager->listMenuTemplate, *listOffsetPtr, *cursorPosPtr, HEAP_ID_FIELD);
 
-    ov5_021DCAF4(menuManager);
+    FieldMenuManager_UpdateListMenuAltText(menuManager);
 
     menuManager->sysTask = SysTask_Start(ListMenuSysTaskCallback, menuManager, 0);
 }
 
-static void ov5_021DC708(GenericMenuManager *menuManager, u32 entryID, u32 altTextStringID, u32 entryIndex)
+static void _FieldMenuManager_AddListMenuEntry(FieldMenuManager *menuManager, u32 entryID, u32 altTextStringID, u32 entryIndex)
 {
     {
         Strbuf *fmtString = Strbuf_Init((40 * 2), HEAP_ID_FIELD);
@@ -398,7 +358,7 @@ static void ov5_021DC708(GenericMenuManager *menuManager, u32 entryID, u32 altTe
     menuManager->optionsCount++;
 }
 
-static u32 CalcListMenuWidth(GenericMenuManager *menuManager)
+static u32 CalcListMenuWidth(FieldMenuManager *menuManager)
 {
     u32 entryWidth = 0;
     u32 maxWidth = 0;
@@ -418,7 +378,7 @@ static u32 CalcListMenuWidth(GenericMenuManager *menuManager)
     return maxWidth + 12;
 }
 
-static void GenericMenuManager_InitListMenuTemplate(GenericMenuManager *menuManager)
+static void FieldMenuManager_InitListMenuTemplate(FieldMenuManager *menuManager)
 {
     menuManager->listMenuTemplate.choices = menuManager->listMenuChoicesStrings;
     menuManager->listMenuTemplate.cursorCallback = ListMenuCursorCallback;
@@ -454,7 +414,7 @@ static void ListMenuCursorCallback(ListMenu *listMenu, u32 index, u8 onInit)
 {
     u16 v2 = 0;
     u16 v3 = 0;
-    GenericMenuManager *v4 = (GenericMenuManager *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
+    FieldMenuManager *v4 = (FieldMenuManager *)ListMenu_GetAttribute(listMenu, LIST_MENU_PARENT);
 
     ListMenu_GetListAndCursorPos(listMenu, &v2, &v3);
 
@@ -466,7 +426,7 @@ static void ListMenuCursorCallback(ListMenu *listMenu, u32 index, u8 onInit)
 
 static void ListMenuSysTaskCallback(SysTask *sysTask, void *param)
 {
-    GenericMenuManager *menuManager = (GenericMenuManager *)param;
+    FieldMenuManager *menuManager = (FieldMenuManager *)param;
 
     if (menuManager->sysTaskDelay != 0) {
         menuManager->sysTaskDelay--;
@@ -486,8 +446,8 @@ static void ListMenuSysTaskCallback(SysTask *sysTask, void *param)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    if ((gSystem.pressedKeysRepeatable & PAD_KEY_UP) || (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) || (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) || (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT)) {
-        ov5_021DCAF4(menuManager);
+    if (JOY_REPEAT(PAD_KEY_UP) || JOY_REPEAT(PAD_KEY_DOWN) || JOY_REPEAT(PAD_KEY_LEFT) || JOY_REPEAT(PAD_KEY_RIGHT)) {
+        FieldMenuManager_UpdateListMenuAltText(menuManager);
     }
 
     switch (selectedOption) {
@@ -497,18 +457,18 @@ static void ListMenuSysTaskCallback(SysTask *sysTask, void *param)
         if (menuManager->canExitWithB == TRUE) {
             Sound_PlayEffect(SEQ_SE_CONFIRM);
             *menuManager->selectedOptionPtr = LIST_CANCEL;
-            ov5_021DCA28(param);
+            FieldMenuManager_DeleteWithListMenu(param);
         }
         break;
     default:
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         *menuManager->selectedOptionPtr = selectedOption;
-        ov5_021DCA28(param);
+        FieldMenuManager_DeleteWithListMenu(param);
         break;
     }
 }
 
-static void ov5_021DCA28(GenericMenuManager *menuManager)
+static void FieldMenuManager_DeleteWithListMenu(FieldMenuManager *menuManager)
 {
     Sound_PlayEffect(SEQ_SE_CONFIRM);
     ListMenu_Free(menuManager->listMenu, NULL, NULL);
@@ -527,7 +487,7 @@ static void ov5_021DCA28(GenericMenuManager *menuManager)
     Heap_FreeToHeap(menuManager);
 }
 
-static void ov5_021DCA90(GenericMenuManager *menuManager, u16 entryID, u32 printerDelay)
+static void FieldMenuManager_PrintListMenyAltText(FieldMenuManager *menuManager, u16 entryID, u32 printerDelay)
 {
     Strbuf *v0 = Strbuf_Init((40 * 2), HEAP_ID_FIELD);
     Strbuf *v1 = Strbuf_Init((40 * 2), HEAP_ID_FIELD);
@@ -540,20 +500,20 @@ static void ov5_021DCA90(GenericMenuManager *menuManager, u16 entryID, u32 print
     Strbuf_Free(v1);
 }
 
-static void ov5_021DCAF4(GenericMenuManager *menuManager)
+static void FieldMenuManager_UpdateListMenuAltText(FieldMenuManager *menuManager)
 {
     ListMenu_CalcTrueCursorPos(menuManager->listMenu, &menuManager->listMenuAltTextIndex);
 
     if (menuManager->choicesAltTextStringIDs[menuManager->listMenuAltTextIndex] != NO_ALT_TEXT) {
-        ov5_021DCA90(menuManager, menuManager->choicesAltTextStringIDs[menuManager->listMenuAltTextIndex], 0);
+        FieldMenuManager_PrintListMenyAltText(menuManager, menuManager->choicesAltTextStringIDs[menuManager->listMenuAltTextIndex], 0);
     }
 }
 
-void ov5_021DCB24(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u16 *selectedOptionPtr, StringTemplate *stringTemplate, u16 unused)
+void ov5_021DCB24(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u16 *selectedOptionPtr, StringTemplate *stringTemplate, u16 unused) // Show current floor in elevators
 {
     u32 width; // forward declaration required to match
 
-    GenericMenuManager *menuManager = ov5_021DC150(fieldSystem, tilemapLeft, tilemapTop, 0, 0, selectedOptionPtr, stringTemplate, NULL, NULL);
+    FieldMenuManager *menuManager = FieldMenuManager_New(fieldSystem, tilemapLeft, tilemapTop, 0, 0, selectedOptionPtr, stringTemplate, NULL, NULL);
     width = 8 * Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_WIDTH);
 
     if ((width % 8) == 0) {
@@ -567,15 +527,15 @@ void ov5_021DCB24(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u16 *
     Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, 1024 - (18 + 12) - 9, 11);
     Window_FillRectWithColor(&menuManager->menuWindow, 15, 0, 0, (width * 8), (4 * 8));
 
-    ov5_021DCC00(menuManager, pl_msg_00000361_00015, 0, 0);
-    ov5_021DCC00(menuManager, pl_msg_00000361_00016, (8 * 4), 16);
+    FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00015, 0, 0);
+    FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00016, (8 * 4), 16);
 
     menuManager->menuTemplate.window = &menuManager->menuWindow;
     Window_CopyToVRAM(&menuManager->menuWindow);
-    menuManager->sysTask = SysTask_Start(ov5_021DCC64, menuManager, 0);
+    menuManager->sysTask = SysTask_Start(ElevatorCurrentFloorWindowSystaskCallback, menuManager, 0);
 }
 
-static void ov5_021DCC00(GenericMenuManager *menuManager, u16 entryID, u8 xOffset, u8 yOffset)
+static void FieldMenuManager_PrintString(FieldMenuManager *menuManager, u16 entryID, u8 xOffset, u8 yOffset)
 {
     Strbuf *fmtString = Strbuf_Init((40 * 2), HEAP_ID_FIELD);
     Strbuf *formatted = Strbuf_Init((40 * 2), HEAP_ID_FIELD);
@@ -587,9 +547,9 @@ static void ov5_021DCC00(GenericMenuManager *menuManager, u16 entryID, u8 xOffse
     Strbuf_Free(formatted);
 }
 
-static void ov5_021DCC64(SysTask *sysTask, void *param)
+static void ElevatorCurrentFloorWindowSystaskCallback(SysTask *sysTask, void *param)
 {
-    GenericMenuManager *menuManager = (GenericMenuManager *)param;
+    FieldMenuManager *menuManager = (FieldMenuManager *)param;
 
     if (*menuManager->selectedOptionPtr == 0xffff) {
         Window_EraseStandardFrame(menuManager->menuTemplate.window, FALSE);
@@ -674,7 +634,7 @@ u16 ov5_021DCCC8(int location)
     return v0;
 }
 
-void ov5_021DCD94(GenericMenuManager *menuManager, u8 columnsCount)
+void FieldMenuManager_ShowMultiColumnMenu(FieldMenuManager *menuManager, u8 columnsCount)
 {
     u32 menuWidth = CalcMenuWidth(menuManager);
 
@@ -690,13 +650,13 @@ void ov5_021DCD94(GenericMenuManager *menuManager, u8 columnsCount)
     LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD);
     Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, 1024 - (18 + 12) - 9, 11);
 
-    ov5_021DCE64(menuManager, columnsCount, rowsCount);
+    FieldMenuManager_SetupMultiColumnMenu(menuManager, columnsCount, rowsCount);
 
     menuManager->menu = Menu_NewSimple(&menuManager->menuTemplate, menuManager->initialCursorPos, HEAP_ID_FIELD);
-    menuManager->sysTask = SysTask_Start(ov5_021DC3B0, menuManager, 0);
+    menuManager->sysTask = SysTask_Start(MenuSysTaskCallback, menuManager, 0);
 }
 
-static void ov5_021DCE64(GenericMenuManager *menuManager, u8 columnsCount, u8 rowsCount)
+static void FieldMenuManager_SetupMultiColumnMenu(FieldMenuManager *menuManager, u8 columnsCount, u8 rowsCount)
 {
     menuManager->menuTemplate.choices = menuManager->menuChoicesStrings;
     menuManager->menuTemplate.window = &menuManager->menuWindow;
@@ -707,7 +667,7 @@ static void ov5_021DCE64(GenericMenuManager *menuManager, u8 columnsCount, u8 ro
     menuManager->menuTemplate.suppressCursor = FALSE;
 }
 
-Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 tilemapTop, u8 tilemapLeft)
+Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 tilemapTop, u8 tilemapLeft) // Create money window
 {
     Window *window = Window_New(HEAP_ID_FIELD, 1);
 
@@ -730,13 +690,13 @@ Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 tilemapTop, u8 tilemapLeft)
     return window;
 }
 
-void ov5_021DCF58(Window *window)
+void ov5_021DCF58(Window *window) // Delete window. Used for the money window
 {
     Window_EraseStandardFrame(window, FALSE);
     Windows_Delete(window, 1);
 }
 
-void ov5_021DCF6C(FieldSystem *fieldSystem, Window *window) // Money
+void ov5_021DCF6C(FieldSystem *fieldSystem, Window *window) // Print money to window
 {
     Window_FillRectWithColor(window, 15, 0, 16, 10 * 8, 4 * 8 - 16);
 
@@ -759,7 +719,7 @@ void ov5_021DCF6C(FieldSystem *fieldSystem, Window *window) // Money
     Window_ScheduleCopyToVRAM(window);
 }
 
-Window *ov5_021DD020(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop)
+Window *ov5_021DD020(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop) // Create coins/BP window, show coins count
 {
     Window *window = Window_New(HEAP_ID_FIELD, 1);
 
@@ -772,13 +732,13 @@ Window *ov5_021DD020(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop)
     return window;
 }
 
-void ov5_021DD084(Window *window)
+void ov5_021DD084(Window *window) // Delete window. Used for the coins & BP window
 {
     Window_EraseStandardFrame(window, FALSE);
     Windows_Delete(window, 1);
 }
 
-void ov5_021DD098(FieldSystem *fieldSystem, Window *window) // Coins count
+void ov5_021DD098(FieldSystem *fieldSystem, Window *window) // Print coins count to window
 {
     Window_FillTilemap(window, 15);
 
@@ -801,7 +761,7 @@ void ov5_021DD098(FieldSystem *fieldSystem, Window *window) // Coins count
     Window_ScheduleCopyToVRAM(window);
 }
 
-Window *ov5_021DD140(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop)
+Window *ov5_021DD140(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop) // Create coins/BP window, show BP count
 {
     Window *window = Window_New(HEAP_ID_FIELD, 1);
 
@@ -814,7 +774,7 @@ Window *ov5_021DD140(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop)
     return window;
 }
 
-void ov5_021DD1A4(FieldSystem *fieldSystem, Window *window) // BP count
+void ov5_021DD1A4(FieldSystem *fieldSystem, Window *window) // Print BP count to window
 {
     Window_FillTilemap(window, 15);
 
@@ -837,30 +797,30 @@ void ov5_021DD1A4(FieldSystem *fieldSystem, Window *window) // BP count
     Window_ScheduleCopyToVRAM(window);
 }
 
-GenericMenuManager *ov5_021DD250(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u16 *selectedOptionPtr, StringTemplate *stringTemplate, u8 redCost, u8 blueCost, u8 yellowCost, u8 greenCost) // Move tutor shard cost
+FieldMenuManager *FieldMenuManager_NewMoveTutorCostWindow(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u16 *selectedOptionPtr, StringTemplate *stringTemplate, u8 redCost, u8 blueCost, u8 yellowCost, u8 greenCost) // Move tutor shard cost
 {
-    GenericMenuManager *menuManager = ov5_021DC150(fieldSystem, anchorX, anchorY, 0, FALSE, selectedOptionPtr, stringTemplate, NULL, NULL);
+    FieldMenuManager *menuManager = FieldMenuManager_New(fieldSystem, anchorX, anchorY, 0, FALSE, selectedOptionPtr, stringTemplate, NULL, NULL);
 
     Window_Add(menuManager->fieldSystem->bgConfig, &menuManager->menuWindow, 3, menuManager->anchorX, menuManager->anchorY, 10, 16, 13, ((1 + (10 * 4)) + (10 * 2)));
     LoadStandardWindowGraphics(menuManager->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD);
     Window_DrawStandardFrame(&menuManager->menuWindow, TRUE, 1024 - (18 + 12) - 9, 11);
     Window_FillRectWithColor(&menuManager->menuWindow, 15, 0, 0, (10 * 8), (16 * 8));
 
-    ov5_021DCC00(menuManager, pl_msg_00000361_00273, 0, 0);
+    FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00273, 0, 0);
     StringTemplate_SetNumber(stringTemplate, 0, redCost, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    ov5_021DCC00(menuManager, pl_msg_00000361_00277, 0, (0 + 16));
+    FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00277, 0, (0 + 16));
 
-    ov5_021DCC00(menuManager, pl_msg_00000361_00274, 0, 32);
+    FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00274, 0, 32);
     StringTemplate_SetNumber(stringTemplate, 0, blueCost, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    ov5_021DCC00(menuManager, pl_msg_00000361_00277, 0, (32 + 16));
+    FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00277, 0, (32 + 16));
 
-    ov5_021DCC00(menuManager, pl_msg_00000361_00275, 0, 64);
+    FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00275, 0, 64);
     StringTemplate_SetNumber(stringTemplate, 0, yellowCost, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    ov5_021DCC00(menuManager, pl_msg_00000361_00277, 0, (64 + 16));
+    FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00277, 0, (64 + 16));
 
-    ov5_021DCC00(menuManager, pl_msg_00000361_00276, 0, 96);
+    FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00276, 0, 96);
     StringTemplate_SetNumber(stringTemplate, 0, greenCost, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
-    ov5_021DCC00(menuManager, pl_msg_00000361_00277, 0, (96 + 16));
+    FieldMenuManager_PrintString(menuManager, pl_msg_00000361_00277, 0, (96 + 16));
 
     menuManager->menuTemplate.window = &menuManager->menuWindow;
     Window_CopyToVRAM(&menuManager->menuWindow);
@@ -868,7 +828,7 @@ GenericMenuManager *ov5_021DD250(FieldSystem *fieldSystem, u8 anchorX, u8 anchor
     return menuManager;
 }
 
-void ov5_021DD3A8(GenericMenuManager *menuManager)
+void FieldMenuManager_DeleteMoveTutorCost(FieldMenuManager *menuManager)
 {
     Window_EraseStandardFrame(menuManager->menuTemplate.window, FALSE);
     Window_Remove(menuManager->menuTemplate.window);
@@ -884,12 +844,12 @@ void ov5_021DD3A8(GenericMenuManager *menuManager)
     Heap_FreeToHeap(menuManager);
 }
 
-void ov5_021DD3F4(GenericMenuManager *menuManager, BOOL horizontalAnchor)
+void FieldMenuManager_SetHorizontalAnchor(FieldMenuManager *menuManager, BOOL horizontalAnchor)
 {
     menuManager->horizontalAnchor = horizontalAnchor;
 }
 
-void ov5_021DD410(GenericMenuManager *menuManager, BOOL verticalAnchor)
+void FieldMenuManager_SetVerticalAnchor(FieldMenuManager *menuManager, BOOL verticalAnchor)
 {
     menuManager->verticalAnchor = verticalAnchor;
 }
