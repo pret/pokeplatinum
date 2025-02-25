@@ -21,7 +21,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1071,
             "script": 7057,
             "initial_dir": 0,
@@ -35,7 +35,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_MIDDLE_AGED_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 1,
@@ -49,7 +49,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 3,
             "initial_dir": 1,
@@ -63,7 +63,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 651,
             "script": 4,
             "initial_dir": 1,

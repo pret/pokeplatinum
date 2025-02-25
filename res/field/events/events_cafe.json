@@ -4,7 +4,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_RANCHER",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 3,
@@ -18,7 +18,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 3,
             "initial_dir": 2,
@@ -32,7 +32,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3274,
             "initial_dir": 3,
@@ -46,7 +46,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3275,
             "initial_dir": 2,
@@ -60,7 +60,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_WAITRESS",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3365,
             "initial_dir": 1,
@@ -74,7 +74,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 4,
             "initial_dir": 2,

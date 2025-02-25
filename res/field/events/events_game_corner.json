@@ -109,7 +109,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 13,
             "initial_dir": 1,
@@ -123,7 +123,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 14,
             "initial_dir": 2,
@@ -137,7 +137,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 15,
             "initial_dir": 3,
@@ -151,7 +151,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 16,
             "initial_dir": 3,
@@ -165,7 +165,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 19,
             "initial_dir": 3,
@@ -179,7 +179,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_WORKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 17,
             "initial_dir": 2,
@@ -193,7 +193,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 18,
             "initial_dir": 3,
@@ -207,7 +207,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 20,
             "initial_dir": 2,
@@ -221,7 +221,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 419,
             "script": 22,
             "initial_dir": 2,

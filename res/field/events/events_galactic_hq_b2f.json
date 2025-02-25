@@ -4,7 +4,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 567,
             "script": 1,
             "initial_dir": 3,
@@ -18,7 +18,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 567,
             "script": 2,
             "initial_dir": 1,
@@ -32,7 +32,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1178,
             "script": 7164,
             "initial_dir": 0,
@@ -46,7 +46,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 567,
             "script": 3506,
             "initial_dir": 2,
@@ -62,7 +62,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 567,
             "script": 3507,
             "initial_dir": 1,
@@ -78,7 +78,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1251,
             "script": 7237,
             "initial_dir": 0,
@@ -92,7 +92,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 551,
             "script": 3,
             "initial_dir": 1,
@@ -106,7 +106,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 551,
             "script": 3,
             "initial_dir": 1,
@@ -120,7 +120,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1258,
             "script": 7244,
             "initial_dir": 0,

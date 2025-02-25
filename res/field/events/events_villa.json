@@ -29,7 +29,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_UNK_102",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 680,
             "script": 3,
             "initial_dir": 1,
@@ -43,7 +43,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_BARRY",
             "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 679,
             "script": 2,
             "initial_dir": 2,
@@ -57,7 +57,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_PROF_ROWAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 681,
             "script": 4,
             "initial_dir": 0,
@@ -71,7 +71,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_MOM",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 683,
             "script": 5,
             "initial_dir": 3,
@@ -85,7 +85,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_ROARK",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 684,
             "script": 6,
             "initial_dir": 1,
@@ -99,7 +99,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GARDENIA",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 686,
             "script": 7,
             "initial_dir": 1,
@@ -113,7 +113,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_FANTINA",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 688,
             "script": 8,
             "initial_dir": 0,
@@ -127,7 +127,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_MAYLENE",
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 689,
             "script": 9,
             "initial_dir": 3,
@@ -141,7 +141,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_BRYON",
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 692,
             "script": 11,
             "initial_dir": 1,
@@ -155,7 +155,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 691,
             "script": 10,
             "initial_dir": 0,
@@ -169,7 +169,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_CANDICE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 694,
             "script": 12,
             "initial_dir": 1,
@@ -183,7 +183,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_VOLKNER",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 695,
             "script": 13,
             "initial_dir": 2,
@@ -197,7 +197,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 696,
             "script": 14,
             "initial_dir": 2,
@@ -211,7 +211,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_FLINT",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 697,
             "script": 15,
             "initial_dir": 2,
@@ -225,7 +225,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 602,
             "script": 42,
             "initial_dir": 3,
@@ -239,7 +239,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 709,
             "script": 0,
             "initial_dir": 0,
@@ -253,7 +253,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_BOOK",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 711,
             "script": 0,
             "initial_dir": 0,

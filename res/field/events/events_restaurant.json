@@ -4,7 +4,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 582,
             "script": 8,
             "initial_dir": 3,
@@ -18,7 +18,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_SOCIALITE",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 582,
             "script": 9,
             "initial_dir": 2,
@@ -32,7 +32,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 581,
             "script": 6,
             "initial_dir": 3,
@@ -46,7 +46,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_LADY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 581,
             "script": 7,
             "initial_dir": 2,
@@ -60,7 +60,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_REPORTER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 586,
             "script": 17,
             "initial_dir": 2,
@@ -74,7 +74,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 586,
             "script": 16,
             "initial_dir": 3,
@@ -88,7 +88,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_ARTIST",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 580,
             "script": 4,
             "initial_dir": 3,
@@ -102,7 +102,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 587,
             "script": 18,
             "initial_dir": 3,
@@ -116,7 +116,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 587,
             "script": 19,
             "initial_dir": 2,
@@ -130,7 +130,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 580,
             "script": 5,
             "initial_dir": 2,
@@ -144,7 +144,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 583,
             "script": 11,
             "initial_dir": 2,
@@ -158,7 +158,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 585,
             "script": 14,
             "initial_dir": 3,
@@ -172,7 +172,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_LASS",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 585,
             "script": 15,
             "initial_dir": 2,
@@ -186,7 +186,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 584,
             "script": 13,
             "initial_dir": 2,
@@ -200,7 +200,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 588,
             "script": 20,
             "initial_dir": 3,
@@ -214,7 +214,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 584,
             "script": 12,
             "initial_dir": 3,
@@ -228,7 +228,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 588,
             "script": 21,
             "initial_dir": 2,
@@ -242,7 +242,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 583,
             "script": 10,
             "initial_dir": 3,
@@ -256,7 +256,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_WAITER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 2,

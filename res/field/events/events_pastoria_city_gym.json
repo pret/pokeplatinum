@@ -21,7 +21,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_CRASHER_WAKE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 527,
             "script": 5,
             "initial_dir": 1,
@@ -35,7 +35,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 6,
             "initial_dir": 1,
@@ -49,7 +49,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3496,
             "initial_dir": 1,
@@ -65,7 +65,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3338,
             "initial_dir": 1,
@@ -81,7 +81,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3497,
             "initial_dir": 2,
@@ -97,7 +97,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_SAILOR",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3482,
             "initial_dir": 2,
@@ -113,7 +113,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3292,
             "initial_dir": 2,
@@ -127,7 +127,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3400,
             "initial_dir": 1,

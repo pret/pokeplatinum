@@ -69,7 +69,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 32,
             "script": 10001,
             "initial_dir": 0,
@@ -83,7 +83,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 33,
             "script": 10001,
             "initial_dir": 0,
@@ -97,7 +97,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 34,
             "script": 10001,
             "initial_dir": 0,
@@ -111,7 +111,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 35,
             "script": 10001,
             "initial_dir": 0,
@@ -125,7 +125,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 36,
             "script": 10001,
             "initial_dir": 0,
@@ -139,7 +139,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 37,
             "script": 10001,
             "initial_dir": 0,
@@ -153,7 +153,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
-            "trainer_type": 1,
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 655,
             "script": 3516,
             "initial_dir": 0,
@@ -170,7 +170,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 4,
+            "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "flag": 655,
             "script": 3515,
             "initial_dir": 2,
@@ -186,7 +186,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1051,
             "script": 7037,
             "initial_dir": 0,
@@ -200,7 +200,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1053,
             "script": 7039,
             "initial_dir": 0,

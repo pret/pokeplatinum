@@ -3,7 +3,7 @@ import json
 import pathlib
 import sys
 
-from convert import from_movement_type, from_object_event_gfx, pad, u16, u32
+from convert import from_movement_type, from_object_event_gfx, from_trainer_type, pad, u16, u32
 
 
 def parse_bg_events(bg_events: list[dict]) -> bytes:
@@ -41,7 +41,7 @@ def parse_object_event(obj: dict, i: int) -> bytes:
             u16(obj.get("local_id", i)),
             u16(from_object_event_gfx(obj["graphics_id"])),
             u16(from_movement_type(obj["movement_type"])),
-            u16(obj["trainer_type"]),
+            u16(from_trainer_type(obj["trainer_type"])),
             u16(obj["flag"]),
             u16(obj["script"]),
             u16(obj["initial_dir"]),

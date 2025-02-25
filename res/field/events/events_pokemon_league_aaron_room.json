@@ -4,7 +4,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_AARON",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 1,
@@ -18,7 +18,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_ELITE_FOUR_ROOM_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 642,
             "script": 2037,
             "initial_dir": 0,
@@ -32,7 +32,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_ELITE_FOUR_ROOM_DOOR",
             "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 646,
             "script": 2037,
             "initial_dir": 0,

@@ -10,7 +10,8 @@ from generated import (
     movement_types,
     object_events,
     species,
-    trainer_classes
+    trainer_classes,
+    trainer_types
 )
 
 def pad(len: int) -> bytes:
@@ -48,6 +49,9 @@ def from_object_event_gfx(s: str) -> int:
 
 def from_movement_type(s: str) -> int:
     return movement_types.MovementType[s].value
+
+def from_trainer_type(s: str) -> int:
+    return trainer_types.TrainerType[s].value
 
 TrainerDataFlags = collections.namedtuple('TrainerDataFlags', ['has_moves', 'has_items'])
 

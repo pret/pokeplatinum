@@ -4,7 +4,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_CROAGUNK",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 562,
             "script": 0,
             "initial_dir": 2,
@@ -18,7 +18,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_HEATRAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 477,
             "script": 4,
             "initial_dir": 1,
@@ -32,7 +32,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_BUCK",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 475,
             "script": 0,
             "initial_dir": 0,
@@ -46,7 +46,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 478,
             "script": 0,
             "initial_dir": 1,
@@ -60,7 +60,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_LOOKER",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 561,
             "script": 0,
             "initial_dir": 2,
@@ -74,7 +74,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_CHARON",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 476,
             "script": 0,
             "initial_dir": 1,
@@ -88,7 +88,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
             "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 563,
             "script": 0,
             "initial_dir": 2,
@@ -102,7 +102,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 560,
             "script": 0,
             "initial_dir": 0,
@@ -116,7 +116,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
             "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 560,
             "script": 0,
             "initial_dir": 0,
@@ -130,7 +130,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 476,
             "script": 0,
             "initial_dir": 1,
@@ -144,7 +144,7 @@
         {
             "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
-            "trainer_type": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 476,
             "script": 0,
             "initial_dir": 1,
