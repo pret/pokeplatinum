@@ -6,7 +6,7 @@
             "x": 313,
             "z": 647,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8005,
@@ -14,14 +14,14 @@
             "x": 295,
             "z": 635,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 38,
-            "movement_type": 17,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3024,
             "initial_dir": 3,
@@ -35,9 +35,9 @@
             "y": 9
         },
         {
-            "graphics_id": 39,
-            "movement_type": 14,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3028,
             "initial_dir": 0,
@@ -51,9 +51,9 @@
             "y": 8
         },
         {
-            "graphics_id": 38,
-            "movement_type": 16,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3025,
             "initial_dir": 2,
@@ -67,9 +67,9 @@
             "y": 7
         },
         {
-            "graphics_id": 39,
-            "movement_type": 20,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
+            "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3029,
             "initial_dir": 3,
@@ -83,9 +83,9 @@
             "y": 7
         },
         {
-            "graphics_id": 38,
-            "movement_type": 17,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3026,
             "initial_dir": 3,
@@ -99,9 +99,9 @@
             "y": 6
         },
         {
-            "graphics_id": 39,
-            "movement_type": 14,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3030,
             "initial_dir": 0,
@@ -115,9 +115,9 @@
             "y": 3
         },
         {
-            "graphics_id": 38,
-            "movement_type": 14,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3027,
             "initial_dir": 0,
@@ -131,9 +131,9 @@
             "y": 4
         },
         {
-            "graphics_id": 39,
-            "movement_type": 17,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_CYCLIST_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3031,
             "initial_dir": 3,
@@ -147,9 +147,9 @@
             "y": 4
         },
         {
-            "graphics_id": 94,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 5,
             "initial_dir": 0,
@@ -163,9 +163,9 @@
             "y": 0
         },
         {
-            "graphics_id": 94,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 4,
             "initial_dir": 0,
@@ -179,9 +179,9 @@
             "y": 0
         },
         {
-            "graphics_id": 86,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 32,
             "script": 10000,
             "initial_dir": 0,
@@ -193,9 +193,9 @@
             "y": 0
         },
         {
-            "graphics_id": 86,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 33,
             "script": 10000,
             "initial_dir": 0,
@@ -207,9 +207,9 @@
             "y": 0
         },
         {
-            "graphics_id": 86,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 34,
             "script": 10000,
             "initial_dir": 0,
@@ -221,9 +221,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1044,
             "script": 7030,
             "initial_dir": 0,
@@ -235,9 +235,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1045,
             "script": 7031,
             "initial_dir": 0,
@@ -249,9 +249,9 @@
             "y": 0
         },
         {
-            "graphics_id": 100,
-            "movement_type": 47,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
@@ -265,9 +265,9 @@
             "y": 0
         },
         {
-            "graphics_id": 100,
-            "movement_type": 47,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
@@ -281,9 +281,9 @@
             "y": 0
         },
         {
-            "graphics_id": 100,
-            "movement_type": 47,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
@@ -297,9 +297,9 @@
             "y": 0
         },
         {
-            "graphics_id": 100,
-            "movement_type": 47,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
@@ -314,9 +314,9 @@
         },
         {
             "local_id": 8,
-            "graphics_id": 96,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_TRAINER_TIPS_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 353,
             "script": 65535,
             "initial_dir": 0,
@@ -328,9 +328,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1047,
             "script": 7033,
             "initial_dir": 0,
@@ -342,9 +342,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1046,
             "script": 7032,
             "initial_dir": 0,
@@ -356,9 +356,9 @@
             "y": 0
         },
         {
-            "graphics_id": 20,
-            "movement_type": 10,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3450,
             "initial_dir": 1,
@@ -372,9 +372,9 @@
             "y": 0
         },
         {
-            "graphics_id": 20,
-            "movement_type": 7,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 3,
             "initial_dir": 3,
@@ -390,85 +390,85 @@
         {
             "x": 302,
             "z": 688,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 4
         },
         {
             "x": 303,
             "z": 688,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 4
         },
         {
             "x": 302,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 2
         },
         {
             "x": 303,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 2
         },
         {
             "x": 304,
             "z": 576,
-            "dest_header_id": 80,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE",
             "dest_warp_id": 1
         },
         {
             "x": 305,
             "z": 576,
-            "dest_header_id": 80,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE",
             "dest_warp_id": 1
         },
         {
             "x": 300,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 0
         },
         {
             "x": 301,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 2
         },
         {
             "x": 304,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 2
         },
         {
             "x": 305,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 3
         },
         {
             "x": 301,
             "z": 688,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 1
         },
         {
             "x": 304,
             "z": 688,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 5
         },
         {
             "x": 299,
             "z": 611,
-            "dest_header_id": 284,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 310,
             "z": 607,
-            "dest_header_id": 284,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
             "dest_warp_id": 1
         }
     ],

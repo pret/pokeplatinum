@@ -6,7 +6,7 @@
             "x": 3,
             "z": 10,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8010,
@@ -14,14 +14,14 @@
             "x": 4,
             "z": 39,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1056,
             "script": 7042,
             "initial_dir": 0,
@@ -33,9 +33,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1054,
             "script": 7040,
             "initial_dir": 0,
@@ -47,9 +47,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1055,
             "script": 7041,
             "initial_dir": 0,
@@ -65,13 +65,13 @@
         {
             "x": 43,
             "z": 38,
-            "dest_header_id": 284,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
             "dest_warp_id": 3
         },
         {
             "x": 16,
             "z": 40,
-            "dest_header_id": 284,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
             "dest_warp_id": 2
         }
     ],

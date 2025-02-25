@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 207,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_HAPPINY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 1,
@@ -16,9 +16,9 @@
             "y": 0
         },
         {
-            "graphics_id": 51,
-            "movement_type": 4,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+            "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 1,
@@ -34,7 +34,7 @@
         {
             "x": 4,
             "z": 8,
-            "dest_header_id": 442,
+            "dest_header_id": "MAP_HEADER_CELESTIC_TOWN",
             "dest_warp_id": 3
         }
     ],

@@ -6,14 +6,14 @@
             "x": 8,
             "z": 3,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 17,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 1,
@@ -25,9 +25,9 @@
             "y": 0
         },
         {
-            "graphics_id": 18,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 451,
             "script": 2,
             "initial_dir": 1,
@@ -39,9 +39,9 @@
             "y": 0
         },
         {
-            "graphics_id": 6,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 3,
             "initial_dir": 1,
@@ -53,9 +53,9 @@
             "y": 0
         },
         {
-            "graphics_id": 183,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BOOK",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 6,
             "initial_dir": 0,
@@ -71,7 +71,7 @@
         {
             "x": 5,
             "z": 8,
-            "dest_header_id": 442,
+            "dest_header_id": "MAP_HEADER_CELESTIC_TOWN",
             "dest_warp_id": 0
         }
     ],

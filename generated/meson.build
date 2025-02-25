@@ -36,6 +36,7 @@ metang_generators = {
     'battle_sub_animations': { 'type': 'enum', 'tag': 'BattleSubAnimation' },
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
+    'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
     'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
     'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
@@ -61,8 +62,10 @@ metang_generators = {
     'move_flags': { 'type': 'mask', 'tag': 'MoveFlag' },
     'move_ranges': { 'type': 'mask', 'tag': 'MoveRange', 'extra': ['--no-auto'] },
     'movement_actions': { 'type': 'enum', 'tag': 'MovementAction' },
+    'movement_types': { 'type': 'enum', 'tag': 'MovementType' },
     'moves': { 'type': 'enum', 'tag': 'Move' },
     'npc_trades': { 'type': 'enum', 'tag': 'NpcTradeID' },
+    'object_events': { 'type': 'enum', 'tag': 'ObjectEventGfx' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },
     'pokemon_body_shapes': { 'type': 'enum', 'tag': 'PokemonBodyShape' },
@@ -80,6 +83,7 @@ metang_generators = {
     'trainers': { 'type': 'enum', 'tag': 'Trainer' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
+    'trainer_types': { 'type': 'enum', 'tag': 'TrainerType' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
     'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'}
 }

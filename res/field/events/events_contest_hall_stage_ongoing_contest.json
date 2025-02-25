@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 36,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 1,
@@ -16,9 +16,9 @@
             "y": 0
         },
         {
-            "graphics_id": 101,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_101",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 513,
             "script": 0,
             "initial_dir": 1,
@@ -30,9 +30,9 @@
             "y": 0
         },
         {
-            "graphics_id": 102,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_102",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 514,
             "script": 0,
             "initial_dir": 1,
@@ -44,9 +44,9 @@
             "y": 0
         },
         {
-            "graphics_id": 103,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_103",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 515,
             "script": 0,
             "initial_dir": 1,
@@ -58,9 +58,9 @@
             "y": 0
         },
         {
-            "graphics_id": 104,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_104",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 516,
             "script": 0,
             "initial_dir": 1,
@@ -72,9 +72,9 @@
             "y": 0
         },
         {
-            "graphics_id": 105,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_105",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 517,
             "script": 0,
             "initial_dir": 1,
@@ -86,9 +86,9 @@
             "y": 0
         },
         {
-            "graphics_id": 10,
-            "movement_type": 7,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -100,9 +100,9 @@
             "y": 0
         },
         {
-            "graphics_id": 2,
-            "movement_type": 6,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_TWIN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -114,9 +114,9 @@
             "y": 0
         },
         {
-            "graphics_id": 4,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -128,9 +128,9 @@
             "y": 0
         },
         {
-            "graphics_id": 18,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -142,9 +142,9 @@
             "y": 0
         },
         {
-            "graphics_id": 9,
-            "movement_type": 12,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -156,9 +156,9 @@
             "y": 0
         },
         {
-            "graphics_id": 19,
-            "movement_type": 12,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -170,9 +170,9 @@
             "y": 0
         },
         {
-            "graphics_id": 13,
-            "movement_type": 12,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -184,9 +184,9 @@
             "y": 0
         },
         {
-            "graphics_id": 12,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -198,9 +198,9 @@
             "y": 0
         },
         {
-            "graphics_id": 1,
-            "movement_type": 12,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -212,9 +212,9 @@
             "y": 0
         },
         {
-            "graphics_id": 15,
-            "movement_type": 7,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -226,9 +226,9 @@
             "y": 0
         },
         {
-            "graphics_id": 7,
-            "movement_type": 12,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -240,9 +240,9 @@
             "y": 0
         },
         {
-            "graphics_id": 11,
-            "movement_type": 6,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -254,9 +254,9 @@
             "y": 0
         },
         {
-            "graphics_id": 8,
-            "movement_type": 12,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -268,9 +268,9 @@
             "y": 0
         },
         {
-            "graphics_id": 3,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -282,9 +282,9 @@
             "y": 0
         },
         {
-            "graphics_id": 6,
-            "movement_type": 6,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -296,9 +296,9 @@
             "y": 0
         },
         {
-            "graphics_id": 11,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -310,9 +310,9 @@
             "y": 0
         },
         {
-            "graphics_id": 4,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -324,9 +324,9 @@
             "y": 0
         },
         {
-            "graphics_id": 7,
-            "movement_type": 6,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -338,9 +338,9 @@
             "y": 0
         },
         {
-            "graphics_id": 8,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -352,9 +352,9 @@
             "y": 0
         },
         {
-            "graphics_id": 12,
-            "movement_type": 12,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -366,9 +366,9 @@
             "y": 0
         },
         {
-            "graphics_id": 1,
-            "movement_type": 7,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -380,9 +380,9 @@
             "y": 0
         },
         {
-            "graphics_id": 13,
-            "movement_type": 7,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -394,9 +394,9 @@
             "y": 0
         },
         {
-            "graphics_id": 5,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -408,9 +408,9 @@
             "y": 0
         },
         {
-            "graphics_id": 13,
-            "movement_type": 12,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,
@@ -422,9 +422,9 @@
             "y": 0
         },
         {
-            "graphics_id": 6,
-            "movement_type": 6,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 0,
             "initial_dir": 0,

@@ -6,14 +6,14 @@
             "x": 175,
             "z": 889,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 49,
-            "movement_type": 20,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_TUBER_M",
+            "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3357,
             "initial_dir": 3,
@@ -27,9 +27,9 @@
             "y": 0
         },
         {
-            "graphics_id": 48,
-            "movement_type": 16,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3359,
             "initial_dir": 2,
@@ -43,9 +43,9 @@
             "y": 0
         },
         {
-            "graphics_id": 94,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 0,
@@ -59,9 +59,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1138,
             "script": 7124,
             "initial_dir": 0,

@@ -6,14 +6,14 @@
             "x": 381,
             "z": 220,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 69,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 5,
             "initial_dir": 1,
@@ -25,9 +25,9 @@
             "y": 7
         },
         {
-            "graphics_id": 91,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 10,
             "initial_dir": 0,
@@ -41,9 +41,9 @@
             "y": 0
         },
         {
-            "graphics_id": 95,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GYM_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 11,
             "initial_dir": 0,
@@ -55,9 +55,9 @@
             "y": 0
         },
         {
-            "graphics_id": 64,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_064",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 8,
             "initial_dir": 3,
@@ -69,9 +69,9 @@
             "y": 7
         },
         {
-            "graphics_id": 65,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_065",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 6,
             "initial_dir": 1,
@@ -83,9 +83,9 @@
             "y": 7
         },
         {
-            "graphics_id": 56,
-            "movement_type": 4,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+            "movement_type": "MOVEMENT_TYPE_WANDER_NORTH_AND_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 9,
             "initial_dir": 0,
@@ -97,9 +97,9 @@
             "y": 7
         },
         {
-            "graphics_id": 69,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 1,
@@ -111,9 +111,9 @@
             "y": 7
         },
         {
-            "graphics_id": 131,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CANDICE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 499,
             "script": 4,
             "initial_dir": 0,
@@ -125,9 +125,9 @@
             "y": 7
         },
         {
-            "graphics_id": 56,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 634,
             "script": 12,
             "initial_dir": 0,
@@ -139,9 +139,9 @@
             "y": 7
         },
         {
-            "graphics_id": 65,
-            "movement_type": 11,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_065",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 7,
             "initial_dir": 1,
@@ -153,9 +153,9 @@
             "y": 7
         },
         {
-            "graphics_id": 138,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 598,
             "script": 0,
             "initial_dir": 1,
@@ -167,9 +167,9 @@
             "y": 7
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1325,
             "script": 7310,
             "initial_dir": 0,
@@ -185,43 +185,43 @@
         {
             "x": 353,
             "z": 208,
-            "dest_header_id": 170,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 379,
             "z": 208,
-            "dest_header_id": 171,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 366,
             "z": 197,
-            "dest_header_id": 278,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 353,
             "z": 232,
-            "dest_header_id": 166,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_MART",
             "dest_warp_id": 0
         },
         {
             "x": 379,
             "z": 233,
-            "dest_header_id": 168,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 367,
             "z": 222,
-            "dest_header_id": 167,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_GYM",
             "dest_warp_id": 0
         },
         {
             "x": 367,
             "z": 197,
-            "dest_header_id": 278,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_1F",
             "dest_warp_id": 0
         }
     ],
