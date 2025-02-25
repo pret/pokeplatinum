@@ -418,7 +418,7 @@
         {
             "x": 564,
             "z": 516,
-            "dest_header_id": 364,
+            "dest_header_id": "MAP_HEADER_ROUTE_210_GRANDMA_WILMA_HOUSE",
             "dest_warp_id": 0
         }
     ],

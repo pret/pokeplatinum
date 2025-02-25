@@ -469,13 +469,13 @@
         {
             "x": 671,
             "z": 598,
-            "dest_header_id": 149,
+            "dest_header_id": "MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 671,
             "z": 599,
-            "dest_header_id": 149,
+            "dest_header_id": "MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY",
             "dest_warp_id": 1
         }
     ],

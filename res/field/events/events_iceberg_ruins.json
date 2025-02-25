@@ -30,7 +30,7 @@
         {
             "x": 7,
             "z": 12,
-            "dest_header_id": 217,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_2",
             "dest_warp_id": 3
         }
     ],

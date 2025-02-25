@@ -20,7 +20,7 @@
         {
             "x": 14,
             "z": 29,
-            "dest_header_id": 318,
+            "dest_header_id": "MAP_HEADER_LAKE_ACUITY",
             "dest_warp_id": 1
         }
     ],

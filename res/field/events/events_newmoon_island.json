@@ -62,13 +62,13 @@
         {
             "x": 137,
             "z": 268,
-            "dest_header_id": 321,
+            "dest_header_id": "MAP_HEADER_NEWMOON_ISLAND_FOREST",
             "dest_warp_id": 0
         },
         {
             "x": 138,
             "z": 268,
-            "dest_header_id": 321,
+            "dest_header_id": "MAP_HEADER_NEWMOON_ISLAND_FOREST",
             "dest_warp_id": 1
         }
     ],

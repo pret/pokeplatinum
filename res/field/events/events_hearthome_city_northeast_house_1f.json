@@ -118,13 +118,13 @@
         {
             "x": 10,
             "z": 12,
-            "dest_header_id": 86,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
             "dest_warp_id": 13
         },
         {
             "x": 18,
             "z": 2,
-            "dest_header_id": 114,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_ELEVATOR",
             "dest_warp_id": 0
         }
     ],

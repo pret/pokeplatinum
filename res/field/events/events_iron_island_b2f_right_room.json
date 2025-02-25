@@ -75,7 +75,7 @@
         {
             "x": 2,
             "z": 3,
-            "dest_header_id": 291,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM",
             "dest_warp_id": 1
         }
     ],

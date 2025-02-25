@@ -57,7 +57,7 @@
         {
             "x": 6,
             "z": 9,
-            "dest_header_id": 516,
+            "dest_header_id": "MAP_HEADER_VISTA_LIGHTHOUSE_ELEVATOR",
             "dest_warp_id": 0
         }
     ],

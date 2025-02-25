@@ -20,13 +20,13 @@
         {
             "x": 10,
             "z": 7,
-            "dest_header_id": 132,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 1,
             "z": 7,
-            "dest_header_id": 382,
+            "dest_header_id": "MAP_HEADER_ROUTE_215",
             "dest_warp_id": 0
         }
     ],

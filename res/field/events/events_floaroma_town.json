@@ -194,55 +194,55 @@
         {
             "x": 184,
             "z": 657,
-            "dest_header_id": 427,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_MART",
             "dest_warp_id": 0
         },
         {
             "x": 176,
             "z": 666,
-            "dest_header_id": 428,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 180,
             "z": 651,
-            "dest_header_id": 430,
+            "dest_header_id": "MAP_HEADER_FLOWER_SHOP",
             "dest_warp_id": 0
         },
         {
             "x": 184,
             "z": 666,
-            "dest_header_id": 431,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_SOUTHEAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 171,
             "z": 654,
-            "dest_header_id": 432,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 180,
             "z": 612,
-            "dest_header_id": 256,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
             "dest_warp_id": 0
         },
         {
             "x": 181,
             "z": 612,
-            "dest_header_id": 256,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
             "dest_warp_id": 1
         },
         {
             "x": 162,
             "z": 641,
-            "dest_header_id": 256,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
             "dest_warp_id": 3
         },
         {
             "x": 163,
             "z": 641,
-            "dest_header_id": 256,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
             "dest_warp_id": 4
         }
     ],

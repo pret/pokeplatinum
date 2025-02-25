@@ -70,37 +70,37 @@
         {
             "x": 14,
             "z": 22,
-            "dest_header_id": 88,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_ENTRANCE_ROOM",
             "dest_warp_id": 1
         },
         {
             "x": 4,
             "z": 2,
-            "dest_header_id": 91,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
             "dest_warp_id": 3
         },
         {
             "x": 9,
             "z": 2,
-            "dest_header_id": 91,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
             "dest_warp_id": 3
         },
         {
             "x": 14,
             "z": 2,
-            "dest_header_id": 91,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
             "dest_warp_id": 3
         },
         {
             "x": 19,
             "z": 2,
-            "dest_header_id": 91,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
             "dest_warp_id": 3
         },
         {
             "x": 24,
             "z": 2,
-            "dest_header_id": 91,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM",
             "dest_warp_id": 3
         }
     ],

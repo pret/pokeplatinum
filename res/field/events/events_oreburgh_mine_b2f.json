@@ -160,7 +160,7 @@
         {
             "x": 15,
             "z": 1,
-            "dest_header_id": 198,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
             "dest_warp_id": 3
         }
     ],

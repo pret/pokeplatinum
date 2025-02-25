@@ -14,7 +14,7 @@
         {
             "x": 5,
             "z": 3,
-            "dest_header_id": 231,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_3",
             "dest_warp_id": 3
         }
     ],

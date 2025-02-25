@@ -383,25 +383,25 @@
         {
             "x": 447,
             "z": 726,
-            "dest_header_id": 109,
+            "dest_header_id": "MAP_HEADER_ROUTE_208_GATE_TO_HEARTHOME_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 447,
             "z": 727,
-            "dest_header_id": 109,
+            "dest_header_id": "MAP_HEADER_ROUTE_208_GATE_TO_HEARTHOME_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 441,
             "z": 716,
-            "dest_header_id": 355,
+            "dest_header_id": "MAP_HEADER_ROUTE_208_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 392,
             "z": 724,
-            "dest_header_id": 207,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_SOUTH",
             "dest_warp_id": 1
         }
     ],

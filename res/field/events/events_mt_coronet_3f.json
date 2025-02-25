@@ -47,19 +47,19 @@
         {
             "x": 14,
             "z": 26,
-            "dest_header_id": 208,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
             "dest_warp_id": 4
         },
         {
             "x": 18,
             "z": 26,
-            "dest_header_id": 208,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
             "dest_warp_id": 5
         },
         {
             "x": 3,
             "z": 29,
-            "dest_header_id": 211,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH",
             "dest_warp_id": 0
         }
     ],

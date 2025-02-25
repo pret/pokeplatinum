@@ -20,19 +20,19 @@
         {
             "x": 12,
             "z": 56,
-            "dest_header_id": 341,
+            "dest_header_id": "MAP_HEADER_SPRING_PATH",
             "dest_warp_id": 0
         },
         {
             "x": 13,
             "z": 56,
-            "dest_header_id": 341,
+            "dest_header_id": "MAP_HEADER_SPRING_PATH",
             "dest_warp_id": 1
         },
         {
             "x": 31,
             "z": 16,
-            "dest_header_id": 268,
+            "dest_header_id": "MAP_HEADER_TURNBACK_CAVE_ENTRANCE",
             "dest_warp_id": 4
         }
     ],

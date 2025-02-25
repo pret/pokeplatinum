@@ -435,73 +435,73 @@
         {
             "x": 589,
             "z": 827,
-            "dest_header_id": 122,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_GYM",
             "dest_warp_id": 0
         },
         {
             "x": 601,
             "z": 835,
-            "dest_header_id": 128,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_MIDDLE_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 601,
             "z": 844,
-            "dest_header_id": 121,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_MART",
             "dest_warp_id": 0
         },
         {
             "x": 600,
             "z": 824,
-            "dest_header_id": 130,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_NORTH_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 611,
             "z": 835,
-            "dest_header_id": 129,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_EAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 624,
             "z": 819,
-            "dest_header_id": 131,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_NORTHEAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 589,
             "z": 844,
-            "dest_header_id": 127,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_SOUTHWEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 610,
             "z": 809,
-            "dest_header_id": 125,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 611,
             "z": 809,
-            "dest_header_id": 125,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 600,
             "z": 815,
-            "dest_header_id": 123,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 639,
             "z": 812,
-            "dest_header_id": 374,
+            "dest_header_id": "MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 639,
             "z": 813,
-            "dest_header_id": 374,
+            "dest_header_id": "MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY",
             "dest_warp_id": 1
         }
     ],

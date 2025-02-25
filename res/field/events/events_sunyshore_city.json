@@ -319,85 +319,85 @@
         {
             "x": 849,
             "z": 762,
-            "dest_header_id": 157,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_MARKET",
             "dest_warp_id": 0
         },
         {
             "x": 883,
             "z": 743,
-            "dest_header_id": 158,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_NORTHEAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 845,
             "z": 768,
-            "dest_header_id": 159,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_WEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 832,
             "z": 790,
-            "dest_header_id": 398,
+            "dest_header_id": "MAP_HEADER_ROUTE_222_GATE_TO_SUNYSHORE_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 875,
             "z": 743,
-            "dest_header_id": 160,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_NORTHWEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 853,
             "z": 768,
-            "dest_header_id": 153,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_MART",
             "dest_warp_id": 0
         },
         {
             "x": 832,
             "z": 791,
-            "dest_header_id": 398,
+            "dest_header_id": "MAP_HEADER_ROUTE_222_GATE_TO_SUNYSHORE_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 832,
             "z": 751,
-            "dest_header_id": 161,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_UNKNOWN_HOUSE_1",
             "dest_warp_id": 0
         },
         {
             "x": 832,
             "z": 750,
-            "dest_header_id": 162,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_UNKNOWN_HOUSE_2",
             "dest_warp_id": 0
         },
         {
             "x": 888,
             "z": 771,
-            "dest_header_id": 163,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_EAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 886,
             "z": 790,
-            "dest_header_id": 516,
+            "dest_header_id": "MAP_HEADER_VISTA_LIGHTHOUSE_ELEVATOR",
             "dest_warp_id": 0
         },
         {
             "x": 860,
             "z": 784,
-            "dest_header_id": 151,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 845,
             "z": 747,
-            "dest_header_id": 154,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_1",
             "dest_warp_id": 0
         },
         {
             "x": 850,
             "z": 762,
-            "dest_header_id": 157,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_MARKET",
             "dest_warp_id": 0
         }
     ],

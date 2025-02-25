@@ -208,43 +208,43 @@
         {
             "x": 706,
             "z": 790,
-            "dest_header_id": 337,
+            "dest_header_id": "MAP_HEADER_RESTAURANT",
             "dest_warp_id": 0
         },
         {
             "x": 715,
             "z": 781,
-            "dest_header_id": 338,
+            "dest_header_id": "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 690,
             "z": 791,
-            "dest_header_id": 339,
+            "dest_header_id": "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_WEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 717,
             "z": 760,
-            "dest_header_id": 314,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR_DRAINED",
             "dest_warp_id": 0
         },
         {
             "x": 717,
             "z": 761,
-            "dest_header_id": 314,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR_DRAINED",
             "dest_warp_id": 2
         },
         {
             "x": 717,
             "z": 760,
-            "dest_header_id": 315,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR",
             "dest_warp_id": 3
         },
         {
             "x": 717,
             "z": 761,
-            "dest_header_id": 315,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR",
             "dest_warp_id": 4
         }
     ],

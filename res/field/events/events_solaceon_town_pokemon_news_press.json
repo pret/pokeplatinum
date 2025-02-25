@@ -43,7 +43,7 @@
         {
             "x": 4,
             "z": 8,
-            "dest_header_id": 433,
+            "dest_header_id": "MAP_HEADER_SOLACEON_TOWN",
             "dest_warp_id": 2
         }
     ],

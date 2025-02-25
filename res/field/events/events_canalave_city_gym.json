@@ -163,7 +163,7 @@
         {
             "x": 16,
             "z": 27,
-            "dest_header_id": 33,
+            "dest_header_id": "MAP_HEADER_CANALAVE_CITY",
             "dest_warp_id": 0
         }
     ],

@@ -62,13 +62,13 @@
         {
             "x": 5,
             "z": 2,
-            "dest_header_id": 86,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
             "dest_warp_id": 15
         },
         {
             "x": 5,
             "z": 12,
-            "dest_header_id": 367,
+            "dest_header_id": "MAP_HEADER_ROUTE_212_NORTH",
             "dest_warp_id": 0
         }
     ],

@@ -55,13 +55,13 @@
         {
             "x": 21,
             "z": 7,
-            "dest_header_id": 213,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOM_3",
             "dest_warp_id": 1
         },
         {
             "x": 13,
             "z": 24,
-            "dest_header_id": 215,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_6F",
             "dest_warp_id": 0
         }
     ],

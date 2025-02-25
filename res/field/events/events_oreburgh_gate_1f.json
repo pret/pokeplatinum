@@ -164,19 +164,19 @@
         {
             "x": 4,
             "z": 22,
-            "dest_header_id": 344,
+            "dest_header_id": "MAP_HEADER_ROUTE_203",
             "dest_warp_id": 0
         },
         {
             "x": 27,
             "z": 22,
-            "dest_header_id": 45,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
             "dest_warp_id": 10
         },
         {
             "x": 20,
             "z": 5,
-            "dest_header_id": 259,
+            "dest_header_id": "MAP_HEADER_OREBURGH_GATE_B1F",
             "dest_warp_id": 0
         }
     ],

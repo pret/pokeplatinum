@@ -143,7 +143,7 @@
         {
             "x": 13,
             "z": 42,
-            "dest_header_id": 120,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY",
             "dest_warp_id": 0
         }
     ],

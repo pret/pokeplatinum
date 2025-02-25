@@ -129,19 +129,19 @@
         {
             "x": 4,
             "z": 8,
-            "dest_header_id": 353,
+            "dest_header_id": "MAP_HEADER_ROUTE_207",
             "dest_warp_id": 0
         },
         {
             "x": 27,
             "z": 20,
-            "dest_header_id": 354,
+            "dest_header_id": "MAP_HEADER_ROUTE_208",
             "dest_warp_id": 3
         },
         {
             "x": 25,
             "z": 3,
-            "dest_header_id": 208,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
             "dest_warp_id": 0
         }
     ],

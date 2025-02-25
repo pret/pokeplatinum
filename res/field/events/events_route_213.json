@@ -606,49 +606,49 @@
         {
             "x": 646,
             "z": 812,
-            "dest_header_id": 374,
+            "dest_header_id": "MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 646,
             "z": 813,
-            "dest_header_id": 374,
+            "dest_header_id": "MAP_HEADER_ROUTE_213_GATE_TO_PASTORIA_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 663,
             "z": 834,
-            "dest_header_id": 375,
+            "dest_header_id": "MAP_HEADER_FOOTSTEP_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 706,
             "z": 818,
-            "dest_header_id": 376,
+            "dest_header_id": "MAP_HEADER_GRAND_LAKE_ROUTE_213_LOBBY",
             "dest_warp_id": 1
         },
         {
             "x": 706,
             "z": 813,
-            "dest_header_id": 376,
+            "dest_header_id": "MAP_HEADER_GRAND_LAKE_ROUTE_213_LOBBY",
             "dest_warp_id": 0
         },
         {
             "x": 710,
             "z": 810,
-            "dest_header_id": 377,
+            "dest_header_id": "MAP_HEADER_GRAND_LAKE_ROUTE_213_EAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 701,
             "z": 805,
-            "dest_header_id": 378,
+            "dest_header_id": "MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 712,
             "z": 805,
-            "dest_header_id": 379,
+            "dest_header_id": "MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHEAST_HOUSE",
             "dest_warp_id": 0
         }
     ],

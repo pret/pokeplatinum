@@ -313,25 +313,25 @@
         {
             "x": 21,
             "z": 61,
-            "dest_header_id": 216,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM",
             "dest_warp_id": 1
         },
         {
             "x": 11,
             "z": 10,
-            "dest_header_id": 219,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_B1F",
             "dest_warp_id": 0
         },
         {
             "x": 2,
             "z": 41,
-            "dest_header_id": 365,
+            "dest_header_id": "MAP_HEADER_ROUTE_211_WEST",
             "dest_warp_id": 0
         },
         {
             "x": 29,
             "z": 35,
-            "dest_header_id": 366,
+            "dest_header_id": "MAP_HEADER_ROUTE_211_EAST",
             "dest_warp_id": 0
         }
     ],

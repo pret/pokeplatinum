@@ -14,31 +14,31 @@
         {
             "x": 1,
             "z": 6,
-            "dest_header_id": 297,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
             "dest_warp_id": 0
         },
         {
             "x": 17,
             "z": 6,
-            "dest_header_id": 297,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU_SIDE_ROOMS",
             "dest_warp_id": 1
         },
         {
             "x": 9,
             "z": 5,
-            "dest_header_id": 296,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU_DINING_AREA",
             "dest_warp_id": 0
         },
         {
             "x": 9,
             "z": 2,
-            "dest_header_id": 298,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
             "dest_warp_id": 0
         },
         {
             "x": 9,
             "z": 15,
-            "dest_header_id": 203,
+            "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
             "dest_warp_id": 4
         }
     ],

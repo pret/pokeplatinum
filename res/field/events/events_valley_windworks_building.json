@@ -139,7 +139,7 @@
         {
             "x": 12,
             "z": 16,
-            "dest_header_id": 200,
+            "dest_header_id": "MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE",
             "dest_warp_id": 0
         }
     ],

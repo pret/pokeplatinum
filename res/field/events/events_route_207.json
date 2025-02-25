@@ -455,13 +455,13 @@
         {
             "x": 341,
             "z": 712,
-            "dest_header_id": 207,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_SOUTH",
             "dest_warp_id": 0
         },
         {
             "x": 348,
             "z": 717,
-            "dest_header_id": 208,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
             "dest_warp_id": 1
         }
     ],

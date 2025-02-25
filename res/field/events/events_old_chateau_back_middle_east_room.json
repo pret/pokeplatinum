@@ -34,7 +34,7 @@
         {
             "x": 13,
             "z": 7,
-            "dest_header_id": 298,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
             "dest_warp_id": 4
         }
     ],

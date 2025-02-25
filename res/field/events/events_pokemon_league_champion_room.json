@@ -20,13 +20,13 @@
         {
             "x": 8,
             "z": 2,
-            "dest_header_id": 186,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_HALL_OF_FAME",
             "dest_warp_id": 1
         },
         {
             "x": 8,
             "z": 18,
-            "dest_header_id": 184,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_CHAMPION_ROOM",
             "dest_warp_id": 0
         }
     ],

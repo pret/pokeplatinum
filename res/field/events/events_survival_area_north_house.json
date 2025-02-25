@@ -51,7 +51,7 @@
         {
             "x": 4,
             "z": 8,
-            "dest_header_id": 450,
+            "dest_header_id": "MAP_HEADER_SURVIVAL_AREA",
             "dest_warp_id": 2
         }
     ],

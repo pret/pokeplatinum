@@ -510,19 +510,19 @@
         {
             "x": 24,
             "z": 6,
-            "dest_header_id": 306,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
             "dest_warp_id": 10
         },
         {
             "x": 1,
             "z": 12,
-            "dest_header_id": 306,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
             "dest_warp_id": 9
         },
         {
             "x": 17,
             "z": 3,
-            "dest_header_id": 308,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_4F",
             "dest_warp_id": 3
         }
     ],

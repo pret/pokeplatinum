@@ -291,19 +291,19 @@
         {
             "x": 13,
             "z": 18,
-            "dest_header_id": 3,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 16,
             "z": 4,
-            "dest_header_id": 567,
+            "dest_header_id": "MAP_HEADER_GLOBAL_TERMINAL_2F",
             "dest_warp_id": 0
         },
         {
             "x": 20,
             "z": 4,
-            "dest_header_id": 568,
+            "dest_header_id": "MAP_HEADER_GLOBAL_TERMINAL_3F",
             "dest_warp_id": 0
         }
     ],

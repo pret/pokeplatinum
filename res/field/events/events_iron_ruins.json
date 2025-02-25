@@ -30,7 +30,7 @@
         {
             "x": 7,
             "z": 12,
-            "dest_header_id": 294,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B3F",
             "dest_warp_id": 3
         }
     ],

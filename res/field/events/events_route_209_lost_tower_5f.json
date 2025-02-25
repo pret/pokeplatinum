@@ -34,7 +34,7 @@
         {
             "x": 11,
             "z": 3,
-            "dest_header_id": 360,
+            "dest_header_id": "MAP_HEADER_ROUTE_209_LOST_TOWER_4F",
             "dest_warp_id": 1
         }
     ],

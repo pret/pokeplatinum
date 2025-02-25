@@ -136,19 +136,19 @@
         {
             "x": 50,
             "z": 3,
-            "dest_header_id": 305,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
             "dest_warp_id": 6
         },
         {
             "x": 81,
             "z": 3,
-            "dest_header_id": 309,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_B1F",
             "dest_warp_id": 1
         },
         {
             "x": 3,
             "z": 16,
-            "dest_header_id": 143,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE",
             "dest_warp_id": 1
         }
     ],

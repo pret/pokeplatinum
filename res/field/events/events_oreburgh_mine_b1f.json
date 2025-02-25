@@ -62,37 +62,37 @@
         {
             "x": 11,
             "z": 1,
-            "dest_header_id": 45,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
             "dest_warp_id": 12
         },
         {
             "x": 12,
             "z": 1,
-            "dest_header_id": 45,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
             "dest_warp_id": 13
         },
         {
             "x": 13,
             "z": 1,
-            "dest_header_id": 45,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
             "dest_warp_id": 14
         },
         {
             "x": 12,
             "z": 21,
-            "dest_header_id": 199,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B2F",
             "dest_warp_id": 0
         },
         {
             "x": 11,
             "z": 21,
-            "dest_header_id": 199,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B2F",
             "dest_warp_id": 0
         },
         {
             "x": 13,
             "z": 21,
-            "dest_header_id": 199,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B2F",
             "dest_warp_id": 0
         }
     ],

@@ -390,85 +390,85 @@
         {
             "x": 302,
             "z": 688,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 4
         },
         {
             "x": 303,
             "z": 688,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 4
         },
         {
             "x": 302,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 2
         },
         {
             "x": 303,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 2
         },
         {
             "x": 304,
             "z": 576,
-            "dest_header_id": 80,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE",
             "dest_warp_id": 1
         },
         {
             "x": 305,
             "z": 576,
-            "dest_header_id": 80,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_NORTH_GATE",
             "dest_warp_id": 1
         },
         {
             "x": 300,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 0
         },
         {
             "x": 301,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 2
         },
         {
             "x": 304,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 2
         },
         {
             "x": 305,
             "z": 681,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 3
         },
         {
             "x": 301,
             "z": 688,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 1
         },
         {
             "x": 304,
             "z": 688,
-            "dest_header_id": 351,
+            "dest_header_id": "MAP_HEADER_ROUTE_206_CYCLING_ROAD_SOUTH_GATE",
             "dest_warp_id": 5
         },
         {
             "x": 299,
             "z": 611,
-            "dest_header_id": 284,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 310,
             "z": 607,
-            "dest_header_id": 284,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
             "dest_warp_id": 1
         }
     ],

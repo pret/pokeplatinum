@@ -20,25 +20,25 @@
         {
             "x": 2,
             "z": 5,
-            "dest_header_id": 288,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND",
             "dest_warp_id": 2
         },
         {
             "x": 14,
             "z": 15,
-            "dest_header_id": 293,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM",
             "dest_warp_id": 1
         },
         {
             "x": 14,
             "z": 1,
-            "dest_header_id": 587,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_IRON_RUINS",
             "dest_warp_id": 0
         },
         {
             "x": 14,
             "z": 1,
-            "dest_header_id": 588,
+            "dest_header_id": "MAP_HEADER_IRON_RUINS",
             "dest_warp_id": 0
         }
     ],

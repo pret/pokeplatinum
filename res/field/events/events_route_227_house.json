@@ -20,7 +20,7 @@
         {
             "x": 4,
             "z": 8,
-            "dest_header_id": 403,
+            "dest_header_id": "MAP_HEADER_ROUTE_227",
             "dest_warp_id": 0
         }
     ],

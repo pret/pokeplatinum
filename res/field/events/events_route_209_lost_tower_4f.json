@@ -109,13 +109,13 @@
         {
             "x": 11,
             "z": 3,
-            "dest_header_id": 359,
+            "dest_header_id": "MAP_HEADER_ROUTE_209_LOST_TOWER_3F",
             "dest_warp_id": 1
         },
         {
             "x": 4,
             "z": 3,
-            "dest_header_id": 361,
+            "dest_header_id": "MAP_HEADER_ROUTE_209_LOST_TOWER_5F",
             "dest_warp_id": 0
         }
     ],

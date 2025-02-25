@@ -303,19 +303,19 @@
         {
             "x": 261,
             "z": 900,
-            "dest_header_id": 394,
+            "dest_header_id": "MAP_HEADER_ROUTE_221_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 306,
             "z": 909,
-            "dest_header_id": 393,
+            "dest_header_id": "MAP_HEADER_PAL_PARK_LOBBY",
             "dest_warp_id": 0
         },
         {
             "x": 307,
             "z": 909,
-            "dest_header_id": 393,
+            "dest_header_id": "MAP_HEADER_PAL_PARK_LOBBY",
             "dest_warp_id": 0
         }
     ],

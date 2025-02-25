@@ -73,19 +73,19 @@
         {
             "x": 6,
             "z": 26,
-            "dest_header_id": 293,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B2F_LEFT_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 16,
             "z": 26,
-            "dest_header_id": 292,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 2,
             "z": 3,
-            "dest_header_id": 289,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_1F",
             "dest_warp_id": 2
         }
     ],

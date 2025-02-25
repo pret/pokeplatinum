@@ -211,79 +211,79 @@
         {
             "x": 4,
             "z": 37,
-            "dest_header_id": 245,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_2F",
             "dest_warp_id": 0
         },
         {
             "x": 7,
             "z": 47,
-            "dest_header_id": 245,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_2F",
             "dest_warp_id": 1
         },
         {
             "x": 42,
             "z": 41,
-            "dest_header_id": 246,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_B1F",
             "dest_warp_id": 0
         },
         {
             "x": 44,
             "z": 48,
-            "dest_header_id": 246,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_B1F",
             "dest_warp_id": 1
         },
         {
             "x": 41,
             "z": 24,
-            "dest_header_id": 246,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_B1F",
             "dest_warp_id": 2
         },
         {
             "x": 4,
             "z": 25,
-            "dest_header_id": 245,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_2F",
             "dest_warp_id": 2
         },
         {
             "x": 45,
             "z": 33,
-            "dest_header_id": 248,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F_ROOM_1",
             "dest_warp_id": 0
         },
         {
             "x": 15,
             "z": 78,
-            "dest_header_id": 172,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
             "dest_warp_id": 2
         },
         {
             "x": 34,
             "z": 5,
-            "dest_header_id": 172,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
             "dest_warp_id": 3
         },
         {
             "x": 14,
             "z": 78,
-            "dest_header_id": 172,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
             "dest_warp_id": 2
         },
         {
             "x": 16,
             "z": 78,
-            "dest_header_id": 172,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
             "dest_warp_id": 2
         },
         {
             "x": 34,
             "z": 4,
-            "dest_header_id": 172,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
             "dest_warp_id": 3
         },
         {
             "x": 34,
             "z": 6,
-            "dest_header_id": 172,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
             "dest_warp_id": 3
         }
     ],

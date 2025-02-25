@@ -132,25 +132,25 @@
         {
             "x": 105,
             "z": 875,
-            "dest_header_id": 412,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 116,
             "z": 885,
-            "dest_header_id": 414,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 116,
             "z": 875,
-            "dest_header_id": 416,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_NORTHEAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 106,
             "z": 885,
-            "dest_header_id": 417,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE",
             "dest_warp_id": 0
         }
     ],

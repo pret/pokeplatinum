@@ -22,7 +22,7 @@
         {
             "x": 7,
             "z": 10,
-            "dest_header_id": 93,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_DP_GYM_ELEVATOR_ROOM_1",
             "dest_warp_id": 2
         }
     ],

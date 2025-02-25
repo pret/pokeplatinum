@@ -7,6 +7,7 @@ from generated import (
     bg_event_dirs,
     items,
     genders,
+    map_headers,
     moves,
     movement_types,
     object_events,
@@ -56,6 +57,9 @@ def from_movement_type(s: str) -> int:
 
 def from_trainer_type(s: str) -> int:
     return trainer_types.TrainerType[s].value
+
+def from_map_header(s: str) -> int:
+    return map_headers.MapHeader[s].value
 
 TrainerDataFlags = collections.namedtuple('TrainerDataFlags', ['has_moves', 'has_items'])
 

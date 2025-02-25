@@ -5,13 +5,13 @@
         {
             "x": 4,
             "z": 2,
-            "dest_header_id": 179,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_BERTHA_ROOM",
             "dest_warp_id": 1
         },
         {
             "x": 4,
             "z": 15,
-            "dest_header_id": 177,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_AARON_ROOM",
             "dest_warp_id": 0
         }
     ],

@@ -273,13 +273,13 @@
         {
             "x": 375,
             "z": 403,
-            "dest_header_id": 217,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_2",
             "dest_warp_id": 1
         },
         {
             "x": 303,
             "z": 398,
-            "dest_header_id": 384,
+            "dest_header_id": "MAP_HEADER_ROUTE_216_HOUSE",
             "dest_warp_id": 0
         }
     ],

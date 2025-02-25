@@ -76,19 +76,19 @@
         {
             "x": 8,
             "z": 12,
-            "dest_header_id": 120,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY",
             "dest_warp_id": 9
         },
         {
             "x": 2,
             "z": 10,
-            "dest_header_id": 124,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_POKECENTER_2F",
             "dest_warp_id": 0
         },
         {
             "x": 14,
             "z": 10,
-            "dest_header_id": 479,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_POKECENTER_B1F",
             "dest_warp_id": 0
         }
     ],

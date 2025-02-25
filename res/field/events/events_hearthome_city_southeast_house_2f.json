@@ -34,7 +34,7 @@
         {
             "x": 18,
             "z": 2,
-            "dest_header_id": 105,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_ELEVATOR",
             "dest_warp_id": 0
         }
     ],

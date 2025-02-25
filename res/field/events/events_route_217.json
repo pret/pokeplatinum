@@ -373,13 +373,13 @@
         {
             "x": 293,
             "z": 311,
-            "dest_header_id": 386,
+            "dest_header_id": "MAP_HEADER_ROUTE_217_WEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 316,
             "z": 285,
-            "dest_header_id": 387,
+            "dest_header_id": "MAP_HEADER_ROUTE_217_NORTHEAST_HOUSE",
             "dest_warp_id": 0
         }
     ],

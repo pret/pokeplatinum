@@ -104,37 +104,37 @@
         {
             "x": 33,
             "z": 16,
-            "dest_header_id": 367,
+            "dest_header_id": "MAP_HEADER_ROUTE_212_NORTH",
             "dest_warp_id": 2
         },
         {
             "x": 5,
             "z": 5,
-            "dest_header_id": 369,
+            "dest_header_id": "MAP_HEADER_POKEMON_MANSION_MAIDS_ROOM",
             "dest_warp_id": 1
         },
         {
             "x": 13,
             "z": 5,
-            "dest_header_id": 369,
+            "dest_header_id": "MAP_HEADER_POKEMON_MANSION_MAIDS_ROOM",
             "dest_warp_id": 2
         },
         {
             "x": 21,
             "z": 5,
-            "dest_header_id": 369,
+            "dest_header_id": "MAP_HEADER_POKEMON_MANSION_MAIDS_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 48,
             "z": 5,
-            "dest_header_id": 370,
+            "dest_header_id": "MAP_HEADER_POKEMON_MANSION_OFFICE",
             "dest_warp_id": 0
         },
         {
             "x": 33,
             "z": 2,
-            "dest_header_id": 287,
+            "dest_header_id": "MAP_HEADER_TROPHY_GARDEN",
             "dest_warp_id": 0
         }
     ],

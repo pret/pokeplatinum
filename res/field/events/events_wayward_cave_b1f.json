@@ -65,13 +65,13 @@
         {
             "x": 43,
             "z": 38,
-            "dest_header_id": 284,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
             "dest_warp_id": 3
         },
         {
             "x": 16,
             "z": 40,
-            "dest_header_id": 284,
+            "dest_header_id": "MAP_HEADER_WAYWARD_CAVE_1F",
             "dest_warp_id": 2
         }
     ],

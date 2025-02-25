@@ -494,19 +494,19 @@
         {
             "x": 206,
             "z": 581,
-            "dest_header_id": 203,
+            "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
             "dest_warp_id": 0
         },
         {
             "x": 207,
             "z": 581,
-            "dest_header_id": 203,
+            "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
             "dest_warp_id": 1
         },
         {
             "x": 214,
             "z": 594,
-            "dest_header_id": 348,
+            "dest_header_id": "MAP_HEADER_ROUTE_205_HOUSE",
             "dest_warp_id": 0
         }
     ],

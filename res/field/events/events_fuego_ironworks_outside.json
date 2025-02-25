@@ -101,19 +101,19 @@
         {
             "x": 169,
             "z": 587,
-            "dest_header_id": 205,
+            "dest_header_id": "MAP_HEADER_FUEGO_IRONWORKS_BUILDING",
             "dest_warp_id": 0
         },
         {
             "x": 168,
             "z": 587,
-            "dest_header_id": 205,
+            "dest_header_id": "MAP_HEADER_FUEGO_IRONWORKS_BUILDING",
             "dest_warp_id": 0
         },
         {
             "x": 170,
             "z": 587,
-            "dest_header_id": 205,
+            "dest_header_id": "MAP_HEADER_FUEGO_IRONWORKS_BUILDING",
             "dest_warp_id": 0
         }
     ],

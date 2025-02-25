@@ -90,13 +90,13 @@
         {
             "x": 15,
             "z": 15,
-            "dest_header_id": 457,
+            "dest_header_id": "MAP_HEADER_RESORT_AREA",
             "dest_warp_id": 2
         },
         {
             "x": 5,
             "z": 2,
-            "dest_header_id": 463,
+            "dest_header_id": "MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_ELEVATOR",
             "dest_warp_id": 0
         }
     ],

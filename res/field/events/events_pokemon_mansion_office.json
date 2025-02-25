@@ -79,7 +79,7 @@
         {
             "x": 16,
             "z": 10,
-            "dest_header_id": 368,
+            "dest_header_id": "MAP_HEADER_POKEMON_MANSION",
             "dest_warp_id": 4
         }
     ],

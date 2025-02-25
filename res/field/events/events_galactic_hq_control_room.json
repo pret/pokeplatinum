@@ -109,7 +109,7 @@
         {
             "x": 8,
             "z": 13,
-            "dest_header_id": 497,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_LABORATORY",
             "dest_warp_id": 1
         }
     ],

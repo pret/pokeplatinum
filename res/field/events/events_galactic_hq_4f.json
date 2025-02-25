@@ -101,25 +101,25 @@
         {
             "x": 3,
             "z": 15,
-            "dest_header_id": 307,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_3F",
             "dest_warp_id": 2
         },
         {
             "x": 22,
             "z": 3,
-            "dest_header_id": 497,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_LABORATORY",
             "dest_warp_id": 0
         },
         {
             "x": 21,
             "z": 17,
-            "dest_header_id": 305,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
             "dest_warp_id": 14
         },
         {
             "x": 8,
             "z": 3,
-            "dest_header_id": 569,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_HALL",
             "dest_warp_id": 2
         }
     ],

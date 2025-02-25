@@ -149,37 +149,37 @@
         {
             "x": 27,
             "z": 48,
-            "dest_header_id": 207,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_SOUTH",
             "dest_warp_id": 2
         },
         {
             "x": 2,
             "z": 59,
-            "dest_header_id": 353,
+            "dest_header_id": "MAP_HEADER_ROUTE_207",
             "dest_warp_id": 1
         },
         {
             "x": 7,
             "z": 23,
-            "dest_header_id": 208,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
             "dest_warp_id": 3
         },
         {
             "x": 7,
             "z": 12,
-            "dest_header_id": 208,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_2F",
             "dest_warp_id": 2
         },
         {
             "x": 11,
             "z": 4,
-            "dest_header_id": 209,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_3F",
             "dest_warp_id": 0
         },
         {
             "x": 21,
             "z": 4,
-            "dest_header_id": 209,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_3F",
             "dest_warp_id": 1
         }
     ],

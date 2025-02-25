@@ -104,13 +104,13 @@
         {
             "x": 46,
             "z": 54,
-            "dest_header_id": 334,
+            "dest_header_id": "MAP_HEADER_VERITY_LAKEFRONT",
             "dest_warp_id": 1
         },
         {
             "x": 47,
             "z": 54,
-            "dest_header_id": 334,
+            "dest_header_id": "MAP_HEADER_VERITY_LAKEFRONT",
             "dest_warp_id": 0
         }
     ],

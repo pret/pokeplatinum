@@ -530,7 +530,7 @@
         {
             "x": 566,
             "z": 591,
-            "dest_header_id": 492,
+            "dest_header_id": "MAP_HEADER_CAFE",
             "dest_warp_id": 0
         }
     ],

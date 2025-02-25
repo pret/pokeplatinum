@@ -90,7 +90,7 @@
         {
             "x": 31,
             "z": 53,
-            "dest_header_id": 215,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_6F",
             "dest_warp_id": 1
         }
     ],

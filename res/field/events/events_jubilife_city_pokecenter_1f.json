@@ -104,19 +104,19 @@
         {
             "x": 8,
             "z": 12,
-            "dest_header_id": 3,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY",
             "dest_warp_id": 2
         },
         {
             "x": 2,
             "z": 10,
-            "dest_header_id": 7,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_POKECENTER_2F",
             "dest_warp_id": 0
         },
         {
             "x": 14,
             "z": 10,
-            "dest_header_id": 474,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_POKECENTER_B1F",
             "dest_warp_id": 0
         }
     ],

@@ -196,31 +196,31 @@
         {
             "x": 652,
             "z": 338,
-            "dest_header_id": 454,
+            "dest_header_id": "MAP_HEADER_BATTLEGROUND",
             "dest_warp_id": 0
         },
         {
             "x": 655,
             "z": 348,
-            "dest_header_id": 455,
+            "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 656,
             "z": 325,
-            "dest_header_id": 456,
+            "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_NORTH_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 659,
             "z": 338,
-            "dest_header_id": 452,
+            "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 663,
             "z": 338,
-            "dest_header_id": 451,
+            "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_MART",
             "dest_warp_id": 0
         }
     ],

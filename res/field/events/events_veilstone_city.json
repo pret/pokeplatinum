@@ -499,103 +499,103 @@
         {
             "x": 678,
             "z": 598,
-            "dest_header_id": 149,
+            "dest_header_id": "MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 678,
             "z": 599,
-            "dest_header_id": 149,
+            "dest_header_id": "MAP_HEADER_ROUTE_215_GATE_TO_VEILSTONE_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 706,
             "z": 623,
-            "dest_header_id": 136,
+            "dest_header_id": "MAP_HEADER_GAME_CORNER",
             "dest_warp_id": 0
         },
         {
             "x": 701,
             "z": 603,
-            "dest_header_id": 137,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 701,
             "z": 591,
-            "dest_header_id": 143,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 716,
             "z": 623,
-            "dest_header_id": 144,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE",
             "dest_warp_id": 0
         },
         {
             "x": 690,
             "z": 623,
-            "dest_header_id": 148,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_SOUTHWEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 696,
             "z": 623,
-            "dest_header_id": 145,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_SOUTHEAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 711,
             "z": 602,
-            "dest_header_id": 146,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_NORTHWEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 717,
             "z": 602,
-            "dest_header_id": 147,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_NORTHEAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 717,
             "z": 611,
-            "dest_header_id": 134,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 718,
             "z": 638,
-            "dest_header_id": 381,
+            "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 719,
             "z": 638,
-            "dest_header_id": 381,
+            "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 684,
             "z": 611,
-            "dest_header_id": 133,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_GYM",
             "dest_warp_id": 0
         },
         {
             "x": 714,
             "z": 589,
-            "dest_header_id": 305,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
             "dest_warp_id": 0
         },
         {
             "x": 717,
             "z": 589,
-            "dest_header_id": 305,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
             "dest_warp_id": 1
         },
         {
             "x": 720,
             "z": 589,
-            "dest_header_id": 305,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
             "dest_warp_id": 2
         }
     ],

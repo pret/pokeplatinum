@@ -48,7 +48,7 @@
         {
             "x": 4,
             "z": 8,
-            "dest_header_id": 132,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY",
             "dest_warp_id": 6
         }
     ],

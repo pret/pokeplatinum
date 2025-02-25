@@ -300,13 +300,13 @@
         {
             "x": 2,
             "z": 58,
-            "dest_header_id": 210,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_OUTSIDE_NORTH",
             "dest_warp_id": 2
         },
         {
             "x": 16,
             "z": 13,
-            "dest_header_id": 218,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1",
             "dest_warp_id": 0
         }
     ],

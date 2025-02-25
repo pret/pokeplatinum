@@ -132,19 +132,19 @@
         {
             "x": 8,
             "z": 12,
-            "dest_header_id": 45,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 2,
             "z": 10,
-            "dest_header_id": 49,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_POKECENTER_2F",
             "dest_warp_id": 0
         },
         {
             "x": 14,
             "z": 10,
-            "dest_header_id": 476,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_POKECENTER_B1F",
             "dest_warp_id": 0
         }
     ],

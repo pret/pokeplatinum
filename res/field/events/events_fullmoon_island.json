@@ -62,13 +62,13 @@
         {
             "x": 53,
             "z": 268,
-            "dest_header_id": 261,
+            "dest_header_id": "MAP_HEADER_FULLMOON_ISLAND_FOREST",
             "dest_warp_id": 0
         },
         {
             "x": 54,
             "z": 268,
-            "dest_header_id": 261,
+            "dest_header_id": "MAP_HEADER_FULLMOON_ISLAND_FOREST",
             "dest_warp_id": 1
         }
     ],

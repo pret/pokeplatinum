@@ -440,13 +440,13 @@
         {
             "x": 19,
             "z": 50,
-            "dest_header_id": 345,
+            "dest_header_id": "MAP_HEADER_ROUTE_204_SOUTH",
             "dest_warp_id": 0
         },
         {
             "x": 28,
             "z": 44,
-            "dest_header_id": 346,
+            "dest_header_id": "MAP_HEADER_ROUTE_204_NORTH",
             "dest_warp_id": 0
         }
     ],

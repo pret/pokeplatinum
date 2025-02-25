@@ -285,13 +285,13 @@
         {
             "x": 38,
             "z": 3,
-            "dest_header_id": 291,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 14,
             "z": 48,
-            "dest_header_id": 294,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_B3F",
             "dest_warp_id": 1
         }
     ],

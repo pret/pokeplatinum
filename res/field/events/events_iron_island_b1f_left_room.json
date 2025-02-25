@@ -50,7 +50,7 @@
         {
             "x": 15,
             "z": 3,
-            "dest_header_id": 289,
+            "dest_header_id": "MAP_HEADER_IRON_ISLAND_1F",
             "dest_warp_id": 1
         }
     ],

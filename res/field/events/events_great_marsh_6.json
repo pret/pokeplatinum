@@ -110,13 +110,13 @@
         {
             "x": 68,
             "z": 118,
-            "dest_header_id": 125,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F",
             "dest_warp_id": 2
         },
         {
             "x": 69,
             "z": 118,
-            "dest_header_id": 125,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_OBSERVATORY_GATE_1F",
             "dest_warp_id": 2
         }
     ],

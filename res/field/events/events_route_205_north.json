@@ -198,13 +198,13 @@
         {
             "x": 259,
             "z": 525,
-            "dest_header_id": 203,
+            "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
             "dest_warp_id": 3
         },
         {
             "x": 259,
             "z": 524,
-            "dest_header_id": 203,
+            "dest_header_id": "MAP_HEADER_ETERNA_FOREST",
             "dest_warp_id": 2
         }
     ],

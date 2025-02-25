@@ -48,13 +48,13 @@
         {
             "x": 8,
             "z": 2,
-            "dest_header_id": 180,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_FLINT_ROOM",
             "dest_warp_id": 1
         },
         {
             "x": 8,
             "z": 11,
-            "dest_header_id": 178,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_BERTHA_ROOM",
             "dest_warp_id": 0
         }
     ],

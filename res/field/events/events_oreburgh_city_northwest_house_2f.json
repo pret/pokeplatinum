@@ -62,13 +62,13 @@
         {
             "x": 8,
             "z": 3,
-            "dest_header_id": 50,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F",
             "dest_warp_id": 1
         },
         {
             "x": 1,
             "z": 1,
-            "dest_header_id": 52,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_3F",
             "dest_warp_id": 0
         }
     ],

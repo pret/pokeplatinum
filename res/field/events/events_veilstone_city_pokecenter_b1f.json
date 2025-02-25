@@ -62,7 +62,7 @@
         {
             "x": 14,
             "z": 10,
-            "dest_header_id": 134,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY_POKECENTER_1F",
             "dest_warp_id": 2
         }
     ],

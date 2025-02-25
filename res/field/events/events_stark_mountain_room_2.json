@@ -529,13 +529,13 @@
         {
             "x": 47,
             "z": 2,
-            "dest_header_id": 265,
+            "dest_header_id": "MAP_HEADER_STARK_MOUNTAIN_ROOM_3",
             "dest_warp_id": 0
         },
         {
             "x": 42,
             "z": 86,
-            "dest_header_id": 263,
+            "dest_header_id": "MAP_HEADER_STARK_MOUNTAIN_ROOM_1",
             "dest_warp_id": 1
         }
     ],

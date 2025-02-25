@@ -30,13 +30,13 @@
         {
             "x": 8,
             "z": 13,
-            "dest_header_id": 165,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY",
             "dest_warp_id": 2
         },
         {
             "x": 14,
             "z": 3,
-            "dest_header_id": 279,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_B1F",
             "dest_warp_id": 0
         }
     ],

@@ -468,49 +468,49 @@
         {
             "x": 630,
             "z": 421,
-            "dest_header_id": 193,
+            "dest_header_id": "MAP_HEADER_ROUTE_225_GATE_TO_FIGHT_AREA",
             "dest_warp_id": 0
         },
         {
             "x": 631,
             "z": 421,
-            "dest_header_id": 193,
+            "dest_header_id": "MAP_HEADER_ROUTE_225_GATE_TO_FIGHT_AREA",
             "dest_warp_id": 0
         },
         {
             "x": 654,
             "z": 423,
-            "dest_header_id": 560,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA",
             "dest_warp_id": 3
         },
         {
             "x": 655,
             "z": 423,
-            "dest_header_id": 560,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER_GATE_TO_FIGHT_AREA",
             "dest_warp_id": 3
         },
         {
             "x": 654,
             "z": 438,
-            "dest_header_id": 194,
+            "dest_header_id": "MAP_HEADER_FIGHT_AREA_MIDDLE_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 654,
             "z": 444,
-            "dest_header_id": 195,
+            "dest_header_id": "MAP_HEADER_FIGHT_AREA_SOUTH_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 647,
             "z": 429,
-            "dest_header_id": 189,
+            "dest_header_id": "MAP_HEADER_FIGHT_AREA_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 660,
             "z": 429,
-            "dest_header_id": 191,
+            "dest_header_id": "MAP_HEADER_FIGHT_AREA_MART",
             "dest_warp_id": 0
         }
     ],

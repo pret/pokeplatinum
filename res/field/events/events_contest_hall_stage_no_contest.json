@@ -62,7 +62,7 @@
         {
             "x": 29,
             "z": 14,
-            "dest_header_id": 117,
+            "dest_header_id": "MAP_HEADER_CONTEST_HALL_LOBBY",
             "dest_warp_id": 1
         }
     ],

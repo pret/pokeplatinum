@@ -64,25 +64,25 @@
         {
             "x": 308,
             "z": 229,
-            "dest_header_id": 317,
+            "dest_header_id": "MAP_HEADER_LAKE_ACUITY_LOW_WATER",
             "dest_warp_id": 0
         },
         {
             "x": 309,
             "z": 229,
-            "dest_header_id": 317,
+            "dest_header_id": "MAP_HEADER_LAKE_ACUITY_LOW_WATER",
             "dest_warp_id": 1
         },
         {
             "x": 308,
             "z": 229,
-            "dest_header_id": 318,
+            "dest_header_id": "MAP_HEADER_LAKE_ACUITY",
             "dest_warp_id": 3
         },
         {
             "x": 309,
             "z": 229,
-            "dest_header_id": 318,
+            "dest_header_id": "MAP_HEADER_LAKE_ACUITY",
             "dest_warp_id": 4
         }
     ],

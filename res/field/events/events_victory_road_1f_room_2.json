@@ -481,13 +481,13 @@
         {
             "x": 3,
             "z": 58,
-            "dest_header_id": 248,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F_ROOM_1",
             "dest_warp_id": 1
         },
         {
             "x": 56,
             "z": 13,
-            "dest_header_id": 249,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F_ROOM_3",
             "dest_warp_id": 0
         }
     ],

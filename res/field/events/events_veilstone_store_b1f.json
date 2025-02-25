@@ -155,13 +155,13 @@
         {
             "x": 11,
             "z": 8,
-            "dest_header_id": 137,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_1F",
             "dest_warp_id": 3
         },
         {
             "x": 14,
             "z": 2,
-            "dest_header_id": 142,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_ELEVATOR",
             "dest_warp_id": 0
         }
     ],

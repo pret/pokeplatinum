@@ -93,13 +93,13 @@
         {
             "x": 11,
             "z": 27,
-            "dest_header_id": 65,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY",
             "dest_warp_id": 10
         },
         {
             "x": 11,
             "z": 0,
-            "dest_header_id": 68,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY_DP_GYM",
             "dest_warp_id": 0
         }
     ],

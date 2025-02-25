@@ -14,25 +14,25 @@
         {
             "x": 10,
             "z": 27,
-            "dest_header_id": 219,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_B1F",
             "dest_warp_id": 1
         },
         {
             "x": 2,
             "z": 18,
-            "dest_header_id": 383,
+            "dest_header_id": "MAP_HEADER_ROUTE_216",
             "dest_warp_id": 0
         },
         {
             "x": 15,
             "z": 16,
-            "dest_header_id": 589,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_ICEBERG_RUINS",
             "dest_warp_id": 0
         },
         {
             "x": 15,
             "z": 16,
-            "dest_header_id": 590,
+            "dest_header_id": "MAP_HEADER_ICEBERG_RUINS",
             "dest_warp_id": 0
         }
     ],

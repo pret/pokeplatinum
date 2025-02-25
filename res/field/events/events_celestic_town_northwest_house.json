@@ -48,7 +48,7 @@
         {
             "x": 4,
             "z": 8,
-            "dest_header_id": 442,
+            "dest_header_id": "MAP_HEADER_CELESTIC_TOWN",
             "dest_warp_id": 1
         }
     ],

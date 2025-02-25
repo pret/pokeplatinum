@@ -720,7 +720,7 @@
         {
             "x": 8,
             "z": 14,
-            "dest_header_id": 421,
+            "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_POKECENTER_2F",
             "dest_warp_id": 1
         }
     ],

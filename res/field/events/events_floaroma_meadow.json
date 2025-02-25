@@ -207,31 +207,31 @@
         {
             "x": 50,
             "z": 9,
-            "dest_header_id": 426,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN",
             "dest_warp_id": 5
         },
         {
             "x": 51,
             "z": 9,
-            "dest_header_id": 426,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN",
             "dest_warp_id": 6
         },
         {
             "x": 39,
             "z": 45,
-            "dest_header_id": 257,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 12,
             "z": 54,
-            "dest_header_id": 426,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN",
             "dest_warp_id": 7
         },
         {
             "x": 13,
             "z": 54,
-            "dest_header_id": 426,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN",
             "dest_warp_id": 8
         }
     ],

@@ -145,19 +145,19 @@
         {
             "x": 4,
             "z": 39,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 2
         },
         {
             "x": 6,
             "z": 46,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 3
         },
         {
             "x": 3,
             "z": 22,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 4
         }
     ],

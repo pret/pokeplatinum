@@ -141,19 +141,19 @@
         {
             "x": 1,
             "z": 7,
-            "dest_header_id": 559,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
             "dest_warp_id": 12
         },
         {
             "x": 1,
             "z": 6,
-            "dest_header_id": 559,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
             "dest_warp_id": 12
         },
         {
             "x": 1,
             "z": 8,
-            "dest_header_id": 559,
+            "dest_header_id": "MAP_HEADER_BATTLE_FRONTIER",
             "dest_warp_id": 12
         }
     ],

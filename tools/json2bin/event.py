@@ -3,7 +3,7 @@ import json
 import pathlib
 import sys
 
-from convert import from_bg_event_dir, from_movement_type, from_object_event_gfx, from_trainer_type, pad, u16, u32
+from convert import from_bg_event_dir, from_movement_type, from_object_event_gfx, from_map_header, from_trainer_type, pad, u16, u32
 
 
 def parse_bg_events(bg_events: list[dict]) -> bytes:
@@ -72,7 +72,7 @@ def parse_warp_events(warp_events: list[dict]) -> bytes:
             [
                 u16(warp["x"]),
                 u16(warp["z"]),
-                u16(warp["dest_header_id"]),
+                u16(from_map_header(warp["dest_header_id"])),
                 u16(warp["dest_warp_id"]),
                 pad(4),
             ]

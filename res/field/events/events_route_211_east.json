@@ -343,7 +343,7 @@
         {
             "x": 419,
             "z": 527,
-            "dest_header_id": 218,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1",
             "dest_warp_id": 3
         }
     ],

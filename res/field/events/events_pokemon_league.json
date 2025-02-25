@@ -109,49 +109,49 @@
         {
             "x": 842,
             "z": 598,
-            "dest_header_id": 173,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 847,
             "z": 559,
-            "dest_header_id": 175,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F",
             "dest_warp_id": 1
         },
         {
             "x": 851,
             "z": 597,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 7
         },
         {
             "x": 853,
             "z": 582,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 8
         },
         {
             "x": 850,
             "z": 597,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 7
         },
         {
             "x": 852,
             "z": 597,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 7
         },
         {
             "x": 853,
             "z": 581,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 8
         },
         {
             "x": 853,
             "z": 583,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 8
         }
     ],

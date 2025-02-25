@@ -184,7 +184,7 @@
         {
             "x": 180,
             "z": 698,
-            "dest_header_id": 254,
+            "dest_header_id": "MAP_HEADER_RAVAGED_PATH",
             "dest_warp_id": 1
         }
     ],

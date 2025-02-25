@@ -76,7 +76,7 @@
         {
             "x": 3,
             "z": 11,
-            "dest_header_id": 165,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY",
             "dest_warp_id": 3
         }
     ],

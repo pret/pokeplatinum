@@ -322,55 +322,55 @@
         {
             "x": 553,
             "z": 645,
-            "dest_header_id": 437,
+            "dest_header_id": "MAP_HEADER_POKEMON_DAY_CARE",
             "dest_warp_id": 0
         },
         {
             "x": 579,
             "z": 648,
-            "dest_header_id": 438,
+            "dest_header_id": "MAP_HEADER_SOLACEON_TOWN_NORTHEAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 571,
             "z": 656,
-            "dest_header_id": 439,
+            "dest_header_id": "MAP_HEADER_SOLACEON_TOWN_POKEMON_NEWS_PRESS",
             "dest_warp_id": 0
         },
         {
             "x": 565,
             "z": 646,
-            "dest_header_id": 440,
+            "dest_header_id": "MAP_HEADER_SOLACEON_TOWN_NORTH_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 581,
             "z": 656,
-            "dest_header_id": 441,
+            "dest_header_id": "MAP_HEADER_SOLACEON_TOWN_EAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 566,
             "z": 656,
-            "dest_header_id": 435,
+            "dest_header_id": "MAP_HEADER_SOLACEON_TOWN_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 571,
             "z": 665,
-            "dest_header_id": 434,
+            "dest_header_id": "MAP_HEADER_SOLACEON_TOWN_MART",
             "dest_warp_id": 0
         },
         {
             "x": 597,
             "z": 652,
-            "dest_header_id": 225,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_MANIAC_TUNNEL_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 595,
             "z": 655,
-            "dest_header_id": 226,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_1",
             "dest_warp_id": 0
         }
     ],

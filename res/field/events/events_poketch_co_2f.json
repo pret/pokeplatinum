@@ -62,13 +62,13 @@
         {
             "x": 15,
             "z": 3,
-            "dest_header_id": 8,
+            "dest_header_id": "MAP_HEADER_POKETCH_CO_1F",
             "dest_warp_id": 2
         },
         {
             "x": 6,
             "z": 3,
-            "dest_header_id": 10,
+            "dest_header_id": "MAP_HEADER_POKETCH_CO_3F",
             "dest_warp_id": 0
         }
     ],

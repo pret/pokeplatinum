@@ -291,67 +291,67 @@
         {
             "x": 39,
             "z": 731,
-            "dest_header_id": 35,
+            "dest_header_id": "MAP_HEADER_CANALAVE_CITY_GYM",
             "dest_warp_id": 0
         },
         {
             "x": 58,
             "z": 722,
-            "dest_header_id": 36,
+            "dest_header_id": "MAP_HEADER_CANALAVE_CITY_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 53,
             "z": 740,
-            "dest_header_id": 34,
+            "dest_header_id": "MAP_HEADER_CANALAVE_CITY_MART",
             "dest_warp_id": 0
         },
         {
             "x": 37,
             "z": 718,
-            "dest_header_id": 38,
+            "dest_header_id": "MAP_HEADER_CANALAVE_LIBRARY_1F",
             "dest_warp_id": 0
         },
         {
             "x": 54,
             "z": 748,
-            "dest_header_id": 41,
+            "dest_header_id": "MAP_HEADER_CANALAVE_CITY_SOUTHEAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 58,
             "z": 713,
-            "dest_header_id": 43,
+            "dest_header_id": "MAP_HEADER_CANALAVE_CITY_HARBOR_INN",
             "dest_warp_id": 0
         },
         {
             "x": 39,
             "z": 748,
-            "dest_header_id": 44,
+            "dest_header_id": "MAP_HEADER_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 63,
             "z": 754,
-            "dest_header_id": 390,
+            "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 63,
             "z": 755,
-            "dest_header_id": 390,
+            "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 53,
             "z": 732,
-            "dest_header_id": 42,
+            "dest_header_id": "MAP_HEADER_CANALAVE_CITY_EAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 38,
             "z": 740,
-            "dest_header_id": 491,
+            "dest_header_id": "MAP_HEADER_CANALAVE_CITY_WEST_HOUSE",
             "dest_warp_id": 0
         }
     ],

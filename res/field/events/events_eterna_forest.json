@@ -381,31 +381,31 @@
         {
             "x": 28,
             "z": 86,
-            "dest_header_id": 347,
+            "dest_header_id": "MAP_HEADER_ROUTE_205_SOUTH",
             "dest_warp_id": 0
         },
         {
             "x": 29,
             "z": 86,
-            "dest_header_id": 347,
+            "dest_header_id": "MAP_HEADER_ROUTE_205_SOUTH",
             "dest_warp_id": 1
         },
         {
             "x": 86,
             "z": 36,
-            "dest_header_id": 349,
+            "dest_header_id": "MAP_HEADER_ROUTE_205_NORTH",
             "dest_warp_id": 1
         },
         {
             "x": 86,
             "z": 37,
-            "dest_header_id": 349,
+            "dest_header_id": "MAP_HEADER_ROUTE_205_NORTH",
             "dest_warp_id": 0
         },
         {
             "x": 74,
             "z": 15,
-            "dest_header_id": 295,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU",
             "dest_warp_id": 4
         }
     ],

@@ -213,13 +213,13 @@
         {
             "x": 16,
             "z": 5,
-            "dest_header_id": 28,
+            "dest_header_id": "MAP_HEADER_GLOBAL_TERMINAL_1F",
             "dest_warp_id": 1
         },
         {
             "x": 16,
             "z": 15,
-            "dest_header_id": 568,
+            "dest_header_id": "MAP_HEADER_GLOBAL_TERMINAL_3F",
             "dest_warp_id": 1
         }
     ],

@@ -73,7 +73,7 @@
         {
             "x": 8,
             "z": 10,
-            "dest_header_id": 13,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_TV_3F",
             "dest_warp_id": 2
         }
     ],

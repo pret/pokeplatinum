@@ -62,31 +62,31 @@
         {
             "x": 7,
             "z": 3,
-            "dest_header_id": 12,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_TV_2F",
             "dest_warp_id": 1
         },
         {
             "x": 14,
             "z": 3,
-            "dest_header_id": 14,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_TV_4F",
             "dest_warp_id": 0
         },
         {
             "x": 5,
             "z": 2,
-            "dest_header_id": 17,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_TV_3F_GROUP_RANKING_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 2,
             "z": 2,
-            "dest_header_id": 16,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM",
             "dest_warp_id": 0
         },
         {
             "x": 18,
             "z": 2,
-            "dest_header_id": 18,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_TV_ELEVATOR",
             "dest_warp_id": 0
         }
     ],

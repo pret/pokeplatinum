@@ -375,7 +375,7 @@
         {
             "x": 5,
             "z": 13,
-            "dest_header_id": 45,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
             "dest_warp_id": 6
         }
     ],

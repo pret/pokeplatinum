@@ -570,19 +570,19 @@
         {
             "x": 512,
             "z": 726,
-            "dest_header_id": 110,
+            "dest_header_id": "MAP_HEADER_ROUTE_209_GATE_TO_HEARTHOME_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 512,
             "z": 727,
-            "dest_header_id": 110,
+            "dest_header_id": "MAP_HEADER_ROUTE_209_GATE_TO_HEARTHOME_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 568,
             "z": 680,
-            "dest_header_id": 357,
+            "dest_header_id": "MAP_HEADER_ROUTE_209_LOST_TOWER_1F",
             "dest_warp_id": 0
         }
     ],

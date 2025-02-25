@@ -479,19 +479,19 @@
         {
             "x": 458,
             "z": 736,
-            "dest_header_id": 111,
+            "dest_header_id": "MAP_HEADER_ROUTE_212_GATE_TO_HEARTHOME_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 459,
             "z": 736,
-            "dest_header_id": 111,
+            "dest_header_id": "MAP_HEADER_ROUTE_212_GATE_TO_HEARTHOME_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 470,
             "z": 772,
-            "dest_header_id": 368,
+            "dest_header_id": "MAP_HEADER_POKEMON_MANSION",
             "dest_warp_id": 0
         }
     ],

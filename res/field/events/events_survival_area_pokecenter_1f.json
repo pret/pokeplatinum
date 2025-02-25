@@ -62,19 +62,19 @@
         {
             "x": 8,
             "z": 12,
-            "dest_header_id": 450,
+            "dest_header_id": "MAP_HEADER_SURVIVAL_AREA",
             "dest_warp_id": 3
         },
         {
             "x": 2,
             "z": 10,
-            "dest_header_id": 453,
+            "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_POKECENTER_2F",
             "dest_warp_id": 0
         },
         {
             "x": 14,
             "z": 10,
-            "dest_header_id": 489,
+            "dest_header_id": "MAP_HEADER_SURVIVAL_AREA_POKECENTER_B1F",
             "dest_warp_id": 0
         }
     ],

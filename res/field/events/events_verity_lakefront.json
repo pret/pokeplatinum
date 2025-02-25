@@ -31,25 +31,25 @@
         {
             "x": 81,
             "z": 843,
-            "dest_header_id": 311,
+            "dest_header_id": "MAP_HEADER_LAKE_VERITY_LOW_WATER",
             "dest_warp_id": 1
         },
         {
             "x": 80,
             "z": 843,
-            "dest_header_id": 311,
+            "dest_header_id": "MAP_HEADER_LAKE_VERITY_LOW_WATER",
             "dest_warp_id": 0
         },
         {
             "x": 80,
             "z": 843,
-            "dest_header_id": 312,
+            "dest_header_id": "MAP_HEADER_LAKE_VERITY",
             "dest_warp_id": 1
         },
         {
             "x": 81,
             "z": 843,
-            "dest_header_id": 312,
+            "dest_header_id": "MAP_HEADER_LAKE_VERITY",
             "dest_warp_id": 2
         }
     ],

@@ -107,25 +107,25 @@
         {
             "x": 10,
             "z": 12,
-            "dest_header_id": 132,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY",
             "dest_warp_id": 3
         },
         {
             "x": 12,
             "z": 8,
-            "dest_header_id": 138,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_2F",
             "dest_warp_id": 0
         },
         {
             "x": 15,
             "z": 2,
-            "dest_header_id": 142,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_ELEVATOR",
             "dest_warp_id": 0
         },
         {
             "x": 7,
             "z": 8,
-            "dest_header_id": 566,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_B1F",
             "dest_warp_id": 0
         }
     ],

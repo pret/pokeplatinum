@@ -316,25 +316,25 @@
         {
             "x": 70,
             "z": 754,
-            "dest_header_id": 390,
+            "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 70,
             "z": 755,
-            "dest_header_id": 390,
+            "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_CANALAVE_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 121,
             "z": 758,
-            "dest_header_id": 389,
+            "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 121,
             "z": 759,
-            "dest_header_id": 389,
+            "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
             "dest_warp_id": 0
         }
     ],

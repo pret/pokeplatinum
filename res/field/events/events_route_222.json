@@ -549,25 +549,25 @@
         {
             "x": 825,
             "z": 790,
-            "dest_header_id": 398,
+            "dest_header_id": "MAP_HEADER_ROUTE_222_GATE_TO_SUNYSHORE_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 825,
             "z": 791,
-            "dest_header_id": 398,
+            "dest_header_id": "MAP_HEADER_ROUTE_222_GATE_TO_SUNYSHORE_CITY",
             "dest_warp_id": 0
         },
         {
             "x": 801,
             "z": 784,
-            "dest_header_id": 397,
+            "dest_header_id": "MAP_HEADER_ROUTE_222_EAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 795,
             "z": 784,
-            "dest_header_id": 396,
+            "dest_header_id": "MAP_HEADER_ROUTE_222_WEST_HOUSE",
             "dest_warp_id": 0
         }
     ],

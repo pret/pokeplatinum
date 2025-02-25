@@ -403,7 +403,7 @@
         {
             "x": 878,
             "z": 560,
-            "dest_header_id": 249,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F_ROOM_3",
             "dest_warp_id": 1
         }
     ],

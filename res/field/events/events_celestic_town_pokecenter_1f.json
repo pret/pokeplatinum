@@ -90,19 +90,19 @@
         {
             "x": 8,
             "z": 12,
-            "dest_header_id": 442,
+            "dest_header_id": "MAP_HEADER_CELESTIC_TOWN",
             "dest_warp_id": 5
         },
         {
             "x": 2,
             "z": 10,
-            "dest_header_id": 444,
+            "dest_header_id": "MAP_HEADER_CELESTIC_TOWN_POKECENTER_2F",
             "dest_warp_id": 0
         },
         {
             "x": 14,
             "z": 10,
-            "dest_header_id": 488,
+            "dest_header_id": "MAP_HEADER_CELESTIC_TOWN_POKECENTER_B1F",
             "dest_warp_id": 0
         }
     ],

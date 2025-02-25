@@ -491,85 +491,85 @@
         {
             "x": 180,
             "z": 755,
-            "dest_header_id": 24,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_CONDOMINIUMS_1F",
             "dest_warp_id": 0
         },
         {
             "x": 149,
             "z": 778,
-            "dest_header_id": 28,
+            "dest_header_id": "MAP_HEADER_GLOBAL_TERMINAL_1F",
             "dest_warp_id": 0
         },
         {
             "x": 180,
             "z": 776,
-            "dest_header_id": 6,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 164,
             "z": 751,
-            "dest_header_id": 11,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_TV_1F",
             "dest_warp_id": 0
         },
         {
             "x": 167,
             "z": 788,
-            "dest_header_id": 19,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 145,
             "z": 751,
-            "dest_header_id": 8,
+            "dest_header_id": "MAP_HEADER_POKETCH_CO_1F",
             "dest_warp_id": 1
         },
         {
             "x": 179,
             "z": 766,
-            "dest_header_id": 4,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_MART",
             "dest_warp_id": 0
         },
         {
             "x": 168,
             "z": 776,
-            "dest_header_id": 29,
+            "dest_header_id": "MAP_HEADER_TRAINERS_SCHOOL",
             "dest_warp_id": 0
         },
         {
             "x": 141,
             "z": 751,
-            "dest_header_id": 8,
+            "dest_header_id": "MAP_HEADER_POKETCH_CO_1F",
             "dest_warp_id": 0
         },
         {
             "x": 140,
             "z": 788,
-            "dest_header_id": 30,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_SOUTHWEST_HOUSE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 129,
             "z": 736,
-            "dest_header_id": 31,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_3",
             "dest_warp_id": 0
         },
         {
             "x": 128,
             "z": 736,
-            "dest_header_id": 32,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_UNKNOWN_HOUSE_4",
             "dest_warp_id": 0
         },
         {
             "x": 128,
             "z": 758,
-            "dest_header_id": 389,
+            "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 128,
             "z": 759,
-            "dest_header_id": 389,
+            "dest_header_id": "MAP_HEADER_ROUTE_218_GATE_TO_JUBILIFE_CITY",
             "dest_warp_id": 1
         }
     ],

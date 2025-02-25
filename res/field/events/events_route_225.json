@@ -505,19 +505,19 @@
         {
             "x": 630,
             "z": 413,
-            "dest_header_id": 193,
+            "dest_header_id": "MAP_HEADER_ROUTE_225_GATE_TO_FIGHT_AREA",
             "dest_warp_id": 1
         },
         {
             "x": 631,
             "z": 413,
-            "dest_header_id": 193,
+            "dest_header_id": "MAP_HEADER_ROUTE_225_GATE_TO_FIGHT_AREA",
             "dest_warp_id": 1
         },
         {
             "x": 617,
             "z": 368,
-            "dest_header_id": 498,
+            "dest_header_id": "MAP_HEADER_ROUTE_225_HOUSE",
             "dest_warp_id": 0
         }
     ],

@@ -90,7 +90,7 @@
         {
             "x": 6,
             "z": 17,
-            "dest_header_id": 86,
+            "dest_header_id": "MAP_HEADER_HEARTHOME_CITY",
             "dest_warp_id": 12
         }
     ],

@@ -34,7 +34,7 @@
         {
             "x": 14,
             "z": 29,
-            "dest_header_id": 312,
+            "dest_header_id": "MAP_HEADER_LAKE_VERITY",
             "dest_warp_id": 0
         }
     ],

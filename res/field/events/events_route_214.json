@@ -455,31 +455,31 @@
         {
             "x": 718,
             "z": 645,
-            "dest_header_id": 381,
+            "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 719,
             "z": 645,
-            "dest_header_id": 381,
+            "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 713,
             "z": 670,
-            "dest_header_id": 286,
+            "dest_header_id": "MAP_HEADER_RUIN_MANIAC_CAVE_SHORT",
             "dest_warp_id": 0
         },
         {
             "x": 713,
             "z": 670,
-            "dest_header_id": 512,
+            "dest_header_id": "MAP_HEADER_RUIN_MANIAC_CAVE_LONG",
             "dest_warp_id": 0
         },
         {
             "x": 713,
             "z": 670,
-            "dest_header_id": 513,
+            "dest_header_id": "MAP_HEADER_MANIAC_TUNNEL",
             "dest_warp_id": 0
         }
     ],

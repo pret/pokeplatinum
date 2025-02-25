@@ -48,13 +48,13 @@
         {
             "x": 2,
             "z": 10,
-            "dest_header_id": 151,
+            "dest_header_id": "MAP_HEADER_SUNYSHORE_CITY_POKECENTER_1F",
             "dest_warp_id": 1
         },
         {
             "x": 8,
             "z": 2,
-            "dest_header_id": 466,
+            "dest_header_id": "MAP_HEADER_UNION_ROOM",
             "dest_warp_id": 0
         }
     ],

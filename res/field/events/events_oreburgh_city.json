@@ -435,97 +435,97 @@
         {
             "x": 282,
             "z": 756,
-            "dest_header_id": 47,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_GYM",
             "dest_warp_id": 0
         },
         {
             "x": 303,
             "z": 756,
-            "dest_header_id": 48,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 285,
             "z": 746,
-            "dest_header_id": 46,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_MART",
             "dest_warp_id": 0
         },
         {
             "x": 271,
             "z": 746,
-            "dest_header_id": 50,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_NORTHWEST_HOUSE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 273,
             "z": 756,
-            "dest_header_id": 60,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_WEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 293,
             "z": 752,
-            "dest_header_id": 58,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_MIDDLE_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 305,
             "z": 747,
-            "dest_header_id": 59,
+            "dest_header_id": "MAP_HEADER_MINING_MUSEUM",
             "dest_warp_id": 0
         },
         {
             "x": 312,
             "z": 764,
-            "dest_header_id": 61,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_EAST_HOUSE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 278,
             "z": 746,
-            "dest_header_id": 54,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_NORTH_HOUSE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 307,
             "z": 772,
-            "dest_header_id": 64,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY_SOUTH_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 258,
             "z": 749,
-            "dest_header_id": 258,
+            "dest_header_id": "MAP_HEADER_OREBURGH_GATE_1F",
             "dest_warp_id": 1
         },
         {
             "x": 300,
             "z": 795,
-            "dest_header_id": 198,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
             "dest_warp_id": 0
         },
         {
             "x": 301,
             "z": 795,
-            "dest_header_id": 198,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
             "dest_warp_id": 0
         },
         {
             "x": 302,
             "z": 795,
-            "dest_header_id": 198,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
             "dest_warp_id": 1
         },
         {
             "x": 303,
             "z": 795,
-            "dest_header_id": 198,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
             "dest_warp_id": 2
         },
         {
             "x": 304,
             "z": 795,
-            "dest_header_id": 198,
+            "dest_header_id": "MAP_HEADER_OREBURGH_MINE_B1F",
             "dest_warp_id": 2
         }
     ],

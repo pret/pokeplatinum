@@ -185,43 +185,43 @@
         {
             "x": 353,
             "z": 208,
-            "dest_header_id": 170,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_WEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 379,
             "z": 208,
-            "dest_header_id": 171,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_EAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 366,
             "z": 197,
-            "dest_header_id": 278,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 353,
             "z": 232,
-            "dest_header_id": 166,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_MART",
             "dest_warp_id": 0
         },
         {
             "x": 379,
             "z": 233,
-            "dest_header_id": 168,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 367,
             "z": 222,
-            "dest_header_id": 167,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_CITY_GYM",
             "dest_warp_id": 0
         },
         {
             "x": 367,
             "z": 197,
-            "dest_header_id": 278,
+            "dest_header_id": "MAP_HEADER_SNOWPOINT_TEMPLE_1F",
             "dest_warp_id": 0
         }
     ],

@@ -20,7 +20,7 @@
         {
             "x": 6,
             "z": 8,
-            "dest_header_id": 336,
+            "dest_header_id": "MAP_HEADER_VALOR_LAKEFRONT",
             "dest_warp_id": 2
         }
     ],
