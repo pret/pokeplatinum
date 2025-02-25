@@ -6,7 +6,7 @@
             "x": 30,
             "z": 8,
             "y": 0,
-            "player_facing_dir": 1
+            "player_facing_dir": "BG_EVENT_DIR_EAST"
         }
     ],
     "object_events": [

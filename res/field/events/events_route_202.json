@@ -6,7 +6,7 @@
             "x": 168,
             "z": 795,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [

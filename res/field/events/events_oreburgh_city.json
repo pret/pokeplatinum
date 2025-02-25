@@ -6,7 +6,7 @@
             "x": 267,
             "z": 808,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 45,
@@ -14,7 +14,7 @@
             "x": 256,
             "z": 808,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 8087,
@@ -22,7 +22,7 @@
             "x": 291,
             "z": 772,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8257,
@@ -30,7 +30,7 @@
             "x": 294,
             "z": 773,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [

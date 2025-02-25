@@ -6,7 +6,7 @@
             "x": 69,
             "z": 106,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 8215,
@@ -14,7 +14,7 @@
             "x": 91,
             "z": 113,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [

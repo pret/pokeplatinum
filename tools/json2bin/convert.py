@@ -4,6 +4,7 @@ import functools
 
 from generated import (
     ai_flags,
+    bg_event_dirs,
     items,
     genders,
     moves,
@@ -43,6 +44,9 @@ def from_trainer_ai_flag(s: str) -> int:
 
 def from_gender(s: str) -> int:
     return genders.Gender[s].value
+
+def from_bg_event_dir(s: str) -> int:
+    return bg_event_dirs.BgEventDir[s].value
 
 def from_object_event_gfx(s: str) -> int:
     return object_events.ObjectEventGfx[s].value

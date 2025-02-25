@@ -6,7 +6,7 @@
             "x": 72,
             "z": 15,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8009,
@@ -14,7 +14,7 @@
             "x": 74,
             "z": 34,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8008,
@@ -22,7 +22,7 @@
             "x": 17,
             "z": 43,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8162,
@@ -30,7 +30,7 @@
             "x": 43,
             "z": 29,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8208,
@@ -38,7 +38,7 @@
             "x": 55,
             "z": 41,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8209,
@@ -46,7 +46,7 @@
             "x": 92,
             "z": 51,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
