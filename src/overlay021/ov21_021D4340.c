@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "overlay021/ov21_021D3FE0.h"
 #include "overlay021/ov21_021D423C.h"
 #include "overlay021/pokedex_app.h"
