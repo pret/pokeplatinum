@@ -11,11 +11,11 @@
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D5AEC.h"
+#include "overlay021/pokedex_app.h"
+#include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/pokedex_main.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_sort_data.h"
-#include "overlay021/struct_ov21_021D0F60_decl.h"
-#include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
@@ -538,7 +538,7 @@ static void ov21_021D7CD8(UnkStruct_ov21_021D77E8 *param0, const UnkStruct_ov21_
 {
     void *v0;
     NNSG2dScreenData *v1;
-    BgConfig *v2 = param0->unk_00->unk_00;
+    BgConfig *v2 = param0->unk_00->bgConfig;
 
     ov21_021D276C(param0->unk_00, 0, 4, 0, 0, param2);
 
@@ -564,18 +564,18 @@ static void ov21_021D7D8C(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     PokedexGraphicData *v0 = param1->unk_00;
     NARC *v1 = ov21_021D26E0(param1->unk_00);
 
-    param0->unk_2C[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 84, 1, 84 + 1000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0->unk_2C[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 84, 1, 84 + 1000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     SpriteTransfer_RequestCharAtEnd(param0->unk_2C[0]);
     SpriteResource_ReleaseData(param0->unk_2C[0]);
 
-    param0->unk_2C[1] = SpriteResourceCollection_AddPaletteFrom(v0->unk_13C[1], v1, 3, 0, 3 + 1000, NNS_G2D_VRAM_TYPE_2DSUB, 12, param2);
+    param0->unk_2C[1] = SpriteResourceCollection_AddPaletteFrom(v0->spriteResourceCollection[1], v1, 3, 0, 3 + 1000, NNS_G2D_VRAM_TYPE_2DSUB, 12, param2);
 
     SpriteTransfer_RequestPlttFreeSpace(param0->unk_2C[1]);
     SpriteResource_ReleaseData(param0->unk_2C[1]);
 
-    param0->unk_2C[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v1, 82, 1, 82 + 1000, 2, param2);
-    param0->unk_2C[3] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], v1, 83, 1, 83 + 1000, 3, param2);
+    param0->unk_2C[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, 82, 1, 82 + 1000, 2, param2);
+    param0->unk_2C[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 83, 1, 83 + 1000, 3, param2);
 }
 
 static void ov21_021D7E3C(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77E8 *param1)
@@ -584,10 +584,10 @@ static void ov21_021D7E3C(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
 
     SpriteTransfer_ResetCharTransfer(param0->unk_2C[0]);
     SpriteTransfer_ResetPlttTransfer(param0->unk_2C[1]);
-    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_2C[0]);
-    SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_2C[1]);
-    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_2C[2]);
-    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_2C[3]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[0], param0->unk_2C[0]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[1], param0->unk_2C[1]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[2], param0->unk_2C[2]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], param0->unk_2C[3]);
 }
 
 static void ov21_021D7E80(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77E8 *param1, const UnkStruct_ov21_021D77D4 *param2, int param3)
@@ -596,9 +596,9 @@ static void ov21_021D7E80(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     SpriteListTemplate v1;
     PokedexGraphicData *v2 = param1->unk_00;
 
-    SpriteResourcesHeader_Init(&v0, 84 + 1000, 3 + 1000, 82 + 1000, 83 + 1000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 84 + 1000, 3 + 1000, 82 + 1000, 83 + 1000, 0xffffffff, 0xffffffff, 0, 0, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
 
-    v1.list = v2->unk_138;
+    v1.list = v2->spriteList;
     v1.resourceData = &v0;
     v1.priority = 8;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
@@ -681,7 +681,7 @@ static void ov21_021D8018(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
 
     GF_ASSERT(param0->unk_00[0]);
 
-    v2 = SpriteResourceCollection_Find(v3->unk_13C[1], 3 + 1000);
+    v2 = SpriteResourceCollection_Find(v3->spriteResourceCollection[1], 3 + 1000);
 
     v1.unk_00 = v3->unk_14C;
     v1.unk_08 = SpriteTransfer_GetPaletteProxy(v2, NULL);
@@ -762,7 +762,7 @@ static void ov21_021D820C(UnkStruct_ov21_021D77E8 *param0, int param1)
 {
     void *v0;
     NNSG2dScreenData *v1;
-    BgConfig *v2 = param0->unk_00->unk_00;
+    BgConfig *v2 = param0->unk_00->bgConfig;
 
     ov21_021D2724(param0->unk_00, 27, v2, 7, 0, 0, 1, param1);
 
@@ -777,7 +777,7 @@ static void ov21_021D820C(UnkStruct_ov21_021D77E8 *param0, int param1)
 
 static void ov21_021D828C(UnkStruct_ov21_021D77E8 *param0, int param1)
 {
-    BgConfig *v0 = param0->unk_00->unk_00;
+    BgConfig *v0 = param0->unk_00->bgConfig;
 
     Bg_ClearTilesRange(7, 64, 0, param1);
     Bg_ClearTilemap(v0, 7);
@@ -848,9 +848,9 @@ static void ov21_021D8354(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     param0->unk_28 += v0;
     param0->unk_28 &= 0xffff;
 
-    Bg_ScheduleAffineRotation(param1->unk_00->unk_00, 7, 0, param0->unk_28 / 182);
-    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 9, 128);
-    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 12, 104);
+    Bg_ScheduleAffineRotation(param1->unk_00->bgConfig, 7, 0, param0->unk_28 / 182);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->bgConfig, 7, 9, 128);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->bgConfig, 7, 12, 104);
 
     param0->unk_2A = param0->unk_28;
 }
@@ -871,9 +871,9 @@ static void ov21_021D83C0(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77
     param0->unk_28 = param0->unk_2A + v0;
     param0->unk_28 &= 0xffff;
 
-    Bg_ScheduleAffineRotation(param1->unk_00->unk_00, 7, 0, param0->unk_28 / 182);
-    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 9, 128);
-    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 12, 104);
+    Bg_ScheduleAffineRotation(param1->unk_00->bgConfig, 7, 0, param0->unk_28 / 182);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->bgConfig, 7, 9, 128);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->bgConfig, 7, 12, 104);
 
     if (param2->unk_1C->unk_0C == 0) {
         param0->unk_2A = param0->unk_28;

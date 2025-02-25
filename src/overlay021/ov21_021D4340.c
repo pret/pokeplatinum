@@ -7,8 +7,8 @@
 
 #include "overlay021/ov21_021D3FE0.h"
 #include "overlay021/ov21_021D423C.h"
+#include "overlay021/pokedex_app.h"
 #include "overlay021/pokedex_main.h"
-#include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D3FE0_decl.h"
 #include "overlay021/struct_ov21_021D4008.h"
 #include "overlay021/struct_ov21_021D423C_decl.h"

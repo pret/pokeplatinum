@@ -11,7 +11,7 @@ PokedexMemory *PokedexMemory_New(u32 heapID)
 
     pokedexMemory = Heap_AllocFromHeap(heapID, sizeof(PokedexMemory));
     memset(pokedexMemory, 0, sizeof(PokedexMemory));
-    pokedexMemory->bootMode = PBM_DEFAULT;
+    pokedexMemory->bootMode = POKEDEX_BOOT_DEFAULT;
     return pokedexMemory;
 }
 

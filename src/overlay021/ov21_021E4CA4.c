@@ -10,11 +10,11 @@
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021E29DC.h"
+#include "overlay021/pokedex_app.h"
+#include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/pokedex_main.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_sort_data.h"
-#include "overlay021/struct_ov21_021D0F60_decl.h"
-#include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
@@ -783,28 +783,28 @@ static void ov21_021E5538(UnkStruct_ov21_021E4DA4 *param0, int param1)
     void *v0;
     NNSG2dScreenData *v1;
 
-    ov21_021D2724(param0->unk_00, 34, param0->unk_00->unk_00, 6, 0, 0, 1, param1);
+    ov21_021D2724(param0->unk_00, 34, param0->unk_00->bgConfig, 6, 0, 0, 1, param1);
     v0 = ov21_021D27B8(param0->unk_00, 71, 1, &v1, param1);
 
-    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 6);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->bgConfig, 6);
 
-    ov21_021D2724(param0->unk_00, 35, param0->unk_00->unk_00, 7, 0, 0, 1, param1);
+    ov21_021D2724(param0->unk_00, 35, param0->unk_00->bgConfig, 7, 0, 0, 1, param1);
     v0 = ov21_021D27B8(param0->unk_00, 72, 1, &v1, param1);
 
-    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 7, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
-    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 7);
-    Bg_SetOffset(param0->unk_00->unk_00, 7, 0, -48);
-    Bg_SetOffset(param0->unk_00->unk_00, 7, 3, -16);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->bgConfig, 7);
+    Bg_SetOffset(param0->unk_00->bgConfig, 7, 0, -48);
+    Bg_SetOffset(param0->unk_00->bgConfig, 7, 3, -16);
     Bg_SetPriority(7, 3);
 }
 
 static void ov21_021E5620(UnkStruct_ov21_021E4DA4 *param0)
 {
-    Bg_ClearTilemap(param0->unk_00->unk_00, 6);
-    Bg_ClearTilemap(param0->unk_00->unk_00, 7);
+    Bg_ClearTilemap(param0->unk_00->bgConfig, 6);
+    Bg_ClearTilemap(param0->unk_00->bgConfig, 7);
     Bg_SetPriority(7, 1);
 }
 
@@ -813,18 +813,18 @@ static void ov21_021E5644(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     PokedexGraphicData *v0 = param1->unk_00;
     NARC *v1 = ov21_021D26E0(param1->unk_00);
 
-    param0->unk_58[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 113, 1, 113 + 10000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
+    param0->unk_58[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 113, 1, 113 + 10000, NNS_G2D_VRAM_TYPE_2DSUB, param2);
 
     SpriteTransfer_RequestCharAtEnd(param0->unk_58[0]);
     SpriteResource_ReleaseData(param0->unk_58[0]);
 
-    param0->unk_58[1] = SpriteResourceCollection_AddPaletteFrom(v0->unk_13C[1], v1, 18, 0, 18 + 10000, NNS_G2D_VRAM_TYPE_2DSUB, 3, param2);
+    param0->unk_58[1] = SpriteResourceCollection_AddPaletteFrom(v0->spriteResourceCollection[1], v1, 18, 0, 18 + 10000, NNS_G2D_VRAM_TYPE_2DSUB, 3, param2);
 
     SpriteTransfer_RequestPlttFreeSpace(param0->unk_58[1]);
     SpriteResource_ReleaseData(param0->unk_58[1]);
 
-    param0->unk_58[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v1, 114, 1, 114 + 10000, 2, param2);
-    param0->unk_58[3] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], v1, 112, 1, 112 + 10000, 3, param2);
+    param0->unk_58[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, 114, 1, 114 + 10000, 2, param2);
+    param0->unk_58[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 112, 1, 112 + 10000, 3, param2);
 }
 
 static void ov21_021E56F0(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4DA4 *param1)
@@ -833,10 +833,10 @@ static void ov21_021E56F0(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
 
     SpriteTransfer_ResetCharTransfer(param0->unk_58[0]);
     SpriteTransfer_ResetPlttTransfer(param0->unk_58[1]);
-    SpriteResourceCollection_Remove(v0->unk_13C[0], param0->unk_58[0]);
-    SpriteResourceCollection_Remove(v0->unk_13C[1], param0->unk_58[1]);
-    SpriteResourceCollection_Remove(v0->unk_13C[2], param0->unk_58[2]);
-    SpriteResourceCollection_Remove(v0->unk_13C[3], param0->unk_58[3]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[0], param0->unk_58[0]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[1], param0->unk_58[1]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[2], param0->unk_58[2]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], param0->unk_58[3]);
 }
 
 static void ov21_021E5734(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4DA4 *param1, int param2)
@@ -847,9 +847,9 @@ static void ov21_021E5734(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     int v3;
     int v4, v5;
 
-    SpriteResourcesHeader_Init(&v0, 113 + 10000, 18 + 10000, 114 + 10000, 112 + 10000, 0xffffffff, 0xffffffff, 0, 2, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 113 + 10000, 18 + 10000, 114 + 10000, 112 + 10000, 0xffffffff, 0xffffffff, 0, 2, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
 
-    v1.list = v2->unk_138;
+    v1.list = v2->spriteList;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
@@ -927,7 +927,7 @@ static void ov21_021E58B8(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     int v4;
     u32 v5;
 
-    v2 = SpriteResourceCollection_Find(v3->unk_13C[1], 18 + 10000);
+    v2 = SpriteResourceCollection_Find(v3->spriteResourceCollection[1], 18 + 10000);
 
     v1.unk_00 = v3->unk_14C;
     v1.unk_08 = SpriteTransfer_GetPaletteProxy(v2, NULL);
@@ -1119,9 +1119,9 @@ static void ov21_021E5B6C(UnkStruct_ov21_021E5004 *param0, UnkStruct_ov21_021E4D
     param0->unk_4C += (v0 - param0->unk_48) * -16;
     param0->unk_4C &= 0xffff;
 
-    Bg_ScheduleAffineRotation(param1->unk_00->unk_00, 7, 0, param0->unk_4C / 182);
-    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 9, 131);
-    Bg_ScheduleAffineRotationCenter(param1->unk_00->unk_00, 7, 12, 99);
+    Bg_ScheduleAffineRotation(param1->unk_00->bgConfig, 7, 0, param0->unk_4C / 182);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->bgConfig, 7, 9, 131);
+    Bg_ScheduleAffineRotationCenter(param1->unk_00->bgConfig, 7, 12, 99);
 
     param0->unk_48 = v0;
 }

@@ -6,7 +6,7 @@
 
 #include "struct_defs/pokemon_sprite.h"
 
-#include "overlay021/struct_ov21_021D13FC.h"
+#include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D23F8.h"
 #include "overlay021/struct_ov21_021D2584.h"

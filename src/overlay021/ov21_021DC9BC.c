@@ -10,13 +10,13 @@
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021E29DC.h"
+#include "overlay021/pokedex_app.h"
 #include "overlay021/pokedex_enc_data.h"
 #include "overlay021/pokedex_field_map.h"
+#include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/pokedex_main.h"
 #include "overlay021/pokedex_sort.h"
 #include "overlay021/pokedex_sort_data.h"
-#include "overlay021/struct_ov21_021D0F60_decl.h"
-#include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D2648.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
@@ -112,7 +112,7 @@ typedef struct {
     EncounterLocations fieldSpecialEncounters;
 } EncounterCollection;
 
-typedef struct {
+typedef struct PokedexMapDisplay {
     int encounterTime;
     Sprite *cellActorArray[NUMDUNGEONS * 2];
     SpriteResource *unk_B4[4];
@@ -504,42 +504,42 @@ static void ov21_021DCE40(UnkStruct_ov21_021DCAE0 *param0, const UnkStruct_ov21_
     void *v0;
     NNSG2dScreenData *v1;
 
-    ov21_021D2724(param0->unk_00, 33, param0->unk_00->unk_00, 3, 0, 0, 1, heapID);
+    ov21_021D2724(param0->unk_00, 33, param0->unk_00->bgConfig, 3, 0, 0, 1, heapID);
 
     v0 = ov21_021D27B8(param0->unk_00, 64, 1, &v1, heapID);
 
-    Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
+    Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
     if (param1->unk_00->newmoonIslandVisible) {
         v0 = ov21_021D27B8(param0->unk_00, 65, 1, &v1, heapID);
 
-        Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 13, 8, v1->screenWidth / 8, v1->screenHeight / 8);
+        Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 13, 8, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_FreeToHeap(v0);
     }
 
     if (param1->unk_00->seabreakPathVisible) {
         v0 = ov21_021D27B8(param0->unk_00, 66, 1, &v1, heapID);
 
-        Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 28, 7, v1->screenWidth / 8, v1->screenHeight / 8);
+        Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 28, 7, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_FreeToHeap(v0);
     }
 
     if (param1->unk_00->fullmoonIslandVisible) {
         v0 = ov21_021D27B8(param0->unk_00, 67, 1, &v1, heapID);
 
-        Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 11, 8, v1->screenWidth / 8, v1->screenHeight / 8);
+        Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 11, 8, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_FreeToHeap(v0);
     }
 
     if (param1->unk_00->springPathVisible) {
         v0 = ov21_021D27B8(param0->unk_00, 68, 1, &v1, heapID);
 
-        Bg_LoadToTilemapRect(param0->unk_00->unk_00, 3, v1->rawData, 25, 16, v1->screenWidth / 8, v1->screenHeight / 8);
+        Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 25, 16, v1->screenWidth / 8, v1->screenHeight / 8);
         Heap_FreeToHeap(v0);
     }
 
-    Bg_ScheduleTilemapTransfer(param0->unk_00->unk_00, 3);
+    Bg_ScheduleTilemapTransfer(param0->unk_00->bgConfig, 3);
 }
 
 static void ov21_021DCFC8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, enum HeapId heapID)
@@ -547,25 +547,25 @@ static void ov21_021DCFC8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     PokedexGraphicData *v0 = param1->unk_00;
     NARC *v1 = ov21_021D26E0(param1->unk_00);
 
-    mapDisplay->unk_B4[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 108, 1, 108 + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+    mapDisplay->unk_B4[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 108, 1, 108 + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
     SpriteTransfer_RequestCharAtEnd(mapDisplay->unk_B4[0]);
     SpriteResource_ReleaseData(mapDisplay->unk_B4[0]);
 
-    mapDisplay->unk_B4[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v1, 106, 1, 106 + 6000, 2, heapID);
-    mapDisplay->unk_B4[3] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], v1, 107, 1, 107 + 6000, 3, heapID);
-    mapDisplay->unk_D0[0] = SpriteResourceCollection_AddTilesFrom(v0->unk_13C[0], v1, 93, 1, 93 + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+    mapDisplay->unk_B4[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, 106, 1, 106 + 6000, 2, heapID);
+    mapDisplay->unk_B4[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 107, 1, 107 + 6000, 3, heapID);
+    mapDisplay->unk_D0[0] = SpriteResourceCollection_AddTilesFrom(v0->spriteResourceCollection[0], v1, 93, 1, 93 + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
     SpriteTransfer_RequestCharAtEnd(mapDisplay->unk_D0[0]);
     SpriteResource_ReleaseData(mapDisplay->unk_D0[0]);
 
-    mapDisplay->unk_D0[1] = SpriteResourceCollection_AddPaletteFrom(v0->unk_13C[1], v1, 14, 0, 14 + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, heapID);
+    mapDisplay->unk_D0[1] = SpriteResourceCollection_AddPaletteFrom(v0->spriteResourceCollection[1], v1, 14, 0, 14 + 6000, NNS_G2D_VRAM_TYPE_2DMAIN, 5, heapID);
 
     SpriteTransfer_RequestPlttFreeSpace(mapDisplay->unk_D0[1]);
     SpriteResource_ReleaseData(mapDisplay->unk_D0[1]);
 
-    mapDisplay->unk_D0[2] = SpriteResourceCollection_AddFrom(v0->unk_13C[2], v1, 91, 1, 91 + 6000, 2, heapID);
-    mapDisplay->unk_D0[3] = SpriteResourceCollection_AddFrom(v0->unk_13C[3], v1, 92, 1, 92 + 6000, 3, heapID);
+    mapDisplay->unk_D0[2] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[2], v1, 91, 1, 91 + 6000, 2, heapID);
+    mapDisplay->unk_D0[3] = SpriteResourceCollection_AddFrom(v0->spriteResourceCollection[3], v1, 92, 1, 92 + 6000, 3, heapID);
 }
 
 static void ov21_021DD114(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1)
@@ -573,15 +573,15 @@ static void ov21_021DD114(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     PokedexGraphicData *v0 = param1->unk_00;
 
     SpriteTransfer_ResetCharTransfer(mapDisplay->unk_B4[0]);
-    SpriteResourceCollection_Remove(v0->unk_13C[0], mapDisplay->unk_B4[0]);
-    SpriteResourceCollection_Remove(v0->unk_13C[2], mapDisplay->unk_B4[2]);
-    SpriteResourceCollection_Remove(v0->unk_13C[3], mapDisplay->unk_B4[3]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[0], mapDisplay->unk_B4[0]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[2], mapDisplay->unk_B4[2]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], mapDisplay->unk_B4[3]);
     SpriteTransfer_ResetCharTransfer(mapDisplay->unk_D0[0]);
     SpriteTransfer_ResetPlttTransfer(mapDisplay->unk_D0[1]);
-    SpriteResourceCollection_Remove(v0->unk_13C[0], mapDisplay->unk_D0[0]);
-    SpriteResourceCollection_Remove(v0->unk_13C[1], mapDisplay->unk_D0[1]);
-    SpriteResourceCollection_Remove(v0->unk_13C[2], mapDisplay->unk_D0[2]);
-    SpriteResourceCollection_Remove(v0->unk_13C[3], mapDisplay->unk_D0[3]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[0], mapDisplay->unk_D0[0]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[1], mapDisplay->unk_D0[1]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[2], mapDisplay->unk_D0[2]);
+    SpriteResourceCollection_Remove(v0->spriteResourceCollection[3], mapDisplay->unk_D0[3]);
 }
 
 static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, enum HeapId heapID)
@@ -591,9 +591,9 @@ static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     PokedexGraphicData *v2 = param1->unk_00;
     int v3;
 
-    SpriteResourcesHeader_Init(&v0, 93 + 6000, 14 + 6000, 91 + 6000, 92 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 93 + 6000, 14 + 6000, 91 + 6000, 92 + 6000, 0xffffffff, 0xffffffff, 0, 1, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
 
-    v1.list = v2->unk_138;
+    v1.list = v2->spriteList;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -604,9 +604,9 @@ static void ov21_021DD1A8(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     mapDisplay->AreaUnknownCellActor = SpriteList_Add(&v1);
 
     Sprite_SetAnim(mapDisplay->AreaUnknownCellActor, 2);
-    SpriteResourcesHeader_Init(&v0, 108 + 6000, 14 + 6000, 106 + 6000, 107 + 6000, 0xffffffff, 0xffffffff, 0, 0, v2->unk_13C[0], v2->unk_13C[1], v2->unk_13C[2], v2->unk_13C[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&v0, 108 + 6000, 14 + 6000, 106 + 6000, 107 + 6000, 0xffffffff, 0xffffffff, 0, 0, v2->spriteResourceCollection[0], v2->spriteResourceCollection[1], v2->spriteResourceCollection[2], v2->spriteResourceCollection[3], NULL, NULL);
 
-    v1.list = v2->unk_138;
+    v1.list = v2->spriteList;
     v1.resourceData = &v0;
     v1.priority = 31;
     v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -646,7 +646,7 @@ static void ov21_021DD2E0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 
     GF_ASSERT(mapDisplay->AreaUnknownCellActor);
 
-    v2 = SpriteResourceCollection_Find(param1->unk_00->unk_13C[1], 14 + 6000);
+    v2 = SpriteResourceCollection_Find(param1->unk_00->spriteResourceCollection[1], 14 + 6000);
 
     v1.unk_00 = v3->unk_14C;
     v1.unk_08 = SpriteTransfer_GetPaletteProxy(v2, NULL);
@@ -812,18 +812,18 @@ static BOOL ov21_021DD5E4(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 
 static void ov21_021DD668(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1, enum HeapId heapID)
 {
-    Window_FillTilemap(&param1->unk_00->unk_04, 0);
+    Window_FillTilemap(&param1->unk_00->window, 0);
 
     mapDisplay->unk_7F4 = ov21_021D2808(param1->unk_00, 30, 1, &mapDisplay->unk_7F8, heapID);
     mapDisplay->unk_7FC = ov21_021D2808(param1->unk_00, 31, 1, &mapDisplay->unk_800, heapID);
 
-    Window_SetPalette(&param1->unk_00->unk_04, 8);
+    Window_SetPalette(&param1->unk_00->window, 8);
 }
 
 static void ov21_021DD6C0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1)
 {
-    Window_FillTilemap(&param1->unk_00->unk_04, 0);
-    Bg_ClearTilemap(param1->unk_00->unk_00, 1);
+    Window_FillTilemap(&param1->unk_00->window, 0);
+    Bg_ClearTilemap(param1->unk_00->bgConfig, 1);
     Heap_FreeToHeap(mapDisplay->unk_7F4);
 
     mapDisplay->unk_7F4 = NULL;
@@ -834,7 +834,7 @@ static void ov21_021DD6C0(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
     mapDisplay->unk_7FC = NULL;
     mapDisplay->unk_800 = NULL;
 
-    Window_SetPalette(&param1->unk_00->unk_04, 0);
+    Window_SetPalette(&param1->unk_00->window, 0);
 }
 
 static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_021DCACC *param1, const EncounterCollection *encounterCollection, enum HeapId heapID)
@@ -1109,12 +1109,12 @@ static u8 *PokedexEncounters_InvisibleDungeons(u32 param0, const UnkStruct_ov21_
 
 static void ov21_021DD964(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1)
 {
-    Window_FillTilemap(&param1->unk_00->unk_04, 0);
+    Window_FillTilemap(&param1->unk_00->window, 0);
 
-    PokedexFieldMap_DisplayFields(&param1->unk_00->unk_04, mapDisplay->unk_800->pRawData, mapDisplay->unk_800->W * 8, mapDisplay->unk_800->H * 8, POKEDEXMAPXSCALE, mapDisplay->pokedexFieldMap_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, 89, 30);
-    PokedexFieldMap_DisplayFields(&param1->unk_00->unk_04, mapDisplay->unk_7F8->pRawData, mapDisplay->unk_7F8->W * 8, mapDisplay->unk_7F8->H * 8, POKEDEXMAPXSCALE, mapDisplay->pokedexFieldMap_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, 89, 30);
+    PokedexFieldMap_DisplayFields(&param1->unk_00->window, mapDisplay->unk_800->pRawData, mapDisplay->unk_800->W * 8, mapDisplay->unk_800->H * 8, POKEDEXMAPXSCALE, mapDisplay->pokedexFieldMap_2, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, 89, 30);
+    PokedexFieldMap_DisplayFields(&param1->unk_00->window, mapDisplay->unk_7F8->pRawData, mapDisplay->unk_7F8->W * 8, mapDisplay->unk_7F8->H * 8, POKEDEXMAPXSCALE, mapDisplay->pokedexFieldMap_1, POKEDEXMAPHEIGHT, POKEDEXMAPWIDTH, 89, 30);
 
-    Window_CopyToVRAM(&param1->unk_00->unk_04);
+    Window_CopyToVRAM(&param1->unk_00->window);
 }
 
 static void ov21_021DD9E8(PokedexMapDisplay *mapDisplay, const EncounterCollection *encounterCollection)

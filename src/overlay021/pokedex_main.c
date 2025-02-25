@@ -30,21 +30,16 @@
 #include "overlay021/ov21_021E68F4.h"
 #include "overlay021/ov21_021E737C.h"
 #include "overlay021/ov21_021E8484.h"
+#include "overlay021/pokedex_app.h"
 #include "overlay021/pokedex_height_check.h"
 #include "overlay021/pokedex_search.h"
 #include "overlay021/pokedex_sort.h"
-#include "overlay021/pokedex_sort_data.h"
 #include "overlay021/pokedex_text.h"
 #include "overlay021/species_caught_status.h"
-#include "overlay021/struct_ov21_021D13FC.h"
 #include "overlay021/struct_ov21_021D22F8.h"
-#include "overlay021/struct_ov21_021D3FE0_decl.h"
-#include "overlay021/struct_ov21_021D423C_decl.h"
-#include "overlay021/struct_ov21_021D4660.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 #include "overlay021/struct_ov21_021D4CA0.h"
 #include "overlay021/struct_ov21_021D4CB8.h"
-#include "overlay021/struct_ov21_021E68F4.h"
 
 #include "bg_window.h"
 #include "brightness_controller.h"
@@ -57,7 +52,6 @@
 #include "pltt_transfer.h"
 #include "pokedex.h"
 #include "pokedex_data_index.h"
-#include "pokedex_memory.h"
 #include "pokemon.h"
 #include "render_oam.h"
 #include "sprite.h"
@@ -83,37 +77,10 @@ enum PokedexState {
     POKEDEX_STATE_WAIT_EXIT
 };
 
-typedef struct UnkStruct_ov21_021D0F60_t {
-    BOOL unk_00;
-    int heapID;
-    PokedexMemory *pokedexMemory;
-    PokedexSortData sortData;
-    PokedexGraphicData graphicData;
-    int unk_1A60;
-    int unk_1A64;
-    int unk_1A68;
-    int unk_1A6C;
-    UnkStruct_ov21_021D423C *unk_1A70;
-    UnkStruct_ov21_021D423C *unk_1A74;
-    UnkStruct_ov21_021D423C *unk_1A78;
-    UnkStruct_ov21_021D423C *unk_1A7C;
-    UnkStruct_ov21_021D4660 unk_1A80;
-    UnkStruct_ov21_021E68F4 unk_1A94[10];
-    UnkStruct_ov21_021E68F4 unk_1C24[8];
-    UnkStruct_ov21_021D3FE0 *unk_1D64;
-    UnkStruct_ov21_021D3FE0 *unk_1D68;
-    UnkStruct_ov21_021D3FE0 *unk_1D6C;
-    UnkStruct_ov21_021D3FE0 *unk_1D70;
-} PokedexApp;
-
-typedef struct {
-    PokedexApp *unk_00;
-} PokedexOverlayData;
-
-static void CallBack(void *data);
-static void EntranceTransition(PokedexOverlayData *pokedexOverlayData);
-static void ExitTransition(PokedexOverlayData *pokedexOverlayData);
-static BOOL TransitionComplete(PokedexOverlayData *pokedexOverlayData);
+static void VBlankCallBack(void *data);
+static void EntranceTransition(PokedexApp **appPtr);
+static void ExitTransition(PokedexApp **appPtr);
+static BOOL TransitionComplete(PokedexApp **appPtr);
 static void FreePokedexApp(PokedexApp *pokedexApp);
 static void SetGXBanks(void);
 static void InitG2(enum HeapId heapID);
@@ -128,10 +95,10 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
     sub_02004550(54, 0, 0);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKEDEX, 0x40000);
 
-    PokedexOverlayData *pokedexOverlayData = OverlayManager_NewData(overlayMan, sizeof(PokedexOverlayData), HEAP_ID_POKEDEX);
+    PokedexApp **appPtr = OverlayManager_NewData(overlayMan, sizeof(PokedexApp **), HEAP_ID_POKEDEX);
 
-    GF_ASSERT(pokedexOverlayData);
-    memset(pokedexOverlayData, 0, sizeof(PokedexOverlayData));
+    GF_ASSERT(appPtr);
+    memset(appPtr, 0, sizeof(PokedexApp **));
 
     VramTransfer_New(8, HEAP_ID_POKEDEX);
 
@@ -139,7 +106,7 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
 
     Pokedex_SetupGiratina(Pokedex_GetDisplayForm(overlayArgsInput->pokedex, SPECIES_GIRATINA, 0));
 
-    SetVBlankCallback(CallBack, pokedexOverlayData);
+    SetVBlankCallback(VBlankCallBack, appPtr);
     DisableHBlank();
     sub_0201E3D8();
 
@@ -156,7 +123,7 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
     pokedexOverlayArgs.springPathVisible = overlayArgsInput->springPathVisible;
     pokedexOverlayArgs.pokedexMemory = overlayArgsInput->pokedexMemory;
 
-    pokedexOverlayData->unk_00 = PokedexMain_NewPokedexApp(HEAP_ID_POKEDEX, &pokedexOverlayArgs);
+    *appPtr = PokedexMain_NewPokedexApp(HEAP_ID_POKEDEX, &pokedexOverlayArgs);
 
     sub_0200544C(1, (127 / 3));
 
@@ -165,26 +132,26 @@ int PokedexMain_Init(OverlayManager *overlayMan, int *state)
 
 int PokedexMain_Main(OverlayManager *overlayMan, int *state)
 {
-    PokedexOverlayData *pokedexOverlayData = OverlayManager_Data(overlayMan);
+    PokedexApp **appPtr = OverlayManager_Data(overlayMan);
 
     switch (*state) {
     case POKEDEX_STATE_TRANSITION_IN:
-        EntranceTransition(pokedexOverlayData);
+        EntranceTransition(appPtr);
         BrightnessController_SetScreenBrightness(-16, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
         (*state)++;
         break;
     case POKEDEX_STATE_USE:
-        if (ov21_021D10B8(pokedexOverlayData->unk_00) == TRUE) {
-            pokedexOverlayData->unk_00 = NULL;
+        if (ov21_021D10B8(*appPtr) == TRUE) {
+            *appPtr = NULL;
             (*state)++;
         }
         break;
     case POKEDEX_STATE_TRANSITION_OUT:
-        ExitTransition(pokedexOverlayData);
+        ExitTransition(appPtr);
         (*state)++;
         break;
     case POKEDEX_STATE_WAIT_EXIT:
-        if (TransitionComplete(pokedexOverlayData)) {
+        if (TransitionComplete(appPtr)) {
             sub_0200F32C(0);
             sub_0200F32C(1);
             G2_BlendNone();
@@ -214,28 +181,28 @@ int PokedexMain_Exit(OverlayManager *overlayMan, int *state)
     return 1;
 }
 
-static void CallBack(void *data)
+static void VBlankCallBack(void *data)
 {
-    PokedexOverlayData *pokedexOverlayData = data;
+    PokedexApp **appPtr = data;
 
-    if (pokedexOverlayData->unk_00) {
-        ov21_021D12D8(pokedexOverlayData->unk_00);
+    if (*appPtr) {
+        ov21_021D12D8(*appPtr);
     }
 
     VramTransfer_Process();
 }
 
-static void EntranceTransition(PokedexOverlayData *pokedexOverlayData)
+static void EntranceTransition(PokedexApp **appPtr)
 {
     StartScreenTransition(0, 1, 1, 0x0, 6, 1, 37);
 }
 
-static void ExitTransition(PokedexOverlayData *pokedexOverlayData)
+static void ExitTransition(PokedexApp **appPtr)
 {
     StartScreenTransition(0, 0, 0, 0x0, 6, 1, 37);
 }
 
-static BOOL TransitionComplete(PokedexOverlayData *pokedexOverlayData)
+static BOOL TransitionComplete(PokedexApp **appPtr)
 {
     return IsScreenTransitionDone();
 }
@@ -405,9 +372,7 @@ BOOL ov21_021D10B8(PokedexApp *pokedexApp)
 void PokedexMain_InitGX(enum HeapId heapID)
 {
     SetGXBanks();
-
     InitG2(heapID);
-
     InitG3();
 }
 
@@ -988,7 +953,7 @@ static void FreePokedexApp(PokedexApp *pokedexApp)
     if (ov21_021D36A4(&pokedexApp->sortData, 1) == 1) {
         PokedexMemory_SetBootMode(pokedexApp->pokedexMemory, PokedexSort_GetBootMode(&pokedexApp->sortData));
     } else {
-        PokedexMemory_SetBootMode(pokedexApp->pokedexMemory, PBM_DEFAULT);
+        PokedexMemory_SetBootMode(pokedexApp->pokedexMemory, POKEDEX_BOOT_DEFAULT);
     }
 
     PokedexSort_PokedexStatusFreeHWData(&pokedexApp->sortData);
