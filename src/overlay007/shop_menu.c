@@ -1195,11 +1195,11 @@ static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu)
 
         StringTemplate_Format(shopMenu->strTemplate, shopMenu->strbuf, strbuf);
         Strbuf_Free(strbuf);
-    }
         Window_FillTilemap(&shopMenu->windows[SHOP_WINDOW_MESSAGE], 15);
         shopMenu->fieldMsgPrinterId = FieldMessage_Print(&shopMenu->windows[SHOP_WINDOW_MESSAGE], shopMenu->strbuf, shopMenu->options, TRUE);
         Sound_PlayEffect(SEQ_SE_DP_REGI);
         return SHOP_STATE_CONFIRM_PURCHASE;
+    }
     case MENU_CANCELED:
         Window_EraseMessageBox(&shopMenu->windows[SHOP_WINDOW_MESSAGE], FALSE);
         Shop_SetScrollSpritesPositionXY(shopMenu, FALSE);
