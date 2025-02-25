@@ -3228,12 +3228,12 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_24F arg0, arg1, arg2, arg3
+    .macro CheckForJubilifeLotteryWinner winningPokemonIndex, highestMatchedDigits, isResultInBox, winningLotteryId
     .short 591
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \winningPokemonIndex
+    .short \highestMatchedDigits
+    .short \isResultInBox
+    .short \winningLotteryId
     .endm
 
     .macro RandomizeJubilifeLottery
