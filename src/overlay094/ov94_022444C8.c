@@ -194,8 +194,8 @@ static void ov94_022448E8(UnkStruct_ov94_0223FD4C *param0)
     } else {
         int v1 = 0, v2 = 0;
 
-        sub_02079968(param0->unk_00->unk_0C, param0->unk_124.unk_00, param0->unk_124.unk_04);
-        sub_020799F0(param0->unk_00->unk_0C, &v1, &v2);
-        sub_020798A0(param0->unk_00->unk_0C, v1, Pokemon_GetBoxPokemon(v0));
+        InitializeBoxedPokemonAt(param0->unk_00->unk_0C, param0->unk_124.unk_00, param0->unk_124.unk_04);
+        GetNextAvailableBoxSpaceAfter(param0->unk_00->unk_0C, &v1, &v2);
+        StorePokemonInBox(param0->unk_00->unk_0C, v1, Pokemon_GetBoxPokemon(v0));
     }
 }

@@ -3,24 +3,26 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/text_banks.h"
+
 #include "message.h"
 #include "pokemon.h"
 #include "savedata.h"
 #include "strbuf.h"
 
 typedef struct PCBoxes {
-    u32 unk_00;
-    BoxPokemon unk_04[18][30];
-    u16 unk_10E4[18][20];
+    u32 currentBoxIndex;
+    BoxPokemon boxedPokemonArray[MAX_PC_BOXES][30];
+    u16 boxNames[MAX_PC_BOXES][20];
     u8 unk_13B4[18];
-    u8 unk_13C6;
+    u8 unk_13C6; // This seems like some sort of bit flag? but I don't know for what
 } PCBoxes;
 
-static void sub_020797DC(PCBoxes *param0);
+static void sub_020797DC(PCBoxes *pcBoxes);
 
-void PCBoxes_Init(PCBoxes *param0)
+void PCBoxes_Init(PCBoxes *pcBoxes)
 {
-    sub_020797DC(param0);
+    sub_020797DC(pcBoxes);
     SaveData_SetFullSaveRequired();
 }
 
@@ -29,92 +31,95 @@ u32 PCBoxes_SaveSize(void)
     return sizeof(PCBoxes);
 }
 
-static void sub_020797DC(PCBoxes *param0)
+// InitPokemonStorageSystem?
+static void sub_020797DC(PCBoxes *pcBoxes)
 {
-    u32 v0, v1;
-    MessageLoader *v2;
+    u32 boxIndex, monPosInBox;
+    MessageLoader *messageLoader;
 
-    for (v0 = 0; v0 < 18; v0++) {
-        for (v1 = 0; v1 < (5 * 6); v1++) {
-            BoxPokemon_Init(&(param0->unk_04[v0][v1]));
+    for (boxIndex = 0; boxIndex < MAX_PC_BOXES; boxIndex++) {
+        for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
+            BoxPokemon_Init(&(pcBoxes->boxedPokemonArray[boxIndex][monPosInBox]));
         }
     }
 
-    for (v0 = 0, v1 = 0; v0 < 18; v0++) {
-        param0->unk_13B4[v0] = v1++;
+    // Pretty sure that monPosInBox isn't being used in the same way here as in the previous loop,
+    // so the variable's name no longer accurately reflects what it's doing in this loop
+    for (boxIndex = 0, monPosInBox = 0; boxIndex < MAX_PC_BOXES; boxIndex++) {
+        pcBoxes->unk_13B4[boxIndex] = monPosInBox++;
 
-        if (v1 >= 16) {
-            v1 = 0;
+        if (monPosInBox >= 16) {
+            monPosInBox = 0;
         }
     }
 
-    param0->unk_13C6 = 0;
-    v2 = MessageLoader_Init(1, 26, 18, HEAP_ID_SYSTEM);
+    pcBoxes->unk_13C6 = 0;
+    messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STORAGE_SYSTEM, HEAP_ID_SYSTEM);
 
-    if (v2) {
-        for (v0 = 0; v0 < 18; v0++) {
-            MessageLoader_Get(v2, 6 + v0, param0->unk_10E4[v0]);
+    if (messageLoader) {
+        for (boxIndex = 0; boxIndex < MAX_PC_BOXES; boxIndex++) {
+            MessageLoader_Get(messageLoader, BOX1_TEXT_BANK_ENTRYID + boxIndex, pcBoxes->boxNames[boxIndex]);
         }
 
-        MessageLoader_Free(v2);
+        MessageLoader_Free(messageLoader);
     }
 
-    param0->unk_00 = 0;
+    pcBoxes->currentBoxIndex = 0;
 }
 
-BOOL sub_02079868(PCBoxes *boxes, BoxPokemon *boxMon)
+BOOL StorePokemonInPc(PCBoxes *pcBoxes, BoxPokemon *boxMon)
 {
-    u32 v0 = boxes->unk_00;
+    u32 boxIndex = pcBoxes->currentBoxIndex;
 
     do {
-        sub_0207896C(boxMon);
+        RestoreBoxedPokemonPP(boxMon);
 
-        if (sub_020798A0(boxes, v0, boxMon)) {
+        if (StorePokemonInBox(pcBoxes, boxIndex, boxMon)) {
             SaveData_SetFullSaveRequired();
-            return 1;
+            return TRUE;
         }
 
-        if (++v0 >= 18) {
-            v0 = 0;
+        if (++boxIndex >= MAX_PC_BOXES) {
+            boxIndex = 0;
         }
-    } while (v0 != boxes->unk_00);
+    } while (boxIndex != pcBoxes->currentBoxIndex);
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_020798A0(PCBoxes *boxes, u32 param1, BoxPokemon *boxMon)
+BOOL StorePokemonInBox(PCBoxes *pcBoxes, u32 boxIndex, BoxPokemon *boxMon)
 {
-    u32 v0;
+    u32 monPosInBox;
 
-    sub_0207896C(boxMon);
+    RestoreBoxedPokemonPP(boxMon);
     BoxPokemon_SetShayminForm(boxMon, 0);
 
-    if (param1 == 0xffffffff) {
-        param1 = boxes->unk_00;
+    if (boxIndex == -1) {
+        boxIndex = pcBoxes->currentBoxIndex;
     }
 
-    for (v0 = 0; v0 < (5 * 6); v0++) {
-        if (BoxPokemon_GetValue(&(boxes->unk_04[param1][v0]), MON_DATA_SPECIES, NULL) == 0) {
-            boxes->unk_04[param1][v0] = *boxMon;
+    for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
+        if (BoxPokemon_GetValue(&(pcBoxes->boxedPokemonArray[boxIndex][monPosInBox]), MON_DATA_SPECIES, NULL) == 0) {
+            pcBoxes->boxedPokemonArray[boxIndex][monPosInBox] = *boxMon;
             SaveData_SetFullSaveRequired();
-            return 1;
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-BOOL sub_02079914(PCBoxes *param0, u32 param1, u32 param2, BoxPokemon *boxMon)
+BOOL StorePokemonInPcAt(PCBoxes *pcBoxes, u32 param1, u32 param2, BoxPokemon *param3)
 {
-    sub_0207896C(boxMon);
-    BoxPokemon_SetShayminForm(boxMon, 0);
+    RestoreBoxedPokemonPP(param3);
+    BoxPokemon_SetShayminForm(param3, 0);
 
     if (param1 == 0xffffffff) {
-        param1 = param0->unk_00;
+        param1 = pcBoxes->currentBoxIndex;
     }
 
-    if ((param1 < 18) && (param2 < (5 * 6))) {
-        param0->unk_04[param1][param2] = *boxMon;
+    if ((param1 < MAX_PC_BOXES) && (param2 < MAX_MONS_PER_BOX)) {
+        pcBoxes->boxedPokemonArray[param1][param2] = *param3;
         SaveData_SetFullSaveRequired();
         return 1;
     } else {
@@ -124,180 +129,181 @@ BOOL sub_02079914(PCBoxes *param0, u32 param1, u32 param2, BoxPokemon *boxMon)
     return 0;
 }
 
-void sub_02079968(PCBoxes *param0, u32 param1, u32 param2)
+void InitializeBoxedPokemonAt(PCBoxes *pcBoxes, u32 boxIndex, u32 monPosInBox)
 {
-    if (param1 == 0xffffffff) {
-        param1 = param0->unk_00;
+    if (boxIndex == -1) {
+        boxIndex = pcBoxes->currentBoxIndex;
     }
 
-    if ((param2 < (5 * 6)) && (param1 < 18)) {
-        BoxPokemon_Init(&(param0->unk_04[param1][param2]));
+    if ((monPosInBox < MAX_MONS_PER_BOX) && (boxIndex < MAX_PC_BOXES)) {
+        BoxPokemon_Init(&(pcBoxes->boxedPokemonArray[boxIndex][monPosInBox]));
         SaveData_SetFullSaveRequired();
     } else {
         GF_ASSERT(0);
     }
 }
 
-u32 sub_0207999C(const PCBoxes *param0)
+u32 GetCurrentBoxId(const PCBoxes *pcBoxes)
 {
-    return param0->unk_00;
+    return pcBoxes->currentBoxIndex;
 }
 
-u32 PCBoxes_FirstEmptyBox(const PCBoxes *param0)
+u32 PCBoxes_FirstEmptyBox(const PCBoxes *pcBoxes)
 {
-    int v0, v1;
+    int boxIndex, monPosInBox;
 
-    v0 = param0->unk_00;
+    boxIndex = pcBoxes->currentBoxIndex;
 
     while (TRUE) {
-        for (v1 = 0; v1 < (5 * 6); v1++) {
-            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_SPECIES_EXISTS, NULL) == 0) {
-                return v0;
+        for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(pcBoxes->boxedPokemonArray[boxIndex][monPosInBox])), MON_DATA_SPECIES_EXISTS, NULL) == 0) {
+                return boxIndex;
             }
         }
 
-        if (++v0 >= 18) {
-            v0 = 0;
+        if (++boxIndex >= MAX_PC_BOXES) {
+            boxIndex = 0;
         }
 
-        if (v0 == param0->unk_00) {
+        if (boxIndex == pcBoxes->currentBoxIndex) {
             break;
         }
     }
 
-    return 18;
+    return MAX_PC_BOXES;
 }
 
-BOOL sub_020799F0(const PCBoxes *param0, int *param1, int *param2)
+BOOL GetNextAvailableBoxSpaceAfter(const PCBoxes *pcBoxes, int *boxIndexParam, int *monPosInBoxParam)
 {
-    int v0, v1;
+    int boxIndex, monPosInBox;
 
-    if (*param1 == 0xffffffff) {
-        *param1 = param0->unk_00;
+    if (*boxIndexParam == -1) {
+        *boxIndexParam = pcBoxes->currentBoxIndex;
     }
 
-    v0 = *param1;
-    v1 = *param2;
+    boxIndex = *boxIndexParam;
+    monPosInBox = *monPosInBoxParam;
 
     while (TRUE) {
-        for (; v1 < (5 * 6); v1++) {
-            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_SPECIES_EXISTS, NULL) == 0) {
-                *param1 = v0;
-                *param2 = v1;
-                return 1;
+        for (; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(pcBoxes->boxedPokemonArray[boxIndex][monPosInBox])), MON_DATA_SPECIES_EXISTS, NULL) == 0) {
+                *boxIndexParam = boxIndex;
+                *monPosInBoxParam = monPosInBox;
+                return TRUE;
             }
         }
 
-        if (++v0 >= 18) {
-            v0 = 0;
+        if (++boxIndex >= MAX_PC_BOXES) {
+            boxIndex = 0;
         }
 
-        if (v0 == (*param1)) {
+        if (boxIndex == (*boxIndexParam)) {
             break;
         }
 
-        v1 = 0;
+        monPosInBox = 0;
     }
 
-    return 18;
+    return MAX_PC_BOXES;
 }
 
-u32 sub_02079A50(const PCBoxes *param0)
+u32 GetBoxedPokemonCount(const PCBoxes *pcBoxes)
 {
-    int v0, v1;
-    u32 v2 = 0;
+    int boxIndex, monPosInBox;
+    u32 pokemonCount = 0;
 
-    for (v0 = 0; v0 < 18; v0++) {
-        for (v1 = 0; v1 < (5 * 6); v1++) {
-            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_SPECIES_EXISTS, NULL) != 0) {
-                v2++;
+    for (boxIndex = 0; boxIndex < MAX_PC_BOXES; boxIndex++) {
+        for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(pcBoxes->boxedPokemonArray[boxIndex][monPosInBox])), MON_DATA_SPECIES_EXISTS, NULL) != 0) {
+                pokemonCount++;
             }
         }
     }
 
-    return v2;
+    return pokemonCount;
 }
 
-void sub_02079A94(PCBoxes *param0, u32 param1)
+void SetCurrentBoxIndex(PCBoxes *pcBoxes, u32 boxIndex)
 {
-    if (param1 < 18) {
-        param0->unk_00 = param1;
+    if (boxIndex < MAX_PC_BOXES) {
+        pcBoxes->currentBoxIndex = boxIndex;
         SaveData_SetFullSaveRequired();
     } else {
         GF_ASSERT(0);
     }
 }
 
-u32 sub_02079AA8(const PCBoxes *param0, u32 param1)
+u32 sub_02079AA8(const PCBoxes *pcBoxes, u32 boxIndex)
 {
-    if (param1 < 18) {
-        return param0->unk_13B4[param1];
+    if (boxIndex < MAX_PC_BOXES) {
+        return pcBoxes->unk_13B4[boxIndex];
     } else {
         GF_ASSERT(0);
-        return 0;
+        return FALSE;
     }
 }
 
-void sub_02079AC4(PCBoxes *param0, u32 param1, u32 param2)
+void sub_02079AC4(PCBoxes *pcBoxes, u32 boxIndex, u32 param2)
 {
-    if (param1 == 0xffffffff) {
-        param1 = param0->unk_00;
+    if (boxIndex == -1) {
+        boxIndex = pcBoxes->currentBoxIndex;
     }
 
-    if ((param1 < 18) && (param2 < (16 + 8))) {
+    // What do 16 and 8 mean here?
+    if ((boxIndex < MAX_PC_BOXES) && (param2 < (16 + 8))) {
         if (param2 >= 16) {
             param2 += 8;
         }
 
-        param0->unk_13B4[param1] = param2;
+        pcBoxes->unk_13B4[boxIndex] = param2;
         SaveData_SetFullSaveRequired();
     } else {
         GF_ASSERT(0);
     }
 }
 
-void sub_02079AF4(const PCBoxes *param0, u32 param1, Strbuf *param2)
+void CopyBoxName(const PCBoxes *pcBoxes, u32 boxIndex, Strbuf *copyDestination)
 {
-    if (param1 == 0xffffffff) {
-        param1 = param0->unk_00;
+    if (boxIndex == -1) {
+        boxIndex = pcBoxes->currentBoxIndex;
     }
 
-    if (param1 < 18) {
-        Strbuf_CopyChars(param2, param0->unk_10E4[param1]);
+    if (boxIndex < MAX_PC_BOXES) {
+        Strbuf_CopyChars(copyDestination, pcBoxes->boxNames[boxIndex]);
     } else {
         GF_ASSERT(0);
     }
 }
 
-void sub_02079B24(PCBoxes *param0, u32 param1, const Strbuf *param2)
+void RenameBox(PCBoxes *pcBoxes, u32 boxIndex, const Strbuf *newName)
 {
-    if (param1 == 0xffffffff) {
-        param1 = param0->unk_00;
+    if (boxIndex == -1) {
+        boxIndex = pcBoxes->currentBoxIndex;
     }
 
-    if (param1 < 18) {
-        Strbuf_ToChars(param2, param0->unk_10E4[param1], 20);
+    if (boxIndex < MAX_PC_BOXES) {
+        Strbuf_ToChars(newName, pcBoxes->boxNames[boxIndex], 20);
         SaveData_SetFullSaveRequired();
     }
 }
 
-u32 sub_02079B54(const PCBoxes *param0, u32 param1)
+u32 GetPokemonCountInBox(const PCBoxes *pcBoxes, u32 boxIndex)
 {
-    if (param1 == 0xffffffff) {
-        param1 = param0->unk_00;
+    if (boxIndex == -1) {
+        boxIndex = pcBoxes->currentBoxIndex;
     }
 
-    if (param1 < 18) {
-        int v0;
-        u32 v1 = 0;
+    if (boxIndex < MAX_PC_BOXES) {
+        int monPosInBox;
+        u32 pokemonCount = 0;
 
-        for (v0 = 0; v0 < (5 * 6); v0++) {
-            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_SPECIES_EXISTS, NULL)) {
-                v1++;
+        for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(pcBoxes->boxedPokemonArray[boxIndex][monPosInBox])), MON_DATA_SPECIES_EXISTS, NULL)) {
+                pokemonCount++;
             }
         }
 
-        return v1;
+        return pokemonCount;
     } else {
         GF_ASSERT(0);
     }
@@ -305,25 +311,25 @@ u32 sub_02079B54(const PCBoxes *param0, u32 param1)
     return 0;
 }
 
-u32 sub_02079B98(const PCBoxes *param0, u32 param1)
+u32 GetEggCountInBox(const PCBoxes *pcBoxes, u32 boxIndex)
 {
-    if (param1 == 0xffffffff) {
-        param1 = param0->unk_00;
+    if (boxIndex == -1) {
+        boxIndex = pcBoxes->currentBoxIndex;
     }
 
-    if (param1 < 18) {
-        int v0;
-        u32 v1 = 0;
+    if (boxIndex < MAX_PC_BOXES) {
+        int monPosInBox;
+        u32 eggCount = 0;
 
-        for (v0 = 0; v0 < (5 * 6); v0++) {
-            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_SPECIES_EXISTS, NULL)) {
-                if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_IS_EGG, NULL) == 0) {
-                    v1++;
+        for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(pcBoxes->boxedPokemonArray[boxIndex][monPosInBox])), MON_DATA_SPECIES_EXISTS, NULL)) {
+                if (BoxPokemon_GetValue((BoxPokemon *)(&(pcBoxes->boxedPokemonArray[boxIndex][monPosInBox])), MON_DATA_IS_EGG, NULL) == 0) {
+                    eggCount++;
                 }
             }
         }
 
-        return v1;
+        return eggCount;
     } else {
         GF_ASSERT(0);
     }
@@ -331,78 +337,79 @@ u32 sub_02079B98(const PCBoxes *param0, u32 param1)
     return 0;
 }
 
-u32 sub_02079BEC(const PCBoxes *param0)
+u32 GetTotalBoxedEggCount(const PCBoxes *pcBoxes)
 {
-    u32 v0, v1;
+    u32 eggCount, boxIndex;
 
-    for (v1 = 0, v0 = 0; v1 < 18; v1++) {
-        v0 += sub_02079B98(param0, v1);
+    for (boxIndex = 0, eggCount = 0; boxIndex < MAX_PC_BOXES; boxIndex++) {
+        eggCount += GetEggCountInBox(pcBoxes, boxIndex);
     }
 
-    return v0;
+    return eggCount;
 }
 
-u32 sub_02079C08(const PCBoxes *param0, u32 param1, u32 param2, int param3, void *param4)
+u32 GetBoxedPokemonData(const PCBoxes *pcBoxes, u32 boxIndex, u32 monPosInBox, enum PokemonDataParam pokemonData, void *dest)
 {
-    GF_ASSERT((param1 < 18) || (param1 == 0xffffffff));
-    GF_ASSERT(param2 < (5 * 6));
+    GF_ASSERT((boxIndex < MAX_PC_BOXES) || (boxIndex == -1));
+    GF_ASSERT(monPosInBox < MAX_MONS_PER_BOX);
 
-    if (param1 == 0xffffffff) {
-        param1 = param0->unk_00;
+    if (boxIndex == -1) {
+        boxIndex = pcBoxes->currentBoxIndex;
     }
 
-    return BoxPokemon_GetValue((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
+    return BoxPokemon_GetValue((BoxPokemon *)(&pcBoxes->boxedPokemonArray[boxIndex][monPosInBox]), pokemonData, dest);
 }
 
-void sub_02079C50(PCBoxes *param0, u32 param1, u32 param2, int param3, void *param4)
+void SetBoxedPokemonDataWithSave(PCBoxes *pcBoxes, u32 boxIndex, u32 monPosInBox, enum PokemonDataParam pokemonData, void *value)
 {
-    GF_ASSERT((param1 < 18) || (param1 == 0xffffffff));
-    GF_ASSERT(param2 < (5 * 6));
+    GF_ASSERT((boxIndex < MAX_PC_BOXES) || (boxIndex == -1));
+    GF_ASSERT(monPosInBox < MAX_MONS_PER_BOX);
 
-    if (param1 == 0xffffffff) {
-        param1 = param0->unk_00;
+    if (boxIndex == -1) {
+        boxIndex = pcBoxes->currentBoxIndex;
     }
 
-    BoxPokemon_SetValue((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
+    BoxPokemon_SetValue((BoxPokemon *)(&pcBoxes->boxedPokemonArray[boxIndex][monPosInBox]), pokemonData, value);
     SaveData_SetFullSaveRequired();
 }
 
-BoxPokemon *GetBoxedPokemonFrom(const PCBoxes *pcBoxes, u32 boxIndex, u32 pokemonBoxLocationIndex)
+BoxPokemon *GetBoxedPokemonFrom(const PCBoxes *pcBoxes, u32 boxIndex, u32 monPosInBox)
 {
-    GF_ASSERT((boxIndex < 18) || (boxIndex == 0xffffffff));
-    GF_ASSERT(pokemonBoxLocationIndex < (5 * 6));
+    GF_ASSERT((boxIndex < MAX_PC_BOXES) || (boxIndex == -1));
+    GF_ASSERT(monPosInBox < MAX_MONS_PER_BOX);
 
-    if (boxIndex == 0xffffffff) {
-        boxIndex = pcBoxes->unk_00;
+    if (boxIndex == -1) {
+        boxIndex = pcBoxes->currentBoxIndex;
     }
 
-    return (BoxPokemon *)&(pcBoxes->unk_04[boxIndex][pokemonBoxLocationIndex]);
+    return (BoxPokemon *)&(pcBoxes->boxedPokemonArray[boxIndex][monPosInBox]);
 }
 
-void sub_02079CD8(PCBoxes *param0, u32 param1)
+void sub_02079CD8(PCBoxes *pcBoxes, u32 param1)
 {
     GF_ASSERT(param1 < 8);
 
-    param0->unk_13C6 |= (1 << param1);
+    pcBoxes->unk_13C6 |= (1 << param1);
     SaveData_SetFullSaveRequired();
 }
 
-BOOL sub_02079CFC(const PCBoxes *param0, u32 param1)
+// TODO: figure out unk_13C6, and how it relates to 16 and 8
+BOOL sub_02079CFC(const PCBoxes *pcBoxes, u32 param1)
 {
     GF_ASSERT(param1 < 8);
 
-    return (param0->unk_13C6 & (1 << param1)) != 0;
+    return (pcBoxes->unk_13C6 & (1 << param1)) != 0;
 }
 
-u32 sub_02079D20(const PCBoxes *param0)
+u32 sub_02079D20(const PCBoxes *pcBoxes)
 {
-    u32 v0, v1;
+    u32 i, count;
 
-    for (v0 = 0, v1 = 0; v0 < 8; v0++) {
-        if (sub_02079CFC(param0, v0)) {
-            v1++;
+    for (i = 0, count = 0; i < 8; i++) {
+        if (sub_02079CFC(pcBoxes, i)) {
+            count++;
         }
     }
 
-    return v1;
+    return count;
 }

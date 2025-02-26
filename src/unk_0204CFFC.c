@@ -456,7 +456,7 @@ BOOL ScrCmd_19C(ScriptContext *param0)
         }
     }
 
-    v1 += sub_02079BEC(v6);
+    v1 += GetTotalBoxedEggCount(v6);
     *v5 = v1;
 
     return 0;

@@ -1146,7 +1146,7 @@ static void ov94_02240FA0(UnkStruct_ov94_0223FD4C *param0, int param1)
             }
         }
 
-        sub_02079AF4(v5, param1, param0->unk_BA4);
+        CopyBoxName(v5, param1, param0->unk_BA4);
     } else {
         int v8 = Party_GetCurrentCount(param0->unk_00->unk_08);
 

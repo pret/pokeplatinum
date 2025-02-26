@@ -586,7 +586,7 @@ void ov19_021D84E0(UnkStruct_ov19_021D8318 *param0)
     int v0, v1;
     BoxPokemon *v2;
 
-    v1 = sub_0207999C(param0->unk_58F8->unk_00);
+    v1 = GetCurrentBoxId(param0->unk_58F8->unk_00);
 
     for (v0 = 0; v0 < (5 * 6); v0++) {
         v2 = GetBoxedPokemonFrom(param0->unk_58F8->unk_00, v1, v0);
