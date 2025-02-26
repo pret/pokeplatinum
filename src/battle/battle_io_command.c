@@ -174,11 +174,11 @@ void ov16_0225C038(BattleSystem *battleSys, BattlerData *param1, int param2, int
     BallThrow v0;
     s16 v1, v2;
 
-    if (BattleSystem_BattleType(battleSys) & (0x20 | 0x200)) {
+    if (BattleSystem_BattleType(battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
         return;
     }
 
-    if ((param1->battlerType & 0x1) && ((BattleSystem_BattleType(battleSys) & 0x1) == 0)) {
+    if ((param1->battlerType & 0x1) && ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE)) {
         return;
     }
 
@@ -655,14 +655,14 @@ static void ov16_0225C47C(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C558(BattleSystem *battleSys, BattlerData *param1)
 {
-    u32 v0;
+    u32 battleType;
     UnkStruct_ov16_02268A14 *v1;
 
-    v0 = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_BattleType(battleSys);
     v1 = ov16_0223E02C(battleSys);
 
     if (param1->bootState == 0x0) {
-        if ((v0 & 0x8) || (((v0 & 0x8) == 0) && (param1->battlerType != 4))) {
+        if ((battleType & BATTLE_TYPE_2vs2) || (((battleType & BATTLE_TYPE_2vs2) == 0) && (param1->battlerType != 4))) {
             ov16_0226947C(v1, -0xd00, 0);
         }
     }
@@ -978,7 +978,7 @@ static void ov16_0225CA74(BattleSystem *battleSys, BattlerData *param1)
 
     ov16_0223F638(battleSys, v0->unk_02, v0->unk_08);
 
-    if (BattleSystem_BattleType(battleSys) & 0x80) {
+    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_FRONTIER) {
         BattleSystem_SetResultFlag(battleSys, v0->unk_04);
     } else {
         for (v4 = 0; v4 < BattleSystem_MaxBattlers(battleSys); v4++) {

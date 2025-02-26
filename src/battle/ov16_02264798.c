@@ -22,7 +22,7 @@ void ov16_02264798(BattlerData *param0, BattleSystem *battleSys)
         return;
     }
 
-    if (BattleSystem_BattleType(battleSys) & (0x20 | 0x200)) {
+    if (BattleSystem_BattleType(battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
         return;
     }
 
