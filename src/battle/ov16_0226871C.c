@@ -1080,7 +1080,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
         for (i = 0; i < 7; i++) {
             v0->unk_3C[i] = Heap_AllocFromHeap(5, 0x800);
 
-            if ((BattleSystem_BattleType(battleSys) & 0x80) && (Unk_ov16_02270264[i] == 49)) {
+            if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_FRONTIER) && (Unk_ov16_02270264[i] == 49)) {
                 v6 = 170;
             } else {
                 v6 = Unk_ov16_02270264[i];
@@ -1097,7 +1097,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
         u16 *v7;
         int v8;
 
-        v8 = (BattleSystem_BattleType(battleSys) & 0x80) ? 340 : 242;
+        v8 = (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_FRONTIER) ? 340 : 242;
         v0->unk_58 = Heap_AllocFromHeap(5, 0x200);
 
         PaletteData_LoadBufferFromFileStart(v1, 7, v8, 5, 1, 0, 0);
@@ -1139,7 +1139,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
         MI_CpuCopy16(v0->unk_58, v0->unk_5C, 0x20);
         MI_CpuCopy16(&v0->unk_58[7 * 16], &v0->unk_5C[16 * 1], 0x20);
 
-        if (BattleSystem_BattleType(battleSys) & 0x80) {
+        if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_FRONTIER) {
             v15 = 341;
         } else if (Unk_ov16_022704E4[v2].unk_02 != 0xffff) {
             v15 = Unk_ov16_022704E4[v2].unk_02;
@@ -1149,7 +1149,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
 
         v14 = Graphics_GetPlttData(7, v15, &v13, 5);
 
-        if (BattleSystem_BattleType(battleSys) & 0x80) {
+        if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_FRONTIER) {
             MI_CpuCopy16(v13->pRawData, v0->unk_60, 0x40);
         } else {
             MI_CpuCopy16(v13->pRawData, v0->unk_60, 0x20);
@@ -1208,7 +1208,7 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
     {
         int v5;
 
-        if (BattleSystem_BattleType(param0->unk_00) & 0x80) {
+        if (BattleSystem_BattleType(param0->unk_00) & BATTLE_TYPE_FRONTIER) {
             v5 = 169;
         } else {
             v5 = 28;
@@ -1224,7 +1224,7 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
         sub_0207C948(v1, v2, NNS_G2D_VRAM_TYPE_2DSUB, 0, 20025 + i);
     }
 
-    if (BattleSystem_BattleType(param0->unk_00) & 0x400) {
+    if (BattleSystem_BattleType(param0->unk_00) & BATTLE_TYPE_CATCH_TUTORIAL) {
         ov16_0226DE44(v1, v2, 5, v3, 20412, 20036, 20406, 20395);
         param0->unk_6C4.unk_00 = ov16_0226DEEC(v1, v2, 5, 20412, 20036, 20406, 20395, 10, 0);
     }
@@ -1246,7 +1246,7 @@ void ov16_02268B8C(UnkStruct_ov16_02268A14 *param0)
     sub_0207CA3C(v2, 20020);
     sub_0207CA44(v2, 20017, 20017);
 
-    if (BattleSystem_BattleType(param0->unk_00) & 0x400) {
+    if (BattleSystem_BattleType(param0->unk_00) & BATTLE_TYPE_CATCH_TUTORIAL) {
         ov16_0226DF68(param0->unk_6C4.unk_00);
         ov16_0226DEC4(v2, 20412, 20036, 20406, 20395);
     }
@@ -1282,7 +1282,7 @@ void ov16_02268C04(NARC *param0, NARC *param1, UnkStruct_ov16_02268A14 *param2, 
     if (0) {
         int v6;
 
-        if (BattleSystem_BattleType(param2->unk_00) & 0x80) {
+        if (BattleSystem_BattleType(param2->unk_00) & BATTLE_TYPE_FRONTIER) {
             v6 = 169;
         } else {
             v6 = v0->unk_00;
@@ -1519,7 +1519,7 @@ void ov16_022691BC(UnkStruct_ov16_02268A14 *param0)
         Sprite_SetDrawFlag2(param0->unk_5BC[i]->sprite, 1);
     }
 
-    if (BattleSystem_BattleType(param0->unk_00) & 0x1) {
+    if (BattleSystem_BattleType(param0->unk_00) & BATTLE_TYPE_TRAINER) {
         for (i = 0; i < 6; i++) {
             Sprite_SetDrawFlag2(param0->unk_5D4[i]->sprite, 1);
         }
@@ -1554,7 +1554,7 @@ int ov16_0226925C(UnkStruct_ov16_02268A14 *param0)
 
     GF_ASSERT(v4->unk_18 != NULL);
 
-    if (BattleSystem_BattleType(param0->unk_00) & 0x400) {
+    if (BattleSystem_BattleType(param0->unk_00) & BATTLE_TYPE_CATCH_TUTORIAL) {
         v1 = ov16_0226CD18(param0);
     } else {
         v1 = TouchScreen_CheckRectanglePressed(v4->unk_14);
@@ -1749,11 +1749,11 @@ static void ov16_02269668(UnkStruct_ov16_02268A14 *param0, int param1, int param
 
     param0->unk_66A = v5;
 
-    if (BattleSystem_BattleType(param0->unk_00) & 0x20) {
+    if (BattleSystem_BattleType(param0->unk_00) & BATTLE_TYPE_SAFARI) {
         v0 = MessageLoader_GetNewStrbuf(v4, 931);
         v1 = MessageLoader_GetNewStrbuf(v4, 932);
         v2 = MessageLoader_GetNewStrbuf(v4, 933);
-    } else if (BattleSystem_BattleType(param0->unk_00) & 0x200) {
+    } else if (BattleSystem_BattleType(param0->unk_00) & BATTLE_TYPE_PAL_PARK) {
         v0 = MessageLoader_GetNewStrbuf(v4, 1223);
         v1 = MessageLoader_GetNewStrbuf(v4, 932);
         v2 = MessageLoader_GetNewStrbuf(v4, 933);
@@ -1781,7 +1781,7 @@ static void ov16_02269668(UnkStruct_ov16_02268A14 *param0, int param1, int param
     Strbuf_Free(v2);
     Strbuf_Free(v3);
 
-    if ((BattleSystem_BattleType(param0->unk_00) & (0x20 | 0x200)) == 0) {
+    if ((BattleSystem_BattleType(param0->unk_00) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) == 0) {
         Pokemon *v7;
         ManagedSprite *v8;
         int v9, v10;
@@ -3752,7 +3752,7 @@ static void ov16_0226BD74(SysTask *param0, void *param1)
 
     if (gSystem.touchHeld && ((v4 == 1) || (v5 == 1))) {
         if (memcmp(&v2[8], &v0->unk_5C[8], v3) == 0) {
-            if (BattleSystem_BattleType(v0->unk_00) & 0x80) {
+            if (BattleSystem_BattleType(v0->unk_00) & BATTLE_TYPE_FRONTIER) {
                 MI_CpuCopy16(&v0->unk_60[0], &v2[0], 0x20);
                 MI_CpuCopy16(&v0->unk_60[16], &v2[7 * 16], 0x20);
             } else {
@@ -3761,7 +3761,7 @@ static void ov16_0226BD74(SysTask *param0, void *param1)
         }
     } else {
         if (memcmp(&v2[8], &v0->unk_60[8], v3) == 0) {
-            if (BattleSystem_BattleType(v0->unk_00) & 0x80) {
+            if (BattleSystem_BattleType(v0->unk_00) & BATTLE_TYPE_FRONTIER) {
                 MI_CpuCopy16(&v0->unk_5C[0], &v2[0], 0x20);
                 MI_CpuCopy16(&v0->unk_5C[16], &v2[7 * 16], 0x20);
             } else {

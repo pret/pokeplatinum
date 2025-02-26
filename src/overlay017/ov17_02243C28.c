@@ -735,7 +735,7 @@ static void ov17_022444BC(SysTask *param0, void *param1)
         v1 = (v0->unk_0D == 0) ? 1 : 0;
 
         v4.unk_20[1] = v0->unk_00->unk_0C.unk_08[v1];
-        v4.unk_30 = 0;
+        v4.battleType = 0;
         v4.unk_50 = 8;
         v4.unk_54.unk_00 = 45;
         v4.unk_54.unk_04 = 1;

@@ -502,7 +502,7 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
     int v6;
     Party *v7;
     Pokemon *v8;
-    u32 v9;
+    u32 battleType;
     int v10;
 
     MI_CpuClearFast(&v0, sizeof(UnkStruct_ov16_0225C260));
@@ -520,9 +520,9 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
     v0.unk_01 = partySlot;
     v0.unk_29 = battleCtx->battlersSwitchingMask | v10;
 
-    v9 = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_BattleType(battleSys);
 
-    if ((v9 & 0x2) && ((v9 & 0x8) == 0)) {
+    if ((battleType & BATTLE_TYPE_DOUBLES) && ((battleType & BATTLE_TYPE_2vs2) == 0)) {
         v2 = battler & 1;
     } else {
         v2 = battler;
@@ -546,7 +546,7 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
                 v0.unk_08[0][v6] = 2;
             }
 
-            if (v9 & (0x4 | 0x20 | 0x80 | 0x200)) {
+            if (battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_SAFARI | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PAL_PARK)) {
                 v0.unk_02[v6] = 0;
             } else {
                 v0.unk_02[v6] = Pokemon_GetPercentToNextLevel(v8);
@@ -556,7 +556,10 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
         }
     }
 
-    if (((v9 & (0x4 | 0x8)) == (0x4 | 0x8)) || (v9 & 0x10) || (v9 == ((0x2 | 0x1) | 0x8 | 0x40)) || (v9 == (((0x2 | 0x1) | 0x8 | 0x40) | 0x80))) {
+    if (((battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) == (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2))
+        || (battleType & BATTLE_TYPE_TAG)
+        || (battleType == (BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
+        || (battleType == ((BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI) | BATTLE_TYPE_FRONTIER))) {
         if (Battler_Side(battleSys, battler)) {
             v2 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
         } else {
@@ -692,16 +695,16 @@ void BattleIO_ShowTargetSelection(BattleSystem *battleSys, BattleContext *battle
 {
     UnkStruct_ov16_0225C29C v0;
     int v1;
-    u32 v2;
+    u32 battleType;
 
     BattleIO_ClearBuffer(battleCtx, battler);
 
-    v2 = BattleSystem_BattleType(battleSys);
+    battleType = BattleSystem_BattleType(battleSys);
 
     v0.unk_00 = 16;
     v0.unk_02 = range;
 
-    if (((v2 & 0x2) == 0) || (v2 & 0x8) || ((v2 & 0x2) && (battler >= 2))) {
+    if (((battleType & BATTLE_TYPE_DOUBLES) == FALSE) || (battleType & BATTLE_TYPE_2vs2) || ((battleType & BATTLE_TYPE_DOUBLES) && (battler >= 2))) {
         v0.unk_01 = 1;
     } else {
         v0.unk_01 = 0;
@@ -759,7 +762,7 @@ void BattleIO_ShowBagScreen(BattleSystem *battleSys, BattleContext *battleCtx, i
         v0.unk_20[v1] = battleCtx->battleMons[v1].moveEffectsData.embargoTurns;
     }
 
-    if (BattleSystem_BattleType(battleSys) == (0x2 | 0x8 | 0x40)) {
+    if (BattleSystem_BattleType(battleSys) == BATTLE_TYPE_AI_PARTNER) {
         if (((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0) && ((battleCtx->battlersSwitchingMask & FlagIndex(3)) == 0)) {
             v0.unk_01 = 1;
             v0.unk_02 = 0;
@@ -791,7 +794,7 @@ void BattleIO_ShowBagScreen(BattleSystem *battleSys, BattleContext *battleCtx, i
                 v0.unk_03 = 0;
             }
         }
-    } else if (BattleSystem_BattleType(battleSys) == (0x0 | 0x0)) {
+    } else if (BattleSystem_BattleType(battleSys) == (BATTLE_TYPE_SINGLES | BATTLE_TYPE_WILD_MON)) { // Was (0x0 | 0x0). Is this what they intended?
         v0.unk_01 = 0;
 
         if (battleCtx->battleMons[1].moveEffectsMask & (0x40 | 0x80 | 0x40000 | 0x20000000)) {
@@ -1350,12 +1353,12 @@ void BattleIO_IncrementRecord(BattleSystem *battleSys, int param1, int param2, i
 void BattleIO_LinkWaitMessage(BattleSystem *battleSys, int battler)
 {
     UnkStruct_ov16_0225C988 v0;
-    u32 v1 = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_BattleType(battleSys);
 
     v0.unk_00 = 55;
     v0.unk_02 = 0;
 
-    if ((v1 & 0x4) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
+    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
         v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_04[0]);
         GF_ASSERT(v0.unk_02 < 28);
         SendMessage(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C988));
@@ -1408,7 +1411,7 @@ void BattleIO_EscapeMessage(BattleSystem *battleSys, BattleContext *param1)
 {
     UnkStruct_ov16_0225C9F0 v0;
     int v1;
-    u32 v2 = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_BattleType(battleSys);
 
     v0.unk_00 = 60;
     v0.unk_01 = 0;
@@ -1420,7 +1423,7 @@ void BattleIO_EscapeMessage(BattleSystem *battleSys, BattleContext *param1)
         }
     }
 
-    if ((v2 & 0x4) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
+    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
         v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_04[0]);
         GF_ASSERT(v0.unk_02 < 28);
     }
@@ -1431,12 +1434,12 @@ void BattleIO_EscapeMessage(BattleSystem *battleSys, BattleContext *param1)
 void BattleIO_ForfeitMessage(BattleSystem *battleSys)
 {
     UnkStruct_ov16_0225CA14 v0;
-    u32 v1 = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_BattleType(battleSys);
 
     v0.unk_00 = 61;
     v0.unk_02 = 0;
 
-    if ((v1 & 0x4) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
+    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
         v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_04[0]);
         GF_ASSERT(v0.unk_02 < 28);
     }
@@ -1498,13 +1501,13 @@ void BattleIO_PlayMusic(BattleSystem *battleSys, int param1, int param2)
 void BattleIO_SubmitResult(BattleSystem *battleSys)
 {
     UnkStruct_ov16_02266A38 v0;
-    u32 v1 = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_BattleType(battleSys);
 
     v0.unk_00 = 65;
     v0.unk_04 = BattleSystem_ResultMask(battleSys);
     v0.unk_02 = 0;
 
-    if ((v1 & 0x4) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
+    if ((battleType & BATTLE_TYPE_LINK) && (sub_0202F250() == 1) && ((battleSys->battleStatusMask & 0x10) == 0)) {
         v0.unk_02 = ov16_0223F58C(battleSys, &v0.unk_08[0]);
         GF_ASSERT(v0.unk_02 <= 28);
     }

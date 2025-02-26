@@ -959,7 +959,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
     switch (battlerIn) {
     default:
     case BTLSCR_ALL_BATTLERS:
-        if (BattleSystem_BattleType(battleSys) & 0x10) {
+        if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) {
             for (i = 0; i < maxBattlers; i++) {
                 battlerData = BattleSystem_BattlerData(battleSys, i);
                 if (battlerData->battlerType != BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
@@ -3904,7 +3904,7 @@ static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *b
     u32 prize;
     if ((battleSys->battleType & BATTLE_TYPE_TAG) || battleSys->battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) {
         prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trainer.header.trainerType];
-    } else if (battleSys->battleType & 0x2) {
+    } else if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
         prize = lastLevel * 4 * battleCtx->prizeMoneyMul * 2 * sTrainerClassPrizeMul[trainer.header.trainerType];
     } else {
         prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trainer.header.trainerType];
@@ -10576,7 +10576,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v7.surface = 0;
                 v7.battleSys = v2->battleSys;
 
-                if (BattleSystem_BattleType(v2->battleSys) & 0x2) {
+                if (BattleSystem_BattleType(v2->battleSys) & BATTLE_TYPE_DOUBLES) {
                     if (v1 == 1) {
                         v7.type = 16;
                     } else {
@@ -10614,11 +10614,9 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 1:
         if (ov12_022368D0(v2->ballRotation, 0) == 0) {
             {
-                u32 v9;
+                u32 battleType = BattleSystem_BattleType(v2->battleSys);
 
-                v9 = BattleSystem_BattleType(v2->battleSys);
-
-                if (v9 & 0x1) {
+                if (battleType & BATTLE_TYPE_TRAINER) {
                     sub_02005728(1510, 117);
                     ov12_022368C8(v2->ballRotation, 2);
                     v2->seqNum = 25;
@@ -10715,7 +10713,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 ov16_0223F4B0(v2->battleSys, v1);
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
-                if (BattleSystem_BattleType(v2->battleSys) & (0x200 | 0x400)) {
+                if (BattleSystem_BattleType(v2->battleSys) & (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_CATCH_TUTORIAL)) {
                     v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                     BattleSystem_SetPokemonCatchData(v2->battleSys, v2->battleCtx, v3);
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
@@ -11092,7 +11090,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         break;
     case 32:
         if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
-            if (BattleSystem_BattleType(v2->battleSys) & (0x200 | 0x400)) {
+            if (BattleSystem_BattleType(v2->battleSys) & (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_CATCH_TUTORIAL)) {
                 ov12_0223783C(v2->ballRotation);
                 sub_02007DD4(v5);
             }

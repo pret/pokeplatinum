@@ -126,7 +126,7 @@ void ov13_022264F4(UnkStruct_ov13_022264F4 *param0)
 
     ov13_02227A4C(v0);
 
-    if (BattleSystem_BattleType(v0->unk_00->unk_00) & 0x400) {
+    if (BattleSystem_BattleType(v0->unk_00->unk_00) & BATTLE_TYPE_CATCH_TUTORIAL) {
         v0->unk_00->unk_14 = 1;
     }
 }
@@ -419,7 +419,7 @@ static u8 ov13_02226A5C(UnkStruct_ov13_02227244 *param0)
             ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
             return 13;
         } else if (v2 == 3) {
-            if (!(BattleSystem_BattleType(v0->unk_00) & 0x1)) {
+            if (!(BattleSystem_BattleType(v0->unk_00) & BATTLE_TYPE_TRAINER)) {
                 ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
                 return 13;
             } else {
