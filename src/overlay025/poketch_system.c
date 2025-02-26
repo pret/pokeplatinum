@@ -11,7 +11,6 @@
 #include "overlay025/poketch_button.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
 
-#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "enums.h"
 #include "field_system.h"
@@ -19,6 +18,7 @@
 #include "game_overlay.h"
 #include "heap.h"
 #include "inlines.h"
+#include "poketch_memory.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sys_task.h"
@@ -360,7 +360,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
     case 3:
         if (PoketchSystem_IsAppShutdown(poketchSys)) {
             PoketchSystem_UnloadApp(poketchSys);
-            AppStorageBuffer_ResetActiveAppID();
+            PoketchMemory_ResetActiveAppID();
             PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_CHANGE_APP);
         }
         break;

@@ -8,9 +8,9 @@
 #include "overlay035/struct_ov35_02256410_1.h"
 #include "overlay035/struct_ov35_02256410_decl.h"
 
-#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "heap.h"
+#include "poketch_memory.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
@@ -74,7 +74,7 @@ static BOOL ov35_0225621C(UnkStruct_ov35_0225621C *param0, PoketchSystem *poketc
 
     param0->unk_08.unk_04 = 1;
 
-    if (AppStorageBuffer_Read32(param3, (u8 *)(&(param0->unk_08.unk_00)), sizeof(u32)) == 0) {
+    if (PoketchMemory_Read32(param3, (u8 *)(&(param0->unk_08.unk_00)), sizeof(u32)) == FALSE) {
         param0->unk_08.unk_00 = 0;
     }
 
@@ -105,7 +105,7 @@ static void ov35_02256284(u32 param0, u32 param1, u32 param2, void *param3)
 
 static void ov35_0225628C(UnkStruct_ov35_0225621C *param0)
 {
-    AppStorageBuffer_Write32(param0->unk_04, (u8 *)(&(param0->unk_08.unk_00)), sizeof(u32));
+    PoketchMemory_Write32(param0->unk_04, (u8 *)(&(param0->unk_08.unk_00)), sizeof(u32));
     PoketchButtonManager_Free(param0->buttonManager);
     ov35_0225644C(param0->unk_10);
     Heap_FreeToHeap(param0);

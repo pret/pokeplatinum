@@ -7,10 +7,10 @@
 #include "overlay042/struct_ov42_022563D4_1.h"
 #include "overlay042/struct_ov42_022563D4_decl.h"
 
-#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "heap.h"
 #include "math.h"
+#include "poketch_memory.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 
@@ -64,7 +64,7 @@ static BOOL ov42_0225621C(UnkStruct_ov42_0225621C *param0, PoketchSystem *poketc
 {
     param0->unk_04 = param3;
 
-    if (AppStorageBuffer_Read32(param3, &(param0->unk_08), sizeof(param0->unk_08)) == 0) {
+    if (PoketchMemory_Read32(param3, &(param0->unk_08), sizeof(param0->unk_08)) == FALSE) {
         param0->unk_08.unk_00 = 1;
     }
 
@@ -81,7 +81,7 @@ static BOOL ov42_0225621C(UnkStruct_ov42_0225621C *param0, PoketchSystem *poketc
 
 static void ov42_02256260(UnkStruct_ov42_0225621C *param0)
 {
-    AppStorageBuffer_Write32(param0->unk_04, &(param0->unk_08), sizeof(param0->unk_08));
+    PoketchMemory_Write32(param0->unk_04, &(param0->unk_08), sizeof(param0->unk_08));
     ov42_0225648C(param0->unk_0C);
     Heap_FreeToHeap(param0);
 }

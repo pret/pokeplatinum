@@ -8,9 +8,9 @@
 #include "overlay027/struct_ov27_0225680C_1.h"
 #include "overlay027/struct_ov27_0225680C_decl.h"
 
-#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "heap.h"
+#include "poketch_memory.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
@@ -95,7 +95,7 @@ static BOOL ov27_0225621C(UnkStruct_ov27_0225621C *param0, BgConfig *param1, u32
 {
     param0->unk_08 = param2;
 
-    if (AppStorageBuffer_Read32(param2, &(param0->unk_38), sizeof(param0->unk_38))) {
+    if (PoketchMemory_Read32(param2, &(param0->unk_38), sizeof(param0->unk_38))) {
         param0->unk_0C = param0->unk_38.unk_14;
         param0->unk_14 = param0->unk_38.unk_1C;
         param0->unk_1C.unk_14 = param0->unk_38.unk_04;
@@ -138,7 +138,7 @@ static void ov27_022562AC(UnkStruct_ov27_0225621C *param0)
     param0->unk_38.unk_10 = param0->unk_1C.unk_08;
     param0->unk_38.unk_00 = param0->unk_1C.unk_00;
 
-    AppStorageBuffer_Write32(param0->unk_08, &(param0->unk_38), sizeof(param0->unk_38));
+    PoketchMemory_Write32(param0->unk_08, &(param0->unk_38), sizeof(param0->unk_38));
 
     ov27_02256654(param0);
     ov27_02256890(param0->unk_60);

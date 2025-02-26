@@ -14,11 +14,11 @@
 #include "overlay041/struct_ov41_022567B0_1.h"
 #include "overlay041/struct_ov41_022567B0_decl.h"
 
-#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
 #include "math.h"
+#include "poketch_memory.h"
 #include "sys_task_manager.h"
 
 struct UnkStruct_ov41_022567B0_t {
@@ -249,7 +249,7 @@ static void ov41_022569BC(UnkStruct_ov41_022567B0 *param0, u32 param1)
 
     Window_AddFromTemplate(param0->unk_04, &param0->unk_48, &v0);
 
-    if (AppStorageBuffer_ReadFast(param0->unk_00->unk_08, param0->unk_48.pixels, (20 * 19 * 0x20)) == 0) {
+    if (PoketchMemory_ReadFast(param0->unk_00->unk_08, param0->unk_48.pixels, (20 * 19 * 0x20)) == FALSE) {
         Window_FillTilemap(&param0->unk_48, 0x4);
     }
 
@@ -267,7 +267,7 @@ static void ov41_02256A1C(SysTask *param0, void *param1)
         PoketchTask_IncrementState(param1);
         break;
     case 1:
-        AppStorageBuffer_WriteFast(v0->unk_00->unk_08, v0->unk_48.pixels, (20 * 19 * 0x20));
+        PoketchMemory_WriteFast(v0->unk_00->unk_08, v0->unk_48.pixels, (20 * 19 * 0x20));
         Window_Remove(&v0->unk_48);
         Bg_FreeTilemapBuffer(v0->unk_04, 6);
         Bg_FreeTilemapBuffer(v0->unk_04, 7);

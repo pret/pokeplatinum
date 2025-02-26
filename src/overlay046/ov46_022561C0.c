@@ -8,10 +8,10 @@
 #include "overlay046/struct_ov46_02256BCC_1.h"
 #include "overlay046/struct_ov46_02256BCC_decl.h"
 
-#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "enums.h"
 #include "heap.h"
+#include "poketch_memory.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
@@ -136,12 +136,12 @@ static void ov46_02256258(UnkStruct_ov46_0225621C *param0, u32 param1, u32 param
 static void ov46_02256270(UnkStruct_ov46_0225621C *param0, UnkStruct_ov46_02256270 *param1)
 {
     param1->unk_00.unk_10 = ov46_0225710C(param0->unk_08);
-    AppStorageBuffer_Write32(param0->unk_04, param1, sizeof(UnkStruct_ov46_02256270));
+    PoketchMemory_Write32(param0->unk_04, param1, sizeof(UnkStruct_ov46_02256270));
 }
 
 static void ov46_0225628C(UnkStruct_ov46_0225621C *param0)
 {
-    if (AppStorageBuffer_Read32(param0->unk_04, &param0->unk_48, sizeof(UnkStruct_ov46_02256270))) {
+    if (PoketchMemory_Read32(param0->unk_04, &param0->unk_48, sizeof(UnkStruct_ov46_02256270))) {
         if (param0->unk_48.unk_44 == 2) {
             ov46_02256A88(param0);
 
