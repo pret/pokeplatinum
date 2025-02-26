@@ -14,11 +14,11 @@
 #include "overlay029/struct_ov29_022566C8_1.h"
 #include "overlay029/struct_ov29_022566C8_decl.h"
 
+#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
 #include "sys_task_manager.h"
-#include "app_storage_buffer.h"
 
 struct UnkStruct_ov29_022566C8_t {
     const UnkStruct_ov29_022566C8_1 *unk_00;

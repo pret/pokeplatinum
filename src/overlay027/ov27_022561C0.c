@@ -8,13 +8,13 @@
 #include "overlay027/struct_ov27_0225680C_1.h"
 #include "overlay027/struct_ov27_0225680C_decl.h"
 
+#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02022844.h"
-#include "app_storage_buffer.h"
 
 typedef struct {
     BOOL unk_00;

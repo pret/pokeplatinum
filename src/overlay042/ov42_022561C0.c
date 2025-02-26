@@ -7,12 +7,12 @@
 #include "overlay042/struct_ov42_022563D4_1.h"
 #include "overlay042/struct_ov42_022563D4_decl.h"
 
+#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "heap.h"
 #include "math.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "app_storage_buffer.h"
 
 typedef struct {
     u8 unk_00;

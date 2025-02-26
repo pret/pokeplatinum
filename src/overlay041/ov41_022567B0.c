@@ -14,12 +14,12 @@
 #include "overlay041/struct_ov41_022567B0_1.h"
 #include "overlay041/struct_ov41_022567B0_decl.h"
 
+#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
 #include "math.h"
 #include "sys_task_manager.h"
-#include "app_storage_buffer.h"
 
 struct UnkStruct_ov41_022567B0_t {
     const UnkStruct_ov41_022567B0_1 *unk_00;

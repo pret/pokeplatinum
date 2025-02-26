@@ -8,12 +8,12 @@
 #include "overlay043/struct_ov43_02256544_1.h"
 #include "overlay043/struct_ov43_02256544_decl.h"
 
+#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "heap.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "app_storage_buffer.h"
 
 typedef struct {
     u8 unk_00;

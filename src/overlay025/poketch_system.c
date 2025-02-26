@@ -11,6 +11,7 @@
 #include "overlay025/poketch_button.h"
 #include "overlay025/struct_ov25_02254560_decl.h"
 
+#include "app_storage_buffer.h"
 #include "bg_window.h"
 #include "enums.h"
 #include "field_system.h"
@@ -25,7 +26,6 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0201E3D8.h"
-#include "app_storage_buffer.h"
 
 FS_EXTERN_OVERLAY(poketch_digital_watch);
 FS_EXTERN_OVERLAY(overlay27);
