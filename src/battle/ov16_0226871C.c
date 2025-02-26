@@ -1043,14 +1043,14 @@ void ov16_022687A0(BgConfig *param0)
     }
 }
 
-void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3, u8 *param4)
+void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int param3, u8 *param4)
 {
     UnkStruct_ov16_02268A14 *v0;
     PaletteData *v1;
     int v2;
 
     v0 = ov16_0226871C();
-    v0->unk_00 = param2;
+    v0->unk_00 = battleSys;
     v0->unk_66D = param3;
     v0->unk_04 = param4;
 
@@ -1060,8 +1060,8 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
         (void)0;
     }
 
-    v1 = BattleSystem_PaletteSys(param2);
-    v2 = ov16_0223E240(param2);
+    v1 = BattleSystem_PaletteSys(battleSys);
+    v2 = ov16_0223E240(battleSys);
 
     if (v2 >= NELEMS(Unk_ov16_022704E4)) {
         v2 = 0;
@@ -1080,7 +1080,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
         for (i = 0; i < 7; i++) {
             v0->unk_3C[i] = Heap_AllocFromHeap(5, 0x800);
 
-            if ((BattleSystem_BattleType(param2) & 0x80) && (Unk_ov16_02270264[i] == 49)) {
+            if ((BattleSystem_BattleType(battleSys) & 0x80) && (Unk_ov16_02270264[i] == 49)) {
                 v6 = 170;
             } else {
                 v6 = Unk_ov16_02270264[i];
@@ -1097,7 +1097,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
         u16 *v7;
         int v8;
 
-        v8 = (BattleSystem_BattleType(param2) & 0x80) ? 340 : 242;
+        v8 = (BattleSystem_BattleType(battleSys) & 0x80) ? 340 : 242;
         v0->unk_58 = Heap_AllocFromHeap(5, 0x200);
 
         PaletteData_LoadBufferFromFileStart(v1, 7, v8, 5, 1, 0, 0);
@@ -1139,7 +1139,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
         MI_CpuCopy16(v0->unk_58, v0->unk_5C, 0x20);
         MI_CpuCopy16(&v0->unk_58[7 * 16], &v0->unk_5C[16 * 1], 0x20);
 
-        if (BattleSystem_BattleType(param2) & 0x80) {
+        if (BattleSystem_BattleType(battleSys) & 0x80) {
             v15 = 341;
         } else if (Unk_ov16_022704E4[v2].unk_02 != 0xffff) {
             v15 = Unk_ov16_022704E4[v2].unk_02;
@@ -1149,7 +1149,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3
 
         v14 = Graphics_GetPlttData(7, v15, &v13, 5);
 
-        if (BattleSystem_BattleType(param2) & 0x80) {
+        if (BattleSystem_BattleType(battleSys) & 0x80) {
             MI_CpuCopy16(v13->pRawData, v0->unk_60, 0x40);
         } else {
             MI_CpuCopy16(v13->pRawData, v0->unk_60, 0x20);

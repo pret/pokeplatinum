@@ -4172,7 +4172,7 @@ int ov12_022234E4(int param0, int param1)
     return Unk_ov12_02238928[param0][param1];
 }
 
-UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *param0, int param1, int param2)
+UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int param1, int param2)
 {
     int v0;
     int v1[] = { 0, 0, 20, 10, 10, 20 };
@@ -4182,18 +4182,18 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *param0, int param1, int par
 
     v2->unk_00 = param1;
     v2->unk_04 = param2;
-    v2->unk_08.unk_00 = ov16_0223E010(param0);
-    v2->unk_08.unk_04 = ov16_0223E018(param0);
-    v2->unk_08.unk_08 = BattleSystem_PaletteSys(param0);
+    v2->unk_08.unk_00 = ov16_0223E010(battleSys);
+    v2->unk_08.unk_04 = ov16_0223E018(battleSys);
+    v2->unk_08.unk_08 = BattleSystem_PaletteSys(battleSys);
 
     {
         for (v0 = 0; v0 < 4; v0++) {
             v2->unk_24[v0] = NULL;
-            v2->unk_34[v0] = ov16_0223F2AC(param0, v0);
+            v2->unk_34[v0] = ov16_0223F2AC(battleSys, v0);
         }
 
-        ov16_0223F87C(param0, &(v2->unk_44[0]));
-        ov16_0223F8AC(param0, &(v2->unk_48[0]));
+        ov16_0223F87C(battleSys, &(v2->unk_44[0]));
+        ov16_0223F8AC(battleSys, &(v2->unk_48[0]));
     }
 
     {
@@ -4322,29 +4322,29 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *param0, int param1, int par
     return v2;
 }
 
-UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *param0, int param1)
+UnkStruct_ov12_02223764 *ov12_02223764(BattleSystem *battleSys, int param1)
 {
     UnkStruct_ov12_02223764 *v0;
 
-    v0 = ov12_022234F8(param0, param1, 0xFF);
+    v0 = ov12_022234F8(battleSys, param1, 0xFF);
     return v0;
 }
 
-void ov12_02223770(UnkStruct_ov12_02223764 *param0)
+void ov12_02223770(UnkStruct_ov12_02223764 *battleSys)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param0->unk_24[v0] == NULL) {
+        if (battleSys->unk_24[v0] == NULL) {
             continue;
         }
 
-        SpriteManager_UnloadCharObjById(param0->unk_08.unk_04, param0->unk_14[v0]);
-        SpriteManager_UnloadPlttObjById(param0->unk_08.unk_04, param0->unk_14[v0]);
-        Sprite_DeleteAndFreeResources(param0->unk_24[v0]);
+        SpriteManager_UnloadCharObjById(battleSys->unk_08.unk_04, battleSys->unk_14[v0]);
+        SpriteManager_UnloadPlttObjById(battleSys->unk_08.unk_04, battleSys->unk_14[v0]);
+        Sprite_DeleteAndFreeResources(battleSys->unk_24[v0]);
     }
 
-    Heap_FreeToHeap(param0);
+    Heap_FreeToHeap(battleSys);
 }
 
 void ov12_022237A4(UnkStruct_ov12_02223764 *param0, int param1)

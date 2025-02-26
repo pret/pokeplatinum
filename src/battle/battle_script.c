@@ -155,7 +155,7 @@ static BOOL BtlCmd_LockMoveChoice(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetHealthbarStatus(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PayPrizeMoney(BattleSystem *param0, BattleContext *param1);
+static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *param1);
 static BOOL BtlCmd_PlayBattleAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayBattleAnimationOnMons(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayBattleAnimationFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -335,11 +335,11 @@ static int BattleMessage_FlavorTag(BattleContext *battleCtx, int battlerIn);
 static int BattleMessage_TrainerClassTag(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 static int BattleMessage_TrainerNameTag(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 
-static u32 BattleScript_CalcPrizeMoney(BattleSystem *param0, BattleContext *param1, int param2);
+static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *param1, int param2);
 static void BattleScript_CalcEffortValues(Party *party, int slot, int species, int form);
 static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1, Pokemon *param2);
-static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1);
+static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *param1, Pokemon *param2);
+static void BattleScript_FreePartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *param1);
 static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler);
 static void BattleAI_SetAbility(BattleContext *battleCtx, u8 battler, u8 ability);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
@@ -12191,7 +12191,7 @@ static const SpriteTemplate Unk_ov16_0226E6F8 = {
     0x0
 };
 
-static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1, Pokemon *param2)
+static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *param1, Pokemon *param2)
 {
     SpriteTemplate v0;
     SpriteSystem *v1;
@@ -12207,13 +12207,13 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     UnkStruct_020127E8 v12;
     int v13;
 
-    v4 = BattleSystem_MessageLoader(param0);
-    v7 = ov16_0223E0D4(param0);
-    v5 = BattleSystem_StringTemplate(param0);
-    v8 = BattleSystem_BGL(param0);
-    v1 = ov16_0223E010(param0);
-    v2 = ov16_0223E018(param0);
-    v3 = BattleSystem_PaletteSys(param0);
+    v4 = BattleSystem_MessageLoader(battleSys);
+    v7 = ov16_0223E0D4(battleSys);
+    v5 = BattleSystem_StringTemplate(battleSys);
+    v8 = BattleSystem_BGL(battleSys);
+    v1 = ov16_0223E010(battleSys);
+    v2 = ov16_0223E018(battleSys);
+    v3 = BattleSystem_PaletteSys(battleSys);
 
     SpriteSystem_LoadCharResObj(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 256, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
     SpriteSystem_LoadPaletteBuffer(v3, PLTTBUF_MAIN_OBJ, v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 82, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 20016);
@@ -12280,11 +12280,11 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     Window_Remove(&v9);
 }
 
-static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1)
+static void BattleScript_FreePartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *param1)
 {
     SpriteManager *v0;
 
-    v0 = ov16_0223E018(param0);
+    v0 = ov16_0223E018(battleSys);
 
     Sprite_DeleteAndFreeResources(param1->sprites[0]);
     Sprite_DeleteAndFreeResources(param1->sprites[1]);
