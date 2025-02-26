@@ -18,7 +18,7 @@ typedef struct {
     UnkStruct_ov16_0223E0C8 *unk_0C[4];
     u8 unk_1C[4];
     PokemonSprite *unk_20[4];
-    u32 unk_30; // Battle Type?
+    u32 battleType;
     u16 unk_34[4];
     u8 unk_3C[4];
     u8 unk_40[4];

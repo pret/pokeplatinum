@@ -69,7 +69,7 @@ typedef struct UnkStruct_ov12_02223178_t {
     UnkStruct_ov16_0223E0C8 *unk_B0[4];
     u8 unk_C0[4];
     PokemonSprite *unk_C4[4];
-    u32 unk_D4;
+    u32 battleType;
     u16 unk_D8[4];
     u8 unk_E0[4];
     u8 unk_E4[4];
@@ -548,7 +548,7 @@ BOOL ov12_0221FE30(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov16_02265BBC *par
 
     param0->unk_C0 = param3->unk_04;
     param0->unk_C4 = param3->unk_08;
-    param0->unk_BC->unk_D4 = param3->unk_30;
+    param0->unk_BC->battleType = param3->battleType;
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_BC->unk_B0[v0] = param3->unk_0C[v0];
@@ -3988,7 +3988,7 @@ BOOL ov12_02223364(UnkStruct_ov12_0221FCDC *param0)
 {
     u32 v0;
 
-    v0 = (param0->unk_BC->unk_D4 & 0x2);
+    v0 = (param0->unk_BC->battleType & BATTLE_TYPE_DOUBLES);
     return (v0 != 0) ? 1 : 0;
 }
 

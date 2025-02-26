@@ -6178,7 +6178,7 @@ static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, UnkStruc
     ov16_0223F87C(battleSys, &(v0.unk_1C[0]));
     ov16_0223F8AC(battleSys, &(v0.unk_20[0]));
 
-    v0.unk_30 = BattleSystem_BattleType(battleSys);
+    v0.battleType = BattleSystem_BattleType(battleSys);
     v0.unk_6C = BattleSystem_ChatotVoice(battleSys, param1->battler);
     v0.unk_70 = ov16_0223F1E8(battleSys);
     v0.unk_74 = ov16_0223F1F0(battleSys);
