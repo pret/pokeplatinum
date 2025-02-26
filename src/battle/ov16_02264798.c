@@ -16,13 +16,13 @@
 
 static void ov16_02264800(SysTask *param0, void *param1);
 
-void ov16_02264798(BattlerData *param0, BattleSystem *param1)
+void ov16_02264798(BattlerData *param0, BattleSystem *battleSys)
 {
     if (param0->unk_194 != NULL) {
         return;
     }
 
-    if (BattleSystem_BattleType(param1) & (0x20 | 0x200)) {
+    if (BattleSystem_BattleType(battleSys) & (0x20 | 0x200)) {
         return;
     }
 
