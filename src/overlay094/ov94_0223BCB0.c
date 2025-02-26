@@ -537,7 +537,7 @@ void ov94_0223C584(UnkStruct_ov94_0223FD4C *param0)
 static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_110E) {
-        param0->unk_110C += sub_02079B54(param0->unk_00->unk_0C, param0->unk_110E - 1);
+        param0->unk_110C += GetPokemonCountInBox(param0->unk_00->unk_0C, param0->unk_110E - 1);
         param0->unk_110E++;
 
         if (param0->unk_110E == 19) {

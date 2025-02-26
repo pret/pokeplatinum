@@ -423,7 +423,7 @@ void StringTemplate_SetGenderMarker(StringTemplate *template, u32 idx, enum Gend
 
 void StringTemplate_SetPCBoxName(StringTemplate *template, u32 idx, const PCBoxes *boxes, u32 boxIdx)
 {
-    sub_02079AF4(boxes, boxIdx, template->templateBuf);
+    CopyBoxName(boxes, boxIdx, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 

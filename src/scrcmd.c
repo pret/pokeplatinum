@@ -6769,7 +6769,7 @@ static BOOL ScrCmd_252(ScriptContext *ctx)
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
     u16 v1;
 
-    v1 = sub_02079A50(SaveData_PCBoxes(ctx->fieldSystem->saveData));
+    v1 = GetBoxedPokemonCount(SaveData_PCBoxes(ctx->fieldSystem->saveData));
     *v0 = 18 * (5 * 6) - v1;
 
     return 0;
