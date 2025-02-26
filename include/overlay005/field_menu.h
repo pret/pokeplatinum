@@ -12,15 +12,14 @@
 #include "string_template.h"
 #include "sys_task.h"
 
-#define GENERIC_MENU_ENTRIES_MAX 28
-#define NO_ALT_TEXT              0xff
+#define FIELD_MENU_ENTRIES_MAX 28
 
 typedef struct {
     FieldSystem *fieldSystem;
     SysTask *sysTask;
     Window menuWindow;
     Window *parentWindow;
-    Strbuf *choicesStringsBuffers[GENERIC_MENU_ENTRIES_MAX];
+    Strbuf *choicesStringsBuffers[FIELD_MENU_ENTRIES_MAX];
     MessageLoader *messageLoader;
     StringTemplate *stringTemplate;
     u8 sysTaskDelay;
@@ -29,8 +28,8 @@ typedef struct {
     u8 canExitWithB : 1;
     u8 freeMsgLoaderOnDelete : 1;
     u8 unk_97_2 : 4;
-    u8 horizontalAnchor : 1;
-    u8 verticalAnchor : 1;
+    u8 anchorRight : 1;
+    u8 anchorBottom : 1;
     u8 anchorX;
     u8 anchorY;
     u8 unk_9A;
@@ -41,13 +40,13 @@ typedef struct {
     u16 *listMenuCursorPosPtr;
     MenuTemplate menuTemplate;
     Menu *menu;
-    StringList menuChoicesStrings[GENERIC_MENU_ENTRIES_MAX];
+    StringList menuChoicesStrings[FIELD_MENU_ENTRIES_MAX];
     ListMenuTemplate listMenuTemplate;
     ListMenu *listMenu;
     u16 unk_1C0;
     u16 listMenuAltTextIndex;
-    StringList listMenuChoicesStrings[GENERIC_MENU_ENTRIES_MAX];
-    u16 choicesAltTextStringIDs[GENERIC_MENU_ENTRIES_MAX];
+    StringList listMenuChoicesStrings[FIELD_MENU_ENTRIES_MAX];
+    u16 choicesAltTextStringIDs[FIELD_MENU_ENTRIES_MAX];
     u16 cursorPos;
 } FieldMenuManager;
 

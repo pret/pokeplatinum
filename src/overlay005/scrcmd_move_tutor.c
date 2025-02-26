@@ -41,8 +41,6 @@
 #include "res/pokemon/species_learnsets_by_tutor.h"
 #include "res/text/bank/common_strings_2.h"
 
-#define NO_SELECTION_YET 0xeeee
-
 typedef struct {
     FieldSystem *fieldSystem;
     SysTask *sysTask;
@@ -388,7 +386,7 @@ static BOOL ScriptContextShouldResume(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *selectedOptionPtr = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    if (*selectedOptionPtr == NO_SELECTION_YET) {
+    if (*selectedOptionPtr == LIST_MENU_NO_SELECTION_YET) {
         return FALSE;
     }
 
@@ -428,7 +426,7 @@ static void MoveTutorManager_Init(FieldSystem *fieldSystem, MoveTutorManager *mo
         moveTutorManager->moveNames[moveIndex] = Strbuf_Init((40 * 2), HEAP_ID_FIELD);
     }
 
-    *moveTutorManager->selectedOptionPtr = NO_SELECTION_YET;
+    *moveTutorManager->selectedOptionPtr = LIST_MENU_NO_SELECTION_YET;
 }
 
 MoveTutorManager *MoveTutorManager_New(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *window, MessageLoader *messageLoader)

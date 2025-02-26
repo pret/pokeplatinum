@@ -2782,7 +2782,7 @@ static BOOL sub_02040A50(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    if (*v1 == 0xeeee) {
+    if (*v1 == LIST_MENU_NO_SELECTION_YET) {
         return 0;
     }
 
@@ -2806,7 +2806,7 @@ static BOOL sub_02040A9C(ScriptContext *ctx)
     u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
     FieldMenuManager **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
 
-    if (*v1 == 0xeeee) {
+    if (*v1 == LIST_MENU_NO_SELECTION_YET) {
         if (sub_0205B9E8(fieldSystem->unk_7C)) {
             *v1 = 8;
             FieldMenuManager_DeleteWithMenu(*v2);
