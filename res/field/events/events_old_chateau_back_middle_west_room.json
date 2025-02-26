@@ -6,7 +6,7 @@
             "x": 11,
             "z": 3,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 1,
@@ -14,14 +14,14 @@
             "x": 12,
             "z": 3,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1261,
             "script": 7247,
             "initial_dir": 0,
@@ -37,7 +37,7 @@
         {
             "x": 11,
             "z": 7,
-            "dest_header_id": 298,
+            "dest_header_id": "MAP_HEADER_OLD_CHATEAU_CORRIDOR",
             "dest_warp_id": 2
         }
     ],

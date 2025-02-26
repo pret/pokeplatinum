@@ -14,13 +14,13 @@ _000E:
 
 _0012:
     LockAll
-    ApplyMovement 0xFF, _0078
+    ApplyMovement LOCALID_PLAYER, _0078
     ApplyMovement 128, _00A8
     WaitMovement
     Message 0
     CloseMessage
     ApplyMovement 128, _00B4
-    ApplyMovement 0xFF, _0080
+    ApplyMovement LOCALID_PLAYER, _0080
     WaitMovement
     ScrCmd_312 128
     SetVar 0x4055, 3
@@ -29,12 +29,12 @@ _0012:
 
 _004B:
     LockAll
-    ScrCmd_04C 0x1E1, 0
+    PlayCry SPECIES_MESPRIT
     Message 1
     CloseMessage
     ScrCmd_04D
     ScrCmd_311 129
-    ApplyMovement 0xFF, _0090
+    ApplyMovement LOCALID_PLAYER, _0090
     ApplyMovement 129, _00D8
     WaitMovement
     ScrCmd_312 129

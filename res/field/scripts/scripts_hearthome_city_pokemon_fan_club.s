@@ -123,7 +123,7 @@ _0155:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 54, 0
+    PlayCry SPECIES_PSYDUCK
     Message 11
     ScrCmd_04D
     WaitABXPadPress
@@ -136,7 +136,7 @@ _0174:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 0x1AB, 0
+    PlayCry SPECIES_BUNEARY
     Message 12
     ScrCmd_04D
     WaitABXPadPress
@@ -149,7 +149,7 @@ _0193:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 35, 0
+    PlayCry SPECIES_CLEFAIRY
     Message 13
     ScrCmd_04D
     WaitABXPadPress

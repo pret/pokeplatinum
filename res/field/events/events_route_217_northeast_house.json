@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 12,
-            "movement_type": 11,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 607,
             "script": 1,
             "initial_dir": 1,
@@ -20,7 +20,7 @@
         {
             "x": 4,
             "z": 8,
-            "dest_header_id": 385,
+            "dest_header_id": "MAP_HEADER_ROUTE_217",
             "dest_warp_id": 1
         }
     ],

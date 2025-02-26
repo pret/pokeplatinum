@@ -43,14 +43,14 @@ _0031:
     .byte 0
 
 _007D:
-    ScrCmd_186 14, 42, 78
+    SetObjectEventPos 14, 42, 78
     ScrCmd_189 14, 0
     ScrCmd_188 14, 14
     ClearFlag 0x1DA
-    ScrCmd_064 14
+    AddObject 14
     ApplyMovement 14, _00DC
     WaitMovement
-    ApplyMovement 0xFF, _00EC
+    ApplyMovement LOCALID_PLAYER, _00EC
     WaitMovement
     BufferPlayerName 0
     Message 0
@@ -58,7 +58,7 @@ _007D:
     Return
 
 _00B7:
-    ScrCmd_186 14, 42, 68
+    SetObjectEventPos 14, 42, 68
     ScrCmd_189 14, 0
     ScrCmd_188 14, 14
     ApplyMovement 14, _0144
@@ -97,7 +97,7 @@ _00EC:
 _00FC:
     LockAll
     ApplyMovement 14, _014C
-    ApplyMovement 0xFF, _0134
+    ApplyMovement LOCALID_PLAYER, _0134
     WaitMovement
     Message 4
     CloseMessage
@@ -133,21 +133,21 @@ _0154:
     LockAll
     ClearHasPartner
     ScrCmd_06D 14, 15
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _0177
     GoTo _0191
     End
 
 _0177:
     ApplyMovement 14, _01F0
-    ApplyMovement 0xFF, _01E4
+    ApplyMovement LOCALID_PLAYER, _01E4
     WaitMovement
     GoTo _01AB
     End
 
 _0191:
     ApplyMovement 14, _01FC
-    ApplyMovement 0xFF, _01E4
+    ApplyMovement LOCALID_PLAYER, _01E4
     WaitMovement
     GoTo _01AB
     End

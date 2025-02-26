@@ -38,7 +38,7 @@ _005E:
     End
 
 _009C:
-    ScrCmd_186 21, 0x27D, 0x32C
+    SetObjectEventPos 21, 0x27D, 0x32C
     ScrCmd_189 21, 3
     ScrCmd_188 21, 17
     End
@@ -174,7 +174,7 @@ _01E5:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 35, 0
+    PlayCry SPECIES_CLEFAIRY
     Message 36
     ScrCmd_04D
     WaitABXPadPress
@@ -196,7 +196,7 @@ _0220:
     FacePlayer
     Message 28
     CloseMessage
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 2, _025A
     GoToIfEq 0x800C, 3, _027A
     GoToIfEq 0x800C, 0, _0292
@@ -206,7 +206,7 @@ _0220:
 _025A:
     SetVar 0x8007, 2
     ApplyMovement 21, _0388
-    ApplyMovement 0xFF, _02EC
+    ApplyMovement LOCALID_PLAYER, _02EC
     WaitMovement
     GoTo _02D2
     End
@@ -221,7 +221,7 @@ _027A:
 _0292:
     SetVar 0x8007, 0
     ApplyMovement 21, _0398
-    ApplyMovement 0xFF, _030C
+    ApplyMovement LOCALID_PLAYER, _030C
     WaitMovement
     GoTo _02D2
     End
@@ -229,7 +229,7 @@ _0292:
 _02B2:
     SetVar 0x8007, 1
     ApplyMovement 21, _0398
-    ApplyMovement 0xFF, _0304
+    ApplyMovement LOCALID_PLAYER, _0304
     WaitMovement
     GoTo _02D2
     End
@@ -521,7 +521,7 @@ _043E:
     End
 
 _0471:
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _0498
     BufferRivalName 0
     Message 16
@@ -560,15 +560,15 @@ _04C0:
 _04C8:
     LockAll
     ClearFlag 0x1A9
-    ScrCmd_186 26, 0x253, 0x333
+    SetObjectEventPos 26, 0x253, 0x333
     ScrCmd_188 26, 16
     ScrCmd_189 26, 2
-    ScrCmd_064 26
+    AddObject 26
     ApplyMovement 26, _05B0
     WaitMovement
     CallCommonScript 0x7FA
     ApplyMovement 26, _05C0
-    ApplyMovement 0xFF, _05A4
+    ApplyMovement LOCALID_PLAYER, _05A4
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
@@ -646,13 +646,13 @@ _05D4:
 _05E0:
     LockAll
     ClearFlag 0x1A9
-    ScrCmd_186 26, 0x253, 0x333
+    SetObjectEventPos 26, 0x253, 0x333
     ScrCmd_188 26, 15
     ScrCmd_189 26, 1
-    ScrCmd_064 26
+    AddObject 26
     ScrCmd_062 26
     ApplyMovement 26, _0798
-    ApplyMovement 0xFF, _07CC
+    ApplyMovement LOCALID_PLAYER, _07CC
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
@@ -661,13 +661,13 @@ _05E0:
     ScrCmd_168 18, 25, 13, 27, 77
     ScrCmd_16B 77
     ScrCmd_169 77
-    ApplyMovement 0xFF, _07D8
+    ApplyMovement LOCALID_PLAYER, _07D8
     WaitMovement
     ClearFlag 0x1FB
-    ScrCmd_186 27, 0x24D, 0x33B
+    SetObjectEventPos 27, 0x24D, 0x33B
     ScrCmd_189 27, 0
     ScrCmd_188 27, 14
-    ScrCmd_064 27
+    AddObject 27
     ScrCmd_062 27
     ApplyMovement 27, _0764
     WaitMovement
@@ -695,7 +695,7 @@ _05E0:
     WaitMovement
     Message 13
     CloseMessage
-    ApplyMovement 0xFF, _07EC
+    ApplyMovement LOCALID_PLAYER, _07EC
     ApplyMovement 26, _07AC
     ApplyMovement 27, _078C
     WaitMovement
@@ -715,19 +715,19 @@ _05E0:
     End
 
 _0721:
-    ScrCmd_186 26, 0x260, 0x32E
+    SetObjectEventPos 26, 0x260, 0x32E
     ScrCmd_189 26, 1
     ScrCmd_188 26, 15
     Return
 
 _0737:
-    ScrCmd_186 27, 0x263, 0x32A
+    SetObjectEventPos 27, 0x263, 0x32A
     ScrCmd_189 27, 0
     ScrCmd_188 27, 14
     Return
 
 _074D:
-    ScrCmd_186 26, 0x263, 0x32A
+    SetObjectEventPos 26, 0x263, 0x32A
     ScrCmd_189 26, 0
     ScrCmd_188 26, 14
     Return
@@ -810,19 +810,19 @@ _07F8:
     Call _086F
     ApplyMovement 27, _0B6C
     ApplyMovement 26, _0B08
-    ApplyMovement 0xFF, _0AAC
+    ApplyMovement LOCALID_PLAYER, _0AAC
     ApplyMovement 21, _0B44
     WaitMovement
     Call _08D9
     ApplyMovement 27, _0B74
     ApplyMovement 26, _0B3C
-    ApplyMovement 0xFF, _0AC8
+    ApplyMovement LOCALID_PLAYER, _0AC8
     ApplyMovement 21, _0B54
     WaitMovement
     Call _08FA
     Message 23
     ApplyMovement 27, _0B80
-    ApplyMovement 0xFF, _0AD4
+    ApplyMovement LOCALID_PLAYER, _0AD4
     WaitMovement
     Call _091C
     ReleaseAll
@@ -834,7 +834,7 @@ _086F:
     BufferRivalName 0
     Message 17
     CloseMessage
-    ApplyMovement 0xFF, _0AA4
+    ApplyMovement LOCALID_PLAYER, _0AA4
     ApplyMovement 27, _0B5C
     WaitMovement
     Message 18
@@ -847,10 +847,10 @@ _086F:
     ScrCmd_29F 1
     CloseMessage
     ClearFlag 0x20C
-    ScrCmd_186 21, 0x262, 0x328
+    SetObjectEventPos 21, 0x262, 0x328
     ScrCmd_189 21, 3
     ScrCmd_188 21, 17
-    ScrCmd_064 21
+    AddObject 21
     ScrCmd_062 21
     Return
 
@@ -868,17 +868,17 @@ _08D9:
 _08FA:
     RemoveObject 21
     ClearFlag 0x20C
-    ScrCmd_186 21, 0x27D, 0x32C
+    SetObjectEventPos 21, 0x27D, 0x32C
     ScrCmd_188 21, 17
     ScrCmd_189 21, 3
-    ScrCmd_064 21
+    AddObject 21
     Return
 
 _091C:
     Message 24
     CloseMessage
     ApplyMovement 27, _0B88
-    ApplyMovement 0xFF, _099C
+    ApplyMovement LOCALID_PLAYER, _099C
     WaitMovement
     RemoveObject 27
     GetPlayerMapPos 0x8004, 0x8005
@@ -920,7 +920,7 @@ _09A8:
     CallIfEq 0x8004, 0x263, _0A31
     CallIfEq 0x8004, 0x264, _0A55
     Call _08D9
-    ApplyMovement 0xFF, _0AC8
+    ApplyMovement LOCALID_PLAYER, _0AC8
     ApplyMovement 27, _0B74
     ApplyMovement 26, _0B3C
     ApplyMovement 21, _0B54
@@ -936,7 +936,7 @@ _09A8:
 
 _0A31:
     ApplyMovement 27, _0B6C
-    ApplyMovement 0xFF, _0ABC
+    ApplyMovement LOCALID_PLAYER, _0ABC
     ApplyMovement 26, _0B10
     ApplyMovement 21, _0B44
     WaitMovement
@@ -944,7 +944,7 @@ _0A31:
 
 _0A55:
     ApplyMovement 27, _0B6C
-    ApplyMovement 0xFF, _0ABC
+    ApplyMovement LOCALID_PLAYER, _0ABC
     ApplyMovement 26, _0B10
     ApplyMovement 21, _0B44
     WaitMovement
@@ -952,13 +952,13 @@ _0A55:
 
 _0A79:
     ApplyMovement 27, _0B80
-    ApplyMovement 0xFF, _0AD4
+    ApplyMovement LOCALID_PLAYER, _0AD4
     WaitMovement
     Return
 
 _0A8D:
     ApplyMovement 27, _0B80
-    ApplyMovement 0xFF, _0ADC
+    ApplyMovement LOCALID_PLAYER, _0ADC
     WaitMovement
     Return
 
@@ -1106,14 +1106,14 @@ _0B88:
 
 _0B90:
     LockAll
-    ApplyMovement 0xFF, _0BC8
+    ApplyMovement LOCALID_PLAYER, _0BC8
     ApplyMovement 26, _0BD8
     WaitMovement
     BufferRivalName 0
     BufferPlayerName 1
     Message 26
     CloseMessage
-    ApplyMovement 0xFF, _0BD0
+    ApplyMovement LOCALID_PLAYER, _0BD0
     ApplyMovement 26, _0BE0
     WaitMovement
     ReleaseAll
@@ -1156,11 +1156,11 @@ _0C1E:
 
 _0C22:
     ClearFlag 0x29D
-    ScrCmd_064 28
-    ApplyMovement 0xFF, _0C78
+    AddObject 28
+    ApplyMovement LOCALID_PLAYER, _0C78
     ApplyMovement 28, _0C64
     WaitMovement
-    ScrCmd_04C 0x1C5, 0
+    PlayCry SPECIES_CROAGUNK
     ScrCmd_04D
     WaitTime 30, 0x800C
     ApplyMovement 28, _0C70

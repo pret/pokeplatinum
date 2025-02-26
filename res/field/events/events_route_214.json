@@ -6,7 +6,7 @@
             "x": 724,
             "z": 695,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8042,
@@ -14,7 +14,7 @@
             "x": 734,
             "z": 681,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8168,
@@ -22,14 +22,14 @@
             "x": 722,
             "z": 704,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 62,
-            "movement_type": 45,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3120,
             "initial_dir": 0,
@@ -43,9 +43,9 @@
             "y": 0
         },
         {
-            "graphics_id": 19,
-            "movement_type": 6,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3271,
             "initial_dir": 0,
@@ -59,9 +59,9 @@
             "y": 0
         },
         {
-            "graphics_id": 19,
-            "movement_type": 20,
-            "trainer_type": 4,
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
+            "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "flag": 0,
             "script": 3272,
             "initial_dir": 0,
@@ -76,9 +76,9 @@
             "y": 0
         },
         {
-            "graphics_id": 50,
-            "movement_type": 17,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3112,
             "initial_dir": 3,
@@ -92,9 +92,9 @@
             "y": 0
         },
         {
-            "graphics_id": 50,
-            "movement_type": 45,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3113,
             "initial_dir": 0,
@@ -108,9 +108,9 @@
             "y": 0
         },
         {
-            "graphics_id": 19,
-            "movement_type": 18,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3381,
             "initial_dir": 0,
@@ -124,9 +124,9 @@
             "y": 0
         },
         {
-            "graphics_id": 13,
-            "movement_type": 17,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 0,
             "script": 3490,
             "initial_dir": 3,
@@ -140,9 +140,9 @@
             "y": 0
         },
         {
-            "graphics_id": 70,
-            "movement_type": 20,
-            "trainer_type": 5,
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
+            "movement_type": "MOVEMENT_TYPE_WALK_BACK_AND_FORTH",
+            "trainer_type": "TRAINER_TYPE_FACE_COUNTERCLOCKWISE",
             "flag": 0,
             "script": 3118,
             "initial_dir": 1,
@@ -157,9 +157,9 @@
             "y": 0
         },
         {
-            "graphics_id": 70,
-            "movement_type": 16,
-            "trainer_type": 4,
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "flag": 0,
             "script": 3119,
             "initial_dir": 2,
@@ -173,9 +173,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 32,
             "script": 10001,
             "initial_dir": 0,
@@ -187,9 +187,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 33,
             "script": 10001,
             "initial_dir": 0,
@@ -201,9 +201,9 @@
             "y": 0
         },
         {
-            "graphics_id": 94,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 0,
@@ -217,9 +217,9 @@
             "y": 0
         },
         {
-            "graphics_id": 94,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 0,
@@ -233,9 +233,9 @@
             "y": 0
         },
         {
-            "graphics_id": 100,
-            "movement_type": 47,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
@@ -249,9 +249,9 @@
             "y": 0
         },
         {
-            "graphics_id": 100,
-            "movement_type": 47,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
@@ -265,9 +265,9 @@
             "y": 0
         },
         {
-            "graphics_id": 100,
-            "movement_type": 47,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
@@ -281,9 +281,9 @@
             "y": 0
         },
         {
-            "graphics_id": 100,
-            "movement_type": 47,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
@@ -297,9 +297,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1129,
             "script": 7115,
             "initial_dir": 0,
@@ -311,9 +311,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1128,
             "script": 7114,
             "initial_dir": 0,
@@ -325,9 +325,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1127,
             "script": 7113,
             "initial_dir": 0,
@@ -339,9 +339,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1126,
             "script": 7112,
             "initial_dir": 0,
@@ -353,9 +353,9 @@
             "y": 0
         },
         {
-            "graphics_id": 182,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_VENT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2027,
             "initial_dir": 0,
@@ -367,9 +367,9 @@
             "y": 0
         },
         {
-            "graphics_id": 182,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_VENT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2027,
             "initial_dir": 0,
@@ -381,9 +381,9 @@
             "y": 0
         },
         {
-            "graphics_id": 182,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_VENT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2027,
             "initial_dir": 0,
@@ -395,9 +395,9 @@
             "y": 0
         },
         {
-            "graphics_id": 182,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_VENT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2027,
             "initial_dir": 0,
@@ -409,9 +409,9 @@
             "y": 0
         },
         {
-            "graphics_id": 182,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_VENT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2027,
             "initial_dir": 0,
@@ -423,9 +423,9 @@
             "y": 0
         },
         {
-            "graphics_id": 182,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_VENT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2027,
             "initial_dir": 0,
@@ -437,9 +437,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1332,
             "script": 7317,
             "initial_dir": 0,
@@ -455,31 +455,31 @@
         {
             "x": 718,
             "z": 645,
-            "dest_header_id": 381,
+            "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 719,
             "z": 645,
-            "dest_header_id": 381,
+            "dest_header_id": "MAP_HEADER_ROUTE_214_GATE_TO_VEILSTONE_CITY",
             "dest_warp_id": 1
         },
         {
             "x": 713,
             "z": 670,
-            "dest_header_id": 286,
+            "dest_header_id": "MAP_HEADER_RUIN_MANIAC_CAVE_SHORT",
             "dest_warp_id": 0
         },
         {
             "x": 713,
             "z": 670,
-            "dest_header_id": 512,
+            "dest_header_id": "MAP_HEADER_RUIN_MANIAC_CAVE_LONG",
             "dest_warp_id": 0
         },
         {
             "x": 713,
             "z": 670,
-            "dest_header_id": 513,
+            "dest_header_id": "MAP_HEADER_MANIAC_TUNNEL",
             "dest_warp_id": 0
         }
     ],

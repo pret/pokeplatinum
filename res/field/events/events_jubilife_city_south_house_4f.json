@@ -5,7 +5,7 @@
         {
             "x": 8,
             "z": 3,
-            "dest_header_id": 21,
+            "dest_header_id": "MAP_HEADER_JUBILIFE_CITY_SOUTH_HOUSE_3F",
             "dest_warp_id": 1
         }
     ],

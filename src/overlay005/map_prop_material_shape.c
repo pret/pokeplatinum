@@ -62,15 +62,15 @@ void MapPropMaterialShape_Free(MapPropMaterialShape *propMatShp)
     Heap_FreeToHeap(propMatShp);
 }
 
-void MapProp_GetMaterialShapeIDsCount(const int mapPropID, const MapPropMaterialShape *propMatShp, u16 *idsCount)
+void MapProp_GetMaterialShapeIDsCount(const int modelID, const MapPropMaterialShape *propMatShp, u16 *idsCount)
 {
-    *idsCount = propMatShp->idsLocators[mapPropID].idsCount;
+    *idsCount = propMatShp->idsLocators[modelID].idsCount;
 }
 
-void MapProp_GetMaterialShapeIDsLocator(const int mapPropID, const MapPropMaterialShape *propMatShp, u16 *idsCount, u16 *idsIndex)
+void MapProp_GetMaterialShapeIDsLocator(const int modelID, const MapPropMaterialShape *propMatShp, u16 *idsCount, u16 *idsIndex)
 {
-    *idsCount = propMatShp->idsLocators[mapPropID].idsCount;
-    *idsIndex = propMatShp->idsLocators[mapPropID].idsIndex;
+    *idsCount = propMatShp->idsLocators[modelID].idsCount;
+    *idsIndex = propMatShp->idsLocators[modelID].idsIndex;
 }
 
 MapPropMaterialShapeIDs const *MapPropMaterialShape_GetMaterialShapeIDsAt(const u16 index, const MapPropMaterialShape *propMatShp)

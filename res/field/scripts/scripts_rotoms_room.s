@@ -167,7 +167,7 @@ _02B6:
 
 _0325:
     GetPlayerMapPos 0x8006, 0x8007
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     Warp MAP_HEADER_ROTOMS_ROOM, 0, 0x8006, 0x8007, 0x800C
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -175,27 +175,27 @@ _0325:
 
 _0349:
     ClearFlag 0x2BB
-    ScrCmd_064 0
+    AddObject 0
     Return
 
 _0353:
     ClearFlag 0x2BD
-    ScrCmd_064 2
+    AddObject 2
     Return
 
 _035D:
     ClearFlag 0x2BC
-    ScrCmd_064 3
+    AddObject 3
     Return
 
 _0367:
     ClearFlag 0x2BE
-    ScrCmd_064 1
+    AddObject 1
     Return
 
 _0371:
     ClearFlag 0x2BF
-    ScrCmd_064 4
+    AddObject 4
     Return
 
 _037B:
@@ -521,9 +521,9 @@ _081E:
     LockAll
     ClearFlag 0x2C0
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ScrCmd_064 6
+    AddObject 6
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _08AC
+    ApplyMovement LOCALID_PLAYER, _08AC
     ApplyMovement 6, _08D4
     WaitMovement
     BufferPlayerName 0

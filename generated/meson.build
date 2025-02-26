@@ -36,6 +36,7 @@ metang_generators = {
     'battle_sub_animations': { 'type': 'enum', 'tag': 'BattleSubAnimation' },
     'battle_subscripts': { 'type': 'enum', 'tag': 'BattleSubscript' }, # functionally pre-generating the NARC index
     'battle_terrains': { 'type': 'enum', 'tag': 'BattleTerrain' },
+    'bg_event_dirs': { 'type': 'enum', 'tag': 'BgEventDir' },
     'catching_show_points_category': { 'type': 'enum', 'tag': 'CatchingShowPointsCategory' },
     'days_of_week': { 'type': 'enum', 'tag': 'DayOfWeek' },
     'distribution_events': { 'type': 'enum', 'tag': 'DistributionEvent' },
@@ -61,8 +62,10 @@ metang_generators = {
     'move_flags': { 'type': 'mask', 'tag': 'MoveFlag' },
     'move_ranges': { 'type': 'mask', 'tag': 'MoveRange', 'extra': ['--no-auto'] },
     'movement_actions': { 'type': 'enum', 'tag': 'MovementAction' },
+    'movement_types': { 'type': 'enum', 'tag': 'MovementType' },
     'moves': { 'type': 'enum', 'tag': 'Move' },
     'npc_trades': { 'type': 'enum', 'tag': 'NpcTradeID' },
+    'object_events': { 'type': 'enum', 'tag': 'ObjectEventGfx' },
     'pal_park_land_area': { 'type': 'enum', 'tag': 'PalParkLandArea' },
     'pal_park_water_area': { 'type': 'enum', 'tag': 'PalParkWaterArea' },
     'pokemon_body_shapes': { 'type': 'enum', 'tag': 'PokemonBodyShape' },
@@ -70,6 +73,7 @@ metang_generators = {
     'pokemon_contest_types': { 'type': 'enum', 'tag': 'PokemonContestType' },
     'pokemon_types': { 'type': 'enum', 'tag': 'PokemonType' },
     'poketch_apps': { 'type': 'enum', 'tag': 'PoketchAppID' },
+    'roaming_slots': { 'type': 'enum', 'tag': 'RoamingSlot' },
     'save_types': { 'type': 'enum', 'tag': 'SaveType' },
     'sdat': { 'type': 'enum', 'tag': 'SDATID' },
     'shadow_sizes': { 'type': 'enum', 'tag': 'ShadowSize' },
@@ -79,8 +83,13 @@ metang_generators = {
     'trainers': { 'type': 'enum', 'tag': 'Trainer' },
     'trainer_classes': { 'type': 'enum', 'tag': 'TrainerClass' },
     'trainer_score_events': { 'type': 'enum', 'tag': 'TrainerScoreEvent' },
+    'trainer_types': { 'type': 'enum', 'tag': 'TrainerType' },
     'tutor_locations': {'type': 'enum', 'tag': 'TutorLocation'},
-    'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'}
+    'villa_furnitures': {'type': 'enum', 'tag': 'VillaFurniture'},
+    'mart_specialties_id': {'type': 'enum', 'tag': 'MartSpecialtiesID'},
+    'mart_decor_id': {'type': 'enum', 'tag': 'MartDecorID'},
+    'mart_seal_id': {'type': 'enum', 'tag': 'MartSealID'},
+    'mart_frontier_id': {'type': 'enum', 'tag': 'MartFrontierId'},
 }
 
 c_consts_generators = []

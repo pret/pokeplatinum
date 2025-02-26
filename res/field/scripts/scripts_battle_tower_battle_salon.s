@@ -308,19 +308,19 @@ _04A6:
     ApplyMovement 0, _06C8
     WaitMovement
     ScrCmd_1B1 0xFF
-    ApplyMovement 0xFF, _06B8
+    ApplyMovement LOCALID_PLAYER, _06B8
     WaitMovement
     Call _049B
     ApplyMovement 0, _06D8
     WaitMovement
-    ApplyMovement 0xFF, _06C0
+    ApplyMovement LOCALID_PLAYER, _06C0
     WaitMovement
     Return
 
 _04E0:
     Call _0488
     ApplyMovement 0, _070C
-    ApplyMovement 0xFF, _0700
+    ApplyMovement LOCALID_PLAYER, _0700
     WaitMovement
     Call _049B
     Return

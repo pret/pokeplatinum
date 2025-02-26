@@ -404,13 +404,13 @@ _06A0:
 
 _06AE:
     ApplyMovement 0x4002, _1248
-    ApplyMovement 0xFF, _1260
+    ApplyMovement LOCALID_PLAYER, _1260
     WaitMovement
     ScrCmd_168 0, 0, 0x4003, 2, 77
     ScrCmd_16B 77
     ScrCmd_169 77
     ApplyMovement 0x4002, _1254
-    ApplyMovement 0xFF, _126C
+    ApplyMovement LOCALID_PLAYER, _126C
     WaitMovement
     ScrCmd_16C 77
     ScrCmd_169 77
@@ -654,7 +654,7 @@ _0AB5:
     End
 
 _0AC3:
-    ApplyMovement 0xFF, _1278
+    ApplyMovement LOCALID_PLAYER, _1278
     WaitMovement
     Return
 
@@ -1253,7 +1253,7 @@ _13AF:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 25, 0
+    PlayCry SPECIES_PIKACHU
     Message 81
     ScrCmd_04D
     WaitABXPadPress

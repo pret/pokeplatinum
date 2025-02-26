@@ -474,7 +474,7 @@ BOOL sub_02055178(const FieldSystem *fieldSystem, const int param1, const UnkStr
                 if (v6) {
                     int v8;
 
-                    v8 = MapProp_GetId(v7);
+                    v8 = MapProp_GetModelID(v7);
 
                     if (v8 == param1) {
                         if (param3 != NULL) {
@@ -525,7 +525,7 @@ BOOL sub_02055208(const FieldSystem *fieldSystem, const int *param1, const u8 pa
                     u8 v8;
                     int v9;
 
-                    v9 = MapProp_GetId(v7);
+                    v9 = MapProp_GetModelID(v7);
 
                     for (v8 = 0; v8 < param2; v8++) {
                         if (v9 == param1[v8]) {
@@ -571,7 +571,7 @@ BOOL sub_020552B4(const FieldSystem *fieldSystem, const int param1, MapProp **pa
                     u8 v4;
                     int v5;
 
-                    v5 = MapProp_GetId(v3);
+                    v5 = MapProp_GetModelID(v3);
 
                     if (v5 == param1) {
                         if (param2 != NULL) {
@@ -615,7 +615,7 @@ BOOL sub_02055324(const FieldSystem *fieldSystem, const int *param1, const u8 pa
                     u8 v4;
                     int v5;
 
-                    v5 = MapProp_GetId(v3);
+                    v5 = MapProp_GetModelID(v3);
 
                     for (v4 = 0; v4 < param2; v4++) {
                         if (v5 == param1[v4]) {

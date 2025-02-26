@@ -6,7 +6,7 @@
             "x": 12,
             "z": 6,
             "y": 0,
-            "player_facing_dir": 1
+            "player_facing_dir": "BG_EVENT_DIR_EAST"
         },
         {
             "script": 2,
@@ -14,7 +14,7 @@
             "x": 13,
             "z": 7,
             "y": 0,
-            "player_facing_dir": 2
+            "player_facing_dir": "BG_EVENT_DIR_WEST"
         },
         {
             "script": 3,
@@ -22,7 +22,7 @@
             "x": 7,
             "z": 7,
             "y": 0,
-            "player_facing_dir": 1
+            "player_facing_dir": "BG_EVENT_DIR_EAST"
         },
         {
             "script": 4,
@@ -30,7 +30,7 @@
             "x": 7,
             "z": 8,
             "y": 0,
-            "player_facing_dir": 1
+            "player_facing_dir": "BG_EVENT_DIR_EAST"
         },
         {
             "script": 5,
@@ -38,7 +38,7 @@
             "x": 13,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 2
+            "player_facing_dir": "BG_EVENT_DIR_WEST"
         },
         {
             "script": 6,
@@ -46,7 +46,7 @@
             "x": 8,
             "z": 6,
             "y": 0,
-            "player_facing_dir": 2
+            "player_facing_dir": "BG_EVENT_DIR_WEST"
         },
         {
             "script": 7,
@@ -54,7 +54,7 @@
             "x": 8,
             "z": 7,
             "y": 0,
-            "player_facing_dir": 2
+            "player_facing_dir": "BG_EVENT_DIR_WEST"
         },
         {
             "script": 8,
@@ -62,7 +62,7 @@
             "x": 8,
             "z": 8,
             "y": 0,
-            "player_facing_dir": 2
+            "player_facing_dir": "BG_EVENT_DIR_WEST"
         },
         {
             "script": 9,
@@ -70,7 +70,7 @@
             "x": 8,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 2
+            "player_facing_dir": "BG_EVENT_DIR_WEST"
         },
         {
             "script": 10,
@@ -78,7 +78,7 @@
             "x": 13,
             "z": 6,
             "y": 0,
-            "player_facing_dir": 2
+            "player_facing_dir": "BG_EVENT_DIR_WEST"
         },
         {
             "script": 11,
@@ -86,7 +86,7 @@
             "x": 12,
             "z": 8,
             "y": 0,
-            "player_facing_dir": 1
+            "player_facing_dir": "BG_EVENT_DIR_EAST"
         },
         {
             "script": 12,
@@ -94,7 +94,7 @@
             "x": 12,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 1
+            "player_facing_dir": "BG_EVENT_DIR_EAST"
         },
         {
             "script": 21,
@@ -102,14 +102,14 @@
             "x": 10,
             "z": 2,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 163,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 13,
             "initial_dir": 1,
@@ -121,9 +121,9 @@
             "y": 0
         },
         {
-            "graphics_id": 13,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 14,
             "initial_dir": 2,
@@ -135,9 +135,9 @@
             "y": 0
         },
         {
-            "graphics_id": 15,
-            "movement_type": 11,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_SOUTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 15,
             "initial_dir": 3,
@@ -149,9 +149,9 @@
             "y": 0
         },
         {
-            "graphics_id": 19,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 16,
             "initial_dir": 3,
@@ -163,9 +163,9 @@
             "y": 0
         },
         {
-            "graphics_id": 10,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 19,
             "initial_dir": 3,
@@ -177,9 +177,9 @@
             "y": 0
         },
         {
-            "graphics_id": 40,
-            "movement_type": 8,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_WORKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 17,
             "initial_dir": 2,
@@ -191,9 +191,9 @@
             "y": 0
         },
         {
-            "graphics_id": 13,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 18,
             "initial_dir": 3,
@@ -205,9 +205,9 @@
             "y": 0
         },
         {
-            "graphics_id": 15,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 20,
             "initial_dir": 2,
@@ -219,9 +219,9 @@
             "y": 0
         },
         {
-            "graphics_id": 213,
-            "movement_type": 16,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_LOOKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 419,
             "script": 22,
             "initial_dir": 2,
@@ -237,7 +237,7 @@
         {
             "x": 5,
             "z": 11,
-            "dest_header_id": 132,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY",
             "dest_warp_id": 2
         }
     ],

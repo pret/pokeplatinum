@@ -52,7 +52,7 @@ _00F8:
     Return
 
 _0100:
-    ScrCmd_186 16, 55, 0x2CC
+    SetObjectEventPos 16, 55, 0x2CC
     ScrCmd_189 16, 3
     ScrCmd_188 16, 17
     Return
@@ -62,13 +62,13 @@ _0116:
     Return
 
 _011C:
-    ScrCmd_186 11, 37, 0x2D1
+    SetObjectEventPos 11, 37, 0x2D1
     ScrCmd_189 11, 1
     ScrCmd_188 11, 15
     Return
 
 _0132:
-    ScrCmd_186 11, 39, 0x2DD
+    SetObjectEventPos 11, 39, 0x2DD
     ScrCmd_189 11, 0
     ScrCmd_188 11, 14
     Return
@@ -111,7 +111,7 @@ _01D2:
 
 _01E7:
     ScrCmd_18B 0, 58, 0x2C9
-    ScrCmd_18A 5, 59, 0x2C8
+    SetWarpEventPos 5, 59, 0x2C8
     Return
 
 _01F9:
@@ -125,29 +125,29 @@ _01F9:
     End
 
 _0244:
-    ScrCmd_186 11, 38, 0x2D3
+    SetObjectEventPos 11, 38, 0x2D3
     GoTo _028A
 
 _0252:
-    ScrCmd_186 11, 38, 0x2D4
+    SetObjectEventPos 11, 38, 0x2D4
     GoTo _028A
 
 _0260:
-    ScrCmd_186 11, 38, 0x2D5
+    SetObjectEventPos 11, 38, 0x2D5
     GoTo _028A
 
 _026E:
-    ScrCmd_186 11, 38, 0x2D6
+    SetObjectEventPos 11, 38, 0x2D6
     GoTo _028A
 
 _027C:
-    ScrCmd_186 11, 38, 0x2D7
+    SetObjectEventPos 11, 38, 0x2D7
     GoTo _028A
 
 _028A:
     ScrCmd_188 11, 17
     ClearFlag 0x1B2
-    ScrCmd_064 11
+    AddObject 11
     ApplyMovement 11, _0340
     WaitMovement
     CallCommonScript 0x7FA
@@ -228,7 +228,7 @@ _0377:
     Message 2
     CloseMessage
     ApplyMovement 11, _03AC
-    ApplyMovement 0xFF, _03BC
+    ApplyMovement LOCALID_PLAYER, _03BC
     WaitMovement
     RemoveObject 11
     SetVar 0x4078, 3
@@ -256,7 +256,7 @@ _03C8:
     Message 5
     CloseMessage
     ClearFlag 0x1B4
-    ScrCmd_064 14
+    AddObject 14
     ScrCmd_062 14
     ApplyMovement 14, _04AC
     WaitMovement
@@ -448,12 +448,12 @@ _05F3:
     LockAll
     FacePlayer
     GoToIfSet 168, _0615
-    ScrCmd_04C 54, 0
+    PlayCry SPECIES_PSYDUCK
     Message 23
     GoTo _0545
 
 _0615:
-    ScrCmd_04C 54, 0
+    PlayCry SPECIES_PSYDUCK
     Message 24
     GoTo _0545
 
@@ -540,7 +540,7 @@ _0708:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_1BD 0x8004
+    GetPlayerDir 0x8004
     FacePlayer
     GoToIfEq 0x4106, 2, _0900
     Message 27
@@ -610,26 +610,26 @@ _0852:
     Return
 
 _0871:
-    ApplyMovement 0xFF, _08D4
+    ApplyMovement LOCALID_PLAYER, _08D4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _08CC
+    ApplyMovement LOCALID_PLAYER, _08CC
     WaitMovement
     Return
 
 _088B:
-    ApplyMovement 0xFF, _08E4
+    ApplyMovement LOCALID_PLAYER, _08E4
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _08CC
+    ApplyMovement LOCALID_PLAYER, _08CC
     WaitMovement
     Return
 
 _08A5:
-    ApplyMovement 0xFF, _08F0
+    ApplyMovement LOCALID_PLAYER, _08F0
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
-    ApplyMovement 0xFF, _08CC
+    ApplyMovement LOCALID_PLAYER, _08CC
     WaitMovement
     Return
 
@@ -701,10 +701,10 @@ _0959:
     ApplyMovement 16, _09AC
     WaitMovement
     RemoveObject 16
-    ScrCmd_186 16, 45, 0x2EE
+    SetObjectEventPos 16, 45, 0x2EE
     ScrCmd_189 16, 2
     ScrCmd_188 16, 16
-    ScrCmd_064 16
+    AddObject 16
     SetVar 0x40F8, 4
     ReleaseAll
     End

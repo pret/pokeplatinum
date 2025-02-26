@@ -6,7 +6,7 @@
             "x": 720,
             "z": 794,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8007,
@@ -14,7 +14,7 @@
             "x": 730,
             "z": 773,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8166,
@@ -22,7 +22,7 @@
             "x": 692,
             "z": 801,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8180,
@@ -30,14 +30,14 @@
             "x": 716,
             "z": 745,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 138,
-            "movement_type": 16,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CYNTHIA",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 429,
             "script": 0,
             "initial_dir": 2,
@@ -49,9 +49,9 @@
             "y": 0
         },
         {
-            "graphics_id": 23,
-            "movement_type": 17,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 430,
             "script": 6,
             "initial_dir": 3,
@@ -63,9 +63,9 @@
             "y": 0
         },
         {
-            "graphics_id": 23,
-            "movement_type": 17,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 430,
             "script": 4,
             "initial_dir": 3,
@@ -77,9 +77,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1097,
             "script": 7083,
             "initial_dir": 0,
@@ -91,9 +91,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1098,
             "script": 7084,
             "initial_dir": 0,
@@ -105,9 +105,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 539,
             "script": 3,
             "initial_dir": 0,
@@ -120,9 +120,9 @@
         },
         {
             "local_id": 31,
-            "graphics_id": 13,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 373,
             "script": 65535,
             "initial_dir": 2,
@@ -134,9 +134,9 @@
             "y": 0
         },
         {
-            "graphics_id": 93,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 7,
             "initial_dir": 0,
@@ -148,9 +148,9 @@
             "y": 0
         },
         {
-            "graphics_id": 13,
-            "movement_type": 7,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 605,
             "script": 5,
             "initial_dir": 0,
@@ -162,9 +162,9 @@
             "y": 0
         },
         {
-            "graphics_id": 19,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 637,
             "script": 8,
             "initial_dir": 2,
@@ -176,9 +176,9 @@
             "y": 0
         },
         {
-            "graphics_id": 148,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 469,
             "script": 0,
             "initial_dir": 0,
@@ -190,9 +190,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1330,
             "script": 7315,
             "initial_dir": 0,
@@ -208,43 +208,43 @@
         {
             "x": 706,
             "z": 790,
-            "dest_header_id": 337,
+            "dest_header_id": "MAP_HEADER_RESTAURANT",
             "dest_warp_id": 0
         },
         {
             "x": 715,
             "z": 781,
-            "dest_header_id": 338,
+            "dest_header_id": "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_EAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 690,
             "z": 791,
-            "dest_header_id": 339,
+            "dest_header_id": "MAP_HEADER_GRAND_LAKE_VALOR_LAKEFRONT_WEST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 717,
             "z": 760,
-            "dest_header_id": 314,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR_DRAINED",
             "dest_warp_id": 0
         },
         {
             "x": 717,
             "z": 761,
-            "dest_header_id": 314,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR_DRAINED",
             "dest_warp_id": 2
         },
         {
             "x": 717,
             "z": 760,
-            "dest_header_id": 315,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR",
             "dest_warp_id": 3
         },
         {
             "x": 717,
             "z": 761,
-            "dest_header_id": 315,
+            "dest_header_id": "MAP_HEADER_LAKE_VALOR",
             "dest_warp_id": 4
         }
     ],

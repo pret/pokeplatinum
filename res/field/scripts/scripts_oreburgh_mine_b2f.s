@@ -160,7 +160,7 @@ _00FC:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 66, 0
+    PlayCry SPECIES_MACHOP
     Message 2
     ScrCmd_04D
     WaitABXPadPress
@@ -173,7 +173,7 @@ _011B:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 66, 0
+    PlayCry SPECIES_MACHOP
     Message 3
     ScrCmd_04D
     WaitABXPadPress
@@ -186,7 +186,7 @@ _013A:
     LockAll
     FacePlayer
     WaitFanfare SEQ_SE_CONFIRM
-    ScrCmd_04C 66, 0
+    PlayCry SPECIES_MACHOP
     Message 4
     ScrCmd_04D
     WaitABXPadPress

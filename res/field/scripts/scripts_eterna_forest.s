@@ -136,7 +136,7 @@ _0190:
 _0198:
     LockAll
     ApplyMovement 0, _0300
-    ApplyMovement 0xFF, _0368
+    ApplyMovement LOCALID_PLAYER, _0368
     WaitMovement
     BufferPlayerName 0
     Message 5
@@ -166,37 +166,37 @@ _01EA:
 
 _023B:
     ApplyMovement 0, _030C
-    ApplyMovement 0xFF, _0374
+    ApplyMovement LOCALID_PLAYER, _0374
     WaitMovement
     GoTo _02CB
 
 _0253:
     ApplyMovement 0, _0318
-    ApplyMovement 0xFF, _0388
+    ApplyMovement LOCALID_PLAYER, _0388
     WaitMovement
     GoTo _02CB
 
 _026B:
     ApplyMovement 0, _0324
-    ApplyMovement 0xFF, _039C
+    ApplyMovement LOCALID_PLAYER, _039C
     WaitMovement
     GoTo _02CB
 
 _0283:
     ApplyMovement 0, _0330
-    ApplyMovement 0xFF, _03B0
+    ApplyMovement LOCALID_PLAYER, _03B0
     WaitMovement
     GoTo _02CB
 
 _029B:
     ApplyMovement 0, _033C
-    ApplyMovement 0xFF, _03C4
+    ApplyMovement LOCALID_PLAYER, _03C4
     WaitMovement
     GoTo _02CB
 
 _02B3:
     ApplyMovement 0, _0348
-    ApplyMovement 0xFF, _03D8
+    ApplyMovement LOCALID_PLAYER, _03D8
     WaitMovement
     GoTo _02CB
 
@@ -357,7 +357,7 @@ _0411:
     FacePlayer
     Message 13
     CloseMessage
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _046C
     GoToIfEq 0x800C, 1, _047E
     GoToIfEq 0x800C, 2, _0490

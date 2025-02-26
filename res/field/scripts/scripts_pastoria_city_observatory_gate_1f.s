@@ -20,7 +20,7 @@ _0020:
 
 _0022:
     LockAll
-    ApplyMovement 0xFF, _0194
+    ApplyMovement LOCALID_PLAYER, _0194
     WaitMovement
     GetPlayerMapPos 0x4000, 0x4001
     CallIfEq 0x4000, 5, _017D
@@ -55,12 +55,12 @@ _008C:
     End
 
 _00E2:
-    ApplyMovement 0xFF, _019C
+    ApplyMovement LOCALID_PLAYER, _019C
     WaitMovement
     GoTo _0102
 
 _00F2:
-    ApplyMovement 0xFF, _01B4
+    ApplyMovement LOCALID_PLAYER, _01B4
     WaitMovement
     GoTo _0102
 
@@ -80,7 +80,7 @@ _0141:
     Message 6
     CloseMessage
     ScrCmd_073
-    ApplyMovement 0xFF, _01C4
+    ApplyMovement LOCALID_PLAYER, _01C4
     WaitMovement
     ReleaseAll
     End
@@ -88,7 +88,7 @@ _0141:
 _0156:
     CloseMessage
     ScrCmd_073
-    ApplyMovement 0xFF, _01C4
+    ApplyMovement LOCALID_PLAYER, _01C4
     WaitMovement
     ReleaseAll
     End
@@ -97,13 +97,13 @@ _0168:
     ScrCmd_073
     Message 7
     CloseMessage
-    ApplyMovement 0xFF, _01C4
+    ApplyMovement LOCALID_PLAYER, _01C4
     WaitMovement
     ReleaseAll
     End
 
 _017D:
-    ApplyMovement 0xFF, _018C
+    ApplyMovement LOCALID_PLAYER, _018C
     WaitMovement
     Return
 
@@ -149,7 +149,7 @@ _01CC:
 _01F1:
     Message 10
     CloseMessage
-    ApplyMovement 0xFF, _0280
+    ApplyMovement LOCALID_PLAYER, _0280
     WaitMovement
     SetVar 0x40DA, 0
     ScrCmd_202 1
@@ -176,7 +176,7 @@ _024A:
 
 _024E:
     CloseMessage
-    ApplyMovement 0xFF, _0288
+    ApplyMovement LOCALID_PLAYER, _0288
     WaitMovement
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -199,7 +199,7 @@ _0288:
 
 _0298:
     LockAll
-    ApplyMovement 0xFF, _0280
+    ApplyMovement LOCALID_PLAYER, _0280
     WaitMovement
     SetVar 0x40DA, 0
     ScrCmd_31B 0x4002

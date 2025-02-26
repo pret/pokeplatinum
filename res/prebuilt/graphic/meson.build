@@ -38,7 +38,6 @@ prebuilt_files = [
     'pst_gra.narc',
     'ranking.narc',
     'record.narc',
-    'shop_gra.narc',
     'tmap_gra.narc',
     'touch_subwindow.narc',
     'trainer_case.narc',

@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 26,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_NURSE_JOY",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 1,
@@ -16,9 +16,9 @@
             "y": 0
         },
         {
-            "graphics_id": 51,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 1,
@@ -30,9 +30,9 @@
             "y": 0
         },
         {
-            "graphics_id": 8,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 3,
             "initial_dir": 1,
@@ -44,9 +44,9 @@
             "y": 0
         },
         {
-            "graphics_id": 111,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_111",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 387,
             "script": 10401,
             "initial_dir": 1,
@@ -58,9 +58,9 @@
             "y": 0
         },
         {
-            "graphics_id": 112,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_112",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 388,
             "script": 10402,
             "initial_dir": 1,
@@ -76,19 +76,19 @@
         {
             "x": 8,
             "z": 12,
-            "dest_header_id": 120,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY",
             "dest_warp_id": 9
         },
         {
             "x": 2,
             "z": 10,
-            "dest_header_id": 124,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_POKECENTER_2F",
             "dest_warp_id": 0
         },
         {
             "x": 14,
             "z": 10,
-            "dest_header_id": 479,
+            "dest_header_id": "MAP_HEADER_PASTORIA_CITY_POKECENTER_B1F",
             "dest_warp_id": 0
         }
     ],

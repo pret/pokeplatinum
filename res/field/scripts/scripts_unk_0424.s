@@ -10,7 +10,7 @@ _0006:
     LockAll
     WaitTime 1, 0x800C
     SetVar 0x8005, 0x8000
-    ScrCmd_28C 0x8000
+    DrawPokemonPreviewFromPartySlot 0x8000
     ScrCmd_059 0x800C
     GoToIfEq 0x800C, 1, _0031
     GoTo _0054
@@ -40,7 +40,7 @@ _0054:
     BufferPartyMonNickname 0, 0x8005
     Message 2
     ScrCmd_28E 0x800C
-    ScrCmd_04C 0x1B9, 0
+    PlayCry SPECIES_CHATOT
     ScrCmd_04D
     GoTo _00B2
     End

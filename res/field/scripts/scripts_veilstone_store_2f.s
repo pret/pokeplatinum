@@ -110,7 +110,7 @@ _012B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_134 10, 0x800C
+    CheckPoketchAppRegistered POKETCH_APPID_COUNTER, 0x800C
     GoToIfEq 0x800C, 1, _016F
     Message 10
     ShowYesNoMenu 0x800C
@@ -163,7 +163,7 @@ _0198:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 10
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_UP
     ReleaseAll
     End
 
@@ -173,7 +173,7 @@ _01AE:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 11
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_MID
     ReleaseAll
     End
 

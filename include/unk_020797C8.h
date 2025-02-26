@@ -31,7 +31,7 @@ u32 sub_02079B98(const PCBoxes *param0, u32 param1);
 u32 sub_02079BEC(const PCBoxes *param0);
 u32 sub_02079C08(const PCBoxes *param0, u32 param1, u32 param2, int param3, void *param4);
 void sub_02079C50(PCBoxes *param0, u32 param1, u32 param2, int param3, void *param4);
-BoxPokemon *sub_02079C9C(const PCBoxes *param0, u32 param1, u32 param2);
+BoxPokemon *GetBoxedPokemonFrom(const PCBoxes *pcBoxes, u32 boxIndex, u32 pokemonBoxLocationIndex);
 void sub_02079CD8(PCBoxes *param0, u32 param1);
 BOOL sub_02079CFC(const PCBoxes *param0, u32 param1);
 u32 sub_02079D20(const PCBoxes *param0);

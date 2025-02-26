@@ -110,7 +110,7 @@ _01F4:
     CallIfEq 0x8004, 0, _043F
     CallIfEq 0x8004, 1, _0444
     CloseMessage
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _0251
     GoToIfEq 0x800C, 1, _026B
     GoToIfEq 0x800C, 2, _0285
@@ -119,21 +119,21 @@ _01F4:
 
 _0251:
     ApplyMovement 4, _0474
-    ApplyMovement 0xFF, _0488
+    ApplyMovement LOCALID_PLAYER, _0488
     WaitMovement
     GoTo _02B1
     End
 
 _026B:
     ApplyMovement 4, _0474
-    ApplyMovement 0xFF, _0488
+    ApplyMovement LOCALID_PLAYER, _0488
     WaitMovement
     GoTo _02B1
     End
 
 _0285:
     ApplyMovement 4, _047C
-    ApplyMovement 0xFF, _0494
+    ApplyMovement LOCALID_PLAYER, _0494
     WaitMovement
     GoTo _02B1
     End

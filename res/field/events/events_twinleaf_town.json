@@ -6,14 +6,14 @@
             "x": 107,
             "z": 893,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 12,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 6,
             "initial_dir": 2,
@@ -25,9 +25,9 @@
             "y": 1
         },
         {
-            "graphics_id": 19,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_COLLECTOR",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 5,
             "initial_dir": 0,
@@ -39,9 +39,9 @@
             "y": 1
         },
         {
-            "graphics_id": 148,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 372,
             "script": 0,
             "initial_dir": 1,
@@ -53,9 +53,9 @@
             "y": 0
         },
         {
-            "graphics_id": 10,
-            "movement_type": 12,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GUITARIST",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 3,
             "initial_dir": 2,
@@ -67,9 +67,9 @@
             "y": 0
         },
         {
-            "graphics_id": 91,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 7,
             "initial_dir": 0,
@@ -83,9 +83,9 @@
             "y": 0
         },
         {
-            "graphics_id": 92,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_MAILBOX",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 8,
             "initial_dir": 0,
@@ -97,9 +97,9 @@
             "y": 0
         },
         {
-            "graphics_id": 92,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_MAILBOX",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 9,
             "initial_dir": 0,
@@ -112,9 +112,9 @@
         },
         {
             "local_id": 3,
-            "graphics_id": 94,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 342,
             "script": 65535,
             "initial_dir": 0,
@@ -132,25 +132,25 @@
         {
             "x": 105,
             "z": 875,
-            "dest_header_id": 412,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_RIVAL_HOUSE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 116,
             "z": 885,
-            "dest_header_id": 414,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_1F",
             "dest_warp_id": 0
         },
         {
             "x": 116,
             "z": 875,
-            "dest_header_id": 416,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_NORTHEAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 106,
             "z": 885,
-            "dest_header_id": 417,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_SOUTHWEST_HOUSE",
             "dest_warp_id": 0
         }
     ],

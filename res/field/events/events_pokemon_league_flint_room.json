@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 136,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_FLINT",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 1,
@@ -16,9 +16,9 @@
             "y": 0
         },
         {
-            "graphics_id": 209,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ELITE_FOUR_ROOM_DOOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 648,
             "script": 2037,
             "initial_dir": 0,
@@ -30,9 +30,9 @@
             "y": 0
         },
         {
-            "graphics_id": 209,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ELITE_FOUR_ROOM_DOOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 644,
             "script": 2037,
             "initial_dir": 0,
@@ -48,13 +48,13 @@
         {
             "x": 8,
             "z": 2,
-            "dest_header_id": 182,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_LUCIAN_ROOM",
             "dest_warp_id": 1
         },
         {
             "x": 8,
             "z": 11,
-            "dest_header_id": 180,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_FLINT_ROOM",
             "dest_warp_id": 0
         }
     ],

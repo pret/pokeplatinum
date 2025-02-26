@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 248,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -16,9 +16,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -30,9 +30,9 @@
             "y": 0
         },
         {
-            "graphics_id": 120,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CYRUS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 595,
             "script": 0,
             "initial_dir": 1,
@@ -44,9 +44,9 @@
             "y": 0
         },
         {
-            "graphics_id": 213,
-            "movement_type": 16,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_LOOKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 596,
             "script": 0,
             "initial_dir": 2,
@@ -58,9 +58,9 @@
             "y": 0
         },
         {
-            "graphics_id": 248,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -72,9 +72,9 @@
             "y": 0
         },
         {
-            "graphics_id": 248,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -86,9 +86,9 @@
             "y": 0
         },
         {
-            "graphics_id": 249,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -100,9 +100,9 @@
             "y": 0
         },
         {
-            "graphics_id": 248,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -114,9 +114,9 @@
             "y": 0
         },
         {
-            "graphics_id": 249,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -128,9 +128,9 @@
             "y": 0
         },
         {
-            "graphics_id": 249,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -142,9 +142,9 @@
             "y": 0
         },
         {
-            "graphics_id": 249,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -156,9 +156,9 @@
             "y": 0
         },
         {
-            "graphics_id": 248,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -170,9 +170,9 @@
             "y": 0
         },
         {
-            "graphics_id": 248,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -184,9 +184,9 @@
             "y": 0
         },
         {
-            "graphics_id": 248,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -198,9 +198,9 @@
             "y": 0
         },
         {
-            "graphics_id": 248,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -212,9 +212,9 @@
             "y": 0
         },
         {
-            "graphics_id": 249,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -226,9 +226,9 @@
             "y": 0
         },
         {
-            "graphics_id": 249,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -240,9 +240,9 @@
             "y": 0
         },
         {
-            "graphics_id": 249,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -254,9 +254,9 @@
             "y": 0
         },
         {
-            "graphics_id": 249,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_3",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -268,9 +268,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -282,9 +282,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -296,9 +296,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -310,9 +310,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -324,9 +324,9 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -338,9 +338,9 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -352,9 +352,9 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -366,9 +366,9 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -380,9 +380,9 @@
             "y": 0
         },
         {
-            "graphics_id": 248,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -394,9 +394,9 @@
             "y": 0
         },
         {
-            "graphics_id": 248,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNTS_GROUP_OF_4",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -408,9 +408,9 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -422,9 +422,9 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -436,9 +436,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -450,9 +450,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -464,9 +464,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -478,9 +478,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -492,9 +492,9 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 601,
             "script": 0,
             "initial_dir": 0,
@@ -510,19 +510,19 @@
         {
             "x": 24,
             "z": 6,
-            "dest_header_id": 306,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
             "dest_warp_id": 10
         },
         {
             "x": 1,
             "z": 12,
-            "dest_header_id": 306,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
             "dest_warp_id": 9
         },
         {
             "x": 17,
             "z": 3,
-            "dest_header_id": 308,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_4F",
             "dest_warp_id": 3
         }
     ],

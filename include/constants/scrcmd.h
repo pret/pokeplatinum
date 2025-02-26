@@ -4,4 +4,6 @@
 #define MENU_YES 0
 #define MENU_NO  1
 
+#define LOCALID_PLAYER 0xFF
+
 #endif // POKEPLATINUM_CONSTANTS_SCRCMD_H

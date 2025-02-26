@@ -36,7 +36,7 @@ _0077:
     Return
 
 _0083:
-    ScrCmd_186 18, 0x349, 0x316
+    SetObjectEventPos 18, 0x349, 0x316
     ScrCmd_188 18, 16
     ScrCmd_189 18, 2
     End
@@ -46,7 +46,7 @@ _0099:
     ApplyMovement 9, _04E8
     WaitMovement
     ClearFlag 0x255
-    ScrCmd_064 20
+    AddObject 20
     ScrCmd_062 20
     GetPlayerMapPos 0x8004, 0x8005
     GoToIfEq 0x8004, 0x355, _00FA
@@ -58,35 +58,35 @@ _0099:
 
 _00FA:
     ApplyMovement 20, _0454
-    ApplyMovement 0xFF, _04F4
+    ApplyMovement LOCALID_PLAYER, _04F4
     WaitMovement
     GoTo _017C
     End
 
 _0114:
     ApplyMovement 20, _0464
-    ApplyMovement 0xFF, _04F4
+    ApplyMovement LOCALID_PLAYER, _04F4
     WaitMovement
     GoTo _017C
     End
 
 _012E:
     ApplyMovement 20, _0474
-    ApplyMovement 0xFF, _0504
+    ApplyMovement LOCALID_PLAYER, _0504
     WaitMovement
     GoTo _017C
     End
 
 _0148:
     ApplyMovement 20, _0480
-    ApplyMovement 0xFF, _050C
+    ApplyMovement LOCALID_PLAYER, _050C
     WaitMovement
     GoTo _017C
     End
 
 _0162:
     ApplyMovement 20, _0490
-    ApplyMovement 0xFF, _050C
+    ApplyMovement LOCALID_PLAYER, _050C
     WaitMovement
     GoTo _017C
     End
@@ -116,7 +116,7 @@ _017C:
     CallIfEq 0x8004, 0x357, _036E
     CallIfEq 0x8004, 0x358, _037A
     CallIfEq 0x8004, 0x359, _0386
-    ApplyMovement 0xFF, _0528
+    ApplyMovement LOCALID_PLAYER, _0528
     WaitMovement
     Message 13
     Call _0577
@@ -157,13 +157,13 @@ _02EE:
 
 _02FA:
     ApplyMovement 20, _04C0
-    ApplyMovement 0xFF, _051C
+    ApplyMovement LOCALID_PLAYER, _051C
     WaitMovement
     Return
 
 _030E:
     ApplyMovement 20, _04C8
-    ApplyMovement 0xFF, _051C
+    ApplyMovement LOCALID_PLAYER, _051C
     WaitMovement
     Return
 
@@ -174,13 +174,13 @@ _0322:
 
 _032E:
     ApplyMovement 20, _04D8
-    ApplyMovement 0xFF, _051C
+    ApplyMovement LOCALID_PLAYER, _051C
     WaitMovement
     Return
 
 _0342:
     ApplyMovement 20, _04E0
-    ApplyMovement 0xFF, _051C
+    ApplyMovement LOCALID_PLAYER, _051C
     WaitMovement
     Return
 
@@ -478,11 +478,11 @@ _05D7:
     WaitMovement
     RemoveObject 18
     WaitTime 1, 0x800C
-    ScrCmd_186 18, 0x34D, 0x2EC
+    SetObjectEventPos 18, 0x34D, 0x2EC
     ScrCmd_188 18, 15
     ScrCmd_189 18, 1
     ClearFlag 0x239
-    ScrCmd_064 18
+    AddObject 18
     SetVar 0x407E, 1
     ReleaseAll
     End
@@ -653,31 +653,31 @@ _0791:
     End
 
 _0806:
-    ScrCmd_14A 0
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_MONDAY
     GoTo _084C
 
 _0810:
-    ScrCmd_14A 1
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_TUESDAY
     GoTo _084C
 
 _081A:
-    ScrCmd_14A 2
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_WEDNESDAY
     GoTo _084C
 
 _0824:
-    ScrCmd_14A 3
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_THURSDAY
     GoTo _084C
 
 _082E:
-    ScrCmd_14A 4
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_FRIDAY
     GoTo _084C
 
 _0838:
-    ScrCmd_14A 5
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_SATURDAY
     GoTo _084C
 
 _0842:
-    ScrCmd_14A 6
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_SUNDAY
     GoTo _084C
 
 _084C:
@@ -699,7 +699,7 @@ _086E:
     Message 3
     CloseMessage
     WaitTime 15, 0x800C
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _08A6
     GoToIfEq 0x800C, 2, _08BE
     GoToIfEq 0x800C, 3, _08D6
@@ -707,19 +707,19 @@ _086E:
 
 _08A6:
     ApplyMovement 18, _08F8
-    ApplyMovement 0xFF, _0914
+    ApplyMovement LOCALID_PLAYER, _0914
     WaitMovement
     GoTo _08EE
 
 _08BE:
     ApplyMovement 18, _0908
-    ApplyMovement 0xFF, _0920
+    ApplyMovement LOCALID_PLAYER, _0920
     WaitMovement
     GoTo _08EE
 
 _08D6:
     ApplyMovement 18, _0908
-    ApplyMovement 0xFF, _0914
+    ApplyMovement LOCALID_PLAYER, _0914
     WaitMovement
     GoTo _08EE
 

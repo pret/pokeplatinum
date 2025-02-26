@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 235,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_WIFI_PLAZA_ATTENDANT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 9204,
             "initial_dir": 1,
@@ -16,9 +16,9 @@
             "y": 0
         },
         {
-            "graphics_id": 27,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_TEALA",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 9202,
             "initial_dir": 1,
@@ -30,9 +30,9 @@
             "y": 0
         },
         {
-            "graphics_id": 27,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_TEALA",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 9201,
             "initial_dir": 1,
@@ -48,7 +48,7 @@
         {
             "x": 14,
             "z": 10,
-            "dest_header_id": 420,
+            "dest_header_id": "MAP_HEADER_SANDGEM_TOWN_POKECENTER_1F",
             "dest_warp_id": 2
         }
     ],

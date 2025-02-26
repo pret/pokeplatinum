@@ -6,7 +6,7 @@
             "x": 41,
             "z": 44,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8092,
@@ -14,7 +14,7 @@
             "x": 44,
             "z": 47,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8085,
@@ -22,7 +22,7 @@
             "x": 33,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8086,
@@ -30,7 +30,7 @@
             "x": 19,
             "z": 12,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8088,
@@ -38,7 +38,7 @@
             "x": 43,
             "z": 17,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8262,
@@ -46,7 +46,7 @@
             "x": 32,
             "z": 14,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8270,
@@ -54,14 +54,14 @@
             "x": 10,
             "z": 20,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 32,
             "script": 10001,
             "initial_dir": 0,
@@ -73,9 +73,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 33,
             "script": 10001,
             "initial_dir": 0,
@@ -87,9 +87,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 34,
             "script": 10001,
             "initial_dir": 0,
@@ -101,9 +101,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 35,
             "script": 10001,
             "initial_dir": 0,
@@ -115,9 +115,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 36,
             "script": 10001,
             "initial_dir": 0,
@@ -129,9 +129,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 37,
             "script": 10001,
             "initial_dir": 0,
@@ -143,9 +143,9 @@
             "y": 0
         },
         {
-            "graphics_id": 84,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_STRENGTH_BOULDER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 38,
             "script": 10002,
             "initial_dir": 0,
@@ -161,19 +161,19 @@
         {
             "x": 42,
             "z": 40,
-            "dest_header_id": 212,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2",
             "dest_warp_id": 4
         },
         {
             "x": 13,
             "z": 19,
-            "dest_header_id": 213,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOM_3",
             "dest_warp_id": 0
         },
         {
             "x": 45,
             "z": 28,
-            "dest_header_id": 216,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_TUNNEL_ROOM",
             "dest_warp_id": 0
         }
     ],

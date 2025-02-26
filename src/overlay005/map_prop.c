@@ -5,13 +5,11 @@
 
 #include "constants/heap.h"
 
+#include "overlay005/area_data.h"
+#include "overlay005/map_prop_animation.h"
 #include "overlay005/map_prop_material_shape.h"
-#include "overlay005/ov5_021D37AC.h"
 #include "overlay005/ov5_021D5878.h"
-#include "overlay005/ov5_021EF75C.h"
-#include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
-#include "overlay005/struct_ov5_021EF76C_decl.h"
 
 #include "easy3d.h"
 #include "fx_util.h"
@@ -19,11 +17,11 @@
 #include "narc.h"
 #include "unk_0201CED8.h"
 
-static void MapPropManager_InitRenderObj(const int loadedPropId, UnkStruct_ov5_021EF76C *const param1, NNSG3dRenderObj *renderObj, NNSG3dResMdl **resMdl);
-static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *resMdl, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const MapPropMaterialShape *propMatShp, const int mapPropID);
+static void MapPropManager_InitRenderObj(const int modelID, AreaDataManager *const areaDataManager, NNSG3dRenderObj *renderObj, NNSG3dResMdl **model);
+static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *model, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const MapPropMaterialShape *propMatShp, const int modelID);
 
 typedef struct {
-    int id;
+    int modelID;
     VecFx32 position;
     VecFx32 rotation;
     VecFx32 scale;
@@ -49,7 +47,7 @@ void MapPropManager_Init(MapPropManager *mapPropManager)
     for (u8 i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
         VecFx32 nullVector = { 0, 0, 0 };
 
-        mapPropManager->loadedProps[i].id = 0;
+        mapPropManager->loadedProps[i].modelID = 0;
         mapPropManager->loadedProps[i].loaded = FALSE;
         mapPropManager->loadedProps[i].hidden = FALSE;
         mapPropManager->loadedProps[i].applyRotation = FALSE;
@@ -65,7 +63,7 @@ void MapPropManager_InitOne(const int index, MapPropManager *mapPropManager)
     GF_ASSERT(index < MAX_LOADED_MAP_PROPS);
     VecFx32 nullVector = { 0, 0, 0 };
 
-    mapPropManager->loadedProps[index].id = 0;
+    mapPropManager->loadedProps[index].modelID = 0;
     mapPropManager->loadedProps[index].loaded = FALSE;
     mapPropManager->loadedProps[index].hidden = FALSE;
     mapPropManager->loadedProps[index].applyRotation = FALSE;
@@ -75,7 +73,7 @@ void MapPropManager_InitOne(const int index, MapPropManager *mapPropManager)
     mapPropManager->loadedProps[index].model = NULL;
 }
 
-void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, UnkStruct_ov5_021EF76C *const param2, MapPropManager *mapPropManager, UnkStruct_ov5_021D3CAC *param4)
+void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDataManager *const areaDataManager, MapPropManager *mapPropManager, MapPropAnimationManager *mapPropAnimMan)
 {
     MapPropFile *mapPropFiles = NULL;
     u32 mapPropFilesCount;
@@ -93,24 +91,24 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, UnkStru
         MapProp *loadedProp = &mapPropManager->loadedProps[i];
 
         if (i < mapPropFilesCount) {
-            loadedProp->id = mapPropFiles[i].id;
+            loadedProp->modelID = mapPropFiles[i].modelID;
             loadedProp->loaded = TRUE;
             loadedProp->applyRotation = FALSE;
             loadedProp->position = mapPropFiles[i].position;
             loadedProp->rotation = mapPropFiles[i].rotation;
             loadedProp->scale = mapPropFiles[i].scale;
 
-            MapPropManager_InitRenderObj(loadedProp->id, param2, &loadedProp->renderObj, &loadedProp->model);
+            MapPropManager_InitRenderObj(loadedProp->modelID, areaDataManager, &loadedProp->renderObj, &loadedProp->model);
 
-            if (ov5_021EFAF8(param2, loadedProp->id) == FALSE) {
-                loadedProp->id = 0;
+            if (AreaDataManager_HasMapPropModelFile(areaDataManager, loadedProp->modelID) == FALSE) {
+                loadedProp->modelID = 0;
             }
 
-            ov5_021D3BE4(loadedProp->id, &loadedProp->renderObj, param4);
+            MapPropAnimationManager_AddAllAnimationsToRenderObj(loadedProp->modelID, &loadedProp->renderObj, mapPropAnimMan);
         } else {
             VecFx32 nullVector = { 0, 0, 0 };
 
-            loadedProp->id = 0;
+            loadedProp->modelID = 0;
             loadedProp->loaded = FALSE;
             loadedProp->applyRotation = FALSE;
             loadedProp->position = nullVector;
@@ -124,7 +122,7 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, UnkStru
     }
 }
 
-void MapPropManager_Render(const VecFx32 *positionOffset, const UnkStruct_ov5_021EF76C *param1, const BOOL param2, UnkStruct_ov5_021D5894 *const param3, MapPropManager *mapPropManager)
+void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager *areaDataManager, const BOOL param2, UnkStruct_ov5_021D5894 *const param3, MapPropManager *mapPropManager)
 {
     int i;
     VecFx32 position;
@@ -153,19 +151,19 @@ void MapPropManager_Render(const VecFx32 *positionOffset, const UnkStruct_ov5_02
             position.z += positionOffset->z;
 
             if (sub_0201CED8(loadedProp->model, &position, &rotationMatrix, &loadedProp->scale)) {
-                const MapPropMaterialShape *propMatShp = ov5_021EFAB4(param1);
+                const MapPropMaterialShape *propMatShp = AreaDataManager_GetMapPropMaterialShape(areaDataManager);
                 u16 propMatShpIDsCount;
 
                 if (param2 == TRUE) {
                     ov5_021D5948(param3, loadedProp->model, (1 | 1 << 1 | 1 << 4 | 1 << 5 | 1 << 8 | 1 << 9 | 1 << 10 | 1 << 11));
                 }
 
-                MapProp_GetMaterialShapeIDsCount(loadedProp->id, propMatShp, &propMatShpIDsCount);
+                MapProp_GetMaterialShapeIDsCount(loadedProp->modelID, propMatShp, &propMatShpIDsCount);
 
                 if (propMatShpIDsCount == 0) {
                     Easy3D_DrawRenderObj(&loadedProp->renderObj, &position, &rotationMatrix, &loadedProp->scale);
                 } else {
-                    MapPropManager_RenderUsing1Mat1Shp(loadedProp->model, &position, &rotationMatrix, &loadedProp->scale, propMatShp, loadedProp->id);
+                    MapPropManager_RenderUsing1Mat1Shp(loadedProp->model, &position, &rotationMatrix, &loadedProp->scale, propMatShp, loadedProp->modelID);
                 }
             }
         }
@@ -192,9 +190,9 @@ void MapProp_SetHidden(MapProp *mapProp, const BOOL hidden)
     mapProp->hidden = hidden;
 }
 
-int MapProp_GetId(const MapProp *mapProp)
+int MapProp_GetModelID(const MapProp *mapProp)
 {
-    return mapProp->id;
+    return mapProp->modelID;
 }
 
 NNSG3dRenderObj *MapProp_GetRenderObj(const MapProp *mapProp)
@@ -212,12 +210,12 @@ MapProp *MapPropManager_GetLoadedProp(MapPropManager *mapPropManager, const u8 i
     return &mapPropManager->loadedProps[index];
 }
 
-MapProp *MapPropManager_FindLoadedPropById(MapPropManager *mapPropManager, const int id)
+MapProp *MapPropManager_FindLoadedPropByModelID(MapPropManager *mapPropManager, const int modelID)
 {
     for (int i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
         MapProp *loadedProp = &mapPropManager->loadedProps[i];
 
-        if (loadedProp->id == id) {
+        if (loadedProp->modelID == modelID) {
             return loadedProp;
         }
     }
@@ -234,15 +232,15 @@ MapProp *MapPropManager_GetLoadedPropSafely(MapPropManager *mapPropManager, cons
     return loadedProp;
 }
 
-static void MapPropManager_InitRenderObj(const int loadedPropId, UnkStruct_ov5_021EF76C *const param1, NNSG3dRenderObj *renderObj, NNSG3dResMdl **resMdl)
+static void MapPropManager_InitRenderObj(const int modelID, AreaDataManager *const areaDataManager, NNSG3dRenderObj *renderObj, NNSG3dResMdl **model)
 {
-    NNSG3dResFileHeader **nsbmdFile = ov5_021EF9E8(loadedPropId, param1);
+    NNSG3dResFileHeader **modelFile = AreaDataManager_GetMapPropModelFile(modelID, areaDataManager);
 
-    *resMdl = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*nsbmdFile), 0);
-    NNS_G3dRenderObjInit(renderObj, *resMdl);
+    *model = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*modelFile), 0);
+    NNS_G3dRenderObjInit(renderObj, *model);
 }
 
-static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *resMdl, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const MapPropMaterialShape *propMatShp, const int mapPropID)
+static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *model, VecFx32 *position, MtxFx33 *rotation, VecFx32 *scale, const MapPropMaterialShape *propMatShp, const int modelID)
 {
     u8 i;
     u16 propMatShpIDsCount;
@@ -256,7 +254,7 @@ static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *resMdl, VecFx
     NNS_G3dGlbSetBaseScale(scale);
     NNS_G3dGlbFlush();
 
-    MapProp_GetMaterialShapeIDsLocator(mapPropID, propMatShp, &propMatShpIDsCount, &propMatShpIDsIndex);
+    MapProp_GetMaterialShapeIDsLocator(modelID, propMatShp, &propMatShpIDsCount, &propMatShpIDsIndex);
 
     propMatShpIDs = MapPropMaterialShape_GetMaterialShapeIDsAt(propMatShpIDsIndex, propMatShp);
     materialID = 0xFF;
@@ -270,11 +268,11 @@ static void MapPropManager_RenderUsing1Mat1Shp(const NNSG3dResMdl *resMdl, VecFx
             sendMaterial = FALSE;
         }
 
-        NNS_G3dDraw1Mat1Shp(resMdl, materialID, propMatShpIDs[i].shapeID, sendMaterial);
+        NNS_G3dDraw1Mat1Shp(model, materialID, propMatShpIDs[i].shapeID, sendMaterial);
     }
 }
 
-u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, UnkStruct_ov5_021EF76C *const param1, const int id, const VecFx32 *position, const VecFx32 *rotation, UnkStruct_ov5_021D3CAC *param5)
+u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, AreaDataManager *const areaDataManager, const int modelID, const VecFx32 *position, const VecFx32 *rotation, MapPropAnimationManager *mapPropAnimMan)
 {
     u8 i;
     VecFx32 scale = { FX32_ONE, FX32_ONE, FX32_ONE };
@@ -294,10 +292,10 @@ u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, UnkStruct_ov5_021EF76C
             }
 
             loadedProp->scale = scale;
-            loadedProp->id = id;
+            loadedProp->modelID = modelID;
 
-            MapPropManager_InitRenderObj(loadedProp->id, param1, &loadedProp->renderObj, &loadedProp->model);
-            ov5_021D3B24(loadedProp->id, 0, FALSE, &loadedProp->renderObj, param5);
+            MapPropManager_InitRenderObj(loadedProp->modelID, areaDataManager, &loadedProp->renderObj, &loadedProp->model);
+            MapPropAnimationManager_AddAnimationToRenderObj(loadedProp->modelID, 0, FALSE, &loadedProp->renderObj, mapPropAnimMan);
 
             return i;
         }
@@ -307,7 +305,7 @@ u8 MapPropManager_LoadOne(MapPropManager *mapPropManager, UnkStruct_ov5_021EF76C
     return MAX_LOADED_MAP_PROPS;
 }
 
-void MapPropManager_Render2(MapPropManager *mapPropManager, UnkStruct_ov5_021EF76C *const param1)
+void MapPropManager_Render2(MapPropManager *mapPropManager, AreaDataManager *const areaDataManager)
 {
     u8 i;
     MtxFx33 rotationMatrix = {
@@ -330,10 +328,10 @@ void MapPropManager_Render2(MapPropManager *mapPropManager, UnkStruct_ov5_021EF7
                 continue;
             }
 
-            const MapPropMaterialShape *propMatShp = ov5_021EFAB4(param1);
+            const MapPropMaterialShape *propMatShp = AreaDataManager_GetMapPropMaterialShape(areaDataManager);
             u16 propMatShpIDsCount;
 
-            MapProp_GetMaterialShapeIDsCount(loadedProp->id, propMatShp, &propMatShpIDsCount);
+            MapProp_GetMaterialShapeIDsCount(loadedProp->modelID, propMatShp, &propMatShpIDsCount);
 
             if (loadedProp->applyRotation) {
                 MTX_Rot33Vec(&rotationMatrix, &loadedProp->rotation);
@@ -342,7 +340,7 @@ void MapPropManager_Render2(MapPropManager *mapPropManager, UnkStruct_ov5_021EF7
             if (propMatShpIDsCount == 0) {
                 Easy3D_DrawRenderObj(&loadedProp->renderObj, &loadedProp->position, &rotationMatrix, &loadedProp->scale);
             } else {
-                MapPropManager_RenderUsing1Mat1Shp(loadedProp->model, &loadedProp->position, &rotationMatrix, &loadedProp->scale, propMatShp, loadedProp->id);
+                MapPropManager_RenderUsing1Mat1Shp(loadedProp->model, &loadedProp->position, &rotationMatrix, &loadedProp->scale, propMatShp, loadedProp->modelID);
             }
         }
     }

@@ -56,7 +56,7 @@ _0087:
     FacePlayer
     GoToIfDefeated 0x37C, _0396
     GoToIfDefeated 0x37D, _0396
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _00CB
     GoToIfEq 0x800C, 1, _00E5
     GoTo _00FF
@@ -64,14 +64,14 @@ _0087:
 
 _00CB:
     ApplyMovement 2, _03EC
-    ApplyMovement 0xFF, _042C
+    ApplyMovement LOCALID_PLAYER, _042C
     WaitMovement
     GoTo _00FF
     End
 
 _00E5:
     ApplyMovement 2, _03F4
-    ApplyMovement 0xFF, _043C
+    ApplyMovement LOCALID_PLAYER, _043C
     WaitMovement
     GoTo _00FF
     End
@@ -91,7 +91,7 @@ _00FF:
     SetVar 0x404D, 0
     SetVar 0x8005, 0
     ClearFlag 0x257
-    ScrCmd_064 5
+    AddObject 5
     ApplyMovement 5, _0420
     WaitMovement
     Message 15
@@ -174,7 +174,7 @@ _00FF:
     ApplyMovement 2, _03FC
     WaitMovement
     ClearFlag 0x258
-    ScrCmd_064 4
+    AddObject 4
     ApplyMovement 4, _0420
     WaitMovement
     CallIfEq 0x8006, 0, _03CD
