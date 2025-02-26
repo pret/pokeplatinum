@@ -576,11 +576,11 @@ static void ov62_0223A4C8(UnkStruct_0208C06C *param0, int param1)
 
     if (param1 == 0) {
         ManagedSprite_SetDrawFlag(v0->unk_348[1].unk_08, 1);
-        sub_020129D0(v0->unk_348[1].unk_0C, 1);
+        FontOAM_SetDrawFlag(v0->unk_348[1].unk_0C, 1);
         ManagedSprite_SetPositionXY(v0->unk_348[0].unk_08, 32, 232);
     } else {
         ManagedSprite_SetDrawFlag(v0->unk_348[1].unk_08, 0);
-        sub_020129D0(v0->unk_348[1].unk_0C, 0);
+        FontOAM_SetDrawFlag(v0->unk_348[1].unk_0C, 0);
         ManagedSprite_SetPositionXY(v0->unk_348[0].unk_08, 80, 232);
     }
 

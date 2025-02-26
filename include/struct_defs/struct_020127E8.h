@@ -21,6 +21,6 @@ typedef struct {
     int unk_24;
     int unk_28;
     int unk_2C;
-} UnkStruct_020127E8;
+} FontOAMInitData;
 
 #endif // POKEPLATINUM_STRUCT_020127E8_H

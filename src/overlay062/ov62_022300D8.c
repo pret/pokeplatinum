@@ -478,7 +478,7 @@ void ov62_02230AF0(UnkStruct_0208C06C *param0)
         ManagedSprite_SetAnim(param0->unk_534.unk_00[v0].unk_00, param0->unk_534.unk_190[v0]->unk_0C);
         ov62_02230FC8(param0, &param0->unk_534.unk_00[v0], param0->unk_534.unk_190[v0]->unk_08, param0->unk_534.unk_190[v0]);
         sub_020128C4(param0->unk_534.unk_00[v0].unk_14, 36, -8);
-        sub_020129D0(param0->unk_534.unk_00[v0].unk_14, 1);
+        FontOAM_SetDrawFlag(param0->unk_534.unk_00[v0].unk_14, 1);
         ManagedSprite_SetDrawFlag(param0->unk_534.unk_00[v0].unk_00, 1);
     }
 }
@@ -500,18 +500,18 @@ void ov62_02230B9C(UnkStruct_0208C06C *param0, BOOL param1)
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param0->unk_534.unk_00[v0].unk_0C == 0) {
-            sub_020129D0(param0->unk_534.unk_00[v0].unk_14, 0);
+            FontOAM_SetDrawFlag(param0->unk_534.unk_00[v0].unk_14, 0);
             ManagedSprite_SetDrawFlag(param0->unk_534.unk_00[v0].unk_00, 0);
         } else {
-            sub_020129D0(param0->unk_534.unk_00[v0].unk_14, param1);
+            FontOAM_SetDrawFlag(param0->unk_534.unk_00[v0].unk_14, param1);
             ManagedSprite_SetDrawFlag(param0->unk_534.unk_00[v0].unk_00, param1);
         }
 
         if (param0->unk_534.unk_C8[v0].unk_0C == 0) {
-            sub_020129D0(param0->unk_534.unk_C8[v0].unk_14, 0);
+            FontOAM_SetDrawFlag(param0->unk_534.unk_C8[v0].unk_14, 0);
             ManagedSprite_SetDrawFlag(param0->unk_534.unk_C8[v0].unk_00, 0);
         } else {
-            sub_020129D0(param0->unk_534.unk_C8[v0].unk_14, param1);
+            FontOAM_SetDrawFlag(param0->unk_534.unk_C8[v0].unk_14, param1);
             ManagedSprite_SetDrawFlag(param0->unk_534.unk_C8[v0].unk_00, param1);
         }
     }
@@ -641,7 +641,7 @@ void ov62_02230E74(ManagedSprite *param0, s16 *param1, s16 *param2)
 void ov62_02230E80(UnkStruct_0208C06C *param0)
 {
     s16 v0, v1;
-    UnkStruct_020127E8 v2;
+    FontOAMInitData v2;
     Strbuf *v3;
     int v4;
     MessageLoader *v5;
@@ -681,7 +681,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
 
             sub_02012AC0(v7[v11]->unk_14, (2 - 1));
             Window_Remove(&v6);
-            sub_020129D0(v7[v11]->unk_14, 0);
+            FontOAM_SetDrawFlag(v7[v11]->unk_14, 0);
         }
     }
 }
@@ -761,7 +761,7 @@ void ov62_0223113C(UnkStruct_0208C06C *param0)
 void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *param1, int param2)
 {
     s16 v0, v1;
-    UnkStruct_020127E8 v2;
+    FontOAMInitData v2;
     Strbuf *v3;
     int v4;
     MessageLoader *v5;
@@ -798,7 +798,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
 
     sub_02012AC0(param0->unk_0C, (2 - 1));
     Window_Remove(&v6);
-    sub_020129D0(param0->unk_0C, 0);
+    FontOAM_SetDrawFlag(param0->unk_0C, 0);
 }
 
 void ov62_0223124C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *param1, int param2)

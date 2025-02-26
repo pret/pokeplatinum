@@ -39,7 +39,7 @@
 #define ENEMY_IN_SLOT_RIGHT 0
 #define ENEMY_IN_SLOT_LEFT  2
 
-BgConfig *BattleSystem_BGL(BattleSystem *battleSys);
+BgConfig *BattleSystem_GetBgConfig(BattleSystem *battleSys);
 
 /**
  * @brief Get one of the allocated windows for the battle display.
@@ -49,7 +49,7 @@ BgConfig *BattleSystem_BGL(BattleSystem *battleSys);
  * @return
  */
 Window *BattleSystem_Window(BattleSystem *battleSys, int idx);
-u32 BattleSystem_BattleType(BattleSystem *battleSys);
+u32 BattleSystem_GetBattleType(BattleSystem *battleSys);
 BattleContext *BattleSystem_Context(BattleSystem *battleSys);
 BattlerData *BattleSystem_BattlerData(BattleSystem *battleSys, int param1);
 int BattleSystem_MaxBattlers(BattleSystem *battleSys);
@@ -85,17 +85,17 @@ int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSys);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSys);
-SpriteSystem *ov16_0223E010(BattleSystem *battleSys);
-SpriteManager *ov16_0223E018(BattleSystem *battleSys);
+SpriteSystem *BattleSystem_GetSpriteSystem(BattleSystem *battleSys);
+SpriteManager *BattleSystem_GetSpriteManager(BattleSystem *battleSys);
 UnkStruct_ov16_02268520 *ov16_0223E020(BattleSystem *battleSys, int param1);
-UnkStruct_ov16_02268A14 *ov16_0223E02C(BattleSystem *battleSys);
+BattleInput *BattleSystem_GetBattleInput(BattleSystem *battleSys);
 PartyGauge *ov16_0223E034(BattleSystem *battleSys, enum PartyGaugeSide param1);
 void ov16_0223E040(BattleSystem *battleSys, enum PartyGaugeSide param1, PartyGauge *param2);
 UnkStruct_0200C440 *ov16_0223E04C(BattleSystem *battleSys);
 UnkStruct_0200C440 *ov16_0223E054(BattleSystem *battleSys);
-MessageLoader *BattleSystem_MessageLoader(BattleSystem *battleSys);
+MessageLoader *BattleSystem_GetMessageLoader(BattleSystem *battleSys);
 MessageLoader *ov16_0223E060(BattleSystem *battleSys);
-PaletteData *BattleSystem_PaletteSys(BattleSystem *battleSys);
+PaletteData *BattleSystem_GetPaletteData(BattleSystem *battleSys);
 Pokedex *BattleSystem_GetPokedex(BattleSystem *battleSys);
 u8 *ov16_0223E06C(BattleSystem *battleSys);
 u8 *ov16_0223E074(BattleSystem *battleSys);
@@ -151,7 +151,7 @@ PCBoxes *ov16_0223E228(BattleSystem *battleSys);
  * @return The battle's terrain.
  */
 enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
-int ov16_0223E240(BattleSystem *battleSys);
+int BattleSystem_GetBackgroundId(BattleSystem *battleSys);
 int BattleSystem_MapHeader(BattleSystem *battleSys);
 int BattleSystem_Partner(BattleSystem *battleSys, int param1);
 
@@ -221,8 +221,8 @@ int ov16_0223F1F8(BattleSystem *battleSys);
 u16 *ov16_0223F204(BattleSystem *battleSys);
 u16 *ov16_0223F210(BattleSystem *battleSys);
 int BattleSystem_FieldWeather(BattleSystem *battleSys);
-u8 ov16_0223F228(BattleSystem *battleSys);
-void ov16_0223F234(BattleSystem *battleSys, u8 param1);
+u8 BattleSystem_GetCatchingTutorialState(BattleSystem *battleSys);
+void CatchingTutorial_SetCatchingTutorialState(BattleSystem *battleSys, u8 param1);
 int ov16_0223F240(BattleSystem *battleSys);
 void ov16_0223F24C(BattleSystem *battleSys, int param1);
 void ov16_0223F268(BattleSystem *battleSys);

@@ -235,32 +235,32 @@ void ov13_02224500(UnkStruct_ov13_022213F0 *param0)
 static void ov13_0222453C(UnkStruct_ov13_022213F0 *param0)
 {
     SpriteResourceCapacities v0 = { 18, 6, 6, 6, 0, 0 };
-    SpriteSystem *v1 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
-    param0->unk_1FB0 = SpriteManager_New(v1);
+    param0->unk_1FB0 = SpriteManager_New(spriteSystem);
 
-    SpriteSystem_InitSprites(v1, param0->unk_1FB0, 38 + 5);
-    SpriteSystem_InitManagerWithCapacities(v1, param0->unk_1FB0, &v0);
+    SpriteSystem_InitSprites(spriteSystem, param0->unk_1FB0, 38 + 5);
+    SpriteSystem_InitManagerWithCapacities(spriteSystem, param0->unk_1FB0, &v0);
 }
 
 static void ov13_02224588(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteSystem *v0;
+    SpriteSystem *spriteSystem;
     u32 v1;
     NARC *v2;
 
     v2 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->unk_0C);
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    spriteSystem = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v2, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, 45063);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v2, PokeIcon32KCellsFileIndex(), FALSE, 45063);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, param0->unk_1FB0, v2, PokeIcon32KAnimationFileIndex(), FALSE, 45063);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, spriteSystem, param0->unk_1FB0, v2, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, 45063);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSystem, param0->unk_1FB0, v2, PokeIcon32KCellsFileIndex(), FALSE, 45063);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSystem, param0->unk_1FB0, v2, PokeIcon32KAnimationFileIndex(), FALSE, 45063);
 
     for (v1 = 0; v1 < 6; v1++) {
         if (param0->unk_04[v1].unk_04 != 0) {
-            SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v2, Pokemon_IconSpriteIndex(param0->unk_04[v1].unk_00), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
+            SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, param0->unk_1FB0, v2, Pokemon_IconSpriteIndex(param0->unk_04[v1].unk_00), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
         } else {
-            SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v2, PokeIconSpriteIndex(0, 0, 0), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
+            SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, param0->unk_1FB0, v2, PokeIconSpriteIndex(0, 0, 0), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
         }
     }
 
@@ -269,67 +269,67 @@ static void ov13_02224588(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02224670(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
     NARC *v1;
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_0C);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconPltt(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45064);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconCell(), FALSE, 45064);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconAnim(), FALSE, 45064);
-    SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconChar(), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45069);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, spriteSystem, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconPltt(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45064);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSystem, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconCell(), FALSE, 45064);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSystem, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconAnim(), FALSE, 45064);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconChar(), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45069);
     NARC_dtor(v1);
 }
 
 static void ov13_02224720(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteSystem *v0;
+    SpriteSystem *spriteSystem;
     u32 v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    spriteSystem = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
-    sub_0207C9B0(param0->unk_1E4, 3, v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 45065);
-    sub_0207C9EC(v0, param0->unk_1FB0, 45065, 45065);
+    MoveTypeIcon_LoadPalette(param0->unk_1E4, 3, spriteSystem, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 45065);
+    sub_0207C9EC(spriteSystem, param0->unk_1FB0, 45065, 45065);
 
     for (v1 = 45070; v1 <= 45076; v1++) {
-        sub_0207C948(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, v1);
+        sub_0207C948(spriteSystem, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, v1);
     }
 
-    sub_0207CAC4(v0, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 45077);
+    sub_0207CAC4(spriteSystem, param0->unk_1FB0, NNS_G2D_VRAM_TYPE_2DSUB, 0, 45077);
 }
 
 static void ov13_02224798(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteSystem *v0;
+    SpriteSystem *spriteSystem;
     u32 v1;
     NARC *v2;
 
     v2 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_0C);
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    spriteSystem = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
-    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v2, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45066);
-    SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v2, sub_02081938(), FALSE, 45066);
-    SpriteSystem_LoadAnimResObjFromOpenNarc(v0, param0->unk_1FB0, v2, sub_0208193C(), FALSE, 45066);
-    SpriteSystem_LoadCharResObjFromOpenNarc(v0, param0->unk_1FB0, v2, sub_02081930(), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45078);
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, spriteSystem, param0->unk_1FB0, v2, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45066);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSystem, param0->unk_1FB0, v2, sub_02081938(), FALSE, 45066);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSystem, param0->unk_1FB0, v2, sub_0208193C(), FALSE, 45066);
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, param0->unk_1FB0, v2, sub_02081930(), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45078);
     NARC_dtor(v2);
 }
 
 static void ov13_02224848(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
-    SpriteSystem_LoadPaletteBuffer(param0->unk_1E4, 3, v0, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 27, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45067);
-    SpriteSystem_LoadCellResObj(v0, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 25, FALSE, 45067);
-    SpriteSystem_LoadAnimResObj(v0, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 24, FALSE, 45067);
-    SpriteSystem_LoadCharResObj(v0, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 26, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45079);
+    SpriteSystem_LoadPaletteBuffer(param0->unk_1E4, 3, spriteSystem, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 27, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45067);
+    SpriteSystem_LoadCellResObj(spriteSystem, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 25, FALSE, 45067);
+    SpriteSystem_LoadAnimResObj(spriteSystem, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 24, FALSE, 45067);
+    SpriteSystem_LoadCharResObj(spriteSystem, param0->unk_1FB0, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 26, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, 45079);
 }
 
 static ManagedSprite *ov13_022248D8(UnkStruct_ov13_022213F0 *param0, u32 param1)
 {
     SpriteTemplate v0;
-    SpriteSystem *v1;
+    SpriteSystem *spriteSystem;
 
-    v1 = ov16_0223E010(param0->unk_00->unk_08);
+    spriteSystem = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
     v0.x = 0;
     v0.y = 0;
@@ -345,7 +345,7 @@ static ManagedSprite *ov13_022248D8(UnkStruct_ov13_022213F0 *param0, u32 param1)
     v0.bgPriority = 1;
     v0.vramTransfer = FALSE;
 
-    return SpriteSystem_NewSprite(v1, param0->unk_1FB0, &v0);
+    return SpriteSystem_NewSprite(spriteSystem, param0->unk_1FB0, &v0);
 }
 
 static void ov13_02224948(UnkStruct_ov13_022213F0 *param0)
@@ -361,17 +361,17 @@ static void ov13_02224948(UnkStruct_ov13_022213F0 *param0)
 
 void ov13_02224970(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteSystem *v0;
+    SpriteSystem *spriteSystem;
     u32 v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
+    spriteSystem = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
     for (v1 = 0; v1 < 38; v1++) {
         Sprite_DeleteAndFreeResources(param0->unk_1FB4[v1]);
     }
 
     ov13_022255B8(param0);
-    SpriteSystem_FreeResourcesAndManager(v0, param0->unk_1FB0);
+    SpriteSystem_FreeResourcesAndManager(spriteSystem, param0->unk_1FB0);
 }
 
 static void ov13_022249AC(ManagedSprite *param0, const int param1, const int param2)
@@ -395,17 +395,16 @@ static void ov13_022249CC(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02224A0C(UnkStruct_ov13_022213F0 *param0, ManagedSprite *param1, u32 param2, u8 param3)
 {
-    SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
-
-    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, sub_0207C944(), sub_0207C908(param3), 1, param2);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
+    SpriteSystem_ReplaceCharResObj(spriteSystem, param0->unk_1FB0, sub_0207C944(), sub_0207C908(param3), 1, param2);
     ManagedSprite_SetExplicitPalette(param1, sub_0207C92C(param3) + 4);
 }
 
 static void ov13_02224A5C(UnkStruct_ov13_022213F0 *param0, ManagedSprite *param1, u32 param2)
 {
-    SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
 
-    SpriteSystem_ReplaceCharResObj(v0, param0->unk_1FB0, sub_0207CAC0(), sub_0207CA90(param2), 1, 45077);
+    SpriteSystem_ReplaceCharResObj(spriteSystem, param0->unk_1FB0, sub_0207CAC0(), sub_0207CA90(param2), 1, 45077);
     ManagedSprite_SetExplicitPalette(param1, sub_0207CAA8(param2) + 4);
 }
 
@@ -791,20 +790,20 @@ static void ov13_02225420(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_0222554C(UnkStruct_ov13_022213F0 *param0)
 {
-    SpriteSystem *v0;
-    UnkStruct_ov16_0226DC24 *v1;
+    SpriteSystem *spriteSystem;
+    BattleCursor *v1;
 
-    v0 = ov16_0223E010(param0->unk_00->unk_08);
-    ov16_0226DB7C(v0, param0->unk_1FB0, param0->unk_1E4, param0->unk_00->unk_0C, 45080, 45068, 45068, 45068);
-    v1 = ov16_0226DC24(v0, param0->unk_1FB0, param0->unk_00->unk_0C, 45080, 45068, 45068, 45068, 0, 1);
+    spriteSystem = BattleSystem_GetSpriteSystem(param0->unk_00->unk_08);
+    BattleCursor_LoadResources(spriteSystem, param0->unk_1FB0, param0->unk_1E4, param0->unk_00->unk_0C, 45080, 45068, 45068, 45068);
+    v1 = BattleCursor_New(spriteSystem, param0->unk_1FB0, param0->unk_00->unk_0C, 45080, 45068, 45068, 45068, 0, 1);
 
     ov13_02228A64(param0->unk_2084, v1);
 }
 
 static void ov13_022255B8(UnkStruct_ov13_022213F0 *param0)
 {
-    ov16_0226DCA8(ov13_02228A58(param0->unk_2084));
-    ov16_0226DBFC(param0->unk_1FB0, 45080, 45068, 45068, 45068);
+    BattleCursor_Free(ov13_02228A58(param0->unk_2084));
+    BattleCursor_FreeResources(param0->unk_1FB0, 45080, 45068, 45068, 45068);
 }
 
 static const ByteFlagSet Unk_ov13_02229464[] = {
@@ -940,5 +939,5 @@ void ov13_022256E8(UnkStruct_ov13_022213F0 *param0)
 {
     ov13_02228A60(param0->unk_2084, 0);
     ov13_02228A90(param0->unk_2084);
-    ov16_0226DDE8(ov13_02228A58(param0->unk_2084));
+    BattleCursor_Disable(ov13_02228A58(param0->unk_2084));
 }
