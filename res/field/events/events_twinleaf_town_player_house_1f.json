@@ -6,7 +6,7 @@
             "x": 6,
             "z": 5,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 7,
@@ -14,7 +14,7 @@
             "x": 7,
             "z": 5,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 8,
@@ -22,7 +22,7 @@
             "x": 5,
             "z": 3,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 9,
@@ -30,7 +30,7 @@
             "x": 2,
             "z": 3,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 9,
@@ -38,7 +38,7 @@
             "x": 1,
             "z": 3,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 10,
@@ -46,7 +46,7 @@
             "x": 1,
             "z": 5,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 10,
@@ -54,7 +54,7 @@
             "x": 2,
             "z": 5,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 10,
@@ -62,14 +62,14 @@
             "x": 3,
             "z": 5,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 140,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_MOM",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 4,
             "initial_dir": 0,
@@ -81,9 +81,9 @@
             "y": 1
         },
         {
-            "graphics_id": 16,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 497,
             "script": 6,
             "initial_dir": 0,
@@ -99,13 +99,13 @@
         {
             "x": 6,
             "z": 10,
-            "dest_header_id": 411,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN",
             "dest_warp_id": 1
         },
         {
             "x": 10,
             "z": 3,
-            "dest_header_id": 415,
+            "dest_header_id": "MAP_HEADER_TWINLEAF_TOWN_PLAYER_HOUSE_2F",
             "dest_warp_id": 0
         }
     ],

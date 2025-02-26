@@ -343,32 +343,32 @@ _06C2:
     End
 
 _06D0:
-    ApplyMovement 0xFF, _0718
+    ApplyMovement LOCALID_PLAYER, _0718
     WaitMovement
     Return
 
 _06DC:
-    ApplyMovement 0xFF, _0724
+    ApplyMovement LOCALID_PLAYER, _0724
     WaitMovement
     Return
 
 _06E8:
-    ApplyMovement 0xFF, _0730
+    ApplyMovement LOCALID_PLAYER, _0730
     WaitMovement
     Return
 
 _06F4:
-    ApplyMovement 0xFF, _073C
+    ApplyMovement LOCALID_PLAYER, _073C
     WaitMovement
     Return
 
 _0700:
-    ApplyMovement 0xFF, _0748
+    ApplyMovement LOCALID_PLAYER, _0748
     WaitMovement
     Return
 
 _070C:
-    ApplyMovement 0xFF, _0754
+    ApplyMovement LOCALID_PLAYER, _0754
     WaitMovement
     Return
 

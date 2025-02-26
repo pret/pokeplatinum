@@ -6,7 +6,7 @@
             "x": 842,
             "z": 580,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 3,
@@ -14,7 +14,7 @@
             "x": 842,
             "z": 577,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -22,7 +22,7 @@
             "x": 843,
             "z": 577,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -30,7 +30,7 @@
             "x": 851,
             "z": 577,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -38,7 +38,7 @@
             "x": 852,
             "z": 577,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -46,7 +46,7 @@
             "x": 837,
             "z": 561,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -54,7 +54,7 @@
             "x": 838,
             "z": 561,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -62,7 +62,7 @@
             "x": 856,
             "z": 561,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -70,14 +70,14 @@
             "x": 857,
             "z": 561,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 93,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 0,
@@ -89,9 +89,9 @@
             "y": 0
         },
         {
-            "graphics_id": 94,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ARROW_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 0,
@@ -109,49 +109,49 @@
         {
             "x": 842,
             "z": 598,
-            "dest_header_id": 173,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 847,
             "z": 559,
-            "dest_header_id": 175,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F",
             "dest_warp_id": 1
         },
         {
             "x": 851,
             "z": 597,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 7
         },
         {
             "x": 853,
             "z": 582,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 8
         },
         {
             "x": 850,
             "z": 597,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 7
         },
         {
             "x": 852,
             "z": 597,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 7
         },
         {
             "x": 853,
             "z": 581,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 8
         },
         {
             "x": 853,
             "z": 583,
-            "dest_header_id": 244,
+            "dest_header_id": "MAP_HEADER_VICTORY_ROAD_1F",
             "dest_warp_id": 8
         }
     ],

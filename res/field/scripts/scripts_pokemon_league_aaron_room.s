@@ -60,11 +60,11 @@ _00AC:
 
 _00B7:
     LockAll
-    ApplyMovement 0xFF, _00DC
+    ApplyMovement LOCALID_PLAYER, _00DC
     WaitMovement
     PlayFanfare SEQ_SE_DP_KI_GASYAN
     ClearFlag 0x282
-    ScrCmd_064 1
+    AddObject 1
     SetVar 0x4001, 1
     ReleaseAll
     End

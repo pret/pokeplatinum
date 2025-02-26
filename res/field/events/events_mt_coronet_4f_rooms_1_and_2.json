@@ -6,7 +6,7 @@
             "x": 5,
             "z": 6,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8094,
@@ -14,7 +14,7 @@
             "x": 19,
             "z": 3,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8095,
@@ -22,7 +22,7 @@
             "x": 29,
             "z": 12,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8098,
@@ -30,7 +30,7 @@
             "x": 26,
             "z": 18,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8097,
@@ -38,7 +38,7 @@
             "x": 29,
             "z": 24,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8096,
@@ -46,7 +46,7 @@
             "x": 38,
             "z": 14,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8099,
@@ -54,7 +54,7 @@
             "x": 59,
             "z": 3,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 8261,
@@ -62,14 +62,14 @@
             "x": 37,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 32,
             "script": 10001,
             "initial_dir": 0,
@@ -81,9 +81,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 33,
             "script": 10001,
             "initial_dir": 0,
@@ -95,9 +95,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 34,
             "script": 10001,
             "initial_dir": 0,
@@ -109,9 +109,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 35,
             "script": 10001,
             "initial_dir": 0,
@@ -123,9 +123,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 36,
             "script": 10001,
             "initial_dir": 0,
@@ -137,9 +137,9 @@
             "y": 0
         },
         {
-            "graphics_id": 85,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 37,
             "script": 10001,
             "initial_dir": 0,
@@ -151,9 +151,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 7,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 655,
             "script": 3516,
             "initial_dir": 0,
@@ -168,9 +168,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 16,
-            "trainer_type": 4,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_FACE_SIDES",
             "flag": 655,
             "script": 3515,
             "initial_dir": 2,
@@ -184,9 +184,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1051,
             "script": 7037,
             "initial_dir": 0,
@@ -198,9 +198,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1053,
             "script": 7039,
             "initial_dir": 0,
@@ -216,31 +216,31 @@
         {
             "x": 7,
             "z": 25,
-            "dest_header_id": 211,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH",
             "dest_warp_id": 1
         },
         {
             "x": 35,
             "z": 24,
-            "dest_header_id": 211,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_OUTSIDE_SOUTH",
             "dest_warp_id": 2
         },
         {
             "x": 17,
             "z": 6,
-            "dest_header_id": 212,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2",
             "dest_warp_id": 3
         },
         {
             "x": 59,
             "z": 6,
-            "dest_header_id": 212,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_4F_ROOMS_1_AND_2",
             "dest_warp_id": 2
         },
         {
             "x": 40,
             "z": 10,
-            "dest_header_id": 210,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_OUTSIDE_NORTH",
             "dest_warp_id": 0
         }
     ],

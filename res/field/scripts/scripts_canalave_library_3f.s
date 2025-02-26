@@ -38,7 +38,7 @@ _0062:
     Message 0
     CloseMessage
     ApplyMovement 4, _0364
-    ApplyMovement 0xFF, _0310
+    ApplyMovement LOCALID_PLAYER, _0310
     WaitMovement
     GetPlayerMapPos 0x8004, 0x8005
     ScrCmd_066 0x8004, 0x8005
@@ -138,7 +138,7 @@ _0184:
     Message 21
     CloseMessage
     ApplyMovement 4, _03AC
-    ApplyMovement 0xFF, _0330
+    ApplyMovement LOCALID_PLAYER, _0330
     WaitMovement
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -158,7 +158,7 @@ _0184:
     WaitMovement
     BufferRivalName 0
     Message 23
-    ApplyMovement 0xFF, _0338
+    ApplyMovement LOCALID_PLAYER, _0338
     WaitMovement
     Message 24
     CloseMessage
@@ -170,7 +170,7 @@ _0184:
     RemoveObject 4
     RemoveObject 3
     ScrCmd_067
-    ApplyMovement 0xFF, _02C0
+    ApplyMovement LOCALID_PLAYER, _02C0
     WaitMovement
     Message 25
     CloseMessage

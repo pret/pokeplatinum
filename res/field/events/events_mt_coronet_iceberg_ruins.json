@@ -6,14 +6,14 @@
             "x": 6,
             "z": 5,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1338,
             "script": 7323,
             "initial_dir": 0,
@@ -29,7 +29,7 @@
         {
             "x": 7,
             "z": 12,
-            "dest_header_id": 217,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_2",
             "dest_warp_id": 2
         }
     ],

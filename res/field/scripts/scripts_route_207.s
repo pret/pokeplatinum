@@ -29,21 +29,21 @@ _0046:
 _004E:
     LockAll
     GetPlayerMapPos 0x8004, 0x8005
-    ScrCmd_186 18, 0x14B, 0x8005
+    SetObjectEventPos 18, 0x14B, 0x8005
     Call _008E
     ApplyMovement 18, _0194
     WaitMovement
     CallCommonScript 0x7F8
     ApplyMovement 18, _01A0
     WaitMovement
-    ApplyMovement 0xFF, _0174
+    ApplyMovement LOCALID_PLAYER, _0174
     WaitMovement
     GoTo _009C
     End
 
 _008E:
     ClearFlag 0x1CC
-    ScrCmd_064 18
+    AddObject 18
     ScrCmd_062 18
     Return
 

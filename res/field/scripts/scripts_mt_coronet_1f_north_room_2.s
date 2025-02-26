@@ -25,11 +25,11 @@ _0043:
     End
 
 _0063:
-    ScrCmd_18A 3, 17, 16
+    SetWarpEventPos 3, 17, 16
     End
 
 _006D:
-    ScrCmd_18A 2, 17, 16
+    SetWarpEventPos 2, 17, 16
     End
 
 _0077:

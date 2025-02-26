@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 26,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_NURSE_JOY",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 1,
@@ -16,9 +16,9 @@
             "y": 0
         },
         {
-            "graphics_id": 15,
-            "movement_type": 8,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 5,
             "initial_dir": 0,
@@ -30,9 +30,9 @@
             "y": 0
         },
         {
-            "graphics_id": 14,
-            "movement_type": 8,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 6,
             "initial_dir": 0,
@@ -48,19 +48,19 @@
         {
             "x": 8,
             "z": 12,
-            "dest_header_id": 172,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE",
             "dest_warp_id": 0
         },
         {
             "x": 2,
             "z": 10,
-            "dest_header_id": 174,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_2F",
             "dest_warp_id": 0
         },
         {
             "x": 14,
             "z": 10,
-            "dest_header_id": 483,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_B1F",
             "dest_warp_id": 0
         }
     ],

@@ -6,14 +6,14 @@
             "x": 13,
             "z": 2,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 1,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 2,
@@ -25,9 +25,9 @@
             "y": 0
         },
         {
-            "graphics_id": 16,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 3,
             "initial_dir": 0,
@@ -39,9 +39,9 @@
             "y": 0
         },
         {
-            "graphics_id": 163,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_RECEPTIONIST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 2,
@@ -53,9 +53,9 @@
             "y": 0
         },
         {
-            "graphics_id": 25,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CASHIER_F",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 5,
             "initial_dir": 3,
@@ -67,9 +67,9 @@
             "y": 0
         },
         {
-            "graphics_id": 24,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CASHIER_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 6,
             "initial_dir": 1,
@@ -81,9 +81,9 @@
             "y": 0
         },
         {
-            "graphics_id": 3,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 4,
             "initial_dir": 1,
@@ -99,19 +99,19 @@
         {
             "x": 7,
             "z": 8,
-            "dest_header_id": 139,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_3F",
             "dest_warp_id": 1
         },
         {
             "x": 12,
             "z": 8,
-            "dest_header_id": 141,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_5F",
             "dest_warp_id": 0
         },
         {
             "x": 15,
             "z": 2,
-            "dest_header_id": 142,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_STORE_ELEVATOR",
             "dest_warp_id": 0
         }
     ],

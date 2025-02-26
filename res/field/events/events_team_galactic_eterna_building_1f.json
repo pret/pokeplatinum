@@ -6,14 +6,14 @@
             "x": 22,
             "z": 5,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 124,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 509,
             "script": 1,
             "initial_dir": 1,
@@ -25,9 +25,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 509,
             "script": 2,
             "initial_dir": 1,
@@ -39,9 +39,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 16,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 509,
             "script": 3409,
             "initial_dir": 2,
@@ -55,9 +55,9 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
-            "movement_type": 17,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 509,
             "script": 3420,
             "initial_dir": 3,
@@ -71,9 +71,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 450,
             "script": 4,
             "initial_dir": 0,
@@ -85,9 +85,9 @@
             "y": 0
         },
         {
-            "graphics_id": 213,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_LOOKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 443,
             "script": 4,
             "initial_dir": 0,
@@ -99,9 +99,9 @@
             "y": 0
         },
         {
-            "graphics_id": 262,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_WALL_BLOCKING_ROTOMS_ROOM",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 710,
             "script": 6,
             "initial_dir": 0,
@@ -117,25 +117,25 @@
         {
             "x": 11,
             "z": 15,
-            "dest_header_id": 65,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY",
             "dest_warp_id": 3
         },
         {
             "x": 14,
             "z": 6,
-            "dest_header_id": 73,
+            "dest_header_id": "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_2F",
             "dest_warp_id": 0
         },
         {
             "x": 20,
             "z": 6,
-            "dest_header_id": 73,
+            "dest_header_id": "MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_2F",
             "dest_warp_id": 2
         },
         {
             "x": 2,
             "z": 2,
-            "dest_header_id": 571,
+            "dest_header_id": "MAP_HEADER_ROTOMS_ROOM",
             "dest_warp_id": 0
         }
     ],

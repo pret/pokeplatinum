@@ -48,7 +48,7 @@ _009A:
     ScrCmd_238 19, 0x4000
     GoToIfEq 0x4000, 0, _00D5
     ScrCmd_329 0x4001, 0x4002, 0x4003, 0x4004
-    ScrCmd_186 29, 0x4001, 0x4002
+    SetObjectEventPos 29, 0x4001, 0x4002
     ScrCmd_189 29, 0x4003
     ScrCmd_188 29, 0x4004
     ClearFlag 0x2C3
@@ -274,7 +274,7 @@ _026A:
     FacePlayer
     Message 21
     ScrCmd_035
-    ScrCmd_2D8 1
+    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_DOWN
     ReleaseAll
     End
 
@@ -297,7 +297,7 @@ _02A6:
     FacePlayer
     Message 23
     ScrCmd_035
-    ScrCmd_2D8 0
+    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_UP
     ReleaseAll
     End
 
@@ -370,7 +370,7 @@ _034F:
 
 _0360:
     LockAll
-    ApplyMovement 0xFF, _0398
+    ApplyMovement LOCALID_PLAYER, _0398
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
@@ -387,7 +387,7 @@ _0398:
 
 _03A0:
     LockAll
-    ApplyMovement 0xFF, _03D8
+    ApplyMovement LOCALID_PLAYER, _03D8
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
@@ -404,7 +404,7 @@ _03D8:
 
 _03E0:
     LockAll
-    ApplyMovement 0xFF, _0418
+    ApplyMovement LOCALID_PLAYER, _0418
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0
@@ -421,7 +421,7 @@ _0418:
 
 _0420:
     LockAll
-    ApplyMovement 0xFF, _0458
+    ApplyMovement LOCALID_PLAYER, _0458
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     FadeScreen 6, 1, 0, 0

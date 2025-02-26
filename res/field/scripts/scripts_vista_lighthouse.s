@@ -48,7 +48,7 @@ _004C:
     Message 2
     CloseMessage
     WaitTime 15, 0x800C
-    ScrCmd_1BD 0x800C
+    GetPlayerDir 0x800C
     GoToIfEq 0x800C, 0, _0092
     GoToIfEq 0x800C, 2, _00AA
     GoToIfEq 0x800C, 3, _00C2
@@ -56,13 +56,13 @@ _004C:
 
 _0092:
     ApplyMovement 2, _0104
-    ApplyMovement 0xFF, _013C
+    ApplyMovement LOCALID_PLAYER, _013C
     WaitMovement
     GoTo _00D2
 
 _00AA:
     ApplyMovement 2, _0118
-    ApplyMovement 0xFF, _0148
+    ApplyMovement LOCALID_PLAYER, _0148
     WaitMovement
     GoTo _00D2
 

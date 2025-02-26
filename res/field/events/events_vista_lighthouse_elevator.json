@@ -5,7 +5,7 @@
         {
             "x": 3,
             "z": 6,
-            "dest_header_id": 4095,
+            "dest_header_id": "MAP_HEADER_DYNAMIC",
             "dest_warp_id": 256
         }
     ],

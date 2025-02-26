@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 8,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 2,
@@ -16,9 +16,9 @@
             "y": 0
         },
         {
-            "graphics_id": 20,
-            "movement_type": 9,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 1,
@@ -34,7 +34,7 @@
         {
             "x": 4,
             "z": 8,
-            "dest_header_id": 45,
+            "dest_header_id": "MAP_HEADER_OREBURGH_CITY",
             "dest_warp_id": 5
         }
     ],

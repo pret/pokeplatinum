@@ -1,5 +1,9 @@
 #include "constants/items.h"
 #include "constants/seals.h"
+#include "generated/mart_decor_id.h"
+#include "generated/mart_frontier_id.h"
+#include "generated/mart_seal_id.h"
+#include "generated/mart_specialties_id.h"
 
 typedef struct {
     u16 itemID;
@@ -31,21 +35,21 @@ const PokeMartCommonItem PokeMartCommonItems[] = {
 const u16 JubilifeMartSpecialties[] = {
     ITEM_AIR_MAIL,
     ITEM_HEAL_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 OreburghMartSpecialties[] = {
     ITEM_TUNNEL_MAIL,
     ITEM_HEAL_BALL,
     ITEM_NET_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 FloaromaMartSpecialties[] = {
     ITEM_BLOOM_MAIL,
     ITEM_HEAL_BALL,
     ITEM_NET_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 EternaMartSpecialties[] = {
@@ -53,7 +57,7 @@ const u16 EternaMartSpecialties[] = {
     ITEM_HEAL_BALL,
     ITEM_NET_BALL,
     ITEM_NEST_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 EternaHerbShopStock[] = {
@@ -61,7 +65,7 @@ const u16 EternaHerbShopStock[] = {
     ITEM_ENERGYPOWDER,
     ITEM_ENERGY_ROOT,
     ITEM_REVIVAL_HERB,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 HearthomeMartSpecialties[] = {
@@ -69,7 +73,7 @@ const u16 HearthomeMartSpecialties[] = {
     ITEM_HEAL_BALL,
     ITEM_NET_BALL,
     ITEM_NEST_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 SolaceonMartSpecialties[] = {
@@ -77,7 +81,7 @@ const u16 SolaceonMartSpecialties[] = {
     ITEM_NET_BALL,
     ITEM_NEST_BALL,
     ITEM_DUSK_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 PastoriaMartSpecialties[] = {
@@ -85,7 +89,7 @@ const u16 PastoriaMartSpecialties[] = {
     ITEM_NEST_BALL,
     ITEM_DUSK_BALL,
     ITEM_QUICK_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 VeilstoneDeptStoreStock_1F_RIGHT[] = {
@@ -100,7 +104,7 @@ const u16 VeilstoneDeptStoreStock_1F_RIGHT[] = {
     ITEM_ICE_HEAL,
     ITEM_AWAKENING,
     ITEM_FULL_HEAL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 VeilstoneDeptStoreStock_1F_LEFT[] = {
@@ -116,7 +120,7 @@ const u16 VeilstoneDeptStoreStock_1F_LEFT[] = {
     ITEM_FLAME_MAIL,
     ITEM_BUBBLE_MAIL,
     ITEM_SPACE_MAIL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 VeilstoneDeptStoreStock_2F_UP[] = {
@@ -128,7 +132,7 @@ const u16 VeilstoneDeptStoreStock_2F_UP[] = {
     ITEM_X_ACCURACY,
     ITEM_X_SPECIAL,
     ITEM_X_SP__DEF,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 VeilstoneDeptStoreStock_2F_MID[] = {
@@ -138,7 +142,7 @@ const u16 VeilstoneDeptStoreStock_2F_MID[] = {
     ITEM_ZINC,
     ITEM_CARBOS,
     ITEM_HP_UP,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 VeilstoneDeptStoreStock_3F_UP[] = {
@@ -149,7 +153,7 @@ const u16 VeilstoneDeptStoreStock_3F_UP[] = {
     ITEM_TM33,
     ITEM_TM16,
     ITEM_TM70,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 VeilstoneDeptStoreStock_3F_DOWN[] = {
@@ -159,7 +163,7 @@ const u16 VeilstoneDeptStoreStock_3F_DOWN[] = {
     ITEM_TM22,
     ITEM_TM52,
     ITEM_TM15,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 CelesticMartSpecialties[] = {
@@ -167,7 +171,7 @@ const u16 CelesticMartSpecialties[] = {
     ITEM_DUSK_BALL,
     ITEM_QUICK_BALL,
     ITEM_TIMER_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 SnowpointMartSpecialties[] = {
@@ -175,7 +179,7 @@ const u16 SnowpointMartSpecialties[] = {
     ITEM_DUSK_BALL,
     ITEM_QUICK_BALL,
     ITEM_TIMER_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 CanalaveMartSpecialties[] = {
@@ -183,13 +187,13 @@ const u16 CanalaveMartSpecialties[] = {
     ITEM_QUICK_BALL,
     ITEM_TIMER_BALL,
     ITEM_REPEAT_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 SunyshoreMartSpecialties[] = {
     ITEM_STEEL_MAIL,
     ITEM_LUXURY_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 PokemonLeagueMartSpecialties[] = {
@@ -201,7 +205,7 @@ const u16 PokemonLeagueMartSpecialties[] = {
     ITEM_TIMER_BALL,
     ITEM_REPEAT_BALL,
     ITEM_LUXURY_BALL,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 VeilstoneDeptStoreStock_B1F_DOWN_LEFT[] = {
@@ -210,30 +214,30 @@ const u16 VeilstoneDeptStoreStock_B1F_DOWN_LEFT[] = {
     ITEM_MAGO_BERRY,
     ITEM_AGUAV_BERRY,
     ITEM_IAPAPA_BERRY,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 *PokeMartSpecialties[] = {
-    JubilifeMartSpecialties,
-    OreburghMartSpecialties,
-    FloaromaMartSpecialties,
-    EternaMartSpecialties,
-    EternaHerbShopStock,
-    HearthomeMartSpecialties,
-    SolaceonMartSpecialties,
-    PastoriaMartSpecialties,
-    VeilstoneDeptStoreStock_1F_RIGHT,
-    VeilstoneDeptStoreStock_1F_LEFT,
-    VeilstoneDeptStoreStock_2F_UP,
-    VeilstoneDeptStoreStock_2F_MID,
-    VeilstoneDeptStoreStock_3F_UP,
-    VeilstoneDeptStoreStock_3F_DOWN,
-    CelesticMartSpecialties,
-    SnowpointMartSpecialties,
-    CanalaveMartSpecialties,
-    SunyshoreMartSpecialties,
-    PokemonLeagueMartSpecialties,
-    VeilstoneDeptStoreStock_B1F_DOWN_LEFT
+    [MART_SPECIALTIES_ID_JUBILIFE] = JubilifeMartSpecialties,
+    [MART_SPECIALTIES_ID_OREBURGH] = OreburghMartSpecialties,
+    [MART_SPECIALTIES_ID_FLOAROMA] = FloaromaMartSpecialties,
+    [MART_SPECIALTIES_ID_ETERNA_MART] = EternaMartSpecialties,
+    [MART_SPECIALTIES_ID_ETERNA_HOUSE] = EternaHerbShopStock,
+    [MART_SPECIALTIES_ID_HEARTHOME] = HearthomeMartSpecialties,
+    [MART_SPECIALTIES_ID_SOLACEON] = SolaceonMartSpecialties,
+    [MART_SPECIALTIES_ID_PASTORIA] = PastoriaMartSpecialties,
+    [MART_SPECIALTIES_ID_VEILSTONE_1F_RIGHT] = VeilstoneDeptStoreStock_1F_RIGHT,
+    [MART_SPECIALTIES_ID_VEILSTONE_1F_LEFT] = VeilstoneDeptStoreStock_1F_LEFT,
+    [MART_SPECIALTIES_ID_VEILSTONE_2F_UP] = VeilstoneDeptStoreStock_2F_UP,
+    [MART_SPECIALTIES_ID_VEILSTONE_2F_MID] = VeilstoneDeptStoreStock_2F_MID,
+    [MART_SPECIALTIES_ID_VEILSTONE_3F_UP] = VeilstoneDeptStoreStock_3F_UP,
+    [MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN] = VeilstoneDeptStoreStock_3F_DOWN,
+    [MART_SPECIALTIES_ID_CELESTIC] = CelesticMartSpecialties,
+    [MART_SPECIALTIES_ID_SNOWPOINT] = SnowpointMartSpecialties,
+    [MART_SPECIALTIES_ID_CANALAVE] = CanalaveMartSpecialties,
+    [MART_SPECIALTIES_ID_SUNYSHORE] = SunyshoreMartSpecialties,
+    [MART_SPECIALTIES_ID_POKEMON_LEAGUE] = PokemonLeagueMartSpecialties,
+    [MART_SPECIALTIES_ID_VEILSTONE_B1F] = VeilstoneDeptStoreStock_B1F_DOWN_LEFT
 };
 
 const u16 VeilstoneDeptStoreStock_4F_UP[] = {
@@ -242,7 +246,7 @@ const u16 VeilstoneDeptStoreStock_4F_UP[] = {
     0x19,
     0x1A,
     0x1B,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 VeilstoneDeptStoreStock_4F_DOWN[] = {
@@ -252,12 +256,12 @@ const u16 VeilstoneDeptStoreStock_4F_DOWN[] = {
     0x77,
     0x78,
     0x79,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 *VeilstoneDeptStoreDecorationStocks[] = {
-    VeilstoneDeptStoreStock_4F_UP,
-    VeilstoneDeptStoreStock_4F_DOWN
+    [MART_DECOR_ID_VEILSTONE_4F_UP] = VeilstoneDeptStoreStock_4F_UP,
+    [MART_DECOR_ID_VEILSTONE_4F_DOWN] = VeilstoneDeptStoreStock_4F_DOWN
 };
 
 const u16 SunyshoreMarketStockMonday[] = {
@@ -268,7 +272,7 @@ const u16 SunyshoreMarketStockMonday[] = {
     LINE_SEAL_C,
     ELE_SEAL_B,
     PARTY_SEAL_D,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 SunyshoreMarketStockTuesday[] = {
@@ -279,7 +283,7 @@ const u16 SunyshoreMarketStockTuesday[] = {
     SONG_SEAL_B,
     LINE_SEAL_D,
     ELE_SEAL_C,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 SunyshoreMarketStockWednesday[] = {
@@ -290,7 +294,7 @@ const u16 SunyshoreMarketStockWednesday[] = {
     SONG_SEAL_C,
     SMOKE_SEAL_A,
     ELE_SEAL_D,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 SunyshoreMarketStockThursday[] = {
@@ -301,7 +305,7 @@ const u16 SunyshoreMarketStockThursday[] = {
     SONG_SEAL_D,
     STAR_SEAL_E,
     SMOKE_SEAL_B,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 SunyshoreMarketStockFriday[] = {
@@ -312,7 +316,7 @@ const u16 SunyshoreMarketStockFriday[] = {
     HEART_SEAL_E,
     STAR_SEAL_F,
     SMOKE_SEAL_C,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 SunyshoreMarketStockSaturday[] = {
@@ -323,7 +327,7 @@ const u16 SunyshoreMarketStockSaturday[] = {
     HEART_SEAL_F,
     LINE_SEAL_A,
     SMOKE_SEAL_D,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 SunyshoreMarketStockSunday[] = {
@@ -334,15 +338,15 @@ const u16 SunyshoreMarketStockSunday[] = {
     LINE_SEAL_B,
     ELE_SEAL_A,
     PARTY_SEAL_C,
-    0xffff
+    SHOP_ITEM_END
 };
 
 const u16 *SunyshoreMarketDailyStocks[] = {
-    SunyshoreMarketStockMonday,
-    SunyshoreMarketStockTuesday,
-    SunyshoreMarketStockWednesday,
-    SunyshoreMarketStockThursday,
-    SunyshoreMarketStockFriday,
-    SunyshoreMarketStockSaturday,
-    SunyshoreMarketStockSunday
+    [MART_SEAL_ID_SUNYSHORE_MONDAY] = SunyshoreMarketStockMonday,
+    [MART_SEAL_ID_SUNYSHORE_TUESDAY] = SunyshoreMarketStockTuesday,
+    [MART_SEAL_ID_SUNYSHORE_WEDNESDAY] = SunyshoreMarketStockWednesday,
+    [MART_SEAL_ID_SUNYSHORE_THURSDAY] = SunyshoreMarketStockThursday,
+    [MART_SEAL_ID_SUNYSHORE_FRIDAY] = SunyshoreMarketStockFriday,
+    [MART_SEAL_ID_SUNYSHORE_SATURDAY] = SunyshoreMarketStockSaturday,
+    [MART_SEAL_ID_SUNYSHORE_SUNDAY] = SunyshoreMarketStockSunday
 };

@@ -8,10 +8,10 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021EAFA4.h"
-#include "overlay005/ov5_021EF75C.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
@@ -179,7 +179,7 @@ static void ov23_02254A14(FieldSystem *fieldSystem, const int param1, UnkStruct_
     v1.y = FX32_ONE;
     v1.z = (FX32_ONE * 16) * ((0 * 32) + 13) + ((FX32_ONE * 8) * v0->unk_1C);
 
-    v0->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, ov23_02255E14(fieldSystem, param1), &v1, NULL, fieldSystem->unk_50);
+    v0->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, ov23_02255E14(fieldSystem, param1), &v1, NULL, fieldSystem->mapPropAnimMan);
     v0->unk_00.unk_00 = 16;
     v0->unk_00.unk_04 = 13;
     v0->unk_00.unk_08 = 16 + (v0->unk_18 - 1);
@@ -1228,7 +1228,7 @@ static void ov23_02255D78(FieldSystem *fieldSystem, UnkStruct_ov23_02255BF4 *par
         v4.z = (FX32_ONE * 16) * (v5->unk_00.unk_04) + (FX32_ONE * 8) * v2;
         v4.y = FX32_ONE;
 
-        v5->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->unk_30, v0, &v4, NULL, fieldSystem->unk_50);
+        v5->unk_10 = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, v0, &v4, NULL, fieldSystem->mapPropAnimMan);
     }
 }
 
@@ -1261,7 +1261,7 @@ static const int ov23_02255E14(FieldSystem *fieldSystem, const int param1)
     int v0;
 
     GF_ASSERT(param1 != 0);
-    v0 = ov5_021EFAE8(fieldSystem->unk_30, param1);
+    v0 = AreaDataManager_GetMapPropModelID(fieldSystem->areaDataManager, param1);
 
     return v0;
 }

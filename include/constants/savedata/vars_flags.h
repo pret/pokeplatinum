@@ -5,6 +5,18 @@
 #include "generated/giratina_shadow_animations.h"
 #include "generated/villa_furnitures.h"
 
+#define FLAG_MESPRIT_CAUGHT 0x0125
+#define FLAG_AZELF_CAUGHT   0x0126
+#define FLAG_UXIE_CAUGHT    0x0127
+
+#define FLAG_DEFEATED_COMMANDER_SATURN_VALOR_CAVERN 0x013E
+
+#define FLAG_GALACTIC_LEFT_LAKE_VALOR 0x015E
+
+#define FLAG_MESPRIT_DISAPPEARED 0x01DF
+#define FLAG_AZELF_DISAPPEARED   0x01E0
+#define FLAG_UXIE_DISAPPEARED    0x01E1
+
 #define VARS_START 0x4000
 
 #define SYSTEM_VARS_START                     (VARS_START + 0x0030)

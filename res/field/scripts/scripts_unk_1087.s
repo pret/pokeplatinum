@@ -12,7 +12,7 @@ _000A:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_147 1
+    PokeMartCommon
     ReleaseAll
     End
 
@@ -22,7 +22,7 @@ _0020:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 14
+    PokeMartSpecialties MART_SPECIALTIES_ID_CELESTIC
     ReleaseAll
     End
 

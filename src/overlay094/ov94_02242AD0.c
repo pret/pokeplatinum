@@ -1250,7 +1250,7 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
     if (param0->unk_110 != 18) {
         Pokemon *v0 = Pokemon_New(62);
 
-        Pokemon_FromBoxPokemon(sub_02079C9C(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
+        Pokemon_FromBoxPokemon(GetBoxedPokemonFrom(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);
         sub_02079968(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
         Heap_FreeToHeap(v0);

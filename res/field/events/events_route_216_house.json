@@ -6,7 +6,7 @@
             "x": 8,
             "z": 6,
             "y": 0,
-            "player_facing_dir": 5
+            "player_facing_dir": "BG_EVENT_DIR_WEST_EAST"
         },
         {
             "script": 3,
@@ -14,14 +14,14 @@
             "x": 8,
             "z": 7,
             "y": 0,
-            "player_facing_dir": 3
+            "player_facing_dir": "BG_EVENT_DIR_SOUTH"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 20,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 1,
@@ -33,9 +33,9 @@
             "y": 0
         },
         {
-            "graphics_id": 65,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_065",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 2,
@@ -51,7 +51,7 @@
         {
             "x": 4,
             "z": 8,
-            "dest_header_id": 383,
+            "dest_header_id": "MAP_HEADER_ROUTE_216",
             "dest_warp_id": 1
         }
     ],

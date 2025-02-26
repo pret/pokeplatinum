@@ -60,7 +60,7 @@ _00CA:
     BufferItemName 1, 0x1D0
     Message 2
     CloseMessage
-    ScrCmd_04C 54, 0
+    PlayCry SPECIES_PSYDUCK
     ScrCmd_04D
     ApplyMovement 27, _024C
     ApplyMovement 28, _024C
@@ -83,22 +83,22 @@ _00CA:
     End
 
 _015B:
-    ScrCmd_186 20, 0x230, 0x254
+    SetObjectEventPos 20, 0x230, 0x254
     ScrCmd_188 20, 14
     GoTo _0183
 
 _016F:
-    ScrCmd_186 20, 0x231, 0x254
+    SetObjectEventPos 20, 0x231, 0x254
     ScrCmd_188 20, 14
     GoTo _0183
 
 _0183:
     ClearFlag 0x1B1
-    ScrCmd_064 20
+    AddObject 20
     ScrCmd_062 20
     ApplyMovement 20, _02C4
     WaitMovement
-    ApplyMovement 0xFF, _02DC
+    ApplyMovement LOCALID_PLAYER, _02DC
     WaitMovement
     Message 3
     ShowYesNoMenu 0x800C
