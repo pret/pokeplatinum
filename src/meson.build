@@ -335,7 +335,7 @@ pokeplatinum_c = files(
     'unk_020996D0.c',
     'unk_020997B8.c',
     'unk_020998EC.c',
-    'unk_02099D44.c',
+    'app_storage_buffer.c',
     'unk_02099DFC.c',
     'unk_0209A2C4.c',
     'unk_0209A74C.c',

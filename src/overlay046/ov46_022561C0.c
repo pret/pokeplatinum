@@ -15,7 +15,7 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02022844.h"
-#include "unk_02099D44.h"
+#include "app_storage_buffer.h"
 
 typedef struct {
     UnkStruct_ov46_02256BCC_1 unk_00;
@@ -136,12 +136,12 @@ static void ov46_02256258(UnkStruct_ov46_0225621C *param0, u32 param1, u32 param
 static void ov46_02256270(UnkStruct_ov46_0225621C *param0, UnkStruct_ov46_02256270 *param1)
 {
     param1->unk_00.unk_10 = ov46_0225710C(param0->unk_08);
-    sub_02099D54(param0->unk_04, param1, sizeof(UnkStruct_ov46_02256270));
+    AppStorageBuffer_Write32(param0->unk_04, param1, sizeof(UnkStruct_ov46_02256270));
 }
 
 static void ov46_0225628C(UnkStruct_ov46_0225621C *param0)
 {
-    if (sub_02099D7C(param0->unk_04, &param0->unk_48, sizeof(UnkStruct_ov46_02256270))) {
+    if (AppStorageBuffer_Read32(param0->unk_04, &param0->unk_48, sizeof(UnkStruct_ov46_02256270))) {
         if (param0->unk_48.unk_44 == 2) {
             ov46_02256A88(param0);
 

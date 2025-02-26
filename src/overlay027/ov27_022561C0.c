@@ -14,7 +14,7 @@
 #include "sys_task_manager.h"
 #include "touch_screen.h"
 #include "unk_02022844.h"
-#include "unk_02099D44.h"
+#include "app_storage_buffer.h"
 
 typedef struct {
     BOOL unk_00;
@@ -95,7 +95,7 @@ static BOOL ov27_0225621C(UnkStruct_ov27_0225621C *param0, BgConfig *param1, u32
 {
     param0->unk_08 = param2;
 
-    if (sub_02099D7C(param2, &(param0->unk_38), sizeof(param0->unk_38))) {
+    if (AppStorageBuffer_Read32(param2, &(param0->unk_38), sizeof(param0->unk_38))) {
         param0->unk_0C = param0->unk_38.unk_14;
         param0->unk_14 = param0->unk_38.unk_1C;
         param0->unk_1C.unk_14 = param0->unk_38.unk_04;
@@ -138,7 +138,7 @@ static void ov27_022562AC(UnkStruct_ov27_0225621C *param0)
     param0->unk_38.unk_10 = param0->unk_1C.unk_08;
     param0->unk_38.unk_00 = param0->unk_1C.unk_00;
 
-    sub_02099D54(param0->unk_08, &(param0->unk_38), sizeof(param0->unk_38));
+    AppStorageBuffer_Write32(param0->unk_08, &(param0->unk_38), sizeof(param0->unk_38));
 
     ov27_02256654(param0);
     ov27_02256890(param0->unk_60);
