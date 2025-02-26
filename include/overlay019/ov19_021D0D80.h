@@ -14,6 +14,29 @@
 #include "pokemon.h"
 #include "string_template.h"
 
+#define LEFT_MAIN_PC_BUTTON_X  0
+#define RIGHT_MAIN_PC_BUTTON_X 255
+#define MAIN_PC_BUTTON_Y       184
+#define MAIN_PC_BUTTON_RAD     40
+
+#define COMPARE_POKEMON_PC_BUTTON_X   128
+#define COMPARE_POKEMON_PC_BUTTON_Y   178
+#define COMPARE_POKEMON_PC_BUTTON_RAD 12
+
+#define PC_SYMBOL_BUTTON1_X          152
+#define PC_SYMBOL_BUTTON1_Y          168
+#define PC_SYMBOL_BUTTON2_X          163
+#define PC_SYMBOL_BUTTON2_Y          134
+#define PC_SYMBOL_BUTTON3_X          184
+#define PC_SYMBOL_BUTTON3_Y          104
+#define PC_SYMBOL_BUTTON4_X          216
+#define PC_SYMBOL_BUTTON4_Y          84
+#define PC_SYMBOL_BUTTON5_X          240
+#define PC_SYMBOL_BUTTON5_Y          52
+#define PC_SYMBOL_BUTTON6_X          240
+#define PC_SYMBOL_BUTTON6_Y          16
+#define POKEMON_PC_SYMBOL_BUTTON_RAD 16
+
 int ov19_021D0D80(OverlayManager *param0, int *param1);
 int ov19_021D0DEC(OverlayManager *param0, int *param1);
 int ov19_021D0E58(OverlayManager *param0, int *param1);

@@ -65,27 +65,55 @@
 
 FS_EXTERN_OVERLAY(overlay84);
 
-static const TouchScreenHitTable Unk_ov19_021DFDF6[] = {
-    { 0xFE, 0x0, 0xB8, 0x28 },
-    { 0xFE, 0xFF, 0xB8, 0x28 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+#define LEFT_MAIN_PC_BUTTON_X  0
+#define RIGHT_MAIN_PC_BUTTON_X 255
+#define MAIN_PC_BUTTON_Y       184
+#define MAIN_PC_BUTTON_RAD     40
+
+#define COMPARE_POKEMON_PC_BUTTON_X   128
+#define COMPARE_POKEMON_PC_BUTTON_Y   178
+#define COMPARE_POKEMON_PC_BUTTON_RAD 12
+
+#define PC_SYMBOL_BUTTON1_X 152
+#define PC_SYMBOL_BUTTON1_Y 168
+
+#define PC_SYMBOL_BUTTON2_X 163
+#define PC_SYMBOL_BUTTON2_Y 134
+
+#define PC_SYMBOL_BUTTON3_X 184
+#define PC_SYMBOL_BUTTON3_Y 104
+
+#define PC_SYMBOL_BUTTON4_X 216
+#define PC_SYMBOL_BUTTON4_Y 84
+
+#define PC_SYMBOL_BUTTON5_X 240
+#define PC_SYMBOL_BUTTON5_Y 52
+
+#define PC_SYMBOL_BUTTON6_X          240
+#define PC_SYMBOL_BUTTON6_Y          16
+#define POKEMON_PC_SYMBOL_BUTTON_RAD 16
+
+static const TouchScreenHitTable mainPcButtons[] = {
+    { 254, LEFT_MAIN_PC_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RAD },
+    { 254, RIGHT_MAIN_PC_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RAD },
+    { 255, 0, 0, 0 }
 };
 
-static const TouchScreenHitTable Unk_ov19_021DFE02[] = {
-    { 0xFE, 0x0, 0xB8, 0x28 },
-    { 0xFE, 0xFF, 0xB8, 0x28 },
-    { 0xFE, 0x80, 0xB2, 0xC },
-    { 0xFF, 0x0, 0x0, 0x0 }
+static const TouchScreenHitTable comparePokemonButtons[] = {
+    { 254, LEFT_MAIN_PC_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RAD },
+    { 254, RIGHT_MAIN_PC_BUTTON_X, MAIN_PC_BUTTON_Y, MAIN_PC_BUTTON_RAD },
+    { 254, COMPARE_POKEMON_PC_BUTTON_X, COMPARE_POKEMON_PC_BUTTON_Y, COMPARE_POKEMON_PC_BUTTON_RAD },
+    { 255, 0, 0, 0 }
 };
 
-static const TouchScreenHitTable Unk_ov19_021DFE12[] = {
-    { 0xFE, 0x98, 0xA8, 0x10 },
-    { 0xFE, 0xA3, 0x86, 0x10 },
-    { 0xFE, 0xB8, 0x68, 0x10 },
-    { 0xFE, 0xD8, 0x54, 0x10 },
-    { 0xFE, 0xF0, 0x34, 0x10 },
-    { 0xFE, 0xF0, 0x10, 0x10 },
-    { 0xFF, 0x0, 0x0, 0x0 }
+static const TouchScreenHitTable pokemonSymbolButtons[] = {
+    { 254, PC_SYMBOL_BUTTON1_X, PC_SYMBOL_BUTTON1_Y, POKEMON_PC_SYMBOL_BUTTON_RAD },
+    { 254, PC_SYMBOL_BUTTON2_X, PC_SYMBOL_BUTTON2_Y, POKEMON_PC_SYMBOL_BUTTON_RAD },
+    { 254, PC_SYMBOL_BUTTON3_X, PC_SYMBOL_BUTTON3_Y, POKEMON_PC_SYMBOL_BUTTON_RAD },
+    { 254, PC_SYMBOL_BUTTON4_X, PC_SYMBOL_BUTTON4_Y, POKEMON_PC_SYMBOL_BUTTON_RAD },
+    { 254, PC_SYMBOL_BUTTON5_X, PC_SYMBOL_BUTTON5_Y, POKEMON_PC_SYMBOL_BUTTON_RAD },
+    { 254, PC_SYMBOL_BUTTON6_X, PC_SYMBOL_BUTTON6_Y, POKEMON_PC_SYMBOL_BUTTON_RAD },
+    { 255, 0, 0, 0 }
 };
 
 static const u16 Unk_ov19_021DFDF0[] = {
@@ -3134,12 +3162,12 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->unk_128 = sub_0208712C(HEAP_ID_9, 2, 0, 8, param0->unk_1A4);
 
     if (param1->unk_04 != 4) {
-        param0->unk_17C = sub_02023FCC(Unk_ov19_021DFDF6, NELEMS(Unk_ov19_021DFDF6), ov19_021D53B8, param0, HEAP_ID_9);
+        param0->unk_17C = sub_02023FCC(mainPcButtons, NELEMS(mainPcButtons), ov19_021D53B8, param0, HEAP_ID_9);
     } else {
-        param0->unk_17C = sub_02023FCC(Unk_ov19_021DFE02, NELEMS(Unk_ov19_021DFE02), ov19_021D53B8, param0, HEAP_ID_9);
+        param0->unk_17C = sub_02023FCC(comparePokemonButtons, NELEMS(comparePokemonButtons), ov19_021D53B8, param0, HEAP_ID_9);
     }
 
-    param0->unk_180 = sub_02023FCC(Unk_ov19_021DFE12, NELEMS(Unk_ov19_021DFE12), ov19_021D4BB0, param0, HEAP_ID_9);
+    param0->unk_180 = sub_02023FCC(pokemonSymbolButtons, NELEMS(pokemonSymbolButtons), ov19_021D4BB0, param0, HEAP_ID_9);
     param0->unk_00.unk_00 = param0->unk_120;
     param0->unk_00.unk_04 = param0->unk_124;
     param0->unk_00.unk_110 = 0;
