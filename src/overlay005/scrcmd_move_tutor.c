@@ -13,7 +13,7 @@
 #include "generated/text_banks.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DC018.h"
+#include "overlay005/field_menu.h"
 
 #include "bag.h"
 #include "bg_window.h"

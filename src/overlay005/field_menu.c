@@ -1,4 +1,4 @@
-#include "overlay005/ov5_021DC018.h"
+#include "overlay005/field_menu.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -50,7 +50,7 @@ static void ListMenuSysTaskCallback(SysTask *sysTask, void *param);
 static void FieldMenuManager_DeleteWithListMenu(FieldMenuManager *menuManager);
 static void FieldMenuManager_PrintListMenyAltText(FieldMenuManager *menuManager, u16 entryID, u32 printerDelay);
 static void FieldMenuManager_UpdateListMenuAltText(FieldMenuManager *menuManager);
-static void ElevatorCurrentFloorWindowSystaskCallback(SysTask *param0, void *param1);
+static void CurrentFloorWindowSystaskCallback(SysTask *param0, void *param1);
 static void FieldMenuManager_PrintString(FieldMenuManager *menuManager, u16 entryID, u8 xOffset, u8 yOffset);
 
 static inline u32 PixelToTiles(u32 length)
@@ -125,7 +125,7 @@ FieldMenuManager *FieldMenuManager_New(FieldSystem *fieldSystem, u8 anchorX, u8 
     return menuManager;
 }
 
-void FieldMenuManager_AddMenuEntry(FieldMenuManager *menuManager, u32 entryID, u32 index) // Add Menu entry
+void FieldMenuManager_AddMenuEntry(FieldMenuManager *menuManager, u32 entryID, u32 index)
 {
     _FieldMenuManager_AddMenuEntry(menuManager, entryID, index);
 }
@@ -509,7 +509,7 @@ static void FieldMenuManager_UpdateListMenuAltText(FieldMenuManager *menuManager
     }
 }
 
-void ov5_021DCB24(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u16 *selectedOptionPtr, StringTemplate *stringTemplate, u16 unused) // Show current floor in elevators
+void FieldMenu_ShowCurrentFloorWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u16 *selectedOptionPtr, StringTemplate *stringTemplate, u16 unused)
 {
     u32 width; // forward declaration required to match
 
@@ -532,7 +532,7 @@ void ov5_021DCB24(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u16 *
 
     menuManager->menuTemplate.window = &menuManager->menuWindow;
     Window_CopyToVRAM(&menuManager->menuWindow);
-    menuManager->sysTask = SysTask_Start(ElevatorCurrentFloorWindowSystaskCallback, menuManager, 0);
+    menuManager->sysTask = SysTask_Start(CurrentFloorWindowSystaskCallback, menuManager, 0);
 }
 
 static void FieldMenuManager_PrintString(FieldMenuManager *menuManager, u16 entryID, u8 xOffset, u8 yOffset)
@@ -547,7 +547,7 @@ static void FieldMenuManager_PrintString(FieldMenuManager *menuManager, u16 entr
     Strbuf_Free(formatted);
 }
 
-static void ElevatorCurrentFloorWindowSystaskCallback(SysTask *sysTask, void *param)
+static void CurrentFloorWindowSystaskCallback(SysTask *sysTask, void *param)
 {
     FieldMenuManager *menuManager = (FieldMenuManager *)param;
 
@@ -568,70 +568,70 @@ static void ElevatorCurrentFloorWindowSystaskCallback(SysTask *sysTask, void *pa
     }
 }
 
-u16 ov5_021DCCC8(int location)
+u16 FieldMenu_GetFloorsAbove(int location)
 {
-    u16 v0;
+    u16 floorsAbove;
 
     switch (location) {
     case MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_1F:
-        v0 = 1;
+        floorsAbove = 1;
         break;
     case MAP_HEADER_HEARTHOME_CITY_SOUTHEAST_HOUSE_2F:
-        v0 = 0;
+        floorsAbove = 0;
         break;
     case MAP_HEADER_VISTA_LIGHTHOUSE:
-        v0 = 0;
+        floorsAbove = 0;
         break;
     case MAP_HEADER_SUNYSHORE_CITY:
-        v0 = 1;
+        floorsAbove = 1;
         break;
     case MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_1F:
-        v0 = 1;
+        floorsAbove = 1;
         break;
     case MAP_HEADER_HEARTHOME_CITY_NORTHEAST_HOUSE_2F:
-        v0 = 0;
+        floorsAbove = 0;
         break;
     case MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_1F:
-        v0 = 1;
+        floorsAbove = 1;
         break;
     case MAP_HEADER_RESORT_AREA_RIBBON_SYNDICATE_2F:
-        v0 = 0;
+        floorsAbove = 0;
         break;
     case MAP_HEADER_VEILSTONE_STORE_1F:
-        v0 = 4;
+        floorsAbove = 4;
         break;
     case MAP_HEADER_VEILSTONE_STORE_2F:
-        v0 = 3;
+        floorsAbove = 3;
         break;
     case MAP_HEADER_VEILSTONE_STORE_3F:
-        v0 = 2;
+        floorsAbove = 2;
         break;
     case MAP_HEADER_VEILSTONE_STORE_4F:
-        v0 = 1;
+        floorsAbove = 1;
         break;
     case MAP_HEADER_VEILSTONE_STORE_5F:
-        v0 = 0;
+        floorsAbove = 0;
         break;
     case MAP_HEADER_VEILSTONE_STORE_B1F:
-        v0 = 5;
+        floorsAbove = 5;
         break;
     case MAP_HEADER_JUBILIFE_TV_1F:
-        v0 = 3;
+        floorsAbove = 3;
         break;
     case MAP_HEADER_JUBILIFE_TV_2F:
-        v0 = 2;
+        floorsAbove = 2;
         break;
     case MAP_HEADER_JUBILIFE_TV_3F:
-        v0 = 1;
+        floorsAbove = 1;
         break;
     case MAP_HEADER_JUBILIFE_TV_4F:
-        v0 = 0;
+        floorsAbove = 0;
         break;
     default:
-        v0 = 1;
+        floorsAbove = 1;
     }
 
-    return v0;
+    return floorsAbove;
 }
 
 void FieldMenuManager_ShowMultiColumnMenu(FieldMenuManager *menuManager, u8 columnsCount)
@@ -667,7 +667,7 @@ static void FieldMenuManager_SetupMultiColumnMenu(FieldMenuManager *menuManager,
     menuManager->menuTemplate.suppressCursor = FALSE;
 }
 
-Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 tilemapTop, u8 tilemapLeft) // Create money window
+Window *FieldMenu_CreateMoneyWindow(FieldSystem *fieldSystem, u8 tilemapTop, u8 tilemapLeft) // Create money window
 {
     Window *window = Window_New(HEAP_ID_FIELD, 1);
 
@@ -685,18 +685,18 @@ Window *ov5_021DCEB0(FieldSystem *fieldSystem, u8 tilemapTop, u8 tilemapLeft) //
         Strbuf_Free(strbuf);
     }
 
-    ov5_021DCF6C(fieldSystem, window);
+    FieldMenu_PrintMoneyToWindow(fieldSystem, window);
 
     return window;
 }
 
-void ov5_021DCF58(Window *window) // Delete window. Used for the money window
+void FieldMenu_DeleteMoneyWindow(Window *window) // Delete window. Used for the money window
 {
     Window_EraseStandardFrame(window, FALSE);
     Windows_Delete(window, 1);
 }
 
-void ov5_021DCF6C(FieldSystem *fieldSystem, Window *window) // Print money to window
+void FieldMenu_PrintMoneyToWindow(FieldSystem *fieldSystem, Window *window) // Print money to window
 {
     Window_FillRectWithColor(window, 15, 0, 16, 10 * 8, 4 * 8 - 16);
 
@@ -719,7 +719,7 @@ void ov5_021DCF6C(FieldSystem *fieldSystem, Window *window) // Print money to wi
     Window_ScheduleCopyToVRAM(window);
 }
 
-Window *ov5_021DD020(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop) // Create coins/BP window, show coins count
+Window *FieldMenu_CreateCoinsWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop) // Create coins/BP window, show coins count
 {
     Window *window = Window_New(HEAP_ID_FIELD, 1);
 
@@ -727,18 +727,18 @@ Window *ov5_021DD020(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop) //
     LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD);
     Window_DrawStandardFrame(window, TRUE, 1024 - (18 + 12) - 9, 11);
 
-    ov5_021DD098(fieldSystem, window);
+    FieldMenu_PrintCoinsToWindow(fieldSystem, window);
 
     return window;
 }
 
-void ov5_021DD084(Window *window) // Delete window. Used for the coins & BP window
+void FieldMenu_DeleteCoinsBPWindow(Window *window) // Delete window. Used for the coins & BP window
 {
     Window_EraseStandardFrame(window, FALSE);
     Windows_Delete(window, 1);
 }
 
-void ov5_021DD098(FieldSystem *fieldSystem, Window *window) // Print coins count to window
+void FieldMenu_PrintCoinsToWindow(FieldSystem *fieldSystem, Window *window) // Print coins count to window
 {
     Window_FillTilemap(window, 15);
 
@@ -761,7 +761,7 @@ void ov5_021DD098(FieldSystem *fieldSystem, Window *window) // Print coins count
     Window_ScheduleCopyToVRAM(window);
 }
 
-Window *ov5_021DD140(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop) // Create coins/BP window, show BP count
+Window *FieldMenu_CreateBPWindow(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop) // Create coins/BP window, show BP count
 {
     Window *window = Window_New(HEAP_ID_FIELD, 1);
 
@@ -769,12 +769,12 @@ Window *ov5_021DD140(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop) //
     LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD);
     Window_DrawStandardFrame(window, TRUE, 1024 - (18 + 12) - 9, 11);
 
-    ov5_021DD1A4(fieldSystem, window);
+    FieldMenu_PrintBPToWindow(fieldSystem, window);
 
     return window;
 }
 
-void ov5_021DD1A4(FieldSystem *fieldSystem, Window *window) // Print BP count to window
+void FieldMenu_PrintBPToWindow(FieldSystem *fieldSystem, Window *window) // Print BP count to window
 {
     Window_FillTilemap(window, 15);
 
@@ -797,7 +797,7 @@ void ov5_021DD1A4(FieldSystem *fieldSystem, Window *window) // Print BP count to
     Window_ScheduleCopyToVRAM(window);
 }
 
-FieldMenuManager *FieldMenuManager_NewMoveTutorCostWindow(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u16 *selectedOptionPtr, StringTemplate *stringTemplate, u8 redCost, u8 blueCost, u8 yellowCost, u8 greenCost) // Move tutor shard cost
+FieldMenuManager *FieldMenuManager_NewMoveTutorCostWindow(FieldSystem *fieldSystem, u8 anchorX, u8 anchorY, u16 *selectedOptionPtr, StringTemplate *stringTemplate, u8 redCost, u8 blueCost, u8 yellowCost, u8 greenCost)
 {
     FieldMenuManager *menuManager = FieldMenuManager_New(fieldSystem, anchorX, anchorY, 0, FALSE, selectedOptionPtr, stringTemplate, NULL, NULL);
 

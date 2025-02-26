@@ -44,11 +44,11 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/field_menu.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021D5EB8.h"
-#include "overlay005/ov5_021DC018.h"
 #include "overlay005/ov5_021DD42C.h"
 #include "overlay005/ov5_021DDAE4.h"
 #include "overlay005/ov5_021DFB54.h"
@@ -4943,7 +4943,7 @@ static BOOL ScrCmd_11C(ScriptContext *ctx)
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData));
-    *v1 = ov5_021DCCC8(location->mapId);
+    *v1 = FieldMenu_GetFloorsAbove(location->mapId);
 
     return 0;
 }
@@ -4957,7 +4957,7 @@ static BOOL ScrCmd_11D(ScriptContext *ctx)
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
     u16 v5 = ScriptContext_GetVar(ctx);
 
-    ov5_021DCB24(fieldSystem, v2, v3, v4, *v1, v5);
+    FieldMenu_ShowCurrentFloorWindow(fieldSystem, v2, v3, v4, *v1, v5);
     return 0;
 }
 
