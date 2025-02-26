@@ -5806,53 +5806,53 @@ static void ov16_02263CF0(BattleSystem *param0, BattlerData *param1, UnkStruct_o
     }
 }
 
-static void ov16_02263DD0(BattleSystem *param0, BattlerData *param1, BattleMessage *param2)
+static void ov16_02263DD0(BattleSystem *battleSys, BattlerData *unused, BattleMessage *param2)
 {
-    u32 v0;
-    int v1;
-    int v2;
+    u32 battleType;
+    int battlerType1;
+    int battlerType2;
 
-    v0 = BattleSystem_BattleType(param0);
+    battleType = BattleSystem_BattleType(battleSys);
 
-    if (v0 & 0x2) {
-        v1 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
-        v2 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
+    if (battleType & BATTLE_TYPE_DOUBLES) {
+        battlerType1 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
+        battlerType2 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
     } else {
-        v1 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_SOLO_ENEMY);
-        v2 = v1;
+        battlerType1 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_SOLO_ENEMY);
+        battlerType2 = battlerType1;
     }
 
-    if (v0 & 0x4) {
-        if (v0 & 0x80) {
+    if (battleType & BATTLE_TYPE_LINK) {
+        if (battleType & BATTLE_TYPE_FRONTIER) {
             param2->id = 992;
             param2->tags = 59;
-            param2->params[0] = v1;
-            param2->params[1] = v1;
-            param2->params[2] = v2;
-            param2->params[3] = v2;
-        } else if (v0 & 0x8) {
+            param2->params[0] = battlerType1;
+            param2->params[1] = battlerType1;
+            param2->params[2] = battlerType2;
+            param2->params[3] = battlerType2;
+        } else if (battleType & BATTLE_TYPE_2vs2) {
             param2->id = 971;
             param2->tags = 26;
-            param2->params[0] = v1;
-            param2->params[1] = v2;
+            param2->params[0] = battlerType1;
+            param2->params[1] = battlerType2;
         } else {
             param2->id = 970;
             param2->tags = 8;
-            param2->params[0] = v1;
+            param2->params[0] = battlerType1;
         }
     } else {
-        if ((v0 & 0x10) || (v0 & 0x8)) {
+        if ((battleType & BATTLE_TYPE_TAG) || (battleType & BATTLE_TYPE_2vs2)) {
             param2->id = 992;
             param2->tags = 59;
-            param2->params[0] = v1;
-            param2->params[1] = v1;
-            param2->params[2] = v2;
-            param2->params[3] = v2;
+            param2->params[0] = battlerType1;
+            param2->params[1] = battlerType1;
+            param2->params[2] = battlerType2;
+            param2->params[3] = battlerType2;
         } else {
             param2->id = 969;
             param2->tags = 30;
-            param2->params[0] = v1;
-            param2->params[1] = v1;
+            param2->params[0] = battlerType1;
+            param2->params[1] = battlerType1;
         }
     }
 }
