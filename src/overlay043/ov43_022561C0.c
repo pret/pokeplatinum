@@ -10,10 +10,10 @@
 
 #include "bg_window.h"
 #include "heap.h"
+#include "poketch_memory.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "touch_screen.h"
-#include "unk_02099D44.h"
 
 typedef struct {
     u8 unk_00;
@@ -79,7 +79,7 @@ static BOOL ov43_0225621C(UnkStruct_ov43_0225621C *param0, PoketchSystem *poketc
 
     param0->unk_04 = param3;
 
-    if (sub_02099D7C(param3, &(param0->unk_08), sizeof(param0->unk_08)) == 0) {
+    if (PoketchMemory_Read32(param3, &(param0->unk_08), sizeof(param0->unk_08)) == FALSE) {
         ov43_02256288(&(param0->unk_08));
     }
 
@@ -108,7 +108,7 @@ static void ov43_02256288(UnkStruct_ov43_02256544_1 *param0)
 
 static void ov43_022562A8(UnkStruct_ov43_0225621C *param0)
 {
-    sub_02099D54(param0->unk_04, &(param0->unk_08), sizeof(param0->unk_08));
+    PoketchMemory_Write32(param0->unk_04, &(param0->unk_08), sizeof(param0->unk_08));
     PoketchButtonManager_Free(param0->buttonManager);
     ov43_02256680(param0->unk_14);
     Heap_FreeToHeap(param0);
