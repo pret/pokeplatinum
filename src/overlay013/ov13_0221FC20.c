@@ -1666,8 +1666,8 @@ u8 ov13_0222196C(UnkStruct_ov13_022213F0 *param0)
     u32 battleType = BattleSystem_BattleType(param0->unk_00->unk_08);
 
     if ((battleType != (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
-     && (battleType != ((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
-     && (battleType & (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TAG))) {
+        && (battleType != ((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
+        && (battleType & (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TAG))) {
         return 1;
     }
 
@@ -1679,8 +1679,8 @@ u8 ov13_0222198C(UnkStruct_ov13_022213F0 *param0)
     u32 battleType = BattleSystem_BattleType(param0->unk_00->unk_08);
 
     if ((battleType != (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
-     && (battleType != ((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
-     && (battleType & BATTLE_TYPE_2vs2)) {
+        && (battleType != ((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
+        && (battleType & BATTLE_TYPE_2vs2)) {
         return 1;
     }
 
