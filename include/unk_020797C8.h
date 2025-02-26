@@ -6,10 +6,10 @@
 #include "pokemon.h"
 #include "strbuf.h"
 
-#define MAX_PC_BOXES     18
-#define MAX_PC_ROWS      5
-#define MAX_PC_COLS      6
-#define MAX_MONS_PER_BOX (MAX_PC_ROWS * MAX_PC_COLS)
+#define MAX_PC_BOXES           18
+#define MAX_PC_ROWS            5
+#define MAX_PC_COLS            6
+#define MAX_MONS_PER_BOX       (MAX_PC_ROWS * MAX_PC_COLS)
 #define BOX1_TEXT_BANK_ENTRYID 6
 
 void PCBoxes_Init(PCBoxes *pcBoxes);
