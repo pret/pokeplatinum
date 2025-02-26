@@ -163,7 +163,7 @@ _0198:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 10
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_UP
     ReleaseAll
     End
 
@@ -173,7 +173,7 @@ _01AE:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 11
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_MID
     ReleaseAll
     End
 

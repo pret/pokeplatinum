@@ -653,31 +653,31 @@ _0791:
     End
 
 _0806:
-    ScrCmd_14A 0
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_MONDAY
     GoTo _084C
 
 _0810:
-    ScrCmd_14A 1
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_TUESDAY
     GoTo _084C
 
 _081A:
-    ScrCmd_14A 2
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_WEDNESDAY
     GoTo _084C
 
 _0824:
-    ScrCmd_14A 3
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_THURSDAY
     GoTo _084C
 
 _082E:
-    ScrCmd_14A 4
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_FRIDAY
     GoTo _084C
 
 _0838:
-    ScrCmd_14A 5
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_SATURDAY
     GoTo _084C
 
 _0842:
-    ScrCmd_14A 6
+    PokeMartSeal MART_SEAL_ID_SUNYSHORE_SUNDAY
     GoTo _084C
 
 _084C:

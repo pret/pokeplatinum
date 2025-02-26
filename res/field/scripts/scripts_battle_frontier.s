@@ -274,7 +274,7 @@ _026A:
     FacePlayer
     Message 21
     ScrCmd_035
-    ScrCmd_2D8 1
+    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_DOWN
     ReleaseAll
     End
 
@@ -297,7 +297,7 @@ _02A6:
     FacePlayer
     Message 23
     ScrCmd_035
-    ScrCmd_2D8 0
+    PokeMartFrontier MART_FRONTIER_ID_EXCHANGE_SERVICE_CORNER_UP
     ReleaseAll
     End
 

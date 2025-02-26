@@ -49,7 +49,7 @@ _005B:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 8
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_1F_RIGHT
     ReleaseAll
     End
 
@@ -59,7 +59,7 @@ _0071:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 9
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_1F_LEFT
     ReleaseAll
     End
 

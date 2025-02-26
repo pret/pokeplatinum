@@ -7,6 +7,10 @@
 #include "generated/journal_location_events.h"
 #include "generated/journal_online_events.h"
 #include "generated/map_headers.h"
+#include "generated/mart_decor_id.h"
+#include "generated/mart_frontier_id.h"
+#include "generated/mart_seal_id.h"
+#include "generated/mart_specialties_id.h"
 #include "generated/moves.h"
 #include "generated/npc_trades.h"
 #include "generated/poketch_apps.h"
@@ -1785,24 +1789,24 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_147 arg0
+    .macro PokeMartCommon unused=1
     .short 327
-    .short \arg0
+    .short \unused
     .endm
 
-    .macro ScrCmd_148 arg0
+    .macro PokeMartSpecialties martID
     .short 328
-    .short \arg0
+    .short \martID
     .endm
 
-    .macro ScrCmd_149 arg0
+    .macro PokeMartDecor martID
     .short 329
-    .short \arg0
+    .short \martID
     .endm
 
-    .macro ScrCmd_14A arg0
+    .macro PokeMartSeal martID
     .short 330
-    .short \arg0
+    .short \martID
     .endm
 
     .macro ScrCmd_14B
@@ -3969,9 +3973,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2D8 arg0
+    .macro PokeMartFrontier martID
     .short 728
-    .byte \arg0
+    .byte \martID
     .endm
 
     .macro ScrCmd_2D9 arg0, arg1, arg2

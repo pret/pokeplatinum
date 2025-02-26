@@ -111,7 +111,7 @@ _0127:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 12
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_3F_UP
     ReleaseAll
     End
 
@@ -121,7 +121,7 @@ _013D:
     FacePlayer
     CallCommonScript 0x7E3
     ScrCmd_035
-    ScrCmd_148 13
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN
     ReleaseAll
     End
 
