@@ -558,8 +558,8 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
 
     if (((battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) == (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2))
         || (battleType & BATTLE_TYPE_TAG)
-        || (battleType == ((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
-        || (battleType == (((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI) | BATTLE_TYPE_FRONTIER))) {
+        || (battleType == (BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
+        || (battleType == ((BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI) | BATTLE_TYPE_FRONTIER))) {
         if (Battler_Side(battleSys, battler)) {
             v2 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
         } else {
@@ -762,7 +762,7 @@ void BattleIO_ShowBagScreen(BattleSystem *battleSys, BattleContext *battleCtx, i
         v0.unk_20[v1] = battleCtx->battleMons[v1].moveEffectsData.embargoTurns;
     }
 
-    if (BattleSystem_BattleType(battleSys) == (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI)) {
+    if (BattleSystem_BattleType(battleSys) == BATTLE_TYPE_AI_PARTNER) {
         if (((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0) && ((battleCtx->battlersSwitchingMask & FlagIndex(3)) == 0)) {
             v0.unk_01 = 1;
             v0.unk_02 = 0;

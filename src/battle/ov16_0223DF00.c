@@ -1685,7 +1685,7 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
     v1 = BattleSystem_PartyPokemon(battleSystem, param1, v2);
 
     if ((battleSystem->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER)) == FALSE) {
-        if ((v0 & 0x1) || (battleSystem->battleType == (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI)) || (battleSystem->battleType == ((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))) {
+        if ((v0 & 0x1) || (battleSystem->battleType == BATTLE_TYPE_AI_PARTNER) || (battleSystem->battleType == (BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))) {
             Pokedex_Encounter(battleSystem->pokedex, v1);
         }
     }

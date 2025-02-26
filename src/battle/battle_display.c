@@ -2340,7 +2340,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
 
             ManagedSprite_GetPositionXY(v0->unk_04->unk_00, &v1, &v2);
 
-            if ((v0->unk_14 == 1) || ((v0->unk_14 == 3) && ((battleType == (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER)) || (battleType == ((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_FRONTIER)) || (battleType == ((BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_DOUBLES))))) {
+            if ((v0->unk_14 == 1) || ((v0->unk_14 == 3) && ((battleType == BATTLE_TYPE_TRAINER_DOUBLES) || (battleType == BATTLE_TYPE_FRONTIER_DOUBLES) || (battleType == ((BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_DOUBLES))))) {
                 ManagedSprite_SetPositionXY(v0->unk_08, v1, v4);
             } else if (v0->unk_14 == 3) {
                 v1 = v3 - v1;
@@ -2383,7 +2383,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
 
             ManagedSprite_GetPositionXY(v0->unk_04->unk_00, &v1, &v2);
 
-            if ((v0->unk_14 == 0) || ((v0->unk_14 == 2) && ((battleType == (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER)) || (battleType == ((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | 0x80)) || (battleType == ((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_TAG)) || (battleType == ((BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_DOUBLES))))) {
+            if ((v0->unk_14 == 0) || ((v0->unk_14 == 2) && ((battleType == BATTLE_TYPE_TRAINER_DOUBLES) || (battleType == BATTLE_TYPE_FRONTIER_DOUBLES) || (battleType == BATTLE_TYPE_TAG_DOUBLES) || (battleType == BATTLE_TYPE_LINK_DOUBLES)))) {
                 ManagedSprite_SetPositionXY(v0->unk_08, v1, v4);
             } else if (v0->unk_14 == 2) {
                 v1 = v1 - v3;
@@ -3713,7 +3713,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                 case 1:
                     if ((v0->unk_04->unk_1C == 28) || (v0->unk_04->unk_1C == 29)) {
                         v0->unk_0E = 8;
-                    } else if (((v0->unk_08->unk_04->unk_11 < 2) && ((BattleSystem_BattleType(v0->unk_00) == (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER)) || (BattleSystem_BattleType(v0->unk_00) == ((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_TAG)))) || (v0->unk_08->unk_04->unk_11 < 1)) {
+                    } else if (((v0->unk_08->unk_04->unk_11 < 2) && ((BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TRAINER_DOUBLES) || (BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TAG_DOUBLES))) || (v0->unk_08->unk_04->unk_11 < 1)) {
                         if (v0->unk_04->unk_1C == 23) {
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 17;
@@ -3734,7 +3734,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                     }
                     break;
                 case 0:
-                    if ((((v0->unk_08->unk_04->unk_11 < 2) && ((BattleSystem_BattleType(v0->unk_00) == (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER)) || (BattleSystem_BattleType(v0->unk_00) == ((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_TAG)))) || (v0->unk_08->unk_04->unk_11 < 1)) && (Item_LoadParam(v0->unk_04->unk_1C, 38, 5))) {
+                    if ((((v0->unk_08->unk_04->unk_11 < 2) && ((BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TRAINER_DOUBLES) || (BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_TAG_DOUBLES))) || (v0->unk_08->unk_04->unk_11 < 1)) && (Item_LoadParam(v0->unk_04->unk_1C, 38, 5))) {
                         if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                             v0->unk_12 = 17;
                         } else {
@@ -4198,7 +4198,7 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
                 v0->unk_04 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov13_0221FC20));
                 v0->unk_04->unk_00 = Party_New(5);
 
-                if (((BattleSystem_BattleType(v0->unk_00) & (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) == (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) || (BattleSystem_BattleType(v0->unk_00) == (((BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TRAINER) | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI) | BATTLE_TYPE_FRONTIER))) {
+                if (((BattleSystem_BattleType(v0->unk_00) & (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) == (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) || (BattleSystem_BattleType(v0->unk_00) == ((BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI) | BATTLE_TYPE_FRONTIER))) {
                     if (BattleSystem_BattlerSlot(v0->unk_00, v0->unk_09) == 2) {
                         v6 = v0->unk_09;
                         v7 = BattleSystem_Partner(v0->unk_00, v0->unk_09);
@@ -5169,7 +5169,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
         if (v0->unk_15 == 28) {
             MI_CpuCopy16(ov16_0223F204(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 0), 0x20 * 7);
 
-            if (BattleSystem_BattleType(v0->unk_00) == (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI)) {
+            if (BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_AI_PARTNER) {
                 MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 5);
             } else if (BattleSystem_BattleType(v0->unk_00) & BATTLE_TYPE_DOUBLES) {
                 MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 7);
@@ -5207,7 +5207,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
     case 5:
         MI_CpuCopy16(ov16_0223F204(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 0), 0x20 * 7);
 
-        if (BattleSystem_BattleType(v0->unk_00) == (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI)) {
+        if (BattleSystem_BattleType(v0->unk_00) == BATTLE_TYPE_AI_PARTNER) {
             MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 5);
         } else if (BattleSystem_BattleType(v0->unk_00) & BATTLE_TYPE_DOUBLES) {
             MI_CpuCopy16(ov16_0223F210(v0->unk_00), PaletteData_GetUnfadedBuffer(v2, 2), 0x20 * 7);
