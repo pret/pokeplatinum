@@ -558,9 +558,9 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
 
     if (((v9 & (0x4 | 0x8)) == (0x4 | 0x8)) || (v9 & 0x10) || (v9 == ((0x2 | 0x1) | 0x8 | 0x40)) || (v9 == (((0x2 | 0x1) | 0x8 | 0x40) | 0x80))) {
         if (Battler_Side(battleSys, battler)) {
-            v2 = BattleSystem_BattlerOfType(battleSys, 2);
+            v2 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
         } else {
-            v2 = BattleSystem_BattlerOfType(battleSys, 3);
+            v2 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
         }
 
         v7 = BattleSystem_Party(battleSys, v2);
@@ -586,9 +586,9 @@ void BattleIO_SetCommandSelection(BattleSystem *battleSys, BattleContext *battle
         }
 
         if (Battler_Side(battleSys, battler)) {
-            v2 = BattleSystem_BattlerOfType(battleSys, 4);
+            v2 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
         } else {
-            v2 = BattleSystem_BattlerOfType(battleSys, 5);
+            v2 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
         }
 
         v7 = BattleSystem_Party(battleSys, v2);

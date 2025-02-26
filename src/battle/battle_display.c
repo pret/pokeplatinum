@@ -5815,10 +5815,10 @@ static void ov16_02263DD0(BattleSystem *param0, BattlerData *param1, BattleMessa
     v0 = BattleSystem_BattleType(param0);
 
     if (v0 & 0x2) {
-        v1 = BattleSystem_BattlerOfType(param0, 3);
-        v2 = BattleSystem_BattlerOfType(param0, 5);
+        v1 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
+        v2 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
     } else {
-        v1 = BattleSystem_BattlerOfType(param0, 1);
+        v1 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_SOLO_ENEMY);
         v2 = v1;
     }
 
@@ -5937,20 +5937,20 @@ static void ov16_02263E7C(BattleSystem *param0, BattlerData *param1, UnkStruct_o
                     switch (ov16_0223F6F0(param0, v3)) {
                     case 0:
                     case 3:
-                        v1 = BattleSystem_BattlerOfType(param0, 4);
-                        v2 = BattleSystem_BattlerOfType(param0, 2);
+                        v1 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
+                        v2 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
                         break;
                     case 1:
                     case 2:
-                        v1 = BattleSystem_BattlerOfType(param0, 2);
-                        v2 = BattleSystem_BattlerOfType(param0, 4);
+                        v1 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
+                        v2 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
                         break;
                     }
                 } else if (v0 & 0x2) {
-                    v1 = BattleSystem_BattlerOfType(param0, 2);
-                    v2 = BattleSystem_BattlerOfType(param0, 4);
+                    v1 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
+                    v2 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
                 } else {
-                    v1 = BattleSystem_BattlerOfType(param0, 0);
+                    v1 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_SOLO_PLAYER);
                     v2 = v1;
                 }
             }
@@ -5958,8 +5958,8 @@ static void ov16_02263E7C(BattleSystem *param0, BattlerData *param1, UnkStruct_o
             v1 = BattleSystem_Partner(param0, param1->battler);
             v2 = param1->battler;
         } else if (v0 & 0x2) {
-            v1 = BattleSystem_BattlerOfType(param0, 2);
-            v2 = BattleSystem_BattlerOfType(param0, 4);
+            v1 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
+            v2 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
         } else {
             v1 = param1->battler;
             v2 = v1;
@@ -6015,10 +6015,10 @@ static void ov16_022641B4(BattleSystem *param0, BattlerData *param1, BattleMessa
     v3 = BattleSystem_ResultMask(param0);
 
     if (v0 & 0x2) {
-        v1 = BattleSystem_BattlerOfType(param0, 3);
-        v2 = BattleSystem_BattlerOfType(param0, 5);
+        v1 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
+        v2 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
     } else {
-        v1 = BattleSystem_BattlerOfType(param0, 1);
+        v1 = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_SOLO_ENEMY);
         v2 = v1;
     }
 
@@ -6090,16 +6090,16 @@ static void ov16_02264270(BattleSystem *param0, BattlerData *param1, UnkStruct_o
         if (BattleSystem_BattleType(param0) & 0x8) {
             param3->id = 792;
             param3->tags = 26;
-            param3->params[0] = BattleSystem_BattlerOfType(param0, 3);
-            param3->params[1] = BattleSystem_BattlerOfType(param0, 5);
+            param3->params[0] = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
+            param3->params[1] = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
         } else if (BattleSystem_BattleType(param0) & 0x2) {
             param3->id = 791;
             param3->tags = 8;
-            param3->params[0] = BattleSystem_BattlerOfType(param0, 3);
+            param3->params[0] = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
         } else {
             param3->id = 791;
             param3->tags = 8;
-            param3->params[0] = BattleSystem_BattlerOfType(param0, 1);
+            param3->params[0] = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_SOLO_ENEMY);
         }
 
         BattleSystem_SetResultFlag(param0, 0x1 | 0x80 | 0x40);
@@ -6113,9 +6113,9 @@ static void ov16_02264360(BattleSystem *param0, BattlerData *param1, BattleMessa
 
     if (BattleSystem_BattleType(param0) & 0x4) {
         if (ov16_0223F6F0(param0, ov16_0223F6E4(param0))) {
-            param2->params[0] = BattleSystem_BattlerOfType(param0, 4);
+            param2->params[0] = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_PLAYER_SIDE_SLOT_2);
         } else {
-            param2->params[0] = BattleSystem_BattlerOfType(param0, 2);
+            param2->params[0] = BattleSystem_BattlerOfType(param0, BATTLER_TYPE_PLAYER_SIDE_SLOT_1);
         }
     } else {
         param2->params[0] = param1->battler;
