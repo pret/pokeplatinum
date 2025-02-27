@@ -485,7 +485,7 @@ pokeplatinum_c = files(
     'overlay006/ov6_022489E4.c',
     'overlay007/communication_club.c',
     'overlay007/ov7_0224B4E8.c',
-    'overlay007/ov7_0224BE9C.c',
+    'overlay007/accessory_shop.c',
     'overlay007/shop_menu.c',
     'overlay008/ov8_02249960.c',
     'overlay009/ov9_02249960.c',
