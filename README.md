@@ -1,6 +1,8 @@
 # Pokémon Platinum
 
-This is a WIP decompilation of Pokémon Platinum. For instructions on how to set up the repository, please read [INSTALL.md](INSTALL.md).
+This is a WIP decompilation of Pokémon Platinum. For instructions on how to set up the repository, please read [`INSTALL.md`](INSTALL.md).
+
+If you are interested in contributing, please read [`CONTRIBUTING.md`](/CONTRIBUTING.md).
 
 This repository builds the following ROMs:
 

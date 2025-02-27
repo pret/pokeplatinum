@@ -1,0 +1,18 @@
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+indent_style = space
+indent_size = 4
+
+[Makefile]
+indent_style = tab
+tab_width = 4
+
+# This file must remain in UTF-16LE for compatibility with makebanner.exe
+[platinum.us/banner.bsf]
+charset = utf-16le
+
+[*.{clang-format,yaml}]
+indent_size = 2
