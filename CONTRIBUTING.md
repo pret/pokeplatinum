@@ -1,74 +1,295 @@
 # Contributing to pret/pokeplatinum
 
+Welcome! If you're reading this guide, then you probably want to contribute
+revisions, documentation, or tooling to the project. We value any and all
+contributions, however small or large. Before getting started, please take a
+look through this document for some important tips on how to smooth out the
+experience of your first contribution.
+
+Thanks again, and we look forward to hearing from you! 🎉
+
+## Table of Contents
+
 <!--toc:start-->
-- [Contributing to pret/pokeplatinum](#contributing-to-pretpokeplatinum)
-  - [Preliminaries](#preliminaries)
-  - [Editor Enhancements](#editor-enhancements)
+- [What work is there to be done?](#what-work-is-there-to-be-done)
+- [How do I set up a development environment?](#how-do-i-set-up-a-development-environment)
+  - [Auto-Completion and Language Server Setup](#auto-completion-and-language-server-setup)
+  - [Editor Configuration](#editor-configuration)
   - [Code Formatting](#code-formatting)
+- [How should I name things?](#how-should-i-name-things)
+- [I can't find a file that's `include`d; where is it?](#i-cant-find-a-file-thats-included-where-is-it)
+- [Your First Contribution](#your-first-contribution)
+  - [What must I do before submitting a pull request?](#what-must-i-do-before-submitting-a-pull-request)
+  - [How do I submit a pull request?](#how-do-i-submit-a-pull-request)
+  - [What to Expect](#what-to-expect)
 <!--toc:end-->
 
-This document provides a synopsis and loose guidelines for how to contribute to
-this project. It is a work in progress. Maintainers should expand this document.
+## What work is there to be done?
 
-## Preliminaries
+At this stage of its life-cycle, the repository is almost 100% C code, although
+much of it is obfuscated. Some straggler-routines still linger in ARM assembly,
+and some small utility libraries also need to be decompiled. As a result, much
+of the work for this repository at present comes down to **documentation** and
+**tooling**.
 
-We contribute using a fork-model rather than committing branches directly to the
-repository. Please make a fork before starting work on your contribution.
+If you are looking for a bite-sized work-item to pick out for your first
+contribution, we maintain [a living issue][first-efforts] to document files or
+functions which we have identified as being smaller in scope. Take a look
+through and see if something strikes your interest! Alternatively, if there is a
+particular piece of functionality that you want to explore, please reach out to
+us [on Discord][pret-github-io] for pointers in the right direction.
 
-Any and all pull requests to the repository *must* produce a ROM which matches
-`sha1: ce81046eda7d232513069519cb2085349896dec7` by default. To verify this
-locally, a `check` target is included in the `Makefile`:
+[first-efforts]: https://github.com/pret/pokeplatinum/issues/325
+[pret-github-io]: https://pret.github.io/
+
+## How do I set up a development environment?
+
+If you haven't already, take the time to read through [`INSTALL.md`](INSTALL.md)
+and ensure that you can successfully build a matching version of the binary
+target:
 
 ```bash
 make check
 ```
 
-This target is run automatically as part of the default `make` command defined
-in the provided `Makefile`.
+We provide some tooling within the repository to integrate with common developer
+enhancements.
 
-> [!IMPORTANT]
-> If your pull request does not produce a matching ROM, then it will not be
-> considered for merge until it has been updated to do so.
+### Auto-Completion and Language Server Setup
 
-## Editor Enhancements
+We provide some instructions for setting up a variety of popular editors; refer
+to the documentation snippets in `docs/editor_setup` to see if your editor has
+specific instructions. If it is not, you may be able to adapt an existing guide
+for your preferred editor; if so, feel free to file a pull request with a new
+guide tailored to that editor!
 
-This repository includes a script to generate a `compile_commands.json` that is
-compatible with C language servers such as `clangd`.
+### Editor Configuration
 
-The following dependencies are required:
+An `.editorconfig` file exists at the root of the repository, which helps
+alleviate configuring individual editors to present code identically. Many
+popular editors will provide support for this integration out-of-the-box with no
+installation required; others may require a plugin or extension. For details on
+which is which, refer to the documentation [here](https://editorconfig.org).
 
-- `python3.8` or newer
-- `gcc-arm-none-eabi`
-- `clangd`
+### Code Formatting
 
-To run the script:
+We make use of [`clang-format`][clang-format] for our automated code formatting.
+Some additional tooling is built into the repository to keep our code-style
+consistent and alleviate the need for manual upkeep from maintainers via pull
+requests reviews. To ensure that this style is _always_ upheld, a rule is
+enabled on the repository that will check that every pull request matches the
+style guidelines.
 
-```bash
-./gen_compile_commands.py
-```
+The caveat to this is that a contributor must remember to format their code. To
+smooth out this experience, we:
 
-This will create a file named `compile_commands.json` in the project root,
-overwriting any previous copy.
+1. Expose the `clang-format` build option generated by Meson via a `Makefile`
+   entry-point. If we are ever unsure if the repository is incorrectly
+   formatted, we can run `make format` as a manual check to ensure correctness.
+2. Integrate `clang-format` into our commit workflows. We manage this via
+   [`pre-commit`][pre-commit], which allows us to pin the version of
+   `clang-format` used within the repository and ensure that end-users can
+   easily install it.
 
-## Code Formatting
-
-This repository includes an opinionated `clang-format` specification to ensure that
-we maintain a common code style. For convenience, a pre-commit hook is also
-provided in `.githooks` which will run `clang-format` against any staged changes
-prior to executing a commit.
-
-The following dependencies are required:
-
-- `clang-format@18` or newer
-
-To set up the pre-commit hook:
-
-```bash
-git config --local core.hooksPath .githooks/
-```
-
-To run the formatter on the full source tree:
+To install `pre-commit` via a project-local Python virtual environment, run the
+following commands in sequence:
 
 ```bash
-make format
+python -m venv .venv
+source .venv/bin/activate.sh
+pip install pre-commit
 ```
+
+Once the installation completes, you can tell `pre-commit` to install the
+configured hooks into your project:
+
+```bash
+pre-commit install
+```
+
+[clang-format]: https://clang.llvm.org/docs/ClangFormat.html
+[pre-commit]: https://pre-commit.com/
+[pre-commit-install]: https://pre-commit.com/#install
+
+## How should I name things?
+
+The eternal question. Some elements of development cannot be automated via
+tooling, and we leave these to our best judgment. In general, the following
+rules apply throughout the repository:
+
+```c
+// Use PascalCase for structure names. Include both a structure tag ("struct
+// MyStruct") and a typedef ("MyStruct").
+typedef struct MyStruct {
+    u32 myField; // Use camelCase for member variables.
+} MyStruct;
+
+// Use PascalCase for enum names. Unlike structs, do NOT typedef enums.
+enum MyEnum {
+    // Use UPPER_SNAKE_CASE for enum members. Explicitly label the first member
+    // with a direct assignment.
+    MY_ENUM_MEMBER = 0,
+    MY_ENUM_MEMBER, // Successive members should not have a direct assignment.
+};
+
+// Use PascalCase for function names and camelCase for parameters.
+static int MyFunction(int myParameter)
+{
+    int myLocalVariable; // Use camelCase for local variables.
+}
+
+// Due to the breadth of the repository and its general structure tending
+// towards OOP paradigms, modules tend to prefix their public functions with
+// their own name followed by an underscore.
+int Module_MyExternalFunction(int myParameter)
+{
+    //
+}
+```
+
+## I can't find a file that's `include`d; where is it?
+
+We generate a lot of files through meta-programming utilities. For example, a
+large number of our named-constants are constructed as part of the build; these
+live in the source-tree as plain text files in the `generated` subdirectory. A
+program picks up these files, e.g., `generated/days_of_week.txt`:
+
+```text
+DAY_OF_WEEK_SUNDAY
+DAY_OF_WEEK_MONDAY
+DAY_OF_WEEK_TUESDAY
+DAY_OF_WEEK_WEDNESDAY
+DAY_OF_WEEK_THURSDAY
+DAY_OF_WEEK_FRIDAY
+DAY_OF_WEEK_SATURDAY
+```
+
+...and transforms them into C headers in the build-tree, e.g., from
+`build/generated/days_of_week.txt`:
+
+```c
+#ifdef POKEPLATINUM_GENERATED_ENUM
+
+enum DayOfWeek {
+    DAY_OF_WEEK_SUNDAY    = 0,
+    DAY_OF_WEEK_MONDAY    = 1,
+    DAY_OF_WEEK_TUESDAY   = 2,
+    DAY_OF_WEEK_WEDNESDAY = 3,
+    DAY_OF_WEEK_THURSDAY  = 4,
+    DAY_OF_WEEK_FRIDAY    = 5,
+    DAY_OF_WEEK_SATURDAY  = 6,
+}; /* enum DayOfWeek */
+
+#else
+
+#define DAY_OF_WEEK_SUNDAY    0
+#define DAY_OF_WEEK_MONDAY    1
+#define DAY_OF_WEEK_TUESDAY   2
+#define DAY_OF_WEEK_WEDNESDAY 3
+#define DAY_OF_WEEK_THURSDAY  4
+#define DAY_OF_WEEK_FRIDAY    5
+#define DAY_OF_WEEK_SATURDAY  6
+
+#endif /* POKEPLATINUM_GENERATED_ENUM */
+```
+
+This allows us to make use of a single source of truth for values which should
+be shared between the compiled C code and the assembly files used to build the
+game's custom scripting implementation. For example, if included from a C file,
+the above header-snippet would be treated as `enum DayOfWeek` with all of the
+appropriate symbols and `enum` benefits, whereas an assembler will read the
+pre-processor definitions instead.
+
+## Your First Contribution
+
+You've picked out a feature, documented it, and have maybe even made some
+commits. Congratulations! You're on the way to your first contribution.
+
+If you are new to `git` and/or GitHub, take some time to read through [The
+Basics of Git and GitHub][taar-git] from Team Aqua's Asset Repo. While
+originally written with the target audience of `pokeemerald` modders in mind,
+the concepts are still very applicable, and it provides a great overview of the
+topics and terminology that is often thrown around among more seasoned `git`
+users.
+
+[taar-git]: https://github.com/Pawkkie/Team-Aquas-Asset-Repo/wiki/The-Basics-of-GitHub
+
+### What must I do before submitting a pull request?
+
+1. Ensure that a local build of `make check` returns `OK`, which signals that
+   your code builds a matching ROM.
+2. Format your code such that it matches the repository's style guide. Refer to
+   [Code Formatting](#code-formatting) for instructions on how to do this as an
+   automatic part of your commit workflow or manually before you commit your
+   changes.
+
+We run automated checks via GitHub Actions to ensure that all pull requests meet
+these requirements. If any of these are not done, then their respective checks
+will fail, and your pull request will not be accepted.
+
+### How do I submit a pull request?
+
+We follow a basic fork-model for pull requests, since it provides the simplest
+GitHub integration. If you haven't done so already, create a fork for your
+repository [via GitHub][github-fork-docs], then set it up as your `origin`:
+
+```bash
+git remote add pret https://github.com/pret/pokeplatinum.git
+git remote set-url origin https://github.com/<YOUR_USER>/pokeplatinum.git
+```
+
+Now that you have a fork, checkout your changes to a clean branch, giving it a
+name that reflects your work:
+
+```bash
+git checkout -b <branch_name>
+```
+
+Finally, push to your new fork:
+
+```bash
+git push -u origin <branch_name>
+```
+
+...and submit your changes for review! 🚀
+
+[github-fork-docs]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo
+
+### What to Expect
+
+A maintainer of the repository will respond to your Pull Request at their
+earliest convenience. If you'd like to communicate with the maintainers more
+directly, feel free to reach out to us in the `#pokeplatinum` channel of the
+pret Discord.
+
+Your pull request will be labeled with `new-contributor`; this is _not_ a
+target, we promise! It is just your first welcome aboard the team.
+
+Maintainers are encouraged to follow [Conventional Comments][conv-comments],
+which helps to more clearly convey tone of speech and clarify the goal of a
+particular piece of feedback. In general, these prefixes can be read as:
+
+1. **suggestion**: A proposed improvement to the subject.
+2. **polish**: A variant of suggestion where quality can immediately be
+   improved. Applicable to cases where there is nothing wrong with the subject.
+3. **quibble**: A trivial, often preference-based request. Inherently
+   non-blocking.
+4. **issue**: A highlight for a specific problem with the subject. For our
+   use-case, these typically are framed around minimizing wires for users of the
+   repository to trip over.
+5. **todo**: A small, trivial, necessary change.
+6. **question**: A curiosity from the author, often seeking understanding of why
+   the code behaves in the way that it does.
+7. **thought**: An idea that popped up during review. Often left so that we do
+   not lose access to past ideas. Inherently non-blocking.
+8. **chore**: A simple task that must be completed before the subject can be
+   officially accepted. Tends to refer to process (and may indicate
+   opportunities to improve developer tooling).
+9. **note**: A highlight that the reader should notice. Inherently non-blocking.
+
+You may receive a lot of feedback on your first request, and it may feel
+intimidating. Rest assured that it is not targeted, nor is a newcomer's review
+more-heavily scrutinized than a long-time contributor's. We all have room to
+improve. 🙏
+
+[conv-comments]: https://conventionalcomments.org/
