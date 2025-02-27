@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
+
 import json
 import pathlib
 
-homedir = pathlib.Path(__file__).resolve().parent
+homedir = pathlib.Path(__file__).resolve().parent.parent.parent
 builddir = homedir / "build"
 
 arm7_c_flags = [
