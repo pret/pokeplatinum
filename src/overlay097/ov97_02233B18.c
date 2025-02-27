@@ -635,7 +635,7 @@ static void ov97_02234278(int param0, int param1, u32 param2, int param3, int pa
     u8 v1;
     NNSG2dCharacterData *v2;
 
-    param0 = ov97_02236DD0(param0);
+    param0 = ConvertGBASpeciesToDS(param0);
 
     v1 = GBASpeciesToDSFormId(param0, param2, param3);
     v0 = ov97_022341B4(19, PokeIconSpriteIndex(param0, param1, v1), &v2, 78);
@@ -647,27 +647,28 @@ static void ov97_02234278(int param0, int param1, u32 param2, int param3, int pa
     Heap_FreeToHeap(v0);
 }
 
-static void ov97_022342E4(int param0, int param1, int param2, int param3, Sprite *param4, void *param5, NARC *param6)
+// speciesGBA is reused to store NDS species
+static void ov97_022342E4(int speciesGBA, int param1, int param2, int param3, Sprite *param4, void *param5, NARC *param6)
 {
     u32 v0;
     NNSG2dCharacterData *v1;
     UnkStruct_ov97_0223F434 *v2 = Unk_ov97_0223F434 + param3;
 
     if (param4) {
-        if (IsGBASpeciesInvalid(param0) == 0) {
-            param0 = ov97_02236DD0(param0);
+        if (IsGBASpeciesInvalid(speciesGBA) == FALSE) {
+            speciesGBA = ConvertGBASpeciesToDS(speciesGBA);
         } else {
-            param0 = 0;
+            speciesGBA = SPECIES_NONE;
         }
 
-        v0 = PokeIconSpriteIndex(param0, param1, param2);
+        v0 = PokeIconSpriteIndex(speciesGBA, param1, param2);
 
         ov97_022341EC(v0, &v1, param5, param6);
         MI_CpuCopyFast(v1->pRawData, v2->unk_0C, ((4 * 4) * 0x20));
 
         v2->unk_00 = (0x64 + param3 * (4 * 4)) * 0x20;
         v2->unk_08 = param4;
-        v2->unk_04 = PokeIconPaletteIndex(param0, param2, param1) + 8;
+        v2->unk_04 = PokeIconPaletteIndex(speciesGBA, param2, param1) + 8;
     } else {
         v2->unk_08 = NULL;
     }
@@ -703,7 +704,7 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
             v2 = ov97_02234148(param0, param0->unk_E8E4, v0);
             v5 = ov97_0223416C(param0, param0->unk_E8E4, v0);
             v3 = gSystem.gbaCartridgeVersion;
-            v4 = GBASpeciesToDSFormId(ov97_02236DD0(v1), v5, v3);
+            v4 = GBASpeciesToDSFormId(ConvertGBASpeciesToDS(v1), v5, v3);
 
             ov97_022342E4(v1, v2, v4, v0, param0->unk_20C[v0].unk_00, v6, v7);
             Sprite_SetDrawFlag(param0->unk_20C[v0].unk_00, 1);
@@ -1209,7 +1210,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
 
     v8 = Strbuf_Init(64, 78);
     v5 = MessageLoader_Init(1, 26, 412, 78);
-    v0 = ov97_02236DD0(GetGBABoxMonData(param1, 11, NULL));
+    v0 = ConvertGBASpeciesToDS(GetGBABoxMonData(param1, 11, NULL));
 
     MessageLoader_GetStrbuf(v5, v0, v8);
 
