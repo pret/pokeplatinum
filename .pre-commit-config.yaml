@@ -9,3 +9,10 @@ repos:
         args: [--style=file]
         exclude: ^(lib|subprojects|tools/(asmdiff|csv2bin|cw|fixrom|msgenc))/
         types_or: [c, c++]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-executables-have-shebangs
+      - id: check-case-conflict
+      - id: check-illegal-windows-names
+      - id: check-yaml
