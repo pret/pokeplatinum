@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/gba/pokemon.h"
 #include "constants/gba/species.h"
 #include "constants/screen.h"
 #include "constants/species.h"
@@ -550,17 +551,17 @@ static void ov97_022340FC(AffineSpriteListTemplate *param0, UnkStruct_ov97_02234
 
 static int ov97_02234124(UnkStruct_ov97_02234A2C *param0, int param1, int param2)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), 11, NULL);
+    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), GBA_MON_DATA_SPECIES, NULL);
 }
 
 static int ov97_02234148(UnkStruct_ov97_02234A2C *param0, int param1, int param2)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), 45, NULL);
+    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), GBA_MON_DATA_IS_EGG, NULL);
 }
 
 static int ov97_0223416C(UnkStruct_ov97_02234A2C *param0, int param1, int param2)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), 0, NULL);
+    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), GBA_MON_DATA_PERSONALITY, NULL);
 }
 
 static void ov97_02234190(TouchScreenRect *rect, int param1, int param2, int param3, int param4)
@@ -706,7 +707,7 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
     v6 = Heap_AllocFromHeapAtEnd(78, 4096);
 
     for (v0 = 0; v0 < 30; v0++) {
-        if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][v0]), 5, NULL)) {
+        if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][v0]), GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
             v1 = ov97_02234124(param0, param0->unk_E8E4, v0);
             v2 = ov97_02234148(param0, param0->unk_E8E4, v0);
             personality = ov97_0223416C(param0, param0->unk_E8E4, v0);
@@ -716,7 +717,7 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
             ov97_022342E4(v1, v2, form, v0, param0->unk_20C[v0].unk_00, v6, v7);
             Sprite_SetDrawFlag(param0->unk_20C[v0].unk_00, 1);
 
-            if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][v0]), 12, NULL)) {
+            if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][v0]), GBA_MON_DATA_HELD_ITEM, NULL)) {
                 Sprite_SetDrawFlag(param0->unk_20C[v0].unk_04, 1);
             } else {
                 Sprite_SetDrawFlag(param0->unk_20C[v0].unk_04, 0);
@@ -834,7 +835,7 @@ static BOOL ov97_0223474C(UnkStruct_ov97_02234A2C *param0, int param1)
     int v0;
     BoxPokemonGBA *v1 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
 
-    if (GetGBABoxMonData(v1, 65, NULL) == 412) {
+    if (GetGBABoxMonData(v1, GBA_MON_DATA_SPECIES_OR_EGG, NULL) == GBA_SPECIES_EGG) {
         return 1;
     }
 
@@ -847,7 +848,7 @@ static BOOL ov97_02234784(UnkStruct_ov97_02234A2C *param0, int param1)
     BoxPokemonGBA *v3 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
 
     for (v0 = 0; v0 < 4; v0++) {
-        v2 = GetGBABoxMonData(v3, 13 + v0, NULL);
+        v2 = GetGBABoxMonData(v3, GBA_MON_DATA_MOVE1 + v0, NULL);
 
         for (v1 = 0; v1 < sizeof(Unk_ov97_0223EA98) / sizeof(int); v1++) {
             if (Unk_ov97_0223EA98[v1] == v2) {
@@ -1011,7 +1012,7 @@ u16 Unk_ov97_0223EAD8[] = {
 static BOOL ov97_022347D8(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     BoxPokemonGBA *v0 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
-    int v1 = GetGBABoxMonData(v0, 12, NULL);
+    int v1 = GetGBABoxMonData(v0, GBA_MON_DATA_HELD_ITEM, NULL);
     int v2;
 
     for (v2 = 0; Unk_ov97_0223EAD8[v2]; v2++) {
@@ -1026,7 +1027,7 @@ static BOOL ov97_022347D8(UnkStruct_ov97_02234A2C *param0, int param1)
 static BOOL ov97_02234828(UnkStruct_ov97_02234A2C *param0, int param1)
 {
     BoxPokemonGBA *v0 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
-    int v1 = GetGBABoxMonData(v0, 11, NULL);
+    int v1 = GetGBABoxMonData(v0, GBA_MON_DATA_SPECIES, NULL);
 
     return IsGBASpeciesInvalid(v1);
 }
@@ -1146,7 +1147,7 @@ static void ov97_02234AB4(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
     int v2;
 
     if (param1) {
-        v1 = GetGBABoxMonData(param1, 8, NULL);
+        v1 = GetGBABoxMonData(param1, GBA_MON_DATA_MARKINGS, NULL);
     } else {
         v1 = 0;
     }
@@ -1205,8 +1206,8 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
         return;
     }
 
-    GetGBABoxMonData(param1, 2, v6);
-    ov97_0223936C(v6, v7, 10 + 1, GetGBABoxMonData(param1, 3, NULL));
+    GetGBABoxMonData(param1, GBA_MON_DATA_NICKNAME, v6);
+    ov97_0223936C(v6, v7, 10 + 1, GetGBABoxMonData(param1, GBA_MON_DATA_LANGUAGE, NULL));
 
     v4.unk_38 = v7;
     v4.unk_34 = -1;
@@ -1217,7 +1218,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
 
     v8 = Strbuf_Init(64, 78);
     v5 = MessageLoader_Init(1, 26, 412, 78);
-    v0 = ConvertGBASpeciesToDS(GetGBABoxMonData(param1, 11, NULL));
+    v0 = ConvertGBASpeciesToDS(GetGBABoxMonData(param1, GBA_MON_DATA_SPECIES, NULL));
 
     MessageLoader_GetStrbuf(v5, v0, v8);
 
@@ -1231,7 +1232,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
     MessageLoader_Free(v5);
     Strbuf_Free(v8);
 
-    v2 = GetGBABoxMonData(param1, 12, NULL);
+    v2 = GetGBABoxMonData(param1, GBA_MON_DATA_HELD_ITEM, NULL);
 
     if (v2) {
         v3 = Item_FromGBAID(v2);
@@ -1685,7 +1686,7 @@ static int ov97_02235408(UnkStruct_ov97_02234A2C *param0)
             for (v4 = 0; v4 < 30; v4++) {
                 v3 = &param0->unk_E8E0->boxes[v5][v4];
 
-                if (GetGBABoxMonData(v3, 5, NULL)) {
+                if (GetGBABoxMonData(v3, GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
                     v6++;
                 }
             }
