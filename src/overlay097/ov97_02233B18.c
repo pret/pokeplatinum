@@ -598,12 +598,12 @@ static void ov97_022341EC(u32 param0, NNSG2dCharacterData **param1, void *param2
 
 #define NUM_UNOWN_FORMS 28
 
-#define GET_UNOWN_LETTER_FROM_PERSONALITY(personality) ((   \
-    (((personality) & 0x03000000) >> 18)            \
-  | (((personality) & 0x00030000) >> 12)            \
-  | (((personality) & 0x00000300) >> 6)             \
-  | (((personality) & 0x00000003) >> 0)             \
-) % NUM_UNOWN_FORMS)
+#define GET_UNOWN_LETTER_FROM_PERSONALITY(personality) ((                                          \
+                                                            (((personality) & 0x03000000) >> 18)   \
+                                                            | (((personality) & 0x00030000) >> 12) \
+                                                            | (((personality) & 0x00000300) >> 6)  \
+                                                            | (((personality) & 0x00000003) >> 0)) \
+    % NUM_UNOWN_FORMS)
 
 static u8 GetSpeciesGBAForm(int speciesNDS, u32 personality, int gbaVersion)
 {
