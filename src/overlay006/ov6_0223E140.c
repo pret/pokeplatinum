@@ -942,7 +942,7 @@ static void ov6_0223E8D0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     Camera_SetClipping(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
-    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, 3);
+    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->areaModelAttrs, 3);
 
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
@@ -976,7 +976,7 @@ static void ov6_0223E984(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     Camera_SetClipping(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->camera);
     ov5_021D5278(&fieldSystem->unk_4C);
 
-    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->unk_44, 3);
+    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->areaModelAttrs, 3);
 
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);

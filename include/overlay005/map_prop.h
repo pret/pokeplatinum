@@ -6,7 +6,7 @@
 
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop_animation.h"
-#include "overlay005/struct_ov5_021D5894.h"
+#include "overlay005/model_attributes.h"
 
 #include "narc.h"
 
@@ -33,7 +33,7 @@ void MapPropManager_Free(MapPropManager *mapPropManager);
 void MapPropManager_Init(MapPropManager *mapPropManager);
 void MapPropManager_InitOne(const int index, MapPropManager *mapPropManager);
 void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDataManager *const areaDataManager, MapPropManager *mapPropManager, MapPropAnimationManager *mapPropAnimMan);
-void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager *areaDataManager, const BOOL param2, UnkStruct_ov5_021D5894 *const param3, MapPropManager *mapPropManager);
+void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager *areaDataManager, const BOOL applyAttrsToModel, ModelAttributes *const modelAttrs, MapPropManager *mapPropManager);
 VecFx32 *MapProp_GetRotation(MapProp *mapProp);
 VecFx32 MapProp_GetPosition(const MapProp *mapProp);
 void MapProp_SetPosition(MapProp *mapProp, const VecFx32 *position);

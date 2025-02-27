@@ -16,10 +16,10 @@
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
+#include "overlay005/model_attributes.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021D538C_decl.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
-#include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay005/struct_ov5_021E1B20_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
@@ -84,7 +84,7 @@ typedef struct FieldSystem_t {
     MapObjectManager *mapObjMan;
     PlayerAvatar *playerAvatar;
     UnkStruct_ov5_021DF47C *unk_40;
-    UnkStruct_ov5_021D5894 *unk_44;
+    ModelAttributes *areaModelAttrs;
     UnkStruct_ov5_021D57D8 *unk_48;
     UnkStruct_ov5_021D538C *unk_4C;
     MapPropAnimationManager *mapPropAnimMan;

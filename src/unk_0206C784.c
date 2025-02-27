@@ -13,7 +13,7 @@
 #include "overlay005/area_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
-#include "overlay005/struct_ov5_021D5894.h"
+#include "overlay005/model_attributes.h"
 
 #include "camera.h"
 #include "field_map_change.h"
@@ -45,11 +45,11 @@ typedef struct {
     int unk_20;
     VecFx32 unk_24;
     MapProp *unk_30;
-    UnkStruct_ov5_021D5894 unk_34;
+    ModelAttributes unk_34;
     fx32 unk_7C;
 } UnkStruct_0206CAD0;
 
-static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 *param2);
+static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, ModelAttributes *param2);
 static BOOL sub_0206C8F8(FieldTask *param0);
 static BOOL sub_0206C964(FieldTask *param0);
 static BOOL sub_0206CAD0(UnkStruct_0206CAD0 *param0);
@@ -73,7 +73,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
     v0->unk_18 = param3;
     v0->unk_1C = param4;
     v0->unk_20 = param5;
-    v0->unk_34 = *(fieldSystem->unk_44);
+    v0->unk_34 = *(fieldSystem->areaModelAttrs);
 
     v1 = 0;
 
@@ -130,7 +130,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
     FieldTask_InitCall(fieldSystem->task, sub_0206C964, v0);
 }
 
-static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, UnkStruct_ov5_021D5894 *param2)
+static void sub_0206C8D4(FieldSystem *fieldSystem, const u8 param1, ModelAttributes *param2)
 {
     UnkStruct_0206C8D4 *v0;
 

@@ -108,13 +108,13 @@ int ov93_021D111C(OverlayManager *param0, int *param1)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        NNS_G3dGlbLightVector(v0, v2->unk_04->unk_00[v0].x, v2->unk_04->unk_00[v0].y, v2->unk_04->unk_00[v0].z);
-        NNS_G3dGlbLightColor(v0, v2->unk_04->unk_18[v0]);
+        NNS_G3dGlbLightVector(v0, v2->unk_04->lightVectors[v0].x, v2->unk_04->lightVectors[v0].y, v2->unk_04->lightVectors[v0].z);
+        NNS_G3dGlbLightColor(v0, v2->unk_04->lightColors[v0]);
     }
 
-    NNS_G3dGlbMaterialColorDiffAmb(v2->unk_04->unk_20, v2->unk_04->unk_22, v2->unk_04->unk_28);
-    NNS_G3dGlbMaterialColorSpecEmi(v2->unk_04->unk_24, v2->unk_04->unk_26, v2->unk_04->unk_2C);
-    NNS_G3dGlbPolygonAttr(v2->unk_04->unk_30, v2->unk_04->unk_34, v2->unk_04->unk_38, v2->unk_04->unk_3C, v2->unk_04->unk_40, v2->unk_04->unk_44);
+    NNS_G3dGlbMaterialColorDiffAmb(v2->unk_04->diffuseReflectColor, v2->unk_04->ambientReflectColor, v2->unk_04->setDiffuseColorAsVertexColor);
+    NNS_G3dGlbMaterialColorSpecEmi(v2->unk_04->specularReflectColor, v2->unk_04->emissionColor, v2->unk_04->enableSpecularReflectShininessTable);
+    NNS_G3dGlbPolygonAttr(v2->unk_04->enabledLightsMask, v2->unk_04->polygonMode, v2->unk_04->cullMode, v2->unk_04->polygonID, v2->unk_04->alpha, v2->unk_04->miscFlags);
 
     sub_0208C120(0, 72);
     return 1;
