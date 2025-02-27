@@ -3,4 +3,7 @@
 
 #define GX_LIGHTS_COUNT 4
 
+#define GX_COLOR_DIMS  3
+#define GX_VEC_FX_DIMS 3
+
 #endif // POKEPLATINUM_CONSTANTS_GX_H
