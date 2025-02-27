@@ -595,55 +595,62 @@ static void ov97_022341EC(u32 param0, NNSG2dCharacterData **param1, void *param2
     NNS_G2dGetUnpackedBGCharacterData(param2, param1);
 }
 
-static u8 GBASpeciesToDSFormId(int param0, u32 param1, int param2)
+#define NUM_UNOWN_FORMS 28
+
+#define GET_UNOWN_LETTER_FROM_PERSONALITY(personality) ((   \
+    (((personality) & 0x03000000) >> 18)            \
+  | (((personality) & 0x00030000) >> 12)            \
+  | (((personality) & 0x00000300) >> 6)             \
+  | (((personality) & 0x00000003) >> 0)             \
+) % NUM_UNOWN_FORMS)
+
+static u8 GetSpeciesGBAForm(int speciesNDS, u32 personality, int gbaVersion)
 {
-    u8 v0;
+    u8 form = 0;
 
-    v0 = 0;
-
-    switch (param0) {
-    case 201:
-        v0 = (((param1 & 0x3000000) >> 18) | ((param1 & 0x30000) >> 12) | ((param1 & 0x300) >> 6) | (param1 & 0x3)) % 28;
+    switch (speciesNDS) {
+    case SPECIES_UNOWN:
+        form = GET_UNOWN_LETTER_FROM_PERSONALITY(personality);
         break;
-    case 386:
-        switch (param2) {
+    case SPECIES_DEOXYS:
+        switch (gbaVersion) {
         default:
-        case 2:
-        case 1:
-            v0 = 0;
+        case RUBY:
+        case SAPPHIRE:
+            form = 0;
             break;
-        case 4:
-            v0 = 1;
+        case FIRERED:
+            form = 1;
             break;
-        case 5:
-            v0 = 2;
+        case LEAFGREEN:
+            form = 2;
             break;
-        case 3:
-            v0 = 3;
+        case EMERALD:
+            form = 3;
             break;
         }
 
         break;
     }
 
-    return v0;
+    return form;
 }
 
-static void ov97_02234278(int param0, int param1, u32 param2, int param3, int param4, Sprite *param5)
+static void ov97_02234278(int species, int param1, u32 personality, int gbaVersion, int param4, Sprite *param5)
 {
     u8 *v0;
-    u8 v1;
+    u8 form;
     NNSG2dCharacterData *v2;
 
-    param0 = ConvertGBASpeciesToDS(param0);
+    species = ConvertGBASpeciesToDS(species);
 
-    v1 = GBASpeciesToDSFormId(param0, param2, param3);
-    v0 = ov97_022341B4(19, PokeIconSpriteIndex(param0, param1, v1), &v2, 78);
+    form = GetSpeciesGBAForm(species, personality, gbaVersion);
+    v0 = ov97_022341B4(19, PokeIconSpriteIndex(species, param1, form), &v2, 78);
 
     DC_FlushRange(v2->pRawData, ((4 * 4) * 0x20));
     GX_LoadOBJ(v2->pRawData, (0x64 + param4 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
 
-    Sprite_SetExplicitPalette(param5, PokeIconPaletteIndex(param0, v1, param1) + 8);
+    Sprite_SetExplicitPalette(param5, PokeIconPaletteIndex(species, form, param1) + 8);
     Heap_FreeToHeap(v0);
 }
 
@@ -690,8 +697,8 @@ static void ov97_02234364(void)
 
 static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
 {
-    int v0, v1, v2, v3, v4;
-    u32 v5;
+    int v0, v1, v2, gbaVersion, form;
+    u32 personality;
     void *v6;
     NARC *v7;
 
@@ -702,11 +709,11 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
         if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][v0]), 5, NULL)) {
             v1 = ov97_02234124(param0, param0->unk_E8E4, v0);
             v2 = ov97_02234148(param0, param0->unk_E8E4, v0);
-            v5 = ov97_0223416C(param0, param0->unk_E8E4, v0);
-            v3 = gSystem.gbaCartridgeVersion;
-            v4 = GBASpeciesToDSFormId(ConvertGBASpeciesToDS(v1), v5, v3);
+            personality = ov97_0223416C(param0, param0->unk_E8E4, v0);
+            gbaVersion = gSystem.gbaCartridgeVersion;
+            form = GetSpeciesGBAForm(ConvertGBASpeciesToDS(v1), personality, gbaVersion);
 
-            ov97_022342E4(v1, v2, v4, v0, param0->unk_20C[v0].unk_00, v6, v7);
+            ov97_022342E4(v1, v2, form, v0, param0->unk_20C[v0].unk_00, v6, v7);
             Sprite_SetDrawFlag(param0->unk_20C[v0].unk_00, 1);
 
             if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][v0]), 12, NULL)) {
@@ -715,7 +722,7 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
                 Sprite_SetDrawFlag(param0->unk_20C[v0].unk_04, 0);
             }
         } else {
-            ov97_022342E4(v1, v2, v4, v0, NULL, v6, v7);
+            ov97_022342E4(v1, v2, form, v0, NULL, v6, v7);
             Sprite_SetDrawFlag(param0->unk_20C[v0].unk_00, 0);
             Sprite_SetDrawFlag(param0->unk_20C[v0].unk_04, 0);
         }
