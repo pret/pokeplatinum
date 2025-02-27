@@ -121,8 +121,8 @@ BOOL ScrCmd_PokeMartSeal(ScriptContext *ctx)
 }
 
 // does NOT use shop_menu, but it is a shop of sort
-BOOL ScrCmd_257(ScriptContext *param0)
+BOOL ScrCmd_AccessoryShop(ScriptContext *ctx)
 {
-    sub_0203E518(param0->fieldSystem->task);
+    AccessoryShop_Init(ctx->fieldSystem->task);
     return TRUE;
 }
