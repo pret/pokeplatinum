@@ -74,26 +74,26 @@ _00F0:
     End
 
 _00FA:
-    ShowSignpostMessage 5, SIGNPOST_ROUTE_MAP
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 5, SIGNPOST_TYPE_ROUTE_MAP
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _0111:
-    ShowSignpostMessage 6, SIGNPOST_ROUTE_MAP
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 6, SIGNPOST_TYPE_ROUTE_MAP
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _0128:
-    ScrCmd_037
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 7, 0x800C
+    DrawSignpostTextBox
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    DrawSignpostMessage 7
     CallCommonScript 0x7D0
     End
 

@@ -1296,7 +1296,7 @@ static void ov70_0225E4EC(UnkStruct_ov70_0225E4EC *param0, SaveData *param1, u32
 
         LoadStandardWindowGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], ((1 + (18 + 12)) + ((18 + 12) + 24)), 3, 0, param2);
         LoadMessageBoxGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], 1, 1, v2, param2);
-        LoadSignpostContentGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], (1 + (18 + 12)), 2, 3, 0, param2);
+        LoadSignpostContentGraphics(param0->unk_00, Unk_ov70_0226D5CC[0], (1 + (18 + 12)), 2, SIGNPOST_TYPE_FIELD_INFO, 0, param2);
 
         Graphics_LoadPalette(186, 90, 0, 2 * 32, 32, param2);
     }

@@ -1400,66 +1400,66 @@ _0FF0:
     End
 
 _1003:
-    ShowSignpostMessage 61, SIGNPOST_CITY_MAP
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 61, SIGNPOST_TYPE_CITY_MAP
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _101A:
-    ScrCmd_037
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 62, 0x800C
+    DrawSignpostTextBox
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    DrawSignpostMessage 62
     CallCommonScript 0x7D0
     End
 
 _102F:
-    ShowSignpostMessage 63, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 63, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _1046:
-    ShowSignpostMessage 64, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 64, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _105D:
-    ShowSignpostMessage 65, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 65, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _1074:
-    ShowSignpostMessage 66, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 66, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _108B:
-    ShowSignpostMessage 67, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 67, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _10A2:
-    ShowSignpostMessage 68, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 68, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 

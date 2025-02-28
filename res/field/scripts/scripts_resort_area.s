@@ -109,18 +109,18 @@ _0130:
     End
 
 _0143:
-    ShowSignpostMessage 25, SIGNPOST_CITY_MAP
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 25, SIGNPOST_TYPE_CITY_MAP
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _015A:
-    ShowSignpostMessage 26, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 26, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
@@ -442,10 +442,10 @@ _05B1:
     End
 
 _05BC:
-    ShowSignpostMessage 27, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 27, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 

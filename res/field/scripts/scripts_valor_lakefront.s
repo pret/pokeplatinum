@@ -534,10 +534,10 @@ _06B0:
     EndMovement
 
 _06B8:
-    ShowSignpostMessage 20, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 20, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 

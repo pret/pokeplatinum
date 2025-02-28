@@ -32,7 +32,6 @@
 #include "overlay005/ov5_021D5CB0.h"
 #include "overlay005/ov5_021D5EB8.h"
 #include "overlay005/ov5_021DF440.h"
-#include "overlay005/signpost.h"
 #include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/ov5_021ECC20.h"
@@ -43,6 +42,7 @@
 #include "overlay005/ov5_021EF75C.h"
 #include "overlay005/ov5_021F0824.h"
 #include "overlay005/ov5_021F10E8.h"
+#include "overlay005/signpost.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021D5894.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
@@ -488,7 +488,7 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
     }
 
     ov5_021D5298(fieldSystem->unk_4C);
-    ov5_021E1B68(fieldSystem);
+    Signpost_DoCurrentCommand(fieldSystem);
 
     if ((param1 & 1) != 0) {
         ov5_021D5DEC(fieldSystem->unk_04->unk_10);

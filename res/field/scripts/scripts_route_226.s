@@ -7,17 +7,17 @@
     ScriptEntryEnd
 
 _000A:
-    ShowSignpostMessage 0, SIGNPOST_ROUTE_MAP
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 0, SIGNPOST_TYPE_ROUTE_MAP
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _0021:
-    ShowSignpostMessage 1, SIGNPOST_ROUTE_MAP
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 1, SIGNPOST_TYPE_ROUTE_MAP
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End

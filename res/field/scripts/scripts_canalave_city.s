@@ -470,60 +470,60 @@ _0640:
     GoTo _0545
 
 _0649:
-    ShowSignpostMessage 36, SIGNPOST_CITY_MAP
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 36, SIGNPOST_TYPE_CITY_MAP
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _0660:
-    ScrCmd_037
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 37, 0x800C
+    DrawSignpostTextBox
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    DrawSignpostMessage 37
     CallCommonScript 0x7D0
     End
 
 _0675:
-    ShowSignpostMessage 38, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 38, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _068C:
-    ShowSignpostMessage 39, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 39, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _06A3:
-    ShowSignpostMessage 40, SIGNPOST_BUILDING_INFO
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
+    DrawSignpostWithMessage 40, SIGNPOST_TYPE_BUILDING_INFO
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput
     CallCommonScript 0x7D0
     End
 
 _06BA:
     Call _0168
     GoToIfEq 0x4000, 0, _06E2
-    ScrCmd_037
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 42, 0x800C
+    DrawSignpostTextBox
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    DrawSignpostMessage 42
     CallCommonScript 0x7D0
     End
 
 _06E2:
-    ScrCmd_037
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 41, 0x800C
+    DrawSignpostTextBox
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    DrawSignpostMessage 41
     CallCommonScript 0x7D0
     End
 

@@ -3,25 +3,18 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/signpost_commands.h"
+
 #include "field/field_system.h"
-#include "overlay005/struct_signpost_decl.h"
 
 #include "bg_window.h"
 #include "field_message.h"
 #include "heap.h"
 
-struct Signpost_t {
-    Window window;
-    u16 NARCMemberIdx;
-    u8 type;
-    u8 unk_13_0 : 7;
-    u8 active : 1;
-};
-
-static void Signpost_AddLoadAndDraw(FieldSystem *fieldSystem);
+static void Signpost_Draw(FieldSystem *fieldSystem);
 static void Signpost_Remove(FieldSystem *fieldSystem);
-static BOOL ov5_021E1C70(FieldSystem *fieldSystem);
-static BOOL ov5_021E1CB0(FieldSystem *fieldSystem);
+static BOOL Signpost_ScrollIn(FieldSystem *fieldSystem);
+static BOOL Signpost_ScrollOut(FieldSystem *fieldSystem);
 
 void *Signpost_Init(u32 heapID)
 {
@@ -46,9 +39,9 @@ void Signpost_SetTypeAndNARCMemberIdx(Signpost *signpost, u16 type, u16 NARCMemb
     signpost->NARCMemberIdx = NARCMemberIdx;
 }
 
-void ov5_021E1B40(Signpost *signpost, u8 param1)
+void Signpost_SetCommand(Signpost *signpost, u8 command)
 {
-    signpost->unk_13_0 = param1;
+    signpost->command = command;
 }
 
 Window *Signpost_GetWindow(Signpost *signpost)
@@ -61,52 +54,52 @@ u8 Signpost_GetType(Signpost *signpost)
     return signpost->type;
 }
 
-BOOL ov5_021E1B58(Signpost *signpost)
+BOOL Signpost_IsDone(Signpost *signpost)
 {
-    if (signpost->unk_13_0 == 0) {
+    if (signpost->command == SIGNPOST_CMD_DO_NOTHING) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-void ov5_021E1B68(FieldSystem *fieldSystem)
+void Signpost_DoCurrentCommand(FieldSystem *fieldSystem)
 {
     Signpost *signpost = fieldSystem->signpost;
 
-    switch (signpost->unk_13_0) {
-    case 0:
+    switch (signpost->command) {
+    case SIGNPOST_CMD_DO_NOTHING:
         break;
-    case 1:
-        Signpost_AddLoadAndDraw(fieldSystem);
-        signpost->unk_13_0 = 0;
+    case SIGNPOST_CMD_DRAW:
+        Signpost_Draw(fieldSystem);
+        signpost->command = SIGNPOST_CMD_DO_NOTHING;
         break;
-    case 2:
-        if (ov5_021E1CB0(fieldSystem) == TRUE) {
-            signpost->unk_13_0 = 0;
+    case SIGNPOST_CMD_SCROLL_OUT:
+        if (Signpost_ScrollOut(fieldSystem) == TRUE) {
+            signpost->command = SIGNPOST_CMD_DO_NOTHING;
         }
         break;
-    case 3:
-        if (ov5_021E1C70(fieldSystem) == TRUE) {
-            signpost->unk_13_0 = 0;
+    case SIGNPOST_CMD_SCROLL_IN:
+        if (Signpost_ScrollIn(fieldSystem) == TRUE) {
+            signpost->command = SIGNPOST_CMD_DO_NOTHING;
         }
         break;
-    case 4:
+    case SIGNPOST_CMD_REMOVE:
         Signpost_Remove(fieldSystem);
-        signpost->unk_13_0 = 0;
+        signpost->command = SIGNPOST_CMD_DO_NOTHING;
         break;
     }
 }
 
-void ov5_021E1BCC(FieldSystem *fieldSystem, u8 param1)
+void Signpost_DoCommand(FieldSystem *fieldSystem, u8 command)
 {
-    ov5_021E1B40(fieldSystem->signpost, param1);
-    ov5_021E1B68(fieldSystem);
+    Signpost_SetCommand(fieldSystem->signpost, command);
+    Signpost_DoCurrentCommand(fieldSystem);
 }
 
-static void Signpost_AddLoadAndDraw(FieldSystem *fieldSystem)
+static void Signpost_Draw(FieldSystem *fieldSystem)
 {
-    Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 3, -48);
+    Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, -48);
 
     if (fieldSystem->signpost->active == FALSE) {
         FieldMessage_AddSignpostWindow(fieldSystem->bgConfig, &fieldSystem->signpost->window, fieldSystem->signpost->type, BG_LAYER_MAIN_3);
@@ -125,12 +118,12 @@ static void Signpost_Remove(FieldSystem *fieldSystem)
     Window_Remove(&fieldSystem->signpost->window);
     Bg_FillTilemapRect(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, 18, 32, 6, 16);
     Bg_CopyTilemapBufferToVRAM(fieldSystem->bgConfig, 3);
-    Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 3, 0);
+    Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
 
     fieldSystem->signpost->active = FALSE;
 }
 
-static BOOL ov5_021E1C70(FieldSystem *fieldSystem)
+static BOOL Signpost_ScrollIn(FieldSystem *fieldSystem)
 {
     int offset = Bg_GetYOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3);
 
@@ -139,30 +132,30 @@ static BOOL ov5_021E1C70(FieldSystem *fieldSystem)
     }
 
     if (!(offset > -48 && offset < 0)) {
-        Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 3, -48);
+        Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, -48);
     }
 
-    Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 4, 16);
+    Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_ADD_Y, 16);
 
     return FALSE;
 }
 
-static BOOL ov5_021E1CB0(FieldSystem *fieldSystem)
+static BOOL Signpost_ScrollOut(FieldSystem *fieldSystem)
 {
     int offset = Bg_GetYOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3);
 
     if (offset == -48) {
         Bg_FillTilemapRect(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 0, 0, 18, 32, 6, 16);
         Bg_CopyTilemapBufferToVRAM(fieldSystem->bgConfig, 3);
-        Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 3, 0);
+        Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
         return TRUE;
     }
 
     if (!(offset > -48 && offset < 0)) {
-        Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 3, 0);
+        Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SET_Y, 0);
     }
 
-    Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 5, 16);
+    Bg_SetOffset(fieldSystem->bgConfig, BG_LAYER_MAIN_3, BG_OFFSET_UPDATE_SUB_Y, 16);
 
     return FALSE;
 }

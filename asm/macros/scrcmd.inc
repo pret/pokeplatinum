@@ -13,6 +13,7 @@
 #include "generated/roaming_slots.h"
 #include "generated/save_types.h"
 #include "generated/sdat.h"
+#include "generated/signpost_commands.h"
 #include "generated/signpost_types.h"
 #include "generated/species.h"
 #include "generated/trainers.h"
@@ -312,7 +313,7 @@
     .short 53
     .endm
 
-    .macro ShowSignpostMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=0x800C
+    .macro DrawSignpostWithMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=0x800C
     .short 54
     .byte \messageID
     .byte \signpostType
@@ -320,33 +321,33 @@
     .short \unused
     .endm
 
-    .macro ScrCmd_037 signpostType=3, signpostNARCMemberIdx=0
+    .macro DrawSignpostTextBox signpostType=SIGNPOST_TYPE_FIELD_INFO, signpostNARCMemberIdx=0
     .short 55
     .byte \signpostType
     .short \signpostNARCMemberIdx
     .endm
 
-    .macro ScrCmd_038 arg0
+    .macro SetSignpostCommand command
     .short 56
-    .byte \arg0
+    .byte \command
     .endm
 
-    .macro ScrCmd_039
+    .macro WaitForSignpostDone
     .short 57
     .endm
 
-    .macro ScrCmd_03A messageID, arg1
+    .macro DrawSignpostMessage messageID, destVarID=0x800C
     .short 58
     .byte \messageID
-    .short \arg1
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_03B arg0
+    .macro GetSignpostInput destVarID=0x800C
     .short 59
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_03C
+    .macro ShowFieldMenu
     .short 60
     .endm
 

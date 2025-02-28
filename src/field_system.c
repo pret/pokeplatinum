@@ -6,14 +6,15 @@
 #include "constants/field/map_load.h"
 #include "constants/heap.h"
 #include "generated/map_headers.h"
+#include "generated/signpost_commands.h"
 
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_control.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/map_name_popup.h"
 #include "overlay005/ov5_021DFB54.h"
-#include "overlay005/signpost.h"
 #include "overlay005/ov5_021EA714.h"
+#include "overlay005/signpost.h"
 #include "overlay025/poketch_system.h"
 #include "overlay077/const_ov77_021D742C.h"
 
@@ -282,7 +283,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
         if (processInput) {
             if (FieldInput_Process_BattleTower(&fieldInput, fieldSystem) == TRUE) {
                 MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
-                ov5_021E1BCC(fieldSystem, 4);
+                Signpost_DoCommand(fieldSystem, SIGNPOST_CMD_REMOVE);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
                 ov5_021EA714(fieldSystem, 0, 1);
             } else {
@@ -305,7 +306,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
         if (processInput) {
             if (FieldInput_Process(&fieldInput, fieldSystem) == TRUE) {
                 MapNamePopUp_Hide(fieldSystem->unk_04->unk_08);
-                ov5_021E1BCC(fieldSystem, 4);
+                Signpost_DoCommand(fieldSystem, SIGNPOST_CMD_REMOVE);
                 sub_0205F56C(fieldSystem->playerAvatar);
                 ov5_021E0EEC(fieldSystem->playerAvatar);
                 ov5_021EA714(fieldSystem, 0, 1);
