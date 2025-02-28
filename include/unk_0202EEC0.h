@@ -8,7 +8,7 @@
 int PalParkTransfer_SaveSize(void);
 void PalParkTransfer_Init(PalParkTransfer *param0);
 void sub_0202EF04(PalParkTransfer *param0);
-void sub_0202EFA4(PalParkTransfer *param0, BoxPokemon *param1, int param2);
+void sub_0202EFA4(PalParkTransfer *transfer, BoxPokemon *boxMon, int param2);
 void sub_0202EFB8(PalParkTransfer *param0, u32 param1);
 void sub_0202F000(const PalParkTransfer *param0, int param1, Pokemon *param2);
 int sub_0202F028(const PalParkTransfer *param0);

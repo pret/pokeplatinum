@@ -33,6 +33,8 @@ enum {
 
 #define EVOLVE_FRIENDSHIP_THRESHOLD 220
 
+#define BASE_FRIENDSHIP_VALUE 70
+
 /**
  * @brief Pokemon Data Parameters
  */
