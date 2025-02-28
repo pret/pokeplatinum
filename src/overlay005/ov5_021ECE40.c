@@ -10,6 +10,7 @@
 #include "struct_defs/struct_020217F4.h"
 #include "struct_defs/struct_02024184.h"
 
+#include "overlay005/area_light.h"
 #include "overlay005/const_ov5_021FAF40.h"
 #include "overlay005/const_ov5_021FAF48.h"
 #include "overlay005/const_ov5_021FAF50.h"
@@ -18,7 +19,6 @@
 #include "overlay005/const_ov5_021FC9B4.h"
 #include "overlay005/const_ov5_021FD77C.h"
 #include "overlay005/funcptr_ov5_021EE454.h"
-#include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021DF440.h"
 #include "overlay005/ov5_021EB1A0.h"
 #include "overlay005/ov5_021ECC20.h"
@@ -1456,7 +1456,7 @@ static UnkStruct_020216E0 *ov5_021EDDDC(UnkStruct_02020C44 *param0, const UnkStr
         sub_02021344(v2, 0);
         sub_020213A4(v2, 0);
         NNS_G3dMdlSetMdlFogEnableFlagAll(sub_020213F4(v2), param3);
-        ov5_021D53A4(sub_020213F4(v2));
+        AreaLight_UseGlobalModelAttributes(sub_020213F4(v2));
     }
 
     return v2;
