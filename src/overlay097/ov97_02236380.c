@@ -1383,7 +1383,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
     value = GetGBABoxMonData(param0, GBA_MON_DATA_EXP, NULL);
     BoxPokemon_SetValue(param1, MON_DATA_EXP, (u8 *)&value);
 
-    value = 70;
+    value = BASE_FRIENDSHIP_VALUE;
     BoxPokemon_SetValue(param1, MON_DATA_FRIENDSHIP, (u8 *)&value);
 
     value = ov97_02236E28(param0, param1);

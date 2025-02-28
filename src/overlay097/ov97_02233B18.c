@@ -562,17 +562,17 @@ static void ov97_022340FC(AffineSpriteListTemplate *param0, UnkStruct_ov97_02234
     param0->heapID = 78;
 }
 
-static int GetGBABoxMonSpeciesAtBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
+static int GetGBABoxMonSpeciesInBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
 {
     return GetGBABoxMonData(&(param0->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_SPECIES, NULL);
 }
 
-static int IsGBABoxMonEggAtBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
+static int IsGBABoxMonEggInBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
 {
     return GetGBABoxMonData(&(param0->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_IS_EGG, NULL);
 }
 
-static int GetGBABoxMonPersonalityAtBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
+static int GetGBABoxMonPersonalityInBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
 {
     return GetGBABoxMonData(&(param0->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_PERSONALITY, NULL);
 }
@@ -721,9 +721,9 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
 
     for (i = 0; i < 30; i++) {
         if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][i]), GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
-            species = GetGBABoxMonSpeciesAtBox(param0, param0->unk_E8E4, i);
-            isEgg = IsGBABoxMonEggAtBox(param0, param0->unk_E8E4, i);
-            personality = GetGBABoxMonPersonalityAtBox(param0, param0->unk_E8E4, i);
+            species = GetGBABoxMonSpeciesInBox(param0, param0->unk_E8E4, i);
+            isEgg = IsGBABoxMonEggInBox(param0, param0->unk_E8E4, i);
+            personality = GetGBABoxMonPersonalityInBox(param0, param0->unk_E8E4, i);
             gbaVersion = gSystem.gbaCartridgeVersion;
             form = GetSpeciesGBAForm(ConvertGBASpeciesToDS(species), personality, gbaVersion);
 
@@ -1036,7 +1036,7 @@ static BOOL BoxMonGBAHasInvalidItem(UnkStruct_ov97_02234A2C *param0, int boxPosi
     return FALSE;
 }
 
-static BOOL BoxMonGBAIsInvalidSpecies(UnkStruct_ov97_02234A2C *param0, int boxPosition)
+static BOOL IsBoxMonGBAInvalidSpecies(UnkStruct_ov97_02234A2C *param0, int boxPosition)
 {
     BoxPokemonGBA *boxMonGBA = &param0->unk_E8E0->boxes[param0->unk_E8E4][boxPosition];
     int species = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL);
@@ -1070,7 +1070,7 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int boxPosition)
         return GBA_MON_STATE_HAS_INVALID_ITEM;
     }
 
-    if (BoxMonGBAIsInvalidSpecies(param0, boxPosition) == 1) {
+    if (IsBoxMonGBAInvalidSpecies(param0, boxPosition) == 1) {
         return GBA_MON_STATE_IS_INVALID_SPECIES;
     }
 
@@ -1487,9 +1487,9 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
         Sprite_SetExplicitPriority(param0->unk_478[i], 1);
         Sprite_SetDrawFlag(param0->unk_478[i], 1);
 
-        v1 = GetGBABoxMonSpeciesAtBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
-        v2 = IsGBABoxMonEggAtBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
-        personality = GetGBABoxMonPersonalityAtBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
+        v1 = GetGBABoxMonSpeciesInBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
+        v2 = IsGBABoxMonEggInBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
+        personality = GetGBABoxMonPersonalityInBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
         v3 = gSystem.gbaCartridgeVersion;
 
         ov97_02234278(v1, v2, personality, v3, i, param0->unk_478[i]);
