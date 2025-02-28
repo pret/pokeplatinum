@@ -161,15 +161,15 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1);
 
 UnkStruct_ov97_0223F434 *Unk_ov97_0223F434;
 
-static int Unk_ov97_0223EA98[] = {
-    0xF,
-    0x13,
-    0x39,
-    0x46,
-    0x94,
-    0xF9,
-    0x7F,
-    0x123
+static int sGBAHMMoves[] = {
+    MOVE_CUT,
+    MOVE_FLY,
+    MOVE_SURF,
+    MOVE_STRENGTH,
+    MOVE_FLASH,
+    MOVE_ROCK_SMASH,
+    MOVE_WATERFALL,
+    MOVE_DIVE
 };
 
 static int Unk_ov97_0223EA80[] = {
@@ -842,22 +842,22 @@ static BOOL ov97_0223474C(UnkStruct_ov97_02234A2C *param0, int param1)
     return 0;
 }
 
-static BOOL ov97_02234784(UnkStruct_ov97_02234A2C *param0, int param1)
+static BOOL BoxMonGBAHasHM(UnkStruct_ov97_02234A2C *param0, int param1)
 {
-    int v0, v1, v2;
-    BoxPokemonGBA *v3 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
+    int i, j, move;
+    BoxPokemonGBA *boxMon = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v2 = GetGBABoxMonData(v3, GBA_MON_DATA_MOVE1 + v0, NULL);
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        move = GetGBABoxMonData(boxMon, GBA_MON_DATA_MOVE1 + i, NULL);
 
-        for (v1 = 0; v1 < sizeof(Unk_ov97_0223EA98) / sizeof(int); v1++) {
-            if (Unk_ov97_0223EA98[v1] == v2) {
-                return 1;
+        for (j = 0; j < sizeof(sGBAHMMoves) / sizeof(int); j++) {
+            if (sGBAHMMoves[j] == move) {
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 u16 Unk_ov97_0223EAD8[] = {
@@ -1050,7 +1050,7 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int param1)
         return 4;
     }
 
-    if (ov97_02234784(param0, param1) == 1) {
+    if (BoxMonGBAHasHM(param0, param1) == TRUE) {
         return 5;
     }
 
