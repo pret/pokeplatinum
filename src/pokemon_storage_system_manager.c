@@ -10,12 +10,14 @@
 #include "savedata.h"
 #include "strbuf.h"
 
+#include "res/text/bank/pokemon_storage_system.h"
+
 typedef struct PCBoxes {
     u32 currentBox;
     BoxPokemon boxMons[MAX_PC_BOXES][MAX_MONS_PER_BOX];
     u16 names[MAX_PC_BOXES][20];
     u8 wallpapers[MAX_PC_BOXES];
-    u8 unlockedWallpapers; // This seems like some sort of bit flag? Might be unlocked secret wallpapers?
+    u8 unlockedWallpapers;
 } PCBoxes;
 
 static void Init(PCBoxes *pcBoxes);
@@ -36,7 +38,7 @@ static void Init(PCBoxes *pcBoxes)
     u32 box, i;
     for (box = 0; box < MAX_PC_BOXES; box++) {
         for (i = 0; i < MAX_MONS_PER_BOX; i++) {
-            BoxPokemon_Init(&(pcBoxes->boxMons[box][i]));
+            BoxPokemon_Init(&pcBoxes->boxMons[box][i]);
         }
     }
 
@@ -53,7 +55,7 @@ static void Init(PCBoxes *pcBoxes)
     MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STORAGE_SYSTEM, 0);
     if (messageLoader) {
         for (box = 0; box < MAX_PC_BOXES; box++) {
-            MessageLoader_Get(messageLoader, BOX1_TEXT_BANK_ENTRYID + box, pcBoxes->names[box]);
+            MessageLoader_Get(messageLoader, BOX1_NAME_ID + box, pcBoxes->names[box]);
         }
 
         MessageLoader_Free(messageLoader);
