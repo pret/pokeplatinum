@@ -507,7 +507,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
             int v1;
 
             for (v1 = 0; v1 < 4; v1++) {
-                sub_02007DEC(v0->unk_00->unk_10.unk_08[v1], 6, 1);
+                PokemonSprite_SetAttribute(v0->unk_00->unk_10.unk_08[v1], 6, 1);
             }
         }
 

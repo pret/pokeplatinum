@@ -161,7 +161,7 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        if (sub_02007C24(param0->unk_70) != 0) {
+        if (PokemonSprite_IsAnimActive(param0->unk_70) != 0) {
             break;
         }
 
@@ -311,7 +311,7 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
             break;
         }
 
-        if (sub_02007C24(param0->unk_70) != 0) {
+        if (PokemonSprite_IsAnimActive(param0->unk_70) != 0) {
             break;
         }
 
@@ -547,7 +547,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v2), 0, 0, 16, 0xFFFF);
             }
 
-            sub_020086FC(param0->unk_70, 0, 16, 0, 0xFFFF);
+            PokemonSprite_StartFade(param0->unk_70, 0, 16, 0, 0xFFFF);
             param0->unk_68++;
         }
         break;
@@ -571,7 +571,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
             v5++;
         }
 
-        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (v5 != 2) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (v5 != 2) || (PokemonSprite_IsFadeActive(param0->unk_70) != 0)) {
             break;
         }
 
@@ -587,7 +587,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
         if ((++param0->unk_64) >= 25) {
             param0->unk_64 = 0;
 
-            sub_020086FC(param0->unk_70, 16, 0, 0, 0xFFFF);
+            PokemonSprite_StartFade(param0->unk_70, 16, 0, 0, 0xFFFF);
             PaletteData_StartFade(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 16, 0, 0xFFFF);
             PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF, 0, 16, 0, 0xFFFF);
 
@@ -595,7 +595,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
         }
         break;
     case 5:
-        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (PokemonSprite_IsFadeActive(param0->unk_70) != 0)) {
             break;
         }
 
@@ -653,7 +653,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
                 PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF ^ (1 << v1), 0, 0, 16, 0xFFFF);
             }
 
-            sub_020086FC(param0->unk_70, 0, 16, 0, 0xFFFF);
+            PokemonSprite_StartFade(param0->unk_70, 0, 16, 0, 0xFFFF);
             param0->unk_68++;
         }
         break;
@@ -677,7 +677,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
             v4++;
         }
 
-        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (v4 != 2) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (v4 != 2) || (PokemonSprite_IsFadeActive(param0->unk_70) != 0)) {
             break;
         }
 
@@ -694,7 +694,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
         if ((++param0->unk_64) >= 25) {
             param0->unk_64 = 0;
 
-            sub_020086FC(param0->unk_70, 16, 0, 0, 0xFFFF);
+            PokemonSprite_StartFade(param0->unk_70, 16, 0, 0, 0xFFFF);
             PaletteData_StartFade(param0->unk_04.unk_04, 0x1, 0xFFFF, 0, 16, 0, 0xFFFF);
             PaletteData_StartFade(param0->unk_04.unk_04, 0x4, 0xFFFF, 0, 16, 0, 0xFFFF);
 
@@ -702,7 +702,7 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
         }
         break;
     case 4:
-        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (sub_020087B4(param0->unk_70) != 0)) {
+        if ((PaletteData_GetSelectedBuffersMask(param0->unk_04.unk_04) != 0) || (PokemonSprite_IsFadeActive(param0->unk_70) != 0)) {
             break;
         }
 

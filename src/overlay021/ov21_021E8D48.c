@@ -712,7 +712,7 @@ static void ov21_021E98D8(PaletteData *param0, PokemonSprite *param1)
 
 static void ov21_021E98F8(PaletteData *param0, PokemonSprite *param1, int param2, int param3, int param4, int param5, int param6)
 {
-    sub_020086FC(param1, param2, param4, param5, param6);
+    PokemonSprite_StartFade(param1, param2, param4, param5, param6);
     PaletteData_StartFade(param0, 0x1 | 0x4, 0xffff, param5, param3, param4, param6);
     PaletteData_SetAutoTransparent(param0, 0);
 }
@@ -722,7 +722,7 @@ static BOOL ov21_021E9948(PaletteData *param0, PokemonSprite *param1)
     BOOL v0[2];
 
     v0[0] = PaletteData_GetSelectedBuffersMask(param0);
-    v0[1] = sub_020087B4(param1);
+    v0[1] = PokemonSprite_IsFadeActive(param1);
 
     if ((v0[0] == 0) && (v0[1] == 0)) {
         return 1;
@@ -754,7 +754,7 @@ static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param
     PokemonSpriteTemplate v0;
 
     Pokemon_BuildSpriteTemplate(&v0, param1, 2);
-    return sub_02007C34(param0, &v0, param2, param3, 0, 0, NULL, NULL);
+    return PokemonSpriteManager_CreateSprite(param0, &v0, param2, param3, 0, 0, NULL, NULL);
 }
 
 static void ov21_021E9A0C(int param0)

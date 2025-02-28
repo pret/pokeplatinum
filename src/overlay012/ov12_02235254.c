@@ -706,14 +706,14 @@ void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1)
         param1->unk_00 = 0;
         param1->unk_02 = 0;
         return;
-    } else if (sub_02008B38(param0) == 0) {
+    } else if (PokemonSprite_IsActive(param0) == 0) {
         param1->unk_00 = 0;
         param1->unk_02 = 0;
         return;
     }
 
-    param1->unk_00 = sub_020080C0(param0, 0);
-    param1->unk_02 = sub_020080C0(param0, 1);
+    param1->unk_00 = PokemonSprite_GetAttribute(param0, 0);
+    param1->unk_02 = PokemonSprite_GetAttribute(param0, 1);
 }
 
 void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1)

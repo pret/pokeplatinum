@@ -75,7 +75,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     v1->unk_04.unk_0C = Options_TextFrameDelay(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_10 = Options_Frame(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_34 = ov119_021D0DD4();
-    v1->unk_04.unk_38 = sub_0200762C(HEAP_ID_71);
+    v1->unk_04.unk_38 = PokemonSpriteManager_New(HEAP_ID_71);
     v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_71);
     v1->unk_04.unk_00 = BgConfig_New(HEAP_ID_71);
 
@@ -137,7 +137,7 @@ static int sub_02098304(OverlayManager *param0, int *param1)
             break;
         }
 
-        sub_02007768(v0->unk_04.unk_38);
+        PokemonSpriteManager_DrawSprites(v0->unk_04.unk_38);
         ov119_021D1004();
     } break;
     default:
@@ -175,7 +175,7 @@ static int sub_02098388(OverlayManager *param0, int *param1)
 
     Heap_FreeToHeap(v0->unk_04.unk_00);
     VramTransfer_Free();
-    sub_02007B6C(v0->unk_04.unk_38);
+    PokemonSpriteManager_Free(v0->unk_04.unk_38);
     sub_02015FB8(v0->unk_04.unk_54);
     NARC_dtor(v0->unk_04.unk_3C);
 

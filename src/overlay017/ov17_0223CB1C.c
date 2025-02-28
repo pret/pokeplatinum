@@ -176,7 +176,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     SpriteSystem_InitManagerWithCapacities(v0->unk_0C.unk_1C, v0->unk_0C.unk_20, &Unk_ov17_02252EC8);
     SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_0C.unk_1C), 0, (256 * FX32_ONE));
 
-    v0->unk_0C.unk_04 = sub_0200762C(HEAP_ID_22);
+    v0->unk_0C.unk_04 = PokemonSpriteManager_New(HEAP_ID_22);
     ov17_0223D350();
 
     v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 209, HEAP_ID_22);
@@ -317,7 +317,7 @@ int ov17_0223CF8C(OverlayManager *param0, int *param1)
     ov17_02247734(&v0->unk_0C);
     ov17_02247918(v0);
 
-    sub_02007B6C(v0->unk_0C.unk_04);
+    PokemonSpriteManager_Free(v0->unk_0C.unk_04);
     Font_Free(FONT_SUBSCREEN);
     PaletteData_FreeBuffer(v0->unk_0C.unk_44, 0);
     PaletteData_FreeBuffer(v0->unk_0C.unk_44, 1);
@@ -355,7 +355,7 @@ static void ov17_0223D0C8(void *param0)
         G2_SetWnd1Position(v0->unk_F5C, v0->unk_F5D, v0->unk_F5E, v0->unk_F5F);
     }
 
-    sub_02008A94(v0->unk_0C.unk_04);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_0C.unk_04);
 
     {
         int v1;
@@ -380,7 +380,7 @@ static void ov17_0223D164(SysTask *param0, void *param1)
     UnkStruct_ov17_02247A48 *v0 = param1;
 
     if (v0->unk_4F6 == 1) {
-        sub_02007768(v0->unk_0C.unk_04);
+        PokemonSpriteManager_DrawSprites(v0->unk_0C.unk_04);
 
         {
             int v1;

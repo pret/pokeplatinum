@@ -471,7 +471,7 @@ static void ChooseStarterAppMainCallback(void *data)
 
     RenderOam_Transfer();
     Bg_RunScheduledUpdates(app->bgl);
-    sub_02008A94(app->spriteManager);
+    PokemonSpriteManager_UpdateCharAndPltt(app->spriteManager);
     VramTransfer_Process();
 }
 
@@ -674,19 +674,19 @@ static void ov78_021D13A0(ChooseStarterApp *param0)
 
 static void MakeSprite(ChooseStarterApp *app, enum HeapId heapID)
 {
-    app->spriteManager = sub_0200762C(heapID);
+    app->spriteManager = PokemonSpriteManager_New(heapID);
 
     NNSGfdTexKey texture = NNS_GfdAllocTexVram(POKEMON_SPRITE_CHAR_SIZE, FALSE, 0);
     NNSGfdPlttKey palette = NNS_GfdAllocPlttVram(POKEMON_SPRITE_PLTT_SIZE, FALSE, NNS_GFD_ALLOC_FROM_LOW);
-    sub_02008A78(app->spriteManager, NNS_GfdGetTexKeyAddr(texture), NNS_GfdGetTexKeySize(texture));
-    sub_02008A84(app->spriteManager, NNS_GfdGetPlttKeyAddr(palette), NNS_GfdGetPlttKeySize(palette));
+    PokemonSpriteManager_SetCharBaseAddrAndSize(app->spriteManager, NNS_GfdGetTexKeyAddr(texture), NNS_GfdGetTexKeySize(texture));
+    PokemonSpriteManager_SetPlttBaseAddrAndSize(app->spriteManager, NNS_GfdGetPlttKeyAddr(palette), NNS_GfdGetPlttKeySize(palette));
 
     MakePokemonSprite(&app->sprites[0], app, STARTER_OPTION_0);
     MakePokemonSprite(&app->sprites[1], app, STARTER_OPTION_1);
     MakePokemonSprite(&app->sprites[2], app, STARTER_OPTION_2);
 
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
-        sub_02007DEC(app->sprites[i], 6, 1);
+        PokemonSprite_SetAttribute(app->sprites[i], 6, 1);
     }
 }
 
@@ -697,7 +697,7 @@ static void MakePokemonSprite(PokemonSprite **sprite, ChooseStarterApp *app, int
     PokemonSpriteTemplate spriteTemplate;
     BuildPokemonSpriteTemplate(&spriteTemplate, species, gender, FACE_FRONT, FALSE, NULL, NULL);
 
-    *sprite = sub_02007C34(app->spriteManager,
+    *sprite = PokemonSpriteManager_CreateSprite(app->spriteManager,
         &spriteTemplate,
         POKEMON_SPRITE_POS_X,
         POKEMON_SPRITE_POS_Y,
@@ -713,11 +713,11 @@ static void ov78_021D14BC(ChooseStarterApp *param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->sprites[v0]) {
-            sub_02007DC8(param0->sprites[v0]);
+            PokemonSprite_Delete(param0->sprites[v0]);
         }
     }
 
-    sub_02007B6C(param0->spriteManager);
+    PokemonSpriteManager_Free(param0->spriteManager);
 }
 
 static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapId heapID)
@@ -1020,7 +1020,7 @@ static void DrawScene(ChooseStarterApp *param0)
         NNS_G3dGeFlushBuffer();
         NNS_G2dSetupSoftwareSpriteCamera();
 
-        sub_02007768(param0->spriteManager);
+        PokemonSpriteManager_DrawSprites(param0->spriteManager);
         sub_020150EC(param0->spriteDisplay);
     }
 
@@ -1238,7 +1238,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
         break;
     case 1:
         ov78_021D2508(&param0->unk_6A8, 1);
-        sub_02007DEC(param0->sprites[param0->cursorPosition], 6, 0);
+        PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], 6, 0);
 
         if (ov78_021D26A4(param0)) {
             sub_02005844(GetSelectedSpecies(param0->cursorPosition), 0);
@@ -1272,7 +1272,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
             ov78_021D1C98(param0, -1);
             param0->unk_04 = 7;
             ov78_021D2508(&param0->unk_6A8, 0);
-            sub_02007DEC(param0->sprites[param0->cursorPosition], 6, 1);
+            PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], 6, 1);
             param0->unk_708 = ov78_021D1FB4(param0->messageWindow, param1, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         }
         break;
@@ -1704,10 +1704,10 @@ static void ov78_021D2740(SysTask *param0, void *param1)
 
     v2 = FX_Mul(0x100 * FX32_ONE, v0->unk_04.unk_20.unk_00) >> FX32_SHIFT;
 
-    sub_02007DEC(v0->unk_00, 0, v0->unk_04.unk_00.unk_00 >> FX32_SHIFT);
-    sub_02007DEC(v0->unk_00, 1, v0->unk_04.unk_10.unk_00 >> FX32_SHIFT);
-    sub_02007DEC(v0->unk_00, 12, v2);
-    sub_02007DEC(v0->unk_00, 13, v2);
+    PokemonSprite_SetAttribute(v0->unk_00, 0, v0->unk_04.unk_00.unk_00 >> FX32_SHIFT);
+    PokemonSprite_SetAttribute(v0->unk_00, 1, v0->unk_04.unk_10.unk_00 >> FX32_SHIFT);
+    PokemonSprite_SetAttribute(v0->unk_00, 12, v2);
+    PokemonSprite_SetAttribute(v0->unk_00, 13, v2);
 
     if ((v1 == 1) || (v0->unk_04.unk_30 < 0)) {
         SysTask_Done(param0);

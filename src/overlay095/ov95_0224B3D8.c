@@ -126,7 +126,7 @@ void *ov95_0224B3D8(UnkStruct_ov95_02247628 *param0)
         v0->unk_00 = param0;
         v0->unk_04 = 0;
         v0->unk_58 = ov95_02247628(param0);
-        v0->unk_10 = sub_0200762C(HEAP_ID_58);
+        v0->unk_10 = PokemonSpriteManager_New(HEAP_ID_58);
         v0->unk_14 = NULL;
         v0->unk_6C = Strbuf_Init(300, HEAP_ID_58);
         v0->unk_70 = Strbuf_Init(300, HEAP_ID_58);
@@ -161,11 +161,11 @@ void ov95_0224B438(void *param0)
         Window_Remove(&(v0->unk_5C));
 
         if (v0->unk_14) {
-            sub_02007DC8(v0->unk_14);
+            PokemonSprite_Delete(v0->unk_14);
         }
 
         NARC_dtor(v0->unk_84);
-        sub_02007B6C(v0->unk_10);
+        PokemonSpriteManager_Free(v0->unk_10);
         Heap_FreeToHeap(v0);
     }
 }
@@ -205,8 +205,8 @@ static void ov95_0224B4D4(UnkStruct_ov95_0224B4D4 *param0)
         NNS_G3dGeFlushBuffer();
         NNS_G2dSetupSoftwareSpriteCamera();
 
-        sub_02008A94(param0->unk_10);
-        sub_02007768(param0->unk_10);
+        PokemonSpriteManager_UpdateCharAndPltt(param0->unk_10);
+        PokemonSpriteManager_DrawSprites(param0->unk_10);
     }
 
     NNS_G3dGePopMtx(1);
@@ -297,7 +297,7 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     param0->unk_74 = ov95_022476F0(1, 0, 0, 0);
     param0->unk_14 = ov95_0224BA8C(param0);
 
-    sub_02007DEC(param0->unk_14, 6, 1);
+    PokemonSprite_SetAttribute(param0->unk_14, 6, 1);
 
     param0->unk_78 = ov95_022478B4(param0->unk_74, 0, 93, 27, 0, UnkEnum_ov95_0224B520_00, 491520, 0);
 
@@ -349,7 +349,7 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
         break;
     case 2:
         if (++(param0->unk_08) > 10) {
-            sub_02007DEC(param0->unk_14, 6, 0);
+            PokemonSprite_SetAttribute(param0->unk_14, 6, 0);
             ov95_0224BBB0(param0, 16, 0, 12);
             param0->unk_04++;
         }
@@ -363,7 +363,7 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 
                 PokeSprite_LoadCryDelay(param0->unk_84, &delay, ov95_02247660(param0->unk_00), 1);
                 sub_0200590C(ov95_02247660(param0->unk_00), delay, ov95_02247668(param0->unk_00));
-                sub_02007B98(param0->unk_14, 1);
+                PokemonSprite_InitAnim(param0->unk_14, 1);
             }
 
             param0->unk_08 = 0;
@@ -487,8 +487,8 @@ static void ov95_0224B9C0(UnkStruct_ov95_0224B4D4 *param0)
     v0 = NNS_GfdAllocTexVram(0x4000, 0, 0);
     v1 = NNS_GfdAllocPlttVram(0x80, 0, NNS_GFD_ALLOC_FROM_LOW);
 
-    sub_02008A78(param0->unk_10, NNS_GfdGetTexKeyAddr(v0), NNS_GfdGetTexKeySize(v0));
-    sub_02008A84(param0->unk_10, NNS_GfdGetPlttKeyAddr(v1), NNS_GfdGetPlttKeySize(v1));
+    PokemonSpriteManager_SetCharBaseAddrAndSize(param0->unk_10, NNS_GfdGetTexKeyAddr(v0), NNS_GfdGetTexKeySize(v0));
+    PokemonSpriteManager_SetPlttBaseAddrAndSize(param0->unk_10, NNS_GfdGetPlttKeyAddr(v1), NNS_GfdGetPlttKeySize(v1));
 }
 
 static PokemonSprite *ov95_0224BA8C(UnkStruct_ov95_0224B4D4 *param0)
@@ -503,7 +503,7 @@ static PokemonSprite *ov95_0224BA8C(UnkStruct_ov95_0224B4D4 *param0)
     PokeSprite_LoadAnimationFrames(param0->unk_84, param0->unk_18, ov95_02247660(param0->unk_00), 1);
 
     v2 = (100 - 20) + BoxPokemon_SpriteYOffset(v1, 2, 0);
-    return sub_02007C34(param0->unk_10, &v0, 128, v2, 0, 0, param0->unk_18, NULL);
+    return PokemonSpriteManager_CreateSprite(param0->unk_10, &v0, 128, v2, 0, 0, param0->unk_18, NULL);
 }
 
 static void ov95_0224BAE8(UnkStruct_ov95_0224B4D4 *param0)

@@ -691,7 +691,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
         PokemonSprite *v1;
 
         v1 = ov12_022232FC(v0->unk_04.unk_04, ov12_02220240(v0->unk_04.unk_04));
-        sub_02007DEC(v1, 6, 1);
+        PokemonSprite_SetAttribute(v1, 6, 1);
     }
         v0->unk_04.unk_00++;
         break;
@@ -724,7 +724,7 @@ static void ov12_0222E080(SysTask *param0, void *param1)
             PokemonSprite *v2;
 
             v2 = ov12_022232FC(v0->unk_04.unk_04, ov12_02220240(v0->unk_04.unk_04));
-            sub_02007DEC(v2, 6, 0);
+            PokemonSprite_SetAttribute(v2, 6, 0);
         }
         v0->unk_04.unk_00++;
         break;
@@ -987,9 +987,9 @@ void ov12_0222E61C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
 
             v7 = ov12_02220240(param0);
             v8 = ov12_022232FC(param0, v7);
-            v5 = sub_020080C0(v8, 0);
-            v6 = sub_020080C0(v8, 1);
-            v6 += sub_020080C0(v8, 41);
+            v5 = PokemonSprite_GetAttribute(v8, 0);
+            v6 = PokemonSprite_GetAttribute(v8, 1);
+            v6 += PokemonSprite_GetAttribute(v8, 41);
 
             if (ov12_0223525C(param0, ov12_02220240(param0)) == 0x3) {
                 v6 = 140;

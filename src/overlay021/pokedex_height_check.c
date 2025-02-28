@@ -488,8 +488,8 @@ static void DisplaySpeciesHeight(UnkStruct_ov21_021E6118 *param0, const UnkStruc
 
     PokedexMain_DisplayPokemonSprite(param0->unk_00, param1->unk_04, species, 2, 88, 88 + pokemonPos);
 
-    sub_02007DEC(speciesSprite, 6, 0);
-    sub_020086FC(speciesSprite, 15, 15, 0, 0);
+    PokemonSprite_SetAttribute(speciesSprite, 6, 0);
+    PokemonSprite_StartFade(speciesSprite, 15, 15, 0, 0);
 
     SetSpeciesPosition(speciesSprite, pokemonPos);
     SetSpeciesScale(speciesSprite, pokemonScale);
@@ -499,8 +499,8 @@ static void ClearSpeciesSprite(UnkStruct_ov21_021E6118 *param0)
 {
     PokemonSprite *speciesSprite = ov21_021D2170(param0->unk_00);
 
-    sub_02007DEC(speciesSprite, 6, 1);
-    sub_02008780(speciesSprite);
+    PokemonSprite_SetAttribute(speciesSprite, 6, 1);
+    PokemonSprite_ClearFade(speciesSprite);
 }
 
 static void SetTrainerPosition(Sprite *trainerHeightSprite, short trainerPos)
@@ -515,7 +515,7 @@ static void SetTrainerPosition(Sprite *trainerHeightSprite, short trainerPos)
 
 static void SetSpeciesPosition(PokemonSprite *speciesSprite, short pokemonPos)
 {
-    sub_02007DEC(speciesSprite, 1, 88 + pokemonPos);
+    PokemonSprite_SetAttribute(speciesSprite, 1, 88 + pokemonPos);
 }
 
 static void SetTrainerScale(Sprite *trainerHeightSprite, short trainerScale)
@@ -533,6 +533,6 @@ static void SetSpeciesScale(PokemonSprite *speciesSprite, short pokemonScale)
     fx32 scale = FX_Div(0x100 << FX32_SHIFT, pokemonScale << FX32_SHIFT);
     pokemonScale = FX_Mul(scale, 0x100 << FX32_SHIFT) >> FX32_SHIFT;
 
-    sub_02007DEC(speciesSprite, 12, pokemonScale);
-    sub_02007DEC(speciesSprite, 13, pokemonScale);
+    PokemonSprite_SetAttribute(speciesSprite, 12, pokemonScale);
+    PokemonSprite_SetAttribute(speciesSprite, 13, pokemonScale);
 }

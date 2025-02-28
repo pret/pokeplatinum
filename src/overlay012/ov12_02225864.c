@@ -225,14 +225,14 @@ void ov12_022259FC(UnkStruct_ov12_02225F6C *param0, ManagedSprite *param1)
 
 void ov12_02225A18(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1, s16 param2, s16 param3)
 {
-    sub_02007DEC(param1, 0, param2 + param0->unk_00);
-    sub_02007DEC(param1, 1, param3 + param0->unk_02);
+    PokemonSprite_SetAttribute(param1, 0, param2 + param0->unk_00);
+    PokemonSprite_SetAttribute(param1, 1, param3 + param0->unk_02);
 }
 
 void ov12_02225A3C(UnkStruct_ov12_02225F6C *param0, PokemonSprite *param1)
 {
-    sub_02007DEC(param1, 12, param0->unk_00);
-    sub_02007DEC(param1, 13, param0->unk_02);
+    PokemonSprite_SetAttribute(param1, 12, param0->unk_00);
+    PokemonSprite_SetAttribute(param1, 13, param0->unk_02);
 }
 
 void ov12_02225A5C(UnkStruct_ov12_02225F6C *param0, u16 param1, u16 param2, u16 param3, u16 param4, fx32 param5, fx32 param6, int param7)
@@ -595,7 +595,7 @@ void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, i
         v1 = param1 - param2;
     }
 
-    sub_02007DEC(param0, 1, v1 + v0);
+    PokemonSprite_SetAttribute(param0, 1, v1 + v0);
 }
 
 void ov12_0222605C(ManagedSprite *param0, s16 param1, s16 param2, fx32 param3, int param4)

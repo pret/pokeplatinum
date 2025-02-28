@@ -587,8 +587,8 @@ static void ov21_021D8C00(UnkStruct_ov21_021D879C *param0)
 {
     PokemonSprite *v0 = ov21_021D2170(param0->unk_00);
 
-    sub_02007DEC(v0, 6, 1);
-    sub_02008780(v0);
+    PokemonSprite_SetAttribute(v0, 6, 1);
+    PokemonSprite_ClearFade(v0);
 }
 
 static void GetSearchGraphics(PokedexSearchDisplay *searchDisplay, UnkStruct_ov21_021D879C *param1, enum HeapId heapID)

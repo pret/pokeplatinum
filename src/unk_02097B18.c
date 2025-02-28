@@ -153,7 +153,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     ov76_0223EB64(v0->unk_D4.unk_10);
     ov76_0223BF10();
 
-    v0->unk_D4.unk_D0 = sub_0200762C(HEAP_ID_53);
+    v0->unk_D4.unk_D0 = PokemonSpriteManager_New(HEAP_ID_53);
     v0->unk_D4.unk_188 = sub_02015F84(HEAP_ID_53, 1, 0);
 
     {
@@ -203,7 +203,7 @@ static int sub_02097D30(OverlayManager *param0, int *param1)
             break;
         }
 
-        sub_02007768(v0->unk_D4.unk_D0);
+        PokemonSpriteManager_DrawSprites(v0->unk_D4.unk_D0);
         ov76_0223BF50();
     } break;
     case 2:
@@ -245,7 +245,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->unk_428);
     ov76_0223B678(v0);
     sub_02024034(v0->unk_D4.unk_F8);
-    sub_02007B6C(v0->unk_D4.unk_D0);
+    PokemonSpriteManager_Free(v0->unk_D4.unk_D0);
     sub_02015FB8(v0->unk_D4.unk_188);
     ov76_0223B8C4(v0);
     ov76_0223C424(&v0->unk_D4);

@@ -40,7 +40,7 @@ void ov105_02245D50(PokemonSpriteManager *param0)
     NNS_G3dGlbFlush();
     NNS_G2dSetupSoftwareSpriteCamera();
 
-    sub_02007768(param0);
+    PokemonSpriteManager_DrawSprites(param0);
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
     return;
@@ -56,13 +56,13 @@ PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon 
     Pokemon_BuildSpriteTemplate(&v0, param2, 2);
 
     v2 = 0;
-    v1 = sub_02007C34(param0, &v0, param3, (param4 + v2), param5, param1, NULL, NULL);
+    v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param3, (param4 + v2), param5, param1, NULL, NULL);
 
     return v1;
 }
 
 void ov105_02245DB8(PokemonSprite *param0, int param1)
 {
-    sub_02007DEC(param0, 35, param1);
+    PokemonSprite_SetAttribute(param0, 35, param1);
     return;
 }

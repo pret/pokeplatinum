@@ -103,12 +103,12 @@ static void sub_02013338(int param0, int param1, int param2, int param3, int par
     NNSG2dCharacterData *v1 = NULL;
 
     sub_0201322C(param0, param1, param2, &v1);
-    sub_020093A0(v1->pRawData, param0);
+    PokemonSprite_Decrypt(v1->pRawData, param0);
 
     v0 = sub_020132F8(param11);
 
     if ((param10 == 2) && (v0 == 1)) {
-        sub_020091D8(v1->pRawData, param8, param9);
+        PokemonSprite_DrawSpindaSpots(v1->pRawData, param8, param9);
     }
 
     sub_02013260(param3, param4, param5, param6, v1, param7);
@@ -149,7 +149,7 @@ void sub_020133D4(int param0, int param1, int param2, int param3, int param4, in
     v5 = (sizeof(u8) * 4);
     v1 = v3->pRawData;
 
-    sub_020093A0(v1, param0);
+    PokemonSprite_Decrypt(v1, param0);
 
     v2 = (u8 *)param7;
     v8 = (v3->W * v5);

@@ -182,7 +182,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             Graphics_LoadPartialPaletteFromOpenNARC(v3, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
             Font_UseImmediateGlyphAccess(FONT_SYSTEM, 10);
 
-            v0->unk_1BC = sub_0200762C(HEAP_ID_10);
+            v0->unk_1BC = PokemonSpriteManager_New(HEAP_ID_10);
 
             for (v1 = 0; v1 < 4; v1++) {
                 v0->unk_08[v1] = NULL;
@@ -226,7 +226,7 @@ static void ov19_021D6474(SysTask *param0, void *param1)
     G3X_ResetMtxStack();
     NNS_G2dSetupSoftwareSpriteCamera();
 
-    sub_02007768(v0->unk_1BC);
+    PokemonSpriteManager_DrawSprites(v0->unk_1BC);
 
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
 }
@@ -254,7 +254,7 @@ void ov19_021D64A0(UnkStruct_ov19_021D61B0 *param0)
     Bg_FreeTilemapBuffer(param0->unk_1C0, 2);
     Bg_FreeTilemapBuffer(param0->unk_1C0, 1);
     Bg_FreeTilemapBuffer(param0->unk_1C0, 4);
-    sub_02007B6C(param0->unk_1BC);
+    PokemonSpriteManager_Free(param0->unk_1BC);
     Font_UseLazyGlyphAccess(FONT_SYSTEM);
     Heap_FreeToHeap(param0->unk_1C0);
     Heap_FreeToHeap(param0);

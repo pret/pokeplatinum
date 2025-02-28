@@ -473,15 +473,15 @@ static void ov21_021E1228(UnkStruct_ov21_021E0D7C *param0, const UnkStruct_ov21_
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
     PokedexMain_DisplayPokemonSprite(param0->unk_00, param1->unk_04, species, 2, 48, 72);
-    sub_02007DEC(v0, 6, 0);
+    PokemonSprite_SetAttribute(v0, 6, 0);
 }
 
 static void ov21_021E1260(UnkStruct_ov21_021E0D7C *param0)
 {
     PokemonSprite *v0 = ov21_021D2170(param0->unk_00);
 
-    sub_02007DEC(v0, 6, 1);
-    sub_02008780(v0);
+    PokemonSprite_SetAttribute(v0, 6, 1);
+    PokemonSprite_ClearFade(v0);
 }
 
 static void ov21_021E127C(UnkStruct_ov21_021E14D4 *param0, UnkStruct_ov21_021E0D7C *param1, int param2)

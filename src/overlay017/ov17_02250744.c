@@ -199,7 +199,7 @@ void ov17_022507C4(UnkStruct_ov17_022507C4 *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02007DC8(param0->unk_08[v0]);
+        PokemonSprite_Delete(param0->unk_08[v0]);
         Heap_FreeToHeap(param0->unk_C8[v0].unk_00);
         param0->unk_C8[v0].unk_00 = NULL;
     }
@@ -819,7 +819,7 @@ static void ov17_02251784(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        sub_02007DEC(v0->unk_00, 6, 0);
+        PokemonSprite_SetAttribute(v0->unk_00, 6, 0);
         v0->unk_10++;
     case 1:
         v0->unk_08 -= 0x800;
@@ -829,8 +829,8 @@ static void ov17_02251784(SysTask *param0, void *param1)
             v0->unk_10++;
         }
 
-        sub_02007DEC(v0->unk_00, 0, v0->unk_08 >> 8);
-        sub_02007DEC(v0->unk_00, 1, v0->unk_0C >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00, 0, v0->unk_08 >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00, 1, v0->unk_0C >> 8);
         break;
     default:
         *(v0->unk_04) = 1;
@@ -854,11 +854,11 @@ static void ov17_022517F0(SysTask *param0, void *param1)
             v0->unk_10++;
         }
 
-        sub_02007DEC(v0->unk_00, 0, v0->unk_08 / 0x100);
-        sub_02007DEC(v0->unk_00, 1, v0->unk_0C >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00, 0, v0->unk_08 / 0x100);
+        PokemonSprite_SetAttribute(v0->unk_00, 1, v0->unk_0C >> 8);
         break;
     default:
-        sub_02007DEC(v0->unk_00, 6, 1);
+        PokemonSprite_SetAttribute(v0->unk_00, 6, 1);
         *(v0->unk_04) = 1;
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);

@@ -324,7 +324,7 @@ static void ov79_021D252C(void *param0)
     UnkStruct_ov79_021D2928 *v0 = param0;
 
     Bg_RunScheduledUpdates(v0->unk_68);
-    sub_02008A94(v0->unk_40.unk_04);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_40.unk_04);
 
     SpriteSystem_TransferOam();
     VramTransfer_Process();
@@ -863,8 +863,8 @@ static void ov79_021D2F4C(SysTask *param0, void *param1)
     VEC_Subtract(&v2->unk_30, &v2->unk_24, &v3);
     ov79_021D2268(&v2->unk_3C, &v3, FX32_CONST(v0->unk_04));
 
-    sub_02007DEC(v1->unk_C8, 12, 0x1000 >> 4);
-    sub_02007DEC(v1->unk_C8, 13, 0x1000 >> 4);
+    PokemonSprite_SetAttribute(v1->unk_C8, 12, 0x1000 >> 4);
+    PokemonSprite_SetAttribute(v1->unk_C8, 13, 0x1000 >> 4);
     SysTask_SetCallback(param0, ov79_021D2FE0);
 }
 
@@ -878,15 +878,15 @@ static void ov79_021D2FE0(SysTask *param0, void *param1)
     v3.x = v2->unk_24.x + FX_Mul(v2->unk_3C.x, v0->unk_0C);
     v3.y = v2->unk_24.y + FX_Mul(v2->unk_3C.y, v0->unk_0C);
 
-    sub_02007DEC(v1->unk_C8, 12, v3.x >> 4);
-    sub_02007DEC(v1->unk_C8, 13, v3.y >> 4);
+    PokemonSprite_SetAttribute(v1->unk_C8, 12, v3.x >> 4);
+    PokemonSprite_SetAttribute(v1->unk_C8, 13, v3.y >> 4);
 
     v0->unk_0C += FX32_ONE;
     v0->unk_04--;
 
     if (v0->unk_04 == 0) {
-        sub_02007DEC(v1->unk_C8, 0, 128);
-        sub_02007DEC(v1->unk_C8, 1, 96);
+        PokemonSprite_SetAttribute(v1->unk_C8, 0, 128);
+        PokemonSprite_SetAttribute(v1->unk_C8, 1, 96);
         ov79_021D29E4(v0);
     }
 }
@@ -908,8 +908,8 @@ static void ov79_021D3094(SysTask *param0, void *param1)
     VEC_Subtract(&v2->unk_0C, &v2->unk_00, &v3);
 
     ov79_021D2268(&v2->unk_18, &v3, FX32_CONST(v0->unk_04));
-    sub_02007DEC(v1->unk_C8, 0, v2->unk_00.x >> 12);
-    sub_02007DEC(v1->unk_C8, 1, v2->unk_00.y >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 0, v2->unk_00.x >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 1, v2->unk_00.y >> 12);
     SysTask_SetCallback(param0, ov79_021D312C);
 }
 
@@ -925,15 +925,15 @@ static void ov79_021D312C(SysTask *param0, void *param1)
     v3.x = v2->unk_00.x + FX_Mul(v2->unk_18.x, v0->unk_0C);
     v3.y = v2->unk_00.y + FX_Mul(v2->unk_18.y, v0->unk_0C);
 
-    sub_02007DEC(v1->unk_C8, 0, v3.x >> 12);
-    sub_02007DEC(v1->unk_C8, 1, v3.y >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 0, v3.x >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 1, v3.y >> 12);
 
     v5 = v2->unk_50 - 4;
     v5 = -(v5 * v5) + 16;
     v4 = FX32_CONST(-v5);
     v4 = FX_Mul(v4, FX32_CONST(1.4));
 
-    sub_02007DEC(v1->unk_C8, 4, v4 >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 4, v4 >> 12);
 
     v2->unk_50++;
 
@@ -947,7 +947,7 @@ static void ov79_021D312C(SysTask *param0, void *param1)
         return;
     }
 
-    sub_02007DEC(v1->unk_C8, 4, 0);
+    PokemonSprite_SetAttribute(v1->unk_C8, 4, 0);
     v2->unk_50 = 0;
 
     SysTask_SetCallback(param0, ov79_021D326C);
@@ -983,8 +983,8 @@ static void ov79_021D3290(SysTask *param0, void *param1)
     VEC_Subtract(&v2->unk_30, &v2->unk_24, &v3);
     ov79_021D2268(&v2->unk_3C, &v3, FX32_CONST(v0->unk_04));
 
-    sub_02007DEC(v1->unk_C8, 12, 0x1800 >> 4);
-    sub_02007DEC(v1->unk_C8, 13, 0x1800 >> 4);
+    PokemonSprite_SetAttribute(v1->unk_C8, 12, 0x1800 >> 4);
+    PokemonSprite_SetAttribute(v1->unk_C8, 13, 0x1800 >> 4);
     SysTask_SetCallback(param0, ov79_021D3324);
 }
 
@@ -998,8 +998,8 @@ static void ov79_021D3324(SysTask *param0, void *param1)
     v3.x = v2->unk_24.x + FX_Mul(v2->unk_3C.x, v0->unk_0C);
     v3.y = v2->unk_24.y + FX_Mul(v2->unk_3C.y, v0->unk_0C);
 
-    sub_02007DEC(v1->unk_C8, 12, v3.x >> 4);
-    sub_02007DEC(v1->unk_C8, 13, v3.y >> 4);
+    PokemonSprite_SetAttribute(v1->unk_C8, 12, v3.x >> 4);
+    PokemonSprite_SetAttribute(v1->unk_C8, 13, v3.y >> 4);
 
     v0->unk_0C += FX32_ONE;
     v0->unk_04--;
@@ -1008,8 +1008,8 @@ static void ov79_021D3324(SysTask *param0, void *param1)
         return;
     }
 
-    sub_02007DEC(v1->unk_C8, 12, 0x100);
-    sub_02007DEC(v1->unk_C8, 13, 0x100);
+    PokemonSprite_SetAttribute(v1->unk_C8, 12, 0x100);
+    PokemonSprite_SetAttribute(v1->unk_C8, 13, 0x100);
     ov79_021D29E4(v0);
 }
 
@@ -1032,8 +1032,8 @@ static void ov79_021D33DC(SysTask *param0, void *param1)
 
     v2->unk_48 = FX_Div(FX32_CONST(180), FX32_CONST(v0->unk_04));
 
-    sub_02007DEC(v1->unk_C8, 0, v2->unk_00.x >> 12);
-    sub_02007DEC(v1->unk_C8, 1, v2->unk_00.y >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 0, v2->unk_00.x >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 1, v2->unk_00.y >> 12);
     SysTask_SetCallback(param0, ov79_021D34A8);
 }
 
@@ -1049,13 +1049,13 @@ static void ov79_021D34A8(SysTask *param0, void *param1)
     v3.x = v2->unk_00.x + FX_Mul(v2->unk_18.x, v0->unk_0C);
     v3.y = v2->unk_00.y + FX_Mul(v2->unk_18.y, v0->unk_0C);
 
-    sub_02007DEC(v1->unk_C8, 0, v3.x >> 12);
-    sub_02007DEC(v1->unk_C8, 1, v3.y >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 0, v3.x >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 1, v3.y >> 12);
 
     v4 = FX_Mul(v2->unk_48, v0->unk_0C);
     v4 = FX_Mul(CalcSineDegrees_Wraparound(v4 >> 12), FX32_CONST(-6));
 
-    sub_02007DEC(v1->unk_C8, 4, v4 >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 4, v4 >> 12);
 
     v0->unk_0C += FX32_ONE;
     v0->unk_04--;
@@ -1064,7 +1064,7 @@ static void ov79_021D34A8(SysTask *param0, void *param1)
         return;
     }
 
-    sub_02007DEC(v1->unk_C8, 4, 0);
+    PokemonSprite_SetAttribute(v1->unk_C8, 4, 0);
     SysTask_SetCallback(param0, ov79_021D35B0);
 }
 
@@ -1113,7 +1113,7 @@ static void ov79_021D3610(SysTask *param0, void *param1)
     v4 = FX32_CONST(-v6);
     v4 = FX_Mul(v4, FX32_CONST(1.4));
 
-    sub_02007DEC(v1->unk_C8, 4, v4 >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 4, v4 >> 12);
 
     v2->unk_52 = 0;
     v2->unk_50++;
@@ -1124,7 +1124,7 @@ static void ov79_021D3610(SysTask *param0, void *param1)
     }
 
     if (v0->unk_04 == 0) {
-        sub_02007DEC(v1->unk_C8, 4, 0);
+        PokemonSprite_SetAttribute(v1->unk_C8, 4, 0);
         ov79_021D29E4(v0);
     }
 }
@@ -1158,12 +1158,12 @@ static void ov79_021D36F0(SysTask *param0, void *param1)
         v2->unk_50 += 90;
     }
 
-    sub_02007DEC(v1->unk_C8, 3, v5 >> 12);
+    PokemonSprite_SetAttribute(v1->unk_C8, 3, v5 >> 12);
 
     v0->unk_04--;
 
     if (v0->unk_04 == 0) {
-        sub_02007DEC(v1->unk_C8, 3, 0);
+        PokemonSprite_SetAttribute(v1->unk_C8, 3, 0);
         ov79_021D29E4(v0);
     }
 }

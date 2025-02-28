@@ -1344,13 +1344,13 @@ static void ov21_021D6F20(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
     v1 = v0 >> FX32_SHIFT;
     v2 = ov21_021D2170(param1);
 
-    sub_02007DEC(v2, 23, v1);
+    PokemonSprite_SetAttribute(v2, 23, v1);
 }
 
 static void ov21_021D6F64(PokedexGraphicData *param0, const UnkStruct_ov21_021D5B68 *param1)
 {
     PokemonSprite *v0 = ov21_021D2170(param0);
-    sub_02007DEC(v0, 23, 31);
+    PokemonSprite_SetAttribute(v0, 23, 31);
 }
 
 static void ov21_021D6F74(const UnkStruct_ov21_021D5B68 *param0)

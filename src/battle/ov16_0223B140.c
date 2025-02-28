@@ -599,8 +599,8 @@ static void ov16_0223B790(OverlayManager *param0)
         NARC_dtor(v9);
     }
 
-    battleSys->unk_88 = sub_0200762C(HEAP_ID_BATTLE);
-    sub_02008A84(battleSys->unk_88, 0, (0x20 * 6));
+    battleSys->unk_88 = PokemonSpriteManager_New(HEAP_ID_BATTLE);
+    PokemonSpriteManager_SetPlttBaseAddrAndSize(battleSys->unk_88, 0, (0x20 * 6));
 
     ov16_0223F36C(battleSys);
     ov16_0223CE28();
@@ -769,7 +769,7 @@ static void ov16_0223BCB4(OverlayManager *param0)
         ov16_0225C104(battleSystem, battleSystem->battlers[battlerId], battleSystem->unk_23F9);
     }
 
-    sub_02007B6C(battleSystem->unk_88);
+    PokemonSpriteManager_Free(battleSystem->unk_88);
 
     if (battleSystem->unk_23F9 != 2) {
         ov16_0223B3E4(battleSystem);
@@ -1514,7 +1514,7 @@ static void ov16_0223CE68(void *param0)
         }
     }
 
-    sub_02008A94(v0->unk_88);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_88);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_28);
@@ -1545,7 +1545,7 @@ static void ov16_0223CF48(SysTask *param0, void *param1)
             ov11_0221F8F0();
         }
 
-        sub_02007768(v0->unk_88);
+        PokemonSpriteManager_DrawSprites(v0->unk_88);
         SpriteSystem_DrawSprites(v0->unk_94);
         SpriteSystem_UpdateTransfer();
         G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);

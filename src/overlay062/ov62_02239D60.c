@@ -1201,7 +1201,7 @@ static void ov62_0223B050(UnkStruct_0208C06C *param0)
     v9 = 0;
 
     BuildPokemonSpriteTemplate(&v2, v7, v3, v10, v4, v6, v8);
-    v0->unk_32C = sub_02007C34(param0->unk_14.unk_50, &v2, 42, 91 + v9, 0, 0, NULL, NULL);
+    v0->unk_32C = PokemonSpriteManager_CreateSprite(param0->unk_14.unk_50, &v2, 42, 91 + v9, 0, 0, NULL, NULL);
     SpeciesData_Free(v1);
 }
 
@@ -1210,7 +1210,7 @@ static void ov62_0223B124(UnkStruct_0208C06C *param0, int param1)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     if (v0->unk_32C) {
-        sub_02007DEC(v0->unk_32C, 6, param1);
+        PokemonSprite_SetAttribute(v0->unk_32C, 6, param1);
     }
 }
 
@@ -1219,7 +1219,7 @@ static void ov62_0223B140(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     if (v0->unk_32C) {
-        sub_02007DC8(v0->unk_32C);
+        PokemonSprite_Delete(v0->unk_32C);
     }
 }
 

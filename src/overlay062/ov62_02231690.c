@@ -2023,7 +2023,7 @@ static void ov62_02233798(SysTask *param0, void *param1)
 
     v0->unk_14.unk_510 = 1;
 
-    sub_02008A94(v0->unk_14.unk_50);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_14.unk_50);
     SpriteSystem_DrawSprites(v0->unk_14.unk_08);
     SpriteSystem_TransferOam();
 

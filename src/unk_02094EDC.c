@@ -676,7 +676,7 @@ PokemonSprite *sub_02095484(PokemonSpriteManager *param0, int param1, Pokemon *p
         param4->unk_04 = v0.archive;
     }
 
-    v1 = sub_02007C34(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);
+    v1 = PokemonSpriteManager_CreateSprite(param0, &v0, param6, param7 + v2, param8, param1, NULL, NULL);
     return v1;
 }
 

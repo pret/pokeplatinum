@@ -370,7 +370,7 @@ static void PokemonSummaryScreenVBlank(void *data)
     PokemonSummaryScreen *summaryScreen = data;
 
     Bg_RunScheduledUpdates(summaryScreen->bgConfig);
-    sub_02008A94(summaryScreen->monSprite.spriteManager);
+    PokemonSpriteManager_UpdateCharAndPltt(summaryScreen->monSprite.spriteManager);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
 

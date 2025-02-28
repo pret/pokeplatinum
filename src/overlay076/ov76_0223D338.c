@@ -701,7 +701,7 @@ void ov76_0223DD88(UnkStruct_ov76_0223DE00 *param0)
 
     param0->unk_D4.unk_D8 = v3;
     PokeSprite_LoadAnimationFrames(param0->unk_42C, &v1[0], v2, 1);
-    param0->unk_D4.unk_D4 = sub_02007C34(param0->unk_D4.unk_D0, &v0, (256 - 64), 48 + v3, -0x280, 0, &v1[0], NULL);
+    param0->unk_D4.unk_D4 = PokemonSpriteManager_CreateSprite(param0->unk_D4.unk_D0, &v0, (256 - 64), 48 + v3, -0x280, 0, &v1[0], NULL);
 }
 
 static void ov76_0223DE00(UnkStruct_ov76_0223DE00 *param0)
@@ -712,28 +712,28 @@ static void ov76_0223DE00(UnkStruct_ov76_0223DE00 *param0)
     v0 = Pokemon_GetValue(param0->unk_428, MON_DATA_SPECIES, NULL);
     v1 = Pokemon_GetNature(param0->unk_428);
 
-    sub_02007B98(param0->unk_D4.unk_D4, 1);
+    PokemonSprite_InitAnim(param0->unk_D4.unk_D4, 1);
     PokeSprite_LoadAnimation(param0->unk_42C, param0->unk_D4.unk_188, param0->unk_D4.unk_D4, v0, 2, 0, 0);
 }
 
 static void ov76_0223DE54(UnkStruct_ov76_0223DE00 *param0)
 {
-    sub_02007DEC(param0->unk_D4.unk_D4, 12, 0x0);
-    sub_02007DEC(param0->unk_D4.unk_D4, 13, 0x0);
+    PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 12, 0x0);
+    PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 13, 0x0);
 }
 
 static BOOL ov76_0223DE78(UnkStruct_ov76_0223DE00 *param0)
 {
-    if (sub_020080C0(param0->unk_D4.unk_D4, 12) == 0x100) {
+    if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, 12) == 0x100) {
         return 0;
-    } else if (sub_020080C0(param0->unk_D4.unk_D4, 12) >= 0x100) {
-        sub_02007DEC(param0->unk_D4.unk_D4, 12, 0x100);
-        sub_02007DEC(param0->unk_D4.unk_D4, 13, 0x100);
+    } else if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, 12) >= 0x100) {
+        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 12, 0x100);
+        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 13, 0x100);
         return 0;
     } else {
-        sub_02008274(param0->unk_D4.unk_D4, 12, 0x20);
-        sub_02008274(param0->unk_D4.unk_D4, 13, 0x20);
-        sub_020087C8(param0->unk_D4.unk_D4, param0->unk_D4.unk_D8);
+        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 12, 0x20);
+        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 13, 0x20);
+        PokemonSprite_CalcAffineYOffset(param0->unk_D4.unk_D4, param0->unk_D4.unk_D8);
     }
 
     return 1;
@@ -741,16 +741,16 @@ static BOOL ov76_0223DE78(UnkStruct_ov76_0223DE00 *param0)
 
 static BOOL ov76_0223DEF4(UnkStruct_ov76_0223DE00 *param0)
 {
-    if (sub_020080C0(param0->unk_D4.unk_D4, 12) == 0x0) {
+    if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, 12) == 0x0) {
         return 0;
-    } else if (sub_020080C0(param0->unk_D4.unk_D4, 12) <= 0x0) {
-        sub_02007DEC(param0->unk_D4.unk_D4, 12, 0x0);
-        sub_02007DEC(param0->unk_D4.unk_D4, 13, 0x0);
+    } else if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, 12) <= 0x0) {
+        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 12, 0x0);
+        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 13, 0x0);
         return 0;
     } else {
-        sub_02008274(param0->unk_D4.unk_D4, 12, -0x20);
-        sub_02008274(param0->unk_D4.unk_D4, 13, -0x20);
-        sub_020087C8(param0->unk_D4.unk_D4, param0->unk_D4.unk_D8);
+        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 12, -0x20);
+        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 13, -0x20);
+        PokemonSprite_CalcAffineYOffset(param0->unk_D4.unk_D4, param0->unk_D4.unk_D8);
     }
 
     return 1;
@@ -758,12 +758,12 @@ static BOOL ov76_0223DEF4(UnkStruct_ov76_0223DE00 *param0)
 
 void ov76_0223DF70(UnkStruct_ov76_0223DE00 *param0, int param1)
 {
-    sub_02007DEC(param0->unk_D4.unk_D4, 6, param1);
+    PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 6, param1);
 }
 
 void ov76_0223DF84(UnkStruct_ov76_0223DE00 *param0)
 {
-    sub_02007DC8(param0->unk_D4.unk_D4);
+    PokemonSprite_Delete(param0->unk_D4.unk_D4);
 }
 
 static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
@@ -905,7 +905,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 break;
             }
 
-            if (sub_02007C24(param0->unk_D4.unk_D4) != 0) {
+            if (PokemonSprite_IsAnimActive(param0->unk_D4.unk_D4) != 0) {
                 break;
             }
 
@@ -1494,7 +1494,7 @@ void ov76_0223ECB0(void *param0)
 {
     UnkStruct_ov76_0223DE00 *v0 = param0;
 
-    sub_02008A94(v0->unk_D4.unk_D0);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_D4.unk_D0);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
     PaletteData_CommitFadedBuffers(v0->unk_D4.unk_14);
