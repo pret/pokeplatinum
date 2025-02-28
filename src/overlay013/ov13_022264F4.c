@@ -29,6 +29,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_storage_system_manager.h"
 #include "render_window.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -40,7 +41,6 @@
 #include "unk_02005474.h"
 #include "unk_0200679C.h"
 #include "unk_0200C440.h"
-#include "unk_020797C8.h"
 
 static void ov13_02226590(SysTask *param0, void *param1);
 static u8 ov13_0222668C(UnkStruct_ov13_02227244 *param0);
@@ -466,7 +466,7 @@ static u8 ov13_02226A5C(UnkStruct_ov13_02227244 *param0)
             Party *v7 = BattleSystem_Party(v0->unk_00, v0->unk_10);
             PCBoxes *v8 = ov16_0223E228(v0->unk_00);
 
-            if ((Party_GetCurrentCount(v7) == 6) && (PCBoxes_FirstEmptyBox(v8) == 18)) {
+            if ((Party_GetCurrentCount(v7) == 6) && (PcBoxes_FirstEmptyBox(v8) == 18)) {
                 MessageLoader_GetStrbuf(param0->unk_10, 45, param0->unk_18);
                 ov13_022279F4(param0);
                 param0->unk_114B = 8;

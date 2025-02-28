@@ -19,6 +19,7 @@
 #include "map_header.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_storage_system_manager.h"
 #include "ribbon.h"
 #include "save_player.h"
 #include "trainer_info.h"
@@ -26,7 +27,6 @@
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
-#include "unk_020797C8.h"
 
 BOOL ScrCmd_GivePokemon(ScriptContext *ctx)
 {
@@ -456,7 +456,7 @@ BOOL ScrCmd_19C(ScriptContext *param0)
         }
     }
 
-    v1 += GetTotalBoxedEggCount(v6);
+    v1 += PcBoxes_CountAllEggs(v6);
     *v5 = v1;
 
     return 0;

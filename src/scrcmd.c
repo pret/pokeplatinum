@@ -123,6 +123,7 @@
 #include "poffin.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "pokemon_storage_system_manager.h"
 #include "pokeradar.h"
 #include "poketch.h"
 #include "render_window.h"
@@ -211,7 +212,6 @@
 #include "unk_02071CD0.h"
 #include "unk_02071D40.h"
 #include "unk_020722AC.h"
-#include "unk_020797C8.h"
 #include "unk_0207DA28.h"
 #include "unk_02096420.h"
 #include "unk_02097B18.h"
@@ -6644,10 +6644,10 @@ static BOOL ScrCmd_249(ScriptContext *ctx)
         return 0;
     }
 
-    if (sub_02079CFC(v3, v8)) {
+    if (PcBoxes_CheckHasUnlockedWallpaper(v3, v8)) {
         *v2 = 0;
     } else {
-        sub_02079CD8(v3, v8);
+        PcBoxes_UnlockWallpaper(v3, v8);
         *v2 = v8 + 1;
     }
 
@@ -6728,7 +6728,7 @@ static BOOL ScrCmd_WriteSpeciesSeen(ScriptContext *ctx)
 static BOOL ScrCmd_252(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
-    u16 v1 = GetBoxedPokemonCount(SaveData_PCBoxes(ctx->fieldSystem->saveData));
+    u16 v1 = PcBoxes_CountAllBoxMons(SaveData_PCBoxes(ctx->fieldSystem->saveData));
     *v0 = 18 * (5 * 6) - v1;
 
     return 0;
@@ -8097,7 +8097,7 @@ static u32 sub_0204676C(SaveData *saveData)
 
         for (v9 = 0; v9 < 18; v9++) {
             for (v0 = 0; v0 < (5 * 6); v0++) {
-                v2 = GetBoxedPokemonFrom(v8, v9, v0);
+                v2 = PcBoxes_GetBoxMonAt(v8, v9, v0);
 
                 if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
                     v3 |= 1 << BoxPokemon_GetValue(v2, MON_DATA_FORM, NULL);

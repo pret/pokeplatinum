@@ -37,6 +37,7 @@
 #include "map_object.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_storage_system_manager.h"
 #include "pokeradar.h"
 #include "save_player.h"
 #include "script_manager.h"
@@ -49,7 +50,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
 #include "unk_0206CCB0.h"
-#include "unk_020797C8.h"
 #include "unk_02096420.h"
 #include "vars_flags.h"
 
@@ -515,7 +515,7 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
             PCBoxes *boxes = SaveData_PCBoxes(fieldSystem->saveData);
             Party *party = Party_GetFromSavedata(fieldSystem->saveData);
 
-            if (PCBoxes_FirstEmptyBox(boxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
+            if (PcBoxes_FirstEmptyBox(boxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
                 ScriptManager_Start(task, 8822, NULL, NULL);
             }
         }

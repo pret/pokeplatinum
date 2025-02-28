@@ -36,6 +36,7 @@
 #include "overlay_manager.h"
 #include "pltt_transfer.h"
 #include "pokemon_icon.h"
+#include "pokemon_storage_system_manager.h"
 #include "render_oam.h"
 #include "render_window.h"
 #include "sprite.h"
@@ -48,7 +49,6 @@
 #include "unk_020041CC.h"
 #include "unk_0200F174.h"
 #include "unk_02033200.h"
-#include "unk_020797C8.h"
 #include "unk_02099550.h"
 #include "vram_transfer.h"
 
@@ -537,7 +537,7 @@ void ov94_0223C584(UnkStruct_ov94_0223FD4C *param0)
 static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_110E) {
-        param0->unk_110C += GetPokemonCountInBox(param0->unk_00->unk_0C, param0->unk_110E - 1);
+        param0->unk_110C += PcBoxes_CountMonsInBox(param0->unk_00->unk_0C, param0->unk_110E - 1);
         param0->unk_110E++;
 
         if (param0->unk_110E == 19) {

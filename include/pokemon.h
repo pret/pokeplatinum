@@ -826,7 +826,7 @@ BOOL sub_02078838(Pokemon *mon);
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID);
 int sub_020788D0(int param0);
 void sub_0207893C(Pokemon *mon);
-void RestoreBoxedPokemonPP(BoxPokemon *boxMon);
+void BoxPokemon_RestorePP(BoxPokemon *boxMon);
 
 /**
  * @brief Load the animation frames for a given species and a client type

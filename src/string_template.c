@@ -20,6 +20,7 @@
 #include "heap.h"
 #include "message.h"
 #include "pokemon.h"
+#include "pokemon_storage_system_manager.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"
@@ -28,7 +29,6 @@
 #include "trainer_info.h"
 #include "unk_02014D38.h"
 #include "unk_02017038.h"
-#include "unk_020797C8.h"
 #include "unk_020996D0.h"
 
 #include "res/text/bank/common_strings.h"
@@ -423,7 +423,7 @@ void StringTemplate_SetGenderMarker(StringTemplate *template, u32 idx, enum Gend
 
 void StringTemplate_SetPCBoxName(StringTemplate *template, u32 idx, const PCBoxes *boxes, u32 boxIdx)
 {
-    CopyBoxName(boxes, boxIdx, template->templateBuf);
+    PcBoxes_CopyName(boxes, boxIdx, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 

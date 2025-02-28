@@ -13,10 +13,10 @@
 #include "overlay_manager.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_storage_system_manager.h"
 #include "poketch.h"
 #include "trainer_info.h"
 #include "unk_0202DA40.h"
-#include "unk_020797C8.h"
 #include "unk_0207AE68.h"
 
 FS_EXTERN_OVERLAY(overlay95);
@@ -194,8 +194,8 @@ static void ov94_022448E8(UnkStruct_ov94_0223FD4C *param0)
     } else {
         int v1 = 0, v2 = 0;
 
-        InitializeBoxedPokemonAt(param0->unk_00->unk_0C, param0->unk_124.unk_00, param0->unk_124.unk_04);
-        GetNextAvailableBoxSpaceAfter(param0->unk_00->unk_0C, &v1, &v2);
-        StorePokemonInBox(param0->unk_00->unk_0C, v1, Pokemon_GetBoxPokemon(v0));
+        PcBoxes_InitBoxMonAt(param0->unk_00->unk_0C, param0->unk_124.unk_00, param0->unk_124.unk_04);
+        PcBoxes_GetFirstAvailableMonSpaceAfter(param0->unk_00->unk_0C, &v1, &v2);
+        PcBoxes_TryStoreMonInBox(param0->unk_00->unk_0C, v1, Pokemon_GetBoxPokemon(v0));
     }
 }

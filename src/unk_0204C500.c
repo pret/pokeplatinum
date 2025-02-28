@@ -17,12 +17,12 @@
 #include "inlines.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "pokemon_storage_system_manager.h"
 #include "save_player.h"
 #include "system_flags.h"
 #include "trainer_info.h"
 #include "unk_0202EEC0.h"
 #include "unk_0202F180.h"
-#include "unk_020797C8.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
 
@@ -73,7 +73,7 @@ BOOL ScrCmd_255(ScriptContext *param0)
     for (v6 = 0; v6 < 6; v6++) {
         TransferDataToMon(transferData, v6, v2);
         sub_0209304C(v2, v3, 2, 0, 32);
-        v5 = StorePokemonInPc(v1, Pokemon_GetBoxPokemon(v2));
+        v5 = PcBoxes_TryStoreBoxMon(v1, Pokemon_GetBoxPokemon(v2));
         GF_ASSERT(v5);
         sub_0202F180(param0->fieldSystem->saveData, v2);
     }

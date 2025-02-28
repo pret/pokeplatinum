@@ -34,6 +34,7 @@
 #include "journal.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_storage_system_manager.h"
 #include "render_window.h"
 #include "savedata.h"
 #include "strbuf.h"
@@ -49,7 +50,6 @@
 #include "unk_020393C8.h"
 #include "unk_02039814.h"
 #include "unk_0206CCB0.h"
-#include "unk_020797C8.h"
 #include "vars_flags.h"
 
 static void ov94_02242B54(BgConfig *param0);
@@ -1250,9 +1250,9 @@ static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
     if (param0->unk_110 != 18) {
         Pokemon *v0 = Pokemon_New(HEAP_ID_62);
 
-        Pokemon_FromBoxPokemon(GetBoxedPokemonFrom(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
+        Pokemon_FromBoxPokemon(PcBoxes_GetBoxMonAt(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);
-        InitializeBoxedPokemonAt(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
+        PcBoxes_InitBoxMonAt(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
         Heap_FreeToHeap(v0);
     } else {
         Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_112);
@@ -1313,8 +1313,8 @@ static void ov94_02243BC4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
     } else {
         int v4 = 0;
 
-        GetNextAvailableBoxSpaceAfter(param0->unk_00->unk_0C, &param2, &v4);
-        StorePokemonInBox(param0->unk_00->unk_0C, param2, Pokemon_GetBoxPokemon(param1));
+        PcBoxes_GetFirstAvailableMonSpaceAfter(param0->unk_00->unk_0C, &param2, &v4);
+        PcBoxes_TryStoreMonInBox(param0->unk_00->unk_0C, param2, Pokemon_GetBoxPokemon(param1));
 
         param0->unk_124.unk_00 = param2;
         param0->unk_124.unk_04 = v4;
@@ -1361,8 +1361,8 @@ static void ov94_02243CE4(UnkStruct_ov94_0223FD4C *param0, Pokemon *param1, int 
     } else {
         int v3 = 0;
 
-        GetNextAvailableBoxSpaceAfter(param0->unk_00->unk_0C, &param2, &v3);
-        StorePokemonInBox(param0->unk_00->unk_0C, param2, Pokemon_GetBoxPokemon(param1));
+        PcBoxes_GetFirstAvailableMonSpaceAfter(param0->unk_00->unk_0C, &param2, &v3);
+        PcBoxes_TryStoreMonInBox(param0->unk_00->unk_0C, param2, Pokemon_GetBoxPokemon(param1));
 
         param0->unk_124.unk_00 = param2;
         param0->unk_124.unk_04 = v3;

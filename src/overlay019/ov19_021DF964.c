@@ -11,9 +11,9 @@
 #include "overlay019/struct_ov19_021DF964.h"
 
 #include "enums.h"
+#include "pokemon_storage_system_manager.h"
 #include "system.h"
 #include "unk_02005474.h"
-#include "unk_020797C8.h"
 
 static void ov19_021DFCF8(UnkStruct_ov19_021DF964 *param0);
 static void ov19_021DFD08(UnkStruct_ov19_021DF964 *param0, UnkEnum_021DFB94 param1);
@@ -147,7 +147,7 @@ void ov19_021DFB94(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
     ov19_021DFD08(v0, UnkEnum_021DFB94_06);
     ov19_021DFD08(v0, UnkEnum_021DFB94_07);
 
-    v2 = sub_02079D20(v1);
+    v2 = PcBoxes_CountUnlockedWallpapers(v1);
 
     if (v2 > 0) {
         ov19_021DFD08(v0, UnkEnum_021DFB94_08);
@@ -195,7 +195,7 @@ void ov19_021DFC04(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
         }
 
         for (v3 = 0; v3 < 8; v3++) {
-            if (sub_02079CFC(v2, v3)) {
+            if (PcBoxes_CheckHasUnlockedWallpaper(v2, v3)) {
                 if (v4) {
                     v4--;
                 } else {
