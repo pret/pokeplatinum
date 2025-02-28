@@ -14,7 +14,7 @@
 
 #define FIELD_MENU_ENTRIES_MAX 28
 
-typedef struct {
+typedef struct FieldMenuManager {
     FieldSystem *fieldSystem;
     SysTask *sysTask;
     Window menuWindow;

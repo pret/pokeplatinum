@@ -118,7 +118,7 @@ typedef struct ScriptManager {
     u8 numActiveContexts;
     u16 scriptID;
     BOOL battleResult;
-    FieldMenuManager *unk_10; // appears to be used for multichoice windows
+    FieldMenuManager *fieldMenuMan; // used for multichoice windows
     Window window;
     Menu *ctrlUI;
     int playerDir;
