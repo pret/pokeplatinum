@@ -38,6 +38,7 @@
 #include "palette.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "pokemon_storage_system_manager.h"
 #include "savedata.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -50,7 +51,6 @@
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "unk_02030A80.h"
-#include "unk_020797C8.h"
 #include "unk_0208B284.h"
 
 typedef struct {
@@ -1236,7 +1236,7 @@ static void ov62_0223B158(UnkStruct_0208C06C *param0)
             v0->unk_04.unk_176 = 0;
         }
         if ((v0->unk_04.unk_176 >= (16 + 8)) && (v0->unk_04.unk_176 < (16 + 8 + 8))) {
-            if (sub_02079CFC(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
+            if (PcBoxes_CheckHasUnlockedWallpaper(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
                 (void)0;
             }
         }
@@ -1269,7 +1269,7 @@ static void ov62_0223B230(UnkStruct_0208C06C *param0)
         }
 
         if ((v0->unk_04.unk_176 >= (16 + 8)) && (v0->unk_04.unk_176 < (16 + 8 + 8))) {
-            if (sub_02079CFC(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
+            if (PcBoxes_CheckHasUnlockedWallpaper(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
                 v0->unk_04.unk_176 = 0;
             }
         }

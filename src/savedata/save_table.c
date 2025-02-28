@@ -10,6 +10,7 @@
 #include "party.h"
 #include "poffin.h"
 #include "pokedex.h"
+#include "pokemon_storage_system_manager.h"
 #include "poketch.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
@@ -42,7 +43,6 @@
 #include "unk_02030880.h"
 #include "unk_02030CE8.h"
 #include "unk_02030EA4.h"
-#include "unk_020797C8.h"
 #include "vars_flags.h"
 
 const SaveTableEntry gSaveTable[] = {

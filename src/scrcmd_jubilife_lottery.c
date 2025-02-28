@@ -12,8 +12,8 @@
 #include "inlines.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_storage_system_manager.h"
 #include "system_vars.h"
-#include "unk_020797C8.h"
 #include "vars_flags.h"
 
 static u8 CheckTrainerIdForMatch(u16 winningLotteryId, u16 pokemonOtId);
@@ -64,7 +64,7 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
     BoxPokemon *boxPokemon;
     for (boxIndex = 0; boxIndex < MAX_PC_BOXES; boxIndex++) {
         for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
-            boxPokemon = GetBoxedPokemonFrom(pcBoxes, boxIndex, monPosInBox);
+            boxPokemon = PcBoxes_GetBoxMonAt(pcBoxes, boxIndex, monPosInBox);
             boxPokemonSpeciesId = BoxPokemon_GetValue(boxPokemon, MON_DATA_SPECIES, NULL);
 
             if (boxPokemonSpeciesId && BoxPokemon_GetValue(boxPokemon, MON_DATA_IS_EGG, NULL) == 0) {
