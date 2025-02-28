@@ -104,8 +104,8 @@ typedef struct {
 
 typedef struct {
     Sprite *unk_00;
-    int unk_04;
-    int unk_08;
+    int boxPosition;
+    int boxId;
 } UnkStruct_ov97_02234A2C_sub2;
 
 typedef struct {
@@ -378,33 +378,33 @@ static void ov97_02233CE4(UnkStruct_ov97_02234A2C *param0)
 
 static void ov97_02233D10(UnkStruct_ov97_02234A2C *param0)
 {
-    int v0, v1, v2;
-    u16 v3;
-    BoxPokemon *v4;
-    BoxPokemonGBA *v5;
+    int i, v1, v2;
+    u16 species;
+    BoxPokemon *boxMon;
+    BoxPokemonGBA *boxMonGBA;
     Pokemon v6;
-    PalParkTransfer *v7;
+    PalParkTransfer *transfer;
 
-    v7 = SaveData_PalParkTransfer(param0->unk_10);
-    v4 = Pokemon_GetBoxPokemon(&v6);
+    transfer = SaveData_PalParkTransfer(param0->unk_10);
+    boxMon = Pokemon_GetBoxPokemon(&v6);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v2 = param0->unk_42C[v0].unk_04;
-        v1 = param0->unk_42C[v0].unk_08;
-        v5 = &param0->unk_E8E0->boxes[v1][v2];
+    for (i = 0; i < 6; i++) {
+        v2 = param0->unk_42C[i].boxPosition;
+        v1 = param0->unk_42C[i].boxId;
+        boxMonGBA = &param0->unk_E8E0->boxes[v1][v2];
 
-        BoxMonGBAToBoxMon(v5, v4);
-        sub_0202EFA4(v7, v4, v0);
+        BoxMonGBAToBoxMon(boxMonGBA, boxMon);
+        sub_0202EFA4(transfer, boxMon, i);
     }
 
-    v3 = 0;
+    species = SPECIES_NONE;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v2 = param0->unk_42C[v0].unk_04;
-        v1 = param0->unk_42C[v0].unk_08;
+    for (i = 0; i < 6; i++) {
+        v2 = param0->unk_42C[i].boxPosition;
+        v1 = param0->unk_42C[i].boxId;
 
         if ((v2 != -1) && (v1 != 14)) {
-            SetGBABoxMonData(&(param0->unk_E8E0->boxes[v1][v2]), 11, (u8 *)&v3);
+            SetGBABoxMonData(&(param0->unk_E8E0->boxes[v1][v2]), GBA_MON_DATA_SPECIES, (u8 *)&species);
         }
     }
 }
@@ -520,7 +520,7 @@ static void ov97_02233F74(void)
 
 static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
 {
-    int v0;
+    int i;
 
     NNS_G2dInitOamManagerModule();
 
@@ -528,8 +528,8 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
     param0->unk_28 = SpriteList_InitRendering(80, &param0->unk_2C, 78);
     SetSubScreenViewRect(&param0->unk_2C, 0, (256 * FX32_ONE));
 
-    for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_1B8[v0] = SpriteResourceCollection_New(3, v0, 78);
+    for (i = 0; i < 6; i++) {
+        param0->unk_1B8[i] = SpriteResourceCollection_New(3, i, 78);
     }
 
     param0->unk_1D0[0] = SpriteResourceCollection_AddTiles(param0->unk_1B8[0], 116, 26, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 78);
@@ -562,19 +562,19 @@ static void ov97_022340FC(AffineSpriteListTemplate *param0, UnkStruct_ov97_02234
     param0->heapID = 78;
 }
 
-static int ov97_02234124(UnkStruct_ov97_02234A2C *param0, int param1, int param2)
+static int GetGBABoxMonSpeciesAtBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), GBA_MON_DATA_SPECIES, NULL);
+    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_SPECIES, NULL);
 }
 
-static int ov97_02234148(UnkStruct_ov97_02234A2C *param0, int param1, int param2)
+static int IsGBABoxMonEggAtBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), GBA_MON_DATA_IS_EGG, NULL);
+    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_IS_EGG, NULL);
 }
 
-static int ov97_0223416C(UnkStruct_ov97_02234A2C *param0, int param1, int param2)
+static int GetGBABoxMonPersonalityAtBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[param1][param2]), GBA_MON_DATA_PERSONALITY, NULL);
+    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_PERSONALITY, NULL);
 }
 
 static void ov97_02234190(TouchScreenRect *rect, int param1, int param2, int param3, int param4)
@@ -669,7 +669,7 @@ static void ov97_02234278(int species, int param1, u32 personality, int gbaVersi
 }
 
 // speciesGBA is reused to store NDS species
-static void ov97_022342E4(int speciesGBA, int param1, int param2, int param3, Sprite *param4, void *param5, NARC *param6)
+static void ov97_022342E4(int speciesGBA, int isEgg, int form, int param3, Sprite *param4, void *param5, NARC *param6)
 {
     u32 v0;
     NNSG2dCharacterData *v1;
@@ -682,14 +682,14 @@ static void ov97_022342E4(int speciesGBA, int param1, int param2, int param3, Sp
             speciesGBA = SPECIES_NONE;
         }
 
-        v0 = PokeIconSpriteIndex(speciesGBA, param1, param2);
+        v0 = PokeIconSpriteIndex(speciesGBA, isEgg, form);
 
         ov97_022341EC(v0, &v1, param5, param6);
         MI_CpuCopyFast(v1->pRawData, v2->unk_0C, ((4 * 4) * 0x20));
 
         v2->unk_00 = (0x64 + param3 * (4 * 4)) * 0x20;
         v2->unk_08 = param4;
-        v2->unk_04 = PokeIconPaletteIndex(speciesGBA, param2, param1) + 8;
+        v2->unk_04 = PokeIconPaletteIndex(speciesGBA, form, isEgg) + 8;
     } else {
         v2->unk_08 = NULL;
     }
@@ -697,10 +697,10 @@ static void ov97_022342E4(int speciesGBA, int param1, int param2, int param3, Sp
 
 static void ov97_02234364(void)
 {
-    int v0;
+    int i;
     UnkStruct_ov97_0223F434 *v1 = Unk_ov97_0223F434;
 
-    for (v0 = 0; v0 < 30; v0++, v1++) {
+    for (i = 0; i < 30; i++, v1++) {
         if (v1->unk_08) {
             DC_FlushRange(v1->unk_0C, ((4 * 4) * 0x20));
             GX_LoadOBJ(v1->unk_0C, v1->unk_00, ((4 * 4) * 0x20));
@@ -711,7 +711,7 @@ static void ov97_02234364(void)
 
 static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
 {
-    int v0, v1, v2, gbaVersion, form;
+    int i, species, isEgg, gbaVersion, form;
     u32 personality;
     void *v6;
     NARC *v7;
@@ -719,26 +719,26 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
     v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 78);
     v6 = Heap_AllocFromHeapAtEnd(78, 4096);
 
-    for (v0 = 0; v0 < 30; v0++) {
-        if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][v0]), GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
-            v1 = ov97_02234124(param0, param0->unk_E8E4, v0);
-            v2 = ov97_02234148(param0, param0->unk_E8E4, v0);
-            personality = ov97_0223416C(param0, param0->unk_E8E4, v0);
+    for (i = 0; i < 30; i++) {
+        if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][i]), GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
+            species = GetGBABoxMonSpeciesAtBox(param0, param0->unk_E8E4, i);
+            isEgg = IsGBABoxMonEggAtBox(param0, param0->unk_E8E4, i);
+            personality = GetGBABoxMonPersonalityAtBox(param0, param0->unk_E8E4, i);
             gbaVersion = gSystem.gbaCartridgeVersion;
-            form = GetSpeciesGBAForm(ConvertGBASpeciesToDS(v1), personality, gbaVersion);
+            form = GetSpeciesGBAForm(ConvertGBASpeciesToDS(species), personality, gbaVersion);
 
-            ov97_022342E4(v1, v2, form, v0, param0->unk_20C[v0].unk_00, v6, v7);
-            Sprite_SetDrawFlag(param0->unk_20C[v0].unk_00, 1);
+            ov97_022342E4(species, isEgg, form, i, param0->unk_20C[i].unk_00, v6, v7);
+            Sprite_SetDrawFlag(param0->unk_20C[i].unk_00, 1);
 
-            if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][v0]), GBA_MON_DATA_HELD_ITEM, NULL)) {
-                Sprite_SetDrawFlag(param0->unk_20C[v0].unk_04, 1);
+            if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][i]), GBA_MON_DATA_HELD_ITEM, NULL)) {
+                Sprite_SetDrawFlag(param0->unk_20C[i].unk_04, 1);
             } else {
-                Sprite_SetDrawFlag(param0->unk_20C[v0].unk_04, 0);
+                Sprite_SetDrawFlag(param0->unk_20C[i].unk_04, 0);
             }
         } else {
-            ov97_022342E4(v1, v2, form, v0, NULL, v6, v7);
-            Sprite_SetDrawFlag(param0->unk_20C[v0].unk_00, 0);
-            Sprite_SetDrawFlag(param0->unk_20C[v0].unk_04, 0);
+            ov97_022342E4(species, isEgg, form, i, NULL, v6, v7);
+            Sprite_SetDrawFlag(param0->unk_20C[i].unk_00, 0);
+            Sprite_SetDrawFlag(param0->unk_20C[i].unk_04, 0);
         }
     }
 
@@ -822,7 +822,7 @@ static Sprite *ov97_02234638(UnkStruct_ov97_02234A2C *param0, int param1, int pa
 
 static void ov97_0223468C(UnkStruct_ov97_02234A2C *param0)
 {
-    int v0;
+    int i;
 
     ov97_02234190(&param0->unk_374[(30 + 0)], 228, 176, 50, 32);
     param0->unk_3FC[0] = ov97_02234638(param0, 228, 176, 6, 1);
@@ -834,10 +834,10 @@ static void ov97_0223468C(UnkStruct_ov97_02234A2C *param0)
     param0->unk_41C[0] = ov97_02234638(param0, 24, 176, 0, 1);
     param0->unk_374[(30 + 3)].rect.top = 0xff;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_42C[v0].unk_00 = ov97_02234638(param0, 36 * v0, 64, 9, 0);
-        param0->unk_42C[v0].unk_04 = -1;
-        param0->unk_42C[v0].unk_08 = 14;
+    for (i = 0; i < 6; i++) {
+        param0->unk_42C[i].unk_00 = ov97_02234638(param0, 36 * i, 64, 9, 0);
+        param0->unk_42C[i].boxPosition = -1;
+        param0->unk_42C[i].boxId = 14;
     }
 
     param0->unk_474 = 0;
@@ -1053,7 +1053,7 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int boxPosition)
     }
 
     for (v1 = -1, i = 0; v1 == -1 && i < 6; i++) {
-        if ((param0->unk_42C[i].unk_08 == param0->unk_E8E4) && (param0->unk_42C[i].unk_04 == boxPosition)) {
+        if ((param0->unk_42C[i].boxId == param0->unk_E8E4) && (param0->unk_42C[i].boxPosition == boxPosition)) {
             v1 = i;
         }
     }
@@ -1083,7 +1083,7 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int boxPosition)
         }
 
         for (i = 0; i < 6; i++) {
-            if (param0->unk_42C[i].unk_04 == -1) {
+            if (param0->unk_42C[i].boxPosition == -1) {
                 v2 = Sprite_GetPosition(param0->unk_20C[boxPosition].unk_00);
                 Sprite_SetPosition(param0->unk_42C[i].unk_00, v2);
                 v2 = Sprite_GetPosition(param0->unk_42C[i].unk_00);
@@ -1095,8 +1095,8 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int boxPosition)
                 Sprite_SetPosition(param0->unk_42C[i].unk_00, &v3);
                 Sprite_SetDrawFlag(param0->unk_42C[i].unk_00, 1);
 
-                param0->unk_42C[i].unk_04 = boxPosition;
-                param0->unk_42C[i].unk_08 = param0->unk_E8E4;
+                param0->unk_42C[i].boxPosition = boxPosition;
+                param0->unk_42C[i].boxId = param0->unk_E8E4;
                 param0->unk_474++;
 
                 return GBA_MON_STATE_1;
@@ -1105,7 +1105,7 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int boxPosition)
     } else {
         Sprite_SetDrawFlag(param0->unk_42C[v1].unk_00, 0);
 
-        param0->unk_42C[v1].unk_04 = -1;
+        param0->unk_42C[v1].boxPosition = -1;
         param0->unk_474--;
 
         return GBA_MON_STATE_2;
@@ -1116,13 +1116,13 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int boxPosition)
 
 static void ov97_022349E0(UnkStruct_ov97_02234A2C *param0)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if ((param0->unk_42C[v0].unk_04 != -1) && (param0->unk_42C[v0].unk_08 == param0->unk_E8E4)) {
-            Sprite_SetDrawFlag(param0->unk_42C[v0].unk_00, 1);
+    for (i = 0; i < 6; i++) {
+        if ((param0->unk_42C[i].boxPosition != -1) && (param0->unk_42C[i].boxId == param0->unk_E8E4)) {
+            Sprite_SetDrawFlag(param0->unk_42C[i].unk_00, 1);
         } else {
-            Sprite_SetDrawFlag(param0->unk_42C[v0].unk_00, 0);
+            Sprite_SetDrawFlag(param0->unk_42C[i].unk_00, 0);
         }
     }
 }
@@ -1457,17 +1457,17 @@ static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0)
 
 static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
 {
-    int v0, v1, v2, v3;
-    u32 v4;
+    int i, v1, v2, v3;
+    u32 personality;
     AffineSpriteListTemplate v5;
 
-    for (v0 = 0; v0 < 30; v0++) {
-        Sprite_SetDrawFlag(param0->unk_20C[v0].unk_00, 0);
-        Sprite_SetDrawFlag(param0->unk_20C[v0].unk_04, 0);
+    for (i = 0; i < 30; i++) {
+        Sprite_SetDrawFlag(param0->unk_20C[i].unk_00, 0);
+        Sprite_SetDrawFlag(param0->unk_20C[i].unk_04, 0);
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
-        Sprite_SetDrawFlag(param0->unk_42C[v0].unk_00, 0);
+    for (i = 0; i < 6; i++) {
+        Sprite_SetDrawFlag(param0->unk_42C[i].unk_00, 0);
     }
 
     Sprite_SetDrawFlag(param0->unk_3FC[0], 0);
@@ -1476,23 +1476,23 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
 
     ov97_022340FC(&v5, param0, &param0->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v5.position.x = FX32_ONE * (v0 * 40 + 28);
+    for (i = 0; i < 6; i++) {
+        v5.position.x = FX32_ONE * (i * 40 + 28);
         v5.position.y = FX32_ONE * 142;
 
-        param0->unk_478[v0] = SpriteList_AddAffine(&v5);
+        param0->unk_478[i] = SpriteList_AddAffine(&v5);
 
-        Sprite_SetAnimateFlag(param0->unk_478[v0], 1);
-        Sprite_SetAnim(param0->unk_478[v0], 10 + v0);
-        Sprite_SetExplicitPriority(param0->unk_478[v0], 1);
-        Sprite_SetDrawFlag(param0->unk_478[v0], 1);
+        Sprite_SetAnimateFlag(param0->unk_478[i], 1);
+        Sprite_SetAnim(param0->unk_478[i], 10 + i);
+        Sprite_SetExplicitPriority(param0->unk_478[i], 1);
+        Sprite_SetDrawFlag(param0->unk_478[i], 1);
 
-        v1 = ov97_02234124(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
-        v2 = ov97_02234148(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
-        v4 = ov97_0223416C(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
+        v1 = GetGBABoxMonSpeciesAtBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
+        v2 = IsGBABoxMonEggAtBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
+        personality = GetGBABoxMonPersonalityAtBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
         v3 = gSystem.gbaCartridgeVersion;
 
-        ov97_02234278(v1, v2, v4, v3, v0, param0->unk_478[v0]);
+        ov97_02234278(v1, v2, personality, v3, i, param0->unk_478[i]);
     }
 
     Graphics_LoadTilemapToBgLayer(116, 21, param0->unk_20, 2, 0, 32 * 24 * 2, 1, 78);
@@ -1519,10 +1519,10 @@ static void ov97_02235158(Window *param0)
 
 static void ov97_02235178(UnkStruct_ov97_02234A2C *param0)
 {
-    int v0;
+    int i;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        Sprite_Delete(param0->unk_478[v0]);
+    for (i = 0; i < 6; i++) {
+        Sprite_Delete(param0->unk_478[i]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -1532,9 +1532,9 @@ static void ov97_02235178(UnkStruct_ov97_02234A2C *param0)
     Sprite_SetDrawFlag(param0->unk_41C[0], 1);
     Sprite_SetDrawFlag(param0->unk_40C[0], 1);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_42C[v0].unk_04 = -1;
-        param0->unk_42C[v0].unk_08 = 14;
+    for (i = 0; i < 6; i++) {
+        param0->unk_42C[i].boxPosition = -1;
+        param0->unk_42C[i].boxId = 14;
     }
 
     param0->unk_474 = 0;
@@ -1542,23 +1542,23 @@ static void ov97_02235178(UnkStruct_ov97_02234A2C *param0)
 
 static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
 {
-    int v0;
+    int i;
 
     SetVBlankCallback(NULL, NULL);
 
-    for (v0 = 0; v0 < 30; v0++) {
-        if (param0->unk_20C[v0].unk_00) {
-            Sprite_Delete(param0->unk_20C[v0].unk_00);
+    for (i = 0; i < 30; i++) {
+        if (param0->unk_20C[i].unk_00) {
+            Sprite_Delete(param0->unk_20C[i].unk_00);
         }
 
-        if (param0->unk_20C[v0].unk_04) {
-            Sprite_Delete(param0->unk_20C[v0].unk_04);
+        if (param0->unk_20C[i].unk_04) {
+            Sprite_Delete(param0->unk_20C[i].unk_04);
         }
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (param0->unk_42C[v0].unk_00) {
-            Sprite_Delete(param0->unk_42C[v0].unk_00);
+    for (i = 0; i < 6; i++) {
+        if (param0->unk_42C[i].unk_00) {
+            Sprite_Delete(param0->unk_42C[i].unk_00);
         }
     }
 
@@ -1582,8 +1582,8 @@ static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
     SpriteTransfer_ResetCharTransfer(param0->unk_1D0[0]);
     SpriteTransfer_ResetPlttTransfer(param0->unk_1D0[1]);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        SpriteResourceCollection_Delete(param0->unk_1B8[v0]);
+    for (i = 0; i < 6; i++) {
+        SpriteResourceCollection_Delete(param0->unk_1B8[i]);
     }
 
     SpriteList_Delete(param0->unk_28);

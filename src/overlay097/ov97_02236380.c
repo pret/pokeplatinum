@@ -14,6 +14,8 @@
 #include "pokemon.h"
 #include "system.h"
 
+#define LAST_GBA_MOVE MOVE_PSYCHO_BOOST
+
 typedef struct {
     u16 gbaSpecies;
     u16 ndsSpecies;
@@ -1349,8 +1351,8 @@ static int ov97_02236E28(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
 void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
 {
     BOOL v0;
-    u32 v1;
-    int v2, v3;
+    u32 value;
+    int i, v3;
     int v4;
     u8 v5[10 + 1];
     u16 v6[12];
@@ -1358,208 +1360,208 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
     BoxPokemon_Init(param1);
 
     v0 = BoxPokemon_EnterDecryptionContext(param1);
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_PERSONALITY, NULL);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_PERSONALITY, NULL);
 
-    BoxPokemon_SetValue(param1, MON_DATA_PERSONALITY, (u8 *)&v1);
+    BoxPokemon_SetValue(param1, MON_DATA_PERSONALITY, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_SPECIES, NULL);
-    v1 = ConvertGBASpeciesToDS(v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPECIES, NULL);
+    value = ConvertGBASpeciesToDS(value);
 
-    BoxPokemon_SetValue(param1, MON_DATA_SPECIES, (u8 *)&v1);
+    BoxPokemon_SetValue(param1, MON_DATA_SPECIES, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_HELD_ITEM, NULL);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_HELD_ITEM, NULL);
 
-    if (v1) {
-        v1 = Item_FromGBAID(v1);
+    if (value) {
+        value = Item_FromGBAID(value);
     }
 
-    BoxPokemon_SetValue(param1, MON_DATA_HELD_ITEM, (u8 *)&v1);
+    BoxPokemon_SetValue(param1, MON_DATA_HELD_ITEM, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_OT_ID, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_OT_ID, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_OT_ID, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_OT_ID, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_EXP, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_EXP, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_EXP, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_EXP, (u8 *)&value);
 
-    v1 = 70;
-    BoxPokemon_SetValue(param1, MON_DATA_FRIENDSHIP, (u8 *)&v1);
+    value = 70;
+    BoxPokemon_SetValue(param1, MON_DATA_FRIENDSHIP, (u8 *)&value);
 
-    v1 = ov97_02236E28(param0, param1);
-    BoxPokemon_SetValue(param1, MON_DATA_ABILITY, (u8 *)&v1);
+    value = ov97_02236E28(param0, param1);
+    BoxPokemon_SetValue(param1, MON_DATA_ABILITY, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_MARKINGS, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_MARKS, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_MARKINGS, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_MARKS, (u8 *)&value);
 
     v4 = GetGBABoxMonData(param0, GBA_MON_DATA_LANGUAGE, NULL);
     BoxPokemon_SetValue(param1, MON_DATA_LANGUAGE, (u8 *)&v4);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_HP_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HP_EV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_HP_EV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HP_EV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_ATK_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_ATK_EV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_ATK_EV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_ATK_EV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_DEF_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_DEF_EV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_DEF_EV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_DEF_EV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_SPEED_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPEED_EV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPEED_EV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_SPEED_EV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_SPATK_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPATK_EV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPATK_EV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_SPATK_EV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_SPDEF_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPDEF_EV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPDEF_EV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_SPDEF_EV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_COOL, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_COOL, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_COOL, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_COOL, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_BEAUTY, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_BEAUTY, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_BEAUTY, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_BEAUTY, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_CUTE, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_CUTE, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_CUTE, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_CUTE, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_SMART, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SMART, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_SMART, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_SMART, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_TOUGH, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_TOUGH, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_TOUGH, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_TOUGH, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_SHEEN, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SHEEN, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_SHEEN, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_SHEEN, (u8 *)&value);
 
-    for (v2 = 0; v2 < LEARNED_MOVES_MAX; v2++) {
-        v1 = GetGBABoxMonData(param0, GBA_MON_DATA_MOVE1 + v2, NULL);
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        value = GetGBABoxMonData(param0, GBA_MON_DATA_MOVE1 + i, NULL);
 
-        if (v1 > 354) {
+        if (value > LAST_GBA_MOVE) {
             (void)0;
         }
 
-        BoxPokemon_SetValue(param1, MON_DATA_MOVE1 + v2, (u8 *)&v1);
+        BoxPokemon_SetValue(param1, MON_DATA_MOVE1 + i, (u8 *)&value);
 
-        v1 = GetGBABoxMonData(param0, GBA_MON_DATA_PP_BONUSES, NULL);
-        v1 = (v1 & (0x3 << (v2 * 2))) >> (v2 * 2);
+        value = GetGBABoxMonData(param0, GBA_MON_DATA_PP_BONUSES, NULL);
+        value = (value & (0x3 << (i * 2))) >> (i * 2);
 
-        BoxPokemon_SetValue(param1, MON_DATA_MOVE1_PP_UPS + v2, (u8 *)&v1);
+        BoxPokemon_SetValue(param1, MON_DATA_MOVE1_PP_UPS + i, (u8 *)&value);
 
-        v1 = BoxPokemon_GetValue(param1, MON_DATA_MOVE1_MAX_PP + v2, NULL);
-        BoxPokemon_SetValue(param1, MON_DATA_MOVE1_CUR_PP + v2, (u8 *)&v1);
+        value = BoxPokemon_GetValue(param1, MON_DATA_MOVE1_MAX_PP + i, NULL);
+        BoxPokemon_SetValue(param1, MON_DATA_MOVE1_CUR_PP + i, (u8 *)&value);
     }
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_HP_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HP_IV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_HP_IV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HP_IV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_ATK_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_ATK_IV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_ATK_IV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_ATK_IV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_DEF_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_DEF_IV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_DEF_IV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_DEF_IV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_SPEED_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPEED_IV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPEED_IV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_SPEED_IV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_SPATK_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPATK_IV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPATK_IV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_SPATK_IV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_SPDEF_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPDEF_IV, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPDEF_IV, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_SPDEF_IV, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_IS_EGG, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_IS_EGG, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_IS_EGG, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_IS_EGG, (u8 *)&value);
 
     v3 = GetGBABoxMonData(param0, GBA_MON_DATA_COOL_RIBBON, NULL);
 
     if (v3 <= 4) {
-        for (v2 = 0; v2 < v3; v2++) {
-            v1 = 1;
-            BoxPokemon_SetValue(param1, MON_DATA_HOENN_COOL_RIBBON + v2, (u8 *)&v1);
+        for (i = 0; i < v3; i++) {
+            value = 1;
+            BoxPokemon_SetValue(param1, MON_DATA_HOENN_COOL_RIBBON + i, (u8 *)&value);
         }
     }
 
     v3 = GetGBABoxMonData(param0, GBA_MON_DATA_BEAUTY_RIBBON, NULL);
 
     if (v3 <= 4) {
-        for (v2 = 0; v2 < v3; v2++) {
-            v1 = 1;
-            BoxPokemon_SetValue(param1, MON_DATA_HOENN_BEAUTY_RIBBON + v2, (u8 *)&v1);
+        for (i = 0; i < v3; i++) {
+            value = 1;
+            BoxPokemon_SetValue(param1, MON_DATA_HOENN_BEAUTY_RIBBON + i, (u8 *)&value);
         }
     }
 
     v3 = GetGBABoxMonData(param0, GBA_MON_DATA_CUTE_RIBBON, NULL);
 
     if (v3 <= 4) {
-        for (v2 = 0; v2 < v3; v2++) {
-            v1 = 1;
-            BoxPokemon_SetValue(param1, MON_DATA_HOENN_CUTE_RIBBON + v2, (u8 *)&v1);
+        for (i = 0; i < v3; i++) {
+            value = 1;
+            BoxPokemon_SetValue(param1, MON_DATA_HOENN_CUTE_RIBBON + i, (u8 *)&value);
         }
     }
 
     v3 = GetGBABoxMonData(param0, GBA_MON_DATA_SMART_RIBBON, NULL);
 
     if (v3 <= 4) {
-        for (v2 = 0; v2 < v3; v2++) {
-            v1 = 1;
-            BoxPokemon_SetValue(param1, MON_DATA_HOENN_SMART_RIBBON + v2, (u8 *)&v1);
+        for (i = 0; i < v3; i++) {
+            value = 1;
+            BoxPokemon_SetValue(param1, MON_DATA_HOENN_SMART_RIBBON + i, (u8 *)&value);
         }
     }
 
     v3 = GetGBABoxMonData(param0, GBA_MON_DATA_TOUGH_RIBBON, NULL);
 
     if (v3 <= 4) {
-        for (v2 = 0; v2 < v3; v2++) {
-            v1 = 1;
-            BoxPokemon_SetValue(param1, MON_DATA_HOENN_TOUGH_RIBBON + v2, (u8 *)&v1);
+        for (i = 0; i < v3; i++) {
+            value = 1;
+            BoxPokemon_SetValue(param1, MON_DATA_HOENN_TOUGH_RIBBON + i, (u8 *)&value);
         }
     }
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_CHAMPION_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_CHAMPION_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_CHAMPION_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_CHAMPION_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_WINNING_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_WINNING_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_WINNING_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_WINNING_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_VICTORY_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_VICTORY_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_VICTORY_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_VICTORY_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_ARTIST_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_ARTIST_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_ARTIST_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_ARTIST_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_EFFORT_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_EFFORT_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_EFFORT_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_EFFORT_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_MARINE_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_MARINE_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_MARINE_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_MARINE_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_LAND_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_LAND_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_LAND_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_LAND_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_SKY_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_SKY_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_SKY_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_SKY_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_COUNTRY_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_COUNTRY_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_COUNTRY_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_COUNTRY_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_NATIONAL_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_NATIONAL_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_NATIONAL_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_NATIONAL_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_EARTH_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_EARTH_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_EARTH_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_EARTH_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_WORLD_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_WORLD_RIBBON, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_WORLD_RIBBON, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HOENN_WORLD_RIBBON, (u8 *)&value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_MODERN_FATEFUL_ENCOUNTER, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, (u8 *)&v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_MODERN_FATEFUL_ENCOUNTER, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, (u8 *)&value);
 
-    v1 = BoxPokemon_GetGender(param1);
-    BoxPokemon_SetValue(param1, MON_DATA_GENDER, (u8 *)&v1);
+    value = BoxPokemon_GetGender(param1);
+    BoxPokemon_SetValue(param1, MON_DATA_GENDER, (u8 *)&value);
 
     if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_UNOWN) {
-        v1 = GetGBABoxMonData(param0, GBA_MON_DATA_PERSONALITY, NULL);
-        v1 = (((v1 & 0x3000000) >> 18) | ((v1 & 0x30000) >> 12) | ((v1 & 0x300) >> 6) | (v1 & 0x3)) % 28;
+        value = GetGBABoxMonData(param0, GBA_MON_DATA_PERSONALITY, NULL);
+        value = (((value & 0x3000000) >> 18) | ((value & 0x30000) >> 12) | ((value & 0x300) >> 6) | (value & 0x3)) % 28;
 
-        BoxPokemon_SetValue(param1, MON_DATA_FORM, (u8 *)&v1);
+        BoxPokemon_SetValue(param1, MON_DATA_FORM, (u8 *)&value);
     }
 
     if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_DEOXYS) {
@@ -1567,20 +1569,20 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
         default:
         case RUBY:
         case SAPPHIRE:
-            v1 = 0;
+            value = 0;
             break;
         case FIRERED:
-            v1 = 1;
+            value = 1;
             break;
         case LEAFGREEN:
-            v1 = 2;
+            value = 2;
             break;
         case EMERALD:
-            v1 = 3;
+            value = 3;
             break;
         }
 
-        BoxPokemon_SetValue(param1, MON_DATA_FORM, (u8 *)&v1);
+        BoxPokemon_SetValue(param1, MON_DATA_FORM, (u8 *)&value);
     }
 
     GetGBABoxMonData(param0, GBA_MON_DATA_NICKNAME, &v5[0]);
@@ -1589,31 +1591,31 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
     BoxPokemon_SetValue(param1, MON_DATA_NICKNAME_AND_FLAG, &v6[0]);
 
     if (GetGBABoxMonData(param0, GBA_MON_DATA_LANGUAGE, NULL) != gGameLanguage) {
-        v1 = 1;
-        BoxPokemon_SetValue(param1, MON_DATA_HAS_NICKNAME, &v1);
+        value = 1;
+        BoxPokemon_SetValue(param1, MON_DATA_HAS_NICKNAME, &value);
     }
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_MET_GAME, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_MET_GAME, &v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_MET_GAME, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_MET_GAME, &value);
 
     GetGBABoxMonData(param0, GBA_MON_DATA_OT_NAME, &v5[0]);
     ov97_0223936C(&v5[0], &v6[0], 8, v4);
 
     BoxPokemon_SetValue(param1, MON_DATA_OTNAME, &v6[0]);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_MET_LOCATION, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HATCH_LOCATION, &v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_MET_LOCATION, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_HATCH_LOCATION, &value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_POKERUS, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_POKERUS, &v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_POKERUS, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_POKERUS, &value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_POKEBALL, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_POKEBALL, &v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_POKEBALL, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_POKEBALL, &value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_MET_LEVEL, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_MET_LEVEL, &v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_MET_LEVEL, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_MET_LEVEL, &value);
 
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_OT_GENDER, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_OT_GENDER, &v1);
+    value = GetGBABoxMonData(param0, GBA_MON_DATA_OT_GENDER, NULL);
+    BoxPokemon_SetValue(param1, MON_DATA_OT_GENDER, &value);
     BoxPokemon_ExitDecryptionContext(param1, v0);
 }

@@ -72,9 +72,9 @@ static int sub_0202EF40(PalParkTransfer *param0, u32 param1)
     return v1;
 }
 
-void sub_0202EFA4(PalParkTransfer *param0, BoxPokemon *param1, int param2)
+void sub_0202EFA4(PalParkTransfer *transfer, BoxPokemon *boxMon, int param2)
 {
-    Pokemon_FromBoxPokemon(param1, &param0->unk_00[param2]);
+    Pokemon_FromBoxPokemon(boxMon, &transfer->unk_00[param2]);
 }
 
 void sub_0202EFB8(PalParkTransfer *param0, u32 param1)
