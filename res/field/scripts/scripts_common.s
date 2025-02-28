@@ -5,7 +5,7 @@
 
     .data
 
-    ScriptEntry _02FC
+    ScriptEntry Common_HandleSignpostInput
     ScriptEntry _034C
     ScriptEntry _00EE
     ScriptEntry _03E8
@@ -226,26 +226,26 @@ _02F4:
     MoveAction_104
     EndMovement
 
-_02FC:
+Common_HandleSignpostInput:
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 0, _033A
-    GoToIfEq 0x8008, 1, _0341
-    ScrCmd_03B 0x800C
+    GoToIfEq 0x8008, 0, Common_ScrollOutSignpost
+    GoToIfEq 0x8008, 1, Common_RemoveSignpostOpenFieldMenu
+    GetSignpostInput
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 1, _0341
-    ScrCmd_038 2
+    GoToIfEq 0x8008, 1, Common_RemoveSignpostOpenFieldMenu
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_OUT
     ReturnCommonScript
     End
 
-_033A:
-    ScrCmd_038 2
+Common_ScrollOutSignpost:
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_OUT
     ReturnCommonScript
     End
 
-_0341:
-    ScrCmd_038 4
-    ScrCmd_039
-    ScrCmd_03C
+Common_RemoveSignpostOpenFieldMenu:
+    SetSignpostCommand SIGNPOST_CMD_REMOVE
+    WaitForSignpostDone
+    ShowFieldMenu
     ReturnCommonScript
     End
 

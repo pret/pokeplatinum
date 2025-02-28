@@ -84,6 +84,7 @@ enum ScriptContextType {
 };
 
 #define SCRIPT_ID(chunk, id)                    ((SCRIPT_ID_OFFSET_##chunk) + id)
+#define SCRIPT_ID_OFFSET_COMMON_SCRIPTS         2000
 #define SCRIPT_ID_OFFSET_SINGLE_BATTLES         3000
 #define SCRIPT_ID_OFFSET_DOUBLE_BATTLES         5000
 #define SCRIPT_ID_OFFSET_HIDDEN_ITEMS           8000

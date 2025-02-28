@@ -101,7 +101,7 @@ BOOL HoneyTree_TryInteract(FieldSystem *fieldSystem, int *eventId)
     int x, z;
     BOOL isFacingHoneyTree;
 
-    *eventId = 2008; // Loads script index 8 from scripts_unk_0211.s, which is the common Honey Tree script.
+    *eventId = SCRIPT_ID_OFFSET_COMMON_SCRIPTS + 8;
 
     x = Player_GetXPos(fieldSystem->playerAvatar);
     z = Player_GetZPos(fieldSystem->playerAvatar);
