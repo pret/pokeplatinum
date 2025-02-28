@@ -14,8 +14,6 @@
 #include "pokemon.h"
 #include "system.h"
 
-#define LAST_GBA_MOVE MOVE_PSYCHO_BOOST
-
 typedef struct {
     u16 gbaSpecies;
     u16 ndsSpecies;
@@ -1434,7 +1432,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         value = GetGBABoxMonData(param0, GBA_MON_DATA_MOVE1 + i, NULL);
 
-        if (value > LAST_GBA_MOVE) {
+        if (value > GBA_NUM_MOVES) {
             (void)0;
         }
 
