@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 15,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 2,
@@ -16,9 +16,9 @@
             "y": 1
         },
         {
-            "graphics_id": 3,
-            "movement_type": 42,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
+            "movement_type": "MOVEMENT_TYPE_WALK_SOUTH_WEST_NORTH_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 3,
             "initial_dir": 1,
@@ -30,9 +30,9 @@
             "y": 1
         },
         {
-            "graphics_id": 5,
-            "movement_type": 8,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 1,
@@ -44,9 +44,9 @@
             "y": 1
         },
         {
-            "graphics_id": 1,
-            "movement_type": 41,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+            "movement_type": "MOVEMENT_TYPE_WALK_NORTH_EAST_SOUTH_WEST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 4,
             "initial_dir": 0,
@@ -62,13 +62,13 @@
         {
             "x": 8,
             "z": 3,
-            "dest_header_id": 77,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_2F",
             "dest_warp_id": 1
         },
         {
             "x": 1,
             "z": 1,
-            "dest_header_id": 79,
+            "dest_header_id": "MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_4F",
             "dest_warp_id": 0
         }
     ],

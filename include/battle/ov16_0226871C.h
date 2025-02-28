@@ -11,7 +11,7 @@
 
 void ov16_02268744(BgConfig *param0);
 void ov16_022687A0(BgConfig *param0);
-void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *param2, int param3, u8 *param4);
+void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int param3, u8 *param4);
 void ov16_02268A14(UnkStruct_ov16_02268A14 *param0);
 void ov16_02268A88(UnkStruct_ov16_02268A14 *param0);
 void ov16_02268B8C(UnkStruct_ov16_02268A14 *param0);

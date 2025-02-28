@@ -10,9 +10,9 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "math.h"
+#include "poketch_memory.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_02099D44.h"
 
 typedef struct {
     u8 unk_00;
@@ -64,7 +64,7 @@ static BOOL ov42_0225621C(UnkStruct_ov42_0225621C *param0, PoketchSystem *poketc
 {
     param0->unk_04 = param3;
 
-    if (sub_02099D7C(param3, &(param0->unk_08), sizeof(param0->unk_08)) == 0) {
+    if (PoketchMemory_Read32(param3, &(param0->unk_08), sizeof(param0->unk_08)) == FALSE) {
         param0->unk_08.unk_00 = 1;
     }
 
@@ -81,7 +81,7 @@ static BOOL ov42_0225621C(UnkStruct_ov42_0225621C *param0, PoketchSystem *poketc
 
 static void ov42_02256260(UnkStruct_ov42_0225621C *param0)
 {
-    sub_02099D54(param0->unk_04, &(param0->unk_08), sizeof(param0->unk_08));
+    PoketchMemory_Write32(param0->unk_04, &(param0->unk_08), sizeof(param0->unk_08));
     ov42_0225648C(param0->unk_0C);
     Heap_FreeToHeap(param0);
 }

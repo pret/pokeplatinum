@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 27,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_TEALA",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 1,
             "initial_dir": 3,
@@ -16,9 +16,9 @@
             "y": 0
         },
         {
-            "graphics_id": 141,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CHERYL",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 492,
             "script": 2,
             "initial_dir": 2,
@@ -30,9 +30,9 @@
             "y": 0
         },
         {
-            "graphics_id": 145,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_MIRA",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 493,
             "script": 3,
             "initial_dir": 3,
@@ -44,9 +44,9 @@
             "y": 0
         },
         {
-            "graphics_id": 142,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_RILEY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 494,
             "script": 4,
             "initial_dir": 1,
@@ -58,9 +58,9 @@
             "y": 0
         },
         {
-            "graphics_id": 143,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_MARLEY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 495,
             "script": 5,
             "initial_dir": 3,
@@ -72,9 +72,9 @@
             "y": 0
         },
         {
-            "graphics_id": 144,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BUCK",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 496,
             "script": 6,
             "initial_dir": 0,

@@ -4078,7 +4078,7 @@ static BOOL BattleController_ReplaceFainted(BattleSystem *battleSys, BattleConte
     for (i = 0; i < maxBattlers; i++) {
         battleCtx->battlerStatusFlags[i] &= ~BATTLER_STATUS_SWITCHING;
 
-        if (((battleType & BATTLE_TYPE_DOUBLES) && (battleType & (BATTLE_TYPE_2vs2 | BATTLE_TYPE_TAG)) == FALSE)
+        if (((battleType & BATTLE_TYPE_DOUBLES) && (battleType & BATTLE_TYPE_2vs2_TAG) == FALSE)
             || ((battleType & BATTLE_TYPE_TAG) && Battler_Side(battleSys, i) == FALSE)) {
             // If both of this side's mons have been defeated, replace slot 1 first.
             if (battleCtx->battleMons[i].curHP == 0 && battleCtx->battleMons[i ^ 2].curHP == 0 && (i & 2)) {

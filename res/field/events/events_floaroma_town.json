@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 12,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 5,
             "initial_dir": 1,
@@ -16,9 +16,9 @@
             "y": 5
         },
         {
-            "graphics_id": 6,
-            "movement_type": 5,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_WANDER_WEST_AND_EAST",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 4,
             "initial_dir": 3,
@@ -30,9 +30,9 @@
             "y": 5
         },
         {
-            "graphics_id": 3,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 3,
             "initial_dir": 1,
@@ -44,9 +44,9 @@
             "y": 5
         },
         {
-            "graphics_id": 13,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 11,
             "initial_dir": 1,
@@ -58,9 +58,9 @@
             "y": 5
         },
         {
-            "graphics_id": 6,
-            "movement_type": 16,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_LASS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 6,
             "initial_dir": 2,
@@ -72,9 +72,9 @@
             "y": 5
         },
         {
-            "graphics_id": 100,
-            "movement_type": 47,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
@@ -86,9 +86,9 @@
             "y": 0
         },
         {
-            "graphics_id": 100,
-            "movement_type": 47,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_UNK_100",
+            "movement_type": "MOVEMENT_TYPE_BERRY_SOIL",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2800,
             "initial_dir": 0,
@@ -102,9 +102,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 17,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 417,
             "script": 2,
             "initial_dir": 3,
@@ -116,9 +116,9 @@
             "y": 5
         },
         {
-            "graphics_id": 124,
-            "movement_type": 16,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 417,
             "script": 2,
             "initial_dir": 2,
@@ -130,9 +130,9 @@
             "y": 5
         },
         {
-            "graphics_id": 91,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_MAP_SIGNPOST",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 8,
             "initial_dir": 0,
@@ -146,9 +146,9 @@
             "y": 0
         },
         {
-            "graphics_id": 93,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 9,
             "initial_dir": 0,
@@ -160,9 +160,9 @@
             "y": 0
         },
         {
-            "graphics_id": 93,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SIGNBOARD",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 10,
             "initial_dir": 0,
@@ -176,9 +176,9 @@
             "y": 0
         },
         {
-            "graphics_id": 52,
-            "movement_type": 2,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CAMPER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 7,
             "initial_dir": 1,
@@ -194,55 +194,55 @@
         {
             "x": 184,
             "z": 657,
-            "dest_header_id": 427,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_MART",
             "dest_warp_id": 0
         },
         {
             "x": 176,
             "z": 666,
-            "dest_header_id": 428,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_POKECENTER_1F",
             "dest_warp_id": 0
         },
         {
             "x": 180,
             "z": 651,
-            "dest_header_id": 430,
+            "dest_header_id": "MAP_HEADER_FLOWER_SHOP",
             "dest_warp_id": 0
         },
         {
             "x": 184,
             "z": 666,
-            "dest_header_id": 431,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_SOUTHEAST_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 171,
             "z": 654,
-            "dest_header_id": 432,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE",
             "dest_warp_id": 0
         },
         {
             "x": 180,
             "z": 612,
-            "dest_header_id": 256,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
             "dest_warp_id": 0
         },
         {
             "x": 181,
             "z": 612,
-            "dest_header_id": 256,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
             "dest_warp_id": 1
         },
         {
             "x": 162,
             "z": 641,
-            "dest_header_id": 256,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
             "dest_warp_id": 3
         },
         {
             "x": 163,
             "z": 641,
-            "dest_header_id": 256,
+            "dest_header_id": "MAP_HEADER_FLOAROMA_MEADOW",
             "dest_warp_id": 4
         }
     ],

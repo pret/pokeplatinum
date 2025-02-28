@@ -175,7 +175,7 @@ Static main
 	Object main.nef.p/src_field_overworld_state.c.o
 	Object main.nef.p/src_unk_0203A7D8.c.o
 	Object main.nef.p/src_unk_0203A944.c.o
-	Object main.nef.p/src_field_menu.c.o
+	Object main.nef.p/src_start_menu.c.o
 	Object main.nef.p/src_unk_0203C954.c.o
 	Object main.nef.p/src_field_system.c.o
 	Object main.nef.p/src_location.c.o
@@ -183,10 +183,10 @@ Static main
 	Object main.nef.p/src_field_script_context.c.o
 	Object main.nef.p/src_script_manager.c.o
 	Object main.nef.p/src_scrcmd.c.o
-	Object main.nef.p/src_unk_02046AD4.c.o
+	Object main.nef.p/src_scrcmd_shop.c.o
 	Object main.nef.p/src_unk_02046C7C.c.o
 	Object main.nef.p/src_unk_020474B8.c.o
-	Object main.nef.p/src_unk_020480A8.c.o
+	Object main.nef.p/src_scrcmd_jubilife_lottery.c.o
 	Object main.nef.p/src_unk_020482D4.c.o
 	Object main.nef.p/src_unk_02048614.c.o
 	Object main.nef.p/src_unk_02048BD0.c.o
@@ -352,13 +352,13 @@ Static main
 	Object main.nef.p/src_unk_020996D0.c.o
 	Object main.nef.p/src_unk_020997B8.c.o
 	Object main.nef.p/src_unk_020998EC.c.o
-	Object main.nef.p/src_unk_02099D44.c.o
+	Object main.nef.p/src_poketch_memory.c.o
 	Object main.nef.p/src_unk_02099DFC.c.o
 	Object main.nef.p/src_unk_0209A2C4.c.o
 	Object main.nef.p/src_unk_0209A74C.c.o
 	Object main.nef.p/src_unk_0209AA74.c.o
-	Object main.nef.p/src_unk_0209AC14.c.o
-	Object main.nef.p/src_unk_0209ACBC.c.o
+	Object main.nef.p/src_shop_misc.c.o
+	Object main.nef.p/src_pokedex_memory.c.o
 	Object main.nef.p/src_unk_0209ACF4.c.o
 	Object main.nef.p/src_unk_0209B344.c.o
 	Object main.nef.p/src_error_message_reset.c.o
@@ -469,12 +469,12 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021D1A94.c.o
 	Object main.nef.p/src_overlay005_field_control.c.o
 	Object main.nef.p/src_overlay005_ov5_021D2F14.c.o
-	Object main.nef.p/src_overlay005_ov5_021D37AC.c.o
+	Object main.nef.p/src_overlay005_map_prop_animation.c.o
 	Object main.nef.p/src_overlay005_ov5_021D431C.c.o
 	Object main.nef.p/src_overlay005_ov5_021D521C.c.o
 	Object main.nef.p/src_overlay005_map_prop_material_shape.c.o
 	Object main.nef.p/src_overlay005_ov5_021D57BC.c.o
-	Object main.nef.p/src_overlay005_ov5_021D5878.c.o
+	Object main.nef.p/src_overlay005_model_attributes.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5B40.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5BC0.c.o
 	Object main.nef.p/src_overlay005_ov5_021D5CB0.c.o
@@ -512,7 +512,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021EF250.c.o
 	Object main.nef.p/src_overlay005_hblank_system.c.o
 	Object main.nef.p/src_overlay005_ov5_021EF4BC.c.o
-	Object main.nef.p/src_overlay005_ov5_021EF75C.c.o
+	Object main.nef.p/src_overlay005_area_data.c.o
 	Object main.nef.p/src_overlay005_honey_tree.c.o
 	Object main.nef.p/src_overlay005_ov5_021F007C.c.o
 	Object main.nef.p/src_overlay005_ov5_021FF6B8.c.o
@@ -602,7 +602,7 @@ Overlay overlay7
 	Object main.nef.p/src_overlay007_communication_club.c.o
 	Object main.nef.p/src_overlay007_ov7_0224B4E8.c.o
 	Object main.nef.p/src_overlay007_ov7_0224BE9C.c.o
-	Object main.nef.p/src_overlay007_ov7_0224CD28.c.o
+	Object main.nef.p/src_overlay007_shop_menu.c.o
 }
 
 Overlay overlay8
@@ -782,7 +782,7 @@ Overlay overlay20
 Overlay overlay21
 {
 	After main
-	Object main.nef.p/src_overlay021_ov21_021D0D80.c.o
+	Object main.nef.p/src_overlay021_pokedex_main.c.o
 	Object main.nef.p/src_overlay021_ov21_021D1F90.c.o
 	Object main.nef.p/src_overlay021_ov21_021D1FA4.c.o
 	Object main.nef.p/src_overlay021_pokedex_sort.c.o
@@ -878,11 +878,11 @@ Overlay overlay25
 	Object main.nef.p/src_overlay025_ov25_02255DBC.c.o
 }
 
-Overlay overlay26
+Overlay poketch_digital_watch
 {
 	After overlay25
-	Object main.nef.p/src_overlay026_ov26_022561C0.c.o
-	Object main.nef.p/src_overlay026_ov26_02256404.c.o
+	Object main.nef.p/src_poketch_digital_watch_main.c.o
+	Object main.nef.p/src_poketch_digital_watch_display.c.o
 }
 
 Overlay overlay27

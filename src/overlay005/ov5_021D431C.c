@@ -3,15 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/map_prop.h"
+
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02055130.h"
 
 #include "field/field_system.h"
+#include "overlay005/area_data.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/map_prop.h"
-#include "overlay005/ov5_021D37AC.h"
-#include "overlay005/ov5_021EF75C.h"
-#include "overlay005/struct_ov5_021D3CE4_decl.h"
+#include "overlay005/map_prop_animation.h"
 
 #include "camera.h"
 #include "field_task.h"
@@ -79,26 +80,26 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         UnkStruct_02055130 v3;
         int v4;
         int v5[] = {
-            66,
-            67,
-            68,
-            69,
-            246,
-            70,
-            427,
-            456,
-            260,
-            312,
-            313,
-            438,
-            444,
-            441,
-            442,
-            298,
-            484,
-            128,
-            527,
-            75
+            MAP_PROP_MODEL_DOOR01,
+            MAP_PROP_MODEL_BROWN_WOODEN_DOOR,
+            MAP_PROP_MODEL_GREEN_WOODEN_DOOR,
+            MAP_PROP_MODEL_IRON_DOOR,
+            MAP_PROP_MODEL_JUBILIFE_CITY_BUILDING_DOOR,
+            MAP_PROP_MODEL_POKECENTER_DOOR,
+            MAP_PROP_MODEL_POKECENTER_INSIDE_DOOR,
+            MAP_PROP_MODEL_GTS_INSIDE_DOOR,
+            MAP_PROP_MODEL_HEARTHOME_GYM_INSIDE_DOOR,
+            MAP_PROP_MODEL_BLUE_DOOR,
+            MAP_PROP_MODEL_IRON_DOOR_2,
+            MAP_PROP_MODEL_YELLOW_WOODEN_DOOR,
+            MAP_PROP_MODEL_BLUE_WOODEN_DOOR,
+            MAP_PROP_MODEL_MANSION_DOOR,
+            MAP_PROP_MODEL_VEILSTONE_DPT_STORE_DOOR,
+            MAP_PROP_MODEL_GYM_DOOR,
+            MAP_PROP_MODEL_CARD_DOOR,
+            MAP_PROP_MODEL_POKECENTER_INSIDE_COUNTER_DOOR,
+            MAP_PROP_MODEL_HOTEL_GRAND_LAKE_DOOR,
+            MAP_PROP_MODEL_ELEVATOR_DOOR
         };
 
         param1->unk_20 = 0;
@@ -115,11 +116,11 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
             u8 v7;
             NNSG3dResTex *v8;
 
-            v7 = ov5_021D3F94(fieldSystem->unk_50, v4);
+            v7 = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, v4);
             param1->unk_1E = v7;
-            v8 = ov5_021EFAA0(fieldSystem->unk_30);
+            v8 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
 
-            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 1, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v8, v7, 1, 0);
+            MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 1, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v8, v7, 1, 0);
         } else {
             GF_ASSERT(FALSE);
             return 1;
@@ -131,7 +132,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         int v10;
         int v11;
 
-        v9 = ov5_021D4310(fieldSystem->unk_54, 1);
+        v9 = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, 1);
 
         if (v9 != 75) {
             Camera_ReleaseTarget(fieldSystem->camera);
@@ -155,14 +156,14 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
             v11 = 0;
         }
 
-        ov5_021D4278(fieldSystem->unk_54, 1, v11, v10);
+        MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, 1, v11, v10);
     }
         (param1->unk_00)++;
         break;
     case 2: {
         BOOL v12;
 
-        v12 = ov5_021D42F0(fieldSystem->unk_54, 1);
+        v12 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 1);
 
         if (v12) {
             (param1->unk_00)++;
@@ -184,7 +185,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
                 int v14;
                 int v15;
 
-                v13 = ov5_021D4310(fieldSystem->unk_54, 1);
+                v13 = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, 1);
 
                 if (ov5_021D481C(v13) == 1) {
                     v14 = 0;
@@ -203,7 +204,7 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
                     v15 = 1;
                 }
 
-                ov5_021D4278(fieldSystem->unk_54, 1, v15, v14);
+                MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, 1, v15, v14);
             }
             (param1->unk_00)++;
         }
@@ -211,10 +212,10 @@ BOOL ov5_021D433C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     case 5: {
         BOOL v16;
 
-        v16 = ov5_021D42F0(fieldSystem->unk_54, 1);
+        v16 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 1);
 
         if (v16) {
-            ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 1);
+            MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 1);
             return 1;
         }
     } break;
@@ -238,26 +239,26 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
         UnkStruct_02055130 v3;
         int v4;
         int v5[] = {
-            66,
-            67,
-            68,
-            69,
-            246,
-            70,
-            427,
-            456,
-            260,
-            312,
-            313,
-            438,
-            444,
-            441,
-            442,
-            298,
-            484,
-            128,
-            527,
-            75
+            MAP_PROP_MODEL_DOOR01,
+            MAP_PROP_MODEL_BROWN_WOODEN_DOOR,
+            MAP_PROP_MODEL_GREEN_WOODEN_DOOR,
+            MAP_PROP_MODEL_IRON_DOOR,
+            MAP_PROP_MODEL_JUBILIFE_CITY_BUILDING_DOOR,
+            MAP_PROP_MODEL_POKECENTER_DOOR,
+            MAP_PROP_MODEL_POKECENTER_INSIDE_DOOR,
+            MAP_PROP_MODEL_GTS_INSIDE_DOOR,
+            MAP_PROP_MODEL_HEARTHOME_GYM_INSIDE_DOOR,
+            MAP_PROP_MODEL_BLUE_DOOR,
+            MAP_PROP_MODEL_IRON_DOOR_2,
+            MAP_PROP_MODEL_YELLOW_WOODEN_DOOR,
+            MAP_PROP_MODEL_BLUE_WOODEN_DOOR,
+            MAP_PROP_MODEL_MANSION_DOOR,
+            MAP_PROP_MODEL_VEILSTONE_DPT_STORE_DOOR,
+            MAP_PROP_MODEL_GYM_DOOR,
+            MAP_PROP_MODEL_CARD_DOOR,
+            MAP_PROP_MODEL_POKECENTER_INSIDE_COUNTER_DOOR,
+            MAP_PROP_MODEL_HOTEL_GRAND_LAKE_DOOR,
+            MAP_PROP_MODEL_ELEVATOR_DOOR
         };
 
         param1->unk_20 = 0;
@@ -272,11 +273,11 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
             u8 v7;
             NNSG3dResTex *v8;
 
-            v7 = ov5_021D3F94(fieldSystem->unk_50, v4);
+            v7 = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, v4);
             param1->unk_1E = v7;
-            v8 = ov5_021EFAA0(fieldSystem->unk_30);
+            v8 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
 
-            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 1, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v8, v7, 1, 0);
+            MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 1, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v8, v7, 1, 0);
         } else {
             GF_ASSERT(FALSE);
 
@@ -300,7 +301,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
             int v10;
             int v11;
 
-            v9 = ov5_021D4310(fieldSystem->unk_54, 1);
+            v9 = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, 1);
 
             if (v9 != 75) {
                 param1->unk_20 = 1;
@@ -323,7 +324,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
                 v11 = 0;
             }
 
-            ov5_021D4278(fieldSystem->unk_54, 1, v11, v10);
+            MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, 1, v11, v10);
         }
 
         (param1->unk_00)++;
@@ -331,7 +332,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     case 2: {
         BOOL v12;
 
-        v12 = ov5_021D42F0(fieldSystem->unk_54, 1);
+        v12 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 1);
 
         if (v12) {
             v0 = Player_MapObject(fieldSystem->playerAvatar);
@@ -355,7 +356,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
                 int v14;
                 int v15;
 
-                v13 = ov5_021D4310(fieldSystem->unk_54, 1);
+                v13 = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, 1);
 
                 if (ov5_021D481C(v13) == 1) {
                     v14 = 0;
@@ -374,7 +375,7 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
                     v15 = 1;
                 }
 
-                ov5_021D4278(fieldSystem->unk_54, 1, v15, v14);
+                MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, 1, v15, v14);
             }
             (param1->unk_00)++;
         }
@@ -382,10 +383,10 @@ BOOL ov5_021D453C(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1)
     case 5: {
         BOOL v16;
 
-        v16 = ov5_021D42F0(fieldSystem->unk_54, 1);
+        v16 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 1);
 
         if (v16 && IsScreenTransitionDone() && (param1->unk_24 == Camera_GetFOV(fieldSystem->camera))) {
-            ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 1);
+            MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 1);
             return 1;
         }
     } break;
@@ -486,7 +487,12 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         MapProp *v2;
         UnkStruct_02055130 v3;
         int v4;
-        int v5[] = { 130, 131, 425, 426 };
+        int v5[] = {
+            MAP_PROP_MODEL_POKECENTER_STAIR_UP_LEFT,
+            MAP_PROP_MODEL_POKECENTER_STAIR_DOWN_LEFT,
+            MAP_PROP_MODEL_POKECENTER_STAIR_UP_RIGHT,
+            MAP_PROP_MODEL_POKECENTER_STAIR_DOWN_RIGHT
+        };
 
         if (param2 == 2) {
             sub_020550F4(param1->unk_14, param1->unk_18, -1, 0, 2, 1, &v3);
@@ -501,8 +507,8 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
             u8 v6;
             NNSG3dResTex *v7;
 
-            v7 = ov5_021EFAA0(fieldSystem->unk_30);
-            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 2, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v7, 1, 1, 1);
+            v7 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
+            MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 2, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v7, 1, 1, 1);
         } else {
             GF_ASSERT(FALSE);
             return 1;
@@ -520,7 +526,7 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     } break;
     case 1:
         ov5_021D1744(1);
-        ov5_021D4278(fieldSystem->unk_54, 2, 0, 1557);
+        MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, 2, 0, 1557);
 
         v0 = Player_MapObject(fieldSystem->playerAvatar);
 
@@ -575,10 +581,10 @@ BOOL ov5_021D4858(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     case 5: {
         BOOL v10;
 
-        v10 = ov5_021D42F0(fieldSystem->unk_54, 2);
+        v10 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 2);
 
         if (v10 && IsScreenTransitionDone()) {
-            ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 2);
+            MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 2);
             Sound_StopEffect(1557, 0);
             return 1;
         }
@@ -598,7 +604,12 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         MapProp *v2;
         UnkStruct_02055130 v3;
         int v4;
-        int v5[] = { 130, 131, 425, 426 };
+        int v5[] = {
+            MAP_PROP_MODEL_POKECENTER_STAIR_UP_LEFT,
+            MAP_PROP_MODEL_POKECENTER_STAIR_DOWN_LEFT,
+            MAP_PROP_MODEL_POKECENTER_STAIR_UP_RIGHT,
+            MAP_PROP_MODEL_POKECENTER_STAIR_DOWN_RIGHT
+        };
 
         if (param2 == 2) {
             sub_020550F4(param1->unk_14, param1->unk_18, -1, 0, 2, 1, &v3);
@@ -613,8 +624,8 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
             u8 v6;
             NNSG3dResTex *v7;
 
-            v7 = ov5_021EFAA0(fieldSystem->unk_30);
-            ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, 2, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v7, 1, 1, 0);
+            v7 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
+            MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 2, v4, MapProp_GetRenderObj(v2), MapProp_GetModel(v2), v7, 1, 1, 0);
         } else {
             GF_ASSERT(FALSE);
             return 1;
@@ -631,7 +642,7 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
         (param1->unk_00)++;
     } break;
     case 1:
-        ov5_021D4278(fieldSystem->unk_54, 2, 0, 1557);
+        MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, 2, 0, 1557);
         v0 = Player_MapObject(fieldSystem->playerAvatar);
 
         if (LocalMapObj_IsAnimationSet(v0) == 1) {
@@ -671,10 +682,10 @@ BOOL ov5_021D4A24(FieldSystem *fieldSystem, UnkStruct_ov5_021D432C *param1, cons
     case 4: {
         BOOL v9;
 
-        v9 = ov5_021D42F0(fieldSystem->unk_54, 2);
+        v9 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 2);
 
         if (v9 && IsScreenTransitionDone()) {
-            ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, 2);
+            MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 2);
 
             Sound_StopEffect(1557, 0);
             return 1;
@@ -691,7 +702,7 @@ static BOOL ov5_021D4BC8(FieldTask *param0)
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     u8 *v2 = FieldTask_GetEnv(param0);
 
-    v0 = ov5_021D42F0(fieldSystem->unk_54, *v2);
+    v0 = MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, *v2);
 
     if (v0) {
         Heap_FreeToHeap(v2);
@@ -708,26 +719,26 @@ void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, 
     UnkStruct_02055130 v2;
     int v3;
     int v4[] = {
-        66,
-        67,
-        68,
-        69,
-        246,
-        70,
-        427,
-        456,
-        260,
-        312,
-        313,
-        438,
-        444,
-        441,
-        442,
-        298,
-        484,
-        128,
-        527,
-        75
+        MAP_PROP_MODEL_DOOR01,
+        MAP_PROP_MODEL_BROWN_WOODEN_DOOR,
+        MAP_PROP_MODEL_GREEN_WOODEN_DOOR,
+        MAP_PROP_MODEL_IRON_DOOR,
+        MAP_PROP_MODEL_JUBILIFE_CITY_BUILDING_DOOR,
+        MAP_PROP_MODEL_POKECENTER_DOOR,
+        MAP_PROP_MODEL_POKECENTER_INSIDE_DOOR,
+        MAP_PROP_MODEL_GTS_INSIDE_DOOR,
+        MAP_PROP_MODEL_HEARTHOME_GYM_INSIDE_DOOR,
+        MAP_PROP_MODEL_BLUE_DOOR,
+        MAP_PROP_MODEL_IRON_DOOR_2,
+        MAP_PROP_MODEL_YELLOW_WOODEN_DOOR,
+        MAP_PROP_MODEL_BLUE_WOODEN_DOOR,
+        MAP_PROP_MODEL_MANSION_DOOR,
+        MAP_PROP_MODEL_VEILSTONE_DPT_STORE_DOOR,
+        MAP_PROP_MODEL_GYM_DOOR,
+        MAP_PROP_MODEL_CARD_DOOR,
+        MAP_PROP_MODEL_POKECENTER_INSIDE_COUNTER_DOOR,
+        MAP_PROP_MODEL_HOTEL_GRAND_LAKE_DOOR,
+        MAP_PROP_MODEL_ELEVATOR_DOOR
     };
 
     sub_020550F4(param1, param2, -1, 0, 3, 1, &v2);
@@ -738,10 +749,10 @@ void ov5_021D4BF4(FieldSystem *fieldSystem, const int param1, const int param2, 
         u8 v6;
         NNSG3dResTex *v7;
 
-        v6 = ov5_021D3F94(fieldSystem->unk_50, v3);
-        v7 = ov5_021EFAA0(fieldSystem->unk_30);
+        v6 = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, v3);
+        v7 = AreaDataManager_GetMapPropTexture(fieldSystem->areaDataManager);
 
-        ov5_021D41C8(fieldSystem->unk_50, fieldSystem->unk_54, param3, v3, MapProp_GetRenderObj(v1), MapProp_GetModel(v1), v7, v6, 1, 0);
+        MapPropOneShotAnimationManager_LoadPropAnimations(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, param3, v3, MapProp_GetRenderObj(v1), MapProp_GetModel(v1), v7, v6, 1, 0);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -754,8 +765,8 @@ void ov5_021D4C88(FieldSystem *fieldSystem, const u8 param1)
     int v2;
     u8 v3;
 
-    v0 = ov5_021D4310(fieldSystem->unk_54, param1);
-    v3 = ov5_021D3F94(fieldSystem->unk_50, v0);
+    v0 = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, param1);
+    v3 = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, v0);
 
     if (ov5_021D481C(v0) == 1) {
         v1 = 1544;
@@ -774,7 +785,7 @@ void ov5_021D4C88(FieldSystem *fieldSystem, const u8 param1)
         v2 = 0;
     }
 
-    ov5_021D4278(fieldSystem->unk_54, param1, v2, v1);
+    MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, param1, v2, v1);
 }
 
 void ov5_021D4CEC(FieldSystem *fieldSystem, const u8 param1)
@@ -784,8 +795,8 @@ void ov5_021D4CEC(FieldSystem *fieldSystem, const u8 param1)
     int v2;
     u8 v3;
 
-    v0 = ov5_021D4310(fieldSystem->unk_54, param1);
-    v3 = ov5_021D3F94(fieldSystem->unk_50, v0);
+    v0 = MapPropOneShotAnimationManager_GetAnimationMapPropModelID(fieldSystem->mapPropOneShotAnimMan, param1);
+    v3 = MapPropAnimationManager_GetPropAnimationCount(fieldSystem->mapPropAnimMan, v0);
 
     if (ov5_021D481C(v0) == 1) {
         v1 = 0;
@@ -804,7 +815,7 @@ void ov5_021D4CEC(FieldSystem *fieldSystem, const u8 param1)
         v2 = 1;
     }
 
-    ov5_021D4278(fieldSystem->unk_54, param1, v2, v1);
+    MapPropOneShotAnimationManager_PlayAnimationWithSoundEffect(fieldSystem->mapPropOneShotAnimMan, param1, v2, v1);
 }
 
 void ov5_021D4D48(FieldSystem *fieldSystem, const u8 param1)
@@ -817,7 +828,7 @@ void ov5_021D4D48(FieldSystem *fieldSystem, const u8 param1)
 
 void ov5_021D4D68(FieldSystem *fieldSystem, const u8 param1)
 {
-    ov5_021D42B0(fieldSystem->unk_50, fieldSystem->unk_54, param1);
+    MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, param1);
 }
 
 void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSystem *fieldSystem)
@@ -837,17 +848,17 @@ void ov5_021D4D78(const int param0, const int param1, const int param2, FieldSys
         NNSG3dRenderObj *v5;
 
         v5 = MapProp_GetRenderObj(v1);
-        v0 = ov5_021D3B24(v3, param2, 1, v5, fieldSystem->unk_50);
+        v0 = MapPropAnimationManager_AddAnimationToRenderObj(v3, param2, 1, v5, fieldSystem->mapPropAnimMan);
         GF_ASSERT(v0);
     }
     {
-        UnkStruct_ov5_021D3CE4 *v6;
+        MapPropAnimation *v6;
 
-        v6 = ov5_021D3DE4(v3, param2, fieldSystem->unk_50);
+        v6 = MapPropAnimationManager_GetAnimation(v3, param2, fieldSystem->mapPropAnimMan);
 
-        ov5_021D3E7C(v6);
-        ov5_021D3E40(v6, 0);
-        ov5_021D3E44(v6);
+        MapPropAnimation_GoToFirstFrame(v6);
+        MapPropAnimation_SetAnimationPaused(v6, 0);
+        MapPropAnimation_StartLoop(v6);
     }
 }
 

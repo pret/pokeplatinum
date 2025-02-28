@@ -15,6 +15,7 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/area_data.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D57BC.h"
@@ -28,7 +29,6 @@
 #include "overlay005/struct_ov5_021DF47C_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
-#include "overlay005/struct_ov5_021EF76C_decl.h"
 #include "overlay005/struct_ov5_02201C58.h"
 #include "overlay009/struct_ov9_02249FF4.h"
 #include "overlay009/struct_ov9_0224F6EC_decl.h"
@@ -371,7 +371,7 @@ typedef struct {
     u32 unk_08;
     NARC *unk_0C;
     MapMatrix *unk_10;
-    UnkStruct_ov5_021EF76C *unk_14;
+    AreaDataManager *unk_14;
     UnkStruct_ov5_021E8F60 *unk_18;
 } UnkStruct_ov9_0224C8E8;
 
@@ -576,7 +576,7 @@ typedef struct {
     int unk_0C;
     int unk_10[4];
     int unk_20;
-    UnkStruct_ov5_021EF76C *unk_24;
+    AreaDataManager *unk_24;
     UnkStruct_ov9_0224E0DC *unk_28;
     SysTask *unk_2C;
 } UnkStruct_ov9_0224CBD8;
@@ -4370,7 +4370,7 @@ static void ov9_0224C8E8(UnkStruct_ov9_02249B04 *param0)
     }
 
     {
-        v2->unk_14 = fieldSystem->unk_30;
+        v2->unk_14 = fieldSystem->areaDataManager;
     }
 
     {
@@ -4448,7 +4448,7 @@ static void ov9_0224CA30(UnkStruct_ov9_02249B04 *param0)
     UnkStruct_ov9_0224C8E8 *v0 = &param0->unk_1E88;
 
     if (v0->unk_08) {
-        ov5_021E9C0C(v0->unk_18, param0->fieldSystem->unk_44);
+        ov5_021E9C0C(v0->unk_18, param0->fieldSystem->areaModelAttrs);
     }
 }
 
@@ -4797,7 +4797,7 @@ static int ov9_0224CEBC(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
     }
 
     if (v1->unk_14 == NULL) {
-        v1->unk_14 = fieldSystem->unk_30;
+        v1->unk_14 = fieldSystem->areaDataManager;
     }
 
     if (v1->unk_04 == 0) {
@@ -4825,7 +4825,7 @@ static int ov9_0224CEBC(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224CBD8 *
     {
         int v4 = 0, v5 = 0, v6 = 0;
 
-        ov5_021EA540(fieldSystem->unk_28, fieldSystem->mapMatrix, fieldSystem->unk_30);
+        ov5_021EA540(fieldSystem->unk_28, fieldSystem->mapMatrix, fieldSystem->areaDataManager);
         ov9_02251094(v2->unk_00, &v4, &v5, &v6);
         ov5_021EA678(fieldSystem->unk_28, v4, v5, v6);
         ov5_021EA6A4(fieldSystem->unk_28, 1);

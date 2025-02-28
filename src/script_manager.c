@@ -11,7 +11,6 @@
 #include "field/field_system.h"
 #include "field/scripts/scr_seq.naix"
 
-#include "field_menu.h"
 #include "field_task.h"
 #include "heap.h"
 #include "map_header.h"
@@ -21,6 +20,7 @@
 #include "message.h"
 #include "narc.h"
 #include "player_avatar.h"
+#include "start_menu.h"
 #include "strbuf.h"
 #include "trainer_data.h"
 #include "vars_flags.h"

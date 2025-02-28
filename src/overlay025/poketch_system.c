@@ -18,6 +18,7 @@
 #include "game_overlay.h"
 #include "heap.h"
 #include "inlines.h"
+#include "poketch_memory.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "sys_task.h"
@@ -25,9 +26,8 @@
 #include "trainer_info.h"
 #include "unk_02005474.h"
 #include "unk_0201E3D8.h"
-#include "unk_02099D44.h"
 
-FS_EXTERN_OVERLAY(overlay26);
+FS_EXTERN_OVERLAY(poketch_digital_watch);
 FS_EXTERN_OVERLAY(overlay27);
 FS_EXTERN_OVERLAY(overlay28);
 FS_EXTERN_OVERLAY(overlay29);
@@ -85,7 +85,7 @@ static const struct {
     int appID;
     FSOverlayID overlayID;
 } sAppOverlayIDs[] = {
-    { POKETCH_APPID_DIGITALWATCH, FS_OVERLAY_ID(overlay26) },
+    { POKETCH_APPID_DIGITALWATCH, FS_OVERLAY_ID(poketch_digital_watch) },
     { POKETCH_APPID_UNUSED_STOPWATCH, FS_OVERLAY_ID(overlay27) },
     { POKETCH_APPID_CALCULATOR, FS_OVERLAY_ID(overlay28) },
     { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(overlay29) },
@@ -360,7 +360,7 @@ static void PoketchEvent_UpdateApp(PoketchSystem *poketchSys)
     case 3:
         if (PoketchSystem_IsAppShutdown(poketchSys)) {
             PoketchSystem_UnloadApp(poketchSys);
-            sub_02099D44();
+            PoketchMemory_ResetActiveAppID();
             PoketchSystem_SetState(poketchSys, POKETCH_SYSTEM_CHANGE_APP);
         }
         break;

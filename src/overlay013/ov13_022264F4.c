@@ -67,7 +67,7 @@ static u8 ov13_02226A5C(UnkStruct_ov13_02227244 *param0);
 static void ov13_02227118(UnkStruct_ov13_02227244 *param0, u8 param1);
 static void ov13_022271D0(UnkStruct_ov13_02227244 *param0, u8 param1);
 static int ov13_02227238(UnkStruct_ov13_02227244 *param0, const TouchScreenRect *rect);
-static void ov13_02227260(BattleSystem *param0, u16 param1, u16 param2, u32 param3);
+static void ov13_02227260(BattleSystem *battleSys, u16 param1, u16 param2, u32 param3);
 
 static const TouchScreenRect Unk_ov13_02229A1C[] = {
     { 0x8, 0x4F, 0x0, 0x7F },
@@ -126,7 +126,7 @@ void ov13_022264F4(UnkStruct_ov13_022264F4 *param0)
 
     ov13_02227A4C(v0);
 
-    if (BattleSystem_BattleType(v0->unk_00->unk_00) & 0x400) {
+    if (BattleSystem_BattleType(v0->unk_00->unk_00) & BATTLE_TYPE_CATCH_TUTORIAL) {
         v0->unk_00->unk_14 = 1;
     }
 }
@@ -419,7 +419,7 @@ static u8 ov13_02226A5C(UnkStruct_ov13_02227244 *param0)
             ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
             return 13;
         } else if (v2 == 3) {
-            if (!(BattleSystem_BattleType(v0->unk_00) & 0x1)) {
+            if (!(BattleSystem_BattleType(v0->unk_00) & BATTLE_TYPE_TRAINER)) {
                 ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
                 return 13;
             } else {
@@ -830,8 +830,8 @@ int ov13_02227244(UnkStruct_ov13_02227244 *param0)
     return v0;
 }
 
-static void ov13_02227260(BattleSystem *param0, u16 param1, u16 param2, u32 param3)
+static void ov13_02227260(BattleSystem *battleSys, u16 param1, u16 param2, u32 param3)
 {
-    Bag_TryRemoveItem(BattleSystem_Bag(param0), param1, 1, param3);
-    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(param0), param1, param2);
+    Bag_TryRemoveItem(BattleSystem_Bag(battleSys), param1, 1, param3);
+    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), param1, param2);
 }

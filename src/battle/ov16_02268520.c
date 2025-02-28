@@ -263,11 +263,11 @@ void ov16_022686BC(UnkStruct_ov16_02268520 *param0, int param1)
     ManagedSprite_SetDrawFlag(param0->unk_00, param1);
 }
 
-void ov16_022686CC(UnkStruct_ov16_02268520 *param0, BattleSystem *param1, u16 param2, int param3)
+void ov16_022686CC(UnkStruct_ov16_02268520 *param0, BattleSystem *battleSys, u16 param2, int param3)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_ov16_02268520));
 
-    param0->unk_04 = param1;
+    param0->unk_04 = battleSys;
     param0->unk_08 = param2;
     param0->unk_09 = param3;
 

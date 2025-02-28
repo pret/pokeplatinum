@@ -6,6 +6,7 @@
 
 #include "constants/battle.h"
 #include "constants/heap.h"
+#include "constants/items.h"
 #include "constants/overworld_weather.h"
 #include "constants/scrcmd.h"
 #include "constants/species.h"
@@ -81,7 +82,7 @@
 #include "overlay006/trophy_garden_daily_encounters.h"
 #include "overlay007/communication_club.h"
 #include "overlay007/ov7_0224B4E8.h"
-#include "overlay007/ov7_0224CD28.h"
+#include "overlay007/shop_menu.h"
 #include "overlay008/ov8_02249960.h"
 #include "overlay009/ov9_02249960.h"
 #include "overlay023/ov23_022521F0.h"
@@ -108,6 +109,7 @@
 #include "great_marsh_lookout.h"
 #include "heap.h"
 #include "inlines.h"
+#include "items.h"
 #include "journal.h"
 #include "location.h"
 #include "map_header_data.h"
@@ -130,6 +132,8 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "scrcmd_dummy_23F_242.h"
+#include "scrcmd_jubilife_lottery.h"
+#include "scrcmd_shop.h"
 #include "scrcmd_system_flags.h"
 #include "script_manager.h"
 #include "special_encounter.h"
@@ -160,10 +164,8 @@
 #include "unk_02038FFC.h"
 #include "unk_020393C8.h"
 #include "unk_0203D1B8.h"
-#include "unk_02046AD4.h"
 #include "unk_02046C7C.h"
 #include "unk_020474B8.h"
-#include "unk_020480A8.h"
 #include "unk_020482D4.h"
 #include "unk_02048614.h"
 #include "unk_02048BD0.h"
@@ -712,7 +714,7 @@ static BOOL ScrCmd_2CD(ScriptContext *ctx);
 static BOOL ScrCmd_2CE(ScriptContext *ctx);
 static BOOL ScrCmd_2D6(ScriptContext *ctx);
 static BOOL ScrCmd_2D7(ScriptContext *ctx);
-static BOOL ScrCmd_2D8(ScriptContext *ctx);
+static BOOL ScrCmd_PokeMartFrontier(ScriptContext *ctx);
 BOOL ScrCmd_2C8(ScriptContext *ctx);
 BOOL ScrCmd_2E2(ScriptContext *ctx);
 BOOL ScrCmd_2E3(ScriptContext *ctx);
@@ -1091,10 +1093,10 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_144,
     ScrCmd_145,
     ScrCmd_146,
-    ScrCmd_147,
-    ScrCmd_148,
-    ScrCmd_149,
-    ScrCmd_14A,
+    ScrCmd_PokeMartCommon,
+    ScrCmd_PokeMartSpecialties,
+    ScrCmd_PokeMartDecor,
+    ScrCmd_PokeMartSeal,
     ScrCmd_14B,
     ScrCmd_14C,
     ScrCmd_GetPlayerGender,
@@ -1355,7 +1357,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_24C,
     ScrCmd_24D,
     ScrCmd_GetJubilifeLotteryTrainerID,
-    ScrCmd_24F,
+    ScrCmd_CheckForJubilifeLotteryWinner,
     ScrCmd_RandomizeJubilifeLottery,
     ScrCmd_251,
     ScrCmd_252,
@@ -1492,7 +1494,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2D5,
     ScrCmd_2D6,
     ScrCmd_2D7,
-    ScrCmd_2D8,
+    ScrCmd_PokeMartFrontier,
     ScrCmd_2D9,
     ScrCmd_2DA,
     ScrCmd_2DB,
@@ -7776,63 +7778,63 @@ static BOOL ScrCmd_2CE(ScriptContext *ctx)
     return 1;
 }
 
-static BOOL ScrCmd_2D8(ScriptContext *ctx)
+static BOOL ScrCmd_PokeMartFrontier(ScriptContext *ctx)
 {
-    u8 v0 = ScriptContext_ReadByte(ctx);
-    static const u16 v1[] = {
-        0x14D,
-        0x190,
-        0x184,
-        0x174,
-        0x16F,
-        0x166,
-        0x14F,
-        0x14B,
-        0x198,
-        0x165,
-        0x17C,
-        0x16B,
-        0x182,
-        0x18E,
-        0x161,
-        0xffff
+    u8 martID = ScriptContext_ReadByte(ctx);
+    static const u16 BattleFrontierRightExchangeServiceCorner[] = {
+        ITEM_TM06,
+        ITEM_TM73,
+        ITEM_TM61,
+        ITEM_TM45,
+        ITEM_TM40,
+        ITEM_TM31,
+        ITEM_TM08,
+        ITEM_TM04,
+        ITEM_TM81,
+        ITEM_TM30,
+        ITEM_TM53,
+        ITEM_TM36,
+        ITEM_TM59,
+        ITEM_TM71,
+        ITEM_TM26,
+        SHOP_ITEM_END,
     };
-    static const u16 v2[] = {
-        0x2E,
-        0x31,
-        0x2F,
-        0x34,
-        0x30,
-        0x2D,
-        0x121,
-        0x122,
-        0x123,
-        0x124,
-        0x125,
-        0x126,
-        0x110,
-        0x111,
-        0xD6,
-        0x10F,
-        0xD5,
-        0xDC,
-        0xE6,
-        0xE8,
-        0x10A,
-        0x113,
-        0x11F,
-        0x146,
-        0x147,
-        0x32,
-        0xffff
+    static const u16 BattleFrontierLeftExchangeServiceCorner[] = {
+        ITEM_PROTEIN,
+        ITEM_CALCIUM,
+        ITEM_IRON,
+        ITEM_ZINC,
+        ITEM_CARBOS,
+        ITEM_HP_UP,
+        ITEM_POWER_BRACER,
+        ITEM_POWER_BELT,
+        ITEM_POWER_LENS,
+        ITEM_POWER_BAND,
+        ITEM_POWER_ANKLET,
+        ITEM_POWER_WEIGHT,
+        ITEM_TOXIC_ORB,
+        ITEM_FLAME_ORB,
+        ITEM_WHITE_HERB,
+        ITEM_POWER_HERB,
+        ITEM_BRIGHTPOWDER,
+        ITEM_CHOICE_BAND,
+        ITEM_FOCUS_BAND,
+        ITEM_SCOPE_LENS,
+        ITEM_MUSCLE_BAND,
+        ITEM_FOCUS_SASH,
+        ITEM_CHOICE_SCARF,
+        ITEM_RAZOR_CLAW,
+        ITEM_RAZOR_FANG,
+        ITEM_RARE_CANDY,
+        SHOP_ITEM_END,
     };
-    static const u16 *v3[] = {
-        v1,
-        v2,
+    static const u16 *BattleFrontierExchangeServiceCorners[] = {
+        BattleFrontierRightExchangeServiceCorner,
+        BattleFrontierLeftExchangeServiceCorner,
     };
 
-    ov7_0224CDA4(ctx->task, ctx->fieldSystem, (u16 *)v3[v0], 3, 0);
-    return 1;
+    Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)BattleFrontierExchangeServiceCorners[martID], MART_TYPE_FRONTIER, FALSE);
+    return TRUE;
 }
 
 BOOL ScrCmd_2C8(ScriptContext *ctx)
@@ -8142,7 +8144,7 @@ static u32 sub_0204676C(SaveData *saveData)
 
         for (v9 = 0; v9 < 18; v9++) {
             for (v0 = 0; v0 < (5 * 6); v0++) {
-                v2 = sub_02079C9C(v8, v9, v0);
+                v2 = GetBoxedPokemonFrom(v8, v9, v0);
 
                 if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_ROTOM) && (BoxPokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0)) {
                     v3 |= 1 << BoxPokemon_GetValue(v2, MON_DATA_FORM, NULL);

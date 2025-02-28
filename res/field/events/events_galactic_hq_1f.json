@@ -6,7 +6,7 @@
             "x": 45,
             "z": 21,
             "y": 0,
-            "player_facing_dir": 4
+            "player_facing_dir": "BG_EVENT_DIR_ALL"
         },
         {
             "script": 7,
@@ -14,14 +14,14 @@
             "x": 42,
             "z": 13,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 125,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 2,
             "initial_dir": 1,
@@ -33,9 +33,9 @@
             "y": 0
         },
         {
-            "graphics_id": 29,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 5,
             "initial_dir": 1,
@@ -47,9 +47,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1179,
             "script": 7165,
             "initial_dir": 0,
@@ -61,9 +61,9 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
-            "movement_type": 8,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH_AND_WEST",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 567,
             "script": 3427,
             "initial_dir": 1,
@@ -77,9 +77,9 @@
             "y": 0
         },
         {
-            "graphics_id": 29,
-            "movement_type": 17,
-            "trainer_type": 1,
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_RIGHT",
+            "trainer_type": "TRAINER_TYPE_NORMAL",
             "flag": 567,
             "script": 3829,
             "initial_dir": 3,
@@ -93,9 +93,9 @@
             "y": 0
         },
         {
-            "graphics_id": 202,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 548,
             "script": 6,
             "initial_dir": 1,
@@ -107,9 +107,9 @@
             "y": 0
         },
         {
-            "graphics_id": 202,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GALACTIC_HQ_DOOR",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 548,
             "script": 6,
             "initial_dir": 1,
@@ -121,9 +121,9 @@
             "y": 0
         },
         {
-            "graphics_id": 125,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 4,
             "initial_dir": 1,
@@ -135,9 +135,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 3,
             "initial_dir": 2,
@@ -149,9 +149,9 @@
             "y": 0
         },
         {
-            "graphics_id": 122,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SATURN",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 658,
             "script": 8,
             "initial_dir": 2,
@@ -163,9 +163,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1312,
             "script": 7297,
             "initial_dir": 0,
@@ -181,91 +181,91 @@
         {
             "x": 8,
             "z": 22,
-            "dest_header_id": 132,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY",
             "dest_warp_id": 14
         },
         {
             "x": 29,
             "z": 22,
-            "dest_header_id": 132,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY",
             "dest_warp_id": 15
         },
         {
             "x": 42,
             "z": 22,
-            "dest_header_id": 132,
+            "dest_header_id": "MAP_HEADER_VEILSTONE_CITY",
             "dest_warp_id": 16
         },
         {
             "x": 4,
             "z": 3,
-            "dest_header_id": 306,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
             "dest_warp_id": 0
         },
         {
             "x": 19,
             "z": 14,
-            "dest_header_id": 306,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
             "dest_warp_id": 2
         },
         {
             "x": 27,
             "z": 3,
-            "dest_header_id": 306,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_2F",
             "dest_warp_id": 1
         },
         {
             "x": 11,
             "z": 3,
-            "dest_header_id": 310,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_B2F",
             "dest_warp_id": 0
         },
         {
             "x": 46,
             "z": 3,
-            "dest_header_id": 309,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_B1F",
             "dest_warp_id": 0
         },
         {
             "x": 52,
             "z": 21,
-            "dest_header_id": 305,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
             "dest_warp_id": 9
         },
         {
             "x": 41,
             "z": 3,
-            "dest_header_id": 305,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
             "dest_warp_id": 8
         },
         {
             "x": 39,
             "z": 3,
-            "dest_header_id": 305,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
             "dest_warp_id": 11
         },
         {
             "x": 32,
             "z": 3,
-            "dest_header_id": 305,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
             "dest_warp_id": 10
         },
         {
             "x": 36,
             "z": 8,
-            "dest_header_id": 305,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
             "dest_warp_id": 13
         },
         {
             "x": 1,
             "z": 8,
-            "dest_header_id": 305,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_1F",
             "dest_warp_id": 12
         },
         {
             "x": 41,
             "z": 14,
-            "dest_header_id": 308,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_4F",
             "dest_warp_id": 2
         }
     ],

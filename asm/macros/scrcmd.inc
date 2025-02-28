@@ -7,6 +7,10 @@
 #include "generated/journal_location_events.h"
 #include "generated/journal_online_events.h"
 #include "generated/map_headers.h"
+#include "generated/mart_decor_id.h"
+#include "generated/mart_frontier_id.h"
+#include "generated/mart_seal_id.h"
+#include "generated/mart_specialties_id.h"
 #include "generated/moves.h"
 #include "generated/npc_trades.h"
 #include "generated/poketch_apps.h"
@@ -1787,24 +1791,24 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_147 arg0
+    .macro PokeMartCommon unused=1
     .short 327
-    .short \arg0
+    .short \unused
     .endm
 
-    .macro ScrCmd_148 arg0
+    .macro PokeMartSpecialties martID
     .short 328
-    .short \arg0
+    .short \martID
     .endm
 
-    .macro ScrCmd_149 arg0
+    .macro PokeMartDecor martID
     .short 329
-    .short \arg0
+    .short \martID
     .endm
 
-    .macro ScrCmd_14A arg0
+    .macro PokeMartSeal martID
     .short 330
-    .short \arg0
+    .short \martID
     .endm
 
     .macro ScrCmd_14B
@@ -3230,12 +3234,12 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_24F arg0, arg1, arg2, arg3
+    .macro CheckForJubilifeLotteryWinner winningPokemonIndex, highestMatchedDigits, isResultInBox, winningLotteryId
     .short 591
-    .short \arg0
-    .short \arg1
-    .short \arg2
-    .short \arg3
+    .short \winningPokemonIndex
+    .short \highestMatchedDigits
+    .short \isResultInBox
+    .short \winningLotteryId
     .endm
 
     .macro RandomizeJubilifeLottery
@@ -3971,9 +3975,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2D8 arg0
+    .macro PokeMartFrontier martID
     .short 728
-    .byte \arg0
+    .byte \martID
     .endm
 
     .macro ScrCmd_2D9 arg0, arg1, arg2
@@ -4692,10 +4696,22 @@
     CallIf 1, \offset
     .endm
 
+    /*
+     * This flag is used by ScriptEntry and ScriptEntryEnd to control where
+     * a user can add ScriptEntry commands (i.e., only at the start of the
+     * input file). It is NOT meant for direct usage.
+     */
+    .set F_ACCEPT_SCRIPT_ENTRIES, TRUE
+
     .macro ScriptEntry name
-    .long \name-.-4
+    .if F_ACCEPT_SCRIPT_ENTRIES == TRUE
+        .long \name-.-4
+    .else
+        .error "cannot specify ScriptEntry after ScriptEntryEnd"
+    .endif
     .endm
 
     .macro ScriptEntryEnd
+    .set F_ACCEPT_SCRIPT_ENTRIES, FALSE
     .short 0xFD13
     .endm

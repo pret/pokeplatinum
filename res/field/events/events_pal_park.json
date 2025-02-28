@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 40,
-            "movement_type": 16,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_WORKER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_LEFT",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 0,
             "script": 6,
             "initial_dir": 2,
@@ -20,13 +20,13 @@
         {
             "x": 24,
             "z": 52,
-            "dest_header_id": 393,
+            "dest_header_id": "MAP_HEADER_PAL_PARK_LOBBY",
             "dest_warp_id": 1
         },
         {
             "x": 25,
             "z": 52,
-            "dest_header_id": 393,
+            "dest_header_id": "MAP_HEADER_PAL_PARK_LOBBY",
             "dest_warp_id": 1
         }
     ],

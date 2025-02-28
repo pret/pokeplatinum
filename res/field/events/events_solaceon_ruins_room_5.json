@@ -5,25 +5,25 @@
         {
             "x": 2,
             "z": 3,
-            "dest_header_id": 238,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_6",
             "dest_warp_id": 1
         },
         {
             "x": 6,
             "z": 3,
-            "dest_header_id": 237,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_4",
             "dest_warp_id": 0
         },
         {
             "x": 2,
             "z": 10,
-            "dest_header_id": 234,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHWEST_DEAD_END",
             "dest_warp_id": 0
         },
         {
             "x": 6,
             "z": 10,
-            "dest_header_id": 515,
+            "dest_header_id": "MAP_HEADER_SOLACEON_RUINS_ROOM_5_SOUTHEAST_DEADEND",
             "dest_warp_id": 0
         }
     ],

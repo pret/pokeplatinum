@@ -95,7 +95,7 @@ static u8 ov13_022219DC(UnkStruct_ov13_022213F0 *param0);
 static void ov13_02221A04(UnkStruct_ov13_022213F0 *param0);
 static void ov13_02221A3C(UnkStruct_ov13_022213F0 *param0);
 static u8 ov13_0222194C(UnkStruct_ov13_022213F0 *param0);
-static void ov13_02221A54(BattleSystem *param0, u16 param1, u16 param2, u32 param3);
+static void ov13_02221A54(BattleSystem *battleSys, u16 param1, u16 param2, u32 param3);
 
 static const TouchScreenRect Unk_ov13_02228DEC[] = {
     { 0x0, 0x2F, 0x0, 0x7F },
@@ -1663,9 +1663,11 @@ static u8 ov13_0222194C(UnkStruct_ov13_022213F0 *param0)
 
 u8 ov13_0222196C(UnkStruct_ov13_022213F0 *param0)
 {
-    u32 v0 = BattleSystem_BattleType(param0->unk_00->unk_08);
+    u32 battleType = BattleSystem_BattleType(param0->unk_00->unk_08);
 
-    if ((v0 != (0x2 | 0x8 | 0x40)) && (v0 != ((0x2 | 0x1) | 0x8 | 0x40)) && (v0 & (0x2 | 0x10))) {
+    if ((battleType != BATTLE_TYPE_AI_PARTNER)
+        && (battleType != (BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
+        && (battleType & (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_TAG))) {
         return 1;
     }
 
@@ -1674,9 +1676,11 @@ u8 ov13_0222196C(UnkStruct_ov13_022213F0 *param0)
 
 u8 ov13_0222198C(UnkStruct_ov13_022213F0 *param0)
 {
-    u32 v0 = BattleSystem_BattleType(param0->unk_00->unk_08);
+    u32 battleType = BattleSystem_BattleType(param0->unk_00->unk_08);
 
-    if ((v0 != (0x2 | 0x8 | 0x40)) && (v0 != ((0x2 | 0x1) | 0x8 | 0x40)) && (v0 & 0x8)) {
+    if ((battleType != BATTLE_TYPE_AI_PARTNER)
+        && (battleType != (BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))
+        && (battleType & BATTLE_TYPE_2vs2)) {
         return 1;
     }
 
@@ -1727,11 +1731,11 @@ static void ov13_02221A3C(UnkStruct_ov13_022213F0 *param0)
     Bg_ScheduleTilemapTransfer(param0->unk_1E0, 7);
 }
 
-static void ov13_02221A54(BattleSystem *param0, u16 param1, u16 param2, u32 param3)
+static void ov13_02221A54(BattleSystem *battleSys, u16 param1, u16 param2, u32 param3)
 {
     if ((param1 != 65) && (param1 != 67) && (param1 != 66)) {
-        Bag_TryRemoveItem(BattleSystem_Bag(param0), param1, 1, param3);
+        Bag_TryRemoveItem(BattleSystem_Bag(battleSys), param1, 1, param3);
     }
 
-    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(param0), param1, param2);
+    Bag_SetLastBattleItemUsed(BattleSystem_BagCursor(battleSys), param1, param2);
 }

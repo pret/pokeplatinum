@@ -2,9 +2,9 @@
     "bg_events": [],
     "object_events": [
         {
-            "graphics_id": 125,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 456,
             "script": 6,
             "initial_dir": 1,
@@ -16,9 +16,9 @@
             "y": 0
         },
         {
-            "graphics_id": 120,
-            "movement_type": 14,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_CYRUS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 458,
             "script": 1,
             "initial_dir": 0,
@@ -30,9 +30,9 @@
             "y": 0
         },
         {
-            "graphics_id": 121,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_MARS",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 457,
             "script": 8,
             "initial_dir": 1,
@@ -44,9 +44,9 @@
             "y": 0
         },
         {
-            "graphics_id": 124,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_GRUNT_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 456,
             "script": 6,
             "initial_dir": 1,
@@ -58,9 +58,9 @@
             "y": 0
         },
         {
-            "graphics_id": 123,
-            "movement_type": 15,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_JUPITER",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 457,
             "script": 7,
             "initial_dir": 1,
@@ -72,9 +72,9 @@
             "y": 0
         },
         {
-            "graphics_id": 148,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_BARRY",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 453,
             "script": 1,
             "initial_dir": 0,
@@ -90,7 +90,7 @@
         {
             "x": 31,
             "z": 53,
-            "dest_header_id": 215,
+            "dest_header_id": "MAP_HEADER_MT_CORONET_6F",
             "dest_warp_id": 1
         }
     ],

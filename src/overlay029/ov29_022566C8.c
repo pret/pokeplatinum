@@ -17,8 +17,8 @@
 #include "bg_window.h"
 #include "graphics.h"
 #include "heap.h"
+#include "poketch_memory.h"
 #include "sys_task_manager.h"
-#include "unk_02099D44.h"
 
 struct UnkStruct_ov29_022566C8_t {
     const UnkStruct_ov29_022566C8_1 *unk_00;
@@ -73,7 +73,7 @@ static BOOL ov29_02256728(UnkStruct_ov29_022566C8 *param0)
     if (param0->unk_70) {
         Window_AddFromTemplate(param0->unk_04, param0->unk_70, &v0);
 
-        if (sub_02099DD0(param0->unk_00->unk_16E8, param0->unk_70->pixels, (20 * 19 * 0x20)) == 0) {
+        if (PoketchMemory_ReadFast(param0->unk_00->unk_16E8, param0->unk_70->pixels, (20 * 19 * 0x20)) == FALSE) {
             Window_FillTilemap(param0->unk_70, 0x4);
         }
 
@@ -89,7 +89,7 @@ void ov29_02256770(UnkStruct_ov29_022566C8 *param0)
         GF_ASSERT(GF_heap_c_dummy_return_true(7));
 
         if (param0->unk_70) {
-            sub_02099DA8(param0->unk_00->unk_16E8, param0->unk_70->pixels, (20 * 19 * 0x20));
+            PoketchMemory_WriteFast(param0->unk_00->unk_16E8, param0->unk_70->pixels, (20 * 19 * 0x20));
             Window_Remove(param0->unk_70);
             Heap_FreeToHeap(param0->unk_70);
         }

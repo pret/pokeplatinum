@@ -887,7 +887,7 @@ void ov16_0226757C(Healthbar *param0)
         Healthbar_EnableArrow(param0, 1);
     }
 
-    if ((BattleSystem_BattleType(param0->battleSys) & (0x20 | 0x200)) == 0) {
+    if ((BattleSystem_BattleType(param0->battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) == 0) {
         ov16_02268470(param0);
     }
 }

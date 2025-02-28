@@ -6,7 +6,7 @@
             "x": 10,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -14,7 +14,7 @@
             "x": 11,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -22,7 +22,7 @@
             "x": 17,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -30,7 +30,7 @@
             "x": 18,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -38,7 +38,7 @@
             "x": 21,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -46,7 +46,7 @@
             "x": 22,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -54,7 +54,7 @@
             "x": 25,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -62,7 +62,7 @@
             "x": 26,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -70,7 +70,7 @@
             "x": 29,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 3,
@@ -78,14 +78,14 @@
             "x": 30,
             "z": 9,
             "y": 0,
-            "player_facing_dir": 0
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         }
     ],
     "object_events": [
         {
-            "graphics_id": 29,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 567,
             "script": 1,
             "initial_dir": 2,
@@ -97,9 +97,9 @@
             "y": 0
         },
         {
-            "graphics_id": 30,
-            "movement_type": 3,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_F",
+            "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 567,
             "script": 2,
             "initial_dir": 2,
@@ -111,9 +111,9 @@
             "y": 0
         },
         {
-            "graphics_id": 87,
-            "movement_type": 0,
-            "trainer_type": 0,
+            "graphics_id": "OBJ_EVENT_GFX_POKEBALL",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
             "flag": 1311,
             "script": 7296,
             "initial_dir": 0,
@@ -129,13 +129,13 @@
         {
             "x": 1,
             "z": 11,
-            "dest_header_id": 308,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_4F",
             "dest_warp_id": 1
         },
         {
             "x": 36,
             "z": 2,
-            "dest_header_id": 494,
+            "dest_header_id": "MAP_HEADER_GALACTIC_HQ_CONTROL_ROOM",
             "dest_warp_id": 0
         }
     ],

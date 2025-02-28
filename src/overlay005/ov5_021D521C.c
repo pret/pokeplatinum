@@ -3,9 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay005/ov5_021D5878.h"
+#include "constants/narc.h"
+
+#include "overlay005/model_attributes.h"
 #include "overlay005/struct_ov5_021D52F4.h"
-#include "overlay005/struct_ov5_021D5894.h"
 
 #include "ascii_util.h"
 #include "graphics.h"
@@ -16,7 +17,7 @@ typedef struct UnkStruct_ov5_021D538C_t {
     u32 unk_00;
     UnkStruct_ov5_021D52F4 *unk_04;
     int unk_08;
-    UnkStruct_ov5_021D5894 *unk_0C;
+    ModelAttributes *unk_0C;
     BOOL unk_10;
 } UnkStruct_ov5_021D538C;
 
@@ -26,7 +27,7 @@ static void ov5_021D555C(UnkStruct_ov5_021D52F4 **param0);
 static char *ov5_021D5570(char *param0, GXRgb *param1, VecFx16 *param2);
 static char *ov5_021D5660(char *param0, GXRgb *param1);
 
-UnkStruct_ov5_021D538C *ov5_021D521C(UnkStruct_ov5_021D5894 *param0, const u8 param1)
+UnkStruct_ov5_021D538C *ov5_021D521C(ModelAttributes *param0, const u8 param1)
 {
     int v0;
     UnkStruct_ov5_021D538C *v1;
@@ -100,7 +101,7 @@ void ov5_021D5298(UnkStruct_ov5_021D538C *param0)
     }
 }
 
-void ov5_021D52F4(const UnkStruct_ov5_021D52F4 *param0, UnkStruct_ov5_021D5894 *param1)
+void ov5_021D52F4(const UnkStruct_ov5_021D52F4 *param0, ModelAttributes *param1)
 {
     int v0;
 
@@ -108,18 +109,18 @@ void ov5_021D52F4(const UnkStruct_ov5_021D52F4 *param0, UnkStruct_ov5_021D5894 *
         int v1 = (1 << v0);
 
         if ((param0->unk_04 & v1) != 0) {
-            ov5_021D5A50(param1, v0, param0->unk_10[v0].x, param0->unk_10[v0].y, param0->unk_10[v0].z);
-            ov5_021D5A78(param1, v0, param0->unk_08[v0]);
+            ModelAttributes_SetLightVector(param1, v0, param0->unk_10[v0].x, param0->unk_10[v0].y, param0->unk_10[v0].z);
+            ModelAttributes_SetLightColor(param1, v0, param0->unk_08[v0]);
         } else {
-            ov5_021D5A50(param1, v0, 0, 0, 0);
-            ov5_021D5A78(param1, v0, GX_RGB(0, 0, 0));
+            ModelAttributes_SetLightVector(param1, v0, 0, 0, 0);
+            ModelAttributes_SetLightColor(param1, v0, GX_RGB(0, 0, 0));
         }
     }
 
-    ov5_021D5A8C(param1, param0->unk_28, 0, 0);
-    ov5_021D5AA0(param1, param0->unk_2A, 1);
-    ov5_021D5AB4(param1, param0->unk_2C, 0, 0);
-    ov5_021D5AC8(param1, param0->unk_2E, 1);
+    ModelAttributes_SetDiffuseReflection(param1, param0->unk_28, 0, 0);
+    ModelAttributes_SetAmbientReflection(param1, param0->unk_2A, 1);
+    ModelAttributes_SetSpecularReflection(param1, param0->unk_2C, 0, 0);
+    ModelAttributes_SetEmissionColor(param1, param0->unk_2E, 1);
 }
 
 static void ov5_021D538C(UnkStruct_ov5_021D538C *param0)
@@ -147,7 +148,7 @@ static u32 ov5_021D53D4(u32 param0, UnkStruct_ov5_021D52F4 **param1)
     char v7[256];
     UnkStruct_ov5_021D52F4 *v8;
 
-    v4 = LoadMemberFromNARC(176, param0, 0, 4, 0);
+    v4 = LoadMemberFromNARC(NARC_INDEX_DATA__AREALIGHT, param0, 0, 4, 0);
     v3 = v4;
     v2 = 0;
 

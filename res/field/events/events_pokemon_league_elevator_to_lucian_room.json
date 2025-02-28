@@ -5,13 +5,13 @@
         {
             "x": 4,
             "z": 2,
-            "dest_header_id": 183,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_LUCIAN_ROOM",
             "dest_warp_id": 1
         },
         {
             "x": 4,
             "z": 15,
-            "dest_header_id": 181,
+            "dest_header_id": "MAP_HEADER_POKEMON_LEAGUE_FLINT_ROOM",
             "dest_warp_id": 0
         }
     ],

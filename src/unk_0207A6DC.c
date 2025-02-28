@@ -31,7 +31,7 @@
 #include "unk_02032798.h"
 #include "unk_020363E8.h"
 
-void sub_0207A81C(BattleSystem *param0, int param1, int param2, void *param3, u8 param4);
+void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4);
 BOOL sub_0207A8F4(UnkStruct_0207A778 *param0, u32 param1);
 BOOL sub_0207A960(UnkStruct_0207A778 *param0);
 BOOL sub_0207A988(UnkStruct_0207A778 *param0);
@@ -227,7 +227,7 @@ static u8 *sub_0207A814(int param0, void *param1, int param2)
     return (u8 *)v0->unk_10[param0];
 }
 
-void sub_0207A81C(BattleSystem *param0, int param1, int param2, void *param3, u8 param4)
+void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3, u8 param4)
 {
     int v0;
     UnkStruct_0207A81C *v1;
@@ -237,9 +237,9 @@ void sub_0207A81C(BattleSystem *param0, int param1, int param2, void *param3, u8
     u16 *v5;
 
     v1 = (UnkStruct_0207A81C *)Heap_AllocFromHeap(5, sizeof(UnkStruct_0207A81C));
-    v3 = ov16_0223E06C(param0);
-    v4 = ov16_0223E08C(param0);
-    v5 = ov16_0223E098(param0);
+    v3 = ov16_0223E06C(battleSys);
+    v4 = ov16_0223E08C(battleSys);
+    v5 = ov16_0223E098(battleSys);
 
     if (v4[0] + sizeof(UnkStruct_0207A81C) + param4 + 1 > 0x1000) {
         v5[0] = v4[0];

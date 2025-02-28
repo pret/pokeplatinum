@@ -353,7 +353,13 @@ RomSpec
 	File graphic/pst_gra.narc
 	File graphic/ranking.narc
 	File graphic/record.narc
-	File graphic/shop_gra.narc
+
+	Root /graphic/
+	HostRoot res/graphics/shop_menu
+	File shop_gra.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File graphic/tmap_gra.narc
 	File graphic/touch_subwindow.narc
 	File graphic/trainer_case.narc

@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_POKEDEX_SEARCH_H
 #define POKEPLATINUM_POKEDEX_SEARCH_H
 
+#include "overlay021/pokedex_app.h"
 #include "overlay021/pokedex_sort.h"
-#include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021E68F4.h"
 
 #include "heap.h"
@@ -15,7 +15,7 @@ enum FilterMethod {
     MAX_FILTER_METHOD
 };
 
-void PokedexSearch_TransitionFunctions(UnkStruct_ov21_021E68F4 *param0, UnkStruct_ov21_021D0F60 *param1, enum HeapId heapID);
+void PokedexSearch_TransitionFunctions(UnkStruct_ov21_021E68F4 *param0, PokedexApp *param1, enum HeapId heapID);
 void PokedexSearch_FreeData(UnkStruct_ov21_021E68F4 *param0);
 void PokedexSearch_SetFilterMethod(UnkStruct_ov21_021E68F4 *param0, enum FilterMethod filterMethod);
 enum FilterMethod PokedexSearch_GetFilterMethod(const UnkStruct_ov21_021E68F4 *param0);

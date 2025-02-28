@@ -253,9 +253,9 @@ int BattleSystem_MaxBattlers(BattleSystem *battleSys)
 
 Party *BattleSystem_Party(BattleSystem *battleSystem, int param1)
 {
-    if ((battleSystem->battleType & 0x8) || ((battleSystem->battleType & 0x10) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
+    if ((battleSystem->battleType & BATTLE_TYPE_2vs2) || ((battleSystem->battleType & BATTLE_TYPE_TAG) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
         return battleSystem->parties[param1];
-    } else if (battleSystem->battleType & 0x2) {
+    } else if (battleSystem->battleType & BATTLE_TYPE_DOUBLES) {
         return battleSystem->parties[param1 & 1];
     } else {
         return battleSystem->parties[param1];
@@ -430,9 +430,9 @@ u16 Battler_TrainerID(BattleSystem *battleSys, int battler)
 
 Trainer *BattleSystem_GetTrainer(BattleSystem *battleSystem, int param1)
 {
-    if ((battleSystem->battleType & 0x8) || ((battleSystem->battleType & 0x10) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
+    if ((battleSystem->battleType & BATTLE_TYPE_2vs2) || ((battleSystem->battleType & BATTLE_TYPE_TAG) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
         return &battleSystem->trainers[param1];
-    } else if (battleSystem->battleType & 0x2) {
+    } else if (battleSystem->battleType & BATTLE_TYPE_DOUBLES) {
         return &battleSystem->trainers[param1 & 1];
     } else {
         return &battleSystem->trainers[param1];
@@ -934,8 +934,8 @@ u8 ov16_0223EC58(BattleSystem *battleSystem, int param1, u8 param2)
 {
     u16 v0;
 
-    if ((BattleSystem_BattlerSlot(battleSystem, param1) == 4) && ((battleSystem->battleType & 0x8) == 0)) {
-        if (battleSystem->battleType & 0x4) {
+    if ((BattleSystem_BattlerSlot(battleSystem, param1) == 4) && ((battleSystem->battleType & BATTLE_TYPE_2vs2) == 0)) {
+        if (battleSystem->battleType & BATTLE_TYPE_LINK) {
             if ((param2 & FlagIndex(BattleSystem_Partner(battleSystem, param1))) == 0) {
                 return 1;
             }
@@ -1046,9 +1046,9 @@ PokemonAnimationSys *BattleSystem_GetPokemonAnimationSystem(BattleSystem *battle
 
 ChatotCry *BattleSystem_ChatotVoice(BattleSystem *battleSystem, int param1)
 {
-    if ((battleSystem->battleType & 0x8) || ((battleSystem->battleType & 0x10) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
+    if ((battleSystem->battleType & BATTLE_TYPE_2vs2) || ((battleSystem->battleType & BATTLE_TYPE_TAG) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
         return battleSystem->unk_78[param1];
-    } else if (battleSystem->battleType & 0x2) {
+    } else if (battleSystem->battleType & BATTLE_TYPE_DOUBLES) {
         return battleSystem->unk_78[param1 & 1];
     } else {
         return battleSystem->unk_78[param1];
@@ -1061,7 +1061,7 @@ void ov16_0223EE70(BattleSystem *battleSystem)
     Pokemon *v2;
     u16 v3;
 
-    if (battleSystem->battleType & (0x4 | 0x80 | 0x20 | 0x200)) {
+    if (battleSystem->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
         return;
     }
 
@@ -1510,7 +1510,7 @@ void ov16_0223F638(BattleSystem *battleSystem, u16 param1, u8 *param2)
     u8 v2;
     u8 v3 = 0;
 
-    if ((battleSystem->battleType & 0x4) == 0) {
+    if ((battleSystem->battleType & BATTLE_TYPE_LINK) == FALSE) {
         return;
     }
 
@@ -1594,9 +1594,9 @@ void BattleSystem_ShowStopPlaybackButton(BattleSystem *battleSys)
 
 u8 BattleSystem_RecordedChatter(BattleSystem *battleSystem, int param1)
 {
-    if ((battleSystem->battleType & 0x8) || ((battleSystem->battleType & 0x10) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
+    if ((battleSystem->battleType & BATTLE_TYPE_2vs2) || ((battleSystem->battleType & BATTLE_TYPE_TAG) && (BattleSystem_BattlerSlot(battleSystem, param1) & 0x1))) {
         return battleSystem->unk_247C[param1];
-    } else if (battleSystem->battleType & 0x2) {
+    } else if (battleSystem->battleType & BATTLE_TYPE_DOUBLES) {
         return battleSystem->unk_247C[param1 & 1];
     } else {
         return battleSystem->unk_247C[param1];
@@ -1684,8 +1684,8 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
     v2 = BattleContext_Get(battleSystem, battleSystem->battleCtx, 2, param1);
     v1 = BattleSystem_PartyPokemon(battleSystem, param1, v2);
 
-    if ((battleSystem->battleType & (0x4 | 0x80)) == 0) {
-        if ((v0 & 0x1) || (battleSystem->battleType == (0x2 | 0x8 | 0x40)) || (battleSystem->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
+    if ((battleSystem->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER)) == FALSE) {
+        if ((v0 & 0x1) || (battleSystem->battleType == BATTLE_TYPE_AI_PARTNER) || (battleSystem->battleType == (BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI))) {
             Pokedex_Encounter(battleSystem->pokedex, v1);
         }
     }
@@ -1701,7 +1701,7 @@ void ov16_0223F9A0(BattleSystem *battleSystem, int param1)
 
     v0 = Battler_Type(battleSystem->battlers[param1]);
 
-    if ((battleSystem->battleType & (0x4 | 0x80)) == 0) {
+    if ((battleSystem->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER)) == 0) {
         if (v0 & 0x1) {
             {
                 Pokemon *v1;
@@ -1731,7 +1731,7 @@ u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3,
     Window *v0 = BattleSystem_Window(battleSystem, 0);
     int v1;
 
-    if (battleSystem->battleType & 0x80) {
+    if (battleSystem->battleType & BATTLE_TYPE_FRONTIER) {
         if (param1 == 10000) {
             {
                 Strbuf *v2;

@@ -155,7 +155,7 @@ static BOOL BtlCmd_LockMoveChoice(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetHealthbarStatus(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_PayPrizeMoney(BattleSystem *param0, BattleContext *param1);
+static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *param1);
 static BOOL BtlCmd_PlayBattleAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayBattleAnimationOnMons(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayBattleAnimationFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -335,11 +335,11 @@ static int BattleMessage_FlavorTag(BattleContext *battleCtx, int battlerIn);
 static int BattleMessage_TrainerClassTag(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 static int BattleMessage_TrainerNameTag(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 
-static u32 BattleScript_CalcPrizeMoney(BattleSystem *param0, BattleContext *param1, int param2);
+static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *param1, int param2);
 static void BattleScript_CalcEffortValues(Party *party, int slot, int species, int form);
 static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1, Pokemon *param2);
-static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1);
+static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *param1, Pokemon *param2);
+static void BattleScript_FreePartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *param1);
 static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler);
 static void BattleAI_SetAbility(BattleContext *battleCtx, u8 battler, u8 ability);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
@@ -959,7 +959,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
     switch (battlerIn) {
     default:
     case BTLSCR_ALL_BATTLERS:
-        if (BattleSystem_BattleType(battleSys) & 0x10) {
+        if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) {
             for (i = 0; i < maxBattlers; i++) {
                 battlerData = BattleSystem_BattlerData(battleSys, i);
                 if (battlerData->battlerType != BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
@@ -3904,7 +3904,7 @@ static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *b
     u32 prize;
     if ((battleSys->battleType & BATTLE_TYPE_TAG) || battleSys->battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) {
         prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trainer.header.trainerType];
-    } else if (battleSys->battleType & 0x2) {
+    } else if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
         prize = lastLevel * 4 * battleCtx->prizeMoneyMul * 2 * sTrainerClassPrizeMul[trainer.header.trainerType];
     } else {
         prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trainer.header.trainerType];
@@ -10576,7 +10576,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v7.surface = 0;
                 v7.battleSys = v2->battleSys;
 
-                if (BattleSystem_BattleType(v2->battleSys) & 0x2) {
+                if (BattleSystem_BattleType(v2->battleSys) & BATTLE_TYPE_DOUBLES) {
                     if (v1 == 1) {
                         v7.type = 16;
                     } else {
@@ -10614,11 +10614,9 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 1:
         if (ov12_022368D0(v2->ballRotation, 0) == 0) {
             {
-                u32 v9;
+                u32 battleType = BattleSystem_BattleType(v2->battleSys);
 
-                v9 = BattleSystem_BattleType(v2->battleSys);
-
-                if (v9 & 0x1) {
+                if (battleType & BATTLE_TYPE_TRAINER) {
                     sub_02005728(1510, 117);
                     ov12_022368C8(v2->ballRotation, 2);
                     v2->seqNum = 25;
@@ -10715,7 +10713,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 ov16_0223F4B0(v2->battleSys, v1);
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
-                if (BattleSystem_BattleType(v2->battleSys) & (0x200 | 0x400)) {
+                if (BattleSystem_BattleType(v2->battleSys) & (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_CATCH_TUTORIAL)) {
                     v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                     BattleSystem_SetPokemonCatchData(v2->battleSys, v2->battleCtx, v3);
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
@@ -11092,7 +11090,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         break;
     case 32:
         if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
-            if (BattleSystem_BattleType(v2->battleSys) & (0x200 | 0x400)) {
+            if (BattleSystem_BattleType(v2->battleSys) & (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_CATCH_TUTORIAL)) {
                 ov12_0223783C(v2->ballRotation);
                 sub_02007DD4(v5);
             }
@@ -12191,7 +12189,7 @@ static const SpriteTemplate Unk_ov16_0226E6F8 = {
     0x0
 };
 
-static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1, Pokemon *param2)
+static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *param1, Pokemon *param2)
 {
     SpriteTemplate v0;
     SpriteSystem *v1;
@@ -12207,13 +12205,13 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     UnkStruct_020127E8 v12;
     int v13;
 
-    v4 = BattleSystem_MessageLoader(param0);
-    v7 = ov16_0223E0D4(param0);
-    v5 = BattleSystem_StringTemplate(param0);
-    v8 = BattleSystem_BGL(param0);
-    v1 = ov16_0223E010(param0);
-    v2 = ov16_0223E018(param0);
-    v3 = BattleSystem_PaletteSys(param0);
+    v4 = BattleSystem_MessageLoader(battleSys);
+    v7 = ov16_0223E0D4(battleSys);
+    v5 = BattleSystem_StringTemplate(battleSys);
+    v8 = BattleSystem_BGL(battleSys);
+    v1 = ov16_0223E010(battleSys);
+    v2 = ov16_0223E018(battleSys);
+    v3 = BattleSystem_PaletteSys(battleSys);
 
     SpriteSystem_LoadCharResObj(v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 256, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, 20021);
     SpriteSystem_LoadPaletteBuffer(v3, PLTTBUF_MAIN_OBJ, v1, v2, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 82, FALSE, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 20016);
@@ -12280,11 +12278,11 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *param0, BattleScript
     Window_Remove(&v9);
 }
 
-static void BattleScript_FreePartyLevelUpIcon(BattleSystem *param0, BattleScriptTaskData *param1)
+static void BattleScript_FreePartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *param1)
 {
     SpriteManager *v0;
 
-    v0 = ov16_0223E018(param0);
+    v0 = ov16_0223E018(battleSys);
 
     Sprite_DeleteAndFreeResources(param1->sprites[0]);
     Sprite_DeleteAndFreeResources(param1->sprites[1]);
