@@ -1,8 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/gba/items.h"
 #include "constants/gba/pokemon.h"
 #include "constants/gba/species.h"
+#include "constants/items.h"
 #include "constants/screen.h"
 #include "constants/species.h"
 
@@ -60,6 +62,17 @@
 #include "vram_transfer.h"
 
 FS_EXTERN_OVERLAY(overlay77);
+
+enum GBAMonState {
+    GBA_MON_STATE_0,
+    GBA_MON_STATE_1,
+    GBA_MON_STATE_2,
+    GBA_MON_STATE_3,
+    GBA_MON_STATE_IS_EGG,
+    GBA_MON_STATE_HAS_HM,
+    GBA_MON_STATE_HAS_INVALID_ITEM,
+    GBA_MON_STATE_IS_INVALID_SPECIES,
+};
 
 typedef struct {
     Window *unk_00;
@@ -830,22 +843,21 @@ static void ov97_0223468C(UnkStruct_ov97_02234A2C *param0)
     param0->unk_474 = 0;
 }
 
-static BOOL ov97_0223474C(UnkStruct_ov97_02234A2C *param0, int param1)
+static BOOL BoxMonGBAIsEgg(UnkStruct_ov97_02234A2C *param0, int boxPosition)
 {
-    int v0;
-    BoxPokemonGBA *v1 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
+    BoxPokemonGBA *boxMonGBA = &param0->unk_E8E0->boxes[param0->unk_E8E4][boxPosition];
 
-    if (GetGBABoxMonData(v1, GBA_MON_DATA_SPECIES_OR_EGG, NULL) == GBA_SPECIES_EGG) {
-        return 1;
+    if (GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES_OR_EGG, NULL) == GBA_SPECIES_EGG) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL BoxMonGBAHasHM(UnkStruct_ov97_02234A2C *param0, int param1)
+static BOOL BoxMonGBAHasHM(UnkStruct_ov97_02234A2C *param0, int boxPosition)
 {
     int i, j, move;
-    BoxPokemonGBA *boxMon = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
+    BoxPokemonGBA *boxMon = &param0->unk_E8E0->boxes[param0->unk_E8E4][boxPosition];
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         move = GetGBABoxMonData(boxMon, GBA_MON_DATA_MOVE1 + i, NULL);
@@ -860,206 +872,206 @@ static BOOL BoxMonGBAHasHM(UnkStruct_ov97_02234A2C *param0, int param1)
     return FALSE;
 }
 
-u16 Unk_ov97_0223EAD8[] = {
-    0x5,
-    0x34,
-    0x35,
-    0x36,
-    0x37,
-    0x38,
-    0x39,
-    0x3A,
-    0x3B,
-    0x3C,
-    0x3D,
-    0x3E,
-    0x48,
-    0x52,
-    0x57,
-    0x58,
-    0x59,
-    0x5A,
-    0x5B,
-    0x5C,
-    0x63,
-    0x64,
-    0x65,
-    0x66,
-    0x69,
-    0x70,
-    0x71,
-    0x72,
-    0x73,
-    0x74,
-    0x75,
-    0x76,
-    0x77,
-    0x78,
-    0x79,
-    0x7A,
-    0x7B,
-    0x7C,
-    0x7D,
-    0x7E,
-    0x7F,
-    0x80,
-    0x81,
-    0x82,
-    0x83,
-    0x84,
-    0xB0,
-    0xB1,
-    0xB2,
-    0xE2,
-    0xE3,
-    0xE4,
-    0xE5,
-    0xE6,
-    0xE7,
-    0xE8,
-    0xE9,
-    0xEA,
-    0xEB,
-    0xEC,
-    0xED,
-    0xEE,
-    0xEF,
-    0xF0,
-    0xF1,
-    0xF2,
-    0xF3,
-    0xF4,
-    0xF5,
-    0xF6,
-    0xF7,
-    0xF8,
-    0xF9,
-    0xFA,
-    0xFB,
-    0xFC,
-    0xFD,
-    0x103,
-    0x104,
-    0x105,
-    0x106,
-    0x107,
-    0x108,
-    0x109,
-    0x10A,
-    0x10B,
-    0x10C,
-    0x10D,
-    0x10E,
-    0x10F,
-    0x110,
-    0x111,
-    0x112,
-    0x113,
-    0x114,
-    0x115,
-    0x116,
-    0x117,
-    0x118,
-    0x119,
-    0x11A,
-    0x11B,
-    0x11C,
-    0x11D,
-    0x11E,
-    0x11F,
-    0x120,
-    0x153,
-    0x154,
-    0x155,
-    0x156,
-    0x157,
-    0x158,
-    0x159,
-    0x15A,
-    0x15B,
-    0x15C,
-    0x15D,
-    0x15E,
-    0x15F,
-    0x160,
-    0x161,
-    0x162,
-    0x163,
-    0x164,
-    0x165,
-    0x166,
-    0x167,
-    0x168,
-    0x169,
-    0x16A,
-    0x16B,
-    0x16C,
-    0x16D,
-    0x16E,
-    0x16F,
-    0x170,
-    0x171,
-    0x172,
-    0x173,
-    0x174,
-    0x175,
-    0x176,
-    0x177,
-    0x178,
-    0x0
+u16 sInvalidGBAItems[] = {
+    GBA_ITEM_SAFARI_BALL,
+    GBA_ITEM_034,
+    GBA_ITEM_035,
+    GBA_ITEM_036,
+    GBA_ITEM_037,
+    GBA_ITEM_038,
+    GBA_ITEM_039,
+    GBA_ITEM_03A,
+    GBA_ITEM_03B,
+    GBA_ITEM_03C,
+    GBA_ITEM_03D,
+    GBA_ITEM_03E,
+    GBA_ITEM_048,
+    GBA_ITEM_052,
+    GBA_ITEM_057,
+    GBA_ITEM_058,
+    GBA_ITEM_059,
+    GBA_ITEM_05A,
+    GBA_ITEM_05B,
+    GBA_ITEM_05C,
+    GBA_ITEM_063,
+    GBA_ITEM_064,
+    GBA_ITEM_065,
+    GBA_ITEM_066,
+    GBA_ITEM_069,
+    GBA_ITEM_070,
+    GBA_ITEM_071,
+    GBA_ITEM_072,
+    GBA_ITEM_073,
+    GBA_ITEM_074,
+    GBA_ITEM_075,
+    GBA_ITEM_076,
+    GBA_ITEM_077,
+    GBA_ITEM_078,
+    GBA_ITEM_ORANGE_MAIL,
+    GBA_ITEM_HARBOR_MAIL,
+    GBA_ITEM_GLITTER_MAIL,
+    GBA_ITEM_MECH_MAIL,
+    GBA_ITEM_WOOD_MAIL,
+    GBA_ITEM_WAVE_MAIL,
+    GBA_ITEM_BEAD_MAIL,
+    GBA_ITEM_SHADOW_MAIL,
+    GBA_ITEM_TROPIC_MAIL,
+    GBA_ITEM_DREAM_MAIL,
+    GBA_ITEM_FAB_MAIL,
+    GBA_ITEM_RETRO_MAIL,
+    GBA_ITEM_UNUSED_BERRY_1,
+    GBA_ITEM_UNUSED_BERRY_2,
+    GBA_ITEM_UNUSED_BERRY_3,
+    GBA_ITEM_0E2,
+    GBA_ITEM_0E3,
+    GBA_ITEM_0E4,
+    GBA_ITEM_0E5,
+    GBA_ITEM_0E6,
+    GBA_ITEM_0E7,
+    GBA_ITEM_0E8,
+    GBA_ITEM_0E9,
+    GBA_ITEM_0EA,
+    GBA_ITEM_0EB,
+    GBA_ITEM_0EC,
+    GBA_ITEM_0ED,
+    GBA_ITEM_0EE,
+    GBA_ITEM_0EF,
+    GBA_ITEM_0F0,
+    GBA_ITEM_0F1,
+    GBA_ITEM_0F2,
+    GBA_ITEM_0F3,
+    GBA_ITEM_0F4,
+    GBA_ITEM_0F5,
+    GBA_ITEM_0F6,
+    GBA_ITEM_0F7,
+    GBA_ITEM_0F8,
+    GBA_ITEM_0F9,
+    GBA_ITEM_0FA,
+    GBA_ITEM_0FB,
+    GBA_ITEM_0FC,
+    GBA_ITEM_0FD,
+    GBA_ITEM_MACH_BIKE,
+    GBA_ITEM_COIN_CASE,
+    GBA_ITEM_ITEMFINDER,
+    GBA_ITEM_OLD_ROD,
+    GBA_ITEM_GOOD_ROD,
+    GBA_ITEM_SUPER_ROD,
+    GBA_ITEM_SS_TICKET,
+    GBA_ITEM_CONTEST_PASS,
+    GBA_ITEM_10B,
+    GBA_ITEM_WAILMER_PAIL,
+    GBA_ITEM_DEVON_GOODS,
+    GBA_ITEM_SOOT_SACK,
+    GBA_ITEM_BASEMENT_KEY,
+    GBA_ITEM_ACRO_BIKE,
+    GBA_ITEM_POKEBLOCK_CASE,
+    GBA_ITEM_LETTER,
+    GBA_ITEM_EON_TICKET,
+    GBA_ITEM_RED_ORB,
+    GBA_ITEM_BLUE_ORB,
+    GBA_ITEM_SCANNER,
+    GBA_ITEM_GO_GOGGLES,
+    GBA_ITEM_METEORITE,
+    GBA_ITEM_ROOM_1_KEY,
+    GBA_ITEM_ROOM_2_KEY,
+    GBA_ITEM_ROOM_4_KEY,
+    GBA_ITEM_ROOM_6_KEY,
+    GBA_ITEM_STORAGE_KEY,
+    GBA_ITEM_ROOT_FOSSIL,
+    GBA_ITEM_CLAW_FOSSIL,
+    GBA_ITEM_DEVON_SCOPE,
+    GBA_ITEM_HM01,
+    GBA_ITEM_HM02,
+    GBA_ITEM_HM03,
+    GBA_ITEM_HM04,
+    GBA_ITEM_HM05,
+    GBA_ITEM_HM06,
+    GBA_ITEM_HM07,
+    GBA_ITEM_HM08,
+    GBA_ITEM_15B,
+    GBA_ITEM_15C,
+    GBA_ITEM_OAKS_PARCEL,
+    GBA_ITEM_POKE_FLUTE,
+    GBA_ITEM_SECRET_KEY,
+    GBA_ITEM_BIKE_VOUCHER,
+    GBA_ITEM_GOLD_TEETH,
+    GBA_ITEM_OLD_AMBER,
+    GBA_ITEM_CARD_KEY,
+    GBA_ITEM_LIFT_KEY,
+    GBA_ITEM_HELIX_FOSSIL,
+    GBA_ITEM_DOME_FOSSIL,
+    GBA_ITEM_SILPH_SCOPE,
+    GBA_ITEM_BICYCLE,
+    GBA_ITEM_TOWN_MAP,
+    GBA_ITEM_VS_SEEKER,
+    GBA_ITEM_FAME_CHECKER,
+    GBA_ITEM_TM_CASE,
+    GBA_ITEM_BERRY_POUCH,
+    GBA_ITEM_TEACHY_TV,
+    GBA_ITEM_TRI_PASS,
+    GBA_ITEM_RAINBOW_PASS,
+    GBA_ITEM_TEA,
+    GBA_ITEM_MYSTIC_TICKET,
+    GBA_ITEM_AURORA_TICKET,
+    GBA_ITEM_POWDER_JAR,
+    GBA_ITEM_RUBY,
+    GBA_ITEM_SAPPHIRE,
+    GBA_ITEM_MAGMA_EMBLEM,
+    GBA_ITEM_OLD_SEA_MAP,
+    ITEM_NONE
 };
 
-static BOOL ov97_022347D8(UnkStruct_ov97_02234A2C *param0, int param1)
+static BOOL BoxMonGBAHasInvalidItem(UnkStruct_ov97_02234A2C *param0, int boxPosition)
 {
-    BoxPokemonGBA *v0 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
-    int v1 = GetGBABoxMonData(v0, GBA_MON_DATA_HELD_ITEM, NULL);
-    int v2;
+    BoxPokemonGBA *boxMonGBA = &param0->unk_E8E0->boxes[param0->unk_E8E4][boxPosition];
+    int item = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HELD_ITEM, NULL);
+    int i;
 
-    for (v2 = 0; Unk_ov97_0223EAD8[v2]; v2++) {
-        if (v1 == Unk_ov97_0223EAD8[v2]) {
-            return 1;
+    for (i = 0; sInvalidGBAItems[i] != ITEM_NONE; i++) {
+        if (item == sInvalidGBAItems[i]) {
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov97_02234828(UnkStruct_ov97_02234A2C *param0, int param1)
+static BOOL BoxMonGBAIsInvalidSpecies(UnkStruct_ov97_02234A2C *param0, int boxPosition)
 {
-    BoxPokemonGBA *v0 = &param0->unk_E8E0->boxes[param0->unk_E8E4][param1];
-    int v1 = GetGBABoxMonData(v0, GBA_MON_DATA_SPECIES, NULL);
+    BoxPokemonGBA *boxMonGBA = &param0->unk_E8E0->boxes[param0->unk_E8E4][boxPosition];
+    int species = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL);
 
-    return IsGBASpeciesInvalid(v1);
+    return IsGBASpeciesInvalid(species);
 }
 
-static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int param1)
+static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int boxPosition)
 {
-    int v0, v1;
+    int i, v1;
 
-    if (param0->unk_20C[param1].unk_00 && (Sprite_GetDrawFlag(param0->unk_20C[param1].unk_00) == 0)) {
-        return 3;
+    if (param0->unk_20C[boxPosition].unk_00 && (Sprite_GetDrawFlag(param0->unk_20C[boxPosition].unk_00) == 0)) {
+        return GBA_MON_STATE_3;
     }
 
-    for (v1 = -1, v0 = 0; v1 == -1 && v0 < 6; v0++) {
-        if ((param0->unk_42C[v0].unk_08 == param0->unk_E8E4) && (param0->unk_42C[v0].unk_04 == param1)) {
-            v1 = v0;
+    for (v1 = -1, i = 0; v1 == -1 && i < 6; i++) {
+        if ((param0->unk_42C[i].unk_08 == param0->unk_E8E4) && (param0->unk_42C[i].unk_04 == boxPosition)) {
+            v1 = i;
         }
     }
 
-    if (ov97_0223474C(param0, param1) == 1) {
-        return 4;
+    if (BoxMonGBAIsEgg(param0, boxPosition) == TRUE) {
+        return GBA_MON_STATE_IS_EGG;
     }
 
-    if (BoxMonGBAHasHM(param0, param1) == TRUE) {
-        return 5;
+    if (BoxMonGBAHasHM(param0, boxPosition) == TRUE) {
+        return GBA_MON_STATE_HAS_HM;
     }
 
-    if (ov97_022347D8(param0, param1) == 1) {
-        return 6;
+    if (BoxMonGBAHasInvalidItem(param0, boxPosition) == TRUE) {
+        return GBA_MON_STATE_HAS_INVALID_ITEM;
     }
 
-    if (ov97_02234828(param0, param1) == 1) {
-        return 7;
+    if (BoxMonGBAIsInvalidSpecies(param0, boxPosition) == 1) {
+        return GBA_MON_STATE_IS_INVALID_SPECIES;
     }
 
     if (v1 == -1) {
@@ -1067,27 +1079,27 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int param1)
         VecFx32 v3;
 
         if (param0->unk_474 == 6) {
-            return 0;
+            return GBA_MON_STATE_0;
         }
 
-        for (v0 = 0; v0 < 6; v0++) {
-            if (param0->unk_42C[v0].unk_04 == -1) {
-                v2 = Sprite_GetPosition(param0->unk_20C[param1].unk_00);
-                Sprite_SetPosition(param0->unk_42C[v0].unk_00, v2);
-                v2 = Sprite_GetPosition(param0->unk_42C[v0].unk_00);
+        for (i = 0; i < 6; i++) {
+            if (param0->unk_42C[i].unk_04 == -1) {
+                v2 = Sprite_GetPosition(param0->unk_20C[boxPosition].unk_00);
+                Sprite_SetPosition(param0->unk_42C[i].unk_00, v2);
+                v2 = Sprite_GetPosition(param0->unk_42C[i].unk_00);
 
                 v3 = *v2;
                 v3.x -= FX32_ONE * 8;
                 v3.y -= FX32_ONE * 4;
 
-                Sprite_SetPosition(param0->unk_42C[v0].unk_00, &v3);
-                Sprite_SetDrawFlag(param0->unk_42C[v0].unk_00, 1);
+                Sprite_SetPosition(param0->unk_42C[i].unk_00, &v3);
+                Sprite_SetDrawFlag(param0->unk_42C[i].unk_00, 1);
 
-                param0->unk_42C[v0].unk_04 = param1;
-                param0->unk_42C[v0].unk_08 = param0->unk_E8E4;
+                param0->unk_42C[i].unk_04 = boxPosition;
+                param0->unk_42C[i].unk_08 = param0->unk_E8E4;
                 param0->unk_474++;
 
-                return 1;
+                return GBA_MON_STATE_1;
             }
         }
     } else {
@@ -1096,10 +1108,10 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int param1)
         param0->unk_42C[v1].unk_04 = -1;
         param0->unk_474--;
 
-        return 2;
+        return GBA_MON_STATE_2;
     }
 
-    return 0;
+    return GBA_MON_STATE_0;
 }
 
 static void ov97_022349E0(UnkStruct_ov97_02234A2C *param0)
@@ -1165,9 +1177,9 @@ static void ov97_02234AB4(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
     Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
 }
 
-static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1)
+static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMonGBA)
 {
-    int v0, v1;
+    int species, level;
     int v2, v3;
     UnkStruct_ov97_02233DAC v4;
     MessageLoader *v5;
@@ -1199,15 +1211,15 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
     v4.unk_1C = 8;
 
     ov97_02233DD0(param0, &v4, 0x4 | 0x2);
-    ov97_02234AB4(param0, param1);
+    ov97_02234AB4(param0, boxMonGBA);
 
-    if (param1 == NULL) {
+    if (boxMonGBA == NULL) {
         Window_CopyToVRAM(v4.unk_00);
         return;
     }
 
-    GetGBABoxMonData(param1, GBA_MON_DATA_NICKNAME, v6);
-    ov97_0223936C(v6, v7, 10 + 1, GetGBABoxMonData(param1, GBA_MON_DATA_LANGUAGE, NULL));
+    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NICKNAME, v6);
+    ov97_0223936C(v6, v7, 10 + 1, GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL));
 
     v4.unk_38 = v7;
     v4.unk_34 = -1;
@@ -1218,9 +1230,9 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
 
     v8 = Strbuf_Init(64, 78);
     v5 = MessageLoader_Init(1, 26, 412, 78);
-    v0 = ConvertGBASpeciesToDS(GetGBABoxMonData(param1, GBA_MON_DATA_SPECIES, NULL));
+    species = ConvertGBASpeciesToDS(GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL));
 
-    MessageLoader_GetStrbuf(v5, v0, v8);
+    MessageLoader_GetStrbuf(v5, species, v8);
 
     v4.unk_3C = v8;
     v4.unk_34 = -1;
@@ -1232,7 +1244,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
     MessageLoader_Free(v5);
     Strbuf_Free(v8);
 
-    v2 = GetGBABoxMonData(param1, GBA_MON_DATA_HELD_ITEM, NULL);
+    v2 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HELD_ITEM, NULL);
 
     if (v2) {
         v3 = Item_FromGBAID(v2);
@@ -1249,10 +1261,10 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
         Strbuf_Free(v8);
     }
 
-    v1 = ov97_02236E00(param1);
+    level = GetBoxMonGBALevel(boxMonGBA);
     v8 = Strbuf_Init(10, 78);
 
-    Strbuf_FormatInt(v8, v1, 3, 1, 1);
+    Strbuf_FormatInt(v8, level, 3, 1, 1);
 
     v4.unk_3C = v8;
     v4.unk_34 = -1;
@@ -1262,7 +1274,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1
     ov97_02233DD0(param0, &v4, 0x2);
 
     Strbuf_Free(v8);
-    sub_02005844(v0, 0);
+    sub_02005844(species, 0);
 }
 
 static void ov97_02234CC4(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int *param3)
@@ -1979,25 +1991,25 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
             if (v0 < 30) {
                 v1 = ov97_02234854(v3, v0);
 
-                if (v1 == 1) {
+                if (v1 == GBA_MON_STATE_1) {
                     ov97_02234B0C(v3, &(v3->unk_E8E0->boxes[v3->unk_E8E4][v0]));
 
                     if (v3->unk_474 == 6) {
                         v3->unk_E8E8 = 45;
                         *param1 = 15;
                     }
-                } else if (v1 == 2) {
+                } else if (v1 == GBA_MON_STATE_2) {
                     ov97_02234B0C(v3, NULL);
-                } else if (v1 == 4) {
+                } else if (v1 == GBA_MON_STATE_IS_EGG) {
                     v3->unk_08 = 8;
                     *param1 = 14;
-                } else if (v1 == 5) {
+                } else if (v1 == GBA_MON_STATE_HAS_HM) {
                     v3->unk_08 = 9;
                     *param1 = 14;
-                } else if (v1 == 6) {
+                } else if (v1 == GBA_MON_STATE_HAS_INVALID_ITEM) {
                     v3->unk_08 = 38;
                     *param1 = 14;
-                } else if (v1 == 7) {
+                } else if (v1 == GBA_MON_STATE_IS_INVALID_SPECIES) {
                     v3->unk_08 = 38;
                     *param1 = 14;
                 }

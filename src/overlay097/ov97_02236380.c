@@ -1309,15 +1309,12 @@ int ConvertGBASpeciesToDS(int species)
     return species;
 }
 
-u32 ov97_02236E00(BoxPokemonGBA *param0)
+u32 GetBoxMonGBALevel(BoxPokemonGBA *boxMonGBA)
 {
-    int v0;
-    u32 v1;
+    int species = ConvertGBASpeciesToDS(GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL));
+    u32 exp = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_EXP, NULL);
 
-    v0 = ConvertGBASpeciesToDS(GetGBABoxMonData(param0, GBA_MON_DATA_SPECIES, 0));
-    v1 = GetGBABoxMonData(param0, GBA_MON_DATA_EXP, 0);
-
-    return Pokemon_GetSpeciesLevelAt(v0, v1);
+    return Pokemon_GetSpeciesLevelAt(species, exp);
 }
 
 static int ov97_02236E28(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
