@@ -235,7 +235,7 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
     int v8;
 
     pcBoxes = ov19_021D5E90(param0->unk_0C);
-    v8 = PcBoxes_GetWallpaper(pcBoxes, param1);
+    v8 = PCBoxes_GetWallpaper(pcBoxes, param1);
 
     if (v8 >= (16 + 8)) {
         v8 -= 8;
@@ -246,7 +246,7 @@ void ov19_021DBBA8(UnkStruct_ov19_021DBA9C *param0, u32 param1, u32 param2, NNS_
 
     for (v3 = 0, v4 = 0; v3 < 5; v3++) {
         for (v2 = 0; v2 < 6; v2++) {
-            boxMon = PcBoxes_GetBoxMonAt(pcBoxes, param1, v4++);
+            boxMon = PCBoxes_GetBoxMonAt(pcBoxes, param1, v4++);
             v7 = BoxPokemon_EnterDecryptionContext(boxMon);
             species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
@@ -388,7 +388,7 @@ static void ov19_021DBDF4(UnkStruct_ov19_021DBA9C *param0)
     }
 
     for (v4 = 0; v4 < 18; v4++) {
-        param0->unk_94[v4] = PcBoxes_CountMonsInBox(ov19_021D5E90(param0->unk_0C), v4);
+        param0->unk_94[v4] = PCBoxes_CountMonsInBox(ov19_021D5E90(param0->unk_0C), v4);
     }
 }
 
@@ -429,7 +429,7 @@ static void ov19_021DBF4C(UnkStruct_ov19_021DBA9C *param0)
     v0 = ov19_021D5E90(param0->unk_0C);
     v1 = &param0->unk_10[0];
 
-    PcBoxes_CopyName(v0, param0->unk_E0, param0->unk_4BFC);
+    PCBoxes_BufferBoxName(v0, param0->unk_E0, param0->unk_4BFC);
 
     v2 = Font_CalcStrbufWidth(FONT_SYSTEM, param0->unk_4BFC, 0);
     v3 = 48 - (v2 / 2);

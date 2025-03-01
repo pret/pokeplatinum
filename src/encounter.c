@@ -515,7 +515,7 @@ static BOOL FieldTask_SafariEncounter(FieldTask *task)
             PCBoxes *boxes = SaveData_PCBoxes(fieldSystem->saveData);
             Party *party = Party_GetFromSavedata(fieldSystem->saveData);
 
-            if (PcBoxes_FirstEmptyBox(boxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
+            if (PCBoxes_FirstEmptyBox(boxes) == MAX_PC_BOXES && Party_GetCurrentCount(party) == MAX_PARTY_SIZE) {
                 ScriptManager_Start(task, 8822, NULL, NULL);
             }
         }

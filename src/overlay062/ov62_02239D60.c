@@ -1236,7 +1236,7 @@ static void ov62_0223B158(UnkStruct_0208C06C *param0)
             v0->unk_04.unk_176 = 0;
         }
         if ((v0->unk_04.unk_176 >= (16 + 8)) && (v0->unk_04.unk_176 < (16 + 8 + 8))) {
-            if (PcBoxes_CheckHasUnlockedWallpaper(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
+            if (PCBoxes_CheckHasUnlockedWallpaper(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
                 (void)0;
             }
         }
@@ -1269,7 +1269,7 @@ static void ov62_0223B230(UnkStruct_0208C06C *param0)
         }
 
         if ((v0->unk_04.unk_176 >= (16 + 8)) && (v0->unk_04.unk_176 < (16 + 8 + 8))) {
-            if (PcBoxes_CheckHasUnlockedWallpaper(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
+            if (PCBoxes_CheckHasUnlockedWallpaper(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
                 v0->unk_04.unk_176 = 0;
             }
         }
