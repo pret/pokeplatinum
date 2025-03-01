@@ -6,15 +6,15 @@
 #include "pokemon.h"
 
 int PalParkTransfer_SaveSize(void);
-void PalParkTransfer_Init(PalParkTransfer *param0);
-void sub_0202EF04(PalParkTransfer *param0);
-void sub_0202EFA4(PalParkTransfer *transfer, BoxPokemon *boxMon, int param2);
-void sub_0202EFB8(PalParkTransfer *param0, u32 param1);
-void sub_0202F000(const PalParkTransfer *param0, int param1, Pokemon *param2);
-int sub_0202F028(const PalParkTransfer *param0);
-int sub_0202F050(const PalParkTransfer *param0, u32 param1);
-BOOL sub_0202F088(const PalParkTransfer *param0);
-BOOL sub_0202F0BC(const PalParkTransfer *param0);
-BOOL sub_0202F0E0(const PalParkTransfer *param0);
+void PalParkTransfer_Init(PalParkTransfer *transferData);
+void sub_0202EF04(PalParkTransfer *transferData);
+void BoxMonToTransferData(PalParkTransfer *transfer, BoxPokemon *boxMon, int param2);
+void sub_0202EFB8(PalParkTransfer *transferData, u32 param1);
+void TransferDataToMon(const PalParkTransfer *transferData, int param1, Pokemon *param2);
+int GetPalParkTransferMonCount(const PalParkTransfer *transferData);
+int sub_0202F050(const PalParkTransfer *transferData, u32 param1);
+BOOL sub_0202F088(const PalParkTransfer *transferData);
+BOOL sub_0202F0BC(const PalParkTransfer *transferData);
+BOOL sub_0202F0E0(const PalParkTransfer *transferData);
 
 #endif // POKEPLATINUM_UNK_0202EEC0_H
