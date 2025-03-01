@@ -4561,7 +4561,7 @@ static void ov16_022626C0(SysTask *param0, void *param1)
         }
 
         if (v0->unk_6C) {
-            PokemonSpriteManager_SetHideShadows(ov16_0223E000(v0->unk_00), 0x1);
+            PokemonSpriteManager_HideShadows(ov16_0223E000(v0->unk_00));
         }
 
         ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_0C, &v0->unk_10);
@@ -4575,7 +4575,7 @@ static void ov16_022626C0(SysTask *param0, void *param1)
         }
 
         if (v0->unk_6C) {
-            PokemonSpriteManager_ClearHideShadows(ov16_0223E000(v0->unk_00), 0x1);
+            PokemonSpriteManager_ShowShadows(ov16_0223E000(v0->unk_00));
         }
 
         if ((v0->unk_10.unk_0E_0) && (v0->unk_10.unk_4C == 0) && (PokemonSprite_GetAttribute(v0->unk_08, 6) == 0)) {
