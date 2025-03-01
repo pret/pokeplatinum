@@ -13,8 +13,7 @@
 #include "generated/text_banks.h"
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DC018.h"
-#include "overlay005/struct_ov5_021DC1A4_decl.h"
+#include "overlay005/field_menu.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -41,8 +40,6 @@
 
 #include "res/pokemon/species_learnsets_by_tutor.h"
 #include "res/text/bank/common_strings_2.h"
-
-#define NO_SELECTION_YET 0xeeee
 
 typedef struct {
     FieldSystem *fieldSystem;
@@ -389,7 +386,7 @@ static BOOL ScriptContextShouldResume(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *selectedOptionPtr = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    if (*selectedOptionPtr == NO_SELECTION_YET) {
+    if (*selectedOptionPtr == LIST_MENU_NO_SELECTION_YET) {
         return FALSE;
     }
 
@@ -429,7 +426,7 @@ static void MoveTutorManager_Init(FieldSystem *fieldSystem, MoveTutorManager *mo
         moveTutorManager->moveNames[moveIndex] = Strbuf_Init((40 * 2), HEAP_ID_FIELD);
     }
 
-    *moveTutorManager->selectedOptionPtr = NO_SELECTION_YET;
+    *moveTutorManager->selectedOptionPtr = LIST_MENU_NO_SELECTION_YET;
 }
 
 MoveTutorManager *MoveTutorManager_New(FieldSystem *fieldSystem, u8 tilemapLeft, u8 tilemapTop, u8 initialCursorPos, u8 canExitWithB, u16 *selectedOptionPtr, StringTemplate *stringTemplate, Window *window, MessageLoader *messageLoader)
@@ -582,14 +579,14 @@ BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    UnkStruct_ov5_021DC1A4 **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
     u16 selectedMove = ScriptContext_GetVar(ctx);
     u16 *selectedOptionPtr = ScriptContext_GetVarPointer(ctx);
 
     selectedMove = GetMoveIndex(selectedMove);
-    *v2 = ov5_021DD250(fieldSystem, v3, v4, selectedOptionPtr, *strTemplate, sTeachableMoves[selectedMove].redCost, sTeachableMoves[selectedMove].blueCost, sTeachableMoves[selectedMove].yellowCost, sTeachableMoves[selectedMove].greenCost);
+    *v2 = FieldMenuManager_NewMoveTutorCostWindow(fieldSystem, v3, v4, selectedOptionPtr, *strTemplate, sTeachableMoves[selectedMove].redCost, sTeachableMoves[selectedMove].blueCost, sTeachableMoves[selectedMove].yellowCost, sTeachableMoves[selectedMove].greenCost);
 
     return FALSE;
 }
@@ -597,8 +594,8 @@ BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)
 BOOL ScrCmd_CloseShardCostWindow(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
 
-    ov5_021DD3A8(*v1);
+    FieldMenuManager_DeleteMoveTutorCost(*v1);
     return FALSE;
 }
