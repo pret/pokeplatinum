@@ -15,7 +15,7 @@
 typedef struct PCBoxes {
     u32 currentBox;
     BoxPokemon boxMons[MAX_PC_BOXES][MAX_MONS_PER_BOX];
-    u16 names[MAX_PC_BOXES][20];
+    u16 names[MAX_PC_BOXES][PC_BOX_NAME_BUFFER_LEN];
     u8 wallpapers[MAX_PC_BOXES];
     u8 unlockedWallpapers;
 } PCBoxes;

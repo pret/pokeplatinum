@@ -13,6 +13,7 @@
 #define MAX_DEFAULT_WALLPAPERS  16
 #define MAX_UNLOCKED_WALLPAPERS 8
 #define MAX_WALLPAPERS          (MAX_DEFAULT_WALLPAPERS + MAX_UNLOCKED_WALLPAPERS)
+#define PC_BOX_NAME_BUFFER_LEN  20
 
 void PCBoxes_Init(PCBoxes *pcBoxes);
 u32 PCBoxes_SaveSize(void);
