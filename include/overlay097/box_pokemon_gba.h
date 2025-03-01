@@ -73,6 +73,14 @@ typedef struct {
     u32 modernFatefulEncounter : 1;
 } PokemonGBASubstruct3;
 
+union PokemonGBASubstruct {
+    PokemonGBASubstruct0 type0;
+    PokemonGBASubstruct1 type1;
+    PokemonGBASubstruct2 type2;
+    PokemonGBASubstruct3 type3;
+    u16 raw[6];
+};
+
 typedef struct BoxPokemonGBA {
     u32 personality;
     u32 otId;
@@ -86,10 +94,10 @@ typedef struct BoxPokemonGBA {
     u8 markings;
     u16 checksum;
     u16 unknown;
-    u8 secure[sizeof(PokemonGBASubstruct0)
-        + sizeof(PokemonGBASubstruct1)
-        + sizeof(PokemonGBASubstruct2)
-        + sizeof(PokemonGBASubstruct3)];
+    union {
+        u32 raw[12];
+        union PokemonGBASubstruct substructs[4];
+    } secure;
 } BoxPokemonGBA;
 
 #endif // POKEPLATINUM_BOX_POKEMON_GBA_H

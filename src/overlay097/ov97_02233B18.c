@@ -170,7 +170,7 @@ static void ov97_02235310(UnkStruct_ov97_02234A2C *param0);
 static void ov97_02233D10(UnkStruct_ov97_02234A2C *param0);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
 void Strbuf_CopyChars(Strbuf *param0, const u16 *param1);
-void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1);
+void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon);
 
 UnkStruct_ov97_0223F434 *Unk_ov97_0223F434;
 
