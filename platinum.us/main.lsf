@@ -471,7 +471,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021D2F14.c.o
 	Object main.nef.p/src_overlay005_map_prop_animation.c.o
 	Object main.nef.p/src_overlay005_ov5_021D431C.c.o
-	Object main.nef.p/src_overlay005_ov5_021D521C.c.o
+	Object main.nef.p/src_overlay005_area_light.c.o
 	Object main.nef.p/src_overlay005_map_prop_material_shape.c.o
 	Object main.nef.p/src_overlay005_ov5_021D57BC.c.o
 	Object main.nef.p/src_overlay005_model_attributes.c.o
