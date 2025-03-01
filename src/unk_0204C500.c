@@ -73,7 +73,7 @@ BOOL ScrCmd_255(ScriptContext *param0)
     for (v6 = 0; v6 < 6; v6++) {
         TransferDataToMon(transferData, v6, v2);
         sub_0209304C(v2, v3, 2, 0, 32);
-        v5 = PcBoxes_TryStoreBoxMon(v1, Pokemon_GetBoxPokemon(v2));
+        v5 = PCBoxes_TryStoreBoxMon(v1, Pokemon_GetBoxPokemon(v2));
         GF_ASSERT(v5);
         sub_0202F180(param0->fieldSystem->saveData, v2);
     }

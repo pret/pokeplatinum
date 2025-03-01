@@ -213,7 +213,7 @@ BOOL ScrCmd_251(ScriptContext *param0)
     u16 v5 = ScriptContext_GetVar(param0);
     u32 v6 = v5 % (5 * 6);
     u32 v7 = v5 / (5 * 6);
-    v0 = PcBoxes_GetBoxMonAt(v2, v7, v6);
+    v0 = PCBoxes_GetBoxMonAt(v2, v7, v6);
 
     StringTemplate_SetNickname(*v3, v4, v0);
     return 0;

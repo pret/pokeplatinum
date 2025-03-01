@@ -1507,7 +1507,7 @@ static void ov19_021DE350(UnkStruct_ov19_021DCF88 *param0)
     }
 
     for (v1 = 0; v1 < NELEMS(v0); v1++) {
-        PcBoxes_CopyName(param0->unk_04->unk_00, v2, param0->unk_84);
+        PCBoxes_BufferBoxName(param0->unk_04->unk_00, v2, param0->unk_84);
         Window_FillRectWithColor(&param0->unk_88, 0, v0[v1].unk_00, v0[v1].unk_02, 104, 17);
         Text_AddPrinterWithParamsAndColor(&param0->unk_88, FONT_SYSTEM, param0->unk_84, v0[v1].unk_00 + 4, v0[v1].unk_02 + 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 

@@ -438,26 +438,26 @@ BOOL ScrCmd_CountAliveMonsExcept(ScriptContext *ctx)
 
 BOOL ScrCmd_19C(ScriptContext *param0)
 {
-    int v0, v1, v2;
-    Pokemon *v3;
+    int currentPartyCount, count, i;
+    Pokemon *partyMon;
     FieldSystem *fieldSystem = param0->fieldSystem;
     u16 *v5 = ScriptContext_GetVarPointer(param0);
-    PCBoxes *v6 = SaveData_PCBoxes(fieldSystem->saveData);
+    PCBoxes *pcBoxes = SaveData_PCBoxes(fieldSystem->saveData);
 
-    v0 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    currentPartyCount = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
 
-    for (v2 = 0, v1 = 0; v2 < v0; v2++) {
-        v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v2);
+    for (i = 0, count = 0; i < currentPartyCount; i++) {
+        partyMon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
 
-        if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
-            if (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL) != 0) {
-                v1++;
+        if (Pokemon_GetValue(partyMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            if (Pokemon_GetValue(partyMon, MON_DATA_CURRENT_HP, NULL)) {
+                count++;
             }
         }
     }
 
-    v1 += PcBoxes_CountAllEggs(v6);
-    *v5 = v1;
+    count += PCBoxes_CountAllNonEggBoxMons(pcBoxes);
+    *v5 = count;
 
     return 0;
 }

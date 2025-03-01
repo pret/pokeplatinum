@@ -147,7 +147,7 @@ void ov19_021DFB94(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
     ov19_021DFD08(v0, UnkEnum_021DFB94_06);
     ov19_021DFD08(v0, UnkEnum_021DFB94_07);
 
-    v2 = PcBoxes_CountUnlockedWallpapers(v1);
+    v2 = PCBoxes_CountUnlockedWallpapers(v1);
 
     if (v2 > 0) {
         ov19_021DFD08(v0, UnkEnum_021DFB94_08);
@@ -195,7 +195,7 @@ void ov19_021DFC04(UnkStruct_ov19_021D4DF0 *param0, UnkEnum_021DFB94 param1)
         }
 
         for (v3 = 0; v3 < 8; v3++) {
-            if (PcBoxes_CheckHasUnlockedWallpaper(v2, v3)) {
+            if (PCBoxes_CheckHasUnlockedWallpaper(v2, v3)) {
                 if (v4) {
                     v4--;
                 } else {

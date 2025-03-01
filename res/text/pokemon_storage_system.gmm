@@ -30,7 +30,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 11, 0, 0}</language>
 	</row>
-	<row id="BOX1_NAME_ID" index="6">
+	<row id="box1_name_id" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">BOX 1</language>
 	</row>

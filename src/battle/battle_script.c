@@ -9553,7 +9553,7 @@ static BOOL BtlCmd_CheckSafariGameDone(BattleSystem *battleSys, BattleContext *b
     BattleScript_Iter(battleCtx, 1);
     int jumpNotOver = BattleScript_Read(battleCtx);
 
-    if ((BattleSystem_PartyCount(battleSys, BATTLER_US) != MAX_PARTY_SIZE || PcBoxes_FirstEmptyBox(battleSys->pcBoxes) != 18)
+    if ((BattleSystem_PartyCount(battleSys, BATTLER_US) != MAX_PARTY_SIZE || PCBoxes_FirstEmptyBox(battleSys->pcBoxes) != 18)
         && battleSys->safariBalls) {
         BattleScript_Iter(battleCtx, jumpNotOver);
     }
@@ -10957,10 +10957,10 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                         int v29;
 
                         v24 = ov16_0223E228(v2->battleSys);
-                        v25 = PcBoxes_GetCurrentBox(v24);
-                        v26 = PcBoxes_FirstEmptyBox(v24);
+                        v25 = PCBoxes_GetCurrentBox(v24);
+                        v26 = PCBoxes_FirstEmptyBox(v24);
 
-                        PcBoxes_SetCurrentBox(v24, v26);
+                        PCBoxes_SetCurrentBox(v24, v26);
 
                         for (v27 = 0; v27 < LEARNED_MOVES_MAX; v27++) {
                             v28 = Pokemon_GetValue(v3, MON_DATA_MOVE1_MAX_PP + v27, NULL);
@@ -10971,7 +10971,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                             ov16_0223F9A0(v2->battleSys, v1);
                         }
 
-                        PcBoxes_TryStoreMonInBox(v24, v26, Pokemon_GetBoxPokemon(v3));
+                        PCBoxes_TryStoreBoxMonInBox(v24, v26, Pokemon_GetBoxPokemon(v3));
 
                         if (v2->seqNum == 22) {
                             if (v25 == v26) {

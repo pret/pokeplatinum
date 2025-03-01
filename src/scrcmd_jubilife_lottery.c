@@ -64,7 +64,7 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
     BoxPokemon *boxPokemon;
     for (boxIndex = 0; boxIndex < MAX_PC_BOXES; boxIndex++) {
         for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
-            boxPokemon = PcBoxes_GetBoxMonAt(pcBoxes, boxIndex, monPosInBox);
+            boxPokemon = PCBoxes_GetBoxMonAt(pcBoxes, boxIndex, monPosInBox);
             boxPokemonSpeciesId = BoxPokemon_GetValue(boxPokemon, MON_DATA_SPECIES, NULL);
 
             if (boxPokemonSpeciesId && BoxPokemon_GetValue(boxPokemon, MON_DATA_IS_EGG, NULL) == 0) {

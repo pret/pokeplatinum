@@ -1449,8 +1449,8 @@ static void sub_02087544(UnkStruct_02087A10 *param0, OverlayManager *param1)
 
         v0 = Strbuf_Init(200, HEAP_ID_18);
         param0->unk_180 = NULL;
-        v2 = PcBoxes_GetCurrentBox(v1->unk_48);
-        v3 = PcBoxes_FirstEmptyBox(v1->unk_48);
+        v2 = PCBoxes_GetCurrentBox(v1->unk_48);
+        v3 = PCBoxes_FirstEmptyBox(v1->unk_48);
 
         StringTemplate_SetPCBoxName(param0->unk_168, 1, v1->unk_48, v2);
 
