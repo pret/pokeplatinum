@@ -412,19 +412,11 @@ _04D0:
     EndMovement
 
 _04E0:
-    DrawSignpostWithMessage 14, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 14
     End
 
 _04F7:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 15
-    CallCommonScript 0x7D0
+    ShowScrollingSign 15
     End
 
 _050C:

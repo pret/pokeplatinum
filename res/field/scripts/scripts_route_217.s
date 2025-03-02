@@ -19,11 +19,7 @@ _0012:
     End
 
 _0023:
-    DrawSignpostWithMessage 4, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 4
     End
 
 _003A:

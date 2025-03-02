@@ -22,35 +22,19 @@ _001A:
     End
 
 _002D:
-    DrawSignpostWithMessage 3, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 3
     End
 
 _0044:
-    DrawSignpostWithMessage 4, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 4
     End
 
 _005B:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 5
-    CallCommonScript 0x7D0
+    ShowScrollingSign 5
     End
 
 _0070:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 6
-    CallCommonScript 0x7D0
+    ShowScrollingSign 6
     End
 
 _0085:

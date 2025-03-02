@@ -233,27 +233,15 @@ _026C:
     EndMovement
 
 _0280:
-    DrawSignpostWithMessage 7, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 7
     End
 
 _0297:
-    DrawSignpostWithMessage 8, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 8
     End
 
 _02AE:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 9
-    CallCommonScript 0x7D0
+    ShowScrollingSign 9
     End
 
     .byte 0

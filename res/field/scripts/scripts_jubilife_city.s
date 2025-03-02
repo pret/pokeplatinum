@@ -1402,51 +1402,27 @@ _1027:
     End
 
 _103A:
-    DrawSignpostWithMessage 95, SIGNPOST_TYPE_CITY_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowMapSign 95
     End
 
 _1051:
-    DrawSignpostWithMessage 96, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 96
     End
 
 _1068:
-    DrawSignpostWithMessage 97, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 97
     End
 
 _107F:
-    DrawSignpostWithMessage 98, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 98
     End
 
 _1096:
-    DrawSignpostWithMessage 99, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 99
     End
 
 _10AD:
-    DrawSignpostWithMessage 100, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 100
     End
 
 _10C4:

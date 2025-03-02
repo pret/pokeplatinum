@@ -568,35 +568,19 @@ _0696:
     End
 
 _06A9:
-    DrawSignpostWithMessage 27, SIGNPOST_TYPE_CITY_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowMapSign 27
     End
 
 _06C0:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 28
-    CallCommonScript 0x7D0
+    ShowScrollingSign 28
     End
 
 _06D5:
-    DrawSignpostWithMessage 29, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 29
     End
 
 _06EC:
-    DrawSignpostWithMessage 30, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 30
     End
 
 _0703:

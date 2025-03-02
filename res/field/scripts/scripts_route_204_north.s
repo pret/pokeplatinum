@@ -46,11 +46,7 @@ _0071:
     End
 
 _007B:
-    DrawSignpostWithMessage 3, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 3
     End
 
     .byte 0

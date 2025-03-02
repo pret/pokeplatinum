@@ -534,11 +534,7 @@ _06B0:
     EndMovement
 
 _06B8:
-    DrawSignpostWithMessage 20, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 20
     End
 
 _06CF:

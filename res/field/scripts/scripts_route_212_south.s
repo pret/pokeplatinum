@@ -63,27 +63,15 @@ _00A3:
     End
 
 _00B6:
-    DrawSignpostWithMessage 4, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 4
     End
 
 _00CD:
-    DrawSignpostWithMessage 5, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 5
     End
 
 _00E4:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 6
-    CallCommonScript 0x7D0
+    ShowScrollingSign 6
     End
 
 _00F9:

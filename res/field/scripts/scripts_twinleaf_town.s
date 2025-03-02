@@ -505,29 +505,17 @@ _061D:
     End
 
 _0628:
-    DrawSignpostWithMessage 12, SIGNPOST_TYPE_CITY_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowMapSign 12
     End
 
 _063F:
     BufferPlayerName 0
-    DrawSignpostWithMessage 13, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 13
     End
 
 _0659:
     BufferRivalName 0
-    DrawSignpostWithMessage 14, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 14
     End
 
     .byte 0

@@ -78,7 +78,7 @@ void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 sign
 {
     u16 tilemapLeft, width;
 
-    if (signpostType == SIGNPOST_TYPE_CITY_MAP || signpostType == SIGNPOST_TYPE_ROUTE_MAP) {
+    if (signpostType == SIGNPOST_TYPE_MAP || signpostType == SIGNPOST_TYPE_ARROW) {
         tilemapLeft = 9;
         width = 20;
     } else {

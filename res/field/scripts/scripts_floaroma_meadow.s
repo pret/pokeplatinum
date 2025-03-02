@@ -244,11 +244,7 @@ _02E2:
     End
 
 _02EF:
-    DrawSignpostWithMessage 18, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 18
     End
 
 _0306:

@@ -317,7 +317,39 @@
     .short 53
     .endm
 
-    .macro DrawSignpostWithMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=0x800C
+    .macro ShowMapSign messageID
+    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_MAP
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput 0x800C
+    CallCommonScript 0x7D0
+    .endm
+
+    .macro ShowArrowSign messageID
+    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_ARROW
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput 0x800C
+    CallCommonScript 0x7D0
+    .endm
+
+    .macro ShowLandmarkSign messageID
+    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_LANDMARK
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput 0x800C
+    CallCommonScript 0x7D0
+    .endm
+
+    .macro ShowScrollingSign messageID
+    DrawSignpostTextBox SIGNPOST_TYPE_SCROLLING
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    DrawSignpostScrollingMessage \messageID, 0x800C
+    CallCommonScript 0x7D0
+    .endm
+
+    .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=0x800C
     .short 54
     .byte \messageID
     .byte \signpostType
@@ -325,7 +357,7 @@
     .short \unused
     .endm
 
-    .macro DrawSignpostTextBox signpostType=SIGNPOST_TYPE_FIELD_INFO, signpostNARCMemberIdx=0
+    .macro DrawSignpostTextBox signpostType=SIGNPOST_TYPE_SCROLLING, signpostNARCMemberIdx=0
     .short 55
     .byte \signpostType
     .short \signpostNARCMemberIdx
@@ -340,7 +372,7 @@
     .short 57
     .endm
 
-    .macro DrawSignpostMessage messageID, destVarID=0x800C
+    .macro DrawSignpostScrollingMessage messageID, destVarID=0x800C
     .short 58
     .byte \messageID
     .short \destVarID
@@ -351,7 +383,7 @@
     .short \destVarID
     .endm
 
-    .macro ShowFieldMenu
+    .macro ShowStartMenu
     .short 60
     .endm
 

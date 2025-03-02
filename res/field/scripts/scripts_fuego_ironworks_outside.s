@@ -6,11 +6,7 @@
     ScriptEntryEnd
 
 _0006:
-    DrawSignpostWithMessage 0, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 0
     End
 
     .byte 0

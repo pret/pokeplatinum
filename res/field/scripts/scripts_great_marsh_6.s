@@ -65,9 +65,5 @@ _00C7:
     End
 
 _00D1:
-    DrawSignpostWithMessage 2, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 2
     End

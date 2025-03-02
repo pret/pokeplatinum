@@ -55,19 +55,11 @@ _00A4:
     End
 
 _00B7:
-    DrawSignpostWithMessage 1, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 1
     End
 
 _00CE:
-    DrawSignpostWithMessage 2, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 2
     End
 
     .byte 0

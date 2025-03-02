@@ -13,19 +13,11 @@
     ScriptEntryEnd
 
 _001E:
-    DrawSignpostWithMessage 5, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 5
     End
 
 _0035:
-    DrawSignpostWithMessage 6, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 6
     End
 
 _004C:

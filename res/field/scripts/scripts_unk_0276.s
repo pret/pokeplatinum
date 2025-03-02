@@ -10,11 +10,7 @@ _000A:
     End
 
 _000C:
-    DrawSignpostWithMessage 3, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 3
     End
 
     .byte 0

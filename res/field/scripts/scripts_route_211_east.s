@@ -47,27 +47,15 @@ _0080:
     EndMovement
 
 _0088:
-    DrawSignpostWithMessage 3, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 3
     End
 
 _009F:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 4
-    CallCommonScript 0x7D0
+    ShowScrollingSign 4
     End
 
 _00B4:
-    DrawSignpostWithMessage 5, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 5
     End
 
     .byte 0

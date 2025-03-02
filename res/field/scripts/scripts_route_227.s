@@ -212,11 +212,7 @@ _01B8:
     .byte 0
 
 _01CC:
-    DrawSignpostWithMessage 12, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 12
     End
 
 _01E3:

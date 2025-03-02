@@ -229,10 +229,10 @@ _02F4:
 Common_HandleSignpostInput:
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, Common_ScrollOutSignpost
-    GoToIfEq 0x8008, 1, Common_RemoveSignpostOpenFieldMenu
+    GoToIfEq 0x8008, 1, Common_RemoveSignpostOpenStartMenu
     GetSignpostInput
     SetVar 0x8008, 0x800C
-    GoToIfEq 0x8008, 1, Common_RemoveSignpostOpenFieldMenu
+    GoToIfEq 0x8008, 1, Common_RemoveSignpostOpenStartMenu
     SetSignpostCommand SIGNPOST_CMD_SCROLL_OUT
     ReturnCommonScript
     End
@@ -242,10 +242,10 @@ Common_ScrollOutSignpost:
     ReturnCommonScript
     End
 
-Common_RemoveSignpostOpenFieldMenu:
+Common_RemoveSignpostOpenStartMenu:
     SetSignpostCommand SIGNPOST_CMD_REMOVE
     WaitForSignpostDone
-    ShowFieldMenu
+    ShowStartMenu
     ReturnCommonScript
     End
 

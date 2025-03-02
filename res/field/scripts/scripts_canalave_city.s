@@ -470,61 +470,33 @@ _0640:
     GoTo _0545
 
 _0649:
-    DrawSignpostWithMessage 36, SIGNPOST_TYPE_CITY_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowMapSign 36
     End
 
 _0660:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 37
-    CallCommonScript 0x7D0
+    ShowScrollingSign 37
     End
 
 _0675:
-    DrawSignpostWithMessage 38, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 38
     End
 
 _068C:
-    DrawSignpostWithMessage 39, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 39
     End
 
 _06A3:
-    DrawSignpostWithMessage 40, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 40
     End
 
 _06BA:
     Call _0168
     GoToIfEq 0x4000, 0, _06E2
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 42
-    CallCommonScript 0x7D0
+    ShowScrollingSign 42
     End
 
 _06E2:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 41
-    CallCommonScript 0x7D0
+    ShowScrollingSign 41
     End
 
 _06F7:

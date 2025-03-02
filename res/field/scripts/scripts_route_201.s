@@ -1306,27 +1306,15 @@ _0F4F:
     End
 
 _0F76:
-    DrawSignpostWithMessage 60, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 60
     End
 
 _0F8D:
-    DrawSignpostWithMessage 61, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 61
     End
 
 _0FA4:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 62
-    CallCommonScript 0x7D0
+    ShowScrollingSign 62
     End
 
     .byte 0

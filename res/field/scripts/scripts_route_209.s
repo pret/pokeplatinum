@@ -191,27 +191,15 @@ _0254:
     GoTo _020B
 
 _0270:
-    DrawSignpostWithMessage 18, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 18
     End
 
 _0287:
-    DrawSignpostWithMessage 19, SIGNPOST_TYPE_ROUTE_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowArrowSign 19
     End
 
 _029E:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 20
-    CallCommonScript 0x7D0
+    ShowScrollingSign 20
     End
 
 _02B3:

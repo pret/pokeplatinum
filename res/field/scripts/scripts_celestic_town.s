@@ -319,11 +319,7 @@ _033D:
     End
 
 _0350:
-    DrawSignpostWithMessage 15, SIGNPOST_TYPE_CITY_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowMapSign 15
     End
 
 _0367:

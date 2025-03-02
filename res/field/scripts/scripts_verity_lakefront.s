@@ -86,11 +86,7 @@ _0144:
     EndMovement
 
 _014C:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 3
-    CallCommonScript 0x7D0
+    ShowScrollingSign 3
     End
 
     .byte 0

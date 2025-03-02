@@ -109,19 +109,11 @@ _0130:
     End
 
 _0143:
-    DrawSignpostWithMessage 25, SIGNPOST_TYPE_CITY_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowMapSign 25
     End
 
 _015A:
-    DrawSignpostWithMessage 26, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 26
     End
 
 _0171:
@@ -442,11 +434,7 @@ _05B1:
     End
 
 _05BC:
-    DrawSignpostWithMessage 27, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 27
     End
 
     .byte 0

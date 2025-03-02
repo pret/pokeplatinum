@@ -298,19 +298,11 @@ _039A:
     End
 
 _03AD:
-    DrawSignpostWithMessage 7, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 7
     End
 
 _03C4:
-    DrawSignpostWithMessage 8, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 8
     End
 
     .byte 0

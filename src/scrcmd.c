@@ -305,16 +305,16 @@ static BOOL ScriptContext_CheckABPadPress(ScriptContext *ctx);
 static BOOL ScrCmd_OpenMessage(ScriptContext *ctx);
 static BOOL ScrCmd_CloseMessage(ScriptContext *ctx);
 static BOOL ScrCmd_035(ScriptContext *ctx);
-static BOOL ScrCmd_DrawSignpostWithMessage(ScriptContext *ctx);
+static BOOL ScrCmd_DrawSignpostInstantMessage(ScriptContext *ctx);
 static BOOL ScrCmd_DrawSignpostTextBox(ScriptContext *ctx);
 static BOOL ScrCmd_SetSignpostCommand(ScriptContext *ctx);
 static BOOL ScrCmd_WaitForSignpostDone(ScriptContext *ctx);
 static BOOL WaitForSignpostDone(ScriptContext *ctx);
-static BOOL ScrCmd_DrawSignpostMessage(ScriptContext *ctx);
-static BOOL WaitForSignpostInput(ScriptContext *ctx);
+static BOOL ScrCmd_DrawSignpostScrollingMessage(ScriptContext *ctx);
+static BOOL WaitScrollingSignpostInput(ScriptContext *ctx);
 static BOOL ScrCmd_GetSignpostInput(ScriptContext *ctx);
 static BOOL HandleSignpostInput(ScriptContext *ctx);
-static BOOL ScrCmd_ShowFieldMenu(ScriptContext *ctx);
+static BOOL ScrCmd_ShowStartMenu(ScriptContext *ctx);
 static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx);
 static BOOL ScrCmd_ScrollBG3(ScriptContext *ctx);
 static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx);
@@ -820,13 +820,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_OpenMessage,
     ScrCmd_CloseMessage,
     ScrCmd_035,
-    ScrCmd_DrawSignpostWithMessage,
+    ScrCmd_DrawSignpostInstantMessage,
     ScrCmd_DrawSignpostTextBox,
     ScrCmd_SetSignpostCommand,
     ScrCmd_WaitForSignpostDone,
-    ScrCmd_DrawSignpostMessage,
+    ScrCmd_DrawSignpostScrollingMessage,
     ScrCmd_GetSignpostInput,
-    ScrCmd_ShowFieldMenu,
+    ScrCmd_ShowStartMenu,
     ScrCmd_ScrollBG3,
     ScrCmd_ShowYesNoMenu,
     ScrCmd_03F,
@@ -2449,7 +2449,7 @@ static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_DrawSignpostWithMessage(ScriptContext *ctx)
+static BOOL ScrCmd_DrawSignpostInstantMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Strbuf **tempBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
@@ -2527,7 +2527,7 @@ static BOOL WaitForSignpostDone(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_DrawSignpostMessage(ScriptContext *ctx)
+static BOOL ScrCmd_DrawSignpostScrollingMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 *printerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
@@ -2543,12 +2543,12 @@ static BOOL ScrCmd_DrawSignpostMessage(ScriptContext *ctx)
     *printerID = FieldMessage_Print(Signpost_GetWindow(fieldSystem->signpost), *msgBuf, SaveData_Options(ctx->fieldSystem->saveData), 1);
 
     ctx->data[0] = destVarID;
-    ScriptContext_Pause(ctx, WaitForSignpostInput);
+    ScriptContext_Pause(ctx, WaitScrollingSignpostInput);
 
     return TRUE;
 }
 
-static BOOL WaitForSignpostInput(ScriptContext *ctx)
+static BOOL WaitScrollingSignpostInput(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u8 *printerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
@@ -2632,7 +2632,7 @@ static BOOL HandleSignpostInput(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_ShowFieldMenu(ScriptContext *ctx)
+static BOOL ScrCmd_ShowStartMenu(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 

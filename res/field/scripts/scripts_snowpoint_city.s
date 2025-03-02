@@ -199,19 +199,11 @@ _01EB:
     End
 
 _01FE:
-    DrawSignpostWithMessage 18, SIGNPOST_TYPE_CITY_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowMapSign 18
     End
 
 _0215:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 19
-    CallCommonScript 0x7D0
+    ShowScrollingSign 19
     End
 
 _022A:

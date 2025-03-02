@@ -81,11 +81,7 @@ _00B3:
     End
 
 _00BE:
-    DrawSignpostWithMessage 13, SIGNPOST_TYPE_CITY_MAP
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowMapSign 13
     End
 
 _00D5:

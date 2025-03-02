@@ -36,17 +36,9 @@ _004D:
     End
 
 _0058:
-    DrawSignpostWithMessage 2, SIGNPOST_TYPE_BUILDING_INFO
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    GetSignpostInput
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 2
     End
 
 _006F:
-    DrawSignpostTextBox
-    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
-    WaitForSignpostDone
-    DrawSignpostMessage 3
-    CallCommonScript 0x7D0
+    ShowScrollingSign 3
     End
