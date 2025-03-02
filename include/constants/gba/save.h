@@ -1,0 +1,23 @@
+#ifndef POKEPLATINUM_CONSTANTS_GBA_SAVE_H
+#define POKEPLATINUM_CONSTANTS_GBA_SAVE_H
+
+#define GBA_MAX_PC_BOXES     14
+#define GBA_MAX_PC_ROWS      5
+#define GBA_MAX_PC_COLS      6
+#define GBA_MAX_MONS_PER_BOX (GBA_MAX_PC_ROWS * GBA_MAX_PC_COLS)
+#define GBA_BOX_NAME_LEN     8
+
+#define GBA_SECTOR_ID_SAVEBLOCK2         0
+#define GBA_SECTOR_ID_SAVEBLOCK1_START   1
+#define GBA_SECTOR_ID_SAVEBLOCK1_END     4
+#define GBA_SECTOR_ID_PKMN_STORAGE_START 5
+#define GBA_SECTOR_ID_PKMN_STORAGE_END   13
+#define GBA_NUM_SECTORS_PER_SLOT         14
+
+// Each 4 KiB flash sector contains 3968 bytes of actual data followed by a 128 byte footer.
+// Only 12 bytes of the footer are used.
+#define GBA_SECTOR_DATA_SIZE   3968
+#define GBA_SECTOR_FOOTER_SIZE 128
+#define GBA_SECTOR_SIZE        (GBA_SECTOR_DATA_SIZE + GBA_SECTOR_FOOTER_SIZE)
+
+#endif // POKEPLATINUM_CONSTANTS_GBA_SAVE_H

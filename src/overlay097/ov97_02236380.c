@@ -6,8 +6,9 @@
 #include "constants/gba/pokemon.h"
 #include "constants/gba/species.h"
 #include "constants/species.h"
+#include "generated/abilities.h"
 
-#include "overlay097/box_pokemon_gba.h"
+#include "overlay097/gba_save.h"
 #include "overlay097/ov97_022392E4.h"
 
 #include "item.h"
@@ -166,796 +167,233 @@ GBAToDSSpeciesStruct sGBAToDSSpecies[] = {
     { 0x1A4, 0x1A4 }
 };
 
-typedef struct {
-    PokemonGBASubstruct0 unk_00;
-    PokemonGBASubstruct1 unk_0C;
-    PokemonGBASubstruct2 unk_18;
-    PokemonGBASubstruct3 unk_24;
-} UnkStruct_ov97_02236380;
-
-typedef struct {
-    PokemonGBASubstruct0 unk_00;
-    PokemonGBASubstruct1 unk_0C;
-    PokemonGBASubstruct3 unk_18;
-    PokemonGBASubstruct2 unk_24;
-} UnkStruct_ov97_02236380_1;
-
-typedef struct {
-    PokemonGBASubstruct0 unk_00;
-    PokemonGBASubstruct2 unk_0C;
-    PokemonGBASubstruct1 unk_18;
-    PokemonGBASubstruct3 unk_24;
-} UnkStruct_ov97_02236380_2;
-
-typedef struct {
-    PokemonGBASubstruct0 unk_00;
-    PokemonGBASubstruct2 unk_0C;
-    PokemonGBASubstruct3 unk_18;
-    PokemonGBASubstruct1 unk_24;
-} UnkStruct_ov97_02236380_3;
-
-typedef struct {
-    PokemonGBASubstruct0 unk_00;
-    PokemonGBASubstruct3 unk_0C;
-    PokemonGBASubstruct1 unk_18;
-    PokemonGBASubstruct2 unk_24;
-} UnkStruct_ov97_02236380_4;
-
-typedef struct {
-    PokemonGBASubstruct0 unk_00;
-    PokemonGBASubstruct3 unk_0C;
-    PokemonGBASubstruct2 unk_18;
-    PokemonGBASubstruct1 unk_24;
-} UnkStruct_ov97_02236380_5;
-
-typedef struct {
-    PokemonGBASubstruct1 unk_00;
-    PokemonGBASubstruct0 unk_0C;
-    PokemonGBASubstruct2 unk_18;
-    PokemonGBASubstruct3 unk_24;
-} UnkStruct_ov97_02236380_6;
-
-typedef struct {
-    PokemonGBASubstruct1 unk_00;
-    PokemonGBASubstruct0 unk_0C;
-    PokemonGBASubstruct3 unk_18;
-    PokemonGBASubstruct2 unk_24;
-} UnkStruct_ov97_02236380_7;
-
-typedef struct {
-    PokemonGBASubstruct1 unk_00;
-    PokemonGBASubstruct2 unk_0C;
-    PokemonGBASubstruct0 unk_18;
-    PokemonGBASubstruct3 unk_24;
-} UnkStruct_ov97_02236380_8;
-
-typedef struct {
-    PokemonGBASubstruct1 unk_00;
-    PokemonGBASubstruct2 unk_0C;
-    PokemonGBASubstruct3 unk_18;
-    PokemonGBASubstruct0 unk_24;
-} UnkStruct_ov97_02236380_9;
-
-typedef struct {
-    PokemonGBASubstruct1 unk_00;
-    PokemonGBASubstruct3 unk_0C;
-    PokemonGBASubstruct0 unk_18;
-    PokemonGBASubstruct2 unk_24;
-} UnkStruct_ov97_02236380_10;
-
-typedef struct {
-    PokemonGBASubstruct1 unk_00;
-    PokemonGBASubstruct3 unk_0C;
-    PokemonGBASubstruct2 unk_18;
-    PokemonGBASubstruct0 unk_24;
-} UnkStruct_ov97_02236380_11;
-
-typedef struct {
-    PokemonGBASubstruct2 unk_00;
-    PokemonGBASubstruct0 unk_0C;
-    PokemonGBASubstruct1 unk_18;
-    PokemonGBASubstruct3 unk_24;
-} UnkStruct_ov97_02236380_12;
-
-typedef struct {
-    PokemonGBASubstruct2 unk_00;
-    PokemonGBASubstruct0 unk_0C;
-    PokemonGBASubstruct3 unk_18;
-    PokemonGBASubstruct1 unk_24;
-} UnkStruct_ov97_02236380_13;
-
-typedef struct {
-    PokemonGBASubstruct2 unk_00;
-    PokemonGBASubstruct1 unk_0C;
-    PokemonGBASubstruct0 unk_18;
-    PokemonGBASubstruct3 unk_24;
-} UnkStruct_ov97_02236380_14;
-
-typedef struct {
-    PokemonGBASubstruct2 unk_00;
-    PokemonGBASubstruct1 unk_0C;
-    PokemonGBASubstruct3 unk_18;
-    PokemonGBASubstruct0 unk_24;
-} UnkStruct_ov97_02236380_15;
-
-typedef struct {
-    PokemonGBASubstruct2 unk_00;
-    PokemonGBASubstruct3 unk_0C;
-    PokemonGBASubstruct0 unk_18;
-    PokemonGBASubstruct1 unk_24;
-} UnkStruct_ov97_02236380_16;
-
-typedef struct {
-    PokemonGBASubstruct2 unk_00;
-    PokemonGBASubstruct3 unk_0C;
-    PokemonGBASubstruct1 unk_18;
-    PokemonGBASubstruct0 unk_24;
-} UnkStruct_ov97_02236380_17;
-
-typedef struct {
-    PokemonGBASubstruct3 unk_00;
-    PokemonGBASubstruct0 unk_0C;
-    PokemonGBASubstruct1 unk_18;
-    PokemonGBASubstruct2 unk_24;
-} UnkStruct_ov97_02236380_18;
-
-typedef struct {
-    PokemonGBASubstruct3 unk_00;
-    PokemonGBASubstruct0 unk_0C;
-    PokemonGBASubstruct2 unk_18;
-    PokemonGBASubstruct1 unk_24;
-} UnkStruct_ov97_02236380_19;
-
-typedef struct {
-    PokemonGBASubstruct3 unk_00;
-    PokemonGBASubstruct1 unk_0C;
-    PokemonGBASubstruct0 unk_18;
-    PokemonGBASubstruct2 unk_24;
-} UnkStruct_ov97_02236380_20;
-
-typedef struct {
-    PokemonGBASubstruct3 unk_00;
-    PokemonGBASubstruct1 unk_0C;
-    PokemonGBASubstruct2 unk_18;
-    PokemonGBASubstruct0 unk_24;
-} UnkStruct_ov97_02236380_21;
-
-typedef struct {
-    PokemonGBASubstruct3 unk_00;
-    PokemonGBASubstruct2 unk_0C;
-    PokemonGBASubstruct0 unk_18;
-    PokemonGBASubstruct1 unk_24;
-} UnkStruct_ov97_02236380_22;
-
-typedef struct {
-    PokemonGBASubstruct3 unk_00;
-    PokemonGBASubstruct2 unk_0C;
-    PokemonGBASubstruct1 unk_18;
-    PokemonGBASubstruct0 unk_24;
-} UnkStruct_ov97_02236380_23;
-
-void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1);
-
-static u16 Unk_ov97_0223ECA0[] = {
-    0x10,
-    0x11,
-    0x12,
-    0x1D,
-    0x1E,
-    0x1F,
-    0x20,
-    0x21,
-    0x22,
-    0x23,
-    0x24,
-    0x2E,
-    0x2F,
-    0x30,
-    0x31,
-    0x34,
-    0x35,
-    0x38,
-    0x39,
-    0x42,
-    0x43,
-    0x44,
-    0x56,
-    0x57,
-    0x5A,
-    0x5B,
-    0x60,
-    0x61,
-    0x6A,
-    0x6B,
-    0x72,
-    0x73,
-    0x74,
-    0x75,
-    0x7A,
-    0x7B,
-    0x7C,
-    0x7F,
-    0x80,
-    0x85,
-    0x86,
-    0x87,
-    0x88,
-    0x89,
-    0xAD,
-    0xBB,
-    0xBC,
-    0xBD,
-    0xBF,
-    0xC0,
-    0xC4,
-    0xC5,
-    0xC6,
-    0xD2,
-    0xD4,
-    0xD5,
-    0xD8,
-    0xD9,
-    0xDC,
-    0xDD,
-    0xDF,
-    0xE0,
-    0xE6,
-    0xE9,
-    0xEA,
-    0xEB,
-    0xEC,
-    0xED,
-    0xEE,
-    0xF1,
-    0x105,
-    0x106,
-    0x107,
-    0x108,
-    0x11D,
-    0x11E,
-    0x12C,
-    0x12D,
-    0x12E,
-    0x13A,
-    0x142,
-    0x143,
-    0x147,
-    0x153,
-    0x154,
-    0x161,
-    0x162,
-    0x165,
-    0x167,
-    0x169,
-    0x16A,
-    0x16B,
-    0x16C,
-    0x16D
+static u16 sSpeciesWithNewAbilities[] = {
+    SPECIES_PIDGEY,
+    SPECIES_PIDGEOTTO,
+    SPECIES_PIDGEOT,
+    SPECIES_NIDORAN_F,
+    SPECIES_NIDORINA,
+    SPECIES_NIDOQUEEN,
+    SPECIES_NIDORAN_M,
+    SPECIES_NIDORINO,
+    SPECIES_NIDOKING,
+    SPECIES_CLEFAIRY,
+    SPECIES_CLEFABLE,
+    SPECIES_PARAS,
+    SPECIES_PARASECT,
+    SPECIES_VENONAT,
+    SPECIES_VENOMOTH,
+    SPECIES_MEOWTH,
+    SPECIES_PERSIAN,
+    SPECIES_MANKEY,
+    SPECIES_PRIMEAPE,
+    SPECIES_MACHOP,
+    SPECIES_MACHOKE,
+    SPECIES_MACHAMP,
+    SPECIES_SEEL,
+    SPECIES_DEWGONG,
+    SPECIES_SHELLDER,
+    SPECIES_CLOYSTER,
+    SPECIES_DROWZEE,
+    SPECIES_HYPNO,
+    SPECIES_HITMONLEE,
+    SPECIES_HITMONCHAN,
+    SPECIES_TANGELA,
+    SPECIES_KANGASKHAN,
+    SPECIES_HORSEA,
+    SPECIES_SEADRA,
+    SPECIES_MR_MIME,
+    SPECIES_SCYTHER,
+    SPECIES_JYNX,
+    SPECIES_PINSIR,
+    SPECIES_TAUROS,
+    SPECIES_EEVEE,
+    SPECIES_VAPOREON,
+    SPECIES_JOLTEON,
+    SPECIES_FLAREON,
+    SPECIES_PORYGON,
+    SPECIES_CLEFFA,
+    SPECIES_HOPPIP,
+    SPECIES_SKIPLOOM,
+    SPECIES_JUMPLUFF,
+    SPECIES_SUNKERN,
+    SPECIES_SUNFLORA,
+    SPECIES_ESPEON,
+    SPECIES_UMBREON,
+    SPECIES_MURKROW,
+    SPECIES_GRANBULL,
+    SPECIES_SCIZOR,
+    SPECIES_SHUCKLE,
+    SPECIES_TEDDIURSA,
+    SPECIES_URSARING,
+    SPECIES_SWINUB,
+    SPECIES_PILOSWINE,
+    SPECIES_REMORAID,
+    SPECIES_OCTILLERY,
+    SPECIES_KINGDRA,
+    SPECIES_PORYGON2,
+    SPECIES_STANTLER,
+    SPECIES_SMEARGLE,
+    SPECIES_TYROGUE,
+    SPECIES_HITMONTOP,
+    SPECIES_SMOOCHUM,
+    SPECIES_MILTANK,
+    SPECIES_POOCHYENA,
+    SPECIES_MIGHTYENA,
+    SPECIES_ZIGZAGOON,
+    SPECIES_LINOONE,
+    SPECIES_SHROOMISH,
+    SPECIES_BRELOOM,
+    SPECIES_SKITTY,
+    SPECIES_DELCATTY,
+    SPECIES_SABLEYE,
+    SPECIES_ILLUMISE,
+    SPECIES_NUMEL,
+    SPECIES_CAMERUPT,
+    SPECIES_SPINDA,
+    SPECIES_BARBOACH,
+    SPECIES_WHISCASH,
+    SPECIES_SHUPPET,
+    SPECIES_BANETTE,
+    SPECIES_TROPIUS,
+    SPECIES_ABSOL,
+    SPECIES_SNORUNT,
+    SPECIES_GLALIE,
+    SPECIES_SPHEAL,
+    SPECIES_SEALEO,
+    SPECIES_WALREIN,
 };
 
-static u32 ov97_02236380(BoxPokemonGBA *param0, u32 param1, u8 param2)
-{
-    u32 v0 = 0;
-    UnkStruct_ov97_02236380 *v1;
-    UnkStruct_ov97_02236380_1 *v2;
-    UnkStruct_ov97_02236380_2 *v3;
-    UnkStruct_ov97_02236380_3 *v4;
-    UnkStruct_ov97_02236380_4 *v5;
-    UnkStruct_ov97_02236380_5 *v6;
-    UnkStruct_ov97_02236380_6 *v7;
-    UnkStruct_ov97_02236380_7 *v8;
-    UnkStruct_ov97_02236380_8 *v9;
-    UnkStruct_ov97_02236380_9 *v10;
-    UnkStruct_ov97_02236380_10 *v11;
-    UnkStruct_ov97_02236380_11 *v12;
-    UnkStruct_ov97_02236380_12 *v13;
-    UnkStruct_ov97_02236380_13 *v14;
-    UnkStruct_ov97_02236380_14 *v15;
-    UnkStruct_ov97_02236380_15 *v16;
-    UnkStruct_ov97_02236380_16 *v17;
-    UnkStruct_ov97_02236380_17 *v18;
-    UnkStruct_ov97_02236380_18 *v19;
-    UnkStruct_ov97_02236380_19 *v20;
-    UnkStruct_ov97_02236380_20 *v21;
-    UnkStruct_ov97_02236380_21 *v22;
-    UnkStruct_ov97_02236380_22 *v23;
-    UnkStruct_ov97_02236380_23 *v24;
-
-    switch (param1 % 24) {
-    case 0:
-        v1 = (UnkStruct_ov97_02236380 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v1->unk_00;
-            break;
-        case 1:
-            v0 = (u32)&v1->unk_0C;
-            break;
-        case 2:
-            v0 = (u32)&v1->unk_18;
-            break;
-        case 3:
-            v0 = (u32)&v1->unk_24;
-            break;
-        }
-        break;
-    case 1:
-        v2 = (UnkStruct_ov97_02236380_1 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v2->unk_00;
-            break;
-        case 1:
-            v0 = (u32)&v2->unk_0C;
-            break;
-        case 2:
-            v0 = (u32)&v2->unk_24;
-            break;
-        case 3:
-            v0 = (u32)&v2->unk_18;
-            break;
-        }
-        break;
-    case 2:
-        v3 = (UnkStruct_ov97_02236380_2 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v3->unk_00;
-            break;
-        case 1:
-            v0 = (u32)&v3->unk_18;
-            break;
-        case 2:
-            v0 = (u32)&v3->unk_0C;
-            break;
-        case 3:
-            v0 = (u32)&v3->unk_24;
-            break;
-        }
-        break;
-    case 3:
-        v4 = (UnkStruct_ov97_02236380_3 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v4->unk_00;
-            break;
-        case 1:
-            v0 = (u32)&v4->unk_24;
-            break;
-        case 2:
-            v0 = (u32)&v4->unk_0C;
-            break;
-        case 3:
-            v0 = (u32)&v4->unk_18;
-            break;
-        }
-        break;
-    case 4:
-        v5 = (UnkStruct_ov97_02236380_4 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v5->unk_00;
-            break;
-        case 1:
-            v0 = (u32)&v5->unk_18;
-            break;
-        case 2:
-            v0 = (u32)&v5->unk_24;
-            break;
-        case 3:
-            v0 = (u32)&v5->unk_0C;
-            break;
-        }
-        break;
-    case 5:
-        v6 = (UnkStruct_ov97_02236380_5 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v6->unk_00;
-            break;
-        case 1:
-            v0 = (u32)&v6->unk_24;
-            break;
-        case 2:
-            v0 = (u32)&v6->unk_18;
-            break;
-        case 3:
-            v0 = (u32)&v6->unk_0C;
-            break;
-        }
-        break;
-    case 6:
-        v7 = (UnkStruct_ov97_02236380_6 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v7->unk_0C;
-            break;
-        case 1:
-            v0 = (u32)&v7->unk_00;
-            break;
-        case 2:
-            v0 = (u32)&v7->unk_18;
-            break;
-        case 3:
-            v0 = (u32)&v7->unk_24;
-            break;
-        }
-        break;
-    case 7:
-        v8 = (UnkStruct_ov97_02236380_7 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v8->unk_0C;
-            break;
-        case 1:
-            v0 = (u32)&v8->unk_00;
-            break;
-        case 2:
-            v0 = (u32)&v8->unk_24;
-            break;
-        case 3:
-            v0 = (u32)&v8->unk_18;
-            break;
-        }
-        break;
-    case 8:
-        v9 = (UnkStruct_ov97_02236380_8 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v9->unk_18;
-            break;
-        case 1:
-            v0 = (u32)&v9->unk_00;
-            break;
-        case 2:
-            v0 = (u32)&v9->unk_0C;
-            break;
-        case 3:
-            v0 = (u32)&v9->unk_24;
-            break;
-        }
-        break;
-    case 9:
-        v10 = (UnkStruct_ov97_02236380_9 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v10->unk_24;
-            break;
-        case 1:
-            v0 = (u32)&v10->unk_00;
-            break;
-        case 2:
-            v0 = (u32)&v10->unk_0C;
-            break;
-        case 3:
-            v0 = (u32)&v10->unk_18;
-            break;
-        }
-        break;
-    case 10:
-        v11 = (UnkStruct_ov97_02236380_10 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v11->unk_18;
-            break;
-        case 1:
-            v0 = (u32)&v11->unk_00;
-            break;
-        case 2:
-            v0 = (u32)&v11->unk_24;
-            break;
-        case 3:
-            v0 = (u32)&v11->unk_0C;
-            break;
-        }
-        break;
-    case 11:
-        v12 = (UnkStruct_ov97_02236380_11 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v12->unk_24;
-            break;
-        case 1:
-            v0 = (u32)&v12->unk_00;
-            break;
-        case 2:
-            v0 = (u32)&v12->unk_18;
-            break;
-        case 3:
-            v0 = (u32)&v12->unk_0C;
-            break;
-        }
-        break;
-    case 12:
-        v13 = (UnkStruct_ov97_02236380_12 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v13->unk_0C;
-            break;
-        case 1:
-            v0 = (u32)&v13->unk_18;
-            break;
-        case 2:
-            v0 = (u32)&v13->unk_00;
-            break;
-        case 3:
-            v0 = (u32)&v13->unk_24;
-            break;
-        }
-        break;
-    case 13:
-        v14 = (UnkStruct_ov97_02236380_13 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v14->unk_0C;
-            break;
-        case 1:
-            v0 = (u32)&v14->unk_24;
-            break;
-        case 2:
-            v0 = (u32)&v14->unk_00;
-            break;
-        case 3:
-            v0 = (u32)&v14->unk_18;
-            break;
-        }
-        break;
-    case 14:
-        v15 = (UnkStruct_ov97_02236380_14 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v15->unk_18;
-            break;
-        case 1:
-            v0 = (u32)&v15->unk_0C;
-            break;
-        case 2:
-            v0 = (u32)&v15->unk_00;
-            break;
-        case 3:
-            v0 = (u32)&v15->unk_24;
-            break;
-        }
-        break;
-    case 15:
-        v16 = (UnkStruct_ov97_02236380_15 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v16->unk_24;
-            break;
-        case 1:
-            v0 = (u32)&v16->unk_0C;
-            break;
-        case 2:
-            v0 = (u32)&v16->unk_00;
-            break;
-        case 3:
-            v0 = (u32)&v16->unk_18;
-            break;
-        }
-        break;
-    case 16:
-        v17 = (UnkStruct_ov97_02236380_16 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v17->unk_18;
-            break;
-        case 1:
-            v0 = (u32)&v17->unk_24;
-            break;
-        case 2:
-            v0 = (u32)&v17->unk_00;
-            break;
-        case 3:
-            v0 = (u32)&v17->unk_0C;
-            break;
-        }
-        break;
-    case 17:
-        v18 = (UnkStruct_ov97_02236380_17 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v18->unk_24;
-            break;
-        case 1:
-            v0 = (u32)&v18->unk_18;
-            break;
-        case 2:
-            v0 = (u32)&v18->unk_00;
-            break;
-        case 3:
-            v0 = (u32)&v18->unk_0C;
-            break;
-        }
-        break;
-    case 18:
-        v19 = (UnkStruct_ov97_02236380_18 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v19->unk_0C;
-            break;
-        case 1:
-            v0 = (u32)&v19->unk_18;
-            break;
-        case 2:
-            v0 = (u32)&v19->unk_24;
-            break;
-        case 3:
-            v0 = (u32)&v19->unk_00;
-            break;
-        }
-        break;
-    case 19:
-        v20 = (UnkStruct_ov97_02236380_19 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v20->unk_0C;
-            break;
-        case 1:
-            v0 = (u32)&v20->unk_24;
-            break;
-        case 2:
-            v0 = (u32)&v20->unk_18;
-            break;
-        case 3:
-            v0 = (u32)&v20->unk_00;
-            break;
-        }
-        break;
-    case 20:
-        v21 = (UnkStruct_ov97_02236380_20 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v21->unk_18;
-            break;
-        case 1:
-            v0 = (u32)&v21->unk_0C;
-            break;
-        case 2:
-            v0 = (u32)&v21->unk_24;
-            break;
-        case 3:
-            v0 = (u32)&v21->unk_00;
-            break;
-        }
-        break;
-    case 21:
-        v22 = (UnkStruct_ov97_02236380_21 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v22->unk_24;
-            break;
-        case 1:
-            v0 = (u32)&v22->unk_0C;
-            break;
-        case 2:
-            v0 = (u32)&v22->unk_18;
-            break;
-        case 3:
-            v0 = (u32)&v22->unk_00;
-            break;
-        }
-        break;
-    case 22:
-        v23 = (UnkStruct_ov97_02236380_22 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v23->unk_18;
-            break;
-        case 1:
-            v0 = (u32)&v23->unk_24;
-            break;
-        case 2:
-            v0 = (u32)&v23->unk_0C;
-            break;
-        case 3:
-            v0 = (u32)&v23->unk_00;
-            break;
-        }
-        break;
-    case 23:
-        v24 = (UnkStruct_ov97_02236380_23 *)param0->secure;
-
-        switch (param2) {
-        case 0:
-            v0 = (u32)&v24->unk_24;
-            break;
-        case 1:
-            v0 = (u32)&v24->unk_18;
-            break;
-        case 2:
-            v0 = (u32)&v24->unk_0C;
-            break;
-        case 3:
-            v0 = (u32)&v24->unk_00;
-            break;
-        }
-        break;
+#define SUBSTRUCT_CASE(n, v1, v2, v3, v4)                                       \
+    case n: {                                                                   \
+        union PokemonGBASubstruct *substructs0 = boxMonGBA->secure.substructs;  \
+        union PokemonGBASubstruct *substructs1 = boxMonGBA->secure.substructs;  \
+        union PokemonGBASubstruct *substructs2 = boxMonGBA->secure.substructs;  \
+        union PokemonGBASubstruct *substructs3 = boxMonGBA->secure.substructs;  \
+        union PokemonGBASubstruct *substructs4 = boxMonGBA->secure.substructs;  \
+        union PokemonGBASubstruct *substructs5 = boxMonGBA->secure.substructs;  \
+        union PokemonGBASubstruct *substructs6 = boxMonGBA->secure.substructs;  \
+        union PokemonGBASubstruct *substructs7 = boxMonGBA->secure.substructs;  \
+        union PokemonGBASubstruct *substructs8 = boxMonGBA->secure.substructs;  \
+        union PokemonGBASubstruct *substructs9 = boxMonGBA->secure.substructs;  \
+        union PokemonGBASubstruct *substructs10 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs11 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs12 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs13 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs14 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs15 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs16 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs17 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs18 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs19 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs20 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs21 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs22 = boxMonGBA->secure.substructs; \
+        union PokemonGBASubstruct *substructs23 = boxMonGBA->secure.substructs; \
+                                                                                \
+        switch (substructType) {                                                \
+        case 0:                                                                 \
+            substruct = &substructs##n[v1];                                     \
+            break;                                                              \
+        case 1:                                                                 \
+            substruct = &substructs##n[v2];                                     \
+            break;                                                              \
+        case 2:                                                                 \
+            substruct = &substructs##n[v3];                                     \
+            break;                                                              \
+        case 3:                                                                 \
+            substruct = &substructs##n[v4];                                     \
+            break;                                                              \
+        }                                                                       \
+        break;                                                                  \
     }
 
-    return v0;
+static u32 GetGBASubstruct(BoxPokemonGBA *boxMonGBA, u32 personality, u8 substructType)
+{
+    union PokemonGBASubstruct *substruct = NULL;
+
+    switch (personality % 24) {
+        SUBSTRUCT_CASE(0, 0, 1, 2, 3)
+        SUBSTRUCT_CASE(1, 0, 1, 3, 2)
+        SUBSTRUCT_CASE(2, 0, 2, 1, 3)
+        SUBSTRUCT_CASE(3, 0, 3, 1, 2)
+        SUBSTRUCT_CASE(4, 0, 2, 3, 1)
+        SUBSTRUCT_CASE(5, 0, 3, 2, 1)
+        SUBSTRUCT_CASE(6, 1, 0, 2, 3)
+        SUBSTRUCT_CASE(7, 1, 0, 3, 2)
+        SUBSTRUCT_CASE(8, 2, 0, 1, 3)
+        SUBSTRUCT_CASE(9, 3, 0, 1, 2)
+        SUBSTRUCT_CASE(10, 2, 0, 3, 1)
+        SUBSTRUCT_CASE(11, 3, 0, 2, 1)
+        SUBSTRUCT_CASE(12, 1, 2, 0, 3)
+        SUBSTRUCT_CASE(13, 1, 3, 0, 2)
+        SUBSTRUCT_CASE(14, 2, 1, 0, 3)
+        SUBSTRUCT_CASE(15, 3, 1, 0, 2)
+        SUBSTRUCT_CASE(16, 2, 3, 0, 1)
+        SUBSTRUCT_CASE(17, 3, 2, 0, 1)
+        SUBSTRUCT_CASE(18, 1, 2, 3, 0)
+        SUBSTRUCT_CASE(19, 1, 3, 2, 0)
+        SUBSTRUCT_CASE(20, 2, 1, 3, 0)
+        SUBSTRUCT_CASE(21, 3, 1, 2, 0)
+        SUBSTRUCT_CASE(22, 2, 3, 1, 0)
+        SUBSTRUCT_CASE(23, 3, 2, 1, 0)
+    }
+
+    return substruct;
 }
 
-static void GBADecryptBoxMon(BoxPokemonGBA *param0)
+static void GBADecryptBoxMon(BoxPokemonGBA *boxMonGBA)
 {
     int v0;
     u32 *v1;
 
-    v1 = (u32 *)&param0->secure;
+    v1 = (u32 *)&boxMonGBA->secure;
 
     for (v0 = 0; v0 < (sizeof(PokemonGBASubstruct0) + sizeof(PokemonGBASubstruct1) + sizeof(PokemonGBASubstruct2) + sizeof(PokemonGBASubstruct3)) / 4; v0++) {
-        v1[v0] ^= param0->otId;
-        v1[v0] ^= param0->personality;
+        v1[v0] ^= boxMonGBA->otId;
+        v1[v0] ^= boxMonGBA->personality;
     }
 }
 
-static void GBAEncryptBoxMon(BoxPokemonGBA *param0)
+static void GBAEncryptBoxMon(BoxPokemonGBA *boxMonGBA)
 {
     int v0;
     u32 *v1;
 
-    v1 = (u32 *)&param0->secure;
+    v1 = (u32 *)&boxMonGBA->secure;
 
     for (v0 = 0; v0 < (sizeof(PokemonGBASubstruct0) + sizeof(PokemonGBASubstruct1) + sizeof(PokemonGBASubstruct2) + sizeof(PokemonGBASubstruct3)) / 4; v0++) {
-        v1[v0] ^= param0->personality;
-        v1[v0] ^= param0->otId;
+        v1[v0] ^= boxMonGBA->personality;
+        v1[v0] ^= boxMonGBA->otId;
     }
 }
 
-static u16 ov97_0223689C(BoxPokemonGBA *param0)
+static u16 CalculateGBABoxMonChecksum(BoxPokemonGBA *boxMonGBA)
 {
-    int v0;
-    u16 *v1;
-    u16 *v2;
-    u16 *v3;
-    u16 *v4;
-    u16 v5 = 0;
+    u16 checksum = 0;
+    union PokemonGBASubstruct *substruct0 = GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 0);
+    union PokemonGBASubstruct *substruct1 = GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 1);
+    union PokemonGBASubstruct *substruct2 = GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 2);
+    union PokemonGBASubstruct *substruct3 = GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 3);
+    s32 i;
 
-    v1 = (u16 *)ov97_02236380(param0, param0->personality, 0);
-    v2 = (u16 *)ov97_02236380(param0, param0->personality, 1);
-    v3 = (u16 *)ov97_02236380(param0, param0->personality, 2);
-    v4 = (u16 *)ov97_02236380(param0, param0->personality, 3);
-
-    for (v0 = 0; v0 < 12 / 2; v0++) {
-        v5 += v1[v0];
+    for (i = 0; i < (s32)NELEMS(substruct0->raw); i++) {
+        checksum += substruct0->raw[i];
     }
 
-    for (v0 = 0; v0 < 12 / 2; v0++) {
-        v5 += v2[v0];
+    for (i = 0; i < (s32)NELEMS(substruct1->raw); i++) {
+        checksum += substruct1->raw[i];
     }
 
-    for (v0 = 0; v0 < 12 / 2; v0++) {
-        v5 += v3[v0];
+    for (i = 0; i < (s32)NELEMS(substruct2->raw); i++) {
+        checksum += substruct2->raw[i];
     }
 
-    for (v0 = 0; v0 < 12 / 2; v0++) {
-        v5 += v4[v0];
+    for (i = 0; i < (s32)NELEMS(substruct3->raw); i++) {
+        checksum += substruct3->raw[i];
     }
 
-    return v5;
+    return checksum;
 }
 
 u32 GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 *param2)
@@ -968,13 +406,13 @@ u32 GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 *param2)
     u16 checksum;
 
     if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
-        substruct0 = (PokemonGBASubstruct0 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 0);
-        substruct1 = (PokemonGBASubstruct1 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 1);
-        substruct2 = (PokemonGBASubstruct2 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 2);
-        substruct3 = (PokemonGBASubstruct3 *)ov97_02236380(boxMonGBA, boxMonGBA->personality, 3);
+        substruct0 = (PokemonGBASubstruct0 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 0);
+        substruct1 = (PokemonGBASubstruct1 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 1);
+        substruct2 = (PokemonGBASubstruct2 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 2);
+        substruct3 = (PokemonGBASubstruct3 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 3);
 
         GBADecryptBoxMon(boxMonGBA);
-        checksum = ov97_0223689C(boxMonGBA);
+        checksum = CalculateGBABoxMonChecksum(boxMonGBA);
 
         if (checksum != boxMonGBA->checksum) {
             boxMonGBA->isBadEgg = TRUE;
@@ -1224,71 +662,77 @@ u32 GetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, u8 *param2)
     return retVal;
 }
 
-void SetGBABoxMonData(BoxPokemonGBA *boxMon, int field, const u8 *dataArg)
+#define SET8(lhs)  (lhs) = *dataArg
+#define SET16(lhs) (lhs) = dataArg[0] + (dataArg[1] << 8)
+#define SET32(lhs) (lhs) = dataArg[0] + (dataArg[1] << 8) + (dataArg[2] << 16) + (dataArg[3] << 24)
+
+void SetGBABoxMonData(BoxPokemonGBA *boxMonGBA, int field, const u8 *dataArg)
 {
-    int v0;
-    u32 v1;
-    PokemonGBASubstruct0 *v2 = 0;
-    PokemonGBASubstruct1 *v3 = 0;
-    PokemonGBASubstruct2 *v4 = 0;
-    PokemonGBASubstruct3 *v5 = 0;
-    u16 v6;
+    PokemonGBASubstruct0 *substruct0 = 0;
+    PokemonGBASubstruct1 *substruct1 = 0;
+    PokemonGBASubstruct2 *substruct2 = 0;
+    PokemonGBASubstruct3 *substruct3 = 0;
+    u16 checksum;
 
     if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
-        v2 = (PokemonGBASubstruct0 *)ov97_02236380(boxMon, boxMon->personality, 0);
-        v3 = (PokemonGBASubstruct1 *)ov97_02236380(boxMon, boxMon->personality, 1);
-        v4 = (PokemonGBASubstruct2 *)ov97_02236380(boxMon, boxMon->personality, 2);
-        v5 = (PokemonGBASubstruct3 *)ov97_02236380(boxMon, boxMon->personality, 3);
+        substruct0 = (PokemonGBASubstruct0 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 0);
+        substruct1 = (PokemonGBASubstruct1 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 1);
+        substruct2 = (PokemonGBASubstruct2 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 2);
+        substruct3 = (PokemonGBASubstruct3 *)GetGBASubstruct(boxMonGBA, boxMonGBA->personality, 3);
 
-        GBADecryptBoxMon(boxMon);
-        v6 = ov97_0223689C(boxMon);
+        GBADecryptBoxMon(boxMonGBA);
+        checksum = CalculateGBABoxMonChecksum(boxMonGBA);
 
-        if (v6 != boxMon->checksum) {
-            boxMon->isBadEgg = 1;
-            boxMon->isEgg = 1;
-            v5->isEgg = 1;
-            GBAEncryptBoxMon(boxMon);
+        if (checksum != boxMonGBA->checksum) {
+            boxMonGBA->isBadEgg = TRUE;
+            boxMonGBA->isEgg = TRUE;
+            substruct3->isEgg = TRUE;
+            GBAEncryptBoxMon(boxMonGBA);
             return;
         }
     }
 
     switch (field) {
-    case GBA_MON_DATA_NICKNAME:
-        for (v0 = 0; v0 < 10; v0++) {
-            boxMon->nickname[v0] = dataArg[v0];
-        }
-        break;
-    case GBA_MON_DATA_LANGUAGE:
-        boxMon->language = dataArg[0];
-        break;
-    case GBA_MON_DATA_SANITY_IS_BAD_EGG:
-        boxMon->isBadEgg = dataArg[0];
-        break;
-    case GBA_MON_DATA_SANITY_HAS_SPECIES:
-        boxMon->hasSpecies = dataArg[0];
-        break;
-    case GBA_MON_DATA_SANITY_IS_EGG:
-        boxMon->isEgg = dataArg[0];
-        break;
-    case GBA_MON_DATA_OT_NAME:
-        for (v0 = 0; v0 < 7; v0++) {
-            boxMon->otName[v0] = dataArg[v0];
-        }
-        break;
-    case GBA_MON_DATA_SPECIES:
-        v2->species = dataArg[0] + (dataArg[1] << 8);
-
-        if (v2->species) {
-            boxMon->hasSpecies = 1;
-        } else {
-            boxMon->hasSpecies = 0;
+    case GBA_MON_DATA_NICKNAME: {
+        s32 i;
+        for (i = 0; i < MON_NAME_LEN; i++) {
+            boxMonGBA->nickname[i] = dataArg[i];
         }
         break;
     }
+    case GBA_MON_DATA_LANGUAGE:
+        SET8(boxMonGBA->language);
+        break;
+    case GBA_MON_DATA_SANITY_IS_BAD_EGG:
+        SET8(boxMonGBA->isBadEgg);
+        break;
+    case GBA_MON_DATA_SANITY_HAS_SPECIES:
+        SET8(boxMonGBA->hasSpecies);
+        break;
+    case GBA_MON_DATA_SANITY_IS_EGG:
+        SET8(boxMonGBA->isEgg);
+        break;
+    case GBA_MON_DATA_OT_NAME: {
+        s32 i;
+        for (i = 0; i < TRAINER_NAME_LEN; i++) {
+            boxMonGBA->otName[i] = dataArg[i];
+        }
+        break;
+    }
+    case GBA_MON_DATA_SPECIES: {
+        SET16(substruct0->species);
+        if (substruct0->species) {
+            boxMonGBA->hasSpecies = TRUE;
+        } else {
+            boxMonGBA->hasSpecies = FALSE;
+        }
+        break;
+    }
+    }
 
     if (field > GBA_MON_DATA_ENCRYPT_SEPARATOR) {
-        boxMon->checksum = ov97_0223689C(boxMon);
-        GBAEncryptBoxMon(boxMon);
+        boxMonGBA->checksum = CalculateGBABoxMonChecksum(boxMonGBA);
+        GBAEncryptBoxMon(boxMonGBA);
     }
 }
 
@@ -1317,26 +761,26 @@ u32 GetBoxMonGBALevel(BoxPokemonGBA *boxMonGBA)
     return Pokemon_GetSpeciesLevelAt(species, exp);
 }
 
-static int ov97_02236E28(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
+static int ConvertBoxMonGBAtoDSAbility(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
 {
-    int v0;
+    int i;
     int ability;
     u16 species;
-    int v3;
+    int abilityNum;
 
     species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    v3 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_ABILITY_NUM, NULL);
+    abilityNum = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_ABILITY_NUM, NULL);
     ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_2);
 
-    if (ability) {
-        for (v0 = 0; v0 < (sizeof(Unk_ov97_0223ECA0) / 2); v0++) {
-            if (Unk_ov97_0223ECA0[v0] == species) {
+    if (ability != ABILITY_NONE) {
+        for (i = 0; i < (NELEMS(sSpeciesWithNewAbilities)); i++) {
+            if (sSpeciesWithNewAbilities[i] == species) {
                 ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
                 break;
             }
         }
 
-        if ((v0 == (sizeof(Unk_ov97_0223ECA0) / 2)) && ((v3 & 1) == 0)) {
+        if ((i == (NELEMS(sSpeciesWithNewAbilities))) && ((abilityNum & 1) == 0)) {
             ability = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_ABILITY_1);
         }
     } else {
@@ -1346,223 +790,211 @@ static int ov97_02236E28(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     return ability;
 }
 
-void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
+void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
 {
-    BOOL v0;
+    BOOL reencrypt;
     u32 value;
     int i, v3;
     int v4;
     u8 v5[10 + 1];
     u16 v6[12];
 
-    BoxPokemon_Init(param1);
+    BoxPokemon_Init(boxMon);
+    reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    v0 = BoxPokemon_EnterDecryptionContext(param1);
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_PERSONALITY, NULL);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_PERSONALITY, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_PERSONALITY, (u8 *)&value);
 
-    BoxPokemon_SetValue(param1, MON_DATA_PERSONALITY, (u8 *)&value);
-
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPECIES, NULL);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL);
     value = ConvertGBASpeciesToDS(value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SPECIES, (u8 *)&value);
 
-    BoxPokemon_SetValue(param1, MON_DATA_SPECIES, (u8 *)&value);
-
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_HELD_ITEM, NULL);
-
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HELD_ITEM, NULL);
     if (value) {
         value = Item_FromGBAID(value);
     }
+    BoxPokemon_SetValue(boxMon, MON_DATA_HELD_ITEM, (u8 *)&value);
 
-    BoxPokemon_SetValue(param1, MON_DATA_HELD_ITEM, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_OT_ID, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_OT_ID, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_OT_ID, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_OT_ID, (u8 *)&value);
-
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_EXP, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_EXP, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_EXP, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_EXP, (u8 *)&value);
 
     value = BASE_FRIENDSHIP_VALUE;
-    BoxPokemon_SetValue(param1, MON_DATA_FRIENDSHIP, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_FRIENDSHIP, (u8 *)&value);
 
-    value = ov97_02236E28(param0, param1);
-    BoxPokemon_SetValue(param1, MON_DATA_ABILITY, (u8 *)&value);
+    value = ConvertBoxMonGBAtoDSAbility(boxMonGBA, boxMon);
+    BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_MARKINGS, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_MARKS, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MARKINGS, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MARKS, (u8 *)&value);
 
-    v4 = GetGBABoxMonData(param0, GBA_MON_DATA_LANGUAGE, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_LANGUAGE, (u8 *)&v4);
+    v4 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_LANGUAGE, (u8 *)&v4);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_HP_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HP_EV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HP_EV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HP_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_ATK_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_ATK_EV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_ATK_EV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_ATK_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_DEF_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_DEF_EV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_DEF_EV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_DEF_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPEED_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPEED_EV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPEED_EV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SPEED_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPATK_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPATK_EV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPATK_EV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SPATK_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPDEF_EV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPDEF_EV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPDEF_EV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SPDEF_EV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_COOL, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_COOL, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_COOL, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_COOL, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_BEAUTY, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_BEAUTY, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_BEAUTY, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_BEAUTY, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_CUTE, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_CUTE, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_CUTE, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_CUTE, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_SMART, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SMART, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SMART, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SMART, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_TOUGH, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_TOUGH, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_TOUGH, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_TOUGH, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_SHEEN, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SHEEN, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SHEEN, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SHEEN, (u8 *)&value);
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        value = GetGBABoxMonData(param0, GBA_MON_DATA_MOVE1 + i, NULL);
-
+        value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MOVE1 + i, NULL);
         if (value > GBA_NUM_MOVES) {
             (void)0;
         }
+        BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1 + i, (u8 *)&value);
 
-        BoxPokemon_SetValue(param1, MON_DATA_MOVE1 + i, (u8 *)&value);
-
-        value = GetGBABoxMonData(param0, GBA_MON_DATA_PP_BONUSES, NULL);
+        value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_PP_BONUSES, NULL);
         value = (value & (0x3 << (i * 2))) >> (i * 2);
+        BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_PP_UPS + i, (u8 *)&value);
 
-        BoxPokemon_SetValue(param1, MON_DATA_MOVE1_PP_UPS + i, (u8 *)&value);
-
-        value = BoxPokemon_GetValue(param1, MON_DATA_MOVE1_MAX_PP + i, NULL);
-        BoxPokemon_SetValue(param1, MON_DATA_MOVE1_CUR_PP + i, (u8 *)&value);
+        value = BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1_MAX_PP + i, NULL);
+        BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_CUR_PP + i, (u8 *)&value);
     }
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_HP_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HP_IV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HP_IV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HP_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_ATK_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_ATK_IV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_ATK_IV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_ATK_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_DEF_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_DEF_IV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_DEF_IV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_DEF_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPEED_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPEED_IV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPEED_IV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SPEED_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPATK_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPATK_IV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPATK_IV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SPATK_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_SPDEF_IV, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_SPDEF_IV, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPDEF_IV, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SPDEF_IV, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_IS_EGG, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_IS_EGG, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_IS_EGG, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_IS_EGG, (u8 *)&value);
 
-    v3 = GetGBABoxMonData(param0, GBA_MON_DATA_COOL_RIBBON, NULL);
-
+    v3 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_COOL_RIBBON, NULL);
     if (v3 <= 4) {
         for (i = 0; i < v3; i++) {
             value = 1;
-            BoxPokemon_SetValue(param1, MON_DATA_HOENN_COOL_RIBBON + i, (u8 *)&value);
+            BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_COOL_RIBBON + i, (u8 *)&value);
         }
     }
 
-    v3 = GetGBABoxMonData(param0, GBA_MON_DATA_BEAUTY_RIBBON, NULL);
-
+    v3 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_BEAUTY_RIBBON, NULL);
     if (v3 <= 4) {
         for (i = 0; i < v3; i++) {
             value = 1;
-            BoxPokemon_SetValue(param1, MON_DATA_HOENN_BEAUTY_RIBBON + i, (u8 *)&value);
+            BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_BEAUTY_RIBBON + i, (u8 *)&value);
         }
     }
 
-    v3 = GetGBABoxMonData(param0, GBA_MON_DATA_CUTE_RIBBON, NULL);
-
+    v3 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_CUTE_RIBBON, NULL);
     if (v3 <= 4) {
         for (i = 0; i < v3; i++) {
             value = 1;
-            BoxPokemon_SetValue(param1, MON_DATA_HOENN_CUTE_RIBBON + i, (u8 *)&value);
+            BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_CUTE_RIBBON + i, (u8 *)&value);
         }
     }
 
-    v3 = GetGBABoxMonData(param0, GBA_MON_DATA_SMART_RIBBON, NULL);
-
+    v3 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SMART_RIBBON, NULL);
     if (v3 <= 4) {
         for (i = 0; i < v3; i++) {
             value = 1;
-            BoxPokemon_SetValue(param1, MON_DATA_HOENN_SMART_RIBBON + i, (u8 *)&value);
+            BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_SMART_RIBBON + i, (u8 *)&value);
         }
     }
 
-    v3 = GetGBABoxMonData(param0, GBA_MON_DATA_TOUGH_RIBBON, NULL);
-
+    v3 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_TOUGH_RIBBON, NULL);
     if (v3 <= 4) {
         for (i = 0; i < v3; i++) {
             value = 1;
-            BoxPokemon_SetValue(param1, MON_DATA_HOENN_TOUGH_RIBBON + i, (u8 *)&value);
+            BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_TOUGH_RIBBON + i, (u8 *)&value);
         }
     }
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_CHAMPION_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_CHAMPION_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_CHAMPION_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_CHAMPION_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_WINNING_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_WINNING_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_WINNING_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_WINNING_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_VICTORY_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_VICTORY_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_VICTORY_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_VICTORY_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_ARTIST_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_ARTIST_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_ARTIST_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_ARTIST_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_EFFORT_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_EFFORT_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_EFFORT_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_EFFORT_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_MARINE_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_MARINE_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MARINE_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_MARINE_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_LAND_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_LAND_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LAND_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_LAND_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_SKY_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_SKY_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SKY_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_SKY_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_COUNTRY_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_COUNTRY_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_COUNTRY_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_COUNTRY_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_NATIONAL_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_NATIONAL_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NATIONAL_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_NATIONAL_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_EARTH_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_EARTH_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_EARTH_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_EARTH_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_WORLD_RIBBON, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HOENN_WORLD_RIBBON, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_WORLD_RIBBON, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_WORLD_RIBBON, (u8 *)&value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_MODERN_FATEFUL_ENCOUNTER, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, (u8 *)&value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MODERN_FATEFUL_ENCOUNTER, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_FATEFUL_ENCOUNTER, (u8 *)&value);
 
-    value = BoxPokemon_GetGender(param1);
-    BoxPokemon_SetValue(param1, MON_DATA_GENDER, (u8 *)&value);
+    value = BoxPokemon_GetGender(boxMon);
+    BoxPokemon_SetValue(boxMon, MON_DATA_GENDER, (u8 *)&value);
 
-    if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_UNOWN) {
-        value = GetGBABoxMonData(param0, GBA_MON_DATA_PERSONALITY, NULL);
+    if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_UNOWN) {
+        value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_PERSONALITY, NULL);
         value = (((value & 0x3000000) >> 18) | ((value & 0x30000) >> 12) | ((value & 0x300) >> 6) | (value & 0x3)) % 28;
 
-        BoxPokemon_SetValue(param1, MON_DATA_FORM, (u8 *)&value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_FORM, (u8 *)&value);
     }
 
-    if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == SPECIES_DEOXYS) {
+    if (BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_DEOXYS) {
         switch (gSystem.gbaCartridgeVersion) {
         default:
         case RUBY:
@@ -1580,40 +1012,40 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1)
             break;
         }
 
-        BoxPokemon_SetValue(param1, MON_DATA_FORM, (u8 *)&value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_FORM, (u8 *)&value);
     }
 
-    GetGBABoxMonData(param0, GBA_MON_DATA_NICKNAME, &v5[0]);
+    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NICKNAME, &v5[0]);
     ov97_0223936C(&v5[0], &v6[0], 12, v4);
 
-    BoxPokemon_SetValue(param1, MON_DATA_NICKNAME_AND_FLAG, &v6[0]);
+    BoxPokemon_SetValue(boxMon, MON_DATA_NICKNAME_AND_FLAG, &v6[0]);
 
-    if (GetGBABoxMonData(param0, GBA_MON_DATA_LANGUAGE, NULL) != gGameLanguage) {
+    if (GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL) != gGameLanguage) {
         value = 1;
-        BoxPokemon_SetValue(param1, MON_DATA_HAS_NICKNAME, &value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_HAS_NICKNAME, &value);
     }
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_MET_GAME, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_MET_GAME, &value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MET_GAME, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &value);
 
-    GetGBABoxMonData(param0, GBA_MON_DATA_OT_NAME, &v5[0]);
+    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_OT_NAME, &v5[0]);
     ov97_0223936C(&v5[0], &v6[0], 8, v4);
 
-    BoxPokemon_SetValue(param1, MON_DATA_OTNAME, &v6[0]);
+    BoxPokemon_SetValue(boxMon, MON_DATA_OTNAME, &v6[0]);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_MET_LOCATION, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_HATCH_LOCATION, &value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MET_LOCATION, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_LOCATION, &value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_POKERUS, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_POKERUS, &value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_POKERUS, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_POKERUS, &value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_POKEBALL, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_POKEBALL, &value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_POKEBALL, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_POKEBALL, &value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_MET_LEVEL, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_MET_LEVEL, &value);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MET_LEVEL, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MET_LEVEL, &value);
 
-    value = GetGBABoxMonData(param0, GBA_MON_DATA_OT_GENDER, NULL);
-    BoxPokemon_SetValue(param1, MON_DATA_OT_GENDER, &value);
-    BoxPokemon_ExitDecryptionContext(param1, v0);
+    value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_OT_GENDER, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_OT_GENDER, &value);
+    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }

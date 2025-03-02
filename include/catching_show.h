@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_CATCHING_SHOW_H
 #define POKEPLATINUM_CATCHING_SHOW_H
 
+#include "constants/pokemon.h"
+
 #include "field/field_system_decl.h"
 
 #include "field_battle_data_transfer.h"
-
-#define CATCHING_SHOW_MONS 6
 
 typedef struct CatchingShowPokemon {
     u16 species;

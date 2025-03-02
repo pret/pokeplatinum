@@ -6,14 +6,14 @@
 #include "overlay097/ov97_02235D18.h"
 #include "overlay097/struct_ov97_0223635C.h"
 
-u32 ov97_0223635C(void)
+u32 GetGBAPlayerTrainerId(void)
 {
-    UnkStruct_ov97_0223635C *v0 = ov97_02236350();
-    return v0->unk_0A[3] << 24 | v0->unk_0A[2] << 16 | v0->unk_0A[1] << 8 | v0->unk_0A[0];
+    GBASaveBlock2 *saveBlock2 = GetGBASaveBlock2();
+    return saveBlock2->playerTrainerId[3] << 24 | saveBlock2->playerTrainerId[2] << 16 | saveBlock2->playerTrainerId[1] << 8 | saveBlock2->playerTrainerId[0];
 }
 
-u8 *ov97_02236378(void)
+u8 *GetGBAPlayerName(void)
 {
-    UnkStruct_ov97_0223635C *v0 = ov97_02236350();
-    return v0->unk_00;
+    GBASaveBlock2 *saveBlock2 = GetGBASaveBlock2();
+    return saveBlock2->playerName;
 }

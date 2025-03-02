@@ -7,7 +7,7 @@
 #include "rtc.h"
 
 typedef struct PalParkTransfer {
-    Pokemon unk_00[6];
+    Pokemon mons[CATCHING_SHOW_MONS];
     u32 unk_288[20];
     s64 unk_2D8[20];
     s64 unk_378;
@@ -19,43 +19,43 @@ int PalParkTransfer_SaveSize(void)
     return sizeof(PalParkTransfer);
 }
 
-void PalParkTransfer_Init(PalParkTransfer *param0)
+void PalParkTransfer_Init(PalParkTransfer *transferData)
 {
-    int v0;
+    int i;
 
-    MI_CpuClearFast(param0, sizeof(PalParkTransfer));
+    MI_CpuClearFast(transferData, sizeof(PalParkTransfer));
 
-    for (v0 = 0; v0 < 6; v0++) {
-        Pokemon_Init(&param0->unk_00[v0]);
-        GF_ASSERT(Pokemon_GetValue(&param0->unk_00[v0], MON_DATA_SPECIES_EXISTS, NULL) == 0);
+    for (i = 0; i < CATCHING_SHOW_MONS; i++) {
+        Pokemon_Init(&transferData->mons[i]);
+        GF_ASSERT(Pokemon_GetValue(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == FALSE);
     }
 }
 
-void sub_0202EF04(PalParkTransfer *param0)
+void sub_0202EF04(PalParkTransfer *transferData)
 {
-    int v0;
+    int i;
 
-    MI_CpuClearFast(param0->unk_00, sizeof(Pokemon) * 6);
+    MI_CpuClearFast(transferData->mons, sizeof(Pokemon) * CATCHING_SHOW_MONS);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        Pokemon_Init(&param0->unk_00[v0]);
-        GF_ASSERT(Pokemon_GetValue(&param0->unk_00[v0], MON_DATA_SPECIES_EXISTS, NULL) == 0);
+    for (i = 0; i < CATCHING_SHOW_MONS; i++) {
+        Pokemon_Init(&transferData->mons[i]);
+        GF_ASSERT(Pokemon_GetValue(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == 0);
     }
 }
 
-static int sub_0202EF40(PalParkTransfer *param0, u32 param1)
+static int sub_0202EF40(PalParkTransfer *transferData, u32 param1)
 {
     int v0, v1;
     s64 v2;
 
     for (v0 = 0; v0 < 20; v0++) {
-        if (param0->unk_288[v0] == param1) {
+        if (transferData->unk_288[v0] == param1) {
             return v0;
         }
     }
 
     for (v0 = 0; v0 < 20; v0++) {
-        if (param0->unk_288[v0] == 0) {
+        if (transferData->unk_288[v0] == 0) {
             return v0;
         }
     }
@@ -63,8 +63,8 @@ static int sub_0202EF40(PalParkTransfer *param0, u32 param1)
     v2 = 0x7FFFFFFF;
 
     for (v0 = 0; v0 < 20; v0++) {
-        if (param0->unk_2D8[v0] < v2) {
-            v2 = param0->unk_2D8[v0];
+        if (transferData->unk_2D8[v0] < v2) {
+            v2 = transferData->unk_2D8[v0];
             v1 = v0;
         }
     }
@@ -72,88 +72,88 @@ static int sub_0202EF40(PalParkTransfer *param0, u32 param1)
     return v1;
 }
 
-void sub_0202EFA4(PalParkTransfer *transfer, BoxPokemon *boxMon, int param2)
+void BoxMonToTransferData(PalParkTransfer *transfer, BoxPokemon *boxMon, int slot)
 {
-    Pokemon_FromBoxPokemon(boxMon, &transfer->unk_00[param2]);
+    Pokemon_FromBoxPokemon(boxMon, &transfer->mons[slot]);
 }
 
-void sub_0202EFB8(PalParkTransfer *param0, u32 param1)
+void sub_0202EFB8(PalParkTransfer *transferData, u32 gbaTrainerId)
 {
-    int v0 = sub_0202EF40(param0, param1);
+    int v0 = sub_0202EF40(transferData, gbaTrainerId);
 
-    param0->unk_288[v0] = param1;
-    param0->unk_2D8[v0] = GetTimestamp();
-    param0->unk_378 = OS_GetOwnerRtcOffset();
+    transferData->unk_288[v0] = gbaTrainerId;
+    transferData->unk_2D8[v0] = GetTimestamp();
+    transferData->unk_378 = OS_GetOwnerRtcOffset();
 
-    OS_GetMacAddress(param0->unk_380);
+    OS_GetMacAddress(transferData->unk_380);
 }
 
-void sub_0202F000(const PalParkTransfer *param0, int param1, Pokemon *param2)
+void TransferDataToMon(const PalParkTransfer *transferData, int slot, Pokemon *mon)
 {
-    GF_ASSERT(param1 < 6);
-    *param2 = param0->unk_00[param1];
+    GF_ASSERT(slot < CATCHING_SHOW_MONS);
+    *mon = transferData->mons[slot];
 }
 
-int sub_0202F028(const PalParkTransfer *param0)
+int GetPalParkTransferMonCount(const PalParkTransfer *transferData)
 {
-    int v0, v1;
+    int i, count;
 
-    for (v1 = 0, v0 = 0; v0 < 6; v0++) {
-        if (Pokemon_GetValue((Pokemon *)&param0->unk_00[v0], MON_DATA_SPECIES_EXISTS, NULL)) {
-            v1++;
+    for (count = 0, i = 0; i < CATCHING_SHOW_MONS; i++) {
+        if (Pokemon_GetValue((Pokemon *)&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL)) {
+            count++;
         }
     }
 
-    return v1;
+    return count;
 }
 
-int sub_0202F050(const PalParkTransfer *param0, u32 param1)
+int sub_0202F050(const PalParkTransfer *transferData, u32 gbaTrainerId)
 {
     int v0;
     s64 v1 = GetTimestamp();
 
     for (v0 = 0; v0 < 20; v0++) {
-        if (param0->unk_288[v0] == param1) {
-            return v1 - param0->unk_2D8[v0];
+        if (transferData->unk_288[v0] == gbaTrainerId) {
+            return v1 - transferData->unk_2D8[v0];
         }
     }
 
     return 0;
 }
 
-BOOL sub_0202F088(const PalParkTransfer *param0)
+BOOL sub_0202F088(const PalParkTransfer *transferData)
 {
-    int v0;
+    int i;
     u8 v1[6];
 
     OS_GetMacAddress(v1);
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (v1[v0] != param0->unk_380[v0]) {
-            return 0;
+    for (i = 0; i < 6; i++) {
+        if (v1[i] != transferData->unk_380[i]) {
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-BOOL sub_0202F0BC(const PalParkTransfer *param0)
+BOOL sub_0202F0BC(const PalParkTransfer *transferData)
 {
-    return param0->unk_378 == OS_GetOwnerRtcOffset();
+    return transferData->unk_378 == OS_GetOwnerRtcOffset();
 }
 
-BOOL sub_0202F0E0(const PalParkTransfer *param0)
+BOOL sub_0202F0E0(const PalParkTransfer *transferData)
 {
-    int v0;
+    int i;
     u8 v1;
 
-    for (v1 = 0, v0 = 0; v0 < 6; v0++) {
-        v1 |= param0->unk_380[v0];
+    for (v1 = 0, i = 0; i < 6; i++) {
+        v1 |= transferData->unk_380[i];
     }
 
     if (v1 == 0) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }

@@ -1,10 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/gba/global.h"
 #include "constants/gba/items.h"
 #include "constants/gba/pokemon.h"
 #include "constants/gba/species.h"
 #include "constants/items.h"
+#include "constants/pokemon.h"
 #include "constants/screen.h"
 #include "constants/species.h"
 
@@ -14,13 +16,12 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"
-#include "overlay097/box_pokemon_gba.h"
+#include "overlay097/gba_save.h"
 #include "overlay097/ov97_02235D18.h"
 #include "overlay097/ov97_0223635C.h"
 #include "overlay097/ov97_02236380.h"
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/ov97_022392E4.h"
-#include "overlay097/struct_ov97_02236340.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
@@ -170,7 +171,7 @@ static void ov97_02235310(UnkStruct_ov97_02234A2C *param0);
 static void ov97_02233D10(UnkStruct_ov97_02234A2C *param0);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
 void Strbuf_CopyChars(Strbuf *param0, const u16 *param1);
-void BoxMonGBAToBoxMon(BoxPokemonGBA *param0, BoxPokemon *param1);
+void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon);
 
 UnkStruct_ov97_0223F434 *Unk_ov97_0223F434;
 
@@ -267,14 +268,14 @@ static int ov97_02233B8C(UnkStruct_ov97_02234A2C *param0)
     int v0;
     u8 v1[16];
     int v2;
-    PalParkTransfer *v3;
+    PalParkTransfer *transferData;
     UnkStruct_ov97_02233B8C *v4 = &param0->unk_E8F0;
 
     switch (v4->unk_00) {
     case 0:
         ov97_02233D10(param0);
-        v3 = SaveData_PalParkTransfer(param0->unk_10);
-        sub_0202EFB8(v3, ov97_0223635C());
+        transferData = SaveData_PalParkTransfer(param0->unk_10);
+        sub_0202EFB8(transferData, GetGBAPlayerTrainerId());
         v4->unk_00++;
         break;
     case 1:
@@ -364,12 +365,10 @@ static int ov97_02233B8C(UnkStruct_ov97_02234A2C *param0)
 
 static void ov97_02233CE4(UnkStruct_ov97_02234A2C *param0)
 {
-    PalParkTransfer *v0;
     int v1;
+    PalParkTransfer *transferData = SaveData_PalParkTransfer(param0->unk_10);
 
-    v0 = SaveData_PalParkTransfer(param0->unk_10);
-
-    sub_0202EFB8(v0, ov97_0223635C());
+    sub_0202EFB8(transferData, GetGBAPlayerTrainerId());
     ResetLock(4);
 
     v1 = SaveData_Save(param0->unk_10);
@@ -378,33 +377,30 @@ static void ov97_02233CE4(UnkStruct_ov97_02234A2C *param0)
 
 static void ov97_02233D10(UnkStruct_ov97_02234A2C *param0)
 {
-    int i, v1, v2;
+    int i, boxNum, boxPos;
     u16 species;
-    BoxPokemon *boxMon;
     BoxPokemonGBA *boxMonGBA;
-    Pokemon v6;
-    PalParkTransfer *transfer;
+    Pokemon mon;
+    PalParkTransfer *transfer = SaveData_PalParkTransfer(param0->unk_10);
+    BoxPokemon *boxMon = Pokemon_GetBoxPokemon(&mon);
 
-    transfer = SaveData_PalParkTransfer(param0->unk_10);
-    boxMon = Pokemon_GetBoxPokemon(&v6);
-
-    for (i = 0; i < 6; i++) {
-        v2 = param0->unk_42C[i].boxPosition;
-        v1 = param0->unk_42C[i].boxId;
-        boxMonGBA = &param0->unk_E8E0->boxes[v1][v2];
+    for (i = 0; i < CATCHING_SHOW_MONS; i++) {
+        boxPos = param0->unk_42C[i].boxPosition;
+        boxNum = param0->unk_42C[i].boxId;
+        boxMonGBA = &param0->unk_E8E0->boxes[boxNum][boxPos];
 
         BoxMonGBAToBoxMon(boxMonGBA, boxMon);
-        sub_0202EFA4(transfer, boxMon, i);
+        BoxMonToTransferData(transfer, boxMon, i);
     }
 
     species = SPECIES_NONE;
 
-    for (i = 0; i < 6; i++) {
-        v2 = param0->unk_42C[i].boxPosition;
-        v1 = param0->unk_42C[i].boxId;
+    for (i = 0; i < CATCHING_SHOW_MONS; i++) {
+        boxPos = param0->unk_42C[i].boxPosition;
+        boxNum = param0->unk_42C[i].boxId;
 
-        if ((v2 != -1) && (v1 != 14)) {
-            SetGBABoxMonData(&(param0->unk_E8E0->boxes[v1][v2]), GBA_MON_DATA_SPECIES, (u8 *)&species);
+        if ((boxPos != -1) && (boxNum != GBA_MAX_PC_BOXES)) {
+            SetGBABoxMonData(&(param0->unk_E8E0->boxes[boxNum][boxPos]), GBA_MON_DATA_SPECIES, (u8 *)&species);
         }
     }
 }
@@ -1070,7 +1066,7 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int boxPosition)
         return GBA_MON_STATE_HAS_INVALID_ITEM;
     }
 
-    if (IsBoxMonGBAInvalidSpecies(param0, boxPosition) == 1) {
+    if (IsBoxMonGBAInvalidSpecies(param0, boxPosition) == TRUE) {
         return GBA_MON_STATE_IS_INVALID_SPECIES;
     }
 
@@ -1152,23 +1148,23 @@ static void ov97_02234A2C(UnkStruct_ov97_02234A2C *param0, int param1)
     ov97_02233DD0(param0, &v0, 0x1);
 }
 
-static void ov97_02234AB4(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *param1)
+static void ov97_02234AB4(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMonGBA)
 {
     u16 *v0 = Bg_GetTilemapBuffer(param0->unk_20, 2);
     u8 v1;
-    int v2;
+    int i;
 
-    if (param1) {
-        v1 = GetGBABoxMonData(param1, GBA_MON_DATA_MARKINGS, NULL);
+    if (boxMonGBA) {
+        v1 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MARKINGS, NULL);
     } else {
         v1 = 0;
     }
 
-    for (v2 = 0; v2 < 4; v2++) {
+    for (i = 0; i < 4; i++) {
         if (v1 & 1) {
-            v0[32 * 3 + 11 + v2] = 0x80 + v2;
+            v0[32 * 3 + 11 + i] = 0x80 + i;
         } else {
-            v0[32 * 3 + 11 + v2] = 0x60 + v2;
+            v0[32 * 3 + 11 + i] = 0x60 + i;
         }
 
         v1 >>= 1;
@@ -1624,10 +1620,10 @@ static void ov97_02235344(UnkStruct_ov97_02234A2C *param0)
     Strbuf *v2;
     u16 v3[7 + 1];
 
-    ov97_0223936C(ov97_02236378(), v3, 7 + 1, ov97_02235DBC());
+    ov97_0223936C(GetGBAPlayerName(), v3, GBA_PLAYER_NAME_LEN + 1, ov97_02235DBC());
 
     v1 = StringTemplate_Default(78);
-    v2 = Strbuf_Init(7 + 1, 78);
+    v2 = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, 78);
 
     Strbuf_CopyChars(v2, v3);
     StringTemplate_SetStrbuf(v1, 1, v2, 0, 1, GAME_LANGUAGE);
@@ -1661,25 +1657,24 @@ static void ov97_022353CC(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
+// Validation for Pal Park?
 static int ov97_02235408(UnkStruct_ov97_02234A2C *param0)
 {
     int v0;
-    u32 v1;
-    PalParkTransfer *v2;
+    u32 gbaTrainerId;
+    PalParkTransfer *transferData = SaveData_PalParkTransfer(param0->unk_10);
 
-    v2 = SaveData_PalParkTransfer(param0->unk_10);
-
-    if (sub_0202F0E0(v2) == 0) {
-        if (sub_0202F088(v2) == 0) {
+    if (sub_0202F0E0(transferData) == 0) {
+        if (sub_0202F088(transferData) == 0) {
             return 3;
         }
 
-        if (sub_0202F0BC(v2) == 0) {
+        if (sub_0202F0BC(transferData) == 0) {
             return 4;
         }
 
-        v1 = ov97_0223635C();
-        v0 = sub_0202F050(v2, v1);
+        gbaTrainerId = GetGBAPlayerTrainerId();
+        v0 = sub_0202F050(transferData, gbaTrainerId);
 
         if (v0 == 0) {
             v0 = (60 * 60 * 24) * 2;
@@ -1691,26 +1686,26 @@ static int ov97_02235408(UnkStruct_ov97_02234A2C *param0)
     }
 
     {
-        BoxPokemonGBA *v3;
-        int v4, v5, v6 = 0;
+        BoxPokemonGBA *boxMonGBA;
+        int boxPos, boxNum, count = 0;
 
-        for (v5 = 0; v5 < GBA_TOTAL_BOXES_COUNT; v5++) {
-            for (v4 = 0; v4 < 30; v4++) {
-                v3 = &param0->unk_E8E0->boxes[v5][v4];
+        for (boxNum = 0; boxNum < GBA_MAX_PC_BOXES; boxNum++) {
+            for (boxPos = 0; boxPos < GBA_MAX_MONS_PER_BOX; boxPos++) {
+                boxMonGBA = &param0->unk_E8E0->boxes[boxNum][boxPos];
 
-                if (GetGBABoxMonData(v3, GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
-                    v6++;
+                if (GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
+                    count++;
                 }
             }
         }
 
-        if (v6 < 6) {
-            return 5;
+        if (count < CATCHING_SHOW_MONS) {
+            return 5; // Not enough mons in GBA cart to do transfer?
         }
     }
 
-    if (sub_0202F028(v2)) {
-        return 6;
+    if (GetPalParkTransferMonCount(transferData) != 0) {
+        return 6; // There's transferred mon left to catch?
     }
 
     return 0;
@@ -1847,7 +1842,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
             v3->unk_510 = ov97_022360D8();
 
             if (v3->unk_510 == 0) {
-                v3->unk_E8E0 = ov97_02236340();
+                v3->unk_E8E0 = GetGBAPokemonStorage();
                 v3->unk_E8E4 = v3->unk_E8E0->currentBox;
             } else {
                 v3->unk_04 = 1;
