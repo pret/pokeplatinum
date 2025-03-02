@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV97_0223F440_H
 #define POKEPLATINUM_STRUCT_OV97_0223F440_H
 
-#include "overlay097/struct_ov97_02236340.h"
+#include "overlay097/box_pokemon_gba.h"
 
 typedef struct {
     u32 unk_00[1024];

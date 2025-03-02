@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_CATCHING_SHOW_H
 #define POKEPLATINUM_CATCHING_SHOW_H
 
-#include "constants/catching_show.h"
+#include "constants/pokemon.h"
 
 #include "field/field_system_decl.h"
 

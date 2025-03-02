@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_BOX_POKEMON_GBA_H
 #define POKEPLATINUM_BOX_POKEMON_GBA_H
 
+#include "constants/gba/pokemon_storage_system.h"
+
 typedef struct {
     u16 species;
     u16 heldItem;
@@ -99,5 +101,12 @@ typedef struct BoxPokemonGBA {
         union PokemonGBASubstruct substructs[4];
     } secure;
 } BoxPokemonGBA;
+
+typedef struct {
+    u8 currentBox;
+    BoxPokemonGBA boxes[GBA_MAX_PC_BOXES][GBA_MAX_MONS_PER_BOX];
+    u8 boxNames[GBA_MAX_PC_BOXES][9];
+    u8 boxWallpapers[GBA_MAX_PC_BOXES];
+} PokemonStorageGBA;
 
 #endif // POKEPLATINUM_BOX_POKEMON_GBA_H

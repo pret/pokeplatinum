@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/catching_show.h"
 #include "constants/gba/global.h"
 #include "constants/gba/items.h"
 #include "constants/gba/pokemon.h"
 #include "constants/gba/species.h"
 #include "constants/items.h"
+#include "constants/pokemon.h"
 #include "constants/screen.h"
 #include "constants/species.h"
 
@@ -22,7 +22,6 @@
 #include "overlay097/ov97_02236380.h"
 #include "overlay097/ov97_02237694.h"
 #include "overlay097/ov97_022392E4.h"
-#include "overlay097/struct_ov97_02236340.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"

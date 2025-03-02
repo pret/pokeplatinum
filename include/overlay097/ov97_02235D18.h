@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV97_02235D18_H
 #define POKEPLATINUM_OV97_02235D18_H
 
-#include "overlay097/struct_ov97_02236340.h"
+#include "overlay097/box_pokemon_gba.h"
 
 int ov97_02235D2C(void *param0);
 void ov97_02235DA4(void);

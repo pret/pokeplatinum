@@ -167,8 +167,6 @@ GBAToDSSpeciesStruct sGBAToDSSpecies[] = {
     { 0x1A4, 0x1A4 }
 };
 
-void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon);
-
 static u16 sSpeciesWithNewAbilities[] = {
     SPECIES_PIDGEY,
     SPECIES_PIDGEOTTO,

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay097/struct_ov97_02236340.h"
+#include "overlay097/box_pokemon_gba.h"
 #include "overlay097/struct_ov97_0223F440.h"
 #include "overlay097/struct_ov97_0223F450.h"
 
