@@ -6,7 +6,6 @@
 #include "generated/shadow_sizes.h"
 
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_02008900.h"
 
 #include "heap.h"
 #include "inlines.h"
@@ -1032,33 +1031,33 @@ void PokemonSprite_CalcAffineYOffset(PokemonSprite *monSprite, int height)
     monSprite->transforms.yOffset = ((80 / 2) - height) - ((((80 / 2) - height) * monSprite->transforms.affineHeight) >> 8);
 }
 
-static inline void inline_02008900(u8 *param0, u8 *param1, u8 *param2, u8 *param3, u8 *param4, const SpriteAnimationFrame *param5)
+static inline void RunPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8 *currAnimFrame, u8 *frameDelay, u8 *loopTimers, const SpriteAnimationFrame *animFrames)
 {
-    if (*param0) {
-        if ((*param3) == 0) {
-            (*param2)++;
+    if (*active) {
+        if (*frameDelay == 0) {
+            (*currAnimFrame)++;
 
-            while (param5[*param2].spriteFrame < -1) {
-                param4[*param2]++;
+            while (animFrames[*currAnimFrame].spriteFrame < -1) {
+                loopTimers[*currAnimFrame]++;
 
-                if ((param5[*param2].frameDelay == param4[*param2]) || (param5[*param2].frameDelay == 0)) {
-                    param4[*param2] = 0;
-                    *param2++;
+                if (animFrames[*currAnimFrame].frameDelay == loopTimers[*currAnimFrame] || animFrames[*currAnimFrame].frameDelay == 0) {
+                    loopTimers[*currAnimFrame] = 0;
+                    *currAnimFrame++;
                 } else {
-                    *param2 = param5[*param2].spriteFrame * -1 - 2;
+                    *currAnimFrame = animFrames[*currAnimFrame].spriteFrame * -1 - 2;
                 }
             }
 
-            if ((param5[*param2].spriteFrame == -1) || ((*param2) >= 10)) {
-                (*param1) = 0;
-                (*param0) = 0;
+            if (animFrames[*currAnimFrame].spriteFrame == -1 || *currAnimFrame >= MAX_ANIMATION_FRAMES) {
+                *currSpriteFrame = 0;
+                *active = FALSE;
                 return;
             }
 
-            (*param1) = param5[*param2].spriteFrame;
-            (*param3) = param5[*param2].frameDelay;
+            *currSpriteFrame = animFrames[*currAnimFrame].spriteFrame;
+            *frameDelay = animFrames[*currAnimFrame].frameDelay;
         } else {
-            (*param3)--;
+            (*frameDelay)--;
         }
     }
 }
@@ -1103,26 +1102,24 @@ static void PokemonSprite_RunAnim(PokemonSprite *monSprite)
     RunPokemonSpriteAnim(monSprite);
 }
 
-void sub_020088E0(UnkStruct_02008900 *param0, const SpriteAnimationFrame *param1)
+void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimationFrame *animFrames)
 {
-    int v0;
+    anim->active = TRUE;
+    anim->currAnimFrame = 0;
+    anim->currSpriteFrame = animFrames[0].spriteFrame;
+    anim->frameDelay = animFrames[0].frameDelay;
+    anim->animFrames = animFrames;
 
-    param0->unk_00 = 1;
-    param0->unk_02 = 0;
-    param0->unk_01 = param1[0].spriteFrame;
-    param0->unk_03 = param1[0].frameDelay;
-    param0->unk_10 = param1;
-
-    for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_04[v0] = 0;
+    for (int i = 0; i < MAX_ANIMATION_FRAMES; i++) {
+        anim->loopTimers[i] = 0;
     }
 }
 
-int sub_02008900(UnkStruct_02008900 *param0)
+int PokemonSpriteTaskAnim_Run(PokemonSpriteTaskAnim *anim)
 {
-    if (param0->unk_00) {
-        inline_02008900(&param0->unk_00, &param0->unk_01, &param0->unk_02, &param0->unk_03, param0->unk_04, param0->unk_10);
-        return param0->unk_01;
+    if (anim->active) {
+        RunPokemonSpriteTaskAnim(&anim->active, &anim->currSpriteFrame, &anim->currAnimFrame, &anim->frameDelay, anim->loopTimers, anim->animFrames);
+        return anim->currSpriteFrame;
     }
 
     return -1;

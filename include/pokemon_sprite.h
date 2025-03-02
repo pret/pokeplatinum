@@ -6,7 +6,6 @@
 #include "constants/heap.h"
 
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_02008900.h"
 
 #define MAX_POKEMON_SPRITES    4
 #define MAX_SPINDA_SPOTS       4
@@ -178,6 +177,18 @@ typedef struct PokemonSpriteManager {
     u32 hideShadows; // curiously, this field is treated like a bitmask, but it only ever uses a value of 0 or 1
 } PokemonSpriteManager;
 
+// used to run PokemonSprite animations in a task independent
+// of the PokemonSpriteManager
+typedef struct {
+    u8 active;
+    u8 currSpriteFrame;
+    u8 currAnimFrame;
+    u8 frameDelay;
+    u8 loopTimers[MAX_ANIMATION_FRAMES];
+    u8 padding_0E[2];
+    const SpriteAnimationFrame *animFrames;
+} PokemonSpriteTaskAnim;
+
 void *PokemonSpriteManager_New(enum HeapId heapID);
 void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan);
 void PokemonSpriteManager_Free(PokemonSpriteManager *monSpriteMan);
@@ -196,9 +207,9 @@ void PokemonSprite_StartFade(PokemonSprite *monSprite, int initAlpha, int target
 void PokemonSpriteManager_StartFadeAll(PokemonSpriteManager *monSpriteMan, int initAlpha, int targetAlpha, int delay, int color);
 void PokemonSprite_ClearFade(PokemonSprite *monSprite);
 BOOL PokemonSprite_IsFadeActive(PokemonSprite *monSprite);
-void PokemonSprite_CalcAffineYOffset(PokemonSprite *param0, int param1);
-void sub_020088E0(UnkStruct_02008900 *param0, const SpriteAnimationFrame *param1);
-int sub_02008900(UnkStruct_02008900 *param0);
+void PokemonSprite_CalcAffineYOffset(PokemonSprite *monSprite, int height);
+void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimationFrame *animFrames);
+int PokemonSpriteTaskAnim_Run(PokemonSpriteTaskAnim *anim);
 void PokemonSprite_ScheduleReloadFromNARC(PokemonSprite *monSprite);
 void PokemonSprite_Push(PokemonSprite *monSprite);
 void PokemonSprite_Pop(PokemonSprite *monSprite);

@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "struct_defs/sprite_animation_frame.h"
-#include "struct_defs/struct_02008900.h"
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_02099F80.h"
@@ -156,7 +155,7 @@ typedef struct {
     UnkStruct_ov86_0223BDAC unk_00;
     Sprite *unk_08;
     const SpriteAnimationFrame *unk_0C;
-    UnkStruct_02008900 unk_10;
+    PokemonSpriteTaskAnim unk_10;
     NNSG2dImageProxy unk_24[2];
     BOOL unk_6C;
     int unk_70;
@@ -1191,7 +1190,7 @@ static void ov86_0223C2CC(UnkStruct_ov86_0223B3C8 *param0, int param1, BOOL para
     v0->unk_08 = param0->unk_1B4[param1];
     v0->unk_0C = &param0->unk_1D8[param1][0];
 
-    sub_020088E0(&v0->unk_10, v0->unk_0C);
+    PokemonSpriteTaskAnim_Init(&v0->unk_10, v0->unk_0C);
 
     v0->unk_6C = param2;
     v0->unk_70 = param0->unk_2E0[param1];
@@ -1215,7 +1214,7 @@ static void ov86_0223C398(SysTask *param0, void *param1)
         v0->unk_6C = 0;
     }
 
-    v1 = sub_02008900(&v0->unk_10);
+    v1 = PokemonSpriteTaskAnim_Run(&v0->unk_10);
 
     if (v1 >= 0) {
         Sprite_SetImageProxy(v0->unk_08, &v0->unk_24[v1]);
