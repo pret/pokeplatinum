@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "overlay094/const_ov94_02245FD4.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -136,9 +138,9 @@ int ov94_0223E46C(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_0223E7D4(param0);
     ov94_0223E770(param0);
     ov94_0223F9FC(&param0->unk_FCC[0], &param0->unk_10AC[0], param0->unk_B90);
-    ov94_02242158(&param0->unk_FCC[1], param0->unk_B94, param0->unk_B7A.unk_00, 0, 0, TEXT_COLOR(1, 2, 0));
-    ov94_02242204(&param0->unk_FCC[3], param0->unk_B90, param0->unk_B7A.unk_02, 1, 0, 0, TEXT_COLOR(1, 2, 0));
-    ov94_022422B8(&param0->unk_FCC[5], param0->unk_B90, ov94_02242970(param0->unk_B7A.unk_03, param0->unk_B7A.unk_04, 1), 0, 0, TEXT_COLOR(1, 2, 0), 1);
+    ov94_02242158(&param0->unk_FCC[1], param0->unk_B94, param0->unk_B7A.species, 0, 0, TEXT_COLOR(1, 2, 0));
+    ov94_02242204(&param0->unk_FCC[3], param0->unk_B90, param0->unk_B7A.gender, 1, 0, 0, TEXT_COLOR(1, 2, 0));
+    ov94_022422B8(&param0->unk_FCC[5], param0->unk_B90, ov94_02242970(param0->unk_B7A.level, param0->unk_B7A.level2, 1), 0, 0, TEXT_COLOR(1, 2, 0), 1);
     ov94_0224218C(&param0->unk_10AC[1], param0->unk_BA0, param0->unk_B90, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
 
     StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
@@ -418,8 +420,8 @@ static int ov94_0223EA84(UnkStruct_ov94_0223FD4C *param0)
             Sound_PlayEffect(1500);
             break;
         case 1:
-            if (param0->unk_B7A.unk_00 != 0) {
-                param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(param0->unk_B7A.unk_00, SPECIES_DATA_GENDER_RATIO);
+            if (param0->unk_B7A.species != 0) {
+                param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(param0->unk_B7A.species, SPECIES_DATA_GENDER_RATIO);
 
                 if (ov94_02241B80(&param0->unk_B7A, param0->unk_10E4->unk_20)) {
                     Sound_PlayEffect(1500);
@@ -469,7 +471,7 @@ static int ov94_0223EA84(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223EBCC(UnkStruct_ov94_0223FD4C *param0)
 {
-    if (param0->unk_B7A.unk_00 == 0) {
+    if (param0->unk_B7A.species == SPECIES_NONE) {
         ov94_0223F9A4(param0, 12, TEXT_SPEED_FAST, 0, 0xf0f);
         ov94_0223C3F4(param0, 23, 1);
         Sound_PlayEffect(1523);
@@ -535,10 +537,10 @@ static int ov94_0223ECD4(UnkStruct_ov94_0223FD4C *param0)
 
         MI_CpuClear8(&v2, sizeof(UnkStruct_ov94_0223BA24));
 
-        v2.unk_00 = param0->unk_B7A.unk_00;
-        v2.unk_02 = param0->unk_B7A.unk_02;
-        v2.unk_03 = param0->unk_B7A.unk_03;
-        v2.unk_04 = param0->unk_B7A.unk_04;
+        v2.species = param0->unk_B7A.species;
+        v2.gender = param0->unk_B7A.gender;
+        v2.level = param0->unk_B7A.level;
+        v2.level2 = param0->unk_B7A.level2;
         v2.unk_05 = param0->unk_B7A.unk_05;
         v2.unk_06 = v1;
         v2.unk_07 = param0->unk_11B0;
@@ -635,7 +637,7 @@ static int ov94_0223EE9C(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223EEE0(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_B80.unk_00 = 0;
+    param0->unk_B80.species = SPECIES_NONE;
 
     ov94_0223F9A4(param0, 38, TEXT_SPEED_FAST, 0, 0xf0f);
     ov94_0223C3F4(param0, 23, 1);
@@ -827,7 +829,7 @@ static int ov94_0223F2B0(UnkStruct_ov94_0223FD4C *param0)
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
 
-        param0->unk_B7A.unk_00 = v0;
+        param0->unk_B7A.species = v0;
         param0->unk_2C = 0;
 
         Sound_PlayEffect(1500);
@@ -839,7 +841,7 @@ static int ov94_0223F2B0(UnkStruct_ov94_0223FD4C *param0)
 
         if (ov94_02241B80(&param0->unk_B7A, param0->unk_10E4->unk_20)) {
             Window_FillTilemap(&param0->unk_FCC[3], 0x0);
-            ov94_02242204(&param0->unk_FCC[3], param0->unk_B90, param0->unk_B7A.unk_02, 1, 0, 0, TEXT_COLOR(1, 2, 0));
+            ov94_02242204(&param0->unk_FCC[3], param0->unk_B90, param0->unk_B7A.gender, 1, 0, 0, TEXT_COLOR(1, 2, 0));
         }
         break;
     }
@@ -890,11 +892,11 @@ static int ov94_0223F4B0(UnkStruct_ov94_0223FD4C *param0)
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
 
-        param0->unk_B7A.unk_02 = v0 + 1;
+        param0->unk_B7A.gender = v0 + 1;
         param0->unk_2C = 0;
 
         Window_FillTilemap(&param0->unk_FCC[3], 0x0);
-        ov94_02242204(&param0->unk_FCC[3], param0->unk_B90, param0->unk_B7A.unk_02, 1, 0, 0, TEXT_COLOR(1, 2, 0));
+        ov94_02242204(&param0->unk_FCC[3], param0->unk_B90, param0->unk_B7A.gender, 1, 0, 0, TEXT_COLOR(1, 2, 0));
         break;
     }
 
@@ -1123,7 +1125,11 @@ static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *param2)
 
 static int ov94_0223FB0C(const UnkStruct_ov94_0223BA88_sub3 *param0, const UnkStruct_ov94_0223BA88_sub3 *param1, int param2, int param3)
 {
-    if ((param0->unk_00 == param1->unk_00) && (param0->unk_02 == param1->unk_02) && (param0->unk_03 == param1->unk_03) && (param0->unk_04 == param1->unk_04) && (param2 == param3)) {
+    if ((param0->species == param1->species)
+        && (param0->gender == param1->gender)
+        && (param0->level == param1->level)
+        && (param0->level2 == param1->level2)
+        && (param2 == param3)) {
         return 1;
     }
 

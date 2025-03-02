@@ -48,8 +48,8 @@
 
 typedef struct {
     int unk_00;
-    s16 unk_04;
-    s16 unk_06;
+    s16 level;
+    s16 level2;
 } UnkStruct_ov94_022460AC;
 
 static void ov94_0224158C(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4);
@@ -598,15 +598,15 @@ int ov94_02241B80(UnkStruct_ov94_0223BA88_sub3 *param0, int param1)
 {
     switch (param1) {
     case 0:
-        param0->unk_02 = 0 + 1;
+        param0->gender = 0 + 1;
         return 1;
         break;
     case 254:
-        param0->unk_02 = 1 + 1;
+        param0->gender = 1 + 1;
         return 1;
         break;
     case 255:
-        param0->unk_02 = 2 + 1;
+        param0->gender = 2 + 1;
         return 1;
         break;
     }
@@ -639,19 +639,19 @@ static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0)
         Window_EraseStandardFrame(&param0->unk_F9C[1], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Window_Remove(&param0->unk_F9C[1]);
-        param0->unk_B74.unk_00 = v0;
+        param0->unk_B74.species = v0;
         Sound_PlayEffect(1500);
         param0->unk_10E4->unk_20 = SpeciesData_GetSpeciesValue(v0, SPECIES_DATA_GENDER_RATIO);
 
         if (ov94_02241B80(&param0->unk_B74, param0->unk_10E4->unk_20)) {
             param0->unk_2C = 10;
-            v1 = param0->unk_B74.unk_02;
+            v1 = param0->unk_B74.gender;
         } else {
             param0->unk_2C = 7;
             v1 = 3;
         }
 
-        ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.unk_00, v1, -1);
+        ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, v1, -1);
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
         break;
     }
@@ -702,9 +702,9 @@ static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0)
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
         Window_Remove(&param0->unk_F9C[0]);
         Sound_PlayEffect(1500);
-        param0->unk_B74.unk_02 = v0 + 1;
+        param0->unk_B74.gender = v0 + 1;
         param0->unk_2C = 10;
-        ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.unk_00, param0->unk_B74.unk_02, -1);
+        ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, -1);
         break;
     }
 
@@ -761,7 +761,7 @@ static int ov94_02241F28(UnkStruct_ov94_0223FD4C *param0)
         Window_Remove(&param0->unk_F9C[0]);
         ov94_02242934(&param0->unk_B74, v0, 0);
         param0->unk_2C = 13;
-        ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.unk_00, param0->unk_B74.unk_02, ov94_02242970(param0->unk_B74.unk_03, param0->unk_B74.unk_04, 0));
+        ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], param0->unk_B74.species, param0->unk_B74.gender, ov94_02242970(param0->unk_B74.level, param0->unk_B74.level2, 0));
         break;
     }
 
@@ -968,19 +968,19 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
     Strbuf *v0, *v1;
     Strbuf *v2 = Strbuf_Init(10 + 1, 62);
     Strbuf *v3 = Strbuf_Init(10 + 1, 62);
-    int v4, v5, v6;
+    int gender, level, v6;
 
     BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v2);
 
-    v4 = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
-    v5 = BoxPokemon_GetLevel(boxMon);
+    gender = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    level = BoxPokemon_GetLevel(boxMon);
     v0 = MessageLoader_GetNewStrbuf(param0, 100);
 
-    StringTemplate_SetNumber(param1, 3, v5, 3, 0, 1);
+    StringTemplate_SetNumber(param1, 3, level, 3, 0, 1);
     v1 = MessageUtil_ExpandedStrbuf(param1, param0, 102, 62);
 
-    if (v4 != 3) {
-        MessageLoader_GetStrbuf(param0, Unk_ov94_02245FD8[v4], v3);
+    if (gender != 3) {
+        MessageLoader_GetStrbuf(param0, Unk_ov94_02245FD8[gender], v3);
     }
 
     for (v6 = 0; v6 < 3; v6++) {
@@ -991,13 +991,13 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
     ov94_02245900(&param2[1], v2, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     ov94_02245900(&param2[2], v1, 0, 0, 2, TEXT_COLOR(15, 2, 0));
 
-    if (v4 != 3) {
-        ov94_02245900(&param2[1], v3, 70, 0, 0, Unk_ov94_02246920[v4 - 1]);
+    if (gender != 3) {
+        ov94_02245900(&param2[1], v3, 70, 0, 0, Unk_ov94_02246920[gender - 1]);
     }
 
-    param4->unk_00 = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
-    param4->unk_02 = v4;
-    param4->unk_03 = v5;
+    param4->species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    param4->gender = gender;
+    param4->level = level;
 
     Strbuf_Free(v1);
     Strbuf_Free(v3);
@@ -1259,8 +1259,8 @@ void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2)
         GF_ASSERT(param1 < (NELEMS(Unk_ov94_022460AC) - 1));
     }
 
-    param0->unk_03 = v0[param1].unk_04;
-    param0->unk_04 = v0[param1].unk_06;
+    param0->level = v0[param1].level;
+    param0->level2 = v0[param1].level2;
 }
 
 int ov94_02242970(int param0, int param1, int param2)
@@ -1278,7 +1278,7 @@ int ov94_02242970(int param0, int param1, int param2)
     }
 
     for (v0 = 0; v0 < v1; v0++) {
-        if ((v2[v0].unk_04 == param0) && (v2[v0].unk_06 == param1)) {
+        if ((v2[v0].level == param0) && (v2[v0].level2 == param1)) {
             return v0;
         }
     }

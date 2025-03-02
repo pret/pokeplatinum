@@ -85,7 +85,7 @@ int ov94_0223D0C4(UnkStruct_ov94_0223FD4C *param0, int param1)
     v0 = (Pokemon *)param0->unk_12C.unk_00.unk_00;
 
     ov94_0223DA78(param0->unk_B90, &param0->unk_FCC[5], param0->unk_12C.unk_10C, v0, &param0->unk_FCC[10]);
-    ov94_02242368(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[7], param0->unk_12C.unk_F0.unk_00, param0->unk_12C.unk_F0.unk_02, ov94_02242970(param0->unk_12C.unk_F0.unk_03, param0->unk_12C.unk_F0.unk_04, 0));
+    ov94_02242368(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[7], param0->unk_12C.unk_F0.species, param0->unk_12C.unk_F0.gender, ov94_02242970(param0->unk_12C.unk_F0.level, param0->unk_12C.unk_F0.level2, 0));
     ov94_0223DB2C((Pokemon *)param0->unk_12C.unk_00.unk_00);
 
     StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
@@ -516,21 +516,21 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     Strbuf *v0, *v1, *v2, *v3;
     Strbuf *v4 = Strbuf_Init((10 + 1) * 2, 62);
     Strbuf *v5 = Strbuf_Init((8 + 1) * 2, 62);
-    int v6, v7, v8, v9, v10;
+    int gender, level, v8, v9, species;
 
     BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v4);
 
-    v10 = param5->unk_00;
-    v6 = param5->unk_02;
-    v7 = param5->unk_03;
+    species = param5->species;
+    gender = param5->gender;
+    level = param5->level;
     v8 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
     v3 = MessageLoader_GetNewStrbuf(param0, 70);
-    v1 = MessageLoader_GetNewStrbuf(param0, Unk_ov94_02245FD8[v6]);
+    v1 = MessageLoader_GetNewStrbuf(param0, Unk_ov94_02245FD8[gender]);
 
-    StringTemplate_SetNumber(param2, 3, v7, 3, 0, 1);
+    StringTemplate_SetNumber(param2, 3, level, 3, 0, 1);
 
     v2 = MessageUtil_ExpandedStrbuf(param2, param0, 102, 62);
-    v0 = MessageLoader_GetNewStrbuf(param1, v10);
+    v0 = MessageLoader_GetNewStrbuf(param1, species);
 
     Item_LoadName(v5, v8, 62);
 
@@ -540,8 +540,8 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
 
     ov94_02245900(&param3[0], v4, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
-    if (v6 != 3) {
-        ov94_02245900(&param3[0], v1, 70, 0, 0, Unk_ov94_022467FC[v6]);
+    if (gender != 3) {
+        ov94_02245900(&param3[0], v1, 70, 0, 0, Unk_ov94_022467FC[gender]);
     }
 
     ov94_02245900(&param3[1], v0, 0, 0, 0, TEXT_COLOR(15, 2, 0));
@@ -605,5 +605,5 @@ void ov94_0223DB2C(Pokemon *param0)
 
 static void ov94_0223DBBC(UnkStruct_ov94_0223FD4C *param0)
 {
-    ov94_02242368(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[7], param0->unk_12C.unk_F0.unk_00, param0->unk_12C.unk_F0.unk_02, ov94_02242970(param0->unk_12C.unk_F0.unk_03, param0->unk_12C.unk_F0.unk_04, 0));
+    ov94_02242368(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[7], param0->unk_12C.unk_F0.species, param0->unk_12C.unk_F0.gender, ov94_02242970(param0->unk_12C.unk_F0.level, param0->unk_12C.unk_F0.level2, 0));
 }
