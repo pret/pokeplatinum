@@ -2011,10 +2011,10 @@ int ov5_021E6270(UnkStruct_02026310 *param0)
     return -1;
 }
 
-static int ov5_021E62B0(BoxPokemon *param0)
+static int BoxPokemon_HoldsMail(BoxPokemon *boxMon)
 {
-    int v0 = BoxPokemon_GetValue(param0, MON_DATA_HELD_ITEM, NULL);
-    return Item_IsMail(v0);
+    int item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    return Item_IsMail(item);
 }
 
 static void ov5_021E62C4(Party *param0, int param1, UnkStruct_02026218 *param2, SaveData *param3)
@@ -2030,7 +2030,7 @@ static void ov5_021E62C4(Party *param0, int param1, UnkStruct_02026218 *param2, 
     v2 = TrainerInfo_Name(v6);
     Pokemon_GetValue(v1, MON_DATA_NICKNAME, v3);
 
-    if (ov5_021E62B0(Pokemon_GetBoxPokemon(v1))) {
+    if (BoxPokemon_HoldsMail(Pokemon_GetBoxPokemon(v1))) {
         Pokemon_GetValue(v1, MON_DATA_170, sub_02026230(v4));
     }
 
@@ -2115,7 +2115,7 @@ static int ov5_021E6444(Party *param0, UnkStruct_02026218 *param1, StringTemplat
         ov5_021E63E0(v0);
     }
 
-    if (ov5_021E62B0(v1)) {
+    if (BoxPokemon_HoldsMail(v1)) {
         Pokemon_SetValue(v0, MON_DATA_170, sub_02026230(v2));
     }
 
@@ -2138,23 +2138,23 @@ u16 ov5_021E64F8(Party *param0, StringTemplate *param1, UnkStruct_02026310 *para
     return v0;
 }
 
-int ov5_021E6520(BoxPokemon *param0, u32 param1)
+int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
 {
-    Pokemon *v0 = Pokemon_New(4);
-    BoxPokemon *v1 = Pokemon_GetBoxPokemon(v0);
-    int v2;
-    u32 v3;
+    Pokemon *mon = Pokemon_New(4);
+    BoxPokemon *boxMonRef = Pokemon_GetBoxPokemon(mon);
+    int level;
+    u32 exp;
 
-    BoxPokemon_Copy(param0, v1);
+    BoxPokemon_Copy(boxMon, boxMonRef);
 
-    v3 = BoxPokemon_GetValue(v1, MON_DATA_EXP, NULL);
-    v3 += param1;
+    exp = BoxPokemon_GetValue(boxMonRef, MON_DATA_EXP, NULL);
+    exp += givenExp;
 
-    BoxPokemon_SetValue(v1, MON_DATA_EXP, (u8 *)&v3);
-    v2 = BoxPokemon_GetLevel(v1);
-    Heap_FreeToHeap(v0);
+    BoxPokemon_SetValue(boxMonRef, MON_DATA_EXP, (u8 *)&exp);
+    level = BoxPokemon_GetLevel(boxMonRef);
+    Heap_FreeToHeap(mon);
 
-    return v2;
+    return level;
 }
 
 int ov5_021E6568(UnkStruct_02026218 *param0)
@@ -2164,7 +2164,7 @@ int ov5_021E6568(UnkStruct_02026218 *param0)
 
     v2 = sub_02026220(param0);
     v0 = BoxPokemon_GetLevel(v2);
-    v1 = ov5_021E6520(v2, sub_02026228(param0));
+    v1 = BoxPokemon_GiveExperience(v2, sub_02026228(param0));
 
     return v1 - v0;
 }
@@ -2175,7 +2175,7 @@ int ov5_021E6590(UnkStruct_02026218 *param0)
     BoxPokemon *v1;
 
     v1 = sub_02026220(param0);
-    v0 = ov5_021E6520(v1, sub_02026228(param0));
+    v0 = BoxPokemon_GiveExperience(v1, sub_02026228(param0));
 
     return v0;
 }
@@ -2229,10 +2229,10 @@ u8 ov5_021E6640(UnkStruct_02026310 *param0, int param1, StringTemplate *param2)
     return 0;
 }
 
-static void ov5_021E6668(UnkStruct_02026310 *param0, BoxPokemon *param1[])
+static void ov5_021E6668(UnkStruct_02026310 *param0, BoxPokemon *boxMon[])
 {
-    param1[0] = ov5_021E622C(param0, 0);
-    param1[1] = ov5_021E622C(param0, 1);
+    boxMon[0] = ov5_021E622C(param0, 0);
+    boxMon[1] = ov5_021E622C(param0, 1);
 }
 
 static int ov5_021E6684(UnkStruct_02026310 *param0)
@@ -2961,7 +2961,7 @@ void ov5_021E7308(UnkStruct_02026310 *param0, u32 param1, u32 param2, u32 param3
 
     StringTemplate_SetNickname(param5, param1, v1);
 
-    v2 = ov5_021E6520(v1, sub_02026228(v0));
+    v2 = BoxPokemon_GiveExperience(v1, sub_02026228(v0));
     StringTemplate_SetNumber(param5, param2, v2, 3, 0, 1);
     v3 = BoxPokemon_GetValue(v1, MON_DATA_GENDER, NULL);
 

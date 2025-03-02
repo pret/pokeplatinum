@@ -13,9 +13,9 @@
 
 void PCBoxes_Init(PCBoxes *param0);
 u32 PCBoxes_SaveSize(void);
-BOOL sub_02079868(PCBoxes *param0, BoxPokemon *param1);
-BOOL sub_020798A0(PCBoxes *param0, u32 param1, BoxPokemon *param2);
-BOOL sub_02079914(PCBoxes *param0, u32 param1, u32 param2, BoxPokemon *param3);
+BOOL sub_02079868(PCBoxes *param0, BoxPokemon *boxMon);
+BOOL sub_020798A0(PCBoxes *param0, u32 param1, BoxPokemon *boxMon);
+BOOL sub_02079914(PCBoxes *param0, u32 param1, u32 param2, BoxPokemon *boxMon);
 void sub_02079968(PCBoxes *param0, u32 param1, u32 param2);
 u32 sub_0207999C(const PCBoxes *param0);
 u32 PCBoxes_FirstEmptyBox(const PCBoxes *param0);

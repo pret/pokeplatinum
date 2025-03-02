@@ -511,19 +511,19 @@ static TextColor Unk_ov94_022467FC[] = {
     TEXT_COLOR(3, 4, 0)
 };
 
-void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], BoxPokemon *param4, UnkStruct_ov94_0223BA88_sub2 *param5)
+void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], BoxPokemon *boxMon, UnkStruct_ov94_0223BA88_sub2 *param5)
 {
     Strbuf *v0, *v1, *v2, *v3;
     Strbuf *v4 = Strbuf_Init((10 + 1) * 2, 62);
     Strbuf *v5 = Strbuf_Init((8 + 1) * 2, 62);
     int v6, v7, v8, v9, v10;
 
-    BoxPokemon_GetValue(param4, MON_DATA_NICKNAME_STRBUF, v4);
+    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v4);
 
     v10 = param5->unk_00;
     v6 = param5->unk_02;
     v7 = param5->unk_03;
-    v8 = BoxPokemon_GetValue(param4, MON_DATA_HELD_ITEM, NULL);
+    v8 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
     v3 = MessageLoader_GetNewStrbuf(param0, 70);
     v1 = MessageLoader_GetNewStrbuf(param0, Unk_ov94_02245FD8[v6]);
 

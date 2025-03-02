@@ -97,7 +97,7 @@ typedef void *(*UnkFuncPtr_ov95_0224BE8C)(UnkStruct_ov95_02247628 *);
 typedef BOOL (*UnkFuncPtr_ov95_0224BE8C_1)(void *, int *);
 typedef void (*UnkFuncPtr_ov95_0224BE8C_2)(void *);
 
-static BOOL ov95_02246DEC(BoxPokemon *param0);
+static BOOL DoesMonSpeciesFlipsSprite(BoxPokemon *boxMon);
 static void ov95_02246F0C(SysTask *param0, void *param1);
 static void ov95_02247060(SysTask *param0, void *param1);
 static void ov95_02247148(UnkStruct_ov95_02247004 *param0, int param1, int param2, int param3);
@@ -149,14 +149,14 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
                 StringTemplate_SetNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
                 StringTemplate_SetNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
                 StringTemplate_SetPlayerName(v0->unk_0C, 2, v0->unk_00->unk_08);
-                v0->unk_1AC = ov95_02246DEC((BoxPokemon *)(v0->unk_00->unk_04));
+                v0->unk_1AC = DoesMonSpeciesFlipsSprite((BoxPokemon *)(v0->unk_00->unk_04));
                 break;
             case 2:
                 StringTemplate_SetNickname(v0->unk_0C, 0, (BoxPokemon *)(v0->unk_00->unk_00));
                 break;
             case 4:
                 StringTemplate_SetNickname(v0->unk_0C, 1, (BoxPokemon *)(v0->unk_00->unk_04));
-                v0->unk_1AC = ov95_02246DEC((BoxPokemon *)(v0->unk_00->unk_04));
+                v0->unk_1AC = DoesMonSpeciesFlipsSprite((BoxPokemon *)(v0->unk_00->unk_04));
                 break;
             }
 
@@ -190,12 +190,12 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
     return 0;
 }
 
-static BOOL ov95_02246DEC(BoxPokemon *param0)
+static BOOL DoesMonSpeciesFlipsSprite(BoxPokemon *boxMon)
 {
-    int v0 = BoxPokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
-    int v1 = BoxPokemon_GetValue(param0, MON_DATA_FORM, NULL);
+    int species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    int form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
 
-    return SpeciesData_GetFormValue(v0, v1, 28) == 0;
+    return SpeciesData_GetFormValue(species, form, SPECIES_DATA_FLIP_SPRITE) == FALSE;
 }
 
 int ov95_02246E1C(OverlayManager *param0, int *param1)

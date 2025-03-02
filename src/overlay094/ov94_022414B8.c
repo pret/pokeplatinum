@@ -68,7 +68,7 @@ static int ov94_02241B2C(UnkStruct_ov94_0223FD4C *param0);
 static int ov94_02241BAC(UnkStruct_ov94_0223FD4C *param0);
 static int ov94_022420E4(UnkStruct_ov94_0223FD4C *param0);
 static int ov94_02242138(UnkStruct_ov94_0223FD4C *param0);
-static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window param2[], BoxPokemon *param3, UnkStruct_ov94_0223BA88_sub2 *param4);
+static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window param2[], BoxPokemon *boxMon, UnkStruct_ov94_0223BA88_sub2 *param4);
 static int ov94_02241DA0(UnkStruct_ov94_0223FD4C *param0);
 static int ov94_02241D64(UnkStruct_ov94_0223FD4C *param0);
 static int ov94_02241D08(UnkStruct_ov94_0223FD4C *param0);
@@ -963,17 +963,17 @@ void ov94_02242368(MessageLoader *param0, MessageLoader *param1, StringTemplate 
     Strbuf_Free(v0);
 }
 
-static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window param2[], BoxPokemon *param3, UnkStruct_ov94_0223BA88_sub2 *param4)
+static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window param2[], BoxPokemon *boxMon, UnkStruct_ov94_0223BA88_sub2 *param4)
 {
     Strbuf *v0, *v1;
     Strbuf *v2 = Strbuf_Init(10 + 1, 62);
     Strbuf *v3 = Strbuf_Init(10 + 1, 62);
     int v4, v5, v6;
 
-    BoxPokemon_GetValue(param3, MON_DATA_NICKNAME_STRBUF, v2);
+    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v2);
 
-    v4 = BoxPokemon_GetValue(param3, MON_DATA_GENDER, NULL) + 1;
-    v5 = BoxPokemon_GetLevel(param3);
+    v4 = BoxPokemon_GetValue(boxMon, MON_DATA_GENDER, NULL) + 1;
+    v5 = BoxPokemon_GetLevel(boxMon);
     v0 = MessageLoader_GetNewStrbuf(param0, 100);
 
     StringTemplate_SetNumber(param1, 3, v5, 3, 0, 1);
@@ -995,7 +995,7 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
         ov94_02245900(&param2[1], v3, 70, 0, 0, Unk_ov94_02246920[v4 - 1]);
     }
 
-    param4->unk_00 = BoxPokemon_GetValue(param3, MON_DATA_SPECIES, NULL);
+    param4->unk_00 = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
     param4->unk_02 = v4;
     param4->unk_03 = v5;
 
