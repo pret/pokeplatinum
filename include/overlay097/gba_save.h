@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_OV97_0223F440_H
-#define POKEPLATINUM_STRUCT_OV97_0223F440_H
+#ifndef POKEPLATINUM_GBA_SAVE_H
+#define POKEPLATINUM_GBA_SAVE_H
 
 #include "constants/gba/global.h"
 #include "constants/gba/pokemon.h"
@@ -118,4 +118,4 @@ typedef struct {
     PokemonStorageGBA pokemonStorage;
 } GBASaveSlot;
 
-#endif // POKEPLATINUM_STRUCT_OV97_0223F440_H
+#endif // POKEPLATINUM_GBA_SAVE_H
