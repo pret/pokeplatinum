@@ -16,7 +16,7 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"
-#include "overlay097/box_pokemon_gba.h"
+#include "overlay097/gba_save.h"
 #include "overlay097/ov97_02235D18.h"
 #include "overlay097/ov97_0223635C.h"
 #include "overlay097/ov97_02236380.h"
@@ -1842,7 +1842,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
             v3->unk_510 = ov97_022360D8();
 
             if (v3->unk_510 == 0) {
-                v3->unk_E8E0 = ov97_02236340();
+                v3->unk_E8E0 = GetGBAPokemonStorage();
                 v3->unk_E8E4 = v3->unk_E8E0->currentBox;
             } else {
                 v3->unk_04 = 1;

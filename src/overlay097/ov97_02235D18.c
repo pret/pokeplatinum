@@ -3,8 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "overlay097/box_pokemon_gba.h"
-#include "overlay097/struct_ov97_0223F440.h"
+#include "overlay097/gba_save.h"
 #include "overlay097/struct_ov97_0223F450.h"
 
 typedef struct {
@@ -33,7 +32,7 @@ static u8 Unk_ov97_0223EC04[0xa0 - 4];
 static const UnkStruct_ov97_02235DC8 *Unk_ov97_0223EBFC = NULL;
 static int Unk_ov97_0223F438;
 static u32 Unk_ov97_0223F448;
-UnkStruct_ov97_0223F440 *Unk_ov97_0223F440;
+GBASaveSlot *sGBASaveSlot;
 static int Unk_ov97_0223F43C = 0;
 static int Unk_ov97_0223F444;
 
@@ -48,7 +47,7 @@ static BOOL ov97_02235D18()
 
 int ov97_02235D2C(void *param0)
 {
-    Unk_ov97_0223F440 = (UnkStruct_ov97_0223F440 *)param0;
+    sGBASaveSlot = (GBASaveSlot *)param0;
 
     if (Unk_ov97_0223EBFC != NULL) {
         return 12;
@@ -195,18 +194,18 @@ static u16 ov97_02235EC0(int param0)
     return 0xf80;
 }
 
-static void *ov97_02235EF8(int param0)
+static void *GetGBASaveSectorById(int gbaSectorId)
 {
-    if (param0 == 0) {
-        return &(Unk_ov97_0223F440->unk_1000[0]);
+    if (gbaSectorId == GBA_SECTOR_ID_SAVEBLOCK2) {
+        return &(sGBASaveSlot->saveBlock2[0]);
     }
 
-    if ((param0 >= 1) && (param0 <= 4)) {
-        return &(Unk_ov97_0223F440->unk_2000[0xf80 * (param0 - 1)]);
+    if ((gbaSectorId >= GBA_SECTOR_ID_SAVEBLOCK1_START) && (gbaSectorId <= GBA_SECTOR_ID_SAVEBLOCK1_END)) {
+        return &(sGBASaveSlot->saveBlock1[GBA_SECTOR_DATA_SIZE * (gbaSectorId - GBA_SECTOR_ID_SAVEBLOCK1_START)]);
     }
 
-    if ((param0 >= 5) && (param0 < 14)) {
-        return (void *)((u8 *)&(Unk_ov97_0223F440->unk_6000) + (0xf80 * (param0 - 5)));
+    if ((gbaSectorId >= GBA_SECTOR_ID_PKMN_STORAGE_START) && (gbaSectorId < GBA_NUM_SECTORS_PER_SLOT)) {
+        return (void *)((u8 *)&(sGBASaveSlot->pokemonStorage) + (GBA_SECTOR_DATA_SIZE * (gbaSectorId - GBA_SECTOR_ID_PKMN_STORAGE_START)));
     }
 
     return NULL;
@@ -321,7 +320,7 @@ static u32 Unk_ov97_0223F448;
 
 int ov97_022360D8()
 {
-    u16 v0 = ov97_02235FFC((void *)Unk_ov97_0223F440->unk_00, &Unk_ov97_0223F438, &Unk_ov97_0223F448);
+    u16 v0 = ov97_02235FFC((void *)sGBASaveSlot->unk_00, &Unk_ov97_0223F438, &Unk_ov97_0223F448);
 
     if (v0 != 0x1) {
         switch (v0) {
@@ -337,7 +336,7 @@ int ov97_022360D8()
     if ((Unk_ov97_0223F438 == 0) || (Unk_ov97_0223F438 == 1)) {
         int v1;
         u32 v2 = 0;
-        UnkStruct_ov97_02235F4C *v3 = (UnkStruct_ov97_02235F4C *)Unk_ov97_0223F440->unk_00;
+        UnkStruct_ov97_02235F4C *v3 = (UnkStruct_ov97_02235F4C *)sGBASaveSlot->unk_00;
 
         for (v1 = 0; v1 < 14; v1++) {
             ov97_02235EAC(v1 + Unk_ov97_0223F438 * 14, (void *)v3);
@@ -349,7 +348,7 @@ int ov97_022360D8()
                     Unk_ov97_0223F448 = v3->unk_FFC;
                     v2 |= (0x1 << v3->unk_FF4);
 
-                    MI_CpuCopy32((u32 *)v3->unk_00, ov97_02235EF8(v3->unk_FF4), ov97_02235EC0(v3->unk_FF4));
+                    MI_CpuCopy32((u32 *)v3->unk_00, GetGBASaveSectorById(v3->unk_FF4), ov97_02235EC0(v3->unk_FF4));
 
                     if (v3->unk_FF4 == 0) {
                         Unk_ov97_0223F444 = v1;
@@ -373,12 +372,12 @@ static int Unk_ov97_0223F44C = 0;
 
 static void ov97_022361B0(int param0)
 {
-    UnkStruct_ov97_02235F4C *v0 = (UnkStruct_ov97_02235F4C *)Unk_ov97_0223F440->unk_00;
+    UnkStruct_ov97_02235F4C *v0 = (UnkStruct_ov97_02235F4C *)sGBASaveSlot->unk_00;
 
     Unk_ov97_0223F44C = 1;
 
     MI_CpuClear32(v0, 0x1000);
-    MI_CpuCopy32(ov97_02235EF8(param0), v0->unk_00, ov97_02235EC0(param0));
+    MI_CpuCopy32(GetGBASaveSectorById(param0), v0->unk_00, ov97_02235EC0(param0));
 
     v0->unk_FFC = Unk_ov97_0223F448;
     v0->unk_FF4 = (u16)param0;
@@ -472,14 +471,14 @@ int ov97_02236308(void)
     }
 }
 
-PokemonStorageGBA *ov97_02236340(void)
+PokemonStorageGBA *GetGBAPokemonStorage(void)
 {
-    return &(Unk_ov97_0223F440->unk_6000);
+    return &(sGBASaveSlot->pokemonStorage);
 }
 
 void *GetGBASaveBlock2(void)
 {
-    return ov97_02235EF8(0);
+    return GetGBASaveSectorById(GBA_SECTOR_ID_SAVEBLOCK2);
 }
 
 static const UnkStruct_ov97_02235DC8 Unk_ov97_0223D92C[30] = {

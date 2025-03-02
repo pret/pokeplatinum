@@ -1,7 +1,9 @@
-#ifndef POKEPLATINUM_BOX_POKEMON_GBA_H
-#define POKEPLATINUM_BOX_POKEMON_GBA_H
+#ifndef POKEPLATINUM_STRUCT_OV97_0223F440_H
+#define POKEPLATINUM_STRUCT_OV97_0223F440_H
 
-#include "constants/gba/pokemon_storage_system.h"
+#include "constants/gba/global.h"
+#include "constants/gba/pokemon.h"
+#include "constants/gba/save.h"
 
 typedef struct {
     u16 species;
@@ -13,8 +15,8 @@ typedef struct {
 } PokemonGBASubstruct0;
 
 typedef struct {
-    u16 moves[4];
-    u8 pp[4];
+    u16 moves[GBA_LEARNED_MOVES_MAX];
+    u8 pp[GBA_LEARNED_MOVES_MAX];
 } PokemonGBASubstruct1;
 
 typedef struct {
@@ -86,7 +88,7 @@ union PokemonGBASubstruct {
 typedef struct BoxPokemonGBA {
     u32 personality;
     u32 otId;
-    u8 nickname[10];
+    u8 nickname[GBA_MON_NAME_LEN];
     u8 language;
     u8 isBadEgg : 1;
     u8 hasSpecies : 1;
@@ -105,8 +107,15 @@ typedef struct BoxPokemonGBA {
 typedef struct {
     u8 currentBox;
     BoxPokemonGBA boxes[GBA_MAX_PC_BOXES][GBA_MAX_MONS_PER_BOX];
-    u8 boxNames[GBA_MAX_PC_BOXES][9];
+    u8 boxNames[GBA_MAX_PC_BOXES][GBA_BOX_NAME_LEN + 1];
     u8 boxWallpapers[GBA_MAX_PC_BOXES];
 } PokemonStorageGBA;
 
-#endif // POKEPLATINUM_BOX_POKEMON_GBA_H
+typedef struct {
+    u32 unk_00[1024];
+    u8 saveBlock2[GBA_SECTOR_SIZE * 1];
+    u8 saveBlock1[GBA_SECTOR_SIZE * 4];
+    PokemonStorageGBA pokemonStorage;
+} GBASaveSlot;
+
+#endif // POKEPLATINUM_STRUCT_OV97_0223F440_H

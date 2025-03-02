@@ -8,7 +8,7 @@
 #include "constants/species.h"
 #include "generated/abilities.h"
 
-#include "overlay097/box_pokemon_gba.h"
+#include "overlay097/gba_save.h"
 #include "overlay097/ov97_022392E4.h"
 
 #include "item.h"
