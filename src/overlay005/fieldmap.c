@@ -16,6 +16,7 @@
 #include "field/field_system_sub2_decl.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/area_data.h"
+#include "overlay005/area_light.h"
 #include "overlay005/const_ov5_021FF6B8.h"
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
@@ -26,7 +27,6 @@
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/model_attributes.h"
 #include "overlay005/ov5_021D1A94.h"
-#include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021D57BC.h"
 #include "overlay005/ov5_021D5B40.h"
 #include "overlay005/ov5_021D5BC0.h"
@@ -307,7 +307,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             ov5_021E92E4(fieldSystem->unk_28);
             HoneyTree_FreeShakeData(&fieldSystem->unk_A8);
             ov5_021D5BA8(fieldSystem);
-            ov5_021D5278(&fieldSystem->unk_4C);
+            AreaLightManager_Free(&fieldSystem->areaLightMan);
             Signpost_Free(fieldSystem->signpost);
             MapNamePopUp_Destroy(fieldSystem->unk_04->unk_08);
 
@@ -486,7 +486,7 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
         sub_020559DC(fieldSystem);
     }
 
-    ov5_021D5298(fieldSystem->unk_4C);
+    AreaLightManager_UpdateActiveTemplate(fieldSystem->areaLightMan);
     Signpost_DoCurrentCommand(fieldSystem);
 
     if ((param1 & 1) != 0) {
@@ -899,7 +899,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
         ov5_021D5B40(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 
-    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->areaModelAttrs, AreaDataManager_GetAreaLightArchiveID(fieldSystem->areaDataManager));
+    fieldSystem->areaLightMan = AreaLightManager_New(fieldSystem->areaModelAttrs, AreaDataManager_GetAreaLightArchiveID(fieldSystem->areaDataManager));
 
     if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
         fieldSystem->unk_04->unk_0C = NULL;

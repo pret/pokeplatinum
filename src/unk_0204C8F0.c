@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "field/field_system.h"
-#include "overlay005/ov5_021DC018.h"
+#include "overlay005/field_menu.h"
 
 #include "bg_window.h"
 #include "field_script_context.h"
@@ -93,7 +93,7 @@ BOOL ScrCmd_072(ScriptContext *param0)
     Window **v3;
 
     v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
-    *v3 = ov5_021DCEB0(param0->fieldSystem, v1, v2);
+    *v3 = FieldMenu_CreateMoneyWindow(param0->fieldSystem, v1, v2);
 
     return 0;
 }
@@ -103,7 +103,7 @@ BOOL ScrCmd_073(ScriptContext *param0)
     FieldSystem *fieldSystem = param0->fieldSystem;
     Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
 
-    ov5_021DCF58(*v1);
+    FieldMenu_DeleteMoneyWindow(*v1);
     return 0;
 }
 
@@ -112,6 +112,6 @@ BOOL ScrCmd_074(ScriptContext *param0)
     FieldSystem *fieldSystem = param0->fieldSystem;
     Window **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MONEY_WINDOW);
 
-    ov5_021DCF6C(param0->fieldSystem, *v1);
+    FieldMenu_PrintMoneyToWindow(param0->fieldSystem, *v1);
     return 0;
 }

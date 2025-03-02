@@ -9,12 +9,11 @@
 
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/area_light.h"
 #include "overlay005/fieldmap.h"
 #include "overlay005/motion_blur.h"
 #include "overlay005/ov5_021D1A94.h"
-#include "overlay005/ov5_021D521C.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
-#include "overlay005/struct_ov5_021D52F4.h"
 #include "overlay006/funcptr_ov6_0223E6EC.h"
 #include "overlay006/struct_ov6_0223E6EC.h"
 #include "overlay006/struct_ov6_0223FDE4_decl.h"
@@ -940,9 +939,9 @@ static void ov6_0223E8D0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     Camera_SetAngleAroundTarget(&v2, fieldSystem->camera);
     Camera_SetClipping(88 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
-    ov5_021D5278(&fieldSystem->unk_4C);
+    AreaLightManager_Free(&fieldSystem->areaLightMan);
 
-    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->areaModelAttrs, 3);
+    fieldSystem->areaLightMan = AreaLightManager_New(fieldSystem->areaModelAttrs, 3);
 
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
@@ -974,9 +973,9 @@ static void ov6_0223E984(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
 
     Camera_SetAngleAroundTarget(&v2, fieldSystem->camera);
     Camera_SetClipping(176 * FX32_ONE, 1480 * FX32_ONE, fieldSystem->camera);
-    ov5_021D5278(&fieldSystem->unk_4C);
+    AreaLightManager_Free(&fieldSystem->areaLightMan);
 
-    fieldSystem->unk_4C = ov5_021D521C(fieldSystem->areaModelAttrs, 3);
+    fieldSystem->areaLightMan = AreaLightManager_New(fieldSystem->areaModelAttrs, 3);
 
     v0->unk_04 = ov6_022409F4(4);
     v0->unk_08 = ov6_02240AC8(4);
@@ -2705,7 +2704,7 @@ void ov6_02240B60(UnkStruct_ov6_02240774 *param0, fx32 param1, fx32 param2, fx32
     ov6_0224067C(param0, param1 + 0xffeb4000, param2 + 0xffff3000, param3 + 0xffe3c000, 64, 59165, 21301, 31122);
 }
 
-static const UnkStruct_ov5_021D52F4 Unk_ov6_02248F30[3] = {
+static const AreaLightTemplate Unk_ov6_02248F30[3] = {
     {
         8,
         0xD,

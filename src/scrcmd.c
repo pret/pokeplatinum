@@ -46,11 +46,11 @@
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
+#include "overlay005/field_menu.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021D5EB8.h"
-#include "overlay005/ov5_021DC018.h"
 #include "overlay005/ov5_021DD42C.h"
 #include "overlay005/ov5_021DDAE4.h"
 #include "overlay005/ov5_021DFB54.h"
@@ -2702,7 +2702,7 @@ static BOOL ScrCmd_18E(ScriptContext *ctx)
 static BOOL ScrCmd_040(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
@@ -2710,7 +2710,7 @@ static BOOL ScrCmd_040(ScriptContext *ctx)
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC150(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), NULL);
+    *v1 = FieldMenuManager_New(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), NULL);
     ctx->data[0] = v7;
 
     return 1;
@@ -2719,7 +2719,7 @@ static BOOL ScrCmd_040(ScriptContext *ctx)
 static BOOL ScrCmd_041(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
@@ -2727,7 +2727,7 @@ static BOOL ScrCmd_041(ScriptContext *ctx)
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC150(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), ctx->loader);
+    *v1 = FieldMenuManager_New(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), ctx->loader);
     ctx->data[0] = v7;
 
     return 1;
@@ -2737,12 +2737,12 @@ static BOOL ScrCmd_042(ScriptContext *ctx)
 {
     u8 v0, v1;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
 
     v0 = ScriptContext_ReadByte(ctx);
     v1 = ScriptContext_ReadByte(ctx);
 
-    ov5_021DC1A4(*v3, v0, v1);
+    FieldMenuManager_AddMenuEntry(*v3, v0, v1);
     return 0;
 }
 
@@ -2750,21 +2750,21 @@ static BOOL ScrCmd_29D(ScriptContext *ctx)
 {
     u16 v0, v1;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
 
     v0 = ScriptContext_GetVar(ctx);
     v1 = ScriptContext_GetVar(ctx);
 
-    ov5_021DC1A4(*v3, v0, v1);
+    FieldMenuManager_AddMenuEntry(*v3, v0, v1);
     return 0;
 }
 
 static BOOL ScrCmd_043(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
 
-    ov5_021DC1AC(*v1);
+    FieldMenuManager_ShowSingleColumnMenu(*v1);
     ScriptContext_Pause(ctx, sub_02040A50);
 
     return 1;
@@ -2775,7 +2775,7 @@ static BOOL sub_02040A50(ScriptContext *ctx)
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    if (*v1 == 0xeeee) {
+    if (*v1 == LIST_MENU_NO_SELECTION_YET) {
         return 0;
     }
 
@@ -2785,9 +2785,9 @@ static BOOL sub_02040A50(ScriptContext *ctx)
 static BOOL ScrCmd_2B9(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
 
-    ov5_021DC1AC(*v1);
+    FieldMenuManager_ShowSingleColumnMenu(*v1);
     ScriptContext_Pause(ctx, sub_02040A9C);
 
     return 1;
@@ -2797,12 +2797,12 @@ static BOOL sub_02040A9C(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
-    UnkStruct_ov5_021DC1A4 **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
 
-    if (*v1 == 0xeeee) {
+    if (*v1 == LIST_MENU_NO_SELECTION_YET) {
         if (sub_0205B9E8(fieldSystem->unk_7C)) {
             *v1 = 8;
-            ov5_021DC424(*v2);
+            FieldMenuManager_DeleteWithMenu(*v2);
             return 1;
         }
 
@@ -2815,7 +2815,7 @@ static BOOL sub_02040A9C(ScriptContext *ctx)
 static BOOL ScrCmd_044(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
@@ -2823,7 +2823,7 @@ static BOOL ScrCmd_044(ScriptContext *ctx)
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC48C(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), NULL);
+    *v1 = FieldMenuManager_New2(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), NULL);
     ctx->data[0] = v7;
 
     return 1;
@@ -2832,7 +2832,7 @@ static BOOL ScrCmd_044(ScriptContext *ctx)
 static BOOL ScrCmd_045(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
@@ -2840,7 +2840,7 @@ static BOOL ScrCmd_045(ScriptContext *ctx)
     u8 v6 = ScriptContext_ReadByte(ctx);
     u16 v7 = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = ov5_021DC48C(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), ctx->loader);
+    *v1 = FieldMenuManager_New2(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), ctx->loader);
     ctx->data[0] = v7;
 
     return 1;
@@ -2848,21 +2848,21 @@ static BOOL ScrCmd_045(ScriptContext *ctx)
 
 static BOOL ScrCmd_046(ScriptContext *ctx)
 {
-    UnkStruct_ov5_021DC1A4 **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 0);
+    FieldMenuManager **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 0);
     u8 v1 = ScriptContext_GetVar(ctx);
     u8 v2 = ScriptContext_GetVar(ctx);
     u8 v3 = ScriptContext_GetVar(ctx);
 
-    ov5_021DC4B0(*v0, v1, v2, v3);
+    FieldMenuManager_AddListMenuEntry(*v0, v1, v2, v3);
     return 0;
 }
 
 static BOOL ScrCmd_047(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
 
-    ov5_021DC4B8(*v1);
+    FieldMenuManager_ShowListMenu(*v1);
 
     ScriptContext_Pause(ctx, sub_02040A50);
     return 1;
@@ -2871,10 +2871,10 @@ static BOOL ScrCmd_047(ScriptContext *ctx)
 static BOOL ScrCmd_327(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    ov5_021DC528(*v1, v2);
+    FieldMenuManager_ShowListMenuWithWidth(*v1, v2);
     ScriptContext_Pause(ctx, sub_02040A50);
 
     return 1;
@@ -2883,11 +2883,11 @@ static BOOL ScrCmd_327(ScriptContext *ctx)
 static BOOL ScrCmd_306(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
     u16 *v3 = ScriptContext_GetVarPointer(ctx);
 
-    ov5_021DC600(*v1, v2, v3);
+    FieldMenuManager_ShowListMenuWithCursorPosition(*v1, v2, v3);
     ScriptContext_Pause(ctx, sub_02040A50);
 
     return 1;
@@ -2896,10 +2896,10 @@ static BOOL ScrCmd_306(ScriptContext *ctx)
 static BOOL ScrCmd_048(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     u8 v2 = ScriptContext_ReadByte(ctx);
 
-    ov5_021DCD94(*v1, v2);
+    FieldMenuManager_ShowMultiColumnMenu(*v1, v2);
     ScriptContext_Pause(ctx, sub_02040A50);
 
     return 1;
@@ -2908,20 +2908,20 @@ static BOOL ScrCmd_048(ScriptContext *ctx)
 static BOOL ScrCmd_33A(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     u8 v2 = ScriptContext_ReadByte(ctx);
 
-    ov5_021DD3F4(*v1, (BOOL)v2);
+    FieldMenuManager_SetHorizontalAnchor(*v1, (BOOL)v2);
     return 1;
 }
 
 static BOOL ScrCmd_33B(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    UnkStruct_ov5_021DC1A4 **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
     u8 v2 = ScriptContext_ReadByte(ctx);
 
-    ov5_021DD410(*v1, (BOOL)v2);
+    FieldMenuManager_SetVerticalAnchor(*v1, (BOOL)v2);
     return 1;
 }
 
@@ -4936,7 +4936,7 @@ static BOOL ScrCmd_11C(ScriptContext *ctx)
     u16 *v1 = ScriptContext_GetVarPointer(ctx);
 
     location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData));
-    *v1 = ov5_021DCCC8(location->mapId);
+    *v1 = FieldMenu_GetFloorsAbove(location->mapId);
 
     return 0;
 }
@@ -4950,7 +4950,7 @@ static BOOL ScrCmd_11D(ScriptContext *ctx)
     u16 *v4 = ScriptContext_GetVarPointer(ctx);
     u16 v5 = ScriptContext_GetVar(ctx);
 
-    ov5_021DCB24(fieldSystem, v2, v3, v4, *v1, v5);
+    FieldMenu_ShowCurrentFloorWindow(fieldSystem, v2, v3, v4, *v1, v5);
     return 0;
 }
 

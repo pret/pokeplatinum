@@ -316,7 +316,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
 
     switch (member) {
     case 0:
-        return &scriptManager->unk_10;
+        return &scriptManager->fieldMenuMan;
     case SCRIPT_MANAGER_WINDOW:
         return &scriptManager->window;
     case SCRIPT_MANAGER_UI_CONTROL:

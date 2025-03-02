@@ -5,7 +5,7 @@
 
 u32 GetGBABoxMonData(BoxPokemonGBA *boxMon, int field, u8 *data);
 void SetGBABoxMonData(BoxPokemonGBA *boxMon, int field, const u8 *dataArg);
-int ov97_02236DD0(int param0);
-u32 ov97_02236E00(BoxPokemonGBA *param0);
+int ConvertGBASpeciesToDS(int species);
+u32 GetBoxMonGBALevel(BoxPokemonGBA *boxMonGBA);
 
 #endif // POKEPLATINUM_OV97_02236380_H

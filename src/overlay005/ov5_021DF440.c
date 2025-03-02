@@ -13,8 +13,8 @@
 #include "struct_defs/struct_02073974.h"
 
 #include "field/field_system.h"
+#include "overlay005/area_light.h"
 #include "overlay005/const_ov5_021FF85C.h"
-#include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021F067C.h"
 #include "overlay005/struct_ov5_021DF7F8.h"
 #include "overlay005/struct_ov5_021DF84C.h"
@@ -480,7 +480,7 @@ UnkStruct_020216E0 *ov5_021DF7F8(UnkStruct_ov5_021DF47C *param0, const UnkStruct
 
     if (v1 != NULL) {
         NNS_G3dMdlSetMdlFogEnableFlagAll(sub_020213F4(v1), 1);
-        ov5_021D53A4(sub_020213F4(v1));
+        AreaLight_UseGlobalModelAttributes(sub_020213F4(v1));
     }
 
     return v1;
