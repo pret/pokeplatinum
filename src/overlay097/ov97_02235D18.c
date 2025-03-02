@@ -477,7 +477,7 @@ PokemonStorageGBA *ov97_02236340(void)
     return &(Unk_ov97_0223F440->unk_6000);
 }
 
-void *ov97_02236350(void)
+void *GetGBASaveBlock2(void)
 {
     return ov97_02235EF8(0);
 }

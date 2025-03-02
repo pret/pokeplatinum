@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "constants/catching_show.h"
+#include "constants/gba/global.h"
 #include "constants/gba/items.h"
 #include "constants/gba/pokemon.h"
 #include "constants/gba/species.h"
@@ -275,7 +276,7 @@ static int ov97_02233B8C(UnkStruct_ov97_02234A2C *param0)
     case 0:
         ov97_02233D10(param0);
         transferData = SaveData_PalParkTransfer(param0->unk_10);
-        sub_0202EFB8(transferData, ov97_0223635C());
+        sub_0202EFB8(transferData, GetGBAPlayerTrainerId());
         v4->unk_00++;
         break;
     case 1:
@@ -368,7 +369,7 @@ static void ov97_02233CE4(UnkStruct_ov97_02234A2C *param0)
     int v1;
     PalParkTransfer *transferData = SaveData_PalParkTransfer(param0->unk_10);
 
-    sub_0202EFB8(transferData, ov97_0223635C());
+    sub_0202EFB8(transferData, GetGBAPlayerTrainerId());
     ResetLock(4);
 
     v1 = SaveData_Save(param0->unk_10);
@@ -1620,10 +1621,10 @@ static void ov97_02235344(UnkStruct_ov97_02234A2C *param0)
     Strbuf *v2;
     u16 v3[7 + 1];
 
-    ov97_0223936C(ov97_02236378(), v3, 7 + 1, ov97_02235DBC());
+    ov97_0223936C(GetGBAPlayerName(), v3, GBA_PLAYER_NAME_LEN + 1, ov97_02235DBC());
 
     v1 = StringTemplate_Default(78);
-    v2 = Strbuf_Init(7 + 1, 78);
+    v2 = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, 78);
 
     Strbuf_CopyChars(v2, v3);
     StringTemplate_SetStrbuf(v1, 1, v2, 0, 1, GAME_LANGUAGE);
@@ -1661,7 +1662,7 @@ static void ov97_022353CC(void *param0)
 static int ov97_02235408(UnkStruct_ov97_02234A2C *param0)
 {
     int v0;
-    u32 v1;
+    u32 gbaTrainerId;
     PalParkTransfer *transferData = SaveData_PalParkTransfer(param0->unk_10);
 
     if (sub_0202F0E0(transferData) == 0) {
@@ -1673,8 +1674,8 @@ static int ov97_02235408(UnkStruct_ov97_02234A2C *param0)
             return 4;
         }
 
-        v1 = ov97_0223635C();
-        v0 = sub_0202F050(transferData, v1);
+        gbaTrainerId = GetGBAPlayerTrainerId();
+        v0 = sub_0202F050(transferData, gbaTrainerId);
 
         if (v0 == 0) {
             v0 = (60 * 60 * 24) * 2;

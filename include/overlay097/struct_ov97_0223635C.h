@@ -1,23 +1,26 @@
 #ifndef POKEPLATINUM_STRUCT_OV97_0223635C_H
 #define POKEPLATINUM_STRUCT_OV97_0223635C_H
 
+#include "constants/gba/global.h"
+
+// These fields are present at the beginning of RSE's and FRLG's SaveBlock2
 typedef struct {
-    u8 unk_00[8];
-    u8 unk_08;
-    u8 unk_09;
-    u8 unk_0A[4];
-    u16 unk_0E;
-    u8 unk_10;
-    u8 unk_11;
-    u8 unk_12;
-    u8 unk_13;
-    u16 unk_14_0 : 3;
-    u16 unk_14_3 : 5;
-    u16 unk_14_8 : 1;
-    u16 unk_14_9 : 1;
-    u16 unk_14_10 : 1;
-    u16 unk_14_11 : 1;
-    u16 : 4;
-} UnkStruct_ov97_0223635C;
+    u8 playerName[GBA_PLAYER_NAME_LEN + 1];
+    u8 playerGender;
+    u8 specialSaveWarpFlags;
+    u8 playerTrainerId[GBA_TRAINER_ID_LEN];
+    u16 playTimeHours;
+    u8 playTimeMinutes;
+    u8 playTimeSeconds;
+    u8 playTimeVBlanks;
+    u8 optionsButtonMode;
+    u16 optionsTextSpeed : 3;
+    u16 optionsWindowFrameType : 5;
+    u16 optionsSound : 1;
+    u16 optionsBattleStyle : 1;
+    u16 optionsBattleSceneOff : 1;
+    u16 regionMapZoom : 1;
+    u16 padding : 4;
+} GBASaveBlock2;
 
 #endif // POKEPLATINUM_STRUCT_OV97_0223635C_H

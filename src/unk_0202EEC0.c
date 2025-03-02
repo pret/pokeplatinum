@@ -79,11 +79,11 @@ void BoxMonToTransferData(PalParkTransfer *transfer, BoxPokemon *boxMon, int slo
     Pokemon_FromBoxPokemon(boxMon, &transfer->mons[slot]);
 }
 
-void sub_0202EFB8(PalParkTransfer *transferData, u32 param1)
+void sub_0202EFB8(PalParkTransfer *transferData, u32 gbaTrainerId)
 {
-    int v0 = sub_0202EF40(transferData, param1);
+    int v0 = sub_0202EF40(transferData, gbaTrainerId);
 
-    transferData->unk_288[v0] = param1;
+    transferData->unk_288[v0] = gbaTrainerId;
     transferData->unk_2D8[v0] = GetTimestamp();
     transferData->unk_378 = OS_GetOwnerRtcOffset();
 
@@ -109,13 +109,13 @@ int GetPalParkTransferMonCount(const PalParkTransfer *transferData)
     return count;
 }
 
-int sub_0202F050(const PalParkTransfer *transferData, u32 param1)
+int sub_0202F050(const PalParkTransfer *transferData, u32 gbaTrainerId)
 {
     int v0;
     s64 v1 = GetTimestamp();
 
     for (v0 = 0; v0 < 20; v0++) {
-        if (transferData->unk_288[v0] == param1) {
+        if (transferData->unk_288[v0] == gbaTrainerId) {
             return v1 - transferData->unk_2D8[v0];
         }
     }
