@@ -601,7 +601,7 @@ Overlay overlay7
 	After overlay6
 	Object main.nef.p/src_overlay007_communication_club.c.o
 	Object main.nef.p/src_overlay007_ov7_0224B4E8.c.o
-	Object main.nef.p/src_overlay007_ov7_0224BE9C.c.o
+	Object main.nef.p/src_overlay007_accessory_shop.c.o
 	Object main.nef.p/src_overlay007_shop_menu.c.o
 }
 

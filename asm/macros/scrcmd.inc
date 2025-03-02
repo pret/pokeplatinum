@@ -3275,7 +3275,7 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_257
+    .macro ShowAccessoryShop
     .short 599
     .endm
 

@@ -63,7 +63,7 @@ _00A9:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_257
+    ShowAccessoryShop
     ReleaseAll
     End
 
