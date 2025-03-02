@@ -63,7 +63,6 @@
 #include "overlay005/save_info_window.h"
 #include "overlay005/scrcmd_move_tutor.h"
 #include "overlay005/signpost.h"
-#include "overlay005/struct_ov5_021DC1A4_decl.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay006/npc_trade.h"
