@@ -1510,9 +1510,9 @@ static BOOL ov62_0223FCC4 (UnkStruct_0208C06C * param0)
         break;
     case 1:
         ov62_02240B94(param0);
-        v0->unk_188[0] = sub_02023FCC(Unk_ov62_02248FC8, NELEMS(Unk_ov62_02248FC8), ov62_02240A50, param0, 102);
-        v0->unk_188[1] = sub_02023FCC(Unk_ov62_02248F98, NELEMS(Unk_ov62_02248F98), ov62_02240AEC, param0, 102);
-        v0->unk_188[2] = sub_02023FCC(Unk_ov62_02248F84, NELEMS(Unk_ov62_02248F84), ov62_02240B5C, param0, 102);
+        v0->unk_188[0] = sub_02023FCC(Unk_ov62_02248FC8, NELEMS(Unk_ov62_02248FC8), ov62_02240A50, param0, HEAP_ID_102);
+        v0->unk_188[1] = sub_02023FCC(Unk_ov62_02248F98, NELEMS(Unk_ov62_02248F98), ov62_02240AEC, param0, HEAP_ID_102);
+        v0->unk_188[2] = sub_02023FCC(Unk_ov62_02248F84, NELEMS(Unk_ov62_02248F84), ov62_02240B5C, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:
@@ -1703,9 +1703,9 @@ static BOOL ov62_02240084 (UnkStruct_0208C06C * param0)
         break;
     case 1:
         ov62_02240B94(param0);
-        v0->unk_188[0] = sub_02023FCC(Unk_ov62_02248FC8, NELEMS(Unk_ov62_02248FC8), ov62_02240A50, param0, 102);
-        v0->unk_188[1] = sub_02023FCC(Unk_ov62_02248F98, NELEMS(Unk_ov62_02248F98), ov62_02240AEC, param0, 102);
-        v0->unk_188[2] = sub_02023FCC(Unk_ov62_02248F84, NELEMS(Unk_ov62_02248F84), ov62_02240B5C, param0, 102);
+        v0->unk_188[0] = sub_02023FCC(Unk_ov62_02248FC8, NELEMS(Unk_ov62_02248FC8), ov62_02240A50, param0, HEAP_ID_102);
+        v0->unk_188[1] = sub_02023FCC(Unk_ov62_02248F98, NELEMS(Unk_ov62_02248F98), ov62_02240AEC, param0, HEAP_ID_102);
+        v0->unk_188[2] = sub_02023FCC(Unk_ov62_02248F84, NELEMS(Unk_ov62_02248F84), ov62_02240B5C, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:
@@ -2503,7 +2503,7 @@ static void ov62_02240B94 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_0223E01C * v0 = param0->unk_860;
 
-    v0->unk_194.unk_00 = sub_02030A80(102);
+    v0->unk_194.unk_00 = sub_02030A80(HEAP_ID_102);
     ov61_0222AFC0(&param0->unk_8B4.unk_1D58[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00, v0->unk_194.unk_00);
     v0->unk_220.unk_00 = v0->unk_194.unk_00;
     v0->unk_220.unk_04 = sub_0202FF2C(HEAP_ID_102);

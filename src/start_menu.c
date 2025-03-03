@@ -1376,7 +1376,7 @@ static BOOL StartMenu_TrainerCard(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = sub_02071F04(11);
+    menu->unk_25C = sub_02071F04(HEAP_ID_FIELDMAP);
 
     sub_02071D40(1, 1, 0, 0xff, fieldSystem, (TrainerCard *)menu->unk_25C);
     sub_0203E09C(fieldSystem, (TrainerCard *)menu->unk_25C);

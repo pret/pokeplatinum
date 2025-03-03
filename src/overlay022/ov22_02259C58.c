@@ -195,7 +195,7 @@ void ov22_02259DBC(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *par
     ov22_0225A2A8(param1);
     ov22_02259D98(&param0->unk_00[2]);
 
-    param0->unk_68 = sub_02023FCC(param0->unk_6C, 5, ov22_0225A02C, param0, 13);
+    param0->unk_68 = sub_02023FCC(param0->unk_6C, 5, ov22_0225A02C, param0, HEAP_ID_13);
 }
 
 void ov22_02259F24(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *param1)

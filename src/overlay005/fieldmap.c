@@ -189,7 +189,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         ov5_021D1414();
 
         VramTransfer_New(128, HEAP_ID_FIELD);
-        sub_02020B90(4, 4);
+        sub_02020B90(4, HEAP_ID_FIELD);
         Easy3D_Init(HEAP_ID_FIELD);
 
         ov5_021D15B4();

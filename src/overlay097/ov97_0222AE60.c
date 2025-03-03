@@ -992,7 +992,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     v0->unk_50 = TrainerInfo_BadgeCount(v0->unk_0C);
     v0->unk_12C = 15;
 
-    ov97_02237694(81);
+    ov97_02237694(HEAP_ID_81);
 
     if (!SaveData_DataExists(v0->unk_04)) {
         v0->unk_14C = 1;

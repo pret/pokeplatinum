@@ -606,7 +606,7 @@ static void ov16_0223B790(OverlayManager *param0)
     ov16_0223F36C(battleSys);
     ov16_0223CE28();
 
-    battleSys->unk_8C = ov12_0221FCDC(5);
+    battleSys->unk_8C = ov12_0221FCDC(HEAP_ID_BATTLE);
 
     ov16_0223C210(battleSys);
 
@@ -645,7 +645,7 @@ static void ov16_0223B790(OverlayManager *param0)
     ov16_0223DD4C(battleSys);
     BagCursor_ResetBattle(BattleSystem_BagCursor(battleSys));
 
-    battleSys->unk_1C4 = sub_02015F84(5, 4, 0);
+    battleSys->unk_1C4 = sub_02015F84(HEAP_ID_BATTLE, 4, 0);
     battleSys->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (battleSys->battleStatusMask & 0x10) {

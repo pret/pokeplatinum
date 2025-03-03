@@ -88,8 +88,8 @@ void NitroMain(void)
     sub_02003B60(GetChatotCryDataFromSave(sApplication.args.saveData), SaveData_Options(sApplication.args.saveData));
     sub_02022844();
 
-    if (sub_02038FFC(3) == DWC_INIT_RESULT_DESTROY_OTHER_SETTING) {
-        sub_02039A64(3, 0);
+    if (sub_02038FFC(HEAP_ID_APPLICATION) == DWC_INIT_RESULT_DESTROY_OTHER_SETTING) {
+        sub_02039A64(HEAP_ID_APPLICATION, 0);
     }
 
     if (SaveData_BackupExists(sApplication.args.saveData) == FALSE) {

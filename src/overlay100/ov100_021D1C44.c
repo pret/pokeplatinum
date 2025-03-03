@@ -513,11 +513,11 @@ BOOL ov100_021D2428(void *param0)
         }
 
         if (v0->unk_04 == 15 + 25) {
-            Sound_PlayPokemonCry(0, 483, -80, 40, 111, 0);
+            Sound_PlayPokemonCry(0, 483, -80, 40, HEAP_ID_111, 0);
         }
 
         if (v0->unk_04 == 40 + 25) {
-            Sound_PlayPokemonCry(0, 484, +80, 40, 111, 0);
+            Sound_PlayPokemonCry(0, 484, +80, 40, HEAP_ID_111, 0);
         }
 
         if (v0->unk_04 < 15 + 25) {
@@ -555,7 +555,7 @@ BOOL ov100_021D2428(void *param0)
 
         Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[1].unk_00, 0);
         Easy3DObject_SetVisibility(&v0->unk_1A0.unk_934[2].unk_00, 1);
-        Sound_PlayPokemonCry(2, 487, 0, 127, 111, 0);
+        Sound_PlayPokemonCry(2, 487, 0, 127, HEAP_ID_111, 0);
 
         v0->unk_04 = 0;
         v0->unk_00++;
@@ -595,7 +595,7 @@ BOOL ov100_021D2428(void *param0)
         break;
     case 19:
         if ((++v0->unk_04) == 238) {
-            Sound_PlayPokemonCry(2, 487, 0, 127, 111, 0);
+            Sound_PlayPokemonCry(2, 487, 0, 127, HEAP_ID_111, 0);
         }
 
         if (v0->unk_04 == 170) {

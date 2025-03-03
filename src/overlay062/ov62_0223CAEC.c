@@ -910,7 +910,7 @@ static BOOL ov62_0223D5A4 (UnkStruct_0208C06C * param0)
     Bg_ClearTilemap(param0->unk_14.unk_10, 7);
 
     ov62_022315C8(&v0->unk_00, &v0->unk_04, 0);
-    v0->unk_DC = sub_02023FCC(Unk_ov62_02248E94, NELEMS(Unk_ov62_02248E94), ov62_0223D540, param0, 102);
+    v0->unk_DC = sub_02023FCC(Unk_ov62_02248E94, NELEMS(Unk_ov62_02248E94), ov62_0223D540, param0, HEAP_ID_102);
     ov62_0222FB60(param0, 1);
 
     return 0;

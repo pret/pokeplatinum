@@ -3138,12 +3138,12 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->unk_128 = sub_0208712C(9, 2, 0, 8, param0->unk_1A4);
 
     if (param1->unk_04 != 4) {
-        param0->unk_17C = sub_02023FCC(Unk_ov19_021DFDF6, NELEMS(Unk_ov19_021DFDF6), ov19_021D53B8, param0, 9);
+        param0->unk_17C = sub_02023FCC(Unk_ov19_021DFDF6, NELEMS(Unk_ov19_021DFDF6), ov19_021D53B8, param0, HEAP_ID_9);
     } else {
-        param0->unk_17C = sub_02023FCC(Unk_ov19_021DFE02, NELEMS(Unk_ov19_021DFE02), ov19_021D53B8, param0, 9);
+        param0->unk_17C = sub_02023FCC(Unk_ov19_021DFE02, NELEMS(Unk_ov19_021DFE02), ov19_021D53B8, param0, HEAP_ID_9);
     }
 
-    param0->unk_180 = sub_02023FCC(Unk_ov19_021DFE12, NELEMS(Unk_ov19_021DFE12), ov19_021D4BB0, param0, 9);
+    param0->unk_180 = sub_02023FCC(Unk_ov19_021DFE12, NELEMS(Unk_ov19_021DFE12), ov19_021D4BB0, param0, HEAP_ID_9);
     param0->unk_00.unk_00 = param0->unk_120;
     param0->unk_00.unk_04 = param0->unk_124;
     param0->unk_00.unk_110 = 0;

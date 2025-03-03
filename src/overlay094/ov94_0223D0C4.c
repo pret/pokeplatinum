@@ -593,7 +593,7 @@ void ov94_0223DB2C(Pokemon *param0)
         int v2 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
         int v3 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(v0.archive, v0.character, 62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
+        sub_020136A4(v0.archive, v0.character, HEAP_ID_62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
     }
 
     DC_FlushRange(v1, (0x20 * 10 * 10));

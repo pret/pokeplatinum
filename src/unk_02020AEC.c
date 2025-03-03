@@ -141,13 +141,13 @@ void sub_02020B14(UnkStruct_020216E0 *param0)
     param0->unk_20 = NULL;
 }
 
-void sub_02020B90(int param0, int param1)
+void sub_02020B90(int param0, int heapID)
 {
     int v0;
 
     GF_ASSERT(Unk_021C0774 == NULL);
 
-    Unk_021C0774 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02020C44) * param0);
+    Unk_021C0774 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02020C44) * param0);
     Unk_021C0778 = param0;
 
     for (v0 = 0; v0 < param0; v0++) {

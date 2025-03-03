@@ -675,7 +675,7 @@ void sub_0207AE34(int param0, int param1, void *param2, void *param3)
     UnkStruct_0207A778 *v0 = (UnkStruct_0207A778 *)param3;
 
     if (CommSys_CurNetId() != param0) {
-        sub_02027FEC(v0->unk_00->unk_124, (UnkStruct_02027F8C *)param2, 1, 5);
+        sub_02027FEC(v0->unk_00->unk_124, (UnkStruct_02027F8C *)param2, 1, HEAP_ID_BATTLE);
     }
 
     v0->unk_1020++;

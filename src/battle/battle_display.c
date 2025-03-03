@@ -1360,7 +1360,7 @@ void ov16_0225E294(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     UnkStruct_ov12_022380DC v0;
 
     ov16_02264530(battleSys, param2, &v0, param1->battler);
-    ov12_022382BC(&v0, 5);
+    ov12_022382BC(&v0, HEAP_ID_BATTLE);
     ClearCommand(battleSys, param1->battler, param2->unk_00);
 }
 
@@ -1901,7 +1901,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                 {
                     UnkStruct_ov16_02265BBC v8;
 
-                    v0->unk_24 = ov12_0221FCDC(5);
+                    v0->unk_24 = ov12_0221FCDC(HEAP_ID_BATTLE);
                     ov16_02266B78(v0->unk_00, NULL, &v8, 1, 11, v0->unk_81, v0->unk_81, NULL);
                     ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_24, &v8);
                 }
@@ -2169,7 +2169,7 @@ static void ov16_0225F764(SysTask *param0, void *param1)
         UnkStruct_ov16_02265BBC v4;
 
         ov16_02264530(v0->unk_00, &v0->unk_10, &v3, v0->unk_69);
-        ov12_022382BC(&v3, 5);
+        ov12_022382BC(&v3, HEAP_ID_BATTLE);
         ov16_02266B78(v0->unk_00, NULL, &v4, 1, 16, v0->unk_69, v0->unk_69, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v1, &v4);
         v0->unk_04->unk_19C = 0;
@@ -4602,7 +4602,7 @@ static void ov16_022626C0(SysTask *param0, void *param1)
         UnkStruct_ov16_02265BBC v3;
 
         ov16_02264530(v0->unk_00, &v0->unk_10, &v2, v0->unk_69);
-        ov12_022382BC(&v2, 5);
+        ov12_022382BC(&v2, HEAP_ID_BATTLE);
 
         ov16_02266B78(v0->unk_00, NULL, &v3, 1, 16, v0->unk_69, v0->unk_69, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_0C, &v3);
@@ -4797,7 +4797,7 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
         UnkStruct_ov16_02265BBC v6;
 
         ov16_02264530(v0->unk_00, &v0->unk_0C, &v5, v0->unk_65);
-        ov12_022382BC(&v5, 5);
+        ov12_022382BC(&v5, HEAP_ID_BATTLE);
 
         ov16_02266B78(v0->unk_00, NULL, &v6, 1, 16, v0->unk_65, v0->unk_65, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v1, &v6);
@@ -5709,7 +5709,7 @@ static PokemonSprite *ov16_02263B30(BattleSystem *battleSys, UnkStruct_02007768 
         v3 = 0;
     }
 
-    sub_02013750(param2->archive, param2->character, 5, v1, param2->personality, 0, v3, param2->spindaSpots);
+    sub_02013750(param2->archive, param2->character, HEAP_ID_BATTLE, v1, param2->personality, 0, v3, param2->spindaSpots);
     ov16_0223F2CC(ov16_0223E0C8(battleSys), param10, param2->archive);
     ov16_0223F2E4(ov16_0223E0C8(battleSys), param10, param2->palette);
     ov16_0223F2FC(ov16_0223E0C8(battleSys), param10, param6);

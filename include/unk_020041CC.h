@@ -47,7 +47,7 @@ BOOL sub_02004D04(u32 param0);
 void sub_02004D14(u32 param0, u8 param1);
 void sub_02004D2C(u32 param0, u32 param1);
 void sub_02004D40(u32 param0, int param1);
-BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int param4);
+BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int heapID);
 void sub_02004E84(u32 param0);
 BOOL sub_02004EC0(void);
 BOOL sub_02004EC8(int param0);

@@ -219,7 +219,7 @@ static BOOL ov62_02237D24(UnkStruct_0208C06C *param0)
 
     {
         v0->unk_230.unk_08 = sub_02029C68(102);
-        v0->unk_250.unk_00 = sub_02030A80(102);
+        v0->unk_250.unk_00 = sub_02030A80(HEAP_ID_102);
     }
 
     Bg_ClearTilemap(param0->unk_14.unk_10, 2);
@@ -412,7 +412,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208BA08(param0->unk_6F0, 24, 24);
         ov62_02231AAC(param0, 286);
-        v0->unk_2DC = sub_02030A80(102);
+        v0->unk_2DC = sub_02030A80(HEAP_ID_102);
         sub_02030AA0(v0->unk_2DC, param0->unk_830);
         Sound_PlayEffect(1381);
         param0->unk_08++;
@@ -606,7 +606,7 @@ static BOOL ov62_02238610(UnkStruct_0208C06C *param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
-        v0->unk_1D0[0] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02239BAC, param0, 102);
+        v0->unk_1D0[0] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02239BAC, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 1:

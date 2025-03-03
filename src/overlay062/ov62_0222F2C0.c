@@ -687,7 +687,7 @@ void ov62_0222FF40(UnkStruct_0208C06C *param0)
         param0->unk_534.unk_C8[v0].unk_10 = &param0->unk_14.unk_1C[v0];
     }
 
-    param0->unk_14.unk_18 = sub_02023FCC(param0->unk_14.unk_1C, 5, ov62_0222FE1C, param0, 102);
+    param0->unk_14.unk_18 = sub_02023FCC(param0->unk_14.unk_1C, 5, ov62_0222FE1C, param0, HEAP_ID_102);
 }
 
 void ov62_0222FF7C(UnkStruct_0208C06C *param0)

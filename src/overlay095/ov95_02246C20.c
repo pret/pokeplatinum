@@ -578,7 +578,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
             v4.unk_08 *= 2;
         }
 
-        sub_02013720(v0.archive, v0.character, 57, &v4, v3, v7, param4, 2, v8);
+        sub_02013720(v0.archive, v0.character, HEAP_ID_57, &v4, v3, v7, param4, 2, v8);
         DC_FlushRange(v3, v2);
         Bg_LoadTiles(param0->unk_08, param2, v3, v2, 0);
 

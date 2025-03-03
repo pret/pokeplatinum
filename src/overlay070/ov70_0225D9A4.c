@@ -615,11 +615,11 @@ int ov70_0225D9A4(OverlayManager *param0, int *param1)
         u32 v2;
 
         v2 = TrainerInfo_Gender(v0->unk_458);
-        v0->unk_444 = ov70_0225C9B4(24, v2, v0->unk_44C, 112, 113);
+        v0->unk_444 = ov70_0225C9B4(24, v2, v0->unk_44C, HEAP_ID_112, 113);
     }
 
     v0->unk_448 = ov70_02261E10(v1->unk_04, v1->unk_08, v0->unk_44C, 112, 113);
-    v0->unk_450 = ov70_02260A70(112);
+    v0->unk_450 = ov70_02260A70(HEAP_ID_112);
 
     ov70_0225E9C8(&v0->unk_35C, &v0->unk_3C, v1->unk_00, 112);
     ov70_0225EBA8(&v0->unk_37C, &v0->unk_3C, v1->unk_00, 112);

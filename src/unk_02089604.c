@@ -846,7 +846,7 @@ void sub_0208A0B8(UnkStruct_02089688 *param0)
         }
     }
 
-    param0->unk_2C0.unk_14 = sub_02023FCC(param0->unk_2C0.unk_18, 0x1c, sub_0208A180, param0, 101);
+    param0->unk_2C0.unk_14 = sub_02023FCC(param0->unk_2C0.unk_18, 0x1c, sub_0208A180, param0, HEAP_ID_101);
 }
 
 void sub_0208A180(u32 param0, u32 param1, void *param2)
