@@ -312,8 +312,8 @@ static void ov94_02244F00(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_02244F2C(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_BAC = Strbuf_Init((90 * 2), 62);
-    param0->unk_BDC = Strbuf_Init((16 * 8 * 2), 62);
+    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
+    param0->unk_BDC = Strbuf_Init((16 * 8 * 2), HEAP_ID_62);
     param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 31);
 }
 
@@ -948,7 +948,7 @@ void ov94_02245934(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_0224593C(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
-    Strbuf *v0 = Strbuf_Init((16 * 8 * 2), 62);
+    Strbuf *v0 = Strbuf_Init((16 * 8 * 2), HEAP_ID_62);
 
     MessageLoader_GetStrbuf(param0->unk_B9C, param1, v0);
     StringTemplate_Format(param0->unk_B8C, param0->unk_BDC, v0);

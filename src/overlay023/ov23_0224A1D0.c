@@ -532,7 +532,7 @@ void ov23_0224AAB0(void)
         CommSys_SendDataFixedSize(91, commPlayerMan->unk_290[CommSys_CurNetId()]);
     } else {
         TrainerInfo *v0 = TrainerInfo_New(15);
-        Strbuf *v1 = Strbuf_Init(20, 15);
+        Strbuf *v1 = Strbuf_Init(20, HEAP_ID_COMMUNICATION);
 
         GF_ASSERT(v0);
         GF_ASSERT(v1);

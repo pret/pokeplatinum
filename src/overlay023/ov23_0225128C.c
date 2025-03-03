@@ -845,8 +845,8 @@ static void ov23_02251F94(FieldSystem *fieldSystem)
     ov23_02253DFC(ov23_022421BC(), 639, 1);
 
     v1->unk_2AA = 0;
-    v1->unk_68 = Strbuf_Init((50 * 2), 4);
-    v1->unk_6C = Strbuf_Init((50 * 2), 4);
+    v1->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+    v1->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     v1->unk_70 = StringTemplate_Default(4);
     v1->unk_08 = sub_0206A780(4);
 

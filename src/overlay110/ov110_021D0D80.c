@@ -125,8 +125,8 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
 
     v1->unk_110 = MessageLoader_Init(1, 26, 16, HEAP_ID_114);
     v1->unk_114 = StringTemplate_Default(114);
-    v1->unk_118 = Strbuf_Init(800, 114);
-    v1->unk_11C = Strbuf_Init(800, 114);
+    v1->unk_118 = Strbuf_Init(800, HEAP_ID_114);
+    v1->unk_11C = Strbuf_Init(800, HEAP_ID_114);
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_114);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 114);

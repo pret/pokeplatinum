@@ -538,7 +538,7 @@ static void sub_0203ADFC(FieldTask *taskMan)
             Strbuf *v8;
 
             v6 = StringTemplate_Default(11);
-            v7 = Strbuf_Init(8, 11);
+            v7 = Strbuf_Init(8, HEAP_ID_FIELDMAP);
             v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[menu->unk_30[v4]][0]);
 
             StringTemplate_SetPlayerName(v6, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
@@ -680,7 +680,7 @@ static void sub_0203B094(FieldTask *taskMan)
     Strbuf_Free(v5);
 
     v3 = StringTemplate_Default(11);
-    v4 = Strbuf_Init(32, 11);
+    v4 = Strbuf_Init(32, HEAP_ID_FIELDMAP);
     v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
     if (v6 == 0) {

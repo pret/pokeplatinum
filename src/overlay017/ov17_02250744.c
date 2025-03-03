@@ -336,7 +336,7 @@ void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
         Strbuf *v2;
         int v3, v4;
 
-        v2 = Strbuf_Init(12, 24);
+        v2 = Strbuf_Init(12, HEAP_ID_24);
 
         for (v3 = 0; v3 < 4; v3++) {
             v4 = param0->unk_39A.unk_30[v3];

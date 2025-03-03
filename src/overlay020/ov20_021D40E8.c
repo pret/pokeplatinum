@@ -53,7 +53,7 @@ UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const Un
     v0->unk_04 = param1;
     v0->unk_08 = param2;
     v0->unk_0C = ov20_021D2E04(param0);
-    v0->unk_3C = Strbuf_Init(32, 35);
+    v0->unk_3C = Strbuf_Init(32, HEAP_ID_35);
 
     Window_Add(v0->unk_0C, &v0->unk_10, 2, 4, 0, 26, 32, 12, 1);
     Window_Add(v0->unk_0C, &v0->unk_20, 2, 0, 0, 12, 4, 12, 1);

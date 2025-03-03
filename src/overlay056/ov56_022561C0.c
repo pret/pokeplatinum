@@ -773,7 +773,7 @@ static Strbuf *ov56_02256E5C(UnkStruct_02027F8C *param0, u32 param1, StringTempl
         } else if (v2 >= 2) {
             int v3 = v2 - 2;
 
-            v1 = Strbuf_Init(10, 89);
+            v1 = Strbuf_Init(10, HEAP_ID_89);
 
             Strbuf_CopyChars(v1, sub_02027FBC(param0, v3));
             StringTemplate_SetStrbuf(param2, 0, v1, 0, 0, sub_02027FC4(param0, v3));

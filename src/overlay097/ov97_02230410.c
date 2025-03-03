@@ -483,7 +483,7 @@ static BOOL ov97_022309E4(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
 {
     Strbuf *v0;
 
-    v0 = Strbuf_Init(250 + 1, 87);
+    v0 = Strbuf_Init(250 + 1, HEAP_ID_87);
 
     Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->unk_154, 250);
     Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);

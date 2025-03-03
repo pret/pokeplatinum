@@ -322,11 +322,11 @@ static void ov94_0223D53C(UnkStruct_ov94_0223FD4C *param0)
 {
     int v0;
 
-    param0->unk_BAC = Strbuf_Init((90 * 2), 62);
+    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
     param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 39);
 
     for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_BB4[v0] = Strbuf_Init((10 * 2), 62);
+        param0->unk_BB4[v0] = Strbuf_Init((10 * 2), HEAP_ID_62);
     }
 }
 
@@ -514,8 +514,8 @@ static TextColor Unk_ov94_022467FC[] = {
 void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], BoxPokemon *param4, UnkStruct_ov94_0223BA88_sub2 *param5)
 {
     Strbuf *v0, *v1, *v2, *v3;
-    Strbuf *v4 = Strbuf_Init((10 + 1) * 2, 62);
-    Strbuf *v5 = Strbuf_Init((8 + 1) * 2, 62);
+    Strbuf *v4 = Strbuf_Init((10 + 1) * 2, HEAP_ID_62);
+    Strbuf *v5 = Strbuf_Init((8 + 1) * 2, HEAP_ID_62);
     int v6, v7, v8, v9, v10;
 
     BoxPokemon_GetValue(param4, MON_DATA_NICKNAME_STRBUF, v4);
@@ -562,8 +562,8 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
     Strbuf *v0, *v1;
     Strbuf *v2, *v3;
 
-    v0 = Strbuf_Init((7 + 1) * 2, 62);
-    v3 = Strbuf_Init((7 + 1) * 2, 62);
+    v0 = Strbuf_Init((7 + 1) * 2, HEAP_ID_62);
+    v3 = Strbuf_Init((7 + 1) * 2, HEAP_ID_62);
 
     v1 = MessageLoader_GetNewStrbuf(param0, 48);
     Strbuf_CopyChars(v0, param2);

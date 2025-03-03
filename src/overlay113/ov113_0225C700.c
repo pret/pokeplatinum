@@ -391,7 +391,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     ov113_0225D9FC(v0);
     ov113_0225DBCC(v0);
 
-    v0->unk_C4 = Strbuf_Init(256, 118);
+    v0->unk_C4 = Strbuf_Init(256, HEAP_ID_118);
     v0->unk_1C = SpriteSystem_Alloc(118);
 
     SpriteSystem_Init(v0->unk_1C, &Unk_ov113_02260954, &Unk_ov113_022608E8, (16 + 16));

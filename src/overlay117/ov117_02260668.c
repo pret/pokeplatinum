@@ -230,7 +230,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
 
     v0->unk_80 = MessageLoader_Init(0, 26, 9, HEAP_ID_110);
     v0->unk_84 = StringTemplate_Default(110);
-    v0->unk_88 = Strbuf_Init((2 * 160), 110);
+    v0->unk_88 = Strbuf_Init((2 * 160), HEAP_ID_110);
     v0->unk_90 = sub_02012744((2 * 6 + 6 + 1), 110);
 
     ov117_02265210(v0, &v0->unk_1468);

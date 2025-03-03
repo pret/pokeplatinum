@@ -1449,7 +1449,7 @@ static void sub_02087544(UnkStruct_02087A10 *param0, OverlayManager *param1)
     if (v1->unk_44 != 0) {
         int v2, v3;
 
-        v0 = Strbuf_Init(200, 18);
+        v0 = Strbuf_Init(200, HEAP_ID_18);
         param0->unk_180 = NULL;
         v2 = sub_0207999C(v1->unk_48);
         v3 = PCBoxes_FirstEmptyBox(v1->unk_48);
@@ -2067,7 +2067,7 @@ static void sub_02088554(Window *param0, const u16 *param1, int param2, int para
     u16 v3[2];
     Strbuf *v4;
 
-    v4 = Strbuf_Init(2, 18);
+    v4 = Strbuf_Init(2, HEAP_ID_18);
 
     while (param1[v0] != 0xffff) {
         if ((param1[v0] == 0xd001) || (param1[v0] == (0xd001 + 1)) || (param1[v0] == (0xd001 + 2))) {
@@ -2124,7 +2124,7 @@ static void sub_02088678(Window *param0, const u16 *param1, u8 *param2, Strbuf *
         GXS_LoadOBJ(param2, Unk_020F24D8[v1] * 0x20, 0x20 * 4 * 2);
     }
 
-    v4 = Strbuf_Init(20 + 1, 18);
+    v4 = Strbuf_Init(20 + 1, HEAP_ID_18);
 
     for (v1 = 0; v1 < 3; v1++) {
         v0[0] = param1[v1];

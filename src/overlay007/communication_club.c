@@ -238,7 +238,7 @@ static void CommClubMan_Init(FieldSystem *fieldSystem)
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        sCommClubMan->strBuff[v0] = Strbuf_Init((70 * 2), 4);
+        sCommClubMan->strBuff[v0] = Strbuf_Init((70 * 2), HEAP_ID_FIELD);
     }
 }
 

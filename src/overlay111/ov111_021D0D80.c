@@ -1150,8 +1150,8 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
 
     param0->unk_38 = MessageLoader_Init(1, 26, 540, HEAP_ID_115);
     param0->unk_3C = StringTemplate_Default(115);
-    param0->unk_40 = Strbuf_Init(600, 115);
-    param0->unk_44 = Strbuf_Init(600, 115);
+    param0->unk_40 = Strbuf_Init(600, HEAP_ID_115);
+    param0->unk_44 = Strbuf_Init(600, HEAP_ID_115);
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_115);
     Font_LoadTextPalette(4, 13 * 32, HEAP_ID_115);

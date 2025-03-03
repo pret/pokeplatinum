@@ -961,14 +961,14 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
     v0->unk_6A0 = StringTemplate_Default(12);
 
     for (v1 = 0; v1 < 6; v1++) {
-        v0->unk_704[v1].unk_00 = Strbuf_Init(10 + 1, 12);
+        v0->unk_704[v1].unk_00 = Strbuf_Init(10 + 1, HEAP_ID_12);
     }
 
-    v0->unk_6A4 = Strbuf_Init(256, 12);
-    v0->unk_6A8 = Strbuf_Init(256, 12);
+    v0->unk_6A4 = Strbuf_Init(256, HEAP_ID_12);
+    v0->unk_6A8 = Strbuf_Init(256, HEAP_ID_12);
 
     for (v1 = 0; v1 < 20; v1++) {
-        v0->unk_6AC[v1] = Strbuf_Init(32, 12);
+        v0->unk_6AC[v1] = Strbuf_Init(32, HEAP_ID_12);
     }
 
     v0->unk_B11 = v0->unk_5A4->unk_22;

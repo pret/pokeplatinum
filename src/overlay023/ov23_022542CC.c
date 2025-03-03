@@ -431,7 +431,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
 
             v13 = MessageLoader_GetNewStrbuf(v12, 9);
             v14 = MessageLoader_GetNewStrbuf(v12, 10);
-            v15 = Strbuf_Init(6, 4);
+            v15 = Strbuf_Init(6, HEAP_ID_FIELD);
 
             Text_AddPrinterWithParams(&param0->unk_18, FONT_SYSTEM, v13, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
             v16 = StringTemplate_Default(4);

@@ -157,7 +157,7 @@ static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C *param0, BgConfig *param1, u32 
     Window_Add(param1, &v0, 1, 34, 10, 25, 8, 11, param2);
     param2 += 200;
 
-    v1 = Strbuf_Init(4, 35);
+    v1 = Strbuf_Init(4, HEAP_ID_35);
 
     Window_FillTilemap(&v0, 15);
 

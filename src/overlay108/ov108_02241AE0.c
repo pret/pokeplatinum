@@ -811,11 +811,11 @@ static void ov108_0224237C(UnkStruct_ov108_02241DB0 *param0)
 
     param0->unk_68 = MessageLoader_Init(1, 26, 536, HEAP_ID_103);
     param0->unk_6C = StringTemplate_Default(103);
-    param0->unk_70 = Strbuf_Init(600, 103);
-    param0->unk_74 = Strbuf_Init(600, 103);
+    param0->unk_70 = Strbuf_Init(600, HEAP_ID_103);
+    param0->unk_74 = Strbuf_Init(600, HEAP_ID_103);
 
     for (v5 = 0; v5 < 2; v5++) {
-        param0->unk_78[v5] = Strbuf_Init(32, 103);
+        param0->unk_78[v5] = Strbuf_Init(32, HEAP_ID_103);
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_103);

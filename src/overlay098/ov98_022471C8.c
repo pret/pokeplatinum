@@ -315,8 +315,8 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     v0->unk_30 = MessageLoader_Init(0, 26, 695, HEAP_ID_109);
     v0->unk_28 = MessageLoader_Init(0, 26, 412, HEAP_ID_109);
     v0->unk_34 = MessageLoader_Init(0, 26, 358, HEAP_ID_109);
-    v0->unk_38 = Strbuf_Init((90 * 2), 109);
-    v0->unk_40 = Strbuf_Init((16 * 8 * 2), 109);
+    v0->unk_38 = Strbuf_Init((90 * 2), HEAP_ID_109);
+    v0->unk_40 = Strbuf_Init((16 * 8 * 2), HEAP_ID_109);
     v0->unk_3C = MessageLoader_GetNewStrbuf(v0->unk_24, 31);
 
     ov98_02247704(v0);
@@ -961,7 +961,7 @@ static void ov98_022482CC(UnkStruct_ov98_02247704 *param0)
 
     Window_FillTilemap(&param0->unk_C4, 0x0f0f);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_34, 44);
-    v3 = Strbuf_Init(Strbuf_Length(v2), 109);
+    v3 = Strbuf_Init(Strbuf_Length(v2), HEAP_ID_109);
     for (v0 = param0->unk_AC; v0 < param0->unk_AC + 6; v0++) {
         Strbuf_CopyLineNum(v3, v2, v0);
         Text_AddPrinterWithParams(&param0->unk_C4, FONT_SYSTEM, v3, 4, v1 * 16, TEXT_SPEED_NO_TRANSFER, NULL);
@@ -2459,7 +2459,7 @@ void ov98_022498CC(Window *param0, Strbuf *param1, int param2, int param3, int p
 
 static void ov98_02249900(UnkStruct_ov98_02247704 *param0, int param1)
 {
-    Strbuf *v0 = Strbuf_Init((16 * 8 * 2), 109);
+    Strbuf *v0 = Strbuf_Init((16 * 8 * 2), HEAP_ID_109);
 
     MessageLoader_GetStrbuf(param0->unk_30, param1, v0);
     StringTemplate_Format(param0->unk_20, param0->unk_40, v0);

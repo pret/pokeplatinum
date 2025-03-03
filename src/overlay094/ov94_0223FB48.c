@@ -467,8 +467,8 @@ static void ov94_02240190(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_022401E0(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_BA4 = Strbuf_Init((9 * 2), 62);
-    param0->unk_BAC = Strbuf_Init((90 * 2), 62);
+    param0->unk_BA4 = Strbuf_Init((9 * 2), HEAP_ID_62);
+    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
 
     if (param0->unk_24 == 5) {
         param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 21);

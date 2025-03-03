@@ -1443,11 +1443,11 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
     param0->unk_20 = MessageLoader_Init(1, 26, 199, HEAP_ID_100);
     param0->unk_1C = MessageLoader_Init(1, 26, 391, HEAP_ID_100);
     param0->unk_24 = StringTemplate_Default(100);
-    param0->unk_28 = Strbuf_Init(600, 100);
-    param0->unk_2C = Strbuf_Init(600, 100);
+    param0->unk_28 = Strbuf_Init(600, HEAP_ID_100);
+    param0->unk_2C = Strbuf_Init(600, HEAP_ID_100);
 
     for (v15 = 0; v15 < 3; v15++) {
-        param0->unk_30[v15] = Strbuf_Init(32, 100);
+        param0->unk_30[v15] = Strbuf_Init(32, HEAP_ID_100);
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_100);
@@ -2854,7 +2854,7 @@ static void ov107_02244AB4 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
     Strbuf* v2;
 
     v1 = SaveData_GetTrainerInfo(param0->unk_1CC);
-    v2 = Strbuf_Init((7 + 1), 100);
+    v2 = Strbuf_Init((7 + 1), HEAP_ID_100);
 
     Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
 

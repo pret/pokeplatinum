@@ -666,8 +666,8 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     v0->unk_08 = param1;
     v0->unk_28 = StringTemplate_Default(11);
     v0->unk_2C = MessageLoader_Init(0, 26, 11, HEAP_ID_FIELDMAP);
-    v0->unk_0C = Strbuf_Init((100 * 2), 11);
-    v0->unk_10 = Strbuf_Init((100 * 2), 11);
+    v0->unk_0C = Strbuf_Init((100 * 2), HEAP_ID_FIELDMAP);
+    v0->unk_10 = Strbuf_Init((100 * 2), HEAP_ID_FIELDMAP);
 
     Window_Init(&v0->unk_14);
     Window_Init(&v0->unk_54);
@@ -1011,8 +1011,8 @@ static BOOL sub_0205B140(FieldTask *param0)
     case 0:
         v1->unk_18 = StringTemplate_Default(4);
         v1->unk_1C = MessageLoader_Init(0, 26, 11, HEAP_ID_FIELD);
-        v1->unk_00 = Strbuf_Init((100 * 2), 4);
-        v1->unk_04 = Strbuf_Init((100 * 2), 4);
+        v1->unk_00 = Strbuf_Init((100 * 2), HEAP_ID_FIELD);
+        v1->unk_04 = Strbuf_Init((100 * 2), HEAP_ID_FIELD);
 
         MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));

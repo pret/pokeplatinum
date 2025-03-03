@@ -1574,7 +1574,7 @@ void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1)
     Strbuf *v0;
     TextColor v1;
 
-    v0 = Strbuf_Init(12, 21);
+    v0 = Strbuf_Init(12, HEAP_ID_21);
 
     Pokemon_GetValue(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_NICKNAME_STRBUF, v0);
 

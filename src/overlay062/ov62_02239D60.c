@@ -973,8 +973,8 @@ static void ov62_0223AC58(UnkStruct_0208C06C *param0, int param1)
 
     v1 = &v0->unk_1B4[2];
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, v6);
-    v3 = Strbuf_Init(255, 102);
-    v4 = Strbuf_Init(255, 102);
+    v3 = Strbuf_Init(255, HEAP_ID_102);
+    v4 = Strbuf_Init(255, HEAP_ID_102);
     v5 = ov62_02231690(102);
 
     Strbuf_CopyChars(v3, v0->unk_38C[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00.unk_00);
@@ -998,7 +998,7 @@ static void ov62_0223AD20(UnkStruct_0208C06C *param0)
     int v3;
 
     v1 = &v0->unk_1B4[1];
-    v2 = Strbuf_Init(255, 102);
+    v2 = Strbuf_Init(255, HEAP_ID_102);
 
     Strbuf_CopyChars(v2, v0->unk_04.unk_00);
     Window_FillTilemap(v1, Unk_ov62_02248D78[1]);
@@ -1047,7 +1047,7 @@ static void ov62_0223ADC0(UnkStruct_0208C06C *param0, int param1)
         return;
     }
 
-    v2 = Strbuf_Init(255, 102);
+    v2 = Strbuf_Init(255, HEAP_ID_102);
 
     if (ov62_0223ADB0(v0->unk_04.unk_154, (1 << v0->unk_1B0)) == 1) {
         v4 = SPECIES_EGG;
@@ -1791,11 +1791,11 @@ static void ov62_0223BE7C(UnkStruct_0208C06C *param0)
     UnkStruct_ov62_02239DBC *v1 = param0->unk_860;
 
     for (v0 = 0; v0 < v1->unk_380.unk_08; v0++) {
-        v1->unk_2E0C[v0][1] = Strbuf_Init(20, 102);
+        v1->unk_2E0C[v0][1] = Strbuf_Init(20, HEAP_ID_102);
         Strbuf_CopyChars(v1->unk_2E0C[v0][1], v1->unk_38C[v0]->unk_00.unk_00);
         ov62_022349A8(param0, v1->unk_2E0C[v0][1]);
 
-        v1->unk_2E0C[v0][0] = Strbuf_Init(30, 102);
+        v1->unk_2E0C[v0][0] = Strbuf_Init(30, HEAP_ID_102);
         Strbuf_CopyChars(v1->unk_2E0C[v0][0], v1->unk_38C[v0]->unk_80.unk_00);
     }
 }

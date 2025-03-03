@@ -488,7 +488,7 @@ void sub_0205C820(MapObjectManager *mapObjMan, UnkStruct_0205C22C *param1)
 
 static void sub_0205C8DC(UnkStruct_0205C924 *param0)
 {
-    param0->unk_00 = Strbuf_Init(7 + 1, 89);
+    param0->unk_00 = Strbuf_Init(7 + 1, HEAP_ID_89);
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
 

@@ -929,7 +929,7 @@ static BOOL sub_02068EFC(UnkStruct_02068870 *param0)
     UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
-    v0->unk_10 = Strbuf_Init(128, 11);
+    v0->unk_10 = Strbuf_Init(128, HEAP_ID_FIELDMAP);
 
     sub_0207CC10(param0->fieldSystem->saveData, v0->unk_10, Bag_GetRegisteredItem(SaveData_GetBag(param0->fieldSystem->saveData)), 11);
     FieldSystem_CreateTask(param0->fieldSystem, sub_02068F48, v0);
@@ -1188,7 +1188,7 @@ static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1)
     UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
-    v0->unk_10 = Strbuf_Init(128, 11);
+    v0->unk_10 = Strbuf_Init(128, HEAP_ID_FIELDMAP);
 
     sub_0207CD34(SaveData_GetTrainerInfo(param0->fieldSystem->saveData), v0->unk_10, param0->unk_28, param1, 11);
     FieldSystem_CreateTask(param0->fieldSystem, sub_02068F48, v0);

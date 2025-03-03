@@ -170,8 +170,8 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     v0->unk_24 = MessageLoader_Init(0, 26, 671, HEAP_ID_117);
     v0->unk_28 = MessageLoader_Init(0, 26, 674, HEAP_ID_117);
     v0->unk_2C = MessageLoader_Init(0, 26, 695, HEAP_ID_117);
-    v0->unk_34 = Strbuf_Init((90 * 2), 117);
-    v0->unk_3C = Strbuf_Init((16 * 8 * 2), 117);
+    v0->unk_34 = Strbuf_Init((90 * 2), HEAP_ID_117);
+    v0->unk_3C = Strbuf_Init((16 * 8 * 2), HEAP_ID_117);
     v0->unk_38 = MessageLoader_GetNewStrbuf(v0->unk_24, 31);
 
     ov61_0222C3B0(v0);
@@ -495,7 +495,7 @@ void ov61_0222C760(Window *param0, Strbuf *param1, int param2, int param3, int p
 
 static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1)
 {
-    Strbuf *v0 = Strbuf_Init((16 * 8 * 2), 117);
+    Strbuf *v0 = Strbuf_Init((16 * 8 * 2), HEAP_ID_117);
 
     MessageLoader_GetStrbuf(param0->unk_2C, param1, v0);
     StringTemplate_Format(param0->unk_20, param0->unk_3C, v0);

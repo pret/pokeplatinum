@@ -1411,10 +1411,10 @@ static void ov65_0222EBE0(UnkStruct_ov65_0222EBE0 *param0)
     int v0;
     int v1;
 
-    param0->unk_174 = Strbuf_Init((190 * 2), 54);
-    param0->unk_17C = Strbuf_Init((190 * 2), 54);
-    param0->unk_170 = Strbuf_Init((190 * 2), 54);
-    param0->unk_178 = Strbuf_Init((90 * 2), 54);
+    param0->unk_174 = Strbuf_Init((190 * 2), HEAP_ID_54);
+    param0->unk_17C = Strbuf_Init((190 * 2), HEAP_ID_54);
+    param0->unk_170 = Strbuf_Init((190 * 2), HEAP_ID_54);
+    param0->unk_178 = Strbuf_Init((90 * 2), HEAP_ID_54);
     param0->unk_3A8 = 0;
 }
 

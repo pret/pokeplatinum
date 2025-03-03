@@ -140,7 +140,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
             v0->unk_00 = OverlayManager_Args(param0);
             v0->unk_04 = 0;
             v0->unk_08 = BgConfig_New(HEAP_ID_57);
-            v0->unk_14 = Strbuf_Init(400, 57);
+            v0->unk_14 = Strbuf_Init(400, HEAP_ID_57);
             v0->unk_10 = MessageLoader_Init(0, 26, 350, HEAP_ID_57);
             v0->unk_0C = StringTemplate_Default(57);
 

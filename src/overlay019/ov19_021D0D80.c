@@ -3230,7 +3230,7 @@ static void ov19_021D4E50(UnkStruct_ov19_021D5594 *param0)
 static void ov19_021D4E5C(PCBoxes *param0, UnkStruct_ov19_021D4F5C *param1)
 {
     param1->unk_00 = sub_0207999C(param0);
-    param1->unk_04 = Strbuf_Init(20, 9);
+    param1->unk_04 = Strbuf_Init(20, HEAP_ID_9);
     ov19_021D4F40(param0, param1);
 }
 
@@ -3241,11 +3241,11 @@ static void ov19_021D4E7C(UnkStruct_ov19_021D4F5C *param0)
 
 static void ov19_021D4E88(UnkStruct_ov19_021D5BAC *param0)
 {
-    param0->unk_14 = Strbuf_Init(12, 9);
-    param0->unk_18 = Strbuf_Init(12, 9);
-    param0->unk_1C = Strbuf_Init(18, 9);
-    param0->unk_20 = Strbuf_Init(12, 9);
-    param0->unk_24 = Strbuf_Init(16, 9);
+    param0->unk_14 = Strbuf_Init(12, HEAP_ID_9);
+    param0->unk_18 = Strbuf_Init(12, HEAP_ID_9);
+    param0->unk_1C = Strbuf_Init(18, HEAP_ID_9);
+    param0->unk_20 = Strbuf_Init(12, HEAP_ID_9);
+    param0->unk_24 = Strbuf_Init(16, HEAP_ID_9);
 }
 
 static void ov19_021D4EC0(UnkStruct_ov19_021D5BAC *param0)
@@ -3267,8 +3267,8 @@ static void ov19_021D4EE4(UnkStruct_ov19_021D4EE4 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_02[v0] = 0;
-        param0->unk_08[v0].unk_28 = Strbuf_Init(12, 9);
-        param0->unk_08[v0].unk_2C = Strbuf_Init(12, 9);
+        param0->unk_08[v0].unk_28 = Strbuf_Init(12, HEAP_ID_9);
+        param0->unk_08[v0].unk_2C = Strbuf_Init(12, HEAP_ID_9);
     }
 }
 

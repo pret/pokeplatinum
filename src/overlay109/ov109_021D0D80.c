@@ -2022,10 +2022,10 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
         Window_AddFromTemplate(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);
     }
 
-    v1->unk_6C = Strbuf_Init(0x100, 95);
+    v1->unk_6C = Strbuf_Init(0x100, HEAP_ID_95);
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_2C.unk_6C[v0] = Strbuf_Init(7 + 1, 95);
+        param0->unk_2C.unk_6C[v0] = Strbuf_Init(7 + 1, HEAP_ID_95);
     }
 
     ov109_021D27AC(param0, param0->unk_CC->unk_08);
@@ -2074,7 +2074,7 @@ static void ov109_021D268C(UnkStruct_ov109_021D0F70 *param0, u32 param1, const T
     StringTemplate_SetPlayerName(v1->unk_08, 1, CommInfo_TrainerInfo(CommSys_CurNetId()));
     StringTemplate_SetPlayerName(v1->unk_08, 2, param2);
 
-    v0 = Strbuf_Init(0x100, 95);
+    v0 = Strbuf_Init(0x100, HEAP_ID_95);
 
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
@@ -2093,7 +2093,7 @@ static void ov109_021D2714(UnkStruct_ov109_021D0F70 *param0, u32 param1, u32 par
 
     StringTemplate_SetItemName(v1->unk_08, 0, param2);
 
-    v0 = Strbuf_Init(0x100, 95);
+    v0 = Strbuf_Init(0x100, HEAP_ID_95);
 
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);

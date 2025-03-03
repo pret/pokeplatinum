@@ -400,8 +400,8 @@ int ov71_0223B5B8(OverlayManager *param0, int *param1)
 
 static void ov71_0223B620(UnkStruct_ov71_0223B620 *param0)
 {
-    param0->unk_336C = Strbuf_Init(3 + 1, 25);
-    param0->unk_3370 = Strbuf_Init(5, 25);
+    param0->unk_336C = Strbuf_Init(3 + 1, HEAP_ID_25);
+    param0->unk_3370 = Strbuf_Init(5, HEAP_ID_25);
 
     {
         MessageLoader *v0;

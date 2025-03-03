@@ -494,7 +494,7 @@ static void ov94_02241880(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_022418B8(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_BAC = Strbuf_Init((90 * 2), 62);
+    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
     param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 90);
     param0->unk_10E4 = Heap_AllocFromHeap(HEAP_ID_62, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
@@ -966,8 +966,8 @@ void ov94_02242368(MessageLoader *param0, MessageLoader *param1, StringTemplate 
 static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window param2[], BoxPokemon *param3, UnkStruct_ov94_0223BA88_sub2 *param4)
 {
     Strbuf *v0, *v1;
-    Strbuf *v2 = Strbuf_Init(10 + 1, 62);
-    Strbuf *v3 = Strbuf_Init(10 + 1, 62);
+    Strbuf *v2 = Strbuf_Init(10 + 1, HEAP_ID_62);
+    Strbuf *v3 = Strbuf_Init(10 + 1, HEAP_ID_62);
     int v4, v5, v6;
 
     BoxPokemon_GetValue(param3, MON_DATA_NICKNAME_STRBUF, v2);

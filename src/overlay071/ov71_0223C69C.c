@@ -82,7 +82,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     Window_FillRectWithColor(&param0[6], 0, 0, 0, 28 * 8, 2 * 8);
 
     v1 = MessageLoader_Init(0, 26, 616, HEAP_ID_25);
-    v2 = Strbuf_Init(32, 25);
+    v2 = Strbuf_Init(32, HEAP_ID_25);
 
     for (v0 = 0; v0 < 7; v0++) {
         if ((v0 != 3) || (v0 == 3) && (param1->unk_04_3)) {
@@ -92,7 +92,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     }
 
     {
-        Strbuf* v3 = Strbuf_Init(32, 25);
+        Strbuf* v3 = Strbuf_Init(32, HEAP_ID_25);
         StringTemplate * v4 = StringTemplate_New(6, 32, 25);
 
         ov71_0223CD64(&param0[0], (8 * 17), 0, 0, v2, param1->unk_28, 5, 2);
@@ -564,8 +564,8 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
     {
         u32 v1;
         MessageLoader * v2 = MessageLoader_Init(0, 26, 616, HEAP_ID_25);
-        Strbuf* v3 = Strbuf_Init(32, 25);
-        Strbuf* v4 = Strbuf_Init(32, 25);
+        Strbuf* v3 = Strbuf_Init(32, HEAP_ID_25);
+        Strbuf* v4 = Strbuf_Init(32, HEAP_ID_25);
         StringTemplate * v5 = StringTemplate_New((1 + 1), 32, 25);
 
         StringTemplate_SetNumber(v5, 0, PlayTime_GetHours(param1->playTime), 3, 1, 1);

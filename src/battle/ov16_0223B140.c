@@ -616,7 +616,7 @@ static void ov16_0223B790(OverlayManager *param0)
     battleSys->unk_0C = MessageLoader_Init(1, 26, 368, HEAP_ID_BATTLE);
     battleSys->unk_10 = MessageLoader_Init(1, 26, 0, HEAP_ID_BATTLE);
     battleSys->strFormatter = StringTemplate_Default(5);
-    battleSys->msgBuffer = Strbuf_Init((2 * 160), 5);
+    battleSys->msgBuffer = Strbuf_Init((2 * 160), HEAP_ID_BATTLE);
 
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->unk_28, 0), &battleSys->unk_2224[0], 0x20 * 7);
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->unk_28, 2), &battleSys->unk_2304[0], 0x20 * 7);
@@ -1737,7 +1737,7 @@ static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
         Strbuf *v6;
 
         v5 = MessageLoader_Init(1, 26, 368, HEAP_ID_BATTLE);
-        v6 = Strbuf_Init(0x100, 5);
+        v6 = Strbuf_Init(0x100, HEAP_ID_BATTLE);
 
         MessageLoader_GetStrbuf(v5, 923, v6);
         Text_AddPrinterWithParams(v0->unk_08, FONT_MESSAGE, v6, 0, 0, NULL, NULL);

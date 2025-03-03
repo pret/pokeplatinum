@@ -804,11 +804,11 @@ static void ov106_02242500(UnkStruct_ov106_02243118 *param0)
 
     param0->unk_20 = MessageLoader_Init(1, 26, 549, HEAP_ID_98);
     param0->unk_24 = StringTemplate_Default(98);
-    param0->unk_28 = Strbuf_Init(600, 98);
-    param0->unk_2C = Strbuf_Init(600, 98);
+    param0->unk_28 = Strbuf_Init(600, HEAP_ID_98);
+    param0->unk_2C = Strbuf_Init(600, HEAP_ID_98);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_30[v0] = Strbuf_Init(32, 98);
+        param0->unk_30[v0] = Strbuf_Init(32, HEAP_ID_98);
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_98);
@@ -1133,7 +1133,7 @@ static void ov106_02242AC4(UnkStruct_ov106_02243118 *param0, Window *param1, u32
     Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
     Window_FillTilemap(param1, param6);
 
-    v4 = Strbuf_Init((10 + 1), 98);
+    v4 = Strbuf_Init((10 + 1), HEAP_ID_98);
     Strbuf_CopyChars(v4, v6);
     Text_AddPrinterWithParamsAndColor(param1, param7, v4, param2, param3, TEXT_SPEED_INSTANT, TEXT_COLOR(param4, param5, param6), NULL);
     Strbuf_Free(v4);
@@ -1151,7 +1151,7 @@ static void ov106_02242B38(UnkStruct_ov106_02243118 *param0, Window *param1, u8 
     Window_FillTilemap(param1, param4);
 
     v3 = MessageLoader_Init(1, 26, 624, HEAP_ID_98);
-    v2 = Strbuf_Init((10 + 1), 98);
+    v2 = Strbuf_Init((10 + 1), HEAP_ID_98);
 
     for (v0 = 0; v0 < 5; v0++) {
         for (v1 = 0; v1 < 4; v1++) {

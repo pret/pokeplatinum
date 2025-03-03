@@ -2639,7 +2639,7 @@ static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
     Strbuf *v2;
 
     v1 = SaveData_GetTrainerInfo(param0->unk_13C);
-    v2 = Strbuf_Init((7 + 1), 93);
+    v2 = Strbuf_Init((7 + 1), HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
     Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
@@ -2664,7 +2664,7 @@ static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
     TrainerInfo *v2;
 
     v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-    v1 = Strbuf_Init((7 + 1), 93);
+    v1 = Strbuf_Init((7 + 1), HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
     TrainerInfo_NameStrbuf(v2, v1);
@@ -2695,7 +2695,7 @@ static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
     Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
     Window_FillTilemap(param1, param7);
 
-    v4 = Strbuf_Init((10 + 1), 93);
+    v4 = Strbuf_Init((10 + 1), HEAP_ID_93);
     Strbuf_CopyChars(v4, v6);
     Text_AddPrinterWithParamsAndColor(param1, param8, v4, param3, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param5, param6, param7), NULL);
 
@@ -2841,11 +2841,11 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
 
     param0->unk_1C = MessageLoader_Init(1, 26, 364, HEAP_ID_93);
     param0->unk_20 = StringTemplate_Default(93);
-    param0->unk_24 = Strbuf_Init(800, 93);
-    param0->unk_28 = Strbuf_Init(800, 93);
+    param0->unk_24 = Strbuf_Init(800, HEAP_ID_93);
+    param0->unk_28 = Strbuf_Init(800, HEAP_ID_93);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_2C[v0] = Strbuf_Init(64, 93);
+        param0->unk_2C[v0] = Strbuf_Init(64, HEAP_ID_93);
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_93);

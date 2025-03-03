@@ -1364,7 +1364,7 @@ static void ov22_02257368(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
     v0 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
     v2 = MessageLoader_GetNewStrbuf(v0, param1);
-    v1 = Strbuf_Init(256, 13);
+    v1 = Strbuf_Init(256, HEAP_ID_13);
 
     StringTemplate_Format(param0->unk_744, v1, v2);
     Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
@@ -1387,7 +1387,7 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
     v1 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
     v3 = MessageLoader_GetNewStrbuf(v1, param1);
-    param0->unk_740 = Strbuf_Init(256, 13);
+    param0->unk_740 = Strbuf_Init(256, HEAP_ID_13);
 
     StringTemplate_Format(param0->unk_744, param0->unk_740, v3);
 

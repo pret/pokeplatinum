@@ -296,8 +296,8 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
 
     v0->unk_0C = OverlayManager_Args(param0);
     v0->unk_1C50 = MessageLoader_Init(0, 26, 351, HEAP_ID_63);
-    v0->unk_1C48 = Strbuf_Init(500, 63);
-    v0->unk_1C4C = Strbuf_Init(500, 63);
+    v0->unk_1C48 = Strbuf_Init(500, HEAP_ID_63);
+    v0->unk_1C4C = Strbuf_Init(500, HEAP_ID_63);
     v0->unk_1C44 = StringTemplate_Default(63);
     v0->unk_1C54 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 63);
 

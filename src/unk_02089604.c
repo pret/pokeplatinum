@@ -751,7 +751,7 @@ void sub_02089F80(UnkStruct_02089688 *param0)
 {
     int v0;
     u32 v1 = 0;
-    Strbuf *v2 = Strbuf_Init(100, 101);
+    Strbuf *v2 = Strbuf_Init(100, HEAP_ID_101);
 
     param0->unk_240[1].unk_00 = 1;
     param0->unk_240[1].unk_14.unk_04 = 0;

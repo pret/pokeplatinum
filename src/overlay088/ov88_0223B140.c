@@ -1282,7 +1282,7 @@ static void ov88_0223C860(Window *param0, Party *param1, int param2, int param3,
 {
     Strbuf *v0;
 
-    v0 = Strbuf_Init(20, 26);
+    v0 = Strbuf_Init(20, HEAP_ID_26);
 
     Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRBUF, v0);
     Window_FillTilemap(param0, 0);
@@ -1350,7 +1350,7 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
     }
 
     if (!param4->unk_6F4[param1 * 6 + param3].unk_05) {
-        v0 = Strbuf_Init(10, 26);
+        v0 = Strbuf_Init(10, HEAP_ID_26);
         Window_FillTilemap(&param0[28 + param1], 0);
         MessageLoader_GetStrbuf(param4->unk_184, 41, v0);
         ov88_0223EC78(&param0[28 + param1], v0, 9, TEXT_SPEED_NO_TRANSFER, 6, 0);
@@ -1368,7 +1368,7 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
     v2 = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_HELD_ITEM, NULL);
     Window_FillTilemap(&param0[32 + param1], 0);
 
-    v1 = Strbuf_Init(20, 26);
+    v1 = Strbuf_Init(20, HEAP_ID_26);
     Item_LoadName(v1, v2, 26);
     ov88_0223EC78(&param0[32 + param1], v1, 9, TEXT_SPEED_INSTANT, 3, 0);
     Strbuf_Free(v1);
@@ -1906,7 +1906,7 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
 
     {
         MessageLoader *v3;
-        Strbuf *v4 = Strbuf_Init(100, 26);
+        Strbuf *v4 = Strbuf_Init(100, HEAP_ID_26);
         int v5 = 0;
 
         for (v5 = 0; v5 < 32; v5++) {

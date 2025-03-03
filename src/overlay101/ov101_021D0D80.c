@@ -440,7 +440,7 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
         Window_AddFromTemplate(param0->unk_43C, &v1->unk_08[v0], &Unk_ov101_021D8588[v0]);
     }
 
-    v1->unk_18 = Strbuf_Init(256, 79);
+    v1->unk_18 = Strbuf_Init(256, HEAP_ID_79);
 }
 
 void ov101_021D1458(UnkStruct_ov101_021D13C8 *param0)

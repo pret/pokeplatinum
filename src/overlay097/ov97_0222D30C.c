@@ -868,7 +868,7 @@ static void ov97_0222DF10(OverlayManager *param0, Window *param1, u16 *param2)
     Strbuf *v0;
     UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
 
-    v0 = Strbuf_Init(36 + 1, 86);
+    v0 = Strbuf_Init(36 + 1, HEAP_ID_86);
 
     Strbuf_CopyNumChars(v0, param2, 36);
     Window_FillTilemap(param1, Font_GetAttribute(FONT_SYSTEM, FONTATTR_BG_COLOR));

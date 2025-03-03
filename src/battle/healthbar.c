@@ -1345,7 +1345,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     v0 = BattleSystem_BGL(param0->battleSys);
     v4 = BattleSystem_MessageLoader(param0->battleSys);
     v7 = BattleSystem_StringTemplate(param0->battleSys);
-    v5 = Strbuf_Init(30, 5);
+    v5 = Strbuf_Init(30, HEAP_ID_BATTLE);
 
     if (param1 & (1 << 10)) {
         v6 = MessageLoader_GetNewStrbuf(v4, 951);

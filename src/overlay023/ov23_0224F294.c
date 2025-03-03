@@ -430,8 +430,8 @@ void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
     v0->unk_260 = param0;
     v0->unk_2AA = 0;
-    v0->unk_68 = Strbuf_Init((50 * 2), 4);
-    v0->unk_6C = Strbuf_Init((50 * 2), 4);
+    v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+    v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     v0->unk_70 = StringTemplate_Default(4);
     v0->unk_04 = SysTask_Start(ov23_0224F914, v0, 10000);
 
@@ -1423,8 +1423,8 @@ void ov23_02250A50(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
     v0->unk_260 = param0;
     v0->unk_2AA = 0;
-    v0->unk_68 = Strbuf_Init((50 * 2), 4);
-    v0->unk_6C = Strbuf_Init((50 * 2), 4);
+    v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+    v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     v0->unk_70 = StringTemplate_Default(4);
 
     sub_020594FC();
@@ -1850,8 +1850,8 @@ void *ov23_022511B0(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     v0->unk_25C = 0;
     v0->unk_48 = NULL;
     v0->unk_60 = NULL;
-    v0->unk_68 = Strbuf_Init((50 * 2), 4);
-    v0->unk_6C = Strbuf_Init((50 * 2), 4);
+    v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+    v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     v0->unk_70 = StringTemplate_Default(4);
 
     ov23_02250CD4(v0);

@@ -289,7 +289,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     v0.z = 0;
     Sprite_SetPosition(param0->unk_1FC, &v0);
 
-    v7 = Strbuf_Init(12, 13);
+    v7 = Strbuf_Init(12, HEAP_ID_13);
     sub_0202A1A0(param0->unk_00, v7);
 
     v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v7, 0);
@@ -302,7 +302,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     v4 = sub_0202A1F4(param0->unk_00);
     StringTemplate_SetCustomMessageWord(v5, 0, v4);
 
-    v7 = Strbuf_Init(200, 13);
+    v7 = Strbuf_Init(200, HEAP_ID_13);
     v6 = MessageLoader_GetNewStrbuf(v8, 45);
     StringTemplate_Format(v5, v7, v6);
 
@@ -334,7 +334,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
 
     v0 = sub_0202A5D0(param0->unk_04);
     v1 = StringTemplate_Default(13);
-    v2 = Strbuf_Init(200, 13);
+    v2 = Strbuf_Init(200, HEAP_ID_13);
 
     StringTemplate_SetContestTypeName(v1, 0, sub_020958B8(param0->unk_08));
     StringTemplate_SetContestRankName(v1, 1, sub_02095888(v0));

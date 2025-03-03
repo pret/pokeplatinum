@@ -181,7 +181,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
 
     v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 209, HEAP_ID_22);
     v0->unk_0C.unk_3C = StringTemplate_Default(22);
-    v0->unk_0C.unk_40 = Strbuf_Init((2 * 160), 22);
+    v0->unk_0C.unk_40 = Strbuf_Init((2 * 160), HEAP_ID_22);
 
     {
         NARC *v1;
