@@ -220,7 +220,7 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov85_022417E4), 36);
     memset(v0, 0, sizeof(UnkStruct_ov85_022417E4));
     v0->unk_1F8 = OverlayManager_Args(param0);
-    v0->unk_00 = BgConfig_New(36);
+    v0->unk_00 = BgConfig_New(HEAP_ID_36);
     v0->unk_1FC = BerryData_Load(v0->unk_1F8->unk_08, 36);
 
     sub_0208C120(0, 36);

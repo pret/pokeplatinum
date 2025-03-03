@@ -461,7 +461,7 @@ int ov107_02241AE0 (OverlayManager * param0, int * param1)
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov107_02241D6C), 100);
     memset(v1, 0, sizeof(UnkStruct_ov107_02241D6C));
 
-    v1->unk_4C = BgConfig_New(100);
+    v1->unk_4C = BgConfig_New(HEAP_ID_100);
     v1->unk_00 = param0;
     v2 = (UnkStruct_ov104_0223597C *)OverlayManager_Args(param0);
     v1->unk_1CC = v2->unk_00;

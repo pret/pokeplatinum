@@ -53,7 +53,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     VramTransfer_New(4, 102);
 
     param0->unk_14.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, 102);
-    param0->unk_14.unk_10 = BgConfig_New(102);
+    param0->unk_14.unk_10 = BgConfig_New(HEAP_ID_102);
     param0->unk_14.unk_14 = PaletteData_New(102);
     param0->unk_14.unk_4C = sub_02024220(102, 0, 1, 0, 4, NULL);
     param0->unk_14.unk_50 = sub_0200762C(102);

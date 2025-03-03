@@ -196,7 +196,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         ov5_021D154C();
 
         GXLayers_SwapDisplay();
-        fieldSystem->bgConfig = BgConfig_New(4);
+        fieldSystem->bgConfig = BgConfig_New(HEAP_ID_FIELD);
         ov5_021D1444(fieldSystem->bgConfig);
         FieldMessage_LoadTextPalettes(0, TRUE);
         sub_0203F5C0(fieldSystem, 4);

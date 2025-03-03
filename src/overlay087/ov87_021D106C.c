@@ -89,7 +89,7 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
     if (v0) {
         v0->unk_00 = param0;
         v0->unk_04 = param1;
-        v0->unk_10 = BgConfig_New(61);
+        v0->unk_10 = BgConfig_New(HEAP_ID_61);
 
         NNS_G2dInitOamManagerModule();
         RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 61);

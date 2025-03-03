@@ -154,7 +154,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
 
     if (v0 != NULL) {
         v0->unk_1C4 = param1;
-        v0->unk_1C0 = BgConfig_New(10);
+        v0->unk_1C0 = BgConfig_New(HEAP_ID_10);
 
         if (v0->unk_1C0 != NULL) {
             u32 v1;

@@ -760,7 +760,7 @@ static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
 {
     param0->unk_48.unk_00 = NARC_ctor(NARC_INDEX_ARC__MANENE, 106);
     param0->unk_48.unk_04 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, 106);
-    param0->unk_48.unk_10 = BgConfig_New(106);
+    param0->unk_48.unk_10 = BgConfig_New(HEAP_ID_106);
     param0->unk_48.unk_14 = PaletteData_New(106);
     param0->unk_48.unk_18 = sub_02024220(106, 0, 1, 0, 4, NULL);
     param0->unk_48.camera = Camera_Alloc(106);

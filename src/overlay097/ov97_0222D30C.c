@@ -1079,7 +1079,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_0222D04C), 86);
     memset(v0, 0, sizeof(UnkStruct_ov97_0222D04C));
-    v0->unk_00 = BgConfig_New(86);
+    v0->unk_00 = BgConfig_New(HEAP_ID_86);
 
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();

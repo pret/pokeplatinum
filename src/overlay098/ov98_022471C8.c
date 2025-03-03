@@ -301,7 +301,7 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02247704));
 
     v0->unk_00 = OverlayManager_Args(param0);
-    v0->unk_04 = BgConfig_New(109);
+    v0->unk_04 = BgConfig_New(HEAP_ID_109);
 
     VramTransfer_New(64, 109);
     SetAutorepeat(4, 8);

@@ -74,7 +74,7 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov96_0223BF40), 68);
         memset(v0, 0, sizeof(UnkStruct_ov96_0223BF40));
-        v0->unk_04 = BgConfig_New(68);
+        v0->unk_04 = BgConfig_New(HEAP_ID_68);
         Unk_ov96_0223DEEC = v0;
 
         {

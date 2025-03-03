@@ -77,7 +77,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     v1->unk_04.unk_34 = ov119_021D0DD4();
     v1->unk_04.unk_38 = sub_0200762C(71);
     v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 71);
-    v1->unk_04.unk_00 = BgConfig_New(71);
+    v1->unk_04.unk_00 = BgConfig_New(HEAP_ID_71);
 
     VramTransfer_New(64, 71);
 

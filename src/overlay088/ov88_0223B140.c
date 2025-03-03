@@ -290,7 +290,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
 
-    v0->unk_174 = BgConfig_New(26);
+    v0->unk_174 = BgConfig_New(HEAP_ID_26);
     v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, 26);
     v0->unk_17C = StringTemplate_Default(26);
     v0->unk_180 = StringTemplate_Default(26);

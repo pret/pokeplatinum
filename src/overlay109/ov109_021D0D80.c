@@ -1677,7 +1677,7 @@ static void ov109_021D1E1C(UnkStruct_ov109_021D0F70 *param0)
 
 static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
 {
-    param0->unk_D84 = BgConfig_New(95);
+    param0->unk_D84 = BgConfig_New(HEAP_ID_95);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     {

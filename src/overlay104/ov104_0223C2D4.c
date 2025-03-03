@@ -157,7 +157,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     PaletteData_AllocBuffer(v0->unk_04, 2, 0x200 - 0x40, 94);
     PaletteData_AllocBuffer(v0->unk_04, 3, 0x200, 94);
 
-    v0->unk_00 = BgConfig_New(94);
+    v0->unk_00 = BgConfig_New(HEAP_ID_94);
 
     VramTransfer_New(64, 94);
     SetAutorepeat(4, 8);

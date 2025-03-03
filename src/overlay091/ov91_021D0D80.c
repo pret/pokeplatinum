@@ -439,7 +439,7 @@ static void ov91_021D0ED8(UnkStruct_ov91_021D0ED8 *param0)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    param0->unk_04 = BgConfig_New(67);
+    param0->unk_04 = BgConfig_New(HEAP_ID_67);
 
     sub_0208C120(0, 67);
 

@@ -95,7 +95,7 @@ void ov22_022550D4(UnkStruct_ov22_0225A0E4 *param0)
     ov22_02255BF4(param0, 13);
     ov22_022559F8(param0);
 
-    param0->unk_40 = BgConfig_New(14);
+    param0->unk_40 = BgConfig_New(HEAP_ID_14);
 
     ov22_02255860(param0);
 }
@@ -397,7 +397,7 @@ void ov22_022555D4(UnkStruct_ov22_0225A0E4 *param0, int param1)
 {
     param0->unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, 14);
     ov22_022559F8(param0);
-    param0->unk_40 = BgConfig_New(14);
+    param0->unk_40 = BgConfig_New(HEAP_ID_14);
     ov22_02255860(param0);
 }
 

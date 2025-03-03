@@ -670,7 +670,7 @@ static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
         0
     };
 
-    param0->unk_10 = BgConfig_New(63);
+    param0->unk_10 = BgConfig_New(HEAP_ID_63);
 
     GXLayers_SetBanks(&v1);
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);

@@ -165,7 +165,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     PaletteData_AllocBuffer(v0->unk_10.unk_C0, 2, (((16 - 2) * 16) * sizeof(u16)), 24);
     PaletteData_AllocBuffer(v0->unk_10.unk_C0, 3, 0x200, 24);
 
-    v0->unk_10.unk_20 = BgConfig_New(24);
+    v0->unk_10.unk_20 = BgConfig_New(HEAP_ID_24);
 
     VramTransfer_New(64, 24);
     SetAutorepeat(4, 8);

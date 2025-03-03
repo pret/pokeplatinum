@@ -158,7 +158,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     memset(v0, 0, sizeof(UnkStruct_ov71_0223B620));
 
     v0->unk_B4 = OverlayManager_Args(param0);
-    v0->unk_00 = BgConfig_New(25);
+    v0->unk_00 = BgConfig_New(HEAP_ID_25);
 
     ov71_0223B620(v0);
     ov71_0223B688();

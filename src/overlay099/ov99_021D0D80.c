@@ -116,7 +116,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, 75);
     PaletteData_SetAutoTransparent(v0->unk_0C, 1);
 
-    v0->unk_08 = BgConfig_New(75);
+    v0->unk_08 = BgConfig_New(HEAP_ID_75);
 
     VramTransfer_New(64, 75);
     SetAutorepeat(4, 8);
@@ -332,7 +332,7 @@ void ov99_021D12F0(UnkStruct_ov99_021D2CB0 *param0)
 
     ov99_021D1270(param0);
 
-    param0->unk_08 = BgConfig_New(75);
+    param0->unk_08 = BgConfig_New(HEAP_ID_75);
     ov99_021D1580(param0->unk_08);
 }
 

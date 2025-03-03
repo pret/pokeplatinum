@@ -194,7 +194,7 @@ int ov106_02241AE0(OverlayManager *param0, int *param1)
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov106_02243118), 98);
     memset(v1, 0, sizeof(UnkStruct_ov106_02243118));
 
-    v1->unk_48 = BgConfig_New(98);
+    v1->unk_48 = BgConfig_New(HEAP_ID_98);
     v1->unk_00 = param0;
 
     v2 = (UnkStruct_ov104_02235208 *)OverlayManager_Args(param0);
@@ -768,7 +768,7 @@ static void ov106_0224248C(UnkStruct_ov106_02243118 *param0)
     int v0;
 
     ov106_022424C8();
-    param0->unk_48 = BgConfig_New(98);
+    param0->unk_48 = BgConfig_New(HEAP_ID_98);
     ov106_02242500(param0);
 
     if (ov104_0223B5A4(param0->unk_0D) == 0xfe) {

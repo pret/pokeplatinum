@@ -113,7 +113,7 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
 
     v0->unk_00 = 0;
     v0->fieldSystem = fieldSystem;
-    v0->unk_08 = BgConfig_New(11);
+    v0->unk_08 = BgConfig_New(HEAP_ID_FIELDMAP);
 
     sub_020528D0(v0->unk_08);
 

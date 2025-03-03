@@ -404,7 +404,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
 
     ov84_0223B9AC(v0);
 
-    v0->unk_00 = BgConfig_New(6);
+    v0->unk_00 = BgConfig_New(HEAP_ID_6);
     v0->unk_425 = TrainerInfo_Gender(v0->unk_CC);
 
     StartScreenTransition(1, 3, 3, 0x0, 6, 1, 6);

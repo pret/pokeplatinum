@@ -170,7 +170,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02095EAC), 39);
         memset(v0, 0, sizeof(UnkStruct_02095EAC));
-        v0->unk_00 = BgConfig_New(39);
+        v0->unk_00 = BgConfig_New(HEAP_ID_39);
 
         v0->unk_0C = StringTemplate_Default(39);
         v0->unk_10 = MessageLoader_Init(0, 26, 425, 39);

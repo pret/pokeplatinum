@@ -153,7 +153,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     PaletteData_AllocBuffer(v0->unk_0C.unk_44, 2, (((16 - 2) * 16) * sizeof(u16)), 22);
     PaletteData_AllocBuffer(v0->unk_0C.unk_44, 3, 0x200, 22);
 
-    v0->unk_0C.unk_24 = BgConfig_New(22);
+    v0->unk_0C.unk_24 = BgConfig_New(HEAP_ID_22);
 
     VramTransfer_New(64, 22);
     SetAutorepeat(4, 8);

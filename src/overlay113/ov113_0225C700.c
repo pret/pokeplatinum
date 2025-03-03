@@ -369,7 +369,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, 118);
     PaletteData_SetAutoTransparent(v0->unk_0C, 1);
 
-    v0->unk_08 = BgConfig_New(118);
+    v0->unk_08 = BgConfig_New(HEAP_ID_118);
 
     VramTransfer_New(64, 118);
     SetAutorepeat(4, 8);

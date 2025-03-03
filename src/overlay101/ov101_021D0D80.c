@@ -204,7 +204,7 @@ static void ov101_021D0F94(UnkStruct_ov101_021D13C8 *param0)
 
 static void ov101_021D0F9C(UnkStruct_ov101_021D13C8 *param0)
 {
-    param0->unk_43C = BgConfig_New(79);
+    param0->unk_43C = BgConfig_New(HEAP_ID_79);
 
     ov101_021D1098();
     ov101_021D10B8(param0->unk_43C);

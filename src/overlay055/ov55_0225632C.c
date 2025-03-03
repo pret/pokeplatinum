@@ -30,7 +30,7 @@ BOOL ov55_0225632C(UnkStruct_ov55_0225632C **param0, const UnkStruct_ov55_022563
     if (v0 != NULL) {
         PoketchTask_InitActiveTaskList(v0->unk_08, 8);
         v0->unk_00 = param1;
-        v0->unk_04 = BgConfig_New(8);
+        v0->unk_04 = BgConfig_New(HEAP_ID_POKETCH_APP);
 
         if (v0->unk_04 != NULL) {
             *param0 = v0;

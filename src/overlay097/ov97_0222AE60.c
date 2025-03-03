@@ -976,7 +976,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0222AE60), 81);
     memset(v0, 0, sizeof(UnkStruct_0222AE60));
-    v0->unk_00 = BgConfig_New(81);
+    v0->unk_00 = BgConfig_New(HEAP_ID_81);
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
