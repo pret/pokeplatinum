@@ -24,11 +24,11 @@ static void InitializeSpecialMetInfoStrBuf(PokemonInfoDisplayStruct *param0, int
 static void InitializeIVsStrBuf(PokemonInfoDisplayStruct *param0);
 static void InitializeFlavorAffinityStrBuf(PokemonInfoDisplayStruct *param0);
 static void InitializeFriendshipLevelStrBuf(PokemonInfoDisplayStruct *param0);
-static void AssignTrainerInfoToBoxPokemon(BoxPokemon *param0, TrainerInfo *param1, int param2);
-static void SetMetLocationForBoxPokemon(BoxPokemon *param0, int param1, int param2);
-static void ResetBoxPokemonEggStatus(BoxPokemon *param0, int param1);
-static void FinalizeBoxPokemonData(BoxPokemon *param0);
-static void UpdateBoxPokemonAfterCheck(BoxPokemon *param0);
+static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *param1, int param2);
+static void BoxPokemon_SetMetLocationAndDate(BoxPokemon *boxMon, int metLocation, int isHatch);
+static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch);
+static void BoxPokemon_SetMetLevelToCurrentLevel(BoxPokemon *boxMon);
+static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon);
 
 PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int param2)
 {
@@ -762,65 +762,65 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
             metLocation = (SpecialMetLoc_GetId(2, 2));
         }
 
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
-            ResetBoxPokemonEggStatus(boxMon, 0);
-            SetMetLocationForBoxPokemon(boxMon, metLocation, 1);
-            FinalizeBoxPokemonData(boxMon);
+        if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
+            BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, TRUE);
+            BoxPokemon_SetMetLevelToCurrentLevel(boxMon);
         } else {
-            SetMetLocationForBoxPokemon(boxMon, metLocation, 0);
-            ResetBoxPokemonEggStatus(boxMon, 1);
+            BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, FALSE);
+            BoxPokemon_ResetMetLocationAndDate(boxMon, TRUE);
         }
 
         AssignTrainerInfoToBoxPokemon(boxMon, trainerInfo, heapID);
         break;
     case 1:
-        if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
-            ResetBoxPokemonEggStatus(boxMon, 0);
-            SetMetLocationForBoxPokemon(boxMon, (SpecialMetLoc_GetId(1, 1)), 1);
-            FinalizeBoxPokemonData(boxMon);
+        if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
+            BoxPokemon_SetMetLocationAndDate(boxMon, (SpecialMetLoc_GetId(1, 1)), TRUE);
+            BoxPokemon_SetMetLevelToCurrentLevel(boxMon);
         } else {
-            ResetBoxPokemonEggStatus(boxMon, 0);
-            SetMetLocationForBoxPokemon(boxMon, (SpecialMetLoc_GetId(1, 1)), 1);
+            BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
+            BoxPokemon_SetMetLocationAndDate(boxMon, (SpecialMetLoc_GetId(1, 1)), TRUE);
         }
         break;
     case 2:
-        ResetBoxPokemonEggStatus(boxMon, 0);
-        SetMetLocationForBoxPokemon(boxMon, (SpecialMetLoc_GetId(0, 55)), 1);
-        FinalizeBoxPokemonData(boxMon);
+        BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
+        BoxPokemon_SetMetLocationAndDate(boxMon, (SpecialMetLoc_GetId(0, 55)), TRUE);
+        BoxPokemon_SetMetLevelToCurrentLevel(boxMon);
         break;
     case 3:
-        SetMetLocationForBoxPokemon(boxMon, metLocation, 0);
-        ResetBoxPokemonEggStatus(boxMon, 1);
+        BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, FALSE);
+        BoxPokemon_ResetMetLocationAndDate(boxMon, TRUE);
         AssignTrainerInfoToBoxPokemon(boxMon, trainerInfo, heapID);
         break;
     case 4:
         if (sub_0207884C(boxMon, trainerInfo, heapID) == 1) {
-            if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
-                ResetBoxPokemonEggStatus(boxMon, 0);
-                SetMetLocationForBoxPokemon(boxMon, metLocation, 1);
-                FinalizeBoxPokemonData(boxMon);
+            if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+                BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
+                BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, TRUE);
+                BoxPokemon_SetMetLevelToCurrentLevel(boxMon);
             } else {
-                SetMetLocationForBoxPokemon(boxMon, metLocation, 0);
-                ResetBoxPokemonEggStatus(boxMon, 1);
+                BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, FALSE);
+                BoxPokemon_ResetMetLocationAndDate(boxMon, TRUE);
             }
         } else {
-            if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
-                ResetBoxPokemonEggStatus(boxMon, 0);
-                SetMetLocationForBoxPokemon(boxMon, metLocation, 1);
-                FinalizeBoxPokemonData(boxMon);
+            if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == FALSE) {
+                BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
+                BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, TRUE);
+                BoxPokemon_SetMetLevelToCurrentLevel(boxMon);
             } else {
-                ResetBoxPokemonEggStatus(boxMon, 0);
-                SetMetLocationForBoxPokemon(boxMon, metLocation, 1);
+                BoxPokemon_ResetMetLocationAndDate(boxMon, FALSE);
+                BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, TRUE);
             }
         }
 
-        UpdateBoxPokemonAfterCheck(boxMon);
+        BoxPokemon_SetFatefulEncounterFlag(boxMon);
         break;
     case 5:
         if (BoxPokemon_GetValue(boxMon, MON_DATA_IS_EGG, NULL) == 0) {
             (void)0;
         } else {
-            SetMetLocationForBoxPokemon(boxMon, (SpecialMetLoc_GetId(1, 2)), 1);
+            BoxPokemon_SetMetLocationAndDate(boxMon, (SpecialMetLoc_GetId(1, 2)), TRUE);
         }
         break;
     case 6:
@@ -846,7 +846,7 @@ void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerIn
             }
         }
 
-        SetMetLocationForBoxPokemon(boxMon, metLocation, 1);
+        BoxPokemon_SetMetLocationAndDate(boxMon, metLocation, TRUE);
         AssignTrainerInfoToBoxPokemon(boxMon, trainerInfo, heapID);
         break;
     }
@@ -864,50 +864,50 @@ static void AssignTrainerInfoToBoxPokemon(BoxPokemon *boxMon, TrainerInfo *train
     Strbuf_Free(v2);
 }
 
-static void SetMetLocationForBoxPokemon(BoxPokemon *param0, int param1, int param2)
+static void BoxPokemon_SetMetLocationAndDate(BoxPokemon *boxMon, int metLocation, int isHatch)
 {
-    RTCDate v0;
+    RTCDate date;
 
-    GetCurrentDate(&v0);
+    GetCurrentDate(&date);
 
-    if (param2 == 0) {
-        BoxPokemon_SetValue(param0, MON_DATA_MET_LOCATION, &param1);
-        BoxPokemon_SetValue(param0, MON_DATA_MET_YEAR, &v0.year);
-        BoxPokemon_SetValue(param0, MON_DATA_MET_MONTH, &v0.month);
-        BoxPokemon_SetValue(param0, MON_DATA_MET_DAY, &v0.day);
+    if (isHatch == FALSE) {
+        BoxPokemon_SetValue(boxMon, MON_DATA_MET_LOCATION, &metLocation);
+        BoxPokemon_SetValue(boxMon, MON_DATA_MET_YEAR, &date.year);
+        BoxPokemon_SetValue(boxMon, MON_DATA_MET_MONTH, &date.month);
+        BoxPokemon_SetValue(boxMon, MON_DATA_MET_DAY, &date.day);
     } else {
-        BoxPokemon_SetValue(param0, MON_DATA_HATCH_LOCATION, &param1);
-        BoxPokemon_SetValue(param0, MON_DATA_HATCH_YEAR, &v0.year);
-        BoxPokemon_SetValue(param0, MON_DATA_HATCH_MONTH, &v0.month);
-        BoxPokemon_SetValue(param0, MON_DATA_HATCH_DAY, &v0.day);
+        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_LOCATION, &metLocation);
+        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_YEAR, &date.year);
+        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_MONTH, &date.month);
+        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_DAY, &date.day);
     }
 }
 
-static void ResetBoxPokemonEggStatus(BoxPokemon *param0, int param1)
+static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch)
 {
-    int v0 = 0;
+    int value = 0;
 
-    if (param1 == 0) {
-        BoxPokemon_SetValue(param0, MON_DATA_MET_LOCATION, &v0);
-        BoxPokemon_SetValue(param0, MON_DATA_MET_YEAR, &v0);
-        BoxPokemon_SetValue(param0, MON_DATA_MET_MONTH, &v0);
-        BoxPokemon_SetValue(param0, MON_DATA_MET_DAY, &v0);
+    if (isHatch == FALSE) {
+        BoxPokemon_SetValue(boxMon, MON_DATA_MET_LOCATION, &value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_MET_YEAR, &value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_MET_MONTH, &value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_MET_DAY, &value);
     } else {
-        BoxPokemon_SetValue(param0, MON_DATA_HATCH_LOCATION, &v0);
-        BoxPokemon_SetValue(param0, MON_DATA_HATCH_YEAR, &v0);
-        BoxPokemon_SetValue(param0, MON_DATA_HATCH_MONTH, &v0);
-        BoxPokemon_SetValue(param0, MON_DATA_HATCH_DAY, &v0);
+        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_LOCATION, &value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_YEAR, &value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_MONTH, &value);
+        BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_DAY, &value);
     }
 }
 
-static void FinalizeBoxPokemonData(BoxPokemon *param0)
+static void BoxPokemon_SetMetLevelToCurrentLevel(BoxPokemon *boxMon)
 {
-    int v0 = BoxPokemon_GetValue(param0, MON_DATA_LEVEL, NULL);
-    BoxPokemon_SetValue(param0, MON_DATA_MET_LEVEL, &v0);
+    int level = BoxPokemon_GetValue(boxMon, MON_DATA_LEVEL, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MET_LEVEL, &level);
 }
 
-static void UpdateBoxPokemonAfterCheck(BoxPokemon *param0)
+static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon)
 {
-    int v0 = 1;
-    BoxPokemon_SetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, &v0);
+    int fatefulEncounter = TRUE;
+    BoxPokemon_SetValue(boxMon, MON_DATA_FATEFUL_ENCOUNTER, &fatefulEncounter);
 }

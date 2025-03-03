@@ -62,16 +62,14 @@ static void sub_020797DC(PCBoxes *param0)
     param0->unk_00 = 0;
 }
 
-BOOL sub_02079868(PCBoxes *param0, BoxPokemon *param1)
+BOOL sub_02079868(PCBoxes *boxes, BoxPokemon *boxMon)
 {
-    u32 v0;
-
-    v0 = param0->unk_00;
+    u32 v0 = boxes->unk_00;
 
     do {
-        sub_0207896C(param1);
+        sub_0207896C(boxMon);
 
-        if (sub_020798A0(param0, v0, param1)) {
+        if (sub_020798A0(boxes, v0, boxMon)) {
             SaveData_SetFullSaveRequired();
             return 1;
         }
@@ -79,25 +77,25 @@ BOOL sub_02079868(PCBoxes *param0, BoxPokemon *param1)
         if (++v0 >= 18) {
             v0 = 0;
         }
-    } while (v0 != param0->unk_00);
+    } while (v0 != boxes->unk_00);
 
     return 0;
 }
 
-BOOL sub_020798A0(PCBoxes *param0, u32 param1, BoxPokemon *param2)
+BOOL sub_020798A0(PCBoxes *boxes, u32 param1, BoxPokemon *boxMon)
 {
     u32 v0;
 
-    sub_0207896C(param2);
-    BoxPokemon_SetShayminForm(param2, 0);
+    sub_0207896C(boxMon);
+    BoxPokemon_SetShayminForm(boxMon, 0);
 
     if (param1 == 0xffffffff) {
-        param1 = param0->unk_00;
+        param1 = boxes->unk_00;
     }
 
     for (v0 = 0; v0 < (5 * 6); v0++) {
-        if (BoxPokemon_GetValue(&(param0->unk_04[param1][v0]), MON_DATA_SPECIES, NULL) == 0) {
-            param0->unk_04[param1][v0] = *param2;
+        if (BoxPokemon_GetValue(&(boxes->unk_04[param1][v0]), MON_DATA_SPECIES, NULL) == 0) {
+            boxes->unk_04[param1][v0] = *boxMon;
             SaveData_SetFullSaveRequired();
             return 1;
         }
@@ -106,17 +104,17 @@ BOOL sub_020798A0(PCBoxes *param0, u32 param1, BoxPokemon *param2)
     return 0;
 }
 
-BOOL sub_02079914(PCBoxes *param0, u32 param1, u32 param2, BoxPokemon *param3)
+BOOL sub_02079914(PCBoxes *param0, u32 param1, u32 param2, BoxPokemon *boxMon)
 {
-    sub_0207896C(param3);
-    BoxPokemon_SetShayminForm(param3, 0);
+    sub_0207896C(boxMon);
+    BoxPokemon_SetShayminForm(boxMon, 0);
 
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
     }
 
     if ((param1 < 18) && (param2 < (5 * 6))) {
-        param0->unk_04[param1][param2] = *param3;
+        param0->unk_04[param1][param2] = *boxMon;
         SaveData_SetFullSaveRequired();
         return 1;
     } else {

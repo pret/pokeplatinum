@@ -670,7 +670,7 @@ static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)
     NNSG2dCharacterData *v4;
 
     if (ov19_021D5E34(param0->unk_08)) {
-        u32 v5 = 4 + PokeIconPaletteIndex(v1->unk_04, v1->unk_07, v1->unk_06);
+        u32 v5 = 4 + PokeIconPaletteIndex(v1->species, v1->unk_07, v1->unk_06);
 
         ov19_021DA744(param0->unk_14, param0->unk_E8, BoxPokemon_IconSpriteIndex(v3), sizeof(param0->unk_E8));
 

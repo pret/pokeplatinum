@@ -26,16 +26,16 @@ static inline u32 IconTilesIndex(u32 icon)
     return icon + POKEICON_ICON_TILES_START;
 }
 
-u32 BoxPokemon_IconSpriteIndex(const BoxPokemon *mon)
+u32 BoxPokemon_IconSpriteIndex(const BoxPokemon *boxMon)
 {
-    BOOL ctx = BoxPokemon_EnterDecryptionContext((BoxPokemon *)mon);
+    BOOL reencrypt = BoxPokemon_EnterDecryptionContext((BoxPokemon *)boxMon);
 
-    u32 species = BoxPokemon_GetValue((BoxPokemon *)mon, MON_DATA_SPECIES, NULL);
-    BOOL isEgg = BoxPokemon_GetValue((BoxPokemon *)mon, MON_DATA_IS_EGG, NULL);
-    u32 form = BoxPokemon_IconFormOffset((BoxPokemon *)mon);
+    u32 species = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
+    BOOL isEgg = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL);
+    u32 form = BoxPokemon_IconFormOffset((BoxPokemon *)boxMon);
     u32 index = PokeIconSpriteIndex(species, isEgg, form);
 
-    BoxPokemon_ExitDecryptionContext((BoxPokemon *)mon, ctx);
+    BoxPokemon_ExitDecryptionContext((BoxPokemon *)boxMon, reencrypt);
     return index;
 }
 
@@ -101,13 +101,13 @@ u32 PokeIconSpriteIndex(u32 species, u32 isEgg, u32 form)
     return IconTilesIndex(species);
 }
 
-u16 BoxPokemon_IconFormOffset(const BoxPokemon *mon)
+u16 BoxPokemon_IconFormOffset(const BoxPokemon *boxMon)
 {
-    u32 speciesOrEgg = BoxPokemon_GetValue((BoxPokemon *)mon, MON_DATA_SPECIES_EGG, NULL);
+    u32 speciesOrEgg = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_SPECIES_EGG, NULL);
 
     switch (speciesOrEgg) {
     case SPECIES_UNOWN:
-        return BoxPokemon_GetForm((BoxPokemon *)mon);
+        return BoxPokemon_GetForm((BoxPokemon *)boxMon);
     case SPECIES_DEOXYS:
     case SPECIES_BURMY:
     case SPECIES_WORMADAM:
@@ -116,7 +116,7 @@ u16 BoxPokemon_IconFormOffset(const BoxPokemon *mon)
     case SPECIES_GIRATINA:
     case SPECIES_SHAYMIN:
     case SPECIES_ROTOM:
-        return BoxPokemon_GetValue((BoxPokemon *)mon, MON_DATA_FORM, NULL);
+        return BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_FORM, NULL);
     }
 
     return 0;
@@ -157,15 +157,15 @@ const u8 PokeIconPaletteIndex(u32 species, u32 form, u32 isEgg)
     return sPokemonIconPaletteIndex[species];
 }
 
-const u8 BoxPokemon_IconPaletteIndex(const BoxPokemon *mon)
+const u8 BoxPokemon_IconPaletteIndex(const BoxPokemon *boxMon)
 {
-    BOOL ctx = BoxPokemon_EnterDecryptionContext((BoxPokemon *)mon);
+    BOOL reencrypt = BoxPokemon_EnterDecryptionContext((BoxPokemon *)boxMon);
 
-    u32 form = BoxPokemon_IconFormOffset(mon);
-    u32 species = BoxPokemon_GetValue((BoxPokemon *)mon, MON_DATA_SPECIES, NULL);
-    u32 isEgg = BoxPokemon_GetValue((BoxPokemon *)mon, MON_DATA_IS_EGG, NULL);
+    u32 form = BoxPokemon_IconFormOffset(boxMon);
+    u32 species = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_SPECIES, NULL);
+    u32 isEgg = BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_IS_EGG, NULL);
 
-    BoxPokemon_ExitDecryptionContext((BoxPokemon *)mon, ctx);
+    BoxPokemon_ExitDecryptionContext((BoxPokemon *)boxMon, reencrypt);
 
     return PokeIconPaletteIndex(species, form, isEgg);
 }
