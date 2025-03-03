@@ -527,7 +527,7 @@ static void ov59_021D1250(UnkStruct_020961E8 *param0, NARC *param1)
     MessageLoader_GetStrbuf(param0->unk_28, 17, param0->unk_48);
     ov59_021D27FC(param0, param1);
 
-    param0->unk_40C = sub_0205CA4C(51);
+    param0->unk_40C = sub_0205CA4C(HEAP_ID_51);
     param0->unk_0C.unk_00 = 0;
     param0->unk_0C.unk_08 = 0;
     param0->unk_0C.unk_04 = 0;

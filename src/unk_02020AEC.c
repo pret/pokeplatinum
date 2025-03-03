@@ -197,20 +197,20 @@ UnkStruct_02020C44 *sub_02020C44(const UnkStruct_ov5_021EDDAC *param0)
 
     v0->unk_00 = 1;
     v0->unk_01 = 1;
-    v0->unk_04 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_020216E0) * param0->unk_00);
+    v0->unk_04 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_020216E0) * param0->unk_00);
     v0->unk_08 = param0->unk_00;
 
     sub_02020B14(&v0->unk_0C);
 
     v0->unk_0C.unk_BC = &v0->unk_0C;
     v0->unk_0C.unk_C0 = &v0->unk_0C;
-    v0->unk_CC = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_020216E0 *) * param0->unk_00);
+    v0->unk_CC = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_020216E0 *) * param0->unk_00);
 
     sub_020216A8(v0);
-    v0->unk_D4 = Heap_AllocFromHeap(param0->unk_04, sizeof(NNSFndAllocator));
+    v0->unk_D4 = Heap_AllocFromHeap(param0->heapID, sizeof(NNSFndAllocator));
 
-    Heap_FndInitAllocatorForExpHeap(v0->unk_D4, param0->unk_04, 4);
-    v0->unk_D8 = sub_0201DD00(param0->unk_00, param0->unk_04);
+    Heap_FndInitAllocatorForExpHeap(v0->unk_D4, param0->heapID, 4);
+    v0->unk_D8 = sub_0201DD00(param0->unk_00, param0->heapID);
 
     return v0;
 }

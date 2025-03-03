@@ -672,11 +672,11 @@ void sub_0206D12C(TVBroadcast *param0)
     SaveData_SetChecksum(27);
 }
 
-UnkStruct_0206D140 *sub_0206D140(int param0)
+UnkStruct_0206D140 *sub_0206D140(int heapID)
 {
     UnkStruct_0206D140 *v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0206D140));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0206D140));
     MI_CpuClearFast(v0, sizeof(UnkStruct_0206D140));
 
     return v0;
