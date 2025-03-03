@@ -167,7 +167,7 @@ static void ov62_02239D60(UnkStruct_0208C06C *param0, int param1)
 {
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
-    v0->unk_2ED8.unk_00 = sub_02030A80(102);
+    v0->unk_2ED8.unk_00 = sub_02030A80(HEAP_ID_102);
     ov61_0222AFC0(&v0->unk_38C[param1]->unk_00, v0->unk_2ED8.unk_00);
 }
 
@@ -465,12 +465,12 @@ static BOOL ov62_0223A17C(UnkStruct_0208C06C *param0)
     ov62_0223A138(v0);
     ov62_022315C8(&v0->unk_1A4, &v0->unk_1A8, 0);
 
-    v0->unk_330[0] = sub_02023FCC(Unk_ov62_02248DB4, NELEMS(Unk_ov62_02248DB4), ov62_02239E0C, param0, 102);
-    v0->unk_330[1] = sub_02023FCC(Unk_ov62_02248DDC, NELEMS(Unk_ov62_02248DDC), ov62_02239EC0, param0, 102);
-    v0->unk_330[2] = sub_02023FCC(Unk_ov62_02248DDC, NELEMS(Unk_ov62_02248DDC), ov62_02239EFC, param0, 102);
-    v0->unk_330[3] = sub_02023FCC(Unk_ov62_02248D6C, NELEMS(Unk_ov62_02248D6C), ov62_02239F38, param0, 102);
-    v0->unk_330[4] = sub_02023FCC(Unk_ov62_02248D54, NELEMS(Unk_ov62_02248D54), ov62_02239F98, param0, 102);
-    v0->unk_380.unk_04 = sub_02030A80(102);
+    v0->unk_330[0] = sub_02023FCC(Unk_ov62_02248DB4, NELEMS(Unk_ov62_02248DB4), ov62_02239E0C, param0, HEAP_ID_102);
+    v0->unk_330[1] = sub_02023FCC(Unk_ov62_02248DDC, NELEMS(Unk_ov62_02248DDC), ov62_02239EC0, param0, HEAP_ID_102);
+    v0->unk_330[2] = sub_02023FCC(Unk_ov62_02248DDC, NELEMS(Unk_ov62_02248DDC), ov62_02239EFC, param0, HEAP_ID_102);
+    v0->unk_330[3] = sub_02023FCC(Unk_ov62_02248D6C, NELEMS(Unk_ov62_02248D6C), ov62_02239F38, param0, HEAP_ID_102);
+    v0->unk_330[4] = sub_02023FCC(Unk_ov62_02248D54, NELEMS(Unk_ov62_02248D54), ov62_02239F98, param0, HEAP_ID_102);
+    v0->unk_380.unk_04 = sub_02030A80(HEAP_ID_102);
 
     sub_02030AA0(v0->unk_380.unk_04, param0->unk_830);
     ov62_0222FB60(param0, 1);

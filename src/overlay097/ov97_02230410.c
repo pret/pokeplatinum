@@ -835,7 +835,7 @@ static int ov97_02231224(OverlayManager *param0, int *param1)
     v0->unk_2C20 = 3 - 1;
     v0->unk_2C9C = 1;
 
-    ov97_02237694(87);
+    ov97_02237694(HEAP_ID_87);
     Heap_Create(0, 91, 0x300);
 
     return 1;

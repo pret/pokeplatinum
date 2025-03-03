@@ -2743,7 +2743,7 @@ static BOOL ov104_02231D1C(UnkStruct_ov104_0222E930 *param0)
     v8 = 8;
     v9 = (GX_RGB(0, 0, 0));
 
-    ov104_02232CE0(v3, v1, 11, v7, v5, v6, 0, 0, v8, v9);
+    ov104_02232CE0(v3, v1, HEAP_ID_FIELDMAP, v7, v5, v6, 0, 0, v8, v9);
     return 0;
 }
 

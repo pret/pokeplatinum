@@ -174,18 +174,18 @@ static const u32 Unk_ov70_0226D518[6] = {
     { 0x0 }
 };
 
-UnkStruct_ov70_0225CA20 *ov70_0225C9B4(u32 param0, u32 param1, const UnkStruct_ov70_0225C894 *param2, u32 param3, u32 param4)
+UnkStruct_ov70_0225CA20 *ov70_0225C9B4(u32 param0, u32 param1, const UnkStruct_ov70_0225C894 *param2, u32 heapID, u32 param4)
 {
     UnkStruct_ov70_0225CA20 *v0;
 
-    v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov70_0225CA20));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_0225CA20));
     memset(v0, 0, sizeof(UnkStruct_ov70_0225CA20));
 
-    v0->unk_00 = ov63_0222BE18(param0, param3);
-    v0->unk_04 = ov66_022343A8(param0, param1, param3, param4);
-    v0->unk_10 = ov63_0222D848(32, param3);
+    v0->unk_00 = ov63_0222BE18(param0, heapID);
+    v0->unk_04 = ov66_022343A8(param0, param1, heapID, param4);
+    v0->unk_10 = ov63_0222D848(32, heapID);
     v0->unk_0C = param0;
-    v0->unk_08 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov70_0225CC54) * param0);
+    v0->unk_08 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_0225CC54) * param0);
 
     memset(v0->unk_08, 0, sizeof(UnkStruct_ov70_0225CC54) * param0);
 

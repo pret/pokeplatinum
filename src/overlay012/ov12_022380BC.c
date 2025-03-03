@@ -15,7 +15,7 @@
 #include "unk_0200762C.h"
 #include "unk_020131EC.h"
 
-static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int param3);
+static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int heapID);
 
 const s16 Unk_ov12_0223B0B8[][3] = {
     { 0x150, 0x70, 0xFFFFFFFFFFFFFE00 },
@@ -44,17 +44,17 @@ const s16 Unk_ov12_0223B0DC[][3] = {
     { 0x150, 0x32, 0xFFFFFFFFFFFFFE00 }
 };
 
-void ov12_022380BC(UnkStruct_ov12_022380DC *param0, int param1)
+void ov12_022380BC(UnkStruct_ov12_022380DC *param0, int heapID)
 {
-    ov12_022380DC(param0, param0->unk_00, 0, param1);
+    ov12_022380DC(param0, param0->unk_00, 0, heapID);
 }
 
-void ov12_022380CC(UnkStruct_ov12_022380DC *param0, int param1)
+void ov12_022380CC(UnkStruct_ov12_022380DC *param0, int heapID)
 {
-    ov12_022380DC(param0, param0->unk_04, 1, param1);
+    ov12_022380DC(param0, param0->unk_04, 1, heapID);
 }
 
-static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int param3)
+static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param2, int heapID)
 {
     ArchivedSprite v0;
     ArchivedSprite *v1;
@@ -98,7 +98,7 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
     *v1 = v0;
 
     sub_020089A0(param0->unk_18[param0->unk_00]);
-    sub_02013750(v1->archive, v1->character, param3, param0->unk_08[param0->unk_00]->unk_00, v7, 0, v4, v1->spindaSpots);
+    sub_02013750(v1->archive, v1->character, heapID, param0->unk_08[param0->unk_00]->unk_00, v7, 0, v4, v1->spindaSpots);
 
     param0->unk_08[param0->unk_00]->unk_04 = v1->archive;
     param0->unk_08[param0->unk_00]->unk_08 = v1->palette;
@@ -109,7 +109,7 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
     sub_02007DEC(param0->unk_18[param0->unk_00], 1, v8 + v11);
 
     if (v4 == 2) {
-        NARC *v13 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, param3);
+        NARC *v13 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, heapID);
 
         PokeSprite_LoadYOffset(v13, &v9, v2);
         PokeSprite_LoadXOffsetShadow(v13, &v10, v2);
@@ -124,7 +124,7 @@ static void ov12_022380DC(UnkStruct_ov12_022380DC *param0, int param1, int param
     }
 }
 
-void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int param1)
+void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
 {
     ArchivedSprite *v0;
     int v1;
@@ -148,7 +148,7 @@ void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int param1)
         v3 = 0;
     }
 
-    sub_02013750(v0->archive, v0->character, param1, param0->unk_08[param0->unk_00]->unk_00, v5, 0, v3, v0->spindaSpots);
+    sub_02013750(v0->archive, v0->character, heapID, param0->unk_08[param0->unk_00]->unk_00, v5, 0, v3, v0->spindaSpots);
 
     param0->unk_08[param0->unk_00]->unk_04 = v0->archive;
     param0->unk_08[param0->unk_00]->unk_08 = v0->palette;

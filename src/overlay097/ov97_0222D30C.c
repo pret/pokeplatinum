@@ -1983,7 +1983,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        ov97_02237694(86);
+        ov97_02237694(HEAP_ID_86);
         v3->unk_163C = param1;
         *param1 = 1;
         break;

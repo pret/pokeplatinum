@@ -1371,9 +1371,9 @@ static void sub_0205C160(UnkStruct_0205B43C *param0)
 
 void *sub_0205C17C(UnkStruct_0205B43C *param0)
 {
-    param0->unk_184 = sub_02071F04(0);
-    param0->unk_188[0] = sub_02071F04(0);
-    param0->unk_188[1] = sub_02071F04(0);
+    param0->unk_184 = sub_02071F04(HEAP_ID_SYSTEM);
+    param0->unk_188[0] = sub_02071F04(HEAP_ID_SYSTEM);
+    param0->unk_188[1] = sub_02071F04(HEAP_ID_SYSTEM);
 
     sub_02071D40(0, 0, 0, sub_0205CA14(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
 

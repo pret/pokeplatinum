@@ -200,7 +200,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     v0->unk_0C.unk_04 = sub_0200762C(21);
     ov17_0223B884();
 
-    v0->unk_0C.unk_20 = ov12_0221FCDC(21);
+    v0->unk_0C.unk_20 = ov12_0221FCDC(HEAP_ID_21);
     ov12_0221FDC0(v0->unk_0C.unk_20, 1);
 
     v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 204, HEAP_ID_21);

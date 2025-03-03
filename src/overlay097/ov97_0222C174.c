@@ -346,7 +346,7 @@ UnkStruct_ov97_0223E0B0 Unk_ov97_0223E0B0[] = {
 };
 
 typedef struct {
-    int unk_00;
+    int heapID;
     BgConfig *unk_04;
     SaveData *unk_08;
     Pokedex *unk_0C;
@@ -540,15 +540,15 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
     ov97_022376FC(param0->unk_04, 5, 1, 0x7000, 0x4000);
 
     Text_ResetAllPrinters();
-    Font_LoadTextPalette(0, 0 * 32, param0->unk_00);
-    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 1, 0, param0->unk_00);
+    Font_LoadTextPalette(0, 0 * 32, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 1, 0, param0->heapID);
 
     v0 = Options_Frame(param0->unk_14);
 
-    LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 2, v0, param0->unk_00);
-    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 8, 16 * 2, param0->unk_00);
-    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_04, 1, 0, 10 * 16 * 0x20, 1, param0->unk_00);
-    Graphics_LoadTilemapToBgLayer(116, 2, param0->unk_04, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 2, v0, param0->heapID);
+    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 8, 16 * 2, param0->heapID);
+    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_04, 1, 0, 10 * 16 * 0x20, 1, param0->heapID);
+    Graphics_LoadTilemapToBgLayer(116, 2, param0->unk_04, 1, 0, 32 * 24 * 2, 1, param0->heapID);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 1, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0->unk_04, 1);
 
@@ -557,9 +557,9 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0)
 {
-    Graphics_LoadPalette(116, 0, 4, 16 * 2 * 8, 16 * 2, param0->unk_00);
-    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_04, 4, 0, 10 * 16 * 0x20, 1, param0->unk_00);
-    Graphics_LoadTilemapToBgLayer(116, 2, param0->unk_04, 4, 0, 32 * 24 * 2, 1, param0->unk_00);
+    Graphics_LoadPalette(116, 0, 4, 16 * 2 * 8, 16 * 2, param0->heapID);
+    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_04, 4, 0, 10 * 16 * 0x20, 1, param0->heapID);
+    Graphics_LoadTilemapToBgLayer(116, 2, param0->unk_04, 4, 0, 32 * 24 * 2, 1, param0->heapID);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 4, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0->unk_04, 4);
 }
@@ -618,7 +618,7 @@ static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0)
     UnkStruct_ov97_022335A8 v5;
     StringTemplate *v6;
 
-    v6 = StringTemplate_Default(param0->unk_00);
+    v6 = StringTemplate_Default(param0->heapID);
 
     ov97_02237808(&param0->unk_F0, &param0->unk_38, 0, 421, 1, 1);
     ov97_02237858(&param0->unk_F0, 26, 4, param0->unk_144);
@@ -677,14 +677,14 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
 
     v0 = ov97_022376C4(param0, 85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
 
-    v0->unk_00 = 85;
-    v0->unk_04 = BgConfig_New(v0->unk_00);
+    v0->heapID = HEAP_ID_85;
+    v0->unk_04 = BgConfig_New(v0->heapID);
     v0->unk_08 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->unk_08);
     v0->unk_0C = SaveData_GetPokedex(v0->unk_08);
     v0->unk_14 = SaveData_Options(v0->unk_08);
 
-    ov97_02237694(v0->unk_00);
+    ov97_02237694(v0->heapID);
 
     v0->unk_3174 = SaveData_MysteryGift(v0->unk_08);
     v0->unk_14C = UnkEnum_ov97_0222C78C_09;
@@ -800,11 +800,11 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
 
     MI_CpuClear8(v4, sizeof(UnkStruct_0202DBAC));
 
-    v3 = MessageLoader_Init(1, 26, 421, param0->unk_00);
-    v2 = StringTemplate_Default(param0->unk_00);
+    v3 = MessageLoader_Init(1, 26, 421, param0->heapID);
+    v2 = StringTemplate_Default(param0->heapID);
 
     v4->unk_00 = 7;
-    v1 = MessageUtil_ExpandedStrbuf(v2, v3, 76, param0->unk_00);
+    v1 = MessageUtil_ExpandedStrbuf(v2, v3, 76, param0->heapID);
 
     Strbuf_ToChars((const Strbuf *)v1, v4->unk_104.unk_00, 36);
     Strbuf_Free(v1);
@@ -817,7 +817,7 @@ static void ov97_0222C974(UnkStruct_ov97_0222C388 *param0)
     v4->unk_104.unk_4E_3 = 1;
     v4->unk_104.unk_4E_5 = 0;
 
-    v1 = MessageUtil_ExpandedStrbuf(v2, v3, 75, param0->unk_00);
+    v1 = MessageUtil_ExpandedStrbuf(v2, v3, 75, param0->heapID);
 
     Strbuf_ToChars((const Strbuf *)v1, v4->unk_154, 250);
     Strbuf_Free(v1);

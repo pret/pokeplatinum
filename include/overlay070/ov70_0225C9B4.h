@@ -9,7 +9,7 @@
 #include "overlay070/struct_ov70_0225CA20_decl.h"
 #include "overlay070/struct_ov70_0225CC54_decl.h"
 
-UnkStruct_ov70_0225CA20 *ov70_0225C9B4(u32 param0, u32 param1, const UnkStruct_ov70_0225C894 *param2, u32 param3, u32 param4);
+UnkStruct_ov70_0225CA20 *ov70_0225C9B4(u32 param0, u32 param1, const UnkStruct_ov70_0225C894 *param2, u32 heapID, u32 param4);
 void ov70_0225CA20(UnkStruct_ov70_0225CA20 *param0);
 void ov70_0225CA44(UnkStruct_ov70_0225CA20 *param0);
 void ov70_0225CA5C(UnkStruct_ov70_0225CA20 *param0);

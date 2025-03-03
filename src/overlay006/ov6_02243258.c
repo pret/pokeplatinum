@@ -282,7 +282,7 @@ static void ov6_02244F8C(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244FB4(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244FE4(SysTask *param0, void *param1);
 static void ov6_0224508C(UnkStruct_ov6_02243FFC *param0, ArchivedSprite *param1);
-static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 param2);
+static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 heapID);
 static void *ov6_022450E4(ArchivedSprite *param0, u32 param1);
 static SpriteResource *ov6_022450F4(UnkStruct_ov6_02243FFC *param0, NARC *param1);
 static void ov6_02245118(UnkStruct_ov6_02243FFC *param0, void *param1);
@@ -1787,7 +1787,7 @@ static void ov6_02244928(UnkStruct_ov6_02243FFC *param0, NARC *param1)
         param0->unk_23C[v0] = SpriteResourceCollection_AddFrom(param0->unk_20C, param1, 18, 0, 1, 3, 4);
     }
 
-    param0->unk_270 = ov6_0224509C(param0->unk_5C, &param0->unk_258, 4);
+    param0->unk_270 = ov6_0224509C(param0->unk_5C, &param0->unk_258, HEAP_ID_FIELD);
     param0->unk_274 = ov6_022450E4(&param0->unk_258, 4);
 }
 
@@ -2056,7 +2056,7 @@ static void ov6_0224508C(UnkStruct_ov6_02243FFC *param0, ArchivedSprite *param1)
     Pokemon_BuildArchivedSprite(param1, param0->unk_5C, 2);
 }
 
-static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 param2)
+static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 heapID)
 {
     void *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, (32 * 10) * 10);
 
@@ -2064,7 +2064,7 @@ static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 param2)
 
     {
         int v1 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
-        sub_02013750(param1->archive, param1->character, param2, v0, v1, 0, 2, param1->spindaSpots);
+        sub_02013750(param1->archive, param1->character, heapID, v0, v1, 0, 2, param1->spindaSpots);
     }
 
     return v0;

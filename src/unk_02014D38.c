@@ -142,14 +142,14 @@ void include_unk_020E5538(void)
     Unk_020E5538[0];
 }
 
-UnkStruct_02014D38 *sub_02014D38(u32 param0)
+UnkStruct_02014D38 *sub_02014D38(u32 heapID)
 {
     int v0;
-    UnkStruct_02014D38 *v1 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02014D38));
+    UnkStruct_02014D38 *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02014D38));
 
     for (v0 = 0; v0 < 11; v0++) {
-        v1->unk_00 = param0;
-        v1->unk_04[v0] = MessageLoader_Init(1, 26, Unk_020E550C[v0], param0);
+        v1->unk_00 = heapID;
+        v1->unk_04[v0] = MessageLoader_Init(1, 26, Unk_020E550C[v0], heapID);
     }
 
     return v1;

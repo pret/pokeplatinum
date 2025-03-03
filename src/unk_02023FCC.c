@@ -27,20 +27,20 @@ static u32 sub_020240F4(UnkStruct_02024028 *param0, BOOL param1, BOOL param2);
 static u32 sub_02024110(UnkStruct_02024028 *param0, BOOL param1, BOOL param2);
 static void sub_02024144(UnkStruct_02024028 *param0, u32 param1);
 
-UnkStruct_02023FCC *sub_02023FCC(const TouchScreenHitTable *hitTable, u32 param1, UnkFuncPtr_02023FCC param2, void *param3, u32 param4)
+UnkStruct_02023FCC *sub_02023FCC(const TouchScreenHitTable *hitTable, u32 param1, UnkFuncPtr_02023FCC param2, void *param3, u32 heapID)
 {
     UnkStruct_02023FCC *v0;
 
     GF_ASSERT(param1 > 0);
 
-    v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_02023FCC));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02023FCC));
 
     if (v0) {
         v0->unk_00 = hitTable;
         v0->unk_04 = param1;
         v0->unk_08 = param2;
         v0->unk_0C = param3;
-        v0->unk_10 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_02024028) * param1);
+        v0->unk_10 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02024028) * param1);
 
         if (v0->unk_10) {
             u32 v1;

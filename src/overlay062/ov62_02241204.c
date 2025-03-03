@@ -871,8 +871,8 @@ static BOOL ov62_02241D24 (UnkStruct_0208C06C * param0)
         ov62_02245C08(param0, 0);
 
         v0->unk_50C.unk_08 = 500;
-        v0->unk_608[0] = sub_02023FCC(Unk_ov62_022491AC, NELEMS(Unk_ov62_022491AC), ov62_022458A0, param0, 102);
-        v0->unk_608[1] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02245968, param0, 102);
+        v0->unk_608[0] = sub_02023FCC(Unk_ov62_022491AC, NELEMS(Unk_ov62_022491AC), ov62_022458A0, param0, HEAP_ID_102);
+        v0->unk_608[1] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02245968, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 1:
@@ -2002,8 +2002,8 @@ static BOOL ov62_0224312C (UnkStruct_0208C06C * param0)
         ov62_022343B8(param0, 59, 7);
         ov62_02245C08(param0, 0);
 
-        v0->unk_608[0] = sub_02023FCC(Unk_ov62_022491AC, NELEMS(Unk_ov62_022491AC), ov62_022458A0, param0, 102);
-        v0->unk_608[1] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02245968, param0, 102);
+        v0->unk_608[0] = sub_02023FCC(Unk_ov62_022491AC, NELEMS(Unk_ov62_022491AC), ov62_022458A0, param0, HEAP_ID_102);
+        v0->unk_608[1] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02245968, param0, HEAP_ID_102);
 
         ov62_02241AA4(param0, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -2045,9 +2045,9 @@ static BOOL ov62_0224324C (UnkStruct_0208C06C * param0)
         break;
     case 1:
         ov62_0224443C(param0);
-        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_02245994, param0, 102);
-        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245A28, param0, 102);
-        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245A90, param0, 102);
+        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_02245994, param0, HEAP_ID_102);
+        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245A28, param0, HEAP_ID_102);
+        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245A90, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:
@@ -2482,9 +2482,9 @@ static BOOL ov62_02243B1C (UnkStruct_0208C06C * param0)
         break;
     case 1:
         ov62_0224443C(param0);
-        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_02245994, param0, 102);
-        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245A28, param0, 102);
-        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245A90, param0, 102);
+        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_02245994, param0, HEAP_ID_102);
+        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245A28, param0, HEAP_ID_102);
+        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245A90, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:
@@ -2904,7 +2904,7 @@ static void ov62_022443EC (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02241204 * v0 = param0->unk_860;
 
-    v0->unk_80.unk_00 = sub_02030A80(102);
+    v0->unk_80.unk_00 = sub_02030A80(HEAP_ID_102);
     ov61_0222AFC0(&v0->unk_4BC->unk_00, v0->unk_80.unk_00);
     v0->unk_10C.unk_00 = v0->unk_80.unk_00;
     v0->unk_10C.unk_04 = sub_0202FF2C(HEAP_ID_102);
@@ -2915,7 +2915,7 @@ static void ov62_0224443C (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02241204 * v0 = param0->unk_860;
 
-    v0->unk_80.unk_00 = sub_02030A80(102);
+    v0->unk_80.unk_00 = sub_02030A80(HEAP_ID_102);
     ov61_0222AFC0(&param0->unk_8B4.unk_1D58[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00, v0->unk_80.unk_00);
     v0->unk_10C.unk_00 = v0->unk_80.unk_00;
     v0->unk_10C.unk_04 = sub_0202FF2C(HEAP_ID_102);
@@ -2963,9 +2963,9 @@ static BOOL ov62_022444BC (UnkStruct_0208C06C * param0)
         ov62_022443EC(param0);
         ov62_02245C64(param0);
 
-        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_022457A0, param0, 102);
-        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245800, param0, 102);
-        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245868, param0, 102);
+        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_022457A0, param0, HEAP_ID_102);
+        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245800, param0, HEAP_ID_102);
+        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245868, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:
@@ -3494,9 +3494,9 @@ static BOOL ov62_02245018 (UnkStruct_0208C06C * param0)
             Bg_SetPriority(6, 0);
             Bg_SetPriority(7, 2);
 
-            v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_022457A0, param0, 102);
-            v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245800, param0, 102);
-            v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245868, param0, 102);
+            v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_022457A0, param0, HEAP_ID_102);
+            v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245800, param0, HEAP_ID_102);
+            v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245868, param0, HEAP_ID_102);
             param0->unk_08++;
         }
         break;
@@ -3591,7 +3591,7 @@ static BOOL ov62_0224536C (UnkStruct_0208C06C * param0)
             int v2;
 
             sub_0202F298(param0->unk_830, 102, &v2, NULL, 0);
-            v0->unk_1D0 = sub_02030A80(102);
+            v0->unk_1D0 = sub_02030A80(HEAP_ID_102);
             sub_02030AA0(v0->unk_1D0, param0->unk_830);
 
             if (ov61_0222B338(ov62_0224112C(param0), v0->unk_1D0) == 1) {
