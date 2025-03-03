@@ -4839,7 +4839,7 @@ void sub_0207893C(Pokemon *mon)
     Pokemon_SetValue(mon, MON_DATA_171, &v1);
 }
 
-void sub_0207896C(BoxPokemon *boxMon)
+void BoxPokemon_RestorePP(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 

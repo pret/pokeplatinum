@@ -55,6 +55,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "pokemon_storage_system_manager.h"
 #include "render_window.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -72,7 +73,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
-#include "unk_020797C8.h"
 #include "unk_0207A274.h"
 #include "unk_0208694C.h"
 #include "unk_0208C098.h"
@@ -10961,10 +10961,10 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                         int v29;
 
                         v24 = ov16_0223E228(v2->battleSys);
-                        v25 = sub_0207999C(v24);
+                        v25 = PCBoxes_GetCurrentBox(v24);
                         v26 = PCBoxes_FirstEmptyBox(v24);
 
-                        sub_02079A94(v24, v26);
+                        PCBoxes_SetCurrentBox(v24, v26);
 
                         for (v27 = 0; v27 < LEARNED_MOVES_MAX; v27++) {
                             v28 = Pokemon_GetValue(v3, MON_DATA_MOVE1_MAX_PP + v27, NULL);
@@ -10975,7 +10975,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                             ov16_0223F9A0(v2->battleSys, v1);
                         }
 
-                        sub_020798A0(v24, v26, Pokemon_GetBoxPokemon(v3));
+                        PCBoxes_TryStoreBoxMonInBox(v24, v26, Pokemon_GetBoxPokemon(v3));
 
                         if (v2->seqNum == 22) {
                             if (v25 == v26) {
