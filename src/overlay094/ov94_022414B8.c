@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/species.h"
+#include "generated/gender_ratios.h"
 #include "generated/species_data_params.h"
 
 #include "struct_decls/pokedexdata_decl.h"
@@ -594,21 +595,18 @@ static int ov94_02241B2C(UnkStruct_ov94_0223FD4C *param0)
     return 3;
 }
 
-int ov94_02241B80(UnkStruct_ov94_0223BA88_sub3 *param0, int param1)
+int ov94_02241B80(UnkStruct_ov94_0223BA88_sub3 *param0, int genderRatio)
 {
-    switch (param1) {
-    case 0:
-        param0->gender = 0 + 1;
+    switch (genderRatio) {
+    case GENDER_RATIO_MALE_ONLY:
+        param0->gender = GENDER_MALE + 1;
         return 1;
-        break;
-    case 254:
-        param0->gender = 1 + 1;
+    case GENDER_RATIO_FEMALE_ONLY:
+        param0->gender = GENDER_FEMALE + 1;
         return 1;
-        break;
-    case 255:
-        param0->gender = 2 + 1;
+    case GENDER_RATIO_NO_GENDER:
+        param0->gender = GENDER_NONE + 1;
         return 1;
-        break;
     }
 
     return 0;
@@ -979,7 +977,7 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
     StringTemplate_SetNumber(param1, 3, level, 3, 0, 1);
     v1 = MessageUtil_ExpandedStrbuf(param1, param0, 102, 62);
 
-    if (gender != 3) {
+    if (gender != GENDER_NONE + 1) {
         MessageLoader_GetStrbuf(param0, Unk_ov94_02245FD8[gender], v3);
     }
 
@@ -991,7 +989,7 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
     ov94_02245900(&param2[1], v2, 0, 0, 0, TEXT_COLOR(15, 2, 0));
     ov94_02245900(&param2[2], v1, 0, 0, 2, TEXT_COLOR(15, 2, 0));
 
-    if (gender != 3) {
+    if (gender != GENDER_NONE + 1) {
         ov94_02245900(&param2[1], v3, 70, 0, 0, Unk_ov94_02246920[gender - 1]);
     }
 
@@ -1265,7 +1263,7 @@ void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2)
 
 int ov94_02242970(int param0, int param1, int param2)
 {
-    int v0;
+    int i;
     int v1;
     const UnkStruct_ov94_022460AC *v2;
 
@@ -1277,9 +1275,9 @@ int ov94_02242970(int param0, int param1, int param2)
         v1 = (NELEMS(Unk_ov94_022460AC));
     }
 
-    for (v0 = 0; v0 < v1; v0++) {
-        if ((v2[v0].level == param0) && (v2[v0].level2 == param1)) {
-            return v0;
+    for (i = 0; i < v1; i++) {
+        if ((v2[i].level == param0) && (v2[i].level2 == param1)) {
+            return i;
         }
     }
 

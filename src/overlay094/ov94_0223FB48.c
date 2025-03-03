@@ -91,8 +91,8 @@ static int ov94_0224121C(Party *param0, PCBoxes *param1, int param2, int param3)
 static int ov94_022412F4(Party *param0, PCBoxes *param1, int param2, int param3);
 static int ov94_02240BB0(UnkStruct_ov94_0223FD4C *param0);
 static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon);
-static int ov94_02241278(BoxPokemon *boxMon);
-static int ov94_022412C8(BoxPokemon *boxMon);
+static BOOL BoxPokemon_FormNotInDP(BoxPokemon *boxMon);
+static BOOL BoxPokemon_HeldItemNotInDP(BoxPokemon *boxMon);
 
 static int (*Unk_ov94_022468DC[])(UnkStruct_ov94_0223FD4C *) = {
     ov94_022402A8,
@@ -724,10 +724,10 @@ static int ov94_02240688(UnkStruct_ov94_0223FD4C *param0)
         if (BoxPokemon_HasUnusedRibbons(v0)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
             ov94_0223C3F4(param0, 4, 1);
-        } else if (ov94_02241278(v0)) {
+        } else if (BoxPokemon_FormNotInDP(v0)) {
             ov94_02240D58(param0, 170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
             ov94_0223C3F4(param0, 4, 1);
-        } else if (ov94_022412C8(v0)) {
+        } else if (BoxPokemon_HeldItemNotInDP(v0)) {
             ov94_02240D58(param0, 171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
             ov94_0223C3F4(param0, 4, 1);
         } else {
@@ -796,7 +796,7 @@ static int ov94_02240830(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
 {
-    BoxPokemon *v0;
+    BoxPokemon *boxMon;
 
     switch (Menu_ProcessInput(param0->unk_10D4)) {
     case 1:
@@ -811,15 +811,15 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
         StringList_Free(param0->unk_10CC);
         Window_EraseStandardFrame(&param0->unk_F9C[0], 0);
 
-        v0 = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
+        boxMon = ov94_022411DC(param0->unk_00->unk_08, param0->unk_00->unk_0C, param0->unk_110, param0->unk_112);
 
-        if (BoxPokemon_HasUnusedRibbons(v0)) {
+        if (BoxPokemon_HasUnusedRibbons(boxMon)) {
             ov94_02240D58(param0, 37, TEXT_SPEED_FAST, 0, 0xf0f, 1);
             ov94_0223C3F4(param0, 4, 1);
-        } else if (ov94_02241278(v0)) {
+        } else if (BoxPokemon_FormNotInDP(boxMon)) {
             ov94_02240D58(param0, 170, TEXT_SPEED_FAST, 0, 0xf0f, 1);
             ov94_0223C3F4(param0, 4, 1);
-        } else if (ov94_022412C8(v0)) {
+        } else if (BoxPokemon_HeldItemNotInDP(boxMon)) {
             ov94_02240D58(param0, 171, TEXT_SPEED_FAST, 0, 0xf0f, 1);
             ov94_0223C3F4(param0, 4, 1);
         } else {
@@ -1260,7 +1260,7 @@ static int BoxPokemon_HasUnusedRibbons(BoxPokemon *boxMon)
     return FALSE;
 }
 
-static int ov94_02241278(BoxPokemon *boxMon)
+static BOOL BoxPokemon_FormNotInDP(BoxPokemon *boxMon)
 {
     int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
     int species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
@@ -1280,7 +1280,7 @@ static int ov94_02241278(BoxPokemon *boxMon)
     return FALSE;
 }
 
-static int ov94_022412C8(BoxPokemon *boxMon)
+static BOOL BoxPokemon_HeldItemNotInDP(BoxPokemon *boxMon)
 {
     int reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
     int item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);

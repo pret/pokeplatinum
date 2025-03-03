@@ -19,7 +19,7 @@
 int ov94_022414B8(UnkStruct_ov94_0223FD4C *param0, int param1);
 int ov94_02241548(UnkStruct_ov94_0223FD4C *param0, int param1);
 int ov94_02241568(UnkStruct_ov94_0223FD4C *param0, int param1);
-int ov94_02241B80(UnkStruct_ov94_0223BA88_sub3 *param0, int param1);
+int ov94_02241B80(UnkStruct_ov94_0223BA88_sub3 *param0, int genderRatio);
 void ov94_02242158(Window *param0, MessageLoader *param1, int param2, int param3, int param4, TextColor param5);
 void ov94_0224218C(Window *param0, MessageLoader *param1, MessageLoader *param2, int param3, int param4, int param5, TextColor param6);
 void ov94_02242204(Window *param0, MessageLoader *param1, int param2, int param3, int param4, int param5, u32 param6);

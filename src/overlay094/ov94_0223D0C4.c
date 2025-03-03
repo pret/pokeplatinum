@@ -540,7 +540,7 @@ void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate 
 
     ov94_02245900(&param3[0], v4, 0, 0, 0, TEXT_COLOR(15, 2, 0));
 
-    if (gender != 3) {
+    if (gender != GENDER_NONE + 1) {
         ov94_02245900(&param3[0], v1, 70, 0, 0, Unk_ov94_022467FC[gender]);
     }
 

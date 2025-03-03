@@ -1125,13 +1125,9 @@ static void ov94_0223F9FC(Window *param0, Window *param1, MessageLoader *param2)
 
 static int ov94_0223FB0C(const UnkStruct_ov94_0223BA88_sub3 *param0, const UnkStruct_ov94_0223BA88_sub3 *param1, int param2, int param3)
 {
-    if ((param0->species == param1->species)
+    return (param0->species == param1->species)
         && (param0->gender == param1->gender)
         && (param0->level == param1->level)
         && (param0->level2 == param1->level2)
-        && (param2 == param3)) {
-        return 1;
-    }
-
-    return 0;
+        && (param2 == param3);
 }

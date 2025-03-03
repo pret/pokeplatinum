@@ -2098,7 +2098,7 @@ static void ov5_021E63E0(Pokemon *param0)
 
 static int ov5_021E6444(Party *param0, UnkStruct_02026218 *param1, StringTemplate *param2)
 {
-    Pokemon *v0 = Pokemon_New(4);
+    Pokemon *v0 = Pokemon_New(HEAP_ID_FIELD);
     BoxPokemon *v1 = sub_02026220(param1);
     UnkStruct_02026224 *v2 = sub_02026224(param1);
     u32 v3;
@@ -2140,7 +2140,7 @@ u16 ov5_021E64F8(Party *param0, StringTemplate *param1, UnkStruct_02026310 *para
 
 int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
 {
-    Pokemon *mon = Pokemon_New(4);
+    Pokemon *mon = Pokemon_New(HEAP_ID_FIELD);
     BoxPokemon *boxMonRef = Pokemon_GetBoxPokemon(mon);
     int level;
     u32 exp;
@@ -2683,7 +2683,7 @@ void ov5_021E6EA8(UnkStruct_02026310 *param0, Party *param1, TrainerInfo *param2
 {
     u16 v0;
     u8 v1[2], v2;
-    Pokemon *v3 = Pokemon_New(4);
+    Pokemon *v3 = Pokemon_New(HEAP_ID_FIELD);
 
     v0 = ov5_021E6C20(param0, v1);
     v0 = ov5_021E6B54(v0, param0);
