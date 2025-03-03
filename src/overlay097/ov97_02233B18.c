@@ -441,7 +441,7 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
     }
 
     if (param1->unk_34 != -1) {
-        v2 = MessageLoader_Init(1, 26, 454, 78);
+        v2 = MessageLoader_Init(1, 26, 454, HEAP_ID_78);
 
         if (param1->unk_40) {
             v1 = param1->unk_40;
@@ -1225,7 +1225,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMon
     ov97_02233DD0(param0, &v4, 0x4 | 0x2);
 
     v8 = Strbuf_Init(64, 78);
-    v5 = MessageLoader_Init(1, 26, 412, 78);
+    v5 = MessageLoader_Init(1, 26, 412, HEAP_ID_78);
     species = ConvertGBASpeciesToDS(GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL));
 
     MessageLoader_GetStrbuf(v5, species, v8);

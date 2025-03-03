@@ -98,7 +98,7 @@ BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *pa
             v0->unk_370 = Graphics_GetScrnDataFromOpenNARC(param6, 7, 1, &(v0->unk_368), 10);
             v0->unk_374 = Graphics_GetScrnDataFromOpenNARC(param6, 8, 1, &(v0->unk_36C), 10);
             v0->unk_6C = param5;
-            v0->unk_70 = MessageLoader_Init(1, 26, 647, 10);
+            v0->unk_70 = MessageLoader_Init(1, 26, 647, HEAP_ID_10);
             v0->unk_74 = Strbuf_Init(32, 10);
             v0->unk_380 = NULL;
             *param0 = v0;

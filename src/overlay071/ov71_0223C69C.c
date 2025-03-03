@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "struct_defs/struct_02072014.h"
 
 #include "bg_window.h"
@@ -79,7 +81,7 @@ void ov71_0223C6F0 (Window * param0, const TrainerCard * param1)
     Window_FillRectWithColor(&param0[5], 0, 0, 0, 28 * 8, 2 * 8);
     Window_FillRectWithColor(&param0[6], 0, 0, 0, 28 * 8, 2 * 8);
 
-    v1 = MessageLoader_Init(0, 26, 616, 25);
+    v1 = MessageLoader_Init(0, 26, 616, HEAP_ID_25);
     v2 = Strbuf_Init(32, 25);
 
     for (v0 = 0; v0 < 7; v0++) {
@@ -561,7 +563,7 @@ void ov71_0223CDE8 (Window * param0, const TrainerCard * param1, Strbuf *param2)
 
     {
         u32 v1;
-        MessageLoader * v2 = MessageLoader_Init(0, 26, 616, 25);
+        MessageLoader * v2 = MessageLoader_Init(0, 26, 616, HEAP_ID_25);
         Strbuf* v3 = Strbuf_Init(32, 25);
         Strbuf* v4 = Strbuf_Init(32, 25);
         StringTemplate * v5 = StringTemplate_New((1 + 1), 32, 25);

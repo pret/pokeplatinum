@@ -184,7 +184,7 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
         v0->unk_08 = (UnkStruct_0203DE34 *)OverlayManager_Args(param0);
         v0->unk_4A9C = v0->unk_08->unk_00;
         v0->unk_24 = StringTemplate_Default(51);
-        v0->unk_28 = MessageLoader_Init(0, 26, 533, 51);
+        v0->unk_28 = MessageLoader_Init(0, 26, 533, HEAP_ID_51);
 
         SetAutorepeat(4, 8);
 

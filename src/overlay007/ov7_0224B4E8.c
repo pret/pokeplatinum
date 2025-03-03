@@ -324,7 +324,7 @@ static void ov7_0224B8DC(UnkStruct_ov7_0224B4E8 *param0)
     const int v12 = 55;
     const int v13 = (24 * 8) - 1;
 
-    v0 = MessageLoader_Init(0, 26, 353, 4);
+    v0 = MessageLoader_Init(0, 26, 353, HEAP_ID_FIELD);
     v2 = Strbuf_Init((90 * 2), 4);
     v3 = Strbuf_Init((90 * 2), 4);
     v4 = &param0->unk_24;
@@ -557,7 +557,7 @@ static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
     v0->fieldSystem = fieldSystem;
     v0->fieldSystem->unk_B0 = NULL;
     v0->unk_64 = StringTemplate_Default(4);
-    v0->unk_68 = MessageLoader_Init(0, 26, 221, 4);
+    v0->unk_68 = MessageLoader_Init(0, 26, 221, HEAP_ID_FIELD);
     v0->unk_14 = Strbuf_Init((90 * 2), 4);
     v0->unk_18 = Strbuf_Init((90 * 2), 4);
     v0->unk_1C = Strbuf_Init((90 * 2), 4);

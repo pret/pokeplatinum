@@ -447,7 +447,7 @@ static void ov85_022417CC(void)
 
 static void ov85_022417E4(UnkStruct_ov85_022417E4 *param0)
 {
-    param0->unk_C4 = MessageLoader_Init(0, 26, 398, 36);
+    param0->unk_C4 = MessageLoader_Init(0, 26, 398, HEAP_ID_36);
     param0->unk_CC = sub_0200C440(15, 2, 0, 36);
     param0->unk_C8 = StringTemplate_Default(36);
 }

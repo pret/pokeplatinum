@@ -2015,7 +2015,7 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 38, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
-    v1->unk_04 = MessageLoader_Init(0, 26, 376, 95);
+    v1->unk_04 = MessageLoader_Init(0, 26, 376, HEAP_ID_95);
     v1->unk_08 = StringTemplate_Default(95);
 
     for (v0 = 0; v0 < 1; v0++) {

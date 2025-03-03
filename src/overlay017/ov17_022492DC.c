@@ -524,7 +524,7 @@ static void ov17_02249828(UnkStruct_ov17_022492DC *param0)
     u32 v2, v3;
     MessageLoader *v4;
 
-    v4 = MessageLoader_Init(1, 26, 204, 23);
+    v4 = MessageLoader_Init(1, 26, 204, HEAP_ID_23);
     v2 = sub_02095848(param0->unk_04->unk_00->unk_110, param0->unk_04->unk_00->unk_111, param0->unk_00->unk_155);
     v3 = sub_020958C4(param0->unk_04->unk_00->unk_10F, param0->unk_04->unk_00->unk_111);
     v0 = MessageLoader_GetNewStrbuf(v4, v2);

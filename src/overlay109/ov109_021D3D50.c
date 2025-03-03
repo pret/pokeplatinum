@@ -191,7 +191,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         v0->unk_10 = v2->unk_34;
         v0->unk_14 = BgConfig_New(HEAP_ID_95);
         v0->unk_34 = StringTemplate_Default(95);
-        v0->unk_38 = MessageLoader_Init(0, 26, 377, 95);
+        v0->unk_38 = MessageLoader_Init(0, 26, 377, HEAP_ID_95);
 
         SetAutorepeat(4, 8);
         ov109_021D40D0();

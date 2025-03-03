@@ -2079,7 +2079,7 @@ static BOOL ScrCmd_1FA(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    msgLoader = MessageLoader_Init(1, 26, v1, 32);
+    msgLoader = MessageLoader_Init(1, 26, v1, HEAP_ID_FIELD_TASK);
 
     ov5_021DD498(ctx, msgLoader, v2);
     MessageLoader_Free(msgLoader);
@@ -2093,7 +2093,7 @@ static BOOL ScrCmd_1FB(ScriptContext *ctx)
     u16 v1 = ScriptContext_GetVar(ctx);
     u16 v2 = ScriptContext_GetVar(ctx);
 
-    msgLoader = MessageLoader_Init(1, 26, v1, 32);
+    msgLoader = MessageLoader_Init(1, 26, v1, HEAP_ID_FIELD_TASK);
     ov5_021DD444(ctx, msgLoader, v2, 1, NULL);
 
     MessageLoader_Free(msgLoader);
@@ -2142,7 +2142,7 @@ static BOOL ScrCmd_1FE(ScriptContext *ctx)
     v0 = v1->unk_78[v3].unk_00.unk_18;
 
     if (v0[0] == 0xFFFF) {
-        v2 = MessageLoader_Init(1, 26, 613, 32);
+        v2 = MessageLoader_Init(1, 26, 613, HEAP_ID_FIELD_TASK);
         ov5_021DD444(ctx, v2, v0[1], 1, NULL);
         MessageLoader_Free(v2);
     } else {
@@ -7586,7 +7586,7 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
     u16 v4 = ScriptContext_GetVar(ctx);
     u16 v5 = ScriptContext_GetVar(ctx);
     StringTemplate *v6 = StringTemplate_Default(32);
-    MessageLoader *v7 = MessageLoader_Init(0, 26, 372, 32);
+    MessageLoader *v7 = MessageLoader_Init(0, 26, 372, HEAP_ID_FIELD_TASK);
     Strbuf *v8;
     Strbuf *v9;
 

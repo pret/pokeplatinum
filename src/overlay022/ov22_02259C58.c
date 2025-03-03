@@ -431,7 +431,7 @@ static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 pa
     Strbuf *v1;
     Window *v2;
 
-    v0 = MessageLoader_Init(0, param1, param2, 13);
+    v0 = MessageLoader_Init(0, param1, param2, HEAP_ID_13);
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 

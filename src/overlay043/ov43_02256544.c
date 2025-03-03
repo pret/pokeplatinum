@@ -64,8 +64,8 @@ BOOL ov43_02256544(UnkStruct_ov43_02256544 **param0, const UnkStruct_ov43_022565
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_30 = ov25_02254664();
-        v0->unk_B4 = MessageLoader_Init(1, 26, 624, 8);
-        v0->unk_B8 = MessageLoader_Init(1, 26, 456, 8);
+        v0->unk_B4 = MessageLoader_Init(1, 26, 624, HEAP_ID_POKETCH_APP);
+        v0->unk_B8 = MessageLoader_Init(1, 26, 456, HEAP_ID_POKETCH_APP);
         v0->unk_BC = Strbuf_Init(128, 8); // Possibly TRAINER_NAME_LEN + 1
         ov43_022565B4(v0);
         *param0 = v0;

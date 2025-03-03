@@ -503,7 +503,7 @@ void sub_0202D63C(UnkStruct_0202D764 *param0, UnkStruct_ov104_0223A348 *param1, 
     v0->unk_04 = v2->unk_C9;
 
     if (v2->unk_C8_val1_unk_00_0) {
-        v3 = MessageLoader_Init(0, 26, 22, 11);
+        v3 = MessageLoader_Init(0, 26, 22, HEAP_ID_FIELDMAP);
 
         MessageLoader_Get(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->unk_08);
         MessageLoader_Free(v3);

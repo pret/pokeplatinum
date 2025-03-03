@@ -3127,10 +3127,10 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->unk_1A4 = SaveData_Options(param1->unk_00);
     param0->unk_118 = param1;
     param1->unk_08 = 0;
-    param0->unk_18C = MessageLoader_Init(0, 26, 19, 9);
-    param0->unk_190 = MessageLoader_Init(1, 26, 412, 9);
-    param0->unk_194 = MessageLoader_Init(0, 26, 202, 9);
-    param0->unk_198 = MessageLoader_Init(0, 26, 610, 9);
+    param0->unk_18C = MessageLoader_Init(0, 26, 19, HEAP_ID_9);
+    param0->unk_190 = MessageLoader_Init(1, 26, 412, HEAP_ID_9);
+    param0->unk_194 = MessageLoader_Init(0, 26, 202, HEAP_ID_9);
+    param0->unk_198 = MessageLoader_Init(0, 26, 610, HEAP_ID_9);
     param0->unk_19C = StringTemplate_Default(9);
     param0->unk_1A0 = Heap_AllocFromHeap(HEAP_ID_9, Pokemon_StructSize());
 

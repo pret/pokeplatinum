@@ -117,7 +117,7 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
 
     sub_020528D0(v0->unk_08);
 
-    v0->unk_1C = MessageLoader_Init(1, 26, 373, 11);
+    v0->unk_1C = MessageLoader_Init(1, 26, 373, HEAP_ID_FIELDMAP);
     v0->unk_20 = StringTemplate_Default(11);
 
     Window_AddFromTemplate(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);

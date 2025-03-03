@@ -1084,7 +1084,7 @@ void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2)
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 
     if (param1[0] == 0xFFFF) {
-        v1 = MessageLoader_Init(1, 26, param2, 32);
+        v1 = MessageLoader_Init(1, 26, param2, HEAP_ID_FIELD_TASK);
 
         ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);

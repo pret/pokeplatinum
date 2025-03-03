@@ -1142,7 +1142,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
 
     switch (mapChangeUndergroundData->state) {
     case 0:
-        MessageLoader *msgLoader = MessageLoader_Init(1, 26, 221, 11);
+        MessageLoader *msgLoader = MessageLoader_Init(1, 26, 221, HEAP_ID_FIELDMAP);
 
         mapChangeUndergroundData->unk_34 = MessageLoader_GetNewStrbuf(msgLoader, 124);
         MessageLoader_Free(msgLoader);

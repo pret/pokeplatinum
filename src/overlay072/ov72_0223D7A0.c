@@ -128,7 +128,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         v0->unk_00 = BgConfig_New(HEAP_ID_39);
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, 39);
         v0->unk_10 = StringTemplate_Default(39);
-        v0->unk_14 = MessageLoader_Init(0, 26, 425, 39);
+        v0->unk_14 = MessageLoader_Init(0, 26, 425, HEAP_ID_39);
 
         SetAutorepeat(4, 8);
         ov72_0223DA70();

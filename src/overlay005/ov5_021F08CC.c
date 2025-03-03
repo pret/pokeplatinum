@@ -501,7 +501,7 @@ static int ov5_021F0D54(void)
 
 static void ov5_021F0D6C(UnkStruct_ov5_021F0D6C *param0)
 {
-    param0->unk_48 = MessageLoader_Init(1, 26, 213, 4);
+    param0->unk_48 = MessageLoader_Init(1, 26, 213, HEAP_ID_FIELD);
     param0->unk_2C = Strbuf_Init(0x400, 4);
     param0->unk_30 = Strbuf_Init(0x400, 4);
     param0->unk_34 = StringTemplate_New(8, 64, 4);

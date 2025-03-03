@@ -114,11 +114,11 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
         }
 
         v0->unk_B8C = StringTemplate_New(11, 64, 62);
-        v0->unk_B90 = MessageLoader_Init(0, 26, 671, 62);
-        v0->unk_B98 = MessageLoader_Init(0, 26, 674, 62);
-        v0->unk_B9C = MessageLoader_Init(0, 26, 695, 62);
-        v0->unk_B94 = MessageLoader_Init(0, 26, 412, 62);
-        v0->unk_BA0 = MessageLoader_Init(0, 26, 694, 62);
+        v0->unk_B90 = MessageLoader_Init(0, 26, 671, HEAP_ID_62);
+        v0->unk_B98 = MessageLoader_Init(0, 26, 674, HEAP_ID_62);
+        v0->unk_B9C = MessageLoader_Init(0, 26, 695, HEAP_ID_62);
+        v0->unk_B94 = MessageLoader_Init(0, 26, 412, HEAP_ID_62);
+        v0->unk_BA0 = MessageLoader_Init(0, 26, 694, HEAP_ID_62);
 
         SetAutorepeat(4, 8);
 

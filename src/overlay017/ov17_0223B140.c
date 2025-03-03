@@ -203,10 +203,10 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     v0->unk_0C.unk_20 = ov12_0221FCDC(21);
     ov12_0221FDC0(v0->unk_0C.unk_20, 1);
 
-    v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 204, 21);
-    v0->unk_0C.unk_3C = MessageLoader_Init(0, 26, 205, 21);
-    v0->unk_0C.unk_40 = MessageLoader_Init(0, 26, 210, 21);
-    v0->unk_0C.unk_44 = MessageLoader_Init(0, 26, 211, 21);
+    v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 204, HEAP_ID_21);
+    v0->unk_0C.unk_3C = MessageLoader_Init(0, 26, 205, HEAP_ID_21);
+    v0->unk_0C.unk_40 = MessageLoader_Init(0, 26, 210, HEAP_ID_21);
+    v0->unk_0C.unk_44 = MessageLoader_Init(0, 26, 211, HEAP_ID_21);
     v0->unk_0C.unk_54 = sub_02012744((2 * 4), 21);
     v0->unk_0C.unk_48 = StringTemplate_Default(21);
     v0->unk_0C.unk_4C = Strbuf_Init((3 * 160), 21);

@@ -1270,7 +1270,7 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
 {
     TrainerInfo *v0;
     Strbuf *v1;
-    MessageLoader *v2 = MessageLoader_Init(1, 26, 635, 4);
+    MessageLoader *v2 = MessageLoader_Init(1, 26, 635, HEAP_ID_FIELD);
     int v3, v4;
 
     param2--;

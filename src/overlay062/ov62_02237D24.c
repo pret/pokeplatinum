@@ -1555,7 +1555,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
             v4->unk_1E8[v5].unk_04 = v4->unk_1D4.unk_08[v5];
         }
     }
-    v4->unk_1D4.unk_0C = MessageLoader_Init(0, 26, 412, 102);
+    v4->unk_1D4.unk_0C = MessageLoader_Init(0, 26, 412, HEAP_ID_102);
     v4->unk_1D4.unk_10 = 1;
 }
 
