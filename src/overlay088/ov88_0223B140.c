@@ -1209,12 +1209,12 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, 26);
     Font_LoadScreenIndicatorsPalette(0, 2 * 32, 26);
-    Font_LoadTextPalette(0, 3 * 32, 26);
+    Font_LoadTextPalette(0, 3 * 32, HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 5, 0, 16 * 4 * 0x20, 1, 26);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, 26);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, 26);
     Font_LoadScreenIndicatorsPalette(4, 2 * 32, 26);
-    Font_LoadTextPalette(4, 3 * 32, 26);
+    Font_LoadTextPalette(4, 3 * 32, HEAP_ID_26);
     Bg_ClearTilemap(v0, 4);
 }
 

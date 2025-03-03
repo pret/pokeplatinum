@@ -437,7 +437,7 @@ static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
         Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
     }
 
-    Font_LoadTextPalette(0, 15 * 0x20, 36);
+    Font_LoadTextPalette(0, 15 * 0x20, HEAP_ID_36);
 }
 
 static void ov85_022417CC(void)

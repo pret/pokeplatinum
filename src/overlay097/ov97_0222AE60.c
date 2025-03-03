@@ -459,8 +459,8 @@ static void ov97_0222B2EC(UnkStruct_0222AE60 *param0)
     Bg_ClearTilesRange(2, 32, 0, 81);
 
     Text_ResetAllPrinters();
-    Font_LoadTextPalette(0, 1 * 32, 81);
-    Font_LoadTextPalette(0, 0 * 32, 81);
+    Font_LoadTextPalette(0, 1 * 32, HEAP_ID_81);
+    Font_LoadTextPalette(0, 0 * 32, HEAP_ID_81);
 
     *((u16 *)HW_BG_PLTT + 0) = ((0 & 31) << 10 | (0 & 31) << 5 | (0 & 31));
     *((u16 *)HW_BG_PLTT + 31) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));

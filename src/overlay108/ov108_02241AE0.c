@@ -818,7 +818,7 @@ static void ov108_0224237C(UnkStruct_ov108_02241DB0 *param0)
         param0->unk_78[v5] = Strbuf_Init(32, 103);
     }
 
-    Font_LoadTextPalette(0, 13 * 32, 103);
+    Font_LoadTextPalette(0, 13 * 32, HEAP_ID_103);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 103);
 
     ov108_02243630(param0->unk_90, param0->unk_94);

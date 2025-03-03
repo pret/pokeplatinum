@@ -241,7 +241,7 @@ static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
     param0->unk_200 = Window_New(14, 1);
 
     Window_Add(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
-    Font_LoadTextPalette(0, 5 * 32, 14);
+    Font_LoadTextPalette(0, 5 * 32, HEAP_ID_14);
     Bg_SetPriority(3, 0);
     Bg_SetPriority(0, 2);
     Bg_SetPriority(1, 1);

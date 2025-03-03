@@ -920,8 +920,8 @@ static BOOL ov97_0222DFD4(OverlayManager *param0, UnkStruct_ov97_0222D04C *param
     int v0;
 
     Text_ResetAllPrinters();
-    Font_LoadTextPalette(0, 0 * 32, 86);
-    Font_LoadTextPalette(0, 1 * 32, 86);
+    Font_LoadTextPalette(0, 0 * 32, HEAP_ID_86);
+    Font_LoadTextPalette(0, 1 * 32, HEAP_ID_86);
 
     v0 = Options_Frame(param1->unk_08);
 

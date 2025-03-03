@@ -1124,7 +1124,7 @@ static void ov107_02246EE4 (UnkStruct_ov107_02246170 * param0)
         param0->unk_30[v13] = Strbuf_Init(32, 100);
     }
 
-    Font_LoadTextPalette(0, 13 * 32, 100);
+    Font_LoadTextPalette(0, 13 * 32, HEAP_ID_100);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 100);
 
     param0->unk_144 = sub_0200C440(1, 2, 0, 100);
