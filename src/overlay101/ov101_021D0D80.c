@@ -293,7 +293,7 @@ static void ov101_021D10B8(BgConfig *param0)
 
         Bg_InitFromTemplate(param0, 0, &v1, 0);
         Bg_ClearTilemap(param0, 0);
-        Bg_ClearTilesRange(0, 32, 0, 79);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_79);
     }
 
     {

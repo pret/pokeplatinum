@@ -252,8 +252,8 @@ static void ov94_02244A7C(BgConfig *param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 62);
-    Bg_ClearTilesRange(4, 32, 0, 62);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
 }
 

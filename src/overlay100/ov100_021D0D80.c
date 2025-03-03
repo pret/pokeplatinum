@@ -371,10 +371,10 @@ static void ov100_021D1208(BgConfig *param0)
             },
         };
 
-        Bg_ClearTilesRange(0, 32, 0, 111);
-        Bg_ClearTilesRange(1, 32, 0, 111);
-        Bg_ClearTilesRange(2, 32, 0, 111);
-        Bg_ClearTilesRange(3, 32, 0, 111);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_111);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_111);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_111);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_111);
         Bg_InitFromTemplate(param0, 0, &v2[0], 0);
         Bg_InitFromTemplate(param0, 1, &v2[1], 0);
         Bg_InitFromTemplate(param0, 2, &v2[2], 0);
@@ -425,8 +425,8 @@ static void ov100_021D1208(BgConfig *param0)
         Bg_ClearTilemap(param0, 5);
     }
 
-    Bg_ClearTilesRange(4, 32, 0, 111);
-    Bg_ClearTilesRange(5, 32, 0, 111);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_111);
+    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_111);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);

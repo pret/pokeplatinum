@@ -846,8 +846,8 @@ static void sub_0207E918(BgConfig *param0)
         Bg_InitFromTemplate(param0, 5, &v5, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 12);
-    Bg_ClearTilesRange(4, 32, 0, 12);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_12);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_12);
 }
 
 static void sub_0207EA24(BgConfig *param0)
@@ -878,7 +878,7 @@ void sub_0207EA74(GameWindowLayout *param0, int param1)
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_2D);
 
         sub_0207E8E0(param0->unk_00);
-        Bg_ClearTilesRange(0, 32, 0, 12);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_12);
     }
 }
 

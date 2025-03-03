@@ -1341,7 +1341,7 @@ static void ov111_021D20EC(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 4, &v1, 0);
-        Bg_ClearTilesRange(4, 32, 0, 115);
+        Bg_ClearTilesRange(4, 32, 0, HEAP_ID_115);
         Bg_ClearTilemap(param0, 4);
     }
 
@@ -1447,7 +1447,7 @@ static void ov111_021D20EC(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 2, &v6, 0);
-        Bg_ClearTilesRange(2, 32, 0, 115);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_115);
         Bg_ClearTilemap(param0, 2);
     }
 

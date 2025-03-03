@@ -1090,9 +1090,9 @@ static void ov88_0223C17C(BgConfig *param0)
         Bg_InitFromTemplate(param0, 6, &v7, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 26);
-    Bg_ClearTilesRange(1, 32, 0, 26);
-    Bg_ClearTilesRange(4, 32, 0, 26);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_26);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_26);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_26);
 
     {
         int v8;

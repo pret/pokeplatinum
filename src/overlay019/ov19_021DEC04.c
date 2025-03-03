@@ -133,7 +133,7 @@ void ov19_021DECE8(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 131, param0->unk_0C, 7, 0, 0, 1, 10);
         Graphics_LoadPaletteFromOpenNARC(param1, 133, 4, 0, 0x20 * 4, 10);
         Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 5, 4 * 0x20, 4 * 0x20, 10);
-        Bg_ClearTilesRange(4, 0x20, 0, 10);
+        Bg_ClearTilesRange(4, 0x20, 0, HEAP_ID_10);
         Bg_FillTilemapRect(param0->unk_0C, 4, 0x0, 0, 0, 32, 32, 17);
 
         ov19_021DEF64(param0);

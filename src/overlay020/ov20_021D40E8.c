@@ -95,7 +95,7 @@ void ov20_021D41A8(UnkStruct_ov20_021D4210 *param0)
 
     v0 = ov20_021D2E04(param0->unk_00);
 
-    Bg_ClearTilesRange(2, 0x20, 0 * 0x20, 35);
+    Bg_ClearTilesRange(2, 0x20, 0 * 0x20, HEAP_ID_35);
     Bg_FillTilemapRect(v0, 2, 0, 0, 0, 32, 32, 12);
 
     Window_FillTilemap(&param0->unk_10, 0);

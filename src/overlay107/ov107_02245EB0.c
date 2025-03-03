@@ -1298,7 +1298,7 @@ static void ov107_02247340(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, 100);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_100);
         Bg_ClearTilemap(param0, 1);
     }
 
@@ -1320,7 +1320,7 @@ static void ov107_02247340(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 0, &v2, 0);
-        Bg_ClearTilesRange(0, 32, 0, 100);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_100);
         Bg_ClearTilemap(param0, 0);
     }
 
@@ -1342,7 +1342,7 @@ static void ov107_02247340(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilesRange(2, 32, 0, 100);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_100);
         Bg_ClearTilemap(param0, 2);
     }
 
@@ -1364,7 +1364,7 @@ static void ov107_02247340(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 3, &v4, 0);
-        Bg_ClearTilesRange(3, 32, 0, 100);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_100);
         Bg_ClearTilemap(param0, 3);
     }
 

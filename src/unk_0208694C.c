@@ -1353,8 +1353,8 @@ static void sub_020871EC(BgConfig *param0)
     }
 
     sub_0208732C(0);
-    Bg_ClearTilesRange(0, 32, 0, 18);
-    Bg_ClearTilesRange(4, 32, 0, 18);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_18);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_18);
 
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_OBJ, 1);

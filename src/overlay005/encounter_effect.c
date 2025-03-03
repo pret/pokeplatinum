@@ -1617,7 +1617,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
             };
 
             Bg_InitFromTemplate(fieldSystem->bgConfig, 2, &v3, 0);
-            Bg_ClearTilesRange(2, 32, 0, 4);
+            Bg_ClearTilesRange(2, 32, 0, HEAP_ID_FIELD);
             Bg_ClearTilemap(fieldSystem->bgConfig, 2);
         }
     }

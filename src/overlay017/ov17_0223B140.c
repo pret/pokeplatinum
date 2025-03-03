@@ -645,7 +645,7 @@ void ov17_0223BB14(UnkStruct_ov17_02246F24 *param0, int param1, int param2)
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         }
     } else {
-        Bg_ClearTilesRange(2, 0x4000, 0, 21);
+        Bg_ClearTilesRange(2, 0x4000, 0, HEAP_ID_21);
         Bg_ClearTilemap(param0->unk_0C.unk_24, 2);
         Bg_SetPriority(1, 0);
         Bg_SetPriority(2, 1);

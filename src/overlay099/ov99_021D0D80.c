@@ -529,10 +529,10 @@ static void ov99_021D1380(BgConfig *param0)
         Bg_SetOffset(param0, 7, 3, 0);
     }
 
-    Bg_ClearTilesRange(1, 32, 0, 75);
-    Bg_ClearTilesRange(5, 32, 0, 75);
-    Bg_ClearTilesRange(6, 32, 0, 75);
-    Bg_ClearTilesRange(7, 32, 0, 75);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_75);
+    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_75);
+    Bg_ClearTilesRange(6, 32, 0, HEAP_ID_75);
+    Bg_ClearTilesRange(7, 32, 0, HEAP_ID_75);
 
     Bg_ToggleLayer(3, 0);
     Bg_ToggleLayer(6, 0);
@@ -666,7 +666,7 @@ static void ov99_021D1580(BgConfig *param0)
         Bg_SetOffset(param0, 7, 3, 0);
     }
 
-    Bg_ClearTilesRange(7, 32, 0, 75);
+    Bg_ClearTilesRange(7, 32, 0, HEAP_ID_75);
 }
 
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0)

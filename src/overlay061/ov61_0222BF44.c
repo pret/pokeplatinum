@@ -412,8 +412,8 @@ static void ov61_0222C224(BgConfig *param0)
         Bg_SetOffset(param0, 5, 3, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 117);
-    Bg_ClearTilesRange(4, 32, 0, 117);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_117);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_117);
 }
 
 static void ov61_0222C38C(BgConfig *param0)

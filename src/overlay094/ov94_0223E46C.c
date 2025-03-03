@@ -252,10 +252,10 @@ static void ov94_0223E598(BgConfig *param0)
         Bg_ClearTilemap(param0, 3);
     }
 
-    Bg_ClearTilesRange(2, 32, 0, 62);
-    Bg_ClearTilesRange(0, 32, 0, 62);
-    Bg_ClearTilesRange(3, 32, 0, 62);
-    Bg_ClearTilesRange(4, 32, 0, 62);
+    Bg_ClearTilesRange(2, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(3, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
 }
 
 static void ov94_0223E684(BgConfig *param0)

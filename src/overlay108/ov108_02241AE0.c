@@ -967,7 +967,7 @@ static void ov108_02242760(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, 103);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_103);
         Bg_ClearTilemap(param0, 1);
     }
 

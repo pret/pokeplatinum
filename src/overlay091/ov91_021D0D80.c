@@ -575,7 +575,7 @@ static void ov91_021D0FE4(BgConfig *param0)
         Bg_ClearTilemap(param0, 2);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 67);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_67);
 }
 
 static void ov91_021D1098(BgConfig *param0)

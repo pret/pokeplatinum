@@ -791,8 +791,8 @@ static void ov84_0223BA5C(BgConfig *param0)
         Bg_ScheduleAffineRotationCenter(param0, 7, 12, 80);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 6);
-    Bg_ClearTilesRange(4, 32, 0, 6);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_6);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_6);
 }
 
 static void ov84_0223BBC4(BgConfig *param0)

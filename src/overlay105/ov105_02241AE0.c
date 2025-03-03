@@ -2187,7 +2187,7 @@ static void ov105_02244584(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, 93);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_93);
         Bg_ClearTilemap(param0, 1);
     }
 
@@ -3317,7 +3317,7 @@ static void ov105_02245A30(UnkStruct_ov105_02241FF4 *param0)
 static void ov105_02245A64(UnkStruct_ov105_02241FF4 *param0)
 {
     Bg_SetPriority(1, 1);
-    Bg_ClearTilesRange(1, 32, 0, 93);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_93);
     Bg_ClearTilemap(param0->unk_4C, 1);
     ov105_02246214(param0->unk_4C, param0->unk_50);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);

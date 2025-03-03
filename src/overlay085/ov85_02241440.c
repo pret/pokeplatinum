@@ -403,7 +403,7 @@ static void ov85_02241634(BgConfig *param0)
         Bg_InitFromTemplate(param0, 3, &v3, 0);
     }
 
-    Bg_ClearTilesRange(1, 32, 0, 36);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_36);
 }
 
 static void ov85_022416E8(BgConfig *param0)

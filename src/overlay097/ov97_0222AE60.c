@@ -448,15 +448,15 @@ static void ov97_0222B2EC(UnkStruct_0222AE60 *param0)
 
     ov97_022376FC(param0->unk_00, 0, 2, 0xF000, 0x0);
     G2_SetBG0Priority(2);
-    Bg_ClearTilesRange(0, 32, 0, 81);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_81);
 
     ov97_022376FC(param0->unk_00, 1, 1, 0xD800, 0x8000);
     G2_SetBG1Priority(1);
-    Bg_ClearTilesRange(1, 32, 0, 81);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_81);
 
     ov97_022376FC(param0->unk_00, 2, 2, 0xE000, 0x0);
     G2_SetBG2Priority(0);
-    Bg_ClearTilesRange(2, 32, 0, 81);
+    Bg_ClearTilesRange(2, 32, 0, HEAP_ID_81);
 
     Text_ResetAllPrinters();
     Font_LoadTextPalette(0, 1 * 32, HEAP_ID_81);

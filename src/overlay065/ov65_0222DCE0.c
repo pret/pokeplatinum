@@ -992,7 +992,7 @@ static void ov65_0222E638(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilesRange(0, 32, 0, 54);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_54);
         Bg_ClearTilemap(param0, 0);
     }
 
@@ -1014,7 +1014,7 @@ static void ov65_0222E638(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilesRange(1, 32, 0, 54);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_54);
         Bg_ClearTilemap(param0, 1);
     }
 
@@ -1036,7 +1036,7 @@ static void ov65_0222E638(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilesRange(2, 32, 0, 54);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_54);
         Bg_ClearTilemap(param0, 2);
     }
 
@@ -1058,7 +1058,7 @@ static void ov65_0222E638(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 3, &v4, 0);
-        Bg_ClearTilesRange(3, 32, 0, 54);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_54);
         Bg_ClearTilemap(param0, 3);
     }
 
@@ -1146,14 +1146,14 @@ static void ov65_0222E638(BgConfig *param0)
         Bg_ClearTilemap(param0, 7);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 54);
-    Bg_ClearTilesRange(1, 32, 0, 54);
-    Bg_ClearTilesRange(2, 32, 0, 54);
-    Bg_ClearTilesRange(3, 32, 0, 54);
-    Bg_ClearTilesRange(4, 32, 0, 54);
-    Bg_ClearTilesRange(5, 32, 0, 54);
-    Bg_ClearTilesRange(6, 32, 0, 54);
-    Bg_ClearTilesRange(7, 32, 0, 54);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(2, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(3, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(6, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(7, 32, 0, HEAP_ID_54);
 
     Bg_SetPriority(0, 3);
     Bg_SetPriority(1, 1);

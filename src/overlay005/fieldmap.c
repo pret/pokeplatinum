@@ -586,7 +586,7 @@ static void ov5_021D1444(BgConfig *bgl)
         };
 
         Bg_InitFromTemplate(bgl, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, 4);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(bgl, 1);
     }
 
@@ -608,7 +608,7 @@ static void ov5_021D1444(BgConfig *bgl)
         };
 
         Bg_InitFromTemplate(bgl, 2, &v2, 0);
-        Bg_ClearTilesRange(2, 32, 0, 4);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(bgl, 2);
     }
     {
@@ -629,7 +629,7 @@ static void ov5_021D1444(BgConfig *bgl)
         };
 
         Bg_InitFromTemplate(bgl, 3, &v3, 0);
-        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(bgl, 3);
     }
 

@@ -2146,7 +2146,7 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
             Windows_Delete(param0->unk_28, 1);
             sub_0200F344(0, 0x0);
             sub_0200F344(1, 0x0);
-            Bg_ClearTilesRange(1, 32, 0, 11);
+            Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
             return 0;
@@ -2203,7 +2203,7 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
             sub_0200F344(0, 0x0);
             sub_0200F344(1, 0x0);
 
-            Bg_ClearTilesRange(1, 32, 0, 11);
+            Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
             return 0;

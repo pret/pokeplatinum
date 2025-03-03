@@ -797,7 +797,7 @@ static void ov117_022610D8(BgConfig *param0)
                 Bg_InitFromTemplate(param0, 4 + v3, &v4[v3], 1);
             }
 
-            Bg_ClearTilesRange(4 + v3, 0x20, 0, 110);
+            Bg_ClearTilesRange(4 + v3, 0x20, 0, HEAP_ID_110);
             Bg_ClearTilemap(param0, 4 + v3);
             Bg_SetOffset(param0, 4 + v3, 0, 0);
             Bg_SetOffset(param0, 4 + v3, 3, 0);

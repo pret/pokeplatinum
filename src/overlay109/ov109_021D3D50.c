@@ -503,8 +503,8 @@ static void ov109_021D40F0(BgConfig *param0)
         Bg_InitFromTemplate(param0, 1, &v5, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 95);
-    Bg_ClearTilesRange(4, 32, 0, 95);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_95);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_95);
 }
 
 static void ov109_021D41F8(UnkStruct_ov109_021D5140 *param0, NARC *param1)

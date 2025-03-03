@@ -1310,7 +1310,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
         Window_Remove(v1->unk_270);
         Windows_Delete(v1->unk_270, 1);
 
-        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         EncounterEffect_Finish(v0, param0);
@@ -1657,7 +1657,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         Window_Remove(v1->unk_264);
         Windows_Delete(v1->unk_264, 1);
 
-        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         EncounterEffect_Finish(v0, param0);
@@ -2234,7 +2234,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         Window_Remove(v1->unk_00);
         Windows_Delete(v1->unk_00, 1);
 
-        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(v0->fieldSystem->bgConfig, 3);
 
         G2_SetOBJMosaicSize(0, 0);

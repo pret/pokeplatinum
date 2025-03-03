@@ -1710,7 +1710,7 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
 
         Bg_InitFromTemplate(param0->unk_D84, 1, &v1, 0);
         Bg_ClearTilemap(param0->unk_D84, 1);
-        Bg_ClearTilesRange(1, 32, 0, 95);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_95);
     }
 
     {
