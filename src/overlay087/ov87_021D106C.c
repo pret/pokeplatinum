@@ -101,7 +101,7 @@ UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const Un
         v0->unk_1F0 = StringTemplate_Default(61);
         v0->unk_1F4 = Strbuf_Init(256, 61);
         v0->unk_1F8 = Strbuf_Init(256, 61);
-        v0->unk_1FC = Pokemon_New(61);
+        v0->unk_1FC = Pokemon_New(HEAP_ID_61);
 
         SetVBlankCallback(ov87_021D11AC, v0);
     }

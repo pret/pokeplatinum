@@ -1113,7 +1113,7 @@ void ov104_0222F7BC(int param0, int param1, void *param2, void *param3)
 
     v0 = ov104_0223B7A8(v5->unk_10, 0);
     v3 = Pokemon_StructSize();
-    v4 = Pokemon_New(11);
+    v4 = Pokemon_New(HEAP_ID_FIELDMAP);
 
     for (v1 = 0; v1 < v0; v1++) {
         MI_CpuCopy8(&v6[v3 * v1], v4, v3);
@@ -1412,7 +1412,7 @@ void ov104_0222FB34(int param0, int param1, void *param2, void *param3)
 
     v0 = ov104_0223BD70(v5->unk_10, 0);
     v3 = Pokemon_StructSize();
-    v4 = Pokemon_New(11);
+    v4 = Pokemon_New(HEAP_ID_FIELDMAP);
 
     for (v1 = 0; v1 < v0; v1++) {
         MI_CpuCopy8(&v6[v3 * v1], v4, v3);

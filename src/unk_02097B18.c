@@ -91,7 +91,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     v1 = OverlayManager_Args(param0);
     v0->unk_00 = v1;
     v0->unk_42C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 53);
-    v0->unk_428 = Pokemon_New(53);
+    v0->unk_428 = Pokemon_New(HEAP_ID_53);
     v0->unk_D4.unk_00 = 0xFF;
     v0->unk_418.unk_00 = 0;
 

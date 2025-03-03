@@ -4207,7 +4207,7 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
                         v7 = v0->unk_09;
                     }
 
-                    v9 = Pokemon_New(5);
+                    v9 = Pokemon_New(HEAP_ID_BATTLE);
 
                     for (i = 0; i < 6; i++) {
                         Party_AddPokemon(v0->unk_04->unk_00, v9);

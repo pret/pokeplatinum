@@ -14,9 +14,15 @@ enum HeapId {
 
     HEAP_ID_FIELDMAP = 11,
 
+    HEAP_ID_13 = 13,
+
     HEAP_ID_COMMUNICATION = 15,
 
+    HEAP_ID_18 = 18,
     HEAP_ID_POKEMON_SUMMARY_SCREEN = 19,
+    HEAP_ID_20 = 20,
+
+    HEAP_ID_26 = 26,
 
     HEAP_ID_DISTORTION_WORLD_WARP = 30,
 
@@ -28,6 +34,11 @@ enum HeapId {
     HEAP_ID_JOURNAL = 42,
 
     HEAP_ID_CHOOSE_STARTER_APP = 47,
+
+    HEAP_ID_53 = 53,
+
+    HEAP_ID_61 = 61,
+    HEAP_ID_62 = 62,
 
     HEAP_ID_GAME_START = 77,
 

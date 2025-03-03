@@ -343,7 +343,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     sub_0202A524(param0->unk_04, v2);
     StringTemplate_SetStrbuf(v1, 3, v2, v4, 1, GAME_LANGUAGE);
 
-    v5 = Pokemon_New(13);
+    v5 = Pokemon_New(HEAP_ID_13);
     sub_0202A560(param0->unk_04, v5);
     v6 = Pokemon_GetBoxPokemon(v5);
     StringTemplate_SetNickname(v1, 4, v6);

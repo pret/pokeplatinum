@@ -821,7 +821,7 @@ static void JournalPrinter_PrintPlayedAtBattleFacility(JournalManager *journalMa
 
 static void JournalPrinter_SetSpeciesName(JournalManager *journalManager, u16 species, u8 gender, u8 idx)
 {
-    Pokemon *mon = Pokemon_New(42);
+    Pokemon *mon = Pokemon_New(HEAP_ID_JOURNAL);
 
     sub_02074088(mon, species, 1, 32, gender, 0, 0);
     StringTemplate_SetSpeciesName(journalManager->template, idx, Pokemon_GetBoxPokemon(mon));

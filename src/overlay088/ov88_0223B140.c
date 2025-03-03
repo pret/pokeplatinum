@@ -2479,8 +2479,8 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
 {
     Pokemon *v0, *v1;
 
-    v0 = Pokemon_New(26);
-    v1 = Pokemon_New(26);
+    v0 = Pokemon_New(HEAP_ID_26);
+    v1 = Pokemon_New(HEAP_ID_26);
 
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param0, param2), v0);
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param1, param3), v1);

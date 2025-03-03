@@ -4500,7 +4500,7 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
 
 void sub_020780C4(Pokemon *mon, u32 monPersonality)
 {
-    Pokemon *newMon = Pokemon_New(0);
+    Pokemon *newMon = Pokemon_New(HEAP_ID_SYSTEM);
 
     Pokemon_Copy(mon, newMon);
 

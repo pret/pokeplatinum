@@ -792,7 +792,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
             param0->unk_36 = 0;
 
             if (sub_0202DA60(param0->unk_00->unk_00)) {
-                Pokemon *v1 = Pokemon_New(62);
+                Pokemon *v1 = Pokemon_New(HEAP_ID_62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v1);
                 StringTemplate_SetNickname(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(v1));
@@ -812,7 +812,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
             param0->unk_36 = 0;
 
             if (sub_0202DA60(param0->unk_00->unk_00)) {
-                Pokemon *v2 = Pokemon_New(62);
+                Pokemon *v2 = Pokemon_New(HEAP_ID_62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v2);
                 StringTemplate_SetNickname(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(v2));
@@ -1248,7 +1248,7 @@ static int ov94_02243AE8(UnkStruct_ov94_0223FD4C *param0)
 static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
     if (param0->unk_110 != 18) {
-        Pokemon *v0 = Pokemon_New(62);
+        Pokemon *v0 = Pokemon_New(HEAP_ID_62);
 
         Pokemon_FromBoxPokemon(GetBoxedPokemonFrom(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);

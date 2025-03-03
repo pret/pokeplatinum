@@ -63,7 +63,7 @@ UnkStruct_ov104_0223B5C0 *ov104_02234DB4(SaveData *param0, u16 param1, u8 param2
     v10->unk_6FC = param0;
     v10->unk_00 = 11;
     v10->unk_264 = Party_New(11);
-    v10->unk_D8C = Pokemon_New(11);
+    v10->unk_D8C = Pokemon_New(HEAP_ID_FIELDMAP);
 
     v0 = v10->unk_6F8;
     v1 = sub_0203026C(param0);
