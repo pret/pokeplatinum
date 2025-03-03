@@ -192,7 +192,7 @@ static BOOL ov19_021D357C(UnkStruct_ov19_021D5DF8 *param0, int *param1);
 static void ov19_021D35F8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D38E0(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_021D3978(SysTask *param0, void *param1);
-static BOOL ov19_021D3AC8(BoxPokemon *param0, u16 param1);
+static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 param1);
 static void ov19_021D3B34(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D3C28(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D3CFC(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5DF8 *param1);
@@ -245,13 +245,13 @@ static BOOL ov19_021D57D8(UnkStruct_ov19_021D5DF8 *param0, u32 param1);
 static BOOL ov19_021D5800(UnkStruct_ov19_021D5DF8 *param0, u32 param1);
 static void ov19_021D5834(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_021D584C(UnkStruct_ov19_021D5DF8 *param0);
-static void ov19_021D5888(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1, UnkStruct_ov19_021D5DF8 *param2);
-static void ov19_021D58AC(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1, UnkStruct_ov19_021D5DF8 *param2);
-static void ov19_021D59F4(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1, UnkStruct_ov19_021D5DF8 *param2);
+static void ov19_021D5888(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon, UnkStruct_ov19_021D5DF8 *param2);
+static void ov19_021D58AC(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon, UnkStruct_ov19_021D5DF8 *param2);
+static void ov19_021D59F4(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon, UnkStruct_ov19_021D5DF8 *param2);
 static void ov19_021D5B70(UnkStruct_ov19_021D4DF0 *param0);
 static void ov19_021D5B80(UnkStruct_ov19_021D4DF0 *param0);
 static void ov19_021D5BA0(UnkStruct_ov19_021D4DF0 *param0, BOOL param1);
-static void ov19_021D5BA8(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1);
+static void ov19_021D5BA8(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon);
 static void ov19_021D5BAC(UnkStruct_ov19_021D4DF0 *param0);
 static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 param1, UnkStruct_ov19_021D5DF8 *param2);
 static void ov19_021D5CBC(UnkStruct_ov19_021D4DF0 *param0);
@@ -2205,7 +2205,7 @@ static void ov19_021D38E0(UnkStruct_ov19_021D5DF8 *param0)
     v0->unk_10 = param0->unk_00.unk_4C.unk_00;
 
     for (v1 = 0, v2 = 0; v1 < (NELEMS(Unk_ov19_021DFDF0)); v1++) {
-        v0->unk_04[v1] = ov19_021D3AC8(v0->unk_10, Unk_ov19_021DFDF0[v1]);
+        v0->unk_04[v1] = BoxPokemon_HasMove(v0->unk_10, Unk_ov19_021DFDF0[v1]);
 
         if (v0->unk_04[v1]) {
             v2++;
@@ -2251,7 +2251,7 @@ static void ov19_021D3978(SysTask *param0, void *param1)
 
             if (BoxPokemon_GetValue(v1, MON_DATA_SPECIES_EXISTS, NULL)) {
                 for (v3 = 0; v3 < (NELEMS(Unk_ov19_021DFDF0)); v3++) {
-                    if (ov19_021D3AC8(v1, Unk_ov19_021DFDF0[v3])) {
+                    if (BoxPokemon_HasMove(v1, Unk_ov19_021DFDF0[v3])) {
                         v0->unk_08[v3]++;
                     }
                 }
@@ -2271,7 +2271,7 @@ static void ov19_021D3978(SysTask *param0, void *param1)
             v1 = (BoxPokemon *)Party_GetPokemonBySlotIndex(v0->unk_18, v2);
 
             for (v3 = 0; v3 < (NELEMS(Unk_ov19_021DFDF0)); v3++) {
-                if (ov19_021D3AC8(v1, Unk_ov19_021DFDF0[v3])) {
+                if (BoxPokemon_HasMove(v1, Unk_ov19_021DFDF0[v3])) {
                     v0->unk_08[v3]++;
                 }
             }
@@ -2279,7 +2279,7 @@ static void ov19_021D3978(SysTask *param0, void *param1)
 
         if (v0->unk_1C) {
             for (v3 = 0; v3 < (NELEMS(Unk_ov19_021DFDF0)); v3++) {
-                if (ov19_021D3AC8(v0->unk_10, Unk_ov19_021DFDF0[v3])) {
+                if (BoxPokemon_HasMove(v0->unk_10, Unk_ov19_021DFDF0[v3])) {
                     v0->unk_08[v3]++;
                 }
             }
@@ -2299,26 +2299,22 @@ static void ov19_021D3978(SysTask *param0, void *param1)
     }
 }
 
-static BOOL ov19_021D3AC8(BoxPokemon *param0, u16 param1)
+static BOOL BoxPokemon_HasMove(BoxPokemon *boxMon, u16 move)
 {
-    BOOL v0, v1;
+    BOOL hasMove = FALSE;
+    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
 
-    v0 = 0;
-    v1 = BoxPokemon_EnterDecryptionContext(param0);
-
-    if (BoxPokemon_GetValue(param0, MON_DATA_EGG_EXISTS, NULL) == 0) {
-        int v2;
-
-        for (v2 = 0; v2 < LEARNED_MOVES_MAX; v2++) {
-            if (BoxPokemon_GetValue(param0, MON_DATA_MOVE1 + v2, NULL) == param1) {
-                v0 = 1;
+    if (BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL) == FALSE) {
+        for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (BoxPokemon_GetValue(boxMon, MON_DATA_MOVE1 + i, NULL) == move) {
+                hasMove = TRUE;
                 break;
             }
         }
     }
 
-    BoxPokemon_ExitDecryptionContext(param0, v1);
-    return v0;
+    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+    return hasMove;
 }
 
 BOOL ov19_021D3B18(const UnkStruct_ov19_021D5DF8 *param0)
@@ -3940,42 +3936,42 @@ static void ov19_021D584C(UnkStruct_ov19_021D5DF8 *param0)
     ov19_021D52F4(param0);
 }
 
-static void ov19_021D5888(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1, UnkStruct_ov19_021D5DF8 *param2)
+static void ov19_021D5888(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon, UnkStruct_ov19_021D5DF8 *param2)
 {
-    ov19_021D58AC(param0, param1, param2);
+    ov19_021D58AC(param0, boxMon, param2);
 
     if (ov19_021D5E08(param0) == 4) {
-        ov19_021D59F4(param0, param1, param2);
+        ov19_021D59F4(param0, boxMon, param2);
     }
 }
 
-static void ov19_021D58AC(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1, UnkStruct_ov19_021D5DF8 *param2)
+static void ov19_021D58AC(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon, UnkStruct_ov19_021D5DF8 *param2)
 {
     UnkStruct_ov19_021D5BAC *v0 = &(param0->unk_4C);
-    BOOL v1 = BoxPokemon_EnterDecryptionContext(param1);
+    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
     SpeciesData *speciesData;
 
-    v0->unk_00 = param1;
-    v0->unk_04 = BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
-    v0->unk_06 = BoxPokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
-    v0->unk_08 = sub_0207A294(sub_0207A274(param2->unk_11C), v0->unk_04);
-    v0->unk_0F = BoxPokemon_GetValue(param1, MON_DATA_EGG_EXISTS, NULL);
-    speciesData = SpeciesData_FromMonSpecies(v0->unk_04, 9);
-    v0->unk_0A = SpeciesData_GetLevelAt(speciesData, v0->unk_04, BoxPokemon_GetValue(param1, MON_DATA_EXP, NULL));
-    v0->unk_0B = BoxPokemon_GetValue(param1, MON_DATA_MARKS, NULL);
-    v0->unk_0C = BoxPokemon_GetValue(param1, MON_DATA_TYPE_1, NULL);
-    v0->unk_0D = BoxPokemon_GetValue(param1, MON_DATA_TYPE_2, NULL);
+    v0->unk_00 = boxMon;
+    v0->species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
+    v0->unk_06 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
+    v0->unk_08 = sub_0207A294(sub_0207A274(param2->unk_11C), v0->species);
+    v0->unk_0F = BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL);
+    speciesData = SpeciesData_FromMonSpecies(v0->species, 9);
+    v0->unk_0A = SpeciesData_GetLevelAt(speciesData, v0->species, BoxPokemon_GetValue(boxMon, MON_DATA_EXP, NULL));
+    v0->unk_0B = BoxPokemon_GetValue(boxMon, MON_DATA_MARKS, NULL);
+    v0->unk_0C = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_1, NULL);
+    v0->unk_0D = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_2, NULL);
 
-    if ((v0->unk_0F == 0) && BoxPokemon_GetValue(param1, MON_DATA_NIDORAN_HAS_NICKNAME, NULL)) {
-        v0->unk_0E = SpeciesData_GetGenderOf(speciesData, v0->unk_04, BoxPokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL));
+    if ((v0->unk_0F == 0) && BoxPokemon_GetValue(boxMon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL)) {
+        v0->unk_0E = SpeciesData_GetGenderOf(speciesData, v0->species, BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL));
     } else {
         v0->unk_0E = 255;
     }
 
-    BoxPokemon_GetValue(param1, MON_DATA_NICKNAME_STRBUF, v0->unk_14);
+    BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v0->unk_14);
 
     if (v0->unk_0F == 0) {
-        MessageLoader_GetStrbuf(param2->unk_190, v0->unk_04, v0->unk_18);
+        MessageLoader_GetStrbuf(param2->unk_190, v0->species, v0->unk_18);
     } else {
         Strbuf_Copy(v0->unk_18, v0->unk_14);
         Strbuf_Clear(v0->unk_14);
@@ -3988,25 +3984,25 @@ static void ov19_021D58AC(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1, U
     }
 
     {
-        u32 v3 = BoxPokemon_GetNature(param1);
+        u32 v3 = BoxPokemon_GetNature(boxMon);
 
         MessageLoader_GetStrbuf(param2->unk_194, v3, v0->unk_20);
-        v3 = BoxPokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
+        v3 = BoxPokemon_GetValue(boxMon, MON_DATA_ABILITY, NULL);
         MessageLoader_GetStrbuf(param2->unk_198, v3, v0->unk_24);
     }
 
     SpeciesData_Free(speciesData);
-    BoxPokemon_ExitDecryptionContext(param1, v1);
+    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
 
-static void ov19_021D59F4(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1, UnkStruct_ov19_021D5DF8 *param2)
+static void ov19_021D59F4(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon, UnkStruct_ov19_021D5DF8 *param2)
 {
     UnkStruct_ov19_021D5BAC *v0 = &(param0->unk_4C);
     UnkStruct_ov19_021D5FAC *v1 = &(param0->unk_A4.unk_08[param0->unk_A4.unk_00]);
     BOOL v2;
 
-    v1->unk_00 = param1;
-    v1->unk_04 = v0->unk_04;
+    v1->unk_00 = boxMon;
+    v1->species = v0->species;
     v1->unk_06 = v0->unk_0F;
     v1->unk_08 = v0->unk_0A;
 
@@ -4017,7 +4013,7 @@ static void ov19_021D59F4(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1, U
     }
 
     Strbuf_Copy(v1->unk_2C, v0->unk_20);
-    Pokemon_FromBoxPokemon(param1, param2->unk_1A0);
+    Pokemon_FromBoxPokemon(boxMon, param2->unk_1A0);
 
     v2 = Pokemon_EnterDecryptionContext(param2->unk_1A0);
 
@@ -4060,9 +4056,9 @@ static void ov19_021D5BA0(UnkStruct_ov19_021D4DF0 *param0, BOOL param1)
     param0->unk_A4.unk_04 = param1;
 }
 
-static void ov19_021D5BA8(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *param1)
+static void ov19_021D5BA8(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon)
 {
-    param0->unk_4C.unk_00 = param1;
+    param0->unk_4C.unk_00 = boxMon;
 }
 
 static void ov19_021D5BAC(UnkStruct_ov19_021D4DF0 *param0)

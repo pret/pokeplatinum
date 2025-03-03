@@ -196,7 +196,7 @@ static void ov105_02244DC4(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param
 static void ov105_02244DF0(UnkStruct_ov105_02241FF4 *param0);
 static void ov105_02244E94(UnkStruct_ov105_02241FF4 *param0);
 static void ov105_02244EE8(UnkStruct_ov105_02241FF4 *param0, u32 param1, s32 param2);
-static void ov105_02244F00(UnkStruct_ov105_02241FF4 *param0, u32 param1, BoxPokemon *param2);
+static void ov105_02244F00(UnkStruct_ov105_02241FF4 *param0, u32 param1, BoxPokemon *boxMon);
 static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4);
 static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4);
 static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, const Party *param9);
@@ -2626,9 +2626,9 @@ static void ov105_02244EE8(UnkStruct_ov105_02241FF4 *param0, u32 param1, s32 par
     return;
 }
 
-static void ov105_02244F00(UnkStruct_ov105_02241FF4 *param0, u32 param1, BoxPokemon *param2)
+static void ov105_02244F00(UnkStruct_ov105_02241FF4 *param0, u32 param1, BoxPokemon *boxMon)
 {
-    StringTemplate_SetSpeciesName(param0->unk_20, param1, param2);
+    StringTemplate_SetSpeciesName(param0->unk_20, param1, boxMon);
     return;
 }
 

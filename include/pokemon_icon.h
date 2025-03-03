@@ -9,7 +9,7 @@
  * @param mon
  * @return Index of the sprite-tiles file for this Pokemon in pl_poke_icon.narc
  */
-u32 BoxPokemon_IconSpriteIndex(const BoxPokemon *mon);
+u32 BoxPokemon_IconSpriteIndex(const BoxPokemon *boxMon);
 
 /**
  * @brief Get the index of the sprite-tiles file used for a given Pokemon.
@@ -39,7 +39,7 @@ u32 PokeIconSpriteIndex(u32 species, u32 isEgg, u32 form);
  * @param mon
  * @return Form offset
  */
-u16 BoxPokemon_IconFormOffset(const BoxPokemon *mon);
+u16 BoxPokemon_IconFormOffset(const BoxPokemon *boxMon);
 
 /**
  * @brief Get the index of the palette used by a given combination of species+form
@@ -58,7 +58,7 @@ const u8 PokeIconPaletteIndex(u32 species, u32 form, u32 isEgg);
  * @param mon
  * @return Index in the shared palette file for all Pokemon icons.
  */
-const u8 BoxPokemon_IconPaletteIndex(const BoxPokemon *mon);
+const u8 BoxPokemon_IconPaletteIndex(const BoxPokemon *boxMon);
 
 /**
  * @brief Get the index of the palette used by a given Pokemon.

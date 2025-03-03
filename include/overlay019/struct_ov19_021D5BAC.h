@@ -5,7 +5,7 @@
 
 typedef struct {
     void *unk_00;
-    u16 unk_04;
+    u16 species;
     u16 unk_06;
     u16 unk_08;
     u8 unk_0A;

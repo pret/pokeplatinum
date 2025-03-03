@@ -4,6 +4,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -273,11 +275,11 @@ static void ov94_0223C03C(UnkStruct_ov94_0223FD4C *param0, OverlayManager *param
     ov94_0223C4C0(param0, 0, 0);
 
     param0->unk_10C = 0;
-    param0->unk_B7A.unk_00 = 0;
-    param0->unk_B7A.unk_02 = 2 + 1;
-    param0->unk_B7A.unk_03 = 0;
-    param0->unk_B7A.unk_04 = 0;
-    param0->unk_B80.unk_00 = 0;
+    param0->unk_B7A.species = SPECIES_NONE;
+    param0->unk_B7A.gender = 2 + 1;
+    param0->unk_B7A.level = 0;
+    param0->unk_B7A.level2 = 0;
+    param0->unk_B80.species = SPECIES_NONE;
     param0->unk_10F0 = 0;
     param0->unk_110 = 18;
     param0->unk_110C = 0;
