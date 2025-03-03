@@ -18,17 +18,17 @@ enum PokemonSpriteAttribute {
     MON_SPRITE_X_OFFSET,
     MON_SPRITE_Y_OFFSET,
     MON_SPRITE_Z_OFFSET,
-    MON_SPRITE_HAS_VANISHED,
+    MON_SPRITE_HIDE,
     MON_SPRITE_ROTATION_X,
     MON_SPRITE_ROTATION_Y,
     MON_SPRITE_ROTATION_Z,
     MON_SPRITE_X_PIVOT,
     MON_SPRITE_Y_PIVOT,
-    MON_SPRITE_AFFINE_WIDTH,
-    MON_SPRITE_AFFINE_HEIGHT,
+    MON_SPRITE_SCALE_X,
+    MON_SPRITE_SCALE_Y,
     MON_SPRITE_VISIBLE,
-    MON_SPRITE_X_OFFSET_2,
-    MON_SPRITE_Y_OFFSET_2,
+    MON_SPRITE_TEXTURE_X_OFFSET,
+    MON_SPRITE_TEXTURE_Y_OFFSET,
     MON_SPRITE_WIDTH,
     MON_SPRITE_HEIGHT,
     MON_SPRITE_SHADOW_X,
@@ -49,14 +49,14 @@ enum PokemonSpriteAttribute {
     MON_SPRITE_FADE_DELAY_COUNTER,
     MON_SPRITE_FLIP_H,
     MON_SPRITE_FLIP_V,
-    MON_SPRITE_HIDE,
+    MON_SPRITE_HIDE_2,
     MON_SPRITE_CURR_SPRITE_FRAME,
     MON_SPRITE_DUMMY,
     MON_SPRITE_MOSAIC_INTENSITY,
     MON_SPRITE_SHADOW_HEIGHT,
     MON_SPRITE_SHADOW_PLTT_SLOT,
-    MON_SPRITE_SHADOW_SHOULD_ADJUST_X,
-    MON_SPRITE_SHADOW_SHOULD_ADJUST_Y,
+    MON_SPRITE_SHADOW_SHOULD_FOLLOW_X,
+    MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y,
     MON_SPRITE_SHADOW_IS_AFFINE,
     MON_SPRITE_SHADOW_SIZE,
 };
@@ -84,16 +84,16 @@ struct PokemonSpriteTransforms {
     s16 xOffset;
     s16 yOffset;
     int zOffset;
-    s16 affineWidth;
-    s16 affineHeight;
+    s16 scaleX; // 256 is the normal scale. Smaller values than 256 shrink; higher ones stretch. Negative values flip the sprite.
+    s16 scaleY;
     u16 rotationX;
     u16 rotationY;
     u16 rotationZ;
     u16 padding_1A;
     s16 xPivot;
     s16 yPivot;
-    u8 xOffset2;
-    u8 yOffset2;
+    u8 textureXOffset;
+    u8 textureYOffset;
     u8 width;
     u8 height;
     u8 fadeInitAlpha;
@@ -108,13 +108,13 @@ struct PokemonSpriteTransforms {
     u32 ambientG : 5;
     u32 ambientB : 5;
     u32 padding_2C_30 : 2;
-    u32 hasVanished : 1;
+    u32 hide : 1;
     u32 visible : 1;
     u32 alpha : 5;
     u32 padding_30_07 : 2;
     u32 flipH : 1;
     u32 flipV : 1;
-    u32 hide : 1;
+    u32 hide2 : 1; // It's unclear why there are 2 members that do the same thing. (3 if you count visible which is the same but with states flipped)
     u32 fadeActive : 1;
     u32 mosaicIntensity : 4;
     u32 padding_30_17 : 15;
@@ -122,8 +122,8 @@ struct PokemonSpriteTransforms {
 
 typedef struct PokemonSpriteShadow {
     u16 plttSlot : 2;
-    u16 shouldAdjustX : 1;
-    u16 shouldAdjustY : 1;
+    u16 shouldFollowX : 1;
+    u16 shouldFollowY : 1;
     u16 isAffine : 1;
     u16 size : 2;
     u16 padding_00 : 9;
@@ -202,12 +202,12 @@ void PokemonSpriteManager_DeleteAll(PokemonSpriteManager *monSpriteMan);
 void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute, int value);
 int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute);
 void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute, int delta);
-void PokemonSprite_SetVisible(PokemonSprite *monSprite, int x, int y, int width, int height);
+void PokemonSprite_ShowAndSetTexturePos(PokemonSprite *monSprite, int x, int y, int width, int height);
 void PokemonSprite_StartFade(PokemonSprite *monSprite, int initAlpha, int targetAlpha, int delay, int color);
 void PokemonSpriteManager_StartFadeAll(PokemonSpriteManager *monSpriteMan, int initAlpha, int targetAlpha, int delay, int color);
 void PokemonSprite_ClearFade(PokemonSprite *monSprite);
 BOOL PokemonSprite_IsFadeActive(PokemonSprite *monSprite);
-void PokemonSprite_CalcAffineYOffset(PokemonSprite *monSprite, int height);
+void PokemonSprite_CalcScaledYOffset(PokemonSprite *monSprite, int height);
 void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimationFrame *animFrames);
 int PokemonSpriteTaskAnim_Run(PokemonSpriteTaskAnim *anim);
 void PokemonSprite_ScheduleReloadFromNARC(PokemonSprite *monSprite);

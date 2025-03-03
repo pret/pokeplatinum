@@ -371,8 +371,8 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
 
     for (int i = 0; i < MAX_POKEMON_SPRITES; i++) {
         if (monSpriteMan->sprites[i].active
-            && monSpriteMan->sprites[i].transforms.hasVanished == FALSE
-            && monSpriteMan->sprites[i].transforms.hide == FALSE) {
+            && monSpriteMan->sprites[i].transforms.hide == FALSE
+            && monSpriteMan->sprites[i].transforms.hide2 == FALSE) {
             if (monSpriteMan->sprites[i].callback != NULL) {
                 monSpriteMan->sprites[i].callback(&monSpriteMan->sprites[i], &monSpriteMan->sprites[i].transforms);
             }
@@ -396,14 +396,14 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
             G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, monSpriteMan->sprites[i].polygonID, monSpriteMan->sprites[i].transforms.alpha, 0);
 
             if (monSpriteMan->sprites[i].transforms.visible) {
-                u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + monSpriteMan->sprites[i].transforms.xOffset2;
-                u1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + monSpriteMan->sprites[i].transforms.xOffset2 + monSpriteMan->sprites[i].transforms.width;
-                v0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + monSpriteMan->sprites[i].transforms.yOffset2;
-                v1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + monSpriteMan->sprites[i].transforms.yOffset2 + monSpriteMan->sprites[i].transforms.height;
+                u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + monSpriteMan->sprites[i].transforms.textureXOffset;
+                u1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + monSpriteMan->sprites[i].transforms.textureXOffset + monSpriteMan->sprites[i].transforms.width;
+                v0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + monSpriteMan->sprites[i].transforms.textureYOffset;
+                v1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + monSpriteMan->sprites[i].transforms.textureYOffset + monSpriteMan->sprites[i].transforms.height;
 
                 NNS_G2dDrawSpriteFast(
-                    monSpriteMan->sprites[i].transforms.xCenter - 80 / 2 + monSpriteMan->sprites[i].transforms.xOffset2 + monSpriteMan->sprites[i].transforms.xOffset,
-                    monSpriteMan->sprites[i].transforms.yCenter - 80 / 2 + monSpriteMan->sprites[i].transforms.yOffset2 + monSpriteMan->sprites[i].transforms.yOffset - monSpriteMan->sprites[i].shadow.height,
+                    monSpriteMan->sprites[i].transforms.xCenter - 80 / 2 + monSpriteMan->sprites[i].transforms.textureXOffset + monSpriteMan->sprites[i].transforms.xOffset,
+                    monSpriteMan->sprites[i].transforms.yCenter - 80 / 2 + monSpriteMan->sprites[i].transforms.textureYOffset + monSpriteMan->sprites[i].transforms.yOffset - monSpriteMan->sprites[i].shadow.height,
                     monSpriteMan->sprites[i].transforms.zCenter + monSpriteMan->sprites[i].transforms.zOffset,
                     monSpriteMan->sprites[i].transforms.width,
                     monSpriteMan->sprites[i].transforms.height,
@@ -412,8 +412,8 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
                     u1,
                     v1);
             } else {
-                width = (80 * monSpriteMan->sprites[i].transforms.affineWidth) >> 8;
-                height = (80 * monSpriteMan->sprites[i].transforms.affineHeight) >> 8;
+                width = (80 * monSpriteMan->sprites[i].transforms.scaleX) >> 8;
+                height = (80 * monSpriteMan->sprites[i].transforms.scaleY) >> 8;
                 u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0];
                 u1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][2];
                 v0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1];
@@ -443,18 +443,18 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
                 G3_TexPlttBase(monSpriteMan->plttBaseAddr + 32 * (3 + monSpriteMan->sprites[i].shadow.plttSlot), monSpriteMan->imageProxy.attr.fmt);
 
                 if (monSpriteMan->sprites[i].shadow.isAffine) {
-                    width = (64 * monSpriteMan->sprites[i].transforms.affineWidth) >> 8;
-                    height = (16 * monSpriteMan->sprites[i].transforms.affineHeight) >> 8;
+                    width = (64 * monSpriteMan->sprites[i].transforms.scaleX) >> 8;
+                    height = (16 * monSpriteMan->sprites[i].transforms.scaleY) >> 8;
                 } else {
                     width = 64;
                     height = 16;
                 }
 
-                if (monSpriteMan->sprites[i].shadow.shouldAdjustX) {
+                if (monSpriteMan->sprites[i].shadow.shouldFollowX) {
                     monSpriteMan->sprites[i].shadow.x = monSpriteMan->sprites[i].transforms.xCenter + monSpriteMan->sprites[i].transforms.xOffset + monSpriteMan->sprites[i].shadow.xOffset;
                 }
 
-                if (monSpriteMan->sprites[i].shadow.shouldAdjustY) {
+                if (monSpriteMan->sprites[i].shadow.shouldFollowY) {
                     monSpriteMan->sprites[i].shadow.y = monSpriteMan->sprites[i].transforms.yCenter + monSpriteMan->sprites[i].transforms.yOffset + monSpriteMan->sprites[i].shadow.yOffset;
                 }
 
@@ -537,8 +537,8 @@ PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *mo
     monSpriteMan->sprites[index].transforms.xCenter = x;
     monSpriteMan->sprites[index].transforms.yCenter = y;
     monSpriteMan->sprites[index].transforms.zCenter = z;
-    monSpriteMan->sprites[index].transforms.affineWidth = 256;
-    monSpriteMan->sprites[index].transforms.affineHeight = 256;
+    monSpriteMan->sprites[index].transforms.scaleX = 256;
+    monSpriteMan->sprites[index].transforms.scaleY = 256;
     monSpriteMan->sprites[index].transforms.alpha = 31;
     monSpriteMan->sprites[index].transforms.diffuseR = 31;
     monSpriteMan->sprites[index].transforms.diffuseG = 31;
@@ -549,8 +549,8 @@ PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *mo
     monSpriteMan->sprites[index].callback = callback;
     monSpriteMan->sprites[index].shadow.x = x;
     monSpriteMan->sprites[index].shadow.y = y;
-    monSpriteMan->sprites[index].shadow.shouldAdjustX = TRUE;
-    monSpriteMan->sprites[index].shadow.shouldAdjustY = TRUE;
+    monSpriteMan->sprites[index].shadow.shouldFollowX = TRUE;
+    monSpriteMan->sprites[index].shadow.shouldFollowY = TRUE;
     monSpriteMan->sprites[index].shadow.isAffine = TRUE;
 
     if (animFrames != NULL) {
@@ -593,8 +593,8 @@ void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     case MON_SPRITE_Z_OFFSET:
         monSprite->transforms.zOffset = value;
         break;
-    case MON_SPRITE_HAS_VANISHED:
-        monSprite->transforms.hasVanished = value;
+    case MON_SPRITE_HIDE:
+        monSprite->transforms.hide = value;
         break;
     case MON_SPRITE_ROTATION_X:
         monSprite->transforms.rotationX = value;
@@ -611,20 +611,20 @@ void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     case MON_SPRITE_Y_PIVOT:
         monSprite->transforms.yPivot = value;
         break;
-    case MON_SPRITE_AFFINE_WIDTH:
-        monSprite->transforms.affineWidth = value;
+    case MON_SPRITE_SCALE_X:
+        monSprite->transforms.scaleX = value;
         break;
-    case MON_SPRITE_AFFINE_HEIGHT:
-        monSprite->transforms.affineHeight = value;
+    case MON_SPRITE_SCALE_Y:
+        monSprite->transforms.scaleY = value;
         break;
     case MON_SPRITE_VISIBLE:
         monSprite->transforms.visible = value;
         break;
-    case MON_SPRITE_X_OFFSET_2:
-        monSprite->transforms.xOffset2 = value;
+    case MON_SPRITE_TEXTURE_X_OFFSET:
+        monSprite->transforms.textureXOffset = value;
         break;
-    case MON_SPRITE_Y_OFFSET_2:
-        monSprite->transforms.yOffset2 = value;
+    case MON_SPRITE_TEXTURE_Y_OFFSET:
+        monSprite->transforms.textureYOffset = value;
         break;
     case MON_SPRITE_WIDTH:
         monSprite->transforms.width = value;
@@ -692,8 +692,8 @@ void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
         monSprite->transforms.flipV = value;
         monSprite->needReloadChar = TRUE;
         break;
-    case MON_SPRITE_HIDE:
-        monSprite->transforms.hide = value;
+    case MON_SPRITE_HIDE_2:
+        monSprite->transforms.hide2 = value;
         break;
     case MON_SPRITE_CURR_SPRITE_FRAME:
         monSprite->currSpriteFrame = value;
@@ -709,11 +709,11 @@ void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
         monSprite->shadow.plttSlot = value;
         monSprite->needReloadPltt = TRUE;
         break;
-    case MON_SPRITE_SHADOW_SHOULD_ADJUST_X:
-        monSprite->shadow.shouldAdjustX = value;
+    case MON_SPRITE_SHADOW_SHOULD_FOLLOW_X:
+        monSprite->shadow.shouldFollowX = value;
         break;
-    case MON_SPRITE_SHADOW_SHOULD_ADJUST_Y:
-        monSprite->shadow.shouldAdjustY = value;
+    case MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y:
+        monSprite->shadow.shouldFollowY = value;
         break;
     case MON_SPRITE_SHADOW_IS_AFFINE:
         monSprite->shadow.isAffine = value;
@@ -739,8 +739,8 @@ int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttri
         return monSprite->transforms.yOffset;
     case MON_SPRITE_Z_OFFSET:
         return monSprite->transforms.zOffset;
-    case MON_SPRITE_HAS_VANISHED:
-        return monSprite->transforms.hasVanished;
+    case MON_SPRITE_HIDE:
+        return monSprite->transforms.hide;
     case MON_SPRITE_ROTATION_X:
         return monSprite->transforms.rotationX;
     case MON_SPRITE_ROTATION_Y:
@@ -751,16 +751,16 @@ int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttri
         return monSprite->transforms.xPivot;
     case MON_SPRITE_Y_PIVOT:
         return monSprite->transforms.yPivot;
-    case MON_SPRITE_AFFINE_WIDTH:
-        return monSprite->transforms.affineWidth;
-    case MON_SPRITE_AFFINE_HEIGHT:
-        return monSprite->transforms.affineHeight;
+    case MON_SPRITE_SCALE_X:
+        return monSprite->transforms.scaleX;
+    case MON_SPRITE_SCALE_Y:
+        return monSprite->transforms.scaleY;
     case MON_SPRITE_VISIBLE:
         return monSprite->transforms.visible;
-    case MON_SPRITE_X_OFFSET_2:
-        return monSprite->transforms.xOffset2;
-    case MON_SPRITE_Y_OFFSET_2:
-        return monSprite->transforms.yOffset2;
+    case MON_SPRITE_TEXTURE_X_OFFSET:
+        return monSprite->transforms.textureXOffset;
+    case MON_SPRITE_TEXTURE_Y_OFFSET:
+        return monSprite->transforms.textureYOffset;
     case MON_SPRITE_WIDTH:
         return monSprite->transforms.width;
     case MON_SPRITE_HEIGHT:
@@ -801,8 +801,8 @@ int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttri
         return monSprite->transforms.flipH;
     case MON_SPRITE_FLIP_V:
         return monSprite->transforms.flipV;
-    case MON_SPRITE_HIDE:
-        return monSprite->transforms.hide;
+    case MON_SPRITE_HIDE_2:
+        return monSprite->transforms.hide2;
     case MON_SPRITE_CURR_SPRITE_FRAME:
         return monSprite->currSpriteFrame;
     case MON_SPRITE_MOSAIC_INTENSITY:
@@ -811,10 +811,10 @@ int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttri
         return monSprite->shadow.height;
     case MON_SPRITE_SHADOW_PLTT_SLOT:
         return monSprite->shadow.plttSlot;
-    case MON_SPRITE_SHADOW_SHOULD_ADJUST_X:
-        return monSprite->shadow.shouldAdjustX;
-    case MON_SPRITE_SHADOW_SHOULD_ADJUST_Y:
-        return monSprite->shadow.shouldAdjustY;
+    case MON_SPRITE_SHADOW_SHOULD_FOLLOW_X:
+        return monSprite->shadow.shouldFollowX;
+    case MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y:
+        return monSprite->shadow.shouldFollowY;
     case MON_SPRITE_SHADOW_IS_AFFINE:
         return monSprite->shadow.isAffine;
     case MON_SPRITE_SHADOW_SIZE:
@@ -846,8 +846,8 @@ void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     case MON_SPRITE_Z_OFFSET:
         monSprite->transforms.zOffset += delta;
         break;
-    case MON_SPRITE_HAS_VANISHED:
-        monSprite->transforms.hasVanished += delta;
+    case MON_SPRITE_HIDE:
+        monSprite->transforms.hide += delta;
         break;
     case MON_SPRITE_ROTATION_X:
         monSprite->transforms.rotationX += delta;
@@ -864,20 +864,20 @@ void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     case MON_SPRITE_Y_PIVOT:
         monSprite->transforms.yPivot += delta;
         break;
-    case MON_SPRITE_AFFINE_WIDTH:
-        monSprite->transforms.affineWidth += delta;
+    case MON_SPRITE_SCALE_X:
+        monSprite->transforms.scaleX += delta;
         break;
-    case MON_SPRITE_AFFINE_HEIGHT:
-        monSprite->transforms.affineHeight += delta;
+    case MON_SPRITE_SCALE_Y:
+        monSprite->transforms.scaleY += delta;
         break;
     case MON_SPRITE_VISIBLE:
         monSprite->transforms.visible += delta;
         break;
-    case MON_SPRITE_X_OFFSET_2:
-        monSprite->transforms.xOffset2 += delta;
+    case MON_SPRITE_TEXTURE_X_OFFSET:
+        monSprite->transforms.textureXOffset += delta;
         break;
-    case MON_SPRITE_Y_OFFSET_2:
-        monSprite->transforms.yOffset2 += delta;
+    case MON_SPRITE_TEXTURE_Y_OFFSET:
+        monSprite->transforms.textureYOffset += delta;
         break;
     case MON_SPRITE_WIDTH:
         monSprite->transforms.width += delta;
@@ -945,8 +945,8 @@ void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
         monSprite->transforms.flipV += delta;
         monSprite->needReloadChar = TRUE;
         break;
-    case MON_SPRITE_HIDE:
-        monSprite->transforms.hide += delta;
+    case MON_SPRITE_HIDE_2:
+        monSprite->transforms.hide2 += delta;
         break;
     case MON_SPRITE_CURR_SPRITE_FRAME:
         monSprite->currSpriteFrame += delta;
@@ -962,11 +962,11 @@ void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
         monSprite->shadow.plttSlot += delta;
         monSprite->needReloadPltt = TRUE;
         break;
-    case MON_SPRITE_SHADOW_SHOULD_ADJUST_X:
-        monSprite->shadow.shouldAdjustX += delta;
+    case MON_SPRITE_SHADOW_SHOULD_FOLLOW_X:
+        monSprite->shadow.shouldFollowX += delta;
         break;
-    case MON_SPRITE_SHADOW_SHOULD_ADJUST_Y:
-        monSprite->shadow.shouldAdjustY += delta;
+    case MON_SPRITE_SHADOW_SHOULD_FOLLOW_Y:
+        monSprite->shadow.shouldFollowY += delta;
         break;
     case MON_SPRITE_SHADOW_IS_AFFINE:
         monSprite->shadow.isAffine += delta;
@@ -977,11 +977,11 @@ void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     }
 }
 
-void PokemonSprite_SetVisible(PokemonSprite *monSprite, int x, int y, int width, int height)
+void PokemonSprite_ShowAndSetTexturePos(PokemonSprite *monSprite, int x, int y, int width, int height)
 {
     monSprite->transforms.visible = TRUE;
-    monSprite->transforms.xOffset2 = x;
-    monSprite->transforms.yOffset2 = y;
+    monSprite->transforms.textureXOffset = x;
+    monSprite->transforms.textureYOffset = y;
     monSprite->transforms.width = width;
     monSprite->transforms.height = height;
 }
@@ -1026,9 +1026,9 @@ BOOL PokemonSprite_IsFadeActive(PokemonSprite *monSprite)
     return monSprite->transforms.fadeActive == TRUE;
 }
 
-void PokemonSprite_CalcAffineYOffset(PokemonSprite *monSprite, int height)
+void PokemonSprite_CalcScaledYOffset(PokemonSprite *monSprite, int height)
 {
-    monSprite->transforms.yOffset = ((80 / 2) - height) - ((((80 / 2) - height) * monSprite->transforms.affineHeight) >> 8);
+    monSprite->transforms.yOffset = ((80 / 2) - height) - ((((80 / 2) - height) * monSprite->transforms.scaleY) >> 8);
 }
 
 static inline void RunPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8 *currAnimFrame, u8 *frameDelay, u8 *loopTimers, const SpriteAnimationFrame *animFrames)

@@ -733,7 +733,7 @@ static BOOL ov76_0223DE78(UnkStruct_ov76_0223DE00 *param0)
     } else {
         PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 12, 0x20);
         PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 13, 0x20);
-        PokemonSprite_CalcAffineYOffset(param0->unk_D4.unk_D4, param0->unk_D4.unk_D8);
+        PokemonSprite_CalcScaledYOffset(param0->unk_D4.unk_D4, param0->unk_D4.unk_D8);
     }
 
     return 1;
@@ -750,7 +750,7 @@ static BOOL ov76_0223DEF4(UnkStruct_ov76_0223DE00 *param0)
     } else {
         PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 12, -0x20);
         PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 13, -0x20);
-        PokemonSprite_CalcAffineYOffset(param0->unk_D4.unk_D4, param0->unk_D4.unk_D8);
+        PokemonSprite_CalcScaledYOffset(param0->unk_D4.unk_D4, param0->unk_D4.unk_D8);
     }
 
     return 1;

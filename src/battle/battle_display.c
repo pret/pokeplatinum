@@ -1844,7 +1844,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
         } else {
             PokemonSprite_AddAttribute(v0->unk_04->unk_20, 12, 0x20);
             PokemonSprite_AddAttribute(v0->unk_04->unk_20, 13, 0x20);
-            PokemonSprite_CalcAffineYOffset(v0->unk_04->unk_20, v0->unk_90);
+            PokemonSprite_CalcScaledYOffset(v0->unk_04->unk_20, v0->unk_90);
         }
         break;
     case 5:
@@ -2036,7 +2036,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         } else {
             PokemonSprite_AddAttribute(v0->unk_04->unk_20, 12, 0x20);
             PokemonSprite_AddAttribute(v0->unk_04->unk_20, 13, 0x20);
-            PokemonSprite_CalcAffineYOffset(v0->unk_04->unk_20, v0->unk_90);
+            PokemonSprite_CalcScaledYOffset(v0->unk_04->unk_20, v0->unk_90);
         }
         break;
     case 5:
@@ -2204,7 +2204,7 @@ static void ov16_0225F764(SysTask *param0, void *param1)
     case 6:
         PokemonSprite_AddAttribute(v0->unk_08, 12, -0x20);
         PokemonSprite_AddAttribute(v0->unk_08, 13, -0x20);
-        PokemonSprite_CalcAffineYOffset(v0->unk_08, v0->unk_6C);
+        PokemonSprite_CalcScaledYOffset(v0->unk_08, v0->unk_6C);
 
         if (PokemonSprite_GetAttribute(v0->unk_08, 12) <= 0x0) {
             PokemonSprite_Delete(v0->unk_08);
@@ -4805,7 +4805,7 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
     case 8:
         v3 = LoadPokemonSpriteYOffset(v0->unk_68, v0->unk_6A, v0->unk_67, v0->unk_6B, v0->unk_6C);
         v3 = 80 - v3;
-        PokemonSprite_SetVisible(v0->unk_08, 0, 0, 80, v3);
+        PokemonSprite_ShowAndSetTexturePos(v0->unk_08, 0, 0, 80, v3);
         v0->unk_66++;
         break;
     case 9:

@@ -589,7 +589,7 @@ void ov12_0222F2F8(UnkStruct_ov12_0221FCDC *param0)
 
 static void ov12_0222F44C(PokemonSprite *param0, int param1, int param2, int param3, int param4)
 {
-    PokemonSprite_SetVisible(param0, param1, 80 - param3, param2, param4);
+    PokemonSprite_ShowAndSetTexturePos(param0, param1, 80 - param3, param2, param4);
 }
 
 static void ov12_0222F464(SysTask *param0, void *param1)
