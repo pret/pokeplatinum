@@ -41,7 +41,7 @@ void ov16_022647D8(BattlerData *param0)
     param0->unk_194 = NULL;
     param0->unk_198 = 0;
 
-    PokemonSprite_SetAttribute(param0->unk_20, 4, 0);
+    PokemonSprite_SetAttribute(param0->unk_20, MON_SPRITE_Y_OFFSET, 0);
 }
 
 static void ov16_02264800(SysTask *param0, void *param1)
@@ -56,5 +56,5 @@ static void ov16_02264800(SysTask *param0, void *param1)
     }
 
     v1 = FX_Mul(CalcSineDegrees(v0->unk_198), 0x1800) / FX32_ONE;
-    PokemonSprite_SetAttribute(v0->unk_20, 4, v1);
+    PokemonSprite_SetAttribute(v0->unk_20, MON_SPRITE_Y_OFFSET, v1);
 }

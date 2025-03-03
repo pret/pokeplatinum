@@ -63,6 +63,6 @@ PokemonSprite *ov105_02245D88(PokemonSpriteManager *param0, int param1, Pokemon 
 
 void ov105_02245DB8(PokemonSprite *param0, int param1)
 {
-    PokemonSprite_SetAttribute(param0, 35, param1);
+    PokemonSprite_SetAttribute(param0, MON_SPRITE_FLIP_H, param1);
     return;
 }

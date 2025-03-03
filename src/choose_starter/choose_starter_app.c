@@ -686,7 +686,7 @@ static void MakeSprite(ChooseStarterApp *app, enum HeapId heapID)
     MakePokemonSprite(&app->sprites[2], app, STARTER_OPTION_2);
 
     for (int i = 0; i < NUM_STARTER_OPTIONS; i++) {
-        PokemonSprite_SetAttribute(app->sprites[i], 6, 1);
+        PokemonSprite_SetAttribute(app->sprites[i], MON_SPRITE_HIDE, TRUE);
     }
 }
 
@@ -1238,7 +1238,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
         break;
     case 1:
         ov78_021D2508(&param0->unk_6A8, 1);
-        PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], 6, 0);
+        PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, FALSE);
 
         if (ov78_021D26A4(param0)) {
             sub_02005844(GetSelectedSpecies(param0->cursorPosition), 0);
@@ -1272,7 +1272,7 @@ static void ov78_021D1E44(ChooseStarterApp *param0, int param1)
             ov78_021D1C98(param0, -1);
             param0->unk_04 = 7;
             ov78_021D2508(&param0->unk_6A8, 0);
-            PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], 6, 1);
+            PokemonSprite_SetAttribute(param0->sprites[param0->cursorPosition], MON_SPRITE_HIDE, TRUE);
             param0->unk_708 = ov78_021D1FB4(param0->messageWindow, param1, 360, 7, TEXT_COLOR(1, 2, 15), TEXT_SPEED_NO_TRANSFER);
         }
         break;
@@ -1704,10 +1704,10 @@ static void ov78_021D2740(SysTask *param0, void *param1)
 
     v2 = FX_Mul(0x100 * FX32_ONE, v0->unk_04.unk_20.unk_00) >> FX32_SHIFT;
 
-    PokemonSprite_SetAttribute(v0->unk_00, 0, v0->unk_04.unk_00.unk_00 >> FX32_SHIFT);
-    PokemonSprite_SetAttribute(v0->unk_00, 1, v0->unk_04.unk_10.unk_00 >> FX32_SHIFT);
-    PokemonSprite_SetAttribute(v0->unk_00, 12, v2);
-    PokemonSprite_SetAttribute(v0->unk_00, 13, v2);
+    PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_X_CENTER, v0->unk_04.unk_00.unk_00 >> FX32_SHIFT);
+    PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_Y_CENTER, v0->unk_04.unk_10.unk_00 >> FX32_SHIFT);
+    PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_SCALE_X, v2);
+    PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_SCALE_Y, v2);
 
     if ((v1 == 1) || (v0->unk_04.unk_30 < 0)) {
         SysTask_Done(param0);

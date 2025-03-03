@@ -10788,10 +10788,10 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         PokemonSprite *v13;
 
         v13 = ov21_021E8E00(v2->tmpPtr[0]);
-        PokemonSprite_AddAttribute(v13, 0, 4);
+        PokemonSprite_AddAttribute(v13, MON_SPRITE_X_CENTER, 4);
 
-        if (PokemonSprite_GetAttribute(v13, 0) >= 128) {
-            PokemonSprite_SetAttribute(v13, 0, 128);
+        if (PokemonSprite_GetAttribute(v13, MON_SPRITE_X_CENTER) >= 128) {
+            PokemonSprite_SetAttribute(v13, MON_SPRITE_X_CENTER, 128);
             v2->seqNum = 15;
         }
     } break;

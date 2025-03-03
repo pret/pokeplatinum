@@ -776,5 +776,5 @@ void ov119_021D1900(UnkStruct_ov119_021D0FD0 *param0)
 
 void ov119_021D190C(UnkStruct_ov119_021D0FD0 *param0, int param1)
 {
-    PokemonSprite_SetAttribute(param0->unk_70, 6, param1);
+    PokemonSprite_SetAttribute(param0->unk_70, MON_SPRITE_HIDE, param1);
 }

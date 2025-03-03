@@ -68,7 +68,7 @@ void ov12_0222E810(UnkStruct_ov12_0221FCDC *param0)
     ov12_0223595C(param0, &v0->unk_00);
 
     v0->unk_1C.unk_08 = ov12_022232FC(v0->unk_00.unk_04, ov12_02220248(v0->unk_00.unk_04));
-    v0->unk_58 = PokemonSprite_GetAttribute(v0->unk_1C.unk_08, 1);
+    v0->unk_58 = PokemonSprite_GetAttribute(v0->unk_1C.unk_08, MON_SPRITE_Y_CENTER);
     v0->unk_5C = v0->unk_58;
     v0->unk_5A = ov12_02223354(v0->unk_00.unk_04, ov12_02220248(v0->unk_00.unk_04));
     v0->unk_1C.unk_0C = ov12_022202C0(param0, 0);

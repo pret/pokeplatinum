@@ -142,7 +142,7 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
     for (v0 = 0; v0 < 3; v0++) {
         BuildPokemonSpriteTemplate(&v1, v5[v0], 0, 2, 0, NULL, NULL);
         param0->unk_04[v0] = PokemonSpriteManager_CreateSprite(param0->unk_00, &v1, Unk_ov77_021D7958[param0->unk_1C[v0]].unk_00, Unk_ov77_021D7958[param0->unk_1C[v0]].unk_04, 1023, v0, NULL, NULL);
-        PokemonSprite_SetAttribute(param0->unk_04[v0], 6, 1);
+        PokemonSprite_SetAttribute(param0->unk_04[v0], MON_SPRITE_HIDE, 1);
     }
 
     param0->unk_10 = 1;
@@ -204,9 +204,9 @@ BOOL ov77_021D6E78(UnkStruct_ov77_021D6CFC *param0, const u8 param1, const int p
     switch (*v0) {
     case 0:
         G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_OBJ, 1);
-        PokemonSprite_SetAttribute(param0->unk_04[param1], 12, 0x400);
-        PokemonSprite_SetAttribute(param0->unk_04[param1], 13, 0x400);
-        PokemonSprite_SetAttribute(param0->unk_04[param1], 6, 0);
+        PokemonSprite_SetAttribute(param0->unk_04[param1], MON_SPRITE_SCALE_X, 0x400);
+        PokemonSprite_SetAttribute(param0->unk_04[param1], MON_SPRITE_SCALE_Y, 0x400);
+        PokemonSprite_SetAttribute(param0->unk_04[param1], MON_SPRITE_HIDE, 0);
         (*v0)++;
     case 1:
         if (Unk_ov77_021D7940[param0->unk_1C[param1]].unk_00(param0, param1)) {
@@ -229,7 +229,7 @@ BOOL ov77_021D6E78(UnkStruct_ov77_021D6CFC *param0, const u8 param1, const int p
         break;
     case 4:
         if (Unk_ov77_021D7940[param0->unk_1C[param1]].unk_04(param0, param1)) {
-            PokemonSprite_SetAttribute(param0->unk_04[param1], 6, 1);
+            PokemonSprite_SetAttribute(param0->unk_04[param1], MON_SPRITE_HIDE, 1);
             param0->unk_29 = 0;
             (*v0)++;
         }
@@ -251,17 +251,17 @@ static BOOL ov77_021D7004(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
     PokemonSprite *v0 = param0->unk_04[param1];
 
-    PokemonSprite_AddAttribute(v0, 0, 6);
-    PokemonSprite_AddAttribute(v0, 1, -16);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, 6);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_Y_CENTER, -16);
 
-    PokemonSprite_AddAttribute(v0, 12, -0x80);
-    PokemonSprite_AddAttribute(v0, 13, -0x80);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_SCALE_X, -0x80);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_SCALE_Y, -0x80);
 
     param0->unk_29++;
 
     if (param0->unk_29 >= 6) {
-        PokemonSprite_SetAttribute(v0, 12, 0x100);
-        PokemonSprite_SetAttribute(v0, 13, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_X, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_Y, 0x100);
         return 1;
     }
 
@@ -272,14 +272,14 @@ static BOOL ov77_021D7074(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
     PokemonSprite *v0 = param0->unk_04[param1];
 
-    PokemonSprite_AddAttribute(v0, 0, -3);
-    PokemonSprite_AddAttribute(v0, 1, -18);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, -3);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_Y_CENTER, -18);
 
     param0->unk_29++;
 
     if (param0->unk_29 >= 6) {
-        PokemonSprite_SetAttribute(v0, 12, 0x100);
-        PokemonSprite_SetAttribute(v0, 13, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_X, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_Y, 0x100);
         return 1;
     }
 
@@ -290,17 +290,17 @@ static BOOL ov77_021D70CC(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
     PokemonSprite *v0 = param0->unk_04[param1];
 
-    PokemonSprite_AddAttribute(v0, 0, -16);
-    PokemonSprite_AddAttribute(v0, 1, -16);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, -16);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_Y_CENTER, -16);
 
-    PokemonSprite_AddAttribute(v0, 12, -0x80);
-    PokemonSprite_AddAttribute(v0, 13, -0x80);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_SCALE_X, -0x80);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_SCALE_Y, -0x80);
 
     param0->unk_29++;
 
     if (param0->unk_29 >= 6) {
-        PokemonSprite_SetAttribute(v0, 12, 0x100);
-        PokemonSprite_SetAttribute(v0, 13, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_X, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_Y, 0x100);
         return 1;
     }
 
@@ -311,14 +311,14 @@ static BOOL ov77_021D713C(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
     PokemonSprite *v0 = param0->unk_04[param1];
 
-    PokemonSprite_AddAttribute(v0, 0, -6);
-    PokemonSprite_AddAttribute(v0, 1, -16);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, -6);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_Y_CENTER, -16);
 
     param0->unk_29++;
 
     if (param0->unk_29 >= 6) {
-        PokemonSprite_SetAttribute(v0, 12, 0x100);
-        PokemonSprite_SetAttribute(v0, 13, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_X, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_Y, 0x100);
         return 1;
     }
 
@@ -329,17 +329,17 @@ static BOOL ov77_021D7194(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
     PokemonSprite *v0 = param0->unk_04[param1];
 
-    PokemonSprite_AddAttribute(v0, 0, 8);
-    PokemonSprite_AddAttribute(v0, 1, -16);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, 8);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_Y_CENTER, -16);
 
-    PokemonSprite_AddAttribute(v0, 12, -0x80);
-    PokemonSprite_AddAttribute(v0, 13, -0x80);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_SCALE_X, -0x80);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_SCALE_Y, -0x80);
 
     param0->unk_29++;
 
     if (param0->unk_29 >= 6) {
-        PokemonSprite_SetAttribute(v0, 12, 0x100);
-        PokemonSprite_SetAttribute(v0, 13, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_X, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_Y, 0x100);
         return 1;
     }
 
@@ -350,14 +350,14 @@ static BOOL ov77_021D7204(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 {
     PokemonSprite *v0 = param0->unk_04[param1];
 
-    PokemonSprite_AddAttribute(v0, 0, 6);
-    PokemonSprite_AddAttribute(v0, 1, -20);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_X_CENTER, 6);
+    PokemonSprite_AddAttribute(v0, MON_SPRITE_Y_CENTER, -20);
 
     param0->unk_29++;
 
     if (param0->unk_29 >= 6) {
-        PokemonSprite_SetAttribute(v0, 12, 0x100);
-        PokemonSprite_SetAttribute(v0, 13, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_X, 0x100);
+        PokemonSprite_SetAttribute(v0, MON_SPRITE_SCALE_Y, 0x100);
         return 1;
     }
 
@@ -376,8 +376,8 @@ static void ov77_021D7268(SPLEmitter *param0)
     PokemonSprite *v0 = sub_02014764();
     VecFx32 v1 = { 0, 0, 0 };
 
-    v1.x = 172 * (PokemonSprite_GetAttribute(v0, 0) - 128);
-    v1.y = 172 * (PokemonSprite_GetAttribute(v0, 1) - 96);
+    v1.x = 172 * (PokemonSprite_GetAttribute(v0, MON_SPRITE_X_CENTER) - 128);
+    v1.y = 172 * (PokemonSprite_GetAttribute(v0, MON_SPRITE_Y_CENTER) - 96);
     v1.z = 0x40;
 
     SPLEmitter_SetPos(param0, &v1);

@@ -819,7 +819,7 @@ static void ov17_02251784(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        PokemonSprite_SetAttribute(v0->unk_00, 6, 0);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_HIDE, 0);
         v0->unk_10++;
     case 1:
         v0->unk_08 -= 0x800;
@@ -829,8 +829,8 @@ static void ov17_02251784(SysTask *param0, void *param1)
             v0->unk_10++;
         }
 
-        PokemonSprite_SetAttribute(v0->unk_00, 0, v0->unk_08 >> 8);
-        PokemonSprite_SetAttribute(v0->unk_00, 1, v0->unk_0C >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_X_CENTER, v0->unk_08 >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_Y_CENTER, v0->unk_0C >> 8);
         break;
     default:
         *(v0->unk_04) = 1;
@@ -854,11 +854,11 @@ static void ov17_022517F0(SysTask *param0, void *param1)
             v0->unk_10++;
         }
 
-        PokemonSprite_SetAttribute(v0->unk_00, 0, v0->unk_08 / 0x100);
-        PokemonSprite_SetAttribute(v0->unk_00, 1, v0->unk_0C >> 8);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_X_CENTER, v0->unk_08 / 0x100);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_Y_CENTER, v0->unk_0C >> 8);
         break;
     default:
-        PokemonSprite_SetAttribute(v0->unk_00, 6, 1);
+        PokemonSprite_SetAttribute(v0->unk_00, MON_SPRITE_HIDE, 1);
         *(v0->unk_04) = 1;
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);

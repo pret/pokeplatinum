@@ -1210,7 +1210,7 @@ static void ov62_0223B124(UnkStruct_0208C06C *param0, int param1)
     UnkStruct_ov62_02239DBC *v0 = param0->unk_860;
 
     if (v0->unk_32C) {
-        PokemonSprite_SetAttribute(v0->unk_32C, 6, param1);
+        PokemonSprite_SetAttribute(v0->unk_32C, MON_SPRITE_HIDE, param1);
     }
 }
 

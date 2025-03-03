@@ -328,8 +328,8 @@ void ov22_02257CD4(UnkStruct_ov22_02257964 *param0)
 
 void ov22_02257CE0(UnkStruct_ov22_02257964 *param0, int *param1, int *param2)
 {
-    *param1 = PokemonSprite_GetAttribute(param0->unk_2C.unk_4C.unk_00, 0);
-    *param2 = PokemonSprite_GetAttribute(param0->unk_2C.unk_4C.unk_00, 1);
+    *param1 = PokemonSprite_GetAttribute(param0->unk_2C.unk_4C.unk_00, MON_SPRITE_X_CENTER);
+    *param2 = PokemonSprite_GetAttribute(param0->unk_2C.unk_4C.unk_00, MON_SPRITE_Y_CENTER);
 }
 
 int ov22_02257D00(UnkStruct_ov22_02257964 *param0)
@@ -377,9 +377,9 @@ void ov22_02257D70(UnkStruct_ov22_02257964 *param0, GXRgb param1)
         } else {
             UnkStruct_020298D8 *v2 = v0->unk_00;
 
-            PokemonSprite_SetAttribute(v2->unk_00, 24, (param1 >> 10) & 0x1f);
-            PokemonSprite_SetAttribute(v2->unk_00, 25, (param1 >> 5) & 0x1f);
-            PokemonSprite_SetAttribute(v2->unk_00, 26, (param1 >> 0) & 0x1f);
+            PokemonSprite_SetAttribute(v2->unk_00, MON_SPRITE_DIFFUSE_R, (param1 >> 10) & 0x1f);
+            PokemonSprite_SetAttribute(v2->unk_00, MON_SPRITE_DIFFUSE_G, (param1 >> 5) & 0x1f);
+            PokemonSprite_SetAttribute(v2->unk_00, MON_SPRITE_DIFFUSE_B, (param1 >> 0) & 0x1f);
         }
 
         v0 = v0->unk_08;

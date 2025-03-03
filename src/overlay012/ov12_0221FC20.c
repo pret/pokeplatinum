@@ -1927,9 +1927,9 @@ static void ov12_0222118C(SysTask *param0, void *param1)
         v0->unk_04.unk_00 = 0;
     }
 
-    v1 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, 0);
-    v2 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, 1);
-    v2 -= PokemonSprite_GetAttribute(v0->unk_04.unk_04, 41);
+    v1 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_X_CENTER);
+    v2 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_Y_CENTER);
+    v2 -= PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_SHADOW_HEIGHT);
 
     ManagedSprite_SetPositionXY(v0->unk_00, v1, v2);
 }
@@ -1950,9 +1950,9 @@ static void ov12_022211D8(SysTask *param0, void *param1)
         v0->unk_04.unk_00 = 0;
     }
 
-    v1 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, 0);
-    v2 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, 1);
-    v2 -= PokemonSprite_GetAttribute(v0->unk_04.unk_04, 41);
+    v1 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_X_CENTER);
+    v2 = PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_Y_CENTER);
+    v2 -= PokemonSprite_GetAttribute(v0->unk_04.unk_04, MON_SPRITE_SHADOW_HEIGHT);
 
     Bg_SetOffset(v0->unk_00, 2, 0, -(v1 - 40));
     Bg_SetOffset(v0->unk_00, 2, 3, -(v2 - 40));
@@ -2160,9 +2160,9 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
         s16 v16;
 
         if (v12 != NULL) {
-            v15 = PokemonSprite_GetAttribute(v12, 0);
-            v16 = PokemonSprite_GetAttribute(v12, 1);
-            v16 -= PokemonSprite_GetAttribute(v12, 41);
+            v15 = PokemonSprite_GetAttribute(v12, MON_SPRITE_X_CENTER);
+            v16 = PokemonSprite_GetAttribute(v12, MON_SPRITE_Y_CENTER);
+            v16 -= PokemonSprite_GetAttribute(v12, MON_SPRITE_SHADOW_HEIGHT);
         }
 
         v11.x = v15;
@@ -2184,7 +2184,7 @@ static void ov12_02221580(UnkStruct_ov12_0221FCDC *param0)
         if (v12 == NULL) {
             ManagedSprite_SetDrawFlag(v1, 0);
         } else {
-            int v17 = PokemonSprite_GetAttribute(v12, 6);
+            int v17 = PokemonSprite_GetAttribute(v12, MON_SPRITE_HIDE);
 
             if (v17 == 1) {
                 ManagedSprite_SetDrawFlag(v1, 0);
@@ -2318,7 +2318,7 @@ static void ov12_02221834(UnkStruct_ov12_0221FCDC *param0)
             v7 = ov12_022232FC(param0, v6);
 
             if (v7 != NULL) {
-                v5 = PokemonSprite_GetAttribute(v7, 6);
+                v5 = PokemonSprite_GetAttribute(v7, MON_SPRITE_HIDE);
             } else {
                 v5 = 0;
             }
@@ -4233,9 +4233,9 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
                 v13 = v2->unk_48[v5];
 
                 if (v13 != NULL) {
-                    v14 = PokemonSprite_GetAttribute(v13, 0);
-                    v15 = PokemonSprite_GetAttribute(v13, 1);
-                    v15 -= PokemonSprite_GetAttribute(v13, 41);
+                    v14 = PokemonSprite_GetAttribute(v13, MON_SPRITE_X_CENTER);
+                    v15 = PokemonSprite_GetAttribute(v13, MON_SPRITE_Y_CENTER);
+                    v15 -= PokemonSprite_GetAttribute(v13, MON_SPRITE_SHADOW_HEIGHT);
                 } else {
                     continue;
                 }
@@ -4263,7 +4263,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
                 } else if (PokemonSprite_IsActive(v13) == 0) {
                     ManagedSprite_SetDrawFlag(v10, 0);
                 } else {
-                    int v16 = PokemonSprite_GetAttribute(v13, 6);
+                    int v16 = PokemonSprite_GetAttribute(v13, MON_SPRITE_HIDE);
 
                     if (v16 == 1) {
                         ManagedSprite_SetDrawFlag(v10, 0);

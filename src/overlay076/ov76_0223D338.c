@@ -718,21 +718,21 @@ static void ov76_0223DE00(UnkStruct_ov76_0223DE00 *param0)
 
 static void ov76_0223DE54(UnkStruct_ov76_0223DE00 *param0)
 {
-    PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 12, 0x0);
-    PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 13, 0x0);
+    PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X, 0x0);
+    PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_Y, 0x0);
 }
 
 static BOOL ov76_0223DE78(UnkStruct_ov76_0223DE00 *param0)
 {
-    if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, 12) == 0x100) {
+    if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X) == 0x100) {
         return 0;
-    } else if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, 12) >= 0x100) {
-        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 12, 0x100);
-        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 13, 0x100);
+    } else if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X) >= 0x100) {
+        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X, 0x100);
+        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_Y, 0x100);
         return 0;
     } else {
-        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 12, 0x20);
-        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 13, 0x20);
+        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X, 0x20);
+        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_Y, 0x20);
         PokemonSprite_CalcScaledYOffset(param0->unk_D4.unk_D4, param0->unk_D4.unk_D8);
     }
 
@@ -741,15 +741,15 @@ static BOOL ov76_0223DE78(UnkStruct_ov76_0223DE00 *param0)
 
 static BOOL ov76_0223DEF4(UnkStruct_ov76_0223DE00 *param0)
 {
-    if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, 12) == 0x0) {
+    if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X) == 0x0) {
         return 0;
-    } else if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, 12) <= 0x0) {
-        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 12, 0x0);
-        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 13, 0x0);
+    } else if (PokemonSprite_GetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X) <= 0x0) {
+        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X, 0x0);
+        PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_Y, 0x0);
         return 0;
     } else {
-        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 12, -0x20);
-        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, 13, -0x20);
+        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_X, -0x20);
+        PokemonSprite_AddAttribute(param0->unk_D4.unk_D4, MON_SPRITE_SCALE_Y, -0x20);
         PokemonSprite_CalcScaledYOffset(param0->unk_D4.unk_D4, param0->unk_D4.unk_D8);
     }
 
@@ -758,7 +758,7 @@ static BOOL ov76_0223DEF4(UnkStruct_ov76_0223DE00 *param0)
 
 void ov76_0223DF70(UnkStruct_ov76_0223DE00 *param0, int param1)
 {
-    PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, 6, param1);
+    PokemonSprite_SetAttribute(param0->unk_D4.unk_D4, MON_SPRITE_HIDE, param1);
 }
 
 void ov76_0223DF84(UnkStruct_ov76_0223DE00 *param0)

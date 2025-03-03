@@ -475,8 +475,8 @@ void ov17_02241524(UnkStruct_ov17_0223F88C *param0, int param1)
 
     param0->unk_08[param1] = sub_02095484(param0->unk_04, param1, param0->unk_00->unk_00[param1], 0, &param0->unk_58[param1], HEAP_ID_21, (256 - 40) - 32 * param1, (104 + 8) - 32 * param1, -0x200);
 
-    PokemonSprite_SetAttribute(param0->unk_08[param1], 6, 1);
-    PokemonSprite_SetAttribute(param0->unk_08[param1], 37, 1);
+    PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_HIDE, 1);
+    PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_HIDE_2, 1);
 
     {
         u32 v0, v1;
@@ -485,7 +485,7 @@ void ov17_02241524(UnkStruct_ov17_0223F88C *param0, int param1)
         v1 = Pokemon_GetValue(param0->unk_00->unk_00[param1], MON_DATA_FORM, NULL);
 
         if (IsFormSymmetrical(v0, v1) == 1) {
-            PokemonSprite_SetAttribute(param0->unk_08[param1], 35, 1);
+            PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_FLIP_H, 1);
         }
     }
 }
@@ -500,8 +500,8 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
         param0->unk_58[v0].unk_00 = Heap_AllocFromHeap(HEAP_ID_21, (32 * 10 * 10));
         param0->unk_08[v0] = sub_02095484(param0->unk_04, v0, param0->unk_00->unk_00[v0], 0, &param0->unk_58[v0], HEAP_ID_21, (256 - 40) - 32 * v0, (104 + 8) - 32 * v0, -0x200);
 
-        PokemonSprite_SetAttribute(param0->unk_08[v0], 6, 1);
-        PokemonSprite_SetAttribute(param0->unk_08[v0], 37, 1);
+        PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_HIDE, 1);
+        PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_HIDE_2, 1);
 
         {
             u32 v1, v2;
@@ -510,7 +510,7 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
             v2 = Pokemon_GetValue(param0->unk_00->unk_00[v0], MON_DATA_FORM, NULL);
 
             if (IsFormSymmetrical(v1, v2) == 1) {
-                PokemonSprite_SetAttribute(param0->unk_08[v0], 35, 1);
+                PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_FLIP_H, 1);
             }
         }
     }

@@ -587,7 +587,7 @@ static void ov21_021D8C00(UnkStruct_ov21_021D879C *param0)
 {
     PokemonSprite *v0 = ov21_021D2170(param0->unk_00);
 
-    PokemonSprite_SetAttribute(v0, 6, 1);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 1);
     PokemonSprite_ClearFade(v0);
 }
 

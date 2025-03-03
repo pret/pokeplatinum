@@ -581,14 +581,14 @@ static void ov21_021DEF54(UnkStruct_ov21_021DE760 *param0, const UnkStruct_ov21_
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
     PokedexMain_DisplayPokemonSprite(param0->unk_00, param1->unk_04, species, 2, 48, 72);
-    PokemonSprite_SetAttribute(v0, 6, 0);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 0);
 }
 
 static void ov21_021DEF8C(UnkStruct_ov21_021DE760 *param0)
 {
     PokemonSprite *v0 = ov21_021D2170(param0->unk_00);
 
-    PokemonSprite_SetAttribute(v0, 6, 1);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 1);
     PokemonSprite_ClearFade(v0);
 }
 

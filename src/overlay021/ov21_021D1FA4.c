@@ -180,14 +180,14 @@ void Pokedex_LoadPokemonSprite(PokedexGraphicData *param0, int species, int gend
 
 void ov21_021D222C(PokedexGraphicData *param0, int param1, int param2, int param3)
 {
-    PokemonSprite_SetAttribute(param0->pokemonSprite[param3], 0, param1);
-    PokemonSprite_SetAttribute(param0->pokemonSprite[param3], 1, param2);
+    PokemonSprite_SetAttribute(param0->pokemonSprite[param3], MON_SPRITE_X_CENTER, param1);
+    PokemonSprite_SetAttribute(param0->pokemonSprite[param3], MON_SPRITE_Y_CENTER, param2);
 }
 
 void ov21_021D2250(PokedexGraphicData *param0, int *param1, int *param2, int param3)
 {
-    *param1 = PokemonSprite_GetAttribute(param0->pokemonSprite[param3], 0);
-    *param2 = PokemonSprite_GetAttribute(param0->pokemonSprite[param3], 1);
+    *param1 = PokemonSprite_GetAttribute(param0->pokemonSprite[param3], MON_SPRITE_X_CENTER);
+    *param2 = PokemonSprite_GetAttribute(param0->pokemonSprite[param3], MON_SPRITE_Y_CENTER);
 }
 
 PokemonSprite *ov21_021D2274(const PokedexGraphicData *param0, int param1)
@@ -202,9 +202,9 @@ void ov21_021D2280(const PokedexGraphicData *param0, BOOL param1, int param2)
     }
 
     if (param1 == 1) {
-        PokemonSprite_SetAttribute(param0->pokemonSprite[param2], 6, 0);
+        PokemonSprite_SetAttribute(param0->pokemonSprite[param2], MON_SPRITE_HIDE, 0);
     } else {
-        PokemonSprite_SetAttribute(param0->pokemonSprite[param2], 6, 1);
+        PokemonSprite_SetAttribute(param0->pokemonSprite[param2], MON_SPRITE_HIDE, 1);
     }
 }
 

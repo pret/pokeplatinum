@@ -492,7 +492,7 @@ static void ov16_0225C314(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C328(BattleSystem *battleSys, BattlerData *param1)
 {
-    if (PokemonSprite_GetAttribute(param1->unk_20, 6) == 1) {
+    if (PokemonSprite_GetAttribute(param1->unk_20, MON_SPRITE_HIDE) == 1) {
         ClearCommand(battleSys, param1->battler, 23);
     } else {
         ov16_0225DA44(battleSys, param1);
@@ -747,7 +747,7 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
     ov16_0223F2FC(ov16_0223E0C8(battleSys), param1->battler, v3);
 
     v3 = ov12_022384CC(param1->battlerType, 1) + v3;
-    PokemonSprite_SetAttribute(param1->unk_20, 1, v3);
+    PokemonSprite_SetAttribute(param1->unk_20, MON_SPRITE_Y_CENTER, v3);
 
     ClearCommand(battleSys, param1->battler, v0->unk_00);
     ZeroDataBuffer(param1);

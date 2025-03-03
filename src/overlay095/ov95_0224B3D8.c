@@ -297,7 +297,7 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     param0->unk_74 = ov95_022476F0(1, 0, 0, 0);
     param0->unk_14 = ov95_0224BA8C(param0);
 
-    PokemonSprite_SetAttribute(param0->unk_14, 6, 1);
+    PokemonSprite_SetAttribute(param0->unk_14, MON_SPRITE_HIDE, 1);
 
     param0->unk_78 = ov95_022478B4(param0->unk_74, 0, 93, 27, 0, UnkEnum_ov95_0224B520_00, 491520, 0);
 
@@ -349,7 +349,7 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
         break;
     case 2:
         if (++(param0->unk_08) > 10) {
-            PokemonSprite_SetAttribute(param0->unk_14, 6, 0);
+            PokemonSprite_SetAttribute(param0->unk_14, MON_SPRITE_HIDE, 0);
             ov95_0224BBB0(param0, 16, 0, 12);
             param0->unk_04++;
         }

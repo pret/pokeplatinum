@@ -636,7 +636,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
         }
 
         Bg_SetOffset(param0->unk_4C, 2, 0, (33 * 8));
-        PokemonSprite_SetAttribute(param0->unk_12C[0], 6, 1);
+        PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
         StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_93);
         param0->unk_08++;
         break;
@@ -679,7 +679,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
             ov105_02244B90(param0, 3);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 0), 21, 11);
-            PokemonSprite_SetAttribute(param0->unk_12C[0], 6, 0);
+            PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 0);
             PokemonSpriteManager_StartFadeAll(param0->unk_128, 16, 0, 1, 0xffff);
         }
 
@@ -1119,7 +1119,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
             break;
         }
 
-        PokemonSprite_SetAttribute(param0->unk_12C[0], 6, 1);
+        PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
 
         ov105_02244924(param0, 1);
         ov105_022448F4(param0, 3, ov105_02245538(param0, 0, 0), 21, 11);
@@ -1145,7 +1145,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
 
         for (v2 = 0; v2 < v0; v2++) {
             ov105_022455C4(param0, v2, Party_GetPokemonBySlotIndex(param0->unk_31C, param0->unk_324[v2]), v3[v2], 43, 0);
-            PokemonSprite_SetAttribute(param0->unk_12C[v2], 6, 1);
+            PokemonSprite_SetAttribute(param0->unk_12C[v2], MON_SPRITE_HIDE, 1);
         }
 
         ov105_02244924(param0, 4);
@@ -1166,7 +1166,7 @@ static BOOL ov105_02242D04(UnkStruct_ov105_02241FF4 *param0)
             ov105_02244C0C(param0, 3);
 
             for (v2 = 0; v2 < v0; v2++) {
-                PokemonSprite_SetAttribute(param0->unk_12C[v2], 6, 0);
+                PokemonSprite_SetAttribute(param0->unk_12C[v2], MON_SPRITE_HIDE, 0);
             }
 
             if (ov104_0223AED4(param0->unk_09) == 0) {
@@ -1330,7 +1330,7 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
         ov105_02245A30(param0);
         ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_31C, ov105_022461A0(param0->unk_30C)), 120, 43, 0);
 
-        PokemonSprite_SetAttribute(param0->unk_12C[0], 6, 1);
+        PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
         ov105_02244924(param0, 0);
 
         param0->unk_08++;
@@ -1347,7 +1347,7 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
     case 4:
         if (param0->unk_19 == 0) {
             ov105_02244B90(param0, 3);
-            PokemonSprite_SetAttribute(param0->unk_12C[0], 6, 0);
+            PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 0);
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 0), 21, 11);
             PokemonSpriteManager_StartFadeAll(param0->unk_128, 16, 0, 1, 0xffff);
         }
@@ -1964,7 +1964,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
                 ov105_022455C4(param0, 0, Party_GetPokemonBySlotIndex(param0->unk_320, 0), 120, 43, 0);
             }
 
-            PokemonSprite_SetAttribute(param0->unk_12C[0], 6, 0);
+            PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 0);
             PokemonSpriteManager_StartFadeAll(param0->unk_128, 16, 0, 1, 0xffff);
 
             ov105_022448F4(param0, 3, ov105_02245538(param0, 1, 1), 21, 11);
@@ -2997,7 +2997,7 @@ static void ov105_022455C4(UnkStruct_ov105_02241FF4 *param0, u8 param1, Pokemon 
 
     param0->unk_12C[param1] = ov105_02245D88(param0->unk_128, 0, param2, param3, param4, 0);
 
-    PokemonSprite_SetAttribute(param0->unk_12C[param1], 6, 0);
+    PokemonSprite_SetAttribute(param0->unk_12C[param1], MON_SPRITE_HIDE, 0);
 
     v0 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
     v1 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);

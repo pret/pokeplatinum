@@ -92,12 +92,12 @@ void ov22_022591B8(UnkStruct_020298D8 *param0)
 
 void ov22_022591D0(UnkStruct_020298D8 *param0, int param1)
 {
-    PokemonSprite_SetAttribute(param0->unk_00, 2, param1);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_Z_CENTER, param1);
 }
 
 int ov22_022591E0(UnkStruct_020298D8 *param0)
 {
-    return PokemonSprite_GetAttribute(param0->unk_00, 2);
+    return PokemonSprite_GetAttribute(param0->unk_00, MON_SPRITE_Z_CENTER);
 }
 
 void ov22_022591EC(UnkStruct_020298D8 *param0, int param1, int param2)
@@ -105,8 +105,8 @@ void ov22_022591EC(UnkStruct_020298D8 *param0, int param1, int param2)
     int v0, v1;
 
     ov22_02259270(param0, &v0, &v1);
-    PokemonSprite_SetAttribute(param0->unk_00, 0, param1);
-    PokemonSprite_SetAttribute(param0->unk_00, 1, param2);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_X_CENTER, param1);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_Y_CENTER, param2);
 
     v1 /= 2;
     v0 /= 2;
@@ -126,8 +126,8 @@ BOOL ov22_02259244(UnkStruct_020298D8 *param0, int param1, int param2)
 
 void ov22_02259250(UnkStruct_020298D8 *param0, int *param1, int *param2)
 {
-    *param1 = PokemonSprite_GetAttribute(param0->unk_00, 0);
-    *param2 = PokemonSprite_GetAttribute(param0->unk_00, 1);
+    *param1 = PokemonSprite_GetAttribute(param0->unk_00, MON_SPRITE_X_CENTER);
+    *param2 = PokemonSprite_GetAttribute(param0->unk_00, MON_SPRITE_Y_CENTER);
 }
 
 void ov22_02259270(UnkStruct_020298D8 *param0, int *param1, int *param2)

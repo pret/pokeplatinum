@@ -227,8 +227,8 @@ void PokeAnimation_Init(PokemonAnimationSys *param0, PokemonSprite *param1, cons
     param0->pokeAnimation[v0].unk_1C7 = 0;
     param0->pokeAnimation[v0].unk_04 = SysTask_Start(sub_02016150, &param0->pokeAnimation[v0], 0);
     param0->pokeAnimation[v0].unk_54 = v2;
-    param0->pokeAnimation[v0].unk_58 = PokemonSprite_GetAttribute(param1, 0);
-    param0->pokeAnimation[v0].unk_5C = PokemonSprite_GetAttribute(param1, 1);
+    param0->pokeAnimation[v0].unk_58 = PokemonSprite_GetAttribute(param1, MON_SPRITE_X_CENTER);
+    param0->pokeAnimation[v0].unk_5C = PokemonSprite_GetAttribute(param1, MON_SPRITE_Y_CENTER);
     param0->pokeAnimation[v0].unk_60 = 0;
     param0->pokeAnimation[v0].unk_64 = 0;
     param0->pokeAnimation[v0].unk_68 = 0;
@@ -524,7 +524,7 @@ static u8 sub_020164FC(const int *param0, const int *param1)
 static void sub_02016514(UnkStruct_02016E64 *param0)
 {
     int v0 = (-param0->unk_74) / 8;
-    PokemonSprite_AddAttribute(param0->unk_00, 1, v0);
+    PokemonSprite_AddAttribute(param0->unk_00, MON_SPRITE_Y_CENTER, v0);
 }
 
 static void sub_02016530(UnkStruct_02016E64 *param0)
@@ -542,14 +542,14 @@ static void sub_02016540(UnkStruct_02016E64 *param0)
 
 static void sub_02016548(UnkStruct_02016E64 *param0)
 {
-    PokemonSprite_SetAttribute(param0->unk_00, 0, param0->unk_58);
-    PokemonSprite_SetAttribute(param0->unk_00, 1, param0->unk_5C);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_X_CENTER, param0->unk_58);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_Y_CENTER, param0->unk_5C);
 
-    PokemonSprite_SetAttribute(param0->unk_00, 9, 0);
-    PokemonSprite_SetAttribute(param0->unk_00, 10, 0);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_ROTATION_Z, 0);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_X_PIVOT, 0);
 
-    PokemonSprite_SetAttribute(param0->unk_00, 12, 0x100);
-    PokemonSprite_SetAttribute(param0->unk_00, 13, 0x100);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_SCALE_X, 0x100);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_SCALE_Y, 0x100);
 }
 
 static void sub_02016590(UnkStruct_02016E64 *param0)
@@ -863,19 +863,19 @@ static void sub_02016998(UnkStruct_02016E64 *param0)
 static void sub_02016A60(UnkStruct_02016E64 *param0)
 {
     if (param0->unk_1C4) {
-        PokemonSprite_SetAttribute(param0->unk_00, 0, param0->unk_58 - (param0->unk_60 + param0->unk_68));
+        PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_X_CENTER, param0->unk_58 - (param0->unk_60 + param0->unk_68));
     } else {
-        PokemonSprite_SetAttribute(param0->unk_00, 0, param0->unk_58 + param0->unk_60 + param0->unk_68);
+        PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_X_CENTER, param0->unk_58 + param0->unk_60 + param0->unk_68);
     }
 
-    PokemonSprite_SetAttribute(param0->unk_00, 1, param0->unk_5C + param0->unk_64 + param0->unk_6C);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_Y_CENTER, param0->unk_5C + param0->unk_64 + param0->unk_6C);
 }
 
 static void sub_02016AA8(UnkStruct_02016E64 *param0)
 {
-    PokemonSprite_SetAttribute(param0->unk_00, 12, 0x100 + param0->unk_70);
-    PokemonSprite_SetAttribute(param0->unk_00, 13, 0x100 + param0->unk_74);
-    PokemonSprite_SetAttribute(param0->unk_00, 9, (u16)param0->unk_78);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_SCALE_X, 0x100 + param0->unk_70);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_SCALE_Y, 0x100 + param0->unk_74);
+    PokemonSprite_SetAttribute(param0->unk_00, MON_SPRITE_ROTATION_Z, (u16)param0->unk_78);
 
     {
         int v0;

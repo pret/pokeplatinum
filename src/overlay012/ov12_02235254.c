@@ -712,8 +712,8 @@ void ov12_02235918(PokemonSprite *param0, UnkStruct_ov12_02235350 *param1)
         return;
     }
 
-    param1->unk_00 = PokemonSprite_GetAttribute(param0, 0);
-    param1->unk_02 = PokemonSprite_GetAttribute(param0, 1);
+    param1->unk_00 = PokemonSprite_GetAttribute(param0, MON_SPRITE_X_CENTER);
+    param1->unk_02 = PokemonSprite_GetAttribute(param0, MON_SPRITE_Y_CENTER);
 }
 
 void ov12_02235950(ManagedSprite *param0, UnkStruct_ov12_02235350 *param1)

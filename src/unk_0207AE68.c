@@ -217,21 +217,21 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
 {
     if (param0->unk_70) {
         if ((param0->unk_70 & 1) == 0) {
-            PokemonSprite_AddAttribute(param0->unk_1C[0], 12, param0->unk_71 * -1);
-            PokemonSprite_AddAttribute(param0->unk_1C[0], 13, param0->unk_71 * -1);
-            PokemonSprite_AddAttribute(param0->unk_1C[1], 12, param0->unk_71);
-            PokemonSprite_AddAttribute(param0->unk_1C[1], 13, param0->unk_71);
+            PokemonSprite_AddAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_X, param0->unk_71 * -1);
+            PokemonSprite_AddAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_Y, param0->unk_71 * -1);
+            PokemonSprite_AddAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_X, param0->unk_71);
+            PokemonSprite_AddAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_Y, param0->unk_71);
 
-            if (PokemonSprite_GetAttribute(param0->unk_1C[0], 12) == 0) {
+            if (PokemonSprite_GetAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_X) == 0) {
                 param0->unk_70 ^= 1;
             }
         } else {
-            PokemonSprite_AddAttribute(param0->unk_1C[0], 12, param0->unk_71);
-            PokemonSprite_AddAttribute(param0->unk_1C[0], 13, param0->unk_71);
-            PokemonSprite_AddAttribute(param0->unk_1C[1], 12, param0->unk_71 * -1);
-            PokemonSprite_AddAttribute(param0->unk_1C[1], 13, param0->unk_71 * -1);
+            PokemonSprite_AddAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_X, param0->unk_71);
+            PokemonSprite_AddAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_Y, param0->unk_71);
+            PokemonSprite_AddAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_X, param0->unk_71 * -1);
+            PokemonSprite_AddAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_Y, param0->unk_71 * -1);
 
-            if (PokemonSprite_GetAttribute(param0->unk_1C[1], 12) == 0) {
+            if (PokemonSprite_GetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_X) == 0) {
                 param0->unk_70 ^= 1;
 
                 if (param0->unk_71 < 0x40) {
@@ -352,10 +352,10 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             sub_0207C8C4(param0->unk_30, 6);
             sub_0207C8C4(param0->unk_30, 10);
             PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), (0xc00 ^ 0xffff), 2, 0, 16, 0x7fff);
-            PokemonSprite_SetAttribute(param0->unk_1C[0], 12, 0x0);
-            PokemonSprite_SetAttribute(param0->unk_1C[0], 13, 0x0);
-            PokemonSprite_SetAttribute(param0->unk_1C[1], 12, 0x100);
-            PokemonSprite_SetAttribute(param0->unk_1C[1], 13, 0x100);
+            PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_X, 0x0);
+            PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_Y, 0x0);
+            PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_X, 0x100);
+            PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_Y, 0x100);
             Sound_PlayEffect(1531);
             param0->unk_70 = 0;
             param0->unk_66 = 8;
@@ -495,8 +495,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             sub_0200F344(0, 0x0);
             sub_0200F344(1, 0x0);
             sub_0207C460(param0->unk_00);
-            PokemonSprite_SetAttribute(param0->unk_1C[0], 6, 1);
-            PokemonSprite_SetAttribute(param0->unk_1C[1], 6, 1);
+            PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_HIDE, 1);
+            PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 1);
             param0->unk_3C->monData = param0->unk_28;
             param0->unk_3C->options = param0->unk_2C;
             param0->unk_3C->dataType = SUMMARY_DATA_MON;
@@ -515,8 +515,8 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             OverlayManager_Free(param0->unk_38);
             sub_0207C1CC(param0, param0->unk_00);
             Window_DrawMessageBoxWithScrollCursor(param0->unk_04, 0, 1, 10);
-            PokemonSprite_SetAttribute(param0->unk_1C[0], 6, 0);
-            PokemonSprite_SetAttribute(param0->unk_1C[1], 6, 0);
+            PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_HIDE, 0);
+            PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 0);
             PokemonSprite_ScheduleReloadFromNARC(param0->unk_1C[0]);
             PokemonSprite_ScheduleReloadFromNARC(param0->unk_1C[1]);
             PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 16, 0, 0x0);
@@ -623,11 +623,11 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
         break;
     case 41:
         if (PaletteData_GetSelectedBuffersMask(param0->unk_14) == 0) {
-            PokemonSprite_SetAttribute(param0->unk_1C[0], 12, 0x100);
-            PokemonSprite_SetAttribute(param0->unk_1C[0], 13, 0x100);
-            PokemonSprite_SetAttribute(param0->unk_1C[1], 12, 0x0);
-            PokemonSprite_SetAttribute(param0->unk_1C[1], 13, 0x0);
-            PokemonSprite_SetAttribute(param0->unk_1C[1], 6, 1);
+            PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_X, 0x100);
+            PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_Y, 0x100);
+            PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_X, 0x0);
+            PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_Y, 0x0);
+            PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_HIDE, 1);
             PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), (0xc00 ^ 0xffff), 0, 16, 0, 0x7fff);
             PokemonSpriteManager_StartFadeAll(param0->unk_18, 16, 0, 0, 0x7fff);
             param0->unk_72 = 0;
@@ -951,8 +951,8 @@ static void sub_0207C498(UnkStruct_0207AE68 *param0)
 
     param0->unk_1C[1] = PokemonSpriteManager_CreateSprite(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);
 
-    PokemonSprite_SetAttribute(param0->unk_1C[1], 12, 0x0);
-    PokemonSprite_SetAttribute(param0->unk_1C[1], 13, 0x0);
+    PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_X, 0x0);
+    PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_Y, 0x0);
 }
 
 static void sub_0207C520(void *param0)
