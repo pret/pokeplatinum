@@ -593,7 +593,7 @@ static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1)
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, 39);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), 39);
-    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, 39);
+    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, HEAP_ID_39);
 }
 
 static void ov58_021D1524(void)

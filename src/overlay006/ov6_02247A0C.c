@@ -140,7 +140,7 @@ void *ov6_02247A90(void *param0)
     v0->unk_14 = StringTemplate_Default(11);
 
     Window_Add(v1, &v0->unk_00, 3, 1, 3, 30, 17, 12, (1 + 10));
-    LoadStandardWindowGraphics(v1, 3, 1, 11, 0, 11);
+    LoadStandardWindowGraphics(v1, 3, 1, 11, 0, HEAP_ID_FIELDMAP);
     Window_DrawStandardFrame(&v0->unk_00, 1, 1, 11);
     Window_FillTilemap(&v0->unk_00, 15);
 

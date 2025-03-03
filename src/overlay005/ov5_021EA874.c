@@ -69,7 +69,7 @@ static BOOL ov5_021EA874(UnkStruct_ov5_021EAE78 *param0)
     param0->unk_8C = 0;
 
     LoadMessageBoxGraphics(param0->fieldSystem->bgConfig, 3, (512 - (18 + 12)), 10, Options_Frame(SaveData_Options(param0->unk_34)), 4);
-    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD);
 
     param0->unk_48 = 1;
     return 0;

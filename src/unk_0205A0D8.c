@@ -872,7 +872,7 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         v3 = Pokemon_GetStructSize();
 
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 21, 9, 10, 8, 13, 10);
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, 4);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, HEAP_ID_FIELD);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -904,7 +904,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
         int v1;
 
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 20, 11, 11, 6, 13, 90);
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, 4);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, HEAP_ID_FIELD);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {

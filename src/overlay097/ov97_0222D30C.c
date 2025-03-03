@@ -926,7 +926,7 @@ static BOOL ov97_0222DFD4(OverlayManager *param0, UnkStruct_ov97_0222D04C *param
     v0 = Options_Frame(param1->unk_08);
 
     LoadMessageBoxGraphics(param1->unk_00, 0, 1, 2, v0, 86);
-    LoadStandardWindowGraphics(param1->unk_00, 0, (1 + (18 + 12)), 3, 1, 86);
+    LoadStandardWindowGraphics(param1->unk_00, 0, (1 + (18 + 12)), 3, 1, HEAP_ID_86);
 
     *((u16 *)HW_BG_PLTT) = ((31 & 31) << 10 | (12 & 31) << 5 | (12 & 31));
 

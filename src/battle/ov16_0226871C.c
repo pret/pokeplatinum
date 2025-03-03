@@ -4574,7 +4574,7 @@ void ov16_0226CEB0(UnkStruct_ov16_02268A14 *param0, int param1)
 
     GF_ASSERT(param0->unk_66B == 18);
 
-    LoadStandardWindowGraphics(v0, 5, 0x20, 1, 0, 5);
+    LoadStandardWindowGraphics(v0, 5, 0x20, 1, 0, HEAP_ID_BATTLE);
     PaletteData_LoadBufferFromHardware(v1, 1, 1 * 16, 0x20);
 
     {

@@ -208,7 +208,7 @@ static void ov94_0223DE04(UnkStruct_ov94_0223FD4C *param0)
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayer(104, 17, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
     Graphics_LoadPalette(104, 7, 0, 0, 16 * 3 * 2, 62);
 }

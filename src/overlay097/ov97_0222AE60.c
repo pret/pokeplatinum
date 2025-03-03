@@ -331,7 +331,7 @@ static BOOL ov97_0222B07C(UnkStruct_0222AE60 *param0)
 
         return 1;
     case 16:
-        LoadStandardWindowGraphics(param0->unk_00, 1, 1, 2, 0, 81);
+        LoadStandardWindowGraphics(param0->unk_00, 1, 1, 2, 0, HEAP_ID_81);
         Bg_ClearTilemap(param0->unk_00, 1);
         *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
         param0->unk_12C = 17;
@@ -465,8 +465,8 @@ static void ov97_0222B2EC(UnkStruct_0222AE60 *param0)
     *((u16 *)HW_BG_PLTT + 0) = ((0 & 31) << 10 | (0 & 31) << 5 | (0 & 31));
     *((u16 *)HW_BG_PLTT + 31) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
 
-    LoadStandardWindowGraphics(param0->unk_00, 0, 1, 2, 0, 81);
-    LoadStandardWindowGraphics(param0->unk_00, 0, (1 + 9), 3, 1, 81);
+    LoadStandardWindowGraphics(param0->unk_00, 0, 1, 2, 0, HEAP_ID_81);
+    LoadStandardWindowGraphics(param0->unk_00, 0, (1 + 9), 3, 1, HEAP_ID_81);
 
     *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
 }

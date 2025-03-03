@@ -1084,7 +1084,7 @@ static void ov117_02261AC8(UnkStruct_ov117_02261280 *param0, NARC *param1)
     ov117_02264AF0(param0);
     ov117_02264AB0(param0);
 
-    LoadStandardWindowGraphics(param0->unk_2C, 4, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6, 0, 110);
+    LoadStandardWindowGraphics(param0->unk_2C, 4, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6, 0, HEAP_ID_110);
     PaletteData_LoadBufferFromHardware(param0->unk_8C, 1, 6 * 16, 0x20);
     PaletteData_FillBufferRange(param0->unk_8C, 1, 2, 0x0, 0, 1);
 }

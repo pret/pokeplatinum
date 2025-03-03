@@ -145,7 +145,7 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
 
     LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, 4);
     Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
-    LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+    LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 
     for (v1 = 0; v1 < (7 + 1); v1++) {
         sCommManUnderground->unk_C2[v1] = 0xff;

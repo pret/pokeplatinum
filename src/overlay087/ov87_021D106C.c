@@ -311,7 +311,7 @@ static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
     v4 = ov87_021D14D4(param0, 1);
 
     ov87_021D1558(param0);
-    LoadStandardWindowGraphics(param0->unk_10, 1, v4, 2, 0, 61);
+    LoadStandardWindowGraphics(param0->unk_10, 1, v4, 2, 0, HEAP_ID_61);
     Window_DrawStandardFrame(&(param0->unk_14[0]), 0, v4, 2);
     Window_DrawStandardFrame(&(param0->unk_14[1]), 0, v4, 2);
     Bg_CopyTilemapBufferToVRAM(param0->unk_10, 1);

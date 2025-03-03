@@ -1432,7 +1432,7 @@ static void ov97_02234E7C(UnkStruct_ov97_02234A2C *param0)
 static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0)
 {
     Font_LoadTextPalette(0, 14 * 32, 78);
-    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, 78);
+    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, HEAP_ID_78);
     LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
 
     memset(&param0->unk_490, 0, sizeof(UnkStruct_ov97_02233DAC));
@@ -1496,7 +1496,7 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
     Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Font_LoadTextPalette(0, 14 * 32, 78);
-    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, 78);
+    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, HEAP_ID_78);
     LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
 
     ov97_02234ECC(param0);

@@ -281,7 +281,7 @@ static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
         Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, param0->unk_20B * 2, 13, 1);
     }
 
-    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD);
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F68BC(param0);
 

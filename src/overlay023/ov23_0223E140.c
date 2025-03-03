@@ -1587,7 +1587,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
             Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
-            LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+            LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
             CommPlayerMan_Restart();
 
             ov23_0224B460();

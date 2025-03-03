@@ -593,7 +593,7 @@ static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_04, 2, 0, 0, 0, 67);
     Graphics_LoadPaletteFromOpenNARC(param1, 12, 0, 0, 0, 67);
     Font_LoadScreenIndicatorsPalette(0, 14 * 32, 67);
-    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 12, 0, 67);
+    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 12, 0, HEAP_ID_67);
     LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->unk_08), 67);
 }
 

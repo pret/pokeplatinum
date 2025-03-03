@@ -1637,7 +1637,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         sub_020594FC();
 
         Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
-        LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+        LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 
         if (v1->unk_2D) {
             sub_020594EC();

@@ -1053,8 +1053,8 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         Text_ResetAllPrinters();
         ov97_02230F98(v4, 0);
         Font_LoadTextPalette(0, 15 * 32, 87);
-        LoadStandardWindowGraphics(v4->unk_2A5C, 0, 1, 13, 0, 87);
-        LoadStandardWindowGraphics(v4->unk_2A5C, 0, (1 + 9), 14, 1, 87);
+        LoadStandardWindowGraphics(v4->unk_2A5C, 0, 1, 13, 0, HEAP_ID_87);
+        LoadStandardWindowGraphics(v4->unk_2A5C, 0, (1 + 9), 14, 1, HEAP_ID_87);
         LoadMessageBoxGraphics(v4->unk_2A5C, 0, ((1 + 9) + 9), 10, v4->unk_2C0C, 87);
 
         ov97_02230C44(v4, 1, 0);

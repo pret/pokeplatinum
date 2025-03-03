@@ -296,7 +296,7 @@ static void sub_0209B12C(UnkStruct_0209AD84 *param0)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, 32);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, HEAP_ID_FIELD_TASK);
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 1, 1, 13, 10, 13, 1);
         Window_FillTilemap(v0, 15);
 
@@ -328,7 +328,7 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, 32);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, HEAP_ID_FIELD_TASK);
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 25, 13, 6, 4, 13, 131);
         Window_FillTilemap(v0, 15);
 
