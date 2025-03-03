@@ -35,6 +35,8 @@ enum {
 
 #define BASE_FRIENDSHIP_VALUE 70
 
+#define CATCHING_SHOW_MONS 6
+
 /**
  * @brief Pokemon Data Parameters
  */

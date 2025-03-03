@@ -8,7 +8,7 @@
 #include "constants/species.h"
 #include "generated/abilities.h"
 
-#include "overlay097/box_pokemon_gba.h"
+#include "overlay097/gba_save.h"
 #include "overlay097/ov97_022392E4.h"
 
 #include "item.h"
@@ -166,8 +166,6 @@ GBAToDSSpeciesStruct sGBAToDSSpecies[] = {
     { 0x1A3, 0x1A3 },
     { 0x1A4, 0x1A4 }
 };
-
-void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon);
 
 static u16 sSpeciesWithNewAbilities[] = {
     SPECIES_PIDGEY,

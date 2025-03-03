@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/catching_show.h"
-
 #include "pokemon.h"
 #include "rtc.h"
 

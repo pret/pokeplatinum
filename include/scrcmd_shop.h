@@ -7,6 +7,6 @@ BOOL ScrCmd_PokeMartCommon(ScriptContext *ctx);
 BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx);
 BOOL ScrCmd_PokeMartDecor(ScriptContext *ctx);
 BOOL ScrCmd_PokeMartSeal(ScriptContext *ctx);
-BOOL ScrCmd_257(ScriptContext *param0);
+BOOL ScrCmd_ShowAccessoryShop(ScriptContext *ctx);
 
 #endif // POKEPLATINUM_SCRCMD_SHOP_H

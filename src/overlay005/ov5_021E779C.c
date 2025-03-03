@@ -7,12 +7,12 @@
 
 #include "field/field_system.h"
 #include "overlay005/area_data.h"
+#include "overlay005/area_light.h"
 #include "overlay005/bdhc.h"
 #include "overlay005/funcptr_ov5_021E9630.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/model_attributes.h"
-#include "overlay005/ov5_021D521C.h"
 #include "overlay005/ov5_021EEAC8.h"
 #include "overlay005/struct_ov5_021EEB48_decl.h"
 
@@ -602,7 +602,7 @@ static void ov5_021E7E28(const int param0, const u8 param1, AreaDataManager *con
         v1 = ov5_021E97AC(param7->unk_EC, v2.unk_04, &param7->unk_84[param1]->unk_800, &(param7->unk_84[param1]->unk_854), AreaDataManager_GetMapTexture(param2));
 
         if (param6 == 1) {
-            ov5_021D53A4(v1);
+            AreaLight_UseGlobalModelAttributes(v1);
         }
 
         param7->unk_84[param1]->unk_864 = 1;
@@ -650,7 +650,7 @@ static void ov5_021E7F1C(const int param0, const u8 param1, AreaDataManager *con
         v2 = ov5_021E97AC(param7->unk_EC, v1.unk_04, &param7->unk_84[param1]->unk_800, &(param7->unk_84[param1]->unk_854), AreaDataManager_GetMapTexture(param2));
 
         if (param6 == 1) {
-            ov5_021D53A4(v2);
+            AreaLight_UseGlobalModelAttributes(v2);
         }
 
         param7->unk_84[param1]->unk_864 = 1;
@@ -849,7 +849,7 @@ void ov5_021E8188(FieldSystem *fieldSystem, UnkStruct_ov5_021E8F60 *param1)
                 NNSG3dResMdl *v6 = NNS_G3dGetMdlByIdx(v5, 0);
 
                 if (AreaDataManager_IsOutdoorsLighting(param1->unk_AC) == 1) {
-                    ov5_021D53A4(v6);
+                    AreaLight_UseGlobalModelAttributes(v6);
                 }
             }
 
@@ -2128,7 +2128,7 @@ static void ov5_021E9B70(const int param0, const u8 param1, const AreaDataManage
     v3 = ov5_021E97AC(param7->unk_EC, v2.unk_04, &param7->unk_84[param1]->unk_800, &(param7->unk_84[param1]->unk_854), AreaDataManager_GetMapTexture(param2));
 
     if (param6 == 1) {
-        ov5_021D53A4(v3);
+        AreaLight_UseGlobalModelAttributes(v3);
     }
 
     param7->unk_84[param1]->unk_864 = 1;
@@ -2399,7 +2399,7 @@ void ov5_021EA174(FieldSystem *fieldSystem, UnkStruct_ov5_021E8F60 *param1)
                 NNSG3dResMdl *v6 = NNS_G3dGetMdlByIdx(v5, 0);
 
                 if (AreaDataManager_IsOutdoorsLighting(param1->unk_AC) == 1) {
-                    ov5_021D53A4(v6);
+                    AreaLight_UseGlobalModelAttributes(v6);
                 }
             }
 

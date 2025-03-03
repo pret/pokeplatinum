@@ -471,7 +471,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021D2F14.c.o
 	Object main.nef.p/src_overlay005_map_prop_animation.c.o
 	Object main.nef.p/src_overlay005_ov5_021D431C.c.o
-	Object main.nef.p/src_overlay005_ov5_021D521C.c.o
+	Object main.nef.p/src_overlay005_area_light.c.o
 	Object main.nef.p/src_overlay005_map_prop_material_shape.c.o
 	Object main.nef.p/src_overlay005_ov5_021D57BC.c.o
 	Object main.nef.p/src_overlay005_model_attributes.c.o
@@ -601,7 +601,7 @@ Overlay overlay7
 	After overlay6
 	Object main.nef.p/src_overlay007_communication_club.c.o
 	Object main.nef.p/src_overlay007_ov7_0224B4E8.c.o
-	Object main.nef.p/src_overlay007_ov7_0224BE9C.c.o
+	Object main.nef.p/src_overlay007_accessory_shop.c.o
 	Object main.nef.p/src_overlay007_shop_menu.c.o
 }
 

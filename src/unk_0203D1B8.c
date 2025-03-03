@@ -49,8 +49,7 @@
 #include "library_tv/library_tv.h"
 #include "overlay005/ov5_021E622C.h"
 #include "overlay006/struct_ov6_02246254.h"
-#include "overlay007/ov7_0224BE9C.h"
-#include "overlay007/struct_ov7_0224BEFC_decl.h"
+#include "overlay007/accessory_shop.h"
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay020/ov20_021D0D80.h"
 #include "overlay021/pokedex_main.h"
@@ -1639,24 +1638,24 @@ static u8 sub_0203E484(SaveData *param0, u8 param1)
     return v3[param1];
 }
 
-static BOOL sub_0203E4F8(FieldTask *param0)
+static BOOL FieldTask_AccessoryShop(FieldTask *task)
 {
-    UnkStruct_ov7_0224BEFC *v0 = FieldTask_GetEnv(param0);
+    AccessoryShop *shop = FieldTask_GetEnv(task);
 
-    if (ov7_0224BF2C(v0) == 1) {
-        ov7_0224BEFC(v0);
-        return 1;
+    if (AccessoryShop_Main(shop) == TRUE) {
+        AccessoryShop_Free(shop);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-void sub_0203E518(FieldTask *param0)
+void AccessoryShop_Init(FieldTask *task)
 {
-    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_ov7_0224BEFC *v1 = ov7_0224BE9C(4, fieldSystem->saveData, fieldSystem->bgConfig);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    AccessoryShop *shop = AccessoryShop_New(HEAP_ID_FIELD, fieldSystem->saveData, fieldSystem->bgConfig);
 
-    FieldTask_InitCall(param0, sub_0203E4F8, v1);
+    FieldTask_InitCall(task, FieldTask_AccessoryShop, shop);
 }
 
 void *sub_0203E53C(FieldSystem *fieldSystem, int param1, int param2)

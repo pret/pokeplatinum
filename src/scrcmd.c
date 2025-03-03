@@ -1363,7 +1363,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_254,
     ScrCmd_255,
     ScrCmd_CalcCatchingShowPoints,
-    ScrCmd_257,
+    ScrCmd_ShowAccessoryShop,
     ScrCmd_258,
     ScrCmd_259,
     ScrCmd_25A,
