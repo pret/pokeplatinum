@@ -170,7 +170,7 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 param2, u32 p
         sub_02020B90(1, param2);
 
         v2.unk_00 = param0;
-        v2.unk_04 = param2;
+        v2.heapID = param2;
         v0->unk_0C = sub_02020C44(&v2);
     }
 

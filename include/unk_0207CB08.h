@@ -7,7 +7,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 
-UnkStruct_0207CB08 *sub_0207CB08(u8 param0);
+UnkStruct_0207CB08 *sub_0207CB08(u8 heapID);
 u32 sub_0207CB20(void);
 void sub_0207CB24(UnkStruct_0207CB08 *param0, u8 param1);
 void sub_0207CB2C(UnkStruct_0207CB08 *param0, SaveData *param1, u8 param2, void *param3);

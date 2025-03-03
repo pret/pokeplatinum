@@ -146,10 +146,10 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     param0->unk_00 = v0;
 }
 
-static void sub_0205A164(UnkStruct_0205A0D8 *param0, int param1)
+static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
 {
     int v0;
-    PartyManagementData *v1 = Heap_AllocFromHeap(param1, sizeof(PartyManagementData));
+    PartyManagementData *v1 = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
 
     MI_CpuClear8(v1, sizeof(PartyManagementData));
 
@@ -355,7 +355,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         break;
     case 15:
         sub_0205AAA0(v0, 0);
-        sub_0205A164(v0, 11);
+        sub_0205A164(v0, HEAP_ID_FIELDMAP);
         v0->unk_34 = 16;
         break;
     case 16:

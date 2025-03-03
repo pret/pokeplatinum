@@ -2120,13 +2120,13 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
             }
             break;
         case 1:
-            param0->unk_87C[v0] = sub_0202FD88(102);
+            param0->unk_87C[v0] = sub_0202FD88(HEAP_ID_102);
 
             if (v0 == 0) {
                 param0->unk_88C[v0] = sub_02030A80(102);
                 sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
             } else {
-                param0->unk_88C[v0] = sub_0202FDB8(102);
+                param0->unk_88C[v0] = sub_0202FDB8(HEAP_ID_102);
             }
             break;
         }

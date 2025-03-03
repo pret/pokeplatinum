@@ -1425,7 +1425,7 @@ static void ov5_021EDDAC(UnkStruct_ov5_021ED0A4 *param0, int param1)
     UnkStruct_02020C44 *v1;
 
     v0.unk_00 = param1;
-    v0.unk_04 = 4;
+    v0.heapID = HEAP_ID_FIELD;
 
     v1 = sub_02020C44(&v0);
     ov5_021EDC84(param0, v1);

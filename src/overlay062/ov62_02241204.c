@@ -2907,7 +2907,7 @@ static void ov62_022443EC (UnkStruct_0208C06C * param0)
     v0->unk_80.unk_00 = sub_02030A80(102);
     ov61_0222AFC0(&v0->unk_4BC->unk_00, v0->unk_80.unk_00);
     v0->unk_10C.unk_00 = v0->unk_80.unk_00;
-    v0->unk_10C.unk_04 = sub_0202FF2C(102);
+    v0->unk_10C.unk_04 = sub_0202FF2C(HEAP_ID_102);
     MI_CpuCopy8(&v0->unk_4BC->unk_80, v0->unk_10C.unk_04, sizeof(UnkStruct_ov61_0222BED8_sub1));
 }
 
@@ -2918,7 +2918,7 @@ static void ov62_0224443C (UnkStruct_0208C06C * param0)
     v0->unk_80.unk_00 = sub_02030A80(102);
     ov61_0222AFC0(&param0->unk_8B4.unk_1D58[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00, v0->unk_80.unk_00);
     v0->unk_10C.unk_00 = v0->unk_80.unk_00;
-    v0->unk_10C.unk_04 = sub_0202FF2C(102);
+    v0->unk_10C.unk_04 = sub_0202FF2C(HEAP_ID_102);
     MI_CpuCopy8(&param0->unk_8B4.unk_1D58[param0->unk_14.unk_48C.unk_38.unk_00]->unk_80, v0->unk_10C.unk_04, sizeof(UnkStruct_ov61_0222BED8_sub1));
 }
 

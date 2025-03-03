@@ -3553,7 +3553,7 @@ static BOOL ScrCmd_192(ScriptContext *ctx)
     void **v0;
 
     v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
-    *v0 = sub_0203D50C(ctx->fieldSystem->task, 32);
+    *v0 = sub_0203D50C(ctx->fieldSystem->task, HEAP_ID_FIELD_TASK);
 
     return 1;
 }
@@ -3941,7 +3941,7 @@ static BOOL sub_02041D98(FieldSystem *fieldSystem, int param1, int param2)
     return 1;
 }
 
-static UnkStruct_02041DC8 *sub_02041DC8(int param0, FieldSystem *fieldSystem, int param2, int param3)
+static UnkStruct_02041DC8 *sub_02041DC8(int heapID, FieldSystem *fieldSystem, int param2, int param3)
 {
     UnkStruct_02041DC8 *v0;
     UnkStruct_02029C68 *v1;
@@ -3952,7 +3952,7 @@ static UnkStruct_02041DC8 *sub_02041DC8(int param0, FieldSystem *fieldSystem, in
         return NULL;
     }
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02041DC8));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02041DC8));
     memset(v0, 0, sizeof(UnkStruct_02041DC8));
 
     v0->unk_00 = v3;
@@ -4123,7 +4123,7 @@ static BOOL ScrCmd_0A7(ScriptContext *ctx)
     int v1 = ScriptContext_ReadHalfWord(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_02041DC8(11, ctx->fieldSystem, 0, v1);
+    *v0 = sub_02041DC8(HEAP_ID_FIELDMAP, ctx->fieldSystem, 0, v1);
 
     if (*v0 == NULL) {
         *v2 = 1;
@@ -4145,7 +4145,7 @@ static BOOL ScrCmd_0A8(ScriptContext *ctx)
     int v1 = ScriptContext_ReadHalfWord(ctx);
     u16 *v2 = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_02041DC8(11, ctx->fieldSystem, 1, v1);
+    *v0 = sub_02041DC8(HEAP_ID_FIELDMAP, ctx->fieldSystem, 1, v1);
 
     if (*v0 == NULL) {
         *v2 = 1;
@@ -6256,7 +6256,7 @@ static BOOL ScrCmd_1EA(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
 
-    *v0 = sub_0203E53C(ctx->fieldSystem, 32, 0);
+    *v0 = sub_0203E53C(ctx->fieldSystem, HEAP_ID_FIELD_TASK, 0);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return 1;
@@ -6266,7 +6266,7 @@ static BOOL ScrCmd_1EB(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
 
-    *v0 = sub_0203E53C(ctx->fieldSystem, 32, 1);
+    *v0 = sub_0203E53C(ctx->fieldSystem, HEAP_ID_FIELD_TASK, 1);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return 1;
@@ -7853,7 +7853,7 @@ BOOL ScrCmd_2C8(ScriptContext *ctx)
     u16 v2 = ScriptContext_GetVar(ctx);
     u16 v3 = ScriptContext_GetVar(ctx);
 
-    *v0 = sub_0203E564(ctx->fieldSystem, v1, v2, v3, 32);
+    *v0 = sub_0203E564(ctx->fieldSystem, v1, v2, v3, HEAP_ID_FIELD_TASK);
     ScriptContext_Pause(ctx, sub_02041CC8);
 
     return 1;
@@ -7863,7 +7863,7 @@ BOOL ScrCmd_2E2(ScriptContext *ctx)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
 
-    *v0 = sub_0203E608(ctx->fieldSystem, 32);
+    *v0 = sub_0203E608(ctx->fieldSystem, HEAP_ID_FIELD_TASK);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
 
     return 1;

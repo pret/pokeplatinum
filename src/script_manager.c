@@ -667,7 +667,7 @@ static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 script
     return TRUE;
 }
 
-UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int param1)
+UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int heapID)
 {
     UnkStruct_0203F478 *v0;
     const BgEvent *v1;
@@ -677,7 +677,7 @@ UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int param1)
     v6 = 0;
     v5 = MapHeaderData_GetNumBgEvents(fieldSystem);
     v5++;
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203F478) * v5);
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203F478) * v5);
 
     if (v5 == 1) {
         v0[0].unk_04 = 0xff;

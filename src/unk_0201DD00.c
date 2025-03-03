@@ -32,14 +32,14 @@ static void sub_0201DDE4(UnkStruct_0201DDF4 *param0);
 static void sub_0201DE3C(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1);
 static void sub_0201DE68(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1);
 
-UnkStruct_0201DD00 *sub_0201DD00(int param0, int param1)
+UnkStruct_0201DD00 *sub_0201DD00(int param0, int heapID)
 {
     UnkStruct_0201DD00 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0201DD00));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0201DD00));
 
-    v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0201DDF4) * param0);
+    v0->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0201DDF4) * param0);
     v0->unk_04 = param0;
 
     for (v1 = 0; v1 < v0->unk_04; v1++) {

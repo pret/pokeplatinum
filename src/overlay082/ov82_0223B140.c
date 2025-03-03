@@ -38,7 +38,7 @@ int ov82_0223B164(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov83_0223C344), 55);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov83_0223C344));
 
-    v0->unk_00 = 55;
+    v0->heapId = HEAP_ID_55;
     v0->unk_10 = v1;
 
     if ((v1->unk_20) && (v1->unk_24)) {
@@ -47,7 +47,7 @@ int ov82_0223B164(OverlayManager *param0, int *param1)
 
     v0->unk_26 = v1->unk_20;
     v0->unk_27 = v1->unk_24;
-    v0->unk_0C = BagCursor_New(v0->unk_00);
+    v0->unk_0C = BagCursor_New(v0->heapId);
 
     if (v1->unk_04 == 1) {
         v0->unk_06_0 = 1;
@@ -96,7 +96,7 @@ int ov82_0223B24C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        v0 = v1->unk_00;
+        v0 = v1->heapId;
 
         Heap_FreeToHeap(v1->unk_0C);
         MI_CpuClear8(v1, sizeof(UnkStruct_ov83_0223C344));

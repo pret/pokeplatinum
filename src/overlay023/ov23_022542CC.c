@@ -485,7 +485,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     Window_CopyToVRAM(&param0->unk_08);
     Window_CopyToVRAM(&param0->unk_18);
 
-    param0->unk_04 = sub_0206A780(4);
+    param0->unk_04 = sub_0206A780(HEAP_ID_FIELD);
 
     sub_0206A8A0(param0->unk_04, 200, 10 + 8 * 2, 118 + 8 * 2);
     sub_0206A8C4(param0->unk_04, 0, 0);

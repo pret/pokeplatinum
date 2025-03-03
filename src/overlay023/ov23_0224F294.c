@@ -640,7 +640,7 @@ static BOOL ov23_0224FA58(SysTask *param0, void *param1)
         break;
     default:
         if ((v0->unk_2A0 == (u32)ov23_0224FDE0) || (v0->unk_2A0 == (u32)ov23_022501BC) || (v0->unk_2A0 == (u32)ov23_02250CD4) || (v0->unk_2A0 == (u32)ov23_02250598)) {
-            v0->unk_08 = sub_0206A780(4);
+            v0->unk_08 = sub_0206A780(HEAP_ID_FIELD);
             sub_0206A8A0(v0->unk_08, 200, 20, 122);
             sub_0206A8C4(v0->unk_08, 0, 0);
             sub_0206A8C4(v0->unk_08, 1, 0);

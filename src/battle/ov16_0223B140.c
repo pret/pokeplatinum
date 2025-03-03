@@ -267,7 +267,7 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
         if (v2) {
             Heap_Create(3, 73, 0x30000);
             v4 = Party_GetPokemonBySlotIndex(v0->parties[0], v1);
-            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, 73);
+            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, HEAP_ID_73);
             *param1 = 14;
         } else {
             *param1 = 15;
@@ -1079,7 +1079,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *param1)
     battleSys->unk_2444 = param1->seed;
     battleSys->unk_2448 = param1->seed;
     battleSys->battleStatusMask = param1->battleStatusMask;
-    battleSys->unk_58 = Bag_New(5);
+    battleSys->unk_58 = Bag_New(HEAP_ID_BATTLE);
 
     Bag_Copy(param1->bag, battleSys->unk_58);
     battleSys->pokedex = Pokedex_New(5);
