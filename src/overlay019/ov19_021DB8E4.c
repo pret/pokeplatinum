@@ -481,7 +481,7 @@ static void ov19_021DC034(UnkStruct_ov19_021DBA9C *param0, int param1)
         ov19_021DC0A0,
         ov19_021DC1CC,
     };
-    UnkStruct_ov19_021DC034 *v1 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DC034));
+    UnkStruct_ov19_021DC034 *v1 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DC034));
 
     if (v1) {
         v1->unk_00 = param0;
@@ -594,7 +594,7 @@ static void ov19_021DC1CC(SysTask *param0, void *param1)
 
 void ov19_021DC29C(UnkStruct_ov19_021DBA9C *param0)
 {
-    UnkStruct_ov19_021DC29C *v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DC29C));
+    UnkStruct_ov19_021DC29C *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DC29C));
 
     if (v0) {
         u32 v1 = ov19_021D5F88(param0->unk_0C);
@@ -657,7 +657,7 @@ static void ov19_021DC37C(SysTask *param0, void *param1)
 
 void ov19_021DC3F4(UnkStruct_ov19_021DBA9C *param0)
 {
-    UnkStruct_ov19_021DC29C *v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DC29C));
+    UnkStruct_ov19_021DC29C *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DC29C));
 
     if (v0) {
         v0->unk_16 = 0;

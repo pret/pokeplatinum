@@ -438,7 +438,7 @@ void Pokemon_CalcStats(Pokemon *mon)
 
     int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     int monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    SpeciesData *speciesData = Heap_AllocFromHeap(0, sizeof(SpeciesData));
+    SpeciesData *speciesData = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(SpeciesData));
 
     SpeciesData_LoadForm(monSpecies, monForm, speciesData);
 
@@ -2193,7 +2193,7 @@ static u32 Pokemon_GetExpRateBaseExpAt(enum ExpRate monExpRate, int monLevel)
     GF_ASSERT(monExpRate < 8);
     GF_ASSERT(monLevel <= 101);
 
-    u32 *expTable = Heap_AllocFromHeap(0, 101 * 4);
+    u32 *expTable = Heap_AllocFromHeap(HEAP_ID_SYSTEM, 101 * 4);
     Pokemon_LoadExperienceTableOf(monExpRate, expTable);
 
     u32 result = expTable[monLevel];

@@ -906,7 +906,7 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
 
     sub_02014000();
 
-    v0 = Heap_AllocFromHeap(110, 0x4800);
+    v0 = Heap_AllocFromHeap(HEAP_ID_110, 0x4800);
     param0->unk_A4 = sub_02014014(ov117_02261644, ov117_02261668, v0, 0x4800, 1, 110);
     camera = sub_02014784(param0->unk_A4);
 

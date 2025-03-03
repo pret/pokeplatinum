@@ -207,7 +207,7 @@ void ov23_0224DCB8(int param0, UnkFuncPtr_ov23_0224DCB8 param1, FieldSystem *fie
     UnkStruct_ov23_0224E280 *v0;
     ListMenuTemplate v1;
 
-    v0 = Heap_AllocFromHeap(33, sizeof(UnkStruct_ov23_0224E280));
+    v0 = Heap_AllocFromHeap(HEAP_ID_33, sizeof(UnkStruct_ov23_0224E280));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0224E280));
 
     Unk_ov23_022577B4 = v0;
@@ -1275,7 +1275,7 @@ void ov23_0224F07C(int param0, int param1, FieldSystem *fieldSystem)
         return;
     }
 
-    v0 = Heap_AllocFromHeap(33, sizeof(UnkStruct_ov23_022577B0));
+    v0 = Heap_AllocFromHeap(HEAP_ID_33, sizeof(UnkStruct_ov23_022577B0));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_022577B0));
 
     Unk_ov23_022577B0 = v0;

@@ -205,7 +205,7 @@ void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask)
 
 void EncounterEffect_Flash(enum Screen screen, u32 screenFlashColor, u32 otherScreenFlashColor, BOOL *done, u32 numFlashes)
 {
-    ScreenFlash *screenFlash = Heap_AllocFromHeap(4, sizeof(ScreenFlash));
+    ScreenFlash *screenFlash = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(ScreenFlash));
     memset(screenFlash, 0, sizeof(ScreenFlash));
     SysTask_Start(EncounterEffect_FlashTask, screenFlash, 5);
 
@@ -966,7 +966,7 @@ UnkStruct_ov5_021DE928 *ov5_021DE8F8(u32 param0)
     UnkStruct_ov5_021DE928 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DE928));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021DE928));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DE928));
 
     for (v1 = 0; v1 < 48; v1++) {
@@ -1191,7 +1191,7 @@ UnkStruct_ov5_021DED04 *ov5_021DECEC(void)
 {
     UnkStruct_ov5_021DED04 *v0;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DED04));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021DED04));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DED04));
 
     return v0;
@@ -1372,7 +1372,7 @@ void ov5_021DEFA0(FieldSystem *fieldSystem)
 {
     GF_ASSERT(Unk_ov5_02202120 == NULL);
 
-    Unk_ov5_02202120 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_02202120));
+    Unk_ov5_02202120 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_02202120));
     memset(Unk_ov5_02202120, 0, sizeof(UnkStruct_ov5_02202120));
 
     Unk_ov5_02202120->unk_00 = 0;
@@ -1434,7 +1434,7 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     GF_ASSERT(Unk_ov5_02202120);
     GF_ASSERT(Unk_ov5_02202120->unk_08 == NULL);
 
-    Unk_ov5_02202120->unk_0C = Heap_AllocFromHeap(4, 0x4800);
+    Unk_ov5_02202120->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELD, 0x4800);
     Unk_ov5_02202120->unk_08 = sub_02014014(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, 4);
     GF_ASSERT(Unk_ov5_02202120->unk_08);
 

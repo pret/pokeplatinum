@@ -522,7 +522,7 @@ static BOOL ov6_0223E33C(FieldTask *taskMan)
 void ov6_0223E384(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_0223E33C));
+    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_0223E33C));
 
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
@@ -609,7 +609,7 @@ static BOOL ov6_0223E408(FieldTask *param0)
 void ov6_0223E4EC(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_0223E33C));
+    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_0223E33C));
 
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
@@ -2010,7 +2010,7 @@ UnkStruct_ov6_022400A8 *ov6_02240074(FieldSystem *fieldSystem)
 {
     UnkStruct_ov6_022400A8 *v0;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022400A8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_022400A8));
     memset(v0, 0, sizeof(UnkStruct_ov6_022400A8));
     v0->fieldSystem = fieldSystem;
     v0->unk_12C = 5;

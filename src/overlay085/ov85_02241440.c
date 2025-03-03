@@ -426,7 +426,7 @@ static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
         u16 *v0;
         u32 v1;
 
-        v0 = (u16 *)Heap_AllocFromHeap(36, 8 * 8 * 2);
+        v0 = (u16 *)Heap_AllocFromHeap(HEAP_ID_36, 8 * 8 * 2);
 
         for (v1 = 0; v1 < 8 * 8; v1++) {
             v0[v1] = (3 << 12) + 1 + v1;

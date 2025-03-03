@@ -549,7 +549,7 @@ static void ov58_021D12C4(UnkStruct_02095EAC *param0)
 
     MessageLoader_GetStrbuf(param0->unk_10, 7, param0->unk_28);
 
-    param0->unk_442C = Heap_AllocFromHeap(39, 30 * 16 * 32);
+    param0->unk_442C = Heap_AllocFromHeap(HEAP_ID_39, 30 * 16 * 32);
     param0->unk_9454 = sub_02015920(39);
     param0->unk_378 = 0;
 }

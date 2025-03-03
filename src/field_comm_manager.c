@@ -176,7 +176,7 @@ void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
 
         for (netJd = 0; netJd < CommSys_ConnectedCount(); netJd++) {
             if (sFieldCommMan->trainerCard[netJd] == NULL) {
-                sFieldCommMan->trainerCard[netJd] = Heap_AllocFromHeap(0, sizeof(TrainerCard));
+                sFieldCommMan->trainerCard[netJd] = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(TrainerCard));
             }
         }
 

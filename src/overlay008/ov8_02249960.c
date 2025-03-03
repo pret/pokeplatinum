@@ -1573,7 +1573,7 @@ void ov8_0224A8C8(FieldSystem *fieldSystem)
     v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v2 = (UnkStruct_02071B30 *)sub_02027F6C(v1, 3);
 
-    fieldSystem->unk_04->unk_24 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov8_0224A1E4));
+    fieldSystem->unk_04->unk_24 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224A1E4));
 
     v0 = fieldSystem->unk_04->unk_24;
     v0->fieldSystem = fieldSystem;
@@ -2082,7 +2082,7 @@ void ov8_0224ABD4(FieldSystem *fieldSystem)
     v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v2 = (UnkStruct_02071B6C *)sub_02027F6C(v1, 5);
 
-    fieldSystem->unk_04->unk_24 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov8_0224ABD4));
+    fieldSystem->unk_04->unk_24 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224ABD4));
 
     v0 = fieldSystem->unk_04->unk_24;
 
@@ -2430,7 +2430,7 @@ void ov8_0224B020(FieldSystem *fieldSystem)
 
     v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 8);
-    v2 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov8_0224AF00));
+    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224AF00));
 
     memset(v2, 0, sizeof(UnkStruct_ov8_0224AF00));
     fieldSystem->unk_04->unk_24 = v2;
@@ -2890,7 +2890,7 @@ BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param
         UnkStruct_ov8_0224AF00 *v3 = fieldSystem->unk_04->unk_24;
         const UnkStruct_ov8_0224C774 *v4 = &Unk_ov8_0224C774[v1->unk_00];
 
-        v2 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov8_0224B67C));
+        v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov8_0224B67C));
         memset(v2, 0, sizeof(UnkStruct_ov8_0224B67C));
 
         v2->unk_44 = param1;
@@ -2974,7 +2974,7 @@ void ov8_0224B764(FieldSystem *fieldSystem)
 
     v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 4);
-    v2 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov8_0224B8D0));
+    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224B8D0));
 
     memset(v2, 0, sizeof(UnkStruct_ov8_0224B8D0));
 
@@ -3727,7 +3727,7 @@ void ov8_0224C198(FieldSystem *fieldSystem)
 
     v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 2);
-    v2 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov8_0224C444));
+    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224C444));
 
     memset(v2, 0, sizeof(UnkStruct_ov8_0224C444));
 

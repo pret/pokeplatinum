@@ -155,7 +155,7 @@ static void sub_020366A0(SaveData *param0, int param1)
     GF_ASSERT(param0);
     sub_02033478();
 
-    Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
+    Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
     MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
 
     Unk_021C07D4->unk_40 = 50;
@@ -2069,7 +2069,7 @@ void sub_02038438(SaveData *param0)
 {
     if (!Unk_021C07D4) {
         Heap_CreateAtEnd(3, 15, 0x100);
-        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
+        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
         MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
         Unk_021C07D4->unk_4A = 24;
         Unk_021C07D4->unk_51 = 1;
@@ -2094,7 +2094,7 @@ void sub_020384C0(SaveData *param0)
 {
     if (!Unk_021C07D4) {
         Heap_CreateAtEnd(3, 15, 0x100);
-        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
+        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
         MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
         Unk_021C07D4->unk_4A = 25;
         Unk_021C07D4->unk_51 = 1;
@@ -2119,7 +2119,7 @@ void sub_02038548(SaveData *param0)
 {
     if (!Unk_021C07D4) {
         Heap_CreateAtEnd(3, 15, 0x100);
-        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(15, sizeof(UnkStruct_021C07D4));
+        Unk_021C07D4 = (UnkStruct_021C07D4 *)Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_021C07D4));
         MI_CpuFill8(Unk_021C07D4, 0, sizeof(UnkStruct_021C07D4));
         Unk_021C07D4->unk_4A = 36;
         Unk_021C07D4->unk_51 = 1;
@@ -2233,7 +2233,7 @@ void *sub_0203871C(SaveData *param0, int param1)
     ResetLock(1);
     Heap_CreateAtEnd(3, 15, 0x7080);
     sub_020366A0(param0, 23);
-    Unk_021C07D4->unk_00 = Heap_AllocFromHeap(15, param1);
+    Unk_021C07D4->unk_00 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, param1);
     MI_CpuFill8(Unk_021C07D4->unk_00, 0, param1);
 
     Unk_021C07D4->unk_4B = 0;

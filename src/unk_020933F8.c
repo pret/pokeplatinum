@@ -381,7 +381,7 @@ static UnkStruct_02095C48 *sub_020937C4(void)
     UnkStruct_02095C48 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(20, sizeof(UnkStruct_02095C48));
+    v0 = Heap_AllocFromHeap(HEAP_ID_20, sizeof(UnkStruct_02095C48));
     MI_CpuClear8(v0, sizeof(UnkStruct_02095C48));
 
     v0->unk_00.unk_113 = 0;
@@ -582,7 +582,7 @@ void sub_02093BBC(UnkStruct_02095C48 *param0)
 
     sub_0202A25C(param0->unk_00.unk_E8[param0->unk_00.unk_113]);
 
-    v0 = Heap_AllocFromHeap(20, sizeof(UnkStruct_02093BBC));
+    v0 = Heap_AllocFromHeap(HEAP_ID_20, sizeof(UnkStruct_02093BBC));
     MI_CpuClear8(v0, sizeof(UnkStruct_02093BBC));
 
     v0->unk_00 = param0->unk_00.unk_00[param0->unk_00.unk_113];

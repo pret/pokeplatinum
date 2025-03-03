@@ -100,7 +100,7 @@ static void ov20_021D2DD8(SysTask *param0, void *param1);
 
 UnkStruct_ov20_021D2128 *ov20_021D2098(const UnkStruct_ov20_021D16E8 *param0, const UnkStruct_020998EC *param1)
 {
-    UnkStruct_ov20_021D2128 *v0 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D2128));
+    UnkStruct_ov20_021D2128 *v0 = Heap_AllocFromHeap(HEAP_ID_35, sizeof(UnkStruct_ov20_021D2128));
 
     if (v0) {
         int v1;
@@ -206,7 +206,7 @@ void ov20_021D21A0(UnkStruct_ov20_021D2128 *param0, int param1)
     };
 
     if (param1 < NELEMS(v0)) {
-        UnkStruct_ov20_021D2238 *v1 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D2238));
+        UnkStruct_ov20_021D2238 *v1 = Heap_AllocFromHeap(HEAP_ID_35, sizeof(UnkStruct_ov20_021D2238));
 
         if (v1) {
             int v2;

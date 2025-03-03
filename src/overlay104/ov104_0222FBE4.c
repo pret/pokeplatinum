@@ -1672,7 +1672,7 @@ static BOOL ov104_02230B50(UnkStruct_ov104_0222E930 *param0)
     FieldBattleDTO *v1;
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 
-    v1 = Heap_AllocFromHeap(11, sizeof(FieldBattleDTO));
+    v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(FieldBattleDTO));
     MI_CpuClear8(v1, sizeof(FieldBattleDTO));
 
     sub_0202F298(v2->unk_08, 11, &v0, v1, 0);
@@ -2374,7 +2374,7 @@ static BOOL ov104_02231720(UnkStruct_ov104_02231148 *param0)
         MI_CpuClear8(&v0, sizeof(UnkStruct_ov104_0223F1B4));
 
         param0->unk_10 = 0;
-        param0->unk_24 = Heap_AllocFromHeap(94, sizeof(UnkStruct_ov104_022313FC));
+        param0->unk_24 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_022313FC));
         param0->unk_24->unk_604 = 1;
         param0->unk_24->unk_600 = ov104_0223F1B4(((u32)&reg_G2_BG2PA), &v0, 94);
 
@@ -2434,7 +2434,7 @@ static BOOL ov104_02231864(UnkStruct_ov104_02231148 *param0)
         MI_CpuClear8(&v0, sizeof(UnkStruct_ov104_0223F1B4));
 
         param0->unk_10 = 0;
-        param0->unk_24 = Heap_AllocFromHeap(94, sizeof(UnkStruct_ov104_022313FC));
+        param0->unk_24 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_022313FC));
         param0->unk_24->unk_604 = 2;
         param0->unk_24->unk_600 = ov104_0223F1B4(((u32)&reg_G2_BG2PA), &v0, 94);
 
@@ -2515,7 +2515,7 @@ static BOOL ov104_02231A28(UnkStruct_ov104_0222E930 *param0)
 
     sub_02004550(5, 1119, 1);
 
-    v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov104_02231148));
+    v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02231148));
     v1->unk_14 = sub_0209B978(param0->unk_00->unk_00);
     v1->unk_04 = 0;
     v1->unk_08 = param0->unk_78[0];

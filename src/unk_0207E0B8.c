@@ -1691,7 +1691,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     u8 v1;
 
     Window_EraseMessageBox(&param0->unk_04[32], 1);
-    v0 = Heap_AllocFromHeap(12, 8);
+    v0 = Heap_AllocFromHeap(HEAP_ID_12, 8);
 
     switch (param0->unk_5A4->unk_20) {
     case 0:

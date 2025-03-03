@@ -1140,7 +1140,7 @@ void sub_0203DDFC(FieldSystem *fieldSystem)
 
 void *sub_0203DE34(FieldSystem *fieldSystem)
 {
-    UnkStruct_0203DE34 *v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203DE34));
+    UnkStruct_0203DE34 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203DE34));
 
     v0->unk_00 = fieldSystem->saveData;
     v0->unk_04 = fieldSystem->unk_80;
@@ -1761,7 +1761,7 @@ void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3)
 {
     PokemonSummary *v0;
 
-    v0 = Heap_AllocFromHeap(11, sizeof(PokemonSummary));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
     v0->monData = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), param2);
     v0->options = SaveData_Options(fieldSystem->saveData);

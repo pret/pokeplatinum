@@ -84,7 +84,7 @@ static BOOL (*Unk_ov87_021D1BA0[])(UnkStruct_ov87_021D106C *, int *) = {
 
 UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const UnkStruct_ov87_021D12C0 *param1)
 {
-    UnkStruct_ov87_021D106C *v0 = Heap_AllocFromHeap(61, sizeof(UnkStruct_ov87_021D106C));
+    UnkStruct_ov87_021D106C *v0 = Heap_AllocFromHeap(HEAP_ID_61, sizeof(UnkStruct_ov87_021D106C));
 
     if (v0) {
         v0->unk_00 = param0;

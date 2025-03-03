@@ -87,7 +87,7 @@ BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *pa
         *param0 = NULL;
         return 1;
     } else {
-        UnkStruct_ov19_021DEC04 *v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DEC04));
+        UnkStruct_ov19_021DEC04 *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DEC04));
 
         if (v0) {
             v0->unk_04 = param1;

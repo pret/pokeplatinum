@@ -132,7 +132,7 @@ void *ov6_02247A90(void *param0)
 
     v1 = FieldSystem_GetBgConfig(param0);
     v8 = FieldSystem_GetSaveData(param0);
-    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov6_02247A90));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A90));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A90));
 

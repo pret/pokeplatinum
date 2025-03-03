@@ -253,7 +253,7 @@ static void ov5_021F0260(BgConfig *param0)
 
     Bg_LoadPalette(2, &v0, sizeof(short), (6 * 32) + 2);
 
-    v1 = Heap_AllocFromHeap(4, sizeof(u8) * 32);
+    v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(u8) * 32);
     memset(v1, 0x11, sizeof(u8) * 32);
 
     Bg_LoadTiles(param0, 2, v1, sizeof(u8) * 32, 1);

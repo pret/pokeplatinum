@@ -1206,7 +1206,7 @@ static void ov106_02242C2C(UnkStruct_ov106_02243118 *param0, Window *param1)
 
 static void ov106_02242CA4(UnkStruct_ov106_02243118 *param0)
 {
-    param0->unk_BC = Heap_AllocFromHeap(98, sizeof(PokemonSummary));
+    param0->unk_BC = Heap_AllocFromHeap(HEAP_ID_98, sizeof(PokemonSummary));
     memset(param0->unk_BC, 0, sizeof(PokemonSummary));
 
     param0->unk_BC->monData = param0->unk_290;

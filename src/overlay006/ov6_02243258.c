@@ -2058,7 +2058,7 @@ static void ov6_0224508C(UnkStruct_ov6_02243FFC *param0, ArchivedSprite *param1)
 
 static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 param2)
 {
-    void *v0 = Heap_AllocFromHeap(4, (32 * 10) * 10);
+    void *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, (32 * 10) * 10);
 
     GF_ASSERT(v0 != NULL);
 

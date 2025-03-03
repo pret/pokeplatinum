@@ -11,37 +11,83 @@ enum HeapId {
 
     HEAP_ID_POKETCH_MAIN = 7,
     HEAP_ID_POKETCH_APP,
-
+    HEAP_ID_9 = 9,
+    HEAP_ID_10 = 10,
     HEAP_ID_FIELDMAP = 11,
-
+    HEAP_ID_12 = 12,
     HEAP_ID_13 = 13,
-
+    HEAP_ID_14 = 14,
     HEAP_ID_COMMUNICATION = 15,
 
     HEAP_ID_18 = 18,
     HEAP_ID_POKEMON_SUMMARY_SCREEN = 19,
     HEAP_ID_20 = 20,
+    HEAP_ID_21 = 21,
+    HEAP_ID_22 = 22,
+    HEAP_ID_23 = 23,
+    HEAP_ID_24 = 24,
 
     HEAP_ID_26 = 26,
 
     HEAP_ID_DISTORTION_WORLD_WARP = 30,
-
+    HEAP_ID_31 = 31,
     HEAP_ID_FIELD_TASK = 32,
+    HEAP_ID_33 = 33,
 
+    HEAP_ID_35 = 35,
+    HEAP_ID_36 = 36,
     HEAP_ID_POKEDEX = 37,
     HEAP_ID_OPTIONS_MENU = 38,
+    HEAP_ID_39 = 39,
 
     HEAP_ID_JOURNAL = 42,
+    HEAP_ID_43 = 43,
 
     HEAP_ID_CHOOSE_STARTER_APP = 47,
 
     HEAP_ID_53 = 53,
 
+    HEAP_ID_57 = 57,
+    HEAP_ID_58 = 58,
+
     HEAP_ID_61 = 61,
     HEAP_ID_62 = 62,
+    HEAP_ID_63 = 63,
 
+    HEAP_ID_68 = 68,
+
+    HEAP_ID_75 = 75,
+    HEAP_ID_76 = 76,
     HEAP_ID_GAME_START = 77,
 
+    HEAP_ID_79 = 79,
+    HEAP_ID_80 = 80,
+
+    HEAP_ID_86 = 86,
+
+    HEAP_ID_93 = 93,
+    HEAP_ID_94 = 94,
+    HEAP_ID_95 = 95,
+
+    HEAP_ID_98 = 98,
+
+    HEAP_ID_100 = 100,
+
+    HEAP_ID_102 = 102,
+    HEAP_ID_103 = 103,
+
+    HEAP_ID_106 = 106,
+
+    HEAP_ID_108 = 108,
+
+    HEAP_ID_110 = 110,
+    HEAP_ID_111 = 111,
+
+    HEAP_ID_115 = 115,
+    HEAP_ID_116 = 116,
+
+    HEAP_ID_118 = 118,
+    HEAP_ID_119 = 119,
     HEAP_ID_LIBRARY_TV = 120,
 
     HEAP_ID_MAX = 123,

@@ -1171,7 +1171,7 @@ void ov9_02249960(FieldSystem *fieldSystem)
 
     v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v1 = sub_02027F6C(v0, 9);
-    v2 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov9_02249B04));
+    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov9_02249B04));
 
     memset(v2, 0, sizeof(UnkStruct_ov9_02249B04));
 
@@ -1732,7 +1732,7 @@ static void ov9_0224A1E4(UnkStruct_ov9_02249B04 *param0, int param1)
 
     v0->unk_00 = param1;
     param1 *= sizeof(UnkStruct_ov9_0224A294);
-    v0->unk_04 = Heap_AllocFromHeap(4, param1);
+    v0->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD, param1);
 
     memset(v0->unk_04, 0, param1);
     Heap_FndInitAllocatorForExpHeap(&v0->unk_10, 4, 4);
@@ -3647,7 +3647,7 @@ static void ov9_0224BF8C(NARC *param0, UnkStruct_ov9_0224BFE0 *param1)
 {
     u32 v0 = NARC_GetMemberSize(param0, 0);
 
-    param1->unk_08 = Heap_AllocFromHeap(4, v0);
+    param1->unk_08 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0);
     NARC_ReadWholeMember(param0, 0, param1->unk_08);
 
     param1->unk_00 = *(int *)param1->unk_08;

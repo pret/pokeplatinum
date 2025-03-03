@@ -3379,7 +3379,7 @@ static void *ov109_021D3A2C(UnkStruct_ov109_021D0F70 *param0, u32 param1, BOOL p
     u32 v1 = NARC_GetMemberSize(param0->unk_D80, param1);
 
     if (param2 == 1) {
-        v0 = Heap_AllocFromHeap(95, v1);
+        v0 = Heap_AllocFromHeap(HEAP_ID_95, v1);
     } else {
         v0 = Heap_AllocFromHeapAtEnd(95, v1);
     }

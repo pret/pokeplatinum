@@ -135,7 +135,7 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
 
 static ScriptManager *ScriptManager_New()
 {
-    ScriptManager *scriptManager = Heap_AllocFromHeap(11, sizeof(ScriptManager));
+    ScriptManager *scriptManager = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ScriptManager));
 
     GF_ASSERT(scriptManager != NULL);
 
@@ -171,7 +171,7 @@ static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager,
 
 ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 scriptID)
 {
-    ScriptContext *ctx = Heap_AllocFromHeap(11, sizeof(ScriptContext));
+    ScriptContext *ctx = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ScriptContext));
 
     GF_ASSERT(ctx != NULL);
 

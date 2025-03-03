@@ -1014,7 +1014,7 @@ static void *ov16_0226871C(void)
 {
     UnkStruct_ov16_02268A14 *v0;
 
-    v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_02268A14));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_02268A14));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_02268A14));
     v0->unk_66B = -1;
 
@@ -1078,7 +1078,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
         int v6;
 
         for (i = 0; i < 7; i++) {
-            v0->unk_3C[i] = Heap_AllocFromHeap(5, 0x800);
+            v0->unk_3C[i] = Heap_AllocFromHeap(HEAP_ID_BATTLE, 0x800);
 
             if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_FRONTIER) && (Unk_ov16_02270264[i] == 49)) {
                 v6 = 170;
@@ -1098,7 +1098,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
         int v8;
 
         v8 = (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_FRONTIER) ? 340 : 242;
-        v0->unk_58 = Heap_AllocFromHeap(5, 0x200);
+        v0->unk_58 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 0x200);
 
         PaletteData_LoadBufferFromFileStart(v1, 7, v8, 5, 1, 0, 0);
 
@@ -1123,7 +1123,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
 
         for (i = 0; i < 4; i++) {
             for (j = 0; j < 4; j++) {
-                v0->unk_68[i].unk_18[j] = Heap_AllocFromHeap(5, sub_0208C098(6));
+                v0->unk_68[i].unk_18[j] = Heap_AllocFromHeap(HEAP_ID_BATTLE, sub_0208C098(6));
             }
         }
     }
@@ -1133,8 +1133,8 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
         void *v14;
         int v15;
 
-        v0->unk_5C = Heap_AllocFromHeap(5, 0x40);
-        v0->unk_60 = Heap_AllocFromHeap(5, 0x40);
+        v0->unk_5C = Heap_AllocFromHeap(HEAP_ID_BATTLE, 0x40);
+        v0->unk_60 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 0x40);
 
         MI_CpuCopy16(v0->unk_58, v0->unk_5C, 0x20);
         MI_CpuCopy16(&v0->unk_58[7 * 16], &v0->unk_5C[16 * 1], 0x20);
@@ -1704,7 +1704,7 @@ static void ov16_02269550(UnkStruct_ov16_02268A14 *param0, int param1)
     G2S_SetWnd1Position(0, (18 * 8), 255, 192);
     GXS_SetVisibleWnd(GX_WNDMASK_W0 | GX_WNDMASK_W1);
 
-    v1 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0226B988));
+    v1 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0226B988));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov16_0226B988));
 
     v1->unk_00 = param0;

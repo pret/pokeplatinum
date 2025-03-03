@@ -182,7 +182,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         Heap_Create(3, 4, fieldSystem->mapLoadMode->unk_04);
         GF_ASSERT(fieldSystem->unk_04 == NULL);
 
-        fieldSystem->unk_04 = Heap_AllocFromHeap(4, sizeof(FieldSystem_sub2));
+        fieldSystem->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(FieldSystem_sub2));
         MI_CpuClear8(fieldSystem->unk_04, sizeof(FieldSystem_sub2));
         fieldSystem->unk_04->unk_04 = ov5_021D1A94(fieldSystem, 4, 8);
 

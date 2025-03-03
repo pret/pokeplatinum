@@ -37,7 +37,7 @@ UnkStruct_0209BBA4 *ov104_02239C58(SaveData *param0)
 {
     static UnkStruct_0209BBA4 *v0;
 
-    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0209BBA4));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209BBA4));
     MI_CpuClear8(v0, sizeof(UnkStruct_0209BBA4));
 
     v0->unk_00 = param0;
@@ -109,7 +109,7 @@ static void ov104_02239D1C(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 {
     u8 v0;
 
-    param1->unk_A8 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
+    param1->unk_A8 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
     MI_CpuClearFast(param1->unk_A8, sizeof(PartyManagementData));
 
     param1->unk_A8->unk_00 = Party_GetFromSavedata(param1->unk_00);

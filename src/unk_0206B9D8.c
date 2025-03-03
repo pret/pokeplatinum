@@ -201,7 +201,7 @@ static BOOL sub_0206BB94(FieldTask *param0)
 void sub_0206BBFC(FieldTask *param0, void **param1, u8 param2, u8 param3, u8 param4, u8 param5, u8 param6, u8 param7)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0206B9D8 *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206B9D8));
+    UnkStruct_0206B9D8 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206B9D8));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206B9D8));
 
@@ -270,7 +270,7 @@ static BOOL sub_0206BC94(FieldTask *param0)
 void sub_0206BCE4(FieldTask *param0, u16 param1, u16 param2, u16 param3)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0206BC48 *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206BC48));
+    UnkStruct_0206BC48 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206BC48));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206BC48));
 
@@ -314,7 +314,7 @@ static BOOL sub_0206BD1C(FieldTask *param0)
 void sub_0206BD88(FieldTask *param0, u16 param1, u16 param2)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0206BD88 *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0206BD88));
+    UnkStruct_0206BD88 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206BD88));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0206BD88));
 

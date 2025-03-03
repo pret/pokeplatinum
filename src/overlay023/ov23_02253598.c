@@ -214,7 +214,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
     MessageLoader *v1;
     ListMenuTemplate v2;
     int v3 = 10;
-    UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
+    UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022537D4));
 
     MI_CpuClear8(v4, sizeof(UnkStruct_ov23_022537D4));
 
@@ -248,7 +248,7 @@ void ov23_022538FC(int param0)
 {
     int v0 = sub_02028558();
     int v1 = GameRecords_GetTrainerScore(SaveData_GetGameRecordsPtr(Unk_ov23_022577BC->unk_08));
-    u8 *v2 = Heap_AllocFromHeap(4, v0 + 1);
+    u8 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0 + 1);
 
     MI_CpuClear8(v2, v0 + 1);
     v2[0] = param0;
@@ -397,7 +397,7 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *para
     MessageLoader *v1;
     ListMenuTemplate v2;
     int v3 = 10;
-    UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022537D4));
+    UnkStruct_ov23_022537D4 *v4 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022537D4));
 
     MI_CpuClear8(v4, sizeof(UnkStruct_ov23_022537D4));
 

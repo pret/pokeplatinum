@@ -2056,7 +2056,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             ov97_0222D444(&v3->unk_58, 0);
 
             {
-                UnkStruct_ov97_0222E398 *v4 = Heap_AllocFromHeap(86, sizeof(UnkStruct_ov97_0222E398));
+                UnkStruct_ov97_0222E398 *v4 = Heap_AllocFromHeap(HEAP_ID_86, sizeof(UnkStruct_ov97_0222E398));
 
                 memset(v4, 0, sizeof(UnkStruct_ov97_0222E398));
 
@@ -2537,7 +2537,7 @@ static void ov97_022302F4(UnkStruct_ov97_0222D04C *param0)
     case 38:
         if (sub_020334A4() == 1) {
             Unk_ov97_0223F1B4 = 0;
-            Unk_ov97_0223F1AC = Heap_AllocFromHeap(86, ov97_02238D4C());
+            Unk_ov97_0223F1AC = Heap_AllocFromHeap(HEAP_ID_86, ov97_02238D4C());
             ov97_02238A4C(&(param0->unk_638[0]), ov97_02230280, Unk_ov97_0223F1AC);
             Unk_ov97_0223F1A8 = 39;
             sub_02039734();

@@ -204,7 +204,7 @@ static const UnkStruct_ov62_02248CDC Unk_ov62_02248CDC = {
 
 static BOOL ov62_02237D24(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02237D24 *v0 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02237D24));
+    UnkStruct_ov62_02237D24 *v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02237D24));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02237D24));
     param0->unk_860 = v0;
@@ -1547,7 +1547,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
 
         Heap_FreeToHeap(v0);
 
-        v4->unk_1E8 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02249380) * v4->unk_1D4.unk_00);
+        v4->unk_1E8 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02249380) * v4->unk_1D4.unk_00);
         MI_CpuFill8(v4->unk_1E8, 0, sizeof(UnkStruct_ov62_02249380) * v4->unk_1D4.unk_00);
 
         for (v5 = 0; v5 < v4->unk_1D4.unk_00; v5++) {

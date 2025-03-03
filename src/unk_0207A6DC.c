@@ -105,8 +105,8 @@ void sub_0207A6DC(void *param0)
         return;
     }
 
-    v2 = (UnkStruct_0207ACB4 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_0207ACB4));
-    v3 = (UnkStruct_0207AD40 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_0207AD40));
+    v2 = (UnkStruct_0207ACB4 *)Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_0207ACB4));
+    v3 = (UnkStruct_0207AD40 *)Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_0207AD40));
 
     CommCmd_Init(Unk_020F099C, v0, param0);
 
@@ -236,7 +236,7 @@ void sub_0207A81C(BattleSystem *battleSys, int param1, int param2, void *param3,
     u16 *v4;
     u16 *v5;
 
-    v1 = (UnkStruct_0207A81C *)Heap_AllocFromHeap(5, sizeof(UnkStruct_0207A81C));
+    v1 = (UnkStruct_0207A81C *)Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_0207A81C));
     v3 = ov16_0223E06C(battleSys);
     v4 = ov16_0223E08C(battleSys);
     v5 = ov16_0223E098(battleSys);
@@ -461,7 +461,7 @@ BOOL sub_0207AAFC(UnkStruct_0207A778 *param0)
         int v2;
 
         for (v2 = 0; v2 < 4; v2++) {
-            param0->unk_10[v2] = Heap_AllocFromHeap(5, 136);
+            param0->unk_10[v2] = Heap_AllocFromHeap(HEAP_ID_BATTLE, 136);
         }
     }
 

@@ -3013,7 +3013,7 @@ static void ov23_02245DF8(BOOL param0, BOOL param1, int param2)
     int v0;
     UnkStruct_ov23_02245AA4 *v1;
 
-    v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02245AA4));
+    v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02245AA4));
     MI_CpuClear8(v1, sizeof(UnkStruct_ov23_02245AA4));
 
     v1->unk_00 = 0;
@@ -3228,7 +3228,7 @@ static void ov23_022462A8(FieldSystem *fieldSystem, BOOL param1, int param2)
     int v0;
     UnkStruct_ov23_02245ED4 *v1;
 
-    v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02245ED4));
+    v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02245ED4));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_02245ED4));
 
     v1->unk_113 = param1;

@@ -273,7 +273,7 @@ static void *ov17_022492DC(void)
 {
     UnkStruct_ov17_022492DC *v0;
 
-    v0 = Heap_AllocFromHeap(23, sizeof(UnkStruct_ov17_022492DC));
+    v0 = Heap_AllocFromHeap(HEAP_ID_23, sizeof(UnkStruct_ov17_022492DC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022492DC));
     v0->unk_8A = -1;
 
@@ -339,17 +339,17 @@ static void ov17_022493DC(UnkStruct_ov17_022492DC *param0)
     NNSG2dScreenData *v1;
     void *v2;
 
-    param0->unk_C4[0] = Heap_AllocFromHeap(23, (0x8000 - (0x800 * 4)));
-    param0->unk_C4[1] = Heap_AllocFromHeap(23, (0x8000 - (0x800 * 4)));
-    param0->unk_C4[2] = Heap_AllocFromHeap(23, 6 * 12 * 0x20 * 3);
+    param0->unk_C4[0] = Heap_AllocFromHeap(HEAP_ID_23, (0x8000 - (0x800 * 4)));
+    param0->unk_C4[1] = Heap_AllocFromHeap(HEAP_ID_23, (0x8000 - (0x800 * 4)));
+    param0->unk_C4[2] = Heap_AllocFromHeap(HEAP_ID_23, 6 * 12 * 0x20 * 3);
 
-    param0->unk_D0[0] = Heap_AllocFromHeap(23, 0x800);
-    param0->unk_D0[1] = Heap_AllocFromHeap(23, 0x800);
-    param0->unk_D0[2] = Heap_AllocFromHeap(23, 0x800);
-    param0->unk_D0[3] = Heap_AllocFromHeap(23, 0x800);
+    param0->unk_D0[0] = Heap_AllocFromHeap(HEAP_ID_23, 0x800);
+    param0->unk_D0[1] = Heap_AllocFromHeap(HEAP_ID_23, 0x800);
+    param0->unk_D0[2] = Heap_AllocFromHeap(HEAP_ID_23, 0x800);
+    param0->unk_D0[3] = Heap_AllocFromHeap(HEAP_ID_23, 0x800);
 
-    param0->unk_E0[0] = Heap_AllocFromHeap(23, 0x200);
-    param0->unk_E0[1] = Heap_AllocFromHeap(23, 0x200);
+    param0->unk_E0[0] = Heap_AllocFromHeap(HEAP_ID_23, 0x200);
+    param0->unk_E0[1] = Heap_AllocFromHeap(HEAP_ID_23, 0x200);
 
     v2 = Graphics_GetCharData(45, 9, 1, &v0, 23);
     MI_CpuCopy32(v0->pRawData, param0->unk_C4[0], (0x8000 - (0x800 * 4)));
@@ -613,7 +613,7 @@ static UnkStruct_ov17_02249B30 *ov17_02249AAC(UnkStruct_ov17_022492DC *param0, i
 {
     UnkStruct_ov17_02249B30 *v0;
 
-    v0 = Heap_AllocFromHeap(23, sizeof(UnkStruct_ov17_02249B30));
+    v0 = Heap_AllocFromHeap(HEAP_ID_23, sizeof(UnkStruct_ov17_02249B30));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02249B30));
 
     if (param3 != 0xffffffff) {

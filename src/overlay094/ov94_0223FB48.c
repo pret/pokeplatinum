@@ -482,7 +482,7 @@ static void ov94_022401E0(UnkStruct_ov94_0223FD4C *param0)
         param0->unk_112 = 0;
     }
 
-    param0->unk_1108 = Heap_AllocFromHeap(62, sizeof(UnkStruct_ov94_0223FD4C_sub2));
+    param0->unk_1108 = Heap_AllocFromHeap(HEAP_ID_62, sizeof(UnkStruct_ov94_0223FD4C_sub2));
 }
 
 static void ov94_02240268(UnkStruct_ov94_0223FD4C *param0)

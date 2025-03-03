@@ -2410,7 +2410,7 @@ void ov23_0224D6AC(int param0, int param1, void *param2, void *param3)
     SysTask *v2;
 
     if (v1[0] == CommSys_CurNetId()) {
-        UnkStruct_ov23_0224D54C *v3 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov23_0224D54C));
+        UnkStruct_ov23_0224D54C *v3 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0224D54C));
 
         MI_CpuClear8(v3, sizeof(v3));
 

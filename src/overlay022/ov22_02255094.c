@@ -676,7 +676,7 @@ static void ov22_02255984(UnkStruct_ov22_0225A0E4 *param0)
 static void ov22_022559B4(UnkStruct_ov22_0225A0E4 *param0)
 {
     param0->unk_34 = ResourceCollection_New(((100 + 18) + 1), 14);
-    param0->unk_38 = Heap_AllocFromHeap(14, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
+    param0->unk_38 = Heap_AllocFromHeap(HEAP_ID_14, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
     memset(param0->unk_38, 0, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
     param0->unk_3C = ((100 + 18) + 1);
 }

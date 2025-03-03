@@ -60,7 +60,7 @@ void CommCmd_Init(const CommCmdTable *cmdTable, int param1, void *param2)
     int v0;
 
     if (!sCommCmdManager) {
-        sCommCmdManager = Heap_AllocFromHeap(15, sizeof(CommCmdManager));
+        sCommCmdManager = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(CommCmdManager));
     }
 
     sCommCmdManager->cmdTable = cmdTable;

@@ -68,7 +68,7 @@ void ov5_021F8370(FieldSystem *fieldSystem)
 
     v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v2 = sub_02027F6C(v1, 10);
-    v3 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021F8480));
+    v3 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021F8480));
 
     memset(v3, 0, sizeof(UnkStruct_ov5_021F8480));
 

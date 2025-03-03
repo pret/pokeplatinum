@@ -124,7 +124,7 @@ void *ov5_021ECD68(const MapObjectManager *param0, u32 param1, int param2)
     u32 v2 = NARC_GetMemberSize(v1, param1);
 
     if (param2 == 1) {
-        v0 = Heap_AllocFromHeap(4, v2);
+        v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, v2);
     } else {
         v0 = Heap_AllocFromHeapAtEnd(4, v2);
     }

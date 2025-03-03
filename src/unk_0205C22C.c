@@ -57,7 +57,7 @@ static void sub_0205C8DC(UnkStruct_0205C924 *param0);
 
 UnkStruct_0205C22C *sub_0205C22C(UnkStruct_0205B43C *param0)
 {
-    UnkStruct_0205C22C *v0 = (UnkStruct_0205C22C *)Heap_AllocFromHeap(31, sizeof(UnkStruct_0205C22C));
+    UnkStruct_0205C22C *v0 = (UnkStruct_0205C22C *)Heap_AllocFromHeap(HEAP_ID_31, sizeof(UnkStruct_0205C22C));
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_0205C22C));
 

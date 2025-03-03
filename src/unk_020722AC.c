@@ -197,7 +197,7 @@ void sub_020722AC(void *param0, int *param1)
 
     Heap_Create(3, 43, 0x5000);
 
-    v0 = Heap_AllocFromHeap(43, sizeof(UnkStruct_02072334));
+    v0 = Heap_AllocFromHeap(HEAP_ID_43, sizeof(UnkStruct_02072334));
     MI_CpuClear8(v0, sizeof(UnkStruct_02072334));
     v0->unk_04 = param1;
 

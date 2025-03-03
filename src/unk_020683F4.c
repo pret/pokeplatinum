@@ -336,7 +336,7 @@ static void sub_02068630(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     v1 = FieldTask_GetEnv(param0->unk_00);
-    v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
+    v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
 
@@ -586,7 +586,7 @@ static void sub_02068A34(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     v1 = FieldTask_GetEnv(param0->unk_00);
-    v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
+    v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
 
@@ -926,7 +926,7 @@ static u32 sub_02068E94(const UnkStruct_020684D0 *param0)
 
 static BOOL sub_02068EFC(UnkStruct_02068870 *param0)
 {
-    UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02068EFC));
+    UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
     v0->unk_10 = Strbuf_Init(128, 11);
@@ -983,7 +983,7 @@ static void sub_02068FEC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     v1 = FieldTask_GetEnv(param0->unk_00);
-    v2 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
+    v2 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     memset(v2, 0, sizeof(PartyManagementData));
 
@@ -1154,7 +1154,7 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
         return 0;
     }
 
-    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02068870));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068870));
     memset(v0, 0, sizeof(UnkStruct_02068870));
 
     v0->fieldSystem = fieldSystem;
@@ -1185,7 +1185,7 @@ BOOL sub_02069238(FieldSystem *fieldSystem)
 
 static void sub_020692E4(UnkStruct_02068870 *param0, u32 param1)
 {
-    UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02068EFC));
+    UnkStruct_02068EFC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02068EFC));
 
     v0->unk_16 = 0;
     v0->unk_10 = Strbuf_Init(128, 11);

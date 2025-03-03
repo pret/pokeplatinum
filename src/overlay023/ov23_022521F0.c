@@ -921,7 +921,7 @@ void ov23_022534A0(FieldSystem *fieldSystem)
 
     ov23_022430D0(3 + v7);
 
-    v4 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
+    v4 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
     MI_CpuClear8(v4, sizeof(UnkStruct_ov23_02250CD4));
 
     v4->fieldSystem = fieldSystem;

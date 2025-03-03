@@ -502,7 +502,7 @@ static void ov76_0223DA00(ManagedSprite *param0, FontOAM *param1)
 {
     UnkStruct_ov76_0223D9AC *v0;
 
-    v0 = Heap_AllocFromHeap(53, sizeof(UnkStruct_ov76_0223D9AC));
+    v0 = Heap_AllocFromHeap(HEAP_ID_53, sizeof(UnkStruct_ov76_0223D9AC));
 
     v0->unk_00 = 1;
     v0->unk_04 = param0;

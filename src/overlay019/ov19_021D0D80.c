@@ -3132,7 +3132,7 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->unk_194 = MessageLoader_Init(0, 26, 202, 9);
     param0->unk_198 = MessageLoader_Init(0, 26, 610, 9);
     param0->unk_19C = StringTemplate_Default(9);
-    param0->unk_1A0 = Heap_AllocFromHeap(9, Pokemon_StructSize());
+    param0->unk_1A0 = Heap_AllocFromHeap(HEAP_ID_9, Pokemon_StructSize());
 
     GF_ASSERT(param0->unk_19C);
     param0->unk_128 = sub_0208712C(9, 2, 0, 8, param0->unk_1A4);
@@ -3217,7 +3217,7 @@ static void ov19_021D4DF0(UnkStruct_ov19_021D5DF8 *param0)
 
 static void ov19_021D4E30(UnkStruct_ov19_021D5594 *param0)
 {
-    param0->unk_00 = Heap_AllocFromHeap(9, (5 * 6) * BoxPokemon_GetStructSize());
+    param0->unk_00 = Heap_AllocFromHeap(HEAP_ID_9, (5 * 6) * BoxPokemon_GetStructSize());
     param0->unk_08 = 0;
     param0->unk_0B = 0;
 }

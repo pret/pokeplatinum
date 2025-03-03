@@ -276,7 +276,7 @@ static void ov23_0224F560(Sprite *param0)
 
 void ov23_0224F588(UndergroundData *param0)
 {
-    Unk_ov23_022577B8 = Heap_AllocFromHeap(15, sizeof(UnkStruct_ov23_022577B8));
+    Unk_ov23_022577B8 = Heap_AllocFromHeap(HEAP_ID_COMMUNICATION, sizeof(UnkStruct_ov23_022577B8));
     MI_CpuClear8(Unk_ov23_022577B8, sizeof(UnkStruct_ov23_022577B8));
     Unk_ov23_022577B8->unk_04 = 0;
     Unk_ov23_022577B8->unk_05 = 0;
@@ -423,7 +423,7 @@ void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     Sound_PlayEffect(1533);
     ov23_022430D0(2);
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02250CD4));
 
@@ -1416,7 +1416,7 @@ void ov23_02250A50(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     UnkStruct_ov23_02250CD4 *v0;
     ListMenuTemplate v1;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02250CD4));
 
@@ -1840,7 +1840,7 @@ void *ov23_022511B0(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     UnkStruct_ov23_02250CD4 *v0;
     ListMenuTemplate v1;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02250CD4));
 

@@ -67,7 +67,7 @@ void *sub_0209C1EC(FieldSystem *fieldSystem)
 {
     UnkStruct_0209C1EC *v0;
 
-    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0209C1EC));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209C1EC));
     memset(v0, 0, sizeof(UnkStruct_0209C1EC));
 
     v0->fieldSystem = fieldSystem;

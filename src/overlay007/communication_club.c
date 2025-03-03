@@ -214,7 +214,7 @@ static void CommClubMan_Init(FieldSystem *fieldSystem)
 
     GF_ASSERT(sCommClubMan == NULL);
 
-    sCommClubMan = Heap_AllocFromHeap(4, sizeof(CommClubManager));
+    sCommClubMan = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(CommClubManager));
     MI_CpuFill8(sCommClubMan, 0, sizeof(CommClubManager));
 
     sCommClubMan->retCode = 0;

@@ -2133,7 +2133,7 @@ static void ov111_021D2E4C(UnkStruct_ov111_021D0F7C *param0)
 
 static void ov111_021D2E8C(UnkStruct_ov111_021D0F7C *param0)
 {
-    param0->unk_3F8 = Heap_AllocFromHeap(115, param0->unk_3F4->szByte);
+    param0->unk_3F8 = Heap_AllocFromHeap(HEAP_ID_115, param0->unk_3F4->szByte);
 
     if (param0->unk_3F8 == NULL) {
         GF_ASSERT(param0->unk_3F8 != NULL);

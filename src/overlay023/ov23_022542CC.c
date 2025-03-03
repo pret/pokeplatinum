@@ -94,7 +94,7 @@ UnkStruct_ov23_022542D8 *ov23_022542CC(void)
 {
     UnkStruct_ov23_022542D8 *v0;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022542D8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022542D8));
 
     return v0;
 }
@@ -271,7 +271,7 @@ UnkStruct_ov23_02254594 *ov23_02254588(void)
 {
     UnkStruct_ov23_02254594 *v0;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02254594));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02254594));
     return v0;
 }
 

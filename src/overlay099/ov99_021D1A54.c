@@ -388,7 +388,7 @@ static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite **param
             v5 = 32;
         }
 
-        param0->unk_10F4 = Heap_AllocFromHeap(75, (0x20 * 8));
+        param0->unk_10F4 = Heap_AllocFromHeap(HEAP_ID_75, (0x20 * 8));
         v3 = Graphics_GetCharDataFromOpenNARC(param0->unk_10F8, v5, 0, &v4, 75);
 
         MI_CpuCopy32(v4->pRawData, param0->unk_10F4, (0x20 * 8));
