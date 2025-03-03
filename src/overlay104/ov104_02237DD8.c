@@ -157,8 +157,8 @@ UnkStruct_ov104_0223BFFC *ov104_02237DD8(SaveData *param0, u16 param1, u8 param2
     v9->unk_08 = sub_020304A0(param0);
     v9->unk_04 = param0;
     v9->unk_00 = 11;
-    v9->unk_70 = Party_New(11);
-    v9->unk_74 = Party_New(11);
+    v9->unk_70 = Party_New(HEAP_ID_FIELDMAP);
+    v9->unk_74 = Party_New(HEAP_ID_FIELDMAP);
     v9->unk_A80 = param6;
     v9->unk_13 = 32;
 

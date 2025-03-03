@@ -1114,7 +1114,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *param1)
     battleSys->battleCtx = BattleContext_New(battleSys);
 
     for (v0 = 0; v0 < 4; v0++) {
-        battleSys->parties[v0] = Party_New(5);
+        battleSys->parties[v0] = Party_New(HEAP_ID_BATTLE);
     }
 
     {

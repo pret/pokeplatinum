@@ -760,7 +760,7 @@ void ov16_0225D794(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 
     v0->unk_08 = (UnkStruct_ov16_0225D840 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D840));
     v0->unk_08->unk_04 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov13_0221FC20));
-    v0->unk_08->unk_04->unk_00 = Party_New(5);
+    v0->unk_08->unk_04->unk_00 = Party_New(HEAP_ID_BATTLE);
     v0->unk_0E = 0;
     v0->unk_00 = battleSys;
     v0->unk_0C = param2->unk_00;
@@ -4196,7 +4196,7 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
                 ov16_0223B384(v0->unk_00);
 
                 v0->unk_04 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov13_0221FC20));
-                v0->unk_04->unk_00 = Party_New(5);
+                v0->unk_04->unk_00 = Party_New(HEAP_ID_BATTLE);
 
                 if (((BattleSystem_BattleType(v0->unk_00) & (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) == (BATTLE_TYPE_LINK | BATTLE_TYPE_2vs2)) || (BattleSystem_BattleType(v0->unk_00) == ((BATTLE_TYPE_TRAINER_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI) | BATTLE_TYPE_FRONTIER))) {
                     if (BattleSystem_BattlerSlot(v0->unk_00, v0->unk_09) == 2) {

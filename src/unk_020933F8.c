@@ -431,7 +431,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     }
 
     sub_020954F0(v0, 11, v0->unk_00.unk_10E, v0->unk_00.unk_10F, v0->unk_00.unk_110);
-    v0->unk_148 = Party_New(20);
+    v0->unk_148 = Party_New(HEAP_ID_20);
 
     for (v2 = 0; v2 < 4; v2++) {
         v0->unk_00.unk_00[v2] = Pokemon_New(HEAP_ID_20);

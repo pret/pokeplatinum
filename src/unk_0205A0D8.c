@@ -688,7 +688,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
 
         v0->unk_4C = Heap_AllocFromHeapAtEnd(11, v2);
         v0->unk_48 = Heap_AllocFromHeapAtEnd(11, v2);
-        v0->unk_50 = Party_New(11);
+        v0->unk_50 = Party_New(HEAP_ID_FIELDMAP);
 
         Party_InitWithCapacity(v0->unk_50, 3);
 

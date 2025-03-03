@@ -434,7 +434,7 @@ static void sub_02059BF4(void)
 static void sub_02059C2C(BOOL param0, const Party *party)
 {
     if (party) {
-        sFieldCommMan->party = Party_New(11);
+        sFieldCommMan->party = Party_New(HEAP_ID_FIELDMAP);
         Party_Copy(party, sFieldCommMan->party);
     }
 
