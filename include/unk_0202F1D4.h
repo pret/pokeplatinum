@@ -34,7 +34,7 @@ UnkStruct_02030A80 *sub_0202FDE8(void);
 UnkStruct_0202F41C *sub_0202FE04(void);
 void sub_0202FE20(UnkStruct_02030A80 *param0, UnkStruct_0202F41C *param1, UnkStruct_0202F298 *param2, FieldBattleDTO *param3, SaveData *param4);
 u64 sub_0202FE98(UnkStruct_0202F41C *param0, int param1, int param2);
-UnkStruct_0202F41C *sub_0202FF2C(int param0);
+UnkStruct_0202F41C *sub_0202FF2C(int heapID);
 void sub_0202FF44(UnkStruct_0202F41C *param0);
 
 #endif // POKEPLATINUM_UNK_0202F1D4_H
