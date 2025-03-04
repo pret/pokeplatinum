@@ -30,12 +30,12 @@ static void BoxPokemon_ResetMetLocationAndDate(BoxPokemon *boxMon, int isHatch);
 static void BoxPokemon_SetMetLevelToCurrentLevel(BoxPokemon *boxMon);
 static void BoxPokemon_SetFatefulEncounterFlag(BoxPokemon *boxMon);
 
-PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int param2)
+PokemonInfoDisplayStruct *sub_02092494(Pokemon *param0, BOOL param1, int heapID)
 {
     PokemonInfoDisplayStruct *v0;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(PokemonInfoDisplayStruct));
-    v0->unk_00 = param2;
+    v0 = Heap_AllocFromHeap(heapID, sizeof(PokemonInfoDisplayStruct));
+    v0->unk_00 = heapID;
     v0->unk_04 = MessageLoader_Init(1, 26, 455, v0->unk_00);
     v0->unk_08 = StringTemplate_New(9, 32, v0->unk_00);
     v0->unk_0C = param0;

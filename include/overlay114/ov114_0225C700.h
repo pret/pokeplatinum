@@ -23,9 +23,9 @@ UnkStruct_ov114_0225D678 *ov114_0225C82C(const UnkStruct_ov114_0225C76C *param0,
 void ov114_0225C838(UnkStruct_ov114_0225D678 *param0);
 BOOL ov114_0225C8BC(const UnkStruct_ov114_0225D678 *param0);
 int ov114_0225C8CC(const UnkStruct_ov114_0225D678 *param0);
-UnkStruct_ov114_0225E854 *ov114_0225C8E0(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225C9A8 *param1, u32 param2);
-UnkStruct_ov114_0225E854 *ov114_0225C8EC(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225C9A8 *param1, u32 param2);
-UnkStruct_ov114_0225E854 *ov114_0225C8F8(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225C9A8 *param1, u32 param2);
+UnkStruct_ov114_0225E854 *ov114_0225C8E0(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225C9A8 *param1, u32 heapID);
+UnkStruct_ov114_0225E854 *ov114_0225C8EC(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225C9A8 *param1, u32 heapID);
+UnkStruct_ov114_0225E854 *ov114_0225C8F8(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225C9A8 *param1, u32 heapID);
 void ov114_0225C904(UnkStruct_ov114_0225E854 *param0);
 BOOL ov114_0225C9A0(const UnkStruct_ov114_0225E854 *param0);
 BOOL ov114_0225C9A4(const UnkStruct_ov114_0225E854 *param0);

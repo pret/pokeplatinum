@@ -1424,10 +1424,7 @@ static BOOL ov16_0223CD3C(u16 param0)
 
 static GenericPointerData *ov16_0223CD7C(void)
 {
-    GenericPointerData *v0;
-
-    v0 = sub_02024220(5, 0, 2, 0, 2, ov16_0223CD9C);
-    return v0;
+    return sub_02024220(HEAP_ID_BATTLE, 0, 2, 0, 2, ov16_0223CD9C);
 }
 
 static void ov16_0223CD9C(void)
@@ -2033,7 +2030,7 @@ static BOOL ov16_0223D800(OverlayManager *param0)
         break;
     }
 
-    battleSys->unk_1C0->unk_24 = 5;
+    battleSys->unk_1C0->heapId = HEAP_ID_BATTLE;
     battleSys->unk_1C0->unk_28 = 0;
 
     switch (sub_020362F4(v2)) {
@@ -2094,7 +2091,7 @@ static BOOL ov16_0223D98C(OverlayManager *param0)
             battleSys->unk_1C0->unk_14[sub_020362F4(v3)] = TrainerInfo_NameNewStrbuf(battleSys->trainerInfo[v3], 5);
         }
 
-        battleSys->unk_1C0->unk_24 = 5;
+        battleSys->unk_1C0->heapId = HEAP_ID_BATTLE;
         battleSys->unk_1C0->unk_28 = 1;
         battleSys->unk_1C0->unk_29 = 1;
     } else {
@@ -2102,7 +2099,7 @@ static BOOL ov16_0223D98C(OverlayManager *param0)
         battleSys->unk_1C0->unk_04[sub_020362F4(v2 ^ 1)] = battleSys->parties[v2 ^ 1];
         battleSys->unk_1C0->unk_14[sub_020362F4(v2)] = TrainerInfo_NameNewStrbuf(battleSys->trainerInfo[v2], 5);
         battleSys->unk_1C0->unk_14[sub_020362F4(v2 ^ 1)] = TrainerInfo_NameNewStrbuf(battleSys->trainerInfo[v2 ^ 1], 5);
-        battleSys->unk_1C0->unk_24 = 5;
+        battleSys->unk_1C0->heapId = HEAP_ID_BATTLE;
         battleSys->unk_1C0->unk_28 = 1;
         battleSys->unk_1C0->unk_29 = 0;
     }
@@ -2183,7 +2180,7 @@ static BOOL ov16_0223DB1C(OverlayManager *param0)
             v1->unk_14[sub_020362F4(v3)] = TrainerInfo_NameNewStrbuf(v0->trainerInfo[v3], 5);
         }
 
-        v1->unk_24 = 5;
+        v1->heapId = HEAP_ID_BATTLE;
         v1->unk_28 = 2;
         v1->unk_29 = 1;
 
@@ -2197,7 +2194,7 @@ static BOOL ov16_0223DB1C(OverlayManager *param0)
         v1->unk_04[sub_020362F4(v2 ^ 1)] = v0->parties[v2 ^ 1];
         v1->unk_14[sub_020362F4(v2)] = TrainerInfo_NameNewStrbuf(v0->trainerInfo[v2], 5);
         v1->unk_14[sub_020362F4(v2 ^ 1)] = TrainerInfo_NameNewStrbuf(v0->trainerInfo[v2 ^ 1], 5);
-        v1->unk_24 = 5;
+        v1->heapId = HEAP_ID_BATTLE;
         v1->unk_28 = 2;
         v1->unk_29 = 0;
 

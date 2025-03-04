@@ -4249,7 +4249,7 @@ static BOOL ScrCmd_1D7(ScriptContext *ctx)
     void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
 
     v0 = ScriptContext_ReadHalfWord(ctx);
-    *v2 = sub_02099674(ctx->fieldSystem, v0, 11);
+    *v2 = sub_02099674(ctx->fieldSystem, v0, HEAP_ID_FIELDMAP);
 
     ScriptContext_Pause(ctx, sub_02041CC8);
     return 1;

@@ -28,7 +28,6 @@ typedef struct UnkStruct_ov16_0226DEEC_t {
 
 void ov16_0226DE44(SpriteSystem *param0, SpriteManager *param1, u32 param2, PaletteData *param3, u32 param4, u32 param5, u32 param6, u32 param7);
 void ov16_0226DEC4(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u32 param4);
-UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteSystem *param0, SpriteManager *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 void ov16_0226DF68(UnkStruct_ov16_0226DEEC *param0);
 void ov16_0226DFB0(UnkStruct_ov16_0226DEEC *param0, int param1, int param2);
 void ov16_0226DFBC(UnkStruct_ov16_0226DEEC *param0);
@@ -67,7 +66,7 @@ void ov16_0226DEC4(SpriteManager *param0, u32 param1, u32 param2, u32 param3, u3
     SpriteManager_UnloadAnimObjById(param0, param4);
 }
 
-UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteSystem *param0, SpriteManager *param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
+UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteSystem *param0, SpriteManager *param1, int heapID, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8)
 {
     UnkStruct_ov16_0226DEEC *v0;
     SpriteTemplate v1;
@@ -81,7 +80,7 @@ UnkStruct_ov16_0226DEEC *ov16_0226DEEC(SpriteSystem *param0, SpriteManager *para
     v1.priority = param7;
     v1.bgPriority = param8;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov16_0226DEEC));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov16_0226DEEC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226DEEC));
 
     v0->unk_00 = SpriteSystem_NewSprite(param0, param1, &v1);

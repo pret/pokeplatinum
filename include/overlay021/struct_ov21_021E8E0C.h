@@ -11,7 +11,7 @@ typedef struct {
     BgConfig *unk_00;
     PaletteData *unk_04;
     UnkStruct_02007768 *unk_08;
-    int unk_0C;
+    int heapId;
     Pokemon *unk_10;
     int unk_14;
 } UnkStruct_ov21_021E8E0C;

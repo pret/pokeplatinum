@@ -114,7 +114,7 @@ void ov83_0223F544(UnkStruct_ov83_0223F4AC *param0, int param1, int param2);
 void ov83_0223F730(UnkStruct_ov83_0223F770 *param0, int param1, int param2, int param3, int param4);
 void ov83_0223F770(UnkStruct_ov83_0223F770 *param0);
 void ov83_0223F784(UnkStruct_ov83_0223F770 *param0);
-void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, int param1, BgConfig *param2);
+void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, int heapID, BgConfig *param2);
 void ov83_0223F7A4(UnkStruct_ov83_0223F7A4 *param0);
 void ov83_0223F7B0(UnkStruct_ov83_0223F7A4 *param0);
 u32 ov83_0223F7DC(UnkStruct_ov83_0223F7A4 *param0);

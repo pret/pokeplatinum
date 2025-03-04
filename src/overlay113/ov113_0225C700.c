@@ -136,7 +136,7 @@ static void ov113_0225D12C(BgConfig *param0);
 static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1);
 static void ov113_0225DBCC(UnkStruct_ov113_0225DBCC *param0);
 static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0);
-static GenericPointerData *ov113_0225DC6C(int param0);
+static GenericPointerData *ov113_0225DC6C(int heapID);
 static void ov113_0225DC88(void);
 static void ov113_0225DD0C(GenericPointerData *param0);
 static void ov113_0225D9FC(UnkStruct_ov113_0225DBCC *param0);
@@ -345,9 +345,9 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(3, 118, 0x50000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_118, 0x50000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov113_0225DBCC), 118);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov113_0225DBCC), HEAP_ID_118);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov113_0225DBCC));
 
     v0->unk_00 = OverlayManager_Args(param0);
@@ -359,32 +359,32 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     v0->unk_19D4 = (32 << 8);
     v0->unk_19D8 = v0->unk_19D4;
-    v0->unk_14 = ov113_0225DC6C(118);
-    v0->unk_0C = PaletteData_New(118);
+    v0->unk_14 = ov113_0225DC6C(HEAP_ID_118);
+    v0->unk_0C = PaletteData_New(HEAP_ID_118);
 
     PaletteData_SetAutoTransparent(v0->unk_0C, 1);
-    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, 118);
-    PaletteData_AllocBuffer(v0->unk_0C, 1, 0x200, 118);
-    PaletteData_AllocBuffer(v0->unk_0C, 2, 0x200 - 0x40, 118);
-    PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, 118);
+    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, HEAP_ID_118);
+    PaletteData_AllocBuffer(v0->unk_0C, 1, 0x200, HEAP_ID_118);
+    PaletteData_AllocBuffer(v0->unk_0C, 2, 0x200 - 0x40, HEAP_ID_118);
+    PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, HEAP_ID_118);
     PaletteData_SetAutoTransparent(v0->unk_0C, 1);
 
     v0->unk_08 = BgConfig_New(HEAP_ID_118);
 
-    VramTransfer_New(64, 118);
+    VramTransfer_New(64, HEAP_ID_118);
     SetAutorepeat(4, 8);
 
     ov113_0225CF58(v0->unk_08);
 
     sub_0201E3D8();
     sub_0201E450(4);
-    Font_InitManager(FONT_SUBSCREEN, 118);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_118);
 
-    v0->unk_2C = StringTemplate_Default(118);
+    v0->unk_2C = StringTemplate_Default(HEAP_ID_118);
     v0->unk_30 = MessageLoader_Init(0, 26, 650, HEAP_ID_118);
-    v0->unk_10 = sub_02012744(4, 118);
-    v0->unk_160 = NARC_ctor(NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, 118);
-    v0->unk_164 = NARC_ctor(NARC_INDEX_POKETOOL__POKEFOOT__POKEFOOT, 118);
+    v0->unk_10 = sub_02012744(4, HEAP_ID_118);
+    v0->unk_160 = NARC_ctor(NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, HEAP_ID_118);
+    v0->unk_164 = NARC_ctor(NARC_INDEX_POKETOOL__POKEFOOT__POKEFOOT, HEAP_ID_118);
 
     ov113_0225D160(v0, v0->unk_160);
     ov113_0225DAA8(v0, v0->unk_160);
@@ -412,7 +412,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     ov113_0225D6F8(v0);
     ov113_0225D7CC(v0);
 
-    v0->unk_24 = sub_02015920(118);
+    v0->unk_24 = sub_02015920(HEAP_ID_118);
 
     StartScreenTransition(0, 1, 1, 0x0, 6, 1, 118);
 
@@ -1261,12 +1261,9 @@ static void ov113_0225DC4C(UnkStruct_ov113_0225DBCC *param0)
     }
 }
 
-static GenericPointerData *ov113_0225DC6C(int param0)
+static GenericPointerData *ov113_0225DC6C(int heapID)
 {
-    GenericPointerData *v0;
-
-    v0 = sub_02024220(param0, 0, 2, 0, 2, ov113_0225DC88);
-    return v0;
+    return sub_02024220(heapID, 0, 2, 0, 2, ov113_0225DC88);
 }
 
 static void ov113_0225DC88(void)

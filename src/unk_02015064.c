@@ -53,9 +53,9 @@ static void sub_020152C0(UnkStruct_02015214 *param0);
 static void sub_020152E0(UnkStruct_02015128 *param0);
 static void sub_020152EC(UnkStruct_020151A4 *param0);
 static void sub_02015468(UnkStruct_02015214 *param0);
-static UnkStruct_02015214 *sub_020152F8(int param0, int param1);
-static UnkStruct_02015128 *sub_02015328(int param0, int param1);
-static UnkStruct_020151A4 *sub_02015358(int param0, int param1);
+static UnkStruct_02015214 *sub_020152F8(int param0, int heapID);
+static UnkStruct_02015128 *sub_02015328(int param0, int heapID);
+static UnkStruct_020151A4 *sub_02015358(int param0, int heapID);
 static UnkStruct_02015214 *sub_02015388(UnkStruct_02015064 *param0);
 static UnkStruct_02015128 *sub_020153B4(UnkStruct_02015064 *param0);
 static UnkStruct_020151A4 *sub_020153E0(UnkStruct_02015064 *param0);
@@ -70,14 +70,14 @@ UnkStruct_02015064 *sub_02015064(const UnkStruct_ov22_022550D4 *param0)
     UnkStruct_02015064 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param0->unk_0C, sizeof(UnkStruct_02015064));
+    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02015064));
     GF_ASSERT(v0);
 
-    v0->unk_00 = sub_020152F8(param0->unk_00, param0->unk_0C);
+    v0->unk_00 = sub_020152F8(param0->unk_00, param0->heapID);
     v0->unk_04 = param0->unk_00;
-    v0->unk_08 = sub_02015328(param0->unk_04, param0->unk_0C);
+    v0->unk_08 = sub_02015328(param0->unk_04, param0->heapID);
     v0->unk_0C = param0->unk_04;
-    v0->unk_10 = sub_02015358(param0->unk_08, param0->unk_0C);
+    v0->unk_10 = sub_02015358(param0->unk_08, param0->heapID);
     v0->unk_14 = param0->unk_08;
 
     return v0;
@@ -313,46 +313,37 @@ static void sub_020152EC(UnkStruct_020151A4 *param0)
     NNS_G2dInitImagePaletteProxy(&param0->unk_04);
 }
 
-static UnkStruct_02015214 *sub_020152F8(int param0, int param1)
+static UnkStruct_02015214 *sub_020152F8(int param0, int heapID)
 {
-    UnkStruct_02015214 *v0;
-    int v1;
-
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02015214) * param0);
+    UnkStruct_02015214 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015214) * param0);
     GF_ASSERT(v0);
 
-    for (v1 = 0; v1 < param0; v1++) {
-        sub_020152C0(v0 + v1);
+    for (int i = 0; i < param0; i++) {
+        sub_020152C0(v0 + i);
     }
 
     return v0;
 }
 
-static UnkStruct_02015128 *sub_02015328(int param0, int param1)
+static UnkStruct_02015128 *sub_02015328(int param0, int heapID)
 {
-    UnkStruct_02015128 *v0;
-    int v1;
-
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02015128) * param0);
+    UnkStruct_02015128 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015128) * param0);
     GF_ASSERT(v0);
 
-    for (v1 = 0; v1 < param0; v1++) {
-        sub_020152E0(v0 + v1);
+    for (int i = 0; i < param0; i++) {
+        sub_020152E0(v0 + i);
     }
 
     return v0;
 }
 
-static UnkStruct_020151A4 *sub_02015358(int param0, int param1)
+static UnkStruct_020151A4 *sub_02015358(int param0, int heapID)
 {
-    UnkStruct_020151A4 *v0;
-    int v1;
-
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_020151A4) * param0);
+    UnkStruct_020151A4 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020151A4) * param0);
     GF_ASSERT(v0);
 
-    for (v1 = 0; v1 < param0; v1++) {
-        sub_020152EC(v0 + v1);
+    for (int i = 0; i < param0; i++) {
+        sub_020152EC(v0 + i);
     }
 
     return v0;
@@ -360,11 +351,9 @@ static UnkStruct_020151A4 *sub_02015358(int param0, int param1)
 
 static UnkStruct_02015214 *sub_02015388(UnkStruct_02015064 *param0)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_00[v0].unk_1C == 0) {
-            return param0->unk_00 + v0;
+    for (int i = 0; i < param0->unk_04; i++) {
+        if (param0->unk_00[i].unk_1C == 0) {
+            return param0->unk_00 + i;
         }
     }
 
@@ -373,11 +362,9 @@ static UnkStruct_02015214 *sub_02015388(UnkStruct_02015064 *param0)
 
 static UnkStruct_02015128 *sub_020153B4(UnkStruct_02015064 *param0)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_08[v0].unk_00 == 0) {
-            return param0->unk_08 + v0;
+    for (int i = 0; i < param0->unk_04; i++) {
+        if (param0->unk_08[i].unk_00 == 0) {
+            return param0->unk_08 + i;
         }
     }
 
@@ -386,11 +373,9 @@ static UnkStruct_02015128 *sub_020153B4(UnkStruct_02015064 *param0)
 
 static UnkStruct_020151A4 *sub_020153E0(UnkStruct_02015064 *param0)
 {
-    int v0;
-
-    for (v0 = 0; v0 < param0->unk_04; v0++) {
-        if (param0->unk_10[v0].unk_00 == 0) {
-            return param0->unk_10 + v0;
+    for (int i = 0; i < param0->unk_04; i++) {
+        if (param0->unk_10[i].unk_00 == 0) {
+            return param0->unk_10 + i;
         }
     }
 

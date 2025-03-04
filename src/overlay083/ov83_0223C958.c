@@ -43,28 +43,26 @@ static void ov83_0223D068(UnkStruct_ov83_0223B784 *param0);
 
 void ov83_0223C958(UnkStruct_ov83_0223B784 *param0)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, param0->unk_00);
+    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, param0->heapID);
 
     ov83_0223CE9C(param0);
-    ov83_0223CC30(&(param0->unk_20), param0->unk_00);
+    ov83_0223CC30(&(param0->unk_20), param0->heapID);
     ov83_0223CD64(param0);
     ov83_0223CCF8(param0);
     ov83_0223CD28(param0);
 
     ov83_0223CDD0(param0, v0);
-    ov83_0223DEE0(&param0->unk_5B0, param0->unk_20, param0->unk_00, v0);
-    ov83_0223E720(&param0->unk_6A0, param0->unk_20, param0->unk_00, v0);
-    ov83_0223E368(&param0->unk_608, param0->unk_320, param0->unk_00, v0);
-    ov83_0223E28C(&param0->unk_5E4, &param0->unk_2C, param0->unk_1CC, param0->unk_00, 0, 0);
+    ov83_0223DEE0(&param0->unk_5B0, param0->unk_20, param0->heapID, v0);
+    ov83_0223E720(&param0->unk_6A0, param0->unk_20, param0->heapID, v0);
+    ov83_0223E368(&param0->unk_608, param0->unk_320, param0->heapID, v0);
+    ov83_0223E28C(&param0->unk_5E4, &param0->unk_2C, param0->unk_1CC, param0->heapID, 0, 0);
 
-    ov83_0223E28C(&param0->unk_5FC, &param0->unk_2C, param0->unk_1CC, param0->unk_00, 0, 2);
-    ov83_0223E28C(&param0->unk_5F0, &param0->unk_2C, param0->unk_1CC, param0->unk_00, 5, 0);
-    ov83_0223E5DC(&param0->unk_680, &param0->unk_2C, param0->unk_1CC, param0->unk_00);
-    ov83_0223ED6C(&param0->unk_6D8, &param0->unk_2C, param0->unk_1CC, param0->unk_00);
-    ov83_0223F2C4(&param0->unk_AEC, &param0->unk_2C, param0->unk_00, v0);
-    ov83_0223F4CC(&param0->unk_B6C, &param0->unk_2C, param0->unk_1CC, param0->unk_00);
+    ov83_0223E28C(&param0->unk_5FC, &param0->unk_2C, param0->unk_1CC, param0->heapID, 0, 2);
+    ov83_0223E28C(&param0->unk_5F0, &param0->unk_2C, param0->unk_1CC, param0->heapID, 5, 0);
+    ov83_0223E5DC(&param0->unk_680, &param0->unk_2C, param0->unk_1CC, param0->heapID);
+    ov83_0223ED6C(&param0->unk_6D8, &param0->unk_2C, param0->unk_1CC, param0->heapID);
+    ov83_0223F2C4(&param0->unk_AEC, &param0->unk_2C, param0->heapID, v0);
+    ov83_0223F4CC(&param0->unk_B6C, &param0->unk_2C, param0->unk_1CC, param0->heapID);
 
     ov83_0223CF2C(param0);
 
@@ -101,7 +99,7 @@ void ov83_0223CAA4(UnkStruct_ov83_0223B784 *param0)
 
 int ov83_0223CB5C(UnkStruct_ov83_0223B784 *param0, int *param1)
 {
-    ov83_0223DB4C(&param0->unk_3C0, &param0->unk_1494.unk_6C, &param0->unk_2C, param0->unk_1CC, param0->unk_00);
+    ov83_0223DB4C(&param0->unk_3C0, &param0->unk_1494.unk_6C, &param0->unk_2C, param0->unk_1CC, param0->heapID);
     return param0->unk_0C + 1;
 }
 
@@ -270,7 +268,7 @@ static void ov83_0223CCCC(BgConfig **param0)
 
 static void ov83_0223CCF8(UnkStruct_ov83_0223B784 *param0)
 {
-    ov83_0223D754(&param0->unk_2C, 72, 16, param0->unk_00);
+    ov83_0223D754(&param0->unk_2C, 72, 16, param0->heapID);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
@@ -283,10 +281,13 @@ static void ov83_0223CD1C(UnkStruct_ov83_0223B784 *param0)
 static void ov83_0223CD28(UnkStruct_ov83_0223B784 *param0)
 {
     UnkStruct_ov22_022550D4 v0 = {
-        48, 32, 32, 0
+        .unk_00 = 48,
+        .unk_04 = 32,
+        .unk_08 = 32,
+        .heapID = HEAP_ID_SYSTEM
     };
 
-    v0.unk_0C = param0->unk_00;
+    v0.heapID = param0->heapID;
     param0->unk_320 = sub_02015064(&v0);
 }
 
@@ -298,7 +299,7 @@ static void ov83_0223CD54(UnkStruct_ov83_0223B784 *param0)
 static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)
 {
     NNS_G2dInitOamManagerModule();
-    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, param0->unk_00);
+    RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, param0->heapID);
 
     {
         CharTransferTemplate v0 = {
@@ -307,12 +308,12 @@ static void ov83_0223CD64(UnkStruct_ov83_0223B784 *param0)
             0x0,
         };
 
-        v0.heapID = param0->unk_00;
+        v0.heapID = param0->heapID;
 
         CharTransfer_InitWithVramModes(&v0, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K);
     }
 
-    PlttTransfer_Init(32, param0->unk_00);
+    PlttTransfer_Init(32, param0->heapID);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
@@ -338,9 +339,9 @@ static void ov83_0223CDD0(UnkStruct_ov83_0223B784 *param0, NARC *param1)
 
     for (v0 = 0; v0 < 6; v0++) {
         if ((v0 > 0) && (v1[v0] == 8)) {
-            ov83_0223D894(&param0->unk_2C, &param0->unk_1CC[v0], param1, param0->unk_1CC[0].unk_00[1], 14 + (3 * v0), 13 + (3 * v0), 12 + (3 * v0), 2000 + v0, param0->unk_00);
+            ov83_0223D894(&param0->unk_2C, &param0->unk_1CC[v0], param1, param0->unk_1CC[0].unk_00[1], 14 + (3 * v0), 13 + (3 * v0), 12 + (3 * v0), 2000 + v0, param0->heapID);
         } else {
-            ov83_0223D7A8(&param0->unk_2C, &param0->unk_1CC[v0], param1, v1[v0], 2, 14 + (3 * v0), 13 + (3 * v0), 12 + (3 * v0), 2000 + v0, param0->unk_00);
+            ov83_0223D7A8(&param0->unk_2C, &param0->unk_1CC[v0], param1, v1[v0], 2, 14 + (3 * v0), 13 + (3 * v0), 12 + (3 * v0), 2000 + v0, param0->heapID);
         }
     }
 }
@@ -382,9 +383,9 @@ static void ov83_0223CF2C(UnkStruct_ov83_0223B784 *param0)
 {
     int v0;
 
-    param0->unk_15E0.unk_00 = MessageLoader_Init(0, 26, 464, param0->unk_00);
-    param0->unk_15E0.unk_04 = StringTemplate_New(4, 64, param0->unk_00);
-    param0->unk_15E0.unk_08 = Strbuf_Init(64, param0->unk_00);
+    param0->unk_15E0.unk_00 = MessageLoader_Init(0, 26, 464, param0->heapID);
+    param0->unk_15E0.unk_04 = StringTemplate_New(4, 64, param0->heapID);
+    param0->unk_15E0.unk_08 = Strbuf_Init(64, param0->heapID);
     param0->unk_15E0.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 0);
     param0->unk_15E0.unk_10 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 1);
     param0->unk_15E0.unk_14 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 2);

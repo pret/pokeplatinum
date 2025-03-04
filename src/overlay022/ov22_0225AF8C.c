@@ -301,7 +301,7 @@ static void ov22_0225B2D4(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
     v1.unk_00 = (700 + 18);
     v1.unk_04 = (100 + 18);
     v1.unk_08 = (1 + 18);
-    v1.unk_0C = param1->heapId;
+    v1.heapID = param1->heapId;
 
     ov22_0225547C(&param0->unk_00, &v1, param1->heapId);
     ov22_0225B588(&param0->unk_00, &v0, param1, param1->heapId);

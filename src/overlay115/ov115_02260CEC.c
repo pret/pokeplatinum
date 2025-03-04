@@ -418,17 +418,17 @@ static void ov115_02263294(UnkStruct_ov115_022632C8 *param0, u32 param1, u32 par
 static void ov115_022632C8(UnkStruct_ov115_022632C8 *param0);
 static u32 ov115_022632D8(const UnkStruct_ov115_022632C8 *param0);
 static BOOL ov115_022632DC(const UnkStruct_ov115_022632C8 *param0, u32 param1);
-static void ov115_022633FC(UnkStruct_ov115_02260D78 *param0, u32 param1);
+static void ov115_022633FC(UnkStruct_ov115_02260D78 *param0, u32 heapID);
 static void ov115_02263560(UnkStruct_ov115_02260D78 *param0);
 static void ov115_02263640(const UnkStruct_ov115_02260D78 *param0, UnkStruct_ov115_02261ADC *param1);
 static void ov115_0226369C(const UnkStruct_ov115_02260D78 *param0, UnkStruct_ov115_02261ADC *param1);
 static void ov115_02263308(void);
 static void ov115_02263328(void);
-static void ov115_022633B4(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 param3);
+static void ov115_022633B4(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 heapID);
 static void ov115_022633EC(UnkStruct_ov115_02261ADC *param0);
 static void ov115_0226376C(UnkStruct_ov115_02261ADC *param0, u32 param1);
 static void ov115_02263954(UnkStruct_ov115_02261ADC *param0);
-static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 param1);
+static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 heapID);
 static void ov115_02263A3C(UnkStruct_ov115_02261ADC *param0);
 static void ov115_02263BCC(UnkStruct_ov115_02261ADC *param0, u32 param1);
 static void ov115_02263C04(UnkStruct_ov115_02261ADC *param0);
@@ -499,7 +499,7 @@ static void ov115_022652A4(UnkStruct_ov115_022653CC *param0, u8 param1);
 static void ov115_022652C0(UnkStruct_ov115_022653CC *param0, UnkStruct_ov115_02261ADC *param1);
 static void ov115_022653CC(UnkStruct_ov115_022653CC *param0);
 static void ov115_022653F4(UnkStruct_ov115_02261ADC *param0, s16 param1, u16 param2);
-static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, u32 param3);
+static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, u32 heapID);
 static void ov115_02265688(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_02261ADC *param1);
 static void ov115_02265700(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_02261ADC *param1, u32 param2);
 static void ov115_02265788(UnkStruct_ov115_02265788 *param0);
@@ -709,12 +709,12 @@ static const s16 Unk_ov115_02265B7C[12] = {
     0x4D
 };
 
-UnkStruct_ov115_02260D78 *ov115_02260CEC(u32 param0, u32 param1, u32 param2, u32 param3, UnkStruct_ov115_02262F50 *param4)
+UnkStruct_ov115_02260D78 *ov115_02260CEC(u32 heapID, u32 param1, u32 param2, u32 param3, UnkStruct_ov115_02262F50 *param4)
 {
     UnkStruct_ov115_02260D78 *v0;
     u32 v1;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov115_02260D78));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov115_02260D78));
     memset(v0, 0, sizeof(UnkStruct_ov115_02260D78));
 
     v0->unk_04 = 1;
@@ -725,8 +725,8 @@ UnkStruct_ov115_02260D78 *ov115_02260CEC(u32 param0, u32 param1, u32 param2, u32
     v0->unk_8720 = param4;
 
     ov115_02261B34(v0, &v0->unk_19CC);
-    ov115_022633FC(v0, param0);
-    ov115_02262FB4(&v0->unk_8730, &v0->unk_1AB4, param0);
+    ov115_022633FC(v0, heapID);
+    ov115_02262FB4(&v0->unk_8730, &v0->unk_1AB4, heapID);
     ov115_0226327C(&v0->unk_8770);
 
     v1 = sub_0201E3F4(Unk_ov115_022666C0, 8, 4);
@@ -2868,10 +2868,10 @@ static void ov115_02263328(void)
     G3_ViewPort(0, 0, 255, 191);
 }
 
-static void ov115_022633B4(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 param3)
+static void ov115_022633B4(UnkStruct_ov115_02261ADC *param0, u32 param1, u32 param2, u32 heapID)
 {
-    param0->unk_18 = sub_02024220(param3, 0, 1, 0, 4, ov115_02263328);
-    ov115_02263C24(param0, param1, param2, param3);
+    param0->unk_18 = sub_02024220(heapID, 0, 1, 0, 4, ov115_02263328);
+    ov115_02263C24(param0, param1, param2, heapID);
 }
 
 static void ov115_022633EC(UnkStruct_ov115_02261ADC *param0)
@@ -2880,35 +2880,35 @@ static void ov115_022633EC(UnkStruct_ov115_02261ADC *param0)
     sub_020242C4(param0->unk_18);
 }
 
-static void ov115_022633FC(UnkStruct_ov115_02260D78 *param0, u32 param1)
+static void ov115_022633FC(UnkStruct_ov115_02260D78 *param0, u32 heapID)
 {
     NARC *v0;
 
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_1AB4.unk_6BBC, param1, 32);
+    Heap_FndInitAllocatorForExpHeap(&param0->unk_1AB4.unk_6BBC, heapID, 32);
 
     ov115_02263308();
-    ov115_022633B4(&param0->unk_1AB4, param0->unk_10, param0->unk_14, param1);
-    ov115_0226376C(&param0->unk_1AB4, param1);
-    ov115_02263990(&param0->unk_1AB4, param1);
-    ov115_02263BCC(&param0->unk_1AB4, param1);
+    ov115_022633B4(&param0->unk_1AB4, param0->unk_10, param0->unk_14, heapID);
+    ov115_0226376C(&param0->unk_1AB4, heapID);
+    ov115_02263990(&param0->unk_1AB4, heapID);
+    ov115_02263BCC(&param0->unk_1AB4, heapID);
 
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, param1);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, heapID);
 
-    ov115_02263A74(&param0->unk_1AB4, v0, param1);
-    ov115_02264E48(&param0->unk_1AB4.unk_204, &param0->unk_1AB4, v0, param0->unk_10, param0->unk_14, param1, &param0->unk_1AB4.unk_6BBC);
-    ov115_02263DF8(&param0->unk_1AB4.unk_524, v0, param1, &param0->unk_1AB4.unk_6BBC);
-    ov115_022643EC(&param0->unk_1AB4, v0, param1);
-    ov115_02264B40(&param0->unk_1AB4, &param0->unk_1AB4.unk_6A34, param0->unk_14, param1);
-    ov115_02264C0C(&param0->unk_1AB4, &param0->unk_1AB4.unk_6A3C, param0->unk_14, param1);
-    ov115_02263CD8(&param0->unk_1AB4, v0, param0->unk_14, param1);
-    ov115_022617E8(&param0->unk_1AB4.unk_4E8, &param0->unk_1AB4, param0->unk_8720, param0->unk_10, param0->unk_14, v0, param1);
-    ov115_02261AC8(&param0->unk_1AB4, param0->unk_10, param0->unk_14, param1);
-    ov115_02261520(&param0->unk_1AB4.unk_3E8, &param0->unk_1AB4, param0->unk_10, param0->unk_14, param1);
+    ov115_02263A74(&param0->unk_1AB4, v0, heapID);
+    ov115_02264E48(&param0->unk_1AB4.unk_204, &param0->unk_1AB4, v0, param0->unk_10, param0->unk_14, heapID, &param0->unk_1AB4.unk_6BBC);
+    ov115_02263DF8(&param0->unk_1AB4.unk_524, v0, heapID, &param0->unk_1AB4.unk_6BBC);
+    ov115_022643EC(&param0->unk_1AB4, v0, heapID);
+    ov115_02264B40(&param0->unk_1AB4, &param0->unk_1AB4.unk_6A34, param0->unk_14, heapID);
+    ov115_02264C0C(&param0->unk_1AB4, &param0->unk_1AB4.unk_6A3C, param0->unk_14, heapID);
+    ov115_02263CD8(&param0->unk_1AB4, v0, param0->unk_14, heapID);
+    ov115_022617E8(&param0->unk_1AB4.unk_4E8, &param0->unk_1AB4, param0->unk_8720, param0->unk_10, param0->unk_14, v0, heapID);
+    ov115_02261AC8(&param0->unk_1AB4, param0->unk_10, param0->unk_14, heapID);
+    ov115_02261520(&param0->unk_1AB4.unk_3E8, &param0->unk_1AB4, param0->unk_10, param0->unk_14, heapID);
     ov115_022652A4(&param0->unk_1AB4.unk_758, param0->unk_14);
-    ov115_02265478(&param0->unk_1AB4.unk_6B1C, &param0->unk_1AB4, v0, param1);
+    ov115_02265478(&param0->unk_1AB4.unk_6B1C, &param0->unk_1AB4, v0, heapID);
 
     NARC_dtor(v0);
-    param0->unk_1AB4.unk_754 = ov114_0225CAD4(param0->unk_1AB4.unk_1C, param1);
+    param0->unk_1AB4.unk_754 = ov114_0225CAD4(param0->unk_1AB4.unk_1C, heapID);
 }
 
 static void ov115_02263560(UnkStruct_ov115_02260D78 *param0)
@@ -3155,37 +3155,37 @@ static void ov115_02263954(UnkStruct_ov115_02261ADC *param0)
     Heap_FreeToHeap(param0->unk_00);
 }
 
-static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 param1)
+static void ov115_02263990(UnkStruct_ov115_02261ADC *param0, u32 heapID)
 {
     int v0;
 
     NNS_G2dInitOamManagerModule();
-    RenderOam_Init(0, 126, 0, 31, 0, 126, 0, 31, param1);
+    RenderOam_Init(0, 126, 0, 31, 0, 126, 0, 31, heapID);
 
     {
         CharTransferTemplate v1 = {
             16, (128 * 1024), (16 * 1024), 0
         };
 
-        v1.heapID = param1;
+        v1.heapID = heapID;
         CharTransfer_InitWithVramModes(&v1, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K);
     }
 
-    PlttTransfer_Init(16, param1);
+    PlttTransfer_Init(16, heapID);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    param0->unk_1C = SpriteList_InitRendering(128, &param0->unk_20, param1);
+    param0->unk_1C = SpriteList_InitRendering(128, &param0->unk_20, heapID);
 
     SetSubScreenViewRect(&param0->unk_20, 0, (512 << FX32_SHIFT));
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_1AC[v0] = SpriteResourceCollection_New(16, v0, param1);
+        param0->unk_1AC[v0] = SpriteResourceCollection_New(16, v0, heapID);
     }
 
-    param0->unk_1F0 = sub_02012744(8, param1);
+    param0->unk_1F0 = sub_02012744(8, heapID);
 }
 
 static void ov115_02263A3C(UnkStruct_ov115_02261ADC *param0)
@@ -4381,17 +4381,17 @@ static void ov115_022653F4(UnkStruct_ov115_02261ADC *param0, s16 param1, u16 par
     }
 }
 
-static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, u32 param3)
+static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_02261ADC *param1, NARC *param2, u32 heapID)
 {
-    param0->unk_9C = param3;
+    param0->unk_9C = heapID;
 
     {
         BOOL v0;
 
-        param0->unk_00[0] = SpriteResourceCollection_AddTilesFrom(param1->unk_1AC[0], param2, 10, 0, 140, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
-        param0->unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_1AC[1], param2, 11, 0, 140, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
-        param0->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_1AC[2], param2, 9, 0, 140, 2, param3);
-        param0->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_1AC[3], param2, 8, 0, 140, 3, param3);
+        param0->unk_00[0] = SpriteResourceCollection_AddTilesFrom(param1->unk_1AC[0], param2, 10, 0, 140, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
+        param0->unk_00[1] = SpriteResourceCollection_AddPaletteFrom(param1->unk_1AC[1], param2, 11, 0, 140, NNS_G2D_VRAM_TYPE_2DMAIN, 1, heapID);
+        param0->unk_00[2] = SpriteResourceCollection_AddFrom(param1->unk_1AC[2], param2, 9, 0, 140, 2, heapID);
+        param0->unk_00[3] = SpriteResourceCollection_AddFrom(param1->unk_1AC[3], param2, 8, 0, 140, 3, heapID);
 
         v0 = SpriteTransfer_RequestCharAtEndWithHardwareMappingType(param0->unk_00[0]);
         GF_ASSERT(v0);
@@ -4412,7 +4412,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         v1.position.y = (FX32_CONST(48));
         v1.priority = (0 + 1);
         v1.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v1.heapID = param3;
+        v1.heapID = heapID;
 
         param0->unk_34 = SpriteList_Add(&v1);
         Sprite_SetDrawFlag(param0->unk_34, 0);
@@ -4423,15 +4423,15 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         BOOL v3;
         UnkStruct_020127E8 v4;
 
-        param0->unk_5C = Strbuf_Init(16, param3);
+        param0->unk_5C = Strbuf_Init(16, heapID);
         Window_AddToTopLeftCorner(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
-        param0->unk_4C = sub_02012B20(&param0->unk_38, param3);
+        param0->unk_4C = sub_02012B20(&param0->unk_38, heapID);
 
         v2 = sub_02012B58(param0->unk_4C, NNS_G2D_VRAM_TYPE_2DMAIN);
         v3 = CharTransfer_AllocRange(v2, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &param0->unk_50);
         GF_ASSERT(v3 == 1);
 
-        param0->unk_60 = SpriteResourceCollection_AddPalette(param1->unk_1AC[1], 14, 6, 0, 150, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
+        param0->unk_60 = SpriteResourceCollection_AddPalette(param1->unk_1AC[1], 14, 6, 0, 150, NNS_G2D_VRAM_TYPE_2DMAIN, 1, heapID);
         v3 = SpriteTransfer_RequestPlttFreeSpace(param0->unk_60);
         GF_ASSERT(v3);
 
@@ -4448,7 +4448,7 @@ static void ov115_02265478(UnkStruct_ov115_02265788 *param0, UnkStruct_ov115_022
         v4.unk_20 = 0;
         v4.unk_24 = 0;
         v4.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
-        v4.unk_2C = param3;
+        v4.unk_2C = heapID;
 
         param0->unk_48 = sub_02012B60(&v4, param0->unk_4C);
 

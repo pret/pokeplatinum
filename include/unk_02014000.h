@@ -13,7 +13,7 @@
 #include "spl.h"
 
 void sub_02014000(void);
-UnkStruct_02014014 *sub_02014014(UnkFuncPtr_02014014 param0, UnkFuncPtr_02014014 param1, void *param2, int param3, int param4, int param5);
+UnkStruct_02014014 *sub_02014014(UnkFuncPtr_02014014 param0, UnkFuncPtr_02014014 param1, void *param2, int param3, int param4, int heapID);
 void sub_0201411C(UnkStruct_02014014 *param0);
 void sub_020141E4(void);
 void *sub_020144C4(int param0, int param1, int param2);

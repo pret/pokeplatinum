@@ -9,8 +9,8 @@
 #include "overlay012/struct_ov12_02236690.h"
 #include "overlay012/struct_ov12_02237728.h"
 
-UnkStruct_ov12_02235FE0 *ov12_02235FE0(int param0);
-UnkStruct_ov12_02235FE0 *ov12_02236004(int param0, const UnkStruct_ov12_02236030 *param1);
+UnkStruct_ov12_02235FE0 *ov12_02235FE0(int heapID);
+UnkStruct_ov12_02235FE0 *ov12_02236004(int heapID, const UnkStruct_ov12_02236030 *param1);
 void ov12_02236030(UnkStruct_ov12_02235FE0 *param0, const UnkStruct_ov12_02236030 *param1);
 void ov12_02236320(UnkStruct_ov12_02235FE0 *param0);
 BOOL ov12_02236374(UnkStruct_ov12_02235FE0 *param0);

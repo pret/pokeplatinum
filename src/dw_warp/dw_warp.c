@@ -317,9 +317,9 @@ static void Model3D_Update(DistortionWorldWarp *warp)
     NNS_G3dGePopMtx(1);
 }
 
-static GenericPointerData *DWWarp_Init3D(int param0)
+static GenericPointerData *DWWarp_Init3D(int heapID)
 {
-    return sub_02024220(param0, 0, 2, 0, 2, DWWarp_Setup3D);
+    return sub_02024220(heapID, 0, 2, 0, 2, DWWarp_Setup3D);
 }
 
 static void DWWarp_Setup3D(void)

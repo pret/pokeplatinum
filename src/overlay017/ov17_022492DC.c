@@ -310,7 +310,7 @@ void *ov17_02249380(UnkStruct_02095C48 *param0, UnkStruct_ov17_0224A1EC *param1)
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
-    v0->unk_18 = sub_02012744(6, 23);
+    v0->unk_18 = sub_02012744(6, HEAP_ID_23);
 
     ov17_022493DC(v0);
 

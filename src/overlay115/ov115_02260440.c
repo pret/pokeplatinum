@@ -158,7 +158,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
             v0->unk_7C = 1;
         }
 
-        v0->unk_34 = ov115_02260CEC(99, (30 * 40), v0->unk_74, v0->unk_46, &v0->unk_48);
+        v0->unk_34 = ov115_02260CEC(HEAP_ID_99, (30 * 40), v0->unk_74, v0->unk_46, &v0->unk_48);
         sub_02039734();
 
         if (v1->unk_38) {
@@ -341,7 +341,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
         ov114_0225C9A8(&v0->unk_18, v0->unk_08.unk_08);
         v9 = v0->unk_18.unk_10[v0->unk_46];
     }
-        v0->unk_04 = ov114_0225C8E0(&v0->unk_08, &v0->unk_18, 99);
+        v0->unk_04 = ov114_0225C8E0(&v0->unk_08, &v0->unk_18, HEAP_ID_99);
         (*param1)++;
         break;
     case 15: {

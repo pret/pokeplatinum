@@ -255,7 +255,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
         v7 = SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1C, 2, param0->unk_14, param0->unk_18, param0->unk_24, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2004);
 
         param0->unk_164 |= 1 << v7;
-        param0->unk_30 = sub_02012744(4, 94);
+        param0->unk_30 = sub_02012744(4, HEAP_ID_94);
 
         {
             MessageLoader *v9;

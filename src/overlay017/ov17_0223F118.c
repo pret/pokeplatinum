@@ -78,12 +78,9 @@ static void NitroStaticInit(void)
     Overlay_LoadByID(FS_OVERLAY_ID(overlay22), 2);
 }
 
-GenericPointerData *ov17_0223F140(int param0)
+GenericPointerData *ov17_0223F140(int heapID)
 {
-    GenericPointerData *v0;
-
-    v0 = sub_02024220(param0, 0, 2, 0, 2, ov17_0223F15C);
-    return v0;
+    return sub_02024220(heapID, 0, 2, 0, 2, ov17_0223F15C);
 }
 
 static void ov17_0223F15C(void)

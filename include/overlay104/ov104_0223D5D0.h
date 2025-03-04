@@ -5,7 +5,7 @@
 
 #include "overlay104/struct_ov104_0223D5F0_decl.h"
 
-UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(int param0);
+UnkStruct_ov104_0223D5F0 *ov104_0223D5D0(int heapID);
 void ov104_0223D5F0(UnkStruct_ov104_0223D5F0 *param0);
 UnkStruct_02014014 *ov104_0223D614(UnkStruct_ov104_0223D5F0 *param0, int param1, int param2, int param3);
 void ov104_0223D68C(UnkStruct_ov104_0223D5F0 *param0, int param1);

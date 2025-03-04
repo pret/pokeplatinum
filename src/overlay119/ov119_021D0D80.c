@@ -47,8 +47,8 @@ void ov119_021D0DF4(void);
 void ov119_021D0E78(void);
 static u32 ov119_021D13B4(u32 param0, BOOL param1);
 static u32 ov119_021D13D0(u32 param0, BOOL param1);
-static UnkStruct_02014014 *ov119_021D13EC(int param0);
-static UnkStruct_02014014 *ov119_021D1434(int param0, int param1, int param2);
+static UnkStruct_02014014 *ov119_021D13EC(int heapID);
+static UnkStruct_02014014 *ov119_021D1434(int heapID, int param1, int param2);
 static void ov119_021D1474(SPLEmitter *param0);
 
 void ov119_021D0D80(void)
@@ -68,10 +68,7 @@ void ov119_021D0DA8(void)
 
 GenericPointerData *ov119_021D0DD4(void)
 {
-    GenericPointerData *v0;
-
-    v0 = sub_02024220(71, 0, 2, 0, 2, ov119_021D0DF4);
-    return v0;
+    return sub_02024220(HEAP_ID_71, 0, 2, 0, 2, ov119_021D0DF4);
 }
 
 void ov119_021D0DF4(void)
@@ -425,14 +422,14 @@ static u32 ov119_021D13D0(u32 param0, BOOL param1)
     return v1;
 }
 
-static UnkStruct_02014014 *ov119_021D13EC(int param0)
+static UnkStruct_02014014 *ov119_021D13EC(int heapID)
 {
     UnkStruct_02014014 *v0;
     void *v1;
     Camera *camera;
 
-    v1 = Heap_AllocFromHeap(param0, 0x4800);
-    v0 = sub_02014014(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, param0);
+    v1 = Heap_AllocFromHeap(heapID, 0x4800);
+    v0 = sub_02014014(ov119_021D13B4, ov119_021D13D0, v1, 0x4800, 1, heapID);
     camera = sub_02014784(v0);
 
     if (camera != NULL) {
@@ -442,13 +439,10 @@ static UnkStruct_02014014 *ov119_021D13EC(int param0)
     return v0;
 }
 
-static UnkStruct_02014014 *ov119_021D1434(int param0, int param1, int param2)
+static UnkStruct_02014014 *ov119_021D1434(int heapID, int param1, int param2)
 {
-    UnkStruct_02014014 *v0;
-    void *v1;
-
-    v0 = ov119_021D13EC(param0);
-    v1 = sub_020144C4(param1, param2, param0);
+    UnkStruct_02014014 *v0 = ov119_021D13EC(heapID);
+    void *v1 = sub_020144C4(param1, param2, heapID);
 
     sub_020144CC(v0, v1, (1 << 1) | (1 << 3), 1);
 
@@ -477,14 +471,12 @@ UnkStruct_ov119_021D14DC *ov119_021D14AC(UnkStruct_ov119_021D1930 *param0)
     int v1;
     int v2;
     int v3;
-    UnkStruct_ov119_021D14DC *v4;
-
-    v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_ov119_021D14DC));
+    UnkStruct_ov119_021D14DC *v4 = Heap_AllocFromHeap(param0->heapId, sizeof(UnkStruct_ov119_021D14DC));
 
     GF_ASSERT(v4 != NULL);
 
     v4->unk_00 = *param0;
-    v4->unk_0C = ov119_021D1434(v4->unk_00.unk_00, 119, v4->unk_00.unk_04);
+    v4->unk_0C = ov119_021D1434(v4->unk_00.heapId, 119, v4->unk_00.unk_04);
 
     sub_02014788(v4->unk_0C, 1);
 

@@ -359,7 +359,7 @@ int ov105_02241AE0(OverlayManager *param0, int *param1)
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov105_02241FF4), 93);
     memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
 
-    v1->unk_124 = sub_02024220(93, 0, 2, 0, 2, ov105_02245CD0);
+    v1->unk_124 = sub_02024220(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
     v1->unk_4C = BgConfig_New(HEAP_ID_93);
     v1->unk_00 = param0;
 
@@ -2807,7 +2807,7 @@ static void ov105_022452A0(UnkStruct_ov105_02241FF4 *param0)
 
     ov105_022452E4();
 
-    param0->unk_124 = sub_02024220(93, 0, 2, 0, 2, ov105_02245CD0);
+    param0->unk_124 = sub_02024220(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
     param0->unk_4C = BgConfig_New(HEAP_ID_93);
 
     ov105_0224531C(param0);

@@ -236,7 +236,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_0224DF54), 23);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224DF54));
 
-    v0->unk_10 = ov17_0223F140(23);
+    v0->unk_10 = ov17_0223F140(HEAP_ID_23);
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_00->unk_150 = v0;
     v0->unk_00->unk_154 = 1;
@@ -284,7 +284,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     v0->unk_14.unk_84 = MessageLoader_Init(0, 26, 206, HEAP_ID_23);
     v0->unk_14.unk_88 = StringTemplate_Default(HEAP_ID_23);
     v0->unk_14.unk_8C = Strbuf_Init((2 * 160), HEAP_ID_23);
-    v0->unk_14.unk_94 = sub_02012744((3 * 3), 23);
+    v0->unk_14.unk_94 = sub_02012744((3 * 3), HEAP_ID_23);
 
     {
         NARC *v1;
@@ -831,7 +831,7 @@ static void ov17_0223E778(UnkStruct_ov17_0224DF54 *param0)
     GF_ASSERT(param0->unk_0C == NULL);
 
     v0 = Heap_AllocFromHeap(HEAP_ID_23, 0x4800);
-    param0->unk_0C = sub_02014014(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, 23);
+    param0->unk_0C = sub_02014014(ov17_0223E800, ov17_0223E81C, v0, 0x4800, 1, HEAP_ID_23);
 
     camera = sub_02014784(param0->unk_0C);
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);

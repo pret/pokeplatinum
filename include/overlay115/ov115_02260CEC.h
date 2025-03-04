@@ -7,7 +7,7 @@
 #include "overlay115/struct_ov115_02265AD0.h"
 #include "overlay115/struct_ov115_02265AD4.h"
 
-UnkStruct_ov115_02260D78 *ov115_02260CEC(u32 param0, u32 param1, u32 param2, u32 param3, UnkStruct_ov115_02262F50 *param4);
+UnkStruct_ov115_02260D78 *ov115_02260CEC(u32 heapID, u32 param1, u32 param2, u32 param3, UnkStruct_ov115_02262F50 *param4);
 void ov115_02260D78(UnkStruct_ov115_02260D78 *param0);
 BOOL ov115_02260DAC(UnkStruct_ov115_02260D78 *param0, u32 param1);
 BOOL ov115_02260F70(UnkStruct_ov115_02260D78 *param0, u32 param1);

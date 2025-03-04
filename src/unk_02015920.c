@@ -68,7 +68,7 @@ typedef struct UnkStruct_02015920_t {
     UnkStruct_02015C38 unk_0C[2];
     BgConfig *unk_7C;
     u32 unk_80;
-    u32 unk_84;
+    u32 heapID;
     fx32 unk_88[4];
     u8 unk_98;
     u8 unk_99;
@@ -77,7 +77,7 @@ typedef struct UnkStruct_02015920_t {
     u8 unk_9B_4 : 4;
 } UnkStruct_02015920;
 
-static void sub_02015A80(UnkStruct_02015920 *param0, u32 param1);
+static void sub_02015A80(UnkStruct_02015920 *param0, u32 heapID);
 static void sub_02015AC0(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1);
 static void sub_02015AE4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1);
 static void sub_02015B14(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1);
@@ -90,20 +90,18 @@ static void sub_02015D60(UnkStruct_02015C38 *param0);
 static void sub_02015D8C(UnkStruct_02015D8C *param0, const fx32 *param1, u32 param2);
 static void sub_02015D98(UnkStruct_02015D8C *param0, fx32 param1);
 static u32 sub_02015DA0(const UnkStruct_02015D8C *param0);
-static void sub_02015DCC(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5);
-static void sub_02015E1C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5);
+static void sub_02015DCC(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 heapID);
+static void sub_02015E1C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 heapID);
 static void sub_02015E64(SysTask *param0, void *param1);
 static void sub_02015EA0(SysTask *param0, void *param1);
 static void sub_02015EE8(BgConfig *param0, int param1, const NNSG2dScreenData *param2, int param3, int param4);
 static void sub_02015F34(const NNSG2dScreenData *param0, int param1);
 static void sub_02015F54(const NNSG2dScreenData *param0, int param1);
 
-UnkStruct_02015920 *sub_02015920(u32 param0)
+UnkStruct_02015920 *sub_02015920(u32 heapID)
 {
-    UnkStruct_02015920 *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02015920));
-    sub_02015A80(v0, param0);
+    UnkStruct_02015920 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015920));
+    sub_02015A80(v0, heapID);
 
     return v0;
 }
@@ -191,22 +189,22 @@ void sub_02015A54(UnkStruct_02015920 *param0)
         sub_02015D00(&param0->unk_0C[v0]);
     }
 
-    sub_02015A80(param0, param0->unk_84);
+    sub_02015A80(param0, param0->heapID);
 }
 
-static void sub_02015A80(UnkStruct_02015920 *param0, u32 param1)
+static void sub_02015A80(UnkStruct_02015920 *param0, u32 heapID)
 {
     memset(param0, 0, sizeof(UnkStruct_02015920));
 
     param0->unk_9B_0 = 0;
-    param0->unk_84 = param1;
+    param0->heapID = heapID;
     param0->unk_9A = 3;
     param0->unk_9B_4 = 0x8;
 }
 
 static void sub_02015AC0(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
 {
-    sub_02015DCC(84, 1, param0->unk_7C, param0->unk_80, param1->unk_08, param0->unk_84);
+    sub_02015DCC(84, 1, param0->unk_7C, param0->unk_80, param1->unk_08, param0->heapID);
 }
 
 static void sub_02015AE4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
@@ -219,7 +217,7 @@ static void sub_02015AE4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *p
         v0 = 4;
     }
 
-    sub_02015E1C(84, 0, v0, param1->unk_0C * 32, 2 * 32, param0->unk_84);
+    sub_02015E1C(84, 0, v0, param1->unk_0C * 32, 2 * 32, param0->heapID);
 }
 
 static void sub_02015B14(UnkStruct_02015920 *param0, const UnkStruct_02015958 *param1)
@@ -248,7 +246,7 @@ static void sub_02015B14(UnkStruct_02015920 *param0, const UnkStruct_02015958 *p
         v2.unk_2D = (v0 * (40 / 8)) + param0->unk_99;
         v2.unk_20 += v0;
 
-        sub_02015C38(&param0->unk_0C[v0], &v2, param0->unk_84);
+        sub_02015C38(&param0->unk_0C[v0], &v2, param0->heapID);
     }
 }
 
@@ -263,7 +261,7 @@ static void sub_02015BA4(UnkStruct_02015920 *param0, const UnkStruct_02015958 *p
         param0->unk_04[v0].rect.right = (param0->unk_98 * 8) + (6 * 8);
     }
 
-    param0->unk_00 = sub_02023FCC(param0->unk_04, 2, sub_02015C08, param0, param0->unk_84);
+    param0->unk_00 = sub_02023FCC(param0->unk_04, 2, sub_02015C08, param0, param0->heapID);
 }
 
 static void sub_02015C08(u32 param0, u32 param1, void *param2)
@@ -364,14 +362,12 @@ static u32 sub_02015DA0(const UnkStruct_02015D8C *param0)
     return param0->unk_04 - 1;
 }
 
-static void sub_02015DCC(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5)
+static void sub_02015DCC(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 heapID)
 {
-    UnkStruct_02015DCC *v0;
-
-    v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_02015DCC));
+    UnkStruct_02015DCC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015DCC));
     memset(v0, 0, sizeof(UnkStruct_02015DCC));
 
-    v0->unk_08 = Graphics_GetCharData(param0, param1, 1, &v0->unk_04, param5);
+    v0->unk_08 = Graphics_GetCharData(param0, param1, 1, &v0->unk_04, heapID);
     v0->unk_00 = param2;
     v0->unk_0C = param3;
     v0->unk_10 = param4;
@@ -379,14 +375,12 @@ static void sub_02015DCC(u32 param0, u32 param1, BgConfig *param2, u32 param3, u
     SysTask_ExecuteAfterVBlank(sub_02015E64, v0, 128);
 }
 
-static void sub_02015E1C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
+static void sub_02015E1C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 heapID)
 {
-    UnkStruct_02015E1C *v0;
-
-    v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_02015E1C));
+    UnkStruct_02015E1C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02015E1C));
     memset(v0, 0, sizeof(UnkStruct_02015E1C));
 
-    v0->unk_04 = Graphics_GetPlttData(param0, param1, &v0->unk_00, param5);
+    v0->unk_04 = Graphics_GetPlttData(param0, param1, &v0->unk_00, heapID);
     v0->unk_08 = param2;
     v0->unk_0C = param3;
     v0->unk_10 = param4;

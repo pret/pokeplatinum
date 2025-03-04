@@ -723,13 +723,16 @@ static void ov78_021D14BC(ChooseStarterApp *param0)
     sub_02007B6C(param0->spriteManager);
 }
 
-static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapId param1)
+static void MakeSpriteDisplay(ChooseStarterApp *param0, enum HeapId heapID)
 {
     UnkStruct_ov22_022550D4 v0 = {
-        1, 1, 1, 0
+        .unk_00 = 1,
+        .unk_04 = 1,
+        .unk_08 = 1,
+        .heapID = HEAP_ID_SYSTEM
     };
 
-    v0.unk_0C = param1;
+    v0.heapID = heapID;
     param0->spriteDisplay = sub_02015064(&v0);
 }
 

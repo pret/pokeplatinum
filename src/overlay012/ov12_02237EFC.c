@@ -19,7 +19,7 @@
 
 typedef struct UnkStruct_ov12_02238004_t {
     int unk_00;
-    int unk_04;
+    int heapId;
     UnkStruct_ov12_02237F38 unk_08;
     UnkStruct_02014014 *unk_10;
     SPLEmitter *unk_14;
@@ -29,7 +29,7 @@ typedef struct UnkStruct_ov12_02238004_t {
 } UnkStruct_ov12_02238004;
 
 typedef struct UnkStruct_ov12_02237F98_t {
-    int unk_00;
+    int heapId;
     UnkStruct_ov12_02237EFC unk_04;
     UnkStruct_ov12_02238004 *unk_08[16];
 } UnkStruct_ov12_02237F98;
@@ -39,12 +39,12 @@ static void ov12_02238054(UnkStruct_ov12_02238004 *param0, UnkFuncPtr_020146F4 p
 static void ov12_02238080(SPLEmitter *param0);
 static int ov12_02238088(int param0);
 
-UnkStruct_ov12_02237F98 *ov12_02237EFC(int param0, UnkStruct_ov12_02237EFC *param1)
+UnkStruct_ov12_02237F98 *ov12_02237EFC(int heapId, UnkStruct_ov12_02237EFC *param1)
 {
     UnkStruct_ov12_02237F98 *v0;
 
     v0 = NULL;
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov12_02237F98));
+    v0 = Heap_AllocFromHeap(heapId, sizeof(UnkStruct_ov12_02237F98));
 
     if (v0 == NULL) {
         GF_ASSERT(0);
@@ -53,7 +53,7 @@ UnkStruct_ov12_02237F98 *ov12_02237EFC(int param0, UnkStruct_ov12_02237EFC *para
 
     ov12_02220474();
 
-    v0->unk_00 = param0;
+    v0->heapId = heapId;
 
     if (param1 != NULL) {
         v0->unk_04 = *param1;
@@ -80,7 +80,7 @@ UnkStruct_ov12_02238004 *ov12_02237F38(UnkStruct_ov12_02237F98 *param0, UnkStruc
             continue;
         }
 
-        param0->unk_08[v0] = ov12_02237FC8(param0->unk_00, param1);
+        param0->unk_08[v0] = ov12_02237FC8(param0->heapId, param1);
         param0->unk_08[v0]->unk_18 = NULL;
 
         v1 = param0->unk_08[v0];
@@ -134,23 +134,23 @@ void ov12_02237F98(UnkStruct_ov12_02237F98 *param0)
     }
 }
 
-UnkStruct_ov12_02238004 *ov12_02237FC8(int param0, UnkStruct_ov12_02237F38 *param1)
+UnkStruct_ov12_02238004 *ov12_02237FC8(int heapID, UnkStruct_ov12_02237F38 *param1)
 {
     UnkStruct_ov12_02238004 *v0;
 
     v0 == NULL;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov12_02238004));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02238004));
 
     if (v0 == NULL) {
         GF_ASSERT(0);
         return NULL;
     }
 
-    v0->unk_04 = param0;
+    v0->heapId = heapID;
     v0->unk_08 = *param1;
     v0->unk_1C = ov12_02238088(v0->unk_08.unk_00);
-    v0->unk_10 = ov12_022237F0(v0->unk_04, v0->unk_08.unk_00, 1);
+    v0->unk_10 = ov12_022237F0(v0->heapId, v0->unk_08.unk_00, 1);
 
     return v0;
 }

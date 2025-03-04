@@ -1068,7 +1068,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
         GF_ASSERT(0);
     }
 
-    v0->unk_4C8 = sub_02012744(13, 5);
+    v0->unk_4C8 = sub_02012744(13, HEAP_ID_BATTLE);
     v0->unk_678 = SysTask_Start(ov16_0226BCE4, v0, 1310);
 
     {
@@ -1226,7 +1226,7 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
 
     if (BattleSystem_BattleType(param0->unk_00) & BATTLE_TYPE_CATCH_TUTORIAL) {
         ov16_0226DE44(v1, v2, 5, v3, 20412, 20036, 20406, 20395);
-        param0->unk_6C4.unk_00 = ov16_0226DEEC(v1, v2, 5, 20412, 20036, 20406, 20395, 10, 0);
+        param0->unk_6C4.unk_00 = ov16_0226DEEC(v1, v2, HEAP_ID_BATTLE, 20412, 20036, 20406, 20395, 10, 0);
     }
 }
 
@@ -1359,7 +1359,7 @@ void ov16_02268D40(NARC *param0, UnkStruct_ov16_02268A14 *param1)
 
         v3 = BattleSystem_PaletteSys(param1->unk_00);
         ov16_0226DB7C(v1, v2, v3, 5, 20411, 20035, 20405, 20394);
-        param1->unk_6B8 = ov16_0226DC24(v1, v2, 5, 20411, 20035, 20405, 20394, 5, 0);
+        param1->unk_6B8 = ov16_0226DC24(v1, v2, HEAP_ID_BATTLE, 20411, 20035, 20405, 20394, 5, 0);
     }
 }
 

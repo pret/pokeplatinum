@@ -11,7 +11,7 @@
 #include "bg_window.h"
 #include "sprite.h"
 
-UnkStruct_02012744 *sub_02012744(int param0, int param1);
+UnkStruct_02012744 *sub_02012744(int param0, int heapID);
 void sub_020127BC(UnkStruct_02012744 *param0);
 FontOAM *sub_020127E8(const UnkStruct_020127E8 *param0);
 void sub_02012870(FontOAM *param0);
@@ -26,7 +26,7 @@ void sub_02012A60(FontOAM *param0, u32 param1);
 void sub_02012A90(FontOAM *param0, u32 param1);
 void sub_02012AC0(FontOAM *param0, u32 param1);
 void sub_02012AF0(FontOAM *param0, GXOamMode param1);
-UnkStruct_02012B20 *sub_02012B20(const Window *param0, int param1);
+UnkStruct_02012B20 *sub_02012B20(const Window *param0, int heapID);
 void sub_02012B48(UnkStruct_02012B20 *param0);
 int sub_02012B58(const UnkStruct_02012B20 *param0, int param1);
 FontOAM *sub_02012B60(const UnkStruct_020127E8 *param0, const UnkStruct_02012B20 *param1);

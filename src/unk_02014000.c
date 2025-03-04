@@ -128,7 +128,7 @@ void sub_02014000(void)
     }
 }
 
-UnkStruct_02014014 *sub_02014014(UnkFuncPtr_02014014 param0, UnkFuncPtr_02014014 param1, void *param2, int param3, int param4, int param5)
+UnkStruct_02014014 *sub_02014014(UnkFuncPtr_02014014 param0, UnkFuncPtr_02014014 param1, void *param2, int param3, int param4, int heapID)
 {
     UnkStruct_02014014 *v0;
     int v1;
@@ -142,7 +142,7 @@ UnkStruct_02014014 *sub_02014014(UnkFuncPtr_02014014 param0, UnkFuncPtr_02014014
         return NULL;
     }
 
-    v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_02014014));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02014014));
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
     }
@@ -163,7 +163,7 @@ UnkStruct_02014014 *sub_02014014(UnkFuncPtr_02014014 param0, UnkFuncPtr_02014014
     Unk_021BF618[v1] = v0;
 
     if (param4 == 1) {
-        v0->camera = Camera_Alloc(param5);
+        v0->camera = Camera_Alloc(heapID);
         {
             VEC_Set(&v0->unk_24, 0, 0, 0);
             v0->unk_30 = 8192;

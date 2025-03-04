@@ -992,7 +992,7 @@ static void ov17_022489C8(SysTask *param0, void *param1)
     case 0:
         v0->unk_00.unk_00 = 0;
         v0->unk_00.unk_08 = v0->unk_10;
-        v0->unk_0C = ov12_02236004(22, &v0->unk_00);
+        v0->unk_0C = ov12_02236004(HEAP_ID_22, &v0->unk_00);
         ov12_02236320(v0->unk_0C);
         ov12_02236384(v0->unk_0C, ov17_02248990);
         v0->unk_14++;

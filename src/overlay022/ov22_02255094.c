@@ -84,7 +84,10 @@ void ov22_022550B4(void)
 void ov22_022550D4(UnkStruct_ov22_0225A0E4 *param0)
 {
     UnkStruct_ov22_022550D4 v0 = {
-        718, 118, 19, 14
+        .unk_00 = 718,
+        .unk_04 = 118,
+        .unk_08 = 19,
+        .heapID = HEAP_ID_14
     };
 
     param0->unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, 14);
@@ -497,10 +500,10 @@ static void ov22_02255738(void)
 static void ov22_02255748(UnkStruct_ov22_0225A0E4 *param0, const UnkStruct_ov22_022550D4 *param1)
 {
     param0->unk_00 = sub_02015064(param1);
-    param0->unk_04 = Heap_AllocFromHeap(param1->unk_0C, sizeof(UnkStruct_02015128 *) * (100 + 18));
+    param0->unk_04 = Heap_AllocFromHeap(param1->heapID, sizeof(UnkStruct_02015128 *) * (100 + 18));
     param0->unk_08 = (100 + 18);
     param0->unk_0C = 0;
-    param0->unk_10 = Heap_AllocFromHeap(param1->unk_0C, sizeof(UnkStruct_020151A4 *) * (1 + 18));
+    param0->unk_10 = Heap_AllocFromHeap(param1->heapID, sizeof(UnkStruct_020151A4 *) * (1 + 18));
     param0->unk_14 = (1 + 18);
     param0->unk_18 = 0;
     param0->unk_1C = 1;

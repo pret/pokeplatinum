@@ -226,8 +226,8 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
     ov22_02256BAC(v0, v2->unk_0C);
     ov22_022589E0(&v0->unk_4FC, &v0->unk_458, &v0->unk_3CC, &v0->unk_00, &v0->unk_5C4, 1);
 
-    v0->unk_714 = sub_02015920(13);
-    v0->unk_718 = Window_New(13, 1);
+    v0->unk_714 = sub_02015920(HEAP_ID_13);
+    v0->unk_718 = Window_New(HEAP_ID_13, 1);
     v0->unk_70C = 0;
 
     sub_02004550(53, 0, 0);
@@ -462,8 +462,8 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     ov22_02256BF4(v0, v0->unk_720, v2->unk_08, v2->unk_1C, v2->unk_20);
     ov22_022589E0(&v0->unk_4FC, &v0->unk_458, &v0->unk_3CC, &v0->unk_00, &v0->unk_5C4, 0);
 
-    v0->unk_714 = sub_02015920(13);
-    v0->unk_718 = Window_New(13, 1);
+    v0->unk_714 = sub_02015920(HEAP_ID_13);
+    v0->unk_718 = Window_New(HEAP_ID_13, 1);
     v0->unk_70C = 0;
 
     sub_020959F4(v0->unk_734->unk_16);

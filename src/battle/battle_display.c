@@ -1761,7 +1761,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
 
         v1.unk_00 = v0->unk_82;
         v1.unk_08 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_81, v0->unk_8C);
-        v0->unk_08 = ov12_02236004(5, &v1);
+        v0->unk_08 = ov12_02236004(HEAP_ID_BATTLE, &v1);
 
         ov12_02236320(v0->unk_08);
     }
@@ -1981,7 +1981,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         v5.unk_08 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_81, v0->unk_8C);
         v5.unk_04 = v0->unk_8E;
 
-        v0->unk_08 = ov12_02236004(5, &v5);
+        v0->unk_08 = ov12_02236004(HEAP_ID_BATTLE, &v5);
         ov12_02236320(v0->unk_08);
     }
         v0->unk_83++;
@@ -5115,7 +5115,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
     case 0: {
         UnkStruct_ov12_02237F38 v5;
 
-        v0->unk_04 = ov12_02237EFC(5, NULL);
+        v0->unk_04 = ov12_02237EFC(HEAP_ID_BATTLE, NULL);
 
         v5.unk_00 = Unk_ov16_0226F31C[v3];
         v5.unk_04 = 1;

@@ -77,7 +77,7 @@ static void ov99_021D1380(BgConfig *param0);
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D1918(UnkStruct_ov99_021D2CB0 *param0);
 static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0);
-static GenericPointerData *ov99_021D19AC(int param0);
+static GenericPointerData *ov99_021D19AC(int heapID);
 static void ov99_021D19C8(void);
 static void ov99_021D1A4C(GenericPointerData *param0);
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0);
@@ -101,24 +101,24 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(3, 75, 0x80000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_75, 0x80000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov99_021D2CB0), 75);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov99_021D2CB0), HEAP_ID_75);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov99_021D2CB0));
 
     v0->unk_00 = OverlayManager_Args(param0);
-    v0->unk_10 = ov99_021D19AC(75);
-    v0->unk_0C = PaletteData_New(75);
+    v0->unk_10 = ov99_021D19AC(HEAP_ID_75);
+    v0->unk_0C = PaletteData_New(HEAP_ID_75);
 
-    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, 75);
-    PaletteData_AllocBuffer(v0->unk_0C, 1, 0x200, 75);
-    PaletteData_AllocBuffer(v0->unk_0C, 2, 0x200 - 0x40, 75);
-    PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, 75);
+    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, HEAP_ID_75);
+    PaletteData_AllocBuffer(v0->unk_0C, 1, 0x200, HEAP_ID_75);
+    PaletteData_AllocBuffer(v0->unk_0C, 2, 0x200 - 0x40, HEAP_ID_75);
+    PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, HEAP_ID_75);
     PaletteData_SetAutoTransparent(v0->unk_0C, 1);
 
     v0->unk_08 = BgConfig_New(HEAP_ID_75);
 
-    VramTransfer_New(64, 75);
+    VramTransfer_New(64, HEAP_ID_75);
     SetAutorepeat(4, 8);
 
     ov99_021D1380(v0->unk_08);
@@ -127,11 +127,11 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     sub_0201E450(4);
 
     v0->unk_20 = MessageLoader_Init(0, 26, 548, HEAP_ID_75);
-    v0->unk_10F8 = NARC_ctor(NARC_INDEX_GRAPHIC__ENDING, 75);
+    v0->unk_10F8 = NARC_ctor(NARC_INDEX_GRAPHIC__ENDING, HEAP_ID_75);
 
     ov99_021D1918(v0);
 
-    v0->unk_18 = SpriteSystem_Alloc(75);
+    v0->unk_18 = SpriteSystem_Alloc(HEAP_ID_75);
 
     SpriteSystem_Init(v0->unk_18, &Unk_ov99_021D4760, &Unk_ov99_021D4718, (16 + 16));
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
@@ -768,12 +768,9 @@ static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 *param0)
     Camera_Delete(param0->camera);
 }
 
-static GenericPointerData *ov99_021D19AC(int param0)
+static GenericPointerData *ov99_021D19AC(int heapID)
 {
-    GenericPointerData *v0;
-
-    v0 = sub_02024220(param0, 0, 1, 0, 1, ov99_021D19C8);
-    return v0;
+    return sub_02024220(heapID, 0, 1, 0, 1, ov99_021D19C8);
 }
 
 static void ov99_021D19C8(void)

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV119_021D1930_H
 
 typedef struct {
-    int unk_00;
+    int heapId;
     int unk_04;
 } UnkStruct_ov119_021D1930;
 

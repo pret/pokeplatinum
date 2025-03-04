@@ -674,8 +674,8 @@ void sub_0208AF44(UnkStruct_02089688 *param0)
 
 void sub_0208AFCC(UnkStruct_02089688 *param0)
 {
-    param0->unk_2C0.unk_8C = sub_02012744(2, 101);
-    Font_InitManager(FONT_SUBSCREEN, 101);
+    param0->unk_2C0.unk_8C = sub_02012744(2, HEAP_ID_101);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_101);
 }
 
 void sub_0208AFE8(UnkStruct_02089688 *param0)

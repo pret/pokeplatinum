@@ -124,7 +124,7 @@ static u8 CheckDuplicateValues(GameWindowLayout *param0);
 static u8 CheckUniqueValues(GameWindowLayout *param0);
 static u8 CheckEqualityInArray(GameWindowLayout *param0);
 static BOOL ValidateGameWindowState(GameWindowLayout *param0);
-static GenericPointerData *sub_0207EAD4(int param0);
+static GenericPointerData *sub_0207EAD4(int heapID);
 static void sub_0207EAF4(void);
 static void sub_0207EB64(GenericPointerData *param0);
 static int ProcessMessageResult(GameWindowLayout *param0);
@@ -870,7 +870,7 @@ void sub_0207EA74(GameWindowLayout *param0, int param1)
         Bg_FreeTilemapBuffer(param0->unk_00, 0);
 
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
-        param0->unk_B28 = sub_0207EAD4(12);
+        param0->unk_B28 = sub_0207EAD4(HEAP_ID_12);
     } else {
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
         sub_0207EB64(param0->unk_B28);
@@ -882,12 +882,9 @@ void sub_0207EA74(GameWindowLayout *param0, int param1)
     }
 }
 
-static GenericPointerData *sub_0207EAD4(int param0)
+static GenericPointerData *sub_0207EAD4(int heapID)
 {
-    GenericPointerData *v0;
-
-    v0 = sub_02024220(param0, 0, 1, 0, 2, sub_0207EAF4);
-    return v0;
+    return sub_02024220(heapID, 0, 1, 0, 2, sub_0207EAF4);
 }
 
 static void sub_0207EAF4(void)

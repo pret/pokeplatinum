@@ -88,7 +88,7 @@ void ov21_021D1FA4(PokedexGraphicData *param0, int heapID)
     v1.unk_00 = param0->spriteList;
     v1.unk_04 = param0->bgConfig;
     v1.unk_08 = 16;
-    v1.unk_0C = heapID;
+    v1.heapId = heapID;
 
     param0->unk_14C = ov21_021D4C0C(&v1);
 
@@ -766,10 +766,13 @@ static void ov21_021D2A0C(PokedexGraphicData *param0, int heapID)
 
     {
         UnkStruct_ov22_022550D4 v3 = {
-            8, 8, 8, 0
+            .unk_00 = 8,
+            .unk_04 = 8,
+            .unk_08 = 8,
+            .heapID = HEAP_ID_SYSTEM
         };
 
-        v3.unk_0C = heapID;
+        v3.heapID = heapID;
         param0->unk_164 = sub_02015064(&v3);
     }
 }

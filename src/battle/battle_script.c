@@ -10767,7 +10767,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v12.unk_00 = BattleSystem_BGL(v2->battleSys);
                 v12.unk_04 = BattleSystem_PaletteSys(v2->battleSys);
                 v12.unk_08 = v5;
-                v12.unk_0C = 5;
+                v12.heapId = HEAP_ID_BATTLE;
                 v12.unk_10 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
                 v12.unk_14 = sub_0207A280(BattleSystem_GetPokedex(v2->battleSys));
                 v2->tmpPtr[1] = CharTransfer_PopTaskManager();
@@ -12231,7 +12231,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
     Sprite_SetExplicitPaletteOffsetAutoAdjust(param1->sprites[1]->sprite, Pokemon_IconPaletteIndex(param2));
     ManagedSprite_TickFrame(param1->sprites[1]);
 
-    param1->tmpPtr[0] = sub_02012744(1, 5);
+    param1->tmpPtr[0] = sub_02012744(1, HEAP_ID_BATTLE);
 
     if (Pokemon_GetValue(param2, MON_DATA_NIDORAN_HAS_NICKNAME, NULL) == 0) {
         v13 = 2;

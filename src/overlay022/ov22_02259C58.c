@@ -164,7 +164,7 @@ void ov22_02259DBC(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *par
 {
     Window *v0;
 
-    param0->unk_64 = sub_02012744(1, 13);
+    param0->unk_64 = sub_02012744(1, HEAP_ID_13);
 
     ov22_0225A218(param1);
 

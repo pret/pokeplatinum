@@ -659,7 +659,7 @@ void ov62_02230E80(UnkStruct_0208C06C *param0)
             Window_Init(&v6);
             Window_AddToTopLeftCorner(param0->unk_14.unk_10, &v6, 20, 2, 0, 0);
 
-            v7[v11]->unk_18 = sub_02012B20(&v6, 102);
+            v7[v11]->unk_18 = sub_02012B20(&v6, HEAP_ID_102);
             v4 = sub_02012898(&v6, v8[v11], 102);
 
             CharTransfer_AllocRange(v4, 1, v8[v11], &v7[v11]->unk_1C);
@@ -775,7 +775,7 @@ void ov62_0223118C(UnkStruct_ov62_022312B0 *param0, UnkStruct_ov62_0223118C *par
     Window_Init(&v6);
     Window_AddToTopLeftCorner(param1->unk_10, &v6, 20, 2, 0, 0);
 
-    param0->unk_10 = sub_02012B20(&v6, 102);
+    param0->unk_10 = sub_02012B20(&v6, HEAP_ID_102);
     v4 = sub_02012898(&v6, param2, 102);
 
     CharTransfer_AllocRange(v4, 1, param2, &param0->unk_14);
