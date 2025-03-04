@@ -194,7 +194,7 @@ int ov106_02241AE0(OverlayManager *param0, int *param1)
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov106_02243118), 98);
     memset(v1, 0, sizeof(UnkStruct_ov106_02243118));
 
-    v1->unk_48 = BgConfig_New(98);
+    v1->unk_48 = BgConfig_New(HEAP_ID_98);
     v1->unk_00 = param0;
 
     v2 = (UnkStruct_ov104_02235208 *)OverlayManager_Args(param0);
@@ -768,7 +768,7 @@ static void ov106_0224248C(UnkStruct_ov106_02243118 *param0)
     int v0;
 
     ov106_022424C8();
-    param0->unk_48 = BgConfig_New(98);
+    param0->unk_48 = BgConfig_New(HEAP_ID_98);
     ov106_02242500(param0);
 
     if (ov104_0223B5A4(param0->unk_0D) == 0xfe) {
@@ -802,16 +802,16 @@ static void ov106_02242500(UnkStruct_ov106_02243118 *param0)
     ov106_0224262C(param0);
     ov106_02242688(param0);
 
-    param0->unk_20 = MessageLoader_Init(1, 26, 549, 98);
+    param0->unk_20 = MessageLoader_Init(1, 26, 549, HEAP_ID_98);
     param0->unk_24 = StringTemplate_Default(98);
-    param0->unk_28 = Strbuf_Init(600, 98);
-    param0->unk_2C = Strbuf_Init(600, 98);
+    param0->unk_28 = Strbuf_Init(600, HEAP_ID_98);
+    param0->unk_2C = Strbuf_Init(600, HEAP_ID_98);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_30[v0] = Strbuf_Init(32, 98);
+        param0->unk_30[v0] = Strbuf_Init(32, HEAP_ID_98);
     }
 
-    Font_LoadTextPalette(0, 13 * 32, 98);
+    Font_LoadTextPalette(0, 13 * 32, HEAP_ID_98);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 98);
 
     param0->unk_B0 = sub_0200C440(15, 14, 0, 98);
@@ -944,7 +944,7 @@ static void ov106_0224273C(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilesRange(0, 32, 0, 98);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_98);
         Bg_ClearTilemap(param0, 0);
     }
 
@@ -966,7 +966,7 @@ static void ov106_0224273C(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilesRange(1, 32, 0, 98);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_98);
         Bg_ClearTilemap(param0, 1);
     }
 
@@ -1133,7 +1133,7 @@ static void ov106_02242AC4(UnkStruct_ov106_02243118 *param0, Window *param1, u32
     Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
     Window_FillTilemap(param1, param6);
 
-    v4 = Strbuf_Init((10 + 1), 98);
+    v4 = Strbuf_Init((10 + 1), HEAP_ID_98);
     Strbuf_CopyChars(v4, v6);
     Text_AddPrinterWithParamsAndColor(param1, param7, v4, param2, param3, TEXT_SPEED_INSTANT, TEXT_COLOR(param4, param5, param6), NULL);
     Strbuf_Free(v4);
@@ -1150,8 +1150,8 @@ static void ov106_02242B38(UnkStruct_ov106_02243118 *param0, Window *param1, u8 
 
     Window_FillTilemap(param1, param4);
 
-    v3 = MessageLoader_Init(1, 26, 624, 98);
-    v2 = Strbuf_Init((10 + 1), 98);
+    v3 = MessageLoader_Init(1, 26, 624, HEAP_ID_98);
+    v2 = Strbuf_Init((10 + 1), HEAP_ID_98);
 
     for (v0 = 0; v0 < 5; v0++) {
         for (v1 = 0; v1 < 4; v1++) {
@@ -1206,7 +1206,7 @@ static void ov106_02242C2C(UnkStruct_ov106_02243118 *param0, Window *param1)
 
 static void ov106_02242CA4(UnkStruct_ov106_02243118 *param0)
 {
-    param0->unk_BC = Heap_AllocFromHeap(98, sizeof(PokemonSummary));
+    param0->unk_BC = Heap_AllocFromHeap(HEAP_ID_98, sizeof(PokemonSummary));
     memset(param0->unk_BC, 0, sizeof(PokemonSummary));
 
     param0->unk_BC->monData = param0->unk_290;

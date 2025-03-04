@@ -156,7 +156,7 @@ void sub_02095DFC(int param0, int param1, void *param2, void *param3)
     UnkStruct_02095E80 *v0 = ((FieldSystem *)param3)->unk_88;
 
     if (CommSys_CurNetId() != param0) {
-        sub_02027FEC(v0->unk_227C, (UnkStruct_02027F8C *)param2, 1, 26);
+        sub_02027FEC(v0->unk_227C, (UnkStruct_02027F8C *)param2, 1, HEAP_ID_26);
         v0->unk_54 = 3;
     }
 }

@@ -7,7 +7,7 @@
 #include "overlay_manager.h"
 
 typedef struct {
-    int unk_00;
+    int heapId;
     u16 unk_04;
     u16 unk_06_0 : 8;
     u16 unk_06_8 : 4;

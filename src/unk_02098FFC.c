@@ -20,14 +20,12 @@ static void sub_02099118(UnkStruct_0209903C *param0);
 static void sub_020993A8(UnkStruct_0209903C *param0);
 static s16 sub_020994B8(UnkStruct_0209903C *param0, u8 param1);
 
-UnkStruct_0209903C *sub_02098FFC(int param0, u16 param1, u16 param2, u16 param3, int param4)
+UnkStruct_0209903C *sub_02098FFC(int heapID, u16 param1, u16 param2, u16 param3, int param4)
 {
-    UnkStruct_0209903C *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0209903C));
+    UnkStruct_0209903C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0209903C));
     MI_CpuClear8(v0, sizeof(UnkStruct_0209903C));
 
-    v0->unk_00 = param0;
+    v0->unk_00 = heapID;
 
     if (param1 > 16) {
         v0->unk_0A = 16;

@@ -170,7 +170,7 @@ u16 Script_GetHiddenItemFlag(u16 scriptID);
 u16 Script_GetHiddenItemScript(u16 scriptID);
 void FieldSystem_ClearDailyHiddenItemFlags(FieldSystem *fieldSystem);
 u8 Script_GetHiddenItemRange(u16 scriptID);
-UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int param1);
+UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int heapID);
 void FieldSystem_InitNewGameState(FieldSystem *fieldSystem);
 void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID);
 BOOL sub_0203F5C0(FieldSystem *fieldSystem, u8 param1);

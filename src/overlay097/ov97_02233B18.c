@@ -441,7 +441,7 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
     }
 
     if (param1->unk_34 != -1) {
-        v2 = MessageLoader_Init(1, 26, 454, 78);
+        v2 = MessageLoader_Init(1, 26, 454, HEAP_ID_78);
 
         if (param1->unk_40) {
             v1 = param1->unk_40;
@@ -1224,8 +1224,8 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMon
 
     ov97_02233DD0(param0, &v4, 0x4 | 0x2);
 
-    v8 = Strbuf_Init(64, 78);
-    v5 = MessageLoader_Init(1, 26, 412, 78);
+    v8 = Strbuf_Init(64, HEAP_ID_78);
+    v5 = MessageLoader_Init(1, 26, 412, HEAP_ID_78);
     species = ConvertGBASpeciesToDS(GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL));
 
     MessageLoader_GetStrbuf(v5, species, v8);
@@ -1244,7 +1244,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMon
 
     if (v2) {
         v3 = Item_FromGBAID(v2);
-        v8 = Strbuf_Init(64, 78);
+        v8 = Strbuf_Init(64, HEAP_ID_78);
 
         Item_LoadName(v8, v3, 78);
 
@@ -1258,7 +1258,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMon
     }
 
     level = GetBoxMonGBALevel(boxMonGBA);
-    v8 = Strbuf_Init(10, 78);
+    v8 = Strbuf_Init(10, HEAP_ID_78);
 
     Strbuf_FormatInt(v8, level, 3, 1, 1);
 
@@ -1416,7 +1416,7 @@ static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
     GXLayers_SwapDisplay();
     Text_ResetAllPrinters();
 
-    Font_LoadTextPalette(0, 15 * 32, 78);
+    Font_LoadTextPalette(0, 15 * 32, HEAP_ID_78);
     Graphics_LoadPalette(116, 19, 0, 0, 32 * 6, 78);
     Graphics_LoadTilesToBgLayer(116, 22, param0->unk_20, 2, 0, 10 * 16 * 0x20, 1, 78);
     Font_InitManager(FONT_SUBSCREEN, 78);
@@ -1431,8 +1431,8 @@ static void ov97_02234E7C(UnkStruct_ov97_02234A2C *param0)
 
 static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0)
 {
-    Font_LoadTextPalette(0, 14 * 32, 78);
-    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, 78);
+    Font_LoadTextPalette(0, 14 * 32, HEAP_ID_78);
+    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, HEAP_ID_78);
     LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
 
     memset(&param0->unk_490, 0, sizeof(UnkStruct_ov97_02233DAC));
@@ -1495,8 +1495,8 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
     Bg_ChangeTilemapRectPalette(param0->unk_20, 2, 0, 0, 32, 24, Unk_ov97_0223EA60[param0->unk_00]);
     Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Font_LoadTextPalette(0, 14 * 32, 78);
-    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, 78);
+    Font_LoadTextPalette(0, 14 * 32, HEAP_ID_78);
+    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, HEAP_ID_78);
     LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
 
     ov97_02234ECC(param0);
@@ -1623,7 +1623,7 @@ static void ov97_02235344(UnkStruct_ov97_02234A2C *param0)
     ov97_0223936C(GetGBAPlayerName(), v3, GBA_PLAYER_NAME_LEN + 1, ov97_02235DBC());
 
     v1 = StringTemplate_Default(78);
-    v2 = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, 78);
+    v2 = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_78);
 
     Strbuf_CopyChars(v2, v3);
     StringTemplate_SetStrbuf(v1, 1, v2, 0, 1, GAME_LANGUAGE);
@@ -1787,7 +1787,7 @@ static int ov97_02235624(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_02234A2C), 78);
     memset(v0, 0, sizeof(UnkStruct_ov97_02234A2C));
 
-    v0->unk_20 = BgConfig_New(78);
+    v0->unk_20 = BgConfig_New(HEAP_ID_78);
     v0->unk_E8EC = sub_02015920(78);
 
     sub_0200F344(0, 0x0);
@@ -1797,8 +1797,8 @@ static int ov97_02235624(OverlayManager *param0, int *param1)
     v0->unk_14 = SaveData_GetTrainerInfo(v0->unk_10);
     v0->unk_18 = SaveData_Options(v0->unk_10);
     v0->unk_1C = Options_Frame(v0->unk_18);
-    v0->unk_12668 = Strbuf_Init(256, 78);
-    v0->unk_1266C = Strbuf_Init(256, 78);
+    v0->unk_12668 = Strbuf_Init(256, HEAP_ID_78);
+    v0->unk_1266C = Strbuf_Init(256, HEAP_ID_78);
 
     sub_02004550(9, 1174, 1);
 

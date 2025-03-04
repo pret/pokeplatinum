@@ -44,7 +44,7 @@ void ov106_02243710(Window *param0)
 
 void ov106_0224372C(BgConfig *param0, Window *param1)
 {
-    LoadStandardWindowGraphics(param0, 0, (1024 - 9), 11, 0, 98);
+    LoadStandardWindowGraphics(param0, 0, (1024 - 9), 11, 0, HEAP_ID_98);
     Window_DrawStandardFrame(param1, 1, (1024 - 9), 11);
 
     return;

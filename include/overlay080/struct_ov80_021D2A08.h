@@ -20,7 +20,7 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     u8 unk_00;
     u8 unk_01;
     u16 unk_02;
-    int unk_04;
+    int heapID;
     int unk_08;
     int unk_0C;
     int unk_10;

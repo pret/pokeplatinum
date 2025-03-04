@@ -95,15 +95,15 @@ int sub_0205CA14(int param0, int param1, int param2)
     return 0;
 }
 
-u16 *sub_0205CA4C(int param0)
+u16 *sub_0205CA4C(int heapID)
 {
     u8 *v0, *v1;
     NNSG2dPaletteData *v2, *v3;
     u16 *v4, *v5;
     int v6;
 
-    v0 = Graphics_GetPlttData(86, 7, &v2, param0);
-    v4 = Heap_AllocFromHeap(param0, 16 * 18 * 2);
+    v0 = Graphics_GetPlttData(86, 7, &v2, heapID);
+    v4 = Heap_AllocFromHeap(heapID, 16 * 18 * 2);
     v5 = (u16 *)v2->pRawData;
 
     for (v6 = 0; v6 < 16 * 16; v6++) {

@@ -62,7 +62,7 @@ typedef struct {
 } UnkStruct_ov90_021D17F8;
 
 typedef struct {
-    int unk_00;
+    int heapID;
     int unk_04;
     u16 unk_08;
     u8 unk_0A;
@@ -132,7 +132,7 @@ int ov90_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_1C = sub_0203068C(v1->unk_00);
     v0->unk_20 = sub_0202D750(v1->unk_00);
     v0->unk_24 = sub_0202D764(v1->unk_00);
-    v0->unk_00 = 74;
+    v0->heapID = HEAP_ID_74;
 
     SetAutorepeat(4, 8);
 
@@ -144,7 +144,7 @@ int ov90_021D0DE8(OverlayManager *param0, int *param1)
     UnkStruct_ov90_021D0ECC *v0 = OverlayManager_Data(param0);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(v0->unk_00);
+    Heap_Destroy(v0->heapID);
 
     return 1;
 }
@@ -160,7 +160,7 @@ int ov90_021D0E04(OverlayManager *param0, int *param1)
             break;
         }
 
-        StartScreenTransition(3, 1, 1, 0x0, 6, 1, v1->unk_00);
+        StartScreenTransition(3, 1, 1, 0x0, 6, 1, v1->heapID);
         (*param1)++;
         break;
     case 1:
@@ -181,7 +181,7 @@ int ov90_021D0E04(OverlayManager *param0, int *param1)
             break;
         }
 
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v1->unk_00);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, v1->heapID);
         (*param1)++;
         break;
     case 3:
@@ -437,7 +437,7 @@ static void ov90_021D11EC(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0, v1;
 
-    param0->unk_10 = BgConfig_New(param0->unk_00);
+    param0->unk_10 = BgConfig_New(param0->heapID);
 
     {
         GraphicsModes v2 = {
@@ -507,10 +507,10 @@ static void ov90_021D11EC(UnkStruct_ov90_021D0ECC *param0)
             v1++;
         }
     }
-    Bg_ClearTilesRange(0, 32, 0, param0->unk_00);
+    Bg_ClearTilesRange(0, 32, 0, param0->heapID);
 
     if (param0->unk_08) {
-        Bg_ClearTilesRange(2, 32, 0, param0->unk_00);
+        Bg_ClearTilesRange(2, 32, 0, param0->heapID);
     }
 }
 
@@ -532,10 +532,10 @@ static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0)
     int v0;
     NARC *v1;
 
-    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__BTOWER, param0->unk_00);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__BTOWER, param0->heapID);
 
-    sub_0208C210(param0->unk_10, param0->unk_00, v1, 123, 5, 1, 0, 0, 0);
-    sub_0208C210(param0->unk_10, param0->unk_00, v1, 123, 4, 1, 2, 0x20 * 0x2, 0);
+    sub_0208C210(param0->unk_10, param0->heapID, v1, 123, 5, 1, 0, 0, 0);
+    sub_0208C210(param0->unk_10, param0->heapID, v1, 123, 4, 1, 2, 0x20 * 0x2, 0);
 
     if (param0->unk_08 == 1) {
         v0 = 7;
@@ -547,7 +547,7 @@ static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0)
         }
     }
 
-    sub_0208C210(param0->unk_10, param0->unk_00, v1, 123, v0, 1, 1, 0, 0);
+    sub_0208C210(param0->unk_10, param0->heapID, v1, 123, v0, 1, 1, 0, 0);
     NARC_dtor(v1);
     Bg_ScheduleTilemapTransfer(param0->unk_10, 1);
 }
@@ -581,7 +581,7 @@ static void ov90_021D1340(UnkStruct_ov90_021D0ECC *param0)
         }
     }
 
-    Font_LoadTextPalette(0, 2 * 32, param0->unk_00);
+    Font_LoadTextPalette(0, 2 * 32, param0->heapID);
 }
 
 static void ov90_021D13A8(UnkStruct_ov90_021D0ECC *param0)
@@ -604,9 +604,9 @@ static void ov90_021D13D8(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0 = 0;
 
-    param0->unk_28.unk_00 = MessageLoader_Init(0, 26, 22, param0->unk_00);
-    param0->unk_28.unk_04 = StringTemplate_New(2, ((18 + 1) * 4), param0->unk_00);
-    param0->unk_28.unk_08 = Strbuf_Init(((18 + 1) * 4), param0->unk_00);
+    param0->unk_28.unk_00 = MessageLoader_Init(0, 26, 22, param0->heapID);
+    param0->unk_28.unk_04 = StringTemplate_New(2, ((18 + 1) * 4), param0->heapID);
+    param0->unk_28.unk_08 = Strbuf_Init(((18 + 1) * 4), param0->heapID);
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_28.unk_24[v0] = MessageLoader_GetNewStrbuf(param0->unk_28.unk_00, 9 + v0);
@@ -716,7 +716,7 @@ static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0)
     UnkStruct_ov90_021D1750 *v1;
     UnkStruct_ov90_021D17F8 *v2;
 
-    v1 = sub_0202D71C(param0->unk_24, param0->unk_00);
+    v1 = sub_0202D71C(param0->unk_24, param0->heapID);
 
     for (v0 = 0; v0 < 30; v0++) {
         v2 = &param0->unk_BC[v0];
@@ -727,7 +727,7 @@ static void ov90_021D1750(UnkStruct_ov90_021D0ECC *param0)
 
         MI_CpuCopy8(v1[v0].unk_18, &v2->unk_08, 8);
 
-        v2->unk_00 = Strbuf_Init(8, param0->unk_00);
+        v2->unk_00 = Strbuf_Init(8, param0->heapID);
 
         if (v2->unk_07) {
             Strbuf_Copy(v2->unk_00, param0->unk_28.unk_3C[v2->unk_04]);
@@ -831,7 +831,7 @@ static void ov90_021D1A48(UnkStruct_ov90_021D0ECC *param0)
     Strbuf *v0;
     UnkStruct_ov90_021D17F8 *v1 = &(param0->unk_BC[param0->unk_0B * 3 + param0->unk_0C]);
 
-    v0 = sub_02014B34(&v1->unk_08, param0->unk_00);
+    v0 = sub_02014B34(&v1->unk_08, param0->heapID);
 
     Window_FillTilemap(&param0->unk_6C[2], ((0 << 4) | 0));
     Text_AddPrinterWithParamsAndColor(&param0->unk_6C[2], FONT_SYSTEM, v0, 0, 4, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
@@ -847,9 +847,9 @@ static void ov90_021D1A9C(UnkStruct_ov90_021D0ECC *param0)
 
 static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
 {
-    VramTransfer_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->heapID);
 
-    param0->unk_29C = SpriteSystem_Alloc(param0->unk_00);
+    param0->unk_29C = SpriteSystem_Alloc(param0->heapID);
     param0->unk_2A0 = SpriteManager_New(param0->unk_29C);
 
     {
@@ -874,8 +874,8 @@ static void ov90_021D1ABC(UnkStruct_ov90_021D0ECC *param0)
 
         SpriteSystem_Init(param0->unk_29C, &v0, &v1, 32);
         SpriteSystem_InitSprites(param0->unk_29C, param0->unk_2A0, 4);
-        RenderOam_ClearMain(param0->unk_00);
-        RenderOam_ClearSub(param0->unk_00);
+        RenderOam_ClearMain(param0->heapID);
+        RenderOam_ClearSub(param0->heapID);
     }
 
     {

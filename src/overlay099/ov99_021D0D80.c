@@ -116,7 +116,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, 75);
     PaletteData_SetAutoTransparent(v0->unk_0C, 1);
 
-    v0->unk_08 = BgConfig_New(75);
+    v0->unk_08 = BgConfig_New(HEAP_ID_75);
 
     VramTransfer_New(64, 75);
     SetAutorepeat(4, 8);
@@ -126,7 +126,7 @@ int ov99_021D0D80(OverlayManager *param0, int *param1)
     sub_0201E3D8();
     sub_0201E450(4);
 
-    v0->unk_20 = MessageLoader_Init(0, 26, 548, 75);
+    v0->unk_20 = MessageLoader_Init(0, 26, 548, HEAP_ID_75);
     v0->unk_10F8 = NARC_ctor(NARC_INDEX_GRAPHIC__ENDING, 75);
 
     ov99_021D1918(v0);
@@ -332,7 +332,7 @@ void ov99_021D12F0(UnkStruct_ov99_021D2CB0 *param0)
 
     ov99_021D1270(param0);
 
-    param0->unk_08 = BgConfig_New(75);
+    param0->unk_08 = BgConfig_New(HEAP_ID_75);
     ov99_021D1580(param0->unk_08);
 }
 
@@ -529,10 +529,10 @@ static void ov99_021D1380(BgConfig *param0)
         Bg_SetOffset(param0, 7, 3, 0);
     }
 
-    Bg_ClearTilesRange(1, 32, 0, 75);
-    Bg_ClearTilesRange(5, 32, 0, 75);
-    Bg_ClearTilesRange(6, 32, 0, 75);
-    Bg_ClearTilesRange(7, 32, 0, 75);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_75);
+    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_75);
+    Bg_ClearTilesRange(6, 32, 0, HEAP_ID_75);
+    Bg_ClearTilesRange(7, 32, 0, HEAP_ID_75);
 
     Bg_ToggleLayer(3, 0);
     Bg_ToggleLayer(6, 0);
@@ -666,7 +666,7 @@ static void ov99_021D1580(BgConfig *param0)
         Bg_SetOffset(param0, 7, 3, 0);
     }
 
-    Bg_ClearTilesRange(7, 32, 0, 75);
+    Bg_ClearTilesRange(7, 32, 0, HEAP_ID_75);
 }
 
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 *param0)

@@ -143,7 +143,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     MessageLoader *v4;
     Window v5;
 
-    v4 = MessageLoader_Init(0, 26, 8, 53);
+    v4 = MessageLoader_Init(0, 26, 8, HEAP_ID_53);
     v1 = MessageLoader_GetNewStrbuf(v4, 5 + param1);
 
     {
@@ -343,7 +343,7 @@ void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
 {
     UnkStruct_ov76_0223BCA0 *v0;
 
-    v0 = Heap_AllocFromHeap(53, sizeof(UnkStruct_ov76_0223BCA0));
+    v0 = Heap_AllocFromHeap(HEAP_ID_53, sizeof(UnkStruct_ov76_0223BCA0));
     v0->unk_164 = param0->unk_D4.unk_10;
 
     {
@@ -492,7 +492,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
     {
         int v9;
         Strbuf *v10;
-        MessageLoader *v11 = MessageLoader_Init(0, 26, 8, 53);
+        MessageLoader *v11 = MessageLoader_Init(0, 26, 8, HEAP_ID_53);
 
         for (v9 = 0; v9 < v7; v9++) {
             v10 = MessageLoader_GetNewStrbuf(v11, Unk_ov76_0223EF3C[v8[v9]].unk_00);
@@ -919,7 +919,7 @@ void ov76_0223C8EC(BgConfig *param0, PaletteData *param1, int param2)
 {
     LoadMessageBoxGraphics(param0, 1, 1, 15, param2, 53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), 53, 0, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, 1, (1 + (18 + 12)), 13, 0, 53);
+    LoadStandardWindowGraphics(param0, 1, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), 53, 0, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 0, 0x20, 14 * 16);
 }
@@ -928,7 +928,7 @@ void ov76_0223C974(BgConfig *param0, PaletteData *param1, int param2)
 {
     LoadMessageBoxGraphics(param0, 4, 1, 15, param2, 53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), 53, 1, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, 4, (1 + (18 + 12)), 13, 0, 53);
+    LoadStandardWindowGraphics(param0, 4, (1 + (18 + 12)), 13, 0, HEAP_ID_53);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), 53, 1, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, 53, 1, 0x20, 3 * 16);
@@ -946,7 +946,7 @@ void ov76_0223CA30(Window *param0, int param1)
         return;
     }
 
-    v0 = MessageLoader_Init(0, 26, 8, 53);
+    v0 = MessageLoader_Init(0, 26, 8, HEAP_ID_53);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     Window_FillTilemap(param0, 15);
@@ -1007,7 +1007,7 @@ void ov76_0223CC8C(UnkStruct_ov76_0223DE00 *param0)
 
         Window_FillTilemap(v5, 0x0);
 
-        v4 = Strbuf_Init(100, 53);
+        v4 = Strbuf_Init(100, HEAP_ID_53);
         v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
         Strbuf_FormatInt(v4, v3, 3, 1, 1);
@@ -1038,7 +1038,7 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
 
     Window_FillTilemap(v5, 0x0);
 
-    v4 = Strbuf_Init(100, 53);
+    v4 = Strbuf_Init(100, HEAP_ID_53);
     v3 = sub_0202CA90(param0->unk_64, v2 - 1);
 
     Strbuf_FormatInt(v4, v3, 3, 1, 1);
@@ -1068,7 +1068,7 @@ void ov76_0223CDC4(Window *param0, int param1)
         return;
     }
 
-    v0 = MessageLoader_Init(0, 26, 12, 53);
+    v0 = MessageLoader_Init(0, 26, 12, HEAP_ID_53);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     Window_FillTilemap(param0, 15);

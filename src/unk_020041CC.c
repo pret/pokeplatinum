@@ -58,7 +58,6 @@ void sub_02004D40(u32 param0, int param1);
 BOOL sub_02004CB4(UnkStruct_02004CB4 *param0, u32 param1);
 void sub_02004CF4(u32 param0);
 BOOL sub_02004D04(u32 param0);
-BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int param4);
 void sub_02004E84(u32 param0);
 static void sub_02004E64(u8 *param0, u32 param1);
 BOOL sub_02004EC0(void);
@@ -998,7 +997,7 @@ void sub_02004D40(u32 param0, int param1)
     return;
 }
 
-BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int param4)
+BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int heapID)
 {
     u8 *v0;
     const NNSSndArcWaveArcInfo *v1;
@@ -1026,7 +1025,7 @@ BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int param4)
     }
 
     if (param3 == 14) {
-        *v6 = Heap_AllocFromHeap(param4, v2);
+        *v6 = Heap_AllocFromHeap(heapID, v2);
 
         if (*v6 == NULL) {
             GF_ASSERT(FALSE);

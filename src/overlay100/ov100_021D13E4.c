@@ -35,7 +35,7 @@ static void ov100_021D1758(Camera *camera, VecFx32 *param1);
 
 void *ov100_021D13E4(UnkStruct_ov100_021D4DD8 *param0)
 {
-    UnkStruct_ov100_021D1808 *v0 = Heap_AllocFromHeap(111, sizeof(UnkStruct_ov100_021D1808));
+    UnkStruct_ov100_021D1808 *v0 = Heap_AllocFromHeap(HEAP_ID_111, sizeof(UnkStruct_ov100_021D1808));
 
     memset(v0, 0, sizeof(UnkStruct_ov100_021D1808));
 
@@ -127,7 +127,7 @@ BOOL ov100_021D14A8(void *param0)
         }
 
         if (v0->unk_04 == v2[v0->unk_08]) {
-            Sound_PlayPokemonCry(0, v4[v0->unk_08], 0, 100, 111, 0);
+            Sound_PlayPokemonCry(0, v4[v0->unk_08], 0, 100, HEAP_ID_111, 0);
         }
 
         if ((++v0->unk_04) >= v1[v0->unk_08]) {

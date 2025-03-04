@@ -80,7 +80,7 @@ void ov22_022589E0(UnkStruct_ov22_02258A48 *param0, UnkStruct_ov22_02257964 *par
 
     ov22_022588F0(param0);
 
-    param0->unk_00 = Heap_AllocFromHeap(13, sizeof(UnkStruct_ov22_02258EE4));
+    param0->unk_00 = Heap_AllocFromHeap(HEAP_ID_13, sizeof(UnkStruct_ov22_02258EE4));
     memset(param0->unk_00, 0, sizeof(UnkStruct_ov22_02258EE4));
     v0 = param0->unk_00;
 

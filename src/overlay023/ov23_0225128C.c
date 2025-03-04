@@ -361,7 +361,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         MessageLoader *v3;
         int v4 = 0;
 
-        v3 = MessageLoader_Init(0, 26, 639, 4);
+        v3 = MessageLoader_Init(0, 26, 639, HEAP_ID_FIELD);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == (v1 - 1)) {
@@ -407,7 +407,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
         MessageLoader *v3;
         int v4 = 0;
 
-        v3 = MessageLoader_Init(0, 26, 639, 4);
+        v3 = MessageLoader_Init(0, 26, 639, HEAP_ID_FIELD);
 
         for (v4 = 0; v4 < v1; v4++) {
             if (v4 == param2) {
@@ -838,17 +838,17 @@ static void ov23_02251F94(FieldSystem *fieldSystem)
 
     ov23_022430D0(1);
 
-    v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
+    v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_02250CD4));
     v1->fieldSystem = fieldSystem;
 
     ov23_02253DFC(ov23_022421BC(), 639, 1);
 
     v1->unk_2AA = 0;
-    v1->unk_68 = Strbuf_Init((50 * 2), 4);
-    v1->unk_6C = Strbuf_Init((50 * 2), 4);
+    v1->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
+    v1->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     v1->unk_70 = StringTemplate_Default(4);
-    v1->unk_08 = sub_0206A780(4);
+    v1->unk_08 = sub_0206A780(HEAP_ID_FIELD);
 
     sub_0206A8A0(v1->unk_08, 200, 20, 122);
     sub_0206A8C4(v1->unk_08, 0, 0);
@@ -908,7 +908,7 @@ static void ov23_022520C8(SysTask *param0, void *param1)
 
 static void ov23_022520E8(FieldSystem *fieldSystem, UnkStruct_ov23_022513B0 *param1)
 {
-    UnkStruct_ov23_02252038 *v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02250CD4));
+    UnkStruct_ov23_02252038 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02252038));
 

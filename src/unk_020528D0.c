@@ -103,7 +103,7 @@ static void sub_020528D0(BgConfig *param0)
 
 static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
 {
-    UnkStruct_02052AA4 *v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02052AA4));
+    UnkStruct_02052AA4 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02052AA4));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);
@@ -113,11 +113,11 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
 
     v0->unk_00 = 0;
     v0->fieldSystem = fieldSystem;
-    v0->unk_08 = BgConfig_New(11);
+    v0->unk_08 = BgConfig_New(HEAP_ID_FIELDMAP);
 
     sub_020528D0(v0->unk_08);
 
-    v0->unk_1C = MessageLoader_Init(1, 26, 373, 11);
+    v0->unk_1C = MessageLoader_Init(1, 26, 373, HEAP_ID_FIELDMAP);
     v0->unk_20 = StringTemplate_Default(11);
 
     Window_AddFromTemplate(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
@@ -178,8 +178,8 @@ static BOOL sub_020529C4(FieldTask *task)
 
 static void sub_02052AA4(UnkStruct_02052AA4 *param0, u16 param1, u8 param2, u8 param3)
 {
-    Strbuf *v0 = Strbuf_Init(1024, 11);
-    Strbuf *v1 = Strbuf_Init(1024, 11);
+    Strbuf *v0 = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
+    Strbuf *v1 = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
 
     Window_FillTilemap(&param0->unk_0C, 0);
     MessageLoader_GetStrbuf(param0->unk_1C, param1, v0);

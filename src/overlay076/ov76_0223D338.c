@@ -502,7 +502,7 @@ static void ov76_0223DA00(ManagedSprite *param0, FontOAM *param1)
 {
     UnkStruct_ov76_0223D9AC *v0;
 
-    v0 = Heap_AllocFromHeap(53, sizeof(UnkStruct_ov76_0223D9AC));
+    v0 = Heap_AllocFromHeap(HEAP_ID_53, sizeof(UnkStruct_ov76_0223D9AC));
 
     v0->unk_00 = 1;
     v0->unk_04 = param0;
@@ -689,7 +689,7 @@ void ov76_0223DCC0(UnkStruct_ov76_0223DE00 *param0)
         param0->unk_324[v0 - 13].unk_0C = &param0->unk_D4.unk_FC[v0];
     }
 
-    param0->unk_D4.unk_F8 = sub_02023FCC(param0->unk_D4.unk_FC, 21, ov76_0223DA34, param0, 53);
+    param0->unk_D4.unk_F8 = sub_02023FCC(param0->unk_D4.unk_FC, 21, ov76_0223DA34, param0, HEAP_ID_53);
 }
 
 void ov76_0223DD88(UnkStruct_ov76_0223DE00 *param0)

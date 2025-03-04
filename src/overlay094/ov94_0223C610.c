@@ -245,8 +245,8 @@ static void ov94_0223C720(BgConfig *param0)
         Bg_InitFromTemplate(param0, 5, &v5, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 62);
-    Bg_ClearTilesRange(4, 32, 0, 62);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -279,7 +279,7 @@ static void ov94_0223C888(UnkStruct_ov94_0223FD4C *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 14, v0, 1, 0, 16 * 6 * 0x20, 1, 62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 30, v0, 1, 0, 32 * 24 * 2, 1, 62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 29, v0, 2, 0, 32 * 24 * 2, 1, 62);
@@ -352,7 +352,7 @@ static void ov94_0223CAC8(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_0223CB0C(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_BAC = Strbuf_Init((90 * 2), 62);
+    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
     param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 39);
 }
 

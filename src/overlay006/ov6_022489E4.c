@@ -100,7 +100,7 @@ BOOL ov6_02248AF0(UnkStruct_02095C48 *param0, int param1, const Pokemon *param2)
     int v2;
 
     v1 = Pokemon_StructSize();
-    v0 = Heap_AllocFromHeap(20, v1 + 1);
+    v0 = Heap_AllocFromHeap(HEAP_ID_20, v1 + 1);
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
@@ -179,7 +179,7 @@ BOOL ov6_02248BE8(UnkStruct_02095C48 *param0, int param1, const UnkStruct_ov6_02
     int v2;
 
     v1 = sizeof(UnkStruct_ov6_02248BE8);
-    v0 = Heap_AllocFromHeap(20, v1 + 1);
+    v0 = Heap_AllocFromHeap(HEAP_ID_20, v1 + 1);
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 
@@ -221,7 +221,7 @@ BOOL ov6_02248C68(UnkStruct_02095C48 *param0, int param1, const UnkStruct_020954
 
     v4 = param2;
     v1 = sizeof(UnkStruct_020954F0) * (1 + 2) + 1;
-    v0 = Heap_AllocFromHeap(20, v1);
+    v0 = Heap_AllocFromHeap(HEAP_ID_20, v1);
 
     for (v3 = 0; v3 < (1 + 2); v3++) {
         MI_CpuCopy8(v4, &v0[sizeof(UnkStruct_020954F0) * v3], sizeof(UnkStruct_020954F0));
@@ -271,7 +271,7 @@ BOOL ov6_02248CE8(UnkStruct_02095C48 *param0, int param1, const Strbuf *param2)
 
     Strbuf_ToChars(param2, v4, 8); // Possibly TRAINER_NAME_LEN + 1
 
-    v2 = Heap_AllocFromHeap(20, v0 + v1);
+    v2 = Heap_AllocFromHeap(HEAP_ID_20, v0 + v1);
     MI_CpuCopy8(v4, &v2[v1], v0);
     v2[0] = param1;
     v2[1] = v0;
@@ -355,7 +355,7 @@ BOOL ov6_02248DD8(UnkStruct_02095C48 *param0, int param1, const UnkStruct_ov6_02
     int v2;
 
     v1 = sizeof(UnkStruct_ov6_02248DD8);
-    v0 = Heap_AllocFromHeap(20, v1 + 1);
+    v0 = Heap_AllocFromHeap(HEAP_ID_20, v1 + 1);
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
 

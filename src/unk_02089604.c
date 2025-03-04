@@ -751,7 +751,7 @@ void sub_02089F80(UnkStruct_02089688 *param0)
 {
     int v0;
     u32 v1 = 0;
-    Strbuf *v2 = Strbuf_Init(100, 101);
+    Strbuf *v2 = Strbuf_Init(100, HEAP_ID_101);
 
     param0->unk_240[1].unk_00 = 1;
     param0->unk_240[1].unk_14.unk_04 = 0;
@@ -846,7 +846,7 @@ void sub_0208A0B8(UnkStruct_02089688 *param0)
         }
     }
 
-    param0->unk_2C0.unk_14 = sub_02023FCC(param0->unk_2C0.unk_18, 0x1c, sub_0208A180, param0, 101);
+    param0->unk_2C0.unk_14 = sub_02023FCC(param0->unk_2C0.unk_18, 0x1c, sub_0208A180, param0, HEAP_ID_101);
 }
 
 void sub_0208A180(u32 param0, u32 param1, void *param2)

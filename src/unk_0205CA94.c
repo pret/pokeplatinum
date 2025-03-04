@@ -582,7 +582,7 @@ void sub_0205D3C4(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
 {
     UnkStruct_0205D3C4 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D3C4));
+    param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D3C4));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D3C4));
 
     v0 = (UnkStruct_0205D3C4 *)param1->unk_00;
@@ -631,7 +631,7 @@ void sub_0205D4A4(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
 {
     UnkStruct_0205D4A4 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D4A4));
+    param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D4A4));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D4A4));
 
     v0 = (UnkStruct_0205D4A4 *)param1->unk_00;
@@ -670,7 +670,7 @@ void sub_0205D524(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
 {
     UnkStruct_0205D3C4 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D3C4));
+    param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D3C4));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D3C4));
 
     v0 = (UnkStruct_0205D3C4 *)param1->unk_00;
@@ -720,7 +720,7 @@ void sub_0205D5E0(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
 {
     UnkStruct_0205D5E0 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D5E0));
+    param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D5E0));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D5E0));
 
     v0 = (UnkStruct_0205D5E0 *)param1->unk_00;
@@ -800,7 +800,7 @@ void sub_0205D714(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
 {
     UnkStruct_0205D5E0 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D5E0));
+    param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D5E0));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D5E0));
 
     v0 = (UnkStruct_0205D5E0 *)param1->unk_00;
@@ -868,7 +868,7 @@ void sub_0205D844(UnkStruct_0205D094 *param0, struct UnkStruct_0205D3AC_t *param
 {
     UnkStruct_0205D4A4 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(4, sizeof(UnkStruct_0205D4A4));
+    param1->unk_00 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_0205D4A4));
     memset(param1->unk_00, 0, sizeof(UnkStruct_0205D4A4));
 
     v0 = (UnkStruct_0205D4A4 *)param1->unk_00;

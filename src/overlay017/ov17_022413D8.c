@@ -417,7 +417,7 @@ UnkStruct_ov17_0224145C *ov17_0224145C(UnkStruct_ov17_02246F24 *param0, int para
 {
     UnkStruct_ov17_0224145C *v0;
 
-    v0 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_0224145C));
+    v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_0224145C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224145C));
 
     v0->unk_00 = param0->unk_0C.unk_50;
@@ -499,7 +499,7 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
     for (v0 = 0; v0 < 4; v0++) {
         GF_ASSERT(param0->unk_58[v0].unk_00 == NULL);
 
-        param0->unk_58[v0].unk_00 = Heap_AllocFromHeap(21, (32 * 10 * 10));
+        param0->unk_58[v0].unk_00 = Heap_AllocFromHeap(HEAP_ID_21, (32 * 10 * 10));
         param0->unk_08[v0] = sub_02095484(param0->unk_04, v0, param0->unk_00->unk_00[v0], 0, &param0->unk_58[v0], 21, (256 - 40) - 32 * v0, (104 + 8) - 32 * v0, -0x200);
 
         sub_02007DEC(param0->unk_08[v0], 6, 1);
@@ -519,7 +519,7 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
 
     GF_ASSERT(param0->unk_98.unk_00 == NULL);
 
-    param0->unk_98.unk_00 = Heap_AllocFromHeap(21, (32 * 10 * 10));
+    param0->unk_98.unk_00 = Heap_AllocFromHeap(HEAP_ID_21, (32 * 10 * 10));
     param0->unk_98.unk_08 = param0->unk_58[0].unk_08;
     param0->unk_98.unk_04 = param0->unk_58[0].unk_04;
 
@@ -741,7 +741,7 @@ void ov17_02241B3C(UnkStruct_ov17_02246F24 *param0, int param1, int param2, u8 *
 {
     UnkStruct_ov17_02241B3C *v0;
 
-    v0 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_02241B3C));
+    v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02241B3C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02241B3C));
 
     *param3 = 0;
@@ -975,7 +975,7 @@ static void ov17_02242048(ManagedSprite *param0)
 {
     UnkStruct_ov17_02242048 *v0;
 
-    v0 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_02242048));
+    v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02242048));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02242048));
     v0->unk_00 = param0;
 
@@ -1190,7 +1190,7 @@ void ov17_022424D4(UnkStruct_ov17_0223F88C *param0, int param1, int param2)
             param0->unk_124[param1][v1] = ov17_02242260(param0->unk_18, param0->unk_1C, Unk_ov17_022536D8[param1][0] + v1 * 5, Unk_ov17_022536D8[param1][1]);
             ManagedSprite_SetDrawFlag(param0->unk_124[param1][v1], 0);
 
-            v2 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_022422B8));
+            v2 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_022422B8));
             MI_CpuClear8(v2, sizeof(UnkStruct_ov17_022422B8));
 
             v2->unk_00 = param0;
@@ -1253,7 +1253,7 @@ void ov17_022426E8(UnkStruct_ov17_02246F24 *param0, int param1, u8 *param2)
 
     *param2 = 0;
 
-    v0 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_022426E8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_022426E8));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022426E8));
 
     v0->unk_00 = param0;
@@ -1574,7 +1574,7 @@ void ov17_02242EE4(UnkStruct_ov17_02246F24 *param0, int param1)
     Strbuf *v0;
     TextColor v1;
 
-    v0 = Strbuf_Init(12, 21);
+    v0 = Strbuf_Init(12, HEAP_ID_21);
 
     Pokemon_GetValue(param0->unk_0C.unk_00->unk_00[param1], MON_DATA_NICKNAME_STRBUF, v0);
 
@@ -1714,7 +1714,7 @@ void ov17_022431A0(UnkStruct_ov17_02246F24 *param0, int param1, u8 param2, int p
 
     *param5 = 0;
 
-    v0 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_022431A0));
+    v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_022431A0));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022431A0));
 
@@ -1848,7 +1848,7 @@ void ov17_0224331C(UnkStruct_ov17_02246F24 *param0, int param1, int param2, u8 *
             }
         }
 
-        v0 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_0224331C));
+        v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_0224331C));
         MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224331C));
 
         v0->unk_04 = param4;
@@ -1930,7 +1930,7 @@ UnkStruct_ov17_0224365C *ov17_0224365C(UnkStruct_ov17_02246F24 *param0, int para
 {
     UnkStruct_ov17_0224365C *v0;
 
-    v0 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_0224365C));
+    v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_0224365C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224365C));
 
     v0->unk_00 = param0;
@@ -1976,7 +1976,7 @@ void ov17_022436D0(UnkStruct_ov17_02246F24 *param0, int param1, int param2, int 
             continue;
         }
 
-        v0 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_022436D0));
+        v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_022436D0));
         MI_CpuClear8(v0, sizeof(UnkStruct_ov17_022436D0));
 
         v0->unk_00 = param0;

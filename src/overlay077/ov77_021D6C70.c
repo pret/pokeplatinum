@@ -152,7 +152,7 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
 
     sub_02014000();
 
-    param0->unk_14 = Heap_AllocFromHeap(76, 0x4800);
+    param0->unk_14 = Heap_AllocFromHeap(HEAP_ID_76, 0x4800);
     param0->unk_18 = sub_02014014(ov77_021D6C70, ov77_021D6C94, param0->unk_14, 0x4800, 1, 76);
     camera = sub_02014784(param0->unk_18);
 

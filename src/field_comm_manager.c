@@ -176,7 +176,7 @@ void FieldCommMan_EnterBattleRoom(FieldSystem *fieldSystem)
 
         for (netJd = 0; netJd < CommSys_ConnectedCount(); netJd++) {
             if (sFieldCommMan->trainerCard[netJd] == NULL) {
-                sFieldCommMan->trainerCard[netJd] = Heap_AllocFromHeap(0, sizeof(TrainerCard));
+                sFieldCommMan->trainerCard[netJd] = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(TrainerCard));
             }
         }
 
@@ -434,7 +434,7 @@ static void sub_02059BF4(void)
 static void sub_02059C2C(BOOL param0, const Party *party)
 {
     if (party) {
-        sFieldCommMan->party = Party_New(11);
+        sFieldCommMan->party = Party_New(HEAP_ID_FIELDMAP);
         Party_Copy(party, sFieldCommMan->party);
     }
 

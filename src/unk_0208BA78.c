@@ -95,7 +95,7 @@ static void sub_0208BAAC(OverlayManager *param0, int param1)
 
     v0->fieldSystem = OverlayManager_Args(param0);
     v0->saveData = v0->fieldSystem->saveData;
-    v0->unk_14 = Heap_AllocFromHeap(119, sizeof(UnkStruct_0208C06C));
+    v0->unk_14 = Heap_AllocFromHeap(HEAP_ID_119, sizeof(UnkStruct_0208C06C));
 
     MI_CpuFill8(v0->unk_14, 0, sizeof(UnkStruct_0208C06C));
 

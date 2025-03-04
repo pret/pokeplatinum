@@ -32,7 +32,7 @@ int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1,
     int v0;
     MessageLoader *v1;
     Strbuf *v2;
-    Strbuf *v3 = Strbuf_Init(511, 111);
+    Strbuf *v3 = Strbuf_Init(511, HEAP_ID_111);
     u8 v4 = 0;
 
     v1 = param0->unk_2C;

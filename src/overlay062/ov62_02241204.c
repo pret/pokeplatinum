@@ -684,7 +684,7 @@ static void ov62_02241954 (UnkStruct_0208C06C * param0, int param1)
     if (param1 == 0xffff) {
         v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 125);
     } else {
-        v2 = Strbuf_Init(255, 102);
+        v2 = Strbuf_Init(255, HEAP_ID_102);
         MessageLoader_GetSpeciesName(param1, 102, v3);
         Strbuf_CopyChars(v2, v3);
     }
@@ -711,12 +711,12 @@ static void ov62_022419D4 (UnkStruct_0208C06C * param0, int param1, int param2)
         v4 = ov62_02231690(102);
 
         if (param2 != 0) {
-            v2 = Strbuf_Init(255, 102);
+            v2 = Strbuf_Init(255, HEAP_ID_102);
             v3 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 23);
             StringTemplate_SetCityName(v4, 0, param1, param2);
             StringTemplate_Format(v4, v2, v3);
         } else {
-            v2 = Strbuf_Init(255, 102);
+            v2 = Strbuf_Init(255, HEAP_ID_102);
             v3 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 22);
             StringTemplate_SetCountryName(v4, 0, param1);
             StringTemplate_Format(v4, v2, v3);
@@ -871,8 +871,8 @@ static BOOL ov62_02241D24 (UnkStruct_0208C06C * param0)
         ov62_02245C08(param0, 0);
 
         v0->unk_50C.unk_08 = 500;
-        v0->unk_608[0] = sub_02023FCC(Unk_ov62_022491AC, NELEMS(Unk_ov62_022491AC), ov62_022458A0, param0, 102);
-        v0->unk_608[1] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02245968, param0, 102);
+        v0->unk_608[0] = sub_02023FCC(Unk_ov62_022491AC, NELEMS(Unk_ov62_022491AC), ov62_022458A0, param0, HEAP_ID_102);
+        v0->unk_608[1] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02245968, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 1:
@@ -1591,7 +1591,7 @@ static void ov62_022427D0 (UnkStruct_0208C06C * param0, int param1)
 
         Heap_FreeToHeap(v0);
 
-        v4->unk_4DC = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02249380) * v4->unk_4C8.unk_00);
+        v4->unk_4DC = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02249380) * v4->unk_4C8.unk_00);
         MI_CpuFill8(v4->unk_4DC, 0, sizeof(UnkStruct_ov62_02249380) * v4->unk_4C8.unk_00);
 
         for (v5 = 0; v5 < v4->unk_4C8.unk_00; v5++) {
@@ -1600,7 +1600,7 @@ static void ov62_022427D0 (UnkStruct_0208C06C * param0, int param1)
         }
     }
 
-    v4->unk_4C8.unk_0C = MessageLoader_Init(0, 26, 412, 102);
+    v4->unk_4C8.unk_0C = MessageLoader_Init(0, 26, 412, HEAP_ID_102);
     v4->unk_4C8.unk_10 = 1;
 }
 
@@ -2002,8 +2002,8 @@ static BOOL ov62_0224312C (UnkStruct_0208C06C * param0)
         ov62_022343B8(param0, 59, 7);
         ov62_02245C08(param0, 0);
 
-        v0->unk_608[0] = sub_02023FCC(Unk_ov62_022491AC, NELEMS(Unk_ov62_022491AC), ov62_022458A0, param0, 102);
-        v0->unk_608[1] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02245968, param0, 102);
+        v0->unk_608[0] = sub_02023FCC(Unk_ov62_022491AC, NELEMS(Unk_ov62_022491AC), ov62_022458A0, param0, HEAP_ID_102);
+        v0->unk_608[1] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02245968, param0, HEAP_ID_102);
 
         ov62_02241AA4(param0, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -2045,9 +2045,9 @@ static BOOL ov62_0224324C (UnkStruct_0208C06C * param0)
         break;
     case 1:
         ov62_0224443C(param0);
-        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_02245994, param0, 102);
-        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245A28, param0, 102);
-        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245A90, param0, 102);
+        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_02245994, param0, HEAP_ID_102);
+        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245A28, param0, HEAP_ID_102);
+        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245A90, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:
@@ -2482,9 +2482,9 @@ static BOOL ov62_02243B1C (UnkStruct_0208C06C * param0)
         break;
     case 1:
         ov62_0224443C(param0);
-        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_02245994, param0, 102);
-        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245A28, param0, 102);
-        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245A90, param0, 102);
+        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_02245994, param0, HEAP_ID_102);
+        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245A28, param0, HEAP_ID_102);
+        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245A90, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:
@@ -2600,7 +2600,7 @@ BOOL(*const Unk_ov62_02249618[])(UnkStruct_0208C06C *) = {
 
 static BOOL ov62_02243DC8 (UnkStruct_0208C06C * param0)
 {
-    UnkStruct_ov62_02241204 * v0 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02241204));
+    UnkStruct_ov62_02241204 * v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02241204));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02241204));
     param0->unk_860 = v0;
@@ -2904,10 +2904,10 @@ static void ov62_022443EC (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02241204 * v0 = param0->unk_860;
 
-    v0->unk_80.unk_00 = sub_02030A80(102);
+    v0->unk_80.unk_00 = sub_02030A80(HEAP_ID_102);
     ov61_0222AFC0(&v0->unk_4BC->unk_00, v0->unk_80.unk_00);
     v0->unk_10C.unk_00 = v0->unk_80.unk_00;
-    v0->unk_10C.unk_04 = sub_0202FF2C(102);
+    v0->unk_10C.unk_04 = sub_0202FF2C(HEAP_ID_102);
     MI_CpuCopy8(&v0->unk_4BC->unk_80, v0->unk_10C.unk_04, sizeof(UnkStruct_ov61_0222BED8_sub1));
 }
 
@@ -2915,10 +2915,10 @@ static void ov62_0224443C (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02241204 * v0 = param0->unk_860;
 
-    v0->unk_80.unk_00 = sub_02030A80(102);
+    v0->unk_80.unk_00 = sub_02030A80(HEAP_ID_102);
     ov61_0222AFC0(&param0->unk_8B4.unk_1D58[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00, v0->unk_80.unk_00);
     v0->unk_10C.unk_00 = v0->unk_80.unk_00;
-    v0->unk_10C.unk_04 = sub_0202FF2C(102);
+    v0->unk_10C.unk_04 = sub_0202FF2C(HEAP_ID_102);
     MI_CpuCopy8(&param0->unk_8B4.unk_1D58[param0->unk_14.unk_48C.unk_38.unk_00]->unk_80, v0->unk_10C.unk_04, sizeof(UnkStruct_ov61_0222BED8_sub1));
 }
 
@@ -2963,9 +2963,9 @@ static BOOL ov62_022444BC (UnkStruct_0208C06C * param0)
         ov62_022443EC(param0);
         ov62_02245C64(param0);
 
-        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_022457A0, param0, 102);
-        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245800, param0, 102);
-        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245868, param0, 102);
+        v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_022457A0, param0, HEAP_ID_102);
+        v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245800, param0, HEAP_ID_102);
+        v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245868, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:
@@ -3130,7 +3130,7 @@ static void ov62_022448E0 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
         v4 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 7);
         v5 = sub_02030B94(param1->unk_88C[param2], 102);
         ov62_022349A8(param1, v5);
-        v0 = Strbuf_Init(255, 102);
+        v0 = Strbuf_Init(255, HEAP_ID_102);
         StringTemplate_SetStrbuf(v3, 0, v5, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v4);
         Strbuf_Free(v4);
@@ -3164,7 +3164,7 @@ static void ov62_022449B8 (UnkStruct_0208C06C * param0, int param1, BOOL param2)
         UnkStruct_02030A80 * v6 = v2->unk_80.unk_00;
 
         v3 = ov62_02231690(102);
-        v0 = Strbuf_Init(255, 102);
+        v0 = Strbuf_Init(255, HEAP_ID_102);
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
@@ -3196,7 +3196,7 @@ static void ov62_02244AB4 (UnkStruct_0208C06C * param0, int param1, int param2)
         UnkStruct_02030A80 * v6 = v2->unk_80.unk_00;
 
         v3 = ov62_02231690(102);
-        v0 = Strbuf_Init(255, 102);
+        v0 = Strbuf_Init(255, HEAP_ID_102);
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
@@ -3212,7 +3212,7 @@ static void ov62_02244AB4 (UnkStruct_0208C06C * param0, int param1, int param2)
         UnkStruct_02030A80 * v10 = param0->unk_88C[param2];
 
         v7 = ov62_02231690(102);
-        v0 = Strbuf_Init(255, 102);
+        v0 = Strbuf_Init(255, HEAP_ID_102);
         v8 = sub_02030B94(v10, 102);
         ov62_022349A8(param0, v8);
         v9 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
@@ -3494,9 +3494,9 @@ static BOOL ov62_02245018 (UnkStruct_0208C06C * param0)
             Bg_SetPriority(6, 0);
             Bg_SetPriority(7, 2);
 
-            v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_022457A0, param0, 102);
-            v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245800, param0, 102);
-            v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245868, param0, 102);
+            v0->unk_608[0] = sub_02023FCC(Unk_ov62_0224919C, NELEMS(Unk_ov62_0224919C), ov62_022457A0, param0, HEAP_ID_102);
+            v0->unk_608[1] = sub_02023FCC(Unk_ov62_0224915C, NELEMS(Unk_ov62_0224915C), ov62_02245800, param0, HEAP_ID_102);
+            v0->unk_608[2] = sub_02023FCC(Unk_ov62_0224913C, NELEMS(Unk_ov62_0224913C), ov62_02245868, param0, HEAP_ID_102);
             param0->unk_08++;
         }
         break;
@@ -3591,7 +3591,7 @@ static BOOL ov62_0224536C (UnkStruct_0208C06C * param0)
             int v2;
 
             sub_0202F298(param0->unk_830, 102, &v2, NULL, 0);
-            v0->unk_1D0 = sub_02030A80(102);
+            v0->unk_1D0 = sub_02030A80(HEAP_ID_102);
             sub_02030AA0(v0->unk_1D0, param0->unk_830);
 
             if (ov61_0222B338(ov62_0224112C(param0), v0->unk_1D0) == 1) {
@@ -4699,9 +4699,9 @@ static void ov62_022469A0 (UnkStruct_ov62_02241204 * param0, UnkStruct_0208C06C 
         u64 v5 = param0->unk_4B0;
         u64 v6 = v5;
         u32 v7[3];
-        Strbuf* v8 = Strbuf_Init(255, 102);
-        Strbuf* v9 = Strbuf_Init(255, 102);
-        Strbuf* v10 = Strbuf_Init(255, 102);
+        Strbuf* v8 = Strbuf_Init(255, HEAP_ID_102);
+        Strbuf* v9 = Strbuf_Init(255, HEAP_ID_102);
+        Strbuf* v10 = Strbuf_Init(255, HEAP_ID_102);
 
         v4 = &param1->unk_8A4;
         v7[0] = v6 % 100000;
@@ -4710,7 +4710,7 @@ static void ov62_022469A0 (UnkStruct_ov62_02241204 * param0, UnkStruct_0208C06C 
         v6 /= 100000;
         v7[2] = v6;
         v1 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 295);
-        v2 = Strbuf_Init(255, 102);
+        v2 = Strbuf_Init(255, HEAP_ID_102);
 
         Strbuf_FormatInt(v8, v7[0], 5, 2, 1);
         Strbuf_FormatInt(v9, v7[1], 5, 2, 1);

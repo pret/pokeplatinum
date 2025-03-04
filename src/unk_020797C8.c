@@ -49,7 +49,7 @@ static void sub_020797DC(PCBoxes *param0)
     }
 
     param0->unk_13C6 = 0;
-    v2 = MessageLoader_Init(1, 26, 18, 0);
+    v2 = MessageLoader_Init(1, 26, 18, HEAP_ID_SYSTEM);
 
     if (v2) {
         for (v0 = 0; v0 < 18; v0++) {

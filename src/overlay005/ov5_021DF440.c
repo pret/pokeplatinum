@@ -441,7 +441,7 @@ static void ov5_021DF754(UnkStruct_ov5_021DF47C *param0, u32 param1, u32 param2,
     ov5_021DF8C8(param0, v0, param2);
 
     v1.unk_00 = param2;
-    v1.unk_04 = ov5_021DF584(param0);
+    v1.heapID = ov5_021DF584(param0);
     v0->unk_0C = sub_02020C44(&v1);
 }
 

@@ -146,10 +146,10 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     param0->unk_00 = v0;
 }
 
-static void sub_0205A164(UnkStruct_0205A0D8 *param0, int param1)
+static void sub_0205A164(UnkStruct_0205A0D8 *param0, int heapID)
 {
     int v0;
-    PartyManagementData *v1 = Heap_AllocFromHeap(param1, sizeof(PartyManagementData));
+    PartyManagementData *v1 = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
 
     MI_CpuClear8(v1, sizeof(PartyManagementData));
 
@@ -355,7 +355,7 @@ static BOOL sub_0205A324(FieldTask *param0)
         break;
     case 15:
         sub_0205AAA0(v0, 0);
-        sub_0205A164(v0, 11);
+        sub_0205A164(v0, HEAP_ID_FIELDMAP);
         v0->unk_34 = 16;
         break;
     case 16:
@@ -665,9 +665,9 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
     v0->fieldSystem = fieldSystem;
     v0->unk_08 = param1;
     v0->unk_28 = StringTemplate_Default(11);
-    v0->unk_2C = MessageLoader_Init(0, 26, 11, 11);
-    v0->unk_0C = Strbuf_Init((100 * 2), 11);
-    v0->unk_10 = Strbuf_Init((100 * 2), 11);
+    v0->unk_2C = MessageLoader_Init(0, 26, 11, HEAP_ID_FIELDMAP);
+    v0->unk_0C = Strbuf_Init((100 * 2), HEAP_ID_FIELDMAP);
+    v0->unk_10 = Strbuf_Init((100 * 2), HEAP_ID_FIELDMAP);
 
     Window_Init(&v0->unk_14);
     Window_Init(&v0->unk_54);
@@ -688,7 +688,7 @@ void sub_0205AB10(FieldSystem *fieldSystem, UnkFuncPtr_0205AB10 *param1)
 
         v0->unk_4C = Heap_AllocFromHeapAtEnd(11, v2);
         v0->unk_48 = Heap_AllocFromHeapAtEnd(11, v2);
-        v0->unk_50 = Party_New(11);
+        v0->unk_50 = Party_New(HEAP_ID_FIELDMAP);
 
         Party_InitWithCapacity(v0->unk_50, 3);
 
@@ -868,11 +868,11 @@ static void sub_0205ADF8(UnkStruct_0205A0D8 *param0, int param1)
         int v1, v2, v3;
         MessageLoader *v4;
 
-        v4 = MessageLoader_Init(1, 26, 412, 4);
+        v4 = MessageLoader_Init(1, 26, 412, HEAP_ID_FIELD);
         v3 = Pokemon_GetStructSize();
 
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 21, 9, 10, 8, 13, 10);
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, 4);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, HEAP_ID_FIELD);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -904,7 +904,7 @@ static void sub_0205AF18(UnkStruct_0205A0D8 *param0, int param1)
         int v1;
 
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 20, 11, 11, 6, 13, 90);
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, 4);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1, 11, 0, HEAP_ID_FIELD);
         Window_FillTilemap(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
@@ -1010,9 +1010,9 @@ static BOOL sub_0205B140(FieldTask *param0)
     switch (v1->unk_28) {
     case 0:
         v1->unk_18 = StringTemplate_Default(4);
-        v1->unk_1C = MessageLoader_Init(0, 26, 11, 4);
-        v1->unk_00 = Strbuf_Init((100 * 2), 4);
-        v1->unk_04 = Strbuf_Init((100 * 2), 4);
+        v1->unk_1C = MessageLoader_Init(0, 26, 11, HEAP_ID_FIELD);
+        v1->unk_00 = Strbuf_Init((100 * 2), HEAP_ID_FIELD);
+        v1->unk_04 = Strbuf_Init((100 * 2), HEAP_ID_FIELD);
 
         MessageLoader_GetStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
         StringTemplate_SetPlayerName(v1->unk_18, 0, CommInfo_TrainerInfo(v1->unk_24));

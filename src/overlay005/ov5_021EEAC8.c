@@ -22,7 +22,7 @@ UnkStruct_ov5_021EEB48 *ov5_021EEAC8(const BOOL param0)
     int v1;
     UnkStruct_ov5_021EEB48 *v2;
 
-    v2 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021EEB48));
+    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021EEB48));
     memset(v2, 0, sizeof(UnkStruct_ov5_021EEB48));
 
     v2->unk_00 = 1;
@@ -39,7 +39,7 @@ UnkStruct_ov5_021EEB48 *ov5_021EEAC8(const BOOL param0)
         }
 
         if (param0) {
-            v2->unk_14[v0] = Heap_AllocFromHeap(4, 0x9000);
+            v2->unk_14[v0] = Heap_AllocFromHeap(HEAP_ID_FIELD, 0x9000);
 
             if (v2->unk_14[v0] == NULL) {
                 return NULL;
@@ -102,7 +102,7 @@ UnkStruct_ov5_021EEB48 *ov5_021EEBC0(const BOOL param0)
     u32 v0;
     UnkStruct_ov5_021EEB48 *v1;
 
-    v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021EEB48));
+    v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021EEB48));
     memset(v1, 0, sizeof(UnkStruct_ov5_021EEB48));
     v1->unk_00 = 2;
 

@@ -111,7 +111,7 @@ int ov80_021D0D80(OverlayManager *param0, int *param1)
     }
 
     v0->unk_02 = v1->unk_13C;
-    v0->unk_04 = 17;
+    v0->heapID = HEAP_ID_17;
 
     sub_02004550(55, 0, 0);
 
@@ -218,15 +218,15 @@ static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 *param0)
 
         param0->unk_18 = param0->unk_20;
         param0->unk_1C = param0->unk_24;
-        param0->unk_80 = MessageLoader_Init(1, 26, 433, param0->unk_04);
-        param0->unk_84 = MessageLoader_Init(1, 26, 615, param0->unk_04);
-        param0->unk_88 = Strbuf_Init(22, param0->unk_04);
-        param0->unk_30 = MainMapMatrixData_Load(param0->unk_04);
-        param0->unk_40 = ov80_021D2D70("data/tmap_block.dat", param0->unk_04);
+        param0->unk_80 = MessageLoader_Init(1, 26, 433, param0->heapID);
+        param0->unk_84 = MessageLoader_Init(1, 26, 615, param0->heapID);
+        param0->unk_88 = Strbuf_Init(22, param0->heapID);
+        param0->unk_30 = MainMapMatrixData_Load(param0->heapID);
+        param0->unk_40 = ov80_021D2D70("data/tmap_block.dat", param0->heapID);
         break;
     case 1:
         ov80_021D0EA8();
-        param0->unk_28 = BgConfig_New(param0->unk_04);
+        param0->unk_28 = BgConfig_New(param0->heapID);
         ov80_021D1088(param0, param0->unk_28);
         ov80_021D1158(param0);
         sub_0201E3D8();
@@ -422,14 +422,14 @@ static void ov80_021D1088(UnkStruct_ov80_021D2A08 *param0, BgConfig *param1)
         }
     }
 
-    Bg_ClearTilesRange(0, 32, 0, param0->unk_04);
-    Bg_ClearTilesRange(1, 32, 0, param0->unk_04);
-    Bg_ClearTilesRange(2, 32, 0, param0->unk_04);
-    Bg_ClearTilesRange(3, 32, 0, param0->unk_04);
-    Bg_ClearTilesRange(4, 32, 0, param0->unk_04);
-    Bg_ClearTilesRange(5, 32, 0, param0->unk_04);
-    Bg_ClearTilesRange(6, 32, 0, param0->unk_04);
-    Bg_ClearTilesRange(7, 32, 0, param0->unk_04);
+    Bg_ClearTilesRange(0, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(1, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(2, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(3, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(4, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(5, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(6, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(7, 32, 0, param0->heapID);
 }
 
 static void ov80_021D1158(UnkStruct_ov80_021D2A08 *param0)
@@ -439,27 +439,27 @@ static void ov80_021D1158(UnkStruct_ov80_021D2A08 *param0)
     NARC *v3;
 
     v2 = 17;
-    v3 = NARC_ctor(NARC_INDEX_GRAPHIC__TMAP_GRA, param0->unk_04);
+    v3 = NARC_ctor(NARC_INDEX_GRAPHIC__TMAP_GRA, param0->heapID);
 
-    sub_0208C210(param0->unk_28, param0->unk_04, v3, v2, 19, 1, 0, 0, 0);
-    sub_0208C210(param0->unk_28, param0->unk_04, v3, v2, 20, 6, 0, 0, 0);
-    sub_0208C210(param0->unk_28, param0->unk_04, v3, v2, 21, 5, 0, 0, 0);
+    sub_0208C210(param0->unk_28, param0->heapID, v3, v2, 19, 1, 0, 0, 0);
+    sub_0208C210(param0->unk_28, param0->heapID, v3, v2, 20, 6, 0, 0, 0);
+    sub_0208C210(param0->unk_28, param0->heapID, v3, v2, 21, 5, 0, 0, 0);
 
-    sub_0208C210(param0->unk_28, param0->unk_04, v3, v2, 0, 0, 2, 0, 0);
-    sub_0208C210(param0->unk_28, param0->unk_04, v3, v2, 1, 4, 2, 0, 0);
+    sub_0208C210(param0->unk_28, param0->heapID, v3, v2, 0, 0, 2, 0, 0);
+    sub_0208C210(param0->unk_28, param0->heapID, v3, v2, 1, 4, 2, 0, 0);
 
-    param0->unk_98 = sub_0208C2F4(v3, v2, 24, &param0->unk_B8, param0->unk_04);
-    param0->unk_9C = sub_0208C2F4(v3, v2, 22, &param0->unk_BC, param0->unk_04);
-    param0->unk_A0 = sub_0208C2F4(v3, v2, 23, &param0->unk_C0, param0->unk_04);
-    param0->unk_A4 = sub_0208C2F4(v3, v2, 25, &param0->unk_C4, param0->unk_04);
-    param0->unk_A8 = sub_0208C2F4(v3, v2, 26, &param0->unk_C8, param0->unk_04);
-    param0->unk_AC = sub_0208C2F4(v3, v2, 27, &param0->unk_CC, param0->unk_04);
-    param0->unk_B0 = sub_0208C2F4(v3, v2, 28, &param0->unk_D0, param0->unk_04);
-    param0->unk_B4 = sub_0208C2F4(v3, v2, 29, &param0->unk_D4, param0->unk_04);
+    param0->unk_98 = sub_0208C2F4(v3, v2, 24, &param0->unk_B8, param0->heapID);
+    param0->unk_9C = sub_0208C2F4(v3, v2, 22, &param0->unk_BC, param0->heapID);
+    param0->unk_A0 = sub_0208C2F4(v3, v2, 23, &param0->unk_C0, param0->heapID);
+    param0->unk_A4 = sub_0208C2F4(v3, v2, 25, &param0->unk_C4, param0->heapID);
+    param0->unk_A8 = sub_0208C2F4(v3, v2, 26, &param0->unk_C8, param0->heapID);
+    param0->unk_AC = sub_0208C2F4(v3, v2, 27, &param0->unk_CC, param0->heapID);
+    param0->unk_B0 = sub_0208C2F4(v3, v2, 28, &param0->unk_D0, param0->heapID);
+    param0->unk_B4 = sub_0208C2F4(v3, v2, 29, &param0->unk_D4, param0->heapID);
 
     NARC_dtor(v3);
-    Font_LoadTextPalette(0, 15 * 32, param0->unk_04);
-    Font_LoadTextPalette(4, 15 * 32, param0->unk_04);
+    Font_LoadTextPalette(0, 15 * 32, param0->heapID);
+    Font_LoadTextPalette(4, 15 * 32, param0->heapID);
 }
 
 static void ov80_021D12D8(UnkStruct_ov80_021D2A08 *param0)

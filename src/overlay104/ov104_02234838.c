@@ -108,7 +108,7 @@ BOOL ov104_022348BC(UnkStruct_ov104_0222E930 *param0)
     };
 
     v3 = sub_0209B978(param0->unk_00->unk_00);
-    v4 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov104_02235208));
+    v4 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_02235208));
 
     MI_CpuClear8(v4, sizeof(UnkStruct_ov104_02235208));
 

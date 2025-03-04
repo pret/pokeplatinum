@@ -65,7 +65,7 @@ BOOL ov27_0225680C(UnkStruct_ov27_0225680C **param0, const UnkStruct_ov27_022568
     if (v0 != NULL) {
         v0->unk_00 = param1;
         v0->unk_5C = ov25_02254664();
-        v0->unk_04 = BgConfig_New(8);
+        v0->unk_04 = BgConfig_New(HEAP_ID_POKETCH_APP);
 
         if (v0->unk_04 == NULL) {
             return 0;

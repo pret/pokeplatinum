@@ -290,11 +290,11 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
 
-    v0->unk_174 = BgConfig_New(26);
+    v0->unk_174 = BgConfig_New(HEAP_ID_26);
     v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, 26);
     v0->unk_17C = StringTemplate_Default(26);
     v0->unk_180 = StringTemplate_Default(26);
-    v0->unk_184 = MessageLoader_Init(0, 26, 354, 26);
+    v0->unk_184 = MessageLoader_Init(0, 26, 354, HEAP_ID_26);
     v0->unk_40 = NULL;
 
     ov88_0223C370(v0, param0);
@@ -373,7 +373,7 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
     ov88_0223B320(param0);
 
     LoadMessageBoxGraphics(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->unk_18), 26);
-    LoadStandardWindowGraphics(param0->unk_174, 0, (512 - 9), 11, 0, 26);
+    LoadStandardWindowGraphics(param0->unk_174, 0, (512 - 9), 11, 0, HEAP_ID_26);
 
     ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
 
@@ -1090,9 +1090,9 @@ static void ov88_0223C17C(BgConfig *param0)
         Bg_InitFromTemplate(param0, 6, &v7, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 26);
-    Bg_ClearTilesRange(1, 32, 0, 26);
-    Bg_ClearTilesRange(4, 32, 0, 26);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_26);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_26);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_26);
 
     {
         int v8;
@@ -1144,7 +1144,7 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, OverlayManager *param1)
     param0->unk_2270 = v0->unk_08;
     param0->unk_227C = v0->unk_0C;
     param0->unk_04 = v0->unk_10;
-    param0->unk_2274 = Heap_AllocFromHeap(26, Party_SaveSize());
+    param0->unk_2274 = Heap_AllocFromHeap(HEAP_ID_26, Party_SaveSize());
 
     Party_InitWithCapacity(param0->unk_2274, 6);
     memset(param0->unk_2274, 0xff, Party_SaveSize());
@@ -1209,12 +1209,12 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, 26);
     Font_LoadScreenIndicatorsPalette(0, 2 * 32, 26);
-    Font_LoadTextPalette(0, 3 * 32, 26);
+    Font_LoadTextPalette(0, 3 * 32, HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 5, 0, 16 * 4 * 0x20, 1, 26);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, 26);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, 26);
     Font_LoadScreenIndicatorsPalette(4, 2 * 32, 26);
-    Font_LoadTextPalette(4, 3 * 32, 26);
+    Font_LoadTextPalette(4, 3 * 32, HEAP_ID_26);
     Bg_ClearTilemap(v0, 4);
 }
 
@@ -1270,7 +1270,7 @@ static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, ArchivedSprite
         int v0 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         int v1 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(param3->archive, param3->character, 26, 0, 0, 10, 10, param2, v0, 0, 2, v1);
+        sub_020136A4(param3->archive, param3->character, HEAP_ID_26, 0, 0, 10, 10, param2, v0, 0, 2, v1);
     }
 
     DC_FlushRange(param2, 0x20 * 10 * 10);
@@ -1282,7 +1282,7 @@ static void ov88_0223C860(Window *param0, Party *param1, int param2, int param3,
 {
     Strbuf *v0;
 
-    v0 = Strbuf_Init(20, 26);
+    v0 = Strbuf_Init(20, HEAP_ID_26);
 
     Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRBUF, v0);
     Window_FillTilemap(param0, 0);
@@ -1350,7 +1350,7 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
     }
 
     if (!param4->unk_6F4[param1 * 6 + param3].unk_05) {
-        v0 = Strbuf_Init(10, 26);
+        v0 = Strbuf_Init(10, HEAP_ID_26);
         Window_FillTilemap(&param0[28 + param1], 0);
         MessageLoader_GetStrbuf(param4->unk_184, 41, v0);
         ov88_0223EC78(&param0[28 + param1], v0, 9, TEXT_SPEED_NO_TRANSFER, 6, 0);
@@ -1368,7 +1368,7 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
     v2 = Pokemon_GetValue(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_HELD_ITEM, NULL);
     Window_FillTilemap(&param0[32 + param1], 0);
 
-    v1 = Strbuf_Init(20, 26);
+    v1 = Strbuf_Init(20, HEAP_ID_26);
     Item_LoadName(v1, v2, 26);
     ov88_0223EC78(&param0[32 + param1], v1, 9, TEXT_SPEED_INSTANT, 3, 0);
     Strbuf_Free(v1);
@@ -1906,7 +1906,7 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
 
     {
         MessageLoader *v3;
-        Strbuf *v4 = Strbuf_Init(100, 26);
+        Strbuf *v4 = Strbuf_Init(100, HEAP_ID_26);
         int v5 = 0;
 
         for (v5 = 0; v5 < 32; v5++) {
@@ -2046,7 +2046,7 @@ static int ov88_0223D96C(UnkStruct_02095E80 *param0)
     }
 
     param0->unk_36CC = StringTemplate_Default(26);
-    param0->unk_36D0 = MessageLoader_Init(0, 26, 675, 26);
+    param0->unk_36D0 = MessageLoader_Init(0, 26, 675, HEAP_ID_26);
     param0->unk_36EC = sub_0202B370(param0->unk_04);
     param0->unk_226C = ov88_0223D854;
 
@@ -2479,8 +2479,8 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
 {
     Pokemon *v0, *v1;
 
-    v0 = Pokemon_New(26);
-    v1 = Pokemon_New(26);
+    v0 = Pokemon_New(HEAP_ID_26);
+    v1 = Pokemon_New(HEAP_ID_26);
 
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param0, param2), v0);
     Pokemon_Copy(Party_GetPokemonBySlotIndex(param1, param3), v1);

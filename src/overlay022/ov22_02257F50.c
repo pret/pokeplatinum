@@ -504,7 +504,7 @@ static void ov22_022584F0(UnkStruct_ov22_02257F50_sub1_sub1 *param0, int param1)
 {
     int v0;
 
-    param0->unk_00 = Heap_AllocFromHeap(14, sizeof(UnkStruct_ov22_02259560) * param1);
+    param0->unk_00 = Heap_AllocFromHeap(HEAP_ID_14, sizeof(UnkStruct_ov22_02259560) * param1);
     param0->unk_04 = param1;
     param0->unk_08 = 0;
 
@@ -621,7 +621,7 @@ static void ov22_0225864C(UnkStruct_ov22_02257F50 *param0, int param1, int param
     v1->unk_20 = ov22_022585A8(param0, param1, param2);
     v1->unk_24 = ov22_022585A8(param0, param3, param4);
     v1->unk_2C = v1->unk_20 + v1->unk_24;
-    v1->unk_28 = Heap_AllocFromHeap(13, sizeof(UnkStruct_ov22_0225886C) * v1->unk_2C);
+    v1->unk_28 = Heap_AllocFromHeap(HEAP_ID_13, sizeof(UnkStruct_ov22_0225886C) * v1->unk_2C);
 
     GF_ASSERT(v1->unk_28);
 

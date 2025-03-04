@@ -284,7 +284,7 @@ int ov108_02241AE0(OverlayManager *param0, int *param1)
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov108_02241DB0), 103);
     memset(v1, 0, sizeof(UnkStruct_ov108_02241DB0));
 
-    v1->unk_90 = BgConfig_New(103);
+    v1->unk_90 = BgConfig_New(HEAP_ID_103);
     v1->unk_00 = param0;
 
     v2 = (UnkStruct_ov104_02238240 *)OverlayManager_Args(param0);
@@ -809,16 +809,16 @@ static void ov108_0224237C(UnkStruct_ov108_02241DB0 *param0)
     ov108_02242658(param0);
     ov108_022426B0(param0);
 
-    param0->unk_68 = MessageLoader_Init(1, 26, 536, 103);
+    param0->unk_68 = MessageLoader_Init(1, 26, 536, HEAP_ID_103);
     param0->unk_6C = StringTemplate_Default(103);
-    param0->unk_70 = Strbuf_Init(600, 103);
-    param0->unk_74 = Strbuf_Init(600, 103);
+    param0->unk_70 = Strbuf_Init(600, HEAP_ID_103);
+    param0->unk_74 = Strbuf_Init(600, HEAP_ID_103);
 
     for (v5 = 0; v5 < 2; v5++) {
-        param0->unk_78[v5] = Strbuf_Init(32, 103);
+        param0->unk_78[v5] = Strbuf_Init(32, HEAP_ID_103);
     }
 
-    Font_LoadTextPalette(0, 13 * 32, 103);
+    Font_LoadTextPalette(0, 13 * 32, HEAP_ID_103);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 103);
 
     ov108_02243630(param0->unk_90, param0->unk_94);
@@ -967,7 +967,7 @@ static void ov108_02242760(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, 103);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_103);
         Bg_ClearTilemap(param0, 1);
     }
 

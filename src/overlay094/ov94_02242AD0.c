@@ -306,9 +306,9 @@ static void ov94_02242B54(BgConfig *param0)
         Bg_InitFromTemplate(param0, 5, &v5, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 62);
-    Bg_ClearTilesRange(1, 32, 0, 62);
-    Bg_ClearTilesRange(4, 32, 0, 62);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -330,7 +330,7 @@ static void ov94_02242CAC(UnkStruct_ov94_0223FD4C *param0)
     Graphics_LoadPalette(104, 0, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
 
     if (param0->unk_10F0 == 0) {
         Bg_ToggleLayer(4, 0);
@@ -356,7 +356,7 @@ static void ov94_02242D74(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_02242D84(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_BAC = Strbuf_Init((90 * 2), 62);
+    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
 }
 
 static void ov94_02242D98(UnkStruct_ov94_0223FD4C *param0)
@@ -792,7 +792,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
             param0->unk_36 = 0;
 
             if (sub_0202DA60(param0->unk_00->unk_00)) {
-                Pokemon *v1 = Pokemon_New(62);
+                Pokemon *v1 = Pokemon_New(HEAP_ID_62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v1);
                 StringTemplate_SetNickname(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(v1));
@@ -812,7 +812,7 @@ static int ov94_02243398(UnkStruct_ov94_0223FD4C *param0)
             param0->unk_36 = 0;
 
             if (sub_0202DA60(param0->unk_00->unk_00)) {
-                Pokemon *v2 = Pokemon_New(62);
+                Pokemon *v2 = Pokemon_New(HEAP_ID_62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v2);
                 StringTemplate_SetNickname(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(v2));
@@ -1248,7 +1248,7 @@ static int ov94_02243AE8(UnkStruct_ov94_0223FD4C *param0)
 static void ov94_02243B08(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
     if (param0->unk_110 != 18) {
-        Pokemon *v0 = Pokemon_New(62);
+        Pokemon *v0 = Pokemon_New(HEAP_ID_62);
 
         Pokemon_FromBoxPokemon(GetBoxedPokemonFrom(param0->unk_00->unk_0C, param0->unk_110, param0->unk_112), v0);
         sub_0202DA7C(param0->unk_00->unk_00, v0, param0->unk_110);

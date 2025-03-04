@@ -158,7 +158,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     memset(v0, 0, sizeof(UnkStruct_ov71_0223B620));
 
     v0->unk_B4 = OverlayManager_Args(param0);
-    v0->unk_00 = BgConfig_New(25);
+    v0->unk_00 = BgConfig_New(HEAP_ID_25);
 
     ov71_0223B620(v0);
     ov71_0223B688();
@@ -400,13 +400,13 @@ int ov71_0223B5B8(OverlayManager *param0, int *param1)
 
 static void ov71_0223B620(UnkStruct_ov71_0223B620 *param0)
 {
-    param0->unk_336C = Strbuf_Init(3 + 1, 25);
-    param0->unk_3370 = Strbuf_Init(5, 25);
+    param0->unk_336C = Strbuf_Init(3 + 1, HEAP_ID_25);
+    param0->unk_3370 = Strbuf_Init(5, HEAP_ID_25);
 
     {
         MessageLoader *v0;
 
-        v0 = MessageLoader_Init(0, 26, 616, 25);
+        v0 = MessageLoader_Init(0, 26, 616, HEAP_ID_25);
 
         MessageLoader_GetStrbuf(v0, 11, param0->unk_3370);
         MessageLoader_Free(v0);

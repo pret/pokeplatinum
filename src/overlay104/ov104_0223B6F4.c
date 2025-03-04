@@ -185,7 +185,7 @@ FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104
         v4 = 2;
     }
 
-    v6 = Pokemon_New(11);
+    v6 = Pokemon_New(HEAP_ID_FIELDMAP);
 
     for (v0 = 0; v0 < v2; v0++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(param0->unk_28, (v4 + v0)), v6);
@@ -206,7 +206,7 @@ FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104
         v5->trainer[v0].header.aiMask = ov104_0223BB10(param0);
     }
 
-    v6 = Pokemon_New(11);
+    v6 = Pokemon_New(HEAP_ID_FIELDMAP);
 
     for (v0 = 0; v0 < v3; v0++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(param0->unk_2C, v0), v6);
@@ -229,7 +229,7 @@ FieldBattleDTO *ov104_0223B810(UnkStruct_ov104_0223BA10 *param0, UnkStruct_ov104
         ov104_0222E284(v5, &v7, v3, 3, 11);
         Party_InitWithCapacity(v5->parties[3], ov104_0223B7DC(param0->unk_10, 0));
 
-        v6 = Pokemon_New(11);
+        v6 = Pokemon_New(HEAP_ID_FIELDMAP);
 
         for (v0 = 0; v0 < v3; v0++) {
             Pokemon_Copy(Party_GetPokemonBySlotIndex(param0->unk_2C, (v3 + v0)), v6);
@@ -324,7 +324,7 @@ void ov104_0223BAB8(UnkStruct_ov104_0223BA10 *param0)
     Party_Init(param0->unk_2C);
 
     v2 = ov104_0223B7DC(param0->unk_10, 1);
-    v3 = Pokemon_New(11);
+    v3 = Pokemon_New(HEAP_ID_FIELDMAP);
 
     for (v0 = 0; v0 < v2; v0++) {
         ov104_0222DF40(&param0->unk_288[v0], v3, ov104_0223BA10(param0));

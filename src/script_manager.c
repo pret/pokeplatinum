@@ -95,8 +95,8 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
         scriptManager->ctx[SCRIPT_CONTEXT_MAIN] = ScriptContext_CreateAndStart(fieldSystem, scriptManager->scriptID);
         scriptManager->numActiveContexts = 1;
         scriptManager->strTemplate = StringTemplate_New(8, 64, 11);
-        scriptManager->msgBuf = Strbuf_Init(1024, 11);
-        scriptManager->tmpBuf = Strbuf_Init(1024, 11);
+        scriptManager->msgBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
+        scriptManager->tmpBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
         scriptManager->state++;
     case 1:
         for (i = 0; i < NUM_SCRIPT_CONTEXTS; i++) {
@@ -135,7 +135,7 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
 
 static ScriptManager *ScriptManager_New()
 {
-    ScriptManager *scriptManager = Heap_AllocFromHeap(11, sizeof(ScriptManager));
+    ScriptManager *scriptManager = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ScriptManager));
 
     GF_ASSERT(scriptManager != NULL);
 
@@ -171,7 +171,7 @@ static void sub_0203EA68(FieldSystem *fieldSystem, ScriptManager *scriptManager,
 
 ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 scriptID)
 {
-    ScriptContext *ctx = Heap_AllocFromHeap(11, sizeof(ScriptContext));
+    ScriptContext *ctx = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ScriptContext));
 
     GF_ASSERT(ctx != NULL);
 
@@ -300,14 +300,14 @@ static void ScriptContext_Load(FieldSystem *fieldSystem, ScriptContext *ctx, int
 {
     u8 *scripts = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, scriptFile, 11);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, 11);
+    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, HEAP_ID_FIELDMAP);
 }
 
 static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptContext *ctx)
 {
     u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapId);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), 11);
+    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELDMAP);
 }
 
 void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
@@ -667,7 +667,7 @@ static BOOL ScriptManager_SetHiddenItem(ScriptManager *scriptManager, u16 script
     return TRUE;
 }
 
-UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int param1)
+UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int heapID)
 {
     UnkStruct_0203F478 *v0;
     const BgEvent *v1;
@@ -677,7 +677,7 @@ UnkStruct_0203F478 *sub_0203F478(FieldSystem *fieldSystem, int param1)
     v6 = 0;
     v5 = MapHeaderData_GetNumBgEvents(fieldSystem);
     v5++;
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203F478) * v5);
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203F478) * v5);
 
     if (v5 == 1) {
         v0[0].unk_04 = 0xff;

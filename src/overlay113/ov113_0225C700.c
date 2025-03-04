@@ -369,7 +369,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     PaletteData_AllocBuffer(v0->unk_0C, 3, 0x200, 118);
     PaletteData_SetAutoTransparent(v0->unk_0C, 1);
 
-    v0->unk_08 = BgConfig_New(118);
+    v0->unk_08 = BgConfig_New(HEAP_ID_118);
 
     VramTransfer_New(64, 118);
     SetAutorepeat(4, 8);
@@ -381,7 +381,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     Font_InitManager(FONT_SUBSCREEN, 118);
 
     v0->unk_2C = StringTemplate_Default(118);
-    v0->unk_30 = MessageLoader_Init(0, 26, 650, 118);
+    v0->unk_30 = MessageLoader_Init(0, 26, 650, HEAP_ID_118);
     v0->unk_10 = sub_02012744(4, 118);
     v0->unk_160 = NARC_ctor(NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, 118);
     v0->unk_164 = NARC_ctor(NARC_INDEX_POKETOOL__POKEFOOT__POKEFOOT, 118);
@@ -391,7 +391,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
     ov113_0225D9FC(v0);
     ov113_0225DBCC(v0);
 
-    v0->unk_C4 = Strbuf_Init(256, 118);
+    v0->unk_C4 = Strbuf_Init(256, HEAP_ID_118);
     v0->unk_1C = SpriteSystem_Alloc(118);
 
     SpriteSystem_Init(v0->unk_1C, &Unk_ov113_02260954, &Unk_ov113_022608E8, (16 + 16));
@@ -861,7 +861,7 @@ static void ov113_0225CF58(BgConfig *param0)
         Bg_SetOffset(param0, 7, 3, 0);
     }
 
-    Bg_ClearTilesRange(5, 32, 0, 118);
+    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_118);
 }
 
 static void ov113_0225D12C(BgConfig *param0)

@@ -195,7 +195,7 @@ void ov22_02259DBC(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *par
     ov22_0225A2A8(param1);
     ov22_02259D98(&param0->unk_00[2]);
 
-    param0->unk_68 = sub_02023FCC(param0->unk_6C, 5, ov22_0225A02C, param0, 13);
+    param0->unk_68 = sub_02023FCC(param0->unk_6C, 5, ov22_0225A02C, param0, HEAP_ID_13);
 }
 
 void ov22_02259F24(UnkStruct_ov22_02259D2C *param0, UnkStruct_ov22_0225A0E4 *param1)
@@ -431,7 +431,7 @@ static Window *ov22_0225A348(UnkStruct_ov22_0225A0E4 *param0, u32 param1, u32 pa
     Strbuf *v1;
     Window *v2;
 
-    v0 = MessageLoader_Init(0, param1, param2, 13);
+    v0 = MessageLoader_Init(0, param1, param2, HEAP_ID_13);
     GF_ASSERT(v0);
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
 

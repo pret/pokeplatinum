@@ -47,15 +47,13 @@ BOOL sub_02005844(u16 param0, u8 param1);
 BOOL sub_0200590C(u16 param0, u8 param1, u8 param2);
 void sub_0200592C(int param0);
 int sub_0200598C(void);
-BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int param4, u8 param5);
 void sub_02005E64(int param0, int param1);
 static void sub_02005EB0(SysTask *param0, void *param1);
 void sub_02005F24(void);
-void Sound_PlayDelayedPokemonCry(int param0, u16 param1, int param2, int param3, int param4, u8 param5, u8 param6);
 static BOOL sub_02006038(u16 param0, u8 param1);
 void sub_0200605C(void);
 static BOOL sub_020060EC(u16 param0, s8 param1, u8 param2);
-static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int param4);
+static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int heapID);
 BOOL sub_02006150(u16 param0);
 int sub_0200619C(void);
 static void sub_020061C8(int param0);
@@ -439,7 +437,7 @@ BOOL sub_02005844(u16 param0, u8 param1)
 
 BOOL sub_0200590C(u16 param0, u8 param1, u8 param2)
 {
-    Sound_PlayDelayedPokemonCry(0, param0, 0, 127, 11, param1, param2);
+    Sound_PlayDelayedPokemonCry(0, param0, 0, 127, HEAP_ID_FIELDMAP, param1, param2);
     return 1;
 }
 
@@ -486,7 +484,7 @@ int sub_0200598C(void)
     return sub_02004B04(0);
 }
 
-BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int param4, u8 param5)
+BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int heapID, u8 param5)
 {
     int v0, v1;
     u16 v2;
@@ -579,7 +577,7 @@ BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int p
         v4 = sub_02005844(v2, param5);
         sub_02004F94(1, 0xffff, param2);
         sub_02005E4C(v2, 1, param3);
-        sub_02005E64(20, param4);
+        sub_02005E64(20, heapID);
         break;
     case 2:
         v4 = sub_02005844(v2, param5);
@@ -594,7 +592,7 @@ BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int p
         v4 = sub_02005844(v2, param5);
         sub_02004F94(1, 0xffff, param2);
         sub_02005E4C(v2, 1, param3);
-        sub_02005E64(30, param4);
+        sub_02005E64(30, heapID);
         sub_02004F68(1, 0xffff, 192);
         v6 = sub_020060EC(v2, 16, param5);
         sub_02004F94(8, 0xffff, param2);
@@ -602,11 +600,11 @@ BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int p
         break;
     case 4:
         v5 = sub_02004BCC(14);
-        v5 = sub_02004D78(v2, param3, v0, 14, param4);
+        v5 = sub_02004D78(v2, param3, v0, 14, heapID);
         sub_02004D14(14, v0);
-        sub_02005E64(15, param4);
+        sub_02005E64(15, heapID);
         sub_02004D2C(14, (32768 + 1536));
-        v7 = sub_02006120(v2, -64, v1, v0, param4);
+        v7 = sub_02006120(v2, -64, v1, v0, heapID);
         sub_02004D2C(15, (32768 + 1536));
         break;
     case 5:
@@ -628,28 +626,28 @@ BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int p
         v4 = sub_02005844(v2, param5);
         sub_02004F94(1, 0xffff, param2);
         sub_02005E4C(v2, 1, param3);
-        sub_02005E64(11, param4);
+        sub_02005E64(11, heapID);
         sub_02004F68(1, 0xffff, -128);
         break;
     case 8:
         v4 = sub_02005844(v2, param5);
         sub_02004F94(1, 0xffff, param2);
         sub_02005E4C(v2, 1, param3);
-        sub_02005E64(60, param4);
+        sub_02005E64(60, heapID);
         sub_02004F68(1, 0xffff, 60);
         break;
     case 9:
         v5 = sub_02004BCC(14);
-        v5 = sub_02004D78(v2, param3, v0, 14, param4);
+        v5 = sub_02004D78(v2, param3, v0, 14, heapID);
         sub_02004D14(14, v0);
-        sub_02005E64(13, param4);
+        sub_02005E64(13, heapID);
         sub_02004D2C(14, (32768 - 6144));
         break;
     case 10:
         v4 = sub_02005844(v2, param5);
         sub_02004F94(1, 0xffff, param2);
         sub_02005E4C(v2, 1, param3);
-        sub_02005E64(100, param4);
+        sub_02005E64(100, heapID);
         sub_02004F68(1, 0xffff, -44);
         break;
     case 11:
@@ -662,7 +660,7 @@ BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int p
         v4 = sub_02005844(v2, param5);
         sub_02004F94(1, 0xffff, param2);
         sub_02005E4C(v2, 1, param3);
-        sub_02005E64(20, param4);
+        sub_02005E64(20, heapID);
         sub_02004F68(1, 0xffff, -96);
         break;
     case 13:
@@ -766,7 +764,7 @@ void sub_02005F24()
     return;
 }
 
-void Sound_PlayDelayedPokemonCry(int param0, u16 param1, int param2, int param3, int param4, u8 param5, u8 param6)
+void Sound_PlayDelayedPokemonCry(int param0, u16 param1, int param2, int param3, int heapID, u8 param5, u8 param6)
 {
     u16 v0;
     int *v1;
@@ -809,7 +807,7 @@ void Sound_PlayDelayedPokemonCry(int param0, u16 param1, int param2, int param3,
     }
 
     if (param5 == 0) {
-        Sound_PlayPokemonCry(param0, v0, param2, param3, param4, param6);
+        Sound_PlayPokemonCry(param0, v0, param2, param3, heapID, param6);
         return;
     }
 
@@ -817,7 +815,7 @@ void Sound_PlayDelayedPokemonCry(int param0, u16 param1, int param2, int param3,
     *v2 = v0;
     *v3 = param2;
     *v4 = param3;
-    *v5 = param4;
+    *v5 = heapID;
     *v6 = param5;
 
     return;
@@ -884,7 +882,7 @@ static BOOL sub_020060EC(u16 param0, s8 param1, u8 param2)
     return v0;
 }
 
-static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int param4)
+static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int heapID)
 {
     int v0;
     u8 *v1 = sub_02003D5C(18);
@@ -892,7 +890,7 @@ static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int para
     *v1 = 1;
 
     v0 = sub_02004BCC(15);
-    v0 = sub_02004D78(param0, param2, param3, 15, param4);
+    v0 = sub_02004D78(param0, param2, param3, 15, heapID);
 
     return v0;
 }

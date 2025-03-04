@@ -1163,8 +1163,8 @@ static void Healthbar_DrawLevelNumber(Healthbar *param0)
     int v3, v4, v5, v6;
 
     v3 = 3 * 0x20;
-    v0 = Heap_AllocFromHeap(5, v3);
-    v1 = Heap_AllocFromHeap(5, v3 * 2);
+    v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, v3);
+    v1 = Heap_AllocFromHeap(HEAP_ID_BATTLE, v3 * 2);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), v3);
     sub_0200C67C(ov16_0223E054(param0->battleSys), param0->unk_48, 3, 0, v0);
@@ -1207,7 +1207,7 @@ static void Healthbar_DrawCurrentHP(Healthbar *param0, u32 param1)
     u8 *v0;
     NNSG2dImageProxy *v1;
 
-    v0 = Heap_AllocFromHeap(5, 3 * 0x20);
+    v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
     sub_0200C67C(ov16_0223E04C(param0->battleSys), param1, 3, 1, v0);
@@ -1232,7 +1232,7 @@ static void Healthbar_DrawMaxHP(Healthbar *param0)
     u8 *v0;
     NNSG2dImageProxy *v1;
 
-    v0 = Heap_AllocFromHeap(5, 3 * 0x20);
+    v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 3 * 0x20);
 
     MI_CpuFill8(v0, 0xf | (0xf << 4), 3 * 0x20);
     sub_0200C67C(ov16_0223E04C(param0->battleSys), param0->maxHP, 3, 0, v0);
@@ -1345,7 +1345,7 @@ static void Healthbar_DrawBallsLeftMessage(Healthbar *param0, u32 param1)
     v0 = BattleSystem_BGL(param0->battleSys);
     v4 = BattleSystem_MessageLoader(param0->battleSys);
     v7 = BattleSystem_StringTemplate(param0->battleSys);
-    v5 = Strbuf_Init(30, 5);
+    v5 = Strbuf_Init(30, HEAP_ID_BATTLE);
 
     if (param1 & (1 << 10)) {
         v6 = MessageLoader_GetNewStrbuf(v4, 951);
@@ -1752,7 +1752,7 @@ void ov16_0226834C(Healthbar *param0, u8 *param1)
 
     *param1 = 0;
 
-    v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0226834C));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0226834C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226834C));
 
     v0->unk_00 = param0;

@@ -28,7 +28,7 @@ void sub_0206D0C8(TVBroadcast *param0, u16 param1);
 void sub_0206D0F0(TVBroadcast *param0);
 void sub_0206D104(TVBroadcast *param0);
 void sub_0206D12C(TVBroadcast *param0);
-UnkStruct_0206D140 *sub_0206D140(int param0);
+UnkStruct_0206D140 *sub_0206D140(int heapID);
 void sub_0206D158(UnkStruct_0206D140 *param0);
 void sub_0206D160(UnkStruct_0206D140 *param0, Pokemon *param1, int param2, int param3, u32 param4);
 void sub_0206D1B8(FieldSystem *fieldSystem, const UnkStruct_0206D140 *param1, int param2);

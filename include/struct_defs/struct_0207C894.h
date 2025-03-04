@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_0207C894_H
 
 typedef struct {
-    int unk_00;
+    int heapID;
     int unk_04;
 } UnkStruct_0207C894;
 

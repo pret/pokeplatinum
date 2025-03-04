@@ -334,11 +334,11 @@ static void sub_020709CC(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     menu = FieldTask_GetEnv(param0->unk_00);
 
-    u32 *v2 = (u32 *)Heap_AllocFromHeap(11, 4);
+    u32 *v2 = (u32 *)Heap_AllocFromHeap(HEAP_ID_FIELDMAP, 4);
     *v2 = param0->unk_04;
     menu->unk_260 = (void *)v2;
 
-    menu->unk_25C = Heap_AllocFromHeap(11, sizeof(UnkStruct_0203D8AC));
+    menu->unk_25C = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0203D8AC));
 
     sub_0206B70C(fieldSystem, menu->unk_25C, 1);
     sub_0203D884(fieldSystem, menu->unk_25C);

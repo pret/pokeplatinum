@@ -47,13 +47,13 @@ static void ov20_021D4658(UnkStruct_ov20_021D4210 *param0, u32 param1, u32 param
 
 UnkStruct_ov20_021D4210 *ov20_021D40E8(UnkStruct_ov20_021D2128 *param0, const UnkStruct_ov20_021D16E8 *param1, const UnkStruct_020998EC *param2)
 {
-    UnkStruct_ov20_021D4210 *v0 = Heap_AllocFromHeap(35, sizeof(UnkStruct_ov20_021D4210));
+    UnkStruct_ov20_021D4210 *v0 = Heap_AllocFromHeap(HEAP_ID_35, sizeof(UnkStruct_ov20_021D4210));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
     v0->unk_08 = param2;
     v0->unk_0C = ov20_021D2E04(param0);
-    v0->unk_3C = Strbuf_Init(32, 35);
+    v0->unk_3C = Strbuf_Init(32, HEAP_ID_35);
 
     Window_Add(v0->unk_0C, &v0->unk_10, 2, 4, 0, 26, 32, 12, 1);
     Window_Add(v0->unk_0C, &v0->unk_20, 2, 0, 0, 12, 4, 12, 1);
@@ -95,7 +95,7 @@ void ov20_021D41A8(UnkStruct_ov20_021D4210 *param0)
 
     v0 = ov20_021D2E04(param0->unk_00);
 
-    Bg_ClearTilesRange(2, 0x20, 0 * 0x20, 35);
+    Bg_ClearTilesRange(2, 0x20, 0 * 0x20, HEAP_ID_35);
     Bg_FillTilemapRect(v0, 2, 0, 0, 0, 32, 32, 12);
 
     Window_FillTilemap(&param0->unk_10, 0);

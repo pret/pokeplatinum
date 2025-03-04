@@ -132,7 +132,7 @@ int ov80_021D1458(UnkStruct_ov80_021D2A08 *param0)
 {
     UnkStruct_ov80_021D1478 *v0;
 
-    param0->unk_34 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov80_021D1478));
+    param0->unk_34 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov80_021D1478));
     v0 = (UnkStruct_ov80_021D1478 *)param0->unk_34;
 
     memset(v0, 0, sizeof(UnkStruct_ov80_021D1478));
@@ -179,7 +179,7 @@ int ov80_021D14A8(UnkStruct_ov80_021D2A08 *param0)
     case 1:
         ov80_021D20DC(param0);
         ov80_021D2398(param0);
-        v0->unk_9C = ov80_021D2AF4(param0->unk_D8, param0->unk_DC, param0->unk_2C->unk_124, 20, param0->unk_04);
+        v0->unk_9C = ov80_021D2AF4(param0->unk_D8, param0->unk_DC, param0->unk_2C->unk_124, 20, param0->heapID);
         ov80_021D1A30(param0);
         ov80_021D19E4(param0);
         v0->unk_00 = 0;
@@ -194,7 +194,7 @@ int ov80_021D1550(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
 
-    StartScreenTransition(1, 17, 37, 0x0, 6, 1, param0->unk_04);
+    StartScreenTransition(1, 17, 37, 0x0, 6, 1, param0->heapID);
     Sound_PlayEffect(1679);
     sub_0200F338(0);
     sub_0200F338(1);
@@ -206,7 +206,7 @@ int ov80_021D1550(UnkStruct_ov80_021D2A08 *param0)
 int ov80_021D159C(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
-    StartScreenTransition(2, 16, 36, 0x0, 6, 1, param0->unk_04);
+    StartScreenTransition(2, 16, 36, 0x0, 6, 1, param0->heapID);
     Sound_PlayEffect(1680);
     return 0;
 }
@@ -215,7 +215,7 @@ int ov80_021D15C8(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
 
-    StartScreenTransition(3, 17, 17, 0x0, 6, 1, param0->unk_04);
+    StartScreenTransition(3, 17, 17, 0x0, 6, 1, param0->heapID);
     Sound_PlayEffect(1679);
     sub_0200F338(0);
 
@@ -227,7 +227,7 @@ int ov80_021D1610(UnkStruct_ov80_021D2A08 *param0)
 {
     param0->unk_14 = 0;
 
-    StartScreenTransition(3, 16, 16, 0x0, 6, 1, param0->unk_04);
+    StartScreenTransition(3, 16, 16, 0x0, 6, 1, param0->heapID);
     Sound_PlayEffect(1680);
 
     return 0;
@@ -348,7 +348,7 @@ int ov80_021D1758(UnkStruct_ov80_021D2A08 *param0)
     ov80_021D1B5C(param0, &(v0->unk_28[3]), v2);
     Strbuf_Clear(param0->unk_88);
     ov80_021D1A58(param0, v3, v0->unk_18, v0->unk_1C);
-    LoadSignpostContentGraphics(param0->unk_28, 4, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04, v2->unk_06, param0->unk_04);
+    LoadSignpostContentGraphics(param0->unk_28, 4, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04, v2->unk_06, param0->heapID);
 
     if ((v2->unk_04 == 0) || (v2->unk_04 == 1)) {
         v1 = &v0->unk_28[1];
@@ -526,7 +526,7 @@ static void ov80_021D1A58(UnkStruct_ov80_021D2A08 *param0, int param1, int param
     };
 
     if (param1 != 0) {
-        MapHeader_LoadName(param1, param0->unk_04, param0->unk_88);
+        MapHeader_LoadName(param1, param0->heapID, param0->unk_88);
         return;
     }
 
@@ -535,11 +535,11 @@ static void ov80_021D1A58(UnkStruct_ov80_021D2A08 *param0, int param1, int param
             continue;
         }
 
-        MapHeader_LoadName(v1[v0].unk_04, param0->unk_04, param0->unk_88);
+        MapHeader_LoadName(v1[v0].unk_04, param0->heapID, param0->unk_88);
         return;
     }
 
-    MapHeader_LoadName(0, param0->unk_04, param0->unk_88);
+    MapHeader_LoadName(0, param0->heapID, param0->unk_88);
     return;
 }
 
@@ -1109,7 +1109,7 @@ static void ov80_021D2774(SysTask *param0, void *param1)
         Sprite_SetAnimateFlag(v1->unk_100, 0);
 
         v0->unk_14 = 0;
-        StartScreenTransition(4, 13, 2, 0x0, 8, 1, v0->unk_04);
+        StartScreenTransition(4, 13, 2, 0x0, 8, 1, v0->heapID);
         v1->unk_04++;
         break;
     case 3:
@@ -1127,7 +1127,7 @@ static void ov80_021D2774(SysTask *param0, void *param1)
         ov80_021D19E4(v0);
 
         v0->unk_14 = 0;
-        StartScreenTransition(4, 13, 5, 0x0, 8, 1, v0->unk_04);
+        StartScreenTransition(4, 13, 5, 0x0, 8, 1, v0->heapID);
         v1->unk_04++;
         break;
     case 4:
@@ -1154,7 +1154,7 @@ static void ov80_021D28EC(SysTask *param0, void *param1)
     switch (v1->unk_04) {
     case 0:
         v0->unk_14 = 0;
-        StartScreenTransition(4, 13, 2, 0x0, 8, 1, v0->unk_04);
+        StartScreenTransition(4, 13, 2, 0x0, 8, 1, v0->heapID);
         Sound_PlayEffect(1681);
         v1->unk_04++;
         break;
@@ -1168,7 +1168,7 @@ static void ov80_021D28EC(SysTask *param0, void *param1)
         Bg_ScheduleTilemapTransfer(v0->unk_28, 4);
         Bg_ScheduleTilemapTransfer(v0->unk_28, 5);
         v0->unk_14 = 0;
-        StartScreenTransition(4, 13, 5, 0x0, 8, 1, v0->unk_04);
+        StartScreenTransition(4, 13, 5, 0x0, 8, 1, v0->heapID);
         v1->unk_04++;
         break;
     case 2:

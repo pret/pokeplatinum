@@ -3,7 +3,7 @@
 
 typedef struct {
     int unk_00;
-    int unk_04;
+    int heapID;
 } UnkStruct_ov5_021EDDAC;
 
 #endif // POKEPLATINUM_STRUCT_OV5_021EDDAC_H

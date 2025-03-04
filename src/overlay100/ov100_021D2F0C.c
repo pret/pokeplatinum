@@ -243,7 +243,7 @@ static void ov100_021D3558(UnkStruct_ov100_021D3084 *param0)
 
 void *ov100_021D3620(UnkStruct_ov100_021D4DD8 *param0)
 {
-    UnkStruct_ov100_021D3084 *v0 = Heap_AllocFromHeap(111, sizeof(UnkStruct_ov100_021D3084));
+    UnkStruct_ov100_021D3084 *v0 = Heap_AllocFromHeap(HEAP_ID_111, sizeof(UnkStruct_ov100_021D3084));
 
     memset(v0, 0, sizeof(UnkStruct_ov100_021D3084));
 
@@ -373,7 +373,7 @@ static void ov100_021D37F4(SysTask *param0, void *param1)
         break;
     case 1:
         if ((++v0->unk_04) >= NELEMS(v1)) {
-            Sound_PlayPokemonCry(0, v0->unk_08, v0->unk_0C, 80, 111, 0);
+            Sound_PlayPokemonCry(0, v0->unk_08, v0->unk_0C, 80, HEAP_ID_111, 0);
             v0->unk_00++;
         } else {
             Easy3DObject_SetScale(&v0->unk_10->unk_00, FX32_CONST(v1[v0->unk_04]), FX32_CONST(1.00f), FX32_CONST(1.00f));

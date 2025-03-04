@@ -259,7 +259,7 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
     SetAllGraphicsModes(&v1);
     Bg_MaskPalette(3, 0x0);
     Bg_InitFromTemplate(fieldSystem->bgConfig, 3, &v2, 0);
-    Bg_ClearTilesRange(3, 0x20, 0, 32);
+    Bg_ClearTilesRange(3, 0x20, 0, HEAP_ID_FIELD_TASK);
     Bg_FillTilemapRect(fieldSystem->bgConfig, 3, 0x0, 0, 0, 32, 32, 17);
     Bg_CopyTilemapBufferToVRAM(fieldSystem->bgConfig, 3);
 }
@@ -291,7 +291,7 @@ static void sub_0205300C(UnkStruct_0205300C *param0)
 
 static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, int param2)
 {
-    MessageLoader *v0 = MessageLoader_Init(1, 26, 213, 4);
+    MessageLoader *v0 = MessageLoader_Init(1, 26, 213, HEAP_ID_FIELD);
 
     if (param2 == 2) {
         StringTemplate *v1;

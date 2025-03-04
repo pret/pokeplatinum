@@ -19,7 +19,7 @@
 #include "sprite_system.h"
 #include "sys_task_manager.h"
 
-UnkStruct_ov12_0221FCDC *ov12_0221FCDC(int param0);
+UnkStruct_ov12_0221FCDC *ov12_0221FCDC(int heapID);
 void ov12_0221FDC0(UnkStruct_ov12_0221FCDC *param0, BOOL param1);
 BOOL ov12_0221FDD4(UnkStruct_ov12_0221FCDC *param0);
 int ov12_0221FDE4(UnkStruct_ov12_0221FCDC *param0);

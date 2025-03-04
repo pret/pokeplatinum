@@ -39,7 +39,7 @@ static const SpriteTemplate Unk_020EFA04[] = {
     },
 };
 
-UnkStruct_0206A844 *sub_0206A780(int param0)
+UnkStruct_0206A844 *sub_0206A780(int heapID)
 {
     SpriteResourceCapacities v0 = {
         1, 1, 1, 1, 0, 0
@@ -48,12 +48,12 @@ UnkStruct_0206A844 *sub_0206A780(int param0)
     UnkStruct_0206A844 *v2;
     NARC *v3;
 
-    v2 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0206A844));
+    v2 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0206A844));
     MI_CpuClear8(v2, sizeof(UnkStruct_0206A844));
 
     ov5_021D3190(&v2->unk_00, &v0, 2, 11);
 
-    v3 = NARC_ctor(NARC_INDEX_GRAPHIC__FLD_COMACT, param0);
+    v3 = NARC_ctor(NARC_INDEX_GRAPHIC__FLD_COMACT, heapID);
 
     ov5_021D32E8(&v2->unk_00, v3, 0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
     ov5_021D3374(&v2->unk_00, v3, 2, 0, 13528);

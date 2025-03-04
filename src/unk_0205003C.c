@@ -155,7 +155,7 @@ void sub_02050224(FieldTask *param0, u16 param1, u16 param2, u16 *param3)
 {
     UnkStruct_02050224 *v0;
 
-    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02050224));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02050224));
     memset(v0, 0, sizeof(UnkStruct_02050224));
 
     v0->unk_04[0] = param1;
@@ -202,7 +202,7 @@ static BOOL sub_02050264(FieldTask *param0)
 void sub_020502E0(FieldTask *param0, void **param1, u8 param2)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_0205037C *v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0205037C));
+    UnkStruct_0205037C *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0205037C));
 
     MI_CpuClear8(v1, sizeof(UnkStruct_0205037C));
 
@@ -242,7 +242,7 @@ static BOOL sub_02050314(FieldTask *param0)
 static int sub_0205037C(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, int param2)
 {
     u8 v0;
-    PartyManagementData *v1 = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
+    PartyManagementData *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
 
     MI_CpuClearFast(v1, sizeof(PartyManagementData));
 

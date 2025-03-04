@@ -241,7 +241,7 @@ static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
     param0->unk_200 = Window_New(14, 1);
 
     Window_Add(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
-    Font_LoadTextPalette(0, 5 * 32, 14);
+    Font_LoadTextPalette(0, 5 * 32, HEAP_ID_14);
     Bg_SetPriority(3, 0);
     Bg_SetPriority(0, 2);
     Bg_SetPriority(1, 1);
@@ -279,7 +279,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     Strbuf *v7;
     MessageLoader *v8;
 
-    v8 = MessageLoader_Init(0, 26, 385, 13);
+    v8 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
     GF_ASSERT(v8);
     v5 = StringTemplate_Default(13);
 
@@ -289,7 +289,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     v0.z = 0;
     Sprite_SetPosition(param0->unk_1FC, &v0);
 
-    v7 = Strbuf_Init(12, 13);
+    v7 = Strbuf_Init(12, HEAP_ID_13);
     sub_0202A1A0(param0->unk_00, v7);
 
     v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v7, 0);
@@ -302,7 +302,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     v4 = sub_0202A1F4(param0->unk_00);
     StringTemplate_SetCustomMessageWord(v5, 0, v4);
 
-    v7 = Strbuf_Init(200, 13);
+    v7 = Strbuf_Init(200, HEAP_ID_13);
     v6 = MessageLoader_GetNewStrbuf(v8, 45);
     StringTemplate_Format(v5, v7, v6);
 
@@ -334,7 +334,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
 
     v0 = sub_0202A5D0(param0->unk_04);
     v1 = StringTemplate_Default(13);
-    v2 = Strbuf_Init(200, 13);
+    v2 = Strbuf_Init(200, HEAP_ID_13);
 
     StringTemplate_SetContestTypeName(v1, 0, sub_020958B8(param0->unk_08));
     StringTemplate_SetContestRankName(v1, 1, sub_02095888(v0));
@@ -343,13 +343,13 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     sub_0202A524(param0->unk_04, v2);
     StringTemplate_SetStrbuf(v1, 3, v2, v4, 1, GAME_LANGUAGE);
 
-    v5 = Pokemon_New(13);
+    v5 = Pokemon_New(HEAP_ID_13);
     sub_0202A560(param0->unk_04, v5);
     v6 = Pokemon_GetBoxPokemon(v5);
     StringTemplate_SetNickname(v1, 4, v6);
     Heap_FreeToHeap(v5);
 
-    v7 = MessageLoader_Init(0, 26, 385, 13);
+    v7 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
     GF_ASSERT(v7);
 
     v3 = MessageLoader_GetNewStrbuf(v7, 43);

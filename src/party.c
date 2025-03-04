@@ -110,7 +110,7 @@ BOOL Party_SwapSlots(Party *party, int slotA, int slotB)
     PARTY_ASSERT_SLOT(party, slotA);
     PARTY_ASSERT_SLOT(party, slotB);
 
-    tempPokemon = Heap_AllocFromHeap(0, sizeof(Pokemon));
+    tempPokemon = Heap_AllocFromHeap(HEAP_ID_SYSTEM, sizeof(Pokemon));
     *tempPokemon = party->pokemon[slotA];
 
     party->pokemon[slotA] = party->pokemon[slotB];

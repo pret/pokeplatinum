@@ -101,7 +101,7 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov94_0223FD4C), 62);
         memset(v0, 0, sizeof(UnkStruct_ov94_0223FD4C));
-        v0->unk_04 = BgConfig_New(62);
+        v0->unk_04 = BgConfig_New(HEAP_ID_62);
         Unk_ov94_02246C08 = v0;
 
         {
@@ -116,11 +116,11 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
         }
 
         v0->unk_B8C = StringTemplate_New(11, 64, 62);
-        v0->unk_B90 = MessageLoader_Init(0, 26, 671, 62);
-        v0->unk_B98 = MessageLoader_Init(0, 26, 674, 62);
-        v0->unk_B9C = MessageLoader_Init(0, 26, 695, 62);
-        v0->unk_B94 = MessageLoader_Init(0, 26, 412, 62);
-        v0->unk_BA0 = MessageLoader_Init(0, 26, 694, 62);
+        v0->unk_B90 = MessageLoader_Init(0, 26, 671, HEAP_ID_62);
+        v0->unk_B98 = MessageLoader_Init(0, 26, 674, HEAP_ID_62);
+        v0->unk_B9C = MessageLoader_Init(0, 26, 695, HEAP_ID_62);
+        v0->unk_B94 = MessageLoader_Init(0, 26, 412, HEAP_ID_62);
+        v0->unk_BA0 = MessageLoader_Init(0, 26, 694, HEAP_ID_62);
 
         SetAutorepeat(4, 8);
 
@@ -129,7 +129,7 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
 
         sub_02004550(11, 1175, 1);
 
-        v0->unk_4C = Heap_AllocFromHeap(62, 0x20000 + 32);
+        v0->unk_4C = Heap_AllocFromHeap(HEAP_ID_62, 0x20000 + 32);
         v0->unk_50 = NNS_FndCreateExpHeap((void *)(((u32)v0->unk_4C + 31) / 32 * 32), 0x20000);
         *param1 = 1;
         break;

@@ -331,7 +331,7 @@ static BOOL ov97_0222B07C(UnkStruct_0222AE60 *param0)
 
         return 1;
     case 16:
-        LoadStandardWindowGraphics(param0->unk_00, 1, 1, 2, 0, 81);
+        LoadStandardWindowGraphics(param0->unk_00, 1, 1, 2, 0, HEAP_ID_81);
         Bg_ClearTilemap(param0->unk_00, 1);
         *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
         param0->unk_12C = 17;
@@ -448,25 +448,25 @@ static void ov97_0222B2EC(UnkStruct_0222AE60 *param0)
 
     ov97_022376FC(param0->unk_00, 0, 2, 0xF000, 0x0);
     G2_SetBG0Priority(2);
-    Bg_ClearTilesRange(0, 32, 0, 81);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_81);
 
     ov97_022376FC(param0->unk_00, 1, 1, 0xD800, 0x8000);
     G2_SetBG1Priority(1);
-    Bg_ClearTilesRange(1, 32, 0, 81);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_81);
 
     ov97_022376FC(param0->unk_00, 2, 2, 0xE000, 0x0);
     G2_SetBG2Priority(0);
-    Bg_ClearTilesRange(2, 32, 0, 81);
+    Bg_ClearTilesRange(2, 32, 0, HEAP_ID_81);
 
     Text_ResetAllPrinters();
-    Font_LoadTextPalette(0, 1 * 32, 81);
-    Font_LoadTextPalette(0, 0 * 32, 81);
+    Font_LoadTextPalette(0, 1 * 32, HEAP_ID_81);
+    Font_LoadTextPalette(0, 0 * 32, HEAP_ID_81);
 
     *((u16 *)HW_BG_PLTT + 0) = ((0 & 31) << 10 | (0 & 31) << 5 | (0 & 31));
     *((u16 *)HW_BG_PLTT + 31) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
 
-    LoadStandardWindowGraphics(param0->unk_00, 0, 1, 2, 0, 81);
-    LoadStandardWindowGraphics(param0->unk_00, 0, (1 + 9), 3, 1, 81);
+    LoadStandardWindowGraphics(param0->unk_00, 0, 1, 2, 0, HEAP_ID_81);
+    LoadStandardWindowGraphics(param0->unk_00, 0, (1 + 9), 3, 1, HEAP_ID_81);
 
     *((u16 *)HW_BG_PLTT + 33) = ((26 & 31) << 10 | (26 & 31) << 5 | (26 & 31));
 }
@@ -565,7 +565,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
     UnkStruct_0222AE60 *v6 = (UnkStruct_0222AE60 *)param0;
     TextColor v7;
 
-    v5 = MessageLoader_Init(1, 26, 550, 81);
+    v5 = MessageLoader_Init(1, 26, 550, HEAP_ID_81);
     v4 = StringTemplate_Default(81);
 
     if (TrainerInfo_Gender(v6->unk_0C) == 1) {
@@ -976,7 +976,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0222AE60), 81);
     memset(v0, 0, sizeof(UnkStruct_0222AE60));
-    v0->unk_00 = BgConfig_New(81);
+    v0->unk_00 = BgConfig_New(HEAP_ID_81);
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
@@ -992,7 +992,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     v0->unk_50 = TrainerInfo_BadgeCount(v0->unk_0C);
     v0->unk_12C = 15;
 
-    ov97_02237694(81);
+    ov97_02237694(HEAP_ID_81);
 
     if (!SaveData_DataExists(v0->unk_04)) {
         v0->unk_14C = 1;

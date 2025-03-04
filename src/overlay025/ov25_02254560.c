@@ -111,7 +111,7 @@ BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_022545
         }
 
         v0->unk_00 = param1;
-        v0->unk_1F8 = BgConfig_New(7);
+        v0->unk_1F8 = BgConfig_New(HEAP_ID_POKETCH_MAIN);
         v0->poketchSys = poketchSys;
 
         Poketch_InitPaletteData(v0);

@@ -20,9 +20,9 @@ void ov79_021D21F8(UnkStruct_ov79_021D0E1C *param0);
 
 void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
 {
-    VramTransfer_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->heapID);
 
-    param0->unk_1B8 = SpriteSystem_Alloc(param0->unk_00);
+    param0->unk_1B8 = SpriteSystem_Alloc(param0->heapID);
     param0->unk_1BC = SpriteManager_New(param0->unk_1B8);
 
     {
@@ -47,8 +47,8 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
         SpriteSystem_Init(param0->unk_1B8, &v0, &v1, 32);
         SpriteSystem_InitSprites(param0->unk_1B8, param0->unk_1BC, 3 + 5 + 6);
 
-        RenderOam_ClearMain(param0->unk_00);
-        RenderOam_ClearSub(param0->unk_00);
+        RenderOam_ClearMain(param0->heapID);
+        RenderOam_ClearSub(param0->heapID);
     }
 
     {
@@ -65,7 +65,7 @@ void ov79_021D20F4(UnkStruct_ov79_021D0E1C *param0)
         SpriteSystem_LoadResourceDataFromFilepaths(param0->unk_1B8, param0->unk_1BC, &v2);
     }
 
-    param0->unk_1F8 = sub_02098FFC(param0->unk_00, 1, 1, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
+    param0->unk_1F8 = sub_02098FFC(param0->heapID, 1, 1, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
 
     if (CommSys_IsInitialized()) {
         sub_02039734();

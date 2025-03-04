@@ -330,7 +330,7 @@ int ov111_021D0D80(OverlayManager *param0, int *param1)
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov111_021D0F7C), 115);
     memset(v1, 0, sizeof(UnkStruct_ov111_021D0F7C));
 
-    v1->unk_58 = BgConfig_New(115);
+    v1->unk_58 = BgConfig_New(HEAP_ID_115);
     v1->unk_00 = param0;
     v2 = (UnkStruct_0203E608 *)OverlayManager_Args(param0);
     v1->unk_168 = v2->unk_00;
@@ -1148,13 +1148,13 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
     ov111_021D1FC4(param0);
     ov111_021D2034(param0);
 
-    param0->unk_38 = MessageLoader_Init(1, 26, 540, 115);
+    param0->unk_38 = MessageLoader_Init(1, 26, 540, HEAP_ID_115);
     param0->unk_3C = StringTemplate_Default(115);
-    param0->unk_40 = Strbuf_Init(600, 115);
-    param0->unk_44 = Strbuf_Init(600, 115);
+    param0->unk_40 = Strbuf_Init(600, HEAP_ID_115);
+    param0->unk_44 = Strbuf_Init(600, HEAP_ID_115);
 
-    Font_LoadTextPalette(0, 13 * 32, 115);
-    Font_LoadTextPalette(4, 13 * 32, 115);
+    Font_LoadTextPalette(0, 13 * 32, HEAP_ID_115);
+    Font_LoadTextPalette(4, 13 * 32, HEAP_ID_115);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 115);
     Font_LoadScreenIndicatorsPalette(4, 12 * 32, 115);
     Font_InitManager(FONT_SUBSCREEN, 115);
@@ -1341,7 +1341,7 @@ static void ov111_021D20EC(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 4, &v1, 0);
-        Bg_ClearTilesRange(4, 32, 0, 115);
+        Bg_ClearTilesRange(4, 32, 0, HEAP_ID_115);
         Bg_ClearTilemap(param0, 4);
     }
 
@@ -1447,7 +1447,7 @@ static void ov111_021D20EC(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 2, &v6, 0);
-        Bg_ClearTilesRange(2, 32, 0, 115);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_115);
         Bg_ClearTilemap(param0, 2);
     }
 
@@ -2133,7 +2133,7 @@ static void ov111_021D2E4C(UnkStruct_ov111_021D0F7C *param0)
 
 static void ov111_021D2E8C(UnkStruct_ov111_021D0F7C *param0)
 {
-    param0->unk_3F8 = Heap_AllocFromHeap(115, param0->unk_3F4->szByte);
+    param0->unk_3F8 = Heap_AllocFromHeap(HEAP_ID_115, param0->unk_3F4->szByte);
 
     if (param0->unk_3F8 == NULL) {
         GF_ASSERT(param0->unk_3F8 != NULL);

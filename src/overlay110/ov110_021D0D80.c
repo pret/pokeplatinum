@@ -110,7 +110,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     memset(v1, 0, sizeof(UnkStruct_ov110_021D0F78));
 
     v1->unk_00 = param0;
-    v1->unk_0C = BgConfig_New(114);
+    v1->unk_0C = BgConfig_New(HEAP_ID_114);
 
     v2 = (UnkStruct_0203E564 *)OverlayManager_Args(param0);
 
@@ -123,12 +123,12 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
 
     ov110_021D1180(v1);
 
-    v1->unk_110 = MessageLoader_Init(1, 26, 16, 114);
+    v1->unk_110 = MessageLoader_Init(1, 26, 16, HEAP_ID_114);
     v1->unk_114 = StringTemplate_Default(114);
-    v1->unk_118 = Strbuf_Init(800, 114);
-    v1->unk_11C = Strbuf_Init(800, 114);
+    v1->unk_118 = Strbuf_Init(800, HEAP_ID_114);
+    v1->unk_11C = Strbuf_Init(800, HEAP_ID_114);
 
-    Font_LoadTextPalette(0, 13 * 32, 114);
+    Font_LoadTextPalette(0, 13 * 32, HEAP_ID_114);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 114);
     ov110_021D2124(v1->unk_0C, v1->unk_10, ov110_021D1208(v1->unk_06));
     SetVBlankCallback(ov110_021D1048, (void *)v1);
@@ -310,7 +310,7 @@ static void ov110_021D1098(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilesRange(0, 32, 0, 114);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_114);
         Bg_ClearTilemap(param0, 0);
     }
 
@@ -332,7 +332,7 @@ static void ov110_021D1098(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 2, &v2, 0);
-        Bg_ClearTilesRange(2, 32, 0, 114);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_114);
         Bg_ClearTilemap(param0, 2);
     }
 
@@ -354,7 +354,7 @@ static void ov110_021D1098(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 6, &v3, 0);
-        Bg_ClearTilesRange(6, 32, 0, 114);
+        Bg_ClearTilesRange(6, 32, 0, HEAP_ID_114);
         Bg_ClearTilemap(param0, 6);
     }
 
@@ -964,7 +964,7 @@ static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
     MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = MessageLoader_Init(1, 26, 412, 114);
+    v0 = MessageLoader_Init(1, 26, 412, HEAP_ID_114);
     v1 = MessageLoader_GetNewStrbuf(v0, param0->unk_08);
 
     MessageLoader_Free(v0);

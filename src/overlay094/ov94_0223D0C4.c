@@ -218,8 +218,8 @@ static void ov94_0223D1D4(BgConfig *param0)
         Bg_InitFromTemplate(param0, 5, &v4, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 62);
-    Bg_ClearTilesRange(4, 32, 0, 62);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
 }
 
 static void ov94_0223D2BC(BgConfig *param0)
@@ -240,7 +240,7 @@ static void ov94_0223D2E8(UnkStruct_ov94_0223FD4C *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 17, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 25, v0, 1, 0, 32 * 24 * 2, 1, 62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 15, v0, 5, 0, 32 * 21 * 0x40, 1, 62);
@@ -322,11 +322,11 @@ static void ov94_0223D53C(UnkStruct_ov94_0223FD4C *param0)
 {
     int v0;
 
-    param0->unk_BAC = Strbuf_Init((90 * 2), 62);
+    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
     param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 39);
 
     for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_BB4[v0] = Strbuf_Init((10 * 2), 62);
+        param0->unk_BB4[v0] = Strbuf_Init((10 * 2), HEAP_ID_62);
     }
 }
 
@@ -514,8 +514,8 @@ static TextColor Unk_ov94_022467FC[] = {
 void ov94_0223D910(MessageLoader *param0, MessageLoader *param1, StringTemplate *param2, Window param3[], BoxPokemon *boxMon, UnkStruct_ov94_0223BA88_sub2 *param5)
 {
     Strbuf *v0, *v1, *v2, *v3;
-    Strbuf *v4 = Strbuf_Init((10 + 1) * 2, 62);
-    Strbuf *v5 = Strbuf_Init((8 + 1) * 2, 62);
+    Strbuf *v4 = Strbuf_Init((10 + 1) * 2, HEAP_ID_62);
+    Strbuf *v5 = Strbuf_Init((8 + 1) * 2, HEAP_ID_62);
     int gender, level, v8, v9, species;
 
     BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v4);
@@ -562,8 +562,8 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
     Strbuf *v0, *v1;
     Strbuf *v2, *v3;
 
-    v0 = Strbuf_Init((7 + 1) * 2, 62);
-    v3 = Strbuf_Init((7 + 1) * 2, 62);
+    v0 = Strbuf_Init((7 + 1) * 2, HEAP_ID_62);
+    v3 = Strbuf_Init((7 + 1) * 2, HEAP_ID_62);
 
     v1 = MessageLoader_GetNewStrbuf(param0, 48);
     Strbuf_CopyChars(v0, param2);
@@ -585,7 +585,7 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
 void ov94_0223DB2C(Pokemon *param0)
 {
     ArchivedSprite v0;
-    u8 *v1 = Heap_AllocFromHeap(62, (0x20 * 10 * 10));
+    u8 *v1 = Heap_AllocFromHeap(HEAP_ID_62, (0x20 * 10 * 10));
 
     Pokemon_BuildArchivedSprite(&v0, param0, 2);
 
@@ -593,7 +593,7 @@ void ov94_0223DB2C(Pokemon *param0)
         int v2 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
         int v3 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(v0.archive, v0.character, 62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
+        sub_020136A4(v0.archive, v0.character, HEAP_ID_62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
     }
 
     DC_FlushRange(v1, (0x20 * 10 * 10));

@@ -604,7 +604,7 @@ static void sub_0202FD30(UnkStruct_0202FD30 *param0, Party *party)
     Pokemon *v1;
     u8 v2 = 0;
 
-    v1 = Pokemon_New(11);
+    v1 = Pokemon_New(HEAP_ID_FIELDMAP);
 
     Party_InitWithCapacity(party, param0->unk_00);
 
@@ -617,25 +617,25 @@ static void sub_0202FD30(UnkStruct_0202FD30 *param0, Party *party)
     Heap_FreeToHeap(v1);
 }
 
-UnkStruct_0202F41C *sub_0202FD88(int param0)
+UnkStruct_0202F41C *sub_0202FD88(int heapID)
 {
     UnkStruct_0202F41C *v0;
 
     GF_ASSERT(Unk_021C07A4 != NULL);
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202F41C));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202F41C));
     MI_CpuCopy32(&Unk_021C07A4->unk_84, v0, sizeof(UnkStruct_0202F41C));
 
     return v0;
 }
 
-UnkStruct_02030A80 *sub_0202FDB8(int param0)
+UnkStruct_02030A80 *sub_0202FDB8(int heapID)
 {
     UnkStruct_02030A80 *v0;
 
     GF_ASSERT(Unk_021C07A4 != NULL);
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02030A80));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02030A80));
     MI_CpuCopy32(&Unk_021C07A4->unk_04, v0, sizeof(UnkStruct_02030A80));
 
     return v0;
@@ -706,11 +706,11 @@ u64 sub_0202FE98(UnkStruct_0202F41C *param0, int param1, int param2)
     return 0;
 }
 
-UnkStruct_0202F41C *sub_0202FF2C(int param0)
+UnkStruct_0202F41C *sub_0202FF2C(int heapID)
 {
     UnkStruct_0202F41C *v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202F41C));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202F41C));
     MI_CpuClear8(v0, sizeof(UnkStruct_0202F41C));
 
     return v0;

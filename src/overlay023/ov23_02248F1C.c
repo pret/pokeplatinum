@@ -421,7 +421,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
     }
 
     FieldMessage_LoadTextPalettes(4, FALSE);
-    Bg_ClearTilesRange(7, 32, 0, 4);
+    Bg_ClearTilesRange(7, 32, 0, HEAP_ID_FIELD);
     FieldMessage_AddWindow(param0, param1, 7);
     Window_FillTilemap(param1, 0);
     Graphics_LoadPalette(50, 52, 4, 10 * 0x20, 4 * 0x20, 4);
@@ -496,15 +496,15 @@ static void ov23_02249724(UnkStruct_ov23_02249724 *param0)
     int v0;
 
     for (v0 = 0; v0 < 32; v0++) {
-        param0->unk_00[v0] = Strbuf_Init((50 * 2), 4);
+        param0->unk_00[v0] = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     }
 
     param0->unk_8C = 0;
     param0->unk_90 = 0;
-    param0->unk_80 = Strbuf_Init((50 * 2), 4);
+    param0->unk_80 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_84[v0] = Strbuf_Init((20 * 2 * 2), 4);
+        param0->unk_84[v0] = Strbuf_Init((20 * 2 * 2), HEAP_ID_FIELD);
     }
 }
 

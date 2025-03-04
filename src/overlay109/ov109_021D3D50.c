@@ -189,9 +189,9 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         v2->unk_3C = v0;
         v0->unk_0C = v2;
         v0->unk_10 = v2->unk_34;
-        v0->unk_14 = BgConfig_New(95);
+        v0->unk_14 = BgConfig_New(HEAP_ID_95);
         v0->unk_34 = StringTemplate_Default(95);
-        v0->unk_38 = MessageLoader_Init(0, 26, 377, 95);
+        v0->unk_38 = MessageLoader_Init(0, 26, 377, HEAP_ID_95);
 
         SetAutorepeat(4, 8);
         ov109_021D40D0();
@@ -503,8 +503,8 @@ static void ov109_021D40F0(BgConfig *param0)
         Bg_InitFromTemplate(param0, 1, &v5, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 95);
-    Bg_ClearTilesRange(4, 32, 0, 95);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_95);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_95);
 }
 
 static void ov109_021D41F8(UnkStruct_ov109_021D5140 *param0, NARC *param1)
@@ -512,20 +512,20 @@ static void ov109_021D41F8(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_3C[v0] = Strbuf_Init(7 + 1, 95);
+        param0->unk_3C[v0] = Strbuf_Init(7 + 1, HEAP_ID_95);
         param0->unk_3D8[v0][0] = NULL;
         param0->unk_3D8[v0][1] = NULL;
         param0->unk_400[v0] = 0;
     }
 
-    param0->unk_54 = Strbuf_Init((90 * 2), 95);
-    param0->unk_58 = Strbuf_Init((20 * 2), 95);
+    param0->unk_54 = Strbuf_Init((90 * 2), HEAP_ID_95);
+    param0->unk_58 = Strbuf_Init((20 * 2), HEAP_ID_95);
     param0->unk_3B8 = 0;
 
     MessageLoader_GetStrbuf(param0->unk_38, 17, param0->unk_58);
     ov109_021D577C(param0, param1);
 
-    param0->unk_41C = sub_0205CA4C(95);
+    param0->unk_41C = sub_0205CA4C(HEAP_ID_95);
     param0->unk_1C.unk_00 = 0;
     param0->unk_1C.unk_08 = 0;
     param0->unk_1C.unk_04 = 0;
@@ -574,7 +574,7 @@ static void ov109_021D4300(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 95);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 95);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_0C->unk_14.unk_10), 95);
-    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, 95);
+    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, HEAP_ID_95);
 }
 
 static void ov109_021D43EC(void)
@@ -1566,7 +1566,7 @@ static void ov109_021D55A8(UnkStruct_ov109_021D5140 *param0, int param1, int par
 {
     Strbuf *v0;
 
-    v0 = Strbuf_Init((90 * 2), 95);
+    v0 = Strbuf_Init((90 * 2), HEAP_ID_95);
 
     MessageLoader_GetStrbuf(param0->unk_38, param1, v0);
     StringTemplate_Format(param0->unk_34, param0->unk_54, v0);

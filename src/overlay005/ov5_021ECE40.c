@@ -340,13 +340,13 @@ static void ov5_021ED0A4(UnkStruct_ov5_021ED0A4 *param0, int param1)
     UnkStruct_ov5_021ED110 *v3;
 
     v0 = sizeof(UnkStruct_ov5_021DF84C) * param1;
-    v2 = Heap_AllocFromHeap(4, v0);
+    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0);
 
     param0->unk_E4 = v2;
     GF_ASSERT(v2 != NULL);
 
     v0 = (sizeof(UnkStruct_ov5_021ED110)) * param1;
-    v3 = Heap_AllocFromHeap(4, v0);
+    v3 = Heap_AllocFromHeap(HEAP_ID_FIELD, v0);
 
     param0->unk_F4 = v3;
     GF_ASSERT(v3 != NULL);
@@ -1425,7 +1425,7 @@ static void ov5_021EDDAC(UnkStruct_ov5_021ED0A4 *param0, int param1)
     UnkStruct_02020C44 *v1;
 
     v0.unk_00 = param1;
-    v0.unk_04 = 4;
+    v0.heapID = HEAP_ID_FIELD;
 
     v1 = sub_02020C44(&v0);
     ov5_021EDC84(param0, v1);
@@ -1880,7 +1880,7 @@ static void ov5_021EE320(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2)
     v3 = (sizeof(UnkStruct_ov5_021EDFBC)) * param1;
     v2 = (sizeof(UnkStruct_ov5_021EE134)) * param1;
     v1 = (sizeof(UnkStruct_ov5_021EDF3C)) + v2 + v3 + v4;
-    v5 = Heap_AllocFromHeap(4, v1);
+    v5 = Heap_AllocFromHeap(HEAP_ID_FIELD, v1);
 
     GF_ASSERT(v5 != NULL);
     memset(v5, 0, v1);

@@ -66,10 +66,10 @@ void sub_0209ACF4(FieldTask *param0)
     UnkStruct_0209AD84 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0209AD84));
 
     v1->fieldSystem = fieldSystem;
-    v1->unk_04 = Strbuf_Init(400, 32);
-    v1->unk_08 = Strbuf_Init(400, 32);
+    v1->unk_04 = Strbuf_Init(400, HEAP_ID_FIELD_TASK);
+    v1->unk_08 = Strbuf_Init(400, HEAP_ID_FIELD_TASK);
     v1->unk_0C = StringTemplate_Default(32);
-    v1->unk_10 = MessageLoader_Init(1, 26, 420, 32);
+    v1->unk_10 = MessageLoader_Init(1, 26, 420, HEAP_ID_FIELD_TASK);
     v1->unk_14 = ColoredArrow_New(32);
     v1->unk_50 = sub_0209747C(2, 0, v1->fieldSystem->saveData, 32);
 
@@ -296,7 +296,7 @@ static void sub_0209B12C(UnkStruct_0209AD84 *param0)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, 32);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, HEAP_ID_FIELD_TASK);
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 1, 1, 13, 10, 13, 1);
         Window_FillTilemap(v0, 15);
 
@@ -328,7 +328,7 @@ static void sub_0209B1D8(UnkStruct_0209AD84 *param0)
     if (Window_IsInUse(v0) == 0) {
         int v1;
 
-        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, 32);
+        LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 155, 11, 0, HEAP_ID_FIELD_TASK);
         Window_Add(param0->fieldSystem->bgConfig, v0, 3, 25, 13, 6, 4, 13, 131);
         Window_FillTilemap(v0, 15);
 

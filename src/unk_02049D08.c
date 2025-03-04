@@ -325,7 +325,7 @@ UnkStruct_0204AFC4 *sub_0204A124(SaveData *param0, u16 param1, u16 param2)
     UnkStruct_0203068C *v4;
     GameRecords *v5;
 
-    v3 = Heap_AllocFromHeap(11, sizeof(UnkStruct_0204AFC4));
+    v3 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204AFC4));
     MI_CpuClear8(v3, sizeof(UnkStruct_0204AFC4));
 
     v3->unk_04 = 11;

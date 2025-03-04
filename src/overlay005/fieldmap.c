@@ -182,21 +182,21 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         Heap_Create(3, 4, fieldSystem->mapLoadMode->unk_04);
         GF_ASSERT(fieldSystem->unk_04 == NULL);
 
-        fieldSystem->unk_04 = Heap_AllocFromHeap(4, sizeof(FieldSystem_sub2));
+        fieldSystem->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(FieldSystem_sub2));
         MI_CpuClear8(fieldSystem->unk_04, sizeof(FieldSystem_sub2));
         fieldSystem->unk_04->unk_04 = ov5_021D1A94(fieldSystem, 4, 8);
 
         ov5_021D1414();
 
         VramTransfer_New(128, HEAP_ID_FIELD);
-        sub_02020B90(4, 4);
+        sub_02020B90(4, HEAP_ID_FIELD);
         Easy3D_Init(HEAP_ID_FIELD);
 
         ov5_021D15B4();
         ov5_021D154C();
 
         GXLayers_SwapDisplay();
-        fieldSystem->bgConfig = BgConfig_New(4);
+        fieldSystem->bgConfig = BgConfig_New(HEAP_ID_FIELD);
         ov5_021D1444(fieldSystem->bgConfig);
         FieldMessage_LoadTextPalettes(0, TRUE);
         sub_0203F5C0(fieldSystem, 4);
@@ -586,7 +586,7 @@ static void ov5_021D1444(BgConfig *bgl)
         };
 
         Bg_InitFromTemplate(bgl, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, 4);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(bgl, 1);
     }
 
@@ -608,7 +608,7 @@ static void ov5_021D1444(BgConfig *bgl)
         };
 
         Bg_InitFromTemplate(bgl, 2, &v2, 0);
-        Bg_ClearTilesRange(2, 32, 0, 4);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(bgl, 2);
     }
     {
@@ -629,7 +629,7 @@ static void ov5_021D1444(BgConfig *bgl)
         };
 
         Bg_InitFromTemplate(bgl, 3, &v3, 0);
-        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(bgl, 3);
     }
 

@@ -275,7 +275,7 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
         u32 v16 = TrainerInfo_ID(v1);
         u32 v17 = TrainerInfo_Gender(v1);
 
-        v6 = Pokemon_New(32);
+        v6 = Pokemon_New(HEAP_ID_FIELD_TASK);
 
         Pokemon_Copy(v4, v6);
         Pokemon_SetValue(v6, MON_DATA_OTNAME_STRBUF, v15);

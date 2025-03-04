@@ -47,7 +47,7 @@ static void ov95_0224A358(BgConfig *param0, int param1, int param2);
 
 void *ov95_02249F90(UnkStruct_ov95_02247628 *param0)
 {
-    UnkStruct_ov95_02249FF8 *v0 = Heap_AllocFromHeap(58, sizeof(UnkStruct_ov95_02249FF8));
+    UnkStruct_ov95_02249FF8 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_02249FF8));
 
     if (v0) {
         int v1;

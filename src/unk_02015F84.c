@@ -173,15 +173,15 @@ static const UnkStruct_020E5598 Unk_020E5598[] = {
     { sub_02016F9C, 0x4, 0x0 }
 };
 
-PokemonAnimationSys *sub_02015F84(const int param0, const int param1, const u8 param2)
+PokemonAnimationSys *sub_02015F84(const int heapID, const int param1, const u8 param2)
 {
     PokemonAnimationSys *v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(PokemonAnimationSys));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(PokemonAnimationSys));
     v0->reverse = param2;
     v0->animation = param1;
-    v0->heapID = param0;
-    v0->pokeAnimation = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02016E64) * param1);
+    v0->heapID = heapID;
+    v0->pokeAnimation = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02016E64) * param1);
 
     MI_CpuClear8(v0->pokeAnimation, sizeof(UnkStruct_02016E64) * param1);
 

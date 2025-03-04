@@ -439,7 +439,7 @@ static void ov91_021D0ED8(UnkStruct_ov91_021D0ED8 *param0)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    param0->unk_04 = BgConfig_New(67);
+    param0->unk_04 = BgConfig_New(HEAP_ID_67);
 
     sub_0208C120(0, 67);
 
@@ -575,7 +575,7 @@ static void ov91_021D0FE4(BgConfig *param0)
         Bg_ClearTilemap(param0, 2);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 67);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_67);
 }
 
 static void ov91_021D1098(BgConfig *param0)
@@ -593,7 +593,7 @@ static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_04, 2, 0, 0, 0, 67);
     Graphics_LoadPaletteFromOpenNARC(param1, 12, 0, 0, 0, 67);
     Font_LoadScreenIndicatorsPalette(0, 14 * 32, 67);
-    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 12, 0, 67);
+    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 12, 0, HEAP_ID_67);
     LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->unk_08), 67);
 }
 
@@ -623,9 +623,9 @@ static void ov91_021D11A0(UnkStruct_ov91_021D0ED8 *param0)
 
 static void ov91_021D11B8(UnkStruct_ov91_021D0ED8 *param0)
 {
-    param0->unk_F8 = MessageLoader_Init(0, 26, 645, 67);
+    param0->unk_F8 = MessageLoader_Init(0, 26, 645, HEAP_ID_67);
     param0->unk_FC = StringTemplate_Default(67);
-    param0->unk_100 = Strbuf_Init(256, 67);
+    param0->unk_100 = Strbuf_Init(256, HEAP_ID_67);
 }
 
 static void ov91_021D11F0(UnkStruct_ov91_021D0ED8 *param0)
@@ -988,7 +988,7 @@ static void ov91_021D18C8(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
         ov91_021D1618(param0, 31, v1, 2, 0);
         ov91_021D1580(param0, 9, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 2);
 
-        v0 = MessageLoader_Init(1, 26, 646, 67);
+        v0 = MessageLoader_Init(1, 26, 646, HEAP_ID_67);
         MessageLoader_GetStrbuf(v0, param1, param0->unk_100);
         ov91_021D1580(param0, 10, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0);
         MessageLoader_Free(v0);
@@ -1022,7 +1022,7 @@ static void ov91_021D1A68(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
 
         v1 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_EFFECT);
         v2 = sub_0209577C(v1);
-        v0 = MessageLoader_Init(0, 26, 210, 67);
+        v0 = MessageLoader_Init(0, 26, 210, HEAP_ID_67);
 
         MessageLoader_GetStrbuf(v0, v2, param0->unk_100);
         Text_AddPrinterWithParamsAndColor(&param0->unk_08[11], FONT_SYSTEM, param0->unk_100, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);

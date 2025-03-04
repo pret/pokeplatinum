@@ -420,7 +420,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
         v6 = sub_02030B94(v11, 102);
         ov62_022349A8(param1, v6);
         v7 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 13);
-        v8 = Strbuf_Init(255, 102);
+        v8 = Strbuf_Init(255, HEAP_ID_102);
 
         StringTemplate_SetStrbuf(v9, 0, v6, 0, 1, 2);
         StringTemplate_Format(v9, v8, v7);
@@ -441,7 +441,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
             v6 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 15);
             v7 = sub_02030B94(v11, 102);
             ov62_022349A8(param1, v7);
-            v8 = Strbuf_Init(255, 102);
+            v8 = Strbuf_Init(255, HEAP_ID_102);
 
             StringTemplate_SetMonthName(v9, 0, v12);
             StringTemplate_Format(v9, v8, v6);
@@ -477,7 +477,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
                     Window_ScheduleCopyToVRAM(v10);
                     Strbuf_Free(v8);
                 } else {
-                    v8 = Strbuf_Init(255, 102);
+                    v8 = Strbuf_Init(255, HEAP_ID_102);
                     v6 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 22);
                     StringTemplate_SetCountryName(v9, 0, v13);
                     StringTemplate_Format(v9, v8, v6);
@@ -489,7 +489,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
                     if (v14 != 0) {
                         v10 = &param0->unk_0C[5];
                         Window_FillTilemap(v10, 0x00);
-                        v8 = Strbuf_Init(255, 102);
+                        v8 = Strbuf_Init(255, HEAP_ID_102);
                         v6 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 23);
                         StringTemplate_SetCityName(v9, 0, v13, v14);
                         StringTemplate_Format(v9, v8, v6);
@@ -782,12 +782,12 @@ static void ov62_022323CC(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *p
         v2 = ov62_02231690(102);
 
         if (v5 != 0) {
-            v0 = Strbuf_Init(255, 102);
+            v0 = Strbuf_Init(255, HEAP_ID_102);
             v1 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 23);
             StringTemplate_SetCityName(v2, 0, v4, v5);
             StringTemplate_Format(v2, v0, v1);
         } else {
-            v0 = Strbuf_Init(255, 102);
+            v0 = Strbuf_Init(255, HEAP_ID_102);
             v1 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 22);
             StringTemplate_SetCountryName(v2, 0, v4);
             StringTemplate_Format(v2, v0, v1);
@@ -890,8 +890,8 @@ void ov62_02232594(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
         int v7;
 
         for (v0 = 0; v0 < param0->unk_10; v0++) {
-            v4 = Strbuf_Init(255, 102);
-            v5 = Strbuf_Init(255, 102);
+            v4 = Strbuf_Init(255, HEAP_ID_102);
+            v5 = Strbuf_Init(255, HEAP_ID_102);
             v6 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 99);
 
             Strbuf_FormatInt(v5, (v0 + 1), 2, 1, 1);
@@ -978,9 +978,9 @@ void ov62_02232778(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
     for (v0 = 0; v0 < param0->unk_10; v0++) {
         v3 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 88 + param5);
 
-        v4 = Strbuf_Init(255, 102);
-        v6 = Strbuf_Init(255, 102);
-        v11 = Strbuf_Init(255, 102);
+        v4 = Strbuf_Init(255, HEAP_ID_102);
+        v6 = Strbuf_Init(255, HEAP_ID_102);
+        v11 = Strbuf_Init(255, HEAP_ID_102);
 
         switch (param5) {
         case 0:
@@ -990,13 +990,13 @@ void ov62_02232778(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
             break;
         case 1:
             int v16 = param0->unk_28->unk_00[v0].unk_04;
-            v5 = Strbuf_Init(255, 102);
+            v5 = Strbuf_Init(255, HEAP_ID_102);
             StringTemplate_SetMonthName(v7, 1, v16);
             break;
         case 2:
             u16 v17[255];
             int v18 = param0->unk_28->unk_00[v0].unk_04;
-            v5 = Strbuf_Init(255, 102);
+            v5 = Strbuf_Init(255, HEAP_ID_102);
             MessageLoader_GetSpeciesName(v18, 102, v17);
             Strbuf_CopyChars(v5, v17);
             StringTemplate_SetStrbuf(v7, 1, v5, 0, 1, 2);
@@ -1573,8 +1573,8 @@ int ov62_02233064(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1)
         }
 
         for (v4 = 0; v4 < param0->unk_10; v4++) {
-            v7 = Strbuf_Init(255, 102);
-            v8 = Strbuf_Init(255, 102);
+            v7 = Strbuf_Init(255, HEAP_ID_102);
+            v8 = Strbuf_Init(255, HEAP_ID_102);
             v9 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 99);
 
             Strbuf_FormatInt(v8, (v5 + v4 + 1), 2, 1, 1);
@@ -2097,7 +2097,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
             param0->unk_88C[v0] = NULL;
 
             if (v0 == 0) {
-                param0->unk_88C[v0] = sub_02030A80(102);
+                param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
                 sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
             }
             break;
@@ -2106,7 +2106,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
             param0->unk_88C[v0] = NULL;
 
             if (v0 == 0) {
-                param0->unk_88C[v0] = sub_02030A80(102);
+                param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
                 sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
             }
             break;
@@ -2115,18 +2115,18 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
             param0->unk_88C[v0] = NULL;
 
             if (v0 == 0) {
-                param0->unk_88C[v0] = sub_02030A80(102);
+                param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
                 sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
             }
             break;
         case 1:
-            param0->unk_87C[v0] = sub_0202FD88(102);
+            param0->unk_87C[v0] = sub_0202FD88(HEAP_ID_102);
 
             if (v0 == 0) {
-                param0->unk_88C[v0] = sub_02030A80(102);
+                param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
                 sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
             } else {
-                param0->unk_88C[v0] = sub_0202FDB8(102);
+                param0->unk_88C[v0] = sub_0202FDB8(HEAP_ID_102);
             }
             break;
         }
@@ -2313,7 +2313,7 @@ static void ov62_02233B50(UnkStruct_ov62_02233F74 *param0, UnkStruct_0208C06C *p
         v6 = sub_02030B94(v11, 102);
         ov62_022349A8(param1, v6);
         v7 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 7);
-        v8 = Strbuf_Init(255, 102);
+        v8 = Strbuf_Init(255, HEAP_ID_102);
 
         StringTemplate_SetStrbuf(v9, 0, v6, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v9, v8, v7);
@@ -2343,9 +2343,9 @@ static void ov62_02233B50(UnkStruct_ov62_02233F74 *param0, UnkStruct_0208C06C *p
 
             if (v13 != 0) {
                 v10 = &param0->unk_3C[2];
-                v6 = Strbuf_Init(255, 102);
+                v6 = Strbuf_Init(255, HEAP_ID_102);
                 v7 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 9);
-                v8 = Strbuf_Init(255, 102);
+                v8 = Strbuf_Init(255, HEAP_ID_102);
 
                 Strbuf_FormatInt(v6, v13, 4, 0, 1);
                 StringTemplate_SetStrbuf(v9, 0, v6, 0, 1, GAME_LANGUAGE);
@@ -2368,9 +2368,9 @@ static void ov62_02233B50(UnkStruct_ov62_02233F74 *param0, UnkStruct_0208C06C *p
             u64 v14 = sub_0202FE98(param0->unk_04, 4, 0);
             u64 v15 = v14;
             u32 v16[3];
-            Strbuf *v17 = Strbuf_Init(255, 102);
-            Strbuf *v18 = Strbuf_Init(255, 102);
-            Strbuf *v19 = Strbuf_Init(255, 102);
+            Strbuf *v17 = Strbuf_Init(255, HEAP_ID_102);
+            Strbuf *v18 = Strbuf_Init(255, HEAP_ID_102);
+            Strbuf *v19 = Strbuf_Init(255, HEAP_ID_102);
 
             v10 = &param0->unk_3C[4];
             v16[0] = v15 % 100000;
@@ -2389,7 +2389,7 @@ static void ov62_02233B50(UnkStruct_ov62_02233F74 *param0, UnkStruct_0208C06C *p
                 }
             }
 
-            v8 = Strbuf_Init(255, 102);
+            v8 = Strbuf_Init(255, HEAP_ID_102);
 
             Strbuf_FormatInt(v17, v16[0], 5, 2, 1);
             Strbuf_FormatInt(v18, v16[1], 5, 2, 1);

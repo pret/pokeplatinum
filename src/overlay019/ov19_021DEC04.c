@@ -87,7 +87,7 @@ BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *pa
         *param0 = NULL;
         return 1;
     } else {
-        UnkStruct_ov19_021DEC04 *v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DEC04));
+        UnkStruct_ov19_021DEC04 *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DEC04));
 
         if (v0) {
             v0->unk_04 = param1;
@@ -98,8 +98,8 @@ BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *pa
             v0->unk_370 = Graphics_GetScrnDataFromOpenNARC(param6, 7, 1, &(v0->unk_368), 10);
             v0->unk_374 = Graphics_GetScrnDataFromOpenNARC(param6, 8, 1, &(v0->unk_36C), 10);
             v0->unk_6C = param5;
-            v0->unk_70 = MessageLoader_Init(1, 26, 647, 10);
-            v0->unk_74 = Strbuf_Init(32, 10);
+            v0->unk_70 = MessageLoader_Init(1, 26, 647, HEAP_ID_10);
+            v0->unk_74 = Strbuf_Init(32, HEAP_ID_10);
             v0->unk_380 = NULL;
             *param0 = v0;
             return 1;
@@ -133,7 +133,7 @@ void ov19_021DECE8(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 131, param0->unk_0C, 7, 0, 0, 1, 10);
         Graphics_LoadPaletteFromOpenNARC(param1, 133, 4, 0, 0x20 * 4, 10);
         Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 5, 4 * 0x20, 4 * 0x20, 10);
-        Bg_ClearTilesRange(4, 0x20, 0, 10);
+        Bg_ClearTilesRange(4, 0x20, 0, HEAP_ID_10);
         Bg_FillTilemapRect(param0->unk_0C, 4, 0x0, 0, 0, 32, 32, 17);
 
         ov19_021DEF64(param0);

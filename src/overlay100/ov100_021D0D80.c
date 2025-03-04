@@ -215,11 +215,11 @@ static void ov100_021D1034(UnkStruct_ov100_021D46C8 *param0)
     GXS_SetVisiblePlane(0);
 
     param0->unk_00 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, 111);
-    param0->unk_0C = BgConfig_New(111);
+    param0->unk_0C = BgConfig_New(HEAP_ID_111);
     param0->unk_10 = PaletteData_New(111);
     param0->unk_14 = sub_02024220(111, 0, 1, 0, 4, NULL);
     param0->camera = Camera_Alloc(111);
-    param0->unk_2C = MessageLoader_Init(0, 26, 234, 111);
+    param0->unk_2C = MessageLoader_Init(0, 26, 234, HEAP_ID_111);
 
     PaletteData_SetAutoTransparent(param0->unk_10, 1);
     PaletteData_AllocBuffer(param0->unk_10, 0, 0x200, 111);
@@ -371,10 +371,10 @@ static void ov100_021D1208(BgConfig *param0)
             },
         };
 
-        Bg_ClearTilesRange(0, 32, 0, 111);
-        Bg_ClearTilesRange(1, 32, 0, 111);
-        Bg_ClearTilesRange(2, 32, 0, 111);
-        Bg_ClearTilesRange(3, 32, 0, 111);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_111);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_111);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_111);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_111);
         Bg_InitFromTemplate(param0, 0, &v2[0], 0);
         Bg_InitFromTemplate(param0, 1, &v2[1], 0);
         Bg_InitFromTemplate(param0, 2, &v2[2], 0);
@@ -425,8 +425,8 @@ static void ov100_021D1208(BgConfig *param0)
         Bg_ClearTilemap(param0, 5);
     }
 
-    Bg_ClearTilesRange(4, 32, 0, 111);
-    Bg_ClearTilesRange(5, 32, 0, 111);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_111);
+    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_111);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);

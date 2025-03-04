@@ -35,17 +35,17 @@ static BOOL sub_0209BE84(UnkStruct_0209BDF8 *param0, u32 param1, const void *par
 static const CommCmdTable Unk_020F8EA8[135];
 static const UnkFuncPtr_020F8E60 Unk_020F8E60[18];
 
-UnkStruct_0209BDF8 *sub_0209BDF8(UnkStruct_0209C194 *param0, u32 param1)
+UnkStruct_0209BDF8 *sub_0209BDF8(UnkStruct_0209C194 *param0, u32 heapID)
 {
     UnkStruct_0209BDF8 *v0;
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0209BDF8));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0209BDF8));
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, sizeof(UnkStruct_0209BDF8));
 
     v0->unk_00 = param0;
-    v0->unk_4C = Heap_AllocFromHeap(param1, 5 * (236 * 6 + 4 * 2));
-    v0->unk_50 = Heap_AllocFromHeap(param1, 5 * (236 * 6 + 4 * 2));
+    v0->unk_4C = Heap_AllocFromHeap(heapID, 5 * (236 * 6 + 4 * 2));
+    v0->unk_50 = Heap_AllocFromHeap(heapID, 5 * (236 * 6 + 4 * 2));
 
     return v0;
 }

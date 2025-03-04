@@ -27,8 +27,8 @@ BOOL sub_0207C8E0(UnkStruct_0207C8C4 *param0);
 void sub_0207C8F4(UnkStruct_0207C8C4 *param0);
 static u32 sub_0207C794(u32 param0, BOOL param1);
 static u32 sub_0207C7B0(u32 param0, BOOL param1);
-static UnkStruct_02014014 *sub_0207C7CC(int param0);
-static UnkStruct_02014014 *sub_0207C814(int param0, int param1, int param2);
+static UnkStruct_02014014 *sub_0207C7CC(int heapID);
+static UnkStruct_02014014 *sub_0207C814(int heapID, int param1, int param2);
 static void sub_0207C83C(UnkStruct_02014014 *param0);
 static void sub_0207C854(SPLEmitter *param0);
 
@@ -130,14 +130,14 @@ static u32 sub_0207C7B0(u32 param0, BOOL param1)
     return v1;
 }
 
-static UnkStruct_02014014 *sub_0207C7CC(int param0)
+static UnkStruct_02014014 *sub_0207C7CC(int heapID)
 {
     UnkStruct_02014014 *v0;
     void *v1;
     Camera *camera;
 
-    v1 = Heap_AllocFromHeap(param0, 0x4800);
-    v0 = sub_02014014(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, param0);
+    v1 = Heap_AllocFromHeap(heapID, 0x4800);
+    v0 = sub_02014014(sub_0207C794, sub_0207C7B0, v1, 0x4800, 1, heapID);
     camera = sub_02014784(v0);
 
     if (camera != NULL) {
@@ -147,13 +147,13 @@ static UnkStruct_02014014 *sub_0207C7CC(int param0)
     return v0;
 }
 
-static UnkStruct_02014014 *sub_0207C814(int param0, int param1, int param2)
+static UnkStruct_02014014 *sub_0207C814(int heapID, int param1, int param2)
 {
     UnkStruct_02014014 *v0;
     void *v1;
 
-    v0 = sub_0207C7CC(param0);
-    v1 = sub_020144C4(param1, param2, param0);
+    v0 = sub_0207C7CC(heapID);
+    v1 = sub_020144C4(param1, param2, heapID);
 
     sub_020144CC(v0, v1, (1 << 1) | (1 << 3), 1);
 
@@ -186,12 +186,12 @@ UnkStruct_0207C8C4 *sub_0207C894(UnkStruct_0207C894 *param0)
     int v3;
     UnkStruct_0207C8C4 *v4;
 
-    v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_0207C8C4));
+    v4 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0207C8C4));
 
     GF_ASSERT(v4 != NULL);
 
     v4->unk_00 = *param0;
-    v4->unk_0C = sub_0207C814(v4->unk_00.unk_00, 124, v4->unk_00.unk_04);
+    v4->unk_0C = sub_0207C814(v4->unk_00.heapID, 124, v4->unk_00.unk_04);
 
     sub_02014788(v4->unk_0C, 1);
 

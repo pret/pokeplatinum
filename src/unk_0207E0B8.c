@@ -846,8 +846,8 @@ static void sub_0207E918(BgConfig *param0)
         Bg_InitFromTemplate(param0, 5, &v5, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 12);
-    Bg_ClearTilesRange(4, 32, 0, 12);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_12);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_12);
 }
 
 static void sub_0207EA24(BgConfig *param0)
@@ -878,7 +878,7 @@ void sub_0207EA74(GameWindowLayout *param0, int param1)
         GX_SetGraphicsMode(GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_2D);
 
         sub_0207E8E0(param0->unk_00);
-        Bg_ClearTilesRange(0, 32, 0, 12);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_12);
     }
 }
 
@@ -927,7 +927,7 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
     }
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, 12);
-    LoadStandardWindowGraphics(param0->unk_00, 0, 1, 14, 0, 12);
+    LoadStandardWindowGraphics(param0->unk_00, 0, 1, 14, 0, HEAP_ID_12);
     LoadMessageBoxGraphics(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), 12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_00, 4, 0, 0, 0, 12);
     Graphics_LoadPaletteFromOpenNARC(param1, 4, 4, 0x20, 0x20, 12);
@@ -948,7 +948,7 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
     memset(v0, 0, sizeof(GameWindowLayout));
 
     v0->unk_5A4 = OverlayManager_Args(param0);
-    v0->unk_00 = BgConfig_New(12);
+    v0->unk_00 = BgConfig_New(HEAP_ID_12);
 
     if ((v0->unk_5A4->unk_20 == 2) && (v0->unk_5A4->unk_14 != NULL)) {
         v0->unk_B20 = sub_0207A2A8(12);
@@ -956,19 +956,19 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
         v0->unk_B20 = NULL;
     }
 
-    v0->unk_69C = MessageLoader_Init(0, 26, 453, 12);
+    v0->unk_69C = MessageLoader_Init(0, 26, 453, HEAP_ID_12);
     v0->unk_698 = sub_0200C440(15, 14, 0, 12);
     v0->unk_6A0 = StringTemplate_Default(12);
 
     for (v1 = 0; v1 < 6; v1++) {
-        v0->unk_704[v1].unk_00 = Strbuf_Init(10 + 1, 12);
+        v0->unk_704[v1].unk_00 = Strbuf_Init(10 + 1, HEAP_ID_12);
     }
 
-    v0->unk_6A4 = Strbuf_Init(256, 12);
-    v0->unk_6A8 = Strbuf_Init(256, 12);
+    v0->unk_6A4 = Strbuf_Init(256, HEAP_ID_12);
+    v0->unk_6A8 = Strbuf_Init(256, HEAP_ID_12);
 
     for (v1 = 0; v1 < 20; v1++) {
-        v0->unk_6AC[v1] = Strbuf_Init(32, 12);
+        v0->unk_6AC[v1] = Strbuf_Init(32, HEAP_ID_12);
     }
 
     v0->unk_B11 = v0->unk_5A4->unk_22;
@@ -1691,7 +1691,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     u8 v1;
 
     Window_EraseMessageBox(&param0->unk_04[32], 1);
-    v0 = Heap_AllocFromHeap(12, 8);
+    v0 = Heap_AllocFromHeap(HEAP_ID_12, 8);
 
     switch (param0->unk_5A4->unk_20) {
     case 0:

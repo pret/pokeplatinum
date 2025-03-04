@@ -864,7 +864,7 @@ void ov104_02232C80(UnkStruct_ov63_0222CCB8 *param0, UnkStruct_ov63_0222BEC0 *pa
     }
 }
 
-void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
+void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
 {
     SpriteSystem *v0 = param0->unk_34.unk_00;
     SpriteManager *v1 = param0->unk_34.unk_04;
@@ -876,7 +876,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param
     {
         NARC *v6;
 
-        v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param2);
+        v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, heapID);
 
         SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v6, 112, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
         SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, PLTTBUF_MAIN_OBJ, v0, v1, v6, 111, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
@@ -912,12 +912,12 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param
     {
         u32 v9, v10;
 
-        v4 = Heap_AllocFromHeap(param2, (10 * 10 * ((8 / 2) * 8)));
+        v4 = Heap_AllocFromHeap(heapID, (10 * 10 * ((8 / 2) * 8)));
         v9 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
         Pokemon_BuildArchivedSprite(&v3, param1, 2);
-        sub_020136A4(v3.archive, v3.character, param2, 0, 0, 10, 10, v4, v9, 0, 2, v10);
+        sub_020136A4(v3.archive, v3.character, heapID, 0, 0, 10, 10, v4, v9, 0, 2, v10);
     }
 
     {
@@ -932,7 +932,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int param
         v12 = Sprite_GetPaletteProxy(v5->sprite);
         v13 = PlttTransfer_GetPlttOffset(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteData_LoadBufferFromFileStart(v2, v3.archive, v3.palette, param2, 2, 0x20, v13 * 16);
+        PaletteData_LoadBufferFromFileStart(v2, v3.archive, v3.palette, heapID, 2, 0x20, v13 * 16);
 
         if (param8 > 0) {
             PaletteData_Blend(v2, 2, v13 * 16, 16, param8, param9);
@@ -1084,7 +1084,7 @@ void ov104_0223310C(UnkStruct_ov104_0222E930 *param0, u16 *param1, u32 param2)
     UnkStruct_ov104_02230BE4 *v2 = sub_0209B970(param0->unk_00->unk_00);
 
     if (param1[0] == 0xFFFF) {
-        v1 = MessageLoader_Init(1, 26, param2, 32);
+        v1 = MessageLoader_Init(1, 26, param2, HEAP_ID_FIELD_TASK);
 
         ov104_02231F74(param0->unk_00, v1, param1[1], 1, NULL);
         MessageLoader_Free(v1);

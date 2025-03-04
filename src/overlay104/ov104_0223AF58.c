@@ -1594,7 +1594,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
     v8->terrain = TERRAIN_BATTLE_HALL;
     Party_InitWithCapacity(v8->parties[0], v4);
 
-    v9 = Pokemon_New(11);
+    v9 = Pokemon_New(HEAP_ID_FIELDMAP);
 
     for (v1 = 0; v1 < v4; v1++) {
         Pokemon_Copy(Party_GetPokemonBySlotIndex(v13, param0->unk_260[v1]), v9);
@@ -1624,7 +1624,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 
     ov104_0223B518(&param0->unk_290[v6], v7, param0->unk_18[v6], &param0->unk_268[v6], v5, 11, 180);
 
-    v9 = Pokemon_New(11);
+    v9 = Pokemon_New(HEAP_ID_FIELDMAP);
 
     for (v1 = 0; v1 < v5; v1++) {
         while (TRUE) {
@@ -1655,7 +1655,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
         ov104_0222E284(v8, &v10, v5, 3, 11);
         Party_InitWithCapacity(v8->parties[3], v5);
 
-        v9 = Pokemon_New(11);
+        v9 = Pokemon_New(HEAP_ID_FIELDMAP);
 
         while (TRUE) {
             if (ov104_0223B4A4(param0, v6) == 0) {

@@ -278,7 +278,7 @@ BOOL ov62_02235008(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 0:
 
-        v0 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02235008));
+        v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02235008));
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov62_02235008));
         param0->unk_860 = v0;
         v0->unk_50 = 16;

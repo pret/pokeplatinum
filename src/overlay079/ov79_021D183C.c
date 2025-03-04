@@ -149,7 +149,7 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
     UnkStruct_020989DC *v2;
 
     param0->unk_1C = ov79_021D18B4(param0->unk_20, param0);
-    param0->unk_CC = StringList_New(param0->unk_1C, param0->unk_00);
+    param0->unk_CC = StringList_New(param0->unk_1C, param0->heapID);
 
     for (v0 = param0->unk_1E; v0 != 0xFF; v0 = v1) {
         v2 = &(param0->unk_20->unk_1C[v0]);
@@ -186,7 +186,7 @@ void ov79_021D196C(UnkStruct_ov79_021D0E1C *param0)
     param0->unk_84.parent = (void *)param0;
     param0->unk_84.count = param0->unk_1C;
     param0->unk_16 = 0;
-    param0->unk_C4 = ListMenu_New(&param0->unk_84, param0->unk_80, param0->unk_82, param0->unk_00);
+    param0->unk_C4 = ListMenu_New(&param0->unk_84, param0->unk_80, param0->unk_82, param0->heapID);
     param0->unk_16 = 1;
 }
 
@@ -367,7 +367,7 @@ void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)
 {
     u8 v0 = 0;
 
-    param0->unk_D0 = StringList_New(3, param0->unk_00);
+    param0->unk_D0 = StringList_New(3, param0->heapID);
 
     for (v0 = 0; v0 < 3; v0++) {
         StringList_AddFromMessageBank(param0->unk_D0, param0->unk_2C, 1 + v0, v0);
@@ -382,7 +382,7 @@ void ov79_021D1ED8(UnkStruct_ov79_021D0E1C *param0)
 
     Window_DrawStandardFrame(&param0->unk_E8[3], 1, 1 + 18 + 12, 15);
 
-    param0->unk_C8 = ListMenu_New(&param0->unk_A4, 0, 0, param0->unk_00);
+    param0->unk_C8 = ListMenu_New(&param0->unk_A4, 0, 0, param0->heapID);
 }
 
 void ov79_021D1F60(UnkStruct_ov79_021D0E1C *param0)
@@ -430,7 +430,7 @@ void ov79_021D2054(UnkStruct_ov79_021D0E1C *param0)
         1, 26, 13, 5, 4, 13, 463
     };
 
-    param0->unk_D4 = Menu_MakeYesNoChoice(param0->unk_24, &v0, 1 + 18 + 12, 15, param0->unk_00);
+    param0->unk_D4 = Menu_MakeYesNoChoice(param0->unk_24, &v0, 1 + 18 + 12, 15, param0->heapID);
 }
 
 void ov79_021D2078(UnkStruct_ov79_021D0E1C *param0)

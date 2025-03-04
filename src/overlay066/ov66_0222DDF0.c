@@ -1921,12 +1921,12 @@ BOOL ov66_0222F144(const UnkStruct_ov66_0222DFF8 *param0, UnkStruct_ov68_0225DC7
 
 void ov66_0222F16C(UnkStruct_ov66_0222DFF8 *param0)
 {
-    TrainerInfo *v0;
+    TrainerInfo *info;
 
     GF_ASSERT(param0->unk_4B8 == NULL);
 
-    v0 = SaveData_GetTrainerInfo(param0->unk_00);
-    param0->unk_4B8 = sub_0207E060(v0, param0->unk_528);
+    info = SaveData_GetTrainerInfo(param0->unk_00);
+    param0->unk_4B8 = sub_0207E060(info, param0->unk_528);
 }
 
 void ov66_0222F198(UnkStruct_ov66_0222DFF8 *param0)

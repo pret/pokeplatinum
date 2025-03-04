@@ -23,7 +23,7 @@ void sub_02054BD0(FieldSystem *fieldSystem, const u8 param1)
     void *v1;
 
     if (fieldSystem->unk_58 == NULL) {
-        fieldSystem->unk_58 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02054C18));
+        fieldSystem->unk_58 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02054C18));
 
         sub_02054C18(fieldSystem->mapMatrix, fieldSystem->unk_58, param1);
     }

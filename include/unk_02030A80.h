@@ -7,7 +7,7 @@
 #include "savedata.h"
 #include "strbuf.h"
 
-UnkStruct_02030A80 *sub_02030A80(int param0);
+UnkStruct_02030A80 *sub_02030A80(int heapID);
 void sub_02030A98(UnkStruct_02030A80 *param0);
 void sub_02030AA0(UnkStruct_02030A80 *param0, SaveData *param1);
 Strbuf *sub_02030B94(const UnkStruct_02030A80 *param0, int param1);

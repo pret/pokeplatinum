@@ -6,7 +6,7 @@
 
 #include "field/field_system_decl.h"
 
-UnkStruct_0209C194 *sub_0209C194(UnkStruct_0209C194_1 *param0, u32 param1);
+UnkStruct_0209C194 *sub_0209C194(UnkStruct_0209C194_1 *param0, u32 heapID);
 void sub_0209C1D0(UnkStruct_0209C194 *param0);
 BOOL sub_0209C1E8(UnkStruct_0209C194 *param0);
 void *sub_0209C1EC(FieldSystem *fieldSystem);

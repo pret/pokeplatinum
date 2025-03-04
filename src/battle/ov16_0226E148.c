@@ -28,7 +28,7 @@ SysTask *ov16_0226E148(BattleSystem *battleSys)
     UnkStruct_ov16_0226E148 *v0;
     SysTask *v1;
 
-    v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0226E148));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov16_0226E148));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226E148));
 
     v0->unk_00 = battleSys;

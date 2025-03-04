@@ -218,7 +218,7 @@ static void ov34_02256428(UnkStruct_ov34_0225621C *param0, int param1, int param
         24 << FX32_SHIFT,
         48 << FX32_SHIFT,
     };
-    UnkStruct_0203F478 *v1 = sub_0203F478(PoketchSystem_GetFieldSystem(param0->poketchSys), 8);
+    UnkStruct_0203F478 *v1 = sub_0203F478(PoketchSystem_GetFieldSystem(param0->poketchSys), HEAP_ID_POKETCH_APP);
     UnkStruct_ov34_02256540_1 *v2 = &(param0->unk_04);
 
     v2->unk_08 = 0;

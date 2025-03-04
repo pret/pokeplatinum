@@ -142,17 +142,17 @@ static const UnkStruct_ov66_02258B38 Unk_ov66_02258B38[20] = {
     { 0xEA, 0x18D, 0x0 }
 };
 
-UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 param2, u32 param3)
+UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 param3)
 {
     UnkStruct_ov66_02234548 *v0;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov66_02234548));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02234548));
     memset(v0, 0, sizeof(UnkStruct_ov66_02234548));
 
     {
         int v1;
 
-        v0->unk_10 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov66_02234798) * param0);
+        v0->unk_10 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02234798) * param0);
         v0->unk_14 = param0;
 
         for (v1 = 0; v1 < v0->unk_14; v1++) {
@@ -160,17 +160,17 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 param2, u32 p
         }
     }
 
-    v0->unk_00 = ResourceCollection_New(1, param2);
-    v0->unk_04 = ResourceCollection_New(2, param2);
-    v0->unk_08 = TextureResourceManager_New(20, param2);
+    v0->unk_00 = ResourceCollection_New(1, heapID);
+    v0->unk_04 = ResourceCollection_New(2, heapID);
+    v0->unk_08 = TextureResourceManager_New(20, heapID);
 
     {
         UnkStruct_ov5_021EDDAC v2;
 
-        sub_02020B90(1, param2);
+        sub_02020B90(1, heapID);
 
         v2.unk_00 = param0;
-        v2.unk_04 = param2;
+        v2.heapID = heapID;
         v0->unk_0C = sub_02020C44(&v2);
     }
 
@@ -180,8 +180,8 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 param2, u32 p
         void *v5;
         int v6;
 
-        v3 = NARC_ctor(NARC_INDEX_DATA__MMODEL__MMODEL, param2);
-        v4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
+        v3 = NARC_ctor(NARC_INDEX_DATA__MMODEL__MMODEL, heapID);
+        v4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, heapID);
 
         {
             v5 = LoadMemberFromOpenNARC(v4, 127, 0, param3, 0);

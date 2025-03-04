@@ -202,13 +202,13 @@ void sub_0208C210(BgConfig *param0, int param1, NARC *param2, int param3, int pa
     Heap_FreeToHeap(v1);
 }
 
-void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **param3, int param4)
+void *sub_0208C2F4(NARC *param0, int param1, int param2, NNSG2dScreenData **param3, int heapID)
 {
     int v0;
     void *v1;
 
     v0 = NARC_GetMemberSize(param0, param2);
-    v1 = Heap_AllocFromHeap(param4, v0);
+    v1 = Heap_AllocFromHeap(heapID, v0);
 
     NARC_ReadWholeMember(param0, param2, v1);
     NNS_G2dGetUnpackedScreenData(v1, param3);

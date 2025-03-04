@@ -62,7 +62,7 @@ void ov118_021D0D80(GameWindowLayout *param0)
 {
     GF_ASSERT(param0->unk_B24 == NULL);
 
-    param0->unk_B24 = Heap_AllocFromHeap(12, sizeof(OverlayMetadata));
+    param0->unk_B24 = Heap_AllocFromHeap(HEAP_ID_12, sizeof(OverlayMetadata));
     MI_CpuClear8(param0->unk_B24, sizeof(OverlayMetadata));
     param0->unk_B24->unk_14 = param0->unk_B11;
 }
@@ -190,7 +190,7 @@ static void ov118_021D0FDC(OverlayMetadata *param0)
 
     sub_02014000();
 
-    v0 = Heap_AllocFromHeap(12, 0x4800);
+    v0 = Heap_AllocFromHeap(HEAP_ID_12, 0x4800);
     param0->unk_18 = sub_02014014(ov118_021D1128, ov118_021D114C, v0, 0x4800, 1, 12);
     camera = sub_02014784(param0->unk_18);
 
