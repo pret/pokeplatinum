@@ -1483,7 +1483,7 @@ static BOOL ov104_02230910(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_02230BE4 *v1;
 
     v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = sub_0208712C(11, 0, 0, 8, (void *)v1->unk_04);
+    v0 = sub_0208712C(HEAP_ID_FIELDMAP, 0, 0, 8, (void *)v1->unk_04);
 
     sub_0209B988(param0->unk_00->unk_00, &Unk_020F2DAC, v0, 0, ov104_02230950);
 

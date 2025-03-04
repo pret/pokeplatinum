@@ -705,10 +705,10 @@ void sub_0203D80C(FieldTask *taskMan, u16 *param1, u16 *param2, u16 *param3)
     v0->unk_08 = param3;
 
     if (param3 == NULL) {
-        v0->unk_0C = sub_0209747C(0, 0, fieldSystem->saveData, 32);
+        v0->unk_0C = sub_0209747C(0, 0, fieldSystem->saveData, HEAP_ID_FIELD_TASK);
         sub_020974F4(v0->unk_0C, *param2);
     } else {
-        v0->unk_0C = sub_0209747C(1, 0, fieldSystem->saveData, 32);
+        v0->unk_0C = sub_0209747C(1, 0, fieldSystem->saveData, HEAP_ID_FIELD_TASK);
         sub_020974F8(v0->unk_0C, *param2, *param3);
     }
 
@@ -828,11 +828,9 @@ static void sub_0203D9A8(FieldSystem *fieldSystem, UnkStruct_0203D9B8 *param1)
     FieldSystem_StartChildProcess(fieldSystem, &Unk_020F6890, param1);
 }
 
-UnkStruct_0203D9B8 *sub_0203D9B8(FieldSystem *fieldSystem, int param1)
+UnkStruct_0203D9B8 *sub_0203D9B8(FieldSystem *fieldSystem, int heapID)
 {
-    UnkStruct_0203D9B8 *v0;
-
-    v0 = sub_020989DC(FieldSystem_GetSaveData(fieldSystem), param1);
+    UnkStruct_0203D9B8 *v0 = sub_020989DC(FieldSystem_GetSaveData(fieldSystem), heapID);
     sub_0203D9A8(fieldSystem, v0);
 
     return v0;
@@ -1260,7 +1258,7 @@ void sub_0203DFE8(FieldTask *param0, int param1, int param2, int param3, int par
     v2->unk_00 = 0;
     v2->unk_04 = param4;
     v2->unk_08 = param6;
-    v2->unk_0C = sub_0208712C(11, param1, param2, param3, SaveData_Options(fieldSystem->saveData));
+    v2->unk_0C = sub_0208712C(HEAP_ID_FIELDMAP, param1, param2, param3, SaveData_Options(fieldSystem->saveData));
     v2->unk_10 = Strbuf_Init(12, HEAP_ID_FIELDMAP);
 
     switch (param1) {

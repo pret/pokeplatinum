@@ -352,7 +352,7 @@ void *ov98_02246FC4(UnkStruct_ov98_02246E88 *param0)
     v0[2] = 4;
     v0[3] = 4;
 
-    param0->unk_98 = sub_02089400(108, 16, v0, SaveData_Options(param0->unk_04), 4, 0);
+    param0->unk_98 = sub_02089400(HEAP_ID_108, 16, v0, SaveData_Options(param0->unk_04), 4, 0);
     return param0->unk_98;
 }
 
@@ -385,7 +385,7 @@ void *ov98_02247070(UnkStruct_ov98_02246E88 *param0)
     v0[2] = 0;
     v0[3] = 0;
 
-    param0->unk_98 = sub_0208941C(108, 7, v0, SaveData_Options(param0->unk_04), 5, 1, 1, param0->unk_7C);
+    param0->unk_98 = sub_0208941C(HEAP_ID_108, 7, v0, SaveData_Options(param0->unk_04), 5, 1, 1, param0->unk_7C);
     return param0->unk_98;
 }
 
@@ -408,7 +408,7 @@ void *ov98_022470F8(UnkStruct_ov98_02246E88 *param0)
     v0[2] = 0;
     v0[3] = 0;
 
-    param0->unk_98 = sub_02089400(108, 4, v0, SaveData_Options(param0->unk_04), 6, 0);
+    param0->unk_98 = sub_02089400(HEAP_ID_108, 4, v0, SaveData_Options(param0->unk_04), 6, 0);
     return param0->unk_98;
 }
 

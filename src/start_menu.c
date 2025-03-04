@@ -1522,7 +1522,7 @@ static BOOL sub_0203C0A0(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = sub_0209747C(2, 0, fieldSystem->saveData, 11);
+    menu->unk_25C = sub_0209747C(2, 0, fieldSystem->saveData, HEAP_ID_FIELDMAP);
 
     sub_02014A9C(&v2, 4);
     sub_02097500(menu->unk_25C, &v2);
@@ -1656,7 +1656,7 @@ static void sub_0203C2D8(FieldTask *taskMan, u16 param1)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    menu->unk_25C = sub_020972FC(11);
+    menu->unk_25C = sub_020972FC(HEAP_ID_FIELDMAP);
     v2 = SaveData_GetBag(fieldSystem->saveData);
     sub_02097320(menu->unk_25C, param1, 1);
     v6 = 0;

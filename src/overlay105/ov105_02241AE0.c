@@ -2834,13 +2834,13 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
 {
     int v0, v1;
 
-    param0->unk_338 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 93);
+    param0->unk_338 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_93);
 
     ov105_02244678(param0);
     ov105_0224472C(param0);
 
     param0->unk_1C = MessageLoader_Init(1, 26, 364, HEAP_ID_93);
-    param0->unk_20 = StringTemplate_Default(93);
+    param0->unk_20 = StringTemplate_Default(HEAP_ID_93);
     param0->unk_24 = Strbuf_Init(800, HEAP_ID_93);
     param0->unk_28 = Strbuf_Init(800, HEAP_ID_93);
 
@@ -2849,9 +2849,9 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_93);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 93);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_93);
 
-    param0->unk_128 = sub_0200762C(93);
+    param0->unk_128 = sub_0200762C(HEAP_ID_93);
 
     if (CommSys_IsInitialized()) {
         ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);

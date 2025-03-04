@@ -41,7 +41,7 @@ static void ov22_02255738(void);
 static void ov22_02255748(UnkStruct_ov22_0225A0E4 *param0, const UnkStruct_ov22_022550D4 *param1);
 static void ov22_02255784(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255794(UnkStruct_ov22_0225A0E4 *param0);
-static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, int param3);
+static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, int heapID, int param2, int param3);
 static void ov22_02255C90(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255BF4(UnkStruct_ov22_0225A0E4 *param0, int param1);
 static void ov22_02255C14(UnkStruct_ov22_0225A0E4 *param0);
@@ -90,7 +90,7 @@ void ov22_022550D4(UnkStruct_ov22_0225A0E4 *param0)
     param0->unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, 14);
 
     ov22_02255748(param0, &v0);
-    ov22_02255C24(param0, 14, 0x2800, 0x20);
+    ov22_02255C24(param0, HEAP_ID_14, 0x2800, 0x20);
     ov22_022559B4(param0);
     ov22_02255BF4(param0, 13);
     ov22_022559F8(param0);
@@ -303,12 +303,12 @@ int ov22_02255420(NNSG2dCharacterData *param0, int param1, int param2, int param
     return 0;
 }
 
-void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const UnkStruct_ov22_022550D4 *param1, int param2)
+void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const UnkStruct_ov22_022550D4 *param1, int heapID)
 {
     ov22_02255748(param0, param1);
-    ov22_02255C24(param0, param2, 0x2800, 0x20);
+    ov22_02255C24(param0, heapID, 0x2800, 0x20);
     sub_02008B2C(param0->unk_20, 1);
-    ov22_02255BF4(param0, param2);
+    ov22_02255BF4(param0, heapID);
 }
 
 void ov22_022554A8(UnkStruct_ov22_0225A0E4 *param0, BgConfig *param1, int param2)
@@ -801,9 +801,9 @@ static void ov22_02255C14(UnkStruct_ov22_0225A0E4 *param0)
     param0->unk_30 = NULL;
 }
 
-static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, int param3)
+static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, int heapID, int param2, int param3)
 {
-    param0->unk_20 = sub_0200762C(param1);
+    param0->unk_20 = sub_0200762C(heapID);
     param0->unk_24 = NNS_GfdAllocTexVram(param2, 0, 0);
     param0->unk_28 = NNS_GfdAllocPlttVram(param3, 0, NNS_GFD_ALLOC_FROM_LOW);
 

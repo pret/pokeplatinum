@@ -55,13 +55,13 @@ BOOL ScrCmd_Dummy21E(ScriptContext *ctx)
 
 BOOL ScrCmd_21F(ScriptContext *param0)
 {
-    Pokemon *v0;
+    Pokemon *mon;
     u16 *v1;
     u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v3);
-    v1 = sub_020997D8(v0, 32);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v3);
+    v1 = sub_020997D8(mon, HEAP_ID_FIELD_TASK);
     *v2 = sub_020998D8(v1);
 
     Heap_FreeToHeap(v1);
@@ -73,7 +73,7 @@ static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16
     void **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
     UnkStruct_020997B8 *v1;
 
-    v1 = sub_020997B8(32);
+    v1 = sub_020997B8(HEAP_ID_FIELD_TASK);
     *v0 = v1;
 
     v1->unk_00 = param2;
@@ -94,14 +94,14 @@ BOOL ScrCmd_220(ScriptContext *param0)
 
 BOOL ScrCmd_221(ScriptContext *param0)
 {
-    Pokemon *v0;
+    Pokemon *mon;
     u16 v1 = ScriptContext_GetVar(param0);
     u16 *v2;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
-    v2 = sub_020997D8(v0, 32);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
+    v2 = sub_020997D8(mon, HEAP_ID_FIELD_TASK);
 
-    sub_0204EE90(param0, 1, v0, v2);
+    sub_0204EE90(param0, 1, mon, v2);
 
     return 1;
 }

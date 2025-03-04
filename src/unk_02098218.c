@@ -75,7 +75,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     v1->unk_04.unk_0C = Options_TextFrameDelay(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_10 = Options_Frame(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_34 = ov119_021D0DD4();
-    v1->unk_04.unk_38 = sub_0200762C(71);
+    v1->unk_04.unk_38 = sub_0200762C(HEAP_ID_71);
     v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 71);
     v1->unk_04.unk_00 = BgConfig_New(HEAP_ID_71);
 
@@ -240,7 +240,7 @@ static BOOL sub_0209843C(FieldTask *param0)
 
         v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
-        v0->unk_08 = sub_0208712C(11, 1, v9, 10, SaveData_Options(FieldSystem_GetSaveData(fieldSystem)));
+        v0->unk_08 = sub_0208712C(HEAP_ID_FIELDMAP, 1, v9, 10, SaveData_Options(FieldSystem_GetSaveData(fieldSystem)));
         v0->unk_08->unk_10 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
         v0->unk_08->unk_08 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
         FieldTask_RunApplication(param0, &Unk_020F2DAC, v0->unk_08);

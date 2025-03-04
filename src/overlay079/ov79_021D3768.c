@@ -17,9 +17,9 @@
 #include "unk_0202419C.h"
 
 static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1);
-static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int param2);
+static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapIDs);
 
-void ov79_021D3768(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int param2)
+void ov79_021D3768(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapID)
 {
     MI_CpuClear8(param0, sizeof(UnkStruct_ov79_021D3820));
 
@@ -36,8 +36,8 @@ void ov79_021D3768(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *par
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
     G3_ViewPort(0, 0, 255, 191);
 
-    ov79_021D3870(param0, param2);
-    ov79_021D38D0(param0, param1, param2);
+    ov79_021D3870(param0, heapID);
+    ov79_021D38D0(param0, param1, heapID);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     G2_SetBG0Priority(1);
@@ -81,12 +81,12 @@ static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1)
     Camera_SetAsActive(param0->camera);
 }
 
-static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int param2)
+static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapID)
 {
     ArchivedSprite v0;
     PokemonSprite *v1;
 
-    param0->unk_04 = sub_0200762C(param2);
+    param0->unk_04 = sub_0200762C(heapID);
 
     Pokemon_BuildArchivedSprite(&v0, param1->unk_00, 2);
 

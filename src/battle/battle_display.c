@@ -1458,7 +1458,7 @@ void ov16_0225E434(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     UnkStruct_ov12_022380DC v0;
 
     ov16_02264530(battleSys, param2, &v0, param1->battler);
-    ov12_02238390(&v0, 5);
+    ov12_02238390(&v0, HEAP_ID_BATTLE);
     ClearCommand(battleSys, param1->battler, param2->unk_00);
 }
 
@@ -2129,7 +2129,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         UnkStruct_ov16_02265BBC v13;
 
         ov16_02264530(v0->unk_00, &v0->unk_28, &v12, v0->unk_81);
-        ov12_02238390(&v12, 5);
+        ov12_02238390(&v12, HEAP_ID_BATTLE);
         ov16_02266B78(v0->unk_00, NULL, &v13, 1, 16, v0->unk_81, v0->unk_81, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v1, &v13);
 
@@ -4652,7 +4652,7 @@ static void ov16_022626C0(SysTask *param0, void *param1)
         UnkStruct_ov16_02265BBC v6;
 
         ov16_02264530(v0->unk_00, &v0->unk_10, &v5, v0->unk_69);
-        ov12_02238390(&v5, 5);
+        ov12_02238390(&v5, HEAP_ID_BATTLE);
 
         ov16_02266B78(v0->unk_00, NULL, &v6, 1, 16, v0->unk_69, v0->unk_69, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_0C, &v6);
@@ -4960,7 +4960,7 @@ static void ov16_02262DC4(SysTask *param0, void *param1)
         UnkStruct_ov16_02265BBC v4;
 
         ov16_02264530(v0->unk_00, &v0->unk_08, &v3, v0->unk_61);
-        ov12_02238390(&v3, 5);
+        ov12_02238390(&v3, HEAP_ID_BATTLE);
 
         ov16_02266B78(v0->unk_00, NULL, &v4, 1, 16, v0->unk_61, v0->unk_61, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v1, &v4);

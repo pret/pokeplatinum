@@ -15,7 +15,7 @@
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 #include "overlay101/struct_ov101_021D86B0.h"
 
-UnkStruct_020711EC *sub_020711EC(int param0, int param1);
+UnkStruct_020711EC *sub_020711EC(int heapID, int param1);
 void sub_0207120C(UnkStruct_020711EC *param0);
 void sub_0207121C(UnkStruct_020711EC *param0);
 UnkStruct_ov101_021D5D90 *sub_0207122C(UnkStruct_020711EC *param0, const UnkStruct_02071330 *param1, const VecFx32 *param2, int param3, const void *param4, int param5);

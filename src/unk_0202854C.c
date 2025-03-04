@@ -85,11 +85,9 @@ int sub_02028558(void)
     return sizeof(SecretBaseRecord);
 }
 
-SecretBaseRecord *sub_0202855C(u32 param0)
+SecretBaseRecord *sub_0202855C(u32 heapID)
 {
-    SecretBaseRecord *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(SecretBaseRecord));
+    SecretBaseRecord *v0 = Heap_AllocFromHeap(heapID, sizeof(SecretBaseRecord));
     MI_CpuFill8(v0, 0, sizeof(SecretBaseRecord));
     return v0;
 }

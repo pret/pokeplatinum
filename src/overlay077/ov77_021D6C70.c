@@ -140,7 +140,7 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
         }
     }
 
-    param0->unk_00 = sub_0200762C(76);
+    param0->unk_00 = sub_0200762C(HEAP_ID_76);
 
     for (v0 = 0; v0 < 3; v0++) {
         BuildArchivedPokemonSprite(&v1, v5[v0], 0, 2, 0, NULL, NULL);

@@ -19,7 +19,7 @@
 #include "sprite.h"
 #include "sprite_resource.h"
 
-void ov21_021D1FA4(PokedexGraphicData *param0, int param1);
+void ov21_021D1FA4(PokedexGraphicData *param0, int heapID);
 void ov21_021D2098(PokedexGraphicData *param0);
 void ov21_021D2124(PokedexGraphicData *param0);
 void ov21_021D214C(PokedexGraphicData *param0);

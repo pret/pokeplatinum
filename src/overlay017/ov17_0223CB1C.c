@@ -176,11 +176,11 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     SpriteSystem_InitManagerWithCapacities(v0->unk_0C.unk_1C, v0->unk_0C.unk_20, &Unk_ov17_02252EC8);
     SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_0C.unk_1C), 0, (256 * FX32_ONE));
 
-    v0->unk_0C.unk_04 = sub_0200762C(22);
+    v0->unk_0C.unk_04 = sub_0200762C(HEAP_ID_22);
     ov17_0223D350();
 
     v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 209, HEAP_ID_22);
-    v0->unk_0C.unk_3C = StringTemplate_Default(22);
+    v0->unk_0C.unk_3C = StringTemplate_Default(HEAP_ID_22);
     v0->unk_0C.unk_40 = Strbuf_Init((2 * 160), HEAP_ID_22);
 
     {

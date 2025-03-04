@@ -18,7 +18,7 @@ static BOOL ov5_021D3478(SpriteResourceList *param0, SpriteResource *param1);
 static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int param3, int param4, int param5);
 static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int param3, int param4, int param5);
 
-void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths *param1, u32 param2, u32 param3)
+void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths *param1, u32 param2, u32 heapID)
 {
     SpriteResourceTable *v0;
     SpriteResourceTable *v1;
@@ -26,8 +26,8 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths 
     u32 v3;
     u32 v4;
 
-    param0->unk_00 = SpriteList_InitRendering(param2, &param0->unk_04, param3);
-    param0->unk_1C6 = param3;
+    param0->unk_00 = SpriteList_InitRendering(param2, &param0->unk_04, heapID);
+    param0->heapId = heapID;
 
     if (param1->asStruct.mcellResources == NULL) {
         param0->unk_1C4 = 6 - 2;
@@ -35,27 +35,27 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths 
         param0->unk_1C4 = 6;
     }
 
-    v1 = Heap_AllocFromHeap(param3, SpriteResourceTable_Size() * param0->unk_1C4);
+    v1 = Heap_AllocFromHeap(heapID, SpriteResourceTable_Size() * param0->unk_1C4);
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
         v0 = SpriteResourceTable_GetArrayElement(v1, v4);
-        v2 = ReadFileToHeap(param3, param1->asArray[v4]);
+        v2 = ReadFileToHeap(heapID, param1->asArray[v4]);
 
-        SpriteResourceTable_LoadFromBinary(v2, v0, param3);
+        SpriteResourceTable_LoadFromBinary(v2, v0, heapID);
         Heap_FreeToHeap(v2);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
         v0 = SpriteResourceTable_GetArrayElement(v1, v4);
         v3 = SpriteResourceTable_GetCount(v0);
-        param0->unk_194[v4] = SpriteResourceCollection_New(v3, v4, param3);
+        param0->unk_194[v4] = SpriteResourceCollection_New(v3, v4, heapID);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
         v0 = SpriteResourceTable_GetArrayElement(v1, v4);
         v3 = SpriteResourceTable_GetCount(v0);
-        param0->unk_1AC[v4] = SpriteResourceList_New(v3, param3);
-        SpriteResourceCollection_Extend(param0->unk_194[v4], v0, param0->unk_1AC[v4], param3);
+        param0->unk_1AC[v4] = SpriteResourceList_New(v3, heapID);
+        SpriteResourceCollection_Extend(param0->unk_194[v4], v0, param0->unk_1AC[v4], heapID);
     }
 
     for (v4 = 0; v4 < param0->unk_1C4; v4++) {
@@ -67,8 +67,8 @@ void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths 
     SpriteTransfer_RequestCharListAtEnd(param0->unk_1AC[0]);
     SpriteTransfer_RequestPlttFreeSpaceList(param0->unk_1AC[1]);
 
-    v2 = ReadFileToHeap(param3, param1->asStruct.spriteTable);
-    param0->unk_190 = SpriteResourcesHeaderList_NewFromResdat(v2, param3, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
+    v2 = ReadFileToHeap(heapID, param1->asStruct.spriteTable);
+    param0->unk_190 = SpriteResourcesHeaderList_NewFromResdat(v2, heapID, param0->unk_194[0], param0->unk_194[1], param0->unk_194[2], param0->unk_194[3], param0->unk_194[4], param0->unk_194[5]);
 
     Heap_FreeToHeap(v2);
 }
@@ -106,7 +106,7 @@ Sprite *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplateFromRes
     v0.affineZRotation = 0;
     v0.priority = param1->priority;
     v0.vramType = param1->vramType;
-    v0.heapID = param0->unk_1C6;
+    v0.heapID = param0->heapId;
 
     v1 = SpriteList_AddAffine(&v0);
     GF_ASSERT(v1);
@@ -126,7 +126,7 @@ void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, SpriteResourceCapacities *para
     u32 v4, v5;
 
     param0->unk_00 = SpriteList_InitRendering(param2, &param0->unk_04, param3);
-    param0->unk_1C6 = param3;
+    param0->heapId = param3;
 
     if ((param1->asStruct.mcellCapacity == 0) || (param1->asStruct.manimCapacity == 0)) {
         param0->unk_1C4 = 6 - 2;
@@ -163,7 +163,7 @@ void ov5_021D3270(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, int pa
         return;
     }
 
-    v0 = SpriteResourceCollection_AddPalette(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddPalette(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->heapId);
 
     if (v0 != NULL) {
         v1 = SpriteTransfer_RequestPlttFreeSpace(v0);
@@ -187,7 +187,7 @@ void ov5_021D32E8(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, int 
         return;
     }
 
-    v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_194[1], param1, param2, param3, param6, param5, param4, param0->heapId);
 
     if (v0 != NULL) {
         v1 = SpriteTransfer_RequestPlttFreeSpace(v0);
@@ -230,7 +230,7 @@ void ov5_021D33B0(UnkStruct_ov5_021D30A8 *param0, int param1, int param2, BOOL p
         return;
     }
 
-    v0 = SpriteResourceCollection_AddTiles(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddTiles(param0->unk_194[0], param1, param2, param3, param5, param4, param0->heapId);
 
     if (v0 != NULL) {
         SpriteTransfer_RequestCharAtEnd(v0);
@@ -250,7 +250,7 @@ void ov5_021D3414(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param2, BOOL
         return;
     }
 
-    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_194[0], param1, param2, param3, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_194[0], param1, param2, param3, param5, param4, param0->heapId);
 
     if (v0 != NULL) {
         SpriteTransfer_RequestCharAtEnd(v0);
@@ -290,7 +290,7 @@ static void ov5_021D34AC(UnkStruct_ov5_021D30A8 *param0, int param1, int param2,
         return;
     }
 
-    v0 = SpriteResourceCollection_Add(param0->unk_194[param4], param1, param2, param3, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_Add(param0->unk_194[param4], param1, param2, param3, param5, param4, param0->heapId);
 
     if (v0 != NULL) {
         v1 = ov5_021D3478(param0->unk_1AC[param4], v0);
@@ -311,7 +311,7 @@ static void ov5_021D3518(UnkStruct_ov5_021D30A8 *param0, NARC *param1, int param
         return;
     }
 
-    v0 = SpriteResourceCollection_AddFrom(param0->unk_194[param4], param1, param2, param3, param5, param4, param0->unk_1C6);
+    v0 = SpriteResourceCollection_AddFrom(param0->unk_194[param4], param1, param2, param3, param5, param4, param0->heapId);
 
     if (v0 != NULL) {
         v1 = ov5_021D3478(param0->unk_1AC[param4], v0);
@@ -331,10 +331,10 @@ ManagedSprite *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
     AffineSpriteListTemplate v3;
     int v4[6];
 
-    v2 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(ManagedSprite));
+    v2 = Heap_AllocFromHeap(param0->heapId, sizeof(ManagedSprite));
 
-    v2->resourceHeaderList = Heap_AllocFromHeap(param0->unk_1C6, sizeof(SpriteResourcesHeaderList));
-    v2->resourceHeaderList->headers = Heap_AllocFromHeap(param0->unk_1C6, sizeof(SpriteResourcesHeader));
+    v2->resourceHeaderList = Heap_AllocFromHeap(param0->heapId, sizeof(SpriteResourcesHeaderList));
+    v2->resourceHeaderList->headers = Heap_AllocFromHeap(param0->heapId, sizeof(SpriteResourcesHeader));
     v2->resourceHeader = v2->resourceHeaderList->headers;
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -372,7 +372,7 @@ ManagedSprite *ov5_021D3584(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplate
     v3.affineZRotation = 0;
     v3.priority = param1->priority;
     v3.vramType = param1->vramType;
-    v3.heapID = param0->unk_1C6;
+    v3.heapID = param0->heapId;
 
     v2->sprite = SpriteList_AddAffine(&v3);
 

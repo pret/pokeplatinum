@@ -283,7 +283,7 @@ static void ov6_02244FB4(UnkStruct_ov6_02243FFC *param0);
 static void ov6_02244FE4(SysTask *param0, void *param1);
 static void ov6_0224508C(UnkStruct_ov6_02243FFC *param0, ArchivedSprite *param1);
 static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 heapID);
-static void *ov6_022450E4(ArchivedSprite *param0, u32 param1);
+static void *ov6_022450E4(ArchivedSprite *param0, u32 heapID);
 static SpriteResource *ov6_022450F4(UnkStruct_ov6_02243FFC *param0, NARC *param1);
 static void ov6_02245118(UnkStruct_ov6_02243FFC *param0, void *param1);
 static SpriteResource *ov6_0224514C(UnkStruct_ov6_02243FFC *param0, NARC *param1);
@@ -1700,7 +1700,7 @@ static void ov6_0224481C(UnkStruct_ov6_02243FFC *param0)
     ov6_02244928(param0, v0);
 
     NARC_dtor(v0);
-    param0->unk_244 = sub_020711EC(4, 32);
+    param0->unk_244 = sub_020711EC(HEAP_ID_FIELD, 32);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 }
 
@@ -1788,7 +1788,7 @@ static void ov6_02244928(UnkStruct_ov6_02243FFC *param0, NARC *param1)
     }
 
     param0->unk_270 = ov6_0224509C(param0->unk_5C, &param0->unk_258, HEAP_ID_FIELD);
-    param0->unk_274 = ov6_022450E4(&param0->unk_258, 4);
+    param0->unk_274 = ov6_022450E4(&param0->unk_258, HEAP_ID_FIELD);
 }
 
 static void ov6_02244B6C(UnkStruct_ov6_02243FFC *param0)
@@ -2070,9 +2070,9 @@ static void *ov6_0224509C(Pokemon *param0, ArchivedSprite *param1, u32 heapID)
     return v0;
 }
 
-static void *ov6_022450E4(ArchivedSprite *param0, u32 param1)
+static void *ov6_022450E4(ArchivedSprite *param0, u32 heapID)
 {
-    void *v0 = sub_02013660(param0->archive, param0->palette, param1);
+    void *v0 = sub_02013660(param0->archive, param0->palette, heapID);
     return v0;
 }
 
@@ -2945,7 +2945,7 @@ static int ov6_02245D48(UnkStruct_ov6_02249270 *param0)
 
 static int ov6_02245D60(UnkStruct_ov6_02249270 *param0)
 {
-    param0->unk_1D4 = sub_020711EC(4, 32);
+    param0->unk_1D4 = sub_020711EC(HEAP_ID_FIELD, 32);
     ov6_02243258(&param0->unk_18, 32, 2, 2, 2, 1, 4, 3, 4, 2);
 
     {

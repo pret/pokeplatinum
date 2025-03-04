@@ -5,7 +5,7 @@
 
 #include "strbuf.h"
 
-UnkStruct_020158A8 *sub_020158A8(int param0);
+UnkStruct_020158A8 *sub_020158A8(int heapID);
 void sub_020158F4(UnkStruct_020158A8 *param0);
 const Strbuf *sub_02015918(UnkStruct_020158A8 *param0, int param1);
 

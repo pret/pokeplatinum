@@ -427,7 +427,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     v0->unk_197E = param0->unk_04;
 
     for (v2 = 0; v2 < 4; v2++) {
-        v0->unk_00.unk_E8[v2] = sub_02029C88(20);
+        v0->unk_00.unk_E8[v2] = sub_02029C88(HEAP_ID_20);
     }
 
     sub_020954F0(v0, 11, v0->unk_00.unk_10E, v0->unk_00.unk_10F, v0->unk_00.unk_110);

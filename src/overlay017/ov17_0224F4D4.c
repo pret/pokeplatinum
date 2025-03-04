@@ -185,7 +185,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     v0->unk_10.unk_1C = SpriteManager_New(v0->unk_10.unk_18);
     SpriteSystem_InitSprites(v0->unk_10.unk_18, v0->unk_10.unk_1C, (64 + 64));
     SpriteSystem_InitManagerWithCapacities(v0->unk_10.unk_18, v0->unk_10.unk_1C, &Unk_ov17_02254AD8);
-    v0->unk_10.unk_04 = sub_0200762C(24);
+    v0->unk_10.unk_04 = sub_0200762C(HEAP_ID_24);
 
     ov17_0224FDDC();
 

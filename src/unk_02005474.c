@@ -47,7 +47,7 @@ BOOL sub_02005844(u16 param0, u8 param1);
 BOOL sub_0200590C(u16 param0, u8 param1, u8 param2);
 void sub_0200592C(int param0);
 int sub_0200598C(void);
-void sub_02005E64(int param0, int param1);
+void sub_02005E64(int param0, int heapID);
 static void sub_02005EB0(SysTask *param0, void *param1);
 void sub_02005F24(void);
 static BOOL sub_02006038(u16 param0, u8 param1);
@@ -686,7 +686,7 @@ static void sub_02005E4C(u16 param0, int param1, int param2)
     return;
 }
 
-void sub_02005E64(int param0, int param1)
+void sub_02005E64(int param0, int heapID)
 {
     UnkStruct_02005E64 *v0 = NULL;
     SysTask **v1 = sub_02003D5C(35);
@@ -697,7 +697,7 @@ void sub_02005E64(int param0, int param1)
 
     sub_02005F24();
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02005E64));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02005E64));
 
     if (v0 == NULL) {
         GF_ASSERT(FALSE);

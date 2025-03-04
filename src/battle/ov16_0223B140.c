@@ -600,7 +600,7 @@ static void ov16_0223B790(OverlayManager *param0)
         NARC_dtor(v9);
     }
 
-    battleSys->unk_88 = sub_0200762C(5);
+    battleSys->unk_88 = sub_0200762C(HEAP_ID_BATTLE);
     sub_02008A84(battleSys->unk_88, 0, (0x20 * 6));
 
     ov16_0223F36C(battleSys);

@@ -1189,18 +1189,18 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
     return 1;
 }
 
-UnkStruct_0208737C *sub_0208712C(int param0, int param1, int param2, int param3, Options *param4)
+UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3, Options *param4)
 {
     UnkStruct_0208737C *v0;
 
-    v0 = (UnkStruct_0208737C *)Heap_AllocFromHeap(param0, sizeof(UnkStruct_0208737C));
+    v0 = (UnkStruct_0208737C *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0208737C));
 
     v0->unk_00 = param1;
     v0->unk_04 = param2;
     v0->unk_0C = param3;
     v0->unk_14 = 0;
     v0->unk_1C[0] = 0xffff;
-    v0->unk_18 = Strbuf_Init(32, param0);
+    v0->unk_18 = Strbuf_Init(32, heapID);
     v0->unk_44 = 0;
     v0->unk_48 = NULL;
     v0->unk_10 = 0;

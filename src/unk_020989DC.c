@@ -89,7 +89,7 @@ const OverlayManagerTemplate Unk_020F6890 = {
     0xFFFFFFFF
 };
 
-UnkStruct_0203D9B8 *sub_020989DC(SaveData *param0, int param1)
+UnkStruct_0203D9B8 *sub_020989DC(SaveData *param0, int heapID)
 {
     UnkStruct_0203D9B8 *v0;
     Poffin *v1;
@@ -99,7 +99,7 @@ UnkStruct_0203D9B8 *sub_020989DC(SaveData *param0, int param1)
     u8 v5 = 0, v6 = 0, v7 = 0;
     u8 v8 = 0;
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_0203D9B8));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0203D9B8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0203D9B8));
 
     v0->unk_08 = Poffin_GetSavedataBlock(param0);
@@ -108,8 +108,8 @@ UnkStruct_0203D9B8 *sub_020989DC(SaveData *param0, int param1)
     v0->unk_14 = SaveData_GetBag(param0);
     v0->unk_18 = SaveData_Options(param0);
 
-    v1 = Poffin_New(param1);
-    v3 = StringTemplate_New(1, 32, param1);
+    v1 = Poffin_New(heapID);
+    v3 = StringTemplate_New(1, 32, heapID);
 
     for (v5 = 0; v5 < MAX_POFFINS; v5++) {
         Poffin_CopyToCaseSlot(v0->unk_08, v5, v1);

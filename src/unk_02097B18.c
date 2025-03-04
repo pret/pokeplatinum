@@ -153,7 +153,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     ov76_0223EB64(v0->unk_D4.unk_10);
     ov76_0223BF10();
 
-    v0->unk_D4.unk_D0 = sub_0200762C(53);
+    v0->unk_D4.unk_D0 = sub_0200762C(HEAP_ID_53);
     v0->unk_D4.unk_188 = sub_02015F84(HEAP_ID_53, 1, 0);
 
     {

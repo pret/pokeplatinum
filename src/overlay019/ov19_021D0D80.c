@@ -3131,7 +3131,7 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->unk_1A0 = Heap_AllocFromHeap(HEAP_ID_9, Pokemon_StructSize());
 
     GF_ASSERT(param0->unk_19C);
-    param0->unk_128 = sub_0208712C(9, 2, 0, 8, param0->unk_1A4);
+    param0->unk_128 = sub_0208712C(HEAP_ID_9, 2, 0, 8, param0->unk_1A4);
 
     if (param1->unk_04 != 4) {
         param0->unk_17C = sub_02023FCC(Unk_ov19_021DFDF6, NELEMS(Unk_ov19_021DFDF6), ov19_021D53B8, param0, HEAP_ID_9);
