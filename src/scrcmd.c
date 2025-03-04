@@ -12,6 +12,7 @@
 #include "constants/species.h"
 #include "generated/journal_location_events.h"
 #include "generated/save_types.h"
+#include "generated/signpost_commands.h"
 
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
@@ -53,7 +54,6 @@
 #include "overlay005/ov5_021DD42C.h"
 #include "overlay005/ov5_021DDAE4.h"
 #include "overlay005/ov5_021DFB54.h"
-#include "overlay005/ov5_021E1B08.h"
 #include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EA874.h"
 #include "overlay005/ov5_021ECC20.h"
@@ -62,6 +62,7 @@
 #include "overlay005/ov5_021F6454.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/scrcmd_move_tutor.h"
+#include "overlay005/signpost.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 #include "overlay005/vs_seeker.h"
 #include "overlay006/npc_trade.h"
@@ -303,16 +304,16 @@ static BOOL ScriptContext_CheckABPadPress(ScriptContext *ctx);
 static BOOL ScrCmd_OpenMessage(ScriptContext *ctx);
 static BOOL ScrCmd_CloseMessage(ScriptContext *ctx);
 static BOOL ScrCmd_035(ScriptContext *ctx);
-static BOOL ScrCmd_036(ScriptContext *ctx);
-static BOOL ScrCmd_037(ScriptContext *ctx);
-static BOOL ScrCmd_038(ScriptContext *ctx);
-static BOOL ScrCmd_039(ScriptContext *ctx);
-static BOOL sub_020405C4(ScriptContext *ctx);
-static BOOL ScrCmd_03A(ScriptContext *ctx);
-static BOOL sub_02040670(ScriptContext *ctx);
-static BOOL ScrCmd_03B(ScriptContext *ctx);
-static BOOL sub_02040730(ScriptContext *ctx);
-static BOOL ScrCmd_03C(ScriptContext *ctx);
+static BOOL ScrCmd_DrawSignpostInstantMessage(ScriptContext *ctx);
+static BOOL ScrCmd_DrawSignpostTextBox(ScriptContext *ctx);
+static BOOL ScrCmd_SetSignpostCommand(ScriptContext *ctx);
+static BOOL ScrCmd_WaitForSignpostDone(ScriptContext *ctx);
+static BOOL WaitForSignpostDone(ScriptContext *ctx);
+static BOOL ScrCmd_DrawSignpostScrollingMessage(ScriptContext *ctx);
+static BOOL WaitScrollingSignpostInput(ScriptContext *ctx);
+static BOOL ScrCmd_GetSignpostInput(ScriptContext *ctx);
+static BOOL HandleSignpostInput(ScriptContext *ctx);
+static BOOL ScrCmd_ShowStartMenu(ScriptContext *ctx);
 static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx);
 static BOOL ScrCmd_ScrollBG3(ScriptContext *ctx);
 static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx);
@@ -818,13 +819,13 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_OpenMessage,
     ScrCmd_CloseMessage,
     ScrCmd_035,
-    ScrCmd_036,
-    ScrCmd_037,
-    ScrCmd_038,
-    ScrCmd_039,
-    ScrCmd_03A,
-    ScrCmd_03B,
-    ScrCmd_03C,
+    ScrCmd_DrawSignpostInstantMessage,
+    ScrCmd_DrawSignpostTextBox,
+    ScrCmd_SetSignpostCommand,
+    ScrCmd_WaitForSignpostDone,
+    ScrCmd_DrawSignpostScrollingMessage,
+    ScrCmd_GetSignpostInput,
+    ScrCmd_ShowStartMenu,
     ScrCmd_ScrollBG3,
     ScrCmd_ShowYesNoMenu,
     ScrCmd_03F,
@@ -2447,206 +2448,195 @@ static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_036(ScriptContext *ctx)
+static BOOL ScrCmd_DrawSignpostInstantMessage(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem;
-    Strbuf **v1;
-    Strbuf **v2;
-    StringTemplate **v3;
-    u16 v4;
-    u16 v5;
-    u8 v6;
-    u8 v7;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    Strbuf **tempBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
+    Strbuf **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u16 signpostNARCMemberIdx;
+    u16 unused;
+    u8 signpostType;
+    u8 messageID;
 
-    fieldSystem = ctx->fieldSystem;
-    v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
-    v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
-    v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    v7 = ScriptContext_ReadByte(ctx);
-    v6 = ScriptContext_ReadByte(ctx);
-    v4 = ScriptContext_ReadHalfWord(ctx);
-    v5 = ScriptContext_ReadHalfWord(ctx);
+    messageID = ScriptContext_ReadByte(ctx);
+    signpostType = ScriptContext_ReadByte(ctx);
+    signpostNARCMemberIdx = ScriptContext_ReadHalfWord(ctx);
+    unused = ScriptContext_ReadHalfWord(ctx);
 
-    if (v4 == 0) {
-        MapObject **v8 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
+    if (signpostNARCMemberIdx == 0) {
+        MapObject **objectPtr = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TARGET_OBJECT);
 
-        v4 = MapObject_GetDataAt(*v8, 0);
+        signpostNARCMemberIdx = MapObject_GetDataAt(*objectPtr, 0);
     }
 
-    ov5_021E1B38(fieldSystem->unk_64, v6, v4);
-    ov5_021E1B40(fieldSystem->unk_64, 1);
-    ov5_021E1B68(fieldSystem);
+    Signpost_SetTypeAndNARCMemberIdx(fieldSystem->signpost, signpostType, signpostNARCMemberIdx);
+    Signpost_SetCommand(fieldSystem->signpost, SIGNPOST_CMD_DRAW);
+    Signpost_DoCurrentCommand(fieldSystem);
 
-    MessageLoader_GetStrbuf(ctx->loader, v7, *v1);
-    StringTemplate_Format(*v3, *v2, *v1);
-    Text_AddPrinterWithParams(ov5_021E1B50(fieldSystem->unk_64), FONT_MESSAGE, *v2, 0, 0, TEXT_SPEED_INSTANT, NULL);
+    MessageLoader_GetStrbuf(ctx->loader, messageID, *tempBuf);
+    StringTemplate_Format(*strTemplate, *msgBuf, *tempBuf);
+    Text_AddPrinterWithParams(Signpost_GetWindow(fieldSystem->signpost), FONT_MESSAGE, *msgBuf, 0, 0, TEXT_SPEED_INSTANT, NULL);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_037(ScriptContext *ctx)
+static BOOL ScrCmd_DrawSignpostTextBox(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem;
-    u16 v1;
-    u8 v2;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u8 signpostType = ScriptContext_ReadByte(ctx);
+    u16 signpostNARCMemberIdx = ScriptContext_ReadHalfWord(ctx);
 
-    fieldSystem = ctx->fieldSystem;
-    v2 = ScriptContext_ReadByte(ctx);
-    v1 = ScriptContext_ReadHalfWord(ctx);
+    Signpost_SetTypeAndNARCMemberIdx(fieldSystem->signpost, signpostType, signpostNARCMemberIdx);
+    Signpost_SetCommand(fieldSystem->signpost, SIGNPOST_CMD_DRAW);
 
-    ov5_021E1B38(fieldSystem->unk_64, v2, v1);
-    ov5_021E1B40(fieldSystem->unk_64, 1);
-
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_038(ScriptContext *ctx)
+static BOOL ScrCmd_SetSignpostCommand(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem;
-    u8 v1;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    u8 signpostCommand = ScriptContext_ReadByte(ctx);
 
-    fieldSystem = ctx->fieldSystem;
-    v1 = ScriptContext_ReadByte(ctx);
+    Signpost_SetCommand(fieldSystem->signpost, signpostCommand);
 
-    ov5_021E1B40(fieldSystem->unk_64, v1);
-
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_039(ScriptContext *ctx)
+static BOOL ScrCmd_WaitForSignpostDone(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    if (ov5_021E1B58(fieldSystem->unk_64) == 1) {
-        return 0;
+    if (Signpost_IsDone(fieldSystem->signpost) == TRUE) {
+        return FALSE;
     }
 
-    ScriptContext_Pause(ctx, sub_020405C4);
-    return 1;
+    ScriptContext_Pause(ctx, WaitForSignpostDone);
+    return TRUE;
 }
 
-static BOOL sub_020405C4(ScriptContext *ctx)
+static BOOL WaitForSignpostDone(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
-    if (ov5_021E1B58(fieldSystem->unk_64) == 1) {
-        return 1;
+    if (Signpost_IsDone(fieldSystem->signpost) == TRUE) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ScrCmd_03A(ScriptContext *ctx)
+static BOOL ScrCmd_DrawSignpostScrollingMessage(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
-    Strbuf **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
-    Strbuf **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
-    StringTemplate **v4 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v5 = ScriptContext_ReadByte(ctx);
-    u16 v6 = ScriptContext_ReadHalfWord(ctx);
+    u8 *printerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
+    Strbuf **tempBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_TEMPORARY_BUF);
+    Strbuf **msgBuf = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_BUF);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 messageID = ScriptContext_ReadByte(ctx);
+    u16 destVarID = ScriptContext_ReadHalfWord(ctx);
 
-    MessageLoader_GetStrbuf(ctx->loader, v5, *v2);
-    StringTemplate_Format(*v4, *v3, *v2);
+    MessageLoader_GetStrbuf(ctx->loader, messageID, *tempBuf);
+    StringTemplate_Format(*strTemplate, *msgBuf, *tempBuf);
 
-    *v1 = FieldMessage_Print(ov5_021E1B50(fieldSystem->unk_64), *v3, SaveData_Options(ctx->fieldSystem->saveData), 1);
+    *printerID = FieldMessage_Print(Signpost_GetWindow(fieldSystem->signpost), *msgBuf, SaveData_Options(ctx->fieldSystem->saveData), 1);
 
-    ctx->data[0] = v6;
-    ScriptContext_Pause(ctx, sub_02040670);
+    ctx->data[0] = destVarID;
+    ScriptContext_Pause(ctx, WaitScrollingSignpostInput);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL sub_02040670(ScriptContext *ctx)
+static BOOL WaitScrollingSignpostInput(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u8 *v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
-    u16 *v2 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
-    u8 v3 = ov5_021E1B54(fieldSystem->unk_64);
-    int v4 = 0xffff;
+    u8 *printerID = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_MESSAGE_ID);
+    u16 *destVar = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
+    u8 unused = Signpost_GetType(fieldSystem->signpost);
+    int dir = 0xffff;
 
-    if (FieldMessage_FinishedPrinting(*v1) == 1) {
-        *v2 = 2;
-        return 1;
+    if (FieldMessage_FinishedPrinting(*printerID) == TRUE) {
+        *destVar = 2;
+        return TRUE;
     }
 
     if (gSystem.pressedKeys & PAD_KEY_UP) {
-        v4 = 0;
+        dir = DIR_NORTH;
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        v4 = 1;
+        dir = DIR_SOUTH;
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        v4 = 2;
+        dir = DIR_WEST;
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        v4 = 3;
+        dir = DIR_EAST;
     }
 
-    if (v4 != 0xffff) {
-        Text_RemovePrinter(*v1);
-        Player_SetDir(ctx->fieldSystem->playerAvatar, v4);
-        *v2 = 0;
-        return 1;
+    if (dir != 0xffff) {
+        Text_RemovePrinter(*printerID);
+        Player_SetDir(ctx->fieldSystem->playerAvatar, dir);
+        *destVar = 0;
+        return TRUE;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_X) {
-        Text_RemovePrinter(*v1);
-        *v2 = 1;
-        return 1;
+        Text_RemovePrinter(*printerID);
+        *destVar = 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ScrCmd_03B(ScriptContext *ctx)
+static BOOL ScrCmd_GetSignpostInput(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 destVarID = ScriptContext_ReadHalfWord(ctx);
 
-    ctx->data[0] = v0;
-    ScriptContext_Pause(ctx, sub_02040730);
+    ctx->data[0] = destVarID;
+    ScriptContext_Pause(ctx, HandleSignpostInput);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL sub_02040730(ScriptContext *ctx)
+static BOOL HandleSignpostInput(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
-    int v2 = 0xffff;
+    u16 *destVar = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
+    int dir = 0xffff;
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        *v1 = 0;
-        return 1;
+        *destVar = 0;
+        return TRUE;
     }
 
     if (gSystem.pressedKeys & PAD_KEY_UP) {
-        v2 = 0;
+        dir = DIR_NORTH;
     } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
-        v2 = 1;
+        dir = DIR_SOUTH;
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
-        v2 = 2;
+        dir = DIR_WEST;
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
-        v2 = 3;
+        dir = DIR_EAST;
     }
 
-    if (v2 != 0xffff) {
-        Player_SetDir(ctx->fieldSystem->playerAvatar, v2);
-        *v1 = 0;
-        return 1;
+    if (dir != 0xffff) {
+        Player_SetDir(ctx->fieldSystem->playerAvatar, dir);
+        *destVar = 0;
+        return TRUE;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_X) {
-        *v1 = 1;
-        return 1;
+        *destVar = 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ScrCmd_03C(ScriptContext *ctx)
+static BOOL ScrCmd_ShowStartMenu(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
 
     sub_0203F0C0(fieldSystem);
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx)

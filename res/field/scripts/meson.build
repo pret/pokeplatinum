@@ -216,7 +216,7 @@ scr_seq_files = files(
     'scripts_fight_area_middle_house.s',
     'scripts_fight_area_south_house.s',
     'scripts_unk_0210.s',
-    'scripts_unk_0211.s',
+    'scripts_common.s',
     'scripts_unk_0212.s',
     'scripts_unk_0213.s',
     'scripts_oreburgh_mine_b1f.s',

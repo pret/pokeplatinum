@@ -2,6 +2,7 @@
 #define POKEPLATINUM_RENDER_WINDOW_H
 
 #include "constants/heap.h"
+#include "generated/signpost_types.h"
 
 #include "bg_window.h"
 #include "pokemon.h"
@@ -12,13 +13,6 @@ enum StandardWindowType {
     STANDARD_WINDOW_SYSTEM = 0,
     STANDARD_WINDOW_FIELD,
     STANDARD_WINDOW_UNDERGROUND,
-};
-
-enum SignpostType {
-    SIGNPOST_CITY_MAP = 0,
-    SIGNPOST_ROUTE_MAP,
-    SIGNPOST_BUILDING_INFO,
-    SIGNPOST_FIELD_INFO,
 };
 
 void LoadStandardWindowTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 standardWindowType, u32 heapID);

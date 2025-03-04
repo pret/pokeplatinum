@@ -36,17 +36,9 @@ _004D:
     End
 
 _0058:
-    ScrCmd_036 2, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 2
     End
 
 _006F:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 3, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 3
     End

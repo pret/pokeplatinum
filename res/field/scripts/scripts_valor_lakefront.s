@@ -534,11 +534,7 @@ _06B0:
     EndMovement
 
 _06B8:
-    ScrCmd_036 20, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 20
     End
 
 _06CF:

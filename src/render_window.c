@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/narc.h"
+#include "generated/signpost_types.h"
 
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02013610.h"
@@ -469,7 +470,7 @@ void LoadSignpostContentGraphics(BgConfig *bgConfig, u8 bgLayer, u16 baseTile, u
         palette * PALETTE_SIZE_BYTES);
     Heap_FreeToHeapExplicit(heapID, signpostNclr);
 
-    if (signpostType == SIGNPOST_CITY_MAP || signpostType == SIGNPOST_ROUTE_MAP) {
+    if (signpostType == SIGNPOST_TYPE_MAP || signpostType == SIGNPOST_TYPE_ARROW) {
         LoadSignpostContentTiles(bgConfig,
             bgLayer,
             baseTile + SIGNPOST_SIZE,
@@ -481,7 +482,7 @@ void LoadSignpostContentGraphics(BgConfig *bgConfig, u8 bgLayer, u16 baseTile, u
 
 static void LoadSignpostContentTiles(BgConfig *bgConfig, u8 bgLayer, u16 offset, u8 signpostType, u16 narcMemberIdx, u32 heapID)
 {
-    if (signpostType == SIGNPOST_CITY_MAP) {
+    if (signpostType == SIGNPOST_TYPE_MAP) {
         narcMemberIdx += city_map_empty_NCGR;
     } else {
         narcMemberIdx += route_map_00_NCGR;
@@ -540,7 +541,7 @@ void Window_DrawSignpost(Window *window, u8 skipTransfer, u16 baseTile, u8 palet
 {
     u8 bgLayer = Window_GetBgLayer(window);
 
-    if (signpostType == SIGNPOST_CITY_MAP || signpostType == SIGNPOST_ROUTE_MAP) {
+    if (signpostType == SIGNPOST_TYPE_MAP || signpostType == SIGNPOST_TYPE_ARROW) {
         DrawSignpostFrame(window->bgConfig,
             bgLayer,
             Window_GetXPos(window),
@@ -572,7 +573,7 @@ void Window_EraseSignpost(Window *window, u8 signpostType, u8 skipTransfer)
 {
     u8 bgLayer = Window_GetBgLayer(window);
 
-    if (signpostType == SIGNPOST_CITY_MAP || signpostType == SIGNPOST_ROUTE_MAP) {
+    if (signpostType == SIGNPOST_TYPE_MAP || signpostType == SIGNPOST_TYPE_ARROW) {
         Bg_FillTilemapRect(window->bgConfig,
             bgLayer,
             0,
