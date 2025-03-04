@@ -6910,9 +6910,9 @@ static BOOL ov65_02234FCC(UnkStruct_ov65_0222EBE0 *param0, int param1, int param
     ov4_021D2584(param0->unk_04->unk_00.unk_21);
 
     if (ov65_0222DD64(param2) == 1) {
-        ov4_021D2618(1, 121);
+        ov4_021D2618(1, HEAP_ID_121);
     } else {
-        ov4_021D2618(0, 121);
+        ov4_021D2618(0, HEAP_ID_121);
     }
 
     sub_0209C3AC();

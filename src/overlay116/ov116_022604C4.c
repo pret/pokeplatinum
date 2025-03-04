@@ -228,7 +228,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     PaletteData_LoadBufferFromHardware(param0->unk_48.unk_14, 2, 0 * 16, 16 * 0x20);
 
     if (param0->unk_80->unk_3C) {
-        ov4_021D1E74(106);
+        ov4_021D1E74(HEAP_ID_106);
     }
 }
 
@@ -446,7 +446,7 @@ int ov116_02260CF4(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
         v1 = 1;
-        v0->unk_94 = ov114_0225C820(&v0->unk_84, 106);
+        v0->unk_94 = ov114_0225C820(&v0->unk_84, HEAP_ID_106);
         ov116_0226178C(v0, v1, 1, param1);
         break;
     case 1:

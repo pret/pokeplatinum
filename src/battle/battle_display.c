@@ -1738,15 +1738,15 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
             if (BattleSystem_BattleType(v0->unk_00) & BATTLE_TYPE_2vs2) {
                 if ((BattleSystem_BattleStatus(v0->unk_00) & 0x20) == 0) {
                     if (v0->unk_82 == 2) {
-                        v0->unk_10 = ov12_02223764(v0->unk_00, 5);
+                        v0->unk_10 = ov12_02223764(v0->unk_00, HEAP_ID_BATTLE);
                     }
                 }
             } else {
                 if ((BattleSystem_BattleStatus(v0->unk_00) & 0x20) == 0) {
                     if ((ov16_0223ED60(v0->unk_00) == 1) && (v0->unk_82 == 2)) {
-                        v0->unk_10 = ov12_02223764(v0->unk_00, 5);
+                        v0->unk_10 = ov12_02223764(v0->unk_00, HEAP_ID_BATTLE);
                     } else if (v0->unk_82 == 0) {
-                        v0->unk_10 = ov12_02223764(v0->unk_00, 5);
+                        v0->unk_10 = ov12_02223764(v0->unk_00, HEAP_ID_BATTLE);
                     } else {
                         (void)0;
                     }
@@ -1970,7 +1970,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         }
         {
             v0->unk_10 = NULL;
-            v0->unk_10 = ov12_02223764(v0->unk_00, 5);
+            v0->unk_10 = ov12_02223764(v0->unk_00, HEAP_ID_BATTLE);
         }
         v0->unk_83++;
         break;
@@ -5423,7 +5423,7 @@ static void ov16_02263688(SysTask *param0, void *param1)
     switch (v0->unk_0E) {
     case 0:
         GF_ASSERT(v0->unk_04->unk_88 == NULL);
-        v0->unk_04->unk_88 = ov12_022234F8(v0->unk_00, 5, v0->unk_0D);
+        v0->unk_04->unk_88 = ov12_022234F8(v0->unk_00, HEAP_ID_BATTLE, v0->unk_0D);
         v0->unk_0E++;
         break;
     default:

@@ -29,7 +29,7 @@ static UnkStruct_ov5_021F0814 *ov5_021F07FC(UnkStruct_ov5_021F06D8 *param0);
 static void ov5_021F0814(UnkStruct_ov5_021F0814 *param0, u32 param1, void *param2);
 static void ov5_021F081C(UnkStruct_ov5_021F0814 *param0);
 
-UnkStruct_ov5_021F06D8 *ov5_021F067C(u32 param0, u32 param1, u32 param2, u32 param3)
+UnkStruct_ov5_021F06D8 *ov5_021F067C(u32 parentHeapID, u32 childHeapID, u32 param2, u32 param3)
 {
     u32 v0, v1;
     UnkStruct_ov5_021F06D8 *v2;
@@ -38,19 +38,19 @@ UnkStruct_ov5_021F06D8 *ov5_021F067C(u32 param0, u32 param1, u32 param2, u32 par
     v1 = param2 + v0 + (sizeof(UnkStruct_ov5_021F06D8));
 
     {
-        BOOL v3 = Heap_Create(param0, param1, v1);
+        BOOL v3 = Heap_Create(parentHeapID, childHeapID, v1);
 
         GF_ASSERT(v3 == 1);
     }
 
     param2 = v1 - param2;
-    v2 = Heap_AllocFromHeap(param1, param2);
+    v2 = Heap_AllocFromHeap(childHeapID, param2);
 
     GF_ASSERT(v2 != NULL);
     memset(v2, 0, param2);
 
-    v2->unk_00 = param0;
-    v2->unk_04 = param1;
+    v2->unk_00 = parentHeapID;
+    v2->unk_04 = childHeapID;
     v2->unk_08 = param3;
     v2->unk_0C = v1;
     v2->unk_10 = v0;

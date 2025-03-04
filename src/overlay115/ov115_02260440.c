@@ -116,7 +116,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
 
-        v0->unk_00 = ov114_0225C814(&v0->unk_08, 99);
+        v0->unk_00 = ov114_0225C814(&v0->unk_08, HEAP_ID_99);
 
         (*param1)++;
         break;
@@ -162,7 +162,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
         sub_02039734();
 
         if (v1->unk_38) {
-            ov4_021D1E74(99);
+            ov4_021D1E74(HEAP_ID_99);
         }
 
         {

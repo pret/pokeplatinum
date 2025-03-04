@@ -30,23 +30,23 @@ struct UnkStruct_ov5_021D1BEC_t {
     void *unk_10;
 };
 
-UnkStruct_ov5_021D1A94 *ov5_021D1A94(FieldSystem *fieldSystem, int param1, int param2)
+UnkStruct_ov5_021D1A94 *ov5_021D1A94(FieldSystem *fieldSystem, int heapID, int param2)
 {
     UnkStruct_ov5_021D1A94 *v0;
     u32 v1;
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov5_021D1A94));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021D1A94));
 
     v0->fieldSystem = fieldSystem;
-    v0->unk_04 = param1;
+    v0->unk_04 = heapID;
     v0->unk_08 = param2;
-    v0->unk_0C = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov5_021D1BEC) * param2);
+    v0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021D1BEC) * param2);
 
     MI_CpuClear32(v0->unk_0C, sizeof(UnkStruct_ov5_021D1BEC) * param2);
 
     v1 = SysTaskManager_GetRequiredSize(param2);
 
-    v0->unk_10 = Heap_AllocFromHeap(param1, v1);
+    v0->unk_10 = Heap_AllocFromHeap(heapID, v1);
     v0->unk_10 = SysTaskManager_Init(param2, v0->unk_10);
 
     return v0;

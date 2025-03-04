@@ -23,9 +23,9 @@ static void ov5_021E1C1C(FieldSystem *fieldSystem);
 static BOOL ov5_021E1C70(FieldSystem *fieldSystem);
 static BOOL ov5_021E1CB0(FieldSystem *fieldSystem);
 
-void *ov5_021E1B08(u32 param0)
+void *ov5_021E1B08(u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021E1B20));
+    void *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021E1B20));
 
     memset(v0, 0, sizeof(UnkStruct_ov5_021E1B20));
     return v0;

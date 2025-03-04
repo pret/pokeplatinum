@@ -3,7 +3,7 @@
 
 void ov4_021D2B28();
 BOOL ov4_021D2C70(int param0, void *param1, int param2);
-void ov4_021D2CC0(int param0, int param1, int param2);
+void ov4_021D2CC0(int heapID, int param1, int param2);
 void ov4_021D2EA4();
 void ov4_021D2EF4(void (*func)());
 void ov4_021D2F08(void);

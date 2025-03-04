@@ -2215,7 +2215,7 @@ static void sub_020386B4(void)
     }
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        ov4_021D0D80(Unk_021C07D4->unk_28, 49, (0x2B000 + 0x1400), CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
+        ov4_021D0D80(Unk_021C07D4->unk_28, HEAP_ID_49, (0x2B000 + 0x1400), CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
         ov4_021D2170(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
         sub_02036C94(sub_0203862C, (30 * 60 * 2));
@@ -2543,7 +2543,7 @@ static void sub_02038BA8(void)
     }
 
     if (CommSys_InitServer(1, 1, 512, 1)) {
-        ov4_021D0D80(Unk_021C07D4->unk_28, 49, 0x58000, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
+        ov4_021D0D80(Unk_021C07D4->unk_28, HEAP_ID_49, 0x58000, CommLocal_MaxMachines(Unk_021C07D4->unk_4A) + 1);
         ov4_021D2170(sub_020389FC);
         CommSys_SwitchTransitionTypeToParallel();
         ov4_021D2584(0);

@@ -5,7 +5,7 @@
 
 #include "narc.h"
 
-UnkStruct_ov5_021F06D8 *ov5_021F067C(u32 param0, u32 param1, u32 param2, u32 param3);
+UnkStruct_ov5_021F06D8 *ov5_021F067C(u32 parentHeapID, u32 childHeapID, u32 param2, u32 param3);
 void ov5_021F06D8(UnkStruct_ov5_021F06D8 *param0);
 void *ov5_021F070C(UnkStruct_ov5_021F06D8 *param0, u32 param1, u32 param2, int param3);
 void ov5_021F0740(UnkStruct_ov5_021F06D8 *param0, u32 param1);

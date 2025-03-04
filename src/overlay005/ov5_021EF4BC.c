@@ -36,15 +36,13 @@ static void ov5_021EF6CC(UnkStruct_ov5_021EF4F8 *param0);
 static void ov5_021EF6F0(UnkStruct_ov5_021EF4F8 *param0);
 static void ov5_021EF710(UnkStruct_ov5_021EF4F8 *param0);
 
-UnkStruct_ov5_021EF4F8 *ov5_021EF4BC(u32 param0, HBlankSystem *param1)
+UnkStruct_ov5_021EF4F8 *ov5_021EF4BC(u32 heapID, HBlankSystem *param1)
 {
-    UnkStruct_ov5_021EF4F8 *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021EF4F8));
+    UnkStruct_ov5_021EF4F8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021EF4F8));
     memset(v0, 0, sizeof(UnkStruct_ov5_021EF4F8));
 
     v0->unk_00 = 0;
-    v0->bufferManager = BufferManager_New(param0, v0->unk_0C, v0->unk_18C);
+    v0->bufferManager = BufferManager_New(heapID, v0->unk_0C, v0->unk_18C);
     v0->unk_310 = param1;
 
     return v0;

@@ -498,14 +498,14 @@ static int ov5_021ED1C8(const MapObjectManager *param0, const MapObject *param1,
 static void ov5_021ED224(UnkStruct_ov5_021ED0A4 *param0, int param1, int param2, int param3, int param4, int param5, int param6)
 {
     {
-        param0->unk_F8 = ov5_021F067C(4, 64, 0x1000 * param1, param1);
+        param0->unk_F8 = ov5_021F067C(HEAP_ID_FIELD, HEAP_ID_64, 0x1000 * param1, param1);
         ov5_021ED558(param0);
         ov5_021EDCC4(param0, param2);
         ov5_021EDCCC(param0, param1 - param2);
     }
 
     {
-        param0->unk_FC = ov5_021F067C(4, 65, 0x80 * param3, param3);
+        param0->unk_FC = ov5_021F067C(HEAP_ID_FIELD, HEAP_ID_65, 0x80 * param3, param3);
         ov5_021ED694(param0);
         ov5_021EDCD4(param0, param4);
         ov5_021EDCDC(param0, param3 - param4);

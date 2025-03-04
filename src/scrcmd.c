@@ -7498,13 +7498,13 @@ static BOOL ScrCmd_29E(ScriptContext *ctx)
 
     switch (v0) {
     case 0:
-        ov6_0224899C(fieldSystem, v1, 0, 32);
+        ov6_0224899C(fieldSystem, v1, 0, HEAP_ID_FIELD_TASK);
         break;
     case 1:
-        ov6_0224899C(fieldSystem, v1, 1, 32);
+        ov6_0224899C(fieldSystem, v1, 1, HEAP_ID_FIELD_TASK);
         break;
     case 2:
-        ov6_0224899C(fieldSystem, v1, 2, 32);
+        ov6_0224899C(fieldSystem, v1, 2, HEAP_ID_FIELD_TASK);
         break;
     default:
         GF_ASSERT(0);
