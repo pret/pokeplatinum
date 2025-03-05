@@ -842,9 +842,7 @@ static void ov17_0223E778(UnkStruct_ov17_0224DF54 *param0)
 
 static void ov17_0223E7E0(UnkStruct_ov17_0224DF54 *param0)
 {
-    void *v0;
-
-    v0 = sub_02014730(param0->unk_0C);
+    void *v0 = sub_02014730(param0->unk_0C);
     sub_0201411C(param0->unk_0C);
     Heap_FreeToHeap(v0);
 

@@ -110,10 +110,8 @@ void sub_02026278(UnkStruct_02026310 *param0, int param1)
 
 BOOL sub_02026280(UnkStruct_02026310 *param0)
 {
-    int v0, v1;
-
-    v0 = BoxPokemon_GetValue(&param0->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
-    v1 = BoxPokemon_GetValue(&param0->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
+    int v0 = BoxPokemon_GetValue(&param0->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
+    int v1 = BoxPokemon_GetValue(&param0->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
 
     if (v0 != v1) {
         return 1;
@@ -152,8 +150,6 @@ void sub_020262F4(UnkStruct_02026218 *param0)
 
 UnkStruct_02026310 *sub_02026310(SaveData *param0)
 {
-    UnkStruct_02026310 *v0;
-
-    v0 = SaveData_SaveTable(param0, 8);
+    UnkStruct_02026310 *v0 = SaveData_SaveTable(param0, 8);
     return v0;
 }

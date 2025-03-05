@@ -406,9 +406,7 @@ static BOOL ov65_0222DD1C(UnkStruct_ov65_0222EBE0 *param0)
 
 static u32 ov65_0222DD20(UnkStruct_ov65_0222EBE0 *param0, UnkStruct_0207E060 *param1)
 {
-    u32 v0;
-
-    v0 = param1->unk_1B;
+    u32 v0 = param1->unk_1B;
 
     if ((v0 == 20) || (v0 == 21)) {
         if (ov65_0222DCE0(param0) == 0) {
@@ -2547,9 +2545,7 @@ static void ov65_02230298(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
     u32 v1;
     u32 v2;
     BOOL v3;
-    int v4;
-
-    v4 = ov65_0222F62C(param0);
+    int v4 = ov65_0222F62C(param0);
 
     if (v4 > 0) {
         ov65_022336A4(param0, param1);
@@ -3823,9 +3819,7 @@ static void ov65_02231A0C(void)
 
 static BOOL ov65_02231A54(void)
 {
-    u32 v0;
-
-    v0 = sub_020041FC();
+    u32 v0 = sub_020041FC();
 
     if ((v0 != 1085) && (v0 != 1086)) {
         return 0;
@@ -3837,9 +3831,7 @@ static BOOL ov65_02231A54(void)
 static void ov65_02231A74(UnkStruct_ov65_0222EBE0 *param0, u32 unused)
 {
     void *journalEntryOnlineEvent;
-    JournalEntry *journalEntry;
-
-    journalEntry = SaveData_GetJournal(param0->unk_160);
+    JournalEntry *journalEntry = SaveData_GetJournal(param0->unk_160);
     journalEntryOnlineEvent = JournalEntry_CreateEventMisc(54, ONLINE_EVENT_WIFI_CLUB);
 
     JournalEntry_SaveData(journalEntry, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
@@ -5110,9 +5102,7 @@ static void ov65_0223327C(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 static void ov65_022332C4(u32 param0, u32 param1, void *param2)
 {
     UnkStruct_ov65_0222EBE0 *v0 = param2;
-    u32 v1;
-
-    v1 = (v0->unk_BE0.unk_70 * 8) + param0;
+    u32 v1 = (v0->unk_BE0.unk_70 * 8) + param0;
     v1++;
 
     if (v0->unk_BE0.unk_50[v1 - 1] != 2) {
@@ -5937,9 +5927,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 
 static void ov65_02233E20(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 {
-    int v0;
-
-    v0 = param0->unk_BE0.unk_71 - 1;
+    int v0 = param0->unk_BE0.unk_71 - 1;
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 52, param0->unk_178);
@@ -6249,9 +6237,7 @@ asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 
 static void ov65_0223416C(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 {
-    int v0;
-
-    v0 = param0->unk_BE0.unk_71 - 1;
+    int v0 = param0->unk_BE0.unk_71 - 1;
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 54, param0->unk_178);
@@ -6320,9 +6306,7 @@ static void ov65_022342A8(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 
 static void ov65_022343CC(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 {
-    int v0;
-
-    v0 = param0->unk_BE0.unk_71 - 1;
+    int v0 = param0->unk_BE0.unk_71 - 1;
 
     {
         MessageLoader_GetStrbuf(param0->unk_168, 56, param0->unk_178);
@@ -6345,9 +6329,7 @@ static void ov65_022343CC(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 static void ov65_0223449C(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 {
     int v0;
-    UnkStruct_0202B370 *v1;
-
-    v1 = sub_0202B370(param0->unk_160);
+    UnkStruct_0202B370 *v1 = sub_0202B370(param0->unk_160);
 
     v0 = param0->unk_BE0.unk_71 - 1;
 
@@ -6384,9 +6366,7 @@ static void ov65_0223449C(UnkStruct_ov65_0222EBE0 *param0, u32 param1)
 static void ov65_02234628(UnkStruct_ov65_0222EBE0 *param0)
 {
     int v0;
-    int v1;
-
-    v1 = 7 - 2;
+    int v1 = 7 - 2;
 
     for (v0 = 0; v0 < v1; v0++) {
         Bg_CopyToTilemapRect(param0->unk_15C, 6, 0x1a + (0x1 * v0), 0, 0x1, 0x1, param0->unk_BE0.unk_48->rawData, 0, 0, param0->unk_BE0.unk_48->screenWidth / 8, param0->unk_BE0.unk_48->screenHeight / 8);
@@ -6398,9 +6378,7 @@ static void ov65_02234628(UnkStruct_ov65_0222EBE0 *param0)
 static void ov65_02234694(UnkStruct_ov65_0222EBE0 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
     int v0;
-    UnkStruct_0203068C *v1;
-
-    v1 = sub_0203068C(param0->unk_160);
+    UnkStruct_0203068C *v1 = sub_0203068C(param0->unk_160);
     v0 = sub_02030698(v1, param2, param3);
 
     ov65_02234708(param0, param1, v0, param4, param5);

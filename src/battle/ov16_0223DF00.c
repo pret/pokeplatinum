@@ -1697,9 +1697,7 @@ void BattleSystem_DexFlagSeen(BattleSystem *battleSystem, int param1)
 
 void ov16_0223F9A0(BattleSystem *battleSystem, int param1)
 {
-    int v0;
-
-    v0 = Battler_Type(battleSystem->battlers[param1]);
+    int v0 = Battler_Type(battleSystem->battlers[param1]);
 
     if ((battleSystem->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER)) == 0) {
         if (v0 & 0x1) {
@@ -2334,9 +2332,7 @@ static void BattleMessage_FillFormatBuffers(BattleSystem *battleSys, BattleMessa
 
 static void BattleMessage_Nickname(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    Pokemon *v0;
-
-    v0 = BattleSystem_PartyPokemon(battleSystem, param2 & 0xff, (param2 & 0xff00) >> 8);
+    Pokemon *v0 = BattleSystem_PartyPokemon(battleSystem, param2 & 0xff, (param2 & 0xff00) >> 8);
     StringTemplate_SetNickname(battleSystem->strFormatter, param1, &v0->box);
 }
 
@@ -2386,9 +2382,7 @@ static void BattleMessage_StatusName(BattleSystem *battleSystem, u32 param1, int
 
 static void BattleMessage_PokemonName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    Pokemon *v0;
-
-    v0 = BattleSystem_PartyPokemon(battleSystem, param2 & 0xff, (param2 & 0xff00) >> 8);
+    Pokemon *v0 = BattleSystem_PartyPokemon(battleSystem, param2 & 0xff, (param2 & 0xff00) >> 8);
     StringTemplate_SetSpeciesName(battleSystem->strFormatter, param1, &v0->box);
 }
 
@@ -2404,17 +2398,13 @@ static void BattleMessage_FlavorName(BattleSystem *battleSystem, u32 param1, int
 
 static void BattleMessage_TrainerClassName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    Trainer *v0;
-
-    v0 = BattleSystem_GetTrainer(battleSystem, param2);
+    Trainer *v0 = BattleSystem_GetTrainer(battleSystem, param2);
     StringTemplate_SetTrainerClassNameBattle(battleSystem->strFormatter, param1, v0);
 }
 
 static void BattleMessage_TrainerName(BattleSystem *battleSystem, u32 param1, int param2)
 {
-    Trainer *v0;
-
-    v0 = BattleSystem_GetTrainer(battleSystem, param2);
+    Trainer *v0 = BattleSystem_GetTrainer(battleSystem, param2);
     StringTemplate_SetTrainerNameBattle(battleSystem->strFormatter, param1, v0);
 }
 
@@ -2439,9 +2429,7 @@ static void BattleMessage_Format(BattleSystem *battleSys, MessageLoader *msgLoad
 
 static BOOL BattleMessage_Callback(TextPrinterTemplate *param0, u16 param1)
 {
-    BOOL v0;
-
-    v0 = 0;
+    BOOL v0 = 0;
 
     switch (param1) {
     case 1:

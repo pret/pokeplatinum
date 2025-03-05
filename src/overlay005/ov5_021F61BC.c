@@ -55,9 +55,7 @@ static const VecFx32 Unk_ov5_02200C24[4][2];
 
 void *ov5_021F61BC(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_021F61E8 *v0;
-
-    v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_021F61E8)), 0, 0);
+    UnkStruct_021F61E8 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_021F61E8)), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F61E8(v0);

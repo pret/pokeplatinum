@@ -707,9 +707,7 @@ void ov13_02226444(UnkStruct_ov13_022213F0 *param0, u8 param1)
 
 static u8 ov13_02226484(UnkStruct_ov13_022213F0 *param0)
 {
-    u16 v0, v1;
-
-    v1 = 0;
+    u16 v0, v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
         if ((param0->unk_04[v0].unk_04 != 0) && (param0->unk_04[v0].unk_17_7 == 0)) {

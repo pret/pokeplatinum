@@ -120,9 +120,7 @@ void sub_0200C67C(UnkStruct_0200C440 *param0, s32 param1, u32 param2, int param3
 {
     int v0;
     u8 v1;
-    u8 *v2;
-
-    v2 = param4;
+    u8 *v2 = param4;
     v1 = param0->unk_28 | (param0->unk_28 << 4);
 
     CharCode_FromInt(param0->unk_08, param1, param3, param2);

@@ -332,9 +332,7 @@ u16 ov104_022354C0(UnkStruct_ov104_0223B5C0 *param0, u8 param1)
 {
     UnkStruct_ov104_0223A348_sub1 v0;
     UnkStruct_0204B184 *v1;
-    u8 v2;
-
-    v2 = (param0->unk_05 * 2) + param1;
+    u8 v2 = (param0->unk_05 * 2) + param1;
     v1 = ov104_0222DD04(&v0, param0->unk_18[v2], 11, 178);
 
     Heap_FreeToHeap(v1);
@@ -426,9 +424,7 @@ u16 ov104_02235578(UnkStruct_ov104_0223B5C0 *param0)
 
 static u16 ov104_022355C0(SaveData *param0, u8 param1, u8 param2, u16 *param3, u16 *param4)
 {
-    u16 v0;
-
-    v0 = sub_02030698(sub_0203068C(param0), sub_0205E4E0(param1, param2), sub_0205E6A8(sub_0205E4E0(param1, param2)));
+    u16 v0 = sub_02030698(sub_0203068C(param0), sub_0205E4E0(param1, param2), sub_0205E6A8(sub_0205E4E0(param1, param2)));
     v0 &= 0xff;
 
     *param3 = (v0 & 0xf);
@@ -493,9 +489,7 @@ void ov104_022356A0(UnkStruct_ov104_0223B5C0 *param0)
 
 void ov104_022356F4(UnkStruct_ov104_0223B5C0 *param0)
 {
-    int v0;
-
-    v0 = ov104_0223B64C(param0);
+    int v0 = ov104_0223B64C(param0);
     param0->unk_0C = ov104_0223B6C4(v0);
 
     return;

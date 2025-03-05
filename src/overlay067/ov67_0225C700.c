@@ -380,9 +380,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
 
 int ov67_0225CB1C(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov67_0225D154 *v0;
-
-    v0 = OverlayManager_Data(param0);
+    UnkStruct_ov67_0225D154 *v0 = OverlayManager_Data(param0);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -517,9 +515,7 @@ int ov67_0225CC6C(OverlayManager *param0, int *param1)
 
 int ov67_0225CDC0(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov67_0225D154 *v0;
-
-    v0 = OverlayManager_Data(param0);
+    UnkStruct_ov67_0225D154 *v0 = OverlayManager_Data(param0);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();

@@ -452,9 +452,7 @@ static int ov17_02246668(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0224654
 {
     s8 v0, v1;
     u8 v2[4];
-    int v3;
-
-    v3 = 4;
+    int v3 = 4;
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param1->unk_00[v0].unk_28_4 == 0) {

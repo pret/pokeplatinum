@@ -716,10 +716,8 @@ void ov12_02224F14(SPLEmitter *param0)
 s8 ov12_02224FC4(UnkStruct_ov12_02225640 *param0)
 {
     s8 v0 = 1;
-    int v1, v2;
-
-    v1 = ov12_02235254(param0->unk_00, param0->unk_24);
-    v2 = ov12_02235254(param0->unk_00, param0->unk_28);
+    int v1 = ov12_02235254(param0->unk_00, param0->unk_24);
+    int v2 = ov12_02235254(param0->unk_00, param0->unk_28);
 
     switch (v1) {
     case 0:

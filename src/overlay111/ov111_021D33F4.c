@@ -84,9 +84,7 @@ void ov111_021D3474(UnkStruct_ov111_021D33F4 *param0, int param1, int param2)
 
 void ov111_021D349C(UnkStruct_ov111_021D33F4 *param0, int *param1, int *param2)
 {
-    const VecFx32 *v0;
-
-    v0 = Sprite_GetPosition(param0->unk_0C);
+    const VecFx32 *v0 = Sprite_GetPosition(param0->unk_0C);
 
     *param1 = (v0->x / FX32_ONE);
     *param2 = (v0->y / FX32_ONE);

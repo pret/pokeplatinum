@@ -493,9 +493,7 @@ static void ov95_02249D00(UnkStruct_ov95_02249C28 *param0, fx32 param1, fx32 par
 
 static void ov95_02249D38(UnkStruct_ov95_02249C28 *param0)
 {
-    int v0;
-
-    v0 = (u16)(param0->unk_6C) / (65536 / 360);
+    int v0 = (u16)(param0->unk_6C) / (65536 / 360);
 
     if (v0 >= 360) {
         v0 -= 360;

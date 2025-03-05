@@ -64,9 +64,7 @@ static void sub_020715D0(UnkStruct_ov101_021D5D90 *param0, const UnkStruct_02071
 
 UnkStruct_020711EC *sub_020711EC(int heapID, int param1)
 {
-    UnkStruct_020711EC *v0;
-
-    v0 = sub_0207142C(heapID);
+    UnkStruct_020711EC *v0 = sub_0207142C(heapID);
 
     v0->unk_0C = sub_0207145C(heapID, param1);
     v0->unk_00 = param1;
@@ -229,9 +227,7 @@ void sub_020713D0(UnkStruct_020711EC *param0)
 
 static SysTask *sub_02071400(UnkStruct_ov101_021D5D90 *param0, int param1)
 {
-    SysTask *v0;
-
-    v0 = SysTask_Start(sub_02071420, param0, param1);
+    SysTask *v0 = SysTask_Start(sub_02071420, param0, param1);
     GF_ASSERT(v0 != NULL);
 
     return v0;
@@ -239,9 +235,7 @@ static SysTask *sub_02071400(UnkStruct_ov101_021D5D90 *param0, int param1)
 
 static void sub_02071420(SysTask *param0, void *param1)
 {
-    UnkStruct_ov101_021D5D90 *v0;
-
-    v0 = param1;
+    UnkStruct_ov101_021D5D90 *v0 = param1;
     sub_0207153C(v0);
 }
 
@@ -384,9 +378,7 @@ void *sub_02071598(UnkStruct_ov101_021D5D90 *param0)
 
 void sub_0207159C(UnkStruct_ov101_021D5D90 *param0, int param1)
 {
-    void *v0;
-
-    v0 = sub_02071598(param0);
+    void *v0 = sub_02071598(param0);
     memset(v0, 0, param1);
 }
 

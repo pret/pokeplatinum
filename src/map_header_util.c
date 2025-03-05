@@ -20,9 +20,7 @@ u32 MapHeader_LoadString(MessageLoader *msgLoader, u32 entryID, Strbuf *strbuf)
 void MapHeader_LoadName(enum MapHeader headerID, u32 heapID, Strbuf *strbuf)
 {
     u32 mapLabelTextID;
-    MessageLoader *msgLoader;
-
-    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, heapID);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_LOCATION_NAMES, heapID);
     mapLabelTextID = MapHeader_GetMapLabelTextID(headerID);
 
     MapHeader_LoadString(msgLoader, mapLabelTextID, strbuf);

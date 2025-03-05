@@ -158,9 +158,7 @@ static UnkStruct_02014014 *sub_0207C814(int heapID, int param1, int param2)
 
 void sub_0207C83C(UnkStruct_02014014 *param0)
 {
-    void *v0;
-
-    v0 = sub_02014730(param0);
+    void *v0 = sub_02014730(param0);
 
     sub_0201411C(param0);
     Heap_FreeToHeap(v0);
@@ -180,9 +178,7 @@ UnkStruct_0207C8C4 *sub_0207C894(UnkStruct_0207C894 *param0)
     int v1;
     int v2;
     int v3;
-    UnkStruct_0207C8C4 *v4;
-
-    v4 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0207C8C4));
+    UnkStruct_0207C8C4 *v4 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_0207C8C4));
 
     GF_ASSERT(v4 != NULL);
 

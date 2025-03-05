@@ -1094,9 +1094,7 @@ int sub_0205BCF4(UnkStruct_0205B43C *param0, int param1, int param2, StringTempl
 u8 sub_0205BE38(void)
 {
     u8 v0;
-    TrainerInfo *v1;
-
-    v1 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+    TrainerInfo *v1 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     GF_ASSERT(v1 != NULL);
     v0 = TrainerInfo_GameCode(v1);
 

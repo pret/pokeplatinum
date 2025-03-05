@@ -136,9 +136,7 @@ int ov100_021D0EA8(OverlayManager *param0, int *param1)
 
 int ov100_021D0F44(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov100_021D4DD8 *v0;
-
-    v0 = OverlayManager_Data(param0);
+    UnkStruct_ov100_021D4DD8 *v0 = OverlayManager_Data(param0);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();

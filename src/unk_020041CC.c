@@ -775,9 +775,7 @@ int sub_02004B34(NNSSndHandle *param0)
 
 const NNSSndArcBankInfo *sub_02004B3C(int param0)
 {
-    const NNSSndArcBankInfo *v0;
-
-    v0 = NNS_SndArcGetBankInfo(sub_02004B48(param0));
+    const NNSSndArcBankInfo *v0 = NNS_SndArcGetBankInfo(sub_02004B48(param0));
 
     if (v0 == NULL) {
         (void)0;
@@ -788,9 +786,7 @@ const NNSSndArcBankInfo *sub_02004B3C(int param0)
 
 u16 sub_02004B48(int param0)
 {
-    const NNSSndSeqParam *v0;
-
-    v0 = NNS_SndArcGetSeqParam(param0);
+    const NNSSndSeqParam *v0 = NNS_SndArcGetSeqParam(param0);
 
     if (v0 == NULL) {
         return 0;
@@ -944,9 +940,7 @@ void sub_02004C4C(u32 param0)
 
 BOOL sub_02004CB4(UnkStruct_02004CB4 *param0, u32 param1)
 {
-    int v0;
-
-    v0 = NNS_SndWaveOutStart(*param0->unk_00, param0->unk_04, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14, param0->unk_18, param0->unk_1C, param0->unk_20, param0->unk_24);
+    int v0 = NNS_SndWaveOutStart(*param0->unk_00, param0->unk_04, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14, param0->unk_18, param0->unk_1C, param0->unk_20, param0->unk_24);
 
     if (v0 == 0) {
         sub_02004C4C(param1);

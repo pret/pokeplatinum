@@ -87,9 +87,7 @@ static void ov13_02227C54(UnkStruct_ov13_02227244 *param0)
 {
     SpriteSystem *v0;
     u32 v1;
-    NARC *v2;
-
-    v2 = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, param0->unk_00->unk_0C);
+    NARC *v2 = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_00);
 
     for (v1 = 0; v1 < 6; v1++) {
@@ -116,9 +114,7 @@ static void ov13_02227D48(UnkStruct_ov13_02227244 *param0, u16 param1, u16 param
 static ManagedSprite *ov13_02227D78(UnkStruct_ov13_02227244 *param0, u32 param1)
 {
     SpriteTemplate v0;
-    SpriteSystem *v1;
-
-    v1 = ov16_0223E010(param0->unk_00->unk_00);
+    SpriteSystem *v1 = ov16_0223E010(param0->unk_00->unk_00);
 
     v0.x = 0;
     v0.y = 0;
@@ -220,9 +216,7 @@ static void ov13_02227EE0(UnkStruct_ov13_02227244 *param0)
 
 static void ov13_02227F38(UnkStruct_ov13_02227244 *param0)
 {
-    u16 v0;
-
-    v0 = ov13_02227BA8(param0, param0->unk_00->unk_27[param0->unk_114D]);
+    u16 v0 = ov13_02227BA8(param0, param0->unk_00->unk_27[param0->unk_114D]);
 
     ov13_02227D10(param0, v0, 46263);
     ov13_02227D48(param0, v0, 0, 46263);

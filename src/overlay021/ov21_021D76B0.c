@@ -841,9 +841,7 @@ static void ov21_021D8324(UnkStruct_ov21_021D7A64 *param0)
 
 static void ov21_021D8354(UnkStruct_ov21_021D7C64 *param0, UnkStruct_ov21_021D77E8 *param1, int param2, fx32 param3)
 {
-    int v0;
-
-    v0 = FX_Mul(param2 * FX32_ONE, param3) >> FX32_SHIFT;
+    int v0 = FX_Mul(param2 * FX32_ONE, param3) >> FX32_SHIFT;
 
     param0->unk_28 += v0;
     param0->unk_28 &= 0xffff;
@@ -1008,9 +1006,7 @@ static void ov21_021D853C(UnkStruct_ov21_021D77D4 *param0, int param1)
 
 static fx32 ov21_021D8580(fx32 param0, s32 param1)
 {
-    int v0;
-
-    v0 = MATH_ABS(param1);
+    int v0 = MATH_ABS(param1);
 
     if (v0 < 64) {
         if ((param0 - (FX32_CONST(0.01f))) >= (FX32_CONST(0.30f))) {

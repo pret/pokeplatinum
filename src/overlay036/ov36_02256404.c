@@ -216,10 +216,8 @@ static void ov36_02256678(SysTask *param0, void *param1)
 static void ov36_0225669C(UnkStruct_ov36_02256404 *param0, const UnkStruct_ov36_02256404_1 *param1)
 {
     int v0;
-    u32 v1, v2;
-
-    v1 = param1->unk_00;
-    v2 = 10000;
+    u32 v1 = param1->unk_00;
+    u32 v2 = 10000;
 
     for (v0 = 0; v0 < 5; v0++) {
         CP_SetDiv32_32(v1, v2);

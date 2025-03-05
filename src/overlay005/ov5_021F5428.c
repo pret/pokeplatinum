@@ -52,9 +52,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_02200AD8;
 
 void *ov5_021F5428(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F5454 *v0;
-
-    v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F5454)), 0, 0);
+    UnkStruct_ov5_021F5454 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F5454)), 0, 0);
     v0->unk_08 = param0;
 
     ov5_021F5454(v0);
@@ -154,9 +152,7 @@ static void ov5_021F5514(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
 static void ov5_021F554C(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov5_021F54C4 *v0;
-
-    v0 = param1;
+    UnkStruct_ov5_021F54C4 *v0 = param1;
 
     {
         VecFx32 v1;

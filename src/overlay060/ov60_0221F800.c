@@ -72,8 +72,6 @@ int ov60_0221F838(u32 param0, const u8 *param1, int param2, u8 *param3, int para
 
 u32 ov60_0221F944(u32 param0)
 {
-    u32 v0;
-
-    v0 = ((param0) % 3 != 0) ? (u32)1 : (u32)0;
+    u32 v0 = ((param0) % 3 != 0) ? (u32)1 : (u32)0;
     return (((u32)(param0 / 3)) + v0) * 4;
 }

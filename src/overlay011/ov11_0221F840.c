@@ -54,9 +54,7 @@ UnkStruct_02014014 *ov11_0221F888(int heapID)
 
 void ov11_0221F8D8(UnkStruct_02014014 *param0)
 {
-    void *v0;
-
-    v0 = sub_02014730(param0);
+    void *v0 = sub_02014730(param0);
 
     sub_0201411C(param0);
     Heap_FreeToHeap(v0);

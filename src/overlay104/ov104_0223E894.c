@@ -82,9 +82,7 @@ static void ov104_0223F070(SysTask *param0, void *param1);
 void ov104_0223E894(int param0, u32 param1, u32 param2, BOOL *param3, u32 param4)
 {
     SysTask *v0;
-    UnkStruct_ov104_0223E894 *v1;
-
-    v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223E894));
+    UnkStruct_ov104_0223E894 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223E894));
     memset(v1, 0, sizeof(UnkStruct_ov104_0223E894));
 
     SysTask_Start(ov104_0223E8D8, v1, 5);
@@ -175,9 +173,7 @@ void ov104_0223E9EC(UnkStruct_ov104_0223E9EC *param0, int param1, int param2, in
 
 BOOL ov104_0223E9F8(UnkStruct_ov104_0223E9EC *param0)
 {
-    BOOL v0;
-
-    v0 = ov104_0223EA38(&param0->unk_00);
+    BOOL v0 = ov104_0223EA38(&param0->unk_00);
     SysTask_ExecuteAfterVBlank(ov104_0223EA14, param0, 10);
 
     return v0;
@@ -202,9 +198,7 @@ void ov104_0223EA28(UnkStruct_ov104_0223EA38 *param0, int param1, int param2, in
 
 BOOL ov104_0223EA38(UnkStruct_ov104_0223EA38 *param0)
 {
-    int v0;
-
-    v0 = param0->unk_08 * param0->unk_0C;
+    int v0 = param0->unk_08 * param0->unk_0C;
     v0 = v0 / param0->unk_10;
 
     param0->unk_00 = v0 + param0->unk_04;
@@ -220,9 +214,7 @@ BOOL ov104_0223EA38(UnkStruct_ov104_0223EA38 *param0)
 
 UnkStruct_ov104_0223EA84 *ov104_0223EA64(u32 param0)
 {
-    UnkStruct_ov104_0223EA84 *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov104_0223EA84));
+    UnkStruct_ov104_0223EA84 *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov104_0223EA84));
     memset(v0, 0, sizeof(UnkStruct_ov104_0223EA84));
 
     return v0;
@@ -580,9 +572,7 @@ static void ov104_0223F150(UnkStruct_ov104_0223F0D8 *param0)
 
 static void ov104_0223F174(UnkStruct_ov104_0223F174 *param0)
 {
-    const void *v0;
-
-    v0 = BufferManager_GetReadBuffer(param0->bufferManager);
+    const void *v0 = BufferManager_GetReadBuffer(param0->bufferManager);
 
     BufferManager_StopDMA();
     BufferManager_StartDMA(v0, (void *)param0->unk_3020, (sizeof(UnkStruct_ov104_0223F1B4)), 1);

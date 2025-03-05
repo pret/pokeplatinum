@@ -3181,9 +3181,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
     int maxBattlers;
     u8 side;
     int itemEffect;
-    u32 battleType;
-
-    battleType = BattleSystem_BattleType(battleSys);
+    u32 battleType = BattleSystem_BattleType(battleSys);
     itemEffect = Battler_HeldItemEffect(battleCtx, battler);
 
     if (itemEffect == HOLD_EFFECT_FLEE
@@ -3314,9 +3312,7 @@ BOOL Move_Imprisoned(BattleSystem *battleSys, BattleContext *battleCtx, int batt
 {
     // must declare C89-style to match
     int i, maxBattlers, side, j;
-    BOOL result;
-
-    result = FALSE;
+    BOOL result = FALSE;
     maxBattlers = BattleSystem_MaxBattlers(battleSys);
     side = Battler_Side(battleSys, battler);
 
@@ -3652,9 +3648,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
     int subscript;
     int result;
     int battler;
-    int maxBattlers;
-
-    maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
     subscript = NULL;
     result = SWITCH_IN_CHECK_RESULT_CONTINUE;
 
@@ -7934,9 +7928,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
     u32 moveStatusFlags;
     int partySize;
     Pokemon *mon;
-    BattleContext *battleCtx;
-
-    battleCtx = BattleSystem_Context(battleSys);
+    BattleContext *battleCtx = BattleSystem_Context(battleSys);
 
     slot1 = battler;
     if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG)

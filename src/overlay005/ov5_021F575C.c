@@ -41,9 +41,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_02200B54;
 
 void *ov5_021F575C(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_021F5788 *v0;
-
-    v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_021F5788)), 0, 0);
+    UnkStruct_021F5788 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_021F5788)), 0, 0);
     v0->unk_04 = param0;
 
     ov5_021F5788(v0);

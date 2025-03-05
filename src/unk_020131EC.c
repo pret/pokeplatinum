@@ -117,9 +117,7 @@ static void sub_02013338(int param0, int param1, int param2, int param3, int par
 static void *sub_02013388(int param0, int param1, int heapID, int param3, int param4, int param5, int param6, u32 param7, BOOL param8, int param9, int param10)
 {
     void *v0;
-    int v1;
-
-    v1 = ((param5 * param6) * ((8 / 2) * 8));
+    int v1 = ((param5 * param6) * ((8 / 2) * 8));
     v0 = Heap_AllocFromHeap(heapID, v1);
 
     sub_02013338(param0, param1, heapID, param3, param4, param5, param6, v0, param7, param8, param9, param10);
@@ -176,9 +174,7 @@ void sub_020133D4(int param0, int param1, int param2, int param3, int param4, in
 static void *sub_020134A8(int param0, int param1, int heapID, int param3, int param4, int param5, int param6)
 {
     void *v0;
-    int v1;
-
-    v1 = ((param5 * param6) * ((8 / 2) * 8));
+    int v1 = ((param5 * param6) * ((8 / 2) * 8));
     v0 = Heap_AllocFromHeap(heapID, v1);
 
     sub_020133D4(param0, param1, heapID, param3, param4, param5, param6, v0);
@@ -260,9 +256,7 @@ void sub_02013610(int param0, int param1, int heapID, void *param3)
 void *sub_0201363C(int param0, int param1, int heapID)
 {
     void *v0 = NULL;
-    int v1;
-
-    v1 = (10 * 10 * ((8 / 2) * 8));
+    int v1 = (10 * 10 * ((8 / 2) * 8));
     v0 = Heap_AllocFromHeap(heapID, v1);
 
     sub_02013610(param0, param1, heapID, v0);

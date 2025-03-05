@@ -349,9 +349,7 @@ BOOL ov21_021D24EC(UnkStruct_ov21_021D23F8 *param0)
 void ov21_021D24FC(const PokedexGraphicData *param0, UnkStruct_ov21_021D23F8 *param1)
 {
     PokemonSprite *v0;
-    int v1;
-
-    v1 = -ov21_021D24B8(param1);
+    int v1 = -ov21_021D24B8(param1);
     v0 = ov21_021D2170(param0);
 
     sub_020086FC(v0, v1, v1, 0, 0);
@@ -360,9 +358,7 @@ void ov21_021D24FC(const PokedexGraphicData *param0, UnkStruct_ov21_021D23F8 *pa
 void ov21_021D251C(const PokedexGraphicData *param0, UnkStruct_ov21_021D23F8 *param1, int param2)
 {
     PokemonSprite *v0;
-    int v1;
-
-    v1 = -ov21_021D24B8(param1);
+    int v1 = -ov21_021D24B8(param1);
     v0 = ov21_021D2274(param0, param2);
 
     sub_020086FC(v0, v1, v1, 0, 0);
@@ -470,9 +466,7 @@ NARC *ov21_021D26E0(PokedexGraphicData *param0)
 
 void *ov21_021D26E8(PokedexGraphicData *param0, u32 param1, BOOL param2, u32 param3)
 {
-    void *v0;
-
-    v0 = NARC_AllocAndReadWholeMember(param0->pokedexGraphics, param1, param3);
+    void *v0 = NARC_AllocAndReadWholeMember(param0->pokedexGraphics, param1, param3);
 
     if (v0 != NULL) {
         if (param2) {

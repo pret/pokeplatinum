@@ -294,49 +294,37 @@ static BOOL ov12_02235F2C(int param0)
 
 static int ov12_02235F64(int param0)
 {
-    int v0;
-
-    v0 = ov12_02235E94(param0);
+    int v0 = ov12_02235E94(param0);
     return Unk_ov12_0223AD70[v0][0];
 }
 
 static int ov12_02235F78(int param0)
 {
-    int v0;
-
-    v0 = ov12_02235E94(param0);
+    int v0 = ov12_02235E94(param0);
     return Unk_ov12_0223AD70[v0][1];
 }
 
 static int ov12_02235F8C(int param0)
 {
-    int v0;
-
-    v0 = ov12_02235E94(param0);
+    int v0 = ov12_02235E94(param0);
     return Unk_ov12_0223AE10[v0][0];
 }
 
 static int ov12_02235FA0(int param0)
 {
-    int v0;
-
-    v0 = ov12_02235E94(param0);
+    int v0 = ov12_02235E94(param0);
     return Unk_ov12_0223AE10[v0][2];
 }
 
 static int ov12_02235FB4(int param0)
 {
-    int v0;
-
-    v0 = ov12_02235E94(param0);
+    int v0 = ov12_02235E94(param0);
     return Unk_ov12_0223AE10[v0][1];
 }
 
 static int ov12_02235FC8(int param0, int param1)
 {
-    int v0;
-
-    v0 = ov12_02235E94(param0);
+    int v0 = ov12_02235E94(param0);
     return Unk_ov12_0223AF00[v0][param1];
 }
 
@@ -754,9 +742,7 @@ static void ov12_02236520(int param0, VecFx32 *param1)
 static void ov12_02236598(SPLEmitter *param0)
 {
     int v0;
-    UnkStruct_ov12_02235FE0 *v1;
-
-    v1 = sub_02014764();
+    UnkStruct_ov12_02235FE0 *v1 = sub_02014764();
     v0 = v1->unk_04.unk_00;
 
     {
@@ -772,9 +758,7 @@ static void ov12_022365D4(SPLEmitter *param0)
     VecFx32 v0;
     int v1;
     UnkStruct_ov12_02235FE0 *v2;
-    UnkStruct_02236430 *v3;
-
-    v3 = sub_02014764();
+    UnkStruct_02236430 *v3 = sub_02014764();
     v1 = v3->unk_08;
 
     ov12_02236520(v1, &v0);
@@ -841,9 +825,7 @@ static void ov12_02236648(SPLEmitter *param0)
 
 UnkStruct_ov12_02236648 *ov12_02236690(UnkStruct_ov12_02236690 *param0)
 {
-    UnkStruct_ov12_02236648 *v0;
-
-    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_02236648));
+    UnkStruct_ov12_02236648 *v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_02236648));
     GF_ASSERT(v0 != NULL);
 
     v0->unk_00 = *param0;
@@ -1078,9 +1060,7 @@ void ov12_022368C8(BallRotation *param0, int param1)
 
 BOOL ov12_022368D0(BallRotation *param0, int param1)
 {
-    BOOL v0;
-
-    v0 = Unk_ov12_0223AB9C[param0->unk_00](param0);
+    BOOL v0 = Unk_ov12_0223AB9C[param0->unk_00](param0);
     return v0;
 }
 
@@ -1099,9 +1079,7 @@ static BOOL ov12_022368F0(BallRotation *param0)
 
 static BOOL ov12_022368F4(BallRotation *param0)
 {
-    BOOL v0;
-
-    v0 = ov12_02236F24(param0);
+    BOOL v0 = ov12_02236F24(param0);
 
     if (v0 == 0) {
         ov12_022368E4(param0, 2);
@@ -1610,9 +1588,7 @@ static BOOL (*const Unk_ov12_0223AC80[])(BallRotation *) = {
 
 static BOOL ov12_02236F10(BallRotation *param0)
 {
-    BOOL v0;
-
-    v0 = Unk_ov12_0223AC80[param0->unk_14](param0);
+    BOOL v0 = Unk_ov12_0223AC80[param0->unk_14](param0);
     return v0;
 }
 

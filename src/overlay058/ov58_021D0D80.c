@@ -1708,9 +1708,7 @@ static int ov58_021D2A54(UnkStruct_02095EAC *param0)
 
 static void ov58_021D2A98(UnkStruct_02095EAC *param0, int param1, int param2)
 {
-    Strbuf *v0;
-
-    v0 = Strbuf_Init((40 * 2), HEAP_ID_39);
+    Strbuf *v0 = Strbuf_Init((40 * 2), HEAP_ID_39);
 
     MessageLoader_GetStrbuf(param0->unk_10, param1, v0);
     StringTemplate_Format(param0->unk_0C, param0->unk_2C, v0);
@@ -1763,9 +1761,7 @@ static void ov58_021D2B3C(UnkStruct_02095EAC *param0, int param1)
 
 static int ov58_021D2B5C(UnkStruct_02095EAC *param0)
 {
-    int v0;
-
-    v0 = ov58_021D2A30();
+    int v0 = ov58_021D2A30();
 
     switch (v0) {
     case 1:

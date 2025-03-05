@@ -1847,9 +1847,7 @@ static u16 ov104_0223B604(UnkStruct_ov104_0223B5C0 *param0, u8 param1, u8 param2
 
 static u16 ov104_0223B644(u8 param0)
 {
-    u8 v0;
-
-    v0 = param0;
+    u8 v0 = param0;
 
     if (v0 >= 10) {
         v0 = (10 - 1);

@@ -31,10 +31,8 @@ static const VecFx32 Unk_ov12_0223A224 = {
 static s8 ov12_0222389C(UnkStruct_ov12_0221FCDC *param0, int param1, int param2)
 {
     s8 v0 = 1;
-    int v1, v2;
-
-    v1 = ov12_02235254(param0, param1);
-    v2 = ov12_02235254(param0, param2);
+    int v1 = ov12_02235254(param0, param1);
+    int v2 = ov12_02235254(param0, param2);
 
     switch (v1) {
     case 0:
@@ -539,9 +537,7 @@ static void ov12_02223E74(UnkStruct_ov12_0221FCDC *param0, SPLEmitter *param1, i
 static void ov12_02224138(SPLEmitter *param0, int param1, int param2)
 {
     int v0, v1;
-    UnkStruct_ov12_0221FCDC *v2;
-
-    v2 = sub_02014764();
+    UnkStruct_ov12_0221FCDC *v2 = sub_02014764();
     v0 = ov12_02220240(v2);
     v1 = ov12_02220248(v2);
 
@@ -606,9 +602,7 @@ void ov12_022241E0(SPLEmitter *param0)
 void ov12_022241EC(SPLEmitter *param0)
 {
     int v0, v1;
-    UnkStruct_ov12_0221FCDC *v2;
-
-    v2 = sub_02014764();
+    UnkStruct_ov12_0221FCDC *v2 = sub_02014764();
     v0 = ov12_02220240(v2);
     v1 = ov12_02220248(v2);
 

@@ -428,11 +428,9 @@ __attribute__((aligned(4))) static const u16 Unk_ov17_02254898[] = {
 void ov17_0224A214(UnkStruct_ov17_0224A1EC *param0, int param1, int param2)
 {
     int v0, v1, v2;
-    int v3, v4, v5;
-
-    v3 = ov17_0223F0BC(param2, 2);
-    v4 = ov17_0223F0BC(param2, 3);
-    v5 = (256 / 8 - v3) / 2;
+    int v3 = ov17_0223F0BC(param2, 2);
+    int v4 = ov17_0223F0BC(param2, 3);
+    int v5 = (256 / 8 - v3) / 2;
 
     if (param1 > v4) {
         param1 = v4;
@@ -494,9 +492,7 @@ void ov17_0224A214(UnkStruct_ov17_0224A1EC *param0, int param1, int param2)
 
 void ov17_0224A368(UnkStruct_ov17_0224A1EC *param0, int param1, int param2, int param3)
 {
-    int v0;
-
-    v0 = param1 * ov17_0223F0BC(param3, 3) / param2;
+    int v0 = param1 * ov17_0223F0BC(param3, 3) / param2;
     ov17_0224A214(param0, v0, param3);
 }
 
@@ -770,9 +766,7 @@ void ov17_0224A9D4(SpriteManager *param0)
 
 void ov17_0224A9F8(UnkStruct_ov17_0224A1EC *param0, SpriteSystem *param1, SpriteManager *param2)
 {
-    ManagedSprite *v0;
-
-    v0 = SpriteSystem_NewSprite(param1, param2, &Unk_ov17_022547C8);
+    ManagedSprite *v0 = SpriteSystem_NewSprite(param1, param2, &Unk_ov17_022547C8);
     Sprite_TickFrame(v0->sprite);
 
     param0->unk_1E8 = v0;
@@ -1074,9 +1068,7 @@ void ov17_0224AFF8(SpriteManager *param0)
 BOOL ov17_0224B01C(UnkStruct_ov17_0224DF54 *param0)
 {
     ManagedSprite *v0;
-    UnkStruct_ov17_0224B058 *v1;
-
-    v1 = &param0->unk_14.unk_910;
+    UnkStruct_ov17_0224B058 *v1 = &param0->unk_14.unk_910;
     v0 = SpriteSystem_NewSprite(param0->unk_14.unk_58, param0->unk_14.unk_5C, &Unk_ov17_0225472C);
 
     ManagedSprite_SetPositionXYWithSubscreenOffset(v0, -1, (0x16 * 8), (256 * FX32_ONE));
@@ -1089,9 +1081,7 @@ BOOL ov17_0224B01C(UnkStruct_ov17_0224DF54 *param0)
 
 void ov17_0224B058(UnkStruct_ov17_0224DF54 *param0)
 {
-    UnkStruct_ov17_0224B058 *v0;
-
-    v0 = &param0->unk_14.unk_910;
+    UnkStruct_ov17_0224B058 *v0 = &param0->unk_14.unk_910;
     Sprite_DeleteAndFreeResources(v0->unk_04);
 }
 
@@ -1118,10 +1108,8 @@ static int ov17_0224B06C(int param0)
 
 void ov17_0224B09C(PokemonSprite *param0, UnkStruct_ov17_0224B09C *param1)
 {
-    s32 v0, v1;
-
-    v0 = param1->unk_0C;
-    v1 = ov17_0224B06C(v0);
+    s32 v0 = param1->unk_0C;
+    s32 v1 = ov17_0224B06C(v0);
 
     {
         fx32 v2;
@@ -1325,9 +1313,7 @@ void ov17_0224B20C(UnkStruct_ov17_0224DF54 *param0, const UnkStruct_ov17_0224EDE
 static void ov17_0224B528(UnkStruct_ov17_0224DF54 *param0, int param1, int param2, int param3, int param4, int param5)
 {
     int v0, v1;
-    UnkStruct_ov17_0224B5C8 *v2;
-
-    v2 = &param0->unk_EA4[param1];
+    UnkStruct_ov17_0224B5C8 *v2 = &param0->unk_EA4[param1];
     v1 = -1;
 
     for (v0 = v2->unk_20; v0 < (16 * 2); v0++) {
@@ -2023,10 +2009,8 @@ static void ov17_0224C414(SysTask *param0, void *param1)
 void ov17_0224C434(UnkStruct_ov17_0224B058 *param0, u32 param1, u32 param2, int param3)
 {
     u32 v0;
-    int v1, v2;
-
-    v1 = ov17_0223F0BC(param3, 3);
-    v2 = (256 - v1) / 2;
+    int v1 = ov17_0223F0BC(param3, 3);
+    int v2 = (256 - v1) / 2;
     v0 = param1 * v1 / param2;
 
     ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_04, v0 - 1 + v2, (0x16 * 8), (256 * FX32_ONE));
@@ -2072,10 +2056,8 @@ void ov17_0224C540(UnkStruct_ov17_0224C384 *param0)
 
 void ov17_0224C54C(UnkStruct_ov17_0224C384 *param0, int param1)
 {
-    int v0, v1;
-
-    v0 = ov17_0223F0BC(param1, 3);
-    v1 = (256 - v0) / 2;
+    int v0 = ov17_0223F0BC(param1, 3);
+    int v1 = (256 - v0) / 2;
 
     ManagedSprite_SetDrawFlag(param0->unk_04, 1);
     ManagedSprite_SetPositionXYWithSubscreenOffset(param0->unk_04, v1, (0x12 * 8), (256 * FX32_ONE));
@@ -2250,9 +2232,7 @@ void ov17_0224C84C(void)
 
 void ov17_0224C864(UnkStruct_ov17_0224DF54 *param0, int param1)
 {
-    u16 *v0;
-
-    v0 = PaletteData_GetUnfadedBuffer(param0->unk_14.unk_90, 0);
+    u16 *v0 = PaletteData_GetUnfadedBuffer(param0->unk_14.unk_90, 0);
     BlendPalettes(v0, param0->unk_1050.unk_00, (0x1fff ^ ((1 << 4) | (1 << 3) | (1 << 2))), Unk_ov17_022546DC[param1].unk_02, Unk_ov17_022546DC[param1].unk_00);
 }
 
@@ -2295,9 +2275,7 @@ void ov17_0224C8E8(UnkStruct_ov17_0224DF54 *param0, u32 param1)
 {
     int v0;
     u32 v1;
-    u32 v2;
-
-    v2 = param0->unk_A3C.unk_18 >> 1;
+    u32 v2 = param0->unk_A3C.unk_18 >> 1;
 
     for (v0 = 0; v0 < 8; v0++) {
         if (param0->unk_1AD4[v0].unk_08_2 == 1) {
@@ -2336,9 +2314,7 @@ void ov17_0224C9D4(UnkStruct_ov17_0224DF54 *param0)
 
 void ov17_0224C9F0(UnkStruct_ov17_0224DF54 *param0, int param1)
 {
-    UnkStruct_ov17_0224C9A4 *v0;
-
-    v0 = &param0->unk_14.unk_1F0;
+    UnkStruct_ov17_0224C9A4 *v0 = &param0->unk_14.unk_1F0;
     GF_ASSERT(v0->unk_04 != NULL);
 
     if (param1 == 0) {
@@ -2404,9 +2380,7 @@ static void ov17_0224CAC0(SPLEmitter *param0)
 
 static void ov17_0224CB00(UnkStruct_ov17_0224DF54 *param0, int param1, int param2)
 {
-    s32 v0;
-
-    v0 = Unk_ov17_022546C4[param0->unk_A3C.unk_2F][param1];
+    s32 v0 = Unk_ov17_022546C4[param0->unk_A3C.unk_2F][param1];
 
     if (param2 == 0) {
         ov17_0224CA90(param0, 0, v0, -17700, -5248, FX32_ONE);
@@ -2460,9 +2434,7 @@ static void ov17_0224CD60(SysTask *param0, void *param1)
 
 void ov17_0224CD84(UnkStruct_ov17_0224DF54 *param0, u32 param1, u32 param2, int param3, int param4, u16 param5)
 {
-    UnkStruct_ov17_0224CD84 *v0;
-
-    v0 = &param0->unk_1050;
+    UnkStruct_ov17_0224CD84 *v0 = &param0->unk_1050;
     v0->unk_08 = param3 << 8;
     v0->unk_0A = param4 << 8;
     v0->unk_0E = param5;
@@ -2552,9 +2524,7 @@ void ov17_0224CE28(UnkStruct_ov17_0224DF54 *param0)
 
 void ov17_0224CEE4(UnkStruct_ov17_0224DF54 *param0, int param1, GXRgb param2, GXRgb param3, int param4, int param5, u8 *param6)
 {
-    UnkStruct_ov17_0224CEE4 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_23, sizeof(UnkStruct_ov17_0224CEE4));
+    UnkStruct_ov17_0224CEE4 *v0 = Heap_AllocFromHeap(HEAP_ID_23, sizeof(UnkStruct_ov17_0224CEE4));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224CEE4));
 
     v0->unk_00 = param0->unk_14.unk_04[param1].unk_00;

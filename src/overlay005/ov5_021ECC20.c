@@ -38,9 +38,7 @@ void ov5_021ECC20(MapObjectManager *param0, int param1, int param2, const int *p
 
 void ov5_021ECC78(MapObjectManager *param0)
 {
-    int v0;
-
-    v0 = MapObjectMan_IsDrawInitialized(param0);
+    int v0 = MapObjectMan_IsDrawInitialized(param0);
     GF_ASSERT(v0 == 1);
 
     ov5_021ECE94(sub_0206285C(param0));

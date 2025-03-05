@@ -712,9 +712,7 @@ int sub_0205E6A8(u32 param0)
 
 u8 sub_0205E6B8(void)
 {
-    TrainerInfo *v0;
-
-    v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
+    TrainerInfo *v0 = CommInfo_TrainerInfo(CommSys_CurNetId() ^ 1);
     GF_ASSERT(v0 != NULL);
 
     return TrainerInfo_GameCode(v0);

@@ -42,17 +42,13 @@ void Frontier_Extra_Init(BattleFrontierStage *param0)
 
 BattleFrontierStage *sub_020308A0(SaveData *param0, int param1, int *param2)
 {
-    BattleFrontierStage *v0;
-
-    v0 = SaveData_BattleFrontierStage(param0, param1, param2);
+    BattleFrontierStage *v0 = SaveData_BattleFrontierStage(param0, param1, param2);
     return v0;
 }
 
 int sub_020308A8(SaveData *param0, BattleFrontierStage *param1)
 {
-    int v0;
-
-    v0 = SaveData_SaveBattleFrontierStage(param0, param1);
+    int v0 = SaveData_SaveBattleFrontierStage(param0, param1);
     v0 |= SaveData_Save(param0);
 
     return v0;

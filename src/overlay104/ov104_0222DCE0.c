@@ -431,9 +431,7 @@ u8 ov104_0222E240(u16 param0, u16 param1)
 
 void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int param2, int param3)
 {
-    UnkStruct_0204B184 *v0;
-
-    v0 = ov104_0222DD04(&param0->unk_00, param1, param2, param3);
+    UnkStruct_0204B184 *v0 = ov104_0222DD04(&param0->unk_00, param1, param2, param3);
     Heap_FreeToHeap(v0);
 
     return;

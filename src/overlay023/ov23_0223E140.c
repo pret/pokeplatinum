@@ -695,9 +695,7 @@ void ov23_0223E2F8(void)
 BOOL ov23_0223E354(int param0, UnkStruct_ov23_0224271C *param1)
 {
     UnkStruct_ov23_0223E6F8 *v0 = ov23_0223E88C(param1->unk_00, param1->unk_02);
-    u8 v1;
-
-    v1 = param0;
+    u8 v1 = param0;
 
     if ((v0 != NULL) && (v0->unk_04 == 0xff)) {
         if (ov23_0224A6B8(param0)) {
@@ -1925,9 +1923,7 @@ static int ov23_0223FC9C(int param0, BgConfig *param1, int param2, UnkStruct_ov2
     int v6, v7, v8, v9 = param2;
     u32 v10;
     int v11 = param0;
-    NARC *v12;
-
-    v12 = NARC_ctor(NARC_INDEX_DATA__UG_PARTS, 29);
+    NARC *v12 = NARC_ctor(NARC_INDEX_DATA__UG_PARTS, 29);
 
     if (param0 >= param3->unk_0C) {
         v11 = 4;

@@ -1135,9 +1135,7 @@ void sub_02094648(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2
 void sub_02094680(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2, u32 param3)
 {
     BoxPokemon *v0;
-    int v1;
-
-    v1 = sub_02095904(param1);
+    int v1 = sub_02095904(param1);
     v0 = Pokemon_GetBoxPokemon(param0->unk_00.unk_00[v1]);
 
     StringTemplate_SetNickname(param2, param3, v0);
@@ -1145,17 +1143,13 @@ void sub_02094680(UnkStruct_02095C48 *param0, int param1, StringTemplate *param2
 
 void sub_020946A4(UnkStruct_02095C48 *param0, StringTemplate *param1, u32 param2)
 {
-    u32 v0;
-
-    v0 = sub_02095848(param0->unk_00.unk_110, param0->unk_00.unk_111, param0->unk_155);
+    u32 v0 = sub_02095848(param0->unk_00.unk_110, param0->unk_00.unk_111, param0->unk_155);
     StringTemplate_SetContestRankName(param1, param2, v0);
 }
 
 void sub_020946CC(UnkStruct_02095C48 *param0, StringTemplate *param1, u32 param2)
 {
-    u32 v0;
-
-    v0 = sub_020958C4(param0->unk_00.unk_10F, param0->unk_00.unk_111);
+    u32 v0 = sub_020958C4(param0->unk_00.unk_10F, param0->unk_00.unk_111);
     StringTemplate_SetContestTypeName(param1, param2, v0);
 }
 
@@ -1265,9 +1259,7 @@ int sub_020947D8(UnkStruct_02095C48 *param0, int param1)
 
 int sub_020947F0(UnkStruct_02095C48 *param0, int param1)
 {
-    int v0;
-
-    v0 = sub_02095904(param1);
+    int v0 = sub_02095904(param1);
     return param0->unk_00.unk_100[v0];
 }
 
@@ -1304,9 +1296,7 @@ void sub_02094860(UnkStruct_02095C48 *param0)
 
 BOOL sub_02094868(UnkStruct_02095C48 *param0)
 {
-    u32 v0;
-
-    v0 = sub_02095A3C(param0->unk_00.unk_110, param0->unk_00.unk_10F);
+    u32 v0 = sub_02095A3C(param0->unk_00.unk_110, param0->unk_00.unk_10F);
 
     if (Pokemon_GetValue(param0->unk_1974, v0, NULL) == 0) {
         return 0;
@@ -1670,9 +1660,7 @@ u16 sub_02094E98(UnkStruct_02095C48 *param0)
 
 u16 sub_02094EA0(u32 param0, u32 *param1)
 {
-    u32 v0;
-
-    v0 = ARNG_Next(param0);
+    u32 v0 = ARNG_Next(param0);
     *param1 = v0;
 
     return v0 / 65536L;

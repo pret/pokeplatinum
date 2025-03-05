@@ -4079,9 +4079,7 @@ static void ov19_021D5BAC(UnkStruct_ov19_021D4DF0 *param0)
 
 static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 param1, UnkStruct_ov19_021D5DF8 *param2)
 {
-    UnkStruct_ov19_021D5BAC *v0;
-
-    v0 = &(param0->unk_4C);
+    UnkStruct_ov19_021D5BAC *v0 = &(param0->unk_4C);
     v0->unk_06 = param1;
 
     if (v0->unk_06 != 0) {
@@ -4171,9 +4169,7 @@ static void ov19_021D5D54(UnkStruct_ov19_021D4DF0 *param0)
 static void ov19_021D5D60(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5DF8 *param1)
 {
     UnkStruct_ov19_021D5BAC *v0 = &(param0->unk_4C);
-    u16 v1;
-
-    v1 = param0->unk_112;
+    u16 v1 = param0->unk_112;
     param0->unk_112 = 0;
 
     ov19_021D5BE8(param0, v1, param1);
@@ -4182,9 +4178,7 @@ static void ov19_021D5D60(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5D
 static void ov19_021D5D78(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5DF8 *param1)
 {
     UnkStruct_ov19_021D5BAC *v0 = &(param0->unk_4C);
-    u16 v1;
-
-    v1 = param0->unk_112;
+    u16 v1 = param0->unk_112;
     param0->unk_112 = v0->unk_06;
 
     ov19_021D5BE8(param0, v1, param1);
@@ -4387,9 +4381,7 @@ BOOL ov19_021D5EE0(const UnkStruct_ov19_021D4DF0 *param0)
 
 void ov19_021D5EE8(const UnkStruct_ov19_021D4DF0 *param0, u32 *param1, u32 *param2, u32 *param3, u32 *param4)
 {
-    const UnkStruct_ov19_021D5594 *v0;
-
-    v0 = &param0->unk_14;
+    const UnkStruct_ov19_021D5594 *v0 = &param0->unk_14;
 
     if (v0->unk_04 <= v0->unk_06) {
         *param1 = v0->unk_04;
@@ -4410,9 +4402,7 @@ void ov19_021D5EE8(const UnkStruct_ov19_021D4DF0 *param0, u32 *param1, u32 *para
 
 BOOL ov19_021D5F20(const UnkStruct_ov19_021D4DF0 *param0)
 {
-    const UnkStruct_ov19_021D5594 *v0;
-
-    v0 = &param0->unk_14;
+    const UnkStruct_ov19_021D5594 *v0 = &param0->unk_14;
 
     if ((v0->unk_04 == v0->unk_06) && (v0->unk_05 == v0->unk_07)) {
         return 1;

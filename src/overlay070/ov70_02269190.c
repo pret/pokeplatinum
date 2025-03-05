@@ -628,9 +628,7 @@ static const UnkStruct_ov70_0226E5A4 Unk_ov70_0226E5A4[39] = {
 
 UnkStruct_ov70_02269204 *ov70_02269190(UnkStruct_ov66_0222DFF8 *param0, UnkStruct_ov70_0225C894 *param1, UnkStruct_ov70_02260AD4 *param2, UnkStruct_ov70_0225CA20 *param3, u32 param4, u32 param5)
 {
-    UnkStruct_ov70_02269204 *v0;
-
-    v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov70_02269204));
+    UnkStruct_ov70_02269204 *v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov70_02269204));
     memset(v0, 0, sizeof(UnkStruct_ov70_02269204));
 
     v0->unk_00 = param0;
@@ -679,9 +677,7 @@ void ov70_02269240(UnkStruct_ov70_02269204 *param0)
 {
     int v0;
     BOOL v1;
-    UnkStruct_ov70_0225CC54 *v2;
-
-    v2 = ov70_0225CCAC(param0->unk_04);
+    UnkStruct_ov70_0225CC54 *v2 = ov70_0225CCAC(param0->unk_04);
 
     for (v0 = 0; v0 < 20; v0++) {
         ov70_022697C8(param0, &param0->unk_10[v0]);
@@ -1099,9 +1095,7 @@ static BOOL ov70_022699D0(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
 static void ov70_022699E4(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_02269800 *param1, u32 param2, u32 param3, fx32 param4)
 {
     fx32 v0;
-    Easy3DAnim *v1;
-
-    v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
+    Easy3DAnim *v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
     v0 = Easy3DAnim_GetFrameCount(v1);
 
     if ((param1->unk_8C4[param2][param3] + param4) < v0) {
@@ -1115,9 +1109,7 @@ static BOOL ov70_02269A3C(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
 {
     fx32 v0;
     BOOL v1;
-    Easy3DAnim *v2;
-
-    v2 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
+    Easy3DAnim *v2 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
     v0 = Easy3DAnim_GetFrameCount(v2);
 
     if ((param1->unk_8C4[param2][param3] + param4) < v0) {
@@ -1134,9 +1126,7 @@ static BOOL ov70_02269A3C(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
 static void ov70_02269A90(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_02269800 *param1, u32 param2, u32 param3, fx32 param4)
 {
     fx32 v0;
-    Easy3DAnim *v1;
-
-    v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
+    Easy3DAnim *v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
     v0 = Easy3DAnim_GetFrameCount(v1);
 
     if (v0 < param4) {
@@ -1149,9 +1139,7 @@ static void ov70_02269A90(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
 static fx32 ov70_02269AE8(const UnkStruct_ov70_02269204 *param0, const UnkStruct_ov70_02269800 *param1, u32 param2, u32 param3)
 {
     fx32 v0;
-    const Easy3DAnim *v1;
-
-    v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
+    const Easy3DAnim *v1 = &param0->unk_106DC[param1->unk_87C[param2]->unk_02[param3]];
     return Easy3DAnim_GetFrame(v1);
 }
 
@@ -1764,9 +1752,7 @@ static BOOL ov70_0226A858(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
 
 static BOOL ov70_0226A930(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_02269800 *param1)
 {
-    u32 v0;
-
-    v0 = ov70_0226BCC0(&param1->unk_954, param1->unk_02);
+    u32 v0 = ov70_0226BCC0(&param1->unk_954, param1->unk_02);
     param1->unk_02++;
 
     if (v0 == 2) {
@@ -2307,9 +2293,7 @@ static BOOL ov70_0226B714(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_022698
 static void ov70_0226B744(UnkStruct_ov70_02269204 *param0, UnkStruct_ov70_02269800 *param1, u32 param2)
 {
     fx32 v0;
-    u32 v1;
-
-    v1 = param1->unk_954.val1.unk_0C[param2];
+    u32 v1 = param1->unk_954.val1.unk_0C[param2];
 
     if (param1->unk_954.val1.unk_08[param2] <= 0) {
         v0 = ov70_02269AE8(param0, param1, param2, 0);

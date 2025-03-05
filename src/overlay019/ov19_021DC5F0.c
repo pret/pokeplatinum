@@ -367,10 +367,8 @@ void ov19_021DCBDC(UnkStruct_ov19_021DC680 *param0, u32 param1, u32 param2)
 
 void ov19_021DCC14(UnkStruct_ov19_021DC680 *param0)
 {
-    u32 v0, v1;
-
-    v0 = ov19_021D5E2C(param0->unk_0C);
-    v1 = ov19_021D5EA0(param0->unk_0C);
+    u32 v0 = ov19_021D5E2C(param0->unk_0C);
+    u32 v1 = ov19_021D5EA0(param0->unk_0C);
 
     if (param0->unk_3C[v0].unk_00 != NULL) {
         ov19_021DA68C(param0->unk_38, &(param0->unk_3C[v0]), v1);

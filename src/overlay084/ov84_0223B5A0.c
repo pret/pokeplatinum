@@ -608,9 +608,7 @@ static SpecialEncounter *ov84_0223B9E4(UnkStruct_ov84_0223B5A0 *param0)
 
 static void SetRepelSteps(UnkStruct_ov84_0223B5A0 *param0, u8 stepCount)
 {
-    u8 *repelSteps;
-
-    repelSteps = SpecialEncounter_GetRepelSteps(ov84_0223B9E4(param0));
+    u8 *repelSteps = SpecialEncounter_GetRepelSteps(ov84_0223B9E4(param0));
     *repelSteps = stepCount;
 }
 
@@ -3044,10 +3042,8 @@ static BOOL ov84_0223ED14(UnkStruct_ov84_0223B5A0 *param0)
 
 static BOOL ov84_0223ED64(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 {
-    u16 v0, v1;
-
-    v0 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06;
-    v1 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04;
+    u16 v0 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06;
+    u16 v1 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04;
 
     ListMenu_TestInput(param0->unk_15C, NULL, v0, v1, 1, param1, &v0, &v1);
 
@@ -3090,10 +3086,8 @@ static BOOL ov84_0223EE30(UnkStruct_ov84_0223B5A0 *param0)
 
 static BOOL ov84_0223EE80(UnkStruct_ov84_0223B5A0 *param0, u16 param1)
 {
-    u16 v0, v1;
-
-    v0 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06;
-    v1 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04;
+    u16 v0 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_06;
+    u16 v1 = param0->unk_C4->unk_04[param0->unk_C4->unk_64].unk_04;
 
     ListMenu_TestInput(param0->unk_15C, NULL, v0, v1, 1, param1, &v0, &v1);
 

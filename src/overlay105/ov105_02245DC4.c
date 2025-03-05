@@ -23,9 +23,7 @@ BOOL ov105_02245E48(UnkStruct_ov105_02245E1C *param0);
 
 UnkStruct_ov105_02245E1C *ov105_02245DC4(UnkStruct_ov105_02245AAC *param0, u32 param1, int param2, int param3, u32 param4)
 {
-    UnkStruct_ov105_02245E1C *v0;
-
-    v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov105_02245E1C));
+    UnkStruct_ov105_02245E1C *v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov105_02245E1C));
     memset(v0, 0, sizeof(UnkStruct_ov105_02245E1C));
 
     v0->unk_00 = param2;

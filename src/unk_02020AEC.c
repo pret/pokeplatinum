@@ -186,9 +186,7 @@ void sub_02020C08(void)
 
 UnkStruct_02020C44 *sub_02020C44(const UnkStruct_ov5_021EDDAC *param0)
 {
-    UnkStruct_02020C44 *v0;
-
-    v0 = sub_02020D74();
+    UnkStruct_02020C44 *v0 = sub_02020D74();
 
     if (v0 == NULL) {
         GF_ASSERT(0);
@@ -332,9 +330,7 @@ static void sub_02020DA8(UnkStruct_02020C44 *param0)
 
 static void sub_02020E28(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84C *param1)
 {
-    UnkStruct_02020C44 *v0;
-
-    v0 = (UnkStruct_02020C44 *)param0->unk_28;
+    UnkStruct_02020C44 *v0 = (UnkStruct_02020C44 *)param0->unk_28;
 
     sub_0202105C(v0, param0);
     sub_02021078(param0, param1);
@@ -379,11 +375,9 @@ static void sub_02020E78(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84
 
 static void sub_02020EF8(const NNSG3dResTex *param0, NNSG3dTexKey *param1, NNSG3dTexKey *param2, NNSG3dPlttKey *param3)
 {
-    u32 v0, v1, v2;
-
-    v0 = NNS_G3dTexGetRequiredSize(param0);
-    v1 = NNS_G3dTex4x4GetRequiredSize(param0);
-    v2 = NNS_G3dPlttGetRequiredSize(param0);
+    u32 v0 = NNS_G3dTexGetRequiredSize(param0);
+    u32 v1 = NNS_G3dTex4x4GetRequiredSize(param0);
+    u32 v2 = NNS_G3dPlttGetRequiredSize(param0);
 
     if (v0 > 0) {
         *param1 = NNS_GfdAllocTexVram(v0, 0, 0);
@@ -887,9 +881,7 @@ static NNSG3dResMdlSet *sub_02021788(const UnkStruct_ov5_021DF84C *param0, NNSG3
 
 static NNSG3dResTex *sub_020217D4(const UnkStruct_ov5_021DF84C *param0)
 {
-    NNSG3dResTex *v0;
-
-    v0 = (NNSG3dResTex *)sub_0202189C(param0, 1);
+    NNSG3dResTex *v0 = (NNSG3dResTex *)sub_0202189C(param0, 1);
     return v0;
 }
 
@@ -904,17 +896,13 @@ static void sub_020217E0(UnkStruct_020216E0 *param0, const UnkStruct_ov5_021DF84
 
 static fx32 sub_020217F4(const UnkStruct_020216E0 *param0, int param1)
 {
-    const UnkStruct_020217F4 *v0;
-
-    v0 = sub_020218B4(param0->unk_2C, param1);
+    const UnkStruct_020217F4 *v0 = sub_020218B4(param0->unk_2C, param1);
     return v0->unk_00 << FX32_SHIFT;
 }
 
 static int sub_02021804(UnkStruct_020216E0 *param0, fx32 param1)
 {
-    const UnkStruct_020217F4 *v0;
-
-    v0 = sub_020218B4(param0->unk_2C, param0->unk_B6);
+    const UnkStruct_020217F4 *v0 = sub_020218B4(param0->unk_2C, param0->unk_B6);
     return sub_02021824(v0, &param0->unk_B8, param1);
 }
 

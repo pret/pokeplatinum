@@ -335,9 +335,7 @@ static void sub_0202EAEC(UnkStruct_0202E8C0 *param0, UnkStruct_0202EABC *param1,
 static void sub_0202ECB0(UnkStruct_0202E8C0 *param0, u32 param1, u8 param2, UnkStruct_0202E91C **param3, u8 param4, int param5)
 {
     int v0, v1;
-    UnkStruct_0202EABC *v2;
-
-    v2 = Heap_AllocFromHeapAtEnd(param5, sizeof(UnkStruct_0202EABC));
+    UnkStruct_0202EABC *v2 = Heap_AllocFromHeapAtEnd(param5, sizeof(UnkStruct_0202EABC));
 
     sub_0202EAEC(param0, v2, param1, param2, 0, param3, param4, param5);
 
@@ -391,9 +389,7 @@ UnkStruct_0202EE10 *sub_0202ED8C(SaveData *param0, int param1, int heapID)
     u32 v2;
     UnkStruct_0202EE10 *v3;
     u32 *v4;
-    TrainerInfo *v5;
-
-    v5 = SaveData_GetTrainerInfo(param0);
+    TrainerInfo *v5 = SaveData_GetTrainerInfo(param0);
     v3 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202EE10));
 
     MI_CpuClear8(v3, sizeof(UnkStruct_0202EE10));

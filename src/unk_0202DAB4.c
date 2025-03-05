@@ -311,9 +311,7 @@ int sub_0202DF18(void)
 
 int sub_0202DF40(int param0)
 {
-    UnkStruct_0202DF40 *v0;
-
-    v0 = sub_0202DAD8(Unk_021C07A0, param0);
+    UnkStruct_0202DF40 *v0 = sub_0202DAD8(Unk_021C07A0, param0);
 
     if (v0) {
         return (int)v0->unk_00;
@@ -324,9 +322,7 @@ int sub_0202DF40(int param0)
 
 UnkUnion_0204C4D0 *sub_0202DF5C(int param0)
 {
-    UnkStruct_0202DF40 *v0;
-
-    v0 = sub_0202DAD8(Unk_021C07A0, param0);
+    UnkStruct_0202DF40 *v0 = sub_0202DAD8(Unk_021C07A0, param0);
 
     if (v0) {
         return &v0->unk_04;

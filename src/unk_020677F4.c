@@ -70,17 +70,13 @@ void sub_02067834(MapObject *param0)
 
 void sub_02067840(MapObject *param0)
 {
-    UnkStruct_02067800 *v0;
-
-    v0 = sub_02062A54(param0, (sizeof(UnkStruct_02067800)));
+    UnkStruct_02067800 *v0 = sub_02062A54(param0, (sizeof(UnkStruct_02067800)));
     v0->unk_00 = 0;
 }
 
 void sub_02067850(MapObject *param0)
 {
-    UnkStruct_02067800 *v0;
-
-    v0 = sub_02062A78(param0);
+    UnkStruct_02067800 *v0 = sub_02062A78(param0);
     v0->unk_00 = sub_02055F00(MapObject_FieldSystem(param0), param0);
 }
 

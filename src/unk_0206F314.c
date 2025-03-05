@@ -264,9 +264,7 @@ static int sub_0206F488(UnkStruct_0206F7F8 *param0)
 
 static int sub_0206F498(UnkStruct_0206F7F8 *param0)
 {
-    s32 v0;
-
-    v0 = ListMenu_ProcessInput(param0->unk_C0);
+    s32 v0 = ListMenu_ProcessInput(param0->unk_C0);
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);

@@ -472,9 +472,7 @@ u32 sub_0206BFFC(u32 param0)
 
 u32 sub_0206C008(SaveData *param0)
 {
-    u32 v0;
-
-    v0 = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(param0));
+    u32 v0 = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(param0));
     v0 = sub_0206BFFC(v0);
 
     sub_0202D470(sub_0202D750(param0), v0);

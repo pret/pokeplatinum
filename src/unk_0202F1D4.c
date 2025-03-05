@@ -138,9 +138,7 @@ BOOL sub_0202F330(SaveData *param0, int param1, int *param2, int param3)
 {
     UnkStruct_0202F298 *v0;
     UnkStruct_0202F41C *v1;
-    BattleRecording *v2;
-
-    v2 = SaveData_BattleRecording(param0, param1, param2, param3);
+    BattleRecording *v2 = SaveData_BattleRecording(param0, param1, param2, param3);
 
     if (*param2 != 1) {
         *param2 = 3;
@@ -708,9 +706,7 @@ u64 sub_0202FE98(UnkStruct_0202F41C *param0, int param1, int param2)
 
 UnkStruct_0202F41C *sub_0202FF2C(int heapID)
 {
-    UnkStruct_0202F41C *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202F41C));
+    UnkStruct_0202F41C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202F41C));
     MI_CpuClear8(v0, sizeof(UnkStruct_0202F41C));
 
     return v0;

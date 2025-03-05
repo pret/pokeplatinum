@@ -26,9 +26,7 @@ static u32 ov115_02260CCC(const UnkStruct_ov115_02260BE4 *param0);
 
 UnkStruct_ov115_02260BE4 *ov115_02260BBC(u32 param0, u32 param1, u32 param2, const UnkStruct_ov115_02262F50 *param3)
 {
-    UnkStruct_ov115_02260BE4 *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov115_02260BE4));
+    UnkStruct_ov115_02260BE4 *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov115_02260BE4));
     memset(v0, 0, sizeof(UnkStruct_ov115_02260BE4));
 
     v0->unk_00 = param1;
@@ -113,9 +111,7 @@ void ov115_02260C7C(UnkStruct_ov115_02260BE4 *param0, u32 param1, u32 param2)
 
 BOOL ov115_02260CA4(const UnkStruct_ov115_02260BE4 *param0)
 {
-    int v0;
-
-    v0 = ov115_02260CCC(param0);
+    int v0 = ov115_02260CCC(param0);
 
     if (v0 >= param0->unk_08) {
         return 1;
@@ -132,9 +128,7 @@ void ov115_02260CBC(UnkStruct_ov115_02260BE4 *param0, UnkStruct_ov115_02265AD4 *
 static u32 ov115_02260CCC(const UnkStruct_ov115_02260BE4 *param0)
 {
     int v0;
-    int v1;
-
-    v1 = 0;
+    int v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
         if ((param0->unk_1C & (1 << v0)) != 0) {

@@ -763,9 +763,7 @@ BOOL ov70_022669B8(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
 
 BOOL ov70_022669FC(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *param1, u32 param2)
 {
-    UnkStruct_ov70_022669FC *v0;
-
-    v0 = ov70_02262E80(param0);
+    UnkStruct_ov70_022669FC *v0 = ov70_02262E80(param0);
 
     switch (ov70_02262E84(param0)) {
     case 0: {
@@ -832,9 +830,7 @@ BOOL ov70_022669FC(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *par
 
 static void ov70_02266AF0(UnkStruct_ov70_02266AF0 *param0, UnkStruct_ov70_02263344 *param1, UnkStruct_ov70_0225DEE8 *param2, u32 param3, u32 param4)
 {
-    Strbuf *v0;
-
-    v0 = ov70_0225E20C(param2, 0, param3);
+    Strbuf *v0 = ov70_0225E20C(param2, 0, param3);
     ov70_0225DF8C(param2, v0);
     param0->unk_04 = param4;
     ov70_02262E88(param1, 25);
@@ -883,9 +879,7 @@ static BOOL ov70_02266BAC(UnkStruct_ov70_02266AF0 *param0, UnkStruct_ov70_0225DE
 {
     u32 v0;
     u32 v1;
-    UnkStruct_ov66_0222DFF8 *v2;
-
-    v2 = ov70_0225DEE8(param1);
+    UnkStruct_ov66_0222DFF8 *v2 = ov70_0225DEE8(param1);
     v0 = sub_020388AC();
     v1 = ov66_02233224(param2->unk_01);
 
@@ -956,9 +950,7 @@ static void ov70_02266CB0(UnkStruct_ov70_02266C68 *param0, UnkStruct_ov70_0225DE
 
 static void ov70_02266CCC(UnkStruct_ov70_02266C68 *param0, s32 param1)
 {
-    s16 v0;
-
-    v0 = param1 / 30;
+    s16 v0 = param1 / 30;
 
     if (v0 != param0->unk_04) {
         param0->unk_04 = v0;

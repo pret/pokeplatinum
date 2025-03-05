@@ -94,9 +94,7 @@ static int ov19_021D6134(UnkStruct_ov19_021D6104 *param0, BOOL param1, BOOL para
 int ov19_021D614C(const UnkStruct_ov19_021D6104 *param0)
 {
     int v0;
-    u16 v1;
-
-    v1 = ov19_021D6164(param0, param0->unk_14, param0->unk_18);
+    u16 v1 = ov19_021D6164(param0, param0->unk_14, param0->unk_18);
     v0 = ov19_021D617C(param0, param0->unk_20, v1);
 
     return v0;

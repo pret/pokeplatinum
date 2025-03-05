@@ -412,9 +412,7 @@ void ov115_02260964(UnkStruct_ov115_0226095C *param0)
 
 void ov115_0226096C(UnkStruct_ov115_0226095C *param0, const UnkStruct_ov115_02265AD0 *param1, u32 param2)
 {
-    u32 v0;
-
-    v0 = ov114_0225C76C(&param0->unk_08, param2);
+    u32 v0 = ov114_0225C76C(&param0->unk_08, param2);
     ov115_02260C6C(param0->unk_30, param1, v0);
 }
 
@@ -425,9 +423,7 @@ void ov115_02260988(UnkStruct_ov115_0226095C *param0, const UnkStruct_ov115_0226
 
 void ov115_02260994(UnkStruct_ov115_0226095C *param0, u32 param1, u32 param2)
 {
-    u32 v0;
-
-    v0 = ov114_0225C76C(&param0->unk_08, param2);
+    u32 v0 = ov114_0225C76C(&param0->unk_08, param2);
 
     if (param0->unk_30 != NULL) {
         ov115_02260C7C(param0->unk_30, param1, v0);

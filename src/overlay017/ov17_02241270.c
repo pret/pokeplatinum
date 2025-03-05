@@ -54,9 +54,7 @@ void ov17_02241270(SpriteSystem *param0, SpriteManager *param1, NARC *param2)
 
 ManagedSprite *ov17_022412C0(SpriteSystem *param0, SpriteManager *param1, int param2)
 {
-    ManagedSprite *v0;
-
-    v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_0225364C);
+    ManagedSprite *v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_0225364C);
     ManagedSprite_SetPositionXYWithSubscreenOffset(v0, (5 * 8) + (11 * 8) * param2, (0xc * 8) + 0 * param2, ((192 + 80) << FX32_SHIFT));
     Sprite_TickFrame(v0->sprite);
 

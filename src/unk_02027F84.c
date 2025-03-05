@@ -54,9 +54,7 @@ void sub_02027FEC(UnkStruct_02027F8C *param0, UnkStruct_02027F8C *param1, int pa
 {
     int v0, v1, v2;
     int v3[5];
-    UnkStruct_02027F8C *v4;
-
-    v4 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02027F8C) * 16);
+    UnkStruct_02027F8C *v4 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02027F8C) * 16);
     PalPad_Init(v4);
 
     for (v0 = 0; v0 < param2; v0++) {

@@ -391,9 +391,7 @@ void sub_02012BE0(FontOAM *param0, const UnkStruct_02012B20 *param1, const Windo
     char *v1;
     NNSG2dImageProxy *v2;
     Sprite *v3 = param0->unk_00[0].unk_00;
-    int v4;
-
-    v4 = Sprite_GetVRamType(v3);
+    int v4 = Sprite_GetVRamType(v3);
     v0 = sub_02012B58(param1, v4);
     v1 = (char *)Heap_AllocFromHeapAtEnd(param3, v0);
 
@@ -572,10 +570,8 @@ static int sub_02012EE0(const Window *param0, const UnkStruct_02013034 *param1, 
 {
     char *v0;
     int v1;
-    int v2, v3;
-
-    v2 = Unk_020E52E4[param1->unk_08][0];
-    v3 = Unk_020E52E4[param1->unk_08][1];
+    int v2 = Unk_020E52E4[param1->unk_08][0];
+    int v3 = Unk_020E52E4[param1->unk_08][1];
     v1 = v2;
     v1 *= v3;
 
@@ -638,10 +634,8 @@ static void sub_02012F98(const Window *param0, char *param1, const UnkStruct_020
 static int sub_02012FF0(const Window *param0, const UnkStruct_02013034 *param1, char *param2, int param3, int param4, int param5, int param6)
 {
     int v0;
-    int v1, v2;
-
-    v1 = Unk_020E52E4[param1->unk_08][0];
-    v2 = Unk_020E52E4[param1->unk_08][1];
+    int v1 = Unk_020E52E4[param1->unk_08][0];
+    int v2 = Unk_020E52E4[param1->unk_08][1];
     v0 = v1;
     v0 *= v2;
 
@@ -693,9 +687,7 @@ static int sub_02013034(const UnkStruct_02013034 *param0, int param1)
 static void sub_02013088(const UnkStruct_020127E8 *param0, const UnkStruct_02013034 *param1, const NNSG2dImageProxy *param2, FontOAM *param3)
 {
     UnkStruct_02013034 *v0;
-    int v1;
-
-    v1 = 0;
+    int v1 = 0;
     v0 = param1->unk_0C;
 
     while (v0 != param1) {
@@ -758,9 +750,7 @@ static Sprite *sub_02013100(const UnkStruct_020127E8 *param0, const UnkStruct_02
 
 static UnkStruct_02013034 *sub_02013188(int param0)
 {
-    UnkStruct_02013034 *v0;
-
-    v0 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_02013034));
+    UnkStruct_02013034 *v0 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_02013034));
     GF_ASSERT(v0);
 
     v0->unk_0C = NULL;

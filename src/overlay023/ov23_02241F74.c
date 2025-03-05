@@ -616,9 +616,7 @@ void ov23_022428D8(int param0, int param1, void *param2, void *param3)
     UnkStruct_ov23_02242830 *v1 = param2;
     UnkStruct_ov23_0224271C v2;
     int v3;
-    u8 v4;
-
-    v4 = param0;
+    u8 v4 = param0;
     v2.unk_00 = CommPlayer_AddXServer(param0);
     v2.unk_02 = CommPlayer_AddZServer(param0);
 

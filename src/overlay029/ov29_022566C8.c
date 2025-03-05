@@ -199,9 +199,7 @@ static void ov29_02256804(SysTask *param0, void *param1)
 
 static void ov29_02256908(SysTask *param0, void *param1)
 {
-    UnkStruct_ov29_022566C8 *v0;
-
-    v0 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param1);
 
     if (v0->unk_00->unk_00 == 1) {
         ov25_022558C4(v0->unk_68[0], 0);
@@ -217,9 +215,7 @@ static void ov29_02256908(SysTask *param0, void *param1)
 
 static void ov29_02256950(SysTask *param0, void *param1)
 {
-    UnkStruct_ov29_022566C8 *v0;
-
-    v0 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param1);
     Window_LoadTiles(v0->unk_70);
     ov29_022567F0(param1);
 }
@@ -247,9 +243,7 @@ static void ov29_02256968(u8 *param0, int param1, int param2, int param3, int pa
 static void ov29_022569DC(SysTask *param0, void *param1)
 {
     s32 v0, v1;
-    UnkStruct_ov29_022566C8 *v2;
-
-    v2 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov29_022566C8 *v2 = PoketchTask_GetTaskData(param1);
 
     if (v2->unk_00->unk_00 == 0) {
         int v3, v4;
@@ -283,9 +277,7 @@ static void ov29_022569DC(SysTask *param0, void *param1)
 
 static void ov29_02256A7C(SysTask *param0, void *param1)
 {
-    UnkStruct_ov29_022566C8 *v0;
-
-    v0 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov29_022566C8 *v0 = PoketchTask_GetTaskData(param1);
 
     Window_LoadTiles(v0->unk_70);
     ov29_022567F0(param1);

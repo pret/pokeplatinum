@@ -429,9 +429,7 @@ int ov116_02260CF4(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov116_0226139C *v0 = OverlayManager_Data(param0);
     BOOL v1 = 0;
-    u32 v2;
-
-    v2 = ov116_022617E4(v0);
+    u32 v2 = ov116_022617E4(v0);
 
     switch (v2) {
     case 1:

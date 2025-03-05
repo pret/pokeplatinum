@@ -1713,10 +1713,8 @@ static BOOL ScrCmd_008(ScriptContext *ctx)
 
 static BOOL ScrCmd_009(ScriptContext *ctx)
 {
-    u8 v0, v1;
-
-    v0 = ScriptContext_ReadByte(ctx);
-    v1 = ScriptContext_ReadByte(ctx);
+    u8 v0 = ScriptContext_ReadByte(ctx);
+    u8 v1 = ScriptContext_ReadByte(ctx);
     ctx->data[v0] = ctx->data[v1];
 
     return 0;
@@ -1747,10 +1745,8 @@ static u32 Compare(u16 value0, u16 value1)
 
 static BOOL ScrCmd_00B(ScriptContext *ctx)
 {
-    u8 v0, v1;
-
-    v0 = ctx->data[ScriptContext_ReadByte(ctx)];
-    v1 = ctx->data[ScriptContext_ReadByte(ctx)];
+    u8 v0 = ctx->data[ScriptContext_ReadByte(ctx)];
+    u8 v1 = ctx->data[ScriptContext_ReadByte(ctx)];
     ctx->comparisonResult = Compare(v0, v1);
 
     return 0;
@@ -1758,10 +1754,8 @@ static BOOL ScrCmd_00B(ScriptContext *ctx)
 
 static BOOL ScrCmd_00C(ScriptContext *ctx)
 {
-    u8 v0, v1;
-
-    v0 = ctx->data[ScriptContext_ReadByte(ctx)];
-    v1 = ScriptContext_ReadByte(ctx);
+    u8 v0 = ctx->data[ScriptContext_ReadByte(ctx)];
+    u8 v1 = ScriptContext_ReadByte(ctx);
     ctx->comparisonResult = Compare(v0, v1);
 
     return 0;
@@ -1769,10 +1763,8 @@ static BOOL ScrCmd_00C(ScriptContext *ctx)
 
 static BOOL ScrCmd_00D(ScriptContext *ctx)
 {
-    u8 v0, v1;
-
-    v0 = ctx->data[ScriptContext_ReadByte(ctx)];
-    v1 = *(u8 *)ScriptContext_ReadWord(ctx);
+    u8 v0 = ctx->data[ScriptContext_ReadByte(ctx)];
+    u8 v1 = *(u8 *)ScriptContext_ReadWord(ctx);
     ctx->comparisonResult = Compare(v0, v1);
 
     return 0;
@@ -1780,10 +1772,8 @@ static BOOL ScrCmd_00D(ScriptContext *ctx)
 
 static BOOL ScrCmd_00E(ScriptContext *ctx)
 {
-    u8 v0, v1;
-
-    v0 = *(u8 *)ScriptContext_ReadWord(ctx);
-    v1 = ctx->data[ScriptContext_ReadByte(ctx)];
+    u8 v0 = *(u8 *)ScriptContext_ReadWord(ctx);
+    u8 v1 = ctx->data[ScriptContext_ReadByte(ctx)];
     ctx->comparisonResult = Compare(v0, v1);
 
     return 0;
@@ -1791,10 +1781,8 @@ static BOOL ScrCmd_00E(ScriptContext *ctx)
 
 static BOOL ScrCmd_00F(ScriptContext *ctx)
 {
-    u8 v0, v1;
-
-    v0 = *(u8 *)ScriptContext_ReadWord(ctx);
-    v1 = ScriptContext_ReadByte(ctx);
+    u8 v0 = *(u8 *)ScriptContext_ReadWord(ctx);
+    u8 v1 = ScriptContext_ReadByte(ctx);
     ctx->comparisonResult = Compare(v0, v1);
 
     return 0;
@@ -1802,10 +1790,8 @@ static BOOL ScrCmd_00F(ScriptContext *ctx)
 
 static BOOL ScrCmd_010(ScriptContext *ctx)
 {
-    u8 v0, v1;
-
-    v0 = *(u8 *)ScriptContext_ReadWord(ctx);
-    v1 = *(u8 *)ScriptContext_ReadWord(ctx);
+    u8 v0 = *(u8 *)ScriptContext_ReadWord(ctx);
+    u8 v1 = *(u8 *)ScriptContext_ReadWord(ctx);
     ctx->comparisonResult = Compare(v0, v1);
 
     return 0;
@@ -2057,9 +2043,7 @@ static BOOL ScrCmd_SetVarFromVar(ScriptContext *ctx)
 
 static BOOL ScrCmd_02A(ScriptContext *ctx)
 {
-    u16 *v0;
-
-    v0 = ScriptContext_GetVarPointer(ctx);
+    u16 *v0 = ScriptContext_GetVarPointer(ctx);
     *v0 = ScriptContext_GetVar(ctx);
 
     return 0;
@@ -3474,9 +3458,7 @@ static BOOL ScrCmd_2AD(ScriptContext *ctx)
 
 static BOOL ScrCmd_06E(ScriptContext *ctx)
 {
-    MapObject *mapObj;
-
-    mapObj = sub_02062570(ctx->fieldSystem->mapObjMan, 0x30);
+    MapObject *mapObj = sub_02062570(ctx->fieldSystem->mapObjMan, 0x30);
 
     sub_020633C8(mapObj, 0xfe);
     return 0;
@@ -3561,9 +3543,7 @@ static BOOL ScrCmd_192(ScriptContext *ctx)
 static BOOL ScrCmd_193(ScriptContext *ctx)
 {
     void **v0;
-    u16 *v1;
-
-    v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *v1 = ScriptContext_GetVarPointer(ctx);
     v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
 
     GF_ASSERT(*v0 != 0);
@@ -3761,9 +3741,7 @@ static BOOL ScrCmd_196(ScriptContext *ctx)
 static BOOL ScrCmd_197(ScriptContext *ctx)
 {
     void **v0;
-    u16 *v1;
-
-    v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *v1 = ScriptContext_GetVarPointer(ctx);
     v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
 
     GF_ASSERT(*v0 != 0);
@@ -4362,9 +4340,7 @@ static BOOL ScrCmd_336(ScriptContext *ctx)
 {
     u16 *v0;
     int v1;
-    HallOfFame *v2;
-
-    v2 = SaveData_HallOfFame(ctx->fieldSystem->saveData, 4, &v1);
+    HallOfFame *v2 = SaveData_HallOfFame(ctx->fieldSystem->saveData, 4, &v1);
     v0 = ScriptContext_GetVarPointer(ctx);
     *v0 = 0;
 
@@ -4509,9 +4485,7 @@ static BOOL ScrCmd_2C6(ScriptContext *ctx)
 static BOOL ScrCmd_2C7(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
-    u8 v1;
-
-    v1 = sub_0205BE38();
+    u8 v1 = sub_0205BE38();
 
     if (v1 == TrainerInfo_DPGameCode()) {
         *v0 = 0;
@@ -4671,11 +4645,9 @@ static BOOL ScrCmd_0C1(ScriptContext *ctx)
 
 static BOOL ScrCmd_0C2(ScriptContext *ctx)
 {
-    u16 v0, v1, v2;
-
-    v0 = ScriptContext_ReadHalfWord(ctx);
-    v1 = ScriptContext_GetVar(ctx);
-    v2 = ScriptContext_GetVar(ctx);
+    u16 v0 = ScriptContext_ReadHalfWord(ctx);
+    u16 v1 = ScriptContext_GetVar(ctx);
+    u16 v2 = ScriptContext_GetVar(ctx);
 
     FieldTask_StartMapChangeFly(ctx->fieldSystem, v0, -1, v1, v2, 1);
     return 1;
@@ -6675,9 +6647,7 @@ static BOOL ScrCmd_249(ScriptContext *ctx)
     u16 v5 = ScriptContext_GetVar(ctx);
     u16 v6 = ScriptContext_GetVar(ctx);
     u16 v7 = ScriptContext_GetVar(ctx);
-    int v8;
-
-    v8 = ov6_022479D0(v1, v4, v5, v6, v7, 4);
+    int v8 = ov6_022479D0(v1, v4, v5, v6, v7, 4);
 
     if ((v8 == -1) || (v8 > 7)) {
         *v2 = 0xff;
@@ -6768,9 +6738,7 @@ static BOOL ScrCmd_WriteSpeciesSeen(ScriptContext *ctx)
 static BOOL ScrCmd_252(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
-    u16 v1;
-
-    v1 = sub_02079A50(SaveData_PCBoxes(ctx->fieldSystem->saveData));
+    u16 v1 = sub_02079A50(SaveData_PCBoxes(ctx->fieldSystem->saveData));
     *v0 = 18 * (5 * 6) - v1;
 
     return 0;
@@ -7189,9 +7157,7 @@ static BOOL ScrCmd_282(ScriptContext *ctx)
 {
     u16 *v0 = ScriptContext_GetVarPointer(ctx);
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    SystemData *v2;
-
-    v2 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
+    SystemData *v2 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
     if ((SystemData_GetOwnerBirthMonth(v2) == sub_02055BB8(fieldSystem)) && (SystemData_GetOwnerBirthDayOfMonth(v2) == sub_02055BC4(fieldSystem))) {
         *v0 = 1;
@@ -7363,9 +7329,7 @@ static BOOL ScrCmd_289(ScriptContext *ctx)
 static BOOL ScrCmd_28A(ScriptContext *ctx)
 {
     PoffinCase *poffinCase;
-    u16 *v1;
-
-    v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *v1 = ScriptContext_GetVarPointer(ctx);
     poffinCase = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
 
     if (Poffin_GetEmptyCaseSlot(poffinCase) == POFFIN_NONE) {
@@ -7380,9 +7344,7 @@ static BOOL ScrCmd_28A(ScriptContext *ctx)
 static BOOL ScrCmd_307(ScriptContext *ctx)
 {
     PoffinCase *poffinCase;
-    u16 *v1;
-
-    v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *v1 = ScriptContext_GetVarPointer(ctx);
     poffinCase = Poffin_GetSavedataBlock(ctx->fieldSystem->saveData);
     *v1 = Poffin_GetNumberOfEmptySlots(poffinCase);
 
@@ -7610,9 +7572,7 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
 static BOOL ScrCmd_2AC(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    SystemData *v1;
-
-    v1 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
+    SystemData *v1 = SaveData_GetSystemData(ctx->fieldSystem->saveData);
 
     sub_02025D6C(v1, 1);
     return 0;
@@ -7956,9 +7916,7 @@ BOOL ScrCmd_2F4(ScriptContext *ctx)
 static u8 sub_02046524(u16 ctx, u16 param1, u16 param2, u16 param3)
 {
     u16 v0;
-    u8 v1;
-
-    v1 = 0;
+    u8 v1 = 0;
 
     while (TRUE) {
         v0 = (LCRNG_Next() % ((NELEMS(Unk_020EAB96)) + 1));
@@ -7985,9 +7943,7 @@ static u8 sub_02046524(u16 ctx, u16 param1, u16 param2, u16 param3)
 static u8 sub_02046568(u16 ctx, u16 param1, u16 param2, u16 param3)
 {
     u16 v0;
-    u8 v1;
-
-    v1 = 0;
+    u8 v1 = 0;
 
     while (TRUE) {
         v0 = (LCRNG_Next() % ((NELEMS(Unk_020EAB8C)) + 1));
@@ -8109,9 +8065,7 @@ static u32 sub_0204676C(SaveData *saveData)
     int v0;
     Pokemon *v1;
     BoxPokemon *v2;
-    u32 v3;
-
-    v3 = 0;
+    u32 v3 = 0;
 
     {
         Party *v4;
@@ -8207,11 +8161,9 @@ static BOOL ScrCmd_313(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 v1 = ScriptContext_GetVar(ctx);
-    u32 v2, v3, v4;
-
-    v2 = Heap_FndGetTotalFreeSizeForExpHeap(11);
-    v3 = Heap_FndGetTotalFreeSizeForExpHeap(4);
-    v4 = Heap_FndGetTotalFreeSizeForExpHeap(32);
+    u32 v2 = Heap_FndGetTotalFreeSizeForExpHeap(11);
+    u32 v3 = Heap_FndGetTotalFreeSizeForExpHeap(4);
+    u32 v4 = Heap_FndGetTotalFreeSizeForExpHeap(32);
 
     if (v1 == 0) {
         Unk_021C07E8 = v2;

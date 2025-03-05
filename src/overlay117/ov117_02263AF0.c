@@ -384,9 +384,7 @@ static int (*const Unk_ov117_02266B94[])(UnkStruct_ov117_02261280 *, UnkStruct_o
 
 void ov117_02263AF0(BgConfig *param0, int param1, int param2, UnkStruct_ov117_02263DAC *param3)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
+    NARC *v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, Unk_ov117_02266BEC[param2].unk_00, param0, 7, 0, 0, 0, 110);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, Unk_ov117_02266BEC[param2].unk_02, param0, 7, 0, 0, 0, 110);
@@ -621,9 +619,7 @@ static int ov117_02263E1C(UnkStruct_ov117_02261280 *param0, const UnkStruct_ov11
 void ov117_02263EF8(UnkStruct_ov117_02261280 *param0)
 {
     int v0;
-    UnkStruct_ov117_02263EF8 *v1;
-
-    v1 = param0->unk_2FDC;
+    UnkStruct_ov117_02263EF8 *v1 = param0->unk_2FDC;
 
     for (v0 = 0; v0 < 40; v0++) {
         if (v1->unk_00 == 1) {
@@ -1270,9 +1266,7 @@ void ov117_02264BF8(UnkStruct_ov117_02261280 *param0)
     int v3 = 0;
     int v4, v5, v6, v7;
     u16 *v8, *v9;
-    int v10;
-
-    v10 = SpriteManager_FindPlttResourceOffset(param0->unk_28, 10006, NNS_G2D_VRAM_TYPE_2DSUB);
+    int v10 = SpriteManager_FindPlttResourceOffset(param0->unk_28, 10006, NNS_G2D_VRAM_TYPE_2DSUB);
 
     for (v2 = 0; v2 < param0->unk_00->unk_30; v2++) {
         v4 = Unk_ov117_02266B8A[v2];
@@ -1311,9 +1305,7 @@ void ov117_02264D1C(UnkStruct_ov117_02261280 *param0)
     int v3 = 0;
     int v4, v5, v6, v7;
     u16 *v8, *v9;
-    int v10;
-
-    v10 = SpriteManager_FindPlttResourceOffset(param0->unk_28, 10006, NNS_G2D_VRAM_TYPE_2DSUB);
+    int v10 = SpriteManager_FindPlttResourceOffset(param0->unk_28, 10006, NNS_G2D_VRAM_TYPE_2DSUB);
 
     for (v2 = 0; v2 < param0->unk_00->unk_30; v2++) {
         v4 = Unk_ov117_02266B82[v2];
@@ -2226,9 +2218,7 @@ static BOOL ov117_02266030(UnkStruct_ov117_02265EC8 *param0)
 
 ManagedSprite *ov117_02266130(UnkStruct_ov117_02261280 *param0)
 {
-    ManagedSprite *v0;
-
-    v0 = SpriteSystem_NewSprite(param0->unk_24, param0->unk_28, &Unk_ov117_02266E6C);
+    ManagedSprite *v0 = SpriteSystem_NewSprite(param0->unk_24, param0->unk_28, &Unk_ov117_02266E6C);
     Sprite_TickFrame(v0->sprite);
     return v0;
 }
@@ -2237,9 +2227,7 @@ void ov117_02266150(UnkStruct_ov117_02261280 *param0)
 {
     Strbuf *v0;
     int v1, v2, v3;
-    u32 v4;
-
-    v4 = param0->unk_3D4C;
+    u32 v4 = param0->unk_3D4C;
     for (v1 = 6 - 1; v1 >= 0; v1--) {
         GF_ASSERT(param0->unk_15A8.unk_108[v1].unk_00 == NULL);
         v0 = MessageLoader_GetNewStrbuf(param0->unk_80, 4 + (v4 % 10));
@@ -2268,9 +2256,7 @@ void ov117_02266238(UnkStruct_ov117_02261280 *param0, ManagedSprite *param1)
 
 ManagedSprite *ov117_02266244(UnkStruct_ov117_02261280 *param0)
 {
-    ManagedSprite *v0;
-
-    v0 = SpriteSystem_NewSprite(param0->unk_24, param0->unk_28, &Unk_ov117_02266EA0);
+    ManagedSprite *v0 = SpriteSystem_NewSprite(param0->unk_24, param0->unk_28, &Unk_ov117_02266EA0);
 
     ManagedSprite_SetDrawFlag(v0, 0);
     Sprite_TickFrame(v0->sprite);

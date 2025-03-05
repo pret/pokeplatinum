@@ -589,9 +589,7 @@ s16 ov12_02225FD4(s16 param0, int param1, fx32 param2)
 void ov12_02226024(PokemonSprite *param0, s16 param1, s16 param2, fx32 param3, int param4)
 {
     s16 v0;
-    s16 v1;
-
-    v1 = param1;
+    s16 v1 = param1;
     v0 = ov12_02225FD4(param1, param2, param3);
 
     if (param4 == 1) {
@@ -896,9 +894,7 @@ static void ov12_022264F4(UnkStruct_ov12_02226490 *param0)
 
 static void ov12_02226504(UnkStruct_ov12_02226504 *param0)
 {
-    const void *v0;
-
-    v0 = BufferManager_GetReadBuffer(param0->bufferManager);
+    const void *v0 = BufferManager_GetReadBuffer(param0->bufferManager);
 
     BufferManager_StopDMA();
     BufferManager_StartDMA(v0, (void *)param0->unk_620, 4, 1);
@@ -920,9 +916,7 @@ static void ov12_0222653C(void *param0)
 
 UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, int param2)
 {
-    UnkStruct_ov12_02226504 *v0;
-
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov12_02226504));
+    UnkStruct_ov12_02226504 *v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov12_02226504));
     memset(v0, 0, sizeof(UnkStruct_ov12_02226504));
 
     GF_ASSERT(v0);
@@ -1215,9 +1209,7 @@ void ov12_02226924(UnkStruct_ov12_0221FCDC *param0)
 
 void ov12_02226954(UnkStruct_ov12_0221FCDC *param0)
 {
-    PaletteData *v0;
-
-    v0 = ov12_0222332C(param0);
+    PaletteData *v0 = ov12_0222332C(param0);
 
     if (ov12_0221FDD4(param0) == 1) {
         PaletteData_CopyBuffer(v0, 0, 0, 0, 0, 16 * 3 * 2);

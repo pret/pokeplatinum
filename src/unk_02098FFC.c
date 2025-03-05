@@ -167,9 +167,7 @@ UnkStruct_0209916C *sub_0209916C(UnkStruct_0209903C *param0, int param1, u16 par
 
 void sub_0209933C(UnkStruct_0209903C *param0, UnkStruct_0209916C *param1, int param2)
 {
-    SpriteResource *v0;
-
-    v0 = param0->unk_1B4[1]->resources[param1->unk_00];
+    SpriteResource *v0 = param0->unk_1B4[1]->resources[param1->unk_00];
 
     SpriteResourceCollection_ModifyPalette(param0->unk_1A4[1], v0, 88, 3 + param2, 0, param0->unk_00);
     SpriteTransfer_ReplacePlttData(v0);
@@ -192,9 +190,7 @@ static void sub_020993A8(UnkStruct_0209903C *param0)
     SpriteResourceCollection *v1;
     SpriteResourceList *v2;
     SpriteResource *v3;
-    NARC *v4;
-
-    v4 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUACT, param0->unk_00);
+    NARC *v4 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUACT, param0->unk_00);
 
     v2 = param0->unk_1B4[0];
     v2->resources[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_1A4[0], v4, 0, 0, 0xe000, param0->unk_0E, param0->unk_00);

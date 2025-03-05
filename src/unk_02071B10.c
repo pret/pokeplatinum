@@ -189,9 +189,7 @@ static void sub_02071C80(const u8 param0, const u8 param1, int *param2)
 
 BOOL sub_02071CB4(FieldSystem *fieldSystem, int param1)
 {
-    UnkStruct_02027860 *v0;
-
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
 
     if (param1 == sub_02027F80(v0)) {
         return 1;

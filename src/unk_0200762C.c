@@ -1234,9 +1234,7 @@ static void sub_02008B78(UnkStruct_02007768 *param0)
     int v1, v2, v3;
     u8 *v4;
     void *v5;
-    u8 v6;
-
-    v6 = 0;
+    u8 v6 = 0;
 
     for (v1 = 0; v1 < 4; v1++) {
         if ((param0->unk_00[v1].unk_00_0) && (param0->unk_00[v1].unk_00_7)) {
@@ -1349,9 +1347,7 @@ static void sub_02008FC8(UnkStruct_02007768 *param0)
     int v1, v2, v3;
     u16 *v4;
     void *v5;
-    u8 v6;
-
-    v6 = 0;
+    u8 v6 = 0;
 
     for (v1 = 0; v1 < 4; v1++) {
         if ((param0->unk_00[v1].unk_00_0) && (param0->unk_00[v1].unk_00_8)) {
@@ -1415,9 +1411,7 @@ static void sub_02008FC8(UnkStruct_02007768 *param0)
 
 static u8 sub_020091AC(u8 param0)
 {
-    u8 v0;
-
-    v0 = (param0 & 0xf0) >> 4;
+    u8 v0 = (param0 & 0xf0) >> 4;
     v0 |= (param0 & 0xf) << 4;
 
     return v0;
@@ -1438,9 +1432,7 @@ void sub_020091D8(u8 *param0, u32 param1, BOOL param2)
     int v1;
     u8 v2, v3, v4;
     int v5;
-    u32 v6;
-
-    v6 = param1;
+    u32 v6 = param1;
 
     for (v1 = 0; v1 < 4; v1++) {
         v0 = Unk_021007A4[v1];

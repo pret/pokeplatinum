@@ -766,9 +766,7 @@ static void ov21_021E17EC(UnkStruct_ov21_021E14D4 *param0, int param1, int param
 
 static BOOL ov21_021E1808(UnkStruct_ov21_021E14D4 *param0, UnkStruct_ov21_021E0D7C *param1)
 {
-    BOOL v0;
-
-    v0 = ov21_021D2664(&param0->unk_18);
+    BOOL v0 = ov21_021D2664(&param0->unk_18);
     ov21_021D2164(param1->unk_00, param0->unk_18.unk_00, param0->unk_18.unk_04);
 
     return v0;
@@ -781,9 +779,7 @@ static void ov21_021E1824(UnkStruct_ov21_021E14D4 *param0)
 
 static BOOL ov21_021E1840(UnkStruct_ov21_021E14D4 *param0, UnkStruct_ov21_021E0D7C *param1)
 {
-    BOOL v0;
-
-    v0 = ov21_021D2664(&param0->unk_38);
+    BOOL v0 = ov21_021D2664(&param0->unk_38);
     ov21_021D1848(param1->unk_00, param0->unk_38.unk_00, param0->unk_38.unk_04);
 
     return v0;
@@ -831,9 +827,7 @@ static void ov21_021E18A0(UnkStruct_ov21_021E0D7C *param0, int param1, int param
 static void ov21_021E18DC(UnkStruct_ov21_021E0D7C *param0, int param1, int param2, int param3)
 {
     Strbuf *v0 = PokedexText_Category(param2, param3, param1);
-    u32 v1;
-
-    v1 = 240 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
+    u32 v1 = 240 - Font_CalcStrbufWidth(FONT_SYSTEM, v0, 0);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_00->window, FONT_SYSTEM, v0, v1, 112, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     PokedexText_Free(v0);

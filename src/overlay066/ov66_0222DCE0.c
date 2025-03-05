@@ -82,9 +82,7 @@ int ov66_0222DD6C(OverlayManager *param0, int *param1)
 
 int ov66_0222DD90(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov66_0222DD90 *v0;
-
-    v0 = OverlayManager_Data(param0);
+    UnkStruct_ov66_0222DD90 *v0 = OverlayManager_Data(param0);
 
     SysTask_Done(v0->unk_0C);
     SetVBlankCallback(NULL, NULL);
@@ -108,9 +106,7 @@ int ov66_0222DD90(OverlayManager *param0, int *param1)
 
 static void ov66_0222DDDC(SysTask *param0, void *param1)
 {
-    UnkStruct_ov66_0222DD90 *v0;
-
-    v0 = param1;
+    UnkStruct_ov66_0222DD90 *v0 = param1;
 
     ov66_02230CE8(v0->unk_08);
     ov66_0222DFF4(v0->unk_04);

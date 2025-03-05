@@ -115,9 +115,7 @@ static int ov66_02231404(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4
 
 UnkStruct_ov66_02230C90 *ov66_02230C44(BOOL param0, SaveData *param1, UnkStruct_ov66_0222DCE0_sub1 *param2, UnkStruct_ov66_0222DFF8 *param3, u32 param4)
 {
-    UnkStruct_ov66_02230C90 *v0;
-
-    v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov66_02230C90));
+    UnkStruct_ov66_02230C90 *v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov66_02230C90));
     memset(v0, 0, sizeof(UnkStruct_ov66_02230C90));
 
     v0->unk_3C = param3;
@@ -355,9 +353,7 @@ static void ov66_02230E68(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
 static int ov66_02230E90(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1)
 {
-    UnkStruct_ov66_02230E68 *v0;
-
-    v0 = param1->unk_00;
+    UnkStruct_ov66_02230E68 *v0 = param1->unk_00;
 
     switch (v0->unk_18) {
     case 0:
@@ -506,9 +502,7 @@ static void ov66_02231024(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
 static void ov66_02231058(UnkStruct_ov66_02230E4C *param0)
 {
-    UnkStruct_ov66_02231024 *v0;
-
-    v0 = param0->unk_00;
+    UnkStruct_ov66_02231024 *v0 = param0->unk_00;
     Heap_FreeToHeap(param0->unk_00);
 }
 
@@ -525,9 +519,7 @@ static void ov66_02231064(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
 static int ov66_02231074(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1)
 {
-    UnkStruct_ov66_02231024 *v0;
-
-    v0 = param1->unk_00;
+    UnkStruct_ov66_02231024 *v0 = param1->unk_00;
 
     if (v0->unk_10 == 0) {
         return 1;
@@ -555,9 +547,7 @@ static void ov66_0223108C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
 static void ov66_022310C4(UnkStruct_ov66_02230E4C *param0)
 {
-    UnkStruct_ov115_02260440 *v0;
-
-    v0 = param0->unk_00;
+    UnkStruct_ov115_02260440 *v0 = param0->unk_00;
 
     ov66_02230DBC(&v0->unk_00);
     Heap_FreeToHeap(param0->unk_00);
@@ -624,9 +614,7 @@ static void ov66_02231134(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
 static void ov66_02231164(UnkStruct_ov66_02230E4C *param0)
 {
-    UnkStruct_ov66_02231134 *v0;
-
-    v0 = param0->unk_00;
+    UnkStruct_ov66_02231134 *v0 = param0->unk_00;
 
     ov66_02230DBC(&v0->unk_00);
     Heap_FreeToHeap(param0->unk_00);
@@ -692,9 +680,7 @@ static void ov66_022311D4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 
 static void ov66_0223120C(UnkStruct_ov66_02230E4C *param0)
 {
-    UnkStruct_ov117_02260440 *v0;
-
-    v0 = param0->unk_00;
+    UnkStruct_ov117_02260440 *v0 = param0->unk_00;
 
     ov66_02230DBC(&v0->unk_00);
     Heap_FreeToHeap(param0->unk_00);

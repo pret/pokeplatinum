@@ -353,9 +353,7 @@ static void ov12_02234B64(SysTask *param0, void *param1)
 static void ov12_02234BD8(UnkStruct_ov12_02234BD8 *param0, int param1)
 {
     int v0;
-    int v1;
-
-    v1 = ((360 * 0xffff) / 360) / 6;
+    int v1 = ((360 * 0xffff) / 360) / 6;
 
     for (v0 = 0; v0 < 6; v0++) {
         ov12_02225A5C(&param0->unk_30[v0], ((0 * 0xffff) / 360), ((180 * 0xffff) / 360), 0, 0, (FX32_ONE * 50), 0, 48);

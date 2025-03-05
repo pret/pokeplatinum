@@ -1425,9 +1425,7 @@ static int sub_02010178(int param0, int param1)
 
 static int sub_02010190(int param0, int param1, int param2)
 {
-    int v0;
-
-    v0 = param1 - param0;
+    int v0 = param1 - param0;
     v0 *= 128;
     v0 /= param2;
 
@@ -1436,9 +1434,7 @@ static int sub_02010190(int param0, int param1, int param2)
 
 static int sub_020101A0(int param0, int param1)
 {
-    int v0;
-
-    v0 = param0 + param1;
+    int v0 = param0 + param1;
 
     if (v0 < 0) {
         v0 = 0;
@@ -1608,9 +1604,7 @@ static inline void inline_0201035C_sub(int param0, int param1, int param2, int p
 
 static inline void inline_0201035C(UnkStruct_02010588 *param0, int param1, int param2)
 {
-    UnkStruct_02010FC0 *v0;
-
-    v0 = sub_02010604(param0, param2);
+    UnkStruct_02010FC0 *v0 = sub_02010604(param0, param2);
     inline_0201035C_sub(v0->unk_00[0][param1], 0, v0->unk_00[1][param1], 192, v0->unk_600, param0->unk_08);
 }
 
@@ -1814,9 +1808,7 @@ static inline void inline_020107D8_sub_1(int param0, BOOL param1, int param4, in
 
 static inline void inline_020107D8(UnkStruct_0201076C *param0, int param1, int param2)
 {
-    UnkStruct_02012174 *v0;
-
-    v0 = &param0->unk_00[param2];
+    UnkStruct_02012174 *v0 = &param0->unk_00[param2];
 
     if (v0->unk_C0[param1] == 0) {
         inline_020107D8_sub(GX_BLEND_ALL, 1, param0->unk_309);
@@ -2136,9 +2128,7 @@ static void sub_02011180(UnkStruct_0201109C *param0)
     int v2;
     int v3;
     int v4;
-    UnkStruct_02010FC0 *v5;
-
-    v5 = sub_02010604(v0, 0);
+    UnkStruct_02010FC0 *v5 = sub_02010604(v0, 0);
 
     for (v1 = 0; v1 < 192; v1++) {
         if (v1 <= param0->unk_14) {
@@ -2260,9 +2250,7 @@ static void sub_020113B0(UnkStruct_02011360 *param0)
     int v0;
     int v1, v2;
     int v3[192];
-    UnkStruct_02010FC0 *v4;
-
-    v4 = sub_02010604(&param0->unk_00, 0);
+    UnkStruct_02010FC0 *v4 = sub_02010604(&param0->unk_00, 0);
     sub_02010124(param0->unk_0C / 128, v3, 192, 0);
 
     for (v0 = 0; v0 < 192; v0++) {
@@ -2381,9 +2369,7 @@ static void sub_020115B8(UnkStruct_02011568 *param0)
     int v5;
     int v6;
     int v7, v8;
-    UnkStruct_02010FC0 *v9;
-
-    v9 = sub_02010604(&param0->unk_00, 0);
+    UnkStruct_02010FC0 *v9 = sub_02010604(&param0->unk_00, 0);
     v5 = FX_Mul(FX_SinIdx(param0->unk_10), param0->unk_0C);
 
     v5 >>= FX32_SHIFT;
@@ -2536,9 +2522,7 @@ static void sub_0201189C(UnkStruct_0201184C *param0)
 static void sub_020118AC(UnkStruct_0201184C *param0)
 {
     int v0;
-    UnkStruct_02010FC0 *v1;
-
-    v1 = sub_02010604(&param0->unk_00, 0);
+    UnkStruct_02010FC0 *v1 = sub_02010604(&param0->unk_00, 0);
     memset(v1->unk_300, 0, 768);
 
     for (v0 = (param0->unk_10 - 1); v0 >= 0; v0--) {
@@ -2743,9 +2727,7 @@ static void sub_02011B58(UnkStruct_02011AFC *param0)
 
 static void sub_02011C7C(UnkStruct_02011C7C *param0, int param1, int param2)
 {
-    int v0;
-
-    v0 = param0->unk_08 * param1;
+    int v0 = param0->unk_08 * param1;
     v0 = v0 / param2;
 
     param0->unk_00 = v0 + param0->unk_04;
@@ -2899,9 +2881,7 @@ static void sub_02011E60(UnkStruct_02011E04 *param0)
 
 static void sub_02011F2C(UnkStruct_02011F2C *param0, int param1, int param2)
 {
-    int v0;
-
-    v0 = param0->unk_08 * param1;
+    int v0 = param0->unk_08 * param1;
     v0 = v0 / param2;
 
     param0->unk_00 = v0 + param0->unk_04;
@@ -3129,9 +3109,7 @@ static BOOL sub_02012228(UnkStruct_0200F7A0 *param0)
 
 static void sub_02012290(UnkStruct_02012290 *param0, UnkStruct_0201006C *param1, int param2, int param3, int param4, UnkStruct_02010658 *param5, UnkStruct_0200F600 *param6, int param7)
 {
-    int v0;
-
-    v0 = FX_Mul(param2 * FX32_ONE, param1->unk_14) >> FX32_SHIFT;
+    int v0 = FX_Mul(param2 * FX32_ONE, param1->unk_14) >> FX32_SHIFT;
 
     param0->unk_384 = param2 - v0;
     param0->unk_380 = param1;

@@ -52,9 +52,7 @@ BOOL ScrCmd_078(ScriptContext *param0)
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *v1 = fieldSystem->saveData;
     u16 *v2 = SaveData_GetCoins(v1);
-    u16 *v3;
-
-    v3 = ScriptContext_GetVarPointer(param0);
+    u16 *v3 = ScriptContext_GetVarPointer(param0);
     *v3 = (u16)Coins_GetValue(v2);
 
     return 0;
@@ -65,9 +63,7 @@ BOOL ScrCmd_079(ScriptContext *param0)
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *v1 = fieldSystem->saveData;
     u16 *v2 = SaveData_GetCoins(v1);
-    u16 v3;
-
-    v3 = ScriptContext_GetVar(param0);
+    u16 v3 = ScriptContext_GetVar(param0);
     Coins_Add(v2, v3);
 
     return 0;
@@ -78,9 +74,7 @@ BOOL ScrCmd_07A(ScriptContext *param0)
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *v1 = fieldSystem->saveData;
     u16 *v2 = SaveData_GetCoins(v1);
-    u16 v3;
-
-    v3 = ScriptContext_GetVar(param0);
+    u16 v3 = ScriptContext_GetVar(param0);
     Coins_Subtract(v2, v3);
 
     return 0;
@@ -92,9 +86,7 @@ BOOL ScrCmd_2A8(ScriptContext *param0)
     SaveData *v1 = fieldSystem->saveData;
     u16 *v2 = SaveData_GetCoins(v1);
     u16 *v3 = ScriptContext_GetVarPointer(param0);
-    u16 v4;
-
-    v4 = *v3;
+    u16 v4 = *v3;
 
     Coins_Subtract(v2, v4);
 
@@ -130,10 +122,8 @@ BOOL ScrCmd_2A9(ScriptContext *param0)
     u16 *v3 = SaveData_GetCoins(v2);
     u16 *v4 = ScriptContext_GetVarPointer(param0);
     u16 *v5 = ScriptContext_GetVarPointer(param0);
-    u32 v6, v7;
-
-    v6 = *v5;
-    v7 = Coins_GetValue(v3);
+    u32 v6 = *v5;
+    u32 v7 = Coins_GetValue(v3);
 
     if (v7 < v6) {
         *v4 = 0;

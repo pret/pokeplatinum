@@ -486,9 +486,7 @@ static void ov6_0223E2FC(SysTask *param0, void *param1)
 
 static void ov6_0223E318(FieldSystem *fieldSystem, u32 param1, BOOL param2)
 {
-    MapObject *v0;
-
-    v0 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, param1);
+    MapObject *v0 = MapObjMan_LocalMapObjByIndex(fieldSystem->mapObjMan, param1);
 
     if (param2 == 1) {
         MapObject_SetStatusFlagOn(v0, MAP_OBJ_STATUS_HIDE_SHADOW);
@@ -752,9 +750,7 @@ UnkStruct_ov5_021D1BEC *ov6_0223E6EC(FieldSystem *fieldSystem)
         ov6_0223E574,
         ov6_0223E6D4
     };
-    UnkStruct_ov5_021D1BEC *v1;
-
-    v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
+    UnkStruct_ov5_021D1BEC *v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
@@ -864,9 +860,7 @@ UnkStruct_ov5_021D1BEC *ov6_0223E814(FieldSystem *fieldSystem)
         ov6_0223E7FC,
         ov6_0223E808
     };
-    UnkStruct_ov5_021D1BEC *v1;
-
-    v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
+    UnkStruct_ov5_021D1BEC *v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
@@ -1686,9 +1680,7 @@ UnkStruct_ov5_021D1BEC *ov6_0223FCCC(FieldSystem *fieldSystem)
     static const UnkStruct_ov6_0223E6EC v0 = {
         1024, sizeof(UnkStruct_ov6_0223EA98), ov6_0223EB4C, ov6_0223EBD0, ov6_0223FAF8, ov6_0223FCC0
     };
-    UnkStruct_ov5_021D1BEC *v1;
-
-    v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
+    UnkStruct_ov5_021D1BEC *v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
@@ -1942,9 +1934,7 @@ static void ov6_0223FF7C(UnkStruct_ov6_0223FDE4 *param0)
 
 static BOOL ov6_0223FFC8(UnkStruct_ov6_0223FDE4 *param0)
 {
-    BOOL v0;
-
-    v0 = ov6_0223FD18(&param0->unk_08, param0->unk_44);
+    BOOL v0 = ov6_0223FD18(&param0->unk_08, param0->unk_44);
     ov6_0223FD18(&param0->unk_18, param0->unk_44);
 
     return v0;
@@ -2006,9 +1996,7 @@ static void ov6_02240064(SysTask *param0, void *param1)
 
 UnkStruct_ov6_022400A8 *ov6_02240074(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov6_022400A8 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_022400A8));
+    UnkStruct_ov6_022400A8 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_022400A8));
     memset(v0, 0, sizeof(UnkStruct_ov6_022400A8));
     v0->fieldSystem = fieldSystem;
     v0->unk_12C = 5;
@@ -2116,9 +2104,7 @@ static void ov6_02240240(UnkStruct_ov6_02240240 *param0, FieldSystem *fieldSyste
 static void ov6_02240260(UnkStruct_ov6_02240260 *param0, u32 param1, NNSFndAllocator *param2)
 {
     int v0;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, param1);
+    NARC *v1 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, param1);
 
     ov6_0223FD60(&param0->unk_80, v1, 6, param1);
 
@@ -2799,9 +2785,7 @@ UnkStruct_ov6_02240C44 *ov6_02240B9C(u32 heapID, FieldSystem *fieldSystem)
 void ov6_02240C44(UnkStruct_ov6_02240C44 *param0, u32 param1)
 {
     VecFx32 v0;
-    MapObject *v1;
-
-    v1 = MapObjMan_LocalMapObjByIndex(param0->fieldSystem->mapObjMan, param1);
+    MapObject *v1 = MapObjMan_LocalMapObjByIndex(param0->fieldSystem->mapObjMan, param1);
 
     MapObject_GetPosPtr(v1, &v0);
 

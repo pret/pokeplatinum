@@ -587,9 +587,7 @@ static const ListMenuTemplate Unk_ov70_0226D644 = {
 int ov70_0225D9A4(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov70_0225DEE8 *v0;
-    UnkStruct_ov66_02230E68 *v1;
-
-    v1 = OverlayManager_Args(param0);
+    UnkStruct_ov66_02230E68 *v1 = OverlayManager_Args(param0);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_112, 0x3a000);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_113, 0x3d000);
@@ -1039,9 +1037,7 @@ void ov70_0225E194(UnkStruct_ov70_0225DEE8 *param0)
 
 int ov70_0225E1C4(UnkStruct_ov70_0225DEE8 *param0)
 {
-    u32 v0;
-
-    v0 = ov70_0225EED8(&param0->unk_39C);
+    u32 v0 = ov70_0225EED8(&param0->unk_39C);
 
     switch (v0) {
     case 0xfffffffe:
@@ -1217,9 +1213,7 @@ void ov70_0225E44C(UnkStruct_ov70_0225DEE8 *param0)
 
 BOOL ov70_0225E45C(UnkStruct_ov70_0225DEE8 *param0)
 {
-    BOOL v0;
-
-    v0 = param0->unk_43C;
+    BOOL v0 = param0->unk_43C;
     param0->unk_43C = 0;
 
     return v0;
@@ -1490,9 +1484,7 @@ static void ov70_0225E970(UnkStruct_ov70_0225DEE8 *param0)
     BOOL v2;
     u32 v3;
     u32 v4;
-    BOOL v5;
-
-    v5 = ov66_0222E190(param0->unk_34);
+    BOOL v5 = ov66_0222E190(param0->unk_34);
 
     for (v0 = 0; v0 < UnkEnum_ov66_02232F38_03; v0++) {
         v2 = ov66_02233184(v0);
@@ -1935,9 +1927,7 @@ static void ov70_0225F184(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F2
 {
     u32 v0;
     Strbuf *v1;
-    UnkStruct_ov65_0222F6EC *v2;
-
-    v2 = sub_020382F8();
+    UnkStruct_ov65_0222F6EC *v2 = sub_020382F8();
     v0 = ov66_022316F4(v2->unk_00, v2->unk_04);
 
     ov70_0225F2A8(param1, v2->unk_00, 5, 0, 2);
@@ -1960,9 +1950,7 @@ static void ov70_0225F1C0(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F2
 
 static void ov70_0225F1F0(UnkStruct_ov70_0225F114 *param0, UnkStruct_ov70_0225F208 *param1, int param2)
 {
-    Strbuf *v0;
-
-    v0 = ov70_0225F288(param1, 2, 14);
+    Strbuf *v0 = ov70_0225F288(param1, 2, 14);
     ov70_0225F14C(param0, v0);
 }
 
@@ -2056,9 +2044,7 @@ static void ov70_0225F344(UnkStruct_ov70_0225DEE8 *param0)
 
 static void ov70_0225F350(UnkStruct_ov70_0225F350 *param0, const UnkStruct_ov70_02263910 *param1, UnkStruct_ov70_0225E4EC *param2, const TrainerInfo *param3, u32 param4)
 {
-    u32 v0;
-
-    v0 = TrainerInfo_Gender(param3);
+    u32 v0 = TrainerInfo_Gender(param3);
 
     param0->unk_14C = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param4);
 
@@ -2853,9 +2839,7 @@ static void ov70_022602C0(UnkStruct_ov70_0225FA84 *param0)
 
 static void ov70_022602DC(UnkStruct_ov70_0225FA84 *param0, UnkStruct_ov70_0225F208 *param1, u32 param2, u32 param3, u8 param4, u8 param5, u32 param6)
 {
-    Strbuf *v0;
-
-    v0 = ov70_0225F288(param1, 1, param3);
+    Strbuf *v0 = ov70_0225F288(param1, 1, param3);
     Text_AddPrinterWithParamsAndColor(&param0->unk_04[param2], FONT_SYSTEM, v0, param4, param5, TEXT_SPEED_NO_TRANSFER, param6, NULL);
 }
 

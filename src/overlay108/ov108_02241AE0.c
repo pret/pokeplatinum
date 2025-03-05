@@ -1081,9 +1081,7 @@ static void ov108_0224295C(UnkStruct_ov108_02241DB0 *param0, int *param1, int pa
 
 static void ov108_02242964(UnkStruct_ov108_02241DB0 *param0, int param1)
 {
-    u8 v0;
-
-    v0 = *param0->unk_1C;
+    u8 v0 = *param0->unk_1C;
     param0->unk_10++;
 
     if (param0->unk_10 >= Unk_ov108_0224368F[v0][0]) {
@@ -1130,9 +1128,7 @@ static u8 ov108_02242A04(u8 param0, u8 param1)
 
 static u16 ov108_02242A14(UnkStruct_ov108_02241DB0 *param0)
 {
-    u16 v0;
-
-    v0 = param0->unk_28;
+    u16 v0 = param0->unk_28;
 
     if (ov104_0223C000(param0->unk_09) == 1) {
         if (param0->unk_426 > param0->unk_28) {
@@ -1475,9 +1471,7 @@ static void ov108_02242E10(UnkStruct_ov108_02241DB0 *param0)
 {
     int v0, v1, v2, v3;
     u16 v4, v5;
-    u8 v6, v7;
-
-    v6 = 0;
+    u8 v6 = 0, v7;
 
     for (v1 = 0; v1 < (4 * 4); v1++) {
         v7 = ov108_02242EF4(param0, param0->unk_11);

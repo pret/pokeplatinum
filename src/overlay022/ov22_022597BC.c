@@ -111,9 +111,7 @@ void ov22_02259838(UnkStruct_ov22_02259820 *param0, int param1)
 void ov22_022598A0(UnkStruct_ov22_02259820 *param0)
 {
     NNSG2dScreenData *v0;
-    void *v1;
-
-    v1 = Graphics_GetScrnData(param0->unk_00->unk_04, param0->unk_00->unk_08, 0, &v0, param0->unk_14);
+    void *v1 = Graphics_GetScrnData(param0->unk_00->unk_04, param0->unk_00->unk_08, 0, &v0, param0->unk_14);
 
     ov22_02259ABC(param0->unk_00->unk_00, param0->unk_00->unk_1C, v0, param0->unk_00->unk_14, param0->unk_00->unk_18, param0->unk_00->unk_0C, param0->unk_00->unk_10, param0->unk_00->unk_28, param0->unk_00->unk_20);
     Heap_FreeToHeap(v1);
@@ -124,9 +122,7 @@ void ov22_022598A0(UnkStruct_ov22_02259820 *param0)
 void ov22_022598F4(UnkStruct_ov22_022597BC *param0, UnkStruct_ov22_022599A0 *param1, int param2, int param3, int param4, BOOL *param5)
 {
     UnkStruct_ov22_022598F4 *v0;
-    SysTask *v1;
-
-    v1 = SysTask_StartAndAllocateParam(ov22_02259A4C, sizeof(UnkStruct_ov22_022598F4), 0, 13);
+    SysTask *v1 = SysTask_StartAndAllocateParam(ov22_02259A4C, sizeof(UnkStruct_ov22_022598F4), 0, 13);
     v0 = SysTask_GetParam(v1);
 
     v0->unk_00 = param0;
@@ -166,10 +162,8 @@ static void ov22_022599A0(UnkStruct_ov22_022599A0 *param0, int *param1, int *par
     NNSG2dScreenData *v1;
     void *v2;
     int v3, v4;
-    int v5, v6;
-
-    v5 = param0->unk_14 / 8;
-    v6 = param0->unk_18 / 8;
+    int v5 = param0->unk_14 / 8;
+    int v6 = param0->unk_18 / 8;
 
     ov22_02259B3C(param0->unk_04, param0->unk_08, param0->unk_00, param0->unk_1C, param0->unk_28, param0->unk_2C);
 
@@ -229,9 +223,7 @@ static void ov22_02259ABC(BgConfig *param0, int param1, const NNSG2dScreenData *
 
 static void ov22_02259B3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5)
 {
-    UnkStruct_ov22_02259B3C *v0;
-
-    v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_ov22_02259B3C));
+    UnkStruct_ov22_02259B3C *v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_ov22_02259B3C));
     memset(v0, 0, sizeof(UnkStruct_ov22_02259B3C));
 
     v0->unk_08 = Graphics_GetCharData(param0, param1, 0, &v0->unk_04, param5);
@@ -244,9 +236,7 @@ static void ov22_02259B3C(u32 param0, u32 param1, BgConfig *param2, u32 param3, 
 
 static void ov22_02259B8C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
 {
-    UnkStruct_ov22_02259B8C *v0;
-
-    v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_ov22_02259B8C));
+    UnkStruct_ov22_02259B8C *v0 = Heap_AllocFromHeap(param5, sizeof(UnkStruct_ov22_02259B8C));
     memset(v0, 0, sizeof(UnkStruct_ov22_02259B8C));
 
     v0->unk_04 = Graphics_GetPlttData(param0, param1, &v0->unk_00, param5);

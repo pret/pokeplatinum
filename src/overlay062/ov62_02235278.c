@@ -140,9 +140,7 @@ static BOOL ov62_02235324(UnkStruct_0208C06C *param0)
 
 static BOOL ov62_02235444(UnkStruct_0208C06C *param0)
 {
-    BOOL v0;
-
-    v0 = ov62_02235008(param0);
+    BOOL v0 = ov62_02235008(param0);
 
     if (v0) {
         if (param0->unk_14.unk_30 == 1) {

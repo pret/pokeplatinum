@@ -205,9 +205,7 @@ BOOL sub_020799F0(const PCBoxes *param0, int *param1, int *param2)
 u32 sub_02079A50(const PCBoxes *param0)
 {
     int v0, v1;
-    u32 v2;
-
-    v2 = 0;
+    u32 v2 = 0;
 
     for (v0 = 0; v0 < 18; v0++) {
         for (v1 = 0; v1 < (5 * 6); v1++) {

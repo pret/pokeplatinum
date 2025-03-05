@@ -1695,9 +1695,7 @@ static void sub_02037EB0(void)
 
 static void sub_02037EB4(void)
 {
-    int v0;
-
-    v0 = ov4_021D12D4(0);
+    int v0 = ov4_021D12D4(0);
 
     if (v0 < 0) {
         sub_02036C94(sub_02037EB0, 0);
@@ -2580,9 +2578,7 @@ static void sub_02038C1C(void)
 
 static void sub_02038C68(void)
 {
-    BOOL v0;
-
-    v0 = sub_02038D44();
+    BOOL v0 = sub_02038D44();
 
     if (v0 == 0) {
         return;
@@ -2758,9 +2754,7 @@ static void sub_02038DEC(void)
 static void sub_02038E38(void)
 {
     BOOL v0;
-    int v1;
-
-    v1 = ov4_021D12D4(1);
+    int v1 = ov4_021D12D4(1);
 
     if (v1 < 0) {
         sub_02036C94(sub_02037EB0, 0);
@@ -2786,9 +2780,7 @@ static void sub_02038E38(void)
 
 static void sub_02038E84(void)
 {
-    int v0;
-
-    v0 = ov4_021D12D4(0);
+    int v0 = ov4_021D12D4(0);
 
     if (v0 < 0) {
         sub_02036C94(sub_02037EB0, 0);

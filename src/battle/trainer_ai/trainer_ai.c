@@ -4101,9 +4101,7 @@ int TrainerAI_PickCommand(BattleSystem *battleSys, int battler)
     u32 battleType;
     int end;
     Pokemon *mon;
-    BattleContext *battleCtx;
-
-    battleCtx = battleSys->battleCtx;
+    BattleContext *battleCtx = battleSys->battleCtx;
     battleType = BattleSystem_BattleType(battleSys);
 
     if ((battleType & BATTLE_TYPE_TRAINER) || Battler_Side(battleSys, battler) == BATTLE_SIDE_PLAYER) {
@@ -4171,9 +4169,7 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
     BOOL result;
     Party *party;
     Pokemon *mon;
-    BattleContext *battleCtx;
-
-    battleCtx = battleSys->battleCtx;
+    BattleContext *battleCtx = battleSys->battleCtx;
     AI_CONTEXT.usedItemCondition[battler >> 1] = 0;
     result = FALSE;
 

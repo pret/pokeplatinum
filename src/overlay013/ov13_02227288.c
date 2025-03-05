@@ -215,9 +215,7 @@ static void ov13_022274A8(UnkStruct_ov13_02227244 *param0, u32 param1, u32 param
 static void ov13_0222754C(UnkStruct_ov13_02227244 *param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, TextColor param6)
 {
     Strbuf *v0;
-    Window *v1;
-
-    v1 = &param0->unk_2C[param3];
+    Window *v1 = &param0->unk_2C[param3];
 
     Window_FillTilemap(v1, 0);
 
@@ -236,9 +234,7 @@ static void ov13_0222754C(UnkStruct_ov13_02227244 *param0, u32 param1, u32 param
 static void ov13_022275E0(UnkStruct_ov13_02227244 *param0, u32 param1)
 {
     u32 v0;
-    u32 v1;
-
-    v1 = param0->unk_00->unk_2C[param0->unk_114D] * 6 + param1;
+    u32 v1 = param0->unk_00->unk_2C[param0->unk_114D] * 6 + param1;
 
     if (param0->unk_31 == 0) {
         v0 = 0;

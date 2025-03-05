@@ -39,9 +39,7 @@ void sub_02030D10(SaveData *param0)
 
 BOOL sub_02030D20(SaveData *param0)
 {
-    UnkStruct_02030CEC *v0;
-
-    v0 = SaveData_SaveTable(param0, 35);
+    UnkStruct_02030CEC *v0 = SaveData_SaveTable(param0, 35);
 
     if (v0->unk_00[0] == '\0') {
         return 0;
@@ -52,9 +50,7 @@ BOOL sub_02030D20(SaveData *param0)
 
 void sub_02030D38(SaveData *param0, const char *param1)
 {
-    UnkStruct_02030CEC *v0;
-
-    v0 = SaveData_SaveTable(param0, 35);
+    UnkStruct_02030CEC *v0 = SaveData_SaveTable(param0, 35);
 
     strcpy(v0->unk_00, param1);
     SaveData_SetChecksum(35);
@@ -62,9 +58,7 @@ void sub_02030D38(SaveData *param0, const char *param1)
 
 char *sub_02030D50(SaveData *param0)
 {
-    UnkStruct_02030CEC *v0;
-
-    v0 = SaveData_SaveTable(param0, 35);
+    UnkStruct_02030CEC *v0 = SaveData_SaveTable(param0, 35);
     return v0->unk_00;
 }
 

@@ -583,9 +583,7 @@ static void ov97_02234190(TouchScreenRect *rect, int param1, int param2, int par
 
 static void *ov97_022341B4(u32 param0, u32 param1, NNSG2dCharacterData **param2, u32 param3)
 {
-    void *v0;
-
-    v0 = Heap_AllocFromHeapAtEnd(param3, 4096);
+    void *v0 = Heap_AllocFromHeapAtEnd(param3, 4096);
 
     if (v0 != NULL) {
         NARC_ReadWholeMemberByIndexPair(v0, param0, param1);
@@ -710,9 +708,7 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
     int i, species, isEgg, gbaVersion, form;
     u32 personality;
     void *v6;
-    NARC *v7;
-
-    v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 78);
+    NARC *v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 78);
     v6 = Heap_AllocFromHeapAtEnd(78, 4096);
 
     for (i = 0; i < 30; i++) {

@@ -17,9 +17,7 @@ __attribute__((aligned(4))) static const s8 Unk_ov17_022539C8[][5] = {
 
 int ov17_02243AC4(UnkStruct_ov17_022472F8 *param0, int param1)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_0E[v0] == param0->unk_0E[param1]) {

@@ -392,9 +392,7 @@ BOOL sub_020312B8(UnkFuncPtr_020312B8 param0, const u8 *param1, u16 param2)
 static BOOL sub_02031320(void)
 {
     WMErrCode v0;
-    u16 v1;
-
-    v1 = WM_GetAllowedChannel();
+    u16 v1 = WM_GetAllowedChannel();
 
     if (v1 == 0x8000) {
         sub_02030EF4(WM_ERRCODE_ILLEGAL_STATE);

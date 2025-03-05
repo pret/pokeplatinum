@@ -450,9 +450,7 @@ static void ov19_021DBFB0(UnkStruct_ov19_021DBA9C *param0)
 static void ov19_021DBFC4(UnkStruct_ov19_021DBA9C *param0)
 {
     s32 v0, v1;
-    Window *v2;
-
-    v2 = &param0->unk_10[1];
+    Window *v2 = &param0->unk_10[1];
     Window_FillTilemap(v2, 4);
     v0 = ov19_021DBD40(param0);
 

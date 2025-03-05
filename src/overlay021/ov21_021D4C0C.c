@@ -68,18 +68,14 @@ void ov21_021D4C6C(UnkStruct_ov21_021D4C0C *param0)
 
 UnkStruct_ov21_021D4CA0 *ov21_021D4CA0(const UnkStruct_ov21_021D4CB8 *param0)
 {
-    int v0;
-
-    v0 = sub_02012898(param0->unk_04, param0->unk_20, param0->heapID);
+    int v0 = sub_02012898(param0->unk_04, param0->unk_20, param0->heapID);
     return ov21_021D4CB8(param0, v0);
 }
 
 UnkStruct_ov21_021D4CA0 *ov21_021D4CB8(const UnkStruct_ov21_021D4CB8 *param0, int param1)
 {
     UnkStruct_020127E8 v0;
-    UnkStruct_ov21_021D4CA0 *v1;
-
-    v1 = ov21_021D4EB4(param0->unk_00);
+    UnkStruct_ov21_021D4CA0 *v1 = ov21_021D4EB4(param0->unk_00);
 
     GF_ASSERT(v1);
     CharTransfer_AllocRange(param1, 1, param0->unk_20, &v1->unk_04);

@@ -1131,9 +1131,7 @@ static int sub_02086538(void *param0)
 
 static void sub_02086590(GameWindowLayout *param0, Pokemon *param1, u32 param2)
 {
-    u32 v0;
-
-    v0 = param0->unk_5A4->unk_26;
+    u32 v0 = param0->unk_5A4->unk_26;
     Pokemon_SetValue(param1, MON_DATA_MOVE1 + param2, &v0);
 
     v0 = 0;

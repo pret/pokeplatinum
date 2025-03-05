@@ -355,9 +355,7 @@ void ov97_02237B0C(int param0, int param1, int param2, int param3, int param4, i
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
     int v1 = (param5 == 0) ? NNS_G2D_VRAM_TYPE_2DMAIN : NNS_G2D_VRAM_TYPE_2DSUB;
-    int v2;
-
-    v2 = 1;
+    int v2 = 1;
 
     if (param0 == 16) {
         v2 = 0;

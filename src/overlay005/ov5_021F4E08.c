@@ -47,9 +47,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov5_02200A0C;
 
 void *ov5_021F4E08(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F4E38 *v0;
-
-    v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F4E38)), 0, 0);
+    UnkStruct_ov5_021F4E38 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F4E38)), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F4E38(v0);
@@ -162,9 +160,7 @@ static void ov5_021F4F88(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
 static void ov5_021F4F8C(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov5_021F4F18 *v0;
-
-    v0 = param1;
+    UnkStruct_ov5_021F4F18 *v0 = param1;
 
     if (v0->unk_58 < v0->unk_5C) {
         v0->unk_58 += 0.2;
@@ -173,9 +169,7 @@ static void ov5_021F4F8C(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
 static void ov5_021F4FB8(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov5_021F4F18 *v0;
-
-    v0 = param1;
+    UnkStruct_ov5_021F4F18 *v0 = param1;
 
     {
         VecFx32 v1;

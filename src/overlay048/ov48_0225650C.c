@@ -151,9 +151,7 @@ static void ov48_022565A8(SysTask *param0, void *param1)
 static void ov48_02256650(UnkStruct_ov48_0225650C *param0, u32 param1)
 {
     Window v0;
-    Strbuf *v1;
-
-    v1 = MessageBank_GetNewStrbufFromNARC(26, 459, 0, 8);
+    Strbuf *v1 = MessageBank_GetNewStrbufFromNARC(26, 459, 0, 8);
 
     if (v1) {
         Window_Add(param0->unk_04, &v0, 6, 18, 20, 8, 2, 0, param1);

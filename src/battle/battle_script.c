@@ -10452,9 +10452,7 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
     int itemEffect;
     int itemPower;
     Pokemon *mon;
-    SpeciesData *personal;
-
-    personal = SpeciesData_FromMonForm(species, form, HEAP_ID_BATTLE);
+    SpeciesData *personal = SpeciesData_FromMonForm(species, form, HEAP_ID_BATTLE);
     mon = Party_GetPokemonBySlotIndex(party, slot);
     item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     itemEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE);
@@ -10549,9 +10547,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     Pokemon *v3;
     PaletteData *v4;
     UnkStruct_02007768 *v5;
-    MessageLoader *v6;
-
-    v6 = BattleSystem_MessageLoader(v2->battleSys);
+    MessageLoader *v6 = BattleSystem_MessageLoader(v2->battleSys);
     v4 = BattleSystem_PaletteSys(v2->battleSys);
     v5 = ov16_0223E000(v2->battleSys);
     v1 = 1;
@@ -12280,9 +12276,7 @@ static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScr
 
 static void BattleScript_FreePartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *param1)
 {
-    SpriteManager *v0;
-
-    v0 = ov16_0223E018(battleSys);
+    SpriteManager *v0 = ov16_0223E018(battleSys);
 
     Sprite_DeleteAndFreeResources(param1->sprites[0]);
     Sprite_DeleteAndFreeResources(param1->sprites[1]);

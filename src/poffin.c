@@ -37,9 +37,7 @@ void Poffin_Clear(Poffin *poffin)
 
 Poffin *Poffin_New(int heapID)
 {
-    Poffin *poffin;
-
-    poffin = Heap_AllocFromHeapAtEnd(heapID, sizeof(Poffin));
+    Poffin *poffin = Heap_AllocFromHeapAtEnd(heapID, sizeof(Poffin));
     Poffin_Clear(poffin);
 
     return poffin;
@@ -294,9 +292,7 @@ void Poffin_CompactCase(PoffinCase *poffinCase)
 {
     u16 i, unused;
     u16 nextValidSlotNum, emptySlotNum, targetSlotNum;
-    u16 remainingSlots;
-
-    remainingSlots = MAX_POFFINS;
+    u16 remainingSlots = MAX_POFFINS;
 
     for (i = 0; i < remainingSlots; i++) {
         // skip over occupied slots
@@ -337,9 +333,7 @@ void Poffin_CopyToCaseSlot(PoffinCase *poffinCase, u16 destSlot, Poffin *poffin)
 
 Poffin *Poffin_AllocateForCaseSlot(PoffinCase *poffinCase, u16 destSlot, int heapID)
 {
-    Poffin *poffin;
-
-    poffin = Poffin_New(heapID);
+    Poffin *poffin = Poffin_New(heapID);
 
     if (destSlot >= MAX_POFFINS) {
         Poffin_Clear(poffin);
@@ -352,9 +346,7 @@ Poffin *Poffin_AllocateForCaseSlot(PoffinCase *poffinCase, u16 destSlot, int hea
 
 u16 Poffin_GetNumberOfFilledSlots(PoffinCase *poffinCase)
 {
-    u16 j, i;
-
-    j = 0;
+    u16 j = 0, i;
 
     for (i = 0; i < MAX_POFFINS; i++) {
         if (Poffin_HasValidFlavor(&poffinCase->slot[i])) {
@@ -367,9 +359,7 @@ u16 Poffin_GetNumberOfFilledSlots(PoffinCase *poffinCase)
 
 u16 Poffin_GetNumberOfEmptySlots(PoffinCase *poffinCase)
 {
-    u16 i, j;
-
-    j = 0;
+    u16 i, j = 0;
 
     for (i = 0; i < MAX_POFFINS; i++) {
         if (poffinCase->slot[i].flavor == FLAVOR_NONE) {

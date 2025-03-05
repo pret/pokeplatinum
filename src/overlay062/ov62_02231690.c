@@ -139,9 +139,7 @@ int ov62_02231710(UnkStruct_0208C06C *param0, int param1)
         131,
         136,
     };
-    int v4;
-
-    v4 = param0->unk_14.unk_48;
+    int v4 = param0->unk_14.unk_48;
 
     switch (param1) {
     case 0:
@@ -189,9 +187,7 @@ void ov62_022318E8(UnkStruct_0208C06C *param0)
 u16 *ov62_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
 {
     u32 pokedexSize;
-    u16 *pokedexAlphabetical;
-
-    pokedexAlphabetical = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
+    u16 *pokedexAlphabetical = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / sizeof(u16);
 
     return pokedexAlphabetical;
@@ -1037,9 +1033,7 @@ void ov62_02232778(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
 void ov62_02232AAC(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, const UnkStruct_ov62_02248CDC *param2, Strbuf *param3[20][2])
 {
     int v0;
-    Window *v1;
-
-    v1 = &param0->unk_18;
+    Window *v1 = &param0->unk_18;
 
     param0->unk_04 = param2->unk_04;
     param0->unk_00 = 0;
@@ -1970,9 +1964,7 @@ void ov62_02233664(UnkStruct_ov62_0223359C *param0)
 
 void ov62_02233704(UnkStruct_0208C06C *param0, u32 param1)
 {
-    GameRecords *v0;
-
-    v0 = SaveData_GetGameRecordsPtr(param0->unk_830);
+    GameRecords *v0 = SaveData_GetGameRecordsPtr(param0->unk_830);
     GameRecords_IncrementTrainerScore(v0, param1);
 }
 
@@ -2045,9 +2037,7 @@ void ov62_022337D4(UnkStruct_0208C06C *param0)
 
 BOOL ov62_022337F0(UnkStruct_0208C06C *param0, int param1, u8 param2)
 {
-    int v0;
-
-    v0 = ov62_02248598(param0->unk_830, param1, param2, &param0->unk_834, &param0->unk_836);
+    int v0 = ov62_02248598(param0->unk_830, param1, param2, &param0->unk_834, &param0->unk_836);
 
     if ((v0 == 0) || (v0 == 1)) {
         return 0;
@@ -2177,9 +2167,7 @@ void ov62_02233A44(UnkStruct_0208C06C *param0)
 
 NARC *ov62_02233A68(int param0)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 102);
+    NARC *v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 102);
     return v0;
 }
 

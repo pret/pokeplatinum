@@ -696,9 +696,7 @@ static void sub_02070F54(UnkStruct_020709CC *param0, const UnkStruct_02070950 *p
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    UnkStruct_020711C8 *v2;
-
-    v2 = sub_020711C8(11, param0->unk_04, fieldSystem->saveData);
+    UnkStruct_020711C8 *v2 = sub_020711C8(11, param0->unk_04, fieldSystem->saveData);
 
     menu->unk_22C = sub_02070F94;
     menu->unk_25C = v2;

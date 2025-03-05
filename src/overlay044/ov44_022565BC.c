@@ -296,9 +296,7 @@ static void ov44_022568BC(SysTask *param0, void *param1)
 {
     UnkStruct_ov44_022565BC *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov44_022565BC_1 *v1 = PoketchTask_GetConstTaskData(param1);
-    int v2;
-
-    v2 = v1->unk_32;
+    int v2 = v1->unk_32;
 
     PoketchSystem_PlayCry(v1->unk_18[v2], v1->unk_24[v2]);
     ov44_02256954(v0, 4, v2, v1->unk_18[v2], v1->unk_24[v2]);

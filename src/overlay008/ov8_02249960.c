@@ -327,9 +327,7 @@ static void ov8_0224C518(SysTask *param0, void *param1);
 
 static u8 ov8_02249960(const u8 param0, const int param1)
 {
-    u8 v0;
-
-    v0 = (param1 >> param0) & 0x1;
+    u8 v0 = (param1 >> param0) & 0x1;
     return v0;
 }
 
@@ -381,9 +379,7 @@ void ov8_0224997C(FieldSystem *fieldSystem)
 
 BOOL ov8_02249A40(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
 {
-    u8 v0;
-
-    v0 = FieldSystem_GetTileBehavior(fieldSystem, param1, param2);
+    u8 v0 = FieldSystem_GetTileBehavior(fieldSystem, param1, param2);
 
     if (TileBehavior_IsPastoriaGymHighGround(v0)) {
         if (param3 != 0) {
@@ -744,9 +740,7 @@ void include_ov8_02249960(void)
 
 void ov8_02249FB8(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224997C *v0;
-
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
+    UnkStruct_ov8_0224997C *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224997C));
     v0->unk_00 = 0;
 
     {
@@ -1334,9 +1328,7 @@ static BOOL ov8_0224A4FC(FieldTask *taskMan)
     MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(taskMan);
-    UnkStruct_ov8_0224A1E4 *v3;
-
-    v3 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224A1E4 *v3 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
 
     switch (v2->unk_00) {
     case 0:
@@ -1401,9 +1393,7 @@ static BOOL ov8_0224A620(FieldTask *taskMan)
     MapObject *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v3 = FieldTask_GetEnv(taskMan);
-    UnkStruct_ov8_0224A1E4 *v4;
-
-    v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224A1E4 *v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
     v1 = Player_MapObject(fieldSystem->playerAvatar);
 
     switch (v3->unk_00) {
@@ -1483,9 +1473,7 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
     MapObject *v1;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
     UnkStruct_ov8_0224997C *v3 = FieldTask_GetEnv(taskMan);
-    UnkStruct_ov8_0224A1E4 *v4;
-
-    v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224A1E4 *v4 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
     v1 = Player_MapObject(fieldSystem->playerAvatar);
 
     switch (v3->unk_00) {
@@ -1679,9 +1667,7 @@ BOOL ov8_0224AAA8(FieldSystem *fieldSystem)
 
 void ov8_0224AAE8(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224A1E4 *v0;
-
-    v0 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224A1E4 *v0 = (UnkStruct_ov8_0224A1E4 *)fieldSystem->unk_04->unk_24;
     Heap_FreeToHeap(v0);
     fieldSystem->unk_04->unk_24 = NULL;
 }
@@ -2128,9 +2114,7 @@ void ov8_0224ABD4(FieldSystem *fieldSystem)
 
 void ov8_0224ACAC(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov8_0224ABD4 *v0;
-
-    v0 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224ABD4 *v0 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
     Heap_FreeToHeap(v0);
     fieldSystem->unk_04->unk_24 = NULL;
 }
@@ -2141,9 +2125,7 @@ BOOL ov8_0224ACC0(FieldSystem *fieldSystem, const int param1, const int param2, 
     u8 const *v3;
     u8 v4;
     UnkStruct_ov8_0224C8A4 const *v5;
-    UnkStruct_ov8_0224ABD4 *v6;
-
-    v6 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224ABD4 *v6 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
     v1 = Unk_ov8_0224E740[v6->unk_11].unk_00;
     v2 = v6->unk_13;
     v3 = Unk_ov8_0224E740[v6->unk_11].unk_04[v2];
@@ -2214,9 +2196,7 @@ static BOOL ov8_0224ADE8(FieldTask *param0)
     MapProp *v0;
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
     UnkStruct_ov8_0224997C *v2 = FieldTask_GetEnv(param0);
-    UnkStruct_ov8_0224ABD4 *v3;
-
-    v3 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
+    UnkStruct_ov8_0224ABD4 *v3 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->unk_24;
 
     switch (v2->unk_00) {
     case 0: {
@@ -2392,9 +2372,7 @@ static void ov8_0224AF58(UnkStruct_ov8_0224AF58 *param0)
 static void ov8_0224AF84(UnkStruct_ov8_0224AF00 *param0)
 {
     int v0, v1;
-    UnkStruct_ov8_0224AF58 *v2;
-
-    v2 = &param0->unk_0C[1];
+    UnkStruct_ov8_0224AF58 *v2 = &param0->unk_0C[1];
     v1 = ((param0->unk_04) / FX32_ONE);
 
     if ((v1 % 15) == 0) {
@@ -3008,9 +2986,7 @@ BOOL ov8_0224B7D4(FieldSystem *fieldSystem, const int param1, const int param2, 
 
 static MapObject *ov8_0224B7D8(FieldSystem *fieldSystem, int param1, int param2, int param3)
 {
-    MapObject *v0;
-
-    v0 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, param1, param2, 0, 0x2000, 0x0, fieldSystem->location->mapId);
+    MapObject *v0 = MapObjectMan_AddMapObject(fieldSystem->mapObjMan, param1, param2, 0, 0x2000, 0x0, fieldSystem->location->mapId);
 
     MapObject_SetLocalID(v0, 0xfd);
     MapObject_SetDataAt(v0, param3, 0);
@@ -3241,9 +3217,7 @@ static BOOL ov8_0224BAF4(FieldTask *taskMan)
 static BOOL ov8_0224BB78(FieldTask *taskMan)
 {
     int v0;
-    UnkStruct_ov8_0224C098 *v1;
-
-    v1 = FieldTask_GetEnv(taskMan);
+    UnkStruct_ov8_0224C098 *v1 = FieldTask_GetEnv(taskMan);
 
     do {
         v0 = Unk_ov8_0224C818[v1->unk_00](v1);
@@ -3274,9 +3248,7 @@ static int ov8_0224BBA0(UnkStruct_ov8_0224C098 *param0)
 
 static int ov8_0224BBD0(UnkStruct_ov8_0224C098 *param0)
 {
-    MapObject *v0;
-
-    v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
+    MapObject *v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
 
     if (LocalMapObj_IsAnimationSet(v0) == 0) {
         return 0;
@@ -3454,9 +3426,7 @@ static int ov8_0224BE8C(UnkStruct_ov8_0224C098 *param0)
 
 static int ov8_0224BEA4(UnkStruct_ov8_0224C098 *param0)
 {
-    MapObject *v0;
-
-    v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
+    MapObject *v0 = Player_MapObject(param0->unk_3C->fieldSystem->playerAvatar);
 
     if (LocalMapObj_CheckAnimationFinished(v0) == 1) {
         sub_020656AC(v0);
@@ -3488,9 +3458,7 @@ static int (*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *) = {
 
 static UnkStruct_ov8_0224C098 *ov8_0224BED8(UnkStruct_ov8_0224B8D0 *param0, UnkStruct_ov8_0224BCA8 *param1, int param2)
 {
-    UnkStruct_ov8_0224C098 *v0;
-
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224C098));
+    UnkStruct_ov8_0224C098 *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov8_0224C098));
     GF_ASSERT(v0 != NULL);
 
     memset(v0, 0, sizeof(UnkStruct_ov8_0224C098));
@@ -3518,9 +3486,7 @@ static void ov8_0224BF2C(FieldSystem *fieldSystem, UnkStruct_ov8_0224B8D0 *param
 
 BOOL ov8_0224BF4C(FieldSystem *fieldSystem)
 {
-    UnkStruct_02027860 *v0;
-
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
 
     if (sub_02027F80(v0) != 4) {
         return 0;
@@ -3555,9 +3521,7 @@ static void ov8_0224BFCC(FieldSystem *fieldSystem, UnkStruct_ov8_0224C098 *param
 {
     int v0, v1;
     const VecFx32 *v2;
-    UnkStruct_ov8_0224C0C4 *v3;
-
-    v3 = &param1->unk_40;
+    UnkStruct_ov8_0224C0C4 *v3 = &param1->unk_40;
     memset(v3, 0, sizeof(UnkStruct_ov8_0224C0C4));
     v3->fieldSystem = fieldSystem;
 
@@ -3957,9 +3921,7 @@ BOOL ov8_0224C51C(FieldSystem *fieldSystem)
 
 BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1)
 {
-    UnkStruct_02027860 *v0;
-
-    v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02027860 *v0 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
 
     if (sub_02027F80(v0) != 2) {
         return 0;

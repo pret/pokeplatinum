@@ -123,9 +123,7 @@ void ov19_021DA428(UnkStruct_ov19_021DA384 *param0, BoxPokemon *boxMon, s32 para
     u16 species;
     u8 isEgg;
     u8 form;
-    u8 reencrypt;
-
-    reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    u8 reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param4);
 
     species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);

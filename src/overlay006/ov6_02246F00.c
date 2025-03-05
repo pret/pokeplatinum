@@ -26,9 +26,7 @@ static BOOL ov6_02246F40(FieldTask *param0);
 
 void ov6_02246F00(FieldSystem *fieldSystem, const u8 param1, const u8 param2)
 {
-    BOOL v0;
-
-    v0 = sub_020552B4(fieldSystem, 498, NULL, NULL);
+    BOOL v0 = sub_020552B4(fieldSystem, 498, NULL, NULL);
 
     if (v0) {
         UnkStruct_ov6_02246F00 *v1 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02246F00));

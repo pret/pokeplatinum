@@ -116,11 +116,9 @@ BOOL ScrCmd_GiveEgg(ScriptContext *ctx)
 
 BOOL ScrCmd_098(ScriptContext *param0)
 {
-    u16 v0, v1, v2;
-
-    v0 = ScriptContext_GetVar(param0);
-    v1 = ScriptContext_GetVar(param0);
-    v2 = ScriptContext_GetVar(param0);
+    u16 v0 = ScriptContext_GetVar(param0);
+    u16 v1 = ScriptContext_GetVar(param0);
+    u16 v2 = ScriptContext_GetVar(param0);
 
     sub_02054988(Party_GetFromSavedata(param0->fieldSystem->saveData), v0, v1, v2);
     return 0;
@@ -235,9 +233,7 @@ BOOL ScrCmd_212(ScriptContext *param0)
     Pokemon *v1;
     u16 *v2 = ScriptContext_GetVarPointer(param0);
     u16 v3 = ScriptContext_GetVar(param0);
-    u8 v4;
-
-    v4 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
+    u8 v4 = Party_GetCurrentCount(Party_GetFromSavedata(fieldSystem->saveData));
 
     if (v3 >= v4) {
         *v2 = 0;

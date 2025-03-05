@@ -17,9 +17,7 @@ static VecFx16 sUpVector = { 0, FX16_ONE, 0 };
 
 static void SPLEmitter_ComputeOrthogonalAxes(SPLEmitter *emtr)
 {
-    VecFx16 vec, axis;
-
-    vec = sUpVector;
+    VecFx16 vec = sUpVector, axis;
 
     switch (emtr->resource->header->flags.circleAxis) {
     case SPL_CIRCLE_AXIS_X:

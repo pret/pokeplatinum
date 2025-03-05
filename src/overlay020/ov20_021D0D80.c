@@ -231,9 +231,7 @@ static UnkStruct_ov20_021D16E8 *ov20_021D0EC8(OverlayManager *param0)
         { 120, 152, 176, 208 },
         { 0xff, 0, 0, 0 },
     };
-    UnkStruct_ov20_021D16E8 *v1;
-
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov20_021D16E8), 34);
+    UnkStruct_ov20_021D16E8 *v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov20_021D16E8), 34);
 
     v1->unk_00 = OverlayManager_Args(param0);
     v1->unk_04 = sub_02097550(v1->unk_00);
@@ -1366,10 +1364,8 @@ BOOL ov20_021D204C(const UnkStruct_ov20_021D16E8 *param0)
 
 BOOL ov20_021D2060(const UnkStruct_ov20_021D16E8 *param0)
 {
-    int v0, v1;
-
-    v0 = ov20_021D18DC(&(param0->unk_54));
-    v1 = ov20_021D18E0(&(param0->unk_54));
+    int v0 = ov20_021D18DC(&(param0->unk_54));
+    int v1 = ov20_021D18E0(&(param0->unk_54));
 
     return v0 < v1;
 }

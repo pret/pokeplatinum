@@ -756,9 +756,7 @@ static int ov72_0223E458(UnkStruct_ov72_0223DB98 *param0, int param1)
 
 static int ov72_0223E488(UnkStruct_ov72_0223DB98 *param0, int param1)
 {
-    int v0;
-
-    v0 = sub_020159FC(param0->unk_5D00);
+    int v0 = sub_020159FC(param0->unk_5D00);
 
     switch (v0) {
     case 1:
@@ -1098,9 +1096,7 @@ static void ov72_0223E914(UnkStruct_ov72_0223DB98 *param0)
 
 static void ov72_0223E930(UnkStruct_ov72_0223DB98 *param0, int param1)
 {
-    Strbuf *v0;
-
-    v0 = Strbuf_Init((40 * 2), HEAP_ID_39);
+    Strbuf *v0 = Strbuf_Init((40 * 2), HEAP_ID_39);
 
     MessageLoader_GetStrbuf(param0->unk_14, param1, v0);
     StringTemplate_Format(param0->unk_10, param0->unk_34, v0);

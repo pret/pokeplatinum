@@ -383,9 +383,7 @@ static const UnkStruct_020EFD60 *sub_0206CCB0(int param0)
 
 static const UnkStruct_020EFFA4 *sub_0206CCDC(const UnkStruct_020EFD60 *param0, const UnkStruct_ov6_022465F4 *param1)
 {
-    int v0;
-
-    v0 = ov6_022464A4(param1);
+    int v0 = ov6_022464A4(param1);
     GF_ASSERT(0 < v0 && v0 < param0->unk_06);
 
     return &(param0->unk_08[v0 - 1]);
@@ -674,9 +672,7 @@ void sub_0206D12C(TVBroadcast *param0)
 
 UnkStruct_0206D140 *sub_0206D140(int heapID)
 {
-    UnkStruct_0206D140 *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0206D140));
+    UnkStruct_0206D140 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0206D140));
     MI_CpuClearFast(v0, sizeof(UnkStruct_0206D140));
 
     return v0;
@@ -1445,9 +1441,7 @@ static const u16 Unk_020EFDDC[] = {
 
 static u8 sub_0206DE4C(Pokemon *param0)
 {
-    u8 v0, v1;
-
-    v0 = 0;
+    u8 v0 = 0, v1;
 
     for (v1 = 0; v1 < (NELEMS(Unk_020EFDDC)); v1++) {
         if (Pokemon_GetValue(param0, Unk_020EFDDC[v1], NULL) == 1) {
@@ -1646,9 +1640,7 @@ void sub_0206E174(FieldSystem *fieldSystem, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E1C0 *v1 = &v0.val27;
-    Pokemon *v2;
-
-    v2 = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
+    Pokemon *v2 = Party_FindFirstHatchedMon(Party_GetFromSavedata(fieldSystem->saveData));
 
     sub_0206CE38(v2, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
     sub_0206CED0(32, v2, &v1->unk_05, v1->unk_06);
@@ -2116,10 +2108,8 @@ static u16 Unk_02100BA4[] = {
 
 static int sub_0206E940(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    int v0, weather;
-
-    v0 = Unk_02100BA4[LCRNG_RandMod(NELEMS(Unk_02100BA4))];
-    weather = FieldSystem_GetWeather(fieldSystem, v0);
+    int v0 = Unk_02100BA4[LCRNG_RandMod(NELEMS(Unk_02100BA4))];
+    int weather = FieldSystem_GetWeather(fieldSystem, v0);
     StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v0));
 
     switch (weather) {
@@ -2539,10 +2529,8 @@ static int sub_0206EBE8(FieldSystem *fieldSystem)
 static int sub_0206EC90(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
     BerryPatch *v0 = MiscSaveBlock_GetBerryPatches(fieldSystem->saveData);
-    int v1, v2;
-
-    v1 = sub_0206EBE8(fieldSystem);
-    v2 = Unk_020F0074[v1 * 2 + 1];
+    int v1 = sub_0206EBE8(fieldSystem);
+    int v2 = Unk_020F0074[v1 * 2 + 1];
     StringTemplate_SetLocationName(param1, 0, MapHeader_GetMapLabelTextID(v2));
 
     switch (BerryPatches_GetPatchGrowthStage(v0, v1)) {
@@ -2578,9 +2566,7 @@ static int sub_0206ED14(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     u8 v2;
     Pokemon *v3;
     BoxPokemon *v4;
-    int v5, v6;
-
-    v5 = 0xff;
+    int v5 = 0xff, v6;
     v6 = 0xff;
     v0 = (LCRNG_Next() % 0xffff);
     v2 = Pokemon_GetNatureOf(v0);
@@ -2648,9 +2634,7 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 static BOOL sub_0206EE74(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param1)
 {
     int v0;
-    SpecialEncounter *v1;
-
-    v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+    SpecialEncounter *v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (SpecialEncounter_IsRoamerActive(v1, v0)) {
@@ -2731,9 +2715,7 @@ static BOOL sub_0206EF64(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
 
 static int sub_0206EF7C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    u16 v0;
-
-    v0 = 0;
+    u16 v0 = 0;
 
     if (SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(fieldSystem->saveData)) == 1) {
         v0 = (LCRNG_Next() % 8);
@@ -2812,9 +2794,7 @@ static BOOL sub_0206F100(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
 
 static int sub_0206F118(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    u16 v0;
-
-    v0 = (LCRNG_Next() % 3);
+    u16 v0 = (LCRNG_Next() % 3);
 
     if (v0 == 0) {
         return 11;
@@ -2827,9 +2807,7 @@ static int sub_0206F118(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
 static int sub_0206F13C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    u16 v0;
-
-    v0 = (LCRNG_Next() % 3);
+    u16 v0 = (LCRNG_Next() % 3);
 
     if (v0 == 0) {
         return 14;
@@ -2909,9 +2887,7 @@ static BOOL sub_0206F280(FieldSystem *fieldSystem, UnkStruct_ov6_022465F4 *param
 
 static int sub_0206F29C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStruct_ov6_022465F4 *param2)
 {
-    u16 v0;
-
-    v0 = (LCRNG_Next() % 9);
+    u16 v0 = (LCRNG_Next() % 9);
 
     if (v0 == 0) {
         return 20;

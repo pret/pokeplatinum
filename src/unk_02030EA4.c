@@ -23,9 +23,7 @@ void WiFiQuestion_Init(UnkStruct_02030EC4 *param0)
 
 UnkStruct_02030EC4 *sub_02030EC4(SaveData *param0)
 {
-    UnkStruct_02030EC4 *v0;
-
-    v0 = SaveData_SaveTable(param0, 36);
+    UnkStruct_02030EC4 *v0 = SaveData_SaveTable(param0, 36);
     return v0;
 }
 

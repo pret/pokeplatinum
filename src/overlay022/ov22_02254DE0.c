@@ -22,9 +22,7 @@ static void ov22_02255040(UnkStruct_ov22_02255040 *param0, TouchScreenHitTable *
 
 UnkStruct_ov22_02254DE0 *ov22_02254DE0(int param0, int param1)
 {
-    UnkStruct_ov22_02254DE0 *v0;
-
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov22_02254DE0));
+    UnkStruct_ov22_02254DE0 *v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov22_02254DE0));
     v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov22_02255040) * param0);
     memset(v0->unk_00, 0, sizeof(UnkStruct_ov22_02255040) * param0);
     v0->unk_04 = param0;
@@ -41,9 +39,7 @@ void ov22_02254E0C(UnkStruct_ov22_02254DE0 *param0)
 
 UnkStruct_ov22_02255040 *ov22_02254E20(UnkStruct_ov22_0225500C *param0)
 {
-    UnkStruct_ov22_02255040 *v0;
-
-    v0 = ov22_02254FE0(param0->unk_00);
+    UnkStruct_ov22_02255040 *v0 = ov22_02254FE0(param0->unk_00);
     GF_ASSERT(v0);
 
     v0->unk_00 = param0->unk_18;

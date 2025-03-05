@@ -40,9 +40,7 @@ void sub_02054BF8(FieldSystem *fieldSystem)
 u16 const *sub_02054C0C(const u32 param0, const UnkStruct_02054C18 *param1)
 {
     u16 const *v0;
-    u8 v1;
-
-    v1 = param1->unk_00[param0];
+    u8 v1 = param1->unk_00[param0];
     v0 = (u16 const *)&(param1->unk_E2[(32 * 32) * v1]);
 
     return v0;

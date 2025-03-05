@@ -17,9 +17,7 @@ int BallSeal_SaveSize(void)
 
 void BallSeal_Init(UnkStruct_0202CA1C *param0)
 {
-    int v0;
-
-    v0 = BallSeal_SaveSize();
+    int v0 = BallSeal_SaveSize();
     MI_CpuFill8(param0, 0, v0);
 }
 
@@ -99,9 +97,7 @@ BOOL sub_0202CA94(const UnkStruct_0202CA28 *param0, int param1)
 int sub_0202CAB0(const UnkStruct_0202CA1C *param0, int param1)
 {
     int v0, v1;
-    int v2;
-
-    v2 = 0;
+    int v2 = 0;
 
     for (v0 = 0; v0 < 12; v0++) {
         for (v1 = 0; v1 < 8; v1++) {
@@ -201,9 +197,7 @@ BOOL sub_0202CB70(UnkStruct_0202CA1C *param0, int param1, s16 param2)
 int sub_0202CBA8(const UnkStruct_0202CA1C *param0)
 {
     int v0;
-    int v1;
-
-    v1 = 0;
+    int v1 = 0;
 
     for (v0 = 1; v0 < (80 + 1); v0++) {
         if (sub_0202CBC8(param0, v0) != 0) {

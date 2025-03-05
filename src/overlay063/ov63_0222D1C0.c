@@ -33,9 +33,7 @@ static const void *ov63_0222D6BC(const u8 *param0, u8 param1, u8 param2, u8 para
 
 UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 param3)
 {
-    UnkStruct_ov63_0222D1C0 *v0;
-
-    v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov63_0222D1C0));
+    UnkStruct_ov63_0222D1C0 *v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov63_0222D1C0));
     memset(v0, 0, sizeof(UnkStruct_ov63_0222D1C0));
 
     v0->unk_00 = param0;
@@ -59,9 +57,7 @@ void ov63_0222D214(UnkStruct_ov63_0222D1C0 *param0)
 void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D160 *param1)
 {
     s16 v0;
-    s16 v1;
-
-    v1 = ov63_0222D1B0(param1);
+    s16 v1 = ov63_0222D1B0(param1);
     v0 = ov63_0222D1B8(param1);
 
     if (param0->unk_10 == 0) {
@@ -124,10 +120,8 @@ static void ov63_0222D408(BgConfig *param0, int param1, const NNSG2dScreenData *
     s16 v0, v1;
     s16 v2, v3;
     s16 v4, v5;
-    s16 v6, v7;
-
-    v6 = (param2->screenWidth / 8);
-    v7 = (param2->screenHeight / 8);
+    s16 v6 = (param2->screenWidth / 8);
+    s16 v7 = (param2->screenHeight / 8);
 
     if (param3 < 0) {
         v2 = -param3;

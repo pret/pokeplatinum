@@ -463,9 +463,7 @@ static void ov22_0225ACE4(UnkStruct_ov22_0225AB54 *param0)
     int v0;
     int v1;
     int v2 = param0->unk_1C;
-    int v3;
-
-    v3 = 1;
+    int v3 = 1;
 
     for (v0 = 1; v0 < 2; v0++) {
         v3 *= 10;

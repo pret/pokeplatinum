@@ -1060,9 +1060,7 @@ static u8 ov106_02242918(UnkStruct_ov106_02243118 *param0, Window *param1, int p
 
 static u8 ov106_02242978(UnkStruct_ov106_02243118 *param0, int param1, u8 param2)
 {
-    u8 v0;
-
-    v0 = ov106_02242918(param0, &param0->unk_4C[0], param1, 1, 1, TEXT_SPEED_INSTANT, 1, 2, 15, param2);
+    u8 v0 = ov106_02242918(param0, &param0->unk_4C[0], param1, 1, 1, TEXT_SPEED_INSTANT, 1, 2, 15, param2);
     Window_CopyToVRAM(&param0->unk_4C[0]);
 
     return v0;
@@ -1234,9 +1232,7 @@ static void ov106_02242D5C(UnkStruct_ov106_02243118 *param0, int *param1, int pa
 
 static void ov106_02242D64(UnkStruct_ov106_02243118 *param0, int param1)
 {
-    int v0;
-
-    v0 = 0;
+    int v0 = 0;
 
     if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (ov104_0223B5A4(param0->unk_0D) != 0xfe) {
@@ -1343,9 +1339,7 @@ static void ov106_02242D64(UnkStruct_ov106_02243118 *param0, int param1)
 
 static u16 ov106_02242F24(UnkStruct_ov106_02243118 *param0)
 {
-    u8 v0;
-
-    v0 = param0->unk_0D;
+    u8 v0 = param0->unk_0D;
     return (v0 % 4) * 64 + 32;
 }
 
@@ -1505,9 +1499,7 @@ BOOL ov106_022430B4(UnkStruct_ov106_02243118 *param0, u16 param1, u16 param2)
 
 void ov106_02243118(UnkStruct_ov106_02243118 *param0, u16 param1)
 {
-    TrainerInfo *v0;
-
-    v0 = SaveData_GetTrainerInfo(param0->unk_B8);
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->unk_B8);
     param0->unk_2A0[0] = param1;
 
     return;

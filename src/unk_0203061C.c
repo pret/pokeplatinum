@@ -149,9 +149,7 @@ void sub_020307F0(UnkStruct_0203068C *param0, int param1, int param2)
 u16 sub_02030804(UnkStruct_0203068C *param0, int param1, int param2, int param3)
 {
     UnkStruct_02030698 *v0 = &param0->unk_00;
-    u16 v1;
-
-    v1 = sub_02030698(param0, param1, param2);
+    u16 v1 = sub_02030698(param0, param1, param2);
     v1 += param3;
 
     return sub_020306E4(param0, param1, param2, v1);
@@ -160,9 +158,7 @@ u16 sub_02030804(UnkStruct_0203068C *param0, int param1, int param2, int param3)
 u16 sub_02030824(UnkStruct_0203068C *param0, int param1, int param2, int param3)
 {
     UnkStruct_02030698 *v0 = &param0->unk_00;
-    int v1;
-
-    v1 = sub_02030698(param0, param1, param2);
+    int v1 = sub_02030698(param0, param1, param2);
     v1 -= param3;
 
     if (v1 < 0) {
@@ -174,9 +170,7 @@ u16 sub_02030824(UnkStruct_0203068C *param0, int param1, int param2, int param3)
 
 u16 sub_02030848(UnkStruct_0203068C *param0, int param1, int param2, u16 param3)
 {
-    u16 v0;
-
-    v0 = sub_02030698(param0, param1, param2);
+    u16 v0 = sub_02030698(param0, param1, param2);
 
     if (v0 < param3) {
         return sub_020306E4(param0, param1, param2, param3);

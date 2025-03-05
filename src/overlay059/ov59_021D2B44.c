@@ -286,9 +286,7 @@ static BOOL ov59_021D2DC4(UnkStruct_0202E794 *param0, int param1, const UnkStruc
 
 static const void **ov59_021D2E40(int param0, const void **param1, const void **param2)
 {
-    TrainerInfo *v0;
-
-    v0 = CommInfo_TrainerInfo(param0);
+    TrainerInfo *v0 = CommInfo_TrainerInfo(param0);
 
     if (v0 == NULL) {
         return NULL;

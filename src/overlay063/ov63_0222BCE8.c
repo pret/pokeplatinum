@@ -15,9 +15,7 @@ typedef struct UnkStruct_ov63_0222BCE8_t {
 
 UnkStruct_ov63_0222BCE8 *ov63_0222BCE8(u16 param0, u16 param1, u32 param2)
 {
-    UnkStruct_ov63_0222BCE8 *v0;
-
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov63_0222BCE8));
+    UnkStruct_ov63_0222BCE8 *v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov63_0222BCE8));
     GF_ASSERT(v0);
 
     v0->unk_00 = param0;

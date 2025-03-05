@@ -71,9 +71,7 @@ void sub_02012574(int param0, int param1, int param2, int param3, int param4, in
 
 void sub_02012634(UnkStruct_02010658 *param0, int param1, int param2)
 {
-    UnkStruct_02012634 *v0;
-
-    v0 = &param0->unk_00[param2];
+    UnkStruct_02012634 *v0 = &param0->unk_00[param2];
 
     v0->unk_00 = param1;
     v0->unk_04 = param2;
@@ -83,9 +81,7 @@ void sub_02012634(UnkStruct_02010658 *param0, int param1, int param2)
 
 void sub_02012650(UnkStruct_02010658 *param0, int param1, BOOL param2, int param3, int param4)
 {
-    UnkStruct_02012650 *v0;
-
-    v0 = &param0->unk_10[param4][param3];
+    UnkStruct_02012650 *v0 = &param0->unk_10[param4][param3];
 
     v0->unk_00 = param1;
     v0->unk_04 = param2;
@@ -97,9 +93,7 @@ void sub_02012650(UnkStruct_02010658 *param0, int param1, BOOL param2, int param
 
 void sub_02012678(UnkStruct_02010658 *param0, int param1, BOOL param2, int param3)
 {
-    UnkStruct_02012678 *v0;
-
-    v0 = &param0->unk_5C[param3];
+    UnkStruct_02012678 *v0 = &param0->unk_5C[param3];
 
     v0->unk_00 = param1;
     v0->unk_04 = param2;
@@ -110,9 +104,7 @@ void sub_02012678(UnkStruct_02010658 *param0, int param1, BOOL param2, int param
 
 void sub_02012698(UnkStruct_02010658 *param0, int param1, int param2, int param3, int param4, int param5, int param6)
 {
-    UnkStruct_02012698 *v0;
-
-    v0 = &param0->unk_74[param6][param5];
+    UnkStruct_02012698 *v0 = &param0->unk_74[param6][param5];
 
     v0->unk_00 = param1;
     v0->unk_02 = param2;

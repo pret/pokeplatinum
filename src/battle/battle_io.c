@@ -1136,9 +1136,7 @@ void BattleIO_SetAlertMessage(BattleSystem *battleSys, int battler, BattleMessag
 
 void ov16_022661B0(BattleSystem *battleSys, int param1)
 {
-    int v0;
-
-    v0 = 1;
+    int v0 = 1;
     SendMessage(battleSys, 0, param1, &v0, 4);
 }
 

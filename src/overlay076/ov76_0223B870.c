@@ -341,9 +341,7 @@ static void ov76_0223BCA0(SysTask *param0, void *param1)
 
 void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
 {
-    UnkStruct_ov76_0223BCA0 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_53, sizeof(UnkStruct_ov76_0223BCA0));
+    UnkStruct_ov76_0223BCA0 *v0 = Heap_AllocFromHeap(HEAP_ID_53, sizeof(UnkStruct_ov76_0223BCA0));
     v0->unk_164 = param0->unk_D4.unk_10;
 
     {
@@ -516,9 +514,7 @@ void ov76_0223BF74(BgConfig *param0, Window *param1, int param2, UnkStruct_ov76_
 
 void ov76_0223C0EC(int param0, s16 *param1, s16 *param2)
 {
-    int v0;
-
-    v0 = (param0 % 4);
+    int v0 = (param0 % 4);
     *param1 = 32 + 8 + (v0 * 56);
     v0 = (param0 >> 2);
     *param2 = 27 + (v0 * 53);
@@ -1021,9 +1017,7 @@ void ov76_0223CD20(UnkStruct_ov76_0223DE00 *param0, int param1)
     int v2;
     int v3;
     Strbuf *v4;
-    Window *v5;
-
-    v5 = &param0->unk_D4.unk_18[param1 + 3];
+    Window *v5 = &param0->unk_D4.unk_18[param1 + 3];
     v1 = param1;
     v2 = param0->unk_418.unk_08[v1];
 

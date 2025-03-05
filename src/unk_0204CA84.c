@@ -47,9 +47,7 @@ BOOL ScrCmd_1A8(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
     SaveData *v1 = fieldSystem->saveData;
-    UnkStruct_02026310 *v2;
-
-    v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
+    UnkStruct_02026310 *v2 = (UnkStruct_02026310 *)(SaveData_SaveTable(v1, 8));
     ov5_021E6B40(v2);
 
     return 0;

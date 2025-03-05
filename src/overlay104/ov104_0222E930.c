@@ -140,9 +140,7 @@ void ov104_0222EA3C(UnkStruct_ov104_0222E930 *param0)
 
 u16 ov104_0222EA48(UnkStruct_ov104_0222E930 *param0)
 {
-    u16 v0;
-
-    v0 = (u16)(*((param0)->unk_1C++));
+    u16 v0 = (u16)(*((param0)->unk_1C++));
     v0 += (u16)(*((param0)->unk_1C++)) << 8;
 
     return v0;

@@ -37,9 +37,7 @@ static BOOL (*const Unk_ov119_021D26AC[])(UnkStruct_ov119_021D0FD0 *) = {
 
 BOOL ov119_021D191C(UnkStruct_ov119_021D0FD0 *param0)
 {
-    BOOL v0;
-
-    v0 = Unk_ov119_021D26AC[param0->unk_5C](param0);
+    BOOL v0 = Unk_ov119_021D26AC[param0->unk_5C](param0);
     return v0;
 }
 

@@ -92,9 +92,7 @@ static const ListMenuTemplate Unk_ov23_02256B3C = {
 
 UnkStruct_ov23_022542D8 *ov23_022542CC(void)
 {
-    UnkStruct_ov23_022542D8 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022542D8));
+    UnkStruct_ov23_022542D8 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022542D8));
 
     return v0;
 }
@@ -211,9 +209,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
 
 static void ov23_022544C0(UnkStruct_ov23_022542D8 *param0)
 {
-    u32 v0;
-
-    v0 = ListMenu_ProcessInput(param0->unk_28);
+    u32 v0 = ListMenu_ProcessInput(param0->unk_28);
 
     ov23_022549EC(param0);
 
@@ -256,9 +252,7 @@ static void ov23_0225451C(UnkStruct_ov23_022542D8 *param0)
 
 static void ov23_02254564(ListMenu *param0, u32 param1, u8 param2)
 {
-    u8 v0;
-
-    v0 = param1 & 0x1;
+    u8 v0 = param1 & 0x1;
 
     if (v0) {
         ListMenu_SetAltTextColors(param0, 1, 15, 2);
@@ -269,9 +263,7 @@ static void ov23_02254564(ListMenu *param0, u32 param1, u8 param2)
 
 UnkStruct_ov23_02254594 *ov23_02254588(void)
 {
-    UnkStruct_ov23_02254594 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02254594));
+    UnkStruct_ov23_02254594 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02254594));
     return v0;
 }
 
@@ -529,9 +521,7 @@ static void ov23_022549A8(UnkStruct_0206A844 *param0, const u16 param1, const u1
 
 static void ov23_022549EC(UnkStruct_ov23_022542D8 *param0)
 {
-    u16 v0;
-
-    v0 = param0->unk_40;
+    u16 v0 = param0->unk_40;
     ListMenu_CalcTrueCursorPos(param0->unk_28, &param0->unk_40);
 
     if (v0 != param0->unk_40) {

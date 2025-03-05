@@ -541,9 +541,7 @@ static void ov71_0223CD64 (Window * param0, const u32 param1, const u32 param2, 
 
 static void ov71_0223CDB0 (Window * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4)
 {
-    u32 v0;
-
-    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param4, 0);
+    u32 v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param4, 0);
     Text_AddPrinterWithParamsAndColor(param0, FONT_SYSTEM, param4, param1 - (v0 + param2), param3, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 }
 

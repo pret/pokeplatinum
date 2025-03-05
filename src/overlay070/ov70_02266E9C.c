@@ -2247,9 +2247,7 @@ static void ov70_02268E08(UnkStruct_ov70_02268BA0 *param0)
 
 static void ov70_02268E20(UnkStruct_ov70_02268BA0 *param0, const UnkStruct_ov66_0222E71C *param1)
 {
-    u32 v0;
-
-    v0 = ov66_0222E7A0(param1);
+    u32 v0 = ov66_0222E7A0(param1);
 
     param0->unk_44 = 1;
     param0->unk_46 = v0;

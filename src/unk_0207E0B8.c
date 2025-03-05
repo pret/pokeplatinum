@@ -1198,9 +1198,7 @@ static void sub_0207F308(GameWindowLayout *param0)
 static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1230,9 +1228,7 @@ static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F4AC(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1257,9 +1253,7 @@ static void sub_0207F4AC(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F5A0(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1284,9 +1278,7 @@ static void sub_0207F5A0(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F694(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1311,9 +1303,7 @@ static void sub_0207F694(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F788(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -2563,9 +2553,7 @@ static u8 HandleSpecialInput(GameWindowLayout *param0)
 
 static int ApplyItemEffectOnPokemon(GameWindowLayout *param0)
 {
-    ItemData *v0;
-
-    v0 = Item_Load(param0->unk_5A4->unk_24, 0, 12);
+    ItemData *v0 = Item_Load(param0->unk_5A4->unk_24, 0, 12);
 
     if ((param0->unk_5A4->unk_24 == 466) && (Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11)) == 1)) {
         param0->unk_5A4->unk_38 = 1;
@@ -2692,9 +2680,7 @@ static int ProcessItemApplication(GameWindowLayout *param0)
 static int UpdatePokemonWithItem(GameWindowLayout *param0, Pokemon *param1, int *param2)
 {
     u32 v0 = param0->unk_5A4->unk_24;
-    FieldSystem *fieldSystem;
-
-    fieldSystem = param0->unk_5A4->unk_1C;
+    FieldSystem *fieldSystem = param0->unk_5A4->unk_1C;
 
     Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
     Pokemon_SetValue(param1, MON_DATA_HELD_ITEM, &v0);

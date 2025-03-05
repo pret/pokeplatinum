@@ -1863,9 +1863,7 @@ static Sprite *ov6_02244C20(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param
 
 static Sprite *ov6_02244CD4(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1, int param2, int param3)
 {
-    Sprite *v0;
-
-    v0 = ov6_02244C20(param0, param1, 1, 0, 1, 0, 0, param2);
+    Sprite *v0 = ov6_02244C20(param0, param1, 1, 0, 1, 0, 0, param2);
     Sprite_SetAnim(v0, param3);
 
     return v0;
@@ -1937,9 +1935,7 @@ static void ov6_02244DB4(UnkStruct_ov6_02243FFC *param0)
 
 static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2)
 {
-    void *v0;
-
-    v0 = NARC_AllocAndReadWholeMember(param0, param1, 4);
+    void *v0 = NARC_AllocAndReadWholeMember(param0, param1, 4);
 
     NNS_G2dGetUnpackedPaletteData(v0, param2);
 
@@ -1949,9 +1945,7 @@ static void ov6_02244E54(NARC *param0, u32 param1, NNSG2dPaletteData **param2)
 
 static void ov6_02244E7C(BgConfig *param0, NARC *param1, u32 param2, NNSG2dCharacterData **param3)
 {
-    void *v0;
-
-    v0 = NARC_AllocAndReadWholeMember(param1, param2, 4);
+    void *v0 = NARC_AllocAndReadWholeMember(param1, param2, 4);
     NNS_G2dGetUnpackedCharacterData(v0, param3);
 
     Bg_LoadTiles(param0, 3, (*param3)->pRawData, (*param3)->szByte, 0);
@@ -2078,9 +2072,7 @@ static void *ov6_022450E4(ArchivedSprite *param0, u32 heapID)
 
 static SpriteResource *ov6_022450F4(UnkStruct_ov6_02243FFC *param0, NARC *param1)
 {
-    SpriteResource *v0;
-
-    v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_200, param1, 5, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
+    SpriteResource *v0 = SpriteResourceCollection_AddTilesFrom(param0->unk_200, param1, 5, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
     return v0;
 }
 
@@ -2100,9 +2092,7 @@ static void ov6_02245118(UnkStruct_ov6_02243FFC *param0, void *param1)
 
 static SpriteResource *ov6_0224514C(UnkStruct_ov6_02243FFC *param0, NARC *param1)
 {
-    SpriteResource *v0;
-
-    v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_204, param1, 3, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
+    SpriteResource *v0 = SpriteResourceCollection_AddPaletteFrom(param0->unk_204, param1, 3, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 1, 4);
     return v0;
 }
 
@@ -2170,9 +2160,7 @@ static void ov6_022451B8(UnkStruct_ov6_02243FFC *param0)
 
 static Sprite *ov6_0224529C(UnkStruct_ov6_02243FFC *param0, const VecFx32 *param1)
 {
-    Sprite *v0;
-
-    v0 = ov6_02244C20(param0, param1, 3, 2, 3, 0xffffffff, 0, 129);
+    Sprite *v0 = ov6_02244C20(param0, param1, 3, 2, 3, 0xffffffff, 0, 129);
     return v0;
 }
 

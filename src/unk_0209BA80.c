@@ -230,9 +230,7 @@ void sub_0209BBEC(int param0, int param1, void *param2, void *param3)
 
 BOOL sub_0209BC1C(UnkStruct_0209BBA4 *param0, u16 param1)
 {
-    int v0, v1;
-
-    v1 = 40;
+    int v0, v1 = 40;
     param0->unk_08[0] = param1;
 
     if (CommSys_SendData(58, param0->unk_08, v1) == 1) {
@@ -325,9 +323,7 @@ void sub_0209BD28(int param0, int param1, void *param2, void *param3)
 
 BOOL sub_0209BD68(UnkStruct_0209BBA4 *param0, u16 param1)
 {
-    int v0, v1;
-
-    v1 = 40;
+    int v0, v1 = 40;
 
     param0->unk_08[0] = param1;
 
@@ -359,9 +355,7 @@ void sub_0209BD88(int param0, int param1, void *param2, void *param3)
 
 BOOL sub_0209BDB0(UnkStruct_0209BBA4 *param0, u16 param1)
 {
-    int v0, v1;
-
-    v1 = 40;
+    int v0, v1 = 40;
     param0->unk_08[0] = param1;
 
     if (CommSys_SendData(61, param0->unk_08, v1) == 1) {

@@ -69,9 +69,7 @@ static const UnkStruct_ov5_02200230 Unk_ov5_02200230[] = {
 
 void *ov5_021F10E8(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_021F114C *v0;
-
-    v0 = ov5_021DF53C(param0, sizeof(UnkStruct_021F114C), 0, 0);
+    UnkStruct_021F114C *v0 = ov5_021DF53C(param0, sizeof(UnkStruct_021F114C), 0, 0);
     v0->unk_00 = param0;
 
     return v0;
@@ -204,9 +202,7 @@ UnkStruct_ov101_021D5D90 *ov5_021F121C(const MapObject *param0, const VecFx32 *p
 static int ov5_021F1258(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     UnkStruct_021F1258 *v0 = param1;
-    const UnkStruct_021F121C *v1;
-
-    v1 = sub_020715BC(param0);
+    const UnkStruct_021F121C *v1 = sub_020715BC(param0);
 
     v0->unk_1C = *v1;
     v0->unk_04 = MapObject_GetLocalID(v0->unk_1C.unk_08);

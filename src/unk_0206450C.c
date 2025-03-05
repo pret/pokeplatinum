@@ -158,9 +158,7 @@ const int Unk_020EEAD0[];
 
 static void sub_0206450C(MapObject *mapObj, int param1)
 {
-    UnkStruct_0206450C *v0;
-
-    v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_0206450C)));
+    UnkStruct_0206450C *v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_0206450C)));
     v0->unk_02 = sub_0206530C(Unk_020EEA88, -1);
     v0->unk_04 = param1;
 
@@ -272,9 +270,7 @@ void sub_02064658(MapObject *mapObj)
 
 static void sub_02064668(MapObject *mapObj, int param1, int param2, int param3)
 {
-    UnkStruct_02064668 *v0;
-
-    v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_02064668)));
+    UnkStruct_02064668 *v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_02064668)));
 
     v0->unk_04 = param3;
     v0->unk_08 = param1;
@@ -287,9 +283,7 @@ static void sub_02064668(MapObject *mapObj, int param1, int param2, int param3)
 void sub_02064690(MapObject *mapObj)
 {
     int v0;
-    UnkStruct_02064668 *v1;
-
-    v1 = sub_02062A78(mapObj);
+    UnkStruct_02064668 *v1 = sub_02062A78(mapObj);
 
     switch (v1->unk_00) {
     case 0:
@@ -448,9 +442,7 @@ static int sub_0206489C(MapObject *mapObj, int param1)
 
 static void sub_020648F4(MapObject *mapObj, int param1)
 {
-    UnkStruct_020648F4 *v0;
-
-    v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_020648F4)));
+    UnkStruct_020648F4 *v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_020648F4)));
     v0->unk_00 = param1;
 
     sub_02062A0C(mapObj, 0x0);
@@ -460,9 +452,7 @@ static void sub_020648F4(MapObject *mapObj, int param1)
 
 void sub_02064918(MapObject *mapObj)
 {
-    UnkStruct_020648F4 *v0;
-
-    v0 = sub_02062A78(mapObj);
+    UnkStruct_020648F4 *v0 = sub_02062A78(mapObj);
 
     switch (v0->unk_04) {
     case 0:
@@ -496,9 +486,7 @@ void sub_02064960(MapObject *mapObj)
 
 static void sub_0206496C(MapObject *mapObj, int param1)
 {
-    UnkStruct_0206496C *v0;
-
-    v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_0206496C)));
+    UnkStruct_0206496C *v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_0206496C)));
     v0->unk_00 = param1;
 
     sub_02062A0C(mapObj, 0x0);
@@ -518,9 +506,7 @@ void sub_0206499C(MapObject *mapObj)
 
 void sub_020649A8(MapObject *mapObj)
 {
-    UnkStruct_0206496C *v0;
-
-    v0 = sub_02062A78(mapObj);
+    UnkStruct_0206496C *v0 = sub_02062A78(mapObj);
 
     while (Unk_020EE900[v0->unk_02](mapObj, v0) == 1) {
         (void)0;
@@ -623,9 +609,7 @@ void sub_02064AF0(MapObject *mapObj)
 
 void sub_02064AFC(MapObject *mapObj)
 {
-    UnkStruct_0206496C *v0;
-
-    v0 = sub_02062A78(mapObj);
+    UnkStruct_0206496C *v0 = sub_02062A78(mapObj);
 
     while (Unk_020EE870[v0->unk_02](mapObj, v0) == 1) {
         (void)0;
@@ -721,9 +705,7 @@ static int (*const Unk_020EE870[])(MapObject *, UnkStruct_0206496C *) = {
 
 void sub_02064C28(MapObject *mapObj)
 {
-    UnkStruct_02064C28 *v0;
-
-    v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_02064C28)));
+    UnkStruct_02064C28 *v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_02064C28)));
 
     if (sub_0206553C(mapObj) == 1) {
         sub_02065550(mapObj, &v0->unk_04);
@@ -741,9 +723,7 @@ void sub_02064C48(MapObject *mapObj)
 
 static int sub_02064C6C(MapObject *mapObj, UnkStruct_02064C28 *param1)
 {
-    int v0;
-
-    v0 = MapObject_GetInitialDir(mapObj);
+    int v0 = MapObject_GetInitialDir(mapObj);
 
     if (param1->unk_02 == 1) {
         v0 = Direction_GetOpposite(v0);
@@ -838,9 +818,7 @@ static int (*const Unk_020EE814[])(MapObject *, UnkStruct_02064C28 *) = {
 
 static void sub_02064D98(MapObject *mapObj, int param1, int param2, int param3)
 {
-    UnkStruct_02064D98 *v0;
-
-    v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_02064D98)));
+    UnkStruct_02064D98 *v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_02064D98)));
     v0->unk_02 = param1;
     v0->unk_03 = param2;
     v0->unk_04 = param3;
@@ -932,9 +910,7 @@ void sub_02064EB8(MapObject *mapObj)
 
 void sub_02064EC8(MapObject *mapObj)
 {
-    UnkStruct_02064D98 *v0;
-
-    v0 = sub_02062A78(mapObj);
+    UnkStruct_02064D98 *v0 = sub_02062A78(mapObj);
 
     while (Unk_020EE7AC[v0->unk_00](mapObj, v0) == 1) {
         (void)0;
@@ -1043,9 +1019,7 @@ static int (*const Unk_020EE7AC[])(MapObject *, UnkStruct_02064D98 *) = {
 
 static void sub_0206502C(MapObject *mapObj, int param1, int param2, int param3)
 {
-    UnkStruct_0206502C *v0;
-
-    v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_0206502C)));
+    UnkStruct_0206502C *v0 = sub_02062A54(mapObj, (sizeof(UnkStruct_0206502C)));
 
     v0->unk_02 = param1;
     v0->unk_03 = param2;

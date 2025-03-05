@@ -117,9 +117,7 @@ static void ov5_021EF5A8(SysTask *param0, void *param1)
 static void ov5_021EF634(UnkStruct_ov5_021EF4F8 *param0)
 {
     const u16 *v0;
-    int v1;
-
-    v1 = GX_GetVCount();
+    int v1 = GX_GetVCount();
     v0 = BufferManager_GetReadBuffer(param0->bufferManager);
 
     if (v1 < 192) {

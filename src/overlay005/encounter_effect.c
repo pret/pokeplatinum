@@ -816,9 +816,7 @@ VecFx32 VecFx32_FromXYZ(fx32 x, fx32 y, fx32 z)
 
 static void ov5_021DE67C(Sprite *param0, void *param1, u32 param2)
 {
-    NNSG2dImagePaletteProxy *v0;
-
-    v0 = Sprite_GetPaletteProxy(param0);
+    NNSG2dImagePaletteProxy *v0 = Sprite_GetPaletteProxy(param0);
 
     DC_FlushRange(param1, param2);
     GX_LoadOBJPltt(param1, NNS_G2dGetImagePaletteLocation(v0, NNS_G2D_VRAM_TYPE_2DMAIN), param2);
@@ -1183,9 +1181,7 @@ BOOL ov5_021DECB8(UnkStruct_ov5_021DEC18 *param0)
 
 UnkStruct_ov5_021DED04 *ov5_021DECEC(void)
 {
-    UnkStruct_ov5_021DED04 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021DED04));
+    UnkStruct_ov5_021DED04 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021DED04));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DED04));
 
     return v0;
@@ -1268,9 +1264,7 @@ static void ov5_021DEE50(HBlankTask *param0, void *param1)
 {
     UnkStruct_ov5_021DED04 *v0 = param1;
     int v1;
-    int v2;
-
-    v2 = GX_GetVCount();
+    int v2 = GX_GetVCount();
 
     if (v2 < 192) {
         v1 = -v0->unk_18[v2] + v0->unk_00.currentValue;

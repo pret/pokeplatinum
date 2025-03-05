@@ -519,9 +519,7 @@ static u32 Unk_ov62_022497E8[87] = {
 static u32 ov62_0223D124 (UnkStruct_0208C06C * param0, int param1)
 {
     u32 v0;
-    int v1;
-
-    v1 = param1;
+    int v1 = param1;
 
     if (v1 >= 87) {
         v1 = 0;

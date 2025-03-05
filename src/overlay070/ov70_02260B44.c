@@ -114,9 +114,7 @@ static void ov70_02261C60(UnkStruct_ov70_02260BB8 *param0, UnkStruct_ov70_022610
 
 UnkStruct_ov70_02260BB8 *ov70_02260B44(u32 param0, u32 param1, u32 param2, u32 param3)
 {
-    UnkStruct_ov70_02260BB8 *v0;
-
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov70_02260BB8));
+    UnkStruct_ov70_02260BB8 *v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov70_02260BB8));
     memset(v0, 0, sizeof(UnkStruct_ov70_02260BB8));
 
     v0->unk_11C = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov70_02260E8C) * param0);
@@ -560,9 +558,7 @@ void ov70_022613E8(UnkStruct_ov70_022610B8 *param0, fx32 param1, fx32 param2, fx
 static UnkStruct_ov70_02261418 *ov70_022613F4(int param0, int param1, u32 param2)
 {
     void *v0;
-    u32 v1;
-
-    v1 = (param1 * 5) + param0;
+    u32 v1 = (param1 * 5) + param0;
     GF_ASSERT(v1 < (5 * 5));
     v0 = LoadMemberFromNARC(174, 1 + v1, 0, param2, 1);
 

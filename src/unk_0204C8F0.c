@@ -17,9 +17,7 @@
 BOOL ScrCmd_06F(ScriptContext *param0)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
-    u32 v1;
-
-    v1 = ScriptContext_ReadWord(param0);
+    u32 v1 = ScriptContext_ReadWord(param0);
     TrainerInfo_GiveMoney(v0, v1);
 
     return 0;
@@ -28,9 +26,7 @@ BOOL ScrCmd_06F(ScriptContext *param0)
 BOOL ScrCmd_070(ScriptContext *param0)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
-    u32 v1;
-
-    v1 = ScriptContext_ReadWord(param0);
+    u32 v1 = ScriptContext_ReadWord(param0);
     TrainerInfo_TakeMoney(v0, v1);
 
     return 0;
@@ -39,9 +35,7 @@ BOOL ScrCmd_070(ScriptContext *param0)
 BOOL ScrCmd_1A3(ScriptContext *param0)
 {
     TrainerInfo *v0 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(param0->fieldSystem));
-    u32 v1;
-
-    v1 = ScriptContext_GetVar(param0);
+    u32 v1 = ScriptContext_GetVar(param0);
     TrainerInfo_TakeMoney(v0, v1);
 
     return 0;

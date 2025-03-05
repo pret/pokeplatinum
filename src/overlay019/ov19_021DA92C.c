@@ -375,9 +375,7 @@ static void ov19_021DAE10(UnkStruct_ov19_021DA9E0 *param0)
 static void ov19_021DAE2C(UnkStruct_ov19_021DAE2C *param0)
 {
     u32 v0;
-    Window *v1;
-
-    v1 = &(param0->unk_08->unk_04[3]);
+    Window *v1 = &(param0->unk_08->unk_04[3]);
 
     Window_FillTilemap(v1, 0);
     ov19_021DAE60(v1, param0->unk_08, param0->unk_02, 0);
@@ -394,9 +392,7 @@ static void ov19_021DAE2C(UnkStruct_ov19_021DAE2C *param0)
 static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 param2, u32 param3)
 {
     const Strbuf *v0;
-    u32 v1;
-
-    v1 = (param3 * 16) + 0;
+    u32 v1 = (param3 * 16) + 0;
 
     switch (param2) {
     case 0:
@@ -525,9 +521,7 @@ void ov19_021DB078(UnkStruct_ov19_021DA9E0 *param0)
 static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
 {
     ArchivedSprite v0;
-    const UnkStruct_ov19_021D5BAC *v1;
-
-    v1 = ov19_021D5E70(param0->unk_10);
+    const UnkStruct_ov19_021D5BAC *v1 = ov19_021D5E70(param0->unk_10);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_04[0], FONT_SYSTEM, v1->unk_18, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 15), NULL);
     Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, v1->unk_14, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 15), NULL);

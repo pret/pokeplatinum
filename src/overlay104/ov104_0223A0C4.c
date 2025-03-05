@@ -646,9 +646,7 @@ static int ov104_0223A7AC(u8 param0);
 BOOL ov104_0223A0C4(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, int param3, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int param7)
 {
     BOOL v0 = 0;
-    UnkStruct_0204B184 *v1;
-
-    v1 = ov104_0222DD04(&param1->unk_00, param2, param7, ov104_0223A77C(param0->unk_0F));
+    UnkStruct_0204B184 *v1 = ov104_0222DD04(&param1->unk_00, param2, param7, ov104_0223A77C(param0->unk_0F));
     v0 = ov104_0223A118(param0, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, param7);
 
     Heap_FreeToHeap(v1);

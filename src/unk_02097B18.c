@@ -187,9 +187,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
 
 static int sub_02097D30(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov76_0223DE00 *v0;
-
-    v0 = OverlayManager_Data(param0);
+    UnkStruct_ov76_0223DE00 *v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -220,9 +218,7 @@ static int sub_02097D30(OverlayManager *param0, int *param1)
 
 static int sub_02097D88(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov76_0223DE00 *v0;
-
-    v0 = OverlayManager_Data(param0);
+    UnkStruct_ov76_0223DE00 *v0 = OverlayManager_Data(param0);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);

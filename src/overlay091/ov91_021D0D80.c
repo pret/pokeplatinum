@@ -728,9 +728,7 @@ static int ov91_021D1394(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D13E4(UnkStruct_ov91_021D0ED8 *param0)
 {
-    u32 v0;
-
-    v0 = ov91_021D1DD0(param0);
+    u32 v0 = ov91_021D1DD0(param0);
     Pokemon_SetValue(param0->unk_00->unk_00, MON_DATA_MOVE1 + param0->unk_00->unk_17, &v0);
 
     v0 = 0;
@@ -775,9 +773,7 @@ static int ov91_021D1480(UnkStruct_ov91_021D0ED8 *param0)
 
 static void ov91_021D1498(UnkStruct_ov91_021D0ED8 *param0)
 {
-    u16 v0;
-
-    v0 = ov91_021D1DD0(param0);
+    u16 v0 = ov91_021D1DD0(param0);
 
     if (param0->unk_00->unk_14 == 0) {
         Bg_ScheduleScroll(param0->unk_04, 2, 0, 0);
@@ -843,9 +839,7 @@ static void ov91_021D1580(UnkStruct_ov91_021D0ED8 *param0, u32 param1, u32 param
 
 static void ov91_021D1618(UnkStruct_ov91_021D0ED8 *param0, u32 param1, u32 param2, u8 param3, u8 param4)
 {
-    Strbuf *v0;
-
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_F8, param1);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_F8, param1);
     StringTemplate_SetNumber(param0->unk_FC, 0, param2, param3, param4, 1);
     StringTemplate_Format(param0->unk_FC, param0->unk_100, v0);
     Strbuf_Free(v0);

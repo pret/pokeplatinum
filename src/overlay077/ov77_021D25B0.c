@@ -928,9 +928,7 @@ static void ov77_021D2CE8(void)
 static int ov77_021D2D08(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov77_021D2E9C *v0;
-    int v1;
-
-    v1 = 76;
+    int v1 = 76;
 
     BrightnessController_ResetAllControllers();
     sub_0200F344(0, 0x7fff);
@@ -1473,9 +1471,7 @@ static void ov77_021D36F8(UnkStruct_ov77_021D2E9C *param0)
 static void ov77_021D37C0(UnkStruct_ov77_021D37C0 *param0)
 {
     u8 v0;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
+    NARC *v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     {
         Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(v1, 96, 0, 0x20 * 0xc, 0x20 * 0xc, 0x20 * 2, 76);

@@ -1487,9 +1487,7 @@ static void ov78_021D235C(ChooseStarterRotation *param0, fx32 param1, int param2
 static void ov78_021D2368(ChooseStarterRotation *param0)
 {
     u16 v0;
-    int v1;
-
-    v1 = ((360 * 0xffff) / 360) * param0->unk_0C;
+    int v1 = ((360 * 0xffff) / 360) * param0->unk_0C;
     v1 = v1 / param0->unk_08;
     v0 = v1;
 

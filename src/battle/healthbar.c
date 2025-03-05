@@ -696,9 +696,7 @@ void ov16_02267258(Healthbar *param0)
 {
     SpriteSystem *v0;
     SpriteManager *v1;
-    const SpriteTemplate *v2;
-
-    v2 = Healthbar_SpriteTemplate(param0->type);
+    const SpriteTemplate *v2 = Healthbar_SpriteTemplate(param0->type);
     v0 = ov16_0223E010(param0->battleSys);
     v1 = ov16_0223E018(param0->battleSys);
 
@@ -711,9 +709,7 @@ static void ov16_0226728C(Healthbar *param0)
 {
     SpriteSystem *v0;
     SpriteManager *v1;
-    const SpriteTemplate *v2;
-
-    v2 = ov16_02268314(param0->type);
+    const SpriteTemplate *v2 = ov16_02268314(param0->type);
 
     if (v2 == NULL) {
         return;
@@ -733,9 +729,7 @@ void ov16_022672C4(Healthbar *param0)
     SpriteSystem *v1;
     SpriteManager *v2;
     PaletteData *v3;
-    NARC *v4;
-
-    v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+    NARC *v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
     v1 = ov16_0223E010(param0->battleSys);
     v2 = ov16_0223E018(param0->battleSys);
     v3 = BattleSystem_PaletteSys(param0->battleSys);
@@ -830,9 +824,7 @@ void Healthbar_CalcHP(Healthbar *healthbar, int damage)
 
 s32 ov16_022674F8(Healthbar *param0)
 {
-    s32 v0;
-
-    v0 = Healthbar_DrawGauge(param0, 0);
+    s32 v0 = Healthbar_DrawGauge(param0, 0);
 
     if (v0 == -1) {
         param0->curHP -= param0->damage;
@@ -869,9 +861,7 @@ void Healthbar_CalcExp(Healthbar *param0, int param1)
 
 s32 ov16_02267560(Healthbar *param0)
 {
-    s32 v0;
-
-    v0 = Healthbar_DrawGauge(param0, 1);
+    s32 v0 = Healthbar_DrawGauge(param0, 1);
 
     if (v0 == -1) {
         param0->curExp -= param0->expReward;
@@ -1275,9 +1265,7 @@ static void Healthbar_DrawCaughtIcon(Healthbar *param0)
 static void Healthbar_DrawStatusIcon(Healthbar *param0, int param1)
 {
     NNSG2dImageProxy *v0;
-    const u8 *v1;
-
-    v1 = ov16_02268250(param1);
+    const u8 *v1 = ov16_02268250(param1);
 
     {
         void *v2;

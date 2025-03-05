@@ -32,9 +32,7 @@ int sub_0208C098(int param0)
 
 u32 sub_0208C0A4(u32 param0, u32 param1)
 {
-    u32 v0;
-
-    v0 = (param0 * param0) + (param1 * param1);
+    u32 v0 = (param0 * param0) + (param1 * param1);
     v0 = SVC_Sqrt(v0 << 4);
 
     return v0 >> 2;
@@ -90,9 +88,7 @@ void sub_0208C120(u8 param0, u32 param1)
 
 u8 sub_0208C15C(s16 *param0, u16 param1)
 {
-    s16 v0;
-
-    v0 = *param0;
+    s16 v0 = *param0;
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
         *param0 += 1;

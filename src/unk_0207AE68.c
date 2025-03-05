@@ -972,9 +972,7 @@ static void sub_0207C520(void *param0)
 
 static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1)
 {
-    Strbuf *v0;
-
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_08, param1);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_08, param1);
 
     StringTemplate_Format(param0->unk_0C, param0->unk_10, v0);
     Heap_FreeToHeap(v0);
@@ -985,9 +983,7 @@ static u8 sub_0207C584(UnkStruct_0207AE68 *param0, int param1)
 
 static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
 {
-    BOOL v0;
-
-    v0 = 0;
+    BOOL v0 = 0;
 
     switch (param1) {
     case 1:

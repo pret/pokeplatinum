@@ -375,9 +375,7 @@ static int sub_02098D7C(UnkStruct_02098BE4 *param0)
         ov79_021D2460,
         FS_OVERLAY_ID(overlay79),
     };
-    UnkStruct_02098DE8 *v1;
-
-    v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098DE8));
+    UnkStruct_02098DE8 *v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098DE8));
     MI_CpuClear8(v1, sizeof(UnkStruct_02098DE8));
 
     v1->unk_08 = param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_02;
@@ -461,10 +459,8 @@ UnkEnum_02098EAC sub_02098EAC(Poffin *param0, u8 param1)
 {
     u8 v0[7];
     u8 v1, v2, v3;
-    u8 v4, v5;
-
-    v4 = Unk_020F685C[param1][0];
-    v5 = Unk_020F685C[param1][1];
+    u8 v4 = Unk_020F685C[param1][0];
+    u8 v5 = Unk_020F685C[param1][1];
 
     if (v4 == 5) {
         return 2;

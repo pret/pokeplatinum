@@ -388,9 +388,7 @@ static u16 ov104_0223C0D0(UnkStruct_ov104_0223BFFC *param0)
 
 u16 ov104_0223C124(UnkStruct_ov104_0223BFFC *param0)
 {
-    u16 v0;
-
-    v0 = param0->unk_1A;
+    u16 v0 = param0->unk_1A;
 
     if (ov104_0223C000(param0->unk_10) == 1) {
         if (param0->unk_A76 > param0->unk_1A) {

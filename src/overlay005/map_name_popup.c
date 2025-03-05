@@ -71,9 +71,7 @@ static void MapNamePopUp_LoadAreaGfx(MapNamePopUp *mapPopUp, u8 bgLayer, u16 til
     void *ptr;
 
     NNSG2dPaletteData *paletteData;
-    u8 narcMemberIdx;
-
-    narcMemberIdx = mapPopUp->windowID * 2;
+    u8 narcMemberIdx = mapPopUp->windowID * 2;
 
     mapPopUp->tiles = Graphics_GetCharData(NARC_INDEX_ARC__AREA_WIN_GRA, narcMemberIdx, FALSE, &mapPopUp->unk_34, HEAP_ID_FIELD);
     Bg_LoadTiles(mapPopUp->bgConfig, bgLayer, mapPopUp->unk_34->pRawData, mapPopUp->unk_34->szByte, tileStart);
@@ -230,9 +228,7 @@ static void MapNamePopUp_StartSlideOut(MapNamePopUp *mapPopUp)
 
 MapNamePopUp *MapNamePopUp_Create(BgConfig *bgConfig)
 {
-    MapNamePopUp *mapPopUp;
-
-    mapPopUp = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(MapNamePopUp));
+    MapNamePopUp *mapPopUp = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(MapNamePopUp));
     mapPopUp->strbuf = Strbuf_Init(22, HEAP_ID_FIELD);
 
     MapNamePopUp_SetBgConfig(mapPopUp, bgConfig);

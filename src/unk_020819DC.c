@@ -182,9 +182,7 @@ void sub_02081BC0(GameWindowLayout *param0)
 
 void sub_02081CAC(GameWindowLayout *param0, u16 param1, u8 param2)
 {
-    Strbuf *v0;
-
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, 156 + param2);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, 156 + param2);
 
     StringTemplate_SetMoveName(param0->unk_6A0, 0, param1);
     StringTemplate_Format(param0->unk_6A0, param0->unk_6AC[16 + param2], v0);
@@ -264,9 +262,7 @@ static void sub_02081EAC(GameWindowLayout *param0, u8 param1)
 
 void sub_02081ED8(GameWindowLayout *param0, Pokemon *param1, u32 param2)
 {
-    Strbuf *v0;
-
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, Unk_020F1EA0[param2][0]);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, Unk_020F1EA0[param2][0]);
 
     StringTemplate_SetNickname(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(param1));
     StringTemplate_Format(param0->unk_6A0, param0->unk_704[param2].unk_00, v0);

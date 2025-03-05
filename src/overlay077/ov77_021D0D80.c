@@ -157,9 +157,7 @@ const OverlayManagerTemplate gTitleScreenOverlayTemplate = {
 static int ov77_021D0D80(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov77_021D17B4 *v0;
-    int v1;
-
-    v1 = 30;
+    int v1 = 30;
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
@@ -434,9 +432,7 @@ static void ov77_021D1208(UnkStruct_ov77_021D1208 *param0, int param1, int param
 
 static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int param1)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1);
+    NARC *v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1);
 
     {
         Easy3DModel_LoadFrom(&param0->unk_150, v0, 19, param1);

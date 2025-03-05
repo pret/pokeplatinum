@@ -151,9 +151,7 @@ int ov94_0223E46C(UnkStruct_ov94_0223FD4C *param0, int param1)
 
 int ov94_0223E560(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
-    int v0;
-
-    v0 = (*Unk_ov94_02246860[param0->unk_2C])(param0);
+    int v0 = (*Unk_ov94_02246860[param0->unk_2C])(param0);
     return v0;
 }
 
@@ -559,9 +557,7 @@ static int ov94_0223ECD4(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223ED94(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0;
-
-    v0 = ov94_0223B7B8();
+    int v0 = ov94_0223B7B8();
 
     if (v0) {
         s32 v1 = ov94_0223B7D8();
@@ -980,9 +976,7 @@ static int ov94_0223F780(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223F7C0(UnkStruct_ov94_0223FD4C *param0)
 {
-    u32 v0;
-
-    v0 = ov94_02242A6C(param0->unk_10D8, &param0->unk_108);
+    u32 v0 = ov94_02242A6C(param0->unk_10D8, &param0->unk_108);
 
     if (v0 == 0xffffffff) {
         (void)0;

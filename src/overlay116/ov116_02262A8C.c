@@ -306,9 +306,7 @@ static void ov116_02262CB8(UnkStruct_ov116_02262A8C *param0, int param1)
 
 static void ov116_02262D08(UnkStruct_ov116_02262A8C *param0, int param1)
 {
-    UnkStruct_ov116_02262D08 *v0;
-
-    v0 = &param0->unk_268C[param1];
+    UnkStruct_ov116_02262D08 *v0 = &param0->unk_268C[param1];
 
     if (v0->unk_30 == 1) {
         return;
@@ -328,9 +326,7 @@ static void ov116_02262D08(UnkStruct_ov116_02262A8C *param0, int param1)
 
 static void ov116_02262D64(UnkStruct_ov116_02262A8C *param0, int param1)
 {
-    UnkStruct_ov116_02262D08 *v0;
-
-    v0 = &param0->unk_268C[param1];
+    UnkStruct_ov116_02262D08 *v0 = &param0->unk_268C[param1];
 
     if (v0->unk_30 == 1) {
         return;
@@ -1103,9 +1099,7 @@ static const UnkStruct_ov116_02267C88 Unk_ov116_02267C88[][4] = {
 static inline u32 inline_ov116_02263E20(void)
 {
     u32 v0 = LCRNG_GetSeed();
-    u32 v1;
-
-    v1 = LCRNG_Next();
+    u32 v1 = LCRNG_Next();
     LCRNG_SetSeed(v0);
 
     return v1;

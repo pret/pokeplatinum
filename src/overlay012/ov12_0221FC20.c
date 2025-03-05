@@ -504,9 +504,7 @@ BOOL ov12_0221FDF4(UnkStruct_ov12_0221FCDC *param0)
 BOOL ov12_0221FE30(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov16_02265BBC *param1, u16 param2, UnkStruct_ov16_02264408 *param3)
 {
     int v0;
-    int v1;
-
-    v1 = param2;
+    int v1 = param2;
 
     ov12_02220474();
 
@@ -670,25 +668,19 @@ BOOL ov12_022201B4(UnkStruct_ov12_0221FCDC *param0)
 
 SysTask *ov12_022201CC(UnkStruct_ov12_0221FCDC *param0, SysTaskFunc param1, void *param2, u32 param3)
 {
-    SysTask *v0;
-
-    v0 = ov12_0221FC68(1, param0, param1, param2, param3);
+    SysTask *v0 = ov12_0221FC68(1, param0, param1, param2, param3);
     return v0;
 }
 
 SysTask *ov12_022201E8(UnkStruct_ov12_0221FCDC *param0, SysTaskFunc param1, void *param2)
 {
-    SysTask *v0;
-
-    v0 = ov12_0221FC68(1, param0, param1, param2, 1100);
+    SysTask *v0 = ov12_0221FC68(1, param0, param1, param2, 1100);
     return v0;
 }
 
 SysTask *ov12_02220204(UnkStruct_ov12_0221FCDC *param0, SysTaskFunc param1, void *param2, u32 param3)
 {
-    SysTask *v0;
-
-    v0 = ov12_0221FC68(2, param0, param1, param2, param3);
+    SysTask *v0 = ov12_0221FC68(2, param0, param1, param2, param3);
     return v0;
 }
 
@@ -724,9 +716,7 @@ UnkStruct_02014014 *ov12_02220260(UnkStruct_ov12_0221FCDC *param0, int param1)
 
 SPLEmitter *ov12_0222026C(UnkStruct_ov12_0221FCDC *param0, int param1)
 {
-    SPLEmitter *v0;
-
-    v0 = param0->unk_BC->unk_5C[param1];
+    SPLEmitter *v0 = param0->unk_BC->unk_5C[param1];
     return v0;
 }
 
@@ -903,9 +893,7 @@ static BOOL ov12_0222040C(UnkStruct_ov12_02220314 *param0)
 
 static BOOL ov12_0222044C(UnkStruct_ov12_02220314 *param0)
 {
-    BOOL v0;
-
-    v0 = 1;
+    BOOL v0 = 1;
 
     if ((param0->unk_03--) == 0) {
         Sound_PlayEffect(param0->unk_1A);
@@ -1023,9 +1011,7 @@ static inline int inline_ov12_022204C4_sub_sub(u32 *param0, u8 param1, u8 param2
 
 static inline int inline_ov12_022204C4_sub(u32 *param0, u8 param1)
 {
-    int v0;
-
-    v0 = inline_ov12_022204C4_sub_sub(param0, 0, param1);
+    int v0 = inline_ov12_022204C4_sub_sub(param0, 0, param1);
     return v0;
 }
 
@@ -1540,9 +1526,7 @@ static void ov12_02220C44(UnkStruct_ov12_0221FCDC *param0)
 static void ov12_02220CFC(UnkStruct_ov12_0221FCDC *param0)
 {
     int v0;
-    int v1;
-
-    v1 = 0;
+    int v1 = 0;
 
     for (v0 = 0; v0 < 16; v0++) {
         if (param0->unk_BC->unk_1C[v0] == NULL) {
@@ -2946,9 +2930,7 @@ static BOOL ov12_0222235C(UnkStruct_ov12_02221BBC *param0)
 static BOOL ov12_02222360(UnkStruct_ov12_02221BBC *param0)
 {
     int v0;
-    UnkStruct_ov12_022222D4 *v1;
-
-    v1 = Heap_AllocFromHeap(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
+    UnkStruct_ov12_022222D4 *v1 = Heap_AllocFromHeap(param0->unk_48->heapID, sizeof(UnkStruct_ov12_022222D4));
 
     v1->unk_00 = param0->unk_48->unk_C0;
     v1->unk_04 = param0->unk_48->unk_90[2];
@@ -3108,9 +3090,7 @@ static BOOL ov12_022226E8(UnkStruct_ov12_02221BBC *param0)
 static void ov12_022226F4(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_02221BBC *v0 = (UnkStruct_ov12_02221BBC *)param1;
-    BOOL v1;
-
-    v1 = Unk_ov12_022385CC[v0->unk_14](param0, v0);
+    BOOL v1 = Unk_ov12_022385CC[v0->unk_14](param0, v0);
 
     if (v1 == 0) {
         v0->unk_48->unk_178 = 0;
@@ -3852,9 +3832,7 @@ int ov12_02223178(UnkStruct_ov12_02223178 *param0)
 
 s8 ov12_0222317C(UnkStruct_ov12_0221FCDC *param0, s8 param1)
 {
-    int v0;
-
-    v0 = param1;
+    int v0 = param1;
 
     {
         int v1 = ov12_02220240(param0);
@@ -3986,17 +3964,13 @@ int ov12_02223354(UnkStruct_ov12_0221FCDC *param0, int param1)
 
 BOOL ov12_02223364(UnkStruct_ov12_0221FCDC *param0)
 {
-    u32 v0;
-
-    v0 = (param0->unk_BC->battleType & BATTLE_TYPE_DOUBLES);
+    u32 v0 = (param0->unk_BC->battleType & BATTLE_TYPE_DOUBLES);
     return (v0 != 0) ? 1 : 0;
 }
 
 BOOL ov12_0222337C(UnkStruct_ov12_0221FCDC *param0, int param1)
 {
-    int v0;
-
-    v0 = param0->unk_BC->unk_FC[param1] & (0x40 | 0x80 | 0x40000 | 0x20000000);
+    int v0 = param0->unk_BC->unk_FC[param1] & (0x40 | 0x80 | 0x40000 | 0x20000000);
     return (v0 != 0) ? 1 : 0;
 }
 
@@ -4176,9 +4150,7 @@ UnkStruct_ov12_02223764 *ov12_022234F8(BattleSystem *battleSys, int heapID, int 
 {
     int v0;
     int v1[] = { 0, 0, 20, 10, 10, 20 };
-    UnkStruct_ov12_02223764 *v2;
-
-    v2 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02223764));
+    UnkStruct_ov12_02223764 *v2 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02223764));
 
     v2->unk_00 = heapID;
     v2->unk_04 = param2;

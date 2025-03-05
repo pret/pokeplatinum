@@ -811,9 +811,7 @@ static void ov21_021E4B94(UnkStruct_ov21_021E4B30 *param0, int param1)
 static void ov21_021E4C38(Sprite *param0, int param1)
 {
     VecFx32 v0;
-    const VecFx32 *v1;
-
-    v1 = Sprite_GetPosition(param0);
+    const VecFx32 *v1 = Sprite_GetPosition(param0);
     v0 = *v1;
     v0.y = (96 + (-8 * param1)) << FX32_SHIFT;
 

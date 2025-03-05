@@ -300,9 +300,7 @@ static BOOL (*const Unk_ov62_02249700[])(UnkStruct_ov62_02246BF4 *wk) = {
 
 BOOL ov62_02247084(UnkStruct_ov62_02246BF4 *param0)
 {
-    BOOL v0;
-
-    v0 = Unk_ov62_02249700[param0->unk_1F4](param0);
+    BOOL v0 = Unk_ov62_02249700[param0->unk_1F4](param0);
 
     if (v0 == 0) {
         ov62_02247A70(param0);
@@ -744,9 +742,7 @@ void ov62_02247968(UnkStruct_ov62_02246BF4 *param0, int param1, BOOL param2)
 void ov62_02247998(UnkStruct_ov62_02246BF4 *param0, int param1)
 {
     s16 v0, v1;
-    ManagedSprite *v2;
-
-    v2 = param0->unk_00[param1].unk_0C;
+    ManagedSprite *v2 = param0->unk_00[param1].unk_0C;
     param0->unk_188[0].unk_00 = param1;
 
     ManagedSprite_GetPositionXY(v2, &v0, &v1);
@@ -755,20 +751,16 @@ void ov62_02247998(UnkStruct_ov62_02246BF4 *param0, int param1)
 
 void ov62_022479D4(UnkStruct_ov62_02246BF4 *param0, int param1)
 {
-    s16 v0, v1;
-
-    v0 = (param0->unk_220.unk_18[param1 + 12].rect.left + param0->unk_220.unk_18[param1 + 12].rect.right) / 2;
-    v1 = (param0->unk_220.unk_18[param1 + 12].rect.top + param0->unk_220.unk_18[param1 + 12].rect.bottom) / 2;
+    s16 v0 = (param0->unk_220.unk_18[param1 + 12].rect.left + param0->unk_220.unk_18[param1 + 12].rect.right) / 2;
+    s16 v1 = (param0->unk_220.unk_18[param1 + 12].rect.top + param0->unk_220.unk_18[param1 + 12].rect.bottom) / 2;
 
     ManagedSprite_SetPositionXY(param0->unk_188[1].unk_0C, v0 - 0, v1 - 8);
 }
 
 void ov62_02247A20(UnkStruct_ov62_02246BF4 *param0, int param1, int param2)
 {
-    s16 v0, v1;
-
-    v0 = (param0->unk_220.unk_18[param1 + 12].rect.left + param0->unk_220.unk_18[param1 + 12].rect.right) / 2;
-    v1 = (param0->unk_220.unk_18[param1 + 12].rect.top + param0->unk_220.unk_18[param1 + 12].rect.bottom) / 2;
+    s16 v0 = (param0->unk_220.unk_18[param1 + 12].rect.left + param0->unk_220.unk_18[param1 + 12].rect.right) / 2;
+    s16 v1 = (param0->unk_220.unk_18[param1 + 12].rect.top + param0->unk_220.unk_18[param1 + 12].rect.bottom) / 2;
 
     ManagedSprite_SetPositionXY(param0->unk_188[param2].unk_0C, v0 - 0, v1 - 8);
 }
@@ -912,9 +904,7 @@ void ov62_02247B88(UnkStruct_ov62_02246BF4 *param0, int param1)
 static inline void inline_ov62_02247CE0(UnkStruct_ov62_02246BF4 *param0, int param1, s16 param2, s16 param3)
 {
     s16 v0, v1;
-    UnkStruct_ov62_02246BF4_sub1 *v2;
-
-    v2 = &param0->unk_00[param1];
+    UnkStruct_ov62_02246BF4_sub1 *v2 = &param0->unk_00[param1];
 
     ManagedSprite_GetPositionXY(v2->unk_0C, &v0, &v1);
 

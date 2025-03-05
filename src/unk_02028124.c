@@ -72,9 +72,7 @@ BOOL sub_0202817C(UnkStruct_0202818C *param0)
 
 UnkStruct_0202818C *sub_0202818C(int param0)
 {
-    UnkStruct_0202818C *v0;
-
-    v0 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_0202818C));
+    UnkStruct_0202818C *v0 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_0202818C));
     sub_02028124(v0);
 
     return v0;

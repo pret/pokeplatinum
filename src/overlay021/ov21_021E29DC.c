@@ -1357,9 +1357,7 @@ static void ov21_021E3BFC(UnkStruct_ov21_021E326C *param0)
 static BOOL ov21_021E3C18(UnkStruct_ov21_021E342C *param0, int param1, int param2)
 {
     UnkStruct_ov21_021E2BA8 *v0 = param0->unk_04;
-    BOOL v1;
-
-    v1 = ov21_021E2EC4(v0, param1, param2);
+    BOOL v1 = ov21_021E2EC4(v0, param1, param2);
 
     if (v1 == 1) {
         param0->unk_28 = 0;

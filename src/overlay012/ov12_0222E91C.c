@@ -528,9 +528,7 @@ static void ov12_0222F208(SysTask *param0, void *param1)
 void ov12_0222F2F8(UnkStruct_ov12_0221FCDC *param0)
 {
     int v0;
-    UnkStruct_ov12_0222F208 *v1;
-
-    v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222F208));
+    UnkStruct_ov12_0222F208 *v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222F208));
     ov12_0223595C(param0, &v1->unk_00);
 
     {
@@ -652,9 +650,7 @@ static void ov12_0222F464(SysTask *param0, void *param1)
 
 void ov12_0222F5EC(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_0222F464 *v0;
-
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222F464));
+    UnkStruct_ov12_0222F464 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222F464));
     ov12_0223595C(param0, &v0->unk_20);
 
     v0->unk_1C = ov12_022232FC(param0, ov12_02220248(param0));

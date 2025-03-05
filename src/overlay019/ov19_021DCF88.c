@@ -765,9 +765,7 @@ static void ov19_021DD794(UnkStruct_ov19_021DCF88 *param0)
 
 static void ov19_021DD7E8(UnkStruct_ov19_021DCF88 *param0)
 {
-    int v0;
-
-    v0 = ov19_021D5EB0(param0->unk_04);
+    int v0 = ov19_021D5EB0(param0->unk_04);
     param0->unk_80 += v0;
 
     if (param0->unk_80 < 0) {

@@ -277,9 +277,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     StringTemplate *v5;
     Strbuf *v6;
     Strbuf *v7;
-    MessageLoader *v8;
-
-    v8 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
+    MessageLoader *v8 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
     GF_ASSERT(v8);
     v5 = StringTemplate_Default(13);
 

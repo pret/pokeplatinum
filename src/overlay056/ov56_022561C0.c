@@ -220,9 +220,7 @@ static void ov56_022563E8(UnkStruct_ov56_022562EC *param0)
 UnkStruct_ov56_02256468 *ov56_02256410(FieldSystem *fieldSystem)
 {
     UnkStruct_ov56_02256468 *v0;
-    SysTask *v1;
-
-    v1 = SysTask_StartAndAllocateParam(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
+    SysTask *v1 = SysTask_StartAndAllocateParam(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
     v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
@@ -631,9 +629,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
 
 static int ov56_02256BC0(UnkStruct_ov56_02256468 *param0)
 {
-    int v0;
-
-    v0 = TouchScreen_CheckRectangleHeld(Unk_ov56_02257250);
+    int v0 = TouchScreen_CheckRectangleHeld(Unk_ov56_02257250);
 
     if (v0 != 0xffffffff) {
         u32 v1, v2;

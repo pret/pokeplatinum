@@ -334,9 +334,7 @@ void *sub_0203D264(FieldSystem *fieldSystem, int param1)
 
 u16 sub_0203D2C4(void *param0)
 {
-    u16 v0;
-
-    v0 = sub_0207CB94(param0);
+    u16 v0 = sub_0207CB94(param0);
 
     if ((v0 != 0) && (sub_0207CB9C(param0) == 5)) {
         GF_ASSERT(0);
@@ -790,9 +788,7 @@ static void sub_0203D910(FieldSystem *fieldSystem, UnkStruct_02097728 *param1)
 
 UnkStruct_02097728 *sub_0203D920(FieldSystem *fieldSystem, int param1, u8 param2, u8 param3, int param4)
 {
-    UnkStruct_02097728 *v0;
-
-    v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3, 11);
+    UnkStruct_02097728 *v0 = sub_02097624(FieldSystem_GetSaveData(fieldSystem), param1, param2, param3, 11);
     sub_0203D910(fieldSystem, v0);
 
     return v0;
@@ -815,9 +811,7 @@ UnkStruct_02097728 *sub_0203D94C(FieldSystem *fieldSystem, int param1, u8 param2
 
 UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int param2)
 {
-    UnkStruct_02097728 *v0;
-
-    v0 = sub_020976BC(FieldSystem_GetSaveData(fieldSystem), param1, param2);
+    UnkStruct_02097728 *v0 = sub_020976BC(FieldSystem_GetSaveData(fieldSystem), param1, param2);
     sub_0203D910(fieldSystem, v0);
 
     return v0;
@@ -911,9 +905,7 @@ static BOOL sub_0203DA64(FieldTask *param0)
 
 void sub_0203DAC0(FieldTask *param0, u16 *param1, SaveData *param2, u16 param3, u16 param4)
 {
-    UnkStruct_0203DA64 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DA64));
+    UnkStruct_0203DA64 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0203DA64));
     memset(v0, 0, sizeof(UnkStruct_0203DA64));
 
     v0->unk_0C = sub_0203DA00(HEAP_ID_FIELD_TASK, param2, param3, &v0->unk_08, param4);
@@ -1705,9 +1697,7 @@ void *sub_0203E564(FieldSystem *fieldSystem, u8 param1, u8 param2, u16 param3, i
 
 PartyManagementData *sub_0203E598(FieldSystem *fieldSystem, int heapID, int param2)
 {
-    PartyManagementData *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
+    PartyManagementData *v0 = Heap_AllocFromHeap(heapID, sizeof(PartyManagementData));
     memset(v0, 0, sizeof(PartyManagementData));
 
     v0->unk_00 = Party_GetFromSavedata(fieldSystem->saveData);
@@ -1757,9 +1747,7 @@ static const u8 Unk_020EA15C[] = {
 
 void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3)
 {
-    PokemonSummary *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
+    PokemonSummary *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PokemonSummary));
 
     v0->monData = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), param2);
     v0->options = SaveData_Options(fieldSystem->saveData);

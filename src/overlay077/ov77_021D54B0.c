@@ -598,9 +598,7 @@ void ov77_021D6470(UnkStruct_ov77_021D5564 *param0, int param1)
     u16 v0;
     const VecFx32 *v1;
     VecFx32 v2;
-    s32 v3;
-
-    v3 = param1 - (65 * 30 - 15 - 15 - 45 - 15);
+    s32 v3 = param1 - (65 * 30 - 15 - 15 - 45 - 15);
 
     if (v3 < 0) {
         v3 = 0;
