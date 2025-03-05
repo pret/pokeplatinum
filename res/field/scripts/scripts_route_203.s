@@ -22,35 +22,19 @@ _001A:
     End
 
 _002D:
-    ScrCmd_036 3, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 3
     End
 
 _0044:
-    ScrCmd_036 4, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 4
     End
 
 _005B:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 5, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 5
     End
 
 _0070:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 6, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 6
     End
 
 _0085:

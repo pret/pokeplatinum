@@ -19,11 +19,7 @@ _0012:
     End
 
 _0023:
-    ScrCmd_036 4, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 4
     End
 
 _003A:

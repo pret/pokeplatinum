@@ -55,11 +55,7 @@ _006E:
     End
 
 _0082:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 3, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 3
     End
 
 _0097:

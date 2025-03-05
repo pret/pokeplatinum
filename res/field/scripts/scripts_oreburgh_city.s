@@ -568,35 +568,19 @@ _0696:
     End
 
 _06A9:
-    ScrCmd_036 27, 0, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowMapSign 27
     End
 
 _06C0:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 28, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 28
     End
 
 _06D5:
-    ScrCmd_036 29, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 29
     End
 
 _06EC:
-    ScrCmd_036 30, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 30
     End
 
 _0703:

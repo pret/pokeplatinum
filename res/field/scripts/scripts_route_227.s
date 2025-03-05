@@ -212,11 +212,7 @@ _01B8:
     .byte 0
 
 _01CC:
-    ScrCmd_036 12, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 12
     End
 
 _01E3:

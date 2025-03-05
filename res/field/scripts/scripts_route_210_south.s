@@ -284,19 +284,11 @@ _036F:
     End
 
 _0379:
-    ScrCmd_036 10, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 10
     End
 
 _0390:
-    ScrCmd_036 11, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 11
     End
 
 _03A7:

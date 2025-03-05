@@ -282,9 +282,9 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     } else if (retScriptID >= 2500) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0001, TEXT_BANK_UNK_0017);
         retScriptID -= 2500;
-    } else if (retScriptID >= 2000) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0211, TEXT_BANK_COMMON_STRINGS);
-        retScriptID -= 2000;
+    } else if (retScriptID >= SCRIPT_ID_OFFSET_COMMON_SCRIPTS) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_common, TEXT_BANK_COMMON_STRINGS);
+        retScriptID -= SCRIPT_ID_OFFSET_COMMON_SCRIPTS;
     } else if (retScriptID >= 1) {
         ScriptContext_LoadFromCurrentMap(fieldSystem, ctx);
         retScriptID -= 1;
@@ -446,7 +446,7 @@ void sub_0203F0C0(FieldSystem *fieldSystem)
 {
     ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->task);
 
-    if (sub_0203A9C8(fieldSystem) == 1) {
+    if (sub_0203A9C8(fieldSystem) == TRUE) {
         scriptManager->function = sub_0203AB00;
     }
 }

@@ -10,25 +10,25 @@
     ScriptEntryEnd
 
 _0012:
-    GoToIfUnset 186, _002A
-    GoToIfSet 186, _003C
+    GoToIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_SetWarpsLakeAcuityNormal
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_SetWarpsLakeAcuityLowWater
     End
 
-_002A:
+AcuityLakefront_SetWarpsLakeAcuityNormal:
     SetWarpEventPos 2, 0x131, 229
     SetWarpEventPos 3, 0x132, 229
     End
 
-_003C:
+AcuityLakefront_SetWarpsLakeAcuityLowWater:
     SetWarpEventPos 0, 0x131, 229
     SetWarpEventPos 1, 0x132, 229
     End
 
 _004E:
     CheckBadgeAcquired BADGE_ID_ICICLE, 0x4000
-    CallIfEq 0x4000, 1, _0079
-    GoToIfUnset 186, _002A
-    GoToIfSet 186, _003C
+    CallIfEq 0x4000, TRUE, _0079
+    GoToIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_SetWarpsLakeAcuityNormal
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, AcuityLakefront_SetWarpsLakeAcuityLowWater
     End
 
 _0079:
@@ -37,11 +37,7 @@ _0079:
     Return
 
 _0083:
-    ScrCmd_036 5, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 5
     End
 
 _009A:

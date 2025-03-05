@@ -233,27 +233,15 @@ _026C:
     EndMovement
 
 _0280:
-    ScrCmd_036 7, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 7
     End
 
 _0297:
-    ScrCmd_036 8, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 8
     End
 
 _02AE:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 9, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 9
     End
 
     .byte 0

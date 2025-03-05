@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/field/window.h"
+#include "generated/signpost_types.h"
 
 #include "bg_window.h"
 #include "font.h"
@@ -77,7 +78,7 @@ void FieldMessage_AddSignpostWindow(BgConfig *bgConfig, Window *window, u16 sign
 {
     u16 tilemapLeft, width;
 
-    if (signpostType == SIGNPOST_CITY_MAP || signpostType == SIGNPOST_ROUTE_MAP) {
+    if (signpostType == SIGNPOST_TYPE_MAP || signpostType == SIGNPOST_TYPE_ARROW) {
         tilemapLeft = 9;
         width = 20;
     } else {

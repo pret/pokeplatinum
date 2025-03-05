@@ -33,7 +33,6 @@
 #include "overlay005/ov5_021D5CB0.h"
 #include "overlay005/ov5_021D5EB8.h"
 #include "overlay005/ov5_021DF440.h"
-#include "overlay005/ov5_021E1B08.h"
 #include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EA714.h"
 #include "overlay005/ov5_021ECC20.h"
@@ -43,6 +42,7 @@
 #include "overlay005/ov5_021EF4BC.h"
 #include "overlay005/ov5_021F0824.h"
 #include "overlay005/ov5_021F10E8.h"
+#include "overlay005/signpost.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021ED0A4.h"
 #include "overlay009/ov9_02249960.h"
@@ -308,7 +308,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             HoneyTree_FreeShakeData(&fieldSystem->unk_A8);
             ov5_021D5BA8(fieldSystem);
             AreaLightManager_Free(&fieldSystem->areaLightMan);
-            ov5_021E1B20(fieldSystem->unk_64);
+            Signpost_Free(fieldSystem->signpost);
             MapNamePopUp_Destroy(fieldSystem->unk_04->unk_08);
 
             if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -485,7 +485,7 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
     }
 
     AreaLightManager_UpdateActiveTemplate(fieldSystem->areaLightMan);
-    ov5_021E1B68(fieldSystem);
+    Signpost_DoCurrentCommand(fieldSystem);
 
     if ((param1 & 1) != 0) {
         ov5_021D5DEC(fieldSystem->unk_04->unk_10);
@@ -906,7 +906,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
     }
 
     fieldSystem->unk_04->unk_08 = MapNamePopUp_Create(fieldSystem->bgConfig);
-    fieldSystem->unk_64 = ov5_021E1B08(HEAP_ID_FIELD);
+    fieldSystem->signpost = Signpost_Init(HEAP_ID_FIELD);
     fieldSystem->unk_04->unk_10 = ov5_021D5CB0();
 
     ov5_021D5CE4(fieldSystem->unk_04->unk_10, AreaDataManager_GetMapTexture(fieldSystem->areaDataManager));
