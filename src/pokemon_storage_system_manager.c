@@ -53,7 +53,7 @@ static void Init(PCBoxes *pcBoxes)
 
     pcBoxes->unlockedWallpapers = 0;
 
-    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STORAGE_SYSTEM, 0);
+    MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STORAGE_SYSTEM, HEAP_ID_SYSTEM);
     if (messageLoader) {
         for (box = 0; box < MAX_PC_BOXES; box++) {
             MessageLoader_Get(messageLoader, box1_name_id + box, pcBoxes->names[box]);
