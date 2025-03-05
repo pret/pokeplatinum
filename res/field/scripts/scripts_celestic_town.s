@@ -319,11 +319,7 @@ _033D:
     End
 
 _0350:
-    ScrCmd_036 15, 0, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowMapSign 15
     End
 
 _0367:

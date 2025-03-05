@@ -18,10 +18,10 @@
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/model_attributes.h"
+#include "overlay005/signpost.h"
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
-#include "overlay005/struct_ov5_021E1B20_decl.h"
 #include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
 #include "overlay005/struct_ov5_021EF300_decl.h"
@@ -92,7 +92,7 @@ typedef struct FieldSystem_t {
     UnkStruct_02054C18 *unk_58;
     const TerrainCollisionManager *terrainCollisionMan;
     int unk_60;
-    UnkStruct_ov5_021E1B20 *unk_64;
+    Signpost *signpost;
     BOOL runningFieldMap;
     UnkStruct_ov23_0224942C *unk_6C;
     int mapLoadType;

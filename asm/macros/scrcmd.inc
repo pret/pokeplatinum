@@ -17,6 +17,8 @@
 #include "generated/roaming_slots.h"
 #include "generated/save_types.h"
 #include "generated/sdat.h"
+#include "generated/signpost_commands.h"
+#include "generated/signpost_types.h"
 #include "generated/species.h"
 #include "generated/trainers.h"
 #include "constants/honey_tree.h"
@@ -315,41 +317,73 @@
     .short 53
     .endm
 
-    .macro ScrCmd_036 arg0, arg1, arg2, arg3
+    .macro ShowMapSign messageID
+    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_MAP
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput 0x800C
+    CallCommonScript 0x7D0
+    .endm
+
+    .macro ShowArrowSign messageID
+    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_ARROW
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput 0x800C
+    CallCommonScript 0x7D0
+    .endm
+
+    .macro ShowLandmarkSign messageID
+    DrawSignpostInstantMessage \messageID SIGNPOST_TYPE_LANDMARK
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    GetSignpostInput 0x800C
+    CallCommonScript 0x7D0
+    .endm
+
+    .macro ShowScrollingSign messageID
+    DrawSignpostTextBox SIGNPOST_TYPE_SCROLLING
+    SetSignpostCommand SIGNPOST_CMD_SCROLL_IN
+    WaitForSignpostDone
+    DrawSignpostScrollingMessage \messageID, 0x800C
+    CallCommonScript 0x7D0
+    .endm
+
+    .macro DrawSignpostInstantMessage messageID, signpostType, signpostNARCMemberIdx=0, unused=0x800C
     .short 54
-    .byte \arg0
-    .byte \arg1
-    .short \arg2
-    .short \arg3
+    .byte \messageID
+    .byte \signpostType
+    .short \signpostNARCMemberIdx
+    .short \unused
     .endm
 
-    .macro ScrCmd_037 arg0, arg1
+    .macro DrawSignpostTextBox signpostType=SIGNPOST_TYPE_SCROLLING, signpostNARCMemberIdx=0
     .short 55
-    .byte \arg0
-    .short \arg1
+    .byte \signpostType
+    .short \signpostNARCMemberIdx
     .endm
 
-    .macro ScrCmd_038 arg0
+    .macro SetSignpostCommand command
     .short 56
-    .byte \arg0
+    .byte \command
     .endm
 
-    .macro ScrCmd_039
+    .macro WaitForSignpostDone
     .short 57
     .endm
 
-    .macro ScrCmd_03A arg0, arg1
+    .macro DrawSignpostScrollingMessage messageID, destVarID=0x800C
     .short 58
-    .byte \arg0
-    .short \arg1
+    .byte \messageID
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_03B arg0
+    .macro GetSignpostInput destVarID=0x800C
     .short 59
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_03C
+    .macro ShowStartMenu
     .short 60
     .endm
 

@@ -298,19 +298,11 @@ _039A:
     End
 
 _03AD:
-    ScrCmd_036 7, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 7
     End
 
 _03C4:
-    ScrCmd_036 8, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 8
     End
 
     .byte 0

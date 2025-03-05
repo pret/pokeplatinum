@@ -13,19 +13,11 @@
     ScriptEntryEnd
 
 _001E:
-    ScrCmd_036 5, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 5
     End
 
 _0035:
-    ScrCmd_036 6, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 6
     End
 
 _004C:

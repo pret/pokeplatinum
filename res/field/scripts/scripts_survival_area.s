@@ -81,11 +81,7 @@ _00B3:
     End
 
 _00BE:
-    ScrCmd_036 13, 0, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowMapSign 13
     End
 
 _00D5:

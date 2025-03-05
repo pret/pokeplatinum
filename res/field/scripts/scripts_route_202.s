@@ -44,27 +44,15 @@ _0071:
     End
 
 _0084:
-    ScrCmd_036 11, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 11
     End
 
 _009B:
-    ScrCmd_036 12, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 12
     End
 
 _00B2:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 13, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 13
     End
 
 _00C7:

@@ -244,11 +244,7 @@ _02E2:
     End
 
 _02EF:
-    ScrCmd_036 18, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 18
     End
 
 _0306:

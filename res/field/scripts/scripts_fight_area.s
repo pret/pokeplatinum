@@ -569,27 +569,15 @@ _057A:
     End
 
 _0585:
-    ScrCmd_036 47, 0, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowMapSign 47
     End
 
 _059C:
-    ScrCmd_036 48, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 48
     End
 
 _05B3:
-    ScrCmd_036 49, 1, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowArrowSign 49
     End
 
 _05CA:
