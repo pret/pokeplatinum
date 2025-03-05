@@ -32,9 +32,9 @@ ChatotCry *GetChatotCryDataFromSave(SaveData *param0)
     return (ChatotCry *)SaveData_SaveTable(param0, 22);
 }
 
-BOOL IsChatotCryDataValid(const ChatotCry *param0)
+BOOL IsChatotCryDataValid(const ChatotCry *cry)
 {
-    return param0->exists;
+    return cry->exists;
 }
 
 void ResetChatotCryDataStatus(ChatotCry *param0)

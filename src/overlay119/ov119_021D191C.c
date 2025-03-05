@@ -124,12 +124,9 @@ static BOOL ov119_021D1930(UnkStruct_ov119_021D0FD0 *param0)
         if (v6 == 0) {
             ov119_021D18C0(param0);
             {
-                int v7;
-                int v8;
-
-                v7 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
-                v8 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
-                sub_02005844(v7, v8);
+                int species = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+                int form = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
+                sub_02005844(species, form);
                 param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 0, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
             }
             param0->unk_60++;
@@ -270,12 +267,9 @@ static BOOL ov119_021D1BD0(UnkStruct_ov119_021D0FD0 *param0)
         if (v2 == 0) {
             ov119_021D18C0(param0);
             {
-                int v3;
-                int v4;
-
-                v3 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
-                v4 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
-                sub_02005844(v3, v4);
+                int species = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+                int form = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
+                sub_02005844(species, form);
                 param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 0, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
             }
 

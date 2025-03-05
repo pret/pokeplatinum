@@ -3772,7 +3772,7 @@ static void ov12_022230CC(UnkStruct_ov12_0221FCDC *param0)
 
 static void ov12_022230D4(UnkStruct_ov12_0221FCDC *param0)
 {
-    int v0;
+    enum PokemonCryMod cryMod;
     s16 v1;
     int v2;
     int v3;
@@ -3780,7 +3780,7 @@ static void ov12_022230D4(UnkStruct_ov12_0221FCDC *param0)
 
     param0->unk_18 += 1;
 
-    v0 = inline_ov12_022204C4(param0->unk_18);
+    cryMod = inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
     v1 = (s16)inline_ov12_022204C4(param0->unk_18);
@@ -3793,7 +3793,7 @@ static void ov12_022230D4(UnkStruct_ov12_0221FCDC *param0)
     v3 = param0->unk_BC->unk_D8[param0->unk_BC->unk_14];
     v4 = param0->unk_BC->unk_E8[param0->unk_BC->unk_14];
 
-    Pokemon_PlayCry(param0->unk_BC->unk_10C, v0, v3, v4, v1, v2, param0->unk_BC->unk_118, param0->heapID);
+    Pokemon_PlayCry(param0->unk_BC->unk_10C, cryMod, v3, v4, v1, v2, param0->unk_BC->unk_118, param0->heapID);
 }
 
 static void ov12_02223134(UnkStruct_ov12_0221FCDC *param0)

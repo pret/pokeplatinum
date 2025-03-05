@@ -142,7 +142,7 @@ static void ov21_021E530C(u32 param0, UnkStruct_ov21_021E4D90 *param1, UnkStruct
 static void ov21_021E537C(u32 param0, UnkStruct_ov21_021E4D90 *param1, UnkStruct_ov21_021E51DC *param2);
 static void ov21_021E545C(u32 param0, UnkStruct_ov21_021E4D90 *param1, UnkStruct_ov21_021E51DC *param2);
 static void ov21_021E5498(u32 param0, UnkStruct_ov21_021E4D90 *param1, UnkStruct_ov21_021E51DC *param2);
-static void ov21_021E5DE8(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1, int param2);
+static void ov21_021E5DE8(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1, int species);
 static void ov21_021E5E18(UnkStruct_ov21_021E51DC *param0);
 static void ov21_021E5E48(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1);
 static void ov21_021E5E78(UnkStruct_ov21_021E51DC *param0, BOOL param1);
@@ -1255,11 +1255,11 @@ static void ov21_021E5D90(Sprite *param0, UnkStruct_ov21_021E5C80 *param1, BOOL 
     }
 }
 
-static void ov21_021E5DE8(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1, int param2)
+static void ov21_021E5DE8(UnkStruct_ov21_021E51DC *param0, UnkStruct_ov21_021E4D90 *param1, int species)
 {
     param0->unk_2C = 1;
 
-    Sound_PlayPokemonCry(13, param2, 0, 127, 0x1ff, 0);
+    Sound_PlayPokemonCry(POKECRY_POKEDEX_CHORUS, species, 0, 127, 0x1ff, 0);
     ov21_021E5F00(param0);
 }
 

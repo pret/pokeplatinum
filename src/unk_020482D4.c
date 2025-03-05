@@ -185,17 +185,17 @@ static BOOL ScriptContext_IsSoundFinished(ScriptContext *ctx)
     return sub_020061E4() == FALSE;
 }
 
-BOOL ScrCmd_059(ScriptContext *param0)
+BOOL ScrCmd_059(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(param0);
+    u16 *v0 = ScriptContext_GetVarPointer(ctx);
 
-    if (IsChatotCryStructReadyForProcessing(GetChatotCryDataFromSave(param0->fieldSystem->saveData)) == 1) {
+    if (IsChatotCryStructReadyForProcessing(GetChatotCryDataFromSave(ctx->fieldSystem->saveData)) == TRUE) {
         *v0 = 1;
-        return 0;
+        return FALSE;
     }
 
     *v0 = 0;
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_05A(ScriptContext *param0)

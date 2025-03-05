@@ -679,14 +679,14 @@ static int ov79_021D2AE0(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
 static int ov79_021D2AF0(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B4 *param1)
 {
-    u32 v0 = Pokemon_GetValue(param0->unk_30.unk_00, MON_DATA_FORM, NULL);
+    u32 form = Pokemon_GetValue(param0->unk_30.unk_00, MON_DATA_FORM, NULL);
 
     switch (param0->unk_30.unk_09) {
     case 1:
-        Sound_PlayPokemonCry(11, param0->unk_30.unk_04, 0, 127, param0->heapId, v0);
+        Sound_PlayPokemonCry(POKECRY_PINCH_NORMAL, param0->unk_30.unk_04, 0, 127, param0->heapId, form);
         break;
     default:
-        Sound_PlayPokemonCry(0, param0->unk_30.unk_04, 0, 127, param0->heapId, v0);
+        Sound_PlayPokemonCry(POKECRY_NORMAL, param0->unk_30.unk_04, 0, 127, param0->heapId, form);
         break;
     }
 

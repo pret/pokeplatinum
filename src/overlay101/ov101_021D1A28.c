@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "overlay101/const_ov101_021D94D8.h"
 #include "overlay101/const_ov101_021D94F0.h"
 #include "overlay101/const_ov101_021D9508.h"
@@ -1346,7 +1348,7 @@ static int ov101_021D2A78(UnkStruct_ov101_021D13C8 *param0)
         return 0;
     }
 
-    sub_02005844(35, 0);
+    sub_02005844(SPECIES_CLEFAIRY, 0);
     param0->unk_00 = 42;
     return 0;
 }
@@ -3437,7 +3439,7 @@ static int ov101_021D4A30(UnkStruct_ov101_021D4764 *param0)
     if (param0->unk_10 >= 48) {
         param0->unk_10 = 0;
         param0->unk_04++;
-        sub_02005844(35, 0);
+        sub_02005844(SPECIES_CLEFAIRY, 0);
         ov101_021D679C(param0->unk_30, UnkEnum_ov101_021D679C_04);
     }
 

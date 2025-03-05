@@ -59,7 +59,7 @@ static void ov70_0226D020(UnkStruct_ov70_0226CF38 *param0, u32 param1);
 static void ov70_0226D46C(UnkStruct_ov70_0226CF38 *param0, u32 param1);
 static void ov70_0226D0E8(UnkStruct_ov70_0226CF38 *param0, u32 param1, BOOL param2, BOOL param3, u32 param4);
 static void ov70_0226D24C(BOOL param0, BOOL param1, BOOL param2, u32 param3);
-static void ov70_0226D27C(BOOL param0, BOOL param1, BOOL param2, u32 param3);
+static void ov70_0226D27C(BOOL param0, BOOL param1, BOOL param2, u32 species);
 static BOOL ov70_0226D2A0(UnkStruct_ov70_0226D2A0 *param0, u32 param1, UnkStruct_ov70_02261E10 *param2, u32 param3);
 static BOOL ov70_0226D2D8(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E10 *param1, u32 param2);
 static void ov70_0226D31C(UnkStruct_ov70_0226D2A0 *param0, UnkStruct_ov70_02261E10 *param1, u32 param2);
@@ -290,14 +290,14 @@ static void ov70_0226D24C(BOOL param0, BOOL param1, BOOL param2, u32 param3)
     }
 }
 
-static void ov70_0226D27C(BOOL param0, BOOL param1, BOOL param2, u32 param3)
+static void ov70_0226D27C(BOOL param0, BOOL param1, BOOL param2, u32 species)
 {
     if (param0) {
         if (param1) {
-            sub_02005844(param3, 0);
+            sub_02005844(species, 0);
         }
     } else {
-        sub_02005844(param3, 0);
+        sub_02005844(species, 0);
     }
 }
 

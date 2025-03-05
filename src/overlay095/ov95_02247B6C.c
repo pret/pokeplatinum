@@ -350,11 +350,11 @@ static int ov95_02247F04(UnkStruct_ov95_02247C6C *param0, int *param1)
                 const BoxPokemon *v6 = ov95_02247634(param0->unk_00);
 
                 if (BoxPokemon_GetValue((BoxPokemon *)v6, MON_DATA_IS_EGG, NULL) == 0) {
-                    u8 v7;
+                    u8 delay;
 
                     sub_02007B98(param0->unk_10, 1);
-                    PokeSprite_LoadCryDelay(param0->unk_80, &v7, ov95_0224764C(param0->unk_00), 1);
-                    sub_0200590C(ov95_0224764C(param0->unk_00), v7, ov95_02247654(param0->unk_00));
+                    PokeSprite_LoadCryDelay(param0->unk_80, &delay, ov95_0224764C(param0->unk_00), 1);
+                    sub_0200590C(ov95_0224764C(param0->unk_00), delay, ov95_02247654(param0->unk_00));
                 }
 
                 Window_FillTilemap(&(param0->unk_58), 0xf);

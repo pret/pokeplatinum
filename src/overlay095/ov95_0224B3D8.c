@@ -362,10 +362,10 @@ static int ov95_0224B71C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
             const BoxPokemon *v0 = ov95_0224763C(param0->unk_00);
 
             if (BoxPokemon_GetValue((BoxPokemon *)v0, MON_DATA_IS_EGG, NULL) == 0) {
-                u8 v1;
+                u8 delay;
 
-                PokeSprite_LoadCryDelay(param0->unk_84, &v1, ov95_02247660(param0->unk_00), 1);
-                sub_0200590C(ov95_02247660(param0->unk_00), v1, ov95_02247668(param0->unk_00));
+                PokeSprite_LoadCryDelay(param0->unk_84, &delay, ov95_02247660(param0->unk_00), 1);
+                sub_0200590C(ov95_02247660(param0->unk_00), delay, ov95_02247668(param0->unk_00));
                 sub_02007B98(param0->unk_14, 1);
             }
 

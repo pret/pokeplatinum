@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "overlay101/ov101_021D1A28.h"
 #include "overlay101/ov101_021D7E48.h"
 #include "overlay101/struct_ov101_021D13C8.h"
@@ -1158,7 +1160,7 @@ static int ov101_021D6908(UnkStruct_ov101_021D66D0 *param0)
         param0->unk_14 = 0;
         param0->unk_08++;
 
-        sub_02005844(35, 0);
+        sub_02005844(SPECIES_CLEFAIRY, 0);
     }
 
     Sprite_SetAffineScale(param0->unk_24.unk_04, &v1);

@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_UNK_02005474_H
 #define POKEPLATINUM_UNK_02005474_H
 
+#include "constants/sound.h"
+
 BOOL sub_02005474(u16 param0);
 BOOL Sound_PlayBGM(u16 param0);
 BOOL sub_02005588(u8 param0, u16 param1);
@@ -21,12 +23,12 @@ int Sound_IsEffectPlaying(u16 param0);
 int sub_020057E0();
 void sub_020057FC(u16 param0, u16 param1, int param2);
 void sub_02005818(int param0);
-BOOL sub_02005844(u16 param0, u8 param1);
-BOOL sub_0200590C(u16 param0, u8 param1, u8 param2);
+BOOL sub_02005844(u16 species, u8 form);
+BOOL sub_0200590C(u16 species, u8 delay, u8 form);
 void sub_0200592C(int param0);
 int sub_0200598C(void);
-BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int heapID, u8 param5);
-void Sound_PlayDelayedPokemonCry(int param0, u16 param1, int param2, int param3, int heapID, u8 param5, u8 param6);
+BOOL Sound_PlayPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 form);
+void Sound_PlayDelayedPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 delay, u8 form);
 void sub_0200605C(void);
 BOOL sub_02006150(u16 param0);
 int sub_0200619C(void);

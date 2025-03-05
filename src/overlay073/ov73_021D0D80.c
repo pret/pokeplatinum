@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
@@ -1394,7 +1396,7 @@ static BOOL ov73_021D200C(UnkStruct_ov73_021D1058 *param0, int *param1)
         }
     } break;
     case 6:
-        sub_02005844(427, 0);
+        sub_02005844(SPECIES_BUNEARY, 0);
         v0 = 1;
         break;
     }
