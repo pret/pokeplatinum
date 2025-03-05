@@ -43,7 +43,7 @@ void sub_0202DFA8(HallOfFame *param0, const Party *param1, const RTCDate *param2
 
     v0 = &param0->unk_00[param0->unk_2AA8];
     v3 = Party_GetCurrentCount(param1);
-    v2 = Strbuf_Init(MON_NAME_LEN + 1, 0);
+    v2 = Strbuf_Init(MON_NAME_LEN + 1, HEAP_ID_SYSTEM);
 
     MI_CpuClear16(v0->unk_00, sizeof(UnkStruct_0202E1F4) * 6);
 

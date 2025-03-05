@@ -1334,9 +1334,9 @@ static void ov77_021D34A8(UnkStruct_ov77_021D2E9C *param0)
     v1 = ov77_021D555C();
     v2 = ov77_021D6CB8();
 
-    param0->unk_34.unk_14 = Heap_AllocFromHeap(76, v1);
+    param0->unk_34.unk_14 = Heap_AllocFromHeap(HEAP_ID_76, v1);
     param0->unk_34.unk_18 = ov77_021D6734(16);
-    param0->unk_34.unk_1C = Heap_AllocFromHeap(76, v2);
+    param0->unk_34.unk_1C = Heap_AllocFromHeap(HEAP_ID_76, v2);
 
     memset(param0->unk_34.unk_14, 0, v1);
     memset(param0->unk_34.unk_1C, 0, v2);
@@ -1579,7 +1579,7 @@ static void ov77_021D3B5C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
     Graphics_LoadPaletteFromOpenNARC(v1, 72, 0, 0, 0, 76);
     Graphics_LoadPaletteFromOpenNARC(v1, 72, 4, 0, 0, 76);
 
-    param1->unk_240 = Heap_AllocFromHeap(76, 0x200);
+    param1->unk_240 = Heap_AllocFromHeap(HEAP_ID_76, 0x200);
 
     MI_CpuCopy16((void *)HW_BG_PLTT, param1->unk_240, 0x200);
     MI_CpuClear16(param1->unk_240, 2);

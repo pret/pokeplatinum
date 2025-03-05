@@ -244,9 +244,9 @@ static UnkStruct_ov20_021D16E8 *ov20_021D0EC8(OverlayManager *param0)
         ov20_021D0F64(&v1->unk_60, &v1->unk_08);
     }
 
-    v1->unk_18 = sub_020998EC(34, v1->unk_00);
+    v1->unk_18 = sub_020998EC(HEAP_ID_34, v1->unk_00);
     v1->unk_14 = ov20_021D2098(v1, v1->unk_18);
-    v1->unk_40 = sub_02023FCC(v0, NELEMS(v0), ov20_021D0E38, v1, 34);
+    v1->unk_40 = sub_02023FCC(v0, NELEMS(v0), ov20_021D0E38, v1, HEAP_ID_34);
     v1->unk_44 = 0;
     v1->unk_48 = 0;
     v1->unk_65 = 0;

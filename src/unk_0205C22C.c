@@ -49,7 +49,7 @@ static void sub_0205C7BC(UnkStruct_0205C680 *param0, MapObject *param1);
 static void sub_0205C7E4(MapObjectManager *param0, int param1, int param2);
 static void sub_0205C444(UnkStruct_0205C680 param0[], int param1, int param2);
 void sub_0205C970(UnkStruct_0205C95C *param0);
-UnkStruct_0205C95C *sub_0205C95C(int param0);
+UnkStruct_0205C95C *sub_0205C95C(int heapID);
 static void sub_0205C944(UnkStruct_0205C95C *param0);
 static void sub_0205C924(UnkStruct_0205C924 *param0);
 static void sub_0205C900(UnkStruct_0205C95C *param0);
@@ -57,7 +57,7 @@ static void sub_0205C8DC(UnkStruct_0205C924 *param0);
 
 UnkStruct_0205C22C *sub_0205C22C(UnkStruct_0205B43C *param0)
 {
-    UnkStruct_0205C22C *v0 = (UnkStruct_0205C22C *)Heap_AllocFromHeap(31, sizeof(UnkStruct_0205C22C));
+    UnkStruct_0205C22C *v0 = (UnkStruct_0205C22C *)Heap_AllocFromHeap(HEAP_ID_31, sizeof(UnkStruct_0205C22C));
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_0205C22C));
 
@@ -69,7 +69,7 @@ UnkStruct_0205C22C *sub_0205C22C(UnkStruct_0205B43C *param0)
     v0->playerAvatar = v0->fieldSystem->playerAvatar;
 
     Heap_CreateAtEnd(11, 89, 10000);
-    v0->unk_478 = sub_0205C95C(89);
+    v0->unk_478 = sub_0205C95C(HEAP_ID_89);
     sub_0205C2C8(v0);
 
     return v0;
@@ -488,7 +488,7 @@ void sub_0205C820(MapObjectManager *mapObjMan, UnkStruct_0205C22C *param1)
 
 static void sub_0205C8DC(UnkStruct_0205C924 *param0)
 {
-    param0->unk_00 = Strbuf_Init(7 + 1, 89);
+    param0->unk_00 = Strbuf_Init(7 + 1, HEAP_ID_89);
     param0->unk_04 = NULL;
     param0->unk_08 = NULL;
 
@@ -532,9 +532,9 @@ static void sub_0205C944(UnkStruct_0205C95C *param0)
     }
 }
 
-UnkStruct_0205C95C *sub_0205C95C(int param0)
+UnkStruct_0205C95C *sub_0205C95C(int heapID)
 {
-    UnkStruct_0205C95C *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0205C95C));
+    UnkStruct_0205C95C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0205C95C));
 
     sub_0205C900(v0);
     return v0;

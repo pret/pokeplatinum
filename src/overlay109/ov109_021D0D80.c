@@ -1677,7 +1677,7 @@ static void ov109_021D1E1C(UnkStruct_ov109_021D0F70 *param0)
 
 static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
 {
-    param0->unk_D84 = BgConfig_New(95);
+    param0->unk_D84 = BgConfig_New(HEAP_ID_95);
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     {
@@ -1710,7 +1710,7 @@ static void ov109_021D1EC8(UnkStruct_ov109_021D0F70 *param0)
 
         Bg_InitFromTemplate(param0->unk_D84, 1, &v1, 0);
         Bg_ClearTilemap(param0->unk_D84, 1);
-        Bg_ClearTilesRange(1, 32, 0, 95);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_95);
     }
 
     {
@@ -2010,22 +2010,22 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
     int v0;
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
 
-    LoadStandardWindowGraphics(param0->unk_D84, 1, 1, 15, 0, 95);
+    LoadStandardWindowGraphics(param0->unk_D84, 1, 1, 15, 0, HEAP_ID_95);
     LoadMessageBoxGraphics(param0->unk_D84, 1, (1 + 9), 14, param0->unk_CC->unk_14.unk_04, 95);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 38, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
-    v1->unk_04 = MessageLoader_Init(0, 26, 376, 95);
+    v1->unk_04 = MessageLoader_Init(0, 26, 376, HEAP_ID_95);
     v1->unk_08 = StringTemplate_Default(95);
 
     for (v0 = 0; v0 < 1; v0++) {
         Window_AddFromTemplate(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);
     }
 
-    v1->unk_6C = Strbuf_Init(0x100, 95);
+    v1->unk_6C = Strbuf_Init(0x100, HEAP_ID_95);
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_2C.unk_6C[v0] = Strbuf_Init(7 + 1, 95);
+        param0->unk_2C.unk_6C[v0] = Strbuf_Init(7 + 1, HEAP_ID_95);
     }
 
     ov109_021D27AC(param0, param0->unk_CC->unk_08);
@@ -2074,7 +2074,7 @@ static void ov109_021D268C(UnkStruct_ov109_021D0F70 *param0, u32 param1, const T
     StringTemplate_SetPlayerName(v1->unk_08, 1, CommInfo_TrainerInfo(CommSys_CurNetId()));
     StringTemplate_SetPlayerName(v1->unk_08, 2, param2);
 
-    v0 = Strbuf_Init(0x100, 95);
+    v0 = Strbuf_Init(0x100, HEAP_ID_95);
 
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
@@ -2093,7 +2093,7 @@ static void ov109_021D2714(UnkStruct_ov109_021D0F70 *param0, u32 param1, u32 par
 
     StringTemplate_SetItemName(v1->unk_08, 0, param2);
 
-    v0 = Strbuf_Init(0x100, 95);
+    v0 = Strbuf_Init(0x100, HEAP_ID_95);
 
     MessageLoader_GetStrbuf(v1->unk_04, param1, v0);
     StringTemplate_Format(v1->unk_08, v1->unk_6C, v0);
@@ -3379,7 +3379,7 @@ static void *ov109_021D3A2C(UnkStruct_ov109_021D0F70 *param0, u32 param1, BOOL p
     u32 v1 = NARC_GetMemberSize(param0->unk_D80, param1);
 
     if (param2 == 1) {
-        v0 = Heap_AllocFromHeap(95, v1);
+        v0 = Heap_AllocFromHeap(HEAP_ID_95, v1);
     } else {
         v0 = Heap_AllocFromHeapAtEnd(95, v1);
     }

@@ -360,7 +360,7 @@ int ov105_02241AE0(OverlayManager *param0, int *param1)
     memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
 
     v1->unk_124 = sub_02024220(93, 0, 2, 0, 2, ov105_02245CD0);
-    v1->unk_4C = BgConfig_New(93);
+    v1->unk_4C = BgConfig_New(HEAP_ID_93);
     v1->unk_00 = param0;
 
     v2 = (UnkStruct_ov104_02234130 *)OverlayManager_Args(param0);
@@ -2187,7 +2187,7 @@ static void ov105_02244584(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, 93);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_93);
         Bg_ClearTilemap(param0, 1);
     }
 
@@ -2639,7 +2639,7 @@ static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
     Strbuf *v2;
 
     v1 = SaveData_GetTrainerInfo(param0->unk_13C);
-    v2 = Strbuf_Init((7 + 1), 93);
+    v2 = Strbuf_Init((7 + 1), HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
     Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
@@ -2664,7 +2664,7 @@ static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
     TrainerInfo *v2;
 
     v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-    v1 = Strbuf_Init((7 + 1), 93);
+    v1 = Strbuf_Init((7 + 1), HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
     TrainerInfo_NameStrbuf(v2, v1);
@@ -2695,7 +2695,7 @@ static void ov105_02244FF8(UnkStruct_ov105_02241FF4 *param0, Window *param1, u8 
     Pokemon_GetValue(v5, MON_DATA_SPECIES_NAME, v6);
     Window_FillTilemap(param1, param7);
 
-    v4 = Strbuf_Init((10 + 1), 93);
+    v4 = Strbuf_Init((10 + 1), HEAP_ID_93);
     Strbuf_CopyChars(v4, v6);
     Text_AddPrinterWithParamsAndColor(param1, param8, v4, param3, param4, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(param5, param6, param7), NULL);
 
@@ -2729,7 +2729,7 @@ static void ov105_022450DC(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 
     Window_FillTilemap(param1, param6);
 
-    v3 = MessageLoader_Init(1, 26, 412, 93);
+    v3 = MessageLoader_Init(1, 26, 412, HEAP_ID_93);
     v4 = MessageLoader_GetNewStrbuf(v3, param8);
 
     MessageLoader_Free(v3);
@@ -2808,7 +2808,7 @@ static void ov105_022452A0(UnkStruct_ov105_02241FF4 *param0)
     ov105_022452E4();
 
     param0->unk_124 = sub_02024220(93, 0, 2, 0, 2, ov105_02245CD0);
-    param0->unk_4C = BgConfig_New(93);
+    param0->unk_4C = BgConfig_New(HEAP_ID_93);
 
     ov105_0224531C(param0);
     ov105_02246214(param0->unk_4C, param0->unk_50);
@@ -2839,16 +2839,16 @@ static void ov105_0224531C(UnkStruct_ov105_02241FF4 *param0)
     ov105_02244678(param0);
     ov105_0224472C(param0);
 
-    param0->unk_1C = MessageLoader_Init(1, 26, 364, 93);
+    param0->unk_1C = MessageLoader_Init(1, 26, 364, HEAP_ID_93);
     param0->unk_20 = StringTemplate_Default(93);
-    param0->unk_24 = Strbuf_Init(800, 93);
-    param0->unk_28 = Strbuf_Init(800, 93);
+    param0->unk_24 = Strbuf_Init(800, HEAP_ID_93);
+    param0->unk_28 = Strbuf_Init(800, HEAP_ID_93);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_2C[v0] = Strbuf_Init(64, 93);
+        param0->unk_2C[v0] = Strbuf_Init(64, HEAP_ID_93);
     }
 
-    Font_LoadTextPalette(0, 13 * 32, 93);
+    Font_LoadTextPalette(0, 13 * 32, HEAP_ID_93);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 93);
 
     param0->unk_128 = sub_0200762C(93);
@@ -2888,7 +2888,7 @@ static void ov105_022453F8(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param
 
 static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
 {
-    param0->unk_140 = Heap_AllocFromHeap(93, sizeof(PokemonSummary));
+    param0->unk_140 = Heap_AllocFromHeap(HEAP_ID_93, sizeof(PokemonSummary));
     memset(param0->unk_140, 0, sizeof(PokemonSummary));
 
     param0->unk_140->monData = param0->unk_31C;
@@ -3317,7 +3317,7 @@ static void ov105_02245A30(UnkStruct_ov105_02241FF4 *param0)
 static void ov105_02245A64(UnkStruct_ov105_02241FF4 *param0)
 {
     Bg_SetPriority(1, 1);
-    Bg_ClearTilesRange(1, 32, 0, 93);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_93);
     Bg_ClearTilemap(param0->unk_4C, 1);
     ov105_02246214(param0->unk_4C, param0->unk_50);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);

@@ -451,7 +451,7 @@ static void sub_0206CD7C(SaveData *param0, int param1, int param2, const void *p
 
 static void sub_0206CD94(StringTemplate *param0, int param1, const u16 *param2, int param3, int param4, int param5)
 {
-    Strbuf *v0 = Strbuf_Init(64, 4);
+    Strbuf *v0 = Strbuf_Init(64, HEAP_ID_FIELD);
 
     Strbuf_CopyChars(v0, param2);
     StringTemplate_SetStrbuf(param0, param1, v0, param3, param5, param4);
@@ -672,11 +672,11 @@ void sub_0206D12C(TVBroadcast *param0)
     SaveData_SetChecksum(27);
 }
 
-UnkStruct_0206D140 *sub_0206D140(int param0)
+UnkStruct_0206D140 *sub_0206D140(int heapID)
 {
     UnkStruct_0206D140 *v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0206D140));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0206D140));
     MI_CpuClearFast(v0, sizeof(UnkStruct_0206D140));
 
     return v0;
@@ -1998,7 +1998,7 @@ static int sub_0206E7AC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 {
     int v0;
     UnkStruct_0206E768 *v1 = ov6_02246498(param2);
-    Strbuf *v2 = Strbuf_Init(64, 4);
+    Strbuf *v2 = Strbuf_Init(64, HEAP_ID_FIELD);
 
     sub_0206CDD0(param1, 0, param2);
     Strbuf_CopyChars(v2, v1->unk_00.unk_06);
@@ -2620,7 +2620,7 @@ static int sub_0206EDAC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     SpecialEncounter *v1;
     u16 v2, v3;
     u32 v4, v5;
-    Strbuf *v6 = Strbuf_Init(22, 4);
+    Strbuf *v6 = Strbuf_Init(22, HEAP_ID_FIELD);
     TrainerInfo *v7 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
 
     v1 = SaveData_GetSpecialEncounters(fieldSystem->saveData);
@@ -2704,7 +2704,7 @@ static int sub_0206EEBC(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
 
     {
         u16 v6;
-        Strbuf *v7 = Strbuf_Init(7 + 1, 4);
+        Strbuf *v7 = Strbuf_Init(7 + 1, HEAP_ID_FIELD);
         int v8 = sub_0202A1C0(v0);
 
         sub_0202A1A0(v0, v7);

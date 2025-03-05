@@ -160,7 +160,7 @@ UnkStruct_ov117_022626B0 *ov117_022626B0(UnkStruct_ov117_02261280 *param0)
 {
     UnkStruct_ov117_022626B0 *v0;
 
-    v0 = Heap_AllocFromHeap(110, sizeof(UnkStruct_ov117_022626B0));
+    v0 = Heap_AllocFromHeap(HEAP_ID_110, sizeof(UnkStruct_ov117_022626B0));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_022626B0));
     v0->unk_270 = param0->unk_00->unk_34;
 
@@ -418,8 +418,8 @@ static void ov117_02262B98(UnkStruct_ov117_022626B0 *param0)
 
         GF_ASSERT(param0->unk_24C == NULL);
 
-        param0->unk_24C = Heap_AllocFromHeap(110, v0);
-        param0->unk_250 = Heap_AllocFromHeap(110, v0);
+        param0->unk_24C = Heap_AllocFromHeap(HEAP_ID_110, v0);
+        param0->unk_250 = Heap_AllocFromHeap(HEAP_ID_110, v0);
 
         MI_CpuCopy8(v1, param0->unk_24C, v0);
         MI_CpuCopy8(v1, param0->unk_250, v0);

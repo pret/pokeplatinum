@@ -114,7 +114,7 @@ static BOOL Unk_ov95_0224C2C0 = 1;
 
 void *ov95_0224A390(UnkStruct_ov95_02247628 *param0)
 {
-    UnkStruct_ov95_0224A42C *v0 = Heap_AllocFromHeap(58, sizeof(UnkStruct_ov95_0224A42C));
+    UnkStruct_ov95_0224A42C *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_0224A42C));
 
     if (v0) {
         int v1;

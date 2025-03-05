@@ -91,7 +91,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     v1 = OverlayManager_Args(param0);
     v0->unk_00 = v1;
     v0->unk_42C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 53);
-    v0->unk_428 = Pokemon_New(53);
+    v0->unk_428 = Pokemon_New(HEAP_ID_53);
     v0->unk_D4.unk_00 = 0xFF;
     v0->unk_418.unk_00 = 0;
 
@@ -141,7 +141,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
         }
     }
 
-    v0->unk_D4.unk_10 = BgConfig_New(53);
+    v0->unk_D4.unk_10 = BgConfig_New(HEAP_ID_53);
     VramTransfer_New(64, 53);
     v0->unk_D4.unk_14 = PaletteData_New(53);
     PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
@@ -154,7 +154,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     ov76_0223BF10();
 
     v0->unk_D4.unk_D0 = sub_0200762C(53);
-    v0->unk_D4.unk_188 = sub_02015F84(53, 1, 0);
+    v0->unk_D4.unk_188 = sub_02015F84(HEAP_ID_53, 1, 0);
 
     {
         int v7;
@@ -422,11 +422,11 @@ void sub_020980DC(FieldTask *param0, SaveData *param1)
 
     memset(v0, 0, sizeof(UnkStruct_02097F38));
     v0->unk_10 = param1;
-    v0->unk_08 = Heap_AllocFromHeap(11, sizeof(UnkStruct_02097F18));
+    v0->unk_08 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_02097F18));
     memset(v0->unk_08, 0, sizeof(UnkStruct_02097F18));
     v0->unk_08->unk_24 = SaveData_Options(param1);
     v0->unk_08->unk_28 = param1;
-    v0->unk_0C = Heap_AllocFromHeap(11, sizeof(PartyManagementData));
+    v0->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(PartyManagementData));
     memset(v0->unk_0C, 0, sizeof(PartyManagementData));
 
     FieldTask_InitCall(param0, sub_02097F38, v0);

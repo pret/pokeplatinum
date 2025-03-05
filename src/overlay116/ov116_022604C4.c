@@ -760,7 +760,7 @@ static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
 {
     param0->unk_48.unk_00 = NARC_ctor(NARC_INDEX_ARC__MANENE, 106);
     param0->unk_48.unk_04 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, 106);
-    param0->unk_48.unk_10 = BgConfig_New(106);
+    param0->unk_48.unk_10 = BgConfig_New(HEAP_ID_106);
     param0->unk_48.unk_14 = PaletteData_New(106);
     param0->unk_48.unk_18 = sub_02024220(106, 0, 1, 0, 4, NULL);
     param0->unk_48.camera = Camera_Alloc(106);
@@ -930,9 +930,9 @@ static void ov116_02261494(BgConfig *param0)
             },
         };
 
-        Bg_ClearTilesRange(1, 32, 0, 106);
-        Bg_ClearTilesRange(2, 32, 0, 106);
-        Bg_ClearTilesRange(3, 32, 0, 106);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_106);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_106);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_106);
         Bg_InitFromTemplate(param0, 1, &v2[1], 0);
         Bg_InitFromTemplate(param0, 2, &v2[2], 0);
         Bg_InitFromTemplate(param0, 3, &v2[3], 0);
@@ -1005,10 +1005,10 @@ static void ov116_02261494(BgConfig *param0)
             },
         };
 
-        Bg_ClearTilesRange(4, 32, 0, 106);
-        Bg_ClearTilesRange(5, 32, 0, 106);
-        Bg_ClearTilesRange(6, 32, 0, 106);
-        Bg_ClearTilesRange(7, 32, 0, 106);
+        Bg_ClearTilesRange(4, 32, 0, HEAP_ID_106);
+        Bg_ClearTilesRange(5, 32, 0, HEAP_ID_106);
+        Bg_ClearTilesRange(6, 32, 0, HEAP_ID_106);
+        Bg_ClearTilesRange(7, 32, 0, HEAP_ID_106);
         Bg_InitFromTemplate(param0, 4, &v3[0], 0);
         Bg_InitFromTemplate(param0, 5, &v3[1], 0);
         Bg_InitFromTemplate(param0, 6, &v3[2], 0);
@@ -1019,10 +1019,10 @@ static void ov116_02261494(BgConfig *param0)
         Bg_ClearTilemap(param0, 7);
     }
 
-    Bg_ClearTilesRange(4, 32, 0, 106);
-    Bg_ClearTilesRange(5, 32, 0, 106);
-    Bg_ClearTilesRange(6, 32, 0, 106);
-    Bg_ClearTilesRange(7, 32, 0, 106);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_106);
+    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_106);
+    Bg_ClearTilesRange(6, 32, 0, HEAP_ID_106);
+    Bg_ClearTilesRange(7, 32, 0, HEAP_ID_106);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);

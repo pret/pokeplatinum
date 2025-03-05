@@ -53,7 +53,7 @@ typedef struct {
 
 void sub_02099570(void);
 static BOOL sub_0207DA28(FieldTask *param0);
-static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 param2, u32 param3);
+static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 heapID, u32 param3);
 static u32 sub_0207DE40(UnkStruct_0207DE40 *param0);
 static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 param1, u32 param2);
 static void sub_0207DED8(UnkStruct_ov115_02260440 *param0);
@@ -201,7 +201,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         v2->unk_04++;
         return 1;
     case 12:
-        sub_0207DE04(v2, fieldSystem, 11, 0);
+        sub_0207DE04(v2, fieldSystem, HEAP_ID_FIELDMAP, 0);
         v2->unk_04++;
         break;
     case 13:
@@ -231,7 +231,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         }
         break;
     case 18:
-        sub_0207DE04(v2, fieldSystem, 11, 1);
+        sub_0207DE04(v2, fieldSystem, HEAP_ID_FIELDMAP, 1);
         v2->unk_04++;
         break;
     case 19:
@@ -241,7 +241,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         break;
     case 20:
         sub_0207DF9C(fieldSystem);
-        v2->unk_10 = sub_0207DE90(fieldSystem, 11, v2->unk_14);
+        v2->unk_10 = sub_0207DE90(fieldSystem, HEAP_ID_FIELDMAP, v2->unk_14);
         v2->unk_04++;
         break;
     case 21:
@@ -251,7 +251,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         }
         break;
     case 22:
-        sub_0207DE04(v2, fieldSystem, 11, 2);
+        sub_0207DE04(v2, fieldSystem, HEAP_ID_FIELDMAP, 2);
         v2->unk_04++;
         break;
     case 23:
@@ -261,7 +261,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         break;
     case 24:
         sub_0207DF9C(fieldSystem);
-        v2->unk_10 = sub_0207DEEC(fieldSystem, 11, v2->unk_14);
+        v2->unk_10 = sub_0207DEEC(fieldSystem, HEAP_ID_FIELDMAP, v2->unk_14);
         v2->unk_04++;
         break;
     case 25:
@@ -271,7 +271,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         }
         break;
     case 26:
-        sub_0207DE04(v2, fieldSystem, 11, 3);
+        sub_0207DE04(v2, fieldSystem, HEAP_ID_FIELDMAP, 3);
         v2->unk_04++;
         break;
     case 27:
@@ -281,7 +281,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         break;
     case 28:
         sub_0207DF9C(fieldSystem);
-        v2->unk_10 = sub_0207DF40(fieldSystem, 11, v2->unk_14);
+        v2->unk_10 = sub_0207DF40(fieldSystem, HEAP_ID_FIELDMAP, v2->unk_14);
         v2->unk_04++;
         break;
     case 29:
@@ -325,11 +325,11 @@ void sub_0207DDE0(FieldTask *param0, u16 *param1)
     FieldTask_InitCall(param0, sub_0207DA28, v0);
 }
 
-static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 param2, u32 param3)
+static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 heapID, u32 param3)
 {
     UnkStruct_0207DE04 *v0;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0207DE04));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0207DE04));
 
     v0->unk_00 = param3;
     v0->unk_01 = 2;
@@ -372,7 +372,7 @@ static u32 sub_0207DE40(UnkStruct_0207DE40 *param0)
     return param0->unk_04;
 }
 
-static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 param1, u32 param2)
+static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 heapID, u32 param2)
 {
     UnkStruct_ov115_02260440 *v0;
 
@@ -387,7 +387,7 @@ static UnkStruct_ov115_02260440 *sub_0207DE90(FieldSystem *fieldSystem, u32 para
             FS_OVERLAY_ID(overlay115),
         };
 
-        v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov115_02260440));
+        v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov115_02260440));
         memset(v0, 0, sizeof(UnkStruct_ov115_02260440));
 
         v0->unk_38 = param2;
@@ -408,7 +408,7 @@ static void sub_0207DED8(UnkStruct_ov115_02260440 *param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
-static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 param1, u32 param2)
+static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 heapID, u32 param2)
 {
     UnkStruct_ov66_02231134 *v0;
 
@@ -422,7 +422,7 @@ static UnkStruct_ov66_02231134 *sub_0207DEEC(FieldSystem *fieldSystem, u32 param
             FS_OVERLAY_ID(overlay116),
         };
 
-        v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov66_02231134));
+        v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02231134));
         memset(v0, 0, sizeof(UnkStruct_ov66_02231134));
         v0->unk_3C = param2;
         v0->unk_38 = 0;
@@ -442,7 +442,7 @@ static void sub_0207DF2C(UnkStruct_ov66_02231134 *param0)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay114));
 }
 
-static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 param1, u32 param2)
+static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 heapID, u32 param2)
 {
     UnkStruct_ov117_02260440 *v0;
 
@@ -457,7 +457,7 @@ static UnkStruct_ov117_02260440 *sub_0207DF40(FieldSystem *fieldSystem, u32 para
             FS_OVERLAY_ID(overlay117),
         };
 
-        v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov117_02260440));
+        v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov117_02260440));
         MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02260440));
 
         v0->unk_38 = param2;

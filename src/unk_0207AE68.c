@@ -60,7 +60,7 @@
 
 #include "constdata/const_020F410C.h"
 
-UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int param11);
+UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID);
 static void sub_0207B0A0(SysTask *param0, void *param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 *param0);
 void sub_0207B0E0(UnkStruct_0207AE68 *param0);
@@ -90,13 +90,13 @@ static const u8 Unk_020F0A2C[] = {
     0x8
 };
 
-UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int param11)
+UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Options *param3, int param4, Pokedex *param5, Bag *param6, GameRecords *records, Poketch *poketch, int param9, int param10, int heapID)
 {
     UnkStruct_0207AE68 *v0;
     ArchivedSprite v1;
     int v2;
 
-    v0 = (UnkStruct_0207AE68 *)Heap_AllocFromHeap(param11, sizeof(UnkStruct_0207AE68));
+    v0 = (UnkStruct_0207AE68 *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0207AE68));
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_0207AE68));
     MI_CpuFill16((void *)GetHardwareMainBgPaletteAddress(), 0x0, GetHardwareMainBgPaletteSize());
@@ -107,24 +107,24 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     v0->unk_60 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     v0->unk_86 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
     v0->unk_62 = param2;
-    v0->unk_5C = param11;
-    v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, param11);
+    v0->unk_5C = heapID;
+    v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, heapID);
 
     PokeSprite_LoadCryDelay(v0->unk_80, &(v0->unk_84), v0->unk_60, 1);
     PokeSprite_LoadCryDelay(v0->unk_80, &(v0->unk_85), v0->unk_62, 1);
 
-    v0->unk_14 = PaletteData_New(param11);
+    v0->unk_14 = PaletteData_New(heapID);
 
     PaletteData_SetAutoTransparent(v0->unk_14, 1);
-    PaletteData_AllocBuffer(v0->unk_14, 0, 0x200, param11);
-    PaletteData_AllocBuffer(v0->unk_14, 1, 0x200, param11);
-    PaletteData_AllocBuffer(v0->unk_14, 2, (((16 - 2) * 16) * sizeof(u16)), param11);
-    PaletteData_AllocBuffer(v0->unk_14, 3, 0x200, param11);
+    PaletteData_AllocBuffer(v0->unk_14, 0, 0x200, heapID);
+    PaletteData_AllocBuffer(v0->unk_14, 1, 0x200, heapID);
+    PaletteData_AllocBuffer(v0->unk_14, 2, (((16 - 2) * 16) * sizeof(u16)), heapID);
+    PaletteData_AllocBuffer(v0->unk_14, 3, 0x200, heapID);
 
-    v0->unk_00 = BgConfig_New(param11);
-    v0->unk_04 = Window_New(param11, 1);
+    v0->unk_00 = BgConfig_New(heapID);
+    v0->unk_04 = Window_New(heapID, 1);
     v0->unk_2C = param3;
-    v0->unk_34 = sub_0207C690(param11);
+    v0->unk_34 = sub_0207C690(heapID);
 
     sub_0207C63C();
     sub_0207C664();
@@ -134,14 +134,14 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     Window_FillTilemap(v0->unk_04, 0xff);
     Window_DrawMessageBoxWithScrollCursor(v0->unk_04, 0, 1, 10);
 
-    v0->unk_18 = sub_0200762C(param11);
-    v0->unk_44 = sub_02015F84(param11, 1, 0);
+    v0->unk_18 = sub_0200762C(heapID);
+    v0->unk_44 = sub_02015F84(heapID, 1, 0);
     v0->unk_67 = 0;
     v0->unk_66 = 2;
-    v0->unk_08 = MessageLoader_Init(1, 26, 368, param11);
-    v0->unk_0C = StringTemplate_Default(param11);
-    v0->unk_10 = Strbuf_Init((2 * 160), param11);
-    v0->unk_3C = Heap_AllocFromHeap(param11, sizeof(PokemonSummary));
+    v0->unk_08 = MessageLoader_Init(1, 26, 368, heapID);
+    v0->unk_0C = StringTemplate_Default(heapID);
+    v0->unk_10 = Strbuf_Init((2 * 160), heapID);
+    v0->unk_3C = Heap_AllocFromHeap(heapID, sizeof(PokemonSummary));
 
     MI_CpuClearFast(v0->unk_3C, sizeof(PokemonSummary));
 
@@ -157,7 +157,7 @@ UnkStruct_0207AE68 *sub_0207AE68(Party *param0, Pokemon *param1, int param2, Opt
     PaletteData_StartFade(v0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 16, 0, 0x0);
     sub_0200872C(v0->unk_18, 16, 0, 0, 0x0);
 
-    v0->unk_58 = sub_0201567C(v0->unk_14, 0, 0xb, param11);
+    v0->unk_58 = sub_0201567C(v0->unk_14, 0, 0xb, heapID);
 
     sub_02015738(v0->unk_58, 1);
     SysTask_Start(sub_0207B0A0, v0, 0);
@@ -311,7 +311,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             {
                 UnkStruct_0207C894 v1;
 
-                v1.unk_00 = param0->unk_5C;
+                v1.heapID = param0->unk_5C;
                 v1.unk_04 = 0;
                 param0->unk_30 = sub_0207C894(&v1);
 

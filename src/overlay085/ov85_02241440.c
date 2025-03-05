@@ -220,7 +220,7 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov85_022417E4), 36);
     memset(v0, 0, sizeof(UnkStruct_ov85_022417E4));
     v0->unk_1F8 = OverlayManager_Args(param0);
-    v0->unk_00 = BgConfig_New(36);
+    v0->unk_00 = BgConfig_New(HEAP_ID_36);
     v0->unk_1FC = BerryData_Load(v0->unk_1F8->unk_08, 36);
 
     sub_0208C120(0, 36);
@@ -403,7 +403,7 @@ static void ov85_02241634(BgConfig *param0)
         Bg_InitFromTemplate(param0, 3, &v3, 0);
     }
 
-    Bg_ClearTilesRange(1, 32, 0, 36);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_36);
 }
 
 static void ov85_022416E8(BgConfig *param0)
@@ -426,7 +426,7 @@ static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
         u16 *v0;
         u32 v1;
 
-        v0 = (u16 *)Heap_AllocFromHeap(36, 8 * 8 * 2);
+        v0 = (u16 *)Heap_AllocFromHeap(HEAP_ID_36, 8 * 8 * 2);
 
         for (v1 = 0; v1 < 8 * 8; v1++) {
             v0[v1] = (3 << 12) + 1 + v1;
@@ -437,7 +437,7 @@ static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
         Bg_CopyTilemapBufferToVRAM(param0->unk_00, 1);
     }
 
-    Font_LoadTextPalette(0, 15 * 0x20, 36);
+    Font_LoadTextPalette(0, 15 * 0x20, HEAP_ID_36);
 }
 
 static void ov85_022417CC(void)
@@ -447,7 +447,7 @@ static void ov85_022417CC(void)
 
 static void ov85_022417E4(UnkStruct_ov85_022417E4 *param0)
 {
-    param0->unk_C4 = MessageLoader_Init(0, 26, 398, 36);
+    param0->unk_C4 = MessageLoader_Init(0, 26, 398, HEAP_ID_36);
     param0->unk_CC = sub_0200C440(15, 2, 0, 36);
     param0->unk_C8 = StringTemplate_Default(36);
 }
@@ -540,7 +540,7 @@ static void ov85_0224198C(UnkStruct_ov85_022417E4 *param0)
     sub_0200C578(param0->unk_CC, 2, v0, 0, 5);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 6);
-    v2 = Strbuf_Init((2 + 1) * 2, 36);
+    v2 = Strbuf_Init((2 + 1) * 2, HEAP_ID_36);
 
     StringTemplate_SetNumber(param0->unk_C8, 0, param0->unk_1F8->unk_08 + 1, 2, 2, 1);
     StringTemplate_Format(param0->unk_C8, v2, v1);
@@ -636,7 +636,7 @@ static void ov85_02241B9C(UnkStruct_ov85_022417E4 *param0)
     v3 = BerryData_GetAttribute(param0->unk_1FC, 0);
     v3 = (((v3 * 1000) / 254 + 5) / 10);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 9);
-    v2 = Strbuf_Init(32, 36);
+    v2 = Strbuf_Init(32, HEAP_ID_36);
 
     StringTemplate_SetNumber(param0->unk_C8, 0, v3 / 10, 2, 0, 1);
     StringTemplate_SetNumber(param0->unk_C8, 1, v3 % 10, 1, 0, 1);

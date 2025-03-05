@@ -2404,7 +2404,7 @@ static u8 ov5_021E68D8(Pokemon *param0, u16 *param1)
 static void ov5_021E6948(Pokemon *param0, BoxPokemon *param1, BoxPokemon *param2)
 {
     u16 v0, v1, v2, v3, v4, v5, v6;
-    UnkStruct_ov5_021E6948 *v7 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E6948));
+    UnkStruct_ov5_021E6948 *v7 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E6948));
 
     v2 = 0;
 

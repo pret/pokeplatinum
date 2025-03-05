@@ -1190,7 +1190,7 @@ static void ov22_02256FD8(UnkStruct_02029C88 *param0, UnkStruct_ov22_02257964 *p
     Strbuf *v4;
     int v5;
 
-    v2 = Heap_AllocFromHeap(13, sizeof(UnkStruct_ov22_02256FD8));
+    v2 = Heap_AllocFromHeap(HEAP_ID_13, sizeof(UnkStruct_ov22_02256FD8));
     ov22_0225764C(v2);
 
     sub_0202A284(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
@@ -1345,7 +1345,7 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, 14);
     Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, (0 + (29 * 4)), 8);
 
-    v0 = MessageLoader_Init(0, 26, 385, 13);
+    v0 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
@@ -1362,9 +1362,9 @@ static void ov22_02257368(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
     Window_FillTilemap(param0->unk_718, 15);
 
-    v0 = MessageLoader_Init(0, 26, 385, 13);
+    v0 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
     v2 = MessageLoader_GetNewStrbuf(v0, param1);
-    v1 = Strbuf_Init(256, 13);
+    v1 = Strbuf_Init(256, HEAP_ID_13);
 
     StringTemplate_Format(param0->unk_744, v1, v2);
     Text_AddPrinterWithParamsAndColor(param0->unk_718, FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
@@ -1385,9 +1385,9 @@ static u32 ov22_022573EC(UnkStruct_ov22_02255D44 *param0, u32 param1)
 
     Window_FillTilemap(param0->unk_718, 15);
 
-    v1 = MessageLoader_Init(0, 26, 385, 13);
+    v1 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
     v3 = MessageLoader_GetNewStrbuf(v1, param1);
-    param0->unk_740 = Strbuf_Init(256, 13);
+    param0->unk_740 = Strbuf_Init(256, HEAP_ID_13);
 
     StringTemplate_Format(param0->unk_744, param0->unk_740, v3);
 

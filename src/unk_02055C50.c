@@ -83,15 +83,13 @@ static int sub_02055C80(int param0)
     return param0 - 95 + 1;
 }
 
-UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int param1)
+UnkStruct_02055CBC *sub_02055C8C(FieldSystem *fieldSystem, int heapID)
 {
-    UnkStruct_02055CBC *v0;
-
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02055CBC));
+    UnkStruct_02055CBC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02055CBC));
     MI_CpuClear8(v0, sizeof(UnkStruct_02055CBC));
 
-    v0->unk_00 = param1;
-    v0->unk_04 = BerryGrowthData_Init(param1);
+    v0->unk_00 = heapID;
+    v0->unk_04 = BerryGrowthData_Init(heapID);
 
     sub_02055D14(fieldSystem, v0);
     return v0;

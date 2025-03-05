@@ -158,7 +158,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov61_0222C664), 117);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov61_0222C664));
     v0->unk_00 = OverlayManager_Args(param0);
-    v0->unk_04 = BgConfig_New(117);
+    v0->unk_04 = BgConfig_New(HEAP_ID_117);
 
     VramTransfer_New(64, 117);
     SetAutorepeat(4, 8);
@@ -167,11 +167,11 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     sub_0201E450(4);
 
     v0->unk_20 = StringTemplate_New(11, 64, 117);
-    v0->unk_24 = MessageLoader_Init(0, 26, 671, 117);
-    v0->unk_28 = MessageLoader_Init(0, 26, 674, 117);
-    v0->unk_2C = MessageLoader_Init(0, 26, 695, 117);
-    v0->unk_34 = Strbuf_Init((90 * 2), 117);
-    v0->unk_3C = Strbuf_Init((16 * 8 * 2), 117);
+    v0->unk_24 = MessageLoader_Init(0, 26, 671, HEAP_ID_117);
+    v0->unk_28 = MessageLoader_Init(0, 26, 674, HEAP_ID_117);
+    v0->unk_2C = MessageLoader_Init(0, 26, 695, HEAP_ID_117);
+    v0->unk_34 = Strbuf_Init((90 * 2), HEAP_ID_117);
+    v0->unk_3C = Strbuf_Init((16 * 8 * 2), HEAP_ID_117);
     v0->unk_38 = MessageLoader_GetNewStrbuf(v0->unk_24, 31);
 
     ov61_0222C3B0(v0);
@@ -412,8 +412,8 @@ static void ov61_0222C224(BgConfig *param0)
         Bg_SetOffset(param0, 5, 3, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 117);
-    Bg_ClearTilesRange(4, 32, 0, 117);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_117);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_117);
 }
 
 static void ov61_0222C38C(BgConfig *param0)
@@ -436,7 +436,7 @@ static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 117);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 117);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(SaveData_Options(param0->unk_00->unk_00->unk_04)), 117);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 117);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, 117);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 117);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, 117);
@@ -495,7 +495,7 @@ void ov61_0222C760(Window *param0, Strbuf *param1, int param2, int param3, int p
 
 static void ov61_0222C794(UnkStruct_ov61_0222C664 *param0, int param1)
 {
-    Strbuf *v0 = Strbuf_Init((16 * 8 * 2), 117);
+    Strbuf *v0 = Strbuf_Init((16 * 8 * 2), HEAP_ID_117);
 
     MessageLoader_GetStrbuf(param0->unk_2C, param1, v0);
     StringTemplate_Format(param0->unk_20, param0->unk_3C, v0);

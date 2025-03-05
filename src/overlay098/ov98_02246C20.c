@@ -105,8 +105,8 @@ int ov98_02246C20(OverlayManager *param0, int *param1)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
     v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_08 = SaveData_Options(v0->unk_04);
-    v0->unk_114 = Strbuf_Init(100, 108);
-    v0->unk_118 = Strbuf_Init(100, 108);
+    v0->unk_114 = Strbuf_Init(100, HEAP_ID_108);
+    v0->unk_118 = Strbuf_Init(100, HEAP_ID_108);
     sub_02004550(17, 1175, 1);
     v0->unk_8C = 0;
 
@@ -190,7 +190,7 @@ static void ov98_02246E08(UnkStruct_ov98_02246E88 *param0)
     if (param0->unk_80 == 0) {
         Overlay_LoadByID(FS_OVERLAY_ID(overlay94), 2);
 
-        param0->unk_0C = Heap_AllocFromHeap(108, 0x20000 + 32);
+        param0->unk_0C = Heap_AllocFromHeap(HEAP_ID_108, 0x20000 + 32);
         param0->unk_10 = NNS_FndCreateExpHeap((void *)(((u32)param0->unk_0C + 31) / 32 * 32), 0x20000);
 
         sub_02099550();
@@ -272,7 +272,7 @@ void ov98_02246EF8(UnkStruct_ov98_02246E88 *param0)
 {
     char *v0;
 
-    v0 = Heap_AllocFromHeap(108, sizeof(char) * 100);
+    v0 = Heap_AllocFromHeap(HEAP_ID_108, sizeof(char) * 100);
 
     ov98_022499C8(param0->unk_114, v0, 108);
     sub_02030D38(param0->unk_04, v0);
@@ -426,7 +426,7 @@ static void *ov98_02247168(UnkStruct_ov98_02246E88 *param0)
 {
     UnkStruct_ov98_02247168 *v0;
 
-    v0 = Heap_AllocFromHeap(108, sizeof(UnkStruct_ov98_02247168));
+    v0 = Heap_AllocFromHeap(HEAP_ID_108, sizeof(UnkStruct_ov98_02247168));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02247168));
 
     v0->unk_00 = param0->unk_04;

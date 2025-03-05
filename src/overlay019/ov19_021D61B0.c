@@ -150,11 +150,11 @@ static void ov19_021D797C(void);
 
 BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4DF0 *param1, const UnkStruct_ov19_021D5DF8 *param2)
 {
-    UnkStruct_ov19_021D61B0 *v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021D61B0));
+    UnkStruct_ov19_021D61B0 *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021D61B0));
 
     if (v0 != NULL) {
         v0->unk_1C4 = param1;
-        v0->unk_1C0 = BgConfig_New(10);
+        v0->unk_1C0 = BgConfig_New(HEAP_ID_10);
 
         if (v0->unk_1C0 != NULL) {
             u32 v1;
@@ -328,7 +328,7 @@ void ov19_021D6594(UnkStruct_ov19_021D61B0 *param0, u32 param1)
 
         for (v2 = 0; v2 < 4; v2++) {
             if (param0->unk_08[v2] == NULL) {
-                v1 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021D6640) + v0[param1].unk_04);
+                v1 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021D6640) + v0[param1].unk_04);
 
                 if (v1 != NULL) {
                     v1->unk_00 = param1;

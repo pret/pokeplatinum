@@ -267,7 +267,7 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
         if (v2) {
             Heap_Create(3, 73, 0x30000);
             v4 = Party_GetPokemonBySlotIndex(v0->parties[0], v1);
-            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, 73);
+            v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, HEAP_ID_73);
             *param1 = 14;
         } else {
             *param1 = 15;
@@ -547,11 +547,11 @@ static void ov16_0223B790(OverlayManager *param0)
     PaletteData_AllocBuffer(battleSys->unk_28, 2, (((16 - 2) * 16) * sizeof(u16)), 5);
     PaletteData_AllocBuffer(battleSys->unk_28, 3, 0x200, 5);
 
-    battleSys->unk_04 = BgConfig_New(5);
+    battleSys->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
     battleSys->windows = Window_New(5, 3);
 
     for (v3 = 0; v3 < 4; v3++) {
-        battleSys->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(5, (32 * 10 * 10));
+        battleSys->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, (32 * 10 * 10));
     }
 
     VramTransfer_New(64, HEAP_ID_BATTLE);
@@ -606,17 +606,17 @@ static void ov16_0223B790(OverlayManager *param0)
     ov16_0223F36C(battleSys);
     ov16_0223CE28();
 
-    battleSys->unk_8C = ov12_0221FCDC(5);
+    battleSys->unk_8C = ov12_0221FCDC(HEAP_ID_BATTLE);
 
     ov16_0223C210(battleSys);
 
     sub_0201E3D8();
     sub_0201E450(4);
 
-    battleSys->unk_0C = MessageLoader_Init(1, 26, 368, 5);
-    battleSys->unk_10 = MessageLoader_Init(1, 26, 0, 5);
+    battleSys->unk_0C = MessageLoader_Init(1, 26, 368, HEAP_ID_BATTLE);
+    battleSys->unk_10 = MessageLoader_Init(1, 26, 0, HEAP_ID_BATTLE);
     battleSys->strFormatter = StringTemplate_Default(5);
-    battleSys->msgBuffer = Strbuf_Init((2 * 160), 5);
+    battleSys->msgBuffer = Strbuf_Init((2 * 160), HEAP_ID_BATTLE);
 
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->unk_28, 0), &battleSys->unk_2224[0], 0x20 * 7);
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->unk_28, 2), &battleSys->unk_2304[0], 0x20 * 7);
@@ -645,7 +645,7 @@ static void ov16_0223B790(OverlayManager *param0)
     ov16_0223DD4C(battleSys);
     BagCursor_ResetBattle(BattleSystem_BagCursor(battleSys));
 
-    battleSys->unk_1C4 = sub_02015F84(5, 4, 0);
+    battleSys->unk_1C4 = sub_02015F84(HEAP_ID_BATTLE, 4, 0);
     battleSys->cellTransferState = CellTransfer_New(4, HEAP_ID_BATTLE);
 
     if (battleSys->battleStatusMask & 0x10) {
@@ -1079,7 +1079,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *param1)
     battleSys->unk_2444 = param1->seed;
     battleSys->unk_2448 = param1->seed;
     battleSys->battleStatusMask = param1->battleStatusMask;
-    battleSys->unk_58 = Bag_New(5);
+    battleSys->unk_58 = Bag_New(HEAP_ID_BATTLE);
 
     Bag_Copy(param1->bag, battleSys->unk_58);
     battleSys->pokedex = Pokedex_New(5);
@@ -1114,7 +1114,7 @@ static void ov16_0223C2C0(BattleSystem *battleSys, FieldBattleDTO *param1)
     battleSys->battleCtx = BattleContext_New(battleSys);
 
     for (v0 = 0; v0 < 4; v0++) {
-        battleSys->parties[v0] = Party_New(5);
+        battleSys->parties[v0] = Party_New(HEAP_ID_BATTLE);
     }
 
     {
@@ -1654,7 +1654,7 @@ static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
     PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, 5);
     PaletteData_FillBufferRange(v0->unk_0C, 0, 2, 0x0, 0, 256);
 
-    v0->unk_04 = BgConfig_New(5);
+    v0->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
     v0->unk_08 = Window_New(5, 1);
 
     sub_0207A744(v0);
@@ -1736,8 +1736,8 @@ static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
         MessageLoader *v5;
         Strbuf *v6;
 
-        v5 = MessageLoader_Init(1, 26, 368, 5);
-        v6 = Strbuf_Init(0x100, 5);
+        v5 = MessageLoader_Init(1, 26, 368, HEAP_ID_BATTLE);
+        v6 = Strbuf_Init(0x100, HEAP_ID_BATTLE);
 
         MessageLoader_GetStrbuf(v5, 923, v6);
         Text_AddPrinterWithParams(v0->unk_08, FONT_MESSAGE, v6, 0, 0, NULL, NULL);
@@ -2016,7 +2016,7 @@ static BOOL ov16_0223D800(OverlayManager *param0)
         return 0;
     }
 
-    battleSys->unk_1C0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov10_0221F800));
+    battleSys->unk_1C0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
     MI_CpuClearFast(battleSys->unk_1C0, sizeof(UnkStruct_ov10_0221F800));
     v2 = CommSys_CurNetId();
 
@@ -2084,7 +2084,7 @@ static BOOL ov16_0223D98C(OverlayManager *param0)
     }
 
     v2 = CommSys_CurNetId();
-    battleSys->unk_1C0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov10_0221F800));
+    battleSys->unk_1C0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
 
     MI_CpuClearFast(battleSys->unk_1C0, sizeof(UnkStruct_ov10_0221F800));
 
@@ -2146,7 +2146,7 @@ static BOOL ov16_0223DB1C(OverlayManager *param0)
 
     v2 = CommSys_CurNetId();
     Overlay_LoadByID(FS_OVERLAY_ID(overlay10), 2);
-    v1 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov10_0221F800));
+    v1 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov10_0221F800));
 
     v0->unk_170 = v1;
     MI_CpuClearFast(v1, sizeof(UnkStruct_ov10_0221F800));

@@ -146,7 +146,7 @@ BOOL ScrCmd_2DE(ScriptContext *ctx)
 
     ctx->data[0] = v13;
 
-    v6 = MessageLoader_Init(0, 26, 412, 32);
+    v6 = MessageLoader_Init(0, 26, 412, HEAP_ID_FIELD_TASK);
     v9 = ov5_021F6704(fieldSystem, 20, 1, 0, 1, FieldSystem_GetVarPointer(fieldSystem, v13), *v10, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), v6, FieldSystem_GetVarPointer(fieldSystem, v14), FieldSystem_GetVarPointer(fieldSystem, v15));
     v1 = sub_020308A0(fieldSystem->saveData, 11, &v0);
 
@@ -168,7 +168,7 @@ BOOL ScrCmd_2DE(ScriptContext *ctx)
         Heap_FreeToHeap(v1);
     }
 
-    v7 = MessageLoader_Init(1, 26, 361, 32);
+    v7 = MessageLoader_Init(1, 26, 361, HEAP_ID_FIELD_TASK);
 
     ov5_021F661C(v9, v7);
     ov5_021F6760(v9, 12, 0xff, 0xfffe);
@@ -243,7 +243,7 @@ static void ov5_021F6624(FieldSystem *fieldSystem, UnkStruct_ov5_021F6704 *param
     }
 
     for (v0 = 0; v0 < 120; v0++) {
-        param1->unk_1C[v0] = Strbuf_Init((40 * 2), 4);
+        param1->unk_1C[v0] = Strbuf_Init((40 * 2), HEAP_ID_FIELD);
     }
 
     *param1->unk_210 = 0xeeee;
@@ -255,7 +255,7 @@ UnkStruct_ov5_021F6704 *ov5_021F6704(FieldSystem *fieldSystem, u8 param1, u8 par
     UnkStruct_ov5_021F6704 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021F6704));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021F6704));
 
     if (v0 == NULL) {
         return NULL;
@@ -281,7 +281,7 @@ static void ov5_021F6768(UnkStruct_ov5_021F6704 *param0)
         Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, param0->unk_208, param0->unk_209, 11, param0->unk_20B * 2, 13, 1);
     }
 
-    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
+    LoadStandardWindowGraphics(param0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 0, HEAP_ID_FIELD);
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F68BC(param0);
 
@@ -297,7 +297,7 @@ static void ov5_021F6830(UnkStruct_ov5_021F6704 *param0, u32 param1, u32 param2,
     void *v1;
 
     {
-        Strbuf *v2 = Strbuf_Init((40 * 2), 4);
+        Strbuf *v2 = Strbuf_Init((40 * 2), HEAP_ID_FIELD);
 
         MessageLoader_GetStrbuf(param0->unk_1FC, param1, v2);
         StringTemplate_Format(param0->unk_200, param0->unk_1C[param0->unk_20B], v2);

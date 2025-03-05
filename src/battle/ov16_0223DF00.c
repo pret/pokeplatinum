@@ -1127,8 +1127,8 @@ void ov16_0223EF8C(BattleSystem *battleSystem)
     int v1, v2, v3, v4, v5, v6;
     u8 *v7;
 
-    battleSystem->unk_21C = Heap_AllocFromHeap(5, 0x10000);
-    battleSystem->unk_220 = Heap_AllocFromHeap(5, 0x200);
+    battleSystem->unk_21C = Heap_AllocFromHeap(HEAP_ID_BATTLE, 0x10000);
+    battleSystem->unk_220 = Heap_AllocFromHeap(HEAP_ID_BATTLE, 0x200);
 
     MI_CpuCopy32((void *)(HW_BG_VRAM + 0x10000), battleSystem->unk_21C, 0x10000);
     MI_CpuCopy32(PaletteData_GetUnfadedBuffer(battleSystem->unk_28, 0), battleSystem->unk_220, HW_BG_PLTT_SIZE);
@@ -1772,7 +1772,7 @@ u8 ov16_0223F9FC(BattleSystem *battleSystem, int param1, int param2, int param3,
                     v6 = 613;
                 }
 
-                v3 = MessageLoader_Init(0, 26, v6, 5);
+                v3 = MessageLoader_Init(0, 26, v6, HEAP_ID_BATTLE);
                 v4 = MessageLoader_GetNewStrbuf(v3, v5);
 
                 Window_FillTilemap(v0, 0xff);

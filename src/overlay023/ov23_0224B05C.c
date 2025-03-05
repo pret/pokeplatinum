@@ -1637,7 +1637,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         sub_020594FC();
 
         Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
-        LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+        LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 
         if (v1->unk_2D) {
             sub_020594EC();
@@ -2410,7 +2410,7 @@ void ov23_0224D6AC(int param0, int param1, void *param2, void *param3)
     SysTask *v2;
 
     if (v1[0] == CommSys_CurNetId()) {
-        UnkStruct_ov23_0224D54C *v3 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov23_0224D54C));
+        UnkStruct_ov23_0224D54C *v3 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov23_0224D54C));
 
         MI_CpuClear8(v3, sizeof(v3));
 

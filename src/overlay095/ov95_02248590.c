@@ -207,7 +207,7 @@ static void ov95_02249700(SysTask *param0, void *param1);
 
 void *ov95_02248590(UnkStruct_ov95_02247628 *param0)
 {
-    UnkStruct_ov95_02248688 *v0 = Heap_AllocFromHeap(58, sizeof(UnkStruct_ov95_02248688));
+    UnkStruct_ov95_02248688 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_02248688));
 
     if (v0) {
         int v1;
@@ -499,7 +499,7 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
     Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_C0, 7, 0, 0, 1, 58);
 
     {
-        u8 *v7 = Heap_AllocFromHeap(58, 96);
+        u8 *v7 = Heap_AllocFromHeap(HEAP_ID_58, 96);
 
         if (v7) {
             MI_CpuClear32(v7, 96);
@@ -735,7 +735,7 @@ static void ov95_02248F94(SysTask *param0)
 
 static void ov95_02248FAC(UnkStruct_ov95_02248688 *param0, SysTask **param1)
 {
-    UnkStruct_ov95_02248FAC *v0 = Heap_AllocFromHeap(58, sizeof(UnkStruct_ov95_02248FAC));
+    UnkStruct_ov95_02248FAC *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_02248FAC));
 
     if (v0) {
         v0->unk_00 = param0;
@@ -788,7 +788,7 @@ static void ov95_022490A4(SysTask *param0)
 
 static void ov95_022490D0(UnkStruct_ov95_02247958 *param0, int param1, int param2, int param3)
 {
-    UnkStruct_ov95_022490D0 *v0 = Heap_AllocFromHeap(58, sizeof(UnkStruct_ov95_022490D0));
+    UnkStruct_ov95_022490D0 *v0 = Heap_AllocFromHeap(HEAP_ID_58, sizeof(UnkStruct_ov95_022490D0));
 
     if (v0) {
         v0->unk_00 = param1 << 12;

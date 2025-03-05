@@ -173,7 +173,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     PaletteData_AllocBuffer(v0->unk_0C.unk_50, 2, (((16 - 2) * 16) * sizeof(u16)), 21);
     PaletteData_AllocBuffer(v0->unk_0C.unk_50, 3, 0x200, 21);
 
-    v0->unk_0C.unk_24 = BgConfig_New(21);
+    v0->unk_0C.unk_24 = BgConfig_New(HEAP_ID_21);
 
     VramTransfer_New(64, 21);
     SetAutorepeat(4, 8);
@@ -200,16 +200,16 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     v0->unk_0C.unk_04 = sub_0200762C(21);
     ov17_0223B884();
 
-    v0->unk_0C.unk_20 = ov12_0221FCDC(21);
+    v0->unk_0C.unk_20 = ov12_0221FCDC(HEAP_ID_21);
     ov12_0221FDC0(v0->unk_0C.unk_20, 1);
 
-    v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 204, 21);
-    v0->unk_0C.unk_3C = MessageLoader_Init(0, 26, 205, 21);
-    v0->unk_0C.unk_40 = MessageLoader_Init(0, 26, 210, 21);
-    v0->unk_0C.unk_44 = MessageLoader_Init(0, 26, 211, 21);
+    v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 204, HEAP_ID_21);
+    v0->unk_0C.unk_3C = MessageLoader_Init(0, 26, 205, HEAP_ID_21);
+    v0->unk_0C.unk_40 = MessageLoader_Init(0, 26, 210, HEAP_ID_21);
+    v0->unk_0C.unk_44 = MessageLoader_Init(0, 26, 211, HEAP_ID_21);
     v0->unk_0C.unk_54 = sub_02012744((2 * 4), 21);
     v0->unk_0C.unk_48 = StringTemplate_Default(21);
-    v0->unk_0C.unk_4C = Strbuf_Init((3 * 160), 21);
+    v0->unk_0C.unk_4C = Strbuf_Init((3 * 160), HEAP_ID_21);
 
     {
         NARC *v1;
@@ -645,7 +645,7 @@ void ov17_0223BB14(UnkStruct_ov17_02246F24 *param0, int param1, int param2)
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         }
     } else {
-        Bg_ClearTilesRange(2, 0x4000, 0, 21);
+        Bg_ClearTilesRange(2, 0x4000, 0, HEAP_ID_21);
         Bg_ClearTilemap(param0->unk_0C.unk_24, 2);
         Bg_SetPriority(1, 0);
         Bg_SetPriority(2, 1);
@@ -666,8 +666,8 @@ static void ov17_0223BBA8(UnkStruct_ov17_02246F24 *param0, NARC *param1)
     {
         u16 *v0, *v1, *v2, *v3;
 
-        v0 = Heap_AllocFromHeap(21, 0x20);
-        v1 = Heap_AllocFromHeap(21, 0x20);
+        v0 = Heap_AllocFromHeap(HEAP_ID_21, 0x20);
+        v1 = Heap_AllocFromHeap(HEAP_ID_21, 0x20);
         v2 = PaletteData_GetUnfadedBuffer(param0->unk_0C.unk_50, 0);
         v3 = PaletteData_GetFadedBuffer(param0->unk_0C.unk_50, 0);
 

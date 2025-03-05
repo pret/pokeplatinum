@@ -53,7 +53,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     VramTransfer_New(4, 102);
 
     param0->unk_14.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, 102);
-    param0->unk_14.unk_10 = BgConfig_New(102);
+    param0->unk_14.unk_10 = BgConfig_New(HEAP_ID_102);
     param0->unk_14.unk_14 = PaletteData_New(102);
     param0->unk_14.unk_4C = sub_02024220(102, 0, 1, 0, 4, NULL);
     param0->unk_14.unk_50 = sub_0200762C(102);
@@ -125,8 +125,8 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
 
     {
         param0->unk_14.unk_3C = sub_02012744((5 * 2) + 10, 102);
-        param0->unk_14.unk_34 = MessageLoader_Init(0, 26, 10, 102);
-        param0->unk_14.unk_38 = MessageLoader_Init(0, 26, 20, 102);
+        param0->unk_14.unk_34 = MessageLoader_Init(0, 26, 10, HEAP_ID_102);
+        param0->unk_14.unk_38 = MessageLoader_Init(0, 26, 20, HEAP_ID_102);
     }
 
     ov62_022338A8(param0);
@@ -687,7 +687,7 @@ void ov62_0222FF40(UnkStruct_0208C06C *param0)
         param0->unk_534.unk_C8[v0].unk_10 = &param0->unk_14.unk_1C[v0];
     }
 
-    param0->unk_14.unk_18 = sub_02023FCC(param0->unk_14.unk_1C, 5, ov62_0222FE1C, param0, 102);
+    param0->unk_14.unk_18 = sub_02023FCC(param0->unk_14.unk_1C, 5, ov62_0222FE1C, param0, HEAP_ID_102);
 }
 
 void ov62_0222FF7C(UnkStruct_0208C06C *param0)

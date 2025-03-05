@@ -315,7 +315,7 @@ void ov62_022470A8(UnkStruct_ov62_02246BF4 *param0)
 {
     int v0;
     u32 v1 = 0;
-    Strbuf *v2 = Strbuf_Init(100, 102);
+    Strbuf *v2 = Strbuf_Init(100, HEAP_ID_102);
 
     param0->unk_2C8 = 1;
     param0->unk_2CC = 0;
@@ -424,7 +424,7 @@ void ov62_02247220(UnkStruct_ov62_02246BF4 *param0)
         param0->unk_220.unk_18[23].rect.right = 224;
     }
 
-    param0->unk_220.unk_14 = sub_02023FCC(param0->unk_220.unk_18, 24, ov62_0224730C, param0, 102);
+    param0->unk_220.unk_14 = sub_02023FCC(param0->unk_220.unk_18, 24, ov62_0224730C, param0, HEAP_ID_102);
 }
 
 void ov62_0224730C(u32 param0, u32 param1, void *param2)

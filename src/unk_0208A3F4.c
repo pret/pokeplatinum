@@ -710,7 +710,7 @@ void sub_0208B090(UnkStruct_02089688 *param0, int param1, int param2, int param3
     MessageLoader *v6;
     Window v7;
 
-    v6 = MessageLoader_Init(0, 26, 212, 101);
+    v6 = MessageLoader_Init(0, 26, 212, HEAP_ID_101);
     v3 = MessageLoader_GetNewStrbuf(v6, 2 + param1);
 
     {
@@ -767,7 +767,7 @@ void sub_0208B230(Window *param0, int param1)
 
     Window_FillTilemap(param0, 15);
 
-    v0 = MessageLoader_Init(0, 26, 212, 101);
+    v0 = MessageLoader_Init(0, 26, 212, HEAP_ID_101);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     Window_FillTilemap(param0, 15);

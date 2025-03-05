@@ -204,7 +204,7 @@ static void ov101_021D0F94(UnkStruct_ov101_021D13C8 *param0)
 
 static void ov101_021D0F9C(UnkStruct_ov101_021D13C8 *param0)
 {
-    param0->unk_43C = BgConfig_New(79);
+    param0->unk_43C = BgConfig_New(HEAP_ID_79);
 
     ov101_021D1098();
     ov101_021D10B8(param0->unk_43C);
@@ -293,7 +293,7 @@ static void ov101_021D10B8(BgConfig *param0)
 
         Bg_InitFromTemplate(param0, 0, &v1, 0);
         Bg_ClearTilemap(param0, 0);
-        Bg_ClearTilesRange(0, 32, 0, 79);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_79);
     }
 
     {
@@ -429,18 +429,18 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
     int v0;
     UnkStruct_ov101_021D148C *v1 = &param0->unk_408;
 
-    LoadStandardWindowGraphics(param0->unk_43C, 0, 1, 15, 0, 79);
+    LoadStandardWindowGraphics(param0->unk_43C, 0, 1, 15, 0, HEAP_ID_79);
     LoadMessageBoxGraphics(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, 79);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, 79);
 
-    v1->unk_00 = MessageLoader_Init(0, 26, 544, 79);
+    v1->unk_00 = MessageLoader_Init(0, 26, 544, HEAP_ID_79);
     v1->unk_04 = StringTemplate_Default(79);
 
     for (v0 = 0; v0 < 1; v0++) {
         Window_AddFromTemplate(param0->unk_43C, &v1->unk_08[v0], &Unk_ov101_021D8588[v0]);
     }
 
-    v1->unk_18 = Strbuf_Init(256, 79);
+    v1->unk_18 = Strbuf_Init(256, HEAP_ID_79);
 }
 
 void ov101_021D1458(UnkStruct_ov101_021D13C8 *param0)
@@ -665,7 +665,7 @@ static void ov101_021D197C(void *param0)
 
 void *ov101_021D1998(u32 param0)
 {
-    void *v0 = Heap_AllocFromHeap(79, param0);
+    void *v0 = Heap_AllocFromHeap(HEAP_ID_79, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);
@@ -689,7 +689,7 @@ void *ov101_021D19E4(UnkStruct_ov101_021D13C8 *param0, u32 param1, int param2)
     u32 v1 = NARC_GetMemberSize(param0->unk_438, param1);
 
     if (param2 == 1) {
-        v0 = Heap_AllocFromHeap(79, v1);
+        v0 = Heap_AllocFromHeap(HEAP_ID_79, v1);
     } else {
         v0 = Heap_AllocFromHeapAtEnd(79, v1);
     }

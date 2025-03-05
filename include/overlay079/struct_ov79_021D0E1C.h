@@ -19,7 +19,7 @@
 #include "string_list.h"
 
 typedef struct UnkStruct_ov79_021D0E1C_t {
-    int unk_00;
+    int heapID;
     int unk_04;
     int unk_08;
     int unk_0C;

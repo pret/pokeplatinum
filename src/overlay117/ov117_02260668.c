@@ -206,7 +206,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     PaletteData_AllocBuffer(v0->unk_8C, 2, (((16 - 2) * 16) * sizeof(u16)), 110);
     PaletteData_AllocBuffer(v0->unk_8C, 3, 0x200, 110);
 
-    v0->unk_2C = BgConfig_New(110);
+    v0->unk_2C = BgConfig_New(HEAP_ID_110);
 
     VramTransfer_New(64, 110);
     SetAutorepeat(4, 8);
@@ -228,9 +228,9 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_24), 0, ((192 + 160) << FX32_SHIFT));
     ov117_02261574(v0);
 
-    v0->unk_80 = MessageLoader_Init(0, 26, 9, 110);
+    v0->unk_80 = MessageLoader_Init(0, 26, 9, HEAP_ID_110);
     v0->unk_84 = StringTemplate_Default(110);
-    v0->unk_88 = Strbuf_Init((2 * 160), 110);
+    v0->unk_88 = Strbuf_Init((2 * 160), HEAP_ID_110);
     v0->unk_90 = sub_02012744((2 * 6 + 6 + 1), 110);
 
     ov117_02265210(v0, &v0->unk_1468);
@@ -797,7 +797,7 @@ static void ov117_022610D8(BgConfig *param0)
                 Bg_InitFromTemplate(param0, 4 + v3, &v4[v3], 1);
             }
 
-            Bg_ClearTilesRange(4 + v3, 0x20, 0, 110);
+            Bg_ClearTilesRange(4 + v3, 0x20, 0, HEAP_ID_110);
             Bg_ClearTilemap(param0, 4 + v3);
             Bg_SetOffset(param0, 4 + v3, 0, 0);
             Bg_SetOffset(param0, 4 + v3, 3, 0);
@@ -906,7 +906,7 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
 
     sub_02014000();
 
-    v0 = Heap_AllocFromHeap(110, 0x4800);
+    v0 = Heap_AllocFromHeap(HEAP_ID_110, 0x4800);
     param0->unk_A4 = sub_02014014(ov117_02261644, ov117_02261668, v0, 0x4800, 1, 110);
     camera = sub_02014784(param0->unk_A4);
 
@@ -1084,7 +1084,7 @@ static void ov117_02261AC8(UnkStruct_ov117_02261280 *param0, NARC *param1)
     ov117_02264AF0(param0);
     ov117_02264AB0(param0);
 
-    LoadStandardWindowGraphics(param0->unk_2C, 4, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6, 0, 110);
+    LoadStandardWindowGraphics(param0->unk_2C, 4, ((((((0x8000 - 0x2000) / 32) + (10 * 2)) + (10 * 2)) + (10 * 2)) + (10 * 2)), 6, 0, HEAP_ID_110);
     PaletteData_LoadBufferFromHardware(param0->unk_8C, 1, 6 * 16, 0x20);
     PaletteData_FillBufferRange(param0->unk_8C, 1, 2, 0x0, 0, 1);
 }

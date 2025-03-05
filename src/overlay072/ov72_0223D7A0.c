@@ -125,10 +125,10 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov72_0223DB98), 39);
         memset(v0, 0, sizeof(UnkStruct_ov72_0223DB98));
-        v0->unk_00 = BgConfig_New(39);
+        v0->unk_00 = BgConfig_New(HEAP_ID_39);
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, 39);
         v0->unk_10 = StringTemplate_Default(39);
-        v0->unk_14 = MessageLoader_Init(0, 26, 425, 39);
+        v0->unk_14 = MessageLoader_Init(0, 26, 425, HEAP_ID_39);
 
         SetAutorepeat(4, 8);
         ov72_0223DA70();
@@ -383,8 +383,8 @@ static void ov72_0223DA90(BgConfig *param0)
         Bg_InitFromTemplate(param0, 5, &v5, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 39);
-    Bg_ClearTilesRange(4, 32, 0, 39);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_39);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_39);
 }
 
 static void ov72_0223DB98(UnkStruct_ov72_0223DB98 *param0)
@@ -392,14 +392,14 @@ static void ov72_0223DB98(UnkStruct_ov72_0223DB98 *param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_18[v0] = Strbuf_Init(7 + 1, 39);
+        param0->unk_18[v0] = Strbuf_Init(7 + 1, HEAP_ID_39);
         param0->unk_4391[v0].unk_10_4 = 0;
         param0->unk_43E6[v0].unk_02 = 0;
     }
 
-    param0->unk_2C = Strbuf_Init((10 * 2), 39);
-    param0->unk_30 = Strbuf_Init((20 * 2), 39);
-    param0->unk_34 = Strbuf_Init((40 * 2), 39);
+    param0->unk_2C = Strbuf_Init((10 * 2), HEAP_ID_39);
+    param0->unk_30 = Strbuf_Init((20 * 2), HEAP_ID_39);
+    param0->unk_34 = Strbuf_Init((40 * 2), HEAP_ID_39);
     param0->unk_437E = 0;
     param0->unk_370 = 1;
 
@@ -445,13 +445,13 @@ static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
     Graphics_LoadPaletteFromOpenNARC(param1, 2, 4, 0, 16 * 2 * 2, 39);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 39);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 39);
-    Bg_ClearTilesRange(1, 32, 0, 39);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_39);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 2, 0, 32 * 8 * 0x20, 1, 39);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 2, 0, 32 * 24 * 2, 1, 39);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 4, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 5, 0, 32 * 24 * 2, 1, 39);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_0C), 39);
-    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, 39);
+    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, HEAP_ID_39);
 }
 
 static void ov72_0223DDA8(void)
@@ -1100,7 +1100,7 @@ static void ov72_0223E930(UnkStruct_ov72_0223DB98 *param0, int param1)
 {
     Strbuf *v0;
 
-    v0 = Strbuf_Init((40 * 2), 39);
+    v0 = Strbuf_Init((40 * 2), HEAP_ID_39);
 
     MessageLoader_GetStrbuf(param0->unk_14, param1, v0);
     StringTemplate_Format(param0->unk_10, param0->unk_34, v0);

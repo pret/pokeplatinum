@@ -91,7 +91,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     StringTemplate_SetStrbuf(param1, 0, v4, v6, 1, GAME_LANGUAGE);
 
     v2 = MessageLoader_GetNewStrbuf(param0, 0);
-    v3 = Strbuf_Init(v5, 118);
+    v3 = Strbuf_Init(v5, HEAP_ID_118);
 
     StringTemplate_Format(param1, v3, v2);
     Window_FillTilemap(&param2[v7], 0x0);

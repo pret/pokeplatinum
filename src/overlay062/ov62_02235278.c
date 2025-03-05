@@ -230,14 +230,14 @@ static BOOL ov62_02235580(UnkStruct_0208C06C *param0)
     case 0: {
         int v1;
         UnkStruct_ov62_022354A4 *v2;
-        UnkStruct_ov62_02235580 *v3 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02235580));
+        UnkStruct_ov62_02235580 *v3 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02235580));
 
         MI_CpuFill8(v3, 0, sizeof(UnkStruct_ov62_02235580));
         param0->unk_860 = v3;
         v3->unk_08 = 0;
 
         for (v1 = 0; v1 < param0->unk_534.unk_1AC; v1++) {
-            v2 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_022354A4));
+            v2 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_022354A4));
             memset(v2, 0, sizeof(UnkStruct_ov62_022354A4));
             ov62_02230E74(param0->unk_534.unk_C8[v1].unk_00, &v2->unk_00, &v2->unk_02);
 
@@ -289,7 +289,7 @@ static BOOL ov62_02235580(UnkStruct_0208C06C *param0)
                     v0->unk_08 = 1;
 
                     do {
-                        v5 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_022354A4));
+                        v5 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_022354A4));
                         memset(v5, 0, sizeof(UnkStruct_ov62_022354A4));
                         ov62_02230E74(param0->unk_534.unk_00[v4].unk_00, &v5->unk_00, &v5->unk_02);
 
@@ -364,13 +364,13 @@ static BOOL ov62_02235854(UnkStruct_0208C06C *param0)
         int v1;
         UnkStruct_ov62_022354A4 *v2;
 
-        v0 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02235580));
+        v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02235580));
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov62_02235580));
         param0->unk_860 = v0;
         v1 = 0;
 
         do {
-            v2 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_022354A4));
+            v2 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_022354A4));
 
             memset(v2, 0, sizeof(UnkStruct_ov62_022354A4));
             ov62_02230E74(param0->unk_534.unk_00[v1].unk_00, &v2->unk_00, &v2->unk_02);
@@ -406,7 +406,7 @@ static BOOL ov62_02235854(UnkStruct_0208C06C *param0)
 
             if (v0->unk_0C == 1) {
                 for (v3 = 0; v3 < param0->unk_534.unk_1AC; v3++) {
-                    v4 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_022354A4));
+                    v4 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_022354A4));
                     memset(v4, 0, sizeof(UnkStruct_ov62_022354A4));
                     ov62_02230E74(param0->unk_534.unk_C8[v3].unk_00, &v4->unk_00, &v4->unk_02);
 

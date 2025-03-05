@@ -318,7 +318,7 @@ void ov104_0222DF40(const UnkStruct_ov104_0223A348_sub2 *param0, Pokemon *param1
         MessageLoader *v7;
         Strbuf *v8;
 
-        v7 = MessageLoader_Init(1, 26, 412, 4);
+        v7 = MessageLoader_Init(1, 26, 412, HEAP_ID_FIELD);
         v8 = MessageLoader_GetNewStrbuf(v7, param0->unk_00_val1_0);
 
         Pokemon_SetValue(param1, MON_DATA_NICKNAME_STRBUF, v8);
@@ -362,7 +362,7 @@ void ov104_0222E134(SaveData *param0, Pokemon *param1)
     v3 = MapHeader_GetMapLabelTextID(562);
     sub_0209304C(param1, v5, v4, v3, 11);
 
-    v2 = MessageLoader_Init(0, 26, 363, 11);
+    v2 = MessageLoader_Init(0, 26, 363, HEAP_ID_FIELDMAP);
     v1 = MessageLoader_GetNewStrbuf(v2, 0);
 
     Pokemon_SetValue(param1, MON_DATA_OTNAME_STRBUF, v1);

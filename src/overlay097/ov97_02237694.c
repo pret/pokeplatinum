@@ -49,7 +49,7 @@
 typedef struct {
     BgConfig *unk_00;
     BOOL unk_04;
-    int unk_08;
+    int heapID;
     int unk_0C;
     int unk_10;
     int unk_14;
@@ -70,14 +70,14 @@ static void ov97_02237E58(void *param0);
 
 static UnkStruct_ov97_0223F550 Unk_ov97_0223F550;
 
-void ov97_02237694(int param0)
+void ov97_02237694(int heapID)
 {
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
     memset(v0, 0, sizeof(UnkStruct_ov97_0223F550));
 
     v0->unk_04 = 1;
-    v0->unk_08 = param0;
+    v0->heapID = heapID;
 }
 
 void *ov97_022376C4(OverlayManager *param0, int param1, int param2, int param3)
@@ -148,9 +148,9 @@ void ov97_02237790(int param0, int param1, int *param2, int param3)
     UnkStruct_ov97_0223F550 *v0 = &Unk_ov97_0223F550;
 
     if (v0->unk_10 == 0) {
-        StartScreenTransition(0, param0, param0, 0x0, 6, 1, v0->unk_08);
+        StartScreenTransition(0, param0, param0, 0x0, 6, 1, v0->heapID);
     } else {
-        StartScreenTransition(0, param0, param0, 0x7fff, 6, 1, v0->unk_08);
+        StartScreenTransition(0, param0, param0, 0x7fff, 6, 1, v0->heapID);
     }
 
     if (param2) {
@@ -226,15 +226,15 @@ static int ov97_02237870(UnkStruct_ov97_02237808 *param0, int param1)
         }
 
         if (param0->unk_4C != -1) {
-            v3 = MessageLoader_Init(1, 26, param0->unk_34, v4->unk_08);
+            v3 = MessageLoader_Init(1, 26, param0->unk_34, v4->heapID);
 
             if (param0->unk_14 == NULL) {
-                v2 = StringTemplate_Default(v4->unk_08);
+                v2 = StringTemplate_Default(v4->heapID);
             } else {
                 v2 = param0->unk_14;
             }
 
-            v1 = MessageUtil_ExpandedStrbuf(v2, v3, param0->unk_4C, v4->unk_08);
+            v1 = MessageUtil_ExpandedStrbuf(v2, v3, param0->unk_4C, v4->heapID);
 
             if (param0->unk_0C == 0) {
                 v0 = Text_AddPrinterWithParamsAndColor(param0->unk_10, param0->unk_40, v1, param0->unk_20, param0->unk_24, param0->unk_50, param0->unk_44, NULL);
@@ -307,10 +307,10 @@ void ov97_02237A20(void)
         NULL,
     };
 
-    v1.heapID = v0->unk_08;
+    v1.heapID = v0->heapID;
 
     CharTransfer_InitWithVramModes(&v1, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K);
-    PlttTransfer_Init(30, v0->unk_08);
+    PlttTransfer_Init(30, v0->heapID);
 
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
@@ -330,14 +330,14 @@ void ov97_02237A74(void)
 
     NNS_G2dInitOamManagerModule();
 
-    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, v1->unk_08);
-    v1->unk_34.unk_00 = SpriteList_InitRendering(128, &v1->unk_34.unk_04, v1->unk_08);
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, v1->heapID);
+    v1->unk_34.unk_00 = SpriteList_InitRendering(128, &v1->unk_34.unk_04, v1->heapID);
     SetSubScreenViewRect(&v1->unk_34.unk_04, 0, (256 * FX32_ONE));
 
     v1->unk_274 = (192 << FX32_SHIFT);
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1->unk_34.unk_190[v0] = SpriteResourceCollection_New(32, v0, v1->unk_08);
+        v1->unk_34.unk_190[v0] = SpriteResourceCollection_New(32, v0, v1->heapID);
     }
 }
 
@@ -364,19 +364,19 @@ void ov97_02237B0C(int param0, int param1, int param2, int param3, int param4, i
     }
 
     if (param1 != -1) {
-        v0->unk_34.unk_1A8[param5][0] = SpriteResourceCollection_AddTiles(v0->unk_34.unk_190[0], param0, param1, v2, param5, v1, v0->unk_08);
+        v0->unk_34.unk_1A8[param5][0] = SpriteResourceCollection_AddTiles(v0->unk_34.unk_190[0], param0, param1, v2, param5, v1, v0->heapID);
     }
 
     if (param2 != -1) {
-        v0->unk_34.unk_1A8[param5][1] = SpriteResourceCollection_AddPalette(v0->unk_34.unk_190[1], param0, param2, 0, param5, v1, 3, v0->unk_08);
+        v0->unk_34.unk_1A8[param5][1] = SpriteResourceCollection_AddPalette(v0->unk_34.unk_190[1], param0, param2, 0, param5, v1, 3, v0->heapID);
     }
 
     if (param3 != -1) {
-        v0->unk_34.unk_1A8[param5][2] = SpriteResourceCollection_Add(v0->unk_34.unk_190[2], param0, param3, v2, param5, 2, v0->unk_08);
+        v0->unk_34.unk_1A8[param5][2] = SpriteResourceCollection_Add(v0->unk_34.unk_190[2], param0, param3, v2, param5, 2, v0->heapID);
     }
 
     if (param4 != -1) {
-        v0->unk_34.unk_1A8[param5][3] = SpriteResourceCollection_Add(v0->unk_34.unk_190[3], param0, param4, v2, param5, 3, v0->unk_08);
+        v0->unk_34.unk_1A8[param5][3] = SpriteResourceCollection_Add(v0->unk_34.unk_190[3], param0, param4, v2, param5, 3, v0->heapID);
     }
 
     SpriteTransfer_RequestChar(v0->unk_34.unk_1A8[param5][0]);
@@ -450,7 +450,7 @@ Sprite *ov97_02237D14(int param0, Sprite *param1, int param2, int param3, int pa
         v1.position.y = FX32_ONE * param3;
         v1.priority = 10;
         v1.vramType = (param0 == 0) ? NNS_G2D_VRAM_TYPE_2DMAIN : NNS_G2D_VRAM_TYPE_2DSUB;
-        v1.heapID = v0->unk_08;
+        v1.heapID = v0->heapID;
 
         if (v1.vramType == NNS_G2D_VRAM_TYPE_2DSUB) {
             v1.position.y += v0->unk_274;
@@ -578,7 +578,7 @@ static void ov97_02237EF8(Sprite *param0, Pokemon *param1, int param2, int param
     BuildArchivedPokemonSprite(param5, param2, v0, 2, v1, param3, 0);
 
     v2 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
-    sub_020136A4(param5->archive, param5->character, v3->unk_08, 0, 0, 10, 10, param4, v2, 0, 2, param2);
+    sub_020136A4(param5->archive, param5->character, v3->heapID, 0, 0, 10, 10, param4, v2, 0, 2, param2);
 
     DC_FlushRange(param4, 0x20 * 10 * 10);
 
@@ -593,7 +593,7 @@ static void ov97_02237EF8(Sprite *param0, Pokemon *param1, int param2, int param
         NNSG2dImagePaletteProxy *v6 = Sprite_GetPaletteProxy(param0);
         u32 v7 = NNS_G2dGetImagePaletteLocation(v6, NNS_G2D_VRAM_TYPE_2DSUB);
 
-        Graphics_LoadPalette(param5->archive, param5->palette, 5, 0x20 * (2 + 1) + v7, 32, v3->unk_08);
+        Graphics_LoadPalette(param5->archive, param5->palette, 5, 0x20 * (2 + 1) + v7, 32, v3->heapID);
     }
 }
 
@@ -660,7 +660,7 @@ static void ov97_022380C8(UnkStruct_ov97_0223F550 *param0, int param1, UnkStruct
 static void ov97_02238174(void *param0)
 {
     UnkStruct_ov97_0223F550 *v0 = (UnkStruct_ov97_0223F550 *)param0;
-    Graphics_LoadPalette(116, 29, 4, 16 * 2 * 8, 16 * 2 * 6, v0->unk_08);
+    Graphics_LoadPalette(116, 29, 4, 16 * 2 * 8, 16 * 2 * 6, v0->heapID);
 }
 
 void ov97_02238194(BgConfig *param0, UnkStruct_0202DF40 *param1)
@@ -671,11 +671,11 @@ void ov97_02238194(BgConfig *param0, UnkStruct_0202DF40 *param1)
     v1 = param1->unk_00;
     v0 = ov97_02237EA8(v1);
 
-    Graphics_LoadTilesToBgLayer(116, 30, param0, 5, 0, 10 * 16 * 0x20, 1, v2->unk_08);
+    Graphics_LoadTilesToBgLayer(116, 30, param0, 5, 0, 10 * 16 * 0x20, 1, v2->heapID);
 
     {
         NNSG2dScreenData *v3;
-        void *v4 = LoadMemberFromNARC(116, 31, 1, v2->unk_08, 1);
+        void *v4 = LoadMemberFromNARC(116, 31, 1, v2->heapID, 1);
 
         NNS_G2dGetUnpackedScreenData(v4, &v3);
 

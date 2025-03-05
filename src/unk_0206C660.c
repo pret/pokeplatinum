@@ -87,17 +87,17 @@ static BOOL sub_0206C680(FieldTask *param0)
     return 0;
 }
 
-void sub_0206C740(FieldTask *param0, NpcTradeData *param1, int param2, u32 param3)
+void sub_0206C740(FieldTask *param0, NpcTradeData *param1, int param2, u32 heapID)
 {
-    UnkStruct_0206C660 *v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_0206C660));
+    UnkStruct_0206C660 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0206C660));
 
     memset(v0, 0, sizeof(UnkStruct_0206C660));
 
     v0->unk_04 = 0;
     v0->unk_00 = param1;
     v0->unk_08 = param2;
-    v0->unk_24 = Pokemon_New(param3);
-    v0->unk_28 = Pokemon_New(param3);
+    v0->unk_24 = Pokemon_New(heapID);
+    v0->unk_28 = Pokemon_New(heapID);
 
     FieldTask_InitCall(param0, sub_0206C680, v0);
 }

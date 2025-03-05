@@ -204,7 +204,7 @@ static const UnkStruct_ov62_02248CDC Unk_ov62_02248CDC = {
 
 static BOOL ov62_02237D24(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02237D24 *v0 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02237D24));
+    UnkStruct_ov62_02237D24 *v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02237D24));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02237D24));
     param0->unk_860 = v0;
@@ -219,7 +219,7 @@ static BOOL ov62_02237D24(UnkStruct_0208C06C *param0)
 
     {
         v0->unk_230.unk_08 = sub_02029C68(102);
-        v0->unk_250.unk_00 = sub_02030A80(102);
+        v0->unk_250.unk_00 = sub_02030A80(HEAP_ID_102);
     }
 
     Bg_ClearTilemap(param0->unk_14.unk_10, 2);
@@ -412,7 +412,7 @@ static BOOL ov62_022380B0(UnkStruct_0208C06C *param0)
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208BA08(param0->unk_6F0, 24, 24);
         ov62_02231AAC(param0, 286);
-        v0->unk_2DC = sub_02030A80(102);
+        v0->unk_2DC = sub_02030A80(HEAP_ID_102);
         sub_02030AA0(v0->unk_2DC, param0->unk_830);
         Sound_PlayEffect(1381);
         param0->unk_08++;
@@ -606,7 +606,7 @@ static BOOL ov62_02238610(UnkStruct_0208C06C *param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
-        v0->unk_1D0[0] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02239BAC, param0, 102);
+        v0->unk_1D0[0] = sub_02023FCC(Unk_ov62_022491F0, NELEMS(Unk_ov62_022491F0), ov62_02239BAC, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 1:
@@ -1377,10 +1377,10 @@ static void ov62_02239724(UnkStruct_0208C06C *param0)
     Window_FillTilemap(v0, 0x00);
 
     v4 = ov62_02231690(102);
-    v3 = Strbuf_Init(255, 102);
+    v3 = Strbuf_Init(255, HEAP_ID_102);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 56);
 
-    v1 = Strbuf_Init(255, 102);
+    v1 = Strbuf_Init(255, HEAP_ID_102);
     sub_0202A1A0(v5->unk_22C, v1);
     ov62_022349A8(param0, v1);
     v6 = sub_0202A1F4(v5->unk_22C);
@@ -1426,10 +1426,10 @@ static void ov62_02239854(UnkStruct_0208C06C *param0, int param1)
     Window_FillTilemap(v0, 0x00);
 
     v4 = ov62_02231690(102);
-    v3 = Strbuf_Init(255, 102);
+    v3 = Strbuf_Init(255, HEAP_ID_102);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 56);
 
-    v1 = Strbuf_Init(255, 102);
+    v1 = Strbuf_Init(255, HEAP_ID_102);
     sub_0202A1A0(v5->unk_230.unk_08, v1);
     ov62_022349A8(param0, v1);
     v6 = sub_0202A1F4(v5->unk_230.unk_08);
@@ -1547,7 +1547,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
 
         Heap_FreeToHeap(v0);
 
-        v4->unk_1E8 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02249380) * v4->unk_1D4.unk_00);
+        v4->unk_1E8 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02249380) * v4->unk_1D4.unk_00);
         MI_CpuFill8(v4->unk_1E8, 0, sizeof(UnkStruct_ov62_02249380) * v4->unk_1D4.unk_00);
 
         for (v5 = 0; v5 < v4->unk_1D4.unk_00; v5++) {
@@ -1555,7 +1555,7 @@ static void ov62_02239A0C(UnkStruct_0208C06C *param0, int param1)
             v4->unk_1E8[v5].unk_04 = v4->unk_1D4.unk_08[v5];
         }
     }
-    v4->unk_1D4.unk_0C = MessageLoader_Init(0, 26, 412, 102);
+    v4->unk_1D4.unk_0C = MessageLoader_Init(0, 26, 412, HEAP_ID_102);
     v4->unk_1D4.unk_10 = 1;
 }
 

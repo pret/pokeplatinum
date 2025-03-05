@@ -300,7 +300,7 @@ static void ov97_02230530(UnkStruct_ov97_02230868 *param0, UnkStruct_ov97_0223E6
     }
 
     param0->unk_2C2C = StringList_New(param2, 87);
-    param0->unk_2A64 = MessageLoader_Init(0, 26, 421, 87);
+    param0->unk_2A64 = MessageLoader_Init(0, 26, 421, HEAP_ID_87);
 
     for (v0 = 0; v0 < param2; v0++) {
         StringList_AddFromMessageBank(param0->unk_2C2C, param0->unk_2A64, param1[v0].unk_00, param1[v0].unk_04);
@@ -320,7 +320,7 @@ static void ov97_02230530(UnkStruct_ov97_02230868 *param0, UnkStruct_ov97_0223E6
 static void ov97_022305EC(Window *param0, int param1)
 {
     Strbuf *v0;
-    MessageLoader *v1 = MessageLoader_Init(1, 26, 421, 87);
+    MessageLoader *v1 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
     StringTemplate *v2 = StringTemplate_Default(87);
 
     Window_FillTilemap(param0, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
@@ -483,7 +483,7 @@ static BOOL ov97_022309E4(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
 {
     Strbuf *v0;
 
-    v0 = Strbuf_Init(250 + 1, 87);
+    v0 = Strbuf_Init(250 + 1, HEAP_ID_87);
 
     Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->unk_154, 250);
     Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
@@ -644,7 +644,7 @@ static int ov97_02230E04(UnkStruct_ov97_02230868 *param0, Window *param1, int pa
     Window_FillTilemap(param1, v2->unk_1C);
 
     if (v2->unk_20) {
-        param0->unk_2A64 = MessageLoader_Init(1, 26, 421, 87);
+        param0->unk_2A64 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
         param0->unk_2A60 = StringTemplate_Default(87);
     }
 
@@ -826,7 +826,7 @@ static int ov97_02231224(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_02230868), 87);
     memset(v0, 0, sizeof(UnkStruct_ov97_02230868));
 
-    v0->unk_2A5C = BgConfig_New(87);
+    v0->unk_2A5C = BgConfig_New(HEAP_ID_87);
     v0->unk_00 = 87;
 
     sub_0200F344(0, 0x0);
@@ -835,7 +835,7 @@ static int ov97_02231224(OverlayManager *param0, int *param1)
     v0->unk_2C20 = 3 - 1;
     v0->unk_2C9C = 1;
 
-    ov97_02237694(87);
+    ov97_02237694(HEAP_ID_87);
     Heap_Create(0, 91, 0x300);
 
     return 1;
@@ -1052,9 +1052,9 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
     case 2:
         Text_ResetAllPrinters();
         ov97_02230F98(v4, 0);
-        Font_LoadTextPalette(0, 15 * 32, 87);
-        LoadStandardWindowGraphics(v4->unk_2A5C, 0, 1, 13, 0, 87);
-        LoadStandardWindowGraphics(v4->unk_2A5C, 0, (1 + 9), 14, 1, 87);
+        Font_LoadTextPalette(0, 15 * 32, HEAP_ID_87);
+        LoadStandardWindowGraphics(v4->unk_2A5C, 0, 1, 13, 0, HEAP_ID_87);
+        LoadStandardWindowGraphics(v4->unk_2A5C, 0, (1 + 9), 14, 1, HEAP_ID_87);
         LoadMessageBoxGraphics(v4->unk_2A5C, 0, ((1 + 9) + 9), 10, v4->unk_2C0C, 87);
 
         ov97_02230C44(v4, 1, 0);
@@ -1199,7 +1199,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         ov97_02230518(&v4->unk_2C30, 0);
         ov97_02230500(&v4->unk_2C40, 0);
         ov97_02230C44(v4, 1, 0);
-        Font_LoadTextPalette(0, 15 * 32, 87);
+        Font_LoadTextPalette(0, 15 * 32, HEAP_ID_87);
         ov97_02230C10(v4, 1, 4, param1);
         break;
     case 22:
@@ -1363,7 +1363,7 @@ static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1)
     v10[3] = ov97_02231C48(v9);
 
     v7 = StringTemplate_Default(87);
-    v8 = MessageLoader_Init(1, 26, 421, 87);
+    v8 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
     v2 = 0;
 
     Window_FillTilemap(param1, 0);
@@ -1408,7 +1408,7 @@ static void ov97_02231E78(UnkStruct_ov97_02230868 *param0, Window *param1, int p
     Strbuf *v0;
 
     param0->unk_2C54 = param2;
-    param0->unk_2A64 = MessageLoader_Init(1, 26, 421, 87);
+    param0->unk_2A64 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
     param0->unk_2A60 = StringTemplate_Default(87);
 
     Window_FillTilemap(param1, 0);

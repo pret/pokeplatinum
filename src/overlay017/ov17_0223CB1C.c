@@ -153,7 +153,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     PaletteData_AllocBuffer(v0->unk_0C.unk_44, 2, (((16 - 2) * 16) * sizeof(u16)), 22);
     PaletteData_AllocBuffer(v0->unk_0C.unk_44, 3, 0x200, 22);
 
-    v0->unk_0C.unk_24 = BgConfig_New(22);
+    v0->unk_0C.unk_24 = BgConfig_New(HEAP_ID_22);
 
     VramTransfer_New(64, 22);
     SetAutorepeat(4, 8);
@@ -179,9 +179,9 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     v0->unk_0C.unk_04 = sub_0200762C(22);
     ov17_0223D350();
 
-    v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 209, 22);
+    v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 209, HEAP_ID_22);
     v0->unk_0C.unk_3C = StringTemplate_Default(22);
-    v0->unk_0C.unk_40 = Strbuf_Init((2 * 160), 22);
+    v0->unk_0C.unk_40 = Strbuf_Init((2 * 160), HEAP_ID_22);
 
     {
         NARC *v1;

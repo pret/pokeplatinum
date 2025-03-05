@@ -3123,23 +3123,23 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->unk_1A4 = SaveData_Options(param1->unk_00);
     param0->unk_118 = param1;
     param1->unk_08 = 0;
-    param0->unk_18C = MessageLoader_Init(0, 26, 19, 9);
-    param0->unk_190 = MessageLoader_Init(1, 26, 412, 9);
-    param0->unk_194 = MessageLoader_Init(0, 26, 202, 9);
-    param0->unk_198 = MessageLoader_Init(0, 26, 610, 9);
+    param0->unk_18C = MessageLoader_Init(0, 26, 19, HEAP_ID_9);
+    param0->unk_190 = MessageLoader_Init(1, 26, 412, HEAP_ID_9);
+    param0->unk_194 = MessageLoader_Init(0, 26, 202, HEAP_ID_9);
+    param0->unk_198 = MessageLoader_Init(0, 26, 610, HEAP_ID_9);
     param0->unk_19C = StringTemplate_Default(9);
-    param0->unk_1A0 = Heap_AllocFromHeap(9, Pokemon_StructSize());
+    param0->unk_1A0 = Heap_AllocFromHeap(HEAP_ID_9, Pokemon_StructSize());
 
     GF_ASSERT(param0->unk_19C);
     param0->unk_128 = sub_0208712C(9, 2, 0, 8, param0->unk_1A4);
 
     if (param1->unk_04 != 4) {
-        param0->unk_17C = sub_02023FCC(Unk_ov19_021DFDF6, NELEMS(Unk_ov19_021DFDF6), ov19_021D53B8, param0, 9);
+        param0->unk_17C = sub_02023FCC(Unk_ov19_021DFDF6, NELEMS(Unk_ov19_021DFDF6), ov19_021D53B8, param0, HEAP_ID_9);
     } else {
-        param0->unk_17C = sub_02023FCC(Unk_ov19_021DFE02, NELEMS(Unk_ov19_021DFE02), ov19_021D53B8, param0, 9);
+        param0->unk_17C = sub_02023FCC(Unk_ov19_021DFE02, NELEMS(Unk_ov19_021DFE02), ov19_021D53B8, param0, HEAP_ID_9);
     }
 
-    param0->unk_180 = sub_02023FCC(Unk_ov19_021DFE12, NELEMS(Unk_ov19_021DFE12), ov19_021D4BB0, param0, 9);
+    param0->unk_180 = sub_02023FCC(Unk_ov19_021DFE12, NELEMS(Unk_ov19_021DFE12), ov19_021D4BB0, param0, HEAP_ID_9);
     param0->unk_00.unk_00 = param0->unk_120;
     param0->unk_00.unk_04 = param0->unk_124;
     param0->unk_00.unk_110 = 0;
@@ -3213,7 +3213,7 @@ static void ov19_021D4DF0(UnkStruct_ov19_021D5DF8 *param0)
 
 static void ov19_021D4E30(UnkStruct_ov19_021D5594 *param0)
 {
-    param0->unk_00 = Heap_AllocFromHeap(9, (5 * 6) * BoxPokemon_GetStructSize());
+    param0->unk_00 = Heap_AllocFromHeap(HEAP_ID_9, (5 * 6) * BoxPokemon_GetStructSize());
     param0->unk_08 = 0;
     param0->unk_0B = 0;
 }
@@ -3226,7 +3226,7 @@ static void ov19_021D4E50(UnkStruct_ov19_021D5594 *param0)
 static void ov19_021D4E5C(PCBoxes *param0, UnkStruct_ov19_021D4F5C *param1)
 {
     param1->unk_00 = sub_0207999C(param0);
-    param1->unk_04 = Strbuf_Init(20, 9);
+    param1->unk_04 = Strbuf_Init(20, HEAP_ID_9);
     ov19_021D4F40(param0, param1);
 }
 
@@ -3237,11 +3237,11 @@ static void ov19_021D4E7C(UnkStruct_ov19_021D4F5C *param0)
 
 static void ov19_021D4E88(UnkStruct_ov19_021D5BAC *param0)
 {
-    param0->unk_14 = Strbuf_Init(12, 9);
-    param0->unk_18 = Strbuf_Init(12, 9);
-    param0->unk_1C = Strbuf_Init(18, 9);
-    param0->unk_20 = Strbuf_Init(12, 9);
-    param0->unk_24 = Strbuf_Init(16, 9);
+    param0->unk_14 = Strbuf_Init(12, HEAP_ID_9);
+    param0->unk_18 = Strbuf_Init(12, HEAP_ID_9);
+    param0->unk_1C = Strbuf_Init(18, HEAP_ID_9);
+    param0->unk_20 = Strbuf_Init(12, HEAP_ID_9);
+    param0->unk_24 = Strbuf_Init(16, HEAP_ID_9);
 }
 
 static void ov19_021D4EC0(UnkStruct_ov19_021D5BAC *param0)
@@ -3263,8 +3263,8 @@ static void ov19_021D4EE4(UnkStruct_ov19_021D4EE4 *param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_02[v0] = 0;
-        param0->unk_08[v0].unk_28 = Strbuf_Init(12, 9);
-        param0->unk_08[v0].unk_2C = Strbuf_Init(12, 9);
+        param0->unk_08[v0].unk_28 = Strbuf_Init(12, HEAP_ID_9);
+        param0->unk_08[v0].unk_2C = Strbuf_Init(12, HEAP_ID_9);
     }
 }
 

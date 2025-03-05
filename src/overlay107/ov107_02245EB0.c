@@ -248,7 +248,7 @@ int ov107_02245EB0 (OverlayManager * param0, int * param1)
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov107_02246170), 100);
     memset(v1, 0, sizeof(UnkStruct_ov107_02246170));
 
-    v1->unk_4C = BgConfig_New(100);
+    v1->unk_4C = BgConfig_New(HEAP_ID_100);
     v1->unk_00 = param0;
 
     v2 = (UnkStruct_ov104_0223597C *)OverlayManager_Args(param0);
@@ -1115,16 +1115,16 @@ static void ov107_02246EE4 (UnkStruct_ov107_02246170 * param0)
     ov107_02247220(param0);
     ov107_02247280(param0);
 
-    param0->unk_20 = MessageLoader_Init(1, 26, 201, 100);
+    param0->unk_20 = MessageLoader_Init(1, 26, 201, HEAP_ID_100);
     param0->unk_24 = StringTemplate_Default(100);
-    param0->unk_28 = Strbuf_Init(600, 100);
-    param0->unk_2C = Strbuf_Init(600, 100);
+    param0->unk_28 = Strbuf_Init(600, HEAP_ID_100);
+    param0->unk_2C = Strbuf_Init(600, HEAP_ID_100);
 
     for (v13 = 0; v13 < 3; v13++) {
-        param0->unk_30[v13] = Strbuf_Init(32, 100);
+        param0->unk_30[v13] = Strbuf_Init(32, HEAP_ID_100);
     }
 
-    Font_LoadTextPalette(0, 13 * 32, 100);
+    Font_LoadTextPalette(0, 13 * 32, HEAP_ID_100);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, 100);
 
     param0->unk_144 = sub_0200C440(1, 2, 0, 100);
@@ -1298,7 +1298,7 @@ static void ov107_02247340(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, 100);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_100);
         Bg_ClearTilemap(param0, 1);
     }
 
@@ -1320,7 +1320,7 @@ static void ov107_02247340(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 0, &v2, 0);
-        Bg_ClearTilesRange(0, 32, 0, 100);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_100);
         Bg_ClearTilemap(param0, 0);
     }
 
@@ -1342,7 +1342,7 @@ static void ov107_02247340(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilesRange(2, 32, 0, 100);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_100);
         Bg_ClearTilemap(param0, 2);
     }
 
@@ -1364,7 +1364,7 @@ static void ov107_02247340(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 3, &v4, 0);
-        Bg_ClearTilesRange(3, 32, 0, 100);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_100);
         Bg_ClearTilemap(param0, 3);
     }
 
@@ -2133,7 +2133,7 @@ static void ov107_0224812C (UnkStruct_ov107_02246170 * param0, Window * param1, 
     Strbuf* v2;
 
     v1 = SaveData_GetTrainerInfo(param0->unk_14C);
-    v2 = Strbuf_Init((7 + 1), 100);
+    v2 = Strbuf_Init((7 + 1), HEAP_ID_100);
 
     Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
 

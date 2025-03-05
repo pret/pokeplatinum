@@ -94,7 +94,7 @@ UnkStruct_ov23_022542D8 *ov23_022542CC(void)
 {
     UnkStruct_ov23_022542D8 *v0;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_022542D8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_022542D8));
 
     return v0;
 }
@@ -107,7 +107,7 @@ void ov23_022542D8(UnkStruct_ov23_022542D8 *param0, FieldSystem *fieldSystem, u1
     param0->unk_34 = param3;
     param0->unk_40 = 0;
 
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 }
 
 void ov23_0225430C(UnkStruct_ov23_022542D8 *param0)
@@ -178,7 +178,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
             4,
         };
 
-        v5 = MessageLoader_Init(0, 26, 637, 4);
+        v5 = MessageLoader_Init(0, 26, 637, HEAP_ID_FIELD);
 
         {
             Strbuf *v8;
@@ -271,7 +271,7 @@ UnkStruct_ov23_02254594 *ov23_02254588(void)
 {
     UnkStruct_ov23_02254594 *v0;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov23_02254594));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02254594));
     return v0;
 }
 
@@ -283,7 +283,7 @@ void ov23_02254594(UnkStruct_ov23_02254594 *param0, FieldSystem *fieldSystem, u1
     param0->unk_38 = param2;
     param0->unk_3C = param3;
 
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 }
 
 void ov23_022545C4(UnkStruct_ov23_02254594 *param0, const u8 param1, const u8 param2)
@@ -416,7 +416,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         int v10;
         u8 v11;
 
-        v6 = MessageLoader_Init(0, 26, 626, 4);
+        v6 = MessageLoader_Init(0, 26, 626, HEAP_ID_FIELD);
 
         {
             MessageLoader *v12;
@@ -425,13 +425,13 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             Strbuf *v15;
             StringTemplate *v16;
 
-            v12 = MessageLoader_Init(0, 26, 637, 4);
+            v12 = MessageLoader_Init(0, 26, 637, HEAP_ID_FIELD);
 
             Window_FillTilemap(&param0->unk_18, 15);
 
             v13 = MessageLoader_GetNewStrbuf(v12, 9);
             v14 = MessageLoader_GetNewStrbuf(v12, 10);
-            v15 = Strbuf_Init(6, 4);
+            v15 = Strbuf_Init(6, HEAP_ID_FIELD);
 
             Text_AddPrinterWithParams(&param0->unk_18, FONT_SYSTEM, v13, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
             v16 = StringTemplate_Default(4);
@@ -485,7 +485,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
     Window_CopyToVRAM(&param0->unk_08);
     Window_CopyToVRAM(&param0->unk_18);
 
-    param0->unk_04 = sub_0206A780(4);
+    param0->unk_04 = sub_0206A780(HEAP_ID_FIELD);
 
     sub_0206A8A0(param0->unk_04, 200, 10 + 8 * 2, 118 + 8 * 2);
     sub_0206A8C4(param0->unk_04, 0, 0);

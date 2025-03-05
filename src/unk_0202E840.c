@@ -385,7 +385,7 @@ void sub_0202ED0C(SaveData *param0, int param1, u8 param2, const void **param3, 
     return;
 }
 
-UnkStruct_0202EE10 *sub_0202ED8C(SaveData *param0, int param1, int param2)
+UnkStruct_0202EE10 *sub_0202ED8C(SaveData *param0, int param1, int heapID)
 {
     int v0, v1;
     u32 v2;
@@ -394,32 +394,32 @@ UnkStruct_0202EE10 *sub_0202ED8C(SaveData *param0, int param1, int param2)
     TrainerInfo *v5;
 
     v5 = SaveData_GetTrainerInfo(param0);
-    v3 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0202EE10));
+    v3 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202EE10));
 
     MI_CpuClear8(v3, sizeof(UnkStruct_0202EE10));
 
     v2 = RecordMixedRNG_GetEntrySeed(SaveData_GetRecordMixedRNG(param0), 1);
-    v4 = sub_0202E924(param0, param2);
+    v4 = sub_0202E924(param0, heapID);
     v3->unk_00 = sub_0202E840(param1);
     v1 = sub_0202E84C(param1);
 
     for (v0 = 0; v0 < v3->unk_00; v0++) {
         v3->unk_04[v0].unk_00 = v2;
         v3->unk_04[v0].unk_04 = v4[v0 + v1];
-        v3->unk_04[v0].unk_08 = TrainerInfo_NameNewStrbuf(v5, param2);
+        v3->unk_04[v0].unk_08 = TrainerInfo_NameNewStrbuf(v5, heapID);
     }
 
     Heap_FreeToHeap(v4);
     return v3;
 }
 
-UnkStruct_0202EE10 *sub_0202EE10(UnkStruct_0202E8C0 *param0, int param1, int param2)
+UnkStruct_0202EE10 *sub_0202EE10(UnkStruct_0202E8C0 *param0, int param1, int heapID)
 {
     int v0;
     UnkStruct_0202EE10 *v1;
     UnkStruct_0202EA80 *v2;
 
-    v1 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0202EE10));
+    v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0202EE10));
     MI_CpuClear8(v1, sizeof(UnkStruct_0202EE10));
     v2 = &(param0->unk_00[param1]);
 
@@ -430,7 +430,7 @@ UnkStruct_0202EE10 *sub_0202EE10(UnkStruct_0202E8C0 *param0, int param1, int par
 
         v1->unk_04[v1->unk_00].unk_00 = v2->unk_00[v0].unk_00;
         v1->unk_04[v1->unk_00].unk_04 = v2->unk_00[v0].unk_04;
-        v1->unk_04[v1->unk_00].unk_08 = Strbuf_Init(7 + 1, param2);
+        v1->unk_04[v1->unk_00].unk_08 = Strbuf_Init(7 + 1, heapID);
         Strbuf_CopyChars(v1->unk_04[v1->unk_00].unk_08, v2->unk_00[v0].unk_08);
         ++v1->unk_00;
     }

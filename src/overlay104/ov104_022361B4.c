@@ -74,14 +74,14 @@ UnkStruct_ov104_0223BA10 *ov104_022361B4(SaveData *param0, u16 param1, u8 param2
     static UnkStruct_ov104_0223BA10 *v9;
     UnkStruct_0203041C *v10;
 
-    v9 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov104_0223BA10));
+    v9 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov104_0223BA10));
     MI_CpuClear8(v9, sizeof(UnkStruct_ov104_0223BA10));
 
     v9->unk_08 = sub_020302DC(param0);
     v9->unk_04 = param0;
     v9->unk_00 = 11;
-    v9->unk_28 = Party_New(11);
-    v9->unk_2C = Party_New(11);
+    v9->unk_28 = Party_New(HEAP_ID_FIELDMAP);
+    v9->unk_2C = Party_New(HEAP_ID_FIELDMAP);
     v9->unk_A20 = param6;
 
     v4 = v9->unk_08;
@@ -232,7 +232,7 @@ static void ov104_022365F8(UnkStruct_ov104_0223BA10 *param0)
 
     ov104_0222E330(v4, v6, v5, NULL, v7, 4, 11, 179);
 
-    v2 = Pokemon_New(11);
+    v2 = Pokemon_New(HEAP_ID_FIELDMAP);
 
     for (v1 = 0; v1 < 4; v1++) {
         ov104_0222DF40(&v4[v1], v2, ov104_0223BA10(param0));
@@ -801,7 +801,7 @@ static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, Tra
     Strbuf *v1 = Strbuf_Init((10 * 2), param0->unk_34);
     Strbuf *v2 = Strbuf_Init((10 * 2), param0->unk_34);
 
-    v0 = MessageLoader_Init(0, 26, 199, 11);
+    v0 = MessageLoader_Init(0, 26, 199, HEAP_ID_FIELDMAP);
 
     StringTemplate_SetNumber(param0->unk_44, 0, param3, 4, 1, 1);
     MessageLoader_GetStrbuf(v0, 2, v1);

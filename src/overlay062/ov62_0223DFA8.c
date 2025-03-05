@@ -246,7 +246,7 @@ static void ov62_0223E0FC (UnkStruct_0208C06C * param0, int param1, int param2)
         UnkStruct_02030A80 * v6 = v2->unk_194.unk_00;
 
         v3 = ov62_02231690(102);
-        v0 = Strbuf_Init(255, 102);
+        v0 = Strbuf_Init(255, HEAP_ID_102);
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
@@ -262,7 +262,7 @@ static void ov62_0223E0FC (UnkStruct_0208C06C * param0, int param1, int param2)
         UnkStruct_02030A80 * v10 = param0->unk_88C[param2];
 
         v7 = ov62_02231690(102);
-        v0 = Strbuf_Init(255, 102);
+        v0 = Strbuf_Init(255, HEAP_ID_102);
         v8 = sub_02030B94(v10, 102);
         ov62_022349A8(param0, v8);
         v9 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
@@ -832,7 +832,7 @@ static void ov62_0223EE88 (UnkStruct_ov62_022312B0 * param0, UnkStruct_0208C06C 
         v4 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 7);
         v5 = sub_02030B94(param1->unk_88C[param2], 102);
         ov62_022349A8(param1, v5);
-        v0 = Strbuf_Init(255, 102);
+        v0 = Strbuf_Init(255, HEAP_ID_102);
 
         StringTemplate_SetStrbuf(v3, 0, v5, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v3, v0, v4);
@@ -944,7 +944,7 @@ static void ov62_0223F160 (UnkStruct_0208C06C * param0)
 
 static BOOL ov62_0223F19C (UnkStruct_0208C06C * param0)
 {
-    UnkStruct_ov62_0223E01C * v0 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_0223E01C));
+    UnkStruct_ov62_0223E01C * v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_0223E01C));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_0223E01C));
 
@@ -1510,9 +1510,9 @@ static BOOL ov62_0223FCC4 (UnkStruct_0208C06C * param0)
         break;
     case 1:
         ov62_02240B94(param0);
-        v0->unk_188[0] = sub_02023FCC(Unk_ov62_02248FC8, NELEMS(Unk_ov62_02248FC8), ov62_02240A50, param0, 102);
-        v0->unk_188[1] = sub_02023FCC(Unk_ov62_02248F98, NELEMS(Unk_ov62_02248F98), ov62_02240AEC, param0, 102);
-        v0->unk_188[2] = sub_02023FCC(Unk_ov62_02248F84, NELEMS(Unk_ov62_02248F84), ov62_02240B5C, param0, 102);
+        v0->unk_188[0] = sub_02023FCC(Unk_ov62_02248FC8, NELEMS(Unk_ov62_02248FC8), ov62_02240A50, param0, HEAP_ID_102);
+        v0->unk_188[1] = sub_02023FCC(Unk_ov62_02248F98, NELEMS(Unk_ov62_02248F98), ov62_02240AEC, param0, HEAP_ID_102);
+        v0->unk_188[2] = sub_02023FCC(Unk_ov62_02248F84, NELEMS(Unk_ov62_02248F84), ov62_02240B5C, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:
@@ -1703,9 +1703,9 @@ static BOOL ov62_02240084 (UnkStruct_0208C06C * param0)
         break;
     case 1:
         ov62_02240B94(param0);
-        v0->unk_188[0] = sub_02023FCC(Unk_ov62_02248FC8, NELEMS(Unk_ov62_02248FC8), ov62_02240A50, param0, 102);
-        v0->unk_188[1] = sub_02023FCC(Unk_ov62_02248F98, NELEMS(Unk_ov62_02248F98), ov62_02240AEC, param0, 102);
-        v0->unk_188[2] = sub_02023FCC(Unk_ov62_02248F84, NELEMS(Unk_ov62_02248F84), ov62_02240B5C, param0, 102);
+        v0->unk_188[0] = sub_02023FCC(Unk_ov62_02248FC8, NELEMS(Unk_ov62_02248FC8), ov62_02240A50, param0, HEAP_ID_102);
+        v0->unk_188[1] = sub_02023FCC(Unk_ov62_02248F98, NELEMS(Unk_ov62_02248F98), ov62_02240AEC, param0, HEAP_ID_102);
+        v0->unk_188[2] = sub_02023FCC(Unk_ov62_02248F84, NELEMS(Unk_ov62_02248F84), ov62_02240B5C, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:
@@ -1772,7 +1772,7 @@ static void ov62_022402FC (UnkStruct_0208C06C * param0, int param1, BOOL param2)
         UnkStruct_02030A80 * v6 = v2->unk_194.unk_00;
 
         v3 = ov62_02231690(102);
-        v0 = Strbuf_Init(255, 102);
+        v0 = Strbuf_Init(255, HEAP_ID_102);
         v4 = sub_02030B94(v6, 102);
         ov62_022349A8(param0, v4);
         v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
@@ -2503,10 +2503,10 @@ static void ov62_02240B94 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_0223E01C * v0 = param0->unk_860;
 
-    v0->unk_194.unk_00 = sub_02030A80(102);
+    v0->unk_194.unk_00 = sub_02030A80(HEAP_ID_102);
     ov61_0222AFC0(&param0->unk_8B4.unk_1D58[param0->unk_14.unk_48C.unk_38.unk_00]->unk_00, v0->unk_194.unk_00);
     v0->unk_220.unk_00 = v0->unk_194.unk_00;
-    v0->unk_220.unk_04 = sub_0202FF2C(102);
+    v0->unk_220.unk_04 = sub_0202FF2C(HEAP_ID_102);
     MI_CpuCopy8(&param0->unk_8B4.unk_1D58[param0->unk_14.unk_48C.unk_38.unk_00]->unk_80, v0->unk_220.unk_04, sizeof(UnkStruct_ov61_0222BED8_sub1));
 }
 

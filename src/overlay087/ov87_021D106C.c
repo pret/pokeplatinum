@@ -84,24 +84,24 @@ static BOOL (*Unk_ov87_021D1BA0[])(UnkStruct_ov87_021D106C *, int *) = {
 
 UnkStruct_ov87_021D106C *ov87_021D106C(UnkStruct_ov87_021D0D80 *param0, const UnkStruct_ov87_021D12C0 *param1)
 {
-    UnkStruct_ov87_021D106C *v0 = Heap_AllocFromHeap(61, sizeof(UnkStruct_ov87_021D106C));
+    UnkStruct_ov87_021D106C *v0 = Heap_AllocFromHeap(HEAP_ID_61, sizeof(UnkStruct_ov87_021D106C));
 
     if (v0) {
         v0->unk_00 = param0;
         v0->unk_04 = param1;
-        v0->unk_10 = BgConfig_New(61);
+        v0->unk_10 = BgConfig_New(HEAP_ID_61);
 
         NNS_G2dInitOamManagerModule();
         RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 61);
 
         v0->unk_34 = SpriteList_InitRendering(64, &v0->unk_38, 61);
-        v0->unk_1E4 = MessageLoader_Init(0, 26, 352, 61);
-        v0->unk_1E8 = MessageLoader_Init(1, 26, 412, 61);
-        v0->unk_1EC = MessageLoader_Init(1, 26, 647, 61);
+        v0->unk_1E4 = MessageLoader_Init(0, 26, 352, HEAP_ID_61);
+        v0->unk_1E8 = MessageLoader_Init(1, 26, 412, HEAP_ID_61);
+        v0->unk_1EC = MessageLoader_Init(1, 26, 647, HEAP_ID_61);
         v0->unk_1F0 = StringTemplate_Default(61);
-        v0->unk_1F4 = Strbuf_Init(256, 61);
-        v0->unk_1F8 = Strbuf_Init(256, 61);
-        v0->unk_1FC = Pokemon_New(61);
+        v0->unk_1F4 = Strbuf_Init(256, HEAP_ID_61);
+        v0->unk_1F8 = Strbuf_Init(256, HEAP_ID_61);
+        v0->unk_1FC = Pokemon_New(HEAP_ID_61);
 
         SetVBlankCallback(ov87_021D11AC, v0);
     }
@@ -311,7 +311,7 @@ static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
     v4 = ov87_021D14D4(param0, 1);
 
     ov87_021D1558(param0);
-    LoadStandardWindowGraphics(param0->unk_10, 1, v4, 2, 0, 61);
+    LoadStandardWindowGraphics(param0->unk_10, 1, v4, 2, 0, HEAP_ID_61);
     Window_DrawStandardFrame(&(param0->unk_14[0]), 0, v4, 2);
     Window_DrawStandardFrame(&(param0->unk_14[1]), 0, v4, 2);
     Bg_CopyTilemapBufferToVRAM(param0->unk_10, 1);
@@ -542,7 +542,7 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
         Pokemon_InitWith(param0->unk_1FC, v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_12, INIT_IVS_RANDOM, TRUE, v2->unk_20[v3].unk_08, OTID_SET, v2->unk_20[v3].unk_0C);
         Pokemon_SetValue(param0->unk_1FC, MON_DATA_FORM, (void *)(&(v2->unk_20[v3].unk_13)));
         Pokemon_BuildArchivedSprite(&v1, param0->unk_1FC, 2);
-        sub_02013720(v1.archive, v1.character, 61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].unk_10);
+        sub_02013720(v1.archive, v1.character, HEAP_ID_61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].unk_10);
 
         DC_FlushRange(param0->unk_200, sizeof(param0->unk_200));
         GX_LoadOBJ(param0->unk_200, 3200 * v3, 3200);

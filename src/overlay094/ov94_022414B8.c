@@ -437,8 +437,8 @@ static void ov94_022415F8(BgConfig *param0)
         Bg_InitFromTemplate(param0, 5, &v4, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 62);
-    Bg_ClearTilesRange(4, 32, 0, 62);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
 }
 
 static void ov94_022416E0(BgConfig *param0)
@@ -457,7 +457,7 @@ static void ov94_0224170C(UnkStruct_ov94_0223FD4C *param0)
     Graphics_LoadPalette(104, 1, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, 62);
+    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayer(104, 11, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
     Graphics_LoadTilemapToBgLayer(104, 23, v0, 1, 0, 32 * 24 * 2, 1, 62);
 }
@@ -495,9 +495,9 @@ static void ov94_02241880(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_022418B8(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_BAC = Strbuf_Init((90 * 2), 62);
+    param0->unk_BAC = Strbuf_Init((90 * 2), HEAP_ID_62);
     param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 90);
-    param0->unk_10E4 = Heap_AllocFromHeap(62, sizeof(UnkStruct_ov94_0223FD4C_sub3));
+    param0->unk_10E4 = Heap_AllocFromHeap(HEAP_ID_62, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
     MI_CpuClearFast(param0->unk_10E4, sizeof(UnkStruct_ov94_0223FD4C_sub3));
 
@@ -964,8 +964,8 @@ void ov94_02242368(MessageLoader *param0, MessageLoader *param1, StringTemplate 
 static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window param2[], BoxPokemon *boxMon, UnkStruct_ov94_0223BA88_sub2 *param4)
 {
     Strbuf *v0, *v1;
-    Strbuf *v2 = Strbuf_Init(10 + 1, 62);
-    Strbuf *v3 = Strbuf_Init(10 + 1, 62);
+    Strbuf *v2 = Strbuf_Init(10 + 1, HEAP_ID_62);
+    Strbuf *v3 = Strbuf_Init(10 + 1, HEAP_ID_62);
     int gender, level, v6;
 
     BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, v2);
@@ -1018,7 +1018,7 @@ u8 *ov94_02242548(int param0)
 {
     u32 v0, v1, v2;
     u16 *v3;
-    u8 *v4 = Heap_AllocFromHeap(62, NATIONAL_DEX_COUNT + 1);
+    u8 *v4 = Heap_AllocFromHeap(HEAP_ID_62, NATIONAL_DEX_COUNT + 1);
 
     MI_CpuClearFast(v4, NATIONAL_DEX_COUNT + 1);
 

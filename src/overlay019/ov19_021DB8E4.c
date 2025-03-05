@@ -117,12 +117,12 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_34 = Graphics_GetScrnDataFromOpenNARC(param5, 2, 1, &(param0->unk_38), 10);
     param0->unk_2C = Graphics_GetScrnDataFromOpenNARC(param5, 3, 1, &(param0->unk_30), 10);
     param0->unk_44 = sub_0200C440(2, 13, 4, 10);
-    param0->unk_4BFC = Strbuf_Init(500, 10);
+    param0->unk_4BFC = Strbuf_Init(500, HEAP_ID_10);
     param0->unk_10 = NULL;
     param0->unk_3C.pixels = param0->unk_18->pRawData;
     param0->unk_3C.width = 32;
     param0->unk_3C.height = 32;
-    param0->unk_4BF8 = MessageLoader_Init(1, 26, 391, 10);
+    param0->unk_4BF8 = MessageLoader_Init(1, 26, 391, HEAP_ID_10);
 
     for (v0 = 0; v0 < 18; v0++) {
         param0->unk_48[v0] = NULL;
@@ -481,7 +481,7 @@ static void ov19_021DC034(UnkStruct_ov19_021DBA9C *param0, int param1)
         ov19_021DC0A0,
         ov19_021DC1CC,
     };
-    UnkStruct_ov19_021DC034 *v1 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DC034));
+    UnkStruct_ov19_021DC034 *v1 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DC034));
 
     if (v1) {
         v1->unk_00 = param0;
@@ -594,7 +594,7 @@ static void ov19_021DC1CC(SysTask *param0, void *param1)
 
 void ov19_021DC29C(UnkStruct_ov19_021DBA9C *param0)
 {
-    UnkStruct_ov19_021DC29C *v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DC29C));
+    UnkStruct_ov19_021DC29C *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DC29C));
 
     if (v0) {
         u32 v1 = ov19_021D5F88(param0->unk_0C);
@@ -657,7 +657,7 @@ static void ov19_021DC37C(SysTask *param0, void *param1)
 
 void ov19_021DC3F4(UnkStruct_ov19_021DBA9C *param0)
 {
-    UnkStruct_ov19_021DC29C *v0 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DC29C));
+    UnkStruct_ov19_021DC29C *v0 = Heap_AllocFromHeap(HEAP_ID_10, sizeof(UnkStruct_ov19_021DC29C));
 
     if (v0) {
         v0->unk_16 = 0;

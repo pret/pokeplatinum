@@ -107,9 +107,9 @@ void sub_02071D40(const u8 param0, const u8 param1, const u8 param2, const u8 pa
     param5->unk_66A = 0;
 }
 
-TrainerCard *sub_02071F04(const u16 param0)
+TrainerCard *sub_02071F04(const u16 heapID)
 {
-    TrainerCard *v0 = Heap_AllocFromHeap(param0, sizeof(TrainerCard));
+    TrainerCard *v0 = Heap_AllocFromHeap(heapID, sizeof(TrainerCard));
 
     memset(v0, 0, sizeof(TrainerCard));
     return v0;

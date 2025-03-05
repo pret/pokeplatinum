@@ -16,9 +16,9 @@ void ov80_021D2A08(UnkStruct_ov80_021D2A08 *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    VramTransfer_New(32, param0->unk_04);
+    VramTransfer_New(32, param0->heapID);
 
-    param0->unk_D8 = SpriteSystem_Alloc(param0->unk_04);
+    param0->unk_D8 = SpriteSystem_Alloc(param0->heapID);
     param0->unk_DC = SpriteManager_New(param0->unk_D8);
 
     {

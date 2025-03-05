@@ -396,7 +396,7 @@ static void ov6_0223E1D0(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 3, &v1, 0);
-        Bg_ClearTilesRange(3, 32, 0, 4);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_FIELD);
         Bg_ClearTilemap(param0, 3);
     }
 }
@@ -522,7 +522,7 @@ static BOOL ov6_0223E33C(FieldTask *taskMan)
 void ov6_0223E384(FieldTask *taskMan)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(taskMan);
-    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_0223E33C));
+    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_0223E33C));
 
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
@@ -609,7 +609,7 @@ static BOOL ov6_0223E408(FieldTask *param0)
 void ov6_0223E4EC(FieldTask *param0)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
-    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_0223E33C));
+    UnkStruct_ov6_0223E33C *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_0223E33C));
 
     memset(v1, 0, sizeof(UnkStruct_ov6_0223E33C));
     v1->unk_00 = ov6_0223FDE4(4);
@@ -1122,7 +1122,7 @@ static BOOL ov6_0223EBDC(UnkStruct_ov6_0223EA98 *param0)
         Easy3DObject_SetPosition(&param0->unk_24, param0->unk_E4.unk_00, v2, param0->unk_F4.unk_00);
 
         if (v0[0] && v0[1]) {
-            Sound_PlayPokemonCry(0, 480, 0, 100, 4, 0);
+            Sound_PlayPokemonCry(0, 480, 0, 100, HEAP_ID_FIELD, 0);
             param0->unk_18++;
         }
         break;
@@ -1345,7 +1345,7 @@ static BOOL ov6_0223EE5C(UnkStruct_ov6_0223EA98 *param0)
         }
 
         param0->unk_D0 = 0;
-        Sound_PlayPokemonCry(0, 481, 0, 100, 4, 0);
+        Sound_PlayPokemonCry(0, 481, 0, 100, HEAP_ID_FIELD, 0);
         param0->unk_18++;
         break;
     case 16:
@@ -1486,7 +1486,7 @@ static BOOL ov6_0223F744(UnkStruct_ov6_0223EA98 *param0)
         Easy3DObject_SetPosition(&param0->unk_24, param0->unk_E4.unk_00, v2, param0->unk_F4.unk_00);
 
         if (v0[0] && v0[1]) {
-            Sound_PlayPokemonCry(0, 482, 0, 100, 4, 0);
+            Sound_PlayPokemonCry(0, 482, 0, 100, HEAP_ID_FIELD, 0);
             param0->unk_18++;
         }
 
@@ -2010,7 +2010,7 @@ UnkStruct_ov6_022400A8 *ov6_02240074(FieldSystem *fieldSystem)
 {
     UnkStruct_ov6_022400A8 *v0;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022400A8));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_022400A8));
     memset(v0, 0, sizeof(UnkStruct_ov6_022400A8));
     v0->fieldSystem = fieldSystem;
     v0->unk_12C = 5;

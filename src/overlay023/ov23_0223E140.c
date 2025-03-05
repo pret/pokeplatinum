@@ -1173,7 +1173,7 @@ static void ov23_0223EC34(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 0, &v2, 0);
-        Bg_ClearTilesRange(0, 32, 0, 29);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_29);
         Bg_ClearTilemap(param0, 0);
     }
 
@@ -1195,7 +1195,7 @@ static void ov23_0223EC34(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 1, &v3, 0);
-        Bg_ClearTilesRange(1, 32, 0, 29);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_29);
         Bg_ClearTilemap(param0, 1);
     }
     {
@@ -1216,7 +1216,7 @@ static void ov23_0223EC34(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 2, &v4, 0);
-        Bg_ClearTilesRange(2, 32, 0, 29);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_29);
         Bg_ClearTilemap(param0, 2);
     }
     {
@@ -1237,12 +1237,12 @@ static void ov23_0223EC34(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 3, &v5, 0);
-        Bg_ClearTilesRange(3, 32, 0, 29);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_29);
         Bg_ClearTilemap(param0, 3);
     }
 
-    Bg_ClearTilesRange(4, 32, 0, 29);
-    Bg_ClearTilesRange(0, 32, 0, 29);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_29);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_29);
 }
 
 static void ov23_0223ED68(int param0, int param1, BOOL param2, BOOL param3, BOOL param4)
@@ -1303,7 +1303,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
     Heap_Create(3, 29, 0x50000);
 
-    v1 = BgConfig_New(29);
+    v1 = BgConfig_New(HEAP_ID_29);
     Unk_ov23_02257740->unk_04 = v1;
 
     SetVBlankCallback(ov23_022411E8, v1);
@@ -1587,7 +1587,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
             Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
-            LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, 4);
+            LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
             CommPlayerMan_Restart();
 
             ov23_0224B460();

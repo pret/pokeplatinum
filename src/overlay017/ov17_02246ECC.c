@@ -1261,7 +1261,7 @@ void ov17_02246ECC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BE58 *par
     int v0;
     UnkStruct_ov17_02246F9C *v1;
 
-    v1 = Heap_AllocFromHeap(21, sizeof(UnkStruct_ov17_02246F9C));
+    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02246F9C));
 
     for (v0 = param0->unk_00->unk_00.unk_117; v0 < 4; v0++) {
         ov17_02246F24(param0, v1, v0);

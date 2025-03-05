@@ -139,9 +139,9 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
         if (v0) {
             v0->unk_00 = OverlayManager_Args(param0);
             v0->unk_04 = 0;
-            v0->unk_08 = BgConfig_New(57);
-            v0->unk_14 = Strbuf_Init(400, 57);
-            v0->unk_10 = MessageLoader_Init(0, 26, 350, 57);
+            v0->unk_08 = BgConfig_New(HEAP_ID_57);
+            v0->unk_14 = Strbuf_Init(400, HEAP_ID_57);
+            v0->unk_10 = MessageLoader_Init(0, 26, 350, HEAP_ID_57);
             v0->unk_0C = StringTemplate_Default(57);
 
             switch (v0->unk_00->unk_10) {
@@ -265,7 +265,7 @@ static void ov95_02246F0C(SysTask *param0, void *param1)
 
 UnkStruct_ov95_02247004 *ov95_02246F30(BOOL *param0, int param1)
 {
-    UnkStruct_ov95_02247004 *v0 = Heap_AllocFromHeap(57, sizeof(UnkStruct_ov95_02247004));
+    UnkStruct_ov95_02247004 *v0 = Heap_AllocFromHeap(HEAP_ID_57, sizeof(UnkStruct_ov95_02247004));
 
     *param0 = 0;
 
@@ -394,7 +394,7 @@ static void ov95_02247148(UnkStruct_ov95_02247004 *param0, int param1, int param
 static void ov95_02247170(UnkStruct_ov95_02247004 *param0)
 {
     if (param0->unk_C4[param0->unk_F8] == NULL) {
-        UnkStruct_ov95_02247170 *v0 = Heap_AllocFromHeap(57, sizeof(UnkStruct_ov95_02247170));
+        UnkStruct_ov95_02247170 *v0 = Heap_AllocFromHeap(HEAP_ID_57, sizeof(UnkStruct_ov95_02247170));
 
         if (v0) {
             v0->unk_00 = param0;
@@ -463,7 +463,7 @@ static void ov95_02247254(SysTask *param0, void *param1)
 
 UnkStruct_ov95_022472C4 *ov95_022472C4(BgConfig *param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, int param5, volatile BOOL *param6)
 {
-    UnkStruct_ov95_022472C4 *v0 = Heap_AllocFromHeap(57, sizeof(UnkStruct_ov95_022472C4));
+    UnkStruct_ov95_022472C4 *v0 = Heap_AllocFromHeap(HEAP_ID_57, sizeof(UnkStruct_ov95_022472C4));
 
     *param6 = 1;
 
@@ -578,7 +578,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
             v4.unk_08 *= 2;
         }
 
-        sub_02013720(v0.archive, v0.character, 57, &v4, v3, v7, param4, 2, v8);
+        sub_02013720(v0.archive, v0.character, HEAP_ID_57, &v4, v3, v7, param4, 2, v8);
         DC_FlushRange(v3, v2);
         Bg_LoadTiles(param0->unk_08, param2, v3, v2, 0);
 

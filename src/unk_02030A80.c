@@ -23,11 +23,9 @@
 #include "unk_0205C980.h"
 #include "unk_020996D0.h"
 
-UnkStruct_02030A80 *sub_02030A80(int param0)
+UnkStruct_02030A80 *sub_02030A80(int heapID)
 {
-    UnkStruct_02030A80 *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02030A80));
+    UnkStruct_02030A80 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02030A80));
     MI_CpuClear8(v0, sizeof(UnkStruct_02030A80));
 
     return v0;

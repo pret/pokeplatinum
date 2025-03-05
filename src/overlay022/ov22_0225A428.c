@@ -254,7 +254,7 @@ static s32 ov22_0225A860(Window *param0, int param1, int param2, int param3, int
     Strbuf *v1;
     s32 v2;
 
-    v0 = MessageLoader_Init(0, param1, param2, 13);
+    v0 = MessageLoader_Init(0, param1, param2, HEAP_ID_13);
     GF_ASSERT(v0);
 
     v1 = MessageLoader_GetNewStrbuf(v0, param3);
@@ -273,7 +273,7 @@ static s32 ov22_0225A8B4(Window *param0, int param1, int param2, int param3, int
 
     GF_ASSERT(*param8 == NULL);
 
-    v0 = MessageLoader_Init(0, param1, param2, 13);
+    v0 = MessageLoader_Init(0, param1, param2, HEAP_ID_13);
     GF_ASSERT(v0);
     *param8 = MessageLoader_GetNewStrbuf(v0, param3);
     v1 = Text_AddPrinterWithParamsAndColor(param0, FONT_MESSAGE, *param8, param4, param5, param7, param6, NULL);

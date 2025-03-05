@@ -177,7 +177,7 @@ BOOL Sound_PlayChatotCry(ChatotCry *param0, u32 param1, int param2, int param3)
 
     if (v0 == 0) {
         Sound_FlagDefaultChatotCry(1);
-        v0 = Sound_PlayPokemonCry(0, 441, param3, param2, 11, 0);
+        v0 = Sound_PlayPokemonCry(0, 441, param3, param2, HEAP_ID_FIELDMAP, 0);
     }
 
     return v0;
@@ -196,7 +196,7 @@ BOOL Sound_PlayDelayedChatotCry(ChatotCry *param0, u32 param1, int param2, int p
 
     if (v0 == 0) {
         Sound_FlagDefaultChatotCry(1);
-        Sound_PlayDelayedPokemonCry(0, 441, param3, param2, 11, param4, 0);
+        Sound_PlayDelayedPokemonCry(0, 441, param3, param2, HEAP_ID_FIELDMAP, param4, 0);
         v0 = 1;
     }
 

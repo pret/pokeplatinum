@@ -61,8 +61,8 @@ BOOL ov52_02256694(UnkStruct_ov52_02256694 **param0, const UnkStruct_ov52_022566
         v0->unk_00 = param1;
         v0->unk_04 = Poketch_GetBgConfig();
         v0->unk_30 = ov25_02254664();
-        v0->unk_58 = MessageLoader_Init(1, 26, 461, 8);
-        v0->unk_5C = Strbuf_Init(96, 8);
+        v0->unk_58 = MessageLoader_Init(1, 26, 461, HEAP_ID_POKETCH_APP);
+        v0->unk_5C = Strbuf_Init(96, HEAP_ID_POKETCH_APP);
         ov52_0225670C(v0, param1);
         *param0 = v0;
 

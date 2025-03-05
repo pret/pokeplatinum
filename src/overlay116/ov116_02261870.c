@@ -395,7 +395,7 @@ void ov116_02261F70(UnkStruct_ov116_02262A8C *param0)
         MessageLoader *v0;
         Strbuf *v1;
 
-        v0 = MessageLoader_Init(0, 26, 410, 106);
+        v0 = MessageLoader_Init(0, 26, 410, HEAP_ID_106);
         v1 = MessageLoader_GetNewStrbuf(v0, 0);
 
         Text_AddPrinterWithParams(&param0->unk_1FC8, FONT_SYSTEM, v1, 0, 0, TEXT_SPEED_INSTANT, NULL);
@@ -831,5 +831,5 @@ void ov116_022628B8(UnkStruct_ov116_0226139C *param0)
     PaletteData_LoadBufferFromFileStart(v5, 164, 6, 106, 0, 0x20, 0);
     PaletteData_LoadBufferFromFileStart(v5, 14, 7, 106, 1, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(v5, 38, GetStandardWindowPaletteNARCMember(), 106, 1, 0x20, 13 * 16);
-    LoadStandardWindowGraphics(v2, 7, 180, 13, 0, 106);
+    LoadStandardWindowGraphics(v2, 7, 180, 13, 0, HEAP_ID_106);
 }

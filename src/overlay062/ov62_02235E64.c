@@ -84,7 +84,7 @@ static const TouchScreenRect Unk_ov62_02248C1C[] = {
 
 static BOOL ov62_02235E64(UnkStruct_0208C06C *param0)
 {
-    UnkStruct_ov62_02235E64 *v0 = Heap_AllocFromHeap(102, sizeof(UnkStruct_ov62_02235E64));
+    UnkStruct_ov62_02235E64 *v0 = Heap_AllocFromHeap(HEAP_ID_102, sizeof(UnkStruct_ov62_02235E64));
 
     memset(v0, 0, sizeof(UnkStruct_ov62_02235E64));
     param0->unk_860 = v0;
@@ -173,7 +173,7 @@ static BOOL ov62_0223604C(UnkStruct_0208C06C *param0)
         break;
     case 1:
         ov62_02236B2C(param0);
-        v0->unk_174[0] = sub_02023FCC(Unk_ov62_02248C1C, NELEMS(Unk_ov62_02248C1C), ov62_02236AB0, param0, 102);
+        v0->unk_174[0] = sub_02023FCC(Unk_ov62_02248C1C, NELEMS(Unk_ov62_02248C1C), ov62_02236AB0, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:
@@ -594,7 +594,7 @@ static BOOL ov62_02236920(UnkStruct_0208C06C *param0)
         break;
     case 1:
         ov62_02236B2C(param0);
-        v0->unk_174[0] = sub_02023FCC(Unk_ov62_02248C1C, NELEMS(Unk_ov62_02248C1C), ov62_02236AB0, param0, 102);
+        v0->unk_174[0] = sub_02023FCC(Unk_ov62_02248C1C, NELEMS(Unk_ov62_02248C1C), ov62_02236AB0, param0, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 2:

@@ -699,10 +699,10 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
 
     v0 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 54);
 
-    param0->unk_15C = BgConfig_New(54);
+    param0->unk_15C = BgConfig_New(HEAP_ID_54);
     param0->unk_164 = StringTemplate_Default(54);
-    param0->unk_168 = MessageLoader_Init(0, 26, 674, 54);
-    param0->unk_16C = MessageLoader_Init(0, 26, 695, 54);
+    param0->unk_168 = MessageLoader_Init(0, 26, 674, HEAP_ID_54);
+    param0->unk_16C = MessageLoader_Init(0, 26, 695, HEAP_ID_54);
 
     ov65_0222E618();
     ov65_0222E638(param0->unk_15C);
@@ -992,7 +992,7 @@ static void ov65_0222E638(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilesRange(0, 32, 0, 54);
+        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_54);
         Bg_ClearTilemap(param0, 0);
     }
 
@@ -1014,7 +1014,7 @@ static void ov65_0222E638(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilesRange(1, 32, 0, 54);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_54);
         Bg_ClearTilemap(param0, 1);
     }
 
@@ -1036,7 +1036,7 @@ static void ov65_0222E638(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilesRange(2, 32, 0, 54);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_54);
         Bg_ClearTilemap(param0, 2);
     }
 
@@ -1058,7 +1058,7 @@ static void ov65_0222E638(BgConfig *param0)
         };
 
         Bg_InitFromTemplate(param0, 3, &v4, 0);
-        Bg_ClearTilesRange(3, 32, 0, 54);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_54);
         Bg_ClearTilemap(param0, 3);
     }
 
@@ -1146,14 +1146,14 @@ static void ov65_0222E638(BgConfig *param0)
         Bg_ClearTilemap(param0, 7);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, 54);
-    Bg_ClearTilesRange(1, 32, 0, 54);
-    Bg_ClearTilesRange(2, 32, 0, 54);
-    Bg_ClearTilesRange(3, 32, 0, 54);
-    Bg_ClearTilesRange(4, 32, 0, 54);
-    Bg_ClearTilesRange(5, 32, 0, 54);
-    Bg_ClearTilesRange(6, 32, 0, 54);
-    Bg_ClearTilesRange(7, 32, 0, 54);
+    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(2, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(3, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(4, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(5, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(6, 32, 0, HEAP_ID_54);
+    Bg_ClearTilesRange(7, 32, 0, HEAP_ID_54);
 
     Bg_SetPriority(0, 3);
     Bg_SetPriority(1, 1);
@@ -1411,10 +1411,10 @@ static void ov65_0222EBE0(UnkStruct_ov65_0222EBE0 *param0)
     int v0;
     int v1;
 
-    param0->unk_174 = Strbuf_Init((190 * 2), 54);
-    param0->unk_17C = Strbuf_Init((190 * 2), 54);
-    param0->unk_170 = Strbuf_Init((190 * 2), 54);
-    param0->unk_178 = Strbuf_Init((90 * 2), 54);
+    param0->unk_174 = Strbuf_Init((190 * 2), HEAP_ID_54);
+    param0->unk_17C = Strbuf_Init((190 * 2), HEAP_ID_54);
+    param0->unk_170 = Strbuf_Init((190 * 2), HEAP_ID_54);
+    param0->unk_178 = Strbuf_Init((90 * 2), HEAP_ID_54);
     param0->unk_3A8 = 0;
 }
 
@@ -1466,8 +1466,8 @@ static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
         int v1 = Options_Frame(SaveData_Options(param0->unk_160));
 
         LoadMessageBoxGraphics(v0, 2, (512 - (18 + 12)), 10, v1, 54);
-        LoadStandardWindowGraphics(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, 54);
-        LoadStandardWindowGraphics(v0, 1, ((512 - (18 + 12)) - 9), 11, 0, 54);
+        LoadStandardWindowGraphics(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
+        LoadStandardWindowGraphics(v0, 1, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
     }
 }
 

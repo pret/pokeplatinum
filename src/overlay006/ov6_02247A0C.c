@@ -132,19 +132,19 @@ void *ov6_02247A90(void *param0)
 
     v1 = FieldSystem_GetBgConfig(param0);
     v8 = FieldSystem_GetSaveData(param0);
-    v0 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov6_02247A90));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov6_02247A90));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A90));
 
-    v0->unk_10 = MessageLoader_Init(0, 26, 208, 11);
+    v0->unk_10 = MessageLoader_Init(0, 26, 208, HEAP_ID_FIELDMAP);
     v0->unk_14 = StringTemplate_Default(11);
 
     Window_Add(v1, &v0->unk_00, 3, 1, 3, 30, 17, 12, (1 + 10));
-    LoadStandardWindowGraphics(v1, 3, 1, 11, 0, 11);
+    LoadStandardWindowGraphics(v1, 3, 1, 11, 0, HEAP_ID_FIELDMAP);
     Window_DrawStandardFrame(&v0->unk_00, 1, 1, 11);
     Window_FillTilemap(&v0->unk_00, 15);
 
-    v3 = Strbuf_Init(100, 11);
+    v3 = Strbuf_Init(100, HEAP_ID_FIELDMAP);
     v2 = MessageLoader_GetNewStrbuf(v0->unk_10, 0);
 
     StringTemplate_SetPlayerName(v0->unk_14, 0, SaveData_GetTrainerInfo(v8));

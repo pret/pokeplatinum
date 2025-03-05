@@ -153,7 +153,7 @@ static UnkStruct_0205B43C *sub_0205B3A0(FieldSystem *fieldSystem)
     v1 = FieldSystem_GetSaveData(fieldSystem);
     sub_020369EC(v1);
 
-    v2 = (UnkStruct_0205B43C *)Heap_AllocFromHeap(31, sizeof(UnkStruct_0205B43C));
+    v2 = (UnkStruct_0205B43C *)Heap_AllocFromHeap(HEAP_ID_31, sizeof(UnkStruct_0205B43C));
     MI_CpuClear8(v2, sizeof(UnkStruct_0205B43C));
 
     v2->unk_10 = NULL;
@@ -1270,7 +1270,7 @@ void sub_0205C040(StringTemplate *param0, int param1, int param2, TrainerInfo *p
 {
     TrainerInfo *v0;
     Strbuf *v1;
-    MessageLoader *v2 = MessageLoader_Init(1, 26, 635, 4);
+    MessageLoader *v2 = MessageLoader_Init(1, 26, 635, HEAP_ID_FIELD);
     int v3, v4;
 
     param2--;
@@ -1371,9 +1371,9 @@ static void sub_0205C160(UnkStruct_0205B43C *param0)
 
 void *sub_0205C17C(UnkStruct_0205B43C *param0)
 {
-    param0->unk_184 = sub_02071F04(0);
-    param0->unk_188[0] = sub_02071F04(0);
-    param0->unk_188[1] = sub_02071F04(0);
+    param0->unk_184 = sub_02071F04(HEAP_ID_SYSTEM);
+    param0->unk_188[0] = sub_02071F04(HEAP_ID_SYSTEM);
+    param0->unk_188[1] = sub_02071F04(HEAP_ID_SYSTEM);
 
     sub_02071D40(0, 0, 0, sub_0205CA14(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->fieldSystem, param0->unk_184);
 

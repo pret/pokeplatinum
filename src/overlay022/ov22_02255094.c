@@ -95,7 +95,7 @@ void ov22_022550D4(UnkStruct_ov22_0225A0E4 *param0)
     ov22_02255BF4(param0, 13);
     ov22_022559F8(param0);
 
-    param0->unk_40 = BgConfig_New(14);
+    param0->unk_40 = BgConfig_New(HEAP_ID_14);
 
     ov22_02255860(param0);
 }
@@ -397,7 +397,7 @@ void ov22_022555D4(UnkStruct_ov22_0225A0E4 *param0, int param1)
 {
     param0->unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, 14);
     ov22_022559F8(param0);
-    param0->unk_40 = BgConfig_New(14);
+    param0->unk_40 = BgConfig_New(HEAP_ID_14);
     ov22_02255860(param0);
 }
 
@@ -571,7 +571,7 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
         };
 
         Bg_InitFromTemplate(param0->unk_40, 1, &v0, 0);
-        Bg_ClearTilesRange(1, 32, 0, 14);
+        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_14);
         Bg_ClearTilemap(param0->unk_40, 1);
     }
 
@@ -593,7 +593,7 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
         };
 
         Bg_InitFromTemplate(param0->unk_40, 2, &v1, 0);
-        Bg_ClearTilesRange(2, 32, 0, 14);
+        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_14);
         Bg_ClearTilemap(param0->unk_40, 2);
     }
 
@@ -615,7 +615,7 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
         };
 
         Bg_InitFromTemplate(param0->unk_40, 3, &v2, 0);
-        Bg_ClearTilesRange(3, 32, 0, 14);
+        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_14);
         Bg_ClearTilemap(param0->unk_40, 3);
     }
 
@@ -637,7 +637,7 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
         };
 
         Bg_InitFromTemplate(param0->unk_40, 4, &v3, 0);
-        Bg_ClearTilesRange(4, 32, 0, 14);
+        Bg_ClearTilesRange(4, 32, 0, HEAP_ID_14);
         Bg_ClearTilemap(param0->unk_40, 4);
     }
 
@@ -659,7 +659,7 @@ static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0)
         };
 
         Bg_InitFromTemplate(param0->unk_40, 5, &v4, 0);
-        Bg_ClearTilesRange(5, 32, 0, 14);
+        Bg_ClearTilesRange(5, 32, 0, HEAP_ID_14);
         Bg_ClearTilemap(param0->unk_40, 5);
     }
 }
@@ -676,7 +676,7 @@ static void ov22_02255984(UnkStruct_ov22_0225A0E4 *param0)
 static void ov22_022559B4(UnkStruct_ov22_0225A0E4 *param0)
 {
     param0->unk_34 = ResourceCollection_New(((100 + 18) + 1), 14);
-    param0->unk_38 = Heap_AllocFromHeap(14, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
+    param0->unk_38 = Heap_AllocFromHeap(HEAP_ID_14, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
     memset(param0->unk_38, 0, sizeof(NNSG2dCharacterData *) * ((100 + 18) + 1));
     param0->unk_3C = ((100 + 18) + 1);
 }

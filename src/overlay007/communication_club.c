@@ -214,13 +214,13 @@ static void CommClubMan_Init(FieldSystem *fieldSystem)
 
     GF_ASSERT(sCommClubMan == NULL);
 
-    sCommClubMan = Heap_AllocFromHeap(4, sizeof(CommClubManager));
+    sCommClubMan = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(CommClubManager));
     MI_CpuFill8(sCommClubMan, 0, sizeof(CommClubManager));
 
     sCommClubMan->retCode = 0;
     sCommClubMan->fieldSystem = fieldSystem;
     sCommClubMan->unk_97 = 0;
-    sCommClubMan->msgLoader = MessageLoader_Init(1, 26, 353, 4);
+    sCommClubMan->msgLoader = MessageLoader_Init(1, 26, 353, HEAP_ID_FIELD);
     sCommClubMan->trainerInfoPersonal = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(sCommClubMan->fieldSystem));
     sCommClubMan->unk_7C = TrainerInfo_New(4);
 
@@ -238,7 +238,7 @@ static void CommClubMan_Init(FieldSystem *fieldSystem)
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        sCommClubMan->strBuff[v0] = Strbuf_Init((70 * 2), 4);
+        sCommClubMan->strBuff[v0] = Strbuf_Init((70 * 2), HEAP_ID_FIELD);
     }
 }
 

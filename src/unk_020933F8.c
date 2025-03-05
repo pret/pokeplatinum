@@ -381,7 +381,7 @@ static UnkStruct_02095C48 *sub_020937C4(void)
     UnkStruct_02095C48 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(20, sizeof(UnkStruct_02095C48));
+    v0 = Heap_AllocFromHeap(HEAP_ID_20, sizeof(UnkStruct_02095C48));
     MI_CpuClear8(v0, sizeof(UnkStruct_02095C48));
 
     v0->unk_00.unk_113 = 0;
@@ -431,21 +431,21 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     }
 
     sub_020954F0(v0, 11, v0->unk_00.unk_10E, v0->unk_00.unk_10F, v0->unk_00.unk_110);
-    v0->unk_148 = Party_New(20);
+    v0->unk_148 = Party_New(HEAP_ID_20);
 
     for (v2 = 0; v2 < 4; v2++) {
-        v0->unk_00.unk_00[v2] = Pokemon_New(20);
+        v0->unk_00.unk_00[v2] = Pokemon_New(HEAP_ID_20);
     }
 
     for (v2 = 0; v2 < 4; v2++) {
-        v0->unk_14C[v2] = ChatotCry_New(20);
+        v0->unk_14C[v2] = ChatotCry_New(HEAP_ID_20);
     }
 
     CopyChatotCryData(v0->unk_14C[0], param0->unk_20);
 
     {
         Pokemon_Copy(param0->unk_08, v0->unk_00.unk_00[0]);
-        v0->unk_00.unk_D8[0] = Strbuf_Init(8, 20);
+        v0->unk_00.unk_D8[0] = Strbuf_Init(8, HEAP_ID_20);
         Strbuf_Copy(v0->unk_00.unk_D8[0], param0->unk_0C);
 
         v0->unk_00.unk_F8[0] = TrainerInfo_Gender(param0->unk_10);
@@ -495,7 +495,7 @@ static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2)
 
     for (v1 = 1; v1 < 4; v1++) {
         if (param0->unk_00.unk_D8[v1] == NULL) {
-            param0->unk_00.unk_D8[v1] = Strbuf_Init(8, 20);
+            param0->unk_00.unk_D8[v1] = Strbuf_Init(8, HEAP_ID_20);
         }
 
         Pokemon_GetValue(param0->unk_00.unk_00[v1], MON_DATA_OTNAME_STRBUF, param0->unk_00.unk_D8[v1]);
@@ -582,7 +582,7 @@ void sub_02093BBC(UnkStruct_02095C48 *param0)
 
     sub_0202A25C(param0->unk_00.unk_E8[param0->unk_00.unk_113]);
 
-    v0 = Heap_AllocFromHeap(20, sizeof(UnkStruct_02093BBC));
+    v0 = Heap_AllocFromHeap(HEAP_ID_20, sizeof(UnkStruct_02093BBC));
     MI_CpuClear8(v0, sizeof(UnkStruct_02093BBC));
 
     v0->unk_00 = param0->unk_00.unk_00[param0->unk_00.unk_113];

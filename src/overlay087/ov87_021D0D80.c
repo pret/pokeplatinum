@@ -169,8 +169,8 @@ static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 *param0, HallOfFame *param1)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_20[v0].unk_00 = Strbuf_Init(12, 60);
-        param0->unk_20[v0].unk_04 = Strbuf_Init(8, 60);
+        param0->unk_20[v0].unk_00 = Strbuf_Init(12, HEAP_ID_60);
+        param0->unk_20[v0].unk_04 = Strbuf_Init(8, HEAP_ID_60);
     }
 
     param0->unk_1C = UnkEnum_ov87_021D12C0_0;

@@ -350,7 +350,7 @@ static void ov5_021E79A8(UnkStruct_ov5_021E8F60 *param0)
     for (v0 = 0; v0 < 4; v0++) {
         UnkStruct_ov5_021E79A8 *v1 = NULL;
 
-        v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E79A8));
+        v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E79A8));
         param0->unk_84[v0] = v1;
         param0->unk_84[v0]->unk_864 = 0;
 
@@ -375,7 +375,7 @@ void ov5_021E7A54(UnkStruct_ov5_021E8F60 *param0)
     for (v0 = 0; v0 < 4; v0++) {
         UnkStruct_ov5_021E79A8 *v1 = NULL;
 
-        v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E79A8));
+        v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E79A8));
 
         param0->unk_84[v0] = v1;
         param0->unk_84[v0]->unk_864 = 0;
@@ -397,7 +397,7 @@ static void ov5_021E7AC4(UnkStruct_ov5_021E8F60 *param0)
     for (v0 = 0; v0 < 4; v0++) {
         UnkStruct_ov5_021E79A8 *v1 = NULL;
 
-        v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E79A8));
+        v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E79A8));
 
         param0->unk_84[v0] = v1;
         param0->unk_84[v0]->unk_864 = 0;
@@ -1536,7 +1536,7 @@ UnkStruct_ov5_021E8F60 *ov5_021E9084(MapMatrix *param0, AreaDataManager *param1,
     UnkStruct_ov5_021E8F60 *v0;
     BOOL v1;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E8F60));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E8F60));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov5_021E8F60));
 
     if (param3 == 0) {
@@ -1983,7 +1983,7 @@ UnkStruct_ov5_021E8F60 *ov5_021E9830(MapMatrix *param0, AreaDataManager *param1,
     UnkStruct_ov5_021E8F60 *v0;
     BOOL v1;
 
-    v0 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021E8F60));
+    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021E8F60));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov5_021E8F60));
 
     v0->unk_00 = ov5_021EEBC0(0);

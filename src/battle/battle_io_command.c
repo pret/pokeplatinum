@@ -159,7 +159,7 @@ BattlerData *ov16_0225BFFC(BattleSystem *battleSys, UnkStruct_ov16_0223C2C0 *par
     BattlerData *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(5, sizeof(BattlerData));
+    v0 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattlerData));
     MI_CpuClearFast(v0, sizeof(BattlerData));
 
     v0->battler = param1->unk_00;
@@ -743,7 +743,7 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
     *v2 = v1;
 
     sub_020089A0(param1->unk_20);
-    sub_02013750(v2->archive, v2->character, 5, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, 0, v4, v2->spindaSpots);
+    sub_02013750(v2->archive, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, 0, v4, v2->spindaSpots);
 
     ov16_0223F2CC(ov16_0223E0C8(battleSys), param1->battler, v2->archive);
     ov16_0223F2E4(ov16_0223E0C8(battleSys), param1->battler, v2->palette);

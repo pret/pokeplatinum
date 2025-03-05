@@ -3,6 +3,8 @@
 
 #include <nnsys.h>
 
+#include "constants/heap.h"
+
 typedef struct HeapParam {
     u32 size;
     OSArenaId arena;
