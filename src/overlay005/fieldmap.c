@@ -184,7 +184,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
 
         fieldSystem->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(FieldSystem_sub2));
         MI_CpuClear8(fieldSystem->unk_04, sizeof(FieldSystem_sub2));
-        fieldSystem->unk_04->unk_04 = ov5_021D1A94(fieldSystem, 4, 8);
+        fieldSystem->unk_04->unk_04 = ov5_021D1A94(fieldSystem, HEAP_ID_FIELD, 8);
 
         ov5_021D1414();
 
@@ -222,7 +222,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
 
         fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(4);
         HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
-        fieldSystem->unk_04->unk_20 = ov5_021EF4BC(4, fieldSystem->unk_04->hBlankSystem);
+        fieldSystem->unk_04->unk_20 = ov5_021EF4BC(HEAP_ID_FIELD, fieldSystem->unk_04->hBlankSystem);
         break;
     case 2:
         ov5_021D5BD8(fieldSystem);
@@ -813,7 +813,7 @@ static void ov5_021D17EC(FieldSystem *fieldSystem)
         ov5_021EA6D0(fieldSystem->unk_28, 1);
     }
 
-    fieldSystem->unk_A0 = ov5_021EF28C(8, 4);
+    fieldSystem->unk_A0 = ov5_021EF28C(8, HEAP_ID_FIELD);
     fieldSystem->unk_A8 = HoneyTree_ShakeDataInit();
 
     if (fieldSystem->mapLoadType == MAP_LOAD_TYPE_OVERWORLD) {
@@ -825,7 +825,7 @@ static void ov5_021D17EC(FieldSystem *fieldSystem)
 
 static void ov5_021D1878(FieldSystem *fieldSystem)
 {
-    fieldSystem->unk_40 = ov5_021DF440(fieldSystem, 34, 4);
+    fieldSystem->unk_40 = ov5_021DF440(fieldSystem, 34, HEAP_ID_FIELD);
 
     {
         int v0 = 80;
@@ -837,7 +837,7 @@ static void ov5_021D1878(FieldSystem *fieldSystem)
         ov5_021DF47C(fieldSystem->unk_40, v0);
     }
 
-    ov5_021DF488(fieldSystem->unk_40, 4, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
+    ov5_021DF488(fieldSystem->unk_40, HEAP_ID_FIELD, 32, 32, 32, 32, (0x500 * (32 / 2)), (0x80 * (32 / 2)), (0x800 * 32));
 
     if ((fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNDERGROUND) || (fieldSystem->mapLoadType == MAP_LOAD_TYPE_UNION)) {
         MapObjectMan_SetEndMovement(fieldSystem->mapObjMan, 0);

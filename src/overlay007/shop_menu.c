@@ -1547,7 +1547,7 @@ static const SpriteTemplateFromResourceHeader sShop_SpriteTemplates[] = {
 
 static void Shop_DrawSprites(ShopMenu *shopMenu)
 {
-    ov5_021D2F14(&shopMenu->unk_94, &sShop_SpriteResourcePaths, 4, 11);
+    ov5_021D2F14(&shopMenu->unk_94, &sShop_SpriteResourcePaths, 4, HEAP_ID_FIELDMAP);
 
     for (u32 i = 0; i < SHOP_SPRITE_MAX; i++) {
         shopMenu->sprites[i] = ov5_021D3104(&shopMenu->unk_94, &sShop_SpriteTemplates[i]);

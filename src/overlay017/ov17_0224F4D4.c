@@ -143,12 +143,12 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(3, 24, 0x70000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_24, 0x70000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_0224FCA0), 24);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_0224FCA0), HEAP_ID_24);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224FCA0));
 
-    v0->unk_0C = ov17_0223F140(24);
+    v0->unk_0C = ov17_0223F140(HEAP_ID_24);
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_00->unk_150 = v0;
     v0->unk_00->unk_154 = 3;
@@ -157,26 +157,26 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     ov17_0224FE1C(v0);
 
     v0->unk_127B = 0;
-    v0->unk_10.unk_C0 = PaletteData_New(24);
+    v0->unk_10.unk_C0 = PaletteData_New(HEAP_ID_24);
 
     PaletteData_SetAutoTransparent(v0->unk_10.unk_C0, 1);
-    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 0, 0x200, 24);
-    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 1, 0x200, 24);
-    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 2, (((16 - 2) * 16) * sizeof(u16)), 24);
-    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 3, 0x200, 24);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 0, 0x200, HEAP_ID_24);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 1, 0x200, HEAP_ID_24);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_24);
+    PaletteData_AllocBuffer(v0->unk_10.unk_C0, 3, 0x200, HEAP_ID_24);
 
     v0->unk_10.unk_20 = BgConfig_New(HEAP_ID_24);
 
-    VramTransfer_New(64, 24);
+    VramTransfer_New(64, HEAP_ID_24);
     SetAutorepeat(4, 8);
 
     ov17_0224FB34(v0->unk_10.unk_20);
 
     sub_0201E3D8();
     sub_0201E450(4);
-    Font_InitManager(FONT_SUBSCREEN, 24);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_24);
 
-    v0->unk_10.unk_18 = SpriteSystem_Alloc(24);
+    v0->unk_10.unk_18 = SpriteSystem_Alloc(HEAP_ID_24);
 
     SpriteSystem_Init(v0->unk_10.unk_18, &Unk_ov17_02254B0C, &Unk_ov17_02254AC4, (16 + 16));
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
@@ -185,14 +185,14 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     v0->unk_10.unk_1C = SpriteManager_New(v0->unk_10.unk_18);
     SpriteSystem_InitSprites(v0->unk_10.unk_18, v0->unk_10.unk_1C, (64 + 64));
     SpriteSystem_InitManagerWithCapacities(v0->unk_10.unk_18, v0->unk_10.unk_1C, &Unk_ov17_02254AD8);
-    v0->unk_10.unk_04 = sub_0200762C(24);
+    v0->unk_10.unk_04 = sub_0200762C(HEAP_ID_24);
 
     ov17_0224FDDC();
 
     v0->unk_10.unk_B4 = MessageLoader_Init(0, 26, 218, HEAP_ID_24);
-    v0->unk_10.unk_B8 = StringTemplate_Default(24);
+    v0->unk_10.unk_B8 = StringTemplate_Default(HEAP_ID_24);
     v0->unk_10.unk_BC = Strbuf_Init((2 * 160), HEAP_ID_24);
-    v0->unk_10.unk_C4 = sub_02012744(10, 24);
+    v0->unk_10.unk_C4 = sub_02012744(10, HEAP_ID_24);
 
     ov17_0224FE60(v0);
     ov17_0224FE70(v0);

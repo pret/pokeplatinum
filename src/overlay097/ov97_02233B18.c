@@ -1788,7 +1788,7 @@ static int ov97_02235624(OverlayManager *param0, int *param1)
     memset(v0, 0, sizeof(UnkStruct_ov97_02234A2C));
 
     v0->unk_20 = BgConfig_New(HEAP_ID_78);
-    v0->unk_E8EC = sub_02015920(78);
+    v0->unk_E8EC = sub_02015920(HEAP_ID_78);
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);

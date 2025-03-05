@@ -9,18 +9,18 @@
 #include "message.h"
 #include "strbuf.h"
 
-UnkStruct_020158A8 *sub_020158A8(int param0)
+UnkStruct_020158A8 *sub_020158A8(int heapID)
 {
     UnkStruct_020158A8 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_020158A8));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020158A8));
     MI_CpuClear8(v0, sizeof(UnkStruct_020158A8));
 
-    v0->unk_00 = MessageLoader_Init(0, 26, 465, param0);
+    v0->unk_00 = MessageLoader_Init(0, 26, 465, heapID);
 
     for (v1 = 0; v1 < 29; v1++) {
-        v0->unk_04[v1] = Strbuf_Init(22, param0);
+        v0->unk_04[v1] = Strbuf_Init(22, heapID);
         MessageLoader_GetStrbuf(v0->unk_00, v1, v0->unk_04[v1]);
     }
 

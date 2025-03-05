@@ -10,7 +10,7 @@
 
 #include "savedata.h"
 
-int ov4_021D0D80(SaveData *param0, int param1, int param2, int param3);
+int ov4_021D0D80(SaveData *param0, int heapID, int param2, int param3);
 void ov4_021D0F68();
 int ov4_021D0FEC();
 void ov4_021D1104(UnkFuncPtr_ov4_021D1104 param0, UnkFuncPtr_ov4_021D1104 param1);
@@ -27,7 +27,7 @@ void *ov4_021D1AA0(DWCAllocType param0, u32 param1, int param2);
 void ov4_021D1B04(DWCAllocType param0, void *param1, u32 param2);
 int ov4_021D1B5C(void);
 int ov4_021D1E30();
-void ov4_021D1E74(int param0);
+void ov4_021D1E74(int heapID);
 void ov4_021D1F18(void);
 int ov4_021D1F3C(int param0, int param1);
 int ov4_021D20B0(int param0);
@@ -48,7 +48,7 @@ void ov4_021D2598(BOOL param0);
 int ov4_021D25C0(void);
 void ov4_021D25FC(void);
 int ov4_021D2610(void);
-void ov4_021D2618(BOOL param0, int param1);
+void ov4_021D2618(BOOL param0, int heapID);
 void ov4_021D26EC(BOOL param0);
 u8 ov4_021D27E0(void);
 void ov4_021D27F4(void);

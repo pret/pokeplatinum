@@ -570,7 +570,7 @@ static void ov101_021D1868(UnkStruct_ov101_021D13C8 *param0)
 
 static void ov101_021D186C(UnkStruct_ov101_021D13C8 *param0)
 {
-    param0->unk_44C = sub_020711EC(79, 128);
+    param0->unk_44C = sub_020711EC(HEAP_ID_79, 128);
 }
 
 static void ov101_021D1884(UnkStruct_ov101_021D13C8 *param0)

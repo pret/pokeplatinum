@@ -67,7 +67,7 @@ void ov23_02253598(UnkStruct_ov23_02253598 *param0, SecretBaseRecord *param1, Sa
     Unk_ov23_022577BC = param0;
     Unk_ov23_022577BC->unk_08 = param2;
     Unk_ov23_022577BC->unk_0C = param1;
-    Unk_ov23_022577BC->unk_10 = sub_0202855C(15);
+    Unk_ov23_022577BC->unk_10 = sub_0202855C(HEAP_ID_COMMUNICATION);
 
     CommSys_Seed(&Unk_ov23_022577BC->unk_14);
 }
@@ -318,7 +318,7 @@ void ov23_02253A00(SecretBaseRecord *param0, int param1)
     sub_020594FC();
     ov23_02253DFC(ov23_022421BC(), 640, 1);
 
-    v1 = sub_0202855C(4);
+    v1 = sub_0202855C(HEAP_ID_FIELD);
     MI_CpuCopy8(param0, v1, sub_02028558());
 
     v0 = v2(v1);

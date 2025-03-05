@@ -9,9 +9,9 @@
 
 static void sub_02097344(u32 *param0, u16 param1);
 
-UnkStruct_020972FC *sub_020972FC(u8 param0)
+UnkStruct_020972FC *sub_020972FC(u8 heapID)
 {
-    UnkStruct_020972FC *v0 = (UnkStruct_020972FC *)Heap_AllocFromHeap(param0, sizeof(UnkStruct_020972FC));
+    UnkStruct_020972FC *v0 = (UnkStruct_020972FC *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020972FC));
     memset(v0, 0, sizeof(UnkStruct_020972FC));
     return v0;
 }

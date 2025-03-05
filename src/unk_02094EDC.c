@@ -664,7 +664,7 @@ void sub_02095380(const UnkStruct_ov6_02248BE8 *param0, Pokemon *param1, int par
     }
 }
 
-PokemonSprite *sub_02095484(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int param5, int param6, int param7, int param8)
+PokemonSprite *sub_02095484(UnkStruct_02007768 *param0, int param1, Pokemon *param2, int param3, UnkStruct_ov16_0223E0C8 *param4, int heapID, int param6, int param7, int param8)
 {
     ArchivedSprite v0;
     PokemonSprite *v1;
@@ -676,7 +676,7 @@ PokemonSprite *sub_02095484(UnkStruct_02007768 *param0, int param1, Pokemon *par
 
     if (param4 != NULL) {
         GF_ASSERT(param4->unk_00 != NULL);
-        sub_02013610(v0.archive, v0.character, param5, param4->unk_00);
+        sub_02013610(v0.archive, v0.character, heapID, param4->unk_00);
         param4->unk_08 = v0.palette;
         param4->unk_04 = v0.archive;
     }

@@ -159,7 +159,7 @@ void ov12_022382BC(UnkStruct_ov12_022380DC *param0, int heapID)
     sub_02007DEC(param0->unk_18[param0->unk_00], 1, v6);
 }
 
-void ov12_02238390(UnkStruct_ov12_022380DC *param0, int param1)
+void ov12_02238390(UnkStruct_ov12_022380DC *param0, int heapID)
 {
     ArchivedSprite v0;
     ArchivedSprite *v1;
@@ -187,7 +187,7 @@ void ov12_02238390(UnkStruct_ov12_022380DC *param0, int param1)
     *v1 = v0;
 
     sub_020089A0(param0->unk_18[param0->unk_00]);
-    sub_02013610(v1->archive, v1->character, param1, param0->unk_08[param0->unk_00]->unk_00);
+    sub_02013610(v1->archive, v1->character, heapID, param0->unk_08[param0->unk_00]->unk_00);
 
     param0->unk_08[param0->unk_00]->unk_04 = v0.archive;
     param0->unk_08[param0->unk_00]->unk_08 = v0.palette;

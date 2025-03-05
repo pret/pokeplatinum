@@ -75,7 +75,7 @@ int ov117_022664BC(OverlayManager *param0, int *param1)
         }
         break;
     case 1:
-        v0->unk_04 = ov114_0225C82C(&v0->unk_00->unk_00, 110);
+        v0->unk_04 = ov114_0225C82C(&v0->unk_00->unk_00, HEAP_ID_110);
         (*param1)++;
         break;
     case 2:
@@ -87,7 +87,7 @@ int ov117_022664BC(OverlayManager *param0, int *param1)
         }
         break;
     case 3:
-        v0->unk_08 = ov114_0225C8F8(&v0->unk_00->unk_00, &v0->unk_00->unk_10, 110);
+        v0->unk_08 = ov114_0225C8F8(&v0->unk_00->unk_00, &v0->unk_00->unk_10, HEAP_ID_110);
         (*param1)++;
         break;
     case 4:

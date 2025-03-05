@@ -661,7 +661,7 @@ static void sub_02068B5C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     fieldSystem = FieldTask_GetFieldSystem(param0->unk_00);
     v1 = FieldTask_GetEnv(param0->unk_00);
-    v2 = sub_0203D9B8(fieldSystem, 11);
+    v2 = sub_0203D9B8(fieldSystem, HEAP_ID_FIELDMAP);
 
     v1->unk_25C = v2;
     sub_0203B674(v1, sub_0203C710);
@@ -675,7 +675,7 @@ static BOOL sub_02068B8C(UnkStruct_02068870 *param0)
 
 static void *sub_02068B9C(void *param0)
 {
-    return sub_0203D9B8(param0, 11);
+    return sub_0203D9B8(param0, HEAP_ID_FIELDMAP);
 }
 
 static void sub_02068BA8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *param1)

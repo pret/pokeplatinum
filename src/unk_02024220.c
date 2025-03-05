@@ -12,12 +12,12 @@
 
 static void sub_020242DC(void);
 
-GenericPointerData *sub_02024220(u32 param0, int param1, int param2, int param3, int param4, UnkFuncPtr_02024220 param5)
+GenericPointerData *sub_02024220(u32 heapID, int param1, int param2, int param3, int param4, UnkFuncPtr_02024220 param5)
 {
     int v0, v1;
-    GenericPointerData *v2 = Heap_AllocFromHeap(param0, sizeof(GenericPointerData));
+    GenericPointerData *v2 = Heap_AllocFromHeap(heapID, sizeof(GenericPointerData));
 
-    v2->unk_00 = param0;
+    v2->unk_00 = heapID;
 
     NNS_G3dInit();
 

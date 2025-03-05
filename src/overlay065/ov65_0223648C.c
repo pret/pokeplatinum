@@ -1222,7 +1222,7 @@ static BOOL ov65_022374DC(UnkStruct_ov65_022367A8 *param0)
     }
 
     if (ov65_02237450(param0) == 1) {
-        ov4_021D1E74(97);
+        ov4_021D1E74(HEAP_ID_97);
         param0->unk_00.unk_11 = 1;
         return 1;
     }

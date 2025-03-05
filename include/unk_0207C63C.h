@@ -7,7 +7,7 @@
 
 void sub_0207C63C(void);
 void sub_0207C664(void);
-GenericPointerData *sub_0207C690(int param0);
+GenericPointerData *sub_0207C690(int heapID);
 void sub_0207C6AC(void);
 void sub_0207C730(void);
 void sub_0207C770(void);

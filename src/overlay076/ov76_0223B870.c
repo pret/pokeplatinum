@@ -102,8 +102,8 @@ static void ov76_0223B870(TouchScreenRect *rect, ManagedSprite *param1, int para
 
 void ov76_0223B8A8(UnkStruct_ov76_0223DE00 *param0)
 {
-    param0->unk_D4.unk_160 = sub_02012744(2, 53);
-    Font_InitManager(FONT_SUBSCREEN, 53);
+    param0->unk_D4.unk_160 = sub_02012744(2, HEAP_ID_53);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_53);
 }
 
 void ov76_0223B8C4(UnkStruct_ov76_0223DE00 *param0)
@@ -379,10 +379,7 @@ void ov76_0223BD30(UnkStruct_ov76_0223DE00 *param0, s8 param1, int param2)
 
 GenericPointerData *ov76_0223BE6C(void)
 {
-    GenericPointerData *v0;
-
-    v0 = sub_02024220(53, 0, 2, 0, 2, ov76_0223BE8C);
-    return v0;
+    return sub_02024220(HEAP_ID_53, 0, 2, 0, 2, ov76_0223BE8C);
 }
 
 void ov76_0223BE8C(void)

@@ -1840,9 +1840,9 @@ void ov83_0223F784(UnkStruct_ov83_0223F770 *param0)
     sub_02099160(param0->unk_00);
 }
 
-void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, int param1, BgConfig *param2)
+void ov83_0223F790(UnkStruct_ov83_0223F7A4 *param0, int heapID, BgConfig *param2)
 {
-    param0->unk_00 = sub_02015920(param1);
+    param0->unk_00 = sub_02015920(heapID);
     param0->unk_04 = param2;
 }
 

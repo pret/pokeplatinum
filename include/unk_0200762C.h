@@ -7,7 +7,7 @@
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_02008900.h"
 
-void *sub_0200762C(int param0);
+void *sub_0200762C(int heapID);
 void sub_02007768(UnkStruct_02007768 *param0);
 void sub_02007B6C(UnkStruct_02007768 *param0);
 void sub_02007B98(PokemonSprite *param0, int param1);

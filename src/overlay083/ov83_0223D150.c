@@ -30,7 +30,7 @@ void ov83_0223D150(UnkStruct_ov83_0223B784 *param0, TrainerInfo *param1)
         param0->unk_1488 = 1;
     }
 
-    param0->unk_148C = ov83_0223D4CC(ov83_0223D144(), ov83_0223D14C(), param0, param0->unk_1490, param0->unk_00);
+    param0->unk_148C = ov83_0223D4CC(ov83_0223D144(), ov83_0223D14C(), param0, param0->unk_1490, param0->heapID);
     memset(param0->unk_1494.unk_130, 4, sizeof(u8) * 4);
 
     if (param0->unk_1490 == 1) {

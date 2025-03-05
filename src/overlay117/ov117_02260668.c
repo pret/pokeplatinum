@@ -59,7 +59,7 @@
 #include "vram_transfer.h"
 
 static void ov117_02260DA0(void *param0);
-static GenericPointerData *ov117_02260E14(int param0);
+static GenericPointerData *ov117_02260E14(int heapID);
 static void ov117_02260E34(void);
 static void ov117_02260EB8(GenericPointerData *param0);
 static void ov117_02260F7C(SysTask *param0, void *param1);
@@ -191,31 +191,31 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_ALL, 16, 16);
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG3), (GX_BLEND_BGALL | GX_BLEND_PLANEMASK_OBJ), 13, 3);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_02261280), 110);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_02261280), HEAP_ID_110);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02261280));
-    Heap_FndInitAllocatorForExpHeap(&v0->unk_A8, 110, 32);
+    Heap_FndInitAllocatorForExpHeap(&v0->unk_A8, HEAP_ID_110, 32);
 
-    v0->unk_98 = ov117_02260E14(110);
+    v0->unk_98 = ov117_02260E14(HEAP_ID_110);
     v0->unk_00 = OverlayManager_Args(param0);
     ov117_022665FC(v0);
-    v0->unk_8C = PaletteData_New(110);
+    v0->unk_8C = PaletteData_New(HEAP_ID_110);
 
     PaletteData_SetAutoTransparent(v0->unk_8C, 1);
-    PaletteData_AllocBuffer(v0->unk_8C, 0, 0x200, 110);
-    PaletteData_AllocBuffer(v0->unk_8C, 1, 0x200, 110);
-    PaletteData_AllocBuffer(v0->unk_8C, 2, (((16 - 2) * 16) * sizeof(u16)), 110);
-    PaletteData_AllocBuffer(v0->unk_8C, 3, 0x200, 110);
+    PaletteData_AllocBuffer(v0->unk_8C, 0, 0x200, HEAP_ID_110);
+    PaletteData_AllocBuffer(v0->unk_8C, 1, 0x200, HEAP_ID_110);
+    PaletteData_AllocBuffer(v0->unk_8C, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_110);
+    PaletteData_AllocBuffer(v0->unk_8C, 3, 0x200, HEAP_ID_110);
 
     v0->unk_2C = BgConfig_New(HEAP_ID_110);
 
-    VramTransfer_New(64, 110);
+    VramTransfer_New(64, HEAP_ID_110);
     SetAutorepeat(4, 8);
     ov117_022610D8(v0->unk_2C);
     sub_0201E3D8();
     sub_0201E450(4);
     ov117_02260EC0(v0);
 
-    v0->unk_24 = SpriteSystem_Alloc(110);
+    v0->unk_24 = SpriteSystem_Alloc(HEAP_ID_110);
 
     SpriteSystem_Init(v0->unk_24, &Unk_ov117_022669A8, &Unk_ov117_0226697C, (16 + 16));
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
@@ -229,9 +229,9 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     ov117_02261574(v0);
 
     v0->unk_80 = MessageLoader_Init(0, 26, 9, HEAP_ID_110);
-    v0->unk_84 = StringTemplate_Default(110);
+    v0->unk_84 = StringTemplate_Default(HEAP_ID_110);
     v0->unk_88 = Strbuf_Init((2 * 160), HEAP_ID_110);
-    v0->unk_90 = sub_02012744((2 * 6 + 6 + 1), 110);
+    v0->unk_90 = sub_02012744((2 * 6 + 6 + 1), HEAP_ID_110);
 
     ov117_02265210(v0, &v0->unk_1468);
 
@@ -284,7 +284,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     SetVBlankCallback(ov117_02260DA0, v0);
 
     if (v0->unk_00->unk_3C) {
-        ov4_021D1E74(110);
+        ov4_021D1E74(HEAP_ID_110);
     }
 
     return 1;
@@ -509,12 +509,9 @@ static void ov117_02260DA0(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static GenericPointerData *ov117_02260E14(int param0)
+static GenericPointerData *ov117_02260E14(int heapID)
 {
-    GenericPointerData *v0;
-
-    v0 = sub_02024220(param0, 0, 1, 0, 2, ov117_02260E34);
-    return v0;
+    return sub_02024220(heapID, 0, 1, 0, 2, ov117_02260E34);
 }
 
 static void ov117_02260E34(void)
@@ -907,7 +904,7 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
     sub_02014000();
 
     v0 = Heap_AllocFromHeap(HEAP_ID_110, 0x4800);
-    param0->unk_A4 = sub_02014014(ov117_02261644, ov117_02261668, v0, 0x4800, 1, 110);
+    param0->unk_A4 = sub_02014014(ov117_02261644, ov117_02261668, v0, 0x4800, 1, HEAP_ID_110);
     camera = sub_02014784(param0->unk_A4);
 
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);

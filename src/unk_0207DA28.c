@@ -210,7 +210,7 @@ static BOOL sub_0207DA28(FieldTask *param0)
         }
         break;
     case 14:
-        v2->unk_10 = (void *)sub_020996A0(fieldSystem, 11, v2->unk_14);
+        v2->unk_10 = (void *)sub_020996A0(fieldSystem, HEAP_ID_FIELDMAP, v2->unk_14);
         v2->unk_04++;
         break;
     case 15:

@@ -29,7 +29,7 @@ FS_EXTERN_OVERLAY(overlay20);
 FS_EXTERN_OVERLAY(overlay75);
 
 typedef struct {
-    int unk_00;
+    int heapId;
     u16 unk_04;
     u16 unk_06;
     void *unk_08;
@@ -51,7 +51,6 @@ int sub_02097750(UnkStruct_02097728 *param0, Pokemon *param1);
 void sub_02097770(UnkStruct_02097728 *param0);
 int sub_02097788(UnkStruct_02028430 *param0, Pokemon *param1, int param2);
 int sub_020977E4(UnkStruct_02028430 *param0, u16 param1, Pokemon *param2, int param3);
-UnkStruct_020978D8 *sub_02097834(const UnkStruct_0202818C *param0, int param1);
 void sub_020978D8(UnkStruct_020978D8 *param0);
 void sub_020978F0(UnkStruct_0202818C *param0, UnkStruct_020978D8 *param1);
 
@@ -218,17 +217,17 @@ int sub_020977E4(UnkStruct_02028430 *param0, u16 param1, Pokemon *param2, int pa
     return param1;
 }
 
-UnkStruct_020978D8 *sub_02097834(const UnkStruct_0202818C *param0, int param1)
+UnkStruct_020978D8 *sub_02097834(const UnkStruct_0202818C *param0, int heapID)
 {
     u16 v0;
     UnkStruct_020978D8 *v1;
 
-    v1 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_020978D8));
+    v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020978D8));
     MI_CpuClear8(v1, sizeof(UnkStruct_020978D8));
 
     v1->unk_00 = 0;
     v1->unk_08 = sub_02028308(param0);
-    v1->unk_10 = Strbuf_Init(8, param1);
+    v1->unk_10 = Strbuf_Init(8, heapID);
 
     Strbuf_CopyChars(v1->unk_10, sub_0202830C((UnkStruct_0202818C *)param0));
 
@@ -289,8 +288,8 @@ static int sub_02097944(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02097944), 40);
     MI_CpuClear8(v0, sizeof(UnkStruct_02097944));
 
-    v0->unk_00 = 40;
-    v0->unk_10 = sub_02097834(v1->unk_14, v0->unk_00);
+    v0->heapId = HEAP_ID_40;
+    v0->unk_10 = sub_02097834(v1->unk_14, v0->heapId);
     v0->unk_10->unk_04 = SaveData_Options(v1->unk_10);
 
     if (v1->unk_00 == 1) {
@@ -330,7 +329,7 @@ static int sub_020979A8(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
         v0->unk_10->unk_00 = v1->unk_00;
-        v0->unk_0C = OverlayManager_New(&v2, v0->unk_10, v0->unk_00);
+        v0->unk_0C = OverlayManager_New(&v2, v0->unk_10, v0->heapId);
         *param1 = 1;
         break;
     case 1:
@@ -365,7 +364,7 @@ static int sub_020979A8(OverlayManager *param0, int *param1)
 
         return 1;
     case 3:
-        v0->unk_08 = sub_0209747C(2, 0, v1->unk_10, v0->unk_00);
+        v0->unk_08 = sub_0209747C(2, 0, v1->unk_10, v0->heapId);
 
         if (sub_02014BBC(&(v0->unk_10->unk_1A[v0->unk_10->unk_02]))) {
             sub_02014CC0(&(v0->unk_14), &(v0->unk_10->unk_1A[v0->unk_10->unk_02]));
@@ -374,7 +373,7 @@ static int sub_020979A8(OverlayManager *param0, int *param1)
         }
 
         sub_02097500(v0->unk_08, &(v0->unk_14));
-        v0->unk_0C = OverlayManager_New(&v3, v0->unk_08, v0->unk_00);
+        v0->unk_0C = OverlayManager_New(&v3, v0->unk_08, v0->heapId);
         *param1 = 4;
         break;
     case 4:
@@ -400,7 +399,7 @@ static int sub_02097AF8(OverlayManager *param0, int *param1)
 
     sub_020978D8(v0->unk_10);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(v0->unk_00);
+    Heap_Destroy(v0->heapId);
 
     return 1;
 }

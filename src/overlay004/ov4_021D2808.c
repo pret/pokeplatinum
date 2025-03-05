@@ -383,14 +383,14 @@ BOOL ov4_021D2C70(int param0, void *param1, int param2)
     return 0;
 }
 
-static void ov4_021D2C98(void **param0, void **param1, int param2, int param3)
+static void ov4_021D2C98(void **param0, void **param1, int param2, int heapID)
 {
-    *param0 = Heap_AllocFromHeap(param3, param2 + 32);
+    *param0 = Heap_AllocFromHeap(heapID, param2 + 32);
     MI_CpuClear8(*param0, param2 + 32);
     *param1 = (UnkStruct_ov4_0221A408 *)(((u32)*param0 + 31) / 32 * 32);
 }
 
-void ov4_021D2CC0(int param0, int param1, int param2)
+void ov4_021D2CC0(int heapID, int param1, int param2)
 {
     u8 v0[3] = { 13, 13, 13 };
     u32 v1;
@@ -400,11 +400,11 @@ void ov4_021D2CC0(int param0, int param1, int param2)
     if (Unk_ov4_0221A408 == NULL) {
         void *v4 = NULL;
 
-        ov4_021D2C98(&v4, (void **)&Unk_ov4_0221A408, sizeof(UnkStruct_ov4_0221A408), param0);
+        ov4_021D2C98(&v4, (void **)&Unk_ov4_0221A408, sizeof(UnkStruct_ov4_0221A408), heapID);
         Unk_ov4_0221A408->unk_880 = v4;
-        ov4_021D2C98((void **)&Unk_ov4_0221A408->unk_888, (void **)&Unk_ov4_0221A408->unk_884, VCT_AUDIO_BUFFER_SIZE * param2 * VCT_DEFAULT_AUDIO_BUFFER_COUNT + 32, param0);
+        ov4_021D2C98((void **)&Unk_ov4_0221A408->unk_888, (void **)&Unk_ov4_0221A408->unk_884, VCT_AUDIO_BUFFER_SIZE * param2 * VCT_DEFAULT_AUDIO_BUFFER_COUNT + 32, heapID);
 
-        Unk_ov4_0221A408->unk_19F4 = param0;
+        Unk_ov4_0221A408->unk_19F4 = heapID;
         Unk_ov4_0221A408->unk_198C = NULL;
 
         ov4_021D2808();

@@ -271,7 +271,6 @@ static const UnkStruct_020E4E62 *Unk_021007A4[] = {
     (UnkStruct_020E4E62 *)&Unk_020E4F4C
 };
 
-void *sub_0200762C(int param0);
 void sub_02007768(UnkStruct_02007768 *param0);
 void sub_02007B6C(UnkStruct_02007768 *param0);
 PokemonSprite *sub_02007C34(UnkStruct_02007768 *param0, ArchivedSprite *param1, int param2, int param3, int param4, int param5, SpriteAnimationFrame *param6, UnkFuncPtr_02007C34 *param7);
@@ -309,7 +308,7 @@ static void sub_020088D8(PokemonSprite *param0);
 static u8 sub_020091AC(u8 param0);
 static void sub_020091C0(PokemonSprite *param0, u8 *param1);
 
-void *sub_0200762C(int param0)
+void *sub_0200762C(int heapID)
 {
     UnkStruct_02007768 *v0;
     int v1, v2, v3, v4;
@@ -317,19 +316,19 @@ void *sub_0200762C(int param0)
     u8 *v6;
     void *v7;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02007768));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02007768));
 
-    v0->unk_2E8 = param0;
+    v0->unk_2E8 = heapID;
     v0->unk_330 = 0;
     v0->unk_2EC = 0;
     v0->unk_2F0 = (32 * 32 * 0x20);
     v0->unk_2F4 = 0;
     v0->unk_2F8 = (0x20 * 4);
-    v0->unk_2FC = Heap_AllocFromHeap(param0, (32 * 32 * 0x20));
-    v0->unk_300 = Heap_AllocFromHeap(param0, (0x20 * 6));
+    v0->unk_2FC = Heap_AllocFromHeap(heapID, (32 * 32 * 0x20));
+    v0->unk_300 = Heap_AllocFromHeap(heapID, (0x20 * 6));
 
     MI_CpuClearFast(v0->unk_300, sizeof(0x20 * 6));
-    v0->unk_304 = Heap_AllocFromHeap(param0, (0x20 * 6));
+    v0->unk_304 = Heap_AllocFromHeap(heapID, (0x20 * 6));
     MI_CpuClearFast(v0->unk_304, sizeof(0x20 * 6));
 
     for (v1 = 0; v1 < 4; v1++) {

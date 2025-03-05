@@ -48,7 +48,7 @@ typedef struct {
 } UnkStruct_02236430;
 
 typedef struct UnkStruct_ov12_02235FE0_t {
-    int unk_00;
+    int heapId;
     UnkStruct_ov12_02236030 unk_04;
     int unk_10;
     UnkStruct_02014014 *unk_14[9];
@@ -340,28 +340,28 @@ static int ov12_02235FC8(int param0, int param1)
     return Unk_ov12_0223AF00[v0][param1];
 }
 
-UnkStruct_ov12_02235FE0 *ov12_02235FE0(int param0)
+UnkStruct_ov12_02235FE0 *ov12_02235FE0(int heapID)
 {
     UnkStruct_ov12_02235FE0 *v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov12_02235FE0));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02235FE0));
 
     if (v0 == NULL) {
         GF_ASSERT(0);
         return NULL;
     }
 
-    v0->unk_00 = param0;
+    v0->heapId = heapID;
     v0->unk_88 = 0;
 
     return v0;
 }
 
-UnkStruct_ov12_02235FE0 *ov12_02236004(int param0, const UnkStruct_ov12_02236030 *param1)
+UnkStruct_ov12_02235FE0 *ov12_02236004(int heapID, const UnkStruct_ov12_02236030 *param1)
 {
     UnkStruct_ov12_02235FE0 *v0 = NULL;
 
-    v0 = ov12_02235FE0(param0);
+    v0 = ov12_02235FE0(heapID);
     ov12_02236030(v0, param1);
 
     {
@@ -411,7 +411,7 @@ static void ov12_022360A0(SysTask *param0, void *param1)
 
     switch (v0->unk_90) {
     case 0:
-        v0->unk_8C = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTDATA__BALL_PARTICLE, v0->unk_00);
+        v0->unk_8C = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTDATA__BALL_PARTICLE, v0->heapId);
 
         for (v1 = 0; v1 < 2; v1++) {
             v5 = sub_0202CA64(&v0->unk_A0, v1);
@@ -434,7 +434,7 @@ static void ov12_022360A0(SysTask *param0, void *param1)
 
             v0->unk_38[v0->unk_10] = v5;
             GF_ASSERT(v0->unk_14[v0->unk_10] == NULL);
-            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->unk_00, v3, 0);
+            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->heapId, v3, 0);
 
             if (v0->unk_14[v0->unk_10] == NULL) {
                 GF_ASSERT(v0->unk_14[v0->unk_10] != NULL);
@@ -468,7 +468,7 @@ static void ov12_022360A0(SysTask *param0, void *param1)
 
             v0->unk_38[v0->unk_10] = v5;
             GF_ASSERT(v0->unk_14[v0->unk_10] == NULL);
-            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->unk_00, v3, 0);
+            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->heapId, v3, 0);
 
             if (v0->unk_14[v0->unk_10] == NULL) {
                 GF_ASSERT(v0->unk_14[v0->unk_10] != NULL);
@@ -502,7 +502,7 @@ static void ov12_022360A0(SysTask *param0, void *param1)
 
             v0->unk_38[v0->unk_10] = v5;
             GF_ASSERT(v0->unk_14[v0->unk_10] == NULL);
-            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->unk_00, v3, 0);
+            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->heapId, v3, 0);
 
             if (v0->unk_14[v0->unk_10] == NULL) {
                 GF_ASSERT(v0->unk_14[v0->unk_10] != NULL);
@@ -536,7 +536,7 @@ static void ov12_022360A0(SysTask *param0, void *param1)
 
             v0->unk_38[v0->unk_10] = v5;
             GF_ASSERT(v0->unk_14[v0->unk_10] == NULL);
-            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->unk_00, v3, 0);
+            v0->unk_14[v0->unk_10] = ov12_0222384C(v0->unk_8C, v0->heapId, v3, 0);
 
             if (v0->unk_14[v0->unk_10] == NULL) {
                 GF_ASSERT(v0->unk_14[v0->unk_10] != NULL);
@@ -568,7 +568,7 @@ void ov12_02236320(UnkStruct_ov12_02235FE0 *param0)
         v3 = ov12_02235F64(param0->unk_98);
 
         param0->unk_10 = 1;
-        param0->unk_14[0] = ov12_02223818(param0->unk_00, 99, v3, 0);
+        param0->unk_14[0] = ov12_02223818(param0->heapId, 99, v3, 0);
         param0->unk_90 = 0xFF;
     } else {
         param0->unk_10 = 0;
@@ -680,7 +680,7 @@ static void ov12_0223646C(UnkStruct_ov12_02235FE0 *param0, UnkFuncPtr_020146F4 p
         sub_02014788(param0->unk_14[0], 1);
     } else {
         for (v0 = 0; v0 < param0->unk_10; v0++) {
-            UnkStruct_02236430 *v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02236430));
+            UnkStruct_02236430 *v4 = Heap_AllocFromHeap(param0->heapId, sizeof(UnkStruct_02236430));
 
             GF_ASSERT(v4 != NULL);
 
@@ -843,7 +843,7 @@ UnkStruct_ov12_02236648 *ov12_02236690(UnkStruct_ov12_02236690 *param0)
 {
     UnkStruct_ov12_02236648 *v0;
 
-    v0 = Heap_AllocFromHeap(param0->unk_08, sizeof(UnkStruct_ov12_02236648));
+    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov12_02236648));
     GF_ASSERT(v0 != NULL);
 
     v0->unk_00 = *param0;
@@ -856,7 +856,7 @@ UnkStruct_ov12_02236648 *ov12_02236690(UnkStruct_ov12_02236690 *param0)
         v0->unk_1C = ov12_02235FA0(v0->unk_00.unk_04);
     }
 
-    v0->unk_18 = ov12_02223818(v0->unk_00.unk_08, 99, v0->unk_20, 0);
+    v0->unk_18 = ov12_02223818(v0->unk_00.heapID, 99, v0->unk_20, 0);
 
     return v0;
 }
@@ -1125,7 +1125,7 @@ static BOOL ov12_02236918(BallRotation *param0)
             UnkStruct_ov12_02236690 v0;
 
             v0.unk_04 = param0->unk_90.ballID;
-            v0.unk_08 = param0->unk_90.heapID;
+            v0.heapID = param0->unk_90.heapID;
             v0.unk_0C = 0xFF;
             v0.unk_10 = 0;
 
@@ -1470,7 +1470,7 @@ static BOOL ov12_02236D18(BallRotation *param0)
             UnkStruct_ov12_02236690 v1;
 
             v1.unk_04 = param0->unk_90.ballID;
-            v1.unk_08 = param0->unk_90.heapID;
+            v1.heapID = param0->unk_90.heapID;
             v1.unk_0C = ov12_02235FB4(v1.unk_04);
             v1.unk_10 = 0;
 
@@ -1869,7 +1869,7 @@ static BOOL ov12_02237474(BallRotation *param0)
         UnkStruct_ov12_02236690 v0;
 
         v0.unk_04 = param0->unk_90.ballID;
-        v0.unk_08 = param0->unk_90.heapID;
+        v0.heapID = param0->unk_90.heapID;
         v0.unk_0C = 0xFF;
         v0.unk_10 = 1;
 

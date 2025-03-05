@@ -228,7 +228,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
     PaletteData_LoadBufferFromHardware(param0->unk_48.unk_14, 2, 0 * 16, 16 * 0x20);
 
     if (param0->unk_80->unk_3C) {
-        ov4_021D1E74(106);
+        ov4_021D1E74(HEAP_ID_106);
     }
 }
 
@@ -446,7 +446,7 @@ int ov116_02260CF4(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
         v1 = 1;
-        v0->unk_94 = ov114_0225C820(&v0->unk_84, 106);
+        v0->unk_94 = ov114_0225C820(&v0->unk_84, HEAP_ID_106);
         ov116_0226178C(v0, v1, 1, param1);
         break;
     case 1:
@@ -613,7 +613,7 @@ int ov116_02260CF4(OverlayManager *param0, int *param1)
 
             ov114_0225C9A8(&v0->unk_98, v0->unk_84.unk_08);
         }
-        v0->unk_B0 = ov114_0225C8EC(&v0->unk_84, &v0->unk_98, 106);
+        v0->unk_B0 = ov114_0225C8EC(&v0->unk_84, &v0->unk_98, HEAP_ID_106);
         ov116_0226178C(v0, v1, 18, param1);
         break;
     case 18:
@@ -758,20 +758,20 @@ int ov116_0226126C(OverlayManager *param0, int *param1)
 
 static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
 {
-    param0->unk_48.unk_00 = NARC_ctor(NARC_INDEX_ARC__MANENE, 106);
-    param0->unk_48.unk_04 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, 106);
+    param0->unk_48.unk_00 = NARC_ctor(NARC_INDEX_ARC__MANENE, HEAP_ID_106);
+    param0->unk_48.unk_04 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, HEAP_ID_106);
     param0->unk_48.unk_10 = BgConfig_New(HEAP_ID_106);
-    param0->unk_48.unk_14 = PaletteData_New(106);
-    param0->unk_48.unk_18 = sub_02024220(106, 0, 1, 0, 4, NULL);
-    param0->unk_48.camera = Camera_Alloc(106);
+    param0->unk_48.unk_14 = PaletteData_New(HEAP_ID_106);
+    param0->unk_48.unk_18 = sub_02024220(HEAP_ID_106, 0, 1, 0, 4, NULL);
+    param0->unk_48.camera = Camera_Alloc(HEAP_ID_106);
 
     ov116_02261C88(param0);
 
     PaletteData_SetAutoTransparent(param0->unk_48.unk_14, 1);
-    PaletteData_AllocBuffer(param0->unk_48.unk_14, 0, 0x200, 106);
-    PaletteData_AllocBuffer(param0->unk_48.unk_14, 1, 0x200, 106);
-    PaletteData_AllocBuffer(param0->unk_48.unk_14, 2, 0x200, 106);
-    PaletteData_AllocBuffer(param0->unk_48.unk_14, 3, 0x200, 106);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, 0, 0x200, HEAP_ID_106);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, 1, 0x200, HEAP_ID_106);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, 2, 0x200, HEAP_ID_106);
+    PaletteData_AllocBuffer(param0->unk_48.unk_14, 3, 0x200, HEAP_ID_106);
 
     ov116_02261494(param0->unk_48.unk_10);
     ov116_022616CC(param0);
@@ -794,7 +794,7 @@ static void ov116_022612CC(UnkStruct_ov116_0226139C *param0)
         G3X_SetEdgeColorTable(v0);
     }
 
-    Heap_FndInitAllocatorForExpHeap(&param0->unk_48.unk_24, 106, 32);
+    Heap_FndInitAllocatorForExpHeap(&param0->unk_48.unk_24, HEAP_ID_106, 32);
 }
 
 void ov116_0226139C(UnkStruct_ov116_0226139C *param0)

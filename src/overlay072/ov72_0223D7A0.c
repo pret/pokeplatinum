@@ -406,7 +406,7 @@ static void ov72_0223DB98(UnkStruct_ov72_0223DB98 *param0)
     MessageLoader_GetStrbuf(param0->unk_14, 12, param0->unk_2C);
     MessageLoader_GetStrbuf(param0->unk_14, 9, param0->unk_30);
 
-    param0->unk_5D00 = sub_02015920(39);
+    param0->unk_5D00 = sub_02015920(HEAP_ID_39);
 
     MI_CpuClearFast(&param0->unk_5D04, sizeof(UnkStruct_ov72_0223EAD8));
 }

@@ -107,14 +107,14 @@ int ov83_0223B5B0(OverlayManager *param0, int *param1)
     UnkStruct_ov83_0223C344 *v0 = OverlayManager_Args(param0);
     UnkStruct_ov83_0223B784 *v1;
 
-    Heap_Create(3, 56, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_56, 0x20000);
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov83_0223B784), 56);
     memset(v1, 0, sizeof(UnkStruct_ov83_0223B784));
 
     v0->unk_18 = v1;
-    v1->unk_00 = 56;
+    v1->heapID = HEAP_ID_56;
 
-    VramTransfer_New(16, v1->unk_00);
+    VramTransfer_New(16, v1->heapID);
 
     if (v0->unk_06_0 == 1) {
         v1->unk_1490 = 1;
@@ -195,7 +195,7 @@ int ov83_0223B65C(OverlayManager *param0, int *param1)
     }
 
     ov83_0223CBA4(v3);
-    sub_02038A1C(v3->unk_00, v3->unk_20);
+    sub_02038A1C(v3->heapID, v3->unk_20);
 
     if (v3->unk_04) {
         return 1;
@@ -210,7 +210,7 @@ int ov83_0223B710(OverlayManager *param0, int *param1)
     UnkStruct_ov83_0223C344 *v1 = OverlayManager_Args(param0);
     UnkStruct_ov83_0223B784 *v2 = (UnkStruct_ov83_0223B784 *)OverlayManager_Data(param0);
 
-    v0 = v2->unk_00;
+    v0 = v2->heapID;
 
     if (v1->unk_26) {
         if (CommSys_CurNetId() == 0) {
@@ -260,9 +260,9 @@ static int ov83_0223B78C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             ov83_0223FDB0(&param1->unk_34C);
         }
 
-        ov83_0223DEA0(&param1->unk_5B0, param1->unk_1488, &param1->unk_15E0, &param1->unk_1494, param1->unk_24, param1->unk_00);
+        ov83_0223DEA0(&param1->unk_5B0, param1->unk_1488, &param1->unk_15E0, &param1->unk_1494, param1->unk_24, param1->heapID);
         ov83_0223E340(&param1->unk_608);
-        ov83_0223E6D4(&param1->unk_6A0, param1->unk_1488, &param1->unk_15E0, &param1->unk_1494, param1->unk_24, param1->unk_00);
+        ov83_0223E6D4(&param1->unk_6A0, param1->unk_1488, &param1->unk_15E0, &param1->unk_1494, param1->unk_24, param1->heapID);
         ov83_0223E244(&param1->unk_5E4);
         ov83_0223E244(&param1->unk_5F0);
         ov83_0223E244(&param1->unk_5FC);
@@ -287,7 +287,7 @@ static int ov83_0223B78C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         (*param2)++;
         break;
     case 1:
-        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, param1->unk_00);
+        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 2:
@@ -371,7 +371,7 @@ static int ov83_0223B9EC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
 
     switch (*param2) {
     case 0:
-        ov83_0223F790(&param1->unk_1480, param1->unk_00, param1->unk_20);
+        ov83_0223F790(&param1->unk_1480, param1->heapID, param1->unk_20);
         (*param2)++;
         break;
     case 1:
@@ -547,7 +547,7 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             break;
         }
 
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, param1->unk_00);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 2:
@@ -597,8 +597,8 @@ static int ov83_0223BCEC(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         break;
     case 4:
         if (ov83_0223D570(param1->unk_148C) == 0) {
-            v0 = Poffin_New(param1->unk_00);
-            ov83_0223FFD4(&param1->unk_34C, v0, &param1->unk_1494, param1->unk_1488, param1->unk_00);
+            v0 = Poffin_New(param1->heapID);
+            ov83_0223FFD4(&param1->unk_34C, v0, &param1->unk_1494, param1->unk_1488, param1->heapID);
             v1 = ov83_0223D508(28, v0, Poffin_SizeOf(), param1->unk_148C);
             Heap_FreeToHeap(v0);
 
@@ -646,8 +646,8 @@ static int ov83_0223BF74(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
 
         param1->unk_31C = 0;
 
-        ov83_0223F730(&param1->unk_1478, 128, 144, param1->unk_1494.unk_58.unk_0C, param1->unk_00);
-        StartScreenTransition(3, 1, 0, 0x0, 6, 1, param1->unk_00);
+        ov83_0223F730(&param1->unk_1478, 128, 144, param1->unk_1494.unk_58.unk_0C, param1->heapID);
+        StartScreenTransition(3, 1, 0, 0x0, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 1:
@@ -797,7 +797,7 @@ static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
             void *journalEntryOnlineEvent;
 
             if (param1->unk_1490 == 1) {
-                journalEntryOnlineEvent = JournalEntry_CreateEventMadePoffins(param1->unk_00);
+                journalEntryOnlineEvent = JournalEntry_CreateEventMadePoffins(param1->heapID);
                 JournalEntry_SaveData(param0->unk_10->unk_1C, journalEntryOnlineEvent, JOURNAL_ONLINE_EVENT);
             }
         }
@@ -813,7 +813,7 @@ static int ov83_0223C258(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B78
         }
         break;
     case 2:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, param1->unk_00);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, param1->heapID);
         (*param2)++;
         break;
     case 3:
@@ -1057,7 +1057,7 @@ static void ov83_0223C82C(UnkStruct_ov83_0223C344 *param0, UnkStruct_ov83_0223B7
 {
     int v0;
 
-    param1->unk_1494.unk_100 = Poffin_New(param1->unk_00);
+    param1->unk_1494.unk_100 = Poffin_New(param1->heapID);
     param1->unk_1494.unk_144 = ov83_0223D570(param1->unk_148C);
 
     for (v0 = 0; v0 < 4; v0++) {

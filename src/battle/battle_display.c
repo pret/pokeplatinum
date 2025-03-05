@@ -1458,7 +1458,7 @@ void ov16_0225E434(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     UnkStruct_ov12_022380DC v0;
 
     ov16_02264530(battleSys, param2, &v0, param1->battler);
-    ov12_02238390(&v0, 5);
+    ov12_02238390(&v0, HEAP_ID_BATTLE);
     ClearCommand(battleSys, param1->battler, param2->unk_00);
 }
 
@@ -1738,15 +1738,15 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
             if (BattleSystem_BattleType(v0->unk_00) & BATTLE_TYPE_2vs2) {
                 if ((BattleSystem_BattleStatus(v0->unk_00) & 0x20) == 0) {
                     if (v0->unk_82 == 2) {
-                        v0->unk_10 = ov12_02223764(v0->unk_00, 5);
+                        v0->unk_10 = ov12_02223764(v0->unk_00, HEAP_ID_BATTLE);
                     }
                 }
             } else {
                 if ((BattleSystem_BattleStatus(v0->unk_00) & 0x20) == 0) {
                     if ((ov16_0223ED60(v0->unk_00) == 1) && (v0->unk_82 == 2)) {
-                        v0->unk_10 = ov12_02223764(v0->unk_00, 5);
+                        v0->unk_10 = ov12_02223764(v0->unk_00, HEAP_ID_BATTLE);
                     } else if (v0->unk_82 == 0) {
-                        v0->unk_10 = ov12_02223764(v0->unk_00, 5);
+                        v0->unk_10 = ov12_02223764(v0->unk_00, HEAP_ID_BATTLE);
                     } else {
                         (void)0;
                     }
@@ -1761,7 +1761,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
 
         v1.unk_00 = v0->unk_82;
         v1.unk_08 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_81, v0->unk_8C);
-        v0->unk_08 = ov12_02236004(5, &v1);
+        v0->unk_08 = ov12_02236004(HEAP_ID_BATTLE, &v1);
 
         ov12_02236320(v0->unk_08);
     }
@@ -1970,7 +1970,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         }
         {
             v0->unk_10 = NULL;
-            v0->unk_10 = ov12_02223764(v0->unk_00, 5);
+            v0->unk_10 = ov12_02223764(v0->unk_00, HEAP_ID_BATTLE);
         }
         v0->unk_83++;
         break;
@@ -1981,7 +1981,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         v5.unk_08 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_81, v0->unk_8C);
         v5.unk_04 = v0->unk_8E;
 
-        v0->unk_08 = ov12_02236004(5, &v5);
+        v0->unk_08 = ov12_02236004(HEAP_ID_BATTLE, &v5);
         ov12_02236320(v0->unk_08);
     }
         v0->unk_83++;
@@ -2129,7 +2129,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         UnkStruct_ov16_02265BBC v13;
 
         ov16_02264530(v0->unk_00, &v0->unk_28, &v12, v0->unk_81);
-        ov12_02238390(&v12, 5);
+        ov12_02238390(&v12, HEAP_ID_BATTLE);
         ov16_02266B78(v0->unk_00, NULL, &v13, 1, 16, v0->unk_81, v0->unk_81, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v1, &v13);
 
@@ -4652,7 +4652,7 @@ static void ov16_022626C0(SysTask *param0, void *param1)
         UnkStruct_ov16_02265BBC v6;
 
         ov16_02264530(v0->unk_00, &v0->unk_10, &v5, v0->unk_69);
-        ov12_02238390(&v5, 5);
+        ov12_02238390(&v5, HEAP_ID_BATTLE);
 
         ov16_02266B78(v0->unk_00, NULL, &v6, 1, 16, v0->unk_69, v0->unk_69, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_0C, &v6);
@@ -4960,7 +4960,7 @@ static void ov16_02262DC4(SysTask *param0, void *param1)
         UnkStruct_ov16_02265BBC v4;
 
         ov16_02264530(v0->unk_00, &v0->unk_08, &v3, v0->unk_61);
-        ov12_02238390(&v3, 5);
+        ov12_02238390(&v3, HEAP_ID_BATTLE);
 
         ov16_02266B78(v0->unk_00, NULL, &v4, 1, 16, v0->unk_61, v0->unk_61, NULL);
         ov16_02264408(v0->unk_00, v0->unk_04, v1, &v4);
@@ -5115,7 +5115,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
     case 0: {
         UnkStruct_ov12_02237F38 v5;
 
-        v0->unk_04 = ov12_02237EFC(5, NULL);
+        v0->unk_04 = ov12_02237EFC(HEAP_ID_BATTLE, NULL);
 
         v5.unk_00 = Unk_ov16_0226F31C[v3];
         v5.unk_04 = 1;
@@ -5423,7 +5423,7 @@ static void ov16_02263688(SysTask *param0, void *param1)
     switch (v0->unk_0E) {
     case 0:
         GF_ASSERT(v0->unk_04->unk_88 == NULL);
-        v0->unk_04->unk_88 = ov12_022234F8(v0->unk_00, 5, v0->unk_0D);
+        v0->unk_04->unk_88 = ov12_022234F8(v0->unk_00, HEAP_ID_BATTLE, v0->unk_0D);
         v0->unk_0E++;
         break;
     default:

@@ -1202,7 +1202,7 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
 
 static void ov111_021D1F70(UnkStruct_ov111_021D0F7C *param0)
 {
-    param0->unk_3FC = sub_02015920(115);
+    param0->unk_3FC = sub_02015920(HEAP_ID_115);
     return;
 }
 

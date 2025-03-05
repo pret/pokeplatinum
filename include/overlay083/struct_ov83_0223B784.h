@@ -25,7 +25,7 @@
 #include "bg_window.h"
 
 typedef struct {
-    int unk_00;
+    int heapID;
     BOOL unk_04;
     int unk_08;
     int unk_0C;

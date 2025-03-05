@@ -7,7 +7,7 @@
 #include "sprite.h"
 #include "sprite_system.h"
 
-void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths *param1, u32 param2, u32 param3);
+void ov5_021D2F14(UnkStruct_ov5_021D30A8 *param0, const SpriteResourceDataPaths *param1, u32 param2, u32 heapID);
 void ov5_021D30A8(UnkStruct_ov5_021D30A8 *param0);
 Sprite *ov5_021D3104(UnkStruct_ov5_021D30A8 *param0, const SpriteTemplateFromResourceHeader *param1);
 void ov5_021D3190(UnkStruct_ov5_021D30A8 *param0, SpriteResourceCapacities *param1, u32 param2, u32 param3);

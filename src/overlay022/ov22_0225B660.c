@@ -91,7 +91,7 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
         v2.unk_00 = v0->unk_14.unk_40;
         v2.unk_04 = 72;
         v2.unk_08 = 16;
-        v2.unk_0C = 14;
+        v2.heapId = HEAP_ID_14;
 
         if (v0->unk_0C == 0) {
             v0->unk_10 = ov22_0225AF8C(&v2, v0->unk_00);

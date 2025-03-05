@@ -772,7 +772,7 @@ void ov5_021DE5A4(UnkStruct_ov5_021DE47C *param0, UnkStruct_ov5_021DE5A4 *param1
     }
 }
 
-void ov5_021DE5D0(Sprite *param0, u32 param1, u32 param2, u8 param3, u16 param4)
+void ov5_021DE5D0(Sprite *param0, u32 heapID, u32 param2, u8 param3, u16 param4)
 {
     UnkStruct_ov5_021DE5D0 v0;
     NNSG2dPaletteData *v1;
@@ -780,8 +780,8 @@ void ov5_021DE5D0(Sprite *param0, u32 param1, u32 param2, u8 param3, u16 param4)
     u16 *v3;
 
     sub_02076AAC(param2, 2, &v0);
-    v3 = Heap_AllocFromHeap(param1, 32);
-    v2 = Graphics_GetPlttData(v0.unk_00, v0.unk_08, &v1, param1);
+    v3 = Heap_AllocFromHeap(heapID, 32);
+    v2 = Graphics_GetPlttData(v0.unk_00, v0.unk_08, &v1, heapID);
     BlendPalette(v1->pRawData, v3, 16, param3, param4);
 
     ov5_021DE67C(param0, v3, 32);
@@ -824,11 +824,9 @@ static void ov5_021DE67C(Sprite *param0, void *param1, u32 param2)
     GX_LoadOBJPltt(param1, NNS_G2dGetImagePaletteLocation(v0, NNS_G2D_VRAM_TYPE_2DMAIN), param2);
 }
 
-UnkStruct_ov5_021DE6BC *ov5_021DE6A4(u32 param0)
+UnkStruct_ov5_021DE6BC *ov5_021DE6A4(u32 heapID)
 {
-    UnkStruct_ov5_021DE6BC *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021DE6BC));
+    UnkStruct_ov5_021DE6BC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021DE6BC));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DE6BC));
 
     return v0;
@@ -875,11 +873,9 @@ BOOL ov5_021DE71C(UnkStruct_ov5_021DE6BC *param0)
     return v0;
 }
 
-UnkStruct_ov5_021DE79C *ov5_021DE784(u32 param0)
+static UnkStruct_ov5_021DE79C *ov5_021DE784(u32 heapID)
 {
-    UnkStruct_ov5_021DE79C *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021DE79C));
+    UnkStruct_ov5_021DE79C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021DE79C));
 
     memset(v0, 0, sizeof(UnkStruct_ov5_021DE79C));
     return v0;
@@ -961,7 +957,7 @@ static void ov5_021DE89C(Window *param0, s32 param1, s32 param2, s32 param3, s32
     Window_FillRectWithColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
 }
 
-UnkStruct_ov5_021DE928 *ov5_021DE8F8(u32 param0)
+UnkStruct_ov5_021DE928 *ov5_021DE8F8(u32 heapID)
 {
     UnkStruct_ov5_021DE928 *v0;
     int v1;
@@ -970,7 +966,7 @@ UnkStruct_ov5_021DE928 *ov5_021DE8F8(u32 param0)
     memset(v0, 0, sizeof(UnkStruct_ov5_021DE928));
 
     for (v1 = 0; v1 < 48; v1++) {
-        v0->unk_04[v1] = ov5_021DE784(param0);
+        v0->unk_04[v1] = ov5_021DE784(heapID);
     }
 
     return v0;
@@ -1041,11 +1037,9 @@ BOOL ov5_021DE988(UnkStruct_ov5_021DE928 *param0)
     return 0;
 }
 
-UnkStruct_ov5_021DEA98 *ov5_021DEA80(u32 param0)
+UnkStruct_ov5_021DEA98 *ov5_021DEA80(u32 heapID)
 {
-    UnkStruct_ov5_021DEA98 *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021DEA98));
+    UnkStruct_ov5_021DEA98 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021DEA98));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DEA98));
     return v0;
 }
@@ -1128,16 +1122,16 @@ static void ov5_021DEB04(Window *param0, u16 param1, u16 param2, u8 param3)
     }
 }
 
-UnkStruct_ov5_021DEC18 *ov5_021DEBEC(u32 param0)
+UnkStruct_ov5_021DEC18 *ov5_021DEBEC(u32 heapID)
 {
     UnkStruct_ov5_021DEC18 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021DEC18));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov5_021DEC18));
     memset(v0, 0, sizeof(UnkStruct_ov5_021DEC18));
 
     for (v1 = 0; v1 < 8; v1++) {
-        v0->unk_00[v1] = ov5_021DEA80(param0);
+        v0->unk_00[v1] = ov5_021DEA80(heapID);
     }
 
     return v0;
@@ -1435,7 +1429,7 @@ void ov5_021DF0CC(NARC *param0, u32 param1)
     GF_ASSERT(Unk_ov5_02202120->unk_08 == NULL);
 
     Unk_ov5_02202120->unk_0C = Heap_AllocFromHeap(HEAP_ID_FIELD, 0x4800);
-    Unk_ov5_02202120->unk_08 = sub_02014014(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, 4);
+    Unk_ov5_02202120->unk_08 = sub_02014014(ov5_021DF3E8, ov5_021DF414, Unk_ov5_02202120->unk_0C, 0x4800, 1, HEAP_ID_FIELD);
     GF_ASSERT(Unk_ov5_02202120->unk_08);
 
     sub_02014788(Unk_ov5_02202120->unk_08, 1);

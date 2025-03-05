@@ -157,7 +157,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_02246F24), 21);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02246F24));
 
-    v0->unk_08 = ov17_0223F140(21);
+    v0->unk_08 = ov17_0223F140(HEAP_ID_21);
     v0->unk_00 = OverlayManager_Args(param0);
     v0->unk_00->unk_150 = v0;
     v0->unk_00->unk_154 = 2;
@@ -197,7 +197,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     SpriteSystem_InitManagerWithCapacities(v0->unk_0C.unk_18, v0->unk_0C.unk_1C, &Unk_ov17_02252DB0);
     SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_0C.unk_18), 0, ((192 + 80) << FX32_SHIFT));
 
-    v0->unk_0C.unk_04 = sub_0200762C(21);
+    v0->unk_0C.unk_04 = sub_0200762C(HEAP_ID_21);
     ov17_0223B884();
 
     v0->unk_0C.unk_20 = ov12_0221FCDC(HEAP_ID_21);
@@ -207,16 +207,16 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     v0->unk_0C.unk_3C = MessageLoader_Init(0, 26, 205, HEAP_ID_21);
     v0->unk_0C.unk_40 = MessageLoader_Init(0, 26, 210, HEAP_ID_21);
     v0->unk_0C.unk_44 = MessageLoader_Init(0, 26, 211, HEAP_ID_21);
-    v0->unk_0C.unk_54 = sub_02012744((2 * 4), 21);
-    v0->unk_0C.unk_48 = StringTemplate_Default(21);
+    v0->unk_0C.unk_54 = sub_02012744((2 * 4), HEAP_ID_21);
+    v0->unk_0C.unk_48 = StringTemplate_Default(HEAP_ID_21);
     v0->unk_0C.unk_4C = Strbuf_Init((3 * 160), HEAP_ID_21);
 
     {
         NARC *v1;
         NARC *v2;
 
-        v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 21);
-        v2 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 21);
+        v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, HEAP_ID_21);
+        v2 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, HEAP_ID_21);
 
         ov17_0223BBA8(v0, v1);
         ov17_0223BCE0(v0, v1);

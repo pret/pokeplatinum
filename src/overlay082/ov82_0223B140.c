@@ -42,7 +42,7 @@ int ov82_0223B164(OverlayManager *param0, int *param1)
     v0->unk_10 = v1;
 
     if ((v1->unk_20) && (v1->unk_24)) {
-        ov4_021D1E74(55);
+        ov4_021D1E74(HEAP_ID_55);
     }
 
     v0->unk_26 = v1->unk_20;

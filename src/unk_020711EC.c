@@ -46,9 +46,9 @@ typedef struct UnkStruct_020711EC_t {
 
 static SysTask *sub_02071400(UnkStruct_ov101_021D5D90 *param0, int param1);
 static void sub_02071420(SysTask *param0, void *param1);
-static UnkStruct_020711EC *sub_0207142C(int param0);
+static UnkStruct_020711EC *sub_0207142C(int heapID);
 static void sub_02071450(UnkStruct_020711EC *param0);
-static UnkStruct_ov101_021D5D90 *sub_0207145C(int param0, int param1);
+static UnkStruct_ov101_021D5D90 *sub_0207145C(int heapID, int param1);
 static void sub_02071480(UnkStruct_020711EC *param0);
 static void sub_02071490(UnkStruct_ov101_021D5D90 *param0);
 static int sub_020714E8(const UnkStruct_020711EC *param0);
@@ -62,15 +62,15 @@ static void sub_020715C8(UnkStruct_ov101_021D5D90 *param0, SysTask *param1);
 static SysTask *sub_020715CC(UnkStruct_ov101_021D5D90 *param0);
 static void sub_020715D0(UnkStruct_ov101_021D5D90 *param0, const UnkStruct_020711EC *param1);
 
-UnkStruct_020711EC *sub_020711EC(int param0, int param1)
+UnkStruct_020711EC *sub_020711EC(int heapID, int param1)
 {
     UnkStruct_020711EC *v0;
 
-    v0 = sub_0207142C(param0);
+    v0 = sub_0207142C(heapID);
 
-    v0->unk_0C = sub_0207145C(param0, param1);
+    v0->unk_0C = sub_0207145C(heapID, param1);
     v0->unk_00 = param1;
-    v0->unk_08 = param0;
+    v0->unk_08 = heapID;
 
     return v0;
 }
@@ -245,11 +245,9 @@ static void sub_02071420(SysTask *param0, void *param1)
     sub_0207153C(v0);
 }
 
-static UnkStruct_020711EC *sub_0207142C(int param0)
+static UnkStruct_020711EC *sub_0207142C(int heapID)
 {
-    UnkStruct_020711EC *v0;
-
-    v0 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_020711EC)));
+    UnkStruct_020711EC *v0 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_020711EC)));
     GF_ASSERT(v0 != NULL);
 
     memset(v0, 0, (sizeof(UnkStruct_020711EC)));
@@ -261,12 +259,12 @@ static void sub_02071450(UnkStruct_020711EC *param0)
     Heap_FreeToHeapExplicit(param0->unk_08, param0);
 }
 
-static UnkStruct_ov101_021D5D90 *sub_0207145C(int param0, int param1)
+static UnkStruct_ov101_021D5D90 *sub_0207145C(int heapID, int param1)
 {
     UnkStruct_ov101_021D5D90 *v0;
 
     param1 *= (sizeof(UnkStruct_ov101_021D5D90));
-    v0 = Heap_AllocFromHeap(param0, param1);
+    v0 = Heap_AllocFromHeap(heapID, param1);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param1);

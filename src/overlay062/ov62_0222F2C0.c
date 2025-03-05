@@ -50,21 +50,21 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     GXLayers_DisableEngineBLayers();
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
-    VramTransfer_New(4, 102);
+    VramTransfer_New(4, HEAP_ID_102);
 
-    param0->unk_14.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, 102);
+    param0->unk_14.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, HEAP_ID_102);
     param0->unk_14.unk_10 = BgConfig_New(HEAP_ID_102);
-    param0->unk_14.unk_14 = PaletteData_New(102);
-    param0->unk_14.unk_4C = sub_02024220(102, 0, 1, 0, 4, NULL);
-    param0->unk_14.unk_50 = sub_0200762C(102);
+    param0->unk_14.unk_14 = PaletteData_New(HEAP_ID_102);
+    param0->unk_14.unk_4C = sub_02024220(HEAP_ID_102, 0, 1, 0, 4, NULL);
+    param0->unk_14.unk_50 = sub_0200762C(HEAP_ID_102);
 
     NNS_G2dSetupSoftwareSpriteCamera();
 
     PaletteData_SetAutoTransparent(param0->unk_14.unk_14, 1);
-    PaletteData_AllocBuffer(param0->unk_14.unk_14, 0, 0x200, 102);
-    PaletteData_AllocBuffer(param0->unk_14.unk_14, 1, 0x200, 102);
-    PaletteData_AllocBuffer(param0->unk_14.unk_14, 2, 0x200, 102);
-    PaletteData_AllocBuffer(param0->unk_14.unk_14, 3, 0x200, 102);
+    PaletteData_AllocBuffer(param0->unk_14.unk_14, 0, 0x200, HEAP_ID_102);
+    PaletteData_AllocBuffer(param0->unk_14.unk_14, 1, 0x200, HEAP_ID_102);
+    PaletteData_AllocBuffer(param0->unk_14.unk_14, 2, 0x200, HEAP_ID_102);
+    PaletteData_AllocBuffer(param0->unk_14.unk_14, 3, 0x200, HEAP_ID_102);
     ov62_0222F670(param0->unk_14.unk_10);
     ov62_0222F848(param0);
 
@@ -124,7 +124,7 @@ void ov62_0222F2C0(UnkStruct_0208C06C *param0)
     }
 
     {
-        param0->unk_14.unk_3C = sub_02012744((5 * 2) + 10, 102);
+        param0->unk_14.unk_3C = sub_02012744((5 * 2) + 10, HEAP_ID_102);
         param0->unk_14.unk_34 = MessageLoader_Init(0, 26, 10, HEAP_ID_102);
         param0->unk_14.unk_38 = MessageLoader_Init(0, 26, 20, HEAP_ID_102);
     }

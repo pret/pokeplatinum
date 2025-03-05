@@ -1169,7 +1169,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
             Sprite_SetDrawFlag(v1->unk_1D4[v3], 0);
             Sprite_SetAffineOverwriteMode(v1->unk_1D4[v3], 2);
 
-            v1->unk_258[v3] = ov5_021DE6A4(4);
+            v1->unk_258[v3] = ov5_021DE6A4(HEAP_ID_FIELD);
         }
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -1518,7 +1518,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
         Window_FillTilemap(v1->unk_264, 0);
         Window_ScheduleCopyToVRAM(v1->unk_264);
 
-        v1->unk_268 = ov5_021DE8F8(4);
+        v1->unk_268 = ov5_021DE8F8(HEAP_ID_FIELD);
 
         v0->state++;
         break;
@@ -2144,7 +2144,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
         Sprite_SetExplicitPriority(v1->unk_1DC, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        v1->unk_04 = ov5_021DEBEC(4);
+        v1->unk_04 = ov5_021DEBEC(HEAP_ID_FIELD);
 
         v1->unk_00 = Window_New(4, 1);
         Window_Add(v0->fieldSystem->bgConfig, v1->unk_00, 3, 0, 0, 32, 32, 0, 0);

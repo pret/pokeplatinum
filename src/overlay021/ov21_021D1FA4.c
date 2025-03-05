@@ -39,7 +39,7 @@ static void ov21_021D2830(BgConfig *param0, int param1);
 static void ov21_021D299C(BgConfig *param0);
 static void ov21_021D29D0(PokedexGraphicData *param0, int param1);
 static void ov21_021D2A00(PokedexGraphicData *param0);
-static void ov21_021D2A0C(PokedexGraphicData *param0, int param1);
+static void ov21_021D2A0C(PokedexGraphicData *param0, int heapID);
 static void ov21_021D2AB4(PokedexGraphicData *param0);
 static void ov21_021D2AE8(PokedexGraphicData *param0, int param1);
 static void ov21_021D2C10(PokedexGraphicData *param0);
@@ -58,13 +58,13 @@ static void ov21_021D31F0(PokedexGraphicData *param0);
 static void ov21_021D3124(PokedexGraphicData *param0, int param1, int param2, int param3, int param4);
 static void ov21_021D3194(SysTask *param0, void *param1);
 
-void ov21_021D1FA4(PokedexGraphicData *param0, int param1)
+void ov21_021D1FA4(PokedexGraphicData *param0, int heapID)
 {
     GraphicsModes v0;
     UnkStruct_ov21_021D1FA4 v1;
 
-    param0->pokedexGraphics = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1);
-    param0->bgConfig = BgConfig_New(param1);
+    param0->pokedexGraphics = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, heapID);
+    param0->bgConfig = BgConfig_New(heapID);
 
     v0.displayMode = GX_DISPMODE_GRAPHICS;
     v0.mainBgMode = GX_BGMODE_0;
@@ -73,14 +73,14 @@ void ov21_021D1FA4(PokedexGraphicData *param0, int param1)
 
     SetAllGraphicsModes(&v0);
 
-    ov21_021D2830(param0->bgConfig, param1);
-    ov21_021D29D0(param0, param1);
+    ov21_021D2830(param0->bgConfig, heapID);
+    ov21_021D29D0(param0, heapID);
 
-    param0->spriteList = SpriteList_InitRendering(128, &param0->g2Renderer, param1);
-    param0->spriteResourceCollection[0] = SpriteResourceCollection_New(32, 0, param1);
-    param0->spriteResourceCollection[1] = SpriteResourceCollection_New(32, 1, param1);
-    param0->spriteResourceCollection[2] = SpriteResourceCollection_New(32, 2, param1);
-    param0->spriteResourceCollection[3] = SpriteResourceCollection_New(32, 3, param1);
+    param0->spriteList = SpriteList_InitRendering(128, &param0->g2Renderer, heapID);
+    param0->spriteResourceCollection[0] = SpriteResourceCollection_New(32, 0, heapID);
+    param0->spriteResourceCollection[1] = SpriteResourceCollection_New(32, 1, heapID);
+    param0->spriteResourceCollection[2] = SpriteResourceCollection_New(32, 2, heapID);
+    param0->spriteResourceCollection[3] = SpriteResourceCollection_New(32, 3, heapID);
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
@@ -88,17 +88,17 @@ void ov21_021D1FA4(PokedexGraphicData *param0, int param1)
     v1.unk_00 = param0->spriteList;
     v1.unk_04 = param0->bgConfig;
     v1.unk_08 = 16;
-    v1.unk_0C = param1;
+    v1.heapId = heapID;
 
     param0->unk_14C = ov21_021D4C0C(&v1);
 
-    Font_InitManager(FONT_SUBSCREEN, param1);
+    Font_InitManager(FONT_SUBSCREEN, heapID);
 
-    ov21_021D2A0C(param0, param1);
-    ov21_021D2AE8(param0, param1);
-    ov21_021D2C8C(param0, param1);
-    ov21_021D2E70(param0, param1);
-    ov21_021D2F5C(param0, param1);
+    ov21_021D2A0C(param0, heapID);
+    ov21_021D2AE8(param0, heapID);
+    ov21_021D2C8C(param0, heapID);
+    ov21_021D2E70(param0, heapID);
+    ov21_021D2F5C(param0, heapID);
 }
 
 void ov21_021D2098(PokedexGraphicData *param0)
@@ -746,13 +746,13 @@ static void ov21_021D2A00(PokedexGraphicData *param0)
     Window_Remove(&param0->window);
 }
 
-static void ov21_021D2A0C(PokedexGraphicData *param0, int param1)
+static void ov21_021D2A0C(PokedexGraphicData *param0, int heapID)
 {
     NNSGfdTexKey v0;
     NNSGfdPlttKey v1;
     int v2;
 
-    param0->unk_150 = sub_0200762C(param1);
+    param0->unk_150 = sub_0200762C(heapID);
 
     v0 = NNS_GfdAllocTexVram(0x8000, 0, 0);
     v1 = NNS_GfdAllocPlttVram(0x80, 0, NNS_GFD_ALLOC_FROM_LOW);
@@ -766,10 +766,13 @@ static void ov21_021D2A0C(PokedexGraphicData *param0, int param1)
 
     {
         UnkStruct_ov22_022550D4 v3 = {
-            8, 8, 8, 0
+            .unk_00 = 8,
+            .unk_04 = 8,
+            .unk_08 = 8,
+            .heapID = HEAP_ID_SYSTEM
         };
 
-        v3.unk_0C = param1;
+        v3.heapID = heapID;
         param0->unk_164 = sub_02015064(&v3);
     }
 }

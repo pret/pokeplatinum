@@ -47,25 +47,19 @@ static void ov12_022237EC(SPLEmitter *param0)
     return;
 }
 
-UnkStruct_02014014 *ov12_022237F0(int param0, int param1, int param2)
+UnkStruct_02014014 *ov12_022237F0(int heapID, int param1, int param2)
 {
-    UnkStruct_02014014 *v0;
-    void *v1;
-
-    v0 = ov11_0221F840(param0);
-    v1 = sub_020144C4(29, param1, param0);
+    UnkStruct_02014014 *v0 = ov11_0221F840(heapID);
+    void *v1 = sub_020144C4(29, param1, heapID);
 
     sub_020144CC(v0, v1, (1 << 1) | (1 << 3), param2);
     return v0;
 }
 
-UnkStruct_02014014 *ov12_02223818(int param0, int param1, int param2, int param3)
+UnkStruct_02014014 *ov12_02223818(int heapID, int param1, int param2, int param3)
 {
-    UnkStruct_02014014 *v0;
-    void *v1;
-
-    v0 = ov11_0221F840(param0);
-    v1 = sub_020144C4(param1, param2, param0);
+    UnkStruct_02014014 *v0 = ov11_0221F840(heapID);
+    void *v1 = sub_020144C4(param1, param2, heapID);
 
     sub_020144CC(v0, v1, (1 << 1) | (1 << 3), param3);
     return v0;
@@ -76,18 +70,18 @@ void *ov12_02223844(NARC *param0, int param1, int param2)
     return NARC_AllocAndReadWholeMember(param0, param1, param2);
 }
 
-UnkStruct_02014014 *ov12_0222384C(NARC *param0, int param1, int param2, int param3)
+UnkStruct_02014014 *ov12_0222384C(NARC *param0, int heapID, int param2, int param3)
 {
     UnkStruct_02014014 *v0;
     void *v1;
 
-    v0 = ov11_0221F888(param1);
+    v0 = ov11_0221F888(heapID);
 
     if (v0 == NULL) {
         return NULL;
     }
 
-    v1 = ov12_02223844(param0, param2, param1);
+    v1 = ov12_02223844(param0, param2, heapID);
     sub_020144CC(v0, v1, (1 << 1) | (1 << 3), param3);
 
     return v0;

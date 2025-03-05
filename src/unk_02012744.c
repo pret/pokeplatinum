@@ -91,22 +91,21 @@ static const u8 Unk_020E52E4[12][2] = {
     { 0x1, 0x1 }
 };
 
-UnkStruct_02012744 *sub_02012744(int param0, int param1)
+UnkStruct_02012744 *sub_02012744(int param0, int heapID)
 {
     UnkStruct_02012744 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02012744));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02012744));
     GF_ASSERT(v0);
 
     for (v1 = 0; v1 < 12; v1++) {
-        v0->unk_00[v1] = Graphics_GetCellBank(
-            35, v1, 0, &v0->unk_30[v1], param1);
+        v0->unk_00[v1] = Graphics_GetCellBank(35, v1, 0, &v0->unk_30[v1], heapID);
 
         GF_ASSERT(v0->unk_00[v1]);
     }
 
-    v0->unk_60 = Heap_AllocFromHeap(param1, sizeof(FontOAM) * param0);
+    v0->unk_60 = Heap_AllocFromHeap(heapID, sizeof(FontOAM) * param0);
     GF_ASSERT(v0->unk_60);
 
     v0->unk_64 = param0;
@@ -333,15 +332,13 @@ void sub_02012AF0(FontOAM *param0, GXOamMode param1)
     }
 }
 
-UnkStruct_02012B20 *sub_02012B20(const Window *param0, int param1)
+UnkStruct_02012B20 *sub_02012B20(const Window *param0, int heapID)
 {
-    UnkStruct_02012B20 *v0;
-
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_02012B20));
+    UnkStruct_02012B20 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02012B20));
 
     v0->unk_00.unk_0C = &v0->unk_00;
     v0->unk_00.unk_10 = &v0->unk_00;
-    v0->unk_14 = sub_02012DE4(param0->width, param0->height, param1, &v0->unk_00);
+    v0->unk_14 = sub_02012DE4(param0->width, param0->height, heapID, &v0->unk_00);
 
     return v0;
 }

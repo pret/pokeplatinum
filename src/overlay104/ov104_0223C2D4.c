@@ -72,7 +72,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0);
 void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0);
 static void ov104_0223C8E8(UnkStruct_ov104_0223C4CC *param0);
 static void ov104_0223CC10(UnkStruct_ov104_0223C4CC *param0);
-static GenericPointerData *ov104_0223CF4C(int param0);
+static GenericPointerData *ov104_0223CF4C(int heapID);
 static void ov104_0223CF68(void);
 static void ov104_0223CFEC(GenericPointerData *param0);
 static void ov104_0223D3B0(UnkStruct_ov104_0223C4CC *param0);
@@ -148,18 +148,18 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
         v0->unk_3C.unk_34[v1] = 0xffff;
     }
 
-    v0->unk_0C = ov104_0223CF4C(94);
-    v0->unk_04 = PaletteData_New(94);
+    v0->unk_0C = ov104_0223CF4C(HEAP_ID_94);
+    v0->unk_04 = PaletteData_New(HEAP_ID_94);
 
     PaletteData_SetAutoTransparent(v0->unk_04, 1);
-    PaletteData_AllocBuffer(v0->unk_04, 0, 0x200, 94);
-    PaletteData_AllocBuffer(v0->unk_04, 1, 0x200, 94);
-    PaletteData_AllocBuffer(v0->unk_04, 2, 0x200 - 0x40, 94);
-    PaletteData_AllocBuffer(v0->unk_04, 3, 0x200, 94);
+    PaletteData_AllocBuffer(v0->unk_04, 0, 0x200, HEAP_ID_94);
+    PaletteData_AllocBuffer(v0->unk_04, 1, 0x200, HEAP_ID_94);
+    PaletteData_AllocBuffer(v0->unk_04, 2, 0x200 - 0x40, HEAP_ID_94);
+    PaletteData_AllocBuffer(v0->unk_04, 3, 0x200, HEAP_ID_94);
 
     v0->unk_00 = BgConfig_New(HEAP_ID_94);
 
-    VramTransfer_New(64, 94);
+    VramTransfer_New(64, HEAP_ID_94);
     SetAutorepeat(4, 8);
 
     ov104_0223C948(v0->unk_00, v2);
@@ -171,7 +171,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
 
     ov104_0223CFF4(v0);
 
-    v0->unk_10 = ov104_0223D5D0(94);
+    v0->unk_10 = ov104_0223D5D0(HEAP_ID_94);
 
     ov104_0223CC74(v0, v2, v4);
 
@@ -777,12 +777,9 @@ static void ov104_0223CEEC(UnkStruct_ov104_0223C4CC *param0)
     ov63_0222D7B4(param0->unk_30);
 }
 
-static GenericPointerData *ov104_0223CF4C(int param0)
+static GenericPointerData *ov104_0223CF4C(int heapID)
 {
-    GenericPointerData *v0;
-
-    v0 = sub_02024220(param0, 0, 1, 0, 1, ov104_0223CF68);
-    return v0;
+    return sub_02024220(heapID, 0, 1, 0, 1, ov104_0223CF68);
 }
 
 static void ov104_0223CF68(void)

@@ -17,7 +17,6 @@
 
 void sub_0207C63C(void);
 void sub_0207C664(void);
-GenericPointerData *sub_0207C690(int param0);
 void sub_0207C6AC(void);
 void sub_0207C730(void);
 void sub_0207C770(void);
@@ -46,12 +45,9 @@ void sub_0207C664(void)
     G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 7, 8);
 }
 
-GenericPointerData *sub_0207C690(int param0)
+GenericPointerData *sub_0207C690(int heapID)
 {
-    GenericPointerData *v0;
-
-    v0 = sub_02024220(param0, 0, 2, 0, 2, sub_0207C6AC);
-    return v0;
+    return sub_02024220(heapID, 0, 2, 0, 2, sub_0207C6AC);
 }
 
 void sub_0207C6AC(void)

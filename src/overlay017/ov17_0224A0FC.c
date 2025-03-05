@@ -346,7 +346,7 @@ void ov17_0224A134(UnkStruct_ov17_0224DF54 *param0)
     }
 
     MI_CpuClear8(&v1, sizeof(UnkStruct_ov22_0225AF8C));
-    v1.unk_0C = 23;
+    v1.heapId = HEAP_ID_23;
 
     for (v0 = 0; v0 < 4; v0++) {
         int v3;

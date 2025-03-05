@@ -863,7 +863,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     NNS_G2dLoadPalette(v8, 192, NNS_G2D_VRAM_TYPE_2DMAIN, &v6);
 
     sub_02076AAC(((TrainerInfo_Gender(param0->unk_0C->unk_00) == 1) ? 1 : 0), 2, &v4);
-    sub_020135F0(v4.unk_00, v4.unk_14, 63, &v0[0], param0->unk_310);
+    sub_020135F0(v4.unk_00, v4.unk_14, HEAP_ID_63, &v0[0], param0->unk_310);
 
     DC_FlushRange(param0->unk_310, 3200);
     GX_LoadOBJ(param0->unk_310, 38400, 3200);

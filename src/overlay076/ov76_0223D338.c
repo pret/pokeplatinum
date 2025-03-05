@@ -866,7 +866,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
             Pokemon_SetValue(param0->unk_428, MON_DATA_MAIL_ID, (u8 *)&v1);
             Pokemon_SetValue(param0->unk_428, MON_DATA_171, &v2);
 
-            param0->unk_D4.unk_154 = ov12_02236004(53, &v3);
+            param0->unk_D4.unk_154 = ov12_02236004(HEAP_ID_53, &v3);
             ov12_02236320(param0->unk_D4.unk_154);
         }
             param0->unk_3DC++;
@@ -1028,7 +1028,7 @@ static BOOL ov76_0223DF94(UnkStruct_ov76_0223DE00 *param0)
                 v9.unk_10 = 25;
                 v9.unk_11 = 6;
 
-                param0->unk_D4.unk_150 = sub_02015920(53);
+                param0->unk_D4.unk_150 = sub_02015920(HEAP_ID_53);
                 sub_02015958(param0->unk_D4.unk_150, &v9);
             }
 

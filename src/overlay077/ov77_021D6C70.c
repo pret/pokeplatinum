@@ -140,7 +140,7 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
         }
     }
 
-    param0->unk_00 = sub_0200762C(76);
+    param0->unk_00 = sub_0200762C(HEAP_ID_76);
 
     for (v0 = 0; v0 < 3; v0++) {
         BuildArchivedPokemonSprite(&v1, v5[v0], 0, 2, 0, NULL, NULL);
@@ -153,7 +153,7 @@ void ov77_021D6CFC(UnkStruct_ov77_021D6CFC *param0)
     sub_02014000();
 
     param0->unk_14 = Heap_AllocFromHeap(HEAP_ID_76, 0x4800);
-    param0->unk_18 = sub_02014014(ov77_021D6C70, ov77_021D6C94, param0->unk_14, 0x4800, 1, 76);
+    param0->unk_18 = sub_02014014(ov77_021D6C70, ov77_021D6C94, param0->unk_14, 0x4800, 1, HEAP_ID_76);
     camera = sub_02014784(param0->unk_18);
 
     Camera_SetClipping((FX32_ONE), (FX32_ONE * 900), camera);

@@ -11,7 +11,7 @@
 int Underground_SaveSize(void);
 int sub_02028554(void);
 int sub_02028558(void);
-SecretBaseRecord *sub_0202855C(u32 param0);
+SecretBaseRecord *sub_0202855C(u32 heapID);
 void Underground_Init(UndergroundData *param0);
 void sub_02028658(SaveData *param0, int param1);
 void sub_02028758(SaveData *param0, s32 param1, BOOL param2);

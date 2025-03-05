@@ -88,7 +88,7 @@ struct UnkStruct_ov79_021D29B4_t {
 };
 
 typedef struct {
-    int unk_00;
+    int heapId;
     int unk_04;
     int unk_08;
     u16 unk_0C;
@@ -168,12 +168,12 @@ int ov79_021D22AC(OverlayManager *param0, int *param1)
     UnkStruct_02098DE8 *v0 = OverlayManager_Args(param0);
     UnkStruct_ov79_021D2928 *v1;
 
-    Heap_Create(3, 46, 0x10000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_46, 0x10000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov79_021D2928), 46);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov79_021D2928), HEAP_ID_46);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov79_021D2928));
 
-    v1->unk_00 = 46;
+    v1->heapId = HEAP_ID_46;
     v1->unk_10 = v0;
 
     return 1;
@@ -217,7 +217,7 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
         }
 
         v0->unk_04 = 0;
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, v0->heapId);
         break;
     case 3:
         if (!IsScreenTransitionDone()) {
@@ -230,7 +230,7 @@ int ov79_021D22E4(OverlayManager *param0, int *param1)
             return 0;
         }
 
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->unk_00);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, v0->heapId);
         break;
     case 5:
         if (!IsScreenTransitionDone()) {
@@ -268,7 +268,7 @@ int ov79_021D2460(OverlayManager *param0, int *param1)
 
     OverlayManager_FreeData(param0);
 
-    Heap_Destroy(v0->unk_00);
+    Heap_Destroy(v0->heapId);
     return 1;
 }
 
@@ -285,7 +285,7 @@ static int ov79_021D247C(UnkStruct_ov79_021D2928 *param0)
         break;
     case 2:
         ov79_021D27D8(param0);
-        ov79_021D3768(&param0->unk_40, &param0->unk_30, param0->unk_00);
+        ov79_021D3768(&param0->unk_40, &param0->unk_30, param0->heapId);
         ov79_021D2864(param0);
 
         param0->unk_04 = 0;
@@ -357,7 +357,7 @@ static void ov79_021D257C(UnkStruct_ov79_021D2928 *param0)
 
     ov79_021D255C();
 
-    param0->unk_68 = BgConfig_New(param0->unk_00);
+    param0->unk_68 = BgConfig_New(param0->heapId);
 
     {
         GraphicsModes v2 = {
@@ -424,7 +424,7 @@ static void ov79_021D257C(UnkStruct_ov79_021D2928 *param0)
             v1 = v4[v0];
             Bg_InitFromTemplate(param0->unk_68, v1, &(v3[v0]), 0);
             Bg_ClearTilemap(param0->unk_68, v1);
-            Bg_ClearTilesRange(v1, 32, 0, param0->unk_00);
+            Bg_ClearTilesRange(v1, 32, 0, param0->heapId);
         }
     }
 }
@@ -445,16 +445,16 @@ static void ov79_021D2634(UnkStruct_ov79_021D2928 *param0)
 {
     NARC *v0;
 
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUDEMO, param0->unk_00);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUDEMO, param0->heapId);
 
-    sub_0208C210(param0->unk_68, param0->unk_00, v0, 87, 2, 2, 0, 0, 0);
-    sub_0208C210(param0->unk_68, param0->unk_00, v0, 87, 3, 4, 0, 0, 0);
+    sub_0208C210(param0->unk_68, param0->heapId, v0, 87, 2, 2, 0, 0, 0);
+    sub_0208C210(param0->unk_68, param0->heapId, v0, 87, 3, 4, 0, 0, 0);
 
-    sub_0208C210(param0->unk_68, param0->unk_00, v0, 87, 0, 2, 2, 0x20 * 0x1, 0);
-    sub_0208C210(param0->unk_68, param0->unk_00, v0, 87, 1, 4, 2, 0x20 * 0x5, 0);
+    sub_0208C210(param0->unk_68, param0->heapId, v0, 87, 0, 2, 2, 0x20 * 0x1, 0);
+    sub_0208C210(param0->unk_68, param0->heapId, v0, 87, 1, 4, 2, 0x20 * 0x5, 0);
 
-    sub_0208C210(param0->unk_68, param0->unk_00, v0, 87, 4, 2, 1, 0, 0);
-    sub_0208C210(param0->unk_68, param0->unk_00, v0, 87, 5, 4, 1, 0, 0);
+    sub_0208C210(param0->unk_68, param0->heapId, v0, 87, 4, 2, 1, 0, 0);
+    sub_0208C210(param0->unk_68, param0->heapId, v0, 87, 5, 4, 1, 0, 0);
 
     NARC_dtor(v0);
 
@@ -470,8 +470,8 @@ static void ov79_021D270C(UnkStruct_ov79_021D2928 *param0)
 
     Window_AddFromTemplate(param0->unk_68, &(param0->unk_6C), &v0);
     Window_FillTilemap(&param0->unk_6C, ((0 << 4) | 0));
-    LoadMessageBoxGraphics(param0->unk_68, 1, 1, 14, param0->unk_10->unk_0B, param0->unk_00);
-    Font_LoadScreenIndicatorsPalette(0, 15 * 32, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_68, 1, 1, 14, param0->unk_10->unk_0B, param0->heapId);
+    Font_LoadScreenIndicatorsPalette(0, 15 * 32, param0->heapId);
 }
 
 static void ov79_021D2754(UnkStruct_ov79_021D2928 *param0)
@@ -484,9 +484,9 @@ static void ov79_021D2768(UnkStruct_ov79_021D2928 *param0)
 {
     int v0 = 0;
 
-    param0->unk_18 = MessageLoader_Init(0, 26, 462, param0->unk_00);
-    param0->unk_1C.unk_00 = StringTemplate_New(1, 64, param0->unk_00);
-    param0->unk_1C.unk_04 = Strbuf_Init(64, param0->unk_00);
+    param0->unk_18 = MessageLoader_Init(0, 26, 462, param0->heapId);
+    param0->unk_1C.unk_00 = StringTemplate_New(1, 64, param0->heapId);
+    param0->unk_1C.unk_04 = Strbuf_Init(64, param0->heapId);
 
     for (v0 = 0; v0 < 3; v0++) {
         param0->unk_1C.unk_08[v0] = MessageLoader_GetNewStrbuf(param0->unk_18, v0);
@@ -513,7 +513,7 @@ static void ov79_021D27D8(UnkStruct_ov79_021D2928 *param0)
     param0->unk_30.unk_07 = Pokemon_GetGender(param0->unk_10->unk_00);
     param0->unk_30.unk_06 = Pokemon_GetNature(param0->unk_10->unk_00);
     param0->unk_30.unk_08 = SpeciesData_GetFormValue(param0->unk_30.unk_04, Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_FORM, NULL), 28) ^ 1;
-    param0->unk_30.unk_0C = Strbuf_Init(12, param0->unk_00);
+    param0->unk_30.unk_0C = Strbuf_Init(12, param0->heapId);
 
     Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_NICKNAME_STRBUF, param0->unk_30.unk_0C);
 
@@ -527,9 +527,9 @@ static void ov79_021D2858(UnkStruct_ov79_021D2928 *param0)
 
 static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
 {
-    VramTransfer_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->heapId);
 
-    param0->unk_7C = SpriteSystem_Alloc(param0->unk_00);
+    param0->unk_7C = SpriteSystem_Alloc(param0->heapId);
 
     {
         RenderOamTemplate v0 = {
@@ -551,10 +551,10 @@ static void ov79_021D2864(UnkStruct_ov79_021D2928 *param0)
         };
 
         SpriteSystem_Init(param0->unk_7C, &v0, &v1, 32);
-        RenderOam_ClearMain(param0->unk_00);
+        RenderOam_ClearMain(param0->heapId);
     }
 
-    param0->unk_5C = sub_02098FFC(param0->unk_00, 2, 2, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
+    param0->unk_5C = sub_02098FFC(param0->heapId, 2, 2, (NNS_G2D_VRAM_TYPE_2DMAIN), 0);
     param0->unk_60[0] = sub_0209916C(param0->unk_5C, param0->unk_10->unk_08, 100, 90, 0, 1, 0, 0);
 
     ManagedSprite_SetDrawFlag(param0->unk_60[0]->unk_04, 0);
@@ -687,10 +687,10 @@ static int ov79_021D2AF0(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
     switch (param0->unk_30.unk_09) {
     case 1:
-        Sound_PlayPokemonCry(11, param0->unk_30.unk_04, 0, 127, param0->unk_00, v0);
+        Sound_PlayPokemonCry(11, param0->unk_30.unk_04, 0, 127, param0->heapId, v0);
         break;
     default:
-        Sound_PlayPokemonCry(0, param0->unk_30.unk_04, 0, 127, param0->unk_00, v0);
+        Sound_PlayPokemonCry(0, param0->unk_30.unk_04, 0, 127, param0->heapId, v0);
         break;
     }
 

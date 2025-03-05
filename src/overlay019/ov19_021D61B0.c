@@ -183,7 +183,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             Graphics_LoadPartialPaletteFromOpenNARC(v3, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
             Font_UseImmediateGlyphAccess(FONT_SYSTEM, 10);
 
-            v0->unk_1BC = sub_0200762C(10);
+            v0->unk_1BC = sub_0200762C(HEAP_ID_10);
 
             for (v1 = 0; v1 < 4; v1++) {
                 v0->unk_08[v1] = NULL;

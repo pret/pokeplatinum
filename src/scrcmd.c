@@ -4239,7 +4239,7 @@ static BOOL ScrCmd_1D7(ScriptContext *ctx)
     void **v2 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 19);
 
     v0 = ScriptContext_ReadHalfWord(ctx);
-    *v2 = sub_02099674(ctx->fieldSystem, v0, 11);
+    *v2 = sub_02099674(ctx->fieldSystem, v0, HEAP_ID_FIELDMAP);
 
     ScriptContext_Pause(ctx, sub_02041CC8);
     return 1;
@@ -7488,13 +7488,13 @@ static BOOL ScrCmd_29E(ScriptContext *ctx)
 
     switch (v0) {
     case 0:
-        ov6_0224899C(fieldSystem, v1, 0, 32);
+        ov6_0224899C(fieldSystem, v1, 0, HEAP_ID_FIELD_TASK);
         break;
     case 1:
-        ov6_0224899C(fieldSystem, v1, 1, 32);
+        ov6_0224899C(fieldSystem, v1, 1, HEAP_ID_FIELD_TASK);
         break;
     case 2:
-        ov6_0224899C(fieldSystem, v1, 2, 32);
+        ov6_0224899C(fieldSystem, v1, 2, HEAP_ID_FIELD_TASK);
         break;
     default:
         GF_ASSERT(0);

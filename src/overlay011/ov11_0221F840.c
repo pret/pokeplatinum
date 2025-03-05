@@ -13,14 +13,14 @@
 static u32 ov11_0221F914(u32 param0, BOOL param1);
 static u32 ov11_0221F930(u32 param0, BOOL param1);
 
-UnkStruct_02014014 *ov11_0221F840(int param0)
+UnkStruct_02014014 *ov11_0221F840(int heapID)
 {
     UnkStruct_02014014 *v0;
     void *v1;
     Camera *camera;
 
-    v1 = Heap_AllocFromHeap(param0, 0x4800);
-    v0 = sub_02014014(ov11_0221F914, ov11_0221F930, v1, 0x4800, 1, param0);
+    v1 = Heap_AllocFromHeap(heapID, 0x4800);
+    v0 = sub_02014014(ov11_0221F914, ov11_0221F930, v1, 0x4800, 1, heapID);
     camera = sub_02014784(v0);
 
     if (camera != NULL) {
@@ -30,19 +30,19 @@ UnkStruct_02014014 *ov11_0221F840(int param0)
     return v0;
 }
 
-UnkStruct_02014014 *ov11_0221F888(int param0)
+UnkStruct_02014014 *ov11_0221F888(int heapID)
 {
     UnkStruct_02014014 *v0;
     void *v1;
     Camera *camera;
 
-    v1 = Heap_AllocFromHeap(param0, 0x4200);
+    v1 = Heap_AllocFromHeap(heapID, 0x4200);
 
     if (v1 == NULL) {
         return NULL;
     }
 
-    v0 = sub_02014014(ov11_0221F914, ov11_0221F930, v1, 0x4200, 1, param0);
+    v0 = sub_02014014(ov11_0221F914, ov11_0221F930, v1, 0x4200, 1, heapID);
     camera = sub_02014784(v0);
 
     if (camera != NULL) {

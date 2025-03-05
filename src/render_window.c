@@ -854,7 +854,7 @@ static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y)
 
 static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 species, u8 gender)
 {
-    void *buf = sub_0200762C(param0->unk_1C6);
+    void *buf = sub_0200762C(param0->heapId);
 
     ArchivedSprite sprite;
     BuildArchivedPokemonSprite(&sprite, species, gender, FACE_FRONT, FALSE, NULL, NULL);
@@ -864,7 +864,7 @@ static void LoadAndDrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, u16 
 
 static void LoadAndDrawPokemonPreviewSpriteFromStruct(UnkStruct_ov5_021D30A8 *param0, Pokemon *mon)
 {
-    void *buf = sub_0200762C(param0->unk_1C6);
+    void *buf = sub_0200762C(param0->heapId);
 
     ArchivedSprite sprite;
     Pokemon_BuildArchivedSprite(&sprite, mon, FACE_FRONT);
@@ -886,15 +886,15 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, ArchivedSpr
     NNSG2dImageProxy *imageProxy;
     const NNSG2dImagePaletteProxy *paletteProxy;
 
-    buf = Heap_AllocFromHeap(param0->unk_1C6, POKEMON_SPRITE_WHOLE_SIZE_BYTES);
+    buf = Heap_AllocFromHeap(param0->heapId, POKEMON_SPRITE_WHOLE_SIZE_BYTES);
 
     // frame 0
     UnkStruct_02013610 v6 = { 0, 0, 10, 10 };
-    sub_020135F0(sprite->archive, sprite->character, param0->unk_1C6, &v6, buf);
+    sub_020135F0(sprite->archive, sprite->character, param0->heapId, &v6, buf);
 
     // frame 1
     UnkStruct_02013610 v7 = { 10, 0, 10, 10 };
-    sub_020135F0(sprite->archive, sprite->character, param0->unk_1C6, &v7, buf + POKEMON_SPRITE_FRAME_SIZE_BYTES);
+    sub_020135F0(sprite->archive, sprite->character, param0->heapId, &v7, buf + POKEMON_SPRITE_FRAME_SIZE_BYTES);
 
     charResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_CHAR], POKEMON_PREVIEW_RESOURCE_ID);
     imageProxy = SpriteTransfer_GetImageProxy(charResource);
@@ -905,7 +905,7 @@ static void DrawPokemonPreviewSprite(UnkStruct_ov5_021D30A8 *param0, ArchivedSpr
 
     Heap_FreeToHeap(buf);
 
-    buf = sub_02013660(sprite->archive, sprite->palette, param0->unk_1C6);
+    buf = sub_02013660(sprite->archive, sprite->palette, param0->heapId);
     plttResource = SpriteResourceCollection_Find(param0->unk_194[SPRITE_RESOURCE_PLTT], POKEMON_PREVIEW_RESOURCE_ID);
     paletteProxy = SpriteTransfer_GetPaletteProxy(plttResource, imageProxy);
     offset = NNS_G2dGetImagePaletteLocation(paletteProxy, NNS_G2D_VRAM_TYPE_2DMAIN);

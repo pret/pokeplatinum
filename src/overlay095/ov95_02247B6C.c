@@ -105,13 +105,13 @@ void *ov95_02247B6C(UnkStruct_ov95_02247628 *param0)
         v0->unk_00 = param0;
         v0->unk_04 = 0;
         v0->unk_54 = ov95_02247628(param0);
-        v0->unk_0C = sub_0200762C(58);
+        v0->unk_0C = sub_0200762C(HEAP_ID_58);
         v0->unk_10 = NULL;
         v0->unk_68 = Strbuf_Init(300, HEAP_ID_58);
         v0->unk_6C = Strbuf_Init(300, HEAP_ID_58);
         v0->unk_78 = NULL;
         v0->unk_7C = NULL;
-        v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 58);
+        v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_58);
     }
 
     return v0;
