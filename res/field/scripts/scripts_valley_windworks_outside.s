@@ -131,11 +131,7 @@ _01A2:
     End
 
 _01A8:
-    ScrCmd_036 9, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 9
     End
 
 _01BF:

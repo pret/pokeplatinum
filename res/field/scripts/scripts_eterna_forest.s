@@ -412,19 +412,11 @@ _04D0:
     EndMovement
 
 _04E0:
-    ScrCmd_036 14, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 14
     End
 
 _04F7:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 15, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 15
     End
 
 _050C:

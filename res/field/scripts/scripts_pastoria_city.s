@@ -477,35 +477,19 @@ _0398:
     .byte 0
 
 _03E4:
-    ScrCmd_036 41, 0, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowMapSign 41
     End
 
 _03FB:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 42, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 42
     End
 
 _0410:
-    ScrCmd_036 43, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 43
     End
 
 _0427:
-    ScrCmd_036 44, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 44
     End
 
 _043E:

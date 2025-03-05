@@ -86,11 +86,7 @@ _0144:
     EndMovement
 
 _014C:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 3, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 3
     End
 
     .byte 0

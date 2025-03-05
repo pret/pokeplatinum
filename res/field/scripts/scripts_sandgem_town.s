@@ -718,44 +718,24 @@ _0879:
     End
 
 _088C:
-    ScrCmd_036 25, 0, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowMapSign 25
     End
 
 _08A3:
-    ScrCmd_036 26, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 26
     End
 
 _08BA:
     BufferCounterpartName 0
-    ScrCmd_036 27, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 27
     End
 
 _08D4:
-    ScrCmd_036 28, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 28
     End
 
 _08EB:
-    ScrCmd_036 29, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 29
     End
 
     .byte 0

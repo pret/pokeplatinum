@@ -302,43 +302,23 @@ _02A6:
     End
 
 _02BA:
-    ScrCmd_036 24, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 24
     End
 
 _02D1:
-    ScrCmd_036 25, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 25
     End
 
 _02E8:
-    ScrCmd_036 26, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 26
     End
 
 _02FF:
-    ScrCmd_036 27, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 27
     End
 
 _0316:
-    ScrCmd_036 28, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 28
     End
 
 _032D:

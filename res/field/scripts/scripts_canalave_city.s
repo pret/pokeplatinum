@@ -470,61 +470,33 @@ _0640:
     GoTo _0545
 
 _0649:
-    ScrCmd_036 36, 0, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowMapSign 36
     End
 
 _0660:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 37, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 37
     End
 
 _0675:
-    ScrCmd_036 38, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 38
     End
 
 _068C:
-    ScrCmd_036 39, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 39
     End
 
 _06A3:
-    ScrCmd_036 40, 2, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowLandmarkSign 40
     End
 
 _06BA:
     Call _0168
     GoToIfEq 0x4000, 0, _06E2
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 42, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 42
     End
 
 _06E2:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 41, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 41
     End
 
 _06F7:

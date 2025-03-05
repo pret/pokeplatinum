@@ -13,12 +13,12 @@
     ScriptEntryEnd
 
 _001E:
-    CallIfSet 186, _009D
-    CallIfUnset 186, _0087
+    CallIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _009D
+    CallIfUnset FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _0087
     CallIfEq 0x4097, 0, _0071
     GetPlayerGender 0x4000
     GoToIfEq 0x4000, GENDER_MALE, _0061
-    GoToIfEq 0x4000, 1, _0069
+    GoToIfEq 0x4000, GENDER_FEMALE, _0069
     End
 
 _0061:
@@ -57,7 +57,7 @@ _00C7:
 _00CB:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    GoToIfSet 186, _0128
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _0128
     ApplyMovement 5, _01C8
     WaitMovement
     Message 2
@@ -99,7 +99,7 @@ _013B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfSet 186, _018B
+    GoToIfSet FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY, _018B
     GetPlayerGender 0x800C
     GoToIfEq 0x800C, GENDER_MALE, _0167
     GoTo _0175
@@ -218,7 +218,7 @@ _0230:
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetFlag 0x29A
-    SetFlag 186
+    SetFlag FLAG_TEAM_GALACTIC_LEFT_LAKE_VERITY
     ClearFlag 0x1BA
     SetVar 0x40D3, 1
     BufferRivalName 0

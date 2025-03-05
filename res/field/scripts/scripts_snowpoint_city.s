@@ -199,19 +199,11 @@ _01EB:
     End
 
 _01FE:
-    ScrCmd_036 18, 0, 0, 0x800C
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03B 0x800C
-    CallCommonScript 0x7D0
+    ShowMapSign 18
     End
 
 _0215:
-    ScrCmd_037 3, 0
-    ScrCmd_038 3
-    ScrCmd_039
-    ScrCmd_03A 19, 0x800C
-    CallCommonScript 0x7D0
+    ShowScrollingSign 19
     End
 
 _022A:
