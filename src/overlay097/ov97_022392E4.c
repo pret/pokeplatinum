@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+// Char conversion table?
 static const u16 Unk_ov97_0223DAE8[][2] = {
     { 0x1, 0x1 },
     { 0x3, 0x3 },
@@ -253,85 +254,85 @@ static const u16 Unk_ov97_0223DAE8[][2] = {
     { 0x19B, 0x19B }
 };
 
-static u16 ov97_022392E4(u32 param0)
+static u16 ov97_022392E4(u32 language)
 {
-    return (param0 == 1) ? 0x1 : 0x1de;
+    return (language == JAPANESE) ? 0x1 : 0x1de;
 }
 
-static u16 ov97_022392F8(u32 param0)
+static u16 ov97_022392F8(u32 language)
 {
-    switch (param0) {
-    case 1:
+    switch (language) {
+    case JAPANESE:
     default:
         return 0xea;
-    case 2:
-    case 4:
-    case 7:
+    case ENGLISH:
+    case ITALIAN:
+    case SPANISH:
         return 0x1b4;
-    case 3:
+    case FRENCH:
         return 0x1b7;
-    case 5:
+    case GERMAN:
         return 0x1b6;
     }
 }
 
-static u16 ov97_02239334(u32 param0)
+static u16 ov97_02239334(u32 language)
 {
-    switch (param0) {
-    case 1:
+    switch (language) {
+    case JAPANESE:
     default:
         return 0xeb;
-    case 2:
-    case 4:
-    case 7:
+    case ENGLISH:
+    case ITALIAN:
+    case SPANISH:
         return 0x1b5;
-    case 3:
+    case FRENCH:
         return 0x1b8;
-    case 5:
+    case GERMAN:
         return 0x1b4;
     }
 }
 
-BOOL ov97_0223936C(const u8 *param0, u16 *param1, u32 param2, u32 param3)
+BOOL GBAStringToDSString(const u8 *src, u16 *dst, u32 length, u32 language)
 {
-    u32 v0, v1;
+    u32 i, v1;
 
-    v1 = (param3 != 1);
+    v1 = (language != JAPANESE);
 
-    for (v0 = 0; v0 < (param2 - 1); v0++) {
-        if (param0[v0] == 0xff) {
+    for (i = 0; i < (length - 1); i++) {
+        if (src[i] == 0xff) {
             break;
         }
 
-        if (param0[v0] >= NELEMS(Unk_ov97_0223DAE8)) {
+        if (src[i] >= NELEMS(Unk_ov97_0223DAE8)) {
             int v2, v3;
 
-            v3 = ((param2 - 1) < 10) ? (param2 - 1) : 10;
+            v3 = ((length - 1) < 10) ? (length - 1) : 10;
 
             for (v2 = 0; v2 < v3; v2++) {
-                param1[v2] = 0x1ac;
+                dst[v2] = 0x1ac;
             }
 
-            param1[v2] = 0xffff;
+            dst[v2] = 0xffff;
             return 0;
         }
 
-        switch (Unk_ov97_0223DAE8[param0[v0]][v1]) {
+        switch (Unk_ov97_0223DAE8[src[i]][v1]) {
         case 0x1:
-            param1[v0] = ov97_022392E4(param3);
+            dst[i] = ov97_022392E4(language);
             break;
         case 0xea:
-            param1[v0] = ov97_022392F8(param3);
+            dst[i] = ov97_022392F8(language);
             break;
         case 0xeb:
-            param1[v0] = ov97_02239334(param3);
+            dst[i] = ov97_02239334(language);
             break;
         default:
-            param1[v0] = Unk_ov97_0223DAE8[param0[v0]][v1];
+            dst[i] = Unk_ov97_0223DAE8[src[i]][v1];
             break;
         }
     }
 
-    param1[v0] = 0xffff;
+    dst[i] = 0xffff;
     return 1;
 }

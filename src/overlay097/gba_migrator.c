@@ -157,7 +157,7 @@ typedef struct {
     int unk_50C;
     int unk_510;
     u32 unk_514[14580];
-    PokemonStorageGBA *unk_E8E0;
+    PokemonStorageGBA *pokemonStorage;
     int unk_E8E4;
     int unk_E8E8;
     UnkStruct_02015920 *unk_E8EC;
@@ -391,7 +391,7 @@ static void ov97_02233D10(GBAMigrator *migrator)
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         boxPos = migrator->unk_42C[i].boxPosition;
         boxNum = migrator->unk_42C[i].boxId;
-        boxMonGBA = &migrator->unk_E8E0->boxes[boxNum][boxPos];
+        boxMonGBA = &migrator->pokemonStorage->boxes[boxNum][boxPos];
 
         BoxMonGBAToBoxMon(boxMonGBA, boxMon);
         BoxMonToTransferData(transfer, boxMon, i);
@@ -404,7 +404,7 @@ static void ov97_02233D10(GBAMigrator *migrator)
         boxNum = migrator->unk_42C[i].boxId;
 
         if ((boxPos != -1) && (boxNum != GBA_MAX_PC_BOXES)) {
-            SetGBABoxMonData(&(migrator->unk_E8E0->boxes[boxNum][boxPos]), GBA_MON_DATA_SPECIES, (u8 *)&species);
+            SetGBABoxMonData(&(migrator->pokemonStorage->boxes[boxNum][boxPos]), GBA_MON_DATA_SPECIES, (u8 *)&species);
         }
     }
 }
@@ -564,17 +564,17 @@ static void ov97_022340FC(AffineSpriteListTemplate *param0, GBAMigrator *migrato
 
 static int GetGBABoxMonSpeciesInBox(GBAMigrator *migrator, int boxId, int boxPosition)
 {
-    return GetGBABoxMonData(&(migrator->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_SPECIES, NULL);
+    return GetGBABoxMonData(&(migrator->pokemonStorage->boxes[boxId][boxPosition]), GBA_MON_DATA_SPECIES, NULL);
 }
 
 static int IsGBABoxMonEggInBox(GBAMigrator *migrator, int boxId, int boxPosition)
 {
-    return GetGBABoxMonData(&(migrator->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_IS_EGG, NULL);
+    return GetGBABoxMonData(&(migrator->pokemonStorage->boxes[boxId][boxPosition]), GBA_MON_DATA_IS_EGG, NULL);
 }
 
 static int GetGBABoxMonPersonalityInBox(GBAMigrator *migrator, int boxId, int boxPosition)
 {
-    return GetGBABoxMonData(&(migrator->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_PERSONALITY, NULL);
+    return GetGBABoxMonData(&(migrator->pokemonStorage->boxes[boxId][boxPosition]), GBA_MON_DATA_PERSONALITY, NULL);
 }
 
 static void ov97_02234190(TouchScreenRect *rect, int param1, int param2, int param3, int param4)
@@ -716,7 +716,7 @@ static void ov97_022343A8(GBAMigrator *migrator)
     v6 = Heap_AllocFromHeapAtEnd(HEAP_ID_MIGRATE_FROM_GBA, 4096);
 
     for (i = 0; i < GBA_MAX_MONS_PER_BOX; i++) {
-        if (GetGBABoxMonData(&(migrator->unk_E8E0->boxes[migrator->unk_E8E4][i]), GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
+        if (GetGBABoxMonData(&(migrator->pokemonStorage->boxes[migrator->unk_E8E4][i]), GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
             species = GetGBABoxMonSpeciesInBox(migrator, migrator->unk_E8E4, i);
             isEgg = IsGBABoxMonEggInBox(migrator, migrator->unk_E8E4, i);
             personality = GetGBABoxMonPersonalityInBox(migrator, migrator->unk_E8E4, i);
@@ -726,7 +726,7 @@ static void ov97_022343A8(GBAMigrator *migrator)
             ov97_022342E4(species, isEgg, form, i, migrator->unk_20C[i].unk_00, v6, v7);
             Sprite_SetDrawFlag(migrator->unk_20C[i].unk_00, TRUE);
 
-            if (GetGBABoxMonData(&(migrator->unk_E8E0->boxes[migrator->unk_E8E4][i]), GBA_MON_DATA_HELD_ITEM, NULL)) {
+            if (GetGBABoxMonData(&(migrator->pokemonStorage->boxes[migrator->unk_E8E4][i]), GBA_MON_DATA_HELD_ITEM, NULL)) {
                 Sprite_SetDrawFlag(migrator->unk_20C[i].unk_04, TRUE);
             } else {
                 Sprite_SetDrawFlag(migrator->unk_20C[i].unk_04, FALSE);
@@ -841,7 +841,7 @@ static void ov97_0223468C(GBAMigrator *migrator)
 
 static BOOL BoxMonGBAIsEgg(GBAMigrator *migrator, int boxPosition)
 {
-    BoxPokemonGBA *boxMonGBA = &migrator->unk_E8E0->boxes[migrator->unk_E8E4][boxPosition];
+    BoxPokemonGBA *boxMonGBA = &migrator->pokemonStorage->boxes[migrator->unk_E8E4][boxPosition];
 
     if (GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES_OR_EGG, NULL) == GBA_SPECIES_EGG) {
         return TRUE;
@@ -853,7 +853,7 @@ static BOOL BoxMonGBAIsEgg(GBAMigrator *migrator, int boxPosition)
 static BOOL BoxMonGBAHasHM(GBAMigrator *migrator, int boxPosition)
 {
     int i, j, move;
-    BoxPokemonGBA *boxMon = &migrator->unk_E8E0->boxes[migrator->unk_E8E4][boxPosition];
+    BoxPokemonGBA *boxMon = &migrator->pokemonStorage->boxes[migrator->unk_E8E4][boxPosition];
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         move = GetGBABoxMonData(boxMon, GBA_MON_DATA_MOVE1 + i, NULL);
@@ -1019,7 +1019,7 @@ u16 sInvalidGBAItems[] = {
 
 static BOOL BoxMonGBAHasInvalidItem(GBAMigrator *migrator, int boxPosition)
 {
-    BoxPokemonGBA *boxMonGBA = &migrator->unk_E8E0->boxes[migrator->unk_E8E4][boxPosition];
+    BoxPokemonGBA *boxMonGBA = &migrator->pokemonStorage->boxes[migrator->unk_E8E4][boxPosition];
     int item = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HELD_ITEM, NULL);
     int i;
 
@@ -1034,7 +1034,7 @@ static BOOL BoxMonGBAHasInvalidItem(GBAMigrator *migrator, int boxPosition)
 
 static BOOL IsBoxMonGBAInvalidSpecies(GBAMigrator *migrator, int boxPosition)
 {
-    BoxPokemonGBA *boxMonGBA = &migrator->unk_E8E0->boxes[migrator->unk_E8E4][boxPosition];
+    BoxPokemonGBA *boxMonGBA = &migrator->pokemonStorage->boxes[migrator->unk_E8E4][boxPosition];
     int species = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL);
 
     return IsGBASpeciesInvalid(species);
@@ -1126,7 +1126,7 @@ static void ov97_022349E0(GBAMigrator *migrator)
 static void ov97_02234A2C(GBAMigrator *migrator, int param1)
 {
     UnkStruct_ov97_02233DAC v0;
-    u16 v1[8 + 1];
+    u16 boxName[GBA_BOX_NAME_LEN + 1];
 
     memset(&v0, 0, sizeof(UnkStruct_ov97_02233DAC));
 
@@ -1143,8 +1143,8 @@ static void ov97_02234A2C(GBAMigrator *migrator, int param1)
     v0.unk_2C = TEXT_COLOR(1, 2, 0);
     v0.unk_20 = 0xA0;
 
-    ov97_0223936C(migrator->unk_E8E0->boxNames[param1], v1, 8 + 1, ov97_02235DBC());
-    v0.unk_38 = v1;
+    GBAStringToDSString(migrator->pokemonStorage->boxNames[param1], boxName, GBA_BOX_NAME_LEN + 1, ov97_02235DBC());
+    v0.unk_38 = boxName;
     ov97_02233DD0(migrator, &v0, 0x1);
 }
 
@@ -1179,8 +1179,8 @@ static void ov97_02234B0C(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
     int gbaItemID, itemID;
     UnkStruct_ov97_02233DAC v4;
     MessageLoader *msgLoader;
-    u8 v6[10 + 1];
-    u16 v7[10 + 1];
+    u8 gbaNickname[GBA_MON_NAME_LEN + 1];
+    u16 dsNickname[MON_NAME_LEN + 1];
     Strbuf *strBuf;
 
     memset(&v4, 0, sizeof(UnkStruct_ov97_02233DAC));
@@ -1214,10 +1214,10 @@ static void ov97_02234B0C(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
         return;
     }
 
-    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NICKNAME, v6);
-    ov97_0223936C(v6, v7, 10 + 1, GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL));
+    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NICKNAME, gbaNickname);
+    GBAStringToDSString(gbaNickname, dsNickname, GBA_MON_NAME_LEN + 1, GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL));
 
-    v4.unk_38 = v7;
+    v4.unk_38 = dsNickname;
     v4.messageEntryID = -1;
     v4.unk_18 = 1 * 8;
     v4.unk_1C = 0;
@@ -1620,7 +1620,7 @@ static void ov97_02235344(GBAMigrator *migrator)
     Strbuf *v2;
     u16 v3[7 + 1];
 
-    ov97_0223936C(GetGBAPlayerName(), v3, GBA_PLAYER_NAME_LEN + 1, ov97_02235DBC());
+    GBAStringToDSString(GetGBAPlayerName(), v3, GBA_PLAYER_NAME_LEN + 1, ov97_02235DBC());
 
     v1 = StringTemplate_Default(HEAP_ID_MIGRATE_FROM_GBA);
     v2 = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_MIGRATE_FROM_GBA);
@@ -1691,7 +1691,7 @@ static int ov97_02235408(GBAMigrator *migrator)
 
         for (boxNum = 0; boxNum < GBA_MAX_PC_BOXES; boxNum++) {
             for (boxPos = 0; boxPos < GBA_MAX_MONS_PER_BOX; boxPos++) {
-                boxMonGBA = &migrator->unk_E8E0->boxes[boxNum][boxPos];
+                boxMonGBA = &migrator->pokemonStorage->boxes[boxNum][boxPos];
 
                 if (GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
                     count++;
@@ -1842,8 +1842,8 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
             v3->unk_510 = ov97_022360D8();
 
             if (v3->unk_510 == 0) {
-                v3->unk_E8E0 = GetGBAPokemonStorage();
-                v3->unk_E8E4 = v3->unk_E8E0->currentBox;
+                v3->pokemonStorage = GetGBAPokemonStorage();
+                v3->unk_E8E4 = v3->pokemonStorage->currentBox;
             } else {
                 v3->unk_04 = 1;
             }
@@ -1987,7 +1987,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
                 gbaMonValidity = ov97_02234854(v3, boxPos);
 
                 if (gbaMonValidity == GBA_MON_STATE_1) {
-                    ov97_02234B0C(v3, &(v3->unk_E8E0->boxes[v3->unk_E8E4][boxPos]));
+                    ov97_02234B0C(v3, &(v3->pokemonStorage->boxes[v3->unk_E8E4][boxPos]));
 
                     if (v3->selectedCount == CATCHING_SHOW_MONS) {
                         v3->unk_E8E8 = 45;

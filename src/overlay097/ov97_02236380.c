@@ -792,8 +792,8 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     u32 value;
     int i, v3;
     int v4;
-    u8 v5[10 + 1];
-    u16 v6[12];
+    u8 gbaNickname[GBA_MON_NAME_LEN + 1];
+    u16 dsNickName[MON_NAME_LEN + 2];
 
     BoxPokemon_Init(boxMon);
     reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
@@ -1011,10 +1011,10 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
         BoxPokemon_SetValue(boxMon, MON_DATA_FORM, (u8 *)&value);
     }
 
-    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NICKNAME, &v5[0]);
-    ov97_0223936C(&v5[0], &v6[0], 12, v4);
+    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NICKNAME, &gbaNickname[0]);
+    GBAStringToDSString(&gbaNickname[0], &dsNickName[0], MON_NAME_LEN + 2, v4);
 
-    BoxPokemon_SetValue(boxMon, MON_DATA_NICKNAME_AND_FLAG, &v6[0]);
+    BoxPokemon_SetValue(boxMon, MON_DATA_NICKNAME_AND_FLAG, &dsNickName[0]);
 
     if (GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL) != gGameLanguage) {
         value = 1;
@@ -1024,10 +1024,10 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MET_GAME, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &value);
 
-    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_OT_NAME, &v5[0]);
-    ov97_0223936C(&v5[0], &v6[0], 8, v4);
+    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_OT_NAME, &gbaNickname[0]);
+    GBAStringToDSString(&gbaNickname[0], &dsNickName[0], GBA_PLAYER_NAME_LEN + 1, v4);
 
-    BoxPokemon_SetValue(boxMon, MON_DATA_OTNAME, &v6[0]);
+    BoxPokemon_SetValue(boxMon, MON_DATA_OTNAME, &dsNickName[0]);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MET_LOCATION, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_LOCATION, &value);
