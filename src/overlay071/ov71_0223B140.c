@@ -708,7 +708,7 @@ static void ov71_0223B968(UnkStruct_ov71_0223B620 *param0, NARC *param1)
         }
 
         if (v6 != -1) {
-            Graphics_LoadPaletteFromOpenNARC(param1, v6, 4, (4 * 32), (2 * 32), 25);
+            Graphics_LoadPaletteFromOpenNARC(param1, v6, 4, (4 * 32), (2 * 32), HEAP_ID_25);
         }
 
         if (param0->unk_B4->unk_04_2 == 0) {

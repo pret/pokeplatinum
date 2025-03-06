@@ -927,10 +927,10 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
     LoadStandardWindowGraphics(param0->unk_00, 0, 1, 14, 0, HEAP_ID_12);
     LoadMessageBoxGraphics(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), 12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_00, 4, 0, 0, 0, 12);
-    Graphics_LoadPaletteFromOpenNARC(param1, 4, 4, 0x20, 0x20, 12);
+    Graphics_LoadPaletteFromOpenNARC(param1, 4, 4, 0x20, 0x20, HEAP_ID_12);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 5, 0, 0, 0, 12);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_00, 5, 0, 0, 0, 12);
-    Graphics_LoadPaletteFromOpenNARC(param1, 13, 4, 0, 0x20, 12);
+    Graphics_LoadPaletteFromOpenNARC(param1, 13, 4, 0, 0x20, HEAP_ID_12);
     LoadScreenDataFromNARC(12, param0->unk_264, param0->unk_324, param0->unk_3E4);
     Bg_MaskPalette(0, 0);
     Bg_MaskPalette(4, 0);

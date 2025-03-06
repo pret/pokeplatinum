@@ -568,7 +568,7 @@ static void ov59_021D1388(UnkStruct_020961E8 *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_00;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 16 * 2, 51);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 16 * 2, HEAP_ID_51);
     Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, 51);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_51);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_51);

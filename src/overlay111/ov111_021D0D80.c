@@ -1157,7 +1157,7 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
     Font_LoadTextPalette(4, 13 * 32, HEAP_ID_115);
     Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_115);
     Font_LoadScreenIndicatorsPalette(4, 12 * 32, HEAP_ID_115);
-    Font_InitManager(FONT_SUBSCREEN, 115);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_115);
 
     param0->unk_160 = sub_0200C440(15, 14, 0, HEAP_ID_115);
     ov111_021D3548(param0->unk_58, param0->unk_5C);

@@ -1415,7 +1415,7 @@ static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
     Font_LoadTextPalette(0, 15 * 32, HEAP_ID_78);
     Graphics_LoadPalette(116, 19, 0, 0, 32 * 6, 78);
     Graphics_LoadTilesToBgLayer(116, 22, param0->unk_20, 2, 0, 10 * 16 * 0x20, 1, 78);
-    Font_InitManager(FONT_SUBSCREEN, 78);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_78);
 }
 
 static void ov97_02234E7C(UnkStruct_ov97_02234A2C *param0)

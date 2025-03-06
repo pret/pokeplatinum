@@ -714,7 +714,7 @@ void ov5_021DE3D0(NARC *param0, u32 param1, u32 param2, u32 param3, u32 param4, 
     void *v0;
     NNSG2dScreenData *v1;
 
-    Graphics_LoadPaletteFromOpenNARC(param0, param3, 0, param4 * 32, param5 * 32, 4);
+    Graphics_LoadPaletteFromOpenNARC(param0, param3, 0, param4 * 32, param5 * 32, HEAP_ID_FIELD);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0, param2, param6, param7, 0, 0, 0, 4);
 
     v0 = Graphics_GetScrnDataFromOpenNARC(param0, param1, 0, &v1, 4);

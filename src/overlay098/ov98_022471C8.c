@@ -620,8 +620,8 @@ static void ov98_02247704(UnkStruct_ov98_02247704 *param0)
     BgConfig *v0 = param0->unk_04;
     NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_109);
 
-    Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, 109);
-    Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 109);
+    Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, HEAP_ID_109);
+    Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_109);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_109);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_109);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_08), 109);
@@ -645,7 +645,7 @@ static void ov98_02247704(UnkStruct_ov98_02247704 *param0)
 
         Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 11, v0, 3, 0, 0, 0, 109);
         Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 10, v0, 3, 0, 0, 0, 109);
-        Graphics_LoadPaletteFromOpenNARC(v1, 12, 0, 9 * 0x20, 0x20, 109);
+        Graphics_LoadPaletteFromOpenNARC(v1, 12, 0, 9 * 0x20, 0x20, HEAP_ID_109);
 
         NARC_dtor(v1);
     }

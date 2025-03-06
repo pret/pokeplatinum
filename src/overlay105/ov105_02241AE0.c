@@ -2489,7 +2489,7 @@ static void ov105_02244B30(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 125, param0->unk_4C, param1, 0, 0, 1, 93);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 126, param0->unk_4C, param1, 0, 0, 1, 93);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_338, 171, 4, 0, 0x20, 93);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_338, 171, 4, 0, 0x20, HEAP_ID_93);
 
     return;
 }

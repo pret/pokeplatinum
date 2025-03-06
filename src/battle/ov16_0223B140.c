@@ -343,7 +343,7 @@ void ov16_0223B430(BattleSystem *battleSys)
     v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
     battleSys->unk_198 = ov16_022687C8(v0, v1, battleSys, BattleSystem_GetTrainerGender(battleSys, ov16_0223F6E4(battleSys)), battleSys->unk_1BC);
 
-    Font_InitManager(FONT_SUBSCREEN, 5);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
     battleSys->unk_23FB_1 = 1;
 

@@ -91,7 +91,7 @@ void ov20_021D4764(UnkStruct_ov20_021D4AD4 *param0)
 
 void ov20_021D4774(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
 {
-    Graphics_LoadPaletteFromOpenNARC(param1, 21, 4, 0, 0x40, 35);
+    Graphics_LoadPaletteFromOpenNARC(param1, 21, 4, 0, 0x40, HEAP_ID_35);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_0C, 4, 0, 0, 1, 35);
 
     ov20_021D4874(param0, param1);

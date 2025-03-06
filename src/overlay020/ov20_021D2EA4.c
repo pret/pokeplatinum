@@ -164,7 +164,7 @@ static void ov20_021D30A4(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     NNSG2dPaletteData *v0;
     void *v1;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 6, 0, 0, 14 * 0x20, 35);
+    Graphics_LoadPaletteFromOpenNARC(param1, 6, 0, 0, 14 * 0x20, HEAP_ID_35);
 
     v1 = Graphics_GetPlttDataFromOpenNARC(param1, 6, &v0, 35);
 

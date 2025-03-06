@@ -189,7 +189,7 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
     int v2;
     int v3;
 
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_14.unk_5C, 126, 0, 3 * 32, 64, 14);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_14.unk_5C, 126, 0, 3 * 32, 64, HEAP_ID_14);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_5C, 125, param0->unk_14.unk_40, 1, 0, 0, 0, 14);
 
     if (param0->unk_0C == 0) {

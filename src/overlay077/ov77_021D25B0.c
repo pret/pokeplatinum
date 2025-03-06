@@ -1490,13 +1490,13 @@ static void ov77_021D37C0(UnkStruct_ov77_021D37C0 *param0)
             Graphics_LoadTilesToBgLayerFromOpenNARC(v2, 56, param0->unk_10, 1, 0, 0, 0, 76);
             Graphics_LoadTilemapToBgLayerFromOpenNARC(v2, 57, param0->unk_10, 1, 0, 0, 0, 76);
             Graphics_LoadTilemapToBgLayerFromOpenNARC(v2, 57, param0->unk_10, 1, 32 * 32, 0, 0, 76);
-            Graphics_LoadPaletteFromOpenNARC(v2, 55, 0, 0x20 * 0, 0x20, 76);
+            Graphics_LoadPaletteFromOpenNARC(v2, 55, 0, 0x20 * 0, 0x20, HEAP_ID_76);
             NARC_dtor(v2);
         }
     }
 
     {
-        Graphics_LoadPaletteFromOpenNARC(v1, 61, 4, 0, 0, 76);
+        Graphics_LoadPaletteFromOpenNARC(v1, 61, 4, 0, 0, HEAP_ID_76);
         Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 59, param0->unk_10, 5, 0, 0, 0, 76);
         Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 63, param0->unk_10, 5, 0, 0, 0, 76);
         Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 58, param0->unk_10, 6, 0, 0, 0, 76);
@@ -1541,7 +1541,7 @@ static void ov77_021D3A10(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
     v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, HEAP_ID_76);
 
-    Graphics_LoadPaletteFromOpenNARC(v1, 68, 0, 0, 0, 76);
+    Graphics_LoadPaletteFromOpenNARC(v1, 68, 0, 0, 0, HEAP_ID_76);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 66, param1->unk_10, 1, 0, 0, 0, 76);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 70, param1->unk_10, 1, 0, 0, 0, 76);
@@ -1572,8 +1572,8 @@ static void ov77_021D3B5C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
     v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, HEAP_ID_76);
 
-    Graphics_LoadPaletteFromOpenNARC(v1, 72, 0, 0, 0, 76);
-    Graphics_LoadPaletteFromOpenNARC(v1, 72, 4, 0, 0, 76);
+    Graphics_LoadPaletteFromOpenNARC(v1, 72, 0, 0, 0, HEAP_ID_76);
+    Graphics_LoadPaletteFromOpenNARC(v1, 72, 4, 0, 0, HEAP_ID_76);
 
     param1->unk_240 = Heap_AllocFromHeap(HEAP_ID_76, 0x200);
 

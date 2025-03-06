@@ -412,7 +412,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
 
         v3 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, HEAP_ID_FIELD);
 
-        Graphics_LoadPaletteFromOpenNARC(v3, 0, 4, 0, 0x20 * 2, 4);
+        Graphics_LoadPaletteFromOpenNARC(v3, 0, 4, 0, 0x20 * 2, HEAP_ID_FIELD);
         Graphics_LoadTilesToBgLayerFromOpenNARC(v3, 1, param0, 4, 0, 32 * 5 * 0x20, 0, 4);
         Graphics_LoadTilemapToBgLayerFromOpenNARC(v3, 2, param0, 4, 0, 32 * 24 * 2, 0, 4);
         NARC_dtor(v3);

@@ -464,7 +464,7 @@ static void ov110_021D12C0 (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 10, param0->unk_0C, param1, 0, 0, 1, 114);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 11, param0->unk_0C, param1, 0, 0, 1, 114);
-    Graphics_LoadPaletteFromOpenNARC(v0, 12, 4, 0, 0x20, 114);
+    Graphics_LoadPaletteFromOpenNARC(v0, 12, 4, 0, 0x20, HEAP_ID_114);
     NARC_dtor(v0);
 
     return;

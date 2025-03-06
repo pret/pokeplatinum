@@ -900,7 +900,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         sub_020871EC(v0->unk_160);
         sub_020871B0(v0, (UnkStruct_0208737C *)OverlayManager_Args(param0));
         sub_0208769C(v0, v1);
-        Font_InitManager(FONT_SUBSCREEN, 18);
+        Font_InitManager(FONT_SUBSCREEN, HEAP_ID_18);
         SetVBlankCallback(sub_02087190, NULL);
         sub_0208737C(v0, param0);
         Font_UseImmediateGlyphAccess(FONT_SYSTEM, 18);
@@ -1499,7 +1499,7 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_160;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 3 * 2, 18);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 3 * 2, HEAP_ID_18);
     Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, 18);
     Bg_MaskPalette(4, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, ((32 * 8) * 0x20), 1, 18);

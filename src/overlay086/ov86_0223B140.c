@@ -690,7 +690,7 @@ static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 3, param0->unk_10, 3, 0, 0, 1, 63);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 0, param0->unk_10, 3, 0, 0, 1, 63);
-    Graphics_LoadPaletteFromOpenNARC(v0, 4, 0, 0, 0x60, 63);
+    Graphics_LoadPaletteFromOpenNARC(v0, 4, 0, 0, 0x60, HEAP_ID_63);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 2, param0->unk_10, 2, 0, 0, 1, 63);
     Bg_CopyTilemapBufferToVRAM(param0->unk_10, 1);
 

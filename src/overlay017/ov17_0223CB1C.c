@@ -162,7 +162,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
 
     sub_0201E3D8();
     sub_0201E450(4);
-    Font_InitManager(FONT_SUBSCREEN, 22);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_22);
 
     v0->unk_0C.unk_1C = SpriteSystem_Alloc(22);
 

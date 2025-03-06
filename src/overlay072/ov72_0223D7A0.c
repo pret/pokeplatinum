@@ -148,7 +148,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         sub_0201E3D8();
         sub_0201E450(1);
         SetVBlankCallback(ov72_0223DA48, v0->unk_00);
-        Font_InitManager(FONT_SUBSCREEN, 39);
+        Font_InitManager(FONT_SUBSCREEN, HEAP_ID_39);
 
         ov72_0223DB98(v0);
         ov72_0223DDA8();
@@ -441,8 +441,8 @@ static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_00;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 3, 39);
-    Graphics_LoadPaletteFromOpenNARC(param1, 2, 4, 0, 16 * 2 * 2, 39);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 3, HEAP_ID_39);
+    Graphics_LoadPaletteFromOpenNARC(param1, 2, 4, 0, 16 * 2 * 2, HEAP_ID_39);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_39);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_39);
     Bg_ClearTilesRange(1, 32, 0, HEAP_ID_39);

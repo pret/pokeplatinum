@@ -430,7 +430,7 @@ void ov19_021DD114(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
         Window_FillTilemap(&(param0->unk_88), 0x0);
         Window_CopyToVRAM(&param0->unk_88);
         ov19_021DE324(param0);
-        Graphics_LoadPaletteFromOpenNARC(param1, 128, 4, 0, 0x20 * 3, 10);
+        Graphics_LoadPaletteFromOpenNARC(param1, 128, 4, 0, 0x20 * 3, HEAP_ID_10);
         ov19_021DD224(param0, param1);
     }
 }

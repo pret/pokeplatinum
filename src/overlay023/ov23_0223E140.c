@@ -1318,7 +1318,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
         NARC *v6;
 
         v6 = NARC_ctor(NARC_INDEX_DATA__UG_FOSSIL, HEAP_ID_29);
-        Graphics_LoadPaletteFromOpenNARC(v6, 1, 0, 0, 32 * 3, 29);
+        Graphics_LoadPaletteFromOpenNARC(v6, 1, 0, 0, 32 * 3, HEAP_ID_29);
 
         v0 = Graphics_LoadTilesToBgLayerFromOpenNARC(v6, 0, v1, 0, 0, 0, 0, 29);
         Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 2, v1, 0, 0, 0, 0, 29);
@@ -1930,7 +1930,7 @@ static int ov23_0223FC9C(int param0, BgConfig *param1, int param2, UnkStruct_ov2
     }
 
     if (param0 >= param3->unk_0C) {
-        Graphics_LoadPaletteFromOpenNARC(v12, v0->unk_00->unk_12, 0, (v11 + 3) * 32, 32, 29);
+        Graphics_LoadPaletteFromOpenNARC(v12, v0->unk_00->unk_12, 0, (v11 + 3) * 32, 32, HEAP_ID_29);
     } else {
         param3->unk_18[param0] = Graphics_GetPlttDataFromOpenNARC(v12, v0->unk_00->unk_12, &param3->unk_28[param0], 29);
         DC_FlushRange(param3->unk_28[param0]->pRawData, 32);

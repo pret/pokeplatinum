@@ -1449,8 +1449,8 @@ static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 3, 0, 0, 0, 54);
-    Graphics_LoadPaletteFromOpenNARC(param1, 3, 4, 0, 0, 54);
+    Graphics_LoadPaletteFromOpenNARC(param1, 3, 0, 0, 0, HEAP_ID_54);
+    Graphics_LoadPaletteFromOpenNARC(param1, 3, 4, 0, 0, HEAP_ID_54);
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_54);
     Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, HEAP_ID_54);

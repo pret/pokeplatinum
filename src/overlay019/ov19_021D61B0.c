@@ -1748,7 +1748,7 @@ static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     Bg_FillTilemapRect(param0->unk_1C0, 1, 0x0, 0, 0, 32, 32, 17);
     Bg_CopyTilemapBufferToVRAM(param0->unk_1C0, 1);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 1, param0->unk_1C0, 2, 0, 0, 1, 10);
-    Graphics_LoadPaletteFromOpenNARC(param2, 5, 0, 0, 0x20 * 7, 10);
+    Graphics_LoadPaletteFromOpenNARC(param2, 5, 0, 0, 0x20 * 7, HEAP_ID_10);
 
     if (ov19_021D5E08(param1) != 4) {
         Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 0, param0->unk_1C0, 2, 0, 0, 1, 10);
