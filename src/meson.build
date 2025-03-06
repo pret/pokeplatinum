@@ -278,7 +278,7 @@ pokeplatinum_c = files(
     'trainer_data.c',
     'unk_020797C8.c',
     'pokemon_icon.c',
-    'unk_0207A274.c',
+    'dexmode_checker.c',
     'unk_0207A2A8.c',
     'unk_0207A6DC.c',
     'unk_0207AE68.c',
