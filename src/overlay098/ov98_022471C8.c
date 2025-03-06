@@ -618,7 +618,7 @@ static void ov98_022476D0(BgConfig *param0)
 static void ov98_02247704(UnkStruct_ov98_02247704 *param0)
 {
     BgConfig *v0 = param0->unk_04;
-    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 109);
+    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_109);
 
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, 109);
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 109);
@@ -639,7 +639,7 @@ static void ov98_02247704(UnkStruct_ov98_02247704 *param0)
     NARC_dtor(v1);
 
     {
-        v1 = NARC_ctor(NARC_INDEX_ARC__EMAIL_GRA, 109);
+        v1 = NARC_ctor(NARC_INDEX_ARC__EMAIL_GRA, HEAP_ID_109);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 

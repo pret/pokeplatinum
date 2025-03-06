@@ -623,7 +623,7 @@ static void ov104_0223CB80(UnkStruct_ov104_0223C4CC *param0)
 
 static void ov104_0223CC10(UnkStruct_ov104_0223C4CC *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
+    NARC *v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 125, param0->unk_00, 4, 0, 0, 1, 94);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 126, param0->unk_00, 4, 0, 0, 1, 94);
@@ -688,7 +688,7 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
         int v4 = ov104_0222EA90(param1, 0);
 
         v2 = ov104_0222EA90(param1, 5);
-        v3 = NARC_ctor(v2, 94);
+        v3 = NARC_ctor(v2, HEAP_ID_94);
 
         Graphics_LoadTilesToBgLayerFromOpenNARC(v3, ov104_0222EA90(param1, 7), param0->unk_00, 3, 0, 0, 1, 94);
 
@@ -1077,7 +1077,7 @@ static void ov104_0223D498(UnkStruct_ov104_0223C4CC *param0)
     ManagedSprite *v3;
 
     v2 = sub_0209B9E0(param0->unk_08);
-    v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_OBJ, 94);
+    v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_OBJ, HEAP_ID_94);
 
     for (v0 = 0; v0 < 8; v0++) {
         if (v2->unk_00[v0] != 0xffff) {

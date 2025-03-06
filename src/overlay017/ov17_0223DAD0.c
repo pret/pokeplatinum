@@ -290,8 +290,8 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
         NARC *v1;
         NARC *v2;
 
-        v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 23);
-        v2 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 23);
+        v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, HEAP_ID_23);
+        v2 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, HEAP_ID_23);
 
         ov17_0223E67C(v0, v1);
         ov17_0223E770(v0, v1);

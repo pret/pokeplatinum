@@ -708,7 +708,7 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
     int i, species, isEgg, gbaVersion, form;
     u32 personality;
     void *v6;
-    NARC *v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 78);
+    NARC *v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_78);
     v6 = Heap_AllocFromHeapAtEnd(78, 4096);
 
     for (i = 0; i < 30; i++) {

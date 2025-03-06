@@ -809,7 +809,7 @@ static void ov84_0223BBC4(BgConfig *param0)
 
 static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0)
 {
-    param0->unk_D4 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_BAG_GRA, 6);
+    param0->unk_D4 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_BAG_GRA, HEAP_ID_6);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 11, param0->unk_00, 1, 0, 0, 0, 6);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 14, param0->unk_00, 1, 0, 0, 0, 6);

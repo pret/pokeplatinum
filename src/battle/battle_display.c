@@ -2923,8 +2923,8 @@ static void ov16_022604C8(SysTask *param0, void *param1)
             NARC *v12;
             NARC *v13;
 
-            v12 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-            v13 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+            v12 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+            v13 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
             v11.unk_01 = v0->unk_09;
             v11.unk_00 = v0->unk_34;
@@ -3007,8 +3007,8 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 }
                 break;
             case 2: {
-                NARC *v16 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-                NARC *v17 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+                NARC *v16 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+                NARC *v17 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
                 ov16_02268C04(v16, v17, v2, 0, 0, NULL);
                 ov16_0226BCCC(v2, 0);
@@ -3019,8 +3019,8 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 NARC_dtor(v17);
             } break;
             case 3: {
-                NARC *v18 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-                NARC *v19 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+                NARC *v18 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+                NARC *v19 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
                 ov16_02268C04(v18, v19, v2, 0, 0, NULL);
                 ov16_0226BCCC(v2, 0);
@@ -3031,8 +3031,8 @@ static void ov16_022604C8(SysTask *param0, void *param1)
                 NARC_dtor(v19);
             } break;
             case 4: {
-                NARC *v20 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-                NARC *v21 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+                NARC *v20 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+                NARC *v21 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
                 if (ov16_0226D088(v2) == 1) {
                     ov16_0226846C(v6);
@@ -3054,8 +3054,8 @@ static void ov16_022604C8(SysTask *param0, void *param1)
         break;
     case 7:
         if (ov16_02269348(v2) == 1) {
-            NARC *v22 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-            NARC *v23 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+            NARC *v22 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+            NARC *v23 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
             ov16_02268C04(v22, v23, v2, 0, 0, NULL);
             ov16_0226BCCC(v2, 0);
@@ -3213,8 +3213,8 @@ static void ov16_02260C00(SysTask *param0, void *param1)
         {
             UnkStruct_ov16_02260C00 v8;
             int i;
-            NARC *v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-            NARC *v11 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+            NARC *v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+            NARC *v11 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
             for (i = 0; i < 4; i++) {
                 v8.unk_00[i] = v0->unk_0C[i];
@@ -3378,8 +3378,8 @@ static void ov16_02260F14(SysTask *param0, void *param1)
         {
             UnkStruct_ov16_02260F14 v6;
             int i;
-            NARC *v8 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-            NARC *v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+            NARC *v8 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+            NARC *v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
             for (i = 0; i < 4; i++) {
                 v6.unk_00[i] = v0->unk_10[i];
@@ -4406,8 +4406,8 @@ static void ov16_022623F0(SysTask *param0, void *param1)
     case 1:
         if ((Text_IsPrinterActive(v0->unk_1A) == 0) || (v0->unk_10 == NULL)) {
             {
-                NARC *v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-                NARC *v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+                NARC *v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+                NARC *v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
                 UnkStruct_ov16_022623F0 v11;
 
                 ov16_02269218(v2);
@@ -4454,8 +4454,8 @@ static void ov16_022623F0(SysTask *param0, void *param1)
     case 3:
         if (ov16_02269348(v2) == 1) {
             {
-                NARC *v12 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-                NARC *v13 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+                NARC *v12 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+                NARC *v13 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
                 ov16_022675AC(v0->unk_04);
                 ov16_022647D8(v5);

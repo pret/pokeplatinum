@@ -888,7 +888,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02087A10), HEAP_ID_18);
         memset(v0, 0, sizeof(UnkStruct_02087A10));
         v0->unk_160 = BgConfig_New(HEAP_ID_18);
-        v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, 18);
+        v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, HEAP_ID_18);
 
         v0->unk_168 = StringTemplate_Default(18);
         v0->unk_16C = MessageLoader_Init(0, 26, 422, HEAP_ID_18);

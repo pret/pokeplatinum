@@ -259,7 +259,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     SetAutorepeat(4, 8);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_12, 0x30000);
 
-    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 12);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_12);
     v0 = sub_0207ECC0(param0);
 
     StartScreenTransition(1, 3, 3, 0x0, 6, 1, 12);
@@ -1198,7 +1198,7 @@ static void sub_0207F308(GameWindowLayout *param0)
 static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1228,7 +1228,7 @@ static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F4AC(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1253,7 +1253,7 @@ static void sub_0207F4AC(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F5A0(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1278,7 +1278,7 @@ static void sub_0207F5A0(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F694(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1303,7 +1303,7 @@ static void sub_0207F694(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F788(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {

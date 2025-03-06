@@ -427,7 +427,7 @@ static void ov61_0222C38C(BgConfig *param0)
 static void ov61_0222C3B0(UnkStruct_ov61_0222C664 *param0)
 {
     BgConfig *v0 = param0->unk_04;
-    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 117);
+    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_117);
 
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, 117);
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 117);

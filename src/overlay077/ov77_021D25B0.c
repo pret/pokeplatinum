@@ -1471,7 +1471,7 @@ static void ov77_021D36F8(UnkStruct_ov77_021D2E9C *param0)
 static void ov77_021D37C0(UnkStruct_ov77_021D37C0 *param0)
 {
     u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
+    NARC *v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, HEAP_ID_76);
 
     {
         Graphics_LoadPaletteWithSrcOffsetFromOpenNARC(v1, 96, 0, 0x20 * 0xc, 0x20 * 0xc, 0x20 * 2, 76);
@@ -1485,7 +1485,7 @@ static void ov77_021D37C0(UnkStruct_ov77_021D37C0 *param0)
         {
             NARC *v2;
 
-            v2 = NARC_ctor(NARC_INDEX_DATA__WEATHER_SYS, 76);
+            v2 = NARC_ctor(NARC_INDEX_DATA__WEATHER_SYS, HEAP_ID_76);
 
             Graphics_LoadTilesToBgLayerFromOpenNARC(v2, 56, param0->unk_10, 1, 0, 0, 0, 76);
             Graphics_LoadTilemapToBgLayerFromOpenNARC(v2, 57, param0->unk_10, 1, 0, 0, 0, 76);
@@ -1539,7 +1539,7 @@ static void ov77_021D3A10(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
     G2_SetBG0Priority(0);
     Bg_SetPriority(1, 3);
 
-    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, HEAP_ID_76);
 
     Graphics_LoadPaletteFromOpenNARC(v1, 68, 0, 0, 0, 76);
 
@@ -1570,7 +1570,7 @@ static void ov77_021D3B5C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
     ov77_021D2828(param0);
 
-    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, HEAP_ID_76);
 
     Graphics_LoadPaletteFromOpenNARC(v1, 72, 0, 0, 0, 76);
     Graphics_LoadPaletteFromOpenNARC(v1, 72, 4, 0, 0, 76);
@@ -1615,7 +1615,7 @@ static void ov77_021D3D4C(UnkStruct_ov77_021D2E9C *param0, UnkStruct_ov77_021D37
 
     ov77_021D2900(param0);
 
-    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, HEAP_ID_76);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 79, param1->unk_10, 0, 0, 0, 0, 76);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 80, param1->unk_10, 0, 0, 0, 0, 76);
@@ -1697,7 +1697,7 @@ static void ov77_021D3F24(UnkStruct_ov77_021D37C0 *param0, int param1, int param
         param3 = 6;
     }
 
-    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, HEAP_ID_76);
 
     for (v0 = param2; v0 < param3; v0++) {
         if (Unk_ov77_021D779C[param1][v0] == 0) {

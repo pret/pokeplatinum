@@ -797,7 +797,7 @@ static void ov106_02242500(UnkStruct_ov106_02243118 *param0)
 {
     int v0, v1;
 
-    param0->unk_29C = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 98);
+    param0->unk_29C = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_98);
 
     ov106_0224262C(param0);
     ov106_02242688(param0);

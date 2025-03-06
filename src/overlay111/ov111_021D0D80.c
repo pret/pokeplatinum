@@ -1143,7 +1143,7 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
 {
     int v0, v1;
 
-    param0->unk_3E4 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__SCRATCH__SCRATCH, 115);
+    param0->unk_3E4 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__SCRATCH__SCRATCH, HEAP_ID_115);
 
     ov111_021D1FC4(param0);
     ov111_021D2034(param0);

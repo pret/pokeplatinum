@@ -444,7 +444,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_CC = v1;
     v0->unk_D0 = v1->unk_34;
     v0->unk_24 = Party_GetFromSavedata(v0->unk_CC->unk_14.unk_08);
-    v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, 95);
+    v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, HEAP_ID_95);
 
     VramTransfer_New(8, 95);
     sub_0201E3D8();
@@ -1962,7 +1962,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
     {
         NARC *v4;
 
-        v4 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, 95);
+        v4 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, HEAP_ID_95);
 
         SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v4, 14, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, PLTTBUF_MAIN_OBJ, v0, v1, v4, 8, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);

@@ -285,7 +285,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x50000 + 0x20000 + 2000);
 
-    v1 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, 26);
+    v1 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, HEAP_ID_26);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02095E80), HEAP_ID_26);
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
@@ -362,7 +362,7 @@ static void ov88_0223B320(UnkStruct_02095E80 *param0)
 
 static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, 26);
+    NARC *v0 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, HEAP_ID_26);
 
     ov88_0223C15C();
     ov88_0223C17C(param0->unk_174);

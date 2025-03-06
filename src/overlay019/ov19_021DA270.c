@@ -23,7 +23,7 @@ BOOL ov19_021DA270(UnkStruct_ov19_021DA384 *param0, UnkStruct_ov19_021D61B0 *par
     NNSG2dPaletteData *v1;
     void *v2;
 
-    param0->unk_48 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 10);
+    param0->unk_48 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_10);
 
     NNS_G2dInitImagePaletteProxy(&v0);
     Graphics_LoadPartialPaletteFromOpenNARC(param0->unk_48, PokeIconPalettesFileIndex(), NNS_G2D_VRAM_TYPE_2DMAIN, 2 * 0x20, 10, &v0);

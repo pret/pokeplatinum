@@ -188,7 +188,7 @@ void ov104_0223DC7C(int param0, BgConfig *param1, SpriteSystem *param2, SpriteMa
     v1->unk_20 = param5;
     v1->unk_28 = param6;
     v1->unk_2A = param7;
-    v1->unk_24 = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, 94);
+    v1->unk_24 = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, HEAP_ID_94);
 
     if (v1->unk_20 != NULL) {
         *(v1->unk_20) = 0;

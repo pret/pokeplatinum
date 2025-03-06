@@ -433,7 +433,7 @@ static void ov110_021D123C (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 114);
+    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_114);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 124, param0->unk_0C, param1, 0, 0, 1, 114);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 123, param0->unk_0C, param1, 0, 0, 1, 114);
@@ -460,7 +460,7 @@ static void ov110_021D12C0 (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, 114);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, HEAP_ID_114);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 10, param0->unk_0C, param1, 0, 0, 1, 114);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 11, param0->unk_0C, param1, 0, 0, 1, 114);

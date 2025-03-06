@@ -161,7 +161,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             BOOL v2 = 1;
             NARC *v3;
 
-            v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, 10);
+            v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_10);
 
             SetVBlankCallback(NULL, NULL);
             DisableHBlank();
@@ -412,7 +412,7 @@ static void ov19_021D6694(SysTask *param0, void *param1)
 
     switch (v2->unk_06) {
     case 0: {
-        NARC *v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, 10);
+        NARC *v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_10);
 
         ov19_021D74B4(v0, v1);
         ov19_021D75CC(v0, v1, v3);

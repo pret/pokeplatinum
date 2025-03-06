@@ -180,7 +180,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_95, 0x80000);
 
-        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__RECORD, 95);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__RECORD, HEAP_ID_95);
         GF_ASSERT(v1);
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D5140), HEAP_ID_95);

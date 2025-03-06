@@ -565,7 +565,7 @@ void *ov17_0223F88C(UnkStruct_02095C48 *param0, UnkStruct_ov17_0223F88C *param1,
     v0->unk_08 = param2;
     v0->unk_3C = sub_02012744(12, HEAP_ID_21);
 
-    v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 21);
+    v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, HEAP_ID_21);
 
     {
         NNSG2dScreenData *v2;

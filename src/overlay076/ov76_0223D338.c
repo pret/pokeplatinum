@@ -304,7 +304,7 @@ static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 *param0)
     case 0: {
         NARC *v0;
 
-        v0 = NARC_ctor(NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, 53);
+        v0 = NARC_ctor(NARC_INDEX_APPLICATION__CUSTOM_BALL__DATA__CB_DATA, HEAP_ID_53);
 
         ov76_0223C110(param0);
         ov76_0223C188(param0);

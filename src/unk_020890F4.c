@@ -60,7 +60,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    v0->unk_2C0.unk_00 = NARC_ctor(NARC_INDEX_ARC__CODEIN_GRA, 101);
+    v0->unk_2C0.unk_00 = NARC_ctor(NARC_INDEX_ARC__CODEIN_GRA, HEAP_ID_101);
     v0->unk_2C0.unk_0C = BgConfig_New(HEAP_ID_101);
     v0->unk_2C0.unk_10 = PaletteData_New(HEAP_ID_101);
 

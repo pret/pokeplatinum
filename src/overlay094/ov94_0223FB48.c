@@ -294,7 +294,7 @@ static void ov94_0223FD20(BgConfig *param0)
 static void ov94_0223FD4C(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
-    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
+    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
 
     Graphics_LoadPaletteFromOpenNARC(v1, 2, 0, 0, 16 * 3 * 2, 62);
     Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, 62);
@@ -1130,7 +1130,7 @@ static void ov94_02240FA0(UnkStruct_ov94_0223FD4C *param0, int param1)
     UnkStruct_ov94_02240FA0 *v7;
 
     param0->unk_1114 = v7 = Heap_AllocFromHeapAtEnd(3, sizeof(UnkStruct_ov94_02240FA0) * 30);
-    v6 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 62);
+    v6 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_62);
 
     if ((param1 >= 0) && (param1 < 18)) {
         for (v1 = 0; v1 < 30; v1++) {

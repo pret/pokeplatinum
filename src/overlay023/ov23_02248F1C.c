@@ -410,7 +410,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
     {
         NARC *v3;
 
-        v3 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, 4);
+        v3 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, HEAP_ID_FIELD);
 
         Graphics_LoadPaletteFromOpenNARC(v3, 0, 4, 0, 0x20 * 2, 4);
         Graphics_LoadTilesToBgLayerFromOpenNARC(v3, 1, param0, 4, 0, 32 * 5 * 0x20, 0, 4);
@@ -439,7 +439,7 @@ static void ov23_02249584(UnkStruct_ov23_0224942C *param0)
     {
         NARC *v1;
 
-        v1 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, 4);
+        v1 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, HEAP_ID_FIELD);
 
         param0->unk_35C[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_34C[0], v1, 4, 0, 1000, NNS_G2D_VRAM_TYPE_2DSUB, 4);
         param0->unk_35C[1] = SpriteResourceCollection_AddPaletteFrom(param0->unk_34C[1], v1, 3, 0, 1000, NNS_G2D_VRAM_TYPE_2DSUB, 2, 4);

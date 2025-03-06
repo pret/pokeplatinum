@@ -1317,7 +1317,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     {
         NARC *v6;
 
-        v6 = NARC_ctor(NARC_INDEX_DATA__UG_FOSSIL, 29);
+        v6 = NARC_ctor(NARC_INDEX_DATA__UG_FOSSIL, HEAP_ID_29);
         Graphics_LoadPaletteFromOpenNARC(v6, 1, 0, 0, 32 * 3, 29);
 
         v0 = Graphics_LoadTilesToBgLayerFromOpenNARC(v6, 0, v1, 0, 0, 0, 0, 29);
@@ -1923,7 +1923,7 @@ static int ov23_0223FC9C(int param0, BgConfig *param1, int param2, UnkStruct_ov2
     int v6, v7, v8, v9 = param2;
     u32 v10;
     int v11 = param0;
-    NARC *v12 = NARC_ctor(NARC_INDEX_DATA__UG_PARTS, 29);
+    NARC *v12 = NARC_ctor(NARC_INDEX_DATA__UG_PARTS, HEAP_ID_29);
 
     if (param0 >= param3->unk_0C) {
         v11 = 4;
@@ -2773,7 +2773,7 @@ static void ov23_02240E88(void)
         Unk_ov23_02257740->unk_1B0[v0] = SpriteResourceCollection_New(2, v0, 29);
     }
 
-    v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, 29);
+    v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, HEAP_ID_29);
 
     ov23_02240E60(SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257740->unk_1B0[0], v1, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
     SpriteTransfer_RequestChar(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);

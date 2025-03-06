@@ -339,8 +339,8 @@ void ov16_0223B430(BattleSystem *battleSys)
     ov16_0223F314(battleSys, 0);
     MI_CpuFill16((void *)GetHardwareSubBgPaletteAddress(), 0x0, GetHardwareSubBgPaletteSize());
 
-    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-    v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+    v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
     battleSys->unk_198 = ov16_022687C8(v0, v1, battleSys, BattleSystem_GetTrainerGender(battleSys, ov16_0223F6E4(battleSys)), battleSys->unk_1BC);
 
     Font_InitManager(FONT_SUBSCREEN, 5);
@@ -557,8 +557,8 @@ static void ov16_0223B790(OverlayManager *param0)
     VramTransfer_New(64, HEAP_ID_BATTLE);
 
     {
-        NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-        NARC *v7 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+        NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+        NARC *v7 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
         battleSys->unk_198 = ov16_022687C8(v6, v7, battleSys, BattleSystem_GetTrainerGender(battleSys, ov16_0223F6E4(battleSys)), battleSys->unk_1BC);
 
@@ -590,8 +590,8 @@ static void ov16_0223B790(OverlayManager *param0)
         NARC *v8;
         NARC *v9;
 
-        v8 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-        v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+        v8 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+        v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
         ov16_02268C04(v8, v9, battleSys->unk_198, 0, 1, NULL);
         ov16_02268D40(v9, battleSys->unk_198);

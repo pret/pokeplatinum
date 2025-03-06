@@ -658,7 +658,7 @@ void ov116_022622C8(UnkStruct_ov116_0226139C *param0)
     SpriteSystem_LoadPaletteBufferFromOpenNarc(v5, PLTTBUF_MAIN_OBJ, v3, v4, v6, v10, FALSE, v12, NNS_G2D_VRAM_TYPE_2DMAIN, v11);
 
     {
-        NARC *v13 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, 106);
+        NARC *v13 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, HEAP_ID_106);
 
         v7 = 23;
         v8 = 22;

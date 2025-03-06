@@ -57,8 +57,8 @@ static void ov16_0226E188(SysTask *param0, void *param1)
         {
             NARC *v2, *v3;
 
-            v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-            v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+            v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+            v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
             ov16_02268C04(v2, v3, v1, 18, 0, NULL);
             NARC_dtor(v2);

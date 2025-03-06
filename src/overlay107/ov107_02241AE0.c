@@ -1435,7 +1435,7 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
     Window * v18;
     Pokemon * v19;
 
-    param0->unk_440 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 100);
+    param0->unk_440 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_100);
 
     ov107_02243324(param0);
     ov107_02243384(param0);

@@ -237,7 +237,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
 
     {
         NARC *v1;
-        v1 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
+        v1 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, HEAP_ID_110);
 
         ov117_02261A2C(v0, v1);
         ov117_02261AC8(v0, v1);

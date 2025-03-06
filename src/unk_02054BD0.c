@@ -71,7 +71,7 @@ static void sub_02054C18(MapMatrix *param0, UnkStruct_02054C18 *param1, const u8
         }
     }
 
-    v10 = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, 11);
+    v10 = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, HEAP_ID_FIELDMAP);
 
     for (v4 = 0; v4 < param2; v4++) {
         v1 = v8[v4];

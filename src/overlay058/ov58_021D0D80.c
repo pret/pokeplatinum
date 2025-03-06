@@ -189,7 +189,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
             v0->unk_08 = v2;
         }
 
-        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__OEKAKI, 39);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__OEKAKI, HEAP_ID_39);
 
         ov58_021D142C(v0, v1);
 

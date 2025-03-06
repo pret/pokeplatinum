@@ -1020,7 +1020,7 @@ void ov104_02232FD4(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1, int
 
 void ov104_02232FEC(UnkStruct_ov104_0223C4CC *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 94);
+    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_94);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_04, PLTTBUF_MAIN_OBJ, param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081938(), FALSE, 2001);

@@ -349,7 +349,7 @@ static void ov96_0223BF1C(BgConfig *param0)
 static void ov96_0223BF40(UnkStruct_ov96_0223BF40 *param0)
 {
     BgConfig *v0 = param0->unk_04;
-    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 68);
+    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_68);
 
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, 68);
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 68);

@@ -299,7 +299,7 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
     v0->unk_1C48 = Strbuf_Init(500, HEAP_ID_63);
     v0->unk_1C4C = Strbuf_Init(500, HEAP_ID_63);
     v0->unk_1C44 = StringTemplate_Default(63);
-    v0->unk_1C54 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 63);
+    v0->unk_1C54 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_63);
 
     {
         int v1, v2;
@@ -686,7 +686,7 @@ static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
     Window_LoadTiles(&(param0->unk_14));
     Window_PutToTilemap(&param0->unk_14);
 
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__DENDOU_DEMO, 63);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__DENDOU_DEMO, HEAP_ID_63);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 3, param0->unk_10, 3, 0, 0, 1, 63);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 0, param0->unk_10, 3, 0, 0, 1, 63);
@@ -770,7 +770,7 @@ static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 *param0)
 {
     NNSG2dCellDataBank *v0;
     NNSG2dAnimBankData *v1;
-    NARC *v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 63);
+    NARC *v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_63);
 
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 63);

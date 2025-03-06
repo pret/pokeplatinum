@@ -245,7 +245,7 @@ static void ov33_02256634(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
     ov25_02255360(1);
     Graphics_LoadObjectTiles(12, 35, 1, ((4 * 4 * 2) * 6) * 0x20, 0, 1, 8);
 
-    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 8);
+    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);
 
     if (v1) {
         UnkStruct_ov25_02255810 v2;
