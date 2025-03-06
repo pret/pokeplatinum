@@ -187,7 +187,7 @@ void ov19_021DAADC(UnkStruct_ov19_021DA9E0 *param0)
         return;
     }
 
-    param0->unk_04 = Window_New(10, 4);
+    param0->unk_04 = Window_New(HEAP_ID_10, 4);
 
     if (param0->unk_04) {
         int v1;

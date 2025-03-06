@@ -704,12 +704,12 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
     GF_ASSERT(param0->unk_AC == NULL);
 
     if (ov104_0223BA14(param1->unk_10) == 0) {
-        param0->unk_A8 = Window_New(11, 1);
+        param0->unk_A8 = Window_New(HEAP_ID_FIELDMAP, 1);
         Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
         ov104_022370C0(v0->unk_00, param0->unk_A8);
     } else {
-        param0->unk_A8 = Window_New(11, 1);
-        param0->unk_AC = Window_New(11, 1);
+        param0->unk_A8 = Window_New(HEAP_ID_FIELDMAP, 1);
+        param0->unk_AC = Window_New(HEAP_ID_FIELDMAP, 1);
 
         Window_Add(v0->unk_00, param0->unk_A8, 1, 1, 1, 10, 4, 14, (((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)));
         Window_Add(v0->unk_00, param0->unk_AC, 1, 21, 1, 10, 4, 14, ((((((1024 - (18 + 12)) - 9) - (27 * 4)) - (11 * 22)) - (10 * 4)) - (10 * 4)));

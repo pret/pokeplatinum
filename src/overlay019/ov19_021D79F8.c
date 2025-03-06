@@ -204,7 +204,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
         if (NNS_G2dGetUnpackedBGCharacterData(v0, &v1)) {
             Window *v2;
 
-            v2 = Window_New(10, 1);
+            v2 = Window_New(HEAP_ID_10, 1);
 
             if (v2) {
                 u32 v3, v4;

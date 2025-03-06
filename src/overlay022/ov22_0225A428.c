@@ -203,7 +203,7 @@ static void ov22_0225A718(BgConfig *param0, const Options *param1)
 
 static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7)
 {
-    *param0 = Window_New(14, 1);
+    *param0 = Window_New(HEAP_ID_14, 1);
 
     Window_Init(*param0);
     Window_Add(param1, *param0, 5, param2, param3, param4, param5, 2, param6);

@@ -1174,7 +1174,7 @@ void EncounterEffect_Trainer_Water_HigherLevel(SysTask *param0, void *param1)
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        v1->unk_270 = Window_New(4, 1);
+        v1->unk_270 = Window_New(HEAP_ID_FIELD, 1);
         Window_Add(v0->fieldSystem->bgConfig, v1->unk_270, 3, 0, 0, 32, 32, 0, 0);
 
         {
@@ -1506,7 +1506,7 @@ void EncounterEffect_Trainer_Cave_HigherLevel(SysTask *param0, void *param1)
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-        v1->unk_264 = Window_New(4, 1);
+        v1->unk_264 = Window_New(HEAP_ID_FIELD, 1);
         Window_Add(v0->fieldSystem->bgConfig, v1->unk_264, 3, 0, 0, 32, 32, 0, 0);
 
         {
@@ -2146,7 +2146,7 @@ void EncounterEffect_GalacticBoss(SysTask *param0, void *param1)
 
         v1->unk_04 = ov5_021DEBEC(HEAP_ID_FIELD);
 
-        v1->unk_00 = Window_New(4, 1);
+        v1->unk_00 = Window_New(HEAP_ID_FIELD, 1);
         Window_Add(v0->fieldSystem->bgConfig, v1->unk_00, 3, 0, 0, 32, 32, 0, 0);
 
         {

@@ -548,7 +548,7 @@ static void ov16_0223B790(OverlayManager *param0)
     PaletteData_AllocBuffer(battleSys->unk_28, 3, 0x200, HEAP_ID_BATTLE);
 
     battleSys->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
-    battleSys->windows = Window_New(5, 3);
+    battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
 
     for (v3 = 0; v3 < 4; v3++) {
         battleSys->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, (32 * 10 * 10));
@@ -1652,7 +1652,7 @@ static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
     PaletteData_FillBufferRange(v0->unk_0C, 0, 2, 0x0, 0, 256);
 
     v0->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
-    v0->unk_08 = Window_New(5, 1);
+    v0->unk_08 = Window_New(HEAP_ID_BATTLE, 1);
 
     sub_0207A744(v0);
     GXLayers_DisableEngineALayers();

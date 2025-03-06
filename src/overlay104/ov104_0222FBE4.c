@@ -2079,7 +2079,7 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
             break;
         }
 
-        param0->unk_28 = Window_New(11, 1);
+        param0->unk_28 = Window_New(HEAP_ID_FIELDMAP, 1);
 
         Window_Add(param0->unk_00->unk_00, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
         PaletteData_FillBufferRange(param0->unk_00->unk_04, 0, 2, 0x0, 0, 16);
@@ -2133,7 +2133,7 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
             break;
         }
 
-        param0->unk_28 = Window_New(11, 1);
+        param0->unk_28 = Window_New(HEAP_ID_FIELDMAP, 1);
 
         Window_Add(param0->unk_00->unk_00, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
         PaletteData_FillBufferRange(param0->unk_00->unk_04, 0, 2, 0x0, 0, 16);

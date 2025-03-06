@@ -88,7 +88,7 @@ void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
         { 1, 19, 3, 12, 16, 4, 593 }
     };
 
-    param0->unk_18 = Window_New(10, 2);
+    param0->unk_18 = Window_New(HEAP_ID_10, 2);
 
     if (param0->unk_18) {
         int v1;

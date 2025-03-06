@@ -68,7 +68,7 @@ static BOOL ov29_02256728(UnkStruct_ov29_022566C8 *param0)
         7, 2, 2, 20, 19, 0, 12
     };
 
-    param0->unk_70 = Window_New(8, 1);
+    param0->unk_70 = Window_New(HEAP_ID_POKETCH_APP, 1);
 
     if (param0->unk_70) {
         Window_AddFromTemplate(param0->unk_04, param0->unk_70, &v0);

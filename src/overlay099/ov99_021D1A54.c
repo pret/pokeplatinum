@@ -1064,7 +1064,7 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
         Strbuf *v1;
         int v2;
 
-        param0->unk_24 = Window_New(75, 1);
+        param0->unk_24 = Window_New(HEAP_ID_75, 1);
 
         Window_Add(v0, param0->unk_24, 7, 0, 0, 32, 32, 15, 0);
         Window_FillTilemap(param0->unk_24, 15);

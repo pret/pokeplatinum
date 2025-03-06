@@ -143,7 +143,7 @@ void ov19_021DBA9C(UnkStruct_ov19_021DBA9C *param0)
         { 1, 5, 25, 27, 6, 2, 178 }
     };
 
-    param0->unk_10 = Window_New(10, NELEMS(v0));
+    param0->unk_10 = Window_New(HEAP_ID_10, NELEMS(v0));
 
     if (param0->unk_10) {
         int v1;
