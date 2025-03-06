@@ -533,9 +533,9 @@ static void ov16_0223B790(OverlayManager *param0)
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
     if (battleSys->battleType & BATTLE_TYPE_SAFARI) {
-        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, 5);
+        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, HEAP_ID_BATTLE);
     } else {
-        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, 5);
+        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, HEAP_ID_BATTLE);
     }
 
     battleSys->unk_1A8 = battleSys->unk_1A4;

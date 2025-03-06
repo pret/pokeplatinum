@@ -252,7 +252,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     shopMenu->journalEntry = fieldSystem->journalEntry;
     shopMenu->martType = martType;
     shopMenu->saveData = fieldSystem->saveData;
-    shopMenu->unk_2B4 = sub_0200C440(1, 2, 0, 11);
+    shopMenu->unk_2B4 = sub_0200C440(1, 2, 0, HEAP_ID_FIELDMAP);
 
     if (shopMenu->martType == MART_TYPE_NORMAL) {
         shopMenu->destInventory = SaveData_GetBag(fieldSystem->saveData);

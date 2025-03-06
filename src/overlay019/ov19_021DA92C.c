@@ -72,8 +72,8 @@ BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_4C = NULL;
     param0->unk_24 = NULL;
     param0->unk_20 = ov19_021D7818(param1);
-    param0->unk_18 = sub_0200C440(9, 6, 15, 10);
-    param0->unk_1C = sub_0200C440(1, 2, 15, 10);
+    param0->unk_18 = sub_0200C440(9, 6, 15, HEAP_ID_10);
+    param0->unk_1C = sub_0200C440(1, 2, 15, HEAP_ID_10);
     param0->unk_28 = Graphics_GetCellBankFromOpenNARC(param6, 16, 1, &(param0->unk_2C), 10);
     param0->unk_30 = NULL;
     param0->unk_44 = MessageLoader_GetNewStrbuf(param5, 21);
