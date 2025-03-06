@@ -272,8 +272,8 @@ static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0)
 
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, 62);
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 62);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_62);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, 62);

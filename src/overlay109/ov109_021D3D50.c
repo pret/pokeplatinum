@@ -567,8 +567,8 @@ static void ov109_021D4300(UnkStruct_ov109_021D5140 *param0, NARC *param1)
 
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 16 * 2, 95);
     Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, 95);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 95);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 95);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_95);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_95);
     Graphics_LoadTilesToBgLayer(12, 10, v0, 6, 0, 0, 1, 95);
     Graphics_LoadTilemapToBgLayer(12, 11, v0, 6, 0, 0, 1, 95);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 95);

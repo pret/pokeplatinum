@@ -1200,18 +1200,18 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 9 * 2, 26);
     Bg_MaskPalette(0, 0);
     Bg_MaskPalette(4, 0);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 32, 26);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, 26);
 
     ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, 26);
 
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, 26);
-    Font_LoadScreenIndicatorsPalette(0, 2 * 32, 26);
+    Font_LoadScreenIndicatorsPalette(0, 2 * 32, HEAP_ID_26);
     Font_LoadTextPalette(0, 3 * 32, HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 5, 0, 16 * 4 * 0x20, 1, 26);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, 26);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, 26);
-    Font_LoadScreenIndicatorsPalette(4, 2 * 32, 26);
+    Font_LoadScreenIndicatorsPalette(4, 2 * 32, HEAP_ID_26);
     Font_LoadTextPalette(4, 3 * 32, HEAP_ID_26);
     Bg_ClearTilemap(v0, 4);
 }

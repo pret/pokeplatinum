@@ -634,7 +634,7 @@ static void ov16_0223B790(OverlayManager *param0)
     PaletteData_FillBufferRange(battleSys->unk_28, 1, 0, 0x0, 0, 255);
     PaletteData_FillBufferRange(battleSys->unk_28, 3, 0, 0xffff, 0, 255);
 
-    battleSys->unk_1AC = sub_0201567C(battleSys->unk_28, 0, 0xb, 5);
+    battleSys->unk_1AC = sub_0201567C(battleSys->unk_28, 0, 0xb, HEAP_ID_BATTLE);
     sub_02015738(battleSys->unk_1AC, 1);
 
     battleSys->unk_1C = SysTask_Start(ov16_0223CF48, battleSys, 60000);

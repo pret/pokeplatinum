@@ -275,7 +275,7 @@ static void ov94_0223C888(UnkStruct_ov94_0223FD4C *param0)
     NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
 
     Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 16 * 3 * 2, 62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
     LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 14, v0, 1, 0, 16 * 6 * 0x20, 1, 62);

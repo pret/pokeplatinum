@@ -929,7 +929,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         }
 
         Unk_021C0A30 = v0;
-        v0->unk_628 = sub_0201567C(NULL, 1, 12, 18);
+        v0->unk_628 = sub_0201567C(NULL, 1, 12, HEAP_ID_18);
 
         (*param1) = 0;
         return 1;
@@ -1507,9 +1507,9 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 18);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, 18);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, 18);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 18);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_18);
     LoadMessageBoxGraphics(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->unk_18), 18);
-    Font_LoadScreenIndicatorsPalette(4, 12 * 32, 18);
+    Font_LoadScreenIndicatorsPalette(4, 12 * 32, HEAP_ID_18);
 
     param0->unk_510 = Graphics_GetCharDataFromOpenNARC(param1, 16, 1, &param0->unk_514, 18);
 }

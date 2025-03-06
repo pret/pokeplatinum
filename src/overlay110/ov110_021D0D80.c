@@ -129,7 +129,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     v1->unk_11C = Strbuf_Init(800, HEAP_ID_114);
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_114);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 114);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_114);
     ov110_021D2124(v1->unk_0C, v1->unk_10, ov110_021D1208(v1->unk_06));
     SetVBlankCallback(ov110_021D1048, (void *)v1);
     (*param1) = 0;
