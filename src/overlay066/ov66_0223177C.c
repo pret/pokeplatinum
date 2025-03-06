@@ -97,13 +97,13 @@ static u32 ov66_022324B8(const UnkStruct_ov66_02231FB0 *param0, u32 param1);
 static u32 ov66_022324BC(const UnkStruct_ov66_02231FB0 *param0, u32 param1);
 static BOOL ov66_022324D0(enum PlazaMinigame param0, u32 param1);
 
-UnkStruct_ov66_0223177C *ov66_0223177C(u32 param0)
+UnkStruct_ov66_0223177C *ov66_0223177C(u32 heapID)
 {
-    UnkStruct_ov66_0223177C *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov66_0223177C));
+    UnkStruct_ov66_0223177C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_0223177C));
     memset(v0, 0, sizeof(UnkStruct_ov66_0223177C));
 
     ov66_02231D38(&v0->unk_08);
-    ov66_02231E94(&v0->unk_5C, param0);
+    ov66_02231E94(&v0->unk_5C, heapID);
 
     return v0;
 }

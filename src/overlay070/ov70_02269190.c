@@ -626,9 +626,9 @@ static const UnkStruct_ov70_0226E5A4 Unk_ov70_0226E5A4[39] = {
     },
 };
 
-UnkStruct_ov70_02269204 *ov70_02269190(UnkStruct_ov66_0222DFF8 *param0, UnkStruct_ov70_0225C894 *param1, UnkStruct_ov70_02260AD4 *param2, UnkStruct_ov70_0225CA20 *param3, u32 param4, u32 param5)
+UnkStruct_ov70_02269204 *ov70_02269190(UnkStruct_ov66_0222DFF8 *param0, UnkStruct_ov70_0225C894 *param1, UnkStruct_ov70_02260AD4 *param2, UnkStruct_ov70_0225CA20 *param3, u32 heapID, u32 heapID2)
 {
-    UnkStruct_ov70_02269204 *v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov70_02269204));
+    UnkStruct_ov70_02269204 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_02269204));
     memset(v0, 0, sizeof(UnkStruct_ov70_02269204));
 
     v0->unk_00 = param0;
@@ -639,13 +639,13 @@ UnkStruct_ov70_02269204 *ov70_02269190(UnkStruct_ov66_0222DFF8 *param0, UnkStruc
     {
         NARC *v1;
 
-        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param4);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, heapID);
 
-        Heap_FndInitAllocatorForExpHeap(&v0->unk_1081C, param5, 4);
+        Heap_FndInitAllocatorForExpHeap(&v0->unk_1081C, heapID2, 4);
 
-        ov70_02269540(v0, v1, param5);
-        ov70_022695E0(v0, v1, param5);
-        ov70_0226965C(v0, v1, param5);
+        ov70_02269540(v0, v1, heapID2);
+        ov70_022695E0(v0, v1, heapID2);
+        ov70_0226965C(v0, v1, heapID2);
 
         NARC_dtor(v1);
     }
@@ -809,12 +809,12 @@ static void ov70_022695C4(UnkStruct_ov70_02269204 *param0)
     }
 }
 
-static void ov70_022695E0(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 param2)
+static void ov70_022695E0(UnkStruct_ov70_02269204 *param0, NARC *param1, u32 heapID)
 {
     int v0;
 
     for (v0 = 0; v0 < 39; v0++) {
-        ov70_0225C730(&param0->unk_10640[v0], param1, 144 + v0, param2);
+        ov70_0225C730(&param0->unk_10640[v0], param1, 144 + v0, heapID);
     }
 }
 

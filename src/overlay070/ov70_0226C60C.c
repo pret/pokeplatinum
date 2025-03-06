@@ -36,13 +36,13 @@ static u32 ov70_0226C848(PPW_LOBBY_TIME_EVENT param0);
 static u32 ov70_0226C87C(PPW_LOBBY_TIME_EVENT param0);
 static void ov70_0226C8A8(UnkStruct_ov70_0226C6F8 *param0);
 
-UnkStruct_ov70_0226C6F8 *ov70_0226C60C(u32 param0, UnkStruct_ov70_0225DEE8 *param1)
+UnkStruct_ov70_0226C6F8 *ov70_0226C60C(u32 heapID, UnkStruct_ov70_0225DEE8 *param1)
 {
     UnkStruct_ov70_0226C6F8 *v0;
     u32 v1, v2, v3;
     u32 v4, v5, v6, v7, v8, v9;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov70_0226C6F8));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_0226C6F8));
     memset(v0, 0, sizeof(UnkStruct_ov70_0226C6F8));
 
     v0->unk_00 = param1;
@@ -54,9 +54,9 @@ UnkStruct_ov70_0226C6F8 *ov70_0226C60C(u32 param0, UnkStruct_ov70_0225DEE8 *para
     v2 = ov70_0226C848(ov66_0222E1D0(v0->unk_04));
     v3 = ov70_0226C87C(ov66_0222E1E8(v0->unk_04));
 
-    v0->unk_10 = ov70_0226C338(param0, v1, v2, v3);
-    v0->unk_14 = ov70_0226CE54(param1, param0);
-    v0->unk_18 = ov70_0226C8B4(v0->unk_04, v0->unk_08, param0);
+    v0->unk_10 = ov70_0226C338(heapID, v1, v2, v3);
+    v0->unk_14 = ov70_0226CE54(param1, heapID);
+    v0->unk_18 = ov70_0226C8B4(v0->unk_04, v0->unk_08, heapID);
 
     ov70_0225CAEC(v0->unk_0C, v1);
 

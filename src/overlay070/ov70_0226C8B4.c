@@ -132,12 +132,12 @@ static const UnkStruct_ov70_0226E6FC Unk_ov70_0226E6FC[3] = {
     { 0x50, FX32_HALF }
 };
 
-UnkStruct_ov70_0226C914 *ov70_0226C8B4(const UnkStruct_ov66_0222DFF8 *param0, UnkStruct_ov70_02261E10 *param1, u32 param2)
+UnkStruct_ov70_0226C914 *ov70_0226C8B4(const UnkStruct_ov66_0222DFF8 *param0, UnkStruct_ov70_02261E10 *param1, u32 heapID)
 {
     UnkStruct_ov70_0226C914 *v0;
     u32 v1;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov70_0226C914));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_0226C914));
     memset(v0, 0, sizeof(UnkStruct_ov70_0226C914));
 
     v0->unk_00 = param0;

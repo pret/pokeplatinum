@@ -44,23 +44,23 @@ static BOOL ov70_0226307C(const UnkStruct_ov70_02263344 *param0);
 static void ov70_0226308C(UnkStruct_ov70_0226308C *param0, const UnkStruct_ov70_0226DA18 *param1, void *param2, u32 param3, void *param4);
 static void ov70_02263098(UnkStruct_ov70_0226308C *param0);
 
-UnkStruct_ov70_022630A4 *ov70_02262DA8(UnkStruct_ov70_0225DEE8 *param0, u32 param1)
+UnkStruct_ov70_022630A4 *ov70_02262DA8(UnkStruct_ov70_0225DEE8 *param0, u32 heapID)
 {
-    UnkStruct_ov70_022630A4 *v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov70_022630A4));
+    UnkStruct_ov70_022630A4 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_022630A4));
     memset(v0, 0, sizeof(UnkStruct_ov70_022630A4));
 
-    v0->unk_00 = param1;
+    v0->unk_00 = heapID;
     v0->unk_04 = param0;
 
     {
         int v1;
 
         for (v1 = 0; v1 < 20; v1++) {
-            ov70_02262F64(&v0->unk_08[v1], v1, param1);
+            ov70_02262F64(&v0->unk_08[v1], v1, heapID);
         }
     }
 
-    ov70_02262F64(&v0->unk_2D8, 0, param1);
+    ov70_02262F64(&v0->unk_2D8, 0, heapID);
 
     return v0;
 }

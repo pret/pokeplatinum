@@ -92,23 +92,23 @@ static void ov66_02231134(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
 static void ov66_02231164(UnkStruct_ov66_02230E4C *param0);
 static void ov66_02231178(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 static int ov66_022311A4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
-static void ov66_022311D4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 param2);
+static void ov66_022311D4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID);
 static void ov66_0223120C(UnkStruct_ov66_02230E4C *param0);
 static void ov66_02231220(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 static int ov66_0223124C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
-static void ov66_0223127C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 param2);
+static void ov66_0223127C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID);
 static void ov66_022312A8(UnkStruct_ov66_02230E4C *param0);
 static int ov66_022312B4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 static void ov66_022312D8(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 static void ov66_022312EC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
-static void ov66_02231300(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 param2);
+static void ov66_02231300(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID);
 static void ov66_02231338(UnkStruct_ov66_02230E4C *param0);
 static int ov66_02231370(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 static void ov66_02231344(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 static void ov66_02231350(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 static void ov66_0223135C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, BOOL param2);
-static void ov66_02231374(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 param2);
-static void ov66_022313AC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 param2);
+static void ov66_02231374(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID);
+static void ov66_022313AC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID);
 static void ov66_022313E8(UnkStruct_ov66_02230E4C *param0);
 static void ov66_022313F4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
 static int ov66_02231404(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1);
@@ -663,11 +663,11 @@ static int ov66_022311A4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4
     return 0;
 }
 
-static void ov66_022311D4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 param2)
+static void ov66_022311D4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID)
 {
     UnkStruct_ov117_02260440 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov117_02260440));
+    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov117_02260440));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov117_02260440));
 
     v0 = param1->unk_00;
@@ -675,7 +675,7 @@ static void ov66_022311D4(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     v0->unk_39 = 1;
     v0->unk_34 = param0->unk_40;
 
-    ov66_02230DA0(&v0->unk_00, param2);
+    ov66_02230DA0(&v0->unk_00, heapID);
 }
 
 static void ov66_0223120C(UnkStruct_ov66_02230E4C *param0)
@@ -729,11 +729,11 @@ static int ov66_0223124C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4
     return 0;
 }
 
-static void ov66_0223127C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 param2)
+static void ov66_0223127C(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID)
 {
     UnkStruct_ov66_0223127C *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov66_0223127C));
+    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_0223127C));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_0223127C));
 
     v0 = param1->unk_00;
@@ -794,11 +794,11 @@ static void ov66_022312EC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     ov66_02230CEC(param0, param1, &v1);
 }
 
-static void ov66_02231300(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 param2)
+static void ov66_02231300(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID)
 {
     UnkStruct_ov66_02231300 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov66_02231300));
+    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02231300));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231300));
 
     v0 = param1->unk_00;
@@ -844,11 +844,11 @@ static int ov66_02231370(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4
     return 1;
 }
 
-static void ov66_02231374(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 param2)
+static void ov66_02231374(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID)
 {
     UnkStruct_ov66_02231374 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov66_02231374));
+    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02231374));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231374));
 
     v0 = param1->unk_00;
@@ -857,11 +857,11 @@ static void ov66_02231374(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E
     v0->unk_08 = 0;
 }
 
-static void ov66_022313AC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 param2)
+static void ov66_022313AC(UnkStruct_ov66_02230C90 *param0, UnkStruct_ov66_02230E4C *param1, u32 heapID)
 {
     UnkStruct_ov66_02231374 *v0;
 
-    param1->unk_00 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov66_02231374));
+    param1->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02231374));
     memset(param1->unk_00, 0, sizeof(UnkStruct_ov66_02231374));
 
     v0 = param1->unk_00;

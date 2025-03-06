@@ -36,7 +36,7 @@ const UnkStruct_ov80_021D2C5C_sub1 Unk_ov80_021D31D8[20] = {
     { 0xAC, 0x44, 0x0, 0x1, 0x3, 0xB6, 0x77 }
 };
 
-UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteSystem *param0, SpriteManager *param1, u8 *param2, short param3, int param4)
+UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteSystem *param0, SpriteManager *param1, u8 *param2, short param3, int heapID)
 {
     UnkStruct_ov80_021D2C1C *v0;
     UnkStruct_ov80_021D2C5C *v1;
@@ -46,11 +46,11 @@ UnkStruct_ov80_021D2C1C *ov80_021D2AF4(SpriteSystem *param0, SpriteManager *para
         4, 0, 0, 0, 0, 10, 5, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
     };
 
-    v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov80_021D2C1C));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov80_021D2C1C));
     memset(v0, 0, sizeof(UnkStruct_ov80_021D2C1C));
 
     v0->unk_00 = param3;
-    v0->unk_08 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
+    v0->unk_08 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
     memset(v0->unk_08, 0, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
 
     v2 = Unk_ov80_021D31D8;
@@ -190,7 +190,7 @@ void ov80_021D2D28(UnkStruct_ov80_021D2C1C *param0, int param1)
     }
 }
 
-UnkStruct_ov80_021D2E10 *ov80_021D2D70(const char *param0, int param1)
+UnkStruct_ov80_021D2E10 *ov80_021D2D70(const char *param0, int heapID)
 {
     FSFile v0;
     int v1, v2;
@@ -208,10 +208,10 @@ UnkStruct_ov80_021D2E10 *ov80_021D2D70(const char *param0, int param1)
     v1 = FS_ReadFile(&v0, &v3, 4);
     GF_ASSERT(v1 >= 0);
 
-    v4 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov80_021D2E10));
+    v4 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov80_021D2E10));
     memset(v4, 0, sizeof(UnkStruct_ov80_021D2E10));
 
-    v4->unk_04 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov80_021D2AF4) * v3);
+    v4->unk_04 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov80_021D2AF4) * v3);
     memset(v4->unk_04, 0, sizeof(UnkStruct_ov80_021D2AF4) * v3);
 
     v4->unk_00 = v3;

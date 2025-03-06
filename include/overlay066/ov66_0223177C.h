@@ -17,7 +17,7 @@
 #include "enums.h"
 #include "strbuf.h"
 
-UnkStruct_ov66_0223177C *ov66_0223177C(u32 param0);
+UnkStruct_ov66_0223177C *ov66_0223177C(u32 heapID);
 void ov66_022317AC(UnkStruct_ov66_0223177C *param0);
 void ov66_022317C0(UnkStruct_ov66_0223177C *param0);
 void ov66_022317D8(UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_02231428 *param1);

@@ -141,20 +141,20 @@ static const UnkStruct_ov70_0226D920 Unk_ov70_0226D920[9] = {
     { 0x1, 0x2 }
 };
 
-UnkStruct_ov70_02261E10 *ov70_02261E10(int param0, int param1, const UnkStruct_ov70_0225C894 *param2, u32 param3, u32 param4)
+UnkStruct_ov70_02261E10 *ov70_02261E10(int param0, int param1, const UnkStruct_ov70_0225C894 *param2, u32 heapID, u32 heapID2)
 {
     UnkStruct_ov70_02261E10 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov70_02261E10));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_02261E10));
     memset(v0, 0, sizeof(UnkStruct_ov70_02261E10));
 
     v0->unk_00 = param2;
     v0->unk_610 = param0;
     v0->unk_611 = param1;
-    v0->unk_04 = ov70_02260B44(9, 128, param3, param4);
+    v0->unk_04 = ov70_02260B44(9, 128, heapID, heapID2);
 
-    ov70_02260CE4(v0->unk_04, param1, param0, param3, param4);
+    ov70_02260CE4(v0->unk_04, param1, param0, heapID, heapID2);
 
     {
         int v2;
