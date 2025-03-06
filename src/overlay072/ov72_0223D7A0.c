@@ -235,7 +235,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(39);
+    Heap_Destroy(HEAP_ID_39);
 
     return 1;
 }

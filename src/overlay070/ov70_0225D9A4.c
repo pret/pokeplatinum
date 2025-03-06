@@ -805,8 +805,8 @@ int ov70_0225DDF8(OverlayManager *param0, int *param1)
     ov70_0225E6D0(&v0->unk_3C);
 
     Heap_FreeToHeap(v0);
-    Heap_Destroy(112);
-    Heap_Destroy(113);
+    Heap_Destroy(HEAP_ID_112);
+    Heap_Destroy(HEAP_ID_113);
     sub_020057BC(0);
     sub_0200592C(0);
 

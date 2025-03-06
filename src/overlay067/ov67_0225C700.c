@@ -396,7 +396,7 @@ int ov67_0225CB1C(OverlayManager *param0, int *param1)
     inline_ov96_0223BDEC(&v0->unk_D4, 0);
 
     Heap_FreeToHeap(v0);
-    Heap_Destroy(112);
+    Heap_Destroy(HEAP_ID_112);
 
     return 1;
 }
@@ -530,7 +530,7 @@ int ov67_0225CDC0(OverlayManager *param0, int *param1)
     inline_ov96_0223BDEC(&v0->unk_D4, 0);
 
     Heap_FreeToHeap(v0);
-    Heap_Destroy(112);
+    Heap_Destroy(HEAP_ID_112);
 
     return 1;
 }

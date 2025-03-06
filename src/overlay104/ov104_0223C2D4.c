@@ -240,7 +240,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    Heap_Destroy(94);
+    Heap_Destroy(HEAP_ID_94);
 
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);

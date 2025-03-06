@@ -265,7 +265,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
         }
     }
 
-    Heap_Destroy(53);
+    Heap_Destroy(HEAP_ID_53);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
 

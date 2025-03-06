@@ -1015,7 +1015,7 @@ static int ov77_021D2E60(OverlayManager *param0, int *param1)
 
     LCRNG_SetSeed(v0->unk_14);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(76);
+    Heap_Destroy(HEAP_ID_76);
     EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
 
     return 1;

@@ -227,7 +227,7 @@ int ov94_0223BF54(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->unk_00);
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(62);
+    Heap_Destroy(HEAP_ID_62);
 
     return 1;
 }

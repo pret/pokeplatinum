@@ -292,7 +292,7 @@ int ov85_022415A0(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->unk_1FC);
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(36);
+    Heap_Destroy(HEAP_ID_36);
 
     G2_BlendNone();
 

@@ -216,8 +216,8 @@ int ov20_021D0EA8(OverlayManager *param0, int *param1)
 {
     ov20_021D1014(OverlayManager_Data(param0), param0);
 
-    Heap_Destroy(34);
-    Heap_Destroy(35);
+    Heap_Destroy(HEAP_ID_34);
+    Heap_Destroy(HEAP_ID_35);
 
     return 1;
 }

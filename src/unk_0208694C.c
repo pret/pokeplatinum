@@ -1179,7 +1179,7 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
     StringTemplate_Free(v0->unk_168);
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(18);
+    Heap_Destroy(HEAP_ID_18);
 
     {
         gSystem.whichScreenIs3D = DS_SCREEN_MAIN;

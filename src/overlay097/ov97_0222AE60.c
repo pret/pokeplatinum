@@ -1194,7 +1194,7 @@ static int ov97_0222C150(OverlayManager *param0, int *param1)
     ov97_0222C094(v0);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(81);
+    Heap_Destroy(HEAP_ID_81);
 
     ov97_02238400(0);
 

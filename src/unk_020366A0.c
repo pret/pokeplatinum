@@ -188,13 +188,13 @@ static void sub_02036734(void)
     }
 
     if (sub_020389B8()) {
-        Heap_Destroy(49);
+        Heap_Destroy(HEAP_ID_49);
     }
 
     sub_02039794();
     sub_020334CC();
     Heap_FreeToHeap(Unk_021C07D4);
-    Heap_Destroy(15);
+    Heap_Destroy(HEAP_ID_COMMUNICATION);
 
     Unk_021C07D4 = NULL;
 }
@@ -2084,7 +2084,7 @@ void sub_0203848C(void)
         CommMan_SetErrorHandling(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
-        Heap_Destroy(15);
+        Heap_Destroy(HEAP_ID_COMMUNICATION);
     }
 }
 
@@ -2109,7 +2109,7 @@ void sub_02038514(void)
         CommMan_SetErrorHandling(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
-        Heap_Destroy(15);
+        Heap_Destroy(HEAP_ID_COMMUNICATION);
     }
 }
 
@@ -2134,7 +2134,7 @@ void sub_0203859C(void)
         CommMan_SetErrorHandling(0, 0);
         Heap_FreeToHeap(Unk_021C07D4);
         Unk_021C07D4 = NULL;
-        Heap_Destroy(15);
+        Heap_Destroy(HEAP_ID_COMMUNICATION);
     }
 }
 

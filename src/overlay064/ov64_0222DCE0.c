@@ -679,7 +679,7 @@ int ov64_0222DEA4(OverlayManager *param0, int *param1)
     ov64_0222E060(&v0->unk_28C);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(52);
+    Heap_Destroy(HEAP_ID_52);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 
     return 1;

@@ -432,7 +432,7 @@ int ov112_0225C8FC(OverlayManager *param0, int *param1)
     ov112_0225C9F4(&v0->unk_08);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(107);
+    Heap_Destroy(HEAP_ID_107);
 
     return 1;
 }

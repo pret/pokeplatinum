@@ -2439,9 +2439,9 @@ static int ov97_022301BC(OverlayManager *param0, int *param1)
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D7AC);
     }
 
-    Heap_Destroy(91);
+    Heap_Destroy(HEAP_ID_91);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(86);
+    Heap_Destroy(HEAP_ID_86);
 
     if (v0->unk_1638 == 2) {
         SetGBACartridgeVersion(NULL);

@@ -463,7 +463,7 @@ BOOL ChooseStarter_Exit(OverlayManager *param0, int *param1)
 
     VramTransfer_Free();
     OverlayManager_FreeData(param0);
-    Heap_Destroy(47);
+    Heap_Destroy(HEAP_ID_CHOOSE_STARTER_APP);
 
     return TRUE;
 }

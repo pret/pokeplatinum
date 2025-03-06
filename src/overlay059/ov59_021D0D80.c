@@ -321,7 +321,7 @@ int ov59_021D0FF4(OverlayManager *param0, int *param1)
 
     sub_0205BEA8(0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(51);
+    Heap_Destroy(HEAP_ID_51);
 
     return 1;
 }

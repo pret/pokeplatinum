@@ -1458,9 +1458,9 @@ static int ov97_02231F38(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v1->unk_2A5C, 3);
     Heap_FreeToHeap(v1->unk_2A5C);
     EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
-    Heap_Destroy(91);
+    Heap_Destroy(HEAP_ID_91);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(87);
+    Heap_Destroy(HEAP_ID_87);
 
     return 1;
 }

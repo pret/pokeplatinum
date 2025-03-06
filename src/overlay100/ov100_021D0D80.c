@@ -149,7 +149,7 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
 
     GXLayers_SwapDisplay();
     OverlayManager_FreeData(param0);
-    Heap_Destroy(111);
+    Heap_Destroy(HEAP_ID_111);
     sub_02005454(0);
 
     return 1;

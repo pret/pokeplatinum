@@ -213,7 +213,7 @@ static int sub_0208BC08(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->unk_14);
     OverlayManager_FreeData(param0);
     sub_0200544C(1, 127);
-    Heap_Destroy(119);
+    Heap_Destroy(HEAP_ID_119);
 
     return 1;
 }

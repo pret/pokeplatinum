@@ -331,8 +331,8 @@ int ov19_021D0E58(OverlayManager *param0, int *param1)
     ov19_021D64A0(v0->unk_114);
     ov19_021D4D58(v0);
 
-    Heap_Destroy(9);
-    Heap_Destroy(10);
+    Heap_Destroy(HEAP_ID_9);
+    Heap_Destroy(HEAP_ID_10);
 
     return 1;
 }
@@ -2344,7 +2344,7 @@ static void ov19_021D3B34(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 1:
         if (ov19_021D6600(param0->unk_114, 3)) {
             ov19_021D64A0(param0->unk_114);
-            Heap_Destroy(10);
+            Heap_Destroy(HEAP_ID_10);
             sub_02079AF4(param0->unk_120, sub_0207999C(param0->unk_120), param0->unk_128->unk_18);
             param0->unk_210 = OverlayManager_New(&Unk_020F2DAC, param0->unk_128, 9);
             (*param1)++;
@@ -2376,7 +2376,7 @@ static void ov19_021D3C28(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 1:
         if (ov19_021D6600(param0->unk_114, 3)) {
             ov19_021D64A0(param0->unk_114);
-            Heap_Destroy(10);
+            Heap_Destroy(HEAP_ID_10);
             ov19_021D1C84(param0);
             param0->unk_210 = OverlayManager_New(&gPokemonSummaryScreenApp, &(param0->unk_12C), 9);
             (*param1)++;
@@ -2439,7 +2439,7 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             Bag *v2;
 
             ov19_021D64A0(param0->unk_114);
-            Heap_Destroy(10);
+            Heap_Destroy(HEAP_ID_10);
 
             v2 = SaveData_GetBag(param0->unk_11C);
             param0->unk_214 = sub_0207D824(v2, v0, 9);

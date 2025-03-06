@@ -659,7 +659,7 @@ int ov113_0225CDFC(OverlayManager *param0, int *param1)
     RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
     OverlayManager_FreeData(param0);
-    Heap_Destroy(118);
+    Heap_Destroy(HEAP_ID_118);
 
     return 1;
 }

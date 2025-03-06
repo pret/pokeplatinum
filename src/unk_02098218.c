@@ -182,7 +182,7 @@ static int sub_02098388(OverlayManager *param0, int *param1)
     ov119_021D1844(&v0->unk_04);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(71);
+    Heap_Destroy(HEAP_ID_71);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();

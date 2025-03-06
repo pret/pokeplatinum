@@ -193,7 +193,7 @@ int ov93_021D0F58(OverlayManager *param0, int *param1)
     Camera_Delete(v1->camera);
     OverlayManager_FreeData(param0);
     Easy3D_Shutdown();
-    Heap_Destroy(72);
+    Heap_Destroy(HEAP_ID_72);
 
     return 1;
 }

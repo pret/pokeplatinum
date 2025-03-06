@@ -21,7 +21,7 @@
 FS_EXTERN_OVERLAY(overlay97);
 
 typedef struct {
-    int unk_00;
+    int heapID;
     int unk_04;
     int unk_08;
     int unk_0C;
@@ -68,14 +68,14 @@ const OverlayManagerTemplate Unk_020F8AB4 = {
 int sub_0209A2C4(OverlayManager *param0, int *param1)
 {
     UnkStruct_0209A3D0 *v0;
-    int v1 = 88;
+    int heapId = HEAP_ID_88;
 
-    Heap_Create(3, v1, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, heapId, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0209A3D0), v1);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0209A3D0), heapId);
     memset(v0, 0, sizeof(UnkStruct_0209A3D0));
 
-    v0->unk_00 = v1;
+    v0->heapID = heapId;
     v0->unk_04 = 0;
     v0->unk_34 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
 
@@ -122,10 +122,10 @@ int sub_0209A300(OverlayManager *param0, int *param1)
 int sub_0209A3A4(OverlayManager *param0, int *param1)
 {
     UnkStruct_0209A3D0 *v0 = OverlayManager_Data(param0);
-    int v1 = v0->unk_00;
+    int heapID = v0->heapID;
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(v1);
+    Heap_Destroy(heapID);
     EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D674);
 
     return 1;
@@ -149,7 +149,7 @@ static void sub_0209A3D0(UnkStruct_0209A3D0 *param0)
         GXLayers_SetBanks(&v0);
     }
     {
-        param0->unk_18 = BgConfig_New(param0->unk_00);
+        param0->unk_18 = BgConfig_New(param0->heapID);
     }
     {
         GraphicsModes v1 = {
@@ -179,10 +179,10 @@ static void sub_0209A3D0(UnkStruct_0209A3D0 *param0)
         Bg_InitFromTemplate(param0->unk_18, 0, &v2, 0);
         Bg_ClearTilemap(param0->unk_18, 0);
     }
-    LoadMessageBoxGraphics(param0->unk_18, 0, 512 - (18 + 12), 2, 0, param0->unk_00);
-    LoadStandardWindowGraphics(param0->unk_18, 0, (512 - (18 + 12)) - 9, 3, 0, param0->unk_00);
-    Font_LoadTextPalette(0, 1 * (2 * 16), param0->unk_00);
-    Bg_ClearTilesRange(0, 32, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_18, 0, 512 - (18 + 12), 2, 0, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_18, 0, (512 - (18 + 12)) - 9, 3, 0, param0->heapID);
+    Font_LoadTextPalette(0, 1 * (2 * 16), param0->heapID);
+    Bg_ClearTilesRange(0, 32, 0, param0->heapID);
     Bg_MaskPalette(0, 0);
     Bg_MaskPalette(4, 0);
 }
@@ -203,7 +203,7 @@ static void sub_0209A490(UnkStruct_0209A3D0 *param0)
 
 static void sub_0209A4E4(UnkStruct_0209A3D0 *param0)
 {
-    param0->unk_1C = MessageLoader_Init(1, 26, 406, param0->unk_00);
+    param0->unk_1C = MessageLoader_Init(1, 26, 406, param0->heapID);
     Text_ResetAllPrinters();
     param0->unk_0C = 0;
 
@@ -259,7 +259,7 @@ static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0)
     case 2:
         Bg_MaskPalette(0, 0x6c21);
         Bg_MaskPalette(4, 0x6c21);
-        StartScreenTransition(0, 1, 1, 0, 6, 1, param0->unk_00);
+        StartScreenTransition(0, 1, 1, 0, 6, 1, param0->heapID);
         param0->unk_04 = 3;
         break;
     case 3:
@@ -269,7 +269,7 @@ static BOOL sub_0209A544(UnkStruct_0209A3D0 *param0)
         break;
     case 4:
         if (sub_0209A688(param0, param0->unk_08, 0, 4) == 1) {
-            StartScreenTransition(0, 0, 0, 0, 6, 1, param0->unk_00);
+            StartScreenTransition(0, 0, 0, 0, 6, 1, param0->heapID);
             param0->unk_04 = 5;
         }
         break;
@@ -297,7 +297,7 @@ static BOOL sub_0209A688(UnkStruct_0209A3D0 *param0, u32 param1, int param2, int
         Window_FillRectWithColor(&param0->unk_20, 15, 0, 0, 27 * 8, 4 * 8);
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_20, 0, 512 - (18 + 12), 2);
 
-        param0->unk_14 = Strbuf_Init(0x400, param0->unk_00);
+        param0->unk_14 = Strbuf_Init(0x400, param0->heapID);
         MessageLoader_GetStrbuf(param0->unk_1C, param1, param0->unk_14);
         param0->unk_10 = Text_AddPrinterWithParams(&param0->unk_20, FONT_MESSAGE, param0->unk_14, 0, 0, param3, NULL);
 

@@ -63,7 +63,7 @@ static int sub_020995D4(OverlayManager *param0, int *param1)
 {
     Heap_Create(3, 49, 0x41000);
     sub_02099590(((ApplicationArgs *)OverlayManager_Args(param0))->saveData, 49);
-    Heap_Destroy(49);
+    Heap_Destroy(HEAP_ID_49);
 
     OS_ResetSystem(0);
     return 1;

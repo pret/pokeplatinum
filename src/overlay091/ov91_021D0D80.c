@@ -421,7 +421,7 @@ int ov91_021D0EBC(OverlayManager *param0, int *param1)
     ov91_021D0F6C(v0);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(67);
+    Heap_Destroy(HEAP_ID_67);
 
     return 1;
 }

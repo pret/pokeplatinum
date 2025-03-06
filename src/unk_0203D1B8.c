@@ -1073,7 +1073,7 @@ BOOL sub_0203DBF0(FieldTask *param0)
         if (sub_0207B0D0(v2->unk_60)) {
             Pokemon_Copy(v2->unk_04.unk_40, Party_GetPokemonBySlotIndex(v2->unk_04.unk_08, v2->unk_04.unk_2C));
             sub_0207B0E0(v2->unk_60);
-            Heap_Destroy(26);
+            Heap_Destroy(HEAP_ID_26);
             v2->unk_00 = 7;
         }
         break;

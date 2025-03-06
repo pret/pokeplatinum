@@ -400,8 +400,8 @@ int ov22_02256098(OverlayManager *param0, int *param1)
     GF_ASSERT(v1 == 1);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(13);
-    Heap_Destroy(14);
+    Heap_Destroy(HEAP_ID_13);
+    Heap_Destroy(HEAP_ID_14);
 
     return 1;
 }
@@ -661,8 +661,8 @@ int ov22_02256600(OverlayManager *param0, int *param1)
     GF_ASSERT(v1 == 1);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(13);
-    Heap_Destroy(14);
+    Heap_Destroy(HEAP_ID_13);
+    Heap_Destroy(HEAP_ID_14);
     sub_02095A24();
     sub_02039794();
 

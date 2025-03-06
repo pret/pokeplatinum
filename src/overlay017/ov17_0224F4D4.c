@@ -329,7 +329,7 @@ int ov17_0224F86C(OverlayManager *param0, int *param1)
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    Heap_Destroy(24);
+    Heap_Destroy(HEAP_ID_24);
     sub_02095A24();
 
     MI_CpuFill16((void *)HW_BG_PLTT, 0x7fff, 0x200);

@@ -168,8 +168,8 @@ int ov22_0225B7FC(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     OverlayManager_FreeData(param0);
-    Heap_Destroy(13);
-    Heap_Destroy(14);
+    Heap_Destroy(HEAP_ID_13);
+    Heap_Destroy(HEAP_ID_14);
 
     return 1;
 }

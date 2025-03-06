@@ -588,7 +588,7 @@ int ov84_0223B900(OverlayManager *param0, int *param1)
     NARC_dtor(v0->unk_D4);
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(6);
+    Heap_Destroy(HEAP_ID_6);
     SetAutorepeat(4, 8);
 
     return 1;

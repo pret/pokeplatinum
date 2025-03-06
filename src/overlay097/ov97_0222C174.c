@@ -776,10 +776,10 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
 
 static int ov97_0222C948(OverlayManager *param0, int *param1)
 {
-    Heap_Destroy(91);
+    Heap_Destroy(HEAP_ID_91);
     EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(85);
+    Heap_Destroy(HEAP_ID_85);
 
     return 1;
 }

@@ -670,7 +670,7 @@ static int sub_0207E7E0(OverlayManager *param0, int *param1)
     }
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(12);
+    Heap_Destroy(HEAP_ID_12);
 
     return 1;
 }

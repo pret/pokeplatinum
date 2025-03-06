@@ -146,7 +146,7 @@ static int sub_0208927C(OverlayManager *param0, int *param1)
     SpriteSystem_Free(v0->unk_2C0.unk_04);
     sub_02024034(v0->unk_2C0.unk_14);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(101);
+    Heap_Destroy(HEAP_ID_101);
 
     return 1;
 }

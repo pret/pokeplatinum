@@ -506,8 +506,8 @@ int ov65_0223668C(OverlayManager *param0, int *param1)
 
     VramTransfer_Free();
     OverlayManager_FreeData(param0);
-    Heap_Destroy(97);
-    Heap_Destroy(96);
+    Heap_Destroy(HEAP_ID_97);
+    Heap_Destroy(HEAP_ID_96);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 
     return 1;

@@ -215,8 +215,8 @@ int ov95_02246E1C(OverlayManager *param0, int *param1)
     SpriteList_Delete(v1->unk_18);
     RenderOam_Free();
     OverlayManager_FreeData(param0);
-    Heap_Destroy(57);
-    Heap_Destroy(58);
+    Heap_Destroy(HEAP_ID_57);
+    Heap_Destroy(HEAP_ID_58);
 
     OS_RestoreInterrupts(v0);
 

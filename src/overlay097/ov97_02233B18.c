@@ -2150,7 +2150,7 @@ static int ov97_02235CC8(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->unk_20);
     EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(78);
+    Heap_Destroy(HEAP_ID_78);
 
     ov97_02238400(0);
 

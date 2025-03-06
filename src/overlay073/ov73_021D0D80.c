@@ -231,7 +231,7 @@ int ov73_021D0E20(OverlayManager *param0, int *param1)
 int ov73_021D0F7C(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov73_021D1058 *v0 = OverlayManager_Data(param0);
-    int v1 = v0->heapId;
+    int heapID = v0->heapId;
 
     Heap_FreeToHeap(v0->unk_B8);
     Heap_FreeToHeap(v0->unk_BC);
@@ -248,7 +248,7 @@ int ov73_021D0F7C(OverlayManager *param0, int *param1)
     sub_0208716C(v0->unk_70);
     sub_0208716C(v0->unk_74);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(v1);
+    Heap_Destroy(heapID);
     EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartNewSaveOverlayTemplate);
 
     return 1;

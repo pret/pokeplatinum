@@ -125,7 +125,7 @@ static int sub_0208BF6C(OverlayManager *param0, int *param1)
     } break;
     default:
         ov62_0222F514(v0);
-        Heap_Destroy(102);
+        Heap_Destroy(HEAP_ID_102);
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay62));
         gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
         GXLayers_SwapDisplay();

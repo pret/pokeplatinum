@@ -670,7 +670,7 @@ static void ov23_0224A1A0(void)
     ov23_02242D08();
 
     sub_020367D0();
-    Heap_Destroy(33);
+    Heap_Destroy(HEAP_ID_33);
 
     v0->unk_41 = 0;
 

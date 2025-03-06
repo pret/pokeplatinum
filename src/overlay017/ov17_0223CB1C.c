@@ -336,7 +336,7 @@ int ov17_0223CF8C(OverlayManager *param0, int *param1)
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    Heap_Destroy(22);
+    Heap_Destroy(HEAP_ID_22);
     sub_02095A24();
     sub_02039794();
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));

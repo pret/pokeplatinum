@@ -92,7 +92,7 @@ int ov66_0222DD90(OverlayManager *param0, int *param1)
     ov66_0222DEEC(v0->unk_04);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(104);
+    Heap_Destroy(HEAP_ID_104);
 
     {
         FS_EXTERN_OVERLAY(overlay63);

@@ -378,7 +378,7 @@ int ov115_022608E4(OverlayManager *param0, int *param1)
         ov115_02260B30(v0);
 
         OverlayManager_FreeData(param0);
-        Heap_Destroy(99);
+        Heap_Destroy(HEAP_ID_99);
         CommMan_SetErrorHandling(0, 1);
 
         if (v2 == 1) {

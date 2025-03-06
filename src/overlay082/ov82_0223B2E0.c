@@ -65,7 +65,7 @@ int ov82_0223B330(UnkStruct_ov83_0223C344 *param0, int *param1)
         FS_OVERLAY_ID(overlay83)
     };
 
-    param0->unk_1C = OverlayManager_New(&v0, param0, param0->heapId);
+    param0->unk_1C = OverlayManager_New(&v0, param0, param0->heapID);
     return 2;
 }
 
@@ -101,7 +101,7 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
         4, 0xff
     };
 
-    v0 = sub_0207D824(param0->unk_10->unk_14, v3, param0->heapId);
+    v0 = sub_0207D824(param0->unk_10->unk_14, v3, param0->heapID);
 
     if (param0->unk_06_0 == 1) {
         v1 = 5;
@@ -111,7 +111,7 @@ static int ov82_0223B380(UnkStruct_ov83_0223C344 *param0)
 
     sub_0207CB2C(v0, param0->unk_10->unk_0C, v1, param0->unk_0C);
 
-    param0->unk_1C = OverlayManager_New(&Unk_ov84_02241130, v0, param0->heapId);
+    param0->unk_1C = OverlayManager_New(&Unk_ov84_02241130, v0, param0->heapID);
     param0->unk_18 = v0;
 
     return 1;
@@ -126,7 +126,7 @@ static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
         return 1;
     }
 
-    v0 = sub_0207CB08(param0->heapId);
+    v0 = sub_0207CB08(param0->heapID);
     memcpy(v0, param0->unk_18, sub_0207CB20());
     Heap_FreeToHeap(param0->unk_18);
 
@@ -151,7 +151,7 @@ static int ov82_0223B3DC(UnkStruct_ov83_0223C344 *param0)
         break;
     }
 
-    v1 = Bag_TryRemoveItem(param0->unk_10->unk_14, param0->unk_08, 1, param0->heapId);
+    v1 = Bag_TryRemoveItem(param0->unk_10->unk_14, param0->unk_08, 1, param0->heapID);
     GF_ASSERT(v1);
 
     return 4;
@@ -169,7 +169,7 @@ static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
         ov85_02241440, ov85_0224154C, ov85_022415A0, FS_OVERLAY_ID(overlay85)
     };
 
-    param0->unk_18 = sub_020972FC(param0->heapId);
+    param0->unk_18 = sub_020972FC(param0->heapID);
     sub_02097320(param0->unk_18, param0->unk_08, 1);
 
     v3 = 0;
@@ -177,7 +177,7 @@ static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
     for (v0 = 0; v0 < 64; v0++) {
         v4 = Item_ForBerryNumber(v0);
 
-        if (Bag_CanRemoveItem(v5, v4, 1, param0->heapId) == 1) {
+        if (Bag_CanRemoveItem(v5, v4, 1, param0->heapID) == 1) {
             sub_02097320(param0->unk_18, v4, 0);
             v3++;
         }
@@ -186,7 +186,7 @@ static int ov82_0223B470(UnkStruct_ov83_0223C344 *param0)
     BagCursor_GetFieldPocketPosition(param0->unk_0C, 4, &v2, &v1);
     sub_0209733C(param0->unk_18, v1, v2, v3 + 2);
 
-    param0->unk_1C = OverlayManager_New(&v6, param0->unk_18, param0->heapId);
+    param0->unk_1C = OverlayManager_New(&v6, param0->unk_18, param0->heapID);
     return 3;
 }
 

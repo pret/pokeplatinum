@@ -535,7 +535,7 @@ void sub_02093AD4(UnkStruct_02095C48 *param0)
 
     LCRNG_SetSeed(param0->unk_19A4);
     sub_020937F8(param0);
-    Heap_Destroy(20);
+    Heap_Destroy(HEAP_ID_20);
 }
 
 static int sub_02093B2C(Pokemon *param0, int param1)

@@ -897,7 +897,7 @@ int ov65_0222E548(OverlayManager *param0, int *param1)
     OverlayManager_FreeData(param0);
     sub_0201E530();
     VramTransfer_Free();
-    Heap_Destroy(54);
+    Heap_Destroy(HEAP_ID_54);
 
     switch (v0->unk_3AC) {
     case 8:
@@ -911,7 +911,7 @@ int ov65_0222E548(OverlayManager *param0, int *param1)
     case 6:
     case 12:
     case 7:
-        Heap_Destroy(121);
+        Heap_Destroy(HEAP_ID_121);
         break;
     default:
         break;

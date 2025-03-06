@@ -1392,7 +1392,7 @@ static void ov23_0223F020(UnkStruct_ov23_0223EE80 *param0)
 
     Unk_ov23_02257740->unk_04 = NULL;
 
-    Heap_Destroy(29);
+    Heap_Destroy(HEAP_ID_29);
     ov23_02253E2C(ov23_0224219C(), Unk_ov23_02257740->fieldSystem->bgConfig, (1024 - (18 + 12)), (((1024 - (18 + 12)) - 73) - (27 * 4)));
 }
 

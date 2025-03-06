@@ -407,7 +407,7 @@ static void sub_0205B754(UnkStruct_0205B43C *param0)
 
     SysTask_Done(param0->unk_0C);
     Heap_FreeToHeap(param0);
-    Heap_Destroy(31);
+    Heap_Destroy(HEAP_ID_31);
 }
 
 FieldSystem *sub_0205B770(UnkStruct_0205B43C *param0)

@@ -587,7 +587,7 @@ int ov107_02241D2C (OverlayManager * param0, int * param1)
 
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(100);
+    Heap_Destroy(HEAP_ID_100);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
     return 1;

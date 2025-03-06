@@ -189,9 +189,9 @@ static void TeardownFieldSystem(OverlayManager *ovyManager)
 
     Heap_FreeToHeap(fieldSystem->processManager);
     OverlayManager_FreeData(ovyManager);
-    Heap_Destroy(91);
+    Heap_Destroy(HEAP_ID_91);
     Heap_Destroy(HEAP_ID_FIELDMAP);
-    Heap_Destroy(32);
+    Heap_Destroy(HEAP_ID_FIELD_TASK);
 }
 
 static void ExecuteAndCleanupIfDone(OverlayManager **ovyManagerPtr)

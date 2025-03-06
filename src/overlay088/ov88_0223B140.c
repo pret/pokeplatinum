@@ -887,7 +887,7 @@ int ov88_0223C03C(OverlayManager *param0, int *param1)
     Strbuf_Free(v0->unk_18C);
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(26);
+    Heap_Destroy(HEAP_ID_26);
 
     return 1;
 }

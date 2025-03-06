@@ -158,7 +158,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
     case 9:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_FreeToHeap(v3);
-            Heap_Destroy(4);
+            Heap_Destroy(HEAP_ID_FIELD);
             OS_ResetSystem(0);
             return 1;
         }

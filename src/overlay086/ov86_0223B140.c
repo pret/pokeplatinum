@@ -361,7 +361,7 @@ int ov86_0223B2E4(OverlayManager *param0, int *param1)
         MessageLoader_Free(v0->unk_1C50);
         NARC_dtor(v0->unk_1C54);
         OverlayManager_FreeData(param0);
-        Heap_Destroy(63);
+        Heap_Destroy(HEAP_ID_63);
     }
         (*param1)++;
         break;

@@ -339,7 +339,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
 
             fieldSystem->unk_04 = NULL;
 
-            Heap_Destroy(4);
+            Heap_Destroy(HEAP_ID_FIELD);
 
             if (fieldSystem->mapLoadMode->unk_00_20) {
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay6));

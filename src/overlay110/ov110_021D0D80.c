@@ -182,7 +182,7 @@ int ov110_021D0EF0 (OverlayManager * param0, int * param1)
 
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(114);
+    Heap_Destroy(HEAP_ID_114);
 
     return 1;
 }

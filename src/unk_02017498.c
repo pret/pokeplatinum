@@ -137,7 +137,7 @@ int sub_02017658(OverlayManager *param0, int *param1)
     sub_020176B4(v0);
     Heap_FreeToHeap(v0->unk_00);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(116);
+    Heap_Destroy(HEAP_ID_116);
 
     return 1;
 }

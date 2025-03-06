@@ -128,7 +128,7 @@ int ov117_022605C0(OverlayManager *param0, int *param1)
     UnkStruct_ov117_022605C0 *v0 = OverlayManager_Data(param0);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(110);
+    Heap_Destroy(HEAP_ID_110);
 
     return 1;
 }

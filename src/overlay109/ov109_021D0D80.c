@@ -509,7 +509,7 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
     VramTransfer_Free();
     NARC_dtor(v0->unk_D80);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(95);
+    Heap_Destroy(HEAP_ID_95);
     ResetUnlock(2);
 
     return 1;
