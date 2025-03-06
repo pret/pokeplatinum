@@ -645,7 +645,7 @@ static void VsSeeker_TrackAnimation(SysTask *task, void *param)
 
         MapObject_FinishAnimation(vssAnimTask->animationTask);
         SysTask_Done(vssAnimTask->trackingTask);
-        Heap_FreeToHeapExplicit(4, param);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param);
     }
 }
 

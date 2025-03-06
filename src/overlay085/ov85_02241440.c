@@ -412,7 +412,7 @@ static void ov85_022416E8(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, 3);
     Bg_FreeTilemapBuffer(param0, 2);
     Bg_FreeTilemapBuffer(param0, 1);
-    Heap_FreeToHeapExplicit(36, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_36, param0);
 }
 
 static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)

@@ -211,7 +211,7 @@ static void ov104_0223DD30(UnkStruct_ov104_0223DD30 *param0, SysTask *param1)
     SysTask_Done(param0->unk_140);
     SysTask_Done(param0->unk_34);
     NARC_dtor(param0->unk_24);
-    Heap_FreeToHeapExplicit(94, param0->unk_0C);
+    Heap_FreeToHeapExplicit(HEAP_ID_94, param0->unk_0C);
     SysTask_FinishAndFreeParam(param1);
 }
 

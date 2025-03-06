@@ -1761,7 +1761,7 @@ static void *ov5_021E1110(int param0)
 
 static void ov5_021E1134(void *param0)
 {
-    Heap_FreeToHeapExplicit(4, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0);
 }
 
 static Pokemon *ov5_021E1140(FieldSystem *fieldSystem, int param1)

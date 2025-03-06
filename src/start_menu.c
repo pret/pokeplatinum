@@ -967,7 +967,7 @@ static BOOL StartMenu_PokedexEnd(FieldTask *taskMan)
     FieldSystem_StartFieldMap(fieldSystem);
 
     if (menu->unk_25C != NULL) {
-        Heap_FreeToHeapExplicit(11, menu->unk_25C);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
     }
 
     menu->state = START_MENU_STATE_12;
@@ -1674,7 +1674,7 @@ static BOOL sub_0203C390(FieldTask *taskMan)
 
     sub_02097390(menu->unk_25C, &v2, &v3);
     BagCursor_SetFieldPocketPosition(fieldSystem->unk_98, 4, v3, v2);
-    Heap_FreeToHeapExplicit(11, menu->unk_25C);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
@@ -1690,7 +1690,7 @@ BOOL sub_0203C3F4(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    Heap_FreeToHeapExplicit(11, menu->unk_25C);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
 

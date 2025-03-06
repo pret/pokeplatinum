@@ -804,7 +804,7 @@ static void ov84_0223BBC4(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, 2);
     Bg_FreeTilemapBuffer(param0, 1);
     Bg_FreeTilemapBuffer(param0, 0);
-    Heap_FreeToHeapExplicit(6, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_6, param0);
 }
 
 static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0)

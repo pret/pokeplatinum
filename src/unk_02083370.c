@@ -634,7 +634,7 @@ static void sub_02084134(GameWindowLayout *param0)
     param0->unk_704[v1->unk_300[0]] = param0->unk_704[v1->unk_300[1]];
     param0->unk_704[v1->unk_300[1]] = *v0;
 
-    Heap_FreeToHeapExplicit(12, v0);
+    Heap_FreeToHeapExplicit(HEAP_ID_12, v0);
 
     v3 = param0->unk_704[v1->unk_300[0]].unk_16;
     param0->unk_704[v1->unk_300[0]].unk_16 = param0->unk_704[v1->unk_300[1]].unk_16;

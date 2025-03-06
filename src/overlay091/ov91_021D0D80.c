@@ -584,7 +584,7 @@ static void ov91_021D1098(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, 2);
     Bg_FreeTilemapBuffer(param0, 1);
     Bg_FreeTilemapBuffer(param0, 0);
-    Heap_FreeToHeapExplicit(67, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_67, param0);
 }
 
 static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)

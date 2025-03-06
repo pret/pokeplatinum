@@ -440,7 +440,7 @@ static void sub_02068054(SysTask *task)
 {
     UnkStruct_020EF6D0 *v0 = SysTask_GetParam(task);
 
-    Heap_FreeToHeapExplicit(4, v0);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, v0);
     SysTask_Done(task);
 }
 

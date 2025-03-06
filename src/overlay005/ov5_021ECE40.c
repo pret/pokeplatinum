@@ -364,8 +364,8 @@ static void ov5_021ED0F0(UnkStruct_ov5_021ED0A4 *param0)
 {
     ov5_021ED1A4(param0);
 
-    Heap_FreeToHeapExplicit(4, param0->unk_E4);
-    Heap_FreeToHeapExplicit(4, param0->unk_F4);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_E4);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_F4);
 }
 
 static UnkStruct_ov5_021DF84C *ov5_021ED110(UnkStruct_ov5_021ED0A4 *param0, u32 param1)

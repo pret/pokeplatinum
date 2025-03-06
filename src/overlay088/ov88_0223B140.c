@@ -879,7 +879,7 @@ int ov88_0223C03C(OverlayManager *param0, int *param1)
     ov88_0223EC04(v0->unk_49C);
     ov88_0223C44C(v0->unk_174);
 
-    Heap_FreeToHeapExplicit(26, v0->unk_174);
+    Heap_FreeToHeapExplicit(HEAP_ID_26, v0->unk_174);
     MessageLoader_Free(v0->unk_184);
     StringTemplate_Free(v0->unk_180);
     StringTemplate_Free(v0->unk_17C);

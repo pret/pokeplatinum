@@ -860,7 +860,7 @@ static void sub_0207EA24(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, 2);
     Bg_FreeTilemapBuffer(param0, 1);
     Bg_FreeTilemapBuffer(param0, 0);
-    Heap_FreeToHeapExplicit(12, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_12, param0);
 }
 
 void sub_0207EA74(GameWindowLayout *param0, int param1)
@@ -920,7 +920,7 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
 
         v2 = (u16 *)v0->pRawData;
         memcpy(param0->unk_4A4, &v2[3 * 16], 32 * 8);
-        Heap_FreeToHeapExplicit(12, v1);
+        Heap_FreeToHeapExplicit(HEAP_ID_12, v1);
     }
 
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, 12);
@@ -1709,7 +1709,7 @@ static void sub_0207FFC8(GameWindowLayout *param0)
     }
 
     sub_02081CF4(param0, v0, v1);
-    Heap_FreeToHeapExplicit(12, v0);
+    Heap_FreeToHeapExplicit(HEAP_ID_12, v0);
     sub_02081E08(param0);
     sub_020826F4(param0, 0xffffffff, 1);
     Sprite_SetExplicitPalette2(param0->unk_5B0[6], 1);
