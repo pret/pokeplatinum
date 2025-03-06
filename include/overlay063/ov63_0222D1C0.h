@@ -8,7 +8,7 @@
 #include "bg_window.h"
 #include "sprite_util.h"
 
-UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 param3);
+UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 heapID);
 void ov63_0222D214(UnkStruct_ov63_0222D1C0 *param0);
 void ov63_0222D228(UnkStruct_ov63_0222D1C0 *param0, const UnkStruct_ov63_0222D160 *param1);
 

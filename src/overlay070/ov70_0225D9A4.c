@@ -607,7 +607,7 @@ int ov70_0225D9A4(OverlayManager *param0, int *param1)
 
     v0->unk_458 = SaveData_GetTrainerInfo(v1->unk_00);
     ov70_0225E4EC(&v0->unk_3C, v1->unk_00, HEAP_ID_112);
-    v0->unk_44C = ov70_0225C858(112);
+    v0->unk_44C = ov70_0225C858(HEAP_ID_112);
 
     {
         u32 v2;

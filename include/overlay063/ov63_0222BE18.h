@@ -7,7 +7,7 @@
 #include "overlay063/struct_ov63_0222CCB8.h"
 #include "overlay065/struct_ov65_022376D0.h"
 
-UnkStruct_ov63_0222BE18 *ov63_0222BE18(u32 param0, u32 param1);
+UnkStruct_ov63_0222BE18 *ov63_0222BE18(u32 param0, u32 heapID);
 void ov63_0222BE58(UnkStruct_ov63_0222BE18 *param0);
 void ov63_0222BE70(UnkStruct_ov63_0222BE18 *param0, const UnkStruct_ov63_0222CCB8 *param1);
 void ov63_0222BE84(UnkStruct_ov63_0222BE18 *param0);

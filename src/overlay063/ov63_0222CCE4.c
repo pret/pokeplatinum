@@ -22,12 +22,12 @@ static int ov63_0222D0C4(const UnkStruct_ov63_0222BB38 *param0, int param1);
 static void ov63_0222D0E0(const UnkStruct_ov63_0222CE44 *param0, s16 *param1, s16 *param2);
 static void ov63_0222D110(UnkStruct_ov63_0222CE44 *param0, int param1, int param2);
 
-UnkStruct_ov63_0222CD2C *ov63_0222CCE4(SpriteList *param0, PaletteData *param1, u32 param2, u32 param3, u32 param4)
+UnkStruct_ov63_0222CD2C *ov63_0222CCE4(SpriteList *param0, PaletteData *param1, u32 param2, u32 param3, u32 heapID)
 {
-    UnkStruct_ov63_0222CD2C *v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov63_0222CD2C));
-    v0->unk_00 = ov63_0222AE60(param0, param1, param2, param4);
+    UnkStruct_ov63_0222CD2C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222CD2C));
+    v0->unk_00 = ov63_0222AE60(param0, param1, param2, heapID);
     v0->unk_08 = param2;
-    v0->unk_04 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
+    v0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
 
     memset(v0->unk_04, 0, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
 
@@ -37,20 +37,20 @@ UnkStruct_ov63_0222CD2C *ov63_0222CCE4(SpriteList *param0, PaletteData *param1, 
     return v0;
 }
 
-UnkStruct_ov63_0222CD2C *ov63_0222CD2C(SpriteList *param0, PaletteData *param1, u32 param2, u32 param3, int param4, u32 param5, u32 param6)
+UnkStruct_ov63_0222CD2C *ov63_0222CD2C(SpriteList *param0, PaletteData *param1, u32 param2, u32 param3, int param4, u32 param5, u32 heapID)
 {
-    UnkStruct_ov63_0222CD2C *v0 = Heap_AllocFromHeap(param6, sizeof(UnkStruct_ov63_0222CD2C));
-    v0->unk_00 = ov63_0222AE60(param0, param1, param2, param6);
+    UnkStruct_ov63_0222CD2C *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222CD2C));
+    v0->unk_00 = ov63_0222AE60(param0, param1, param2, heapID);
     v0->unk_08 = param2;
-    v0->unk_04 = Heap_AllocFromHeap(param6, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
+    v0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
 
     memset(v0->unk_04, 0, sizeof(UnkStruct_ov63_0222CE44) * v0->unk_08);
 
     v0->unk_0A = 2;
     v0->unk_0B = param5;
 
-    ov63_0222AF94(v0->unk_00, param3, v0->unk_0B, param4, param6);
-    ov63_0222B0A0(v0->unk_00, v0->unk_0B, 40001, param6);
+    ov63_0222AF94(v0->unk_00, param3, v0->unk_0B, param4, heapID);
+    ov63_0222B0A0(v0->unk_00, v0->unk_0B, 40001, heapID);
 
     return v0;
 }

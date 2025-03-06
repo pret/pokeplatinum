@@ -53,13 +53,13 @@ static void ov63_0222CA48(UnkStruct_ov63_0222BEC0 *param0);
 static UnkStruct_ov63_0222CC3C ov63_0222C9E4(UnkStruct_ov63_0222CC3C param0, int param1);
 static BOOL ov63_0222CA14(UnkStruct_ov63_0222BEC0 *param0);
 
-UnkStruct_ov63_0222BE18 *ov63_0222BE18(u32 param0, u32 param1)
+UnkStruct_ov63_0222BE18 *ov63_0222BE18(u32 param0, u32 heapID)
 {
-    UnkStruct_ov63_0222BE18 *v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov63_0222BE18));
+    UnkStruct_ov63_0222BE18 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222BE18));
     GF_ASSERT(v0);
 
     v0->unk_04 = param0;
-    v0->unk_00 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov63_0222BEC0) * v0->unk_04);
+    v0->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222BEC0) * v0->unk_04);
     GF_ASSERT(v0->unk_00);
 
     memset(v0->unk_00, 0, sizeof(UnkStruct_ov63_0222BEC0) * v0->unk_04);

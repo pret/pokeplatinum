@@ -18,7 +18,7 @@
 #include "savedata.h"
 #include "trainer_info.h"
 
-UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *param0, u32 param1);
+UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *param0, u32 heapID);
 void ov66_0222DEEC(UnkStruct_ov66_0222DFF8 *param0);
 void ov66_0222DF58(UnkStruct_ov66_0222DFF8 *param0);
 void ov66_0222DFF4(UnkStruct_ov66_0222DFF8 *param0);

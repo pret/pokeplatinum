@@ -294,33 +294,33 @@ static const u8 Unk_ov63_0222D904[10] = {
     0x0
 };
 
-UnkStruct_ov63_0222AE60 *ov63_0222AE60(SpriteList *param0, PaletteData *param1, u32 param2, u32 param3)
+UnkStruct_ov63_0222AE60 *ov63_0222AE60(SpriteList *param0, PaletteData *param1, u32 param2, u32 heapID)
 {
     UnkStruct_ov63_0222AE60 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov63_0222AE60));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222AE60));
     memset(v0, 0, sizeof(UnkStruct_ov63_0222AE60));
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
-    v0->unk_2294[0] = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI2DCHAR, param3);
-    v0->unk_2294[1] = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_UNIONOBJ, param3);
+    v0->unk_2294[0] = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI2DCHAR, heapID);
+    v0->unk_2294[1] = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_UNIONOBJ, heapID);
 
     for (v1 = 0; v1 < 2; v1++) {
-        v0->unk_2280[v1] = SpriteResourceCollection_New((151 + 1), v1, param3);
+        v0->unk_2280[v1] = SpriteResourceCollection_New((151 + 1), v1, heapID);
     }
 
     for (v1 = 0; v1 < 2; v1++) {
-        v0->unk_2280[v1 + 2] = SpriteResourceCollection_New(((3 * 2) + 16 + 1), v1 + 2, param3);
+        v0->unk_2280[v1 + 2] = SpriteResourceCollection_New(((3 * 2) + 16 + 1), v1 + 2, heapID);
     }
 
     for (v1 = 0; v1 < 3; v1++) {
-        ov63_0222B374(v0, v1, param3);
+        ov63_0222B374(v0, v1, heapID);
     }
 
     v0->unk_0C = param2;
-    v0->unk_08 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov63_0222BB38) * v0->unk_0C);
+    v0->unk_08 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222BB38) * v0->unk_0C);
     memset(v0->unk_08, 0, sizeof(UnkStruct_ov63_0222BB38) * v0->unk_0C);
 
     return v0;
