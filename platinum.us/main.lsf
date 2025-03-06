@@ -1467,7 +1467,7 @@ Overlay overlay97
 	Object main.nef.p/src_overlay097_ov97_02233408.c.o
 	Object main.nef.p/src_overlay097_ov97_022337FC.c.o
 	Object main.nef.p/src_overlay097_ov97_02233814.c.o
-	Object main.nef.p/src_overlay097_ov97_02233B18.c.o
+	Object main.nef.p/src_overlay097_gba_migrator.c.o
 	Object main.nef.p/src_overlay097_ov97_02235D18.c.o
 	Object main.nef.p/src_overlay097_ov97_0223635C.c.o
 	Object main.nef.p/src_overlay097_ov97_02236380.c.o

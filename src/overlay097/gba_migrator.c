@@ -9,6 +9,8 @@
 #include "constants/pokemon.h"
 #include "constants/screen.h"
 #include "constants/species.h"
+#include "generated/sdat.h"
+#include "generated/text_banks.h"
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
@@ -91,7 +93,7 @@ typedef struct {
     int unk_28;
     TextColor unk_2C;
     TextColor unk_30;
-    int unk_34;
+    int messageEntryID;
     u16 *unk_38;
     Strbuf *unk_3C;
     StringTemplate *unk_40;
@@ -125,15 +127,15 @@ typedef struct {
 } UnkStruct_ov97_0223F434;
 
 typedef struct {
-    int unk_00;
+    int gbaVersion;
     int unk_04;
     int messageEntryID;
     int unk_0C;
-    SaveData *unk_10;
+    SaveData *saveData;
     TrainerInfo *unk_14;
-    Options *unk_18;
-    int unk_1C;
-    BgConfig *unk_20;
+    Options *options;
+    int messageBoxFrame;
+    BgConfig *bgConfig;
     int unk_24;
     SpriteList *unk_28;
     G2dRenderer unk_2C;
@@ -146,7 +148,7 @@ typedef struct {
     Sprite *unk_40C[4];
     Sprite *unk_41C[4];
     UnkStruct_ov97_02234A2C_sub2 unk_42C[6];
-    int unk_474;
+    int selectedCount;
     Sprite *unk_478[6];
     UnkStruct_ov97_02233DAC unk_490;
     Window unk_4DC;
@@ -164,13 +166,13 @@ typedef struct {
     void (*unk_12664)(void);
     Strbuf *unk_12668;
     Strbuf *unk_1266C;
-} UnkStruct_ov97_02234A2C;
+} GBAMigrator;
 
-static void ov97_02234A2C(UnkStruct_ov97_02234A2C *param0, int param1);
-static void ov97_022349E0(UnkStruct_ov97_02234A2C *param0);
-static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0);
-static void ov97_02235310(UnkStruct_ov97_02234A2C *param0);
-static void ov97_02233D10(UnkStruct_ov97_02234A2C *param0);
+static void ov97_02234A2C(GBAMigrator *migrator, int param1);
+static void ov97_022349E0(GBAMigrator *migrator);
+static void ov97_02234ECC(GBAMigrator *migrator);
+static void ov97_02235310(GBAMigrator *migrator);
+static void ov97_02233D10(GBAMigrator *migrator);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
 void Strbuf_CopyChars(Strbuf *param0, const u16 *param1);
 void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon);
@@ -188,42 +190,42 @@ static int sGBAHMMoves[] = {
     MOVE_DIVE
 };
 
-static int Unk_ov97_0223EA80[] = {
+static int sMigrateFromGBAGameMessageIDs[] = {
     NULL,
-    0x1,
-    0x0,
-    0x2,
-    0x3,
-    0x4
+    [SAPPHIRE] = migrate_from_gba_from_sapphire,
+    [RUBY] = migrate_from_gba_from_ruby,
+    [EMERALD] = migrate_from_gba_from_emerald,
+    [FIRERED] = migrate_from_gba_from_firered,
+    [LEAFGREEN] = migrate_from_gba_from_leafgreen,
 };
 
-static int Unk_ov97_0223EA68[] = {
+static int sSavingOnGBAGameAndPlatinumMessageIDs[] = {
     NULL,
-    0x14,
-    0x12,
-    0x16,
-    0x18,
-    0x1A
+    [SAPPHIRE] = migrate_from_gba_saving_on_sapphire_and_platinum,
+    [RUBY] = migrate_from_gba_saving_on_ruby_and_platinum,
+    [EMERALD] = migrate_from_gba_saving_on_emerald_and_platinum,
+    [FIRERED] = migrate_from_gba_saving_on_firered_and_platinum,
+    [LEAFGREEN] = migrate_from_gba_saving_on_leafgreen_and_platinum,
 };
 
-static u8 Unk_ov97_0223EA60[] = {
+static u8 sGBAGameRectPalettes[] = {
     0x0,
-    0x2,
-    0x1,
-    0x3,
-    0x4,
-    0x5
+    [SAPPHIRE] = 0x2,
+    [RUBY] = 0x1,
+    [EMERALD] = 0x3,
+    [FIRERED] = 0x4,
+    [LEAFGREEN] = 0x5,
 };
 
 static int Unk_ov97_0223EAB8[] = {
     NULL,
-    0x25,
-    0x1F,
-    0x20,
-    0x20,
-    0x5,
-    0x7,
-    0x21
+    migrate_from_gba_error_reading_gba_pak,
+    migrate_from_gba_full_day_hasnt_passed,
+    migrate_from_gba_internal_clock_altered,
+    migrate_from_gba_internal_clock_altered,
+    migrate_from_gba_less_than_six,
+    migrate_from_gba_game_card_already_stocked,
+    migrate_from_gba_game_clock_adjusted,
 };
 
 static BOOL IsGBASpeciesInvalid(int speciesGBA)
@@ -241,42 +243,42 @@ static BOOL IsGBASpeciesInvalid(int speciesGBA)
     return TRUE;
 }
 
-static void ov97_02233B44(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02233B44(GBAMigrator *migrator)
 {
     switch (ov97_02235DB0()) {
     case 0:
-        param0->unk_00 = 2;
+        migrator->gbaVersion = RUBY;
         break;
     case 1:
-        param0->unk_00 = 1;
+        migrator->gbaVersion = SAPPHIRE;
         break;
     case 2:
-        param0->unk_00 = 5;
+        migrator->gbaVersion = LEAFGREEN;
         break;
     case 3:
-        param0->unk_00 = 4;
+        migrator->gbaVersion = FIRERED;
         break;
     case 4:
-        param0->unk_00 = 3;
+        migrator->gbaVersion = EMERALD;
         break;
     default:
-        param0->unk_00 = -1;
+        migrator->gbaVersion = -1;
         break;
     }
 }
 
-static int ov97_02233B8C(UnkStruct_ov97_02234A2C *param0)
+static int ov97_02233B8C(GBAMigrator *migrator)
 {
     int v0;
     u8 v1[16];
     int v2;
     PalParkTransfer *transferData;
-    UnkStruct_ov97_02233B8C *v4 = &param0->unk_E8F0;
+    UnkStruct_ov97_02233B8C *v4 = &migrator->unk_E8F0;
 
     switch (v4->unk_00) {
     case 0:
-        ov97_02233D10(param0);
-        transferData = SaveData_PalParkTransfer(param0->unk_10);
+        ov97_02233D10(migrator);
+        transferData = SaveData_PalParkTransfer(migrator->saveData);
         sub_0202EFB8(transferData, GetGBAPlayerTrainerId());
         v4->unk_00++;
         break;
@@ -290,17 +292,17 @@ static int ov97_02233B8C(UnkStruct_ov97_02234A2C *param0)
         }
         break;
     case 3:
-        SaveData_SaveStateInit(param0->unk_10, 2);
+        SaveData_SaveStateInit(migrator->saveData, 2);
         v4->unk_00++;
         break;
     case 4:
-        v2 = SaveData_SaveStateMain(param0->unk_10);
+        v2 = SaveData_SaveStateMain(migrator->saveData);
 
-        if (v2 == 3) {
+        if (v2 == SAVE_RESULT_CORRUPT) {
             return 12;
         }
 
-        if (v2 == 1) {
+        if (v2 == SAVE_RESULT_PROCEED_FINAL) {
             v4->unk_00++;
         }
         break;
@@ -336,12 +338,12 @@ static int ov97_02233B8C(UnkStruct_ov97_02234A2C *param0)
         break;
     case 8:
         do {
-            v2 = SaveData_SaveStateMain(param0->unk_10);
+            v2 = SaveData_SaveStateMain(migrator->saveData);
 
-            if (v2 == 3) {
+            if (v2 == SAVE_RESULT_CORRUPT) {
                 return 12;
             }
-        } while (v2 != 2);
+        } while (v2 != SAVE_RESULT_OK);
 
         ov97_022362C8();
         SleepLock(SLEEP_TYPE_SAVE_DATA);
@@ -365,31 +367,31 @@ static int ov97_02233B8C(UnkStruct_ov97_02234A2C *param0)
     return 10;
 }
 
-static void ov97_02233CE4(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02233CE4(GBAMigrator *migrator)
 {
-    int v1;
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(param0->unk_10);
+    enum SaveResult result;
+    PalParkTransfer *transferData = SaveData_PalParkTransfer(migrator->saveData);
 
     sub_0202EFB8(transferData, GetGBAPlayerTrainerId());
     ResetLock(4);
 
-    v1 = SaveData_Save(param0->unk_10);
+    result = SaveData_Save(migrator->saveData);
     ResetUnlock(4);
 }
 
-static void ov97_02233D10(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02233D10(GBAMigrator *migrator)
 {
     int i, boxNum, boxPos;
     u16 species;
     BoxPokemonGBA *boxMonGBA;
     Pokemon mon;
-    PalParkTransfer *transfer = SaveData_PalParkTransfer(param0->unk_10);
+    PalParkTransfer *transfer = SaveData_PalParkTransfer(migrator->saveData);
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(&mon);
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        boxPos = param0->unk_42C[i].boxPosition;
-        boxNum = param0->unk_42C[i].boxId;
-        boxMonGBA = &param0->unk_E8E0->boxes[boxNum][boxPos];
+        boxPos = migrator->unk_42C[i].boxPosition;
+        boxNum = migrator->unk_42C[i].boxId;
+        boxMonGBA = &migrator->unk_E8E0->boxes[boxNum][boxPos];
 
         BoxMonGBAToBoxMon(boxMonGBA, boxMon);
         BoxMonToTransferData(transfer, boxMon, i);
@@ -398,11 +400,11 @@ static void ov97_02233D10(UnkStruct_ov97_02234A2C *param0)
     species = SPECIES_NONE;
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        boxPos = param0->unk_42C[i].boxPosition;
-        boxNum = param0->unk_42C[i].boxId;
+        boxPos = migrator->unk_42C[i].boxPosition;
+        boxNum = migrator->unk_42C[i].boxId;
 
         if ((boxPos != -1) && (boxNum != GBA_MAX_PC_BOXES)) {
-            SetGBABoxMonData(&(param0->unk_E8E0->boxes[boxNum][boxPos]), GBA_MON_DATA_SPECIES, (u8 *)&species);
+            SetGBABoxMonData(&(migrator->unk_E8E0->boxes[boxNum][boxPos]), GBA_MON_DATA_SPECIES, (u8 *)&species);
         }
     }
 }
@@ -420,11 +422,11 @@ static int ov97_02233DAC(UnkStruct_ov97_02233DAC *param0, Strbuf *param1, int pa
     }
 }
 
-static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233DAC *param1, int param2)
+static void ov97_02233DD0(GBAMigrator *migrator, UnkStruct_ov97_02233DAC *param1, int param2)
 {
     Strbuf *v0;
     StringTemplate *v1;
-    MessageLoader *v2;
+    MessageLoader *msgLoader;
     int v3, v4, v5;
     Strbuf *v6;
 
@@ -435,28 +437,28 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
     }
 
     if (param1->unk_00->bgConfig == NULL) {
-        Window_Add(param0->unk_20, param1->unk_00, param1->unk_24, param1->unk_08, param1->unk_0C, param1->unk_10, param1->unk_14, 15, param1->unk_20);
+        Window_Add(migrator->bgConfig, param1->unk_00, param1->unk_24, param1->unk_08, param1->unk_0C, param1->unk_10, param1->unk_14, 15, param1->unk_20);
     }
 
     if (!(param2 & 0x2)) {
         Window_FillTilemap(param1->unk_00, param1->unk_30);
     }
 
-    if (param1->unk_34 != -1) {
-        v2 = MessageLoader_Init(1, 26, 454, HEAP_ID_78);
+    if (param1->messageEntryID != -1) {
+        msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MIGRATE_FROM_GBA, HEAP_ID_MIGRATE_FROM_GBA);
 
         if (param1->unk_40) {
             v1 = param1->unk_40;
         } else {
-            v1 = StringTemplate_Default(HEAP_ID_78);
+            v1 = StringTemplate_Default(HEAP_ID_MIGRATE_FROM_GBA);
         }
 
-        Strbuf_Clear(param0->unk_12668);
+        Strbuf_Clear(migrator->unk_12668);
 
-        v0 = param0->unk_12668;
-        v6 = MessageLoader_GetNewStrbuf(v2, param1->unk_34);
+        v0 = migrator->unk_12668;
+        v6 = MessageLoader_GetNewStrbuf(msgLoader, param1->messageEntryID);
 
-        StringTemplate_Format(v1, param0->unk_12668, v6);
+        StringTemplate_Format(v1, migrator->unk_12668, v6);
         Strbuf_Free(v6);
 
         v3 = ov97_02233DAC(param1, v0, param2);
@@ -466,12 +468,12 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
             StringTemplate_Free(v1);
         }
 
-        MessageLoader_Free(v2);
-        param1->unk_34 = -1;
+        MessageLoader_Free(msgLoader);
+        param1->messageEntryID = -1;
     }
 
     if (param1->unk_38) {
-        v0 = param0->unk_1266C;
+        v0 = migrator->unk_1266C;
         Strbuf_CopyNumChars(v0, param1->unk_38, 64);
         v3 = ov97_02233DAC(param1, v0, param2);
         param1->unk_48 = Text_AddPrinterWithParamsAndColor(param1->unk_00, param1->unk_28, v0, v3, param1->unk_1C, v5, param1->unk_2C, NULL);
@@ -502,54 +504,54 @@ static void ov97_02233F74(void)
 {
     {
         CharTransferTemplate v0 = {
-            20,
-            2048,
-            2048,
-            78,
+            .maxTasks = 20,
+            .sizeMain = 2048,
+            .sizeSub = 2048,
+            .heapID = HEAP_ID_MIGRATE_FROM_GBA,
         };
 
         CharTransfer_Init(&v0);
     }
 
-    PlttTransfer_Init(20, 78);
+    PlttTransfer_Init(20, HEAP_ID_MIGRATE_FROM_GBA);
     CharTransfer_ClearBuffers();
     PlttTransfer_Clear();
 }
 
-static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02233FA4(GBAMigrator *migrator)
 {
     int i;
 
     NNS_G2dInitOamManagerModule();
 
-    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 78);
-    param0->unk_28 = SpriteList_InitRendering(80, &param0->unk_2C, 78);
-    SetSubScreenViewRect(&param0->unk_2C, 0, (256 * FX32_ONE));
+    RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_28 = SpriteList_InitRendering(80, &migrator->unk_2C, HEAP_ID_MIGRATE_FROM_GBA);
+    SetSubScreenViewRect(&migrator->unk_2C, 0, (256 * FX32_ONE));
 
     for (i = 0; i < 6; i++) {
-        param0->unk_1B8[i] = SpriteResourceCollection_New(3, i, 78);
+        migrator->unk_1B8[i] = SpriteResourceCollection_New(3, i, HEAP_ID_MIGRATE_FROM_GBA);
     }
 
-    param0->unk_1D0[0] = SpriteResourceCollection_AddTiles(param0->unk_1B8[0], 116, 26, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 78);
-    param0->unk_1D0[1] = SpriteResourceCollection_AddPalette(param0->unk_1B8[1], 116, 23, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, 78);
-    param0->unk_1D0[2] = SpriteResourceCollection_Add(param0->unk_1B8[2], 116, 25, 1, 0, 2, 78);
-    param0->unk_1D0[3] = SpriteResourceCollection_Add(param0->unk_1B8[3], 116, 24, 1, 0, 3, 78);
+    migrator->unk_1D0[0] = SpriteResourceCollection_AddTiles(migrator->unk_1B8[0], NARC_INDEX_GRAPHIC__MYSTERY, 26, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1D0[1] = SpriteResourceCollection_AddPalette(migrator->unk_1B8[1], NARC_INDEX_GRAPHIC__MYSTERY, 23, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1D0[2] = SpriteResourceCollection_Add(migrator->unk_1B8[2], NARC_INDEX_GRAPHIC__MYSTERY, 25, 1, 0, 2, HEAP_ID_MIGRATE_FROM_GBA);
+    migrator->unk_1D0[3] = SpriteResourceCollection_Add(migrator->unk_1B8[3], NARC_INDEX_GRAPHIC__MYSTERY, 24, 1, 0, 3, HEAP_ID_MIGRATE_FROM_GBA);
 
-    SpriteTransfer_RequestChar(param0->unk_1D0[0]);
-    SpriteTransfer_RequestPlttWholeRange(param0->unk_1D0[1]);
-    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, HEAP_ID_78);
+    SpriteTransfer_RequestChar(migrator->unk_1D0[0]);
+    SpriteTransfer_RequestPlttWholeRange(migrator->unk_1D0[1]);
+    Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, HEAP_ID_MIGRATE_FROM_GBA);
 }
 
-static void ov97_022340B0(UnkStruct_ov97_02234A2C *param0)
+static void ov97_022340B0(GBAMigrator *migrator)
 {
-    SpriteResourcesHeader_Init(&param0->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, param0->unk_1B8[0], param0->unk_1B8[1], param0->unk_1B8[2], param0->unk_1B8[3], NULL, NULL);
+    SpriteResourcesHeader_Init(&migrator->unk_1E8, 0, 0, 0, 0, 0xffffffff, 0xffffffff, 0, 0, migrator->unk_1B8[0], migrator->unk_1B8[1], migrator->unk_1B8[2], migrator->unk_1B8[3], NULL, NULL);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov97_022340FC(AffineSpriteListTemplate *param0, UnkStruct_ov97_02234A2C *param1, SpriteResourcesHeader *param2, int param3)
+static void ov97_022340FC(AffineSpriteListTemplate *param0, GBAMigrator *migrator, SpriteResourcesHeader *param2, int param3)
 {
-    param0->list = param1->unk_28;
-    param0->resourceData = &param1->unk_1E8;
+    param0->list = migrator->unk_28;
+    param0->resourceData = &migrator->unk_1E8;
     param0->position.z = 0;
     param0->affineScale.x = FX32_ONE;
     param0->affineScale.y = FX32_ONE;
@@ -557,22 +559,22 @@ static void ov97_022340FC(AffineSpriteListTemplate *param0, UnkStruct_ov97_02234
     param0->affineZRotation = 0;
     param0->priority = 20;
     param0->vramType = param3;
-    param0->heapID = 78;
+    param0->heapID = HEAP_ID_MIGRATE_FROM_GBA;
 }
 
-static int GetGBABoxMonSpeciesInBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
+static int GetGBABoxMonSpeciesInBox(GBAMigrator *migrator, int boxId, int boxPosition)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_SPECIES, NULL);
+    return GetGBABoxMonData(&(migrator->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_SPECIES, NULL);
 }
 
-static int IsGBABoxMonEggInBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
+static int IsGBABoxMonEggInBox(GBAMigrator *migrator, int boxId, int boxPosition)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_IS_EGG, NULL);
+    return GetGBABoxMonData(&(migrator->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_IS_EGG, NULL);
 }
 
-static int GetGBABoxMonPersonalityInBox(UnkStruct_ov97_02234A2C *param0, int boxId, int boxPosition)
+static int GetGBABoxMonPersonalityInBox(GBAMigrator *migrator, int boxId, int boxPosition)
 {
-    return GetGBABoxMonData(&(param0->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_PERSONALITY, NULL);
+    return GetGBABoxMonData(&(migrator->unk_E8E0->boxes[boxId][boxPosition]), GBA_MON_DATA_PERSONALITY, NULL);
 }
 
 static void ov97_02234190(TouchScreenRect *rect, int param1, int param2, int param3, int param4)
@@ -583,9 +585,9 @@ static void ov97_02234190(TouchScreenRect *rect, int param1, int param2, int par
     rect->rect.right = param1 + param3 / 2;
 }
 
-static void *ov97_022341B4(u32 param0, u32 param1, NNSG2dCharacterData **param2, u32 param3)
+static void *ov97_022341B4(u32 param0, u32 param1, NNSG2dCharacterData **param2, u32 heapID)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(param3, 4096);
+    void *v0 = Heap_AllocFromHeapAtEnd(heapID, 4096);
 
     if (v0 != NULL) {
         NARC_ReadWholeMemberByIndexPair(v0, param0, param1);
@@ -599,9 +601,9 @@ static void *ov97_022341B4(u32 param0, u32 param1, NNSG2dCharacterData **param2,
     return v0;
 }
 
-static void ov97_022341EC(u32 param0, NNSG2dCharacterData **param1, void *param2, NARC *param3)
+static void ov97_022341EC(u32 memberIndex, NNSG2dCharacterData **param1, void *param2, NARC *param3)
 {
-    NARC_ReadWholeMember(param3, param0, param2);
+    NARC_ReadWholeMember(param3, memberIndex, param2);
     NNS_G2dGetUnpackedBGCharacterData(param2, param1);
 }
 
@@ -655,7 +657,7 @@ static void ov97_02234278(int species, int param1, u32 personality, int gbaVersi
     species = ConvertGBASpeciesToDS(species);
 
     form = GetSpeciesGBAForm(species, personality, gbaVersion);
-    v0 = ov97_022341B4(19, PokeIconSpriteIndex(species, param1, form), &v2, 78);
+    v0 = ov97_022341B4(19, PokeIconSpriteIndex(species, param1, form), &v2, HEAP_ID_MIGRATE_FROM_GBA);
 
     DC_FlushRange(v2->pRawData, ((4 * 4) * 0x20));
     GX_LoadOBJ(v2->pRawData, (0x64 + param4 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
@@ -667,7 +669,7 @@ static void ov97_02234278(int species, int param1, u32 personality, int gbaVersi
 // speciesGBA is reused to store NDS species
 static void ov97_022342E4(int speciesGBA, int isEgg, int form, int param3, Sprite *param4, void *param5, NARC *param6)
 {
-    u32 v0;
+    u32 spriteIndex;
     NNSG2dCharacterData *v1;
     UnkStruct_ov97_0223F434 *v2 = Unk_ov97_0223F434 + param3;
 
@@ -678,9 +680,9 @@ static void ov97_022342E4(int speciesGBA, int isEgg, int form, int param3, Sprit
             speciesGBA = SPECIES_NONE;
         }
 
-        v0 = PokeIconSpriteIndex(speciesGBA, isEgg, form);
+        spriteIndex = PokeIconSpriteIndex(speciesGBA, isEgg, form);
 
-        ov97_022341EC(v0, &v1, param5, param6);
+        ov97_022341EC(spriteIndex, &v1, param5, param6);
         MI_CpuCopyFast(v1->pRawData, v2->unk_0C, ((4 * 4) * 0x20));
 
         v2->unk_00 = (0x64 + param3 * (4 * 4)) * 0x20;
@@ -705,84 +707,84 @@ static void ov97_02234364(void)
     }
 }
 
-static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
+static void ov97_022343A8(GBAMigrator *migrator)
 {
     int i, species, isEgg, gbaVersion, form;
     u32 personality;
     void *v6;
-    NARC *v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_78);
-    v6 = Heap_AllocFromHeapAtEnd(78, 4096);
+    NARC *v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_MIGRATE_FROM_GBA);
+    v6 = Heap_AllocFromHeapAtEnd(HEAP_ID_MIGRATE_FROM_GBA, 4096);
 
-    for (i = 0; i < 30; i++) {
-        if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][i]), GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
-            species = GetGBABoxMonSpeciesInBox(param0, param0->unk_E8E4, i);
-            isEgg = IsGBABoxMonEggInBox(param0, param0->unk_E8E4, i);
-            personality = GetGBABoxMonPersonalityInBox(param0, param0->unk_E8E4, i);
+    for (i = 0; i < GBA_MAX_MONS_PER_BOX; i++) {
+        if (GetGBABoxMonData(&(migrator->unk_E8E0->boxes[migrator->unk_E8E4][i]), GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
+            species = GetGBABoxMonSpeciesInBox(migrator, migrator->unk_E8E4, i);
+            isEgg = IsGBABoxMonEggInBox(migrator, migrator->unk_E8E4, i);
+            personality = GetGBABoxMonPersonalityInBox(migrator, migrator->unk_E8E4, i);
             gbaVersion = gSystem.gbaCartridgeVersion;
             form = GetSpeciesGBAForm(ConvertGBASpeciesToDS(species), personality, gbaVersion);
 
-            ov97_022342E4(species, isEgg, form, i, param0->unk_20C[i].unk_00, v6, v7);
-            Sprite_SetDrawFlag(param0->unk_20C[i].unk_00, 1);
+            ov97_022342E4(species, isEgg, form, i, migrator->unk_20C[i].unk_00, v6, v7);
+            Sprite_SetDrawFlag(migrator->unk_20C[i].unk_00, TRUE);
 
-            if (GetGBABoxMonData(&(param0->unk_E8E0->boxes[param0->unk_E8E4][i]), GBA_MON_DATA_HELD_ITEM, NULL)) {
-                Sprite_SetDrawFlag(param0->unk_20C[i].unk_04, 1);
+            if (GetGBABoxMonData(&(migrator->unk_E8E0->boxes[migrator->unk_E8E4][i]), GBA_MON_DATA_HELD_ITEM, NULL)) {
+                Sprite_SetDrawFlag(migrator->unk_20C[i].unk_04, TRUE);
             } else {
-                Sprite_SetDrawFlag(param0->unk_20C[i].unk_04, 0);
+                Sprite_SetDrawFlag(migrator->unk_20C[i].unk_04, FALSE);
             }
         } else {
             ov97_022342E4(species, isEgg, form, i, NULL, v6, v7);
-            Sprite_SetDrawFlag(param0->unk_20C[i].unk_00, 0);
-            Sprite_SetDrawFlag(param0->unk_20C[i].unk_04, 0);
+            Sprite_SetDrawFlag(migrator->unk_20C[i].unk_00, FALSE);
+            Sprite_SetDrawFlag(migrator->unk_20C[i].unk_04, FALSE);
         }
     }
 
     Heap_FreeToHeap(v6);
     NARC_dtor(v7);
 
-    param0->unk_12664 = ov97_02234364;
+    migrator->unk_12664 = ov97_02234364;
 
-    ov97_02234A2C(param0, param0->unk_E8E4);
-    ov97_022349E0(param0);
+    ov97_02234A2C(migrator, migrator->unk_E8E4);
+    ov97_022349E0(migrator);
 }
 
-static void ov97_02234508(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02234508(GBAMigrator *migrator)
 {
     int v0, v1, v2;
     AffineSpriteListTemplate v3;
 
-    ov97_022340FC(&v3, param0, &param0->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
+    ov97_022340FC(&v3, migrator, &migrator->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0 = 0;
 
     for (v2 = 0; v2 < 5; v2++) {
         for (v1 = 0; v1 < 6; v1++) {
-            ov97_02234190(&param0->unk_374[v0], v1 * 40 + 28, v2 * 24 + 40, 28, 28);
+            ov97_02234190(&migrator->unk_374[v0], v1 * 40 + 28, v2 * 24 + 40, 28, 28);
 
             v3.position.x = FX32_ONE * (v1 * 40 + 28);
             v3.position.y = FX32_ONE * (v2 * 24 + 40);
 
-            if (param0->unk_20C[v0].unk_00 == NULL) {
-                param0->unk_20C[v0].unk_00 = SpriteList_AddAffine(&v3);
+            if (migrator->unk_20C[v0].unk_00 == NULL) {
+                migrator->unk_20C[v0].unk_00 = SpriteList_AddAffine(&v3);
             }
 
-            Sprite_SetAnimateFlag(param0->unk_20C[v0].unk_00, 1);
-            Sprite_SetAnim(param0->unk_20C[v0].unk_00, 10 + v0);
-            Sprite_SetExplicitPriority(param0->unk_20C[v0].unk_00, 1);
-            Sprite_SetDrawFlag(param0->unk_20C[v0].unk_00, 1);
-            Sprite_SetPriority(param0->unk_20C[v0].unk_00, 100 + v0);
+            Sprite_SetAnimateFlag(migrator->unk_20C[v0].unk_00, 1);
+            Sprite_SetAnim(migrator->unk_20C[v0].unk_00, 10 + v0);
+            Sprite_SetExplicitPriority(migrator->unk_20C[v0].unk_00, 1);
+            Sprite_SetDrawFlag(migrator->unk_20C[v0].unk_00, TRUE);
+            Sprite_SetPriority(migrator->unk_20C[v0].unk_00, 100 + v0);
 
             v3.position.x += FX32_ONE * 6;
             v3.position.y += FX32_ONE * 12;
 
-            if (param0->unk_20C[v0].unk_04 == NULL) {
-                param0->unk_20C[v0].unk_04 = SpriteList_AddAffine(&v3);
+            if (migrator->unk_20C[v0].unk_04 == NULL) {
+                migrator->unk_20C[v0].unk_04 = SpriteList_AddAffine(&v3);
             }
 
-            Sprite_SetAnimateFlag(param0->unk_20C[v0].unk_04, 1);
-            Sprite_SetAnim(param0->unk_20C[v0].unk_04, 40);
-            Sprite_SetExplicitPriority(param0->unk_20C[v0].unk_04, 1);
-            Sprite_SetDrawFlag(param0->unk_20C[v0].unk_04, 0);
-            Sprite_SetPriority(param0->unk_20C[v0].unk_04, 0 + v0);
+            Sprite_SetAnimateFlag(migrator->unk_20C[v0].unk_04, 1);
+            Sprite_SetAnim(migrator->unk_20C[v0].unk_04, 40);
+            Sprite_SetExplicitPriority(migrator->unk_20C[v0].unk_04, 1);
+            Sprite_SetDrawFlag(migrator->unk_20C[v0].unk_04, FALSE);
+            Sprite_SetPriority(migrator->unk_20C[v0].unk_04, 0 + v0);
 
             v0++;
 
@@ -793,12 +795,12 @@ static void ov97_02234508(UnkStruct_ov97_02234A2C *param0)
     }
 }
 
-static Sprite *ov97_02234638(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int param3, int param4)
+static Sprite *ov97_02234638(GBAMigrator *migrator, int param1, int param2, int param3, int param4)
 {
     AffineSpriteListTemplate v0;
     Sprite *v1;
 
-    ov97_022340FC(&v0, param0, &param0->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
+    ov97_022340FC(&v0, migrator, &migrator->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     v0.position.x = FX32_ONE * param1;
     v0.position.y = FX32_ONE * param2;
@@ -814,32 +816,32 @@ static Sprite *ov97_02234638(UnkStruct_ov97_02234A2C *param0, int param1, int pa
     return v1;
 }
 
-static void ov97_0223468C(UnkStruct_ov97_02234A2C *param0)
+static void ov97_0223468C(GBAMigrator *migrator)
 {
     int i;
 
-    ov97_02234190(&param0->unk_374[(30 + 0)], 228, 176, 50, 32);
-    param0->unk_3FC[0] = ov97_02234638(param0, 228, 176, 6, 1);
+    ov97_02234190(&migrator->unk_374[(30 + 0)], 228, 176, 50, 32);
+    migrator->unk_3FC[0] = ov97_02234638(migrator, 228, 176, 6, 1);
 
-    ov97_02234190(&param0->unk_374[(30 + 2)], 176, 176, 32, 32);
-    param0->unk_40C[0] = ov97_02234638(param0, 176, 176, 3, 1);
+    ov97_02234190(&migrator->unk_374[(30 + 2)], 176, 176, 32, 32);
+    migrator->unk_40C[0] = ov97_02234638(migrator, 176, 176, 3, 1);
 
-    ov97_02234190(&param0->unk_374[(30 + 1)], 24, 176, 32, 32);
-    param0->unk_41C[0] = ov97_02234638(param0, 24, 176, 0, 1);
-    param0->unk_374[(30 + 3)].rect.top = 0xff;
+    ov97_02234190(&migrator->unk_374[(30 + 1)], 24, 176, 32, 32);
+    migrator->unk_41C[0] = ov97_02234638(migrator, 24, 176, 0, 1);
+    migrator->unk_374[(30 + 3)].rect.top = 0xff;
 
-    for (i = 0; i < 6; i++) {
-        param0->unk_42C[i].unk_00 = ov97_02234638(param0, 36 * i, 64, 9, 0);
-        param0->unk_42C[i].boxPosition = -1;
-        param0->unk_42C[i].boxId = 14;
+    for (i = 0; i < CATCHING_SHOW_MONS; i++) {
+        migrator->unk_42C[i].unk_00 = ov97_02234638(migrator, 36 * i, 64, 9, 0);
+        migrator->unk_42C[i].boxPosition = -1;
+        migrator->unk_42C[i].boxId = 14;
     }
 
-    param0->unk_474 = 0;
+    migrator->selectedCount = 0;
 }
 
-static BOOL BoxMonGBAIsEgg(UnkStruct_ov97_02234A2C *param0, int boxPosition)
+static BOOL BoxMonGBAIsEgg(GBAMigrator *migrator, int boxPosition)
 {
-    BoxPokemonGBA *boxMonGBA = &param0->unk_E8E0->boxes[param0->unk_E8E4][boxPosition];
+    BoxPokemonGBA *boxMonGBA = &migrator->unk_E8E0->boxes[migrator->unk_E8E4][boxPosition];
 
     if (GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES_OR_EGG, NULL) == GBA_SPECIES_EGG) {
         return TRUE;
@@ -848,10 +850,10 @@ static BOOL BoxMonGBAIsEgg(UnkStruct_ov97_02234A2C *param0, int boxPosition)
     return FALSE;
 }
 
-static BOOL BoxMonGBAHasHM(UnkStruct_ov97_02234A2C *param0, int boxPosition)
+static BOOL BoxMonGBAHasHM(GBAMigrator *migrator, int boxPosition)
 {
     int i, j, move;
-    BoxPokemonGBA *boxMon = &param0->unk_E8E0->boxes[param0->unk_E8E4][boxPosition];
+    BoxPokemonGBA *boxMon = &migrator->unk_E8E0->boxes[migrator->unk_E8E4][boxPosition];
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         move = GetGBABoxMonData(boxMon, GBA_MON_DATA_MOVE1 + i, NULL);
@@ -1015,9 +1017,9 @@ u16 sInvalidGBAItems[] = {
     ITEM_NONE
 };
 
-static BOOL BoxMonGBAHasInvalidItem(UnkStruct_ov97_02234A2C *param0, int boxPosition)
+static BOOL BoxMonGBAHasInvalidItem(GBAMigrator *migrator, int boxPosition)
 {
-    BoxPokemonGBA *boxMonGBA = &param0->unk_E8E0->boxes[param0->unk_E8E4][boxPosition];
+    BoxPokemonGBA *boxMonGBA = &migrator->unk_E8E0->boxes[migrator->unk_E8E4][boxPosition];
     int item = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HELD_ITEM, NULL);
     int i;
 
@@ -1030,41 +1032,41 @@ static BOOL BoxMonGBAHasInvalidItem(UnkStruct_ov97_02234A2C *param0, int boxPosi
     return FALSE;
 }
 
-static BOOL IsBoxMonGBAInvalidSpecies(UnkStruct_ov97_02234A2C *param0, int boxPosition)
+static BOOL IsBoxMonGBAInvalidSpecies(GBAMigrator *migrator, int boxPosition)
 {
-    BoxPokemonGBA *boxMonGBA = &param0->unk_E8E0->boxes[param0->unk_E8E4][boxPosition];
+    BoxPokemonGBA *boxMonGBA = &migrator->unk_E8E0->boxes[migrator->unk_E8E4][boxPosition];
     int species = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL);
 
     return IsGBASpeciesInvalid(species);
 }
 
-static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int boxPosition)
+static int ov97_02234854(GBAMigrator *migrator, int boxPosition)
 {
     int i, v1;
 
-    if (param0->unk_20C[boxPosition].unk_00 && (Sprite_GetDrawFlag(param0->unk_20C[boxPosition].unk_00) == 0)) {
+    if (migrator->unk_20C[boxPosition].unk_00 && (Sprite_GetDrawFlag(migrator->unk_20C[boxPosition].unk_00) == 0)) {
         return GBA_MON_STATE_3;
     }
 
     for (v1 = -1, i = 0; v1 == -1 && i < 6; i++) {
-        if ((param0->unk_42C[i].boxId == param0->unk_E8E4) && (param0->unk_42C[i].boxPosition == boxPosition)) {
+        if ((migrator->unk_42C[i].boxId == migrator->unk_E8E4) && (migrator->unk_42C[i].boxPosition == boxPosition)) {
             v1 = i;
         }
     }
 
-    if (BoxMonGBAIsEgg(param0, boxPosition) == TRUE) {
+    if (BoxMonGBAIsEgg(migrator, boxPosition) == TRUE) {
         return GBA_MON_STATE_IS_EGG;
     }
 
-    if (BoxMonGBAHasHM(param0, boxPosition) == TRUE) {
+    if (BoxMonGBAHasHM(migrator, boxPosition) == TRUE) {
         return GBA_MON_STATE_HAS_HM;
     }
 
-    if (BoxMonGBAHasInvalidItem(param0, boxPosition) == TRUE) {
+    if (BoxMonGBAHasInvalidItem(migrator, boxPosition) == TRUE) {
         return GBA_MON_STATE_HAS_INVALID_ITEM;
     }
 
-    if (IsBoxMonGBAInvalidSpecies(param0, boxPosition) == TRUE) {
+    if (IsBoxMonGBAInvalidSpecies(migrator, boxPosition) == TRUE) {
         return GBA_MON_STATE_IS_INVALID_SPECIES;
     }
 
@@ -1072,35 +1074,35 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int boxPosition)
         const VecFx32 *v2;
         VecFx32 v3;
 
-        if (param0->unk_474 == 6) {
+        if (migrator->selectedCount == CATCHING_SHOW_MONS) {
             return GBA_MON_STATE_0;
         }
 
-        for (i = 0; i < 6; i++) {
-            if (param0->unk_42C[i].boxPosition == -1) {
-                v2 = Sprite_GetPosition(param0->unk_20C[boxPosition].unk_00);
-                Sprite_SetPosition(param0->unk_42C[i].unk_00, v2);
-                v2 = Sprite_GetPosition(param0->unk_42C[i].unk_00);
+        for (i = 0; i < CATCHING_SHOW_MONS; i++) {
+            if (migrator->unk_42C[i].boxPosition == -1) {
+                v2 = Sprite_GetPosition(migrator->unk_20C[boxPosition].unk_00);
+                Sprite_SetPosition(migrator->unk_42C[i].unk_00, v2);
+                v2 = Sprite_GetPosition(migrator->unk_42C[i].unk_00);
 
                 v3 = *v2;
                 v3.x -= FX32_ONE * 8;
                 v3.y -= FX32_ONE * 4;
 
-                Sprite_SetPosition(param0->unk_42C[i].unk_00, &v3);
-                Sprite_SetDrawFlag(param0->unk_42C[i].unk_00, 1);
+                Sprite_SetPosition(migrator->unk_42C[i].unk_00, &v3);
+                Sprite_SetDrawFlag(migrator->unk_42C[i].unk_00, TRUE);
 
-                param0->unk_42C[i].boxPosition = boxPosition;
-                param0->unk_42C[i].boxId = param0->unk_E8E4;
-                param0->unk_474++;
+                migrator->unk_42C[i].boxPosition = boxPosition;
+                migrator->unk_42C[i].boxId = migrator->unk_E8E4;
+                migrator->selectedCount++;
 
                 return GBA_MON_STATE_1;
             }
         }
     } else {
-        Sprite_SetDrawFlag(param0->unk_42C[v1].unk_00, 0);
+        Sprite_SetDrawFlag(migrator->unk_42C[v1].unk_00, FALSE);
 
-        param0->unk_42C[v1].boxPosition = -1;
-        param0->unk_474--;
+        migrator->unk_42C[v1].boxPosition = -1;
+        migrator->selectedCount--;
 
         return GBA_MON_STATE_2;
     }
@@ -1108,32 +1110,32 @@ static int ov97_02234854(UnkStruct_ov97_02234A2C *param0, int boxPosition)
     return GBA_MON_STATE_0;
 }
 
-static void ov97_022349E0(UnkStruct_ov97_02234A2C *param0)
+static void ov97_022349E0(GBAMigrator *migrator)
 {
     int i;
 
     for (i = 0; i < 6; i++) {
-        if ((param0->unk_42C[i].boxPosition != -1) && (param0->unk_42C[i].boxId == param0->unk_E8E4)) {
-            Sprite_SetDrawFlag(param0->unk_42C[i].unk_00, 1);
+        if ((migrator->unk_42C[i].boxPosition != -1) && (migrator->unk_42C[i].boxId == migrator->unk_E8E4)) {
+            Sprite_SetDrawFlag(migrator->unk_42C[i].unk_00, TRUE);
         } else {
-            Sprite_SetDrawFlag(param0->unk_42C[i].unk_00, 0);
+            Sprite_SetDrawFlag(migrator->unk_42C[i].unk_00, FALSE);
         }
     }
 }
 
-static void ov97_02234A2C(UnkStruct_ov97_02234A2C *param0, int param1)
+static void ov97_02234A2C(GBAMigrator *migrator, int param1)
 {
     UnkStruct_ov97_02233DAC v0;
     u16 v1[8 + 1];
 
     memset(&v0, 0, sizeof(UnkStruct_ov97_02233DAC));
 
-    v0.unk_00 = &param0->unk_4DC;
+    v0.unk_00 = &migrator->unk_4DC;
     v0.unk_08 = 6;
     v0.unk_0C = 21;
     v0.unk_10 = 13;
     v0.unk_14 = 2;
-    v0.unk_34 = -1;
+    v0.messageEntryID = -1;
     v0.unk_18 = 0;
     v0.unk_1C = 0;
     v0.unk_24 = 1;
@@ -1141,18 +1143,18 @@ static void ov97_02234A2C(UnkStruct_ov97_02234A2C *param0, int param1)
     v0.unk_2C = TEXT_COLOR(1, 2, 0);
     v0.unk_20 = 0xA0;
 
-    ov97_0223936C(param0->unk_E8E0->boxNames[param1], v1, 8 + 1, ov97_02235DBC());
+    ov97_0223936C(migrator->unk_E8E0->boxNames[param1], v1, 8 + 1, ov97_02235DBC());
     v0.unk_38 = v1;
-    ov97_02233DD0(param0, &v0, 0x1);
+    ov97_02233DD0(migrator, &v0, 0x1);
 }
 
-static void ov97_02234AB4(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMonGBA)
+static void ov97_02234AB4(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
 {
-    u16 *v0 = Bg_GetTilemapBuffer(param0->unk_20, 2);
+    u16 *v0 = Bg_GetTilemapBuffer(migrator->bgConfig, 2);
     u8 v1;
     int i;
 
-    if (boxMonGBA) {
+    if (boxMonGBA != NULL) {
         v1 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MARKINGS, NULL);
     } else {
         v1 = 0;
@@ -1168,22 +1170,22 @@ static void ov97_02234AB4(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMon
         v1 >>= 1;
     }
 
-    Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
+    Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, 2);
 }
 
-static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMonGBA)
+static void ov97_02234B0C(GBAMigrator *migrator, BoxPokemonGBA *boxMonGBA)
 {
     int species, level;
-    int v2, v3;
+    int gbaItemID, itemID;
     UnkStruct_ov97_02233DAC v4;
-    MessageLoader *v5;
+    MessageLoader *msgLoader;
     u8 v6[10 + 1];
     u16 v7[10 + 1];
-    Strbuf *v8;
+    Strbuf *strBuf;
 
     memset(&v4, 0, sizeof(UnkStruct_ov97_02233DAC));
 
-    v4.unk_00 = &param0->unk_4EC;
+    v4.unk_00 = &migrator->unk_4EC;
     v4.unk_08 = 0;
     v4.unk_0C = 0;
     v4.unk_10 = 32;
@@ -1194,18 +1196,18 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMon
     v4.unk_2C = TEXT_COLOR(15, 2, 0);
     v4.unk_38 = NULL;
 
-    v4.unk_34 = 44;
+    v4.messageEntryID = migrate_from_gba_item;
     v4.unk_18 = 18 * 8;
     v4.unk_1C = 0;
 
-    ov97_02233DD0(param0, &v4, 0x4);
+    ov97_02233DD0(migrator, &v4, 0x4);
 
-    v4.unk_34 = 43;
+    v4.messageEntryID = migrate_from_gba_level;
     v4.unk_18 = 10 * 8;
     v4.unk_1C = 8;
 
-    ov97_02233DD0(param0, &v4, 0x4 | 0x2);
-    ov97_02234AB4(param0, boxMonGBA);
+    ov97_02233DD0(migrator, &v4, 0x4 | 0x2);
+    ov97_02234AB4(migrator, boxMonGBA);
 
     if (boxMonGBA == NULL) {
         Window_CopyToVRAM(v4.unk_00);
@@ -1216,84 +1218,84 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMon
     ov97_0223936C(v6, v7, 10 + 1, GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL));
 
     v4.unk_38 = v7;
-    v4.unk_34 = -1;
+    v4.messageEntryID = -1;
     v4.unk_18 = 1 * 8;
     v4.unk_1C = 0;
 
-    ov97_02233DD0(param0, &v4, 0x4 | 0x2);
+    ov97_02233DD0(migrator, &v4, 0x4 | 0x2);
 
-    v8 = Strbuf_Init(64, HEAP_ID_78);
-    v5 = MessageLoader_Init(1, 26, 412, HEAP_ID_78);
+    strBuf = Strbuf_Init(64, HEAP_ID_MIGRATE_FROM_GBA);
+    msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_MIGRATE_FROM_GBA);
     species = ConvertGBASpeciesToDS(GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SPECIES, NULL));
 
-    MessageLoader_GetStrbuf(v5, species, v8);
+    MessageLoader_GetStrbuf(msgLoader, species, strBuf);
 
-    v4.unk_3C = v8;
-    v4.unk_34 = -1;
+    v4.unk_3C = strBuf;
+    v4.messageEntryID = -1;
     v4.unk_18 = 2 * 8;
     v4.unk_1C = 2 * 8;
 
-    ov97_02233DD0(param0, &v4, 0x4 | 0x2);
+    ov97_02233DD0(migrator, &v4, 0x4 | 0x2);
 
-    MessageLoader_Free(v5);
-    Strbuf_Free(v8);
+    MessageLoader_Free(msgLoader);
+    Strbuf_Free(strBuf);
 
-    v2 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HELD_ITEM, NULL);
+    gbaItemID = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HELD_ITEM, NULL);
 
-    if (v2) {
-        v3 = Item_FromGBAID(v2);
-        v8 = Strbuf_Init(64, HEAP_ID_78);
+    if (gbaItemID) {
+        itemID = Item_FromGBAID(gbaItemID);
+        strBuf = Strbuf_Init(64, HEAP_ID_MIGRATE_FROM_GBA);
 
-        Item_LoadName(v8, v3, 78);
+        Item_LoadName(strBuf, itemID, HEAP_ID_MIGRATE_FROM_GBA);
 
-        v4.unk_3C = v8;
-        v4.unk_34 = -1;
+        v4.unk_3C = strBuf;
+        v4.messageEntryID = -1;
         v4.unk_18 = 19 * 8;
         v4.unk_1C = 2 * 8;
 
-        ov97_02233DD0(param0, &v4, 0x4 | 0x2);
-        Strbuf_Free(v8);
+        ov97_02233DD0(migrator, &v4, 0x4 | 0x2);
+        Strbuf_Free(strBuf);
     }
 
     level = GetBoxMonGBALevel(boxMonGBA);
-    v8 = Strbuf_Init(10, HEAP_ID_78);
+    strBuf = Strbuf_Init(10, HEAP_ID_MIGRATE_FROM_GBA);
 
-    Strbuf_FormatInt(v8, level, 3, 1, 1);
+    Strbuf_FormatInt(strBuf, level, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
 
-    v4.unk_3C = v8;
-    v4.unk_34 = -1;
+    v4.unk_3C = strBuf;
+    v4.messageEntryID = -1;
     v4.unk_18 = 12 * 8 + 4;
     v4.unk_1C = 1 * 8;
 
-    ov97_02233DD0(param0, &v4, 0x2);
+    ov97_02233DD0(migrator, &v4, 0x2);
 
-    Strbuf_Free(v8);
+    Strbuf_Free(strBuf);
     sub_02005844(species, 0);
 }
 
-static void ov97_02234CC4(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int *param3)
+static void ov97_02234CC4(GBAMigrator *migrator, int param1, int param2, int *param3)
 {
-    StartScreenTransition(0, param1, param1, 0x0, 6, 1, HEAP_ID_78);
+    StartScreenTransition(0, param1, param1, 0x0, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     if (param3) {
         *param3 = 23;
     }
 
-    param0->unk_24 = param2;
+    migrator->unk_24 = param2;
 }
 
-static void ov97_02234CF4(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int *param3)
+static void ov97_02234CF4(GBAMigrator *migrator, int param1, int param2, int *param3)
 {
-    StartScreenTransition(0, param1, param1, 0x7fff, 6, 1, HEAP_ID_78);
+    StartScreenTransition(0, param1, param1, 0x7fff, 6, 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     if (param3) {
         *param3 = 23;
     }
 
-    param0->unk_24 = param2;
+    migrator->unk_24 = param2;
 }
 
-static void ov97_02234D28(BgConfig *param0)
+static void ov97_02234D28(BgConfig *bgConfig)
 {
     {
         GraphicsModes v0 = {
@@ -1308,90 +1310,90 @@ static void ov97_02234D28(BgConfig *param0)
 
     {
         BgTemplate v1 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe000,
-            GX_BG_CHARBASE_0x00000,
-            GX_BG_EXTPLTT_01,
-            0,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = 1,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe000,
+            .charBase = GX_BG_CHARBASE_0x00000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 0,
+            .areaOver = 0,
+            .dummy = 0,
+            .mosaic = 0,
         };
 
-        Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(bgConfig, 0, &v1, 0);
+        Bg_ClearTilemap(bgConfig, 0);
     }
 
     {
         BgTemplate v2 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xe800,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_01,
-            1,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = 1,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xe800,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_01,
+            .priority = 1,
+            .areaOver = 0,
+            .dummy = 0,
+            .mosaic = 0,
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(bgConfig, 1, &v2, 0);
+        Bg_ClearTilemap(bgConfig, 1);
     }
 
     {
         BgTemplate v3 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf000,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_23,
-            2,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = 1,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf000,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 2,
+            .areaOver = 0,
+            .dummy = 0,
+            .mosaic = 0,
         };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(bgConfig, 2, &v3, 0);
+        Bg_ClearTilemap(bgConfig, 2);
     }
 
     {
         BgTemplate v4 = {
-            0,
-            0,
-            0x800,
-            0,
-            1,
-            GX_BG_COLORMODE_16,
-            GX_BG_SCRBASE_0xf800,
-            GX_BG_CHARBASE_0x08000,
-            GX_BG_EXTPLTT_23,
-            3,
-            0,
-            0,
-            0
+            .x = 0,
+            .y = 0,
+            .bufferSize = 0x800,
+            .baseTile = 0,
+            .screenSize = 1,
+            .colorMode = GX_BG_COLORMODE_16,
+            .screenBase = GX_BG_SCRBASE_0xf800,
+            .charBase = GX_BG_CHARBASE_0x08000,
+            .bgExtPltt = GX_BG_EXTPLTT_23,
+            .priority = 3,
+            .areaOver = 0,
+            .dummy = 0,
+            .mosaic = 0,
         };
 
-        Bg_InitFromTemplate(param0, 3, &v4, 0);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(bgConfig, 3, &v4, 0);
+        Bg_ClearTilemap(bgConfig, 3);
     }
 }
 
-static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02234DFC(GBAMigrator *migrator)
 {
     UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_A,
@@ -1407,211 +1409,211 @@ static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
     };
 
     GXLayers_SetBanks(&v0);
-    ov97_02234D28(param0->unk_20);
+    ov97_02234D28(migrator->bgConfig);
 
     gSystem.whichScreenIs3D = DS_SCREEN_SUB;
 
     GXLayers_SwapDisplay();
     Text_ResetAllPrinters();
 
-    Font_LoadTextPalette(0, 15 * 32, HEAP_ID_78);
-    Graphics_LoadPalette(116, 19, 0, 0, 32 * 6, HEAP_ID_78);
-    Graphics_LoadTilesToBgLayer(116, 22, param0->unk_20, 2, 0, 10 * 16 * 0x20, 1, HEAP_ID_78);
-    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_78);
+    Font_LoadTextPalette(0, 15 * 32, HEAP_ID_MIGRATE_FROM_GBA);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 19, 0, 0, 32 * 6, HEAP_ID_MIGRATE_FROM_GBA);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 22, migrator->bgConfig, 2, 0, 10 * 16 * 0x20, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_MIGRATE_FROM_GBA);
 }
 
-static void ov97_02234E7C(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02234E7C(GBAMigrator *migrator)
 {
-    Graphics_LoadTilemapToBgLayer(116, 20, param0->unk_20, 2, 0, 32 * 24 * 2, 1, HEAP_ID_78);
-    Bg_ChangeTilemapRectPalette(param0->unk_20, 2, 0, 0, 32, 24, Unk_ov97_0223EA60[param0->unk_00]);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 20, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    Bg_ChangeTilemapRectPalette(migrator->bgConfig, 2, 0, 0, 32, 24, sGBAGameRectPalettes[migrator->gbaVersion]);
+    Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, 2);
 }
 
-static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02234ECC(GBAMigrator *migrator)
 {
-    Font_LoadTextPalette(0, 14 * 32, HEAP_ID_78);
-    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, HEAP_ID_78);
-    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, HEAP_ID_78);
+    Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadStandardWindowGraphics(migrator->bgConfig, 0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadMessageBoxGraphics(migrator->bgConfig, 0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
-    memset(&param0->unk_490, 0, sizeof(UnkStruct_ov97_02233DAC));
+    memset(&migrator->unk_490, 0, sizeof(UnkStruct_ov97_02233DAC));
 
-    param0->unk_490.unk_00 = &param0->unk_4FC;
-    param0->unk_490.unk_08 = 2;
-    param0->unk_490.unk_0C = 1;
-    param0->unk_490.unk_10 = 27;
-    param0->unk_490.unk_14 = 4;
-    param0->unk_490.unk_24 = 0;
-    param0->unk_490.unk_28 = 1;
-    param0->unk_490.unk_20 = 0 + 1;
-    param0->unk_490.unk_2C = TEXT_COLOR(1, 2, 15);
-    param0->unk_490.unk_30 = TEXT_COLOR(15, 2, 15);
-    param0->unk_490.unk_38 = NULL;
-    param0->unk_490.unk_3C = NULL;
+    migrator->unk_490.unk_00 = &migrator->unk_4FC;
+    migrator->unk_490.unk_08 = 2;
+    migrator->unk_490.unk_0C = 1;
+    migrator->unk_490.unk_10 = 27;
+    migrator->unk_490.unk_14 = 4;
+    migrator->unk_490.unk_24 = 0;
+    migrator->unk_490.unk_28 = 1;
+    migrator->unk_490.unk_20 = 0 + 1;
+    migrator->unk_490.unk_2C = TEXT_COLOR(1, 2, 15);
+    migrator->unk_490.unk_30 = TEXT_COLOR(15, 2, 15);
+    migrator->unk_490.unk_38 = NULL;
+    migrator->unk_490.unk_3C = NULL;
 }
 
-static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02234F88(GBAMigrator *migrator)
 {
     int i, v1, v2, v3;
     u32 personality;
     AffineSpriteListTemplate v5;
 
     for (i = 0; i < 30; i++) {
-        Sprite_SetDrawFlag(param0->unk_20C[i].unk_00, 0);
-        Sprite_SetDrawFlag(param0->unk_20C[i].unk_04, 0);
+        Sprite_SetDrawFlag(migrator->unk_20C[i].unk_00, FALSE);
+        Sprite_SetDrawFlag(migrator->unk_20C[i].unk_04, FALSE);
     }
 
     for (i = 0; i < 6; i++) {
-        Sprite_SetDrawFlag(param0->unk_42C[i].unk_00, 0);
+        Sprite_SetDrawFlag(migrator->unk_42C[i].unk_00, FALSE);
     }
 
-    Sprite_SetDrawFlag(param0->unk_3FC[0], 0);
-    Sprite_SetDrawFlag(param0->unk_41C[0], 0);
-    Sprite_SetDrawFlag(param0->unk_40C[0], 0);
+    Sprite_SetDrawFlag(migrator->unk_3FC[0], FALSE);
+    Sprite_SetDrawFlag(migrator->unk_41C[0], FALSE);
+    Sprite_SetDrawFlag(migrator->unk_40C[0], FALSE);
 
-    ov97_022340FC(&v5, param0, &param0->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
+    ov97_022340FC(&v5, migrator, &migrator->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
     for (i = 0; i < 6; i++) {
         v5.position.x = FX32_ONE * (i * 40 + 28);
         v5.position.y = FX32_ONE * 142;
 
-        param0->unk_478[i] = SpriteList_AddAffine(&v5);
+        migrator->unk_478[i] = SpriteList_AddAffine(&v5);
 
-        Sprite_SetAnimateFlag(param0->unk_478[i], 1);
-        Sprite_SetAnim(param0->unk_478[i], 10 + i);
-        Sprite_SetExplicitPriority(param0->unk_478[i], 1);
-        Sprite_SetDrawFlag(param0->unk_478[i], 1);
+        Sprite_SetAnimateFlag(migrator->unk_478[i], 1);
+        Sprite_SetAnim(migrator->unk_478[i], 10 + i);
+        Sprite_SetExplicitPriority(migrator->unk_478[i], 1);
+        Sprite_SetDrawFlag(migrator->unk_478[i], TRUE);
 
-        v1 = GetGBABoxMonSpeciesInBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
-        v2 = IsGBABoxMonEggInBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
-        personality = GetGBABoxMonPersonalityInBox(param0, param0->unk_42C[i].boxId, param0->unk_42C[i].boxPosition);
+        v1 = GetGBABoxMonSpeciesInBox(migrator, migrator->unk_42C[i].boxId, migrator->unk_42C[i].boxPosition);
+        v2 = IsGBABoxMonEggInBox(migrator, migrator->unk_42C[i].boxId, migrator->unk_42C[i].boxPosition);
+        personality = GetGBABoxMonPersonalityInBox(migrator, migrator->unk_42C[i].boxId, migrator->unk_42C[i].boxPosition);
         v3 = gSystem.gbaCartridgeVersion;
 
-        ov97_02234278(v1, v2, personality, v3, i, param0->unk_478[i]);
+        ov97_02234278(v1, v2, personality, v3, i, migrator->unk_478[i]);
     }
 
-    Graphics_LoadTilemapToBgLayer(116, 21, param0->unk_20, 2, 0, 32 * 24 * 2, 1, HEAP_ID_78);
-    Bg_ChangeTilemapRectPalette(param0->unk_20, 2, 0, 0, 32, 24, Unk_ov97_0223EA60[param0->unk_00]);
-    Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 21, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
+    Bg_ChangeTilemapRectPalette(migrator->bgConfig, 2, 0, 0, 32, 24, sGBAGameRectPalettes[migrator->gbaVersion]);
+    Bg_CopyTilemapBufferToVRAM(migrator->bgConfig, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
-    Font_LoadTextPalette(0, 14 * 32, HEAP_ID_78);
-    LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, HEAP_ID_78);
-    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, HEAP_ID_78);
+    Font_LoadTextPalette(0, 14 * 32, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadStandardWindowGraphics(migrator->bgConfig, 0, 0x3F0, 14, 0, HEAP_ID_MIGRATE_FROM_GBA);
+    LoadMessageBoxGraphics(migrator->bgConfig, 0, (0x3F0 - (18 + 12)), 13, migrator->messageBoxFrame, HEAP_ID_MIGRATE_FROM_GBA);
 
-    ov97_02234ECC(param0);
-    param0->unk_490.unk_34 = 10;
-    ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
+    ov97_02234ECC(migrator);
+    migrator->unk_490.messageEntryID = migrate_from_gba_six_chosen_will_migrate;
+    ov97_02233DD0(migrator, &migrator->unk_490, 0x8 | 0x10);
 }
 
 static void ov97_02235158(Window *param0)
 {
-    if (param0->bgConfig) {
+    if (param0->bgConfig != NULL) {
         Window_EraseMessageBox(param0, 0);
         Window_ClearAndCopyToVRAM(param0);
         Window_Remove(param0);
     }
 }
 
-static void ov97_02235178(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02235178(GBAMigrator *migrator)
 {
     int i;
 
     for (i = 0; i < 6; i++) {
-        Sprite_Delete(param0->unk_478[i]);
+        Sprite_Delete(migrator->unk_478[i]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
-    ov97_02235158(&param0->unk_4FC);
+    ov97_02235158(&migrator->unk_4FC);
 
-    Sprite_SetDrawFlag(param0->unk_3FC[0], 1);
-    Sprite_SetDrawFlag(param0->unk_41C[0], 1);
-    Sprite_SetDrawFlag(param0->unk_40C[0], 1);
+    Sprite_SetDrawFlag(migrator->unk_3FC[0], TRUE);
+    Sprite_SetDrawFlag(migrator->unk_41C[0], TRUE);
+    Sprite_SetDrawFlag(migrator->unk_40C[0], TRUE);
 
-    for (i = 0; i < 6; i++) {
-        param0->unk_42C[i].boxPosition = -1;
-        param0->unk_42C[i].boxId = 14;
+    for (i = 0; i < CATCHING_SHOW_MONS; i++) {
+        migrator->unk_42C[i].boxPosition = -1;
+        migrator->unk_42C[i].boxId = 14;
     }
 
-    param0->unk_474 = 0;
+    migrator->selectedCount = 0;
 }
 
-static void ov97_022351F0(UnkStruct_ov97_02234A2C *param0)
+static void ov97_022351F0(GBAMigrator *migrator)
 {
     int i;
 
     SetVBlankCallback(NULL, NULL);
 
     for (i = 0; i < 30; i++) {
-        if (param0->unk_20C[i].unk_00) {
-            Sprite_Delete(param0->unk_20C[i].unk_00);
+        if (migrator->unk_20C[i].unk_00) {
+            Sprite_Delete(migrator->unk_20C[i].unk_00);
         }
 
-        if (param0->unk_20C[i].unk_04) {
-            Sprite_Delete(param0->unk_20C[i].unk_04);
+        if (migrator->unk_20C[i].unk_04) {
+            Sprite_Delete(migrator->unk_20C[i].unk_04);
         }
     }
 
     for (i = 0; i < 6; i++) {
-        if (param0->unk_42C[i].unk_00) {
-            Sprite_Delete(param0->unk_42C[i].unk_00);
+        if (migrator->unk_42C[i].unk_00) {
+            Sprite_Delete(migrator->unk_42C[i].unk_00);
         }
     }
 
-    if (param0->unk_3FC[0]) {
-        Sprite_Delete(param0->unk_3FC[0]);
+    if (migrator->unk_3FC[0]) {
+        Sprite_Delete(migrator->unk_3FC[0]);
     }
 
-    if (param0->unk_41C[0]) {
-        Sprite_Delete(param0->unk_41C[0]);
+    if (migrator->unk_41C[0]) {
+        Sprite_Delete(migrator->unk_41C[0]);
     }
 
-    if (param0->unk_40C[0]) {
-        Sprite_Delete(param0->unk_40C[0]);
+    if (migrator->unk_40C[0]) {
+        Sprite_Delete(migrator->unk_40C[0]);
     }
 
-    ov97_02235158(&param0->unk_4DC);
-    ov97_02235158(&param0->unk_4EC);
-    ov97_02235158(&param0->unk_4FC);
+    ov97_02235158(&migrator->unk_4DC);
+    ov97_02235158(&migrator->unk_4EC);
+    ov97_02235158(&migrator->unk_4FC);
 
     Font_Free(FONT_SUBSCREEN);
-    SpriteTransfer_ResetCharTransfer(param0->unk_1D0[0]);
-    SpriteTransfer_ResetPlttTransfer(param0->unk_1D0[1]);
+    SpriteTransfer_ResetCharTransfer(migrator->unk_1D0[0]);
+    SpriteTransfer_ResetPlttTransfer(migrator->unk_1D0[1]);
 
     for (i = 0; i < 6; i++) {
-        SpriteResourceCollection_Delete(param0->unk_1B8[i]);
+        SpriteResourceCollection_Delete(migrator->unk_1B8[i]);
     }
 
-    SpriteList_Delete(param0->unk_28);
-    param0->unk_28 = NULL;
+    SpriteList_Delete(migrator->unk_28);
+    migrator->unk_28 = NULL;
 
     RenderOam_Free();
     CharTransfer_Free();
     PlttTransfer_Free();
 
-    sub_02015938(param0->unk_E8EC);
+    sub_02015938(migrator->unk_E8EC);
     gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
     GXLayers_SwapDisplay();
 
-    Bg_FreeTilemapBuffer(param0->unk_20, 0);
-    Bg_FreeTilemapBuffer(param0->unk_20, 1);
-    Bg_FreeTilemapBuffer(param0->unk_20, 2);
-    Bg_FreeTilemapBuffer(param0->unk_20, 3);
+    Bg_FreeTilemapBuffer(migrator->bgConfig, 0);
+    Bg_FreeTilemapBuffer(migrator->bgConfig, 1);
+    Bg_FreeTilemapBuffer(migrator->bgConfig, 2);
+    Bg_FreeTilemapBuffer(migrator->bgConfig, 3);
 }
 
-static void ov97_02235310(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02235310(GBAMigrator *migrator)
 {
     UnkStruct_02015958 v0;
 
-    v0.unk_00 = param0->unk_20;
+    v0.unk_00 = migrator->bgConfig;
     v0.unk_04 = 0;
     v0.unk_08 = 512;
     v0.unk_0C = 8;
     v0.unk_10 = 25;
     v0.unk_11 = 7;
 
-    sub_02015958(param0->unk_E8EC, &v0);
+    sub_02015958(migrator->unk_E8EC, &v0);
 }
 
-static void ov97_02235344(UnkStruct_ov97_02234A2C *param0)
+static void ov97_02235344(GBAMigrator *migrator)
 {
     UnkStruct_ov97_02233DAC v0;
     StringTemplate *v1;
@@ -1620,28 +1622,28 @@ static void ov97_02235344(UnkStruct_ov97_02234A2C *param0)
 
     ov97_0223936C(GetGBAPlayerName(), v3, GBA_PLAYER_NAME_LEN + 1, ov97_02235DBC());
 
-    v1 = StringTemplate_Default(HEAP_ID_78);
-    v2 = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_78);
+    v1 = StringTemplate_Default(HEAP_ID_MIGRATE_FROM_GBA);
+    v2 = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_MIGRATE_FROM_GBA);
 
     Strbuf_CopyChars(v2, v3);
     StringTemplate_SetStrbuf(v1, 1, v2, 0, 1, GAME_LANGUAGE);
 
-    ov97_02234ECC(param0);
+    ov97_02234ECC(migrator);
 
-    param0->unk_490.unk_34 = Unk_ov97_0223EA80[param0->unk_00];
-    param0->unk_490.unk_40 = v1;
+    migrator->unk_490.messageEntryID = sMigrateFromGBAGameMessageIDs[migrator->gbaVersion];
+    migrator->unk_490.unk_40 = v1;
 
-    ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
+    ov97_02233DD0(migrator, &migrator->unk_490, 0x8 | 0x10);
 
     Strbuf_Free(v2);
     StringTemplate_Free(v1);
 
-    ov97_02235310(param0);
+    ov97_02235310(migrator);
 }
 
 static void ov97_022353CC(void *param0)
 {
-    UnkStruct_ov97_02234A2C *v0 = (UnkStruct_ov97_02234A2C *)param0;
+    GBAMigrator *v0 = (GBAMigrator *)param0;
 
     if (v0->unk_12664) {
         v0->unk_12664();
@@ -1650,17 +1652,17 @@ static void ov97_022353CC(void *param0)
 
     VramTransfer_Process();
     RenderOam_Transfer();
-    Bg_RunScheduledUpdates(v0->unk_20);
+    Bg_RunScheduledUpdates(v0->bgConfig);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
 // Validation for Pal Park?
-static int ov97_02235408(UnkStruct_ov97_02234A2C *param0)
+static int ov97_02235408(GBAMigrator *migrator)
 {
     int v0;
     u32 gbaTrainerId;
-    PalParkTransfer *transferData = SaveData_PalParkTransfer(param0->unk_10);
+    PalParkTransfer *transferData = SaveData_PalParkTransfer(migrator->saveData);
 
     if (sub_0202F0E0(transferData) == 0) {
         if (sub_0202F088(transferData) == 0) {
@@ -1689,7 +1691,7 @@ static int ov97_02235408(UnkStruct_ov97_02234A2C *param0)
 
         for (boxNum = 0; boxNum < GBA_MAX_PC_BOXES; boxNum++) {
             for (boxPos = 0; boxPos < GBA_MAX_MONS_PER_BOX; boxPos++) {
-                boxMonGBA = &param0->unk_E8E0->boxes[boxNum][boxPos];
+                boxMonGBA = &migrator->unk_E8E0->boxes[boxNum][boxPos];
 
                 if (GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SANITY_HAS_SPECIES, NULL)) {
                     count++;
@@ -1709,94 +1711,94 @@ static int ov97_02235408(UnkStruct_ov97_02234A2C *param0)
     return 0;
 }
 
-static BOOL ov97_022354C4(UnkStruct_ov97_02234A2C *param0, int param1)
+static BOOL ov97_022354C4(GBAMigrator *migrator, int param1)
 {
-    if (param0->unk_04) {
-        ov97_02234ECC(param0);
-        RenderControlFlags_SetSpeedUpOnTouch(1);
-        param0->unk_490.unk_34 = Unk_ov97_0223EAB8[param1];
-        param0->unk_490.unk_44 = 1;
-        ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
-        param0->unk_04 = 0;
+    if (migrator->unk_04) {
+        ov97_02234ECC(migrator);
+        RenderControlFlags_SetSpeedUpOnTouch(TRUE);
+        migrator->unk_490.messageEntryID = Unk_ov97_0223EAB8[param1];
+        migrator->unk_490.unk_44 = 1;
+        ov97_02233DD0(migrator, &migrator->unk_490, 0x8 | 0x10);
+        migrator->unk_04 = 0;
     } else {
-        if (Text_IsPrinterActive(param0->unk_490.unk_48) == 0) {
-            RenderControlFlags_SetSpeedUpOnTouch(0);
-            return 1;
+        if (Text_IsPrinterActive(migrator->unk_490.unk_48) == 0) {
+            RenderControlFlags_SetSpeedUpOnTouch(FALSE);
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov97_02235528(UnkStruct_ov97_02234A2C *param0, int param1)
+static BOOL ov97_02235528(GBAMigrator *migrator, int param1)
 {
-    if (param0->unk_04) {
-        ov97_02234ECC(param0);
-        RenderControlFlags_SetSpeedUpOnTouch(1);
-        param0->unk_490.unk_34 = Unk_ov97_0223EAB8[param1];
-        param0->unk_490.unk_44 = 1;
-        ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
-        param0->unk_04 = 0;
+    if (migrator->unk_04) {
+        ov97_02234ECC(migrator);
+        RenderControlFlags_SetSpeedUpOnTouch(TRUE);
+        migrator->unk_490.messageEntryID = Unk_ov97_0223EAB8[param1];
+        migrator->unk_490.unk_44 = 1;
+        ov97_02233DD0(migrator, &migrator->unk_490, 0x8 | 0x10);
+        migrator->unk_04 = 0;
     } else {
-        if (Text_IsPrinterActive(param0->unk_490.unk_48) == 0) {
-            ov97_02235310(param0);
-            RenderControlFlags_SetSpeedUpOnTouch(0);
-            return 1;
+        if (Text_IsPrinterActive(migrator->unk_490.unk_48) == 0) {
+            ov97_02235310(migrator);
+            RenderControlFlags_SetSpeedUpOnTouch(FALSE);
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov97_02235590(UnkStruct_ov97_02234A2C *param0, int param1)
+static BOOL ov97_02235590(GBAMigrator *migrator, int param1)
 {
-    if (param0->messageEntryID != -1) {
-        ov97_02234ECC(param0);
-        RenderControlFlags_SetSpeedUpOnTouch(1);
-        param0->unk_490.unk_34 = param0->messageEntryID;
-        param0->unk_490.unk_44 = param1;
-        ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
-        param0->messageEntryID = -1;
-        Sound_PlayEffect(1500);
+    if (migrator->messageEntryID != -1) {
+        ov97_02234ECC(migrator);
+        RenderControlFlags_SetSpeedUpOnTouch(TRUE);
+        migrator->unk_490.messageEntryID = migrator->messageEntryID;
+        migrator->unk_490.unk_44 = param1;
+        ov97_02233DD0(migrator, &migrator->unk_490, 0x8 | 0x10);
+        migrator->messageEntryID = -1;
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else {
         if (param1) {
-            if (Text_IsPrinterActive(param0->unk_490.unk_48) == 0) {
-                RenderControlFlags_SetSpeedUpOnTouch(0);
-                return 1;
+            if (Text_IsPrinterActive(migrator->unk_490.unk_48) == 0) {
+                RenderControlFlags_SetSpeedUpOnTouch(FALSE);
+                return TRUE;
             }
         } else {
             if (gSystem.touchPressed || gSystem.pressedKeys) {
-                RenderControlFlags_SetSpeedUpOnTouch(0);
-                Sound_PlayEffect(1500);
-                return 1;
+                RenderControlFlags_SetSpeedUpOnTouch(FALSE);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
+                return TRUE;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static int ov97_02235624(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov97_02234A2C *v0;
+    GBAMigrator *v0;
 
-    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_78, 0x38000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_MIGRATE_FROM_GBA, HEAP_SIZE_MIGRATE_FROM_GBA);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_02234A2C), HEAP_ID_78);
-    memset(v0, 0, sizeof(UnkStruct_ov97_02234A2C));
+    v0 = OverlayManager_NewData(param0, sizeof(GBAMigrator), HEAP_ID_MIGRATE_FROM_GBA);
+    memset(v0, 0, sizeof(GBAMigrator));
 
-    v0->unk_20 = BgConfig_New(HEAP_ID_78);
-    v0->unk_E8EC = sub_02015920(HEAP_ID_78);
+    v0->bgConfig = BgConfig_New(HEAP_ID_MIGRATE_FROM_GBA);
+    v0->unk_E8EC = sub_02015920(HEAP_ID_MIGRATE_FROM_GBA);
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
 
-    v0->unk_10 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
-    v0->unk_14 = SaveData_GetTrainerInfo(v0->unk_10);
-    v0->unk_18 = SaveData_Options(v0->unk_10);
-    v0->unk_1C = Options_Frame(v0->unk_18);
-    v0->unk_12668 = Strbuf_Init(256, HEAP_ID_78);
-    v0->unk_1266C = Strbuf_Init(256, HEAP_ID_78);
+    v0->saveData = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
+    v0->unk_14 = SaveData_GetTrainerInfo(v0->saveData);
+    v0->options = SaveData_Options(v0->saveData);
+    v0->messageBoxFrame = Options_Frame(v0->options);
+    v0->unk_12668 = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
+    v0->unk_1266C = Strbuf_Init(256, HEAP_ID_MIGRATE_FROM_GBA);
 
     sub_02004550(9, 1174, 1);
 
@@ -1815,7 +1817,7 @@ extern int gIgnoreCartridgeForWake;
 static int ov97_022356E8(OverlayManager *param0, int *param1)
 {
     int boxPos, gbaMonValidity, v2;
-    UnkStruct_ov97_02234A2C *v3 = OverlayManager_Data(param0);
+    GBAMigrator *v3 = OverlayManager_Data(param0);
 
     CTRDG_IsExisting();
 
@@ -1823,10 +1825,10 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         UnkStruct_ov97_02233B8C *v4 = &v3->unk_E8F0;
 
         if ((v4->unk_00 == 3) || (v4->unk_00 == 4)) {
-            SaveData_SaveStateCancel(v3->unk_10);
+            SaveData_SaveStateCancel(v3->saveData);
         }
 
-        sub_0209A8E0(78);
+        sub_0209A8E0(HEAP_ID_MIGRATE_FROM_GBA);
     }
 
     v3->unk_0C++;
@@ -1942,7 +1944,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         case 1:
             sub_02015A54(v3->unk_E8EC);
             v3->unk_490.unk_44 = 0;
-            v3->unk_490.unk_34 = 40;
+            v3->unk_490.messageEntryID = migrate_from_gba_making_adjustments;
             ov97_02233DD0(v3, &v3->unk_490, 0);
             v3->unk_E8F0.unk_08 = Window_AddWaitDial(&v3->unk_4FC, (0x3F0 - (18 + 12)));
             *param1 = 10;
@@ -1987,7 +1989,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
                 if (gbaMonValidity == GBA_MON_STATE_1) {
                     ov97_02234B0C(v3, &(v3->unk_E8E0->boxes[v3->unk_E8E4][boxPos]));
 
-                    if (v3->unk_474 == 6) {
+                    if (v3->selectedCount == CATCHING_SHOW_MONS) {
                         v3->unk_E8E8 = 45;
                         *param1 = 15;
                     }
@@ -2016,7 +2018,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
                     }
 
                     ov97_022343A8(v3);
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                     break;
                 case (30 + 2):
                     if (++v3->unk_E8E4 == 14) {
@@ -2024,11 +2026,11 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
                     }
 
                     ov97_022343A8(v3);
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                     break;
                 case (30 + 0):
                     ov97_02234CF4(v3, 0, 24, param1);
-                    Sound_PlayEffect(1500);
+                    Sound_PlayEffect(SEQ_SE_CONFIRM);
                     break;
                 }
             }
@@ -2068,12 +2070,12 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
     case 18: {
         UnkStruct_ov97_02233DAC v5;
 
-        v3->unk_490.unk_34 = 11;
+        v3->unk_490.messageEntryID = migrate_from_gba_cannot_return_to_gba;
 
         ov97_02233DD0(v3, &v3->unk_490, 0);
         ov97_02235310(v3);
 
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         *param1 = 19;
     } break;
     case 19:
@@ -2081,7 +2083,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
 
         switch (boxPos) {
         case 1:
-            v3->unk_490.unk_34 = Unk_ov97_0223EA68[v3->unk_00];
+            v3->unk_490.messageEntryID = sSavingOnGBAGameAndPlatinumMessageIDs[v3->gbaVersion];
             ov97_02233DD0(v3, &v3->unk_490, 0);
             sub_02015A54(v3->unk_E8EC);
             v3->unk_E8F0.unk_00 = 0;
@@ -2104,12 +2106,12 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
 
         if (v2 != 10) {
             DestroyWaitDial(v3->unk_E8F0.unk_08);
-            Sound_PlayEffect(1563);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE);
 
             if (v2 == 11) {
-                v3->unk_490.unk_34 = 29;
+                v3->unk_490.messageEntryID = migrate_from_gba_safely_migrated_to_platinum;
             } else {
-                v3->unk_490.unk_34 = 36;
+                v3->unk_490.messageEntryID = migrate_from_gba_save_failed;
             }
 
             ov97_02233DD0(v3, &v3->unk_490, 0);
@@ -2120,7 +2122,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
     case 22:
         if (gSystem.touchPressed || gSystem.pressedKeys) {
             ov97_02234CF4(v3, 0, 24, param1);
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
         break;
     case 23:
@@ -2145,16 +2147,16 @@ static int ov97_02235CC8(OverlayManager *param0, int *param1)
 {
     FS_EXTERN_OVERLAY(overlay77);
 
-    UnkStruct_ov97_02234A2C *v0 = OverlayManager_Data(param0);
+    GBAMigrator *v0 = OverlayManager_Data(param0);
 
     Strbuf_Free(v0->unk_12668);
     Strbuf_Free(v0->unk_1266C);
-    Heap_FreeToHeap(v0->unk_20);
+    Heap_FreeToHeap(v0->bgConfig);
     EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(HEAP_ID_78);
+    Heap_Destroy(HEAP_ID_MIGRATE_FROM_GBA);
 
-    ov97_02238400(0);
+    ov97_02238400(FALSE);
 
     return 1;
 }
