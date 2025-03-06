@@ -182,7 +182,7 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
 
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        StartScreenTransition(0, 17, 17, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 17, 17, 0x0, 16, 1, HEAP_ID_39);
 
         {
             UnkStruct_0203DDFC *v2 = (UnkStruct_0203DDFC *)OverlayManager_Args(param0);
@@ -1151,7 +1151,7 @@ static int ov58_021D20C8(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D20F4(UnkStruct_02095EAC *param0, int param1)
 {
     if (++param0->unk_374 > 60) {
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_39);
         param1 = 3;
     }
 
@@ -1241,7 +1241,7 @@ static int ov58_021D2270(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D2298(UnkStruct_02095EAC *param0, int param1)
 {
     if (CommTiming_IsSyncState(200) || (CommSys_ConnectedCount() == 1)) {
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_39);
         param1 = 3;
     }
 

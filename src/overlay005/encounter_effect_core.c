@@ -328,7 +328,7 @@ void EncounterEffect_Water_LowerLevel(SysTask *task, void *param)
         }
         break;
     case 4:
-        StartScreenTransition(3, 30, 0, 0x0, 8, 1, 4);
+        StartScreenTransition(3, 30, 0, 0x0, 8, 1, HEAP_ID_FIELD);
         encEffect->state++;
         break;
     case 5:
@@ -386,7 +386,7 @@ void EncounterEffect_Water_HigherLevel(SysTask *task, void *param)
         }
         break;
     case 4:
-        StartScreenTransition(3, 30, 0, 0x0, 8, 1, 4);
+        StartScreenTransition(3, 30, 0, 0x0, 8, 1, HEAP_ID_FIELD);
         encEffect->state++;
         break;
     case 5:
@@ -484,7 +484,7 @@ void EncounterEffect_Cave_LowerLevel(SysTask *task, void *param)
         break;
     case 3:
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
-        StartScreenTransition(3, 16, 16, 0x0, 12, 1, 4);
+        StartScreenTransition(3, 16, 16, 0x0, 12, 1, HEAP_ID_FIELD);
 
         caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
@@ -542,7 +542,7 @@ void EncounterEffect_Cave_HigherLevel(SysTask *task, void *param)
         break;
     case 3:
         HBlankSystem_Stop(encEffect->fieldSystem->unk_04->hBlankSystem);
-        StartScreenTransition(3, 16, 16, 0x0, 12, 1, 4);
+        StartScreenTransition(3, 16, 16, 0x0, 12, 1, HEAP_ID_FIELD);
 
         caveEffect->camera = encEffect->fieldSystem->camera;
         distance = Camera_GetDistance(caveEffect->camera);
@@ -1085,7 +1085,7 @@ void EncounterEffect_Trainer_Water_LowerLevel(SysTask *param0, void *param1)
         v4 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_230, v4, v4 + (-FX32_CONST(500)), (-FX32_CONST(10)), 8);
 
-        StartScreenTransition(3, 24, 0, 0x0, 8, 1, 4);
+        StartScreenTransition(3, 24, 0, 0x0, 8, 1, HEAP_ID_FIELD);
         v0->state++;
         break;
 
@@ -1440,7 +1440,7 @@ void EncounterEffect_Trainer_Cave_LowerLevel(SysTask *param0, void *param1)
         v3 = Camera_GetDistance(v1->camera);
         QuadraticInterpolationTaskFX32_Init(&v1->unk_238, v3, v3 + (-FX32_CONST(1000)), (FX32_CONST(10)), 8);
 
-        StartScreenTransition(3, 18, 0, 0x0, 8, 1, 4);
+        StartScreenTransition(3, 18, 0, 0x0, 8, 1, HEAP_ID_FIELD);
         v0->state++;
         break;
 
@@ -1778,7 +1778,7 @@ void EncounterEffect_Frontier(SysTask *param0, void *param1)
         }
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-        StartScreenTransition(3, 16, 0, 0x0, 6, 1, 4);
+        StartScreenTransition(3, 16, 0, 0x0, 6, 1, HEAP_ID_FIELD);
         v0->state++;
         break;
 
@@ -1902,7 +1902,7 @@ void EncounterEffect_Double(SysTask *param0, void *param1)
     case 5:
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-        StartScreenTransition(3, 34, 0, 0x0, 8, 1, 4);
+        StartScreenTransition(3, 34, 0, 0x0, 8, 1, HEAP_ID_FIELD);
         v0->state++;
         break;
 
@@ -2062,7 +2062,7 @@ void EncounterEffect_GalacticGrunt(SysTask *param0, void *param1)
 
         HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
 
-        StartScreenTransition(3, 34, 0, 0x0, 12, 1, 4);
+        StartScreenTransition(3, 34, 0, 0x0, 12, 1, HEAP_ID_FIELD);
         v0->state++;
         break;
 
@@ -2452,7 +2452,7 @@ void EncounterEffect_Mythical(SysTask *task, void *param)
         break;
 
     case 5:
-        StartScreenTransition(3, 0, 0, 0x7fff, 10, 1, 4);
+        StartScreenTransition(3, 0, 0, 0x7fff, 10, 1, HEAP_ID_FIELD);
         encEffect->state++;
         break;
 
@@ -2555,7 +2555,7 @@ void EncounterEffect_Legendary(SysTask *task, void *param)
         break;
 
     case 7:
-        StartScreenTransition(3, 0, 0, 0x7fff, 60, 1, 4);
+        StartScreenTransition(3, 0, 0, 0x7fff, 60, 1, HEAP_ID_FIELD);
         encEffect->state++;
         break;
 
@@ -3064,7 +3064,7 @@ static BOOL EncounterEffect_GymLeader(EncounterEffect *encEffect, enum HeapId he
 
     case 13:
 
-        StartScreenTransition(3, 0, 0, 0x7fff, 15, 1, 4);
+        StartScreenTransition(3, 0, 0, 0x7fff, 15, 1, HEAP_ID_FIELD);
         encEffect->state++;
         break;
 
@@ -3507,7 +3507,7 @@ static BOOL EncounterEffect_EliteFourChampion(EncounterEffect *encEffect, enum H
             QuadraticInterpolationTaskFX32_Init(&v0->unk_00, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
             QuadraticInterpolationTaskFX32_Init(&v0->unk_18, 0, (FX32_CONST(192.0f)), (FX32_CONST(24.0f)), 16);
 
-            StartScreenTransition(3, 0, 0, 0x7fff, 8, 1, 4);
+            StartScreenTransition(3, 0, 0, 0x7fff, 8, 1, HEAP_ID_FIELD);
         }
 
         break;

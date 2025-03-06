@@ -133,7 +133,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         SetAutorepeat(4, 8);
         ov72_0223DA70();
         ov72_0223DA90(v0->unk_00);
-        StartScreenTransition(0, 1, 1, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_39);
 
         {
             SaveData *v2 = (SaveData *)OverlayManager_Args(param0);
@@ -764,7 +764,7 @@ static int ov72_0223E488(UnkStruct_ov72_0223DB98 *param0, int param1)
         GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_114);
         Window_EraseMessageBox(&param0->unk_338, 1);
         sub_02015A54(param0->unk_5D00);
-        StartScreenTransition(0, 0, 0, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 0, 0, 0x0, 16, 1, HEAP_ID_39);
         return 2;
         break;
     case 2:

@@ -441,7 +441,7 @@ static void ov91_021D0ED8(UnkStruct_ov91_021D0ED8 *param0)
 
     param0->unk_04 = BgConfig_New(HEAP_ID_67);
 
-    sub_0208C120(0, 67);
+    sub_0208C120(0, HEAP_ID_67);
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__WAZA_OSHIE_GRA, HEAP_ID_67);
 
@@ -766,7 +766,7 @@ static int ov91_021D1450(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D1480(UnkStruct_ov91_021D0ED8 *param0)
 {
-    sub_0208C120(1, 67);
+    sub_0208C120(1, HEAP_ID_67);
     param0->unk_180 = 9;
     return 0;
 }
@@ -1480,7 +1480,7 @@ static void ov91_021D25E4(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D2604(UnkStruct_ov91_021D0ED8 *param0)
 {
-    sub_0208C120(1, 67);
+    sub_0208C120(1, HEAP_ID_67);
     param0->unk_180 = 11;
     return 0;
 }

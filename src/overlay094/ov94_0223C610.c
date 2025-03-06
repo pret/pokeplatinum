@@ -87,7 +87,7 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
 
     if (param0->unk_34 == 0) {
         ov94_0223C85C(param0);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_62);
 
         param0->unk_2C = 0;
         param0->unk_34 = 1;
@@ -95,9 +95,9 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
         ov94_02243FA8(param0, TrainerInfo_Gender(param0->unk_00->unk_1C));
     } else {
         if (param0->unk_1110 == 1) {
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1, 62);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_62);
         } else {
-            StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
+            StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
         }
 
         param0->unk_2C = 5;
@@ -384,7 +384,7 @@ static int ov94_0223CB90(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223CBA0(UnkStruct_ov94_0223FD4C *param0)
 {
-    StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
+    StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
     param0->unk_2C = 3;
 
     return 3;
@@ -498,9 +498,9 @@ static int ov94_0223CE00(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_0223CE14(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_18 == 0) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_62);
     } else {
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_62);
     }
 
     param0->unk_2C = 0;

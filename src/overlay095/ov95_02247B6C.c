@@ -288,7 +288,7 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
 
     sub_02039734();
     sub_020397C8(1, 57);
-    StartScreenTransition(0, 1, 1, 0x0, 16, 1, 58);
+    StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -408,7 +408,7 @@ static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
         break;
     case 3:
         if ((ov95_0224847C(param0) >= 2) || (ov95_0224846C(param0) == 1)) {
-            StartScreenTransition(0, 0, 0, 0x0, 24, 1, 58);
+            StartScreenTransition(0, 0, 0, 0x0, 24, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;

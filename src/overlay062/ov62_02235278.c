@@ -122,7 +122,7 @@ static BOOL ov62_02235324(UnkStruct_0208C06C *param0)
         if (param0->unk_0C != 0) {
             param0->unk_0C -= 4;
         } else {
-            StartScreenTransition(0, 0, 0, 0, 6, 1, 102);
+            StartScreenTransition(0, 0, 0, 0, 6, 1, HEAP_ID_102);
             param0->unk_08++;
         }
         break;

@@ -300,7 +300,7 @@ static int ov95_022486AC(UnkStruct_ov95_02248688 *param0, int *param1)
     ov95_022488A4(param0);
     ov95_02248B84(param0);
     ov95_02248CA8(param0);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, 58);
+    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -394,7 +394,7 @@ static int ov95_022487D4(UnkStruct_ov95_02248688 *param0, int *param1)
         }
 
         if (ov95_022494F4(param0->unk_160)) {
-            StartScreenTransition(0, 0, 0, 0x7fff, 4, 1, 58);
+            StartScreenTransition(0, 0, 0, 0x7fff, 4, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;

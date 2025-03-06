@@ -1411,7 +1411,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 1:
         ov23_0224942C(fieldSystem->unk_6C);
-        StartScreenTransition(2, 16, 18, 0x0, 6, 1, 4);
+        StartScreenTransition(2, 16, 18, 0x0, 6, 1, HEAP_ID_FIELD);
         (v0->unk_00)++;
         break;
     case 2:
@@ -1438,7 +1438,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 6:
         sub_02039734();
-        StartScreenTransition(3, 17, 17, 0x0, 6, 1, 29);
+        StartScreenTransition(3, 17, 17, 0x0, 6, 1, HEAP_ID_29);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
@@ -1553,7 +1553,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 18:
         SpriteList_Update(Unk_ov23_02257740->unk_20);
         ov23_02254044(ov23_0224219C());
-        StartScreenTransition(3, 16, 16, 0x0, 6, 1, 29);
+        StartScreenTransition(3, 16, 16, 0x0, 6, 1, HEAP_ID_29);
         (v0->unk_00)++;
         break;
     case 19:
@@ -1572,7 +1572,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             sub_02039734();
             sub_020594FC();
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
-            StartScreenTransition(1, 17, 19, 0x0, 6, 1, 4);
+            StartScreenTransition(1, 17, 19, 0x0, 6, 1, HEAP_ID_FIELD);
             (v0->unk_00)++;
             break;
         }
@@ -1616,7 +1616,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
         break;
     case 23:
         SpriteList_Update(Unk_ov23_02257740->unk_20);
-        StartScreenTransition(3, 2, 2, 0x0, 15, 1, 29);
+        StartScreenTransition(3, 2, 2, 0x0, 15, 1, HEAP_ID_29);
         Sound_PlayEffect(1697);
         v0->unk_00 = 24;
         break;

@@ -613,7 +613,7 @@ static BOOL ov23_02251ACC(FieldTask *param0)
     switch (v1->unk_00) {
     case 0:
         Sound_PlayEffect(1549);
-        StartScreenTransition(2, 0, 0, 0x0, 6, 1, 4);
+        StartScreenTransition(2, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
         v1->unk_00 = 1;
         break;
     case 1:
@@ -634,7 +634,7 @@ static BOOL ov23_02251ACC(FieldTask *param0)
     case 4:
         PlayerAvatar_SetHidden(fieldSystem->playerAvatar, 1);
         ov23_02251A84(0, fieldSystem);
-        StartScreenTransition(1, 1, 1, 0x0, 6, 1, 4);
+        StartScreenTransition(1, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
         v1->unk_00 = 5;
         break;
     case 5:

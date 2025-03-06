@@ -292,7 +292,7 @@ static void ov70_0225F338(UnkStruct_ov70_0225F208 *param0);
 static void ov70_0225F344(UnkStruct_ov70_0225DEE8 *param0);
 static void ov70_0225F350(UnkStruct_ov70_0225F350 *param0, const UnkStruct_ov70_02263910 *param1, UnkStruct_ov70_0225E4EC *param2, const TrainerInfo *param3, u32 param4);
 static void ov70_0225F3E4(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9C8 *param1, UnkStruct_ov70_0225E4EC *param2);
-static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DEE8 *param1, BOOL param2, u32 param3);
+static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DEE8 *param1, BOOL param2, u32 heapID);
 static u32 ov70_0225F798(const UnkStruct_ov70_0225F350 *param0);
 static void ov70_0225F79C(UnkStruct_ov70_0225F350 *param0, u32 param1, BOOL param2);
 static void ov70_0225F7A8(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E4EC *param1, u32 param2, u32 param3);
@@ -663,7 +663,7 @@ int ov70_0225DB90(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 112);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_112);
         v0->unk_03 = 1;
         (*param1)++;
         break;
@@ -743,14 +743,14 @@ int ov70_0225DB90(OverlayManager *param0, int *param1)
         v3 = ov70_0225F798(&v0->unk_1E8);
 
         if (v3 == 5) {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 112);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_112);
             v0->unk_03 = 1;
             (*param1)++;
             break;
         }
 
         if (v3 == 0) {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 112);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_112);
             v0->unk_03 = 1;
             (*param1)++;
             break;
@@ -1455,7 +1455,7 @@ static void ov70_0225E88C(UnkStruct_ov70_0225DEE8 *param0)
             v0 = 0;
         }
 
-        ov70_0225F418(&param0->unk_1E8, param0, v0, 112);
+        ov70_0225F418(&param0->unk_1E8, param0, v0, HEAP_ID_112);
     }
 
     ov70_02269220(param0->unk_438);
@@ -2077,7 +2077,7 @@ static void ov70_0225F3E4(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225E9
     NARC_dtor(param0->unk_14C);
 }
 
-static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DEE8 *param1, BOOL param2, u32 param3)
+static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DEE8 *param1, BOOL param2, u32 heapID)
 {
     UnkStruct_ov66_0222DFF8 *v0;
     UnkStruct_ov70_0225E4EC *v1;
@@ -2095,7 +2095,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
         }
         break;
     case 1:
-        StartScreenTransition(4, 0, 0, 0x7fff, 4, 1, param3);
+        StartScreenTransition(4, 0, 0, 0x7fff, 4, 1, heapID);
         param0->unk_00++;
         break;
     case 2:
@@ -2104,7 +2104,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
                 const UnkStruct_ov66_0222E71C *v4;
 
                 v4 = ov66_0222E3BC(v0);
-                ov70_0225F8AC(param0, v1, &param1->unk_340, param3, v4);
+                ov70_0225F8AC(param0, v1, &param1->unk_340, heapID, v4);
                 param0->unk_01 = 4;
             }
 
@@ -2116,7 +2116,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
         }
         break;
     case 3:
-        StartScreenTransition(4, 1, 1, 0x7fff, 6, 1, param3);
+        StartScreenTransition(4, 1, 1, 0x7fff, 6, 1, heapID);
         param0->unk_00++;
         break;
     case 4:
@@ -2131,7 +2131,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
 
         switch (param0->unk_01) {
         case 1:
-            v3 = ov70_022607D4(&param0->unk_114, v1, param0->unk_14C, param3);
+            v3 = ov70_022607D4(&param0->unk_114, v1, param0->unk_14C, heapID);
 
             if (v3 == 1) {
                 ov70_0225F344(param1);
@@ -2147,7 +2147,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
                 }
             }
 
-            v3 = ov70_022607D4(&param0->unk_114, v1, param0->unk_14C, param3);
+            v3 = ov70_022607D4(&param0->unk_114, v1, param0->unk_14C, heapID);
 
             if (v3 == 1) {
                 ov66_0222EBD4(v0, ov66_0222E338(v0));
@@ -2177,7 +2177,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
         }
         break;
     case 6:
-        StartScreenTransition(4, 1, 0, 0x0, 3, 1, param3);
+        StartScreenTransition(4, 1, 0, 0x0, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 7:
@@ -2206,7 +2206,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
         case 1:
         case 4:
             v8 = ov66_0222E3BC(v0);
-            ov70_0225F8AC(param0, v1, &param1->unk_340, param3, v8);
+            ov70_0225F8AC(param0, v1, &param1->unk_340, heapID, v8);
             break;
         case 2: {
             BOOL v12;
@@ -2236,7 +2236,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
                 v11 = NULL;
             }
 
-            ov70_0225F844(param0, &param1->unk_37C, v1, v2, v12, param3, v8, v13, v9, v10, v11, 1);
+            ov70_0225F844(param0, &param1->unk_37C, v1, v2, v12, heapID, v8, v13, v9, v10, v11, 1);
         } break;
         case 3: {
             u32 v14;
@@ -2252,7 +2252,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
             }
 
             ov66_0222EC04(v14, &v15, &v16);
-            ov70_0225F8F0(param0, v1, param3, v16);
+            ov70_0225F8F0(param0, v1, heapID, v16);
         } break;
         }
 
@@ -2260,7 +2260,7 @@ static void ov70_0225F418(UnkStruct_ov70_0225F350 *param0, UnkStruct_ov70_0225DE
         param0->unk_00++;
     } break;
     case 9:
-        StartScreenTransition(4, 1, 1, 0x0, 3, 1, param3);
+        StartScreenTransition(4, 1, 1, 0x0, 3, 1, heapID);
 
         if (param0->unk_01 == 2) {
             ov70_0225FACC(&param0->unk_08, &param1->unk_37C);

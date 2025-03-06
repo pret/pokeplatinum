@@ -480,12 +480,12 @@ static void ChooseStarterAppMainCallback(void *data)
 
 static void StartFadeIn(ChooseStarterApp *param0)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 47);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
 }
 
 static void StartFadeOut(ChooseStarterApp *param0)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 47);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_CHOOSE_STARTER_APP);
 }
 
 static BOOL IsFadeDone(ChooseStarterApp *param0)

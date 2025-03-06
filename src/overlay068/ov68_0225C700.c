@@ -153,10 +153,10 @@ static void ov68_0225D06C(UnkStruct_ov68_0225D0F8 *param0, UnkStruct_ov68_0225CB
 static void ov68_0225D0F8(UnkStruct_ov68_0225D0F8 *param0);
 static void ov68_0225D11C(UnkStruct_ov68_0225D0F8 *param0);
 static void ov68_0225D35C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4);
-static BOOL ov68_0225D36C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 param5);
+static BOOL ov68_0225D36C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 heapID);
 static void ov68_0225D380(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2);
 static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov66_02231374 *param3, u32 param4);
-static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 param5);
+static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 heapID);
 static void ov68_0225D868(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2);
 static void ov68_0225D89C(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, u32 param2, TextColor param3);
 static void ov68_0225D8F0(UnkStruct_ov68_0225D388 *param0, const UnkStruct_ov68_0225DB8C *param1, UnkStruct_ov68_0225CB70 *param2, UnkStruct_ov68_0225C91C *param3, const UnkStruct_ov66_0222E908 *param4, u32 param5, u32 param6, u32 param7, BOOL param8);
@@ -350,7 +350,7 @@ int ov68_0225C798(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 122);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_122);
         ov66_0222E31C(v1->unk_04, 1);
         (*param1)++;
         break;
@@ -382,7 +382,7 @@ int ov68_0225C798(OverlayManager *param0, int *param1)
         }
         break;
     case 3:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 122);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_122);
         (*param1)++;
         break;
     case 4:
@@ -1012,9 +1012,9 @@ static void ov68_0225D35C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB7
     ov68_0225D388(&param0->val2, param1, param2, param3, param4);
 }
 
-static BOOL ov68_0225D36C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 param5)
+static BOOL ov68_0225D36C(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 heapID)
 {
-    return ov68_0225D478(&param0->val2, param1, param2, param3, param4, param5);
+    return ov68_0225D478(&param0->val2, param1, param2, param3, param4, heapID);
 }
 
 static void ov68_0225D380(UnkUnion_ov68_0225CCA8 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2)
@@ -1057,7 +1057,7 @@ static void ov68_0225D388(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
     }
 }
 
-static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 param5)
+static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB70 *param1, UnkStruct_ov68_0225C91C *param2, UnkStruct_ov68_0225D128 *param3, UnkStruct_ov66_02231374 *param4, u32 heapID)
 {
     Strbuf *v0;
     u32 v1;
@@ -1110,7 +1110,7 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         ov66_0222E908(v3, &v2);
 
         v4 = ov66_0222E924(param4->unk_04, ov66_0222E338(param4->unk_04));
-        ov68_0225D8F0(param0, &param0->unk_88, param1, param2, &v2, param5, TEXT_COLOR(9, 10, 0), TEXT_COLOR(13, 14, 0), v4);
+        ov68_0225D8F0(param0, &param0->unk_88, param1, param2, &v2, heapID, TEXT_COLOR(9, 10, 0), TEXT_COLOR(13, 14, 0), v4);
         ov68_0225DA30(param0, &param0->unk_C8, param2, 1);
 
         Sound_PlayEffect(1472);
@@ -1142,13 +1142,13 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
     case 7:
         v0 = ov68_0225CBEC(param1, 0, 111);
         ov68_0225D218(param3, v0);
-        ov68_0225D304(param3, param2, param5);
+        ov68_0225D304(param3, param2, heapID);
         param0->unk_60 = 8;
         break;
     case 8: {
         u32 v6;
 
-        v6 = ov68_0225D330(param3, param5);
+        v6 = ov68_0225D330(param3, heapID);
 
         switch (v6) {
         case 0:
@@ -1160,17 +1160,17 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         }
     } break;
     case 9:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, param5);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, heapID);
         param0->unk_60 = 10;
         break;
     case 10:
         if (IsScreenTransitionDone() == 1) {
-            ov68_0225DB3C(param0, param1, param2, param5);
+            ov68_0225DB3C(param0, param1, param2, heapID);
             param0->unk_60 = 11;
         }
         break;
     case 11:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, param5);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, heapID);
         param0->unk_60 = 12;
         break;
     case 12:
@@ -1226,7 +1226,7 @@ static BOOL ov68_0225D478(UnkStruct_ov68_0225D388 *param0, UnkStruct_ov68_0225CB
         v7.unk_04 = sub_02030ED4(v8);
         v9 = ov66_0222E924(param4->unk_04, ov66_0222E338(param4->unk_04));
 
-        ov68_0225D8F0(param0, &param0->unk_A8, param1, param2, &v7, param5, TEXT_COLOR(11, 12, 0), TEXT_COLOR(15, 14, 0), v9);
+        ov68_0225D8F0(param0, &param0->unk_A8, param1, param2, &v7, heapID, TEXT_COLOR(11, 12, 0), TEXT_COLOR(15, 14, 0), v9);
         ov68_0225DA30(param0, &param0->unk_DC, param2, 2);
         Sound_PlayEffect(1472);
     }

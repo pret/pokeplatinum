@@ -100,7 +100,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD, 0x20000);
             sub_02052F28(fieldSystem, v3);
-            StartScreenTransition(3, 1, 1, 0x0, 8, 1, 32);
+            StartScreenTransition(3, 1, 1, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
             (*v4)++;
         }
         break;
@@ -145,7 +145,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         }
         break;
     case 7:
-        StartScreenTransition(3, 0, 0, 0x0, 8, 1, 32);
+        StartScreenTransition(3, 0, 0, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
         (*v4)++;
         break;
     case 8:

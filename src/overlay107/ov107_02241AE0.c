@@ -621,7 +621,7 @@ static BOOL ov107_02241D6C (UnkStruct_ov107_02241D6C * param0)
             }
         } else {
             ov107_02241E70(param0);
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 100);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_100);
             param0->unk_08++;
         }
         break;
@@ -630,7 +630,7 @@ static BOOL ov107_02241D6C (UnkStruct_ov107_02241D6C * param0)
             if (param0->unk_0F >= 2) {
                 param0->unk_0F = 0;
                 ov107_02241E70(param0);
-                StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 100);
+                StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_100);
                 param0->unk_08++;
             }
         } else {
@@ -1349,7 +1349,7 @@ static BOOL ov107_02242DCC (UnkStruct_ov107_02241D6C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 100);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_100);
         param0->unk_08++;
         break;
     case 1:

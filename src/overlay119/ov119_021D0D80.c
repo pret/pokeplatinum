@@ -261,12 +261,12 @@ void ov119_021D1004(void)
 
 void ov119_021D1028(void)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 71);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_71);
 }
 
 void ov119_021D1048(void)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 71);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_71);
 }
 
 void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)

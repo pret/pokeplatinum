@@ -480,7 +480,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         }
         break;
     case 2:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 24);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_24);
         sub_020055D0(1135, 30);
         v0->unk_10++;
         break;
@@ -516,7 +516,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
         break;
     case 5:
         if (Sound_CheckFade() == 0) {
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1, 24);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_24);
             v0->unk_10++;
         }
         break;

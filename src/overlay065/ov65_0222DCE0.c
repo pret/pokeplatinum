@@ -773,7 +773,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
         ov65_0222EBE0(v0);
         ov65_0222E01C(v0);
 
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 54);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_54);
 
         if (sub_020389B8()) {
             sub_02039734();
@@ -1396,7 +1396,7 @@ static int ov65_0222EBAC(u32 param0)
 
 static int ov65_0222EBB8(void)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 54);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
     ov65_02231A0C();
 
     return 18;
@@ -2437,7 +2437,7 @@ static int ov65_0222FFAC(UnkStruct_ov65_0222EBE0 *param0, int param1)
     param0->unk_3D0 = -1;
 
     NARC_dtor(v3);
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 54);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_54);
     param0->unk_3A8 = 19;
 
     CommMan_SetErrorHandling(0, 0);
@@ -3411,7 +3411,7 @@ static int ov65_02231200(UnkStruct_ov65_0222EBE0 *param0, int param1)
         CommMan_SetErrorHandling(0, 1);
 
         sub_0203632C(0);
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 54);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
 
         param0->unk_3E4 = 0;
 
@@ -4076,7 +4076,7 @@ static int ov65_02231E64(UnkStruct_ov65_0222EBE0 *param0, int param1)
             param0->unk_3AC = ov65_0222DD94(v0);
 
             sub_0203632C(0);
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 54);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
 
             param0->unk_3E4 = 0;
             param1 = 2;
@@ -4374,7 +4374,7 @@ static int ov65_022323C0(UnkStruct_ov65_0222EBE0 *param0, int param1)
         ov65_02231A74(param0, ov4_021D2388());
         ov65_02232E58(param0, v0);
 
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 54);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
 
         param1 = 2;
     }
@@ -4705,7 +4705,7 @@ static int ov65_0223294C(UnkStruct_ov65_0222EBE0 *param0, int param1)
 static int ov65_02232B28(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     if (!CommMan_IsInitialized()) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 54);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_54);
         param1 = 2;
     }
 

@@ -767,11 +767,9 @@ static void ov5_021D173C(FieldSystem *fieldSystem)
 void ov5_021D1744(const u8 param0)
 {
     if (param0 == 1) {
-        StartScreenTransition(
-            0, 1, 1, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
     } else if (param0 == 0) {
-        StartScreenTransition(
-            0, 0, 0, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
     } else {
         GF_ASSERT(FALSE);
     }

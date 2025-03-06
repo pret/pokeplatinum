@@ -221,7 +221,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         ov23_02255EBC(1, v1);
         break;
     case 1:
-        StartScreenTransition(1, 41, 41, 0x0, 6, 1, 4);
+        StartScreenTransition(1, 41, 41, 0x0, 6, 1, HEAP_ID_FIELD);
         ov23_02255EBC(2, v1);
         break;
     case 2:
@@ -254,7 +254,7 @@ static BOOL ov23_02254AD4(FieldTask *param0)
         break;
     case 9:
         Sound_PlayEffect(1550);
-        StartScreenTransition(2, 40, 40, 0x0, 6, 1, 4);
+        StartScreenTransition(2, 40, 40, 0x0, 6, 1, HEAP_ID_FIELD);
         ov23_02255EBC(10, v1);
         break;
     case 10:

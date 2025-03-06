@@ -208,7 +208,7 @@ static int ov95_0224AC98(UnkStruct_ov95_0224AC64 *param0, int *param1)
 {
     ov95_0224AE1C(param0);
     ov95_0224B084(param0);
-    StartScreenTransition(0, 1, 1, 0x7fff, 8, 1, 58);
+    StartScreenTransition(0, 1, 1, 0x7fff, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -271,7 +271,7 @@ static int ov95_0224AD98(UnkStruct_ov95_0224AC64 *param0, int *param1)
         break;
     case 1:
         if (++(param0->unk_08) > 13) {
-            StartScreenTransition(0, 0, 0, 0x0, 8, 1, 58);
+            StartScreenTransition(0, 0, 0, 0x0, 8, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;

@@ -194,12 +194,12 @@ static void VBlankCallBack(void *data)
 
 static void EntranceTransition(PokedexApp **appPtr)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 37);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_POKEDEX);
 }
 
 static void ExitTransition(PokedexApp **appPtr)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 37);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_POKEDEX);
 }
 
 static BOOL TransitionComplete(PokedexApp **appPtr)

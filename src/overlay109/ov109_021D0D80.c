@@ -482,7 +482,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     ov109_021D3584(v0);
     ov109_021D379C(v0);
     ov109_021D3884(v0);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, 95);
+    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_95);
 
     return 1;
 }
@@ -1453,7 +1453,7 @@ static int ov109_021D1B8C(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 {
-    StartScreenTransition(2, 0, 0, 0x0, 8, 1, 95);
+    StartScreenTransition(2, 0, 0, 0x0, 8, 1, HEAP_ID_95);
 
     if (param0->unk_1C != sub_020041FC()) {
         sub_02004550(4, param0->unk_1C, 1);

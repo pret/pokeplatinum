@@ -245,7 +245,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     SetVBlankCallback(ov71_0223C18C, NULL);
     DrawWifiConnectionIcon();
     sub_0200544C(1, (127 / 3));
-    StartScreenTransition(2, 3, 3, 0x0, 6, 1, 25);
+    StartScreenTransition(2, 3, 3, 0x0, 6, 1, HEAP_ID_25);
     NARC_dtor(v1);
 
     return 1;
@@ -315,7 +315,7 @@ int ov71_0223B388(OverlayManager *param0, int *param1)
             } else if (v1 == 4) {
                 Sound_PlayEffect(1500);
 
-                StartScreenTransition(1, 4, 4, 0x0, 6, 1, 25);
+                StartScreenTransition(1, 4, 4, 0x0, 6, 1, HEAP_ID_25);
                 *param1 = 2;
             }
         }

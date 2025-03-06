@@ -67,7 +67,7 @@ static void ov5_021E139C(SysTask *param0, void *param1)
         v0->unk_0C++;
 
         if (v0->unk_0C == 20) {
-            StartScreenTransition(2, 0, 0, 0x0, 6, 1, 4);
+            StartScreenTransition(2, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
         } else if ((v0->unk_0C > 20) && IsScreenTransitionDone()) {
             *v0->unk_04 = 1;
             Heap_FreeToHeap(v0);
@@ -109,7 +109,7 @@ static void ov5_021E1470(SysTask *param0, void *param1)
         v0->unk_0C++;
 
         if (v0->unk_0C == 2) {
-            StartScreenTransition(1, 1, 1, 0x0, 6, 1, 4);
+            StartScreenTransition(1, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
         }
 
         if (v0->unk_0C > 20) {

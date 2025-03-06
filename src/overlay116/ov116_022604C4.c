@@ -1088,7 +1088,7 @@ static void ov116_022616CC(UnkStruct_ov116_0226139C *param0)
 
 static BOOL ov116_02261768(int param0)
 {
-    StartScreenTransition(0, param0, param0, 0, 6, 1, 106);
+    StartScreenTransition(0, param0, param0, 0, 6, 1, HEAP_ID_106);
     return 1;
 }
 

@@ -385,7 +385,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
         break;
     case 16:
-        StartScreenTransition(3, 0, 0, 0x7fff, 15, 1, 94);
+        StartScreenTransition(3, 0, 0, 0x7fff, 15, 1, HEAP_ID_94);
         param0->unk_00++;
         break;
     case 17:

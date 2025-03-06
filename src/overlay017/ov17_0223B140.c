@@ -244,7 +244,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     ov17_022415E4(&v0->unk_0C);
 
     sub_02039734();
-    StartScreenTransition(1, 31, 31, 0x0, 6, 1, 21);
+    StartScreenTransition(1, 31, 31, 0x0, 6, 1, HEAP_ID_21);
 
     v0->unk_04 = SysTask_Start(ov17_0223B6F0, v0, 60000);
     v0->unk_7EC = 1;
@@ -287,7 +287,7 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
             } else if ((v1 == 3) && (v0->unk_1614 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-                StartScreenTransition(2, 32, 32, 0x0, 6, 1, 21);
+                StartScreenTransition(2, 32, 32, 0x0, 6, 1, HEAP_ID_21);
                 break;
             }
         }
@@ -298,7 +298,7 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
         if ((v0->unk_1614 == 1) && (ov17_0224F3D0(&v0->unk_BF8) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-            StartScreenTransition(2, 32, 32, 0x0, 6, 1, 21);
+            StartScreenTransition(2, 32, 32, 0x0, 6, 1, HEAP_ID_21);
         }
         break;
     case 2:

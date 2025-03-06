@@ -407,7 +407,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     v0->unk_00 = BgConfig_New(HEAP_ID_6);
     v0->unk_425 = TrainerInfo_Gender(v0->unk_CC);
 
-    StartScreenTransition(1, 3, 3, 0x0, 6, 1, 6);
+    StartScreenTransition(1, 3, 3, 0x0, 6, 1, HEAP_ID_6);
     SetAutorepeat(3, 8);
 
     ov84_0223BEAC(v0);
@@ -1269,7 +1269,7 @@ static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
         Sound_PlayEffect(1500);
         param0->unk_C4->unk_66 = 0;
         param0->unk_C4->unk_68 = 5;
-        sub_0208C120(1, 6);
+        sub_0208C120(1, HEAP_ID_6);
         return 3;
     default:
         Sound_PlayEffect(1500);
@@ -2159,7 +2159,7 @@ static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0)
         return 13;
     }
 
-    sub_0208C120(1, 6);
+    sub_0208C120(1, HEAP_ID_6);
     param0->unk_C4->unk_68 = 0;
 
     return 24;
@@ -2231,7 +2231,7 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
 
         switch (v2) {
         case 0:
-            sub_0208C120(1, 6);
+            sub_0208C120(1, HEAP_ID_6);
             ov84_0223D7E8(param0, 0);
             param0->unk_C4->unk_68 = 0;
             return 24;
@@ -2351,7 +2351,7 @@ static int ov84_0223DDD0(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223DE78(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
-    sub_0208C120(1, 6);
+    sub_0208C120(1, HEAP_ID_6);
     param0->unk_C4->unk_68 = 1;
 
     return 24;
@@ -2360,7 +2360,7 @@ static int ov84_0223DE78(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223DE98(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
-    sub_0208C120(1, 6);
+    sub_0208C120(1, HEAP_ID_6);
     param0->unk_C4->unk_68 = 3;
 
     return 24;
@@ -2543,7 +2543,7 @@ static int ov84_0223E220(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223E254(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
-    sub_0208C120(1, 6);
+    sub_0208C120(1, HEAP_ID_6);
     ov84_0223D7E8(param0, 0);
     param0->unk_C4->unk_68 = 2;
 
@@ -2587,7 +2587,7 @@ static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0)
             }
 
             param0->unk_C4->unk_68 = 4;
-            sub_0208C120(1, 6);
+            sub_0208C120(1, HEAP_ID_6);
 
             return 24;
         } else if (v0 == 3) {
@@ -2904,7 +2904,7 @@ static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0)
             }
 
             param0->unk_C4->unk_68 = 0;
-            sub_0208C120(1, 6);
+            sub_0208C120(1, HEAP_ID_6);
             return 24;
         } else if (v0 == 3) {
             param0->unk_C4->unk_68 = 5;

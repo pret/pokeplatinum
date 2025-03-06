@@ -639,7 +639,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
 
         Bg_SetOffset(param0->unk_4C, 2, 0, (33 * 8));
         sub_02007DEC(param0->unk_12C[0], 6, 1);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 93);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_93);
         param0->unk_08++;
         break;
     case 3:
@@ -722,7 +722,7 @@ static BOOL ov105_022421F0(UnkStruct_ov105_02241FF4 *param0)
         }
 
         if (param0->unk_13_4 == 1) {
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 93);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_93);
         }
 
         param0->unk_13_4 = 1;
@@ -929,7 +929,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 93);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_93);
             param0->unk_08++;
             break;
         case 1:
@@ -1457,7 +1457,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 93);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_93);
             param0->unk_08++;
             break;
         case 4:
@@ -2050,7 +2050,7 @@ static BOOL ov105_022443DC(UnkStruct_ov105_02241FF4 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 93);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_93);
         param0->unk_08++;
         break;
     case 1:

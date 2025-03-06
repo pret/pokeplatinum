@@ -141,7 +141,7 @@ static BOOL sub_020529C4(FieldTask *task)
 
     switch (v0->unk_00) {
     case 0:
-        StartScreenTransition(3, 1, 42, 0x0, 8, 1, 32);
+        StartScreenTransition(3, 1, 42, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
         v0->unk_00++;
         break;
     case 1:
@@ -151,7 +151,7 @@ static BOOL sub_020529C4(FieldTask *task)
         break;
     case 2:
         if ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_B)) {
-            StartScreenTransition(0, 0, 0, 0x0, 8, 1, 32);
+            StartScreenTransition(0, 0, 0, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
             v0->unk_00++;
         }
         break;

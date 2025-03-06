@@ -443,7 +443,7 @@ static BOOL ov111_021D0F7C(UnkStruct_ov111_021D0F7C *param0)
 {
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 115);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_115);
         param0->unk_08++;
         break;
     case 1:
@@ -998,7 +998,7 @@ static BOOL ov111_021D1A88(UnkStruct_ov111_021D0F7C *param0)
 
         if (param0->unk_0D == 0) {
             Window_EraseMessageBox(&param0->unk_5C[0], 0);
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 115);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_115);
             param0->unk_08++;
         }
         break;

@@ -315,7 +315,7 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2, 16, 0);
-    StartScreenTransition(3, 1, 1, 0x0, 16, 1, 58);
+    StartScreenTransition(3, 1, 1, 0x0, 16, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -439,7 +439,7 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
         break;
     case 4:
         if (++(param0->unk_08) > 10) {
-            StartScreenTransition(3, 0, 0, 0x0, 16, 1, 58);
+            StartScreenTransition(3, 0, 0, 0x0, 16, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;

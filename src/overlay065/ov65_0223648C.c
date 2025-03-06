@@ -252,7 +252,7 @@ static BOOL ov65_02238728(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
 static BOOL ov65_0223875C(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 param2);
 static BOOL ov65_0223878C(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 param2);
 static BOOL ov65_022387AC(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 param2);
-static BOOL ov65_022387E8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 param2);
+static BOOL ov65_022387E8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID);
 static BOOL ov65_02238838(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID);
 static BOOL ov65_022388FC(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 param2);
 static BOOL ov65_02238910(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 param2);
@@ -433,7 +433,7 @@ int ov65_02236548(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(3, 1, 1, 0x0, 6, 1, 96);
+        StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_96);
         (*param1)++;
         break;
     case 1:
@@ -475,7 +475,7 @@ int ov65_02236548(OverlayManager *param0, int *param1)
         }
         break;
     case 3:
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, 96);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_96);
         (*param1)++;
         break;
     case 4:
@@ -2683,14 +2683,14 @@ static BOOL ov65_022387AC(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *p
     return 0;
 }
 
-static BOOL ov65_022387E8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 param2)
+static BOOL ov65_022387E8(UnkStruct_ov65_022367A8 *param0, UnkStruct_0207DE04 *param1, u32 heapID)
 {
     ov65_0223742C(param0);
 
     if ((sub_020380E4() == 1) && (CommSys_IsPlayerConnected(0) == 1)) {
         sub_0203632C(0);
-        ov65_022378C4(param0, param1, param2);
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, param2);
+        ov65_022378C4(param0, param1, heapID);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, heapID);
         param0->unk_00.unk_05 = 27;
     }
 

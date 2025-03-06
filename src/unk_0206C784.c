@@ -200,7 +200,7 @@ static BOOL sub_0206C964(FieldTask *taskMan)
         }
     } break;
     case 2:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 11);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELDMAP);
         sub_0200564C(0, 6);
         v1->unk_00 = 3;
         break;

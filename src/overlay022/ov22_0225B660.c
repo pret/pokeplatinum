@@ -127,8 +127,7 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        StartScreenTransition(
-            0, 5, 1, 0x0, 6, 1, 13);
+        StartScreenTransition(0, 5, 1, 0x0, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 2:
@@ -142,7 +141,7 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
         }
         break;
     case 4:
-        StartScreenTransition(0, 2, 0, 0x0, 6, 1, 13);
+        StartScreenTransition(0, 2, 0, 0x0, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 5:

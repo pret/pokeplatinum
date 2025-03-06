@@ -262,7 +262,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_12);
     v0 = sub_0207ECC0(param0);
 
-    StartScreenTransition(1, 3, 3, 0x0, 6, 1, 12);
+    StartScreenTransition(1, 3, 3, 0x0, 6, 1, HEAP_ID_12);
     sub_0207EDC0(v0);
     sub_0207E8C0();
     sub_0207E918(v0->unk_00);
@@ -434,7 +434,7 @@ static int sub_0207E2A8(OverlayManager *param0, int *param1)
         }
         break;
     case 32:
-        sub_0208C120(1, 12);
+        sub_0208C120(1, HEAP_ID_12);
         *param1 = 33;
         break;
     case 33:

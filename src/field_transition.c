@@ -118,7 +118,7 @@ void FieldTransition_FadeOut(FieldTask *task)
         return;
     }
 
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 4);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 
@@ -130,7 +130,7 @@ void FieldTransition_FadeIn(FieldTask *task)
         return;
     }
 
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 4);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
     FieldTask_InitCall(task, FieldTask_WaitUntilScreenTransitionDone, NULL);
 }
 

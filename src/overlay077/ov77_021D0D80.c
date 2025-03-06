@@ -135,7 +135,7 @@ static void ov77_021D14E4(UnkStruct_ov77_021D1208 *param0);
 static void ov77_021D1568(UnkStruct_ov77_021D1568 *param0, UnkStruct_ov77_021D1208 *param1);
 static BOOL ov77_021D11A4(void);
 static BOOL ov77_021D1A60(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
-static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
+static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int heapID);
 static BOOL ov77_021D20E4(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
 static BOOL ov77_021D21C0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2);
 static void ov77_021D1300(UnkStruct_ov77_021D1208 *param0, int param1);
@@ -994,7 +994,7 @@ static void ov77_021D1D48(BgConfig *param0, int param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
 }
 
-static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int param2)
+static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int heapID)
 {
     BOOL v0 = 0;
 
@@ -1011,7 +1011,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         param0->unk_296 = 0;
         param0->unk_22A = 15 + 252;
-        StartScreenTransition(0, 1, 1, 0x0, 15, 3, param2);
+        StartScreenTransition(0, 1, 1, 0x0, 15, 3, heapID);
         param0->unk_00 = 1;
         break;
     case 1:
@@ -1057,7 +1057,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
     case 5:
         if (IsScreenTransitionDone() == 1) {
             if (param0->unk_22A) {
-                StartScreenTransition(0, 0, 0, 0x7fff, 5, 2, param2);
+                StartScreenTransition(0, 0, 0, 0x7fff, 5, 2, heapID);
                 param0->unk_296 = 2;
                 param0->unk_22A--;
                 param0->unk_00 = 6;
@@ -1076,7 +1076,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
                 GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
             }
             param0->unk_04.unk_AC = 2;
-            StartScreenTransition(3, 1, 1, 0x7fff, 16, 3, param2);
+            StartScreenTransition(3, 1, 1, 0x7fff, 16, 3, heapID);
             param0->unk_00 = 5;
         }
         break;
@@ -1088,7 +1088,7 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
         }
         break;
     case 7:
-        StartScreenTransition(3, 1, 1, 0x0, 48, 1, param2);
+        StartScreenTransition(3, 1, 1, 0x0, 48, 1, heapID);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         param0->unk_00 = 9;
         param0->unk_2A4 = 0;
@@ -1105,9 +1105,9 @@ static BOOL ov77_021D1DF0(UnkStruct_ov77_021D1568 *param0, BgConfig *param1, int
                 GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 1);
             }
             {
-                ov77_021D1CC0(param1, param2);
+                ov77_021D1CC0(param1, heapID);
             }
-            StartScreenTransition(4, 1, 1, 0x7fff, 16, 3, param2);
+            StartScreenTransition(4, 1, 1, 0x7fff, 16, 3, heapID);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
             GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
             param0->unk_22A = 90;

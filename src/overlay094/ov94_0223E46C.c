@@ -143,7 +143,7 @@ int ov94_0223E46C(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_022422B8(&param0->unk_FCC[5], param0->unk_B90, ov94_02242970(param0->unk_B7A.level, param0->unk_B7A.level2, 1), 0, 0, TEXT_COLOR(1, 2, 0), 1);
     ov94_0224218C(&param0->unk_10AC[1], param0->unk_BA0, param0->unk_B90, param0->unk_11B0, 0, 0, TEXT_COLOR(1, 2, 0));
 
-    StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
+    StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
     param0->unk_2C = 0;
 
     return 2;
@@ -731,7 +731,7 @@ static void ov94_0223EFAC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223F0A8(UnkStruct_ov94_0223FD4C *param0)
 {
-    StartScreenTransition(3, 0, 0, 0x0, 6, 1, 62);
+    StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_62);
 
     param0->unk_2C = 0;
 

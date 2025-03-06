@@ -54,7 +54,7 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
     v0->unk_D0 = OverlayManager_Args(param0);
 
     ov100_021D1034(&v0->unk_0C);
-    StartScreenTransition(0, 1, 1, 0x0, 6 * 2, 1, 111);
+    StartScreenTransition(0, 1, 1, 0x0, 6 * 2, 1, HEAP_ID_111);
     SetVBlankCallback(ov100_021D13B4, v0);
 
     v0->unk_0C.unk_50.unk_00 = 31;

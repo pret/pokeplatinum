@@ -1624,7 +1624,7 @@ static BOOL ov62_0223FF90 (UnkStruct_0208C06C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 102);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 1:
@@ -1734,7 +1734,7 @@ static BOOL ov62_02240084 (UnkStruct_0208C06C * param0)
         PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 4:
-        StartScreenTransition(0, 1, 1, 0, 6, 1, 102);
+        StartScreenTransition(0, 1, 1, 0, 6, 1, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 5:

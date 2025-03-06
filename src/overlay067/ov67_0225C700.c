@@ -201,7 +201,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, 112);
+        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 1:
@@ -360,7 +360,7 @@ int ov67_0225C820(OverlayManager *param0, int *param1)
         }
         break;
     case 7:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 112);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 8:
@@ -437,7 +437,7 @@ int ov67_0225CC6C(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, 112);
+        StartScreenTransition(0, 1, 1, 0xffff, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 1:
@@ -497,7 +497,7 @@ int ov67_0225CC6C(OverlayManager *param0, int *param1)
         }
         break;
     case 9:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 112);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_112);
         (*param1)++;
         break;
     case 10:

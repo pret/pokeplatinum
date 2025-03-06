@@ -244,8 +244,7 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
     case 1:
-        StartScreenTransition(
-            1, 5, 5, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 5, 5, 0x0, 6, 1, HEAP_ID_13);
         (*param1) = 2;
         break;
     case 2:
@@ -340,8 +339,7 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
         }
         break;
     case 11:
-        StartScreenTransition(
-            1, 0, 0, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 0, 0, 0x0, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 12:
@@ -552,7 +550,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 11:
-        StartScreenTransition(1, 17, 19, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 17, 19, 0x0, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 12:
@@ -609,7 +607,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
             break;
         }
 
-        StartScreenTransition(1, 26, 26, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 26, 26, 0x0, 6, 1, HEAP_ID_13);
         Sound_PlayEffect(1668);
         (*param1)++;
         break;

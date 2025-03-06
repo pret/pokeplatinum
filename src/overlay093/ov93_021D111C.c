@@ -116,7 +116,7 @@ int ov93_021D111C(OverlayManager *param0, int *param1)
     NNS_G3dGlbMaterialColorSpecEmi(v2->unk_04->specularReflectColor, v2->unk_04->emissionColor, v2->unk_04->enableSpecularReflectShininessTable);
     NNS_G3dGlbPolygonAttr(v2->unk_04->enabledLightsMask, v2->unk_04->polygonMode, v2->unk_04->cullMode, v2->unk_04->polygonID, v2->unk_04->alpha, v2->unk_04->miscFlags);
 
-    sub_0208C120(0, 72);
+    sub_0208C120(0, HEAP_ID_72);
     return 1;
 }
 
@@ -156,7 +156,7 @@ int ov93_021D120C(OverlayManager *param0, int *param1)
         if (!v5->unk_95) {
             if (v5->unk_7C[0]->frame + FX32_ONE == NNS_G3dAnmObjGetNumFrame(v5->unk_7C[0])) {
                 v5->unk_95 = 1;
-                sub_0208C120(1, 72);
+                sub_0208C120(1, HEAP_ID_72);
             }
         } else {
             if (IsScreenTransitionDone()) {

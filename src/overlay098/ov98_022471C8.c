@@ -344,7 +344,7 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
 
     ov98_02246E9C(v0->unk_00, 0);
 
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 109);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_109);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -2180,7 +2180,7 @@ static int ov98_02249464(UnkStruct_ov98_02247704 *param0)
 
     sub_02039794();
     ov98_02247B0C(param0);
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 109);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_109);
 
     param0->unk_08 = 0;
 
