@@ -62,6 +62,8 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
+#include "res/text/bank/migrate_from_gba.h"
+
 FS_EXTERN_OVERLAY(overlay77);
 
 enum GBAMonState {
@@ -125,7 +127,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    int unk_08;
+    int messageEntryID;
     int unk_0C;
     SaveData *unk_10;
     TrainerInfo *unk_14;
@@ -1748,13 +1750,13 @@ static BOOL ov97_02235528(UnkStruct_ov97_02234A2C *param0, int param1)
 
 static BOOL ov97_02235590(UnkStruct_ov97_02234A2C *param0, int param1)
 {
-    if (param0->unk_08 != -1) {
+    if (param0->messageEntryID != -1) {
         ov97_02234ECC(param0);
         RenderControlFlags_SetSpeedUpOnTouch(1);
-        param0->unk_490.unk_34 = param0->unk_08;
+        param0->unk_490.unk_34 = param0->messageEntryID;
         param0->unk_490.unk_44 = param1;
         ov97_02233DD0(param0, &param0->unk_490, 0x8 | 0x10);
-        param0->unk_08 = -1;
+        param0->messageEntryID = -1;
         Sound_PlayEffect(1500);
     } else {
         if (param1) {
@@ -1812,7 +1814,7 @@ extern int gIgnoreCartridgeForWake;
 
 static int ov97_022356E8(OverlayManager *param0, int *param1)
 {
-    int v0, v1, v2;
+    int boxPos, gbaMonValidity, v2;
     UnkStruct_ov97_02234A2C *v3 = OverlayManager_Data(param0);
 
     CTRDG_IsExisting();
@@ -1872,12 +1874,12 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         ov97_02234CC4(v3, 1, 3, param1);
         break;
     case 3:
-        v0 = sub_020159FC(v3->unk_E8EC);
+        boxPos = sub_020159FC(v3->unk_E8EC);
 
-        switch (v0) {
+        switch (boxPos) {
         case 1:
             sub_02015A54(v3->unk_E8EC);
-            v3->unk_08 = 34;
+            v3->messageEntryID = migrate_from_gba_cannot_return_to_gba_migrate_to_platinum;
             *param1 = 4;
             break;
         case 2:
@@ -1893,9 +1895,9 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         }
         break;
     case 5:
-        v0 = sub_020159FC(v3->unk_E8EC);
+        boxPos = sub_020159FC(v3->unk_E8EC);
 
-        switch (v0) {
+        switch (boxPos) {
         case 1:
             sub_02015A54(v3->unk_E8EC);
 
@@ -1908,7 +1910,7 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
                     *param1 = 11;
                 }
             } else {
-                v3->unk_08 = 6;
+                v3->messageEntryID = migrate_from_gba_please_choose_six;
                 *param1 = 6;
             }
             break;
@@ -1934,9 +1936,9 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         }
         break;
     case 9:
-        v0 = sub_020159FC(v3->unk_E8EC);
+        boxPos = sub_020159FC(v3->unk_E8EC);
 
-        switch (v0) {
+        switch (boxPos) {
         case 1:
             sub_02015A54(v3->unk_E8EC);
             v3->unk_490.unk_44 = 0;
@@ -1976,36 +1978,36 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
 
         break;
     case 13:
-        v0 = TouchScreen_CheckRectanglePressed((const TouchScreenRect *)v3->unk_374);
+        boxPos = TouchScreen_CheckRectanglePressed((const TouchScreenRect *)v3->unk_374);
 
-        if (v0 != 0xffffffff) {
-            if (v0 < 30) {
-                v1 = ov97_02234854(v3, v0);
+        if (boxPos != 0xffffffff) {
+            if (boxPos < GBA_MAX_MONS_PER_BOX) {
+                gbaMonValidity = ov97_02234854(v3, boxPos);
 
-                if (v1 == GBA_MON_STATE_1) {
-                    ov97_02234B0C(v3, &(v3->unk_E8E0->boxes[v3->unk_E8E4][v0]));
+                if (gbaMonValidity == GBA_MON_STATE_1) {
+                    ov97_02234B0C(v3, &(v3->unk_E8E0->boxes[v3->unk_E8E4][boxPos]));
 
                     if (v3->unk_474 == 6) {
                         v3->unk_E8E8 = 45;
                         *param1 = 15;
                     }
-                } else if (v1 == GBA_MON_STATE_2) {
+                } else if (gbaMonValidity == GBA_MON_STATE_2) {
                     ov97_02234B0C(v3, NULL);
-                } else if (v1 == GBA_MON_STATE_IS_EGG) {
-                    v3->unk_08 = 8;
+                } else if (gbaMonValidity == GBA_MON_STATE_IS_EGG) {
+                    v3->messageEntryID = migrate_from_gba_egg_cannot_migrate;
                     *param1 = 14;
-                } else if (v1 == GBA_MON_STATE_HAS_HM) {
-                    v3->unk_08 = 9;
+                } else if (gbaMonValidity == GBA_MON_STATE_HAS_HM) {
+                    v3->messageEntryID = migrate_from_gba_knows_hidden_move;
                     *param1 = 14;
-                } else if (v1 == GBA_MON_STATE_HAS_INVALID_ITEM) {
-                    v3->unk_08 = 38;
+                } else if (gbaMonValidity == GBA_MON_STATE_HAS_INVALID_ITEM) {
+                    v3->messageEntryID = migrate_from_gba_mon_not_permitted_to_migrate;
                     *param1 = 14;
-                } else if (v1 == GBA_MON_STATE_IS_INVALID_SPECIES) {
-                    v3->unk_08 = 38;
+                } else if (gbaMonValidity == GBA_MON_STATE_IS_INVALID_SPECIES) {
+                    v3->messageEntryID = migrate_from_gba_mon_not_permitted_to_migrate;
                     *param1 = 14;
                 }
             } else {
-                switch (v0) {
+                switch (boxPos) {
                 case (30 + 1):
                     if (v3->unk_E8E4 == 0) {
                         v3->unk_E8E4 = 14 - 1;
@@ -2050,9 +2052,9 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
 
         break;
     case 17:
-        v0 = sub_020159FC(v3->unk_E8EC);
+        boxPos = sub_020159FC(v3->unk_E8EC);
 
-        switch (v0) {
+        switch (boxPos) {
         case 1:
             sub_02015A54(v3->unk_E8EC);
             *param1 = 18;
@@ -2075,9 +2077,9 @@ static int ov97_022356E8(OverlayManager *param0, int *param1)
         *param1 = 19;
     } break;
     case 19:
-        v0 = sub_020159FC(v3->unk_E8EC);
+        boxPos = sub_020159FC(v3->unk_E8EC);
 
-        switch (v0) {
+        switch (boxPos) {
         case 1:
             v3->unk_490.unk_34 = Unk_ov97_0223EA68[v3->unk_00];
             ov97_02233DD0(v3, &v3->unk_490, 0);
