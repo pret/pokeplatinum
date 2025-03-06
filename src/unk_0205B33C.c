@@ -114,7 +114,7 @@ UnkStruct_0205B43C *FieldSystem_InitCommUnionRoom(FieldSystem *fieldSystem)
         return NULL;
     }
 
-    if (Heap_CreateAtEnd(3, 31, 0xa80)) {
+    if (Heap_CreateAtEnd(HEAP_ID_APPLICATION, HEAP_ID_31, 0xa80)) {
         (void)0;
     }
 
