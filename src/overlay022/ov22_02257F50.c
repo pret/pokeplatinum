@@ -377,7 +377,7 @@ void ov22_02258354(UnkStruct_ov22_02257F50 *param0, int param1)
     v0.unk_20 = 1;
     v0.unk_24 = 2;
     v0.unk_28 = 0;
-    v0.unk_2C = 14;
+    v0.heapID = HEAP_ID_14;
 
     ov22_022597BC(&param0->unk_44.unk_18, &v0);
 
@@ -400,7 +400,7 @@ void ov22_022583A0(UnkStruct_ov22_02257F50 *param0, int param1, int param2, int 
     v0.unk_20 = 1;
     v0.unk_24 = 2;
     v0.unk_28 = 0;
-    v0.unk_2C = 14;
+    v0.heapID = HEAP_ID_14;
 
     if (param2 & 1) {
         v1 = 112;

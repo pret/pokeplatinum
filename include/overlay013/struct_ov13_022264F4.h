@@ -10,7 +10,7 @@ typedef struct {
     BattleSystem *unk_00;
     TrainerInfo *unk_04;
     Bag *unk_08;
-    u32 unk_0C;
+    u32 heapID;
     s32 unk_10;
     u32 unk_14;
     u32 unk_18;

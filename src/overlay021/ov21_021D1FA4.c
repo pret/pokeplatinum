@@ -464,15 +464,15 @@ NARC *ov21_021D26E0(PokedexGraphicData *param0)
     return param0->pokedexGraphics;
 }
 
-void *ov21_021D26E8(PokedexGraphicData *param0, u32 param1, BOOL param2, u32 param3)
+static void *ov21_021D26E8(PokedexGraphicData *param0, u32 param1, BOOL param2, u32 heapID)
 {
-    void *v0 = NARC_AllocAndReadWholeMember(param0->pokedexGraphics, param1, param3);
+    void *v0 = NARC_AllocAndReadWholeMember(param0->pokedexGraphics, param1, heapID);
 
     if (v0 != NULL) {
         if (param2) {
             void *v1;
 
-            v1 = Heap_AllocFromHeap(param3, MI_GetUncompressedSize(v0));
+            v1 = Heap_AllocFromHeap(heapID, MI_GetUncompressedSize(v0));
 
             if (v1) {
                 MI_UncompressLZ8(v0, v1);
@@ -486,9 +486,9 @@ void *ov21_021D26E8(PokedexGraphicData *param0, u32 param1, BOOL param2, u32 par
     return v0;
 }
 
-u32 ov21_021D2724(PokedexGraphicData *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+u32 ov21_021D2724(PokedexGraphicData *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 heapID)
 {
-    void *v0 = ov21_021D26E8(param0, param1, param6, param7);
+    void *v0 = ov21_021D26E8(param0, param1, param6, heapID);
 
     if (v0 != NULL) {
         NNSG2dCharacterData *v1;
@@ -507,7 +507,7 @@ u32 ov21_021D2724(PokedexGraphicData *param0, u32 param1, BgConfig *param2, u32 
     return param5;
 }
 
-void ov21_021D276C(PokedexGraphicData *param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5)
+void ov21_021D276C(PokedexGraphicData *param0, u32 param1, int param2, u32 param3, u32 param4, u32 heapID)
 {
     static void (*const v0[])(const void *, u32, u32) = {
         GX_LoadBGPltt,
@@ -520,7 +520,7 @@ void ov21_021D276C(PokedexGraphicData *param0, u32 param1, int param2, u32 param
         GXS_LoadOBJExtPltt
     };
 
-    void *v1 = ov21_021D26E8(param0, param1, 0, param5);
+    void *v1 = ov21_021D26E8(param0, param1, 0, heapID);
 
     if (v1 != NULL) {
         NNSG2dPaletteData *v2;
@@ -538,9 +538,9 @@ void ov21_021D276C(PokedexGraphicData *param0, u32 param1, int param2, u32 param
     }
 }
 
-void *ov21_021D27B8(PokedexGraphicData *param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 param4)
+void *ov21_021D27B8(PokedexGraphicData *param0, u32 param1, BOOL param2, NNSG2dScreenData **param3, u32 heapID)
 {
-    void *v0 = ov21_021D26E8(param0, param1, param2, param4);
+    void *v0 = ov21_021D26E8(param0, param1, param2, heapID);
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedScreenData(v0, param3) == 0) {
@@ -552,9 +552,9 @@ void *ov21_021D27B8(PokedexGraphicData *param0, u32 param1, BOOL param2, NNSG2dS
     return v0;
 }
 
-void *ov21_021D27E0(PokedexGraphicData *param0, u32 param1, NNSG2dPaletteData **param2, u32 param3)
+void *ov21_021D27E0(PokedexGraphicData *param0, u32 param1, NNSG2dPaletteData **param2, u32 heapID)
 {
-    void *v0 = ov21_021D26E8(param0, param1, 0, param3);
+    void *v0 = ov21_021D26E8(param0, param1, 0, heapID);
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedPaletteData(v0, param2) == 0) {
@@ -566,9 +566,9 @@ void *ov21_021D27E0(PokedexGraphicData *param0, u32 param1, NNSG2dPaletteData **
     return v0;
 }
 
-void *ov21_021D2808(PokedexGraphicData *param0, u32 param1, BOOL param2, NNSG2dCharacterData **param3, u32 param4)
+void *ov21_021D2808(PokedexGraphicData *param0, u32 param1, BOOL param2, NNSG2dCharacterData **param3, u32 heapID)
 {
-    void *v0 = ov21_021D26E8(param0, param1, param2, param4);
+    void *v0 = ov21_021D26E8(param0, param1, param2, heapID);
 
     if (v0 != NULL) {
         if (NNS_G2dGetUnpackedBGCharacterData(v0, param3) == 0) {

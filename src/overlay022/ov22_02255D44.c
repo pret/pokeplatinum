@@ -215,9 +215,9 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
 
     ov22_0225894C(v2->unk_08, &v0->unk_1E8);
     ov22_022566C0(v0);
-    ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), 13);
+    ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), HEAP_ID_13);
 
-    v0->unk_3C8 = ov22_02254DE0(700, 13);
+    v0->unk_3C8 = ov22_02254DE0(700, HEAP_ID_13);
 
     ov22_02256708(v0, v2->unk_00, 10, 0);
     ov22_022567FC(v0);
@@ -444,9 +444,9 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), 13);
+    ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), HEAP_ID_13);
 
-    v0->unk_3C8 = ov22_02254DE0(700, 13);
+    v0->unk_3C8 = ov22_02254DE0(700, HEAP_ID_13);
     v0->unk_738 = v2->unk_20;
 
     if (v0->unk_734->unk_16 == 0) {
@@ -721,7 +721,7 @@ static void ov22_02256708(UnkStruct_ov22_02255D44 *param0, Pokemon *param1, int 
     }
 
     ov22_02257B10(&param0->unk_458);
-    ov22_02257C88(&param0->unk_458, 0, 14);
+    ov22_02257C88(&param0->unk_458, 0, HEAP_ID_14);
 }
 
 static void ov22_02256790(UnkStruct_ov22_02255D44 *param0, Pokemon *param1, int param2)
@@ -826,7 +826,7 @@ static void ov22_02256948(UnkStruct_ov22_02255D44 *param0, int param1)
     v0.unk_20 = 1;
     v0.unk_24 = 2;
     v0.unk_28 = 0;
-    v0.unk_2C = 14;
+    v0.heapID = HEAP_ID_14;
 
     ov22_022597BC(&param0->unk_518, &v0);
 }

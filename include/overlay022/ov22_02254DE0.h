@@ -7,7 +7,7 @@
 #include "overlay022/struct_ov22_0225500C.h"
 #include "overlay022/struct_ov22_02255040.h"
 
-UnkStruct_ov22_02254DE0 *ov22_02254DE0(int param0, int param1);
+UnkStruct_ov22_02254DE0 *ov22_02254DE0(int param0, int heapID);
 void ov22_02254E0C(UnkStruct_ov22_02254DE0 *param0);
 UnkStruct_ov22_02255040 *ov22_02254E20(UnkStruct_ov22_0225500C *param0);
 BOOL ov22_02254E44(UnkStruct_ov22_02255040 *param0);

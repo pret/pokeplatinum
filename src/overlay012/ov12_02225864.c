@@ -914,13 +914,13 @@ static void ov12_0222653C(void *param0)
     ov12_02226504(v0);
 }
 
-UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, int param2)
+UnkStruct_ov12_02226504 *ov12_02226544(u32 param0, u32 param1, int heapID)
 {
-    UnkStruct_ov12_02226504 *v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov12_02226504));
+    UnkStruct_ov12_02226504 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_02226504));
     memset(v0, 0, sizeof(UnkStruct_ov12_02226504));
 
     GF_ASSERT(v0);
-    v0->bufferManager = BufferManager_New(param2, v0->unk_20, v0->unk_320);
+    v0->bufferManager = BufferManager_New(heapID, v0->unk_20, v0->unk_320);
 
     GF_ASSERT(v0->bufferManager);
     v0->unk_620 = param0;
@@ -972,20 +972,20 @@ static void ov12_02226620(void *param0)
     ScreenScrollManager_RestartDMA(v0->screenScrollMgr);
 }
 
-UnkStruct_ov12_0222660C *ov12_0222662C(u8 param0, u8 param1, u16 param2, fx32 param3, s16 param4, u32 param5, u32 param6, u32 param7, int param8)
+UnkStruct_ov12_0222660C *ov12_0222662C(u8 param0, u8 param1, u16 param2, fx32 param3, s16 param4, u32 param5, u32 param6, u32 param7, int heapID)
 {
     UnkStruct_ov12_0222660C *v0;
     u32 v1;
     void *v2;
     const void *v3;
 
-    v0 = Heap_AllocFromHeap(param8, sizeof(UnkStruct_ov12_0222660C));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_0222660C));
     GF_ASSERT(v0);
 
     memset(v0, 0, sizeof(UnkStruct_ov12_0222660C));
 
     v1 = ov12_022266F0(param5);
-    v0->screenScrollMgr = ScreenScrollManager_New(param8);
+    v0->screenScrollMgr = ScreenScrollManager_New(heapID);
 
     ScreenScrollManager_ScrollX(v0->screenScrollMgr, param0, param1, param2, param3, param4, v1, param7, param6);
     ov12_02226490(&v0->unk_00, v0, ov12_0222660C, ov12_02226620);
@@ -1145,11 +1145,11 @@ void ov12_02226858(UnkStruct_ov12_022267D4 *param0)
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_ov12_022267D4 *ov12_02226870(PaletteData *param0, int param1, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10)
+UnkStruct_ov12_022267D4 *ov12_02226870(PaletteData *param0, int heapID, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10)
 {
     UnkStruct_ov12_022267D4 *v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov12_022267D4));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov12_022267D4));
 
     GF_ASSERT(v0 != NULL);
 

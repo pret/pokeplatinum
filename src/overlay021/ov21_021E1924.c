@@ -105,14 +105,14 @@ static void ov21_021E1D40(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A
 static void ov21_021E1E00(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A7C *param1);
 static void ov21_021E1E74(UnkStruct_ov21_021E1E74 *param0);
 static void ov21_021E1E8C(u32 param0, u32 param1, void *param2);
-static void ov21_021E26A0(UnkStruct_ov21_021E1A90 *param0, Sprite *param1, UnkStruct_ov21_021D4CA0 *param2, int param3, int param4, int param5, int *param6, int param7, int param8, int param9, void **param10);
+static void ov21_021E26A0(UnkStruct_ov21_021E1A90 *param0, Sprite *param1, UnkStruct_ov21_021D4CA0 *param2, int param3, int param4, int param5, int *param6, int heapID, int param8, int param9, void **param10);
 static void ov21_021E274C(Sprite *param0, UnkStruct_ov21_021D4CA0 *param1, int param2, int param3, int param4);
 static void ov21_021E28D0(UnkStruct_ov21_021E2588 *param0, const UnkStruct_ov21_021E1E74 *param1);
 static void ov21_021E29A4(Sprite *param0, int param1, int param2);
 static void ov21_021E2968(UnkStruct_ov21_021E1E74 *param0, UnkStruct_ov21_021E1A7C *param1);
-static void ov21_021E2014(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1, int param2);
-static void ov21_021E2044(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1, int param2);
-static void ov21_021E20A4(UnkStruct_ov21_021E1A90 *param0, int param1);
+static void ov21_021E2014(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1, int heapID);
+static void ov21_021E2044(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1, int heapID);
+static void ov21_021E20A4(UnkStruct_ov21_021E1A90 *param0, int heapID);
 static void ov21_021E2180(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1, int param2);
 static void ov21_021E226C(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1);
 static void ov21_021E22C8(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1, int param2);
@@ -617,20 +617,20 @@ static void ov21_021E1E8C(u32 param0, u32 param1, void *param2)
     }
 }
 
-static void ov21_021E2014(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1, int param2)
+static void ov21_021E2014(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1, int heapID)
 {
-    ov21_021E20A4(param1, param2);
-    ov21_021E2180(param0, param1, param2);
-    ov21_021E22C8(param0, param1, param2);
-    ov21_021E2478(param0, param1, param2);
+    ov21_021E20A4(param1, heapID);
+    ov21_021E2180(param0, param1, heapID);
+    ov21_021E22C8(param0, param1, heapID);
+    ov21_021E2478(param0, param1, heapID);
 }
 
-static void ov21_021E2044(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1, int param2)
+static void ov21_021E2044(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A90 *param1, int heapID)
 {
     int v0;
 
-    ov21_021D276C(param1->unk_00, 9, 4, 4 * 32, 32, param2);
-    ov21_021D276C(param1->unk_00, 9, 4, 5 * 32, 32, param2);
+    ov21_021D276C(param1->unk_00, 9, 4, 4 * 32, 32, heapID);
+    ov21_021D276C(param1->unk_00, 9, 4, 5 * 32, 32, heapID);
     ov21_021E2458(param0);
     ov21_021E256C(param0, param1);
     ov21_021E226C(param0, param1);
@@ -642,24 +642,24 @@ static void ov21_021E2044(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A
     }
 }
 
-static void ov21_021E20A4(UnkStruct_ov21_021E1A90 *param0, int param1)
+static void ov21_021E20A4(UnkStruct_ov21_021E1A90 *param0, int heapID)
 {
     void *v0;
     NNSG2dScreenData *v1;
 
-    ov21_021D2724(param0->unk_00, 34, param0->unk_00->bgConfig, 6, 0, 0, 1, param1);
+    ov21_021D2724(param0->unk_00, 34, param0->unk_00->bgConfig, 6, 0, 0, 1, heapID);
 
-    v0 = ov21_021D27B8(param0->unk_00, 62, 1, &v1, param1);
+    v0 = ov21_021D27B8(param0->unk_00, 62, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 6, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
-    v0 = ov21_021D27B8(param0->unk_00, 60, 1, &v1, param1);
+    v0 = ov21_021D27B8(param0->unk_00, 60, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 6, v1->rawData, ((128 - (160 / 2)) / 8), ((132 - (40 / 2)) / 8), v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
-    v0 = ov21_021D27B8(param0->unk_00, 63, 1, &v1, param1);
+    v0 = ov21_021D27B8(param0->unk_00, 63, 1, &v1, heapID);
 
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 6, v1->rawData, ((128 - (160 / 2)) / 8), ((76 - (40 / 2)) / 8), v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
@@ -912,7 +912,7 @@ static BOOL ov21_021E2664(UnkStruct_ov21_021E2588 *param0, UnkStruct_ov21_021E1A
     return 0;
 }
 
-static void ov21_021E26A0(UnkStruct_ov21_021E1A90 *param0, Sprite *param1, UnkStruct_ov21_021D4CA0 *param2, int param3, int param4, int param5, int *param6, int param7, int param8, int param9, void **param10)
+static void ov21_021E26A0(UnkStruct_ov21_021E1A90 *param0, Sprite *param1, UnkStruct_ov21_021D4CA0 *param2, int param3, int param4, int param5, int *param6, int heapID, int param8, int param9, void **param10)
 {
     int v0;
     NNSG2dPaletteData *v1;
@@ -955,7 +955,7 @@ static void ov21_021E26A0(UnkStruct_ov21_021E1A90 *param0, Sprite *param1, UnkSt
             Heap_FreeToHeap(*param10);
         }
 
-        *param10 = ov21_021D27E0(param0->unk_00, v4, &v1, param7);
+        *param10 = ov21_021D27E0(param0->unk_00, v4, &v1, heapID);
 
         v2 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_SUB, param5 * 32, v1->pRawData, 32);
         GF_ASSERT(v2);

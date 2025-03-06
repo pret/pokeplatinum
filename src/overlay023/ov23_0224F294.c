@@ -866,7 +866,7 @@ static void ov23_0224FE38(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, 4, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
     param0->unk_2AA = 5;
 }
 
@@ -1060,7 +1060,7 @@ static void ov23_0225021C(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v5, v3.count);
 
-    param0->unk_4C = ov23_02248C08(&v3, param0->unk_294, param0->unk_290, 4, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v3, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
     param0->unk_2AA = 6;
 }
 
@@ -1232,7 +1232,7 @@ static void ov23_022505EC(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, 4, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
     param0->unk_2AA = 7;
 }
 
@@ -1634,7 +1634,7 @@ static void ov23_02250D90(UnkStruct_ov23_02250CD4 *param0, UnkFuncPtr_ov23_02248
 
     ov23_02251238(param0, v4, v2.count);
 
-    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, 4, param1, Unk_ov23_022577B8->unk_00, 0);
+    param0->unk_4C = ov23_02248C08(&v2, param0->unk_294, param0->unk_290, HEAP_ID_FIELD, param1, Unk_ov23_022577B8->unk_00, 0);
     param0->unk_2AA = 8;
 }
 

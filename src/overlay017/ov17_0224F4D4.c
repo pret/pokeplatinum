@@ -231,7 +231,7 @@ int ov17_0224F754(OverlayManager *param0, int *param1)
     case 0:
         if (IsScreenTransitionDone() == 1) {
             SetHBlankCallback(ov17_0224FAAC, v0);
-            v0->unk_848 = ov17_0223F70C(24, v0->unk_10.unk_C0, Unk_ov17_02254AB4, NELEMS(Unk_ov17_02254AB4), 0xff, (50000 + 5000));
+            v0->unk_848 = ov17_0223F70C(HEAP_ID_24, v0->unk_10.unk_C0, Unk_ov17_02254AB4, NELEMS(Unk_ov17_02254AB4), 0xff, (50000 + 5000));
             *param1 = 1;
         }
         break;

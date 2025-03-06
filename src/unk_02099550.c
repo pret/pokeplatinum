@@ -36,12 +36,12 @@ void sub_02099580(void)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay18));
 }
 
-void sub_02099590(SaveData *param0, int param1)
+static void sub_02099590(SaveData *saveData, int heapID)
 {
     sub_02099550();
     sub_02099570();
 
-    ov18_0221F800(param1);
+    ov18_0221F800(heapID);
 
     sub_02099580();
     sub_02099560();
@@ -62,7 +62,7 @@ void sub_020995C4(void)
 static int sub_020995D4(OverlayManager *param0, int *param1)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_49, 0x41000);
-    sub_02099590(((ApplicationArgs *)OverlayManager_Args(param0))->saveData, 49);
+    sub_02099590(((ApplicationArgs *)OverlayManager_Args(param0))->saveData, HEAP_ID_49);
     Heap_Destroy(HEAP_ID_49);
 
     OS_ResetSystem(0);

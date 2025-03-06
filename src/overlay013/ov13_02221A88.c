@@ -246,7 +246,7 @@ void ov13_02221AC4(UnkStruct_ov13_022213F0 *param0, u32 param1)
         break;
     }
 
-    param0->unk_206C = Window_New(param0->unk_00->unk_0C, param0->unk_2070);
+    param0->unk_206C = Window_New(param0->unk_00->heapID, param0->unk_2070);
 
     for (v1 = 0; v1 < param0->unk_2070; v1++) {
         Window_AddFromTemplate(param0->unk_1E0, &param0->unk_206C[v1], &v0[v1]);
@@ -313,7 +313,7 @@ static void ov13_02221C54(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
 
     v0 = &param0->unk_206C[param1];
     v1 = &param0->unk_04[param3];
-    v2 = Strbuf_Init(12, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init(12, param0->unk_00->heapID);
     v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, Unk_ov13_02228EC4[param3]);
 
     StringTemplate_SetNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v1->unk_00));
@@ -414,7 +414,7 @@ static void ov13_02221FA8(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
     Strbuf *v2;
 
     v0 = &param0->unk_04[param2];
-    v1 = Strbuf_Init(16, param0->unk_00->unk_0C);
+    v1 = Strbuf_Init(16, param0->unk_00->heapID);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 8);
 
     StringTemplate_SetAbilityName(param0->unk_1FA8, 0, v0->unk_18);
@@ -436,7 +436,7 @@ static void ov13_02222030(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
     if (v0->unk_1A == 0) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 20);
     } else {
-        v1 = Strbuf_Init(18, param0->unk_00->unk_0C);
+        v1 = Strbuf_Init(18, param0->unk_00->heapID);
         v2 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 9);
 
         StringTemplate_SetItemName(param0->unk_1FA8, 0, v0->unk_1A);
@@ -457,7 +457,7 @@ static void ov13_022220CC(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
     u32 v3;
 
     v0 = &param0->unk_206C[param2];
-    v1 = Strbuf_Init(16, param0->unk_00->unk_0C);
+    v1 = Strbuf_Init(16, param0->unk_00->heapID);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, param3);
 
     StringTemplate_SetMoveName(param0->unk_1FA8, 0, param1);
@@ -529,7 +529,7 @@ static void ov13_02222290(UnkStruct_ov13_022213F0 *param0, u32 param1)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 24);
-    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->heapID);
 
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_16_0, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -543,7 +543,7 @@ static void ov13_02222290(UnkStruct_ov13_022213F0 *param0, u32 param1)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 26);
-    v2 = Strbuf_Init((6 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((6 + 1) * 2, param0->unk_00->heapID);
 
     if (v0->unk_16_0 < 100) {
         StringTemplate_SetNumber(
@@ -583,7 +583,7 @@ static void ov13_02222464(UnkStruct_ov13_022213F0 *param0, u32 param1)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 33);
-    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->heapID);
 
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_06, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -615,7 +615,7 @@ static void ov13_02222560(UnkStruct_ov13_022213F0 *param0, u32 param1)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 35);
-    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->heapID);
 
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_08, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -647,7 +647,7 @@ static void ov13_0222265C(UnkStruct_ov13_022213F0 *param0, u32 param1)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 41);
-    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->heapID);
 
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_0A, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -680,7 +680,7 @@ static void ov13_0222275C(UnkStruct_ov13_022213F0 *param0, u32 param1)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 37);
-    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->heapID);
 
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_0C, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -712,7 +712,7 @@ static void ov13_0222285C(UnkStruct_ov13_022213F0 *param0, u32 param1)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 39);
-    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->heapID);
 
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_0E, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -751,7 +751,7 @@ static void ov13_0222295C(UnkStruct_ov13_022213F0 *param0, u32 param1)
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 29);
-    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->heapID);
 
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_10, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -763,7 +763,7 @@ static void ov13_0222295C(UnkStruct_ov13_022213F0 *param0, u32 param1)
     Strbuf_Free(v2);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 30);
-    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->heapID);
 
     StringTemplate_SetNumber(param0->unk_1FA8, 0, v0->unk_12, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -783,7 +783,7 @@ static void ov13_02222AF4(UnkStruct_ov13_022213F0 *param0, u32 param1)
 
     v0 = &param0->unk_04[param1];
     v3 = 22 * param0->unk_2071;
-    v1 = MessageLoader_Init(1, 26, 612, param0->unk_00->unk_0C);
+    v1 = MessageLoader_Init(1, 26, 612, param0->unk_00->heapID);
     v2 = MessageLoader_GetNewStrbuf(v1, v0->unk_18);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_206C[2 + v3], FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -824,7 +824,7 @@ static void ov13_02222BB4(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
         Strbuf_Free(v1);
     } else {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 52);
-        v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
+        v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->heapID);
 
         StringTemplate_SetNumber(param0->unk_1FA8, 0, param2, 3, 0, 1);
         StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -872,7 +872,7 @@ static void ov13_02222CE4(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
         Strbuf_Free(v1);
     } else {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 49);
-        v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->unk_0C);
+        v2 = Strbuf_Init((3 + 1) * 2, param0->unk_00->heapID);
 
         StringTemplate_SetNumber(param0->unk_1FA8, 0, param2, 3, 0, 1);
         StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -895,7 +895,7 @@ static void ov13_02222DCC(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
     Strbuf *v2;
 
     v1 = &param0->unk_206C[param1];
-    v0 = MessageLoader_Init(1, 26, 646, param0->unk_00->unk_0C);
+    v0 = MessageLoader_Init(1, 26, 646, param0->unk_00->heapID);
     v2 = MessageLoader_GetNewStrbuf(v0, param2);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -915,7 +915,7 @@ static void ov13_02222E2C(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
     v1 = &param0->unk_206C[param1];
     v3 = MoveTable_LoadParam(param2, MOVEATTRIBUTE_CONTEST_EFFECT);
     v4 = sub_0209577C(v3);
-    v0 = MessageLoader_Init(0, 26, 210, param0->unk_00->unk_0C);
+    v0 = MessageLoader_Init(0, 26, 210, param0->unk_00->heapID);
     v2 = MessageLoader_GetNewStrbuf(v0, v4);
 
     Text_AddPrinterWithParamsAndColor(v1, FONT_SYSTEM, v2, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
@@ -986,7 +986,7 @@ static void ov13_02222F74(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
     Strbuf_Free(v1);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 44);
-    v2 = Strbuf_Init((2 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((2 + 1) * 2, param0->unk_00->heapID);
 
     StringTemplate_SetNumber(param0->unk_1FA8, 0, param2, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -998,7 +998,7 @@ static void ov13_02222F74(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
     Strbuf_Free(v2);
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 45);
-    v2 = Strbuf_Init((2 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((2 + 1) * 2, param0->unk_00->heapID);
 
     StringTemplate_SetNumber(param0->unk_1FA8, 0, param3, 3, 0, 1);
     StringTemplate_Format(param0->unk_1FA8, v2, v1);
@@ -1057,7 +1057,7 @@ static void ov13_0222317C(UnkStruct_ov13_022213F0 *param0, UnkStruct_ov13_022236
     u32 v3;
 
     v0 = &param0->unk_206C[param2];
-    v2 = Strbuf_Init((2 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((2 + 1) * 2, param0->unk_00->heapID);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 43);
 
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 40, 24, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
@@ -1097,7 +1097,7 @@ static void ov13_022232C8(UnkStruct_ov13_022213F0 *param0, UnkStruct_ov13_022236
     u32 v3;
 
     v0 = &param0->unk_206C[param2];
-    v2 = Strbuf_Init((2 + 1) * 2, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init((2 + 1) * 2, param0->unk_00->heapID);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 43);
     v3 = Font_CalcStrbufWidth(FONT_SYSTEM, v1, 0);
 
@@ -1197,7 +1197,7 @@ static void ov13_02223550(UnkStruct_ov13_022213F0 *param0, u32 param1)
 
     v0 = &param0->unk_206C[0];
     v1 = &param0->unk_04[param1];
-    v2 = Strbuf_Init(12, param0->unk_00->unk_0C);
+    v2 = Strbuf_Init(12, param0->unk_00->heapID);
     v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, Unk_ov13_02228EC4[param1]);
 
     StringTemplate_SetNickname(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v1->unk_00));
@@ -1470,7 +1470,7 @@ static void ov13_02223E68(UnkStruct_ov13_022213F0 *param0)
         ov13_0222317C(param0, v0, 1 + v1);
     }
 
-    if (Item_LoadParam(param0->unk_00->unk_22, 37, param0->unk_00->unk_0C) == 0) {
+    if (Item_LoadParam(param0->unk_00->unk_22, 37, param0->unk_00->heapID) == 0) {
         ov13_022221C8(param0, 94);
     }
 
@@ -1554,7 +1554,7 @@ void ov13_02224144(UnkStruct_ov13_022213F0 *param0)
     u8 v6;
 
     v1 = param0->unk_00;
-    v2 = Item_Load(v1->unk_22, 0, v1->unk_0C);
+    v2 = Item_Load(v1->unk_22, 0, v1->heapID);
     v0 = BattleSystem_PartyPokemon(v1->unk_08, v1->unk_28, v1->unk_2C[v1->unk_11]);
     v4 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
     v5 = 0;

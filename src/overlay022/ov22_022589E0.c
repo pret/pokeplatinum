@@ -361,7 +361,7 @@ static void ov22_02258E5C(UnkStruct_ov22_02258A48 *param0)
         v1 = v0->unk_10->unk_00;
 
         ov22_02257CD4(v0->unk_04);
-        ov22_02257C88(v0->unk_04, v1->unk_00, 14);
+        ov22_02257C88(v0->unk_04, v1->unk_00, HEAP_ID_14);
     }
 }
 

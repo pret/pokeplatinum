@@ -82,9 +82,9 @@ static void ov21_021DF6C4(UnkStruct_ov21_021DF374 *param0, int param1, int param
 static BOOL ov21_021DF6E0(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1);
 static void ov21_021DF6FC(UnkStruct_ov21_021DF374 *param0);
 static BOOL ov21_021DF718(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1);
-static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3);
+static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int heapID);
 static void ov21_021DEA0C(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1);
-static void ov21_021DEA44(UnkStruct_ov21_021DE760 *param0, int param1);
+static void ov21_021DEA44(UnkStruct_ov21_021DE760 *param0, int heapID);
 static void ov21_021DEB58(UnkStruct_ov21_021DE760 *param0, const UnkStruct_ov21_021DE6D4 *param1, int param2);
 static void ov21_021DEC2C(Window *param0, int param1, int param2, u32 param3);
 static void ov21_021DEC80(Window *param0, int param1, int param2, u32 param3);
@@ -363,18 +363,18 @@ static int ov21_021DE8E8(void *param0, UnkStruct_ov21_021E6B20 *param1, const vo
     return 0;
 }
 
-static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
+static void ov21_021DE9A4(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int heapID)
 {
-    ov21_021DEF08(param1, param2, param3);
+    ov21_021DEF08(param1, param2, heapID);
     ov21_021DEF54(param1, param2);
-    ov21_021DEFA8(param0, param1, param3);
-    ov21_021DF214(param0, param1, param2, param3);
-    ov21_021DEA44(param1, param3);
-    ov21_021DEB58(param1, param2, param3);
+    ov21_021DEFA8(param0, param1, heapID);
+    ov21_021DF214(param0, param1, param2, heapID);
+    ov21_021DEA44(param1, heapID);
+    ov21_021DEB58(param1, param2, heapID);
 
     if (PokedexSort_CurrentCaughtStatus(param2->unk_04) == 2) {
-        ov21_021DED24(param0, param1, param2, param3);
-        ov21_021DF098(param0, param1, param2, param3);
+        ov21_021DED24(param0, param1, param2, heapID);
+        ov21_021DF098(param0, param1, param2, heapID);
     }
 }
 
@@ -391,26 +391,26 @@ static void ov21_021DEA0C(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE7
     Bg_ClearTilemap(param1->unk_00->bgConfig, 1);
 }
 
-static void ov21_021DEA44(UnkStruct_ov21_021DE760 *param0, int param1)
+static void ov21_021DEA44(UnkStruct_ov21_021DE760 *param0, int heapID)
 {
     void *v0;
     NNSG2dScreenData *v1;
 
-    ov21_021D2724(param0->unk_00, 33, param0->unk_00->bgConfig, 3, 0, 0, 1, param1);
+    ov21_021D2724(param0->unk_00, 33, param0->unk_00->bgConfig, 3, 0, 0, 1, heapID);
 
-    v0 = ov21_021D27B8(param0->unk_00, 50, 1, &v1, param1);
+    v0 = ov21_021D27B8(param0->unk_00, 50, 1, &v1, heapID);
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
-    v0 = ov21_021D27B8(param0->unk_00, 51, 1, &v1, param1);
+    v0 = ov21_021D27B8(param0->unk_00, 51, 1, &v1, heapID);
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 3, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
-    v0 = ov21_021D27B8(param0->unk_00, 52, 1, &v1, param1);
+    v0 = ov21_021D27B8(param0->unk_00, 52, 1, &v1, heapID);
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 12, 8, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
 
-    v0 = ov21_021D27B8(param0->unk_00, 54, 1, &v1, param1);
+    v0 = ov21_021D27B8(param0->unk_00, 54, 1, &v1, heapID);
     Bg_LoadToTilemapRect(param0->unk_00->bgConfig, 3, v1->rawData, 0, 16, v1->screenWidth / 8, v1->screenHeight / 8);
     Heap_FreeToHeap(v0);
     Bg_ScheduleTilemapTransfer(param0->unk_00->bgConfig, 3);

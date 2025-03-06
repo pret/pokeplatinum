@@ -14,7 +14,7 @@ u8 ov13_02227A4C(UnkStruct_ov13_02227244 *param0)
         return 0;
     }
 
-    if (Bag_CanRemoveItem(param0->unk_00->unk_08, param0->unk_00->unk_20, 1, param0->unk_00->unk_0C) == 0) {
+    if (Bag_CanRemoveItem(param0->unk_00->unk_08, param0->unk_00->unk_20, 1, param0->unk_00->heapID) == 0) {
         param0->unk_00->unk_20 = 0;
         param0->unk_00->unk_1F = 0;
         return 0;
@@ -61,7 +61,7 @@ void ov13_02227AC8(UnkStruct_ov13_02227244 *param0)
             }
 
             if (!((v0->item == 0) || (v0->quantity == 0))) {
-                v4 = Item_LoadParam(v0->item, 13, param0->unk_00->unk_0C);
+                v4 = Item_LoadParam(v0->item, 13, param0->unk_00->heapID);
 
                 for (v3 = 0; v3 < 5; v3++) {
                     if ((v4 & (1 << v3)) == 0) {

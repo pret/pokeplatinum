@@ -17,9 +17,9 @@
 #include "unk_02005474.h"
 #include "unk_0202854C.h"
 
-UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)
+UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 heapID, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6)
 {
-    UnkStruct_ov23_02248D20 *v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov23_02248D20));
+    UnkStruct_ov23_02248D20 *v0 = (UnkStruct_ov23_02248D20 *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov23_02248D20));
 
     MI_CpuClear8(v0, sizeof(UnkStruct_ov23_02248D20));
 
@@ -28,11 +28,11 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16
     if (v0->unk_00) {
         v0->unk_04 = param5;
         v0->unk_1E = param6;
-        v0->unk_10 = ColoredArrow_New(param3);
+        v0->unk_10 = ColoredArrow_New(heapID);
 
         ColoredArrow_SetColor(v0->unk_10, TEXT_COLOR(8, 9, 15));
 
-        v0->unk_1D = param3;
+        v0->unk_1D = heapID;
 
         {
             StringList *v1 = StringList_New(param0->count, v0->unk_1D);
@@ -48,7 +48,7 @@ UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16
     }
 
     v0->unk_20 = (param1 + param2);
-    v0->unk_0C = ListMenu_New(param0, param1, param2, param3);
+    v0->unk_0C = ListMenu_New(param0, param1, param2, heapID);
 
     return v0;
 }

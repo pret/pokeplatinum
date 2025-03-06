@@ -100,7 +100,7 @@ void ov13_022272AC(UnkStruct_ov13_02227244 *param0, u32 param1)
         break;
     }
 
-    param0->unk_2C = Window_New(param0->unk_00->unk_0C, param0->unk_30);
+    param0->unk_2C = Window_New(param0->unk_00->heapID, param0->unk_30);
 
     for (v1 = 0; v1 < param0->unk_30; v1++) {
         Window_AddFromTemplate(param0->unk_04, &param0->unk_2C[v1], &v0[v1]);
@@ -343,9 +343,9 @@ static void ov13_02227910(UnkStruct_ov13_02227244 *param0, u32 param1)
     Strbuf *v1;
 
     v0 = &param0->unk_2C[2];
-    v1 = Strbuf_Init(130, param0->unk_00->unk_0C);
+    v1 = Strbuf_Init(130, param0->unk_00->heapID);
 
-    Item_LoadDescription(v1, param0->unk_3C[param0->unk_114D][param1].item, param0->unk_00->unk_0C);
+    Item_LoadDescription(v1, param0->unk_3C[param0->unk_114D][param1].item, param0->unk_00->heapID);
     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1, 4, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
     Strbuf_Free(v1);
     Window_ScheduleCopyToVRAM(v0);

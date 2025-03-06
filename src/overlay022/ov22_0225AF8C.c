@@ -60,7 +60,7 @@ typedef struct {
     int unk_5C;
     int unk_60;
     int unk_64;
-    int heapId;
+    int heapID;
 } UnkStruct_ov22_0225B4E4;
 
 static UnkStruct_ov22_0225B1BC *ov22_0225B1BC(const UnkStruct_ov22_0225B4E4 *param0);
@@ -76,7 +76,7 @@ static void ov22_0225B490(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
 static void ov22_0225B4E4(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_ov22_0225AF8C *param1);
 static void ov22_0225B4F8(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C68 *param1);
 static void ov22_0225B540(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C88 *param1);
-static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int param3);
+static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int heapID);
 static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int param3);
 
 UnkStruct_ov22_0225B1BC *ov22_0225AF8C(const UnkStruct_ov22_0225AF8C *param0, const UnkStruct_02029C68 *param1)
@@ -238,22 +238,22 @@ static UnkStruct_ov22_0225B1BC *ov22_0225B1BC(const UnkStruct_ov22_0225B4E4 *par
     UnkStruct_ov22_0225B1BC *v0;
     BOOL v1;
 
-    v0 = Heap_AllocFromHeap(param0->heapId, sizeof(UnkStruct_ov22_0225B1BC));
+    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov22_0225B1BC));
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B1BC));
 
-    v0->unk_29C = param0->heapId;
-    v0->unk_298 = Pokemon_New(param0->heapId);
+    v0->unk_29C = param0->heapID;
+    v0->unk_298 = Pokemon_New(param0->heapID);
     sub_0202A61C(param0->unk_00, v0->unk_298);
 
     ov22_0225B2D4(v0, param0);
-    ov22_022554A8(&v0->unk_00, param0->unk_58, param0->heapId);
-    ov22_02259484(&v0->unk_1E8, 21, param0->heapId);
+    ov22_022554A8(&v0->unk_00, param0->unk_58, param0->heapID);
+    ov22_02259484(&v0->unk_1E8, 21, param0->heapID);
 
-    v0->unk_1F0 = ov22_02254DE0(20, param0->heapId);
+    v0->unk_1F0 = ov22_02254DE0(20, param0->heapID);
 
     ov22_0225B388(v0, param0);
     ov22_0225B450(v0, param0);
-    ov22_0225AF44(&v0->unk_27C, &v0->unk_1F4, param0->heapId);
+    ov22_0225AF44(&v0->unk_27C, &v0->unk_1F4, param0->heapID);
 
     v0->unk_2C4 = 1;
     v0->unk_2C8 = 1;
@@ -268,18 +268,18 @@ static UnkStruct_ov22_0225B1BC *ov22_0225B258(const UnkStruct_ov22_0225B4E4 *par
     UnkStruct_ov22_0225B1BC *v0;
     BOOL v1;
 
-    v0 = Heap_AllocFromHeap(param0->heapId, sizeof(UnkStruct_ov22_0225B1BC));
+    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov22_0225B1BC));
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B1BC));
 
-    v0->unk_29C = param0->heapId;
-    v0->unk_298 = Pokemon_New(param0->heapId);
+    v0->unk_29C = param0->heapID;
+    v0->unk_298 = Pokemon_New(param0->heapID);
 
     sub_0202A61C(param0->unk_00, v0->unk_298);
 
     ov22_0225B2D4(v0, param0);
-    ov22_02259484(&v0->unk_1E8, 21, param0->heapId);
+    ov22_02259484(&v0->unk_1E8, 21, param0->heapID);
 
-    v0->unk_1F0 = ov22_02254DE0(20, param0->heapId);
+    v0->unk_1F0 = ov22_02254DE0(20, param0->heapID);
 
     ov22_0225B388(v0, param0);
 
@@ -296,15 +296,15 @@ static void ov22_0225B2D4(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
     UnkStruct_ov22_02255CB8 v0;
     UnkStruct_ov22_022550D4 v1;
 
-    param0->unk_00.unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, param1->heapId);
+    param0->unk_00.unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, param1->heapID);
 
     v1.unk_00 = (700 + 18);
     v1.unk_04 = (100 + 18);
     v1.unk_08 = (1 + 18);
-    v1.heapID = param1->heapId;
+    v1.heapID = param1->heapID;
 
-    ov22_0225547C(&param0->unk_00, &v1, param1->heapId);
-    ov22_0225B588(&param0->unk_00, &v0, param1, param1->heapId);
+    ov22_0225547C(&param0->unk_00, &v1, param1->heapID);
+    ov22_0225B588(&param0->unk_00, &v0, param1, param1->heapID);
     ov22_022551B4(&param0->unk_00, &v0);
     ov22_02255338(&v0);
 }
@@ -352,7 +352,7 @@ static void ov22_0225B388(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
         v2 = sub_0202A614(param1->unk_00);
         v3 = sub_0202A604(param1->unk_00);
 
-        ov22_02257964(&param0->unk_1F4, param0->unk_298, &v4, v1, v2, v3, param1->heapId);
+        ov22_02257964(&param0->unk_1F4, param0->unk_298, &v4, v1, v2, v3, param1->heapID);
     }
 
     {
@@ -374,7 +374,7 @@ static void ov22_0225B388(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_
 
 static void ov22_0225B450(UnkStruct_ov22_0225B1BC *param0, const UnkStruct_ov22_0225B4E4 *param1)
 {
-    ov22_02257C88(&param0->unk_1F4, param1->unk_5C, param1->heapId);
+    ov22_02257C88(&param0->unk_1F4, param1->unk_5C, param1->heapID);
 }
 
 static void ov22_0225B464(UnkStruct_ov22_0225B1BC *param0)
@@ -409,7 +409,7 @@ static void ov22_0225B4E4(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_ov22_
     param0->unk_58 = param1->unk_00;
     param0->unk_60 = param1->unk_04;
     param0->unk_64 = param1->unk_08;
-    param0->heapId = param1->heapId;
+    param0->heapID = param1->heapID;
 }
 
 static void ov22_0225B4F8(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029C68 *param1)
@@ -446,10 +446,10 @@ static void ov22_0225B540(UnkStruct_ov22_0225B4E4 *param0, const UnkStruct_02029
     param0->unk_5C = sub_0202A5B8(param1);
 }
 
-static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int param3)
+static void ov22_0225B588(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int heapID)
 {
-    ov22_02255410(param1, param3);
-    ov22_0225B5A8(param0, param1, param2, param3);
+    ov22_02255410(param1, heapID);
+    ov22_0225B5A8(param0, param1, param2, heapID);
 }
 
 static void ov22_0225B5A8(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1, const UnkStruct_ov22_0225B4E4 *param2, int param3)

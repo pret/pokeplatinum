@@ -23,9 +23,9 @@ struct UnkStruct_ov13_02228A50_t {
     u32 unk_0C;
 };
 
-UnkStruct_ov13_02228A50 *ov13_02228A38(u32 param0)
+UnkStruct_ov13_02228A50 *ov13_02228A38(u32 heapID)
 {
-    UnkStruct_ov13_02228A50 *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov13_02228A50));
+    UnkStruct_ov13_02228A50 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov13_02228A50));
     memset(v0, 0, sizeof(UnkStruct_ov13_02228A50));
     return v0;
 }

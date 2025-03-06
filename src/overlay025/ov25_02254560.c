@@ -102,7 +102,7 @@ BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_022545
 
         v0->unk_1C8 = param2;
         NNS_G2dResetOamManagerBuffer(v0->unk_1C8);
-        v0->unk_1CC = ov25_02255540(v0->unk_1C8, 7);
+        v0->unk_1CC = ov25_02255540(v0->unk_1C8, HEAP_ID_POKETCH_MAIN);
 
         if (v0->unk_1CC == NULL) {
             Heap_FreeToHeap(*param0);

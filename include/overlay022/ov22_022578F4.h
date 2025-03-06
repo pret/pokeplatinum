@@ -33,7 +33,7 @@ void ov22_02257B74(UnkStruct_ov22_02257964 *param0, int param1);
 BOOL ov22_02257BE8(UnkStruct_ov22_02257964 *param0);
 BOOL ov22_02257C04(UnkStruct_ov22_02257964 *param0, int param1, int param2);
 UnkStruct_ov22_02259560 *ov22_02257C20(UnkStruct_ov22_02257964 *param0, int *param1, int *param2, NNSG2dCharacterData **param3);
-void ov22_02257C88(UnkStruct_ov22_02257964 *param0, int param1, int param2);
+void ov22_02257C88(UnkStruct_ov22_02257964 *param0, int param1, int heapID);
 void ov22_02257CD4(UnkStruct_ov22_02257964 *param0);
 void ov22_02257CE0(UnkStruct_ov22_02257964 *param0, int *param1, int *param2);
 int ov22_02257D00(UnkStruct_ov22_02257964 *param0);

@@ -214,7 +214,7 @@ static BOOL ov62_02237D24(UnkStruct_0208C06C *param0)
         v0->unk_218.unk_00 = param0->unk_14.unk_10;
         v0->unk_218.unk_04 = (128 - 56);
         v0->unk_218.unk_08 = (96 - 64 - 16);
-        v0->unk_218.heapId = HEAP_ID_102;
+        v0->unk_218.heapID = HEAP_ID_102;
     }
 
     {

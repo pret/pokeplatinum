@@ -59,7 +59,7 @@ static int sub_0208BBB4(OverlayManager *param0, int *param1);
 static int sub_0208BBC0(OverlayManager *param0, int *param1);
 static int sub_0208BC08(OverlayManager *param0, int *param1);
 static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int param1);
-static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1);
+static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID);
 static BOOL sub_0208BE80(int param0);
 
 UnkStruct_0208C06C *sub_0208BA78(OverlayManager *param0)
@@ -190,7 +190,7 @@ static int sub_0208BBC0(OverlayManager *param0, int *param1)
         }
         break;
     case 1:
-        v0 = sub_0208BC8C(v1, 119);
+        v0 = sub_0208BC8C(v1, HEAP_ID_119);
 
         if (v0) {
             *param1 = 0;
@@ -242,7 +242,7 @@ static BOOL sub_0208BC3C(UnkStruct_0208BC3C *param0, int param1)
     return 0;
 }
 
-static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
+static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
 {
     switch (param0->unk_00) {
     case 0:
@@ -256,20 +256,20 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
     case 1: {
         int v0;
 
-        param0->unk_10 = FieldBattleDTO_New(param1, 0x0);
+        param0->unk_10 = FieldBattleDTO_New(heapID, 0x0);
 
         if (sub_0202F250() == 0) {
-            sub_0202F298(param0->saveData, param1, &v0, param0->unk_10, param0->unk_14->unk_86C);
+            sub_0202F298(param0->saveData, heapID, &v0, param0->unk_10, param0->unk_14->unk_86C);
         } else {
             sub_0202FAFC(param0->unk_10, param0->saveData);
             v0 = 1;
         }
 
-        param0->unk_10->bagCursor = BagCursor_New(param1);
+        param0->unk_10->bagCursor = BagCursor_New(heapID);
         param0->unk_10->records = SaveData_GetGameRecordsPtr(param0->saveData);
 
         if (Overlay_LoadByID(FS_OVERLAY_ID(overlay62), 2) == 1) {
-            ov62_02248408(sub_0202F264(), param0->unk_10, param1);
+            ov62_02248408(sub_0202F264(), param0->unk_10, heapID);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay62));
         }
 
@@ -294,7 +294,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int param1)
             sub_02004550(5, 1119, 1);
         }
     }
-        param0->unk_08 = OverlayManager_New(&gBattleOverlayTemplate, param0->unk_10, param1);
+        param0->unk_08 = OverlayManager_New(&gBattleOverlayTemplate, param0->unk_10, heapID);
         param0->unk_00++;
         break;
     default:

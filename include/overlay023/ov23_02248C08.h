@@ -8,7 +8,7 @@
 
 #include "list_menu.h"
 
-UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 param3, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6);
+UnkStruct_ov23_02248D20 *ov23_02248C08(ListMenuTemplate *param0, u16 param1, u16 param2, u8 heapID, UnkFuncPtr_ov23_02248D20 param4, UndergroundData *param5, BOOL param6);
 u32 ov23_02248D20(UnkStruct_ov23_02248D20 *param0);
 void ov23_02248EF8(UnkStruct_ov23_02248D20 *param0, u16 *param1, u16 *param2);
 
