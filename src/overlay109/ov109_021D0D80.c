@@ -1885,7 +1885,7 @@ static void ov109_021D22A4(UnkStruct_ov109_021D0F70 *param0)
 
 static void ov109_021D22B0(UnkStruct_ov109_021D0F70 *param0)
 {
-    param0->unk_D9C = PaletteData_New(95);
+    param0->unk_D9C = PaletteData_New(HEAP_ID_95);
 
     PaletteData_SetAutoTransparent(param0->unk_D9C, 1);
     PaletteData_AllocBuffer(param0->unk_D9C, 0, 0x200, 95);

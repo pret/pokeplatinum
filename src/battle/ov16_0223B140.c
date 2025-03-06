@@ -539,7 +539,7 @@ static void ov16_0223B790(OverlayManager *param0)
     }
 
     battleSys->unk_1A8 = battleSys->unk_1A4;
-    battleSys->unk_28 = PaletteData_New(5);
+    battleSys->unk_28 = PaletteData_New(HEAP_ID_BATTLE);
 
     PaletteData_SetAutoTransparent(battleSys->unk_28, 1);
     PaletteData_AllocBuffer(battleSys->unk_28, 0, 0x200, 5);
@@ -1645,7 +1645,7 @@ static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
     v0->unk_1020 = 0;
     v0->unk_1021 = 0;
     v0->unk_1022 = 0;
-    v0->unk_0C = PaletteData_New(5);
+    v0->unk_0C = PaletteData_New(HEAP_ID_BATTLE);
 
     PaletteData_SetAutoTransparent(v0->unk_0C, 1);
     PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, 5);

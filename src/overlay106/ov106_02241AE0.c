@@ -841,7 +841,7 @@ static void ov106_0224262C(UnkStruct_ov106_02243118 *param0)
     ov106_0224271C();
     ov106_0224273C(param0->unk_48);
 
-    param0->unk_AC = PaletteData_New(98);
+    param0->unk_AC = PaletteData_New(HEAP_ID_98);
 
     PaletteData_AllocBuffer(param0->unk_AC, 2, (32 * 16), 98);
     PaletteData_AllocBuffer(param0->unk_AC, 0, (32 * 16), 98);

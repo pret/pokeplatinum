@@ -243,7 +243,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     v0->unk_14.unk_00 = &v0->unk_00->unk_00;
 
     ov17_0223E458(v0);
-    v0->unk_14.unk_90 = PaletteData_New(23);
+    v0->unk_14.unk_90 = PaletteData_New(HEAP_ID_23);
 
     PaletteData_SetAutoTransparent(v0->unk_14.unk_90, 1);
     PaletteData_AllocBuffer(v0->unk_14.unk_90, 0, 0x200, 23);
