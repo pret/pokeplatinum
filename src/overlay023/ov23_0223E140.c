@@ -1312,7 +1312,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     Bg_ClearTilemap(v1, 0);
     Bg_ClearTilemap(v1, 1);
     Bg_ClearTilemap(v1, 2);
-    LoadMessageBoxGraphics(v1, 3, (512 - (18 + 12)), 10, 0, 29);
+    LoadMessageBoxGraphics(v1, 3, (512 - (18 + 12)), 10, 0, HEAP_ID_29);
 
     {
         NARC *v6;
@@ -1320,12 +1320,12 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
         v6 = NARC_ctor(NARC_INDEX_DATA__UG_FOSSIL, HEAP_ID_29);
         Graphics_LoadPaletteFromOpenNARC(v6, 1, 0, 0, 32 * 3, HEAP_ID_29);
 
-        v0 = Graphics_LoadTilesToBgLayerFromOpenNARC(v6, 0, v1, 0, 0, 0, 0, 29);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 2, v1, 0, 0, 0, 0, 29);
+        v0 = Graphics_LoadTilesToBgLayerFromOpenNARC(v6, 0, v1, 0, 0, 0, 0, HEAP_ID_29);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v6, 2, v1, 0, 0, 0, 0, HEAP_ID_29);
         NARC_dtor(v6);
     }
 
-    Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 29);
+    Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_29);
     ov23_0223FA3C(v1, v0, param0);
 }
 
@@ -1342,7 +1342,7 @@ static void ov23_0223EF98(void)
     Bg_CopyTilemapBufferToVRAM(Unk_ov23_02257740->unk_04, 1);
 
     ov23_0223FF8C(Unk_ov23_02257740->unk_04);
-    Graphics_LoadTilesToBgLayer(55, 9, Unk_ov23_02257740->unk_04, 2, 1, 0, 0, 29);
+    Graphics_LoadTilesToBgLayer(55, 9, Unk_ov23_02257740->unk_04, 2, 1, 0, 0, HEAP_ID_29);
 
     ov23_022401B0(Unk_ov23_02257740->unk_04);
 
@@ -1584,7 +1584,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
             HBlankSystem_Stop(v0->fieldSystem->unk_04->hBlankSystem);
             HBlankSystem_Start(v0->fieldSystem->unk_04->hBlankSystem);
 
-            Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
+            Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
             LoadStandardWindowGraphics(v0->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
             CommPlayerMan_Restart();
 
@@ -1932,12 +1932,12 @@ static int ov23_0223FC9C(int param0, BgConfig *param1, int param2, UnkStruct_ov2
     if (param0 >= param3->unk_0C) {
         Graphics_LoadPaletteFromOpenNARC(v12, v0->unk_00->unk_12, 0, (v11 + 3) * 32, 32, HEAP_ID_29);
     } else {
-        param3->unk_18[param0] = Graphics_GetPlttDataFromOpenNARC(v12, v0->unk_00->unk_12, &param3->unk_28[param0], 29);
+        param3->unk_18[param0] = Graphics_GetPlttDataFromOpenNARC(v12, v0->unk_00->unk_12, &param3->unk_28[param0], HEAP_ID_29);
         DC_FlushRange(param3->unk_28[param0]->pRawData, 32);
         GX_LoadBGPltt(param3->unk_28[param0]->pRawData, (v11 + 3) * 32, 32);
     }
 
-    v10 = Graphics_LoadTilesToBgLayerFromOpenNARC(v12, v0->unk_00->unk_10, param1, 1, param2, 0, 0, 29);
+    v10 = Graphics_LoadTilesToBgLayerFromOpenNARC(v12, v0->unk_00->unk_10, param1, 1, param2, 0, 0, HEAP_ID_29);
     NARC_dtor(v12);
 
     for (v6 = v3; v6 < v5; v6++) {

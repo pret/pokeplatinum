@@ -1730,12 +1730,12 @@ static void ov107_02243444(BgConfig *param0)
 
 static void ov107_02243588 (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
 
     if (ov104_0223BA14(param0->unk_09) == 0) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 35, param0->unk_4C, param1, 0, 0, 1, 100);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 35, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 36, param0->unk_4C, param1, 0, 0, 1, 100);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 36, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
     }
 
     return;
@@ -1746,7 +1746,7 @@ static void ov107_022435FC (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = Graphics_GetPlttData(150, 137, &v1, 100);
+    v0 = Graphics_GetPlttData(150, 137, &v1, HEAP_ID_100);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
@@ -1757,8 +1757,8 @@ static void ov107_022435FC (void)
 
 static void ov107_02243630 (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, 100);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 38, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 38, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
 
     return;
 }
@@ -1768,7 +1768,7 @@ static void ov107_02243678 (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = Graphics_GetPlttData(150, 137, &v1, 100);
+    v0 = Graphics_GetPlttData(150, 137, &v1, HEAP_ID_100);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
@@ -1779,24 +1779,24 @@ static void ov107_02243678 (void)
 
 static void ov107_022436AC (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, 100);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 39, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 39, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
 
     return;
 }
 
 static void ov107_022436F4 (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, 100);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 37, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 37, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
 
     return;
 }
 
 static void ov107_0224373C (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 125, param0->unk_4C, param1, 0, 0, 1, 100);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 126, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 125, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 126, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
     Graphics_LoadPaletteFromOpenNARC(param0->unk_440, 171, 4, 0, 0x20, HEAP_ID_100);
 
     return;

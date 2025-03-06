@@ -288,14 +288,14 @@ static void ov95_0224A518(UnkStruct_ov95_0224A42C *param0)
         break;
     }
 
-    Graphics_LoadTilesToBgLayer(93, v4, param0->unk_24, 3, 0, 0, 1, 58);
-    Graphics_LoadTilesToBgLayer(93, v4, param0->unk_24, 7, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, v4, param0->unk_24, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(93, v4, param0->unk_24, 7, 0, 0, 1, HEAP_ID_58);
 
-    Graphics_LoadTilemapToBgLayer(93, v3, param0->unk_24, 3, 0, 0, 1, 58);
-    Graphics_LoadTilemapToBgLayer(93, v3, param0->unk_24, 7, 0, 0, 1, 58);
+    Graphics_LoadTilemapToBgLayer(93, v3, param0->unk_24, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(93, v3, param0->unk_24, 7, 0, 0, 1, HEAP_ID_58);
 
-    Graphics_LoadPaletteWithSrcOffset(93, v5, 0, v6, 0, 0x20, 58);
-    Graphics_LoadPaletteWithSrcOffset(93, v5, 4, v6, 0, 0x20, 58);
+    Graphics_LoadPaletteWithSrcOffset(93, v5, 0, v6, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPaletteWithSrcOffset(93, v5, 4, v6, 0, 0x20, HEAP_ID_58);
 
     Bg_SetOffset(param0->unk_24, 3, 3, 0);
     Bg_SetOffset(param0->unk_24, 7, 3, 256);

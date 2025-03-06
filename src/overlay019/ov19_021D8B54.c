@@ -80,8 +80,8 @@ BOOL ov19_021D8B54(UnkStruct_ov19_021D8E00 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_10 = NULL;
     param0->unk_754 = 0;
     param0->unk_78E = 1;
-    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 13, 1, &(param0->unk_1C), 10);
-    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 14, 1, &(param0->unk_20), 10);
+    param0->unk_14 = Graphics_GetCellBankFromOpenNARC(param4, 13, 1, &(param0->unk_1C), HEAP_ID_10);
+    param0->unk_18 = Graphics_GetAnimBankFromOpenNARC(param4, 14, 1, &(param0->unk_20), HEAP_ID_10);
 
     if ((param0->unk_14 == NULL) || (param0->unk_18 == NULL)) {
         return 0;

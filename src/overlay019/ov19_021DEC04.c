@@ -95,8 +95,8 @@ BOOL ov19_021DEC04(UnkStruct_ov19_021DEC04 **param0, UnkStruct_ov19_021D61B0 *pa
             v0->unk_0C = param3;
             v0->unk_10 = param4;
             v0->unk_14 = ov19_021D77D8(param1);
-            v0->unk_370 = Graphics_GetScrnDataFromOpenNARC(param6, 7, 1, &(v0->unk_368), 10);
-            v0->unk_374 = Graphics_GetScrnDataFromOpenNARC(param6, 8, 1, &(v0->unk_36C), 10);
+            v0->unk_370 = Graphics_GetScrnDataFromOpenNARC(param6, 7, 1, &(v0->unk_368), HEAP_ID_10);
+            v0->unk_374 = Graphics_GetScrnDataFromOpenNARC(param6, 8, 1, &(v0->unk_36C), HEAP_ID_10);
             v0->unk_6C = param5;
             v0->unk_70 = MessageLoader_Init(1, 26, 647, HEAP_ID_10);
             v0->unk_74 = Strbuf_Init(32, HEAP_ID_10);
@@ -127,12 +127,12 @@ void ov19_021DECE8(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
     if (param0) {
         ov19_021DEEFC(param0);
 
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 132, param0->unk_0C, 5, 0, 0, 1, 10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 129, param0->unk_0C, 5, 0, 0, 1, 10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 130, param0->unk_0C, 6, 0, 0, 1, 10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 131, param0->unk_0C, 7, 0, 0, 1, 10);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 132, param0->unk_0C, 5, 0, 0, 1, HEAP_ID_10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 129, param0->unk_0C, 5, 0, 0, 1, HEAP_ID_10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 130, param0->unk_0C, 6, 0, 0, 1, HEAP_ID_10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 131, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_10);
         Graphics_LoadPaletteFromOpenNARC(param1, 133, 4, 0, 0x20 * 4, HEAP_ID_10);
-        Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 5, 4 * 0x20, 4 * 0x20, 10);
+        Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 5, 4 * 0x20, 4 * 0x20, HEAP_ID_10);
         Bg_ClearTilesRange(4, 0x20, 0, HEAP_ID_10);
         Bg_FillTilemapRect(param0->unk_0C, 4, 0x0, 0, 0, 32, 32, 17);
 
@@ -583,8 +583,8 @@ static void ov19_021DF5D0(UnkStruct_ov19_021DEC04 *param0, NARC *param1)
     SpriteResourcesHeader v2;
     u32 v3, v4, v5;
 
-    param0->unk_5C = Graphics_GetCellBankFromOpenNARC(param1, 135, 1, &(param0->unk_60), 10);
-    param0->unk_64 = Graphics_GetAnimBankFromOpenNARC(param1, 136, 1, &(param0->unk_68), 10);
+    param0->unk_5C = Graphics_GetCellBankFromOpenNARC(param1, 135, 1, &(param0->unk_60), HEAP_ID_10);
+    param0->unk_64 = Graphics_GetAnimBankFromOpenNARC(param1, 136, 1, &(param0->unk_68), HEAP_ID_10);
 
     Graphics_LoadPaletteFromOpenNARC(param1, 137, 5, 0, 0x20 * 3, HEAP_ID_10);
     NNS_G2dInitImageProxy(&v1);

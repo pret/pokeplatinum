@@ -1453,15 +1453,15 @@ static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 *param0, NARC *param1)
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_54);
     Font_LoadScreenIndicatorsPalette(0, 12 * 0x20, HEAP_ID_54);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 0, 0, 0, 0, 54);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 0, 0, 0, 0, 54);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 10, v0, 4, 0, 0, 0, 54);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, v0, 4, 0, 0, 0, 54);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 0, 0, 0, 0, HEAP_ID_54);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 0, 0, 0, 0, HEAP_ID_54);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 10, v0, 4, 0, 0, 0, HEAP_ID_54);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, v0, 4, 0, 0, 0, HEAP_ID_54);
 
     {
         int v1 = Options_Frame(SaveData_Options(param0->unk_160));
 
-        LoadMessageBoxGraphics(v0, 2, (512 - (18 + 12)), 10, v1, 54);
+        LoadMessageBoxGraphics(v0, 2, (512 - (18 + 12)), 10, v1, HEAP_ID_54);
         LoadStandardWindowGraphics(v0, 2, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
         LoadStandardWindowGraphics(v0, 1, ((512 - (18 + 12)) - 9), 11, 0, HEAP_ID_54);
     }

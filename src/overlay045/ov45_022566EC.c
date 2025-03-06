@@ -179,8 +179,8 @@ static void ov45_0225673C(UnkStruct_ov45_022566EC *param0, const UnkStruct_ov45_
     };
     int v1;
 
-    Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, 8);
-    Graphics_LoadObjectTiles(12, 79, 1, 80 * 0x20, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    Graphics_LoadObjectTiles(12, 79, 1, 80 * 0x20, 0, 1, HEAP_ID_POKETCH_APP);
 
     ov25_02255958(&param0->unk_68, 12, 77, 78, 8);
     ov25_02255958(&param0->unk_7C, 12, 3, 4, 8);
@@ -294,8 +294,8 @@ static void ov45_02256968(SysTask *param0, void *param1)
     v2 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    Graphics_LoadTilesToBgLayer(12, 76, v2->unk_04, 6, 0, 0, 1, 8);
-    Graphics_LoadTilemapToBgLayer(12, 75, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilesToBgLayer(12, 76, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(12, 75, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
     Poketch_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);

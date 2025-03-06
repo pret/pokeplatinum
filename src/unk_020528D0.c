@@ -98,7 +98,7 @@ static void sub_020528D0(BgConfig *param0)
     GXLayers_SetBanks(&v0);
     SetAllGraphicsModes(&v1);
     Bg_InitFromTemplate(param0, 3, &v2, 0);
-    Graphics_LoadPalette(14, 6, 0, 13 * 0x20, 0x20, 11);
+    Graphics_LoadPalette(14, 6, 0, 13 * 0x20, 0x20, HEAP_ID_FIELDMAP);
 }
 
 static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)

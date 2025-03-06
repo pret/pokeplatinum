@@ -173,8 +173,8 @@ static void ov29_02256804(SysTask *param0, void *param1)
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
 
-    Graphics_LoadTilesToBgLayer(12, 30, v3->unk_04, 6, 0, 0, 1, 8);
-    Graphics_LoadTilemapToBgLayer(12, 31, v3->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilesToBgLayer(12, 30, v3->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(12, 31, v3->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Poketch_LoadActivePalette(0, 0);
 
     GF_ASSERT(GF_heap_c_dummy_return_true(8));
@@ -314,7 +314,7 @@ static void ov29_02256ABC(UnkStruct_ov29_022566C8 *param0)
         },
     };
 
-    Graphics_LoadObjectTiles(12, 32, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 32, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
     if (ov25_02255958(&param0->unk_54, 12, 33, 34, 8)) {
         int v1;

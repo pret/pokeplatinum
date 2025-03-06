@@ -302,9 +302,9 @@ static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
     SetAllGraphicsModes(&v1);
     Bg_InitFromTemplate(param0->unk_10, 1, &v2, 0);
     Bg_InitFromTemplate(param0->unk_10, 2, &v3, 0);
-    Graphics_LoadTilesToBgLayer(101, 1, param0->unk_10, 2, 0, 0, 1, 61);
-    Graphics_LoadTilemapToBgLayer(101, 0, param0->unk_10, 2, 0, 0, 1, 61);
-    Graphics_LoadPalette(101, 2, 0, 0, 0x40, 61);
+    Graphics_LoadTilesToBgLayer(101, 1, param0->unk_10, 2, 0, 0, 1, HEAP_ID_61);
+    Graphics_LoadTilemapToBgLayer(101, 0, param0->unk_10, 2, 0, 0, 1, HEAP_ID_61);
+    Graphics_LoadPalette(101, 2, 0, 0, 0x40, HEAP_ID_61);
     Bg_FillTilesRange(param0->unk_10, 1, 0x0, 1, 0);
     Bg_FillTilemapRect(param0->unk_10, 1, 0x0, 0, 0, 32, 32, 0);
 
@@ -442,8 +442,8 @@ static void ov87_021D1818(UnkStruct_ov87_021D106C *param0)
     NNSG2dAnimBankData *v1;
     int v2;
 
-    param0->unk_1DC = Graphics_GetCellBank(27, 77, 0, &v0, 61);
-    param0->unk_1E0 = Graphics_GetAnimBank(27, 78, 0, &v1, 61);
+    param0->unk_1DC = Graphics_GetCellBank(27, 77, 0, &v0, HEAP_ID_61);
+    param0->unk_1E0 = Graphics_GetAnimBank(27, 78, 0, &v1, HEAP_ID_61);
 
     MI_CpuClearFast(param0->unk_200, sizeof(param0->unk_200));
 
@@ -503,8 +503,8 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v2.heapID = 61;
 
-    v7 = Graphics_GetCharData(27, 76, 0, &v5, 61);
-    v8 = Graphics_GetPlttData(27, 75, &v6, 61);
+    v7 = Graphics_GetCharData(27, 76, 0, &v5, HEAP_ID_61);
+    v8 = Graphics_GetPlttData(27, 75, &v6, HEAP_ID_61);
 
     for (v9 = 0; v9 < 6; v9++) {
         NNS_G2dInitImageProxy(&v3);
@@ -547,7 +547,7 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
         DC_FlushRange(param0->unk_200, sizeof(param0->unk_200));
         GX_LoadOBJ(param0->unk_200, 3200 * v3, 3200);
 
-        Graphics_LoadPalette(v1.archive, v1.palette, 1, v3 * 0x20, 0x20, 61);
+        Graphics_LoadPalette(v1.archive, v1.palette, 1, v3 * 0x20, 0x20, HEAP_ID_61);
 
         if (v3 == v2->unk_18) {
             Sound_FlagDefaultChatotCry(TRUE);

@@ -275,7 +275,7 @@ UnkStruct_ov95_02247004 *ov95_02246F30(BOOL *param0, int param1)
         u32 v3;
         int v4;
 
-        v2 = Graphics_GetPlttData(93, 6, &v1, 57);
+        v2 = Graphics_GetPlttData(93, 6, &v1, HEAP_ID_57);
 
         if (v2) {
             MI_CpuFill16(v0->unk_00, 0x0, 96);
@@ -587,7 +587,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
     }
 
     v1 = (param2 >= 4) ? 4 : 0;
-    Graphics_LoadPalette(v0.archive, v0.palette, v1, param3 * 0x20, 0x20, 57);
+    Graphics_LoadPalette(v0.archive, v0.palette, v1, param3 * 0x20, 0x20, HEAP_ID_57);
 }
 
 void ov95_022474D4(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 param3, u32 param4, u32 param5)
@@ -613,8 +613,8 @@ void ov95_022474D4(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
 
 void ov95_02247568(UnkStruct_ov95_02247568 *param0, u32 param1, u32 param2, u32 param3)
 {
-    param0->unk_00 = Graphics_GetCellBank(param1, param2, 1, &(param0->unk_08), 58);
-    param0->unk_04 = Graphics_GetAnimBank(param1, param3, 1, &(param0->unk_0C), 58);
+    param0->unk_00 = Graphics_GetCellBank(param1, param2, 1, &(param0->unk_08), HEAP_ID_58);
+    param0->unk_04 = Graphics_GetAnimBank(param1, param3, 1, &(param0->unk_0C), HEAP_ID_58);
 }
 
 void ov95_022475A0(UnkStruct_ov95_02247568 *param0)

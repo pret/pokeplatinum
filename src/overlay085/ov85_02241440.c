@@ -417,9 +417,9 @@ static void ov85_022416E8(BgConfig *param0)
 
 static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->unk_00, 2, 0, 0, 0, 36);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 0, param0->unk_00, 2, 0, 0, 0, 36);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 1, param0->unk_00, 3, 0, 0, 0, 36);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->unk_00, 2, 0, 0, 0, HEAP_ID_36);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 0, param0->unk_00, 2, 0, 0, 0, HEAP_ID_36);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 1, param0->unk_00, 3, 0, 0, 0, HEAP_ID_36);
     Graphics_LoadPaletteFromOpenNARC(param1, 3, 0, 0, 0, HEAP_ID_36);
 
     {
@@ -786,7 +786,7 @@ static int ov85_02241DF8(UnkStruct_ov85_022417E4 *param0)
 
 static void ov85_02241E60(UnkStruct_ov85_022417E4 *param0, NARC *param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, ov85_02241EB0(param0->unk_1F8->unk_08), param0->unk_00, 1, 1, 0, 0, 36);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, ov85_02241EB0(param0->unk_1F8->unk_08), param0->unk_00, 1, 1, 0, 0, HEAP_ID_36);
     Graphics_LoadPaletteFromOpenNARC(param1, ov85_02241EB4(param0->unk_1F8->unk_08), 0, 3 * 0x20, 0x20, HEAP_ID_36);
 }
 

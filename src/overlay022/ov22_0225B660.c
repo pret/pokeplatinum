@@ -189,7 +189,7 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
     int v3;
 
     Graphics_LoadPaletteFromOpenNARC(param0->unk_14.unk_5C, 126, 0, 3 * 32, 64, HEAP_ID_14);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_5C, 125, param0->unk_14.unk_40, 1, 0, 0, 0, 14);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_5C, 125, param0->unk_14.unk_40, 1, 0, 0, 0, HEAP_ID_14);
 
     if (param0->unk_0C == 0) {
         v2 = 128;
@@ -199,7 +199,7 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
         v3 = 3;
     }
 
-    v0 = Graphics_GetScrnDataFromOpenNARC(param0->unk_14.unk_5C, v2, 0, &v1, 14);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param0->unk_14.unk_5C, v2, 0, &v1, HEAP_ID_14);
 
     Bg_LoadToTilemapRect(param0->unk_14.unk_40, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param0->unk_14.unk_40, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, v3);
@@ -209,9 +209,9 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
 
 static void ov22_0225B910(UnkStruct_ov22_0225B85C *param0)
 {
-    Graphics_LoadPalette(12, 12, 4, 0, 32, 14);
-    Graphics_LoadTilemapToBgLayer(12, 11, param0->unk_14.unk_40, 4, 0, 0, 1, 14);
-    Graphics_LoadTilesToBgLayer(12, 10, param0->unk_14.unk_40, 4, 0, 0, 1, 14);
+    Graphics_LoadPalette(12, 12, 4, 0, 32, HEAP_ID_14);
+    Graphics_LoadTilemapToBgLayer(12, 11, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
+    Graphics_LoadTilesToBgLayer(12, 10, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
 }
 
 static void ov22_0225B964(UnkStruct_ov22_0225B85C *param0)

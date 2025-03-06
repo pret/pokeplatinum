@@ -79,12 +79,12 @@ void sub_0208A490(UnkStruct_02089688 *param0)
     v1 = param0->unk_2C0.unk_0C;
     v0 = param0->unk_2C0.unk_00;
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 12, v1, 1, 0, 0, 0, 101);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 14, v1, 1, 0, 0, 0, 101);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 12, v1, 1, 0, 0, 0, HEAP_ID_101);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 14, v1, 1, 0, 0, 0, HEAP_ID_101);
     PaletteData_LoadBufferFromFileStart(v4, 159, 13, 101, 0, 0x20 * 1, 0);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 15, v1, 5, 0, 0, 0, 101);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 17, v1, 5, 0, 0, 0, 101);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 15, v1, 5, 0, 0, 0, HEAP_ID_101);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 17, v1, 5, 0, 0, 0, HEAP_ID_101);
     PaletteData_LoadBufferFromFileStart(v4, 159, 16, 101, 1, 0x20 * 1, 0);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(v4, PLTTBUF_MAIN_OBJ, v2, v3, v0, 1, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
@@ -105,7 +105,7 @@ void sub_0208A490(UnkStruct_02089688 *param0)
     {
         int v5 = Options_Frame(param0->unk_38C.unk_20);
 
-        LoadMessageBoxGraphics(v1, 4, 1, 10, v5, 101);
+        LoadMessageBoxGraphics(v1, 4, 1, 10, v5, HEAP_ID_101);
         PaletteData_LoadBufferFromFileStart(v4, 38, GetMessageBoxPaletteNARCMember(v5), 101, 1, 0x20, 11 * 16);
         PaletteData_LoadBufferFromFileStart(v4, 14, 7, 101, 1, 0x20, 12 * 16);
     }

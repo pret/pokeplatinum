@@ -241,9 +241,9 @@ static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0)
     PaletteData *v4 = param0->unk_7C4->unk_10;
     int v5 = 50000;
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 70, v1, 5, 0, 0, 0, 111);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 72, v1, 5, 0, 0, 0, 111);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 73, v1, 4, 0, 0, 0, 111);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 70, v1, 5, 0, 0, 0, HEAP_ID_111);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 72, v1, 5, 0, 0, 0, HEAP_ID_111);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 73, v1, 4, 0, 0, 0, HEAP_ID_111);
     PaletteData_LoadBufferFromFileStart(v4, 172, 71, 111, 1, 0x20 * 2, 0);
 
     {

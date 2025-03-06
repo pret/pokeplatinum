@@ -1334,7 +1334,7 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     Font_LoadScreenIndicatorsPalette(0, 7 * 32, HEAP_ID_14);
     Window_Add(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, (0 + (29 * 4) + (18 + 12)));
     Window_FillTilemap(param0->unk_718, 15);
-    LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, 14);
+    LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, HEAP_ID_14);
     Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, (0 + (29 * 4)), 8);
 
     v0 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);

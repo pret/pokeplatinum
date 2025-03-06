@@ -324,9 +324,9 @@ static void ov25_02254820(SysTask *param0, void *param1)
     Bg_InitFromTemplate(v2->unk_1F8, 4, &v0, 0);
     Bg_InitFromTemplate(v2->unk_1F8, 5, &v1, 0);
 
-    Graphics_LoadTilesToBgLayer(12, 14, v2->unk_1F8, 4, 64, 0, 1, 7);
-    Graphics_LoadTilemapToBgLayer(12, 15, v2->unk_1F8, 4, 0, 0, 1, 7);
-    Graphics_LoadPaletteWithSrcOffset(12, 13, 4, PoketchSystem_GetBorderColor(v2->poketchSys) * 0x20, 15 * 0x20, 0x20, 7);
+    Graphics_LoadTilesToBgLayer(12, 14, v2->unk_1F8, 4, 64, 0, 1, HEAP_ID_POKETCH_MAIN);
+    Graphics_LoadTilemapToBgLayer(12, 15, v2->unk_1F8, 4, 0, 0, 1, HEAP_ID_POKETCH_MAIN);
+    Graphics_LoadPaletteWithSrcOffset(12, 13, 4, PoketchSystem_GetBorderColor(v2->poketchSys) * 0x20, 15 * 0x20, 0x20, HEAP_ID_POKETCH_MAIN);
 
     Bg_FillTilemapRect(v2->unk_1F8, 5, 64 + 164, 0, 0, 32, 24, 15);
     Bg_CopyTilemapBufferToVRAM(v2->unk_1F8, 5);
@@ -582,8 +582,8 @@ static void ov25_02254DE0(UnkStruct_ov25_02254560 *param0, UnkStruct_ov25_02254D
             0
         };
 
-        Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, 7);
-        Graphics_LoadPalette(12, 0, 5, 0, 0x60, 7);
+        Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, HEAP_ID_POKETCH_MAIN);
+        Graphics_LoadPalette(12, 0, 5, 0, 0x60, HEAP_ID_POKETCH_MAIN);
 
         ov25_02254E84(param0, 15);
 

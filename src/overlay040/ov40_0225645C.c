@@ -182,7 +182,7 @@ static void ov40_022564D4(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
 
     ov25_02255360(1);
 
-    v3 = Graphics_LoadObjectTiles(12, 84, 1, 0, 0, 1, 8);
+    v3 = Graphics_LoadObjectTiles(12, 84, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     v3 /= 20;
     param0->unk_78 = v3;
 
@@ -267,8 +267,8 @@ static void ov40_02256618(SysTask *param0, void *param1)
     UnkStruct_ov40_0225645C *v2 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    Graphics_LoadTilesToBgLayer(12, 81, v2->unk_04, 6, 0, 0, 1, 8);
-    Graphics_LoadTilemapToBgLayer(12, 80, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilesToBgLayer(12, 81, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(12, 80, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
     Poketch_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);

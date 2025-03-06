@@ -364,9 +364,9 @@ static void ov56_02256508(BgConfig *param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
-    Graphics_LoadPalette(74, 0, 4, 0, 0x20 * 3, 4);
-    Graphics_LoadTilesToBgLayer(74, 2, param0, 7, 0, (32 * 5) * 0x20, 1, 4);
-    Graphics_LoadTilemapToBgLayer(74, 4, param0, 7, 0, 32 * 24 * 2, 1, 4);
+    Graphics_LoadPalette(74, 0, 4, 0, 0x20 * 3, HEAP_ID_FIELD);
+    Graphics_LoadTilesToBgLayer(74, 2, param0, 7, 0, (32 * 5) * 0x20, 1, HEAP_ID_FIELD);
+    Graphics_LoadTilemapToBgLayer(74, 4, param0, 7, 0, 32 * 24 * 2, 1, HEAP_ID_FIELD);
     FieldMessage_LoadTextPalettes(4, FALSE);
 }
 

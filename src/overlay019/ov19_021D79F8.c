@@ -172,7 +172,7 @@ void ov19_021D7B4C(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_021D4F5
 static void ov19_021D7BC0(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_021D4F5C *param1, int param2, BOOL param3)
 {
     NNSG2dPaletteData *v0;
-    void *v1 = Graphics_GetPlttData(18, Unk_ov19_021E0178[param1->unk_01].unk_02, &v0, 10);
+    void *v1 = Graphics_GetPlttData(18, Unk_ov19_021E0178[param1->unk_01].unk_02, &v0, HEAP_ID_10);
 
     if (v1) {
         int v2;

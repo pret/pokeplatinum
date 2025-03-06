@@ -1632,7 +1632,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         CommSys_EnableSendMovementData();
         sub_020594FC();
 
-        Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
+        Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
         LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 
         if (v1->unk_2D) {

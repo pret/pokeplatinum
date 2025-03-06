@@ -370,7 +370,7 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
     ov88_0223B4F0(param0);
     ov88_0223B320(param0);
 
-    LoadMessageBoxGraphics(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->unk_18), 26);
+    LoadMessageBoxGraphics(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->unk_18), HEAP_ID_26);
     LoadStandardWindowGraphics(param0->unk_174, 0, (512 - 9), 11, 0, HEAP_ID_26);
 
     ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
@@ -521,7 +521,7 @@ static void ov88_0223B7A0(Party *param0, int param1, UnkStruct_02095E80 *param2)
     for (v0 = 0; v0 < Party_GetCurrentCount(param0); v0++) {
         v1 = v0 + param1;
 
-        param2->unk_7E8[v1] = Graphics_GetCharData(19, PokeIconSpriteIndex(param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_05, param2->unk_6F4[v1].unk_06), 0, &param2->unk_818[v1], 26);
+        param2->unk_7E8[v1] = Graphics_GetCharData(19, PokeIconSpriteIndex(param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_05, param2->unk_6F4[v1].unk_06), 0, &param2->unk_818[v1], HEAP_ID_26);
 
         DC_FlushRange(param2->unk_818[v1]->pRawData, 0x20 * 4 * 4);
 
@@ -902,7 +902,7 @@ static void ov88_0223C0E0(void *param0)
         int v1 = v0->unk_2168 - 1;
 
         GXS_LoadOBJ(v0->unk_848[v1], 0 + v1 * (0x20 * 10 * 10), (0x20 * 10 * 10));
-        Graphics_LoadPalette(v0->unk_2148[v1].archive, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, 26);
+        Graphics_LoadPalette(v0->unk_2148[v1].archive, v0->unk_2148[v1].palette, 5, 0x20 * (2 + v1), 32, HEAP_ID_26);
 
         v0->unk_2168 = 0;
     }
@@ -1201,16 +1201,16 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
     Bg_MaskPalette(0, 0);
     Bg_MaskPalette(4, 0);
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_26);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, 26);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, HEAP_ID_26);
 
     ov88_0223C488(param1, 3, v0, 2, 0, 32 * 24 * 2, 1, 26);
 
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, 26);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 3, 0, 32 * 24 * 2, 1, HEAP_ID_26);
     Font_LoadScreenIndicatorsPalette(0, 2 * 32, HEAP_ID_26);
     Font_LoadTextPalette(0, 3 * 32, HEAP_ID_26);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 5, 0, 16 * 4 * 0x20, 1, 26);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, 26);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, 26);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 5, 0, 16 * 4 * 0x20, 1, HEAP_ID_26);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_26);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, HEAP_ID_26);
     Font_LoadScreenIndicatorsPalette(4, 2 * 32, HEAP_ID_26);
     Font_LoadTextPalette(4, 3 * 32, HEAP_ID_26);
     Bg_ClearTilemap(v0, 4);
@@ -1257,7 +1257,7 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     SpriteTransfer_RequestChar(param0->unk_334[1][0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_334[0][1]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_334[1][1]);
-    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, 26);
+    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_26);
 }
 
 static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, ArchivedSprite *param3)

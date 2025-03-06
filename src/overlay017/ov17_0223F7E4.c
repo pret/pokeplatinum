@@ -574,7 +574,7 @@ void *ov17_0223F88C(UnkStruct_02095C48 *param0, UnkStruct_ov17_0223F88C *param1,
 
         for (v4 = 0; v4 < 5; v4++) {
             v0->unk_20[v4] = Heap_AllocFromHeap(HEAP_ID_21, 0x800);
-            v3 = Graphics_GetScrnDataFromOpenNARC(v1, Unk_ov17_02253250[v4], 1, &v2, 21);
+            v3 = Graphics_GetScrnDataFromOpenNARC(v1, Unk_ov17_02253250[v4], 1, &v2, HEAP_ID_21);
             MI_CpuCopy32(v2->rawData, v0->unk_20[v4], 0x800);
             Heap_FreeToHeap(v3);
         }
@@ -670,7 +670,7 @@ void ov17_0223F9C4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2, void
     }
 
     if ((v0->unk_00 != 0xffff) && ((param2 == 1) || (v0->unk_00 != v1->unk_00))) {
-        param0->unk_2C0 = Graphics_GetCharData(45, v0->unk_00, 1, &param0->unk_2C4, 21);
+        param0->unk_2C0 = Graphics_GetCharData(45, v0->unk_00, 1, &param0->unk_2C4, HEAP_ID_21);
         SysTask_ExecuteAfterVBlank(ov17_022411E4, param0, 10);
     }
 

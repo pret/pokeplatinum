@@ -93,7 +93,7 @@ void ov107_02249D84(BgConfig *param0, Window *param1)
 
 void ov107_02249DBC(Window *param0, int param1)
 {
-    LoadMessageBoxGraphics(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, 100);
+    LoadMessageBoxGraphics(param0->bgConfig, Window_GetBgLayer(param0), ((1024 - 9) - (18 + 12)), 10, param1, HEAP_ID_100);
     Window_FillTilemap(param0, 15);
     Window_DrawMessageBoxWithScrollCursor(param0, 1, ((1024 - 9) - (18 + 12)), 10);
     Window_ScheduleCopyToVRAM(param0);

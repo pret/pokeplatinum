@@ -335,10 +335,10 @@ static void ov97_022305EC(Window *param0, int param1)
 
 static void ov97_02230664(BgConfig *param0)
 {
-    Graphics_LoadPalette(116, 11, 0, 16 * 2 * 15, 16 * 2, 87);
-    Graphics_LoadPalette(116, 16, 0, 16 * 2 * 12, 16 * 2, 87);
-    Graphics_LoadTilesToBgLayer(116, 17, param0, 1, 0, 6 * 16 * 0x20, 1, 87);
-    Graphics_LoadTilemapToBgLayer(116, 18, param0, 1, 0, 32 * 24 * 2, 1, 87);
+    Graphics_LoadPalette(116, 11, 0, 16 * 2 * 15, 16 * 2, HEAP_ID_87);
+    Graphics_LoadPalette(116, 16, 0, 16 * 2 * 12, 16 * 2, HEAP_ID_87);
+    Graphics_LoadTilesToBgLayer(116, 17, param0, 1, 0, 6 * 16 * 0x20, 1, HEAP_ID_87);
+    Graphics_LoadTilemapToBgLayer(116, 18, param0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_87);
     Bg_ChangeTilemapRectPalette(param0, 1, 0, 0, 32, 24, 12);
     Bg_CopyTilemapBufferToVRAM(param0, 1);
 }
@@ -802,7 +802,7 @@ static void ov97_022310FC(UnkStruct_ov97_02230868 *param0)
         }
 
         param0->unk_2E90[v1] = ov97_02237D14(0, param0->unk_2E90[v1], v0, 16, 10 + v1);
-        v3 = Graphics_GetCharData(19, PokeIconSpriteIndex(v2, 0, 0), 0, &v4, param0->heapID);
+        v3 = Graphics_GetCharData(19, PokeIconSpriteIndex(v2, 0, HEAP_ID_SYSTEM), 0, &v4, param0->heapID);
 
         DC_FlushRange(v4->pRawData, ((4 * 4) * 0x20));
         GX_LoadOBJ(v4->pRawData, (0x64 + v1 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
@@ -1050,7 +1050,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         Font_LoadTextPalette(0, 15 * 32, HEAP_ID_87);
         LoadStandardWindowGraphics(v4->unk_2A5C, 0, 1, 13, 0, HEAP_ID_87);
         LoadStandardWindowGraphics(v4->unk_2A5C, 0, (1 + 9), 14, 1, HEAP_ID_87);
-        LoadMessageBoxGraphics(v4->unk_2A5C, 0, ((1 + 9) + 9), 10, v4->unk_2C0C, 87);
+        LoadMessageBoxGraphics(v4->unk_2A5C, 0, ((1 + 9) + 9), 10, v4->unk_2C0C, HEAP_ID_87);
 
         ov97_02230C44(v4, 1, 0);
         ov97_02230C10(v4, 1, 3, param1);

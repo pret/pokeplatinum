@@ -535,7 +535,7 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
 
     SpriteTransfer_RequestChar(param0->unk_1D0[0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_1D0[1]);
-    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, 78);
+    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, HEAP_ID_78);
 }
 
 static void ov97_022340B0(UnkStruct_ov97_02234A2C *param0)
@@ -1413,14 +1413,14 @@ static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
     Text_ResetAllPrinters();
 
     Font_LoadTextPalette(0, 15 * 32, HEAP_ID_78);
-    Graphics_LoadPalette(116, 19, 0, 0, 32 * 6, 78);
-    Graphics_LoadTilesToBgLayer(116, 22, param0->unk_20, 2, 0, 10 * 16 * 0x20, 1, 78);
+    Graphics_LoadPalette(116, 19, 0, 0, 32 * 6, HEAP_ID_78);
+    Graphics_LoadTilesToBgLayer(116, 22, param0->unk_20, 2, 0, 10 * 16 * 0x20, 1, HEAP_ID_78);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_78);
 }
 
 static void ov97_02234E7C(UnkStruct_ov97_02234A2C *param0)
 {
-    Graphics_LoadTilemapToBgLayer(116, 20, param0->unk_20, 2, 0, 32 * 24 * 2, 1, 78);
+    Graphics_LoadTilemapToBgLayer(116, 20, param0->unk_20, 2, 0, 32 * 24 * 2, 1, HEAP_ID_78);
     Bg_ChangeTilemapRectPalette(param0->unk_20, 2, 0, 0, 32, 24, Unk_ov97_0223EA60[param0->unk_00]);
     Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
 }
@@ -1429,7 +1429,7 @@ static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0)
 {
     Font_LoadTextPalette(0, 14 * 32, HEAP_ID_78);
     LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, HEAP_ID_78);
-    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
+    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, HEAP_ID_78);
 
     memset(&param0->unk_490, 0, sizeof(UnkStruct_ov97_02233DAC));
 
@@ -1487,13 +1487,13 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
         ov97_02234278(v1, v2, personality, v3, i, param0->unk_478[i]);
     }
 
-    Graphics_LoadTilemapToBgLayer(116, 21, param0->unk_20, 2, 0, 32 * 24 * 2, 1, 78);
+    Graphics_LoadTilemapToBgLayer(116, 21, param0->unk_20, 2, 0, 32 * 24 * 2, 1, HEAP_ID_78);
     Bg_ChangeTilemapRectPalette(param0->unk_20, 2, 0, 0, 32, 24, Unk_ov97_0223EA60[param0->unk_00]);
     Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Font_LoadTextPalette(0, 14 * 32, HEAP_ID_78);
     LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, HEAP_ID_78);
-    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
+    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, HEAP_ID_78);
 
     ov97_02234ECC(param0);
     param0->unk_490.unk_34 = 10;

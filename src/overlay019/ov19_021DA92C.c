@@ -74,11 +74,11 @@ BOOL ov19_021DA92C(UnkStruct_ov19_021DA9E0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_20 = ov19_021D7818(param1);
     param0->unk_18 = sub_0200C440(9, 6, 15, HEAP_ID_10);
     param0->unk_1C = sub_0200C440(1, 2, 15, HEAP_ID_10);
-    param0->unk_28 = Graphics_GetCellBankFromOpenNARC(param6, 16, 1, &(param0->unk_2C), 10);
+    param0->unk_28 = Graphics_GetCellBankFromOpenNARC(param6, 16, 1, &(param0->unk_2C), HEAP_ID_10);
     param0->unk_30 = NULL;
     param0->unk_44 = MessageLoader_GetNewStrbuf(param5, 21);
     param0->unk_48 = MessageLoader_GetNewStrbuf(param5, 22);
-    param0->unk_34 = Graphics_GetCellBank(sub_0207C944(), sub_0207C924(), 1, &(param0->unk_38), 10);
+    param0->unk_34 = Graphics_GetCellBank(sub_0207C944(), sub_0207C924(), 1, &(param0->unk_38), HEAP_ID_10);
 
     for (v0 = 0; v0 < 2; v0++) {
         param0->unk_3C[v0] = NULL;
@@ -218,7 +218,7 @@ static void ov19_021DAB44(UnkStruct_ov19_021DA9E0 *param0)
     v2 = sub_0207C944();
     v3 = sub_0207C908(2);
 
-    Graphics_LoadPalette(v2, sub_0207C920(), 1, 10 * 0x20, 0x20 * 3, 10);
+    Graphics_LoadPalette(v2, sub_0207C920(), 1, 10 * 0x20, 0x20 * 3, HEAP_ID_10);
 
     for (v4 = 0; v4 < 2; v4++) {
         NNS_G2dInitImageProxy(&v0);
@@ -412,7 +412,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
         v3 = sub_0207C944();
         v4 = sub_0207C908(param1->unk_10->unk_4C.unk_0C);
 
-        Graphics_LoadObjectTiles(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0C), 0, 1504 * 0x20, 0, 1, 10);
+        Graphics_LoadObjectTiles(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0C), 0, 1504 * 0x20, 0, 1, HEAP_ID_10);
 
         v2 = *Sprite_GetPosition(param1->unk_3C[0]);
         v2.y = (176 + (16 * param3)) << FX32_SHIFT;
@@ -422,7 +422,7 @@ static void ov19_021DAE60(Window *param0, UnkStruct_ov19_021DA9E0 *param1, u32 p
         Sprite_SetDrawFlag(param1->unk_3C[0], 1);
 
         if (param1->unk_10->unk_4C.unk_0C != param1->unk_10->unk_4C.unk_0D) {
-            Graphics_LoadObjectTiles(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0D), 0, (1504 + 8) * 0x20, 0, 1, 10);
+            Graphics_LoadObjectTiles(sub_0207C944(), sub_0207C908(param1->unk_10->unk_4C.unk_0D), 0, (1504 + 8) * 0x20, 0, 1, HEAP_ID_10);
 
             v2.x += (36 << FX32_SHIFT);
 

@@ -413,8 +413,8 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
         v3 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, HEAP_ID_FIELD);
 
         Graphics_LoadPaletteFromOpenNARC(v3, 0, 4, 0, 0x20 * 2, HEAP_ID_FIELD);
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v3, 1, param0, 4, 0, 32 * 5 * 0x20, 0, 4);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v3, 2, param0, 4, 0, 32 * 24 * 2, 0, 4);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v3, 1, param0, 4, 0, 32 * 5 * 0x20, 0, HEAP_ID_FIELD);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v3, 2, param0, 4, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD);
         NARC_dtor(v3);
     }
 
@@ -422,7 +422,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
     Bg_ClearTilesRange(7, 32, 0, HEAP_ID_FIELD);
     FieldMessage_AddWindow(param0, param1, 7);
     Window_FillTilemap(param1, 0);
-    Graphics_LoadPalette(50, 52, 4, 10 * 0x20, 4 * 0x20, 4);
+    Graphics_LoadPalette(50, 52, 4, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
     sub_0200F338(1);
 }
 

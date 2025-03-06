@@ -1023,7 +1023,7 @@ static void ov108_02242828(UnkStruct_ov108_02241DB0 *param0, u32 param1)
 {
     u32 v0;
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3D0, 120, param0->unk_90, param1, 0, 0, 1, 103);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3D0, 120, param0->unk_90, param1, 0, 0, 1, HEAP_ID_103);
 
     if (ov104_0223C000(param0->unk_09) == 0) {
         v0 = 116;
@@ -1031,7 +1031,7 @@ static void ov108_02242828(UnkStruct_ov108_02241DB0 *param0, u32 param1)
         v0 = 118;
     }
 
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3D0, v0, param0->unk_90, param1, 0, 0, 1, 103);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3D0, v0, param0->unk_90, param1, 0, 0, 1, HEAP_ID_103);
     return;
 }
 
@@ -1045,7 +1045,7 @@ static void ov108_02242884(UnkStruct_ov108_02241DB0 *param0, u32 param1)
         v0 = 119;
     }
 
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3D0, v0, param0->unk_90, param1, 0, 0, 1, 103);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3D0, v0, param0->unk_90, param1, 0, 0, 1, HEAP_ID_103);
     return;
 }
 
@@ -1054,7 +1054,7 @@ static void ov108_022428C0(void)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = Graphics_GetPlttData(150, 167, &v1, 103);
+    v0 = Graphics_GetPlttData(150, 167, &v1, HEAP_ID_103);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 7));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 7));
@@ -1065,9 +1065,9 @@ static void ov108_022428C0(void)
 
 static void ov108_022428F4(UnkStruct_ov108_02241DB0 *param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3D0, 122, param0->unk_90, param1, 0, 0, 1, 103);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_3D0, 122, param0->unk_90, param1, 0, 0, 1, HEAP_ID_103);
     Graphics_LoadPaletteFromOpenNARC(param0->unk_3D0, 168, 4, 0, (sizeof(u16) * 16 * 2), HEAP_ID_103);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3D0, 121, param0->unk_90, param1, 0, 0, 1, 103);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_3D0, 121, param0->unk_90, param1, 0, 0, 1, HEAP_ID_103);
 
     return;
 }
