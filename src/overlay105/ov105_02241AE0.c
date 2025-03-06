@@ -356,7 +356,7 @@ int ov105_02241AE0(OverlayManager *param0, int *param1)
     ov105_022452E4();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_93, 0x20000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov105_02241FF4), 93);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov105_02241FF4), HEAP_ID_93);
     memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
 
     v1->unk_124 = sub_02024220(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);

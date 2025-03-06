@@ -323,7 +323,7 @@ int ov68_0225C700(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_122, 0x50000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov68_0225C700), 122);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov68_0225C700), HEAP_ID_122);
     memset(v0, 0, sizeof(UnkStruct_ov68_0225C700));
 
     ov68_0225C91C(&v0->unk_00, v1->unk_00, 122);

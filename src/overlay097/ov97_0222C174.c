@@ -669,7 +669,7 @@ static void ov97_0222C688(OverlayManager *param0)
 
 static int ov97_0222C6F8(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov97_0222C388 *v0 = ov97_022376C4(param0, 85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
+    UnkStruct_ov97_0222C388 *v0 = ov97_022376C4(param0, HEAP_ID_85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
 
     v0->heapID = HEAP_ID_85;
     v0->unk_04 = BgConfig_New(v0->heapID);

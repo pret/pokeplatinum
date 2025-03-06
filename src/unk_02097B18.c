@@ -84,7 +84,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     ov76_0223EB20(53);
     ov76_0223D3A0();
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov76_0223DE00), 53);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov76_0223DE00), HEAP_ID_53);
     memset(v0, 0, sizeof(UnkStruct_ov76_0223DE00));
 
     v0->unk_D4.unk_15C = ov76_0223BE6C();

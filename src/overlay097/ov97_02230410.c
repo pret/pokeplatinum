@@ -818,7 +818,7 @@ static int ov97_02231224(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_87, 0x30000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_02230868), 87);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_02230868), HEAP_ID_87);
     memset(v0, 0, sizeof(UnkStruct_ov97_02230868));
 
     v0->unk_2A5C = BgConfig_New(HEAP_ID_87);

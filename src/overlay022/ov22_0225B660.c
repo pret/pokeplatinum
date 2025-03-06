@@ -63,7 +63,7 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_0225B85C), 13);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_0225B85C), HEAP_ID_13);
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B85C));
 
     SetVBlankCallback(ov22_0225B848, v0);

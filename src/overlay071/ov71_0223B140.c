@@ -153,7 +153,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_25, 0x28000);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__TRAINER_CASE, 25);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov71_0223B620), 25);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov71_0223B620), HEAP_ID_25);
 
     memset(v0, 0, sizeof(UnkStruct_ov71_0223B620));
 

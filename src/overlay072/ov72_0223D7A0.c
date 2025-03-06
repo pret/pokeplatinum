@@ -123,7 +123,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_39, 0x40000);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov72_0223DB98), 39);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov72_0223DB98), HEAP_ID_39);
         memset(v0, 0, sizeof(UnkStruct_ov72_0223DB98));
         v0->unk_00 = BgConfig_New(HEAP_ID_39);
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, 39);

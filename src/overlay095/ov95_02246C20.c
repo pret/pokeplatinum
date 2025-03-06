@@ -134,7 +134,7 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
         ov95_02247688();
         sub_02004550(3, 1170, 1);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov95_02247628), 57);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov95_02247628), HEAP_ID_57);
 
         if (v0) {
             v0->unk_00 = OverlayManager_Args(param0);

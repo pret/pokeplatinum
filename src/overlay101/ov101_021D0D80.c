@@ -85,7 +85,7 @@ int ov101_021D0D80(OverlayManager *param0, int *param1)
     GXLayers_DisableEngineBLayers();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_79, 0x80000);
 
-    v0 = OverlayManager_NewData(param0, (sizeof(UnkStruct_ov101_021D0F3C)), 79);
+    v0 = OverlayManager_NewData(param0, (sizeof(UnkStruct_ov101_021D0F3C)), HEAP_ID_79);
     memset(v0, 0, (sizeof(UnkStruct_ov101_021D0F3C)));
     v2 = OverlayManager_Args(param0);
     v0->unk_00 = v2;

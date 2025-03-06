@@ -177,7 +177,7 @@ static int sub_02098B1C(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_44, 0x1000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02098BE4), 44);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02098BE4), HEAP_ID_44);
     MI_CpuClear8(v0, sizeof(UnkStruct_02098BE4));
 
     v0->heapID = HEAP_ID_44;

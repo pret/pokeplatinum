@@ -38,7 +38,7 @@ int ov87_021D0D80(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_60, 16384);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_61, 114688);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov87_021D0D80), 60);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov87_021D0D80), HEAP_ID_60);
 
     if (v0) {
         v0->unk_CC = OverlayManager_Args(param0);

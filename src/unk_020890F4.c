@@ -48,7 +48,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_101, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02089688), 101);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02089688), HEAP_ID_101);
     memset(v0, 0, sizeof(UnkStruct_02089688));
     v0->unk_38C = *((UnkStruct_02089438 *)OverlayManager_Args(param0));
 

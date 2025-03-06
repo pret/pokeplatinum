@@ -928,7 +928,7 @@ static void ov77_021D2CE8(void)
 static int ov77_021D2D08(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov77_021D2E9C *v0;
-    int v1 = 76;
+    int heapID = HEAP_ID_76;
 
     BrightnessController_ResetAllControllers();
     sub_0200F344(0, 0x7fff);
@@ -938,12 +938,12 @@ static int ov77_021D2D08(OverlayManager *param0, int *param1)
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
     SetAutorepeat(4, 8);
-    Heap_Create(HEAP_ID_APPLICATION, v1, 0xa0000);
+    Heap_Create(HEAP_ID_APPLICATION, heapID, 0xa0000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov77_021D2E9C), v1);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov77_021D2E9C), heapID);
     memset(v0, 0, sizeof(UnkStruct_ov77_021D2E9C));
 
-    v0->unk_00 = v1;
+    v0->unk_00 = heapID;
     v0->unk_08 = 0;
     v0->unk_2A8 = 0;
 

@@ -154,7 +154,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_21, 0x70000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_02246F24), 21);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_02246F24), HEAP_ID_21);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02246F24));
 
     v0->unk_08 = ov17_0223F140(HEAP_ID_21);

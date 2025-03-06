@@ -1639,7 +1639,7 @@ static void NitroStaticInit(void)
 
 static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
 {
-    UnkStruct_0207A778 *v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0207A778), 5);
+    UnkStruct_0207A778 *v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0207A778), HEAP_ID_BATTLE);
 
     v0->unk_00 = param1;
     v0->unk_1020 = 0;
@@ -1995,7 +1995,7 @@ static void ov16_0223D7B4(OverlayManager *param0)
 
 static BOOL ov16_0223D800(OverlayManager *param0)
 {
-    BattleSystem *battleSys = OverlayManager_NewData(param0, sizeof(BattleSystem), 5);
+    BattleSystem *battleSys = OverlayManager_NewData(param0, sizeof(BattleSystem), HEAP_ID_BATTLE);
     FieldBattleDTO *v1 = OverlayManager_Args(param0);
     u8 v2;
 

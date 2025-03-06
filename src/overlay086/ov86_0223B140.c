@@ -292,7 +292,7 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_63, 196608);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov86_0223B3C8), 63);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov86_0223B3C8), HEAP_ID_63);
 
     v0->unk_0C = OverlayManager_Args(param0);
     v0->unk_1C50 = MessageLoader_Init(0, 26, 351, HEAP_ID_63);

@@ -399,7 +399,7 @@ int ov65_0223648C(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_96, 0x18000);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_97, 0xa000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_022367A8), 96);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_022367A8), HEAP_ID_96);
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov65_022367A8));
     MI_CpuFill8(v0->unk_00.unk_1C, 1, sizeof(u8) * 4);

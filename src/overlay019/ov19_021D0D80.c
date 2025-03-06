@@ -278,7 +278,7 @@ int ov19_021D0D80(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_9, 16384);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov19_021D5DF8), 9);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov19_021D5DF8), HEAP_ID_9);
 
     if (v0 != NULL) {
         ov19_021D4BE0(v0, OverlayManager_Args(param0));

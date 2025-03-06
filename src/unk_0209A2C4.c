@@ -68,14 +68,14 @@ const OverlayManagerTemplate Unk_020F8AB4 = {
 int sub_0209A2C4(OverlayManager *param0, int *param1)
 {
     UnkStruct_0209A3D0 *v0;
-    int heapId = HEAP_ID_88;
+    int heapID = HEAP_ID_88;
 
-    Heap_Create(HEAP_ID_APPLICATION, heapId, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, heapID, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0209A3D0), heapId);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0209A3D0), heapID);
     memset(v0, 0, sizeof(UnkStruct_0209A3D0));
 
-    v0->heapID = heapId;
+    v0->heapID = heapID;
     v0->unk_04 = 0;
     v0->unk_34 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
 

@@ -941,7 +941,7 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
     GameWindowLayout *v0;
     u32 v1;
 
-    v0 = OverlayManager_NewData(param0, sizeof(GameWindowLayout), 12);
+    v0 = OverlayManager_NewData(param0, sizeof(GameWindowLayout), HEAP_ID_12);
     memset(v0, 0, sizeof(GameWindowLayout));
 
     v0->unk_5A4 = OverlayManager_Args(param0);

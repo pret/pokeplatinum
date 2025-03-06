@@ -757,7 +757,7 @@ int ov65_0222E2A8(OverlayManager *param0, int *param1)
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_54, 0xa0000);
         }
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_0222EBE0), 54);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_0222EBE0), HEAP_ID_54);
 
         MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov65_0222EBE0));
         VramTransfer_New(32, 54);

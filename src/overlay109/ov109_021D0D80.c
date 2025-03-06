@@ -437,7 +437,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     ResetLock(2);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_95, 0x80000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D0F70), 95);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D0F70), HEAP_ID_95);
     memset(v0, 0, sizeof(UnkStruct_ov109_021D0F70));
 
     v1->unk_38 = v0;

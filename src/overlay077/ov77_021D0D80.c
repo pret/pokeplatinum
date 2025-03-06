@@ -158,7 +158,7 @@ const OverlayManagerTemplate gTitleScreenOverlayTemplate = {
 static int ov77_021D0D80(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov77_021D17B4 *v0;
-    int heapID = 30;
+    int heapID = HEAP_ID_DISTORTION_WORLD_WARP;
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);

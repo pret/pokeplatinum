@@ -297,7 +297,7 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     G2S_BlendNone();
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_109, 0x70000);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02247704), 109);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02247704), HEAP_ID_109);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02247704));
 
     v0->unk_00 = OverlayManager_Args(param0);
