@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_020216E0_decl.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -6719,7 +6721,7 @@ static void ov9_0224EA94(UnkStruct_ov101_021D5D90 *param0, void *param1)
     switch (v1->unk_2C) {
     case 0:
         if (v2->unk_07 == 1) {
-            sub_02005844(487, 0);
+            sub_02005844(SPECIES_GIRATINA, 0);
         } else if (v2->unk_07 == 2) {
             Sound_PlayEffect(1609);
         }
@@ -8860,7 +8862,7 @@ static int ov9_02250918(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
     UnkStruct_ov9_02250918 *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250918));
     v0->unk_20 = ov9_0224F0D4(param0, 579, (0x80 + 3));
 
-    sub_02005844(480, 0);
+    sub_02005844(SPECIES_UXIE, 0);
 
     v0->unk_04 = 1;
     *param2 = 1;
@@ -8989,7 +8991,7 @@ static int ov9_02250AFC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
     UnkStruct_ov9_02250AFC *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250AFC));
     v0->unk_14 = ov9_0224F0D4(param0, 579, (0x80 + 4));
 
-    sub_02005844(482, 0);
+    sub_02005844(SPECIES_AZELF, 0);
 
     *param2 = 1;
     return 0;
@@ -9154,7 +9156,7 @@ static int ov9_02250C14(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
     UnkStruct_ov9_02250C14 *v0 = ov9_0224E37C(param0, sizeof(UnkStruct_ov9_02250AFC));
     v0->unk_18 = ov9_0224F0D4(param0, 579, (0x80 + 5));
 
-    sub_02005844(481, 0);
+    sub_02005844(SPECIES_MESPRIT, 0);
     *param2 = 1;
     return 0;
 }

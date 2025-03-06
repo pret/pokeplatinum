@@ -1154,9 +1154,9 @@ void sub_02004F4C(int param0)
     return;
 }
 
-void sub_02004F68(int param0, u16 param1, int param2)
+void sub_02004F68(int param0, u16 param1, int pitch)
 {
-    NNS_SndPlayerSetTrackPitch(sub_020040CC(param0), param1, param2);
+    NNS_SndPlayerSetTrackPitch(sub_020040CC(param0), param1, pitch);
     return;
 }
 

@@ -1496,7 +1496,7 @@ static const TouchScreenRect Unk_ov88_0223EE28[] = {
 
 static void ov88_0223CE74(UnkStruct_02095E80 *param0)
 {
-    u16 v0, v1;
+    u16 species, form;
     int v2 = -1, v3;
 
     if (param0->unk_88[0] >= 6) {
@@ -1510,13 +1510,13 @@ static void ov88_0223CE74(UnkStruct_02095E80 *param0)
             return;
         }
 
-        v0 = param0->unk_6F4[param0->unk_88[0]].unk_00;
-        v1 = param0->unk_6F4[param0->unk_88[0]].unk_06;
+        species = param0->unk_6F4[param0->unk_88[0]].unk_00;
+        form = param0->unk_6F4[param0->unk_88[0]].unk_06;
 
-        if (v0 == 441) {
+        if (species == SPECIES_CHATOT) {
             Sound_PlayChatotCry(GetChatotCryDataFromSave(param0->unk_04), 0, 100, 0);
         } else {
-            sub_02005844(v0, v1);
+            sub_02005844(species, form);
         }
 
         Sprite_SetAnimateFlag(param0->unk_464[v2], 1);

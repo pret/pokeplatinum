@@ -100,7 +100,6 @@ void sub_02003B60(ChatotCry *param0, Options *param1)
 
 void UpdateSound(void)
 {
-    int v0;
     UnkStruct_02003D54 *v1 = sub_02003D54();
 
     if (sub_02003D28() == 0) {
@@ -113,12 +112,12 @@ void UpdateSound(void)
 
     CheckMicRecordingStatus();
 
-    for (v0 = 0; v0 < 2; v0++) {
-        if (v1->unk_BCDD0[v0] != 0) {
-            v1->unk_BCDD0[v0]--;
+    for (int i = 0; i < 2; i++) {
+        if (v1->unk_BCDD0[i] != 0) {
+            v1->unk_BCDD0[i]--;
 
-            if (v1->unk_BCDD0[v0] == 0) {
-                Sound_PlayPokemonCry(v1->unk_BCDAC[v0], v1->unk_BCDCC[v0], v1->unk_BCDB4[v0], v1->unk_BCDBC[v0], v1->unk_BCDC4[v0], 0);
+            if (v1->unk_BCDD0[i] == 0) {
+                Sound_PlayPokemonCry(v1->unk_BCDAC[i], v1->unk_BCDCC[i], v1->unk_BCDB4[i], v1->unk_BCDBC[i], v1->unk_BCDC4[i], 0);
             }
         }
     }

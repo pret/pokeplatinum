@@ -1,5 +1,9 @@
+#include "unk_02006224.h"
+
 #include <nitro.h>
 #include <string.h>
+
+#include "constants/species.h"
 
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02004CB4.h"
@@ -11,17 +15,12 @@
 #include "unk_0202CC64.h"
 
 BOOL CheckMicRecordingStatus(void);
-BOOL IsChatotCryStructReadyForProcessing(const ChatotCry *param0);
-BOOL ProcessAudioInput(const ChatotCry *param0, u32 param1, int param2, int param3);
 void ResetMicStatusFlags(void);
 MICResult StartMicSampling(void);
 MICResult StopMicSampling(void);
 void StoreMicDataInChatotCryStruct(ChatotCry *param0);
-void Sound_FlagDefaultChatotCry(u8 param0);
 BOOL Sound_PlayChatotCry(ChatotCry *param0, u32 param1, int param2, int param3);
-BOOL Sound_PlayDelayedChatotCry(ChatotCry *param0, u32 param1, int param2, int param3, u8 param4);
 int Sound_Chatter(ChatotCry *param0);
-BOOL Sound_CanPlayChatotCry(int param0);
 
 BOOL CheckMicRecordingStatus(void)
 {
@@ -48,36 +47,36 @@ BOOL IsChatotCryStructReadyForProcessing(const ChatotCry *cry)
     u8 *v0 = sub_02003D5C(31);
     u8 *v1 = sub_02003D5C(54);
 
-    if (IsChatotCryDataValid(cry) == 0) {
-        return 0;
+    if (IsChatotCryDataValid(cry) == FALSE) {
+        return FALSE;
     }
 
     if (*v1 == 1) {
-        return 0;
+        return FALSE;
     }
 
     if (*v0 == 1) {
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-BOOL ProcessAudioInput(const ChatotCry *param0, u32 param1, int param2, int param3)
+BOOL ProcessAudioInput(const ChatotCry *cry, u32 param1, int volume, int pan)
 {
     u16 v0;
     int v1, v2;
     s8 *v3 = sub_02005014();
     u8 *v4 = sub_02003D5C(30);
 
-    if (IsChatotCryStructReadyForProcessing(param0) == 0) {
-        return 0;
+    if (IsChatotCryStructReadyForProcessing(cry) == FALSE) {
+        return FALSE;
     }
 
-    if (param3 < 0) {
-        v2 = 64 + (param3 / 2);
+    if (pan < 0) {
+        v2 = 64 + (pan / 2);
     } else {
-        v2 = 64 + (param3 / 2);
+        v2 = 64 + (pan / 2);
     }
 
     sub_0200592C(0);
@@ -85,7 +84,7 @@ BOOL ProcessAudioInput(const ChatotCry *param0, u32 param1, int param2, int para
     sub_02004BCC(14);
 
     v0 = (LCRNG_Next() % 8192);
-    ProcessChatotCryAudioData(v3, GetChatotCryAudioBuffer(param0));
+    ProcessChatotCryAudioData(v3, GetChatotCryAudioBuffer(cry));
 
     {
         UnkStruct_02004CB4 v5;
@@ -97,16 +96,16 @@ BOOL ProcessAudioInput(const ChatotCry *param0, u32 param1, int param2, int para
         v5.unk_10 = 0;
         v5.unk_14 = (2000 * 1);
         v5.unk_18 = 2000;
-        v5.unk_1C = param2;
+        v5.unk_1C = volume;
         v5.unk_20 = (32768 + v0);
         v5.unk_24 = v2;
 
         v1 = sub_02004CB4(&v5, 14);
-        sub_02004D40(14, param2);
+        sub_02004D40(14, volume);
     }
 
     *v4 = 1;
-    Sound_FlagDefaultChatotCry(0);
+    Sound_FlagDefaultChatotCry(FALSE);
 
     return v1;
 }
@@ -156,47 +155,47 @@ void StoreMicDataInChatotCryStruct(ChatotCry *param0)
     return;
 }
 
-void Sound_FlagDefaultChatotCry(u8 param0)
+void Sound_FlagDefaultChatotCry(u8 value)
 {
     u8 *v0 = sub_02003D5C(31);
 
-    *v0 = param0;
+    *v0 = value;
     return;
 }
 
-BOOL Sound_PlayChatotCry(ChatotCry *param0, u32 param1, int param2, int param3)
+BOOL Sound_PlayChatotCry(ChatotCry *param0, u32 param1, int volume, int pan)
 {
     int v0;
     ChatotCry **v1 = sub_02003D5C(36);
 
     if (param0 == NULL) {
-        v0 = ProcessAudioInput(*v1, param1, param2, param3);
+        v0 = ProcessAudioInput(*v1, param1, volume, pan);
     } else {
-        v0 = ProcessAudioInput(param0, param1, param2, param3);
+        v0 = ProcessAudioInput(param0, param1, volume, pan);
     }
 
-    if (v0 == 0) {
-        Sound_FlagDefaultChatotCry(1);
-        v0 = Sound_PlayPokemonCry(0, 441, param3, param2, HEAP_ID_FIELDMAP, 0);
+    if (v0 == FALSE) {
+        Sound_FlagDefaultChatotCry(TRUE);
+        v0 = Sound_PlayPokemonCry(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELDMAP, 0);
     }
 
     return v0;
 }
 
-BOOL Sound_PlayDelayedChatotCry(ChatotCry *param0, u32 param1, int param2, int param3, u8 param4)
+BOOL Sound_PlayDelayedChatotCry(ChatotCry *param0, u32 param1, int volume, int pan, u8 delay)
 {
     int v0;
     ChatotCry **v1 = sub_02003D5C(36);
 
     if (param0 == NULL) {
-        v0 = ProcessAudioInput(*v1, param1, param2, param3);
+        v0 = ProcessAudioInput(*v1, param1, volume, pan);
     } else {
-        v0 = ProcessAudioInput(param0, param1, param2, param3);
+        v0 = ProcessAudioInput(param0, param1, volume, pan);
     }
 
     if (v0 == 0) {
-        Sound_FlagDefaultChatotCry(1);
-        Sound_PlayDelayedPokemonCry(0, 441, param3, param2, HEAP_ID_FIELDMAP, param4, 0);
+        Sound_FlagDefaultChatotCry(TRUE);
+        Sound_PlayDelayedPokemonCry(POKECRY_NORMAL, SPECIES_CHATOT, pan, volume, HEAP_ID_FIELDMAP, delay, 0);
         v0 = 1;
     }
 
@@ -226,16 +225,16 @@ int Sound_Chatter(ChatotCry *param0)
     return 0;
 }
 
-BOOL Sound_CanPlayChatotCry(int param0)
+BOOL Sound_CanPlayChatotCry(enum PokemonCryMod cryMod)
 {
-    switch (param0) {
-    case 0:
-    case 1:
-    case 5:
-    case 11:
-    case 12:
-        return 1;
+    switch (cryMod) {
+    case POKECRY_NORMAL:
+    case POKECRY_HALF_DURATION:
+    case POKECRY_FAINT:
+    case POKECRY_PINCH_NORMAL:
+    case POKECRY_PINCH_HALF_DURATION:
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }

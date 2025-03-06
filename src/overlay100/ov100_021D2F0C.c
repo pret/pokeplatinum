@@ -373,7 +373,7 @@ static void ov100_021D37F4(SysTask *param0, void *param1)
         break;
     case 1:
         if ((++v0->unk_04) >= NELEMS(v1)) {
-            Sound_PlayPokemonCry(0, v0->unk_08, v0->unk_0C, 80, HEAP_ID_111, 0);
+            Sound_PlayPokemonCry(POKECRY_NORMAL, v0->unk_08, v0->unk_0C, 80, HEAP_ID_111, 0);
             v0->unk_00++;
         } else {
             Easy3DObject_SetScale(&v0->unk_10->unk_00, FX32_CONST(v1[v0->unk_04]), FX32_CONST(1.00f), FX32_CONST(1.00f));

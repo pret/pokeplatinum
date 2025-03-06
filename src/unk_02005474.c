@@ -43,16 +43,14 @@ int sub_020057E0(void);
 void sub_020057FC(u16 param0, u16 param1, int param2);
 void sub_02005818(int param0);
 static void sub_02005E4C(u16 param0, int param1, int param2);
-BOOL sub_02005844(u16 param0, u8 param1);
-BOOL sub_0200590C(u16 param0, u8 param1, u8 param2);
 void sub_0200592C(int param0);
 int sub_0200598C(void);
 void sub_02005E64(int param0, int heapID);
 static void sub_02005EB0(SysTask *param0, void *param1);
 void sub_02005F24(void);
-static BOOL sub_02006038(u16 param0, u8 param1);
+static BOOL sub_02006038(u16 species, u8 form);
 void sub_0200605C(void);
-static BOOL sub_020060EC(u16 param0, s8 param1, u8 param2);
+static BOOL sub_020060EC(u16 species, s8 pitch, u8 form);
 static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int heapID);
 BOOL sub_02006150(u16 param0);
 int sub_0200619C(void);
@@ -379,29 +377,26 @@ void sub_02005818(int param0)
     return;
 }
 
-BOOL sub_02005844(u16 param0, u8 param1)
+BOOL sub_02005844(u16 species, u8 form)
 {
-    u16 v0;
     int v1;
     u8 *v2 = sub_02003D5C(18);
-    ChatotCry **v3 = sub_02003D5C(36);
+    ChatotCry **chatotCry = sub_02003D5C(36);
     u8 *v4 = sub_02003D5C(53);
 
-    v0 = param0;
-
-    if (sub_02006038(v0, param1) == 1) {
-        v0 = SPECIES_EGG;
+    if (sub_02006038(species, form) == 1) {
+        species = SPECIES_EGG;
     }
 
-    if (v0 != SPECIES_EGG) {
-        if ((v0 > MAX_SPECIES) || (v0 == 0)) {
-            v0 = 1;
+    if (species != SPECIES_EGG) {
+        if ((species > MAX_SPECIES) || (species == SPECIES_NONE)) {
+            species = SPECIES_BULBASAUR;
         }
     }
 
-    if (v0 == SPECIES_CHATOT) {
-        if (ProcessAudioInput(*v3, 0, 127, 0) == 1) {
-            Sound_FlagDefaultChatotCry(0);
+    if (species == SPECIES_CHATOT) {
+        if (ProcessAudioInput(*chatotCry, 0, 127, 0) == TRUE) {
+            Sound_FlagDefaultChatotCry(FALSE);
             return 1;
         }
     }
@@ -411,14 +406,14 @@ BOOL sub_02005844(u16 param0, u8 param1)
             sub_0200592C(0);
         }
 
-        v1 = NNS_SndArcPlayerStartSeqEx(sub_020040CC(1), -1, v0, -1, 2);
-        sub_02004AA0(v0, 1);
+        v1 = NNS_SndArcPlayerStartSeqEx(sub_020040CC(1), -1, species, -1, 2);
+        sub_02004AA0(species, 1);
     } else {
-        v1 = NNS_SndArcPlayerStartSeqEx(sub_020040CC(8), -1, v0, -1, 2);
-        sub_02004AA0(v0, 8);
+        v1 = NNS_SndArcPlayerStartSeqEx(sub_020040CC(8), -1, species, -1, 2);
+        sub_02004AA0(species, 8);
     }
 
-    Sound_FlagDefaultChatotCry(0);
+    Sound_FlagDefaultChatotCry(FALSE);
 
     if (v1 == 0) {
         (void)0;
@@ -427,9 +422,9 @@ BOOL sub_02005844(u16 param0, u8 param1)
     return v1;
 }
 
-BOOL sub_0200590C(u16 param0, u8 param1, u8 param2)
+BOOL sub_0200590C(u16 species, u8 delay, u8 form)
 {
-    Sound_PlayDelayedPokemonCry(0, param0, 0, 127, HEAP_ID_FIELDMAP, param1, param2);
+    Sound_PlayDelayedPokemonCry(POKECRY_NORMAL, species, 0, 127, HEAP_ID_FIELDMAP, delay, form);
     return 1;
 }
 
@@ -476,10 +471,9 @@ int sub_0200598C(void)
     return sub_02004B04(0);
 }
 
-BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int heapID, u8 param5)
+BOOL Sound_PlayPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 form)
 {
     int v0, v1;
-    u16 v2;
     u16 v3;
     int v4, v5, v6, v7;
     u8 *v8 = sub_02003D5C(16);
@@ -492,15 +486,14 @@ BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int h
     v5 = 0;
     v6 = 0;
     v7 = 0;
-    v2 = species;
 
-    if (sub_02006038(v2, param5) == 1) {
-        v2 = SPECIES_EGG;
+    if (sub_02006038(species, form) == 1) {
+        species = SPECIES_EGG;
     }
 
-    if (v2 != SPECIES_EGG) {
-        if ((v2 > MAX_SPECIES) || (v2 == 0)) {
-            v2 = SPECIES_BULBASAUR;
+    if (species != SPECIES_EGG) {
+        if ((species > MAX_SPECIES) || (species == SPECIES_NONE)) {
+            species = SPECIES_BULBASAUR;
         }
     }
 
@@ -510,7 +503,7 @@ BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int h
         v0 = 64 + (param2 / 2);
     }
 
-    v1 = param3 - 30;
+    v1 = volume - 30;
 
     if (v1 <= 0) {
         v1 = 1;
@@ -529,141 +522,141 @@ BOOL Sound_PlayPokemonCry(int param0, u16 species, int param2, int param3, int h
         sub_02004C4C(15);
     }
 
-    if (v2 == SPECIES_CHATOT) {
-        switch (param0) {
-        case 0:
-        case 1:
-        case 2:
-        case 5:
-        case 11:
-        case 12:
-            sub_02005844(441, param5);
+    if (species == SPECIES_CHATOT) {
+        switch (cryMod) {
+        case POKECRY_NORMAL:
+        case POKECRY_HALF_DURATION:
+        case POKECRY_FIELD_EVENT:
+        case POKECRY_FAINT:
+        case POKECRY_PINCH_NORMAL:
+        case POKECRY_PINCH_HALF_DURATION:
+            sub_02005844(SPECIES_CHATOT, form);
 
             if (*v11 == 0) {
                 sub_02004F94(1, 0xffff, param2);
-                sub_02005E4C(v2, 1, param3);
+                sub_02005E4C(species, 1, volume);
             } else {
                 if (*v8 == 1) {
                     sub_02004D14(14, v0);
-                    sub_02004D40(14, param3);
+                    sub_02004D40(14, volume);
                 } else {
                     sub_02004F94(1, 0xffff, param2);
-                    sub_02005E4C(v2, 1, param3);
+                    sub_02005E4C(species, 1, volume);
                 }
             }
 
             return 1;
         default:
-            Sound_FlagDefaultChatotCry(1);
+            Sound_FlagDefaultChatotCry(TRUE);
             break;
         }
     }
 
-    switch (param0) {
-    case 0:
-        v4 = sub_02005844(v2, param5);
+    switch (cryMod) {
+    case POKECRY_NORMAL:
+        v4 = sub_02005844(species, form);
         sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(v2, 1, param3);
+        sub_02005E4C(species, 1, volume);
         break;
-    case 1:
-        v4 = sub_02005844(v2, param5);
+    case POKECRY_HALF_DURATION:
+        v4 = sub_02005844(species, form);
         sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(v2, 1, param3);
+        sub_02005E4C(species, 1, volume);
         sub_02005E64(20, heapID);
         break;
-    case 2:
-        v4 = sub_02005844(v2, param5);
+    case POKECRY_FIELD_EVENT:
+        v4 = sub_02005844(species, form);
         sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(v2, 1, param3);
+        sub_02005E4C(species, 1, volume);
         sub_02004F68(1, 0xffff, 64);
-        v6 = sub_020060EC(v2, 20, param5);
+        v6 = sub_020060EC(species, 20, form);
         sub_02004F94(8, 0xffff, param2);
-        sub_02005E4C(v2, 8, v1);
+        sub_02005E4C(species, 8, v1);
         break;
-    case 3:
-        v4 = sub_02005844(v2, param5);
+    case POKECRY_MID_MOVE:
+        v4 = sub_02005844(species, form);
         sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(v2, 1, param3);
+        sub_02005E4C(species, 1, volume);
         sub_02005E64(30, heapID);
         sub_02004F68(1, 0xffff, 192);
-        v6 = sub_020060EC(v2, 16, param5);
+        v6 = sub_020060EC(species, 16, form);
         sub_02004F94(8, 0xffff, param2);
-        sub_02005E4C(v2, 8, v1);
+        sub_02005E4C(species, 8, v1);
         break;
-    case 4:
+    case POKECRY_HYPERVOICE_1:
         v5 = sub_02004BCC(14);
-        v5 = sub_02004D78(v2, param3, v0, 14, heapID);
+        v5 = sub_02004D78(species, volume, v0, 14, heapID);
         sub_02004D14(14, v0);
         sub_02005E64(15, heapID);
         sub_02004D2C(14, (32768 + 1536));
-        v7 = sub_02006120(v2, -64, v1, v0, heapID);
+        v7 = sub_02006120(species, -64, v1, v0, heapID);
         sub_02004D2C(15, (32768 + 1536));
         break;
-    case 5:
-        v4 = sub_02005844(v2, param5);
+    case POKECRY_FAINT:
+        v4 = sub_02005844(species, form);
         sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(v2, 1, param3);
+        sub_02005E4C(species, 1, volume);
         sub_02004F68(1, 0xffff, -224);
         break;
-    case 6:
-        v4 = sub_02005844(v2, param5);
+    case POKECRY_HYPERVOICE_2:
+        v4 = sub_02005844(species, form);
         sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(v2, 1, param3);
+        sub_02005E4C(species, 1, volume);
         sub_02004F68(1, 0xffff, 44);
-        v6 = sub_020060EC(v2, -64, param5);
+        v6 = sub_020060EC(species, -64, form);
         sub_02004F94(8, 0xffff, param2);
-        sub_02005E4C(v2, 8, v1);
+        sub_02005E4C(species, 8, v1);
         break;
-    case 7:
-        v4 = sub_02005844(v2, param5);
+    case POKECRY_HOWL_1:
+        v4 = sub_02005844(species, form);
         sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(v2, 1, param3);
+        sub_02005E4C(species, 1, volume);
         sub_02005E64(11, heapID);
         sub_02004F68(1, 0xffff, -128);
         break;
-    case 8:
-        v4 = sub_02005844(v2, param5);
+    case POKECRY_HOWL_2:
+        v4 = sub_02005844(species, form);
         sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(v2, 1, param3);
+        sub_02005E4C(species, 1, volume);
         sub_02005E64(60, heapID);
         sub_02004F68(1, 0xffff, 60);
         break;
-    case 9:
+    case POKECRY_UPROAR_1:
         v5 = sub_02004BCC(14);
-        v5 = sub_02004D78(v2, param3, v0, 14, heapID);
+        v5 = sub_02004D78(species, volume, v0, 14, heapID);
         sub_02004D14(14, v0);
         sub_02005E64(13, heapID);
         sub_02004D2C(14, (32768 - 6144));
         break;
-    case 10:
-        v4 = sub_02005844(v2, param5);
+    case POKECRY_UPROAR_2:
+        v4 = sub_02005844(species, form);
         sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(v2, 1, param3);
+        sub_02005E4C(species, 1, volume);
         sub_02005E64(100, heapID);
         sub_02004F68(1, 0xffff, -44);
         break;
-    case 11:
-        v4 = sub_02005844(v2, param5);
+    case POKECRY_PINCH_NORMAL:
+        v4 = sub_02005844(species, form);
         sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(v2, 1, param3);
+        sub_02005E4C(species, 1, volume);
         sub_02004F68(1, 0xffff, -96);
         break;
-    case 12:
-        v4 = sub_02005844(v2, param5);
+    case POKECRY_PINCH_HALF_DURATION:
+        v4 = sub_02005844(species, form);
         sub_02004F94(1, 0xffff, param2);
-        sub_02005E4C(v2, 1, param3);
+        sub_02005E4C(species, 1, volume);
         sub_02005E64(20, heapID);
         sub_02004F68(1, 0xffff, -96);
         break;
-    case 13:
-        sub_02005844(v2, param5);
-        sub_02005E4C(v2, 1, 127);
-        sub_020060EC(v2, 20, param5);
+    case POKECRY_POKEDEX_CHORUS:
+        sub_02005844(species, form);
+        sub_02005E4C(species, 1, 127);
+        sub_020060EC(species, 20, form);
         sub_02004F94(8, 0xffff, param2);
-        sub_02004A54(8, param3, 0);
+        sub_02004A54(8, volume, 0);
         break;
-    case 14:
-        v4 = sub_02005844(v2, param5);
+    case POKECRY_POKEDEX:
+        v4 = sub_02005844(species, form);
         break;
     }
 
@@ -756,9 +749,8 @@ void sub_02005F24()
     return;
 }
 
-void Sound_PlayDelayedPokemonCry(int param0, u16 param1, int param2, int param3, int heapID, u8 param5, u8 param6)
+void Sound_PlayDelayedPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, int volume, int heapID, u8 delay, u8 form)
 {
-    u16 v0;
     int *v1;
     u16 *v2;
     int *v3;
@@ -788,44 +780,42 @@ void Sound_PlayDelayedPokemonCry(int param0, u16 param1, int param2, int param3,
         *v7 ^= 1;
     }
 
-    v0 = param1;
-
-    if (sub_02006038(v0, param6) == 1) {
-        v0 = SPECIES_EGG;
+    if (sub_02006038(species, form) == 1) {
+        species = SPECIES_EGG;
     }
 
-    if (v0 == 0) {
+    if (species == 0) {
         return;
     }
 
-    if (param5 == 0) {
-        Sound_PlayPokemonCry(param0, v0, param2, param3, heapID, param6);
+    if (delay == 0) {
+        Sound_PlayPokemonCry(cryMod, species, param2, volume, heapID, form);
         return;
     }
 
-    *v1 = param0;
-    *v2 = v0;
+    *v1 = cryMod;
+    *v2 = species;
     *v3 = param2;
-    *v4 = param3;
+    *v4 = volume;
     *v5 = heapID;
-    *v6 = param5;
+    *v6 = delay;
 
     return;
 }
 
-static BOOL sub_02006038(u16 param0, u8 param1)
+static BOOL sub_02006038(u16 species, u8 form)
 {
-    if (param0 == 492) {
-        if (param1 == 1) {
-            return 1;
+    if (species == SPECIES_SHAYMIN) {
+        if (form == 1) {
+            return TRUE;
         }
     }
 
-    if (param0 == SPECIES_EGG) {
-        return 1;
+    if (species == SPECIES_EGG) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 void sub_0200605C(void)
@@ -860,16 +850,16 @@ void sub_0200605C(void)
     return;
 }
 
-static BOOL sub_020060EC(u16 param0, s8 param1, u8 param2)
+static BOOL sub_020060EC(u16 species, s8 pitch, u8 form)
 {
     int v0;
     u8 *v1 = sub_02003D5C(18);
 
     *v1 = 1;
 
-    Sound_FlagDefaultChatotCry(1);
-    v0 = sub_02005844(param0, param2);
-    sub_02004F68(8, 0xffff, param1);
+    Sound_FlagDefaultChatotCry(TRUE);
+    v0 = sub_02005844(species, form);
+    sub_02004F68(8, 0xffff, pitch);
 
     return v0;
 }

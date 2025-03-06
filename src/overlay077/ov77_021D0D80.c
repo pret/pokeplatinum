@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "constants/screen.h"
+#include "constants/species.h"
 
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -244,7 +245,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
         if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_START) == PAD_BUTTON_START)) {
             v0->unk_4E8 = 1;
             sub_0200564C(0, 60);
-            sub_02005844(487, 1);
+            sub_02005844(SPECIES_GIRATINA, 1);
             ov77_021D1D48(v0->unk_04, v0->unk_00);
             *param1 = 4;
             break;

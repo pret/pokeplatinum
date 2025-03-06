@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_defs/struct_02099F80.h"
@@ -1116,7 +1118,7 @@ static BOOL ov6_0223EBDC(UnkStruct_ov6_0223EA98 *param0)
         Easy3DObject_SetPosition(&param0->unk_24, param0->unk_E4.unk_00, v2, param0->unk_F4.unk_00);
 
         if (v0[0] && v0[1]) {
-            Sound_PlayPokemonCry(0, 480, 0, 100, HEAP_ID_FIELD, 0);
+            Sound_PlayPokemonCry(POKECRY_NORMAL, SPECIES_UXIE, 0, 100, HEAP_ID_FIELD, 0);
             param0->unk_18++;
         }
         break;
@@ -1339,7 +1341,7 @@ static BOOL ov6_0223EE5C(UnkStruct_ov6_0223EA98 *param0)
         }
 
         param0->unk_D0 = 0;
-        Sound_PlayPokemonCry(0, 481, 0, 100, HEAP_ID_FIELD, 0);
+        Sound_PlayPokemonCry(POKECRY_NORMAL, SPECIES_MESPRIT, 0, 100, HEAP_ID_FIELD, 0);
         param0->unk_18++;
         break;
     case 16:
@@ -1480,7 +1482,7 @@ static BOOL ov6_0223F744(UnkStruct_ov6_0223EA98 *param0)
         Easy3DObject_SetPosition(&param0->unk_24, param0->unk_E4.unk_00, v2, param0->unk_F4.unk_00);
 
         if (v0[0] && v0[1]) {
-            Sound_PlayPokemonCry(0, 482, 0, 100, HEAP_ID_FIELD, 0);
+            Sound_PlayPokemonCry(POKECRY_NORMAL, SPECIES_AZELF, 0, 100, HEAP_ID_FIELD, 0);
             param0->unk_18++;
         }
 

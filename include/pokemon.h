@@ -779,7 +779,7 @@ void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMove
  *
  * @param chatotCry             Chatot cry data from the save block. Only used
  *                              if the Pokemon itself is Chatot.
- * @param crymod                Modification to apply to the Pokemon's cry.
+ * @param cryMod                Modification to apply to the Pokemon's cry.
  * @param species
  * @param form
  * @param pan
@@ -787,7 +787,7 @@ void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMove
  * @param forceDefaultChatot    If TRUE, force usage of Chatot's default cry.
  * @param heapID
  */
-void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod crymod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID);
+void Pokemon_PlayCry(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 species, int form, int pan, int volume, int forceDefaultChatot, int heapID);
 
 /**
  * @brief Play a Pokemon's cry, according to the given species and form number.
