@@ -275,8 +275,8 @@ int ov19_021D0D80(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov19_021D5DF8 *v0;
 
-    Heap_Create(3, 9, 16384);
-    Heap_Create(3, 10, 245760);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_9, 16384);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov19_021D5DF8), 9);
 
@@ -2355,7 +2355,7 @@ static void ov19_021D3B34(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             u32 v0 = sub_0207999C(param0->unk_120);
 
             OverlayManager_Free(param0->unk_210);
-            Heap_Create(3, 10, 245760);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
             sub_02079B24(param0->unk_120, v0, param0->unk_128->unk_18);
 
             ov19_021D4F40(param0->unk_120, &param0->unk_00.unk_40);
@@ -2387,7 +2387,7 @@ static void ov19_021D3C28(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             u32 v0 = sub_0207999C(param0->unk_120);
 
             OverlayManager_Free(param0->unk_210);
-            Heap_Create(3, 10, 245760);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
 
             if (ov19_021D5E38(&param0->unk_00) == 1) {
                 ov19_021D3CFC(&(param0->unk_00), param0);
@@ -2465,7 +2465,7 @@ static void ov19_021D3D44(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 ov19_021D0F14(param0);
             }
 
-            Heap_Create(3, 10, 245760);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
             ov19_021D61B0(&(param0->unk_114), &param0->unk_00, param0);
             ov19_021D6594(param0->unk_114, 0);
             (*param1)++;

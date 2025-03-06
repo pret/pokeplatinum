@@ -173,7 +173,7 @@ int ov59_021D0D80(OverlayManager *param0, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        Heap_Create(3, 51, 0x41000);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_51, 0x41000);
 
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__RECORD, 51);
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_020961E8), 51);

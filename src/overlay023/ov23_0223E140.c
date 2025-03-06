@@ -1299,7 +1299,7 @@ static void ov23_0223EE80(UnkStruct_ov23_0223EE80 *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
-    Heap_Create(3, 29, 0x50000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_29, 0x50000);
 
     v1 = BgConfig_New(HEAP_ID_29);
     Unk_ov23_02257740->unk_04 = v1;

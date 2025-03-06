@@ -34,7 +34,7 @@ int ov82_0223B164(OverlayManager *param0, int *param1)
     UnkStruct_ov83_0223C344 *v0 = NULL;
     UnkStruct_ov82_0223B164 *v1 = (UnkStruct_ov82_0223B164 *)OverlayManager_Args(param0);
 
-    Heap_Create(3, 55, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_55, 0x20000);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov83_0223C344), 55);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov83_0223C344));
 

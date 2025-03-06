@@ -883,7 +883,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        Heap_Create(3, 18, 0x20000 + 0x8000);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_18, 0x20000 + 0x8000);
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02087A10), 18);
         memset(v0, 0, sizeof(UnkStruct_02087A10));

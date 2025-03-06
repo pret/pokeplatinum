@@ -179,7 +179,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
             }
         }
 
-        Heap_Create(3, 4, fieldSystem->mapLoadMode->unk_04);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD, fieldSystem->mapLoadMode->unk_04);
         GF_ASSERT(fieldSystem->unk_04 == NULL);
 
         fieldSystem->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(FieldSystem_sub2));

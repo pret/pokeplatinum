@@ -195,8 +195,8 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
     u32 v1;
     UnkStruct_0203DA00 *v2;
 
-    Heap_Create(3, 13, 0x20000);
-    Heap_Create(3, 14, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
@@ -412,8 +412,8 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     u32 v1;
     UnkStruct_02093BBC *v2;
 
-    Heap_Create(3, 13, 0x20000);
-    Heap_Create(3, 14, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));

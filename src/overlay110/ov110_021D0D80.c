@@ -105,7 +105,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    Heap_Create(3, 114, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_114, 0x20000);
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov110_021D0F78), 114);
     memset(v1, 0, sizeof(UnkStruct_ov110_021D0F78));
 

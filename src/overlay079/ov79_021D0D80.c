@@ -76,7 +76,7 @@ int ov79_021D0D80(OverlayManager *param0, int *param1)
     UnkStruct_ov79_021D0E1C *v0 = NULL;
     UnkStruct_0203D9B8 *v1 = OverlayManager_Args(param0);
 
-    Heap_Create(3, 45, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_45, 0x20000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov79_021D0E1C), 45);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov79_021D0E1C));

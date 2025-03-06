@@ -82,7 +82,7 @@ int sub_02099DFC(OverlayManager *param0, int *param1)
     UnkStruct_02099DFC *v0;
     int heapID = HEAP_ID_88;
 
-    Heap_Create(3, heapID, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, heapID, 0x20000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02099DFC), heapID);
     memset(v0, 0, sizeof(UnkStruct_02099DFC));

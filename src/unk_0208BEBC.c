@@ -47,7 +47,7 @@ static int sub_0208BEBC(OverlayManager *param0, int *param1, int param2)
 {
     UnkStruct_0208C06C *v0;
 
-    Heap_Create(3, 102, 0x55000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_102, 0x55000);
     v0 = sub_0208BA78(param0);
     ov62_02230060(v0);
     sub_0200544C(1, (127 / 3));

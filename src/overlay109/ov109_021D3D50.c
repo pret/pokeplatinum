@@ -178,7 +178,7 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        Heap_Create(3, 95, 0x80000);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_95, 0x80000);
 
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__RECORD, 95);
         GF_ASSERT(v1);

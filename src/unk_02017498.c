@@ -48,7 +48,7 @@ int sub_02017498(OverlayManager *param0, int *param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(3, 116, (0x20000 + 0x8000));
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_116, (0x20000 + 0x8000));
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02017498), 116);
     MI_CpuClear8(v0, sizeof(UnkStruct_02017498));

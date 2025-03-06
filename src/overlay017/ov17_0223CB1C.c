@@ -133,7 +133,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(3, 22, 0x70000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_22, 0x70000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_02247A48), 22);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02247A48));

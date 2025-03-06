@@ -396,7 +396,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(3, 6, 0x30000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_6, 0x30000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov84_0223B5A0), 6);
     memset(v0, 0, sizeof(UnkStruct_ov84_0223B5A0));

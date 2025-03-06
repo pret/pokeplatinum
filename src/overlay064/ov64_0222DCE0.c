@@ -594,7 +594,7 @@ int ov64_0222DCE0(OverlayManager *param0, int *param1)
     UnkStruct_ov64_0222DFD0 *v0;
 
     Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
-    Heap_Create(3, 52, 0x70000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_52, 0x70000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov64_0222DFD0), 52);
     memset(v0, 0, sizeof(UnkStruct_ov64_0222DFD0));

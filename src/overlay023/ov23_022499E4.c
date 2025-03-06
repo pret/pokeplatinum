@@ -79,7 +79,7 @@ void ov23_022499E8(FieldSystem *fieldSystem)
     FieldCommMan_Init(fieldSystem);
 
     v0 = FieldCommMan_Get();
-    Heap_Create(3, 33, 0xe800);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_33, 0xe800);
 
     if (!SystemFlag_CheckUndergroundFirstEntered(SaveData_GetVarsFlags(v0->fieldSystem->saveData))) {
         sub_02036894();

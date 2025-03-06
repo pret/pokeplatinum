@@ -88,7 +88,7 @@ static void sub_0208BAAC(OverlayManager *param0, int param1)
 {
     UnkStruct_0208BC3C *v0;
 
-    Heap_Create(3, 119, 0x10000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_119, 0x10000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0208BC3C), 119);
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_0208BC3C));

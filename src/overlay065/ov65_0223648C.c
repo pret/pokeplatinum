@@ -396,8 +396,8 @@ int ov65_0223648C(OverlayManager *param0, int *param1)
     v2 = sub_020389B8();
     GF_ASSERT(v2 == 1);
 
-    Heap_Create(3, 96, 0x18000);
-    Heap_Create(3, 97, 0xa000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_96, 0x18000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_97, 0xa000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov65_022367A8), 96);
 

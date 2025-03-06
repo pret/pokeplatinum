@@ -148,7 +148,7 @@ static FieldSystem *InitFieldSystem(OverlayManager *ovyManager)
 {
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELDMAP, HEAP_SIZE_FIELDMAP);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD_TASK, HEAP_SIZE_FIELD_TASK);
-    Heap_Create(HEAP_ID_SYSTEM, 91, 0x300);
+    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
     FieldSystem *fieldSystem = OverlayManager_NewData(ovyManager, sizeof(FieldSystem), HEAP_ID_FIELDMAP);
     MI_CpuClear8(fieldSystem, sizeof(FieldSystem));

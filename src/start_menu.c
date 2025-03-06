@@ -1895,7 +1895,7 @@ static void StartMenu_EvolveInit(FieldTask *taskMan)
     v2 = menu->unk_25C;
 
     sub_0200569C();
-    Heap_Create(3, 73, 0x30000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_73, 0x30000);
 
     v3 = Party_GetFromSavedata(fieldSystem->saveData);
     v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);

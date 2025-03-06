@@ -283,7 +283,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    Heap_Create(3, 26, 0x50000 + 0x20000 + 2000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x50000 + 0x20000 + 2000);
 
     v1 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, 26);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02095E80), 26);

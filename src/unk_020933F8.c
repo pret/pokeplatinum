@@ -402,7 +402,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     int v1 = 4 - 1;
     int v2;
 
-    Heap_Create(11, 20, (0x3000 + 0x1000));
+    Heap_Create(HEAP_ID_FIELDMAP, HEAP_ID_20, (0x3000 + 0x1000));
 
     v0 = sub_020937C4();
     v0->unk_19A4 = LCRNG_GetSeed();

@@ -1075,7 +1075,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
     UnkStruct_ov97_0222D04C *v0;
 
     ov97_022301B0(param0);
-    Heap_Create(3, 86, 0x30000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_86, 0x30000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_0222D04C), 86);
     memset(v0, 0, sizeof(UnkStruct_ov97_0222D04C));
@@ -1104,7 +1104,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
     v0->unk_08 = SaveData_Options(v0->unk_04);
     v0->unk_68 = 0xff;
 
-    Heap_Create(0, 91, 0x300);
+    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
     return 1;
 }

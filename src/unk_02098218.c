@@ -64,7 +64,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    Heap_Create(3, 71, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_71, 0x40000);
 
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov119_021D0FD0), 71);
     memset(v1, 0, sizeof(UnkStruct_ov119_021D0FD0));

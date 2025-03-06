@@ -257,7 +257,7 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     G2S_BlendNone();
 
     SetAutorepeat(4, 8);
-    Heap_Create(3, 12, 0x30000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_12, 0x30000);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 12);
     v0 = sub_0207ECC0(param0);

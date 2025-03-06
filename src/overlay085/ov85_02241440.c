@@ -215,7 +215,7 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(3, 36, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_36, 0x20000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov85_022417E4), 36);
     memset(v0, 0, sizeof(UnkStruct_ov85_022417E4));

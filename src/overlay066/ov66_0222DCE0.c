@@ -42,7 +42,7 @@ int ov66_0222DCE0(OverlayManager *param0, int *param1)
         sub_020995B4();
     }
 
-    Heap_Create(3, 104, 0x5000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_104, 0x5000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov66_0222DD90), 104);
     memset(v0, 0, sizeof(UnkStruct_ov66_0222DD90));

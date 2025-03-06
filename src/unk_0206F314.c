@@ -185,7 +185,7 @@ static int sub_0206F314(UnkStruct_0206F314 *param0, FieldSystem *fieldSystem, u1
     UnkStruct_0206F7F8 *v0;
     SaveData *v1 = fieldSystem->saveData;
 
-    Heap_Create(3, 80, 0x6000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_80, 0x6000);
 
     v0 = Heap_AllocFromHeap(HEAP_ID_80, sizeof(UnkStruct_0206F7F8));
     MI_CpuClear8(v0, sizeof(UnkStruct_0206F7F8));
