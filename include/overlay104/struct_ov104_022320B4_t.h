@@ -17,7 +17,7 @@ struct UnkStruct_ov104_022320B4_t {
     UnkStruct_0209B75C *unk_00;
     UnkStruct_ov104_0222E930 *unk_04[8];
     UnkStruct_ov104_0222E8C8 unk_24;
-    int unk_34;
+    int heapID;
     u8 unk_38;
     MessageLoader *unk_3C;
     u8 *unk_40;

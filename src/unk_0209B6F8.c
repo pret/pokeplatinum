@@ -79,7 +79,7 @@ int sub_0209B6F8(OverlayManager *param0, int *param1)
     v0->unk_00 = OverlayManager_Args(param0);
     GF_ASSERT(v0->unk_00 != NULL);
 
-    v0->unk_14 = ov104_0222E63C(v0, 11, v0->unk_00->unk_24);
+    v0->unk_14 = ov104_0222E63C(v0, HEAP_ID_FIELDMAP, v0->unk_00->unk_24);
     ov104_0222E748(v0->unk_14, v0->unk_00->unk_24, 0);
 
     sub_0209B8C8(v0);
@@ -164,10 +164,10 @@ int sub_0209B75C(OverlayManager *param0, int *param1)
         } else {
             UnkStruct_ov104_0222E8C8 *v2;
 
-            v2 = ov104_0222E8C8(v0->unk_14, 11);
+            v2 = ov104_0222E8C8(v0->unk_14, HEAP_ID_FIELDMAP);
             ov104_0222E710(v0->unk_14);
 
-            v0->unk_14 = ov104_0222E63C(v0, 11, v0->unk_00->unk_24);
+            v0->unk_14 = ov104_0222E63C(v0, HEAP_ID_FIELDMAP, v0->unk_00->unk_24);
             ov104_0222E748(v0->unk_14, v0->unk_00->unk_24, v0->unk_20);
             ov104_0222E8E8(v0->unk_14, v2);
         }

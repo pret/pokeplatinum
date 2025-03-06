@@ -3234,7 +3234,7 @@ static UnkStruct_ov105_02245EA8 *ov105_02245934(UnkStruct_ov105_02241FF4 *param0
         }
     }
 
-    return ov105_02245E54(&param0->unk_144, v0, v1, 93);
+    return ov105_02245E54(&param0->unk_144, v0, v1, HEAP_ID_93);
 }
 
 static UnkStruct_ov105_02245E1C *ov105_022459B0(UnkStruct_ov105_02241FF4 *param0, u32 param1)
@@ -3262,7 +3262,7 @@ static UnkStruct_ov105_02245E1C *ov105_022459B0(UnkStruct_ov105_02241FF4 *param0
         break;
     }
 
-    return ov105_02245DC4(&param0->unk_144, param1, v0, v1, 93);
+    return ov105_02245DC4(&param0->unk_144, param1, v0, v1, HEAP_ID_93);
 }
 
 static UnkStruct_ov105_02245E1C *ov105_02245A04(UnkStruct_ov105_02241FF4 *param0, u32 param1)
@@ -3282,7 +3282,7 @@ static UnkStruct_ov105_02245E1C *ov105_02245A04(UnkStruct_ov105_02241FF4 *param0
         break;
     }
 
-    return ov105_02245DC4(&param0->unk_144, param1, v0, v1, 93);
+    return ov105_02245DC4(&param0->unk_144, param1, v0, v1, HEAP_ID_93);
 }
 
 static void ov105_02245A30(UnkStruct_ov105_02241FF4 *param0)

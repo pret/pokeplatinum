@@ -154,7 +154,7 @@ int ov115_0226048C(OverlayManager *param0, int *param1)
         v0->unk_46 = ov114_0225C76C(&v0->unk_08, v0->unk_44);
 
         if (v0->unk_44 == 0) {
-            v0->unk_30 = ov115_02260BBC(99, (30 * 40), v0->unk_74, &v0->unk_48);
+            v0->unk_30 = ov115_02260BBC(HEAP_ID_99, (30 * 40), v0->unk_74, &v0->unk_48);
             v0->unk_7C = 1;
         }
 

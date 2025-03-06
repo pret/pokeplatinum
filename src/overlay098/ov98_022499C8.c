@@ -26,7 +26,7 @@ static const struct {
     { 0x12a, '9' },
 };
 
-void ov98_022499C8(Strbuf *param0, char *param1, int param2)
+void ov98_022499C8(Strbuf *param0, char *param1, int heapID)
 {
     static const char Unk_ov98_02249D1C[] = "w";
     static const char Unk_ov98_02249D20[] = "@wii.com";
@@ -38,7 +38,7 @@ void ov98_022499C8(Strbuf *param0, char *param1, int param2)
         param1[v2] = Unk_ov98_02249D1C[v0++];
     }
 
-    v1 = Heap_AllocFromHeap(param2, sizeof(charcode_t) * 100);
+    v1 = Heap_AllocFromHeap(heapID, sizeof(charcode_t) * 100);
     Strbuf_ToChars(param0, v1, 100);
 
     v0 = 0;
@@ -65,13 +65,13 @@ void ov98_022499C8(Strbuf *param0, char *param1, int param2)
     Heap_FreeToHeap(v1);
 }
 
-int ov98_02249A80(Strbuf *param0, int param1)
+int ov98_02249A80(Strbuf *param0, int heapID)
 {
     charcode_t *v0;
     BOOL v1 = TRUE;
     int v2;
 
-    v0 = Heap_AllocFromHeap(param1, sizeof(charcode_t) * 100);
+    v0 = Heap_AllocFromHeap(heapID, sizeof(charcode_t) * 100);
     Strbuf_ToChars(param0, v0, 100);
 
     for (v2 = 0; v0[v2] != CHAR_EOS; v2++) {

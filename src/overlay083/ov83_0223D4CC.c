@@ -34,21 +34,21 @@ typedef struct UnkStruct_ov83_0223D4CC_t {
     void *unk_04;
 } UnkStruct_ov83_0223D4CC;
 
-static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int param1, void *param2, int param3);
+static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int param1, void *param2, int heapID);
 static void ov83_0223D5CC(SysTask *param0, void *param1);
 static void ov83_0223D620(UnkStruct_ov83_0223D584 *param0);
 static BOOL ov83_0223D638(UnkStruct_ov83_0223D584 *param0, int param1, const void *param2, int param3);
 
-UnkStruct_ov83_0223D4CC *ov83_0223D4CC(const CommCmdTable *param0, int param1, void *param2, int param3, int param4)
+UnkStruct_ov83_0223D4CC *ov83_0223D4CC(const CommCmdTable *param0, int param1, void *param2, int param3, int heapID)
 {
-    UnkStruct_ov83_0223D4CC *v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov83_0223D4CC));
+    UnkStruct_ov83_0223D4CC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov83_0223D4CC));
     v0->unk_00 = param3;
     v0->unk_04 = NULL;
 
     if (param3 == 1) {
         CommCmd_Init(param0, param1, param2);
     } else {
-        v0->unk_04 = ov83_0223D584(param0, param1, param2, param4);
+        v0->unk_04 = ov83_0223D584(param0, param1, param2, heapID);
     }
 
     return v0;
@@ -97,9 +97,9 @@ int ov83_0223D570(UnkStruct_ov83_0223D4CC *param0)
     }
 }
 
-static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int param1, void *param2, int param3)
+static UnkStruct_ov83_0223D584 *ov83_0223D584(const CommCmdTable *param0, int param1, void *param2, int heapID)
 {
-    UnkStruct_ov83_0223D584 *v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov83_0223D584));
+    UnkStruct_ov83_0223D584 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov83_0223D584));
     memset(v0, 0, sizeof(UnkStruct_ov83_0223D584));
 
     v0->unk_190 = param0;

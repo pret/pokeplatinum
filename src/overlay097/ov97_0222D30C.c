@@ -109,7 +109,7 @@ typedef struct {
 void Strbuf_ToChars(const Strbuf *param0, u16 *param1, u32 param2);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
 MysteryGift *SaveData_MysteryGift(SaveData *param0);
-void ov97_02231FFC(BgConfig *param0, void *, int param2);
+void ov97_02231FFC(BgConfig *param0, void *, int heapID);
 static int ov97_0222D474(OverlayManager *param0);
 static int ov97_0222D4D8(OverlayManager *param0);
 static int ov97_0222DA18(OverlayManager *param0);
@@ -360,7 +360,7 @@ static UnkStruct_0202DF40 *ov97_0222D55C(OverlayManager *param0)
     switch (v0->unk_1638) {
     case 1:
         memcpy(v1, ov97_0222D2B8(0, NULL, 0), sizeof(UnkUnion_ov97_0222D2B0));
-        ov97_02238324(&v0->unk_8C, &v0->unk_8C.unk_50, 86);
+        ov97_02238324(&v0->unk_8C, &v0->unk_8C.unk_50, HEAP_ID_86);
         break;
     case 3:
         v3 = (UnkStruct_ov97_0223829C *)v0->unk_638;
@@ -2397,7 +2397,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         ov97_0222DC20(v3->unk_00);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-        ov97_02231FFC(v3->unk_00, &v3->unk_8C.unk_50.val2, 86);
+        ov97_02231FFC(v3->unk_00, &v3->unk_8C.unk_50.val2, HEAP_ID_86);
         ov97_02237790(1, 55, v3->unk_163C, 2);
         v3->unk_8C.unk_00.unk_4E_2 = 0;
         break;

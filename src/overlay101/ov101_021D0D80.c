@@ -501,7 +501,7 @@ static void ov101_021D1550(UnkStruct_ov101_021D13C8 *param0)
     NNS_G2dInitOamManagerModule();
 
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 79);
-    param0->unk_450 = ov101_021D7E48(79, 64, 32, 64, 16, 64, 32, 11, 8, 11, 11);
+    param0->unk_450 = ov101_021D7E48(HEAP_ID_79, 64, 32, 64, 16, 64, 32, 11, 8, 11, 11);
     ov101_021D15BC(param0);
 }
 

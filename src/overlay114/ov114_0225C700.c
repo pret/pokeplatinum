@@ -266,7 +266,7 @@ typedef struct {
 static void ov114_0225CBF0(UnkStruct_ov114_0225CBF0 *param0, fx32 param1, fx32 param2, fx32 param3, int param4);
 static BOOL ov114_0225CC4C(UnkStruct_ov114_0225CBF0 *param0, s32 param1);
 static void ov114_0225CCB0(NNSG2dScreenData *param0, u32 param1);
-static void ov114_0225CCD0(UnkStruct_ov114_0225CCD0 *param0, u32 param1, u32 param2);
+static void ov114_0225CCD0(UnkStruct_ov114_0225CCD0 *param0, u32 param1, u32 heapID);
 static void ov114_0225CD10(UnkStruct_ov114_0225CCD0 *param0);
 static UnkStruct_ov114_0225CDB4 *ov114_0225CD54(UnkStruct_ov114_0225CCD0 *param0, NARC *param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 static Sprite *ov114_0225CDB4(UnkStruct_ov114_0225CDB4 *param0, SpriteList *param1, s16 param2, s16 param3, u16 param4, u32 param5);
@@ -1092,17 +1092,17 @@ BOOL ov114_0225CA98(const UnkStruct_ov114_0225C76C *param0)
     return 0;
 }
 
-UnkStruct_ov114_0225CAD4 *ov114_0225CAD4(SpriteList *param0, u32 param1)
+UnkStruct_ov114_0225CAD4 *ov114_0225CAD4(SpriteList *param0, u32 heapID)
 {
-    UnkStruct_ov114_0225CAD4 *v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov114_0225CAD4));
+    UnkStruct_ov114_0225CAD4 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov114_0225CAD4));
     memset(v0, 0, sizeof(UnkStruct_ov114_0225CAD4));
 
     v0->unk_08 = param0;
-    v0->unk_0C = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param1);
+    v0->unk_0C = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, heapID);
 
-    ov114_0225CCD0(&v0->unk_10, 1, param1);
+    ov114_0225CCD0(&v0->unk_10, 1, heapID);
 
-    v0->unk_28 = ov114_0225CD54(&v0->unk_10, v0->unk_0C, 3, 3, 2, 1, 0, 5000, param1);
+    v0->unk_28 = ov114_0225CD54(&v0->unk_10, v0->unk_0C, 3, 3, 2, 1, 0, 5000, heapID);
 
     return v0;
 }
@@ -1215,15 +1215,15 @@ static void ov114_0225CCB0(NNSG2dScreenData *param0, u32 param1)
     }
 }
 
-static void ov114_0225CCD0(UnkStruct_ov114_0225CCD0 *param0, u32 param1, u32 param2)
+static void ov114_0225CCD0(UnkStruct_ov114_0225CCD0 *param0, u32 param1, u32 heapID)
 {
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_00[v0] = SpriteResourceCollection_New(param1, v0, param2);
+        param0->unk_00[v0] = SpriteResourceCollection_New(param1, v0, heapID);
     }
 
-    param0->unk_10 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov114_0225CDB4) * param1);
+    param0->unk_10 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov114_0225CDB4) * param1);
     memset(param0->unk_10, 0, sizeof(UnkStruct_ov114_0225CDB4) * param1);
     param0->unk_14 = param1;
 }

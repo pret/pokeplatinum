@@ -18,7 +18,6 @@ struct UnkStruct_ov105_02245EA8_t {
     Sprite *unk_0C;
 };
 
-UnkStruct_ov105_02245EA8 *ov105_02245E54(UnkStruct_ov105_02245AAC *param0, int param1, int param2, u32 param3);
 void *ov105_02245EA8(UnkStruct_ov105_02245EA8 *param0);
 void ov105_02245EBC(UnkStruct_ov105_02245EA8 *param0, int param1);
 VecFx32 ov105_02245EC8(UnkStruct_ov105_02245EA8 *param0, int param1, int param2);
@@ -34,9 +33,9 @@ int ov105_02245F8C(UnkStruct_ov105_02245EA8 *param0);
 void ov105_02245F90(UnkStruct_ov105_02245EA8 *param0, u32 param1);
 void ov105_02245FAC(UnkStruct_ov105_02245EA8 *param0, u32 param1);
 
-UnkStruct_ov105_02245EA8 *ov105_02245E54(UnkStruct_ov105_02245AAC *param0, int param1, int param2, u32 param3)
+UnkStruct_ov105_02245EA8 *ov105_02245E54(UnkStruct_ov105_02245AAC *param0, int param1, int param2, u32 heapID)
 {
-    UnkStruct_ov105_02245EA8 *v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov105_02245EA8));
+    UnkStruct_ov105_02245EA8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov105_02245EA8));
     memset(v0, 0, sizeof(UnkStruct_ov105_02245EA8));
 
     v0->unk_00 = 0;

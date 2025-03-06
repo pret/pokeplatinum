@@ -434,7 +434,7 @@ enum {
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0);
 MysteryGift *SaveData_MysteryGift(SaveData *param0);
-void ov97_02231FFC(BgConfig *param0, void *, int param2);
+void ov97_02231FFC(BgConfig *param0, void *, int heapID);
 
 static u16 ov97_0222C174(u16 param0)
 {
@@ -748,7 +748,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
 
-        ov97_02231FFC(v0->unk_04, &v0->unk_3180, 85);
+        ov97_02231FFC(v0->unk_04, &v0->unk_3180, HEAP_ID_85);
         ov97_02237790(1, UnkEnum_ov97_0222C78C_06, param1, UnkEnum_ov97_0222C78C_13);
         v0->unk_3180.unk_104.unk_4E_2 = 0;
         break;

@@ -713,7 +713,7 @@ void ov97_02238194(BgConfig *param0, UnkStruct_0202DF40 *param1)
     Sprite_SetDrawFlag(v2->unk_26C, 0);
 }
 
-void ov97_0223829C(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *param1, int param2)
+void ov97_0223829C(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *param1, int heapID)
 {
     MATHCRC16Table *v0;
     CRYPTORC4Context *v1;
@@ -721,7 +721,7 @@ void ov97_0223829C(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *para
     u16 v3, v4;
     int v5;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(MATHCRC16Table));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(v0);
 
     v3 = MATH_CalcCRC16(v0, &param0->unk_00, sizeof(UnkStruct_ov97_0222D250));
@@ -738,7 +738,7 @@ void ov97_0223829C(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *para
         v4 = v2[v5];
     }
 
-    v1 = Heap_AllocFromHeap(param2, sizeof(CRYPTORC4Context));
+    v1 = Heap_AllocFromHeap(heapID, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(v1, v2, 8);
     CRYPTO_RC4Encrypt(v1, &param0->unk_50, sizeof(UnkUnion_ov97_0222D2B0), param1);
@@ -746,7 +746,7 @@ void ov97_0223829C(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *para
     Heap_FreeToHeap(v1);
 }
 
-void ov97_02238324(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *param1, int param2)
+void ov97_02238324(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *param1, int heapID)
 {
     MATHCRC16Table *v0;
     CRYPTORC4Context *v1;
@@ -755,7 +755,7 @@ void ov97_02238324(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *para
     u16 v4, v5;
     int v6;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(MATHCRC16Table));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(MATHCRC16Table));
     MATH_CRC16InitTable(v0);
 
     v4 = MATH_CalcCRC16(v0, &param0->unk_00, sizeof(UnkStruct_ov97_0222D250));
@@ -773,7 +773,7 @@ void ov97_02238324(UnkStruct_ov97_0223829C *param0, UnkUnion_ov97_0222D2B0 *para
         v5 = v3[v6];
     }
 
-    v1 = Heap_AllocFromHeap(param2, sizeof(CRYPTORC4Context));
+    v1 = Heap_AllocFromHeap(heapID, sizeof(CRYPTORC4Context));
 
     CRYPTO_RC4Init(v1, v3, 8);
     CRYPTO_RC4Encrypt(v1, &param0->unk_50, sizeof(UnkUnion_ov97_0222D2B0), param1);
