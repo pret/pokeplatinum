@@ -65,10 +65,10 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     v0->unk_2C0.unk_10 = PaletteData_New(HEAP_ID_101);
 
     PaletteData_SetAutoTransparent(v0->unk_2C0.unk_10, 1);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 0, 0x200, 101);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 1, 0x200, 101);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 2, 0x200, 101);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 3, 0x200, 101);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 0, 0x200, HEAP_ID_101);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 1, 0x200, HEAP_ID_101);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 2, 0x200, HEAP_ID_101);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 3, 0x200, HEAP_ID_101);
     sub_0208945C(v0->unk_2C0.unk_0C);
     sub_0208A3F4(v0);
     sub_02089688(v0);

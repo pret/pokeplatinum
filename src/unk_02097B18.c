@@ -145,10 +145,10 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     VramTransfer_New(64, 53);
     v0->unk_D4.unk_14 = PaletteData_New(HEAP_ID_53);
     PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, 53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 1, 0x200, 53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 2, 0x200, 53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 3, 0x200, 53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 1, 0x200, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 2, 0x200, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 3, 0x200, HEAP_ID_53);
 
     ov76_0223EB64(v0->unk_D4.unk_10);
     ov76_0223BF10();

@@ -148,10 +148,10 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     v0->unk_0C.unk_44 = PaletteData_New(HEAP_ID_22);
 
     PaletteData_SetAutoTransparent(v0->unk_0C.unk_44, 1);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 0, 0x200, 22);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 1, 0x200, 22);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 2, (((16 - 2) * 16) * sizeof(u16)), 22);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 3, 0x200, 22);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 0, 0x200, HEAP_ID_22);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 1, 0x200, HEAP_ID_22);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_22);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_44, 3, 0x200, HEAP_ID_22);
 
     v0->unk_0C.unk_24 = BgConfig_New(HEAP_ID_22);
 

@@ -542,10 +542,10 @@ static void ov16_0223B790(OverlayManager *param0)
     battleSys->unk_28 = PaletteData_New(HEAP_ID_BATTLE);
 
     PaletteData_SetAutoTransparent(battleSys->unk_28, 1);
-    PaletteData_AllocBuffer(battleSys->unk_28, 0, 0x200, 5);
-    PaletteData_AllocBuffer(battleSys->unk_28, 1, 0x200, 5);
-    PaletteData_AllocBuffer(battleSys->unk_28, 2, (((16 - 2) * 16) * sizeof(u16)), 5);
-    PaletteData_AllocBuffer(battleSys->unk_28, 3, 0x200, 5);
+    PaletteData_AllocBuffer(battleSys->unk_28, 0, 0x200, HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->unk_28, 1, 0x200, HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->unk_28, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->unk_28, 3, 0x200, HEAP_ID_BATTLE);
 
     battleSys->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
     battleSys->windows = Window_New(5, 3);
@@ -1648,7 +1648,7 @@ static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
     v0->unk_0C = PaletteData_New(HEAP_ID_BATTLE);
 
     PaletteData_SetAutoTransparent(v0->unk_0C, 1);
-    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, 5);
+    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, HEAP_ID_BATTLE);
     PaletteData_FillBufferRange(v0->unk_0C, 0, 2, 0x0, 0, 256);
 
     v0->unk_04 = BgConfig_New(HEAP_ID_BATTLE);

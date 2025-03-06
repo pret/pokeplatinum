@@ -1235,8 +1235,8 @@ static void ov111_021D1FC4(UnkStruct_ov111_021D0F7C *param0)
 
     param0->unk_15C = PaletteData_New(HEAP_ID_115);
 
-    PaletteData_AllocBuffer(param0->unk_15C, 2, (32 * 16), 115);
-    PaletteData_AllocBuffer(param0->unk_15C, 0, (32 * 16), 115);
+    PaletteData_AllocBuffer(param0->unk_15C, 2, (32 * 16), HEAP_ID_115);
+    PaletteData_AllocBuffer(param0->unk_15C, 0, (32 * 16), HEAP_ID_115);
 
     ov111_021D2248(param0, 7);
     ov111_021D22D0();
