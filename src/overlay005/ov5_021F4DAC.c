@@ -22,9 +22,7 @@ static void ov5_021F4DFC(UnkStruct_ov5_021F4DD8 *param0);
 
 void *ov5_021F4DAC(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F4DD8 *v0;
-
-    v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F4DD8)), 0, 0);
+    UnkStruct_ov5_021F4DD8 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F4DD8)), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F4DD8(v0);

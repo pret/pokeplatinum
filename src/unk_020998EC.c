@@ -3230,9 +3230,7 @@ static inline BOOL inline_02099BF4(const UnkStruct_020998EC *param0, u32 param1)
 static u32 sub_02099980(UnkStruct_020998EC *param0, const u16 *param1, u32 param2, u16 *param3)
 {
     const Pokedex *pokedex;
-    u32 v1, v2;
-
-    v2 = 0;
+    u32 v1, v2 = 0;
     pokedex = sub_0209755C(param0->unk_00);
 
     for (v1 = 0; v1 < param2; v1++) {
@@ -3266,9 +3264,7 @@ static u32 sub_02099A30(UnkStruct_020998EC *param0, const u16 *param1, u32 param
 {
     const UnkStruct_02014EC4 *v0 = sub_02097560(param0->unk_00);
     u32 v1, v2;
-    u16 v3;
-
-    v3 = sub_02014DFC(444, 0);
+    u16 v3 = sub_02014DFC(444, 0);
 
     for (v1 = 0, v2 = 0; v1 < param2; v1++) {
         if (sub_02014ED8(v0, param1[v1] - v3)) {

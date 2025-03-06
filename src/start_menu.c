@@ -342,9 +342,7 @@ void sub_0203AB00(FieldSystem *fieldSystem)
 
 static StartMenu *StartMenu_Alloc(void)
 {
-    StartMenu *menu;
-
-    menu = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(StartMenu));
+    StartMenu *menu = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(StartMenu));
 
     menu->state = START_MENU_STATE_INIT;
     menu->unk_28 = 0;
@@ -922,9 +920,7 @@ void sub_0203B674(StartMenu *menu, void *param1)
 
 static BOOL StartMenu_SelectPokedex(FieldTask *taskMan)
 {
-    StartMenu *menu;
-
-    menu = FieldTask_GetEnv(taskMan);
+    StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     ov5_021D1744(0);
 
@@ -981,9 +977,7 @@ static BOOL StartMenu_PokedexEnd(FieldTask *taskMan)
 
 static BOOL StartMenu_SelectPokemon(FieldTask *taskMan)
 {
-    StartMenu *menu;
-
-    menu = FieldTask_GetEnv(taskMan);
+    StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     ov5_021D1744(0);
 
@@ -1220,9 +1214,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
 static BOOL StartMenu_SelectBag(FieldTask *taskMan)
 {
-    StartMenu *menu;
-
-    menu = FieldTask_GetEnv(taskMan);
+    StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     ov5_021D1744(0);
 
@@ -1356,9 +1348,7 @@ static BOOL sub_0203BC5C(FieldTask *taskMan)
 
 static BOOL StartMenu_SelectTrainerCard(FieldTask *taskMan)
 {
-    StartMenu *menu;
-
-    menu = FieldTask_GetEnv(taskMan);
+    StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     ov5_021D1744(0);
 
@@ -1457,9 +1447,7 @@ static void StartMenu_SaveWait(FieldTask *taskMan)
 
 static BOOL StartMenu_SelectOptions(FieldTask *taskMan)
 {
-    StartMenu *menu;
-
-    menu = FieldTask_GetEnv(taskMan);
+    StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     ov5_021D1744(0);
 
@@ -1501,9 +1489,7 @@ static BOOL sub_0203C050(FieldTask *taskMan)
 
 static BOOL StartMenu_SelectChat(FieldTask *taskMan)
 {
-    StartMenu *menu;
-
-    menu = FieldTask_GetEnv(taskMan);
+    StartMenu *menu = FieldTask_GetEnv(taskMan);
 
     ov5_021D1744(0);
 

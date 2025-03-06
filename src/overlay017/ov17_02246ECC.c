@@ -1259,9 +1259,7 @@ static const UnkStruct_ov17_02253C30 Unk_ov17_02253C30[] = {
 void ov17_02246ECC(UnkStruct_ov17_02246F24 *param0, UnkStruct_ov17_0223BE58 *param1)
 {
     int v0;
-    UnkStruct_ov17_02246F9C *v1;
-
-    v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02246F9C));
+    UnkStruct_ov17_02246F9C *v1 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02246F9C));
 
     for (v0 = param0->unk_00->unk_00.unk_117; v0 < 4; v0++) {
         ov17_02246F24(param0, v1, v0);
@@ -1755,9 +1753,7 @@ static int ov17_02247538(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
 
 static int ov17_02247550(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < (1 + 2); v0++) {
         if (param0->unk_22[v0] == 10 * 4) {
@@ -1775,9 +1771,7 @@ static int ov17_02247550(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
 
 static int ov17_0224757C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < (1 + 2); v0++) {
         if (param0->unk_22[v0] == 10 * 3) {
@@ -1795,9 +1789,7 @@ static int ov17_0224757C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
 
 static int ov17_022475A8(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < (1 + 2); v0++) {
         if (param0->unk_22[v0] <= 10 * 1) {
@@ -1849,9 +1841,7 @@ static int ov17_02247600(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
 
 static int ov17_0224762C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < (1 + 2); v0++) {
         if (param0->unk_22[v0] <= 10 * 2) {
@@ -1869,9 +1859,7 @@ static int ov17_0224762C(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
 
 static int ov17_02247658(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < (1 + 2); v0++) {
         if (param0->unk_22[v0] == 10 * 4) {
@@ -1889,9 +1877,7 @@ static int ov17_02247658(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_
 
 static int ov17_02247684(UnkStruct_ov17_022472F8 *param0, int param1, UnkStruct_ov17_02246F9C *param2, u8 *param3, int param4)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < (1 + 2); v0++) {
         if (param0->unk_22[v0] == 0) {

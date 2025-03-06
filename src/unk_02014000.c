@@ -265,129 +265,97 @@ static inline void *Particle_LocalAlloc(UnkStruct_02014014 *param0, u32 param1)
 
 static void *sub_02014204(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[0];
+    UnkStruct_02014014 *v0 = Unk_021BF618[0];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014230(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[1];
+    UnkStruct_02014014 *v0 = Unk_021BF618[1];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_0201425C(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[2];
+    UnkStruct_02014014 *v0 = Unk_021BF618[2];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014288(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[3];
+    UnkStruct_02014014 *v0 = Unk_021BF618[3];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_020142B4(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[4];
+    UnkStruct_02014014 *v0 = Unk_021BF618[4];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_020142E0(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[5];
+    UnkStruct_02014014 *v0 = Unk_021BF618[5];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_0201430C(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[6];
+    UnkStruct_02014014 *v0 = Unk_021BF618[6];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014338(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[7];
+    UnkStruct_02014014 *v0 = Unk_021BF618[7];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014364(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[8];
+    UnkStruct_02014014 *v0 = Unk_021BF618[8];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014390(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[9];
+    UnkStruct_02014014 *v0 = Unk_021BF618[9];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_020143BC(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[10];
+    UnkStruct_02014014 *v0 = Unk_021BF618[10];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_020143E8(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[11];
+    UnkStruct_02014014 *v0 = Unk_021BF618[11];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014414(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[12];
+    UnkStruct_02014014 *v0 = Unk_021BF618[12];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014440(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[13];
+    UnkStruct_02014014 *v0 = Unk_021BF618[13];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_0201446C(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[14];
+    UnkStruct_02014014 *v0 = Unk_021BF618[14];
     return Particle_LocalAlloc(v0, param0);
 }
 
 static void *sub_02014498(u32 param0)
 {
-    UnkStruct_02014014 *v0;
-
-    v0 = Unk_021BF618[15];
+    UnkStruct_02014014 *v0 = Unk_021BF618[15];
     return Particle_LocalAlloc(v0, param0);
 }
 
@@ -528,9 +496,7 @@ void sub_02014674(UnkStruct_02014014 *param0)
 
 int sub_02014680(void)
 {
-    int i, count;
-
-    count = 0;
+    int i, count = 0;
     for (i = 0; i < 16; i++) {
         if (Unk_021BF618[i] != NULL) {
             count++;
@@ -541,9 +507,7 @@ int sub_02014680(void)
 
 int sub_0201469C(void)
 {
-    int i, count;
-
-    count = 0;
+    int i, count = 0;
     for (i = 0; i < 16; i++) {
         if (Unk_021BF618[i] != NULL) {
             sub_02014638(Unk_021BF618[i]);
@@ -555,9 +519,7 @@ int sub_0201469C(void)
 
 int sub_020146C0(void)
 {
-    int i, count;
-
-    count = 0;
+    int i, count = 0;
     for (i = 0; i < 16; i++) {
         if (Unk_021BF618[i] != NULL) {
             sub_02014674(Unk_021BF618[i]);
@@ -569,9 +531,7 @@ int sub_020146C0(void)
 
 SPLEmitter *sub_020146E4(UnkStruct_02014014 *param0, int param1, const VecFx32 *param2)
 {
-    SPLEmitter *v0;
-
-    v0 = SPLManager_CreateEmitter(param0->unk_00, param1, param2);
+    SPLEmitter *v0 = SPLManager_CreateEmitter(param0->unk_00, param1, param2);
     param0->unk_08 = v0;
 
     return v0;
@@ -724,9 +684,7 @@ static const void *sub_020147B8(SPLEmitter *param0, int param1)
 
 void sub_02014874(SPLEmitter *param0, VecFx16 *param1)
 {
-    UnkStruct_02014874 *v0;
-
-    v0 = (UnkStruct_02014874 *)sub_020147B8(param0, SPL_FLD_TYPE_GRAVITY);
+    UnkStruct_02014874 *v0 = (UnkStruct_02014874 *)sub_020147B8(param0, SPL_FLD_TYPE_GRAVITY);
 
     if (v0 == NULL) {
         return;
@@ -737,9 +695,7 @@ void sub_02014874(SPLEmitter *param0, VecFx16 *param1)
 
 void sub_02014890(SPLEmitter *param0, VecFx32 *param1)
 {
-    UnkStruct_02014890 *v0;
-
-    v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
+    UnkStruct_02014890 *v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
 
     if (v0 == NULL) {
         return;
@@ -750,9 +706,7 @@ void sub_02014890(SPLEmitter *param0, VecFx32 *param1)
 
 void sub_020148A8(SPLEmitter *param0, VecFx32 *param1)
 {
-    UnkStruct_02014890 *v0;
-
-    v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
+    UnkStruct_02014890 *v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
 
     if (v0 == NULL) {
         VecFx32 v1 = { 0, 0, 0 };
@@ -765,9 +719,7 @@ void sub_020148A8(SPLEmitter *param0, VecFx32 *param1)
 
 void sub_020148DC(SPLEmitter *param0, fx16 *param1)
 {
-    UnkStruct_02014890 *v0;
-
-    v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
+    UnkStruct_02014890 *v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
 
     if (v0 == NULL) {
         return;
@@ -778,9 +730,7 @@ void sub_020148DC(SPLEmitter *param0, fx16 *param1)
 
 void sub_020148F4(SPLEmitter *param0, fx16 *param1)
 {
-    UnkStruct_02014890 *v0;
-
-    v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
+    UnkStruct_02014890 *v0 = (UnkStruct_02014890 *)sub_020147B8(param0, SPL_FLD_TYPE_MAGNET);
 
     if (v0 == NULL) {
         *param1 = 0;
@@ -792,9 +742,7 @@ void sub_020148F4(SPLEmitter *param0, fx16 *param1)
 
 void sub_02014910(SPLEmitter *param0, u16 *param1)
 {
-    UnkStruct_02014910 *v0;
-
-    v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
+    UnkStruct_02014910 *v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
 
     if (v0 == NULL) {
         return;
@@ -805,9 +753,7 @@ void sub_02014910(SPLEmitter *param0, u16 *param1)
 
 void sub_02014924(SPLEmitter *param0, u16 *param1)
 {
-    UnkStruct_02014910 *v0;
-
-    v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
+    UnkStruct_02014910 *v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
 
     if (v0 == NULL) {
         *param1 = 0;
@@ -819,9 +765,7 @@ void sub_02014924(SPLEmitter *param0, u16 *param1)
 
 void sub_02014940(SPLEmitter *param0, u16 *param1)
 {
-    UnkStruct_02014910 *v0;
-
-    v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
+    UnkStruct_02014910 *v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
 
     if (v0 == NULL) {
         return;
@@ -832,9 +776,7 @@ void sub_02014940(SPLEmitter *param0, u16 *param1)
 
 void sub_02014954(SPLEmitter *param0, u16 *param1)
 {
-    UnkStruct_02014910 *v0;
-
-    v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
+    UnkStruct_02014910 *v0 = (UnkStruct_02014910 *)sub_020147B8(param0, SPL_FLD_TYPE_SPIN);
 
     if (v0 == NULL) {
         *param1 = 0;
@@ -846,9 +788,7 @@ void sub_02014954(SPLEmitter *param0, u16 *param1)
 
 void sub_02014970(SPLEmitter *param0, VecFx32 *param1)
 {
-    UnkStruct_02014970 *v0;
-
-    v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
+    UnkStruct_02014970 *v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
 
     if (v0 == NULL) {
         return;
@@ -859,9 +799,7 @@ void sub_02014970(SPLEmitter *param0, VecFx32 *param1)
 
 void sub_02014988(SPLEmitter *param0, VecFx32 *param1)
 {
-    UnkStruct_02014970 *v0;
-
-    v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
+    UnkStruct_02014970 *v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
 
     if (v0 == NULL) {
         VecFx32 v1 = { 0, 0, 0 };
@@ -874,9 +812,7 @@ void sub_02014988(SPLEmitter *param0, VecFx32 *param1)
 
 void sub_020149BC(SPLEmitter *param0, fx16 *param1)
 {
-    UnkStruct_02014970 *v0;
-
-    v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
+    UnkStruct_02014970 *v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
 
     if (v0 == NULL) {
         return;
@@ -887,9 +823,7 @@ void sub_020149BC(SPLEmitter *param0, fx16 *param1)
 
 void sub_020149D4(SPLEmitter *param0, fx16 *param1)
 {
-    UnkStruct_02014970 *v0;
-
-    v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
+    UnkStruct_02014970 *v0 = (UnkStruct_02014970 *)sub_020147B8(param0, SPL_FLD_TYPE_CONVERGENCE);
 
     if (v0 == NULL) {
         *param1 = 0;

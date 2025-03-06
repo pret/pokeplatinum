@@ -350,9 +350,7 @@ static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
 static u32 ov104_02232414(UnkStruct_ov104_02232B5C *param0)
 {
     int v0;
-    u32 v1, v2;
-
-    v1 = 0;
+    u32 v1 = 0, v2;
     v2 = 0;
 
     for (v0 = 0; v0 < param0->unk_9B; v0++) {
@@ -456,9 +454,7 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
 
 static void ov104_022325D8(UnkStruct_ov104_02232B5C *param0)
 {
-    u8 v0;
-
-    v0 = Menu_GetCursorPos(param0->unk_B0);
+    u8 v0 = Menu_GetCursorPos(param0->unk_B0);
 
     if (param0->unk_29C[v0] != 0xff) {
         ov104_02232AC4(param0, param0->unk_29C[v0], TEXT_SPEED_INSTANT);
@@ -542,9 +538,7 @@ static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
 static u32 ov104_022327F0(UnkStruct_ov104_02232B5C *param0)
 {
     int v0;
-    u32 v1, v2;
-
-    v1 = 0;
+    u32 v1 = 0, v2;
     v2 = 0;
 
     for (v0 = 0; v0 < param0->unk_9B; v0++) {
@@ -616,9 +610,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
 {
     u16 v0;
     u32 v1;
-    UnkStruct_ov104_02232B5C *v2;
-
-    v2 = (UnkStruct_ov104_02232B5C *)param1;
+    UnkStruct_ov104_02232B5C *v2 = (UnkStruct_ov104_02232B5C *)param1;
 
     if (v2->unk_94 != 0) {
         v2->unk_94--;
@@ -788,10 +780,8 @@ void ov104_02232B78(SysTask *param0, void *param1)
 {
     UnkStruct_ov104_02232B78 *v0 = param1;
     UnkStruct_ov63_0222CCB8 v1;
-    u16 v2, v3;
-
-    v2 = v0->unk_0C->unk_00;
-    v3 = v0->unk_0C->unk_02;
+    u16 v2 = v0->unk_0C->unk_00;
+    u16 v3 = v0->unk_0C->unk_02;
 
     switch (v0->unk_00) {
     case 0:
@@ -1030,9 +1020,7 @@ void ov104_02232FD4(UnkStruct_ov104_0223C4CC *param0, ManagedSprite *param1, int
 
 void ov104_02232FEC(UnkStruct_ov104_0223C4CC *param0)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 94);
+    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 94);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_04, PLTTBUF_MAIN_OBJ, param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 2001);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_34.unk_00, param0->unk_34.unk_04, v0, sub_02081938(), FALSE, 2001);

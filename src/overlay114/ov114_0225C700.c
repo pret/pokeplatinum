@@ -1094,9 +1094,7 @@ BOOL ov114_0225CA98(const UnkStruct_ov114_0225C76C *param0)
 
 UnkStruct_ov114_0225CAD4 *ov114_0225CAD4(SpriteList *param0, u32 param1)
 {
-    UnkStruct_ov114_0225CAD4 *v0;
-
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov114_0225CAD4));
+    UnkStruct_ov114_0225CAD4 *v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov114_0225CAD4));
     memset(v0, 0, sizeof(UnkStruct_ov114_0225CAD4));
 
     v0->unk_08 = param0;
@@ -1209,9 +1207,7 @@ static void ov114_0225CCB0(NNSG2dScreenData *param0, u32 param1)
 {
     int v0;
     u16 *v1;
-    int v2;
-
-    v2 = param0->szByte / 2;
+    int v2 = param0->szByte / 2;
     v1 = (u16 *)param0->rawData;
 
     for (v0 = 0; v0 < v2; v0++) {
@@ -1596,9 +1592,7 @@ static void ov114_0225D400(UnkStruct_ov114_0225D338 *param0, u32 param1)
 
 static BOOL ov114_0225D43C(const UnkStruct_ov114_0225D338 *param0, u32 param1)
 {
-    u32 v0;
-
-    v0 = Text_IsPrinterActive(param0->unk_20[param1]);
+    u32 v0 = Text_IsPrinterActive(param0->unk_20[param1]);
 
     if (v0 == 0) {
         return 1;
@@ -1674,9 +1668,7 @@ static UnkStruct_ov114_0225D678 *ov114_0225D48C(const UnkStruct_ov114_0225C76C *
 
 static void ov114_0225D5BC(UnkStruct_ov114_0225D678 *param0, u32 param1)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param1);
+    NARC *v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param1);
 
     Graphics_LoadPaletteFromOpenNARC(v0, 4, 0, 0, 9 * 32, param1);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 6, param0->unk_30.unk_00, 1, 0, 0, 0, param1);
@@ -2253,9 +2245,7 @@ static void ov114_0225E0F8(UnkStruct_ov114_0225E0F8 *param0, const UnkStruct_ov1
 static BOOL ov114_0225E14C(const UnkStruct_ov114_0225C76C *param0, const UnkStruct_ov114_0225E0F8 *param1)
 {
     int v0;
-    BOOL v1;
-
-    v1 = 0;
+    BOOL v1 = 0;
 
     for (v0 = 0; v0 < param0->unk_08 - 1; v0++) {
         if ((param1->unk_00[v0] != param1->unk_00[v0 + 1]) || (param1->unk_00[v0] == 0) || (param1->unk_00[v0 + 1] == 0)) {
@@ -2542,9 +2532,7 @@ static UnkStruct_ov114_0225E854 *ov114_0225E5A8(const UnkStruct_ov114_0225C76C *
 
 static void ov114_0225E744(UnkStruct_ov114_0225E854 *param0, u32 param1)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param1);
+    NARC *v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param1);
 
     Graphics_LoadPaletteFromOpenNARC(v0, 4, 0, 0, 9 * 32, param1);
     Graphics_LoadPaletteFromOpenNARC(v0, 4, 4, 0, 9 * 32, param1);

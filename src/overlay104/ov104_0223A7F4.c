@@ -205,9 +205,7 @@ BOOL ov104_0223A918(const u16 param0[], const u16 param1[], int param2, int para
     int v1, v2, v3;
     UnkStruct_0204B1E8 v4[6];
     int v5, v6;
-    const UnkStruct_ov104_0224028C *v7;
-
-    v7 = param6;
+    const UnkStruct_ov104_0224028C *v7 = param6;
 
     GF_ASSERT(param3 <= 6);
 
@@ -532,9 +530,7 @@ static u16 ov104_0223AEE4(UnkStruct_ov104_0223ADA0 *param0)
 
 u16 ov104_0223AF34(UnkStruct_ov104_0223ADA0 *param0)
 {
-    u16 v0;
-
-    v0 = param0->unk_0E;
+    u16 v0 = param0->unk_0E;
 
     if (ov104_0223AED4(param0->unk_04) == 1) {
         if (param0->unk_57E > param0->unk_0E) {

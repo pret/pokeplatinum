@@ -105,9 +105,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
 
 static int sub_02098304(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov119_021D0FD0 *v0;
-
-    v0 = OverlayManager_Data(param0);
+    UnkStruct_ov119_021D0FD0 *v0 = OverlayManager_Data(param0);
 
     switch (*param1) {
     case 0:
@@ -155,9 +153,7 @@ static int sub_02098304(OverlayManager *param0, int *param1)
 
 static int sub_02098388(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov119_021D0FD0 *v0;
-
-    v0 = OverlayManager_Data(param0);
+    UnkStruct_ov119_021D0FD0 *v0 = OverlayManager_Data(param0);
 
     sub_020242C4(v0->unk_04.unk_34);
 

@@ -79,9 +79,7 @@ static const u32 Unk_ov5_022006E8[4];
 
 void *ov5_021F428C(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F431C *v0;
-
-    v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F431C)), 0, 0);
+    UnkStruct_ov5_021F431C *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F431C)), 0, 0);
     v0->unk_08 = param0;
 
     ov5_021F431C(v0);
@@ -108,9 +106,7 @@ void ov5_021F42D8(UnkStruct_ov5_021DF47C *param0, int param1, int param2)
 {
     int v0;
     UnkStruct_ov101_021D5D90 *v1;
-    UnkStruct_ov5_021F431C *v2;
-
-    v2 = ov5_021DF55C(param0, 31);
+    UnkStruct_ov5_021F431C *v2 = ov5_021DF55C(param0, 31);
 
     v2->unk_04 = param2;
     v2->unk_00 = param1;
@@ -224,9 +220,7 @@ void ov5_021F44A4(UnkStruct_ov101_021D5D90 *param0)
 {
     int v0;
     UnkStruct_ov5_021F431C *v1;
-    UnkStruct_ov5_021F44A4 *v2;
-
-    v2 = sub_02071598(param0);
+    UnkStruct_ov5_021F44A4 *v2 = sub_02071598(param0);
     v1 = v2->unk_60.unk_0C;
 
     GF_ASSERT(v2->unk_74 == NULL);
@@ -244,9 +238,7 @@ void ov5_021F44A4(UnkStruct_ov101_021D5D90 *param0)
 
 BOOL ov5_021F453C(UnkStruct_ov101_021D5D90 *param0)
 {
-    UnkStruct_ov5_021F44A4 *v0;
-
-    v0 = sub_02071598(param0);
+    UnkStruct_ov5_021F44A4 *v0 = sub_02071598(param0);
     GF_ASSERT(v0->unk_74 != NULL);
 
     if (v0->unk_74->unk_00 == ((1 << 0) | (1 << 1) | (1 << 2) | (1 << 3))) {
@@ -354,9 +346,7 @@ void ov5_021F4698(UnkStruct_ov101_021D5D90 *param0, int param1, BOOL param2)
 {
     UnkStruct_02073974 *v0;
     UnkStruct_ov5_021F431C *v1;
-    UnkStruct_ov5_021F4698 *v2;
-
-    v2 = sub_02071598(param0);
+    UnkStruct_ov5_021F4698 *v2 = sub_02071598(param0);
     v1 = v2->unk_84.unk_0C;
 
     if (v2->unk_00_6 == 1) {
@@ -383,17 +373,13 @@ void ov5_021F4714(UnkStruct_ov101_021D5D90 *param0, fx32 param1)
 {
     UnkStruct_02073974 *v0;
     UnkStruct_ov5_021F431C *v1;
-    UnkStruct_ov5_021F4698 *v2;
-
-    v2 = sub_02071598(param0);
+    UnkStruct_ov5_021F4698 *v2 = sub_02071598(param0);
     v2->unk_08 = param1;
 }
 
 BOOL ov5_021F4720(UnkStruct_ov101_021D5D90 *param0)
 {
-    UnkStruct_ov5_021F4698 *v0;
-
-    v0 = sub_02071598(param0);
+    UnkStruct_ov5_021F4698 *v0 = sub_02071598(param0);
     return v0->unk_00_7;
 }
 

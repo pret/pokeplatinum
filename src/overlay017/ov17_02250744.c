@@ -278,9 +278,7 @@ int ov17_0225099C(UnkStruct_ov17_0224FCA0 *param0)
 void ov17_022509AC(UnkStruct_ov17_0224FCA0 *param0)
 {
     int v0;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
+    NARC *v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 23, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 22, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
@@ -316,9 +314,7 @@ void ov17_02250AD8(UnkStruct_ov17_0224FCA0 *param0)
 void ov17_02250B00(UnkStruct_ov17_0224FCA0 *param0)
 {
     int v0;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
+    NARC *v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 27, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 25, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
@@ -373,9 +369,7 @@ void ov17_02250D24(UnkStruct_ov17_0224FCA0 *param0)
 
 void ov17_02250D28(UnkStruct_ov17_0224FCA0 *param0)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 24);
+    NARC *v0 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 24);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, v0, 10, 0, 4, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
 
@@ -400,9 +394,7 @@ void ov17_02250DB0(UnkStruct_ov17_0224FCA0 *param0)
 {
     SpriteTemplate v0;
     int v1, v2;
-    NARC *v3;
-
-    v3 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 24);
+    NARC *v3 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 24);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_10.unk_C0, PLTTBUF_MAIN_OBJ, param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 33003);
     SpriteSystem_LoadCellResObjFromOpenNarc(param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, PokeIcon64KCellsFileIndex(), FALSE, 33002);
@@ -936,10 +928,8 @@ static int ov17_02251860(UnkStruct_02095C48 *param0, int param1)
 
 static int ov17_02251914(UnkStruct_02095C48 *param0, int param1)
 {
-    int v0, v1;
-
-    v0 = ov17_02251860(param0, param1);
-    v1 = (24 * 8) * v0;
+    int v0 = ov17_02251860(param0, param1);
+    int v1 = (24 * 8) * v0;
     v1 = (v1 + 5000) / 10000;
 
     return v1;

@@ -701,9 +701,7 @@ static void ov28_02256D20(SysTask *param0, void *param1)
 static void ov28_02256D64(SysTask *param0, void *param1)
 {
     const UnkStruct_ov28_0225697C_1 *v0;
-    UnkStruct_ov28_0225697C *v1;
-
-    v1 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov28_0225697C *v1 = PoketchTask_GetTaskData(param1);
     v0 = PoketchTask_GetConstTaskData(param1);
 
     ov28_02256D90(v1->unk_04, v0);
@@ -713,9 +711,7 @@ static void ov28_02256D64(SysTask *param0, void *param1)
 
 static void ov28_02256D90(BgConfig *param0, const UnkStruct_ov28_0225697C_1 *param1)
 {
-    u16 *v0;
-
-    v0 = Bg_GetTilemapBuffer(param0, 6);
+    u16 *v0 = Bg_GetTilemapBuffer(param0, 6);
 
     if (param1->unk_02 == 17) {
         ov28_02256DCC(param0);
@@ -733,9 +729,7 @@ static void ov28_02256DCC(BgConfig *param0)
 
 static void ov28_02256DF0(SysTask *param0, void *param1)
 {
-    UnkStruct_ov28_0225697C *v0;
-
-    v0 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov28_0225697C *v0 = PoketchTask_GetTaskData(param1);
     Bg_FreeTilemapBuffer(v0->unk_04, 6);
     ov28_022569F4(param1);
 }
@@ -743,9 +737,7 @@ static void ov28_02256DF0(SysTask *param0, void *param1)
 static void ov28_02256E0C(BgConfig *param0, const u16 *param1)
 {
     u32 v0, v1, v2;
-    u16 *v3;
-
-    v3 = Bg_GetTilemapBuffer(param0, 6);
+    u16 *v3 = Bg_GetTilemapBuffer(param0, 6);
 
     for (v0 = 0; param1[v0] != 13; v0++) {
         (void)0;

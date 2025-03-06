@@ -405,9 +405,7 @@ static void ov110_021D1200 (UnkStruct_ov110_021D0F78 * param0, int * param1, int
 
 static u8 ov110_021D1208 (u8 param0)
 {
-    u8 v0;
-
-    v0 = 0;
+    u8 v0 = 0;
 
     switch (param0) {
     case 2:

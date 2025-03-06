@@ -20,9 +20,7 @@ UnkStruct_ov5_021EEB48 *ov5_021EEAC8(const BOOL param0)
 {
     u8 v0;
     int v1;
-    UnkStruct_ov5_021EEB48 *v2;
-
-    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021EEB48));
+    UnkStruct_ov5_021EEB48 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021EEB48));
     memset(v2, 0, sizeof(UnkStruct_ov5_021EEB48));
 
     v2->unk_00 = 1;
@@ -100,9 +98,7 @@ static void ov5_021EEB9C(const u8 param0, const int param1, const int param2, Un
 UnkStruct_ov5_021EEB48 *ov5_021EEBC0(const BOOL param0)
 {
     u32 v0;
-    UnkStruct_ov5_021EEB48 *v1;
-
-    v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021EEB48));
+    UnkStruct_ov5_021EEB48 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov5_021EEB48));
     memset(v1, 0, sizeof(UnkStruct_ov5_021EEB48));
     v1->unk_00 = 2;
 

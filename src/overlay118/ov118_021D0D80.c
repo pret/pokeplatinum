@@ -199,9 +199,7 @@ static void ov118_021D0FDC(OverlayMetadata *param0)
 
 static void ov118_021D1028(OverlayMetadata *param0)
 {
-    void *v0;
-
-    v0 = sub_020144C4(185, param0->unk_10, 12);
+    void *v0 = sub_020144C4(185, param0->unk_10, 12);
     sub_020144CC(param0->unk_18, v0, (1 << 1) | (1 << 3), 1);
 
     switch (param0->unk_0C) {
@@ -221,9 +219,7 @@ static void ov118_021D1028(OverlayMetadata *param0)
 
 static void ov118_021D10B0(SPLEmitter *param0)
 {
-    OverlayMetadata *v0;
-
-    v0 = sub_02014764();
+    OverlayMetadata *v0 = sub_02014764();
 
     SPLEmitter_SetPosX(param0, Unk_ov118_021D1170[v0->unk_14][0]);
     SPLEmitter_SetPosY(param0, Unk_ov118_021D1170[v0->unk_14][1]);
@@ -249,9 +245,7 @@ static int ov118_021D10E8(void)
 
 static void ov118_021D110C(OverlayMetadata *param0)
 {
-    void *v0;
-
-    v0 = sub_02014730(param0->unk_18);
+    void *v0 = sub_02014730(param0->unk_18);
     sub_0201411C(param0->unk_18);
     Heap_FreeToHeap(v0);
 }

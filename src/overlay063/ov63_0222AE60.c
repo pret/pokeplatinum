@@ -355,9 +355,7 @@ void ov63_0222AF14(UnkStruct_ov63_0222AE60 *param0)
 void ov63_0222AF94(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param2, int param3, u32 param4)
 {
     u32 v0;
-    BOOL v1;
-
-    v1 = ov63_0222B47C(param1, param3);
+    BOOL v1 = ov63_0222B47C(param1, param3);
     GF_ASSERT(v1);
 
     v0 = ov63_0222B450(param1);
@@ -366,17 +364,13 @@ void ov63_0222AF94(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param2, int 
 
 void ov63_0222AFD0(UnkStruct_ov63_0222AE60 *param0, u32 param1)
 {
-    u32 v0;
-
-    v0 = ov63_0222B450(param1);
+    u32 v0 = ov63_0222B450(param1);
     ov63_0222B738(param0, v0);
 }
 
 BOOL ov63_0222AFE4(const UnkStruct_ov63_0222AE60 *param0, u32 param1)
 {
-    u32 v0;
-
-    v0 = ov63_0222B450(param1);
+    u32 v0 = ov63_0222B450(param1);
     return ov63_0222B7D4(param0, v0);
 }
 
@@ -793,9 +787,7 @@ static void ov63_0222B664(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param
 {
     NNSG2dCharacterData *v0;
     BOOL v1;
-    u32 v2;
-
-    v2 = param1 - 2;
+    u32 v2 = param1 - 2;
 
     param0->unk_10[param1].unk_04[0] = SpriteResourceCollection_AddTilesFrom(param0->unk_2280[0], param0->unk_2294[1], (1 + ((param1)-2)), 0, 0x200 + param1, param2, param4);
 

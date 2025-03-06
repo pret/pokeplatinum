@@ -2476,9 +2476,7 @@ static int ov101_021D394C(UnkStruct_ov101_021D2D88 *param0, UnkStruct_ov101_021D
 
 static int ov101_021D3AF0(UnkStruct_ov101_021D13C8 *param0, int param1)
 {
-    u32 v0;
-
-    v0 = ov101_021D55D4(param0, 0, 1 - param1);
+    u32 v0 = ov101_021D55D4(param0, 0, 1 - param1);
 
     if (v0 == 3) {
         return 1;
@@ -4427,11 +4425,9 @@ static UnkEnum_ov101_021D9688 ov101_021D5618(u32 param0)
 
 static UnkEnum_ov101_021D9688 ov101_021D5660(UnkStruct_ov101_021D13C8 *param0)
 {
-    u32 v0, v1, v2;
-
-    v0 = ov101_021D55D4(param0, 0, 1);
-    v1 = ov101_021D55D4(param0, 1, 1);
-    v2 = ov101_021D55D4(param0, 2, 1);
+    u32 v0 = ov101_021D55D4(param0, 0, 1);
+    u32 v1 = ov101_021D55D4(param0, 1, 1);
+    u32 v2 = ov101_021D55D4(param0, 2, 1);
 
     if ((v0 == 3) || ((v0 == v1) && (v0 == v2))) {
         return v0;
@@ -4442,11 +4438,9 @@ static UnkEnum_ov101_021D9688 ov101_021D5660(UnkStruct_ov101_021D13C8 *param0)
 
 static UnkEnum_ov101_021D9688 ov101_021D5698(UnkStruct_ov101_021D13C8 *param0)
 {
-    u32 v0, v1, v2;
-
-    v0 = ov101_021D55D4(param0, 0, 2);
-    v1 = ov101_021D55D4(param0, 1, 2);
-    v2 = ov101_021D55D4(param0, 2, 2);
+    u32 v0 = ov101_021D55D4(param0, 0, 2);
+    u32 v1 = ov101_021D55D4(param0, 1, 2);
+    u32 v2 = ov101_021D55D4(param0, 2, 2);
 
     if ((v0 == 3) || ((v0 == v1) && (v0 == v2))) {
         return v0;
@@ -4457,11 +4451,9 @@ static UnkEnum_ov101_021D9688 ov101_021D5698(UnkStruct_ov101_021D13C8 *param0)
 
 static UnkEnum_ov101_021D9688 ov101_021D56D0(UnkStruct_ov101_021D13C8 *param0)
 {
-    u32 v0, v1, v2;
-
-    v0 = ov101_021D55D4(param0, 0, 3);
-    v1 = ov101_021D55D4(param0, 1, 3);
-    v2 = ov101_021D55D4(param0, 2, 3);
+    u32 v0 = ov101_021D55D4(param0, 0, 3);
+    u32 v1 = ov101_021D55D4(param0, 1, 3);
+    u32 v2 = ov101_021D55D4(param0, 2, 3);
 
     if ((v0 == 3) || ((v0 == v1) && (v0 == v2))) {
         return v0;
@@ -4472,11 +4464,9 @@ static UnkEnum_ov101_021D9688 ov101_021D56D0(UnkStruct_ov101_021D13C8 *param0)
 
 static UnkEnum_ov101_021D9688 ov101_021D5708(UnkStruct_ov101_021D13C8 *param0)
 {
-    u32 v0, v1, v2;
-
-    v0 = ov101_021D55D4(param0, 0, 1);
-    v1 = ov101_021D55D4(param0, 1, 2);
-    v2 = ov101_021D55D4(param0, 2, 3);
+    u32 v0 = ov101_021D55D4(param0, 0, 1);
+    u32 v1 = ov101_021D55D4(param0, 1, 2);
+    u32 v2 = ov101_021D55D4(param0, 2, 3);
 
     if ((v0 == 3) || ((v0 == v1) && (v0 == v2))) {
         return v0;
@@ -4487,11 +4477,9 @@ static UnkEnum_ov101_021D9688 ov101_021D5708(UnkStruct_ov101_021D13C8 *param0)
 
 static UnkEnum_ov101_021D9688 ov101_021D5740(UnkStruct_ov101_021D13C8 *param0)
 {
-    u32 v0, v1, v2;
-
-    v0 = ov101_021D55D4(param0, 0, 3);
-    v1 = ov101_021D55D4(param0, 1, 2);
-    v2 = ov101_021D55D4(param0, 2, 1);
+    u32 v0 = ov101_021D55D4(param0, 0, 3);
+    u32 v1 = ov101_021D55D4(param0, 1, 2);
+    u32 v2 = ov101_021D55D4(param0, 2, 1);
 
     if ((v0 == 3) || ((v0 == v1) && (v0 == v2))) {
         return v0;

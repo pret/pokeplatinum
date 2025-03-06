@@ -64,9 +64,7 @@ const static UnkFuncPtr_020EF770 Unk_020EF770[11] = {
 void sub_02068344(FieldSystem *fieldSystem)
 {
     int v0;
-    UnkStruct_02027860 *v1;
-
-    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02027860 *v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v0 = sub_02027F80(v1);
 
     if (v0 == 0) {
@@ -79,9 +77,7 @@ void sub_02068344(FieldSystem *fieldSystem)
 void sub_02068368(FieldSystem *fieldSystem)
 {
     int v0;
-    UnkStruct_02027860 *v1;
-
-    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02027860 *v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v0 = sub_02027F80(v1);
 
     if (v0 == 0) {
@@ -96,9 +92,7 @@ void sub_02068368(FieldSystem *fieldSystem)
 BOOL sub_02068390(FieldSystem *fieldSystem, const int param1, const int param2, const fx32 param3, BOOL *param4)
 {
     int v0;
-    UnkStruct_02027860 *v1;
-
-    v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02027860 *v1 = sub_02027860(FieldSystem_GetSaveData(fieldSystem));
     v0 = sub_02027F80(v1);
 
     if (v0 == 0) {

@@ -459,9 +459,7 @@ u16 ov104_02234440(UnkStruct_ov104_0223ADA0 *param0, u8 param1)
 {
     UnkStruct_ov104_0223A348_sub1 v0;
     UnkStruct_0204B184 *v1;
-    u8 v2;
-
-    v2 = param0->unk_06 + (param1 * 7);
+    u8 v2 = param0->unk_06 + (param1 * 7);
     v1 = ov104_0222DD04(&v0, param0->unk_18[v2], 11, 178);
 
     Heap_FreeToHeap(v1);

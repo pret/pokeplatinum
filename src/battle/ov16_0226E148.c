@@ -39,9 +39,7 @@ SysTask *ov16_0226E148(BattleSystem *battleSys)
 
 void ov16_0226E174(SysTask *param0)
 {
-    UnkStruct_ov16_0226E148 *v0;
-
-    v0 = SysTask_GetParam(param0);
+    UnkStruct_ov16_0226E148 *v0 = SysTask_GetParam(param0);
 
     Heap_FreeToHeap(v0);
     SysTask_Done(param0);
@@ -50,9 +48,7 @@ void ov16_0226E174(SysTask *param0)
 static void ov16_0226E188(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0226E148 *v0 = param1;
-    UnkStruct_ov16_02268A14 *v1;
-
-    v1 = ov16_0223E02C(v0->unk_00);
+    UnkStruct_ov16_02268A14 *v1 = ov16_0223E02C(v0->unk_00);
 
     switch (v0->unk_04) {
     case 0:

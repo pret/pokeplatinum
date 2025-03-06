@@ -234,9 +234,7 @@ UnkStruct_020216E0 *ov5_021ECF1C(MapObject *param0, int param1)
     UnkStruct_02020C44 *v1;
     UnkStruct_020216E0 *v2;
     UnkStruct_ov5_021DF84C *v3;
-    UnkStruct_ov5_021ED0A4 *v4;
-
-    v4 = ov5_021EDEA8(param0);
+    UnkStruct_ov5_021ED0A4 *v4 = ov5_021EDEA8(param0);
     v1 = ov5_021EDC8C(v4);
 
     ov5_021EDA0C(v4, param1);
@@ -373,9 +371,7 @@ static void ov5_021ED0F0(UnkStruct_ov5_021ED0A4 *param0)
 static UnkStruct_ov5_021DF84C *ov5_021ED110(UnkStruct_ov5_021ED0A4 *param0, u32 param1)
 {
     int v0;
-    UnkStruct_ov5_021ED110 *v1;
-
-    v1 = param0->unk_F4;
+    UnkStruct_ov5_021ED110 *v1 = param0->unk_F4;
     v0 = param0->unk_04;
 
     do {
@@ -430,9 +426,7 @@ int ov5_021ED150(const MapObjectManager *param0, u32 param1, UnkStruct_ov5_021DF
 static void ov5_021ED184(UnkStruct_ov5_021ED0A4 *param0, u32 param1)
 {
     int v0;
-    UnkStruct_ov5_021ED110 *v1;
-
-    v1 = param0->unk_F4;
+    UnkStruct_ov5_021ED110 *v1 = param0->unk_F4;
     v0 = param0->unk_04;
 
     do {
@@ -450,9 +444,7 @@ static void ov5_021ED184(UnkStruct_ov5_021ED0A4 *param0, u32 param1)
 static void ov5_021ED1A4(UnkStruct_ov5_021ED0A4 *param0)
 {
     int v0;
-    UnkStruct_ov5_021ED110 *v1;
-
-    v1 = param0->unk_F4;
+    UnkStruct_ov5_021ED110 *v1 = param0->unk_F4;
     v0 = param0->unk_04;
 
     do {
@@ -610,9 +602,7 @@ static void ov5_021ED3B8(UnkStruct_ov5_021ED0A4 *param0, const int *param1)
 
 static void ov5_021ED3DC(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
-    ResourceCollection *v0;
-
-    v0 = ov5_021EDC98(param0);
+    ResourceCollection *v0 = ov5_021EDC98(param0);
 
     ov5_021ED2E8(param0, param0->unk_F8, param1, 0xffff, Unk_ov5_021FB484);
     ov5_021ED56C(param0, param1);
@@ -620,9 +610,7 @@ static void ov5_021ED3DC(UnkStruct_ov5_021ED0A4 *param0, int param1)
 
 static void ov5_021ED40C(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
-    ResourceCollection *v0;
-
-    v0 = ov5_021EDC98(param0);
+    ResourceCollection *v0 = ov5_021EDC98(param0);
 
     ov5_021ED2E8(param0, param0->unk_F8, param1, 0xffff, Unk_ov5_021FB484);
     ov5_021ED5B4(param0, param1);
@@ -638,9 +626,7 @@ static void ov5_021ED43C(UnkStruct_ov5_021ED0A4 *param0, const int *param1)
 
 static void ov5_021ED460(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
-    ResourceCollection *v0;
-
-    v0 = ov5_021EDCA0(param0);
+    ResourceCollection *v0 = ov5_021EDCA0(param0);
 
     ov5_021ED2E8(param0, param0->unk_FC, param1, 0xffff, Unk_ov5_021FB5BC);
     ov5_021ED6A8(param0, param1);
@@ -648,9 +634,7 @@ static void ov5_021ED460(UnkStruct_ov5_021ED0A4 *param0, int param1)
 
 static void ov5_021ED490(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
-    ResourceCollection *v0;
-
-    v0 = ov5_021EDCA0(param0);
+    ResourceCollection *v0 = ov5_021EDCA0(param0);
 
     ov5_021ED2E8(param0, param0->unk_FC, param1, 0xffff, Unk_ov5_021FB5BC);
     ov5_021ED6F0(param0, param1);
@@ -726,9 +710,7 @@ static int ov5_021ED53C(int *param0, int param1, int param2, int param3)
 
 static void ov5_021ED558(UnkStruct_ov5_021ED0A4 *param0)
 {
-    int *v0;
-
-    v0 = ov5_021EDCBC(param0);
+    int *v0 = ov5_021EDCBC(param0);
     ov5_021ED504(v0, 0xffff, 8);
 }
 
@@ -758,9 +740,7 @@ static int ov5_021ED598(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED5B4(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     int v0, v1;
-    int *v2;
-
-    v2 = ov5_021EDCBC(param0);
+    int *v2 = ov5_021EDCBC(param0);
     v2 = &v2[ov5_021EDCC8(param0)];
     v1 = ov5_021EDCD0(param0);
     v0 = ov5_021ED50C(v2, param1, 0xffff, v1);
@@ -771,9 +751,7 @@ static void ov5_021ED5B4(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static int ov5_021ED5E8(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     int v0;
-    int *v1;
-
-    v1 = ov5_021EDCBC(param0);
+    int *v1 = ov5_021EDCBC(param0);
     v1 = &v1[ov5_021EDCC8(param0)];
     v0 = ov5_021EDCD0(param0);
 
@@ -783,9 +761,7 @@ static int ov5_021ED5E8(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED610(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     int v0;
-    int *v1;
-
-    v1 = ov5_021EDCBC(param0);
+    int *v1 = ov5_021EDCBC(param0);
     v1 = &v1[ov5_021EDCC8(param0)];
     v0 = ov5_021EDCD0(param0);
 
@@ -796,9 +772,7 @@ static void ov5_021ED63C(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param
 {
     int v0;
     int *v1;
-    ResourceCollection *v2;
-
-    v2 = ov5_021EDC98(param1);
+    ResourceCollection *v2 = ov5_021EDC98(param1);
     v1 = ov5_021EDCBC(param1);
     v1 = &v1[ov5_021EDCC8(param1)];
     v0 = ov5_021EDCD0(param1);
@@ -818,9 +792,7 @@ static void ov5_021ED63C(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param
 
 static void ov5_021ED694(UnkStruct_ov5_021ED0A4 *param0)
 {
-    int *v0;
-
-    v0 = ov5_021EDCC0(param0);
+    int *v0 = ov5_021EDCC0(param0);
     ov5_021ED504(v0, 0xffff, 8);
 }
 
@@ -850,9 +822,7 @@ static int ov5_021ED6D4(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED6F0(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     int v0, v1;
-    int *v2;
-
-    v2 = ov5_021EDCC0(param0);
+    int *v2 = ov5_021EDCC0(param0);
     v2 = &v2[ov5_021EDCD8(param0)];
     v1 = ov5_021EDCE0(param0);
     v0 = ov5_021ED50C(v2, param1, 0xffff, v1);
@@ -863,9 +833,7 @@ static void ov5_021ED6F0(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static int ov5_021ED724(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     int v0;
-    int *v1;
-
-    v1 = ov5_021EDCC0(param0);
+    int *v1 = ov5_021EDCC0(param0);
     v1 = &v1[ov5_021EDCD8(param0)];
     v0 = ov5_021EDCE0(param0);
 
@@ -875,9 +843,7 @@ static int ov5_021ED724(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED74C(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     int v0;
-    int *v1;
-
-    v1 = ov5_021EDCC0(param0);
+    int *v1 = ov5_021EDCC0(param0);
     v1 = &v1[ov5_021EDCD8(param0)];
     v0 = ov5_021EDCE0(param0);
 
@@ -888,9 +854,7 @@ static void ov5_021ED778(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param
 {
     int v0;
     int *v1;
-    ResourceCollection *v2;
-
-    v2 = ov5_021EDCA0(param1);
+    ResourceCollection *v2 = ov5_021EDCA0(param1);
     v1 = ov5_021EDCC0(param1);
     v1 = &v1[ov5_021EDCD8(param1)];
     v0 = ov5_021EDCE0(param1);
@@ -910,9 +874,7 @@ static void ov5_021ED778(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param
 
 static void ov5_021ED7D0(UnkStruct_ov5_021ED0A4 *param0)
 {
-    int *v0;
-
-    v0 = ov5_021EDCB8(param0);
+    int *v0 = ov5_021EDCB8(param0);
     ov5_021ED504(v0, 0xffff, 32);
 }
 
@@ -953,9 +915,7 @@ static int ov5_021ED82C(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED858(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     int v0, v1;
-    int *v2;
-
-    v2 = ov5_021EDCB8(param0);
+    int *v2 = ov5_021EDCB8(param0);
     v2 = &v2[ov5_021EDCE8(param0)];
     v1 = ov5_021EDCF0(param0);
     v0 = ov5_021ED50C(v2, param1, 0xffff, v1);
@@ -966,9 +926,7 @@ static void ov5_021ED858(UnkStruct_ov5_021ED0A4 *param0, int param1)
 static void ov5_021ED88C(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     int v0;
-    int *v1;
-
-    v1 = ov5_021EDCB8(param0);
+    int *v1 = ov5_021EDCB8(param0);
     v1 = &v1[ov5_021EDCE8(param0)];
     v0 = ov5_021EDCF0(param0);
 
@@ -979,9 +937,7 @@ static void ov5_021ED8B8(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param
 {
     int v0, v1;
     int *v2;
-    TextureResourceManager *v3;
-
-    v3 = ov5_021EDCB0(param1);
+    TextureResourceManager *v3 = ov5_021EDCB0(param1);
     v2 = ov5_021EDCB8(param1);
     v2 = &v2[ov5_021EDCE8(param1)];
     v0 = ov5_021EDCF0(param1);
@@ -1007,9 +963,7 @@ static void ov5_021ED8B8(MapObjectManager *param0, UnkStruct_ov5_021ED0A4 *param
 static int ov5_021ED924(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
     int v0;
-    int *v1;
-
-    v1 = ov5_021EDCB8(param0);
+    int *v1 = ov5_021EDCB8(param0);
     v1 = &v1[ov5_021EDCE8(param0)];
     v0 = ov5_021EDCF0(param0);
 
@@ -1080,9 +1034,7 @@ static void ov5_021ED9F4(UnkStruct_ov5_021ED0A4 *param0, int param1)
 
 static void ov5_021EDA0C(UnkStruct_ov5_021ED0A4 *param0, int param1)
 {
-    int v0;
-
-    v0 = ov5_021EDD2C(param1);
+    int v0 = ov5_021EDD2C(param1);
     ov5_021ED9DC(param0, v0);
 
     v0 = ov5_021EDD38(param1);
@@ -1365,25 +1317,19 @@ static const UnkStruct_ov5_021EDD04 *ov5_021EDD04(int param0)
 
 static int ov5_021EDD2C(int param0)
 {
-    const UnkStruct_ov5_021EDD04 *v0;
-
-    v0 = ov5_021EDD04(param0);
+    const UnkStruct_ov5_021EDD04 *v0 = ov5_021EDD04(param0);
     return v0->unk_04;
 }
 
 static int ov5_021EDD38(int param0)
 {
-    const UnkStruct_ov5_021EDD04 *v0;
-
-    v0 = ov5_021EDD04(param0);
+    const UnkStruct_ov5_021EDD04 *v0 = ov5_021EDD04(param0);
     return v0->unk_06;
 }
 
 static const UnkStruct_020217F4 *ov5_021EDD44(int param0)
 {
-    const UnkStruct_ov5_021EDD04 *v0;
-
-    v0 = ov5_021EDD04(param0);
+    const UnkStruct_ov5_021EDD04 *v0 = ov5_021EDD04(param0);
     return v0->unk_08;
 }
 
@@ -1498,9 +1444,7 @@ static void ov5_021EDE3C(UnkStruct_ov5_021ED0A4 *param0, u32 param1, UnkStruct_o
 
 static UnkStruct_ov5_021ED0A4 *ov5_021EDEA8(const MapObject *param0)
 {
-    const MapObjectManager *v0;
-
-    v0 = MapObject_MapObjectManager(param0);
+    const MapObjectManager *v0 = MapObject_MapObjectManager(param0);
     return (UnkStruct_ov5_021ED0A4 *)sub_0206285C(v0);
 }
 

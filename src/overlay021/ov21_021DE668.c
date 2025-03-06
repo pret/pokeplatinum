@@ -1000,9 +1000,7 @@ static void ov21_021DF6C4(UnkStruct_ov21_021DF374 *param0, int param1, int param
 
 static BOOL ov21_021DF6E0(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1)
 {
-    BOOL v0;
-
-    v0 = ov21_021D2664(&param0->unk_34);
+    BOOL v0 = ov21_021D2664(&param0->unk_34);
     ov21_021D2164(param1->unk_00, param0->unk_34.unk_00, param0->unk_34.unk_04);
 
     return v0;
@@ -1015,9 +1013,7 @@ static void ov21_021DF6FC(UnkStruct_ov21_021DF374 *param0)
 
 static BOOL ov21_021DF718(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1)
 {
-    BOOL v0;
-
-    v0 = ov21_021D2664(&param0->unk_54);
+    BOOL v0 = ov21_021D2664(&param0->unk_54);
     ov21_021D1848(param1->unk_00, param0->unk_54.unk_00, param0->unk_54.unk_04);
 
     return v0;

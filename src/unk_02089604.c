@@ -284,9 +284,7 @@ static BOOL (*const Unk_020F2EB8[])(UnkStruct_02089688 *) = {
 
 BOOL sub_02089BEC(UnkStruct_02089688 *param0)
 {
-    BOOL v0;
-
-    v0 = Unk_020F2EB8[param0->unk_294](param0);
+    BOOL v0 = Unk_020F2EB8[param0->unk_294](param0);
 
     sub_0208ABB4(param0);
     sub_0208AC8C(param0);

@@ -25,9 +25,7 @@ UnkStruct_0202144C sub_0202414C(const UnkStruct_02024184 *param0, const u16 para
 
 void sub_02024184(const void *param0, UnkStruct_02024184 *param1)
 {
-    const u8 *v0;
-
-    v0 = param0;
+    const u8 *v0 = param0;
     param1->unk_0C = *((u32 *)v0);
 
     v0 = v0 + sizeof(u32);

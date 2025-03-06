@@ -1174,9 +1174,7 @@ static int ov5_021E8A98(const u32 param0, const int param1, const int param2)
 
 static int ov5_021E8ABC(const int param0, const int param1, const int param2, const int param3, const int param4)
 {
-    int v0;
-
-    v0 = (param0 - param2) + ((param1 - param3) * param4);
+    int v0 = (param0 - param2) + ((param1 - param3) * param4);
     return v0;
 }
 
@@ -1830,9 +1828,7 @@ void ov5_021E9630(UnkStruct_ov5_021E8F60 *param0, UnkFuncPtr_ov5_021E9630 param1
 
 static void ov5_021E9640(SysTask *param0)
 {
-    UnkStruct_ov5_021E9640 *v0;
-
-    v0 = (UnkStruct_ov5_021E9640 *)SysTask_GetParam(param0);
+    UnkStruct_ov5_021E9640 *v0 = (UnkStruct_ov5_021E9640 *)SysTask_GetParam(param0);
     v0->unk_1C = 1;
 }
 
@@ -1923,9 +1919,7 @@ static void ov5_021E964C(SysTask *param0, void *param1)
 SysTask *ov5_021E976C(NARC *param0, const int param1, NNSG3dRenderObj *param2, NNSG3dResFileHeader **param3, NNSG3dResTex *param4, BOOL *param5, int *param6)
 {
     SysTask *v0;
-    UnkStruct_ov5_021E9640 *v1;
-
-    v1 = (UnkStruct_ov5_021E9640 *)Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021E9640));
+    UnkStruct_ov5_021E9640 *v1 = (UnkStruct_ov5_021E9640 *)Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021E9640));
 
     v1->unk_00 = param0;
     v1->unk_04 = param1;

@@ -146,9 +146,7 @@ static void ov100_021D42B0(UnkStruct_ov100_021D4104 *param0)
         { 168, 123 },
         { 108, 93 },
     };
-    BOOL v3;
-
-    v3 = ov100_021D4104(param0, v2[param0->unk_28[2]][0], v2[param0->unk_28[2]][1], 3.0f, 10);
+    BOOL v3 = ov100_021D4104(param0, v2[param0->unk_28[2]][0], v2[param0->unk_28[2]][1], 3.0f, 10);
 
     if (v3 == 0) {
         param0->unk_28[2]++;

@@ -176,9 +176,7 @@ static const u32 Unk_ov70_0226D518[6] = {
 
 UnkStruct_ov70_0225CA20 *ov70_0225C9B4(u32 param0, u32 param1, const UnkStruct_ov70_0225C894 *param2, u32 heapID, u32 param4)
 {
-    UnkStruct_ov70_0225CA20 *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_0225CA20));
+    UnkStruct_ov70_0225CA20 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov70_0225CA20));
     memset(v0, 0, sizeof(UnkStruct_ov70_0225CA20));
 
     v0->unk_00 = ov63_0222BE18(param0, heapID);
@@ -274,18 +272,14 @@ void ov70_0225CB1C(UnkStruct_ov70_0225CA20 *param0, const UnkStruct_ov63_0222D89
 UnkStruct_ov70_0225CC54 *ov70_0225CB28(UnkStruct_ov70_0225CA20 *param0, u32 param1)
 {
     u16 v0, v1;
-    BOOL v2;
-
-    v2 = ov70_0225C8D8(param0->unk_14, 3, &v0, &v1, 0);
+    BOOL v2 = ov70_0225C8D8(param0->unk_14, 3, &v0, &v1, 0);
     GF_ASSERT(v2);
     return ov70_0225CB5C(param0, param1, v0, v1);
 }
 
 UnkStruct_ov70_0225CC54 *ov70_0225CB5C(UnkStruct_ov70_0225CA20 *param0, u32 param1, u32 param2, u32 param3)
 {
-    UnkStruct_ov70_0225CC54 *v0;
-
-    v0 = ov70_0225D2C0(param0);
+    UnkStruct_ov70_0225CC54 *v0 = ov70_0225D2C0(param0);
 
     {
         UnkStruct_ov65_022376D0 v1;
@@ -317,9 +311,7 @@ UnkStruct_ov70_0225CC54 *ov70_0225CB5C(UnkStruct_ov70_0225CA20 *param0, u32 para
 
 UnkStruct_ov70_0225CC54 *ov70_0225CBB8(UnkStruct_ov70_0225CA20 *param0, u32 param1, u32 param2)
 {
-    UnkStruct_ov70_0225CC54 *v0;
-
-    v0 = ov70_0225D2C0(param0);
+    UnkStruct_ov70_0225CC54 *v0 = ov70_0225D2C0(param0);
 
     {
         UnkStruct_ov65_022376D0 v1;
@@ -712,9 +704,7 @@ static void ov70_0225D17C(UnkStruct_ov70_0225CA20 *param0, s32 param1, s32 param
 
 static u8 ov70_0225D194(const u8 *param0, u32 param1)
 {
-    int v0;
-
-    v0 = MTRNG_Next() % param1;
+    int v0 = MTRNG_Next() % param1;
     return param0[v0];
 }
 

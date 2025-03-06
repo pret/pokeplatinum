@@ -200,9 +200,7 @@ void sub_02096274(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
     UnkStruct_02096274 v1;
-    UnkStruct_02096274 *v2;
-
-    v2 = param2;
+    UnkStruct_02096274 *v2 = param2;
 
     if (param0 != 0) {
         if (CommSys_CurNetId() == 0) {
@@ -249,9 +247,7 @@ void sub_02096274(int param0, int param1, void *param2, void *param3)
 void sub_02096360(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_020961E8 *v0 = (UnkStruct_020961E8 *)param3;
-    u8 v1;
-
-    v1 = *(u8 *)param2;
+    u8 v1 = *(u8 *)param2;
 
     ov59_021D22EC(v0, 1, v1);
 

@@ -1021,9 +1021,7 @@ static void ov64_0222E604(UnkStruct_ov64_0222E21C *param0)
 
 static void ov64_0222E620(UnkStruct_ov64_0222E21C *param0, const UnkStruct_ov64_0222E060 *param1, u32 param2)
 {
-    int v0;
-
-    v0 = Options_Frame(SaveData_Options(param1->unk_00));
+    int v0 = Options_Frame(SaveData_Options(param1->unk_00));
 
     Font_LoadScreenIndicatorsPalette(0, 7 * 0x20, param2);
     LoadMessageBoxGraphics(param0->unk_00, Unk_ov64_02232258[1], (1 + 9), 8, v0, param2);
@@ -1646,9 +1644,7 @@ static void ov64_0222EF64(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E2
 
 static void ov64_0222EFBC(UnkStruct_ov64_0222F038 *param0, UnkStruct_ov64_0222E21C *param1, u32 param2, u32 param3)
 {
-    Strbuf *v0;
-
-    v0 = Strbuf_Init(128, param3);
+    Strbuf *v0 = Strbuf_Init(128, param3);
 
     Window_FillTilemap(&param0->unk_1C, 15);
     MessageLoader_GetStrbuf(param1->unk_218, param2, v0);
@@ -2465,9 +2461,7 @@ static BOOL ov64_0222FBA4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 
 static void ov64_0222FC1C (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E060 * param1, UnkStruct_ov64_0222E21C * param2, u32 param3)
 {
-    u32 v0;
-
-    v0 = ov64_0222FF38(param0);
+    u32 v0 = ov64_0222FF38(param0);
 
     ov64_0222E880(param2, param1->unk_00, param1->unk_08.unk_04[v0], param3);
     ov64_0222FE70(param0, param2, 52, param3);
@@ -2511,9 +2505,7 @@ static void ov64_0222FCF0 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 
 static void ov64_0222FD7C (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E21C * param1, u32 param2, u32 param3)
 {
-    u32 v0;
-
-    v0 = 0x16 + (2 * param3) + 1;
+    u32 v0 = 0x16 + (2 * param3) + 1;
 
     Bg_CopyToTilemapRect(param1->unk_00, Unk_ov64_02232258[0], v0, 0 + 1, 1, 1, param1->unk_278.unk_08[1]->rawData, 4, Unk_ov64_02232428[param3], param1->unk_278.unk_08[1]->screenWidth / 8, param1->unk_278.unk_08[1]->screenHeight / 8);
     Bg_ScheduleTilemapTransfer(param1->unk_00, Unk_ov64_02232258[0]);
@@ -2574,9 +2566,7 @@ static void ov64_0222FF18 (UnkStruct_ov64_0222F0C4 * param0)
 
 static u32 ov64_0222FF38 (const UnkStruct_ov64_0222F0C4 * param0)
 {
-    u32 v0;
-
-    v0 = param0->unk_00 * 8;
+    u32 v0 = param0->unk_00 * 8;
     v0 += param0->unk_04;
 
     return v0;
@@ -3377,9 +3367,7 @@ static void ov64_02230D50(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E2
 
 static void ov64_02230D98(UnkStruct_ov64_02230904 *param0, UnkStruct_ov64_0222E21C *param1, u32 param2, u32 param3)
 {
-    int v0;
-
-    v0 = 22 + (1 * param3) + 1;
+    int v0 = 22 + (1 * param3) + 1;
 
     Bg_CopyToTilemapRect(param1->unk_00, Unk_ov64_02232258[0], v0, 0 + 1, 1, 1, param1->unk_278.unk_08[1]->rawData, 5, 1, param1->unk_278.unk_08[1]->screenWidth / 8, param1->unk_278.unk_08[1]->screenHeight / 8);
     Bg_ScheduleTilemapTransfer(param1->unk_00, Unk_ov64_02232258[0]);
@@ -3406,9 +3394,7 @@ static BOOL ov64_02230EA8(UnkStruct_ov64_0222E060 *param0, int param1)
     int v0;
     u32 v1;
     s32 v2;
-    UnkStruct_0202B370 *v3;
-
-    v3 = sub_0202B370(param0->unk_00);
+    UnkStruct_0202B370 *v3 = sub_0202B370(param0->unk_00);
     v2 = param0->unk_07;
 
     if (param1 == 0) {

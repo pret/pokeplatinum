@@ -97,9 +97,7 @@ static void ov31_022565E0(SysTask *param0, void *param1)
         0
     };
     GXSDispCnt v1;
-    UnkStruct_ov31_02256554 *v2;
-
-    v2 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov31_02256554 *v2 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
@@ -134,9 +132,7 @@ static void ov31_02256644(BgConfig *param0)
 
 static void ov31_022566EC(SysTask *param0, void *param1)
 {
-    UnkStruct_ov31_02256554 *v0;
-
-    v0 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov31_02256554 *v0 = PoketchTask_GetTaskData(param1);
 
     ov31_0225672C(v0->unk_04, v0->unk_00);
     Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);

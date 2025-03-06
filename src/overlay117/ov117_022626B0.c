@@ -158,9 +158,7 @@ inline void inline_ov117_02262EAC(int param0)
 
 UnkStruct_ov117_022626B0 *ov117_022626B0(UnkStruct_ov117_02261280 *param0)
 {
-    UnkStruct_ov117_022626B0 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_110, sizeof(UnkStruct_ov117_022626B0));
+    UnkStruct_ov117_022626B0 *v0 = Heap_AllocFromHeap(HEAP_ID_110, sizeof(UnkStruct_ov117_022626B0));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_022626B0));
     v0->unk_270 = param0->unk_00->unk_34;
 
@@ -452,9 +450,7 @@ static void ov117_02262C3C(UnkStruct_ov117_022626B0 *param0)
 
 static void ov117_02262C60(UnkStruct_ov117_022626B0 *param0, int param1)
 {
-    int v0;
-
-    v0 = (12 << 8) * param1 / 800;
+    int v0 = (12 << 8) * param1 / 800;
     v0 = (v0 + 0x80) >> 8;
 
     if (v0 > 16) {
@@ -912,9 +908,7 @@ static int ov117_022638AC(UnkStruct_ov117_022626B0 *param0)
 
 static void ov117_022638D8(UnkStruct_ov117_02261280 *param0)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
+    NARC *v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_8C, PLTTBUF_MAIN_OBJ, param0->unk_24, param0->unk_28, v0, 58, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10005);
     SpriteSystem_LoadCharResObjFromOpenNarc(param0->unk_24, param0->unk_28, v0, 55, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);

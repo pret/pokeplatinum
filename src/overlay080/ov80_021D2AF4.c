@@ -137,9 +137,7 @@ UnkStruct_ov80_021D2C5C *ov80_021D2C5C(UnkStruct_ov80_021D2C1C *param0, int para
 int ov80_021D2CC0(UnkStruct_ov80_021D2C1C *param0, int param1, int param2, int param3)
 {
     UnkStruct_ov80_021D2C5C *v0;
-    short v1, v2;
-
-    v2 = 0;
+    short v1, v2 = 0;
 
     if (param0 == NULL) {
         return 0;

@@ -29,9 +29,7 @@ static void ov104_0223C208(u16 *param0, u8 param1);
 
 UnkStruct_ov104_0223C23C *ov104_0223C164(BgConfig *param0)
 {
-    UnkStruct_ov104_0223C23C *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223C23C));
+    UnkStruct_ov104_0223C23C *v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223C23C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223C23C));
     v0->unk_04 = ov104_0223C188(param0);
 
@@ -40,9 +38,7 @@ UnkStruct_ov104_0223C23C *ov104_0223C164(BgConfig *param0)
 
 static UnkStruct_ov104_0223C188 *ov104_0223C188(BgConfig *param0)
 {
-    UnkStruct_ov104_0223C188 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223C188));
+    UnkStruct_ov104_0223C188 *v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223C188));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223C188));
 
     v0->unk_04 = param0;

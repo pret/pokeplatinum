@@ -298,10 +298,8 @@ static const MapObjectAnimCmd Unk_020EC524[] = {
 
 static BOOL sub_02056010(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, int param2)
 {
-    int v0, v1;
-
-    v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    v1 = Player_GetZPos(fieldSystem->playerAvatar);
+    int v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    int v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
     if (param2 == 2) {
         v0--;
@@ -324,10 +322,8 @@ static BOOL sub_02056010(FieldSystem *fieldSystem, UnkStruct_020562AC *param1, i
 
 static MapObject *sub_02056074(FieldSystem *fieldSystem, int param1)
 {
-    int v0, v1;
-
-    v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    v1 = Player_GetZPos(fieldSystem->playerAvatar);
+    int v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    int v1 = Player_GetZPos(fieldSystem->playerAvatar);
     v1 -= 1;
 
     if (param1 == 2) {
@@ -341,10 +337,8 @@ static MapObject *sub_02056074(FieldSystem *fieldSystem, int param1)
 
 static MapObject *sub_020560A8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1)
 {
-    int v0, v1;
-
-    v0 = Player_GetXPos(fieldSystem->playerAvatar);
-    v1 = Player_GetZPos(fieldSystem->playerAvatar);
+    int v0 = Player_GetXPos(fieldSystem->playerAvatar);
+    int v1 = Player_GetZPos(fieldSystem->playerAvatar);
 
     if (param1->unk_04 == 0) {
         v1 -= 1;
@@ -364,9 +358,7 @@ static BOOL sub_020560E4(MapObject *mapObj)
 
 static void sub_020560F8(FieldSystem *fieldSystem, UnkStruct_020562AC *param1)
 {
-    MapObject *v0;
-
-    v0 = sub_020560A8(fieldSystem, param1);
+    MapObject *v0 = sub_020560A8(fieldSystem, param1);
 
     if (v0 != NULL) {
         sub_02055EE0(fieldSystem, v0);
@@ -461,9 +453,7 @@ static BOOL sub_02056124(FieldTask *taskMan)
 
 void sub_020562AC(FieldSystem *fieldSystem)
 {
-    UnkStruct_020562AC *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_020562AC));
+    UnkStruct_020562AC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_020562AC));
 
     v0->unk_00 = 0;
     v0->unk_0C = NULL;

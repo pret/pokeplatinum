@@ -41,9 +41,7 @@ static const OverlayManagerTemplate Unk_020F950C;
 
 UnkStruct_0209C194 *sub_0209C194(UnkStruct_0209C194_1 *param0, u32 heapID)
 {
-    UnkStruct_0209C194 *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0209C194));
+    UnkStruct_0209C194 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0209C194));
     memset(v0, 0, sizeof(UnkStruct_0209C194));
     v0->unk_14 = *param0;
     v0->unk_34 = sub_0209BDF8(v0, heapID);
@@ -65,9 +63,7 @@ BOOL sub_0209C1E8(UnkStruct_0209C194 *param0)
 
 void *sub_0209C1EC(FieldSystem *fieldSystem)
 {
-    UnkStruct_0209C1EC *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209C1EC));
+    UnkStruct_0209C1EC *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209C1EC));
     memset(v0, 0, sizeof(UnkStruct_0209C1EC));
 
     v0->fieldSystem = fieldSystem;

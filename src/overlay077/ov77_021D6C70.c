@@ -369,9 +369,7 @@ static BOOL ov77_021D7204(UnkStruct_ov77_021D6CFC *param0, const u8 param1)
 
 static void ov77_021D725C(void)
 {
-    int v0;
-
-    v0 = sub_0201469C();
+    int v0 = sub_0201469C();
 
     sub_020146C0();
 }

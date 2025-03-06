@@ -260,9 +260,7 @@ static u8 sub_02029B5C(const u32 *param0, u8 param1)
 static u8 sub_02029B80(const u32 *param0)
 {
     int v0;
-    int v1;
-
-    v1 = 0;
+    int v1 = 0;
 
     for (v0 = 0; v0 < 18; v0++) {
         if (sub_02029B5C(param0, v0) != 18) {
@@ -413,9 +411,7 @@ BOOL sub_02029D50(const UnkStruct_02029D04 *param0, u32 param1, u32 param2)
 
 BOOL sub_02029D80(const UnkStruct_02029D04 *param0, u32 param1)
 {
-    u32 v0;
-
-    v0 = sub_02029DD4(param0, param1);
+    u32 v0 = sub_02029DD4(param0, param1);
 
     if (v0 != 18) {
         return 1;
@@ -453,9 +449,7 @@ u32 sub_02029DD4(const UnkStruct_02029D04 *param0, u32 param1)
 u32 sub_02029DF0(const UnkStruct_02029D04 *param0)
 {
     int v0;
-    int v1;
-
-    v1 = 0;
+    int v1 = 0;
 
     for (v0 = 0; v0 < 100; v0++) {
         v1 += sub_02029D94(param0, v0);

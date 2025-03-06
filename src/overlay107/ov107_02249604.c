@@ -175,9 +175,7 @@ void ov107_02249954(UnkStruct_ov107_02249954 *param0)
 
 void ov107_022499BC(UnkStruct_ov107_02249954 *param0, u16 param1)
 {
-    SpriteResource *v0;
-
-    v0 = SpriteResourceCollection_Find(param0->unk_190[0], 1);
+    SpriteResource *v0 = SpriteResourceCollection_Find(param0->unk_190[0], 1);
 
     SpriteResourceCollection_ModifyTiles(param0->unk_190[0], v0, 16, Item_FileID(param1, 1), 0, 100);
     SpriteTransfer_RetransferCharData(v0);
@@ -187,9 +185,7 @@ void ov107_022499BC(UnkStruct_ov107_02249954 *param0, u16 param1)
 
 void ov107_022499FC(UnkStruct_ov107_02249954 *param0, u16 param1)
 {
-    SpriteResource *v0;
-
-    v0 = SpriteResourceCollection_Find(param0->unk_190[1], 1);
+    SpriteResource *v0 = SpriteResourceCollection_Find(param0->unk_190[1], 1);
 
     SpriteResourceCollection_ModifyPalette(param0->unk_190[1], v0, 16, Item_FileID(param1, 2), 0, 100);
     SpriteTransfer_ReplacePlttData(v0);

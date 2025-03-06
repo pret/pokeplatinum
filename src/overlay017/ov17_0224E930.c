@@ -69,9 +69,7 @@ void ov17_0224E990(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *par
     s32 v7;
     int v8;
     u32 v9;
-    int v10;
-
-    v10 = ov17_0223F0BC(param0->unk_A3C.unk_2F, 4);
+    int v10 = ov17_0223F0BC(param0->unk_A3C.unk_2F, 4);
 
     if (param0->unk_A3C.unk_2F == 0) {
         v9 = (param3 / 4 + 10000 / 2) / 10000;
@@ -330,9 +328,7 @@ void ov17_0224ED8C(int param0, UnkStruct_ov17_0224DF54 *param1, UnkStruct_ov17_0
 static void ov17_0224EDE0(UnkStruct_ov17_0224DF54 *param0, UnkStruct_ov17_0224E958 *param1, u32 param2, u32 param3, u32 param4, const UnkStruct_ov17_02253084 *param5, UnkStruct_ov17_0224D69C *param6)
 {
     UnkStruct_ov17_0224EDE0 v0;
-    u32 v1;
-
-    v1 = param4 / 2;
+    u32 v1 = param4 / 2;
 
     if ((param1->unk_38 != 0) || (param1->unk_36 >= param5->unk_05)) {
         return;

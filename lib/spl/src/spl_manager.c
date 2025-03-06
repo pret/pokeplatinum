@@ -83,9 +83,7 @@ void SPLManager_LoadResources(SPLManager *mgr, const void *data)
 {
     // Required to match
     int i, offset;
-    SPLFileHeader *spa;
-
-    spa = (SPLFileHeader *)data;
+    SPLFileHeader *spa = (SPLFileHeader *)data;
     offset = sizeof(SPLFileHeader);
 
     mgr->resCount = spa->resCount;

@@ -345,9 +345,7 @@ static u32 GetGBASubstruct(BoxPokemonGBA *boxMonGBA, u32 personality, u8 substru
 static void GBADecryptBoxMon(BoxPokemonGBA *boxMonGBA)
 {
     int v0;
-    u32 *v1;
-
-    v1 = (u32 *)&boxMonGBA->secure;
+    u32 *v1 = (u32 *)&boxMonGBA->secure;
 
     for (v0 = 0; v0 < (sizeof(PokemonGBASubstruct0) + sizeof(PokemonGBASubstruct1) + sizeof(PokemonGBASubstruct2) + sizeof(PokemonGBASubstruct3)) / 4; v0++) {
         v1[v0] ^= boxMonGBA->otId;
@@ -358,9 +356,7 @@ static void GBADecryptBoxMon(BoxPokemonGBA *boxMonGBA)
 static void GBAEncryptBoxMon(BoxPokemonGBA *boxMonGBA)
 {
     int v0;
-    u32 *v1;
-
-    v1 = (u32 *)&boxMonGBA->secure;
+    u32 *v1 = (u32 *)&boxMonGBA->secure;
 
     for (v0 = 0; v0 < (sizeof(PokemonGBASubstruct0) + sizeof(PokemonGBASubstruct1) + sizeof(PokemonGBASubstruct2) + sizeof(PokemonGBASubstruct3)) / 4; v0++) {
         v1[v0] ^= boxMonGBA->personality;

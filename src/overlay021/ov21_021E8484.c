@@ -144,9 +144,7 @@ void ov21_021E84E4(UnkStruct_ov21_021E68F4 *param0)
 
 static UnkStruct_ov21_021E8570 *ov21_021E84FC(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021E8570 *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E8570));
+    UnkStruct_ov21_021E8570 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E8570));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E8570));

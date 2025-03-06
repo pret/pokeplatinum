@@ -347,9 +347,7 @@ static BOOL ov12_02225550(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
 void ov12_022255D4(int param0, SPLEmitter *param1, UnkStruct_ov12_02225640 *param2)
 {
-    BOOL v0;
-
-    v0 = Unk_ov12_02239D6C[param0](param1, param2);
+    BOOL v0 = Unk_ov12_02239D6C[param0](param1, param2);
 
     if (v0 == 0) {
         (void)0;

@@ -53,18 +53,14 @@ static void ov116_02260458(int param0, int param1, void *param2, void *param3)
 static void ov116_02260464(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov116_0226139C *v0 = param3;
-    UnkStruct_ov116_02260490 *v1;
-
-    v1 = ((UnkStruct_ov116_02260490 *)param2);
+    UnkStruct_ov116_02260490 *v1 = ((UnkStruct_ov116_02260490 *)param2);
     v0->unk_04->unk_2858[param0].unk_00 = v1->unk_00;
 }
 
 static void ov116_02260478(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov116_0226139C *v0 = param3;
-    UnkStruct_ov116_02260494 *v1;
-
-    v1 = ((UnkStruct_ov116_02260494 *)param2);
+    UnkStruct_ov116_02260494 *v1 = ((UnkStruct_ov116_02260494 *)param2);
     v0->unk_24.unk_00[param0].unk_00 = v1->unk_00;
 }
 

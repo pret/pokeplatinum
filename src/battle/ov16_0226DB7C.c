@@ -37,9 +37,7 @@ static const SpriteTemplate Unk_ov16_02270AA4 = {
 
 void ov16_0226DB7C(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param3);
+    NARC *v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param3);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param2, PLTTBUF_SUB_OBJ, param0, param1, v0, 80, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
     SpriteSystem_LoadCharResObjFromOpenNarc(param0, param1, v0, 250, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, param4);

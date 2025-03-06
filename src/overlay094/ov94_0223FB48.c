@@ -926,9 +926,7 @@ static int ov94_02240B70(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02240BB0(UnkStruct_ov94_0223FD4C *param0)
 {
-    Pokemon *v0;
-
-    v0 = (Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
+    Pokemon *v0 = (Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
 
     if (ov94_02241498(v0) && (param0->unk_110 != 18)) {
         if (Party_GetCurrentCount(param0->unk_00->unk_08) == 6) {
@@ -1006,9 +1004,7 @@ static int ov94_02240D28(UnkStruct_ov94_0223FD4C *param0)
 static void ov94_02240D58(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4, int param5)
 {
     Window *v0;
-    Strbuf *v1;
-
-    v1 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
+    Strbuf *v1 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
     StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v1);
 
     if (param5 == 0) {

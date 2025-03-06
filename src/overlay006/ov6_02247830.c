@@ -97,9 +97,7 @@ int ov6_022479D0(const TrainerInfo *param0, u16 param1, u16 param2, u16 param3, 
 {
     int v0;
     u16 v1;
-    UnkStruct_02014FB0 *v2;
-
-    v2 = sub_02014FB0(param5);
+    UnkStruct_02014FB0 *v2 = sub_02014FB0(param5);
     v1 = TrainerInfo_ID_LowHalf(param0);
     v0 = ov6_02247890(v2, v1, param1, param2, param3, param4);
 

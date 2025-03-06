@@ -796,9 +796,7 @@ static BOOL sub_0205AD10(UnkStruct_0205A0D8 *param0)
 
 static BOOL sub_0205AD20(UnkStruct_0205A0D8 *param0)
 {
-    UnkStruct_0205AD20 *v0;
-
-    v0 = (UnkStruct_0205AD20 *)((u8 *)(param0->unk_48) + (Pokemon_GetStructSize() * 3));
+    UnkStruct_0205AD20 *v0 = (UnkStruct_0205AD20 *)((u8 *)(param0->unk_48) + (Pokemon_GetStructSize() * 3));
     return v0->unk_00;
 }
 

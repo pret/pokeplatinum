@@ -226,9 +226,7 @@ static void ov104_0223DD5C(SysTask *param0, void *param1)
 static void ov104_0223DDB4(SysTask *param0, void *param1)
 {
     UnkStruct_ov104_0223DD30 *v0 = param1;
-    BOOL v1;
-
-    v1 = ov104_0223DDE4(v0, 94, &Unk_ov104_0224191C[v0->unk_2C]);
+    BOOL v1 = ov104_0223DDE4(v0, 94, &Unk_ov104_0224191C[v0->unk_2C]);
 
     if (v1 == 1) {
         ov104_0223DD30(v0, param0);
@@ -489,10 +487,8 @@ static void ov104_0223E3B8(UnkStruct_ov104_0223E3B8 *param0)
 
 static void ov104_0223E3CC(const Strbuf *param0, int param1, int *param2, int *param3)
 {
-    int v0, v1;
-
-    v0 = Font_CalcStrbufWidth(param1, param0, 0);
-    v1 = v0 / 8;
+    int v0 = Font_CalcStrbufWidth(param1, param0, 0);
+    int v1 = v0 / 8;
 
     if (FX_ModS32(v0, 8) != 0) {
         v1++;
@@ -656,9 +652,7 @@ static void ov104_0223E6BC(SysTask *param0, void *param1)
 
 static void ov104_0223E6F0(UnkStruct_ov104_0223DD30 *param0, int param1)
 {
-    UnkStruct_ov104_0223E6F0 *v0;
-
-    v0 = &param0->unk_144;
+    UnkStruct_ov104_0223E6F0 *v0 = &param0->unk_144;
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223E6F0));
 
     if (param1 == 0) {

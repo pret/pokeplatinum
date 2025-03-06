@@ -672,9 +672,7 @@ static void ov80_021D1D24(UnkStruct_ov80_021D2A08 *param0, UnkStruct_ov80_021D2A
 static void ov80_021D1D38(UnkStruct_ov80_021D2A08 *param0)
 {
     UnkStruct_ov80_021D1478 *v0 = param0->unk_34;
-    Window *v1;
-
-    v1 = v0->unk_78;
+    Window *v1 = v0->unk_78;
     v0->unk_78 = NULL;
 
     if (v1 == NULL) {

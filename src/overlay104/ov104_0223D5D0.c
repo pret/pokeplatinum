@@ -119,9 +119,7 @@ BOOL ov104_0223D6E4(UnkStruct_ov104_0223D5F0 *param0)
 
 static void ov104_0223D708(UnkStruct_02014014 *param0)
 {
-    void *v0;
-
-    v0 = sub_02014730(param0);
+    void *v0 = sub_02014730(param0);
 
     sub_0201411C(param0);
     Heap_FreeToHeap(v0);

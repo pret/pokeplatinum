@@ -110,9 +110,7 @@ UnkStruct_02097728 *sub_0209767C(SaveData *param0, int param1, u16 param2, int p
 
 UnkStruct_02097728 *sub_020976BC(SaveData *param0, Pokemon *param1, int param2)
 {
-    UnkStruct_02097728 *v0;
-
-    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(UnkStruct_02097728));
+    UnkStruct_02097728 *v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
     v0->unk_00 = 0;
@@ -125,9 +123,7 @@ UnkStruct_02097728 *sub_020976BC(SaveData *param0, Pokemon *param1, int param2)
 
 UnkStruct_02097728 *sub_020976F4(SaveData *param0, u8 param1, int param2)
 {
-    UnkStruct_02097728 *v0;
-
-    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(UnkStruct_02097728));
+    UnkStruct_02097728 *v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(UnkStruct_02097728));
     MI_CpuClear8(v0, sizeof(UnkStruct_02097728));
 
     v0->unk_00 = 0;
@@ -220,9 +216,7 @@ int sub_020977E4(UnkStruct_02028430 *param0, u16 param1, Pokemon *param2, int pa
 UnkStruct_020978D8 *sub_02097834(const UnkStruct_0202818C *param0, int heapID)
 {
     u16 v0;
-    UnkStruct_020978D8 *v1;
-
-    v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020978D8));
+    UnkStruct_020978D8 *v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_020978D8));
     MI_CpuClear8(v1, sizeof(UnkStruct_020978D8));
 
     v1->unk_00 = 0;

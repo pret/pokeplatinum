@@ -303,9 +303,7 @@ static int ov79_021D10A0(UnkStruct_ov79_021D0E1C *param0)
 
 static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
 {
-    u32 v0;
-
-    v0 = ListMenu_ProcessInput(param0->unk_C8);
+    u32 v0 = ListMenu_ProcessInput(param0->unk_C8);
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         Sound_PlayEffect(1500);
@@ -611,9 +609,7 @@ static void ov79_021D13A4(UnkStruct_ov79_021D0E1C *param0)
 
 static void ov79_021D13C4(UnkStruct_ov79_021D0E1C *param0)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PORU_GRA, param0->heapID);
+    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PORU_GRA, param0->heapID);
 
     sub_0208C210(param0->unk_24, param0->heapID, v0, 83, 2, 0, 0, 0, 0);
     sub_0208C210(param0->unk_24, param0->heapID, v0, 83, 3, 5, 0, 0, 0);

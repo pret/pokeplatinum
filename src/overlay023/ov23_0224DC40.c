@@ -472,9 +472,7 @@ static void ov23_0224E17C(UnkStruct_ov23_0224E280 *param0, int param1)
 
 static void ov23_0224E19C(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
 {
-    u32 v0;
-
-    v0 = Menu_ProcessInputAndHandleExit(param1->unk_24, 4);
+    u32 v0 = Menu_ProcessInputAndHandleExit(param1->unk_24, 4);
 
     if (v0 == 0xffffffff) {
         return;
@@ -495,9 +493,7 @@ static void ov23_0224E19C(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
 static BOOL ov23_0224E1E0(SysTask *param0, void *param1)
 {
     UnkStruct_ov23_0224E280 *v0 = param1;
-    u32 v1;
-
-    v1 = ListMenu_ProcessInput(v0->unk_20);
+    u32 v1 = ListMenu_ProcessInput(v0->unk_20);
     ov23_0224F270(v0);
 
     if (CommSys_CheckError()) {
@@ -870,9 +866,7 @@ static void ov23_0224E8E0(UnkStruct_ov23_0224E280 *param0)
 
 static void ov23_0224E8FC(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 {
-    u32 v0;
-
-    v0 = Menu_ProcessInputAndHandleExit(param1->unk_20, 4);
+    u32 v0 = Menu_ProcessInputAndHandleExit(param1->unk_20, 4);
 
     if (v0 == 0xffffffff) {
         return;
@@ -892,9 +886,7 @@ static void ov23_0224E8FC(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 
 static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
 {
-    u32 v0;
-
-    v0 = Menu_ProcessInputAndHandleExit(param1->unk_20, 4);
+    u32 v0 = Menu_ProcessInputAndHandleExit(param1->unk_20, 4);
 
     if (v0 == 0xffffffff) {
         return;
@@ -1409,9 +1401,7 @@ void ov23_0224F24C(void)
 
 static void ov23_0224F270(UnkStruct_ov23_0224E280 *param0)
 {
-    u16 v0;
-
-    v0 = param0->unk_3A;
+    u16 v0 = param0->unk_3A;
     ListMenu_CalcTrueCursorPos(param0->unk_20, &param0->unk_3A);
 
     if (v0 != param0->unk_3A) {

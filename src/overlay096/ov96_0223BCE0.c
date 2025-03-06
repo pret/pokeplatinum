@@ -607,9 +607,7 @@ static int ov96_0223C5CC(UnkStruct_ov96_0223BF40 *param0)
 
 static int ov96_0223C680(UnkStruct_ov96_0223BF40 *param0)
 {
-    s32 v0;
-
-    v0 = sub_02025D74(param0->unk_00->unk_08);
+    s32 v0 = sub_02025D74(param0->unk_00->unk_08);
 
     if (v0 == 0) {
         sub_02025D78(param0->unk_00->unk_08, param0->unk_00->unk_1C);
@@ -1568,9 +1566,7 @@ static void ov96_0223D750(UnkStruct_ov96_0223BF40 *param0, MessageLoader *param1
 
 static int ov96_0223D7B8(UnkStruct_ov96_0223BF40 *param0)
 {
-    int v0;
-
-    v0 = ov4_021D1F3C(-param0->unk_F74, param0->unk_F78);
+    int v0 = ov4_021D1F3C(-param0->unk_F74, param0->unk_F78);
 
     ov96_0223DA34(param0, v0, -param0->unk_F74);
     param0->unk_1C = 56;

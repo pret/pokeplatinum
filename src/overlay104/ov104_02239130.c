@@ -179,9 +179,7 @@ BOOL ov104_022392C0(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02239300(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_0204AFC4 *v0;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_0204AFC4 *v0 = sub_0209B978(param0->unk_00->unk_00);
     sub_0204A32C(v0);
 
     return 0;
@@ -279,9 +277,7 @@ static BOOL ov104_0223942C(UnkStruct_ov104_0222E930 *param0)
 static BOOL ov104_02239464(UnkStruct_ov104_0222E930 *param0, UnkStruct_0204AFC4 *param1, SaveData *param2, u16 param3, u16 param4)
 {
     u16 *v0;
-    const void *v1;
-
-    v1 = sub_0203664C(1 - CommSys_CurNetId());
+    const void *v1 = sub_0203664C(1 - CommSys_CurNetId());
 
     if (v1 == NULL) {
         return 0;

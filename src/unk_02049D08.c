@@ -305,9 +305,7 @@ u16 sub_0204A064(SaveData *param0)
 
 u16 sub_0204A100(SaveData *param0)
 {
-    UnkStruct_0202D764 *v0;
-
-    v0 = sub_0202D764(param0);
+    UnkStruct_0202D764 *v0 = sub_0202D764(param0);
     return (u16)sub_0202D5E8(v0);
 }
 

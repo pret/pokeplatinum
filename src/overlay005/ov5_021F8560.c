@@ -64,9 +64,7 @@ static const UnkStruct_ov5_02201C58 Unk_ov5_02201C58[6][4];
 
 void *ov5_021F8560(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F858C *v0;
-
-    v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F858C)), 0, 0);
+    UnkStruct_ov5_021F858C *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F858C)), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F858C(v0);
@@ -99,9 +97,7 @@ UnkStruct_ov101_021D5D90 *ov5_021F85BC(PlayerAvatar *playerAvatar, int param1, i
     const VecFx32 *v2;
     VecFx32 v3 = { 0, 0, 0 };
     UnkStruct_ov5_021F8668 v4;
-    MapObject *v5;
-
-    v5 = Player_MapObject(playerAvatar);
+    MapObject *v5 = Player_MapObject(playerAvatar);
 
     v4.unk_00 = param4;
     v4.unk_04 = param6;

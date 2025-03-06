@@ -157,9 +157,7 @@ static void sub_0202E3F4(UnkStruct_0202E4D4 *param0, int param1, const u8 *param
 BOOL sub_0202E43C(TVBroadcast *param0, int param1, int param2, const u8 *param3)
 {
     int v0;
-    UnkStruct_0202E768 *v1;
-
-    v1 = sub_0202E4DC(param0, param1);
+    UnkStruct_0202E768 *v1 = sub_0202E4DC(param0, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
         if (v1[v0].unk_00.unk_00 == param2) {

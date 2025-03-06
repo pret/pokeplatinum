@@ -32,9 +32,7 @@ static void ov104_0222E904(UnkStruct_ov104_0222E930 *param0, int param1);
 
 UnkStruct_ov104_022320B4 *ov104_0222E63C(UnkStruct_0209B75C *param0, int param1, int param2)
 {
-    UnkStruct_ov104_022320B4 *v0;
-
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov104_022320B4));
+    UnkStruct_ov104_022320B4 *v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov104_022320B4));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_022320B4));
 
     v0->unk_00 = param0;
@@ -103,9 +101,7 @@ void ov104_0222E710(UnkStruct_ov104_022320B4 *param0)
 
 void ov104_0222E748(UnkStruct_ov104_022320B4 *param0, int param1, int param2)
 {
-    UnkStruct_ov104_0222E930 *v0;
-
-    v0 = Heap_AllocFromHeap(param0->unk_34, sizeof(UnkStruct_ov104_0222E930));
+    UnkStruct_ov104_0222E930 *v0 = Heap_AllocFromHeap(param0->unk_34, sizeof(UnkStruct_ov104_0222E930));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0222E930));
 
     ov104_0222E930(v0, Unk_ov104_0223F674, Unk_ov104_0223F63C);
@@ -162,10 +158,8 @@ static void ov104_0222E82C(UnkStruct_ov104_022320B4 *param0, u16 param1, u32 *pa
 
 static void ov104_0222E830(u8 **param0, MessageLoader **param1, int param2, int param3)
 {
-    int v0, v1;
-
-    v0 = ov104_0222EA90(param2, 1);
-    v1 = ov104_0222EA90(param2, 2);
+    int v0 = ov104_0222EA90(param2, 1);
+    int v1 = ov104_0222EA90(param2, 2);
 
     *param0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FRONTIER__SCRIPT__FR_SCRIPT, v0, param3);
     *param1 = MessageLoader_Init(1, 26, v1, param3);
@@ -203,9 +197,7 @@ void ov104_0222E86C(UnkStruct_ov104_022320B4 *param0, int param1, int param2)
 
 UnkStruct_ov104_0222E8C8 *ov104_0222E8C8(UnkStruct_ov104_022320B4 *param0, int param1)
 {
-    UnkStruct_ov104_0222E8C8 *v0;
-
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov104_0222E8C8));
+    UnkStruct_ov104_0222E8C8 *v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov104_0222E8C8));
     *v0 = param0->unk_24;
 
     return v0;

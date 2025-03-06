@@ -996,9 +996,7 @@ static u8 Field_NextTileBehavior(const FieldSystem *fieldSystem)
 static BOOL Field_MapConnection(const FieldSystem *fieldSystem, int playerX, int playerZ, Location *nextMap)
 {
     const WarpEvent *v0;
-    int v1;
-
-    v1 = MapHeaderData_GetIndexOfWarpEventAtPos(fieldSystem, playerX, playerZ);
+    int v1 = MapHeaderData_GetIndexOfWarpEventAtPos(fieldSystem, playerX, playerZ);
 
     if (v1 == -1) {
         return FALSE;

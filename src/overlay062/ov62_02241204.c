@@ -2741,9 +2741,7 @@ static BOOL ov62_022440B0 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02241204 * v0 = param0->unk_860;
     UnkStruct_ov62_02246BF4 * v1 = &v0->unk_1D4;
-    BOOL v2;
-
-    v2 = ov62_02247084(v1);
+    BOOL v2 = ov62_02247084(v1);
 
     if (v2 == 1) {
         ov62_0222FB60(param0, 4);

@@ -413,9 +413,7 @@ static const UnkStruct_ov66_022589B4 Unk_ov66_022589B4[8] = {
 
 UnkStruct_ov66_0222DFF8 *ov66_0222DDF0(SaveData *param0, u32 param1)
 {
-    UnkStruct_ov66_0222DFF8 *v0;
-
-    v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov66_0222DFF8));
+    UnkStruct_ov66_0222DFF8 *v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov66_0222DFF8));
     memset(v0, 0, sizeof(UnkStruct_ov66_0222DFF8));
 
     v0->unk_00 = param0;
@@ -746,9 +744,7 @@ void ov66_0222E24C(UnkStruct_ov66_0222DFF8 *param0, s32 param1, u32 param2)
 
 void ov66_0222E27C(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
 {
-    s32 v0;
-
-    v0 = ov66_022328F0();
+    s32 v0 = ov66_022328F0();
     ov66_0222E24C(param0, v0, param1);
 }
 
@@ -1179,9 +1175,7 @@ u32 ov66_0222E850(const UnkStruct_ov66_0222E71C *param0)
 
 u32 ov66_0222E858(const UnkStruct_ov66_0222E71C *param0)
 {
-    u32 v0;
-
-    v0 = ov66_02230C2C(param0->unk_3A);
+    u32 v0 = ov66_02230C2C(param0->unk_3A);
 
     if (v0 != 0xffff) {
         return v0;
@@ -1303,9 +1297,7 @@ u32 ov66_0222E964(const UnkStruct_ov66_0222DFF8 *param0)
 
 u32 ov66_0222E974(const UnkStruct_ov66_0222DFF8 *param0, u32 param1)
 {
-    u32 v0;
-
-    v0 = ov66_02232BB4(param1);
+    u32 v0 = ov66_02232BB4(param1);
 
     if (v0 == DWC_LOBBY_INVALID_USER_ID) {
         return 0xffffffff;
@@ -1404,9 +1396,7 @@ void ov66_0222EAB4(UnkStruct_ov66_0222DFF8 *param0, enum PlazaMinigame param1, u
 
 u32 ov66_0222EB28(const UnkStruct_ov66_0222DFF8 *param0)
 {
-    u32 v0;
-
-    v0 = ov66_02232BEC(UnkEnum_ov66_02232BEC_03);
+    u32 v0 = ov66_02232BEC(UnkEnum_ov66_02232BEC_03);
 
     if (v0 >= 5) {
         v0 = 0;
@@ -1417,9 +1407,7 @@ u32 ov66_0222EB28(const UnkStruct_ov66_0222DFF8 *param0)
 
 u32 ov66_0222EB38(const UnkStruct_ov66_0222DFF8 *param0)
 {
-    u32 v0;
-
-    v0 = ov66_02232BEC(UnkEnum_ov66_02232BEC_02);
+    u32 v0 = ov66_02232BEC(UnkEnum_ov66_02232BEC_02);
 
     if (v0 >= 5) {
         v0 = 0;
@@ -1430,9 +1418,7 @@ u32 ov66_0222EB38(const UnkStruct_ov66_0222DFF8 *param0)
 
 u32 ov66_0222EB48(const UnkStruct_ov66_0222DFF8 *param0)
 {
-    u32 v0;
-
-    v0 = ov66_02232BEC(UnkEnum_ov66_02232BEC_05);
+    u32 v0 = ov66_02232BEC(UnkEnum_ov66_02232BEC_05);
     v0 += ((30 * 30) / 30);
 
     return v0;
@@ -1446,9 +1432,7 @@ BOOL ov66_0222EB54(const UnkStruct_ov66_0222DFF8 *param0, u32 param1)
 
 void ov66_0222EB6C(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
 {
-    u32 v0;
-
-    v0 = param1;
+    u32 v0 = param1;
     ov66_02232E00(5, &v0, sizeof(u32));
 }
 
@@ -1736,9 +1720,7 @@ void ov66_0222EEF4(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
     UnkStruct_ov66_0222E71C *v0;
     TrainerInfo *trainerInfo;
     void *journalEntryOnlineEvent;
-    JournalEntry *journalEntry;
-
-    journalEntry = SaveData_GetJournal(param0->unk_00);
+    JournalEntry *journalEntry = SaveData_GetJournal(param0->unk_00);
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
@@ -1756,9 +1738,7 @@ void ov66_0222EF44(UnkStruct_ov66_0222DFF8 *param0, u32 param1)
     UnkStruct_ov66_0222E71C *v0;
     TrainerInfo *trainerInfo;
     void *journalEntryOnlineEvent;
-    JournalEntry *journalEntry;
-
-    journalEntry = SaveData_GetJournal(param0->unk_00);
+    JournalEntry *journalEntry = SaveData_GetJournal(param0->unk_00);
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
@@ -1812,17 +1792,13 @@ void ov66_0222F000(UnkStruct_ov66_0222DFF8 *param0)
 
 void ov66_0222F020(UnkStruct_ov66_0222DFF8 *param0)
 {
-    GameRecords *v0;
-
-    v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
+    GameRecords *v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
     GameRecords_IncrementRecordValue(v0, RECORD_UNK_046);
 }
 
 void ov66_0222F030(UnkStruct_ov66_0222DFF8 *param0)
 {
-    GameRecords *v0;
-
-    v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
+    GameRecords *v0 = SaveData_GetGameRecordsPtr(param0->unk_00);
     GameRecords_IncrementRecordValue(v0, RECORD_UNK_118);
 }
 
@@ -1882,9 +1858,7 @@ int ov66_0222F05C(const UnkStruct_ov66_0222DFF8 *param0)
 
 u32 ov66_0222F0DC(const UnkStruct_ov66_0222DFF8 *param0)
 {
-    u32 v0;
-
-    v0 = ov66_02230828(&param0->unk_3AB);
+    u32 v0 = ov66_02230828(&param0->unk_3AB);
 
     if (ov66_0222E924(param0, ov66_0222E338(param0)) == 1) {
         v0 += (3 - 1);
@@ -2411,9 +2385,7 @@ static void ov66_0222F9EC(UnkStruct_ov66_0222F6C4 *param0, const SaveData *param
 
 static BOOL ov66_0222FA04(const UnkStruct_ov66_0222F6C4 *param0, const SaveData *param1)
 {
-    u32 v0;
-
-    v0 = SaveData_CalculateChecksum(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
+    u32 v0 = SaveData_CalculateChecksum(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
 
     if (v0 != param0->unk_B4) {
         GF_ASSERT(0);
@@ -2549,9 +2521,7 @@ static void ov66_0222FC00(UnkStruct_ov66_0222FBF0 *param0)
 
 static void ov66_0222FC0C(UnkStruct_ov66_0222FBF0 *param0, const UnkStruct_ov66_0222F6C4 *param1, u32 param2)
 {
-    UnkStruct_ov66_0222E71C *v0;
-
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov66_0222E71C));
+    UnkStruct_ov66_0222E71C *v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov66_0222E71C));
 
     MI_CpuCopyFast(&param1->unk_20, v0, sizeof(UnkStruct_ov66_0222E71C));
     MI_CpuCopy8(param1->unk_10, v0->unk_08, sizeof(u16) * (7 + 1));
@@ -3105,9 +3075,7 @@ static void ov66_0223043C(UnkStruct_ov66_022302B0 *param0, u32 param1)
 {
     u32 v0;
     u32 v1;
-    u32 v2;
-
-    v2 = ov66_022304DC(param0, param1);
+    u32 v2 = ov66_022304DC(param0, param1);
 
     if (v2 != 0xffffffff) {
         inline_ov66_0222EC04(v2, &v0, &v1);
@@ -3234,9 +3202,7 @@ static void ov66_02230664(s32 param0, const void *param1, u32 param2, void *para
 {
     UnkStruct_ov66_0222DFF8 *v0 = param3;
     u32 v1;
-    const UnkStruct_ov66_022305B0 *v2;
-
-    v2 = param1;
+    const UnkStruct_ov66_022305B0 *v2 = param1;
     v1 = ov66_02232B78(param0);
 
     if (v0->unk_1C0.unk_0A == 0) {
@@ -3331,9 +3297,7 @@ static void ov66_02230750(s32 param0, const void *param1, u32 param2, void *para
 static void ov66_02230764(s32 param0, const void *param1, u32 param2, void *param3)
 {
     UnkStruct_ov66_0222DFF8 *v0 = param3;
-    u32 v1;
-
-    v1 = ov66_02232B78(param0);
+    u32 v1 = ov66_02232B78(param0);
 
     if (v1 != 0xffffffff) {
         v0->unk_1E8.unk_00[v1] = 1;
@@ -3363,9 +3327,7 @@ static void ov66_02230780(s32 param0, const void *param1, u32 param2, void *para
 static void ov66_022307B4(s32 param0, const void *param1, u32 param2, void *param3)
 {
     UnkStruct_ov66_0222DFF8 *v0 = param3;
-    u32 v1;
-
-    v1 = ov66_02232B78(param0);
+    u32 v1 = ov66_02232B78(param0);
 
     if (v1 != 0xffffffff) {
         ov66_0223043C(&v0->unk_20C, v1);
@@ -3709,9 +3671,7 @@ static void ov66_02230BCC(UnkStruct_ov66_02230A6C *param0)
 
 static void ov66_02230BE0(UnkStruct_ov66_02230A6C *param0)
 {
-    u32 v0;
-
-    v0 = SaveData_CalculateChecksum(param0->unk_44, param0, (sizeof(UnkStruct_ov66_02230A6C) - 8));
+    u32 v0 = SaveData_CalculateChecksum(param0->unk_44, param0, (sizeof(UnkStruct_ov66_02230A6C) - 8));
 
     if (v0 != param0->unk_48) {
         GF_ASSERT(0);

@@ -236,9 +236,7 @@ BOOL ScrCmd_2CF(ScriptContext *param0)
 
 void sub_0204F3D0(FieldTask *param0, u16 param1, u16 *param2)
 {
-    UnkStruct_0204F3D0 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204F3D0));
+    UnkStruct_0204F3D0 *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0204F3D0));
     memset(v0, 0, sizeof(UnkStruct_0204F3D0));
 
     v0->unk_04 = param1;

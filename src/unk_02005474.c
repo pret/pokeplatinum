@@ -236,9 +236,7 @@ int Sound_CheckFade()
 
 int sub_02005690(u16 param0)
 {
-    u8 v0;
-
-    v0 = sub_02004B18(param0);
+    u8 v0 = sub_02004B18(param0);
     return sub_02004B04(v0);
 }
 
@@ -289,9 +287,7 @@ void sub_020056D4(void)
 
 BOOL sub_02005728(u16 param0, int param1)
 {
-    int v0;
-
-    v0 = Sound_PlayEffect(param0);
+    int v0 = Sound_PlayEffect(param0);
     sub_020057FC(param0, 0xffff, param1);
 
     return v0;
@@ -309,10 +305,8 @@ BOOL Sound_PlayEffect(u16 sdatID)
 
 BOOL sub_02005770(u16 param0, int param1)
 {
-    int v0, v1;
-
-    v0 = sub_020040F0(param1);
-    v1 = NNS_SndArcPlayerStartSeqEx(sub_020040CC(v0), param1, -1, -1, param0);
+    int v0 = sub_020040F0(param1);
+    int v1 = NNS_SndArcPlayerStartSeqEx(sub_020040CC(v0), param1, -1, -1, param0);
 
     sub_02004AA0(param0, v0);
 
@@ -366,9 +360,7 @@ int sub_020057E0()
 
 void sub_020057FC(u16 param0, u16 param1, int param2)
 {
-    int v0;
-
-    v0 = sub_020040F0(sub_02004B18(param0));
+    int v0 = sub_020040F0(sub_02004B18(param0));
 
     NNS_SndPlayerSetTrackPan(sub_020040CC(v0), param1, param2);
     return;
@@ -900,9 +892,7 @@ BOOL sub_02006150(u16 param0)
     u16 v0;
     u8 v1;
     int v2, v3;
-    const NNSSndArcBankInfo *v4;
-
-    v4 = sub_02004B3C(param0);
+    const NNSSndArcBankInfo *v4 = sub_02004B3C(param0);
 
     sub_02006214(param0);
 

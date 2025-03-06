@@ -741,9 +741,7 @@ static BOOL ov105_022421F0(UnkStruct_ov105_02241FF4 *param0)
 static void ov105_0224227C(UnkStruct_ov105_02241FF4 *param0)
 {
     int v0;
-    u8 v1;
-
-    v1 = ov104_0223AA50(param0->unk_09);
+    u8 v1 = ov104_0223AA50(param0->unk_09);
 
     ov105_02245528(param0, 0);
     param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_12, param0->unk_12, 0, param0->unk_334, Unk_ov105_02246394, NULL);
@@ -1384,9 +1382,7 @@ static BOOL ov105_02243144(UnkStruct_ov105_02241FF4 *param0)
 static void ov105_022433AC(UnkStruct_ov105_02241FF4 *param0)
 {
     int v0;
-    u8 v1;
-
-    v1 = ov104_0223AA50(param0->unk_09);
+    u8 v1 = ov104_0223AA50(param0->unk_09);
 
     for (v0 = 0; v0 < param0->unk_11; v0++) {
         ov105_02244FF8(param0, &param0->unk_50[2 + v0], param0->unk_324[v0], 0, 0, 15, 2, 0, 0, param0->unk_31C);
@@ -2545,9 +2541,7 @@ static u8 ov105_02244CC0(UnkStruct_ov105_02241FF4 *param0, Window *param1, int p
 
 static u8 ov105_02244D14(UnkStruct_ov105_02241FF4 *param0, int param1)
 {
-    u8 v0;
-
-    v0 = ov105_02244C60(param0, &param0->unk_50[5], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
+    u8 v0 = ov105_02244C60(param0, &param0->unk_50[5], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
     Window_ScheduleCopyToVRAM(&param0->unk_50[5]);
 
     return v0;
@@ -2661,9 +2655,7 @@ static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 {
     TextColor v0;
     Strbuf *v1;
-    TrainerInfo *v2;
-
-    v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
+    TrainerInfo *v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
     v1 = Strbuf_Init((7 + 1), HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
@@ -2944,9 +2936,7 @@ static void ov105_02245528(UnkStruct_ov105_02241FF4 *param0, u8 param1)
 
 static u8 ov105_02245538(UnkStruct_ov105_02241FF4 *param0, u8 param1, u8 param2)
 {
-    u8 v0;
-
-    v0 = 0;
+    u8 v0 = 0;
 
     switch (param1) {
     case 0:
@@ -3055,9 +3045,7 @@ BOOL ov105_02245620(UnkStruct_ov105_02241FF4 *param0, u16 param1, u16 param2)
 
 void ov105_02245684(UnkStruct_ov105_02241FF4 *param0, u16 param1)
 {
-    TrainerInfo *v0;
-
-    v0 = SaveData_GetTrainerInfo(param0->unk_13C);
+    TrainerInfo *v0 = SaveData_GetTrainerInfo(param0->unk_13C);
     param0->unk_33C[0] = param1;
 
     return;
@@ -3151,9 +3139,7 @@ void ov105_022457B8(int param0, int param1, void *param2, void *param3)
 static void ov105_022457C0(UnkStruct_ov105_02241FF4 *param0)
 {
     int v0;
-    u8 v1;
-
-    v1 = ov104_0223AA50(param0->unk_09);
+    u8 v1 = ov104_0223AA50(param0->unk_09);
 
     if (param0->unk_13_5 == 1) {
         Window_ClearAndCopyToVRAM(&param0->unk_50[1]);

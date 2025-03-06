@@ -358,11 +358,9 @@ static void sub_0205C6BC(UnkStruct_0205C680 *param0)
 
 static void sub_0205C6E0(UnkStruct_0205C680 *param0, MapObject *param1, int param2, int param3)
 {
-    int v0, v1, v2;
-
-    v0 = MapObject_GetXInitial(param1);
-    v1 = MapObject_GetYInitial(param1);
-    v2 = MapObject_GetZInitial(param1);
+    int v0 = MapObject_GetXInitial(param1);
+    int v1 = MapObject_GetYInitial(param1);
+    int v2 = MapObject_GetZInitial(param1);
 
     if ((v0 == param2) && (v2 == param3)) {
         return;

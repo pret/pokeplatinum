@@ -90,9 +90,7 @@ static const UnkStruct_ov6_022496F4 Unk_ov6_0224971C[][4] = {
 
 void ov6_02247A0C(FieldTask *param0)
 {
-    UnkStruct_ov6_02247A0C *v0;
-
-    v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov6_02247A0C));
+    UnkStruct_ov6_02247A0C *v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov6_02247A0C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov6_02247A0C));
 
     FieldTask_InitCall(param0, ov6_02247A34, v0);

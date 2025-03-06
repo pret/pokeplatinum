@@ -222,9 +222,7 @@ void ov21_021E73D4(UnkStruct_ov21_021E68F4 *param0)
 
 static UnkStruct_ov21_021E7468 *ov21_021E73E8(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021E7468 *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E7468));
+    UnkStruct_ov21_021E7468 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E7468));
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E7468));
 
@@ -555,9 +553,7 @@ static void ov21_021E7904(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
     BOOL v6;
     NARC *v7 = ov21_021D26E0(param1->unk_00);
     int v8;
-    NARC *v9;
-
-    v9 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, heapID);
+    NARC *v9 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, heapID);
     v8 = PokedexSort_DefaultForm(param2->unk_00, species);
     v1 = PokeIconSpriteIndex(species, 0, v8);
     v2 = PokeIconPalettesFileIndex();

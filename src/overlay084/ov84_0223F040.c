@@ -95,9 +95,7 @@ void ov84_0223F238(UnkStruct_ov84_0223B5A0 *param0)
 void ov84_0223F25C(UnkStruct_ov84_0223B5A0 *param0)
 {
     u16 v0;
-    u16 v1;
-
-    v1 = (12 * 3) / 3;
+    u16 v1 = (12 * 3) / 3;
 
     for (v0 = 0; v0 < v1; v0++) {
         Bg_FillTilemapRect(param0->unk_00, 2, ((1 + 17 * 18) + 32 * 6) + v1 + v0, 0 + v0, 13, 1, 1, 3);
@@ -107,9 +105,7 @@ void ov84_0223F25C(UnkStruct_ov84_0223B5A0 *param0)
 
 static void ov84_0223F2C0(UnkStruct_ov84_0223B5A0 *param0, Strbuf *param1, u16 param2)
 {
-    u32 v0;
-
-    v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
+    u32 v0 = Font_CalcStrbufWidth(FONT_SYSTEM, param1, 0);
     Text_AddPrinterWithParamsAndColor(&param0->unk_04[2], FONT_SYSTEM, param1, param2 - v0 / 2, 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 }
 
@@ -140,9 +136,7 @@ void ov84_0223F2FC(UnkStruct_ov84_0223B5A0 *param0)
 
 static void *ov84_0223F390(UnkStruct_ov84_0223B5A0 *param0, NNSG2dCharacterData **param1)
 {
-    void *v0;
-
-    v0 = NARC_AllocAndReadWholeMember(param0->unk_D4, 21, 6);
+    void *v0 = NARC_AllocAndReadWholeMember(param0->unk_D4, 21, 6);
     NNS_G2dGetUnpackedBGCharacterData(v0, param1);
     return v0;
 }
@@ -334,9 +328,7 @@ void ov84_0223F94C(UnkStruct_ov84_0223B5A0 *param0, BagItem *param1, u32 param2)
 
 static void *ov84_0223F994(UnkStruct_ov84_0223B5A0 *param0, NNSG2dCharacterData **param1)
 {
-    void *v0;
-
-    v0 = NARC_AllocAndReadWholeMember(param0->unk_D4, 38, 6);
+    void *v0 = NARC_AllocAndReadWholeMember(param0->unk_D4, 38, 6);
     NNS_G2dGetUnpackedBGCharacterData(v0, param1);
     return v0;
 }

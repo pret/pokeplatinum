@@ -691,11 +691,9 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     NNSG2dCharacterData *v3;
     NNSG2dPaletteData *v4;
     NARC *v5;
-    int v6, v7, v8;
-
-    v6 = 12 + param0->unk_1C->unk_0F;
-    v7 = 24 + param0->unk_1C->unk_0F;
-    v8 = 0 + param0->unk_1C->unk_0F;
+    int v6 = 12 + param0->unk_1C->unk_0F;
+    int v7 = 24 + param0->unk_1C->unk_0F;
+    int v8 = 0 + param0->unk_1C->unk_0F;
     v5 = NARC_ctor(NARC_INDEX_GRAPHIC__MAIL_GRA, param0->unk_00);
 
     LoadStandardWindowGraphics(param0->unk_18, 0, 1, UnkEnum_ov75_021D1598_05, 0, param0->unk_00);

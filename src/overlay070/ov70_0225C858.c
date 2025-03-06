@@ -47,17 +47,13 @@ BOOL ov70_0225C8AC(const UnkStruct_ov70_0225C894 *param0, u16 param1, u16 param2
 
 u32 ov70_0225C8B8(const UnkStruct_ov70_0225C894 *param0, u16 param1, u16 param2)
 {
-    u32 v0;
-
-    v0 = ov63_0222BDE4(param0->unk_00, param1, param2);
+    u32 v0 = ov63_0222BDE4(param0->unk_00, param1, param2);
     return v0 >> 15;
 }
 
 u32 ov70_0225C8C4(const UnkStruct_ov70_0225C894 *param0, u16 param1, u16 param2)
 {
-    u32 v0;
-
-    v0 = ov63_0222BDE4(param0->unk_00, param1, param2);
+    u32 v0 = ov63_0222BDE4(param0->unk_00, param1, param2);
     v0 &= 0x7fff;
 
     return v0;

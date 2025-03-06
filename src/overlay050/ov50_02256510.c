@@ -224,10 +224,8 @@ static void ov50_0225675C(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
 
 static void ov50_022567A8(BgConfig *param0, u16 param1, u32 param2)
 {
-    u32 v0, v1;
-
-    v0 = 4 + 3 * (param2 % 7);
-    v1 = 5 + 3 * (param2 / 7);
+    u32 v0 = 4 + 3 * (param2 % 7);
+    u32 v1 = 5 + 3 * (param2 / 7);
 
     Bg_FillTilemapRect(param0, 7, param1, v0, v1, 2, 2, 0);
 }

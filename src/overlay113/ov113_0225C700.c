@@ -1288,9 +1288,7 @@ static void ov113_0225DD0C(GenericPointerData *param0)
 
 static void ov113_0225DD14(UnkStruct_ov113_0225DBCC *param0)
 {
-    UnkStruct_ov113_022607EC *v0;
-
-    v0 = &param0->unk_168;
+    UnkStruct_ov113_022607EC *v0 = &param0->unk_168;
     v0->unk_04 = ov66_022328F0();
 }
 
@@ -1552,10 +1550,8 @@ static void ov113_0225E250(UnkStruct_ov113_0225E250 *param0)
 
 static void ov113_0225E264(const Strbuf *param0, int param1, int *param2, int *param3)
 {
-    int v0, v1;
-
-    v0 = Font_CalcStrbufWidth(param1, param0, 0);
-    v1 = v0 / 8;
+    int v0 = Font_CalcStrbufWidth(param1, param0, 0);
+    int v1 = v0 / 8;
 
     if (FX_ModS32(v0, 8) != 0) {
         v1++;

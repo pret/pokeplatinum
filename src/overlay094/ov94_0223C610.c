@@ -272,9 +272,7 @@ static void ov94_0223C85C(UnkStruct_ov94_0223FD4C *param0)
 static void ov94_0223C888(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
+    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
     Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 16 * 3 * 2, 62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
@@ -602,9 +600,7 @@ static void ov94_0223CFD8(UnkStruct_ov94_0223FD4C *param0, int param1, int param
 
 void ov94_0223D030(Window *param0, MessageLoader *param1, int param2, u16 param3)
 {
-    Strbuf *v0;
-
-    v0 = MessageLoader_GetNewStrbuf(param1, param2);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
     Window_FillTilemap(param0, param3);
     Text_AddPrinterWithParams(param0, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_INSTANT, NULL);

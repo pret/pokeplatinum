@@ -41,9 +41,7 @@ static int ov12_02238088(int param0);
 
 UnkStruct_ov12_02237F98 *ov12_02237EFC(int heapId, UnkStruct_ov12_02237EFC *param1)
 {
-    UnkStruct_ov12_02237F98 *v0;
-
-    v0 = NULL;
+    UnkStruct_ov12_02237F98 *v0 = NULL;
     v0 = Heap_AllocFromHeap(heapId, sizeof(UnkStruct_ov12_02237F98));
 
     if (v0 == NULL) {
@@ -197,9 +195,7 @@ static void ov12_02238054(UnkStruct_ov12_02238004 *param0, UnkFuncPtr_020146F4 p
 
 static void ov12_02238080(SPLEmitter *param0)
 {
-    UnkStruct_ov12_02238004 *v0;
-
-    v0 = sub_02014764();
+    UnkStruct_ov12_02238004 *v0 = sub_02014764();
 }
 
 static int ov12_02238088(int param0)
@@ -228,9 +224,7 @@ static int ov12_02238088(int param0)
         0x1,
         0x1
     };
-    int v1;
-
-    v1 = param0 - 5;
+    int v1 = param0 - 5;
 
     if (v1 >= NELEMS(v0)) {
         GF_ASSERT(0);

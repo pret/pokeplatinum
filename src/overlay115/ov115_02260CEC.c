@@ -737,9 +737,7 @@ UnkStruct_ov115_02260D78 *ov115_02260CEC(u32 heapID, u32 param1, u32 param2, u32
 
 void ov115_02260D78(UnkStruct_ov115_02260D78 *param0)
 {
-    u32 v0;
-
-    v0 = sub_0201E530();
+    u32 v0 = sub_0201E530();
     GF_ASSERT(v0 == 1);
 
     ov115_022630DC(&param0->unk_8730, &param0->unk_1AB4);
@@ -1498,9 +1496,7 @@ static void ov115_02261A10(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_022
 
 static BOOL ov115_02261A3C(UnkStruct_ov115_022617E8 *param0, UnkStruct_ov115_02261ADC *param1)
 {
-    BOOL v0;
-
-    v0 = ov114_0225CBE0(param1->unk_754);
+    BOOL v0 = ov114_0225CBE0(param1->unk_754);
 
     if (v0 == 1) {
         return 0;
@@ -1574,9 +1570,7 @@ static BOOL ov115_02261AEC(UnkStruct_ov115_02261ADC *param0)
 
 static BOOL ov115_02261B1C(UnkStruct_ov115_02261ADC *param0)
 {
-    BOOL v0;
-
-    v0 = ov114_0225CBE0(param0->unk_754);
+    BOOL v0 = ov114_0225CBE0(param0->unk_754);
 
     if (v0 == 1) {
         return 1;
@@ -2818,9 +2812,7 @@ static u32 ov115_022632D8(const UnkStruct_ov115_022632C8 *param0)
 static BOOL ov115_022632DC(const UnkStruct_ov115_022632C8 *param0, u32 param1)
 {
     int v0;
-    int v1;
-
-    v1 = 0;
+    int v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
         if ((param0->unk_10 & (1 << v0)) != 0) {
@@ -3447,9 +3439,7 @@ static void ov115_022640EC(UnkStruct_ov115_02263DF8 *param0, const UnkStruct_ov1
 {
     int v0;
     fx32 v1;
-    u32 v2;
-
-    v2 = param1->unk_02 + ((0 * 0xffff) / 360);
+    u32 v2 = param1->unk_02 + ((0 * 0xffff) / 360);
 
     for (v0 = 0; v0 < 3; v0++) {
         Easy3DObject_SetRotation(&param0->unk_00[v0], (u16)v2, 1);
@@ -3662,9 +3652,7 @@ static void ov115_02264564(UnkStruct_ov115_02261ADC *param0)
 
 static void ov115_02264620(UnkStruct_ov115_02261ADC *param0, const UnkStruct_ov115_022622F8 *param1, u32 param2, u32 param3)
 {
-    UnkStruct_ov115_022647A0 *v0;
-
-    v0 = ov115_02264948(param0);
+    UnkStruct_ov115_022647A0 *v0 = ov115_02264948(param0);
 
     if (param1->unk_04.unk_00 == param3) {
         ov115_02264740(param0, v0, param1, param2);
@@ -4094,9 +4082,7 @@ static void ov115_02264D80(UnkStruct_ov115_02264C90 *param0, s32 param1, s32 par
 static void ov115_02264DD8(int param0, int param1, int param2, int param3, int param4, s32 *param5, s32 *param6)
 {
     s16 v0;
-    s32 v1;
-
-    v1 = param4 - param3;
+    s32 v1 = param4 - param3;
     v0 = param3 + ((param0 * v1) / param1);
 
     *param5 = FX_Mul(CalcCosineDegrees(v0), param2 << FX32_SHIFT) >> FX32_SHIFT;

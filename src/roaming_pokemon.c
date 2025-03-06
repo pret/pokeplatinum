@@ -387,9 +387,7 @@ static void MoveRoamerNearby(SpecialEncounter *specialEncounter, const u8 roamer
 
 static void SetNewMapLocation(SpecialEncounter *specialEncounter, const u8 roamerSlot, const u8 newMapIndex, const int newMapId)
 {
-    Roamer *roamer;
-
-    roamer = SpecialEncounter_GetRoamer(specialEncounter, roamerSlot);
+    Roamer *roamer = SpecialEncounter_GetRoamer(specialEncounter, roamerSlot);
 
     SpecialEncounter_SetRoamerRouteIndex(specialEncounter, roamerSlot, newMapIndex);
     Roamer_SetData(roamer, ROAMER_DATA_MAP_ID, newMapId);

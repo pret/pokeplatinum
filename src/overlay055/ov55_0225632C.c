@@ -98,9 +98,7 @@ static void ov55_022563C8(SysTask *param0, void *param1)
         0
     };
     GXSDispCnt v1;
-    UnkStruct_ov55_0225632C *v2;
-
-    v2 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov55_0225632C *v2 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     Graphics_LoadTilesToBgLayer(12, 8, v2->unk_04, 6, 0, 0, 0, 8);

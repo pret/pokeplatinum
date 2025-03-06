@@ -128,9 +128,7 @@ UnkStruct_ov77_021D670C *ov77_021D670C(void)
 UnkStruct_ov77_021D6734 *ov77_021D6734(const int param0)
 {
     int v0;
-    UnkStruct_ov77_021D6734 *v1;
-
-    v1 = Heap_AllocFromHeap(HEAP_ID_76, sizeof(UnkStruct_ov77_021D6734));
+    UnkStruct_ov77_021D6734 *v1 = Heap_AllocFromHeap(HEAP_ID_76, sizeof(UnkStruct_ov77_021D6734));
     v0 = sizeof(UnkStruct_ov77_021D6ADC) * param0;
     v1->unk_04 = Heap_AllocFromHeap(HEAP_ID_76, v0);
 

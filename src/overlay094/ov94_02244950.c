@@ -268,9 +268,7 @@ static void ov94_02244B68(BgConfig *param0)
 static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 62);
+    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 62);
 
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, 62);
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 62);
@@ -734,9 +732,7 @@ static int ov94_022453EC(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_02245540(UnkStruct_ov94_0223FD4C *param0)
 {
-    int v0;
-
-    v0 = ov4_021D1F3C(-param0->unk_44, param0->unk_48);
+    int v0 = ov4_021D1F3C(-param0->unk_44, param0->unk_48);
     ov94_022459B4(param0, v0, -param0->unk_44);
     param0->unk_2C = 24;
 
@@ -897,9 +893,7 @@ static int ov94_022457F0(UnkStruct_ov94_0223FD4C *param0)
 
 void ov94_02245824(UnkStruct_ov94_0223FD4C *param0, MessageLoader *param1, int param2, int param3, u16 param4)
 {
-    Strbuf *v0;
-
-    v0 = MessageLoader_GetNewStrbuf(param1, param2);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
     StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
     Strbuf_Free(v0);

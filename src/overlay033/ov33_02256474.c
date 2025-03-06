@@ -210,9 +210,7 @@ static void ov33_02256598(SysTask *param0, void *param1)
         0
     };
     GXSDispCnt v1;
-    UnkStruct_ov33_02256474 *v2;
-
-    v2 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov33_02256474 *v2 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
     Graphics_LoadTilesToBgLayer(12, 7, v2->unk_04, 6, 0, 0, 1, 8);

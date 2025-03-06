@@ -20,9 +20,7 @@ typedef struct {
 
 int ov117_02266498(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov117_02266498 *v0;
-
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_02266498), 110);
+    UnkStruct_ov117_02266498 *v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_02266498), 110);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov117_02266498));
     v0->unk_00 = OverlayManager_Args(param0);
 

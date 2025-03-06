@@ -166,9 +166,7 @@ UnkStruct_ov97_0223DFB0 Unk_ov97_0223DFB0[] = {
 
 static int ov97_0222AE60(UnkStruct_0222AE60 *param0)
 {
-    int v0, v1;
-
-    v0 = 0;
+    int v0 = 0, v1;
     return v0;
 }
 
@@ -528,9 +526,7 @@ static void ov97_0222B4FC(UnkStruct_0222AE60 *param0, int param1, int param2)
 static void ov97_0222B53C(Window *param0, MessageLoader *param1, StringTemplate *param2, TextColor param3, u32 param4, int param5)
 {
     int v0, v1;
-    Strbuf *v2;
-
-    v2 = MessageUtil_ExpandedStrbuf(param2, param1, param4, 81);
+    Strbuf *v2 = MessageUtil_ExpandedStrbuf(param2, param1, param4, 81);
     v0 = Font_CalcStrbufWidth(FONT_SYSTEM, v2, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
     v1 = Window_GetWidth(param0) * 8 - (v0 + 32);
 
@@ -845,11 +841,9 @@ static void ov97_0222BB88(UnkStruct_0222AE60 *param0, int param1)
 
 static void ov97_0222BBC8(UnkStruct_0222AE60 *param0)
 {
-    int v0, v1, v2;
-
-    v0 = (Window_GetYPos(&param0->unk_5C[param0->unk_54]) - 1) * 8;
-    v1 = (Window_GetHeight(&param0->unk_5C[param0->unk_54]) + 2) * 8;
-    v2 = param0->unk_120 / FX32_ONE;
+    int v0 = (Window_GetYPos(&param0->unk_5C[param0->unk_54]) - 1) * 8;
+    int v1 = (Window_GetHeight(&param0->unk_5C[param0->unk_54]) + 2) * 8;
+    int v2 = param0->unk_120 / FX32_ONE;
 
     if (v2 > v0) {
         param0->unk_120 = v0 * FX32_ONE;

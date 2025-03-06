@@ -180,9 +180,7 @@ void ov22_02257B10(UnkStruct_ov22_02257964 *param0)
 
 void ov22_02257B1C(UnkStruct_ov22_02257964 *param0, int param1)
 {
-    UnkStruct_ov22_02259560 *v0;
-
-    v0 = param0->unk_00.unk_14.unk_08;
+    UnkStruct_ov22_02259560 *v0 = param0->unk_00.unk_14.unk_08;
 
     while (v0 != &param0->unk_00.unk_14) {
         if (v0->unk_04 == 0) {
@@ -346,9 +344,7 @@ void ov22_02257D04(UnkStruct_ov22_02257964 *param0, int *param1, int *param2)
     int v1;
     int v2;
     int v3;
-    UnkStruct_ov22_02259560 *v4;
-
-    v4 = param0->unk_00.unk_14.unk_08;
+    UnkStruct_ov22_02259560 *v4 = param0->unk_00.unk_14.unk_08;
     v0 = 0;
     v1 = 0;
 
@@ -372,9 +368,7 @@ void ov22_02257D04(UnkStruct_ov22_02257964 *param0, int *param1, int *param2)
 
 void ov22_02257D70(UnkStruct_ov22_02257964 *param0, GXRgb param1)
 {
-    UnkStruct_ov22_02259560 *v0;
-
-    v0 = param0->unk_00.unk_14.unk_08;
+    UnkStruct_ov22_02259560 *v0 = param0->unk_00.unk_14.unk_08;
 
     while (v0 != &param0->unk_00.unk_14) {
         if (v0->unk_04 == 0) {

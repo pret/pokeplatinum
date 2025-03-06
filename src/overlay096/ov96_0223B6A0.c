@@ -250,9 +250,7 @@ static void ov96_0223B9A0(void)
 static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0)
 {
     int v0;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 68);
+    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 68);
 
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 68);

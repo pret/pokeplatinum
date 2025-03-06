@@ -381,10 +381,8 @@ static int ov5_021D1178(FieldSystem *fieldSystem)
 
 static BOOL ov5_021D119C(FieldSystem *fieldSystem)
 {
-    int x, y;
-
-    x = Player_GetXPos(fieldSystem->playerAvatar);
-    y = Player_GetZPos(fieldSystem->playerAvatar);
+    int x = Player_GetXPos(fieldSystem->playerAvatar);
+    int y = Player_GetZPos(fieldSystem->playerAvatar);
 
     if ((x != fieldSystem->location->x) || (y != fieldSystem->location->z)) {
         fieldSystem->location->x = x;
@@ -921,9 +919,7 @@ static UnkStruct_ov5_021D1A68 *ov5_021D1A14(int fieldSystem, int param1)
 {
     int v0;
     u16 *v1;
-    UnkStruct_ov5_021D1A68 *v2;
-
-    v2 = Heap_AllocFromHeap(fieldSystem, sizeof(UnkStruct_ov5_021D1A68));
+    UnkStruct_ov5_021D1A68 *v2 = Heap_AllocFromHeap(fieldSystem, sizeof(UnkStruct_ov5_021D1A68));
     v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MM_LIST__MOVE_MODEL_LIST, param1, fieldSystem);
 
     for (v0 = 0; v0 < 24; v0++) {

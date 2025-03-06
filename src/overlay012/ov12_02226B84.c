@@ -912,9 +912,7 @@ static void ov12_022274E4(SysTask *param0, void *param1)
 
 void ov12_02227534(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_022274E4 *v0;
-
-    v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_022274E4));
+    UnkStruct_ov12_022274E4 *v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_022274E4));
     v0->unk_00 = param0;
 
     ov12_022263A4(&v0->unk_04, ov12_02220280(param0, 0), ov12_02220280(param0, 1));
@@ -1895,9 +1893,7 @@ static void ov12_0222862C(SysTask *param0, void *param1)
 
 void ov12_022287CC(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_0222862C *v0;
-
-    v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222862C));
+    UnkStruct_ov12_0222862C *v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_0222862C));
 
     v0->unk_08 = 0;
     v0->unk_00 = 0;
@@ -1990,9 +1986,7 @@ static void ov12_02228868(SysTask *param0, void *param1)
 
 void ov12_02228A0C(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_02228868 *v0;
-
-    v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_02228868));
+    UnkStruct_ov12_02228868 *v0 = Heap_AllocFromHeap(ov12_0221FDE4(param0), sizeof(UnkStruct_ov12_02228868));
 
     v0->unk_08 = 0;
     v0->unk_00 = 0;
@@ -2720,9 +2714,7 @@ static void ov12_02229738(SysTask *param0, void *param1)
 void ov12_02229810(UnkStruct_ov12_0221FCDC *param0)
 {
     int v0;
-    UnkStruct_ov12_02229738 *v1;
-
-    v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229738));
+    UnkStruct_ov12_02229738 *v1 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229738));
 
     v1->unk_00 = 0;
     v1->unk_01 = 0;
@@ -2856,9 +2848,7 @@ static void ov12_02229980(UnkStruct_ov12_0221FCDC *param0, UnkStruct_ov12_022299
 
 static BOOL ov12_02229A50(SPLEmitter *param0)
 {
-    BOOL v0;
-
-    v0 = 0;
+    BOOL v0 = 0;
 
     {
         SPLParticle *v1;
@@ -2884,9 +2874,7 @@ static BOOL ov12_02229A50(SPLEmitter *param0)
 static void ov12_02229A6C(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_02229980 *v0 = param1;
-    BOOL v1;
-
-    v1 = ov12_02229A50(v0->unk_38);
+    BOOL v1 = ov12_02229A50(v0->unk_38);
 
     if (v0->unk_28 < v0->unk_04) {
         v0->unk_28++;
@@ -2919,9 +2907,7 @@ void ov12_02229B28(UnkStruct_ov12_0221FCDC *param0)
     int v0;
     VecFx32 v1;
     VecFx32 v2;
-    UnkStruct_ov12_02229980 *v3;
-
-    v3 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229980));
+    UnkStruct_ov12_02229980 *v3 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229980));
 
     ov12_0223595C(param0, &v3->unk_3C);
     ov12_02229980(param0, v3);
@@ -2961,9 +2947,7 @@ void ov12_02229C5C(UnkStruct_ov12_0221FCDC *param0)
     VecFx32 v0;
     VecFx32 v1;
     int v2;
-    UnkStruct_ov12_02229980 *v3;
-
-    v3 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229980));
+    UnkStruct_ov12_02229980 *v3 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229980));
     ov12_0223595C(param0, &v3->unk_3C);
 
     v3->unk_00 = ov12_02220280(param0, 0);
@@ -3040,9 +3024,7 @@ void ov12_02229C5C(UnkStruct_ov12_0221FCDC *param0)
 static void ov12_02229DF0(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_02229980 *v0 = param1;
-    BOOL v1;
-
-    v1 = ov12_02229A50(v0->unk_38);
+    BOOL v1 = ov12_02229A50(v0->unk_38);
 
     if ((ov12_02225CE4(&v0->unk_A8[0], &v0->unk_A8[1]) == 0) && (v1 == 0)) {
         sub_02014724(v0->unk_34, v0->unk_38);
@@ -3061,9 +3043,7 @@ void ov12_02229E54(UnkStruct_ov12_0221FCDC *param0)
     int v0;
     VecFx32 v1;
     VecFx32 v2;
-    UnkStruct_ov12_02229980 *v3;
-
-    v3 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229980));
+    UnkStruct_ov12_02229980 *v3 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229980));
 
     ov12_0223595C(param0, &v3->unk_3C);
     ov12_02229980(param0, v3);
@@ -3101,9 +3081,7 @@ void ov12_02229E54(UnkStruct_ov12_0221FCDC *param0)
 static void ov12_02229F9C(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_02229F9C *v0 = param1;
-    BOOL v1;
-
-    v1 = ov12_02229A50(v0->unk_38);
+    BOOL v1 = ov12_02229A50(v0->unk_38);
 
     if ((ov12_02225AE0(&v0->unk_58) == 0) && (v1 == 0)) {
         sub_02014724(v0->unk_34, v0->unk_38);
@@ -3122,9 +3100,7 @@ static void ov12_02229F9C(SysTask *param0, void *param1)
 
 void ov12_0222A00C(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_02229F9C *v0;
-
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229F9C));
+    UnkStruct_ov12_02229F9C *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_02229F9C));
 
     ov12_0223595C(param0, &v0->unk_3C);
 
@@ -3362,9 +3338,7 @@ void ov12_0222A34C(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
 static void ov12_0222A3DC(SysTask *param0, void *param1)
 {
     UnkStruct_ov12_0222A3DC *v0 = param1;
-    BOOL v1;
-
-    v1 = ManagedSprite_IsAnimated(v0->unk_1C);
+    BOOL v1 = ManagedSprite_IsAnimated(v0->unk_1C);
 
     if (v1 == 0) {
         Sprite_DeleteAndFreeResources(v0->unk_1C);
@@ -3379,9 +3353,7 @@ static void ov12_0222A3DC(SysTask *param0, void *param1)
 
 void ov12_0222A410(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
-    UnkStruct_ov12_0222A3DC *v0;
-
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222A1F478));
+    UnkStruct_ov12_0222A3DC *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222A1F478));
     ov12_0223595C(param0, &v0->unk_00);
     v0->unk_1C = param3;
 
@@ -3467,9 +3439,7 @@ static void ov12_0222A4A0(SysTask *param0, void *param1)
 
 void ov12_0222A5C0(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, SpriteManager *param2, ManagedSprite *param3)
 {
-    UnkStruct_ov12_0222A4A0 *v0;
-
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222A4A0));
+    UnkStruct_ov12_0222A4A0 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222A4A0));
     ov12_0223595C(param0, &v0->unk_00);
     v0->unk_1C = param3;
 
@@ -3623,9 +3593,7 @@ static void ov12_0222A878(SysTask *param0, void *param1)
 
 void ov12_0222A8F4(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_0222A624 *v0;
-
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222A624));
+    UnkStruct_ov12_0222A624 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222A624));
     ov12_0223595C(param0, &v0->unk_00);
 
     v0->unk_20 = ov12_02220280(param0, 0);
@@ -3766,9 +3734,7 @@ static void ov12_0222AB10(SysTask *param0, void *param1)
 
 void ov12_0222AB50(UnkStruct_ov12_0221FCDC *param0)
 {
-    UnkStruct_ov12_0222AB10 *v0;
-
-    v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222AB10));
+    UnkStruct_ov12_0222AB10 *v0 = ov12_02235E50((param0), sizeof(UnkStruct_ov12_0222AB10));
     ov12_0223595C(param0, &v0->unk_00);
 
     if (ov12_02220280(param0, 0) == 0) {

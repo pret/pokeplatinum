@@ -29,9 +29,7 @@ static void ov21_021D5140(UnkStruct_ov21_021D4EE4 *param0, int param1);
 
 UnkStruct_ov21_021D4EE4 *ov21_021D4EE4(enum HeapId heapID)
 {
-    UnkStruct_ov21_021D4EE4 *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D4EE4));
+    UnkStruct_ov21_021D4EE4 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021D4EE4));
     memset(v0, 0, sizeof(UnkStruct_ov21_021D4EE4));
 
     return v0;
@@ -76,17 +74,13 @@ void ov21_021D4F20(UnkStruct_ov21_021D4EE4 *param0, int param1, int param2)
 
 int ov21_021D4F7C(const UnkStruct_ov21_021D4EE4 *param0)
 {
-    int v0;
-
-    v0 = inline_ov21_021D4F7C(param0);
+    int v0 = inline_ov21_021D4F7C(param0);
     return param0->unk_00[v0].unk_18;
 }
 
 void ov21_021D4F94(const UnkStruct_ov21_021D4EE4 *param0, int *param1, int *param2)
 {
-    int v0;
-
-    v0 = inline_ov21_021D4F7C(param0);
+    int v0 = inline_ov21_021D4F7C(param0);
 
     *param1 = param0->unk_00[v0].unk_00;
     *param2 = param0->unk_00[v0].unk_04;
@@ -94,9 +88,7 @@ void ov21_021D4F94(const UnkStruct_ov21_021D4EE4 *param0, int *param1, int *para
 
 void ov21_021D4FBC(const UnkStruct_ov21_021D4EE4 *param0, int *param1, int *param2)
 {
-    int v0;
-
-    v0 = inline_ov21_021D4F7C(param0);
+    int v0 = inline_ov21_021D4F7C(param0);
 
     *param1 = param0->unk_00[v0].unk_08;
     *param2 = param0->unk_00[v0].unk_0C;
@@ -133,9 +125,7 @@ void ov21_021D4FFC(int param0, int *param1, int *param2, int param3, int param4,
 
 static int inline inline_ov21_021D4F7C(const UnkStruct_ov21_021D4EE4 *param0)
 {
-    int v0;
-
-    v0 = param0->unk_10 * param0->unk_04;
+    int v0 = param0->unk_10 * param0->unk_04;
     v0 += param0->unk_0C;
 
     return v0;
@@ -143,9 +133,7 @@ static int inline inline_ov21_021D4F7C(const UnkStruct_ov21_021D4EE4 *param0)
 
 static int inline inline_ov21_021D5040(const UnkStruct_ov21_021D4EE4 *param0, int param1, int param2)
 {
-    int v0;
-
-    v0 = param2 * param0->unk_04;
+    int v0 = param2 * param0->unk_04;
     v0 += param1;
 
     return v0;
@@ -214,9 +202,7 @@ static void ov21_021D50E0(UnkStruct_ov21_021D4EE4 *param0, int param1)
 {
     int v0;
     int v1;
-    int v2;
-
-    v2 = MATH_ABS(param1);
+    int v2 = MATH_ABS(param1);
     v1 = param1 / v2;
 
     for (v0 = 0; v0 < v2; v0++) {
@@ -228,9 +214,7 @@ static void ov21_021D5110(UnkStruct_ov21_021D4EE4 *param0, int param1)
 {
     int v0;
     int v1;
-    int v2;
-
-    v2 = MATH_ABS(param1);
+    int v2 = MATH_ABS(param1);
     v1 = param1 / v2;
 
     for (v0 = 0; v0 < v2; v0++) {

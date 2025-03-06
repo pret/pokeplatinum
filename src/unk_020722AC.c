@@ -245,9 +245,7 @@ static void sub_02072370(SysTask *param0, void *param1)
 static void sub_02072390(SysTask *param0, void *param1)
 {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
-    s32 v1;
-
-    v1 = ListMenu_ProcessInput(v0->unk_160);
+    s32 v1 = ListMenu_ProcessInput(v0->unk_160);
 
     if (v0->unk_1A4 != NULL) {
         sub_0206A870(v0->unk_1A4);
@@ -305,9 +303,7 @@ static void sub_02072418(SysTask *param0, void *param1)
 static void sub_02072470(SysTask *param0, void *param1)
 {
     UnkStruct_02072334 *v0 = (UnkStruct_02072334 *)param1;
-    s32 v1;
-
-    v1 = ListMenu_ProcessInput(v0->unk_160);
+    s32 v1 = ListMenu_ProcessInput(v0->unk_160);
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072534, sub_02072370);
@@ -954,9 +950,7 @@ static void sub_02072F30(UnkStruct_02072334 *param0, SaveData *param1, int param
 
 static void sub_02073020(UnkStruct_02072334 *param0, u8 param1)
 {
-    UnkStruct_02072EB8 *v0;
-
-    v0 = &(param0->unk_1C[param1]);
+    UnkStruct_02072EB8 *v0 = &(param0->unk_1C[param1]);
 
     param0->unk_1C[v0->unk_02].unk_03 = v0->unk_03;
     param0->unk_1C[v0->unk_03].unk_02 = v0->unk_02;

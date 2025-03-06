@@ -71,9 +71,7 @@ BOOL ScrCmd_21F(ScriptContext *param0)
 static void sub_0204EE90(ScriptContext *param0, u16 param1, Pokemon *param2, u16 *param3)
 {
     void **v0 = FieldSystem_GetScriptMemberPtr(param0->fieldSystem, 19);
-    UnkStruct_020997B8 *v1;
-
-    v1 = sub_020997B8(HEAP_ID_FIELD_TASK);
+    UnkStruct_020997B8 *v1 = sub_020997B8(HEAP_ID_FIELD_TASK);
     *v0 = v1;
 
     v1->unk_00 = param2;

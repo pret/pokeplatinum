@@ -48,9 +48,7 @@ BOOL ov104_02239C44(UnkStruct_ov104_0222E930 *param0);
 BOOL ov104_022395F0(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_0209BBA4 *v0;
-    UnkStruct_ov104_02230BE4 *v1;
-
-    v1 = sub_0209B970(param0->unk_00->unk_00);
+    UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
     v0 = ov104_02239C58(v1->unk_08);
 
     sub_0209B980(param0->unk_00->unk_00, v0);
@@ -59,9 +57,7 @@ BOOL ov104_022395F0(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02239610(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_0209BBA4 *v0;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_0209BBA4 *v0 = sub_0209B978(param0->unk_00->unk_00);
     ov104_02239C7C(v0);
 
     return 0;
@@ -93,9 +89,7 @@ BOOL ov104_02239660(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02239680(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_0209BBA4 *v0;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_0209BBA4 *v0 = sub_0209B978(param0->unk_00->unk_00);
 
     if (v0->unk_6F >= 2) {
         v0->unk_6F = 0;
@@ -380,9 +374,7 @@ BOOL ov104_02239C10(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02239C20(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_0204AFC4 *v0;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_0204AFC4 *v0 = sub_0209B978(param0->unk_00->unk_00);
 
     if (v0->unk_8D4 < 2) {
         return 0;
@@ -394,9 +386,7 @@ static BOOL ov104_02239C20(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02239C44(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_0204AFC4 *v0;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_0204AFC4 *v0 = sub_0209B978(param0->unk_00->unk_00);
     sub_0204A32C(v0);
     v0 = NULL;
 

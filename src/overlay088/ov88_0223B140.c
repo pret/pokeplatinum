@@ -362,9 +362,7 @@ static void ov88_0223B320(UnkStruct_02095E80 *param0)
 
 static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, 26);
+    NARC *v0 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, 26);
 
     ov88_0223C15C();
     ov88_0223C17C(param0->unk_174);
@@ -1280,9 +1278,7 @@ static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, ArchivedSprite
 
 static void ov88_0223C860(Window *param0, Party *param1, int param2, int param3, int param4)
 {
-    Strbuf *v0;
-
-    v0 = Strbuf_Init(20, HEAP_ID_26);
+    Strbuf *v0 = Strbuf_Init(20, HEAP_ID_26);
 
     Pokemon_GetValue(Party_GetPokemonBySlotIndex(param1, param2), MON_DATA_NICKNAME_STRBUF, v0);
     Window_FillTilemap(param0, 0);
@@ -1309,9 +1305,7 @@ static void ov88_0223C8D8(Window *param0, int param1, Party *param2, int param3,
     Strbuf *v0, *v1;
     u16 v2, v3;
     int v4;
-    Pokemon *v5;
-
-    v5 = Party_GetPokemonBySlotIndex(param2, param3);
+    Pokemon *v5 = Party_GetPokemonBySlotIndex(param2, param3);
     v4 = Pokemon_SpriteYOffset(v5, 2);
 
     Sprite_SetDrawFlag(param4->unk_464[param1], 1);
@@ -1551,9 +1545,7 @@ static void ov88_0223CEF0(u16 *param0)
 
 static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC *param2)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param2[Unk_ov88_0223F004[param0][param1][v0]].unk_00 != 0) {

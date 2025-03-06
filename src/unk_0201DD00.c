@@ -103,9 +103,7 @@ void sub_0201DDB4(UnkStruct_0201DD00 *param0)
 
 void sub_0201DDD8(UnkStruct_0201DDF4 *param0, const fx32 param1)
 {
-    u16 v0;
-
-    v0 = param1 >> FX32_SHIFT;
+    u16 v0 = param1 >> FX32_SHIFT;
 
     sub_0201DDF4(param0, v0);
 }
@@ -137,9 +135,7 @@ static void sub_0201DDF4(UnkStruct_0201DDF4 *param0, const u16 param1)
 
 static void sub_0201DE3C(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1)
 {
-    void *v0;
-
-    v0 = sub_0201DE94(param0, param1);
+    void *v0 = sub_0201DE94(param0, param1);
 
     VramTransfer_Request(NNS_GFD_DST_3D_TEX_VRAM, NNS_GfdGetTexKeyAddr(param0->unk_08), v0, NNS_GfdGetTexKeySize(param0->unk_08));
     param0->unk_10 = param1->unk_00;
@@ -147,9 +143,7 @@ static void sub_0201DE3C(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *p
 
 static void sub_0201DE68(UnkStruct_0201DDF4 *param0, const UnkStruct_0202144C *param1)
 {
-    void *v0;
-
-    v0 = sub_0201DEA0(param0, param1);
+    void *v0 = sub_0201DEA0(param0, param1);
     VramTransfer_Request(NNS_GFD_DST_3D_TEX_PLTT, NNS_GfdGetPlttKeyAddr(param0->unk_0C), v0, NNS_GfdGetPlttKeySize(param0->unk_0C));
 
     param0->unk_11 = param1->unk_01;

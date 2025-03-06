@@ -914,9 +914,7 @@ static void ov117_02261574(UnkStruct_ov117_02261280 *param0)
 
 static void ov117_022615E0(UnkStruct_ov117_02261280 *param0)
 {
-    void *v0;
-
-    v0 = sub_02014730(param0->unk_A4);
+    void *v0 = sub_02014730(param0->unk_A4);
 
     sub_0201411C(param0->unk_A4);
     Heap_FreeToHeap(v0);
@@ -1276,9 +1274,7 @@ void ov117_02262044(UnkStruct_ov117_02261280 *param0, int param1, const UnkStruc
 UnkStruct_ov117_022621D4 *ov117_022620A0(UnkStruct_ov117_02261280 *param0, int param1)
 {
     UnkStruct_ov117_022621D4 *v0;
-    int v1;
-
-    v1 = param0->unk_2F14[param1] % 60;
+    int v1 = param0->unk_2F14[param1] % 60;
     v0 = &param0->unk_1C1C[param1].unk_00[v1];
 
     if (v0->unk_00 != 0) {
@@ -1352,9 +1348,7 @@ static BOOL ov117_0226217C(UnkStruct_ov117_02261280 *param0, const UnkStruct_ov1
 UnkStruct_ov117_022621D4 *ov117_022621D4(UnkStruct_ov117_02261280 *param0)
 {
     UnkStruct_ov117_022621D4 *v0;
-    int v1;
-
-    v1 = param0->unk_2F28 % 60;
+    int v1 = param0->unk_2F28 % 60;
     v0 = &param0->unk_176C.unk_00[v1];
     if (v0->unk_00 != 0) {
         return v0;

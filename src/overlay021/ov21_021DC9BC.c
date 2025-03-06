@@ -243,9 +243,7 @@ void ov21_021DCA54(UnkStruct_ov21_021E68F4 *param0, int param1)
 
 static UnkStruct_ov21_021DCACC *ov21_021DCA5C(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021DCACC *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DCACC));
+    UnkStruct_ov21_021DCACC *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DCACC));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DCACC));
@@ -291,9 +289,7 @@ static int ov21_021DCAF4(void)
 static int PokedexEncounters_PopulateEncounterCollection(UnkStruct_ov21_021E6A68 *param0, void *param1)
 {
     UnkStruct_ov21_021DCACC *v0 = param1;
-    EncounterCollection *encounterCollection;
-
-    encounterCollection = Heap_AllocFromHeap(param0->heapID, sizeof(EncounterCollection));
+    EncounterCollection *encounterCollection = Heap_AllocFromHeap(param0->heapID, sizeof(EncounterCollection));
 
     GF_ASSERT(encounterCollection);
     memset(encounterCollection, 0, sizeof(EncounterCollection));

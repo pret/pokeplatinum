@@ -70,9 +70,7 @@ void sub_02039A64(int heapID, int unused)
     Window v1;
     MessageLoader *v2;
     Strbuf *v3;
-    int v4;
-
-    v4 = 16;
+    int v4 = 16;
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);

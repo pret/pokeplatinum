@@ -186,9 +186,7 @@ void sub_020656DC(MapObject *mapObj)
 SysTask *MapObject_StartAnimation(MapObject *mapObj, const MapObjectAnimCmd *param1)
 {
     SysTask *v0;
-    UnkStruct_020EEE54 *v1;
-
-    v1 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_020EEE54));
+    UnkStruct_020EEE54 *v1 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_020EEE54));
     GF_ASSERT(v1 != NULL);
 
     memset(v1, 0, sizeof(UnkStruct_020EEE54));
@@ -205,17 +203,13 @@ SysTask *MapObject_StartAnimation(MapObject *mapObj, const MapObjectAnimCmd *par
 
 int MapObject_HasAnimationEnded(SysTask *task)
 {
-    UnkStruct_020EEE54 *v0;
-
-    v0 = SysTask_GetParam(task);
+    UnkStruct_020EEE54 *v0 = SysTask_GetParam(task);
     return v0->unk_04;
 }
 
 void MapObject_FinishAnimation(SysTask *task)
 {
-    UnkStruct_020EEE54 *v0;
-
-    v0 = SysTask_GetParam(task);
+    UnkStruct_020EEE54 *v0 = SysTask_GetParam(task);
 
     GF_ASSERT(LocalMapObj_CheckAnimationFinished(v0->unk_0C) == 1);
 
@@ -226,9 +220,7 @@ void MapObject_FinishAnimation(SysTask *task)
 
 static void sub_02065788(SysTask *task, void *param1)
 {
-    UnkStruct_020EEE54 *v0;
-
-    v0 = param1;
+    UnkStruct_020EEE54 *v0 = param1;
 
     while (Unk_020EEE54[v0->unk_00](v0) == 1) {
         (void)0;
@@ -255,9 +247,7 @@ static int sub_020657B0(UnkStruct_020EEE54 *param0)
 
 static int sub_020657CC(UnkStruct_020EEE54 *param0)
 {
-    const MapObjectAnimCmd *v0;
-
-    v0 = param0->unk_10;
+    const MapObjectAnimCmd *v0 = param0->unk_10;
     LocalMapObj_SetAnimationCode(param0->unk_0C, v0->unk_00);
 
     param0->unk_00 = 3;
@@ -277,9 +267,7 @@ static int sub_020657E4(UnkStruct_020EEE54 *param0)
 
 static int sub_02065800(UnkStruct_020EEE54 *param0)
 {
-    const MapObjectAnimCmd *v0;
-
-    v0 = param0->unk_10;
+    const MapObjectAnimCmd *v0 = param0->unk_10;
     param0->unk_08++;
 
     if (param0->unk_08 < v0->unk_02) {

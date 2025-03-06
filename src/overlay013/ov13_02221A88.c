@@ -477,9 +477,7 @@ static void ov13_022220CC(UnkStruct_ov13_022213F0 *param0, u32 param1, u32 param
 
 static void ov13_02222170(UnkStruct_ov13_022213F0 *param0, u16 param1, u8 param2, u8 param3)
 {
-    Strbuf *v0;
-
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 14);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 14);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_206C[param1], FONT_SYSTEM, v0, param2, param3, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     Strbuf_Free(v0);
@@ -1285,9 +1283,7 @@ static void ov13_022236B8(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_022237F8(UnkStruct_ov13_022213F0 *param0)
 {
-    u32 v0;
-
-    v0 = 22 * param0->unk_2071;
+    u32 v0 = 22 * param0->unk_2071;
 
     Window_FillTilemap(&param0->unk_206C[19], 0);
     Window_FillTilemap(&param0->unk_206C[20], 0);
@@ -1333,9 +1329,7 @@ static void ov13_022237F8(UnkStruct_ov13_022213F0 *param0)
 static void ov13_02223A10(UnkStruct_ov13_022213F0 *param0)
 {
     UnkStruct_ov13_022236B8 *v0;
-    u32 v1;
-
-    v1 = 11 * param0->unk_2071;
+    u32 v1 = 11 * param0->unk_2071;
 
     Window_FillTilemap(&param0->unk_206C[6], 0);
     Window_FillTilemap(&param0->unk_206C[7], 0);

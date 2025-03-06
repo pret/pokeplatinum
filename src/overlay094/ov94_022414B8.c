@@ -320,9 +320,7 @@ int ov94_02241568(UnkStruct_ov94_0223FD4C *param0, int param1)
 
 static void ov94_0224158C(UnkStruct_ov94_0223FD4C *param0, int param1, int param2, int param3, u16 param4)
 {
-    Strbuf *v0;
-
-    v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
 
     StringTemplate_Format(param0->unk_B8C, param0->unk_BAC, v0);
     Window_FillTilemap(&param0->unk_F5C, 0xf0f);
@@ -1006,9 +1004,7 @@ static void ov94_022423FC(MessageLoader *param0, StringTemplate *param1, Window 
 u16 *ov94_Pokedex_Alphabetical(int heapID, int unused, int *pokedexLength)
 {
     u32 pokedexSize;
-    u16 *pokedexAlphabetical;
-
-    pokedexAlphabetical = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
+    u16 *pokedexAlphabetical = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, 13, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 
     return pokedexAlphabetical;

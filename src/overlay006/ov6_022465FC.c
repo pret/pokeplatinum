@@ -260,9 +260,7 @@ int ov6_022468B0(FieldSystem *fieldSystem, BOOL param1, BOOL param2)
 
 int ov6_02246920(FieldSystem *fieldSystem)
 {
-    int v0;
-
-    v0 = ov6_022468B0(fieldSystem, 0, 0);
+    int v0 = ov6_022468B0(fieldSystem, 0, 0);
 
     if (v0) {
         return v0;

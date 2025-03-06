@@ -961,9 +961,7 @@ static BOOL ov70_02263910(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
     UnkStruct_ov70_0225CC54 *v0;
     UnkStruct_ov70_0225CA20 *v1;
     UnkStruct_ov70_02263910 *v2;
-    UnkStruct_ov66_0222DFF8 *v3;
-
-    v3 = ov70_0225DEE8(param1);
+    UnkStruct_ov66_0222DFF8 *v3 = ov70_0225DEE8(param1);
     v2 = ov70_0225DEEC(param1);
     v1 = ov70_0225DEF0(param1);
     v0 = ov70_0225CCAC(v1);
@@ -1128,9 +1126,7 @@ static BOOL ov70_02263BA4(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
     UnkStruct_ov70_0225CC54 *v0;
     UnkStruct_ov70_0225CA20 *v1;
     UnkStruct_ov70_02263910 *v2;
-    UnkStruct_ov66_0222DFF8 *v3;
-
-    v3 = ov70_0225DEE8(param1);
+    UnkStruct_ov66_0222DFF8 *v3 = ov70_0225DEE8(param1);
     v2 = ov70_0225DEEC(param1);
     v1 = ov70_0225DEF0(param1);
     v0 = ov70_0225CCAC(v1);
@@ -1198,9 +1194,7 @@ static BOOL ov70_02263BA4(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
 
 static BOOL ov70_02263CC8(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *param1, u32 param2)
 {
-    UnkStruct_ov70_0226315C *v0;
-
-    v0 = ov70_02262E80(param0);
+    UnkStruct_ov70_0226315C *v0 = ov70_02262E80(param0);
 
     switch (ov70_02262E84(param0)) {
     case 0:
@@ -1425,9 +1419,7 @@ static BOOL ov70_0226412C(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
 {
     u32 v0;
     UnkStruct_ov70_0225CC54 *v1;
-    UnkStruct_ov70_0225CA20 *v2;
-
-    v2 = ov70_0225DEF0(param1);
+    UnkStruct_ov70_0225CA20 *v2 = ov70_0225DEF0(param1);
     v1 = ov70_0225CCAC(v2);
     v0 = ov70_0225CD60(v1, 5);
 
@@ -2894,9 +2886,7 @@ static BOOL ov70_02265630(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
 static BOOL ov70_022657D0(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DEE8 *param1, u32 param2)
 {
     UnkStruct_ov70_0225CC54 *v0;
-    UnkStruct_ov70_0225CA20 *v1;
-
-    v1 = ov70_0225DEF0(param1);
+    UnkStruct_ov70_0225CA20 *v1 = ov70_0225DEF0(param1);
     v0 = ov70_0225CC70(v1, param2);
 
     switch (ov70_02262E84(param0)) {
@@ -2933,9 +2923,7 @@ static BOOL ov70_02265840(UnkStruct_ov70_02263344 *param0, UnkStruct_ov70_0225DE
     UnkStruct_ov70_02265840 *v0;
     UnkStruct_ov70_0225CA20 *v1;
     UnkStruct_ov70_02261E10 *v2;
-    UnkStruct_ov66_0222DFF8 *v3;
-
-    v3 = ov70_0225DEE8(param1);
+    UnkStruct_ov66_0222DFF8 *v3 = ov70_0225DEE8(param1);
     v1 = ov70_0225DEF0(param1);
     v2 = ov70_0225DEF8(param1);
     v0 = ov70_02262E80(param0);

@@ -225,10 +225,8 @@ void ov20_021D4440(UnkStruct_ov20_021D4210 *param0, BOOL param1)
 void ov20_021D4480(UnkStruct_ov20_021D4210 *param0, u32 param1)
 {
     VecFx32 v0;
-    u32 v1, v2;
-
-    v1 = param1 & 1;
-    v2 = param1 / 2;
+    u32 v1 = param1 & 1;
+    u32 v2 = param1 / 2;
 
     v0.x = (72 + 112 * v1) * FX32_ONE;
     v0.y = (56 + 24 * v2) * FX32_ONE;

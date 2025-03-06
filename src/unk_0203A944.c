@@ -1848,9 +1848,7 @@ static const u8 Unk_020E98F4[] = {
 
 int FieldSystem_GetWeather(FieldSystem *fieldSystem, int param1)
 {
-    int v0;
-
-    v0 = MapHeader_GetWeatherType(param1);
+    int v0 = MapHeader_GetWeatherType(param1);
 
     if (v0 < 32) {
         return v0;

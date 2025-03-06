@@ -27,9 +27,7 @@ void Contest_Init(UnkStruct_0202F10C *param0)
 
 void sub_0202F134(SaveData *param0, int param1, int param2)
 {
-    UnkStruct_0202F10C *v0;
-
-    v0 = SaveData_SaveTable(param0, 33);
+    UnkStruct_0202F10C *v0 = SaveData_SaveTable(param0, 33);
 
     if (v0->unk_00[param1][param2] < 9999) {
         v0->unk_00[param1][param2]++;
@@ -40,9 +38,7 @@ void sub_0202F134(SaveData *param0, int param1, int param2)
 
 u16 sub_0202F160(SaveData *param0, int param1, int param2)
 {
-    UnkStruct_0202F10C *v0;
-
-    v0 = SaveData_SaveTable(param0, 33);
+    UnkStruct_0202F10C *v0 = SaveData_SaveTable(param0, 33);
     SaveData_Checksum(33);
 
     return v0->unk_00[param1][param2];

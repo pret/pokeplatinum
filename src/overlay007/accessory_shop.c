@@ -360,9 +360,7 @@ static BOOL AccessoryShop_HasMsgBoxFinishedPrinting(AccessoryShopMessageBox *msg
 static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapId heapID, const AccessoryShopItem *items, u32 idx)
 {
     Strbuf *fmtString, *strbuf;
-    StringTemplate *strTemplate;
-
-    strTemplate = StringTemplate_Default(heapID);
+    StringTemplate *strTemplate = StringTemplate_Default(heapID);
     strbuf = Strbuf_Init(200, heapID);
     fmtString = MessageLoader_GetNewStrbuf(msgLoader, flower_shop_confirm_purchase);
 
@@ -386,9 +384,7 @@ static void AccessoryShop_LoadConfirmPurchaseMsg(AccessoryShopMessageBox *msgbox
 static void AccessoryShop_LoadSuccessfulPurchaseMsg(AccessoryShopMessageBox *msgbox, MessageLoader *msgLoader, enum HeapId heapID, const AccessoryShopItem *items, u32 idx)
 {
     Strbuf *fmtString, *strbuf;
-    StringTemplate *strTemplate;
-
-    strTemplate = StringTemplate_Default(heapID);
+    StringTemplate *strTemplate = StringTemplate_Default(heapID);
     strbuf = Strbuf_Init(200, heapID);
     fmtString = MessageLoader_GetNewStrbuf(msgLoader, flower_shop_purchase_post_success);
 

@@ -1122,9 +1122,7 @@ static void ov13_02220D1C(BgConfig *param0)
 
 static void ov13_02220D4C(UnkStruct_ov13_022213F0 *param0)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, param0->unk_00->unk_0C);
+    NARC *v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, param0->unk_00->unk_0C);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 22, param0->unk_1E0, 7, 0, 0, 0, param0->unk_00->unk_0C);
 
     {

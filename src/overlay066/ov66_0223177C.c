@@ -99,9 +99,7 @@ static BOOL ov66_022324D0(enum PlazaMinigame param0, u32 param1);
 
 UnkStruct_ov66_0223177C *ov66_0223177C(u32 param0)
 {
-    UnkStruct_ov66_0223177C *v0;
-
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov66_0223177C));
+    UnkStruct_ov66_0223177C *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov66_0223177C));
     memset(v0, 0, sizeof(UnkStruct_ov66_0223177C));
 
     ov66_02231D38(&v0->unk_08);
@@ -135,9 +133,7 @@ void ov66_022317E4(UnkStruct_ov66_0223177C *param0, u32 param1, u32 param2, UnkE
 
 BOOL ov66_022317F0(UnkStruct_ov66_0223177C *param0, u32 param1)
 {
-    BOOL v0;
-
-    v0 = ov66_02231E30(&param0->unk_08, param1);
+    BOOL v0 = ov66_02231E30(&param0->unk_08, param1);
     ov66_02231D90(&param0->unk_08, param1);
 
     return v0;
@@ -163,9 +159,7 @@ void ov66_0223180C(UnkStruct_ov66_0223177C *param0, u32 param1)
 
 void ov66_0223185C(UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_0223185C *param1)
 {
-    UnkStruct_ov66_02231FB0 *v0;
-
-    v0 = ov66_02231F68(&param0->unk_5C, 8);
+    UnkStruct_ov66_02231FB0 *v0 = ov66_02231F68(&param0->unk_5C, 8);
 
     if (v0 == NULL) {
         return;
@@ -248,9 +242,7 @@ void ov66_0223199C(UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_0223199
 
 void ov66_022319FC(UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_022319FC *param1)
 {
-    UnkStruct_ov66_02231FB0 *v0;
-
-    v0 = ov66_02231F68(&param0->unk_5C, 12);
+    UnkStruct_ov66_02231FB0 *v0 = ov66_02231F68(&param0->unk_5C, 12);
 
     if (v0 == NULL) {
         return;
@@ -262,9 +254,7 @@ void ov66_022319FC(UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_022319F
 
 void ov66_02231A58(UnkStruct_ov66_0223177C *param0, const UnkStruct_ov66_02231A58 *param1)
 {
-    UnkStruct_ov66_02231FB0 *v0;
-
-    v0 = ov66_02231F68(&param0->unk_5C, 13);
+    UnkStruct_ov66_02231FB0 *v0 = ov66_02231F68(&param0->unk_5C, 13);
 
     if (v0 == NULL) {
         return;
@@ -523,9 +513,7 @@ static void ov66_02231DD4(UnkStruct_ov66_02231D38 *param0, u32 param1)
 
 static BOOL ov66_02231DE8(const UnkStruct_ov66_02231D38 *param0, u32 param1)
 {
-    u32 v0;
-
-    v0 = ov66_02231DFC(param0, param1);
+    u32 v0 = ov66_02231DFC(param0, param1);
 
     if (v0 == 2) {
         return 0;
@@ -616,9 +604,7 @@ static void ov66_02231EEC(UnkStruct_ov66_02231E94 *param0)
 static void ov66_02231F1C(UnkStruct_ov66_02231E94 *param0)
 {
     UnkStruct_ov66_02231FB0 *v0;
-    UnkStruct_ov66_02231FB0 *v1;
-
-    v1 = param0->unk_188.unk_2C;
+    UnkStruct_ov66_02231FB0 *v1 = param0->unk_188.unk_2C;
 
     while (v1 != &param0->unk_188) {
         v0 = v1->unk_2C;
@@ -642,9 +628,7 @@ static void ov66_02231F58(UnkStruct_ov66_02231E94 *param0)
 static UnkStruct_ov66_02231FB0 *ov66_02231F68(UnkStruct_ov66_02231E94 *param0, u16 param1)
 {
     int v0;
-    UnkStruct_ov66_02231FB0 *v1;
-
-    v1 = NULL;
+    UnkStruct_ov66_02231FB0 *v1 = NULL;
 
     for (v0 = 0; v0 < 8; v0++) {
         if (param0->unk_00[v0].unk_2C == NULL) {

@@ -1571,9 +1571,7 @@ static u8 ov111_021D2518(UnkStruct_ov111_021D0F7C *param0)
 
 static u8 ov111_021D255C(UnkStruct_ov111_021D0F7C *param0)
 {
-    u8 v0, v1;
-
-    v0 = 0;
+    u8 v0 = 0, v1;
 
     for (v1 = 0; v1 < 3; v1++) {
         ov111_021D34C4(param0->unk_3B4[v1], param0->unk_3C4[param0->unk_40E[v1]]);
@@ -1601,9 +1599,7 @@ static u8 ov111_021D25BC(UnkStruct_ov111_021D0F7C *param0)
 
 static u8 ov111_021D2604(UnkStruct_ov111_021D0F7C *param0)
 {
-    u8 v0;
-
-    v0 = ov111_021D2424(param0, &param0->unk_5C[13], 4, 8 * 6, 1, TEXT_SPEED_INSTANT, 1, 1, 0, FONT_SUBSCREEN);
+    u8 v0 = ov111_021D2424(param0, &param0->unk_5C[13], 4, 8 * 6, 1, TEXT_SPEED_INSTANT, 1, 1, 0, FONT_SUBSCREEN);
     Window_ScheduleCopyToVRAM(&param0->unk_5C[13]);
 
     return v0;
@@ -1611,9 +1607,7 @@ static u8 ov111_021D2604(UnkStruct_ov111_021D0F7C *param0)
 
 static u8 ov111_021D263C(UnkStruct_ov111_021D0F7C *param0)
 {
-    u8 v0;
-
-    v0 = ov111_021D2424(param0, &param0->unk_5C[14], 5, 8 * 3, 1, TEXT_SPEED_INSTANT, 1, 1, 0, FONT_SUBSCREEN);
+    u8 v0 = ov111_021D2424(param0, &param0->unk_5C[14], 5, 8 * 3, 1, TEXT_SPEED_INSTANT, 1, 1, 0, FONT_SUBSCREEN);
     Window_ScheduleCopyToVRAM(&param0->unk_5C[14]);
 
     return v0;
@@ -1673,9 +1667,7 @@ static void ov111_021D26EC(UnkStruct_ov111_021D0F7C *param0)
 static void ov111_021D271C(UnkStruct_ov111_021D0F7C *param0)
 {
     int v0, v1, v2, v3, v4;
-    u8 v5;
-
-    v5 = (LCRNG_Next() % 4);
+    u8 v5 = (LCRNG_Next() % 4);
     v3 = 0;
 
     for (v0 = 0; v0 < 9; v0++) {
@@ -1829,9 +1821,7 @@ static void ov111_021D28E8(UnkStruct_ov111_021D0F7C *param0, u32 param1, u8 para
 
 static u8 ov111_021D2918(UnkStruct_ov111_021D0F7C *param0)
 {
-    u8 v0, v1;
-
-    v1 = 0;
+    u8 v0, v1 = 0;
 
     for (v0 = 0; v0 < 9; v0++) {
         if (param0->unk_400[v0] == 1) {
@@ -1971,9 +1961,7 @@ static void ov111_021D2B20(UnkStruct_ov111_021D0F7C *param0)
 
 static BOOL ov111_021D2BBC(UnkStruct_ov111_021D0F7C *param0)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     if (param0->unk_40D <= 1) {
         return 0;
@@ -2036,9 +2024,7 @@ static BOOL ov111_021D2BBC(UnkStruct_ov111_021D0F7C *param0)
 static BOOL ov111_021D2D14(UnkStruct_ov111_021D0F7C *param0)
 {
     int v0;
-    BOOL v1;
-
-    v1 = 0;
+    BOOL v1 = 0;
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_3C4[param0->unk_40E[v0]] == 4) {

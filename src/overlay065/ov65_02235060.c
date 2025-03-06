@@ -319,9 +319,7 @@ UnkStruct_ov65_022354D8 *ov65_022353EC(UnkStruct_ov65_02235130 *param0, u32 para
 
 void ov65_02235478(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022354D8 *param1)
 {
-    s32 v0;
-
-    v0 = ov63_0222BF90(param1->unk_00, 6);
+    s32 v0 = ov63_0222BF90(param1->unk_00, 6);
 
     param1->unk_10 = ov65_022361B0;
     param1->unk_18 = ov65_02235EF8;
@@ -348,9 +346,7 @@ u8 ov65_022354D8(const UnkStruct_ov65_022354D8 *param0)
 
 int ov65_022354E8(const UnkStruct_ov65_022354D8 *param0)
 {
-    int v0;
-
-    v0 = ov63_0222BF90(param0->unk_00, 6);
+    int v0 = ov63_0222BF90(param0->unk_00, 6);
     return ov63_0222C0AC(v0);
 }
 
@@ -395,9 +391,7 @@ void ov65_0223556C(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022354D8 *par
 
 void ov65_0223558C(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022354D8 *param1, int param2)
 {
-    BOOL v0;
-
-    v0 = ov65_02236278(param1);
+    BOOL v0 = ov65_02236278(param1);
 
     if (v0 == 0) {
         param1->unk_0B = param2;
@@ -446,9 +440,7 @@ static void ov65_0223560C(UnkStruct_ov65_02235130 *param0)
 
 static BOOL ov65_02235634(const UnkStruct_ov65_02235130 *param0)
 {
-    s32 v0;
-
-    v0 = ov63_0222BF90(param0->unk_730->unk_00, 5);
+    s32 v0 = ov63_0222BF90(param0->unk_730->unk_00, 5);
 
     if (v0 == 0) {
         return 1;
@@ -1242,9 +1234,7 @@ static void ov65_02236384(UnkStruct_ov65_02236318 *param0)
 
 static void *ov65_02236410(UnkStruct_ov65_02236318 *param0, u32 param1)
 {
-    u16 *v0;
-
-    v0 = (u16 *)param0->unk_04->pRawData;
+    u16 *v0 = (u16 *)param0->unk_04->pRawData;
     return &v0[param1 + 1];
 }
 

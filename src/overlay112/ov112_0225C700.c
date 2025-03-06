@@ -324,9 +324,7 @@ static u32 Unk_ov112_0225D968[4] = {
 int ov112_0225C700(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov112_0225C970 *v0;
-    UnkStruct_ov66_02230FA0 *v1;
-
-    v1 = OverlayManager_Args(param0);
+    UnkStruct_ov66_02230FA0 *v1 = OverlayManager_Args(param0);
     Heap_Create(3, 107, 0x50000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov112_0225C970), 107);
@@ -595,10 +593,8 @@ static void ov112_0225CC90(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_022
 
 static void ov112_0225CCE8(UnkStruct_ov112_0225CC84 *param0, UnkStruct_ov112_0225C9BC *param1, u8 param2, u8 param3, u32 param4, u32 param5, BOOL param6, BOOL param7, BOOL param8)
 {
-    u32 v0, v1;
-
-    v0 = param4 % 3;
-    v1 = param4 / 3;
+    u32 v0 = param4 % 3;
+    u32 v1 = param4 / 3;
 
     if (param7) {
         v1 += 2;
@@ -933,9 +929,7 @@ static void ov112_0225D1B8(const UnkStruct_ov112_0225D180 *param0, const NNSG2dP
 {
     BOOL v0;
     int v1;
-    const u8 *v2;
-
-    v2 = param1->pRawData;
+    const u8 *v2 = param1->pRawData;
 
     for (v1 = 0; v1 < 4; v1++) {
         v0 = VramTransfer_Request(NNS_GFD_DST_2D_BG_PLTT_MAIN, (param2 * 0x20) + (5 * 2) + (v1 * 0x4), (void *)(&v2[(7 * 0x20) + (param0->unk_00[v1] * 2)]), 0x4);

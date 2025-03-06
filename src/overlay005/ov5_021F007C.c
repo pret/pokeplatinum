@@ -175,9 +175,7 @@ UnkStruct_ov5_021D1BEC *ov5_021F01F0(FieldSystem *fieldSystem)
         ov5_021F01C0,
         ov5_021F01EC
     };
-    UnkStruct_ov5_021D1BEC *v1;
-
-    v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
+    UnkStruct_ov5_021D1BEC *v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
@@ -191,9 +189,7 @@ UnkStruct_ov5_021D1BEC *ov5_021F0204(FieldSystem *fieldSystem)
         ov5_021F01C0,
         ov5_021F01EC
     };
-    UnkStruct_ov5_021D1BEC *v1;
-
-    v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
+    UnkStruct_ov5_021D1BEC *v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
@@ -218,9 +214,7 @@ UnkStruct_ov5_021D1BEC *ov5_021F022C(FieldSystem *fieldSystem)
         ov5_021F00F0,
         ov5_021F01EC
     };
-    UnkStruct_ov5_021D1BEC *v1;
-
-    v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
+    UnkStruct_ov5_021D1BEC *v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
@@ -234,9 +228,7 @@ UnkStruct_ov5_021D1BEC *ov5_021F0240(FieldSystem *fieldSystem)
         ov5_021F00F0,
         ov5_021F01EC
     };
-    UnkStruct_ov5_021D1BEC *v1;
-
-    v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
+    UnkStruct_ov5_021D1BEC *v1 = ov5_021D1B6C(fieldSystem->unk_04->unk_04, &v0);
     return v1;
 }
 
@@ -272,9 +264,7 @@ static void ov5_021F02B8(UnkStruct_ov5_021F02B8 *param0, int param1, int param2,
 
 static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 *param0)
 {
-    int v0;
-
-    v0 = param0->unk_08 * param0->unk_0C;
+    int v0 = param0->unk_08 * param0->unk_0C;
     v0 = v0 / param0->unk_10;
 
     param0->unk_00 = v0 + param0->unk_04;

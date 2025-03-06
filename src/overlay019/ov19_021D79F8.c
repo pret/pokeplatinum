@@ -172,9 +172,7 @@ void ov19_021D7B4C(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_021D4F5
 static void ov19_021D7BC0(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_021D4F5C *param1, int param2, BOOL param3)
 {
     NNSG2dPaletteData *v0;
-    void *v1;
-
-    v1 = Graphics_GetPlttData(18, Unk_ov19_021E0178[param1->unk_01].unk_02, &v0, 10);
+    void *v1 = Graphics_GetPlttData(18, Unk_ov19_021E0178[param1->unk_01].unk_02, &v0, 10);
 
     if (v1) {
         int v2;
@@ -198,9 +196,7 @@ static void ov19_021D7BC0(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
 
 static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_021D4F5C *param1, int param2)
 {
-    void *v0;
-
-    v0 = LoadMemberFromNARC(18, Unk_ov19_021E0178[param1->unk_01].unk_01, 1, 10, 1);
+    void *v0 = LoadMemberFromNARC(18, Unk_ov19_021E0178[param1->unk_01].unk_01, 1, 10, 1);
 
     if (v0 != NULL) {
         NNSG2dCharacterData *v1;
@@ -234,9 +230,7 @@ static void ov19_021D7C58(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_
 
 static void ov19_021D7D00(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_021D4F5C *param1, u32 param2, u32 param3, u32 param4)
 {
-    void *v0;
-
-    v0 = LoadMemberFromNARC(18, Unk_ov19_021E0178[param1->unk_01].unk_00, 1, 10, 1);
+    void *v0 = LoadMemberFromNARC(18, Unk_ov19_021E0178[param1->unk_01].unk_00, 1, 10, 1);
 
     if (v0) {
         u16 *v1;
@@ -309,10 +303,8 @@ static void ov19_021D7E24(SysTask *param0, void *param1)
 static void ov19_021D7E6C(SysTask *param0, void *param1)
 {
     UnkStruct_ov19_021D8318 *v0 = (UnkStruct_ov19_021D8318 *)param1;
-    u32 v1, v2;
-
-    v1 = v0->unk_03;
-    v2 = v1 ^ 1;
+    u32 v1 = v0->unk_03;
+    u32 v2 = v1 ^ 1;
 
     if (v0->unk_04) {
         if (v0->unk_98 < 2) {
@@ -862,10 +854,8 @@ void ov19_021D89F4(UnkStruct_ov19_021D8318 *param0, u32 param1)
 
 void ov19_021D8A24(UnkStruct_ov19_021D8318 *param0)
 {
-    u32 v0, v1;
-
-    v0 = ov19_021D5E24(param0->unk_58F8);
-    v1 = ov19_021D5EA0(param0->unk_58F8);
+    u32 v0 = ov19_021D5E24(param0->unk_58F8);
+    u32 v1 = ov19_021D5EA0(param0->unk_58F8);
 
     if (param0->unk_A8[param0->unk_02][v0].unk_00 != NULL) {
         ov19_021DA68C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][v0]), v1);

@@ -160,9 +160,7 @@ static int ov97_02235DC8(const UnkStruct_ov97_02235DC8 *param0, int param1)
 static u16 ov97_02235E7C(u32 *param0, u16 param1)
 {
     u16 v0;
-    u32 v1;
-
-    v1 = 0;
+    u32 v1 = 0;
 
     for (v0 = 0; v0 < (param1 / 4); v0++) {
         v1 += *param0;

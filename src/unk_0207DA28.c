@@ -327,9 +327,7 @@ void sub_0207DDE0(FieldTask *param0, u16 *param1)
 
 static void sub_0207DE04(UnkStruct_0207DE40 *param0, FieldSystem *fieldSystem, u32 heapID, u32 param3)
 {
-    UnkStruct_0207DE04 *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0207DE04));
+    UnkStruct_0207DE04 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0207DE04));
 
     v0->unk_00 = param3;
     v0->unk_01 = 2;
@@ -481,8 +479,6 @@ static void sub_0207DF88(UnkStruct_ov115_02260440 *param0)
 
 static void sub_0207DF9C(FieldSystem *fieldSystem)
 {
-    GameRecords *v0;
-
-    v0 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
+    GameRecords *v0 = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
     GameRecords_IncrementTrainerScore(v0, TRAINER_SCORE_EVENT_UNK_50);
 }

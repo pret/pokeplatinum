@@ -410,9 +410,7 @@ void sub_02067FE8(SysTask *task)
 static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *param1, PlayerAvatar *playerAvatar, int param3, int param4, int param5, int param6, int param7)
 {
     SysTask *v0;
-    UnkStruct_020EF6D0 *v1;
-
-    v1 = Heap_AllocFromHeapAtEnd(4, (sizeof(UnkStruct_020EF6D0)));
+    UnkStruct_020EF6D0 *v1 = Heap_AllocFromHeapAtEnd(4, (sizeof(UnkStruct_020EF6D0)));
     GF_ASSERT(v1 != NULL);
 
     memset(v1, 0, (sizeof(UnkStruct_020EF6D0)));
@@ -434,17 +432,13 @@ static SysTask *sub_02067FF0(FieldSystem *fieldSystem, MapObject *param1, Player
 
 static int sub_02068048(SysTask *task)
 {
-    UnkStruct_020EF6D0 *v0;
-
-    v0 = SysTask_GetParam(task);
+    UnkStruct_020EF6D0 *v0 = SysTask_GetParam(task);
     return v0->unk_04;
 }
 
 static void sub_02068054(SysTask *task)
 {
-    UnkStruct_020EF6D0 *v0;
-
-    v0 = SysTask_GetParam(task);
+    UnkStruct_020EF6D0 *v0 = SysTask_GetParam(task);
 
     Heap_FreeToHeapExplicit(4, v0);
     SysTask_Done(task);
@@ -452,9 +446,7 @@ static void sub_02068054(SysTask *task)
 
 static void sub_0206806C(SysTask *task, void *param1)
 {
-    UnkStruct_020EF6D0 *v0;
-
-    v0 = param1;
+    UnkStruct_020EF6D0 *v0 = param1;
 
     while (Unk_020EF6D0[v0->unk_00](v0) == 1) {
         (void)0;
@@ -640,9 +632,7 @@ static int sub_02068248(UnkStruct_020EF6D0 *param0)
 static int sub_02068264(UnkStruct_020EF6D0 *param0)
 {
     int v0, v1;
-    MapObject *v2;
-
-    v2 = Player_MapObject(param0->playerAvatar);
+    MapObject *v2 = Player_MapObject(param0->playerAvatar);
     v1 = sub_02064488(MapObject_GetX(v2), MapObject_GetZ(v2), MapObject_GetX(param0->unk_24), MapObject_GetZ(param0->unk_24));
 
     if ((PlayerAvatar_GetDir(param0->playerAvatar) != v1) && ((param0->unk_18 == 0) || (param0->unk_14 == 2))) {
@@ -661,9 +651,7 @@ static int sub_02068264(UnkStruct_020EF6D0 *param0)
 
 static int sub_020682E0(UnkStruct_020EF6D0 *param0)
 {
-    MapObject *v0;
-
-    v0 = Player_MapObject(param0->playerAvatar);
+    MapObject *v0 = Player_MapObject(param0->playerAvatar);
 
     if (LocalMapObj_CheckAnimationFinished(v0) == 0) {
         return 0;

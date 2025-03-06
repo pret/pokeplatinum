@@ -295,9 +295,7 @@ static BOOL ov5_021EAB58(UnkStruct_ov5_021EAE78 *param0)
 static BOOL ov5_021EAC44(UnkStruct_ov5_021EAE78 *param0)
 {
     TrainerInfo *v0;
-    int v1;
-
-    v1 = ListMenu_ProcessInput(param0->unk_04);
+    int v1 = ListMenu_ProcessInput(param0->unk_04);
 
     switch (v1) {
     case 0xffffffff:

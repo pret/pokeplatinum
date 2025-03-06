@@ -270,9 +270,7 @@ static void ov98_02246ED4(DWCAllocType param0, void *param1, u32 param2)
 
 void ov98_02246EF8(UnkStruct_ov98_02246E88 *param0)
 {
-    char *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_108, sizeof(char) * 100);
+    char *v0 = Heap_AllocFromHeap(HEAP_ID_108, sizeof(char) * 100);
 
     ov98_022499C8(param0->unk_114, v0, 108);
     sub_02030D38(param0->unk_04, v0);
@@ -292,9 +290,7 @@ void ov98_02246F48(UnkStruct_ov98_02246E88 *param0)
 
 void ov98_02246F5C(UnkStruct_ov98_02246E88 *param0)
 {
-    u32 v0;
-
-    v0 = sub_02030E48(param0->unk_04, &param0->unk_9C);
+    u32 v0 = sub_02030E48(param0->unk_04, &param0->unk_9C);
     ov98_02246F94(param0, v0);
 }
 
@@ -424,9 +420,7 @@ void ov98_02247134(UnkStruct_ov98_02246E88 *param0)
 
 static void *ov98_02247168(UnkStruct_ov98_02246E88 *param0)
 {
-    UnkStruct_ov98_02247168 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_108, sizeof(UnkStruct_ov98_02247168));
+    UnkStruct_ov98_02247168 *v0 = Heap_AllocFromHeap(HEAP_ID_108, sizeof(UnkStruct_ov98_02247168));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02247168));
 
     v0->unk_00 = param0->unk_04;
@@ -440,9 +434,7 @@ static void *ov98_02247168(UnkStruct_ov98_02246E88 *param0)
 
 static void ov98_02247198(UnkStruct_ov98_02246E88 *param0)
 {
-    UnkStruct_ov98_02247168 *v0;
-
-    v0 = param0->unk_98;
+    UnkStruct_ov98_02247168 *v0 = param0->unk_98;
 
     if (sub_02039074(param0->unk_04)) {
         SystemFlag_SetConnectedToWiFi(SaveData_GetVarsFlags(param0->unk_04));

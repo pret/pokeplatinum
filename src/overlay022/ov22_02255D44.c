@@ -885,18 +885,14 @@ static void ov22_02256AE4(UnkStruct_ov22_02259C58 *param0, void *param1)
 static void ov22_02256B04(UnkStruct_ov22_02259C58 *param0, void *param1)
 {
     UnkStruct_ov22_02255D44 *v0 = param1;
-    int v1;
-
-    v1 = ov22_02258414(&v0->unk_3CC);
+    int v1 = ov22_02258414(&v0->unk_3CC);
     ov22_02258258(&v0->unk_3CC, v1, 0);
 }
 
 static void ov22_02256B24(UnkStruct_ov22_02259C58 *param0, void *param1)
 {
     UnkStruct_ov22_02255D44 *v0 = param1;
-    int v1;
-
-    v1 = ov22_02258414(&v0->unk_3CC);
+    int v1 = ov22_02258414(&v0->unk_3CC);
     ov22_02258258(&v0->unk_3CC, v1, 1);
 }
 
@@ -1314,9 +1310,7 @@ static void ov22_02257258(UnkStruct_ov22_02255D44 *param0)
 
 static u32 ov22_02257278(UnkStruct_ov22_02255D44 *param0)
 {
-    u32 v0;
-
-    v0 = sub_020159FC(param0->unk_714);
+    u32 v0 = sub_020159FC(param0->unk_714);
 
     switch (v0) {
     case 0:
@@ -1464,9 +1458,7 @@ static void ov22_02257548(UnkStruct_ov22_02255D44 *param0)
 
 static void ov22_02257564(UnkStruct_ov22_02255D44 *param0)
 {
-    int v0;
-
-    v0 = ov22_02257D00(&param0->unk_458);
+    int v0 = ov22_02257D00(&param0->unk_458);
     ov22_0225A6B8(&param0->unk_5C4, v0);
 }
 
@@ -1519,9 +1511,7 @@ static void ov22_022575B4(UnkStruct_ov22_02255D44 *param0)
 
 static u32 ov22_02257624(UnkStruct_ov22_02255D44 *param0)
 {
-    u32 v0;
-
-    v0 = sub_020159FC(param0->unk_714);
+    u32 v0 = sub_020159FC(param0->unk_714);
 
     switch (v0) {
     case 0:
@@ -1622,9 +1612,7 @@ static BOOL ov22_0225771C(UnkStruct_ov22_02256FD8_sub1 *param0, UnkStruct_ov22_0
 
 static void ov22_02257778(UnkStruct_ov22_02256FD8 *param0, UnkStruct_ov22_02259560 *param1, u32 param2)
 {
-    UnkStruct_ov22_02259560 *v0;
-
-    v0 = param1->unk_08;
+    UnkStruct_ov22_02259560 *v0 = param1->unk_08;
 
     while (v0 != param1) {
         if (v0->unk_04 == 0) {

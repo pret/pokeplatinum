@@ -77,9 +77,7 @@ void ov76_0223B1E0(UnkStruct_ov76_0223DE00 *param0)
 void ov76_0223B208(UnkStruct_ov76_0223DE00 *param0)
 {
     int v0;
-    UnkStruct_0202CA28 *v1;
-
-    v1 = param0->unk_04[param0->unk_3C4[0]].unk_04;
+    UnkStruct_0202CA28 *v1 = param0->unk_04[param0->unk_3C4[0]].unk_04;
 
     for (v0 = 0; v0 < 8; v0++) {
         if (v1->unk_00[v0].unk_00 != 0) {
@@ -426,9 +424,7 @@ void ov76_0223B704(UnkStruct_ov76_0223DE00 *param0, int param1)
 
 void ov76_0223B758(UnkStruct_ov76_0223DE00 *param0, int param1)
 {
-    BOOL v0;
-
-    v0 = ov76_0223B6C4(param0, param1);
+    BOOL v0 = ov76_0223B6C4(param0, param1);
 
     if (v0 == 0) {
         ManagedSprite_SetExplicitOamMode(param0->unk_324[param1].unk_08, GX_OAM_MODE_XLU);

@@ -237,9 +237,7 @@ const UnkStruct_020F3DCC *sub_0208C034(UnkStruct_0208C06C *param0, int param1)
 void sub_0208C06C(UnkStruct_0208C06C *param0)
 {
     int v0;
-    const UnkStruct_020F3DCC *v1;
-
-    v1 = param0->unk_818;
+    const UnkStruct_020F3DCC *v1 = param0->unk_818;
     param0->unk_534.unk_1AC = 0;
 
     for (v0 = 0; v0 < 5; v0++) {

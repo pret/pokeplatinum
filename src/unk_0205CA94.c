@@ -118,9 +118,7 @@ void sub_0205CA94(SysTask *param0, void *param1)
     UnkStruct_0205D274 *v0 = (UnkStruct_0205D274 *)param1;
     int v1[2];
     int v2;
-    int v3;
-
-    v3 = v0->unk_1E4;
+    int v3 = v0->unk_1E4;
 
     if (v0->unk_04.unk_00) {
         SpriteList_Update(v0->unk_04.unk_00);
@@ -236,9 +234,7 @@ void sub_0205CD3C(SysTask *param0, void *param1)
 {
     UnkStruct_0205D274 *v0 = (UnkStruct_0205D274 *)param1;
     int v1;
-    int v2;
-
-    v2 = v0->unk_1E4;
+    int v2 = v0->unk_1E4;
 
     if (v2 != 6) {
         SpriteList_Update(v0->unk_04.unk_00);
@@ -299,9 +295,7 @@ void sub_0205CE7C(SysTask *param0, void *param1)
     UnkStruct_0205D274 *v0 = (UnkStruct_0205D274 *)param1;
     int v1[2];
     int v2;
-    int v3;
-
-    v3 = v0->unk_1E4;
+    int v3 = v0->unk_1E4;
 
     if (v3 != 6) {
         SpriteList_Update(v0->unk_04.unk_00);

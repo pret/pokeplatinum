@@ -1012,9 +1012,7 @@ static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 p
 {
     MenuTemplate v0;
     MessageLoader *v1 = ov23_02253E3C(ov23_0224219C());
-    StringList *v2;
-
-    v2 = StringList_New(2, param4);
+    StringList *v2 = StringList_New(2, param4);
 
     StringList_AddFromMessageBank(v2, v1, 38, 0);
     StringList_AddFromMessageBank(v2, v1, 39, 1);
@@ -1369,9 +1367,7 @@ void ov23_0224C434(void)
 
 static void ov23_0224C448(void)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
         UnkStruct_ov23_0224B098 *v2 = &Unk_ov23_022577AC->unk_12AC[v0];

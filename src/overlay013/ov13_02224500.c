@@ -247,9 +247,7 @@ static void ov13_02224588(UnkStruct_ov13_022213F0 *param0)
 {
     SpriteSystem *v0;
     u32 v1;
-    NARC *v2;
-
-    v2 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->unk_0C);
+    NARC *v2 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_08);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v2, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DSUB, 45063);
@@ -270,9 +268,7 @@ static void ov13_02224588(UnkStruct_ov13_022213F0 *param0)
 static void ov13_02224670(UnkStruct_ov13_022213F0 *param0)
 {
     SpriteSystem *v0 = ov16_0223E010(param0->unk_00->unk_08);
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_0C);
+    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_0C);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconPltt(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45064);
     SpriteSystem_LoadCellResObjFromOpenNarc(v0, param0->unk_1FB0, v1, PokemonSummaryScreen_StatusIconCell(), FALSE, 45064);
@@ -302,9 +298,7 @@ static void ov13_02224798(UnkStruct_ov13_022213F0 *param0)
 {
     SpriteSystem *v0;
     u32 v1;
-    NARC *v2;
-
-    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_0C);
+    NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_08);
 
     SpriteSystem_LoadPaletteBufferFromOpenNarc(param0->unk_1E4, PLTTBUF_SUB_OBJ, v0, param0->unk_1FB0, v2, sub_02081934(), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45066);
@@ -327,9 +321,7 @@ static void ov13_02224848(UnkStruct_ov13_022213F0 *param0)
 static ManagedSprite *ov13_022248D8(UnkStruct_ov13_022213F0 *param0, u32 param1)
 {
     SpriteTemplate v0;
-    SpriteSystem *v1;
-
-    v1 = ov16_0223E010(param0->unk_00->unk_08);
+    SpriteSystem *v1 = ov16_0223E010(param0->unk_00->unk_08);
 
     v0.x = 0;
     v0.y = 0;

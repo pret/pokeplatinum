@@ -50,9 +50,7 @@ static const u32 Unk_ov5_02200678[4];
 
 void *ov5_021F3D00(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F3D2C *v0;
-
-    v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F3D2C)), 0, 0);
+    UnkStruct_ov5_021F3D2C *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F3D2C)), 0, 0);
     v0->unk_00 = param0;
 
     ov5_021F3D2C(v0);
@@ -96,9 +94,7 @@ UnkStruct_ov101_021D5D90 *ov5_021F3D90(MapObject *param0, int param1)
     VecFx32 v0;
     UnkStruct_ov101_021D5D90 *v1;
     UnkStruct_ov5_021F3D90 v2;
-    UnkStruct_ov5_021DF47C *v3;
-
-    v3 = ov5_021DF578(param0);
+    UnkStruct_ov5_021DF47C *v3 = ov5_021DF578(param0);
 
     {
         FieldSystem *fieldSystem = ov5_021DF574(v3);

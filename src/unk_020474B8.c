@@ -211,10 +211,8 @@ BOOL ScrCmd_251(ScriptContext *param0)
     StringTemplate **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v4 = ScriptContext_ReadByte(param0);
     u16 v5 = ScriptContext_GetVar(param0);
-    u32 v6, v7;
-
-    v6 = v5 % (5 * 6);
-    v7 = v5 / (5 * 6);
+    u32 v6 = v5 % (5 * 6);
+    u32 v7 = v5 / (5 * 6);
     v0 = GetBoxedPokemonFrom(v2, v7, v6);
 
     StringTemplate_SetNickname(*v3, v4, v0);
@@ -445,9 +443,7 @@ BOOL ScrCmd_232(ScriptContext *param0)
     StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
     u8 v2 = ScriptContext_ReadByte(param0);
     u16 v3 = ScriptContext_GetVar(param0);
-    u16 v4;
-
-    v4 = Ribbon_GetData(v3, RIBBON_DATA_NAME_ID);
+    u16 v4 = Ribbon_GetData(v3, RIBBON_DATA_NAME_ID);
     StringTemplate_SetRibbonName(*v1, v2, v4);
 
     return 0;

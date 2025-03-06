@@ -786,9 +786,7 @@ static void inline_0205F180(PlayerAvatar *playerAvatar, const UnkStruct_ov5_021E
 
 static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, const UnkStruct_ov5_021E8F60 *param2, int param3, u16 param4, u16 param5)
 {
-    int v0;
-
-    v0 = sub_0205FC48(playerAvatar, param3);
+    int v0 = sub_0205FC48(playerAvatar, param3);
 
     switch (v0) {
     case 0:
@@ -879,9 +877,7 @@ static int sub_0205FCC0(PlayerAvatar *playerAvatar, int param1)
 
 static void sub_0205FD20(PlayerAvatar *playerAvatar, MapObject *param1, int param2, u16 param3, u16 param4)
 {
-    int v0;
-
-    v0 = sub_02065838(MapObject_GetFacingDir(param1), 0x0);
+    int v0 = sub_02065838(MapObject_GetFacingDir(param1), 0x0);
     sub_02060B64(playerAvatar, param1, v0, 1);
 }
 
@@ -1196,9 +1192,7 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 pa
 
 int sub_02060390(PlayerAvatar *playerAvatar, int param1)
 {
-    int v0;
-
-    v0 = 0x4c;
+    int v0 = 0x4c;
 
     switch (PlayerAvatar_Speed(playerAvatar)) {
     case 1:
@@ -1330,9 +1324,7 @@ static int sub_020604E4(PlayerAvatar *playerAvatar, int param1)
 
 static void sub_02060548(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
 {
-    int v0;
-
-    v0 = sub_02065838(MapObject_GetFacingDir(mapObj), 0x0);
+    int v0 = sub_02065838(MapObject_GetFacingDir(mapObj), 0x0);
 
     sub_02060B64(playerAvatar, mapObj, v0, 1);
     PlayerAvatar_ClearSpeed(playerAvatar);
@@ -1535,9 +1527,7 @@ static int sub_02060850(PlayerAvatar *playerAvatar, int param1)
 
 static void sub_020608BC(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4)
 {
-    int v0;
-
-    v0 = sub_02065838(MapObject_GetFacingDir(mapObj), 0x0);
+    int v0 = sub_02065838(MapObject_GetFacingDir(mapObj), 0x0);
 
     sub_02060B64(playerAvatar, mapObj, v0, 1);
     PlayerAvatar_ClearSpeed(playerAvatar);
@@ -1682,9 +1672,7 @@ static void sub_02060B64(PlayerAvatar *playerAvatar, MapObject *mapObj, u32 para
 
 u32 sub_02060B7C(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2)
 {
-    u32 v0, v1;
-
-    v0 = 0;
+    u32 v0 = 0, v1;
     v1 = sub_02060C24(playerAvatar, mapObj, param2);
 
     if (v1 & ((1 << 1) | (1 << 3))) {

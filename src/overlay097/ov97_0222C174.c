@@ -496,9 +496,7 @@ static void ov97_0222C210(UnkStruct_ov97_0222C388 *param0)
 {
     int v0;
     u32 v1;
-    const u16 *v2;
-
-    v2 = TrainerInfo_Name(param0->unk_10);
+    const u16 *v2 = TrainerInfo_Name(param0->unk_10);
 
     for (v0 = 0; v0 < 7 + 1; v0++) {
         Unk_ov97_0223F180[v0] = ov97_0222C174(v2[v0]);
@@ -616,9 +614,7 @@ static void ov97_0222C578(UnkStruct_ov97_0222C388 *param0)
     u32 v0, v1, v2, v3;
     u8 v4[6];
     UnkStruct_ov97_022335A8 v5;
-    StringTemplate *v6;
-
-    v6 = StringTemplate_Default(param0->heapID);
+    StringTemplate *v6 = StringTemplate_Default(param0->heapID);
 
     ov97_02237808(&param0->unk_F0, &param0->unk_38, 0, 421, 1, 1);
     ov97_02237858(&param0->unk_F0, 26, 4, param0->unk_144);
@@ -673,9 +669,7 @@ static void ov97_0222C688(OverlayManager *param0)
 
 static int ov97_0222C6F8(OverlayManager *param0, int *param1)
 {
-    UnkStruct_ov97_0222C388 *v0;
-
-    v0 = ov97_022376C4(param0, 85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
+    UnkStruct_ov97_0222C388 *v0 = ov97_022376C4(param0, 85, sizeof(UnkStruct_ov97_0222C388), 0x20000);
 
     v0->heapID = HEAP_ID_85;
     v0->unk_04 = BgConfig_New(v0->heapID);

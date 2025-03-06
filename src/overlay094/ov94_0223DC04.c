@@ -89,9 +89,7 @@ int ov94_0223DC04(UnkStruct_ov94_0223FD4C *param0, int param1)
 
 int ov94_0223DCE4(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
-    int v0;
-
-    v0 = (*Unk_ov94_0224682C[param0->unk_2C])(param0);
+    int v0 = (*Unk_ov94_0224682C[param0->unk_2C])(param0);
     return v0;
 }
 

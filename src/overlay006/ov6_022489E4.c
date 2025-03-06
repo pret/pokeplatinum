@@ -63,9 +63,7 @@ BOOL ov6_02248A64(UnkStruct_02095C48 *param0)
 
 static int ov6_02248A94(UnkStruct_ov6_02248A94 *param0[4], int param1, u8 *param2)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < param1; v0++) {
         if (param0[v1]->unk_00 < param0[v0]->unk_00) {
@@ -217,9 +215,7 @@ BOOL ov6_02248C68(UnkStruct_02095C48 *param0, int param1, const UnkStruct_020954
     int v1;
     int v2;
     int v3;
-    const UnkStruct_020954F0 *v4;
-
-    v4 = param2;
+    const UnkStruct_020954F0 *v4 = param2;
     v1 = sizeof(UnkStruct_020954F0) * (1 + 2) + 1;
     v0 = Heap_AllocFromHeap(HEAP_ID_20, v1);
 

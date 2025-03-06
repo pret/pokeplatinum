@@ -222,9 +222,7 @@ int ov21_021E4D1C(const UnkStruct_ov21_021E68F4 *param0)
 
 static UnkStruct_ov21_021E4D90 *ov21_021E4D24(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021E4D90 *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E4D90));
+    UnkStruct_ov21_021E4D90 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021E4D90));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021E4D90));
@@ -1240,9 +1238,7 @@ static void ov21_021E5CF8(Sprite *param0, UnkStruct_ov21_021E5C80 *param1, BOOL 
 
 static void ov21_021E5D90(Sprite *param0, UnkStruct_ov21_021E5C80 *param1, BOOL param2)
 {
-    int v0;
-
-    v0 = Sprite_GetAnimFrame(param0);
+    int v0 = Sprite_GetAnimFrame(param0);
 
     if (param2 == 1) {
         if (param1->unk_08 == param1->unk_00) {

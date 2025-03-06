@@ -416,9 +416,7 @@ int sub_02033808(void)
 
 int sub_0203383C(int param0)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < 16; v0++) {
         if (sCommServerClient->unk_14C8[v0] != 0) {

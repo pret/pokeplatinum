@@ -296,9 +296,7 @@ static void ov43_022568B4(SysTask *param0, void *param1)
 {
     UnkStruct_ov43_02256544 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov43_02256544_1 *v1 = PoketchTask_GetConstTaskData(param1);
-    u32 v2;
-
-    v2 = (v1->unk_00 & 1) ? 3 : 1;
+    u32 v2 = (v1->unk_00 & 1) ? 3 : 1;
 
     ov25_022558C4(v0->unk_34[v1->unk_00], v2);
     PoketchSystem_PlaySoundEffect(1635);
@@ -309,9 +307,7 @@ static void ov43_022568F0(SysTask *param0, void *param1)
 {
     UnkStruct_ov43_02256544 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov43_02256544_1 *v1 = PoketchTask_GetConstTaskData(param1);
-    u32 v2;
-
-    v2 = (v1->unk_00 & 1) ? 2 : 0;
+    u32 v2 = (v1->unk_00 & 1) ? 2 : 0;
 
     ov25_022558C4(v0->unk_34[v1->unk_00], v2);
     ov43_022566EC(param1);

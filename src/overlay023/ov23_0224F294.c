@@ -179,9 +179,7 @@ static void ov23_0224F294(UnkStruct_ov23_02250CD4 *param0, u8 *param1, u32 param
         8, 1, 2, 2, 0, 0
     };
     u32 v1;
-    NARC *v2;
-
-    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, 11);
+    NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, 11);
 
     ov5_021D3190(&param0->unk_74, &v0, (7 + 1), 11);
     ov5_021D32E8(&param0->unk_74, v2, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);
@@ -471,9 +469,7 @@ static void ov23_0224F7F4(UnkStruct_ov23_02250CD4 *param0)
     MenuTemplate v0;
     const int v1 = 4;
     u8 v2[7];
-    int v3;
-
-    v3 = ov23_0224F7D4(v2);
+    int v3 = ov23_0224F7D4(v2);
     param0->unk_40 = StringList_New(NELEMS(Unk_ov23_02256924), 4);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 20, 1, 11, NELEMS(Unk_ov23_02256924) * 3, 13, (1024 - (18 + 12) - 9 - 11 * 22));
@@ -612,9 +608,7 @@ static void ov23_0224F914(SysTask *param0, void *param1)
 static BOOL ov23_0224FA58(SysTask *param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    u16 v1;
-
-    v1 = Menu_GetCursorPos(v0->unk_54);
+    u16 v1 = Menu_GetCursorPos(v0->unk_54);
     v0->unk_2A0 = Menu_ProcessInputWithSound(v0->unk_54, 1504);
     v0->unk_29C = Menu_GetCursorPos(v0->unk_54);
 
@@ -1789,9 +1783,7 @@ void ov23_02251044(void *param0, u32 param1)
 static BOOL ov23_022510F0(SysTask *param0, void *param1)
 {
     UnkStruct_ov23_02250CD4 *v0 = param1;
-    u32 v1;
-
-    v1 = ov23_02248D20(v0->unk_4C);
+    u32 v1 = ov23_02248D20(v0->unk_4C);
 
     if (CommSys_CheckError()) {
         v1 = 0xfffffffe;

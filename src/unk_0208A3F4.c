@@ -434,20 +434,16 @@ void sub_0208AAE4(UnkStruct_02089688 *param0, int param1)
 
 void sub_0208AB2C(UnkStruct_02089688 *param0, int param1)
 {
-    s16 v0, v1;
-
-    v0 = (param0->unk_2C0.unk_18[param1 + 16].rect.left + param0->unk_2C0.unk_18[param1 + 16].rect.right) / 2;
-    v1 = (param0->unk_2C0.unk_18[param1 + 16].rect.top + param0->unk_2C0.unk_18[param1 + 16].rect.bottom) / 2;
+    s16 v0 = (param0->unk_2C0.unk_18[param1 + 16].rect.left + param0->unk_2C0.unk_18[param1 + 16].rect.right) / 2;
+    s16 v1 = (param0->unk_2C0.unk_18[param1 + 16].rect.top + param0->unk_2C0.unk_18[param1 + 16].rect.bottom) / 2;
 
     ManagedSprite_SetPositionXY(param0->unk_1F0[1].unk_0C, v0, v1);
 }
 
 void sub_0208AB6C(UnkStruct_02089688 *param0, int param1, int param2)
 {
-    s16 v0, v1;
-
-    v0 = (param0->unk_2C0.unk_18[param1 + 16].rect.left + param0->unk_2C0.unk_18[param1 + 16].rect.right) / 2;
-    v1 = (param0->unk_2C0.unk_18[param1 + 16].rect.top + param0->unk_2C0.unk_18[param1 + 16].rect.bottom) / 2;
+    s16 v0 = (param0->unk_2C0.unk_18[param1 + 16].rect.left + param0->unk_2C0.unk_18[param1 + 16].rect.right) / 2;
+    s16 v1 = (param0->unk_2C0.unk_18[param1 + 16].rect.top + param0->unk_2C0.unk_18[param1 + 16].rect.bottom) / 2;
 
     ManagedSprite_SetPositionXY(param0->unk_1F0[param2].unk_0C, v0, v1);
 }
@@ -641,9 +637,7 @@ void sub_0208ADE4(UnkStruct_02089688 *param0, int param1)
 static inline void inline_0208AF44(UnkStruct_02089688 *param0, int param1, s16 param2, s16 param3)
 {
     s16 v0, v1;
-    UnkStruct_0208AF44 *v2;
-
-    v2 = &param0->unk_00[param1];
+    UnkStruct_0208AF44 *v2 = &param0->unk_00[param1];
 
     ManagedSprite_GetPositionXY(v2->unk_0C, &v0, &v1);
 

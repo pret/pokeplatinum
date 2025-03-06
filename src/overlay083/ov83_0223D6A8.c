@@ -115,9 +115,7 @@ static void ov83_0223F6CC(UnkStruct_ov83_0223F670 *param0, int param1, fx32 para
 
 static int ov83_0223D6A8(int param0, const Strbuf *param1, int param2)
 {
-    u32 v0;
-
-    v0 = Font_CalcStrbufWidth(param2, param1, 0);
+    u32 v0 = Font_CalcStrbufWidth(param2, param1, 0);
     v0 /= 2;
     param0 -= v0;
 
@@ -394,9 +392,7 @@ void ov83_0223DB4C(UnkStruct_ov83_0223DB30 *param0, UnkStruct_ov83_0223DB4C *par
 {
     int v0;
     int v1;
-    NARC *v2;
-
-    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, param4);
+    NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, param4);
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -1867,9 +1863,7 @@ void ov83_0223F7B0(UnkStruct_ov83_0223F7A4 *param0)
 
 u32 ov83_0223F7DC(UnkStruct_ov83_0223F7A4 *param0)
 {
-    u32 v0;
-
-    v0 = sub_020159FC(param0->unk_00);
+    u32 v0 = sub_020159FC(param0->unk_00);
 
     if (v0 != 0) {
         sub_02015A54(param0->unk_00);

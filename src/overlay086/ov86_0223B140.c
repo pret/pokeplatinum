@@ -770,9 +770,7 @@ static void ov86_0223BA44(UnkStruct_ov86_0223B3C8 *param0)
 {
     NNSG2dCellDataBank *v0;
     NNSG2dAnimBankData *v1;
-    NARC *v2;
-
-    v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 63);
+    NARC *v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 63);
 
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, 63);
@@ -955,9 +953,7 @@ static void ov86_0223BE6C(SysTask *param0, void *param1)
 
 static void ov86_0223BEA0(UnkStruct_ov86_0223B3C8 *param0, int param1)
 {
-    UnkStruct_ov86_0223BEA0 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BEA0));
+    UnkStruct_ov86_0223BEA0 *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BEA0));
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param1]));
 
     v0->unk_08 = param0->unk_1CC;
@@ -987,10 +983,8 @@ static void ov86_0223BF10(SysTask *param0, void *param1)
 static void ov86_0223BF44(SysTask *param0, void *param1)
 {
     UnkStruct_ov86_0223BF44 *v0 = param1;
-    int v1, v2;
-
-    v1 = (ov86_0223D284(&(v0->unk_08)) >> FX32_SHIFT);
-    v2 = v1 + 96;
+    int v1 = (ov86_0223D284(&(v0->unk_08)) >> FX32_SHIFT);
+    int v2 = v1 + 96;
 
     if (v1 < 0) {
         v1 = 0;
@@ -1019,10 +1013,8 @@ static void ov86_0223BF44(SysTask *param0, void *param1)
 static void ov86_0223BFAC(SysTask *param0, void *param1)
 {
     UnkStruct_ov86_0223BFAC *v0 = param1;
-    int v1, v2;
-
-    v1 = (ov86_0223D284(&(v0->unk_08)) >> FX32_SHIFT);
-    v2 = v1 + v0->unk_24;
+    int v1 = (ov86_0223D284(&(v0->unk_08)) >> FX32_SHIFT);
+    int v2 = v1 + v0->unk_24;
 
     if (v1 < 0) {
         v1 = 0;
@@ -1051,10 +1043,8 @@ static void ov86_0223BFAC(SysTask *param0, void *param1)
 static void ov86_0223C01C(SysTask *param0, void *param1)
 {
     UnkStruct_ov86_0223C01C *v0 = param1;
-    int v1, v2;
-
-    v1 = ov86_0223D284(&v0->unk_08) >> FX32_SHIFT;
-    v2 = ov86_0223D284(&v0->unk_1C) >> FX32_SHIFT;
+    int v1 = ov86_0223D284(&v0->unk_08) >> FX32_SHIFT;
+    int v2 = ov86_0223D284(&v0->unk_1C) >> FX32_SHIFT;
 
     if (v1 < 0) {
         v1 = 0;
@@ -1083,10 +1073,8 @@ static void ov86_0223C01C(SysTask *param0, void *param1)
 static void ov86_0223C090(SysTask *param0, void *param1)
 {
     UnkStruct_ov86_0223C090 *v0 = param1;
-    int v1, v2;
-
-    v1 = ov86_0223D284(&v0->unk_08) >> FX32_SHIFT;
-    v2 = ov86_0223D284(&v0->unk_1C) >> FX32_SHIFT;
+    int v1 = ov86_0223D284(&v0->unk_08) >> FX32_SHIFT;
+    int v2 = ov86_0223D284(&v0->unk_1C) >> FX32_SHIFT;
 
     if (v1 < 0) {
         v1 = 0;
@@ -1122,9 +1110,7 @@ static void ov86_0223C104(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
         { FX32_CONST(352), FX32_CONST(136) }
     };
     UnkStruct_ov86_0223BF44 *v1;
-    int v2;
-
-    v2 = param1 & 1;
+    int v2 = param1 & 1;
     v1 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BF44));
 
     ov86_0223BDC4(&v1->unk_00, v1, &(param0->unk_1C34[param2]));
@@ -1140,9 +1126,7 @@ static void ov86_0223C158(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
         136,
     };
     UnkStruct_ov86_0223BFAC *v1;
-    int v2;
-
-    v2 = param1 & 1;
+    int v2 = param1 & 1;
     v1 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BFAC));
 
     ov86_0223BDC4(&v1->unk_00, v1, &(param0->unk_1C34[param2]));
@@ -1157,9 +1141,7 @@ static void ov86_0223C158(UnkStruct_ov86_0223B3C8 *param0, int param1, int param
 
 static void ov86_0223C1B8(UnkStruct_ov86_0223B3C8 *param0, int param1)
 {
-    UnkStruct_ov86_0223BFAC *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BFAC));
+    UnkStruct_ov86_0223BFAC *v0 = Heap_AllocFromHeap(HEAP_ID_63, sizeof(UnkStruct_ov86_0223BFAC));
 
     ov86_0223BDC4(&v0->unk_00, v0, &(param0->unk_1C34[param1]));
     ov86_0223D264(&v0->unk_08, FX32_CONST(-144), FX32_CONST(24), 28);

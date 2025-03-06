@@ -199,9 +199,7 @@ static BOOL ov5_021F65D4(ScriptContext *ctx)
 static u16 *ov5_021F65FC(int heapID, int fileIndex, int *pokedexLength)
 {
     u32 pokedexSize;
-    u16 *pokedex;
-
-    pokedex = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
+    u16 *pokedex = LoadMemberFromNARC_OutFileSize(NARC_INDEX_APPLICATION__ZUKANLIST__ZKN_DATA__ZUKAN_DATA, fileIndex, 0, heapID, 0, &pokedexSize);
     *pokedexLength = pokedexSize / (sizeof(u16));
 
     return pokedex;
@@ -372,9 +370,7 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
 {
     u16 v0;
     u32 v1;
-    UnkStruct_ov5_021F6704 *v2;
-
-    v2 = (UnkStruct_ov5_021F6704 *)param1;
+    UnkStruct_ov5_021F6704 *v2 = (UnkStruct_ov5_021F6704 *)param1;
 
     if (v2->unk_204 != 0) {
         v2->unk_204--;

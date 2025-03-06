@@ -95,9 +95,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
 static int sub_0208924C(OverlayManager *param0, int *param1)
 {
     BOOL v0;
-    UnkStruct_02089688 *v1;
-
-    v1 = OverlayManager_Data(param0);
+    UnkStruct_02089688 *v1 = OverlayManager_Data(param0);
     v0 = sub_02089BEC(v1);
 
     if (v1->unk_38C.unk_30 != 0) {
@@ -109,9 +107,7 @@ static int sub_0208924C(OverlayManager *param0, int *param1)
 
 static int sub_0208927C(OverlayManager *param0, int *param1)
 {
-    UnkStruct_02089688 *v0;
-
-    v0 = OverlayManager_Data(param0);
+    UnkStruct_02089688 *v0 = OverlayManager_Data(param0);
 
     if (v0->unk_38C.unk_30 != 0) {
         sub_02039794();

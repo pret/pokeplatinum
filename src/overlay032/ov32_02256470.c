@@ -259,9 +259,7 @@ static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyS
 
 static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyStatus *param1)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);
+    NARC *v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_POKETCH_APP);
 
     if (v0) {
         UnkStruct_ov25_02255810 v1;

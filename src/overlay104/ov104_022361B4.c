@@ -455,9 +455,7 @@ u16 ov104_02236B58(UnkStruct_ov104_0223BA10 *param0, u8 param1)
 {
     UnkStruct_ov104_0223A348_sub1 v0;
     UnkStruct_0204B184 *v1;
-    u8 v2;
-
-    v2 = param0->unk_11 + (param1 * 7);
+    u8 v2 = param0->unk_11 + (param1 * 7);
     v1 = ov104_0222DD04(&v0, param0->unk_30[v2], 11, 178);
 
     Heap_FreeToHeap(v1);
@@ -655,9 +653,7 @@ int ov104_02236D10(UnkStruct_ov104_0223BA10 *param0)
 
 void ov104_02236ED8(SaveData *param0, u8 param1, int param2)
 {
-    u16 v0;
-
-    v0 = sub_02030698(sub_0203068C(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)));
+    u16 v0 = sub_02030698(sub_0203068C(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)));
 
     if (v0 + param2 > 9999) {
         sub_020306E4(sub_0203068C(param0), sub_0205E630(param1), sub_0205E6A8(sub_0205E630(param1)), 9999);

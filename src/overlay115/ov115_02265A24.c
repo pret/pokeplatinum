@@ -61,9 +61,7 @@ void ov115_02265A94(int param0, int param1, void *param2, void *param3)
 void ov115_02265AA4(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov115_0226095C *v0 = param3;
-    u32 v1;
-
-    v1 = *((u32 *)param2);
+    u32 v1 = *((u32 *)param2);
     ov115_022609E4(v0, v1, param0);
 }
 
@@ -76,9 +74,7 @@ void ov115_02265AB4(int param0, int param1, void *param2, void *param3)
 void ov115_02265AC0(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov115_0226095C *v0 = param3;
-    u32 v1;
-
-    v1 = *((u32 *)param2);
+    u32 v1 = *((u32 *)param2);
 
     if (param0 == 0) {
         ov115_022609D8(v0, v1);

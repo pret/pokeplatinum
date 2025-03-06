@@ -23,10 +23,8 @@ void sub_020556C4(UnkStruct_020556C4 *param0)
 
 void sub_020556E8(UnkStruct_020556C4 *param0, int param1, int param2)
 {
-    u8 v0, v1;
-
-    v0 = param1 / 32;
-    v1 = param2 / 32;
+    u8 v0 = param1 / 32;
+    u8 v1 = param2 / 32;
 
     if ((v0 != param0->unk_04) || (v1 != param0->unk_05)) {
         param0->unk_06[param0->unk_00].unk_00 = v0;
@@ -39,9 +37,7 @@ void sub_020556E8(UnkStruct_020556C4 *param0, int param1, int param2)
 
 void sub_02055740(UnkStruct_020556C4 *param0, int param1, int param2, int param3)
 {
-    u8 v0, v1;
-
-    v0 = param1;
+    u8 v0 = param1, v1;
     v1 = param2;
 
     if ((v0 != param0->unk_04) || (v1 != param0->unk_05)) {

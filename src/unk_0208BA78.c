@@ -400,17 +400,13 @@ static const OverlayManagerTemplate *Unk_02100CF0[] = {
 
 const OverlayManagerTemplate *sub_0208BE5C(int param0)
 {
-    const OverlayManagerTemplate *v0;
-
-    v0 = Unk_02100CF0[param0];
+    const OverlayManagerTemplate *v0 = Unk_02100CF0[param0];
     return v0;
 }
 
 BOOL sub_0208BE68(UnkStruct_0208C06C *param0)
 {
-    VarsFlags *v0;
-
-    v0 = SaveData_GetVarsFlags(param0->unk_830);
+    VarsFlags *v0 = SaveData_GetVarsFlags(param0->unk_830);
     return SystemFlag_HandleFirstArrivalToZone(v0, HANDLE_FLAG_CHECK, FIRST_ARRIVAL_BATTLE_PARK);
 }
 

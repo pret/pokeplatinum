@@ -922,9 +922,7 @@ static BOOL ov71_0223BDF8(UnkStruct_ov71_0223B620 *param0)
 static int ov71_0223BEF8(UnkStruct_ov71_0223B620 *param0)
 {
     int v0;
-    BOOL v1;
-
-    v1 = 0;
+    BOOL v1 = 0;
     v0 = 0;
 
     param0->unk_30D4 = 0xffffffff;
@@ -1175,9 +1173,7 @@ static BOOL ov71_0223C334(UnkStruct_ov71_0223B620 *param0, const u8 *param1)
 
 static void ov71_0223C390(UnkStruct_ov71_0223B620 *param0)
 {
-    u32 v0;
-
-    v0 = param0->unk_3360->szByte;
+    u32 v0 = param0->unk_3360->szByte;
 
     Bg_LoadTiles(param0->unk_00, 7, param0->unk_30BC->pRawData, param0->unk_30BC->szByte, 0);
 

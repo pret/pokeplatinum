@@ -2160,9 +2160,7 @@ int BoxPokemon_GiveExperience(BoxPokemon *boxMon, u32 givenExp)
 int ov5_021E6568(UnkStruct_02026218 *param0)
 {
     u8 v0, v1;
-    BoxPokemon *v2;
-
-    v2 = sub_02026220(param0);
+    BoxPokemon *v2 = sub_02026220(param0);
     v0 = BoxPokemon_GetLevel(v2);
     v1 = BoxPokemon_GiveExperience(v2, sub_02026228(param0));
 
@@ -2172,9 +2170,7 @@ int ov5_021E6568(UnkStruct_02026218 *param0)
 int ov5_021E6590(UnkStruct_02026218 *param0)
 {
     u8 v0;
-    BoxPokemon *v1;
-
-    v1 = sub_02026220(param0);
+    BoxPokemon *v1 = sub_02026220(param0);
     v0 = BoxPokemon_GiveExperience(v1, sub_02026228(param0));
 
     return v0;
@@ -2211,9 +2207,7 @@ int ov5_021E65EC(UnkStruct_02026218 *param0, StringTemplate *param1)
 
 int ov5_021E6630(UnkStruct_02026310 *param0, u8 param1, StringTemplate *param2)
 {
-    UnkStruct_02026218 *v0;
-
-    v0 = sub_02026218(param0, param1);
+    UnkStruct_02026218 *v0 = sub_02026218(param0, param1);
     return ov5_021E65EC(v0, param2);
 }
 
@@ -2717,9 +2711,7 @@ static int ov5_021E6F6C(Party *param0)
 {
     u8 v0;
     u8 v1;
-    int v2;
-
-    v2 = Party_GetCurrentCount(param0);
+    int v2 = Party_GetCurrentCount(param0);
 
     for (v0 = 0; v0 < v2; v0++) {
         if (Pokemon_GetValue(Party_GetPokemonBySlotIndex(param0, v0), MON_DATA_EGG_EXISTS, NULL) == 0) {
@@ -3017,10 +3009,8 @@ u8 ov5_021E73F0(u32 param0)
 
 extern u32 ov5_021E7420(UnkStruct_02026310 *param0)
 {
-    u8 v0, v1;
-
-    v0 = ov5_021E70FC(param0);
-    v1 = ov5_021E73F0(v0);
+    u8 v0 = ov5_021E70FC(param0);
+    u8 v1 = ov5_021E73F0(v0);
 
     return v1;
 }

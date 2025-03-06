@@ -145,10 +145,8 @@ static BOOL ScriptContext_IsFanfareFinished(ScriptContext *ctx)
 
 BOOL ScrCmd_PlayCry(ScriptContext *ctx)
 {
-    u16 species, unused;
-
-    species = ScriptContext_GetVar(ctx);
-    unused = ScriptContext_GetVar(ctx);
+    u16 species = ScriptContext_GetVar(ctx);
+    u16 unused = ScriptContext_GetVar(ctx);
 
     sub_02005844(species, 0);
 

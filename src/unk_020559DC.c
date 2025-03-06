@@ -50,9 +50,7 @@ void sub_020559DC(FieldSystem *fieldSystem)
 
 static void sub_02055A14(FieldSystem *fieldSystem, GameTime *param1, const RTCDate *param2)
 {
-    s32 v0;
-
-    v0 = RTC_ConvertDateToDay(param2);
+    s32 v0 = RTC_ConvertDateToDay(param2);
 
     if (v0 < param1->day) {
         param1->day = v0;

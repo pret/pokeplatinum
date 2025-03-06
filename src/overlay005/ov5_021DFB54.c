@@ -293,17 +293,13 @@ static void ov5_021DFCE4(PlayerAvatar *playerAvatar)
 
 static void ov5_021DFCF0(PlayerAvatar *playerAvatar)
 {
-    int v0;
-
-    v0 = Player_MoveStateFromGender(0x11, PlayerAvatar_Gender(playerAvatar));
+    int v0 = Player_MoveStateFromGender(0x11, PlayerAvatar_Gender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
 static void ov5_021DFD0C(PlayerAvatar *playerAvatar)
 {
-    int v0;
-
-    v0 = Player_MoveStateFromGender(0x13, PlayerAvatar_Gender(playerAvatar));
+    int v0 = Player_MoveStateFromGender(0x13, PlayerAvatar_Gender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
@@ -349,17 +345,13 @@ static void PlayerAvatar_RequestStateSave(PlayerAvatar *playerAvatar)
 
 static void ov5_021DFDA8(PlayerAvatar *playerAvatar)
 {
-    int v0;
-
-    v0 = Player_MoveStateFromGender(0x16, PlayerAvatar_Gender(playerAvatar));
+    int v0 = Player_MoveStateFromGender(0x16, PlayerAvatar_Gender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 
 static void ov5_021DFDC4(PlayerAvatar *playerAvatar)
 {
-    int v0;
-
-    v0 = Player_MoveStateFromGender(0x17, PlayerAvatar_Gender(playerAvatar));
+    int v0 = Player_MoveStateFromGender(0x17, PlayerAvatar_Gender(playerAvatar));
     PlayerAvatar_Redraw(playerAvatar, v0);
 }
 

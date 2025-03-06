@@ -105,9 +105,7 @@ void LoadFeebasLevelRange(u8 *maxLevel, u8 *minLevel)
 // I guess they didn't want to hardcode this...for some reason...
 void LoadFeebasFromNARC(int *species)
 {
-    int *narcData;
-
-    narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 0, HEAP_ID_FIELD);
+    int *narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 0, HEAP_ID_FIELD);
     (*species) = (*narcData);
 
     Heap_FreeToHeap(narcData);

@@ -228,9 +228,7 @@ int ov23_02251414(void)
 static BOOL ov23_02251418(int param0, UnkStruct_ov23_02250CD4 *param1)
 {
     UndergroundData *v0 = sub_020298B0(FieldSystem_GetSaveData(param1->fieldSystem));
-    int v1;
-
-    v1 = sub_02028B88(v0, param0);
+    int v1 = sub_02028B88(v0, param0);
 
     if (sub_0202895C(v0, v1)) {
         sub_02028B94(v0, param0);
@@ -952,9 +950,7 @@ void ov23_02252178(int param0, int param1, void *param2, void *param3)
 
 static void ov23_022521C8(UnkStruct_ov23_02250CD4 *param0)
 {
-    u16 v0;
-
-    v0 = param0->unk_2AE;
+    u16 v0 = param0->unk_2AE;
     ListMenu_CalcTrueCursorPos(param0->unk_48, &param0->unk_2AE);
 
     if (v0 != param0->unk_2AE) {

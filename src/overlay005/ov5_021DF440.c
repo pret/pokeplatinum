@@ -110,9 +110,7 @@ static void ov5_021DFADC(SysTask *param0, void *param1);
 
 UnkStruct_ov5_021DF47C *ov5_021DF440(FieldSystem *fieldSystem, u32 param1, u32 heapID)
 {
-    UnkStruct_ov5_021DF47C *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov5_021DF47C)));
+    UnkStruct_ov5_021DF47C *v0 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov5_021DF47C)));
     memset(v0, 0, (sizeof(UnkStruct_ov5_021DF47C)));
 
     v0->heapId = heapID;
@@ -406,9 +404,7 @@ static void ov5_021DF71C(UnkStruct_ov5_021DF47C *param0)
 UnkStruct_ov101_021D5D90 *ov5_021DF72C(const UnkStruct_ov5_021DF47C *param0, const UnkStruct_ov101_021D86B0 *param1, const VecFx32 *param2, int param3, const void *param4, int param5)
 {
     UnkStruct_ov101_021D5D90 *v0;
-    UnkStruct_020711EC *v1;
-
-    v1 = param0->unk_1C;
+    UnkStruct_020711EC *v1 = param0->unk_1C;
     v0 = sub_02071330(v1, param1, param2, param3, param4, param5);
 
     GF_ASSERT(v0 != NULL);
@@ -488,9 +484,7 @@ UnkStruct_020216E0 *ov5_021DF7F8(UnkStruct_ov5_021DF47C *param0, const UnkStruct
 
 UnkStruct_020216E0 *ov5_021DF84C(UnkStruct_ov5_021DF47C *param0, u32 param1, const VecFx32 *param2)
 {
-    UnkStruct_ov5_021DF84C *v0;
-
-    v0 = ov5_021DF9B4(param0->unk_20, param1);
+    UnkStruct_ov5_021DF84C *v0 = ov5_021DF9B4(param0->unk_20, param1);
     return ov5_021DF7F8(param0, v0, param2);
 }
 
@@ -500,9 +494,7 @@ UnkStruct_ov5_021DF84C *ov5_021DF864(UnkStruct_ov5_021DF47C *param0, u32 param1,
     UnkStruct_02024184 v3;
     TextureResource *v4;
     UnkStruct_ov5_021DF84C *v5;
-    UnkStruct_ov5_021DF8FC *v6;
-
-    v6 = param0->unk_20;
+    UnkStruct_ov5_021DF8FC *v6 = param0->unk_20;
     v0 = ov5_021F075C(v6->unk_10, param2);
     v2 = ov5_021F075C(v6->unk_14, param3);
 
@@ -568,9 +560,7 @@ static void ov5_021DF910(UnkStruct_ov5_021DF8FC *param0, u32 param1)
 
 static UnkStruct_ov5_021DF84C *ov5_021DF930(UnkStruct_ov5_021DF8FC *param0, u32 param1, void *param2, UnkStruct_02024184 *param3, void *param4, TextureResource *param5, const UnkStruct_020217F4 *param6)
 {
-    UnkStruct_ov5_021DF84C *v0;
-
-    v0 = NULL;
+    UnkStruct_ov5_021DF84C *v0 = NULL;
 
     {
         u32 v1 = param0->unk_04;

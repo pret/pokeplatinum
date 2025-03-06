@@ -524,9 +524,7 @@ __attribute__((aligned(4))) static const UnkStruct_ov17_02253388 Unk_ov17_022533
 
 static void *ov17_0223F7E4(void)
 {
-    UnkStruct_ov17_0223F7E4 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_0223F7E4));
+    UnkStruct_ov17_0223F7E4 *v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_0223F7E4));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0223F7E4));
     v0->unk_2C8 = -1;
 
@@ -744,10 +742,8 @@ BOOL ov17_0223FBC0(UnkStruct_ov17_0223F7E4 *param0)
 static void ov17_0223FBD4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2)
 {
     Strbuf *v0, *v1;
-    u32 v2, v3;
-
-    v2 = sub_02095848(param0->unk_04->unk_00->unk_110, param0->unk_04->unk_00->unk_111, param0->unk_00->unk_155);
-    v3 = sub_020958C4(param0->unk_04->unk_00->unk_10F, param0->unk_04->unk_00->unk_111);
+    u32 v2 = sub_02095848(param0->unk_04->unk_00->unk_110, param0->unk_04->unk_00->unk_111, param0->unk_00->unk_155);
+    u32 v3 = sub_020958C4(param0->unk_04->unk_00->unk_10F, param0->unk_04->unk_00->unk_111);
     v0 = MessageLoader_GetNewStrbuf(param0->unk_04->unk_38, v2);
     v1 = MessageLoader_GetNewStrbuf(param0->unk_04->unk_38, v3);
 
@@ -766,9 +762,7 @@ static void ov17_0223FCAC(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
     Strbuf *v3;
     Strbuf *v4, *v5;
     u32 v6, v7;
-    UnkStruct_ov17_0223FF38 *v8;
-
-    v8 = &param0->unk_18C;
+    UnkStruct_ov17_0223FF38 *v8 = &param0->unk_18C;
     param0->unk_2C9 = 0xff;
 
     for (v2 = 0; v2 < LEARNED_MOVES_MAX; v2++) {
@@ -842,9 +836,7 @@ static void ov17_0223FF38(UnkStruct_ov17_0223F7E4 *param0, int param1, int param
     int v0;
     BgConfig *v1;
     Strbuf *v2;
-    UnkStruct_ov17_0223FF38 *v3;
-
-    v3 = &param0->unk_18C;
+    UnkStruct_ov17_0223FF38 *v3 = &param0->unk_18C;
     v1 = param0->unk_04->unk_24;
 
     for (v0 = 0; v0 < (1 + 2); v0++) {
@@ -1506,10 +1498,8 @@ static void ov17_02240BF4(UnkStruct_ov17_0223F7E4 *param0, const Strbuf *param1,
 
 static void ov17_02240C60(const Strbuf *param0, int param1, int *param2, int *param3)
 {
-    int v0, v1;
-
-    v0 = Font_CalcStrbufWidth(param1, param0, 0);
-    v1 = v0 / 8;
+    int v0 = Font_CalcStrbufWidth(param1, param0, 0);
+    int v1 = v0 / 8;
 
     if (FX_ModS32(v0, 8) != 0) {
         v1++;
@@ -1629,9 +1619,7 @@ static int ov17_02240EA4(UnkStruct_ov17_0223F7E4 *param0, int param1)
     const UnkStruct_ov17_02253558 *v2;
     int v3, v4;
     u8 v5[2][3];
-    UnkStruct_ov17_02240E68 *v6;
-
-    v6 = &param0->unk_2F6;
+    UnkStruct_ov17_02240E68 *v6 = &param0->unk_2F6;
     v0 = &param0->unk_300;
     v2 = &Unk_ov17_02253558[param0->unk_2C8];
 

@@ -61,9 +61,7 @@ static const u16 Unk_ov104_022418B0[] = {
 
 UnkStruct_ov104_0223DA28 *ov104_0223D9E4(BgConfig *param0, PaletteData *param1)
 {
-    UnkStruct_ov104_0223DA28 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223DA28));
+    UnkStruct_ov104_0223DA28 *v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223DA28));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223DA28));
 
     v0->unk_00 = ov104_0223DA40(param0);
@@ -162,9 +160,7 @@ static void ov104_0223DB48(SysTask *param0, void *param1)
 
 static UnkStruct_ov104_0223DC04 *ov104_0223DBB8(PaletteData *param0)
 {
-    UnkStruct_ov104_0223DC04 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223DC04));
+    UnkStruct_ov104_0223DC04 *v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223DC04));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223DC04));
 
     v0->unk_04 = param0;

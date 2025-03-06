@@ -95,9 +95,7 @@ BOOL ov104_0223594C(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02235968(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->unk_00->unk_00);
     ov104_022367AC(v0);
 
     return 0;
@@ -268,9 +266,7 @@ static void ov104_02235B84(void *param0)
 
 BOOL ov104_02235B98(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->unk_00->unk_00);
     ov104_02236BF0(v0);
 
     return 0;
@@ -278,9 +274,7 @@ BOOL ov104_02235B98(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02235BAC(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->unk_00->unk_00);
     ov104_02236BF8(v0);
 
     return 0;
@@ -567,9 +561,7 @@ static BOOL ov104_02236058(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02236090(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->unk_00->unk_00);
     ov104_02236FC0(param0->unk_00, v0);
 
     return 0;
@@ -577,9 +569,7 @@ BOOL ov104_02236090(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_022360A8(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->unk_00->unk_00);
     ov104_022370E0(param0->unk_00, v0);
 
     return 0;
@@ -587,9 +577,7 @@ BOOL ov104_022360A8(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_022360C0(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_ov104_0223BA10 *v0;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
+    UnkStruct_ov104_0223BA10 *v0 = sub_0209B978(param0->unk_00->unk_00);
     ov104_02237180(param0->unk_00, v0);
 
     return 0;

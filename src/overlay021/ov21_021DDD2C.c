@@ -138,9 +138,7 @@ void ov21_021DDD8C(UnkStruct_ov21_021E68F4 *param0)
 
 static UnkStruct_ov21_021DDDA4 *ov21_021DDDA4(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021DDDA4 *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DDDA4));
+    UnkStruct_ov21_021DDDA4 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DDDA4));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DDDA4));
@@ -154,9 +152,7 @@ static UnkStruct_ov21_021DDDA4 *ov21_021DDDA4(enum HeapId heapID, PokedexApp *pa
 
 static UnkStruct_ov21_021DDDF0 *ov21_021DDDF0(enum HeapId heapID, PokedexApp *param1)
 {
-    UnkStruct_ov21_021DDDF0 *v0;
-
-    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DDDF0));
+    UnkStruct_ov21_021DDDF0 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov21_021DDDF0));
 
     GF_ASSERT(v0);
     memset(v0, 0, sizeof(UnkStruct_ov21_021DDDF0));
@@ -196,9 +192,7 @@ static int ov21_021DDE48(void)
 static int ov21_021DDE4C(UnkStruct_ov21_021E6A68 *param0, void *param1)
 {
     UnkStruct_ov21_021DDDA4 *v0 = param1;
-    UnkStruct_ov21_021DDE4C *v1;
-
-    v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021DDE4C));
+    UnkStruct_ov21_021DDE4C *v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov21_021DDE4C));
 
     GF_ASSERT(v1);
     memset(v1, 0, sizeof(UnkStruct_ov21_021DDE4C));

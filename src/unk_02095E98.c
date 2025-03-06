@@ -222,9 +222,7 @@ void sub_02095FE4(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095EAC *v0 = (UnkStruct_02095EAC *)param3;
     UnkStruct_02095FE4 v1;
-    UnkStruct_02095FE4 *v2;
-
-    v2 = param2;
+    UnkStruct_02095FE4 *v2 = param2;
 
     if (param0 != 0) {
         if (CommSys_CurNetId() == 0) {
@@ -275,9 +273,7 @@ void sub_020960D4(int param0, int param1, void *param2, void *param3)
 void sub_020960D8(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095EAC *v0 = (UnkStruct_02095EAC *)param3;
-    u8 v1;
-
-    v1 = *(u8 *)param2;
+    u8 v1 = *(u8 *)param2;
 
     ov58_021D2434(v0, 1, v1);
 

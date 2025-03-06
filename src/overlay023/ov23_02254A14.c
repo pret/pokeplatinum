@@ -1156,9 +1156,7 @@ static void ov23_02255C78(FieldSystem *fieldSystem, UnkStruct_ov23_02256098 *par
     int v0;
     int v1;
     int v2, v3;
-    UnkStruct_02029894 *v4;
-
-    v4 = sub_02029894(fieldSystem->saveData);
+    UnkStruct_02029894 *v4 = sub_02029894(fieldSystem->saveData);
 
     param1->unk_51F = 0;
     param1->unk_520 = 0;
@@ -1237,9 +1235,7 @@ static void ov23_02255DDC(FieldSystem *fieldSystem, const UnkStruct_ov23_02255BF
     int v0;
     int v1;
     int v2, v3;
-    UnkStruct_02029894 *v4;
-
-    v4 = sub_02029894(fieldSystem->saveData);
+    UnkStruct_02029894 *v4 = sub_02029894(fieldSystem->saveData);
 
     for (v0 = 0; v0 < 32; v0++) {
         if (param1[v0].unk_00 == 1) {
@@ -1285,9 +1281,7 @@ static void ov23_02255E8C(UnkStruct_ov23_02256098 *param0)
 {
     MapProp *v0;
     UnkStruct_ov23_02255A98 *v1;
-    int v2;
-
-    v2 = param0->unk_0C.unk_00;
+    int v2 = param0->unk_0C.unk_00;
     GF_ASSERT(param0->unk_5C[v2].unk_00);
 
     v1 = &(param0->unk_0C.unk_10);
@@ -1357,9 +1351,7 @@ static void ov23_02255F40(FieldSystem *fieldSystem, UnkStruct_ov23_02255A98 *par
     VecFx32 v1;
     int v2, v3;
     int v4, v5;
-    UnkStruct_ov5_021EB0E0 *v6;
-
-    v6 = fieldSystem->unk_8C;
+    UnkStruct_ov5_021EB0E0 *v6 = fieldSystem->unk_8C;
 
     ov23_02255F28(gSystem.touchX, gSystem.touchY, param2);
 
@@ -1399,9 +1391,7 @@ static void ov23_02256000(FieldSystem *fieldSystem, UnkStruct_ov23_02256000 *par
     UnkStruct_ov23_02255C30 v0;
     VecFx32 v1;
     int v2, v3;
-    UnkStruct_ov5_021EB0E0 *v4;
-
-    v4 = fieldSystem->unk_8C;
+    UnkStruct_ov5_021EB0E0 *v4 = fieldSystem->unk_8C;
 
     ov23_02255F28(gSystem.touchX, gSystem.touchY, param1);
 
@@ -1428,9 +1418,7 @@ static void ov23_02256000(FieldSystem *fieldSystem, UnkStruct_ov23_02256000 *par
 static BOOL ov23_02256098(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2)
 {
     VecFx32 v0;
-    BOOL v1;
-
-    v1 = 0;
+    BOOL v1 = 0;
     *param2 = 0;
 
     if (gSystem.touchPressed) {
@@ -1459,9 +1447,7 @@ static BOOL ov23_02256098(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSys
 static BOOL ov23_02256104(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2)
 {
     VecFx32 v0;
-    BOOL v1;
-
-    v1 = 0;
+    BOOL v1 = 0;
     *param2 = 0;
 
     if (gSystem.touchPressed) {
@@ -1490,9 +1476,7 @@ static BOOL ov23_02256104(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSys
 static BOOL ov23_02256174(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2)
 {
     VecFx32 v0;
-    BOOL v1;
-
-    v1 = 0;
+    BOOL v1 = 0;
     *param2 = 0;
 
     if (gSystem.touchPressed) {
@@ -1513,9 +1497,7 @@ static BOOL ov23_02256174(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSys
 static BOOL ov23_022561BC(UnkStruct_ov23_02256098 *param0, FieldSystem *fieldSystem, BOOL *param2)
 {
     VecFx32 v0;
-    BOOL v1;
-
-    v1 = 0;
+    BOOL v1 = 0;
     *param2 = 0;
 
     if (gSystem.touchPressed) {

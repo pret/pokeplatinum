@@ -118,9 +118,7 @@ static void ov90_021D1C90(UnkStruct_ov90_021D0ECC *param0, u8 param1, u8 param2,
 int ov90_021D0D80(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov90_021D0ECC *v0 = NULL;
-    UnkStruct_ov90_021D0D80 *v1;
-
-    v1 = (UnkStruct_ov90_021D0D80 *)OverlayManager_Args(param0);
+    UnkStruct_ov90_021D0D80 *v1 = (UnkStruct_ov90_021D0D80 *)OverlayManager_Args(param0);
 
     Heap_Create(3, 74, 0x10000);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov90_021D0ECC), 74);
@@ -516,9 +514,7 @@ static void ov90_021D11EC(UnkStruct_ov90_021D0ECC *param0)
 
 static void ov90_021D1280(UnkStruct_ov90_021D0ECC *param0)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     for (v0 = 0; v0 < 2 + param0->unk_08; v0++) {
         Bg_FreeTilemapBuffer(param0->unk_10, v1++);
@@ -530,9 +526,7 @@ static void ov90_021D1280(UnkStruct_ov90_021D0ECC *param0)
 static void ov90_021D12B0(UnkStruct_ov90_021D0ECC *param0)
 {
     int v0;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__BTOWER, param0->heapID);
+    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__BTOWER, param0->heapID);
 
     sub_0208C210(param0->unk_10, param0->heapID, v1, 123, 5, 1, 0, 0, 0);
     sub_0208C210(param0->unk_10, param0->heapID, v1, 123, 4, 1, 2, 0x20 * 0x2, 0);

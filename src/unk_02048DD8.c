@@ -271,9 +271,7 @@ static void sub_02049268(FieldSystem *fieldSystem, StringTemplate *param1)
 
 static void sub_02049288(FieldSystem *fieldSystem, StringTemplate *param1)
 {
-    int v0;
-
-    v0 = PoketchSystem_CurrentAppID(fieldSystem->unk_04->poketchSys);
+    int v0 = PoketchSystem_CurrentAppID(fieldSystem->unk_04->poketchSys);
     StringTemplate_SetPoketchAppName(param1, 0, v0);
 }
 

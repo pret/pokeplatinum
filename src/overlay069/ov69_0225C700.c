@@ -679,9 +679,7 @@ static const UnkStruct_ov69_0225F118 Unk_ov69_0225F118[5] = {
 int ov69_0225C700(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov69_0225CE64 *v0;
-    UnkStruct_ov66_02230F50 *v1;
-
-    v1 = OverlayManager_Args(param0);
+    UnkStruct_ov66_02230F50 *v1 = OverlayManager_Args(param0);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_105, 0x50000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov69_0225CE64), HEAP_ID_105);
@@ -1190,9 +1188,7 @@ static void ov69_0225D030(UnkStruct_ov69_0225CE64 *param0, const UnkStruct_ov66_
     int v0;
     int v1;
     int v2;
-    BOOL v3;
-
-    v3 = ov69_0225D268(param0, param0->unk_14, param0->unk_18);
+    BOOL v3 = ov69_0225D268(param0, param0->unk_14, param0->unk_18);
 
     if (v3 == 0) {
         v0 = ov69_0225EFEC(param1->unk_00);
@@ -1211,9 +1207,7 @@ static void ov69_0225D030(UnkStruct_ov69_0225CE64 *param0, const UnkStruct_ov66_
 
 static BOOL ov69_0225D088(const UnkStruct_ov69_0225CE64 *param0, UnkStruct_ov69_0225E0C0 *param1)
 {
-    u32 v0;
-
-    v0 = ov69_0225D0D8(param0);
+    u32 v0 = ov69_0225D0D8(param0);
 
     if (v0 >= ov69_0225DA70(&param0->unk_288)) {
         return 0;
@@ -1329,9 +1323,7 @@ static BOOL ov69_0225D268(UnkStruct_ov69_0225CE64 *param0, u8 param1, u8 param2)
 {
     VecFx32 v0;
     VecFx32 v1;
-    u32 v2;
-
-    v2 = ov69_0225D984(&param0->unk_288, param1, param2, &v0);
+    u32 v2 = ov69_0225D984(&param0->unk_288, param1, param2, &v0);
 
     if (v2 != 3) {
         ov69_0225D780(&param0->unk_1DC, &v1);
@@ -1680,9 +1672,7 @@ static u32 ov69_0225D984(const UnkStruct_ov69_0225CA7C *param0, u16 param1, u16 
 {
     u32 v0 = 3;
     int v1;
-    int v2;
-
-    v2 = ov69_0225DA70(param0);
+    int v2 = ov69_0225DA70(param0);
     v1 = ov69_0225D9C4(param0, param1, param2);
 
     if (v1 < v2) {
@@ -2268,9 +2258,7 @@ static BOOL ov69_0225E2D0(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D3
 
 static void ov69_0225E2DC(UnkStruct_ov69_0225E084 *param0)
 {
-    int v0;
-
-    v0 = param0->unk_3C / 2;
+    int v0 = param0->unk_3C / 2;
     param0->unk_3C = v0 * 1;
 }
 
@@ -2443,9 +2431,7 @@ static void ov69_0225E534(SysTask *param0, void *param1)
 static void ov69_0225E590(UnkStruct_ov69_0225E084 *param0, UnkStruct_ov69_0225D35C *param1, u32 param2)
 {
     int v0;
-    int v1;
-
-    v1 = ((10 + (18 + 12)) + (27 * 4));
+    int v1 = ((10 + (18 + 12)) + (27 * 4));
 
     for (v0 = 0; v0 < 3; v0++) {
         Window_Add(param1->unk_00, &param0->unk_168[v0], 5, 0, 0 + (6 * v0), 27, 6, 14, v1);
@@ -2511,17 +2497,13 @@ static u8 *ov69_0225E6E8(UnkStruct_ov69_0225E084 *param0, u32 param1, u32 param2
 
 static u8 *ov69_0225E70C(UnkStruct_ov69_0225E084 *param0, u32 param1)
 {
-    u8 *v0;
-
-    v0 = param0->unk_198.pixels;
+    u8 *v0 = param0->unk_198.pixels;
     return &v0[((27 * param1) * 32)];
 }
 
 static void ov69_0225E71C(UnkStruct_ov69_0225E084 *param0, u32 param1, u32 param2, const u8 *param3)
 {
-    u16 v0;
-
-    v0 = Window_GetBaseTile(&param0->unk_168[param1]);
+    u16 v0 = Window_GetBaseTile(&param0->unk_168[param1]);
     v0 += (27 * param2);
 
     VramTransfer_Request(NNS_GFD_DST_2D_BG1_CHAR_SUB, v0 * 32, (void *)param3, 27 * 32);

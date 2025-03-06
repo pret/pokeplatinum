@@ -415,9 +415,7 @@ void ov17_02241428(UnkStruct_ov17_02246F24 *param0)
 
 UnkStruct_ov17_0224145C *ov17_0224145C(UnkStruct_ov17_02246F24 *param0, int param1)
 {
-    UnkStruct_ov17_0224145C *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_0224145C));
+    UnkStruct_ov17_0224145C *v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_0224145C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224145C));
 
     v0->unk_00 = param0->unk_0C.unk_50;
@@ -597,11 +595,9 @@ static void ov17_02241814(SpriteManager *param0, ManagedSprite *param1, int para
 
 static void ov17_02241854(PaletteData *param0, SpriteSystem *param1, SpriteManager *param2, NARC *param3)
 {
-    u32 v0, v1, v2;
-
-    v0 = 39;
-    v1 = 40;
-    v2 = 41;
+    u32 v0 = 39;
+    u32 v1 = 40;
+    u32 v2 = 41;
 
     SpriteSystem_LoadCharResObjFromOpenNarc(param1, param2, param3, v0, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, 33004);
     SpriteSystem_LoadCellResObjFromOpenNarc(param1, param2, param3, v1, TRUE, 33004);
@@ -667,11 +663,9 @@ void ov17_0224197C(UnkStruct_ov17_0223F88C *param0)
 
 void ov17_022419AC(PaletteData *param0, SpriteSystem *param1, SpriteManager *param2, NARC *param3)
 {
-    u32 v0, v1, v2;
-
-    v0 = 14;
-    v1 = 13;
-    v2 = 12;
+    u32 v0 = 14;
+    u32 v1 = 13;
+    u32 v2 = 12;
 
     SpriteSystem_LoadCharResObjFromOpenNarc(param1, param2, param3, v0, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, 33013);
     SpriteSystem_LoadCellResObjFromOpenNarc(param1, param2, param3, v1, TRUE, 33011);
@@ -739,9 +733,7 @@ void ov17_02241B1C(UnkStruct_ov17_0223F88C *param0)
 
 void ov17_02241B3C(UnkStruct_ov17_02246F24 *param0, int param1, int param2, u8 *param3)
 {
-    UnkStruct_ov17_02241B3C *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02241B3C));
+    UnkStruct_ov17_02241B3C *v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02241B3C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02241B3C));
 
     *param3 = 0;
@@ -929,9 +921,7 @@ void ov17_02241EF0(UnkStruct_ov17_0223F88C *param0)
 
 static ManagedSprite *ov17_02241F08(SpriteSystem *param0, SpriteManager *param1, int param2, int param3)
 {
-    ManagedSprite *v0;
-
-    v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_02253888);
+    ManagedSprite *v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_02253888);
 
     Sprite_TickFrame(v0->sprite);
     ManagedSprite_SetPositionXY(v0, param2, param3);
@@ -973,9 +963,7 @@ void ov17_02241F34(UnkStruct_ov17_0223F88C *param0, int param1, int param2, int 
 
 static void ov17_02242048(ManagedSprite *param0)
 {
-    UnkStruct_ov17_02242048 *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02242048));
+    UnkStruct_ov17_02242048 *v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_02242048));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02242048));
     v0->unk_00 = param0;
 
@@ -1074,9 +1062,7 @@ void ov17_02242248(UnkStruct_ov17_0223F88C *param0)
 
 static ManagedSprite *ov17_02242260(SpriteSystem *param0, SpriteManager *param1, int param2, int param3)
 {
-    ManagedSprite *v0;
-
-    v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_022537EC);
+    ManagedSprite *v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_022537EC);
 
     Sprite_TickFrame(v0->sprite);
     ManagedSprite_SetPositionXY(v0, param2, param3);
@@ -1086,9 +1072,7 @@ static ManagedSprite *ov17_02242260(SpriteSystem *param0, SpriteManager *param1,
 
 static ManagedSprite *ov17_0224228C(SpriteSystem *param0, SpriteManager *param1, int param2, int param3)
 {
-    ManagedSprite *v0;
-
-    v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_0225371C);
+    ManagedSprite *v0 = SpriteSystem_NewSprite(param0, param1, &Unk_ov17_0225371C);
 
     Sprite_TickFrame(v0->sprite);
     ManagedSprite_SetPositionXY(v0, param2, param3);
@@ -1928,9 +1912,7 @@ static void ov17_022434E0(SysTask *param0, void *param1)
 
 UnkStruct_ov17_0224365C *ov17_0224365C(UnkStruct_ov17_02246F24 *param0, int param1)
 {
-    UnkStruct_ov17_0224365C *v0;
-
-    v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_0224365C));
+    UnkStruct_ov17_0224365C *v0 = Heap_AllocFromHeap(HEAP_ID_21, sizeof(UnkStruct_ov17_0224365C));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224365C));
 
     v0->unk_00 = param0;

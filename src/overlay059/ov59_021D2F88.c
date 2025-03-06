@@ -122,9 +122,7 @@ static void ov59_021D3090(const UnkStruct_ov59_021D2FBC *param0)
 
 static void *ov59_021D30B4(SaveData *param0, int param1, u32 param2)
 {
-    UnkStruct_ov96_0223B450_sub1 *v0;
-
-    v0 = Heap_AllocFromHeapAtEnd(param1, param2);
+    UnkStruct_ov96_0223B450_sub1 *v0 = Heap_AllocFromHeapAtEnd(param1, param2);
     MI_CpuClear8(v0, param2);
     sub_02073700(param0, 0, v0);
 

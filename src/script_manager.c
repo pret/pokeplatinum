@@ -794,9 +794,7 @@ static u16 sub_0203F610(const u8 *param0, u8 param1)
 static u16 sub_0203F638(FieldSystem *fieldSystem, const u8 *param1, u8 param2)
 {
     u16 v0, v1;
-    u32 v2;
-
-    v2 = 0;
+    u32 v2 = 0;
 
     while (TRUE) {
         if (*param1 == 0) {

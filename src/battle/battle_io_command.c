@@ -620,9 +620,7 @@ static void ov16_0225C47C(BattleSystem *battleSys, BattlerData *param1)
 {
     UnkStruct_ov16_022662FC *v0 = (UnkStruct_ov16_022662FC *)&param1->data[0];
     int v1;
-    Pokemon *v2;
-
-    v2 = BattleSystem_PartyPokemon(battleSys, param1->battler, v0->unk_01_0);
+    Pokemon *v2 = BattleSystem_PartyPokemon(battleSys, param1->battler, v0->unk_01_0);
 
     if ((v0->unk_18 & 0x200000) == 0) {
         for (v1 = 0; v1 < LEARNED_MOVES_MAX; v1++) {
@@ -684,9 +682,7 @@ static void ov16_0225C5E0(BattleSystem *battleSys, BattlerData *param1)
     UnkStruct_ov16_02266498 *v0 = (UnkStruct_ov16_02266498 *)&param1->data[0];
     Pokemon *v1;
     int v2, v3, v4;
-    u32 v5;
-
-    v5 = 0;
+    u32 v5 = 0;
     v3 = BattleSystem_PartyCount(battleSys, param1->battler);
 
     for (v2 = 0; v2 < v3; v2++) {
@@ -861,9 +857,7 @@ static void ov16_0225C8E0(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C91C(BattleSystem *battleSys, BattlerData *param1)
 {
-    SpriteManager *v0;
-
-    v0 = ov16_0223E018(battleSys);
+    SpriteManager *v0 = ov16_0223E018(battleSys);
 
     PartyGauge_FreeGraphics(v0);
     ClearCommand(battleSys, param1->battler, 53);

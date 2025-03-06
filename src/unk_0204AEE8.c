@@ -401,9 +401,7 @@ static u32 sub_0204B1E8(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348_sub
 BOOL sub_0204B3B8(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, u16 param2, int param3, u16 *param4, u16 *param5, UnkStruct_0204B404 *param6, int param7)
 {
     BOOL v0 = 0;
-    UnkStruct_0204B184 *v1;
-
-    v1 = sub_0204B184(param1, param2, param7);
+    UnkStruct_0204B184 *v1 = sub_0204B184(param1, param2, param7);
     v0 = sub_0204B470(param0, v1, param2, &param1->unk_30[0], param3, param4, param5, param6, param7);
 
     Heap_FreeToHeap(v1);
@@ -415,9 +413,7 @@ void sub_0204B404(UnkStruct_0204AFC4 *param0, UnkStruct_ov104_0223A348 *param1, 
 {
     int v0;
     u8 v1 = 0;
-    UnkStruct_0204B184 *v2;
-
-    v2 = sub_0204B184(param1, param2, param5);
+    UnkStruct_0204B184 *v2 = sub_0204B184(param1, param2, param5);
     v1 = sub_0204AE84(param2);
 
     for (v0 = 0; v0 < 2; v0++) {

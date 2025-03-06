@@ -431,9 +431,7 @@ static BOOL ov97_022308B0(UnkStruct_ov97_02230868 *param0, Window *param1, TextC
 
 static BOOL ov97_022308B4(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2)
 {
-    Strbuf *v0;
-
-    v0 = Strbuf_Init(36 + 1, param0->unk_00);
+    Strbuf *v0 = Strbuf_Init(36 + 1, param0->unk_00);
 
     Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->unk_104.unk_00, 36);
     Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
@@ -481,9 +479,7 @@ static BOOL ov97_0223097C(UnkStruct_ov97_02230868 *param0, Window *param1, u32 p
 
 static BOOL ov97_022309E4(UnkStruct_ov97_02230868 *param0, Window *param1, u32 param2)
 {
-    Strbuf *v0;
-
-    v0 = Strbuf_Init(250 + 1, HEAP_ID_87);
+    Strbuf *v0 = Strbuf_Init(250 + 1, HEAP_ID_87);
 
     Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->unk_154, 250);
     Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);

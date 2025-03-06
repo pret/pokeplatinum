@@ -443,9 +443,7 @@ static void ov79_021D260C(UnkStruct_ov79_021D2928 *param0)
 
 static void ov79_021D2634(UnkStruct_ov79_021D2928 *param0)
 {
-    NARC *v0;
-
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUDEMO, param0->heapId);
+    NARC *v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUDEMO, param0->heapId);
 
     sub_0208C210(param0->unk_68, param0->heapId, v0, 87, 2, 2, 0, 0, 0);
     sub_0208C210(param0->unk_68, param0->heapId, v0, 87, 3, 4, 0, 0, 0);
@@ -681,9 +679,7 @@ static int ov79_021D2AE0(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B
 
 static int ov79_021D2AF0(UnkStruct_ov79_021D2928 *param0, UnkStruct_ov79_021D29B4 *param1)
 {
-    u32 v0;
-
-    v0 = Pokemon_GetValue(param0->unk_30.unk_00, MON_DATA_FORM, NULL);
+    u32 v0 = Pokemon_GetValue(param0->unk_30.unk_00, MON_DATA_FORM, NULL);
 
     switch (param0->unk_30.unk_09) {
     case 1:
@@ -1113,9 +1109,7 @@ static void ov79_021D3610(SysTask *param0, void *param1)
     UnkStruct_ov79_021D2C50 *v2 = &v1->unk_68;
     VecFx32 v3;
     fx32 v4, v5;
-    int v6;
-
-    v6 = v2->unk_50 - 4;
+    int v6 = v2->unk_50 - 4;
     v6 = -(v6 * v6) + 16;
     v4 = FX32_CONST(-v6);
     v4 = FX_Mul(v4, FX32_CONST(1.4));

@@ -108,9 +108,7 @@ static BOOL ov71_0223D3D8(UnkStruct_ov71_0223D324 *param0, const int param1, con
 
 static BOOL ov71_0223D410(UnkStruct_ov71_0223D324 *param0, const int param1, const u8 param2)
 {
-    int v0;
-
-    v0 = (4 - 1);
+    int v0 = (4 - 1);
 
     ov71_0223D470(param0->unk_00[v0][0], param1, param2);
     ov71_0223D42C(param0, v0, param0->unk_00[v0][0], param1);

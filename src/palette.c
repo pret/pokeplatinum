@@ -503,11 +503,9 @@ void BlendPalette(const u16 *src, u16 *dest, u16 size, u8 fraction, u16 target)
 {
     u16 i;
     int srcR, srcG, srcB;
-    int targetR, targetG, targetB;
-
-    targetR = ((RgbColor *)&target)->r;
-    targetG = ((RgbColor *)&target)->g;
-    targetB = ((RgbColor *)&target)->b;
+    int targetR = ((RgbColor *)&target)->r;
+    int targetG = ((RgbColor *)&target)->g;
+    int targetB = ((RgbColor *)&target)->b;
 
     for (i = 0; i < size; i++) {
         srcR = ((RgbColor *)&src[i])->r;

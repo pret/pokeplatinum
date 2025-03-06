@@ -410,9 +410,7 @@ static void ov99_021D1C9C(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite *param1
 
 void ov99_021D1CC8(UnkStruct_ov99_021D2CB0 *param0, int param1)
 {
-    const UnkStruct_ov99_021D4A04 *v0;
-
-    v0 = &Unk_ov99_021D4A04[param1];
+    const UnkStruct_ov99_021D4A04 *v0 = &Unk_ov99_021D4A04[param1];
 
     v0->unk_00(param0);
     v0->unk_04(param0);
@@ -424,9 +422,7 @@ void ov99_021D1CC8(UnkStruct_ov99_021D2CB0 *param0, int param1)
 
 void ov99_021D1CFC(UnkStruct_ov99_021D2CB0 *param0, int param1)
 {
-    const UnkStruct_ov99_021D4A04 *v0;
-
-    v0 = &Unk_ov99_021D4A04[param1];
+    const UnkStruct_ov99_021D4A04 *v0 = &Unk_ov99_021D4A04[param1];
 
     v0->unk_18(param0);
     v0->unk_1C(param0);
@@ -438,9 +434,7 @@ void ov99_021D1CFC(UnkStruct_ov99_021D2CB0 *param0, int param1)
 
 BOOL ov99_021D1D30(UnkStruct_ov99_021D2CB0 *param0, int param1)
 {
-    BOOL v0;
-
-    v0 = Unk_ov99_021D4A04[param1].unk_30(param0, &param0->unk_FA4);
+    BOOL v0 = Unk_ov99_021D4A04[param1].unk_30(param0, &param0->unk_FA4);
 
     if (v0 == 1) {
         MI_CpuClear8(&param0->unk_FA4, sizeof(UnkStruct_ov99_021D3A40));

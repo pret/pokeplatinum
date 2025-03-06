@@ -378,9 +378,7 @@ static const WindowTemplate Unk_ov10_02222A68 = {
 
 void ov10_0221F800(UnkStruct_ov10_0221F800 *param0)
 {
-    UnkStruct_ov10_0221FB28 *v0;
-
-    v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov10_0221F870, sizeof(UnkStruct_ov10_0221FB28), 100, param0->heapId));
+    UnkStruct_ov10_0221FB28 *v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov10_0221F870, sizeof(UnkStruct_ov10_0221FB28), 100, param0->heapId));
     memset(v0, 0, sizeof(UnkStruct_ov10_0221FB28));
 
     v0->unk_00 = param0;
@@ -2003,9 +2001,7 @@ static void ov10_02221D14(UnkStruct_ov10_0221FB28 *param0, Party *param1, u8 par
 {
     Pokemon *v0;
     u16 v1;
-    u16 v2;
-
-    v2 = (u16)Party_GetCurrentCount(param1);
+    u16 v2 = (u16)Party_GetCurrentCount(param1);
 
     for (v1 = 0; v1 < 3; v1++) {
         if (v2 <= v1) {
@@ -2268,10 +2264,8 @@ static void ov10_02222528(UnkStruct_ov10_0221FB28 *param0, MessageLoader *param1
     Window *v0;
     Strbuf *v1;
     u32 v2;
-    int v3, v4;
-
-    v3 = 28 - 28;
-    v4 = 0 + 2;
+    int v3 = 28 - 28;
+    int v4 = 0 + 2;
     v0 = &param0->unk_10[param5 * 4 + 2];
 
     sub_0200C5BC(param2, param0->unk_214[param5].unk_06, 3, 1, v0, v3, v4);

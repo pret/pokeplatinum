@@ -1516,9 +1516,7 @@ static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, Window * param1, in
 
 static u8 ov107_022477CC (UnkStruct_ov107_02246170 * param0, int param1, u8 param2)
 {
-    u8 v0;
-
-    v0 = ov107_02247650(param0, &param0->unk_50[7], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, param2);
+    u8 v0 = ov107_02247650(param0, &param0->unk_50[7], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, param2);
     Window_ScheduleCopyToVRAM(&param0->unk_50[7]);
 
     return v0;
@@ -2252,9 +2250,7 @@ static void ov107_02248350 (UnkStruct_ov107_02246170 * param0, int * param1, int
 static void ov107_02248358 (UnkStruct_ov107_02246170 * param0, int param1)
 {
     u8 v0;
-    int v1;
-
-    v1 = 0;
+    int v1 = 0;
     v0 = ov107_02249C98(param0->unk_14, param0->unk_0D);
 
     if (gSystem.pressedKeys & PAD_KEY_LEFT) {
@@ -2548,9 +2544,7 @@ static u16 ov107_02248770 (u8 param0)
 static void ov107_0224877C (UnkStruct_ov107_02246170 * param0, s8 param1)
 {
     Pokemon * v0;
-    s8 v1;
-
-    v1 = param0->unk_0D;
+    s8 v1 = param0->unk_0D;
 
     while (TRUE) {
         v1 += param1;
@@ -2580,9 +2574,7 @@ static void ov107_0224877C (UnkStruct_ov107_02246170 * param0, s8 param1)
 static void ov107_022487DC (UnkStruct_ov107_02246170 * param0, s8 param1)
 {
     Pokemon * v0;
-    s8 v1;
-
-    v1 = param0->unk_0D;
+    s8 v1 = param0->unk_0D;
 
     while (TRUE) {
         v1 += param1;

@@ -142,9 +142,7 @@ static BOOL ov12_022257C0(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 static BOOL ov12_022257FC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     VecFx32 v0;
-    Camera *camera;
-
-    camera = sub_02014784(param1->unk_04);
+    Camera *camera = sub_02014784(param1->unk_04);
 
     ov12_022356E8(param1->unk_00, param1->unk_24, &v0);
     Camera_SetTarget(&v0, camera);
@@ -155,9 +153,7 @@ static BOOL ov12_022257FC(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 static BOOL ov12_02225824(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 {
     VecFx32 v0;
-    Camera *camera;
-
-    camera = sub_02014784(param1->unk_04);
+    Camera *camera = sub_02014784(param1->unk_04);
 
     ov12_022356E8(param1->unk_00, param1->unk_28, &v0);
     Camera_SetTarget(&v0, camera);
@@ -167,9 +163,7 @@ static BOOL ov12_02225824(SPLEmitter *param0, UnkStruct_ov12_02225640 *param1)
 
 void ov12_0222584C(int param0, SPLEmitter *param1, UnkStruct_ov12_02225640 *param2)
 {
-    BOOL v0;
-
-    v0 = Unk_ov12_02239E10[param0](param1, param2);
+    BOOL v0 = Unk_ov12_02239E10[param0](param1, param2);
 
     if (v0 == 0) {
         (void)0;

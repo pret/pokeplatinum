@@ -1048,9 +1048,7 @@ void ov59_021D1D40(UnkStruct_020961E8 *param0)
 
 static int ov59_021D1D70(UnkStruct_020961E8 *param0, int param1)
 {
-    int v0, v1;
-
-    v1 = 0;
+    int v0, v1 = 0;
 
     if ((CommSys_CurNetId() == 0) && (CommSys_ConnectedCount() != param0->unk_4ABA)) {
         (void)0;
@@ -1561,9 +1559,7 @@ static BOOL ov59_021D254C(UnkStruct_020961E8 *param0)
 
 static void ov59_021D2628(UnkStruct_020961E8 *param0, int param1, int param2)
 {
-    Strbuf *v0;
-
-    v0 = Strbuf_Init((90 * 2), HEAP_ID_51);
+    Strbuf *v0 = Strbuf_Init((90 * 2), HEAP_ID_51);
 
     MessageLoader_GetStrbuf(param0->unk_28, param1, v0);
     StringTemplate_Format(param0->unk_24, param0->unk_44, v0);
@@ -1715,9 +1711,7 @@ static void ov59_021D28D8(UnkStruct_020961E8 *param0, int param1)
 
 static int ov59_021D292C(UnkStruct_020961E8 *param0, int param1)
 {
-    int v0;
-
-    v0 = ov59_021D2528();
+    int v0 = ov59_021D2528();
 
     if (v0 > param0->unk_4AAC) {
         u8 v1 = 1;

@@ -451,9 +451,7 @@ static UnkStruct_02014014 *ov119_021D1434(int heapID, int param1, int param2)
 
 void ov119_021D145C(UnkStruct_02014014 *param0)
 {
-    void *v0;
-
-    v0 = sub_02014730(param0);
+    void *v0 = sub_02014730(param0);
     sub_0201411C(param0);
     Heap_FreeToHeap(v0);
 }
@@ -609,9 +607,7 @@ static const f32 Unk_ov119_021D260C[][10] = {
 
 BOOL ov119_021D16C0(UnkStruct_ov119_021D0FD0 *param0, int param1)
 {
-    UnkStruct_ov119_021D16C0 *v0;
-
-    v0 = &param0->unk_80;
+    UnkStruct_ov119_021D16C0 *v0 = &param0->unk_80;
 
     switch (v0->unk_00) {
     case 0:

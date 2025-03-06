@@ -529,9 +529,7 @@ static void Shop_DestroyStaticWindows(ShopMenu *shopMenu)
 
 static void Shop_LoadGraphics(ShopMenu *shopMenu)
 {
-    NARC *narc;
-
-    narc = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, HEAP_ID_FIELDMAP);
+    NARC *narc = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, HEAP_ID_FIELDMAP);
 
     Graphics_LoadTilesToBgLayerFromOpenNARC(narc, tiles_NCGR, shopMenu->bgConfig, BG_LAYER_MAIN_1, 0, 0, FALSE, HEAP_ID_FIELDMAP);
 

@@ -1857,9 +1857,7 @@ static u8 ov107_02243890 (UnkStruct_ov107_02241D6C * param0, Window * param1, in
 
 static u8 ov107_02243918 (UnkStruct_ov107_02241D6C * param0, int param1, u8 param2)
 {
-    u8 v0;
-
-    v0 = ov107_0224379C(param0, &param0->unk_50[6], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, param2);
+    u8 v0 = ov107_0224379C(param0, &param0->unk_50[6], param1, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, param2);
     Window_ScheduleCopyToVRAM(&param0->unk_50[6]);
 
     return v0;
@@ -2191,9 +2189,7 @@ static void ov107_02243CFC (UnkStruct_ov107_02241D6C * param0, Window * param1, 
 static void ov107_02243DB0 (UnkStruct_ov107_02241D6C * param0, Window * param1)
 {
     int v0;
-    u8 v1;
-
-    v1 = ov104_0223B7A8(param0->unk_09, 1);
+    u8 v1 = ov104_0223B7A8(param0->unk_09, 1);
 
     for (v0 = 0; v0 < v1; v0++) {
         ov107_02243DE4(param0, param1, v0, 0);
@@ -2240,9 +2236,7 @@ static void ov107_02243DE4 (UnkStruct_ov107_02241D6C * param0, Window * param1, 
 
 static void ov107_02243E74 (UnkStruct_ov107_02241D6C * param0, Window * param1)
 {
-    u16 v0;
-
-    v0 = sub_02030698(param0->unk_04, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
+    u16 v0 = sub_02030698(param0->unk_04, sub_0205E630(param0->unk_09), sub_0205E6A8(sub_0205E630(param0->unk_09)));
 
     ov107_02249D84(param0->unk_4C, param1);
     Window_FillTilemap(param1, 15);
@@ -2924,9 +2918,7 @@ static void ov107_02244BD0 (UnkStruct_ov107_02241D6C * param0, int * param1, int
 static void ov107_02244BD8 (UnkStruct_ov107_02241D6C * param0, int param1)
 {
     u8 v0;
-    int v1;
-
-    v1 = 0;
+    int v1 = 0;
     v0 = ov107_02249C98(param0->unk_14, param0->unk_0D);
 
     if (gSystem.pressedKeys & PAD_KEY_LEFT) {
@@ -3284,9 +3276,7 @@ static u32 ov107_02245114 (UnkStruct_ov107_02241D6C * param0, u8 param1)
 static void ov107_02245140 (UnkStruct_ov107_02241D6C * param0, s8 param1)
 {
     Pokemon * v0;
-    s8 v1;
-
-    v1 = param0->unk_0D;
+    s8 v1 = param0->unk_0D;
     v1 += param1;
 
     if (v1 < 0) {
@@ -3307,9 +3297,7 @@ static void ov107_02245140 (UnkStruct_ov107_02241D6C * param0, s8 param1)
 static void ov107_0224518C (UnkStruct_ov107_02241D6C * param0, s8 param1)
 {
     Pokemon * v0;
-    s8 v1;
-
-    v1 = param0->unk_0D;
+    s8 v1 = param0->unk_0D;
     v1 += param1;
 
     if (v1 < 0) {
@@ -3343,9 +3331,7 @@ static void ov107_022451D8 (UnkStruct_ov107_02241D6C * param0)
 
 static BOOL ov107_02245210 (Pokemon * param0)
 {
-    u8 v0;
-
-    v0 = 0;
+    u8 v0 = 0;
 
     if (Pokemon_GetValue(param0, MON_DATA_MOVE1_CUR_PP, NULL) != Pokemon_GetValue(param0, MON_DATA_MOVE1_MAX_PP, NULL)) {
         v0 = 1;

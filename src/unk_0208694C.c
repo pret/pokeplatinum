@@ -1191,9 +1191,7 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
 
 UnkStruct_0208737C *sub_0208712C(int heapID, int param1, int param2, int param3, Options *param4)
 {
-    UnkStruct_0208737C *v0;
-
-    v0 = (UnkStruct_0208737C *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0208737C));
+    UnkStruct_0208737C *v0 = (UnkStruct_0208737C *)Heap_AllocFromHeap(heapID, sizeof(UnkStruct_0208737C));
 
     v0->unk_00 = param1;
     v0->unk_04 = param2;
@@ -2065,9 +2063,7 @@ static void sub_02088554(Window *param0, const u16 *param1, int param2, int para
 {
     int v0 = 0, v1, v2;
     u16 v3[2];
-    Strbuf *v4;
-
-    v4 = Strbuf_Init(2, HEAP_ID_18);
+    Strbuf *v4 = Strbuf_Init(2, HEAP_ID_18);
 
     while (param1[v0] != 0xffff) {
         if ((param1[v0] == 0xd001) || (param1[v0] == (0xd001 + 1)) || (param1[v0] == (0xd001 + 2))) {

@@ -618,9 +618,7 @@ static void ov98_022476D0(BgConfig *param0)
 static void ov98_02247704(UnkStruct_ov98_02247704 *param0)
 {
     BgConfig *v0 = param0->unk_04;
-    NARC *v1;
-
-    v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 109);
+    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 109);
 
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, 109);
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 109);
@@ -1710,9 +1708,7 @@ static int ov98_02248BFC(UnkStruct_ov98_02247704 *param0)
     DWCUserData *v0;
     s32 v1;
     SystemData *v2;
-    UnkStruct_0202B370 *v3;
-
-    v3 = sub_0202B370(param0->unk_00->unk_04);
+    UnkStruct_0202B370 *v3 = sub_0202B370(param0->unk_00->unk_04);
     v2 = SaveData_GetSystemData(param0->unk_00->unk_04);
     v0 = sub_0202AD28(v3);
     v1 = sub_02025D74(v2);
@@ -2157,9 +2153,7 @@ static int ov98_02249320(UnkStruct_ov98_02247704 *param0)
 
 static int ov98_02249414(UnkStruct_ov98_02247704 *param0)
 {
-    int v0;
-
-    v0 = ov4_021D1F3C(-param0->unk_18, param0->unk_1C);
+    int v0 = ov4_021D1F3C(-param0->unk_18, param0->unk_1C);
 
     ov98_02249964(param0, v0, -param0->unk_18);
 
@@ -2354,9 +2348,7 @@ static int ov98_022496EC(UnkStruct_ov98_02247704 *param0)
 
 static void ov98_02249714(UnkStruct_ov98_02247704 *param0, MessageLoader *param1, int param2, int param3, u16 param4)
 {
-    Strbuf *v0;
-
-    v0 = MessageLoader_GetNewStrbuf(param1, param2);
+    Strbuf *v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
     StringTemplate_Format(param0->unk_20, param0->unk_38, v0);
     Strbuf_Free(v0);

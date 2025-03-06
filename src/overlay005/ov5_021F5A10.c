@@ -76,9 +76,7 @@ const UnkStruct_020217F4 Unk_ov5_02200BC0[];
 
 void *ov5_021F5A10(UnkStruct_ov5_021DF47C *param0)
 {
-    UnkStruct_ov5_021F5A34 *v0;
-
-    v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F5A34)), 0, 0);
+    UnkStruct_ov5_021F5A34 *v0 = ov5_021DF53C(param0, (sizeof(UnkStruct_ov5_021F5A34)), 0, 0);
     v0->unk_08 = param0;
 
     return v0;
@@ -246,9 +244,7 @@ static UnkStruct_020216E0 *ov5_021F5C18(UnkStruct_ov5_021DF47C *param0, int para
 
 int ov5_021F5C4C(UnkStruct_ov101_021D5D90 *param0)
 {
-    UnkStruct_ov5_021F5C4C *v0;
-
-    v0 = sub_02071598(param0);
+    UnkStruct_ov5_021F5C4C *v0 = sub_02071598(param0);
     return v0->unk_14;
 }
 
@@ -324,9 +320,7 @@ static void ov5_021F5CD4(UnkStruct_ov101_021D5D90 *param0, void *param1)
 
 static void ov5_021F5D38(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
-    UnkStruct_ov5_021F5C4C *v0;
-
-    v0 = param1;
+    UnkStruct_ov5_021F5C4C *v0 = param1;
 
     sub_020211FC(v0->unk_40);
 
@@ -337,9 +331,7 @@ static void ov5_021F5D38(UnkStruct_ov101_021D5D90 *param0, void *param1)
 static void ov5_021F5D54(UnkStruct_ov101_021D5D90 *param0, void *param1)
 {
     VecFx32 v0;
-    UnkStruct_ov5_021F5C4C *v1;
-
-    v1 = param1;
+    UnkStruct_ov5_021F5C4C *v1 = param1;
 
     if (v1->unk_10 == 1) {
         return;

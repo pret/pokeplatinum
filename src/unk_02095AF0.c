@@ -188,9 +188,7 @@ BOOL sub_02095C60(UnkStruct_02095C60 *param0, u32 param1)
 static void sub_02095C98(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_02095C48 *v0 = param3;
-    UnkStruct_02095B28 *v1;
-
-    v1 = param2;
+    UnkStruct_02095B28 *v1 = param2;
     v0->unk_1984.unk_10[param0] = v1->unk_04;
 }
 

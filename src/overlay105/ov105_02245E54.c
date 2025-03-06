@@ -36,9 +36,7 @@ void ov105_02245FAC(UnkStruct_ov105_02245EA8 *param0, u32 param1);
 
 UnkStruct_ov105_02245EA8 *ov105_02245E54(UnkStruct_ov105_02245AAC *param0, int param1, int param2, u32 param3)
 {
-    UnkStruct_ov105_02245EA8 *v0;
-
-    v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov105_02245EA8));
+    UnkStruct_ov105_02245EA8 *v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov105_02245EA8));
     memset(v0, 0, sizeof(UnkStruct_ov105_02245EA8));
 
     v0->unk_00 = 0;
@@ -120,9 +118,7 @@ void ov105_02245F50(UnkStruct_ov105_02245EA8 *param0)
 void ov105_02245F5C(UnkStruct_ov105_02245EA8 *param0)
 {
     VecFx32 v0;
-    const VecFx32 *v1;
-
-    v1 = ov105_02245F2C(param0);
+    const VecFx32 *v1 = ov105_02245F2C(param0);
 
     v0.x = ((v1->x / FX32_ONE) + 248) * FX32_ONE;
     v0.y = v1->y;

@@ -58,9 +58,7 @@ BOOL ov63_0222CA88(const UnkStruct_ov63_0222BCE8 *param0, const UnkStruct_ov63_0
 
 static BOOL ov63_0222CAE4(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
 {
-    s32 v0;
-
-    v0 = ov63_0222BF90(param0, 5);
+    s32 v0 = ov63_0222BF90(param0, 5);
 
     if ((v0 == 0) || (v0 == 4)) {
         ov63_0222CCB8(param4, param0, param3->unk_00, param3->unk_03, param3->unk_02);
@@ -136,9 +134,7 @@ static BOOL ov63_0222CBC0(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
 
 static BOOL ov63_0222CBD0(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
 {
-    s32 v0;
-
-    v0 = ov63_0222BF90(param0, 5);
+    s32 v0 = ov63_0222BF90(param0, 5);
 
     if (v0 == 0) {
         ov63_0222CCB8(param4, param0, param3->unk_00, param3->unk_03, param3->unk_02);
@@ -161,9 +157,7 @@ static BOOL ov63_0222CC04(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
 
 static BOOL ov63_0222CC14(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BCE8 *param1, const UnkStruct_ov63_0222BE18 *param2, const UnkStruct_ov63_0222D894 *param3, UnkStruct_ov63_0222CCB8 *param4)
 {
-    s32 v0;
-
-    v0 = ov63_0222BF90(param0, 5);
+    s32 v0 = ov63_0222BF90(param0, 5);
 
     if (v0 == 0) {
         ov63_0222CCB8(param4, param0, param3->unk_00, param3->unk_03, param3->unk_02);
@@ -185,9 +179,7 @@ static BOOL ov63_0222CC3C(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct
 
 static BOOL ov63_0222CCA4(const UnkStruct_ov63_0222BEC0 *param0, const UnkStruct_ov63_0222BE18 *param1, int param2)
 {
-    const UnkStruct_ov63_0222BEC0 *v0;
-
-    v0 = ov63_0222C1C4(param0, param1, param2);
+    const UnkStruct_ov63_0222BEC0 *v0 = ov63_0222C1C4(param0, param1, param2);
 
     if (v0 == NULL) {
         return 0;
