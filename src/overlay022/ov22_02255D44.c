@@ -1430,7 +1430,7 @@ static void ov22_022574EC(UnkStruct_ov22_02255D44 *param0)
 static void ov22_022574F4(UnkStruct_ov22_02255D44 *param0, u32 param1)
 {
     ov22_022572A0(param0, param1, 2, 19, 27, 4);
-    param0->unk_744 = StringTemplate_Default(13);
+    param0->unk_744 = StringTemplate_Default(HEAP_ID_13);
 }
 
 static u32 ov22_0225751C(UnkStruct_ov22_02255D44 *param0, u32 param1)

@@ -698,7 +698,7 @@ static void ov65_0222E01C(UnkStruct_ov65_0222EBE0 *param0)
     v0 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_54);
 
     param0->unk_15C = BgConfig_New(HEAP_ID_54);
-    param0->unk_164 = StringTemplate_Default(54);
+    param0->unk_164 = StringTemplate_Default(HEAP_ID_54);
     param0->unk_168 = MessageLoader_Init(0, 26, 674, HEAP_ID_54);
     param0->unk_16C = MessageLoader_Init(0, 26, 695, HEAP_ID_54);
 

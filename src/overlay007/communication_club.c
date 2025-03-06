@@ -228,9 +228,9 @@ static void CommClubMan_Init(FieldSystem *fieldSystem)
     Window_Init(&sCommClubMan->unk_30);
     Window_Init(&sCommClubMan->msgWindow);
 
-    sCommClubMan->unk_50 = StringTemplate_Default(4);
-    sCommClubMan->unk_54 = StringTemplate_Default(4);
-    sCommClubMan->strTempMsg = StringTemplate_Default(4);
+    sCommClubMan->unk_50 = StringTemplate_Default(HEAP_ID_FIELD);
+    sCommClubMan->unk_54 = StringTemplate_Default(HEAP_ID_FIELD);
+    sCommClubMan->strTempMsg = StringTemplate_Default(HEAP_ID_FIELD);
     sCommClubMan->unk_98 = 0;
 
     for (v0 = 0; v0 < (7 + 1); v0++) {

@@ -40,7 +40,7 @@ int ov100_021D46C8(UnkStruct_ov100_021D46C8 *param0, UnkStruct_020985E4 *param1,
 
     if (param2 == 22) {
         Strbuf *v5 = TrainerInfo_NameNewStrbuf(param1->unk_08, 111);
-        StringTemplate *v6 = StringTemplate_Default(111);
+        StringTemplate *v6 = StringTemplate_Default(HEAP_ID_111);
 
         StringTemplate_SetStrbuf(v6, 0, v5, 0, 1, GAME_LANGUAGE);
         StringTemplate_Format(v6, v3, v2);

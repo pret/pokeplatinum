@@ -222,7 +222,7 @@ BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf 
     Strbuf *v1;
 
     if (param0 && param1) {
-        v0 = StringTemplate_Default(4);
+        v0 = StringTemplate_Default(HEAP_ID_FIELD);
         v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
 
         StringTemplate_SetPlayerName(v0, 0, param0);
@@ -244,7 +244,7 @@ BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3)
     Strbuf *v1;
 
     if (param0) {
-        v0 = StringTemplate_Default(4);
+        v0 = StringTemplate_Default(HEAP_ID_FIELD);
         v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
 
         StringTemplate_SetPlayerName(v0, param1, param0);
@@ -1052,7 +1052,7 @@ void UndergroundMan_SetReturnLog(int param0)
         if (sCommManUnderground->unk_DC[param0] == NULL) {
             sCommManUnderground->unk_DC[param0] = Strbuf_Init((50 * 2), HEAP_ID_COMMUNICATION);
 
-            v0 = StringTemplate_Default(11);
+            v0 = StringTemplate_Default(HEAP_ID_FIELDMAP);
             v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELDMAP);
 
             StringTemplate_SetPlayerName(v0, 0, CommInfo_TrainerInfo(param0));

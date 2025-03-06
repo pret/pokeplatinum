@@ -7537,7 +7537,7 @@ static BOOL ScrCmd_2AA(ScriptContext *ctx)
     u16 v3 = ScriptContext_GetVar(ctx);
     u16 v4 = ScriptContext_GetVar(ctx);
     u16 v5 = ScriptContext_GetVar(ctx);
-    StringTemplate *v6 = StringTemplate_Default(32);
+    StringTemplate *v6 = StringTemplate_Default(HEAP_ID_FIELD_TASK);
     MessageLoader *v7 = MessageLoader_Init(0, 26, 372, HEAP_ID_FIELD_TASK);
     Strbuf *v8;
     Strbuf *v9;

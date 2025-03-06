@@ -955,7 +955,7 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
 
     v0->unk_69C = MessageLoader_Init(0, 26, 453, HEAP_ID_12);
     v0->unk_698 = sub_0200C440(15, 14, 0, HEAP_ID_12);
-    v0->unk_6A0 = StringTemplate_Default(12);
+    v0->unk_6A0 = StringTemplate_Default(HEAP_ID_12);
 
     for (v1 = 0; v1 < 6; v1++) {
         v0->unk_704[v1].unk_00 = Strbuf_Init(10 + 1, HEAP_ID_12);

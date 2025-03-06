@@ -832,7 +832,7 @@ static void ov84_0223BDB4(UnkStruct_ov84_0223B5A0 *param0)
 {
     param0->unk_114 = MessageLoader_Init(0, 26, 7, HEAP_ID_6);
     param0->unk_110 = sub_0200C440(1, 2, 0, HEAP_ID_6);
-    param0->unk_118 = StringTemplate_Default(6);
+    param0->unk_118 = StringTemplate_Default(HEAP_ID_6);
     param0->unk_11C = MessageLoader_Init(0, 26, 392, HEAP_ID_6);
     param0->unk_120 = MessageLoader_Init(0, 26, 647, HEAP_ID_6);
     param0->unk_3F8 = Strbuf_Init(256, HEAP_ID_6);

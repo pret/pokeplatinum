@@ -624,7 +624,7 @@ static void ov91_021D11A0(UnkStruct_ov91_021D0ED8 *param0)
 static void ov91_021D11B8(UnkStruct_ov91_021D0ED8 *param0)
 {
     param0->unk_F8 = MessageLoader_Init(0, 26, 645, HEAP_ID_67);
-    param0->unk_FC = StringTemplate_Default(67);
+    param0->unk_FC = StringTemplate_Default(HEAP_ID_67);
     param0->unk_100 = Strbuf_Init(256, HEAP_ID_67);
 }
 

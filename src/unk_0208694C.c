@@ -890,7 +890,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         v0->unk_160 = BgConfig_New(HEAP_ID_18);
         v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, HEAP_ID_18);
 
-        v0->unk_168 = StringTemplate_Default(18);
+        v0->unk_168 = StringTemplate_Default(HEAP_ID_18);
         v0->unk_16C = MessageLoader_Init(0, 26, 422, HEAP_ID_18);
         v0->unk_170 = MessageLoader_Init(1, 26, 427, HEAP_ID_18);
         v0->unk_174 = MessageLoader_Init(1, 26, 368, HEAP_ID_18);

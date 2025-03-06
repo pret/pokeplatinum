@@ -535,7 +535,7 @@ static void sub_0203ADFC(FieldTask *taskMan)
             Strbuf *v7;
             Strbuf *v8;
 
-            v6 = StringTemplate_Default(11);
+            v6 = StringTemplate_Default(HEAP_ID_FIELDMAP);
             v7 = Strbuf_Init(8, HEAP_ID_FIELDMAP);
             v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[menu->unk_30[v4]][0]);
 
@@ -677,7 +677,7 @@ static void sub_0203B094(FieldTask *taskMan)
     Text_AddPrinterWithParams(&menu->unk_10, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v5);
 
-    v3 = StringTemplate_Default(11);
+    v3 = StringTemplate_Default(HEAP_ID_FIELDMAP);
     v4 = Strbuf_Init(32, HEAP_ID_FIELDMAP);
     v5 = MessageLoader_GetNewStrbuf(v2, 11);
 

@@ -343,7 +343,7 @@ static void ov23_02253A78(Window *param0, MessageLoader *param1, TrainerInfo *pa
     const int v11 = 146;
     const int v12 = 100;
 
-    v0 = StringTemplate_Default(4);
+    v0 = StringTemplate_Default(HEAP_ID_FIELD);
     v1 = Strbuf_Init(40, HEAP_ID_FIELD);
     v2 = Strbuf_Init(40, HEAP_ID_FIELD);
 

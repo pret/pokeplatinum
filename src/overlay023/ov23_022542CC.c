@@ -426,7 +426,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             v15 = Strbuf_Init(6, HEAP_ID_FIELD);
 
             Text_AddPrinterWithParams(&param0->unk_18, FONT_SYSTEM, v13, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
-            v16 = StringTemplate_Default(4);
+            v16 = StringTemplate_Default(HEAP_ID_FIELD);
 
             StringTemplate_SetNumber(v16, 0, param0->unk_40, 2, 1, 1);
             StringTemplate_SetNumber(v16, 1, param0->unk_41, 2, 1, 1);

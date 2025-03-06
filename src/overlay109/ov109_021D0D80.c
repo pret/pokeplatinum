@@ -2008,7 +2008,7 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
     v1->unk_04 = MessageLoader_Init(0, 26, 376, HEAP_ID_95);
-    v1->unk_08 = StringTemplate_Default(95);
+    v1->unk_08 = StringTemplate_Default(HEAP_ID_95);
 
     for (v0 = 0; v0 < 1; v0++) {
         Window_AddFromTemplate(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);

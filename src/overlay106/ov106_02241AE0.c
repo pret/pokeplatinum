@@ -803,7 +803,7 @@ static void ov106_02242500(UnkStruct_ov106_02243118 *param0)
     ov106_02242688(param0);
 
     param0->unk_20 = MessageLoader_Init(1, 26, 549, HEAP_ID_98);
-    param0->unk_24 = StringTemplate_Default(98);
+    param0->unk_24 = StringTemplate_Default(HEAP_ID_98);
     param0->unk_28 = Strbuf_Init(600, HEAP_ID_98);
     param0->unk_2C = Strbuf_Init(600, HEAP_ID_98);
 

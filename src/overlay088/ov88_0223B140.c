@@ -292,8 +292,8 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
 
     v0->unk_174 = BgConfig_New(HEAP_ID_26);
     v0->unk_178 = StringTemplate_New(12, (10 + 1) * 2, 26);
-    v0->unk_17C = StringTemplate_Default(26);
-    v0->unk_180 = StringTemplate_Default(26);
+    v0->unk_17C = StringTemplate_Default(HEAP_ID_26);
+    v0->unk_180 = StringTemplate_Default(HEAP_ID_26);
     v0->unk_184 = MessageLoader_Init(0, 26, 354, HEAP_ID_26);
     v0->unk_40 = NULL;
 
@@ -2037,7 +2037,7 @@ static int ov88_0223D96C(UnkStruct_02095E80 *param0)
         return 0;
     }
 
-    param0->unk_36CC = StringTemplate_Default(26);
+    param0->unk_36CC = StringTemplate_Default(HEAP_ID_26);
     param0->unk_36D0 = MessageLoader_Init(0, 26, 675, HEAP_ID_26);
     param0->unk_36EC = sub_0202B370(param0->unk_04);
     param0->unk_226C = ov88_0223D854;

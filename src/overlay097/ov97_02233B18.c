@@ -446,7 +446,7 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
         if (param1->unk_40) {
             v1 = param1->unk_40;
         } else {
-            v1 = StringTemplate_Default(78);
+            v1 = StringTemplate_Default(HEAP_ID_78);
         }
 
         Strbuf_Clear(param0->unk_12668);
@@ -1618,7 +1618,7 @@ static void ov97_02235344(UnkStruct_ov97_02234A2C *param0)
 
     ov97_0223936C(GetGBAPlayerName(), v3, GBA_PLAYER_NAME_LEN + 1, ov97_02235DBC());
 
-    v1 = StringTemplate_Default(78);
+    v1 = StringTemplate_Default(HEAP_ID_78);
     v2 = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_78);
 
     Strbuf_CopyChars(v2, v3);

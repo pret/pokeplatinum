@@ -562,7 +562,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
     TextColor v7;
 
     v5 = MessageLoader_Init(1, 26, 550, HEAP_ID_81);
-    v4 = StringTemplate_Default(81);
+    v4 = StringTemplate_Default(HEAP_ID_81);
 
     if (TrainerInfo_Gender(v6->unk_0C) == 1) {
         v7 = TEXT_COLOR(3, 4, 15);

@@ -320,7 +320,7 @@ static void ov97_022305EC(Window *param0, int param1)
 {
     Strbuf *v0;
     MessageLoader *v1 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
-    StringTemplate *v2 = StringTemplate_Default(87);
+    StringTemplate *v2 = StringTemplate_Default(HEAP_ID_87);
 
     Window_FillTilemap(param0, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
@@ -640,7 +640,7 @@ static int ov97_02230E04(UnkStruct_ov97_02230868 *param0, Window *param1, int pa
 
     if (v2->unk_20) {
         param0->unk_2A64 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
-        param0->unk_2A60 = StringTemplate_Default(87);
+        param0->unk_2A60 = StringTemplate_Default(HEAP_ID_87);
     }
 
     param0->unk_2BF8 = param3;
@@ -1357,7 +1357,7 @@ static int ov97_02231CA0(UnkStruct_ov97_02230868 *param0, Window *param1)
     v10[2] = ov97_02231C48(v9);
     v10[3] = ov97_02231C48(v9);
 
-    v7 = StringTemplate_Default(87);
+    v7 = StringTemplate_Default(HEAP_ID_87);
     v8 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
     v2 = 0;
 
@@ -1404,7 +1404,7 @@ static void ov97_02231E78(UnkStruct_ov97_02230868 *param0, Window *param1, int p
 
     param0->unk_2C54 = param2;
     param0->unk_2A64 = MessageLoader_Init(1, 26, 421, HEAP_ID_87);
-    param0->unk_2A60 = StringTemplate_Default(87);
+    param0->unk_2A60 = StringTemplate_Default(HEAP_ID_87);
 
     Window_FillTilemap(param1, 0);
     StringTemplate_SetNumber(param0->unk_2A60, 0, param0->unk_2C54, 1, 1, 1);

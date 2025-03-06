@@ -840,7 +840,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
     UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
 
     v1->unk_10 = MessageLoader_Init(1, 26, 421, HEAP_ID_86);
-    v1->unk_0C = StringTemplate_Default(86);
+    v1->unk_0C = StringTemplate_Default(HEAP_ID_86);
 
     Window_FillTilemap(param1, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
@@ -989,7 +989,7 @@ void ov97_0222E13C(UnkStruct_ov97_0222D04C *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
     Bg_ClearTilemap(param0->unk_00, 0);
 
-    v0 = StringTemplate_Default(86);
+    v0 = StringTemplate_Default(HEAP_ID_86);
     StringTemplate_SetNumber(v0, 0, param0->unk_26D0, 5, 2, 1);
 
     ov97_02237808(&v1, &param0->unk_26E0, 1, 695, (1 + (18 + 12)), 3);
@@ -1031,7 +1031,7 @@ static int ov97_0222E228(OverlayManager *param0, Window *param1, int param2, int
 
     if (param1 && param2) {
         v1 = MessageLoader_Init(1, 26, 421, HEAP_ID_86);
-        v0 = StringTemplate_Default(86);
+        v0 = StringTemplate_Default(HEAP_ID_86);
         v2->unk_14 = MessageUtil_ExpandedStrbuf(v0, v1, param2, 86);
         v2->unk_68 = 1;
 

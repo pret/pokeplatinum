@@ -279,7 +279,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     Strbuf *v7;
     MessageLoader *v8 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
     GF_ASSERT(v8);
-    v5 = StringTemplate_Default(13);
+    v5 = StringTemplate_Default(HEAP_ID_13);
 
     Sprite_SetAnim(param0->unk_1FC, 5);
     v0.x = 48 << FX32_SHIFT;
@@ -331,7 +331,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     Sprite_SetAnim(param0->unk_1FC, param0->unk_08);
 
     v0 = sub_0202A5D0(param0->unk_04);
-    v1 = StringTemplate_Default(13);
+    v1 = StringTemplate_Default(HEAP_ID_13);
     v2 = Strbuf_Init(200, HEAP_ID_13);
 
     StringTemplate_SetContestTypeName(v1, 0, sub_020958B8(param0->unk_08));

@@ -615,7 +615,7 @@ static void ov16_0223B790(OverlayManager *param0)
 
     battleSys->unk_0C = MessageLoader_Init(1, 26, 368, HEAP_ID_BATTLE);
     battleSys->unk_10 = MessageLoader_Init(1, 26, 0, HEAP_ID_BATTLE);
-    battleSys->strFormatter = StringTemplate_Default(5);
+    battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
     battleSys->msgBuffer = Strbuf_Init((2 * 160), HEAP_ID_BATTLE);
 
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->unk_28, 0), &battleSys->unk_2224[0], 0x20 * 7);
