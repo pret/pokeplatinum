@@ -108,10 +108,10 @@ typedef struct {
 } UnkStruct_ov97_02234A2C_sub1;
 
 typedef struct {
-    Sprite *unk_00;
+    Sprite *selectionSprite;
     int boxPosition;
     int boxId;
-} UnkStruct_ov97_02234A2C_sub2;
+} SelectedMonData;
 
 typedef struct {
     int unk_00;
@@ -147,7 +147,7 @@ typedef struct {
     Sprite *unk_3FC[4];
     Sprite *unk_40C[4];
     Sprite *unk_41C[4];
-    UnkStruct_ov97_02234A2C_sub2 unk_42C[6];
+    SelectedMonData selectedMonData[CATCHING_SHOW_MONS];
     int selectedCount;
     Sprite *unk_478[6];
     UnkStruct_ov97_02233DAC unk_490;
@@ -172,7 +172,7 @@ static void ov97_02234A2C(GBAMigrator *migrator, int param1);
 static void ov97_022349E0(GBAMigrator *migrator);
 static void ov97_02234ECC(GBAMigrator *migrator);
 static void ov97_02235310(GBAMigrator *migrator);
-static void ov97_02233D10(GBAMigrator *migrator);
+static void CopySelectedMonToPalParkTransfer(GBAMigrator *migrator);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
 void Strbuf_CopyChars(Strbuf *param0, const u16 *param1);
 void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon);
@@ -277,7 +277,7 @@ static int ov97_02233B8C(GBAMigrator *migrator)
 
     switch (v4->unk_00) {
     case 0:
-        ov97_02233D10(migrator);
+        CopySelectedMonToPalParkTransfer(migrator);
         transferData = SaveData_PalParkTransfer(migrator->saveData);
         sub_0202EFB8(transferData, GetGBAPlayerTrainerId());
         v4->unk_00++;
@@ -379,7 +379,7 @@ static void ov97_02233CE4(GBAMigrator *migrator)
     ResetUnlock(4);
 }
 
-static void ov97_02233D10(GBAMigrator *migrator)
+static void CopySelectedMonToPalParkTransfer(GBAMigrator *migrator)
 {
     int i, boxNum, boxPos;
     u16 species;
@@ -389,8 +389,8 @@ static void ov97_02233D10(GBAMigrator *migrator)
     BoxPokemon *boxMon = Pokemon_GetBoxPokemon(&mon);
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        boxPos = migrator->unk_42C[i].boxPosition;
-        boxNum = migrator->unk_42C[i].boxId;
+        boxPos = migrator->selectedMonData[i].boxPosition;
+        boxNum = migrator->selectedMonData[i].boxId;
         boxMonGBA = &migrator->pokemonStorage->boxes[boxNum][boxPos];
 
         BoxMonGBAToBoxMon(boxMonGBA, boxMon);
@@ -400,8 +400,8 @@ static void ov97_02233D10(GBAMigrator *migrator)
     species = SPECIES_NONE;
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        boxPos = migrator->unk_42C[i].boxPosition;
-        boxNum = migrator->unk_42C[i].boxId;
+        boxPos = migrator->selectedMonData[i].boxPosition;
+        boxNum = migrator->selectedMonData[i].boxId;
 
         if ((boxPos != -1) && (boxNum != GBA_MAX_PC_BOXES)) {
             SetGBABoxMonData(&(migrator->pokemonStorage->boxes[boxNum][boxPos]), GBA_MON_DATA_SPECIES, (u8 *)&species);
@@ -648,7 +648,7 @@ static u8 GetSpeciesGBAForm(int speciesNDS, u32 personality, int gbaVersion)
     return form;
 }
 
-static void ov97_02234278(int species, int param1, u32 personality, int gbaVersion, int param4, Sprite *param5)
+static void ov97_02234278(int species, int isEgg, u32 personality, int gbaVersion, int param4, Sprite *param5)
 {
     u8 *v0;
     u8 form;
@@ -657,12 +657,12 @@ static void ov97_02234278(int species, int param1, u32 personality, int gbaVersi
     species = ConvertGBASpeciesToDS(species);
 
     form = GetSpeciesGBAForm(species, personality, gbaVersion);
-    v0 = ov97_022341B4(19, PokeIconSpriteIndex(species, param1, form), &v2, HEAP_ID_MIGRATE_FROM_GBA);
+    v0 = ov97_022341B4(19, PokeIconSpriteIndex(species, isEgg, form), &v2, HEAP_ID_MIGRATE_FROM_GBA);
 
     DC_FlushRange(v2->pRawData, ((4 * 4) * 0x20));
     GX_LoadOBJ(v2->pRawData, (0x64 + param4 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
 
-    Sprite_SetExplicitPalette(param5, PokeIconPaletteIndex(species, form, param1) + 8);
+    Sprite_SetExplicitPalette(param5, PokeIconPaletteIndex(species, form, isEgg) + 8);
     Heap_FreeToHeap(v0);
 }
 
@@ -831,9 +831,9 @@ static void ov97_0223468C(GBAMigrator *migrator)
     migrator->unk_374[(30 + 3)].rect.top = 0xff;
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        migrator->unk_42C[i].unk_00 = ov97_02234638(migrator, 36 * i, 64, 9, 0);
-        migrator->unk_42C[i].boxPosition = -1;
-        migrator->unk_42C[i].boxId = 14;
+        migrator->selectedMonData[i].selectionSprite = ov97_02234638(migrator, 36 * i, 64, 9, 0);
+        migrator->selectedMonData[i].boxPosition = -1;
+        migrator->selectedMonData[i].boxId = GBA_MAX_PC_BOXES;
     }
 
     migrator->selectedCount = 0;
@@ -1048,8 +1048,8 @@ static int ov97_02234854(GBAMigrator *migrator, int boxPosition)
         return GBA_MON_STATE_3;
     }
 
-    for (v1 = -1, i = 0; v1 == -1 && i < 6; i++) {
-        if ((migrator->unk_42C[i].boxId == migrator->unk_E8E4) && (migrator->unk_42C[i].boxPosition == boxPosition)) {
+    for (v1 = -1, i = 0; v1 == -1 && i < CATCHING_SHOW_MONS; i++) {
+        if ((migrator->selectedMonData[i].boxId == migrator->unk_E8E4) && (migrator->selectedMonData[i].boxPosition == boxPosition)) {
             v1 = i;
         }
     }
@@ -1079,29 +1079,29 @@ static int ov97_02234854(GBAMigrator *migrator, int boxPosition)
         }
 
         for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-            if (migrator->unk_42C[i].boxPosition == -1) {
+            if (migrator->selectedMonData[i].boxPosition == -1) {
                 v2 = Sprite_GetPosition(migrator->unk_20C[boxPosition].unk_00);
-                Sprite_SetPosition(migrator->unk_42C[i].unk_00, v2);
-                v2 = Sprite_GetPosition(migrator->unk_42C[i].unk_00);
+                Sprite_SetPosition(migrator->selectedMonData[i].selectionSprite, v2);
+                v2 = Sprite_GetPosition(migrator->selectedMonData[i].selectionSprite);
 
                 v3 = *v2;
                 v3.x -= FX32_ONE * 8;
                 v3.y -= FX32_ONE * 4;
 
-                Sprite_SetPosition(migrator->unk_42C[i].unk_00, &v3);
-                Sprite_SetDrawFlag(migrator->unk_42C[i].unk_00, TRUE);
+                Sprite_SetPosition(migrator->selectedMonData[i].selectionSprite, &v3);
+                Sprite_SetDrawFlag(migrator->selectedMonData[i].selectionSprite, TRUE);
 
-                migrator->unk_42C[i].boxPosition = boxPosition;
-                migrator->unk_42C[i].boxId = migrator->unk_E8E4;
+                migrator->selectedMonData[i].boxPosition = boxPosition;
+                migrator->selectedMonData[i].boxId = migrator->unk_E8E4;
                 migrator->selectedCount++;
 
                 return GBA_MON_STATE_1;
             }
         }
     } else {
-        Sprite_SetDrawFlag(migrator->unk_42C[v1].unk_00, FALSE);
+        Sprite_SetDrawFlag(migrator->selectedMonData[v1].selectionSprite, FALSE);
 
-        migrator->unk_42C[v1].boxPosition = -1;
+        migrator->selectedMonData[v1].boxPosition = -1;
         migrator->selectedCount--;
 
         return GBA_MON_STATE_2;
@@ -1114,11 +1114,11 @@ static void ov97_022349E0(GBAMigrator *migrator)
 {
     int i;
 
-    for (i = 0; i < 6; i++) {
-        if ((migrator->unk_42C[i].boxPosition != -1) && (migrator->unk_42C[i].boxId == migrator->unk_E8E4)) {
-            Sprite_SetDrawFlag(migrator->unk_42C[i].unk_00, TRUE);
+    for (i = 0; i < CATCHING_SHOW_MONS; i++) {
+        if ((migrator->selectedMonData[i].boxPosition != -1) && (migrator->selectedMonData[i].boxId == migrator->unk_E8E4)) {
+            Sprite_SetDrawFlag(migrator->selectedMonData[i].selectionSprite, TRUE);
         } else {
-            Sprite_SetDrawFlag(migrator->unk_42C[i].unk_00, FALSE);
+            Sprite_SetDrawFlag(migrator->selectedMonData[i].selectionSprite, FALSE);
         }
     }
 }
@@ -1462,8 +1462,8 @@ static void ov97_02234F88(GBAMigrator *migrator)
         Sprite_SetDrawFlag(migrator->unk_20C[i].unk_04, FALSE);
     }
 
-    for (i = 0; i < 6; i++) {
-        Sprite_SetDrawFlag(migrator->unk_42C[i].unk_00, FALSE);
+    for (i = 0; i < CATCHING_SHOW_MONS; i++) {
+        Sprite_SetDrawFlag(migrator->selectedMonData[i].selectionSprite, FALSE);
     }
 
     Sprite_SetDrawFlag(migrator->unk_3FC[0], FALSE);
@@ -1472,7 +1472,7 @@ static void ov97_02234F88(GBAMigrator *migrator)
 
     ov97_022340FC(&v5, migrator, &migrator->unk_1E8, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         v5.position.x = FX32_ONE * (i * 40 + 28);
         v5.position.y = FX32_ONE * 142;
 
@@ -1483,9 +1483,9 @@ static void ov97_02234F88(GBAMigrator *migrator)
         Sprite_SetExplicitPriority(migrator->unk_478[i], 1);
         Sprite_SetDrawFlag(migrator->unk_478[i], TRUE);
 
-        species = GetGBABoxMonSpeciesInBox(migrator, migrator->unk_42C[i].boxId, migrator->unk_42C[i].boxPosition);
-        isEgg = IsGBABoxMonEggInBox(migrator, migrator->unk_42C[i].boxId, migrator->unk_42C[i].boxPosition);
-        personality = GetGBABoxMonPersonalityInBox(migrator, migrator->unk_42C[i].boxId, migrator->unk_42C[i].boxPosition);
+        species = GetGBABoxMonSpeciesInBox(migrator, migrator->selectedMonData[i].boxId, migrator->selectedMonData[i].boxPosition);
+        isEgg = IsGBABoxMonEggInBox(migrator, migrator->selectedMonData[i].boxId, migrator->selectedMonData[i].boxPosition);
+        personality = GetGBABoxMonPersonalityInBox(migrator, migrator->selectedMonData[i].boxId, migrator->selectedMonData[i].boxPosition);
         gbaVersion = gSystem.gbaCartridgeVersion;
 
         ov97_02234278(species, isEgg, personality, gbaVersion, i, migrator->unk_478[i]);
@@ -1529,8 +1529,8 @@ static void ov97_02235178(GBAMigrator *migrator)
     Sprite_SetDrawFlag(migrator->unk_40C[0], TRUE);
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
-        migrator->unk_42C[i].boxPosition = -1;
-        migrator->unk_42C[i].boxId = 14;
+        migrator->selectedMonData[i].boxPosition = -1;
+        migrator->selectedMonData[i].boxId = GBA_MAX_PC_BOXES;
     }
 
     migrator->selectedCount = 0;
@@ -1552,9 +1552,9 @@ static void ov97_022351F0(GBAMigrator *migrator)
         }
     }
 
-    for (i = 0; i < 6; i++) {
-        if (migrator->unk_42C[i].unk_00) {
-            Sprite_Delete(migrator->unk_42C[i].unk_00);
+    for (i = 0; i < CATCHING_SHOW_MONS; i++) {
+        if (migrator->selectedMonData[i].selectionSprite) {
+            Sprite_Delete(migrator->selectedMonData[i].selectionSprite);
         }
     }
 
