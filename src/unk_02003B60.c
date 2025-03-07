@@ -14,13 +14,13 @@
 
 
 
-static void sub_0200413C(SoundSystem *param0);
-static void sub_02004160(SoundSystem *param0);
-static void sub_0200417C(SoundSystem *param0);
-static void sub_020041A0(void);
-static BOOL sub_02003D28(void);
-static void sub_02003C64(void);
-static void sub_020041B4(void);
+static void SoundSystem_InitHeapStates(SoundSystem *soundSys);
+static void SoundSystem_InitSoundHandles(SoundSystem *soundSys);
+static void SoundSystem_LoadPersistentGroup(SoundSystem *soundSys);
+static void SoundSystem_InitMic();
+static BOOL sub_02003D28();
+static void sub_02003C64();
+static void sub_020041B4();
 
 static SoundSystem sSoundSystem;
 static int Unk_02101DF0;
@@ -32,26 +32,24 @@ void SoundSystem_Init(ChatotCry *chatotCry, Options *options)
 
     NNS_SndInit();
 
-    sub_020041A0();
-    sub_0200413C(soundSys);
+    SoundSystem_InitMic();
+    SoundSystem_InitHeapStates(soundSys);
 
     soundSys->heap = NNS_SndHeapCreate(&soundSys->heapBuffer, sizeof(soundSys->heapBuffer));
 
     NNS_SndArcInit(&soundSys->arc, "data/sound/pl_sound_data.sdat", soundSys->heap, 0);
-    (void)NNS_SndArcPlayerSetup(soundSys->heap);
+    NNS_SndArcPlayerSetup(soundSys->heap);
 
-    sub_02004160(soundSys);
-    sub_0200417C(soundSys);
+    SoundSystem_InitSoundHandles(soundSys);
+    SoundSystem_LoadPersistentGroup(soundSys);
 
     Unk_02101DF4 = NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL;
     soundSys->chatotCry = chatotCry;
 
     Sound_SetPlaybackMode(options->soundMode);
-
-    return;
 }
 
-void UpdateSound(void)
+void UpdateSound()
 {
     SoundSystem *v1 = SoundSystem_Get();
 
@@ -79,7 +77,7 @@ void UpdateSound(void)
     return;
 }
 
-static void sub_02003C64(void)
+static void sub_02003C64()
 {
     int v0;
     SoundSystem *v1 = SoundSystem_Get();
@@ -134,7 +132,7 @@ void sub_02003D0C(int param0)
     return;
 }
 
-static BOOL sub_02003D28(void)
+static BOOL sub_02003D28()
 {
     SoundSystem *v0 = SoundSystem_Get();
 
@@ -206,19 +204,19 @@ void *sub_02003D5C(int param0)
     case 22:
         return &v0->unk_BCD67;
     case 23:
-        return &v0->unk_BCD68[0];
+        return &v0->heapStates[0];
     case 24:
-        return &v0->unk_BCD68[1];
+        return &v0->heapStates[1];
     case 25:
-        return &v0->unk_BCD68[2];
+        return &v0->heapStates[2];
     case 26:
-        return &v0->unk_BCD68[3];
+        return &v0->heapStates[3];
     case 27:
-        return &v0->unk_BCD68[4];
+        return &v0->heapStates[4];
     case 28:
-        return &v0->unk_BCD68[5];
+        return &v0->heapStates[5];
     case 29:
-        return &v0->unk_BCD68[6];
+        return &v0->heapStates[6];
     case 30:
         return &v0->unk_BCD84;
     case 31:
@@ -275,35 +273,28 @@ void *sub_02003D5C(int param0)
     return NULL;
 }
 
-int SoundSystem_SaveHeapState(int *heapState)
+enum SoundHeapState SoundSystem_SaveHeapState(enum SoundHeapState *state)
 {
-    SoundSystem *soundSys = SoundSystem_Get();
-
-    int newState = NNS_SndHeapSaveState(soundSys->heap);
-    if (newState == -1) {
+    enum SoundHeapState newState = NNS_SndHeapSaveState(SoundSystem_Get()->heap);
+    if (newState == SOUND_HEAP_STATE_INVALID) {
         GF_ASSERT(FALSE);
     }
 
-    if (heapState != NULL) {
-        *heapState = newState;
+    if (state != NULL) {
+        *state = newState;
     }
 
     return newState;
 }
 
-void SoundSystem_LoadHeapState(int heapState)
+void SoundSystem_LoadHeapState(enum SoundHeapState state)
 {
-    SoundSystem *soundSys = SoundSystem_Get();
-    NNS_SndHeapLoadState(soundSys->heap, heapState);
+    NNS_SndHeapLoadState(SoundSystem_Get()->heap, state);
 }
 
-BOOL sub_02004050(u16 param0)
+BOOL SoundSystem_LoadSoundGroup(u16 group)
 {
-    int v0;
-    SoundSystem *v1 = SoundSystem_Get();
-
-    v0 = NNS_SndArcLoadGroup(param0, v1->heap);
-    return v0;
+    return NNS_SndArcLoadGroup(group, SoundSystem_Get()->heap);
 }
 
 BOOL sub_02004068(u16 param0)
@@ -351,7 +342,7 @@ NNSSndHandle *sub_020040CC(int param0)
         param0 = 0;
     }
 
-    return &v0->unk_BBCFC[param0];
+    return &v0->soundHandles[param0];
 }
 
 int sub_020040F0(int param0)
@@ -392,55 +383,38 @@ int sub_020040F0(int param0)
     return v0;
 }
 
-static void sub_0200413C(SoundSystem *param0)
+static void SoundSystem_InitHeapStates(SoundSystem *soundSys)
 {
-    int v0;
+    memset(soundSys, 0, sizeof(SoundSystem));
 
-    memset(param0, 0, sizeof(SoundSystem));
-
-    for (v0 = 0; v0 < 7; v0++) {
-        param0->unk_BCD68[v0] = (v0 + 1);
+    for (int i = 0; i < SOUND_HEAP_STATE_COUNT; i++) {
+        soundSys->heapStates[i] = (i + 1);
     }
-
-    return;
 }
 
-static void sub_02004160(SoundSystem *param0)
+static void SoundSystem_InitSoundHandles(SoundSystem *soundSys)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 9; v0++) {
-        NNS_SndHandleInit(&param0->unk_BBCFC[v0]);
+    for (int i = 0; i < SOUND_SYSTEM_HANDLE_COUNT; i++) {
+        NNS_SndHandleInit(&soundSys->soundHandles[i]);
     }
-
-    return;
 }
 
-static void sub_0200417C(SoundSystem *param0)
+static void SoundSystem_LoadPersistentGroup(SoundSystem *soundSys)
 {
-    int v0;
-
-    SoundSystem_SaveHeapState(&param0->unk_BCD68[0]);
-    v0 = sub_02004050(0);
-
-    SoundSystem_SaveHeapState(&param0->unk_BCD68[1]);
-    return;
+    SoundSystem_SaveHeapState(&soundSys->heapStates[SOUND_HEAP_STATE_EMPTY]);
+    SoundSystem_LoadSoundGroup(0);
+    SoundSystem_SaveHeapState(&soundSys->heapStates[SOUND_HEAP_STATE_PERSISTENT]);
 }
 
-static void sub_020041A0(void)
+static void SoundSystem_InitMic()
 {
     MIC_Init();
-
-    (void)PM_SetAmp(PM_AMP_ON);
-    (void)PM_SetAmpGain(PM_AMPGAIN_80);
-
-    return;
+    PM_SetAmp(PM_AMP_ON);
+    PM_SetAmpGain(PM_AMPGAIN_80);
 }
 
-static void sub_020041B4(void)
+static void sub_020041B4()
 {
     NNS_SndPlayerStopSeqByPlayerNo(7, 0);
     NNS_SndHandleReleaseSeq(sub_020040CC(7));
-
-    return;
 }

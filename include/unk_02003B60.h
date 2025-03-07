@@ -10,12 +10,21 @@
 
 #define SOUND_SYSTEM_HEAP_SIZE              0xBBC00 // ~750kB
 #define SOUND_SYSTEM_CAPTURE_BUFFER_SIZE    0x1000
+#define SOUND_SYSTEM_HANDLE_COUNT           9
+
+enum SoundHeapState {
+    SOUND_HEAP_STATE_EMPTY = 0,
+    SOUND_HEAP_STATE_PERSISTENT,
+    
+    SOUND_HEAP_STATE_COUNT = 7,
+    SOUND_HEAP_STATE_INVALID = -1
+};
 
 typedef struct SoundSystem {
     NNSSndArc arc; // Only used for storage, NNS manages the arc
     NNSSndHeapHandle heap;
     u8 heapBuffer[SOUND_SYSTEM_HEAP_SIZE]; // Main sound heap where sound data is loaded into
-    NNSSndHandle unk_BBCFC[9];
+    NNSSndHandle soundHandles[SOUND_SYSTEM_HANDLE_COUNT];
     NNSSndWaveOutHandle unk_BBD20[2];
     const NNSSndArcBankInfo *unk_BBD28;
     u8 unk_BBD2C[SOUND_SYSTEM_CAPTURE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
@@ -39,7 +48,7 @@ typedef struct SoundSystem {
     u8 unk_BCD65;
     u8 unk_BCD66;
     u8 unk_BCD67;
-    int unk_BCD68[7];
+    enum SoundHeapState heapStates[SOUND_HEAP_STATE_COUNT];
     u8 unk_BCD84;
     u8 unk_BCD85;
     u16 unk_BCD86;
@@ -64,9 +73,9 @@ void UpdateSound(void);
 void sub_02003D0C(int param0);
 SoundSystem *SoundSystem_Get(void);
 void *sub_02003D5C(int param0);
-int SoundSystem_SaveHeapState(int *param0);
-void SoundSystem_LoadHeapState(int param0);
-BOOL sub_02004050(u16 param0);
+enum SoundHeapState SoundSystem_SaveHeapState(enum SoundHeapState *state);
+void SoundSystem_LoadHeapState(enum SoundHeapState state);
+BOOL SoundSystem_LoadSoundGroup(u16 param0);
 BOOL sub_02004068(u16 param0);
 BOOL sub_02004080(u16 param0, u32 param1);
 BOOL sub_0200409C(u16 param0);
