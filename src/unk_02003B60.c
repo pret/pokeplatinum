@@ -23,7 +23,7 @@ static void sub_02003C64();
 static void sub_020041B4();
 
 static SoundSystem sSoundSystem;
-static int Unk_02101DF0;
+static int sSoundSystemState;
 static NNSSndCaptureOutputEffectType Unk_02101DF4;
 
 void SoundSystem_Init(ChatotCry *chatotCry, Options *options)
@@ -49,13 +49,13 @@ void SoundSystem_Init(ChatotCry *chatotCry, Options *options)
     Sound_SetPlaybackMode(options->soundMode);
 }
 
-void UpdateSound()
+void SoundSystem_Update()
 {
-    SoundSystem *v1 = SoundSystem_Get();
+    SoundSystem *soundSys = SoundSystem_Get();
 
     if (sub_02003D28() == 0) {
-        if (v1->unk_BCD4C > 0) {
-            v1->unk_BCD4C--;
+        if (soundSys->unk_BCD4C > 0) {
+            soundSys->unk_BCD4C--;
         }
 
         sub_02003C64();
@@ -64,11 +64,11 @@ void UpdateSound()
     CheckMicRecordingStatus();
 
     for (int i = 0; i < 2; i++) {
-        if (v1->unk_BCDD0[i] != 0) {
-            v1->unk_BCDD0[i]--;
+        if (soundSys->unk_BCDD0[i] != 0) {
+            soundSys->unk_BCDD0[i]--;
 
-            if (v1->unk_BCDD0[i] == 0) {
-                Sound_PlayPokemonCry(v1->unk_BCDAC[i], v1->unk_BCDCC[i], v1->unk_BCDB4[i], v1->unk_BCDBC[i], v1->unk_BCDC4[i], 0);
+            if (soundSys->unk_BCDD0[i] == 0) {
+                Sound_PlayPokemonCry(soundSys->unk_BCDAC[i], soundSys->unk_BCDCC[i], soundSys->unk_BCDB4[i], soundSys->unk_BCDBC[i], soundSys->unk_BCDC4[i], 0);
             }
         }
     }
@@ -82,22 +82,22 @@ static void sub_02003C64()
     int v0;
     SoundSystem *v1 = SoundSystem_Get();
 
-    switch (Unk_02101DF0) {
+    switch (sSoundSystemState) {
     case 0:
         break;
     case 1:
-        sub_02003D0C(2);
+        SoundSystem_SetState(2);
         break;
     case 2:
         break;
     case 3:
         if (Sound_CheckFade() == 0) {
-            sub_02003D0C(2);
+            SoundSystem_SetState(2);
         }
         break;
     case 4:
         if (Sound_CheckFade() == 0) {
-            sub_02003D0C(2);
+            SoundSystem_SetState(2);
         }
         break;
     case 5:
@@ -122,14 +122,12 @@ static void sub_02003C64()
     return;
 }
 
-void sub_02003D0C(int param0)
+void SoundSystem_SetState(enum SoundSystemState state)
 {
-    SoundSystem *v0 = SoundSystem_Get();
+    SoundSystem *soundSys = SoundSystem_Get();
 
-    v0->unk_BCD48 = 0;
-    Unk_02101DF0 = param0;
-
-    return;
+    soundSys->unk_BCD48 = 0;
+    sSoundSystemState = state;
 }
 
 static BOOL sub_02003D28()
@@ -297,90 +295,74 @@ BOOL SoundSystem_LoadSoundGroup(u16 group)
     return NNS_SndArcLoadGroup(group, SoundSystem_Get()->heap);
 }
 
-BOOL sub_02004068(u16 param0)
+BOOL SoundSystem_LoadSequence(u16 id)
 {
-    int v0;
-    SoundSystem *v1 = SoundSystem_Get();
-
-    v0 = NNS_SndArcLoadSeq(param0, v1->heap);
-    return v0;
+    return NNS_SndArcLoadSeq(id, SoundSystem_Get()->heap);
 }
 
-BOOL sub_02004080(u16 param0, u32 param1)
+BOOL SoundSystem_LoadSequenceEx(u16 id, u32 flags)
 {
-    int v0;
-    SoundSystem *v1 = SoundSystem_Get();
-
-    v0 = NNS_SndArcLoadSeqEx(param0, param1, v1->heap);
-    return v0;
+    return NNS_SndArcLoadSeqEx(id, flags, SoundSystem_Get()->heap);
 }
 
-BOOL sub_0200409C(u16 param0)
+BOOL SoundSystem_LoadWaveArc(u16 id)
 {
-    int v0;
-    SoundSystem *v1 = SoundSystem_Get();
-
-    v0 = NNS_SndArcLoadWaveArc(param0, v1->heap);
-    return v0;
+    return NNS_SndArcLoadWaveArc(id, SoundSystem_Get()->heap);
 }
 
-BOOL sub_020040B4(u16 param0)
+BOOL SoundSystem_LoadBank(u16 id)
 {
-    int v0;
-    SoundSystem *v1 = SoundSystem_Get();
-
-    v0 = NNS_SndArcLoadBank(param0, v1->heap);
-    return v0;
+    return NNS_SndArcLoadBank(id, SoundSystem_Get()->heap);
 }
 
-NNSSndHandle *sub_020040CC(int param0)
+NNSSndHandle *SoundSystem_GetSoundHandle(enum SoundHandleType type)
 {
-    SoundSystem *v0 = SoundSystem_Get();
+    SoundSystem *soundSys = SoundSystem_Get();
 
-    if (param0 >= 9) {
+    if (type >= SOUND_HANDLE_TYPE_COUNT) {
         GF_ASSERT(FALSE);
-        param0 = 0;
+        type = SOUND_HANDLE_TYPE_FIELD_BGM;
     }
 
-    return &v0->soundHandles[param0];
+    return &soundSys->soundHandles[type];
 }
 
-int sub_020040F0(int param0)
+int SoundSystem_GetSoundHandleTypeFromPlayerID(int playerID)
 {
-    int v0;
+    enum SoundHandleType type;
 
-    switch (param0) {
+    switch (playerID) {
     case 1:
-        v0 = 0;
+        type = SOUND_HANDLE_TYPE_FIELD_BGM;
         break;
     case 0:
-        v0 = 1;
+        type = SOUND_HANDLE_TYPE_POKEMON_CRY;
         break;
     case 2:
-        v0 = 2;
+        type = 2;
         break;
     case 3:
-        v0 = 3;
+        type = SOUND_HANDLE_TYPE_SFX_1;
         break;
     case 4:
-        v0 = 4;
+        type = SOUND_HANDLE_TYPE_SFX_2;
         break;
     case 5:
-        v0 = 5;
+        type = SOUND_HANDLE_TYPE_SFX_3;
         break;
     case 6:
-        v0 = 6;
+        type = SOUND_HANDLE_TYPE_SFX_4;
         break;
     case 7:
-        v0 = 7;
+        type = SOUND_HANDLE_TYPE_BGM;
         break;
     default:
         GF_ASSERT(FALSE);
-        v0 = 3;
+        type = SOUND_HANDLE_TYPE_SFX_1;
         break;
     }
 
-    return v0;
+    return type;
 }
 
 static void SoundSystem_InitHeapStates(SoundSystem *soundSys)
@@ -394,7 +376,7 @@ static void SoundSystem_InitHeapStates(SoundSystem *soundSys)
 
 static void SoundSystem_InitSoundHandles(SoundSystem *soundSys)
 {
-    for (int i = 0; i < SOUND_SYSTEM_HANDLE_COUNT; i++) {
+    for (int i = 0; i < SOUND_HANDLE_TYPE_COUNT; i++) {
         NNS_SndHandleInit(&soundSys->soundHandles[i]);
     }
 }
@@ -416,5 +398,5 @@ static void SoundSystem_InitMic()
 static void sub_020041B4()
 {
     NNS_SndPlayerStopSeqByPlayerNo(7, 0);
-    NNS_SndHandleReleaseSeq(sub_020040CC(7));
+    NNS_SndHandleReleaseSeq(SoundSystem_GetSoundHandle(7));
 }

@@ -62,9 +62,9 @@ BOOL sub_02005474(u16 param0)
 {
     int v0;
     u8 v1 = sub_02004B18(param0);
-    int v2 = sub_020040F0(v1);
+    int v2 = SoundSystem_GetSoundHandleTypeFromPlayerID(v1);
 
-    v0 = NNS_SndArcPlayerStartSeq(sub_020040CC(v2), param0);
+    v0 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(v2), param0);
 
     if (v0 == 0) {
         (void)0;
@@ -78,7 +78,7 @@ BOOL Sound_PlayBGM(u16 sdatID)
 {
     int v0;
     u8 v1 = sub_02004B18(sdatID);
-    int v2 = sub_020040F0(v1);
+    int v2 = SoundSystem_GetSoundHandleTypeFromPlayerID(v1);
 
     if (v1 == 7) {
         v0 = sub_02005508(sdatID, v1, v2);
@@ -99,7 +99,7 @@ static void sub_020054EC(u16 param0, int param1)
 {
     sub_020041E8(param0);
     sub_02004AA0(param0, param1);
-    sub_02003D0C(1);
+    SoundSystem_SetState(1);
 
     return;
 }
@@ -109,10 +109,10 @@ static BOOL sub_02005508(u16 param0, u8 param1, int param2)
     int v0;
 
     SoundSystem_LoadHeapState(sub_02004974(3));
-    sub_02004068(param0);
+    SoundSystem_LoadSequence(param0);
     SoundSystem_SaveHeapState(sub_02003D5C(27));
 
-    v0 = NNS_SndArcPlayerStartSeq(sub_020040CC(param2), param0);
+    v0 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(param2), param0);
     return v0;
 }
 
@@ -122,10 +122,10 @@ static BOOL sub_02005538(u16 param0, u8 param1, int param2)
     u8 *v1 = sub_02003D5C(19);
     u16 *v2 = sub_02003D5C(32);
 
-    v0 = sub_02004B34(sub_020040CC(0));
+    v0 = sub_02004B34(SoundSystem_GetSoundHandle(0));
     sub_020047E8(param0, sub_02004B48(v0));
 
-    return NNS_SndArcPlayerStartSeqEx(sub_020040CC(param2), -1, sub_02004B48(*v2), -1, param0);
+    return NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(param2), -1, sub_02004B48(*v2), -1, param0);
 }
 
 BOOL sub_02005588(u8 param0, u16 param1)
@@ -142,15 +142,15 @@ BOOL sub_02005588(u8 param0, u16 param1)
         return 0;
     }
 
-    v0 = sub_02004080(param1, NNS_SND_ARC_LOAD_SEQ);
-    v0 = NNS_SndArcPlayerStartSeq(sub_020040CC(7), param1);
+    v0 = SoundSystem_LoadSequenceEx(param1, NNS_SND_ARC_LOAD_SEQ);
+    v0 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(7), param1);
 
     if (v0 == 0) {
         (void)0;
     }
 
     sub_020041E8(param1);
-    sub_02003D0C(1);
+    SoundSystem_SetState(1);
 
     return v0;
 }
@@ -165,8 +165,8 @@ void sub_020055D0(u16 param0, int param1)
     v0 = sub_02004B18(param0);
 
     if (v0 != 0xff) {
-        v1 = sub_020040F0(v0);
-        NNS_SndHandleReleaseSeq(sub_020040CC(v1));
+        v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
+        NNS_SndHandleReleaseSeq(SoundSystem_GetSoundHandle(v1));
     }
 
     sub_020055F4();
@@ -177,7 +177,7 @@ static void sub_020055F4(void)
 {
     sub_020041E8(0);
     sub_02004208(0);
-    sub_02003D0C(0);
+    SoundSystem_SetState(0);
 
     return;
 }
@@ -194,7 +194,7 @@ void sub_0200560C(int param0, int param1, int param2)
         return;
     }
 
-    v1 = sub_020040F0(v0);
+    v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
 
     if (param2 == 0) {
         sub_02004A54(v1, 0, 0);
@@ -202,7 +202,7 @@ void sub_0200560C(int param0, int param1, int param2)
 
     sub_02004A54(v1, param0, param1);
     sub_02004FCC(param1);
-    sub_02003D0C(3);
+    SoundSystem_SetState(3);
 
     return;
 }
@@ -217,13 +217,13 @@ void sub_0200564C(int targetVolume, int frames)
     }
 
     if (Sound_CheckFade() == 0) {
-        int v1 = sub_020040F0(v0);
+        int v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
 
         sub_02004A54(v1, targetVolume, frames);
         sub_02004FCC(frames);
     }
 
-    sub_02003D0C(4);
+    SoundSystem_SetState(4);
 }
 
 int Sound_CheckFade()
@@ -253,7 +253,7 @@ void sub_0200569C(void)
         sub_02004CF4(15);
     }
 
-    sub_02003D0C(0);
+    SoundSystem_SetState(0);
     return;
 }
 
@@ -263,7 +263,7 @@ void sub_020056D4(void)
     u8 *v1 = sub_02003D5C(16);
     u8 *v2 = sub_02003D5C(17);
 
-    NNS_SndPlayerStopSeq(sub_020040CC(7), 0);
+    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(7), 0);
     sub_020055F4();
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -293,8 +293,8 @@ BOOL sub_02005728(u16 param0, int param1)
 
 BOOL Sound_PlayEffect(u16 sdatID)
 {
-    int v0 = sub_020040F0(sub_02004B18(sdatID));
-    int v1 = NNS_SndArcPlayerStartSeq(sub_020040CC(v0), sdatID);
+    int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(sub_02004B18(sdatID));
+    int v1 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(v0), sdatID);
 
     sub_02004AA0(sdatID, v0);
 
@@ -303,8 +303,8 @@ BOOL Sound_PlayEffect(u16 sdatID)
 
 BOOL sub_02005770(u16 param0, int param1)
 {
-    int v0 = sub_020040F0(param1);
-    int v1 = NNS_SndArcPlayerStartSeqEx(sub_020040CC(v0), param1, -1, -1, param0);
+    int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(param1);
+    int v1 = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(v0), param1, -1, -1, param0);
 
     sub_02004AA0(param0, v0);
 
@@ -323,7 +323,7 @@ void Sound_StopEffect(u16 param0, int param1)
 
 void sub_020057AC(int param0, int param1)
 {
-    NNS_SndPlayerStopSeq(sub_020040CC(param0), param1);
+    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(param0), param1);
     return;
 }
 
@@ -358,9 +358,9 @@ int sub_020057E0()
 
 void sub_020057FC(u16 param0, u16 param1, int param2)
 {
-    int v0 = sub_020040F0(sub_02004B18(param0));
+    int v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(sub_02004B18(param0));
 
-    NNS_SndPlayerSetTrackPan(sub_020040CC(v0), param1, param2);
+    NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(v0), param1, param2);
     return;
 }
 
@@ -368,10 +368,10 @@ void sub_02005818(int param0)
 {
     int v0, v1;
 
-    v0 = sub_020040F0(3);
+    v0 = SoundSystem_GetSoundHandleTypeFromPlayerID(3);
 
     for (v1 = 0; v1 < 4; v1++) {
-        NNS_SndPlayerSetTrackPan(sub_020040CC(v0 + v1), 0xffff, param0);
+        NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(v0 + v1), 0xffff, param0);
     }
 
     return;
@@ -406,10 +406,10 @@ BOOL sub_02005844(u16 species, u8 form)
             sub_0200592C(0);
         }
 
-        v1 = NNS_SndArcPlayerStartSeqEx(sub_020040CC(1), -1, species, -1, 2);
+        v1 = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(1), -1, species, -1, 2);
         sub_02004AA0(species, 1);
     } else {
-        v1 = NNS_SndArcPlayerStartSeqEx(sub_020040CC(8), -1, species, -1, 2);
+        v1 = NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(8), -1, species, -1, 2);
         sub_02004AA0(species, 8);
     }
 
@@ -434,8 +434,8 @@ void sub_0200592C(int param0)
     u8 *v1 = sub_02003D5C(17);
     u8 *v2 = sub_02003D5C(15);
 
-    NNS_SndPlayerStopSeq(sub_020040CC(1), param0);
-    NNS_SndPlayerStopSeq(sub_020040CC(8), param0);
+    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(1), param0);
+    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(8), param0);
 
     if (*v0 == 1) {
         sub_02004E84(14);
@@ -895,8 +895,8 @@ BOOL sub_02006150(u16 param0)
 
     SoundSystem_SaveHeapState(sub_02003D5C(29));
 
-    v2 = sub_02004080(param0, (NNS_SND_ARC_LOAD_SEQ | NNS_SND_ARC_LOAD_BANK));
-    v2 = NNS_SndArcPlayerStartSeq(sub_020040CC(2), param0);
+    v2 = SoundSystem_LoadSequenceEx(param0, (NNS_SND_ARC_LOAD_SEQ | NNS_SND_ARC_LOAD_BANK));
+    v2 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(2), param0);
 
     sub_02004AA0(param0, 2);
 
@@ -924,7 +924,7 @@ static void sub_020061C8(int param0)
     int v0, v1;
     u16 v2;
 
-    NNS_SndPlayerStopSeq(sub_020040CC(2), param0);
+    NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(2), param0);
     SoundSystem_LoadHeapState(sub_02004974(6));
 
     return;
