@@ -160,7 +160,7 @@ void NitroMain(void)
             gSystem.vblankCallback(gSystem.vblankCallbackData);
         }
 
-        UpdateSound();
+        SoundSystem_Update();
         SysTaskManager_ExecuteTasks(gSystem.postVBlankTaskMgr);
     }
 }
@@ -285,7 +285,7 @@ static void HeapCanaryFailed(int resetParam, int param1)
 
     sub_02037DB0();
     WaitFrame();
-    UpdateSound();
+    SoundSystem_Update();
 
     elapsed = 0;
 

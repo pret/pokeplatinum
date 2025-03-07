@@ -187,27 +187,27 @@ int sub_0200426C(u8 param0)
     case 19:
         v0 = SoundSystem_LoadSoundGroup(1);
 
-        sub_02004080(1399, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1401, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1403, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1399, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1401, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1403, NNS_SND_ARC_LOAD_SEQ);
 
-        sub_02004080(1398, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1404, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1406, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1398, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1404, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1406, NNS_SND_ARC_LOAD_SEQ);
 
-        sub_02004080(1616, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1386, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1826, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1616, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1386, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1826, NNS_SND_ARC_LOAD_SEQ);
 
-        sub_02004080(1387, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1388, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1389, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1391, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1387, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1388, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1389, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1391, NNS_SND_ARC_LOAD_SEQ);
 
-        sub_02004080(1598, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1603, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1394, NNS_SND_ARC_LOAD_SEQ);
-        sub_02004080(1385, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1598, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1603, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1394, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(1385, NNS_SND_ARC_LOAD_SEQ);
         break;
     case 14:
         v0 = SoundSystem_LoadSoundGroup(14);
@@ -220,8 +220,8 @@ int sub_0200426C(u8 param0)
         v0 = SoundSystem_LoadSoundGroup(2);
         break;
     case 21:
-        v0 = sub_020040B4(770);
-        v0 = sub_0200409C(770);
+        v0 = SoundSystem_LoadBank(770);
+        v0 = SoundSystem_LoadWaveArc(770);
         break;
     case 3:
         v0 = SoundSystem_LoadSoundGroup(13);
@@ -270,8 +270,8 @@ int sub_0200426C(u8 param0)
         break;
     case 55:
     case 67:
-        v0 = sub_020040B4(759);
-        v0 = sub_0200409C(759);
+        v0 = SoundSystem_LoadBank(759);
+        v0 = SoundSystem_LoadWaveArc(759);
         break;
     case 56:
         v0 = SoundSystem_LoadSoundGroup(12);
@@ -298,16 +298,16 @@ int sub_0200426C(u8 param0)
         v0 = SoundSystem_LoadSoundGroup(4);
         break;
     case 64:
-        v0 = sub_020040B4(767);
-        v0 = sub_0200409C(767);
+        v0 = SoundSystem_LoadBank(767);
+        v0 = SoundSystem_LoadWaveArc(767);
         break;
     case 65:
-        v0 = sub_020040B4(766);
-        v0 = sub_0200409C(766);
+        v0 = SoundSystem_LoadBank(766);
+        v0 = SoundSystem_LoadWaveArc(766);
         break;
     case 68:
-        v0 = sub_020040B4(769);
-        v0 = sub_0200409C(769);
+        v0 = SoundSystem_LoadBank(769);
+        v0 = SoundSystem_LoadWaveArc(769);
         break;
     }
 
@@ -426,7 +426,7 @@ static void sub_020046F8(u16 param0, int param1)
     int *v4 = sub_02003D5C(24);
     u16 *v5 = sub_02003D5C(32);
 
-    v1 = sub_02004B34(sub_020040CC(0));
+    v1 = sub_02004B34(SoundSystem_GetSoundHandle(0));
 
     if (*v3 == 0) {
         if (v1 == param0) {
@@ -468,10 +468,10 @@ static void sub_0200478C(u16 param0, u16 param1)
     u16 v1 = sub_02004B48(*v0);
 
     if ((v1 != 701) && (v1 != 703)) {
-        sub_02004080(param0, NNS_SND_ARC_LOAD_WAVE);
+        SoundSystem_LoadSequenceEx(param0, NNS_SND_ARC_LOAD_WAVE);
         GF_ASSERT(FALSE);
     } else {
-        sub_02004080(*v0, NNS_SND_ARC_LOAD_WAVE | NNS_SND_ARC_LOAD_BANK);
+        SoundSystem_LoadSequenceEx(*v0, NNS_SND_ARC_LOAD_WAVE | NNS_SND_ARC_LOAD_BANK);
     }
 
     SoundSystem_SaveHeapState(sub_02003D5C(27));
@@ -491,7 +491,7 @@ void sub_020047E8(u16 param0, u16 param1)
     if ((*v1 == 1) || (param1 == 0)) {
         SoundSystem_LoadHeapState(sub_02004974(1));
         sub_02004258(0);
-        sub_02004080(*v2, NNS_SND_ARC_LOAD_BANK);
+        SoundSystem_LoadSequenceEx(*v2, NNS_SND_ARC_LOAD_BANK);
         SoundSystem_SaveHeapState(sub_02003D5C(25));
         sub_0200426C(4);
         SoundSystem_SaveHeapState(sub_02003D5C(26));
@@ -499,10 +499,10 @@ void sub_020047E8(u16 param0, u16 param1)
         v0 = sub_02004B48(*v2);
 
         if ((v0 != 701) && (v0 != 703)) {
-            sub_02004080(param0, NNS_SND_ARC_LOAD_WAVE);
+            SoundSystem_LoadSequenceEx(param0, NNS_SND_ARC_LOAD_WAVE);
             GF_ASSERT(FALSE);
         } else {
-            sub_02004080(*v2, NNS_SND_ARC_LOAD_WAVE);
+            SoundSystem_LoadSequenceEx(*v2, NNS_SND_ARC_LOAD_WAVE);
         }
 
         SoundSystem_SaveHeapState(sub_02003D5C(27));
@@ -652,10 +652,10 @@ void sub_020049F4(u8 param0, BOOL param1)
     }
 
     if (param1 == 0) {
-        sub_020041E8(sub_02004B34(sub_020040CC(v0)));
+        sub_020041E8(sub_02004B34(SoundSystem_GetSoundHandle(v0)));
     }
 
-    NNS_SndPlayerPause(sub_020040CC(v0), param1);
+    NNS_SndPlayerPause(SoundSystem_GetSoundHandle(v0), param1);
     *v1 = param1;
 
     return;
@@ -674,7 +674,7 @@ void sub_02004A3C(void)
 
 void sub_02004A54(int param0, int param1, int param2)
 {
-    NNS_SndPlayerMoveVolume(sub_020040CC(param0), param1, param2);
+    NNS_SndPlayerMoveVolume(SoundSystem_GetSoundHandle(param0), param1, param2);
     return;
 }
 
@@ -688,14 +688,14 @@ void sub_02004A68(int param0, int param1)
         param1 = 127;
     }
 
-    NNS_SndPlayerSetInitialVolume(sub_020040CC(param0), param1);
+    NNS_SndPlayerSetInitialVolume(SoundSystem_GetSoundHandle(param0), param1);
     return;
 }
 
 void sub_02004A84(int param0)
 {
     u8 v0 = sub_02004B18(param0);
-    int v1 = sub_020040F0(v0);
+    int v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
 
     sub_02004AA0(param0, v1);
     return;
@@ -730,7 +730,7 @@ void sub_02004AA0(int param0, int param1)
 void sub_02004AD4(u16 param0, int param1)
 {
     u8 v0 = sub_02004B18(param0);
-    int v1 = sub_020040F0(v0);
+    int v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
 
     sub_02004A68(v1, param1);
     return;
@@ -738,7 +738,7 @@ void sub_02004AD4(u16 param0, int param1)
 
 BOOL sub_02004AE8(int param0, int param1, u16 param2)
 {
-    return NNS_SndArcPlayerStartSeqEx(sub_020040CC(param0), param1, -1, -1, param2);
+    return NNS_SndArcPlayerStartSeqEx(SoundSystem_GetSoundHandle(param0), param1, -1, -1, param2);
 }
 
 int sub_02004B04(int param0)
@@ -1155,14 +1155,14 @@ void sub_02004F4C(int param0)
 
 void sub_02004F68(int param0, u16 param1, int pitch)
 {
-    NNS_SndPlayerSetTrackPitch(sub_020040CC(param0), param1, pitch);
+    NNS_SndPlayerSetTrackPitch(SoundSystem_GetSoundHandle(param0), param1, pitch);
     return;
 }
 
 void sub_02004F7C(u16 param0, u16 param1, int param2)
 {
     u8 v0 = sub_02004B18(param0);
-    int v1 = sub_020040F0(v0);
+    int v1 = SoundSystem_GetSoundHandleTypeFromPlayerID(v0);
 
     sub_02004F68(v1, param1, param2);
     return;
@@ -1170,13 +1170,13 @@ void sub_02004F7C(u16 param0, u16 param1, int param2)
 
 void sub_02004F94(int param0, u16 param1, int param2)
 {
-    NNS_SndPlayerSetTrackPan(sub_020040CC(param0), param1, param2);
+    NNS_SndPlayerSetTrackPan(SoundSystem_GetSoundHandle(param0), param1, param2);
     return;
 }
 
 void sub_02004FA8(int param0, int param1)
 {
-    NNS_SndPlayerSetTempoRatio(sub_020040CC(param0), param1);
+    NNS_SndPlayerSetTempoRatio(SoundSystem_GetSoundHandle(param0), param1);
     return;
 }
 
@@ -1241,7 +1241,7 @@ BOOL sub_0200502C(u8 param0, u16 param1, int param2, int param3, u8 param4, void
 
     sub_020050A4(param0, param1, param2, param3, param4, param5);
     *v0 = 0;
-    sub_02003D0C(5);
+    SoundSystem_SetState(5);
 
     return 1;
 }
@@ -1252,7 +1252,7 @@ BOOL sub_02005068(u8 param0, u16 param1, int param2, int param3, int param4, u8 
 
     sub_020050A4(param0, param1, param2, param3, param5, param6);
     *v0 = param4;
-    sub_02003D0C(6);
+    SoundSystem_SetState(6);
 
     return 1;
 }
@@ -1305,7 +1305,7 @@ const SNDWaveData *sub_020050F8(int param0)
         }
     }
 
-    sub_0200409C(v0);
+    SoundSystem_LoadWaveArc(v0);
 
     return sub_02005130(v0);
 }
@@ -1373,7 +1373,7 @@ u32 sub_02005188(int param0, const SNDWaveData *param1, int param2)
 
 u32 sub_020051C4(int param0)
 {
-    u32 v0 = NNS_SndPlayerGetTick(sub_020040CC(param0));
+    u32 v0 = NNS_SndPlayerGetTick(SoundSystem_GetSoundHandle(param0));
     return v0;
 }
 
@@ -1549,7 +1549,7 @@ void sub_020053CC(int param0)
 
 static void sub_0200540C(void)
 {
-    if ((Sound_CheckFade() == 0) && (sub_02004B34(sub_020040CC(0)) != -1) && (sub_020041FC() != 1150)) {
+    if ((Sound_CheckFade() == 0) && (sub_02004B34(SoundSystem_GetSoundHandle(0)) != -1) && (sub_020041FC() != 1150)) {
         sub_020056D4();
         sub_020049F4(1, 1);
     } else {

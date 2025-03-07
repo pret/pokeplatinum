@@ -10,7 +10,6 @@
 
 #define SOUND_SYSTEM_HEAP_SIZE              0xBBC00 // ~750kB
 #define SOUND_SYSTEM_CAPTURE_BUFFER_SIZE    0x1000
-#define SOUND_SYSTEM_HANDLE_COUNT           9
 
 enum SoundHeapState {
     SOUND_HEAP_STATE_EMPTY = 0,
@@ -20,11 +19,29 @@ enum SoundHeapState {
     SOUND_HEAP_STATE_INVALID = -1
 };
 
+enum SoundSystemState {
+    SOUND_SYSTEM_STATE_IDLE = 0,
+};
+
+enum SoundHandleType {
+    SOUND_HANDLE_TYPE_FIELD_BGM = 0,
+    SOUND_HANDLE_TYPE_POKEMON_CRY,
+    // Unknown (2)
+    SOUND_HANDLE_TYPE_SFX_1 = 3,
+    SOUND_HANDLE_TYPE_SFX_2,
+    SOUND_HANDLE_TYPE_SFX_3,
+    SOUND_HANDLE_TYPE_SFX_4,
+    SOUND_HANDLE_TYPE_BGM,
+    // Unknown (8)
+
+    SOUND_HANDLE_TYPE_COUNT = 9
+};
+
 typedef struct SoundSystem {
     NNSSndArc arc; // Only used for storage, NNS manages the arc
     NNSSndHeapHandle heap;
     u8 heapBuffer[SOUND_SYSTEM_HEAP_SIZE]; // Main sound heap where sound data is loaded into
-    NNSSndHandle soundHandles[SOUND_SYSTEM_HANDLE_COUNT];
+    NNSSndHandle soundHandles[SOUND_HANDLE_TYPE_COUNT];
     NNSSndWaveOutHandle unk_BBD20[2];
     const NNSSndArcBankInfo *unk_BBD28;
     u8 unk_BBD2C[SOUND_SYSTEM_CAPTURE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
@@ -69,18 +86,18 @@ typedef struct SoundSystem {
 } SoundSystem;
 
 void SoundSystem_Init(ChatotCry *chatotCry, Options *options);
-void UpdateSound(void);
-void sub_02003D0C(int param0);
-SoundSystem *SoundSystem_Get(void);
+void SoundSystem_Update();
+void SoundSystem_SetState(enum SoundSystemState status);
+SoundSystem *SoundSystem_Get();
 void *sub_02003D5C(int param0);
 enum SoundHeapState SoundSystem_SaveHeapState(enum SoundHeapState *state);
 void SoundSystem_LoadHeapState(enum SoundHeapState state);
-BOOL SoundSystem_LoadSoundGroup(u16 param0);
-BOOL sub_02004068(u16 param0);
-BOOL sub_02004080(u16 param0, u32 param1);
-BOOL sub_0200409C(u16 param0);
-BOOL sub_020040B4(u16 param0);
-NNSSndHandle *sub_020040CC(int param0);
-int sub_020040F0(int param0);
+BOOL SoundSystem_LoadSoundGroup(u16 group);
+BOOL SoundSystem_LoadSequence(u16 id);
+BOOL SoundSystem_LoadSequenceEx(u16 id, u32 flags); // See NNS_SND_ARC_LOAD_* in nnsys/snd/sndarc.h for flags
+BOOL SoundSystem_LoadWaveArc(u16 param0);
+BOOL SoundSystem_LoadBank(u16 param0);
+NNSSndHandle *SoundSystem_GetSoundHandle(enum SoundHandleType type);
+int SoundSystem_GetSoundHandleTypeFromPlayerID(int param0);
 
 #endif // POKEPLATINUM_UNK_02003B60_H
