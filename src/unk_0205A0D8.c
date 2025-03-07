@@ -17,6 +17,7 @@
 #include "comm_player_manager.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "dexmode_checker.h"
 #include "field_comm_manager.h"
 #include "field_message.h"
 #include "field_system.h"
@@ -43,7 +44,6 @@
 #include "unk_020366A0.h"
 #include "unk_0203D1B8.h"
 #include "unk_020655F4.h"
-#include "unk_0207A274.h"
 
 #include "constdata/const_020F1E88.h"
 #include "constdata/const_020F410C.h"
@@ -129,7 +129,7 @@ static void sub_0205A0D8(UnkStruct_0205A0D8 *param0, FieldSystem *fieldSystem, P
     MI_CpuClear8(v0, sizeof(PokemonSummary));
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(fieldSystem->saveData));
 
-    v0->dexMode = sub_0207A274(v1);
+    v0->dexMode = SaveData_GetDexMode(v1);
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->options = SaveData_Options(v1);
     v0->monData = param2;

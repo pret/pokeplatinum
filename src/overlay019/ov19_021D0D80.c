@@ -33,6 +33,7 @@
 #include "savedata/save_table.h"
 
 #include "bag.h"
+#include "dexmode_checker.h"
 #include "enums.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -56,7 +57,6 @@
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
 #include "unk_020797C8.h"
-#include "unk_0207A274.h"
 #include "unk_0207CB08.h"
 #include "unk_0208694C.h"
 
@@ -876,7 +876,7 @@ static void ov19_021D1C84(UnkStruct_ov19_021D5DF8 *param0)
     }
 
     param0->unk_12C.chatotCry = NULL;
-    param0->unk_12C.dexMode = sub_0207A274(param0->unk_11C);
+    param0->unk_12C.dexMode = SaveData_GetDexMode(param0->unk_11C);
     param0->unk_12C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_11C);
     param0->unk_12C.specialRibbons = sub_0202D79C(param0->unk_11C);
 
@@ -3954,7 +3954,7 @@ static void ov19_021D58AC(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon, U
     v0->unk_00 = boxMon;
     v0->species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
     v0->unk_06 = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
-    v0->unk_08 = sub_0207A294(sub_0207A274(param2->unk_11C), v0->species);
+    v0->unk_08 = GetDexNumber(SaveData_GetDexMode(param2->unk_11C), v0->species);
     v0->unk_0F = BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL);
     speciesData = SpeciesData_FromMonSpecies(v0->species, 9);
     v0->unk_0A = SpeciesData_GetLevelAt(speciesData, v0->species, BoxPokemon_GetValue(boxMon, MON_DATA_EXP, NULL));

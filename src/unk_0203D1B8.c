@@ -86,6 +86,7 @@
 
 #include "bag.h"
 #include "coins.h"
+#include "dexmode_checker.h"
 #include "field_battle_data_transfer.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
@@ -127,7 +128,6 @@
 #include "unk_0205B33C.h"
 #include "unk_0206B70C.h"
 #include "unk_0206CCB0.h"
-#include "unk_0207A274.h"
 #include "unk_0207AE68.h"
 #include "unk_0207CB08.h"
 #include "unk_0208694C.h"
@@ -551,7 +551,7 @@ void *sub_0203D5C8(int param0, FieldSystem *fieldSystem, int param2)
     v0->move = 0;
     v0->mode = SUMMARY_MODE_NORMAL;
     v0->specialRibbons = sub_0202D79C(fieldSystem->saveData);
-    v0->dexMode = sub_0207A274(fieldSystem->saveData);
+    v0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     v0->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->chatotCry = NULL;
 
@@ -592,7 +592,7 @@ PokemonSummary *sub_0203D670(FieldSystem *fieldSystem, int param1, int param2)
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = param2;
-    v0->dexMode = sub_0207A274(v1);
+    v0->dexMode = SaveData_GetDexMode(v1);
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->specialRibbons = sub_0202D79C(v1);
 
@@ -621,7 +621,7 @@ void *FieldSystem_OpenSummaryScreenSelectMove(enum HeapId heapID, FieldSystem *f
     summary->monMax = 1;
     summary->move = 0;
     summary->mode = SUMMARY_MODE_SELECT_MOVE;
-    summary->dexMode = sub_0207A274(fieldSystem->saveData);
+    summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(summary, Unk_020EA160);
@@ -968,7 +968,7 @@ static void sub_0203DB38(UnkStruct_ov88_0223C370 *param0, FieldSystem *fieldSyst
     param0->unk_14 = sub_0202C878(fieldSystem->saveData);
     param0->unk_18 = SaveData_Options(fieldSystem->saveData);
     param0->unk_24 = SaveData_GetPokedex(fieldSystem->saveData);
-    param0->unk_30 = sub_0207A274(fieldSystem->saveData);
+    param0->unk_30 = SaveData_GetDexMode(fieldSystem->saveData);
     param0->unk_10 = fieldSystem->saveData;
     param0->unk_1C = fieldSystem->journalEntry;
     param0->records = SaveData_GetGameRecordsPtr(fieldSystem->saveData);
@@ -1363,7 +1363,7 @@ void sub_0203E0FC(FieldSystem *fieldSystem, int param1)
     v0->unk_2C = fieldSystem->journalEntry;
     v0->unk_3C = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
     v0->unk_20 = fieldSystem->saveData;
-    v0->unk_34 = sub_0207A274(fieldSystem->saveData);
+    v0->unk_34 = SaveData_GetDexMode(fieldSystem->saveData);
     v0->unk_38 = sub_02039058(v0->unk_14);
     v0->unk_30 = SaveData_GetBag(fieldSystem->saveData);
     v0->unk_40 = param1;
@@ -1757,7 +1757,7 @@ void *sub_0203E63C(int param0, FieldSystem *fieldSystem, u16 param2, u16 param3)
     v0->move = param3;
     v0->mode = SUMMARY_MODE_SELECT_MOVE;
     v0->specialRibbons = sub_0202D79C(fieldSystem->saveData);
-    v0->dexMode = sub_0207A274(fieldSystem->saveData);
+    v0->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
     v0->showContest = SystemFlag_CheckContestHallVisited(SaveData_GetVarsFlags(fieldSystem->saveData));
     v0->chatotCry = NULL;
 

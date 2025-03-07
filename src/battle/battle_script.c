@@ -45,6 +45,7 @@
 
 #include "bg_window.h"
 #include "char_transfer.h"
+#include "dexmode_checker.h"
 #include "flags.h"
 #include "heap.h"
 #include "item.h"
@@ -73,7 +74,6 @@
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
 #include "unk_020797C8.h"
-#include "unk_0207A274.h"
 #include "unk_0208694C.h"
 #include "unk_0208C098.h"
 
@@ -10765,7 +10765,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v12.unk_08 = v5;
                 v12.heapId = HEAP_ID_BATTLE;
                 v12.unk_10 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
-                v12.unk_14 = sub_0207A280(BattleSystem_GetPokedex(v2->battleSys));
+                v12.unk_14 = IsNationalDexObtained(BattleSystem_GetPokedex(v2->battleSys));
                 v2->tmpPtr[1] = CharTransfer_PopTaskManager();
                 v2->tmpPtr[0] = ov21_021E8D48(&v12);
                 v2->seqNum = 13;

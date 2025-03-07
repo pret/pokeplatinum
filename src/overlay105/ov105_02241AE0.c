@@ -27,6 +27,7 @@
 #include "bg_window.h"
 #include "communication_information.h"
 #include "communication_system.h"
+#include "dexmode_checker.h"
 #include "font.h"
 #include "game_options.h"
 #include "game_overlay.h"
@@ -58,7 +59,6 @@
 #include "unk_02024220.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
-#include "unk_0207A274.h"
 #include "unk_0209BA80.h"
 #include "vram_transfer.h"
 
@@ -2890,7 +2890,7 @@ static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
     param0->unk_140->monMax = param0->unk_12;
     param0->unk_140->monIndex = ov105_022461A0(param0->unk_30C);
     param0->unk_140->move = 0;
-    param0->unk_140->dexMode = sub_0207A274(param0->unk_13C);
+    param0->unk_140->dexMode = SaveData_GetDexMode(param0->unk_13C);
     param0->unk_140->showContest = FALSE;
 
     PokemonSummaryScreen_FlagVisiblePages(param0->unk_140, Unk_ov105_022462DC);
