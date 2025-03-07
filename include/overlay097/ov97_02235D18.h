@@ -4,7 +4,7 @@
 #include "overlay097/gba_save.h"
 
 int ov97_02235D2C(void *param0);
-void ov97_02235DA4(void);
+void ResetLoadedGBACartInfo(void);
 int ov97_02235DB0(void);
 int GBACart_GetLanguage(void);
 int ov97_022360D8(void);

@@ -1147,7 +1147,7 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
 }
 
 extern const OverlayManagerTemplate Unk_ov97_0223D71C;
-extern const OverlayManagerTemplate Unk_ov97_0223D864;
+extern const OverlayManagerTemplate gGBAMigratorOverlayTemplate;
 extern const OverlayManagerTemplate Unk_ov97_0223D6BC;
 extern const OverlayManagerTemplate Unk_020F6DF0;
 extern const OverlayManagerTemplate Unk_ov98_02249BAC;
@@ -1165,7 +1165,7 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
         break;
     case 5:
-        EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D864);
+        EnqueueApplication(FS_OVERLAY_ID(overlay97), &gGBAMigratorOverlayTemplate);
         break;
     case 4:
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D6BC);

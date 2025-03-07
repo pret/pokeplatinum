@@ -39,10 +39,10 @@ static int Unk_ov97_0223F444;
 static BOOL ov97_02235D18()
 {
     if (CTRDG_IdentifyAgbBackup(CTRDG_BACKUP_TYPE_FLASH_1M) != 0) {
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 int ov97_02235D2C(void *param0)
@@ -79,7 +79,7 @@ int ov97_02235D2C(void *param0)
     return 0;
 }
 
-void ov97_02235DA4(void)
+void ResetLoadedGBACartInfo(void)
 {
     sLoadedGBACartInfo = NULL;
 }
@@ -393,13 +393,13 @@ static u32 ov97_02236244(struct CTRDGTaskInfo_tag *param0)
     if (param0->result == 0) {
         Unk_ov97_0223F43C++;
 
-        if (Unk_ov97_0223F43C >= 14) {
+        if (Unk_ov97_0223F43C >= GBA_MAX_PC_BOXES) {
             Unk_ov97_0223F43C = 0;
             Unk_ov97_0223F44C = 0;
             return 0;
         }
 
-        if (Unk_ov97_0223F43C == 14 - 1) {
+        if (Unk_ov97_0223F43C == GBA_MAX_PC_BOXES - 1) {
             Unk_ov97_0223F44C = 2;
             return 0;
         } else {
