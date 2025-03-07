@@ -29,7 +29,7 @@ static UnkStruct_ov97_0223F450 Unk_ov97_0223F450;
 static UnkStruct_ov97_0223F450 Unk_ov97_0223F450;
 static const GBAPokemonCartInfo sGBAPokemonCartInfo[30];
 static u8 Unk_ov97_0223EC04[0xa0 - 4];
-static const GBAPokemonCartInfo *Unk_ov97_0223EBFC = NULL;
+static const GBAPokemonCartInfo *sLoadedGBACartInfo = NULL;
 static int Unk_ov97_0223F438;
 static u32 Unk_ov97_0223F448;
 GBASaveSlot *sGBASaveSlot;
@@ -49,7 +49,7 @@ int ov97_02235D2C(void *param0)
 {
     sGBASaveSlot = (GBASaveSlot *)param0;
 
-    if (Unk_ov97_0223EBFC != NULL) {
+    if (sLoadedGBACartInfo != NULL) {
         return 12;
     }
 
@@ -61,7 +61,7 @@ int ov97_02235D2C(void *param0)
         }
     }
 
-    if (Unk_ov97_0223EBFC->unk_04 == 0) {
+    if (sLoadedGBACartInfo->unk_04 == 0) {
         Unk_ov97_0223F450.unk_88 = 2192;
         Unk_ov97_0223F450.unk_8C = 15040;
         Unk_ov97_0223F450.unk_50 = 4640;
@@ -81,41 +81,41 @@ int ov97_02235D2C(void *param0)
 
 void ov97_02235DA4(void)
 {
-    Unk_ov97_0223EBFC = NULL;
+    sLoadedGBACartInfo = NULL;
 }
 
 int ov97_02235DB0()
 {
-    return Unk_ov97_0223EBFC->unk_05;
+    return sLoadedGBACartInfo->unk_05;
 }
 
-int ov97_02235DBC()
+int GBACart_GetLanguage()
 {
-    return Unk_ov97_0223EBFC->language;
+    return sLoadedGBACartInfo->language;
 }
 
 static int ov97_02235DC8(const GBAPokemonCartInfo *cartInfo, int param1)
 {
-    u32 v0;
+    u32 agbGameCode;
 
-    Unk_ov97_0223EBFC = NULL;
+    sLoadedGBACartInfo = NULL;
 
     if (!CTRDG_IsAgbCartridge()) {
         return 1;
     }
 
-    v0 = CTRDG_GetAgbGameCode();
+    agbGameCode = CTRDG_GetAgbGameCode();
     {
         int i;
 
         for (i = 0; i < param1; i++) {
-            if (cartInfo[i].agbGameCode == v0) {
-                Unk_ov97_0223EBFC = cartInfo + i;
+            if (cartInfo[i].agbGameCode == agbGameCode) {
+                sLoadedGBACartInfo = cartInfo + i;
                 break;
             }
         }
 
-        if (Unk_ov97_0223EBFC == NULL) {
+        if (sLoadedGBACartInfo == NULL) {
             return 2;
         }
     }

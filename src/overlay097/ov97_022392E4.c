@@ -3,9 +3,11 @@
 #include <nitro.h>
 #include <string.h>
 
-// Char conversion table?
-static const u16 Unk_ov97_0223DAE8[][2] = {
-    { 0x1, 0x1 },
+#include "constants/charcode.h"
+
+// Japanese, International
+static const u16 sGBACharToDSChars[][2] = {
+    { CHAR_WIDE_SPACE, CHAR_WIDE_SPACE },
     { 0x3, 0x3 },
     { 0x5, 0x5 },
     { 0x7, 0x7 },
@@ -166,173 +168,173 @@ static const u16 Unk_ov97_0223DAE8[][2] = {
     { 0x8B, 0x8B },
     { 0x8E, 0x8E },
     { 0x74, 0x74 },
-    { 0xA2, 0x121 },
-    { 0xA3, 0x122 },
-    { 0xA4, 0x123 },
-    { 0xA5, 0x124 },
-    { 0xA6, 0x125 },
-    { 0xA7, 0x126 },
-    { 0xA8, 0x127 },
-    { 0xA9, 0x128 },
-    { 0xAA, 0x129 },
-    { 0xAB, 0x12A },
-    { 0xE1, 0x1AB },
-    { 0xE2, 0x1AC },
-    { 0xE4, 0x1AE },
-    { 0xf1, 0x1BE },
-    { 0xE6, 0x1B0 },
-    { 0xE5, 0x1af },
-    { 0xEA, 0xEA },
-    { 0xEB, 0xEB },
-    { 0xE8, 0x1B2 },
-    { 0xE9, 0x1B3 },
-    { 0xEE, 0x1BB },
-    { 0xef, 0x1BC },
-    { 0x112, 0x112 },
-    { 0xE3, 0x1AD },
-    { 0xf2, 0x176 },
-    { 0xE7, 0x1B1 },
-    { 0xAC, 0x12B },
-    { 0xAD, 0x12C },
-    { 0xAE, 0x12D },
-    { 0xaf, 0x12E },
-    { 0xB0, 0x12f },
-    { 0xB1, 0x130 },
-    { 0xB2, 0x131 },
-    { 0xB3, 0x132 },
-    { 0xB4, 0x133 },
-    { 0xB5, 0x134 },
-    { 0xB6, 0x135 },
-    { 0xB7, 0x136 },
-    { 0xB8, 0x137 },
-    { 0xB9, 0x138 },
-    { 0xBA, 0x139 },
-    { 0xBB, 0x13A },
-    { 0xBC, 0x13B },
-    { 0xBD, 0x13C },
-    { 0xBE, 0x13D },
-    { 0xbf, 0x13E },
-    { 0xC0, 0x13f },
-    { 0xC1, 0x140 },
-    { 0xC2, 0x141 },
-    { 0xC3, 0x142 },
-    { 0xC4, 0x143 },
-    { 0xC5, 0x144 },
-    { 0xC6, 0x145 },
-    { 0xC7, 0x146 },
-    { 0xC8, 0x147 },
-    { 0xC9, 0x148 },
-    { 0xCA, 0x149 },
-    { 0xCB, 0x14A },
-    { 0xCC, 0x14B },
-    { 0xCD, 0x14C },
-    { 0xCE, 0x14D },
-    { 0xcf, 0x14E },
-    { 0xD0, 0x14f },
-    { 0xD1, 0x150 },
-    { 0xD2, 0x151 },
-    { 0xD3, 0x152 },
-    { 0xD4, 0x153 },
-    { 0xD5, 0x154 },
-    { 0xD6, 0x155 },
-    { 0xD7, 0x156 },
-    { 0xD8, 0x157 },
-    { 0xD9, 0x158 },
-    { 0xDA, 0x159 },
-    { 0xDB, 0x15A },
-    { 0xDC, 0x15B },
-    { 0xDD, 0x15C },
-    { 0xDE, 0x15D },
-    { 0xdf, 0x15E },
-    { 0x11f, 0x11f },
-    { 0xf6, 0x1C4 },
-    { 0x163, 0x163 },
-    { 0x175, 0x175 },
-    { 0x17B, 0x17B },
-    { 0x183, 0x183 },
-    { 0x195, 0x195 },
-    { 0x19B, 0x19B }
+    { CHAR_WIDE_0, CHAR_0 },
+    { CHAR_WIDE_1, CHAR_1 },
+    { CHAR_WIDE_2, CHAR_2 },
+    { CHAR_WIDE_3, CHAR_3 },
+    { CHAR_WIDE_4, CHAR_4 },
+    { CHAR_WIDE_5, CHAR_5 },
+    { CHAR_WIDE_6, CHAR_6 },
+    { CHAR_WIDE_7, CHAR_7 },
+    { CHAR_WIDE_8, CHAR_8 },
+    { CHAR_WIDE_9, CHAR_9 },
+    { CHAR_WIDE_EXCLAMATION, CHAR_EXCLAMATION },
+    { CHAR_WIDE_QUESTION, CHAR_QUESTION },
+    { CHAR_JP_PERIOD, CHAR_PERIOD },
+    { CHAR_WIDE_MINUS, CHAR_MINUS },
+    { CHAR_JP_DOT, CHAR_DOT },
+    { CHAR_JP_ELLIPSIS, CHAR_ELLPSIS },
+    { CHAR_JP_DOUBLE_QUOTE_OPEN, CHAR_JP_DOUBLE_QUOTE_OPEN },
+    { CHAR_JP_DOUBLE_QUOTE_CLOSE, CHAR_JP_DOUBLE_QUOTE_CLOSE },
+    { CHAR_JP_SINGLE_QUOTE_OPEN, CHAR_SINGLE_QUOTE_OPEN },
+    { CHAR_JP_SINGLE_QUOTE_CLOSE, CHAR_SINGLE_QUOTE_CLOSE },
+    { CHAR_WIDE_MALE, CHAR_MALE },
+    { CHAR_WIDE_FEMALE, CHAR_FEMALE },
+    { CHAR_YEN, CHAR_YEN },
+    { CHAR_JP_COMMA, CHAR_COMMA },
+    { CHAR_WIDE_MULTIPLY, CHAR_MULTIPLY },
+    { CHAR_WIDE_SLASH, CHAR_SLASH },
+    { CHAR_WIDE_A, CHAR_A },
+    { CHAR_WIDE_B, CHAR_B },
+    { CHAR_WIDE_C, CHAR_C },
+    { CHAR_WIDE_D, CHAR_D },
+    { CHAR_WIDE_E, CHAR_E },
+    { CHAR_WIDE_F, CHAR_F },
+    { CHAR_WIDE_G, CHAR_G },
+    { CHAR_WIDE_H, CHAR_H },
+    { CHAR_WIDE_I, CHAR_I },
+    { CHAR_WIDE_J, CHAR_J },
+    { CHAR_WIDE_K, CHAR_K },
+    { CHAR_WIDE_L, CHAR_L },
+    { CHAR_WIDE_M, CHAR_M },
+    { CHAR_WIDE_N, CHAR_N },
+    { CHAR_WIDE_O, CHAR_O },
+    { CHAR_WIDE_P, CHAR_P },
+    { CHAR_WIDE_Q, CHAR_Q },
+    { CHAR_WIDE_R, CHAR_R },
+    { CHAR_WIDE_S, CHAR_S },
+    { CHAR_WIDE_T, CHAR_T },
+    { CHAR_WIDE_U, CHAR_U },
+    { CHAR_WIDE_V, CHAR_V },
+    { CHAR_WIDE_W, CHAR_W },
+    { CHAR_WIDE_X, CHAR_X },
+    { CHAR_WIDE_Y, CHAR_Y },
+    { CHAR_WIDE_Z, CHAR_Z },
+    { CHAR_WIDE_a, CHAR_a },
+    { CHAR_WIDE_b, CHAR_b },
+    { CHAR_WIDE_c, CHAR_c },
+    { CHAR_WIDE_d, CHAR_d },
+    { CHAR_WIDE_e, CHAR_e },
+    { CHAR_WIDE_f, CHAR_f },
+    { CHAR_WIDE_g, CHAR_g },
+    { CHAR_WIDE_h, CHAR_h },
+    { CHAR_WIDE_i, CHAR_i },
+    { CHAR_WIDE_j, CHAR_j },
+    { CHAR_WIDE_k, CHAR_k },
+    { CHAR_WIDE_l, CHAR_l },
+    { CHAR_WIDE_m, CHAR_m },
+    { CHAR_WIDE_n, CHAR_n },
+    { CHAR_WIDE_o, CHAR_o },
+    { CHAR_WIDE_p, CHAR_p },
+    { CHAR_WIDE_q, CHAR_q },
+    { CHAR_WIDE_r, CHAR_r },
+    { CHAR_WIDE_s, CHAR_s },
+    { CHAR_WIDE_t, CHAR_t },
+    { CHAR_WIDE_u, CHAR_u },
+    { CHAR_WIDE_v, CHAR_v },
+    { CHAR_WIDE_w, CHAR_w },
+    { CHAR_WIDE_x, CHAR_x },
+    { CHAR_WIDE_y, CHAR_y },
+    { CHAR_WIDE_z, CHAR_z },
+    { CHAR_ARROW_MENU, CHAR_ARROW_MENU },
+    { CHAR_WIDE_COLON, CHAR_COLON },
+    { CHAR_A_DIERESIS, CHAR_A_DIERESIS },
+    { CHAR_O_DIERSIS, CHAR_O_DIERSIS },
+    { CHAR_U_DIERESIS, CHAR_U_DIERESIS },
+    { CHAR_a_DIERESIS, CHAR_a_DIERESIS },
+    { CHAR_o_DIERSIS, CHAR_o_DIERSIS },
+    { CHAR_u_DIERESIS, CHAR_u_DIERESIS }
 };
 
-static u16 ov97_022392E4(u32 language)
+static u16 GetSpaceChar(u32 language)
 {
-    return (language == JAPANESE) ? 0x1 : 0x1de;
+    return (language == JAPANESE) ? CHAR_WIDE_SPACE : CHAR_SPACE;
 }
 
-static u16 ov97_022392F8(u32 language)
+static u16 GetDoubleQuoteOpenChar(u32 language)
 {
     switch (language) {
     case JAPANESE:
     default:
-        return 0xea;
+        return CHAR_JP_DOUBLE_QUOTE_OPEN;
     case ENGLISH:
     case ITALIAN:
     case SPANISH:
-        return 0x1b4;
+        return CHAR_DOUBLE_QUOTE_OPEN;
     case FRENCH:
-        return 0x1b7;
+        return CHAR_DOUBLE_PAREN_OPEN;
     case GERMAN:
-        return 0x1b6;
+        return CHAR_DOUBLE_QUOTE_CLOSE_INVERTED;
     }
 }
 
-static u16 ov97_02239334(u32 language)
+static u16 GetDoubleQuoteCloseChar(u32 language)
 {
     switch (language) {
     case JAPANESE:
     default:
-        return 0xeb;
+        return CHAR_JP_DOUBLE_QUOTE_CLOSE;
     case ENGLISH:
     case ITALIAN:
     case SPANISH:
-        return 0x1b5;
+        return CHAR_DOUBLE_QUOTE_CLOSE;
     case FRENCH:
-        return 0x1b8;
+        return CHAR_DOUBLE_PAREN_CLOSE;
     case GERMAN:
-        return 0x1b4;
+        return CHAR_DOUBLE_QUOTE_OPEN;
     }
 }
 
 BOOL GBAStringToDSString(const u8 *src, u16 *dst, u32 length, u32 language)
 {
-    u32 i, v1;
+    u32 i, nonJap;
 
-    v1 = (language != JAPANESE);
+    nonJap = (language != JAPANESE);
 
     for (i = 0; i < (length - 1); i++) {
         if (src[i] == 0xff) {
             break;
         }
 
-        if (src[i] >= NELEMS(Unk_ov97_0223DAE8)) {
-            int v2, v3;
+        if (src[i] >= NELEMS(sGBACharToDSChars)) {
+            int j, v3;
 
             v3 = ((length - 1) < 10) ? (length - 1) : 10;
 
-            for (v2 = 0; v2 < v3; v2++) {
-                dst[v2] = 0x1ac;
+            for (j = 0; j < v3; j++) {
+                dst[j] = CHAR_QUESTION;
             }
 
-            dst[v2] = 0xffff;
-            return 0;
+            dst[j] = CHAR_EOS;
+            return FALSE;
         }
 
-        switch (Unk_ov97_0223DAE8[src[i]][v1]) {
-        case 0x1:
-            dst[i] = ov97_022392E4(language);
+        switch (sGBACharToDSChars[src[i]][nonJap]) {
+        case CHAR_WIDE_SPACE:
+            dst[i] = GetSpaceChar(language);
             break;
-        case 0xea:
-            dst[i] = ov97_022392F8(language);
+        case CHAR_JP_DOUBLE_QUOTE_OPEN:
+            dst[i] = GetDoubleQuoteOpenChar(language);
             break;
-        case 0xeb:
-            dst[i] = ov97_02239334(language);
+        case CHAR_JP_DOUBLE_QUOTE_CLOSE:
+            dst[i] = GetDoubleQuoteCloseChar(language);
             break;
         default:
-            dst[i] = Unk_ov97_0223DAE8[src[i]][v1];
+            dst[i] = sGBACharToDSChars[src[i]][nonJap];
             break;
         }
     }
 
-    dst[i] = 0xffff;
-    return 1;
+    dst[i] = CHAR_EOS;
+    return TRUE;
 }

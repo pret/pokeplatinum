@@ -203,7 +203,7 @@ static BOOL ov97_0222AE64(UnkStruct_0222AE60 *param0)
 
 static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
 {
-    int v0;
+    int gbaVersion;
     int v1 = ov97_02235D2C(NULL);
 
     param0->unk_24 = 0;
@@ -212,33 +212,33 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
         return;
     }
 
-    v0 = 0;
+    gbaVersion = VERSION_NONE;
 
     switch (ov97_02235DB0()) {
     case 0:
-        v0 = 2;
+        gbaVersion = VERSION_RUBY;
         break;
     case 1:
-        v0 = 1;
+        gbaVersion = VERSION_SAPPHIRE;
         break;
     case 2:
-        v0 = 5;
+        gbaVersion = VERSION_LEAFGREEN;
         break;
     case 3:
-        v0 = 4;
+        gbaVersion = VERSION_FIRERED;
         break;
     case 4:
-        v0 = 3;
+        gbaVersion = VERSION_EMERALD;
         break;
     }
 
-    SetGBACartridgeVersion(v0);
+    SetGBACartridgeVersion(gbaVersion);
 
     if (Pokedex_IsNationalDexObtained(param0->unk_08) == FALSE) {
         return;
     }
 
-    if (ov97_02235DBC() != gGameLanguage) {
+    if (GBACart_GetLanguage() != gGameLanguage) {
         return;
     }
 

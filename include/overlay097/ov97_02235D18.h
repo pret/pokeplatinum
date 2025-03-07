@@ -6,7 +6,7 @@
 int ov97_02235D2C(void *param0);
 void ov97_02235DA4(void);
 int ov97_02235DB0(void);
-int ov97_02235DBC(void);
+int GBACart_GetLanguage(void);
 int ov97_022360D8(void);
 BOOL ov97_02236280(void);
 int ov97_022362C8(void);

@@ -192,29 +192,29 @@ static int sGBAHMMoves[] = {
 
 static int sMigrateFromGBAGameMessageIDs[] = {
     NULL,
-    [SAPPHIRE] = migrate_from_gba_from_sapphire,
-    [RUBY] = migrate_from_gba_from_ruby,
-    [EMERALD] = migrate_from_gba_from_emerald,
-    [FIRERED] = migrate_from_gba_from_firered,
-    [LEAFGREEN] = migrate_from_gba_from_leafgreen,
+    [VERSION_SAPPHIRE] = migrate_from_gba_from_sapphire,
+    [VERSION_RUBY] = migrate_from_gba_from_ruby,
+    [VERSION_EMERALD] = migrate_from_gba_from_emerald,
+    [VERSION_FIRERED] = migrate_from_gba_from_firered,
+    [VERSION_LEAFGREEN] = migrate_from_gba_from_leafgreen,
 };
 
 static int sSavingOnGBAGameAndPlatinumMessageIDs[] = {
     NULL,
-    [SAPPHIRE] = migrate_from_gba_saving_on_sapphire_and_platinum,
-    [RUBY] = migrate_from_gba_saving_on_ruby_and_platinum,
-    [EMERALD] = migrate_from_gba_saving_on_emerald_and_platinum,
-    [FIRERED] = migrate_from_gba_saving_on_firered_and_platinum,
-    [LEAFGREEN] = migrate_from_gba_saving_on_leafgreen_and_platinum,
+    [VERSION_SAPPHIRE] = migrate_from_gba_saving_on_sapphire_and_platinum,
+    [VERSION_RUBY] = migrate_from_gba_saving_on_ruby_and_platinum,
+    [VERSION_EMERALD] = migrate_from_gba_saving_on_emerald_and_platinum,
+    [VERSION_FIRERED] = migrate_from_gba_saving_on_firered_and_platinum,
+    [VERSION_LEAFGREEN] = migrate_from_gba_saving_on_leafgreen_and_platinum,
 };
 
 static u8 sGBAGameRectPalettes[] = {
     0x0,
-    [SAPPHIRE] = 0x2,
-    [RUBY] = 0x1,
-    [EMERALD] = 0x3,
-    [FIRERED] = 0x4,
-    [LEAFGREEN] = 0x5,
+    [VERSION_SAPPHIRE] = 0x2,
+    [VERSION_RUBY] = 0x1,
+    [VERSION_EMERALD] = 0x3,
+    [VERSION_FIRERED] = 0x4,
+    [VERSION_LEAFGREEN] = 0x5,
 };
 
 static int Unk_ov97_0223EAB8[] = {
@@ -247,19 +247,19 @@ static void ov97_02233B44(GBAMigrator *migrator)
 {
     switch (ov97_02235DB0()) {
     case 0:
-        migrator->gbaVersion = RUBY;
+        migrator->gbaVersion = VERSION_RUBY;
         break;
     case 1:
-        migrator->gbaVersion = SAPPHIRE;
+        migrator->gbaVersion = VERSION_SAPPHIRE;
         break;
     case 2:
-        migrator->gbaVersion = LEAFGREEN;
+        migrator->gbaVersion = VERSION_LEAFGREEN;
         break;
     case 3:
-        migrator->gbaVersion = FIRERED;
+        migrator->gbaVersion = VERSION_FIRERED;
         break;
     case 4:
-        migrator->gbaVersion = EMERALD;
+        migrator->gbaVersion = VERSION_EMERALD;
         break;
     default:
         migrator->gbaVersion = -1;
@@ -627,17 +627,17 @@ static u8 GetSpeciesGBAForm(int speciesNDS, u32 personality, int gbaVersion)
     case SPECIES_DEOXYS:
         switch (gbaVersion) {
         default:
-        case RUBY:
-        case SAPPHIRE:
+        case VERSION_RUBY:
+        case VERSION_SAPPHIRE:
             form = 0;
             break;
-        case FIRERED:
+        case VERSION_FIRERED:
             form = 1;
             break;
-        case LEAFGREEN:
+        case VERSION_LEAFGREEN:
             form = 2;
             break;
-        case EMERALD:
+        case VERSION_EMERALD:
             form = 3;
             break;
         }
@@ -1143,7 +1143,7 @@ static void ov97_02234A2C(GBAMigrator *migrator, int param1)
     v0.unk_2C = TEXT_COLOR(1, 2, 0);
     v0.unk_20 = 0xA0;
 
-    GBAStringToDSString(migrator->pokemonStorage->boxNames[param1], boxName, GBA_BOX_NAME_LEN + 1, ov97_02235DBC());
+    GBAStringToDSString(migrator->pokemonStorage->boxNames[param1], boxName, GBA_BOX_NAME_LEN + 1, GBACart_GetLanguage());
     v0.unk_38 = boxName;
     ov97_02233DD0(migrator, &v0, 0x1);
 }
@@ -1453,7 +1453,7 @@ static void ov97_02234ECC(GBAMigrator *migrator)
 
 static void ov97_02234F88(GBAMigrator *migrator)
 {
-    int i, v1, v2, v3;
+    int i, species, isEgg, gbaVersion;
     u32 personality;
     AffineSpriteListTemplate v5;
 
@@ -1483,12 +1483,12 @@ static void ov97_02234F88(GBAMigrator *migrator)
         Sprite_SetExplicitPriority(migrator->unk_478[i], 1);
         Sprite_SetDrawFlag(migrator->unk_478[i], TRUE);
 
-        v1 = GetGBABoxMonSpeciesInBox(migrator, migrator->unk_42C[i].boxId, migrator->unk_42C[i].boxPosition);
-        v2 = IsGBABoxMonEggInBox(migrator, migrator->unk_42C[i].boxId, migrator->unk_42C[i].boxPosition);
+        species = GetGBABoxMonSpeciesInBox(migrator, migrator->unk_42C[i].boxId, migrator->unk_42C[i].boxPosition);
+        isEgg = IsGBABoxMonEggInBox(migrator, migrator->unk_42C[i].boxId, migrator->unk_42C[i].boxPosition);
         personality = GetGBABoxMonPersonalityInBox(migrator, migrator->unk_42C[i].boxId, migrator->unk_42C[i].boxPosition);
-        v3 = gSystem.gbaCartridgeVersion;
+        gbaVersion = gSystem.gbaCartridgeVersion;
 
-        ov97_02234278(v1, v2, personality, v3, i, migrator->unk_478[i]);
+        ov97_02234278(species, isEgg, personality, gbaVersion, i, migrator->unk_478[i]);
     }
 
     Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 21, migrator->bgConfig, 2, 0, 32 * 24 * 2, 1, HEAP_ID_MIGRATE_FROM_GBA);
@@ -1616,27 +1616,27 @@ static void ov97_02235310(GBAMigrator *migrator)
 static void ov97_02235344(GBAMigrator *migrator)
 {
     UnkStruct_ov97_02233DAC v0;
-    StringTemplate *v1;
-    Strbuf *v2;
-    u16 v3[7 + 1];
+    StringTemplate *strTemplate;
+    Strbuf *strBuf;
+    u16 playerName[GBA_PLAYER_NAME_LEN + 1];
 
-    GBAStringToDSString(GetGBAPlayerName(), v3, GBA_PLAYER_NAME_LEN + 1, ov97_02235DBC());
+    GBAStringToDSString(GetGBAPlayerName(), playerName, GBA_PLAYER_NAME_LEN + 1, GBACart_GetLanguage());
 
-    v1 = StringTemplate_Default(HEAP_ID_MIGRATE_FROM_GBA);
-    v2 = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_MIGRATE_FROM_GBA);
+    strTemplate = StringTemplate_Default(HEAP_ID_MIGRATE_FROM_GBA);
+    strBuf = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_MIGRATE_FROM_GBA);
 
-    Strbuf_CopyChars(v2, v3);
-    StringTemplate_SetStrbuf(v1, 1, v2, 0, 1, GAME_LANGUAGE);
+    Strbuf_CopyChars(strBuf, playerName);
+    StringTemplate_SetStrbuf(strTemplate, 1, strBuf, 0, 1, GAME_LANGUAGE);
 
     ov97_02234ECC(migrator);
 
     migrator->unk_490.messageEntryID = sMigrateFromGBAGameMessageIDs[migrator->gbaVersion];
-    migrator->unk_490.unk_40 = v1;
+    migrator->unk_490.unk_40 = strTemplate;
 
     ov97_02233DD0(migrator, &migrator->unk_490, 0x8 | 0x10);
 
-    Strbuf_Free(v2);
-    StringTemplate_Free(v1);
+    Strbuf_Free(strBuf);
+    StringTemplate_Free(strTemplate);
 
     ov97_02235310(migrator);
 }
