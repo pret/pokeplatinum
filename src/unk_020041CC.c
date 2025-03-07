@@ -182,10 +182,10 @@ int sub_0200426C(u8 param0)
     case 17:
     case 20:
     case 23:
-        v0 = sub_02004050(1);
+        v0 = SoundSystem_LoadSoundGroup(1);
         break;
     case 19:
-        v0 = sub_02004050(1);
+        v0 = SoundSystem_LoadSoundGroup(1);
 
         sub_02004080(1399, NNS_SND_ARC_LOAD_SEQ);
         sub_02004080(1401, NNS_SND_ARC_LOAD_SEQ);
@@ -210,63 +210,63 @@ int sub_0200426C(u8 param0)
         sub_02004080(1385, NNS_SND_ARC_LOAD_SEQ);
         break;
     case 14:
-        v0 = sub_02004050(14);
+        v0 = SoundSystem_LoadSoundGroup(14);
         break;
     case 2:
     case 13:
-        v0 = sub_02004050(2);
+        v0 = SoundSystem_LoadSoundGroup(2);
         break;
     case 18:
-        v0 = sub_02004050(2);
+        v0 = SoundSystem_LoadSoundGroup(2);
         break;
     case 21:
         v0 = sub_020040B4(770);
         v0 = sub_0200409C(770);
         break;
     case 3:
-        v0 = sub_02004050(13);
+        v0 = SoundSystem_LoadSoundGroup(13);
         break;
     case 4:
     case 22:
-        v0 = sub_02004050(1);
+        v0 = SoundSystem_LoadSoundGroup(1);
         break;
     case 5:
-        v0 = sub_02004050(2);
+        v0 = SoundSystem_LoadSoundGroup(2);
         break;
     case 11:
-        v0 = sub_02004050(1);
+        v0 = SoundSystem_LoadSoundGroup(1);
         break;
     case 6:
-        v0 = sub_02004050(11);
+        v0 = SoundSystem_LoadSoundGroup(11);
         break;
     case 8:
-        v0 = sub_02004050(1);
+        v0 = SoundSystem_LoadSoundGroup(1);
         break;
     case 12:
-        v0 = sub_02004050(14);
+        v0 = SoundSystem_LoadSoundGroup(14);
         break;
     case 16:
-        v0 = sub_02004050(1);
-        v0 = sub_02004050(8);
+        v0 = SoundSystem_LoadSoundGroup(1);
+        v0 = SoundSystem_LoadSoundGroup(8);
         break;
     case 15:
-        v0 = sub_02004050(1);
+        v0 = SoundSystem_LoadSoundGroup(1);
         break;
     case 51:
-        v0 = sub_02004050(3);
+        v0 = SoundSystem_LoadSoundGroup(3);
         break;
     case 66:
-        v0 = sub_02004050(6);
+        v0 = SoundSystem_LoadSoundGroup(6);
         break;
     case 52:
-        v0 = sub_02004050(5);
+        v0 = SoundSystem_LoadSoundGroup(5);
         break;
     case 7:
     case 53:
-        v0 = sub_02004050(9);
+        v0 = SoundSystem_LoadSoundGroup(9);
         break;
     case 54:
-        v0 = sub_02004050(10);
+        v0 = SoundSystem_LoadSoundGroup(10);
         break;
     case 55:
     case 67:
@@ -274,28 +274,28 @@ int sub_0200426C(u8 param0)
         v0 = sub_0200409C(759);
         break;
     case 56:
-        v0 = sub_02004050(12);
+        v0 = SoundSystem_LoadSoundGroup(12);
         break;
     case 57:
-        v0 = sub_02004050(7);
+        v0 = SoundSystem_LoadSoundGroup(7);
         break;
     case 58:
-        v0 = sub_02004050(8);
+        v0 = SoundSystem_LoadSoundGroup(8);
         break;
     case 59:
-        v0 = sub_02004050(15);
+        v0 = SoundSystem_LoadSoundGroup(15);
         break;
     case 60:
-        v0 = sub_02004050(3);
+        v0 = SoundSystem_LoadSoundGroup(3);
         break;
     case 61:
-        v0 = sub_02004050(5);
+        v0 = SoundSystem_LoadSoundGroup(5);
         break;
     case 62:
-        v0 = sub_02004050(15);
+        v0 = SoundSystem_LoadSoundGroup(15);
         break;
     case 63:
-        v0 = sub_02004050(4);
+        v0 = SoundSystem_LoadSoundGroup(4);
         break;
     case 64:
         v0 = sub_020040B4(767);
