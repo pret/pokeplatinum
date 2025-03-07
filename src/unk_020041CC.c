@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02003D54_decl.h"
 #include "struct_defs/struct_02004CB4.h"
 #include "struct_defs/struct_020052C8.h"
 
@@ -585,7 +584,7 @@ static void sub_02004930(u8 param0, u16 param1, int param2)
 void sub_02004950(u16 param0)
 {
     int v0;
-    UnkStruct_02003D54 *v1 = sub_02003D54();
+    SoundSystem *v1 = sub_02003D54();
 
     sub_0200540C();
 
@@ -602,7 +601,7 @@ void sub_02004964(void)
 int sub_02004974(int param0)
 {
     int *v0;
-    UnkStruct_02003D54 *v1 = sub_02003D54();
+    SoundSystem *v1 = sub_02003D54();
 
     if (param0 >= 7) {
         GF_ASSERT(FALSE);
@@ -811,7 +810,7 @@ MICResult sub_02004B5C(MICAutoParam *param0)
 MICResult sub_02004B64(void)
 {
     MICResult v0;
-    UnkStruct_02003D54 *v1 = sub_02003D54();
+    SoundSystem *v1 = sub_02003D54();
 
     v0 = MIC_StopAutoSampling();
 
@@ -837,7 +836,7 @@ MICResult sub_02004B70(MICSamplingType param0, void *param1, MICCallback param2,
 
 NNSSndWaveOutHandle *sub_02004B78(u32 param0)
 {
-    UnkStruct_02003D54 *v0 = sub_02003D54();
+    SoundSystem *v0 = sub_02003D54();
     u8 *v1 = sub_02003D5C(16);
     u8 *v2 = sub_02003D5C(17);
 
@@ -865,7 +864,7 @@ BOOL sub_02004BCC(u32 param0)
     u8 *v0;
     u8 *v1;
     NNSSndWaveOutHandle *v2;
-    UnkStruct_02003D54 *v3 = sub_02003D54();
+    SoundSystem *v3 = sub_02003D54();
 
     v0 = sub_02003D5C(16);
     v1 = sub_02003D5C(17);
@@ -908,7 +907,7 @@ BOOL sub_02004BCC(u32 param0)
 void sub_02004C4C(u32 param0)
 {
     NNSSndWaveOutHandle *v0;
-    UnkStruct_02003D54 *v1 = sub_02003D54();
+    SoundSystem *v1 = sub_02003D54();
     u8 *v2 = sub_02003D5C(16);
     u8 *v3 = sub_02003D5C(17);
 
@@ -997,7 +996,7 @@ BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int heapID)
     const NNSSndArcWaveArcInfo *v1;
     u32 v2;
     int v3, v4;
-    UnkStruct_02003D54 *v5 = sub_02003D54();
+    SoundSystem *v5 = sub_02003D54();
     void **v6 = sub_02003D5C(34);
 
     if ((param3 != 14) && (param3 != 15)) {
@@ -1079,7 +1078,7 @@ static void sub_02004E64(u8 *param0, u32 param1)
 
 void sub_02004E84(u32 param0)
 {
-    UnkStruct_02003D54 *v0 = sub_02003D54();
+    SoundSystem *v0 = sub_02003D54();
     u8 *v1 = sub_02003D5C(15);
     void **v2 = sub_02003D5C(34);
 
@@ -1108,7 +1107,7 @@ BOOL sub_02004EC0(void)
 
 BOOL sub_02004EC8(int param0)
 {
-    UnkStruct_02003D54 *v0 = sub_02003D54();
+    SoundSystem *v0 = sub_02003D54();
     s8 *v1 = sub_02003D5C(3);
 
     return NNS_SndCaptureStartReverb(v1, 0x1000, (NNS_SND_CAPTURE_FORMAT_PCM16), 16000, param0);
@@ -1128,7 +1127,7 @@ void sub_02004EF4(int param0, int param1)
 
 BOOL sub_02004EFC(void)
 {
-    UnkStruct_02003D54 *v1 = sub_02003D54();
+    SoundSystem *v1 = sub_02003D54();
 
     MI_CpuClear8(sub_02003D5C(4), sizeof(UnkStruct_020052C8));
     return NNS_SndCaptureStartEffect(sub_02003D5C(3), 0x1000, NNS_SND_CAPTURE_FORMAT_PCM16, 22000, 2, sub_020052C8, sub_02003D5C(4));
