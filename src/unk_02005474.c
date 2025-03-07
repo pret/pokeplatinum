@@ -108,9 +108,9 @@ static BOOL sub_02005508(u16 param0, u8 param1, int param2)
 {
     int v0;
 
-    sub_0200403C(sub_02004974(3));
+    SoundSystem_LoadHeapState(sub_02004974(3));
     sub_02004068(param0);
-    sub_02004014(sub_02003D5C(27));
+    SoundSystem_SaveHeapState(sub_02003D5C(27));
 
     v0 = NNS_SndArcPlayerStartSeq(sub_020040CC(param2), param0);
     return v0;
@@ -893,7 +893,7 @@ BOOL sub_02006150(u16 param0)
         sub_020049F4(v1, 1);
     }
 
-    sub_02004014(sub_02003D5C(29));
+    SoundSystem_SaveHeapState(sub_02003D5C(29));
 
     v2 = sub_02004080(param0, (NNS_SND_ARC_LOAD_SEQ | NNS_SND_ARC_LOAD_BANK));
     v2 = NNS_SndArcPlayerStartSeq(sub_020040CC(2), param0);
@@ -925,7 +925,7 @@ static void sub_020061C8(int param0)
     u16 v2;
 
     NNS_SndPlayerStopSeq(sub_020040CC(2), param0);
-    sub_0200403C(sub_02004974(6));
+    SoundSystem_LoadHeapState(sub_02004974(6));
 
     return;
 }

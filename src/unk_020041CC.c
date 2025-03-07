@@ -410,10 +410,10 @@ static void sub_020046CC(u8 param0)
 {
     int *v0 = sub_02003D5C(24);
 
-    sub_0200403C(*v0);
-    sub_02004014(sub_02003D5C(25));
+    SoundSystem_LoadHeapState(*v0);
+    SoundSystem_SaveHeapState(sub_02003D5C(25));
     sub_0200426C(param0);
-    sub_02004014(sub_02003D5C(26));
+    SoundSystem_SaveHeapState(sub_02003D5C(26));
 
     return;
 }
@@ -445,9 +445,9 @@ static void sub_020046F8(u16 param0, int param1)
     }
 
     if (*v3 == 1) {
-        sub_0200403C(sub_02004974(2));
+        SoundSystem_LoadHeapState(sub_02004974(2));
         sub_0200426C(4);
-        sub_02004014(sub_02003D5C(26));
+        SoundSystem_SaveHeapState(sub_02003D5C(26));
 
         if (v1 != param0) {
             sub_020049F4(1, 0);
@@ -474,7 +474,7 @@ static void sub_0200478C(u16 param0, u16 param1)
         sub_02004080(*v0, NNS_SND_ARC_LOAD_WAVE | NNS_SND_ARC_LOAD_BANK);
     }
 
-    sub_02004014(sub_02003D5C(27));
+    SoundSystem_SaveHeapState(sub_02003D5C(27));
     sub_020049F4(1, 0);
     sub_0200560C(127, 40, 0);
     sub_0200501C(0);
@@ -489,12 +489,12 @@ void sub_020047E8(u16 param0, u16 param1)
     u16 *v2 = sub_02003D5C(32);
 
     if ((*v1 == 1) || (param1 == 0)) {
-        sub_0200403C(sub_02004974(1));
+        SoundSystem_LoadHeapState(sub_02004974(1));
         sub_02004258(0);
         sub_02004080(*v2, NNS_SND_ARC_LOAD_BANK);
-        sub_02004014(sub_02003D5C(25));
+        SoundSystem_SaveHeapState(sub_02003D5C(25));
         sub_0200426C(4);
-        sub_02004014(sub_02003D5C(26));
+        SoundSystem_SaveHeapState(sub_02003D5C(26));
 
         v0 = sub_02004B48(*v2);
 
@@ -505,7 +505,7 @@ void sub_020047E8(u16 param0, u16 param1)
             sub_02004080(*v2, NNS_SND_ARC_LOAD_WAVE);
         }
 
-        sub_02004014(sub_02003D5C(27));
+        SoundSystem_SaveHeapState(sub_02003D5C(27));
     }
 
     return;
@@ -516,9 +516,9 @@ static void sub_02004874(u16 param0, int param1)
     int *v0 = sub_02003D5C(24);
 
     sub_0200540C();
-    sub_0200403C(sub_02004974(2));
+    SoundSystem_LoadHeapState(sub_02004974(2));
     sub_0200426C(5);
-    sub_02004014(sub_02003D5C(26));
+    SoundSystem_SaveHeapState(sub_02003D5C(26));
     sub_0200501C(1);
     Sound_PlayBGM(param0);
 
@@ -565,7 +565,7 @@ static void sub_02004914(u8 param0)
 {
     sub_02004964();
     sub_0200426C(param0);
-    sub_02004014(sub_02003D5C(28));
+    SoundSystem_SaveHeapState(sub_02003D5C(28));
 
     return;
 }
@@ -584,7 +584,7 @@ static void sub_02004930(u8 param0, u16 param1, int param2)
 void sub_02004950(u16 param0)
 {
     int v0;
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
 
     sub_0200540C();
 
@@ -594,14 +594,14 @@ void sub_02004950(u16 param0)
 
 void sub_02004964(void)
 {
-    sub_0200403C(sub_02004974(4));
+    SoundSystem_LoadHeapState(sub_02004974(4));
     return;
 }
 
 int sub_02004974(int param0)
 {
     int *v0;
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
 
     if (param0 >= 7) {
         GF_ASSERT(FALSE);
@@ -810,7 +810,7 @@ MICResult sub_02004B5C(MICAutoParam *param0)
 MICResult sub_02004B64(void)
 {
     MICResult v0;
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
 
     v0 = MIC_StopAutoSampling();
 
@@ -836,7 +836,7 @@ MICResult sub_02004B70(MICSamplingType param0, void *param1, MICCallback param2,
 
 NNSSndWaveOutHandle *sub_02004B78(u32 param0)
 {
-    SoundSystem *v0 = sub_02003D54();
+    SoundSystem *v0 = SoundSystem_Get();
     u8 *v1 = sub_02003D5C(16);
     u8 *v2 = sub_02003D5C(17);
 
@@ -864,7 +864,7 @@ BOOL sub_02004BCC(u32 param0)
     u8 *v0;
     u8 *v1;
     NNSSndWaveOutHandle *v2;
-    SoundSystem *v3 = sub_02003D54();
+    SoundSystem *v3 = SoundSystem_Get();
 
     v0 = sub_02003D5C(16);
     v1 = sub_02003D5C(17);
@@ -907,7 +907,7 @@ BOOL sub_02004BCC(u32 param0)
 void sub_02004C4C(u32 param0)
 {
     NNSSndWaveOutHandle *v0;
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
     u8 *v2 = sub_02003D5C(16);
     u8 *v3 = sub_02003D5C(17);
 
@@ -996,7 +996,7 @@ BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int heapID)
     const NNSSndArcWaveArcInfo *v1;
     u32 v2;
     int v3, v4;
-    SoundSystem *v5 = sub_02003D54();
+    SoundSystem *v5 = SoundSystem_Get();
     void **v6 = sub_02003D5C(34);
 
     if ((param3 != 14) && (param3 != 15)) {
@@ -1078,7 +1078,7 @@ static void sub_02004E64(u8 *param0, u32 param1)
 
 void sub_02004E84(u32 param0)
 {
-    SoundSystem *v0 = sub_02003D54();
+    SoundSystem *v0 = SoundSystem_Get();
     u8 *v1 = sub_02003D5C(15);
     void **v2 = sub_02003D5C(34);
 
@@ -1107,7 +1107,7 @@ BOOL sub_02004EC0(void)
 
 BOOL sub_02004EC8(int param0)
 {
-    SoundSystem *v0 = sub_02003D54();
+    SoundSystem *v0 = SoundSystem_Get();
     s8 *v1 = sub_02003D5C(3);
 
     return NNS_SndCaptureStartReverb(v1, 0x1000, (NNS_SND_CAPTURE_FORMAT_PCM16), 16000, param0);
@@ -1127,7 +1127,7 @@ void sub_02004EF4(int param0, int param1)
 
 BOOL sub_02004EFC(void)
 {
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
 
     MI_CpuClear8(sub_02003D5C(4), sizeof(UnkStruct_020052C8));
     return NNS_SndCaptureStartEffect(sub_02003D5C(3), 0x1000, NNS_SND_CAPTURE_FORMAT_PCM16, 22000, 2, sub_020052C8, sub_02003D5C(4));
@@ -1295,7 +1295,7 @@ const SNDWaveData *sub_020050F8(int param0)
 {
     u16 v0;
 
-    sub_0200403C(sub_02004974(5));
+    SoundSystem_LoadHeapState(sub_02004974(5));
 
     v0 = param0;
 
