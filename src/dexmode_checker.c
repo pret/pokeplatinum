@@ -19,18 +19,10 @@ u32 IsNationalDexObtained(const Pokedex *dex)
 {
     BOOL isNationalDexObtained = Pokedex_IsNationalDexObtained(dex);
 
-    if (isNationalDexObtained == 1) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return isNationalDexObtained == 1;
 }
 
 u32 GetDexNumber(u32 isNationalDexObtained, u32 monSpecies)
 {
-    if (isNationalDexObtained == 0) {
-        return Pokemon_SinnohDexNumber(monSpecies);
-    }
-
-    return monSpecies;
+    return isNationalDexObtained == 0 ? Pokemon_SinnohDexNumber(monSpecies) : monSpecies;
 }
