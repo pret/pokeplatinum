@@ -109,12 +109,11 @@ int GetPalParkTransferMonCount(const PalParkTransfer *transferData)
 
 int sub_0202F050(const PalParkTransfer *transferData, u32 gbaTrainerId)
 {
-    int v0;
     s64 v1 = GetTimestamp();
 
-    for (v0 = 0; v0 < 20; v0++) {
-        if (transferData->unk_288[v0] == gbaTrainerId) {
-            return v1 - transferData->unk_2D8[v0];
+    for (int i = 0; i < 20; i++) {
+        if (transferData->unk_288[i] == gbaTrainerId) {
+            return v1 - transferData->unk_2D8[i];
         }
     }
 

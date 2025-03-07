@@ -360,7 +360,7 @@ void ov104_0222E134(SaveData *param0, Pokemon *param1)
     Pokemon_UpdateAfterCatch(param1, SaveData_GetTrainerInfo(param0), 4, 0, 0, 11);
 
     v3 = MapHeader_GetMapLabelTextID(562);
-    sub_0209304C(param1, v5, v4, v3, 11);
+    UpdateMonStatusAndTrainerInfo(param1, v5, v4, v3, HEAP_ID_FIELDMAP);
 
     v2 = MessageLoader_Init(0, 26, 363, HEAP_ID_FIELDMAP);
     v1 = MessageLoader_GetNewStrbuf(v2, 0);

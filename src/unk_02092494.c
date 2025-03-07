@@ -747,9 +747,9 @@ static int DeterminePokemonStatus(Pokemon *param0, BOOL param1, int param2)
     return v0;
 }
 
-void sub_0209304C(Pokemon *param0, TrainerInfo *param1, int param2, int param3, int param4)
+void UpdateMonStatusAndTrainerInfo(Pokemon *mon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID)
 {
-    UpdateBoxMonStatusAndTrainerInfo(&param0->box, param1, param2, param3, param4);
+    UpdateBoxMonStatusAndTrainerInfo(&mon->box, trainerInfo, sel, metLocation, heapID);
 }
 
 void UpdateBoxMonStatusAndTrainerInfo(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int sel, int metLocation, int heapID)

@@ -145,7 +145,7 @@ static void NpcTrade_CreateMon(Pokemon *mon, NpcTradeMon *npcTradeMon, u32 level
     Pokemon_SetValue(mon, MON_DATA_OT_GENDER, &npcTradeMon->otGender);
     Pokemon_SetValue(mon, MON_DATA_LANGUAGE, &npcTradeMon->language);
 
-    sub_0209304C(mon, NULL, 1, MapHeader_GetMapLabelTextID(mapID), heapID);
+    UpdateMonStatusAndTrainerInfo(mon, NULL, 1, MapHeader_GetMapLabelTextID(mapID), heapID);
     Pokemon_CalcLevelAndStats(mon);
 
     GF_ASSERT(!Pokemon_IsShiny(mon));
