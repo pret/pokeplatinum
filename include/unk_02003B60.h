@@ -3,17 +3,22 @@
 
 #include <nnsys.h>
 
+#include "sys_task.h"
+#include "struct_defs/struct_020052C8.h"
 #include "struct_defs/chatot_cry.h"
 #include "game_options.h"
 
+#define SOUND_SYSTEM_HEAP_SIZE              0xBBC00 // ~750kB
+#define SOUND_SYSTEM_CAPTURE_BUFFER_SIZE    0x1000
+
 typedef struct SoundSystem {
-    NNSSndArc unk_00;
-    NNSSndHeapHandle unk_F8;
-    u8 unk_FC[769024];
+    NNSSndArc arc; // Only used for storage, NNS manages the arc
+    NNSSndHeapHandle heap;
+    u8 heapBuffer[SOUND_SYSTEM_HEAP_SIZE]; // Main sound heap where sound data is loaded into
     NNSSndHandle unk_BBCFC[9];
     NNSSndWaveOutHandle unk_BBD20[2];
     const NNSSndArcBankInfo *unk_BBD28;
-    u8 unk_BBD2C[4096] ATTRIBUTE_ALIGN(32);
+    u8 unk_BBD2C[SOUND_SYSTEM_CAPTURE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
     UnkStruct_020052C8 unk_BCD2C;
     u16 unk_BCD48;
     u8 unk_BCD4A;
@@ -42,7 +47,7 @@ typedef struct SoundSystem {
     void *unk_BCD8C;
     int unk_BCD90;
     SysTask *unk_BCD94;
-    ChatotCry *unk_BCD98;
+    ChatotCry *chatotCry;
     ChatotCry *unk_BCD9C[4];
     int unk_BCDAC[2];
     int unk_BCDB4[2];
@@ -54,13 +59,13 @@ typedef struct SoundSystem {
     u8 unk_BCDD3;
 } SoundSystem;
 
-void sub_02003B60(ChatotCry *param0, Options *param1);
+void SoundSystem_Init(ChatotCry *chatotCry, Options *options);
 void UpdateSound(void);
 void sub_02003D0C(int param0);
-SoundSystem *sub_02003D54(void);
+SoundSystem *SoundSystem_Get(void);
 void *sub_02003D5C(int param0);
-int sub_02004014(int *param0);
-void sub_0200403C(int param0);
+int SoundSystem_SaveHeapState(int *param0);
+void SoundSystem_LoadHeapState(int param0);
 BOOL sub_02004050(u16 param0);
 BOOL sub_02004068(u16 param0);
 BOOL sub_02004080(u16 param0, u32 param1);

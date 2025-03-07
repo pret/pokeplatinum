@@ -26,34 +26,34 @@ static SoundSystem sSoundSystem;
 static int Unk_02101DF0;
 static NNSSndCaptureOutputEffectType Unk_02101DF4;
 
-void sub_02003B60(ChatotCry *param0, Options *param1)
+void SoundSystem_Init(ChatotCry *chatotCry, Options *options)
 {
-    SoundSystem *v0 = sub_02003D54();
+    SoundSystem *soundSys = SoundSystem_Get();
 
     NNS_SndInit();
 
     sub_020041A0();
-    sub_0200413C(v0);
+    sub_0200413C(soundSys);
 
-    v0->unk_F8 = NNS_SndHeapCreate(&v0->unk_FC, sizeof(v0->unk_FC));
+    soundSys->heap = NNS_SndHeapCreate(&soundSys->heapBuffer, sizeof(soundSys->heapBuffer));
 
-    NNS_SndArcInit(&v0->unk_00, "data/sound/pl_sound_data.sdat", v0->unk_F8, 0);
-    (void)NNS_SndArcPlayerSetup(v0->unk_F8);
+    NNS_SndArcInit(&soundSys->arc, "data/sound/pl_sound_data.sdat", soundSys->heap, 0);
+    (void)NNS_SndArcPlayerSetup(soundSys->heap);
 
-    sub_02004160(v0);
-    sub_0200417C(v0);
+    sub_02004160(soundSys);
+    sub_0200417C(soundSys);
 
     Unk_02101DF4 = NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL;
-    v0->unk_BCD98 = param0;
+    soundSys->chatotCry = chatotCry;
 
-    Sound_SetPlaybackMode(param1->soundMode);
+    Sound_SetPlaybackMode(options->soundMode);
 
     return;
 }
 
 void UpdateSound(void)
 {
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
 
     if (sub_02003D28() == 0) {
         if (v1->unk_BCD4C > 0) {
@@ -82,7 +82,7 @@ void UpdateSound(void)
 static void sub_02003C64(void)
 {
     int v0;
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
 
     switch (Unk_02101DF0) {
     case 0:
@@ -126,7 +126,7 @@ static void sub_02003C64(void)
 
 void sub_02003D0C(int param0)
 {
-    SoundSystem *v0 = sub_02003D54();
+    SoundSystem *v0 = SoundSystem_Get();
 
     v0->unk_BCD48 = 0;
     Unk_02101DF0 = param0;
@@ -136,7 +136,7 @@ void sub_02003D0C(int param0)
 
 static BOOL sub_02003D28(void)
 {
-    SoundSystem *v0 = sub_02003D54();
+    SoundSystem *v0 = SoundSystem_Get();
 
     if (sub_02004B04(2) != 0) {
         return 1;
@@ -149,14 +149,14 @@ static BOOL sub_02003D28(void)
     return 0;
 }
 
-SoundSystem *sub_02003D54()
+SoundSystem *SoundSystem_Get()
 {
     return &sSoundSystem;
 }
 
 void *sub_02003D5C(int param0)
 {
-    SoundSystem *v0 = sub_02003D54();
+    SoundSystem *v0 = SoundSystem_Get();
 
     switch (param0) {
     case 5:
@@ -232,7 +232,7 @@ void *sub_02003D5C(int param0)
     case 35:
         return &v0->unk_BCD94;
     case 36:
-        return &v0->unk_BCD98;
+        return &v0->chatotCry;
     case 37:
         return &v0->unk_BCD9C[0];
     case 38:
@@ -275,80 +275,76 @@ void *sub_02003D5C(int param0)
     return NULL;
 }
 
-int sub_02004014(int *param0)
+int SoundSystem_SaveHeapState(int *heapState)
 {
-    int v0;
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *soundSys = SoundSystem_Get();
 
-    v0 = NNS_SndHeapSaveState(v1->unk_F8);
-
-    if (v0 == -1) {
+    int newState = NNS_SndHeapSaveState(soundSys->heap);
+    if (newState == -1) {
         GF_ASSERT(FALSE);
     }
 
-    if (param0 != NULL) {
-        *param0 = v0;
+    if (heapState != NULL) {
+        *heapState = newState;
     }
 
-    return v0;
+    return newState;
 }
 
-void sub_0200403C(int param0)
+void SoundSystem_LoadHeapState(int heapState)
 {
-    SoundSystem *v0 = sub_02003D54();
-
-    NNS_SndHeapLoadState(v0->unk_F8, param0);
-    return;
+    SoundSystem *soundSys = SoundSystem_Get();
+    NNS_SndHeapLoadState(soundSys->heap, heapState);
 }
 
 BOOL sub_02004050(u16 param0)
 {
     int v0;
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
 
-    v0 = NNS_SndArcLoadGroup(param0, v1->unk_F8);
+    v0 = NNS_SndArcLoadGroup(param0, v1->heap);
     return v0;
 }
 
 BOOL sub_02004068(u16 param0)
 {
     int v0;
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
 
-    v0 = NNS_SndArcLoadSeq(param0, v1->unk_F8);
+    v0 = NNS_SndArcLoadSeq(param0, v1->heap);
     return v0;
 }
 
 BOOL sub_02004080(u16 param0, u32 param1)
 {
     int v0;
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
 
-    v0 = NNS_SndArcLoadSeqEx(param0, param1, v1->unk_F8);
+    v0 = NNS_SndArcLoadSeqEx(param0, param1, v1->heap);
     return v0;
 }
 
 BOOL sub_0200409C(u16 param0)
 {
     int v0;
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
 
-    v0 = NNS_SndArcLoadWaveArc(param0, v1->unk_F8);
+    v0 = NNS_SndArcLoadWaveArc(param0, v1->heap);
     return v0;
 }
 
 BOOL sub_020040B4(u16 param0)
 {
     int v0;
-    SoundSystem *v1 = sub_02003D54();
+    SoundSystem *v1 = SoundSystem_Get();
 
-    v0 = NNS_SndArcLoadBank(param0, v1->unk_F8);
+    v0 = NNS_SndArcLoadBank(param0, v1->heap);
     return v0;
 }
 
 NNSSndHandle *sub_020040CC(int param0)
 {
-    SoundSystem *v0 = sub_02003D54();
+    SoundSystem *v0 = SoundSystem_Get();
 
     if (param0 >= 9) {
         GF_ASSERT(FALSE);
@@ -424,10 +420,10 @@ static void sub_0200417C(SoundSystem *param0)
 {
     int v0;
 
-    sub_02004014(&param0->unk_BCD68[0]);
+    SoundSystem_SaveHeapState(&param0->unk_BCD68[0]);
     v0 = sub_02004050(0);
 
-    sub_02004014(&param0->unk_BCD68[1]);
+    SoundSystem_SaveHeapState(&param0->unk_BCD68[1]);
     return;
 }
 
