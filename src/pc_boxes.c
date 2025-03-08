@@ -21,11 +21,11 @@ typedef struct PCBoxes {
     u8 unlockedWallpapers;
 } PCBoxes;
 
-static void Init(PCBoxes *pcBoxes);
+static void PCBoxes_InitInternal(PCBoxes *pcBoxes);
 
 void PCBoxes_Init(PCBoxes *pcBoxes)
 {
-    Init(pcBoxes);
+    PCBoxes_InitInternal(pcBoxes);
     SaveData_SetFullSaveRequired();
 }
 
@@ -34,7 +34,7 @@ u32 PCBoxes_SaveSize(void)
     return sizeof(PCBoxes);
 }
 
-static void Init(PCBoxes *pcBoxes)
+static void PCBoxes_InitInternal(PCBoxes *pcBoxes)
 {
     u32 box, i;
     for (box = 0; box < MAX_PC_BOXES; box++) {
