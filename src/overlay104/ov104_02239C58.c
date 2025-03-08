@@ -11,13 +11,13 @@
 #include "field/field_system.h"
 
 #include "bag.h"
+#include "dexmode_checker.h"
 #include "heap.h"
 #include "party.h"
 #include "save_player.h"
 #include "savedata.h"
 #include "unk_02028124.h"
 #include "unk_0202D778.h"
-#include "unk_0207A274.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 
@@ -200,7 +200,7 @@ static void ov104_02239FB0(UnkStruct_0209B75C *param0, UnkStruct_0209BBA4 *param
 
     param1->unk_AC->options = SaveData_Options(param1->unk_00);
     param1->unk_AC->monData = Party_GetFromSavedata(param1->unk_00);
-    param1->unk_AC->dexMode = sub_0207A274(param1->unk_00);
+    param1->unk_AC->dexMode = SaveData_GetDexMode(param1->unk_00);
     param1->unk_AC->showContest = PokemonSummaryScreen_ShowContestData(param1->unk_00);
     param1->unk_AC->dataType = SUMMARY_DATA_PARTY_MON;
     param1->unk_AC->monIndex = param1->unk_9F;

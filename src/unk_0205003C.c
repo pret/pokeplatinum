@@ -15,6 +15,7 @@
 
 #include "bag.h"
 #include "communication_system.h"
+#include "dexmode_checker.h"
 #include "field_script_context.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -30,7 +31,6 @@
 #include "unk_0203061C.h"
 #include "unk_02049D08.h"
 #include "unk_0205DFC4.h"
-#include "unk_0207A274.h"
 #include "unk_02099500.h"
 
 #include "constdata/const_020F1E88.h"
@@ -315,7 +315,7 @@ static int sub_02050498(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, in
 
     v0->options = SaveData_Options(v1);
     v0->monData = Party_GetFromSavedata(v1);
-    v0->dexMode = sub_0207A274(v1);
+    v0->dexMode = SaveData_GetDexMode(v1);
     v0->showContest = PokemonSummaryScreen_ShowContestData(v1);
     v0->dataType = 1;
     v0->monIndex = param0->unk_05;

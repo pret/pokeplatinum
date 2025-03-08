@@ -22,6 +22,7 @@
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pc_boxes.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
@@ -42,7 +43,6 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
-#include "unk_020797C8.h"
 #include "vram_transfer.h"
 
 #include "constdata/const_020F2DAC.h"
@@ -1449,7 +1449,7 @@ static void sub_02087544(UnkStruct_02087A10 *param0, OverlayManager *param1)
 
         v0 = Strbuf_Init(200, HEAP_ID_18);
         param0->unk_180 = NULL;
-        v2 = sub_0207999C(v1->unk_48);
+        v2 = PCBoxes_GetCurrentBox(v1->unk_48);
         v3 = PCBoxes_FirstEmptyBox(v1->unk_48);
 
         StringTemplate_SetPCBoxName(param0->unk_168, 1, v1->unk_48, v2);
