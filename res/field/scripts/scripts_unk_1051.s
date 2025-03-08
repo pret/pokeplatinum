@@ -60,7 +60,7 @@ _00B2:
 
 _00F3:
     GoToIfUnset 0x146, _01F4
-    ScrCmd_1B7 0x800C, 3
+    GetRandom 0x800C, 3
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01CB
     GoToIfEq 0x8008, 1, _01A2

@@ -42,7 +42,7 @@ _0068:
     GoToIfSet 0x161, _012F
     SetFlag 0x161
     Message 2
-    ScrCmd_1B7 0x800C, 10
+    GetRandom 0x800C, 10
     GoToIfEq 0x800C, 0, _0103
     GoToIfEq 0x800C, 1, _0103
     GoToIfEq 0x800C, 2, _0103

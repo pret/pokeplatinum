@@ -596,7 +596,7 @@ _07BE:
     Return
 
 _07FA:
-    ScrCmd_1B7 0x8006, 8
+    GetRandom 0x8006, 8
     CallIfEq 0x8006, 0, _09B6
     CallIfEq 0x8006, 1, _09BE
     CallIfEq 0x8006, 2, _09C6
@@ -609,7 +609,7 @@ _07FA:
     Return
 
 _0870:
-    ScrCmd_1B7 0x8006, 5
+    GetRandom 0x8006, 5
     CallIfEq 0x8006, 0, _09F6
     CallIfEq 0x8006, 1, _09FE
     CallIfEq 0x8006, 2, _0A06
@@ -619,7 +619,7 @@ _0870:
     Return
 
 _08BF:
-    ScrCmd_1B7 0x8006, 7
+    GetRandom 0x8006, 7
     CallIfEq 0x8006, 0, _0A1E
     CallIfEq 0x8006, 1, _0A26
     CallIfEq 0x8006, 2, _0A2E
@@ -631,7 +631,7 @@ _08BF:
     Return
 
 _0928:
-    ScrCmd_1B7 0x8006, 6
+    GetRandom 0x8006, 6
     CallIfEq 0x8006, 0, _0A56
     CallIfEq 0x8006, 1, _0A5E
     CallIfEq 0x8006, 2, _0A66

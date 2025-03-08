@@ -49,7 +49,7 @@ _0081:
 _00AE:
     BufferSpeciesNameFromVar 0, 0x40E5, 0, 0
     Message 4
-    ScrCmd_1B7 0x800C, 12
+    GetRandom 0x800C, 12
     CallIfEq 0x800C, 0, _0189
     CallIfEq 0x800C, 1, _0191
     CallIfEq 0x800C, 2, _0199

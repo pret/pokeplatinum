@@ -551,8 +551,8 @@ static BOOL ScrCmd_1B3(ScriptContext *ctx);
 static BOOL ScrCmd_1B4(ScriptContext *ctx);
 static BOOL ScrCmd_1B5(ScriptContext *ctx);
 static BOOL ScrCmd_GetTimeOfDay(ScriptContext *ctx);
-static BOOL ScrCmd_1B7(ScriptContext *ctx);
-static BOOL ScrCmd_1B8(ScriptContext *ctx);
+static BOOL ScrCmd_GetRandom(ScriptContext *ctx);
+static BOOL ScrCmd_GetRandom2(ScriptContext *ctx);
 static BOOL ScrCmd_1C1(ScriptContext *ctx);
 static BOOL ScrCmd_1C2(ScriptContext *ctx);
 static BOOL ScrCmd_1C3(ScriptContext *ctx);
@@ -1204,8 +1204,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1B4,
     ScrCmd_1B5,
     ScrCmd_GetTimeOfDay,
-    ScrCmd_1B7,
-    ScrCmd_1B8,
+    ScrCmd_GetRandom,
+    ScrCmd_GetRandom2,
     ScrCmd_1B9,
     ScrCmd_1BA,
     ScrCmd_1BB,
@@ -5973,26 +5973,26 @@ static BOOL ScrCmd_GetTimeOfDay(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1B7(ScriptContext *ctx)
+static BOOL ScrCmd_GetRandom(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 upperBound = ScriptContext_GetVar(ctx);
 
-    *v1 = (LCRNG_Next() % v2);
+    *destVar = LCRNG_Next() % upperBound;
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_1B8(ScriptContext *ctx)
+static BOOL ScrCmd_GetRandom2(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 upperBound = ScriptContext_GetVar(ctx);
 
-    *v1 = (LCRNG_Next() % v2);
+    *destVar = LCRNG_Next() % upperBound;
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_1C1(ScriptContext *ctx)

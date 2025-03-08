@@ -54,7 +54,7 @@ _00B6:
     SetFlag 0x9CC
     SetFlag 0x2A1
     ScrCmd_2DF 0x40AB
-    ScrCmd_1B7 0x4002, 5
+    GetRandom 0x4002, 5
     GoToIfEq 0x4002, 0, _00FE
     GoToIfEq 0x4002, 1, _0108
     GoToIfEq 0x4002, 2, _0112
@@ -302,7 +302,7 @@ _03C8:
     .byte 0
 
 _03DC:
-    ScrCmd_1B7 0x800C, 5
+    GetRandom 0x800C, 5
     CallIfEq 0x800C, 0, _040A
     CallIfNe 0x800C, 0, _0412
     ScrCmd_217 0x409C, 0x409A
@@ -318,7 +318,7 @@ _0412:
     Return
 
 _041A:
-    ScrCmd_1B7 0x800C, 100
+    GetRandom 0x800C, 100
     GoToIfLt 0x800C, 20, _0490
     GoToIfLt 0x800C, 35, _0498
     GoToIfLt 0x800C, 50, _04A0
@@ -437,7 +437,7 @@ _05DD:
     GoToIfEq 0x409A, SPECIES_INFERNAPE, _0719
     GoToIfEq 0x409A, SPECIES_PRINPLUP, _0719
     GoToIfEq 0x409A, SPECIES_EMPOLEON, _0719
-    ScrCmd_1B7 0x800C, 9
+    GetRandom 0x800C, 9
     GoToIfEq 0x800C, 0, _06AC
     GoToIfEq 0x800C, 1, _06B7
     GoToIfEq 0x800C, 2, _06C2
@@ -502,7 +502,7 @@ _070F:
     End
 
 _0719:
-    ScrCmd_1B7 0x800C, 9
+    GetRandom 0x800C, 9
     GoToIfEq 0x800C, 0, _078F
     GoToIfEq 0x800C, 1, _079A
     GoToIfEq 0x800C, 2, _07A5
@@ -574,7 +574,7 @@ _080E:
     LockAll
     FacePlayer
     BufferPartyMonNickname 0, 0x409D
-    ScrCmd_1B7 0x800C, 6
+    GetRandom 0x800C, 6
     CallIfEq 0x800C, 0, _0884
     CallIfEq 0x800C, 1, _0889
     CallIfEq 0x800C, 2, _088E
