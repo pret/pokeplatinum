@@ -2167,7 +2167,7 @@ void ov62_02233A44(UnkStruct_0208C06C *param0)
 
 NARC *ov62_02233A68(int param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 102);
+    NARC *v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_102);
     return v0;
 }
 
@@ -2698,7 +2698,7 @@ int ov62_0223438C(u64 param0)
 
 void ov62_022343B8(UnkStruct_0208C06C *param0, int param1, int param2)
 {
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, param1, param0->unk_14.unk_10, param2, 0, 0, 0, 102);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, param1, param0->unk_14.unk_10, param2, 0, 0, 0, HEAP_ID_102);
 }
 
 static void ov62_022343D8(SysTask *param0, void *param1)

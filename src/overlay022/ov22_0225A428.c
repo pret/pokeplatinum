@@ -197,13 +197,13 @@ static void ov22_0225A718(BgConfig *param0, const Options *param1)
 {
     int v0 = Options_Frame(param1);
 
-    LoadMessageBoxGraphics(param0, 5, 1, 1, v0, 14);
-    Font_LoadScreenIndicatorsPalette(4, 2 * 32, 14);
+    LoadMessageBoxGraphics(param0, 5, 1, 1, v0, HEAP_ID_14);
+    Font_LoadScreenIndicatorsPalette(4, 2 * 32, HEAP_ID_14);
 }
 
 static void ov22_0225A748(Window **param0, BgConfig *param1, int param2, int param3, int param4, int param5, int param6, BOOL param7)
 {
-    *param0 = Window_New(14, 1);
+    *param0 = Window_New(HEAP_ID_14, 1);
 
     Window_Init(*param0);
     Window_Add(param1, *param0, 5, param2, param3, param4, param5, 2, param6);

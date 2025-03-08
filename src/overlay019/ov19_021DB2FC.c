@@ -42,7 +42,7 @@ BOOL ov19_021DB2FC(UnkStruct_ov19_021DB6F0 *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_1C = 0;
     param0->unk_1E = 0;
     param0->unk_18 = NULL;
-    param0->unk_24 = Graphics_GetCharDataFromOpenNARC(param8, 25, 1, &(param0->unk_28), 10);
+    param0->unk_24 = Graphics_GetCharDataFromOpenNARC(param8, 25, 1, &(param0->unk_28), HEAP_ID_10);
 
     if ((param0->unk_24 == NULL) || (param0->unk_30 == NULL) || (param0->unk_34 == NULL)) {
         return 0;
@@ -88,7 +88,7 @@ void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
         { 1, 19, 3, 12, 16, 4, 593 }
     };
 
-    param0->unk_18 = Window_New(10, 2);
+    param0->unk_18 = Window_New(HEAP_ID_10, 2);
 
     if (param0->unk_18) {
         int v1;
@@ -98,9 +98,9 @@ void ov19_021DB3C4(UnkStruct_ov19_021DB6F0 *param0)
         }
     }
 
-    Graphics_LoadTilesToBgLayer(38, 0, param0->unk_00, 1, 512, 0, 0, 10);
-    Graphics_LoadPalette(38, 24, 0, 7 * 0x20, 0x20, 10);
-    LoadMessageBoxGraphics(param0->unk_00, 1, 521, 8, param0->unk_20, 10);
+    Graphics_LoadTilesToBgLayer(38, 0, param0->unk_00, 1, 512, 0, 0, HEAP_ID_10);
+    Graphics_LoadPalette(38, 24, 0, 7 * 0x20, 0x20, HEAP_ID_10);
+    LoadMessageBoxGraphics(param0->unk_00, 1, 521, 8, param0->unk_20, HEAP_ID_10);
 }
 
 void ov19_021DB448(UnkStruct_ov19_021DB6F0 *param0, u32 param1)

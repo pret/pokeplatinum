@@ -784,7 +784,7 @@ static void ov23_02243754(void)
     {
         NARC *v1;
 
-        v1 = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, 4);
+        v1 = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, HEAP_ID_FIELD);
 
         Unk_ov23_02257764->unk_1F4[1][0] = SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257764->unk_1D4[1][0], v1, 17, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         Unk_ov23_02257764->unk_1F4[1][1] = SpriteResourceCollection_AddPaletteFrom(Unk_ov23_02257764->unk_1D4[1][1], v1, 18, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, 4);
@@ -2341,23 +2341,23 @@ static void ov23_022451C8(SysTask *param0, void *param1)
         break;
     case 1:
         BrightnessController_StartTransition(1, 10, 0, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
-        Graphics_LoadTilesToBgLayer(50, 9, v0->unk_10, 2, 0, 8 * 6 * 6, 0, 4);
+        Graphics_LoadTilesToBgLayer(50, 9, v0->unk_10, 2, 0, 8 * 6 * 6, 0, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 2:
-        Graphics_LoadPalette(50, 10, 0, 0, 32, 4);
+        Graphics_LoadPalette(50, 10, 0, 0, 32, HEAP_ID_FIELD);
         v0->unk_00++;
         break;
     case 3:
         BrightnessController_StartTransition(1, 0, 10, GX_BLEND_PLANEMASK_BG0, BRIGHTNESS_MAIN_SCREEN);
 
         if (Unk_ov23_02257764->unk_B9F == 19) {
-            Graphics_LoadTilemapToBgLayer(50, 8, v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
+            Graphics_LoadTilemapToBgLayer(50, 8, v0->unk_10, 2, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD);
         } else {
             u16 v2[] = { 11, 12, 13, 14 };
             u16 v3 = LCRNG_Next() % 4;
 
-            Graphics_LoadTilemapToBgLayer(50, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
+            Graphics_LoadTilemapToBgLayer(50, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, HEAP_ID_FIELD);
         }
 
         Bg_SetPriority(0, 3);
@@ -4109,7 +4109,7 @@ static void ov23_022479F4(UnkStruct_ov23_022471D8 *param0)
     {
         NARC *v2;
 
-        v2 = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, 4);
+        v2 = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, HEAP_ID_FIELD);
 
         if (v1 < (7 - 1)) {
             param0->unk_F8[v1 + 1] = SpriteResourceCollection_AddTilesFrom(Unk_ov23_02257764->unk_1D4[0][0], v2, v0[v1], 0, v1 + 1, NNS_G2D_VRAM_TYPE_2DMAIN, 4);

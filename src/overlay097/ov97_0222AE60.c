@@ -484,8 +484,8 @@ static void ov97_0222B404(UnkStruct_0222AE60 *param0)
 
 static void ov97_0222B46C(UnkStruct_0222AE60 *param0)
 {
-    Graphics_LoadPalette(116, 45, 0, 4 * 32, 32 * 1, 81);
-    Graphics_LoadTilesToBgLayer(116, 44, param0->unk_00, 2, 0x380, 2 * 32 * 0x20, 0, 81);
+    Graphics_LoadPalette(116, 45, 0, 4 * 32, 32 * 1, HEAP_ID_81);
+    Graphics_LoadTilesToBgLayer(116, 44, param0->unk_00, 2, 0x380, 2 * 32 * 0x20, 0, HEAP_ID_81);
 }
 
 static void ov97_0222B4AC(UnkStruct_0222AE60 *param0, int param1, int param2, int param3)
@@ -562,7 +562,7 @@ static BOOL ov97_0222B5C0(void *param0, int param1, UnkStruct_ov97_02237808 *par
     TextColor v7;
 
     v5 = MessageLoader_Init(1, 26, 550, HEAP_ID_81);
-    v4 = StringTemplate_Default(81);
+    v4 = StringTemplate_Default(HEAP_ID_81);
 
     if (TrainerInfo_Gender(v6->unk_0C) == 1) {
         v7 = TEXT_COLOR(3, 4, 15);
@@ -968,7 +968,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_81, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0222AE60), 81);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0222AE60), HEAP_ID_81);
     memset(v0, 0, sizeof(UnkStruct_0222AE60));
     v0->unk_00 = BgConfig_New(HEAP_ID_81);
 

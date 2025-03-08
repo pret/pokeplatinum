@@ -128,28 +128,28 @@ static const OverlayManagerTemplate Unk_ov72_021D3820 = {
 int ov73_021D0D80(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov73_021D1058 *v0;
-    int childHeapId = HEAP_ID_82;
+    int childHeapID = HEAP_ID_82;
 
-    Heap_Create(HEAP_ID_APPLICATION, childHeapId, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, childHeapID, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov73_021D1058), childHeapId);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov73_021D1058), childHeapID);
     memset(v0, 0, sizeof(UnkStruct_ov73_021D1058));
 
-    v0->heapId = childHeapId;
+    v0->heapId = childHeapID;
     v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_08 = SaveData_Options(v0->unk_04);
     v0->unk_0C = 0;
     v0->unk_10 = 0;
     v0->unk_14 = NULL;
-    v0->unk_70 = sub_0208712C(childHeapId, 0, 0, 7, v0->unk_08);
-    v0->unk_74 = sub_0208712C(childHeapId, 3, 0, 7, v0->unk_08);
+    v0->unk_70 = sub_0208712C(childHeapID, 0, 0, 7, v0->unk_08);
+    v0->unk_74 = sub_0208712C(childHeapID, 3, 0, 7, v0->unk_08);
     v0->unk_88 = 0;
     v0->unk_89 = 0;
     v0->unk_8A = 0;
     v0->unk_8B = 0;
     v0->unk_90 = 0;
-    v0->unk_B8 = Heap_AllocFromHeap(childHeapId, 0x20);
-    v0->unk_BC = Heap_AllocFromHeap(childHeapId, 0x20);
+    v0->unk_B8 = Heap_AllocFromHeap(childHeapID, 0x20);
+    v0->unk_BC = Heap_AllocFromHeap(childHeapID, 0x20);
 
     return 1;
 }

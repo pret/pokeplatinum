@@ -446,7 +446,7 @@ static void ov97_02233DD0(UnkStruct_ov97_02234A2C *param0, UnkStruct_ov97_02233D
         if (param1->unk_40) {
             v1 = param1->unk_40;
         } else {
-            v1 = StringTemplate_Default(78);
+            v1 = StringTemplate_Default(HEAP_ID_78);
         }
 
         Strbuf_Clear(param0->unk_12668);
@@ -535,7 +535,7 @@ static void ov97_02233FA4(UnkStruct_ov97_02234A2C *param0)
 
     SpriteTransfer_RequestChar(param0->unk_1D0[0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_1D0[1]);
-    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, 78);
+    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, HEAP_ID_78);
 }
 
 static void ov97_022340B0(UnkStruct_ov97_02234A2C *param0)
@@ -708,7 +708,7 @@ static void ov97_022343A8(UnkStruct_ov97_02234A2C *param0)
     int i, species, isEgg, gbaVersion, form;
     u32 personality;
     void *v6;
-    NARC *v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 78);
+    NARC *v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_78);
     v6 = Heap_AllocFromHeapAtEnd(78, 4096);
 
     for (i = 0; i < 30; i++) {
@@ -1271,7 +1271,7 @@ static void ov97_02234B0C(UnkStruct_ov97_02234A2C *param0, BoxPokemonGBA *boxMon
 
 static void ov97_02234CC4(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int *param3)
 {
-    StartScreenTransition(0, param1, param1, 0x0, 6, 1, 78);
+    StartScreenTransition(0, param1, param1, 0x0, 6, 1, HEAP_ID_78);
 
     if (param3) {
         *param3 = 23;
@@ -1282,7 +1282,7 @@ static void ov97_02234CC4(UnkStruct_ov97_02234A2C *param0, int param1, int param
 
 static void ov97_02234CF4(UnkStruct_ov97_02234A2C *param0, int param1, int param2, int *param3)
 {
-    StartScreenTransition(0, param1, param1, 0x7fff, 6, 1, 78);
+    StartScreenTransition(0, param1, param1, 0x7fff, 6, 1, HEAP_ID_78);
 
     if (param3) {
         *param3 = 23;
@@ -1413,14 +1413,14 @@ static void ov97_02234DFC(UnkStruct_ov97_02234A2C *param0)
     Text_ResetAllPrinters();
 
     Font_LoadTextPalette(0, 15 * 32, HEAP_ID_78);
-    Graphics_LoadPalette(116, 19, 0, 0, 32 * 6, 78);
-    Graphics_LoadTilesToBgLayer(116, 22, param0->unk_20, 2, 0, 10 * 16 * 0x20, 1, 78);
-    Font_InitManager(FONT_SUBSCREEN, 78);
+    Graphics_LoadPalette(116, 19, 0, 0, 32 * 6, HEAP_ID_78);
+    Graphics_LoadTilesToBgLayer(116, 22, param0->unk_20, 2, 0, 10 * 16 * 0x20, 1, HEAP_ID_78);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_78);
 }
 
 static void ov97_02234E7C(UnkStruct_ov97_02234A2C *param0)
 {
-    Graphics_LoadTilemapToBgLayer(116, 20, param0->unk_20, 2, 0, 32 * 24 * 2, 1, 78);
+    Graphics_LoadTilemapToBgLayer(116, 20, param0->unk_20, 2, 0, 32 * 24 * 2, 1, HEAP_ID_78);
     Bg_ChangeTilemapRectPalette(param0->unk_20, 2, 0, 0, 32, 24, Unk_ov97_0223EA60[param0->unk_00]);
     Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
 }
@@ -1429,7 +1429,7 @@ static void ov97_02234ECC(UnkStruct_ov97_02234A2C *param0)
 {
     Font_LoadTextPalette(0, 14 * 32, HEAP_ID_78);
     LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, HEAP_ID_78);
-    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
+    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, HEAP_ID_78);
 
     memset(&param0->unk_490, 0, sizeof(UnkStruct_ov97_02233DAC));
 
@@ -1487,13 +1487,13 @@ static void ov97_02234F88(UnkStruct_ov97_02234A2C *param0)
         ov97_02234278(v1, v2, personality, v3, i, param0->unk_478[i]);
     }
 
-    Graphics_LoadTilemapToBgLayer(116, 21, param0->unk_20, 2, 0, 32 * 24 * 2, 1, 78);
+    Graphics_LoadTilemapToBgLayer(116, 21, param0->unk_20, 2, 0, 32 * 24 * 2, 1, HEAP_ID_78);
     Bg_ChangeTilemapRectPalette(param0->unk_20, 2, 0, 0, 32, 24, Unk_ov97_0223EA60[param0->unk_00]);
     Bg_CopyTilemapBufferToVRAM(param0->unk_20, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     Font_LoadTextPalette(0, 14 * 32, HEAP_ID_78);
     LoadStandardWindowGraphics(param0->unk_20, 0, 0x3F0, 14, 0, HEAP_ID_78);
-    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, 78);
+    LoadMessageBoxGraphics(param0->unk_20, 0, (0x3F0 - (18 + 12)), 13, param0->unk_1C, HEAP_ID_78);
 
     ov97_02234ECC(param0);
     param0->unk_490.unk_34 = 10;
@@ -1618,7 +1618,7 @@ static void ov97_02235344(UnkStruct_ov97_02234A2C *param0)
 
     ov97_0223936C(GetGBAPlayerName(), v3, GBA_PLAYER_NAME_LEN + 1, ov97_02235DBC());
 
-    v1 = StringTemplate_Default(78);
+    v1 = StringTemplate_Default(HEAP_ID_78);
     v2 = Strbuf_Init(GBA_PLAYER_NAME_LEN + 1, HEAP_ID_78);
 
     Strbuf_CopyChars(v2, v3);
@@ -1780,7 +1780,7 @@ static int ov97_02235624(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_78, 0x38000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_02234A2C), 78);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_02234A2C), HEAP_ID_78);
     memset(v0, 0, sizeof(UnkStruct_ov97_02234A2C));
 
     v0->unk_20 = BgConfig_New(HEAP_ID_78);

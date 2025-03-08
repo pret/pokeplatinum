@@ -127,9 +127,9 @@ void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     v0 = ov20_021D2E04(param0->unk_00);
 
     ov20_021D30A4(param0, param1);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 0, v0, 0, 0, 0, 1, 35);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 0, v0, 0, 0, 0, 1, HEAP_ID_35);
 
-    v1 = Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 0, 0, 0, 1, 35);
+    v1 = Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 0, 0, 0, 1, HEAP_ID_35);
     v1 /= 0x20;
 
     Window_Add(v0, &param0->unk_0C, 0, 3, 1, 27, 4, 0, v1);
@@ -141,12 +141,12 @@ void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     Window_Add(v0, &param0->unk_2C, 0, 23, 15, 8, 4, 11, v1);
     v1 += 32;
 
-    Graphics_LoadTilesToBgLayer(38, 0, v0, 0, v1, 0, 0, 35);
+    Graphics_LoadTilesToBgLayer(38, 0, v0, 0, v1, 0, 0, HEAP_ID_35);
     param0->unk_60 = v1;
     v1 += 9;
 
-    Graphics_LoadPalette(38, 24, 0, 14 * 0x20, 0x20, 35);
-    LoadMessageBoxGraphics(v0, 0, v1, 15, ov20_021D2080(param0->unk_04), 35);
+    Graphics_LoadPalette(38, 24, 0, 14 * 0x20, 0x20, HEAP_ID_35);
+    LoadMessageBoxGraphics(v0, 0, v1, 15, ov20_021D2080(param0->unk_04), HEAP_ID_35);
     Window_DrawMessageBox(&param0->unk_1C, v1, 15);
     Window_PutToTilemap(&param0->unk_0C);
     Window_PutToTilemap(&param0->unk_1C);
@@ -164,9 +164,9 @@ static void ov20_021D30A4(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     NNSG2dPaletteData *v0;
     void *v1;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 6, 0, 0, 14 * 0x20, 35);
+    Graphics_LoadPaletteFromOpenNARC(param1, 6, 0, 0, 14 * 0x20, HEAP_ID_35);
 
-    v1 = Graphics_GetPlttDataFromOpenNARC(param1, 6, &v0, 35);
+    v1 = Graphics_GetPlttDataFromOpenNARC(param1, 6, &v0, HEAP_ID_35);
 
     MI_CpuCopy16(v0->pRawData, param0->unk_70, sizeof(param0->unk_70));
     DC_FlushRange(param0->unk_70, sizeof(param0->unk_70));

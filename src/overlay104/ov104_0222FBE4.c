@@ -825,7 +825,7 @@ static BOOL ov104_0222FF90(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222EA48(param0);
     u16 v3 = ov104_0222EA48(param0);
 
-    StartScreenTransition(0, v2, v2, v3, v0, v1, 11);
+    StartScreenTransition(0, v2, v2, v3, v0, v1, HEAP_ID_FIELDMAP);
     sub_0200F32C(0);
     sub_0200F32C(1);
 
@@ -2054,7 +2054,7 @@ static BOOL ov104_02231148(UnkStruct_ov104_02231148 *param0)
 
         sub_0200F32C(0);
         sub_0200F32C(1);
-        StartScreenTransition(0, 32, 32, 0x0, 12, 1, 11);
+        StartScreenTransition(0, 32, 32, 0x0, 12, 1, HEAP_ID_FIELDMAP);
         param0->unk_04++;
         break;
     default:
@@ -2079,7 +2079,7 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
             break;
         }
 
-        param0->unk_28 = Window_New(11, 1);
+        param0->unk_28 = Window_New(HEAP_ID_FIELDMAP, 1);
 
         Window_Add(param0->unk_00->unk_00, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
         PaletteData_FillBufferRange(param0->unk_00->unk_04, 0, 2, 0x0, 0, 16);
@@ -2133,7 +2133,7 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
             break;
         }
 
-        param0->unk_28 = Window_New(11, 1);
+        param0->unk_28 = Window_New(HEAP_ID_FIELDMAP, 1);
 
         Window_Add(param0->unk_00->unk_00, param0->unk_28, 1, 0, 0, 32, 32, 0, 0);
         PaletteData_FillBufferRange(param0->unk_00->unk_04, 0, 2, 0x0, 0, 16);

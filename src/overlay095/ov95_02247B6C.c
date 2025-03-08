@@ -256,17 +256,17 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
 
     Bg_FillTilesRange(param0->unk_54, 1, 0x0, 1, 0);
     Bg_FillTilemapRect(param0->unk_54, 1, 0x0, 0, 0, 32, 32, 0);
-    LoadMessageBoxGraphics(param0->unk_54, 1, 109, 2, ov95_02247674(param0->unk_00), 58);
+    LoadMessageBoxGraphics(param0->unk_54, 1, 109, 2, ov95_02247674(param0->unk_00), HEAP_ID_58);
     Window_Add(param0->unk_54, &(param0->unk_58), 1, 2, 19, 27, 4, 1, 1);
     Window_FillTilemap(&(param0->unk_58), 0xf);
 
-    Graphics_LoadPalette(14, 7, 0, 1 * 0x20, 0x20, 58);
-    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_54, 2, 0, 0, 1, 58);
-    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_54, 2, 0, 0, 1, 58);
-    Graphics_LoadPalette(93, 23, 0, 0 * 0x20, 0x20, 58);
-    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_54, 6, 0, 0, 1, 58);
-    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_54, 6, 0, 0, 1, 58);
-    Graphics_LoadPalette(93, 23, 4, 0 * 0x20, 0x20, 58);
+    Graphics_LoadPalette(14, 7, 0, 1 * 0x20, 0x20, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_54, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_54, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadPalette(93, 23, 0, 0 * 0x20, 0x20, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_54, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_54, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadPalette(93, 23, 4, 0 * 0x20, 0x20, HEAP_ID_58);
 
     Bg_CopyTilemapBufferToVRAM(param0->unk_54, 1);
     ov95_02248174(param0);
@@ -288,7 +288,7 @@ static int ov95_02247CB4(UnkStruct_ov95_02247C6C *param0, int *param1)
 
     sub_02039734();
     sub_020397C8(1, 57);
-    StartScreenTransition(0, 1, 1, 0x0, 16, 1, 58);
+    StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -408,7 +408,7 @@ static int ov95_02248090(UnkStruct_ov95_02247C6C *param0, int *param1)
         break;
     case 3:
         if ((ov95_0224847C(param0) >= 2) || (ov95_0224846C(param0) == 1)) {
-            StartScreenTransition(0, 0, 0, 0x0, 24, 1, 58);
+            StartScreenTransition(0, 0, 0, 0x0, 24, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;

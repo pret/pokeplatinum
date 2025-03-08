@@ -356,7 +356,7 @@ int ov105_02241AE0(OverlayManager *param0, int *param1)
     ov105_022452E4();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_93, 0x20000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov105_02241FF4), 93);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov105_02241FF4), HEAP_ID_93);
     memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
 
     v1->unk_124 = sub_02024220(HEAP_ID_93, 0, 2, 0, 2, ov105_02245CD0);
@@ -639,7 +639,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
 
         Bg_SetOffset(param0->unk_4C, 2, 0, (33 * 8));
         sub_02007DEC(param0->unk_12C[0], 6, 1);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 93);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_93);
         param0->unk_08++;
         break;
     case 3:
@@ -722,7 +722,7 @@ static BOOL ov105_022421F0(UnkStruct_ov105_02241FF4 *param0)
         }
 
         if (param0->unk_13_4 == 1) {
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 93);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_93);
         }
 
         param0->unk_13_4 = 1;
@@ -929,7 +929,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 93);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_93);
             param0->unk_08++;
             break;
         case 1:
@@ -1457,7 +1457,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
             ov105_02246060(param0->unk_310);
             param0->unk_310 = NULL;
             param0->unk_13_6 = 1;
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 93);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_93);
             param0->unk_08++;
             break;
         case 4:
@@ -2050,7 +2050,7 @@ static BOOL ov105_022443DC(UnkStruct_ov105_02241FF4 *param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 93);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_93);
         param0->unk_08++;
         break;
     case 1:
@@ -2261,10 +2261,10 @@ static void ov105_02244678(UnkStruct_ov105_02241FF4 *param0)
     ov105_02244564();
     ov105_02244584(param0->unk_4C);
 
-    param0->unk_120 = PaletteData_New(93);
+    param0->unk_120 = PaletteData_New(HEAP_ID_93);
 
-    PaletteData_AllocBuffer(param0->unk_120, 2, (32 * 16), 93);
-    PaletteData_AllocBuffer(param0->unk_120, 0, (32 * 16), 93);
+    PaletteData_AllocBuffer(param0->unk_120, 2, (32 * 16), HEAP_ID_93);
+    PaletteData_AllocBuffer(param0->unk_120, 0, (32 * 16), HEAP_ID_93);
 
     ov105_02244AF8();
 
@@ -2435,12 +2435,12 @@ static void ov105_02244924(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 
 static void ov105_022449A4(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
 
     if (ov104_0223AED4(param0->unk_09) == 0) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 5, param0->unk_4C, param1, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 5, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 11, param0->unk_4C, param1, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 11, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
     }
 
     return;
@@ -2448,24 +2448,24 @@ static void ov105_022449A4(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 
 static void ov105_02244A18(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 7, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 7, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
 
     return;
 }
 
 static void ov105_02244A60(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 8, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 8, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
 
     return;
 }
 
 static void ov105_02244AA8(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, 93);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 9, param0->unk_4C, param1, 0, 0, 1, 93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 9, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
     Bg_SetPriority(1, 2);
 
     return;
@@ -2476,7 +2476,7 @@ static void ov105_02244AF8(void)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = Graphics_GetPlttData(150, 130, &v1, 93);
+    v0 = Graphics_GetPlttData(150, 130, &v1, HEAP_ID_93);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 11));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 11));
@@ -2487,9 +2487,9 @@ static void ov105_02244AF8(void)
 
 static void ov105_02244B30(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 125, param0->unk_4C, param1, 0, 0, 1, 93);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 126, param0->unk_4C, param1, 0, 0, 1, 93);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_338, 171, 4, 0, 0x20, 93);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 125, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 126, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_338, 171, 4, 0, 0x20, HEAP_ID_93);
 
     return;
 }
@@ -2497,9 +2497,9 @@ static void ov105_02244B30(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 static void ov105_02244B90(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
     if (ov104_0223AED4(param0->unk_09) == 0) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 5, param0->unk_4C, 3, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 5, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 11, param0->unk_4C, 3, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 11, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
     }
 
     return;
@@ -2507,16 +2507,16 @@ static void ov105_02244B90(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 
 static void ov105_02244BE4(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 7, param0->unk_4C, 3, 0, 0, 1, 93);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 7, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
     return;
 }
 
 static void ov105_02244C0C(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
     if (ov104_0223AED4(param0->unk_09) == 0) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 10, param0->unk_4C, 3, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 10, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 12, param0->unk_4C, 3, 0, 0, 1, 93);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 12, param0->unk_4C, 3, 0, 0, 1, HEAP_ID_93);
     }
 
     return;

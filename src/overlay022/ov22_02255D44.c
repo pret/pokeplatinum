@@ -198,7 +198,7 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), HEAP_ID_13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
     SetVBlankCallback(ov22_02256940, v0);
@@ -244,8 +244,7 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
     case 1:
-        StartScreenTransition(
-            1, 5, 5, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 5, 5, 0x0, 6, 1, HEAP_ID_13);
         (*param1) = 2;
         break;
     case 2:
@@ -340,8 +339,7 @@ int ov22_02255E50(OverlayManager *param0, int *param1)
         }
         break;
     case 11:
-        StartScreenTransition(
-            1, 0, 0, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 0, 0, 0x0, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 12:
@@ -415,7 +413,7 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), HEAP_ID_13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
 
     SetVBlankCallback(ov22_02256940, v0);
@@ -552,7 +550,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 11:
-        StartScreenTransition(1, 17, 19, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 17, 19, 0x0, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 12:
@@ -609,7 +607,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
             break;
         }
 
-        StartScreenTransition(1, 26, 26, 0x0, 6, 1, 13);
+        StartScreenTransition(1, 26, 26, 0x0, 6, 1, HEAP_ID_13);
         Sound_PlayEffect(1668);
         (*param1)++;
         break;
@@ -1333,10 +1331,10 @@ static void ov22_022572A0(UnkStruct_ov22_02255D44 *param0, u32 param1, u8 param2
     Strbuf *v1;
     int v2 = Options_Frame(param0->unk_738);
 
-    Font_LoadScreenIndicatorsPalette(0, 7 * 32, 14);
+    Font_LoadScreenIndicatorsPalette(0, 7 * 32, HEAP_ID_14);
     Window_Add(param0->unk_00.unk_40, param0->unk_718, 3, param2, param3, param4, param5, 7, (0 + (29 * 4) + (18 + 12)));
     Window_FillTilemap(param0->unk_718, 15);
-    LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, 14);
+    LoadMessageBoxGraphics(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, HEAP_ID_14);
     Window_DrawMessageBoxWithScrollCursor(param0->unk_718, 0, (0 + (29 * 4)), 8);
 
     v0 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
@@ -1430,7 +1428,7 @@ static void ov22_022574EC(UnkStruct_ov22_02255D44 *param0)
 static void ov22_022574F4(UnkStruct_ov22_02255D44 *param0, u32 param1)
 {
     ov22_022572A0(param0, param1, 2, 19, 27, 4);
-    param0->unk_744 = StringTemplate_Default(13);
+    param0->unk_744 = StringTemplate_Default(HEAP_ID_13);
 }
 
 static u32 ov22_0225751C(UnkStruct_ov22_02255D44 *param0, u32 param1)

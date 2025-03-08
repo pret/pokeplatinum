@@ -233,7 +233,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     G2S_BlendNone();
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_23, 0xa0000);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_0224DF54), 23);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_0224DF54), HEAP_ID_23);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224DF54));
 
     v0->unk_10 = ov17_0223F140(HEAP_ID_23);
@@ -243,13 +243,13 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     v0->unk_14.unk_00 = &v0->unk_00->unk_00;
 
     ov17_0223E458(v0);
-    v0->unk_14.unk_90 = PaletteData_New(23);
+    v0->unk_14.unk_90 = PaletteData_New(HEAP_ID_23);
 
     PaletteData_SetAutoTransparent(v0->unk_14.unk_90, 1);
-    PaletteData_AllocBuffer(v0->unk_14.unk_90, 0, 0x200, 23);
-    PaletteData_AllocBuffer(v0->unk_14.unk_90, 1, 0x200, 23);
-    PaletteData_AllocBuffer(v0->unk_14.unk_90, 2, (((16 - 2) * 16) * sizeof(u16)), 23);
-    PaletteData_AllocBuffer(v0->unk_14.unk_90, 3, 0x200, 23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 0, 0x200, HEAP_ID_23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 1, 0x200, HEAP_ID_23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_23);
+    PaletteData_AllocBuffer(v0->unk_14.unk_90, 3, 0x200, HEAP_ID_23);
 
     v0->unk_1050.unk_00 = Heap_AllocFromHeap(HEAP_ID_23, 0x200);
     ov17_0224CDB4(v0, 1);
@@ -264,7 +264,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
 
     sub_0201E3D8();
     sub_0201E450(4);
-    Font_InitManager(FONT_SUBSCREEN, 23);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_23);
 
     v0->unk_14.unk_58 = SpriteSystem_Alloc(23);
 
@@ -290,8 +290,8 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
         NARC *v1;
         NARC *v2;
 
-        v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 23);
-        v2 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 23);
+        v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, HEAP_ID_23);
+        v2 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, HEAP_ID_23);
 
         ov17_0223E67C(v0, v1);
         ov17_0223E770(v0, v1);
@@ -311,7 +311,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     ov17_0224B59C(v0);
 
     sub_02039734();
-    StartScreenTransition(1, 17, 37, 0x0, 6, 1, 23);
+    StartScreenTransition(1, 17, 37, 0x0, 6, 1, HEAP_ID_23);
 
     v0->unk_04 = SysTask_Start(ov17_0223E1FC, v0, 80000);
     v0->unk_1098 = 1;
@@ -358,7 +358,7 @@ int ov17_0223DDD4(OverlayManager *param0, int *param1)
             } else if ((v1 == 3) && (v0->unk_1B24 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_1B1C, sizeof(UnkStruct_ov17_0223E838));
-                StartScreenTransition(2, 30, 30, 0x0, 6, 1, 23);
+                StartScreenTransition(2, 30, 30, 0x0, 6, 1, HEAP_ID_23);
                 break;
             }
         }
@@ -369,7 +369,7 @@ int ov17_0223DDD4(OverlayManager *param0, int *param1)
         if ((v0->unk_1B24 == 1) && (ov17_0224F3D0(&v0->unk_109C) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_1B1C, sizeof(UnkStruct_ov17_0223E838));
-            StartScreenTransition(2, 30, 30, 0x0, 6, 1, 23);
+            StartScreenTransition(2, 30, 30, 0x0, 6, 1, HEAP_ID_23);
         }
         break;
     case 2:
@@ -780,7 +780,7 @@ static void ov17_0223E67C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 {
     int v0;
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 13, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 13, param0->unk_14.unk_60, 3, 0, 0, 1, HEAP_ID_23);
 
     {
         int v1, v2;
@@ -788,14 +788,14 @@ static void ov17_0223E67C(UnkStruct_ov17_0224DF54 *param0, NARC *param1)
 
         ov17_0223E3CC(param0, &v1, &v2);
         v3 = ov17_0223F0BC(v2, 0);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v3, param0->unk_14.unk_60, 3, 0, 0, 1, 23);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, v3, param0->unk_14.unk_60, 3, 0, 0, 1, HEAP_ID_23);
     }
 
     PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 45, 32, 23, 0, 0, 0);
     PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 45, 36, 23, 0, 0x20, 13 * 16);
 
     v0 = Options_Frame(param0->unk_00->unk_196C);
-    LoadMessageBoxGraphics(param0->unk_14.unk_60, 1, 1, 15, v0, 23);
+    LoadMessageBoxGraphics(param0->unk_14.unk_60, 1, 1, 15, v0, HEAP_ID_23);
     PaletteData_LoadBufferFromFileStart(param0->unk_14.unk_90, 38, GetMessageBoxPaletteNARCMember(v0), 23, 0, 0x20, 14 * 16);
     ov17_0224C848(param0);
 

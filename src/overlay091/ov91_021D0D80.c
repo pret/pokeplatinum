@@ -345,7 +345,7 @@ int ov91_021D0D80(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_67, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov91_021D0ED8), 67);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov91_021D0ED8), HEAP_ID_67);
     memset(v0, 0, sizeof(UnkStruct_ov91_021D0ED8));
     v0->unk_00 = OverlayManager_Args(param0);
 
@@ -441,9 +441,9 @@ static void ov91_021D0ED8(UnkStruct_ov91_021D0ED8 *param0)
 
     param0->unk_04 = BgConfig_New(HEAP_ID_67);
 
-    sub_0208C120(0, 67);
+    sub_0208C120(0, HEAP_ID_67);
 
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__WAZA_OSHIE_GRA, 67);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__WAZA_OSHIE_GRA, HEAP_ID_67);
 
     ov91_021D0FC4();
     ov91_021D0FE4(param0->unk_04);
@@ -589,12 +589,12 @@ static void ov91_021D1098(BgConfig *param0)
 
 static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 10, param0->unk_04, 2, 0, 0, 0, 67);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_04, 2, 0, 0, 0, 67);
-    Graphics_LoadPaletteFromOpenNARC(param1, 12, 0, 0, 0, 67);
-    Font_LoadScreenIndicatorsPalette(0, 14 * 32, 67);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 10, param0->unk_04, 2, 0, 0, 0, HEAP_ID_67);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_04, 2, 0, 0, 0, HEAP_ID_67);
+    Graphics_LoadPaletteFromOpenNARC(param1, 12, 0, 0, 0, HEAP_ID_67);
+    Font_LoadScreenIndicatorsPalette(0, 14 * 32, HEAP_ID_67);
     LoadStandardWindowGraphics(param0->unk_04, 0, 1, 12, 0, HEAP_ID_67);
-    LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->unk_08), 67);
+    LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->unk_08), HEAP_ID_67);
 }
 
 static void ov91_021D1154(UnkStruct_ov91_021D0ED8 *param0)
@@ -624,7 +624,7 @@ static void ov91_021D11A0(UnkStruct_ov91_021D0ED8 *param0)
 static void ov91_021D11B8(UnkStruct_ov91_021D0ED8 *param0)
 {
     param0->unk_F8 = MessageLoader_Init(0, 26, 645, HEAP_ID_67);
-    param0->unk_FC = StringTemplate_Default(67);
+    param0->unk_FC = StringTemplate_Default(HEAP_ID_67);
     param0->unk_100 = Strbuf_Init(256, HEAP_ID_67);
 }
 
@@ -766,7 +766,7 @@ static int ov91_021D1450(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D1480(UnkStruct_ov91_021D0ED8 *param0)
 {
-    sub_0208C120(1, 67);
+    sub_0208C120(1, HEAP_ID_67);
     param0->unk_180 = 9;
     return 0;
 }
@@ -1480,7 +1480,7 @@ static void ov91_021D25E4(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D2604(UnkStruct_ov91_021D0ED8 *param0)
 {
-    sub_0208C120(1, 67);
+    sub_0208C120(1, HEAP_ID_67);
     param0->unk_180 = 11;
     return 0;
 }

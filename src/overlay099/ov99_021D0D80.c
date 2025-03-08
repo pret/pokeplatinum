@@ -190,7 +190,7 @@ int ov99_021D1028(OverlayManager *param0, int *param1)
 
     if (v0->unk_00->unk_04 && (gSystem.pressedKeys & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 75);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_75);
             v0->unk_1100 = 1;
         }
     }

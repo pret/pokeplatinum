@@ -535,7 +535,7 @@ static void sub_0203ADFC(FieldTask *taskMan)
             Strbuf *v7;
             Strbuf *v8;
 
-            v6 = StringTemplate_Default(11);
+            v6 = StringTemplate_Default(HEAP_ID_FIELDMAP);
             v7 = Strbuf_Init(8, HEAP_ID_FIELDMAP);
             v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[menu->unk_30[v4]][0]);
 
@@ -677,7 +677,7 @@ static void sub_0203B094(FieldTask *taskMan)
     Text_AddPrinterWithParams(&menu->unk_10, FONT_SYSTEM, v5, 0, 0, TEXT_SPEED_NO_TRANSFER, NULL);
     Strbuf_Free(v5);
 
-    v3 = StringTemplate_Default(11);
+    v3 = StringTemplate_Default(HEAP_ID_FIELDMAP);
     v4 = Strbuf_Init(32, HEAP_ID_FIELDMAP);
     v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
@@ -779,7 +779,7 @@ static void sub_0203B318(StartMenu *menu, u8 *param1, u32 param2, u8 param3)
 
     ov5_021D3190(&menu->unk_38, &v0, (7 + 1), 11);
 
-    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, 11);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELDMAP);
 
     ov5_021D32E8(&menu->unk_38, v2, 5, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
     ov5_021D3374(&menu->unk_38, v2, 1, 0, 13528);

@@ -100,7 +100,7 @@ int ov80_021D0D80(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_17, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov80_021D2A08), 17);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov80_021D2A08), HEAP_ID_17);
     memset(v0, 0, sizeof(UnkStruct_ov80_021D2A08));
     v0->unk_2C = v1;
 

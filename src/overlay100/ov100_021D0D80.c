@@ -49,12 +49,12 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_111, 0xC0000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov100_021D4DD8), 111);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov100_021D4DD8), HEAP_ID_111);
     memset(v0, 0, sizeof(UnkStruct_ov100_021D4DD8));
     v0->unk_D0 = OverlayManager_Args(param0);
 
     ov100_021D1034(&v0->unk_0C);
-    StartScreenTransition(0, 1, 1, 0x0, 6 * 2, 1, 111);
+    StartScreenTransition(0, 1, 1, 0x0, 6 * 2, 1, HEAP_ID_111);
     SetVBlankCallback(ov100_021D13B4, v0);
 
     v0->unk_0C.unk_50.unk_00 = 31;
@@ -73,7 +73,7 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
         Window_FillTilemap(v1, 0xFF);
         Window_CopyToVRAM(v1);
 
-        LoadMessageBoxGraphics(v0->unk_0C.unk_0C, 1, 500, 15, v2, 111);
+        LoadMessageBoxGraphics(v0->unk_0C.unk_0C, 1, 500, 15, v2, HEAP_ID_111);
         PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, 38, GetMessageBoxPaletteNARCMember(v2), 111, 0, 0x20, 15 * 16);
         PaletteData_LoadBufferFromFileStart(v0->unk_0C.unk_10, 14, 7, 111, 0, 0x20, 14 * 16);
         Window_DrawMessageBoxWithScrollCursor(v1, 0, 500, 15);

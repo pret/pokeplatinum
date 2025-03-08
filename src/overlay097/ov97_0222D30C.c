@@ -755,18 +755,18 @@ static void ov97_0222DBC4(BgConfig *param0)
 
 static void ov97_0222DC20(BgConfig *param0)
 {
-    Graphics_LoadPalette(116, 0, 4, 16 * 2 * 8, 16 * 2, 86);
-    Graphics_LoadTilesToBgLayer(116, 1, param0, 5, 0, 10 * 16 * 0x20, 1, 86);
-    Graphics_LoadTilemapToBgLayer(116, 2, param0, 5, 0, 32 * 24 * 2, 1, 86);
+    Graphics_LoadPalette(116, 0, 4, 16 * 2 * 8, 16 * 2, HEAP_ID_86);
+    Graphics_LoadTilesToBgLayer(116, 1, param0, 5, 0, 10 * 16 * 0x20, 1, HEAP_ID_86);
+    Graphics_LoadTilemapToBgLayer(116, 2, param0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_86);
     Bg_ChangeTilemapRectPalette(param0, 5, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0, 5);
 }
 
 static void ov97_0222DC9C(BgConfig *param0)
 {
-    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 8, 16 * 2, 86);
-    Graphics_LoadTilesToBgLayer(116, 1, param0, 1, 0, 10 * 16 * 0x20, 1, 86);
-    Graphics_LoadTilemapToBgLayer(116, 2, param0, 1, 0, 32 * 24 * 2, 1, 86);
+    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 8, 16 * 2, HEAP_ID_86);
+    Graphics_LoadTilesToBgLayer(116, 1, param0, 1, 0, 10 * 16 * 0x20, 1, HEAP_ID_86);
+    Graphics_LoadTilemapToBgLayer(116, 2, param0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_86);
     Bg_ChangeTilemapRectPalette(param0, 1, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0, 1);
 
@@ -840,7 +840,7 @@ static void ov97_0222DE78(OverlayManager *param0, Window *param1, u32 param2)
     UnkStruct_ov97_0222D04C *v1 = OverlayManager_Data(param0);
 
     v1->unk_10 = MessageLoader_Init(1, 26, 421, HEAP_ID_86);
-    v1->unk_0C = StringTemplate_Default(86);
+    v1->unk_0C = StringTemplate_Default(HEAP_ID_86);
 
     Window_FillTilemap(param1, Font_GetAttribute(FONT_MESSAGE, FONTATTR_BG_COLOR));
 
@@ -925,7 +925,7 @@ static BOOL ov97_0222DFD4(OverlayManager *param0, UnkStruct_ov97_0222D04C *param
 
     v0 = Options_Frame(param1->unk_08);
 
-    LoadMessageBoxGraphics(param1->unk_00, 0, 1, 2, v0, 86);
+    LoadMessageBoxGraphics(param1->unk_00, 0, 1, 2, v0, HEAP_ID_86);
     LoadStandardWindowGraphics(param1->unk_00, 0, (1 + (18 + 12)), 3, 1, HEAP_ID_86);
 
     *((u16 *)HW_BG_PLTT) = ((31 & 31) << 10 | (12 & 31) << 5 | (12 & 31));
@@ -989,7 +989,7 @@ void ov97_0222E13C(UnkStruct_ov97_0222D04C *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
     Bg_ClearTilemap(param0->unk_00, 0);
 
-    v0 = StringTemplate_Default(86);
+    v0 = StringTemplate_Default(HEAP_ID_86);
     StringTemplate_SetNumber(v0, 0, param0->unk_26D0, 5, 2, 1);
 
     ov97_02237808(&v1, &param0->unk_26E0, 1, 695, (1 + (18 + 12)), 3);
@@ -1031,7 +1031,7 @@ static int ov97_0222E228(OverlayManager *param0, Window *param1, int param2, int
 
     if (param1 && param2) {
         v1 = MessageLoader_Init(1, 26, 421, HEAP_ID_86);
-        v0 = StringTemplate_Default(86);
+        v0 = StringTemplate_Default(HEAP_ID_86);
         v2->unk_14 = MessageUtil_ExpandedStrbuf(v0, v1, param2, 86);
         v2->unk_68 = 1;
 
@@ -1077,7 +1077,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
     ov97_022301B0(param0);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_86, 0x30000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_0222D04C), 86);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_0222D04C), HEAP_ID_86);
     memset(v0, 0, sizeof(UnkStruct_ov97_0222D04C));
     v0->unk_00 = BgConfig_New(HEAP_ID_86);
 

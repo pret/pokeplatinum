@@ -237,7 +237,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
 
     {
         NARC *v1;
-        v1 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
+        v1 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, HEAP_ID_110);
 
         ov117_02261A2C(v0, v1);
         ov117_02261AC8(v0, v1);
@@ -256,7 +256,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
     sub_02039734();
 
     v0->unk_D4 = ov117_022626B0(v0);
-    StartScreenTransition(0, 27, 27, 0x0, 6, 1, 110);
+    StartScreenTransition(0, 27, 27, 0x0, 6, 1, HEAP_ID_110);
     v0->unk_94 = SysTask_Start(ov117_02260F7C, v0, 60000);
 
     gSystem.whichScreenIs3D = DS_SCREEN_SUB;
@@ -347,7 +347,7 @@ int ov117_0226098C(OverlayManager *param0, int *param1)
     case 5:
         if (v0->unk_2FC0 == 1) {
             ov117_02266150(v0);
-            StartScreenTransition(0, 26, 26, 0x0, 6, 1, 110);
+            StartScreenTransition(0, 26, 26, 0x0, 6, 1, HEAP_ID_110);
             (*param1)++;
         }
 
@@ -1041,10 +1041,10 @@ static void ov117_022619F8(UnkStruct_ov117_02261280 *param0)
 static void ov117_02261A2C(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
     PaletteData_LoadBufferFromFileStart(param0->unk_8C, 173, 4, 110, 0, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->unk_2C, 3, 0, 0, 0, 110);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, param0->unk_2C, 3, 0, 0, 0, 110);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 0, param0->unk_2C, 2, 0, 0, 0, 110);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 1, param0->unk_2C, 2, 0, 0, 0, 110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->unk_2C, 3, 0, 0, 0, HEAP_ID_110);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, param0->unk_2C, 3, 0, 0, 0, HEAP_ID_110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 0, param0->unk_2C, 2, 0, 0, 0, HEAP_ID_110);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 1, param0->unk_2C, 2, 0, 0, 0, HEAP_ID_110);
     PaletteData_FillBufferRange(param0->unk_8C, 0, 2, 0x0, 0, 1);
 }
 
@@ -1057,24 +1057,24 @@ static void ov117_02261AC8(UnkStruct_ov117_02261280 *param0, NARC *param1)
 {
     PaletteData_LoadBufferFromFileStart(param0->unk_8C, 173, 5, 110, 1, 5 * 0x20, 0);
     PaletteData_LoadBufferFromFile(param0->unk_8C, 173, 6, 110, 1, (0x20 * 10), 6 * 16, 6 * 16);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 13, param0->unk_2C, 6, 0, 0, 0, 110);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_2C, 6, 0, 0, 0, 110);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_2C, 5, 0, 0, 0, 110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 13, param0->unk_2C, 6, 0, 0, 0, HEAP_ID_110);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_2C, 6, 0, 0, 0, HEAP_ID_110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_2C, 5, 0, 0, 0, HEAP_ID_110);
 
     switch (param0->unk_00->unk_30) {
     case 2:
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 15, param0->unk_2C, 5, 0, 0, 0, 110);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 15, param0->unk_2C, 5, 0, 0, 0, HEAP_ID_110);
         break;
     case 3:
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 16, param0->unk_2C, 5, 0, 0, 0, 110);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 16, param0->unk_2C, 5, 0, 0, 0, HEAP_ID_110);
         break;
     default:
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_2C, 5, 0, 0, 0, 110);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_2C, 5, 0, 0, 0, HEAP_ID_110);
         break;
     }
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_2C, 4, 0, 0, 0, 110);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 19, param0->unk_2C, 4, 0, 0, 0, 110);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_2C, 4, 0, 0, 0, HEAP_ID_110);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 19, param0->unk_2C, 4, 0, 0, 0, HEAP_ID_110);
 
     ov117_02264AF0(param0);
     ov117_02264AB0(param0);

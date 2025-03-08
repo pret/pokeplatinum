@@ -123,9 +123,9 @@ int ov94_0223FB48(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_0223FE24(param0);
 
     if (param0->unk_20 == 8) {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_62);
     } else {
-        StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
+        StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
     }
 
     ov94_02240FA0(param0, param0->unk_110);
@@ -294,16 +294,16 @@ static void ov94_0223FD20(BgConfig *param0)
 static void ov94_0223FD4C(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
-    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
+    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
 
-    Graphics_LoadPaletteFromOpenNARC(v1, 2, 0, 0, 16 * 3 * 2, 62);
-    Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, 62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    Graphics_LoadPaletteFromOpenNARC(v1, 2, 0, 0, 16 * 3 * 2, HEAP_ID_62);
+    Graphics_LoadPaletteFromOpenNARC(v1, 5, 4, 0, 16 * 8 * 2, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 12, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 24, v0, 1, 0, 32 * 24 * 2, 1, 62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 29, v0, 2, 0, 32 * 24 * 2, 1, 62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 12, v0, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 24, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 29, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_62);
     NARC_dtor(v1);
 }
 
@@ -857,10 +857,10 @@ static int ov94_022408E8(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_02240A6C(UnkStruct_ov94_0223FD4C *param0)
 {
     if ((param0->unk_18 == 0) || (param0->unk_18 == 8)) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_62);
         param0->unk_1110 = 1;
     } else {
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_62);
     }
 
     param0->unk_2C = 0;
@@ -1130,7 +1130,7 @@ static void ov94_02240FA0(UnkStruct_ov94_0223FD4C *param0, int param1)
     UnkStruct_ov94_02240FA0 *v7;
 
     param0->unk_1114 = v7 = Heap_AllocFromHeapAtEnd(3, sizeof(UnkStruct_ov94_02240FA0) * 30);
-    v6 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 62);
+    v6 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_62);
 
     if ((param1 >= 0) && (param1 < 18)) {
         for (v1 = 0; v1 < 30; v1++) {

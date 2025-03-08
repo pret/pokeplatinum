@@ -87,7 +87,7 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
 
     if (param0->unk_34 == 0) {
         ov94_0223C85C(param0);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_62);
 
         param0->unk_2C = 0;
         param0->unk_34 = 1;
@@ -95,9 +95,9 @@ int ov94_0223C610(UnkStruct_ov94_0223FD4C *param0, int param1)
         ov94_02243FA8(param0, TrainerInfo_Gender(param0->unk_00->unk_1C));
     } else {
         if (param0->unk_1110 == 1) {
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1, 62);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_62);
         } else {
-            StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
+            StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
         }
 
         param0->unk_2C = 5;
@@ -272,15 +272,15 @@ static void ov94_0223C85C(UnkStruct_ov94_0223FD4C *param0)
 static void ov94_0223C888(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
-    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
+    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
 
-    Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 16 * 3 * 2, 62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    Graphics_LoadPaletteFromOpenNARC(v1, 4, 0, 0, 16 * 3 * 2, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 14, v0, 1, 0, 16 * 6 * 0x20, 1, 62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 30, v0, 1, 0, 32 * 24 * 2, 1, 62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 29, v0, 2, 0, 32 * 24 * 2, 1, 62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 14, v0, 1, 0, 16 * 6 * 0x20, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 30, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 29, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_62);
 
     ov94_0223D068(param0);
 
@@ -384,7 +384,7 @@ static int ov94_0223CB90(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223CBA0(UnkStruct_ov94_0223FD4C *param0)
 {
-    StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
+    StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
     param0->unk_2C = 3;
 
     return 3;
@@ -498,9 +498,9 @@ static int ov94_0223CE00(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_0223CE14(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_18 == 0) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_62);
     } else {
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_62);
     }
 
     param0->unk_2C = 0;
@@ -611,7 +611,7 @@ void ov94_0223D068(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
 
-    Graphics_LoadPalette(104, 5, 4, 0, 16 * 16 * 2, 62);
-    Graphics_LoadTilesToBgLayer(104, 15, v0, 5, 0, 32 * 21 * 0x40, 1, 62);
-    Graphics_LoadTilemapToBgLayer(104, 31, v0, 5, 0, 32 * 24 * 2, 1, 62);
+    Graphics_LoadPalette(104, 5, 4, 0, 16 * 16 * 2, HEAP_ID_62);
+    Graphics_LoadTilesToBgLayer(104, 15, v0, 5, 0, 32 * 21 * 0x40, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayer(104, 31, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_62);
 }

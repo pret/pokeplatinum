@@ -269,7 +269,7 @@ static int PokemonSummaryScreen_Main(OverlayManager *ovyManager, int *state)
 
     switch (*state) {
     case SUMMARY_STATE_TRANSITION_IN:
-        sub_0208C120(0, 19);
+        sub_0208C120(0, HEAP_ID_POKEMON_SUMMARY_SCREEN);
         *state = SUMMARY_STATE_WAIT_TRANSITION;
         break;
     case SUMMARY_STATE_WAIT_TRANSITION:
@@ -1035,7 +1035,7 @@ static int WaitForPoffinFeedMsgInput(PokemonSummaryScreen *dummy)
 
 static u8 SummaryScreenTransitionOut(PokemonSummaryScreen *dummy)
 {
-    sub_0208C120(1, 19);
+    sub_0208C120(1, HEAP_ID_POKEMON_SUMMARY_SCREEN);
     return SUMMARY_STATE_WAIT_EXIT;
 }
 

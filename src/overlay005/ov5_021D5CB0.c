@@ -60,7 +60,7 @@ UnkStruct_ov5_021D5CB0 *ov5_021D5CB0(void)
 int ov5_021D5CE4(UnkStruct_ov5_021D5CB0 *param0, NNSG3dResTex *param1)
 {
     int v0, v1 = 0;
-    NARC *v2 = NARC_ctor(NARC_INDEX_DATA__FLDTANIME, 4);
+    NARC *v2 = NARC_ctor(NARC_INDEX_DATA__FLDTANIME, HEAP_ID_FIELD);
 
     param0->unk_00 = NARC_AllocAndReadWholeMember(v2, 0, 4);
     param0->unk_04 = (UnkStruct_ov5_021D5CE4 *)param0->unk_00;

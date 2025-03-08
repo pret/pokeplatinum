@@ -103,7 +103,7 @@ BOOL ov100_021D14A8(void *param0)
 
     switch (v0->unk_00) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 111);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_111);
         v0->unk_00++;
     case 1:
         if (IsScreenTransitionDone() == 0) {
@@ -167,7 +167,7 @@ BOOL ov100_021D14A8(void *param0)
         if ((++v0->unk_7C4->unk_50.unk_03) != (+16)) {
             G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_7C4->unk_50.unk_03);
         } else {
-            StartScreenTransition(0, 0, 0, 0x7fff, 1, 1, 111);
+            StartScreenTransition(0, 0, 0, 0x7fff, 1, 1, HEAP_ID_111);
             v0->unk_00 = 0;
             return 0;
         }
@@ -241,9 +241,9 @@ static void ov100_021D1808(UnkStruct_ov100_021D1808 *param0)
     PaletteData *v4 = param0->unk_7C4->unk_10;
     int v5 = 50000;
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 70, v1, 5, 0, 0, 0, 111);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 72, v1, 5, 0, 0, 0, 111);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 73, v1, 4, 0, 0, 0, 111);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 70, v1, 5, 0, 0, 0, HEAP_ID_111);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 72, v1, 5, 0, 0, 0, HEAP_ID_111);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 73, v1, 4, 0, 0, 0, HEAP_ID_111);
     PaletteData_LoadBufferFromFileStart(v4, 172, 71, 111, 1, 0x20 * 2, 0);
 
     {

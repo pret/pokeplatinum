@@ -154,7 +154,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_21, 0x70000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_02246F24), 21);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_02246F24), HEAP_ID_21);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02246F24));
 
     v0->unk_08 = ov17_0223F140(HEAP_ID_21);
@@ -165,13 +165,13 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     ov17_0223B8C4(v0);
 
-    v0->unk_0C.unk_50 = PaletteData_New(21);
+    v0->unk_0C.unk_50 = PaletteData_New(HEAP_ID_21);
 
     PaletteData_SetAutoTransparent(v0->unk_0C.unk_50, 1);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 0, 0x200, 21);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 1, 0x200, 21);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 2, (((16 - 2) * 16) * sizeof(u16)), 21);
-    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 3, 0x200, 21);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 0, 0x200, HEAP_ID_21);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 1, 0x200, HEAP_ID_21);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_21);
+    PaletteData_AllocBuffer(v0->unk_0C.unk_50, 3, 0x200, HEAP_ID_21);
 
     v0->unk_0C.unk_24 = BgConfig_New(HEAP_ID_21);
 
@@ -184,7 +184,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     sub_0201E3D8();
     sub_0201E450(4);
-    Font_InitManager(FONT_SUBSCREEN, 21);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_21);
 
     v0->unk_0C.unk_18 = SpriteSystem_Alloc(21);
     SpriteSystem_Init(v0->unk_0C.unk_18, &Unk_ov17_02252DC8, &Unk_ov17_02252D9C, (16 + 16));
@@ -244,7 +244,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     ov17_022415E4(&v0->unk_0C);
 
     sub_02039734();
-    StartScreenTransition(1, 31, 31, 0x0, 6, 1, 21);
+    StartScreenTransition(1, 31, 31, 0x0, 6, 1, HEAP_ID_21);
 
     v0->unk_04 = SysTask_Start(ov17_0223B6F0, v0, 60000);
     v0->unk_7EC = 1;
@@ -287,7 +287,7 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
             } else if ((v1 == 3) && (v0->unk_1614 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-                StartScreenTransition(2, 32, 32, 0x0, 6, 1, 21);
+                StartScreenTransition(2, 32, 32, 0x0, 6, 1, HEAP_ID_21);
                 break;
             }
         }
@@ -298,7 +298,7 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
         if ((v0->unk_1614 == 1) && (ov17_0224F3D0(&v0->unk_BF8) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-            StartScreenTransition(2, 32, 32, 0x0, 6, 1, 21);
+            StartScreenTransition(2, 32, 32, 0x0, 6, 1, HEAP_ID_21);
         }
         break;
     case 2:
@@ -634,8 +634,8 @@ static void ov17_0223BAD0(UnkStruct_ov17_02246F24 *param0)
 void ov17_0223BB14(UnkStruct_ov17_02246F24 *param0, int param1, int param2)
 {
     if (param1 == 0) {
-        Graphics_LoadTilesToBgLayer(45, 3, param0->unk_0C.unk_24, 2, 0, 0x4000, 1, 21);
-        Graphics_LoadTilemapToBgLayer(45, 5, param0->unk_0C.unk_24, 2, 0, 0, 1, 21);
+        Graphics_LoadTilesToBgLayer(45, 3, param0->unk_0C.unk_24, 2, 0, 0x4000, 1, HEAP_ID_21);
+        Graphics_LoadTilemapToBgLayer(45, 5, param0->unk_0C.unk_24, 2, 0, 0, 1, HEAP_ID_21);
         Bg_SetPriority(1, 1);
         Bg_SetPriority(2, 0);
 
@@ -654,10 +654,10 @@ void ov17_0223BB14(UnkStruct_ov17_02246F24 *param0, int param1, int param2)
 
 static void ov17_0223BBA8(UnkStruct_ov17_02246F24 *param0, NARC *param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, param0->unk_0C.unk_24, 3, 0, 0, 1, 21);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 2, param0->unk_0C.unk_24, 3, 0, 0, 1, 21);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_0C.unk_24, 1, 0, 0, 1, 21);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, param0->unk_0C.unk_24, 1, 0, 0, 1, 21);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, param0->unk_0C.unk_24, 3, 0, 0, 1, HEAP_ID_21);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 2, param0->unk_0C.unk_24, 3, 0, 0, 1, HEAP_ID_21);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_0C.unk_24, 1, 0, 0, 1, HEAP_ID_21);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, param0->unk_0C.unk_24, 1, 0, 0, 1, HEAP_ID_21);
 
     ov17_0223BB14(param0, 0, 0);
 

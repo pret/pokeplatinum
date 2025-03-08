@@ -191,7 +191,7 @@ int ov106_02241AE0(OverlayManager *param0, int *param1)
     ov106_022424C8();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_98, 0x20000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov106_02243118), 98);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov106_02243118), HEAP_ID_98);
     memset(v1, 0, sizeof(UnkStruct_ov106_02243118));
 
     v1->unk_48 = BgConfig_New(HEAP_ID_98);
@@ -344,7 +344,7 @@ static BOOL ov106_02241D28(UnkStruct_ov106_02243118 *param0)
         break;
     case 2:
         ov106_02241DD4(param0);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 98);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_98);
         param0->unk_08++;
         break;
     case 3:
@@ -408,7 +408,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov104_0223B5A4(param0->unk_0D) == 0xfe) {
                 Sound_PlayEffect(1501);
-                StartScreenTransition(0, 0, 0, 0x0, 6, 1, 98);
+                StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_98);
 
                 param0->unk_10 = 1;
                 param0->unk_08 = 6;
@@ -692,7 +692,7 @@ static BOOL ov106_02242344(UnkStruct_ov106_02243118 *param0)
 
         if (param0->unk_1B == 0) {
             ov106_022432D4(param0);
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 98);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_98);
             param0->unk_08++;
         }
         break;
@@ -797,13 +797,13 @@ static void ov106_02242500(UnkStruct_ov106_02243118 *param0)
 {
     int v0, v1;
 
-    param0->unk_29C = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 98);
+    param0->unk_29C = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_98);
 
     ov106_0224262C(param0);
     ov106_02242688(param0);
 
     param0->unk_20 = MessageLoader_Init(1, 26, 549, HEAP_ID_98);
-    param0->unk_24 = StringTemplate_Default(98);
+    param0->unk_24 = StringTemplate_Default(HEAP_ID_98);
     param0->unk_28 = Strbuf_Init(600, HEAP_ID_98);
     param0->unk_2C = Strbuf_Init(600, HEAP_ID_98);
 
@@ -812,9 +812,9 @@ static void ov106_02242500(UnkStruct_ov106_02243118 *param0)
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_98);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 98);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_98);
 
-    param0->unk_B0 = sub_0200C440(15, 14, 0, 98);
+    param0->unk_B0 = sub_0200C440(15, 14, 0, HEAP_ID_98);
 
     ov106_022436E0(param0->unk_48, param0->unk_4C);
     ov106_02242F4C(param0, param0->unk_48);
@@ -841,10 +841,10 @@ static void ov106_0224262C(UnkStruct_ov106_02243118 *param0)
     ov106_0224271C();
     ov106_0224273C(param0->unk_48);
 
-    param0->unk_AC = PaletteData_New(98);
+    param0->unk_AC = PaletteData_New(HEAP_ID_98);
 
-    PaletteData_AllocBuffer(param0->unk_AC, 2, (32 * 16), 98);
-    PaletteData_AllocBuffer(param0->unk_AC, 0, (32 * 16), 98);
+    PaletteData_AllocBuffer(param0->unk_AC, 2, (32 * 16), HEAP_ID_98);
+    PaletteData_AllocBuffer(param0->unk_AC, 0, (32 * 16), HEAP_ID_98);
 
     ov106_0224283C(param0, 3);
     ov106_02242884();
@@ -1020,8 +1020,8 @@ static void ov106_0224273C(BgConfig *param0)
 
 static void ov106_0224283C(UnkStruct_ov106_02243118 *param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_29C, 23, param0->unk_48, param1, 0, 0, 1, 98);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_29C, 24, param0->unk_48, param1, 0, 0, 1, 98);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_29C, 23, param0->unk_48, param1, 0, 0, 1, HEAP_ID_98);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_29C, 24, param0->unk_48, param1, 0, 0, 1, HEAP_ID_98);
 
     return;
 }
@@ -1031,7 +1031,7 @@ static void ov106_02242884(void)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = Graphics_GetPlttData(150, 134, &v1, 98);
+    v0 = Graphics_GetPlttData(150, 134, &v1, HEAP_ID_98);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 6));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 6));
@@ -1042,9 +1042,9 @@ static void ov106_02242884(void)
 
 static void ov106_022428B8(UnkStruct_ov106_02243118 *param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_29C, 125, param0->unk_48, param1, 0, 0, 1, 98);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_29C, 126, param0->unk_48, param1, 0, 0, 1, 98);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_29C, 171, 4, 0, 0x20, 98);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_29C, 125, param0->unk_48, param1, 0, 0, 1, HEAP_ID_98);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_29C, 126, param0->unk_48, param1, 0, 0, 1, HEAP_ID_98);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_29C, 171, 4, 0, 0x20, HEAP_ID_98);
 
     return;
 }

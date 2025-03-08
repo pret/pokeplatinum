@@ -285,7 +285,7 @@ int ov94_022414B8(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_0224170C(param0);
     ov94_022417A0(param0);
 
-    StartScreenTransition(3, 1, 1, 0x0, 6, 1, 62);
+    StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
 
     ov94_02245934(param0);
     ov94_022422D4(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], 0, 3, -1);
@@ -452,12 +452,12 @@ static void ov94_0224170C(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
 
-    Graphics_LoadPalette(104, 1, 0, 0, 16 * 3 * 2, 62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    Graphics_LoadPalette(104, 1, 0, 0, 16 * 3 * 2, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayer(104, 11, v0, 1, 0, 16 * 5 * 0x20, 1, 62);
-    Graphics_LoadTilemapToBgLayer(104, 23, v0, 1, 0, 32 * 24 * 2, 1, 62);
+    Graphics_LoadTilesToBgLayer(104, 11, v0, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayer(104, 23, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
 }
 
 static void ov94_022417A0(UnkStruct_ov94_0223FD4C *param0)
@@ -802,10 +802,10 @@ static int ov94_0224208C(UnkStruct_ov94_0223FD4C *param0)
 static int ov94_022420E4(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_18 == 0) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_62);
         param0->unk_1110 = 1;
     } else {
-        StartScreenTransition(3, 0, 0, 0x0, 6, 1, 62);
+        StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_62);
     }
 
     param0->unk_2C = 0;

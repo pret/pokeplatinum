@@ -96,7 +96,7 @@ BOOL ov95_02249FC8(void *param0, int *param1)
 static int ov95_02249FF8(UnkStruct_ov95_02249FF8 *param0, int *param1)
 {
     ov95_0224A10C(param0);
-    StartScreenTransition(0, 1, 1, 0x7fff, 8, 1, 58);
+    StartScreenTransition(0, 1, 1, 0x7fff, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -119,7 +119,7 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 *param0, int *param1)
     case 1:
         if (param0->unk_20) {
             Sound_PlayEffect(1705);
-            StartScreenTransition(0, 0, 0, 0x7fff, 16, 1, 58);
+            StartScreenTransition(0, 0, 0, 0x7fff, 16, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
@@ -226,13 +226,13 @@ static void ov95_0224A10C(UnkStruct_ov95_02249FF8 *param0)
     Bg_InitFromTemplate(param0->unk_0C, 3, &v4, 0);
     Bg_InitFromTemplate(param0->unk_0C, 7, &v4, 0);
 
-    Graphics_LoadTilesToBgLayer(93, 19, param0->unk_0C, 3, 0, 0, 1, 58);
-    Graphics_LoadTilesToBgLayer(93, 19, param0->unk_0C, 7, 0, 0, 1, 58);
-    Graphics_LoadTilemapToBgLayer(93, 18, param0->unk_0C, 3, 0, 0, 1, 58);
-    Graphics_LoadTilemapToBgLayer(93, 18, param0->unk_0C, 7, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 19, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(93, 19, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(93, 18, param0->unk_0C, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(93, 18, param0->unk_0C, 7, 0, 0, 1, HEAP_ID_58);
 
-    Graphics_LoadPalette(93, 20, 0, 0, 0x20, 58);
-    Graphics_LoadPalette(93, 20, 4, 0, 0x20, 58);
+    Graphics_LoadPalette(93, 20, 0, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(93, 20, 4, 0, 0x20, HEAP_ID_58);
 
     Bg_FillTilesRange(param0->unk_0C, 1, 0x0, 1, 200);
     Bg_FillTilesRange(param0->unk_0C, 5, 0x0, 1, 200);

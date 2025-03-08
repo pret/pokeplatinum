@@ -98,7 +98,7 @@ static void sub_020528D0(BgConfig *param0)
     GXLayers_SetBanks(&v0);
     SetAllGraphicsModes(&v1);
     Bg_InitFromTemplate(param0, 3, &v2, 0);
-    Graphics_LoadPalette(14, 6, 0, 13 * 0x20, 0x20, 11);
+    Graphics_LoadPalette(14, 6, 0, 13 * 0x20, 0x20, HEAP_ID_FIELDMAP);
 }
 
 static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
@@ -118,7 +118,7 @@ static void sub_02052914(FieldSystem *fieldSystem, FieldTask *task)
     sub_020528D0(v0->unk_08);
 
     v0->unk_1C = MessageLoader_Init(1, 26, 373, HEAP_ID_FIELDMAP);
-    v0->unk_20 = StringTemplate_Default(11);
+    v0->unk_20 = StringTemplate_Default(HEAP_ID_FIELDMAP);
 
     Window_AddFromTemplate(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
     StringTemplate_SetPlayerName(v0->unk_20, 0, SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem)));
@@ -141,7 +141,7 @@ static BOOL sub_020529C4(FieldTask *task)
 
     switch (v0->unk_00) {
     case 0:
-        StartScreenTransition(3, 1, 42, 0x0, 8, 1, 32);
+        StartScreenTransition(3, 1, 42, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
         v0->unk_00++;
         break;
     case 1:
@@ -151,7 +151,7 @@ static BOOL sub_020529C4(FieldTask *task)
         break;
     case 2:
         if ((gSystem.pressedKeys & PAD_BUTTON_A) || (gSystem.pressedKeys & PAD_BUTTON_B)) {
-            StartScreenTransition(0, 0, 0, 0x0, 8, 1, 32);
+            StartScreenTransition(0, 0, 0, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
             v0->unk_00++;
         }
         break;

@@ -389,7 +389,7 @@ static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 *param0, ManagedSprite **param
         }
 
         param0->unk_10F4 = Heap_AllocFromHeap(HEAP_ID_75, (0x20 * 8));
-        v3 = Graphics_GetCharDataFromOpenNARC(param0->unk_10F8, v5, 0, &v4, 75);
+        v3 = Graphics_GetCharDataFromOpenNARC(param0->unk_10F8, v5, 0, &v4, HEAP_ID_75);
 
         MI_CpuCopy32(v4->pRawData, param0->unk_10F4, (0x20 * 8));
         Heap_FreeToHeap(v3);
@@ -448,12 +448,12 @@ static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 *param0)
     BgConfig *v0 = param0->unk_08;
 
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 18, 75, 0, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 9, param0->unk_08, 2, 0, 0, 0, 75);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 3, param0->unk_08, 2, 0, 0, 0, 75);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 9, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 3, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
 
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 21, 75, 1, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 12, param0->unk_08, 7, 0, 0, 0, 75);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 6, param0->unk_08, 7, 0, 0, 0, 75);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 12, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 6, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
 
     Bg_SetOffset(v0, 2, 0, 0);
     Bg_SetOffset(v0, 2, 3, 0);
@@ -657,18 +657,18 @@ static void ov99_021D2180(UnkStruct_ov99_021D2CB0 *param0)
     BgConfig *v0 = param0->unk_08;
 
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 19, 75, 0, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 10, param0->unk_08, 2, 0, 0, 0, 75);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 4, param0->unk_08, 2, 0, 0, 0, 75);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 10, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 4, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
 
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 22, 75, 1, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 13, param0->unk_08, 7, 0, 0, 0, 75);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 7, param0->unk_08, 7, 0, 0, 0, 75);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 13, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 7, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
 
     {
         NNSG2dPaletteData *v1;
         void *v2;
 
-        v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, 16, &v1, 75);
+        v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, 16, &v1, HEAP_ID_75);
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val2.unk_08, 0x20 * 4);
         Heap_FreeToHeap(v2);
     }
@@ -797,18 +797,18 @@ static void ov99_021D24F0(UnkStruct_ov99_021D2CB0 *param0)
     BgConfig *v0 = param0->unk_08;
 
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 20, 75, 0, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 11, param0->unk_08, 2, 0, 0, 0, 75);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 5, param0->unk_08, 2, 0, 0, 0, 75);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 11, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 5, param0->unk_08, 2, 0, 0, 0, HEAP_ID_75);
 
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 127, 23, 75, 1, 0, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 14, param0->unk_08, 7, 0, 0, 0, 75);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 8, param0->unk_08, 7, 0, 0, 0, 75);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_10F8, 14, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_10F8, 8, param0->unk_08, 7, 0, 0, 0, HEAP_ID_75);
 
     {
         NNSG2dPaletteData *v1;
         void *v2;
 
-        v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, 17, &v1, 75);
+        v2 = Graphics_GetPlttDataFromOpenNARC(param0->unk_10F8, 17, &v1, HEAP_ID_75);
         MI_CpuCopy16(v1->pRawData, param0->unk_FA4.unk_08_val3.unk_08, 0x20 * 8);
         Heap_FreeToHeap(v2);
 
@@ -1064,7 +1064,7 @@ static void ov99_021D2AAC(UnkStruct_ov99_021D2CB0 *param0)
         Strbuf *v1;
         int v2;
 
-        param0->unk_24 = Window_New(75, 1);
+        param0->unk_24 = Window_New(HEAP_ID_75, 1);
 
         Window_Add(v0, param0->unk_24, 7, 0, 0, 32, 32, 15, 0);
         Window_FillTilemap(param0->unk_24, 15);

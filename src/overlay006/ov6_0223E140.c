@@ -1039,7 +1039,7 @@ static void ov6_0223EA98(UnkStruct_ov6_0223EA98 *param0)
         { 10, 9 }
     };
 
-    v2 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, 4);
+    v2 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, HEAP_ID_FIELD);
     v0 = v3[param0->unk_10][0];
     v1 = v3[param0->unk_10][1];
 

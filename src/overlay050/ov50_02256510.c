@@ -77,7 +77,7 @@ static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
         0,
     };
 
-    Graphics_LoadObjectTiles(12, 114, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 114, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
     ov25_02255958(&param0->unk_28, 12, 112, 113, 8);
     param0->unk_24 = ov25_02255810(param0->unk_20, &v0, &param0->unk_28);
@@ -173,7 +173,7 @@ static void ov50_0225664C(SysTask *param0, void *param1)
     ov50_0225675C(v3, v4);
     ov50_022567F4(v3, v4);
 
-    Graphics_LoadTilesToBgLayer(12, 111, v3->unk_04, 7, 0, 0, 1, 8);
+    Graphics_LoadTilesToBgLayer(12, 111, v3->unk_04, 7, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Poketch_LoadActivePalette(0, 0);
 
     Bg_CopyTilemapBufferToVRAM(v3->unk_04, 6);
@@ -213,7 +213,7 @@ static void ov50_0225675C(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
 {
     u32 v0;
 
-    Graphics_LoadTilemapToBgLayer(12, 110, param0->unk_04, 7, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 110, param0->unk_04, 7, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
     for (v0 = 0; v0 < param1->unk_04; v0++) {
         if (param1->unk_0C[v0].unk_03) {

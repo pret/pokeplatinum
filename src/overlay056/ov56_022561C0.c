@@ -181,7 +181,7 @@ static void ov56_02256294(UnkStruct_ov56_02256468 *param0)
     param0->unk_2D8.unk_02 = 0;
     param0->unk_2D8.unk_04 = 0;
     param0->unk_2D8.unk_06 = 0;
-    param0->unk_18 = StringTemplate_Default(4);
+    param0->unk_18 = StringTemplate_Default(HEAP_ID_FIELD);
     param0->unk_1C = MessageLoader_Init(0, 26, 635, HEAP_ID_FIELD);
     param0->unk_20 = Graphics_GetScrnData(74, 3, 1, &(param0->unk_24), 4);
 }
@@ -364,9 +364,9 @@ static void ov56_02256508(BgConfig *param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
-    Graphics_LoadPalette(74, 0, 4, 0, 0x20 * 3, 4);
-    Graphics_LoadTilesToBgLayer(74, 2, param0, 7, 0, (32 * 5) * 0x20, 1, 4);
-    Graphics_LoadTilemapToBgLayer(74, 4, param0, 7, 0, 32 * 24 * 2, 1, 4);
+    Graphics_LoadPalette(74, 0, 4, 0, 0x20 * 3, HEAP_ID_FIELD);
+    Graphics_LoadTilesToBgLayer(74, 2, param0, 7, 0, (32 * 5) * 0x20, 1, HEAP_ID_FIELD);
+    Graphics_LoadTilemapToBgLayer(74, 4, param0, 7, 0, 32 * 24 * 2, 1, HEAP_ID_FIELD);
     FieldMessage_LoadTextPalettes(4, FALSE);
 }
 

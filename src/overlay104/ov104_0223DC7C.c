@@ -188,7 +188,7 @@ void ov104_0223DC7C(int param0, BgConfig *param1, SpriteSystem *param2, SpriteMa
     v1->unk_20 = param5;
     v1->unk_28 = param6;
     v1->unk_2A = param7;
-    v1->unk_24 = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, 94);
+    v1->unk_24 = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, HEAP_ID_94);
 
     if (v1->unk_20 != NULL) {
         *(v1->unk_20) = 0;
@@ -385,7 +385,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const U
         }
         break;
     case 16:
-        StartScreenTransition(3, 0, 0, 0x7fff, 15, 1, 94);
+        StartScreenTransition(3, 0, 0, 0x7fff, 15, 1, HEAP_ID_94);
         param0->unk_00++;
         break;
     case 17:
@@ -612,8 +612,8 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
     G2_SetWnd1Position(0, 0, 0, 0);
 
     PaletteData_LoadBufferFromFileStart(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, 94);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, 94);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, HEAP_ID_94);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, HEAP_ID_94);
     Bg_ChangeTilemapRectPalette(param0->unk_10, 1, 0, 0, 32, 32, 12);
     Bg_ScheduleTilemapTransfer(param0->unk_10, 1);
 
@@ -621,7 +621,7 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
         void *v0;
         NNSG2dPaletteData *v1;
 
-        v0 = Graphics_GetPlttData(112, param1->unk_08, &v1, 94);
+        v0 = Graphics_GetPlttData(112, param1->unk_08, &v1, HEAP_ID_94);
 
         MI_CpuCopy16(v1->pRawData, param0->unk_40, 8 * 32);
         Heap_FreeToHeap(v0);

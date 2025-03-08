@@ -97,9 +97,9 @@ static void ov51_022563B8(SysTask *param0, void *param1)
     UnkStruct_ov51_0225632C *v2 = PoketchTask_GetTaskData(param1);
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    Graphics_LoadTilesToBgLayer(12, 8, v2->unk_04, 6, 0, 0, 0, 8);
+    Graphics_LoadTilesToBgLayer(12, 8, v2->unk_04, 6, 0, 0, 0, HEAP_ID_POKETCH_APP);
     Bg_FillTilemapRect(v2->unk_04, 6, 0, 0, 0, 32, 24, 0);
-    Graphics_LoadPalette(12, 9, 4, 0 * 0x20, 0x20, 8);
+    Graphics_LoadPalette(12, 9, 4, 0 * 0x20, 0x20, HEAP_ID_POKETCH_APP);
 
     ov25_02255440(v2->unk_04, 26, 6);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);

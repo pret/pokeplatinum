@@ -116,9 +116,9 @@ static int ov6_022471C0(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
     }
 
     if (param2->unk_08 == 2) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
     } else {
-        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, 4);
+        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, HEAP_ID_FIELD);
     }
 
     param2->unk_00++;
@@ -216,9 +216,9 @@ static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param
 static int ov6_02247354(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
 {
     if (param2->unk_08 == 2) {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
     } else {
-        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, HEAP_ID_FIELD);
     }
 
     param2->unk_14 = ov5_021F0EB0(fieldSystem, 4);

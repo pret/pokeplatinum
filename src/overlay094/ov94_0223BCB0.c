@@ -99,7 +99,7 @@ int ov94_0223BCB0(OverlayManager *param0, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_62, 0x70000);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov94_0223FD4C), 62);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov94_0223FD4C), HEAP_ID_62);
         memset(v0, 0, sizeof(UnkStruct_ov94_0223FD4C));
         v0->unk_04 = BgConfig_New(HEAP_ID_62);
         Unk_ov94_02246C08 = v0;
@@ -312,7 +312,7 @@ static void ov94_0223C0A4(void)
 static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
 {
     int v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
+    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_62);
 
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 62);
@@ -345,7 +345,7 @@ static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
         int v4, v5, v6, v7;
         u16 *v8;
 
-        v2 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &v3, 62);
+        v2 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &v3, HEAP_ID_62);
 
         DC_FlushRange(v3->pRawData, (3 * 16) * 2);
         GX_LoadOBJPltt(v3->pRawData, 3 * 0x20, (3 * 16) * 2);

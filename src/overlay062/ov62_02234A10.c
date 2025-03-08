@@ -70,7 +70,7 @@ static BOOL ov62_02234AB4(UnkStruct_0208C06C *param0)
             break;
         }
 
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 102);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_102);
         PaletteData_BlendMulti(param0->unk_14.unk_14, 2, 0xFFFE, 16, ov62_022316D0(param0));
         PaletteData_BlendMulti(param0->unk_14.unk_14, 0, 0xBFFF, 16, ov62_022316D0(param0));
         PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0x3FFE, 16, ov62_022316D0(param0));
@@ -163,9 +163,9 @@ static BOOL ov62_02234CDC(UnkStruct_0208C06C *param0)
 
         if (ov62_022300BC(param0) == 1) {
             if (param0->unk_00 == 0) {
-                Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 69, param0->unk_14.unk_10, 5, 0, 0, 0, 102);
+                Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 69, param0->unk_14.unk_10, 5, 0, 0, 0, HEAP_ID_102);
             } else {
-                Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 55, param0->unk_14.unk_10, 5, 0, 0, 0, 102);
+                Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 55, param0->unk_14.unk_10, 5, 0, 0, 0, HEAP_ID_102);
             }
 
             sub_0208B948(param0->unk_6F0, 256 / 2, 192 + 32);
@@ -202,9 +202,9 @@ static BOOL ov62_02234CDC(UnkStruct_0208C06C *param0)
         break;
     case 2:
         if (param0->unk_00 == 0) {
-            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 69, param0->unk_14.unk_10, 5, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 69, param0->unk_14.unk_10, 5, 0, 0, 0, HEAP_ID_102);
         } else {
-            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 55, param0->unk_14.unk_10, 5, 0, 0, 0, 102);
+            Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 55, param0->unk_14.unk_10, 5, 0, 0, 0, HEAP_ID_102);
         }
 
         param0->unk_08++;

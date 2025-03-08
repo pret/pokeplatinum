@@ -80,12 +80,12 @@ void ov97_02237694(int heapID)
     v0->heapID = heapID;
 }
 
-void *ov97_022376C4(OverlayManager *param0, int param1, int param2, int param3)
+void *ov97_022376C4(OverlayManager *param0, int heapID, int param2, int param3)
 {
     void *v0;
 
-    Heap_Create(HEAP_ID_APPLICATION, param1, param3);
-    v0 = OverlayManager_NewData(param0, param2, param1);
+    Heap_Create(HEAP_ID_APPLICATION, heapID, param3);
+    v0 = OverlayManager_NewData(param0, param2, heapID);
 
     memset(v0, 0, param2);
 

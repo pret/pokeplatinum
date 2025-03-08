@@ -327,7 +327,7 @@ int ov112_0225C700(OverlayManager *param0, int *param1)
     UnkStruct_ov66_02230FA0 *v1 = OverlayManager_Args(param0);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_107, 0x50000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov112_0225C970), 107);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov112_0225C970), HEAP_ID_107);
     memset(v0, 0, sizeof(UnkStruct_ov112_0225C970));
 
     v0->unk_00 = v1->unk_00;
@@ -357,7 +357,7 @@ int ov112_0225C7C4(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 107);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_107);
         ov66_0222E31C(v1->unk_08, 1);
         (*param1)++;
         break;
@@ -395,7 +395,7 @@ int ov112_0225C7C4(OverlayManager *param0, int *param1)
         }
         break;
     case 3:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 107);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_107);
         (*param1)++;
         break;
     case 4:

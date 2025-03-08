@@ -259,10 +259,10 @@ static int sub_0207E0B8(OverlayManager *param0, int *param1)
     SetAutorepeat(4, 8);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_12, 0x30000);
 
-    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 12);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, HEAP_ID_12);
     v0 = sub_0207ECC0(param0);
 
-    StartScreenTransition(1, 3, 3, 0x0, 6, 1, 12);
+    StartScreenTransition(1, 3, 3, 0x0, 6, 1, HEAP_ID_12);
     sub_0207EDC0(v0);
     sub_0207E8C0();
     sub_0207E918(v0->unk_00);
@@ -434,7 +434,7 @@ static int sub_0207E2A8(OverlayManager *param0, int *param1)
         }
         break;
     case 32:
-        sub_0208C120(1, 12);
+        sub_0208C120(1, HEAP_ID_12);
         *param1 = 33;
         break;
     case 33:
@@ -906,8 +906,8 @@ static void sub_0207EB64(GenericPointerData *param0)
 
 static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 15, param0->unk_00, 3, 0, 0, 0, 12);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_00, 3, 0, 0, 0, 12);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 15, param0->unk_00, 3, 0, 0, 0, HEAP_ID_12);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_00, 3, 0, 0, 0, HEAP_ID_12);
 
     {
         NNSG2dPaletteData *v0;
@@ -923,14 +923,14 @@ static void sub_0207EB6C(GameWindowLayout *param0, NARC *param1)
         Heap_FreeToHeapExplicit(HEAP_ID_12, v1);
     }
 
-    Font_LoadScreenIndicatorsPalette(0, 13 * 32, 12);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_12);
     LoadStandardWindowGraphics(param0->unk_00, 0, 1, 14, 0, HEAP_ID_12);
-    LoadMessageBoxGraphics(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), 12);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_00, 4, 0, 0, 0, 12);
-    Graphics_LoadPaletteFromOpenNARC(param1, 4, 4, 0x20, 0x20, 12);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 5, 0, 0, 0, 12);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_00, 5, 0, 0, 0, 12);
-    Graphics_LoadPaletteFromOpenNARC(param1, 13, 4, 0, 0x20, 12);
+    LoadMessageBoxGraphics(param0->unk_00, 0, (1 + 9), 15, Options_Frame(param0->unk_5A4->unk_0C), HEAP_ID_12);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, param0->unk_00, 4, 0, 0, 0, HEAP_ID_12);
+    Graphics_LoadPaletteFromOpenNARC(param1, 4, 4, 0x20, 0x20, HEAP_ID_12);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 12, param0->unk_00, 5, 0, 0, 0, HEAP_ID_12);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 14, param0->unk_00, 5, 0, 0, 0, HEAP_ID_12);
+    Graphics_LoadPaletteFromOpenNARC(param1, 13, 4, 0, 0x20, HEAP_ID_12);
     LoadScreenDataFromNARC(12, param0->unk_264, param0->unk_324, param0->unk_3E4);
     Bg_MaskPalette(0, 0);
     Bg_MaskPalette(4, 0);
@@ -941,7 +941,7 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
     GameWindowLayout *v0;
     u32 v1;
 
-    v0 = OverlayManager_NewData(param0, sizeof(GameWindowLayout), 12);
+    v0 = OverlayManager_NewData(param0, sizeof(GameWindowLayout), HEAP_ID_12);
     memset(v0, 0, sizeof(GameWindowLayout));
 
     v0->unk_5A4 = OverlayManager_Args(param0);
@@ -954,8 +954,8 @@ static GameWindowLayout *sub_0207ECC0(OverlayManager *param0)
     }
 
     v0->unk_69C = MessageLoader_Init(0, 26, 453, HEAP_ID_12);
-    v0->unk_698 = sub_0200C440(15, 14, 0, 12);
-    v0->unk_6A0 = StringTemplate_Default(12);
+    v0->unk_698 = sub_0200C440(15, 14, 0, HEAP_ID_12);
+    v0->unk_6A0 = StringTemplate_Default(HEAP_ID_12);
 
     for (v1 = 0; v1 < 6; v1++) {
         v0->unk_704[v1].unk_00 = Strbuf_Init(10 + 1, HEAP_ID_12);
@@ -1198,7 +1198,7 @@ static void sub_0207F308(GameWindowLayout *param0)
 static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1228,7 +1228,7 @@ static void sub_0207F388(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F4AC(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1253,7 +1253,7 @@ static void sub_0207F4AC(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F5A0(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1278,7 +1278,7 @@ static void sub_0207F5A0(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F694(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1303,7 +1303,7 @@ static void sub_0207F694(GameWindowLayout *param0, const UnkStruct_020F1DF8 *par
 static void sub_0207F788(GameWindowLayout *param0, const UnkStruct_020F1DF8 *param1)
 {
     u8 v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
+    NARC *v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {

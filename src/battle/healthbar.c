@@ -729,7 +729,7 @@ void ov16_022672C4(Healthbar *param0)
     SpriteSystem *v1;
     SpriteManager *v2;
     PaletteData *v3;
-    NARC *v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+    NARC *v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
     v1 = ov16_0223E010(param0->battleSys);
     v2 = ov16_0223E018(param0->battleSys);
     v3 = BattleSystem_PaletteSys(param0->battleSys);

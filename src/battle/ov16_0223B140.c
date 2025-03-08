@@ -339,11 +339,11 @@ void ov16_0223B430(BattleSystem *battleSys)
     ov16_0223F314(battleSys, 0);
     MI_CpuFill16((void *)GetHardwareSubBgPaletteAddress(), 0x0, GetHardwareSubBgPaletteSize());
 
-    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-    v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+    v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
     battleSys->unk_198 = ov16_022687C8(v0, v1, battleSys, BattleSystem_GetTrainerGender(battleSys, ov16_0223F6E4(battleSys)), battleSys->unk_1BC);
 
-    Font_InitManager(FONT_SUBSCREEN, 5);
+    Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
     battleSys->unk_23FB_1 = 1;
 
@@ -445,11 +445,11 @@ void ov16_0223B578(BattleSystem *battleSys)
         v1 = ov16_0223EDE0(battleSys);
 
         ReplaceTransparentTiles(battleSys->unk_04, 1, 1, 10, v1, 5);
-        Graphics_LoadTilesToBgLayer(7, 3 + battleSys->unk_2400, battleSys->unk_04, 3, 0, 0, 1, 5);
+        Graphics_LoadTilesToBgLayer(7, 3 + battleSys->unk_2400, battleSys->unk_04, 3, 0, 0, 1, HEAP_ID_BATTLE);
         PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 7, 172 + (battleSys->unk_2400 * 3) + ov16_0223EC04(battleSys), 5, 0, 0, 0);
         PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 38, GetMessageBoxPaletteNARCMember(v1), 5, 0, 0x20, 10 * 0x10);
         PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
-        Graphics_LoadTilemapToBgLayer(7, 2, battleSys->unk_04, 3, 0, 0, 1, 5);
+        Graphics_LoadTilemapToBgLayer(7, 2, battleSys->unk_04, 3, 0, 0, 1, HEAP_ID_BATTLE);
     }
 
     {
@@ -533,22 +533,22 @@ static void ov16_0223B790(OverlayManager *param0)
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_BATTLE);
 
     if (battleSys->battleType & BATTLE_TYPE_SAFARI) {
-        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, 5);
+        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, HEAP_ID_BATTLE);
     } else {
-        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, 5);
+        battleSys->unk_1A4 = sub_0200C440(0xe, 2, 0xf, HEAP_ID_BATTLE);
     }
 
     battleSys->unk_1A8 = battleSys->unk_1A4;
-    battleSys->unk_28 = PaletteData_New(5);
+    battleSys->unk_28 = PaletteData_New(HEAP_ID_BATTLE);
 
     PaletteData_SetAutoTransparent(battleSys->unk_28, 1);
-    PaletteData_AllocBuffer(battleSys->unk_28, 0, 0x200, 5);
-    PaletteData_AllocBuffer(battleSys->unk_28, 1, 0x200, 5);
-    PaletteData_AllocBuffer(battleSys->unk_28, 2, (((16 - 2) * 16) * sizeof(u16)), 5);
-    PaletteData_AllocBuffer(battleSys->unk_28, 3, 0x200, 5);
+    PaletteData_AllocBuffer(battleSys->unk_28, 0, 0x200, HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->unk_28, 1, 0x200, HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->unk_28, 2, (((16 - 2) * 16) * sizeof(u16)), HEAP_ID_BATTLE);
+    PaletteData_AllocBuffer(battleSys->unk_28, 3, 0x200, HEAP_ID_BATTLE);
 
     battleSys->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
-    battleSys->windows = Window_New(5, 3);
+    battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
 
     for (v3 = 0; v3 < 4; v3++) {
         battleSys->unk_1CC[v3].unk_00 = Heap_AllocFromHeap(HEAP_ID_BATTLE, (32 * 10 * 10));
@@ -557,8 +557,8 @@ static void ov16_0223B790(OverlayManager *param0)
     VramTransfer_New(64, HEAP_ID_BATTLE);
 
     {
-        NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-        NARC *v7 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+        NARC *v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+        NARC *v7 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
         battleSys->unk_198 = ov16_022687C8(v6, v7, battleSys, BattleSystem_GetTrainerGender(battleSys, ov16_0223F6E4(battleSys)), battleSys->unk_1BC);
 
@@ -590,8 +590,8 @@ static void ov16_0223B790(OverlayManager *param0)
         NARC *v8;
         NARC *v9;
 
-        v8 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-        v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+        v8 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+        v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
 
         ov16_02268C04(v8, v9, battleSys->unk_198, 0, 1, NULL);
         ov16_02268D40(v9, battleSys->unk_198);
@@ -615,7 +615,7 @@ static void ov16_0223B790(OverlayManager *param0)
 
     battleSys->unk_0C = MessageLoader_Init(1, 26, 368, HEAP_ID_BATTLE);
     battleSys->unk_10 = MessageLoader_Init(1, 26, 0, HEAP_ID_BATTLE);
-    battleSys->strFormatter = StringTemplate_Default(5);
+    battleSys->strFormatter = StringTemplate_Default(HEAP_ID_BATTLE);
     battleSys->msgBuffer = Strbuf_Init((2 * 160), HEAP_ID_BATTLE);
 
     MI_CpuCopy16(PaletteData_GetUnfadedBuffer(battleSys->unk_28, 0), &battleSys->unk_2224[0], 0x20 * 7);
@@ -634,7 +634,7 @@ static void ov16_0223B790(OverlayManager *param0)
     PaletteData_FillBufferRange(battleSys->unk_28, 1, 0, 0x0, 0, 255);
     PaletteData_FillBufferRange(battleSys->unk_28, 3, 0, 0xffff, 0, 255);
 
-    battleSys->unk_1AC = sub_0201567C(battleSys->unk_28, 0, 0xb, 5);
+    battleSys->unk_1AC = sub_0201567C(battleSys->unk_28, 0, 0xb, HEAP_ID_BATTLE);
     sub_02015738(battleSys->unk_1AC, 1);
 
     battleSys->unk_1C = SysTask_Start(ov16_0223CF48, battleSys, 60000);
@@ -929,11 +929,11 @@ static void ov16_0223C004(BattleSystem *battleSys, BgConfig *param1)
         v3 = ov16_0223EDE0(battleSys);
 
         ReplaceTransparentTiles(param1, 1, 1, 10, v3, 5);
-        Graphics_LoadTilesToBgLayer(7, 3 + battleSys->unk_2400, param1, 3, 0, 0, 1, 5);
+        Graphics_LoadTilesToBgLayer(7, 3 + battleSys->unk_2400, param1, 3, 0, 0, 1, HEAP_ID_BATTLE);
         PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 7, 172 + (battleSys->unk_2400 * 3) + ov16_0223EC04(battleSys), 5, 0, 0, 0);
         PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 38, GetMessageBoxPaletteNARCMember(v3), 5, 0, 0x20, 10 * 0x10);
         PaletteData_LoadBufferFromFileStart(battleSys->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
-        Graphics_LoadTilemapToBgLayer(7, 2, param1, 3, 0, 0, 1, 5);
+        Graphics_LoadTilemapToBgLayer(7, 2, param1, 3, 0, 0, 1, HEAP_ID_BATTLE);
     }
 
     {
@@ -1639,20 +1639,20 @@ static void NitroStaticInit(void)
 
 static void ov16_0223D10C(OverlayManager *param0, FieldBattleDTO *param1)
 {
-    UnkStruct_0207A778 *v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0207A778), 5);
+    UnkStruct_0207A778 *v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0207A778), HEAP_ID_BATTLE);
 
     v0->unk_00 = param1;
     v0->unk_1020 = 0;
     v0->unk_1021 = 0;
     v0->unk_1022 = 0;
-    v0->unk_0C = PaletteData_New(5);
+    v0->unk_0C = PaletteData_New(HEAP_ID_BATTLE);
 
     PaletteData_SetAutoTransparent(v0->unk_0C, 1);
-    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, 5);
+    PaletteData_AllocBuffer(v0->unk_0C, 0, 0x200, HEAP_ID_BATTLE);
     PaletteData_FillBufferRange(v0->unk_0C, 0, 2, 0x0, 0, 256);
 
     v0->unk_04 = BgConfig_New(HEAP_ID_BATTLE);
-    v0->unk_08 = Window_New(5, 1);
+    v0->unk_08 = Window_New(HEAP_ID_BATTLE, 1);
 
     sub_0207A744(v0);
     GXLayers_DisableEngineALayers();
@@ -1995,7 +1995,7 @@ static void ov16_0223D7B4(OverlayManager *param0)
 
 static BOOL ov16_0223D800(OverlayManager *param0)
 {
-    BattleSystem *battleSys = OverlayManager_NewData(param0, sizeof(BattleSystem), 5);
+    BattleSystem *battleSys = OverlayManager_NewData(param0, sizeof(BattleSystem), HEAP_ID_BATTLE);
     FieldBattleDTO *v1 = OverlayManager_Args(param0);
     u8 v2;
 

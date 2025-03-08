@@ -398,7 +398,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_6, 0x30000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov84_0223B5A0), 6);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov84_0223B5A0), HEAP_ID_6);
     memset(v0, 0, sizeof(UnkStruct_ov84_0223B5A0));
     v0->unk_C4 = OverlayManager_Args(param0);
 
@@ -407,7 +407,7 @@ int ov84_0223B5A0(OverlayManager *param0, int *param1)
     v0->unk_00 = BgConfig_New(HEAP_ID_6);
     v0->unk_425 = TrainerInfo_Gender(v0->unk_CC);
 
-    StartScreenTransition(1, 3, 3, 0x0, 6, 1, 6);
+    StartScreenTransition(1, 3, 3, 0x0, 6, 1, HEAP_ID_6);
     SetAutorepeat(3, 8);
 
     ov84_0223BEAC(v0);
@@ -809,30 +809,30 @@ static void ov84_0223BBC4(BgConfig *param0)
 
 static void ov84_0223BC1C(UnkStruct_ov84_0223B5A0 *param0)
 {
-    param0->unk_D4 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_BAG_GRA, 6);
+    param0->unk_D4 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_BAG_GRA, HEAP_ID_6);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 11, param0->unk_00, 1, 0, 0, 0, 6);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 14, param0->unk_00, 1, 0, 0, 0, 6);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 13, param0->unk_00, 3, 0, 0, 0, 6);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 12, 0, 0, 0, 6);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 22, 0, 16 * 13 * 2, 32, 6);
-    Font_LoadScreenIndicatorsPalette(0, 11 * 32, 6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 11, param0->unk_00, 1, 0, 0, 0, HEAP_ID_6);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 14, param0->unk_00, 1, 0, 0, 0, HEAP_ID_6);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 13, param0->unk_00, 3, 0, 0, 0, HEAP_ID_6);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 12, 0, 0, 0, HEAP_ID_6);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 22, 0, 16 * 13 * 2, 32, HEAP_ID_6);
+    Font_LoadScreenIndicatorsPalette(0, 11 * 32, HEAP_ID_6);
     LoadStandardWindowGraphics(param0->unk_00, 0, 1024 - 9, 14, 0, HEAP_ID_6);
-    LoadMessageBoxGraphics(param0->unk_00, 0, 1024 - 9 - (18 + 12), 12, Options_Frame(param0->unk_D0), 6);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 15, param0->unk_00, 5, 0, 0, 0, 6);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 16, 4, 0, 0, 6);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 17, param0->unk_00, 5, 0, 0, 0, 6);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 32, param0->unk_00, 7, 0, 0, 0, 6);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 33, param0->unk_00, 7, 0, 0, 0, 6);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 19, param0->unk_00, 4, 0, 0, 0, 6);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 18, 4, 16 * 2 * 2, 0x20 * 2, 6);
+    LoadMessageBoxGraphics(param0->unk_00, 0, 1024 - 9 - (18 + 12), 12, Options_Frame(param0->unk_D0), HEAP_ID_6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 15, param0->unk_00, 5, 0, 0, 0, HEAP_ID_6);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 16, 4, 0, 0, HEAP_ID_6);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 17, param0->unk_00, 5, 0, 0, 0, HEAP_ID_6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 32, param0->unk_00, 7, 0, 0, 0, HEAP_ID_6);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_D4, 33, param0->unk_00, 7, 0, 0, 0, HEAP_ID_6);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_D4, 19, param0->unk_00, 4, 0, 0, 0, HEAP_ID_6);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_D4, 18, 4, 16 * 2 * 2, 0x20 * 2, HEAP_ID_6);
 }
 
 static void ov84_0223BDB4(UnkStruct_ov84_0223B5A0 *param0)
 {
     param0->unk_114 = MessageLoader_Init(0, 26, 7, HEAP_ID_6);
-    param0->unk_110 = sub_0200C440(1, 2, 0, 6);
-    param0->unk_118 = StringTemplate_Default(6);
+    param0->unk_110 = sub_0200C440(1, 2, 0, HEAP_ID_6);
+    param0->unk_118 = StringTemplate_Default(HEAP_ID_6);
     param0->unk_11C = MessageLoader_Init(0, 26, 392, HEAP_ID_6);
     param0->unk_120 = MessageLoader_Init(0, 26, 647, HEAP_ID_6);
     param0->unk_3F8 = Strbuf_Init(256, HEAP_ID_6);
@@ -1269,7 +1269,7 @@ static u8 ov84_0223C5B8(UnkStruct_ov84_0223B5A0 *param0)
         Sound_PlayEffect(1500);
         param0->unk_C4->unk_66 = 0;
         param0->unk_C4->unk_68 = 5;
-        sub_0208C120(1, 6);
+        sub_0208C120(1, HEAP_ID_6);
         return 3;
     default:
         Sound_PlayEffect(1500);
@@ -2159,7 +2159,7 @@ static int ov84_0223D94C(UnkStruct_ov84_0223B5A0 *param0)
         return 13;
     }
 
-    sub_0208C120(1, 6);
+    sub_0208C120(1, HEAP_ID_6);
     param0->unk_C4->unk_68 = 0;
 
     return 24;
@@ -2231,7 +2231,7 @@ static int ov84_0223DA14(UnkStruct_ov84_0223B5A0 *param0)
 
         switch (v2) {
         case 0:
-            sub_0208C120(1, 6);
+            sub_0208C120(1, HEAP_ID_6);
             ov84_0223D7E8(param0, 0);
             param0->unk_C4->unk_68 = 0;
             return 24;
@@ -2351,7 +2351,7 @@ static int ov84_0223DDD0(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223DE78(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
-    sub_0208C120(1, 6);
+    sub_0208C120(1, HEAP_ID_6);
     param0->unk_C4->unk_68 = 1;
 
     return 24;
@@ -2360,7 +2360,7 @@ static int ov84_0223DE78(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223DE98(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
-    sub_0208C120(1, 6);
+    sub_0208C120(1, HEAP_ID_6);
     param0->unk_C4->unk_68 = 3;
 
     return 24;
@@ -2543,7 +2543,7 @@ static int ov84_0223E220(UnkStruct_ov84_0223B5A0 *param0)
 static int ov84_0223E254(UnkStruct_ov84_0223B5A0 *param0)
 {
     ov84_0223FD84(param0);
-    sub_0208C120(1, 6);
+    sub_0208C120(1, HEAP_ID_6);
     ov84_0223D7E8(param0, 0);
     param0->unk_C4->unk_68 = 2;
 
@@ -2587,7 +2587,7 @@ static int ov84_0223E27C(UnkStruct_ov84_0223B5A0 *param0)
             }
 
             param0->unk_C4->unk_68 = 4;
-            sub_0208C120(1, 6);
+            sub_0208C120(1, HEAP_ID_6);
 
             return 24;
         } else if (v0 == 3) {
@@ -2904,7 +2904,7 @@ static int ov84_0223EA18(UnkStruct_ov84_0223B5A0 *param0)
             }
 
             param0->unk_C4->unk_68 = 0;
-            sub_0208C120(1, 6);
+            sub_0208C120(1, HEAP_ID_6);
             return 24;
         } else if (v0 == 3) {
             param0->unk_C4->unk_68 = 5;

@@ -115,7 +115,7 @@ const static UnkFuncPtr_0200F6D8 Unk_020E5074[] = {
 
 static UnkStruct_0200F46C Unk_021BF474;
 
-void StartScreenTransition(int param0, int param1, int param2, u16 param3, int param4, int param5, int param6)
+void StartScreenTransition(int param0, int param1, int param2, u16 param3, int param4, int param5, int heapID)
 {
     UnkStruct_0200F46C *v0;
     u16 v1;
@@ -132,8 +132,8 @@ void StartScreenTransition(int param0, int param1, int param2, u16 param3, int p
 
     v1 = sub_0200F768(v0, param3);
 
-    sub_0200F5D4(&v0->unk_14, param1, param4, param5, 0, NULL, 0, &v0->unk_8C, &v0->unk_74, param6, v1);
-    sub_0200F5D4(&v0->unk_44, param2, param4, param5, 0, NULL, 1, &v0->unk_8C, &v0->unk_74, param6, v1);
+    sub_0200F5D4(&v0->unk_14, param1, param4, param5, 0, NULL, 0, &v0->unk_8C, &v0->unk_74, heapID, v1);
+    sub_0200F5D4(&v0->unk_44, param2, param4, param5, 0, NULL, 1, &v0->unk_8C, &v0->unk_74, heapID, v1);
 
     v0->unk_14C = 1;
 

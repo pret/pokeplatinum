@@ -106,7 +106,7 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     GXS_SetVisiblePlane(0);
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_114, 0x20000);
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov110_021D0F78), 114);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov110_021D0F78), HEAP_ID_114);
     memset(v1, 0, sizeof(UnkStruct_ov110_021D0F78));
 
     v1->unk_00 = param0;
@@ -124,12 +124,12 @@ int ov110_021D0D80 (OverlayManager * param0, int * param1)
     ov110_021D1180(v1);
 
     v1->unk_110 = MessageLoader_Init(1, 26, 16, HEAP_ID_114);
-    v1->unk_114 = StringTemplate_Default(114);
+    v1->unk_114 = StringTemplate_Default(HEAP_ID_114);
     v1->unk_118 = Strbuf_Init(800, HEAP_ID_114);
     v1->unk_11C = Strbuf_Init(800, HEAP_ID_114);
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_114);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 114);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_114);
     ov110_021D2124(v1->unk_0C, v1->unk_10, ov110_021D1208(v1->unk_06));
     SetVBlankCallback(ov110_021D1048, (void *)v1);
     (*param1) = 0;
@@ -194,7 +194,7 @@ static BOOL ov110_021D0F78 (UnkStruct_ov110_021D0F78 * param0)
         param0->unk_04++;
         break;
     case 1:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 114);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_114);
         ov110_021D140C(param0);
         param0->unk_04++;
         break;
@@ -233,7 +233,7 @@ static BOOL ov110_021D1000 (UnkStruct_ov110_021D0F78 * param0)
 
     switch (param0->unk_04) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 114);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_114);
         param0->unk_04++;
         break;
     case 1:
@@ -371,10 +371,10 @@ static void ov110_021D1180 (UnkStruct_ov110_021D0F78 * param0)
     ov110_021D1078();
     ov110_021D1098(param0->unk_0C);
 
-    param0->unk_120 = PaletteData_New(114);
+    param0->unk_120 = PaletteData_New(HEAP_ID_114);
 
-    PaletteData_AllocBuffer(param0->unk_120, 2, (32 * 16), 114);
-    PaletteData_AllocBuffer(param0->unk_120, 0, (32 * 16), 114);
+    PaletteData_AllocBuffer(param0->unk_120, 2, (32 * 16), HEAP_ID_114);
+    PaletteData_AllocBuffer(param0->unk_120, 0, (32 * 16), HEAP_ID_114);
 
     ov110_021D123C(param0, 2);
     ov110_021D128C();
@@ -433,10 +433,10 @@ static void ov110_021D123C (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 114);
+    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_114);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 124, param0->unk_0C, param1, 0, 0, 1, 114);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 123, param0->unk_0C, param1, 0, 0, 1, 114);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 124, param0->unk_0C, param1, 0, 0, 1, HEAP_ID_114);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 123, param0->unk_0C, param1, 0, 0, 1, HEAP_ID_114);
     NARC_dtor(v0);
 
     return;
@@ -447,7 +447,7 @@ static void ov110_021D128C (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = Graphics_GetPlttData(150, 170, &v1, 114);
+    v0 = Graphics_GetPlttData(150, 170, &v1, HEAP_ID_114);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 2));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 2));
@@ -460,11 +460,11 @@ static void ov110_021D12C0 (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, 114);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, HEAP_ID_114);
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 10, param0->unk_0C, param1, 0, 0, 1, 114);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 11, param0->unk_0C, param1, 0, 0, 1, 114);
-    Graphics_LoadPaletteFromOpenNARC(v0, 12, 4, 0, 0x20, 114);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 10, param0->unk_0C, param1, 0, 0, 1, HEAP_ID_114);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 11, param0->unk_0C, param1, 0, 0, 1, HEAP_ID_114);
+    Graphics_LoadPaletteFromOpenNARC(v0, 12, 4, 0, 0x20, HEAP_ID_114);
     NARC_dtor(v0);
 
     return;

@@ -217,15 +217,15 @@ int ov85_02241440(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_36, 0x20000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov85_022417E4), 36);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov85_022417E4), HEAP_ID_36);
     memset(v0, 0, sizeof(UnkStruct_ov85_022417E4));
     v0->unk_1F8 = OverlayManager_Args(param0);
     v0->unk_00 = BgConfig_New(HEAP_ID_36);
     v0->unk_1FC = BerryData_Load(v0->unk_1F8->unk_08, 36);
 
-    sub_0208C120(0, 36);
+    sub_0208C120(0, HEAP_ID_36);
 
-    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, 36);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, HEAP_ID_36);
 
     ov85_02241614();
     ov85_02241634(v0->unk_00);
@@ -417,10 +417,10 @@ static void ov85_022416E8(BgConfig *param0)
 
 static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->unk_00, 2, 0, 0, 0, 36);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 0, param0->unk_00, 2, 0, 0, 0, 36);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 1, param0->unk_00, 3, 0, 0, 0, 36);
-    Graphics_LoadPaletteFromOpenNARC(param1, 3, 0, 0, 0, 36);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, param0->unk_00, 2, 0, 0, 0, HEAP_ID_36);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 0, param0->unk_00, 2, 0, 0, 0, HEAP_ID_36);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 1, param0->unk_00, 3, 0, 0, 0, HEAP_ID_36);
+    Graphics_LoadPaletteFromOpenNARC(param1, 3, 0, 0, 0, HEAP_ID_36);
 
     {
         u16 *v0;
@@ -448,8 +448,8 @@ static void ov85_022417CC(void)
 static void ov85_022417E4(UnkStruct_ov85_022417E4 *param0)
 {
     param0->unk_C4 = MessageLoader_Init(0, 26, 398, HEAP_ID_36);
-    param0->unk_CC = sub_0200C440(15, 2, 0, 36);
-    param0->unk_C8 = StringTemplate_Default(36);
+    param0->unk_CC = sub_0200C440(15, 2, 0, HEAP_ID_36);
+    param0->unk_C8 = StringTemplate_Default(HEAP_ID_36);
 }
 
 static void ov85_0224181C(UnkStruct_ov85_022417E4 *param0)
@@ -745,7 +745,7 @@ static int ov85_02241D10(UnkStruct_ov85_022417E4 *param0)
     }
 
     if ((gSystem.pressedKeys & PAD_BUTTON_B) || (gSystem.touchPressed)) {
-        sub_0208C120(1, 36);
+        sub_0208C120(1, HEAP_ID_36);
         return 3;
     }
 
@@ -786,8 +786,8 @@ static int ov85_02241DF8(UnkStruct_ov85_022417E4 *param0)
 
 static void ov85_02241E60(UnkStruct_ov85_022417E4 *param0, NARC *param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, ov85_02241EB0(param0->unk_1F8->unk_08), param0->unk_00, 1, 1, 0, 0, 36);
-    Graphics_LoadPaletteFromOpenNARC(param1, ov85_02241EB4(param0->unk_1F8->unk_08), 0, 3 * 0x20, 0x20, 36);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, ov85_02241EB0(param0->unk_1F8->unk_08), param0->unk_00, 1, 1, 0, 0, HEAP_ID_36);
+    Graphics_LoadPaletteFromOpenNARC(param1, ov85_02241EB4(param0->unk_1F8->unk_08), 0, 3 * 0x20, 0x20, HEAP_ID_36);
 }
 
 u32 ov85_02241EB0(u32 param0)
@@ -855,7 +855,7 @@ static void ov85_02241F0C(UnkStruct_ov85_022417E4 *param0)
     param0->unk_1FC = BerryData_Load(param0->unk_1F8->unk_08, 36);
     ov85_02241CD0(param0);
 
-    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, 36);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, HEAP_ID_36);
     ov85_02241E60(param0, v0);
     NARC_dtor(v0);
     ov85_02242578(param0);

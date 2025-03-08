@@ -1581,7 +1581,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         break;
     case 1:
         sub_0200F2C0();
-        StartScreenTransition(2, 16, 18, 0x0, 6, 1, 4);
+        StartScreenTransition(2, 16, 18, 0x0, 6, 1, HEAP_ID_FIELD);
         ov23_0224942C(fieldSystem->unk_6C);
         Sound_PlayEffect(1539);
         v1->unk_0C++;
@@ -1615,7 +1615,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
     case 6:
         fieldSystem->unk_6C = ov23_02249404(fieldSystem);
         sub_0200F2C0();
-        StartScreenTransition(1, 17, 19, 0x0, 6, 1, 4);
+        StartScreenTransition(1, 17, 19, 0x0, 6, 1, HEAP_ID_FIELD);
         (v1->unk_0C)++;
         break;
     case 7:
@@ -1632,7 +1632,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         CommSys_EnableSendMovementData();
         sub_020594FC();
 
-        Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
+        Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
         LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 
         if (v1->unk_2D) {
@@ -2378,7 +2378,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
         }
         break;
     case 3:
-        StartScreenTransition(2, 0, 0, 0x0, 6, 1, 4);
+        StartScreenTransition(2, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
         break;
     case 4:
         Heap_FreeToHeap(param1);

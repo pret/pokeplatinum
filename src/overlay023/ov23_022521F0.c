@@ -929,7 +929,7 @@ void ov23_022534A0(FieldSystem *fieldSystem)
     v4->unk_288 = v6;
     v4->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     v4->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v4->unk_70 = StringTemplate_Default(4);
+    v4->unk_70 = StringTemplate_Default(HEAP_ID_FIELD);
     v4->unk_2AA = 0;
 
     Sound_PlayEffect(1500);

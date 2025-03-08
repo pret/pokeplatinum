@@ -101,7 +101,7 @@ int ov98_02246C20(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_108, 0x28000);
     Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02246E88), 108);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02246E88), HEAP_ID_108);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
     v0->unk_04 = ((ApplicationArgs *)OverlayManager_Args(param0))->saveData;
     v0->unk_08 = SaveData_Options(v0->unk_04);

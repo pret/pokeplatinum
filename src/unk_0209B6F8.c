@@ -70,7 +70,7 @@ int sub_0209B6F8(OverlayManager *param0, int *param1)
 
     sub_0209B924();
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0209B75C), 11);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_0209B75C), HEAP_ID_FIELDMAP);
     MI_CpuClear8(v0, sizeof(UnkStruct_0209B75C));
 
     sub_0209B8E8(v0);

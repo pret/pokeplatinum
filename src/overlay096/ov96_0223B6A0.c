@@ -72,7 +72,7 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_68, 0x50000);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov96_0223BF40), 68);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov96_0223BF40), HEAP_ID_68);
         memset(v0, 0, sizeof(UnkStruct_ov96_0223BF40));
         v0->unk_04 = BgConfig_New(HEAP_ID_68);
         Unk_ov96_0223DEEC = v0;
@@ -250,7 +250,7 @@ static void ov96_0223B9A0(void)
 static void ov96_0223B9D0(UnkStruct_ov96_0223BF40 *param0)
 {
     int v0;
-    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 68);
+    NARC *v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, HEAP_ID_68);
 
     NNS_G2dInitOamManagerModule();
     RenderOam_Init(0, 126, 0, 32, 0, 126, 0, 32, 68);

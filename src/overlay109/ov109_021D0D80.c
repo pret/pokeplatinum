@@ -437,14 +437,14 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     ResetLock(2);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_95, 0x80000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D0F70), 95);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D0F70), HEAP_ID_95);
     memset(v0, 0, sizeof(UnkStruct_ov109_021D0F70));
 
     v1->unk_38 = v0;
     v0->unk_CC = v1;
     v0->unk_D0 = v1->unk_34;
     v0->unk_24 = Party_GetFromSavedata(v0->unk_CC->unk_14.unk_08);
-    v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, 95);
+    v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, HEAP_ID_95);
 
     VramTransfer_New(8, 95);
     sub_0201E3D8();
@@ -482,7 +482,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     ov109_021D3584(v0);
     ov109_021D379C(v0);
     ov109_021D3884(v0);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, 95);
+    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_95);
 
     return 1;
 }
@@ -1453,7 +1453,7 @@ static int ov109_021D1B8C(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 {
-    StartScreenTransition(2, 0, 0, 0x0, 8, 1, 95);
+    StartScreenTransition(2, 0, 0, 0x0, 8, 1, HEAP_ID_95);
 
     if (param0->unk_1C != sub_020041FC()) {
         sub_02004550(4, param0->unk_1C, 1);
@@ -1885,13 +1885,13 @@ static void ov109_021D22A4(UnkStruct_ov109_021D0F70 *param0)
 
 static void ov109_021D22B0(UnkStruct_ov109_021D0F70 *param0)
 {
-    param0->unk_D9C = PaletteData_New(95);
+    param0->unk_D9C = PaletteData_New(HEAP_ID_95);
 
     PaletteData_SetAutoTransparent(param0->unk_D9C, 1);
-    PaletteData_AllocBuffer(param0->unk_D9C, 0, 0x200, 95);
-    PaletteData_AllocBuffer(param0->unk_D9C, 2, 0x200, 95);
-    PaletteData_AllocBuffer(param0->unk_D9C, 1, 0x200, 95);
-    PaletteData_AllocBuffer(param0->unk_D9C, 3, 0x200, 95);
+    PaletteData_AllocBuffer(param0->unk_D9C, 0, 0x200, HEAP_ID_95);
+    PaletteData_AllocBuffer(param0->unk_D9C, 2, 0x200, HEAP_ID_95);
+    PaletteData_AllocBuffer(param0->unk_D9C, 1, 0x200, HEAP_ID_95);
+    PaletteData_AllocBuffer(param0->unk_D9C, 3, 0x200, HEAP_ID_95);
 }
 
 static void ov109_021D2308(UnkStruct_ov109_021D0F70 *param0)
@@ -1962,7 +1962,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
     {
         NARC *v4;
 
-        v4 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, 95);
+        v4 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, HEAP_ID_95);
 
         SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v4, 14, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, PLTTBUF_MAIN_OBJ, v0, v1, v4, 8, FALSE, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
@@ -2003,12 +2003,12 @@ static void ov109_021D24F8(UnkStruct_ov109_021D0F70 *param0)
     UnkStruct_ov109_021D24F8 *v1 = &param0->unk_C9C;
 
     LoadStandardWindowGraphics(param0->unk_D84, 1, 1, 15, 0, HEAP_ID_95);
-    LoadMessageBoxGraphics(param0->unk_D84, 1, (1 + 9), 14, param0->unk_CC->unk_14.unk_04, 95);
+    LoadMessageBoxGraphics(param0->unk_D84, 1, (1 + 9), 14, param0->unk_CC->unk_14.unk_04, HEAP_ID_95);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 38, GetMessageBoxPaletteNARCMember(param0->unk_CC->unk_14.unk_04), 95, 0, 0x20, 14 * 16);
     PaletteData_LoadBufferFromFileStart(param0->unk_D9C, 14, 7, 95, 0, 0x20, 15 * 16);
 
     v1->unk_04 = MessageLoader_Init(0, 26, 376, HEAP_ID_95);
-    v1->unk_08 = StringTemplate_Default(95);
+    v1->unk_08 = StringTemplate_Default(HEAP_ID_95);
 
     for (v0 = 0; v0 < 1; v0++) {
         Window_AddFromTemplate(param0->unk_D84, &v1->unk_0C[v0], &Unk_ov109_021D59B8[v0]);

@@ -885,12 +885,12 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_18, 0x20000 + 0x8000);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02087A10), 18);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02087A10), HEAP_ID_18);
         memset(v0, 0, sizeof(UnkStruct_02087A10));
         v0->unk_160 = BgConfig_New(HEAP_ID_18);
-        v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, 18);
+        v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, HEAP_ID_18);
 
-        v0->unk_168 = StringTemplate_Default(18);
+        v0->unk_168 = StringTemplate_Default(HEAP_ID_18);
         v0->unk_16C = MessageLoader_Init(0, 26, 422, HEAP_ID_18);
         v0->unk_170 = MessageLoader_Init(1, 26, 427, HEAP_ID_18);
         v0->unk_174 = MessageLoader_Init(1, 26, 368, HEAP_ID_18);
@@ -900,7 +900,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         sub_020871EC(v0->unk_160);
         sub_020871B0(v0, (UnkStruct_0208737C *)OverlayManager_Args(param0));
         sub_0208769C(v0, v1);
-        Font_InitManager(FONT_SUBSCREEN, 18);
+        Font_InitManager(FONT_SUBSCREEN, HEAP_ID_18);
         SetVBlankCallback(sub_02087190, NULL);
         sub_0208737C(v0, param0);
         Font_UseImmediateGlyphAccess(FONT_SYSTEM, 18);
@@ -910,7 +910,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         sub_02087FC0(v0, param0, v1);
         sub_02088754(&v0->unk_41C[4], v0->unk_D8, v0->unk_158, v0->unk_15A, v0->unk_528, v0->unk_17C);
         sub_02004550(52, 0, 0);
-        StartScreenTransition(0, 1, 1, 0x0, 16, 1, 18);
+        StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_18);
         sub_0208732C(1);
 
         {
@@ -929,7 +929,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         }
 
         Unk_021C0A30 = v0;
-        v0->unk_628 = sub_0201567C(NULL, 1, 12, 18);
+        v0->unk_628 = sub_0201567C(NULL, 1, 12, HEAP_ID_18);
 
         (*param1) = 0;
         return 1;
@@ -996,7 +996,7 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
             v0->unk_630++;
 
             if (v0->unk_630 > 30) {
-                StartScreenTransition(2, 0, 0, 0x0, 16, 1, 18);
+                StartScreenTransition(2, 0, 0, 0x0, 16, 1, HEAP_ID_18);
                 *param1 = 3;
             }
             break;
@@ -1499,19 +1499,19 @@ static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_160;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 3 * 2, 18);
-    Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, 18);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 3 * 2, HEAP_ID_18);
+    Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, HEAP_ID_18);
     Bg_MaskPalette(4, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, ((32 * 8) * 0x20), 1, 18);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, 18);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 18);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, 18);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, 18);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 18);
-    LoadMessageBoxGraphics(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->unk_18), 18);
-    Font_LoadScreenIndicatorsPalette(4, 12 * 32, 18);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, ((32 * 8) * 0x20), 1, HEAP_ID_18);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_18);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, HEAP_ID_18);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 1, 0, (32 * 14 * 2), 1, HEAP_ID_18);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, v0, 0, 0, (32 * 14 * 2), 1, HEAP_ID_18);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_18);
+    LoadMessageBoxGraphics(param0->unk_160, 4, (32 * 8), 10, Options_Frame(param0->unk_18), HEAP_ID_18);
+    Font_LoadScreenIndicatorsPalette(4, 12 * 32, HEAP_ID_18);
 
-    param0->unk_510 = Graphics_GetCharDataFromOpenNARC(param1, 16, 1, &param0->unk_514, 18);
+    param0->unk_510 = Graphics_GetCharDataFromOpenNARC(param1, 16, 1, &param0->unk_514, HEAP_ID_18);
 }
 
 void sub_020877C4(void)
@@ -1550,10 +1550,10 @@ static void sub_020877F4(UnkStruct_02087A10 *param0, NARC *param1)
     param0->unk_328[0][3] = SpriteResourceCollection_AddFrom(param0->unk_318[3], param1, 14, 1, 0, 3, 18);
 
     if (param0->unk_00 == 1) {
-        param0->unk_518 = Graphics_GetCharData(19, PokeIconSpriteIndex(param0->unk_04, 0, param0->unk_08), 0, &param0->unk_51C, 18);
+        param0->unk_518 = Graphics_GetCharData(19, PokeIconSpriteIndex(param0->unk_04, 0, param0->unk_08), 0, &param0->unk_51C, HEAP_ID_18);
         DC_FlushRange(param0->unk_51C, 0x20 * 4 * 4);
 
-        param0->unk_520 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &param0->unk_524, 18);
+        param0->unk_520 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &param0->unk_524, HEAP_ID_18);
         DC_FlushRange(param0->unk_524, 0x20 * 4);
     }
 
@@ -1739,7 +1739,7 @@ static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int para
     case 0: {
         u16 v3 = Unk_020F24DC[param3] | (Unk_020F24DC[param3] << 4);
 
-        Graphics_LoadTilemapToBgLayer(31, 6 + param3, param0, 0 + v0, 0, (32 * 14 * 2), 1, 18);
+        Graphics_LoadTilemapToBgLayer(31, 6 + param3, param0, 0 + v0, 0, (32 * 14 * 2), 1, HEAP_ID_18);
         sub_02088260(param5, v0);
         sub_02088E58(&param1[v0], v3, param3, TEXT_COLOR(14, 15, 0), param7);
         (*param2)++;
@@ -1825,7 +1825,7 @@ static void sub_02087FC0(UnkStruct_02087A10 *param0, OverlayManager *param1, NAR
     Window_Add(param0->unk_160, &param0->unk_41C[1], 1, 2, 1, 26, 12, 1, ((32 * 8) + (26 * 12)));
 
     if (param0->unk_00 == 4) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 6 + 3, param0->unk_160, 1, 0, (32 * 14 * 2), 1, 18);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 6 + 3, param0->unk_160, 1, 0, (32 * 14 * 2), 1, HEAP_ID_18);
         param0->unk_4C4 = 4;
         sub_02088844(param0->unk_3A, 4);
         sub_02088E58(&param0->unk_41C[1], 0xa0a, 4, TEXT_COLOR(14, 15, 0), param0->unk_514->pRawData);
@@ -2290,7 +2290,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
         if (param0->unk_14 == 0) {
             Sound_PlayEffect(1506);
             param0->unk_4F4[6]++;
-            StartScreenTransition(2, 0, 0, 0x0, 16, 1, 18);
+            StartScreenTransition(2, 0, 0, 0x0, 16, 1, HEAP_ID_18);
             return 3;
         } else {
             param0->unk_4C0 = 5;

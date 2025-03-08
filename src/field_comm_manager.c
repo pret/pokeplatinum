@@ -310,7 +310,7 @@ static void sub_020599E4(void)
     }
 
     if (CommTiming_IsSyncState(92)) {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
         sub_0200F32C(0);
         sub_0200F32C(1);
         CommPlayerMan_Restart();
@@ -386,7 +386,7 @@ static void sub_02059B10(void)
         u8 v0 = 1;
         CommSys_SendDataFixedSize(94, &v0);
 
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 4);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
         sub_0200F32C(0);
         sub_0200F32C(1);
         FieldCommMan_SetTask(sub_02059CD8, 0);

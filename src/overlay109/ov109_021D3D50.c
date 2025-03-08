@@ -180,23 +180,23 @@ int ov109_021D3D50(OverlayManager *param0, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_95, 0x80000);
 
-        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__RECORD, 95);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__RECORD, HEAP_ID_95);
         GF_ASSERT(v1);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D5140), 95);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D5140), HEAP_ID_95);
         memset(v0, 0, sizeof(UnkStruct_ov109_021D5140));
 
         v2->unk_3C = v0;
         v0->unk_0C = v2;
         v0->unk_10 = v2->unk_34;
         v0->unk_14 = BgConfig_New(HEAP_ID_95);
-        v0->unk_34 = StringTemplate_Default(95);
+        v0->unk_34 = StringTemplate_Default(HEAP_ID_95);
         v0->unk_38 = MessageLoader_Init(0, 26, 377, HEAP_ID_95);
 
         SetAutorepeat(4, 8);
         ov109_021D40D0();
         ov109_021D40F0(v0->unk_14);
-        StartScreenTransition(0, 17, 17, 0x0, 16, 1, 95);
+        StartScreenTransition(0, 17, 17, 0x0, 16, 1, HEAP_ID_95);
         ov109_021D4300(v0, v1);
         SetVBlankCallback(ov109_021D40A8, v0);
         ov109_021D41F8(v0, v1);
@@ -529,7 +529,7 @@ static void ov109_021D41F8(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     param0->unk_1C.unk_00 = 0;
     param0->unk_1C.unk_08 = 0;
     param0->unk_1C.unk_04 = 0;
-    param0->unk_1C.unk_0C = Graphics_GetPlttDataFromOpenNARC(param1, 1, &param0->unk_1C.unk_10, 95);
+    param0->unk_1C.unk_0C = Graphics_GetPlttDataFromOpenNARC(param1, 1, &param0->unk_1C.unk_10, HEAP_ID_95);
     param0->unk_4AA8 = 0;
     param0->unk_394 = NULL;
     param0->unk_10->unk_2C = 2;
@@ -565,15 +565,15 @@ static void ov109_021D4300(UnkStruct_ov109_021D5140 *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_14;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 16 * 2, 95);
-    Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, 95);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 95);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 95);
-    Graphics_LoadTilesToBgLayer(12, 10, v0, 6, 0, 0, 1, 95);
-    Graphics_LoadTilemapToBgLayer(12, 11, v0, 6, 0, 0, 1, 95);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, 95);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, 95);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_0C->unk_14.unk_10), 95);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 16 * 2, HEAP_ID_95);
+    Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, HEAP_ID_95);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_95);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_95);
+    Graphics_LoadTilesToBgLayer(12, 10, v0, 6, 0, 0, 1, HEAP_ID_95);
+    Graphics_LoadTilemapToBgLayer(12, 11, v0, 6, 0, 0, 1, HEAP_ID_95);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, HEAP_ID_95);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_95);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_0C->unk_14.unk_10), HEAP_ID_95);
     LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, HEAP_ID_95);
 }
 
@@ -1109,7 +1109,7 @@ static int ov109_021D4D9C(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D4DBC(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (++param0->unk_3C4 > 60) {
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 95);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_95);
         param1 = 3;
     }
 
@@ -1203,7 +1203,7 @@ static int ov109_021D4F6C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     if (CommTiming_IsSyncState(202)) {
         CommMan_SetErrorHandling(0, 0);
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 95);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_95);
         param1 = 3;
     }
 
@@ -1294,7 +1294,7 @@ static int ov109_021D5098(UnkStruct_ov109_021D5140 *param0, int param1)
 static int ov109_021D510C(UnkStruct_ov109_021D5140 *param0, int param1)
 {
     sub_0205BEA8(12);
-    StartScreenTransition(0, 16, 16, 0x0, 16, 1, 95);
+    StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_95);
 
     param0->unk_08 = 1;
     param1 = 3;
@@ -1646,10 +1646,10 @@ static void ov109_021D5668(UnkStruct_ov109_021D5140 *param0)
 
 static void ov109_021D577C(UnkStruct_ov109_021D5140 *param0, NARC *param1)
 {
-    param0->unk_3A8[0] = Graphics_GetPlttData(104, 8, &(param0->unk_3B0[0]), 95);
-    param0->unk_3A8[1] = Graphics_GetPlttDataFromOpenNARC(param1, 7, &(param0->unk_3B0[1]), 95);
-    param0->unk_398[0] = Graphics_GetCharData(104, 32, 1, &(param0->unk_3A0[0]), 95);
-    param0->unk_398[1] = Graphics_GetCharDataFromOpenNARC(param1, 9, 1, &(param0->unk_3A0[1]), 95);
+    param0->unk_3A8[0] = Graphics_GetPlttData(104, 8, &(param0->unk_3B0[0]), HEAP_ID_95);
+    param0->unk_3A8[1] = Graphics_GetPlttDataFromOpenNARC(param1, 7, &(param0->unk_3B0[1]), HEAP_ID_95);
+    param0->unk_398[0] = Graphics_GetCharData(104, 32, 1, &(param0->unk_3A0[0]), HEAP_ID_95);
+    param0->unk_398[1] = Graphics_GetCharDataFromOpenNARC(param1, 9, 1, &(param0->unk_3A0[1]), HEAP_ID_95);
 }
 
 static const u16 Unk_ov109_021D5D9C[] = {

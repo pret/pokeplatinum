@@ -126,8 +126,8 @@ static BOOL ov62_02235EBC(UnkStruct_0208C06C *param0)
         Bg_SetPriority(5, 3);
         Bg_SetPriority(6, 1);
         Bg_SetPriority(7, 2);
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, HEAP_ID_102);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, HEAP_ID_102);
         param0->unk_08++;
         break;
     default:
@@ -363,7 +363,7 @@ static BOOL ov62_022363CC(UnkStruct_0208C06C *param0)
     case 2:
         ov62_022362B8(param0);
         ov62_02231AAC(param0, 296);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 84, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_14.unk_00, 84, param0->unk_14.unk_10, 7, 0, 0, 0, HEAP_ID_102);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
         param0->unk_08++;
@@ -438,7 +438,7 @@ static BOOL ov62_02236624(UnkStruct_0208C06C *param0)
     switch (param0->unk_08) {
     case 0:
         ov62_02231AAC(param0, 299);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 102);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 1:
@@ -479,7 +479,7 @@ static BOOL ov62_022366D4(UnkStruct_0208C06C *param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 102);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 1:
@@ -630,7 +630,7 @@ static BOOL ov62_02236920(UnkStruct_0208C06C *param0)
         PaletteData_BlendMulti(param0->unk_14.unk_14, 3, 0xC, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 4:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 102);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_102);
         param0->unk_08++;
         break;
     case 5:

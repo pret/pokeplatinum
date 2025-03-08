@@ -161,7 +161,7 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             BOOL v2 = 1;
             NARC *v3;
 
-            v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, 10);
+            v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_10);
 
             SetVBlankCallback(NULL, NULL);
             DisableHBlank();
@@ -412,7 +412,7 @@ static void ov19_021D6694(SysTask *param0, void *param1)
 
     switch (v2->unk_06) {
     case 0: {
-        NARC *v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, 10);
+        NARC *v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, HEAP_ID_10);
 
         ov19_021D74B4(v0, v1);
         ov19_021D75CC(v0, v1, v3);
@@ -448,7 +448,7 @@ static void ov19_021D671C(SysTask *param0, void *param1)
     case 0:
         Sound_PlayEffect(1549);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenTransition(0, 1, 1, 0x0, 8, 1, 10);
+        StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_10);
         v2->unk_06++;
         break;
     case 1:
@@ -470,7 +470,7 @@ static void ov19_021D6780(SysTask *param0, void *param1)
     switch (v2->unk_06) {
     case 0:
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, 10);
+        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_10);
         v2->unk_06++;
         break;
     case 1:
@@ -491,7 +491,7 @@ static void ov19_021D67DC(SysTask *param0, void *param1)
 
     switch (v2->unk_06) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 10);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_10);
         v2->unk_06++;
         break;
     case 1:
@@ -1524,7 +1524,7 @@ static void ov19_021D7460(SysTask *param0, void *param1)
     switch (v2->unk_06) {
     case 0:
         Sound_PlayEffect(1550);
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 10);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_10);
         v2->unk_06++;
         break;
     case 1:
@@ -1744,14 +1744,14 @@ static void ov19_021D74B4(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
 
 static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_021D4DF0 *param1, NARC *param2)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 4, param0->unk_1C0, 1, 0, 0, 1, 10);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 4, param0->unk_1C0, 1, 0, 0, 1, HEAP_ID_10);
     Bg_FillTilemapRect(param0->unk_1C0, 1, 0x0, 0, 0, 32, 32, 17);
     Bg_CopyTilemapBufferToVRAM(param0->unk_1C0, 1);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 1, param0->unk_1C0, 2, 0, 0, 1, 10);
-    Graphics_LoadPaletteFromOpenNARC(param2, 5, 0, 0, 0x20 * 7, 10);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param2, 1, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_10);
+    Graphics_LoadPaletteFromOpenNARC(param2, 5, 0, 0, 0x20 * 7, HEAP_ID_10);
 
     if (ov19_021D5E08(param1) != 4) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 0, param0->unk_1C0, 2, 0, 0, 1, 10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param2, 0, param0->unk_1C0, 2, 0, 0, 1, HEAP_ID_10);
     }
 
     ov19_021D7A9C(&param0->unk_494);

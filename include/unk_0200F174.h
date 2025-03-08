@@ -5,7 +5,7 @@
 
 #include "functypes/funcptr_0200F634.h"
 
-void StartScreenTransition(int param0, int param1, int param2, u16 param3, int param4, int param5, int param6);
+void StartScreenTransition(int param0, int param1, int param2, u16 param3, int param4, int param5, int heapID);
 void sub_0200F27C(void);
 BOOL IsScreenTransitionDone(void);
 void sub_0200F2C0(void);

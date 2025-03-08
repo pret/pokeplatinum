@@ -85,7 +85,7 @@ int ov101_021D0D80(OverlayManager *param0, int *param1)
     GXLayers_DisableEngineBLayers();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_79, 0x80000);
 
-    v0 = OverlayManager_NewData(param0, (sizeof(UnkStruct_ov101_021D0F3C)), 79);
+    v0 = OverlayManager_NewData(param0, (sizeof(UnkStruct_ov101_021D0F3C)), HEAP_ID_79);
     memset(v0, 0, (sizeof(UnkStruct_ov101_021D0F3C)));
     v2 = OverlayManager_Args(param0);
     v0->unk_00 = v2;
@@ -105,7 +105,7 @@ int ov101_021D0D80(OverlayManager *param0, int *param1)
     ov101_021D5C28(v1);
     sub_02004550(66, 0, 0);
     ov101_021D18C0(v1);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, 79);
+    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_79);
 
     return 1;
 }
@@ -124,7 +124,7 @@ int ov101_021D0E40(OverlayManager *param0, int *param1)
     case 1:
         if (ov101_021D1AAC(v1) == 1) {
             (*param1)++;
-            StartScreenTransition(2, 0, 0, 0x0, 8, 1, 79);
+            StartScreenTransition(2, 0, 0, 0x0, 8, 1, HEAP_ID_79);
             ov101_021D1894(v1, UnkEnum_ov101_021D1894_00);
         }
         break;
@@ -430,11 +430,11 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
     UnkStruct_ov101_021D148C *v1 = &param0->unk_408;
 
     LoadStandardWindowGraphics(param0->unk_43C, 0, 1, 15, 0, HEAP_ID_79);
-    LoadMessageBoxGraphics(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, 79);
-    Font_LoadScreenIndicatorsPalette(0, 15 * 32, 79);
+    LoadMessageBoxGraphics(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, HEAP_ID_79);
+    Font_LoadScreenIndicatorsPalette(0, 15 * 32, HEAP_ID_79);
 
     v1->unk_00 = MessageLoader_Init(0, 26, 544, HEAP_ID_79);
-    v1->unk_04 = StringTemplate_Default(79);
+    v1->unk_04 = StringTemplate_Default(HEAP_ID_79);
 
     for (v0 = 0; v0 < 1; v0++) {
         Window_AddFromTemplate(param0->unk_43C, &v1->unk_08[v0], &Unk_ov101_021D8588[v0]);
@@ -675,7 +675,7 @@ void *ov101_021D1998(u32 param0)
 
 static void ov101_021D19BC(UnkStruct_ov101_021D13C8 *param0)
 {
-    param0->unk_438 = NARC_ctor(NARC_INDEX_DATA__SLOT, 79);
+    param0->unk_438 = NARC_ctor(NARC_INDEX_DATA__SLOT, HEAP_ID_79);
 }
 
 static void ov101_021D19D4(UnkStruct_ov101_021D13C8 *param0)

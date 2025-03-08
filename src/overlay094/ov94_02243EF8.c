@@ -281,8 +281,8 @@ void ov94_022442E4(UnkStruct_ov94_0223FD4C *param0)
 
 static void ov94_0224432C(UnkStruct_ov94_0223FD4C *param0)
 {
-    param0->unk_10FC = Graphics_GetPlttData(86, 7, &(param0->unk_1100), 62);
-    param0->unk_10F4 = Graphics_GetCharData(86, 9, 1, &(param0->unk_10F8), 62);
+    param0->unk_10FC = Graphics_GetPlttData(86, 7, &(param0->unk_1100), HEAP_ID_62);
+    param0->unk_10F4 = Graphics_GetCharData(86, 9, 1, &(param0->unk_10F8), HEAP_ID_62);
 
     DC_FlushRange(param0->unk_10F8, (256 * 256 / 2));
 }

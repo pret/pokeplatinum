@@ -95,10 +95,10 @@ static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BgConfig *param0)
         NNSG2dScreenData *v3;
         int v4;
 
-        v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
+        v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
 
         for (v4 = 0; v4 < 2; v4++) {
-            v2 = Graphics_GetScrnDataFromOpenNARC(v1, Unk_ov104_022418B0[v4], 1, &v3, 94);
+            v2 = Graphics_GetScrnDataFromOpenNARC(v1, Unk_ov104_022418B0[v4], 1, &v3, HEAP_ID_94);
             MI_CpuCopy32(v3->rawData, v0->unk_08[v4], 0x1000);
             Heap_FreeToHeap(v2);
         }
@@ -111,14 +111,14 @@ static UnkStruct_ov104_0223DB34 *ov104_0223DA40(BgConfig *param0)
         void *v6;
         NNSG2dCharacterData *v7;
 
-        v5 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
+        v5 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_94);
 
-        v6 = Graphics_GetCharDataFromOpenNARC(v5, 14, 1, &v7, 94);
+        v6 = Graphics_GetCharDataFromOpenNARC(v5, 14, 1, &v7, HEAP_ID_94);
         MI_CpuCopy32(v7->pRawData, v0->unk_2008[0], v7->szByte);
 
         Heap_FreeToHeap(v6);
 
-        v6 = Graphics_GetCharDataFromOpenNARC(v5, 15, 1, &v7, 94);
+        v6 = Graphics_GetCharDataFromOpenNARC(v5, 15, 1, &v7, HEAP_ID_94);
         MI_CpuCopy32(v7->pRawData, v0->unk_2008[1], v7->szByte);
 
         Heap_FreeToHeap(v6);

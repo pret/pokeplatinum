@@ -143,8 +143,8 @@ static void CommManUnderground_Init(CommManUnderground *param0, FieldSystem *fie
     sCommManUnderground->unk_124 = ov23_02253D48(637, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
     sCommManUnderground->unk_128 = ov23_02253D48(630, HEAP_ID_33, fieldSystem->bgConfig, v0, 0);
 
-    LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, 4);
-    Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, 4);
+    LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD);
+    Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
     LoadStandardWindowGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 
     for (v1 = 0; v1 < (7 + 1); v1++) {
@@ -222,7 +222,7 @@ BOOL ov23_0224223C(TrainerInfo *param0, TrainerInfo *param1, int param2, Strbuf 
     Strbuf *v1;
 
     if (param0 && param1) {
-        v0 = StringTemplate_Default(4);
+        v0 = StringTemplate_Default(HEAP_ID_FIELD);
         v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
 
         StringTemplate_SetPlayerName(v0, 0, param0);
@@ -244,7 +244,7 @@ BOOL ov23_022422A8(TrainerInfo *param0, int param1, int param2, Strbuf *param3)
     Strbuf *v1;
 
     if (param0) {
-        v0 = StringTemplate_Default(4);
+        v0 = StringTemplate_Default(HEAP_ID_FIELD);
         v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
 
         StringTemplate_SetPlayerName(v0, param1, param0);
@@ -817,7 +817,7 @@ void ov23_02242CB4(void)
         ov23_022435A8();
         ov23_0223E2F4();
         sCommManUnderground->unk_14B = 0;
-        LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, 4);
+        LoadMessageBoxGraphics(sCommManUnderground->fieldSystem->bgConfig, 3, (1024 - (18 + 12)), 10, 0, HEAP_ID_FIELD);
     }
 }
 
@@ -1052,7 +1052,7 @@ void UndergroundMan_SetReturnLog(int param0)
         if (sCommManUnderground->unk_DC[param0] == NULL) {
             sCommManUnderground->unk_DC[param0] = Strbuf_Init((50 * 2), HEAP_ID_COMMUNICATION);
 
-            v0 = StringTemplate_Default(11);
+            v0 = StringTemplate_Default(HEAP_ID_FIELDMAP);
             v1 = Strbuf_Init((50 * 2), HEAP_ID_FIELDMAP);
 
             StringTemplate_SetPlayerName(v0, 0, CommInfo_TrainerInfo(param0));

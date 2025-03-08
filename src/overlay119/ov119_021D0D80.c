@@ -261,12 +261,12 @@ void ov119_021D1004(void)
 
 void ov119_021D1028(void)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 71);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_71);
 }
 
 void ov119_021D1048(void)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 71);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_71);
 }
 
 void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
@@ -301,7 +301,7 @@ int ov119_021D1158(Window *param0, int param1, Pokemon *param2, int param3)
     Window_FillTilemap(param0, 15);
 
     v5 = MessageLoader_Init(0, 26, 357, HEAP_ID_71);
-    v3 = StringTemplate_Default(71);
+    v3 = StringTemplate_Default(HEAP_ID_71);
     v1 = MessageLoader_GetNewStrbuf(v5, param1);
     v2 = Strbuf_Init(255, HEAP_ID_71);
     v4 = Pokemon_GetBoxPokemon(param2);

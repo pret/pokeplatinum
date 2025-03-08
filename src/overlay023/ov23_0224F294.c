@@ -179,7 +179,7 @@ static void ov23_0224F294(UnkStruct_ov23_02250CD4 *param0, u8 *param1, u32 param
         8, 1, 2, 2, 0, 0
     };
     u32 v1;
-    NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, 11);
+    NARC *v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, HEAP_ID_FIELDMAP);
 
     ov5_021D3190(&param0->unk_74, &v0, (7 + 1), 11);
     ov5_021D32E8(&param0->unk_74, v2, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);
@@ -430,7 +430,7 @@ void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     v0->unk_2AA = 0;
     v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->unk_70 = StringTemplate_Default(4);
+    v0->unk_70 = StringTemplate_Default(HEAP_ID_FIELD);
     v0->unk_04 = SysTask_Start(ov23_0224F914, v0, 10000);
 
     ov23_022431EC(v0, v0->unk_04, ov23_02251270);
@@ -1419,7 +1419,7 @@ void ov23_02250A50(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     v0->unk_2AA = 0;
     v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->unk_70 = StringTemplate_Default(4);
+    v0->unk_70 = StringTemplate_Default(HEAP_ID_FIELD);
 
     sub_020594FC();
 
@@ -1844,7 +1844,7 @@ void *ov23_022511B0(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     v0->unk_60 = NULL;
     v0->unk_68 = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
     v0->unk_6C = Strbuf_Init((50 * 2), HEAP_ID_FIELD);
-    v0->unk_70 = StringTemplate_Default(4);
+    v0->unk_70 = StringTemplate_Default(HEAP_ID_FIELD);
 
     ov23_02250CD4(v0);
 

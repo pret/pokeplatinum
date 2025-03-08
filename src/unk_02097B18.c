@@ -84,13 +84,13 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     ov76_0223EB20(53);
     ov76_0223D3A0();
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov76_0223DE00), 53);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov76_0223DE00), HEAP_ID_53);
     memset(v0, 0, sizeof(UnkStruct_ov76_0223DE00));
 
     v0->unk_D4.unk_15C = ov76_0223BE6C();
     v1 = OverlayManager_Args(param0);
     v0->unk_00 = v1;
-    v0->unk_42C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 53);
+    v0->unk_42C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_53);
     v0->unk_428 = Pokemon_New(HEAP_ID_53);
     v0->unk_D4.unk_00 = 0xFF;
     v0->unk_418.unk_00 = 0;
@@ -143,12 +143,12 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
 
     v0->unk_D4.unk_10 = BgConfig_New(HEAP_ID_53);
     VramTransfer_New(64, 53);
-    v0->unk_D4.unk_14 = PaletteData_New(53);
+    v0->unk_D4.unk_14 = PaletteData_New(HEAP_ID_53);
     PaletteData_SetAutoTransparent(v0->unk_D4.unk_14, 1);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, 53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 1, 0x200, 53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 2, 0x200, 53);
-    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 3, 0x200, 53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 0, 0x200, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 1, 0x200, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 2, 0x200, HEAP_ID_53);
+    PaletteData_AllocBuffer(v0->unk_D4.unk_14, 3, 0x200, HEAP_ID_53);
 
     ov76_0223EB64(v0->unk_D4.unk_10);
     ov76_0223BF10();

@@ -120,7 +120,7 @@ static void ov52_0225670C(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_
     };
     int v1;
 
-    Graphics_LoadObjectTiles(12, 99, 1, 0, 0, 1, 8);
+    Graphics_LoadObjectTiles(12, 99, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     ov25_02255958(&param0->unk_44, 12, 97, 98, 8);
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -205,10 +205,10 @@ static void ov52_022567F4(SysTask *param0, void *param1)
 
     Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
 
-    v5 = Graphics_LoadTilesToBgLayer(12, 96, v2->unk_04, 6, 0, 0, 1, 8);
+    v5 = Graphics_LoadTilesToBgLayer(12, 96, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     v5 /= 0x20;
 
-    Graphics_LoadTilemapToBgLayer(12, 95, v2->unk_04, 6, 0, 0, 1, 8);
+    Graphics_LoadTilemapToBgLayer(12, 95, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Poketch_LoadActivePalette(0, 0);
 
     Window_Add(v2->unk_04, &v2->unk_20, 6, 2, 2, 24, 20, 0, v5);

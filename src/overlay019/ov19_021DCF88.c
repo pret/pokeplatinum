@@ -418,10 +418,10 @@ void ov19_021DD078(UnkStruct_ov19_021DCF88 *param0)
 void ov19_021DD114(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 {
     if (param0) {
-        Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 127, param0->unk_08, 7, 0, 0, 1, 10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 124, param0->unk_08, 7, 0, 0, 1, 10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 125, param0->unk_08, 6, 0, 0, 1, 10);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 126, param0->unk_08, 5, 0, 0, 1, 10);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 127, param0->unk_08, 7, 0, 0, 1, HEAP_ID_10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 124, param0->unk_08, 7, 0, 0, 1, HEAP_ID_10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 125, param0->unk_08, 6, 0, 0, 1, HEAP_ID_10);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 126, param0->unk_08, 5, 0, 0, 1, HEAP_ID_10);
         Bg_FillTilesRange(param0->unk_08, 4, 0x0, 1, 0);
         Bg_FillTilemapRect(param0->unk_08, 4, 0x0, 0, 0, 32, 32, 17);
         Bg_CopyTilemapBufferToVRAM(param0->unk_08, 4);
@@ -430,7 +430,7 @@ void ov19_021DD114(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
         Window_FillTilemap(&(param0->unk_88), 0x0);
         Window_CopyToVRAM(&param0->unk_88);
         ov19_021DE324(param0);
-        Graphics_LoadPaletteFromOpenNARC(param1, 128, 4, 0, 0x20 * 3, 10);
+        Graphics_LoadPaletteFromOpenNARC(param1, 128, 4, 0, 0x20 * 3, HEAP_ID_10);
         ov19_021DD224(param0, param1);
     }
 }
@@ -459,10 +459,10 @@ static void ov19_021DD224(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 
 static void ov19_021DD2BC(UnkStruct_ov19_021DCF88 *param0, NARC *param1)
 {
-    param0->unk_98 = Graphics_GetCellBankFromOpenNARC(param1, 139, 1, &(param0->unk_9C), 10);
-    param0->unk_A0 = Graphics_GetAnimBankFromOpenNARC(param1, 140, 1, &(param0->unk_A4), 10);
-    param0->unk_A8 = Graphics_GetCellBankFromOpenNARC(param1, 142, 1, &(param0->unk_AC), 10);
-    param0->unk_B0 = Graphics_GetAnimBankFromOpenNARC(param1, 143, 1, &(param0->unk_B4), 10);
+    param0->unk_98 = Graphics_GetCellBankFromOpenNARC(param1, 139, 1, &(param0->unk_9C), HEAP_ID_10);
+    param0->unk_A0 = Graphics_GetAnimBankFromOpenNARC(param1, 140, 1, &(param0->unk_A4), HEAP_ID_10);
+    param0->unk_A8 = Graphics_GetCellBankFromOpenNARC(param1, 142, 1, &(param0->unk_AC), HEAP_ID_10);
+    param0->unk_B0 = Graphics_GetAnimBankFromOpenNARC(param1, 143, 1, &(param0->unk_B4), HEAP_ID_10);
 
     NNS_G2dInitImagePaletteProxy(&(param0->unk_18));
     Graphics_LoadPartialPaletteFromOpenNARC(param1, 144, NNS_G2D_VRAM_TYPE_2DSUB, 0, 10, &(param0->unk_18));

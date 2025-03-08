@@ -646,7 +646,7 @@ BOOL ov100_021D39E4(void *param0)
             Easy3DObject_SetScale(&v0->unk_0C.unk_934[0].unk_00, v0->unk_0C.unk_934[0].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[0].unk_150);
             Easy3DObject_SetScale(&v0->unk_0C.unk_934[1].unk_00, v0->unk_0C.unk_934[1].unk_150, FX32_CONST(1.0), v0->unk_0C.unk_934[1].unk_150);
         } else {
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, 111);
+            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_111);
             v0->unk_00++;
         }
         break;

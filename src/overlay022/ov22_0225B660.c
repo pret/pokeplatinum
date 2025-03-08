@@ -63,7 +63,7 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_0225B85C), 13);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_0225B85C), HEAP_ID_13);
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B85C));
 
     SetVBlankCallback(ov22_0225B848, v0);
@@ -127,8 +127,7 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
         (*param1)++;
         break;
     case 1:
-        StartScreenTransition(
-            0, 5, 1, 0x0, 6, 1, 13);
+        StartScreenTransition(0, 5, 1, 0x0, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 2:
@@ -142,7 +141,7 @@ int ov22_0225B738(OverlayManager *param0, int *param1)
         }
         break;
     case 4:
-        StartScreenTransition(0, 2, 0, 0x0, 6, 1, 13);
+        StartScreenTransition(0, 2, 0, 0x0, 6, 1, HEAP_ID_13);
         (*param1)++;
         break;
     case 5:
@@ -189,8 +188,8 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
     int v2;
     int v3;
 
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_14.unk_5C, 126, 0, 3 * 32, 64, 14);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_5C, 125, param0->unk_14.unk_40, 1, 0, 0, 0, 14);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_14.unk_5C, 126, 0, 3 * 32, 64, HEAP_ID_14);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_14.unk_5C, 125, param0->unk_14.unk_40, 1, 0, 0, 0, HEAP_ID_14);
 
     if (param0->unk_0C == 0) {
         v2 = 128;
@@ -200,7 +199,7 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
         v3 = 3;
     }
 
-    v0 = Graphics_GetScrnDataFromOpenNARC(param0->unk_14.unk_5C, v2, 0, &v1, 14);
+    v0 = Graphics_GetScrnDataFromOpenNARC(param0->unk_14.unk_5C, v2, 0, &v1, HEAP_ID_14);
 
     Bg_LoadToTilemapRect(param0->unk_14.unk_40, 1, v1->rawData, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8);
     Bg_ChangeTilemapRectPalette(param0->unk_14.unk_40, 1, 0, 0, v1->screenWidth / 8, v1->screenHeight / 8, v3);
@@ -210,9 +209,9 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
 
 static void ov22_0225B910(UnkStruct_ov22_0225B85C *param0)
 {
-    Graphics_LoadPalette(12, 12, 4, 0, 32, 14);
-    Graphics_LoadTilemapToBgLayer(12, 11, param0->unk_14.unk_40, 4, 0, 0, 1, 14);
-    Graphics_LoadTilesToBgLayer(12, 10, param0->unk_14.unk_40, 4, 0, 0, 1, 14);
+    Graphics_LoadPalette(12, 12, 4, 0, 32, HEAP_ID_14);
+    Graphics_LoadTilemapToBgLayer(12, 11, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
+    Graphics_LoadTilesToBgLayer(12, 10, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
 }
 
 static void ov22_0225B964(UnkStruct_ov22_0225B85C *param0)
@@ -238,7 +237,7 @@ static void ov22_0225BA00(UnkStruct_ov22_0225B85C *param0)
 
 static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
 {
-    param0->unk_200 = Window_New(14, 1);
+    param0->unk_200 = Window_New(HEAP_ID_14, 1);
 
     Window_Add(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
     Font_LoadTextPalette(0, 5 * 32, HEAP_ID_14);
@@ -279,7 +278,7 @@ static void ov22_0225BB00(UnkStruct_ov22_0225B85C *param0)
     Strbuf *v7;
     MessageLoader *v8 = MessageLoader_Init(0, 26, 385, HEAP_ID_13);
     GF_ASSERT(v8);
-    v5 = StringTemplate_Default(13);
+    v5 = StringTemplate_Default(HEAP_ID_13);
 
     Sprite_SetAnim(param0->unk_1FC, 5);
     v0.x = 48 << FX32_SHIFT;
@@ -331,7 +330,7 @@ static void ov22_0225BC18(UnkStruct_ov22_0225B85C *param0)
     Sprite_SetAnim(param0->unk_1FC, param0->unk_08);
 
     v0 = sub_0202A5D0(param0->unk_04);
-    v1 = StringTemplate_Default(13);
+    v1 = StringTemplate_Default(HEAP_ID_13);
     v2 = Strbuf_Init(200, HEAP_ID_13);
 
     StringTemplate_SetContestTypeName(v1, 0, sub_020958B8(param0->unk_08));

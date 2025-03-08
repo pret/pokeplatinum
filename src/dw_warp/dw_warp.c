@@ -134,7 +134,7 @@ BOOL DWWarp_Main(OverlayManager *ovy, int *state)
         }
         break;
     case DWARP_SEQ_CLEAR_SCREEN:
-        StartScreenTransition(0, 0, 0, 0x0, 20, 1, 30);
+        StartScreenTransition(0, 0, 0, 0x0, 20, 1, HEAP_ID_DISTORTION_WORLD_WARP);
         (*state)++;
         break;
     case DWARP_SEQ_WAIT:

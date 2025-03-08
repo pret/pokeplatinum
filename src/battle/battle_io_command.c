@@ -164,7 +164,7 @@ BattlerData *ov16_0225BFFC(BattleSystem *battleSys, UnkStruct_ov16_0223C2C0 *par
 
     v0->battler = param1->unk_00;
     v0->battlerType = param1->unk_01;
-    v0->unk_1A0 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 5);
+    v0->unk_1A0 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_BATTLE);
 
     return v0;
 }
@@ -771,8 +771,8 @@ static void ov16_0225C79C(BattleSystem *battleSys, BattlerData *param1)
             NARC *v3;
             NARC *v4;
 
-            v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
-            v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
+            v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, HEAP_ID_BATTLE);
+            v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, HEAP_ID_BATTLE);
             v0 = ov16_0223E02C(battleSys);
 
             ov16_02268C04(v3, v4, v0, 0, 0, NULL);

@@ -556,7 +556,7 @@ static UnkStruct_ov7_0224B4E8 *ov7_0224BE10(FieldSystem *fieldSystem)
     v0->unk_7C = 0;
     v0->fieldSystem = fieldSystem;
     v0->fieldSystem->unk_B0 = NULL;
-    v0->unk_64 = StringTemplate_Default(4);
+    v0->unk_64 = StringTemplate_Default(HEAP_ID_FIELD);
     v0->unk_68 = MessageLoader_Init(0, 26, 221, HEAP_ID_FIELD);
     v0->unk_14 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);
     v0->unk_18 = Strbuf_Init((90 * 2), HEAP_ID_FIELD);

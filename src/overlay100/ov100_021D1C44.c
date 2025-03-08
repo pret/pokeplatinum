@@ -76,8 +76,8 @@ static void ov100_021D1C98(UnkStruct_ov100_021D1C98 *param0)
     PaletteData *v4 = param0->unk_1EBC->unk_10;
     int v5 = 50000;
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 18, v1, 5, 0, 0, 0, 111);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 20, v1, 5, 0, 0, 0, 111);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 18, v1, 5, 0, 0, 0, HEAP_ID_111);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v0, 20, v1, 5, 0, 0, 0, HEAP_ID_111);
     PaletteData_LoadBufferFromFileStart(v4, 172, 19, 111, 1, 0x20 * 2, 0);
     PaletteData_LoadBufferFromFileStart(v4, 172, 19, 111, 0, 0x20 * 2, 0);
 
@@ -304,7 +304,7 @@ BOOL ov100_021D2428(void *param0)
 
     switch (v0->unk_00) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, 111);
+        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, HEAP_ID_111);
         v0->unk_1EBC->unk_50.unk_03 = 0;
         G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
         G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
@@ -643,7 +643,7 @@ BOOL ov100_021D2428(void *param0)
         }
         break;
     case 20:
-        StartScreenTransition(0, 0, 0, 0x0, 1, 1, 111);
+        StartScreenTransition(0, 0, 0, 0x0, 1, 1, HEAP_ID_111);
         v0->unk_00++;
     case 21:
         if (IsScreenTransitionDone() == 0) {

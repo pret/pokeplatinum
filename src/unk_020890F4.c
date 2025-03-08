@@ -48,7 +48,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_101, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02089688), 101);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02089688), HEAP_ID_101);
     memset(v0, 0, sizeof(UnkStruct_02089688));
     v0->unk_38C = *((UnkStruct_02089438 *)OverlayManager_Args(param0));
 
@@ -60,15 +60,15 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    v0->unk_2C0.unk_00 = NARC_ctor(NARC_INDEX_ARC__CODEIN_GRA, 101);
+    v0->unk_2C0.unk_00 = NARC_ctor(NARC_INDEX_ARC__CODEIN_GRA, HEAP_ID_101);
     v0->unk_2C0.unk_0C = BgConfig_New(HEAP_ID_101);
-    v0->unk_2C0.unk_10 = PaletteData_New(101);
+    v0->unk_2C0.unk_10 = PaletteData_New(HEAP_ID_101);
 
     PaletteData_SetAutoTransparent(v0->unk_2C0.unk_10, 1);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 0, 0x200, 101);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 1, 0x200, 101);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 2, 0x200, 101);
-    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 3, 0x200, 101);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 0, 0x200, HEAP_ID_101);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 1, 0x200, HEAP_ID_101);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 2, 0x200, HEAP_ID_101);
+    PaletteData_AllocBuffer(v0->unk_2C0.unk_10, 3, 0x200, HEAP_ID_101);
     sub_0208945C(v0->unk_2C0.unk_0C);
     sub_0208A3F4(v0);
     sub_02089688(v0);

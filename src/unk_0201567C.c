@@ -30,13 +30,13 @@ static void sub_02015858(void *param0, u16 *param1);
 static void sub_02015870(void *param0, u16 *param1);
 static void sub_0201588C(void *param0, u16 *param1);
 
-void *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 param3)
+void *sub_0201567C(PaletteData *param0, u16 param1, u16 param2, u32 heapID)
 {
     UnkStruct_020157E4 *v0;
     SysTask *v1;
     u16 *v2;
 
-    v1 = SysTask_StartAndAllocateParam(sub_0201576C, sizeof(UnkStruct_020157E4), 0, param3);
+    v1 = SysTask_StartAndAllocateParam(sub_0201576C, sizeof(UnkStruct_020157E4), 0, heapID);
     v0 = (UnkStruct_020157E4 *)SysTask_GetParam(v1);
 
     if (param0 != NULL) {

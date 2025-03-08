@@ -97,7 +97,7 @@ static int (*Unk_ov94_02246A40[])(UnkStruct_ov94_0223FD4C *) = {
 int ov94_02244950(UnkStruct_ov94_0223FD4C *param0, int param1)
 {
     ov94_02244F2C(param0);
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 62);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_62);
 
     ov94_02244A7C(param0->unk_04);
     ov94_02244B8C(param0);
@@ -268,18 +268,18 @@ static void ov94_02244B68(BgConfig *param0)
 static void ov94_02244B8C(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
-    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 62);
+    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_62);
 
-    Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, 62);
-    Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 62);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 62);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 62);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), 62);
+    Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, HEAP_ID_62);
+    Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), HEAP_ID_62);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, 62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 62);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, 62);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, v0, 5, 0, 32 * 24 * 2, 0, 62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_62);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, v0, 5, 0, 32 * 24 * 2, 0, HEAP_ID_62);
     Bg_MaskPalette(0, 0);
     Bg_MaskPalette(4, 0);
 
@@ -753,7 +753,7 @@ static int ov94_02245594(UnkStruct_ov94_0223FD4C *param0)
 {
     sub_02039794();
     ov94_0223C5F4(param0);
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 62);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_62);
 
     param0->unk_2C = 0;
     param0->unk_1110 = 1;

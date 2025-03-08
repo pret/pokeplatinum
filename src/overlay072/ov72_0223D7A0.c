@@ -123,17 +123,17 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_39, 0x40000);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov72_0223DB98), 39);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov72_0223DB98), HEAP_ID_39);
         memset(v0, 0, sizeof(UnkStruct_ov72_0223DB98));
         v0->unk_00 = BgConfig_New(HEAP_ID_39);
-        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, 39);
-        v0->unk_10 = StringTemplate_Default(39);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, HEAP_ID_39);
+        v0->unk_10 = StringTemplate_Default(HEAP_ID_39);
         v0->unk_14 = MessageLoader_Init(0, 26, 425, HEAP_ID_39);
 
         SetAutorepeat(4, 8);
         ov72_0223DA70();
         ov72_0223DA90(v0->unk_00);
-        StartScreenTransition(0, 1, 1, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 1, 1, 0x0, 16, 1, HEAP_ID_39);
 
         {
             SaveData *v2 = (SaveData *)OverlayManager_Args(param0);
@@ -148,7 +148,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         sub_0201E3D8();
         sub_0201E450(1);
         SetVBlankCallback(ov72_0223DA48, v0->unk_00);
-        Font_InitManager(FONT_SUBSCREEN, 39);
+        Font_InitManager(FONT_SUBSCREEN, HEAP_ID_39);
 
         ov72_0223DB98(v0);
         ov72_0223DDA8();
@@ -441,16 +441,16 @@ static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_00;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 3, 39);
-    Graphics_LoadPaletteFromOpenNARC(param1, 2, 4, 0, 16 * 2 * 2, 39);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 39);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 39);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 3, HEAP_ID_39);
+    Graphics_LoadPaletteFromOpenNARC(param1, 2, 4, 0, 16 * 2 * 2, HEAP_ID_39);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_39);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_39);
     Bg_ClearTilesRange(1, 32, 0, HEAP_ID_39);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 2, 0, 32 * 8 * 0x20, 1, 39);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 2, 0, 32 * 24 * 2, 1, 39);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 4, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 5, 0, 32 * 24 * 2, 1, 39);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_0C), 39);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 2, 0, 32 * 8 * 0x20, 1, HEAP_ID_39);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_39);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 4, v0, 5, 0, 32 * 8 * 0x20, 1, HEAP_ID_39);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_39);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_0C), HEAP_ID_39);
     LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, HEAP_ID_39);
 }
 
@@ -764,7 +764,7 @@ static int ov72_0223E488(UnkStruct_ov72_0223DB98 *param0, int param1)
         GameRecords_IncrementRecordValue(param0->records, RECORD_UNK_114);
         Window_EraseMessageBox(&param0->unk_338, 1);
         sub_02015A54(param0->unk_5D00);
-        StartScreenTransition(0, 0, 0, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 0, 0, 0x0, 16, 1, HEAP_ID_39);
         return 2;
         break;
     case 2:

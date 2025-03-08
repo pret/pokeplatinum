@@ -100,7 +100,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD, 0x20000);
             sub_02052F28(fieldSystem, v3);
-            StartScreenTransition(3, 1, 1, 0x0, 8, 1, 32);
+            StartScreenTransition(3, 1, 1, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
             (*v4)++;
         }
         break;
@@ -145,7 +145,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         }
         break;
     case 7:
-        StartScreenTransition(3, 0, 0, 0x0, 8, 1, 32);
+        StartScreenTransition(3, 0, 0, 0x0, 8, 1, HEAP_ID_FIELD_TASK);
         (*v4)++;
         break;
     case 8:
@@ -296,7 +296,7 @@ static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, i
     if (param2 == 2) {
         StringTemplate *v1;
 
-        v1 = StringTemplate_Default(4);
+        v1 = StringTemplate_Default(HEAP_ID_FIELD);
         StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
         param1->unk_2C = MessageUtil_ExpandedStrbuf(v1, v0, 16, 4);
         StringTemplate_Free(v1);

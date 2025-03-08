@@ -91,8 +91,8 @@ void ov20_021D4764(UnkStruct_ov20_021D4AD4 *param0)
 
 void ov20_021D4774(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
 {
-    Graphics_LoadPaletteFromOpenNARC(param1, 21, 4, 0, 0x40, 35);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_0C, 4, 0, 0, 1, 35);
+    Graphics_LoadPaletteFromOpenNARC(param1, 21, 4, 0, 0x40, HEAP_ID_35);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_0C, 4, 0, 0, 1, HEAP_ID_35);
 
     ov20_021D4874(param0, param1);
     ov20_021D48C4(param0, param1);
@@ -126,7 +126,7 @@ static void ov20_021D4874(UnkStruct_ov20_021D4AD4 *param0, NARC *param1)
     NNSG2dScreenData *v3;
 
     for (v1 = 0; v1 < NELEMS(v0); v1++) {
-        v2 = Graphics_GetScrnDataFromOpenNARC(param1, v0[v1], 1, &v3, 35);
+        v2 = Graphics_GetScrnDataFromOpenNARC(param1, v0[v1], 1, &v3, HEAP_ID_35);
 
         if (v2) {
             MI_CpuCopy16(v3->rawData, param0->unk_2C[v1], 77 * 2);
@@ -234,8 +234,8 @@ static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 *param0)
 
 static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C *param0, NARC *param1, u32 param2, u32 param3)
 {
-    param0->unk_00 = Graphics_GetCellBankFromOpenNARC(param1, param2, 1, &(param0->unk_04), 35);
-    param0->unk_08 = Graphics_GetAnimBankFromOpenNARC(param1, param3, 1, &(param0->unk_0C), 35);
+    param0->unk_00 = Graphics_GetCellBankFromOpenNARC(param1, param2, 1, &(param0->unk_04), HEAP_ID_35);
+    param0->unk_08 = Graphics_GetAnimBankFromOpenNARC(param1, param3, 1, &(param0->unk_0C), HEAP_ID_35);
 }
 
 static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C *param0)

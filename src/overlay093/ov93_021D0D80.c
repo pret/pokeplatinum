@@ -88,7 +88,7 @@ int ov93_021D0D80(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_72, 0x20000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov93_021D102C), 72);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov93_021D102C), HEAP_ID_72);
     memset(v1, 0, sizeof(UnkStruct_ov93_021D102C));
     v2 = OverlayManager_Args(param0);
 
@@ -115,7 +115,7 @@ int ov93_021D0D80(OverlayManager *param0, int *param1)
     NNS_G3dGlbMaterialColorSpecEmi(v2->unk_04->specularReflectColor, v2->unk_04->emissionColor, v2->unk_04->enableSpecularReflectShininessTable);
     NNS_G3dGlbPolygonAttr(v2->unk_04->enabledLightsMask, v2->unk_04->polygonMode, v2->unk_04->cullMode, v2->unk_04->polygonID, v2->unk_04->alpha, v2->unk_04->miscFlags);
 
-    sub_0208C120(0, 72);
+    sub_0208C120(0, HEAP_ID_72);
     return 1;
 }
 
@@ -156,7 +156,7 @@ int ov93_021D0E70(OverlayManager *param0, int *param1)
             if (v5->unk_80[0]->frame + FX32_ONE == NNS_G3dAnmObjGetNumFrame(v5->unk_80[0])) {
                 v5->unk_9D = 1;
 
-                sub_0208C120(1, 72);
+                sub_0208C120(1, HEAP_ID_72);
             }
         } else {
             if (IsScreenTransitionDone()) {
@@ -240,7 +240,7 @@ static void ov93_021D102C(UnkStruct_ov93_021D102C *param0)
     u8 v0;
     NNSG3dResTex *v1;
     void *v2;
-    NARC *v3 = NARC_ctor(NARC_INDEX_ARC__SHIP_DEMO, 72);
+    NARC *v3 = NARC_ctor(NARC_INDEX_ARC__SHIP_DEMO, HEAP_ID_72);
     Heap_FndInitAllocatorForExpHeap(&param0->unk_70, 72, 4);
 
     param0->unk_5C = NARC_AllocAndReadWholeMember(v3, Unk_ov93_021D15A0[param0->unk_9C].unk_00, 72);

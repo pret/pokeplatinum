@@ -414,7 +414,7 @@ int ov113_0225C700(OverlayManager *param0, int *param1)
 
     v0->unk_24 = sub_02015920(HEAP_ID_118);
 
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 118);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_118);
 
     if (v0->unk_00->unk_00 != NULL) {
         ov66_0222E31C(v0->unk_00->unk_00, 1);
@@ -569,7 +569,7 @@ int ov113_0225CA04(OverlayManager *param0, int *param1)
             sub_0200F2C0();
         }
 
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 118);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_118);
         (*param1)++;
         break;
     case 10:
@@ -880,18 +880,18 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
     u16 *v1;
 
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 187, 19, 118, 0, 0x200 - 0x40, 0);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_08, 2, 0, 0, 0, 118);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_08, 2, 0, 0, 0, 118);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 20, param0->unk_08, 3, 0, 0, 0, 118);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 18, param0->unk_08, 2, 0, 0, 0, HEAP_ID_118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 17, param0->unk_08, 2, 0, 0, 0, HEAP_ID_118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 20, param0->unk_08, 3, 0, 0, 0, HEAP_ID_118);
     PaletteData_LoadBufferFromFileStart(param0->unk_0C, 187, 23, 118, 1, 0, 0);
 
     if (param0->unk_00->unk_04 == 0) {
         PaletteData_CopyBuffer(param0->unk_0C, 1, 16 * 1, 1, 16 * 0, 0x20);
     }
 
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 22, param0->unk_08, 6, 0, 0, 0, 118);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 21, param0->unk_08, 6, 0, 0, 0, 118);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 24, param0->unk_08, 7, 0, 0, 0, 118);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 22, param0->unk_08, 6, 0, 0, 0, HEAP_ID_118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 21, param0->unk_08, 6, 0, 0, 0, HEAP_ID_118);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 24, param0->unk_08, 7, 0, 0, 0, HEAP_ID_118);
 
     v1 = Bg_GetTilemapBuffer(param0->unk_08, 6);
 
@@ -903,7 +903,7 @@ static void ov113_0225D160(UnkStruct_ov113_0225DBCC *param0, NARC *param1)
         v2 = Options_Frame(SaveData_Options(param0->unk_04));
 
         PaletteData_LoadBufferFromFileStart(param0->unk_0C, 38, GetMessageBoxPaletteNARCMember(v2), 118, 0, 0x20, 14 * 16);
-        LoadMessageBoxGraphics(param0->unk_08, 1, 1, 14, v2, 118);
+        LoadMessageBoxGraphics(param0->unk_08, 1, 1, 14, v2, HEAP_ID_118);
         PaletteData_LoadBufferFromFileStart(param0->unk_0C, 14, 6, 118, 0, 0x20, 13 * 16);
 
         if (param0->unk_00->unk_04 == 0) {

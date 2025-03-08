@@ -300,7 +300,7 @@ static int ov95_022486AC(UnkStruct_ov95_02248688 *param0, int *param1)
     ov95_022488A4(param0);
     ov95_02248B84(param0);
     ov95_02248CA8(param0);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, 58);
+    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -394,7 +394,7 @@ static int ov95_022487D4(UnkStruct_ov95_02248688 *param0, int *param1)
         }
 
         if (ov95_022494F4(param0->unk_160)) {
-            StartScreenTransition(0, 0, 0, 0x7fff, 4, 1, 58);
+            StartScreenTransition(0, 0, 0, 0x7fff, 4, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;
@@ -481,22 +481,22 @@ static void ov95_022488A4(UnkStruct_ov95_02248688 *param0)
         OS_RestoreInterrupts(v6);
     }
 
-    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_C0, 2, 0, 0, 1, 58);
-    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_C0, 6, 0, 0, 1, 58);
-    Graphics_LoadTilemapToBgLayer(93, 0, param0->unk_C0, 2, 0, 0, 1, 58);
-    Graphics_LoadTilemapToBgLayer(93, 0, param0->unk_C0, 6, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_C0, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(93, 2, param0->unk_C0, 6, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(93, 0, param0->unk_C0, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(93, 0, param0->unk_C0, 6, 0, 0, 1, HEAP_ID_58);
 
     v5 = ov95_02247644(param0->unk_00);
 
-    Graphics_LoadPalette(93, 3, 0, 0, 0x20, 58);
-    Graphics_LoadPalette(93, 3, 4, 0, 0x20, 58);
-    Graphics_LoadPaletteWithSrcOffset(93, 3, 0, v4[v5], 0x20, 0x40, 58);
-    Graphics_LoadPaletteWithSrcOffset(93, 3, 4, v4[v5], 0x20, 0x40, 58);
+    Graphics_LoadPalette(93, 3, 0, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPalette(93, 3, 4, 0, 0x20, HEAP_ID_58);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 0, v4[v5], 0x20, 0x40, HEAP_ID_58);
+    Graphics_LoadPaletteWithSrcOffset(93, 3, 4, v4[v5], 0x20, 0x40, HEAP_ID_58);
 
-    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_C0, 3, 0, 0, 1, 58);
-    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_C0, 7, 0, 0, 1, 58);
-    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_C0, 3, 0, 0, 1, 58);
-    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_C0, 7, 0, 0, 1, 58);
+    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_C0, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilesToBgLayer(93, 5, param0->unk_C0, 7, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_C0, 3, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(93, 4, param0->unk_C0, 7, 0, 0, 1, HEAP_ID_58);
 
     {
         u8 *v7 = Heap_AllocFromHeap(HEAP_ID_58, 96);

@@ -297,7 +297,7 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
     G2S_BlendNone();
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_109, 0x70000);
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02247704), 109);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02247704), HEAP_ID_109);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02247704));
 
     v0->unk_00 = OverlayManager_Args(param0);
@@ -344,7 +344,7 @@ int ov98_022471C8(OverlayManager *param0, int *param1)
 
     ov98_02246E9C(v0->unk_00, 0);
 
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, 109);
+    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_109);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -618,19 +618,19 @@ static void ov98_022476D0(BgConfig *param0)
 static void ov98_02247704(UnkStruct_ov98_02247704 *param0)
 {
     BgConfig *v0 = param0->unk_04;
-    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 109);
+    NARC *v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, HEAP_ID_109);
 
-    Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, 109);
-    Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, 109);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 109);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 109);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_08), 109);
+    Graphics_LoadPaletteFromOpenNARC(v1, 3, 0, 0, 0, HEAP_ID_109);
+    Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_109);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_109);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_109);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_08), HEAP_ID_109);
     LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_109);
     LoadStandardWindowGraphics(v0, 2, (1 + (18 + 12)), 11, 0, HEAP_ID_109);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, 109);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, 109);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, 109);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, v0, 5, 0, 32 * 24 * 2, 0, 109);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_109);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_109);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, HEAP_ID_109);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, v0, 5, 0, 32 * 24 * 2, 0, HEAP_ID_109);
     Bg_MaskPalette(0, 0);
     Bg_MaskPalette(4, 0);
 
@@ -639,13 +639,13 @@ static void ov98_02247704(UnkStruct_ov98_02247704 *param0)
     NARC_dtor(v1);
 
     {
-        v1 = NARC_ctor(NARC_INDEX_ARC__EMAIL_GRA, 109);
+        v1 = NARC_ctor(NARC_INDEX_ARC__EMAIL_GRA, HEAP_ID_109);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 
-        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 11, v0, 3, 0, 0, 0, 109);
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 10, v0, 3, 0, 0, 0, 109);
-        Graphics_LoadPaletteFromOpenNARC(v1, 12, 0, 9 * 0x20, 0x20, 109);
+        Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 11, v0, 3, 0, 0, 0, HEAP_ID_109);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 10, v0, 3, 0, 0, 0, HEAP_ID_109);
+        Graphics_LoadPaletteFromOpenNARC(v1, 12, 0, 9 * 0x20, 0x20, HEAP_ID_109);
 
         NARC_dtor(v1);
     }
@@ -2180,7 +2180,7 @@ static int ov98_02249464(UnkStruct_ov98_02247704 *param0)
 
     sub_02039794();
     ov98_02247B0C(param0);
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, 109);
+    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_109);
 
     param0->unk_08 = 0;
 

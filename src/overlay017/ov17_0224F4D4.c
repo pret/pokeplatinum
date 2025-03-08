@@ -202,7 +202,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     ov17_02250744(v0);
 
     sub_02039734();
-    StartScreenTransition(1, 33, 33, 0x0, 6, 1, 24);
+    StartScreenTransition(1, 33, 33, 0x0, 6, 1, HEAP_ID_24);
 
     v0->unk_04 = SysTask_Start(ov17_0224FAFC, v0, 80000);
     v0->unk_850 = 1;
@@ -609,8 +609,8 @@ static void ov17_0224FE68(UnkStruct_ov17_0224FCA0 *param0)
 
 static void ov17_0224FE70(UnkStruct_ov17_0224FCA0 *param0)
 {
-    Graphics_LoadTilesToBgLayer(45, 19, param0->unk_10.unk_20, 4, 0, 0, 1, 24);
-    Graphics_LoadTilemapToBgLayer(45, 20, param0->unk_10.unk_20, 4, 0, 0, 1, 24);
+    Graphics_LoadTilesToBgLayer(45, 19, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
+    Graphics_LoadTilemapToBgLayer(45, 20, param0->unk_10.unk_20, 4, 0, 0, 1, HEAP_ID_24);
     PaletteData_LoadBufferFromFileStart(param0->unk_10.unk_C0, 45, 34, 24, 1, 0, 0);
 }
 

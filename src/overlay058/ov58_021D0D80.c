@@ -168,11 +168,11 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
 
         Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_39, 0x40000);
 
-        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02095EAC), 39);
+        v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02095EAC), HEAP_ID_39);
         memset(v0, 0, sizeof(UnkStruct_02095EAC));
         v0->unk_00 = BgConfig_New(HEAP_ID_39);
 
-        v0->unk_0C = StringTemplate_Default(39);
+        v0->unk_0C = StringTemplate_Default(HEAP_ID_39);
         v0->unk_10 = MessageLoader_Init(0, 26, 425, HEAP_ID_39);
 
         SetAutorepeat(4, 8);
@@ -182,14 +182,14 @@ int ov58_021D0D80(OverlayManager *param0, int *param1)
 
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
-        StartScreenTransition(0, 17, 17, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 17, 17, 0x0, 16, 1, HEAP_ID_39);
 
         {
             UnkStruct_0203DDFC *v2 = (UnkStruct_0203DDFC *)OverlayManager_Args(param0);
             v0->unk_08 = v2;
         }
 
-        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__OEKAKI, 39);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__OEKAKI, HEAP_ID_39);
 
         ov58_021D142C(v0, v1);
 
@@ -584,15 +584,15 @@ static void ov58_021D142C(UnkStruct_02095EAC *param0, NARC *param1)
 {
     BgConfig *v0 = param0->unk_00;
 
-    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 2, 39);
-    Graphics_LoadPaletteFromOpenNARC(param1, 1, 4, 0, 16 * 2 * 2, 39);
-    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, 39);
-    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, 39);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, 32 * 8 * 0x20, 1, 39);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, 39);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, 39);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, 39);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), 39);
+    Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 2 * 2, HEAP_ID_39);
+    Graphics_LoadPaletteFromOpenNARC(param1, 1, 4, 0, 16 * 2 * 2, HEAP_ID_39);
+    Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_39);
+    Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_39);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 2, 0, 32 * 8 * 0x20, 1, HEAP_ID_39);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 4, v0, 2, 0, 32 * 24 * 2, 1, HEAP_ID_39);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 3, v0, 5, 0, 32 * 8 * 0x20, 1, HEAP_ID_39);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 5, v0, 5, 0, 32 * 24 * 2, 1, HEAP_ID_39);
+    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_08->unk_08), HEAP_ID_39);
     LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, HEAP_ID_39);
 }
 
@@ -1151,7 +1151,7 @@ static int ov58_021D20C8(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D20F4(UnkStruct_02095EAC *param0, int param1)
 {
     if (++param0->unk_374 > 60) {
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_39);
         param1 = 3;
     }
 
@@ -1241,7 +1241,7 @@ static int ov58_021D2270(UnkStruct_02095EAC *param0, int param1)
 static int ov58_021D2298(UnkStruct_02095EAC *param0, int param1)
 {
     if (CommTiming_IsSyncState(200) || (CommSys_ConnectedCount() == 1)) {
-        StartScreenTransition(0, 16, 16, 0x0, 16, 1, 39);
+        StartScreenTransition(0, 16, 16, 0x0, 16, 1, HEAP_ID_39);
         param1 = 3;
     }
 

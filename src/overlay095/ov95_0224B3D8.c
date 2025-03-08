@@ -284,16 +284,16 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
 
     Bg_FillTilesRange(param0->unk_58, 1, 0x0, 1, 0);
     Bg_FillTilemapRect(param0->unk_58, 1, 0x0, 0, 0, 32, 32, 0);
-    LoadMessageBoxGraphics(param0->unk_58, 1, 109, 2, ov95_02247674(param0->unk_00), 58);
+    LoadMessageBoxGraphics(param0->unk_58, 1, 109, 2, ov95_02247674(param0->unk_00), HEAP_ID_58);
 
     Window_Add(param0->unk_58, &(param0->unk_5C), 1, 2, 19, 27, 4, 1, 1);
     Window_FillTilemap(&(param0->unk_5C), 0xf);
-    Graphics_LoadPalette(14, 7, 0, 1 * 0x20, 0x20, 58);
+    Graphics_LoadPalette(14, 7, 0, 1 * 0x20, 0x20, HEAP_ID_58);
     Bg_CopyTilemapBufferToVRAM(param0->unk_58, 1);
 
-    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_58, 2, 0, 0, 1, 58);
-    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_58, 2, 0, 0, 1, 58);
-    Graphics_LoadPalette(93, 23, 0, 0 * 0x20, 0x20, 58);
+    Graphics_LoadTilesToBgLayer(93, 22, param0->unk_58, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadTilemapToBgLayer(93, 21, param0->unk_58, 2, 0, 0, 1, HEAP_ID_58);
+    Graphics_LoadPalette(93, 23, 0, 0 * 0x20, 0x20, HEAP_ID_58);
 
     ov95_0224B9C0(param0);
 
@@ -315,7 +315,7 @@ static int ov95_0224B520(UnkStruct_ov95_0224B4D4 *param0, int *param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2, 16, 0);
-    StartScreenTransition(3, 1, 1, 0x0, 16, 1, 58);
+    StartScreenTransition(3, 1, 1, 0x0, 16, 1, HEAP_ID_58);
 
     return 1;
 }
@@ -439,7 +439,7 @@ static int ov95_0224B81C(UnkStruct_ov95_0224B4D4 *param0, int *param1)
         break;
     case 4:
         if (++(param0->unk_08) > 10) {
-            StartScreenTransition(3, 0, 0, 0x0, 16, 1, 58);
+            StartScreenTransition(3, 0, 0, 0x0, 16, 1, HEAP_ID_58);
             (*param1)++;
         }
         break;

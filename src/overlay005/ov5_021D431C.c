@@ -894,7 +894,7 @@ BOOL ov5_021D4E10(FieldTask *param0)
             Camera_AdjustFOV(-96, fieldSystem->camera);
         }
 
-        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, 11);
+        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, HEAP_ID_FIELDMAP);
         v2->unk_08 = 1;
         break;
     case 1:
@@ -943,7 +943,7 @@ BOOL ov5_021D4F14(FieldTask *param0)
         v1->unk_04 = 0;
 
         Sound_PlayEffect(1539);
-        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, 11);
+        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, HEAP_ID_FIELDMAP);
 
         v1->unk_08 = 1;
         (v1->unk_00)++;

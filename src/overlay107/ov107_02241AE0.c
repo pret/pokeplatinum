@@ -458,7 +458,7 @@ int ov107_02241AE0 (OverlayManager * param0, int * param1)
     ov107_02242F24();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_100, 0x25000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov107_02241D6C), 100);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov107_02241D6C), HEAP_ID_100);
     memset(v1, 0, sizeof(UnkStruct_ov107_02241D6C));
 
     v1->unk_4C = BgConfig_New(HEAP_ID_100);
@@ -621,7 +621,7 @@ static BOOL ov107_02241D6C (UnkStruct_ov107_02241D6C * param0)
             }
         } else {
             ov107_02241E70(param0);
-            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 100);
+            StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_100);
             param0->unk_08++;
         }
         break;
@@ -630,7 +630,7 @@ static BOOL ov107_02241D6C (UnkStruct_ov107_02241D6C * param0)
             if (param0->unk_0F >= 2) {
                 param0->unk_0F = 0;
                 ov107_02241E70(param0);
-                StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, 100);
+                StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_100);
                 param0->unk_08++;
             }
         } else {
@@ -1349,7 +1349,7 @@ static BOOL ov107_02242DCC (UnkStruct_ov107_02241D6C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, 100);
+        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_100);
         param0->unk_08++;
         break;
     case 1:
@@ -1435,14 +1435,14 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
     Window * v18;
     Pokemon * v19;
 
-    param0->unk_440 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 100);
+    param0->unk_440 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, HEAP_ID_100);
 
     ov107_02243324(param0);
     ov107_02243384(param0);
 
     param0->unk_20 = MessageLoader_Init(1, 26, 199, HEAP_ID_100);
     param0->unk_1C = MessageLoader_Init(1, 26, 391, HEAP_ID_100);
-    param0->unk_24 = StringTemplate_Default(100);
+    param0->unk_24 = StringTemplate_Default(HEAP_ID_100);
     param0->unk_28 = Strbuf_Init(600, HEAP_ID_100);
     param0->unk_2C = Strbuf_Init(600, HEAP_ID_100);
 
@@ -1451,9 +1451,9 @@ static void ov107_02242F5C (UnkStruct_ov107_02241D6C * param0)
     }
 
     Font_LoadTextPalette(0, 13 * 32, HEAP_ID_100);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, 100);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, HEAP_ID_100);
 
-    param0->unk_1C4 = sub_0200C440(1, 2, 0, 100);
+    param0->unk_1C4 = sub_0200C440(1, 2, 0, HEAP_ID_100);
 
     ov107_02249D14(param0->unk_4C, param0->unk_50, 0);
     ov107_02244E14(param0, &v9, &v10, &v11, &v12);
@@ -1529,10 +1529,10 @@ static void ov107_02243324 (UnkStruct_ov107_02241D6C * param0)
     ov107_02243424();
     ov107_02243444(param0->unk_4C);
 
-    param0->unk_1C0 = PaletteData_New(100);
+    param0->unk_1C0 = PaletteData_New(HEAP_ID_100);
 
-    PaletteData_AllocBuffer(param0->unk_1C0, 2, (32 * 16), 100);
-    PaletteData_AllocBuffer(param0->unk_1C0, 0, (32 * 16), 100);
+    PaletteData_AllocBuffer(param0->unk_1C0, 2, (32 * 16), HEAP_ID_100);
+    PaletteData_AllocBuffer(param0->unk_1C0, 0, (32 * 16), HEAP_ID_100);
 
     ov107_02243588(param0, 3);
     ov107_022435FC();
@@ -1730,12 +1730,12 @@ static void ov107_02243444(BgConfig *param0)
 
 static void ov107_02243588 (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
 
     if (ov104_0223BA14(param0->unk_09) == 0) {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 35, param0->unk_4C, param1, 0, 0, 1, 100);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 35, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
     } else {
-        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 36, param0->unk_4C, param1, 0, 0, 1, 100);
+        Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 36, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
     }
 
     return;
@@ -1746,7 +1746,7 @@ static void ov107_022435FC (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = Graphics_GetPlttData(150, 137, &v1, 100);
+    v0 = Graphics_GetPlttData(150, 137, &v1, HEAP_ID_100);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
@@ -1757,8 +1757,8 @@ static void ov107_022435FC (void)
 
 static void ov107_02243630 (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, 100);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 38, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 38, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
 
     return;
 }
@@ -1768,7 +1768,7 @@ static void ov107_02243678 (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = Graphics_GetPlttData(150, 137, &v1, 100);
+    v0 = Graphics_GetPlttData(150, 137, &v1, HEAP_ID_100);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
@@ -1779,25 +1779,25 @@ static void ov107_02243678 (void)
 
 static void ov107_022436AC (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, 100);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 39, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 39, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
 
     return;
 }
 
 static void ov107_022436F4 (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, 100);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 37, param0->unk_4C, param1, 0, 0, 1, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 34, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 37, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
 
     return;
 }
 
 static void ov107_0224373C (UnkStruct_ov107_02241D6C * param0, u32 param1)
 {
-    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 125, param0->unk_4C, param1, 0, 0, 1, 100);
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 126, param0->unk_4C, param1, 0, 0, 1, 100);
-    Graphics_LoadPaletteFromOpenNARC(param0->unk_440, 171, 4, 0, 0x20, 100);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_440, 125, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
+    Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_440, 126, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_100);
+    Graphics_LoadPaletteFromOpenNARC(param0->unk_440, 171, 4, 0, 0x20, HEAP_ID_100);
 
     return;
 }

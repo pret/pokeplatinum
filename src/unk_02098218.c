@@ -66,7 +66,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     DisableHBlank();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_71, 0x40000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov119_021D0FD0), 71);
+    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov119_021D0FD0), HEAP_ID_71);
     memset(v1, 0, sizeof(UnkStruct_ov119_021D0FD0));
 
     v0 = OverlayManager_Args(param0);
@@ -76,19 +76,19 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     v1->unk_04.unk_10 = Options_Frame(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_34 = ov119_021D0DD4();
     v1->unk_04.unk_38 = sub_0200762C(HEAP_ID_71);
-    v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 71);
+    v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, HEAP_ID_71);
     v1->unk_04.unk_00 = BgConfig_New(HEAP_ID_71);
 
     VramTransfer_New(64, 71);
 
     v1->unk_04.unk_54 = sub_02015F84(HEAP_ID_71, 1, 0);
-    v1->unk_04.unk_04 = PaletteData_New(71);
+    v1->unk_04.unk_04 = PaletteData_New(HEAP_ID_71);
 
     PaletteData_SetAutoTransparent(v1->unk_04.unk_04, 1);
-    PaletteData_AllocBuffer(v1->unk_04.unk_04, 0, 0x200, 71);
-    PaletteData_AllocBuffer(v1->unk_04.unk_04, 2, 0x200, 71);
-    PaletteData_AllocBuffer(v1->unk_04.unk_04, 1, 0x200, 71);
-    PaletteData_AllocBuffer(v1->unk_04.unk_04, 3, 0x200, 71);
+    PaletteData_AllocBuffer(v1->unk_04.unk_04, 0, 0x200, HEAP_ID_71);
+    PaletteData_AllocBuffer(v1->unk_04.unk_04, 2, 0x200, HEAP_ID_71);
+    PaletteData_AllocBuffer(v1->unk_04.unk_04, 1, 0x200, HEAP_ID_71);
+    PaletteData_AllocBuffer(v1->unk_04.unk_04, 3, 0x200, HEAP_ID_71);
 
     ov119_021D0D80();
     ov119_021D0DA8();
