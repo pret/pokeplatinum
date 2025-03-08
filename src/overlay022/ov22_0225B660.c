@@ -60,8 +60,8 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
     UnkStruct_ov22_0225B85C *v0;
     UnkStruct_02041DC8 *v1;
 
-    Heap_Create(3, 13, 0x20000);
-    Heap_Create(3, 14, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_0225B85C), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_0225B85C));
@@ -91,7 +91,7 @@ int ov22_0225B660(OverlayManager *param0, int *param1)
         v2.unk_00 = v0->unk_14.unk_40;
         v2.unk_04 = 72;
         v2.unk_08 = 16;
-        v2.heapId = HEAP_ID_14;
+        v2.heapID = HEAP_ID_14;
 
         if (v0->unk_0C == 0) {
             v0->unk_10 = ov22_0225AF8C(&v2, v0->unk_00);
@@ -168,8 +168,8 @@ int ov22_0225B7FC(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     OverlayManager_FreeData(param0);
-    Heap_Destroy(13);
-    Heap_Destroy(14);
+    Heap_Destroy(HEAP_ID_13);
+    Heap_Destroy(HEAP_ID_14);
 
     return 1;
 }

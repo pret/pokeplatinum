@@ -59,7 +59,7 @@ static const u8 Unk_020F685C[][2] = {
 };
 
 typedef struct {
-    int unk_00;
+    int heapID;
     int unk_04;
     u8 unk_08;
     u8 unk_09;
@@ -175,12 +175,12 @@ static int sub_02098B1C(OverlayManager *param0, int *param1)
     UnkStruct_02098BE4 *v0 = NULL;
     void *v1 = OverlayManager_Args(param0);
 
-    Heap_Create(3, 44, 0x1000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_44, 0x1000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02098BE4), 44);
     MI_CpuClear8(v0, sizeof(UnkStruct_02098BE4));
 
-    v0->unk_00 = 44;
+    v0->heapID = HEAP_ID_44;
     v0->unk_0C = v1;
 
     return 1;
@@ -228,7 +228,7 @@ static int sub_02098BC4(OverlayManager *param0, int *param1)
 
     sub_02098BE4(v0);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(v0->unk_00);
+    Heap_Destroy(v0->heapID);
 
     return 1;
 }
@@ -265,7 +265,7 @@ static int sub_02098C2C(UnkStruct_02098BE4 *param0)
         FS_OVERLAY_ID(overlay79),
     };
 
-    param0->unk_14 = OverlayManager_New(&v0, param0->unk_0C, param0->unk_00);
+    param0->unk_14 = OverlayManager_New(&v0, param0->unk_0C, param0->heapID);
     return 1;
 }
 
@@ -283,7 +283,7 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
 
     param0->unk_0C->unk_02 = 0;
 
-    v0 = Heap_AllocFromHeap(param0->unk_00, sizeof(PartyManagementData));
+    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
     MI_CpuClear8(v0, sizeof(PartyManagementData));
     v0->unk_00 = param0->unk_0C->unk_10;
     v0->unk_04 = param0->unk_0C->unk_14;
@@ -291,7 +291,7 @@ static int sub_02098C44(UnkStruct_02098BE4 *param0)
     v0->unk_20 = 20;
     v0->unk_0C = param0->unk_0C->unk_18;
 
-    param0->unk_14 = OverlayManager_New(&Unk_020F1E88, v0, param0->unk_00);
+    param0->unk_14 = OverlayManager_New(&Unk_020F1E88, v0, param0->heapID);
     param0->unk_10 = (void *)v0;
 
     return 2;
@@ -319,7 +319,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
         return 0;
     }
 
-    v2 = Heap_AllocFromHeap(param0->unk_00, sizeof(PokemonSummary));
+    v2 = Heap_AllocFromHeap(param0->heapID, sizeof(PokemonSummary));
 
     v2->monData = param0->unk_0C->unk_10;
     v2->options = param0->unk_0C->unk_18;
@@ -334,7 +334,7 @@ static int sub_02098CB0(UnkStruct_02098BE4 *param0)
     PokemonSummaryScreen_FlagVisiblePages(v2, v3);
     PokemonSummaryScreen_SetPlayerProfile(v2, param0->unk_0C->unk_0C);
 
-    param0->unk_14 = OverlayManager_New(&gPokemonSummaryScreenApp, v1, param0->unk_00);
+    param0->unk_14 = OverlayManager_New(&gPokemonSummaryScreenApp, v1, param0->heapID);
     param0->unk_10 = (void *)v2;
 
     return 3;
@@ -375,16 +375,16 @@ static int sub_02098D7C(UnkStruct_02098BE4 *param0)
         ov79_021D2460,
         FS_OVERLAY_ID(overlay79),
     };
-    UnkStruct_02098DE8 *v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02098DE8));
+    UnkStruct_02098DE8 *v1 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_02098DE8));
     MI_CpuClear8(v1, sizeof(UnkStruct_02098DE8));
 
     v1->unk_08 = param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_02;
-    v1->unk_04 = Poffin_AllocateForCaseSlot(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->unk_00);
+    v1->unk_04 = Poffin_AllocateForCaseSlot(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->heapID);
     v1->unk_00 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_10, param0->unk_08);
     v1->unk_0A = Options_TextFrameDelay(param0->unk_0C->unk_18);
     v1->unk_0B = Options_Frame(param0->unk_0C->unk_18);
 
-    param0->unk_14 = OverlayManager_New(&v0, v1, param0->unk_00);
+    param0->unk_14 = OverlayManager_New(&v0, v1, param0->heapID);
     param0->unk_10 = v1;
 
     return 5;
@@ -415,8 +415,8 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
         4, 8
     };
 
-    v1 = Heap_AllocFromHeap(param0->unk_00, sizeof(PokemonSummary));
-    v2 = Poffin_AllocateForCaseSlot(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->unk_00);
+    v1 = Heap_AllocFromHeap(param0->heapID, sizeof(PokemonSummary));
+    v2 = Poffin_AllocateForCaseSlot(param0->unk_0C->unk_08, param0->unk_0C->unk_1C[param0->unk_0C->unk_01].unk_00, param0->heapID);
 
     v1->monData = param0->unk_0C->unk_10;
     v1->options = param0->unk_0C->unk_18;
@@ -432,7 +432,7 @@ static int sub_02098E0C(UnkStruct_02098BE4 *param0)
     PokemonSummaryScreen_FlagVisiblePages(v1, v3);
     PokemonSummaryScreen_SetPlayerProfile(v1, param0->unk_0C->unk_0C);
 
-    param0->unk_14 = OverlayManager_New(&gPokemonSummaryScreenApp, v1, param0->unk_00);
+    param0->unk_14 = OverlayManager_New(&gPokemonSummaryScreenApp, v1, param0->heapID);
     param0->unk_10 = (void *)v1;
 
     return 7;

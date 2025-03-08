@@ -224,7 +224,7 @@ static void ov116_022604C4(UnkStruct_ov116_0226139C *param0)
         }
     }
 
-    param0->unk_7C = ov114_0225CAD4(SpriteManager_GetSpriteList(param0->unk_48.unk_0C), 106);
+    param0->unk_7C = ov114_0225CAD4(SpriteManager_GetSpriteList(param0->unk_48.unk_0C), HEAP_ID_106);
     PaletteData_LoadBufferFromHardware(param0->unk_48.unk_14, 2, 0 * 16, 16 * 0x20);
 
     if (param0->unk_80->unk_3C) {
@@ -236,7 +236,7 @@ int ov116_022609B4(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov116_0226139C *v0;
 
-    Heap_Create(3, 106, 0x65000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_106, 0x65000);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov116_0226139C), 106);
     memset(v0, 0, sizeof(UnkStruct_ov116_0226139C));
 
@@ -734,7 +734,7 @@ int ov116_0226126C(OverlayManager *param0, int *param1)
         v0 = ov116_022617E4(v1);
 
         OverlayManager_FreeData(param0);
-        Heap_Destroy(106);
+        Heap_Destroy(HEAP_ID_106);
         CommMan_SetErrorHandling(0, 1);
 
         if (v0 != 0) {

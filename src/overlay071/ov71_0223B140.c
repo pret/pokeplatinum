@@ -150,7 +150,7 @@ int ov71_0223B140(OverlayManager *param0, int *param1)
     GXS_SetVisiblePlane(0);
 
     SetAutorepeat(4, 8);
-    Heap_Create(3, 25, 0x28000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_25, 0x28000);
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__TRAINER_CASE, 25);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov71_0223B620), 25);
@@ -392,7 +392,7 @@ int ov71_0223B5B8(OverlayManager *param0, int *param1)
     sub_0201E530();
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(25);
+    Heap_Destroy(HEAP_ID_25);
     sub_0200544C(1, 127);
 
     return 1;

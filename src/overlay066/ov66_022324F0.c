@@ -92,7 +92,7 @@ static void ov66_0223369C(void);
 static UnkEnum_ov66_022336B8 ov66_022336B8(PPW_LOBBY_CHANNEL_KIND param0);
 static PPW_LOBBY_CHANNEL_KIND ov66_022336C0(UnkEnum_ov66_022336B8 param0);
 static BOOL ov66_022336C4(UnkStruct_ov66_022336C4 *param0);
-static void ov66_02233758(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 param2);
+static void ov66_02233758(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 heapID);
 static void ov66_02233788(UnkStruct_ov66_022336C4 *param0);
 static void ov66_0223379C(UnkStruct_ov66_022336C4 *param0, s32 param1, const void *param2);
 static void ov66_022337A8(UnkStruct_ov66_022336C4 *param0, s32 param1, const void *param2, u32 param3);
@@ -101,7 +101,7 @@ static void ov66_0223380C(UnkStruct_ov66_022336C4 *param0, s32 param1);
 static void ov66_02233838(UnkStruct_ov66_022336C4 *param0, s32 param1, const PPW_LobbySystemProfile *param2);
 static const PPW_LobbySystemProfile *ov66_02233864(const UnkStruct_ov66_022336C4 *param0, s32 param1);
 static void ov66_02233888(UnkStruct_ov66_022336C4 *param0, s32 param1);
-static void ov66_022338C8(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 param2, u32 param3);
+static void ov66_022338C8(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 param2, u32 heapID);
 static void ov66_02233920(UnkStruct_ov66_022336C4 *param0);
 static void ov66_02233950(UnkStruct_ov66_022336C4 *param0, u32 param1);
 static void ov66_02233984(UnkStruct_ov66_022336C4 *param0, s32 param1, u32 param2);
@@ -139,7 +139,7 @@ static void ov66_02234294(const PPW_LobbyRecruitInfo *param0, s64 *param1);
 static void ov66_022342A0(u16 param0, void *param1);
 static void ov66_022342A4(u16 param0, void *param1);
 static u32 ov66_022342CC(const PPW_LobbySchedule *param0, PPW_LOBBY_TIME_EVENT param1);
-static void ov66_022342F4(UnkStruct_ov66_022342F4 *param0, u32 param1, u32 param2);
+static void ov66_022342F4(UnkStruct_ov66_022342F4 *param0, u32 param1, u32 heapID);
 static void ov66_0223430C(UnkStruct_ov66_022342F4 *param0);
 static void ov66_0223431C(UnkStruct_ov66_022342F4 *param0, const PPW_LobbyVipRecord *param1, u32 param2);
 static BOOL ov66_02234344(const UnkStruct_ov66_022342F4 *param0, s32 param1);
@@ -152,12 +152,12 @@ static const char *Unk_ov66_02258DF0[1] = {
 
 static UnkStruct_ov66_022336C4 *Unk_ov66_0225B6C0 = NULL;
 
-void ov66_022324F0(u32 param0, SaveData *param1, u32 param2, const UnkStruct_ov66_022324F0 *param3, void *param4)
+void ov66_022324F0(u32 heapID, SaveData *param1, u32 param2, const UnkStruct_ov66_022324F0 *param3, void *param4)
 {
     GF_ASSERT(Unk_ov66_0225B6C0 == NULL);
     GF_ASSERT(param2 < PPW_LOBBY_MAX_BINARY_SIZE);
 
-    Unk_ov66_0225B6C0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov66_022336C4));
+    Unk_ov66_0225B6C0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_022336C4));
     memset(Unk_ov66_0225B6C0, 0, sizeof(UnkStruct_ov66_022336C4));
 
     Unk_ov66_0225B6C0->unk_00 = param1;
@@ -166,10 +166,10 @@ void ov66_022324F0(u32 param0, SaveData *param1, u32 param2, const UnkStruct_ov6
     Unk_ov66_0225B6C0->unk_0C = *param3;
     Unk_ov66_0225B6C0->unk_20 = param4;
 
-    ov66_02233758(Unk_ov66_0225B6C0, param2, param0);
-    ov66_022338C8(Unk_ov66_0225B6C0, PPW_LOBBY_MAX_PLAYER_NUM_MAIN, PPW_LOBBY_MAX_PLAYER_NUM_FOOT, param0);
+    ov66_02233758(Unk_ov66_0225B6C0, param2, heapID);
+    ov66_022338C8(Unk_ov66_0225B6C0, PPW_LOBBY_MAX_PLAYER_NUM_MAIN, PPW_LOBBY_MAX_PLAYER_NUM_FOOT, heapID);
     ov66_02234054(Unk_ov66_0225B6C0);
-    ov66_022342F4(&Unk_ov66_0225B6C0->unk_6A0, 128, param0);
+    ov66_022342F4(&Unk_ov66_0225B6C0->unk_6A0, 128, heapID);
 }
 
 void ov66_02232598(void)
@@ -1194,9 +1194,9 @@ static BOOL ov66_022336C4(UnkStruct_ov66_022336C4 *param0)
     return ov66_0223365C(v3);
 }
 
-static void ov66_02233758(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 param2)
+static void ov66_02233758(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 heapID)
 {
-    Unk_ov66_0225B6C0->unk_24 = Heap_AllocFromHeap(param2, param1 * PPW_LOBBY_MAX_PLAYER_NUM_MAIN);
+    Unk_ov66_0225B6C0->unk_24 = Heap_AllocFromHeap(heapID, param1 * PPW_LOBBY_MAX_PLAYER_NUM_MAIN);
     memset(Unk_ov66_0225B6C0->unk_24, 0, param1 * PPW_LOBBY_MAX_PLAYER_NUM_MAIN);
     Unk_ov66_0225B6C0->unk_28 = param1;
 }
@@ -1285,7 +1285,7 @@ static void ov66_02233888(UnkStruct_ov66_022336C4 *param0, s32 param1)
     memset(&param0->unk_2C[v0], 0, sizeof(PPW_LobbySystemProfile));
 }
 
-static void ov66_022338C8(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 param2, u32 param3)
+static void ov66_022338C8(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 param2, u32 heapID)
 {
     int v0;
     int v1;
@@ -1300,7 +1300,7 @@ static void ov66_022338C8(UnkStruct_ov66_022336C4 *param0, u32 param1, u32 param
         }
 
         param0->unk_11C[v0].unk_00 = 0;
-        param0->unk_11C[v0].unk_04 = Heap_AllocFromHeap(param3, sizeof(s32) * v1);
+        param0->unk_11C[v0].unk_04 = Heap_AllocFromHeap(heapID, sizeof(s32) * v1);
         param0->unk_11C[v0].unk_02 = v1;
 
         ov66_02233950(param0, v0);
@@ -1877,9 +1877,9 @@ static u32 ov66_022342CC(const PPW_LobbySchedule *param0, PPW_LOBBY_TIME_EVENT p
     return v0;
 }
 
-static void ov66_022342F4(UnkStruct_ov66_022342F4 *param0, u32 param1, u32 param2)
+static void ov66_022342F4(UnkStruct_ov66_022342F4 *param0, u32 param1, u32 heapID)
 {
-    param0->unk_00 = Heap_AllocFromHeap(param2, sizeof(PPW_LobbyVipRecord) * param1);
+    param0->unk_00 = Heap_AllocFromHeap(heapID, sizeof(PPW_LobbyVipRecord) * param1);
     param0->unk_04 = param1;
     param0->unk_06 = 0;
 }

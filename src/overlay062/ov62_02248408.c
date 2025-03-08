@@ -25,7 +25,7 @@ static void ov62_0224856C(Strbuf *param0, int param1);
 
 extern BattleRecording *Unk_021C07A4;
 
-void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int param2)
+void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int heapID)
 {
     UnkStruct_0202F298 *v0 = &param0->unk_E8;
     UnkStruct_0202F41C *v1 = &param0->unk_84;
@@ -37,9 +37,9 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int param2)
     Pokemon *v13;
 
     sub_0202F4C0(v1->unk_26, &v2, &v3);
-    v6 = Strbuf_Init(v9, param2);
-    v7 = Strbuf_Init(v9, param2);
-    v8 = Heap_AllocFromHeap(param2, sizeof(u16) * v9);
+    v6 = Strbuf_Init(v9, heapID);
+    v7 = Strbuf_Init(v9, heapID);
+    v8 = Heap_AllocFromHeap(heapID, sizeof(u16) * v9);
 
     for (v4 = 0; v4 < v2; v4++) {
         for (v10 = TRAINER_NAME_LEN; v10 > -1; v10--) {
@@ -49,7 +49,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int param2)
         }
 
         if (v10 == -1) {
-            ov62_0224856C(v7, param2);
+            ov62_0224856C(v7, heapID);
             Strbuf_ToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
             continue;
         }
@@ -58,7 +58,7 @@ void ov62_02248408(BattleRecording *param0, FieldBattleDTO *param1, int param2)
         Strbuf_CopyChars(v6, param1->trainer[v4].name);
 
         if (Font_AreAllCharsValid(FONT_SYSTEM, v6, v7) == 0) {
-            ov62_0224856C(v7, param2);
+            ov62_0224856C(v7, heapID);
             Strbuf_ToChars(v7, param1->trainer[v4].name, TRAINER_NAME_LEN + 1);
             continue;
         }

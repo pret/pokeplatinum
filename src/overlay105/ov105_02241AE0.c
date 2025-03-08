@@ -354,7 +354,7 @@ int ov105_02241AE0(OverlayManager *param0, int *param1)
 
     Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
     ov105_022452E4();
-    Heap_Create(3, 93, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_93, 0x20000);
 
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov105_02241FF4), 93);
     memset(v1, 0, sizeof(UnkStruct_ov105_02241FF4));
@@ -601,7 +601,7 @@ int ov105_02241F54(OverlayManager *param0, int *param1)
 
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(93);
+    Heap_Destroy(HEAP_ID_93);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
     return 1;
@@ -3234,7 +3234,7 @@ static UnkStruct_ov105_02245EA8 *ov105_02245934(UnkStruct_ov105_02241FF4 *param0
         }
     }
 
-    return ov105_02245E54(&param0->unk_144, v0, v1, 93);
+    return ov105_02245E54(&param0->unk_144, v0, v1, HEAP_ID_93);
 }
 
 static UnkStruct_ov105_02245E1C *ov105_022459B0(UnkStruct_ov105_02241FF4 *param0, u32 param1)
@@ -3262,7 +3262,7 @@ static UnkStruct_ov105_02245E1C *ov105_022459B0(UnkStruct_ov105_02241FF4 *param0
         break;
     }
 
-    return ov105_02245DC4(&param0->unk_144, param1, v0, v1, 93);
+    return ov105_02245DC4(&param0->unk_144, param1, v0, v1, HEAP_ID_93);
 }
 
 static UnkStruct_ov105_02245E1C *ov105_02245A04(UnkStruct_ov105_02241FF4 *param0, u32 param1)
@@ -3282,7 +3282,7 @@ static UnkStruct_ov105_02245E1C *ov105_02245A04(UnkStruct_ov105_02241FF4 *param0
         break;
     }
 
-    return ov105_02245DC4(&param0->unk_144, param1, v0, v1, 93);
+    return ov105_02245DC4(&param0->unk_144, param1, v0, v1, HEAP_ID_93);
 }
 
 static void ov105_02245A30(UnkStruct_ov105_02241FF4 *param0)

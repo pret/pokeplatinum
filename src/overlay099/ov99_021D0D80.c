@@ -283,7 +283,7 @@ int ov99_021D11A8(OverlayManager *param0, int *param1)
     VramTransfer_Free();
     sub_0201E530();
     OverlayManager_FreeData(param0);
-    Heap_Destroy(75);
+    Heap_Destroy(HEAP_ID_75);
 
     return 1;
 }

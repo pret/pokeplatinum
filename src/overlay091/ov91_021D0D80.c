@@ -343,7 +343,7 @@ int ov91_021D0D80(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov91_021D0ED8 *v0;
 
-    Heap_Create(3, 67, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_67, 0x20000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov91_021D0ED8), 67);
     memset(v0, 0, sizeof(UnkStruct_ov91_021D0ED8));
@@ -421,7 +421,7 @@ int ov91_021D0EBC(OverlayManager *param0, int *param1)
     ov91_021D0F6C(v0);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(67);
+    Heap_Destroy(HEAP_ID_67);
 
     return 1;
 }
@@ -584,7 +584,7 @@ static void ov91_021D1098(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, 2);
     Bg_FreeTilemapBuffer(param0, 1);
     Bg_FreeTilemapBuffer(param0, 0);
-    Heap_FreeToHeapExplicit(67, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_67, param0);
 }
 
 static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)

@@ -70,7 +70,7 @@ typedef struct {
 } UnkStruct_02072334_sub1;
 
 typedef struct {
-    int unk_00;
+    int heapID;
     int *unk_04;
     SysTask *unk_08;
     SysTaskFunc unk_0C;
@@ -195,7 +195,7 @@ void sub_020722AC(void *param0, int *param1)
     UnkStruct_02072334 *v0 = NULL;
     SaveData *v1;
 
-    Heap_Create(3, 43, 0x5000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_43, 0x5000);
 
     v0 = Heap_AllocFromHeap(HEAP_ID_43, sizeof(UnkStruct_02072334));
     MI_CpuClear8(v0, sizeof(UnkStruct_02072334));
@@ -204,14 +204,14 @@ void sub_020722AC(void *param0, int *param1)
     v1 = FieldSystem_GetSaveData(param0);
 
     v0->fieldSystem = (FieldSystem *)param0;
-    v0->unk_00 = 43;
+    v0->heapID = HEAP_ID_43;
     v0->unk_19 = 0;
     v0->unk_1A = 0xFF;
     v0->unk_16 = Options_TextFrameDelay(SaveData_Options(v1));
     v0->unk_14 = Options_Frame(SaveData_Options(v1));
 
-    sub_02072ED0(v0->unk_1C, 20, v0->unk_00);
-    sub_02072F30(v0, v1, v0->unk_00);
+    sub_02072ED0(v0->unk_1C, 20, v0->heapID);
+    sub_02072F30(v0, v1, v0->heapID);
     sub_02073130(v0);
 
     v0->unk_08 = SysTask_Start(sub_02072370, v0, 0);
@@ -224,7 +224,7 @@ void sub_02072334(UnkStruct_02072334 *param0)
     sub_020731A4(param0);
     sub_02072F04(param0->unk_1C, 20);
     Heap_FreeToHeap(param0);
-    Heap_Destroy(param0->unk_00);
+    Heap_Destroy(param0->heapID);
 }
 
 static void sub_02072364(SysTask *param0, void *param1)
@@ -592,7 +592,7 @@ static void sub_02072878(SysTask *param0, void *param1)
 
         sub_020734F4(v4, 1);
 
-        if (Bag_GetItemQuantity(v4->unk_1B0, v4->unk_1C[v4->unk_18].unk_06, v4->unk_00) > 0) {
+        if (Bag_GetItemQuantity(v4->unk_1B0, v4->unk_1C[v4->unk_18].unk_06, v4->heapID) > 0) {
             v4->unk_13B_6 = 1;
         } else {
             v4->unk_13B_6 = 0;
@@ -668,7 +668,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
         { 0x3, 0x1, 0x1, 0x9, 0x2, 0xD, 0x283 }
     };
 
-    param0->unk_1A4 = sub_0206A780(param0->unk_00);
+    param0->unk_1A4 = sub_0206A780(param0->heapID);
 
     sub_0206A8A0(param0->unk_1A4, 200, 10, 138);
     sub_0206A8C4(param0->unk_1A4, 0, 1);
@@ -678,7 +678,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
     Window_FillTilemap(&param0->unk_174, ((15 << 4) | 15));
     Window_FillTilemap(&param0->unk_194, ((15 << 4) | 15));
 
-    param0->unk_164 = StringList_New(param0->unk_1B + 1, param0->unk_00);
+    param0->unk_164 = StringList_New(param0->unk_1B + 1, param0->heapID);
 
     for (v0 = 0; v0 < 20; v0++) {
         v2 = &(param0->unk_1C[v0]);
@@ -718,7 +718,7 @@ static void sub_020729B4(UnkStruct_02072334 *param0)
         param0->unk_13B_4 = 0;
     }
 
-    param0->unk_160 = ListMenu_New(&(param0->unk_140), param0->unk_13C, param0->unk_13E, param0->unk_00);
+    param0->unk_160 = ListMenu_New(&(param0->unk_140), param0->unk_13C, param0->unk_13E, param0->heapID);
 
     Window_DrawStandardFrame(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
     Text_AddPrinterWithParamsAndColor(&param0->unk_194, FONT_SYSTEM, param0->unk_110.unk_0C, 2, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
@@ -782,7 +782,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     };
 
     v1 = NELEMS(Unk_020F0524);
-    param0->unk_164 = StringList_New(v1, param0->unk_00);
+    param0->unk_164 = StringList_New(v1, param0->heapID);
 
     Window_AddFromTemplate(param0->unk_170, &(param0->unk_174), &v2);
     Window_FillTilemap(&param0->unk_174, ((15 << 4) | 15));
@@ -800,7 +800,7 @@ static void sub_02072C98(UnkStruct_02072334 *param0, u8 param1, u8 param2)
     param0->unk_140.maxDisplay = 4;
     param0->unk_140.pagerMode = PAGER_MODE_NONE;
     param0->unk_140.cursorCallback = sub_02072DA4;
-    param0->unk_160 = ListMenu_New(&(param0->unk_140), param1, param2, param0->unk_00);
+    param0->unk_160 = ListMenu_New(&(param0->unk_140), param1, param2, param0->heapID);
 
     Window_DrawStandardFrame(&param0->unk_174, 0, (1024 - (18 + 12) - 9), 11);
     Bg_ScheduleTilemapTransfer(param0->unk_170, 3);
@@ -964,10 +964,10 @@ static BOOL sub_02073060(UnkStruct_02072334 *param0)
     BOOL v1;
 
     v0 = &(param0->unk_1C[param0->unk_18]);
-    v1 = Bag_CanFitItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
+    v1 = Bag_CanFitItem(param0->unk_1B0, v0->unk_06, 1, param0->heapID);
 
     if (v1) {
-        Bag_TryAddItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
+        Bag_TryAddItem(param0->unk_1B0, v0->unk_06, 1, param0->heapID);
     }
 
     sub_02028470(param0->unk_1AC, 0, param0->unk_18);
@@ -992,11 +992,11 @@ static void sub_020730B8(UnkStruct_02072334 *param0, u8 param1, BOOL param2)
     v1 = Party_GetFromSavedata(FieldSystem_GetSaveData(param0->fieldSystem));
     v2 = Party_GetPokemonBySlotIndex(v1, param1);
 
-    sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->unk_00);
+    sub_020977E4(param0->unk_1AC, param0->unk_18, v2, param0->heapID);
 
     if (param2) {
-        if (Bag_CanFitItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00)) {
-            Bag_TryAddItem(param0->unk_1B0, v0->unk_06, 1, param0->unk_00);
+        if (Bag_CanFitItem(param0->unk_1B0, v0->unk_06, 1, param0->heapID)) {
+            Bag_TryAddItem(param0->unk_1B0, v0->unk_06, 1, param0->heapID);
         }
     }
 
@@ -1010,9 +1010,9 @@ static void sub_02073130(UnkStruct_02072334 *param0)
     int v1;
     Strbuf *v2;
 
-    param0->unk_10C = MessageLoader_Init(1, 26, 408, param0->unk_00);
-    param0->unk_110.unk_00 = StringTemplate_New(1, 128, param0->unk_00);
-    param0->unk_110.unk_04 = Strbuf_Init(128, param0->unk_00);
+    param0->unk_10C = MessageLoader_Init(1, 26, 408, param0->heapID);
+    param0->unk_110.unk_00 = StringTemplate_New(1, 128, param0->heapID);
+    param0->unk_110.unk_04 = Strbuf_Init(128, param0->heapID);
     param0->unk_110.unk_08 = MessageLoader_GetNewStrbuf(param0->unk_10C, 4);
     param0->unk_110.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_10C, 0);
 
@@ -1040,11 +1040,11 @@ static void sub_020731F4(UnkStruct_02072334 *param0)
 {
     param0->unk_170 = FieldSystem_GetBgConfig(param0->fieldSystem);
 
-    LoadMessageBoxGraphics(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->unk_00);
-    LoadStandardWindowGraphics(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->unk_00);
+    LoadMessageBoxGraphics(param0->unk_170, 3, (1024 - (18 + 12)), 10, param0->unk_14, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_170, 3, (1024 - (18 + 12) - 9), 11, 0, param0->heapID);
 
-    Font_LoadTextPalette(0, 13 * 32, param0->unk_00);
-    Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->unk_00);
+    Font_LoadTextPalette(0, 13 * 32, param0->heapID);
+    Font_LoadScreenIndicatorsPalette(0, 12 * 32, param0->heapID);
 
     Window_Add(param0->unk_170, &param0->unk_184, 3, 2, 19, 27, 4, 12, ((1024 - (18 + 12) - 9) - 27 * 4));
     Window_FillTilemap(&param0->unk_184, 0);
@@ -1117,12 +1117,12 @@ static void sub_020733E0(UnkStruct_02072334 *param0)
         0x355
     };
 
-    param0->unk_168 = Menu_MakeYesNoChoice(param0->unk_170, &v0, (1024 - (18 + 12) - 9), 11, param0->unk_00);
+    param0->unk_168 = Menu_MakeYesNoChoice(param0->unk_170, &v0, (1024 - (18 + 12) - 9), 11, param0->heapID);
 }
 
 static int sub_0207340C(UnkStruct_02072334 *param0)
 {
-    switch (Menu_ProcessInputAndHandleExit(param0->unk_168, param0->unk_00)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_168, param0->heapID)) {
     case 0:
         return 1;
     case 0xfffffffe:
@@ -1136,7 +1136,7 @@ static int sub_02073438(UnkStruct_02072334 *param0, int param1)
 {
     switch (param0->unk_12) {
     case 0:
-        StartScreenTransition(0, param1, param1, 0x0, 6, 1, param0->unk_00);
+        StartScreenTransition(0, param1, param1, 0x0, 6, 1, param0->heapID);
         param0->unk_12++;
         break;
     case 1:
@@ -1199,7 +1199,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int param1)
 
     switch (param0->unk_12) {
     case 0:
-        v0 = Heap_AllocFromHeap(param0->unk_00, sizeof(PartyManagementData));
+        v0 = Heap_AllocFromHeap(param0->heapID, sizeof(PartyManagementData));
         MI_CpuClear8(v0, sizeof(PartyManagementData));
 
         v0->unk_00 = Party_GetFromSavedata(FieldSystem_GetSaveData(param0->fieldSystem));
@@ -1237,9 +1237,9 @@ static int sub_020735E8(UnkStruct_02072334 *param0)
     switch (param0->unk_12) {
     case 0:
         if (param0->unk_1C[param0->unk_18].unk_01) {
-            param0->unk_1A8 = sub_0203D94C(param0->fieldSystem, 0, param0->unk_18, param0->unk_00);
+            param0->unk_1A8 = sub_0203D94C(param0->fieldSystem, 0, param0->unk_18, param0->heapID);
         } else {
-            param0->unk_1A8 = sub_0203D920(param0->fieldSystem, 0, param0->unk_17, param0->unk_1C[param0->unk_18].unk_05, param0->unk_00);
+            param0->unk_1A8 = sub_0203D920(param0->fieldSystem, 0, param0->unk_17, param0->unk_1C[param0->unk_18].unk_05, param0->heapID);
         }
 
         param0->unk_12++;

@@ -3551,7 +3551,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
 
                 v0->unk_04->unk_00 = v0->unk_00;
                 v0->unk_04->unk_04 = BattleSystem_TrainerInfo(v0->unk_00, v0->unk_0D);
-                v0->unk_04->unk_0C = 5;
+                v0->unk_04->heapID = HEAP_ID_BATTLE;
                 v0->unk_04->unk_26 = 0;
                 v0->unk_04->unk_08 = BattleSystem_Bag(v0->unk_00);
                 v0->unk_04->unk_10 = v0->unk_0D;
@@ -3612,7 +3612,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         }
 
         v0->unk_08->unk_04->unk_08 = v0->unk_00;
-        v0->unk_08->unk_04->unk_0C = 5;
+        v0->unk_08->unk_04->heapID = HEAP_ID_BATTLE;
         v0->unk_08->unk_04->unk_11 = 0;
         v0->unk_08->unk_04->unk_36 = 0;
         v0->unk_08->unk_04->unk_24 = 0;
@@ -4207,7 +4207,7 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
                 }
 
                 v0->unk_04->unk_08 = v0->unk_00;
-                v0->unk_04->unk_0C = 5;
+                v0->unk_04->heapID = HEAP_ID_BATTLE;
                 v0->unk_04->unk_36 = 0;
                 v0->unk_04->unk_24 = v0->unk_10;
                 v0->unk_04->unk_12 = v0->unk_16;
@@ -5188,7 +5188,7 @@ static void ov16_022633A4(SysTask *param0, void *param1)
             v0->unk_04 = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(UnkStruct_ov13_0221FC20));
             v0->unk_04->unk_00 = BattleSystem_Party(v0->unk_00, v0->unk_09);
             v0->unk_04->unk_08 = v0->unk_00;
-            v0->unk_04->unk_0C = 5;
+            v0->unk_04->heapID = HEAP_ID_BATTLE;
             v0->unk_04->unk_11 = v0->unk_0E;
             v0->unk_04->unk_24 = v0->unk_0C;
             v0->unk_04->unk_36 = 0;

@@ -607,16 +607,16 @@ int ov70_0225D9A4(OverlayManager *param0, int *param1)
 
     v0->unk_458 = SaveData_GetTrainerInfo(v1->unk_00);
     ov70_0225E4EC(&v0->unk_3C, v1->unk_00, HEAP_ID_112);
-    v0->unk_44C = ov70_0225C858(112);
+    v0->unk_44C = ov70_0225C858(HEAP_ID_112);
 
     {
         u32 v2;
 
         v2 = TrainerInfo_Gender(v0->unk_458);
-        v0->unk_444 = ov70_0225C9B4(24, v2, v0->unk_44C, HEAP_ID_112, 113);
+        v0->unk_444 = ov70_0225C9B4(24, v2, v0->unk_44C, HEAP_ID_112, HEAP_ID_113);
     }
 
-    v0->unk_448 = ov70_02261E10(v1->unk_04, v1->unk_08, v0->unk_44C, 112, 113);
+    v0->unk_448 = ov70_02261E10(v1->unk_04, v1->unk_08, v0->unk_44C, HEAP_ID_112, HEAP_ID_113);
     v0->unk_450 = ov70_02260A70(HEAP_ID_112);
 
     ov70_0225E9C8(&v0->unk_35C, &v0->unk_3C, v1->unk_00, 112);
@@ -638,13 +638,13 @@ int ov70_0225D9A4(OverlayManager *param0, int *param1)
         }
     }
 
-    v0->unk_454 = ov70_02262DA8(v0, 112);
+    v0->unk_454 = ov70_02262DA8(v0, HEAP_ID_112);
 
     ov70_022630A4(v0);
     ov70_022630EC(v0);
 
-    v0->unk_438 = ov70_02269190(v0->unk_34, v0->unk_44C, v0->unk_450, v0->unk_444, 112, 113);
-    v0->unk_440 = ov70_0226C60C(112, v0);
+    v0->unk_438 = ov70_02269190(v0->unk_34, v0->unk_44C, v0->unk_450, v0->unk_444, HEAP_ID_112, HEAP_ID_113);
+    v0->unk_440 = ov70_0226C60C(HEAP_ID_112, v0);
 
     SetVBlankCallback(ov70_0225E4C8, v0);
     DisableHBlank();
@@ -805,8 +805,8 @@ int ov70_0225DDF8(OverlayManager *param0, int *param1)
     ov70_0225E6D0(&v0->unk_3C);
 
     Heap_FreeToHeap(v0);
-    Heap_Destroy(112);
-    Heap_Destroy(113);
+    Heap_Destroy(HEAP_ID_112);
+    Heap_Destroy(HEAP_ID_113);
     sub_020057BC(0);
     sub_0200592C(0);
 

@@ -109,7 +109,7 @@ typedef struct {
 void Strbuf_ToChars(const Strbuf *param0, u16 *param1, u32 param2);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
 MysteryGift *SaveData_MysteryGift(SaveData *param0);
-void ov97_02231FFC(BgConfig *param0, void *, int param2);
+void ov97_02231FFC(BgConfig *param0, void *, int heapID);
 static int ov97_0222D474(OverlayManager *param0);
 static int ov97_0222D4D8(OverlayManager *param0);
 static int ov97_0222DA18(OverlayManager *param0);
@@ -360,7 +360,7 @@ static UnkStruct_0202DF40 *ov97_0222D55C(OverlayManager *param0)
     switch (v0->unk_1638) {
     case 1:
         memcpy(v1, ov97_0222D2B8(0, NULL, 0), sizeof(UnkUnion_ov97_0222D2B0));
-        ov97_02238324(&v0->unk_8C, &v0->unk_8C.unk_50, 86);
+        ov97_02238324(&v0->unk_8C, &v0->unk_8C.unk_50, HEAP_ID_86);
         break;
     case 3:
         v3 = (UnkStruct_ov97_0223829C *)v0->unk_638;
@@ -1075,7 +1075,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
     UnkStruct_ov97_0222D04C *v0;
 
     ov97_022301B0(param0);
-    Heap_Create(3, 86, 0x30000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_86, 0x30000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_0222D04C), 86);
     memset(v0, 0, sizeof(UnkStruct_ov97_0222D04C));
@@ -1104,7 +1104,7 @@ static int ov97_0222E2DC(OverlayManager *param0, int *param1)
     v0->unk_08 = SaveData_Options(v0->unk_04);
     v0->unk_68 = 0xff;
 
-    Heap_Create(0, 91, 0x300);
+    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
     return 1;
 }
@@ -2397,7 +2397,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         ov97_0222DC20(v3->unk_00);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
-        ov97_02231FFC(v3->unk_00, &v3->unk_8C.unk_50.val2, 86);
+        ov97_02231FFC(v3->unk_00, &v3->unk_8C.unk_50.val2, HEAP_ID_86);
         ov97_02237790(1, 55, v3->unk_163C, 2);
         v3->unk_8C.unk_00.unk_4E_2 = 0;
         break;
@@ -2439,9 +2439,9 @@ static int ov97_022301BC(OverlayManager *param0, int *param1)
         EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D7AC);
     }
 
-    Heap_Destroy(91);
+    Heap_Destroy(HEAP_ID_91);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(86);
+    Heap_Destroy(HEAP_ID_86);
 
     if (v0->unk_1638 == 2) {
         SetGBACartridgeVersion(NULL);

@@ -883,7 +883,7 @@ static int sub_0208694C(OverlayManager *param0, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        Heap_Create(3, 18, 0x20000 + 0x8000);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_18, 0x20000 + 0x8000);
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02087A10), 18);
         memset(v0, 0, sizeof(UnkStruct_02087A10));
@@ -1150,11 +1150,11 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
 
     SpriteList_Delete(v0->unk_188);
     RenderOam_Free();
-    Heap_FreeToHeapExplicit(18, v0->unk_510);
+    Heap_FreeToHeapExplicit(HEAP_ID_18, v0->unk_510);
 
     if (v0->unk_00 == 1) {
-        Heap_FreeToHeapExplicit(18, v0->unk_518);
-        Heap_FreeToHeapExplicit(18, v0->unk_520);
+        Heap_FreeToHeapExplicit(HEAP_ID_18, v0->unk_518);
+        Heap_FreeToHeapExplicit(HEAP_ID_18, v0->unk_520);
     }
 
     Bg_FreeTilemapBuffer(v0->unk_160, 7);
@@ -1179,7 +1179,7 @@ static int sub_02086F3C(OverlayManager *param0, int *param1)
     StringTemplate_Free(v0->unk_168);
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(18);
+    Heap_Destroy(HEAP_ID_18);
 
     {
         gSystem.whichScreenIs3D = DS_SCREEN_MAIN;
@@ -1492,7 +1492,7 @@ static void sub_0208765C(BgConfig *param0, Window *param1)
     Bg_FreeTilemapBuffer(param0, 2);
     Bg_FreeTilemapBuffer(param0, 1);
     Bg_FreeTilemapBuffer(param0, 0);
-    Heap_FreeToHeapExplicit(18, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_18, param0);
 }
 
 static void sub_0208769C(UnkStruct_02087A10 *param0, NARC *param1)

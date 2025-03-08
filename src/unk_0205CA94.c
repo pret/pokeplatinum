@@ -592,7 +592,7 @@ void sub_0205D404(struct UnkStruct_0205D3AC_t *param0)
 
     if (param0->unk_00 != NULL) {
         Sprite_Delete(v0->unk_0C);
-        Heap_FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_00);
 
         param0->unk_00 = NULL;
     }
@@ -641,7 +641,7 @@ void sub_0205D4E0(struct UnkStruct_0205D3AC_t *param0)
 
     if (param0->unk_00 != NULL) {
         Sprite_Delete(v0->unk_0C);
-        Heap_FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_00);
 
         param0->unk_00 = NULL;
     }
@@ -680,7 +680,7 @@ void sub_0205D564(struct UnkStruct_0205D3AC_t *param0)
 
     if (param0->unk_00 != NULL) {
         Sprite_Delete(v0->unk_0C);
-        Heap_FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_00);
         param0->unk_00 = NULL;
     }
 }
@@ -732,7 +732,7 @@ void sub_0205D624(struct UnkStruct_0205D3AC_t *param0)
 
     if (param0->unk_00 != NULL) {
         Sprite_Delete(v0->unk_0C);
-        Heap_FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_00);
 
         param0->unk_00 = NULL;
     }
@@ -814,7 +814,7 @@ void sub_0205D768(struct UnkStruct_0205D3AC_t *param0)
 
     if (param0->unk_00 != NULL) {
         Sprite_Delete(v0->unk_0C);
-        Heap_FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_00);
         param0->unk_00 = NULL;
     }
 }
@@ -880,7 +880,7 @@ void sub_0205D888(struct UnkStruct_0205D3AC_t *param0)
 
     if (param0->unk_00 != NULL) {
         Sprite_Delete(v0->unk_0C);
-        Heap_FreeToHeapExplicit(4, param0->unk_00);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0->unk_00);
         param0->unk_00 = NULL;
     }
 }

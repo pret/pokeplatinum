@@ -71,7 +71,7 @@ typedef struct UnkStruct_ov66_02234548_t {
 static const UnkStruct_ov66_02258B38 *ov66_022348B0(u32 param0);
 static u32 ov66_022348D8(BOOL param0, u32 param1);
 static fx32 ov66_022348E4(u16 param0, u16 param1, u32 param2);
-static void ov66_022348FC(UnkStruct_ov66_02234958 *param0, NARC *param1, u32 param2, u32 param3);
+static void ov66_022348FC(UnkStruct_ov66_02234958 *param0, NARC *param1, u32 param2, u32 heapID);
 static void ov66_02234958(UnkStruct_ov66_02234958 *param0);
 static void ov66_02234960(UnkStruct_ov66_02234958 *param0, u32 param1);
 static u32 ov66_0223496C(const UnkStruct_ov66_02234958 *param0);
@@ -142,7 +142,7 @@ static const UnkStruct_ov66_02258B38 Unk_ov66_02258B38[20] = {
     { 0xEA, 0x18D, 0x0 }
 };
 
-UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 param3)
+UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 heapID2)
 {
     UnkStruct_ov66_02234548 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov66_02234548));
     memset(v0, 0, sizeof(UnkStruct_ov66_02234548));
@@ -182,7 +182,7 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 p
         v4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, heapID);
 
         {
-            v5 = LoadMemberFromOpenNARC(v4, 127, 0, param3, 0);
+            v5 = LoadMemberFromOpenNARC(v4, 127, 0, heapID2, 0);
             ResourceCollection_Add(v0->unk_00, v5, 127);
             ov66_02231668(v5);
 
@@ -198,7 +198,7 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 p
 
         {
             for (v6 = 0; v6 < 2; v6++) {
-                v5 = LoadMemberFromOpenNARC(v3, Unk_ov66_02258B28[v6], 0, param3, 0);
+                v5 = LoadMemberFromOpenNARC(v3, Unk_ov66_02258B28[v6], 0, heapID2, 0);
                 ResourceCollection_Add(v0->unk_04, v5, Unk_ov66_02258B28[v6]);
             }
         }
@@ -225,8 +225,8 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 p
                     v11 = 0;
                 }
 
-                v5 = LoadMemberFromOpenNARC(v3, Unk_ov66_02258B38[v6].unk_02_0, 0, param3, 0);
-                v9 = TextureResourceManager_AddTexture(v0->unk_08, v5, Unk_ov66_02258B38[v6].unk_02_0, v11, param3);
+                v5 = LoadMemberFromOpenNARC(v3, Unk_ov66_02258B38[v6].unk_02_0, 0, heapID2, 0);
+                v9 = TextureResourceManager_AddTexture(v0->unk_08, v5, Unk_ov66_02258B38[v6].unk_02_0, v11, heapID2);
 
                 if (v11 == 1) {
                     TextureResource_AllocVRam(v9);
@@ -236,7 +236,7 @@ UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 p
             }
         }
 
-        ov66_022348FC(&v0->unk_18, v4, 128, param3);
+        ov66_022348FC(&v0->unk_18, v4, 128, heapID2);
 
         NARC_dtor(v3);
         NARC_dtor(v4);
@@ -502,11 +502,11 @@ static fx32 ov66_022348E4(u16 param0, u16 param1, u32 param2)
     return v0;
 }
 
-static void ov66_022348FC(UnkStruct_ov66_02234958 *param0, NARC *param1, u32 param2, u32 param3)
+static void ov66_022348FC(UnkStruct_ov66_02234958 *param0, NARC *param1, u32 param2, u32 heapID)
 {
     void *v0;
 
-    ov70_0225C730(&v0, param1, param2, param3);
+    ov70_0225C730(&v0, param1, param2, heapID);
 
     param0->unk_00.data = v0;
     param0->unk_00.set = NNS_G3dGetMdlSet(param0->unk_00.data);

@@ -13,15 +13,15 @@ typedef struct UnkStruct_ov63_0222BCE8_t {
     UnkUnion_ov63_0222BDAC *unk_04;
 } UnkStruct_ov63_0222BCE8;
 
-UnkStruct_ov63_0222BCE8 *ov63_0222BCE8(u16 param0, u16 param1, u32 param2)
+UnkStruct_ov63_0222BCE8 *ov63_0222BCE8(u16 param0, u16 param1, u32 heapID)
 {
-    UnkStruct_ov63_0222BCE8 *v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov63_0222BCE8));
+    UnkStruct_ov63_0222BCE8 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222BCE8));
     GF_ASSERT(v0);
 
     v0->unk_00 = param0;
     v0->unk_02 = param1;
 
-    v0->unk_04 = Heap_AllocFromHeap(param2, sizeof(UnkUnion_ov63_0222BDAC) * (v0->unk_00 * v0->unk_02));
+    v0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(UnkUnion_ov63_0222BDAC) * (v0->unk_00 * v0->unk_02));
     GF_ASSERT(v0->unk_04);
     memset(v0->unk_04, 0, sizeof(UnkUnion_ov63_0222BDAC) * (v0->unk_00 * v0->unk_02));
 

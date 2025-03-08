@@ -121,7 +121,7 @@ void ov104_0223DC7C(int param0, BgConfig *param1, SpriteSystem *param2, SpriteMa
 static void ov104_0223DD30(UnkStruct_ov104_0223DD30 *param0, SysTask *param1);
 static void ov104_0223DD5C(SysTask *param0, void *param1);
 static void ov104_0223DDB4(SysTask *param0, void *param1);
-static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const UnkStruct_ov104_0224191C *param2);
+static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const UnkStruct_ov104_0224191C *param2);
 static void ov104_0223E29C(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_0223E3B8 *param1, const Strbuf *param2, enum Font param3, TextColor param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov104_0223E29C *param10);
 static void ov104_0223E3B8(UnkStruct_ov104_0223E3B8 *param0);
 static void ov104_0223E3FC(UnkStruct_ov104_0223DD30 *param0, UnkStruct_ov104_0223E48C *param1, fx32 param2, fx32 param3, u32 param4);
@@ -211,7 +211,7 @@ static void ov104_0223DD30(UnkStruct_ov104_0223DD30 *param0, SysTask *param1)
     SysTask_Done(param0->unk_140);
     SysTask_Done(param0->unk_34);
     NARC_dtor(param0->unk_24);
-    Heap_FreeToHeapExplicit(94, param0->unk_0C);
+    Heap_FreeToHeapExplicit(HEAP_ID_94, param0->unk_0C);
     SysTask_FinishAndFreeParam(param1);
 }
 
@@ -226,14 +226,14 @@ static void ov104_0223DD5C(SysTask *param0, void *param1)
 static void ov104_0223DDB4(SysTask *param0, void *param1)
 {
     UnkStruct_ov104_0223DD30 *v0 = param1;
-    BOOL v1 = ov104_0223DDE4(v0, 94, &Unk_ov104_0224191C[v0->unk_2C]);
+    BOOL v1 = ov104_0223DDE4(v0, HEAP_ID_94, &Unk_ov104_0224191C[v0->unk_2C]);
 
     if (v1 == 1) {
         ov104_0223DD30(v0, param0);
     }
 }
 
-static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const UnkStruct_ov104_0224191C *param2)
+static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 heapID, const UnkStruct_ov104_0224191C *param2)
 {
     UnkStruct_ov104_0223DDE4 *v0 = param0->unk_0C;
     BOOL v1;
@@ -246,7 +246,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
 
     switch (param0->unk_00) {
     case 0:
-        param0->unk_0C = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov104_0223DDE4));
+        param0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223DDE4));
         memset(param0->unk_0C, 0, sizeof(UnkStruct_ov104_0223DDE4));
 
         v0 = param0->unk_0C;
@@ -259,7 +259,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
             MessageLoader *v9;
             Strbuf *v10;
 
-            v9 = MessageLoader_Init(1, 26, 618, param1);
+            v9 = MessageLoader_Init(1, 26, 618, heapID);
             v10 = MessageLoader_GetNewStrbuf(v9, param2->unk_00);
 
             ov104_0223E29C(param0, &v0->unk_7C, v10, FONT_SYSTEM, TEXT_COLOR(1, 2, 0), 0, 2004, 208 + -92 + param0->unk_28, 11 * 8 + param0->unk_2A, 0, NULL);
@@ -290,11 +290,11 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
 
         ManagedSprite_SetDrawFlag(v0->unk_90, 0);
         Sprite_TickFrame(v0->unk_90->sprite);
-        ov104_0223E3FC(param0, &v0->unk_14, (FX32_CONST(72)) + FX32_CONST(param0->unk_28), (FX32_CONST(82)) + FX32_CONST(param0->unk_2A), param1);
+        ov104_0223E3FC(param0, &v0->unk_14, (FX32_CONST(72)) + FX32_CONST(param0->unk_28), (FX32_CONST(82)) + FX32_CONST(param0->unk_2A), heapID);
         param0->unk_00++;
         break;
     case 1:
-        StartScreenTransition(0, 0, 0, 0x7fff, 3, 1, param1);
+        StartScreenTransition(0, 0, 0, 0x7fff, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 2:
@@ -303,7 +303,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
         }
         break;
     case 3:
-        StartScreenTransition(3, 1, 1, 0x7fff, 3, 1, param1);
+        StartScreenTransition(3, 1, 1, 0x7fff, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 4:
@@ -355,7 +355,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
             break;
         }
 
-        StartScreenTransition(3, 0, 0, 0x7fff, 3, 1, param1);
+        StartScreenTransition(3, 0, 0, 0x7fff, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 12:
@@ -368,7 +368,7 @@ static BOOL ov104_0223DDE4(UnkStruct_ov104_0223DD30 *param0, u32 param1, const U
         }
         break;
     case 13:
-        StartScreenTransition(3, 1, 1, 0x7fff, 3, 1, param1);
+        StartScreenTransition(3, 1, 1, 0x7fff, 3, 1, heapID);
         param0->unk_00++;
         break;
     case 14:

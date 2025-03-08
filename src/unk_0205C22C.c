@@ -68,7 +68,7 @@ UnkStruct_0205C22C *sub_0205C22C(UnkStruct_0205B43C *param0)
     v0->unk_474 = SaveData_SaveTable(v0->fieldSystem->saveData, 9);
     v0->playerAvatar = v0->fieldSystem->playerAvatar;
 
-    Heap_CreateAtEnd(11, 89, 10000);
+    Heap_CreateAtEnd(HEAP_ID_FIELDMAP, HEAP_ID_89, 10000);
     v0->unk_478 = sub_0205C95C(HEAP_ID_89);
     sub_0205C2C8(v0);
 
@@ -102,7 +102,7 @@ void sub_0205C2E0(UnkStruct_0205C22C *param0)
 {
     SysTask_Done(param0->unk_04);
     sub_0205C970(param0->unk_478);
-    Heap_Destroy(89);
+    Heap_Destroy(HEAP_ID_89);
     Heap_FreeToHeap(param0);
 }
 

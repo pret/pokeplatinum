@@ -188,9 +188,9 @@ static BOOL sub_0207DA28(FieldTask *param0)
         v2->unk_04 = 2;
         break;
     case 8:
-        Heap_Create(3, 54, DWC_UTILITY_WORK_SIZE + 0x100);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_54, DWC_UTILITY_WORK_SIZE + 0x100);
         sub_02099570();
-        ov18_0221F800(54);
+        ov18_0221F800(HEAP_ID_54);
         OS_ResetSystem(0);
         break;
     case 9:

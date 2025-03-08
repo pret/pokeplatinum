@@ -189,7 +189,7 @@ int ov106_02241AE0(OverlayManager *param0, int *param1)
 
     Overlay_LoadByID(FS_OVERLAY_ID(overlay104), 2);
     ov106_022424C8();
-    Heap_Create(3, 98, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_98, 0x20000);
 
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov106_02243118), 98);
     memset(v1, 0, sizeof(UnkStruct_ov106_02243118));
@@ -314,7 +314,7 @@ int ov106_02241CF0(OverlayManager *param0, int *param1)
 
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(98);
+    Heap_Destroy(HEAP_ID_98);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay104));
 
     return 1;

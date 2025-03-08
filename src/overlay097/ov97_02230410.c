@@ -62,7 +62,7 @@ typedef struct {
 } UnkStruct_ov97_02231318;
 
 typedef struct {
-    int unk_00;
+    int heapID;
     UnkStruct_ov97_0222D04C unk_04;
     BgConfig *unk_2A5C;
     StringTemplate *unk_2A60;
@@ -133,7 +133,6 @@ typedef struct {
 
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 *param1, u32 param2);
 MysteryGift *SaveData_MysteryGift(SaveData *param0);
-void ov97_02231FFC(BgConfig *param0, void *, int param2);
 static int ov97_02230728(OverlayManager *param0);
 static int ov97_022306F4(OverlayManager *param0);
 static int ov97_02230834(OverlayManager *param0);
@@ -431,7 +430,7 @@ static BOOL ov97_022308B0(UnkStruct_ov97_02230868 *param0, Window *param1, TextC
 
 static BOOL ov97_022308B4(UnkStruct_ov97_02230868 *param0, Window *param1, TextColor param2)
 {
-    Strbuf *v0 = Strbuf_Init(36 + 1, param0->unk_00);
+    Strbuf *v0 = Strbuf_Init(36 + 1, param0->heapID);
 
     Strbuf_CopyNumChars(v0, param0->unk_2C14[param0->unk_2C20]->unk_104.unk_00, 36);
     Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
@@ -456,7 +455,7 @@ static BOOL ov97_02230904(UnkStruct_ov97_02230868 *param0, Window *param1, TextC
         }
     }
 
-    v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2, param0->unk_00);
+    v0 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v2, param0->heapID);
 
     Text_AddPrinterWithParamsAndColor(param1, FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_NO_TRANSFER, param2, NULL);
     Strbuf_Free(v0);
@@ -574,8 +573,8 @@ static void ov97_02230C44(UnkStruct_ov97_02230868 *param0, int param1, int param
     TextColor v3;
     UnkStruct_ov97_0223E680 *v4 = Unk_ov97_0223E680;
 
-    param0->unk_2A64 = MessageLoader_Init(1, 26, 421, param0->unk_00);
-    param0->unk_2A60 = StringTemplate_Default(param0->unk_00);
+    param0->unk_2A64 = MessageLoader_Init(1, 26, 421, param0->heapID);
+    param0->unk_2A60 = StringTemplate_Default(param0->heapID);
     param0->unk_2C24 = param2;
 
     ov97_02230F98(param0, param2);
@@ -603,7 +602,7 @@ static void ov97_02230C44(UnkStruct_ov97_02230868 *param0, int param1, int param
 
             if (v4[v0].unk_24(param0, &param0->unk_2A68[v0], v3) == 1) {
                 if (v4[v0].unk_20) {
-                    v2 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v4[v0].unk_20, param0->unk_00);
+                    v2 = MessageUtil_ExpandedStrbuf(param0->unk_2A60, param0->unk_2A64, v4[v0].unk_20, param0->heapID);
 
                     {
                         u32 v5 = (v4[v0].unk_28 == -1) ? Font_CalcCenterAlignment(v4[v0].unk_14, v2, 0, v4[v0].unk_0C * 8) : v4[v0].unk_28;
@@ -697,7 +696,7 @@ static int ov97_02230F20(UnkStruct_ov97_02230868 *param0, int param1, int param2
 static void ov97_02230F58(UnkStruct_ov97_02230868 *param0, u32 param1, u32 param2, u32 param3)
 {
     NNSG2dScreenData *v0;
-    void *v1 = LoadMemberFromNARC(116, param1, 1, param0->unk_00, 1);
+    void *v1 = LoadMemberFromNARC(116, param1, 1, param0->heapID, 1);
 
     NNS_G2dGetUnpackedScreenData(v1, &v0);
 
@@ -707,20 +706,20 @@ static void ov97_02230F58(UnkStruct_ov97_02230868 *param0, u32 param1, u32 param
 
 static void ov97_02230F98(UnkStruct_ov97_02230868 *param0, int param1)
 {
-    Graphics_LoadPalette(116, 3, 0, 0, 16 * 16, param0->unk_00);
-    Graphics_LoadTilesToBgLayer(116, 6, param0->unk_2A5C, 1, 0, 24 * 16 * 0x20, 1, param0->unk_00);
+    Graphics_LoadPalette(116, 3, 0, 0, 16 * 16, param0->heapID);
+    Graphics_LoadTilesToBgLayer(116, 6, param0->unk_2A5C, 1, 0, 24 * 16 * 0x20, 1, param0->heapID);
 
     switch (param1) {
     case 0:
-        Graphics_LoadTilemapToBgLayer(116, 4, param0->unk_2A5C, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
+        Graphics_LoadTilemapToBgLayer(116, 4, param0->unk_2A5C, 1, 0, 32 * 24 * 2, 1, param0->heapID);
         break;
     case 1:
-        Graphics_LoadTilemapToBgLayer(116, 5, param0->unk_2A5C, 1, 0, 32 * 24 * 2, 1, param0->unk_00);
+        Graphics_LoadTilemapToBgLayer(116, 5, param0->unk_2A5C, 1, 0, 32 * 24 * 2, 1, param0->heapID);
         break;
     }
 
-    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 11, 16 * 2, param0->unk_00);
-    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_2A5C, 3, 0 * 1, 1 * 16 * 0x20, 1, param0->unk_00);
+    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 11, 16 * 2, param0->heapID);
+    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_2A5C, 3, 0 * 1, 1 * 16 * 0x20, 1, param0->heapID);
 
     ov97_02230F58(param0, 2, 3, 32 * 24 * 2);
 
@@ -785,7 +784,7 @@ static void ov97_022310FC(UnkStruct_ov97_02230868 *param0)
         ov97_02237A74();
         ov97_02237B0C(116, 26, 23, 25, 24, 0);
 
-        Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 3 * 0x20, 0, param0->unk_00);
+        Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 3 * 0x20, 0, param0->heapID);
     }
 
     v2 = 1;
@@ -803,7 +802,7 @@ static void ov97_022310FC(UnkStruct_ov97_02230868 *param0)
         }
 
         param0->unk_2E90[v1] = ov97_02237D14(0, param0->unk_2E90[v1], v0, 16, 10 + v1);
-        v3 = Graphics_GetCharData(19, PokeIconSpriteIndex(v2, 0, 0), 0, &v4, param0->unk_00);
+        v3 = Graphics_GetCharData(19, PokeIconSpriteIndex(v2, 0, 0), 0, &v4, param0->heapID);
 
         DC_FlushRange(v4->pRawData, ((4 * 4) * 0x20));
         GX_LoadOBJ(v4->pRawData, (0x64 + v1 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
@@ -817,13 +816,13 @@ static int ov97_02231224(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov97_02230868 *v0;
 
-    Heap_Create(3, 87, 0x30000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_87, 0x30000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov97_02230868), 87);
     memset(v0, 0, sizeof(UnkStruct_ov97_02230868));
 
     v0->unk_2A5C = BgConfig_New(HEAP_ID_87);
-    v0->unk_00 = 87;
+    v0->heapID = HEAP_ID_87;
 
     sub_0200F344(0, 0x0);
     sub_0200F344(1, 0x0);
@@ -832,7 +831,7 @@ static int ov97_02231224(OverlayManager *param0, int *param1)
     v0->unk_2C9C = 1;
 
     ov97_02237694(HEAP_ID_87);
-    Heap_Create(0, 91, 0x300);
+    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
     return 1;
 }
@@ -1205,7 +1204,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         break;
     case 21:
         if (--v4->unk_2C94 == 0) {
-            ov97_0223829C(&v4->unk_04.unk_8C, &v4->unk_2E9C, v4->unk_00);
+            ov97_0223829C(&v4->unk_04.unk_8C, &v4->unk_2E9C, v4->heapID);
             ov97_0222D1F0((const void *)&v4->unk_2E9C, sizeof(UnkUnion_ov97_0222D2B0));
             ov97_02231488(v4);
             *param1 = 23;
@@ -1458,9 +1457,9 @@ static int ov97_02231F38(OverlayManager *param0, int *param1)
     Bg_FreeTilemapBuffer(v1->unk_2A5C, 3);
     Heap_FreeToHeap(v1->unk_2A5C);
     EnqueueApplication(FS_OVERLAY_ID(overlay97), &Unk_ov97_0223D71C);
-    Heap_Destroy(91);
+    Heap_Destroy(HEAP_ID_91);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(87);
+    Heap_Destroy(HEAP_ID_87);
 
     return 1;
 }
@@ -1472,19 +1471,19 @@ const OverlayManagerTemplate Unk_ov97_0223D7AC = {
     0xffffffff
 };
 
-void ov97_02231FFC(BgConfig *param0, void *param1, int param2)
+void ov97_02231FFC(BgConfig *param0, void *param1, int heapID)
 {
     UnkStruct_ov97_02230868 *v0;
 
     ov97_02232074(param0);
 
-    v0 = Heap_AllocFromHeapAtEnd(param2, sizeof(UnkStruct_ov97_02230868));
+    v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_ov97_02230868));
     memset(v0, 0, sizeof(UnkStruct_ov97_02230868));
 
     v0->unk_2A5C = param0;
-    v0->unk_00 = param2;
+    v0->heapID = heapID;
 
-    Font_LoadTextPalette(0, 15 * 32, v0->unk_00);
+    Font_LoadTextPalette(0, 15 * 32, v0->heapID);
 
     v0->unk_2C14[0] = (UnkStruct_0202DBAC *)param1;
     v0->unk_2C20 = 0;

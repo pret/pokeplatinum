@@ -86,7 +86,7 @@ int ov93_021D0D80(OverlayManager *param0, int *param1)
     UnkStruct_ov93_021D102C *v1;
     UnkStruct_0206C8D4 *v2;
 
-    Heap_Create(3, 72, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_72, 0x20000);
 
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov93_021D102C), 72);
     memset(v1, 0, sizeof(UnkStruct_ov93_021D102C));
@@ -193,7 +193,7 @@ int ov93_021D0F58(OverlayManager *param0, int *param1)
     Camera_Delete(v1->camera);
     OverlayManager_FreeData(param0);
     Easy3D_Shutdown();
-    Heap_Destroy(72);
+    Heap_Destroy(HEAP_ID_72);
 
     return 1;
 }

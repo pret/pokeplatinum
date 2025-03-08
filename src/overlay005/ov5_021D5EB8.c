@@ -891,7 +891,7 @@ void ov5_021D63A4(UnkStruct_ov5_021D6594 **param0)
         ov5_021D62BC(&(*param0)->unk_08);
 
         NARC_dtor((*param0)->unk_144);
-        Heap_FreeToHeapExplicit(4, *param0);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, *param0);
 
         *param0 = NULL;
     }
@@ -1215,7 +1215,7 @@ static void ov5_021D68B8(UnkStruct_ov5_021D6594 *param0, int param1)
 
     if (v0->unk_0C != NULL) {
         ov5_021D6690(param0, v0->unk_00, v0->unk_0C);
-        Heap_FreeToHeapExplicit(4, v0->unk_0C);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, v0->unk_0C);
         v0->unk_0C = NULL;
 
         if (v0->unk_14 != NULL) {
@@ -1236,7 +1236,7 @@ static void ov5_021D68B8(UnkStruct_ov5_021D6594 *param0, int param1)
         }
 
         if (v0->unk_08->unk_B98 != NULL) {
-            Heap_FreeToHeapExplicit(4, v0->unk_08->unk_B98);
+            Heap_FreeToHeapExplicit(HEAP_ID_FIELD, v0->unk_08->unk_B98);
             v0->unk_08->unk_B98 = NULL;
         }
 
@@ -1250,7 +1250,7 @@ static void ov5_021D68B8(UnkStruct_ov5_021D6594 *param0, int param1)
             }
         }
 
-        Heap_FreeToHeapExplicit(4, v0->unk_08);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELD, v0->unk_08);
         v0->unk_08 = NULL;
     }
 

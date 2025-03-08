@@ -8,7 +8,7 @@
 #include "palette.h"
 #include "sprite.h"
 
-UnkStruct_ov63_0222AE60 *ov63_0222AE60(SpriteList *param0, PaletteData *param1, u32 param2, u32 param3);
+UnkStruct_ov63_0222AE60 *ov63_0222AE60(SpriteList *param0, PaletteData *param1, u32 param2, u32 heapID);
 void ov63_0222AF14(UnkStruct_ov63_0222AE60 *param0);
 void ov63_0222AF94(UnkStruct_ov63_0222AE60 *param0, u32 param1, u32 param2, int param3, u32 param4);
 void ov63_0222AFD0(UnkStruct_ov63_0222AE60 *param0, u32 param1);

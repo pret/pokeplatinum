@@ -42,16 +42,16 @@ int ov66_0222DCE0(OverlayManager *param0, int *param1)
         sub_020995B4();
     }
 
-    Heap_Create(3, 104, 0x5000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_104, 0x5000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov66_0222DD90), 104);
+    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov66_0222DD90), HEAP_ID_104);
     memset(v0, 0, sizeof(UnkStruct_ov66_0222DD90));
 
     v1 = OverlayManager_Args(param0);
 
     v0->unk_00 = v1->unk_04;
-    v0->unk_04 = ov66_0222DDF0(v0->unk_00, 104);
-    v0->unk_08 = ov66_02230C44(v1->unk_08, v1->unk_04, v1->unk_00, v0->unk_04, 104);
+    v0->unk_04 = ov66_0222DDF0(v0->unk_00, HEAP_ID_104);
+    v0->unk_08 = ov66_02230C44(v1->unk_08, v1->unk_04, v1->unk_00, v0->unk_04, HEAP_ID_104);
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -92,7 +92,7 @@ int ov66_0222DD90(OverlayManager *param0, int *param1)
     ov66_0222DEEC(v0->unk_04);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(104);
+    Heap_Destroy(HEAP_ID_104);
 
     {
         FS_EXTERN_OVERLAY(overlay63);

@@ -188,7 +188,7 @@ static void ov22_0225A6E0(UnkStruct_ov22_022597BC *param0, BgConfig *param1)
     v0.unk_20 = 1;
     v0.unk_24 = 0;
     v0.unk_28 = 0;
-    v0.unk_2C = 14;
+    v0.heapID = HEAP_ID_14;
 
     ov22_022597BC(param0, &v0);
 }

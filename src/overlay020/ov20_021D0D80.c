@@ -126,8 +126,8 @@ int ov20_021D0D80(OverlayManager *param0, int *param1)
     switch (*param1) {
     case 0:
         sub_02004550(62, 0, 0);
-        Heap_Create(3, 34, 32768);
-        Heap_Create(3, 35, 163840);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_34, 32768);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_35, 163840);
         v0 = ov20_021D0EC8(param0);
         ov20_021D21A0(v0->unk_14, 0);
         (*param1)++;
@@ -216,8 +216,8 @@ int ov20_021D0EA8(OverlayManager *param0, int *param1)
 {
     ov20_021D1014(OverlayManager_Data(param0), param0);
 
-    Heap_Destroy(34);
-    Heap_Destroy(35);
+    Heap_Destroy(HEAP_ID_34);
+    Heap_Destroy(HEAP_ID_35);
 
     return 1;
 }

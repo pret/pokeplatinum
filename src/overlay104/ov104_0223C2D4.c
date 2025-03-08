@@ -134,7 +134,7 @@ UnkStruct_ov104_0223C4CC *ov104_0223C2D4(UnkStruct_0209B75C *param0)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(3, 94, 0x90000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_94, 0x90000);
 
     v0 = Heap_AllocFromHeap(HEAP_ID_94, sizeof(UnkStruct_ov104_0223C4CC));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223C4CC));
@@ -240,7 +240,7 @@ void ov104_0223C4CC(UnkStruct_ov104_0223C4CC *param0)
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    Heap_Destroy(94);
+    Heap_Destroy(HEAP_ID_94);
 
     RenderControlFlags_SetCanABSpeedUpPrint(0);
     RenderControlFlags_SetAutoScrollFlags(0);
@@ -633,12 +633,12 @@ static void ov104_0223CC10(UnkStruct_ov104_0223C4CC *param0)
 
 static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const TrainerInfo *param2)
 {
-    param0->unk_14 = ov63_0222BE18(32, 94);
-    param0->unk_18 = ov63_0222BCE8((256 / 16), (256 / 16), 94);
+    param0->unk_14 = ov63_0222BE18(32, HEAP_ID_94);
+    param0->unk_18 = ov63_0222BCE8((256 / 16), (256 / 16), HEAP_ID_94);
 
     ov63_0222D19C(&param0->unk_1C);
 
-    param0->unk_20 = ov63_0222CD2C(SpriteManager_GetSpriteList(param0->unk_34.unk_04), param0->unk_04, 32, ov104_0222E5F0(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 94);
+    param0->unk_20 = ov63_0222CD2C(SpriteManager_GetSpriteList(param0->unk_34.unk_04), param0->unk_04, 32, ov104_0222E5F0(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_94);
 
     {
         UnkStruct_ov65_0223582C v0 = {
@@ -661,7 +661,7 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
         v1 = ov104_0222EA90(param1, 12);
 
         if (v1 == 0) {
-            param0->unk_24 = ov63_0222D1C0(SpriteSystem_GetRenderer(param0->unk_34.unk_00), param0->unk_00, &v0, 94);
+            param0->unk_24 = ov63_0222D1C0(SpriteSystem_GetRenderer(param0->unk_34.unk_00), param0->unk_00, &v0, HEAP_ID_94);
         }
 
         if (ov104_0222EA90(param1, 9) != 0xffff) {
@@ -672,14 +672,13 @@ static void ov104_0223CC74(UnkStruct_ov104_0223C4CC *param0, int param1, const T
             v0.unk_06 = 1;
 
             if (v1 == 0) {
-                param0->unk_28 = ov63_0222D1C0(
-                    SpriteSystem_GetRenderer(param0->unk_34.unk_00), param0->unk_00, &v0, 94);
+                param0->unk_28 = ov63_0222D1C0(SpriteSystem_GetRenderer(param0->unk_34.unk_00), param0->unk_00, &v0, HEAP_ID_94);
             }
         }
     }
 
-    param0->unk_2C = ov63_0222D848(128, 94);
-    param0->unk_30 = ov63_0222D77C(128, 94);
+    param0->unk_2C = ov63_0222D848(128, HEAP_ID_94);
+    param0->unk_30 = ov63_0222D77C(128, HEAP_ID_94);
 
     ov63_0222BD50(param0->unk_18, Unk_ov104_022413D8);
 

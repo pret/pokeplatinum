@@ -206,11 +206,11 @@ int ov83_0223B65C(OverlayManager *param0, int *param1)
 
 int ov83_0223B710(OverlayManager *param0, int *param1)
 {
-    int v0;
+    int heapID;
     UnkStruct_ov83_0223C344 *v1 = OverlayManager_Args(param0);
     UnkStruct_ov83_0223B784 *v2 = (UnkStruct_ov83_0223B784 *)OverlayManager_Data(param0);
 
-    v0 = v2->heapID;
+    heapID = v2->heapID;
 
     if (v1->unk_26) {
         if (CommSys_CurNetId() == 0) {
@@ -228,7 +228,7 @@ int ov83_0223B710(OverlayManager *param0, int *param1)
 
     v1->unk_18 = NULL;
 
-    Heap_Destroy(v0);
+    Heap_Destroy(heapID);
     return 1;
 }
 

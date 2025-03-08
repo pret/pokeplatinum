@@ -215,7 +215,7 @@ int ov85_02241440(OverlayManager *param0, int *param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(3, 36, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_36, 0x20000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov85_022417E4), 36);
     memset(v0, 0, sizeof(UnkStruct_ov85_022417E4));
@@ -292,7 +292,7 @@ int ov85_022415A0(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->unk_1FC);
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(36);
+    Heap_Destroy(HEAP_ID_36);
 
     G2_BlendNone();
 
@@ -412,7 +412,7 @@ static void ov85_022416E8(BgConfig *param0)
     Bg_FreeTilemapBuffer(param0, 3);
     Bg_FreeTilemapBuffer(param0, 2);
     Bg_FreeTilemapBuffer(param0, 1);
-    Heap_FreeToHeapExplicit(36, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_36, param0);
 }
 
 static void ov85_02241718(UnkStruct_ov85_022417E4 *param0, NARC *param1)

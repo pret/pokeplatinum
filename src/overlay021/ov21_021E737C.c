@@ -159,7 +159,7 @@ static void ov21_021E7CF0(UnkStruct_ov21_021E7714 *param0, UnkStruct_ov21_021E74
 static void ov21_021E7CF4(UnkStruct_ov21_021E7714 *param0);
 static void ov21_021E7CF8(UnkStruct_ov21_021E747C *param0, enum HeapId heapID);
 static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_021E7468 *param1, enum HeapId heapID);
-static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, int param1);
+static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, int heapID);
 static void ov21_021E7F20(UnkStruct_ov21_021E747C *param0);
 static void ov21_021E7F40(UnkStruct_ov21_021E747C *param0, int param1);
 static void ov21_021E7F7C(UnkStruct_ov21_021E747C *param0);
@@ -760,13 +760,13 @@ static void ov21_021E7DA8(UnkStruct_ov21_021E747C *param0, const UnkStruct_ov21_
     MessageLoader_Free(v1);
 }
 
-static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, int param1)
+static void ov21_021E7EC0(UnkStruct_ov21_021E747C *param0, int heapID)
 {
     UnkStruct_ov22_022557A0 v0;
     UnkStruct_ov22_02255800 v1;
 
-    param0->unk_10 = ov21_021D2808(param0->unk_00, 36, 1, &param0->unk_18, param1);
-    param0->unk_14 = ov21_021D27E0(param0->unk_00, 6, &param0->unk_1C, param1);
+    param0->unk_10 = ov21_021D2808(param0->unk_00, 36, 1, &param0->unk_18, heapID);
+    param0->unk_14 = ov21_021D27E0(param0->unk_00, 6, &param0->unk_1C, heapID);
 
     v0.unk_00 = param0->unk_00->unk_164;
     v0.unk_04 = param0->unk_18;

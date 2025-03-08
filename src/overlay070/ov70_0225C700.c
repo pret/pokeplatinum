@@ -26,7 +26,7 @@ void ov70_0225C714(const VecFx32 *param0, UnkStruct_ov63_0222CC3C *param1)
     param1->unk_02 = param0->z / (FX32_ONE);
 }
 
-void ov70_0225C730(void **param0, NARC *param1, u32 param2, u32 param3)
+void ov70_0225C730(void **param0, NARC *param1, u32 param2, u32 heapID)
 {
     u32 v0;
     void *v1;
@@ -35,7 +35,7 @@ void ov70_0225C730(void **param0, NARC *param1, u32 param2, u32 param3)
     NNSGfdPlttKey v4;
     NNSG3dResTex *v5;
 
-    v1 = LoadMemberFromOpenNARC(param1, param2, 0, param3, 1);
+    v1 = LoadMemberFromOpenNARC(param1, param2, 0, heapID, 1);
 
     {
         v5 = NNS_G3dGetTex(v1);
@@ -49,7 +49,7 @@ void ov70_0225C730(void **param0, NARC *param1, u32 param2, u32 param3)
 
     {
         v0 = Utility_GetStrippedTextureResourceSize(v1);
-        *param0 = Heap_AllocFromHeap(param3, v0);
+        *param0 = Heap_AllocFromHeap(heapID, v0);
         memcpy(*param0, v1, v0);
     }
 

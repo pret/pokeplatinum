@@ -8,7 +8,7 @@
 #include "overlay066/struct_ov66_02234548_decl.h"
 #include "overlay066/struct_ov66_02234798_decl.h"
 
-UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 param3);
+UnkStruct_ov66_02234548 *ov66_022343A8(u32 param0, u32 param1, u32 heapID, u32 heapID2);
 void ov66_02234548(UnkStruct_ov66_02234548 *param0);
 void ov66_02234590(UnkStruct_ov66_02234548 *param0);
 void ov66_022345C4(UnkStruct_ov66_02234548 *param0);

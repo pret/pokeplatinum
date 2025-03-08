@@ -212,9 +212,9 @@ BOOL ov104_0223EA38(UnkStruct_ov104_0223EA38 *param0)
     return 1;
 }
 
-UnkStruct_ov104_0223EA84 *ov104_0223EA64(u32 param0)
+UnkStruct_ov104_0223EA84 *ov104_0223EA64(u32 heapID)
 {
-    UnkStruct_ov104_0223EA84 *v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov104_0223EA84));
+    UnkStruct_ov104_0223EA84 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223EA84));
     memset(v0, 0, sizeof(UnkStruct_ov104_0223EA84));
 
     return v0;
@@ -295,16 +295,16 @@ static void ov104_0223EB44(Window *param0, s32 param1, s32 param2, s32 param3, s
     Window_FillRectWithColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
 }
 
-UnkStruct_ov104_0223EBD0 *ov104_0223EBA0(u32 param0)
+UnkStruct_ov104_0223EBD0 *ov104_0223EBA0(u32 heapID)
 {
     UnkStruct_ov104_0223EBD0 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov104_0223EBD0));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223EBD0));
     memset(v0, 0, sizeof(UnkStruct_ov104_0223EBD0));
 
     for (v1 = 0; v1 < ((256 / 16) * (192 / 32)); v1++) {
-        v0->unk_04[v1] = ov104_0223EA64(param0);
+        v0->unk_04[v1] = ov104_0223EA64(heapID);
     }
 
     return v0;
@@ -592,16 +592,16 @@ static void ov104_0223F1AC(void *param0)
     ov104_0223F174(v0);
 }
 
-UnkStruct_ov104_0223F174 *ov104_0223F1B4(u32 param0, UnkStruct_ov104_0223F1B4 *param1, int param2)
+UnkStruct_ov104_0223F174 *ov104_0223F1B4(u32 param0, UnkStruct_ov104_0223F1B4 *param1, int heapID)
 {
     UnkStruct_ov104_0223F174 *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov104_0223F174));
+    v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov104_0223F174));
     memset(v0, 0, sizeof(UnkStruct_ov104_0223F174));
 
     GF_ASSERT(v0);
-    v0->bufferManager = BufferManager_New(param2, v0->unk_20, v0->unk_1820);
+    v0->bufferManager = BufferManager_New(heapID, v0->unk_20, v0->unk_1820);
 
     GF_ASSERT(v0->bufferManager);
     v0->unk_3020 = param0;

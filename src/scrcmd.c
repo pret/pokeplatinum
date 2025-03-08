@@ -8151,9 +8151,9 @@ static BOOL ScrCmd_313(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     u16 v1 = ScriptContext_GetVar(ctx);
-    u32 v2 = Heap_FndGetTotalFreeSizeForExpHeap(11);
-    u32 v3 = Heap_FndGetTotalFreeSizeForExpHeap(4);
-    u32 v4 = Heap_FndGetTotalFreeSizeForExpHeap(32);
+    u32 v2 = Heap_FndGetTotalFreeSizeForExpHeap(HEAP_ID_FIELDMAP);
+    u32 v3 = Heap_FndGetTotalFreeSizeForExpHeap(HEAP_ID_FIELD);
+    u32 v4 = Heap_FndGetTotalFreeSizeForExpHeap(HEAP_ID_FIELD_TASK);
 
     if (v1 == 0) {
         Unk_021C07E8 = v2;

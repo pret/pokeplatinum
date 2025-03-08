@@ -55,13 +55,13 @@ static void ov25_02255A1C(UnkStruct_ov25_022555E8 *param0, UnkStruct_ov25_022558
 static void ov25_02255A40(UnkStruct_ov25_022555E8 *param0, UnkStruct_ov25_022558C4 *param1);
 static void ov25_02255A98(UnkStruct_ov25_022555E8 *param0, UnkStruct_ov25_022558C4 *param1);
 
-UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *param0, u32 param1)
+UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *param0, u32 heapID)
 {
     UnkStruct_ov25_022555E8 *v0;
     BOOL v1 = 0;
 
     do {
-        v0 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov25_022555E8));
+        v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov25_022555E8));
 
         if (v0 == NULL) {
             break;
@@ -71,21 +71,21 @@ UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *param0, u32 par
         v0->unk_0C = NULL;
         v0->unk_04 = NULL;
         v0->unk_00 = param0;
-        v0->unk_18 = param1;
+        v0->unk_18 = heapID;
         v0->unk_10 = NNS_G2dGetOamManagerOamCapacity(param0);
-        v0->unk_14 = Heap_AllocFromHeap(param1, sizeof(GXOamAttr) * v0->unk_10);
+        v0->unk_14 = Heap_AllocFromHeap(heapID, sizeof(GXOamAttr) * v0->unk_10);
 
         if (v0->unk_14 == NULL) {
             break;
         }
 
-        v0->unk_0C = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov25_022558C4) * v0->unk_10);
+        v0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov25_022558C4) * v0->unk_10);
 
         if (v0->unk_0C == NULL) {
             break;
         }
 
-        v0->unk_04 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov25_022558C4 *) * v0->unk_10);
+        v0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov25_022558C4 *) * v0->unk_10);
 
         if (v0->unk_04 == NULL) {
             break;
@@ -102,18 +102,18 @@ UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *param0, u32 par
     if (v1 == 0) {
         if (v0 != NULL) {
             if (v0->unk_14 != NULL) {
-                Heap_FreeToHeapExplicit(param1, v0->unk_14);
+                Heap_FreeToHeapExplicit(heapID, v0->unk_14);
             }
 
             if (v0->unk_0C != NULL) {
-                Heap_FreeToHeapExplicit(param1, v0->unk_0C);
+                Heap_FreeToHeapExplicit(heapID, v0->unk_0C);
             }
 
             if (v0->unk_04 != NULL) {
-                Heap_FreeToHeapExplicit(param1, v0->unk_04);
+                Heap_FreeToHeapExplicit(heapID, v0->unk_04);
             }
 
-            Heap_FreeToHeapExplicit(param1, v0);
+            Heap_FreeToHeapExplicit(heapID, v0);
         }
 
         return NULL;

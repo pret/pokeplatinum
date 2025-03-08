@@ -938,7 +938,7 @@ static int ov77_021D2D08(OverlayManager *param0, int *param1)
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
     SetAutorepeat(4, 8);
-    Heap_Create(3, v1, 0xa0000);
+    Heap_Create(HEAP_ID_APPLICATION, v1, 0xa0000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov77_021D2E9C), v1);
     memset(v0, 0, sizeof(UnkStruct_ov77_021D2E9C));
@@ -1015,7 +1015,7 @@ static int ov77_021D2E60(OverlayManager *param0, int *param1)
 
     LCRNG_SetSeed(v0->unk_14);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(76);
+    Heap_Destroy(HEAP_ID_76);
     EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
 
     return 1;

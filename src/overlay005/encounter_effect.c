@@ -199,7 +199,7 @@ void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem,
 void EncounterEffect_Finish(EncounterEffect *encEffect, SysTask *effectTask)
 {
     NARC_dtor(encEffect->narc);
-    Heap_FreeToHeapExplicit(4, encEffect->param);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, encEffect->param);
     SysTask_FinishAndFreeParam(effectTask);
 }
 

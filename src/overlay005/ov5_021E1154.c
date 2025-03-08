@@ -163,5 +163,5 @@ static void *ov5_021E132C(int param0)
 
 static void ov5_021E1350(void *param0)
 {
-    Heap_FreeToHeapExplicit(4, param0);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELD, param0);
 }

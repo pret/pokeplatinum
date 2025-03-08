@@ -153,7 +153,7 @@ int ov61_0222BF44(OverlayManager *param0, int *param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(3, 117, 0x50000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_117, 0x50000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov61_0222C664), 117);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov61_0222C664));
@@ -268,7 +268,7 @@ int ov61_0222C160(OverlayManager *param0, int *param1)
     RenderControlFlags_SetSpeedUpOnTouch(0);
     sub_02039794();
     OverlayManager_FreeData(param0);
-    Heap_Destroy(117);
+    Heap_Destroy(HEAP_ID_117);
 
     return 1;
 }

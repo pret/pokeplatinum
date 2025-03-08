@@ -179,7 +179,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
             }
         }
 
-        Heap_Create(3, 4, fieldSystem->mapLoadMode->unk_04);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD, fieldSystem->mapLoadMode->unk_04);
         GF_ASSERT(fieldSystem->unk_04 == NULL);
 
         fieldSystem->unk_04 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(FieldSystem_sub2));
@@ -339,7 +339,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
 
             fieldSystem->unk_04 = NULL;
 
-            Heap_Destroy(4);
+            Heap_Destroy(HEAP_ID_FIELD);
 
             if (fieldSystem->mapLoadMode->unk_00_20) {
                 Overlay_UnloadByID(FS_OVERLAY_ID(overlay6));

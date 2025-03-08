@@ -232,7 +232,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
     G2_BlendNone();
     G2S_BlendNone();
 
-    Heap_Create(3, 23, 0xa0000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_23, 0xa0000);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_0224DF54), 23);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_0224DF54));
 
@@ -443,7 +443,7 @@ int ov17_0223DF0C(OverlayManager *param0, int *param1)
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    Heap_Destroy(23);
+    Heap_Destroy(HEAP_ID_23);
     sub_02095A24();
     sub_02039794();
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));

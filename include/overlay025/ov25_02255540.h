@@ -10,7 +10,7 @@
 #include "overlay025/struct_ov25_022558C4_decl.h"
 #include "overlay025/struct_ov25_02255958.h"
 
-UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *param0, u32 param1);
+UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *param0, u32 heapID);
 void ov25_022555E8(UnkStruct_ov25_022555E8 *param0);
 void ov25_02255614(UnkStruct_ov25_022555E8 *param0);
 UnkStruct_ov25_022558C4 *ov25_02255810(UnkStruct_ov25_022555E8 *param0, const UnkStruct_ov25_02255810 *param1, const UnkStruct_ov25_02255958 *param2);

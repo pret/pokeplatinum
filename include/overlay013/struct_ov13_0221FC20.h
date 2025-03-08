@@ -9,7 +9,7 @@ typedef struct {
     Party *unk_00;
     void *unk_04;
     BattleSystem *unk_08;
-    u32 unk_0C;
+    u32 heapID;
     u8 unk_10;
     u8 unk_11;
     u8 unk_12;

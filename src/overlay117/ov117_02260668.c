@@ -272,7 +272,7 @@ int ov117_02260668(OverlayManager *param0, int *param1)
         RenderControlFlags_SetSpeedUpOnTouch(0);
     }
 
-    v0->unk_1C = ov114_0225CAD4(SpriteManager_GetSpriteList(v0->unk_28), 110);
+    v0->unk_1C = ov114_0225CAD4(SpriteManager_GetSpriteList(v0->unk_28), HEAP_ID_110);
 
     {
         int v2;

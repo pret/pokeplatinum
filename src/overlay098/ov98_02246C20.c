@@ -98,8 +98,8 @@ int ov98_02246C20(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov98_02246E88 *v0;
 
-    Heap_Create(3, 108, 0x28000);
-    Heap_Create(0, 91, 0x300);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_108, 0x28000);
+    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov98_02246E88), 108);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
@@ -178,8 +178,8 @@ int ov98_02246DC0(OverlayManager *param0, int *param1)
     Strbuf_Free(v0->unk_118);
     Strbuf_Free(v0->unk_114);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(108);
-    Heap_Destroy(91);
+    Heap_Destroy(HEAP_ID_108);
+    Heap_Destroy(HEAP_ID_91);
     EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
 
     return 1;
@@ -272,7 +272,7 @@ void ov98_02246EF8(UnkStruct_ov98_02246E88 *param0)
 {
     char *v0 = Heap_AllocFromHeap(HEAP_ID_108, sizeof(char) * 100);
 
-    ov98_022499C8(param0->unk_114, v0, 108);
+    ov98_022499C8(param0->unk_114, v0, HEAP_ID_108);
     sub_02030D38(param0->unk_04, v0);
     Heap_FreeToHeap(v0);
 }
@@ -296,7 +296,7 @@ void ov98_02246F5C(UnkStruct_ov98_02246E88 *param0)
 
 void ov98_02246F74(UnkStruct_ov98_02246E88 *param0)
 {
-    ov98_022499C8(param0->unk_114, param0->unk_9C.unk_1C, 108);
+    ov98_022499C8(param0->unk_114, param0->unk_9C.unk_1C, HEAP_ID_108);
 }
 
 void ov98_02246F88(UnkStruct_ov98_02246E88 *param0)
@@ -355,7 +355,7 @@ void *ov98_02246FC4(UnkStruct_ov98_02246E88 *param0)
 void ov98_02246FFC(UnkStruct_ov98_02246E88 *param0)
 {
     UnkStruct_02089438 *v0 = param0->unk_98;
-    if (ov98_02249A80(v0->unk_1C, 108)) {
+    if (ov98_02249A80(v0->unk_1C, HEAP_ID_108)) {
         ov98_02246FAC(param0, 1);
     } else if (ov98_02246FB4(param0) == 2) {
         if (Strbuf_Compare(param0->unk_114, v0->unk_1C) != 0) {

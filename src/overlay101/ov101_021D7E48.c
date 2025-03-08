@@ -21,7 +21,7 @@ typedef struct {
 } UnkStruct_ov101_021D7E48_sub1;
 
 typedef struct UnkStruct_ov101_021D7E48_t {
-    u32 unk_00;
+    u32 heapID;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
@@ -43,13 +43,13 @@ typedef struct UnkStruct_ov101_021D7E48_t {
     UnkStruct_ov101_021D7E48_sub1 *unk_1BC;
 } UnkStruct_ov101_021D7E48;
 
-UnkStruct_ov101_021D7E48 *ov101_021D7E48(u32 param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9, u32 param10)
+UnkStruct_ov101_021D7E48 *ov101_021D7E48(u32 heapID, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9, u32 param10)
 {
-    UnkStruct_ov101_021D7E48 *v0 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48)));
+    UnkStruct_ov101_021D7E48 *v0 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov101_021D7E48)));
 
     GF_ASSERT(v0 != NULL);
 
-    v0->unk_00 = param0;
+    v0->heapID = heapID;
     v0->unk_04 = param3;
     v0->unk_05 = param4;
     v0->unk_06 = param5;
@@ -58,19 +58,19 @@ UnkStruct_ov101_021D7E48 *ov101_021D7E48(u32 param0, u32 param1, u32 param2, u32
     v0->unk_09 = param8;
     v0->unk_0A = param9;
     v0->unk_0B = param10;
-    v0->unk_0C = SpriteList_InitRendering(param1, &v0->unk_10, param0);
-    v0->unk_19C = CellTransfer_New(param2, param0);
+    v0->unk_0C = SpriteList_InitRendering(param1, &v0->unk_10, heapID);
+    v0->unk_19C = CellTransfer_New(param2, heapID);
 
-    VramTransfer_New(param2, param0);
+    VramTransfer_New(param2, heapID);
 
-    v0->unk_1A0 = SpriteResourceCollection_New(param3, 0, param0);
-    v0->unk_1A4 = SpriteResourceCollection_New(param4, 1, param0);
-    v0->unk_1A8 = SpriteResourceCollection_New(param5, 2, param0);
-    v0->unk_1AC = SpriteResourceCollection_New(param6, 3, param0);
-    v0->unk_1B0 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param3);
-    v0->unk_1B4 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param4);
-    v0->unk_1B8 = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param5);
-    v0->unk_1BC = Heap_AllocFromHeap(param0, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param6);
+    v0->unk_1A0 = SpriteResourceCollection_New(param3, 0, heapID);
+    v0->unk_1A4 = SpriteResourceCollection_New(param4, 1, heapID);
+    v0->unk_1A8 = SpriteResourceCollection_New(param5, 2, heapID);
+    v0->unk_1AC = SpriteResourceCollection_New(param6, 3, heapID);
+    v0->unk_1B0 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param3);
+    v0->unk_1B4 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param4);
+    v0->unk_1B8 = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param5);
+    v0->unk_1BC = Heap_AllocFromHeap(heapID, (sizeof(UnkStruct_ov101_021D7E48_sub1)) * param6);
 
     {
         u32 v1;
@@ -152,8 +152,7 @@ void ov101_021D80E4(UnkStruct_ov101_021D7E48 *param0, u32 param1, NARC *param2, 
         if (param0->unk_1B0[v0].unk_00 == param0->unk_08) {
             param0->unk_1B0[v0].unk_00 = param4;
             param0->unk_1B0[v0].unk_02 = 0;
-            param0->unk_1B0[v0].unk_04 = SpriteResourceCollection_AddTilesFrom(
-                param0->unk_1A0, param2, param3, 0, param4, param1, param0->unk_00);
+            param0->unk_1B0[v0].unk_04 = SpriteResourceCollection_AddTilesFrom(param0->unk_1A0, param2, param3, 0, param4, param1, param0->heapID);
             return;
         }
     }
@@ -197,7 +196,7 @@ void ov101_021D81B4(UnkStruct_ov101_021D7E48 *param0, u32 param1, NARC *param2, 
         if (param0->unk_1B4[v0].unk_00 == param0->unk_09) {
             param0->unk_1B4[v0].unk_00 = param4;
             param0->unk_1B4[v0].unk_02 = 0;
-            param0->unk_1B4[v0].unk_04 = SpriteResourceCollection_AddPaletteFrom(param0->unk_1A4, param2, param3, 0, param4, param1, 1, param0->unk_00);
+            param0->unk_1B4[v0].unk_04 = SpriteResourceCollection_AddPaletteFrom(param0->unk_1A4, param2, param3, 0, param4, param1, 1, param0->heapID);
             return;
         }
     }
@@ -241,7 +240,7 @@ void ov101_021D8288(UnkStruct_ov101_021D7E48 *param0, NARC *param1, u32 param2, 
         if (param0->unk_1B8[v0].unk_00 == param0->unk_0A) {
             param0->unk_1B8[v0].unk_00 = param3;
             param0->unk_1B8[v0].unk_02 = 0;
-            param0->unk_1B8[v0].unk_04 = SpriteResourceCollection_AddFrom(param0->unk_1A8, param1, param2, 0, param3, 2, param0->unk_00);
+            param0->unk_1B8[v0].unk_04 = SpriteResourceCollection_AddFrom(param0->unk_1A8, param1, param2, 0, param3, 2, param0->heapID);
             return;
         }
     }
@@ -257,8 +256,7 @@ void ov101_021D82F0(UnkStruct_ov101_021D7E48 *param0, NARC *param1, u32 param2, 
         if (param0->unk_1BC[v0].unk_00 == param0->unk_0B) {
             param0->unk_1BC[v0].unk_00 = param3;
             param0->unk_1BC[v0].unk_02 = 0;
-            param0->unk_1BC[v0].unk_04 = SpriteResourceCollection_AddFrom(
-                param0->unk_1AC, param1, param2, 0, param3, 3, param0->unk_00);
+            param0->unk_1BC[v0].unk_04 = SpriteResourceCollection_AddFrom(param0->unk_1AC, param1, param2, 0, param3, 3, param0->heapID);
             return;
         }
     }
@@ -340,7 +338,7 @@ void ov101_021D84A4(UnkStruct_ov101_021D7E48 *param0, UnkStruct_ov101_021D8544 *
     v1.position = *param2;
     v1.priority = param10;
     v1.vramType = param3;
-    v1.heapID = param0->unk_00;
+    v1.heapID = param0->heapID;
 
     param1->unk_04 = SpriteList_Add(&v1);
     GF_ASSERT(param1->unk_04 != NULL);

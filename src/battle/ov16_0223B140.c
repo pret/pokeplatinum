@@ -170,7 +170,7 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
 
     switch (*param1) {
     case 0:
-        Heap_Create(3, 5, 0xb0000);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_BATTLE, 0xb0000);
 
         if ((v0->battleType & BATTLE_TYPE_LINK) && ((v0->battleStatusMask & BATTLE_STATUS_RECORDING) == 0)) {
             *param1 = 1;
@@ -242,14 +242,14 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
         if (ov16_0223DB1C(param0) == 1) {
             *param1 = 11;
         } else {
-            Heap_Destroy(5);
+            Heap_Destroy(HEAP_ID_BATTLE);
             *param1 = 13;
         }
         break;
     case 11:
         if (ov16_0223DD10(param0) == 1) {
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay10));
-            Heap_Destroy(5);
+            Heap_Destroy(HEAP_ID_BATTLE);
             *param1 = 12;
         }
         break;
@@ -265,7 +265,7 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
         v2 = Battle_FindEvolvingPartyMember(v0, &v1, &v3);
 
         if (v2) {
-            Heap_Create(3, 73, 0x30000);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_73, 0x30000);
             v4 = Party_GetPokemonBySlotIndex(v0->parties[0], v1);
             v0->unk_170 = sub_0207AE68(v0->parties[0], v4, v2, v0->options, v0->visitedContestHall, v0->pokedex, v0->bag, v0->records, v0->poketch, v3, 0x1 | 0x2, HEAP_ID_73);
             *param1 = 14;
@@ -278,7 +278,7 @@ BOOL Battle_Main(OverlayManager *param0, int *param1)
 
         if (sub_0207B0D0(v5) == 1) {
             sub_0207B0E0(v5);
-            Heap_Destroy(73);
+            Heap_Destroy(HEAP_ID_73);
             *param1 = 13;
         }
     } break;

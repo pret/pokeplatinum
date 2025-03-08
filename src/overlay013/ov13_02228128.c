@@ -337,7 +337,7 @@ static void ov13_0222863C(UnkStruct_ov13_02227244 *param0, u16 *param1, u8 param
 
 static void ov13_022286B8(UnkStruct_ov13_02227244 *param0, u8 param1, u8 param2, u8 param3)
 {
-    u16 *v0 = Heap_AllocFromHeap(param0->unk_00->unk_0C, Unk_ov13_02229D7C[param1].unk_02 * Unk_ov13_02229D7C[param1].unk_03 * 2);
+    u16 *v0 = Heap_AllocFromHeap(param0->unk_00->heapID, Unk_ov13_02229D7C[param1].unk_02 * Unk_ov13_02229D7C[param1].unk_03 * 2);
 
     ov13_0222863C(param0, v0, param1, param2, param3);
 

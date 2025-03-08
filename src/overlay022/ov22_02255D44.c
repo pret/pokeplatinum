@@ -195,8 +195,8 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
     u32 v1;
     UnkStruct_0203DA00 *v2;
 
-    Heap_Create(3, 13, 0x20000);
-    Heap_Create(3, 14, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
@@ -215,9 +215,9 @@ int ov22_02255D44(OverlayManager *param0, int *param1)
 
     ov22_0225894C(v2->unk_08, &v0->unk_1E8);
     ov22_022566C0(v0);
-    ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), 13);
+    ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), HEAP_ID_13);
 
-    v0->unk_3C8 = ov22_02254DE0(700, 13);
+    v0->unk_3C8 = ov22_02254DE0(700, HEAP_ID_13);
 
     ov22_02256708(v0, v2->unk_00, 10, 0);
     ov22_022567FC(v0);
@@ -400,8 +400,8 @@ int ov22_02256098(OverlayManager *param0, int *param1)
     GF_ASSERT(v1 == 1);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(13);
-    Heap_Destroy(14);
+    Heap_Destroy(HEAP_ID_13);
+    Heap_Destroy(HEAP_ID_14);
 
     return 1;
 }
@@ -412,8 +412,8 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     u32 v1;
     UnkStruct_02093BBC *v2;
 
-    Heap_Create(3, 13, 0x20000);
-    Heap_Create(3, 14, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_13, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_14, 0x40000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov22_02255D44), 13);
     memset(v0, 0, sizeof(UnkStruct_ov22_02255D44));
@@ -444,9 +444,9 @@ int ov22_02256174(OverlayManager *param0, int *param1)
     ReserveVramForWirelessIconChars(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     ReserveSlotsForWirelessIconPalette(NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), 13);
+    ov22_02259484(&v0->unk_3C0, (700 + 1 + 18), HEAP_ID_13);
 
-    v0->unk_3C8 = ov22_02254DE0(700, 13);
+    v0->unk_3C8 = ov22_02254DE0(700, HEAP_ID_13);
     v0->unk_738 = v2->unk_20;
 
     if (v0->unk_734->unk_16 == 0) {
@@ -661,8 +661,8 @@ int ov22_02256600(OverlayManager *param0, int *param1)
     GF_ASSERT(v1 == 1);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(13);
-    Heap_Destroy(14);
+    Heap_Destroy(HEAP_ID_13);
+    Heap_Destroy(HEAP_ID_14);
     sub_02095A24();
     sub_02039794();
 
@@ -721,7 +721,7 @@ static void ov22_02256708(UnkStruct_ov22_02255D44 *param0, Pokemon *param1, int 
     }
 
     ov22_02257B10(&param0->unk_458);
-    ov22_02257C88(&param0->unk_458, 0, 14);
+    ov22_02257C88(&param0->unk_458, 0, HEAP_ID_14);
 }
 
 static void ov22_02256790(UnkStruct_ov22_02255D44 *param0, Pokemon *param1, int param2)
@@ -826,7 +826,7 @@ static void ov22_02256948(UnkStruct_ov22_02255D44 *param0, int param1)
     v0.unk_20 = 1;
     v0.unk_24 = 2;
     v0.unk_28 = 0;
-    v0.unk_2C = 14;
+    v0.heapID = HEAP_ID_14;
 
     ov22_022597BC(&param0->unk_518, &v0);
 }

@@ -55,9 +55,9 @@ static void ov65_022356E8(UnkStruct_ov65_02235130 *param0);
 static void ov65_0223573C(UnkStruct_ov65_02235130 *param0);
 static void ov65_02235778(UnkStruct_ov65_02235130 *param0);
 static const UnkStruct_ov65_022354D8 *ov65_022357A8(const UnkStruct_ov65_02235130 *param0, const UnkStruct_ov65_022354D8 *param1, int param2);
-static void ov65_022357E8(UnkStruct_ov65_02235130 *param0, u32 param1, u32 param2);
+static void ov65_022357E8(UnkStruct_ov65_02235130 *param0, u32 param1, u32 heapID);
 static void ov65_0223581C(UnkStruct_ov65_02235130 *param0);
-static void ov65_0223582C(UnkStruct_ov65_02235130 *param0, u32 param1, NARC *param2, u32 param3);
+static void ov65_0223582C(UnkStruct_ov65_02235130 *param0, u32 heapID, NARC *param2, u32 param3);
 static void ov65_0223586C(UnkStruct_ov65_02235130 *param0);
 static void ov65_0223587C(UnkStruct_ov65_022358CC *param0, u32 param1, NARC *param2);
 static void ov65_022358CC(UnkStruct_ov65_022358CC *param0);
@@ -127,7 +127,7 @@ static const u16 Unk_ov65_02238BC8[2] = {
     0x2
 };
 
-void ov65_02235060(UnkStruct_ov65_02235130 *param0, u32 param1, NARC *param2, BgConfig *param3, u32 param4, u32 param5)
+void ov65_02235060(UnkStruct_ov65_02235130 *param0, u32 heapID, NARC *param2, BgConfig *param3, u32 param4, u32 param5)
 {
     UnkStruct_ov63_0222CC3C v0;
     u32 v1;
@@ -136,24 +136,24 @@ void ov65_02235060(UnkStruct_ov65_02235130 *param0, u32 param1, NARC *param2, Bg
 
     v1 = (param5 - 1) / 8;
 
-    param0->unk_04 = param1;
+    param0->heapID = heapID;
     param0->unk_10 = param3;
 
-    ov65_0223587C(&param0->unk_14, param0->unk_04, param2);
-    ov65_02235918(param0->unk_10, param1);
+    ov65_0223587C(&param0->unk_14, param0->heapID, param2);
+    ov65_02235918(param0->unk_10, heapID);
 
     v0 = ov65_02236474(v1);
-    param0->unk_748 = ov63_0222BCE8(v0.unk_00, v0.unk_02, param1);
+    param0->unk_748 = ov63_0222BCE8(v0.unk_00, v0.unk_02, heapID);
     ov63_0222BD50(param0->unk_748, ov65_02236480(v1));
-    param0->unk_74C = ov63_0222BE18(48, param1);
+    param0->unk_74C = ov63_0222BE18(48, heapID);
 
-    ov65_022357E8(param0, param4, param1);
+    ov65_022357E8(param0, param4, heapID);
     ov63_0222D19C(&param0->unk_754);
-    ov65_0223582C(param0, param1, param2, v1);
-    ov65_02235920(param0->unk_10, param1, param2);
+    ov65_0223582C(param0, heapID, param2, v1);
+    ov65_02235920(param0->unk_10, heapID, param2);
     ov65_022362B0(param0, &param0->unk_734, param2);
 
-    param0->unk_75C = ov63_0222D848(128, param1);
+    param0->unk_75C = ov63_0222D848(128, heapID);
     param0->unk_00 = 1;
 }
 
@@ -529,13 +529,13 @@ static const UnkStruct_ov65_022354D8 *ov65_022357A8(const UnkStruct_ov65_0223513
     return NULL;
 }
 
-static void ov65_022357E8(UnkStruct_ov65_02235130 *param0, u32 param1, u32 param2)
+static void ov65_022357E8(UnkStruct_ov65_02235130 *param0, u32 param1, u32 heapID)
 {
     int v0;
 
-    param0->unk_750 = ov63_0222CD2C(param0->unk_14.unk_00, NULL, 48, param1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
+    param0->unk_750 = ov63_0222CD2C(param0->unk_14.unk_00, NULL, 48, param1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, heapID);
 
-    ov63_0222CE30(param0->unk_750, 2, param2);
+    ov63_0222CE30(param0->unk_750, 2, heapID);
 }
 
 static void ov65_0223581C(UnkStruct_ov65_02235130 *param0)
@@ -543,7 +543,7 @@ static void ov65_0223581C(UnkStruct_ov65_02235130 *param0)
     ov63_0222CD9C(param0->unk_750);
 }
 
-static void ov65_0223582C(UnkStruct_ov65_02235130 *param0, u32 param1, NARC *param2, u32 param3)
+static void ov65_0223582C(UnkStruct_ov65_02235130 *param0, u32 heapID, NARC *param2, u32 param3)
 {
     UnkStruct_ov65_0223582C v0 = {
         0,
@@ -560,7 +560,7 @@ static void ov65_0223582C(UnkStruct_ov65_02235130 *param0, u32 param1, NARC *par
     };
 
     v0.unk_09 += param3;
-    param0->unk_758 = ov63_0222D1C0(&param0->unk_14.unk_04, param0->unk_10, &v0, param1);
+    param0->unk_758 = ov63_0222D1C0(&param0->unk_14.unk_04, param0->unk_10, &v0, heapID);
 }
 
 static void ov65_0223586C(UnkStruct_ov65_02235130 *param0)
@@ -832,7 +832,7 @@ static UnkStruct_ov65_022354D8 *ov65_02235D7C(UnkStruct_ov65_02235130 *param0)
 
 static void ov65_02235DAC(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022354D8 *param1, BOOL param2)
 {
-    param1->unk_04 = ov63_0222CE44(param0->unk_750, param1->unk_00, param2, param0->unk_04);
+    param1->unk_04 = ov63_0222CE44(param0->unk_750, param1->unk_00, param2, param0->heapID);
 
     if (param2 == 0) {
         ov63_0222CFA4(param1->unk_04, 0);
@@ -1151,7 +1151,7 @@ static void ov65_022362B0(UnkStruct_ov65_02235130 *param0, UnkStruct_ov65_022363
 {
     memset(param1, 0, sizeof(UnkStruct_ov65_02236318));
 
-    param1->unk_00 = Graphics_GetPlttDataFromOpenNARC(param2, 31, &param1->unk_04, param0->unk_04);
+    param1->unk_00 = Graphics_GetPlttDataFromOpenNARC(param2, 31, &param1->unk_04, param0->heapID);
     param1->unk_08 = (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3);
     param1->unk_09 = 0;
     param1->unk_0A = Unk_ov65_02238BC8[param1->unk_09];

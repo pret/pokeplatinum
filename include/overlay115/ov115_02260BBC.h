@@ -6,7 +6,7 @@
 #include "overlay115/struct_ov115_02265AD0.h"
 #include "overlay115/struct_ov115_02265AD4.h"
 
-UnkStruct_ov115_02260BE4 *ov115_02260BBC(u32 param0, u32 param1, u32 param2, const UnkStruct_ov115_02262F50 *param3);
+UnkStruct_ov115_02260BE4 *ov115_02260BBC(u32 heapID, u32 param1, u32 param2, const UnkStruct_ov115_02262F50 *param3);
 void ov115_02260BE4(UnkStruct_ov115_02260BE4 *param0);
 BOOL ov115_02260BEC(UnkStruct_ov115_02260BE4 *param0);
 BOOL ov115_02260C54(const UnkStruct_ov115_02260BE4 *param0);

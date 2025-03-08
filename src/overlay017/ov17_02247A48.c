@@ -231,7 +231,7 @@ static void ov17_02247B00(UnkStruct_ov17_0224F30C *param0, void *param1, const U
 
         MI_CpuClear8(&v5, sizeof(UnkStruct_ov22_0225AF8C));
 
-        v5.heapId = HEAP_ID_22;
+        v5.heapID = HEAP_ID_22;
         v5.unk_04 = 128;
         v5.unk_08 = (96 - 32) + 80 / 2;
         v0->unk_F18[v1->unk_00].unk_04 = 128;
@@ -901,7 +901,7 @@ static void ov17_02248860(SysTask *param0, void *param1)
             v2 = Pokemon_DPSpriteYOffset(v0->unk_38.unk_00->unk_0C.unk_00->unk_00[v0->unk_38.unk_0E], 2);
             MI_CpuClear8(&v1, sizeof(UnkStruct_ov22_0225AF8C));
 
-            v1.heapId = HEAP_ID_22;
+            v1.heapID = HEAP_ID_22;
             v1.unk_04 = 128;
             v1.unk_08 = (96 - 32) + v2;
             v0->unk_38.unk_00->unk_F18[v0->unk_38.unk_0E].unk_00 = ov22_0225AFD4(&v1, v0->unk_38.unk_00->unk_00->unk_00.unk_E8[v0->unk_38.unk_0E]);

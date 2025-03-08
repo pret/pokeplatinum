@@ -967,7 +967,7 @@ static BOOL StartMenu_PokedexEnd(FieldTask *taskMan)
     FieldSystem_StartFieldMap(fieldSystem);
 
     if (menu->unk_25C != NULL) {
-        Heap_FreeToHeapExplicit(11, menu->unk_25C);
+        Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
     }
 
     menu->state = START_MENU_STATE_12;
@@ -1674,7 +1674,7 @@ static BOOL sub_0203C390(FieldTask *taskMan)
 
     sub_02097390(menu->unk_25C, &v2, &v3);
     BagCursor_SetFieldPocketPosition(fieldSystem->unk_98, 4, v3, v2);
-    Heap_FreeToHeapExplicit(11, menu->unk_25C);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
@@ -1690,7 +1690,7 @@ BOOL sub_0203C3F4(FieldTask *taskMan)
     fieldSystem = FieldTask_GetFieldSystem(taskMan);
     menu = FieldTask_GetEnv(taskMan);
 
-    Heap_FreeToHeapExplicit(11, menu->unk_25C);
+    Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0203B674(menu, sub_0203BC5C);
 
@@ -1895,7 +1895,7 @@ static void StartMenu_EvolveInit(FieldTask *taskMan)
     v2 = menu->unk_25C;
 
     sub_0200569C();
-    Heap_Create(3, 73, 0x30000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_73, 0x30000);
 
     v3 = Party_GetFromSavedata(fieldSystem->saveData);
     v4 = Party_GetPokemonBySlotIndex(v3, v2->unk_00);
@@ -1929,7 +1929,7 @@ static void StartMenu_Evolve(FieldTask *taskMan)
 
     if (sub_0207B0D0(menu->unk_25C) == 1) {
         sub_0207B0E0(menu->unk_25C);
-        Heap_Destroy(73);
+        Heap_Destroy(HEAP_ID_73);
         sub_020055D0(1141, 0);
         sub_02004234(0);
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);

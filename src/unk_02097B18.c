@@ -80,7 +80,7 @@ static int sub_02097B18(OverlayManager *param0, int *param1)
     UnkStruct_ov76_0223DE00 *v0;
     UnkStruct_02097F18 *v1;
 
-    Heap_Create(3, 53, 0x80000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_53, 0x80000);
     ov76_0223EB20(53);
     ov76_0223D3A0();
 
@@ -265,7 +265,7 @@ static int sub_02097D88(OverlayManager *param0, int *param1)
         }
     }
 
-    Heap_Destroy(53);
+    Heap_Destroy(HEAP_ID_53);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay11));
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay12));
 

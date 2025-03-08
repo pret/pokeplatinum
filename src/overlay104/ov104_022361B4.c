@@ -794,8 +794,8 @@ void ov104_02237180(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_0223BA10 *
 static void ov104_02237284(UnkStruct_ov104_022320B4 *param0, Window *param1, TrainerInfo *param2, u16 param3)
 {
     MessageLoader *v0;
-    Strbuf *v1 = Strbuf_Init((10 * 2), param0->unk_34);
-    Strbuf *v2 = Strbuf_Init((10 * 2), param0->unk_34);
+    Strbuf *v1 = Strbuf_Init((10 * 2), param0->heapID);
+    Strbuf *v2 = Strbuf_Init((10 * 2), param0->heapID);
 
     v0 = MessageLoader_Init(0, 26, 199, HEAP_ID_FIELDMAP);
 

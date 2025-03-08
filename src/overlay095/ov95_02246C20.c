@@ -129,8 +129,8 @@ int ov95_02246C20(OverlayManager *param0, int *param1)
     if (IsScreenTransitionDone()) {
         UnkStruct_ov95_02247628 *v0;
 
-        Heap_Create(3, 57, 98304);
-        Heap_Create(3, 58, 98304);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_57, 98304);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_58, 98304);
         ov95_02247688();
         sub_02004550(3, 1170, 1);
 
@@ -215,8 +215,8 @@ int ov95_02246E1C(OverlayManager *param0, int *param1)
     SpriteList_Delete(v1->unk_18);
     RenderOam_Free();
     OverlayManager_FreeData(param0);
-    Heap_Destroy(57);
-    Heap_Destroy(58);
+    Heap_Destroy(HEAP_ID_57);
+    Heap_Destroy(HEAP_ID_58);
 
     OS_RestoreInterrupts(v0);
 

@@ -321,7 +321,7 @@ int ov68_0225C700(OverlayManager *param0, int *param1)
     UnkStruct_ov68_0225C700 *v0;
     UnkStruct_ov66_02231374 *v1 = OverlayManager_Args(param0);
 
-    Heap_Create(3, 122, 0x50000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_122, 0x50000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov68_0225C700), 122);
     memset(v0, 0, sizeof(UnkStruct_ov68_0225C700));
@@ -417,7 +417,7 @@ int ov68_0225C8A8(OverlayManager *param0, int *param1)
     ov68_0225C960(&v0->unk_00);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(122);
+    Heap_Destroy(HEAP_ID_122);
     sub_020057BC(0);
 
     return 1;

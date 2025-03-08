@@ -70,7 +70,7 @@ int ov96_0223B6A0(OverlayManager *param0, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        Heap_Create(3, 68, 0x50000);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_68, 0x50000);
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov96_0223BF40), 68);
         memset(v0, 0, sizeof(UnkStruct_ov96_0223BF40));
@@ -184,7 +184,7 @@ int ov96_0223B8CC(OverlayManager *param0, int *param1)
     Heap_FreeToHeap(v0->unk_04);
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(68);
+    Heap_Destroy(HEAP_ID_68);
 
     return 1;
 }

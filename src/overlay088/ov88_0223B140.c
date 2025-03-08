@@ -283,7 +283,7 @@ int ov88_0223B140(OverlayManager *param0, int *param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    Heap_Create(3, 26, 0x50000 + 0x20000 + 2000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_26, 0x50000 + 0x20000 + 2000);
 
     v1 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, 26);
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02095E80), 26);
@@ -879,7 +879,7 @@ int ov88_0223C03C(OverlayManager *param0, int *param1)
     ov88_0223EC04(v0->unk_49C);
     ov88_0223C44C(v0->unk_174);
 
-    Heap_FreeToHeapExplicit(26, v0->unk_174);
+    Heap_FreeToHeapExplicit(HEAP_ID_26, v0->unk_174);
     MessageLoader_Free(v0->unk_184);
     StringTemplate_Free(v0->unk_180);
     StringTemplate_Free(v0->unk_17C);
@@ -887,7 +887,7 @@ int ov88_0223C03C(OverlayManager *param0, int *param1)
     Strbuf_Free(v0->unk_18C);
     OverlayManager_FreeData(param0);
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(26);
+    Heap_Destroy(HEAP_ID_26);
 
     return 1;
 }

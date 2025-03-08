@@ -7,7 +7,6 @@ void sub_02099550(void);
 void sub_02099560(void);
 void sub_02099570(void);
 void sub_02099580(void);
-void sub_02099590(SaveData *param0, int param1);
 void sub_020995B4(void);
 void sub_020995C4(void);
 

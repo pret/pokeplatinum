@@ -9,8 +9,8 @@
 typedef struct UnkStruct_ov5_021F0814_t UnkStruct_ov5_021F0814;
 
 typedef struct UnkStruct_ov5_021F06D8_t {
-    u32 unk_00;
-    u32 unk_04;
+    u32 parentHeapID;
+    u32 childHeapID;
     u32 unk_08;
     u32 unk_0C;
     u32 unk_10;
@@ -49,8 +49,8 @@ UnkStruct_ov5_021F06D8 *ov5_021F067C(u32 parentHeapID, u32 childHeapID, u32 para
     GF_ASSERT(v2 != NULL);
     memset(v2, 0, param2);
 
-    v2->unk_00 = parentHeapID;
-    v2->unk_04 = childHeapID;
+    v2->parentHeapID = parentHeapID;
+    v2->childHeapID = childHeapID;
     v2->unk_08 = param3;
     v2->unk_0C = v1;
     v2->unk_10 = v0;
@@ -76,10 +76,10 @@ void ov5_021F06D8(UnkStruct_ov5_021F06D8 *param0)
     }
 
     {
-        u32 v2 = param0->unk_04;
+        u32 heapID = param0->childHeapID;
 
         Heap_FreeToHeap(param0);
-        Heap_Destroy(v2);
+        Heap_Destroy(heapID);
     }
 }
 
@@ -140,9 +140,9 @@ static void *ov5_021F07B4(UnkStruct_ov5_021F06D8 *param0, u32 param1, int param2
     void *v0;
 
     if (param2 == 0) {
-        v0 = Heap_AllocFromHeap(param0->unk_04, param1);
+        v0 = Heap_AllocFromHeap(param0->childHeapID, param1);
     } else {
-        v0 = Heap_AllocFromHeapAtEnd(param0->unk_04, param1);
+        v0 = Heap_AllocFromHeapAtEnd(param0->childHeapID, param1);
     }
 
     GF_ASSERT(v0 != NULL);

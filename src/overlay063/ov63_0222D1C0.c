@@ -31,9 +31,9 @@ static void ov63_0222D4F8(BgConfig *param0, u8 param1, u8 param2, u8 param3, u8 
 static u8 ov63_0222D688(u8 param0, u8 param1);
 static const void *ov63_0222D6BC(const u8 *param0, u8 param1, u8 param2, u8 param3, u8 param4, u8 param5, UnkStruct_ov63_0222CC3C *param6);
 
-UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 param3)
+UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, const UnkStruct_ov65_0223582C *param2, u32 heapID)
 {
-    UnkStruct_ov63_0222D1C0 *v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov63_0222D1C0));
+    UnkStruct_ov63_0222D1C0 *v0 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov63_0222D1C0));
     memset(v0, 0, sizeof(UnkStruct_ov63_0222D1C0));
 
     v0->unk_00 = param0;
@@ -43,7 +43,7 @@ UnkStruct_ov63_0222D1C0 *ov63_0222D1C0(G2dRenderer *param0, BgConfig *param1, co
 
     ov63_0222D31C(v0->unk_04, v0->unk_14, param2);
 
-    v0->unk_08 = Graphics_GetScrnData(param2->unk_08, param2->unk_09, param2->unk_0A, &v0->unk_0C, param3);
+    v0->unk_08 = Graphics_GetScrnData(param2->unk_08, param2->unk_09, param2->unk_0A, &v0->unk_0C, heapID);
 
     return v0;
 }

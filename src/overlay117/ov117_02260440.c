@@ -40,7 +40,7 @@ int ov117_02260440(OverlayManager *param0, int *param1)
     UnkStruct_ov117_02260440 *v0 = OverlayManager_Args(param0);
     UnkStruct_ov117_022605C0 *v1;
 
-    Heap_Create(3, 110, 0x60000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_110, 0x60000);
 
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov117_022605C0), 110);
     MI_CpuClear8(v1, sizeof(UnkStruct_ov117_022605C0));
@@ -128,7 +128,7 @@ int ov117_022605C0(OverlayManager *param0, int *param1)
     UnkStruct_ov117_022605C0 *v0 = OverlayManager_Data(param0);
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(110);
+    Heap_Destroy(HEAP_ID_110);
 
     return 1;
 }

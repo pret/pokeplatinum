@@ -1474,7 +1474,7 @@ void ov17_02240A80(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
 
     {
         ov17_02252AB0(param0->unk_04->unk_18, param0->unk_04->unk_1C, param0->unk_04->unk_50, 33021, 33009, 33016, 33016);
-        param0->unk_2FC = ov17_02252B48(param0->unk_04->unk_18, param0->unk_04->unk_1C, 21, 33021, 33009, 33016, 33016, 5, 0);
+        param0->unk_2FC = ov17_02252B48(param0->unk_04->unk_18, param0->unk_04->unk_1C, HEAP_ID_21, 33021, 33009, 33016, 33016, 5, 0);
     }
 }
 

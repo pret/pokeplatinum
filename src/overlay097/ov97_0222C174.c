@@ -434,7 +434,7 @@ enum {
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0);
 MysteryGift *SaveData_MysteryGift(SaveData *param0);
-void ov97_02231FFC(BgConfig *param0, void *, int param2);
+void ov97_02231FFC(BgConfig *param0, void *, int heapID);
 
 static u16 ov97_0222C174(u16 param0)
 {
@@ -687,7 +687,7 @@ static int ov97_0222C6F8(OverlayManager *param0, int *param1)
     v0->unk_15C = UnkEnum_ov97_0222C6F8_00;
     v0->unk_158 = 0;
 
-    Heap_Create(0, 91, 0x300);
+    Heap_Create(HEAP_ID_SYSTEM, HEAP_ID_91, 0x300);
     sub_02004550(9, 1174, 1);
 
     return 1;
@@ -748,7 +748,7 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
 
-        ov97_02231FFC(v0->unk_04, &v0->unk_3180, 85);
+        ov97_02231FFC(v0->unk_04, &v0->unk_3180, HEAP_ID_85);
         ov97_02237790(1, UnkEnum_ov97_0222C78C_06, param1, UnkEnum_ov97_0222C78C_13);
         v0->unk_3180.unk_104.unk_4E_2 = 0;
         break;
@@ -776,10 +776,10 @@ static int ov97_0222C78C(OverlayManager *param0, int *param1)
 
 static int ov97_0222C948(OverlayManager *param0, int *param1)
 {
-    Heap_Destroy(91);
+    Heap_Destroy(HEAP_ID_91);
     EnqueueApplication(FS_OVERLAY_ID(overlay77), &gTitleScreenOverlayTemplate);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(85);
+    Heap_Destroy(HEAP_ID_85);
 
     return 1;
 }

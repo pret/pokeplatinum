@@ -87,7 +87,7 @@ static void ov13_02227C54(UnkStruct_ov13_02227244 *param0)
 {
     SpriteSystem *v0;
     u32 v1;
-    NARC *v2 = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, param0->unk_00->unk_0C);
+    NARC *v2 = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, param0->unk_00->heapID);
     v0 = ov16_0223E010(param0->unk_00->unk_00);
 
     for (v1 = 0; v1 < 6; v1++) {
@@ -108,7 +108,7 @@ static void ov13_02227D10(UnkStruct_ov13_02227244 *param0, u16 param1, u32 param
 
 static void ov13_02227D48(UnkStruct_ov13_02227244 *param0, u16 param1, u16 param2, u32 param3)
 {
-    PaletteData_LoadBufferFromFileStart(param0->unk_08, 16, Item_FileID(param1, 2), param0->unk_00->unk_0C, 3, 0x20, param2 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_08, 16, Item_FileID(param1, 2), param0->unk_00->heapID, 3, 0x20, param2 * 16);
 }
 
 static ManagedSprite *ov13_02227D78(UnkStruct_ov13_02227244 *param0, u32 param1)
@@ -229,8 +229,8 @@ static void ov13_02227F7C(UnkStruct_ov13_02227244 *param0)
     UnkStruct_ov16_0226DC24 *v1;
 
     v0 = ov16_0223E010(param0->unk_00->unk_00);
-    ov16_0226DB7C(v0, param0->unk_30C, param0->unk_08, param0->unk_00->unk_0C, 46270, 46270, 46265, 46265);
-    v1 = ov16_0226DC24(v0, param0->unk_30C, param0->unk_00->unk_0C, 46270, 46270, 46265, 46265, 0, 1);
+    ov16_0226DB7C(v0, param0->unk_30C, param0->unk_08, param0->unk_00->heapID, 46270, 46270, 46265, 46265);
+    v1 = ov16_0226DC24(v0, param0->unk_30C, param0->unk_00->heapID, 46270, 46270, 46265, 46265, 0, 1);
 
     ov13_02228A64(param0->unk_34, v1);
 }
@@ -303,8 +303,8 @@ static void ov13_02228070(UnkStruct_ov13_02227244 *param0)
 
     v0 = ov16_0223E010(param0->unk_00->unk_00);
 
-    ov16_0226DE44(v0, param0->unk_30C, param0->unk_00->unk_0C, param0->unk_08, 46269, 46269, 46264, 46264);
-    param0->unk_38 = ov16_0226DEEC(v0, param0->unk_30C, param0->unk_00->unk_0C, 46269, 46269, 46264, 46264, 0, 0);
+    ov16_0226DE44(v0, param0->unk_30C, param0->unk_00->heapID, param0->unk_08, 46269, 46269, 46264, 46264);
+    param0->unk_38 = ov16_0226DEEC(v0, param0->unk_30C, param0->unk_00->heapID, 46269, 46269, 46264, 46264, 0, 0);
 }
 
 static void ov13_022280C8(UnkStruct_ov13_02227244 *param0)

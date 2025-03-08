@@ -121,7 +121,7 @@ int ov72_0223D7A0(OverlayManager *param0, int *param1)
         GX_SetVisiblePlane(0);
         GXS_SetVisiblePlane(0);
 
-        Heap_Create(3, 39, 0x40000);
+        Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_39, 0x40000);
 
         v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov72_0223DB98), 39);
         memset(v0, 0, sizeof(UnkStruct_ov72_0223DB98));
@@ -235,7 +235,7 @@ int ov72_0223D984(OverlayManager *param0, int *param1)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     SetVBlankCallback(NULL, NULL);
-    Heap_Destroy(39);
+    Heap_Destroy(HEAP_ID_39);
 
     return 1;
 }

@@ -47,7 +47,7 @@ int ov100_021D0D80(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov100_021D4DD8 *v0;
 
-    Heap_Create(3, 111, 0xC0000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_111, 0xC0000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov100_021D4DD8), 111);
     memset(v0, 0, sizeof(UnkStruct_ov100_021D4DD8));
@@ -149,7 +149,7 @@ int ov100_021D0F44(OverlayManager *param0, int *param1)
 
     GXLayers_SwapDisplay();
     OverlayManager_FreeData(param0);
-    Heap_Destroy(111);
+    Heap_Destroy(HEAP_ID_111);
     sub_02005454(0);
 
     return 1;

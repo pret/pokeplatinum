@@ -27,7 +27,7 @@ void ov17_0223F560(SpriteSystem *param0, SpriteManager *param1, PaletteData *par
 void ov17_0223F5E8(SpriteManager *param0, int param1, int param2, int param3, int param4);
 void ov17_0223F630(UnkStruct_ov17_0223F6E8 *param0, SpriteSystem *param1, SpriteManager *param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, u32 param10);
 void ov17_0223F6C4(UnkStruct_ov17_0223F6E8 *param0);
-UnkStruct_ov17_0223F744 *ov17_0223F70C(int param0, PaletteData *param1, const u16 *param2, int param3, int param4, u32 param5);
+UnkStruct_ov17_0223F744 *ov17_0223F70C(int heapID, PaletteData *param1, const u16 *param2, int param3, int param4, u32 param5);
 void ov17_0223F744(UnkStruct_ov17_0223F744 *param0);
 BOOL ov17_0223F760(void);
 

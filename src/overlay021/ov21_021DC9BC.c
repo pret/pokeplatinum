@@ -173,7 +173,7 @@ static void ov21_021DDA80(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0
 static void ov21_021DD710(PokedexMapDisplay *mapDisplay, const UnkStruct_ov21_021DCACC *param1, const EncounterCollection *encounterCollection, enum HeapId heapID);
 static void ov21_021DD8B4(PokedexMapDisplay *mapDisplay);
 static u8 *PokedexEncounters_InvisibleFields(u32 heapID, const UnkStruct_ov21_021DCACC *param1, u32 *param2);
-static u8 *PokedexEncounters_InvisibleDungeons(u32 param0, const UnkStruct_ov21_021DCACC *param1, u32 *param2);
+static u8 *PokedexEncounters_InvisibleDungeons(u32 heapID, const UnkStruct_ov21_021DCACC *param1, u32 *param2);
 static void ov21_021DD964(PokedexMapDisplay *mapDisplay, UnkStruct_ov21_021DCAE0 *param1);
 static void ov21_021DDB8C(PokedexMapDisplay *mapDisplay);
 static void ov21_021DDBCC(PokedexMapDisplay *mapDisplay);
@@ -1006,7 +1006,7 @@ static u8 *PokedexEncounters_InvisibleFields(u32 heapID, const UnkStruct_ov21_02
     return invisibleFields;
 }
 
-static u8 *PokedexEncounters_InvisibleDungeons(u32 param0, const UnkStruct_ov21_021DCACC *param1, u32 *numInvisibleDungeons)
+static u8 *PokedexEncounters_InvisibleDungeons(u32 heapID, const UnkStruct_ov21_021DCACC *param1, u32 *numInvisibleDungeons)
 {
     u32 dungeonCount;
     int index;
@@ -1051,7 +1051,7 @@ static u8 *PokedexEncounters_InvisibleDungeons(u32 param0, const UnkStruct_ov21_
     }
 
     if (dungeonCount > 0) {
-        invisibleDungeons = Heap_AllocFromHeap(param0, sizeof(u8) * dungeonCount);
+        invisibleDungeons = Heap_AllocFromHeap(heapID, sizeof(u8) * dungeonCount);
     } else {
         invisibleDungeons = NULL;
     }

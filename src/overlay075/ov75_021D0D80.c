@@ -54,7 +54,7 @@ enum {
 } UnkEnum_ov75_021D0E80;
 
 typedef struct {
-    int unk_00;
+    int heapID;
     int unk_04;
     u16 unk_08;
     u16 unk_0A;
@@ -115,11 +115,11 @@ int ov75_021D0D80(OverlayManager *param0, int *param1)
     UnkStruct_020978D8 *v0;
     UnkStruct_ov75_021D1184 *v1 = (UnkStruct_ov75_021D1184 *)OverlayManager_Data(param0);
 
-    Heap_Create(3, 41, 0x20000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_41, 0x20000);
     v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov75_021D1184), 41);
     memset(v1, 0, sizeof(UnkStruct_ov75_021D1184));
 
-    v1->unk_00 = 41;
+    v1->heapID = HEAP_ID_41;
 
     v1->unk_1C = (UnkStruct_020978D8 *)OverlayManager_Args(param0);
     v1->unk_0D = v1->unk_0C = v1->unk_1C->unk_00;
@@ -148,14 +148,14 @@ int ov75_021D0DF8(OverlayManager *param0, int *param1)
 int ov75_021D0E10(OverlayManager *param0, int *param1)
 {
     UnkStruct_ov75_021D1184 *v0 = (UnkStruct_ov75_021D1184 *)OverlayManager_Data(param0);
-    int v1;
+    int heapID;
 
     RenderControlFlags_SetCanABSpeedUpPrint(0);
 
-    v1 = v0->unk_00;
+    heapID = v0->heapID;
 
     OverlayManager_FreeData(param0);
-    Heap_Destroy(v1);
+    Heap_Destroy(heapID);
 
     return 1;
 }
@@ -261,7 +261,7 @@ static int ov75_021D0FA0(UnkStruct_ov75_021D1184 *param0)
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         Window_FillTilemap(&(param0->unk_44[5]), ((15 << 4) | 15));
 
-        v0 = Strbuf_Init((19 * 2 * 2), param0->unk_00);
+        v0 = Strbuf_Init((19 * 2 * 2), param0->heapID);
 
         MessageLoader_GetStrbuf(param0->unk_20, 2, v0);
         Text_AddPrinterWithParamsAndColor(&param0->unk_44[5], FONT_MESSAGE, v0, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 15), NULL);
@@ -292,12 +292,12 @@ static void ov75_021D1040(UnkStruct_ov75_021D1184 *param0)
         0, 25, 13, 6, 4, UnkEnum_ov75_021D1598_03, 555
     };
 
-    param0->unk_A4 = Menu_MakeYesNoChoice(param0->unk_18, &v0, 1, UnkEnum_ov75_021D1598_05, param0->unk_00);
+    param0->unk_A4 = Menu_MakeYesNoChoice(param0->unk_18, &v0, 1, UnkEnum_ov75_021D1598_05, param0->heapID);
 }
 
 static int ov75_021D1064(UnkStruct_ov75_021D1184 *param0)
 {
-    switch (Menu_ProcessInputAndHandleExit(param0->unk_A4, param0->unk_00)) {
+    switch (Menu_ProcessInputAndHandleExit(param0->unk_A4, param0->heapID)) {
     case 0:
         return 1;
     case 0xfffffffe:
@@ -319,7 +319,7 @@ static int ov75_021D108C(UnkStruct_ov75_021D1184 *param0)
         Window_DrawMessageBoxWithScrollCursor(&param0->unk_44[5], 1, 1 + 9, UnkEnum_ov75_021D1598_06);
         Window_FillTilemap(&(param0->unk_44[5]), ((15 << 4) | 15));
 
-        v1 = Strbuf_Init((19 * 2 * 2), param0->unk_00);
+        v1 = Strbuf_Init((19 * 2 * 2), param0->heapID);
         MessageLoader_GetStrbuf(param0->unk_20, 3, v1);
         param0->unk_0F = Text_AddPrinterWithParamsAndColor(&param0->unk_44[5], FONT_MESSAGE, v1, 0, 0, param0->unk_10, TEXT_COLOR(1, 2, 15), NULL);
 
@@ -562,7 +562,7 @@ static void ov75_021D1480(UnkStruct_ov75_021D1184 *param0)
 
     ov75_021D1460();
 
-    param0->unk_18 = BgConfig_New(param0->unk_00);
+    param0->unk_18 = BgConfig_New(param0->heapID);
 
     {
         GraphicsModes v2 = {
@@ -666,11 +666,11 @@ static void ov75_021D1480(UnkStruct_ov75_021D1184 *param0)
     Bg_ClearTilemap(param0->unk_18, 2);
     Bg_ClearTilemap(param0->unk_18, 3);
     Bg_ClearTilemap(param0->unk_18, 4);
-    Bg_ClearTilesRange(0, 32, 0, param0->unk_00);
-    Bg_ClearTilesRange(1, 32, 0, param0->unk_00);
-    Bg_ClearTilesRange(2, 32, 0, param0->unk_00);
-    Bg_ClearTilesRange(3, 32, 0, param0->unk_00);
-    Bg_ClearTilesRange(4, 32, 0, param0->unk_00);
+    Bg_ClearTilesRange(0, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(1, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(2, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(3, 32, 0, param0->heapID);
+    Bg_ClearTilesRange(4, 32, 0, param0->heapID);
 }
 
 static void ov75_021D1564(UnkStruct_ov75_021D1184 *param0)
@@ -694,13 +694,13 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     int v6 = 12 + param0->unk_1C->unk_0F;
     int v7 = 24 + param0->unk_1C->unk_0F;
     int v8 = 0 + param0->unk_1C->unk_0F;
-    v5 = NARC_ctor(NARC_INDEX_GRAPHIC__MAIL_GRA, param0->unk_00);
+    v5 = NARC_ctor(NARC_INDEX_GRAPHIC__MAIL_GRA, param0->heapID);
 
-    LoadStandardWindowGraphics(param0->unk_18, 0, 1, UnkEnum_ov75_021D1598_05, 0, param0->unk_00);
-    LoadMessageBoxGraphics(param0->unk_18, 0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->unk_00);
+    LoadStandardWindowGraphics(param0->unk_18, 0, 1, UnkEnum_ov75_021D1598_05, 0, param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_18, 0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->heapID);
 
     v1 = NARC_GetMemberSize(v5, v6);
-    v2 = Heap_AllocFromHeapAtEnd(param0->unk_00, v1);
+    v2 = Heap_AllocFromHeapAtEnd(param0->heapID, v1);
     NARC_ReadWholeMember(v5, v6, (void *)v2);
 
     NNS_G2dGetUnpackedCharacterData(v2, &v3);
@@ -709,27 +709,27 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     Heap_FreeToHeap(v2);
 
     v1 = NARC_GetMemberSize(v5, v8);
-    v2 = Heap_AllocFromHeapAtEnd(param0->unk_00, v1);
+    v2 = Heap_AllocFromHeapAtEnd(param0->heapID, v1);
     NARC_ReadWholeMember(v5, v8, (void *)v2);
 
     NNS_G2dGetUnpackedPaletteData(v2, &v4);
     Bg_LoadPalette(4, v4->pRawData, v4->szByte, 0);
 
-    param0->unk_30 = PaletteData_New(param0->unk_00);
+    param0->unk_30 = PaletteData_New(param0->heapID);
 
-    PaletteData_AllocBuffer(param0->unk_30, 0, 32 * UnkEnum_ov75_021D1598_07, param0->unk_00);
-    PaletteData_AllocBuffer(param0->unk_30, 2, 32 * 3, param0->unk_00);
+    PaletteData_AllocBuffer(param0->unk_30, 0, 32 * UnkEnum_ov75_021D1598_07, param0->heapID);
+    PaletteData_AllocBuffer(param0->unk_30, 2, 32 * 3, param0->heapID);
     PaletteData_LoadBuffer(param0->unk_30, v4->pRawData, 0, 0, 32 * 3);
 
     if (param0->unk_0C == 1) {
         PaletteData_LoadBuffer(param0->unk_30, &(((u16 *)v4->pRawData)[16 * 3]), 0, 16, 32);
     }
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_30, 19, 0, param0->unk_00, 2, 32 * 3, 0);
-    PaletteData_LoadBufferFromFileStart(param0->unk_30, 14, 6, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_03);
-    PaletteData_LoadBufferFromFileStart(param0->unk_30, 14, 7, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_04);
-    PaletteData_LoadBufferFromFileStart(param0->unk_30, 38, 24, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_05);
-    PaletteData_LoadBufferFromFileStart(param0->unk_30, 38, 25 + param0->unk_0A, param0->unk_00, 0, 32, 16 * UnkEnum_ov75_021D1598_06);
+    PaletteData_LoadBufferFromFileStart(param0->unk_30, 19, 0, param0->heapID, 2, 32 * 3, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_30, 14, 6, param0->heapID, 0, 32, 16 * UnkEnum_ov75_021D1598_03);
+    PaletteData_LoadBufferFromFileStart(param0->unk_30, 14, 7, param0->heapID, 0, 32, 16 * UnkEnum_ov75_021D1598_04);
+    PaletteData_LoadBufferFromFileStart(param0->unk_30, 38, 24, param0->heapID, 0, 32, 16 * UnkEnum_ov75_021D1598_05);
+    PaletteData_LoadBufferFromFileStart(param0->unk_30, 38, 25 + param0->unk_0A, param0->heapID, 0, 32, 16 * UnkEnum_ov75_021D1598_06);
     PaletteData_Blend(param0->unk_30, 0, 0, 16 * UnkEnum_ov75_021D1598_07, 16, 0x0);
     PaletteData_Blend(param0->unk_30, 2, 0, 16 * 3, 16, 0x0);
     PaletteData_SetAutoTransparent(param0->unk_30, 1);
@@ -737,12 +737,12 @@ static void ov75_021D1598(UnkStruct_ov75_021D1184 *param0)
     Heap_FreeToHeap(v2);
 
     v1 = NARC_GetMemberSize(v5, v7);
-    param0->unk_34 = Heap_AllocFromHeap(param0->unk_00, v1);
+    param0->unk_34 = Heap_AllocFromHeap(param0->heapID, v1);
     NARC_ReadWholeMember(v5, v7, (void *)param0->unk_34);
     NNS_G2dGetUnpackedScreenData(param0->unk_34, &(param0->unk_3C));
 
     v1 = NARC_GetMemberSize(v5, 36);
-    param0->unk_38 = Heap_AllocFromHeap(param0->unk_00, v1);
+    param0->unk_38 = Heap_AllocFromHeap(param0->heapID, v1);
     NARC_ReadWholeMember(v5, 36, (void *)param0->unk_38);
     NNS_G2dGetUnpackedScreenData(param0->unk_38, &(param0->unk_40));
 
@@ -816,7 +816,7 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
             continue;
         }
 
-        v1 = sub_02014B34(&param0->unk_1C->unk_1A[v0], param0->unk_00);
+        v1 = sub_02014B34(&param0->unk_1C->unk_1A[v0], param0->heapID);
 
         Text_AddPrinterWithParamsAndColor(&param0->unk_44[0 + v0], FONT_MESSAGE, v1, 0, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
         Strbuf_Free(v1);
@@ -827,9 +827,9 @@ static void ov75_021D19C8(UnkStruct_ov75_021D1184 *param0)
         Strbuf *v2;
         int v3;
 
-        param0->unk_20 = MessageLoader_Init(1, 26, 409, param0->unk_00);
+        param0->unk_20 = MessageLoader_Init(1, 26, 409, param0->heapID);
 
-        v2 = Strbuf_Init(8 * 2, param0->unk_00);
+        v2 = Strbuf_Init(8 * 2, param0->heapID);
 
         for (v0 = 0; v0 < 2; v0++) {
             Strbuf_Clear(v2);
@@ -860,9 +860,9 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         return;
     }
 
-    VramTransfer_New(32, param0->unk_00);
+    VramTransfer_New(32, param0->heapID);
 
-    param0->unk_A8 = SpriteSystem_Alloc(param0->unk_00);
+    param0->unk_A8 = SpriteSystem_Alloc(param0->heapID);
     param0->unk_AC = SpriteManager_New(param0->unk_A8);
 
     {
@@ -895,7 +895,7 @@ static void ov75_021D1ADC(UnkStruct_ov75_021D1184 *param0)
         SpriteSystem_Init(param0->unk_A8, &v3, &v4, 32);
         SpriteSystem_InitSprites(param0->unk_A8, param0->unk_AC, 3);
         SpriteSystem_InitManagerWithCapacities(param0->unk_A8, param0->unk_AC, &v5);
-        RenderOam_ClearMain(param0->unk_00);
+        RenderOam_ClearMain(param0->heapID);
     }
 
     SpriteSystem_LoadPlttResObj(param0->unk_A8, param0->unk_AC, NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 0);

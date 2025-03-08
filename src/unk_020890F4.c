@@ -46,7 +46,7 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
 {
     UnkStruct_02089688 *v0;
 
-    Heap_Create(3, 101, 0x40000);
+    Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_101, 0x40000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02089688), 101);
     memset(v0, 0, sizeof(UnkStruct_02089688));
@@ -146,7 +146,7 @@ static int sub_0208927C(OverlayManager *param0, int *param1)
     SpriteSystem_Free(v0->unk_2C0.unk_04);
     sub_02024034(v0->unk_2C0.unk_14);
     OverlayManager_FreeData(param0);
-    Heap_Destroy(101);
+    Heap_Destroy(HEAP_ID_101);
 
     return 1;
 }

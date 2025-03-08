@@ -232,7 +232,7 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     int v0;
 
     if (param8 == NULL) {
-        param1->unk_8C = MessageLoader_Init(1, 26, 361, param0->unk_34);
+        param1->unk_8C = MessageLoader_Init(1, 26, 361, param0->heapID);
         param1->unk_97_1 = 1;
     } else {
         param1->unk_8C = param8;
@@ -267,7 +267,7 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     }
 
     for (v0 = 0; v0 < 28; v0++) {
-        param1->unk_1C[v0] = Strbuf_Init((40 * 2), param0->unk_34);
+        param1->unk_1C[v0] = Strbuf_Init((40 * 2), param0->heapID);
     }
 
     *param1->unk_A0 = 0xeeee;
@@ -280,7 +280,7 @@ UnkStruct_ov104_02232B5C *ov104_02232258(UnkStruct_ov104_022320B4 *param0, u8 pa
     UnkStruct_ov104_02232B5C *v0;
     int v1;
 
-    v0 = Heap_AllocFromHeap(param0->unk_34, sizeof(UnkStruct_ov104_02232B5C));
+    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(UnkStruct_ov104_02232B5C));
 
     if (v0 == NULL) {
         return NULL;
@@ -321,7 +321,7 @@ void ov104_022322B0(UnkStruct_ov104_02232B5C *param0)
     Window_Add(v1->unk_00, &param0->unk_08, 1, param0->unk_98, param0->unk_99, v0, param0->unk_9B * 2, 14, 1);
     Window_DrawStandardFrame(&param0->unk_08, 1, 985, 12);
     ov104_02232454(param0);
-    param0->unk_B0 = Menu_NewSimple(&param0->unk_A4, param0->unk_96, param0->unk_00->unk_34);
+    param0->unk_B0 = Menu_NewSimple(&param0->unk_A4, param0->unk_96, param0->unk_00->heapID);
     ov104_022325D8(param0);
     param0->unk_04 = SysTask_Start(ov104_022324C8, param0, 0);
 }
@@ -332,7 +332,7 @@ static void ov104_02232390(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
     void *v1;
 
     {
-        Strbuf *v2 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
+        Strbuf *v2 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -503,7 +503,7 @@ void ov104_02232624(UnkStruct_ov104_02232B5C *param0)
     }
     Window_DrawStandardFrame(&param0->unk_08, 1, 985, 12);
     ov104_02232830(param0);
-    param0->unk_1B4 = ListMenu_New((const ListMenuTemplate *)&param0->unk_194, 0, param0->unk_96, param0->unk_00->unk_34);
+    param0->unk_1B4 = ListMenu_New((const ListMenuTemplate *)&param0->unk_194, 0, param0->unk_96, param0->unk_00->heapID);
     ov104_02232B2C(param0);
     param0->unk_04 = SysTask_Start(ov104_0223296C, param0, 0);
 }
@@ -514,7 +514,7 @@ static void ov104_02232750(UnkStruct_ov104_02232B5C *param0, u32 param1, u32 par
     void *v1;
 
     {
-        Strbuf *v2 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
+        Strbuf *v2 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
 
         MessageLoader_GetStrbuf(param0->unk_8C, param1, v2);
         StringTemplate_Format(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
@@ -688,8 +688,8 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
 
 static void ov104_02232AC4(UnkStruct_ov104_02232B5C *param0, u16 param1, u32 param2)
 {
-    Strbuf *v0 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
-    Strbuf *v1 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
+    Strbuf *v0 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
+    Strbuf *v1 = Strbuf_Init((40 * 2), param0->unk_00->heapID);
 
     Window_FillTilemap(param0->unk_18, 15);
 

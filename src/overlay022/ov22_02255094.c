@@ -54,7 +54,7 @@ static void ov22_022557A0(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_022557
 static void ov22_02255800(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255800 *param1, int param2);
 static void ov22_02255860(UnkStruct_ov22_0225A0E4 *param0);
 static void ov22_02255984(UnkStruct_ov22_0225A0E4 *param0);
-static void ov22_02255CB8(UnkStruct_ov22_02255CB8 *param0, int param1, int param2, int param3);
+static void ov22_02255CB8(UnkStruct_ov22_02255CB8 *param0, int param1, int param2, int heapID);
 static void ov22_02255D0C(UnkStruct_ov22_02255CB8 *param0);
 static void ov22_02255ACC(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1);
 static void ov22_02255B50(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1);
@@ -219,7 +219,7 @@ void ov22_02255300(UnkStruct_ov22_0225A0E4 *param0, int param1)
 
 void ov22_02255314(UnkStruct_ov22_0225A0E4 *param0, UnkStruct_ov22_02255CB8 *param1)
 {
-    ov22_02255CB8(param1, (100 + 18), (1 + 18), 14);
+    ov22_02255CB8(param1, (100 + 18), (1 + 18), HEAP_ID_14);
     ov22_02255ACC(param0, param1);
     ov22_02255B50(param0, param1);
 }
@@ -261,9 +261,9 @@ void ov22_022553F8(UnkStruct_ov22_0225A0E4 *param0)
     RenderOam_Transfer();
 }
 
-void ov22_02255410(UnkStruct_ov22_02255CB8 *param0, int param1)
+void ov22_02255410(UnkStruct_ov22_02255CB8 *param0, int heapID)
 {
-    ov22_02255CB8(param0, (100 + 18), (1 + 18), param1);
+    ov22_02255CB8(param0, (100 + 18), (1 + 18), heapID);
 }
 
 int ov22_02255420(NNSG2dCharacterData *param0, int param1, int param2, int param3)
@@ -814,16 +814,16 @@ static void ov22_02255C90(UnkStruct_ov22_0225A0E4 *param0)
     param0->unk_2C = 0;
 }
 
-static void ov22_02255CB8(UnkStruct_ov22_02255CB8 *param0, int param1, int param2, int param3)
+static void ov22_02255CB8(UnkStruct_ov22_02255CB8 *param0, int param1, int param2, int heapID)
 {
-    param0->unk_00 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov22_022557A0) * param1);
+    param0->unk_00 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov22_022557A0) * param1);
     memset(param0->unk_00, 0, sizeof(UnkStruct_ov22_022557A0) * param1);
-    param0->unk_10 = ResourceCollection_New(param1, param3);
+    param0->unk_10 = ResourceCollection_New(param1, heapID);
     param0->unk_04 = param1;
 
-    param0->unk_08 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_ov22_02255800) * param2);
+    param0->unk_08 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_ov22_02255800) * param2);
     memset(param0->unk_08, 0, sizeof(UnkStruct_ov22_02255800) * param2);
-    param0->unk_14 = ResourceCollection_New(param2, param3);
+    param0->unk_14 = ResourceCollection_New(param2, heapID);
     param0->unk_0C = param2;
 }
 

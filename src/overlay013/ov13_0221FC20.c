@@ -180,7 +180,7 @@ void ov13_0221FC20(UnkStruct_ov13_0221FC20 *param0)
         param0->unk_11 = 0;
     }
 
-    v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov13_0221FCAC, sizeof(UnkStruct_ov13_022213F0), 0, param0->unk_0C));
+    v0 = SysTask_GetParam(SysTask_StartAndAllocateParam(ov13_0221FCAC, sizeof(UnkStruct_ov13_022213F0), 0, param0->heapID));
     memset(v0, 0, sizeof(UnkStruct_ov13_022213F0));
 
     v0->unk_00 = param0;
@@ -301,14 +301,14 @@ static u8 ov13_0221FE5C(UnkStruct_ov13_022213F0 *param0)
         v0 = 1;
     }
 
-    param0->unk_2084 = ov13_02228A38(param0->unk_00->unk_0C);
+    param0->unk_2084 = ov13_02228A38(param0->unk_00->heapID);
 
     ov13_02220F98(param0);
     ov13_02220C0C(param0);
     ov13_02220D4C(param0);
     ov13_02220F08(param0);
 
-    Font_InitManager(FONT_SUBSCREEN, param0->unk_00->unk_0C);
+    Font_InitManager(FONT_SUBSCREEN, param0->unk_00->heapID);
 
     ov13_02221738(param0, param0->unk_2076);
     ov13_022260EC(param0, param0->unk_2076);
@@ -376,17 +376,17 @@ static u8 ov13_0221FFDC(UnkStruct_ov13_022213F0 *param0)
         return 17;
     }
 
-    if ((Item_LoadParam(v0->unk_22, 36, v0->unk_0C) != 0) && (Item_LoadParam(v0->unk_22, 37, v0->unk_0C) == 0) && (param0->unk_04[v0->unk_11].unk_17_7 == 0)) {
+    if ((Item_LoadParam(v0->unk_22, 36, v0->heapID) != 0) && (Item_LoadParam(v0->unk_22, 37, v0->heapID) == 0) && (param0->unk_04[v0->unk_11].unk_17_7 == 0)) {
         param0->unk_2075 = 13;
         return 22;
     }
 
     if (BattleSystem_UseBagItem(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11], 0, v0->unk_22) == 1) {
-        if (Item_LoadParam(v0->unk_22, 37, v0->unk_0C) != 0) {
+        if (Item_LoadParam(v0->unk_22, 37, v0->heapID) != 0) {
             param0->unk_2075 = 13;
         } else {
-            if ((ov13_022213F0(param0, v0->unk_11) == 1) && (Item_LoadParam(v0->unk_22, 23, v0->unk_0C) == 0)) {
-                ov13_02221A54(v0->unk_08, v0->unk_22, v0->unk_33, v0->unk_0C);
+            if ((ov13_022213F0(param0, v0->unk_11) == 1) && (Item_LoadParam(v0->unk_22, 23, v0->heapID) == 0)) {
+                ov13_02221A54(v0->unk_08, v0->unk_22, v0->unk_33, v0->heapID);
                 param0->unk_04[v0->unk_11].unk_00 = BattleSystem_PartyPokemon(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11]);
                 v0->unk_20 = Pokemon_GetValue(param0->unk_04[v0->unk_11].unk_00, MON_DATA_CURRENT_HP, NULL);
                 v0->unk_20 -= param0->unk_04[v0->unk_11].unk_10;
@@ -806,7 +806,7 @@ static u8 ov13_022207B8(UnkStruct_ov13_022213F0 *param0)
 {
     ov13_022216C0(param0, 5);
 
-    if (Item_LoadParam(param0->unk_00->unk_22, 37, param0->unk_00->unk_0C) != 0) {
+    if (Item_LoadParam(param0->unk_00->unk_22, 37, param0->unk_00->heapID) != 0) {
         return 24;
     }
 
@@ -912,7 +912,7 @@ static u8 ov13_022208A4(UnkStruct_ov13_022213F0 *param0)
         param0->unk_2078 = 3;
         break;
     case 3:
-        ov13_02221A54(v0->unk_08, v0->unk_22, v0->unk_33, v0->unk_0C);
+        ov13_02221A54(v0->unk_08, v0->unk_22, v0->unk_33, v0->heapID);
         ov13_022240E0(param0);
         param0->unk_2075 = 25;
         return 17;
@@ -973,7 +973,7 @@ static u8 ov13_02220A4C(UnkStruct_ov13_022213F0 *param0)
         }
         break;
     case 2:
-        ov13_02221A54(v0->unk_08, v0->unk_22, v0->unk_33, v0->unk_0C);
+        ov13_02221A54(v0->unk_08, v0->unk_22, v0->unk_33, v0->heapID);
         ov13_022240E0(param0);
         param0->unk_2075 = 25;
         return 17;
@@ -1105,8 +1105,8 @@ static void ov13_02220C0C(UnkStruct_ov13_022213F0 *param0)
         Bg_ClearTilemap(param0->unk_1E0, 4);
     }
 
-    Bg_ClearTilesRange(5, 32, 0, param0->unk_00->unk_0C);
-    Bg_ClearTilesRange(4, 32, 0, param0->unk_00->unk_0C);
+    Bg_ClearTilesRange(5, 32, 0, param0->unk_00->heapID);
+    Bg_ClearTilesRange(4, 32, 0, param0->unk_00->heapID);
     Bg_ScheduleTilemapTransfer(param0->unk_1E0, 5);
     Bg_ScheduleTilemapTransfer(param0->unk_1E0, 4);
 }
@@ -1122,26 +1122,26 @@ static void ov13_02220D1C(BgConfig *param0)
 
 static void ov13_02220D4C(UnkStruct_ov13_022213F0 *param0)
 {
-    NARC *v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, param0->unk_00->unk_0C);
-    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 22, param0->unk_1E0, 7, 0, 0, 0, param0->unk_00->unk_0C);
+    NARC *v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, param0->unk_00->heapID);
+    Graphics_LoadTilesToBgLayerFromOpenNARC(v0, 22, param0->unk_1E0, 7, 0, 0, 0, param0->unk_00->heapID);
 
     {
         NNSG2dScreenData *v1;
         void *v2;
 
-        v2 = NARC_AllocAndReadWholeMember(v0, 20, param0->unk_00->unk_0C);
+        v2 = NARC_AllocAndReadWholeMember(v0, 20, param0->unk_00->heapID);
         NNS_G2dGetUnpackedScreenData(v2, &v1);
         ov13_02225710(param0, (u16 *)v1->rawData);
         Heap_FreeToHeap(v2);
 
-        v2 = NARC_AllocAndReadWholeMember(v0, 21, param0->unk_00->unk_0C);
+        v2 = NARC_AllocAndReadWholeMember(v0, 21, param0->unk_00->heapID);
         NNS_G2dGetUnpackedScreenData(v2, &v1);
 
         ov13_02225A3C(param0, (u16 *)v1->rawData);
         Heap_FreeToHeap(v2);
     }
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 72, 23, param0->unk_00->unk_0C, 1, 0x20 * 16, 0);
+    PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 72, 23, param0->unk_00->heapID, 1, 0x20 * 16, 0);
     NARC_dtor(v0);
 
     {
@@ -1149,19 +1149,19 @@ static void ov13_02220D4C(UnkStruct_ov13_022213F0 *param0)
         memcpy(param0->unk_1F5C, &v3[12 * 16], 0x20 * 2);
     }
 
-    PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 14, 6, param0->unk_00->unk_0C, 1, 0x20, 13 * 16);
-    PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 14, 7, param0->unk_00->unk_0C, 1, 0x20, 15 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 14, 6, param0->unk_00->heapID, 1, 0x20, 13 * 16);
+    PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 14, 7, param0->unk_00->heapID, 1, 0x20, 15 * 16);
 
     {
         int v4 = ov16_0223EDE0(param0->unk_00->unk_08);
 
-        Graphics_LoadTilesToBgLayer(38, GetMessageBoxTilesNARCMember(v4), param0->unk_1E0, 4, 1, 0, 0, param0->unk_00->unk_0C);
-        PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 38, GetMessageBoxPaletteNARCMember(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
+        Graphics_LoadTilesToBgLayer(38, GetMessageBoxTilesNARCMember(v4), param0->unk_1E0, 4, 1, 0, 0, param0->unk_00->heapID);
+        PaletteData_LoadBufferFromFileStart(param0->unk_1E4, 38, GetMessageBoxPaletteNARCMember(v4), param0->unk_00->heapID, 1, 0x20, 14 * 16);
     }
 
     {
         u16 *v5 = PaletteData_GetUnfadedBuffer(param0->unk_1E4, 1);
-        u16 *v6 = Heap_AllocFromHeap(param0->unk_00->unk_0C, 0x20);
+        u16 *v6 = Heap_AllocFromHeap(param0->unk_00->heapID, 0x20);
 
         memcpy(v6, &v5[13 * 16], 0x20);
         memcpy(&v6[7], &v5[9 * 16 + 10], 4);
@@ -1174,10 +1174,10 @@ static void ov13_02220D4C(UnkStruct_ov13_022213F0 *param0)
 
 static void ov13_02220F08(UnkStruct_ov13_022213F0 *param0)
 {
-    param0->unk_1FA4 = MessageLoader_Init(0, 26, 3, param0->unk_00->unk_0C);
-    param0->unk_1FA0 = sub_0200C440(15, 14, 0, param0->unk_00->unk_0C);
-    param0->unk_1FA8 = StringTemplate_Default(param0->unk_00->unk_0C);
-    param0->unk_1FAC = Strbuf_Init(512, param0->unk_00->unk_0C);
+    param0->unk_1FA4 = MessageLoader_Init(0, 26, 3, param0->unk_00->heapID);
+    param0->unk_1FA0 = sub_0200C440(15, 14, 0, param0->unk_00->heapID);
+    param0->unk_1FA8 = StringTemplate_Default(param0->unk_00->heapID);
+    param0->unk_1FAC = Strbuf_Init(512, param0->unk_00->heapID);
 }
 
 static void ov13_02220F60(UnkStruct_ov13_022213F0 *param0)
@@ -1578,7 +1578,7 @@ static void ov13_02221738(UnkStruct_ov13_022213F0 *param0, u8 param1)
     u32 v2;
 
     for (v2 = 0; v2 < 2; v2++) {
-        v1 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, Unk_ov13_02228E50[param1][v2], param0->unk_00->unk_0C);
+        v1 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, Unk_ov13_02228E50[param1][v2], param0->unk_00->heapID);
         NNS_G2dGetUnpackedScreenData(v1, &v0);
         Bg_LoadToTilemapRect(param0->unk_1E0, 6 + v2, (u16 *)v0->rawData, 0, 0, 32, 24);
         Bg_ScheduleTilemapTransfer(param0->unk_1E0, 6 + v2);
