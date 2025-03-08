@@ -97,7 +97,7 @@ static int Unk_021BEB80;
 
 void sub_020041CC(u8 param0)
 {
-    u8 *v0 = sub_02003D5C(5);
+    u8 *v0 = SoundSystem_GetParam(5);
 
     *v0 = param0;
     return;
@@ -105,13 +105,13 @@ void sub_020041CC(u8 param0)
 
 u8 sub_020041DC(void)
 {
-    u8 *v0 = sub_02003D5C(5);
+    u8 *v0 = SoundSystem_GetParam(5);
     return *v0;
 }
 
 void sub_020041E8(u16 param0)
 {
-    u16 *v0 = sub_02003D5C(10);
+    u16 *v0 = SoundSystem_GetParam(10);
 
     *v0 = param0;
     sub_02004208(0);
@@ -121,13 +121,13 @@ void sub_020041E8(u16 param0)
 
 u16 sub_020041FC(void)
 {
-    u16 *v0 = sub_02003D5C(10);
+    u16 *v0 = SoundSystem_GetParam(10);
     return *v0;
 }
 
 void sub_02004208(u16 param0)
 {
-    u16 *v0 = sub_02003D5C(11);
+    u16 *v0 = SoundSystem_GetParam(11);
 
     *v0 = param0;
     return;
@@ -135,13 +135,13 @@ void sub_02004208(u16 param0)
 
 u16 sub_02004218(void)
 {
-    u16 *v0 = sub_02003D5C(11);
+    u16 *v0 = SoundSystem_GetParam(11);
     return *v0;
 }
 
 void sub_02004224(u16 param0)
 {
-    u16 *v0 = sub_02003D5C(32);
+    u16 *v0 = SoundSystem_GetParam(32);
 
     *v0 = param0;
     return;
@@ -149,8 +149,8 @@ void sub_02004224(u16 param0)
 
 void sub_02004234(u8 param0)
 {
-    u8 *v0 = sub_02003D5C(21);
-    u8 *v1 = sub_02003D5C(22);
+    u8 *v0 = SoundSystem_GetParam(21);
+    u8 *v1 = SoundSystem_GetParam(22);
 
     if (param0 < 51) {
         *v0 = param0;
@@ -164,8 +164,8 @@ void sub_02004234(u8 param0)
 
 void sub_02004258(u8 param0)
 {
-    u8 *v0 = sub_02003D5C(21);
-    u8 *v1 = sub_02003D5C(22);
+    u8 *v0 = SoundSystem_GetParam(21);
+    u8 *v1 = SoundSystem_GetParam(22);
 
     *v1 = param0;
     return;
@@ -316,9 +316,9 @@ int sub_0200426C(u8 param0)
 
 BOOL sub_02004550(u8 param0, u16 param1, int param2)
 {
-    u8 *v0 = sub_02003D5C(21);
-    u8 *v1 = sub_02003D5C(22);
-    u16 *v2 = sub_02003D5C(14);
+    u8 *v0 = SoundSystem_GetParam(21);
+    u8 *v1 = SoundSystem_GetParam(22);
+    u16 *v2 = SoundSystem_GetParam(14);
 
     if (param0 < 51) {
         if (*v0 == param0) {
@@ -408,12 +408,12 @@ BOOL sub_02004550(u8 param0, u16 param1, int param2)
 
 static void sub_020046CC(u8 param0)
 {
-    int *v0 = sub_02003D5C(24);
+    int *v0 = SoundSystem_GetParam(24);
 
     SoundSystem_LoadHeapState(*v0);
-    SoundSystem_SaveHeapState(sub_02003D5C(25));
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(25));
     sub_0200426C(param0);
-    SoundSystem_SaveHeapState(sub_02003D5C(26));
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
 
     return;
 }
@@ -422,9 +422,9 @@ static void sub_020046F8(u16 param0, int param1)
 {
     int v0, v1;
     u16 v2;
-    u8 *v3 = sub_02003D5C(12);
-    int *v4 = sub_02003D5C(24);
-    u16 *v5 = sub_02003D5C(32);
+    u8 *v3 = SoundSystem_GetParam(12);
+    int *v4 = SoundSystem_GetParam(24);
+    u16 *v5 = SoundSystem_GetParam(32);
 
     v1 = sub_02004B34(SoundSystem_GetSoundHandle(0));
 
@@ -447,7 +447,7 @@ static void sub_020046F8(u16 param0, int param1)
     if (*v3 == 1) {
         SoundSystem_LoadHeapState(sub_02004974(2));
         sub_0200426C(4);
-        SoundSystem_SaveHeapState(sub_02003D5C(26));
+        SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
 
         if (v1 != param0) {
             sub_020049F4(1, 0);
@@ -464,7 +464,7 @@ static void sub_020046F8(u16 param0, int param1)
 
 static void sub_0200478C(u16 param0, u16 param1)
 {
-    u16 *v0 = sub_02003D5C(32);
+    u16 *v0 = SoundSystem_GetParam(32);
     u16 v1 = sub_02004B48(*v0);
 
     if ((v1 != 701) && (v1 != 703)) {
@@ -474,7 +474,7 @@ static void sub_0200478C(u16 param0, u16 param1)
         SoundSystem_LoadSequenceEx(*v0, NNS_SND_ARC_LOAD_WAVE | NNS_SND_ARC_LOAD_BANK);
     }
 
-    SoundSystem_SaveHeapState(sub_02003D5C(27));
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(27));
     sub_020049F4(1, 0);
     sub_0200560C(127, 40, 0);
     sub_0200501C(0);
@@ -485,16 +485,16 @@ static void sub_0200478C(u16 param0, u16 param1)
 void sub_020047E8(u16 param0, u16 param1)
 {
     u16 v0;
-    u8 *v1 = sub_02003D5C(19);
-    u16 *v2 = sub_02003D5C(32);
+    u8 *v1 = SoundSystem_GetParam(19);
+    u16 *v2 = SoundSystem_GetParam(32);
 
     if ((*v1 == 1) || (param1 == 0)) {
         SoundSystem_LoadHeapState(sub_02004974(1));
         sub_02004258(0);
         SoundSystem_LoadSequenceEx(*v2, NNS_SND_ARC_LOAD_BANK);
-        SoundSystem_SaveHeapState(sub_02003D5C(25));
+        SoundSystem_SaveHeapState(SoundSystem_GetParam(25));
         sub_0200426C(4);
-        SoundSystem_SaveHeapState(sub_02003D5C(26));
+        SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
 
         v0 = sub_02004B48(*v2);
 
@@ -505,7 +505,7 @@ void sub_020047E8(u16 param0, u16 param1)
             SoundSystem_LoadSequenceEx(*v2, NNS_SND_ARC_LOAD_WAVE);
         }
 
-        SoundSystem_SaveHeapState(sub_02003D5C(27));
+        SoundSystem_SaveHeapState(SoundSystem_GetParam(27));
     }
 
     return;
@@ -513,12 +513,12 @@ void sub_020047E8(u16 param0, u16 param1)
 
 static void sub_02004874(u16 param0, int param1)
 {
-    int *v0 = sub_02003D5C(24);
+    int *v0 = SoundSystem_GetParam(24);
 
     sub_0200540C();
     SoundSystem_LoadHeapState(sub_02004974(2));
     sub_0200426C(5);
-    SoundSystem_SaveHeapState(sub_02003D5C(26));
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
     sub_0200501C(1);
     Sound_PlayBGM(param0);
 
@@ -527,7 +527,7 @@ static void sub_02004874(u16 param0, int param1)
 
 static void sub_020048AC(u16 param0, int param1)
 {
-    int *v0 = sub_02003D5C(24);
+    int *v0 = SoundSystem_GetParam(24);
 
     sub_0200569C();
     sub_02004A3C();
@@ -539,7 +539,7 @@ static void sub_020048AC(u16 param0, int param1)
 
 void sub_020048CC(u16 param0, int param1)
 {
-    int *v0 = sub_02003D5C(24);
+    int *v0 = SoundSystem_GetParam(24);
 
     sub_0200569C();
     sub_020046CC(6);
@@ -551,7 +551,7 @@ void sub_020048CC(u16 param0, int param1)
 
 void sub_020048F0(u16 param0, int param1)
 {
-    int *v0 = sub_02003D5C(24);
+    int *v0 = SoundSystem_GetParam(24);
 
     sub_0200569C();
     sub_020046CC(7);
@@ -565,14 +565,14 @@ static void sub_02004914(u8 param0)
 {
     sub_02004964();
     sub_0200426C(param0);
-    SoundSystem_SaveHeapState(sub_02003D5C(28));
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(28));
 
     return;
 }
 
 static void sub_02004930(u8 param0, u16 param1, int param2)
 {
-    int *v0 = sub_02003D5C(24);
+    int *v0 = SoundSystem_GetParam(24);
 
     sub_0200569C();
     sub_020046CC(param0);
@@ -605,31 +605,31 @@ int sub_02004974(int param0)
 
     if (param0 >= 7) {
         GF_ASSERT(FALSE);
-        v0 = sub_02003D5C(27);
+        v0 = SoundSystem_GetParam(27);
         return *v0;
     }
 
     switch (param0) {
     case 0:
-        v0 = sub_02003D5C(23);
+        v0 = SoundSystem_GetParam(23);
         break;
     case 1:
-        v0 = sub_02003D5C(24);
+        v0 = SoundSystem_GetParam(24);
         break;
     case 2:
-        v0 = sub_02003D5C(25);
+        v0 = SoundSystem_GetParam(25);
         break;
     case 3:
-        v0 = sub_02003D5C(26);
+        v0 = SoundSystem_GetParam(26);
         break;
     case 4:
-        v0 = sub_02003D5C(27);
+        v0 = SoundSystem_GetParam(27);
         break;
     case 5:
-        v0 = sub_02003D5C(28);
+        v0 = SoundSystem_GetParam(28);
         break;
     case 6:
-        v0 = sub_02003D5C(29);
+        v0 = SoundSystem_GetParam(29);
         break;
     }
 
@@ -642,10 +642,10 @@ void sub_020049F4(u8 param0, BOOL param1)
     u8 *v1;
 
     if (param0 == 1) {
-        v1 = sub_02003D5C(12);
+        v1 = SoundSystem_GetParam(12);
         v0 = 0;
     } else if (param0 == 7) {
-        v1 = sub_02003D5C(13);
+        v1 = SoundSystem_GetParam(13);
         v0 = 7;
     } else {
         return;
@@ -663,8 +663,8 @@ void sub_020049F4(u8 param0, BOOL param1)
 
 void sub_02004A3C(void)
 {
-    u8 *v0 = sub_02003D5C(12);
-    u8 *v1 = sub_02003D5C(13);
+    u8 *v0 = SoundSystem_GetParam(12);
+    u8 *v1 = SoundSystem_GetParam(13);
 
     *v0 = 0;
     *v1 = 0;
@@ -837,8 +837,8 @@ MICResult sub_02004B70(MICSamplingType param0, void *param1, MICCallback param2,
 NNSSndWaveOutHandle *sub_02004B78(u32 param0)
 {
     SoundSystem *v0 = SoundSystem_Get();
-    u8 *v1 = sub_02003D5C(16);
-    u8 *v2 = sub_02003D5C(17);
+    u8 *v1 = SoundSystem_GetParam(16);
+    u8 *v2 = SoundSystem_GetParam(17);
 
     if ((param0 != 14) && (param0 != 15)) {
         GF_ASSERT(FALSE);
@@ -853,9 +853,9 @@ NNSSndWaveOutHandle *sub_02004B78(u32 param0)
     }
 
     if (param0 == 14) {
-        return sub_02003D5C(0);
+        return SoundSystem_GetParam(0);
     } else {
-        return sub_02003D5C(1);
+        return SoundSystem_GetParam(1);
     }
 }
 
@@ -866,8 +866,8 @@ BOOL sub_02004BCC(u32 param0)
     NNSSndWaveOutHandle *v2;
     SoundSystem *v3 = SoundSystem_Get();
 
-    v0 = sub_02003D5C(16);
-    v1 = sub_02003D5C(17);
+    v0 = SoundSystem_GetParam(16);
+    v1 = SoundSystem_GetParam(17);
 
     if ((param0 != 14) && (param0 != 15)) {
         GF_ASSERT(FALSE);
@@ -875,7 +875,7 @@ BOOL sub_02004BCC(u32 param0)
 
     if (param0 == 14) {
         if (*v0 == 0) {
-            v2 = sub_02003D5C(0);
+            v2 = SoundSystem_GetParam(0);
             *v2 = NNS_SndWaveOutAllocChannel(param0);
 
             if (*v2 == NNS_SND_WAVEOUT_INVALID_HANDLE) {
@@ -888,7 +888,7 @@ BOOL sub_02004BCC(u32 param0)
         }
     } else {
         if (*v1 == 0) {
-            v2 = sub_02003D5C(1);
+            v2 = SoundSystem_GetParam(1);
             *v2 = NNS_SndWaveOutAllocChannel(param0);
 
             if (*v2 == NNS_SND_WAVEOUT_INVALID_HANDLE) {
@@ -908,8 +908,8 @@ void sub_02004C4C(u32 param0)
 {
     NNSSndWaveOutHandle *v0;
     SoundSystem *v1 = SoundSystem_Get();
-    u8 *v2 = sub_02003D5C(16);
-    u8 *v3 = sub_02003D5C(17);
+    u8 *v2 = SoundSystem_GetParam(16);
+    u8 *v3 = SoundSystem_GetParam(17);
 
     if ((param0 != 14) && (param0 != 15)) {
         GF_ASSERT(FALSE);
@@ -997,7 +997,7 @@ BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int heapID)
     u32 v2;
     int v3, v4;
     SoundSystem *v5 = SoundSystem_Get();
-    void **v6 = sub_02003D5C(34);
+    void **v6 = SoundSystem_GetParam(34);
 
     if ((param3 != 14) && (param3 != 15)) {
         GF_ASSERT(FALSE);
@@ -1056,7 +1056,7 @@ BOOL sub_02004D78(u16 param0, int param1, int param2, u32 param3, int heapID)
         sub_02004D40(param3, param1);
     }
 
-    v0 = sub_02003D5C(15);
+    v0 = SoundSystem_GetParam(15);
     *v0 = 1;
 
     return v4;
@@ -1079,8 +1079,8 @@ static void sub_02004E64(u8 *param0, u32 param1)
 void sub_02004E84(u32 param0)
 {
     SoundSystem *v0 = SoundSystem_Get();
-    u8 *v1 = sub_02003D5C(15);
-    void **v2 = sub_02003D5C(34);
+    u8 *v1 = SoundSystem_GetParam(15);
+    void **v2 = SoundSystem_GetParam(34);
 
     if ((param0 != 14) && (param0 != 15)) {
         GF_ASSERT(FALSE);
@@ -1108,7 +1108,7 @@ BOOL sub_02004EC0(void)
 BOOL sub_02004EC8(int param0)
 {
     SoundSystem *v0 = SoundSystem_Get();
-    s8 *v1 = sub_02003D5C(3);
+    s8 *v1 = SoundSystem_GetParam(3);
 
     return NNS_SndCaptureStartReverb(v1, 0x1000, (NNS_SND_CAPTURE_FORMAT_PCM16), 16000, param0);
 }
@@ -1129,8 +1129,8 @@ BOOL sub_02004EFC(void)
 {
     SoundSystem *v1 = SoundSystem_Get();
 
-    MI_CpuClear8(sub_02003D5C(4), sizeof(UnkStruct_020052C8));
-    return NNS_SndCaptureStartEffect(sub_02003D5C(3), 0x1000, NNS_SND_CAPTURE_FORMAT_PCM16, 22000, 2, sub_020052C8, sub_02003D5C(4));
+    MI_CpuClear8(SoundSystem_GetParam(4), sizeof(UnkStruct_020052C8));
+    return NNS_SndCaptureStartEffect(SoundSystem_GetParam(3), 0x1000, NNS_SND_CAPTURE_FORMAT_PCM16, 22000, 2, sub_020052C8, SoundSystem_GetParam(4));
 }
 
 void sub_02004F44(void)
@@ -1141,7 +1141,7 @@ void sub_02004F44(void)
 
 void sub_02004F4C(int param0)
 {
-    u8 *v0 = sub_02003D5C(20);
+    u8 *v0 = SoundSystem_GetParam(20);
 
     if (param0 > 8) {
         param0 = 8;
@@ -1189,7 +1189,7 @@ void Sound_SetPlaybackMode(BOOL param0)
 
 void sub_02004FCC(int param0)
 {
-    int *v0 = sub_02003D5C(7);
+    int *v0 = SoundSystem_GetParam(7);
 
     *v0 = param0;
     return;
@@ -1197,7 +1197,7 @@ void sub_02004FCC(int param0)
 
 void sub_02004FDC(int param0)
 {
-    int *v0 = sub_02003D5C(8);
+    int *v0 = SoundSystem_GetParam(8);
 
     *v0 = param0;
     return;
@@ -1205,7 +1205,7 @@ void sub_02004FDC(int param0)
 
 int sub_02004FEC()
 {
-    u16 *v0 = sub_02003D5C(8);
+    u16 *v0 = SoundSystem_GetParam(8);
 
     if (*v0 <= 0) {
         *v0 = 0;
@@ -1229,7 +1229,7 @@ void *sub_02005014(void)
 
 void sub_0200501C(int param0)
 {
-    u8 *v0 = sub_02003D5C(19);
+    u8 *v0 = SoundSystem_GetParam(19);
 
     *v0 = param0;
     return;
@@ -1237,7 +1237,7 @@ void sub_0200501C(int param0)
 
 BOOL sub_0200502C(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5)
 {
-    u8 *v0 = sub_02003D5C(22);
+    u8 *v0 = SoundSystem_GetParam(22);
 
     sub_020050A4(param0, param1, param2, param3, param4, param5);
     *v0 = 0;
@@ -1248,7 +1248,7 @@ BOOL sub_0200502C(u8 param0, u16 param1, int param2, int param3, u8 param4, void
 
 BOOL sub_02005068(u8 param0, u16 param1, int param2, int param3, int param4, u8 param5, void *param6)
 {
-    int *v0 = sub_02003D5C(9);
+    int *v0 = SoundSystem_GetParam(9);
 
     sub_020050A4(param0, param1, param2, param3, param5, param6);
     *v0 = param4;
@@ -1259,7 +1259,7 @@ BOOL sub_02005068(u8 param0, u16 param1, int param2, int param3, int param4, u8 
 
 static void sub_020050A4(u8 param0, u16 param1, int param2, int param3, u8 param4, void *param5)
 {
-    const NNSSndArcBankInfo **v0 = sub_02003D5C(2);
+    const NNSSndArcBankInfo **v0 = SoundSystem_GetParam(2);
 
     sub_0200564C(0, param2);
     sub_020041E8(0);
@@ -1315,7 +1315,7 @@ static const SNDWaveData *sub_02005130(int param0)
     u16 v0;
     const NNSSndArcWaveArcInfo *v1;
     SNDWaveArc *v2 = NULL;
-    const SNDWaveData **v3 = sub_02003D5C(33);
+    const SNDWaveData **v3 = SoundSystem_GetParam(33);
 
     v0 = param0;
 
@@ -1470,7 +1470,7 @@ static void sub_020052C8(void *param0, void *param1, u32 param2, NNSSndCaptureFo
     s16 *v1 = (s16 *)param0;
     s16 *v2 = (s16 *)param1;
     UnkStruct_020052C8 *v3 = (UnkStruct_020052C8 *)param4;
-    u8 *v4 = sub_02003D5C(20);
+    u8 *v4 = SoundSystem_GetParam(20);
     int v5;
     int v6;
     int v7, v8;
@@ -1567,7 +1567,7 @@ void sub_0200544C(int param0, int param1)
 
 void sub_02005454(BOOL param0)
 {
-    u8 *v0 = sub_02003D5C(53);
+    u8 *v0 = SoundSystem_GetParam(53);
 
     *v0 = param0;
     return;
@@ -1575,7 +1575,7 @@ void sub_02005454(BOOL param0)
 
 void sub_02005464(BOOL param0)
 {
-    u8 *v0 = sub_02003D5C(54);
+    u8 *v0 = SoundSystem_GetParam(54);
 
     *v0 = param0;
     return;

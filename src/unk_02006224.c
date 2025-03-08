@@ -24,8 +24,8 @@ int Sound_Chatter(ChatotCry *param0);
 
 BOOL CheckMicRecordingStatus(void)
 {
-    u8 *v0 = sub_02003D5C(16);
-    u8 *v1 = sub_02003D5C(30);
+    u8 *v0 = SoundSystem_GetParam(16);
+    u8 *v1 = SoundSystem_GetParam(30);
 
     if (*v1 == 1) {
         if (*v0 == 1) {
@@ -44,8 +44,8 @@ BOOL CheckMicRecordingStatus(void)
 
 BOOL IsChatotCryStructReadyForProcessing(const ChatotCry *cry)
 {
-    u8 *v0 = sub_02003D5C(31);
-    u8 *v1 = sub_02003D5C(54);
+    u8 *v0 = SoundSystem_GetParam(31);
+    u8 *v1 = SoundSystem_GetParam(54);
 
     if (IsChatotCryDataValid(cry) == FALSE) {
         return FALSE;
@@ -67,7 +67,7 @@ BOOL ProcessAudioInput(const ChatotCry *cry, u32 param1, int volume, int pan)
     u16 v0;
     int v1, v2;
     s8 *v3 = sub_02005014();
-    u8 *v4 = sub_02003D5C(30);
+    u8 *v4 = SoundSystem_GetParam(30);
 
     if (IsChatotCryStructReadyForProcessing(cry) == FALSE) {
         return FALSE;
@@ -112,8 +112,8 @@ BOOL ProcessAudioInput(const ChatotCry *cry, u32 param1, int volume, int pan)
 
 void ResetMicStatusFlags(void)
 {
-    u8 *v0 = sub_02003D5C(16);
-    u8 *v1 = sub_02003D5C(30);
+    u8 *v0 = SoundSystem_GetParam(16);
+    u8 *v1 = SoundSystem_GetParam(30);
 
     if (*v0 == 1) {
         sub_02004E84(14);
@@ -157,7 +157,7 @@ void StoreMicDataInChatotCryStruct(ChatotCry *param0)
 
 void Sound_FlagDefaultChatotCry(u8 value)
 {
-    u8 *v0 = sub_02003D5C(31);
+    u8 *v0 = SoundSystem_GetParam(31);
 
     *v0 = value;
     return;
@@ -166,7 +166,7 @@ void Sound_FlagDefaultChatotCry(u8 value)
 BOOL Sound_PlayChatotCry(ChatotCry *param0, u32 param1, int volume, int pan)
 {
     int v0;
-    ChatotCry **v1 = sub_02003D5C(36);
+    ChatotCry **v1 = SoundSystem_GetParam(36);
 
     if (param0 == NULL) {
         v0 = ProcessAudioInput(*v1, param1, volume, pan);
@@ -185,7 +185,7 @@ BOOL Sound_PlayChatotCry(ChatotCry *param0, u32 param1, int volume, int pan)
 BOOL Sound_PlayDelayedChatotCry(ChatotCry *param0, u32 param1, int volume, int pan, u8 delay)
 {
     int v0;
-    ChatotCry **v1 = sub_02003D5C(36);
+    ChatotCry **v1 = SoundSystem_GetParam(36);
 
     if (param0 == NULL) {
         v0 = ProcessAudioInput(*v1, param1, volume, pan);
