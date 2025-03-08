@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV19_021D0D80_H
 #define POKEPLATINUM_OV19_021D0D80_H
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D4F5C.h"
@@ -14,28 +14,28 @@
 #include "pokemon.h"
 #include "string_template.h"
 
-#define LEFT_MAIN_PC_BUTTON_X  0
-#define RIGHT_MAIN_PC_BUTTON_X 255
+#define MAIN_PC_LEFT_BUTTON_X  0
+#define MAIN_PC_RIGHT_BUTTON_X 255
 #define MAIN_PC_BUTTON_Y       184
-#define MAIN_PC_BUTTON_RAD     40
+#define MAIN_PC_BUTTON_R       40
 
-#define COMPARE_POKEMON_PC_BUTTON_X   128
-#define COMPARE_POKEMON_PC_BUTTON_Y   178
-#define COMPARE_POKEMON_PC_BUTTON_RAD 12
+#define COMPARE_MON_PC_BUTTON_X 128
+#define COMPARE_MON_PC_BUTTON_Y 178
+#define COMPARE_MON_PC_BUTTON_R 12
 
-#define PC_MARKINGS_BUTTON1_X          152
-#define PC_MARKINGS_BUTTON1_Y          168
-#define PC_MARKINGS_BUTTON2_X          163
-#define PC_MARKINGS_BUTTON2_Y          134
-#define PC_MARKINGS_BUTTON3_X          184
-#define PC_MARKINGS_BUTTON3_Y          104
-#define PC_MARKINGS_BUTTON4_X          216
-#define PC_MARKINGS_BUTTON4_Y          84
-#define PC_MARKINGS_BUTTON5_X          240
-#define PC_MARKINGS_BUTTON5_Y          52
-#define PC_MARKINGS_BUTTON6_X          240
-#define PC_MARKINGS_BUTTON6_Y          16
-#define POKEMON_PC_MARKINGS_BUTTON_RAD 16
+#define PC_MARKINGS_BUTTON1_X 152
+#define PC_MARKINGS_BUTTON1_Y 168
+#define PC_MARKINGS_BUTTON2_X 163
+#define PC_MARKINGS_BUTTON2_Y 134
+#define PC_MARKINGS_BUTTON3_X 184
+#define PC_MARKINGS_BUTTON3_Y 104
+#define PC_MARKINGS_BUTTON4_X 216
+#define PC_MARKINGS_BUTTON4_Y 84
+#define PC_MARKINGS_BUTTON5_X 240
+#define PC_MARKINGS_BUTTON5_Y 52
+#define PC_MARKINGS_BUTTON6_X 240
+#define PC_MARKINGS_BUTTON6_Y 16
+#define PC_MARKINGS_BUTTONS_R 16
 
 int ov19_021D0D80(OverlayManager *param0, int *param1);
 int ov19_021D0DEC(OverlayManager *param0, int *param1);

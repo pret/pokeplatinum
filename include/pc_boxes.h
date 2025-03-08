@@ -1,7 +1,7 @@
-#ifndef POKEPLATINUM_POKEMON_STORAGE_SYSTEM_MANAGER_H
-#define POKEPLATINUM_POKEMON_STORAGE_SYSTEM_MANAGER_H
+#ifndef POKEPLATINUM_PC_BOXES_H
+#define POKEPLATINUM_PC_BOXES_H
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "pokemon.h"
 #include "strbuf.h"
@@ -16,10 +16,6 @@
 #define PC_BOX_NAME_BUFFER_LEN    20
 
 #define USE_CURRENT_BOX -1
-#define CheckUseCurrentBox(pcBoxes, box) \
-    if (box == USE_CURRENT_BOX) {        \
-        box = pcBoxes->currentBox;       \
-    }
 
 void PCBoxes_Init(PCBoxes *pcBoxes);
 u32 PCBoxes_SaveSize(void);
@@ -46,4 +42,4 @@ void PCBoxes_UnlockWallpaper(PCBoxes *pcBoxes, u32 wallpaper);
 BOOL PCBoxes_CheckHasUnlockedWallpaper(const PCBoxes *pcBoxes, u32 wallpaper);
 u32 PCBoxes_CountUnlockedWallpapers(const PCBoxes *pcBoxes);
 
-#endif // POKEPLATINUM_POKEMON_STORAGE_SYSTEM_MANAGER_H
+#endif // POKEPLATINUM_PC_BOXES_H

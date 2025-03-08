@@ -5,8 +5,8 @@
 
 #include "constants/species.h"
 
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/struct_02030A80.h"
 
 #include "overlay061/struct_ov61_0222AE80.h"
@@ -15,7 +15,7 @@
 #include "overlay062/struct_ov62_02239DA4.h"
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
 
-#include "pokemon_storage_system_manager.h"
+#include "pc_boxes.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "unk_020298BC.h"

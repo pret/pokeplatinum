@@ -7,7 +7,7 @@
 #include "generated/items.h"
 #include "generated/species.h"
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_022414B8.h"
@@ -29,9 +29,9 @@
 #include "message.h"
 #include "narc.h"
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "pokemon_storage_system_manager.h"
 #include "render_window.h"
 #include "sprite.h"
 #include "strbuf.h"

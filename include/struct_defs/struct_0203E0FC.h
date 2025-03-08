@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_0203E0FC_H
 #define POKEPLATINUM_STRUCT_0203E0FC_H
 
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
-#include "struct_decls/struct_020797DC_decl.h"
 
 #include "bag.h"
 #include "game_options.h"

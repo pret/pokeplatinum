@@ -6,7 +6,7 @@
 #include "generated/pokemon_colors.h"
 #include "generated/species.h"
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
@@ -22,8 +22,8 @@
 #include "item.h"
 #include "message.h"
 #include "narc.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
-#include "pokemon_storage_system_manager.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "sys_task.h"

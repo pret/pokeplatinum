@@ -1,4 +1,4 @@
-#include "pokemon_storage_system_manager.h"
+#include "pc_boxes.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -56,7 +56,7 @@ static void Init(PCBoxes *pcBoxes)
     MessageLoader *messageLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STORAGE_SYSTEM, HEAP_ID_SYSTEM);
     if (messageLoader) {
         for (box = 0; box < MAX_PC_BOXES; box++) {
-            MessageLoader_Get(messageLoader, box1_name_id + box, pcBoxes->names[box]);
+            MessageLoader_Get(messageLoader, box1_name + box, pcBoxes->names[box]);
         }
 
         MessageLoader_Free(messageLoader);
@@ -91,7 +91,9 @@ BOOL PCBoxes_TryStoreBoxMonInBox(PCBoxes *pcBoxes, u32 box, BoxPokemon *boxMon)
     BoxPokemon_RestorePP(boxMon);
     BoxPokemon_SetShayminForm(boxMon, 0);
 
-    CheckUseCurrentBox(pcBoxes, box);
+    if (box == USE_CURRENT_BOX) {
+        box = pcBoxes->currentBox;
+    }
 
     for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
         if (BoxPokemon_GetValue(&pcBoxes->boxMons[box][monPosInBox], MON_DATA_SPECIES, NULL) == SPECIES_NONE) {
@@ -109,7 +111,9 @@ BOOL PCBoxes_TryStoreBoxMonAt(PCBoxes *pcBoxes, u32 box, u32 monPosInBox, BoxPok
     BoxPokemon_RestorePP(boxMon);
     BoxPokemon_SetShayminForm(boxMon, 0);
 
-    CheckUseCurrentBox(pcBoxes, box);
+    if (box == USE_CURRENT_BOX) {
+        box = pcBoxes->currentBox;
+    }
 
     if (box < MAX_PC_BOXES && monPosInBox < MAX_MONS_PER_BOX) {
         pcBoxes->boxMons[box][monPosInBox] = *boxMon;
@@ -124,7 +128,9 @@ BOOL PCBoxes_TryStoreBoxMonAt(PCBoxes *pcBoxes, u32 box, u32 monPosInBox, BoxPok
 
 void PCBoxes_InitBoxMonAt(PCBoxes *pcBoxes, u32 box, u32 monPosInBox)
 {
-    CheckUseCurrentBox(pcBoxes, box);
+    if (box == USE_CURRENT_BOX) {
+        box = pcBoxes->currentBox;
+    }
 
     if (monPosInBox < MAX_MONS_PER_BOX && box < MAX_PC_BOXES) {
         BoxPokemon_Init(&pcBoxes->boxMons[box][monPosInBox]);
@@ -164,7 +170,7 @@ u32 PCBoxes_FirstEmptyBox(const PCBoxes *pcBoxes)
 
 BOOL PCBoxes_TryGetNextAvailableSpace(const PCBoxes *pcBoxes, int *boxIndexDest, int *monPosInBoxDest)
 {
-    if (*boxIndexDest == -1) {
+    if (*boxIndexDest == USE_CURRENT_BOX) {
         *boxIndexDest = pcBoxes->currentBox;
     }
 
@@ -232,7 +238,9 @@ u32 PCBoxes_GetWallpaper(const PCBoxes *pcBoxes, u32 box)
 
 void PCBoxes_SetWallpaper(PCBoxes *pcBoxes, u32 box, u32 wallpaper)
 {
-    CheckUseCurrentBox(pcBoxes, box);
+    if (box == USE_CURRENT_BOX) {
+        box = pcBoxes->currentBox;
+    }
 
     if (box < MAX_PC_BOXES && wallpaper < MAX_WALLPAPERS) {
         if (wallpaper >= MAX_DEFAULT_WALLPAPERS) {
@@ -248,7 +256,9 @@ void PCBoxes_SetWallpaper(PCBoxes *pcBoxes, u32 box, u32 wallpaper)
 
 void PCBoxes_BufferBoxName(const PCBoxes *pcBoxes, u32 box, Strbuf *dest)
 {
-    CheckUseCurrentBox(pcBoxes, box);
+    if (box == USE_CURRENT_BOX) {
+        box = pcBoxes->currentBox;
+    }
 
     if (box < MAX_PC_BOXES) {
         Strbuf_CopyChars(dest, pcBoxes->names[box]);
@@ -259,7 +269,9 @@ void PCBoxes_BufferBoxName(const PCBoxes *pcBoxes, u32 box, Strbuf *dest)
 
 void PCBoxes_RenameBox(PCBoxes *pcBoxes, u32 box, const Strbuf *newName)
 {
-    CheckUseCurrentBox(pcBoxes, box);
+    if (box == USE_CURRENT_BOX) {
+        box = pcBoxes->currentBox;
+    }
 
     if (box < MAX_PC_BOXES) {
         Strbuf_ToChars(newName, pcBoxes->names[box], 20);
@@ -269,7 +281,9 @@ void PCBoxes_RenameBox(PCBoxes *pcBoxes, u32 box, const Strbuf *newName)
 
 u32 PCBoxes_CountMonsInBox(const PCBoxes *pcBoxes, u32 box)
 {
-    CheckUseCurrentBox(pcBoxes, box);
+    if (box == USE_CURRENT_BOX) {
+        box = pcBoxes->currentBox;
+    }
 
     if (box < MAX_PC_BOXES) {
         u32 count = 0;
@@ -290,7 +304,9 @@ u32 PCBoxes_CountMonsInBox(const PCBoxes *pcBoxes, u32 box)
 
 u32 PCBoxes_CountNonEggMonsInBox(const PCBoxes *pcBoxes, u32 box)
 {
-    CheckUseCurrentBox(pcBoxes, box);
+    if (box == USE_CURRENT_BOX) {
+        box = pcBoxes->currentBox;
+    }
 
     if (box < MAX_PC_BOXES) {
         u32 count = 0;
@@ -324,20 +340,24 @@ u32 PCBoxes_CountAllNonEggBoxMons(const PCBoxes *pcBoxes)
 
 u32 PCBoxes_GetBoxMonData(const PCBoxes *pcBoxes, u32 box, u32 monPosInBox, enum PokemonDataParam pokemonData, void *dest)
 {
-    GF_ASSERT(box < MAX_PC_BOXES || box == -1);
+    GF_ASSERT(box < MAX_PC_BOXES || box == USE_CURRENT_BOX);
     GF_ASSERT(monPosInBox < MAX_MONS_PER_BOX);
 
-    CheckUseCurrentBox(pcBoxes, box);
+    if (box == USE_CURRENT_BOX) {
+        box = pcBoxes->currentBox;
+    }
 
     return BoxPokemon_GetValue((&pcBoxes->boxMons[box][monPosInBox]), pokemonData, dest);
 }
 
 void PCBoxes_SetBoxMonData(PCBoxes *pcBoxes, u32 box, u32 monPosInBox, enum PokemonDataParam pokemonData, void *value)
 {
-    GF_ASSERT(box < MAX_PC_BOXES || box == -1);
+    GF_ASSERT(box < MAX_PC_BOXES || box == USE_CURRENT_BOX);
     GF_ASSERT(monPosInBox < MAX_MONS_PER_BOX);
 
-    CheckUseCurrentBox(pcBoxes, box);
+    if (box == USE_CURRENT_BOX) {
+        box = pcBoxes->currentBox;
+    }
 
     BoxPokemon_SetValue((&pcBoxes->boxMons[box][monPosInBox]), pokemonData, value);
     SaveData_SetFullSaveRequired();
@@ -345,10 +365,12 @@ void PCBoxes_SetBoxMonData(PCBoxes *pcBoxes, u32 box, u32 monPosInBox, enum Poke
 
 BoxPokemon *PCBoxes_GetBoxMonAt(const PCBoxes *pcBoxes, u32 box, u32 monPosInBox)
 {
-    GF_ASSERT(box < MAX_PC_BOXES || box == -1);
+    GF_ASSERT(box < MAX_PC_BOXES || box == USE_CURRENT_BOX);
     GF_ASSERT(monPosInBox < MAX_MONS_PER_BOX);
 
-    CheckUseCurrentBox(pcBoxes, box);
+    if (box == USE_CURRENT_BOX) {
+        box = pcBoxes->currentBox;
+    }
 
     return &pcBoxes->boxMons[box][monPosInBox];
 }

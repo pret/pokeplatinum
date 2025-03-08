@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/battle_system.h"
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "battle/battle_lib.h"
 #include "battle/ov16_0223DF00.h"
@@ -28,8 +28,8 @@
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
-#include "pokemon_storage_system_manager.h"
 #include "render_window.h"
 #include "sprite_system.h"
 #include "strbuf.h"

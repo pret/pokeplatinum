@@ -12,15 +12,15 @@
 #include "generated/moves.h"
 #include "generated/text_banks.h"
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/trainer.h"
 
 #include "charcode.h"
 #include "enums.h"
 #include "heap.h"
 #include "message.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
-#include "pokemon_storage_system_manager.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
 #include "savedata.h"

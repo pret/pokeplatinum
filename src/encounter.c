@@ -10,8 +10,8 @@
 #include "generated/map_headers.h"
 #include "generated/trainer_score_events.h"
 
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system.h"
@@ -36,8 +36,8 @@
 #include "location.h"
 #include "map_object.h"
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
-#include "pokemon_storage_system_manager.h"
 #include "pokeradar.h"
 #include "save_player.h"
 #include "script_manager.h"

@@ -5,7 +5,7 @@
 
 #include "constants/heap.h"
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "field/field_system.h"
 #include "overlay005/ov5_021E622C.h"
@@ -18,8 +18,8 @@
 #include "item.h"
 #include "map_header.h"
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
-#include "pokemon_storage_system_manager.h"
 #include "ribbon.h"
 #include "save_player.h"
 #include "trainer_info.h"

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
@@ -20,9 +20,9 @@
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
-#include "pokemon_storage_system_manager.h"
 #include "sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"

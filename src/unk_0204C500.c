@@ -5,9 +5,9 @@
 
 #include "generated/catching_show_points_category.h"
 
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
-#include "struct_decls/struct_020797DC_decl.h"
 
 #include "savedata/save_table.h"
 
@@ -15,9 +15,9 @@
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
+#include "pc_boxes.h"
 #include "pokedex.h"
 #include "pokemon.h"
-#include "pokemon_storage_system_manager.h"
 #include "save_player.h"
 #include "system_flags.h"
 #include "trainer_info.h"

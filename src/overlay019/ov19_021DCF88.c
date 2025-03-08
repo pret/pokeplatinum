@@ -17,7 +17,7 @@
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
-#include "pokemon_storage_system_manager.h"
+#include "pc_boxes.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "sys_task.h"

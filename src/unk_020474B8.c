@@ -7,7 +7,7 @@
 #include "constants/narc.h"
 #include "generated/text_banks.h"
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
@@ -20,8 +20,8 @@
 #include "map_header_util.h"
 #include "message.h"
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
-#include "pokemon_storage_system_manager.h"
 #include "ribbon.h"
 #include "save_player.h"
 #include "savedata_misc.h"

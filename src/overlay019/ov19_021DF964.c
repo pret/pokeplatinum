@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
@@ -11,7 +11,7 @@
 #include "overlay019/struct_ov19_021DF964.h"
 
 #include "enums.h"
-#include "pokemon_storage_system_manager.h"
+#include "pc_boxes.h"
 #include "system.h"
 #include "unk_02005474.h"
 

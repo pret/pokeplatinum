@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
@@ -11,8 +11,8 @@
 #include "field_script_context.h"
 #include "inlines.h"
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
-#include "pokemon_storage_system_manager.h"
 #include "system_vars.h"
 #include "vars_flags.h"
 
