@@ -110,7 +110,7 @@ static BOOL sub_02005508(u16 param0, u8 param1, int param2)
 
     SoundSystem_LoadHeapState(sub_02004974(3));
     SoundSystem_LoadSequence(param0);
-    SoundSystem_SaveHeapState(sub_02003D5C(27));
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(27));
 
     v0 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(param2), param0);
     return v0;
@@ -119,8 +119,8 @@ static BOOL sub_02005508(u16 param0, u8 param1, int param2)
 static BOOL sub_02005538(u16 param0, u8 param1, int param2)
 {
     int v0;
-    u8 *v1 = sub_02003D5C(19);
-    u16 *v2 = sub_02003D5C(32);
+    u8 *v1 = SoundSystem_GetParam(19);
+    u16 *v2 = SoundSystem_GetParam(32);
 
     v0 = sub_02004B34(SoundSystem_GetSoundHandle(0));
     sub_020047E8(param0, sub_02004B48(v0));
@@ -228,7 +228,7 @@ void sub_0200564C(int targetVolume, int frames)
 
 int Sound_CheckFade()
 {
-    u16 *v0 = sub_02003D5C(7);
+    u16 *v0 = SoundSystem_GetParam(7);
     return *v0;
 }
 
@@ -240,8 +240,8 @@ int sub_02005690(u16 param0)
 
 void sub_0200569C(void)
 {
-    u8 *v0 = sub_02003D5C(16);
-    u8 *v1 = sub_02003D5C(17);
+    u8 *v0 = SoundSystem_GetParam(16);
+    u8 *v1 = SoundSystem_GetParam(17);
 
     NNS_SndPlayerStopSeqAll(0);
 
@@ -260,8 +260,8 @@ void sub_0200569C(void)
 void sub_020056D4(void)
 {
     int v0;
-    u8 *v1 = sub_02003D5C(16);
-    u8 *v2 = sub_02003D5C(17);
+    u8 *v1 = SoundSystem_GetParam(16);
+    u8 *v2 = SoundSystem_GetParam(17);
 
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(7), 0);
     sub_020055F4();
@@ -380,9 +380,9 @@ void sub_02005818(int param0)
 BOOL sub_02005844(u16 species, u8 form)
 {
     int v1;
-    u8 *v2 = sub_02003D5C(18);
-    ChatotCry **chatotCry = sub_02003D5C(36);
-    u8 *v4 = sub_02003D5C(53);
+    u8 *v2 = SoundSystem_GetParam(18);
+    ChatotCry **chatotCry = SoundSystem_GetParam(36);
+    u8 *v4 = SoundSystem_GetParam(53);
 
     if (sub_02006038(species, form) == 1) {
         species = SPECIES_EGG;
@@ -430,9 +430,9 @@ BOOL sub_0200590C(u16 species, u8 delay, u8 form)
 
 void sub_0200592C(int param0)
 {
-    u8 *v0 = sub_02003D5C(16);
-    u8 *v1 = sub_02003D5C(17);
-    u8 *v2 = sub_02003D5C(15);
+    u8 *v0 = SoundSystem_GetParam(16);
+    u8 *v1 = SoundSystem_GetParam(17);
+    u8 *v2 = SoundSystem_GetParam(15);
 
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(1), param0);
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(8), param0);
@@ -455,10 +455,10 @@ void sub_0200592C(int param0)
 
 int sub_0200598C(void)
 {
-    u8 *v0 = sub_02003D5C(16);
-    u8 *v1 = sub_02003D5C(17);
-    u8 *v2 = sub_02003D5C(15);
-    u8 *v3 = sub_02003D5C(46);
+    u8 *v0 = SoundSystem_GetParam(16);
+    u8 *v1 = SoundSystem_GetParam(17);
+    u8 *v2 = SoundSystem_GetParam(15);
+    u8 *v3 = SoundSystem_GetParam(46);
 
     if (*v0 == 1) {
         return sub_02004D04(14);
@@ -476,11 +476,11 @@ BOOL Sound_PlayPokemonCry(enum PokemonCryMod cryMod, u16 species, int param2, in
     int v0, v1;
     u16 v3;
     int v4, v5, v6, v7;
-    u8 *v8 = sub_02003D5C(16);
-    u8 *v9 = sub_02003D5C(17);
-    u8 *v10 = sub_02003D5C(18);
-    u8 *v11 = sub_02003D5C(30);
-    ChatotCry **v12 = sub_02003D5C(36);
+    u8 *v8 = SoundSystem_GetParam(16);
+    u8 *v9 = SoundSystem_GetParam(17);
+    u8 *v10 = SoundSystem_GetParam(18);
+    u8 *v11 = SoundSystem_GetParam(30);
+    ChatotCry **v12 = SoundSystem_GetParam(36);
 
     v4 = 0;
     v5 = 0;
@@ -674,7 +674,7 @@ static void sub_02005E4C(u16 param0, int param1, int param2)
 void sub_02005E64(int param0, int heapID)
 {
     UnkStruct_02005E64 *v0 = NULL;
-    SysTask **v1 = sub_02003D5C(35);
+    SysTask **v1 = SoundSystem_GetParam(35);
 
     if (*v1 != NULL) {
         (void)0;
@@ -700,8 +700,8 @@ void sub_02005E64(int param0, int heapID)
 
 static void sub_02005EB0(SysTask *param0, void *param1)
 {
-    u8 *v0 = sub_02003D5C(16);
-    u8 *v1 = sub_02003D5C(17);
+    u8 *v0 = SoundSystem_GetParam(16);
+    u8 *v1 = SoundSystem_GetParam(17);
     UnkStruct_02005E64 *v2 = (UnkStruct_02005E64 *)param1;
 
     if (v2->unk_00 == 10) {
@@ -737,7 +737,7 @@ static void sub_02005EB0(SysTask *param0, void *param1)
 void sub_02005F24()
 {
     void *v0;
-    SysTask **v1 = sub_02003D5C(35);
+    SysTask **v1 = SoundSystem_GetParam(35);
 
     if (*v1 != NULL) {
         v0 = SysTask_GetParam(*v1);
@@ -757,23 +757,23 @@ void Sound_PlayDelayedPokemonCry(enum PokemonCryMod cryMod, u16 species, int par
     int *v4;
     int *v5;
     u8 *v6;
-    u8 *v7 = sub_02003D5C(6);
-    u8 *v8 = sub_02003D5C(53);
+    u8 *v7 = SoundSystem_GetParam(6);
+    u8 *v8 = SoundSystem_GetParam(53);
 
     if (*v7 == 0) {
-        v1 = sub_02003D5C(41);
-        v2 = sub_02003D5C(45);
-        v3 = sub_02003D5C(42);
-        v4 = sub_02003D5C(43);
-        v5 = sub_02003D5C(44);
-        v6 = sub_02003D5C(46);
+        v1 = SoundSystem_GetParam(41);
+        v2 = SoundSystem_GetParam(45);
+        v3 = SoundSystem_GetParam(42);
+        v4 = SoundSystem_GetParam(43);
+        v5 = SoundSystem_GetParam(44);
+        v6 = SoundSystem_GetParam(46);
     } else {
-        v1 = sub_02003D5C(47);
-        v2 = sub_02003D5C(51);
-        v3 = sub_02003D5C(48);
-        v4 = sub_02003D5C(49);
-        v5 = sub_02003D5C(50);
-        v6 = sub_02003D5C(52);
+        v1 = SoundSystem_GetParam(47);
+        v2 = SoundSystem_GetParam(51);
+        v3 = SoundSystem_GetParam(48);
+        v4 = SoundSystem_GetParam(49);
+        v5 = SoundSystem_GetParam(50);
+        v6 = SoundSystem_GetParam(52);
     }
 
     if (*v8 == 1) {
@@ -820,18 +820,18 @@ static BOOL sub_02006038(u16 species, u8 form)
 
 void sub_0200605C(void)
 {
-    int *v0 = sub_02003D5C(41);
-    u16 *v1 = sub_02003D5C(45);
-    int *v2 = sub_02003D5C(42);
-    int *v3 = sub_02003D5C(43);
-    int *v4 = sub_02003D5C(44);
-    u8 *v5 = sub_02003D5C(46);
-    int *v6 = sub_02003D5C(47);
-    u16 *v7 = sub_02003D5C(51);
-    int *v8 = sub_02003D5C(48);
-    int *v9 = sub_02003D5C(49);
-    int *v10 = sub_02003D5C(50);
-    u8 *v11 = sub_02003D5C(52);
+    int *v0 = SoundSystem_GetParam(41);
+    u16 *v1 = SoundSystem_GetParam(45);
+    int *v2 = SoundSystem_GetParam(42);
+    int *v3 = SoundSystem_GetParam(43);
+    int *v4 = SoundSystem_GetParam(44);
+    u8 *v5 = SoundSystem_GetParam(46);
+    int *v6 = SoundSystem_GetParam(47);
+    u16 *v7 = SoundSystem_GetParam(51);
+    int *v8 = SoundSystem_GetParam(48);
+    int *v9 = SoundSystem_GetParam(49);
+    int *v10 = SoundSystem_GetParam(50);
+    u8 *v11 = SoundSystem_GetParam(52);
 
     *v0 = 0;
     *v1 = 0;
@@ -853,7 +853,7 @@ void sub_0200605C(void)
 static BOOL sub_020060EC(u16 species, s8 pitch, u8 form)
 {
     int v0;
-    u8 *v1 = sub_02003D5C(18);
+    u8 *v1 = SoundSystem_GetParam(18);
 
     *v1 = 1;
 
@@ -867,7 +867,7 @@ static BOOL sub_020060EC(u16 species, s8 pitch, u8 form)
 static BOOL sub_02006120(u16 param0, s8 param1, int param2, int param3, int heapID)
 {
     int v0;
-    u8 *v1 = sub_02003D5C(18);
+    u8 *v1 = SoundSystem_GetParam(18);
 
     *v1 = 1;
 
@@ -893,7 +893,7 @@ BOOL sub_02006150(u16 param0)
         sub_020049F4(v1, 1);
     }
 
-    SoundSystem_SaveHeapState(sub_02003D5C(29));
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(29));
 
     v2 = SoundSystem_LoadSequenceEx(param0, (NNS_SND_ARC_LOAD_SEQ | NNS_SND_ARC_LOAD_BANK));
     v2 = NNS_SndArcPlayerStartSeq(SoundSystem_GetSoundHandle(2), param0);
@@ -905,7 +905,7 @@ BOOL sub_02006150(u16 param0)
 
 int sub_0200619C(void)
 {
-    u16 *v0 = sub_02003D5C(14);
+    u16 *v0 = SoundSystem_GetParam(14);
 
     if (sub_02004B04(2) != 0) {
         return 1;
@@ -934,7 +934,7 @@ int sub_020061E4(void)
 {
     u8 v0;
     u16 v1;
-    u16 *v2 = sub_02003D5C(14);
+    u16 *v2 = SoundSystem_GetParam(14);
 
     if (sub_0200619C() == 1) {
         return 1;
@@ -954,7 +954,7 @@ int sub_020061E4(void)
 
 static void sub_02006214(u16 param0)
 {
-    u16 *v0 = sub_02003D5C(14);
+    u16 *v0 = SoundSystem_GetParam(14);
 
     (*v0) = 15;
     return;

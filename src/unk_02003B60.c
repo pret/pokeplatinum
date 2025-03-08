@@ -150,121 +150,121 @@ SoundSystem *SoundSystem_Get()
     return &sSoundSystem;
 }
 
-void *sub_02003D5C(int param0)
+void *SoundSystem_GetParam(int param)
 {
-    SoundSystem *v0 = SoundSystem_Get();
+    SoundSystem *soundSys = SoundSystem_Get();
 
-    switch (param0) {
+    switch (param) {
     case 5:
-        return &v0->unk_BCD4A;
+        return &soundSys->unk_BCD4A;
     case 6:
-        return &v0->unk_BCD4B;
+        return &soundSys->unk_BCD4B;
     case 0:
-        return &v0->unk_BBD20[0];
+        return &soundSys->unk_BBD20[0];
     case 1:
-        return &v0->unk_BBD20[1];
+        return &soundSys->unk_BBD20[1];
     case 2:
-        return &v0->unk_BBD28;
+        return &soundSys->unk_BBD28;
     case 3:
-        return &v0->unk_BBD2C;
+        return &soundSys->unk_BBD2C;
     case 4:
-        return &v0->unk_BCD2C;
+        return &soundSys->unk_BCD2C;
     case 7:
-        return &v0->unk_BCD4C;
+        return &soundSys->unk_BCD4C;
     case 8:
-        return &v0->unk_BCD50;
+        return &soundSys->unk_BCD50;
     case 9:
-        return &v0->unk_BCD54;
+        return &soundSys->unk_BCD54;
     case 10:
-        return &v0->unk_BCD58;
+        return &soundSys->unk_BCD58;
     case 11:
-        return &v0->unk_BCD5A;
+        return &soundSys->unk_BCD5A;
     case 12:
-        return &v0->unk_BCD5C;
+        return &soundSys->unk_BCD5C;
     case 13:
-        return &v0->unk_BCD5D;
+        return &soundSys->unk_BCD5D;
     case 14:
-        return &v0->unk_BCD5E;
+        return &soundSys->unk_BCD5E;
     case 15:
-        return &v0->unk_BCD60;
+        return &soundSys->unk_BCD60;
     case 16:
-        return &v0->unk_BCD61;
+        return &soundSys->unk_BCD61;
     case 17:
-        return &v0->unk_BCD62;
+        return &soundSys->unk_BCD62;
     case 18:
-        return &v0->unk_BCD63;
+        return &soundSys->unk_BCD63;
     case 19:
-        return &v0->unk_BCD64;
+        return &soundSys->unk_BCD64;
     case 20:
-        return &v0->unk_BCD65;
+        return &soundSys->unk_BCD65;
     case 21:
-        return &v0->unk_BCD66;
+        return &soundSys->unk_BCD66;
     case 22:
-        return &v0->unk_BCD67;
+        return &soundSys->unk_BCD67;
     case 23:
-        return &v0->heapStates[0];
+        return &soundSys->heapStates[0];
     case 24:
-        return &v0->heapStates[1];
+        return &soundSys->heapStates[1];
     case 25:
-        return &v0->heapStates[2];
+        return &soundSys->heapStates[2];
     case 26:
-        return &v0->heapStates[3];
+        return &soundSys->heapStates[3];
     case 27:
-        return &v0->heapStates[4];
+        return &soundSys->heapStates[4];
     case 28:
-        return &v0->heapStates[5];
+        return &soundSys->heapStates[5];
     case 29:
-        return &v0->heapStates[6];
+        return &soundSys->heapStates[6];
     case 30:
-        return &v0->unk_BCD84;
+        return &soundSys->unk_BCD84;
     case 31:
-        return &v0->unk_BCD85;
+        return &soundSys->unk_BCD85;
     case 32:
-        return &v0->unk_BCD86;
+        return &soundSys->unk_BCD86;
     case 33:
-        return &v0->unk_BCD88;
+        return &soundSys->unk_BCD88;
     case 34:
-        return &v0->unk_BCD8C;
+        return &soundSys->unk_BCD8C;
     case 35:
-        return &v0->unk_BCD94;
+        return &soundSys->unk_BCD94;
     case 36:
-        return &v0->chatotCry;
+        return &soundSys->chatotCry;
     case 37:
-        return &v0->unk_BCD9C[0];
+        return &soundSys->unk_BCD9C[0];
     case 38:
-        return &v0->unk_BCD9C[1];
+        return &soundSys->unk_BCD9C[1];
     case 39:
-        return &v0->unk_BCD9C[2];
+        return &soundSys->unk_BCD9C[2];
     case 40:
-        return &v0->unk_BCD9C[3];
+        return &soundSys->unk_BCD9C[3];
     case 41:
-        return &v0->unk_BCDAC[0];
+        return &soundSys->unk_BCDAC[0];
     case 42:
-        return &v0->unk_BCDB4[0];
+        return &soundSys->unk_BCDB4[0];
     case 43:
-        return &v0->unk_BCDBC[0];
+        return &soundSys->unk_BCDBC[0];
     case 44:
-        return &v0->unk_BCDC4[0];
+        return &soundSys->unk_BCDC4[0];
     case 45:
-        return &v0->unk_BCDCC[0];
+        return &soundSys->unk_BCDCC[0];
     case 46:
-        return &v0->unk_BCDD0[0];
+        return &soundSys->unk_BCDD0[0];
     case 47:
-        return &v0->unk_BCDAC[1];
+        return &soundSys->unk_BCDAC[1];
     case 48:
-        return &v0->unk_BCDB4[1];
+        return &soundSys->unk_BCDB4[1];
     case 49:
-        return &v0->unk_BCDBC[1];
+        return &soundSys->unk_BCDBC[1];
     case 50:
-        return &v0->unk_BCDC4[1];
+        return &soundSys->unk_BCDC4[1];
     case 51:
-        return &v0->unk_BCDCC[1];
+        return &soundSys->unk_BCDCC[1];
     case 52:
-        return &v0->unk_BCDD0[1];
+        return &soundSys->unk_BCDD0[1];
     case 53:
-        return &v0->unk_BCDD2;
+        return &soundSys->unk_BCDD2;
     case 54:
-        return &v0->unk_BCDD3;
+        return &soundSys->unk_BCDD3;
     }
 
     GF_ASSERT(FALSE);

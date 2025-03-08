@@ -37,6 +37,11 @@ enum SoundHandleType {
     SOUND_HANDLE_TYPE_COUNT = 9
 };
 
+enum SoundSystemParam {
+    SOUND_SYSTEM_PARAM_HEAP_STATE_EMPTY = 23,
+    SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT,
+};
+
 typedef struct SoundSystem {
     NNSSndArc arc; // Only used for storage, NNS manages the arc
     NNSSndHeapHandle heap;
@@ -89,14 +94,14 @@ void SoundSystem_Init(ChatotCry *chatotCry, Options *options);
 void SoundSystem_Update();
 void SoundSystem_SetState(enum SoundSystemState status);
 SoundSystem *SoundSystem_Get();
-void *sub_02003D5C(int param0);
+void *SoundSystem_GetParam(int param0);
 enum SoundHeapState SoundSystem_SaveHeapState(enum SoundHeapState *state);
 void SoundSystem_LoadHeapState(enum SoundHeapState state);
 BOOL SoundSystem_LoadSoundGroup(u16 group);
 BOOL SoundSystem_LoadSequence(u16 id);
 BOOL SoundSystem_LoadSequenceEx(u16 id, u32 flags); // See NNS_SND_ARC_LOAD_* in nnsys/snd/sndarc.h for flags
-BOOL SoundSystem_LoadWaveArc(u16 param0);
-BOOL SoundSystem_LoadBank(u16 param0);
+BOOL SoundSystem_LoadWaveArc(u16 id);
+BOOL SoundSystem_LoadBank(u16 id);
 NNSSndHandle *SoundSystem_GetSoundHandle(enum SoundHandleType type);
 int SoundSystem_GetSoundHandleTypeFromPlayerID(int param0);
 
