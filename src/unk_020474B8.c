@@ -7,7 +7,7 @@
 #include "constants/narc.h"
 #include "generated/text_banks.h"
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
@@ -20,6 +20,7 @@
 #include "map_header_util.h"
 #include "message.h"
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
 #include "ribbon.h"
 #include "save_player.h"
@@ -31,7 +32,6 @@
 #include "trainer_info.h"
 #include "unk_0205C980.h"
 #include "unk_0205DFC4.h"
-#include "unk_020797C8.h"
 #include "vars_flags.h"
 
 static Strbuf *GetSpeciesNameStrbuf(u16 param0, u32 param1);
@@ -213,7 +213,7 @@ BOOL ScrCmd_251(ScriptContext *param0)
     u16 v5 = ScriptContext_GetVar(param0);
     u32 v6 = v5 % (5 * 6);
     u32 v7 = v5 / (5 * 6);
-    v0 = GetBoxedPokemonFrom(v2, v7, v6);
+    v0 = PCBoxes_GetBoxMonAt(v2, v7, v6);
 
     StringTemplate_SetNickname(*v3, v4, v0);
     return 0;

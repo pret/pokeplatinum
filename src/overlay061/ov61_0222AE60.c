@@ -5,8 +5,8 @@
 
 #include "constants/species.h"
 
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
-#include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/struct_02030A80.h"
 
 #include "overlay061/struct_ov61_0222AE80.h"
@@ -15,10 +15,10 @@
 #include "overlay062/struct_ov62_02239DA4.h"
 #include "overlay062/struct_ov62_02239DA4_sub1.h"
 
+#include "pc_boxes.h"
 #include "savedata.h"
 #include "strbuf.h"
 #include "unk_020298BC.h"
-#include "unk_020797C8.h"
 
 void ov61_0222AE60(SaveData *param0, const UnkStruct_02029C68 *param1, UnkStruct_ov61_0222AE80 *param2)
 {
@@ -39,23 +39,23 @@ void ov61_0222AE88(SaveData *param0, const PCBoxes *param1, int param2, UnkStruc
     MI_CpuClear8(param3, sizeof(UnkStruct_ov62_02239DA4));
 
     v0 = Strbuf_Init(20 * 3, param4);
-    sub_02079AF4(param1, param2, v0);
+    PCBoxes_BufferBoxName(param1, param2, v0);
     Strbuf_ToChars(v0, param3->unk_00, 20);
     Strbuf_Free(v0);
 
     for (v1 = 0; v1 < 30; v1++) {
-        param3->unk_28[v1] = sub_02079C08(param1, param2, v1, 5, NULL);
-        param3->unk_64[v1] = sub_02079C08(param1, param2, v1, 0, NULL);
-        param3->unk_DC[v1] = sub_02079C08(param1, param2, v1, 7, NULL);
+        param3->unk_28[v1] = PCBoxes_GetBoxMonData(param1, param2, v1, MON_DATA_SPECIES, NULL);
+        param3->unk_64[v1] = PCBoxes_GetBoxMonData(param1, param2, v1, MON_DATA_PERSONALITY, NULL);
+        param3->unk_DC[v1] = PCBoxes_GetBoxMonData(param1, param2, v1, MON_DATA_OT_ID, NULL);
 
-        if (sub_02079C08(param1, param2, v1, 174, NULL) == SPECIES_EGG) {
+        if (PCBoxes_GetBoxMonData(param1, param2, v1, MON_DATA_SPECIES_EGG, NULL) == SPECIES_EGG) {
             param3->unk_154 |= 1 << v1;
         }
 
-        param3->unk_158[v1] = sub_02079C08(param1, param2, v1, 112, NULL);
+        param3->unk_158[v1] = PCBoxes_GetBoxMonData(param1, param2, v1, MON_DATA_FORM, NULL);
     }
 
-    param3->unk_176 = sub_02079AA8(param1, param2);
+    param3->unk_176 = PCBoxes_GetWallpaper(param1, param2);
     param3->unk_177 = 0;
     param3->unk_198.unk_00 = SaveData_CalculateChecksum(param0, param3, sizeof(UnkStruct_ov62_02239DA4) - (sizeof(UnkStruct_ov62_02239DA4_sub1)));
 }

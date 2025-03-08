@@ -32,6 +32,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "catching_show.h"
+#include "dexmode_checker.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -83,7 +84,6 @@
 #include "unk_0207064C.h"
 #include "unk_0207070C.h"
 #include "unk_02071D40.h"
-#include "unk_0207A274.h"
 #include "unk_0207AE68.h"
 #include "unk_0207CB08.h"
 #include "unk_020972FC.h"
@@ -1026,7 +1026,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->move = 0;
         summary->mode = SUMMARY_MODE_NORMAL;
         summary->specialRibbons = sub_0202D79C(fieldSystem->saveData);
-        summary->dexMode = sub_0207A274(fieldSystem->saveData);
+        summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         summary->chatotCry = NULL;
 
@@ -1047,7 +1047,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->monMax = 1;
         summary->move = partyMan->unk_26;
         summary->mode = SUMMARY_MODE_SELECT_MOVE;
-        summary->dexMode = sub_0207A274(fieldSystem->saveData);
+        summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         summary->chatotCry = NULL;
 
@@ -1074,7 +1074,7 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
         summary->monMax = 1;
         summary->move = partyMan->unk_26;
         summary->mode = SUMMARY_MODE_SELECT_MOVE;
-        summary->dexMode = sub_0207A274(fieldSystem->saveData);
+        summary->dexMode = SaveData_GetDexMode(fieldSystem->saveData);
         summary->showContest = PokemonSummaryScreen_ShowContestData(fieldSystem->saveData);
         summary->chatotCry = NULL;
 

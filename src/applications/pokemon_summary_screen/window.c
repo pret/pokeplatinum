@@ -13,6 +13,7 @@
 #include "applications/pokemon_summary_screen/sprites.h"
 
 #include "bg_window.h"
+#include "dexmode_checker.h"
 #include "font.h"
 #include "heap.h"
 #include "message.h"
@@ -24,7 +25,6 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0200C440.h"
-#include "unk_0207A274.h"
 #include "unk_02092494.h"
 #include "unk_02094EDC.h"
 
@@ -1046,7 +1046,7 @@ static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_EXP], 0);
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_EXP_NEXT_LV], 0);
 
-    u32 dexNum = sub_0207A294(summaryScreen->data->dexMode, summaryScreen->monData.species);
+    u32 dexNum = GetDexNumber(summaryScreen->data->dexMode, summaryScreen->monData.species);
 
     if (dexNum != 0) {
         SetAndFormatNumberBuf(summaryScreen, summary_dex_number_template, dexNum, 3, PADDING_MODE_ZEROES);

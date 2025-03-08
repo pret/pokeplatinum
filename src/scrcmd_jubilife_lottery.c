@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
@@ -11,9 +11,9 @@
 #include "field_script_context.h"
 #include "inlines.h"
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
 #include "system_vars.h"
-#include "unk_020797C8.h"
 #include "vars_flags.h"
 
 static u8 CheckTrainerIdForMatch(u16 winningLotteryId, u16 pokemonOtId);
@@ -64,7 +64,7 @@ BOOL ScrCmd_CheckForJubilifeLotteryWinner(ScriptContext *context)
     BoxPokemon *boxPokemon;
     for (boxIndex = 0; boxIndex < MAX_PC_BOXES; boxIndex++) {
         for (monPosInBox = 0; monPosInBox < MAX_MONS_PER_BOX; monPosInBox++) {
-            boxPokemon = GetBoxedPokemonFrom(pcBoxes, boxIndex, monPosInBox);
+            boxPokemon = PCBoxes_GetBoxMonAt(pcBoxes, boxIndex, monPosInBox);
             boxPokemonSpeciesId = BoxPokemon_GetValue(boxPokemon, MON_DATA_SPECIES, NULL);
 
             if (boxPokemonSpeciesId && BoxPokemon_GetValue(boxPokemon, MON_DATA_IS_EGG, NULL) == 0) {
