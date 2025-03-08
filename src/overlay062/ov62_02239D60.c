@@ -6,8 +6,8 @@
 #include "constants/narc.h"
 #include "constants/species.h"
 
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/archived_sprite.h"
 #include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02030A80.h"
@@ -36,6 +36,7 @@
 #include "heap.h"
 #include "message.h"
 #include "palette.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "savedata.h"
@@ -50,7 +51,6 @@
 #include "unk_02012744.h"
 #include "unk_02023FCC.h"
 #include "unk_02030A80.h"
-#include "unk_020797C8.h"
 #include "unk_0208B284.h"
 
 typedef struct {
@@ -1236,7 +1236,7 @@ static void ov62_0223B158(UnkStruct_0208C06C *param0)
             v0->unk_04.unk_176 = 0;
         }
         if ((v0->unk_04.unk_176 >= (16 + 8)) && (v0->unk_04.unk_176 < (16 + 8 + 8))) {
-            if (sub_02079CFC(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
+            if (PCBoxes_CheckHasUnlockedWallpaper(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
                 (void)0;
             }
         }
@@ -1269,7 +1269,7 @@ static void ov62_0223B230(UnkStruct_0208C06C *param0)
         }
 
         if ((v0->unk_04.unk_176 >= (16 + 8)) && (v0->unk_04.unk_176 < (16 + 8 + 8))) {
-            if (sub_02079CFC(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
+            if (PCBoxes_CheckHasUnlockedWallpaper(v1, v0->unk_04.unk_176 - (16 + 8)) == 0) {
                 v0->unk_04.unk_176 = 0;
             }
         }

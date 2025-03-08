@@ -5,9 +5,9 @@
 
 #include "generated/catching_show_points_category.h"
 
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/struct_02024440_decl.h"
-#include "struct_decls/struct_020797DC_decl.h"
 
 #include "savedata/save_table.h"
 
@@ -15,6 +15,7 @@
 #include "field_script_context.h"
 #include "heap.h"
 #include "inlines.h"
+#include "pc_boxes.h"
 #include "pokedex.h"
 #include "pokemon.h"
 #include "save_player.h"
@@ -22,7 +23,6 @@
 #include "trainer_info.h"
 #include "unk_0202EEC0.h"
 #include "unk_0202F180.h"
-#include "unk_020797C8.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
 
@@ -73,7 +73,7 @@ BOOL ScrCmd_255(ScriptContext *param0)
     for (v6 = 0; v6 < 6; v6++) {
         TransferDataToMon(transferData, v6, v2);
         sub_0209304C(v2, v3, 2, 0, 32);
-        v5 = sub_02079868(v1, Pokemon_GetBoxPokemon(v2));
+        v5 = PCBoxes_TryStoreBoxMon(v1, Pokemon_GetBoxPokemon(v2));
         GF_ASSERT(v5);
         sub_0202F180(param0->fieldSystem->saveData, v2);
     }

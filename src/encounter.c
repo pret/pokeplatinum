@@ -10,8 +10,8 @@
 #include "generated/map_headers.h"
 #include "generated/trainer_score_events.h"
 
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/struct_0202610C.h"
 
 #include "field/field_system.h"
@@ -21,6 +21,7 @@
 
 #include "catching_show.h"
 #include "communication_information.h"
+#include "dexmode_checker.h"
 #include "enc_effects.h"
 #include "enums.h"
 #include "field_battle_data_transfer.h"
@@ -35,6 +36,7 @@
 #include "location.h"
 #include "map_object.h"
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
 #include "pokeradar.h"
 #include "save_player.h"
@@ -48,8 +50,6 @@
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
 #include "unk_0206CCB0.h"
-#include "unk_020797C8.h"
-#include "unk_0207A274.h"
 #include "unk_02096420.h"
 #include "vars_flags.h"
 
@@ -901,7 +901,7 @@ static void UpdateGameRecords(FieldSystem *fieldSystem, FieldBattleDTO *dto)
             // rather than choosing the Pokemon that was actually captured.
             caughtMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
 
-            if (sub_0207A294(0, Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, NULL))) {
+            if (GetDexNumber(0, Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, NULL))) {
                 GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_CAPTURED_REGIONAL_MON);
             } else {
                 GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_CAPTURED_NATIONAL_MON);
@@ -915,7 +915,7 @@ static void UpdateGameRecords(FieldSystem *fieldSystem, FieldBattleDTO *dto)
         if (resultMask == BATTLE_RESULT_CAPTURED_MON) {
             caughtMon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
 
-            if (sub_0207A294(0, Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, NULL))) {
+            if (GetDexNumber(0, Pokemon_GetValue(caughtMon, MON_DATA_SPECIES, NULL))) {
                 GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_CAPTURED_REGIONAL_MON);
             } else {
                 GameRecords_IncrementTrainerScore(SaveData_GetGameRecordsPtr(fieldSystem->saveData), TRAINER_SCORE_EVENT_CAPTURED_NATIONAL_MON);

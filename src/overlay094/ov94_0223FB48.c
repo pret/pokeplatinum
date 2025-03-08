@@ -7,7 +7,7 @@
 #include "generated/items.h"
 #include "generated/species.h"
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_022414B8.h"
@@ -29,6 +29,7 @@
 #include "message.h"
 #include "narc.h"
 #include "party.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
@@ -41,7 +42,6 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "unk_020393C8.h"
-#include "unk_020797C8.h"
 
 typedef struct {
     int unk_00;
@@ -1134,19 +1134,19 @@ static void ov94_02240FA0(UnkStruct_ov94_0223FD4C *param0, int param1)
 
     if ((param1 >= 0) && (param1 < 18)) {
         for (v1 = 0; v1 < 30; v1++) {
-            ov94_02240E50(GetBoxedPokemonFrom(v5, param1, v1), &param0->unk_1108->unk_00[v1]);
+            ov94_02240E50(PCBoxes_GetBoxMonAt(v5, param1, v1), &param0->unk_1108->unk_00[v1]);
         }
 
         for (v1 = 0; v1 < 30; v1++) {
             param0->unk_1108->unk_00[v1].species = SPECIES_NONE;
-            ov94_02240EAC(GetBoxedPokemonFrom(v5, param1, v1), param0->unk_E28[v1], param0->unk_EA0[v1], &v0[v1], v1, v6, &param0->unk_1108->unk_00[v1], &v7[v1]);
+            ov94_02240EAC(PCBoxes_GetBoxMonAt(v5, param1, v1), param0->unk_E28[v1], param0->unk_EA0[v1], &v0[v1], v1, v6, &param0->unk_1108->unk_00[v1], &v7[v1]);
 
             if (v1 < 6) {
                 Sprite_SetDrawFlag(param0->unk_F18[v1], 0);
             }
         }
 
-        sub_02079AF4(v5, param1, param0->unk_BA4);
+        PCBoxes_BufferBoxName(v5, param1, param0->unk_BA4);
     } else {
         int v8 = Party_GetCurrentCount(param0->unk_00->unk_08);
 
@@ -1209,7 +1209,7 @@ BoxPokemon *ov94_022411DC(Party *param0, PCBoxes *param1, int param2, int param3
         return Pokemon_GetBoxPokemon(Party_GetPokemonBySlotIndex(param0, param3));
     }
 
-    return GetBoxedPokemonFrom(param1, param2, param3);
+    return PCBoxes_GetBoxMonAt(param1, param2, param3);
 }
 
 static int ov94_0224121C(Party *param0, PCBoxes *param1, int param2, int param3)

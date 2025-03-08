@@ -17,12 +17,12 @@
 #include "heap.h"
 #include "math.h"
 #include "narc.h"
+#include "pc_boxes.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_020797C8.h"
 
 typedef struct {
     UnkStruct_ov19_021DCF88 *unk_00;
@@ -1507,7 +1507,7 @@ static void ov19_021DE350(UnkStruct_ov19_021DCF88 *param0)
     }
 
     for (v1 = 0; v1 < NELEMS(v0); v1++) {
-        sub_02079AF4(param0->unk_04->unk_00, v2, param0->unk_84);
+        PCBoxes_BufferBoxName(param0->unk_04->unk_00, v2, param0->unk_84);
         Window_FillRectWithColor(&param0->unk_88, 0, v0[v1].unk_00, v0[v1].unk_02, 104, 17);
         Text_AddPrinterWithParamsAndColor(&param0->unk_88, FONT_SYSTEM, param0->unk_84, v0[v1].unk_00 + 4, v0[v1].unk_02 + 2, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
 
