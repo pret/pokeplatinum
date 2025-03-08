@@ -11,10 +11,10 @@
 #include "sound_system.h"
 #include "unk_02005474.h"
 
-void sub_020041E8(u16 param0);
-u16 sub_020041FC(void);
-void sub_02004208(u16 param0);
-u16 sub_02004218(void);
+void Sound_SetCurrentBGM(u16 param0);
+u16 Sound_GetCurrentBGM(void);
+void Sound_SetNextBGM(u16 param0);
+u16 Sound_GetNextBGM(void);
 void sub_02004224(u16 param0);
 void sub_02004964(void);
 int sub_02004974(int param0);
@@ -95,48 +95,42 @@ void sub_020051D0(const SNDWaveData *param0, u8 *param1, int param2, int param3)
 static s8 Unk_021BEBA0[2000] ATTRIBUTE_ALIGN(32);
 static int Unk_021BEB80;
 
-void sub_020041CC(u8 param0)
+void Sound_SetBGMFixed(u8 fixed)
 {
-    u8 *v0 = SoundSystem_GetParam(5);
-
-    *v0 = param0;
-    return;
+    u8 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_BGM_FIXED);
+    *param = fixed;
 }
 
-u8 sub_020041DC(void)
+u8 Sound_IsBGMFixed(void)
 {
-    u8 *v0 = SoundSystem_GetParam(5);
-    return *v0;
+    u8 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_BGM_FIXED);
+    return *param;
 }
 
-void sub_020041E8(u16 param0)
+void Sound_SetCurrentBGM(u16 bgmID)
 {
-    u16 *v0 = SoundSystem_GetParam(10);
+    u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BGM);
+    *param = bgmID;
 
-    *v0 = param0;
-    sub_02004208(0);
-
-    return;
+    Sound_SetNextBGM(0);
 }
 
-u16 sub_020041FC(void)
+u16 Sound_GetCurrentBGM(void)
 {
-    u16 *v0 = SoundSystem_GetParam(10);
-    return *v0;
+    u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_CURRENT_BGM);
+    return *param;
 }
 
-void sub_02004208(u16 param0)
+void Sound_SetNextBGM(u16 bgmID)
 {
-    u16 *v0 = SoundSystem_GetParam(11);
-
-    *v0 = param0;
-    return;
+    u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_NEXT_BGM);
+    *param = bgmID;
 }
 
-u16 sub_02004218(void)
+u16 Sound_GetNextBGM(void)
 {
-    u16 *v0 = SoundSystem_GetParam(11);
-    return *v0;
+    u16 *param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_NEXT_BGM);
+    return *param;
 }
 
 void sub_02004224(u16 param0)
@@ -430,7 +424,7 @@ static void sub_020046F8(u16 param0, int param1)
 
     if (*v3 == 0) {
         if (v1 == param0) {
-            if (sub_02004218() != 1152) {
+            if (Sound_GetNextBGM() != 1152) {
                 return;
             }
         }
@@ -652,7 +646,7 @@ void sub_020049F4(u8 param0, BOOL param1)
     }
 
     if (param1 == 0) {
-        sub_020041E8(sub_02004B34(SoundSystem_GetSoundHandle(v0)));
+        Sound_SetCurrentBGM(sub_02004B34(SoundSystem_GetSoundHandle(v0)));
     }
 
     NNS_SndPlayerPause(SoundSystem_GetSoundHandle(v0), param1);
@@ -1262,9 +1256,9 @@ static void sub_020050A4(u8 param0, u16 param1, int param2, int param3, u8 param
     const NNSSndArcBankInfo **v0 = SoundSystem_GetParam(2);
 
     sub_0200564C(0, param2);
-    sub_020041E8(0);
+    Sound_SetCurrentBGM(0);
 
-    sub_02004208(param1);
+    Sound_SetNextBGM(param1);
     sub_02004FDC(param3);
 
     *v0 = sub_02004B3C(param1);
@@ -1549,7 +1543,7 @@ void sub_020053CC(int param0)
 
 static void sub_0200540C(void)
 {
-    if ((Sound_CheckFade() == 0) && (sub_02004B34(SoundSystem_GetSoundHandle(0)) != -1) && (sub_020041FC() != 1150)) {
+    if ((Sound_CheckFade() == 0) && (sub_02004B34(SoundSystem_GetSoundHandle(0)) != -1) && (Sound_GetCurrentBGM() != 1150)) {
         sub_020056D4();
         sub_020049F4(1, 1);
     } else {

@@ -97,7 +97,7 @@ BOOL Sound_PlayBGM(u16 sdatID)
 
 static void sub_020054EC(u16 param0, int param1)
 {
-    sub_020041E8(param0);
+    Sound_SetCurrentBGM(param0);
     sub_02004AA0(param0, param1);
     SoundSystem_SetState(1);
 
@@ -149,7 +149,7 @@ BOOL sub_02005588(u8 param0, u16 param1)
         (void)0;
     }
 
-    sub_020041E8(param1);
+    Sound_SetCurrentBGM(param1);
     SoundSystem_SetState(1);
 
     return v0;
@@ -175,8 +175,8 @@ void sub_020055D0(u16 param0, int param1)
 
 static void sub_020055F4(void)
 {
-    sub_020041E8(0);
-    sub_02004208(0);
+    Sound_SetCurrentBGM(0);
+    Sound_SetNextBGM(0);
     SoundSystem_SetState(0);
 
     return;
@@ -186,7 +186,7 @@ void sub_0200560C(int param0, int param1, int param2)
 {
     u8 v0;
     int v1;
-    u16 v2 = sub_020041FC();
+    u16 v2 = Sound_GetCurrentBGM();
 
     v0 = sub_02004B18(v2);
 
@@ -209,7 +209,7 @@ void sub_0200560C(int param0, int param1, int param2)
 
 void sub_0200564C(int targetVolume, int frames)
 {
-    u16 v2 = sub_020041FC();
+    u16 v2 = Sound_GetCurrentBGM();
     u8 v0 = sub_02004B18(v2);
 
     if (v0 == 0xff) {
@@ -886,7 +886,7 @@ BOOL sub_02006150(u16 param0)
 
     sub_02006214(param0);
 
-    v0 = sub_020041FC();
+    v0 = Sound_GetCurrentBGM();
     v1 = sub_02004B18(v0);
 
     if (v1 != 0xff) {
@@ -942,7 +942,7 @@ int sub_020061E4(void)
 
     sub_020061C8(0);
 
-    v1 = sub_020041FC();
+    v1 = Sound_GetCurrentBGM();
     v0 = sub_02004B18(v1);
 
     if (v0 != 0xff) {

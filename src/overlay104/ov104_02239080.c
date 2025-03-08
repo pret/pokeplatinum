@@ -79,6 +79,6 @@ BOOL ov104_0223911C(UnkStruct_ov104_0222E930 *param0)
 {
     u16 v0 = ov104_0222EA48(param0);
 
-    sub_020055D0(sub_020041FC(), 0);
+    sub_020055D0(Sound_GetCurrentBGM(), 0);
     return 0;
 }

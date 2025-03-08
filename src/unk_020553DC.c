@@ -239,11 +239,11 @@ BOOL sub_02055554(FieldSystem *fieldSystem, u16 param1, int param2)
     playerAvatar = fieldSystem->playerAvatar;
     v3 = PlayerAvatar_GetPlayerState(playerAvatar);
 
-    if (sub_020041DC() == 1) {
+    if (Sound_IsBGMFixed() == 1) {
         return 0;
     }
 
-    if (param1 == sub_020041FC(fieldSystem)) {
+    if (param1 == Sound_GetCurrentBGM(fieldSystem)) {
         return 0;
     }
 
@@ -298,11 +298,11 @@ u16 sub_0205560C(int param0)
 
 void Sound_TryFadeInBGM(FieldSystem *fieldSystem, int param1)
 {
-    if (sub_020041DC() == 1) {
+    if (Sound_IsBGMFixed() == 1) {
         return;
     }
 
-    if (sub_020041FC() != sub_020554A4(fieldSystem, param1)) {
+    if (Sound_GetCurrentBGM() != sub_020554A4(fieldSystem, param1)) {
         sub_0200564C(0, 40);
     }
 }
@@ -311,7 +311,7 @@ void Sound_PlayMapBGM(FieldSystem *fieldSystem, int param1)
 {
     u16 v0;
 
-    if (sub_020041DC() == 1) {
+    if (Sound_IsBGMFixed() == 1) {
         return;
     }
 

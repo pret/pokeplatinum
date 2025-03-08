@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02003B60_H
-#define POKEPLATINUM_UNK_02003B60_H
+#ifndef POKEPLATINUM_SOUND_SYSTEM_H
+#define POKEPLATINUM_SOUND_SYSTEM_H
 
 #include <nnsys.h>
 
@@ -38,6 +38,11 @@ enum SoundHandleType {
 };
 
 enum SoundSystemParam {
+    SOUND_SYSTEM_PARAM_BGM_FIXED = 5,
+
+    SOUND_SYSTEM_PARAM_CURRENT_BGM = 10,
+    SOUND_SYSTEM_PARAM_NEXT_BGM,
+
     SOUND_SYSTEM_PARAM_HEAP_STATE_EMPTY = 23,
     SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT,
 };
@@ -52,13 +57,13 @@ typedef struct SoundSystem {
     u8 unk_BBD2C[SOUND_SYSTEM_CAPTURE_BUFFER_SIZE] ATTRIBUTE_ALIGN(32);
     UnkStruct_020052C8 unk_BCD2C;
     u16 unk_BCD48;
-    u8 unk_BCD4A;
+    u8 bgmFixed; // BGM can't change if this is set
     u8 unk_BCD4B;
     int unk_BCD4C;
     int unk_BCD50;
     int unk_BCD54;
-    u16 unk_BCD58;
-    u16 unk_BCD5A;
+    u16 currentBGM;
+    u16 nextBGM;
     u8 unk_BCD5C;
     u8 unk_BCD5D;
     u16 unk_BCD5E;
@@ -94,7 +99,7 @@ void SoundSystem_Init(ChatotCry *chatotCry, Options *options);
 void SoundSystem_Update();
 void SoundSystem_SetState(enum SoundSystemState status);
 SoundSystem *SoundSystem_Get();
-void *SoundSystem_GetParam(int param0);
+void *SoundSystem_GetParam(enum SoundSystemParam param);
 enum SoundHeapState SoundSystem_SaveHeapState(enum SoundHeapState *state);
 void SoundSystem_LoadHeapState(enum SoundHeapState state);
 BOOL SoundSystem_LoadSoundGroup(u16 group);
@@ -105,4 +110,4 @@ BOOL SoundSystem_LoadBank(u16 id);
 NNSSndHandle *SoundSystem_GetSoundHandle(enum SoundHandleType type);
 int SoundSystem_GetSoundHandleTypeFromPlayerID(int param0);
 
-#endif // POKEPLATINUM_UNK_02003B60_H
+#endif // POKEPLATINUM_SOUND_SYSTEM_H

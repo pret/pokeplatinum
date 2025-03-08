@@ -3811,13 +3811,13 @@ static void ov65_02231A0C(void)
         sub_02004234(0);
         sub_02004550(11, v0, 1);
     } else {
-        sub_02004AD4(sub_020041FC(), 120);
+        sub_02004AD4(Sound_GetCurrentBGM(), 120);
     }
 }
 
 static BOOL ov65_02231A54(void)
 {
-    u32 v0 = sub_020041FC();
+    u32 v0 = Sound_GetCurrentBGM();
 
     if ((v0 != 1085) && (v0 != 1086)) {
         return 0;

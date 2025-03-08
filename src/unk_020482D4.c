@@ -56,7 +56,7 @@ BOOL ScrCmd_StopMusic(ScriptContext *ctx)
 {
     u16 dummy = ScriptContext_ReadHalfWord(ctx);
 
-    sub_020055D0(sub_020041FC(), 0);
+    sub_020055D0(Sound_GetCurrentBGM(), 0);
     return FALSE;
 }
 
@@ -114,7 +114,7 @@ BOOL ScrCmd_057(ScriptContext *param0)
 
 BOOL ScrCmd_058(ScriptContext *param0)
 {
-    sub_020041CC(ScriptContext_ReadByte(param0));
+    Sound_SetBGMFixed(ScriptContext_ReadByte(param0));
     return 0;
 }
 
@@ -261,6 +261,6 @@ BOOL ScrCmd_2FA(ScriptContext *param0)
 {
     u16 *v0 = ScriptContext_GetVarPointer(param0);
 
-    *v0 = sub_020041FC();
+    *v0 = Sound_GetCurrentBGM();
     return 0;
 }

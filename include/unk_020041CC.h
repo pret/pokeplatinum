@@ -7,12 +7,12 @@
 
 #include "struct_defs/struct_02004CB4.h"
 
-void sub_020041CC(u8 param0);
-u8 sub_020041DC(void);
-void sub_020041E8(u16 param0);
-u16 sub_020041FC();
-void sub_02004208(u16 param0);
-u16 sub_02004218();
+void Sound_SetBGMFixed(u8 fixed);
+u8 Sound_IsBGMFixed(void);
+void Sound_SetCurrentBGM(u16 bgmID);
+u16 Sound_GetCurrentBGM();
+void Sound_SetNextBGM(u16 bgmID);
+u16 Sound_GetNextBGM();
 void sub_02004224(u16 param0);
 void sub_02004234(u8 param0);
 void sub_02004258(u8 param0);
