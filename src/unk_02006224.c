@@ -9,7 +9,7 @@
 #include "struct_defs/struct_02004CB4.h"
 
 #include "math.h"
-#include "unk_02003B60.h"
+#include "sound_system.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_0202CC64.h"

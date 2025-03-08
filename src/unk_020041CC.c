@@ -8,7 +8,7 @@
 
 #include "communication_system.h"
 #include "heap.h"
-#include "unk_02003B60.h"
+#include "sound_system.h"
 #include "unk_02005474.h"
 
 void sub_020041E8(u16 param0);
