@@ -104,7 +104,7 @@ static void sub_02003C64()
         if (Sound_CheckFade() == 0) {
             if (sub_02004FEC() == 0) {
                 sub_020041B4();
-                Sound_PlayBGM(v1->unk_BCD5A);
+                Sound_PlayBGM(v1->nextBGM);
             }
         }
         break;
@@ -112,7 +112,7 @@ static void sub_02003C64()
         if (Sound_CheckFade() == 0) {
             if (sub_02004FEC() == 0) {
                 sub_020041B4();
-                Sound_PlayBGM(v1->unk_BCD5A);
+                Sound_PlayBGM(v1->nextBGM);
                 sub_0200560C(127, v1->unk_BCD54, 0);
             }
         }
@@ -150,13 +150,13 @@ SoundSystem *SoundSystem_Get()
     return &sSoundSystem;
 }
 
-void *SoundSystem_GetParam(int param)
+void *SoundSystem_GetParam(enum SoundSystemParam param)
 {
     SoundSystem *soundSys = SoundSystem_Get();
 
     switch (param) {
-    case 5:
-        return &soundSys->unk_BCD4A;
+    case SOUND_SYSTEM_PARAM_BGM_FIXED:
+        return &soundSys->bgmFixed;
     case 6:
         return &soundSys->unk_BCD4B;
     case 0:
@@ -175,10 +175,10 @@ void *SoundSystem_GetParam(int param)
         return &soundSys->unk_BCD50;
     case 9:
         return &soundSys->unk_BCD54;
-    case 10:
-        return &soundSys->unk_BCD58;
-    case 11:
-        return &soundSys->unk_BCD5A;
+    case SOUND_SYSTEM_PARAM_CURRENT_BGM:
+        return &soundSys->currentBGM;
+    case SOUND_SYSTEM_PARAM_NEXT_BGM:
+        return &soundSys->nextBGM;
     case 12:
         return &soundSys->unk_BCD5C;
     case 13:
@@ -201,10 +201,10 @@ void *SoundSystem_GetParam(int param)
         return &soundSys->unk_BCD66;
     case 22:
         return &soundSys->unk_BCD67;
-    case 23:
-        return &soundSys->heapStates[0];
-    case 24:
-        return &soundSys->heapStates[1];
+    case SOUND_SYSTEM_PARAM_HEAP_STATE_EMPTY:
+        return &soundSys->heapStates[SOUND_HEAP_STATE_EMPTY];
+    case SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT:
+        return &soundSys->heapStates[SOUND_HEAP_STATE_PERSISTENT];
     case 25:
         return &soundSys->heapStates[2];
     case 26:

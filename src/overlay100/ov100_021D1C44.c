@@ -631,7 +631,7 @@ BOOL ov100_021D2428(void *param0)
             G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
 
             {
-                u16 v2 = sub_020041FC();
+                u16 v2 = Sound_GetCurrentBGM();
 
                 sub_020055D0(v2, 0);
             }
