@@ -12,13 +12,14 @@
 #include "generated/moves.h"
 #include "generated/text_banks.h"
 
-#include "struct_decls/struct_020797DC_decl.h"
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_defs/trainer.h"
 
 #include "charcode.h"
 #include "enums.h"
 #include "heap.h"
 #include "message.h"
+#include "pc_boxes.h"
 #include "pokemon.h"
 #include "record_mixed_rng.h"
 #include "save_player.h"
@@ -28,7 +29,6 @@
 #include "trainer_info.h"
 #include "unk_02014D38.h"
 #include "unk_02017038.h"
-#include "unk_020797C8.h"
 #include "unk_020996D0.h"
 
 #include "res/text/bank/common_strings.h"
@@ -423,7 +423,7 @@ void StringTemplate_SetGenderMarker(StringTemplate *template, u32 idx, enum Gend
 
 void StringTemplate_SetPCBoxName(StringTemplate *template, u32 idx, const PCBoxes *boxes, u32 boxIdx)
 {
-    sub_02079AF4(boxes, boxIdx, template->templateBuf);
+    PCBoxes_BufferBoxName(boxes, boxIdx, template->templateBuf);
     SetStringTemplateArg(template, idx, template->templateBuf, NULL);
 }
 

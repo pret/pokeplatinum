@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_OV61_0222AE60_H
 #define POKEPLATINUM_OV61_0222AE60_H
 
+#include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02030A80_decl.h"
-#include "struct_decls/struct_020797DC_decl.h"
 
 #include "overlay061/struct_ov61_0222AE80.h"
 #include "overlay061/struct_ov61_0222AFC0.h"
