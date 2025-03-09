@@ -38,10 +38,10 @@ typedef struct {
     u8 *buffer;
     BDHC *bdhc;
     BOOL killLoadTask;
-    int *unk_DC;
+    BOOL *loadTaskRunning;
     NARC *landDataNARC;
     int dummyE4;
-    int *unk_E8;
+    BOOL *mapModelLoadTaskRunning;
 } BDHCLoaderTaskContext;
 
 typedef struct {
@@ -332,7 +332,7 @@ static void BDHC_LazyLoadTask(SysTask *sysTask, void *sysTaskParam)
 
     switch (ctx->currentSubTask) {
     case BDHC_LOADER_SUBTASK_PREPARE_FILE_LOAD:
-        if (*ctx->unk_E8) {
+        if (*ctx->mapModelLoadTaskRunning) {
             subTaskCompleted = FALSE;
             break;
         }
@@ -356,7 +356,7 @@ static void BDHC_LazyLoadTask(SysTask *sysTask, void *sysTaskParam)
         break;
 
     case BDHC_LOADER_SUBTASK_END_TASK:
-        *ctx->unk_DC = 0;
+        *ctx->loadTaskRunning = FALSE;
 
         Heap_FreeToHeap((void *)sysTaskParam);
         SysTask_Done(sysTask);
@@ -432,7 +432,7 @@ void BDHC_Reset(BDHC *bdhc)
     bdhc->accessList = NULL;
 }
 
-SysTask *BDHC_LazyLoad(NARC *landDataNARC, const int unused1, BDHC *bdhc, int *param3, u8 **buffer, int *param5)
+SysTask *BDHC_LazyLoad(NARC *landDataNARC, const int unused1, BDHC *bdhc, BOOL *loadTaskRunning, u8 **buffer, BOOL *mapModelLoadTaskRunning)
 {
     BDHCLoaderTaskContext *ctx = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(BDHCLoaderTaskContext));
 
@@ -440,14 +440,14 @@ SysTask *BDHC_LazyLoad(NARC *landDataNARC, const int unused1, BDHC *bdhc, int *p
     ctx->landDataNARC = landDataNARC;
     ctx->dummyE4 = unused1;
     ctx->bdhc = bdhc;
-    ctx->unk_DC = param3;
+    ctx->loadTaskRunning = loadTaskRunning;
     ctx->killLoadTask = FALSE;
     ctx->dummyC8 = FALSE;
     ctx->dummyAC = 0;
     ctx->buffer = *buffer;
-    ctx->unk_E8 = param5;
+    ctx->mapModelLoadTaskRunning = mapModelLoadTaskRunning;
 
-    return SysTask_Start(BDHC_LazyLoadTask, (void *)ctx, 1);
+    return SysTask_Start(BDHC_LazyLoadTask, ctx, 1);
 }
 
 void BDHC_KillLoad(SysTask *sysTask)

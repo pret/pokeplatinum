@@ -7,10 +7,10 @@
 
 #include "field/field_system.h"
 #include "overlay005/bdhc.h"
+#include "overlay005/land_data.h"
+#include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_prop.h"
-#include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EF250.h"
-#include "overlay005/struct_ov5_021E8F60_decl.h"
 
 #include "map_matrix.h"
 #include "map_tile_behavior.h"
@@ -62,9 +62,9 @@ static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1
     fx32 v15;
     fx32 v16;
     VecFx32 v17;
-    const UnkStruct_ov5_021E8F60 *v18 = fieldSystem->unk_28;
+    const LandDataManager *v18 = fieldSystem->landDataMan;
 
-    ov5_021EA6BC(v18, &v17);
+    LandDataManager_GetOffset(v18, &v17);
 
     v16 = param1 - v17.y;
     v0 = 0;
@@ -94,14 +94,14 @@ static const fx32 sub_02054D0C(const FieldSystem *fieldSystem, const fx32 param1
         v11.z = param3 - v13 - v17.z;
 
         v9 = v3 + v4 * v20;
-        v10 = ov5_021E935C(v9, v20);
-        v8 = ov5_021E9390(v7, v10, v18);
+        v10 = LandDataManager_CalculateMapQuadrantOfTile(v9, v20);
+        v8 = LandDataManager_GetRelativeLoadedMapsQuadrant(v7, v10, v18);
 
         if (v8 > 3) {
             v1 = 0;
         } else {
             {
-                const BDHC *v21 = ov5_021E9610(v18, v8);
+                const BDHC *v21 = LandDataManager_GetLoadedMapBDHC(v18, v8);
                 v1 = CalculateObjectHeight(v16, v11.x, v11.z, v21, &v11.y);
             }
         }
@@ -162,7 +162,7 @@ static const fx32 sub_02054E50(const FieldSystem *fieldSystem, const fx32 param1
     v1 = param2 / (16 * FX32_ONE);
     v2 = param3 / (16 * FX32_ONE);
 
-    v0 = ov5_021E9580(fieldSystem->unk_28, v1, v2, NULL);
+    v0 = LandDataManager_GetRelativeLoadedMapsQuadrantOfTile(fieldSystem->landDataMan, v1, v2, NULL);
 
     if (v0) {
         v4 = 1;
@@ -185,17 +185,17 @@ static BOOL sub_02054E84(const FieldSystem *fieldSystem, const int param1, const
     u32 v3;
     u8 v4;
     int v5, v6;
-    const UnkStruct_ov5_021E8F60 *v7 = fieldSystem->unk_28;
+    const LandDataManager *v7 = fieldSystem->landDataMan;
     u32 v8;
     u8 v9;
 
-    v5 = param1 - ov5_021EA6AC(v7);
-    v6 = param2 - ov5_021EA6B4(v7);
+    v5 = param1 - LandDataManager_GetOffsetTileX(v7);
+    v6 = param2 - LandDataManager_GetOffsetTileY(v7);
 
     {
         BOOL v10;
 
-        v10 = ov5_021E9580(v7, param1, param2, &v4);
+        v10 = LandDataManager_GetRelativeLoadedMapsQuadrantOfTile(v7, param1, param2, &v4);
 
         if (v10 == 0) {
             (*param3) = 0xff;
@@ -208,7 +208,7 @@ static BOOL sub_02054E84(const FieldSystem *fieldSystem, const int param1, const
 
             v11 = (v6 % 32) * 32 + (v5 % 32);
 
-            v12 = ov5_021E9624(v7, v4);
+            v12 = LandDataManager_GetLoadedMapTerrainAttributes(v7, v4);
             *param3 = v12[v11];
 
             return 1;
@@ -228,7 +228,7 @@ static BOOL sub_02054EF4(const FieldSystem *fieldSystem, const int param1, const
     {
         int v7;
         int v8;
-        const UnkStruct_ov5_021E8F60 *v9 = fieldSystem->unk_28;
+        const LandDataManager *v9 = fieldSystem->landDataMan;
 
         v7 = MapMatrix_GetWidth(fieldSystem->mapMatrix);
         v8 = v7 * 32;
@@ -447,7 +447,7 @@ BOOL sub_02055178(const FieldSystem *fieldSystem, const int param1, const UnkStr
     MapPropManager *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        ov5_021E9340(v0, fieldSystem->unk_28, &v1);
+        LandDataManager_GetLoadedMapPropManager(v0, fieldSystem->landDataMan, &v1);
 
         if (v1 == NULL) {
             continue;
@@ -460,7 +460,7 @@ BOOL sub_02055178(const FieldSystem *fieldSystem, const int param1, const UnkStr
             int v5;
             BOOL v6;
 
-            v4 = ov5_021E9560(fieldSystem->unk_28, v0);
+            v4 = LandDataManager_GetLoadedMapMatrixIndex(fieldSystem->landDataMan, v0);
             v5 = MapMatrix_GetWidth(fieldSystem->mapMatrix);
 
             sub_020553A4(v4, v5, &v3);
@@ -497,7 +497,7 @@ BOOL sub_02055208(const FieldSystem *fieldSystem, const int *param1, const u8 pa
     MapPropManager *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        ov5_021E9340(v0, fieldSystem->unk_28, &v1);
+        LandDataManager_GetLoadedMapPropManager(v0, fieldSystem->landDataMan, &v1);
 
         if (v1 == NULL) {
             continue;
@@ -510,7 +510,7 @@ BOOL sub_02055208(const FieldSystem *fieldSystem, const int *param1, const u8 pa
             int v5;
             BOOL v6;
 
-            v4 = ov5_021E9560(fieldSystem->unk_28, v0);
+            v4 = LandDataManager_GetLoadedMapMatrixIndex(fieldSystem->landDataMan, v0);
             v5 = MapMatrix_GetWidth(fieldSystem->mapMatrix);
 
             sub_020553A4(v4, v5, &v3);
@@ -554,7 +554,7 @@ BOOL sub_020552B4(const FieldSystem *fieldSystem, const int param1, MapProp **pa
     MapPropManager *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        ov5_021E9340(v0, fieldSystem->unk_28, &v1);
+        LandDataManager_GetLoadedMapPropManager(v0, fieldSystem->landDataMan, &v1);
 
         if (v1 == NULL) {
             continue;
@@ -579,7 +579,7 @@ BOOL sub_020552B4(const FieldSystem *fieldSystem, const int param1, MapProp **pa
                         }
 
                         if (param3 != NULL) {
-                            (*param3) = ov5_021E9560(fieldSystem->unk_28, v0);
+                            (*param3) = LandDataManager_GetLoadedMapMatrixIndex(fieldSystem->landDataMan, v0);
                         }
 
                         return 1;
@@ -598,7 +598,7 @@ BOOL sub_02055324(const FieldSystem *fieldSystem, const int *param1, const u8 pa
     MapPropManager *v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        ov5_021E9340(v0, fieldSystem->unk_28, &v1);
+        LandDataManager_GetLoadedMapPropManager(v0, fieldSystem->landDataMan, &v1);
 
         if (v1 == NULL) {
             continue;

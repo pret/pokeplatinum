@@ -15,6 +15,7 @@
 #include "field/field_system_sub2_decl.h"
 #include "overlay005/area_data.h"
 #include "overlay005/area_light.h"
+#include "overlay005/land_data_manager_decl.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
 #include "overlay005/model_attributes.h"
@@ -22,7 +23,6 @@
 #include "overlay005/struct_ov5_021D1A68_decl.h"
 #include "overlay005/struct_ov5_021D57D8_decl.h"
 #include "overlay005/struct_ov5_021DF47C_decl.h"
-#include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay005/struct_ov5_021EB0E0_decl.h"
 #include "overlay005/struct_ov5_021EF300_decl.h"
 #include "overlay023/struct_ov23_0224942C_decl.h"
@@ -77,7 +77,7 @@ typedef struct FieldSystem_t {
     Location *location;
     int unk_20;
     Camera *camera;
-    UnkStruct_ov5_021E8F60 *unk_28;
+    LandDataManager *landDataMan;
     MapMatrix *mapMatrix;
     AreaDataManager *areaDataManager;
     UnkStruct_ov5_021D1A68 *unk_34;
@@ -91,7 +91,7 @@ typedef struct FieldSystem_t {
     MapPropOneShotAnimationManager *mapPropOneShotAnimMan;
     UnkStruct_02054C18 *unk_58;
     const TerrainCollisionManager *terrainCollisionMan;
-    int unk_60;
+    BOOL skipMapAttributes;
     Signpost *signpost;
     BOOL runningFieldMap;
     UnkStruct_ov23_0224942C *unk_6C;
