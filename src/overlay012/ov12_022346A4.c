@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_02235254.h"
@@ -13,10 +11,10 @@
 #include "overlay012/struct_ov12_02226454.h"
 
 #include "heap.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     UnkStruct_ov12_0221FCDC *unk_00;
@@ -446,8 +444,8 @@ void ov12_02234D98(UnkStruct_ov12_0221FCDC *param0, SpriteSystem *param1, Sprite
 
     v2 = ov12_022232FC(v0->unk_00, ov12_02220240(param0));
 
-    v0->unk_130 = sub_020080C0(v2, 0);
-    v0->unk_132 = sub_020080C0(v2, 1);
+    v0->unk_130 = PokemonSprite_GetAttribute(v2, MON_SPRITE_X_CENTER);
+    v0->unk_132 = PokemonSprite_GetAttribute(v2, MON_SPRITE_Y_CENTER);
 
     v3 = ov12_0222329C(param0);
 

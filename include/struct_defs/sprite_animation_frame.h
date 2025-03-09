@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_SPRITE_ANIMATION_DATA_H
 #define POKEPLATINUM_SPRITE_ANIMATION_DATA_H
 
+#define MAX_ANIMATION_FRAMES 10
+
 /**
  * @brief By-frame data definition for animating a sprite.
  */

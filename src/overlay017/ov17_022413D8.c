@@ -31,6 +31,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -40,7 +41,6 @@
 #include "text.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_02012744.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
@@ -468,15 +468,15 @@ static void ov17_022414C0(SysTask *param0, void *param1)
 
 void ov17_02241524(UnkStruct_ov17_0223F88C *param0, int param1)
 {
-    sub_02007DC8(param0->unk_08[param1]);
+    PokemonSprite_Delete(param0->unk_08[param1]);
 
     GF_ASSERT(param0->unk_58[param1].unk_00 != NULL);
     MI_CpuClear8(param0->unk_58[param1].unk_00, (32 * 10 * 10));
 
     param0->unk_08[param1] = sub_02095484(param0->unk_04, param1, param0->unk_00->unk_00[param1], 0, &param0->unk_58[param1], HEAP_ID_21, (256 - 40) - 32 * param1, (104 + 8) - 32 * param1, -0x200);
 
-    sub_02007DEC(param0->unk_08[param1], 6, 1);
-    sub_02007DEC(param0->unk_08[param1], 37, 1);
+    PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_HIDE, 1);
+    PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_HIDE_2, 1);
 
     {
         u32 v0, v1;
@@ -485,7 +485,7 @@ void ov17_02241524(UnkStruct_ov17_0223F88C *param0, int param1)
         v1 = Pokemon_GetValue(param0->unk_00->unk_00[param1], MON_DATA_FORM, NULL);
 
         if (IsFormSymmetrical(v0, v1) == 1) {
-            sub_02007DEC(param0->unk_08[param1], 35, 1);
+            PokemonSprite_SetAttribute(param0->unk_08[param1], MON_SPRITE_FLIP_H, 1);
         }
     }
 }
@@ -500,8 +500,8 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
         param0->unk_58[v0].unk_00 = Heap_AllocFromHeap(HEAP_ID_21, (32 * 10 * 10));
         param0->unk_08[v0] = sub_02095484(param0->unk_04, v0, param0->unk_00->unk_00[v0], 0, &param0->unk_58[v0], HEAP_ID_21, (256 - 40) - 32 * v0, (104 + 8) - 32 * v0, -0x200);
 
-        sub_02007DEC(param0->unk_08[v0], 6, 1);
-        sub_02007DEC(param0->unk_08[v0], 37, 1);
+        PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_HIDE, 1);
+        PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_HIDE_2, 1);
 
         {
             u32 v1, v2;
@@ -510,7 +510,7 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
             v2 = Pokemon_GetValue(param0->unk_00->unk_00[v0], MON_DATA_FORM, NULL);
 
             if (IsFormSymmetrical(v1, v2) == 1) {
-                sub_02007DEC(param0->unk_08[v0], 35, 1);
+                PokemonSprite_SetAttribute(param0->unk_08[v0], MON_SPRITE_FLIP_H, 1);
             }
         }
     }
@@ -529,7 +529,7 @@ void ov17_022416E4(UnkStruct_ov17_0223F88C *param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_02007DC8(param0->unk_08[v0]);
+        PokemonSprite_Delete(param0->unk_08[v0]);
         Heap_FreeToHeap(param0->unk_58[v0].unk_00);
         param0->unk_58[v0].unk_00 = NULL;
     }

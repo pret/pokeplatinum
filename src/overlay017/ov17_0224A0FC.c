@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay017/ov17_0223DAD0.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/struct_ov17_0224A1EC.h"
@@ -40,6 +38,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
 #include "spl.h"
 #include "sprite.h"

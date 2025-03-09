@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV119_021D0FD0_H
 #define POKEPLATINUM_STRUCT_OV119_021D0FD0_H
 
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_0209843C.h"
 
 #include "overlay119/struct_ov119_021D16C0.h"
 #include "overlay119/struct_ov119_021D17B8.h"
 
+#include "pokemon_sprite.h"
 #include "sprite.h"
 
 typedef struct {

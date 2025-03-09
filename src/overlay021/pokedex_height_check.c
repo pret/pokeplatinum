@@ -5,8 +5,6 @@
 
 #include "generated/text_banks.h"
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021E29DC.h"
 #include "overlay021/pokedex_app.h"
@@ -27,13 +25,13 @@
 #include "narc.h"
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_0200762C.h"
 
 #include "res/text/bank/pokedex.h"
 
@@ -490,8 +488,8 @@ static void DisplaySpeciesHeight(UnkStruct_ov21_021E6118 *param0, const UnkStruc
 
     PokedexMain_DisplayPokemonSprite(param0->unk_00, param1->unk_04, species, 2, 88, 88 + pokemonPos);
 
-    sub_02007DEC(speciesSprite, 6, 0);
-    sub_020086FC(speciesSprite, 15, 15, 0, 0);
+    PokemonSprite_SetAttribute(speciesSprite, MON_SPRITE_HIDE, FALSE);
+    PokemonSprite_StartFade(speciesSprite, 15, 15, 0, 0);
 
     SetSpeciesPosition(speciesSprite, pokemonPos);
     SetSpeciesScale(speciesSprite, pokemonScale);
@@ -501,8 +499,8 @@ static void ClearSpeciesSprite(UnkStruct_ov21_021E6118 *param0)
 {
     PokemonSprite *speciesSprite = ov21_021D2170(param0->unk_00);
 
-    sub_02007DEC(speciesSprite, 6, 1);
-    sub_02008780(speciesSprite);
+    PokemonSprite_SetAttribute(speciesSprite, MON_SPRITE_HIDE, TRUE);
+    PokemonSprite_ClearFade(speciesSprite);
 }
 
 static void SetTrainerPosition(Sprite *trainerHeightSprite, short trainerPos)
@@ -517,7 +515,7 @@ static void SetTrainerPosition(Sprite *trainerHeightSprite, short trainerPos)
 
 static void SetSpeciesPosition(PokemonSprite *speciesSprite, short pokemonPos)
 {
-    sub_02007DEC(speciesSprite, 1, 88 + pokemonPos);
+    PokemonSprite_SetAttribute(speciesSprite, MON_SPRITE_Y_CENTER, 88 + pokemonPos);
 }
 
 static void SetTrainerScale(Sprite *trainerHeightSprite, short trainerScale)
@@ -535,6 +533,6 @@ static void SetSpeciesScale(PokemonSprite *speciesSprite, short pokemonScale)
     fx32 scale = FX_Div(0x100 << FX32_SHIFT, pokemonScale << FX32_SHIFT);
     pokemonScale = FX_Mul(scale, 0x100 << FX32_SHIFT) >> FX32_SHIFT;
 
-    sub_02007DEC(speciesSprite, 12, pokemonScale);
-    sub_02007DEC(speciesSprite, 13, pokemonScale);
+    PokemonSprite_SetAttribute(speciesSprite, MON_SPRITE_SCALE_X, pokemonScale);
+    PokemonSprite_SetAttribute(speciesSprite, MON_SPRITE_SCALE_Y, pokemonScale);
 }

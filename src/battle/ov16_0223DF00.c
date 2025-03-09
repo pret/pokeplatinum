@@ -14,11 +14,9 @@
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/trainer.h"
 
 #include "battle/battle_context.h"
@@ -53,6 +51,7 @@
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "poketch.h"
 #include "render_text.h"
 #include "sprite.h"
@@ -77,7 +76,7 @@ int BattleSystem_MaxBattlers(BattleSystem *battleSystem);
 Party *BattleSystem_Party(BattleSystem *battleSystem, int param1);
 int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
-UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSystem);
+PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSystem);
 UnkStruct_ov12_0221FCDC *ov16_0223E008(BattleSystem *battleSystem);
 SpriteSystem *ov16_0223E010(BattleSystem *battleSystem);
 SpriteManager *ov16_0223E018(BattleSystem *battleSystem);
@@ -289,7 +288,7 @@ Pokemon *BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slo
     return Party_GetPokemonBySlotIndex(battleSys->parties[battler], slot);
 }
 
-UnkStruct_02007768 *ov16_0223E000(BattleSystem *battleSystem)
+PokemonSpriteManager *ov16_0223E000(BattleSystem *battleSystem)
 {
     return battleSystem->unk_88;
 }

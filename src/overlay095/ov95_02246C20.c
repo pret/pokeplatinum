@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02013610.h"
 
 #include "overlay006/struct_ov6_02246254.h"
@@ -546,7 +545,7 @@ static void ov95_022473A0(UnkStruct_ov95_022472C4 *param0)
 
 void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 param3, BOOL param4)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     u32 v1;
     u32 v2;
     void *v3;
@@ -569,7 +568,7 @@ void ov95_022473E8(UnkStruct_ov95_02247628 *param0, int param1, u32 param2, u32 
         v5 = (BoxPokemon *)((param1 == 0) ? param0->unk_00->unk_00 : param0->unk_00->unk_04);
         v6 = BoxPokemon_EnterDecryptionContext(v5);
 
-        BoxPokemon_BuildArchivedSprite(&v0, v5, 2, 0);
+        BoxPokemon_BuildSpriteTemplate(&v0, v5, 2, 0);
 
         v7 = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
         v8 = BoxPokemon_GetValue(v5, MON_DATA_SPECIES, NULL);

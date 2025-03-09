@@ -3,8 +3,7 @@
 
 #include "struct_defs/sprite_animation_frame.h"
 
-#define MAX_FACES            2
-#define MAX_ANIMATION_FRAMES 10
+#define MAX_FACES 2
 
 typedef struct PokeSpriteFaceData {
     u8 cryDelay; ///< How long to wait before playing the cry.

@@ -4,8 +4,6 @@
 #include <nitro/gx.h>
 #include <nnsys.h>
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/pokedex_graphic_data.h"
 #include "overlay021/struct_ov21_021D22F8.h"
 #include "overlay021/struct_ov21_021D23F8.h"
@@ -16,6 +14,7 @@
 
 #include "bg_window.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 

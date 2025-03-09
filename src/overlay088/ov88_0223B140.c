@@ -8,7 +8,6 @@
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_t.h"
@@ -103,7 +102,7 @@ static void ov88_0223CEF0(u16 *param0);
 static int ov88_0223CF30(int param0, int param1, UnkStruct_ov88_0223C8AC *param2);
 static void ov88_0223CF68(int param0, Sprite *param1, int param2);
 static int ov88_0223CFF4(u32 *param0, int *param1, Sprite *param2, UnkStruct_ov88_0223C8AC *param3, int param4);
-static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, ArchivedSprite *param3);
+static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteTemplate *param3);
 static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon);
 static void ov88_0223D140(ChatotCry *param0);
 static void ov88_0223E894(UnkStruct_02095E80 *param0);
@@ -1260,9 +1259,9 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_26);
 }
 
-static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, ArchivedSprite *param3)
+static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteTemplate *param3)
 {
-    Pokemon_BuildArchivedSprite(param3, param1, 2);
+    Pokemon_BuildSpriteTemplate(param3, param1, 2);
 
     {
         int v0 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);

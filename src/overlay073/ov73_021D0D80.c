@@ -4,7 +4,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
@@ -1094,7 +1093,7 @@ static const u8 Unk_ov72_021D39D4[] = {
 
 static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     void *v1;
     void *v2;
     void *v3;
@@ -1103,7 +1102,7 @@ static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
     int v6 = 8;
     int v7 = 10;
 
-    BuildArchivedPokemonSprite(&v0, 427, 0, 2, 0, 0, 0);
+    BuildPokemonSpriteTemplate(&v0, 427, 0, 2, 0, 0, 0);
 
     v1 = Heap_AllocFromHeap(param0->heapId, (10 * 10) * 2);
 

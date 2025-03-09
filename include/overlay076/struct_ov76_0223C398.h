@@ -3,11 +3,9 @@
 
 #include "struct_decls/font_oam.h"
 #include "struct_decls/pokemon_animation_sys_decl.h"
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_0207C690.h"
 
 #include "overlay012/struct_ball_rotation_decl.h"
@@ -18,6 +16,7 @@
 #include "char_transfer.h"
 #include "menu.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "string_list.h"
 #include "touch_screen.h"
@@ -32,7 +31,7 @@ typedef struct {
     Window unk_18[11];
     StringList *unk_C8;
     Menu *unk_CC;
-    UnkStruct_02007768 *unk_D0;
+    PokemonSpriteManager *unk_D0;
     PokemonSprite *unk_D4;
     int unk_D8;
     UnkStruct_ov22_02258A48 unk_DC;

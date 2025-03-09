@@ -32,7 +32,7 @@ Static main
 	Object main.nef.p/src_overlay_manager.c.o
 	Object main.nef.p/src_narc.c.o
 	Object main.nef.p/src_graphics.c.o
-	Object main.nef.p/src_unk_0200762C.c.o
+	Object main.nef.p/src_pokemon_sprite.c.o
 	Object main.nef.p/src_sprite_util.c.o
 	Object main.nef.p/src_sprite_resource.c.o
 	Object main.nef.p/src_sprite_transfer.c.o

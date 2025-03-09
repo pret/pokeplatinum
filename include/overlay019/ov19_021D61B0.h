@@ -3,8 +3,6 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02007768_decl.h"
-
 #include "overlay019/funcptr_ov19_021D79B8.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
@@ -32,7 +30,7 @@ UnkStruct_ov19_021DC680 *ov19_021D77E8(UnkStruct_ov19_021D61B0 *param0);
 UnkStruct_ov19_021D8E00 *ov19_021D77F4(UnkStruct_ov19_021D61B0 *param0);
 UnkStruct_ov19_021DE3E8 *ov19_021D7800(UnkStruct_ov19_021D61B0 *param0);
 UnkStruct_ov19_021DBA9C *ov19_021D780C(UnkStruct_ov19_021D61B0 *param0);
-UnkStruct_02007768 *ov19_021D7818(UnkStruct_ov19_021D61B0 *param0);
+PokemonSpriteManager *ov19_021D7818(UnkStruct_ov19_021D61B0 *param0);
 int ov19_021D7820(UnkStruct_ov19_021D61B0 *param0);
 void ov19_021D783C(SpriteResourcesHeader *param0, NNSG2dImageProxy *param1, NNSG2dImagePaletteProxy *param2, NNSG2dCellDataBank *param3, NNSG2dCellAnimBankData *param4, u32 param5);
 Sprite *ov19_021D785C(SpriteList *param0, SpriteResourcesHeader *param1, u32 param2, u32 param3, u32 param4, int param5);

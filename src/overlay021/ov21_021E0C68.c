@@ -5,8 +5,6 @@
 
 #include "generated/text_banks.h"
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021E29DC.h"
@@ -28,13 +26,13 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "strbuf.h"
 #include "text.h"
-#include "unk_0200762C.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"
@@ -475,15 +473,15 @@ static void ov21_021E1228(UnkStruct_ov21_021E0D7C *param0, const UnkStruct_ov21_
     int species = PokedexSort_CurrentSpecies(param1->unk_04);
 
     PokedexMain_DisplayPokemonSprite(param0->unk_00, param1->unk_04, species, 2, 48, 72);
-    sub_02007DEC(v0, 6, 0);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 0);
 }
 
 static void ov21_021E1260(UnkStruct_ov21_021E0D7C *param0)
 {
     PokemonSprite *v0 = ov21_021D2170(param0->unk_00);
 
-    sub_02007DEC(v0, 6, 1);
-    sub_02008780(v0);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 1);
+    PokemonSprite_ClearFade(v0);
 }
 
 static void ov21_021E127C(UnkStruct_ov21_021E14D4 *param0, UnkStruct_ov21_021E0D7C *param1, int param2)

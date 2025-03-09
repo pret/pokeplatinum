@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_0225BFFC_T_H
 #define POKEPLATINUM_STRUCT_OV16_0225BFFC_T_H
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "battle/struct_ov16_0225BFFC_sub1.h"
 #include "battle/struct_ov16_022674C4.h"
 #include "battle/struct_ov16_0226C378.h"
@@ -11,6 +9,7 @@
 
 #include "bg_window.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sys_task_manager.h"
 

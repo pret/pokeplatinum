@@ -6,6 +6,7 @@
 #include "constants/heap.h"
 
 #define LCRNG_MULTIPLIER 1103515245L
+#define LCRNG_INCREMENT  24691
 
 enum AffineTransformationMatrixMode {
     AFFINE_MODE_NORMAL = 0,

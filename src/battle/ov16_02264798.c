@@ -10,9 +10,9 @@
 #include "battle/struct_ov16_0225BFFC_t.h"
 
 #include "math.h"
+#include "pokemon_sprite.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
-#include "unk_0200762C.h"
 
 static void ov16_02264800(SysTask *param0, void *param1);
 
@@ -41,7 +41,7 @@ void ov16_022647D8(BattlerData *param0)
     param0->unk_194 = NULL;
     param0->unk_198 = 0;
 
-    sub_02007DEC(param0->unk_20, 4, 0);
+    PokemonSprite_SetAttribute(param0->unk_20, MON_SPRITE_Y_OFFSET, 0);
 }
 
 static void ov16_02264800(SysTask *param0, void *param1)
@@ -56,5 +56,5 @@ static void ov16_02264800(SysTask *param0, void *param1)
     }
 
     v1 = FX_Mul(CalcSineDegrees(v0->unk_198), 0x1800) / FX32_ONE;
-    sub_02007DEC(v0->unk_20, 4, v1);
+    PokemonSprite_SetAttribute(v0->unk_20, MON_SPRITE_Y_OFFSET, v1);
 }

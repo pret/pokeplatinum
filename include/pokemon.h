@@ -8,10 +8,8 @@
 
 #include "struct_decls/pokemon_animation_sys_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/pokemon.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/species.h"
 #include "struct_defs/sprite_animation_frame.h"
 
@@ -20,6 +18,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "string.h"
 #include "trainer_info.h"
@@ -391,47 +390,47 @@ u8 Pokemon_IsPersonalityShiny(u32 monOTID, u32 monPersonality);
 u32 Pokemon_FindShinyPersonality(u32 monOTID);
 
 /**
- * @brief Build an ArchivedSprite for a Pokemon.
+ * @brief Build a PokemonSpriteTemplate for a Pokemon.
  *
- * @param sprite    Pointer to the sprite structure to be populated
- * @param mon       The Pokemon whose data will be used to build the sprite
- * @param face      Which face of the Pokemon the player sees
+ * @param spriteTemplate Pointer to the sprite template to be populated
+ * @param mon            The Pokemon whose data will be used to build the sprite
+ * @param face           Which face of the Pokemon the player sees
  */
-void Pokemon_BuildArchivedSprite(ArchivedSprite *sprite, Pokemon *mon, u8 face);
+void Pokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face);
 
 /**
- * @brief Build an ArchivedSprite for a Pokemon, preferring sprites from
+ * @brief Build a PokemonSpriteTemplate for a Pokemon, preferring sprites from
  * Diamond/Pearl where possible.
  *
- * @param sprite    Pointer to the sprite structure to be populated
- * @param mon       The Pokemon whose data will be used to build the sprite
- * @param face      Which face of the Pokemon the player sees
+ * @param spriteTemplate Pointer to the sprite template to be populated
+ * @param mon            The Pokemon whose data will be used to build the sprite
+ * @param face           Which face of the Pokemon the player sees
  */
-void Pokemon_BuildArchivedDPSprite(ArchivedSprite *sprite, Pokemon *mon, u8 face);
+void Pokemon_BuildSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, Pokemon *mon, u8 face);
 
 /**
- * @brief Build an ArchivedSprite for a BoxPokemon.
+ * @brief Build a PokemonSpriteTemplate for a BoxPokemon.
  *
- * @param sprite    Pointer to the sprite structure to be populated
- * @param mon       The Pokemon whose data will be used to build the sprite
- * @param face      Which face of the Pokemon the player sees
- * @param preferDP  If TRUE, prefer sprites from Diamond/Pearl over Platinum
+ * @param spriteTemplate Pointer to the sprite template to be populated
+ * @param mon            The Pokemon whose data will be used to build the sprite
+ * @param face           Which face of the Pokemon the player sees
+ * @param preferDP       If TRUE, prefer sprites from Diamond/Pearl over Platinum
  */
-void BoxPokemon_BuildArchivedSprite(ArchivedSprite *sprite, BoxPokemon *boxMon, u8 face, BOOL preferDP);
+void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPokemon *boxMon, u8 face, BOOL preferDP);
 
 /**
- * @brief Build an ArchivedSprite for a Pokemon sprite according to the input
+ * @brief Build a PokemonSpriteTemplate for a Pokemon sprite according to the input
  * species, form, and gender.
  *
- * @param sprite        Pointer to the sprite structure to be populated
- * @param species       The Pokemon's species
- * @param gender        The Pokemon's gender
- * @param face          Which face of the Pokemon the player sees
- * @param shiny         1 if the Pokemon is shiny, 0 if not
- * @param form          The Pokemon's form
- * @param personality   The Pokemon's personality value
+ * @param spriteTemplate Pointer to the sprite template to be populated
+ * @param species        The Pokemon's species
+ * @param gender         The Pokemon's gender
+ * @param face           Which face of the Pokemon the player sees
+ * @param shiny          1 if the Pokemon is shiny, 0 if not
+ * @param form           The Pokemon's form
+ * @param personality    The Pokemon's personality value
  */
-void BuildArchivedPokemonSprite(ArchivedSprite *sprite, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 
 /**
  * @brief Sanitizes a pokemon form. If the given form is greater than the max for the given species, returns zero, else returns the form unchanged
@@ -481,7 +480,7 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
  * @return Y-offset applied to the sprite-face on display
  */
 u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
-void sub_0207697C(ArchivedSprite *param0, u16 param1);
+void sub_0207697C(PokemonSpriteTemplate *param0, u16 param1);
 ManagedSprite *sub_02076994(SpriteSystem *param0, SpriteManager *param1, PaletteData *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
 

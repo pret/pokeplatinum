@@ -22,6 +22,7 @@
 #include "heap.h"
 #include "narc.h"
 #include "pltt_transfer.h"
+#include "pokemon_sprite.h"
 #include "render_oam.h"
 #include "resource_collection.h"
 #include "sprite.h"
@@ -29,7 +30,6 @@
 #include "sprite_transfer.h"
 #include "sprite_util.h"
 #include "system.h"
-#include "unk_0200762C.h"
 #include "unk_02015064.h"
 #include "unk_0202419C.h"
 
@@ -133,7 +133,7 @@ void ov22_02255180(UnkStruct_ov22_0225A0E4 *param0)
     }
 
     if (param0->unk_2C) {
-        sub_02007768(param0->unk_20);
+        PokemonSpriteManager_DrawSprites(param0->unk_20);
     }
 
     G3_RequestSwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_Z);
@@ -257,7 +257,7 @@ void ov22_02255390(void)
 void ov22_022553F8(UnkStruct_ov22_0225A0E4 *param0)
 {
     Bg_RunScheduledUpdates(param0->unk_40);
-    sub_02008A94(param0->unk_20);
+    PokemonSpriteManager_UpdateCharAndPltt(param0->unk_20);
     RenderOam_Transfer();
 }
 
@@ -298,7 +298,7 @@ void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const UnkStruct_ov22_022550D
 {
     ov22_02255748(param0, param1);
     ov22_02255C24(param0, heapID, 0x2800, 0x20);
-    sub_02008B2C(param0->unk_20, 1);
+    PokemonSpriteManager_SetExcludeIdentity(param0->unk_20, 1);
     ov22_02255BF4(param0, heapID);
 }
 
@@ -350,7 +350,7 @@ void ov22_02255524(UnkStruct_ov22_0225A0E4 *param0)
 
 void ov22_02255530(UnkStruct_ov22_0225A0E4 *param0)
 {
-    sub_02008A94(param0->unk_20);
+    PokemonSpriteManager_UpdateCharAndPltt(param0->unk_20);
 }
 
 void ov22_0225553C(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, u16 param3, const VecFx32 *param4)
@@ -376,7 +376,7 @@ void ov22_0225553C(UnkStruct_ov22_0225A0E4 *param0, int param1, int param2, u16 
             }
 
             if (param0->unk_2C) {
-                sub_02007768(param0->unk_20);
+                PokemonSpriteManager_DrawSprites(param0->unk_20);
             }
         }
         G3_PopMtx(1);
@@ -794,19 +794,19 @@ static void ov22_02255C14(UnkStruct_ov22_0225A0E4 *param0)
 
 static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, int heapID, int param2, int param3)
 {
-    param0->unk_20 = sub_0200762C(heapID);
+    param0->unk_20 = PokemonSpriteManager_New(heapID);
     param0->unk_24 = NNS_GfdAllocTexVram(param2, 0, 0);
     param0->unk_28 = NNS_GfdAllocPlttVram(param3, 0, NNS_GFD_ALLOC_FROM_LOW);
 
-    sub_02008A78(param0->unk_20, NNS_GfdGetTexKeyAddr(param0->unk_24), NNS_GfdGetTexKeySize(param0->unk_24));
-    sub_02008A84(param0->unk_20, NNS_GfdGetPlttKeyAddr(param0->unk_28), NNS_GfdGetPlttKeySize(param0->unk_28));
+    PokemonSpriteManager_SetCharBaseAddrAndSize(param0->unk_20, NNS_GfdGetTexKeyAddr(param0->unk_24), NNS_GfdGetTexKeySize(param0->unk_24));
+    PokemonSpriteManager_SetPlttBaseAddrAndSize(param0->unk_20, NNS_GfdGetPlttKeyAddr(param0->unk_28), NNS_GfdGetPlttKeySize(param0->unk_28));
 
     param0->unk_2C = 1;
 }
 
 static void ov22_02255C90(UnkStruct_ov22_0225A0E4 *param0)
 {
-    sub_02007B6C(param0->unk_20);
+    PokemonSpriteManager_Free(param0->unk_20);
 
     NNS_GfdFreeTexVram(param0->unk_24);
     NNS_GfdFreePlttVram(param0->unk_28);

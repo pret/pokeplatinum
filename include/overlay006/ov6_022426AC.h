@@ -1,8 +1,7 @@
 #ifndef POKEPLATINUM_OV6_022426AC_H
 #define POKEPLATINUM_OV6_022426AC_H
 
-#include "struct_defs/archived_sprite.h"
-
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_util.h"
@@ -12,7 +11,7 @@ typedef struct GreatMarshLookout_SpriteResources {
     SpriteResource *unk_10[4];
     void *unk_20;
     void *unk_24;
-    ArchivedSprite unk_28;
+    PokemonSpriteTemplate unk_28;
     SpriteList *unk_38;
     G2dRenderer unk_3C;
     Sprite *unk_1C8;

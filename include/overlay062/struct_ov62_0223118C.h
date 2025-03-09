@@ -1,7 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_0223118C_H
 #define POKEPLATINUM_STRUCT_OV62_0223118C_H
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0207C690.h"
@@ -15,6 +14,7 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "touch_screen.h"
 
@@ -36,7 +36,7 @@ typedef struct {
     u8 unk_48;
     u8 padding_49[3];
     GenericPointerData *unk_4C;
-    UnkStruct_02007768 *unk_50;
+    PokemonSpriteManager *unk_50;
     UnkStruct_ov62_022349A8 unk_54;
     UnkStruct_ov62_0223359C unk_46C;
     UnkStruct_ov62_02233310 unk_48C;

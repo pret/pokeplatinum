@@ -3,7 +3,6 @@
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 
 #include "battle/struct_ov16_02264408.h"
 #include "battle/struct_ov16_02265BBC.h"
@@ -15,6 +14,7 @@
 
 #include "bg_window.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "spl.h"
 #include "sprite_system.h"
 #include "sys_task_manager.h"
