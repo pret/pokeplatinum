@@ -8,8 +8,8 @@
 
 typedef struct PalParkTransfer {
     Pokemon mons[CATCHING_SHOW_MONS];
-    u32 unk_288[20];
-    s64 unk_2D8[20];
+    u32 gbaTrainerIds[MAX_GBA_TRANSFER_HISTORY];
+    s64 timeStamps[MAX_GBA_TRANSFER_HISTORY];
     s64 rtcOffset;
     u8 macAddress[6];
 } PalParkTransfer;
@@ -31,7 +31,7 @@ void PalParkTransfer_Init(PalParkTransfer *transferData)
     }
 }
 
-void sub_0202EF04(PalParkTransfer *transferData)
+void ClearPalParkTransferPokemonData(PalParkTransfer *transferData)
 {
     int i;
 
@@ -39,37 +39,38 @@ void sub_0202EF04(PalParkTransfer *transferData)
 
     for (i = 0; i < CATCHING_SHOW_MONS; i++) {
         Pokemon_Init(&transferData->mons[i]);
-        GF_ASSERT(Pokemon_GetValue(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == 0);
+        GF_ASSERT(Pokemon_GetValue(&transferData->mons[i], MON_DATA_SPECIES_EXISTS, NULL) == FALSE);
     }
 }
 
-static int sub_0202EF40(PalParkTransfer *transferData, u32 param1)
+static int GetTransferSlotByTrainerID(PalParkTransfer *transferData, u32 param1)
 {
-    int v0, v1;
-    s64 v2;
+    int i, slot;
+    s64 temp;
 
-    for (v0 = 0; v0 < 20; v0++) {
-        if (transferData->unk_288[v0] == param1) {
-            return v0;
+    for (i = 0; i < MAX_GBA_TRANSFER_HISTORY; i++) {
+        if (transferData->gbaTrainerIds[i] == param1) {
+            return i;
         }
     }
 
-    for (v0 = 0; v0 < 20; v0++) {
-        if (transferData->unk_288[v0] == 0) {
-            return v0;
+    for (i = 0; i < MAX_GBA_TRANSFER_HISTORY; i++) {
+        if (transferData->gbaTrainerIds[i] == 0) {
+            return i;
         }
     }
 
-    v2 = 0x7FFFFFFF;
+    temp = 0x7FFFFFFF;
 
-    for (v0 = 0; v0 < 20; v0++) {
-        if (transferData->unk_2D8[v0] < v2) {
-            v2 = transferData->unk_2D8[v0];
-            v1 = v0;
+    // Return oldest transfer slot if all 20 slots have been filled
+    for (i = 0; i < MAX_GBA_TRANSFER_HISTORY; i++) {
+        if (transferData->timeStamps[i] < temp) {
+            temp = transferData->timeStamps[i];
+            slot = i;
         }
     }
 
-    return v1;
+    return slot;
 }
 
 void BoxMonToTransferData(PalParkTransfer *transfer, BoxPokemon *boxMon, int slot)
@@ -77,12 +78,12 @@ void BoxMonToTransferData(PalParkTransfer *transfer, BoxPokemon *boxMon, int slo
     Pokemon_FromBoxPokemon(boxMon, &transfer->mons[slot]);
 }
 
-void sub_0202EFB8(PalParkTransfer *transferData, u32 gbaTrainerId)
+void PalParkTransfer_SaveTransferHistory(PalParkTransfer *transferData, u32 gbaTrainerId)
 {
-    int v0 = sub_0202EF40(transferData, gbaTrainerId);
+    int slot = GetTransferSlotByTrainerID(transferData, gbaTrainerId);
 
-    transferData->unk_288[v0] = gbaTrainerId;
-    transferData->unk_2D8[v0] = GetTimestamp();
+    transferData->gbaTrainerIds[slot] = gbaTrainerId;
+    transferData->timeStamps[slot] = GetTimestamp();
     transferData->rtcOffset = OS_GetOwnerRtcOffset();
 
     OS_GetMacAddress(transferData->macAddress);
@@ -107,13 +108,13 @@ int GetPalParkTransferMonCount(const PalParkTransfer *transferData)
     return count;
 }
 
-int sub_0202F050(const PalParkTransfer *transferData, u32 gbaTrainerId)
+int PalParkTransfer_GetSecondsSinceLastTransfer(const PalParkTransfer *transferData, u32 gbaTrainerId)
 {
-    s64 v1 = GetTimestamp();
+    s64 currentTime = GetTimestamp();
 
-    for (int i = 0; i < 20; i++) {
-        if (transferData->unk_288[i] == gbaTrainerId) {
-            return v1 - transferData->unk_2D8[i];
+    for (int i = 0; i < MAX_GBA_TRANSFER_HISTORY; i++) {
+        if (transferData->gbaTrainerIds[i] == gbaTrainerId) {
+            return currentTime - transferData->timeStamps[i];
         }
     }
 

@@ -310,7 +310,7 @@ static int ov97_02233B8C(GBAMigrator *migrator)
 {
     int v0;
     u8 v1[16];
-    int v2;
+    int saveResult;
     PalParkTransfer *transferData;
     UnkStruct_ov97_02233B8C *v4 = &migrator->unk_E8F0;
 
@@ -318,7 +318,7 @@ static int ov97_02233B8C(GBAMigrator *migrator)
     case 0:
         CopySelectedMonToPalParkTransfer(migrator);
         transferData = SaveData_PalParkTransfer(migrator->saveData);
-        sub_0202EFB8(transferData, GetGBAPlayerTrainerId());
+        PalParkTransfer_SaveTransferHistory(transferData, GetGBAPlayerTrainerId());
         v4->unk_00++;
         break;
     case 1:
@@ -335,13 +335,13 @@ static int ov97_02233B8C(GBAMigrator *migrator)
         v4->unk_00++;
         break;
     case 4:
-        v2 = SaveData_SaveStateMain(migrator->saveData);
+        saveResult = SaveData_SaveStateMain(migrator->saveData);
 
-        if (v2 == SAVE_RESULT_CORRUPT) {
+        if (saveResult == SAVE_RESULT_CORRUPT) {
             return 12;
         }
 
-        if (v2 == SAVE_RESULT_PROCEED_FINAL) {
+        if (saveResult == SAVE_RESULT_PROCEED_FINAL) {
             v4->unk_00++;
         }
         break;
@@ -377,12 +377,12 @@ static int ov97_02233B8C(GBAMigrator *migrator)
         break;
     case 8:
         do {
-            v2 = SaveData_SaveStateMain(migrator->saveData);
+            saveResult = SaveData_SaveStateMain(migrator->saveData);
 
-            if (v2 == SAVE_RESULT_CORRUPT) {
+            if (saveResult == SAVE_RESULT_CORRUPT) {
                 return 12;
             }
-        } while (v2 != SAVE_RESULT_OK);
+        } while (saveResult != SAVE_RESULT_OK);
 
         ov97_022362C8();
         SleepLock(SLEEP_TYPE_SAVE_DATA);
@@ -411,7 +411,7 @@ static void ov97_02233CE4(GBAMigrator *migrator)
     enum SaveResult result;
     PalParkTransfer *transferData = SaveData_PalParkTransfer(migrator->saveData);
 
-    sub_0202EFB8(transferData, GetGBAPlayerTrainerId());
+    PalParkTransfer_SaveTransferHistory(transferData, GetGBAPlayerTrainerId());
     ResetLock(RESET_LOCK_SOFT_RESET);
 
     result = SaveData_Save(migrator->saveData);
@@ -1697,10 +1697,9 @@ static void ov97_022353CC(void *param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-// Validation for Pal Park?
-static int ov97_02235408(GBAMigrator *migrator)
+static int GetCanMigrateStatus(GBAMigrator *migrator)
 {
-    int v0;
+    int timeDiff;
     u32 gbaTrainerId;
     PalParkTransfer *transferData = SaveData_PalParkTransfer(migrator->saveData);
 
@@ -1714,13 +1713,13 @@ static int ov97_02235408(GBAMigrator *migrator)
         }
 
         gbaTrainerId = GetGBAPlayerTrainerId();
-        v0 = sub_0202F050(transferData, gbaTrainerId);
+        timeDiff = PalParkTransfer_GetSecondsSinceLastTransfer(transferData, gbaTrainerId);
 
-        if (v0 == 0) {
-            v0 = (60 * 60 * 24) * 2;
+        if (timeDiff == 0) {
+            timeDiff = (60 * 60 * 24) * 2;
         }
 
-        if (v0 < (60 * 60 * 24)) {
+        if (timeDiff < (60 * 60 * 24)) {
             return CANNOT_MIGRATE_WAIT_FOR_FULL_DAY;
         }
     }
@@ -1943,7 +1942,7 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
         case 1:
             sub_02015A54(migrator->unk_E8EC);
 
-            migrator->canMigrateStatus = ov97_02235408(migrator);
+            migrator->canMigrateStatus = GetCanMigrateStatus(migrator);
 
             if (migrator->canMigrateStatus != CAN_MIGRATE) {
                 if ((migrator->canMigrateStatus == CANNOT_MIGRATE_DIFFERENT_CONSOLE)

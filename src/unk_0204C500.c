@@ -78,7 +78,7 @@ BOOL ScrCmd_255(ScriptContext *ctx)
     }
 
     Heap_FreeToHeap(mon);
-    sub_0202EF04(transferData);
+    ClearPalParkTransferPokemonData(transferData);
 
     return 0;
 }
