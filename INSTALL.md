@@ -118,27 +118,10 @@ install to a more recent version of `Ubuntu`:
 registry:
 
     ```bash
-    sudo apt install git flex bison build-essential binutils-arm-none-eabi gcc-arm-none-eabi ninja-build
+    apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3
     ```
 
-2. Run the following to install additional dependencies via `pip`:
-
-    ```bash
-    sudo apt install pip
-    pip install --user meson
-    ```
-
-    You may see `pip` respond with a warning saying `"The script meson is
-installed in '/home/<YOUR_USER>/.local/bin', which is not on PATH.` To resolve
-this issue, run the following commands, filling `<path/to/install/directory>`
-with the path reported by `pip` above:
-
-    ```bash
-    echo 'export PATH="<path/to/install/directory>:$PATH"' >> ~/.bashrc
-    source ~/.bashrc
-    ```
-
-3. [Download the repository](#2-downloading-the-repository).
+2. [Download the repository](#2-downloading-the-repository).
 
 ### Windows with MSYS2
 
@@ -169,7 +152,7 @@ the following commands to install necessary build dependencies:
     ```bash
     echo 'export PATH=${PATH}:/mingw64/bin' >> ~/.bashrc
     source ~/.bashrc
-    pacman -S git meson gcc flex bison base-devel mingw-w64-x86_64-arm-none-eabi-{binutils,gcc}
+    pacman -S bison flex gcc git make ninja python mingw-w64-x86_64-arm-none-eabi-gcc
     ```
 
     Press 'Y' when prompted to confirm the installation.
@@ -191,7 +174,7 @@ the following commands:
 
     ```zsh
     brew update
-    brew install gcc@14 meson libpng pkg-config arm-none-eabi-binutils arm-none-eabi-gcc
+    brew install gcc@14 ninja libpng pkg-config arm-none-eabi-gcc
     brew install --cask wine-stable
     ```
 
@@ -228,36 +211,31 @@ the repository](#2-downloading-the-repository).
     sudo dpkg --add-architecture i386
     sudo mkdir -pm755 /etc/apt/keyrings
     sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+    sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources
     sudo apt update
     sudo apt install --install-recommends wine-stable
     ```
 
 2. Install the following packages via `apt`:
 
-    ```bash
-    sudo apt install git flex bison ninja-build build-essential binutils-arm-none-eabi gcc-arm-none-eabi pkg-config
-    ```
-
-3. Install `meson` via `pip`:
-
-    ```bash
-    pip3 install --user meson
-    echo "export PATH=~/.local/bin:$PATH" >> ~/.bashrc
-    source ~/.bashrc
-    ```
+```bash
+sudo apt install bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3
+```
 
 #### Arch Linux (and derivatives)
+
+Enable the [multilib repository](https://wiki.archlinux.org/title/Multilib).
 
 Install dependencies via `pacman`:
 
 ```bash
-sudo pacman -S git flex bison build-essentials arm-none-eabi-binutils arm-none-eabi-gcc pkg-config wine meson
+sudo pacman -S arm-none-eabi-gcc bison flex gcc git make ninja python wine
 ```
 
 #### Fedora (and derivatives)
 
 ```bash
-sudo yum install git flex bison gcc make arm-none-eabi-bintuils-cs arm-none-eabi-gcc-cs pkg-config wine meson ninja-build
+sudo dnf install arm-none-eabi-gcc-cs bison flex gcc-c++ git make ninja-build python3 wine-core.i686 wine-core.x86_64
 ```
 
 ### Docker
