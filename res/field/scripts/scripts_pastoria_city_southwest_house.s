@@ -13,7 +13,7 @@ _000A:
     FacePlayer
     GoToIfSet 0xAA3, _0055
     Message 0
-    ScrCmd_1B7 0x8004, 17
+    GetRandom 0x8004, 17
     AddVar 0x8004, 184
     SetVar 0x8005, 1
     ScrCmd_07D 0x8004, 0x8005, 0x800C

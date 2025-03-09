@@ -49,7 +49,7 @@ _00A6:
 
 _00B5:
     Call _015D
-    ScrCmd_1B7 0x4007, 100
+    GetRandom 0x4007, 100
     CallIfUnset 0x2CB, _00DB
     GoToIfLt 0x4007, 30, _00E5
     End
@@ -72,12 +72,12 @@ _00F2:
     End
 
 _0123:
-    ScrCmd_1B7 0x4063, 4
+    GetRandom 0x4063, 4
     GoTo _014D
     End
 
 _0131:
-    ScrCmd_1B7 0x4063, 2
+    GetRandom 0x4063, 2
     GoTo _014D
     End
 

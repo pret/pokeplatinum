@@ -34,7 +34,7 @@ _005F:
     ScrCmd_042 228, 1
     ScrCmd_043
     GoToIfNe 0x800C, 0, _00B7
-    ScrCmd_1B8 0x800C, 4
+    GetRandom2 0x800C, 4
     GoToIfEq 0x800C, 0, _00C2
     GoToIfEq 0x800C, 1, _00CD
     GoToIfEq 0x800C, 2, _00D8

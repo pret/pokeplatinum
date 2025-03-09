@@ -38,7 +38,7 @@ _0063:
 
 _0074:
     Message 3
-    ScrCmd_1B7 0x800C, 4
+    GetRandom 0x800C, 4
     GoToIfEq 0x800C, 0, _00AA
     GoToIfEq 0x800C, 1, _00B3
     GoToIfEq 0x800C, 2, _00BC
@@ -77,7 +77,7 @@ _00E2:
     End
 
 _00ED:
-    ScrCmd_1B7 0x800C, 100
+    GetRandom 0x800C, 100
     GoToIfLt 0x800C, 5, _0113
     GoToIfLt 0x800C, 30, _0124
     GoTo _0135

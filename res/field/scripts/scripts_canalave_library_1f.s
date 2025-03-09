@@ -77,7 +77,7 @@ _00A2:
     LockAll
     FacePlayer
     Message 7
-    ScrCmd_1B7 0x8000, 5
+    GetRandom 0x8000, 5
     CallIfEq 0x8000, 0, _00FC
     CallIfEq 0x8000, 1, _0101
     CallIfEq 0x8000, 2, _0106

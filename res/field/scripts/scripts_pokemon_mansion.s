@@ -19,8 +19,8 @@ _001A:
     End
 
 _0033:
-    ScrCmd_1B7 0x404C, 5
-    AddVar 0x404C, 5
+    GetRandom VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET, 5
+    AddVar VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET, 5
     SetFlag 0xAB6
     ClearTrainerFlag TRAINER_RICH_BOY_LIAM
     ClearTrainerFlag TRAINER_LADY_CELESTE
@@ -142,7 +142,7 @@ _00FF:
     WaitMovement
     ApplyMovement 2, _0408
     WaitMovement
-    BufferNumber 0, 0x404C
+    BufferNumber 0, VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET
     BufferNumber 1, 0x8005
     Message 6
     CloseMessage
@@ -163,11 +163,11 @@ _00FF:
     RemoveObject 5
     ApplyMovement 2, _0408
     WaitMovement
-    BufferNumber 0, 0x404C
+    BufferNumber 0, VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET
     BufferNumber 1, 0x8005
     Message 7
-    GoToIfNe 0x8005, 0x404C, _044C
-    ScrCmd_1B7 0x8006, 2
+    GoToIfNe 0x8005, VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET, _044C
+    GetRandom 0x8006, 2
     CallIfEq 0x8006, 0, _03A1
     CallIfEq 0x8006, 1, _03B7
     CloseMessage
@@ -297,12 +297,12 @@ _044C:
 
 _045A:
     Message 2
-    BufferNumber 0, 0x404C
+    BufferNumber 0, VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET
     Message 3
     Return
 
 _0467:
-    BufferNumber 0, 0x404C
+    BufferNumber 0, VAR_FIVE_MAID_KNOCKOUT_TURN_TARGET
     Message 3
     Return
 

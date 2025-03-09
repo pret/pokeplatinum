@@ -197,7 +197,7 @@ _0270:
     GoToIfSet 0xAA2, _0304
     CheckGameCompleted 0x800C
     GoToIfEq 0x800C, 1, _02C8
-    ScrCmd_1B7 0x800C, 2
+    GetRandom 0x800C, 2
     CallIfEq 0x800C, 0, _02BE
     CallIfEq 0x800C, 1, _02C3
     WaitABXPadPress
@@ -216,7 +216,7 @@ _02C3:
     Return
 
 _02C8:
-    ScrCmd_1B7 0x800C, 2
+    GetRandom 0x800C, 2
     CallIfEq 0x800C, 0, _02FA
     CallIfEq 0x800C, 1, _02FF
     WaitABXPadPress

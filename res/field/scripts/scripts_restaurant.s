@@ -77,11 +77,11 @@ _00B3:
     ClearTrainerFlag TRAINER_SCIENTIST_EMILIO
     ClearTrainerFlag TRAINER_BREEDER_KAYLEE
     SetVar 0x4104, 0
-    ScrCmd_1B7 0x4001, 1
+    GetRandom 0x4001, 1
     SetVar 0x4000, 5
     SetVar 0x400A, 0x2710
 _0137:
-    ScrCmd_1B8 0x4001, 9
+    GetRandom2 0x4001, 9
     CallIfEq 0x4001, 0, _01D8
     CallIfEq 0x4001, 1, _01F5
     CallIfEq 0x4001, 2, _0212
@@ -101,63 +101,63 @@ _01D2:
 _01D8:
     GoToIfUnset 0x244, _02DD
     ClearFlag 0x244
-    ScrCmd_1B8 0x40FB, 3
+    GetRandom2 0x40FB, 3
     SubVar 0x4000, 1
     Return
 
 _01F5:
     GoToIfUnset 0x245, _02DD
     ClearFlag 0x245
-    ScrCmd_1B8 0x40FC, 3
+    GetRandom2 0x40FC, 3
     SubVar 0x4000, 1
     Return
 
 _0212:
     GoToIfUnset 0x246, _02DD
     ClearFlag 0x246
-    ScrCmd_1B8 0x40FD, 3
+    GetRandom2 0x40FD, 3
     SubVar 0x4000, 1
     Return
 
 _022F:
     GoToIfUnset 0x247, _02DD
     ClearFlag 0x247
-    ScrCmd_1B8 0x40FE, 3
+    GetRandom2 0x40FE, 3
     SubVar 0x4000, 1
     Return
 
 _024C:
     GoToIfUnset 0x248, _02DD
     ClearFlag 0x248
-    ScrCmd_1B8 0x40FF, 3
+    GetRandom2 0x40FF, 3
     SubVar 0x4000, 1
     Return
 
 _0269:
     GoToIfUnset 0x249, _02DD
     ClearFlag 0x249
-    ScrCmd_1B8 0x4100, 3
+    GetRandom2 0x4100, 3
     SubVar 0x4000, 1
     Return
 
 _0286:
     GoToIfUnset 0x24A, _02DD
     ClearFlag 0x24A
-    ScrCmd_1B8 0x4101, 3
+    GetRandom2 0x4101, 3
     SubVar 0x4000, 1
     Return
 
 _02A3:
     GoToIfUnset 0x24B, _02DD
     ClearFlag 0x24B
-    ScrCmd_1B8 0x4102, 3
+    GetRandom2 0x4102, 3
     SubVar 0x4000, 1
     Return
 
 _02C0:
     GoToIfUnset 0x24C, _02DD
     ClearFlag 0x24C
-    ScrCmd_1B8 0x4103, 3
+    GetRandom2 0x4103, 3
     SubVar 0x4000, 1
     Return
 

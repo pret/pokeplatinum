@@ -156,7 +156,7 @@ _0191:
     SetVar 0x8004, 0x8001
     SetVar 0x8005, 1
     CallCommonScript 0x7FC
-    ScrCmd_1B7 0x800C, 64
+    GetRandom 0x800C, 64
     GoToIfNe 0x800C, 0, _026E
     ScrCmd_07D 0x8001, 1, 0x800C
     GoToIfEq 0x800C, 0, _0280

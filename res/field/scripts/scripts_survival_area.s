@@ -20,7 +20,7 @@ _002A:
     End
 
 _0032:
-    ScrCmd_1B7 0x40C2, 3
+    GetRandom 0x40C2, 3
     GoToIfUnset 214, _0052
     End
 
