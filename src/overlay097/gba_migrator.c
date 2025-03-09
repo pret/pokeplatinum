@@ -1739,12 +1739,12 @@ static int GetCanMigrateStatus(GBAMigrator *migrator)
         }
 
         if (count < CATCHING_SHOW_MONS) {
-            return CANNOT_MIGRATE_LESS_THAN_6_IN_GBA_BOXES; // Not enough mons in GBA cart to do transfer?
+            return CANNOT_MIGRATE_LESS_THAN_6_IN_GBA_BOXES;
         }
     }
 
     if (GetPalParkTransferMonCount(transferData) != 0) {
-        return CANNOT_MIGRATE_ALREADY_STOCKED; // There's transferred mon left to catch?
+        return CANNOT_MIGRATE_ALREADY_STOCKED;
     }
 
     return CAN_MIGRATE;
