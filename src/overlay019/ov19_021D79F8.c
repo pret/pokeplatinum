@@ -855,7 +855,7 @@ void ov19_021D89F4(UnkStruct_ov19_021D8318 *param0, u32 param1)
 void ov19_021D8A24(UnkStruct_ov19_021D8318 *param0)
 {
     u32 v0 = ov19_021D5E24(param0->unk_58F8);
-    u32 v1 = ov19_021D5EA0(param0->unk_58F8);
+    u32 v1 = ov19_GetPreviewedMonMarkings(param0->unk_58F8);
 
     if (param0->unk_A8[param0->unk_02][v0].unk_00 != NULL) {
         ov19_021DA68C(param0->unk_58F0, &(param0->unk_A8[param0->unk_02][v0]), v1);

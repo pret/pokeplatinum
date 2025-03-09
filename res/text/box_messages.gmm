@@ -81,7 +81,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Deposit in which Box?</language>
 	</row>
-	<row id="pl_msg_00000019_00020" index="20">
+	<row id="no_item" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">No item</language>
 	</row>

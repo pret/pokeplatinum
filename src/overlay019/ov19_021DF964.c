@@ -6,8 +6,8 @@
 #include "struct_decls/pc_boxes_decl.h"
 
 #include "overlay019/ov19_021D0D80.h"
+#include "overlay019/pc_mon_preview.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
-#include "overlay019/struct_ov19_021D5BAC.h"
 #include "overlay019/struct_ov19_021DF964.h"
 
 #include "enums.h"
@@ -49,9 +49,9 @@ void ov19_021DF990(UnkStruct_ov19_021D4DF0 *param0)
         ov19_021DFD08(v0, UnkEnum_021DFB94_37);
 
         {
-            const UnkStruct_ov19_021D5BAC *v1 = ov19_021D5E70(param0);
+            const PCMonPreview *preview = ov19_GetPCMonPreview(param0);
 
-            if (v1->unk_0F == 0) {
+            if (preview->isEgg == 0) {
                 ov19_021DFD08(v0, UnkEnum_021DFB94_40);
             }
         }
@@ -90,7 +90,7 @@ void ov19_021DFAD0(UnkStruct_ov19_021D4DF0 *param0)
 
     v0 = &(param0->unk_74);
     v1 = ov19_021D5F7C(param0);
-    v2 = ov19_021D5E74(param0);
+    v2 = ov19_GetPreviewedMonHeldItem(param0);
 
     ov19_021DFCF8(v0);
     v0->unk_23 = 1;
@@ -219,7 +219,7 @@ void ov19_021DFC80(UnkStruct_ov19_021D4DF0 *param0)
     ov19_021DFCF8(v0);
 
     v0->unk_23 = 4;
-    v0->unk_22 = param0->unk_4C.unk_0B;
+    v0->unk_22 = param0->pcMonPreview.markings;
 
     ov19_021DFD08(v0, UnkEnum_021DFB94_56);
     ov19_021DFD08(v0, UnkEnum_021DFB94_57);

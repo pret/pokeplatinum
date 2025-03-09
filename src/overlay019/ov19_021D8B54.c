@@ -180,7 +180,7 @@ static void ov19_021D8E00(UnkStruct_ov19_021D8E00 *param0)
     v2 = (v0.y >> FX32_SHIFT) - -4;
 
     ov19_021DA3CC(param0->unk_48, param0->unk_4C, 1);
-    ov19_021DA428(param0->unk_48, ov19_021D5E9C(param0->unk_790), v1, v2, Sprite_GetExplicitPriority(param0->unk_04), 2, 1240, param0->unk_4C);
+    ov19_021DA428(param0->unk_48, ov19_GetPreviewedBoxMon(param0->unk_790), v1, v2, Sprite_GetExplicitPriority(param0->unk_04), 2, 1240, param0->unk_4C);
 
     param0->unk_664[0].unk_00 = (0 * FX32_ONE);
     param0->unk_664[0].unk_04 = (-4 * FX32_ONE);
@@ -799,7 +799,7 @@ void ov19_021D9A2C(UnkStruct_ov19_021D8E00 *param0)
 void ov19_021D9A64(UnkStruct_ov19_021D8E00 *param0)
 {
     if (param0->unk_78C) {
-        u32 v0 = ov19_021D5EA0(param0->unk_790);
+        u32 v0 = ov19_GetPreviewedMonMarkings(param0->unk_790);
         ov19_021DA68C(param0->unk_48, param0->unk_4C, v0);
     }
 }

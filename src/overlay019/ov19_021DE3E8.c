@@ -194,7 +194,7 @@ void ov19_021DE584(UnkStruct_ov19_021DE3E8 *param0)
 
 static void ov19_021DE59C(UnkStruct_ov19_021DE3E8 *param0)
 {
-    u32 v0 = ov19_021D5E74(param0->unk_08);
+    u32 v0 = ov19_GetPreviewedMonHeldItem(param0->unk_08);
 
     if (v0 != 0) {
         int v1 = ov19_021DE538(param0, 1);
@@ -287,7 +287,7 @@ void ov19_021DE7A0(UnkStruct_ov19_021DE3E8 *param0)
             Sprite_SetAnim(param0->unk_1C[v0], 2);
         }
 
-        v1 = ov19_021D5E74(param0->unk_08);
+        v1 = ov19_GetPreviewedMonHeldItem(param0->unk_08);
 
         if (v1 != 0) {
             v0 = ov19_021DE538(param0, 1);
