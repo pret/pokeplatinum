@@ -1,7 +1,9 @@
 [wrap-git]
 url = https://github.com/lhearachel/metang.git
-revision = v0.1.1-python
+revision = 4612ba5d3b41e9d13bb4d2884ac1ebb523db04a5
 depth = 1
+directory = metang
 
 [provide]
 program_names = metang
+

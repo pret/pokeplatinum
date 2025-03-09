@@ -103,7 +103,7 @@ else
 endif
 
 update: meson
-	$(MESON) subprojects update
+	python subprojects/update.py projects
 
 setup_release: $(BUILD)/build.ninja
 	$(MESON) configure build -Dgdb_debugging=false

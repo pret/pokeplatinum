@@ -1,8 +1,9 @@
 [wrap-git]
 url = https://github.com/froggestspirit/SDATTool.git
-revision = gen4
+revision = ab9fe8d296b7645a84ab02be72607f8a5bebe957
 depth = 1
 directory = SDATTool
 
 [provide]
 program_names = SDATTool_py
+

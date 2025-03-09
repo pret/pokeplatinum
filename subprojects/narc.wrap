@@ -1,8 +1,10 @@
 [wrap-git]
 url = https://github.com/lhearachel/narc.git
-revision = v0.2.0
+revision = fe2f1349472cc3a7a87af5af3656202338c85194
 depth = 1
+directory = narc
 
 [provide]
 program_names = narc
 dependency_names = libnarc
+
