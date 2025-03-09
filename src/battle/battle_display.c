@@ -4805,21 +4805,21 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
     case 8:
         v3 = LoadPokemonSpriteYOffset(v0->unk_68, v0->unk_6A, v0->unk_67, v0->unk_6B, v0->unk_6C);
         v3 = 80 - v3;
-        PokemonSprite_ShowAndSetTexturePos(v0->unk_08, 0, 0, 80, v3);
+        PokemonSprite_SetPartialDraw(v0->unk_08, 0, 0, 80, v3);
         v0->unk_66++;
         break;
     case 9:
         v2 = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER);
         v2 += 8;
         PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_Y_CENTER, v2);
-        v3 = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_HEIGHT);
+        v3 = PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_DRAW_HEIGHT);
         v3 -= 8;
 
         if (v3 < 0) {
             v3 = 0;
         }
 
-        PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_HEIGHT, v3);
+        PokemonSprite_SetAttribute(v0->unk_08, MON_SPRITE_DRAW_HEIGHT, v3);
 
         if (v3 == 0) {
             PokemonSprite_Delete(v0->unk_08);

@@ -7,9 +7,7 @@
 
 #include "struct_defs/sprite_animation_frame.h"
 
-#define MAX_POKEMON_SPRITES    4
-#define MAX_SPINDA_SPOTS       4
-#define SPINDA_SPOT_COORDS_END 0xFF
+#define MAX_MON_SPRITES 4
 
 enum PokemonSpriteAttribute {
     MON_SPRITE_X_CENTER = 0,
@@ -26,11 +24,11 @@ enum PokemonSpriteAttribute {
     MON_SPRITE_Y_PIVOT,
     MON_SPRITE_SCALE_X,
     MON_SPRITE_SCALE_Y,
-    MON_SPRITE_VISIBLE,
-    MON_SPRITE_TEXTURE_X_OFFSET,
-    MON_SPRITE_TEXTURE_Y_OFFSET,
-    MON_SPRITE_WIDTH,
-    MON_SPRITE_HEIGHT,
+    MON_SPRITE_PARTIAL_DRAW,
+    MON_SPRITE_DRAW_X_OFFSET,
+    MON_SPRITE_DRAW_Y_OFFSET,
+    MON_SPRITE_DRAW_WIDTH,
+    MON_SPRITE_DRAW_HEIGHT,
     MON_SPRITE_SHADOW_X,
     MON_SPRITE_SHADOW_Y,
     MON_SPRITE_SHADOW_X_OFFSET,
@@ -84,7 +82,7 @@ struct PokemonSpriteTransforms {
     s16 xOffset;
     s16 yOffset;
     int zOffset;
-    s16 scaleX; // 256 is the normal scale. Smaller values than 256 shrink; higher ones stretch. Negative values flip the sprite.
+    s16 scaleX; // Negative values flip the sprite.
     s16 scaleY;
     u16 rotationX;
     u16 rotationY;
@@ -92,10 +90,10 @@ struct PokemonSpriteTransforms {
     u16 padding_1A;
     s16 xPivot;
     s16 yPivot;
-    u8 textureXOffset;
-    u8 textureYOffset;
-    u8 width;
-    u8 height;
+    u8 drawXOffset; // Offset from the sprite origin to begin drawing in partial mode.
+    u8 drawYOffset;
+    u8 drawWidth; // Determines how much of the sprite actually gets drawn in partial mode.
+    u8 drawHeight;
     u8 fadeInitAlpha;
     u8 fadeTargetAlpha;
     u8 fadeDelayCounter;
@@ -109,12 +107,12 @@ struct PokemonSpriteTransforms {
     u32 ambientB : 5;
     u32 padding_2C_30 : 2;
     u32 hide : 1;
-    u32 visible : 1;
+    u32 partialDraw : 1; // When enabled, only draws a part of the sprite. Disables shadows and affine scaling when in use.
     u32 alpha : 5;
     u32 padding_30_07 : 2;
     u32 flipH : 1;
     u32 flipV : 1;
-    u32 hide2 : 1; // It's unclear why there are 2 members that do the same thing. (3 if you count visible which is the same but with states flipped)
+    u32 hide2 : 1; // It's unclear why there are 2 members that do the same thing.
     u32 fadeActive : 1;
     u32 mosaicIntensity : 4;
     u32 padding_30_17 : 15;
@@ -157,7 +155,7 @@ struct PokemonSprite {
 };
 
 typedef struct PokemonSpriteManager {
-    PokemonSprite sprites[MAX_POKEMON_SPRITES];
+    PokemonSprite sprites[MAX_MON_SPRITES];
     NNSG2dImageProxy imageProxy;
     NNSG2dImagePaletteProxy plttProxy;
     enum HeapId heapID;
@@ -173,7 +171,7 @@ typedef struct PokemonSpriteManager {
     u8 dummy330;
     u8 needLoadChar;
     u8 needLoadPltt;
-    u8 excludeG3Identity;
+    u8 excludeIdentity;
     u32 hideShadows; // curiously, this field is treated like a bitmask, but it only ever uses a value of 0 or 1
 } PokemonSpriteManager;
 
@@ -202,7 +200,7 @@ void PokemonSpriteManager_DeleteAll(PokemonSpriteManager *monSpriteMan);
 void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute, int value);
 int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute);
 void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute, int delta);
-void PokemonSprite_ShowAndSetTexturePos(PokemonSprite *monSprite, int x, int y, int width, int height);
+void PokemonSprite_SetPartialDraw(PokemonSprite *monSprite, int xOffset, int yOffset, int width, int height);
 void PokemonSprite_StartFade(PokemonSprite *monSprite, int initAlpha, int targetAlpha, int delay, int color);
 void PokemonSpriteManager_StartFadeAll(PokemonSpriteManager *monSpriteMan, int initAlpha, int targetAlpha, int delay, int color);
 void PokemonSprite_ClearFade(PokemonSprite *monSprite);
@@ -217,7 +215,7 @@ void PokemonSpriteManager_SetCharBaseAddrAndSize(PokemonSpriteManager *monSprite
 void PokemonSpriteManager_SetPlttBaseAddrAndSize(PokemonSpriteManager *monSpriteMan, u32 addr, u32 size);
 PokemonSpriteTemplate *PokemonSprite_GetTemplate(PokemonSprite *monSprite);
 void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan);
-void PokemonSpriteManager_SetExcludeG3Identity(PokemonSpriteManager *monSpriteMan, int value);
+void PokemonSpriteManager_SetExcludeIdentity(PokemonSpriteManager *monSpriteMan, int value);
 BOOL PokemonSprite_IsActive(PokemonSprite *monSprite);
 void PokemonSpriteManager_SetHideShadows(PokemonSpriteManager *monSpriteMan, u32 value);
 void PokemonSpriteManager_ClearHideShadows(PokemonSpriteManager *monSpriteMan, u32 value);

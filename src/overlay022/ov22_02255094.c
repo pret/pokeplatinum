@@ -298,7 +298,7 @@ void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const UnkStruct_ov22_022550D
 {
     ov22_02255748(param0, param1);
     ov22_02255C24(param0, heapID, 0x2800, 0x20);
-    PokemonSpriteManager_SetExcludeG3Identity(param0->unk_20, 1);
+    PokemonSpriteManager_SetExcludeIdentity(param0->unk_20, 1);
     ov22_02255BF4(param0, heapID);
 }
 

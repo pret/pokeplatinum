@@ -1138,7 +1138,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
 
     switch (v2->unk_00) {
     case 0:
-        PokemonSprite_SetAttribute(v2->unk_0C, MON_SPRITE_VISIBLE, 1);
+        PokemonSprite_SetAttribute(v2->unk_0C, MON_SPRITE_PARTIAL_DRAW, 1);
         v2->unk_00++;
         break;
     case 1:
@@ -1222,7 +1222,7 @@ static void ov12_0222C1A4(SysTask *param0, void *param1)
         }
         break;
     default:
-        PokemonSprite_SetAttribute(v2->unk_0C, MON_SPRITE_VISIBLE, 0);
+        PokemonSprite_SetAttribute(v2->unk_0C, MON_SPRITE_PARTIAL_DRAW, 0);
         ov12_02220220(v2->unk_10, param0);
         Heap_FreeToHeap(v2);
         return;

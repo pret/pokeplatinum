@@ -7,11 +7,55 @@
 
 #include "struct_defs/sprite_animation_frame.h"
 
+#include "bg_window.h"
 #include "heap.h"
 #include "inlines.h"
 #include "narc.h"
 #include "palette.h"
 #include "pokemon_sprite.h"
+
+#include "res/pokemon/pl_otherpoke.naix"
+
+#define MAX_SPINDA_SPOTS       4
+#define SPINDA_SPOT_COORDS_END 0xFF
+
+#define MAX_MON_SHADOWS         2
+#define MAX_MON_SPRITE_PALETTES (MAX_MON_SPRITES + MAX_MON_SHADOWS)
+
+#define MON_SPRITE_WIDTH_TILES  32
+#define MON_SPRITE_HEIGHT_TILES 32
+
+#define MON_SPRITE_CHAR_BUF_SIZE (MON_SPRITE_WIDTH_TILES * MON_SPRITE_HEIGHT_TILES * TILE_SIZE_4BPP)
+#define MON_SPRITE_PLTT_BUF_SIZE (MAX_MON_SPRITE_PALETTES * PALETTE_SIZE_BYTES)
+
+#define NCGR_Y_OFFSET   0x50
+#define MAN_Y_OFFSET    0x80
+#define MAN_CHAR_OFFSET 0x2800
+// the last mon sprite doesn't follow the pattern of char data offsets that the other three do
+// it has two different offsets depending on the x value
+#define MAN_LAST_SPRITE_CHAR_OFFSET_1 0x50
+#define MAN_LAST_SPRITE_CHAR_OFFSET_2 0x2828
+
+#define MAN_SHADOW_CHAR_OFFSET 0x5050
+
+#define MON_SPRITE_FRAME_WIDTH     80
+#define MON_SPRITE_FRAME_HEIGHT    80
+#define SHADOW_SPRITE_FRAME_WIDTH  64
+#define SHADOW_SPRITE_FRAME_HEIGHT 16
+
+#define NUM_MON_SPRITE_FRAMES_H 2
+#define NUM_MON_SPRITE_FRAMES_V 1
+
+#define MON_SPRITE_WIDTH  (MON_SPRITE_FRAME_WIDTH * NUM_MON_SPRITE_FRAMES_H)
+#define MON_SPRITE_HEIGHT (MON_SPRITE_FRAME_HEIGHT * NUM_MON_SPRITE_FRAMES_V)
+
+#define MON_SHADOW_BASE_PLTT_SLOT 3
+
+#define MON_AFFINE_SHIFT    8
+#define MON_AFFINE_SCALE(i) (i << MON_AFFINE_SHIFT)
+
+// one particular usage of the PLTT_OFFSET macro in this file doesn't match without the cast
+#define PLTT_OFFSET_CAST(i) ((i) * (u16)PALETTE_SIZE_BYTES)
 
 typedef struct {
     u8 x;
@@ -270,6 +314,93 @@ static const SpindaSpotCoords *sSpindaSpotCoords[MAX_SPINDA_SPOTS] = {
     sSpindaSpot3Coords,
 };
 
+static const int sMonSpriteTextureCoords[MAX_MON_SPRITES][NUM_MON_SPRITE_FRAMES_H][4] = {
+    {
+        {
+            0,
+            0,
+            MON_SPRITE_FRAME_WIDTH,
+            MON_SPRITE_FRAME_HEIGHT,
+        },
+        {
+            MON_SPRITE_FRAME_WIDTH,
+            0,
+            MON_SPRITE_FRAME_WIDTH * 2,
+            MON_SPRITE_FRAME_HEIGHT,
+        },
+    },
+    {
+        {
+            0,
+            MON_SPRITE_FRAME_HEIGHT,
+            MON_SPRITE_FRAME_WIDTH,
+            MON_SPRITE_FRAME_HEIGHT * 2,
+        },
+        {
+            MON_SPRITE_FRAME_WIDTH,
+            MON_SPRITE_FRAME_HEIGHT,
+            MON_SPRITE_FRAME_WIDTH * 2,
+            MON_SPRITE_FRAME_HEIGHT * 2,
+        },
+    },
+    {
+        {
+            0,
+            MON_SPRITE_FRAME_HEIGHT * 2,
+            MON_SPRITE_FRAME_WIDTH,
+            MON_SPRITE_FRAME_HEIGHT * 3,
+        },
+        {
+            MON_SPRITE_FRAME_WIDTH,
+            MON_SPRITE_FRAME_HEIGHT * 2,
+            MON_SPRITE_FRAME_WIDTH * 2,
+            MON_SPRITE_FRAME_HEIGHT * 3,
+        },
+    },
+    {
+        {
+            MON_SPRITE_FRAME_WIDTH * 2,
+            0,
+            MON_SPRITE_FRAME_WIDTH * 3,
+            MON_SPRITE_FRAME_HEIGHT,
+        },
+        {
+            MON_SPRITE_FRAME_WIDTH * 2,
+            MON_SPRITE_FRAME_HEIGHT,
+            MON_SPRITE_FRAME_WIDTH * 3,
+            MON_SPRITE_FRAME_HEIGHT * 2,
+        },
+    },
+};
+
+static const int sShadowTextureCoords[MAX_SHADOW_SIZES][4] = {
+    [SHADOW_SIZE_NONE] = {
+        // these values are essentially meaningless because the shadow is hidden
+        MON_SPRITE_FRAME_WIDTH * 2,
+        MON_SPRITE_FRAME_HEIGHT * 2,
+        MON_SPRITE_FRAME_WIDTH * 2 + SHADOW_SPRITE_FRAME_WIDTH,
+        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT,
+    },
+    [SHADOW_SIZE_SMALL] = {
+        MON_SPRITE_FRAME_WIDTH * 2,
+        MON_SPRITE_FRAME_HEIGHT * 2,
+        MON_SPRITE_FRAME_WIDTH * 2 + SHADOW_SPRITE_FRAME_WIDTH,
+        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT,
+    },
+    [SHADOW_SIZE_MEDIUM] = {
+        MON_SPRITE_FRAME_WIDTH * 2,
+        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT,
+        MON_SPRITE_FRAME_WIDTH * 2 + SHADOW_SPRITE_FRAME_WIDTH,
+        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT * 2,
+    },
+    [SHADOW_SIZE_LARGE] = {
+        MON_SPRITE_FRAME_WIDTH * 2,
+        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT * 2,
+        MON_SPRITE_FRAME_WIDTH * 2 + SHADOW_SPRITE_FRAME_WIDTH,
+        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT * 3,
+    },
+};
+
 static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan);
 static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan);
 static void RunPokemonSpriteAnim(PokemonSprite *monSprite);
@@ -284,29 +415,29 @@ void *PokemonSpriteManager_New(enum HeapId heapID)
     monSpriteMan->heapID = heapID;
     monSpriteMan->dummy330 = 0;
     monSpriteMan->charBaseAddr = 0;
-    monSpriteMan->charSize = (32 * 32 * 0x20);
+    monSpriteMan->charSize = MON_SPRITE_CHAR_BUF_SIZE;
     monSpriteMan->plttBaseAddr = 0;
-    monSpriteMan->plttSize = (0x20 * 4);
-    monSpriteMan->charRawData = Heap_AllocFromHeap(heapID, (32 * 32 * 0x20));
-    monSpriteMan->plttRawData = Heap_AllocFromHeap(heapID, (0x20 * 6));
+    monSpriteMan->plttSize = PALETTE_SIZE_BYTES * MAX_MON_SPRITES;
+    monSpriteMan->charRawData = Heap_AllocFromHeap(heapID, MON_SPRITE_CHAR_BUF_SIZE);
+    monSpriteMan->plttRawData = Heap_AllocFromHeap(heapID, MON_SPRITE_PLTT_BUF_SIZE);
 
-    MI_CpuClearFast(monSpriteMan->plttRawData, sizeof(0x20 * 6));
-    monSpriteMan->plttRawDataUnfaded = Heap_AllocFromHeap(heapID, (0x20 * 6));
-    MI_CpuClearFast(monSpriteMan->plttRawDataUnfaded, sizeof(0x20 * 6));
+    MI_CpuClearFast(monSpriteMan->plttRawData, sizeof(MON_SPRITE_PLTT_BUF_SIZE));
+    monSpriteMan->plttRawDataUnfaded = Heap_AllocFromHeap(heapID, MON_SPRITE_PLTT_BUF_SIZE);
+    MI_CpuClearFast(monSpriteMan->plttRawDataUnfaded, sizeof(MON_SPRITE_PLTT_BUF_SIZE));
 
-    for (int i = 0; i < MAX_POKEMON_SPRITES; i++) {
+    for (int i = 0; i < MAX_MON_SPRITES; i++) {
         MI_CpuClearFast(&monSpriteMan->sprites[i], sizeof(PokemonSprite));
     }
 
     NNS_G2dSetupSoftwareSpriteCamera();
 
-    monSpriteMan->excludeG3Identity = FALSE;
+    monSpriteMan->excludeIdentity = FALSE;
 
     NNSG2dCharacterData *charData;
     u8 *rawCharData;
 
-    void *ncgrFile = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, 251, monSpriteMan->heapID);
-    NNS_G2dGetUnpackedCharacterData(ncgrFile, &charData);
+    void *shadowsNCGR = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, pokemon_shadows_NCGR, monSpriteMan->heapID);
+    NNS_G2dGetUnpackedCharacterData(shadowsNCGR, &charData);
 
     monSpriteMan->charData.pixelFmt = charData->pixelFmt;
     monSpriteMan->charData.mapingType = charData->mapingType;
@@ -314,47 +445,21 @@ void *PokemonSpriteManager_New(enum HeapId heapID)
     rawCharData = charData->pRawData;
 
     PokemonSprite_DecryptPt(rawCharData);
-    MI_CpuFill8(&monSpriteMan->charRawData[0], rawCharData[0], (32 * 32 * 0x20));
+    MI_CpuFill8(&monSpriteMan->charRawData[0], rawCharData[0], MON_SPRITE_CHAR_BUF_SIZE);
 
-    for (int i = 0; i < 80; i++) {
-        for (int j = 0; j < 160 / 4; j++) {
-            monSpriteMan->charRawData[i * 0x80 + j + 0x5050] = rawCharData[i * 0x50 + j];
+    for (int i = 0; i < MON_SPRITE_HEIGHT; i++) {
+        for (int j = 0; j < MON_SPRITE_WIDTH / 4; j++) {
+            monSpriteMan->charRawData[i * MAN_Y_OFFSET + j + MAN_SHADOW_CHAR_OFFSET] = rawCharData[i * NCGR_Y_OFFSET + j];
         }
     }
 
-    Heap_FreeToHeap(ncgrFile);
+    Heap_FreeToHeap(shadowsNCGR);
 
     monSpriteMan->needLoadChar = TRUE;
     monSpriteMan->needLoadPltt = TRUE;
 
     return monSpriteMan;
 }
-
-static const int sMonSpriteTextureCoords[MAX_POKEMON_SPRITES][2][4] = {
-    {
-        { 0, 0, 80, 80 },
-        { 80, 0, 160, 80 },
-    },
-    {
-        { 0, 80, 80, 160 },
-        { 80, 80, 160, 160 },
-    },
-    {
-        { 0, 160, 80, 240 },
-        { 80, 160, 160, 240 },
-    },
-    {
-        { 160, 0, 240, 80 },
-        { 160, 80, 240, 160 },
-    },
-};
-
-static const int sShadowTextureCoords[MAX_SHADOW_SIZES][4] = {
-    [SHADOW_SIZE_NONE] = { 160, 160, 224, 176 },
-    [SHADOW_SIZE_SMALL] = { 160, 160, 224, 176 },
-    [SHADOW_SIZE_MEDIUM] = { 160, 176, 224, 192 },
-    [SHADOW_SIZE_LARGE] = { 160, 192, 224, 208 }
-};
 
 void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
 {
@@ -369,7 +474,7 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
     G3_PushMtx();
     G3_TexImageParam(monSpriteMan->imageProxy.attr.fmt, GX_TEXGEN_TEXCOORD, monSpriteMan->imageProxy.attr.sizeS, monSpriteMan->imageProxy.attr.sizeT, GX_TEXREPEAT_NONE, GX_TEXFLIP_NONE, monSpriteMan->imageProxy.attr.plttUse, monSpriteMan->charBaseAddr);
 
-    for (int i = 0; i < MAX_POKEMON_SPRITES; i++) {
+    for (int i = 0; i < MAX_MON_SPRITES; i++) {
         if (monSpriteMan->sprites[i].active
             && monSpriteMan->sprites[i].transforms.hide == FALSE
             && monSpriteMan->sprites[i].transforms.hide2 == FALSE) {
@@ -379,13 +484,13 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
 
             NNS_G3dGeFlushBuffer();
 
-            if (monSpriteMan->excludeG3Identity != TRUE) {
+            if (monSpriteMan->excludeIdentity != TRUE) {
                 G3_Identity();
             }
 
             PokemonSprite_RunAnim(&monSpriteMan->sprites[i]);
 
-            G3_TexPlttBase(monSpriteMan->plttBaseAddr + 32 * i, monSpriteMan->imageProxy.attr.fmt);
+            G3_TexPlttBase(monSpriteMan->plttBaseAddr + PLTT_OFFSET_CAST(i), monSpriteMan->imageProxy.attr.fmt);
             G3_Translate((monSpriteMan->sprites[i].transforms.xCenter + monSpriteMan->sprites[i].transforms.xPivot) << FX32_SHIFT, (monSpriteMan->sprites[i].transforms.yCenter + monSpriteMan->sprites[i].transforms.yPivot) << FX32_SHIFT, monSpriteMan->sprites[i].transforms.zCenter << FX32_SHIFT);
             G3_RotX(FX_SinIdx(monSpriteMan->sprites[i].transforms.rotationX), FX_CosIdx(monSpriteMan->sprites[i].transforms.rotationX));
             G3_RotY(FX_SinIdx(monSpriteMan->sprites[i].transforms.rotationY), FX_CosIdx(monSpriteMan->sprites[i].transforms.rotationY));
@@ -395,25 +500,25 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
             G3_MaterialColorSpecEmi(GX_RGB(16, 16, 16), GX_RGB(0, 0, 0), FALSE);
             G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, monSpriteMan->sprites[i].polygonID, monSpriteMan->sprites[i].transforms.alpha, 0);
 
-            if (monSpriteMan->sprites[i].transforms.visible) {
-                u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + monSpriteMan->sprites[i].transforms.textureXOffset;
-                u1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + monSpriteMan->sprites[i].transforms.textureXOffset + monSpriteMan->sprites[i].transforms.width;
-                v0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + monSpriteMan->sprites[i].transforms.textureYOffset;
-                v1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + monSpriteMan->sprites[i].transforms.textureYOffset + monSpriteMan->sprites[i].transforms.height;
+            if (monSpriteMan->sprites[i].transforms.partialDraw) {
+                u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + monSpriteMan->sprites[i].transforms.drawXOffset;
+                u1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + monSpriteMan->sprites[i].transforms.drawXOffset + monSpriteMan->sprites[i].transforms.drawWidth;
+                v0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + monSpriteMan->sprites[i].transforms.drawYOffset;
+                v1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + monSpriteMan->sprites[i].transforms.drawYOffset + monSpriteMan->sprites[i].transforms.drawHeight;
 
                 NNS_G2dDrawSpriteFast(
-                    monSpriteMan->sprites[i].transforms.xCenter - 80 / 2 + monSpriteMan->sprites[i].transforms.textureXOffset + monSpriteMan->sprites[i].transforms.xOffset,
-                    monSpriteMan->sprites[i].transforms.yCenter - 80 / 2 + monSpriteMan->sprites[i].transforms.textureYOffset + monSpriteMan->sprites[i].transforms.yOffset - monSpriteMan->sprites[i].shadow.height,
+                    monSpriteMan->sprites[i].transforms.xCenter - MON_SPRITE_FRAME_WIDTH / 2 + monSpriteMan->sprites[i].transforms.drawXOffset + monSpriteMan->sprites[i].transforms.xOffset,
+                    monSpriteMan->sprites[i].transforms.yCenter - MON_SPRITE_FRAME_HEIGHT / 2 + monSpriteMan->sprites[i].transforms.drawYOffset + monSpriteMan->sprites[i].transforms.yOffset - monSpriteMan->sprites[i].shadow.height,
                     monSpriteMan->sprites[i].transforms.zCenter + monSpriteMan->sprites[i].transforms.zOffset,
-                    monSpriteMan->sprites[i].transforms.width,
-                    monSpriteMan->sprites[i].transforms.height,
+                    monSpriteMan->sprites[i].transforms.drawWidth,
+                    monSpriteMan->sprites[i].transforms.drawHeight,
                     u0,
                     v0,
                     u1,
                     v1);
             } else {
-                width = (80 * monSpriteMan->sprites[i].transforms.scaleX) >> 8;
-                height = (80 * monSpriteMan->sprites[i].transforms.scaleY) >> 8;
+                width = (MON_SPRITE_FRAME_WIDTH * monSpriteMan->sprites[i].transforms.scaleX) >> MON_AFFINE_SHIFT;
+                height = (MON_SPRITE_FRAME_HEIGHT * monSpriteMan->sprites[i].transforms.scaleY) >> MON_AFFINE_SHIFT;
                 u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0];
                 u1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][2];
                 v0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1];
@@ -433,21 +538,21 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
 
             if (monSpriteMan->sprites[i].shadow.plttSlot
                 && monSpriteMan->sprites[i].shadow.size != SHADOW_SIZE_NONE
-                && monSpriteMan->sprites[i].transforms.visible == FALSE
-                && (monSpriteMan->hideShadows & 0x1) == 0) {
+                && monSpriteMan->sprites[i].transforms.partialDraw == FALSE
+                && (monSpriteMan->hideShadows & 1) == 0) {
 
-                if (monSpriteMan->excludeG3Identity != TRUE) {
+                if (monSpriteMan->excludeIdentity != TRUE) {
                     G3_Identity();
                 }
 
-                G3_TexPlttBase(monSpriteMan->plttBaseAddr + 32 * (3 + monSpriteMan->sprites[i].shadow.plttSlot), monSpriteMan->imageProxy.attr.fmt);
+                G3_TexPlttBase(monSpriteMan->plttBaseAddr + PLTT_OFFSET(MON_SHADOW_BASE_PLTT_SLOT + monSpriteMan->sprites[i].shadow.plttSlot), monSpriteMan->imageProxy.attr.fmt);
 
                 if (monSpriteMan->sprites[i].shadow.isAffine) {
-                    width = (64 * monSpriteMan->sprites[i].transforms.scaleX) >> 8;
-                    height = (16 * monSpriteMan->sprites[i].transforms.scaleY) >> 8;
+                    width = (SHADOW_SPRITE_FRAME_WIDTH * monSpriteMan->sprites[i].transforms.scaleX) >> MON_AFFINE_SHIFT;
+                    height = (SHADOW_SPRITE_FRAME_HEIGHT * monSpriteMan->sprites[i].transforms.scaleY) >> MON_AFFINE_SHIFT;
                 } else {
-                    width = 64;
-                    height = 16;
+                    width = SHADOW_SPRITE_FRAME_WIDTH;
+                    height = SHADOW_SPRITE_FRAME_HEIGHT;
                 }
 
                 if (monSpriteMan->sprites[i].shadow.shouldFollowX) {
@@ -511,13 +616,13 @@ BOOL PokemonSprite_IsAnimActive(PokemonSprite *monSprite)
 PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimationFrame *animFrames, PokemonSpriteCallback *callback)
 {
     int i;
-    for (i = 0; i < MAX_POKEMON_SPRITES; i++) {
+    for (i = 0; i < MAX_MON_SPRITES; i++) {
         if (monSpriteMan->sprites[i].active == FALSE) {
             break;
         }
     }
 
-    GF_ASSERT(i != MAX_POKEMON_SPRITES);
+    GF_ASSERT(i != MAX_MON_SPRITES);
 
     return PokemonSpriteManager_CreateSpriteAtIndex(monSpriteMan, spriteTemplate, x, y, z, polygonID, i, animFrames, callback);
 }
@@ -537,8 +642,8 @@ PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *mo
     monSpriteMan->sprites[index].transforms.xCenter = x;
     monSpriteMan->sprites[index].transforms.yCenter = y;
     monSpriteMan->sprites[index].transforms.zCenter = z;
-    monSpriteMan->sprites[index].transforms.scaleX = 256;
-    monSpriteMan->sprites[index].transforms.scaleY = 256;
+    monSpriteMan->sprites[index].transforms.scaleX = MON_AFFINE_SCALE(1);
+    monSpriteMan->sprites[index].transforms.scaleY = MON_AFFINE_SCALE(1);
     monSpriteMan->sprites[index].transforms.alpha = 31;
     monSpriteMan->sprites[index].transforms.diffuseR = 31;
     monSpriteMan->sprites[index].transforms.diffuseG = 31;
@@ -567,7 +672,7 @@ void PokemonSprite_Delete(PokemonSprite *monSprite)
 
 void PokemonSpriteManager_DeleteAll(PokemonSpriteManager *monSpriteMan)
 {
-    for (int i = 0; i < MAX_POKEMON_SPRITES; i++) {
+    for (int i = 0; i < MAX_MON_SPRITES; i++) {
         PokemonSprite_Delete(&monSpriteMan->sprites[i]);
     }
 }
@@ -617,20 +722,20 @@ void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     case MON_SPRITE_SCALE_Y:
         monSprite->transforms.scaleY = value;
         break;
-    case MON_SPRITE_VISIBLE:
-        monSprite->transforms.visible = value;
+    case MON_SPRITE_PARTIAL_DRAW:
+        monSprite->transforms.partialDraw = value;
         break;
-    case MON_SPRITE_TEXTURE_X_OFFSET:
-        monSprite->transforms.textureXOffset = value;
+    case MON_SPRITE_DRAW_X_OFFSET:
+        monSprite->transforms.drawXOffset = value;
         break;
-    case MON_SPRITE_TEXTURE_Y_OFFSET:
-        monSprite->transforms.textureYOffset = value;
+    case MON_SPRITE_DRAW_Y_OFFSET:
+        monSprite->transforms.drawYOffset = value;
         break;
-    case MON_SPRITE_WIDTH:
-        monSprite->transforms.width = value;
+    case MON_SPRITE_DRAW_WIDTH:
+        monSprite->transforms.drawWidth = value;
         break;
-    case MON_SPRITE_HEIGHT:
-        monSprite->transforms.height = value;
+    case MON_SPRITE_DRAW_HEIGHT:
+        monSprite->transforms.drawHeight = value;
         break;
     case MON_SPRITE_SHADOW_X:
         monSprite->shadow.x = value;
@@ -755,16 +860,16 @@ int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttri
         return monSprite->transforms.scaleX;
     case MON_SPRITE_SCALE_Y:
         return monSprite->transforms.scaleY;
-    case MON_SPRITE_VISIBLE:
-        return monSprite->transforms.visible;
-    case MON_SPRITE_TEXTURE_X_OFFSET:
-        return monSprite->transforms.textureXOffset;
-    case MON_SPRITE_TEXTURE_Y_OFFSET:
-        return monSprite->transforms.textureYOffset;
-    case MON_SPRITE_WIDTH:
-        return monSprite->transforms.width;
-    case MON_SPRITE_HEIGHT:
-        return monSprite->transforms.height;
+    case MON_SPRITE_PARTIAL_DRAW:
+        return monSprite->transforms.partialDraw;
+    case MON_SPRITE_DRAW_X_OFFSET:
+        return monSprite->transforms.drawXOffset;
+    case MON_SPRITE_DRAW_Y_OFFSET:
+        return monSprite->transforms.drawYOffset;
+    case MON_SPRITE_DRAW_WIDTH:
+        return monSprite->transforms.drawWidth;
+    case MON_SPRITE_DRAW_HEIGHT:
+        return monSprite->transforms.drawHeight;
     case MON_SPRITE_SHADOW_X:
         return monSprite->shadow.x;
     case MON_SPRITE_SHADOW_Y:
@@ -870,20 +975,20 @@ void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     case MON_SPRITE_SCALE_Y:
         monSprite->transforms.scaleY += delta;
         break;
-    case MON_SPRITE_VISIBLE:
-        monSprite->transforms.visible += delta;
+    case MON_SPRITE_PARTIAL_DRAW:
+        monSprite->transforms.partialDraw += delta;
         break;
-    case MON_SPRITE_TEXTURE_X_OFFSET:
-        monSprite->transforms.textureXOffset += delta;
+    case MON_SPRITE_DRAW_X_OFFSET:
+        monSprite->transforms.drawXOffset += delta;
         break;
-    case MON_SPRITE_TEXTURE_Y_OFFSET:
-        monSprite->transforms.textureYOffset += delta;
+    case MON_SPRITE_DRAW_Y_OFFSET:
+        monSprite->transforms.drawYOffset += delta;
         break;
-    case MON_SPRITE_WIDTH:
-        monSprite->transforms.width += delta;
+    case MON_SPRITE_DRAW_WIDTH:
+        monSprite->transforms.drawWidth += delta;
         break;
-    case MON_SPRITE_HEIGHT:
-        monSprite->transforms.height += delta;
+    case MON_SPRITE_DRAW_HEIGHT:
+        monSprite->transforms.drawHeight += delta;
         break;
     case MON_SPRITE_SHADOW_X:
         monSprite->shadow.x += delta;
@@ -977,13 +1082,13 @@ void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
     }
 }
 
-void PokemonSprite_ShowAndSetTexturePos(PokemonSprite *monSprite, int x, int y, int width, int height)
+void PokemonSprite_SetPartialDraw(PokemonSprite *monSprite, int xOffset, int yOffset, int width, int height)
 {
-    monSprite->transforms.visible = TRUE;
-    monSprite->transforms.textureXOffset = x;
-    monSprite->transforms.textureYOffset = y;
-    monSprite->transforms.width = width;
-    monSprite->transforms.height = height;
+    monSprite->transforms.partialDraw = TRUE;
+    monSprite->transforms.drawXOffset = xOffset;
+    monSprite->transforms.drawYOffset = yOffset;
+    monSprite->transforms.drawWidth = width;
+    monSprite->transforms.drawHeight = height;
 }
 
 void PokemonSprite_StartFade(PokemonSprite *monSprite, int initAlpha, int targetAlpha, int delay, int color)
@@ -998,7 +1103,7 @@ void PokemonSprite_StartFade(PokemonSprite *monSprite, int initAlpha, int target
 
 void PokemonSpriteManager_StartFadeAll(PokemonSpriteManager *monSpriteMan, int initAlpha, int targetAlpha, int delay, int color)
 {
-    for (int i = 0; i < MAX_POKEMON_SPRITES; i++) {
+    for (int i = 0; i < MAX_MON_SPRITES; i++) {
         if (monSpriteMan->sprites[i].active) {
             monSpriteMan->sprites[i].transforms.fadeActive = TRUE;
             monSpriteMan->sprites[i].transforms.fadeInitAlpha = initAlpha;
@@ -1028,7 +1133,7 @@ BOOL PokemonSprite_IsFadeActive(PokemonSprite *monSprite)
 
 void PokemonSprite_CalcScaledYOffset(PokemonSprite *monSprite, int height)
 {
-    monSprite->transforms.yOffset = ((80 / 2) - height) - ((((80 / 2) - height) * monSprite->transforms.scaleY) >> 8);
+    monSprite->transforms.yOffset = ((MON_SPRITE_HEIGHT / 2) - height) - ((((MON_SPRITE_HEIGHT / 2) - height) * monSprite->transforms.scaleY) >> 8);
 }
 
 static inline void RunPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8 *currAnimFrame, u8 *frameDelay, u8 *loopTimers, const SpriteAnimationFrame *animFrames)
@@ -1169,8 +1274,8 @@ void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan)
 
         NNS_G2dInitImageProxy(&monSpriteMan->imageProxy);
 
-        monSpriteMan->charData.H = 32;
-        monSpriteMan->charData.W = 32;
+        monSpriteMan->charData.H = MON_SPRITE_WIDTH_TILES;
+        monSpriteMan->charData.W = MON_SPRITE_HEIGHT_TILES;
         monSpriteMan->charData.szByte = monSpriteMan->charSize;
         monSpriteMan->charData.pRawData = monSpriteMan->charRawData;
 
@@ -1189,9 +1294,9 @@ void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan)
     }
 }
 
-void PokemonSpriteManager_SetExcludeG3Identity(PokemonSpriteManager *monSpriteMan, int value)
+void PokemonSpriteManager_SetExcludeIdentity(PokemonSpriteManager *monSpriteMan, int value)
 {
-    monSpriteMan->excludeG3Identity = value;
+    monSpriteMan->excludeIdentity = value;
 }
 
 BOOL PokemonSprite_IsActive(PokemonSprite *monSprite)
@@ -1207,18 +1312,18 @@ void PokemonSpriteManager_SetHideShadows(PokemonSpriteManager *monSpriteMan, u32
 
 void PokemonSpriteManager_ClearHideShadows(PokemonSpriteManager *monSpriteMan, u32 value)
 {
-    monSpriteMan->hideShadows &= (value ^ 0xFFFFFFFF);
+    monSpriteMan->hideShadows &= (value ^ -1);
 }
 
 static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan)
 {
     NNSG2dCharacterData *charData;
-    int i, j, k;
+    int i, y, x;
     u8 *rawCharData;
     void *ncgrFile;
     u8 needLoadChar = FALSE;
 
-    for (i = 0; i < MAX_POKEMON_SPRITES; i++) {
+    for (i = 0; i < MAX_MON_SPRITES; i++) {
         if (monSpriteMan->sprites[i].active && monSpriteMan->sprites[i].needReloadChar) {
             monSpriteMan->sprites[i].needReloadChar = FALSE;
 
@@ -1237,80 +1342,80 @@ static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan)
             TryDrawSpindaSpots(&monSpriteMan->sprites[i], rawCharData);
 
             if (i == 3) {
-                for (j = 0; j < 80; j++) {
-                    for (k = 0; k < 160 / 2; k++) {
-                        if (k < 160 / 4) {
-                            if ((monSpriteMan->sprites[i].transforms.flipH) && (monSpriteMan->sprites[i].transforms.flipV)) {
-                                monSpriteMan->charRawData[j * 0x80 + k + 0x50] = SwapNybbles(rawCharData[((80 - 1) - j) * 0x50 + ((160 / 4 - 1) - k)]);
+                for (y = 0; y < MON_SPRITE_HEIGHT; y++) {
+                    for (x = 0; x < MON_SPRITE_WIDTH / 2; x++) {
+                        if (x < MON_SPRITE_WIDTH / 4) {
+                            if (monSpriteMan->sprites[i].transforms.flipH && monSpriteMan->sprites[i].transforms.flipV) {
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = SwapNybbles(rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 4 - 1) - x)]);
                             } else if (monSpriteMan->sprites[i].transforms.flipH) {
-                                monSpriteMan->charRawData[j * 0x80 + k + 0x50] = SwapNybbles(rawCharData[j * 0x50 + ((160 / 4 - 1) - k)]);
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = SwapNybbles(rawCharData[y * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 4 - 1) - x)]);
                             } else if (monSpriteMan->sprites[i].transforms.flipV) {
-                                monSpriteMan->charRawData[j * 0x80 + k + 0x50] = rawCharData[((80 - 1) - j) * 0x50 + k];
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + x];
                             } else if (monSpriteMan->sprites[i].transforms.mosaicIntensity) {
-                                if (j % (monSpriteMan->sprites[i].transforms.mosaicIntensity * 2)) {
-                                    monSpriteMan->charRawData[j * 0x80 + k + 0x50] = monSpriteMan->charRawData[(j - 1) * 0x80 + k + 0x50];
+                                if (y % (monSpriteMan->sprites[i].transforms.mosaicIntensity * 2)) {
+                                    monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = monSpriteMan->charRawData[(y - 1) * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1];
                                 } else {
-                                    if (k % (monSpriteMan->sprites[i].transforms.mosaicIntensity)) {
-                                        monSpriteMan->charRawData[j * 0x80 + k + 0x50] = monSpriteMan->charRawData[j * 0x80 + (k - 1) + 0x50];
+                                    if (x % (monSpriteMan->sprites[i].transforms.mosaicIntensity)) {
+                                        monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = monSpriteMan->charRawData[y * MAN_Y_OFFSET + (x - 1) + MAN_LAST_SPRITE_CHAR_OFFSET_1];
                                     } else {
-                                        monSpriteMan->charRawData[j * 0x80 + k + 0x50] = ((rawCharData[j * 0x50 + k] & 0xf) | (rawCharData[j * 0x50 + k] & 0xf) << 4);
+                                        monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = ((rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) | (rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) << 4);
                                     }
                                 }
                             } else {
-                                monSpriteMan->charRawData[j * 0x80 + k + 0x50] = rawCharData[j * 0x50 + k];
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = rawCharData[y * NCGR_Y_OFFSET + x];
                             }
                         } else {
-                            if ((monSpriteMan->sprites[i].transforms.flipH) && (monSpriteMan->sprites[i].transforms.flipV)) {
-                                monSpriteMan->charRawData[j * 0x80 + k + 0x2828] = SwapNybbles(rawCharData[((80 - 1) - j) * 0x50 + ((160 / 2 - 1) - (k - 160 / 4))]);
+                            if (monSpriteMan->sprites[i].transforms.flipH && monSpriteMan->sprites[i].transforms.flipV) {
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = SwapNybbles(rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 2 - 1) - (x - MON_SPRITE_WIDTH / 4))]);
                             } else if (monSpriteMan->sprites[i].transforms.flipH) {
-                                monSpriteMan->charRawData[j * 0x80 + k + 0x2828] = SwapNybbles(rawCharData[j * 0x50 + ((160 / 2 - 1) - (k - 160 / 4))]);
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = SwapNybbles(rawCharData[y * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 2 - 1) - (x - MON_SPRITE_WIDTH / 4))]);
                             } else if (monSpriteMan->sprites[i].transforms.flipV) {
-                                monSpriteMan->charRawData[j * 0x80 + k + 0x2828] = rawCharData[((80 - 1) - j) * 0x50 + k];
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + x];
                             } else if (monSpriteMan->sprites[i].transforms.mosaicIntensity) {
-                                if (j % (monSpriteMan->sprites[i].transforms.mosaicIntensity * 2)) {
-                                    monSpriteMan->charRawData[j * 0x80 + k + 0x2828] = monSpriteMan->charRawData[(j - 1) * 0x80 + k + 0x2828];
+                                if (y % (monSpriteMan->sprites[i].transforms.mosaicIntensity * 2)) {
+                                    monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = monSpriteMan->charRawData[(y - 1) * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2];
                                 } else {
-                                    if (k % (monSpriteMan->sprites[i].transforms.mosaicIntensity)) {
-                                        monSpriteMan->charRawData[j * 0x80 + k + 0x2828] = monSpriteMan->charRawData[j * 0x80 + (k - 1) + 0x2828];
+                                    if (x % (monSpriteMan->sprites[i].transforms.mosaicIntensity)) {
+                                        monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = monSpriteMan->charRawData[y * MAN_Y_OFFSET + (x - 1) + MAN_LAST_SPRITE_CHAR_OFFSET_2];
                                     } else {
-                                        monSpriteMan->charRawData[j * 0x80 + k + 0x2828] = ((rawCharData[j * 0x50 + k] & 0xf) | (rawCharData[j * 0x50 + k] & 0xf) << 4);
+                                        monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = ((rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) | (rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) << 4);
                                     }
                                 }
                             } else {
-                                monSpriteMan->charRawData[j * 0x80 + k + 0x2828] = rawCharData[j * 0x50 + k];
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = rawCharData[y * NCGR_Y_OFFSET + x];
                             }
                         }
                     }
                 }
             } else {
-                for (j = 0; j < 80; j++) {
-                    for (k = 0; k < 160 / 2; k++) {
-                        if ((monSpriteMan->sprites[i].transforms.flipH) && (monSpriteMan->sprites[i].transforms.flipV)) {
-                            if (k < 160 / 4) {
-                                monSpriteMan->charRawData[j * 0x80 + k + i * 0x2800] = SwapNybbles(rawCharData[((80 - 1) - j) * 0x50 + ((160 / 4 - 1) - k)]);
+                for (y = 0; y < MON_SPRITE_HEIGHT; y++) {
+                    for (x = 0; x < MON_SPRITE_WIDTH / 2; x++) {
+                        if (monSpriteMan->sprites[i].transforms.flipH && monSpriteMan->sprites[i].transforms.flipV) {
+                            if (x < MON_SPRITE_WIDTH / 4) {
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = SwapNybbles(rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 4 - 1) - x)]);
                             } else {
-                                monSpriteMan->charRawData[j * 0x80 + k + i * 0x2800] = SwapNybbles(rawCharData[((80 - 1) - j) * 0x50 + ((160 / 2 - 1) - (k - 160 / 4))]);
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = SwapNybbles(rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 2 - 1) - (x - MON_SPRITE_WIDTH / 4))]);
                             }
                         } else if (monSpriteMan->sprites[i].transforms.flipH) {
-                            if (k < 160 / 4) {
-                                monSpriteMan->charRawData[j * 0x80 + k + i * 0x2800] = SwapNybbles(rawCharData[j * 0x50 + ((160 / 4 - 1) - k)]);
+                            if (x < MON_SPRITE_WIDTH / 4) {
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = SwapNybbles(rawCharData[y * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 4 - 1) - x)]);
                             } else {
-                                monSpriteMan->charRawData[j * 0x80 + k + i * 0x2800] = SwapNybbles(rawCharData[j * 0x50 + ((160 / 2 - 1) - (k - 160 / 4))]);
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = SwapNybbles(rawCharData[y * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 2 - 1) - (x - MON_SPRITE_WIDTH / 4))]);
                             }
                         } else if (monSpriteMan->sprites[i].transforms.flipV) {
-                            monSpriteMan->charRawData[j * 0x80 + k + i * 0x2800] = rawCharData[((80 - 1) - j) * 0x50 + k];
+                            monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + x];
                         } else if (monSpriteMan->sprites[i].transforms.mosaicIntensity) {
-                            if (j % (monSpriteMan->sprites[i].transforms.mosaicIntensity * 2)) {
-                                monSpriteMan->charRawData[j * 0x80 + k + i * 0x2800] = monSpriteMan->charRawData[(j - 1) * 0x80 + k + i * 0x2800];
+                            if (y % (monSpriteMan->sprites[i].transforms.mosaicIntensity * 2)) {
+                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = monSpriteMan->charRawData[(y - 1) * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET];
                             } else {
-                                if (k % (monSpriteMan->sprites[i].transforms.mosaicIntensity)) {
-                                    monSpriteMan->charRawData[j * 0x80 + k + i * 0x2800] = monSpriteMan->charRawData[j * 0x80 + (k - 1) + i * 0x2800];
+                                if (x % (monSpriteMan->sprites[i].transforms.mosaicIntensity)) {
+                                    monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = monSpriteMan->charRawData[y * MAN_Y_OFFSET + (x - 1) + i * MAN_CHAR_OFFSET];
                                 } else {
-                                    monSpriteMan->charRawData[j * 0x80 + k + i * 0x2800] = ((rawCharData[j * 0x50 + k] & 0xf) | (rawCharData[j * 0x50 + k] & 0xf) << 4);
+                                    monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = ((rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) | (rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) << 4);
                                 }
                             }
                         } else {
-                            monSpriteMan->charRawData[j * 0x80 + k + i * 0x2800] = rawCharData[j * 0x50 + k];
+                            monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = rawCharData[y * NCGR_Y_OFFSET + x];
                         }
                     }
                 }
@@ -1331,7 +1436,7 @@ static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan)
     void *nclrFile;
     u8 needReloadPltt = FALSE;
 
-    for (i = 0; i < MAX_POKEMON_SPRITES; i++) {
+    for (i = 0; i < MAX_MON_SPRITES; i++) {
         if (monSpriteMan->sprites[i].active && monSpriteMan->sprites[i].needReloadPltt) {
             monSpriteMan->sprites[i].needReloadPltt = FALSE;
 
@@ -1343,21 +1448,21 @@ static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan)
             monSpriteMan->plttData.fmt = plttData->fmt;
             rawPlttData = plttData->pRawData;
 
-            for (j = 0; j < 0x10; j++) {
-                monSpriteMan->plttRawData[j + 0x10 * i] = rawPlttData[j];
-                monSpriteMan->plttRawDataUnfaded[j + 0x10 * i] = rawPlttData[j];
+            for (j = 0; j < PALETTE_SIZE; j++) {
+                monSpriteMan->plttRawData[j + PALETTE_SIZE * i] = rawPlttData[j];
+                monSpriteMan->plttRawDataUnfaded[j + PALETTE_SIZE * i] = rawPlttData[j];
             }
 
             Heap_FreeToHeap(nclrFile);
 
             if (monSpriteMan->sprites[i].shadow.plttSlot) {
-                nclrFile = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, 252, monSpriteMan->heapID);
+                nclrFile = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, pokemon_shadows_pal_NCLR, monSpriteMan->heapID);
                 NNS_G2dGetUnpackedPaletteData(nclrFile, &plttData);
                 rawPlttData = plttData->pRawData;
 
-                for (j = 0; j < 0x10; j++) {
-                    monSpriteMan->plttRawData[j + 0x10 * (3 + monSpriteMan->sprites[i].shadow.plttSlot)] = rawPlttData[j];
-                    monSpriteMan->plttRawDataUnfaded[j + 0x10 * (3 + monSpriteMan->sprites[i].shadow.plttSlot)] = rawPlttData[j];
+                for (j = 0; j < PALETTE_SIZE; j++) {
+                    monSpriteMan->plttRawData[j + PALETTE_SIZE * (MON_SHADOW_BASE_PLTT_SLOT + monSpriteMan->sprites[i].shadow.plttSlot)] = rawPlttData[j];
+                    monSpriteMan->plttRawDataUnfaded[j + PALETTE_SIZE * (MON_SHADOW_BASE_PLTT_SLOT + monSpriteMan->sprites[i].shadow.plttSlot)] = rawPlttData[j];
                 }
 
                 Heap_FreeToHeap(nclrFile);
@@ -1370,17 +1475,17 @@ static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan)
                 monSpriteMan->sprites[i].transforms.fadeDelayCounter = monSpriteMan->sprites[i].transforms.fadeDelayLength;
 
                 BlendPalette(
-                    &monSpriteMan->plttRawDataUnfaded[0x10 * i],
-                    &monSpriteMan->plttRawData[0x10 * i],
-                    16,
+                    &monSpriteMan->plttRawDataUnfaded[PALETTE_SIZE * i],
+                    &monSpriteMan->plttRawData[PALETTE_SIZE * i],
+                    PALETTE_SIZE,
                     monSpriteMan->sprites[i].transforms.fadeInitAlpha,
                     monSpriteMan->sprites[i].transforms.fadeTargetColor);
 
                 if (monSpriteMan->sprites[i].shadow.plttSlot) {
                     BlendPalette(
-                        &monSpriteMan->plttRawDataUnfaded[0x10 * (3 + monSpriteMan->sprites[i].shadow.plttSlot)],
-                        &monSpriteMan->plttRawData[0x10 * (3 + monSpriteMan->sprites[i].shadow.plttSlot)],
-                        16,
+                        &monSpriteMan->plttRawDataUnfaded[PALETTE_SIZE * (MON_SHADOW_BASE_PLTT_SLOT + monSpriteMan->sprites[i].shadow.plttSlot)],
+                        &monSpriteMan->plttRawData[PALETTE_SIZE * (MON_SHADOW_BASE_PLTT_SLOT + monSpriteMan->sprites[i].shadow.plttSlot)],
+                        PALETTE_SIZE,
                         monSpriteMan->sprites[i].transforms.fadeInitAlpha,
                         monSpriteMan->sprites[i].transforms.fadeTargetColor);
                 }
@@ -1428,7 +1533,7 @@ void PokemonSprite_DrawSpindaSpots(u8 *rawCharData, u32 personality, BOOL isAnim
         while (currSpotCoords[j].x != SPINDA_SPOT_COORDS_END) {
             x = currSpotCoords[j].x + ((personality & 0x0F) - 8);
             y = currSpotCoords[j].y + (((personality & 0xF0) >> 4) - 8);
-            destOffset = x / 2 + y * 80;
+            destOffset = x / 2 + y * NCGR_Y_OFFSET;
 
             if (x & 1) {
                 if ((rawCharData[destOffset] & 0xF0) >= 0x10 && (rawCharData[destOffset] & 0xF0) <= 0x30) {
@@ -1456,7 +1561,7 @@ void PokemonSprite_DrawSpindaSpots(u8 *rawCharData, u32 personality, BOOL isAnim
             while (currSpotCoords[j].x != SPINDA_SPOT_COORDS_END) {
                 x = (currSpotCoords[j].x - 14) + ((personality & 0x0F) - 8) + 80;
                 y = currSpotCoords[j].y + (((personality & 0xF0) >> 4) - 8);
-                destOffset = x / 2 + y * 80;
+                destOffset = x / 2 + y * NCGR_Y_OFFSET;
 
                 if (x & 1) {
                     if ((rawCharData[destOffset] & 0xF0) >= 0x10 && (rawCharData[destOffset] & 0xF0) <= 0x30) {
@@ -1487,7 +1592,7 @@ void PokemonSprite_DecryptPt(u8 *rawCharData)
     u16 *charData = (u16 *)rawCharData;
     u32 seed = *charData;
 
-    for (int i = 0; i < (20 * 10 * 0x20) / 2; i++) {
+    for (int i = 0; i < (20 * 10 * 32) / 2; i++) {
         charData[i] ^= seed;
         PokemonSprite_LCRNGNext(&seed);
     }
@@ -1496,9 +1601,9 @@ void PokemonSprite_DecryptPt(u8 *rawCharData)
 void PokemonSprite_DecryptDP(u8 *rawCharData)
 {
     u16 *charData = (u16 *)rawCharData;
-    u32 seed = charData[(20 * 10 * 0x20) / 2 - 1];
+    u32 seed = charData[(20 * 10 * 32) / 2 - 1];
 
-    for (int i = (20 * 10 * 0x20) / 2 - 1; i > -1; i--) {
+    for (int i = (20 * 10 * 32) / 2 - 1; i > -1; i--) {
         charData[i] ^= seed;
         PokemonSprite_LCRNGNext(&seed);
     }
