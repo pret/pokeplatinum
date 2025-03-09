@@ -3,6 +3,11 @@ These pages are for documenting information about the code of the
 For more detailed information about the project as a whole, please refer to its
 [`README`](https://github.com/pret/pokeplatinum/blob/main/README.md).
 
+## Setup Guides for Popular Editors
+
+- [Visual Studio Code](./editor_setup/visual_studio_code.md)
+- [Neovim](./editor_setup/neovim.md)
+
 ## Issues with the source code
 
 - [Fixes for Various Bugs and Glitches](bugs_and_glitches.md)
