@@ -1475,7 +1475,7 @@ Overlay overlay97
 	Object main.nef.p/src_overlay097_ov97_02237694.c.o
 	Object main.nef.p/src_overlay097_ov97_02238534.c.o
 	Object main.nef.p/src_overlay097_ov97_02238D74.c.o
-	Object main.nef.p/src_overlay097_ov97_022392E4.c.o
+	Object main.nef.p/src_overlay097_gba_convert_string.c.o
 	Library libcrypto_ov97.a
 }
 

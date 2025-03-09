@@ -8,8 +8,8 @@
 #include "constants/species.h"
 #include "generated/abilities.h"
 
+#include "overlay097/gba_convert_string.h"
 #include "overlay097/gba_save.h"
-#include "overlay097/ov97_022392E4.h"
 
 #include "item.h"
 #include "pokemon.h"
@@ -791,7 +791,7 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     BOOL reencrypt;
     u32 value;
     int i, v3;
-    int v4;
+    int language;
     u8 gbaNickname[GBA_MON_NAME_LEN + 1];
     u16 dsNickName[MON_NAME_LEN + 2];
 
@@ -826,8 +826,8 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MARKINGS, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_MARKS, (u8 *)&value);
 
-    v4 = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_LANGUAGE, (u8 *)&v4);
+    language = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL);
+    BoxPokemon_SetValue(boxMon, MON_DATA_LANGUAGE, (u8 *)&language);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_HP_EV, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HP_EV, (u8 *)&value);
@@ -1011,10 +1011,9 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
         BoxPokemon_SetValue(boxMon, MON_DATA_FORM, (u8 *)&value);
     }
 
-    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NICKNAME, &gbaNickname[0]);
-    GBAStringToDSString(&gbaNickname[0], &dsNickName[0], MON_NAME_LEN + 2, v4);
-
-    BoxPokemon_SetValue(boxMon, MON_DATA_NICKNAME_AND_FLAG, &dsNickName[0]);
+    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NICKNAME, gbaNickname);
+    GBAStringToDSString(gbaNickname, dsNickName, MON_NAME_LEN + 2, language);
+    BoxPokemon_SetValue(boxMon, MON_DATA_NICKNAME_AND_FLAG, dsNickName);
 
     if (GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LANGUAGE, NULL) != gGameLanguage) {
         value = 1;
@@ -1024,10 +1023,9 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MET_GAME, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &value);
 
-    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_OT_NAME, &gbaNickname[0]);
-    GBAStringToDSString(&gbaNickname[0], &dsNickName[0], GBA_PLAYER_NAME_LEN + 1, v4);
-
-    BoxPokemon_SetValue(boxMon, MON_DATA_OTNAME, &dsNickName[0]);
+    GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_OT_NAME, gbaNickname);
+    GBAStringToDSString(gbaNickname, dsNickName, GBA_PLAYER_NAME_LEN + 1, language);
+    BoxPokemon_SetValue(boxMon, MON_DATA_OTNAME, dsNickName);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MET_LOCATION, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_HATCH_LOCATION, &value);

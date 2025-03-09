@@ -7,9 +7,9 @@
 #include "overlay097/struct_ov97_0223F450.h"
 
 typedef struct {
-    u32 agbGameCode; // Reversed?
-    u8 unk_04;
-    u8 unk_05;
+    u32 agbGameCodeReversed;
+    u8 gameSet;
+    u8 gameType;
     u16 language;
 } GBAPokemonCartInfo;
 
@@ -61,7 +61,7 @@ int ov97_02235D2C(void *param0)
         }
     }
 
-    if (sLoadedGBACartInfo->unk_04 == 0) {
+    if (sLoadedGBACartInfo->gameSet == AGB_SET_RUBYSAPP) {
         Unk_ov97_0223F450.unk_88 = 2192;
         Unk_ov97_0223F450.unk_8C = 15040;
         Unk_ov97_0223F450.unk_50 = 4640;
@@ -84,9 +84,9 @@ void ResetLoadedGBACartInfo(void)
     sLoadedGBACartInfo = NULL;
 }
 
-int ov97_02235DB0()
+int GBACart_GetAGBGameType()
 {
-    return sLoadedGBACartInfo->unk_05;
+    return sLoadedGBACartInfo->gameType;
 }
 
 int GBACart_GetLanguage()
@@ -109,7 +109,7 @@ static int ov97_02235DC8(const GBAPokemonCartInfo *cartInfo, int param1)
         int i;
 
         for (i = 0; i < param1; i++) {
-            if (cartInfo[i].agbGameCode == agbGameCode) {
+            if (cartInfo[i].agbGameCodeReversed == agbGameCode) {
                 sLoadedGBACartInfo = cartInfo + i;
                 break;
             }
@@ -481,40 +481,40 @@ void *GetGBASaveBlock2(void)
 
 static const GBAPokemonCartInfo sGBAPokemonCartInfo[30] = {
     // Ruby
-    { 'JVXA', 0x0, 0x0, JAPANESE },
-    { 'EVXA', 0x0, 0x0, ENGLISH },
-    { 'FVXA', 0x0, 0x0, FRENCH },
-    { 'DVXA', 0x0, 0x0, GERMAN },
-    { 'SVXA', 0x0, 0x0, SPANISH },
-    { 'IVXA', 0x0, 0x0, ITALIAN },
+    { 'JVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, JAPANESE },
+    { 'EVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, ENGLISH },
+    { 'FVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, FRENCH },
+    { 'DVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, GERMAN },
+    { 'SVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, SPANISH },
+    { 'IVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, ITALIAN },
     // Sapphire
-    { 'JPXA', 0x0, 0x1, JAPANESE },
-    { 'EPXA', 0x0, 0x1, ENGLISH },
-    { 'FPXA', 0x0, 0x1, FRENCH },
-    { 'DPXA', 0x0, 0x1, GERMAN },
-    { 'SPXA', 0x0, 0x1, SPANISH },
-    { 'IPXA', 0x0, 0x1, ITALIAN },
+    { 'JPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, JAPANESE },
+    { 'EPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, ENGLISH },
+    { 'FPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, FRENCH },
+    { 'DPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, GERMAN },
+    { 'SPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, SPANISH },
+    { 'IPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, ITALIAN },
     // FireRed
-    { 'JRPB', 0x1, 0x3, JAPANESE },
-    { 'ERPB', 0x1, 0x3, ENGLISH },
-    { 'FRPB', 0x1, 0x3, FRENCH },
-    { 'DRPB', 0x1, 0x3, GERMAN },
-    { 'SRPB', 0x1, 0x3, SPANISH },
-    { 'IRPB', 0x1, 0x3, ITALIAN },
+    { 'JRPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, JAPANESE },
+    { 'ERPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, ENGLISH },
+    { 'FRPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, FRENCH },
+    { 'DRPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, GERMAN },
+    { 'SRPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, SPANISH },
+    { 'IRPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, ITALIAN },
     // LeafGreen
-    { 'JGPB', 0x1, 0x2, JAPANESE },
-    { 'EGPB', 0x1, 0x2, ENGLISH },
-    { 'FGPB', 0x1, 0x2, FRENCH },
-    { 'DGPB', 0x1, 0x2, GERMAN },
-    { 'SGPB', 0x1, 0x2, SPANISH },
-    { 'IGPB', 0x1, 0x2, ITALIAN },
-    { 'JEPB', 0x2, 0x4, JAPANESE },
+    { 'JGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, JAPANESE },
+    { 'EGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, ENGLISH },
+    { 'FGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, FRENCH },
+    { 'DGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, GERMAN },
+    { 'SGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, SPANISH },
+    { 'IGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, ITALIAN },
     // Emerald
-    { 'EEPB', 0x2, 0x4, ENGLISH },
-    { 'FEPB', 0x2, 0x4, FRENCH },
-    { 'DEPB', 0x2, 0x4, GERMAN },
-    { 'SEPB', 0x2, 0x4, SPANISH },
-    { 'IEPB', 0x2, 0x4, ITALIAN }
+    { 'JEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, JAPANESE },
+    { 'EEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, ENGLISH },
+    { 'FEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, FRENCH },
+    { 'DEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, GERMAN },
+    { 'SEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, SPANISH },
+    { 'IEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, ITALIAN }
 };
 
 static u8 Unk_ov97_0223EC04[] = {

@@ -135,7 +135,7 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon may migrate from a Game Boy\nAdvance Game Pak only once a day.\rA full day hasn’t passed since\nPokémon migrated from this Game Pak.</language>
 	</row>
-	<row id="migrate_from_gba_internal_clock_altered" index="32">
+	<row id="migrate_from_gba_different_ds_or_internal_clock_altered" index="32">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You are using a different Nintendo DS,\nor its internal clock has been altered.\rIf the game’s time setting is changed,\nyou will not be able to migrate\fPokémon for another 24 hours.\rWould you like to change your game’s\ntime setting to match the Nintendo DS?</language>
 	</row>

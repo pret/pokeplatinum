@@ -1,4 +1,4 @@
-#include "overlay097/ov97_022392E4.h"
+#include "overlay097/gba_convert_string.h"
 
 #include <nitro.h>
 #include <string.h>

@@ -10,8 +10,8 @@ typedef struct PalParkTransfer {
     Pokemon mons[CATCHING_SHOW_MONS];
     u32 unk_288[20];
     s64 unk_2D8[20];
-    s64 unk_378;
-    u8 unk_380[6];
+    s64 rtcOffset;
+    u8 macAddress[6];
 } PalParkTransfer;
 
 int PalParkTransfer_SaveSize(void)
@@ -83,9 +83,9 @@ void sub_0202EFB8(PalParkTransfer *transferData, u32 gbaTrainerId)
 
     transferData->unk_288[v0] = gbaTrainerId;
     transferData->unk_2D8[v0] = GetTimestamp();
-    transferData->unk_378 = OS_GetOwnerRtcOffset();
+    transferData->rtcOffset = OS_GetOwnerRtcOffset();
 
-    OS_GetMacAddress(transferData->unk_380);
+    OS_GetMacAddress(transferData->macAddress);
 }
 
 void TransferDataToMon(const PalParkTransfer *transferData, int slot, Pokemon *mon)
@@ -120,15 +120,14 @@ int sub_0202F050(const PalParkTransfer *transferData, u32 gbaTrainerId)
     return 0;
 }
 
-BOOL sub_0202F088(const PalParkTransfer *transferData)
+BOOL MacAddressMatchesLastPalParkTransfer(const PalParkTransfer *transferData)
 {
-    int i;
-    u8 v1[6];
+    u8 currMacAddress[6];
 
-    OS_GetMacAddress(v1);
+    OS_GetMacAddress(currMacAddress);
 
-    for (i = 0; i < 6; i++) {
-        if (v1[i] != transferData->unk_380[i]) {
+    for (int i = 0; i < 6; i++) {
+        if (currMacAddress[i] != transferData->macAddress[i]) {
             return FALSE;
         }
     }
@@ -136,18 +135,18 @@ BOOL sub_0202F088(const PalParkTransfer *transferData)
     return TRUE;
 }
 
-BOOL sub_0202F0BC(const PalParkTransfer *transferData)
+BOOL RtcOffsetMatchesLastPalParkTransfer(const PalParkTransfer *transferData)
 {
-    return transferData->unk_378 == OS_GetOwnerRtcOffset();
+    return transferData->rtcOffset == OS_GetOwnerRtcOffset();
 }
 
-BOOL sub_0202F0E0(const PalParkTransfer *transferData)
+BOOL IsPalParkTransferMacAddressUnset(const PalParkTransfer *transferData)
 {
     int i;
     u8 v1;
 
     for (v1 = 0, i = 0; i < 6; i++) {
-        v1 |= transferData->unk_380[i];
+        v1 |= transferData->macAddress[i];
     }
 
     if (v1 == 0) {

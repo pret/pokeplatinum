@@ -1,0 +1,9 @@
+#ifndef POKEPLATINUM_CONSTANTS_SYSTEM_H
+#define POKEPLATINUM_CONSTANTS_SYSTEM_H
+
+#define RESET_LOCK_0x1        (1 << 0)
+#define RESET_LOCK_0x2        (1 << 1)
+#define RESET_LOCK_SOFT_RESET (1 << 2)
+#define RESET_LOCK_0x8        (1 << 3)
+
+#endif // POKEPLATINUM_CONSTANTS_SYSTEM_H

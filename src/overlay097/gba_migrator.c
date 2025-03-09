@@ -18,12 +18,12 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay077/const_ov77_021D742C.h"
+#include "overlay097/gba_convert_string.h"
 #include "overlay097/gba_save.h"
 #include "overlay097/ov97_02235D18.h"
 #include "overlay097/ov97_0223635C.h"
 #include "overlay097/ov97_02236380.h"
 #include "overlay097/ov97_02237694.h"
-#include "overlay097/ov97_022392E4.h"
 #include "savedata/save_table.h"
 
 #include "bg_window.h"
@@ -107,6 +107,17 @@ enum GBAMonState {
     GBA_MON_STATE_IS_INVALID_SPECIES,
 };
 
+enum CannotMigrateMsg {
+    CAN_MIGRATE = 0,
+    CANNOT_MIGRATE_GBA_PAK_READ_ERROR,
+    CANNOT_MIGRATE_WAIT_FOR_FULL_DAY,
+    CANNOT_MIGRATE_DIFFERENT_CONSOLE,
+    CANNOT_MIGRATE_INTERNAL_CLOCK_ALTERED,
+    CANNOT_MIGRATE_LESS_THAN_6_IN_GBA_BOXES,
+    CANNOT_MIGRATE_ALREADY_STOCKED,
+    CANNOT_MIGRATE_CLOCK_ADJUSTED,
+};
+
 typedef struct {
     Window *unk_00;
     int unk_04;
@@ -156,7 +167,7 @@ typedef struct {
 
 typedef struct {
     int gbaVersion;
-    int unk_04;
+    int canMigrateStatus;
     int messageEntryID;
     int unk_0C;
     SaveData *saveData;
@@ -245,15 +256,15 @@ static u8 sGBAGameRectPalettes[] = {
     [VERSION_LEAFGREEN] = 0x5,
 };
 
-static int Unk_ov97_0223EAB8[] = {
-    NULL,
-    migrate_from_gba_error_reading_gba_pak,
-    migrate_from_gba_full_day_hasnt_passed,
-    migrate_from_gba_internal_clock_altered,
-    migrate_from_gba_internal_clock_altered,
-    migrate_from_gba_less_than_six,
-    migrate_from_gba_game_card_already_stocked,
-    migrate_from_gba_game_clock_adjusted,
+static int sCannotMigrateMessageIDs[] = {
+    [CAN_MIGRATE] = NULL,
+    [CANNOT_MIGRATE_GBA_PAK_READ_ERROR] = migrate_from_gba_error_reading_gba_pak,
+    [CANNOT_MIGRATE_WAIT_FOR_FULL_DAY] = migrate_from_gba_full_day_hasnt_passed,
+    [CANNOT_MIGRATE_DIFFERENT_CONSOLE] = migrate_from_gba_different_ds_or_internal_clock_altered,
+    [CANNOT_MIGRATE_INTERNAL_CLOCK_ALTERED] = migrate_from_gba_different_ds_or_internal_clock_altered,
+    [CANNOT_MIGRATE_LESS_THAN_6_IN_GBA_BOXES] = migrate_from_gba_less_than_six,
+    [CANNOT_MIGRATE_ALREADY_STOCKED] = migrate_from_gba_game_card_already_stocked,
+    [CANNOT_MIGRATE_CLOCK_ADJUSTED] = migrate_from_gba_game_clock_adjusted,
 };
 
 static BOOL IsGBASpeciesInvalid(int speciesGBA)
@@ -273,20 +284,20 @@ static BOOL IsGBASpeciesInvalid(int speciesGBA)
 
 static void ov97_02233B44(GBAMigrator *migrator)
 {
-    switch (ov97_02235DB0()) {
-    case 0:
+    switch (GBACart_GetAGBGameType()) {
+    case AGB_TYPE_RUBY:
         migrator->gbaVersion = VERSION_RUBY;
         break;
-    case 1:
+    case AGB_TYPE_SAPPHIRE:
         migrator->gbaVersion = VERSION_SAPPHIRE;
         break;
-    case 2:
+    case AGB_TYPE_LEAFGREEN:
         migrator->gbaVersion = VERSION_LEAFGREEN;
         break;
-    case 3:
+    case AGB_TYPE_FIRERED:
         migrator->gbaVersion = VERSION_FIRERED;
         break;
-    case 4:
+    case AGB_TYPE_EMERALD:
         migrator->gbaVersion = VERSION_EMERALD;
         break;
     default:
@@ -401,10 +412,10 @@ static void ov97_02233CE4(GBAMigrator *migrator)
     PalParkTransfer *transferData = SaveData_PalParkTransfer(migrator->saveData);
 
     sub_0202EFB8(transferData, GetGBAPlayerTrainerId());
-    ResetLock(4);
+    ResetLock(RESET_LOCK_SOFT_RESET);
 
     result = SaveData_Save(migrator->saveData);
-    ResetUnlock(4);
+    ResetUnlock(RESET_LOCK_SOFT_RESET);
 }
 
 static void CopySelectedMonToPalParkTransfer(GBAMigrator *migrator)
@@ -1693,13 +1704,13 @@ static int ov97_02235408(GBAMigrator *migrator)
     u32 gbaTrainerId;
     PalParkTransfer *transferData = SaveData_PalParkTransfer(migrator->saveData);
 
-    if (sub_0202F0E0(transferData) == 0) {
-        if (sub_0202F088(transferData) == 0) {
-            return 3;
+    if (IsPalParkTransferMacAddressUnset(transferData) == FALSE) {
+        if (MacAddressMatchesLastPalParkTransfer(transferData) == FALSE) {
+            return CANNOT_MIGRATE_DIFFERENT_CONSOLE;
         }
 
-        if (sub_0202F0BC(transferData) == 0) {
-            return 4;
+        if (RtcOffsetMatchesLastPalParkTransfer(transferData) == FALSE) {
+            return CANNOT_MIGRATE_INTERNAL_CLOCK_ALTERED;
         }
 
         gbaTrainerId = GetGBAPlayerTrainerId();
@@ -1710,7 +1721,7 @@ static int ov97_02235408(GBAMigrator *migrator)
         }
 
         if (v0 < (60 * 60 * 24)) {
-            return 2;
+            return CANNOT_MIGRATE_WAIT_FOR_FULL_DAY;
         }
     }
 
@@ -1729,26 +1740,26 @@ static int ov97_02235408(GBAMigrator *migrator)
         }
 
         if (count < CATCHING_SHOW_MONS) {
-            return 5; // Not enough mons in GBA cart to do transfer?
+            return CANNOT_MIGRATE_LESS_THAN_6_IN_GBA_BOXES; // Not enough mons in GBA cart to do transfer?
         }
     }
 
     if (GetPalParkTransferMonCount(transferData) != 0) {
-        return 6; // There's transferred mon left to catch?
+        return CANNOT_MIGRATE_ALREADY_STOCKED; // There's transferred mon left to catch?
     }
 
-    return 0;
+    return CAN_MIGRATE;
 }
 
-static BOOL ov97_022354C4(GBAMigrator *migrator, int param1)
+static BOOL ov97_022354C4(GBAMigrator *migrator, int canMigrateStatus)
 {
-    if (migrator->unk_04) {
+    if (migrator->canMigrateStatus != CAN_MIGRATE) {
         ov97_02234ECC(migrator);
         RenderControlFlags_SetSpeedUpOnTouch(TRUE);
-        migrator->unk_490.messageEntryID = Unk_ov97_0223EAB8[param1];
+        migrator->unk_490.messageEntryID = sCannotMigrateMessageIDs[canMigrateStatus];
         migrator->unk_490.unk_44 = 1;
         ov97_02233DD0(migrator, &migrator->unk_490, 0x8 | 0x10);
-        migrator->unk_04 = 0;
+        migrator->canMigrateStatus = CAN_MIGRATE;
     } else {
         if (Text_IsPrinterActive(migrator->unk_490.unk_48) == 0) {
             RenderControlFlags_SetSpeedUpOnTouch(FALSE);
@@ -1759,15 +1770,15 @@ static BOOL ov97_022354C4(GBAMigrator *migrator, int param1)
     return FALSE;
 }
 
-static BOOL ov97_02235528(GBAMigrator *migrator, int param1)
+static BOOL ov97_02235528(GBAMigrator *migrator, int cannotMigrateID)
 {
-    if (migrator->unk_04) {
+    if (migrator->canMigrateStatus != CAN_MIGRATE) {
         ov97_02234ECC(migrator);
         RenderControlFlags_SetSpeedUpOnTouch(TRUE);
-        migrator->unk_490.messageEntryID = Unk_ov97_0223EAB8[param1];
+        migrator->unk_490.messageEntryID = sCannotMigrateMessageIDs[cannotMigrateID];
         migrator->unk_490.unk_44 = 1;
         ov97_02233DD0(migrator, &migrator->unk_490, 0x8 | 0x10);
-        migrator->unk_04 = 0;
+        migrator->canMigrateStatus = CAN_MIGRATE;
     } else {
         if (Text_IsPrinterActive(migrator->unk_490.unk_48) == 0) {
             ov97_02235310(migrator);
@@ -1874,7 +1885,7 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
                 migrator->pokemonStorage = GetGBAPokemonStorage();
                 migrator->currentBox = migrator->pokemonStorage->currentBox;
             } else {
-                migrator->unk_04 = 1;
+                migrator->canMigrateStatus = CANNOT_MIGRATE_GBA_PAK_READ_ERROR;
             }
         } else {
             (void)0;
@@ -1894,7 +1905,7 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
         SetVBlankCallback(ov97_022353CC, migrator);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
 
-        if (migrator->unk_04 == 1) {
+        if (migrator->canMigrateStatus == CANNOT_MIGRATE_GBA_PAK_READ_ERROR) {
             ov97_02234CC4(migrator, 1, 11, state);
         } else {
             *state = GBA_MIGRATOR_STATE_2;
@@ -1932,10 +1943,11 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
         case 1:
             sub_02015A54(migrator->unk_E8EC);
 
-            migrator->unk_04 = ov97_02235408(migrator);
+            migrator->canMigrateStatus = ov97_02235408(migrator);
 
-            if (migrator->unk_04) {
-                if ((migrator->unk_04 == 3) || (migrator->unk_04 == 4)) {
+            if (migrator->canMigrateStatus != CAN_MIGRATE) {
+                if ((migrator->canMigrateStatus == CANNOT_MIGRATE_DIFFERENT_CONSOLE)
+                    || (migrator->canMigrateStatus == CANNOT_MIGRATE_INTERNAL_CLOCK_ALTERED)) {
                     *state = GBA_MIGRATOR_STATE_8;
                 } else {
                     *state = GBA_MIGRATOR_STATE_11;
@@ -1962,7 +1974,7 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
         }
         break;
     case GBA_MIGRATOR_STATE_8:
-        if (ov97_02235528(migrator, migrator->unk_04)) {
+        if (ov97_02235528(migrator, migrator->canMigrateStatus)) {
             *state = GBA_MIGRATOR_STATE_9;
         }
         break;
@@ -1987,11 +1999,11 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
     case GBA_MIGRATOR_STATE_10:
         ov97_02233CE4(migrator);
         DestroyWaitDial(migrator->unk_E8F0.unk_08);
-        migrator->unk_04 = 7;
+        migrator->canMigrateStatus = CANNOT_MIGRATE_CLOCK_ADJUSTED;
         *state = GBA_MIGRATOR_STATE_11;
         break;
     case GBA_MIGRATOR_STATE_11:
-        if (ov97_022354C4(migrator, migrator->unk_04)) {
+        if (ov97_022354C4(migrator, migrator->canMigrateStatus)) {
             *state = GBA_MIGRATOR_STATE_22;
         }
         break;
@@ -2118,7 +2130,7 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
             migrator->unk_E8F0.unk_00 = 0;
             migrator->unk_E8F0.unk_08 = Window_AddWaitDial(&migrator->unk_4FC, (0x3F0 - (18 + 12)));
             *state = GBA_MIGRATOR_STATE_21;
-            ResetLock(4);
+            ResetLock(RESET_LOCK_SOFT_RESET);
             break;
         case 2:
             sub_02015A54(migrator->unk_E8EC);
@@ -2145,7 +2157,7 @@ static int GBAMigrator_Main(OverlayManager *ovyManager, int *state)
 
             ov97_02233DD0(migrator, &migrator->unk_490, 0);
             *state = GBA_MIGRATOR_STATE_22;
-            ResetUnlock(4);
+            ResetUnlock(RESET_LOCK_SOFT_RESET);
         }
         break;
     case GBA_MIGRATOR_STATE_22:
@@ -2194,5 +2206,5 @@ const OverlayManagerTemplate gGBAMigratorOverlayTemplate = {
     GBAMigrator_Init,
     GBAMigrator_Main,
     GBAMigrator_Exit,
-    0xffffffff
+    FS_OVERLAY_ID_NONE
 };

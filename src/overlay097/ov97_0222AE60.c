@@ -45,6 +45,8 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
+#include "res/text/bank/continue_menu.h"
+
 FS_EXTERN_OVERLAY(game_start);
 FS_EXTERN_OVERLAY(overlay77);
 FS_EXTERN_OVERLAY(overlay97);
@@ -88,7 +90,7 @@ typedef struct {
     int unk_18;
     int unk_1C;
     int unk_20;
-    int unk_24;
+    int agbGameType; // Adds + 1, to track unset value
     int unk_28;
     int unk_2C;
     int unk_30;
@@ -206,7 +208,7 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
     int gbaVersion;
     int v1 = ov97_02235D2C(NULL);
 
-    param0->unk_24 = 0;
+    param0->agbGameType = 0;
 
     if (v1 != 0) {
         return;
@@ -214,20 +216,20 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
 
     gbaVersion = VERSION_NONE;
 
-    switch (ov97_02235DB0()) {
-    case 0:
+    switch (GBACart_GetAGBGameType()) {
+    case AGB_TYPE_RUBY:
         gbaVersion = VERSION_RUBY;
         break;
-    case 1:
+    case AGB_TYPE_SAPPHIRE:
         gbaVersion = VERSION_SAPPHIRE;
         break;
-    case 2:
+    case AGB_TYPE_LEAFGREEN:
         gbaVersion = VERSION_LEAFGREEN;
         break;
-    case 3:
+    case AGB_TYPE_FIRERED:
         gbaVersion = VERSION_FIRERED;
         break;
-    case 4:
+    case AGB_TYPE_EMERALD:
         gbaVersion = VERSION_EMERALD;
         break;
     }
@@ -242,7 +244,7 @@ static void ov97_0222AF1C(UnkStruct_0222AE60 *param0)
         return;
     }
 
-    param0->unk_24 = ov97_02235DB0() + 1;
+    param0->agbGameType = GBACart_GetAGBGameType() + 1;
 
     ov97_02238440();
 }
@@ -612,25 +614,25 @@ static BOOL ov97_0222B768(void *param0, int param1, UnkStruct_ov97_02237808 *par
     int v0;
     UnkStruct_0222AE60 *v1 = (UnkStruct_0222AE60 *)param0;
 
-    if (v1->unk_24 == 0) {
-        return 0;
+    if (v1->agbGameType == 0) {
+        return FALSE;
     }
 
-    switch (v1->unk_24 - 1) {
-    case 0:
-        v0 = 4;
+    switch (v1->agbGameType - 1) {
+    case AGB_TYPE_RUBY:
+        v0 = continue_menu_migrate_from_ruby;
         break;
-    case 1:
-        v0 = 5;
+    case AGB_TYPE_SAPPHIRE:
+        v0 = continue_menu_migrate_from_sapphire;
         break;
-    case 2:
-        v0 = 6;
+    case AGB_TYPE_LEAFGREEN:
+        v0 = continue_menu_migrate_from_leafgreen;
         break;
-    case 3:
-        v0 = 7;
+    case AGB_TYPE_FIRERED:
+        v0 = continue_menu_migrate_from_firered;
         break;
-    case 4:
-        v0 = 8;
+    case AGB_TYPE_EMERALD:
+        v0 = continue_menu_migrate_from_emerald;
         break;
     }
 
@@ -639,7 +641,7 @@ static BOOL ov97_0222B768(void *param0, int param1, UnkStruct_ov97_02237808 *par
 
     v1->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ov97_0222B7DC(void *param0, int param1, UnkStruct_ov97_02237808 *param2, int param3)

@@ -557,7 +557,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
     switch (param0->unk_4C) {
     case 0:
         CommTiming_StartSync(80);
-        ResetLock(2);
+        ResetLock(RESET_LOCK_0x2);
         ov88_0223E894(param0);
 
         {
@@ -733,7 +733,7 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
             Window_EraseMessageBox(&param0->unk_49C[23], 0);
             Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
             ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
-            ResetUnlock(2);
+            ResetUnlock(RESET_LOCK_0x2);
 
             return 1;
         }
