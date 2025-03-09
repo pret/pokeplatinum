@@ -536,7 +536,7 @@ static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
         break;
     }
 
-    if (preview->isEgg == 0) {
+    if (preview->isEgg == FALSE) {
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
 
         if (preview->dexNum) {
@@ -606,7 +606,7 @@ void ov19_021DB2B0(UnkStruct_ov19_021DA9E0 *param0)
     preview = ov19_GetPCMonPreview(param0->unk_10);
     Window_FillTilemap(&param0->unk_04[3], 0);
 
-    if (preview->isEgg == 0) {
+    if (preview->isEgg == FALSE) {
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
     }
 

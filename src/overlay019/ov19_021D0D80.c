@@ -3958,31 +3958,31 @@ static void ov19_LoadBoxMonIntoPreview(UnkStruct_ov19_021D4DF0 *param0, BoxPokem
     preview->heldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
     preview->dexNum = GetDexNumber(SaveData_GetDexMode(param2->unk_11C), preview->species);
     preview->isEgg = BoxPokemon_GetValue(boxMon, MON_DATA_EGG_EXISTS, NULL);
-    speciesData = SpeciesData_FromMonSpecies(preview->species, 9);
+    speciesData = SpeciesData_FromMonSpecies(preview->species, HEAP_ID_9);
     preview->level = SpeciesData_GetLevelAt(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_EXP, NULL));
     preview->markings = BoxPokemon_GetValue(boxMon, MON_DATA_MARKS, NULL);
     preview->type1 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_1, NULL);
     preview->type2 = BoxPokemon_GetValue(boxMon, MON_DATA_TYPE_2, NULL);
 
-    if ((preview->isEgg == 0) && BoxPokemon_GetValue(boxMon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL)) {
+    if ((preview->isEgg == FALSE) && BoxPokemon_GetValue(boxMon, MON_DATA_NIDORAN_HAS_NICKNAME, NULL)) {
         preview->gender = SpeciesData_GetGenderOf(speciesData, preview->species, BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL));
     } else {
-        preview->gender = 255;
+        preview->gender = GENDER_INVALID;
     }
 
     BoxPokemon_GetValue(boxMon, MON_DATA_NICKNAME_STRBUF, preview->nickname);
 
-    if (preview->isEgg == 0) {
+    if (preview->isEgg == FALSE) {
         MessageLoader_GetStrbuf(param2->speciesNameLoader, preview->species, preview->speciesName);
     } else {
         Strbuf_Copy(preview->speciesName, preview->nickname);
         Strbuf_Clear(preview->nickname);
     }
 
-    if (preview->heldItem != 0) {
+    if (preview->heldItem != ITEM_NONE) {
         Item_LoadName(preview->heldItemName, preview->heldItem, 9);
     } else {
-        MessageLoader_GetStrbuf(param2->boxMessagesLoader, no_item, preview->heldItemName);
+        MessageLoader_GetStrbuf(param2->boxMessagesLoader, box_message_no_item, preview->heldItemName);
     }
 
     {
@@ -4087,7 +4087,7 @@ static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 param1, UnkStruct
     if (preview->heldItem != 0) {
         Item_LoadName(preview->heldItemName, preview->heldItem, 9);
     } else {
-        MessageLoader_GetStrbuf(param2->boxMessagesLoader, no_item, preview->heldItemName);
+        MessageLoader_GetStrbuf(param2->boxMessagesLoader, box_message_no_item, preview->heldItemName);
     }
 
     if ((ov19_021D5E10(param0) == 0) && (ov19_021D5E38(param0) == 1)) {
@@ -4159,7 +4159,7 @@ static void ov19_021D5D28(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5D
 
     param0->unk_112 = preview->heldItem;
 
-    MessageLoader_GetStrbuf(param1->boxMessagesLoader, no_item, preview->heldItemName);
+    MessageLoader_GetStrbuf(param1->boxMessagesLoader, box_message_no_item, preview->heldItemName);
     ov19_021D5BE8(param0, v1, param1);
 }
 

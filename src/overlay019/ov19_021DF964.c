@@ -51,7 +51,7 @@ void ov19_021DF990(UnkStruct_ov19_021D4DF0 *param0)
         {
             const PCMonPreview *preview = ov19_GetPCMonPreview(param0);
 
-            if (preview->isEgg == 0) {
+            if (preview->isEgg == FALSE) {
                 ov19_021DFD08(v0, UnkEnum_021DFB94_40);
             }
         }

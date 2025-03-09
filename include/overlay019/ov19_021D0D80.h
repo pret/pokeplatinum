@@ -37,6 +37,8 @@
 #define PC_MARKINGS_BUTTON6_Y      16
 #define PC_MARKINGS_BUTTONS_RADIUS 16
 
+#define GENDER_INVALID -1
+
 int ov19_021D0D80(OverlayManager *param0, int *param1);
 int ov19_021D0DEC(OverlayManager *param0, int *param1);
 int ov19_021D0E58(OverlayManager *param0, int *param1);
