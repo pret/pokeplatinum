@@ -10,8 +10,8 @@
 #include "struct_defs/struct_0205EC34.h"
 
 #include "field/field_system.h"
+#include "overlay005/land_data_manager_decl.h"
 #include "overlay005/ov5_021DFB54.h"
-#include "overlay005/struct_ov5_021E8F60_decl.h"
 #include "overlay009/ov9_02249960.h"
 
 #include "game_records.h"
@@ -51,8 +51,8 @@ static void sub_0205FA6C(PlayerAvatar *playerAvatar);
 static int sub_0205FAB0(PlayerAvatar *playerAvatar, int param1);
 static int sub_0205FB10(PlayerAvatar *playerAvatar, int param1);
 static void sub_0205FB40(PlayerAvatar *playerAvatar, int param1);
-static void inline_0205F180(PlayerAvatar *playerAvatar, const UnkStruct_ov5_021E8F60 *param1, int param2, u16 param3, u16 param4);
-static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, const UnkStruct_ov5_021E8F60 *param2, int param3, u16 param4, u16 param5);
+static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *param1, int param2, u16 param3, u16 param4);
+static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5);
 static int sub_0205FC48(PlayerAvatar *playerAvatar, int param1);
 static int sub_0205FC64(int param0);
 static int sub_0205FC88(MapObject *mapObj, u8 param1, int param2);
@@ -66,12 +66,12 @@ static void sub_020600CC(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
 static void sub_02060150(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static void sub_020601D4(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static void sub_02060258(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
-static void sub_020602DC(PlayerAvatar *playerAvatar, MapObject *mapObj, const UnkStruct_ov5_021E8F60 *param2, int param3, u16 param4, u16 param5);
+static void sub_020602DC(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5);
 static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 param1);
 int sub_02060390(PlayerAvatar *playerAvatar, int param1);
 static int sub_020603BC(PlayerAvatar *playerAvatar);
 static int sub_020603EC(PlayerAvatar *playerAvatar);
-static void sub_02060420(PlayerAvatar *playerAvatar, MapObject *mapObj, const UnkStruct_ov5_021E8F60 *param2, int param3, u16 param4, u16 param5);
+static void sub_02060420(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5);
 static int sub_02060494(PlayerAvatar *playerAvatar, int param1);
 static int sub_020604B0(int param0);
 static int sub_020604E4(PlayerAvatar *playerAvatar, int param1);
@@ -79,7 +79,7 @@ static void sub_02060548(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
 static void sub_02060570(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static void sub_02060688(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
 static void sub_020606C8(PlayerAvatar *playerAvatar, MapObject *mapObj, int param2, u16 param3, u16 param4);
-static void sub_0206078C(PlayerAvatar *playerAvatar, MapObject *mapObj, const UnkStruct_ov5_021E8F60 *param2, int param3, u16 param4, u16 param5);
+static void sub_0206078C(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5);
 static int sub_02060800(PlayerAvatar *playerAvatar, int param1);
 static int sub_0206081C(int param0);
 static int sub_02060850(PlayerAvatar *playerAvatar, int param1);
@@ -138,7 +138,7 @@ static const UnkStruct_020EDB04 Unk_020EDB64[4] = {
 const UnkStruct_020EDB84 Unk_020EDB84[];
 static int (*const Unk_020EDAEC[6])(PlayerAvatar *, int);
 
-void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const UnkStruct_ov5_021E8F60 *param1, int dir, u16 keyPad, u16 keyPress, BOOL param5)
+void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *param1, int dir, u16 keyPad, u16 keyPress, BOOL param5)
 {
     if (dir == -1) {
         dir = sub_02061348(playerAvatar, keyPad, keyPress);
@@ -765,7 +765,7 @@ static void sub_0205FB40(PlayerAvatar *playerAvatar, int param1)
     sub_02060B64(playerAvatar, v0, v1, v3);
 }
 
-static void inline_0205F180(PlayerAvatar *playerAvatar, const UnkStruct_ov5_021E8F60 *param1, int param2, u16 param3, u16 param4)
+static void inline_0205F180(PlayerAvatar *playerAvatar, const LandDataManager *param1, int param2, u16 param3, u16 param4)
 {
     int v0 = PlayerAvatar_GetPlayerState(playerAvatar);
     MapObject *mapObj = Player_MapObject(playerAvatar);
@@ -784,7 +784,7 @@ static void inline_0205F180(PlayerAvatar *playerAvatar, const UnkStruct_ov5_021E
     }
 }
 
-static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, const UnkStruct_ov5_021E8F60 *param2, int param3, u16 param4, u16 param5)
+static void inline_0205F180_sub(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5)
 {
     int v0 = sub_0205FC48(playerAvatar, param3);
 
@@ -1148,7 +1148,7 @@ static void sub_02060258(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
     MapObject_Turn(mapObj, param2);
 }
 
-static void sub_020602DC(PlayerAvatar *playerAvatar, MapObject *mapObj, const UnkStruct_ov5_021E8F60 *param2, int param3, u16 param4, u16 param5)
+static void sub_020602DC(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5)
 {
     int v0;
 
@@ -1250,7 +1250,7 @@ static int sub_020603EC(PlayerAvatar *playerAvatar)
     return v0;
 }
 
-static void sub_02060420(PlayerAvatar *playerAvatar, MapObject *mapObj, const UnkStruct_ov5_021E8F60 *param2, int param3, u16 param4, u16 param5)
+static void sub_02060420(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5)
 {
     int v0 = sub_02060494(playerAvatar, param3);
 
@@ -1447,7 +1447,7 @@ static void sub_020606C8(PlayerAvatar *playerAvatar, MapObject *mapObj, int dir,
     sub_02060B64(playerAvatar, mapObj, v2, v1);
 }
 
-static void sub_0206078C(PlayerAvatar *playerAvatar, MapObject *mapObj, const UnkStruct_ov5_021E8F60 *param2, int param3, u16 param4, u16 param5)
+static void sub_0206078C(PlayerAvatar *playerAvatar, MapObject *mapObj, const LandDataManager *param2, int param3, u16 param4, u16 param5)
 {
     int v0 = sub_02060800(playerAvatar, param3);
 

@@ -43,7 +43,7 @@ _0039:
     ClearFlag 6
     ClearFlag 7
     ClearFlag 8
-    ScrCmd_1B7 0x4061, 2
+    GetRandom 0x4061, 2
     End
 
 _00ED:

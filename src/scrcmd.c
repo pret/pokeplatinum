@@ -48,13 +48,13 @@
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_menu.h"
 #include "overlay005/honey_tree.h"
+#include "overlay005/land_data.h"
 #include "overlay005/map_object_anim_cmd.h"
 #include "overlay005/ov5_021D431C.h"
 #include "overlay005/ov5_021D5EB8.h"
 #include "overlay005/ov5_021DD42C.h"
 #include "overlay005/ov5_021DDAE4.h"
 #include "overlay005/ov5_021DFB54.h"
-#include "overlay005/ov5_021E779C.h"
 #include "overlay005/ov5_021EA874.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021EE7D4.h"
@@ -551,8 +551,8 @@ static BOOL ScrCmd_1B3(ScriptContext *ctx);
 static BOOL ScrCmd_1B4(ScriptContext *ctx);
 static BOOL ScrCmd_1B5(ScriptContext *ctx);
 static BOOL ScrCmd_GetTimeOfDay(ScriptContext *ctx);
-static BOOL ScrCmd_1B7(ScriptContext *ctx);
-static BOOL ScrCmd_1B8(ScriptContext *ctx);
+static BOOL ScrCmd_GetRandom(ScriptContext *ctx);
+static BOOL ScrCmd_GetRandom2(ScriptContext *ctx);
 static BOOL ScrCmd_1C1(ScriptContext *ctx);
 static BOOL ScrCmd_1C2(ScriptContext *ctx);
 static BOOL ScrCmd_1C3(ScriptContext *ctx);
@@ -1204,8 +1204,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_1B4,
     ScrCmd_1B5,
     ScrCmd_GetTimeOfDay,
-    ScrCmd_1B7,
-    ScrCmd_1B8,
+    ScrCmd_GetRandom,
+    ScrCmd_GetRandom2,
     ScrCmd_1B9,
     ScrCmd_1BA,
     ScrCmd_1BB,
@@ -3285,7 +3285,7 @@ static BOOL ScrCmd_066(ScriptContext *ctx)
         const VecFx32 *v3;
 
         v3 = MapObject_GetPos(*v2);
-        ov5_021E931C(v3, ctx->fieldSystem->unk_28);
+        LandDataManager_TrackTarget(v3, ctx->fieldSystem->landDataMan);
         Camera_TrackTarget(v3, ctx->fieldSystem->camera);
     }
 
@@ -3305,7 +3305,7 @@ static BOOL ScrCmd_067(ScriptContext *ctx)
         v1 = MapObjMan_LocalMapObjByIndex(ctx->fieldSystem->mapObjMan, 0xff);
         v2 = MapObject_GetPos(v1);
 
-        ov5_021E931C(v2, ctx->fieldSystem->unk_28);
+        LandDataManager_TrackTarget(v2, ctx->fieldSystem->landDataMan);
         Camera_TrackTarget(v2, ctx->fieldSystem->camera);
     }
 
@@ -5973,26 +5973,26 @@ static BOOL ScrCmd_GetTimeOfDay(ScriptContext *ctx)
     return FALSE;
 }
 
-static BOOL ScrCmd_1B7(ScriptContext *ctx)
+static BOOL ScrCmd_GetRandom(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 upperBound = ScriptContext_GetVar(ctx);
 
-    *v1 = (LCRNG_Next() % v2);
+    *destVar = LCRNG_Next() % upperBound;
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_1B8(ScriptContext *ctx)
+static BOOL ScrCmd_GetRandom2(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 upperBound = ScriptContext_GetVar(ctx);
 
-    *v1 = (LCRNG_Next() % v2);
+    *destVar = LCRNG_Next() % upperBound;
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_1C1(ScriptContext *ctx)

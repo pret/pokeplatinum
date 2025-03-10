@@ -10,9 +10,9 @@
 #include "struct_defs/struct_02055130.h"
 
 #include "field/field_system.h"
+#include "overlay005/land_data.h"
 #include "overlay005/map_prop.h"
 #include "overlay005/map_prop_animation.h"
-#include "overlay005/ov5_021E779C.h"
 
 #include "heap.h"
 #include "inlines.h"
@@ -192,9 +192,9 @@ void HoneyTree_StopShaking(FieldSystem *fieldSystem)
         MapPropManager *v3;
         NNSG3dRenderObj *v4;
 
-        v1 = ov5_021E9354(fieldSystem->unk_28);
+        v1 = LandDataManager_GetTrackedTargetLoadedMapsQuadrant(fieldSystem->landDataMan);
 
-        ov5_021E9340(v1, fieldSystem->unk_28, &v3);
+        LandDataManager_GetLoadedMapPropManager(v1, fieldSystem->landDataMan, &v3);
 
         v2 = MapPropManager_FindLoadedPropByModelID(v3, MAP_PROP_MODEL_HONEY_TREE);
         v4 = MapProp_GetRenderObj(v2);

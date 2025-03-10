@@ -1,0 +1,3 @@
+# These files must use CRLF to match in the ROM
+[*.txt]
+end_of_line = crlf

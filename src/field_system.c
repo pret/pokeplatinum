@@ -274,7 +274,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
     case MAP_LOAD_TYPE_UNION:
         if (processInput) {
             if (FieldInput_Process_UnionRoom(&fieldInput, fieldSystem) != TRUE) {
-                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, fieldInput.pressedKeys, fieldInput.heldKeys, 0);
+                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->landDataMan, -1, fieldInput.pressedKeys, fieldInput.heldKeys, 0);
             }
         }
         break;
@@ -297,7 +297,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
                     tappedPoketch = PoketchSystem_IsTapped(poketchSys);
                 }
 
-                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, fieldInput.pressedKeys, fieldInput.heldKeys, tappedPoketch);
+                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->landDataMan, -1, fieldInput.pressedKeys, fieldInput.heldKeys, tappedPoketch);
             }
         }
         break;
@@ -321,7 +321,7 @@ static void HandleFieldInput(FieldSystem *fieldSystem)
                     tappedPoketch = PoketchSystem_IsTapped(poketchSys);
                 }
 
-                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->unk_28, -1, fieldInput.pressedKeys, fieldInput.heldKeys, tappedPoketch);
+                PlayerAvatar_MoveControl(fieldSystem->playerAvatar, fieldSystem->landDataMan, -1, fieldInput.pressedKeys, fieldInput.heldKeys, tappedPoketch);
             }
         }
         break;

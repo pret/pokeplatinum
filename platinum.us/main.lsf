@@ -496,7 +496,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_field_motion_blur.c.o
 	Object main.nef.p/src_overlay005_encounter_effect_core.c.o
 	Object main.nef.p/src_overlay005_ov5_021E622C.c.o
-	Object main.nef.p/src_overlay005_ov5_021E779C.c.o
+	Object main.nef.p/src_overlay005_land_data.c.o
 	Object main.nef.p/src_overlay005_ov5_021EA714.c.o
 	Object main.nef.p/src_overlay005_ov5_021EA874.c.o
 	Object main.nef.p/src_overlay005_ov5_021EAFA4.c.o
@@ -507,7 +507,7 @@ Overlay overlay5
 	Object main.nef.p/src_overlay005_ov5_021ECE40.c.o
 	Object main.nef.p/src_overlay005_ov5_021EE75C.c.o
 	Object main.nef.p/src_overlay005_ov5_021EE7D4.c.o
-	Object main.nef.p/src_overlay005_ov5_021EEAC8.c.o
+	Object main.nef.p/src_overlay005_loaded_map_buffers.c.o
 	Object main.nef.p/src_overlay005_bdhc.c.o
 	Object main.nef.p/src_overlay005_ov5_021EF250.c.o
 	Object main.nef.p/src_overlay005_hblank_system.c.o

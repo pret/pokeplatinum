@@ -2390,16 +2390,22 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_1B7 arg0, arg1
+    /*
+     * Get a random number from 0 to (upperBound - 1) and store the result in
+     * a destination variable. For example, specifying upperBound = 5 will yield
+     * one of 0, 1, 2, 3, or 4.
+     */
+    .macro GetRandom destVarID, upperBound
     .short 439
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \upperBound
     .endm
 
-    .macro ScrCmd_1B8 arg0, arg1
+    /* Functionally identical to GetRandom. */
+    .macro GetRandom2 destVarID, upperBound
     .short 440
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \upperBound
     .endm
 
     .macro ScrCmd_1B9 arg0, arg1

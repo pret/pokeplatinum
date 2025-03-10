@@ -1129,7 +1129,7 @@ _0BF0:
     LockAll
     GoToIfSet 0x156, _0C1E
     SetVar 0x40C7, 1
-    ScrCmd_1B7 0x800C, 100
+    GetRandom 0x800C, 100
     GoToIfGe 0x800C, 90, _0C22
     GoTo _0C1E
     End

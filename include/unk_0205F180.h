@@ -4,9 +4,9 @@
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
-#include "overlay005/struct_ov5_021E8F60_decl.h"
+#include "overlay005/land_data_manager_decl.h"
 
-void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const UnkStruct_ov5_021E8F60 *param1, int param2, u16 param3, u16 param4, BOOL param5);
+void PlayerAvatar_MoveControl(PlayerAvatar *playerAvatar, const LandDataManager *param1, int param2, u16 param3, u16 param4, BOOL param5);
 int PlayerAvatar_CheckStartMove(PlayerAvatar *playerAvatar, int param1);
 void sub_0205F490(PlayerAvatar *playerAvatar);
 void sub_0205F56C(PlayerAvatar *playerAvatar);

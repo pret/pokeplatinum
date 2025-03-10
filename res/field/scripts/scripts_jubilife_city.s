@@ -1006,21 +1006,21 @@ _0CF0:
     Return
 
 _0D58:
-    ScrCmd_1B7 0x800C, 6
+    GetRandom 0x800C, 6
     SetVar 0x8004, 0
     AddVar 0x8004, 0x800C
     ScrCmd_1D2 0x8004, 1
     Return
 
 _0D72:
-    ScrCmd_1B7 0x800C, 6
+    GetRandom 0x800C, 6
     SetVar 0x8004, 18
     AddVar 0x8004, 0x800C
     ScrCmd_1D2 0x8004, 1
     Return
 
 _0D8C:
-    ScrCmd_1B7 0x800C, 8
+    GetRandom 0x800C, 8
     GoToIfEq 0x4001, 0x800C, _0D8C
     SetVar 0x4001, 0x800C
     SetVar 0x8004, 1

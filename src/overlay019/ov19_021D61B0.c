@@ -196,13 +196,13 @@ BOOL ov19_021D61B0(UnkStruct_ov19_021D61B0 **param0, const UnkStruct_ov19_021D4D
             v2 &= ov19_021D79F8(&(v0->unk_494), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
             v2 &= ov19_021D8B54(&(v0->unk_5E24), v0, v0->unk_1C4, v0->unk_18, v3);
             v2 &= ov19_021DA814(&(v0->unk_65BC), v0, v0->unk_1C4, v0->unk_18, v3);
-            v2 &= ov19_021DA92C(&(v0->unk_6604), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_021D5DE8(param2), v3);
-            v2 &= ov19_021DB2FC(&(v0->unk_6658), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_021D5DE8(param2), ov19_021D5DF0(param2), ov19_021D5DF8(param2), v3);
+            v2 &= ov19_021DA92C(&(v0->unk_6604), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), v3);
+            v2 &= ov19_021DB2FC(&(v0->unk_6658), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), ov19_021D5DF0(param2), ov19_021D5DF8(param2), v3);
             v2 &= ov19_021DB8E4(&(v0->unk_6690), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, v3);
             v2 &= ov19_021DC5F0(&(v0->unk_B290), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, v3);
             v2 &= ov19_021DCF88(&(v0->unk_B408), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
             v2 &= ov19_021DE3E8(&(v0->unk_B40C), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18);
-            v2 &= ov19_021DEC04(&(v0->unk_B410), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_021D5DE8(param2), v3);
+            v2 &= ov19_021DEC04(&(v0->unk_B410), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_GetBoxMessagesLoader(param2), v3);
 
             v0->unk_B414 = param2;
             v0->unk_00 = SysTask_Start(ov19_021D6474, v0, 2);
@@ -929,7 +929,7 @@ static void ov19_021D6D88(SysTask *param0, void *param1)
     v2 = (UnkStruct_ov19_021D6640 *)param1;
     v0 = v2->unk_0C;
     v1 = v0->unk_1C4;
-    v3 = ov19_021D5E74(v1);
+    v3 = ov19_GetPreviewedMonHeldItem(v1);
 
     if (ov19_021D5E38(v1) == 2) {
         ov19_021D9AB0(&v0->unk_5E24, v3);

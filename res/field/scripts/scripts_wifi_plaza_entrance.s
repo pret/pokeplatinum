@@ -8,7 +8,7 @@
 
 _0006:
     LockAll
-    ScrCmd_1B7 0x8000, 5
+    GetRandom 0x8000, 5
     SetVar 0x8008, 0x8000
     GoToIfEq 0x8008, 0, _0057
     GoToIfEq 0x8008, 1, _0071

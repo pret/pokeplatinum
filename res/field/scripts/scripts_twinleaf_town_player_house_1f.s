@@ -210,7 +210,7 @@ _02AF:
     End
 
 _02C4:
-    ScrCmd_1B7 0x800C, 4
+    GetRandom 0x800C, 4
     GoToIfEq 0x800C, 0, _031B
     GoToIfEq 0x800C, 1, _0329
     GoToIfEq 0x800C, 2, _0337

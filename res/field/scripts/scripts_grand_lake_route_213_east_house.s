@@ -11,7 +11,7 @@ _0006:
     LockAll
     FacePlayer
     Message 0
-    ScrCmd_1B7 0x800C, 4
+    GetRandom 0x800C, 4
     GoToIfEq 0x800C, 0, _0044
     GoToIfEq 0x800C, 1, _004F
     GoToIfEq 0x800C, 2, _005A

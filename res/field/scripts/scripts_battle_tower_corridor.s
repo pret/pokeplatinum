@@ -21,7 +21,7 @@ _001F:
 _0025:
     LockAll
     Call _008E
-    ScrCmd_1B7 0x800C, 4
+    GetRandom 0x800C, 4
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 1, _00F0
     GoToIfEq 0x8008, 2, _010A
