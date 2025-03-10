@@ -285,7 +285,7 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
             param0->unk_9C[v3] = ov25_02255810(param0->unk_08, &v1, &param0->unk_CC);
 
             ov25_02255940(param0->unk_9C[v3], (0 + 8) + 16 * v3);
-            ov25_022558C4(param0->unk_9C[v3], 4);
+            ov25_InitAnimation(param0->unk_9C[v3], 4);
 
             if ((param1->mons[v3].currentHp == 0) || param1->mons[v3].status) { // darken sprite if mon is incapacitated
                 ov25_02255938(param0->unk_9C[v3], 1);
@@ -343,7 +343,7 @@ static void Task_HandleMonIconBounce(SysTask *task, void *taskData)
     case 1:
         if (data->bouncesDone == data->numBounces) { // bouncing will continue for as long as the touch screen is held on the same icon
             if (!(playerData->isTouchingPoketch && (data->partySlot == PoketchPartyStatus_CheckTouchingPartySlot(playerData->touchX, playerData->touchY, playerData->partyCount)))) {
-                ov25_02255900(graphicsData->unk_9C[data->partySlot], (sMonIconCoords[data->partySlot].x << FX32_SHIFT), (sMonIconCoords[data->partySlot].y << FX32_SHIFT));
+                ov25_SetTranslation(graphicsData->unk_9C[data->partySlot], (sMonIconCoords[data->partySlot].x << FX32_SHIFT), (sMonIconCoords[data->partySlot].y << FX32_SHIFT));
                 data->taskState = 0;
                 break;
             }
@@ -355,7 +355,7 @@ static void Task_HandleMonIconBounce(SysTask *task, void *taskData)
             targetX = sMonIconCoords[data->partySlot].x << FX32_SHIFT;
             targetY = (sMonIconCoords[data->partySlot].y + data->spriteOffset) << FX32_SHIFT;
 
-            ov25_02255900(graphicsData->unk_9C[data->partySlot], targetX, targetY);
+            ov25_SetTranslation(graphicsData->unk_9C[data->partySlot], targetX, targetY);
 
             if (data->bouncesDone < data->numBounces) {
                 data->bouncesDone++;

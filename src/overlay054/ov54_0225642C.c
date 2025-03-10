@@ -27,7 +27,7 @@ struct UnkStruct_ov54_0225642C_t {
     BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
-    UnkStruct_ov25_022558C4 *unk_24[12];
+    ov25_LinkedElement *unk_24[12];
     UnkStruct_ov25_02255958 unk_54;
     u32 unk_68[12];
 };

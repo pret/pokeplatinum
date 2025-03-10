@@ -23,8 +23,8 @@ struct UnkStruct_ov34_02256540_t {
     BgConfig *unk_04;
     u32 unk_08[10];
     UnkStruct_ov25_022555E8 *unk_30;
-    UnkStruct_ov25_022558C4 *unk_34;
-    UnkStruct_ov25_022558C4 *unk_38[8];
+    ov25_LinkedElement *unk_34;
+    ov25_LinkedElement *unk_38[8];
     UnkStruct_ov25_02255958 unk_58;
     BOOL unk_6C;
     u16 unk_70[16];
@@ -239,9 +239,9 @@ static void ov34_022567D4(SysTask *param0, void *param1)
 
     switch (PoketchTask_GetState(param1)) {
     case 0:
-        ov25_02255900(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
+        ov25_SetTranslation(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
         ov25_02255914(v0->unk_34, 0);
-        ov25_022558C4(v0->unk_34, 0);
+        ov25_InitAnimation(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
         break;
     case 1:
@@ -251,7 +251,7 @@ static void ov34_022567D4(SysTask *param0, void *param1)
             break;
         }
 
-        if (ov25_022558E0(v0->unk_34)) {
+        if (ov25_AnimNotPlaying(v0->unk_34)) {
             ov34_022569E8(v0);
             ov34_0225667C(param1);
         }
@@ -266,8 +266,8 @@ static void ov34_0225684C(SysTask *param0, void *param1)
 
     switch (PoketchTask_GetState(param1)) {
     case 0:
-        ov25_02255900(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
-        ov25_022558C4(v0->unk_34, 0);
+        ov25_SetTranslation(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
+        ov25_InitAnimation(v0->unk_34, 0);
         ov25_02255914(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
         break;
@@ -278,8 +278,8 @@ static void ov34_0225684C(SysTask *param0, void *param1)
             break;
         }
 
-        if (ov25_022558E0(v0->unk_34)) {
-            ov25_022558C4(v0->unk_34, 0);
+        if (ov25_AnimNotPlaying(v0->unk_34)) {
+            ov25_InitAnimation(v0->unk_34, 0);
         }
         break;
     }
@@ -293,8 +293,8 @@ static void ov34_022568C0(SysTask *param0, void *param1)
     switch (PoketchTask_GetState(param1)) {
     case 0:
         ov34_02256974(v0, v1);
-        ov25_02255900(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
-        ov25_022558C4(v0->unk_34, 0);
+        ov25_SetTranslation(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
+        ov25_InitAnimation(v0->unk_34, 0);
         ov25_02255914(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
         break;
@@ -305,7 +305,7 @@ static void ov34_022568C0(SysTask *param0, void *param1)
             return;
         }
 
-        if (ov25_022558E0(v0->unk_34)) {
+        if (ov25_AnimNotPlaying(v0->unk_34)) {
             ov34_022569A0(v0, v1);
             PoketchTask_IncrementState(param1);
         }
@@ -318,7 +318,7 @@ static void ov34_022568C0(SysTask *param0, void *param1)
         }
 
         if (ov34_022569DC(v0)) {
-            ov25_022558C4(v0->unk_34, 0);
+            ov25_InitAnimation(v0->unk_34, 0);
             PoketchTask_SetState(param1, 1);
         }
         break;
@@ -330,7 +330,7 @@ static void ov34_02256974(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_
     u32 v0;
 
     for (v0 = 0; v0 < param1->unk_0C; v0++) {
-        ov25_02255900(param0->unk_38[v0], (param1->unk_10[v0].unk_00 << FX32_SHIFT), (param1->unk_10[v0].unk_02 << FX32_SHIFT));
+        ov25_SetTranslation(param0->unk_38[v0], (param1->unk_10[v0].unk_00 << FX32_SHIFT), (param1->unk_10[v0].unk_02 << FX32_SHIFT));
     }
 }
 
@@ -346,13 +346,13 @@ static void ov34_022569A0(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_
         }
 
         ov25_02255914(param0->unk_38[v0], 0);
-        ov25_022558C4(param0->unk_38[v0], v1);
+        ov25_InitAnimation(param0->unk_38[v0], v1);
     }
 }
 
 static BOOL ov34_022569DC(UnkStruct_ov34_02256540 *param0)
 {
-    return ov25_022558E0(param0->unk_38[0]);
+    return ov25_AnimNotPlaying(param0->unk_38[0]);
 }
 
 static void ov34_022569E8(UnkStruct_ov34_02256540 *param0)

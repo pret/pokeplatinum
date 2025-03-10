@@ -26,7 +26,7 @@ struct UnkStruct_ov41_022567B0_t {
     BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
-    UnkStruct_ov25_022558C4 *unk_24[4];
+    ov25_LinkedElement *unk_24[4];
     UnkStruct_ov25_02255958 unk_34;
     Window unk_48;
     u32 unk_58;
@@ -307,9 +307,9 @@ static void ov41_02256AFC(SysTask *param0, void *param1)
     UnkStruct_ov41_022567B0 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov41_022567B0_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    ov25_022558C4(v0->unk_24[1], (v1->unk_5B74) ? 2 : 1);
-    ov25_022558C4(v0->unk_24[2], (v1->unk_5B75) ? 4 : 3);
-    ov25_022558C4(v0->unk_24[3], (v1->unk_5B76) ? 6 : 5);
+    ov25_InitAnimation(v0->unk_24[1], (v1->unk_5B74) ? 2 : 1);
+    ov25_InitAnimation(v0->unk_24[2], (v1->unk_5B75) ? 4 : 3);
+    ov25_InitAnimation(v0->unk_24[3], (v1->unk_5B76) ? 6 : 5);
     ov41_022568C8(param1);
 }
 

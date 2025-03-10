@@ -27,7 +27,7 @@ struct UnkStruct_ov42_022563D4_t {
     BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
-    UnkStruct_ov25_022558C4 *unk_24;
+    ov25_LinkedElement *unk_24;
     UnkStruct_ov25_02255958 unk_28;
     fx32 unk_3C;
     fx32 unk_40;
@@ -79,7 +79,7 @@ static void ov42_02256420(UnkStruct_ov42_022563D4 *param0)
     param0->unk_24 = ov25_02255810(param0->unk_20, &v0, &param0->unk_28);
 
     if (param0->unk_00->unk_00 == 0) {
-        ov25_022558C4(param0->unk_24, 2);
+        ov25_InitAnimation(param0->unk_24, 2);
     }
 }
 
@@ -187,7 +187,7 @@ static void ov42_022565C4(SysTask *param0, void *param1)
     switch (PoketchTask_GetState(param1)) {
     case 0:
         PoketchSystem_PlaySoundEffect(1653);
-        ov25_022558C4(v0->unk_24, 0);
+        ov25_InitAnimation(v0->unk_24, 0);
         v0->unk_3C = 144 << FX32_SHIFT;
         v0->unk_40 = Unk_ov42_02256720;
         v0->unk_44 = 0;
@@ -209,13 +209,13 @@ static void ov42_022565C4(SysTask *param0, void *param1)
                 v0->unk_3C = 144 << FX32_SHIFT;
             } else {
                 PoketchSystem_PlaySoundEffect(1654);
-                ov25_022558C4(v0->unk_24, (v1->unk_00) ? 1 : 2);
+                ov25_InitAnimation(v0->unk_24, (v1->unk_00) ? 1 : 2);
                 v0->unk_3C = 144 << FX32_SHIFT;
                 PoketchTask_IncrementState(param1);
             }
         }
 
-        ov25_02255900(v0->unk_24, (112 << FX32_SHIFT), v0->unk_3C);
+        ov25_SetTranslation(v0->unk_24, (112 << FX32_SHIFT), v0->unk_3C);
         break;
     case 2:
         ov42_022564DC(param1);

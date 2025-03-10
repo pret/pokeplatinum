@@ -26,7 +26,7 @@ struct UnkStruct_ov30_022563EC_t {
     SysTask *unk_30;
     UnkStruct_ov25_02255958 unk_34;
     UnkStruct_ov25_022555E8 *unk_48;
-    UnkStruct_ov25_022558C4 *unk_4C[2];
+    ov25_LinkedElement *unk_4C[2];
 };
 
 static void ov30_02256460(SysTask *param0, void *param1);
@@ -186,10 +186,10 @@ static void ov30_022565B0(UnkStruct_ov30_022563EC *param0)
     CP_SetDiv32_32(param0->unk_00->unk_00.hour, 10);
 
     v0 = 60 + ((param0->unk_00->unk_00.hour % 12) * 30) + (param0->unk_00->unk_00.minute / 2);
-    ov25_022558C4(param0->unk_4C[0], v0);
+    ov25_InitAnimation(param0->unk_4C[0], v0);
 
     v0 = 0 + param0->unk_00->unk_00.minute;
-    ov25_022558C4(param0->unk_4C[1], v0);
+    ov25_InitAnimation(param0->unk_4C[1], v0);
 }
 
 static BOOL ov30_022565F4(UnkStruct_ov30_022563EC *param0)

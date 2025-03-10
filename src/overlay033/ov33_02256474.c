@@ -27,8 +27,8 @@
 #include "system.h"
 
 typedef struct {
-    UnkStruct_ov25_022558C4 *unk_00;
-    UnkStruct_ov25_022558C4 *unk_04;
+    ov25_LinkedElement *unk_00;
+    ov25_LinkedElement *unk_04;
     VecFx32 unk_08;
     VecFx32 unk_14;
     VecFx32 unk_20;
@@ -314,9 +314,9 @@ static void ov33_022567D4(VecFx32 *param0)
 static inline void inline_ov33_0225681C(UnkStruct_ov33_02256474_sub1 *param0)
 {
     if (param0->unk_30) {
-        ov25_022558C4(param0->unk_00, 6);
+        ov25_InitAnimation(param0->unk_00, 6);
     } else {
-        ov25_022558C4(param0->unk_00, (param0->unk_08.x > 0) ? 7 : 6);
+        ov25_InitAnimation(param0->unk_00, (param0->unk_08.x > 0) ? 7 : 6);
     }
 }
 
@@ -578,7 +578,7 @@ static void ov33_02256C54(UnkStruct_ov33_02256474 *param0, int param1)
 {
     if (param0->unk_00->unk_04[param1].unk_0A == 0) {
         ov25_0225591C(param0->unk_30, param0->unk_134[param1].unk_04, 0);
-        ov25_022558C4(param0->unk_134[param1].unk_04, 0 + (param0->unk_00->unk_04[param1].unk_0B - 1));
+        ov25_InitAnimation(param0->unk_134[param1].unk_04, 0 + (param0->unk_00->unk_04[param1].unk_0B - 1));
         ov25_02255914(param0->unk_134[param1].unk_04, 0);
     }
 }
@@ -586,7 +586,7 @@ static void ov33_02256C54(UnkStruct_ov33_02256474 *param0, int param1)
 static void ov33_02256C98(UnkStruct_ov33_02256474 *param0, int param1)
 {
     ov25_0225591C(param0->unk_30, param0->unk_134[param1].unk_04, 2);
-    ov25_022558C4(param0->unk_134[param1].unk_04, 3);
+    ov25_InitAnimation(param0->unk_134[param1].unk_04, 3);
     ov25_02255914(param0->unk_134[param1].unk_04, 0);
 }
 
@@ -788,8 +788,8 @@ static void ov33_0225718C(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
         VEC_Set(&v0->unk_20, 0, -20 * CalcSineDegrees(v0->unk_34_val3[1]), 0);
         VEC_Add(&v0->unk_14, &v0->unk_20, &param0->unk_A4);
 
-        ov25_02255900(v0->unk_00, param0->unk_A4.x, param0->unk_A4.y);
-        ov25_02255900(v0->unk_04, v0->unk_14.x, v0->unk_14.y + (8 << FX32_SHIFT));
+        ov25_SetTranslation(v0->unk_00, param0->unk_A4.x, param0->unk_A4.y);
+        ov25_SetTranslation(v0->unk_04, v0->unk_14.x, v0->unk_14.y + (8 << FX32_SHIFT));
 
         if (v0->unk_34_val3[2] == 2) {
             ov33_022567D4(&v0->unk_08);
@@ -986,8 +986,8 @@ static void ov33_022572A0(UnkStruct_ov33_02256474 *param0, const UnkStruct_ov33_
 
         VEC_Add(&param0->unk_134[v7].unk_14, &param0->unk_134[v7].unk_20, &param0->unk_A4);
 
-        ov25_02255900(param0->unk_134[v7].unk_00, param0->unk_A4.x, param0->unk_A4.y);
-        ov25_02255900(param0->unk_134[v7].unk_04, param0->unk_134[v7].unk_14.x, param0->unk_134[v7].unk_14.y + (8 << FX32_SHIFT));
+        ov25_SetTranslation(param0->unk_134[v7].unk_00, param0->unk_A4.x, param0->unk_A4.y);
+        ov25_SetTranslation(param0->unk_134[v7].unk_04, param0->unk_134[v7].unk_14.x, param0->unk_134[v7].unk_14.y + (8 << FX32_SHIFT));
     }
 }
 

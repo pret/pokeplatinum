@@ -6,8 +6,8 @@
 typedef struct {
     void *unk_00;
     void *unk_04;
-    NNSG2dCellDataBank *unk_08;
-    NNSG2dAnimBankData *unk_0C;
+    NNSG2dCellDataBank *cellBank;
+    NNSG2dAnimBankData *animBank;
     u32 unk_10;
 } UnkStruct_ov25_02255958;
 

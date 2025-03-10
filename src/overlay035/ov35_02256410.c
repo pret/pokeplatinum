@@ -24,8 +24,8 @@ struct UnkStruct_ov35_02256410_t {
     BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
-    UnkStruct_ov25_022558C4 *unk_24;
-    UnkStruct_ov25_022558C4 *unk_28[4];
+    ov25_LinkedElement *unk_24;
+    ov25_LinkedElement *unk_28[4];
     UnkStruct_ov25_02255958 unk_38;
     UnkStruct_ov25_02255958 unk_4C;
 };
@@ -99,7 +99,7 @@ static void ov35_02256460(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_
 
     for (v2 = 0; v2 < 4; v2++) {
         param0->unk_28[v2] = ov25_02255810(param0->unk_20, &v1, &param0->unk_4C);
-        ov25_02255900(param0->unk_28[v2], 360448 + 65536 * v2, 262144);
+        ov25_SetTranslation(param0->unk_28[v2], 360448 + 65536 * v2, 262144);
     }
 
     ov35_022566A8(param0, param1);
@@ -201,10 +201,10 @@ static void ov35_02256644(SysTask *param0, void *param1)
     switch (v0->unk_00->unk_04) {
     case 0:
         PoketchSystem_PlaySoundEffect(1641);
-        ov25_022558C4(v0->unk_24, 1);
+        ov25_InitAnimation(v0->unk_24, 1);
         break;
     case 1:
-        ov25_022558C4(v0->unk_24, 0);
+        ov25_InitAnimation(v0->unk_24, 0);
         break;
     }
 
@@ -229,7 +229,7 @@ static void ov35_022566A8(UnkStruct_ov35_02256410 *param0, const UnkStruct_ov35_
     for (v0 = 0; v0 < 4; v0++) {
         CP_SetDiv32_32(v1, v2);
         v1 = CP_GetDivResult32();
-        ov25_022558C4(param0->unk_28[v0], v1);
+        ov25_InitAnimation(param0->unk_28[v0], v1);
         v1 = CP_GetDivRemainder32();
         v2 /= 10;
     }

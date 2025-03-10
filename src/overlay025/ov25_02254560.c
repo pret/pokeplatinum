@@ -31,16 +31,18 @@
 #define SLOTS_PER_PALETTE_COLOUR_SET        (SLOTS_PER_PALETTE * NUM_PALETTES_PER_PALETTE_COLOUR_SET)
 #define BACKLIGHT_PALETTE_SLOT_OFFSET       (SLOTS_PER_PALETTE)
 
+#define OV25_NUM_TASK_SLOTS 8
+
 typedef struct {
     BOOL unk_00;
     UnkStruct_ov25_022555E8 *unk_04;
     UnkStruct_ov25_02255958 unk_08;
-    UnkStruct_ov25_022558C4 *unk_1C[2];
+    ov25_LinkedElement *unk_1C[2];
 } UnkStruct_ov25_02254DD8;
 
 struct UnkStruct_ov25_02254560_t {
     const UnkStruct_ov25_02254560_1 *unk_00;
-    u32 unk_04[10];
+    u32 taskList[2 + OV25_NUM_TASK_SLOTS];
     u16 unk_2C[32];
     u16 unk_6C[32];
     u16 unk_AC[32];
@@ -52,7 +54,7 @@ struct UnkStruct_ov25_02254560_t {
     UnkStruct_ov25_022555E8 *unk_1CC;
     SysTask *unk_1D0;
     UnkStruct_ov25_02254DD8 unk_1D4;
-    BgConfig *unk_1F8;
+    BgConfig *bgConfig;
     PoketchSystem *poketchSys;
     u16 poketchPalettes[NUM_PALETTE_COLOUR_SETS * SLOTS_PER_PALETTE_COLOUR_SET];
     u16 unk_400[16];
@@ -63,7 +65,7 @@ typedef struct {
     u16 unk_02;
 } UnkStruct_ov25_02254944;
 
-static void ov25_02254654(SysTask *param0, void *param1);
+static void ov25_TaskCallback(SysTask *param0, void *param1);
 static void Poketch_InitPaletteData(UnkStruct_ov25_02254560 *param0);
 static void ov25_02254798(u16 *param0, u32 param1, int param2, int param3);
 static void ov25_0225480C(PoketchTaskManager *param0);
@@ -93,30 +95,30 @@ static void ov25_02255064(SysTask *param0, void *param1);
 struct PoketchSystem *FieldSystem_GetPoketchSystem(void);
 SysTask *SysTask_ExecuteAfterVBlank(SysTaskFunc param0, void *param1, u32 param2);
 
-BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_02254560_1 *param1, NNSG2dOamManagerInstance *param2, PoketchSystem *poketchSys)
+BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_02254560_1 *param1, NNSG2dOamManagerInstance *oamMngr, PoketchSystem *poketchSys)
 {
     *param0 = Heap_AllocFromHeap(HEAP_ID_POKETCH_MAIN, sizeof(UnkStruct_ov25_02254560));
 
     if (*param0 != NULL) {
         UnkStruct_ov25_02254560 *v0 = *param0;
 
-        v0->unk_1C8 = param2;
+        v0->unk_1C8 = oamMngr;
         NNS_G2dResetOamManagerBuffer(v0->unk_1C8);
         v0->unk_1CC = ov25_02255540(v0->unk_1C8, HEAP_ID_POKETCH_MAIN);
 
         if (v0->unk_1CC == NULL) {
             Heap_FreeToHeap(*param0);
             *param0 = NULL;
-            return 0;
+            return FALSE;
         }
 
         v0->unk_00 = param1;
-        v0->unk_1F8 = BgConfig_New(HEAP_ID_POKETCH_MAIN);
+        v0->bgConfig = BgConfig_New(HEAP_ID_POKETCH_MAIN);
         v0->poketchSys = poketchSys;
 
         Poketch_InitPaletteData(v0);
         ov25_02254DD8(&v0->unk_1D4, v0->unk_1CC);
-        PoketchTask_InitActiveTaskList((*param0)->unk_04, 8);
+        PoketchTask_InitActiveTaskList((*param0)->taskList, OV25_NUM_TASK_SLOTS);
 
         ov25_02254798((*param0)->unk_2C, 64 + 8, 4, 6);
         ov25_02254798((*param0)->unk_6C, 64 + 12, 4, 6);
@@ -126,7 +128,7 @@ BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_022545
         ov25_02254798((*param0)->unk_12C, 64 + 24, 2, 4);
         ov25_02254798((*param0)->unk_16C, 64 + 28, 2, 4);
 
-        v0->unk_1D0 = SysTask_ExecuteAfterVBlank(ov25_02254654, v0, 0);
+        v0->unk_1D0 = SysTask_ExecuteAfterVBlank(ov25_TaskCallback, v0, 0);
 
         return 1;
     }
@@ -134,9 +136,9 @@ BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_022545
     return 0;
 }
 
-static void ov25_02254654(SysTask *param0, void *param1)
+static void ov25_TaskCallback(SysTask *task, void *data)
 {
-    UnkStruct_ov25_02254560 *v0 = (UnkStruct_ov25_02254560 *)param1;
+    UnkStruct_ov25_02254560 *v0 = data;
     ov25_02255614(v0->unk_1CC);
 }
 
@@ -149,7 +151,7 @@ UnkStruct_ov25_022555E8 *ov25_02254664(void)
 BgConfig *Poketch_GetBgConfig(void)
 {
     UnkStruct_ov25_02254560 *v0 = ov25_02254418();
-    return v0->unk_1F8;
+    return v0->bgConfig;
 }
 
 static void Poketch_InitPaletteData(UnkStruct_ov25_02254560 *param0)
@@ -200,11 +202,11 @@ void ov25_02254754(UnkStruct_ov25_02254560 *param0)
         ov25_02254F40(&(param0->unk_1D4));
 
         if (param0->unk_1CC) {
-            ov25_022555E8(param0->unk_1CC);
+            ov25_FreeOV25(param0->unk_1CC);
         }
 
-        if (param0->unk_1F8) {
-            Heap_FreeToHeap(param0->unk_1F8);
+        if (param0->bgConfig) {
+            Heap_FreeToHeap(param0->bgConfig);
         }
 
         if (param0->unk_1D0) {
@@ -217,19 +219,19 @@ void ov25_02254754(UnkStruct_ov25_02254560 *param0)
 
 static void ov25_02254798(u16 *param0, u32 param1, int param2, int param3)
 {
-    int v0, v1, v2;
+    int x, y, v2;
     int v3;
 
     v2 = 0;
     v3 = 0;
 
-    for (v1 = 0; v1 < 8; v1++) {
-        for (v0 = 0; v0 < 4; v0++) {
-            param0[v2] = (15 << 12) | (param1 + v3 + v0);
+    for (y = 0; y < 8; y++) {
+        for (x = 0; x < 4; x++) {
+            param0[v2] = (15 << 12) | (param1 + v3 + x);
             v2++;
         }
 
-        if ((v1 >= param2) && (v1 < param3)) {
+        if ((y >= param2) && (y < param3)) {
             (void)0;
         } else {
             v3 += 32;
@@ -261,23 +263,23 @@ static const PoketchTask Unk_ov25_02255F8C[] = {
 
 void ov25_022547D0(UnkStruct_ov25_02254560 *param0, u32 param1)
 {
-    PoketchTask_Start(Unk_ov25_02255F8C, param1, param0, param0->unk_00, param0->unk_04, 2, 7);
+    PoketchTask_Start(Unk_ov25_02255F8C, param1, param0, param0->unk_00, param0->taskList, 2, 7);
 }
 
 BOOL ov25_022547F4(UnkStruct_ov25_02254560 *param0, u32 param1)
 {
-    return PoketchTask_TaskIsNotActive(param0->unk_04, param1);
+    return PoketchTask_TaskIsNotActive(param0->taskList, param1);
 }
 
 BOOL ov25_02254800(UnkStruct_ov25_02254560 *param0)
 {
-    return PoketchTask_NoActiveTasks(param0->unk_04);
+    return PoketchTask_NoActiveTasks(param0->taskList);
 }
 
 static void ov25_0225480C(PoketchTaskManager *param0)
 {
     UnkStruct_ov25_02254560 *v0 = PoketchTask_GetTaskData(param0);
-    PoketchTask_EndTask(v0->unk_04, param0);
+    PoketchTask_EndTask(v0->taskList, param0);
 }
 
 static void ov25_02254820(SysTask *param0, void *param1)
@@ -321,15 +323,15 @@ static void ov25_02254820(SysTask *param0, void *param1)
 
     GXLayers_DisableEngineBLayers();
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
-    Bg_InitFromTemplate(v2->unk_1F8, 4, &v0, 0);
-    Bg_InitFromTemplate(v2->unk_1F8, 5, &v1, 0);
+    Bg_InitFromTemplate(v2->bgConfig, 4, &v0, 0);
+    Bg_InitFromTemplate(v2->bgConfig, 5, &v1, 0);
 
-    Graphics_LoadTilesToBgLayer(12, 14, v2->unk_1F8, 4, 64, 0, 1, HEAP_ID_POKETCH_MAIN);
-    Graphics_LoadTilemapToBgLayer(12, 15, v2->unk_1F8, 4, 0, 0, 1, HEAP_ID_POKETCH_MAIN);
+    Graphics_LoadTilesToBgLayer(12, 14, v2->bgConfig, 4, 64, 0, 1, HEAP_ID_POKETCH_MAIN);
+    Graphics_LoadTilemapToBgLayer(12, 15, v2->bgConfig, 4, 0, 0, 1, HEAP_ID_POKETCH_MAIN);
     Graphics_LoadPaletteWithSrcOffset(12, 13, 4, PoketchSystem_GetBorderColor(v2->poketchSys) * 0x20, 15 * 0x20, 0x20, HEAP_ID_POKETCH_MAIN);
 
-    Bg_FillTilemapRect(v2->unk_1F8, 5, 64 + 164, 0, 0, 32, 24, 15);
-    Bg_CopyTilemapBufferToVRAM(v2->unk_1F8, 5);
+    Bg_FillTilemapRect(v2->bgConfig, 5, 64 + 164, 0, 0, 32, 24, 15);
+    Bg_CopyTilemapBufferToVRAM(v2->bgConfig, 5);
 
     GXS_SetVisiblePlane(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ);
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -367,14 +369,14 @@ static void ov25_02254944(SysTask *param0, void *param1)
             v4 = v0->unk_02 % 4;
             v5 = 2 + (20 / 2) - v3;
 
-            Bg_FillTilemapRect(v1->unk_1F8, 5, 64, 2, v5, 24, v3 * 2, 15);
+            Bg_FillTilemapRect(v1->bgConfig, 5, 64, 2, v5, 24, v3 * 2, 15);
 
             if (v4) {
-                Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 164 + v4, 2, v5 - 1, 24, 1, 15);
-                Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 164 - v4, 2, v5 + v3 * 2, 24, 1, 15);
+                Bg_FillTilemapRect(v1->bgConfig, 5, 64 + 164 + v4, 2, v5 - 1, 24, 1, 15);
+                Bg_FillTilemapRect(v1->bgConfig, 5, 64 + 164 - v4, 2, v5 + v3 * 2, 24, 1, 15);
             }
 
-            Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
+            Bg_CopyTilemapBufferToVRAM(v1->bgConfig, 5);
 
             if (v0->unk_02 == 40) {
                 PoketchTask_IncrementState(param1);
@@ -416,17 +418,17 @@ static void ov25_02254A5C(SysTask *param0, void *param1)
             v4 = v0->unk_02 % 4;
             v5 = 2 + 20 - v3;
 
-            Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 164, 2, 2, 24, v3, 15);
-            Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 164, 2, v5, 24, v3, 15);
+            Bg_FillTilemapRect(v1->bgConfig, 5, 64 + 164, 2, 2, 24, v3, 15);
+            Bg_FillTilemapRect(v1->bgConfig, 5, 64 + 164, 2, v5, 24, v3, 15);
 
             if (v4) {
                 v4--;
 
-                Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 167 - v4, 2, 0, 24, 1, 15);
-                Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 161 + v4, 2, v5 - 1, 24, 1, 15);
+                Bg_FillTilemapRect(v1->bgConfig, 5, 64 + 167 - v4, 2, 0, 24, 1, 15);
+                Bg_FillTilemapRect(v1->bgConfig, 5, 64 + 161 + v4, 2, v5 - 1, 24, 1, 15);
             }
 
-            Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
+            Bg_CopyTilemapBufferToVRAM(v1->bgConfig, 5);
 
             if (v0->unk_02 == 40) {
                 PoketchTask_IncrementState(param1);
@@ -449,8 +451,8 @@ static void ov25_02254B8C(SysTask *param0, void *param1)
     v2 = PoketchTask_GetState(param1);
 
     if (v2 < 4) {
-        Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 164 - v2 - 1, 2, 2, 24, 20, 15);
-        Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
+        Bg_FillTilemapRect(v1->bgConfig, 5, 64 + 164 - v2 - 1, 2, 2, 24, 20, 15);
+        Bg_CopyTilemapBufferToVRAM(v1->bgConfig, 5);
         PoketchTask_IncrementState(param1);
     } else {
         ov25_0225480C(param1);
@@ -468,8 +470,8 @@ static void ov25_02254BF0(SysTask *param0, void *param1)
     v2 = PoketchTask_GetState(param1);
 
     if (v2 < 4) {
-        Bg_FillTilemapRect(v1->unk_1F8, 5, 64 + 167 - v2, 2, 2, 24, 20, 15);
-        Bg_CopyTilemapBufferToVRAM(v1->unk_1F8, 5);
+        Bg_FillTilemapRect(v1->bgConfig, 5, 64 + 167 - v2, 2, 2, 24, 20, 15);
+        Bg_CopyTilemapBufferToVRAM(v1->bgConfig, 5);
         PoketchTask_IncrementState(param1);
     } else {
         ov25_0225480C(param1);
@@ -489,8 +491,8 @@ static void ov25_02254C54(void *param0, u16 *param1, int param2)
         v2 = 12;
     }
 
-    Bg_LoadToTilemapRect(v0->unk_1F8, 4, param1, v1, v2, 4, 8);
-    Bg_CopyTilemapBufferToVRAM(v0->unk_1F8, 4);
+    Bg_LoadToTilemapRect(v0->bgConfig, 4, param1, v1, v2, 4, 8);
+    Bg_CopyTilemapBufferToVRAM(v0->bgConfig, 4);
 
     ov25_0225480C(param0);
 }
@@ -600,7 +602,7 @@ static void ov25_02254DE0(UnkStruct_ov25_02254560 *param0, UnkStruct_ov25_02254D
             return;
         }
 
-        ov25_022558F0(param1->unk_1C[1], 16 * FX32_ONE, 0);
+        ov25_addTranslation(param1->unk_1C[1], 16 * FX32_ONE, 0);
         ov25_02255938(param1->unk_1C[0], 15);
         ov25_02255938(param1->unk_1C[1], 15);
 
@@ -641,8 +643,8 @@ static void ov25_02254EE8(UnkStruct_ov25_02254DD8 *param0, const UnkStruct_ov25_
         v0 = CP_GetDivResult32();
         v1 = CP_GetDivRemainder32();
 
-        ov25_022558C4(param0->unk_1C[0], v0);
-        ov25_022558C4(param0->unk_1C[1], v1);
+        ov25_InitAnimation(param0->unk_1C[0], v0);
+        ov25_InitAnimation(param0->unk_1C[1], v1);
     }
 }
 
@@ -669,12 +671,12 @@ static void ov25_02254F68(SysTask *param0, void *param1)
     switch (v0) {
     case 0:
         G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 0x1a, 0x6);
-        Bg_CopyTilemapBufferToVRAM(v2->unk_1F8, 4);
+        Bg_CopyTilemapBufferToVRAM(v2->bgConfig, 4);
     case 1:
     case 2:
     case 3:
-        Bg_FillTilemapRect(v2->unk_1F8, 5, 64 + 167 - v0, 2, 2, 24, 20, 15);
-        Bg_CopyTilemapBufferToVRAM(v2->unk_1F8, 5);
+        Bg_FillTilemapRect(v2->bgConfig, 5, 64 + 167 - v0, 2, 2, 24, 20, 15);
+        Bg_CopyTilemapBufferToVRAM(v2->bgConfig, 5);
 
         if (v0 == 3) {
             ov25_0225480C(param1);
@@ -689,9 +691,9 @@ static void ov25_02255004(SysTask *param0, void *param1)
 {
     UnkStruct_ov25_02254560 *v0 = PoketchTask_GetTaskData(param1);
 
-    Bg_FillTilemapRect(v0->unk_1F8, 5, 64, 2, 2, 24, 20, 15);
-    Bg_CopyTilemapBufferToVRAM(v0->unk_1F8, 4);
-    Bg_CopyTilemapBufferToVRAM(v0->unk_1F8, 5);
+    Bg_FillTilemapRect(v0->bgConfig, 5, 64, 2, 2, 24, 20, 15);
+    Bg_CopyTilemapBufferToVRAM(v0->bgConfig, 4);
+    Bg_CopyTilemapBufferToVRAM(v0->bgConfig, 5);
 
     G2S_SetBlendAlpha(0, 0, 0x1f, 0x0);
     ov25_0225480C(param1);
@@ -701,8 +703,8 @@ static void ov25_02255064(SysTask *param0, void *param1)
 {
     UnkStruct_ov25_02254560 *v0 = PoketchTask_GetTaskData(param1);
 
-    Bg_FreeTilemapBuffer(v0->unk_1F8, 4);
-    Bg_FreeTilemapBuffer(v0->unk_1F8, 5);
+    Bg_FreeTilemapBuffer(v0->bgConfig, 4);
+    Bg_FreeTilemapBuffer(v0->bgConfig, 5);
 
     ov25_0225480C(param1);
 }

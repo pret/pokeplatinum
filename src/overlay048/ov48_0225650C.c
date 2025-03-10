@@ -29,9 +29,9 @@ struct UnkStruct_ov48_0225650C_t {
     BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
-    UnkStruct_ov25_022558C4 *unk_24;
-    UnkStruct_ov25_022558C4 *unk_28[64];
-    UnkStruct_ov25_022558C4 *unk_128[4];
+    ov25_LinkedElement *unk_24;
+    ov25_LinkedElement *unk_28[64];
+    ov25_LinkedElement *unk_128[4];
     UnkStruct_ov25_02255958 unk_138;
     SysTask *unk_14C;
     BOOL unk_150;
@@ -290,7 +290,7 @@ static void ov48_02256920(UnkStruct_ov48_0225650C *param0)
 
     for (v2 = 0; v2 < param0->unk_00->unk_08; v2++) {
         ov25_02255DBC(param0->unk_00->unk_0C[v2].unk_00, param0->unk_00->unk_0C[v2].unk_01, &v0, &v1);
-        ov25_02255900(param0->unk_28[v2], ((v0) << FX32_SHIFT), ((v1) << FX32_SHIFT));
+        ov25_SetTranslation(param0->unk_28[v2], ((v0) << FX32_SHIFT), ((v1) << FX32_SHIFT));
         ov25_02255914(param0->unk_28[v2], 0);
     }
 
@@ -339,6 +339,6 @@ static void ov48_022569FC(SysTask *param0, void *param1)
         u32 v2, v3;
 
         ov25_02255DBC(v1->unk_00, v1->unk_04, &v2, &v3);
-        ov25_02255900(v0->unk_24, ((v2) << FX32_SHIFT), ((v3) << FX32_SHIFT));
+        ov25_SetTranslation(v0->unk_24, ((v2) << FX32_SHIFT), ((v3) << FX32_SHIFT));
     }
 }

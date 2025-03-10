@@ -26,7 +26,7 @@ struct UnkStruct_ov44_022565BC_t {
     BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
-    UnkStruct_ov25_022558C4 *unk_24[6];
+    ov25_LinkedElement *unk_24[6];
     UnkStruct_ov25_02255958 unk_3C;
     UnkStruct_ov25_02255958 unk_50;
     u32 unk_64;
@@ -160,7 +160,7 @@ static void ov44_0225660C(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_
     if (param1->unk_30 <= 1) {
         ov25_02255914(param0->unk_24[5], 1);
         ov25_02255914(param0->unk_24[3], 1);
-        ov25_022558C4(param0->unk_24[0], 10);
+        ov25_InitAnimation(param0->unk_24[0], 10);
     }
 }
 
@@ -276,7 +276,7 @@ static void ov44_0225686C(SysTask *param0, void *param1)
     v1 = PoketchTask_GetConstTaskData(param1);
 
     PoketchSystem_PlaySoundEffect(1641);
-    ov25_022558C4(v0->unk_24[0], 10);
+    ov25_InitAnimation(v0->unk_24[0], 10);
     ov44_02256780(param1);
 }
 
@@ -288,7 +288,7 @@ static void ov44_02256898(SysTask *param0, void *param1)
     v0 = PoketchTask_GetTaskData(param1);
     v1 = PoketchTask_GetConstTaskData(param1);
 
-    ov25_022558C4(v0->unk_24[0], 9);
+    ov25_InitAnimation(v0->unk_24[0], 9);
     ov44_02256780(param1);
 }
 
@@ -318,7 +318,7 @@ static void ov44_02256908(SysTask *param0, void *param1)
 
 static void ov44_02256954(UnkStruct_ov44_022565BC *param0, u32 param1, u32 param2, u16 param3, u16 param4)
 {
-    UnkStruct_ov25_022558C4 *v0 = param0->unk_24[param1];
+    ov25_LinkedElement *v0 = param0->unk_24[param1];
     u32 v1;
 
     if (param1 == 5) {
@@ -331,18 +331,18 @@ static void ov44_02256954(UnkStruct_ov44_022565BC *param0, u32 param1, u32 param
         }
     }
 
-    ov25_022558C4(v0, v1);
+    ov25_InitAnimation(v0, v1);
     ov25_02255940(v0, param0->unk_64 + param2 * 16);
     ov25_02255938(v0, 1 + PokeIconPaletteIndex(param3, param4, 0));
 }
 
 static void ov44_022569AC(UnkStruct_ov44_022565BC *param0)
 {
-    ov25_02255900(param0->unk_24[2], (48 << FX32_SHIFT), (88 << FX32_SHIFT));
-    ov25_02255900(param0->unk_24[3], (176 << FX32_SHIFT), (88 << FX32_SHIFT));
-    ov25_022558C4(param0->unk_24[2], 5);
-    ov25_022558C4(param0->unk_24[3], 6);
-    ov25_022558C4(param0->unk_24[1], 0);
+    ov25_SetTranslation(param0->unk_24[2], (48 << FX32_SHIFT), (88 << FX32_SHIFT));
+    ov25_SetTranslation(param0->unk_24[3], (176 << FX32_SHIFT), (88 << FX32_SHIFT));
+    ov25_InitAnimation(param0->unk_24[2], 5);
+    ov25_InitAnimation(param0->unk_24[3], 6);
+    ov25_InitAnimation(param0->unk_24[1], 0);
 }
 
 static void ov44_022569E4(SysTask *param0, void *param1)
@@ -456,15 +456,15 @@ static void ov44_02256A50(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_
         break;
     case 2:
         param0->unk_6C = Unk_ov44_02256CCC;
-        ov25_022558C4(param0->unk_24[1], 1);
+        ov25_InitAnimation(param0->unk_24[1], 1);
         break;
     case 1:
         param0->unk_6C = Unk_ov44_02256D00;
-        ov25_022558C4(param0->unk_24[1], 2);
+        ov25_InitAnimation(param0->unk_24[1], 2);
         break;
     case 0:
         param0->unk_6C = Unk_ov44_02256E1C;
-        ov25_022558C4(param0->unk_24[1], 3);
+        ov25_InitAnimation(param0->unk_24[1], 3);
         break;
     }
 
@@ -505,13 +505,13 @@ func_start:
                 PoketchSystem_PlaySoundEffect(param0->unk_6C[(param0->unk_74)++]);
                 break;
             case -6:
-                ov25_022558C4(param0->unk_24[2], 6);
-                ov25_022558C4(param0->unk_24[3], 5);
+                ov25_InitAnimation(param0->unk_24[2], 6);
+                ov25_InitAnimation(param0->unk_24[3], 5);
                 break;
             case -7: {
                 u32 v0 = param0->unk_6C[(param0->unk_74)++];
                 u32 v1 = param0->unk_6C[(param0->unk_74)++];
-                ov25_022558C4(param0->unk_24[v0], v1);
+                ov25_InitAnimation(param0->unk_24[v0], v1);
             } break;
             }
         }
@@ -526,8 +526,8 @@ func_start:
                 param0->unk_78 = param0->unk_80;
             }
 
-            ov25_02255900(param0->unk_24[2], (48 << FX32_SHIFT) + param0->unk_78, (88 << FX32_SHIFT));
-            ov25_02255900(param0->unk_24[3], (176 << FX32_SHIFT) - param0->unk_78, (88 << FX32_SHIFT));
+            ov25_SetTranslation(param0->unk_24[2], (48 << FX32_SHIFT) + param0->unk_78, (88 << FX32_SHIFT));
+            ov25_SetTranslation(param0->unk_24[3], (176 << FX32_SHIFT) - param0->unk_78, (88 << FX32_SHIFT));
         }
 
         if (param0->unk_84 == 0) {

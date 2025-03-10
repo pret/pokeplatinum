@@ -34,7 +34,7 @@ struct UnkStruct_ov27_0225680C_t {
     UnkStruct_ov25_02255958 unk_34;
     UnkStruct_ov25_02255958 unk_48;
     UnkStruct_ov25_022555E8 *unk_5C;
-    UnkStruct_ov25_022558C4 *unk_60[9];
+    ov25_LinkedElement *unk_60[9];
     SysTask *unk_84;
 };
 
@@ -112,32 +112,32 @@ static void ov27_022568B4(UnkStruct_ov27_0225680C *param0)
     v0 = CP_GetDivResult32();
     v1 = CP_GetDivRemainder32();
 
-    ov25_022558C4(param0->unk_60[0], 0 + v0);
-    ov25_022558C4(param0->unk_60[1], 0 + v1);
+    ov25_InitAnimation(param0->unk_60[0], 0 + v0);
+    ov25_InitAnimation(param0->unk_60[1], 0 + v1);
 
     CP_SetDiv32_32(param0->unk_00->unk_10, 10);
 
     v0 = CP_GetDivResult32();
     v1 = CP_GetDivRemainder32();
 
-    ov25_022558C4(param0->unk_60[2], 0 + v0);
-    ov25_022558C4(param0->unk_60[3], 0 + v1);
+    ov25_InitAnimation(param0->unk_60[2], 0 + v0);
+    ov25_InitAnimation(param0->unk_60[3], 0 + v1);
 
     CP_SetDiv32_32(param0->unk_00->unk_0C, 10);
 
     v0 = CP_GetDivResult32();
     v1 = CP_GetDivRemainder32();
 
-    ov25_022558C4(param0->unk_60[4], 0 + v0);
-    ov25_022558C4(param0->unk_60[5], 0 + v1);
+    ov25_InitAnimation(param0->unk_60[4], 0 + v0);
+    ov25_InitAnimation(param0->unk_60[5], 0 + v1);
 
     CP_SetDiv32_32(param0->unk_00->unk_08, 10);
 
     v0 = CP_GetDivResult32();
     v1 = CP_GetDivRemainder32();
 
-    ov25_022558C4(param0->unk_60[6], 0 + v0);
-    ov25_022558C4(param0->unk_60[7], 0 + v1);
+    ov25_InitAnimation(param0->unk_60[6], 0 + v0);
+    ov25_InitAnimation(param0->unk_60[7], 0 + v1);
 }
 
 static const PoketchTask Unk_ov27_02256FF0[] = {
@@ -348,7 +348,7 @@ static void ov27_02256BE8(SysTask *param0, void *param1)
     UnkStruct_ov27_0225680C *v0 = PoketchTask_GetTaskData(param1);
 
     ov25_02255914(v0->unk_60[8], 0);
-    ov25_022558C4(v0->unk_60[8], 11);
+    ov25_InitAnimation(v0->unk_60[8], 11);
     ov27_02256EC4(v0->unk_04, 1);
 
     Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
@@ -369,7 +369,7 @@ static void ov27_02256C2C(SysTask *param0, void *param1)
 
     switch (PoketchTask_GetState(param1)) {
     case 0:
-        ov25_022558C4(v1->unk_60[8], 12);
+        ov25_InitAnimation(v1->unk_60[8], 12);
         ov27_02256EC4(v1->unk_04, 0);
         Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         PoketchTask_IncrementState(param1);
@@ -400,7 +400,7 @@ static void ov27_02256C80(SysTask *param0, void *param1)
         v2->unk_03 = 2;
         v2->unk_02 = 0;
 
-        ov25_022558C4(v1->unk_60[8], 13);
+        ov25_InitAnimation(v1->unk_60[8], 13);
         PoketchTask_IncrementState(param1);
     case 1:
         if (ov27_02256E90(v2, 6)) {
@@ -433,7 +433,7 @@ static void ov27_02256D00(SysTask *param0, void *param1)
         v2->unk_03 = 2;
         v2->unk_02 = 0;
 
-        ov25_022558C4(v1->unk_60[8], 14);
+        ov25_InitAnimation(v1->unk_60[8], 14);
         PoketchTask_IncrementState(param1);
     case 1:
         if (ov27_02256E90(v2, 3)) {
@@ -464,7 +464,7 @@ static void ov27_02256D80(SysTask *param0, void *param1)
     case 0:
         v2->unk_00 = 0;
         v2->unk_02 = 0;
-        ov25_022558C4(v1->unk_60[8], 15);
+        ov25_InitAnimation(v1->unk_60[8], 15);
         ov27_02256EC4(v1->unk_04, 5);
         Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         PoketchSystem_PlaySoundEffect(1638);
@@ -498,7 +498,7 @@ static void ov27_02256E1C(SysTask *param0, void *param1)
 
     switch (PoketchTask_GetState(param1)) {
     case 0:
-        ov25_022558C4(v1->unk_60[8], 16);
+        ov25_InitAnimation(v1->unk_60[8], 16);
         ov27_02256EC4(v1->unk_04, 6);
         Bg_CopyTilemapBufferToVRAM(v1->unk_04, 6);
         PoketchTask_IncrementState(param1);

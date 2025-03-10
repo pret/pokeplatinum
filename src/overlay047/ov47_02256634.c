@@ -25,10 +25,10 @@ struct UnkStruct_ov47_02256634_t {
     BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
-    UnkStruct_ov25_022558C4 *unk_24[6];
-    UnkStruct_ov25_022558C4 *unk_3C[4];
-    UnkStruct_ov25_022558C4 *unk_4C[6];
-    UnkStruct_ov25_022558C4 *unk_64;
+    ov25_LinkedElement *unk_24[6];
+    ov25_LinkedElement *unk_3C[4];
+    ov25_LinkedElement *unk_4C[6];
+    ov25_LinkedElement *unk_64;
     UnkStruct_ov25_02255958 unk_68;
     SysTask *unk_7C;
 };
@@ -247,25 +247,25 @@ static void ov47_02256968(SysTask *param0, void *param1)
 
         if (v1->unk_0C[v3].unk_03) {
             ov25_0225591C(v0->unk_20, v0->unk_24[v3], 0);
-            ov25_022558C4(v0->unk_24[v3], 8 + v3);
+            ov25_InitAnimation(v0->unk_24[v3], 8 + v3);
         } else {
             ov25_0225591C(v0->unk_20, v0->unk_24[v3], 2 + v1->unk_0C[v3].unk_02);
-            ov25_022558C4(v0->unk_24[v3], 1 + v3);
+            ov25_InitAnimation(v0->unk_24[v3], 1 + v3);
         }
 
-        ov25_02255900(v0->unk_24[v3], ((v1->unk_0C[v3].unk_00) << FX32_SHIFT), ((v1->unk_0C[v3].unk_01) << FX32_SHIFT));
+        ov25_SetTranslation(v0->unk_24[v3], ((v1->unk_0C[v3].unk_00) << FX32_SHIFT), ((v1->unk_0C[v3].unk_01) << FX32_SHIFT));
     }
 
     if (v1->unk_08) {
         u32 v4, v5, v6;
 
         ov25_02255DBC(v1->unk_00, v1->unk_04, &v4, &v5);
-        ov25_02255900(v0->unk_64, ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
+        ov25_SetTranslation(v0->unk_64, ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
 
         for (v6 = 0; v6 < 6; v6++) {
             if (v1->unk_3C[v6].unk_00) {
                 if (ov25_02255E24(v1->unk_3C[v6].unk_04, &v4, &v5)) {
-                    ov25_02255900(v0->unk_4C[v6], ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
+                    ov25_SetTranslation(v0->unk_4C[v6], ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
                     ov25_02255914(v0->unk_4C[v6], 0);
                 } else {
                     ov25_02255914(v0->unk_4C[v6], 1);

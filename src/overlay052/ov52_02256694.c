@@ -29,7 +29,7 @@ struct UnkStruct_ov52_02256694_t {
     u32 unk_08[6];
     Window unk_20;
     UnkStruct_ov25_022555E8 *unk_30;
-    UnkStruct_ov25_022558C4 *unk_34[4];
+    ov25_LinkedElement *unk_34[4];
     UnkStruct_ov25_02255958 unk_44;
     MessageLoader *unk_58;
     Strbuf *unk_5C;
@@ -255,7 +255,7 @@ static void ov52_0225691C(SysTask *param0, void *param1)
     ov25_02255914(v0->unk_34[1], 0);
     ov25_02255914(v0->unk_34[2], 1);
     ov25_02255914(v0->unk_34[3], 1);
-    ov25_022558C4(v0->unk_34[1], 1);
+    ov25_InitAnimation(v0->unk_34[1], 1);
 
     ov52_02256B10(v0);
     PoketchSystem_PlaySoundEffect(1635);
@@ -270,7 +270,7 @@ static void ov52_02256968(SysTask *param0, void *param1)
     ov25_02255914(v0->unk_34[1], 1);
     ov25_02255914(v0->unk_34[2], 0);
     ov25_02255914(v0->unk_34[3], 1);
-    ov25_022558C4(v0->unk_34[2], 2);
+    ov25_InitAnimation(v0->unk_34[2], 2);
     ov52_02256B64(v0);
     PoketchSystem_PlaySoundEffect(1646);
     ov52_022567E0(param1);
@@ -284,7 +284,7 @@ static void ov52_022569B4(SysTask *param0, void *param1)
     ov25_02255914(v0->unk_34[1], 1);
     ov25_02255914(v0->unk_34[2], 0);
     ov25_02255914(v0->unk_34[3], 1);
-    ov25_022558C4(v0->unk_34[2], 2);
+    ov25_InitAnimation(v0->unk_34[2], 2);
     ov52_02256BDC(v0);
     PoketchSystem_PlaySoundEffect(1646);
     ov52_022567E0(param1);
@@ -299,7 +299,7 @@ static void ov52_02256A00(SysTask *param0, void *param1)
     ov25_02255914(v0->unk_34[1], 1);
     ov25_02255914(v0->unk_34[2], 1);
     ov25_02255914(v0->unk_34[3], 0);
-    ov25_022558C4(v0->unk_34[3], 0);
+    ov25_InitAnimation(v0->unk_34[3], 0);
 
     ov52_02256C64(v0, v1);
     PoketchSystem_PlaySoundEffect(1635);
