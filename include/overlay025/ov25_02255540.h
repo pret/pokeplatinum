@@ -20,12 +20,12 @@ BOOL ov25_AnimNotPlaying(ov25_LinkedElement *param0);
 void ov25_addTranslation(ov25_LinkedElement *param0, fx32 param1, fx32 param2);
 void ov25_SetTranslation(ov25_LinkedElement *param0, fx32 param1, fx32 param2);
 void ov25_GetTranslation(const ov25_LinkedElement *param0, fx32 *param1, fx32 *param2);
-void  ov25_Set_unk_8A(ov25_LinkedElement *param0, BOOL param1);
+void ov25_Set_unk_8A(ov25_LinkedElement *param0, BOOL param1);
 void ov25_UpdateElem_unk_84_00(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1, u32 param2);
-void  ov25_Set_unk_88(ov25_LinkedElement *param0, u32 param1);
-void  ov25_Set_unk_8C(ov25_LinkedElement *param0, u32 param1);
-void  ov25_Set_unk_92(ov25_LinkedElement *param0, BOOL param1);
-void  ov25_Set_unk_90(ov25_LinkedElement *param0, u16 param1);
+void ov25_Set_unk_88(ov25_LinkedElement *param0, u32 param1);
+void ov25_Set_unk_8C(ov25_LinkedElement *param0, u32 param1);
+void ov25_Set_unk_92(ov25_LinkedElement *param0, BOOL param1);
+void ov25_Set_unk_90(ov25_LinkedElement *param0, u16 param1);
 BOOL ov25_LoadNARCMembers(UnkStruct_ov25_02255958 *param0, u32 param1, u32 param2, u32 param3, enum HeapId param4);
 void ov25_FreeNARCMembers(UnkStruct_ov25_02255958 *param0);
 

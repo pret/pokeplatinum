@@ -158,8 +158,8 @@ static void ov44_0225660C(UnkStruct_ov44_022565BC *param0, const UnkStruct_ov44_
     ov44_02256954(param0, 5, param1->unk_33, param1->unk_18[param1->unk_33], param1->unk_24[param1->unk_33]);
 
     if (param1->unk_30 <= 1) {
-         ov25_Set_unk_8A(param0->unk_24[5], 1);
-         ov25_Set_unk_8A(param0->unk_24[3], 1);
+        ov25_Set_unk_8A(param0->unk_24[5], 1);
+        ov25_Set_unk_8A(param0->unk_24[3], 1);
         ov25_InitAnimation(param0->unk_24[0], 10);
     }
 }
@@ -332,8 +332,8 @@ static void ov44_02256954(UnkStruct_ov44_022565BC *param0, u32 param1, u32 param
     }
 
     ov25_InitAnimation(v0, v1);
-     ov25_Set_unk_8C(v0, param0->unk_64 + param2 * 16);
-     ov25_Set_unk_88(v0, 1 + PokeIconPaletteIndex(param3, param4, 0));
+    ov25_Set_unk_8C(v0, param0->unk_64 + param2 * 16);
+    ov25_Set_unk_88(v0, 1 + PokeIconPaletteIndex(param3, param4, 0));
 }
 
 static void ov44_022569AC(UnkStruct_ov44_022565BC *param0)

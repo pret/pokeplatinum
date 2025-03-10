@@ -603,8 +603,8 @@ static void ov25_02254DE0(UnkStruct_ov25_02254560 *param0, UnkStruct_ov25_02254D
         }
 
         ov25_addTranslation(param1->unk_1C[1], 16 * FX32_ONE, 0);
-         ov25_Set_unk_88(param1->unk_1C[0], 15);
-         ov25_Set_unk_88(param1->unk_1C[1], 15);
+        ov25_Set_unk_88(param1->unk_1C[0], 15);
+        ov25_Set_unk_88(param1->unk_1C[1], 15);
 
         param1->unk_00 = 1;
     }

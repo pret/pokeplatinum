@@ -268,7 +268,7 @@ void ov25_GetTranslation(const ov25_LinkedElement *param0, fx32 *param1, fx32 *p
     *param2 = param0->translation.y;
 }
 
-void  ov25_Set_unk_8A(ov25_LinkedElement *param0, BOOL param1)
+void ov25_Set_unk_8A(ov25_LinkedElement *param0, BOOL param1)
 {
     param0->unk_8A = param1;
 }
@@ -280,22 +280,22 @@ void ov25_UpdateElem_unk_84_00(UnkStruct_ov25_022555E8 *param0, ov25_LinkedEleme
     ov25_SortElemIntoList(param0, param1);
 }
 
-void  ov25_Set_unk_88(ov25_LinkedElement *param0, u32 value)
+void ov25_Set_unk_88(ov25_LinkedElement *param0, u32 value)
 {
     param0->unk_88 = value;
 }
 
-void  ov25_Set_unk_8C(ov25_LinkedElement *param0, u32 value)
+void ov25_Set_unk_8C(ov25_LinkedElement *param0, u32 value)
 {
     param0->unk_8C = value;
 }
 
-void  ov25_Set_unk_92(ov25_LinkedElement *param0, BOOL value)
+void ov25_Set_unk_92(ov25_LinkedElement *param0, BOOL value)
 {
     param0->unk_92 = value;
 }
 
-void  ov25_Set_unk_90(ov25_LinkedElement *param0, u16 value)
+void ov25_Set_unk_90(ov25_LinkedElement *param0, u16 value)
 {
     param0->unk_90 = value;
 }

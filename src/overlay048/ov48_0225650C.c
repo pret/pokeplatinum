@@ -251,7 +251,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
     v1.animIDX = 0;
     param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
 
-     ov25_Set_unk_92(param0->unk_24, 1);
+    ov25_Set_unk_92(param0->unk_24, 1);
 
     v1.unk_0C = 1;
     v1.animIDX = 7;
@@ -260,7 +260,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
 
     for (v4 = 0; v4 < 64; v4++) {
         param0->unk_28[v4] = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
-         ov25_Set_unk_92(param0->unk_28[v4], 1);
+        ov25_Set_unk_92(param0->unk_28[v4], 1);
     }
 
     ov48_02256920(param0);
@@ -273,10 +273,10 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
         v1.animIDX = 14 + v4;
         param0->unk_128[v4] = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
 
-         ov25_Set_unk_92(param0->unk_128[v4], 1);
+        ov25_Set_unk_92(param0->unk_128[v4], 1);
 
         if (v0->unk_94[v4] == 0) {
-             ov25_Set_unk_8A(param0->unk_128[v4], 1);
+            ov25_Set_unk_8A(param0->unk_128[v4], 1);
         }
     }
 
@@ -291,11 +291,11 @@ static void ov48_02256920(UnkStruct_ov48_0225650C *param0)
     for (v2 = 0; v2 < param0->unk_00->unk_08; v2++) {
         ov25_02255DBC(param0->unk_00->unk_0C[v2].unk_00, param0->unk_00->unk_0C[v2].unk_01, &v0, &v1);
         ov25_SetTranslation(param0->unk_28[v2], ((v0) << FX32_SHIFT), ((v1) << FX32_SHIFT));
-         ov25_Set_unk_8A(param0->unk_28[v2], 0);
+        ov25_Set_unk_8A(param0->unk_28[v2], 0);
     }
 
     for (; v2 < 64; v2++) {
-         ov25_Set_unk_8A(param0->unk_28[v2], 1);
+        ov25_Set_unk_8A(param0->unk_28[v2], 1);
     }
 }
 

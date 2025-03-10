@@ -310,7 +310,7 @@ static void ov27_02256B24(UnkStruct_ov27_0225680C *param0, const UnkStruct_ov27_
     param0->unk_60[8] = ov25_SetupNewElem(param0->unk_5C, &v0[v1], &param0->unk_34);
 
     if (param1->unk_00 == 0) {
-         ov25_Set_unk_8A(param0->unk_60[8], 1);
+        ov25_Set_unk_8A(param0->unk_60[8], 1);
     }
 }
 
@@ -337,7 +337,7 @@ static void ov27_02256BB0(SysTask *param0, void *param1)
     UnkStruct_ov27_0225680C *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov27_0225680C_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-     ov25_Set_unk_8A(v0->unk_60[8], 1);
+    ov25_Set_unk_8A(v0->unk_60[8], 1);
     ov27_02256EC4(v0->unk_04, 0);
     Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
     ov27_02256A04(param1);
@@ -347,7 +347,7 @@ static void ov27_02256BE8(SysTask *param0, void *param1)
 {
     UnkStruct_ov27_0225680C *v0 = PoketchTask_GetTaskData(param1);
 
-     ov25_Set_unk_8A(v0->unk_60[8], 0);
+    ov25_Set_unk_8A(v0->unk_60[8], 0);
     ov25_InitAnimation(v0->unk_60[8], 11);
     ov27_02256EC4(v0->unk_04, 1);
 

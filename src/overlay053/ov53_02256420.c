@@ -153,15 +153,15 @@ static void ov53_02256568(SysTask *param0, void *param1)
         u32 v2 = PokeIconSpriteIndex(v1->unk_00, 0, 0);
 
         ov25_022553A0(v0->unk_AC, &v2, 1, 1);
-         ov25_Set_unk_88(v0->unk_24[0], 1 + PokeIconPaletteIndex(v1->unk_00, 0, 0));
+        ov25_Set_unk_88(v0->unk_24[0], 1 + PokeIconPaletteIndex(v1->unk_00, 0, 0));
         ov53_02256874(&(v0->unk_24[4]), v1->unk_04);
     } else {
         int v3;
 
-         ov25_Set_unk_8A(v0->unk_24[0], 1);
+        ov25_Set_unk_8A(v0->unk_24[0], 1);
 
         for (v3 = 0; v3 < 3; v3++) {
-             ov25_Set_unk_8A(v0->unk_24[4 + v3], 1);
+            ov25_Set_unk_8A(v0->unk_24[4 + v3], 1);
         }
     }
 
@@ -368,7 +368,7 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
 
     for (v3 = 0; v3 < 4; v3++) {
         param0->unk_24[0 + v3] = ov25_SetupNewElem(param0->unk_20, &v0[v3], &param0->unk_78);
-         ov25_Set_unk_8C(param0->unk_24[0 + v3], v1 + v3 * 32);
+        ov25_Set_unk_8C(param0->unk_24[0 + v3], v1 + v3 * 32);
 
         for (v4 = 0; v4 < 3; v4++) {
             v5 = 4 + v3 * 3 + v4;
@@ -376,14 +376,14 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
         }
 
         if (v2[v3] == 0) {
-             ov25_Set_unk_8A(param0->unk_24[0 + v3], 1);
+            ov25_Set_unk_8A(param0->unk_24[0 + v3], 1);
 
             for (v4 = 0; v4 < 3; v4++) {
                 v5 = 4 + v3 * 3 + v4;
-                 ov25_Set_unk_8A(param0->unk_24[v5], 1);
+                ov25_Set_unk_8A(param0->unk_24[v5], 1);
             }
         } else {
-             ov25_Set_unk_88(param0->unk_24[0 + v3], 1 + PokeIconPaletteIndex(v2[v3], 0, 0));
+            ov25_Set_unk_88(param0->unk_24[0 + v3], 1 + PokeIconPaletteIndex(v2[v3], 0, 0));
             ov53_02256874(&(param0->unk_24[4 + v3 * 3]), (v3 == 0) ? param1->unk_04 : param1->unk_14[v3 - 1]);
         }
     }
@@ -420,7 +420,7 @@ static void ov53_02256874(ov25_LinkedElement **param0, u32 param1)
             ov25_InitAnimation(*param0, v1);
             v3 = 1;
         } else {
-             ov25_Set_unk_8A(*param0, 1);
+            ov25_Set_unk_8A(*param0, 1);
         }
 
         param1 -= (v1 * v2);
