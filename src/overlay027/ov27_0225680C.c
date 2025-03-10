@@ -71,14 +71,14 @@ BOOL ov27_0225680C(UnkStruct_ov27_0225680C **param0, const UnkStruct_ov27_022568
             return 0;
         }
 
-        if (ov25_02255958(&v0->unk_34, 12, 18, 19, 8)) {
-            if (ov25_02255958(&v0->unk_48, 12, 3, 4, 8)) {
+        if (ov25_LoadNARCMembers(&v0->unk_34, 12, 18, 19, 8)) {
+            if (ov25_LoadNARCMembers(&v0->unk_48, 12, 3, 4, 8)) {
                 PoketchTask_InitActiveTaskList(v0->unk_08, 8);
                 v0->unk_84 = NULL;
                 *param0 = v0;
                 return 1;
             } else {
-                ov25_022559B0(&(v0->unk_34));
+                ov25_FreeNARCMembers(&(v0->unk_34));
             }
         }
     }
@@ -304,13 +304,13 @@ static void ov27_02256B24(UnkStruct_ov27_0225680C *param0, const UnkStruct_ov27_
     u32 v1;
 
     for (v1 = 0; v1 <= 7; v1++) {
-        param0->unk_60[0 + v1] = ov25_02255810(param0->unk_5C, &v0[v1], &param0->unk_48);
+        param0->unk_60[0 + v1] = ov25_SetupNewElem(param0->unk_5C, &v0[v1], &param0->unk_48);
     }
 
-    param0->unk_60[8] = ov25_02255810(param0->unk_5C, &v0[v1], &param0->unk_34);
+    param0->unk_60[8] = ov25_SetupNewElem(param0->unk_5C, &v0[v1], &param0->unk_34);
 
     if (param1->unk_00 == 0) {
-        ov25_02255914(param0->unk_60[8], 1);
+         ov25_Set_unk_8A(param0->unk_60[8], 1);
     }
 }
 
@@ -337,7 +337,7 @@ static void ov27_02256BB0(SysTask *param0, void *param1)
     UnkStruct_ov27_0225680C *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov27_0225680C_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    ov25_02255914(v0->unk_60[8], 1);
+     ov25_Set_unk_8A(v0->unk_60[8], 1);
     ov27_02256EC4(v0->unk_04, 0);
     Bg_CopyTilemapBufferToVRAM(v0->unk_04, 6);
     ov27_02256A04(param1);
@@ -347,7 +347,7 @@ static void ov27_02256BE8(SysTask *param0, void *param1)
 {
     UnkStruct_ov27_0225680C *v0 = PoketchTask_GetTaskData(param1);
 
-    ov25_02255914(v0->unk_60[8], 0);
+     ov25_Set_unk_8A(v0->unk_60[8], 0);
     ov25_InitAnimation(v0->unk_60[8], 11);
     ov27_02256EC4(v0->unk_04, 1);
 
@@ -564,8 +564,8 @@ static void ov27_02256F24(SysTask *param0, void *param1)
         ov27_02256F7C(v0);
         PoketchTask_IncrementState(param1);
     case 1:
-        ov25_022559B0(&(v0->unk_34));
-        ov25_022559B0(&(v0->unk_48));
+        ov25_FreeNARCMembers(&(v0->unk_34));
+        ov25_FreeNARCMembers(&(v0->unk_48));
         Bg_FreeTilemapBuffer(v0->unk_04, 6);
         SysTask_Done(v0->unk_84);
         v0->unk_84 = NULL;
@@ -579,6 +579,6 @@ static void ov27_02256F7C(UnkStruct_ov27_0225680C *param0)
     u32 v0;
 
     for (v0 = 0; v0 < 9; v0++) {
-        ov25_022558B0(param0->unk_5C, param0->unk_60[v0]);
+        ov25_RemoveElem(param0->unk_5C, param0->unk_60[v0]);
     }
 }

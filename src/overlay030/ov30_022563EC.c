@@ -215,11 +215,11 @@ static BOOL ov30_022565F4(UnkStruct_ov30_022563EC *param0)
 
     Graphics_LoadObjectTiles(12, 29, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    if (ov25_02255958(&param0->unk_34, 12, 27, 28, 8)) {
+    if (ov25_LoadNARCMembers(&param0->unk_34, 12, 27, 28, 8)) {
         int v1;
 
         for (v1 = 0; v1 < 2; v1++) {
-            param0->unk_4C[v1] = ov25_02255810(param0->unk_48, &v0[v1], &param0->unk_34);
+            param0->unk_4C[v1] = ov25_SetupNewElem(param0->unk_48, &v0[v1], &param0->unk_34);
         }
 
         return 1;
@@ -232,9 +232,9 @@ static void ov30_02256658(UnkStruct_ov30_022563EC *param0)
 {
     int v0;
 
-    ov25_022559B0(&(param0->unk_34));
+    ov25_FreeNARCMembers(&(param0->unk_34));
 
     for (v0 = 0; v0 < 2; v0++) {
-        ov25_022558B0(param0->unk_48, param0->unk_4C[v0]);
+        ov25_RemoveElem(param0->unk_48, param0->unk_4C[v0]);
     }
 }

@@ -39,19 +39,19 @@ struct ov25_LinkedElement_t {
 
 struct UnkStruct_ov25_022555E8_t {
     NNSG2dOamManagerInstance *oamMngr;
-    ov25_LinkedElement **unk_04;
+    ov25_LinkedElement **elemPointerArray;
     ov25_LinkedElement *lastElem;
-    ov25_LinkedElement *unk_0C;
+    ov25_LinkedElement *elemArray;
     u16 numObjs;
-    u16 unk_12;
+    u16 nextUnusedElemIdx;
     GXOamAttr *oam;
     u32 heapID;
 };
 
-static void ov25_LoadObjs(ov25_LinkedElement **param0, ov25_LinkedElement *param1, u32 param2);
+static void ov25_PopulatePointerArray(ov25_LinkedElement **param0, ov25_LinkedElement *param1, u32 param2);
 static void ov25_DissconectElem(ov25_LinkedElement *param0);
-static ov25_LinkedElement *ov25_02255A04(UnkStruct_ov25_022555E8 *param0);
-static void ov25_02255A1C(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1);
+static ov25_LinkedElement *ov25_GetNextUnusedElemPointer(UnkStruct_ov25_022555E8 *param0);
+static void ov25_MarkElemPointerUnused(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1);
 static void ov25_SortElemIntoList(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1);
 static void ov25_RemoveElemFromList(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1);
 
@@ -68,8 +68,8 @@ UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *oamMngr, u32 he
         }
 
         v0->oam = NULL;
-        v0->unk_0C = NULL;
-        v0->unk_04 = NULL;
+        v0->elemArray = NULL;
+        v0->elemPointerArray = NULL;
         v0->oamMngr = oamMngr;
         v0->heapID = heapID;
         v0->numObjs = NNS_G2dGetOamManagerOamCapacity(oamMngr);
@@ -79,21 +79,21 @@ UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *oamMngr, u32 he
             break;
         }
 
-        v0->unk_0C = Heap_AllocFromHeap(heapID, sizeof(ov25_LinkedElement) * v0->numObjs);
+        v0->elemArray = Heap_AllocFromHeap(heapID, sizeof(ov25_LinkedElement) * v0->numObjs);
 
-        if (v0->unk_0C == NULL) {
+        if (v0->elemArray == NULL) {
             break;
         }
 
-        v0->unk_04 = Heap_AllocFromHeap(heapID, sizeof(ov25_LinkedElement *) * v0->numObjs);
+        v0->elemPointerArray = Heap_AllocFromHeap(heapID, sizeof(ov25_LinkedElement *) * v0->numObjs);
 
-        if (v0->unk_04 == NULL) {
+        if (v0->elemPointerArray == NULL) {
             break;
         }
 
-        ov25_LoadObjs(v0->unk_04, v0->unk_0C, v0->numObjs);
+        ov25_PopulatePointerArray(v0->elemPointerArray, v0->elemArray, v0->numObjs);
 
-        v0->unk_12 = 0;
+        v0->nextUnusedElemIdx = 0;
         v0->lastElem = NULL;
 
         success = TRUE;
@@ -105,12 +105,12 @@ UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *oamMngr, u32 he
                 Heap_FreeToHeapExplicit(heapID, v0->oam);
             }
 
-            if (v0->unk_0C != NULL) {
-                Heap_FreeToHeapExplicit(heapID, v0->unk_0C);
+            if (v0->elemArray != NULL) {
+                Heap_FreeToHeapExplicit(heapID, v0->elemArray);
             }
 
-            if (v0->unk_04 != NULL) {
-                Heap_FreeToHeapExplicit(heapID, v0->unk_04);
+            if (v0->elemPointerArray != NULL) {
+                Heap_FreeToHeapExplicit(heapID, v0->elemPointerArray);
             }
 
             Heap_FreeToHeapExplicit(heapID, v0);
@@ -129,12 +129,12 @@ void ov25_FreeOV25(UnkStruct_ov25_022555E8 *param0)
             Heap_FreeToHeap(param0->oam);
         }
 
-        if (param0->unk_0C) {
-            Heap_FreeToHeap(param0->unk_0C);
+        if (param0->elemArray) {
+            Heap_FreeToHeap(param0->elemArray);
         }
 
-        if (param0->unk_04) {
-            Heap_FreeToHeap(param0->unk_04);
+        if (param0->elemPointerArray) {
+            Heap_FreeToHeap(param0->elemPointerArray);
         }
 
         Heap_FreeToHeap(param0);
@@ -143,7 +143,7 @@ void ov25_FreeOV25(UnkStruct_ov25_022555E8 *param0)
 
 void ov25_02255614(UnkStruct_ov25_022555E8 *param0)
 {
-    if (param0->unk_12) {
+    if (param0->nextUnusedElemIdx) {
         ov25_LinkedElement *v0 = param0->lastElem;
         GXOamAttr *oam = param0->oam;
         s32 numObjs = param0->numObjs;
@@ -203,40 +203,40 @@ void ov25_02255614(UnkStruct_ov25_022555E8 *param0)
     }
 }
 
-ov25_LinkedElement *ov25_02255810(UnkStruct_ov25_022555E8 *param0, const UnkStruct_ov25_02255810 *param1, const UnkStruct_ov25_02255958 *param2)
+ov25_LinkedElement *ov25_SetupNewElem(UnkStruct_ov25_022555E8 *param0, const UnkStruct_ov25_02255810 *param1, const UnkStruct_ov25_02255958 *param2)
 {
-    ov25_LinkedElement *v0 = ov25_02255A04(param0);
+    ov25_LinkedElement *newElem = ov25_GetNextUnusedElemPointer(param0);
 
-    if (v0 != NULL) {
-        v0->unk_84_val1_unk_02 = param1->unk_0B;
-        v0->unk_84_val1_unk_00 = param1->unk_0C;
+    if (newElem != NULL) {
+        newElem->unk_84_val1_unk_02 = param1->unk_0B;
+        newElem->unk_84_val1_unk_00 = param1->unk_0C;
 
-        ov25_SortElemIntoList(param0, v0);
+        ov25_SortElemIntoList(param0, newElem);
 
-        v0->cellBank = param2->cellBank;
-        v0->animBack = param2->animBank;
+        newElem->cellBank = param2->cellBank;
+        newElem->animBack = param2->animBank;
 
-        NNS_G2dInitCellAnimation(&(v0->cellAnim), NNS_G2dGetAnimSequenceByIdx(v0->animBack, param1->unk_08), v0->cellBank);
+        NNS_G2dInitCellAnimation(&(newElem->cellAnim), NNS_G2dGetAnimSequenceByIdx(newElem->animBack, param1->animIDX), newElem->cellBank);
 
-        v0->translation = param1->unk_00;
-        v0->unk_88 = 0;
-        v0->unk_8C = 0;
-        v0->unk_8E = ((param1->unk_0A & 1) != 0);
-        v0->unk_8F = ((param1->unk_0A & 2) != 0);
-        v0->unk_92 = 0;
-        v0->unk_90 = 0;
-        v0->unk_70 = &(v0->unk_74);
-        v0->unk_8B = param1->unk_0D;
-        v0->unk_8A = 0;
+        newElem->translation = param1->unk_00;
+        newElem->unk_88 = 0;
+        newElem->unk_8C = 0;
+        newElem->unk_8E = ((param1->unk_0A & 1) != 0);
+        newElem->unk_8F = ((param1->unk_0A & 2) != 0);
+        newElem->unk_92 = 0;
+        newElem->unk_90 = 0;
+        newElem->unk_70 = &(newElem->unk_74);
+        newElem->unk_8B = param1->unk_0D;
+        newElem->unk_8A = 0;
     }
 
-    return v0;
+    return newElem;
 }
 
-void ov25_022558B0(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1)
+void ov25_RemoveElem(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1)
 {
     ov25_RemoveElemFromList(param0, param1);
-    ov25_02255A1C(param0, param1);
+    ov25_MarkElemPointerUnused(param0, param1);
 }
 
 void ov25_InitAnimation(ov25_LinkedElement *param0, u32 animIDX)
@@ -268,71 +268,71 @@ void ov25_GetTranslation(const ov25_LinkedElement *param0, fx32 *param1, fx32 *p
     *param2 = param0->translation.y;
 }
 
-void ov25_02255914(ov25_LinkedElement *param0, BOOL param1)
+void  ov25_Set_unk_8A(ov25_LinkedElement *param0, BOOL param1)
 {
     param0->unk_8A = param1;
 }
 
-void ov25_0225591C(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1, u32 param2)
+void ov25_UpdateElem_unk_84_00(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1, u32 param2)
 {
     ov25_RemoveElemFromList(param0, param1);
     param1->unk_84_val1_unk_00 = param2;
     ov25_SortElemIntoList(param0, param1);
 }
 
-void ov25_02255938(ov25_LinkedElement *param0, u32 param1)
+void  ov25_Set_unk_88(ov25_LinkedElement *param0, u32 value)
 {
-    param0->unk_88 = param1;
+    param0->unk_88 = value;
 }
 
-void ov25_02255940(ov25_LinkedElement *param0, u32 param1)
+void  ov25_Set_unk_8C(ov25_LinkedElement *param0, u32 value)
 {
-    param0->unk_8C = param1;
+    param0->unk_8C = value;
 }
 
-void ov25_02255948(ov25_LinkedElement *param0, BOOL param1)
+void  ov25_Set_unk_92(ov25_LinkedElement *param0, BOOL value)
 {
-    param0->unk_92 = param1;
+    param0->unk_92 = value;
 }
 
-void ov25_02255950(ov25_LinkedElement *param0, u16 param1)
+void  ov25_Set_unk_90(ov25_LinkedElement *param0, u16 value)
 {
-    param0->unk_90 = param1;
+    param0->unk_90 = value;
 }
 
-BOOL ov25_02255958(UnkStruct_ov25_02255958 *param0, u32 narcId, u32 memberId, u32 memberId2, enum HeapId heapId)
+BOOL ov25_LoadNARCMembers(UnkStruct_ov25_02255958 *param0, u32 narcId, u32 memberId, u32 memberId2, enum HeapId heapId)
 {
-    param0->unk_10 = heapId;
+    param0->heapID = heapId;
     param0->unk_00 = LoadCompressedMemberFromNARC(narcId, memberId, heapId);
     param0->unk_04 = LoadCompressedMemberFromNARC(narcId, memberId2, heapId);
 
     if ((param0->unk_00 != NULL) && (param0->unk_04 != NULL)) {
         if (!NNS_G2dGetUnpackedCellBank(param0->unk_00, &(param0->cellBank))) {
-            return 0;
+            return FALSE;
         }
 
         if (!NNS_G2dGetUnpackedMCAnimBank(param0->unk_04, &(param0->animBank))) {
-            return 0;
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-void ov25_022559B0(UnkStruct_ov25_02255958 *param0)
+void ov25_FreeNARCMembers(UnkStruct_ov25_02255958 *param0)
 {
     if (param0->unk_00 != NULL) {
-        Heap_FreeToHeapExplicit(param0->unk_10, param0->unk_00);
+        Heap_FreeToHeapExplicit(param0->heapID, param0->unk_00);
         param0->unk_00 = NULL;
     }
 
     if (param0->unk_04 != NULL) {
-        Heap_FreeToHeapExplicit(param0->unk_10, param0->unk_04);
+        Heap_FreeToHeapExplicit(param0->heapID, param0->unk_04);
         param0->unk_04 = NULL;
     }
 }
 
-static void ov25_LoadObjs(ov25_LinkedElement **param0, ov25_LinkedElement *param1, u32 numObjs)
+static void ov25_PopulatePointerArray(ov25_LinkedElement **param0, ov25_LinkedElement *param1, u32 numObjs)
 {
     while (numObjs--) {
         *param0 = param1;
@@ -348,25 +348,25 @@ static void ov25_DissconectElem(ov25_LinkedElement *param0)
     param0->rightElem = NULL;
 }
 
-static ov25_LinkedElement *ov25_02255A04(UnkStruct_ov25_022555E8 *param0)
+static ov25_LinkedElement *ov25_GetNextUnusedElemPointer(UnkStruct_ov25_022555E8 *param0)
 {
-    if (param0->unk_12 < param0->numObjs) {
-        return param0->unk_04[param0->unk_12++];
+    if (param0->nextUnusedElemIdx < param0->numObjs) {
+        return param0->elemPointerArray[param0->nextUnusedElemIdx++];
     }
 
     return NULL;
 }
 
-static void ov25_02255A1C(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1)
+static void ov25_MarkElemPointerUnused(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1)
 {
-    if (param0->unk_12 == 0) {
+    if (param0->nextUnusedElemIdx == 0) {
         return;
     }
 
     ov25_DissconectElem(param1);
 
-    param0->unk_12--;
-    param0->unk_04[param0->unk_12] = param1;
+    param0->nextUnusedElemIdx--;
+    param0->elemPointerArray[param0->nextUnusedElemIdx] = param1;
 }
 
 static void ov25_SortElemIntoList(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *newElem)

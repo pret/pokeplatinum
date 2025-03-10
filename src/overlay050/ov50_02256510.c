@@ -79,8 +79,8 @@ static void ov50_02256560(UnkStruct_ov50_02256510 *param0, const UnkStruct_ov50_
 
     Graphics_LoadObjectTiles(12, 114, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_02255958(&param0->unk_28, 12, 112, 113, 8);
-    param0->unk_24 = ov25_02255810(param0->unk_20, &v0, &param0->unk_28);
+    ov25_LoadNARCMembers(&param0->unk_28, 12, 112, 113, 8);
+    param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v0, &param0->unk_28);
     ov50_022565B0(param0->unk_24, param1->unk_0C[param1->unk_08 - 1].unk_02);
 }
 
@@ -96,8 +96,8 @@ static void ov50_022565B0(ov25_LinkedElement *param0, u32 param1)
 
 static void ov50_022565E4(UnkStruct_ov50_02256510 *param0)
 {
-    ov25_022558B0(param0->unk_20, param0->unk_24);
-    ov25_022559B0(&(param0->unk_28));
+    ov25_RemoveElem(param0->unk_20, param0->unk_24);
+    ov25_FreeNARCMembers(&(param0->unk_28));
 }
 
 static const PoketchTask Unk_ov50_02256AC0[] = {

@@ -66,8 +66,8 @@ static void ov49_02256410(UnkStruct_ov49_022563D4 *param0, const UnkStruct_ov49_
 
     Graphics_LoadObjectTiles(12, 69, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_02255958(&param0->unk_28, 12, 67, 68, 8);
-    param0->unk_24 = ov25_02255810(param0->unk_20, &v0, &param0->unk_28);
+    ov25_LoadNARCMembers(&param0->unk_28, 12, 67, 68, 8);
+    param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v0, &param0->unk_28);
     ov25_SetTranslation(param0->unk_24, (56 + (16 * param1->unk_00)) << FX32_SHIFT, (148 << FX32_SHIFT));
 }
 
@@ -76,10 +76,10 @@ static void ov49_02256464(UnkStruct_ov49_022563D4 *param0)
     int v0;
 
     if (param0->unk_24) {
-        ov25_022558B0(param0->unk_20, param0->unk_24);
+        ov25_RemoveElem(param0->unk_20, param0->unk_24);
     }
 
-    ov25_022559B0(&param0->unk_28);
+    ov25_FreeNARCMembers(&param0->unk_28);
 }
 
 void ov49_02256480(UnkStruct_ov49_022563D4 *param0)

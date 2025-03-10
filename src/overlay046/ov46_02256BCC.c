@@ -222,15 +222,15 @@ static void ov46_02256C20(UnkStruct_ov46_02256BCC *param0, const UnkStruct_ov46_
     Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadObjectTiles(12, 94, 1, 80 * 0x20, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_02255958(&param0->unk_78, 12, 92, 93, 8);
-    ov25_02255958(&param0->unk_8C, 12, 3, 4, 8);
+    ov25_LoadNARCMembers(&param0->unk_78, 12, 92, 93, 8);
+    ov25_LoadNARCMembers(&param0->unk_8C, 12, 3, 4, 8);
 
     for (v1 = 0; v1 < 17; v1++) {
         if ((v1 >= 13) && (v1 <= 16)) {
-            param0->unk_34[v1] = ov25_02255810(param0->unk_30, &v0[v1], &param0->unk_8C);
+            param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_8C);
         } else {
-            param0->unk_34[v1] = ov25_02255810(param0->unk_30, &v0[v1], &param0->unk_78);
-            ov25_02255940(param0->unk_34[v1], 80);
+            param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_78);
+             ov25_Set_unk_8C(param0->unk_34[v1], 80);
         }
     }
 
@@ -247,12 +247,12 @@ static void ov46_02256CF4(UnkStruct_ov46_02256BCC *param0)
 
     for (v0 = 0; v0 < 17; v0++) {
         if (param0->unk_34[v0]) {
-            ov25_022558B0(param0->unk_30, param0->unk_34[v0]);
+            ov25_RemoveElem(param0->unk_30, param0->unk_34[v0]);
         }
     }
 
-    ov25_022559B0(&param0->unk_78);
-    ov25_022559B0(&param0->unk_8C);
+    ov25_FreeNARCMembers(&param0->unk_78);
+    ov25_FreeNARCMembers(&param0->unk_8C);
 }
 
 static const PoketchTask Unk_ov46_02257178[] = {
@@ -473,14 +473,14 @@ static void ov46_02257094(UnkStruct_ov46_02256BCC *param0, const UnkStruct_ov46_
 
 static void ov46_022570C4(UnkStruct_ov46_02256BCC *param0, BOOL param1)
 {
-    ov25_02255914(param0->unk_34[5], param1);
-    ov25_02255914(param0->unk_34[6], param1);
-    ov25_02255914(param0->unk_34[7], param1);
-    ov25_02255914(param0->unk_34[8], param1);
-    ov25_02255914(param0->unk_34[9], param1);
-    ov25_02255914(param0->unk_34[10], param1);
-    ov25_02255914(param0->unk_34[11], param1);
-    ov25_02255914(param0->unk_34[12], param1);
+     ov25_Set_unk_8A(param0->unk_34[5], param1);
+     ov25_Set_unk_8A(param0->unk_34[6], param1);
+     ov25_Set_unk_8A(param0->unk_34[7], param1);
+     ov25_Set_unk_8A(param0->unk_34[8], param1);
+     ov25_Set_unk_8A(param0->unk_34[9], param1);
+     ov25_Set_unk_8A(param0->unk_34[10], param1);
+     ov25_Set_unk_8A(param0->unk_34[11], param1);
+     ov25_Set_unk_8A(param0->unk_34[12], param1);
 }
 
 u32 ov46_0225710C(UnkStruct_ov46_02256BCC *param0)

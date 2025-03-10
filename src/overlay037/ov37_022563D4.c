@@ -73,9 +73,9 @@ static void ov37_0225641C(UnkStruct_ov37_022563D4 *param0, const UnkStruct_ov37_
     int v1;
 
     Graphics_LoadObjectTiles(12, 104, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    ov25_02255958(&param0->unk_28, 12, 102, 103, 8);
+    ov25_LoadNARCMembers(&param0->unk_28, 12, 102, 103, 8);
 
-    param0->unk_24 = ov25_02255810(param0->unk_20, &v0, &param0->unk_28);
+    param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v0, &param0->unk_28);
 
     if (param1->unk_00 == 0) {
         ov25_InitAnimation(param0->unk_24, 1);
@@ -84,8 +84,8 @@ static void ov37_0225641C(UnkStruct_ov37_022563D4 *param0, const UnkStruct_ov37_
 
 static void ov37_02256470(UnkStruct_ov37_022563D4 *param0)
 {
-    ov25_022558B0(param0->unk_20, param0->unk_24);
-    ov25_022559B0(&(param0->unk_28));
+    ov25_RemoveElem(param0->unk_20, param0->unk_24);
+    ov25_FreeNARCMembers(&(param0->unk_28));
 }
 
 static const PoketchTask Unk_ov37_02256614[] = {

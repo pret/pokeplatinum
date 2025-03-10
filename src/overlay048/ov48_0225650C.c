@@ -237,7 +237,7 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
 
     Graphics_LoadObjectTiles(12, 120, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_02255958(&param0->unk_138, 12, 118, 119, 8);
+    ov25_LoadNARCMembers(&param0->unk_138, 12, 118, 119, 8);
 
     v1.unk_0A = 0;
     v1.unk_0B = 2;
@@ -248,19 +248,19 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
     v1.unk_00.x = ((v2) << FX32_SHIFT);
     v1.unk_00.y = ((v3) << FX32_SHIFT);
     v1.unk_0C = 0;
-    v1.unk_08 = 0;
-    param0->unk_24 = ov25_02255810(param0->unk_20, &v1, &(param0->unk_138));
+    v1.animIDX = 0;
+    param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
 
-    ov25_02255948(param0->unk_24, 1);
+     ov25_Set_unk_92(param0->unk_24, 1);
 
     v1.unk_0C = 1;
-    v1.unk_08 = 7;
+    v1.animIDX = 7;
     v1.unk_00.x = 0;
     v1.unk_00.y = 0;
 
     for (v4 = 0; v4 < 64; v4++) {
-        param0->unk_28[v4] = ov25_02255810(param0->unk_20, &v1, &(param0->unk_138));
-        ov25_02255948(param0->unk_28[v4], 1);
+        param0->unk_28[v4] = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
+         ov25_Set_unk_92(param0->unk_28[v4], 1);
     }
 
     ov48_02256920(param0);
@@ -270,13 +270,13 @@ static void ov48_022567FC(UnkStruct_ov48_0225650C *param0)
         v1.unk_00.x = ((v2) << FX32_SHIFT);
         v1.unk_00.y = ((v3) << FX32_SHIFT);
         v1.unk_0C = 2;
-        v1.unk_08 = 14 + v4;
-        param0->unk_128[v4] = ov25_02255810(param0->unk_20, &v1, &(param0->unk_138));
+        v1.animIDX = 14 + v4;
+        param0->unk_128[v4] = ov25_SetupNewElem(param0->unk_20, &v1, &(param0->unk_138));
 
-        ov25_02255948(param0->unk_128[v4], 1);
+         ov25_Set_unk_92(param0->unk_128[v4], 1);
 
         if (v0->unk_94[v4] == 0) {
-            ov25_02255914(param0->unk_128[v4], 1);
+             ov25_Set_unk_8A(param0->unk_128[v4], 1);
         }
     }
 
@@ -291,11 +291,11 @@ static void ov48_02256920(UnkStruct_ov48_0225650C *param0)
     for (v2 = 0; v2 < param0->unk_00->unk_08; v2++) {
         ov25_02255DBC(param0->unk_00->unk_0C[v2].unk_00, param0->unk_00->unk_0C[v2].unk_01, &v0, &v1);
         ov25_SetTranslation(param0->unk_28[v2], ((v0) << FX32_SHIFT), ((v1) << FX32_SHIFT));
-        ov25_02255914(param0->unk_28[v2], 0);
+         ov25_Set_unk_8A(param0->unk_28[v2], 0);
     }
 
     for (; v2 < 64; v2++) {
-        ov25_02255914(param0->unk_28[v2], 1);
+         ov25_Set_unk_8A(param0->unk_28[v2], 1);
     }
 }
 
@@ -310,24 +310,24 @@ static void ov48_02256984(UnkStruct_ov48_0225650C *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_128[v0]) {
-            ov25_022558B0(param0->unk_20, param0->unk_128[v0]);
+            ov25_RemoveElem(param0->unk_20, param0->unk_128[v0]);
             param0->unk_128[v0] = NULL;
         }
     }
 
     for (v0 = 0; v0 < 64; v0++) {
         if (param0->unk_28[v0]) {
-            ov25_022558B0(param0->unk_20, param0->unk_28[v0]);
+            ov25_RemoveElem(param0->unk_20, param0->unk_28[v0]);
             param0->unk_28[v0] = NULL;
         }
     }
 
     if (param0->unk_24) {
-        ov25_022558B0(param0->unk_20, param0->unk_24);
+        ov25_RemoveElem(param0->unk_20, param0->unk_24);
         param0->unk_24 = NULL;
     }
 
-    ov25_022559B0(&param0->unk_138);
+    ov25_FreeNARCMembers(&param0->unk_138);
 }
 
 static void ov48_022569FC(SysTask *param0, void *param1)

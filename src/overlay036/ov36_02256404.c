@@ -85,14 +85,14 @@ static void ov36_02256454(UnkStruct_ov36_02256404 *param0, const UnkStruct_ov36_
     Graphics_LoadObjectTiles(12, 2, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
     Graphics_LoadObjectTiles(12, 52, 1, 80 * 0x20, 0, 1, HEAP_ID_POKETCH_APP);
 
-    ov25_02255958(&param0->unk_3C, 12, 50, 51, 8);
-    ov25_02255958(&param0->unk_50, 12, 3, 4, 8);
+    ov25_LoadNARCMembers(&param0->unk_3C, 12, 50, 51, 8);
+    ov25_LoadNARCMembers(&param0->unk_50, 12, 3, 4, 8);
 
-    param0->unk_24 = ov25_02255810(param0->unk_20, &v0, &param0->unk_3C);
-    ov25_02255940(param0->unk_24, 80);
+    param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v0, &param0->unk_3C);
+     ov25_Set_unk_8C(param0->unk_24, 80);
 
     for (v2 = 0; v2 < 5; v2++) {
-        param0->unk_28[v2] = ov25_02255810(param0->unk_20, &v1, &param0->unk_50);
+        param0->unk_28[v2] = ov25_SetupNewElem(param0->unk_20, &v1, &param0->unk_50);
         ov25_SetTranslation(param0->unk_28[v2], 327680 + 65536 * v2, 262144);
     }
 
@@ -103,14 +103,14 @@ static void ov36_02256508(UnkStruct_ov36_02256404 *param0)
 {
     int v0;
 
-    ov25_022558B0(param0->unk_20, param0->unk_24);
+    ov25_RemoveElem(param0->unk_20, param0->unk_24);
 
     for (v0 = 0; v0 < 5; v0++) {
-        ov25_022558B0(param0->unk_20, param0->unk_28[v0]);
+        ov25_RemoveElem(param0->unk_20, param0->unk_28[v0]);
     }
 
-    ov25_022559B0(&(param0->unk_3C));
-    ov25_022559B0(&(param0->unk_50));
+    ov25_FreeNARCMembers(&(param0->unk_3C));
+    ov25_FreeNARCMembers(&(param0->unk_50));
 }
 
 static const PoketchTask Unk_ov36_02256764[] = {

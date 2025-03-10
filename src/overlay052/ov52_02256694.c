@@ -121,15 +121,15 @@ static void ov52_0225670C(UnkStruct_ov52_02256694 *param0, const UnkStruct_ov52_
     int v1;
 
     Graphics_LoadObjectTiles(12, 99, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    ov25_02255958(&param0->unk_44, 12, 97, 98, 8);
+    ov25_LoadNARCMembers(&param0->unk_44, 12, 97, 98, 8);
 
     for (v1 = 0; v1 < 4; v1++) {
-        param0->unk_34[v1] = ov25_02255810(param0->unk_30, &v0[v1], &param0->unk_44);
+        param0->unk_34[v1] = ov25_SetupNewElem(param0->unk_30, &v0[v1], &param0->unk_44);
     }
 
-    ov25_02255914(param0->unk_34[1], 1);
-    ov25_02255914(param0->unk_34[2], 1);
-    ov25_02255914(param0->unk_34[3], 1);
+     ov25_Set_unk_8A(param0->unk_34[1], 1);
+     ov25_Set_unk_8A(param0->unk_34[2], 1);
+     ov25_Set_unk_8A(param0->unk_34[3], 1);
 }
 
 static void ov52_0225677C(UnkStruct_ov52_02256694 *param0)
@@ -138,11 +138,11 @@ static void ov52_0225677C(UnkStruct_ov52_02256694 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_34[v0]) {
-            ov25_022558B0(param0->unk_30, param0->unk_34[v0]);
+            ov25_RemoveElem(param0->unk_30, param0->unk_34[v0]);
         }
     }
 
-    ov25_022559B0(&param0->unk_44);
+    ov25_FreeNARCMembers(&param0->unk_44);
 }
 
 static const PoketchTask Unk_ov52_02256DE4[] = {
@@ -237,10 +237,10 @@ static void ov52_022568D8(SysTask *param0, void *param1)
 {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
 
-    ov25_02255914(v0->unk_34[0], 0);
-    ov25_02255914(v0->unk_34[1], 1);
-    ov25_02255914(v0->unk_34[2], 1);
-    ov25_02255914(v0->unk_34[3], 1);
+     ov25_Set_unk_8A(v0->unk_34[0], 0);
+     ov25_Set_unk_8A(v0->unk_34[1], 1);
+     ov25_Set_unk_8A(v0->unk_34[2], 1);
+     ov25_Set_unk_8A(v0->unk_34[3], 1);
 
     ov52_02256A7C(v0);
     PoketchSystem_PlaySoundEffect(1635);
@@ -251,10 +251,10 @@ static void ov52_0225691C(SysTask *param0, void *param1)
 {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
 
-    ov25_02255914(v0->unk_34[0], 0);
-    ov25_02255914(v0->unk_34[1], 0);
-    ov25_02255914(v0->unk_34[2], 1);
-    ov25_02255914(v0->unk_34[3], 1);
+     ov25_Set_unk_8A(v0->unk_34[0], 0);
+     ov25_Set_unk_8A(v0->unk_34[1], 0);
+     ov25_Set_unk_8A(v0->unk_34[2], 1);
+     ov25_Set_unk_8A(v0->unk_34[3], 1);
     ov25_InitAnimation(v0->unk_34[1], 1);
 
     ov52_02256B10(v0);
@@ -266,10 +266,10 @@ static void ov52_02256968(SysTask *param0, void *param1)
 {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
 
-    ov25_02255914(v0->unk_34[0], 0);
-    ov25_02255914(v0->unk_34[1], 1);
-    ov25_02255914(v0->unk_34[2], 0);
-    ov25_02255914(v0->unk_34[3], 1);
+     ov25_Set_unk_8A(v0->unk_34[0], 0);
+     ov25_Set_unk_8A(v0->unk_34[1], 1);
+     ov25_Set_unk_8A(v0->unk_34[2], 0);
+     ov25_Set_unk_8A(v0->unk_34[3], 1);
     ov25_InitAnimation(v0->unk_34[2], 2);
     ov52_02256B64(v0);
     PoketchSystem_PlaySoundEffect(1646);
@@ -280,10 +280,10 @@ static void ov52_022569B4(SysTask *param0, void *param1)
 {
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
 
-    ov25_02255914(v0->unk_34[0], 0);
-    ov25_02255914(v0->unk_34[1], 1);
-    ov25_02255914(v0->unk_34[2], 0);
-    ov25_02255914(v0->unk_34[3], 1);
+     ov25_Set_unk_8A(v0->unk_34[0], 0);
+     ov25_Set_unk_8A(v0->unk_34[1], 1);
+     ov25_Set_unk_8A(v0->unk_34[2], 0);
+     ov25_Set_unk_8A(v0->unk_34[3], 1);
     ov25_InitAnimation(v0->unk_34[2], 2);
     ov52_02256BDC(v0);
     PoketchSystem_PlaySoundEffect(1646);
@@ -295,10 +295,10 @@ static void ov52_02256A00(SysTask *param0, void *param1)
     UnkStruct_ov52_02256694 *v0 = PoketchTask_GetTaskData(param1);
     const UnkStruct_ov52_02256694_1 *v1 = PoketchTask_GetConstTaskData(param1);
 
-    ov25_02255914(v0->unk_34[0], 1);
-    ov25_02255914(v0->unk_34[1], 1);
-    ov25_02255914(v0->unk_34[2], 1);
-    ov25_02255914(v0->unk_34[3], 0);
+     ov25_Set_unk_8A(v0->unk_34[0], 1);
+     ov25_Set_unk_8A(v0->unk_34[1], 1);
+     ov25_Set_unk_8A(v0->unk_34[2], 1);
+     ov25_Set_unk_8A(v0->unk_34[3], 0);
     ov25_InitAnimation(v0->unk_34[3], 0);
 
     ov52_02256C64(v0, v1);

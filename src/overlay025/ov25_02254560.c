@@ -574,7 +574,7 @@ static void ov25_02254DD8(UnkStruct_ov25_02254DD8 *param0, UnkStruct_ov25_022555
 
 static void ov25_02254DE0(UnkStruct_ov25_02254560 *param0, UnkStruct_ov25_02254DD8 *param1)
 {
-    if (ov25_02255958(&param1->unk_08, 12, 3, 4, 7)) {
+    if (ov25_LoadNARCMembers(&param1->unk_08, 12, 3, 4, 7)) {
         static const UnkStruct_ov25_02255810 v0 = {
             { (176 << FX32_SHIFT), (40 << FX32_SHIFT) },
             0,
@@ -589,22 +589,22 @@ static void ov25_02254DE0(UnkStruct_ov25_02254560 *param0, UnkStruct_ov25_02254D
 
         ov25_02254E84(param0, 15);
 
-        param1->unk_1C[0] = ov25_02255810(param1->unk_04, &v0, &param1->unk_08);
+        param1->unk_1C[0] = ov25_SetupNewElem(param1->unk_04, &v0, &param1->unk_08);
 
         if (param1->unk_1C[0] == NULL) {
             return;
         }
 
-        param1->unk_1C[1] = ov25_02255810(param1->unk_04, &v0, &param1->unk_08);
+        param1->unk_1C[1] = ov25_SetupNewElem(param1->unk_04, &v0, &param1->unk_08);
 
         if (param1->unk_1C[1] == NULL) {
-            ov25_022558B0(param1->unk_04, param1->unk_1C[0]);
+            ov25_RemoveElem(param1->unk_04, param1->unk_1C[0]);
             return;
         }
 
         ov25_addTranslation(param1->unk_1C[1], 16 * FX32_ONE, 0);
-        ov25_02255938(param1->unk_1C[0], 15);
-        ov25_02255938(param1->unk_1C[1], 15);
+         ov25_Set_unk_88(param1->unk_1C[0], 15);
+         ov25_Set_unk_88(param1->unk_1C[1], 15);
 
         param1->unk_00 = 1;
     }
@@ -651,9 +651,9 @@ static void ov25_02254EE8(UnkStruct_ov25_02254DD8 *param0, const UnkStruct_ov25_
 static void ov25_02254F40(UnkStruct_ov25_02254DD8 *param0)
 {
     if (param0->unk_00) {
-        ov25_022558B0(param0->unk_04, param0->unk_1C[0]);
-        ov25_022558B0(param0->unk_04, param0->unk_1C[1]);
-        ov25_022559B0(&param0->unk_08);
+        ov25_RemoveElem(param0->unk_04, param0->unk_1C[0]);
+        ov25_RemoveElem(param0->unk_04, param0->unk_1C[1]);
+        ov25_FreeNARCMembers(&param0->unk_08);
 
         param0->unk_00 = 0;
     }

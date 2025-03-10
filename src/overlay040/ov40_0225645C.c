@@ -187,18 +187,18 @@ static void ov40_022564D4(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
     param0->unk_78 = v3;
 
     ov40_02256808(v3, param1);
-    ov25_02255958(&param0->unk_50, 12, 82, 83, 8);
-    ov25_02255958(&param0->unk_64, 12, 5, 6, 8);
+    ov25_LoadNARCMembers(&param0->unk_50, 12, 82, 83, 8);
+    ov25_LoadNARCMembers(&param0->unk_64, 12, 5, 6, 8);
 
     for (v1 = 0; v1 < 11; v1++) {
         if ((v1 >= 0) && (v1 <= 2)) {
-            param0->unk_24[v1] = ov25_02255810(param0->unk_20, &v0[v1], &param0->unk_64);
-            ov25_02255940(param0->unk_24[v1], v3 + v1 * 0x20);
+            param0->unk_24[v1] = ov25_SetupNewElem(param0->unk_20, &v0[v1], &param0->unk_64);
+             ov25_Set_unk_8C(param0->unk_24[v1], v3 + v1 * 0x20);
         } else {
-            param0->unk_24[v1] = ov25_02255810(param0->unk_20, &v0[v1], &param0->unk_50);
+            param0->unk_24[v1] = ov25_SetupNewElem(param0->unk_20, &v0[v1], &param0->unk_50);
         }
 
-        ov25_02255948(param0->unk_24[v1], 1);
+         ov25_Set_unk_92(param0->unk_24[v1], 1);
     }
 
     ov40_02256848(param0, param1);
@@ -210,12 +210,12 @@ static void ov40_02256598(UnkStruct_ov40_0225645C *param0)
 
     for (v0 = 0; v0 < 11; v0++) {
         if (param0->unk_24[v0]) {
-            ov25_022558B0(param0->unk_20, param0->unk_24[v0]);
+            ov25_RemoveElem(param0->unk_20, param0->unk_24[v0]);
         }
     }
 
-    ov25_022559B0(&param0->unk_64);
-    ov25_022559B0(&param0->unk_50);
+    ov25_FreeNARCMembers(&param0->unk_64);
+    ov25_FreeNARCMembers(&param0->unk_50);
 }
 
 static const PoketchTask Unk_ov40_02256A60[] = {
@@ -382,10 +382,10 @@ static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
     BOOL v1;
 
     for (v0 = 0; v0 < param1->unk_00; v0++) {
-        ov25_02255938(param0->unk_24[0 + v0], 1 + PokeIconPaletteIndex(param1->unk_1C[v0], param1->unk_20[v0], 0));
+         ov25_Set_unk_88(param0->unk_24[0 + v0], 1 + PokeIconPaletteIndex(param1->unk_1C[v0], param1->unk_20[v0], 0));
     }
 
-    ov25_02255938(param0->unk_24[2], 1 + PokeIconPaletteIndex(1, 0, 1));
+     ov25_Set_unk_88(param0->unk_24[2], 1 + PokeIconPaletteIndex(1, 0, 1));
 
     if (param1->unk_00 > 0) {
         if (SpeciesData_GetFormValue(param1->unk_1C[0], param1->unk_20[0], 28)) {
@@ -402,21 +402,21 @@ static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
 
     v1 = (param1->unk_00 == 0);
 
-    ov25_02255914(param0->unk_24[0], v1);
-    ov25_02255914(param0->unk_24[3], v1);
-    ov25_02255914(param0->unk_24[4], v1);
-    ov25_02255914(param0->unk_24[5], v1);
-    ov25_02255914(param0->unk_24[9], v1);
+     ov25_Set_unk_8A(param0->unk_24[0], v1);
+     ov25_Set_unk_8A(param0->unk_24[3], v1);
+     ov25_Set_unk_8A(param0->unk_24[4], v1);
+     ov25_Set_unk_8A(param0->unk_24[5], v1);
+     ov25_Set_unk_8A(param0->unk_24[9], v1);
 
     v1 = (param1->unk_00 <= 1);
 
-    ov25_02255914(param0->unk_24[1], v1);
-    ov25_02255914(param0->unk_24[6], v1);
-    ov25_02255914(param0->unk_24[7], v1);
-    ov25_02255914(param0->unk_24[8], v1);
-    ov25_02255914(param0->unk_24[10], v1);
+     ov25_Set_unk_8A(param0->unk_24[1], v1);
+     ov25_Set_unk_8A(param0->unk_24[6], v1);
+     ov25_Set_unk_8A(param0->unk_24[7], v1);
+     ov25_Set_unk_8A(param0->unk_24[8], v1);
+     ov25_Set_unk_8A(param0->unk_24[10], v1);
 
-    ov25_02255914(param0->unk_24[2], (param1->unk_01 == 0));
+     ov25_Set_unk_8A(param0->unk_24[2], (param1->unk_01 == 0));
 }
 
 static void ov40_02256958(ov25_LinkedElement **param0, u32 param1)
@@ -439,8 +439,8 @@ static void ov40_02256958(ov25_LinkedElement **param0, u32 param1)
         ov25_InitAnimation(param0[v1], v0[v1]);
     }
 
-    ov25_02255914(param0[0], (param1 < 100));
-    ov25_02255914(param0[1], (param1 < 10));
+     ov25_Set_unk_8A(param0[0], (param1 < 100));
+     ov25_Set_unk_8A(param0[1], (param1 < 10));
 }
 
 static void ov40_02256A14(ov25_LinkedElement *param0, u32 param1)

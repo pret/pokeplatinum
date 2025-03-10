@@ -62,8 +62,8 @@ BOOL PartyStatusGraphics_New(PoketchPartyStatusGraphics **dest, const PlayerPart
             graphicsData->unk_B4[i] = NULL;
         }
 
-        ov25_02255958(&graphicsData->unk_CC, 12, 5, 6, HEAP_ID_POKETCH_APP);
-        ov25_02255958(&graphicsData->unk_E0, 12, 107, 108, HEAP_ID_POKETCH_APP);
+        ov25_LoadNARCMembers(&graphicsData->unk_CC, 12, 5, 6, HEAP_ID_POKETCH_APP);
+        ov25_LoadNARCMembers(&graphicsData->unk_E0, 12, 107, 108, HEAP_ID_POKETCH_APP);
         *dest = graphicsData;
         return TRUE;
     }
@@ -75,8 +75,8 @@ void PartyStatusGraphics_UnloadAndFree(PoketchPartyStatusGraphics *graphicsData)
 {
     if (graphicsData != NULL) {
         ov32_02256BD4(graphicsData);
-        ov25_022559B0(&graphicsData->unk_CC);
-        ov25_022559B0(&graphicsData->unk_E0);
+        ov25_FreeNARCMembers(&graphicsData->unk_CC);
+        ov25_FreeNARCMembers(&graphicsData->unk_E0);
 
         if (graphicsData->bounceAnimTask) {
             SysTask_Done(graphicsData->bounceAnimTask);
@@ -248,11 +248,11 @@ static void ov32_02256898(PoketchPartyStatusGraphics *param0, const PlayerPartyS
 
     for (v0 = 0; v0 < param1->partyCount; v0++) {
         if (param1->mons[v0].heldItem != ITEM_NONE) {
-            v1.unk_08 = Item_IsMail(param1->mons[v0].heldItem) ? TRUE : FALSE;
+            v1.animIDX = Item_IsMail(param1->mons[v0].heldItem) ? TRUE : FALSE;
             v1.unk_00.x = ((sMonIconCoords[v0].x + 28) << FX32_SHIFT);
             v1.unk_00.y = ((sMonIconCoords[v0].y + 21) << FX32_SHIFT);
 
-            param0->unk_B4[v0] = ov25_02255810(param0->unk_08, &v1, &param0->unk_E0);
+            param0->unk_B4[v0] = ov25_SetupNewElem(param0->unk_08, &v1, &param0->unk_E0);
         }
     }
 }
@@ -266,7 +266,7 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
         NNSG2dCharacterData *v2;
         int v3;
 
-        v1.unk_08 = 0;
+        v1.animIDX = 0;
         v1.unk_0A = 0;
         v1.unk_0B = 2;
         v1.unk_0C = 1;
@@ -282,16 +282,16 @@ static void ov32_0225692C(PoketchPartyStatusGraphics *param0, const PlayerPartyS
             v1.unk_00.x = ((sMonIconCoords[v3].x) << FX32_SHIFT);
             v1.unk_00.y = ((sMonIconCoords[v3].y) << FX32_SHIFT);
 
-            param0->unk_9C[v3] = ov25_02255810(param0->unk_08, &v1, &param0->unk_CC);
+            param0->unk_9C[v3] = ov25_SetupNewElem(param0->unk_08, &v1, &param0->unk_CC);
 
-            ov25_02255940(param0->unk_9C[v3], (0 + 8) + 16 * v3);
+             ov25_Set_unk_8C(param0->unk_9C[v3], (0 + 8) + 16 * v3);
             ov25_InitAnimation(param0->unk_9C[v3], 4);
 
             if ((param1->mons[v3].currentHp == 0) || param1->mons[v3].status) { // darken sprite if mon is incapacitated
-                ov25_02255938(param0->unk_9C[v3], 1);
+                 ov25_Set_unk_88(param0->unk_9C[v3], 1);
             } else {
                 u16 v4 = PokeIconPaletteIndex(param1->mons[v3].species, param1->mons[v3].form, param1->mons[v3].isEgg);
-                ov25_02255938(param0->unk_9C[v3], 2 + v4);
+                 ov25_Set_unk_88(param0->unk_9C[v3], 2 + v4);
             }
         }
 
@@ -396,12 +396,12 @@ static void ov32_02256BD4(PoketchPartyStatusGraphics *param0)
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_9C[v0] != NULL) {
-            ov25_022558B0(param0->unk_08, param0->unk_9C[v0]);
+            ov25_RemoveElem(param0->unk_08, param0->unk_9C[v0]);
             param0->unk_9C[v0] = NULL;
         }
 
         if (param0->unk_B4[v0] != NULL) {
-            ov25_022558B0(param0->unk_08, param0->unk_B4[v0]);
+            ov25_RemoveElem(param0->unk_08, param0->unk_B4[v0]);
             param0->unk_B4[v0] = NULL;
         }
     }

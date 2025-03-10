@@ -122,10 +122,10 @@ static void ov41_0225680C(UnkStruct_ov41_022567B0 *param0, const UnkStruct_ov41_
     int v1;
 
     Graphics_LoadObjectTiles(12, 89, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    ov25_02255958(&param0->unk_34, 12, 87, 88, 8);
+    ov25_LoadNARCMembers(&param0->unk_34, 12, 87, 88, 8);
 
     for (v1 = 0; v1 < 4; v1++) {
-        param0->unk_24[v1] = ov25_02255810(param0->unk_20, &v0[v1], &param0->unk_34);
+        param0->unk_24[v1] = ov25_SetupNewElem(param0->unk_20, &v0[v1], &param0->unk_34);
     }
 }
 
@@ -135,11 +135,11 @@ static void ov41_02256864(UnkStruct_ov41_022567B0 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_24[v0]) {
-            ov25_022558B0(param0->unk_20, param0->unk_24[v0]);
+            ov25_RemoveElem(param0->unk_20, param0->unk_24[v0]);
         }
     }
 
-    ov25_022559B0(&param0->unk_34);
+    ov25_FreeNARCMembers(&param0->unk_34);
 }
 
 static const PoketchTask Unk_ov41_02256E00[] = {
@@ -338,7 +338,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
     case 0:
         v0->unk_68 += 336;
         v0->unk_6A = 336;
-        ov25_02255950(v0->unk_24[0], v0->unk_68);
+         ov25_Set_unk_90(v0->unk_24[0], v0->unk_68);
         v0->unk_64 = 0;
         v0->unk_60 = 0;
         v0->unk_5C = 0;
@@ -346,7 +346,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
         break;
     case 1:
         v0->unk_68 += v0->unk_6A;
-        ov25_02255950(v0->unk_24[0], v0->unk_68);
+         ov25_Set_unk_90(v0->unk_24[0], v0->unk_68);
         v0->unk_6A += 336;
 
         if (v0->unk_6A >= 12288) {
@@ -357,7 +357,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
         break;
     case 2:
         v0->unk_68 += v0->unk_6A;
-        ov25_02255950(v0->unk_24[0], v0->unk_68);
+         ov25_Set_unk_90(v0->unk_24[0], v0->unk_68);
 
         if (v0->unk_60) {
             v0->unk_6C = MTRNG_Next() & 7;
@@ -371,7 +371,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
         break;
     case 3:
         v0->unk_68 += v0->unk_6A;
-        ov25_02255950(v0->unk_24[0], v0->unk_68);
+         ov25_Set_unk_90(v0->unk_24[0], v0->unk_68);
 
         if (v0->unk_6C == 0) {
             v0->unk_6C--;
@@ -383,7 +383,7 @@ static void ov41_02256B8C(SysTask *param0, void *param1)
         if (v0->unk_6A > 80) {
             v0->unk_6A -= 80;
             v0->unk_68 += v0->unk_6A;
-            ov25_02255950(v0->unk_24[0], v0->unk_68);
+             ov25_Set_unk_90(v0->unk_24[0], v0->unk_68);
         } else {
             v0->unk_6A = 0;
             ov41_022568C8(param1);
