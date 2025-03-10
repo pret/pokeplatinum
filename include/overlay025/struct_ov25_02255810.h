@@ -5,7 +5,7 @@
 
 typedef struct {
     NNSG2dFVec2 unk_00;
-    u16 unk_08;
+    u16 animIDX;
     u8 unk_0A;
     u8 unk_0B;
     u8 unk_0C;
