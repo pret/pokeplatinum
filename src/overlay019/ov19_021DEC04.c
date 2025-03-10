@@ -6,8 +6,8 @@
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DA270.h"
+#include "overlay019/pc_compare_mon.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
-#include "overlay019/struct_ov19_021D5FAC.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DA384.h"
 #include "overlay019/struct_ov19_021DEC04_decl.h"
@@ -381,29 +381,29 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int param1)
         { DEFINE_00(84), DEFINE_01(470), 84 << FX32_SHIFT, 470 << FX32_SHIFT },
     };
 
-    const UnkStruct_ov19_021D5FAC *v1;
+    const PCCompareMon *compareMon;
     BOOL v2, v3, v4;
 
-    v1 = ov19_021D5FAC(param0->unk_08, param1);
+    compareMon = GetCompareMonFrom(param0->unk_08, param1);
     v2 = ov19_021D5E34(param0->unk_08);
     v3 = (ov19_021D5F9C(param0->unk_08) == param1);
     v4 = ov19_021D5FB8(param0->unk_08, param1);
 
-    if ((((v2 == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) && (v1->unk_06 == 0)) {
-        int v5;
+    if ((((v2 == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) && (compareMon->isEgg == 0)) {
+        int i;
         VecFx32 v6;
-        const u16 *v7 = &v1->unk_16;
+        const u16 *contestStat = &compareMon->cool;
 
         v6.z = 0;
 
-        for (v5 = 0; v5 < 5; v5++) {
-            v6.x = v0[v5].unk_00 + (((v0[v5].unk_08 - v0[v5].unk_00) / 256) * (int)(*v7));
-            v6.y = v0[v5].unk_04 + (((v0[v5].unk_0C - v0[v5].unk_04) / 256) * (int)(*v7));
-            Sprite_SetPosition(param0->unk_34[param1][v5], &v6);
-            ov19_021D78AC(param0->unk_34[param1][v5], 0);
-            ov19_021D78AC(param0->unk_34[param1 ^ 1][v5], 1);
-            Sprite_SetDrawFlag(param0->unk_34[param1][v5], 1);
-            v7++;
+        for (i = 0; i < 5; i++) {
+            v6.x = v0[i].unk_00 + (((v0[i].unk_08 - v0[i].unk_00) / 256) * (int)(*contestStat));
+            v6.y = v0[i].unk_04 + (((v0[i].unk_0C - v0[i].unk_04) / 256) * (int)(*contestStat));
+            Sprite_SetPosition(param0->unk_34[param1][i], &v6);
+            ov19_021D78AC(param0->unk_34[param1][i], 0);
+            ov19_021D78AC(param0->unk_34[param1 ^ 1][i], 1);
+            Sprite_SetDrawFlag(param0->unk_34[param1][i], 1);
+            contestStat++;
         }
     } else {
         ov19_021DF250(param0, param1);
@@ -499,11 +499,11 @@ static void ov19_021DF394(UnkStruct_ov19_021DEC04 *param0)
 static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int param1)
 {
     Window *v0;
-    const UnkStruct_ov19_021D5FAC *v1;
+    const PCCompareMon *compareMon;
     BOOL v2, v3, v4;
 
     v0 = &(param0->unk_78[3 + param1]);
-    v1 = ov19_021D5FAC(param0->unk_08, param1);
+    compareMon = GetCompareMonFrom(param0->unk_08, param1);
     v2 = ov19_021D5E34(param0->unk_08);
     v3 = ov19_021D5F9C(param0->unk_08) == param1;
     v4 = ov19_021D5FB8(param0->unk_08, param1);
@@ -513,10 +513,10 @@ static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int param1)
     if (((v2 == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
         int v5;
 
-        if (v1->unk_06 == 0) {
-            const u16 *v6 = &v1->unk_08;
+        if (compareMon->isEgg == FALSE) {
+            const u16 *v6 = &compareMon->level;
 
-            Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1->unk_2C, inline_ov19_021DF3AC(v0, 0, v1->unk_2C), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+            Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, compareMon->nature, inline_ov19_021DF3AC(v0, 0, compareMon->nature), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
 
             for (v5 = 0; v5 < 7; v5++) {
                 Strbuf_FormatInt(param0->unk_74, v6[v5], 3, 0, 1);
@@ -537,11 +537,11 @@ static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 *param0, int param1)
 static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int param1)
 {
     Window *v0;
-    const UnkStruct_ov19_021D5FAC *v1;
+    const PCCompareMon *compareMon;
     BOOL v2, v3, v4;
 
     v0 = &(param0->unk_78[5 + param1]);
-    v1 = ov19_021D5FAC(param0->unk_08, param1);
+    compareMon = GetCompareMonFrom(param0->unk_08, param1);
     v2 = ov19_021D5E34(param0->unk_08);
     v3 = (ov19_021D5F9C(param0->unk_08) == param1);
     v4 = ov19_021D5FB8(param0->unk_08, param1);
@@ -549,20 +549,20 @@ static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int param1)
     Window_FillTilemap(v0, 0);
 
     if (((v2 == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
-        int v5;
+        int i;
 
-        if (v1->unk_06 == 0) {
-            for (v5 = 0; v5 < 4; v5++) {
-                if (v1->unk_20[v5]) {
-                    MessageLoader_GetStrbuf(param0->unk_70, v1->unk_20[v5], param0->unk_74);
-                    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * v5, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        if (compareMon->isEgg == FALSE) {
+            for (i = 0; i < 4; i++) {
+                if (compareMon->moves[i]) {
+                    MessageLoader_GetStrbuf(param0->unk_70, compareMon->moves[i], param0->unk_74);
+                    Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
                 }
             }
         } else {
             MessageLoader_GetStrbuf(param0->unk_6C, 44, param0->unk_74);
 
-            for (v5 = 0; v5 < 4; v5++) {
-                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * v5, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+            for (i = 0; i < 4; i++) {
+                Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
             }
         }
     }
@@ -664,13 +664,13 @@ static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 *param0)
 static void ov19_021DF834(UnkStruct_ov19_021DEC04 *param0)
 {
     int v0 = ov19_021D5F9C(param0->unk_08);
-    const UnkStruct_ov19_021D5FAC *v1 = ov19_021D5FAC(param0->unk_08, v0);
+    const PCCompareMon *compareMon = GetCompareMonFrom(param0->unk_08, v0);
     Sprite *v2 = param0->unk_20[v0];
-    BoxPokemon *v3 = (BoxPokemon *)(v1->unk_00);
+    BoxPokemon *v3 = compareMon->mon;
     NNSG2dCharacterData *v4;
 
     if (ov19_021D5E34(param0->unk_08)) {
-        u32 v5 = 4 + PokeIconPaletteIndex(v1->species, v1->unk_07, v1->unk_06);
+        u32 v5 = 4 + PokeIconPaletteIndex(compareMon->species, compareMon->form, compareMon->isEgg);
 
         ov19_021DA744(param0->unk_14, param0->unk_E8, BoxPokemon_IconSpriteIndex(v3), sizeof(param0->unk_E8));
 
@@ -695,8 +695,8 @@ static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 *param0, int param1)
     Window_FillTilemap(v0, 0);
 
     if (ov19_021D5E34(param0->unk_08)) {
-        const UnkStruct_ov19_021D5FAC *v1 = ov19_021D5FAC(param0->unk_08, param1);
-        Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, v1->unk_28, inline_ov19_021DF3AC(v0, 0, v1->unk_28), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
+        const PCCompareMon *compareMon = GetCompareMonFrom(param0->unk_08, param1);
+        Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, compareMon->monName, inline_ov19_021DF3AC(v0, 0, compareMon->monName), 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
     }
 
     Window_LoadTiles(v0);
