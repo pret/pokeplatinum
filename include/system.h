@@ -2,6 +2,7 @@
 #define POKEPLATINUM_SYSTEM_H
 
 #include "constants/heap.h"
+#include "constants/system.h"
 
 #include "sys_task_manager.h"
 

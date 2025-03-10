@@ -2444,7 +2444,7 @@ static int ov97_022301BC(OverlayManager *param0, int *param1)
     Heap_Destroy(HEAP_ID_86);
 
     if (v0->unk_1638 == 2) {
-        SetGBACartridgeVersion(NULL);
+        SetGBACartridgeVersion(VERSION_NONE);
     }
 
     ov97_02238400(0);

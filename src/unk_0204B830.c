@@ -286,7 +286,7 @@ static void sub_0204BAAC(FieldSystem *fieldSystem, void *param1)
         Strbuf_Free(v15);
     }
 
-    sub_0209304C(v4, v1, 4, SpecialMetLoc_GetId(2, v12), 32);
+    UpdateMonStatusAndTrainerInfo(v4, v1, 4, SpecialMetLoc_GetId(2, v12), HEAP_ID_FIELD_TASK);
 
     if (Pokemon_GetValue(v4, MON_DATA_SPECIES, NULL) == SPECIES_ARCEUS) {
         if (Pokemon_GetValue(v4, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1) {

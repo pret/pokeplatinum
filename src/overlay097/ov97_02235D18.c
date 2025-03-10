@@ -7,11 +7,11 @@
 #include "overlay097/struct_ov97_0223F450.h"
 
 typedef struct {
-    u32 unk_00;
-    u8 unk_04;
-    u8 unk_05;
-    u16 unk_06;
-} UnkStruct_ov97_02235DC8;
+    u32 agbGameCodeReversed;
+    u8 gameSet;
+    u8 gameType;
+    u16 language;
+} GBAPokemonCartInfo;
 
 typedef struct {
     u8 unk_00[4084];
@@ -21,15 +21,15 @@ typedef struct {
     u32 unk_FFC;
 } UnkStruct_ov97_02235F4C;
 
-static int ov97_02235DC8(const UnkStruct_ov97_02235DC8 *param0, int param1);
+static int ov97_02235DC8(const GBAPokemonCartInfo *cartInfo, int param1);
 static u16 ov97_02235FFC(void *param0, int *param1, u32 *param2);
 static u32 ov97_02236244(struct CTRDGTaskInfo_tag *param0);
 static UnkStruct_ov97_0223F450 Unk_ov97_0223F450;
 
 static UnkStruct_ov97_0223F450 Unk_ov97_0223F450;
-static const UnkStruct_ov97_02235DC8 Unk_ov97_0223D92C[30];
+static const GBAPokemonCartInfo sGBAPokemonCartInfo[30];
 static u8 Unk_ov97_0223EC04[0xa0 - 4];
-static const UnkStruct_ov97_02235DC8 *Unk_ov97_0223EBFC = NULL;
+static const GBAPokemonCartInfo *sLoadedGBACartInfo = NULL;
 static int Unk_ov97_0223F438;
 static u32 Unk_ov97_0223F448;
 GBASaveSlot *sGBASaveSlot;
@@ -39,29 +39,29 @@ static int Unk_ov97_0223F444;
 static BOOL ov97_02235D18()
 {
     if (CTRDG_IdentifyAgbBackup(CTRDG_BACKUP_TYPE_FLASH_1M) != 0) {
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 int ov97_02235D2C(void *param0)
 {
     sGBASaveSlot = (GBASaveSlot *)param0;
 
-    if (Unk_ov97_0223EBFC != NULL) {
+    if (sLoadedGBACartInfo != NULL) {
         return 12;
     }
 
     {
-        int v0 = ov97_02235DC8(Unk_ov97_0223D92C, 30);
+        int v0 = ov97_02235DC8(sGBAPokemonCartInfo, NELEMS(sGBAPokemonCartInfo));
 
         if (v0 != 0) {
             return v0;
         }
     }
 
-    if (Unk_ov97_0223EBFC->unk_04 == 0) {
+    if (sLoadedGBACartInfo->gameSet == AGB_SET_RUBYSAPP) {
         Unk_ov97_0223F450.unk_88 = 2192;
         Unk_ov97_0223F450.unk_8C = 15040;
         Unk_ov97_0223F450.unk_50 = 4640;
@@ -79,43 +79,43 @@ int ov97_02235D2C(void *param0)
     return 0;
 }
 
-void ov97_02235DA4(void)
+void ResetLoadedGBACartInfo(void)
 {
-    Unk_ov97_0223EBFC = NULL;
+    sLoadedGBACartInfo = NULL;
 }
 
-int ov97_02235DB0()
+int GBACart_GetAGBGameType()
 {
-    return Unk_ov97_0223EBFC->unk_05;
+    return sLoadedGBACartInfo->gameType;
 }
 
-int ov97_02235DBC()
+int GBACart_GetLanguage()
 {
-    return Unk_ov97_0223EBFC->unk_06;
+    return sLoadedGBACartInfo->language;
 }
 
-static int ov97_02235DC8(const UnkStruct_ov97_02235DC8 *param0, int param1)
+static int ov97_02235DC8(const GBAPokemonCartInfo *cartInfo, int param1)
 {
-    u32 v0;
+    u32 agbGameCode;
 
-    Unk_ov97_0223EBFC = NULL;
+    sLoadedGBACartInfo = NULL;
 
     if (!CTRDG_IsAgbCartridge()) {
         return 1;
     }
 
-    v0 = CTRDG_GetAgbGameCode();
+    agbGameCode = CTRDG_GetAgbGameCode();
     {
-        int v1;
+        int i;
 
-        for (v1 = 0; v1 < param1; v1++) {
-            if (param0[v1].unk_00 == v0) {
-                Unk_ov97_0223EBFC = param0 + v1;
+        for (i = 0; i < param1; i++) {
+            if (cartInfo[i].agbGameCodeReversed == agbGameCode) {
+                sLoadedGBACartInfo = cartInfo + i;
                 break;
             }
         }
 
-        if (Unk_ov97_0223EBFC == NULL) {
+        if (sLoadedGBACartInfo == NULL) {
             return 2;
         }
     }
@@ -393,13 +393,13 @@ static u32 ov97_02236244(struct CTRDGTaskInfo_tag *param0)
     if (param0->result == 0) {
         Unk_ov97_0223F43C++;
 
-        if (Unk_ov97_0223F43C >= 14) {
+        if (Unk_ov97_0223F43C >= GBA_MAX_PC_BOXES) {
             Unk_ov97_0223F43C = 0;
             Unk_ov97_0223F44C = 0;
             return 0;
         }
 
-        if (Unk_ov97_0223F43C == 14 - 1) {
+        if (Unk_ov97_0223F43C == GBA_MAX_PC_BOXES - 1) {
             Unk_ov97_0223F44C = 2;
             return 0;
         } else {
@@ -479,37 +479,42 @@ void *GetGBASaveBlock2(void)
     return GetGBASaveSectorById(GBA_SECTOR_ID_SAVEBLOCK2);
 }
 
-static const UnkStruct_ov97_02235DC8 Unk_ov97_0223D92C[30] = {
-    { 'JVXA', 0x0, 0x0, 0x1 },
-    { 'EVXA', 0x0, 0x0, 0x2 },
-    { 'FVXA', 0x0, 0x0, 0x3 },
-    { 'DVXA', 0x0, 0x0, 0x5 },
-    { 'SVXA', 0x0, 0x0, 0x7 },
-    { 'IVXA', 0x0, 0x0, 0x4 },
-    { 'JPXA', 0x0, 0x1, 0x1 },
-    { 'EPXA', 0x0, 0x1, 0x2 },
-    { 'FPXA', 0x0, 0x1, 0x3 },
-    { 'DPXA', 0x0, 0x1, 0x5 },
-    { 'SPXA', 0x0, 0x1, 0x7 },
-    { 'IPXA', 0x0, 0x1, 0x4 },
-    { 'JRPB', 0x1, 0x3, 0x1 },
-    { 'ERPB', 0x1, 0x3, 0x2 },
-    { 'FRPB', 0x1, 0x3, 0x3 },
-    { 'DRPB', 0x1, 0x3, 0x5 },
-    { 'SRPB', 0x1, 0x3, 0x7 },
-    { 'IRPB', 0x1, 0x3, 0x4 },
-    { 'JGPB', 0x1, 0x2, 0x1 },
-    { 'EGPB', 0x1, 0x2, 0x2 },
-    { 'FGPB', 0x1, 0x2, 0x3 },
-    { 'DGPB', 0x1, 0x2, 0x5 },
-    { 'SGPB', 0x1, 0x2, 0x7 },
-    { 'IGPB', 0x1, 0x2, 0x4 },
-    { 'JEPB', 0x2, 0x4, 0x1 },
-    { 'EEPB', 0x2, 0x4, 0x2 },
-    { 'FEPB', 0x2, 0x4, 0x3 },
-    { 'DEPB', 0x2, 0x4, 0x5 },
-    { 'SEPB', 0x2, 0x4, 0x7 },
-    { 'IEPB', 0x2, 0x4, 0x4 }
+static const GBAPokemonCartInfo sGBAPokemonCartInfo[30] = {
+    // Ruby
+    { 'JVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, JAPANESE },
+    { 'EVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, ENGLISH },
+    { 'FVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, FRENCH },
+    { 'DVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, GERMAN },
+    { 'SVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, SPANISH },
+    { 'IVXA', AGB_SET_RUBYSAPP, AGB_TYPE_RUBY, ITALIAN },
+    // Sapphire
+    { 'JPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, JAPANESE },
+    { 'EPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, ENGLISH },
+    { 'FPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, FRENCH },
+    { 'DPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, GERMAN },
+    { 'SPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, SPANISH },
+    { 'IPXA', AGB_SET_RUBYSAPP, AGB_TYPE_SAPPHIRE, ITALIAN },
+    // FireRed
+    { 'JRPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, JAPANESE },
+    { 'ERPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, ENGLISH },
+    { 'FRPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, FRENCH },
+    { 'DRPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, GERMAN },
+    { 'SRPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, SPANISH },
+    { 'IRPB', AGB_SET_FIRELEAF, AGB_TYPE_FIRERED, ITALIAN },
+    // LeafGreen
+    { 'JGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, JAPANESE },
+    { 'EGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, ENGLISH },
+    { 'FGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, FRENCH },
+    { 'DGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, GERMAN },
+    { 'SGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, SPANISH },
+    { 'IGPB', AGB_SET_FIRELEAF, AGB_TYPE_LEAFGREEN, ITALIAN },
+    // Emerald
+    { 'JEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, JAPANESE },
+    { 'EEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, ENGLISH },
+    { 'FEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, FRENCH },
+    { 'DEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, GERMAN },
+    { 'SEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, SPANISH },
+    { 'IEPB', AGB_SET_EMERALD, AGB_TYPE_EMERALD, ITALIAN }
 };
 
 static u8 Unk_ov97_0223EC04[] = {

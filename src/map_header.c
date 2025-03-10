@@ -31,7 +31,7 @@ const u16 MapHeader_GetMapMatrixID(u32 headerID)
     headerID = MapHeader_IDBoundsCheck(headerID);
     u16 mapMatrixID = sMapHeaders[headerID].mapMatrixID;
 
-    if (mapMatrixID == 22 && gGameVersion == PEARL) {
+    if (mapMatrixID == 22 && gGameVersion == VERSION_PEARL) {
         mapMatrixID = 23;
     }
 

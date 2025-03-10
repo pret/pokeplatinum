@@ -208,16 +208,16 @@ static BOOL sub_0209843C(FieldTask *param0)
         FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
 
         {
-            Pokemon *v2 = v0->unk_0C.unk_00;
-            TrainerInfo *v3 = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
+            Pokemon *mon = v0->unk_0C.unk_00;
+            TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(FieldSystem_GetSaveData(fieldSystem));
             int v4 = 6;
-            int v5 = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
-            int v6 = 11;
-            int v7 = 0;
+            int location = MapHeader_GetMapLabelTextID(fieldSystem->location->mapId);
+            int heapID = HEAP_ID_FIELDMAP;
+            int isEgg = FALSE;
 
-            Pokemon_SetValue(v2, MON_DATA_IS_EGG, &v7);
-            sub_0209304C(v2, v3, v4, v5, v6);
-            Pokemon_SetValue(v2, MON_DATA_SPECIES_NAME, NULL);
+            Pokemon_SetValue(mon, MON_DATA_IS_EGG, &isEgg);
+            UpdateMonStatusAndTrainerInfo(mon, trainerInfo, v4, location, heapID);
+            Pokemon_SetValue(mon, MON_DATA_SPECIES_NAME, NULL);
         }
 
         {

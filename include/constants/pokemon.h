@@ -35,7 +35,8 @@ enum {
 
 #define BASE_FRIENDSHIP_VALUE 70
 
-#define CATCHING_SHOW_MONS 6
+#define CATCHING_SHOW_MONS       6
+#define MAX_GBA_TRANSFER_HISTORY 20
 
 /**
  * @brief Pokemon Data Parameters

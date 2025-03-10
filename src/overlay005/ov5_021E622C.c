@@ -2628,7 +2628,7 @@ void Egg_CreateEgg(Pokemon *egg, u16 species, u8 param2, TrainerInfo *trainerInf
         Strbuf_Free(otName);
     }
 
-    sub_0209304C(egg, trainerInfo, param4, metLocation, 0);
+    UpdateMonStatusAndTrainerInfo(egg, trainerInfo, param4, metLocation, HEAP_ID_SYSTEM);
 }
 
 void ov5_021E6DE8(Pokemon *param0, u16 param1, UnkStruct_02026310 *param2, u32 param3, u8 param4)
@@ -2693,7 +2693,7 @@ void ov5_021E6EA8(UnkStruct_02026310 *param0, Party *param1, TrainerInfo *param2
     ov5_021E67B0(v3, param0);
     ov5_021E6948(v3, ov5_021E622C(param0, v1[1]), ov5_021E622C(param0, v1[0]));
 
-    sub_0209304C(v3, param2, 3, SpecialMetLoc_GetId(1, 0), 4);
+    UpdateMonStatusAndTrainerInfo(v3, param2, 3, SpecialMetLoc_GetId(1, 0), HEAP_ID_FIELD);
 
     if (v0 == 172) {
         ov5_021E6BD0(v3, param0);

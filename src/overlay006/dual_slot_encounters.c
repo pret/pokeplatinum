@@ -14,23 +14,23 @@ void WildEncounters_ReplaceDualSlotEncounters(const WildEncounters *encounterDat
     }
 
     switch (gSystem.gbaCartridgeVersion) {
-    case SAPPHIRE:
+    case VERSION_SAPPHIRE:
         (*param2) = encounterData->dualSlotSapphireEncounters[0];
         (*param3) = encounterData->dualSlotSapphireEncounters[1];
         break;
-    case RUBY:
+    case VERSION_RUBY:
         (*param2) = encounterData->dualSlotRubyEncounters[0];
         (*param3) = encounterData->dualSlotRubyEncounters[1];
         break;
-    case EMERALD:
+    case VERSION_EMERALD:
         (*param2) = encounterData->dualSlotEmeraldEncouters[0];
         (*param3) = encounterData->dualSlotEmeraldEncouters[1];
         break;
-    case FIRERED:
+    case VERSION_FIRERED:
         (*param2) = encounterData->dualSlotFireredEncounters[0];
         (*param3) = encounterData->dualSlotFireredEncounters[1];
         break;
-    case LEAFGREEN:
+    case VERSION_LEAFGREEN:
         (*param2) = encounterData->dualSlotLeafgreenEncounters[0];
         (*param3) = encounterData->dualSlotLeafgreenEncounters[1];
         break;

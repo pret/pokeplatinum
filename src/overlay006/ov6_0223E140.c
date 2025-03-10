@@ -877,7 +877,7 @@ static void ov6_0223E830(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     VecFx32 v1;
     CameraAngle v2;
 
-#if (GAME_VERSION == DIAMOND || GAME_VERSION == PLATINUM)
+#if (GAME_VERSION == VERSION_DIAMOND || GAME_VERSION == VERSION_PLATINUM)
     Camera_SetFOV(0x1701, fieldSystem->camera);
     Camera_SetDistance(0xc8a55, fieldSystem->camera);
     v1.x = 0x2280ef;
@@ -890,7 +890,7 @@ static void ov6_0223E830(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     Camera_SetAngleAroundTarget(&v2, fieldSystem->camera);
 
     Camera_SetClipping(2 * FX32_ONE, 2000 * FX32_ONE, fieldSystem->camera);
-#elif (GAME_VERSION == PEARL)
+#elif (GAME_VERSION == VERSION_PEARL)
     Camera_SetFOV(0x10c1, fieldSystem->camera);
     Camera_SetDistance(0xD5052, fieldSystem->camera);
     v1.x = 0x1bffbd;

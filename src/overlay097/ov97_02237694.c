@@ -841,7 +841,7 @@ int ov97_0223847C(void)
 
     switch (v1->unk_14) {
     case 0:
-        ResetLock(4);
+        ResetLock(RESET_LOCK_SOFT_RESET);
         SaveData_SaveStateInit(v1->unk_18, 2);
         v1->unk_14++;
         break;
@@ -857,7 +857,7 @@ int ov97_0223847C(void)
         }
 
         if ((v0 == 2) || (v0 == 3)) {
-            ResetUnlock(4);
+            ResetUnlock(RESET_LOCK_SOFT_RESET);
         }
 
         return v0;
@@ -888,7 +888,7 @@ void ov97_0223850C(void)
 
     SaveData_SaveStateCancel(v0->unk_18);
     v0->unk_14 = 3;
-    ResetUnlock(4);
+    ResetUnlock(RESET_LOCK_SOFT_RESET);
 }
 
 int ov97_02238528(void)

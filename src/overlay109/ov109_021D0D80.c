@@ -434,7 +434,7 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     CommMan_SetErrorHandling(1, 1);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
-    ResetLock(2);
+    ResetLock(RESET_LOCK_0x2);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_95, 0x80000);
 
     v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D0F70), HEAP_ID_95);
@@ -510,7 +510,7 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
     NARC_dtor(v0->unk_D80);
     OverlayManager_FreeData(param0);
     Heap_Destroy(HEAP_ID_95);
-    ResetUnlock(2);
+    ResetUnlock(RESET_LOCK_0x2);
 
     return 1;
 }
@@ -3467,7 +3467,7 @@ static void ov109_021D3B70(UnkStruct_ov109_021D0F70 *param0, int param1)
     v4 = Party_GetPokemonBySlotIndex(v2, v0);
     v5 = Party_GetPokemonBySlotIndex(v3, v1);
 
-    sub_0209304C(v5, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, 11);
+    UpdateMonStatusAndTrainerInfo(v5, CommInfo_TrainerInfo(CommSys_CurNetId()), 5, 0, HEAP_ID_FIELDMAP);
     Pokemon_Copy(v5, v4);
 }
 

@@ -765,7 +765,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
         case 2:
             v2 = &Unk_ov72_021D37CC;
 
-            if ((gGameVersion == DIAMOND) || (GAME_VERSION == PLATINUM)) {
+            if ((gGameVersion == VERSION_DIAMOND) || (GAME_VERSION == VERSION_PLATINUM)) {
                 v3 = Unk_ov72_021D3954;
                 v5 = NELEMS(Unk_ov72_021D3954);
             } else {
@@ -907,10 +907,10 @@ static void ov73_021D1930(UnkStruct_ov73_021D1058 *param0)
     {
         int v0, v1;
 
-        if (gGameVersion == 12) {
+        if (gGameVersion == VERSION_PLATINUM) {
             v0 = 3;
             v1 = 27;
-        } else if (gGameVersion == 10) {
+        } else if (gGameVersion == VERSION_DIAMOND) {
             v0 = 1;
             v1 = 25;
         } else {
@@ -2102,7 +2102,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
             case 5: {
                 u32 v9;
 
-                if ((gGameVersion == DIAMOND) || (GAME_VERSION == PLATINUM)) {
+                if ((gGameVersion == VERSION_DIAMOND) || (GAME_VERSION == VERSION_PLATINUM)) {
                     v9 = Unk_ov72_021D3954[param0->unk_48 - 1].unk_00;
                 } else {
                     v9 = Unk_ov73_021D1648[param0->unk_48 - 1].unk_00;
