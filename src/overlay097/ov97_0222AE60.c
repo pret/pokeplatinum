@@ -45,7 +45,7 @@
 #include "unk_0209A74C.h"
 #include "vram_transfer.h"
 
-#include "res/text/bank/continue_menu.h"
+#include "res/text/bank/main_menu.h"
 
 FS_EXTERN_OVERLAY(game_start);
 FS_EXTERN_OVERLAY(overlay77);
@@ -620,19 +620,19 @@ static BOOL ov97_0222B768(void *param0, int param1, UnkStruct_ov97_02237808 *par
 
     switch (v1->agbGameType - 1) {
     case AGB_TYPE_RUBY:
-        v0 = continue_menu_migrate_from_ruby;
+        v0 = main_menu_migrate_from_ruby;
         break;
     case AGB_TYPE_SAPPHIRE:
-        v0 = continue_menu_migrate_from_sapphire;
+        v0 = main_menu_migrate_from_sapphire;
         break;
     case AGB_TYPE_LEAFGREEN:
-        v0 = continue_menu_migrate_from_leafgreen;
+        v0 = main_menu_migrate_from_leafgreen;
         break;
     case AGB_TYPE_FIRERED:
-        v0 = continue_menu_migrate_from_firered;
+        v0 = main_menu_migrate_from_firered;
         break;
     case AGB_TYPE_EMERALD:
-        v0 = continue_menu_migrate_from_emerald;
+        v0 = main_menu_migrate_from_emerald;
         break;
     }
 
