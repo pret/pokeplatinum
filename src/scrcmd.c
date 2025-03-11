@@ -355,7 +355,7 @@ static BOOL ScrCmd_2AD(ScriptContext *ctx);
 static BOOL ScrCmd_06E(ScriptContext *ctx);
 static BOOL ScrCmd_093(ScriptContext *ctx);
 static BOOL ScrCmd_094(ScriptContext *ctx);
-static BOOL ScrCmd_095(ScriptContext *ctx);
+static BOOL ScrCmd_GetPartyFormByID(ScriptContext *ctx);
 static BOOL ScrCmd_09B(ScriptContext *ctx);
 static BOOL ScrCmd_315(ScriptContext *ctx);
 static BOOL ScrCmd_09C(ScriptContext *ctx);
@@ -914,7 +914,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_092,
     ScrCmd_093,
     ScrCmd_094,
-    ScrCmd_095,
+    ScrCmd_GetPartyFormByID,
     ScrCmd_GivePokemon,
     ScrCmd_GiveEgg,
     ScrCmd_098,
@@ -1498,7 +1498,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2DA,
     ScrCmd_2DB,
     ScrCmd_2DC,
-    ScrCmd_2DD,
+    ScrCmd_GetPartyIDWithSpecies,
     ScrCmd_2DE,
     ScrCmd_2DF,
     ScrCmd_2E0,
@@ -3486,16 +3486,16 @@ static BOOL ScrCmd_094(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_095(ScriptContext *ctx)
+static BOOL ScrCmd_GetPartyFormByID(ScriptContext *ctx)
 {
-    Pokemon *pokemon;
-    u16 v1 = ScriptContext_GetVar(ctx);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    Pokemon *mon;
+    u16 slot = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    pokemon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), v1);
-    *v2 = Pokemon_GetForm(pokemon);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
+    *destVar = Pokemon_GetForm(mon);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ScrCmd_191(ScriptContext *ctx)
@@ -6836,7 +6836,7 @@ static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx)
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
 static BOOL ScrCmd_264(ScriptContext *ctx)

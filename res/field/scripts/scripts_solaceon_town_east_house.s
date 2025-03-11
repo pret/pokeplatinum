@@ -23,8 +23,8 @@ _000C:
     End
 
 _0048:
-    ScrCmd_2DD 0x8004, 201
-    ScrCmd_095 0x8004, 0x8006
+    GetPartyIDWithSpecies 0x8004, SPECIES_UNOWN
+    GetPartyFormByID 0x8004, 0x8006
     GoToIfEq 0x4000, 0x8006, _00EB
     GoTo _0067
 

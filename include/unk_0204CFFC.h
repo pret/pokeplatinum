@@ -35,7 +35,7 @@ BOOL ScrCmd_1EE(ScriptContext *param0);
 BOOL ScrCmd_1F0(ScriptContext *param0);
 BOOL PartyHasSpecies(ScriptContext *ctx);
 BOOL ScrCmd_2CB(ScriptContext *param0);
-BOOL ScrCmd_2DD(ScriptContext *param0);
+BOOL ScrCmd_GetPartyIDWithSpecies(ScriptContext *ctx);
 BOOL ScrCmd_22E(ScriptContext *param0);
 BOOL ScrCmd_22F(ScriptContext *param0);
 BOOL ScrCmd_230(ScriptContext *param0);

@@ -895,7 +895,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_095 arg0, arg1
+    .macro GetPartyFormByID arg0, arg1
     .short 149
     .short \arg0
     .short \arg1
@@ -4048,10 +4048,10 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2DD arg0, arg1
+    .macro GetPartyIDWithSpecies destVarID, species
     .short 733
-    .short \arg0
-    .short \arg1
+    .short \destVarID
+    .short \species
     .endm
 
     .macro ScrCmd_2DE arg0, arg1, arg2, arg3, arg4

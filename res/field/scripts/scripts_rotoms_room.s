@@ -226,7 +226,7 @@ _03F3:
     End
 
 _03F5:
-    ScrCmd_2DD 0x8000, 0x1DF
+    GetPartyIDWithSpecies 0x8000, SPECIES_ROTOM
     GoTo _0473
     End
 
