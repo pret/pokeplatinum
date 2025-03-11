@@ -104,7 +104,7 @@ BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_022545
 
         v0->unk_1C8 = oamMngr;
         NNS_G2dResetOamManagerBuffer(v0->unk_1C8);
-        v0->unk_1CC = ov25_02255540(v0->unk_1C8, HEAP_ID_POKETCH_MAIN);
+        v0->unk_1CC = ov25_SetupDataStructure(v0->unk_1C8, HEAP_ID_POKETCH_MAIN);
 
         if (v0->unk_1CC == NULL) {
             Heap_FreeToHeap(*param0);
@@ -139,7 +139,7 @@ BOOL ov25_02254560(UnkStruct_ov25_02254560 **param0, const UnkStruct_ov25_022545
 static void ov25_TaskCallback(SysTask *task, void *data)
 {
     UnkStruct_ov25_02254560 *v0 = data;
-    ov25_02255614(v0->unk_1CC);
+    ov25_MainFunc(v0->unk_1CC);
 }
 
 UnkStruct_ov25_022555E8 *ov25_02254664(void)

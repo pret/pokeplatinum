@@ -158,10 +158,10 @@ static void ov53_02256568(SysTask *param0, void *param1)
     } else {
         int v3;
 
-        ov25_Set_unk_8A(v0->unk_24[0], 1);
+        ov25_Set_ElemApplyAffineTransformation(v0->unk_24[0], 1);
 
         for (v3 = 0; v3 < 3; v3++) {
-            ov25_Set_unk_8A(v0->unk_24[4 + v3], 1);
+            ov25_Set_ElemApplyAffineTransformation(v0->unk_24[4 + v3], 1);
         }
     }
 
@@ -376,11 +376,11 @@ static void ov53_022566AC(UnkStruct_ov53_02256420 *param0, const UnkStruct_ov53_
         }
 
         if (v2[v3] == 0) {
-            ov25_Set_unk_8A(param0->unk_24[0 + v3], 1);
+            ov25_Set_ElemApplyAffineTransformation(param0->unk_24[0 + v3], 1);
 
             for (v4 = 0; v4 < 3; v4++) {
                 v5 = 4 + v3 * 3 + v4;
-                ov25_Set_unk_8A(param0->unk_24[v5], 1);
+                ov25_Set_ElemApplyAffineTransformation(param0->unk_24[v5], 1);
             }
         } else {
             ov25_Set_unk_88(param0->unk_24[0 + v3], 1 + PokeIconPaletteIndex(v2[v3], 0, 0));
@@ -420,7 +420,7 @@ static void ov53_02256874(ov25_LinkedElement **param0, u32 param1)
             ov25_InitAnimation(*param0, v1);
             v3 = 1;
         } else {
-            ov25_Set_unk_8A(*param0, 1);
+            ov25_Set_ElemApplyAffineTransformation(*param0, 1);
         }
 
         param1 -= (v1 * v2);

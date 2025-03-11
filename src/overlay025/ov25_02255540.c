@@ -18,23 +18,23 @@ struct ov25_LinkedElement_t {
     struct ov25_LinkedElement_t *leftElem;
     struct ov25_LinkedElement_t *rightElem;
     NNSG2dFVec2 translation;
-    MtxFx22 *unk_70;
+    MtxFx22 *affineTransformation;
     MtxFx22 unk_74;
     union {
         struct {
             u16 unk_84_val1_unk_00;
-            u16 unk_84_val1_unk_02;
+            u16 oamPriority;
         };
         u32 unk_84_val2;
     };
-    u16 unk_88;
-    u8 unk_8A;
+    u16 cParam;
+    u8 applyAffineTransformation;
     u8 unk_8B;
-    u16 unk_8C;
-    u8 unk_8E;
-    u8 unk_8F;
-    u16 unk_90;
-    u8 unk_92;
+    u16 charNo;
+    u8 flipH;
+    u8 flipV;
+    u16 rotZ;
+    u8 mosaic;
 };
 
 struct UnkStruct_ov25_022555E8_t {
@@ -55,7 +55,7 @@ static void ov25_MarkElemPointerUnused(UnkStruct_ov25_022555E8 *param0, ov25_Lin
 static void ov25_SortElemIntoList(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1);
 static void ov25_RemoveElemFromList(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1);
 
-UnkStruct_ov25_022555E8 *ov25_02255540(NNSG2dOamManagerInstance *oamMngr, u32 heapID)
+UnkStruct_ov25_022555E8 *ov25_SetupDataStructure(NNSG2dOamManagerInstance *oamMngr, u32 heapID)
 {
     UnkStruct_ov25_022555E8 *v0;
     BOOL success = FALSE;
@@ -141,60 +141,62 @@ void ov25_FreeOV25(UnkStruct_ov25_022555E8 *param0)
     }
 }
 
-void ov25_02255614(UnkStruct_ov25_022555E8 *param0)
+void ov25_MainFunc(UnkStruct_ov25_022555E8 *param0)
 {
     if (param0->nextUnusedElemIdx) {
-        ov25_LinkedElement *v0 = param0->lastElem;
+        ov25_LinkedElement *elem = param0->lastElem;
         GXOamAttr *oam = param0->oam;
         s32 numObjs = param0->numObjs;
-        u32 v3;
+        u32 numObjsUsed;
 
-        while (v0 != NULL) {
-            NNS_G2dTickCellAnimation(&v0->cellAnim, FX32_ONE * 2);
+        while (elem != NULL) {
+            NNS_G2dTickCellAnimation(&elem->cellAnim, FX32_ONE * 2); // Advance cell animation time
 
-            if (v0->unk_8A == 0) {
-                const NNSG2dSRTControl *srtCtrl = &(v0->cellAnim.srtCtrl);
+            if (elem->applyAffineTransformation == FALSE) {
+                const NNSG2dSRTControl *srtCtrl = &(elem->cellAnim.srtCtrl);
                 NNSG2dFVec2 translation;
 
-                translation.x = v0->translation.x + (fx32)(srtCtrl->srtData.trans.x << FX32_SHIFT);
-                translation.y = v0->translation.y + (fx32)(srtCtrl->srtData.trans.y << FX32_SHIFT);
+                translation.x = elem->translation.x + (fx32)(srtCtrl->srtData.trans.x << FX32_SHIFT);
+                translation.y = elem->translation.y + (fx32)(srtCtrl->srtData.trans.y << FX32_SHIFT);
 
-                if (v0->unk_8B == 0) {
-                    v3 = NNS_G2dMakeCellToOams(oam, numObjs, NNS_G2dGetCellAnimationCurrentCell(&v0->cellAnim), NULL, &(translation), 0, 0);
+                if (elem->unk_8B == 0) {
+                    numObjsUsed = NNS_G2dMakeCellToOams(oam, numObjs, NNS_G2dGetCellAnimationCurrentCell(&elem->cellAnim), NULL, &(translation), 0, FALSE);
                 } else {
-                    u16 v6;
+                    u16 affineIdx;
 
-                    MTX_Identity22(v0->unk_70);
+                    MTX_Identity22(elem->affineTransformation); // Create 2x2 identity matrix
 
+                    // Apply rotation
                     if (srtCtrl->srtData.SRT_EnableFlag & NNS_G2D_AFFINEENABLE_ROTATE) {
-                        u16 v7 = srtCtrl->srtData.rotZ + v0->unk_90;
-                        MTX_Rot22(v0->unk_70, FX_SinIdx(v7), FX_CosIdx(v7));
-                    } else if (v0->unk_90) {
-                        MTX_Rot22(v0->unk_70, FX_SinIdx(v0->unk_90), FX_CosIdx(v0->unk_90));
+                        u16 rotZ = srtCtrl->srtData.rotZ + elem->rotZ;
+                        MTX_Rot22(elem->affineTransformation, FX_SinIdx(rotZ), FX_CosIdx(rotZ));
+                    } else if (elem->rotZ) {
+                        MTX_Rot22(elem->affineTransformation, FX_SinIdx(elem->rotZ), FX_CosIdx(elem->rotZ));
                     }
 
+                    // Apply scale
                     if (srtCtrl->srtData.SRT_EnableFlag & NNS_G2D_AFFINEENABLE_SCALE) {
-                        MTX_ScaleApply22(v0->unk_70, v0->unk_70, FX_Inv(srtCtrl->srtData.scale.x), FX_Inv(srtCtrl->srtData.scale.y));
+                        MTX_ScaleApply22(elem->affineTransformation, elem->affineTransformation, FX_Inv(srtCtrl->srtData.scale.x), FX_Inv(srtCtrl->srtData.scale.y));
                     }
 
-                    v6 = NNS_G2dEntryOamManagerAffine(param0->oamMngr, v0->unk_70);
-                    v3 = NNS_G2dMakeCellToOams(oam, numObjs, NNS_G2dGetCellAnimationCurrentCell(&v0->cellAnim), v0->unk_70, &(translation), v6, 1);
+                    affineIdx = NNS_G2dEntryOamManagerAffine(param0->oamMngr, elem->affineTransformation);
+                    numObjsUsed = NNS_G2dMakeCellToOams(oam, numObjs, NNS_G2dGetCellAnimationCurrentCell(&elem->cellAnim), elem->affineTransformation, &(translation), affineIdx, TRUE);
                 }
 
-                numObjs -= v3;
+                numObjs -= numObjsUsed;
 
-                while (v3--) {
-                    oam->priority = v0->unk_84_val1_unk_02;
-                    oam->cParam += v0->unk_88;
-                    oam->charNo += v0->unk_8C;
-                    oam->flipH ^= v0->unk_8E;
-                    oam->flipV ^= v0->unk_8F;
-                    oam->mosaic ^= v0->unk_92;
+                while (numObjsUsed--) {
+                    oam->priority = elem->oamPriority;
+                    oam->cParam += elem->cParam;
+                    oam->charNo += elem->charNo;
+                    oam->flipH ^= elem->flipH;
+                    oam->flipV ^= elem->flipV;
+                    oam->mosaic ^= elem->mosaic;
                     oam++;
                 }
             }
 
-            v0 = v0->leftElem;
+            elem = elem->leftElem;
         }
 
         if (oam > param0->oam) {
@@ -208,7 +210,7 @@ ov25_LinkedElement *ov25_SetupNewElem(UnkStruct_ov25_022555E8 *param0, const Unk
     ov25_LinkedElement *newElem = ov25_GetNextUnusedElemPointer(param0);
 
     if (newElem != NULL) {
-        newElem->unk_84_val1_unk_02 = param1->unk_0B;
+        newElem->oamPriority = param1->unk_0B;
         newElem->unk_84_val1_unk_00 = param1->unk_0C;
 
         ov25_SortElemIntoList(param0, newElem);
@@ -219,15 +221,15 @@ ov25_LinkedElement *ov25_SetupNewElem(UnkStruct_ov25_022555E8 *param0, const Unk
         NNS_G2dInitCellAnimation(&(newElem->cellAnim), NNS_G2dGetAnimSequenceByIdx(newElem->animBack, param1->animIDX), newElem->cellBank);
 
         newElem->translation = param1->unk_00;
-        newElem->unk_88 = 0;
-        newElem->unk_8C = 0;
-        newElem->unk_8E = ((param1->unk_0A & 1) != 0);
-        newElem->unk_8F = ((param1->unk_0A & 2) != 0);
-        newElem->unk_92 = 0;
-        newElem->unk_90 = 0;
-        newElem->unk_70 = &(newElem->unk_74);
+        newElem->cParam = 0;
+        newElem->charNo = 0;
+        newElem->flipH = ((param1->unk_0A & 1) != 0);
+        newElem->flipV = ((param1->unk_0A & 2) != 0);
+        newElem->mosaic = 0;
+        newElem->rotZ = 0;
+        newElem->affineTransformation = &(newElem->unk_74);
         newElem->unk_8B = param1->unk_0D;
-        newElem->unk_8A = 0;
+        newElem->applyAffineTransformation = FALSE;
     }
 
     return newElem;
@@ -268,9 +270,9 @@ void ov25_GetTranslation(const ov25_LinkedElement *param0, fx32 *param1, fx32 *p
     *param2 = param0->translation.y;
 }
 
-void ov25_Set_unk_8A(ov25_LinkedElement *param0, BOOL param1)
+void ov25_Set_ElemApplyAffineTransformation(ov25_LinkedElement *param0, BOOL param1)
 {
-    param0->unk_8A = param1;
+    param0->applyAffineTransformation = param1;
 }
 
 void ov25_UpdateElem_unk_84_00(UnkStruct_ov25_022555E8 *param0, ov25_LinkedElement *param1, u32 param2)
@@ -282,22 +284,22 @@ void ov25_UpdateElem_unk_84_00(UnkStruct_ov25_022555E8 *param0, ov25_LinkedEleme
 
 void ov25_Set_unk_88(ov25_LinkedElement *param0, u32 value)
 {
-    param0->unk_88 = value;
+    param0->cParam = value;
 }
 
 void ov25_Set_unk_8C(ov25_LinkedElement *param0, u32 value)
 {
-    param0->unk_8C = value;
+    param0->charNo = value;
 }
 
 void ov25_Set_unk_92(ov25_LinkedElement *param0, BOOL value)
 {
-    param0->unk_92 = value;
+    param0->mosaic = value;
 }
 
-void ov25_Set_unk_90(ov25_LinkedElement *param0, u16 value)
+void ov25_Set_ElemRotZ(ov25_LinkedElement *param0, u16 value)
 {
-    param0->unk_90 = value;
+    param0->rotZ = value;
 }
 
 BOOL ov25_LoadNARCMembers(UnkStruct_ov25_02255958 *param0, u32 narcId, u32 memberId, u32 memberId2, enum HeapId heapId)

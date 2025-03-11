@@ -473,14 +473,14 @@ static void ov46_02257094(UnkStruct_ov46_02256BCC *param0, const UnkStruct_ov46_
 
 static void ov46_022570C4(UnkStruct_ov46_02256BCC *param0, BOOL param1)
 {
-    ov25_Set_unk_8A(param0->unk_34[5], param1);
-    ov25_Set_unk_8A(param0->unk_34[6], param1);
-    ov25_Set_unk_8A(param0->unk_34[7], param1);
-    ov25_Set_unk_8A(param0->unk_34[8], param1);
-    ov25_Set_unk_8A(param0->unk_34[9], param1);
-    ov25_Set_unk_8A(param0->unk_34[10], param1);
-    ov25_Set_unk_8A(param0->unk_34[11], param1);
-    ov25_Set_unk_8A(param0->unk_34[12], param1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_34[5], param1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_34[6], param1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_34[7], param1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_34[8], param1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_34[9], param1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_34[10], param1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_34[11], param1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_34[12], param1);
 }
 
 u32 ov46_0225710C(UnkStruct_ov46_02256BCC *param0)

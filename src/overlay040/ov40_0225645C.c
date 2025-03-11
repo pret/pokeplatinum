@@ -402,21 +402,21 @@ static void ov40_02256848(UnkStruct_ov40_0225645C *param0, const UnkStruct_ov40_
 
     v1 = (param1->unk_00 == 0);
 
-    ov25_Set_unk_8A(param0->unk_24[0], v1);
-    ov25_Set_unk_8A(param0->unk_24[3], v1);
-    ov25_Set_unk_8A(param0->unk_24[4], v1);
-    ov25_Set_unk_8A(param0->unk_24[5], v1);
-    ov25_Set_unk_8A(param0->unk_24[9], v1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[0], v1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[3], v1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[4], v1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[5], v1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[9], v1);
 
     v1 = (param1->unk_00 <= 1);
 
-    ov25_Set_unk_8A(param0->unk_24[1], v1);
-    ov25_Set_unk_8A(param0->unk_24[6], v1);
-    ov25_Set_unk_8A(param0->unk_24[7], v1);
-    ov25_Set_unk_8A(param0->unk_24[8], v1);
-    ov25_Set_unk_8A(param0->unk_24[10], v1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[1], v1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[6], v1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[7], v1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[8], v1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[10], v1);
 
-    ov25_Set_unk_8A(param0->unk_24[2], (param1->unk_01 == 0));
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_24[2], (param1->unk_01 == 0));
 }
 
 static void ov40_02256958(ov25_LinkedElement **param0, u32 param1)
@@ -439,8 +439,8 @@ static void ov40_02256958(ov25_LinkedElement **param0, u32 param1)
         ov25_InitAnimation(param0[v1], v0[v1]);
     }
 
-    ov25_Set_unk_8A(param0[0], (param1 < 100));
-    ov25_Set_unk_8A(param0[1], (param1 < 10));
+    ov25_Set_ElemApplyAffineTransformation(param0[0], (param1 < 100));
+    ov25_Set_ElemApplyAffineTransformation(param0[1], (param1 < 10));
 }
 
 static void ov40_02256A14(ov25_LinkedElement *param0, u32 param1)

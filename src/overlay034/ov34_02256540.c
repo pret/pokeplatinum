@@ -93,11 +93,11 @@ static BOOL ov34_02256588(UnkStruct_ov34_02256540 *param0)
 
         Graphics_LoadObjectTiles(12, 42, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
         param0->unk_34 = ov25_SetupNewElem(param0->unk_30, &v0, &param0->unk_58);
-        ov25_Set_unk_8A(param0->unk_34, 1);
+        ov25_Set_ElemApplyAffineTransformation(param0->unk_34, 1);
 
         for (v2 = 0; v2 < 8; v2++) {
             param0->unk_38[v2] = ov25_SetupNewElem(param0->unk_30, &v1, &param0->unk_58);
-            ov25_Set_unk_8A(param0->unk_38[v2], 1);
+            ov25_Set_ElemApplyAffineTransformation(param0->unk_38[v2], 1);
         }
 
         return 1;
@@ -240,7 +240,7 @@ static void ov34_022567D4(SysTask *param0, void *param1)
     switch (PoketchTask_GetState(param1)) {
     case 0:
         ov25_SetTranslation(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
-        ov25_Set_unk_8A(v0->unk_34, 0);
+        ov25_Set_ElemApplyAffineTransformation(v0->unk_34, 0);
         ov25_InitAnimation(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
         break;
@@ -268,7 +268,7 @@ static void ov34_0225684C(SysTask *param0, void *param1)
     case 0:
         ov25_SetTranslation(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
         ov25_InitAnimation(v0->unk_34, 0);
-        ov25_Set_unk_8A(v0->unk_34, 0);
+        ov25_Set_ElemApplyAffineTransformation(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
         break;
     case 1:
@@ -295,7 +295,7 @@ static void ov34_022568C0(SysTask *param0, void *param1)
         ov34_02256974(v0, v1);
         ov25_SetTranslation(v0->unk_34, v1->unk_00 << FX32_SHIFT, v1->unk_04 << FX32_SHIFT);
         ov25_InitAnimation(v0->unk_34, 0);
-        ov25_Set_unk_8A(v0->unk_34, 0);
+        ov25_Set_ElemApplyAffineTransformation(v0->unk_34, 0);
         PoketchTask_IncrementState(param1);
         break;
     case 1:
@@ -345,7 +345,7 @@ static void ov34_022569A0(UnkStruct_ov34_02256540 *param0, const UnkStruct_ov34_
             v1 = 3;
         }
 
-        ov25_Set_unk_8A(param0->unk_38[v0], 0);
+        ov25_Set_ElemApplyAffineTransformation(param0->unk_38[v0], 0);
         ov25_InitAnimation(param0->unk_38[v0], v1);
     }
 }
@@ -359,10 +359,10 @@ static void ov34_022569E8(UnkStruct_ov34_02256540 *param0)
 {
     int v0;
 
-    ov25_Set_unk_8A(param0->unk_34, 1);
+    ov25_Set_ElemApplyAffineTransformation(param0->unk_34, 1);
 
     for (v0 = 0; v0 < 8; v0++) {
-        ov25_Set_unk_8A(param0->unk_38[v0], 1);
+        ov25_Set_ElemApplyAffineTransformation(param0->unk_38[v0], 1);
     }
 }
 

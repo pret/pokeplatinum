@@ -110,7 +110,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
         param0->unk_3C[v1] = ov25_SetupNewElem(param0->unk_20, &v0, &(param0->unk_68));
 
         if (param1->unk_2C[v1] == 0) {
-            ov25_Set_unk_8A(param0->unk_3C[v1], 1);
+            ov25_Set_ElemApplyAffineTransformation(param0->unk_3C[v1], 1);
         }
     }
 
@@ -125,7 +125,7 @@ static void ov47_02256684(UnkStruct_ov47_02256634 *param0, const UnkStruct_ov47_
         param0->unk_4C[v1] = ov25_SetupNewElem(param0->unk_20, &v0, &(param0->unk_68));
 
         if ((param1->unk_3C[v1].unk_00 == 0) || (v2 == 0)) {
-            ov25_Set_unk_8A(param0->unk_4C[v1], 1);
+            ov25_Set_ElemApplyAffineTransformation(param0->unk_4C[v1], 1);
         }
     }
 
@@ -266,12 +266,12 @@ static void ov47_02256968(SysTask *param0, void *param1)
             if (v1->unk_3C[v6].unk_00) {
                 if (ov25_02255E24(v1->unk_3C[v6].unk_04, &v4, &v5)) {
                     ov25_SetTranslation(v0->unk_4C[v6], ((v4) << FX32_SHIFT), ((v5) << FX32_SHIFT));
-                    ov25_Set_unk_8A(v0->unk_4C[v6], 0);
+                    ov25_Set_ElemApplyAffineTransformation(v0->unk_4C[v6], 0);
                 } else {
-                    ov25_Set_unk_8A(v0->unk_4C[v6], 1);
+                    ov25_Set_ElemApplyAffineTransformation(v0->unk_4C[v6], 1);
                 }
             } else {
-                ov25_Set_unk_8A(v0->unk_4C[v6], 1);
+                ov25_Set_ElemApplyAffineTransformation(v0->unk_4C[v6], 1);
             }
         }
     }
