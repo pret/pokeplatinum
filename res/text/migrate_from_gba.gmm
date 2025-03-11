@@ -1,197 +1,196 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="20888" />
-	<row id="pl_msg_00000454_00000" index="0">
+	<row id="migrate_from_gba_from_ruby" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Make Pokémon migrate from\n{STRVAR_1 3, 1, 0}’s Ruby Game Pak?</language>
 	</row>
-	<row id="pl_msg_00000454_00001" index="1">
+	<row id="migrate_from_gba_from_sapphire" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Make Pokémon migrate from\n{STRVAR_1 3, 1, 0}’s Sapphire Game Pak?</language>
 	</row>
-	<row id="pl_msg_00000454_00002" index="2">
+	<row id="migrate_from_gba_from_emerald" index="2">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Make Pokémon migrate from\n{STRVAR_1 3, 1, 0}’s Emerald Game Pak?</language>
 	</row>
-	<row id="pl_msg_00000454_00003" index="3">
+	<row id="migrate_from_gba_from_firered" index="3">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Make Pokémon migrate from\n{STRVAR_1 3, 1, 0}’s FireRed Game Pak?</language>
 	</row>
-	<row id="pl_msg_00000454_00004" index="4">
+	<row id="migrate_from_gba_from_leafgreen" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Make Pokémon migrate from\n{STRVAR_1 3, 1, 0}’s LeafGreen Game Pak?</language>
 	</row>
-	<row id="pl_msg_00000454_00005" index="5">
+	<row id="migrate_from_gba_less_than_six" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">There aren’t six Pokémon in\nthe PC Boxes.</language>
 	</row>
-	<row id="pl_msg_00000454_00006" index="6">
+	<row id="migrate_from_gba_please_choose_six" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please choose the six Pokémon\nthat will migrate.</language>
 	</row>
-	<row id="pl_msg_00000454_00007" index="7">
+	<row id="migrate_from_gba_game_card_already_stocked" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">This Game Card has already been\nstocked with six migrated Pokémon.\rPlease participate in a Catching\nShow at Pal Park.</language>
 	</row>
-	<row id="pl_msg_00000454_00008" index="8">
+	<row id="migrate_from_gba_egg_cannot_migrate" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">An Egg cannot migrate!</language>
 	</row>
-	<row id="pl_msg_00000454_00009" index="9">
+	<row id="migrate_from_gba_knows_hidden_move" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">This Pokémon knows a hidden move.\nIt cannot migrate.</language>
 	</row>
-	<row id="pl_msg_00000454_00010" index="10">
+	<row id="migrate_from_gba_six_chosen_will_migrate" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The six chosen Pokémon will migrate.</language>
 	</row>
-	<row id="pl_msg_00000454_00011" index="11">
+	<row id="migrate_from_gba_cannot_return_to_gba" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon CANNOT be returned to the\nGame Boy Advance Game Pak. OK?</language>
 	</row>
-	<row id="pl_msg_00000454_00012" index="12">
+	<row id="migrate_from_gba_00012" index="12">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000454_00013" index="13">
+	<row id="migrate_from_gba_00013" index="13">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000454_00014" index="14">
+	<row id="migrate_from_gba_00014" index="14">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000454_00015" index="15">
+	<row id="migrate_from_gba_00015" index="15">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000454_00016" index="16">
+	<row id="migrate_from_gba_00016" index="16">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000454_00017" index="17">
+	<row id="migrate_from_gba_00017" index="17">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000454_00018" index="18">
+	<row id="migrate_from_gba_saving_on_ruby_and_platinum" index="18">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving data on Pokémon Ruby and\nPokémon Platinum...</language>
 	</row>
-	<row id="pl_msg_00000454_00019" index="19">
+	<row id="migrate_from_gba_saving_on_ruby_and_pearl" index="19">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving data on Pokémon Ruby and\nPokémon Pearl...</language>
 	</row>
-	<row id="pl_msg_00000454_00020" index="20">
+	<row id="migrate_from_gba_saving_on_sapphire_and_platinum" index="20">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving data on Pokémon Sapphire and\nPokémon Platinum...</language>
 	</row>
-	<row id="pl_msg_00000454_00021" index="21">
+	<row id="migrate_from_gba_saving_on_sapphire_and_pearl" index="21">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving data on Pokémon Sapphire and\nPokémon Pearl...</language>
 	</row>
-	<row id="pl_msg_00000454_00022" index="22">
+	<row id="migrate_from_gba_saving_on_emerald_and_platinum" index="22">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving data on Pokémon Emerald and\nPokémon Platinum...</language>
 	</row>
-	<row id="pl_msg_00000454_00023" index="23">
+	<row id="migrate_from_gba_saving_on_emerald_and_pearl" index="23">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving data on Pokémon Emerald and\nPokémon Pearl...</language>
 	</row>
-	<row id="pl_msg_00000454_00024" index="24">
+	<row id="migrate_from_gba_saving_on_firered_and_platinum" index="24">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving data on Pokémon FireRed and\nPokémon Platinum...</language>
 	</row>
-	<row id="pl_msg_00000454_00025" index="25">
+	<row id="migrate_from_gba_saving_on_firered_and_pearl" index="25">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving data on Pokémon FireRed and\nPokémon Pearl...</language>
 	</row>
-	<row id="pl_msg_00000454_00026" index="26">
+	<row id="migrate_from_gba_saving_on_leafgreen_and_platinum" index="26">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving data on Pokémon LeafGreen and\nPokémon Platinum...</language>
 	</row>
-	<row id="pl_msg_00000454_00027" index="27">
+	<row id="migrate_from_gba_saving_on_leafgreen_and_pearl" index="27">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Saving data on Pokémon LeafGreen\nand Pokémon Pearl...</language>
 	</row>
-	<row id="pl_msg_00000454_00028" index="28">
+	<row id="migrate_from_gba_00028" index="28">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000454_00029" index="29">
-		<attribute name="window_context_name">used</attribute>
+	<row id="migrate_from_gba_safely_migrated_to_platinum" index="29">
 		<language name="English">Six Pokémon safely migrated to\nthe Pokémon Platinum Game Card.</language>
 	</row>
-	<row id="pl_msg_00000454_00030" index="30">
+	<row id="migrate_from_gba_safely_migrated_to_pearl" index="30">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Six Pokémon safely migrated to\nthe Pokémon Pearl Game Card.</language>
 	</row>
-	<row id="pl_msg_00000454_00031" index="31">
+	<row id="migrate_from_gba_full_day_hasnt_passed" index="31">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon may migrate from a Game Boy\nAdvance Game Pak only once a day.\rA full day hasn’t passed since\nPokémon migrated from this Game Pak.</language>
 	</row>
-	<row id="pl_msg_00000454_00032" index="32">
+	<row id="migrate_from_gba_different_ds_or_internal_clock_altered" index="32">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You are using a different Nintendo DS,\nor its internal clock has been altered.\rIf the game’s time setting is changed,\nyou will not be able to migrate\fPokémon for another 24 hours.\rWould you like to change your game’s\ntime setting to match the Nintendo DS?</language>
 	</row>
-	<row id="pl_msg_00000454_00033" index="33">
+	<row id="migrate_from_gba_game_clock_adjusted" index="33">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The game clock has been adjusted.\rPokémon cannot be made to migrate\nfor 24 hours.</language>
 	</row>
-	<row id="pl_msg_00000454_00034" index="34">
+	<row id="migrate_from_gba_cannot_return_to_gba_migrate_to_platinum" index="34">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon CANNOT be returned to the\nGame Boy Advance Game Pak.\rMake Pokémon migrate to the\nPokémon Platinum Game Card?</language>
 	</row>
-	<row id="pl_msg_00000454_00035" index="35">
+	<row id="migrate_from_gba_cannot_return_to_gba_migrate_to_pearl" index="35">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon CANNOT be returned to the\nGame Boy Advance Game Pak.\rMake Pokémon migrate to the\nPokémon Pearl Game Card?</language>
 	</row>
-	<row id="pl_msg_00000454_00036" index="36">
+	<row id="migrate_from_gba_save_failed" index="36">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Save failed...</language>
 	</row>
-	<row id="pl_msg_00000454_00037" index="37">
+	<row id="migrate_from_gba_error_reading_gba_pak" index="37">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Error reading the Game Boy Advance\nGame Pak’s save file.\rThere may not be a file saved,\nor the save file may be corrupted.</language>
 	</row>
-	<row id="pl_msg_00000454_00038" index="38">
+	<row id="migrate_from_gba_mon_not_permitted_to_migrate" index="38">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">This Pokémon is not permitted to\nmigrate.</language>
 	</row>
-	<row id="pl_msg_00000454_00039" index="39">
+	<row id="migrate_from_gba_00039" index="39">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
 	</row>
-	<row id="pl_msg_00000454_00040" index="40">
+	<row id="migrate_from_gba_making_adjustments" index="40">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Making adjustments...\nDo not turn off the power.</language>
 	</row>
-	<row id="pl_msg_00000454_00041" index="41">
+	<row id="migrate_from_gba_00041" index="41">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XX</language>
 	</row>
-	<row id="pl_msg_00000454_00042" index="42">
+	<row id="migrate_from_gba_00042" index="42">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXX</language>
 	</row>
-	<row id="pl_msg_00000454_00043" index="43">
+	<row id="migrate_from_gba_level" index="43">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Lv.</language>
 	</row>
-	<row id="pl_msg_00000454_00044" index="44">
+	<row id="migrate_from_gba_item" index="44">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Item</language>
 	</row>
-	<row id="pl_msg_00000454_00045" index="45">
+	<row id="migrate_from_gba_00045" index="45">
 		<attribute name="window_context_name">garbage</attribute>
 		<language name="English"></language>
 		<language name="日本語">XXXXX</language>
