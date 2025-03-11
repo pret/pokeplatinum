@@ -4,12 +4,12 @@
 #include <string.h>
 
 #include "constants/charcode.h"
+#include "constants/forms.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/narc.h"
 #include "constants/sound.h"
-#include "constants/forms.h"
 #include "generated/abilities.h"
 #include "generated/evolution_methods.h"
 #include "generated/exp_rates.h"
