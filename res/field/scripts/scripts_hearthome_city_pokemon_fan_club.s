@@ -56,7 +56,7 @@ _0098:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_247 0x8000
+    GetFirstNonEggInParty 0x8000
     BufferPartyMonNickname 0, 0x8000
     Message 3
     GetFriendshipByPartyID 0x800C, 0x8000

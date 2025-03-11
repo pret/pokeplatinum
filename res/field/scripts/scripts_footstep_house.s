@@ -10,34 +10,34 @@
     .data
 
     ScriptEntry _000A
-    ScriptEntry _0010
+    ScriptEntry FootstepHouse_DrFootstep
     ScriptEntryEnd
 
 _000A:
     SetFlag 0x9ED
     End
 
-_0010:
+FootstepHouse_DrFootstep:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_247 PARTY_ID
+    GetFirstNonEggInParty PARTY_ID
     BufferPartyMonSpecies 0, PARTY_ID
     BufferPlayerName 1
     BufferPartyMonNickname 2, PARTY_ID
     GetSpeciesFootprintType HAS_PRINT, FOOTPRINT_TYPE, PARTY_ID
-    GoToIfSet FLAG_TALKED_TO_DR_FOOTSTEP, _004B
+    GoToIfSet FLAG_TALKED_TO_DR_FOOTSTEP, FootstepHouse_CheckFeelingsAgain
     SetFlag FLAG_TALKED_TO_DR_FOOTSTEP
-    Message 0
+    Message footstep_house_pokemon_are_quite_easy_for_me_to_read
     CloseMessage
-    GoTo _0056
+    GoTo FootstepHouse_FadeScreen
 
-_004B:
-    Message 1
+FootstepHouse_CheckFeelingsAgain:
+    Message footstep_house_do_you_want_to_check_the_feelings_of_your_pokemon_again
     CloseMessage
-    GoTo _0056
+    GoTo FootstepHouse_FadeScreen
 
-_0056:
+FootstepHouse_FadeScreen:
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
     WaitTime 40, 0x800C

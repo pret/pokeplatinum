@@ -3226,7 +3226,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_247 arg0
+    .macro GetFirstNonEggInParty arg0
     .short 583
     .short \arg0
     .endm

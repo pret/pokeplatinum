@@ -238,18 +238,18 @@ u16 sub_0205E0E4(u16 param0, u16 param1)
     }
 }
 
-u16 sub_0205E1B4(SaveData *param0)
+u16 SaveData_GetFirstNonEggInParty(SaveData *saveData)
 {
-    Pokemon *v0;
-    u16 v1, v2;
+    Pokemon *mon;
+    u16 i, partyCount;
 
-    v2 = Party_GetCurrentCount(Party_GetFromSavedata(param0));
+    partyCount = Party_GetCurrentCount(Party_GetFromSavedata(saveData));
 
-    for (v1 = 0; v1 < v2; v1++) {
-        v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0), v1);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(saveData), i);
 
-        if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) == 0) {
-            return v1;
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            return i;
         }
     }
 

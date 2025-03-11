@@ -1348,7 +1348,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_244,
     ScrCmd_245,
     ScrCmd_246,
-    ScrCmd_247,
+    ScrCmd_GetFirstNonEggInParty,
     ScrCmd_248,
     ScrCmd_249,
     ScrCmd_24A,

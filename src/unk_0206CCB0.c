@@ -2828,7 +2828,7 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
 
     party = Party_GetFromSavedata(fieldSystem->saveData);
-    pokemon = Party_GetPokemonBySlotIndex(party, sub_0205E1B4(fieldSystem->saveData));
+    pokemon = Party_GetPokemonBySlotIndex(party, SaveData_GetFirstNonEggInParty(fieldSystem->saveData));
 
     sub_0206CE74(param1, 0, Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(pokemon, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(trainerInfo), TrainerInfo_GameCode(trainerInfo));
     StringTemplate_SetContestAccessoryName(param1, 1, (LCRNG_Next() % 100));

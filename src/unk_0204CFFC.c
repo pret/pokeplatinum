@@ -360,12 +360,12 @@ BOOL ScrCmd_281(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_247(ScriptContext *param0)
+BOOL ScrCmd_GetFirstNonEggInParty(ScriptContext *ctx)
 {
-    u16 *v0 = ScriptContext_GetVarPointer(param0);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
-    *v0 = sub_0205E1B4(param0->fieldSystem->saveData);
-    return 0;
+    *destVar = SaveData_GetFirstNonEggInParty(ctx->fieldSystem->saveData);
+    return FALSE;
 }
 
 BOOL ScrCmd_248(ScriptContext *param0)

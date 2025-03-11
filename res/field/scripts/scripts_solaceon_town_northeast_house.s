@@ -11,7 +11,7 @@ _000A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_247 0x800C
+    GetFirstNonEggInParty 0x800C
     ScrCmd_212 0x8004, 0x800C
     ScrCmd_17C 0, 0x8004
     Message 0

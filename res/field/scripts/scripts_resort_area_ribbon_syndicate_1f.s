@@ -73,7 +73,7 @@ _00D6:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_247 0x8000
+    GetFirstNonEggInParty 0x8000
     BufferPlayerName 0
     BufferPartyMonSpecies 2, 0x8000
     GetPartyMonRibbon 0x800C, 0x8000, RIBBON_GORGEOUS_ROYAL

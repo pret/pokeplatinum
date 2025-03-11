@@ -18,7 +18,7 @@ _001A:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_247 0x8000
+    GetFirstNonEggInParty 0x8000
     GetPartyMonRibbon 0x800C, 0x8000, RIBBON_HOENN_EFFORT
     GoToIfEq 0x800C, 1, _0086
     BufferPartyMonSpecies 0, 0x8000

@@ -14,7 +14,7 @@ _0006:
     GoToIfSet 0xAA4, _006A
     GoToIfSet 0xAA7, _005F
     GoToIfUnset 247, _004C
-    ScrCmd_247 0x8002
+    GetFirstNonEggInParty 0x8002
     Call _0070
     GoToIfEq 0x800C, 1, _0136
     GoTo _0146

@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <body language="English">
 	<key value="24307" />
-	<row id="pl_msg_00000497_00000" index="0">
+	<row id="footstep_house_pokemon_are_quite_easy_for_me_to_read" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dr. Footstep: Pokémon are quite easy\nfor me to read.\rI need only to see their footprints,\nand their innermost thoughts are\frevealed to me!\rOh?\nYou are skeptical of my claim?\rThen, let your {STRVAR_1 0, 0, 0} walk\nin front of me, right here.\rFrom its footprints, I will determine\nhow it feels about you.\r</language>
 	</row>
-	<row id="pl_msg_00000497_00001" index="1">
+	<row id="footstep_house_do_you_want_to_check_the_feelings_of_your_pokemon_again" index="1">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dr. Footstep: Do you want to check\nthe feelings of your Pokémon again?\rThen, let your {STRVAR_1 0, 0, 0} walk\nin front of me, right here.\rFrom its footprints, I will determine\nhow it feels about you.\r</language>
 	</row>
