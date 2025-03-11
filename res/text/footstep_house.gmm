@@ -17,27 +17,27 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dr. Footstep: ...Hmmm... {STRVAR_1 0, 0, 0}\ndoesn’t leave any footprints.\rIt’s somewhat difficult for me to\ndetermine what its thoughts are.</language>
 	</row>
-	<row id="pl_msg_00000497_00004" index="4">
+	<row id="footstep_house_pokemon_silent_type" index="4">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dr. Footstep: ...Hmm... {STRVAR_1 0, 0, 0}\nhappens to be quite the silent type!</language>
 	</row>
-	<row id="pl_msg_00000497_00005" index="5">
+	<row id="footstep_house_and_thats_what_you_pokemon_thinks_of_you_close_bond" index="5">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dr. Footstep: ...And that is what\nyour {STRVAR_1 0, 0, 0} thinks of you.\rI must say, your {STRVAR_1 0, 0, 0} and\nyou share a very close bond.\fThis is for you.\r</language>
 	</row>
-	<row id="pl_msg_00000497_00006" index="6">
+	<row id="footstep_house_pokemon_doesnt_leave_any_footprints_close_bond" index="6">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dr. Footstep: ...Hmmm... {STRVAR_1 0, 0, 0}\ndoesn’t leave any footprints.\rIt’s somewhat difficult for me to\ndetermine what its thoughts are.\rHowever, your {STRVAR_1 0, 0, 0} and\nyou obviously share a close bond.\fThis is for you.\r</language>
 	</row>
-	<row id="pl_msg_00000497_00007" index="7">
+	<row id="footstep_house_pokemon_silent_type_close_bond" index="7">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dr. Footstep: ...Hmm... {STRVAR_1 0, 0, 0}\nhappens to be quite the silent type!\rHowever, your {STRVAR_1 0, 0, 0} and\nyou obviously share a close bond.\fThis is for you.\r</language>
 	</row>
-	<row id="pl_msg_00000497_00008" index="8">
+	<row id="footstep_house_received_footprint_ribbon" index="8">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 1, 0} received\nthe Footprint Ribbon.\r</language>
 	</row>
-	<row id="pl_msg_00000497_00009" index="9">
+	<row id="footstep_house_put_the_footprint_ribbon_on_pokemon" index="9">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 1, 0} put the Footprint Ribbon\non {STRVAR_1 0, 0, 0}.</language>
 	</row>

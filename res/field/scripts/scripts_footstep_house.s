@@ -191,23 +191,23 @@ FootstepHouse_SlowType_WithoutPrint:
 
 FootstepHouse_CuteType_WithPrint_Level1:
     Message footstep_house_cute_type_with_print_level_1
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_CuteType_WithPrint_Level2:
     Message footstep_house_cute_type_with_print_level_2
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_CuteType_WithPrint_Level3:
     Message footstep_house_cute_type_with_print_level_3
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_CuteType_WithPrint_Level4:
     Message footstep_house_cute_type_with_print_level_4
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_CuteType_WithPrint_Level5:
     Message footstep_house_cute_type_with_print_level_5
-    GoTo _053E
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_TryGiveRibbon
 
 FootstepHouse_CuteType_WithoutPrint_Level1:
     Message footstep_house_cute_type_without_print_level_1
@@ -227,27 +227,27 @@ FootstepHouse_CuteType_WithoutPrint_Level4:
 
 FootstepHouse_CuteType_WithoutPrint_Level5:
     Message footstep_house_cute_type_without_print_level_5
-    GoTo _0559
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon
 
 FootstepHouse_ToughType_WithPrint_Level1:
     Message footstep_house_tough_type_with_print_level_1
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_ToughType_WithPrint_Level2:
     Message footstep_house_tough_type_with_print_level_2
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_ToughType_WithPrint_Level3:
     Message footstep_house_tough_type_with_print_level_3
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_ToughType_WithPrint_Level4:
     Message footstep_house_tough_type_with_print_level_4
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_ToughType_WithPrint_Level5:
     Message footstep_house_tough_type_with_print_level_5
-    GoTo _053E
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_TryGiveRibbon
 
 FootstepHouse_ToughType_WithoutPrint_Level1:
     Message footstep_house_tough_type_without_print_level_1
@@ -267,27 +267,27 @@ FootstepHouse_ToughType_WithoutPrint_Level4:
 
 FootstepHouse_ToughType_WithoutPrint_Level5:
     Message footstep_house_tough_type_without_print_level_5
-    GoTo _0559
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon
 
 FootstepHouse_ScaryType_WithPrint_Level1:
     Message footstep_house_scary_type_with_print_level_1
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_ScaryType_WithPrint_Level2:
     Message footstep_house_scary_type_with_print_level_2
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_ScaryType_WithPrint_Level3:
     Message footstep_house_scary_type_with_print_level_3
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_ScaryType_WithPrint_Level4:
     Message footstep_house_scary_type_with_print_level_4
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_ScaryType_WithPrint_Level5:
     Message footstep_house_scary_type_with_print_level_5
-    GoTo _053E
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_TryGiveRibbon
 
 FootstepHouse_ScaryType_WithoutPrint_Level1:
     Message footstep_house_scary_type_without_print_level_1
@@ -307,27 +307,27 @@ FootstepHouse_ScaryType_WithoutPrint_Level4:
 
 FootstepHouse_ScaryType_WithoutPrint_Level5:
     Message footstep_house_scary_type_without_print_level_5
-    GoTo _0559
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon
 
 FootstepHouse_SlowType_WithPrint_Level1:
     Message footstep_house_slow_type_without_print_level_1
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_SlowType_WithPrint_Level2:
     Message footstep_house_slow_type_without_print_level_2
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_SlowType_WithPrint_Level3:
     Message footstep_house_slow_type_without_print_level_3
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_SlowType_WithPrint_Level4:
     Message footstep_house_slow_type_without_print_level_4
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
 FootstepHouse_SlowType_WithPrint_Level5:
     Message footstep_house_slow_type_without_print_level_5
-    GoTo _053E
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_TryGiveRibbon
 
 FootstepHouse_SlowType_WithoutPrint_Level1:
     Message footstep_house_slow_type_with_print_level_1
@@ -347,27 +347,27 @@ FootstepHouse_SlowType_WithoutPrint_Level4:
 
 FootstepHouse_SlowType_WithoutPrint_Level5:
     Message footstep_house_slow_type_with_print_level_5
-    GoTo _0559
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon
 
-_053E:
+FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_TryGiveRibbon:
     GetPartyMonRibbon 0x800C, PARTY_ID, RIBBON_FOOTPRINT
-    GoToIfEq 0x800C, 0, _0602
-    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
+    GoToIfEq 0x800C, FALSE, FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_GiveRibbon
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon
 
-_0559:
+FootstepHouse_PokemonDoesntLeaveAnyFootprints_TryGiveRibbon:
     GetPartyMonRibbon 0x800C, PARTY_ID, RIBBON_FOOTPRINT
-    GoToIfEq 0x800C, 0, _0633
+    GoToIfEq 0x800C, FALSE, FootstepHouse_PokemonDoesntLeaveAnyFootprints_GiveRibbon
     GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
 FootstepHouse_VoicelessType:
     Message footstep_house_voicless_type
     GetFriendshipByPartyID 0x800C, PARTY_ID
-    GoToIfLt 0x800C, 0xFF, _05E3
+    GoToIfLt 0x800C, 0xFF, FootstepHouse_PokemonSilentType_NoRibbon
     GetPartyMonRibbon 0x800C, PARTY_ID, RIBBON_FOOTPRINT
-    GoToIfEq 0x800C, 0, _0664
-    GoTo _05E3
+    GoToIfEq 0x800C, FALSE, FootstepHouse_PokemonSilentType_GiveRibbon
+    GoTo FootstepHouse_PokemonSilentType_NoRibbon
 
-FootstepHouse_AndThatsWhatYourPokemonThinksOfYou:
+FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_NoRibbon:
     CloseMessage
     WaitTime 20, 0x800C
     Call _00ED
@@ -389,60 +389,60 @@ FootstepHouse_PokemonDoesntLeaveAnyFootprints:
     ReleaseAll
     End
 
-_05E3:
+FootstepHouse_PokemonSilentType_NoRibbon:
     CloseMessage
     WaitTime 20, 0x800C
     Call _00ED
     WaitTime 10, 0x800C
-    Message 4
+    Message footstep_house_pokemon_silent_type
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0602:
+FootstepHouse_AndThatsWhatYourPokemonThinksOfYou_GiveRibbon:
     CloseMessage
     WaitTime 20, 0x800C
     Call _00ED
     WaitTime 10, 0x800C
-    Message 5
+    Message footstep_house_and_thats_what_you_pokemon_thinks_of_you_close_bond
     PlaySound SEQ_FANFA1
-    Message 8
+    Message footstep_house_received_footprint_ribbon
     WaitSound
     SetPartyMonRibbon PARTY_ID, RIBBON_FOOTPRINT
-    Message 9
+    Message footstep_house_put_the_footprint_ribbon_on_pokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0633:
+FootstepHouse_PokemonDoesntLeaveAnyFootprints_GiveRibbon:
     CloseMessage
     WaitTime 20, 0x800C
     Call _00ED
     WaitTime 10, 0x800C
-    Message 6
+    Message footstep_house_pokemon_doesnt_leave_any_footprints_close_bond
     PlaySound SEQ_FANFA1
-    Message 8
+    Message footstep_house_received_footprint_ribbon
     WaitSound
     SetPartyMonRibbon PARTY_ID, RIBBON_FOOTPRINT
-    Message 9
+    Message footstep_house_put_the_footprint_ribbon_on_pokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_0664:
+FootstepHouse_PokemonSilentType_GiveRibbon:
     CloseMessage
     WaitTime 20, 0x800C
     Call _00ED
     WaitTime 10, 0x800C
-    Message 7
+    Message footstep_house_pokemon_silent_type_close_bond
     PlaySound SEQ_FANFA1
-    Message 8
+    Message footstep_house_received_footprint_ribbon
     WaitSound
     SetPartyMonRibbon PARTY_ID, RIBBON_FOOTPRINT
-    Message 9
+    Message footstep_house_put_the_footprint_ribbon_on_pokemon
     WaitABXPadPress
     CloseMessage
     ReleaseAll
