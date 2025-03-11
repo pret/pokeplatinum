@@ -59,7 +59,7 @@ _0098:
     ScrCmd_247 0x8000
     BufferPartyMonNickname 0, 0x8000
     Message 3
-    ScrCmd_1B9 0x800C, 0x8000
+    GetFriendshipByPartyID 0x800C, 0x8000
     GoToIfGe 0x800C, 0xFF, _0108
     GoToIfGe 0x800C, 200, _0113
     GoToIfGe 0x800C, 150, _011E

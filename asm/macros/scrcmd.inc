@@ -2408,7 +2408,7 @@
     .short \upperBound
     .endm
 
-    .macro ScrCmd_1B9 arg0, arg1
+    .macro GetFriendshipByPartyID arg0, arg1
     .short 441
     .short \arg0
     .short \arg1
@@ -3071,17 +3071,17 @@
     .short \arg0
     .endm
 
-    .macro PartyMonHasRibbon destVar, partyID, ribbonNum
+    .macro GetPartyMonRibbon destVar, partyID, ribbonID
     .short 560
     .short \destVar
     .short \partyID
-    .short \ribbonNum
+    .short \ribbonID
     .endm
 
-    .macro ScrCmd_231 arg0, arg1
+    .macro SetPartyMonRibbon partyID, ribbonID
     .short 561
-    .short \arg0
-    .short \arg1
+    .short \partyID
+    .short \ribbonID
     .endm
 
     .macro ScrCmd_232 arg0, arg1

@@ -76,11 +76,11 @@ _00D6:
     ScrCmd_247 0x8000
     BufferPlayerName 0
     BufferPartyMonSpecies 2, 0x8000
-    PartyMonHasRibbon 0x800C, 0x8000, RIBBON_GORGEOUS_ROYAL
+    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_GORGEOUS_ROYAL
     GoToIfEq 0x800C, 1, _0244
-    PartyMonHasRibbon 0x800C, 0x8000, RIBBON_ROYAL
+    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_ROYAL
     GoToIfEq 0x800C, 1, _01E7
-    PartyMonHasRibbon 0x800C, 0x8000, RIBBON_GORGEOUS
+    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_GORGEOUS
     GoToIfEq 0x800C, 1, _018A
     GoTo _012F
 
@@ -99,7 +99,7 @@ _012F:
     Message 7
     Message 8
     WaitABXPadPress
-    ScrCmd_231 0x8000, 66
+    SetPartyMonRibbon 0x8000, RIBBON_GORGEOUS
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -120,7 +120,7 @@ _018A:
     Message 9
     Message 10
     WaitABXPadPress
-    ScrCmd_231 0x8000, 67
+    SetPartyMonRibbon 0x8000, RIBBON_ROYAL
     CloseMessage
     ScrCmd_073
     ReleaseAll
@@ -141,7 +141,7 @@ _01E7:
     Message 11
     Message 12
     WaitABXPadPress
-    ScrCmd_231 0x8000, 68
+    SetPartyMonRibbon 0x8000, RIBBON_GORGEOUS_ROYAL
     CloseMessage
     ScrCmd_073
     ReleaseAll

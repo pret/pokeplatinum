@@ -277,17 +277,17 @@ BOOL ScrCmd_213(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1B9(ScriptContext *param0)
+BOOL ScrCmd_GetFriendshipByPartyID(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    Pokemon *v1;
-    u16 *v2 = ScriptContext_GetVarPointer(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    Pokemon *mon;
+    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    u16 slot = ScriptContext_GetVar(ctx);
 
-    v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v3);
-    *v2 = Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), slot);
+    *v2 = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_1BA(ScriptContext *param0)
@@ -763,7 +763,7 @@ BOOL ScrCmd_22F(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_PartyMonHasRibbon(ScriptContext *ctx)
+BOOL ScrCmd_GetPartyMonRibbon(ScriptContext *ctx)
 {
     Pokemon *mon;
     u16 *hasRibbonVar = ScriptContext_GetVarPointer(ctx);
@@ -777,19 +777,19 @@ BOOL ScrCmd_PartyMonHasRibbon(ScriptContext *ctx)
     return FALSE;
 }
 
-BOOL ScrCmd_231(ScriptContext *param0)
+BOOL ScrCmd_SetPartyMonRibbon(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    u16 v1 = ScriptContext_GetVar(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
-    u8 v3 = 1;
+    Pokemon *mon;
+    u16 slot = ScriptContext_GetVar(ctx);
+    u16 ribbonNum = ScriptContext_GetVar(ctx);
+    u8 value = TRUE;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v1);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
 
-    Pokemon_SetValue(v0, Ribbon_GetData(v2, RIBBON_DATA_RIBBON_ID), &v3);
-    sub_0206DDB8(param0->fieldSystem->saveData, v0, Ribbon_GetData(v2, RIBBON_DATA_RIBBON_ID));
+    Pokemon_SetValue(mon, Ribbon_GetData(ribbonNum, RIBBON_DATA_RIBBON_ID), &value);
+    sub_0206DDB8(ctx->fieldSystem->saveData, mon, Ribbon_GetData(ribbonNum, RIBBON_DATA_RIBBON_ID));
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_2B7(ScriptContext *param0)

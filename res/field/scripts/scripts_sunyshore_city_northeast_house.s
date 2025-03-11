@@ -49,31 +49,31 @@ _0070:
     GoTo _0104
 
 _00C8:
-    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_SMILE
+    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_SMILE
     Return
 
 _00D2:
-    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_ALERT
+    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_ALERT
     Return
 
 _00DC:
-    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_SHOCK
+    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_SHOCK
     Return
 
 _00E6:
-    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_DOWNCAST
+    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_DOWNCAST
     Return
 
 _00F0:
-    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_CARELESS
+    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_CARELESS
     Return
 
 _00FA:
-    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_RELAX
+    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_RELAX
     Return
 
 _0104:
-    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_SNOOZE
+    GetPartyMonRibbon 0x800C, 0x8002, RIBBON_SNOOZE
     Return
 
 _010E:
@@ -125,7 +125,7 @@ _019E:
     ScrCmd_245 0, 0x8000
     Message 21
     SetFlag 0xAA4
-    ScrCmd_231 0x8002, 65
+    SetPartyMonRibbon 0x8002, RIBBON_SMILE
     ScrCmd_232 3, 65
     GoTo _010E
 
@@ -143,7 +143,7 @@ _01F2:
     ScrCmd_245 0, 0x8000
     Message 3
     SetFlag 0xAA4
-    ScrCmd_231 0x8002, 59
+    SetPartyMonRibbon 0x8002, RIBBON_ALERT
     ScrCmd_232 3, 59
     GoTo _010E
 
@@ -161,7 +161,7 @@ _0246:
     ScrCmd_245 0, 0x8000
     Message 11
     SetFlag 0xAA4
-    ScrCmd_231 0x8002, 60
+    SetPartyMonRibbon 0x8002, RIBBON_SHOCK
     ScrCmd_232 3, 60
     GoTo _010E
 
@@ -179,7 +179,7 @@ _029A:
     ScrCmd_245 0, 0x8000
     Message 13
     SetFlag 0xAA4
-    ScrCmd_231 0x8002, 61
+    SetPartyMonRibbon 0x8002, RIBBON_DOWNCAST
     ScrCmd_232 3, 61
     GoTo _010E
 
@@ -197,7 +197,7 @@ _02EE:
     ScrCmd_245 0, 0x8000
     Message 15
     SetFlag 0xAA4
-    ScrCmd_231 0x8002, 62
+    SetPartyMonRibbon 0x8002, RIBBON_CARELESS
     ScrCmd_232 3, 62
     GoTo _010E
 
@@ -215,7 +215,7 @@ _0342:
     ScrCmd_245 0, 0x8000
     Message 17
     SetFlag 0xAA4
-    ScrCmd_231 0x8002, 63
+    SetPartyMonRibbon 0x8002, RIBBON_RELAX
     ScrCmd_232 3, 63
     GoTo _010E
 
@@ -233,7 +233,7 @@ _0396:
     ScrCmd_245 0, 0x8000
     Message 19
     SetFlag 0xAA4
-    ScrCmd_231 0x8002, 64
+    SetPartyMonRibbon 0x8002, RIBBON_SNOOZE
     ScrCmd_232 3, 64
     GoTo _010E
 

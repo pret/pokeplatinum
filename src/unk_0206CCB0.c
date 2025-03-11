@@ -1366,13 +1366,13 @@ static int sub_0206DD5C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     return 3;
 }
 
-void sub_0206DDB8(SaveData *param0, Pokemon *param1, u32 param2)
+void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 ribbonID)
 {
     u8 v0, v1;
     UnkUnion_0206D1B8 v2;
     UnkStruct_0206DE80 *v3 = &v2.val21;
 
-    v1 = sub_0206DE4C(param1);
+    v1 = sub_0206DE4C(mon);
 
     switch (v1) {
     case 15:
@@ -1381,18 +1381,18 @@ void sub_0206DDB8(SaveData *param0, Pokemon *param1, u32 param2)
     case 30:
     case 35:
     case 40:
-        if (Ribbon_RibbonIDToNameID(param2) > 0xff) {
+        if (Ribbon_RibbonIDToNameID(ribbonID) > 0xff) {
             GF_ASSERT(0);
             return;
         }
 
-        sub_0206CE38(param1, &v3->unk_1C, &v3->unk_19, &v3->unk_1A, &v3->unk_1B);
-        sub_0206CED0(32, param1, &v3->unk_18, v3->unk_00);
+        sub_0206CE38(mon, &v3->unk_1C, &v3->unk_19, &v3->unk_1A, &v3->unk_1B);
+        sub_0206CED0(32, mon, &v3->unk_18, v3->unk_00);
 
-        v3->unk_16 = Ribbon_RibbonIDToNameID(param2);
+        v3->unk_16 = Ribbon_RibbonIDToNameID(ribbonID);
         v3->unk_17 = v1;
 
-        sub_0206CD7C(param0, 3, 5, v3);
+        sub_0206CD7C(saveData, 3, 5, v3);
         break;
     }
 }

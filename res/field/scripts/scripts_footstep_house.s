@@ -3,6 +3,10 @@
 #include "constants/footstep_house.h"
 #include "generated/ribbons.h"
 
+#define HAS_PRINT 0x8000
+#define FOOTPRINT_TYPE 0x8001
+#define PARTY_ID 0x8002
+
     .data
 
     ScriptEntry _000A
@@ -17,13 +21,13 @@ _0010:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_247 0x8002
-    BufferPartyMonSpecies 0, 0x8002
+    ScrCmd_247 PARTY_ID
+    BufferPartyMonSpecies 0, PARTY_ID
     BufferPlayerName 1
-    BufferPartyMonNickname 2, 0x8002
-    GetSpeciesFootprintType 0x8000, 0x8001, 0x8002
-    GoToIfSet 249, _004B
-    SetFlag 249
+    BufferPartyMonNickname 2, PARTY_ID
+    GetSpeciesFootprintType HAS_PRINT, FOOTPRINT_TYPE, PARTY_ID
+    GoToIfSet FLAG_TALKED_TO_DR_FOOTSTEP, _004B
+    SetFlag FLAG_TALKED_TO_DR_FOOTSTEP
     Message 0
     CloseMessage
     GoTo _0056
@@ -41,8 +45,8 @@ _0056:
     WaitFadeScreen
     Call _008A
     WaitTime 20, 0x800C
-    IncrementGameRecord RECORD_UNK_116
-    GoTo _0150
+    IncrementGameRecord RECORD_CHECKED_FOOTPRINTS
+    GoTo FootstepHouse_CheckType
 
 _008A:
     GetPlayerMapPos 0x8005, 0x8006
@@ -98,31 +102,31 @@ _0144:
     WaitMovement
     Return
 
-_0150:
-    GoToIfEq 0x8001, FOOTPRINT_TYPE_CUTE, FootstepHouse_CuteType
-    GoToIfEq 0x8001, FOOTPRINT_TYPE_TOUGH, FootstepHouse_ToughType
-    GoToIfEq 0x8001, FOOTPRINT_TYPE_SCARY, FootstepHouse_ScaryType
-    GoToIfEq 0x8001, FOOTPRINT_TYPE_SLOW, FootstepHouse_SlowType
+FootstepHouse_CheckType:
+    GoToIfEq FOOTPRINT_TYPE, FOOTPRINT_TYPE_CUTE, FootstepHouse_CuteType
+    GoToIfEq FOOTPRINT_TYPE, FOOTPRINT_TYPE_TOUGH, FootstepHouse_ToughType
+    GoToIfEq FOOTPRINT_TYPE, FOOTPRINT_TYPE_SCARY, FootstepHouse_ScaryType
+    GoToIfEq FOOTPRINT_TYPE, FOOTPRINT_TYPE_SLOW, FootstepHouse_SlowType
     GoTo FootstepHouse_VoicelessType
 
 FootstepHouse_CuteType:
-    GoToIfEq 0x8000, TRUE, FootstepHouse_CuteType_WithPrint
+    GoToIfEq HAS_PRINT, TRUE, FootstepHouse_CuteType_WithPrint
     GoTo FootstepHouse_CuteType_WithoutPrint
 
 FootstepHouse_ToughType:
-    GoToIfEq 0x8000, TRUE, FootstepHouse_ToughType_WithPrint
+    GoToIfEq HAS_PRINT, TRUE, FootstepHouse_ToughType_WithPrint
     GoTo FootstepHouse_ToughType_WithoutPrint
 
 FootstepHouse_ScaryType:
-    GoToIfEq 0x8000, TRUE, FootstepHouse_ScaryType_WithPrint
+    GoToIfEq HAS_PRINT, TRUE, FootstepHouse_ScaryType_WithPrint
     GoTo FootstepHouse_ScaryType_WithoutPrint
 
 FootstepHouse_SlowType:
-    GoToIfEq 0x8000, TRUE, FootstepHouse_SlowType_WithPrint
+    GoToIfEq HAS_PRINT, TRUE, FootstepHouse_SlowType_WithPrint
     GoTo FootstepHouse_SlowType_WithoutPrint
 
 FootstepHouse_CuteType_WithPrint:
-    ScrCmd_1B9 0x800C, 0x8002
+    GetFriendshipByPartyID 0x800C, PARTY_ID
     GoToIfGe 0x800C, 0xFF, FootstepHouse_CuteType_WithPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_CuteType_WithPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_CuteType_WithPrint_Level3
@@ -130,7 +134,7 @@ FootstepHouse_CuteType_WithPrint:
     GoTo FootstepHouse_CuteType_WithPrint_Level1
 
 FootstepHouse_CuteType_WithoutPrint:
-    ScrCmd_1B9 0x800C, 0x8002
+    GetFriendshipByPartyID 0x800C, PARTY_ID
     GoToIfGe 0x800C, 0xFF, FootstepHouse_CuteType_WithoutPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_CuteType_WithoutPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_CuteType_WithoutPrint_Level3
@@ -138,7 +142,7 @@ FootstepHouse_CuteType_WithoutPrint:
     GoTo FootstepHouse_CuteType_WithoutPrint_Level1
 
 FootstepHouse_ToughType_WithPrint:
-    ScrCmd_1B9 0x800C, 0x8002
+    GetFriendshipByPartyID 0x800C, PARTY_ID
     GoToIfGe 0x800C, 0xFF, FootstepHouse_ToughType_WithPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_ToughType_WithPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_ToughType_WithPrint_Level3
@@ -146,7 +150,7 @@ FootstepHouse_ToughType_WithPrint:
     GoTo FootstepHouse_ToughType_WithPrint_Level1
 
 FootstepHouse_ToughType_WithoutPrint:
-    ScrCmd_1B9 0x800C, 0x8002
+    GetFriendshipByPartyID 0x800C, PARTY_ID
     GoToIfGe 0x800C, 0xFF, FootstepHouse_ToughType_WithoutPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_ToughType_WithoutPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_ToughType_WithoutPrint_Level3
@@ -154,7 +158,7 @@ FootstepHouse_ToughType_WithoutPrint:
     GoTo FootstepHouse_ToughType_WithoutPrint_Level1
 
 FootstepHouse_ScaryType_WithPrint:
-    ScrCmd_1B9 0x800C, 0x8002
+    GetFriendshipByPartyID 0x800C, PARTY_ID
     GoToIfGe 0x800C, 0xFF, FootstepHouse_ScaryType_WithPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_ScaryType_WithPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_ScaryType_WithPrint_Level3
@@ -162,7 +166,7 @@ FootstepHouse_ScaryType_WithPrint:
     GoTo FootstepHouse_ScaryType_WithPrint_Level1
 
 FootstepHouse_ScaryType_WithoutPrint:
-    ScrCmd_1B9 0x800C, 0x8002
+    GetFriendshipByPartyID 0x800C, PARTY_ID
     GoToIfGe 0x800C, 0xFF, FootstepHouse_ScaryType_WithoutPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_ScaryType_WithoutPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_ScaryType_WithoutPrint_Level3
@@ -170,7 +174,7 @@ FootstepHouse_ScaryType_WithoutPrint:
     GoTo FootstepHouse_ScaryType_WithoutPrint_Level1
 
 FootstepHouse_SlowType_WithPrint:
-    ScrCmd_1B9 0x800C, 0x8002
+    GetFriendshipByPartyID 0x800C, PARTY_ID
     GoToIfGe 0x800C, 0xFF, FootstepHouse_SlowType_WithPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_SlowType_WithPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_SlowType_WithPrint_Level3
@@ -178,7 +182,7 @@ FootstepHouse_SlowType_WithPrint:
     GoTo FootstepHouse_SlowType_WithPrint_Level1
 
 FootstepHouse_SlowType_WithoutPrint:
-    ScrCmd_1B9 0x800C, 0x8002
+    GetFriendshipByPartyID 0x800C, PARTY_ID
     GoToIfGe 0x800C, 0xFF, FootstepHouse_SlowType_WithoutPrint_Level5
     GoToIfGe 0x800C, 200, FootstepHouse_SlowType_WithoutPrint_Level4
     GoToIfGe 0x800C, 150, FootstepHouse_SlowType_WithoutPrint_Level3
@@ -346,20 +350,20 @@ FootstepHouse_SlowType_WithoutPrint_Level5:
     GoTo _0559
 
 _053E:
-    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_FOOTPRINT
+    GetPartyMonRibbon 0x800C, PARTY_ID, RIBBON_FOOTPRINT
     GoToIfEq 0x800C, 0, _0602
     GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
 _0559:
-    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_FOOTPRINT
+    GetPartyMonRibbon 0x800C, PARTY_ID, RIBBON_FOOTPRINT
     GoToIfEq 0x800C, 0, _0633
     GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
 FootstepHouse_VoicelessType:
     Message footstep_house_voicless_type
-    ScrCmd_1B9 0x800C, 0x8002
+    GetFriendshipByPartyID 0x800C, PARTY_ID
     GoToIfLt 0x800C, 0xFF, _05E3
-    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_FOOTPRINT
+    GetPartyMonRibbon 0x800C, PARTY_ID, RIBBON_FOOTPRINT
     GoToIfEq 0x800C, 0, _0664
     GoTo _05E3
 
@@ -405,7 +409,7 @@ _0602:
     PlaySound SEQ_FANFA1
     Message 8
     WaitSound
-    ScrCmd_231 0x8002, 69
+    SetPartyMonRibbon PARTY_ID, RIBBON_FOOTPRINT
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -421,7 +425,7 @@ _0633:
     PlaySound SEQ_FANFA1
     Message 8
     WaitSound
-    ScrCmd_231 0x8002, 69
+    SetPartyMonRibbon PARTY_ID, RIBBON_FOOTPRINT
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -437,7 +441,7 @@ _0664:
     PlaySound SEQ_FANFA1
     Message 8
     WaitSound
-    ScrCmd_231 0x8002, 69
+    SetPartyMonRibbon PARTY_ID, RIBBON_FOOTPRINT
     Message 9
     WaitABXPadPress
     CloseMessage
