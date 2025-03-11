@@ -197,18 +197,18 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
         return &soundSys->unk_BCD64;
     case 20:
         return &soundSys->unk_BCD65;
-    case 21:
-        return &soundSys->unk_BCD66;
-    case 22:
-        return &soundSys->unk_BCD67;
+    case SOUND_SYSTEM_PARAM_MAIN_SCENE:
+        return &soundSys->mainScene;
+    case SOUND_SYSTEM_PARAM_SUB_SCENE:
+        return &soundSys->subScene;
     case SOUND_SYSTEM_PARAM_HEAP_STATE_EMPTY:
         return &soundSys->heapStates[SOUND_HEAP_STATE_EMPTY];
     case SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT:
         return &soundSys->heapStates[SOUND_HEAP_STATE_PERSISTENT];
-    case 25:
-        return &soundSys->heapStates[2];
-    case 26:
-        return &soundSys->heapStates[3];
+    case SOUND_SYSTEM_PARAM_HEAP_STATE_BGM_BANK:
+        return &soundSys->heapStates[SOUND_HEAP_STATE_BGM_BANK];
+    case SOUND_SYSTEM_PARAM_HEAP_STATE_SFX:
+        return &soundSys->heapStates[SOUND_HEAP_STATE_SFX];
     case 27:
         return &soundSys->heapStates[4];
     case 28:
@@ -271,9 +271,9 @@ void *SoundSystem_GetParam(enum SoundSystemParam param)
     return NULL;
 }
 
-enum SoundHeapState SoundSystem_SaveHeapState(enum SoundHeapState *state)
+int SoundSystem_SaveHeapState(int *state)
 {
-    enum SoundHeapState newState = NNS_SndHeapSaveState(SoundSystem_Get()->heap);
+    int newState = NNS_SndHeapSaveState(SoundSystem_Get()->heap);
     if (newState == SOUND_HEAP_STATE_INVALID) {
         GF_ASSERT(FALSE);
     }
@@ -285,7 +285,7 @@ enum SoundHeapState SoundSystem_SaveHeapState(enum SoundHeapState *state)
     return newState;
 }
 
-void SoundSystem_LoadHeapState(enum SoundHeapState state)
+void SoundSystem_LoadHeapState(int state)
 {
     NNS_SndHeapLoadState(SoundSystem_Get()->heap, state);
 }

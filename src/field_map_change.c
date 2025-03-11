@@ -1229,7 +1229,7 @@ BOOL FieldTask_MapChangeToUnderground(FieldTask *task)
             break;
         }
 
-        sub_02004234(0);
+        Sound_SetScene(0);
         Sound_ClearSpecialBGM(fieldSystem);
         FieldTransition_StartMap(task);
         mapChangeUndergroundData->state++;
@@ -1296,7 +1296,7 @@ BOOL FieldTask_MapChangeFromUnderground(FieldTask *task)
             break;
         }
 
-        sub_02004234(0);
+        Sound_SetScene(0);
         Sound_ClearSpecialBGM(fieldSystem);
         FieldTransition_StartMap(task);
         mapChangeUndergroundData->state++;

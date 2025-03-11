@@ -103,7 +103,7 @@ int sub_02099E38(OverlayManager *param0, int *param1)
     case 0:
         sub_020055D0(1173, 0);
         sub_020053CC(0);
-        sub_02004234(0);
+        Sound_SetScene(0);
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
         SetVBlankCallback(NULL, NULL);

@@ -995,7 +995,7 @@ static int ov97_0222BD70(OverlayManager *param0, int *param1)
     }
 
     sub_020053CC(0);
-    sub_02004234(0);
+    Sound_SetScene(0);
 
     return 1;
 }
@@ -1176,11 +1176,11 @@ static void ov97_0222C094(UnkStruct_0222AE60 *param0)
         RebootAndLoadROM("data/eoo.dat");
         break;
     case 7:
-        sub_0200569C();
+        Sound_StopAll();
         EnqueueApplication(0xffffffff, &Unk_020F6DF0);
         break;
     case 8:
-        sub_0200569C();
+        Sound_StopAll();
         EnqueueApplication(FS_OVERLAY_ID(overlay98), &Unk_ov98_02249BAC);
         break;
     case 0:

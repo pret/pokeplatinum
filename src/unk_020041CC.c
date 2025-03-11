@@ -10,6 +10,7 @@
 #include "heap.h"
 #include "sound_system.h"
 #include "unk_02005474.h"
+#include "generated/sdat.h"
 
 void Sound_SetCurrentBGM(u16 param0);
 u16 Sound_GetCurrentBGM(void);
@@ -17,12 +18,12 @@ void Sound_SetNextBGM(u16 param0);
 u16 Sound_GetNextBGM(void);
 void sub_02004224(u16 param0);
 void sub_02004964(void);
-int sub_02004974(int param0);
-void sub_02004234(u8 param0);
-void sub_02004258(u8 param0);
-int sub_0200426C(u8 param0);
+int Sound_GetHeapState(enum SoundHeapState state);
+void Sound_SetScene(u8 param0);
+void Sound_SetSubScene(u8 param0);
+int Sound_LoadSoundEffectsForScene(u8 param0);
 BOOL sub_02004550(u8 param0, u16 param1, int param2);
-static void sub_020046CC(u8 param0);
+static void Sound_LoadSoundEffectsForSceneWithState(u8 param0);
 static void sub_020046F8(u16 param0, int param1);
 static void sub_0200478C(u16 param0, u16 param1);
 void sub_020047E8(u16 param0, u16 param1);
@@ -141,171 +142,169 @@ void sub_02004224(u16 param0)
     return;
 }
 
-void sub_02004234(u8 param0)
+void Sound_SetScene(u8 scene)
 {
-    u8 *v0 = SoundSystem_GetParam(21);
-    u8 *v1 = SoundSystem_GetParam(22);
+    u8 *mainScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_MAIN_SCENE);
+    u8 *subScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_SUB_SCENE);
 
-    if (param0 < 51) {
-        *v0 = param0;
-        *v1 = 0;
+    if (scene < 51) {
+        *mainScene = scene;
+        *subScene = 0;
     } else {
-        *v1 = param0;
+        *subScene = scene;
     }
 
     return;
 }
 
-void sub_02004258(u8 param0)
+void Sound_SetSubScene(u8 scene)
 {
-    u8 *v0 = SoundSystem_GetParam(21);
-    u8 *v1 = SoundSystem_GetParam(22);
-
-    *v1 = param0;
-    return;
+    u8 *mainScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_MAIN_SCENE); // Required to match
+    u8 *subScene = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_SUB_SCENE);
+    *subScene = scene;
 }
 
-int sub_0200426C(u8 param0)
+int Sound_LoadSoundEffectsForScene(u8 scene)
 {
-    int v0;
+    int result;
 
-    switch (param0) {
+    switch (scene) {
     case 1:
     case 9:
     case 10:
     case 17:
     case 20:
     case 23:
-        v0 = SoundSystem_LoadSoundGroup(1);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_FIELD);
         break;
     case 19:
-        v0 = SoundSystem_LoadSoundGroup(1);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_FIELD);
 
-        SoundSystem_LoadSequenceEx(1399, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1401, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1403, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_BALLOON02, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_BALLOON03_2, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_BALLOON05, NNS_SND_ARC_LOAD_SEQ);
 
-        SoundSystem_LoadSequenceEx(1398, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1404, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1406, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_BALLOON01, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_BALLOON07, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_ALERT4, NNS_SND_ARC_LOAD_SEQ);
 
-        SoundSystem_LoadSequenceEx(1616, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1386, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1826, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_DP_FW104, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_NOMI02, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_DP_023, NNS_SND_ARC_LOAD_SEQ);
 
-        SoundSystem_LoadSequenceEx(1387, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1388, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1389, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1391, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_POINT1, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_POINT2, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_POINT3, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_BALLOON05_2, NNS_SND_ARC_LOAD_SEQ);
 
-        SoundSystem_LoadSequenceEx(1598, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1603, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1394, NNS_SND_ARC_LOAD_SEQ);
-        SoundSystem_LoadSequenceEx(1385, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_DP_HAMARU, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_DP_CON_016, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_KIRAKIRA, NNS_SND_ARC_LOAD_SEQ);
+        SoundSystem_LoadSequenceEx(SEQ_SE_PL_FCALL, NNS_SND_ARC_LOAD_SEQ);
         break;
     case 14:
-        v0 = SoundSystem_LoadSoundGroup(14);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_NUTMIXER);
         break;
     case 2:
     case 13:
-        v0 = SoundSystem_LoadSoundGroup(2);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_BATTLE);
         break;
     case 18:
-        v0 = SoundSystem_LoadSoundGroup(2);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_BATTLE);
         break;
     case 21:
-        v0 = SoundSystem_LoadBank(770);
-        v0 = SoundSystem_LoadWaveArc(770);
+        result = SoundSystem_LoadBank(BANK_SE_HIROBA);
+        result = SoundSystem_LoadWaveArc(WAVE_ARC_SE_HIROBA);
         break;
     case 3:
-        v0 = SoundSystem_LoadSoundGroup(13);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_TRADE);
         break;
     case 4:
     case 22:
-        v0 = SoundSystem_LoadSoundGroup(1);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_FIELD);
         break;
     case 5:
-        v0 = SoundSystem_LoadSoundGroup(2);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_BATTLE);
         break;
     case 11:
-        v0 = SoundSystem_LoadSoundGroup(1);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_FIELD);
         break;
     case 6:
-        v0 = SoundSystem_LoadSoundGroup(11);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_CONTEST);
         break;
     case 8:
-        v0 = SoundSystem_LoadSoundGroup(1);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_FIELD);
         break;
     case 12:
-        v0 = SoundSystem_LoadSoundGroup(14);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_NUTMIXER);
         break;
     case 16:
-        v0 = SoundSystem_LoadSoundGroup(1);
-        v0 = SoundSystem_LoadSoundGroup(8);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_FIELD);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_DIG);
         break;
     case 15:
-        v0 = SoundSystem_LoadSoundGroup(1);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_FIELD);
         break;
     case 51:
-        v0 = SoundSystem_LoadSoundGroup(3);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_BAG);
         break;
     case 66:
-        v0 = SoundSystem_LoadSoundGroup(6);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_SLOT);
         break;
     case 52:
-        v0 = SoundSystem_LoadSoundGroup(5);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_NAMEIN);
         break;
     case 7:
     case 53:
-        v0 = SoundSystem_LoadSoundGroup(9);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_IMAGE);
         break;
     case 54:
-        v0 = SoundSystem_LoadSoundGroup(10);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_ZUKAN);
         break;
     case 55:
     case 67:
-        v0 = SoundSystem_LoadBank(759);
-        v0 = SoundSystem_LoadWaveArc(759);
+        result = SoundSystem_LoadBank(BANK_SE_TOWNMAP);
+        result = SoundSystem_LoadWaveArc(WAVE_ARC_SE_TOWNMAP);
         break;
     case 56:
-        v0 = SoundSystem_LoadSoundGroup(12);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_TRCARD);
         break;
     case 57:
-        v0 = SoundSystem_LoadSoundGroup(7);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_POKELIST);
         break;
     case 58:
-        v0 = SoundSystem_LoadSoundGroup(8);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_DIG);
         break;
     case 59:
-        v0 = SoundSystem_LoadSoundGroup(15);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_CUSTOM);
         break;
     case 60:
-        v0 = SoundSystem_LoadSoundGroup(3);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_BAG);
         break;
     case 61:
-        v0 = SoundSystem_LoadSoundGroup(5);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_NAMEIN);
         break;
     case 62:
-        v0 = SoundSystem_LoadSoundGroup(15);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_CUSTOM);
         break;
     case 63:
-        v0 = SoundSystem_LoadSoundGroup(4);
+        result = SoundSystem_LoadSoundGroup(GROUP_SE_CLIMAX);
         break;
     case 64:
-        v0 = SoundSystem_LoadBank(767);
-        v0 = SoundSystem_LoadWaveArc(767);
+        result = SoundSystem_LoadBank(BANK_SE_SHIP);
+        result = SoundSystem_LoadWaveArc(WAVE_ARC_SE_SHIP);
         break;
     case 65:
-        v0 = SoundSystem_LoadBank(766);
-        v0 = SoundSystem_LoadWaveArc(766);
+        result = SoundSystem_LoadBank(BANK_SE_TRAIN);
+        result = SoundSystem_LoadWaveArc(WAVE_ARC_SE_TRAIN);
         break;
     case 68:
-        v0 = SoundSystem_LoadBank(769);
-        v0 = SoundSystem_LoadWaveArc(769);
+        result = SoundSystem_LoadBank(BANK_SE_SCRATCH);
+        result = SoundSystem_LoadWaveArc(WAVE_ARC_SE_SCRATCH);
         break;
     }
 
-    return v0;
+    return result;
 }
 
 BOOL sub_02004550(u8 param0, u16 param1, int param2)
@@ -324,7 +323,7 @@ BOOL sub_02004550(u8 param0, u16 param1, int param2)
         }
     }
 
-    sub_02004234(param0);
+    Sound_SetScene(param0);
 
     switch (param0) {
     case 4:
@@ -400,16 +399,14 @@ BOOL sub_02004550(u8 param0, u16 param1, int param2)
     return 1;
 }
 
-static void sub_020046CC(u8 param0)
+static void Sound_LoadSoundEffectsForSceneWithState(u8 scene)
 {
-    int *v0 = SoundSystem_GetParam(24);
+    int *persistentState = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
 
-    SoundSystem_LoadHeapState(*v0);
-    SoundSystem_SaveHeapState(SoundSystem_GetParam(25));
-    sub_0200426C(param0);
-    SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
-
-    return;
+    SoundSystem_LoadHeapState(*persistentState);
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM_BANK));
+    Sound_LoadSoundEffectsForScene(scene);
+    SoundSystem_SaveHeapState(SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SFX));
 }
 
 static void sub_020046F8(u16 param0, int param1)
@@ -435,12 +432,12 @@ static void sub_020046F8(u16 param0, int param1)
 
     if (v1 != param0) {
         sub_020049F4(1, 0);
-        sub_0200569C();
+        Sound_StopAll();
     }
 
     if (*v3 == 1) {
-        SoundSystem_LoadHeapState(sub_02004974(2));
-        sub_0200426C(4);
+        SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_BGM_BANK));
+        Sound_LoadSoundEffectsForScene(4);
         SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
 
         if (v1 != param0) {
@@ -483,11 +480,11 @@ void sub_020047E8(u16 param0, u16 param1)
     u16 *v2 = SoundSystem_GetParam(32);
 
     if ((*v1 == 1) || (param1 == 0)) {
-        SoundSystem_LoadHeapState(sub_02004974(1));
-        sub_02004258(0);
+        SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_PERSISTENT));
+        Sound_SetSubScene(0);
         SoundSystem_LoadSequenceEx(*v2, NNS_SND_ARC_LOAD_BANK);
         SoundSystem_SaveHeapState(SoundSystem_GetParam(25));
-        sub_0200426C(4);
+        Sound_LoadSoundEffectsForScene(4);
         SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
 
         v0 = sub_02004B48(*v2);
@@ -510,8 +507,8 @@ static void sub_02004874(u16 param0, int param1)
     int *v0 = SoundSystem_GetParam(24);
 
     sub_0200540C();
-    SoundSystem_LoadHeapState(sub_02004974(2));
-    sub_0200426C(5);
+    SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_BGM_BANK));
+    Sound_LoadSoundEffectsForScene(5);
     SoundSystem_SaveHeapState(SoundSystem_GetParam(26));
     sub_0200501C(1);
     Sound_PlayBGM(param0);
@@ -523,9 +520,9 @@ static void sub_020048AC(u16 param0, int param1)
 {
     int *v0 = SoundSystem_GetParam(24);
 
-    sub_0200569C();
+    Sound_StopAll();
     sub_02004A3C();
-    sub_020046CC(4);
+    Sound_LoadSoundEffectsForSceneWithState(4);
     Sound_PlayBGM(param0);
 
     return;
@@ -535,8 +532,8 @@ void sub_020048CC(u16 param0, int param1)
 {
     int *v0 = SoundSystem_GetParam(24);
 
-    sub_0200569C();
-    sub_020046CC(6);
+    Sound_StopAll();
+    Sound_LoadSoundEffectsForSceneWithState(6);
     sub_0200501C(1);
     Sound_PlayBGM(param0);
 
@@ -547,8 +544,8 @@ void sub_020048F0(u16 param0, int param1)
 {
     int *v0 = SoundSystem_GetParam(24);
 
-    sub_0200569C();
-    sub_020046CC(7);
+    Sound_StopAll();
+    Sound_LoadSoundEffectsForSceneWithState(7);
     sub_0200501C(1);
     Sound_PlayBGM(param0);
 
@@ -558,7 +555,7 @@ void sub_020048F0(u16 param0, int param1)
 static void sub_02004914(u8 param0)
 {
     sub_02004964();
-    sub_0200426C(param0);
+    Sound_LoadSoundEffectsForScene(param0);
     SoundSystem_SaveHeapState(SoundSystem_GetParam(28));
 
     return;
@@ -566,10 +563,10 @@ static void sub_02004914(u8 param0)
 
 static void sub_02004930(u8 param0, u16 param1, int param2)
 {
-    int *v0 = SoundSystem_GetParam(24);
+    (void)SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT); // Required to match
 
-    sub_0200569C();
-    sub_020046CC(param0);
+    Sound_StopAll();
+    Sound_LoadSoundEffectsForSceneWithState(param0);
     Sound_PlayBGM(param1);
 
     return;
@@ -588,46 +585,45 @@ void sub_02004950(u16 param0)
 
 void sub_02004964(void)
 {
-    SoundSystem_LoadHeapState(sub_02004974(4));
-    return;
+    SoundSystem_LoadHeapState(Sound_GetHeapState(4));
 }
 
-int sub_02004974(int param0)
+int Sound_GetHeapState(enum SoundHeapState state)
 {
-    int *v0;
-    SoundSystem *v1 = SoundSystem_Get();
+    int *param;
+    SoundSystem *soundSys = SoundSystem_Get();
 
-    if (param0 >= 7) {
+    if (state >= SOUND_HEAP_STATE_COUNT) {
         GF_ASSERT(FALSE);
-        v0 = SoundSystem_GetParam(27);
-        return *v0;
+        param = SoundSystem_GetParam(27);
+        return *param;
     }
 
-    switch (param0) {
-    case 0:
-        v0 = SoundSystem_GetParam(23);
+    switch (state) {
+    case SOUND_HEAP_STATE_EMPTY:
+        param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_EMPTY);
         break;
-    case 1:
-        v0 = SoundSystem_GetParam(24);
+    case SOUND_HEAP_STATE_PERSISTENT:
+        param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT);
         break;
-    case 2:
-        v0 = SoundSystem_GetParam(25);
+    case SOUND_HEAP_STATE_BGM_BANK:
+        param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_BGM_BANK);
         break;
-    case 3:
-        v0 = SoundSystem_GetParam(26);
+    case SOUND_HEAP_STATE_SFX:
+        param = SoundSystem_GetParam(SOUND_SYSTEM_PARAM_HEAP_STATE_SFX);
         break;
     case 4:
-        v0 = SoundSystem_GetParam(27);
+        param = SoundSystem_GetParam(27);
         break;
     case 5:
-        v0 = SoundSystem_GetParam(28);
+        param = SoundSystem_GetParam(28);
         break;
     case 6:
-        v0 = SoundSystem_GetParam(29);
+        param = SoundSystem_GetParam(29);
         break;
     }
 
-    return *v0;
+    return *param;
 }
 
 void sub_020049F4(u8 param0, BOOL param1)
@@ -746,13 +742,11 @@ int sub_02004B04(int param0)
 
 u8 sub_02004B18(u16 param0)
 {
-    const NNSSndSeqParam *v0;
-
     if (param0 == 0) {
         return 0xff;
     }
 
-    v0 = NNS_SndArcGetSeqParam(param0);
+    const NNSSndSeqParam *v0 = NNS_SndArcGetSeqParam(param0);
 
     if (v0 == NULL) {
         return 0xff;
@@ -1289,7 +1283,7 @@ const SNDWaveData *sub_020050F8(int param0)
 {
     u16 v0;
 
-    SoundSystem_LoadHeapState(sub_02004974(5));
+    SoundSystem_LoadHeapState(Sound_GetHeapState(5));
 
     v0 = param0;
 
@@ -1547,7 +1541,7 @@ static void sub_0200540C(void)
         sub_020056D4();
         sub_020049F4(1, 1);
     } else {
-        sub_0200569C();
+        Sound_StopAll();
     }
 
     return;

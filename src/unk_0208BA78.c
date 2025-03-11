@@ -318,7 +318,7 @@ static BOOL sub_0208BC8C(UnkStruct_0208BC3C *param0, int heapID)
             u16 v1;
 
             sub_02005464(0);
-            sub_02004234(0);
+            Sound_SetScene(0);
 
             v1 = sub_02055428(param0->fieldSystem, param0->fieldSystem->location->mapId);
 

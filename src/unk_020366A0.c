@@ -2459,7 +2459,7 @@ void sub_02038A20(int param0)
             || (Unk_021C07D4->unk_59 != 0) || sub_0203881C()) {
             if (!HeapCanaryOK()) {
                 if (!sub_020389D8()) {
-                    sub_0200569C();
+                    Sound_StopAll();
                     SaveData_SaveStateCancel(Unk_021C07D4->unk_28);
                     gSystem.touchAutoSampling = TRUE;
 

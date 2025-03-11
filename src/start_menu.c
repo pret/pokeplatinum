@@ -1887,7 +1887,7 @@ static void StartMenu_EvolveInit(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
     v2 = menu->unk_25C;
 
-    sub_0200569C();
+    Sound_StopAll();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_73, 0x30000);
 
     v3 = SaveData_GetParty(fieldSystem->saveData);
@@ -1924,7 +1924,7 @@ static void StartMenu_Evolve(FieldTask *taskMan)
         sub_0207B0E0(menu->unk_25C);
         Heap_Destroy(HEAP_ID_73);
         sub_020055D0(1141, 0);
-        sub_02004234(0);
+        Sound_SetScene(0);
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
 
         menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);

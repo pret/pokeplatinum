@@ -1430,7 +1430,7 @@ static void ov17_0224E7C8(UnkStruct_ov17_0224F30C *param0, void *param1, const U
     UnkStruct_ov17_0224DF54 *v0 = param1;
     UnkStruct_ov17_0224DF54_sub2 *v1 = param3;
 
-    sub_0200569C();
+    Sound_StopAll();
     Sound_PlayBGM(v1->unk_24.unk_00);
 
     v0->unk_1078 = 1;

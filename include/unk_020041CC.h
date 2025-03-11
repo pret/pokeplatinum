@@ -5,7 +5,9 @@
 #include <nitro/spi.h>
 #include <nnsys.h>
 
+#include "sound_system.h"
 #include "struct_defs/struct_02004CB4.h"
+
 
 void Sound_SetBGMFixed(u8 fixed);
 u8 Sound_IsBGMFixed(void);
@@ -14,14 +16,14 @@ u16 Sound_GetCurrentBGM();
 void Sound_SetNextBGM(u16 bgmID);
 u16 Sound_GetNextBGM();
 void sub_02004224(u16 param0);
-void sub_02004234(u8 param0);
-void sub_02004258(u8 param0);
-int sub_0200426C(u8 param0);
+void Sound_SetScene(u8 scene);
+void Sound_SetSubScene(u8 scene);
+int Sound_LoadSoundEffectsForScene(u8 param0);
 BOOL sub_02004550(u8 param0, u16 param1, int param2);
 void sub_020047E8(u16 param0, u16 param1);
 void sub_02004950(u16 param0);
 void sub_02004964(void);
-int sub_02004974(int param0);
+int Sound_GetHeapState(enum SoundHeapState state);
 void sub_020049F4(u8 param0, BOOL param1);
 void sub_02004A3C();
 void sub_02004A54(int param0, int param1, int param2);
