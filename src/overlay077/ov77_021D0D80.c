@@ -224,7 +224,7 @@ static int ov77_021D0E3C(OverlayManager *param0, int *param1)
         }
         break;
     case 2:
-        sub_02004234(0);
+        Sound_SetScene(0);
         sub_02004550(1, 1173, 1);
         *param1 = 3;
         break;
@@ -337,7 +337,7 @@ static int ov77_021D10FC(OverlayManager *param0, int *param1)
         EnqueueApplication(0xffffffff, &Unk_020F8A48);
         break;
     case 3:
-        sub_02004234(0);
+        Sound_SetScene(0);
         EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneOverlayTemplate);
         break;
     }

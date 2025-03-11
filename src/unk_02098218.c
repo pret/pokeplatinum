@@ -97,7 +97,7 @@ static int sub_02098218(OverlayManager *param0, int *param1)
     ov119_021D0EB8(v1->unk_04.unk_00);
     ov119_021D17B8(&v1->unk_04);
 
-    sub_0200569C();
+    Sound_StopAll();
     SetVBlankCallback(ov119_021D0FD0, v1);
 
     return 1;

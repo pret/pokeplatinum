@@ -31,7 +31,7 @@ void sub_0200560C(int param0, int param1, int param2);
 void sub_0200564C(int param0, int param1);
 int Sound_CheckFade(void);
 int sub_02005690(u16 param0);
-void sub_0200569C(void);
+void Sound_StopAll(void);
 void sub_020056D4(void);
 BOOL Sound_PlayEffect(u16 param0);
 BOOL sub_02005770(u16 param0, int param1);
@@ -108,7 +108,7 @@ static BOOL sub_02005508(u16 param0, u8 param1, int param2)
 {
     int v0;
 
-    SoundSystem_LoadHeapState(sub_02004974(3));
+    SoundSystem_LoadHeapState(Sound_GetHeapState(SOUND_HEAP_STATE_SFX));
     SoundSystem_LoadSequence(param0);
     SoundSystem_SaveHeapState(SoundSystem_GetParam(27));
 
@@ -238,7 +238,7 @@ int sub_02005690(u16 param0)
     return sub_02004B04(v0);
 }
 
-void sub_0200569C(void)
+void Sound_StopAll(void)
 {
     u8 *v0 = SoundSystem_GetParam(16);
     u8 *v1 = SoundSystem_GetParam(17);
@@ -253,8 +253,7 @@ void sub_0200569C(void)
         sub_02004CF4(15);
     }
 
-    SoundSystem_SetState(0);
-    return;
+    SoundSystem_SetState(SOUND_SYSTEM_STATE_IDLE);
 }
 
 void sub_020056D4(void)
@@ -925,7 +924,7 @@ static void sub_020061C8(int param0)
     u16 v2;
 
     NNS_SndPlayerStopSeq(SoundSystem_GetSoundHandle(2), param0);
-    SoundSystem_LoadHeapState(sub_02004974(6));
+    SoundSystem_LoadHeapState(Sound_GetHeapState(6));
 
     return;
 }

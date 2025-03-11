@@ -112,9 +112,9 @@ u16 sub_0205560C(int param0);
 
 void sub_020553DC()
 {
-    sub_0200569C();
+    Sound_StopAll();
     sub_02004A3C();
-    sub_02004234(0);
+    Sound_SetScene(0);
 }
 
 void Sound_SetSpecialBGM(FieldSystem *fieldSystem, u16 sdatID)
@@ -315,7 +315,7 @@ void Sound_PlayMapBGM(FieldSystem *fieldSystem, int param1)
         return;
     }
 
-    sub_02004234(0);
+    Sound_SetScene(0);
 
     v0 = sub_020554A4(fieldSystem, param1);
 

@@ -10,13 +10,15 @@
 
 #define SOUND_SYSTEM_HEAP_SIZE              0xBBC00 // ~750kB
 #define SOUND_SYSTEM_CAPTURE_BUFFER_SIZE    0x1000
+#define SOUND_HEAP_STATE_INVALID            -1
 
 enum SoundHeapState {
     SOUND_HEAP_STATE_EMPTY = 0,
     SOUND_HEAP_STATE_PERSISTENT,
+    SOUND_HEAP_STATE_BGM_BANK,
+    SOUND_HEAP_STATE_SFX,
     
-    SOUND_HEAP_STATE_COUNT = 7,
-    SOUND_HEAP_STATE_INVALID = -1
+    SOUND_HEAP_STATE_COUNT = 7
 };
 
 enum SoundSystemState {
@@ -43,8 +45,12 @@ enum SoundSystemParam {
     SOUND_SYSTEM_PARAM_CURRENT_BGM = 10,
     SOUND_SYSTEM_PARAM_NEXT_BGM,
 
-    SOUND_SYSTEM_PARAM_HEAP_STATE_EMPTY = 23,
+    SOUND_SYSTEM_PARAM_MAIN_SCENE = 21,
+    SOUND_SYSTEM_PARAM_SUB_SCENE,
+    SOUND_SYSTEM_PARAM_HEAP_STATE_EMPTY,
     SOUND_SYSTEM_PARAM_HEAP_STATE_PERSISTENT,
+    SOUND_SYSTEM_PARAM_HEAP_STATE_BGM_BANK,
+    SOUND_SYSTEM_PARAM_HEAP_STATE_SFX,
 };
 
 typedef struct SoundSystem {
@@ -73,9 +79,9 @@ typedef struct SoundSystem {
     u8 unk_BCD63;
     u8 unk_BCD64;
     u8 unk_BCD65;
-    u8 unk_BCD66;
-    u8 unk_BCD67;
-    enum SoundHeapState heapStates[SOUND_HEAP_STATE_COUNT];
+    u8 mainScene;
+    u8 subScene;
+    int heapStates[SOUND_HEAP_STATE_COUNT];
     u8 unk_BCD84;
     u8 unk_BCD85;
     u16 unk_BCD86;
@@ -100,8 +106,8 @@ void SoundSystem_Update();
 void SoundSystem_SetState(enum SoundSystemState status);
 SoundSystem *SoundSystem_Get();
 void *SoundSystem_GetParam(enum SoundSystemParam param);
-enum SoundHeapState SoundSystem_SaveHeapState(enum SoundHeapState *state);
-void SoundSystem_LoadHeapState(enum SoundHeapState state);
+int SoundSystem_SaveHeapState(int *state);
+void SoundSystem_LoadHeapState(int state);
 BOOL SoundSystem_LoadSoundGroup(u16 group);
 BOOL SoundSystem_LoadSequence(u16 id);
 BOOL SoundSystem_LoadSequenceEx(u16 id, u32 flags); // See NNS_SND_ARC_LOAD_* in nnsys/snd/sndarc.h for flags
