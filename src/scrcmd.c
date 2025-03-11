@@ -637,7 +637,7 @@ static BOOL ScrCmd_25D(ScriptContext *ctx);
 static BOOL ScrCmd_25E(ScriptContext *ctx);
 static BOOL ScrCmd_25F(ScriptContext *ctx);
 static BOOL ScrCmd_260(ScriptContext *ctx);
-static BOOL ScrCmd_PartyHasSpecies(ScriptContext *ctx);
+static BOOL ScrCmd_PartyHasSpecies2(ScriptContext *ctx);
 static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx);
 static BOOL ScrCmd_264(ScriptContext *ctx);
 static BOOL ScrCmd_HidePoketch(ScriptContext *ctx);
@@ -1213,7 +1213,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetPlayerDir,
     ScrCmd_1BE,
     ScrCmd_1BF,
-    ScrCmd_1C0,
+    PartyHasSpecies,
     ScrCmd_1C1,
     ScrCmd_1C2,
     ScrCmd_1C3,
@@ -1375,7 +1375,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_25F,
     ScrCmd_260,
     ScrCmd_261,
-    ScrCmd_PartyHasSpecies,
+    ScrCmd_PartyHasSpecies2,
     ScrCmd_ChangeDeoxysForm,
     ScrCmd_264,
     ScrCmd_HidePoketch,
@@ -6805,7 +6805,7 @@ static BOOL ScrCmd_260(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_PartyHasSpecies(ScriptContext *ctx)
+static BOOL ScrCmd_PartyHasSpecies2(ScriptContext *ctx)
 {
     u16 species = ScriptContext_GetVar(ctx);
     u16 *destVar = ScriptContext_GetVarPointer(ctx);

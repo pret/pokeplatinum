@@ -610,34 +610,34 @@ BOOL ScrCmd_1F0(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_1C0(ScriptContext *param0)
+BOOL PartyHasSpecies(ScriptContext *ctx)
 {
-    FieldSystem *fieldSystem = param0->fieldSystem;
-    Pokemon *v1;
-    Party *v2;
-    u16 *v3 = ScriptContext_GetVarPointer(param0);
-    u16 v4 = ScriptContext_GetVar(param0);
-    u8 v5, v6;
-    u16 v7;
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    Pokemon *mon;
+    Party *party;
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 species = ScriptContext_GetVar(ctx);
+    u8 i, partyCount;
+    u16 partySpecies;
 
-    v2 = Party_GetFromSavedata(fieldSystem->saveData);
-    v6 = Party_GetCurrentCount(v2);
-    *v3 = 0;
+    party = Party_GetFromSavedata(fieldSystem->saveData);
+    partyCount = Party_GetCurrentCount(party);
+    *destVar = FALSE;
 
-    for (v5 = 0; v5 < v6; v5++) {
-        v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), v5);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), i);
 
-        if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
-            v7 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
+            partySpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-            if (v4 == v7) {
-                *v3 = 1;
+            if (species == partySpecies) {
+                *destVar = TRUE;
                 break;
             }
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_2CB(ScriptContext *param0)

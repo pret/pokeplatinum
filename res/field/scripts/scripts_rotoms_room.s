@@ -100,7 +100,7 @@ _013D:
     End
 
 _0151:
-    ScrCmd_1C0 0x800C, 0x1DF
+    PartyHasSpecies 0x800C, SPECIES_ROTOM
     GoToIfEq 0x800C, 0, _06DE
     CheckItem ITEM_SECRET_KEY, 1, 0x800C
     GoToIfEq 0x800C, 0, _06DE

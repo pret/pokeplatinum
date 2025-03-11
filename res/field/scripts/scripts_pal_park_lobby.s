@@ -449,7 +449,7 @@ _057C:
     CheckPoketchAppRegistered POKETCH_APPID_KITCHENTIMER, 0x800C
     GoToIfEq 0x800C, 1, _05FB
     Message 10
-    ScrCmd_1C0 0x800C, 143
+    PartyHasSpecies 0x800C, SPECIES_SNORLAX
     GoToIfEq 0x800C, 0, _064C
     Message 11
     SetVar 0x8004, 20
@@ -462,7 +462,7 @@ _057C:
 
 _05FB:
     Message 13
-    ScrCmd_1C0 0x800C, 0x160
+    PartyHasSpecies 0x800C, SPECIES_KECLEON
     GoToIfEq 0x800C, 0, _064C
     Message 14
     SetVar 0x8004, 21

@@ -484,9 +484,9 @@ static void ov21_021DECD4(Window *param0, int param1, int param2, int param3, u3
 static void ov21_021DED24(UnkStruct_ov21_021DF374 *param0, UnkStruct_ov21_021DE760 *param1, const UnkStruct_ov21_021DE6D4 *param2, int param3)
 {
     int species = PokedexSort_CurrentSpecies(param2->unk_04);
-    int v1 = PokedexSort_DefaultForm(param2->unk_04, species);
+    int form = PokedexSort_DefaultForm(param2->unk_04, species);
 
-    if ((species == 487) && (v1 > 0)) {
+    if ((species == SPECIES_GIRATINA) && (form > 0)) {
         species = 11;
     }
 

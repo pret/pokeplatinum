@@ -2449,7 +2449,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1C0 destVarID, species
+    // Saves TRUE or FALSE into a var depending if the player
+    // has the specified Pokémon in their party.
+    .macro PartyHasSpecies destVarID, species
     .short 448
     .short \destVarID
     .short \species
@@ -3364,9 +3366,9 @@
     .short \arg1
     .endm
 
-    // Saves TRUE or FALSE depending if the player
-    // has the specified Pokémon in their party.
-    .macro PartyHasSpecies species, destVarID
+    // Like PartyHasSpecies, but args are reversed and it checks the species inside eggs.
+    // Since it's only used for Deoxys, no bugs manifest on vanilla.
+    .macro PartyHasSpecies2 species, destVarID
     .short 610
     .short \species
     .short \destVarID
