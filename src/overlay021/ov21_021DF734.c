@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "generated/text_banks.h"
+#include "generated/gender_ratios.h"
 
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
@@ -86,9 +87,9 @@ static void ov21_021E0094(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
 static BOOL ov21_021E00B8(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1);
 static void ov21_021E00F4(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, int param2, int param3, int param4);
 static BOOL ov21_021E015C(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, int param2);
-static int ov21_021E01CC(int param0, const UnkStruct_ov21_021DF844 *param1);
-static int ov21_021E0268(int param0, const UnkStruct_ov21_021DF844 *param1);
-static int ov21_021E02F0(int param0, const UnkStruct_ov21_021DF844 *param1);
+static int ov21_021E01CC(int species, const UnkStruct_ov21_021DF844 *param1);
+static int ov21_021E0268(int species, const UnkStruct_ov21_021DF844 *param1);
+static int ov21_021E02F0(int species, const UnkStruct_ov21_021DF844 *param1);
 static void ov21_021DFA84(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1, const UnkStruct_ov21_021DF844 *param2, int heapID);
 static void ov21_021DFACC(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF858 *param1);
 static void ov21_021DFAE8(UnkStruct_ov21_021DF858 *param0, int heapID);
@@ -741,88 +742,88 @@ static BOOL ov21_021E015C(UnkStruct_ov21_021DFFF8 *param0, UnkStruct_ov21_021DF8
     return v0;
 }
 
-static int ov21_021E01CC(int param0, const UnkStruct_ov21_021DF844 *param1)
+static int ov21_021E01CC(int species, const UnkStruct_ov21_021DF844 *param1)
 {
-    switch (param0) {
-    case 201:
+    switch (species) {
+    case SPECIES_UNOWN:
         return 8;
-    case 422:
+    case SPECIES_SHELLOS:
         return 4;
-    case 423:
+    case SPECIES_GASTRODON:
         return 5;
-    case 412:
+    case SPECIES_BURMY:
         return 6;
-    case 413:
+    case SPECIES_WORMADAM:
         return 7;
-    case 386:
+    case SPECIES_DEOXYS:
         return 9;
-    case 492:
+    case SPECIES_SHAYMIN:
         return 10;
-    case 487:
+    case SPECIES_GIRATINA:
         return 11;
-    case 479:
+    case SPECIES_ROTOM:
         return 12;
     default:
         break;
     }
 
-    return ov21_021E02F0(param0, param1);
+    return ov21_021E02F0(species, param1);
 }
 
-static int ov21_021E0268(int param0, const UnkStruct_ov21_021DF844 *param1)
+static int ov21_021E0268(int species, const UnkStruct_ov21_021DF844 *param1)
 {
-    switch (param0) {
-    case 201:
-    case 422:
-    case 423:
-    case 412:
-    case 413:
-    case 386:
-    case 492:
-    case 487:
-    case 479:
-        return PokedexSort_NumFormsSeen(param1->unk_04, param0);
+    switch (species) {
+    case SPECIES_UNOWN:
+    case SPECIES_SHELLOS:
+    case SPECIES_GASTRODON:
+    case SPECIES_BURMY:
+    case SPECIES_WORMADAM:
+    case SPECIES_DEOXYS:
+    case SPECIES_SHAYMIN:
+    case SPECIES_GIRATINA:
+    case SPECIES_ROTOM:
+        return PokedexSort_NumFormsSeen(param1->unk_04, species);
     default:
         break;
     }
 
-    return PokedexSort_NumGendersVisible(param1->unk_04, param0);
+    return PokedexSort_NumGendersVisible(param1->unk_04, species);
 }
 
-static int ov21_021E02F0(int param0, const UnkStruct_ov21_021DF844 *param1)
+static int ov21_021E02F0(int species, const UnkStruct_ov21_021DF844 *param1)
 {
-    int v0;
+    int genderRatio;
     int v1;
 
-    v0 = SpeciesData_GetSpeciesValue(param0, SPECIES_DATA_GENDER_RATIO);
+    genderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
 
-    if (v0 == 0) {
+    if (genderRatio == GENDER_RATIO_MALE_ONLY) {
         return 1;
     }
 
-    if (v0 == 254) {
+    if (genderRatio == GENDER_RATIO_FEMALE_ONLY) {
         return 2;
     }
 
-    if (v0 == 255) {
+    if (genderRatio == GENDER_RATIO_NO_GENDER) {
         return 3;
     }
 
-    v1 = PokedexSort_NumGendersVisible(param1->unk_04, param0);
+    v1 = PokedexSort_NumGendersVisible(param1->unk_04, species);
 
     if (v1 == 1) {
-        v0 = PokedexSort_Gender(param1->unk_04, param0, 0);
-        GF_ASSERT(v0 != -1);
+        genderRatio = PokedexSort_Gender(param1->unk_04, species, 0);
+        GF_ASSERT(genderRatio != -1);
 
-        if (v0 == 0) {
+        if (genderRatio == 0) {
             return 1;
         }
 
-        if (v0 == 254) {
+        if (genderRatio == 254) {
             return 2;
         }
 
-        if (v0 == 255) {
+        if (genderRatio == 255) {
             return 3;
         }
     }

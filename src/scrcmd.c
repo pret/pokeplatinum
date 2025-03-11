@@ -637,8 +637,8 @@ static BOOL ScrCmd_25D(ScriptContext *ctx);
 static BOOL ScrCmd_25E(ScriptContext *ctx);
 static BOOL ScrCmd_25F(ScriptContext *ctx);
 static BOOL ScrCmd_260(ScriptContext *ctx);
-static BOOL ScrCmd_262(ScriptContext *ctx);
-static BOOL ScrCmd_263(ScriptContext *ctx);
+static BOOL ScrCmd_PartyHasSpecies(ScriptContext *ctx);
+static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx);
 static BOOL ScrCmd_264(ScriptContext *ctx);
 static BOOL ScrCmd_HidePoketch(ScriptContext *ctx);
 static BOOL ScrCmd_ShowPoketch(ScriptContext *ctx);
@@ -1375,8 +1375,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_25F,
     ScrCmd_260,
     ScrCmd_261,
-    ScrCmd_262,
-    ScrCmd_263,
+    ScrCmd_PartyHasSpecies,
+    ScrCmd_ChangeDeoxysForm,
     ScrCmd_264,
     ScrCmd_HidePoketch,
     ScrCmd_ShowPoketch,
@@ -6805,34 +6805,34 @@ static BOOL ScrCmd_260(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_262(ScriptContext *ctx)
+static BOOL ScrCmd_PartyHasSpecies(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
-    Party *v2 = Party_GetFromSavedata(ctx->fieldSystem->saveData);
+    u16 species = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    Party *party = Party_GetFromSavedata(ctx->fieldSystem->saveData);
 
-    *v1 = Party_HasSpecies(v2, v0);
-    return 1;
+    *destVar = Party_HasSpecies(party, species);
+    return TRUE;
 }
 
-static BOOL ScrCmd_263(ScriptContext *ctx)
+static BOOL ScrCmd_ChangeDeoxysForm(ScriptContext *ctx)
 {
-    u16 v0 = ScriptContext_GetVar(ctx);
-    Party *v1 = Party_GetFromSavedata(ctx->fieldSystem->saveData);
-    int v2;
-    int v3;
-    int v4 = Party_GetCurrentCount(v1);
-    Pokemon *v5;
-    Pokedex *v6 = SaveData_GetPokedex(ctx->fieldSystem->saveData);
+    u16 form = ScriptContext_GetVar(ctx);
+    Party *party = Party_GetFromSavedata(ctx->fieldSystem->saveData);
+    int i;
+    int species;
+    int partyCount = Party_GetCurrentCount(party);
+    Pokemon *mon;
+    Pokedex *pokedex = SaveData_GetPokedex(ctx->fieldSystem->saveData);
 
-    for (v2 = 0; v2 < v4; v2++) {
-        v5 = Party_GetPokemonBySlotIndex(v1, v2);
-        v3 = Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
+    for (i = 0; i < partyCount; i++) {
+        mon = Party_GetPokemonBySlotIndex(party, i);
+        species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-        if (v3 == SPECIES_DEOXYS) {
-            Pokemon_SetValue(v5, MON_DATA_FORM, &v0);
-            Pokemon_CalcLevelAndStats(v5);
-            Pokedex_Capture(v6, v5);
+        if (species == SPECIES_DEOXYS) {
+            Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_CalcLevelAndStats(mon);
+            Pokedex_Capture(pokedex, mon);
         }
     }
 

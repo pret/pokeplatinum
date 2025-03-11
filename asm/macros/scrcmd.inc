@@ -3364,15 +3364,17 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_262 arg0, arg1
+    // Saves TRUE or FALSE depending if the player
+    // has the specified Pokémon in their party.
+    .macro PartyHasSpecies species, destVarID
     .short 610
-    .short \arg0
-    .short \arg1
+    .short \species
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_263 arg0
+    .macro ChangeDeoxysForm form
     .short 611
-    .short \arg0
+    .short \form
     .endm
 
     .macro ScrCmd_264 arg0

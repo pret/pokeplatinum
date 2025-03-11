@@ -9,7 +9,7 @@
 #include "constants/moves.h"
 #include "constants/narc.h"
 #include "constants/sound.h"
-#include "constants/species.h"
+#include "constants/forms.h"
 #include "generated/abilities.h"
 #include "generated/evolution_methods.h"
 #include "generated/exp_rates.h"
@@ -2685,12 +2685,12 @@ u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm)
         }
         break;
     case SPECIES_DEOXYS:
-        if (monForm > 3) {
+        if (monForm > DEOXYS_FORM_COUNT - 1) {
             monForm = 0;
         }
         break;
     case SPECIES_UNOWN:
-        if (monForm >= 28) {
+        if (monForm >= UNOWN_FORM_COUNT) {
             monForm = 0;
         }
         break;

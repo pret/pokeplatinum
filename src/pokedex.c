@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/species.h"
+#include "constants/forms.h"
 #include "generated/gender_ratios.h"
 
 #include "heap.h"
@@ -33,8 +33,6 @@ static const u16 sExcludedMonsLocal[] = {};
 #define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMonsLocal) / sizeof(u16)))
 #define NATIONAL_DEX_GOAL     (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
 #define LOCAL_DEX_GOAL        (LOCAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)
-#define UNOWN_COUNT           28
-#define DEOXYS_COUNT          4
 #define ROTOM_COUNT           6
 
 typedef struct Pokedex {
@@ -47,7 +45,7 @@ typedef struct Pokedex {
     u8 gastrodonFormsSeen;
     u8 burmyFormsSeen;
     u8 wormadamFormsSeen;
-    u8 unownFormsSeen[UNOWN_COUNT];
+    u8 unownFormsSeen[UNOWN_FORM_COUNT];
     u8 recordedLanguages[MAX_SPECIES + 1];
     u8 canDetectForms;
     u8 canDetectLanguages;
@@ -182,7 +180,7 @@ static int NumFormsSeen_Unown(const Pokedex *pokedexData)
 {
     int formIndex;
 
-    for (formIndex = 0; formIndex < UNOWN_COUNT; formIndex++) {
+    for (formIndex = 0; formIndex < UNOWN_FORM_COUNT; formIndex++) {
         if (pokedexData->unownFormsSeen[formIndex] == 0xFF) {
             break;
         }
@@ -193,7 +191,7 @@ static int NumFormsSeen_Unown(const Pokedex *pokedexData)
 
 static BOOL UnownFormSeen(const Pokedex *pokedexData, u8 form)
 {
-    for (int formIndex = 0; formIndex < UNOWN_COUNT; formIndex++) {
+    for (int formIndex = 0; formIndex < UNOWN_FORM_COUNT; formIndex++) {
         if (pokedexData->unownFormsSeen[formIndex] == form) {
             return TRUE;
         }
@@ -210,7 +208,7 @@ static void SetUnownForm(Pokedex *pokedexData, int form)
 
     int numUnownSeen = NumFormsSeen_Unown(pokedexData);
 
-    if (numUnownSeen < UNOWN_COUNT) {
+    if (numUnownSeen < UNOWN_FORM_COUNT) {
         pokedexData->unownFormsSeen[numUnownSeen] = form;
     }
 }
@@ -410,7 +408,7 @@ static void UpdateFormArray_Deoxys(Pokedex *pokedexData, u8 form, u8 bitIndex)
     // Deoxys forms are currently stored in spare bits in these arrays
     // This will want to be changed when modding to avoid overlapping references
 
-    GF_ASSERT(bitIndex < DEOXYS_COUNT);
+    GF_ASSERT(bitIndex < DEOXYS_FORM_COUNT);
     GF_ASSERT(form <= 0x0F);
 
     if (bitIndex < 2) {
@@ -445,7 +443,7 @@ static u32 NumFormsSeen_Deoxys(const Pokedex *pokedexData)
 {
     int formIndex;
 
-    for (formIndex = 0; formIndex < DEOXYS_COUNT; formIndex++) {
+    for (formIndex = 0; formIndex < DEOXYS_FORM_COUNT; formIndex++) {
         if (GetForm_Deoxys(pokedexData, formIndex) == 0x0F) {
             break;
         }
@@ -456,7 +454,7 @@ static u32 NumFormsSeen_Deoxys(const Pokedex *pokedexData)
 
 static BOOL FormSeen_Deoxys(const Pokedex *pokedexData, u32 form)
 {
-    for (int formIndex = 0; formIndex < DEOXYS_COUNT; formIndex++) {
+    for (int formIndex = 0; formIndex < DEOXYS_FORM_COUNT; formIndex++) {
         if (GetForm_Deoxys(pokedexData, formIndex) == form) {
             return TRUE;
         }
@@ -479,7 +477,7 @@ static void UpdateForms_Deoxys(Pokedex *pokedexData, u16 species, Pokemon *pokem
 
 static void InitDeoxys(Pokedex *pokedexData)
 {
-    for (int formIndex = 0; formIndex < DEOXYS_COUNT; formIndex++) {
+    for (int formIndex = 0; formIndex < DEOXYS_FORM_COUNT; formIndex++) {
         UpdateFormArray_Deoxys(pokedexData, 0x0F, formIndex);
     }
 }
@@ -734,7 +732,7 @@ void Pokedex_Init(Pokedex *pokedexData)
     pokedexData->magic = MAGIC_NUMBER;
     pokedexData->nationalDexObtained = FALSE;
 
-    memset(pokedexData->unownFormsSeen, 0xFF, sizeof(u8) * UNOWN_COUNT);
+    memset(pokedexData->unownFormsSeen, 0xFF, sizeof(u8) * UNOWN_FORM_COUNT);
 
     pokedexData->shellosFormsSeen = 0xFF;
     pokedexData->gastrodonFormsSeen = 0xFF;
