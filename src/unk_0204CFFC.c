@@ -763,18 +763,18 @@ BOOL ScrCmd_22F(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_230(ScriptContext *param0)
+BOOL ScrCmd_PartyMonHasRibbon(ScriptContext *ctx)
 {
-    Pokemon *v0;
-    u16 *v1 = ScriptContext_GetVarPointer(param0);
-    u16 v2 = ScriptContext_GetVar(param0);
-    u16 v3 = ScriptContext_GetVar(param0);
-    u8 v4 = 1;
+    Pokemon *mon;
+    u16 *hasRibbonVar = ScriptContext_GetVarPointer(ctx);
+    u16 slot = ScriptContext_GetVar(ctx);
+    u16 ribbonNum = ScriptContext_GetVar(ctx);
+    u8 unused = 1;
 
-    v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v2);
-    *v1 = Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_RIBBON_ID), NULL);
+    mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
+    *hasRibbonVar = Pokemon_GetValue(mon, Ribbon_GetData(ribbonNum, RIBBON_DATA_RIBBON_ID), NULL);
 
-    return 0;
+    return FALSE;
 }
 
 BOOL ScrCmd_231(ScriptContext *param0)

@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_market.h"
+#include "generated/ribbons.h"
 
     .data
 
@@ -18,7 +19,7 @@ _001A:
     LockAll
     FacePlayer
     ScrCmd_247 0x8000
-    ScrCmd_230 0x800C, 0x8000, 24
+    PartyMonHasRibbon 0x800C, 0x8000, RIBBON_HOENN_EFFORT
     GoToIfEq 0x800C, 1, _0086
     BufferPartyMonSpecies 0, 0x8000
     Message 0

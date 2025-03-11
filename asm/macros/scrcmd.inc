@@ -3071,11 +3071,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_230 arg0, arg1, arg2
+    .macro PartyMonHasRibbon destVar, partyID, ribbonNum
     .short 560
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \destVar
+    .short \partyID
+    .short \ribbonNum
     .endm
 
     .macro ScrCmd_231 arg0, arg1

@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_ribbon_syndicate_1f.h"
+#include "generated/ribbons.h"
 
     .data
 
@@ -75,11 +76,11 @@ _00D6:
     ScrCmd_247 0x8000
     BufferPlayerName 0
     BufferPartyMonSpecies 2, 0x8000
-    ScrCmd_230 0x800C, 0x8000, 68
+    PartyMonHasRibbon 0x800C, 0x8000, RIBBON_GORGEOUS_ROYAL
     GoToIfEq 0x800C, 1, _0244
-    ScrCmd_230 0x800C, 0x8000, 67
+    PartyMonHasRibbon 0x800C, 0x8000, RIBBON_ROYAL
     GoToIfEq 0x800C, 1, _01E7
-    ScrCmd_230 0x800C, 0x8000, 66
+    PartyMonHasRibbon 0x800C, 0x8000, RIBBON_GORGEOUS
     GoToIfEq 0x800C, 1, _018A
     GoTo _012F
 

@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sunyshore_city_northeast_house.h"
+#include "generated/ribbons.h"
 
     .data
 
@@ -48,31 +49,31 @@ _0070:
     GoTo _0104
 
 _00C8:
-    ScrCmd_230 0x800C, 0x8002, 65
+    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_SMILE
     Return
 
 _00D2:
-    ScrCmd_230 0x800C, 0x8002, 59
+    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_ALERT
     Return
 
 _00DC:
-    ScrCmd_230 0x800C, 0x8002, 60
+    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_SHOCK
     Return
 
 _00E6:
-    ScrCmd_230 0x800C, 0x8002, 61
+    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_DOWNCAST
     Return
 
 _00F0:
-    ScrCmd_230 0x800C, 0x8002, 62
+    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_CARELESS
     Return
 
 _00FA:
-    ScrCmd_230 0x800C, 0x8002, 63
+    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_RELAX
     Return
 
 _0104:
-    ScrCmd_230 0x800C, 0x8002, 64
+    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_SNOOZE
     Return
 
 _010E:

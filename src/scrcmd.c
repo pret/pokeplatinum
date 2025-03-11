@@ -1325,7 +1325,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_22D,
     ScrCmd_22E,
     ScrCmd_22F,
-    ScrCmd_230,
+    ScrCmd_PartyMonHasRibbon,
     ScrCmd_231,
     ScrCmd_232,
     ScrCmd_233,

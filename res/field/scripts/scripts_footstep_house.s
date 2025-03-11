@@ -1,5 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/footstep_house.h"
+#include "constants/footstep_house.h"
+#include "generated/ribbons.h"
 
     .data
 
@@ -97,287 +99,287 @@ _0144:
     Return
 
 _0150:
-    GoToIfEq 0x8001, 1, _018A
-    GoToIfEq 0x8001, 2, _019D
-    GoToIfEq 0x8001, 3, _01B0
-    GoToIfEq 0x8001, 4, _01C3
-    GoTo _0574
+    GoToIfEq 0x8001, FOOTPRINT_TYPE_CUTE, FootstepHouse_CuteType
+    GoToIfEq 0x8001, FOOTPRINT_TYPE_TOUGH, FootstepHouse_ToughType
+    GoToIfEq 0x8001, FOOTPRINT_TYPE_SCARY, FootstepHouse_ScaryType
+    GoToIfEq 0x8001, FOOTPRINT_TYPE_SLOW, FootstepHouse_SlowType
+    GoTo FootstepHouse_VoicelessType
 
-_018A:
-    GoToIfEq 0x8000, 1, _01D6
-    GoTo _0216
+FootstepHouse_CuteType:
+    GoToIfEq 0x8000, TRUE, FootstepHouse_CuteType_WithPrint
+    GoTo FootstepHouse_CuteType_WithoutPrint
 
-_019D:
-    GoToIfEq 0x8000, 1, _0256
-    GoTo _0296
+FootstepHouse_ToughType:
+    GoToIfEq 0x8000, TRUE, FootstepHouse_ToughType_WithPrint
+    GoTo FootstepHouse_ToughType_WithoutPrint
 
-_01B0:
-    GoToIfEq 0x8000, 1, _02D6
-    GoTo _0316
+FootstepHouse_ScaryType:
+    GoToIfEq 0x8000, TRUE, FootstepHouse_ScaryType_WithPrint
+    GoTo FootstepHouse_ScaryType_WithoutPrint
 
-_01C3:
-    GoToIfEq 0x8000, 1, _0356
-    GoTo _0396
+FootstepHouse_SlowType:
+    GoToIfEq 0x8000, TRUE, FootstepHouse_SlowType_WithPrint
+    GoTo FootstepHouse_SlowType_WithoutPrint
 
-_01D6:
+FootstepHouse_CuteType_WithPrint:
     ScrCmd_1B9 0x800C, 0x8002
-    GoToIfGe 0x800C, 0xFF, _03FA
-    GoToIfGe 0x800C, 200, _03F1
-    GoToIfGe 0x800C, 150, _03E8
-    GoToIfGe 0x800C, 70, _03DF
-    GoTo FootstepHouse_CuteLevel1
+    GoToIfGe 0x800C, 0xFF, FootstepHouse_CuteType_WithPrint_Level5
+    GoToIfGe 0x800C, 200, FootstepHouse_CuteType_WithPrint_Level4
+    GoToIfGe 0x800C, 150, FootstepHouse_CuteType_WithPrint_Level3
+    GoToIfGe 0x800C, 70, FootstepHouse_CuteType_WithPrint_Level2
+    GoTo FootstepHouse_CuteType_WithPrint_Level1
 
-_0216:
+FootstepHouse_CuteType_WithoutPrint:
     ScrCmd_1B9 0x800C, 0x8002
-    GoToIfGe 0x800C, 0xFF, _0427
-    GoToIfGe 0x800C, 200, _041E
-    GoToIfGe 0x800C, 150, _0415
-    GoToIfGe 0x800C, 70, _040C
-    GoTo _0403
+    GoToIfGe 0x800C, 0xFF, FootstepHouse_CuteType_WithoutPrint_Level5
+    GoToIfGe 0x800C, 200, FootstepHouse_CuteType_WithoutPrint_Level4
+    GoToIfGe 0x800C, 150, FootstepHouse_CuteType_WithoutPrint_Level3
+    GoToIfGe 0x800C, 70, FootstepHouse_CuteType_WithoutPrint_Level2
+    GoTo FootstepHouse_CuteType_WithoutPrint_Level1
 
-_0256:
+FootstepHouse_ToughType_WithPrint:
     ScrCmd_1B9 0x800C, 0x8002
-    GoToIfGe 0x800C, 0xFF, _0454
-    GoToIfGe 0x800C, 200, _044B
-    GoToIfGe 0x800C, 150, _0442
-    GoToIfGe 0x800C, 70, _0439
-    GoTo _0430
+    GoToIfGe 0x800C, 0xFF, FootstepHouse_ToughType_WithPrint_Level5
+    GoToIfGe 0x800C, 200, FootstepHouse_ToughType_WithPrint_Level4
+    GoToIfGe 0x800C, 150, FootstepHouse_ToughType_WithPrint_Level3
+    GoToIfGe 0x800C, 70, FootstepHouse_ToughType_WithPrint_Level2
+    GoTo FootstepHouse_ToughType_WithPrint_Level1
 
-_0296:
+FootstepHouse_ToughType_WithoutPrint:
     ScrCmd_1B9 0x800C, 0x8002
-    GoToIfGe 0x800C, 0xFF, _0481
-    GoToIfGe 0x800C, 200, _0478
-    GoToIfGe 0x800C, 150, _046F
-    GoToIfGe 0x800C, 70, _0466
-    GoTo _045D
+    GoToIfGe 0x800C, 0xFF, FootstepHouse_ToughType_WithoutPrint_Level5
+    GoToIfGe 0x800C, 200, FootstepHouse_ToughType_WithoutPrint_Level4
+    GoToIfGe 0x800C, 150, FootstepHouse_ToughType_WithoutPrint_Level3
+    GoToIfGe 0x800C, 70, FootstepHouse_ToughType_WithoutPrint_Level2
+    GoTo FootstepHouse_ToughType_WithoutPrint_Level1
 
-_02D6:
+FootstepHouse_ScaryType_WithPrint:
     ScrCmd_1B9 0x800C, 0x8002
-    GoToIfGe 0x800C, 0xFF, _04AE
-    GoToIfGe 0x800C, 200, _04A5
-    GoToIfGe 0x800C, 150, _049C
-    GoToIfGe 0x800C, 70, _0493
-    GoTo _048A
+    GoToIfGe 0x800C, 0xFF, FootstepHouse_ScaryType_WithPrint_Level5
+    GoToIfGe 0x800C, 200, FootstepHouse_ScaryType_WithPrint_Level4
+    GoToIfGe 0x800C, 150, FootstepHouse_ScaryType_WithPrint_Level3
+    GoToIfGe 0x800C, 70, FootstepHouse_ScaryType_WithPrint_Level2
+    GoTo FootstepHouse_ScaryType_WithPrint_Level1
 
-_0316:
+FootstepHouse_ScaryType_WithoutPrint:
     ScrCmd_1B9 0x800C, 0x8002
-    GoToIfGe 0x800C, 0xFF, _04DB
-    GoToIfGe 0x800C, 200, _04D2
-    GoToIfGe 0x800C, 150, _04C9
-    GoToIfGe 0x800C, 70, _04C0
-    GoTo _04B7
+    GoToIfGe 0x800C, 0xFF, FootstepHouse_ScaryType_WithoutPrint_Level5
+    GoToIfGe 0x800C, 200, FootstepHouse_ScaryType_WithoutPrint_Level4
+    GoToIfGe 0x800C, 150, FootstepHouse_ScaryType_WithoutPrint_Level3
+    GoToIfGe 0x800C, 70, FootstepHouse_ScaryType_WithoutPrint_Level2
+    GoTo FootstepHouse_ScaryType_WithoutPrint_Level1
 
-_0356:
+FootstepHouse_SlowType_WithPrint:
     ScrCmd_1B9 0x800C, 0x8002
-    GoToIfGe 0x800C, 0xFF, _0508
-    GoToIfGe 0x800C, 200, _04FF
-    GoToIfGe 0x800C, 150, _04F6
-    GoToIfGe 0x800C, 70, _04ED
-    GoTo _04E4
+    GoToIfGe 0x800C, 0xFF, FootstepHouse_SlowType_WithPrint_Level5
+    GoToIfGe 0x800C, 200, FootstepHouse_SlowType_WithPrint_Level4
+    GoToIfGe 0x800C, 150, FootstepHouse_SlowType_WithPrint_Level3
+    GoToIfGe 0x800C, 70, FootstepHouse_SlowType_WithPrint_Level2
+    GoTo FootstepHouse_SlowType_WithPrint_Level1
 
-_0396:
+FootstepHouse_SlowType_WithoutPrint:
     ScrCmd_1B9 0x800C, 0x8002
-    GoToIfGe 0x800C, 0xFF, _0535
-    GoToIfGe 0x800C, 200, _052C
-    GoToIfGe 0x800C, 150, _0523
-    GoToIfGe 0x800C, 70, _051A
-    GoTo _0511
+    GoToIfGe 0x800C, 0xFF, FootstepHouse_SlowType_WithoutPrint_Level5
+    GoToIfGe 0x800C, 200, FootstepHouse_SlowType_WithoutPrint_Level4
+    GoToIfGe 0x800C, 150, FootstepHouse_SlowType_WithoutPrint_Level3
+    GoToIfGe 0x800C, 70, FootstepHouse_SlowType_WithoutPrint_Level2
+    GoTo FootstepHouse_SlowType_WithoutPrint_Level1
 
-FootstepHouse_CuteLevel1:
-    Message footstep_house_cute_level_1
-    GoTo _05A5
+FootstepHouse_CuteType_WithPrint_Level1:
+    Message footstep_house_cute_type_with_print_level_1
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_03DF:
-    Message 11
-    GoTo _05A5
+FootstepHouse_CuteType_WithPrint_Level2:
+    Message footstep_house_cute_type_with_print_level_2
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_03E8:
-    Message 12
-    GoTo _05A5
+FootstepHouse_CuteType_WithPrint_Level3:
+    Message footstep_house_cute_type_with_print_level_3
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_03F1:
-    Message 13
-    GoTo _05A5
+FootstepHouse_CuteType_WithPrint_Level4:
+    Message footstep_house_cute_type_with_print_level_4
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_03FA:
-    Message 14
+FootstepHouse_CuteType_WithPrint_Level5:
+    Message footstep_house_cute_type_with_print_level_5
     GoTo _053E
 
-_0403:
-    Message 15
-    GoTo _05C4
+FootstepHouse_CuteType_WithoutPrint_Level1:
+    Message footstep_house_cute_type_without_print_level_1
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_040C:
-    Message 16
-    GoTo _05C4
+FootstepHouse_CuteType_WithoutPrint_Level2:
+    Message footstep_house_cute_type_without_print_level_2
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_0415:
-    Message 17
-    GoTo _05C4
+FootstepHouse_CuteType_WithoutPrint_Level3:
+    Message footstep_house_cute_type_without_print_level_3
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_041E:
-    Message 18
-    GoTo _05C4
+FootstepHouse_CuteType_WithoutPrint_Level4:
+    Message footstep_house_cute_type_without_print_level_4
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_0427:
-    Message 19
+FootstepHouse_CuteType_WithoutPrint_Level5:
+    Message footstep_house_cute_type_without_print_level_5
     GoTo _0559
 
-_0430:
-    Message 20
-    GoTo _05A5
+FootstepHouse_ToughType_WithPrint_Level1:
+    Message footstep_house_tough_type_with_print_level_1
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_0439:
-    Message 21
-    GoTo _05A5
+FootstepHouse_ToughType_WithPrint_Level2:
+    Message footstep_house_tough_type_with_print_level_2
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_0442:
-    Message 22
-    GoTo _05A5
+FootstepHouse_ToughType_WithPrint_Level3:
+    Message footstep_house_tough_type_with_print_level_3
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_044B:
-    Message 23
-    GoTo _05A5
+FootstepHouse_ToughType_WithPrint_Level4:
+    Message footstep_house_tough_type_with_print_level_4
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_0454:
-    Message 24
+FootstepHouse_ToughType_WithPrint_Level5:
+    Message footstep_house_tough_type_with_print_level_5
     GoTo _053E
 
-_045D:
-    Message 25
-    GoTo _05C4
+FootstepHouse_ToughType_WithoutPrint_Level1:
+    Message footstep_house_tough_type_without_print_level_1
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_0466:
-    Message 26
-    GoTo _05C4
+FootstepHouse_ToughType_WithoutPrint_Level2:
+    Message footstep_house_tough_type_without_print_level_2
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_046F:
-    Message 27
-    GoTo _05C4
+FootstepHouse_ToughType_WithoutPrint_Level3:
+    Message footstep_house_tough_type_without_print_level_3
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_0478:
-    Message 28
-    GoTo _05C4
+FootstepHouse_ToughType_WithoutPrint_Level4:
+    Message footstep_house_tough_type_without_print_level_4
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_0481:
-    Message 29
+FootstepHouse_ToughType_WithoutPrint_Level5:
+    Message footstep_house_tough_type_without_print_level_5
     GoTo _0559
 
-_048A:
-    Message 30
-    GoTo _05A5
+FootstepHouse_ScaryType_WithPrint_Level1:
+    Message footstep_house_scary_type_with_print_level_1
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_0493:
-    Message 31
-    GoTo _05A5
+FootstepHouse_ScaryType_WithPrint_Level2:
+    Message footstep_house_scary_type_with_print_level_2
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_049C:
-    Message 32
-    GoTo _05A5
+FootstepHouse_ScaryType_WithPrint_Level3:
+    Message footstep_house_scary_type_with_print_level_3
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_04A5:
-    Message 33
-    GoTo _05A5
+FootstepHouse_ScaryType_WithPrint_Level4:
+    Message footstep_house_scary_type_with_print_level_4
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_04AE:
-    Message 34
+FootstepHouse_ScaryType_WithPrint_Level5:
+    Message footstep_house_scary_type_with_print_level_5
     GoTo _053E
 
-_04B7:
-    Message 35
-    GoTo _05C4
+FootstepHouse_ScaryType_WithoutPrint_Level1:
+    Message footstep_house_scary_type_without_print_level_1
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_04C0:
-    Message 36
-    GoTo _05C4
+FootstepHouse_ScaryType_WithoutPrint_Level2:
+    Message footstep_house_scary_type_without_print_level_2
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_04C9:
-    Message 37
-    GoTo _05C4
+FootstepHouse_ScaryType_WithoutPrint_Level3:
+    Message footstep_house_scary_type_without_print_level_3
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_04D2:
-    Message 38
-    GoTo _05C4
+FootstepHouse_ScaryType_WithoutPrint_Level4:
+    Message footstep_house_scary_type_without_print_level_4
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_04DB:
-    Message 39
+FootstepHouse_ScaryType_WithoutPrint_Level5:
+    Message footstep_house_scary_type_without_print_level_5
     GoTo _0559
 
-_04E4:
-    Message 40
-    GoTo _05A5
+FootstepHouse_SlowType_WithPrint_Level1:
+    Message footstep_house_slow_type_without_print_level_1
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_04ED:
-    Message 41
-    GoTo _05A5
+FootstepHouse_SlowType_WithPrint_Level2:
+    Message footstep_house_slow_type_without_print_level_2
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_04F6:
-    Message 42
-    GoTo _05A5
+FootstepHouse_SlowType_WithPrint_Level3:
+    Message footstep_house_slow_type_without_print_level_3
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_04FF:
-    Message 43
-    GoTo _05A5
+FootstepHouse_SlowType_WithPrint_Level4:
+    Message footstep_house_slow_type_without_print_level_4
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
-_0508:
-    Message 44
+FootstepHouse_SlowType_WithPrint_Level5:
+    Message footstep_house_slow_type_without_print_level_5
     GoTo _053E
 
-_0511:
-    Message 45
-    GoTo _05C4
+FootstepHouse_SlowType_WithoutPrint_Level1:
+    Message footstep_house_slow_type_with_print_level_1
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_051A:
-    Message 46
-    GoTo _05C4
+FootstepHouse_SlowType_WithoutPrint_Level2:
+    Message footstep_house_slow_type_with_print_level_2
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_0523:
-    Message 47
-    GoTo _05C4
+FootstepHouse_SlowType_WithoutPrint_Level3:
+    Message footstep_house_slow_type_with_print_level_3
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_052C:
-    Message 48
-    GoTo _05C4
+FootstepHouse_SlowType_WithoutPrint_Level4:
+    Message footstep_house_slow_type_with_print_level_4
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_0535:
-    Message 49
+FootstepHouse_SlowType_WithoutPrint_Level5:
+    Message footstep_house_slow_type_with_print_level_5
     GoTo _0559
 
 _053E:
-    ScrCmd_230 0x800C, 0x8002, 69
+    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_FOOTPRINT
     GoToIfEq 0x800C, 0, _0602
-    GoTo _05A5
+    GoTo FootstepHouse_AndThatsWhatYourPokemonThinksOfYou
 
 _0559:
-    ScrCmd_230 0x800C, 0x8002, 69
+    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_FOOTPRINT
     GoToIfEq 0x800C, 0, _0633
-    GoTo _05C4
+    GoTo FootstepHouse_PokemonDoesntLeaveAnyFootprints
 
-_0574:
-    Message 50
+FootstepHouse_VoicelessType:
+    Message footstep_house_voicless_type
     ScrCmd_1B9 0x800C, 0x8002
     GoToIfLt 0x800C, 0xFF, _05E3
-    ScrCmd_230 0x800C, 0x8002, 69
+    PartyMonHasRibbon 0x800C, 0x8002, RIBBON_FOOTPRINT
     GoToIfEq 0x800C, 0, _0664
     GoTo _05E3
 
-_05A5:
+FootstepHouse_AndThatsWhatYourPokemonThinksOfYou:
     CloseMessage
     WaitTime 20, 0x800C
     Call _00ED
     WaitTime 10, 0x800C
-    Message 2
+    Message footstep_house_and_thats_what_you_pokemon_thinks_of_you
     WaitABXPadPress
     CloseMessage
     ReleaseAll
     End
 
-_05C4:
+FootstepHouse_PokemonDoesntLeaveAnyFootprints:
     CloseMessage
     WaitTime 20, 0x800C
     Call _00ED
     WaitTime 10, 0x800C
-    Message 3
+    Message footstep_house_pokemon_doesnt_leave_any_footprints
     WaitABXPadPress
     CloseMessage
     ReleaseAll

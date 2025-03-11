@@ -38,7 +38,7 @@ BOOL ScrCmd_2CB(ScriptContext *param0);
 BOOL ScrCmd_2DD(ScriptContext *param0);
 BOOL ScrCmd_22E(ScriptContext *param0);
 BOOL ScrCmd_22F(ScriptContext *param0);
-BOOL ScrCmd_230(ScriptContext *param0);
+BOOL ScrCmd_PartyMonHasRibbon(ScriptContext *ctx);
 BOOL ScrCmd_231(ScriptContext *param0);
 BOOL ScrCmd_2B7(ScriptContext *param0);
 int ScrCmd_0A0(ScriptContext *param0);
