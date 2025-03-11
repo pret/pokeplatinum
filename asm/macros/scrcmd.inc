@@ -3144,11 +3144,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_23A arg0, arg1, arg2
+    .macro GetSpeciesFootprintType hasPrintVar, printTypeVar, partyID
     .short 570
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \hasPrintVar
+    .short \printTypeVar
+    .short \partyID
     .endm
 
     .macro ScrCmd_23B arg0

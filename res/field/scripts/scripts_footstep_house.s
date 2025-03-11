@@ -19,7 +19,7 @@ _0010:
     BufferPartyMonSpecies 0, 0x8002
     BufferPlayerName 1
     BufferPartyMonNickname 2, 0x8002
-    ScrCmd_23A 0x8000, 0x8001, 0x8002
+    GetSpeciesFootprintType 0x8000, 0x8001, 0x8002
     GoToIfSet 249, _004B
     SetFlag 249
     Message 0
@@ -125,7 +125,7 @@ _01D6:
     GoToIfGe 0x800C, 200, _03F1
     GoToIfGe 0x800C, 150, _03E8
     GoToIfGe 0x800C, 70, _03DF
-    GoTo _03D6
+    GoTo FootstepHouse_CuteLevel1
 
 _0216:
     ScrCmd_1B9 0x800C, 0x8002
@@ -183,8 +183,8 @@ _0396:
     GoToIfGe 0x800C, 70, _051A
     GoTo _0511
 
-_03D6:
-    Message 10
+FootstepHouse_CuteLevel1:
+    Message footstep_house_cute_level_1
     GoTo _05A5
 
 _03DF:

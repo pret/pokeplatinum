@@ -41,23 +41,23 @@
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 1, 0} put the Footprint Ribbon\non {STRVAR_1 0, 0, 0}.</language>
 	</row>
-	<row id="pl_msg_00000497_00010" index="10">
+	<row id="footstep_house_cute_level_1" index="10">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Aww... {STRVAR_1 3, 1, 0} only plays with\nother Pokémon...\r{STRVAR_1 1, 2, 0} feels neglected...\rMaybe {STRVAR_1 3, 1, 0} doesn’t like\n{STRVAR_1 1, 2, 0} very much?\r{STRVAR_1 1, 2, 0} will try harder for\n{STRVAR_1 3, 1, 0}.\rPlease be nicer to me!\r</language>
 	</row>
-	<row id="pl_msg_00000497_00011" index="11">
+	<row id="footstep_house_cute_level_2" index="11">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Others say there are people who\naren’t very nice to Pokémon.\rI wonder about {STRVAR_1 3, 1, 0}...\rWill {STRVAR_1 3, 1, 0} look after\n{STRVAR_1 1, 2, 0} nicely?\rWill I get to go all over with this\nTrainer?\rCan we be... Friends?\r</language>
 	</row>
-	<row id="pl_msg_00000497_00012" index="12">
+	<row id="footstep_house_cute_level_3" index="12">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">This adventure with {STRVAR_1 3, 1, 0}\nis lots of fun.\r{STRVAR_1 1, 2, 0} gets to go places where\nI can’t go by myself.\rI get to battle Pokémon I’ve never\never seen before.\rI’m gonna get stronger and stronger\nfor {STRVAR_1 3, 1, 0}!\r</language>
 	</row>
-	<row id="pl_msg_00000497_00013" index="13">
+	<row id="footstep_house_cute_level_4" index="13">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 1, 2, 0} and {STRVAR_1 3, 1, 0} make\na perfectly matched combo!\rI’ve seen all sorts of people\nso far...\rBut {STRVAR_1 3, 1, 0} understands\n{STRVAR_1 1, 2, 0}’s feelings most!\rI’m a little hungry...\nYou can tell, right?\r</language>
 	</row>
-	<row id="pl_msg_00000497_00014" index="14">
+	<row id="footstep_house_cute_level_5" index="14">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">If I said there can be friendship\nbetween Pokémon and people, will\f{STRVAR_1 0, 0, 0}’s friends understand?\rBut if you see {STRVAR_1 3, 1, 0} and\n{STRVAR_1 1, 2, 0}, you will understand.\rBecause {STRVAR_1 3, 1, 0} and\n{STRVAR_1 1, 2, 0} are friends!\r</language>
 	</row>
