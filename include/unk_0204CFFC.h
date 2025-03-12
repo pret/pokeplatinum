@@ -15,7 +15,7 @@ BOOL ScrCmd_1F6(ScriptContext *param0);
 BOOL ScrCmd_278(ScriptContext *param0);
 BOOL ScrCmd_212(ScriptContext *param0);
 BOOL ScrCmd_213(ScriptContext *param0);
-BOOL ScrCmd_GetFriendshipByPartyID(ScriptContext *ctx);
+BOOL ScrCmd_GetFriendshipByPartySlot(ScriptContext *ctx);
 BOOL ScrCmd_1BA(ScriptContext *param0);
 BOOL ScrCmd_1BB(ScriptContext *param0);
 BOOL ScrCmd_281(ScriptContext *param0);

@@ -42,7 +42,7 @@ _0055:
     SetVar 0x8002, 0x800C
     Call _0251
     GoToIfEq 0x800C, 1, _02BB
-    GetFriendshipByPartyID 0x800C, 0x8000
+    GetFriendshipByPartySlot 0x800C, 0x8000
     GoToIfLt 0x800C, 0xFF, _02B0
     BufferPartyMonSpecies 0, 0x8000
     GoToIfEq 0x8002, 1, _00FE

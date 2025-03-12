@@ -240,13 +240,10 @@ u16 sub_0205E0E4(u16 param0, u16 param1)
 
 u16 SaveData_GetFirstNonEggInParty(SaveData *saveData)
 {
-    Pokemon *mon;
-    u16 i, partyCount;
-
-    partyCount = Party_GetCurrentCount(Party_GetFromSavedata(saveData));
+    u16 i, partyCount = Party_GetCurrentCount(Party_GetFromSavedata(saveData));
 
     for (i = 0; i < partyCount; i++) {
-        mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(saveData), i);
+        Pokemon *mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(saveData), i);
 
         if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
             return i;

@@ -66,7 +66,7 @@ _007D:
     GetFirstNonEggInParty 0x8000
     BufferPartyMonSpecies 0, 0x8000
     Message 6
-    GetFriendshipByPartyID 0x800C, 0x8000
+    GetFriendshipByPartySlot 0x800C, 0x8000
     GoToIfGe 0x800C, 120, _00FF
     GoToIfGe 0x800C, 70, _010A
     GoTo _0115

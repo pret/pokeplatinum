@@ -47,6 +47,7 @@
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/field_menu.h"
+#include "overlay005/footprint_type.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/land_data.h"
 #include "overlay005/map_object_anim_cmd.h"
@@ -58,7 +59,6 @@
 #include "overlay005/ov5_021EA874.h"
 #include "overlay005/ov5_021ECC20.h"
 #include "overlay005/ov5_021EE7D4.h"
-#include "overlay005/ov5_021F0E84.h"
 #include "overlay005/ov5_021F6454.h"
 #include "overlay005/save_info_window.h"
 #include "overlay005/scrcmd_move_tutor.h"
@@ -1206,7 +1206,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_GetTimeOfDay,
     ScrCmd_GetRandom,
     ScrCmd_GetRandom2,
-    ScrCmd_GetFriendshipByPartyID,
+    ScrCmd_GetFriendshipByPartySlot,
     ScrCmd_1BA,
     ScrCmd_1BB,
     ScrCmd_1BC,
@@ -6584,8 +6584,8 @@ static BOOL ScrCmd_GetSpeciesFootprintType(ScriptContext *ctx)
     mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
     species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-    *hasPrintVar = FootprintType_HasPrint(species, form);
-    *typeVar = FootprintType_GetType(species);
+    *hasPrintVar = FootprintType_SpeciesHasPrint(species, form);
+    *typeVar = FootprintType_GetTypeFromSpecies(species);
 
     return FALSE;
 }

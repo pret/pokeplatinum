@@ -277,15 +277,15 @@ BOOL ScrCmd_213(ScriptContext *param0)
     return 0;
 }
 
-BOOL ScrCmd_GetFriendshipByPartyID(ScriptContext *ctx)
+BOOL ScrCmd_GetFriendshipByPartySlot(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     Pokemon *mon;
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
     u16 slot = ScriptContext_GetVar(ctx);
 
     mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(fieldSystem->saveData), slot);
-    *v2 = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
+    *destVar = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
     return FALSE;
 }
