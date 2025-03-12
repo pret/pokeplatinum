@@ -263,7 +263,7 @@ pokeplatinum_c = files(
     'unk_0206F314.c',
     'unk_02070428.c',
     'unk_0207064C.c',
-    'unk_0207070C.c',
+    'field_move_tasks.c',
     'unk_020711C8.c',
     'unk_020711EC.c',
     'unk_0207160C.c',

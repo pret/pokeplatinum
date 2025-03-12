@@ -33,6 +33,7 @@
 #include "bg_window.h"
 #include "catching_show.h"
 #include "dexmode_checker.h"
+#include "field_move_tasks.h"
 #include "field_overworld_state.h"
 #include "field_system.h"
 #include "field_task.h"
@@ -82,7 +83,6 @@
 #include "unk_020683F4.h"
 #include "unk_0206B9D8.h"
 #include "unk_0207064C.h"
-#include "unk_0207070C.h"
 #include "unk_02071D40.h"
 #include "unk_0207AE68.h"
 #include "unk_0207CB08.h"
@@ -415,7 +415,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
     case START_MENU_STATE_INIT:
         MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
         sub_0206842C(fieldSystem, &menu->unk_230);
-        sub_02070728(fieldSystem, &menu->unk_24C);
+        FieldMoves_SetUsableMoves(fieldSystem, &menu->unk_24C);
         sub_0203ADFC(taskMan);
         sub_0203B094(taskMan);
         menu->state = START_MENU_STATE_SELECT;
@@ -475,7 +475,7 @@ static BOOL sub_0203AC44(FieldTask *taskMan)
         break;
     case START_MENU_STATE_11:
         if (IsScreenTransitionDone()) {
-            FieldTask_InitJump(taskMan, menu->unk_22C, menu->unk_25C);
+            FieldTask_InitJump(taskMan, menu->returnTask, menu->unk_25C);
             Heap_FreeToHeap(menu);
         }
         break;
@@ -893,7 +893,7 @@ static void StartMenu_ApplicationStart(FieldTask *taskMan)
     Window_Remove(&menu->unk_00);
     sub_0203B200(taskMan);
 
-    menu->unk_22C(taskMan);
+    menu->returnTask(taskMan);
     menu->state = START_MENU_STATE_APP_RUN;
 }
 
@@ -909,12 +909,12 @@ static void StartMenu_ApplicationRun(FieldTask *taskMan)
         return;
     }
 
-    menu->unk_22C(taskMan);
+    menu->returnTask(taskMan);
 }
 
 void sub_0203B674(StartMenu *menu, void *param1)
 {
-    menu->unk_22C = param1;
+    menu->returnTask = param1;
     menu->state = START_MENU_STATE_APP_RUN;
 }
 
@@ -924,7 +924,7 @@ static BOOL StartMenu_SelectPokedex(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->unk_22C = StartMenu_OpenPokedex;
+    menu->returnTask = StartMenu_OpenPokedex;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
@@ -951,7 +951,7 @@ static BOOL StartMenu_OpenPokedex(FieldTask *taskMan)
     sub_0203E0AC(fieldSystem, pokedexArgs);
 
     menu->unk_25C = pokedexArgs;
-    menu->unk_22C = StartMenu_PokedexEnd;
+    menu->returnTask = StartMenu_PokedexEnd;
 
     return FALSE;
 }
@@ -981,7 +981,7 @@ static BOOL StartMenu_SelectPokemon(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->unk_22C = sub_0203B78C;
+    menu->returnTask = sub_0203B78C;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
@@ -996,7 +996,7 @@ static BOOL sub_0203B78C(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
 
     menu->unk_25C = sub_0203D390(fieldSystem, &menu->unk_24C, 0);
-    menu->unk_22C = sub_0203B7C0;
+    menu->returnTask = sub_0203B7C0;
 
     return 0;
 }
@@ -1178,9 +1178,9 @@ BOOL sub_0203B7C0(FieldTask *taskMan)
 
         v17.unk_06 = partyMan->unk_23 - 11;
         v17.unk_04 = partyMan->unk_22;
-        v17.unk_00 = taskMan;
+        v17.fieldTask = taskMan;
 
-        v16 = (UnkFuncPtr_0203B7C0)sub_0207070C(0, v17.unk_06);
+        v16 = (UnkFuncPtr_0203B7C0)FieldMove_GetTaskOrError(FIELD_MOVE_TASK, v17.unk_06);
         v16(&v17, &menu->unk_24C);
         break;
     case 10:
@@ -1218,7 +1218,7 @@ static BOOL StartMenu_SelectBag(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->unk_22C = StartMenu_Bag;
+    menu->returnTask = StartMenu_Bag;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
@@ -1231,7 +1231,7 @@ static BOOL StartMenu_Bag(FieldTask *taskMan)
 
     menu->unk_25C = sub_0203D20C(fieldSystem, &menu->unk_230);
     sub_0207CB70(menu->unk_25C, 0);
-    menu->unk_22C = sub_0203BC5C;
+    menu->returnTask = sub_0203BC5C;
 
     FieldSystem_SaveStateIfCommunicationOff(fieldSystem);
 
@@ -1352,7 +1352,7 @@ static BOOL StartMenu_SelectTrainerCard(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->unk_22C = StartMenu_TrainerCard;
+    menu->returnTask = StartMenu_TrainerCard;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
@@ -1371,7 +1371,7 @@ static BOOL StartMenu_TrainerCard(FieldTask *taskMan)
     sub_02071D40(1, 1, 0, 0xff, fieldSystem, (TrainerCard *)menu->unk_25C);
     sub_0203E09C(fieldSystem, (TrainerCard *)menu->unk_25C);
 
-    menu->unk_22C = sub_0203BF00;
+    menu->returnTask = sub_0203BF00;
     return 0;
 }
 
@@ -1451,7 +1451,7 @@ static BOOL StartMenu_SelectOptions(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->unk_22C = StartMenu_Options;
+    menu->returnTask = StartMenu_Options;
     menu->state = START_MENU_STATE_APP_START;
 
     return TRUE;
@@ -1466,7 +1466,7 @@ static BOOL StartMenu_Options(FieldTask *taskMan)
     menu = FieldTask_GetEnv(taskMan);
 
     menu->unk_25C = FieldSystem_OpenOptionsMenu(fieldSystem);
-    menu->unk_22C = sub_0203C050;
+    menu->returnTask = sub_0203C050;
 
     return FALSE;
 }
@@ -1493,7 +1493,7 @@ static BOOL StartMenu_SelectChat(FieldTask *taskMan)
 
     ov5_021D1744(0);
 
-    menu->unk_22C = sub_0203C0A0;
+    menu->returnTask = sub_0203C0A0;
     menu->state = START_MENU_STATE_APP_START;
 
     return 1;
@@ -1514,7 +1514,7 @@ static BOOL sub_0203C0A0(FieldTask *taskMan)
     sub_02097500(menu->unk_25C, &v2);
     sub_0203D874(fieldSystem, (UnkStruct_0209747C *)menu->unk_25C);
 
-    menu->unk_22C = sub_0203C0F8;
+    menu->returnTask = sub_0203C0F8;
 
     return 0;
 }
@@ -1729,7 +1729,7 @@ BOOL sub_0203C434(FieldTask *taskMan)
         Heap_FreeToHeapExplicit(HEAP_ID_FIELDMAP, menu->unk_25C);
         FieldSystem_StartFieldMap(fieldSystem);
 
-        menu->unk_22C = sub_02070680;
+        menu->returnTask = sub_02070680;
         menu->unk_25C = v5;
         menu->state = START_MENU_STATE_10;
     }

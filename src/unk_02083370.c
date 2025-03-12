@@ -15,6 +15,7 @@
 
 #include "bag.h"
 #include "bg_window.h"
+#include "field_move_tasks.h"
 #include "font.h"
 #include "heap.h"
 #include "menu.h"
@@ -29,7 +30,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0207070C.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
 #include "unk_02082C2C.h"
@@ -867,8 +867,8 @@ static void sub_02084808(GameWindowLayout *param0, int *param1)
     u32 v1;
     u32 v2;
 
-    v0 = (UnkFuncPtr_02084808)sub_0207070C(
-        1, param0->unk_5A4->unk_23 - 11);
+    v0 = (UnkFuncPtr_02084808)FieldMove_GetTaskOrError(
+        FIELD_MOVE_ERROR, param0->unk_5A4->unk_23 - 11);
 
     if (v0 != NULL) {
         v1 = v0(param0->unk_5A4->unk_18);

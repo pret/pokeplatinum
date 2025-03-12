@@ -254,11 +254,11 @@ static void sub_020684D0(FieldSystem *fieldSystem, UnkStruct_020684D0 *param1)
     param1->unk_00 = fieldSystem->location->mapId;
     param1->unk_04 = SystemFlag_CheckHasPartner(SaveData_GetVarsFlags(fieldSystem->saveData));
     param1->unk_08 = PlayerAvatar_GetPlayerState(fieldSystem->playerAvatar);
-    param1->unk_0E = sub_02061760(fieldSystem->playerAvatar);
+    param1->unk_0E = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
 
     {
-        int v0 = sub_0205EAA0(fieldSystem->playerAvatar);
-        param1->unk_0C = sub_020616F0(fieldSystem->playerAvatar, v0);
+        int v0 = PlayerAvatar_GetDistortionDir(fieldSystem->playerAvatar);
+        param1->unk_0C = PlayerAvatar_GetDistortionTileBehaviour(fieldSystem->playerAvatar, v0);
     }
 
     param1->unk_10 = sub_02055FC8(fieldSystem, NULL);
@@ -288,7 +288,7 @@ static void sub_02068540(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = sub_020685AC;
+    v1->returnTask = sub_020685AC;
     v1->unk_25C = sub_0206851C(param2, param0->unk_04, 0, 0, 0);
     v1->state = START_MENU_STATE_10;
 }
@@ -388,7 +388,7 @@ static void sub_02068710(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = FieldTask_MapChangeToUnderground;
+    v1->returnTask = FieldTask_MapChangeToUnderground;
     v1->unk_25C = sub_02053FAC(fieldSystem);
     v1->state = START_MENU_STATE_10;
 
@@ -460,7 +460,7 @@ static void sub_0206883C(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = sub_02068884;
+    v1->returnTask = sub_02068884;
     v1->unk_25C = NULL;
     v1->state = START_MENU_STATE_10;
 }
@@ -714,7 +714,7 @@ static void sub_02068BF8(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
     (*v2) = 0;
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = RefreshRadarChain;
+    v1->returnTask = RefreshRadarChain;
     v1->unk_25C = v2;
     v1->state = START_MENU_STATE_10;
 }
@@ -801,7 +801,7 @@ static void sub_02068CF0(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     memset(v2, 0, v3);
 
-    v1->unk_22C = ov5_021F0488;
+    v1->returnTask = ov5_021F0488;
     v1->unk_25C = v2;
     v1->state = START_MENU_STATE_10;
 
@@ -838,7 +838,7 @@ static void sub_02068D80(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = ov5_021F08F8;
+    v1->returnTask = ov5_021F08F8;
     v1->unk_25C = ov5_021F08CC(fieldSystem, 11, 0);
     v1->state = START_MENU_STATE_10;
 }
@@ -861,7 +861,7 @@ static void sub_02068DDC(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = ov5_021F08F8;
+    v1->returnTask = ov5_021F08F8;
     v1->unk_25C = ov5_021F08CC(fieldSystem, 11, 1);
     v1->state = START_MENU_STATE_10;
 }
@@ -884,7 +884,7 @@ static void sub_02068E38(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    v1->unk_22C = ov5_021F08F8;
+    v1->returnTask = ov5_021F08F8;
     v1->unk_25C = ov5_021F08CC(fieldSystem, 11, 2);
     v1->state = START_MENU_STATE_10;
 }
@@ -1011,7 +1011,7 @@ static void sub_02069080(UnkStruct_02068630 *param0, const UnkStruct_020684D0 *p
 
     FieldSystem_StartFieldMap(fieldSystem);
 
-    menu->unk_22C = sub_020690F0;
+    menu->returnTask = sub_020690F0;
     menu->unk_25C = NULL;
     menu->state = START_MENU_STATE_10;
 
