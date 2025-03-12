@@ -1024,23 +1024,23 @@ u32 sub_02095A3C(int param0, int param1)
 
     switch (param1) {
     case 0:
-        v0 = MON_DATA_SINNOH_SUPER_COOL_RIBBON + param0;
+        v0 = MON_DATA_COOL_RIBBON + param0;
         break;
     case 1:
-        v0 = MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON + param0;
+        v0 = MON_DATA_BEAUTY_RIBBON + param0;
         break;
     case 2:
-        v0 = MON_DATA_SINNOH_SUPER_CUTE_RIBBON + param0;
+        v0 = MON_DATA_CUTE_RIBBON + param0;
         break;
     case 3:
-        v0 = MON_DATA_SINNOH_SUPER_SMART_RIBBON + param0;
+        v0 = MON_DATA_SMART_RIBBON + param0;
         break;
     case 4:
-        v0 = MON_DATA_SINNOH_SUPER_TOUGH_RIBBON + param0;
+        v0 = MON_DATA_TOUGH_RIBBON + param0;
         break;
     default:
         GF_ASSERT(0);
-        return MON_DATA_SINNOH_SUPER_COOL_RIBBON;
+        return MON_DATA_COOL_RIBBON;
     }
 
     return v0;

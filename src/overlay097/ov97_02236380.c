@@ -942,40 +942,40 @@ void BoxMonGBAToBoxMon(BoxPokemonGBA *boxMonGBA, BoxPokemon *boxMon)
     }
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_CHAMPION_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_CHAMPION_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_CHAMPION_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_WINNING_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_WINNING_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_WINNING_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_VICTORY_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_VICTORY_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_VICTORY_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_ARTIST_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_ARTIST_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_ARTIST_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_EFFORT_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_EFFORT_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_EFFORT_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MARINE_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_MARINE_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_MARINE_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_LAND_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_LAND_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_LAND_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_SKY_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_SKY_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_SKY_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_COUNTRY_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_COUNTRY_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_COUNTRY_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_NATIONAL_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_NATIONAL_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_NATIONAL_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_EARTH_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_EARTH_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_EARTH_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_WORLD_RIBBON, NULL);
-    BoxPokemon_SetValue(boxMon, MON_DATA_HOENN_WORLD_RIBBON, (u8 *)&value);
+    BoxPokemon_SetValue(boxMon, MON_DATA_WORLD_RIBBON, (u8 *)&value);
 
     value = GetGBABoxMonData(boxMonGBA, GBA_MON_DATA_MODERN_FATEFUL_ENCOUNTER, NULL);
     BoxPokemon_SetValue(boxMon, MON_DATA_FATEFUL_ENCOUNTER, (u8 *)&value);

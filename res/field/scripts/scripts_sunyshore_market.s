@@ -19,14 +19,14 @@ _001A:
     LockAll
     FacePlayer
     GetFirstNonEggInParty 0x8000
-    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_HOENN_EFFORT
+    GetPartyMonRibbon 0x800C, 0x8000, RIBBON_EFFORT
     GoToIfEq 0x800C, 1, _0086
     BufferPartyMonSpecies 0, 0x8000
     Message 0
     ScrCmd_233 0x800C, 0x8000
     GoToIfLt 0x800C, 0x1FE, _007B
     Message 1
-    SetPartyMonRibbon 0x8000, RIBBON_HOENN_EFFORT
+    SetPartyMonRibbon 0x8000, RIBBON_EFFORT
     PlaySound SEQ_FANFA1
     BufferPlayerName 1
     Message 2

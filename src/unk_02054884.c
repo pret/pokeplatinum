@@ -169,7 +169,7 @@ void Party_GiveChampionRibbons(Party *party)
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
 
         if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE) {
-            Pokemon_SetValue(mon, MON_DATA_SINNOH_CHAMP_RIBBON, &championRibbon);
+            Pokemon_SetValue(mon, MON_DATA_SINNOH_CHAMPION_RIBBON, &championRibbon);
         }
     }
 }
