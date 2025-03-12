@@ -15,6 +15,7 @@
 #include "struct_defs/struct_0208737C.h"
 
 #include "applications/pokemon_summary_screen/main.h"
+#include "overlay019/box_customization.h"
 #include "overlay019/ov19_021D603C.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DF964.h"
@@ -25,7 +26,6 @@
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D4EE4.h"
 #include "overlay019/struct_ov19_021D4F34.h"
-#include "overlay019/struct_ov19_021D4F5C.h"
 #include "overlay019/struct_ov19_021D5594.h"
 #include "overlay019/struct_ov19_021D5D20.h"
 #include "overlay019/struct_ov19_021D6104.h"
@@ -121,7 +121,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     UnkStruct_ov19_021D61B0 *unk_114;
     UnkStruct_02042434 *unk_118;
     SaveData *unk_11C;
-    PCBoxes *unk_120;
+    PCBoxes *pcBoxes;
     Party *unk_124;
     UnkStruct_0208737C *unk_128;
     PokemonSummary unk_12C;
@@ -216,15 +216,15 @@ static void ov19_021D4DE4(UnkStruct_ov19_021D4DE4 *param0, int param1);
 static void ov19_021D4DF0(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_021D4E30(UnkStruct_ov19_021D5594 *param0);
 static void ov19_021D4E50(UnkStruct_ov19_021D5594 *param0);
-static void ov19_021D4E5C(PCBoxes *param0, UnkStruct_ov19_021D4F5C *param1);
-static void ov19_021D4E7C(UnkStruct_ov19_021D4F5C *param0);
+static void PCBoxes_InitCustomization(PCBoxes *pcBoxes, BoxCustomization *customization);
+static void Customization_Free(BoxCustomization *customization);
 static void PCMonPreviewInit(PCMonPreview *param0);
 static void PCMonPreviewFree(PCMonPreview *param0);
 static void ov19_PCCompareMonsInit(UnkStruct_ov19_021D4EE4 *param0);
 static void ov19_PCCompareMonsFree(UnkStruct_ov19_021D4EE4 *param0);
 static void ov19_021D4F34(UnkStruct_ov19_021D4F34 *param0);
-static void ov19_021D4F40(const PCBoxes *param0, UnkStruct_ov19_021D4F5C *param1);
-static void ov19_021D4F5C(UnkStruct_ov19_021D4DF0 *param0, PCBoxes *param1);
+static void PCBoxes_LoadCustomization(const PCBoxes *pcBoxes, BoxCustomization *customization);
+static void ov19_LoadWallpaper(UnkStruct_ov19_021D4DF0 *param0, PCBoxes *pcBoxes);
 static BOOL ov19_021D4F74(u32 param0, UnkStruct_ov19_021D5DF8 *param1);
 static BOOL ov19_021D4FDC(UnkStruct_ov19_021D4DF0 *param0, int param1, int param2);
 static int ov19_021D5150(u32 param0, UnkStruct_ov19_021D5DF8 *param1);
@@ -256,9 +256,9 @@ static void ov19_021D5BA0(UnkStruct_ov19_021D4DF0 *param0, BOOL param1);
 static void ov19_SetPreviewedBoxMon(UnkStruct_ov19_021D4DF0 *param0, BoxPokemon *boxMon);
 static void ov19_021D5BAC(UnkStruct_ov19_021D4DF0 *param0);
 static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 param1, UnkStruct_ov19_021D5DF8 *param2);
-static void ov19_021D5CBC(UnkStruct_ov19_021D4DF0 *param0);
-static void ov19_021D5CE8(UnkStruct_ov19_021D4DF0 *param0);
-static void ov19_021D5D08(UnkStruct_ov19_021D4DF0 *param0, u32 param1);
+static void ov19_LoadRightBoxCustomization(UnkStruct_ov19_021D4DF0 *param0);
+static void ov19_LoadLeftBoxCustomization(UnkStruct_ov19_021D4DF0 *param0);
+static void ov19_LoadCustomizationsFor(UnkStruct_ov19_021D4DF0 *param0, u32 box);
 static void ov19_021D5D20(UnkStruct_ov19_021D4DF0 *param0, u32 param1);
 static void ov19_021D5D28(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5DF8 *param1);
 static void ov19_021D5D54(UnkStruct_ov19_021D4DF0 *param0);
@@ -497,13 +497,13 @@ static int ov19_021D0FF0(UnkStruct_ov19_021D5DF8 *param0)
         }
 
         if (gSystem.heldKeys & PAD_BUTTON_L) {
-            ov19_021D5CE8(&param0->unk_00);
+            ov19_LoadLeftBoxCustomization(&param0->unk_00);
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
         if (gSystem.heldKeys & PAD_BUTTON_R) {
-            ov19_021D5CBC(&(param0->unk_00));
+            ov19_LoadRightBoxCustomization(&(param0->unk_00));
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
@@ -660,13 +660,13 @@ static int ov19_021D15C0(UnkStruct_ov19_021D5DF8 *param0)
     switch (param0->unk_1B0) {
     case 0:
         if (gSystem.heldKeys & (PAD_KEY_LEFT | PAD_BUTTON_L)) {
-            ov19_021D5CE8(&param0->unk_00);
+            ov19_LoadLeftBoxCustomization(&param0->unk_00);
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
         if (gSystem.heldKeys & (PAD_KEY_RIGHT | PAD_BUTTON_R)) {
-            ov19_021D5CBC(&(param0->unk_00));
+            ov19_LoadRightBoxCustomization(&(param0->unk_00));
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
@@ -719,13 +719,13 @@ static int ov19_021D17AC(UnkStruct_ov19_021D5DF8 *param0)
         }
 
         if (gSystem.heldKeys & PAD_BUTTON_L) {
-            ov19_021D5CE8(&param0->unk_00);
+            ov19_LoadLeftBoxCustomization(&param0->unk_00);
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
         if (gSystem.heldKeys & PAD_BUTTON_R) {
-            ov19_021D5CBC(&(param0->unk_00));
+            ov19_LoadRightBoxCustomization(&(param0->unk_00));
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
@@ -781,13 +781,13 @@ static int ov19_021D19B8(UnkStruct_ov19_021D5DF8 *param0)
         }
 
         if (gSystem.heldKeys & PAD_BUTTON_L) {
-            ov19_021D5CE8(&param0->unk_00);
+            ov19_LoadLeftBoxCustomization(&param0->unk_00);
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
 
         if (gSystem.heldKeys & PAD_BUTTON_R) {
-            ov19_021D5CBC(&(param0->unk_00));
+            ov19_LoadRightBoxCustomization(&(param0->unk_00));
             ov19_021D0EB0(param0, ov19_021D45A8);
             break;
         }
@@ -862,7 +862,7 @@ static void ov19_021D1C84(UnkStruct_ov19_021D5DF8 *param0)
         param0->unk_12C.move = 0;
         param0->unk_12C.options = param0->unk_1A4;
     } else if (ov19_021D5E10(&param0->unk_00) == 0) {
-        param0->unk_12C.monData = PCBoxes_GetBoxMonAt(param0->unk_120, PCBoxes_GetCurrentBox(param0->unk_120), 0);
+        param0->unk_12C.monData = PCBoxes_GetBoxMonAt(param0->pcBoxes, PCBoxes_GetCurrentBox(param0->pcBoxes), 0);
         param0->unk_12C.dataType = SUMMARY_DATA_BOX_MON;
         param0->unk_12C.monMax = MAX_MONS_PER_BOX;
         param0->unk_12C.monIndex = ov19_021D5E24(&param0->unk_00);
@@ -1355,7 +1355,7 @@ static void ov19_021D27E8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
     switch (*param1) {
     case 0:
-        ov19_021D443C(param0, ov19_021D5E68(&param0->unk_00), 8);
+        ov19_021D443C(param0, ov19_GetCurrentBox(&param0->unk_00), 8);
         (*param1) = 1;
         break;
     case 1:
@@ -1363,11 +1363,11 @@ static void ov19_021D27E8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        if ((param0->unk_1BC.unk_05 == -1) || (param0->unk_1BC.unk_05 == ov19_021D5E68(&param0->unk_00))) {
+        if ((param0->unk_1BC.unk_05 == -1) || (param0->unk_1BC.unk_05 == ov19_GetCurrentBox(&param0->unk_00))) {
             (*param1) = 2;
         } else {
-            ov19_021D5D08(&param0->unk_00, param0->unk_1BC.unk_05);
-            PCBoxes_SetCurrentBox(param0->unk_120, param0->unk_1BC.unk_05);
+            ov19_LoadCustomizationsFor(&param0->unk_00, param0->unk_1BC.unk_05);
+            PCBoxes_SetCurrentBox(param0->pcBoxes, param0->unk_1BC.unk_05);
             ov19_021D6594(param0->unk_114, 4);
             (*param1) = 2;
         }
@@ -1447,8 +1447,8 @@ static void ov19_021D2890(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             param0->unk_1B8 = ov19_021DFDDC(&param0->unk_00);
 
             if ((param0->unk_1B8 >= UnkEnum_021DFB94_10) && (param0->unk_1B8 <= UnkEnum_021DFB94_33)) {
-                PCBoxes_SetWallpaper(param0->unk_120, USE_CURRENT_BOX, (param0->unk_1B8 - UnkEnum_021DFB94_10));
-                ov19_021D4F5C(&param0->unk_00, param0->unk_120);
+                PCBoxes_SetWallpaper(param0->pcBoxes, USE_CURRENT_BOX, (param0->unk_1B8 - UnkEnum_021DFB94_10));
+                ov19_LoadWallpaper(&param0->unk_00, param0->pcBoxes);
                 ov19_021D6594(param0->unk_114, 26);
                 (*param1) = 6;
             } else {
@@ -1589,15 +1589,15 @@ static void ov19_021D2B54(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
 
         case 3:
-            ov19_021D5CE8(&param0->unk_00);
-            PCBoxes_SetCurrentBox(param0->unk_120, ov19_021D5E68(&param0->unk_00));
+            ov19_LoadLeftBoxCustomization(&param0->unk_00);
+            PCBoxes_SetCurrentBox(param0->pcBoxes, ov19_GetCurrentBox(&param0->unk_00));
             ov19_021D6594(param0->unk_114, 4);
             *param1 = 5;
             break;
 
         case 4:
-            ov19_021D5CBC(&(param0->unk_00));
-            PCBoxes_SetCurrentBox(param0->unk_120, ov19_021D5E68(&param0->unk_00));
+            ov19_LoadRightBoxCustomization(&(param0->unk_00));
+            PCBoxes_SetCurrentBox(param0->pcBoxes, ov19_GetCurrentBox(&param0->unk_00));
             ov19_021D6594(param0->unk_114, 4);
             *param1 = 5;
             break;
@@ -1657,7 +1657,7 @@ static BOOL ov19_021D2DD0(const UnkStruct_ov19_021D4DF0 *param0)
 
     for (v1 = 0; v1 < v6->unk_08; v1++) {
         v4 = v3 + (v6->unk_0C[v1] - v2);
-        v0 = PCBoxes_GetBoxMonAt(param0->unk_00, USE_CURRENT_BOX, v4);
+        v0 = PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, v4);
 
         if (BoxPokemon_GetValue(v0, MON_DATA_SPECIES_EXISTS, NULL)) {
             return 0;
@@ -2223,7 +2223,7 @@ static void ov19_021D38E0(UnkStruct_ov19_021D5DF8 *param0)
         v0->unk_01 = 0;
         v0->unk_02 = 0;
         v0->unk_03 = 0;
-        v0->unk_14 = param0->unk_120;
+        v0->unk_14 = param0->pcBoxes;
         v0->unk_18 = param0->unk_124;
         v0->unk_1C = (ov19_021D5E38(&param0->unk_00) != 1);
 
@@ -2347,20 +2347,20 @@ static void ov19_021D3B34(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         if (ov19_021D6600(param0->unk_114, 3)) {
             ov19_021D64A0(param0->unk_114);
             Heap_Destroy(HEAP_ID_10);
-            PCBoxes_BufferBoxName(param0->unk_120, PCBoxes_GetCurrentBox(param0->unk_120), param0->unk_128->unk_18);
+            PCBoxes_BufferBoxName(param0->pcBoxes, PCBoxes_GetCurrentBox(param0->pcBoxes), param0->unk_128->unk_18);
             param0->unk_210 = OverlayManager_New(&Unk_020F2DAC, param0->unk_128, 9);
             (*param1)++;
         }
         break;
     case 2:
         if (OverlayManager_Exec(param0->unk_210)) {
-            u32 v0 = PCBoxes_GetCurrentBox(param0->unk_120);
+            u32 v0 = PCBoxes_GetCurrentBox(param0->pcBoxes);
 
             OverlayManager_Free(param0->unk_210);
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
-            PCBoxes_RenameBox(param0->unk_120, v0, param0->unk_128->unk_18);
+            PCBoxes_RenameBox(param0->pcBoxes, v0, param0->unk_128->unk_18);
 
-            ov19_021D4F40(param0->unk_120, &param0->unk_00.unk_40);
+            PCBoxes_LoadCustomization(param0->pcBoxes, &param0->unk_00.customization);
             ov19_021D61B0(&(param0->unk_114), &param0->unk_00, param0);
             ov19_021D0EB0(param0, ov19_021D0F88);
         }
@@ -2386,7 +2386,7 @@ static void ov19_021D3C28(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 2:
         if (OverlayManager_Exec(param0->unk_210)) {
-            u32 v0 = PCBoxes_GetCurrentBox(param0->unk_120);
+            u32 v0 = PCBoxes_GetCurrentBox(param0->pcBoxes);
 
             OverlayManager_Free(param0->unk_210);
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
@@ -2804,7 +2804,7 @@ static void ov19_021D45A8(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
 {
     switch (*param1) {
     case 0:
-        PCBoxes_SetCurrentBox(param0->unk_120, ov19_021D5E68(&param0->unk_00));
+        PCBoxes_SetCurrentBox(param0->pcBoxes, ov19_GetCurrentBox(&param0->unk_00));
         ov19_021D52F4(param0);
         ov19_021D6594(param0->unk_114, 4);
         (*param1)++;
@@ -2833,7 +2833,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
     case 0:
         Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         ov19_021D5D94(&param0->unk_00, 1);
-        ov19_021D5D9C(&(param0->unk_00), ov19_021D5E68(&param0->unk_00));
+        ov19_021D5D9C(&(param0->unk_00), ov19_GetCurrentBox(&param0->unk_00));
         ov19_021D6594(param0->unk_114, 40);
         ov19_021D603C(&(param0->unk_1C8), 0, 192, 56, 88);
         param0->unk_204 = 0;
@@ -2859,7 +2859,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         if (gSystem.pressedKeys & (PAD_PLUS_KEY_MASK | PAD_BUTTON_A | PAD_BUTTON_B)) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             ov19_021D5D94(&(param0->unk_00), 0);
-            ov19_021D5D9C(&(param0->unk_00), ov19_021D5E68(&param0->unk_00));
+            ov19_021D5D9C(&(param0->unk_00), ov19_GetCurrentBox(&param0->unk_00));
             ov19_021D6594(param0->unk_114, 40);
             (*param1) = 5;
             break;
@@ -2870,8 +2870,8 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 if (++(param0->unk_200) > 20) {
                     u32 v0 = ov19_021D5EB8(&param0->unk_00);
 
-                    ov19_021D5D08(&param0->unk_00, v0);
-                    PCBoxes_SetCurrentBox(param0->unk_120, v0);
+                    ov19_LoadCustomizationsFor(&param0->unk_00, v0);
+                    PCBoxes_SetCurrentBox(param0->pcBoxes, v0);
                     ov19_021D52F4(param0);
 
                     if (ov19_021D5E38(&param0->unk_00) == 1) {
@@ -2922,7 +2922,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         case 3: {
             int v4, v5;
 
-            v4 = ov19_021D5E68(&param0->unk_00);
+            v4 = ov19_GetCurrentBox(&param0->unk_00);
             v5 = ov19_021D5EB8(&param0->unk_00);
 
             param0->unk_204 = (v4 != v5);
@@ -2936,7 +2936,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             if (ov19_021D60A8(&param0->unk_1C8) == 3) {
                 int v6, v7;
 
-                v6 = ov19_021D5E68(&param0->unk_00);
+                v6 = ov19_GetCurrentBox(&param0->unk_00);
                 v7 = ov19_021D5EB8(&param0->unk_00);
 
                 param0->unk_204 = (v6 != v7);
@@ -3049,7 +3049,7 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         case 3: {
             int v3, v4;
 
-            v3 = ov19_021D5E68(&param0->unk_00);
+            v3 = ov19_GetCurrentBox(&param0->unk_00);
             v4 = ov19_021D5EB8(&param0->unk_00);
 
             param0->unk_204 = (v3 != v4);
@@ -3063,7 +3063,7 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             if (ov19_021D60A8(&param0->unk_1C8) == 3) {
                 int v5, v6;
 
-                v5 = ov19_021D5E68(&param0->unk_00);
+                v5 = ov19_GetCurrentBox(&param0->unk_00);
                 v6 = ov19_021D5EB8(&param0->unk_00);
 
                 param0->unk_204 = (v5 != v6);
@@ -3119,7 +3119,7 @@ static void ov19_021D4BB0(u32 param0, u32 param1, void *param2)
 
 static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *param1)
 {
-    param0->unk_120 = SaveData_PCBoxes(param1->unk_00);
+    param0->pcBoxes = SaveData_PCBoxes(param1->unk_00);
     param0->unk_11C = param1->unk_00;
     param0->unk_124 = Party_GetFromSavedata(param1->unk_00);
     param0->unk_1A4 = SaveData_Options(param1->unk_00);
@@ -3142,14 +3142,14 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     }
 
     param0->unk_180 = sub_02023FCC(sPokemonMarkingsButtons, NELEMS(sPokemonMarkingsButtons), ov19_021D4BB0, param0, HEAP_ID_9);
-    param0->unk_00.unk_00 = param0->unk_120;
+    param0->unk_00.pcBoxes = param0->pcBoxes;
     param0->unk_00.unk_04 = param0->unk_124;
     param0->unk_00.unk_110 = 0;
     param0->unk_00.unk_112 = 0;
 
     ov19_021D4DE4(&(param0->unk_00.unk_48), param1->unk_04);
     PCMonPreviewInit(&(param0->unk_00.pcMonPreview));
-    ov19_021D4E5C(param0->unk_120, &(param0->unk_00.unk_40));
+    PCBoxes_InitCustomization(param0->pcBoxes, &(param0->unk_00.customization));
     ov19_PCCompareMonsInit(&(param0->unk_00.unk_A4));
     ov19_021D4DF0(param0);
     ov19_021D4E30(&(param0->unk_00.unk_14));
@@ -3174,7 +3174,7 @@ static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0)
 
     PCMonPreviewFree(&(param0->unk_00.pcMonPreview));
     ov19_021D4E50(&(param0->unk_00.unk_14));
-    ov19_021D4E7C(&(param0->unk_00.unk_40));
+    Customization_Free(&(param0->unk_00.customization));
     ov19_PCCompareMonsFree(&(param0->unk_00.unk_A4));
 
     Heap_FreeToHeap(param0);
@@ -3225,16 +3225,16 @@ static void ov19_021D4E50(UnkStruct_ov19_021D5594 *param0)
     Heap_FreeToHeap(param0->unk_00);
 }
 
-static void ov19_021D4E5C(PCBoxes *param0, UnkStruct_ov19_021D4F5C *param1)
+static void PCBoxes_InitCustomization(PCBoxes *pcBoxes, BoxCustomization *customization)
 {
-    param1->unk_00 = PCBoxes_GetCurrentBox(param0);
-    param1->unk_04 = Strbuf_Init(20, HEAP_ID_9);
-    ov19_021D4F40(param0, param1);
+    customization->box = PCBoxes_GetCurrentBox(pcBoxes);
+    customization->name = Strbuf_Init(PC_BOX_NAME_BUFFER_LEN, HEAP_ID_9);
+    PCBoxes_LoadCustomization(pcBoxes, customization);
 }
 
-static void ov19_021D4E7C(UnkStruct_ov19_021D4F5C *param0)
+static void Customization_Free(BoxCustomization *customization)
 {
-    Strbuf_Free(param0->unk_04);
+    Strbuf_Free(customization->name);
 }
 
 static void PCMonPreviewInit(PCMonPreview *param0)
@@ -3284,16 +3284,16 @@ static void ov19_021D4F34(UnkStruct_ov19_021D4F34 *param0)
     param0->unk_04 = 0;
 }
 
-static void ov19_021D4F40(const PCBoxes *param0, UnkStruct_ov19_021D4F5C *param1)
+static void PCBoxes_LoadCustomization(const PCBoxes *pcBoxes, BoxCustomization *customization)
 {
-    param1->unk_01 = PCBoxes_GetWallpaper(param0, param1->unk_00);
-    PCBoxes_BufferBoxName(param0, param1->unk_00, param1->unk_04);
+    customization->wallpaper = PCBoxes_GetWallpaper(pcBoxes, customization->box);
+    PCBoxes_BufferBoxName(pcBoxes, customization->box, customization->name);
 }
 
-static void ov19_021D4F5C(UnkStruct_ov19_021D4DF0 *param0, PCBoxes *param1)
+static void ov19_LoadWallpaper(UnkStruct_ov19_021D4DF0 *param0, PCBoxes *pcBoxes)
 {
-    UnkStruct_ov19_021D4F5C *v0 = &(param0->unk_40);
-    v0->unk_01 = PCBoxes_GetWallpaper(param1, v0->unk_00);
+    BoxCustomization *customization = &(param0->customization);
+    customization->wallpaper = PCBoxes_GetWallpaper(pcBoxes, customization->box);
 }
 
 static BOOL ov19_021D4F74(u32 param0, UnkStruct_ov19_021D5DF8 *param1)
@@ -3609,7 +3609,7 @@ static BOOL ov19_021D52F4(UnkStruct_ov19_021D5DF8 *param0)
 
     switch (v2->unk_04) {
     case 0:
-        v2->unk_00 = PCBoxes_GetBoxMonAt(v0->unk_00, USE_CURRENT_BOX, v2->unk_07);
+        v2->unk_00 = PCBoxes_GetBoxMonAt(v0->pcBoxes, USE_CURRENT_BOX, v2->unk_07);
         break;
     case 1:
         if (v2->unk_08 < Party_GetCurrentCount(param0->unk_124)) {
@@ -3693,7 +3693,7 @@ static void ov19_021D5420(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
 
     if (ov19_021D5E10(param1) == 0) {
         MI_CpuCopy32(v1->unk_00, v0->unk_00, BoxPokemon_GetStructSize());
-        PCBoxes_InitBoxMonAt(param0->unk_120, USE_CURRENT_BOX, v1->unk_07);
+        PCBoxes_InitBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, v1->unk_07);
         v0->unk_0B = 0;
     } else {
         MI_CpuCopy32(v1->unk_00, v0->unk_00, Pokemon_GetStructSize());
@@ -3731,11 +3731,11 @@ static void ov19_021D54A4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
         v6 = v1 * 6 + v2;
 
         for (v0 = v2; v0 <= v3; v0++) {
-            v10 = PCBoxes_GetBoxMonAt(param0->unk_120, USE_CURRENT_BOX, v6);
+            v10 = PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, v6);
 
             if (BoxPokemon_GetValue(v10, MON_DATA_SPECIES_EXISTS, NULL)) {
                 MI_CpuCopy32(v10, v12, v9);
-                PCBoxes_InitBoxMonAt(param0->unk_120, USE_CURRENT_BOX, v6);
+                PCBoxes_InitBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, v6);
                 (u8 *)v12 += v9;
                 v11->unk_0C[v8++] = v6;
 
@@ -3783,8 +3783,8 @@ static void ov19_021D55C4(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
 
     if (ov19_021D5E10(param1) == 0) {
         v4 = BoxPokemon_GetValue(v0->unk_00, MON_DATA_FORM, NULL);
-        PCBoxes_TryStoreBoxMonAt(param0->unk_120, USE_CURRENT_BOX, v1->unk_07, v0->unk_00);
-        v2 = PCBoxes_GetBoxMonAt(param0->unk_120, USE_CURRENT_BOX, v1->unk_07);
+        PCBoxes_TryStoreBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, v1->unk_07, v0->unk_00);
+        v2 = PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, v1->unk_07);
 
         if ((BoxPokemon_GetValue(v2, MON_DATA_SPECIES, NULL) == SPECIES_SHAYMIN) && (v4 == 1)) {
             v3 = 1;
@@ -3826,11 +3826,11 @@ static void ov19_021D56AC(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
 
     for (v1 = 0; v1 < v7->unk_08; v1++) {
         v4 = v3 + (v7->unk_0C[v1] - v2);
-        PCBoxes_TryStoreBoxMonAt(param0->unk_120, USE_CURRENT_BOX, v4, v0);
+        PCBoxes_TryStoreBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, v4, v0);
         (u8 *)v0 += v5;
     }
 
-    ov19_SetPreviewedBoxMon(param1, PCBoxes_GetBoxMonAt(param0->unk_120, USE_CURRENT_BOX, ov19_021D5E24(param1)));
+    ov19_SetPreviewedBoxMon(param1, PCBoxes_GetBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, ov19_021D5E24(param1)));
     ov19_021D52F4(param0);
 
     v7->unk_08 = 0;
@@ -3853,7 +3853,7 @@ static void ov19_021D5734(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_ov19_021D4D
     MI_CpuCopy32(v3->unk_00, v2->unk_00, v0);
 
     if (ov19_021D5E10(param1) == 0) {
-        PCBoxes_TryStoreBoxMonAt(param0->unk_120, USE_CURRENT_BOX, v3->unk_07, v1);
+        PCBoxes_TryStoreBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, v3->unk_07, v1);
         v2->unk_0B = 0;
     } else {
         if (v2->unk_0B == 0) {
@@ -3879,7 +3879,7 @@ static BOOL ov19_021D57D8(UnkStruct_ov19_021D5DF8 *param0, u32 param1)
     v1 = &v0->unk_08;
     v2 = &v0->unk_14;
 
-    if (PCBoxes_TryStoreBoxMonInBox(param0->unk_120, param1, v2->unk_00)) {
+    if (PCBoxes_TryStoreBoxMonInBox(param0->pcBoxes, param1, v2->unk_00)) {
         v0->unk_08.unk_0B = 1;
         ov19_021D52F4(param0);
         return 1;
@@ -3896,7 +3896,7 @@ static BOOL ov19_021D5800(UnkStruct_ov19_021D5DF8 *param0, u32 param1)
     v0 = &(param0->unk_00);
     v1 = &v0->unk_08;
 
-    if (PCBoxes_TryStoreBoxMonInBox(param0->unk_120, param1, v1->unk_00)) {
+    if (PCBoxes_TryStoreBoxMonInBox(param0->pcBoxes, param1, v1->unk_00)) {
         Party_RemovePokemonBySlotIndex(param0->unk_124, v1->unk_08);
         ov19_021D52F4(param0);
         return 1;
@@ -3926,7 +3926,7 @@ static void ov19_021D584C(UnkStruct_ov19_021D5DF8 *param0)
     UnkStruct_ov19_021D3CFC *v1 = &v0->unk_08;
 
     if (ov19_021D5E10(v0) == 0) {
-        PCBoxes_InitBoxMonAt(param0->unk_120, USE_CURRENT_BOX, v1->unk_07);
+        PCBoxes_InitBoxMonAt(param0->pcBoxes, USE_CURRENT_BOX, v1->unk_07);
     } else {
         Party_RemovePokemonBySlotIndex(param0->unk_124, v1->unk_08);
     }
@@ -4088,7 +4088,7 @@ static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 param1, UnkStruct
 
     if ((ov19_021D5E10(param0) == 0) && (ov19_021D5E38(param0) == 1)) {
         u32 v1 = ov19_021D5E24(param0);
-        PCBoxes_SetBoxMonData(param2->unk_120, USE_CURRENT_BOX, v1, MON_DATA_HELD_ITEM, &param1);
+        PCBoxes_SetBoxMonData(param2->pcBoxes, USE_CURRENT_BOX, v1, MON_DATA_HELD_ITEM, &param1);
     }
 
     BoxPokemon_SetValue(preview->mon, MON_DATA_HELD_ITEM, &param1);
@@ -4110,36 +4110,36 @@ static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 param1, UnkStruct
     }
 }
 
-static void ov19_021D5CBC(UnkStruct_ov19_021D4DF0 *param0)
+static void ov19_LoadRightBoxCustomization(UnkStruct_ov19_021D4DF0 *param0)
 {
-    UnkStruct_ov19_021D4F5C *v0 = &(param0->unk_40);
+    BoxCustomization *customization = &param0->customization;
 
-    if (++(v0->unk_00) >= 18) {
-        v0->unk_00 = 0;
+    if (++(customization->box) >= MAX_PC_BOXES) {
+        customization->box = 0;
     }
 
-    ov19_021D4F40(param0->unk_00, v0);
+    PCBoxes_LoadCustomization(param0->pcBoxes, customization);
 }
 
-static void ov19_021D5CE8(UnkStruct_ov19_021D4DF0 *param0)
+static void ov19_LoadLeftBoxCustomization(UnkStruct_ov19_021D4DF0 *param0)
 {
-    UnkStruct_ov19_021D4F5C *v0 = &(param0->unk_40);
+    BoxCustomization *customization = &param0->customization;
 
-    if (v0->unk_00) {
-        v0->unk_00--;
+    if (customization->box) {
+        customization->box--;
     } else {
-        v0->unk_00 = 18 - 1;
+        customization->box = MAX_PC_BOXES - 1;
     }
 
-    ov19_021D4F40(param0->unk_00, v0);
+    PCBoxes_LoadCustomization(param0->pcBoxes, customization);
 }
 
-static void ov19_021D5D08(UnkStruct_ov19_021D4DF0 *param0, u32 param1)
+static void ov19_LoadCustomizationsFor(UnkStruct_ov19_021D4DF0 *param0, u32 box)
 {
-    UnkStruct_ov19_021D4F5C *v0 = &(param0->unk_40);
+    BoxCustomization *customization = &param0->customization;
 
-    v0->unk_00 = param1;
-    ov19_021D4F40(param0->unk_00, v0);
+    customization->box = box;
+    PCBoxes_LoadCustomization(param0->pcBoxes, customization);
 }
 
 static void ov19_021D5D20(UnkStruct_ov19_021D4DF0 *param0, u32 param1)
@@ -4299,9 +4299,9 @@ BOOL ov19_021D5E4C(const UnkStruct_ov19_021D4DF0 *param0)
     return 0;
 }
 
-u32 ov19_021D5E68(const UnkStruct_ov19_021D4DF0 *param0)
+u32 ov19_GetCurrentBox(const UnkStruct_ov19_021D4DF0 *param0)
 {
-    return param0->unk_40.unk_00;
+    return param0->customization.box;
 }
 
 const PCMonPreview *ov19_GetPCMonPreview(const UnkStruct_ov19_021D4DF0 *param0)
@@ -4318,14 +4318,14 @@ u32 ov19_GetPreviewedMonHeldItem(const UnkStruct_ov19_021D4DF0 *param0)
     return ITEM_NONE;
 }
 
-const UnkStruct_ov19_021D4F5C *ov19_021D5E8C(const UnkStruct_ov19_021D4DF0 *param0)
+const BoxCustomization *ov19_GetBoxCustomization(const UnkStruct_ov19_021D4DF0 *param0)
 {
-    return &(param0->unk_40);
+    return &(param0->customization);
 }
 
-const PCBoxes *ov19_021D5E90(const UnkStruct_ov19_021D4DF0 *param0)
+const PCBoxes *ov19_GetPCBoxes(const UnkStruct_ov19_021D4DF0 *param0)
 {
-    return param0->unk_00;
+    return param0->pcBoxes;
 }
 
 u32 ov19_021D5E94(const UnkStruct_ov19_021D4DF0 *param0)

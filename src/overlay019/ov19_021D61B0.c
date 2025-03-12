@@ -520,10 +520,10 @@ static void ov19_021D6824(SysTask *param0, void *param1)
 
         v2->unk_06++;
     case 2: {
-        int v3 = ov19_021D77A4(v0->unk_494.unk_00, v1->unk_40.unk_00);
+        int v3 = ov19_021D77A4(v0->unk_494.box, v1->customization.box);
 
-        ov19_021D7B4C(&v0->unk_494, &v1->unk_40, v3, 1);
-        ov19_021D7D70(&v0->unk_494, &v1->unk_40, v3);
+        ov19_021D7B4C(&v0->unk_494, &v1->customization, v3, TRUE);
+        ov19_021D7D70(&v0->unk_494, &v1->customization, v3);
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         v2->unk_06++;
     }
@@ -1754,7 +1754,7 @@ static void ov19_021D75CC(UnkStruct_ov19_021D61B0 *param0, const UnkStruct_ov19_
     }
 
     ov19_021D7A9C(&param0->unk_494);
-    ov19_021D7B4C(&param0->unk_494, &param1->unk_40, 0, 1);
+    ov19_021D7B4C(&param0->unk_494, &param1->customization, 0, TRUE);
     ov19_021DAADC(&(param0->unk_6604));
     ov19_021DB3C4(&(param0->unk_6658));
     ov19_021DBA9C(&(param0->unk_6690));

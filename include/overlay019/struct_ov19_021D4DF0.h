@@ -3,12 +3,12 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 
+#include "overlay019/box_customization.h"
 #include "overlay019/pc_mon_preview.h"
 #include "overlay019/struct_ov19_021D3CFC.h"
 #include "overlay019/struct_ov19_021D4DE4.h"
 #include "overlay019/struct_ov19_021D4EE4.h"
 #include "overlay019/struct_ov19_021D4F34.h"
-#include "overlay019/struct_ov19_021D4F5C.h"
 #include "overlay019/struct_ov19_021D5594.h"
 #include "overlay019/struct_ov19_021D5D20.h"
 #include "overlay019/struct_ov19_021DF964.h"
@@ -16,11 +16,11 @@
 #include "party.h"
 
 typedef struct {
-    const PCBoxes *unk_00;
+    const PCBoxes *pcBoxes;
     const Party *unk_04;
     UnkStruct_ov19_021D3CFC unk_08;
     UnkStruct_ov19_021D5594 unk_14;
-    UnkStruct_ov19_021D4F5C unk_40;
+    BoxCustomization customization;
     UnkStruct_ov19_021D4DE4 unk_48;
     PCMonPreview pcMonPreview;
     UnkStruct_ov19_021DF964 unk_74;
