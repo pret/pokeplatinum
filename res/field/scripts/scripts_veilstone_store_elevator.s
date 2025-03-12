@@ -10,7 +10,7 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_11C 0x40CE
+    GetElevatorFloorsAbove 0x40CE
     SetVar 0x8008, 0x40CE
     GoToIfEq 0x8008, 0, _0068
     GoToIfEq 0x8008, 1, _0072
@@ -48,15 +48,15 @@ _009A:
 _00A6:
     ScrCmd_11D 20, 1, 0x40CE, 0x40CE
     Message 0
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 120, 0
-    ScrCmd_042 119, 1
-    ScrCmd_042 118, 2
-    ScrCmd_042 117, 3
-    ScrCmd_042 116, 4
-    ScrCmd_042 121, 5
-    ScrCmd_042 124, 6
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 120, 0
+    AddMenuEntrySmallStringID 119, 1
+    AddMenuEntrySmallStringID 118, 2
+    AddMenuEntrySmallStringID 117, 3
+    AddMenuEntrySmallStringID 116, 4
+    AddMenuEntrySmallStringID 121, 5
+    AddMenuEntrySmallStringID 124, 6
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _02BC
     GoToIfEq 0x8008, 1, _026D
@@ -68,7 +68,7 @@ _00A6:
 
 _0131:
     WaitTime 1, 0x800C
-    ScrCmd_11C 0x40CE
+    GetElevatorFloorsAbove 0x40CE
     ScrCmd_11B 0x236, 1, 18, 2, 1
     GoToIfEq 0x40CE, 5, _03DF
     CallIfGt 0x40CE, 5, _030B
@@ -79,7 +79,7 @@ _0131:
 
 _0180:
     WaitTime 1, 0x800C
-    ScrCmd_11C 0x40CE
+    GetElevatorFloorsAbove 0x40CE
     ScrCmd_11B 137, 2, 18, 2, 1
     GoToIfEq 0x40CE, 4, _03DF
     CallIfGt 0x40CE, 4, _030B
@@ -90,7 +90,7 @@ _0180:
 
 _01CF:
     WaitTime 1, 0x800C
-    ScrCmd_11C 0x40CE
+    GetElevatorFloorsAbove 0x40CE
     ScrCmd_11B 138, 2, 18, 2, 1
     GoToIfEq 0x40CE, 3, _03DF
     CallIfGt 0x40CE, 3, _030B
@@ -101,7 +101,7 @@ _01CF:
 
 _021E:
     WaitTime 1, 0x800C
-    ScrCmd_11C 0x40CE
+    GetElevatorFloorsAbove 0x40CE
     ScrCmd_11B 139, 2, 18, 2, 1
     GoToIfEq 0x40CE, 2, _03DF
     CallIfGt 0x40CE, 2, _030B
@@ -112,7 +112,7 @@ _021E:
 
 _026D:
     WaitTime 1, 0x800C
-    ScrCmd_11C 0x40CE
+    GetElevatorFloorsAbove 0x40CE
     ScrCmd_11B 140, 2, 18, 2, 1
     GoToIfEq 0x40CE, 1, _03DF
     CallIfGt 0x40CE, 1, _030B
@@ -123,7 +123,7 @@ _026D:
 
 _02BC:
     WaitTime 1, 0x800C
-    ScrCmd_11C 0x40CE
+    GetElevatorFloorsAbove 0x40CE
     ScrCmd_11B 141, 1, 18, 2, 1
     GoToIfEq 0x40CE, 0, _03DF
     CallIfGt 0x40CE, 0, _030B

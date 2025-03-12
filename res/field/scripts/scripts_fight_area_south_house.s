@@ -52,17 +52,17 @@ _0057:
 
 _006A:
     Message 4
-    ScrCmd_045 1, 1, 0, 1, 0x800C
-    ScrCmd_046 14, 0xFF, 0
-    ScrCmd_046 15, 0xFF, 1
-    ScrCmd_046 16, 0xFF, 2
-    ScrCmd_046 17, 0xFF, 3
-    ScrCmd_046 18, 0xFF, 4
-    ScrCmd_046 19, 0xFF, 5
-    ScrCmd_046 20, 0xFF, 6
-    ScrCmd_046 21, 0xFF, 7
-    ScrCmd_046 22, 0xFF, 8
-    ScrCmd_047
+    InitLocalTextBankListMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddListMenuEntry 14, LIST_MENU_ENTRY_NO_ALT_TEXT, 0
+    AddListMenuEntry 15, LIST_MENU_ENTRY_NO_ALT_TEXT, 1
+    AddListMenuEntry 16, LIST_MENU_ENTRY_NO_ALT_TEXT, 2
+    AddListMenuEntry 17, LIST_MENU_ENTRY_NO_ALT_TEXT, 3
+    AddListMenuEntry 18, LIST_MENU_ENTRY_NO_ALT_TEXT, 4
+    AddListMenuEntry 19, LIST_MENU_ENTRY_NO_ALT_TEXT, 5
+    AddListMenuEntry 20, LIST_MENU_ENTRY_NO_ALT_TEXT, 6
+    AddListMenuEntry 21, LIST_MENU_ENTRY_NO_ALT_TEXT, 7
+    AddListMenuEntry 22, LIST_MENU_ENTRY_NO_ALT_TEXT, 8
+    FinishAndShowListMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0135
     GoToIfEq 0x8008, 1, _0140

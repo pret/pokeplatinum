@@ -132,25 +132,25 @@ _0190:
     End
 
 _01F0:
-    ScrCmd_045 1, 1, 0, 1, 0x8004
-    ScrCmd_046 22, 0xFF, 1
-    ScrCmd_046 23, 0xFF, 2
-    ScrCmd_046 24, 0xFF, 3
-    ScrCmd_046 25, 0xFF, 4
-    ScrCmd_046 26, 0xFF, 5
-    ScrCmd_046 27, 0xFF, 6
-    ScrCmd_046 28, 0xFF, 7
-    ScrCmd_046 29, 0xFF, 8
-    ScrCmd_046 30, 0xFF, 9
-    ScrCmd_046 31, 0xFF, 10
-    ScrCmd_046 32, 0xFF, 11
-    ScrCmd_046 33, 0xFF, 12
-    ScrCmd_046 34, 0xFF, 13
-    ScrCmd_046 35, 0xFF, 14
-    ScrCmd_046 36, 0xFF, 15
-    ScrCmd_046 37, 0xFF, 16
-    ScrCmd_046 38, 0xFF, 17
-    ScrCmd_047
+    InitLocalTextBankListMenuBuilder 1, 1, 0, TRUE, 0x8004
+    AddListMenuEntry 22, LIST_MENU_ENTRY_NO_ALT_TEXT, 1
+    AddListMenuEntry 23, LIST_MENU_ENTRY_NO_ALT_TEXT, 2
+    AddListMenuEntry 24, LIST_MENU_ENTRY_NO_ALT_TEXT, 3
+    AddListMenuEntry 25, LIST_MENU_ENTRY_NO_ALT_TEXT, 4
+    AddListMenuEntry 26, LIST_MENU_ENTRY_NO_ALT_TEXT, 5
+    AddListMenuEntry 27, LIST_MENU_ENTRY_NO_ALT_TEXT, 6
+    AddListMenuEntry 28, LIST_MENU_ENTRY_NO_ALT_TEXT, 7
+    AddListMenuEntry 29, LIST_MENU_ENTRY_NO_ALT_TEXT, 8
+    AddListMenuEntry 30, LIST_MENU_ENTRY_NO_ALT_TEXT, 9
+    AddListMenuEntry 31, LIST_MENU_ENTRY_NO_ALT_TEXT, 10
+    AddListMenuEntry 32, LIST_MENU_ENTRY_NO_ALT_TEXT, 11
+    AddListMenuEntry 33, LIST_MENU_ENTRY_NO_ALT_TEXT, 12
+    AddListMenuEntry 34, LIST_MENU_ENTRY_NO_ALT_TEXT, 13
+    AddListMenuEntry 35, LIST_MENU_ENTRY_NO_ALT_TEXT, 14
+    AddListMenuEntry 36, LIST_MENU_ENTRY_NO_ALT_TEXT, 15
+    AddListMenuEntry 37, LIST_MENU_ENTRY_NO_ALT_TEXT, 16
+    AddListMenuEntry 38, LIST_MENU_ENTRY_NO_ALT_TEXT, 17
+    FinishAndShowListMenu
     GoToIfEq 0x8004, -2, _02AE
     ScrCmd_237 1, 0x8000, 0x8004, 0x8005
     GoTo _02A1

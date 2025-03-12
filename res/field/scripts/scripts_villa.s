@@ -1106,9 +1106,9 @@ _0E65:
     SetVar 0x40A1, 1
     ScrCmd_072 21, 1
     Message 0
-    ScrCmd_045 1, 1, 0, 1, 0x8002
-    ScrCmd_046 189, 0xFF, 0
-    ScrCmd_047
+    InitLocalTextBankListMenuBuilder 1, 1, 0, TRUE, 0x8002
+    AddListMenuEntry 189, LIST_MENU_ENTRY_NO_ALT_TEXT, 0
+    FinishAndShowListMenu
     GoToIfNe 0x8002, 0, _0EA7
     Call _0F7C
     CloseMessage
@@ -1130,9 +1130,9 @@ _0EB4:
     FacePlayer
     ScrCmd_072 21, 1
     Message 1
-    ScrCmd_045 1, 1, 0, 1, 0x8002
-    ScrCmd_046 189, 0xFF, 0
-    ScrCmd_047
+    InitLocalTextBankListMenuBuilder 1, 1, 0, TRUE, 0x8002
+    AddListMenuEntry 189, LIST_MENU_ENTRY_NO_ALT_TEXT, 0
+    FinishAndShowListMenu
     GoToIfNe 0x8002, 0, _1478
     Call _0F7C
     CloseMessage
@@ -1141,7 +1141,7 @@ _0EB4:
     End
 
 _0EF6:
-    ScrCmd_045 1, 1, 0, 1, 0x8002
+    InitLocalTextBankListMenuBuilder 1, 1, 0, TRUE, 0x8002
     Call _19E4
     Call _1A05
     Call _1A26
@@ -1162,7 +1162,7 @@ _0EF6:
     Call _1C7F
     Call _1CB3
     Call _1CDF
-    ScrCmd_327 18
+    FinishAndShowListMenuWithWidth 18
     Return
 
 _0F7C:
@@ -1837,163 +1837,163 @@ _1D13:
     Return
 
 _1D15:
-    ScrCmd_046 149, 0xFF, 0
+    AddListMenuEntry 149, LIST_MENU_ENTRY_NO_ALT_TEXT, 0
     Return
 
 _1D1F:
-    ScrCmd_046 169, 0xFF, 0
+    AddListMenuEntry 169, LIST_MENU_ENTRY_NO_ALT_TEXT, 0
     Return
 
 _1D29:
-    ScrCmd_046 150, 0xFF, 1
+    AddListMenuEntry 150, LIST_MENU_ENTRY_NO_ALT_TEXT, 1
     Return
 
 _1D33:
-    ScrCmd_046 170, 0xFF, 1
+    AddListMenuEntry 170, LIST_MENU_ENTRY_NO_ALT_TEXT, 1
     Return
 
 _1D3D:
-    ScrCmd_046 151, 0xFF, 2
+    AddListMenuEntry 151, LIST_MENU_ENTRY_NO_ALT_TEXT, 2
     Return
 
 _1D47:
-    ScrCmd_046 171, 0xFF, 2
+    AddListMenuEntry 171, LIST_MENU_ENTRY_NO_ALT_TEXT, 2
     Return
 
 _1D51:
-    ScrCmd_046 152, 0xFF, 3
+    AddListMenuEntry 152, LIST_MENU_ENTRY_NO_ALT_TEXT, 3
     Return
 
 _1D5B:
-    ScrCmd_046 172, 0xFF, 3
+    AddListMenuEntry 172, LIST_MENU_ENTRY_NO_ALT_TEXT, 3
     Return
 
 _1D65:
-    ScrCmd_046 153, 0xFF, 4
+    AddListMenuEntry 153, LIST_MENU_ENTRY_NO_ALT_TEXT, 4
     Return
 
 _1D6F:
-    ScrCmd_046 173, 0xFF, 4
+    AddListMenuEntry 173, LIST_MENU_ENTRY_NO_ALT_TEXT, 4
     Return
 
 _1D79:
-    ScrCmd_046 154, 0xFF, 5
+    AddListMenuEntry 154, LIST_MENU_ENTRY_NO_ALT_TEXT, 5
     Return
 
 _1D83:
-    ScrCmd_046 174, 0xFF, 5
+    AddListMenuEntry 174, LIST_MENU_ENTRY_NO_ALT_TEXT, 5
     Return
 
 _1D8D:
-    ScrCmd_046 155, 0xFF, 6
+    AddListMenuEntry 155, LIST_MENU_ENTRY_NO_ALT_TEXT, 6
     Return
 
 _1D97:
-    ScrCmd_046 175, 0xFF, 6
+    AddListMenuEntry 175, LIST_MENU_ENTRY_NO_ALT_TEXT, 6
     Return
 
 _1DA1:
-    ScrCmd_046 156, 0xFF, 7
+    AddListMenuEntry 156, LIST_MENU_ENTRY_NO_ALT_TEXT, 7
     Return
 
 _1DAB:
-    ScrCmd_046 176, 0xFF, 7
+    AddListMenuEntry 176, LIST_MENU_ENTRY_NO_ALT_TEXT, 7
     Return
 
 _1DB5:
-    ScrCmd_046 157, 0xFF, 8
+    AddListMenuEntry 157, LIST_MENU_ENTRY_NO_ALT_TEXT, 8
     Return
 
 _1DBF:
-    ScrCmd_046 177, 0xFF, 8
+    AddListMenuEntry 177, LIST_MENU_ENTRY_NO_ALT_TEXT, 8
     Return
 
 _1DC9:
-    ScrCmd_046 158, 0xFF, 9
+    AddListMenuEntry 158, LIST_MENU_ENTRY_NO_ALT_TEXT, 9
     Return
 
 _1DD3:
-    ScrCmd_046 178, 0xFF, 9
+    AddListMenuEntry 178, LIST_MENU_ENTRY_NO_ALT_TEXT, 9
     Return
 
 _1DDD:
-    ScrCmd_046 159, 0xFF, 10
+    AddListMenuEntry 159, LIST_MENU_ENTRY_NO_ALT_TEXT, 10
     Return
 
 _1DE7:
-    ScrCmd_046 179, 0xFF, 10
+    AddListMenuEntry 179, LIST_MENU_ENTRY_NO_ALT_TEXT, 10
     Return
 
 _1DF1:
-    ScrCmd_046 160, 0xFF, 11
+    AddListMenuEntry 160, LIST_MENU_ENTRY_NO_ALT_TEXT, 11
     Return
 
 _1DFB:
-    ScrCmd_046 180, 0xFF, 11
+    AddListMenuEntry 180, LIST_MENU_ENTRY_NO_ALT_TEXT, 11
     Return
 
 _1E05:
-    ScrCmd_046 161, 0xFF, 12
+    AddListMenuEntry 161, LIST_MENU_ENTRY_NO_ALT_TEXT, 12
     Return
 
 _1E0F:
-    ScrCmd_046 181, 0xFF, 12
+    AddListMenuEntry 181, LIST_MENU_ENTRY_NO_ALT_TEXT, 12
     Return
 
 _1E19:
-    ScrCmd_046 162, 0xFF, 13
+    AddListMenuEntry 162, LIST_MENU_ENTRY_NO_ALT_TEXT, 13
     Return
 
 _1E23:
-    ScrCmd_046 182, 0xFF, 13
+    AddListMenuEntry 182, LIST_MENU_ENTRY_NO_ALT_TEXT, 13
     Return
 
 _1E2D:
-    ScrCmd_046 163, 0xFF, 14
+    AddListMenuEntry 163, LIST_MENU_ENTRY_NO_ALT_TEXT, 14
     Return
 
 _1E37:
-    ScrCmd_046 183, 0xFF, 14
+    AddListMenuEntry 183, LIST_MENU_ENTRY_NO_ALT_TEXT, 14
     Return
 
 _1E41:
-    ScrCmd_046 164, 0xFF, 15
+    AddListMenuEntry 164, LIST_MENU_ENTRY_NO_ALT_TEXT, 15
     Return
 
 _1E4B:
-    ScrCmd_046 184, 0xFF, 15
+    AddListMenuEntry 184, LIST_MENU_ENTRY_NO_ALT_TEXT, 15
     Return
 
 _1E55:
-    ScrCmd_046 165, 0xFF, 16
+    AddListMenuEntry 165, LIST_MENU_ENTRY_NO_ALT_TEXT, 16
     Return
 
 _1E5F:
-    ScrCmd_046 185, 0xFF, 16
+    AddListMenuEntry 185, LIST_MENU_ENTRY_NO_ALT_TEXT, 16
     Return
 
 _1E69:
-    ScrCmd_046 166, 0xFF, 17
+    AddListMenuEntry 166, LIST_MENU_ENTRY_NO_ALT_TEXT, 17
     Return
 
 _1E73:
-    ScrCmd_046 186, 0xFF, 17
+    AddListMenuEntry 186, LIST_MENU_ENTRY_NO_ALT_TEXT, 17
     Return
 
 _1E7D:
-    ScrCmd_046 167, 0xFF, 18
+    AddListMenuEntry 167, LIST_MENU_ENTRY_NO_ALT_TEXT, 18
     Return
 
 _1E87:
-    ScrCmd_046 187, 0xFF, 18
+    AddListMenuEntry 187, LIST_MENU_ENTRY_NO_ALT_TEXT, 18
     Return
 
 _1E91:
-    ScrCmd_046 168, 0xFF, 19
+    AddListMenuEntry 168, LIST_MENU_ENTRY_NO_ALT_TEXT, 19
     Return
 
 _1E9B:
-    ScrCmd_046 188, 0xFF, 19
+    AddListMenuEntry 188, LIST_MENU_ENTRY_NO_ALT_TEXT, 19
     Return
 
 _1EA5:

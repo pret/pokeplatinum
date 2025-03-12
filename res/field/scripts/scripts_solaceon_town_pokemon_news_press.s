@@ -204,13 +204,13 @@ _02CE:
     LockAll
     Message 12
     Message 13
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_29D 0x107, 0
-    ScrCmd_29D 0x108, 1
-    ScrCmd_29D 0x109, 2
-    ScrCmd_29D 0x10B, 3
-    ScrCmd_29D 0x10A, 4
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntryLargeStringID 0x107, 0
+    AddMenuEntryLargeStringID 0x108, 1
+    AddMenuEntryLargeStringID 0x109, 2
+    AddMenuEntryLargeStringID 0x10B, 3
+    AddMenuEntryLargeStringID 0x10A, 4
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0344
     GoToIfEq 0x8008, 1, _034F

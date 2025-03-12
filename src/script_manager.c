@@ -315,7 +315,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
     ApproachingTrainer *trainer;
 
     switch (member) {
-    case 0:
+    case SCRIPT_MANAGER_FIELD_MENU_MANAGER:
         return &scriptManager->fieldMenuMan;
     case SCRIPT_MANAGER_WINDOW:
         return &scriptManager->window;

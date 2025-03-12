@@ -53,15 +53,15 @@ _007C:
     End
 
 _0095:
-    ScrCmd_041 31, 5, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 11, 0
-    ScrCmd_042 16, 1
-    ScrCmd_042 12, 2
-    ScrCmd_042 13, 3
-    ScrCmd_042 14, 4
-    ScrCmd_042 15, 5
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 31, 5, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 11, 0
+    AddMenuEntrySmallStringID 16, 1
+    AddMenuEntrySmallStringID 12, 2
+    AddMenuEntrySmallStringID 13, 3
+    AddMenuEntrySmallStringID 14, 4
+    AddMenuEntrySmallStringID 15, 5
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _010E
     GoToIfEq 0x8008, 1, _0146

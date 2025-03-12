@@ -927,10 +927,10 @@ _0C11:
 _0C1C:
     BufferPlayerName 0
     Message 33
-    ScrCmd_040 1, 1, 0, 1, 0x8006
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x8006
     CallIfUnset 0x97E, _0C7B
     CallIfSet 0x97E, _0C81
-    ScrCmd_042 60, 1
+    AddMenuEntrySmallStringID 60, 1
     ScrCmd_22D 2, 0x800C
     CallIfEq 0x800C, 0, _0C87
     CallIfEq 0x800C, 1, _0C8D
@@ -939,25 +939,25 @@ _0C1C:
     End
 
 _0C7B:
-    ScrCmd_042 58, 0
+    AddMenuEntrySmallStringID 58, 0
     Return
 
 _0C81:
-    ScrCmd_042 59, 0
+    AddMenuEntrySmallStringID 59, 0
     Return
 
 _0C87:
-    ScrCmd_042 63, 2
+    AddMenuEntrySmallStringID 63, 2
     Return
 
 _0C8D:
-    ScrCmd_042 62, 2
+    AddMenuEntrySmallStringID 62, 2
     Return
 
 _0C93:
-    ScrCmd_042 61, 3
-    ScrCmd_042 64, 4
-    ScrCmd_043
+    AddMenuEntrySmallStringID 61, 3
+    AddMenuEntrySmallStringID 64, 4
+    FinishAndShowMenu
     SetVar 0x8008, 0x8006
     GoToIfEq 0x8008, 0, _0D16
     GoToIfEq 0x8008, 1, _0E45
@@ -966,8 +966,8 @@ _0C93:
     GoTo _0F70
 
 _0CDD:
-    ScrCmd_042 64, 3
-    ScrCmd_043
+    AddMenuEntrySmallStringID 64, 3
+    FinishAndShowMenu
     SetVar 0x8008, 0x8006
     GoToIfEq 0x8008, 0, _0D16
     GoToIfEq 0x8008, 1, _0E45
@@ -982,21 +982,21 @@ _0D16:
     GoTo _0D73
 
 _0D2C:
-    ScrCmd_044 1, 1, 0, 1, 0x800C
-    ScrCmd_046 65, 74, 0
-    ScrCmd_046 66, 75, 1
-    ScrCmd_046 67, 76, 2
-    ScrCmd_046 68, 77, 3
+    InitCommonStrings2ListMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddListMenuEntry 65, 74, 0
+    AddListMenuEntry 66, 75, 1
+    AddListMenuEntry 67, 76, 2
+    AddListMenuEntry 68, 77, 3
     CallIfSet 0x978, _0D69
-    ScrCmd_046 70, 79, 5
+    AddListMenuEntry 70, 79, 5
     Return
 
 _0D69:
-    ScrCmd_046 69, 78, 4
+    AddListMenuEntry 69, 78, 4
     Return
 
 _0D73:
-    ScrCmd_047
+    FinishAndShowListMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0DC2
     GoToIfEq 0x8008, 1, _0DD5
@@ -1060,14 +1060,14 @@ _0E55:
     GoTo _0E83
 
 _0E61:
-    ScrCmd_044 1, 1, 0, 1, 0x800C
-    ScrCmd_046 71, 80, 0
-    ScrCmd_046 72, 81, 1
-    ScrCmd_046 73, 82, 3
+    InitCommonStrings2ListMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddListMenuEntry 71, 80, 0
+    AddListMenuEntry 72, 81, 1
+    AddListMenuEntry 73, 82, 3
     Return
 
 _0E83:
-    ScrCmd_047
+    FinishAndShowListMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0EAB
     GoToIfEq 0x8008, 1, _0EE0

@@ -91,16 +91,16 @@ _0108:
 
 _012C:
     Message 1
-    ScrCmd_044 1, 1, 1, 1, 0x800C
-    ScrCmd_046 163, 0xFF, 250
-    ScrCmd_046 6, 0xFF, 0
-    ScrCmd_046 7, 0xFF, 1
-    ScrCmd_046 8, 0xFF, 2
-    ScrCmd_046 164, 0xFF, 250
-    ScrCmd_046 9, 0xFF, 3
-    ScrCmd_046 10, 0xFF, 4
-    ScrCmd_046 11, 0xFF, 5
-    ScrCmd_047
+    InitCommonStrings2ListMenuBuilder 1, 1, 1, TRUE, 0x800C
+    AddListMenuEntry 163, LIST_MENU_ENTRY_NO_ALT_TEXT, LIST_MENU_BUILDER_HEADER
+    AddListMenuEntry 6, LIST_MENU_ENTRY_NO_ALT_TEXT, 0
+    AddListMenuEntry 7, LIST_MENU_ENTRY_NO_ALT_TEXT, 1
+    AddListMenuEntry 8, LIST_MENU_ENTRY_NO_ALT_TEXT, 2
+    AddListMenuEntry 164, LIST_MENU_ENTRY_NO_ALT_TEXT, LIST_MENU_BUILDER_HEADER
+    AddListMenuEntry 9, LIST_MENU_ENTRY_NO_ALT_TEXT, 3
+    AddListMenuEntry 10, LIST_MENU_ENTRY_NO_ALT_TEXT, 4
+    AddListMenuEntry 11, LIST_MENU_ENTRY_NO_ALT_TEXT, 5
+    FinishAndShowListMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01DE
     GoToIfEq 0x8008, 1, _01F2
@@ -271,12 +271,12 @@ _0305:
     CallIfEq 0x8004, 2, _037A
     CallIfEq 0x8004, 3, _037A
     CallIfEq 0x8004, 4, _037F
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 30, 1, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 13, 0
+    AddMenuEntrySmallStringID 14, 1
+    AddMenuEntrySmallStringID 5, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0384
     GoToIfEq 0x8008, 1, _03F7
@@ -432,11 +432,11 @@ _0544:
 
 _0565:
     Message 57
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 41, 0
-    ScrCmd_042 42, 1
-    ScrCmd_042 10, 2
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 41, 0
+    AddMenuEntrySmallStringID 42, 1
+    AddMenuEntrySmallStringID 10, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _05CF
     GoToIfEq 0x8008, 1, _01D3
@@ -530,11 +530,11 @@ _06B4:
 
 _06CB:
     Message 103
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 41, 0
-    ScrCmd_042 42, 1
-    ScrCmd_042 10, 2
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 41, 0
+    AddMenuEntrySmallStringID 42, 1
+    AddMenuEntrySmallStringID 10, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0724
     GoToIfEq 0x8008, 1, _074A

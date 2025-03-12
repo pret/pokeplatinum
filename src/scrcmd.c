@@ -318,19 +318,19 @@ static BOOL ScriptContext_ScrollBG3(ScriptContext *ctx);
 static BOOL ScrCmd_ScrollBG3(ScriptContext *ctx);
 static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx);
 static BOOL ScriptContext_WaitForYesNoResult(ScriptContext *ctx);
-static BOOL ScrCmd_040(ScriptContext *ctx);
-static BOOL ScrCmd_041(ScriptContext *ctx);
-static BOOL ScrCmd_042(ScriptContext *ctx);
-static BOOL ScrCmd_29D(ScriptContext *ctx);
-static BOOL ScrCmd_043(ScriptContext *ctx);
-static BOOL sub_02040A50(ScriptContext *ctx);
-static BOOL ScrCmd_044(ScriptContext *ctx);
-static BOOL ScrCmd_045(ScriptContext *ctx);
-static BOOL ScrCmd_046(ScriptContext *ctx);
-static BOOL ScrCmd_047(ScriptContext *ctx);
-static BOOL ScrCmd_327(ScriptContext *ctx);
-static BOOL ScrCmd_306(ScriptContext *ctx);
-static BOOL ScrCmd_048(ScriptContext *ctx);
+static BOOL ScrCmd_InitCommonStrings2MenuBuilder(ScriptContext *ctx);
+static BOOL ScrCmd_InitLocalTextBankMenuBuilder(ScriptContext *ctx);
+static BOOL ScrCmd_AddMenuEntrySmallStringID(ScriptContext *ctx);
+static BOOL ScrCmd_AddMenuEntryLargeStringID(ScriptContext *ctx);
+static BOOL ScrCmd_FinishAndShowMenu(ScriptContext *ctx);
+static BOOL ResumeOnMenuSelection(ScriptContext *ctx);
+static BOOL ScrCmd_InitCommonStrings2ListMenuBuilder(ScriptContext *ctx);
+static BOOL ScrCmd_InitLocalTextBankListMenuBuilder(ScriptContext *ctx);
+static BOOL ScrCmd_AddListMenuEntry(ScriptContext *ctx);
+static BOOL ScrCmd_FinishAndShowListMenu(ScriptContext *ctx);
+static BOOL ScrCmd_FinishAndShowListMenuWithWidth(ScriptContext *ctx);
+static BOOL ScrCmd_FinishAndShowListMenuWithRememberedCursorPos(ScriptContext *ctx);
+static BOOL ScrCmd_FinishAndShowMenuMultiColumn(ScriptContext *ctx);
 static BOOL ScrCmd_ApplyMovement(ScriptContext *ctx);
 static BOOL ScrCmd_WaitMovement(ScriptContext *ctx);
 static BOOL ScrCmd_LockAll(ScriptContext *ctx);
@@ -432,7 +432,7 @@ static BOOL ScrCmd_0F5(ScriptContext *ctx);
 static BOOL ScrCmd_StartLinkBattle(ScriptContext *ctx);
 static BOOL ScrCmd_0F7(ScriptContext *ctx);
 static BOOL ScrCmd_11B(ScriptContext *ctx);
-static BOOL ScrCmd_11C(ScriptContext *ctx);
+static BOOL ScrCmd_GetElevatorFloorsAbove(ScriptContext *ctx);
 static BOOL ScrCmd_11D(ScriptContext *ctx);
 static BOOL ScrCmd_11E(ScriptContext *ctx);
 static BOOL ScrCmd_11F(ScriptContext *ctx);
@@ -695,16 +695,16 @@ static BOOL ScrCmd_2B2(ScriptContext *ctx);
 static BOOL ScrCmd_LockLastTalked(ScriptContext *ctx);
 static BOOL ScrCmd_2B5(ScriptContext *ctx);
 static BOOL ScrCmd_2B6(ScriptContext *ctx);
-static BOOL sub_02040A9C(ScriptContext *ctx);
-static BOOL ScrCmd_2B9(ScriptContext *ctx);
+static BOOL ResumeOnMenuSelectionOrDisconnect(ScriptContext *ctx);
+static BOOL ScrCmd_FinishAndShowUnionRoomInteractionMenu(ScriptContext *ctx);
 static BOOL ScrCmd_2BB(ScriptContext *ctx);
 static BOOL ScrCmd_2BE(ScriptContext *ctx);
 static BOOL ScrCmd_2BF(ScriptContext *ctx);
 static BOOL ScrCmd_2C1(ScriptContext *ctx);
 static BOOL ScrCmd_2C2(ScriptContext *ctx);
 static BOOL ScrCmd_2C3(ScriptContext *ctx);
-static BOOL ScrCmd_33A(ScriptContext *ctx);
-static BOOL ScrCmd_33B(ScriptContext *ctx);
+static BOOL ScrCmd_SetMenuHorizontalAnchor(ScriptContext *ctx);
+static BOOL ScrCmd_SetMenuVerticalAnchor(ScriptContext *ctx);
 static BOOL ScrCmd_2C4(ScriptContext *ctx);
 static BOOL ScrCmd_2C6(ScriptContext *ctx);
 static BOOL ScrCmd_2C7(ScriptContext *ctx);
@@ -829,15 +829,15 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_ScrollBG3,
     ScrCmd_ShowYesNoMenu,
     ScrCmd_03F,
-    ScrCmd_040,
-    ScrCmd_041,
-    ScrCmd_042,
-    ScrCmd_043,
-    ScrCmd_044,
-    ScrCmd_045,
-    ScrCmd_046,
-    ScrCmd_047,
-    ScrCmd_048,
+    ScrCmd_InitCommonStrings2MenuBuilder,
+    ScrCmd_InitLocalTextBankMenuBuilder,
+    ScrCmd_AddMenuEntrySmallStringID,
+    ScrCmd_FinishAndShowMenu,
+    ScrCmd_InitCommonStrings2ListMenuBuilder,
+    ScrCmd_InitLocalTextBankListMenuBuilder,
+    ScrCmd_AddListMenuEntry,
+    ScrCmd_FinishAndShowListMenu,
+    ScrCmd_FinishAndShowMenuMultiColumn,
     ScrCmd_PlayFanfare,
     ScrCmd_04A,
     ScrCmd_WaitFanfare,
@@ -1049,7 +1049,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckPartyPokerus,
     ScrCmd_11A,
     ScrCmd_11B,
-    ScrCmd_11C,
+    ScrCmd_GetElevatorFloorsAbove,
     ScrCmd_11D,
     ScrCmd_11E,
     ScrCmd_11F,
@@ -1434,7 +1434,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_29A,
     ScrCmd_29B,
     ScrCmd_29C,
-    ScrCmd_29D,
+    ScrCmd_AddMenuEntryLargeStringID,
     ScrCmd_29E,
     ScrCmd_29F,
     ScrCmd_StartTagBattle,
@@ -1462,7 +1462,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_2B6,
     ScrCmd_2B7,
     ScrCmd_2B8,
-    ScrCmd_2B9,
+    ScrCmd_FinishAndShowUnionRoomInteractionMenu,
     ScrCmd_2BA,
     ScrCmd_2BB,
     ScrCmd_CheckDidNotCapture,
@@ -1539,7 +1539,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_303,
     ScrCmd_304,
     ScrCmd_305,
-    ScrCmd_306,
+    ScrCmd_FinishAndShowListMenuWithRememberedCursorPos,
     ScrCmd_307,
     ScrCmd_308,
     ScrCmd_309,
@@ -1572,7 +1572,7 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_324,
     ScrCmd_325,
     ScrCmd_326,
-    ScrCmd_327,
+    ScrCmd_FinishAndShowListMenuWithWidth,
     ScrCmd_328,
     ScrCmd_329,
     ScrCmd_32A,
@@ -1591,8 +1591,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckHasSeenSpecies,
     ScrCmd_338,
     ScrCmd_339,
-    ScrCmd_33A,
-    ScrCmd_33B,
+    ScrCmd_SetMenuHorizontalAnchor,
+    ScrCmd_SetMenuVerticalAnchor,
     ScrCmd_33C,
     ScrCmd_33D,
     ScrCmd_33E,
@@ -2682,230 +2682,228 @@ static BOOL ScrCmd_18E(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_040(ScriptContext *ctx)
+static BOOL ScrCmd_InitCommonStrings2MenuBuilder(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v3 = ScriptContext_ReadByte(ctx);
-    u8 v4 = ScriptContext_ReadByte(ctx);
-    u8 v5 = ScriptContext_ReadByte(ctx);
-    u8 v6 = ScriptContext_ReadByte(ctx);
-    u16 v7 = ScriptContext_ReadHalfWord(ctx);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
+    StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 anchorX = ScriptContext_ReadByte(ctx);
+    u8 anchorY = ScriptContext_ReadByte(ctx);
+    u8 initialCursorPos = ScriptContext_ReadByte(ctx);
+    u8 canExitWithB = ScriptContext_ReadByte(ctx);
+    u16 selectedOptionVar = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = FieldMenuManager_New(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), NULL);
-    ctx->data[0] = v7;
+    *fieldMenuMan = FieldMenuManager_New(fieldSystem, anchorX, anchorY, initialCursorPos, canExitWithB, FieldSystem_GetVarPointer(fieldSystem, selectedOptionVar), *stringTemplate, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), NULL);
+    ctx->data[0] = selectedOptionVar;
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_041(ScriptContext *ctx)
+static BOOL ScrCmd_InitLocalTextBankMenuBuilder(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v3 = ScriptContext_ReadByte(ctx);
-    u8 v4 = ScriptContext_ReadByte(ctx);
-    u8 v5 = ScriptContext_ReadByte(ctx);
-    u8 v6 = ScriptContext_ReadByte(ctx);
-    u16 v7 = ScriptContext_ReadHalfWord(ctx);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
+    StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 anchorX = ScriptContext_ReadByte(ctx);
+    u8 anchorY = ScriptContext_ReadByte(ctx);
+    u8 initialCursorPos = ScriptContext_ReadByte(ctx);
+    u8 canExitWithB = ScriptContext_ReadByte(ctx);
+    u16 selectedOptionVar = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = FieldMenuManager_New(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), ctx->loader);
-    ctx->data[0] = v7;
+    *fieldMenuMan = FieldMenuManager_New(fieldSystem, anchorX, anchorY, initialCursorPos, canExitWithB, FieldSystem_GetVarPointer(fieldSystem, selectedOptionVar), *stringTemplate, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), ctx->loader);
+    ctx->data[0] = selectedOptionVar;
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_042(ScriptContext *ctx)
+static BOOL ScrCmd_AddMenuEntrySmallStringID(ScriptContext *ctx)
 {
-    u8 v0, v1;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
 
-    v0 = ScriptContext_ReadByte(ctx);
-    v1 = ScriptContext_ReadByte(ctx);
+    u8 entryStringID = ScriptContext_ReadByte(ctx);
+    u8 entryIndex = ScriptContext_ReadByte(ctx);
 
-    FieldMenuManager_AddMenuEntry(*v3, v0, v1);
-    return 0;
+    FieldMenuManager_AddMenuEntry(*fieldMenuMan, entryStringID, entryIndex);
+    return FALSE;
 }
 
-static BOOL ScrCmd_29D(ScriptContext *ctx)
+static BOOL ScrCmd_AddMenuEntryLargeStringID(ScriptContext *ctx)
 {
-    u16 v0, v1;
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v3 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
 
-    v0 = ScriptContext_GetVar(ctx);
-    v1 = ScriptContext_GetVar(ctx);
+    u16 entryStringID = ScriptContext_GetVar(ctx);
+    u16 entryIndex = ScriptContext_GetVar(ctx);
 
-    FieldMenuManager_AddMenuEntry(*v3, v0, v1);
-    return 0;
+    FieldMenuManager_AddMenuEntry(*fieldMenuMan, entryStringID, entryIndex);
+    return FALSE;
 }
 
-static BOOL ScrCmd_043(ScriptContext *ctx)
+static BOOL ScrCmd_FinishAndShowMenu(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
 
-    FieldMenuManager_ShowSingleColumnMenu(*v1);
-    ScriptContext_Pause(ctx, sub_02040A50);
+    FieldMenuManager_ShowSingleColumnMenu(*fieldMenuMan);
+    ScriptContext_Pause(ctx, ResumeOnMenuSelection);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL sub_02040A50(ScriptContext *ctx)
+static BOOL ResumeOnMenuSelection(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
+    u16 *selectedOptionPtr = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
 
-    if (*v1 == LIST_MENU_NO_SELECTION_YET) {
-        return 0;
+    if (*selectedOptionPtr == LIST_MENU_NO_SELECTION_YET) {
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_2B9(ScriptContext *ctx)
+static BOOL ScrCmd_FinishAndShowUnionRoomInteractionMenu(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
 
-    FieldMenuManager_ShowSingleColumnMenu(*v1);
-    ScriptContext_Pause(ctx, sub_02040A9C);
+    FieldMenuManager_ShowSingleColumnMenu(*fieldMenuMan);
+    ScriptContext_Pause(ctx, ResumeOnMenuSelectionOrDisconnect);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL sub_02040A9C(ScriptContext *ctx)
+static BOOL ResumeOnMenuSelectionOrDisconnect(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    u16 *v1 = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
-    FieldMenuManager **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    u16 *selectedOptionPtr = FieldSystem_GetVarPointer(fieldSystem, ctx->data[0]);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
 
-    if (*v1 == LIST_MENU_NO_SELECTION_YET) {
+    if (*selectedOptionPtr == LIST_MENU_NO_SELECTION_YET) {
         if (sub_0205B9E8(fieldSystem->unk_7C)) {
-            *v1 = 8;
-            FieldMenuManager_DeleteWithMenu(*v2);
-            return 1;
+            *selectedOptionPtr = 8;
+            FieldMenuManager_DeleteWithMenu(*fieldMenuMan);
+            return TRUE;
         }
 
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_044(ScriptContext *ctx)
+static BOOL ScrCmd_InitCommonStrings2ListMenuBuilder(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v3 = ScriptContext_ReadByte(ctx);
-    u8 v4 = ScriptContext_ReadByte(ctx);
-    u8 v5 = ScriptContext_ReadByte(ctx);
-    u8 v6 = ScriptContext_ReadByte(ctx);
-    u16 v7 = ScriptContext_ReadHalfWord(ctx);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
+    StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 anchorX = ScriptContext_ReadByte(ctx);
+    u8 anchorY = ScriptContext_ReadByte(ctx);
+    u8 initialCursorPos = ScriptContext_ReadByte(ctx);
+    u8 canExitWithB = ScriptContext_ReadByte(ctx);
+    u16 selectedOptionVar = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = FieldMenuManager_New2(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), NULL);
-    ctx->data[0] = v7;
+    *fieldMenuMan = FieldMenuManager_New2(fieldSystem, anchorX, anchorY, initialCursorPos, canExitWithB, FieldSystem_GetVarPointer(fieldSystem, selectedOptionVar), *stringTemplate, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), NULL);
+    ctx->data[0] = selectedOptionVar;
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_045(ScriptContext *ctx)
+static BOOL ScrCmd_InitLocalTextBankListMenuBuilder(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
-    StringTemplate **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v3 = ScriptContext_ReadByte(ctx);
-    u8 v4 = ScriptContext_ReadByte(ctx);
-    u8 v5 = ScriptContext_ReadByte(ctx);
-    u8 v6 = ScriptContext_ReadByte(ctx);
-    u16 v7 = ScriptContext_ReadHalfWord(ctx);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
+    StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 anchorX = ScriptContext_ReadByte(ctx);
+    u8 anchorY = ScriptContext_ReadByte(ctx);
+    u8 initialCursorPos = ScriptContext_ReadByte(ctx);
+    u8 canExitWithB = ScriptContext_ReadByte(ctx);
+    u16 selectedOptionVar = ScriptContext_ReadHalfWord(ctx);
 
-    *v1 = FieldMenuManager_New2(fieldSystem, v3, v4, v5, v6, FieldSystem_GetVarPointer(fieldSystem, v7), *v2, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), ctx->loader);
-    ctx->data[0] = v7;
+    *fieldMenuMan = FieldMenuManager_New2(fieldSystem, anchorX, anchorY, initialCursorPos, canExitWithB, FieldSystem_GetVarPointer(fieldSystem, selectedOptionVar), *stringTemplate, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), ctx->loader);
+    ctx->data[0] = selectedOptionVar;
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_046(ScriptContext *ctx)
+static BOOL ScrCmd_AddListMenuEntry(ScriptContext *ctx)
 {
-    FieldMenuManager **v0 = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, 0);
-    u8 v1 = ScriptContext_GetVar(ctx);
-    u8 v2 = ScriptContext_GetVar(ctx);
-    u8 v3 = ScriptContext_GetVar(ctx);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
+    u8 entryStringID = ScriptContext_GetVar(ctx);
+    u8 entryAltTextStringID = ScriptContext_GetVar(ctx);
+    u8 entryIndex = ScriptContext_GetVar(ctx);
 
-    FieldMenuManager_AddListMenuEntry(*v0, v1, v2, v3);
-    return 0;
+    FieldMenuManager_AddListMenuEntry(*fieldMenuMan, entryStringID, entryAltTextStringID, entryIndex);
+    return FALSE;
 }
 
-static BOOL ScrCmd_047(ScriptContext *ctx)
-{
-    FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
-
-    FieldMenuManager_ShowListMenu(*v1);
-
-    ScriptContext_Pause(ctx, sub_02040A50);
-    return 1;
-}
-
-static BOOL ScrCmd_327(ScriptContext *ctx)
+static BOOL ScrCmd_FinishAndShowListMenu(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
-    u16 v2 = ScriptContext_GetVar(ctx);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
 
-    FieldMenuManager_ShowListMenuWithWidth(*v1, v2);
-    ScriptContext_Pause(ctx, sub_02040A50);
+    FieldMenuManager_ShowListMenu(*fieldMenuMan);
 
-    return 1;
+    ScriptContext_Pause(ctx, ResumeOnMenuSelection);
+    return TRUE;
 }
 
-static BOOL ScrCmd_306(ScriptContext *ctx)
+static BOOL ScrCmd_FinishAndShowListMenuWithWidth(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
-    u16 *v2 = ScriptContext_GetVarPointer(ctx);
-    u16 *v3 = ScriptContext_GetVarPointer(ctx);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
+    u16 width = ScriptContext_GetVar(ctx);
 
-    FieldMenuManager_ShowListMenuWithCursorPosition(*v1, v2, v3);
-    ScriptContext_Pause(ctx, sub_02040A50);
+    FieldMenuManager_ShowListMenuWithWidth(*fieldMenuMan, width);
+    ScriptContext_Pause(ctx, ResumeOnMenuSelection);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_048(ScriptContext *ctx)
+static BOOL ScrCmd_FinishAndShowListMenuWithRememberedCursorPos(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
-    u8 v2 = ScriptContext_ReadByte(ctx);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
+    u16 *rememberedListOffset = ScriptContext_GetVarPointer(ctx);
+    u16 *rememberedCursorPos = ScriptContext_GetVarPointer(ctx);
 
-    FieldMenuManager_ShowMultiColumnMenu(*v1, v2);
-    ScriptContext_Pause(ctx, sub_02040A50);
+    FieldMenuManager_ShowListMenuWithCursorPosition(*fieldMenuMan, rememberedListOffset, rememberedCursorPos);
+    ScriptContext_Pause(ctx, ResumeOnMenuSelection);
 
-    return 1;
+    return TRUE;
 }
 
-static BOOL ScrCmd_33A(ScriptContext *ctx)
+static BOOL ScrCmd_FinishAndShowMenuMultiColumn(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
-    u8 v2 = ScriptContext_ReadByte(ctx);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
+    u8 columns = ScriptContext_ReadByte(ctx);
 
-    FieldMenuManager_SetHorizontalAnchor(*v1, (BOOL)v2);
-    return 1;
+    FieldMenuManager_ShowMultiColumnMenu(*fieldMenuMan, columns);
+    ScriptContext_Pause(ctx, ResumeOnMenuSelection);
+
+    return TRUE;
 }
 
-static BOOL ScrCmd_33B(ScriptContext *ctx)
+static BOOL ScrCmd_SetMenuHorizontalAnchor(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
-    u8 v2 = ScriptContext_ReadByte(ctx);
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
+    u8 horizontalAnchor = ScriptContext_ReadByte(ctx);
 
-    FieldMenuManager_SetVerticalAnchor(*v1, (BOOL)v2);
-    return 1;
+    FieldMenuManager_SetHorizontalAnchor(*fieldMenuMan, (BOOL)horizontalAnchor);
+    return TRUE;
+}
+
+static BOOL ScrCmd_SetMenuVerticalAnchor(ScriptContext *ctx)
+{
+    FieldSystem *fieldSystem = ctx->fieldSystem;
+    FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
+    u8 verticalAnchor = ScriptContext_ReadByte(ctx);
+
+    FieldMenuManager_SetVerticalAnchor(*fieldMenuMan, (BOOL)verticalAnchor);
+    return TRUE;
 }
 
 static BOOL ScrCmd_ApplyMovement(ScriptContext *ctx)
@@ -4901,13 +4899,13 @@ static BOOL ScrCmd_11B(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_11C(ScriptContext *ctx)
+static BOOL ScrCmd_GetElevatorFloorsAbove(ScriptContext *ctx)
 {
     Location *location;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData));
-    *v1 = FieldMenu_GetFloorsAbove(location->mapId);
+    *destVar = FieldMenu_GetFloorsAbove(location->mapId);
 
     return 0;
 }

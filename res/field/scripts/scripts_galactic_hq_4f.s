@@ -168,12 +168,12 @@ _01D5:
 
 _01E6:
     Message 10
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_29D 0x10C, 0
-    ScrCmd_29D 0x10D, 1
-    ScrCmd_29D 0x10E, 2
-    ScrCmd_29D 0x10F, 3
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntryLargeStringID 0x10C, 0
+    AddMenuEntryLargeStringID 0x10D, 1
+    AddMenuEntryLargeStringID 0x10E, 2
+    AddMenuEntryLargeStringID 0x10F, 3
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0240
     GoToIfEq 0x8008, 1, _024B

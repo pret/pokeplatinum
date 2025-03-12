@@ -85,12 +85,12 @@ _011A:
 
 _014E:
     Message 5
-    ScrCmd_040 31, 11, 0, 1, 0x8001
-    ScrCmd_33A 1
-    ScrCmd_29D 0x116, 0
-    ScrCmd_29D 0x117, 1
-    ScrCmd_29D 11, 2
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 31, 11, 0, TRUE, 0x8001
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntryLargeStringID 0x116, 0
+    AddMenuEntryLargeStringID 0x117, 1
+    AddMenuEntryLargeStringID 11, 2
+    FinishAndShowMenu
     SetVar 0x8007, 10
     SetVar 0x8008, 0x8001
     GoToIfEq 0x8008, 0, _011A

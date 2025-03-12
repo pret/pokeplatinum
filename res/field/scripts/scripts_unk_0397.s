@@ -77,11 +77,11 @@ _00E7:
     CallIfEq 0x8005, 0, _0260
     CallIfEq 0x8005, 1, _0265
     CallIfEq 0x8005, 2, _0267
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 14, 0
-    ScrCmd_042 15, 1
-    ScrCmd_042 16, 2
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 14, 0
+    AddMenuEntrySmallStringID 15, 1
+    AddMenuEntrySmallStringID 16, 2
+    FinishAndShowMenu
     GoToIfEq 0x800C, 0, _0188
     GoToIfEq 0x800C, 1, _0146
     GoTo _0175
@@ -107,11 +107,11 @@ _017D:
 
 _0188:
     Message 7
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 17, 0
-    ScrCmd_042 18, 1
-    ScrCmd_042 19, 2
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 17, 0
+    AddMenuEntrySmallStringID 18, 1
+    AddMenuEntrySmallStringID 19, 2
+    FinishAndShowMenu
     GoToIfEq 0x800C, 0, _01C3
     GoToIfEq 0x800C, 1, _01D1
     GoTo _0175

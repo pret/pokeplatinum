@@ -577,7 +577,7 @@ BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
     StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    FieldMenuManager **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v2 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
     u8 v3 = ScriptContext_ReadByte(ctx);
     u8 v4 = ScriptContext_ReadByte(ctx);
     u16 selectedMove = ScriptContext_GetVar(ctx);
@@ -592,7 +592,7 @@ BOOL ScrCmd_ShowShardsCost(ScriptContext *ctx)
 BOOL ScrCmd_CloseShardCostWindow(ScriptContext *param0)
 {
     FieldSystem *fieldSystem = param0->fieldSystem;
-    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, 0);
+    FieldMenuManager **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
 
     FieldMenuManager_DeleteMoveTutorCost(*v1);
     return FALSE;

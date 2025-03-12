@@ -86,12 +86,12 @@ _00C0:
     GoTo _00D5
 
 _00D5:
-    ScrCmd_040 1, 1, 0, 1, 0x8000
-    ScrCmd_042 219, 0
-    ScrCmd_042 220, 1
-    ScrCmd_042 221, 2
-    ScrCmd_042 222, 3
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x8000
+    AddMenuEntrySmallStringID 219, 0
+    AddMenuEntrySmallStringID 220, 1
+    AddMenuEntrySmallStringID 221, 2
+    AddMenuEntrySmallStringID 222, 3
+    FinishAndShowMenu
     SetVar 0x8008, 0x8000
     GoToIfEq 0x8008, 0, _0125
     GoToIfEq 0x8008, 1, _0131

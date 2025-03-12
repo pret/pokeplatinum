@@ -26,12 +26,12 @@ _0031:
 
 _0041:
     Message 1
-    ScrCmd_041 30, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 2, 0
-    ScrCmd_042 3, 1
-    ScrCmd_042 4, 2
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 30, 11, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 2, 0
+    AddMenuEntrySmallStringID 3, 1
+    AddMenuEntrySmallStringID 4, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0085
     GoToIfEq 0x8008, 1, _015D

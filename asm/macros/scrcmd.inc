@@ -406,66 +406,66 @@
     .short 63
     .endm
 
-    .macro ScrCmd_040 arg0, arg1, arg2, arg3, arg4
+    .macro InitCommonStrings2MenuBuilder anchorX, anchorY, initialCursorPos, canExitWithB, outSelectedOption
     .short 64
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \anchorX
+    .byte \anchorY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \outSelectedOption
     .endm
 
-    .macro ScrCmd_041 arg0, arg1, arg2, arg3, arg4
+    .macro InitLocalTextBankMenuBuilder anchorX, anchorY, initialCursorPos, canExitWithB, outSelectedOption
     .short 65
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \anchorX
+    .byte \anchorY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \outSelectedOption
     .endm
 
-    .macro ScrCmd_042 arg0, arg1
+    .macro AddMenuEntrySmallStringID entryStringID, entryIndex
     .short 66
-    .byte \arg0
-    .byte \arg1
+    .byte \entryStringID
+    .byte \entryIndex
     .endm
 
-    .macro ScrCmd_043
+    .macro FinishAndShowMenu
     .short 67
     .endm
 
-    .macro ScrCmd_044 arg0, arg1, arg2, arg3, arg4
+    .macro InitCommonStrings2ListMenuBuilder anchorX, anchorY, initialCursorPos, canExitWithB, outSelectedOption
     .short 68
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \anchorX
+    .byte \anchorY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \outSelectedOption
     .endm
 
-    .macro ScrCmd_045 arg0, arg1, arg2, arg3, arg4
+    .macro InitLocalTextBankListMenuBuilder anchorX, anchorY, initialCursorPos, canExitWithB, outSelectedOption
     .short 69
-    .byte \arg0
-    .byte \arg1
-    .byte \arg2
-    .byte \arg3
-    .short \arg4
+    .byte \anchorX
+    .byte \anchorY
+    .byte \initialCursorPos
+    .byte \canExitWithB
+    .short \outSelectedOption
     .endm
 
-    .macro ScrCmd_046 arg0, arg1, arg2
+    .macro AddListMenuEntry entryStringID, entryAltTextID, entryIndex
     .short 70
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \entryStringID
+    .short \entryAltTextID
+    .short \entryIndex
     .endm
 
-    .macro ScrCmd_047
+    .macro FinishAndShowListMenu
     .short 71
     .endm
 
-    .macro ScrCmd_048 arg0
+    .macro FinishAndShowMenuMultiColumn width
     .short 72
-    .byte \arg0
+    .byte \width
     .endm
 
     // Plays a sound effect without interrupting the current music
@@ -1610,9 +1610,11 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_11C arg0
+    // The destVar will be set to the number of floors above the current floor or 1 if there is no elevator.
+    // The result is hardcoded per-map ID in overlay005/field_menu.c
+    .macro GetElevatorFloorsAbove destVarID
     .short 284
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro ScrCmd_11D arg0, arg1, arg2, arg3
@@ -3699,10 +3701,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_29D arg0, arg1
+    .macro AddMenuEntryLargeStringID entryStringID, entryIndex
     .short 669
-    .short \arg0
-    .short \arg1
+    .short \entryStringID
+    .short \entryIndex
     .endm
 
     .macro ScrCmd_29E arg0, arg1
@@ -3854,7 +3856,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2B9
+    .macro FinishAndShowUnionRoomInteractionMenu
     .short 697
     .endm
 
@@ -4291,10 +4293,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_306 arg0, arg1
+    .macro FinishAndShowListMenuWithRememberedCursorPos listOffsetVar, cursorOffsetVar
     .short 774
-    .short \arg0
-    .short \arg1
+    .short \listOffsetVar
+    .short \cursorOffsetVar
     .endm
 
     .macro ScrCmd_307 arg0
@@ -4462,9 +4464,9 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_327 arg0
+    .macro FinishAndShowListMenuWithWidth width
     .short 807
-    .short \arg0
+    .short \width
     .endm
 
     .macro ScrCmd_328 arg0
@@ -4560,14 +4562,14 @@
     .short 825
     .endm
 
-    .macro ScrCmd_33A arg0
+    .macro SetMenuHorizontalAnchor horizontalAnchor
     .short 826
-    .byte \arg0
+    .byte \horizontalAnchor
     .endm
 
-    .macro ScrCmd_33B arg0
+    .macro SetMenuVerticalAnchor verticalAnchor
     .short 827
-    .byte \arg0
+    .byte \verticalAnchor
     .endm
 
     .macro ScrCmd_33C arg0, arg1
