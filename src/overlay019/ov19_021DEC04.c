@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/pokemon_contest_types.h"
+
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/ov19_021DA270.h"
@@ -389,14 +391,14 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 *param0, int param1)
     v3 = (ov19_021D5F9C(param0->unk_08) == param1);
     v4 = ov19_021D5FB8(param0->unk_08, param1);
 
-    if ((((v2 == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) && (compareMon->isEgg == 0)) {
+    if ((((v2 == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) && (compareMon->isEgg == FALSE)) {
         int i;
         VecFx32 v6;
         const u16 *contestStat = &compareMon->cool;
 
         v6.z = 0;
 
-        for (i = 0; i < 5; i++) {
+        for (i = 0; i < CONTEST_TYPE_MAX; i++) {
             v6.x = v0[i].unk_00 + (((v0[i].unk_08 - v0[i].unk_00) / 256) * (int)(*contestStat));
             v6.y = v0[i].unk_04 + (((v0[i].unk_0C - v0[i].unk_04) / 256) * (int)(*contestStat));
             Sprite_SetPosition(param0->unk_34[param1][i], &v6);
@@ -552,7 +554,7 @@ static void ov19_021DF4D0(UnkStruct_ov19_021DEC04 *param0, int param1)
         int i;
 
         if (compareMon->isEgg == FALSE) {
-            for (i = 0; i < 4; i++) {
+            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
                 if (compareMon->moves[i]) {
                     MessageLoader_GetStrbuf(param0->unk_70, compareMon->moves[i], param0->unk_74);
                     Text_AddPrinterWithParamsAndColor(v0, FONT_SYSTEM, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * i, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(15, 14, 0), NULL);
