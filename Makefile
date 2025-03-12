@@ -1,8 +1,13 @@
-.PHONY: all release debug check rom data target format clean distclean setup_release setup_debug configure
+.PHONY: all release debug check rom data target format clean distclean purge update setup_release setup_debug configure meson
 
-MESON ?= meson
+MESON_VER := 1.7.0
+MESON_DIR := subprojects/meson-$(MESON_VER)
+MESON_SUB := $(MESON_DIR)/meson.py
+
+MESON ?= $(MESON_SUB)
 NINJA ?= ninja
 WINELOADER ?= wine
+GIT ?= git
 
 BUILD ?= build
 ROOT_INI := $(BUILD)/root.ini
@@ -86,11 +91,19 @@ format: $(BUILD)/build.ninja
 clean: $(BUILD)/build.ninja
 	$(MESON) compile -C $(BUILD) --clean
 
-update: $(BUILD)/build.ninja
-	$(MESON) subprojects update
-
 distclean:
 	rm -rf $(BUILD) $(MWRAP)
+
+purge: distclean
+ifeq ($(MESON),$(MESON_SUB))
+	! test -f $(MESON) || $(MESON) subprojects purge --confirm
+	rm -rf $(dir $(MESON_SUB))
+else
+	$(MESON) subprojects purge --confirm
+endif
+
+update: meson
+	$(MESON) subprojects update
 
 setup_release: $(BUILD)/build.ninja
 	$(MESON) configure build -Dgdb_debugging=false
@@ -100,7 +113,7 @@ setup_debug: $(BUILD)/build.ninja
 
 configure: $(BUILD)/build.ninja
 
-$(BUILD)/build.ninja: $(ROOT_INI) $(DOT_MWCONFIG) | $(BUILD)
+$(BUILD)/build.ninja: $(ROOT_INI) $(DOT_MWCONFIG) | $(BUILD) meson
 	MWCONFIG=$(abspath $(DOT_MWCONFIG)) $(MESON) setup \
 	         --wrap-mode=nopromote \
 	         --native-file=meson/$(NATIVE) \
@@ -137,9 +150,17 @@ endif
 $(BUILD):
 	mkdir -p -- $(BUILD)
 
-$(MWRAP):
+$(MWRAP): | meson
 	rm -rf $(MWRAP) $(WRAP_BUILD)
 	$(MESON) setup $(WRAP_BUILD) $(WRAP)
 	$(MESON) compile -C $(WRAP_BUILD)
 	install -m755 $(WRAP_BUILD)/$(@F) $@
 	rm -rf $(WRAP_BUILD)
+
+meson: ;
+ifeq ($(MESON),$(MESON_SUB))
+meson: $(MESON_SUB)
+endif
+
+$(MESON_SUB):
+	$(GIT) clone --depth=1 -b $(MESON_VER) https://github.com/mesonbuild/meson $(@D)
