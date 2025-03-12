@@ -207,7 +207,7 @@ void PokemonSprite_ClearFade(PokemonSprite *monSprite);
 BOOL PokemonSprite_IsFadeActive(PokemonSprite *monSprite);
 void PokemonSprite_CalcScaledYOffset(PokemonSprite *monSprite, int height);
 void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimationFrame *animFrames);
-int PokemonSpriteTaskAnim_Run(PokemonSpriteTaskAnim *anim);
+int PokemonSpriteTaskAnim_Tick(PokemonSpriteTaskAnim *anim);
 void PokemonSprite_ScheduleReloadFromNARC(PokemonSprite *monSprite);
 void PokemonSprite_Push(PokemonSprite *monSprite);
 void PokemonSprite_Pop(PokemonSprite *monSprite);

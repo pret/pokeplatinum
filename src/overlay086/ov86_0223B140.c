@@ -1214,7 +1214,7 @@ static void ov86_0223C398(SysTask *param0, void *param1)
         v0->unk_6C = 0;
     }
 
-    v1 = PokemonSpriteTaskAnim_Run(&v0->unk_10);
+    v1 = PokemonSpriteTaskAnim_Tick(&v0->unk_10);
 
     if (v1 >= 0) {
         Sprite_SetImageProxy(v0->unk_08, &v0->unk_24[v1]);

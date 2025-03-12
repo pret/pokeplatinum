@@ -22,10 +22,10 @@
 #define MAX_MON_SHADOWS         2
 #define MAX_MON_SPRITE_PALETTES (MAX_MON_SPRITES + MAX_MON_SHADOWS)
 
-#define MON_SPRITE_WIDTH_TILES  32
-#define MON_SPRITE_HEIGHT_TILES 32
+#define MON_SPRITE_CHAR_BUF_TILES_W 32
+#define MON_SPRITE_CHAR_BUF_TILES_H 32
 
-#define MON_SPRITE_CHAR_BUF_SIZE (MON_SPRITE_WIDTH_TILES * MON_SPRITE_HEIGHT_TILES * TILE_SIZE_4BPP)
+#define MON_SPRITE_CHAR_BUF_SIZE (MON_SPRITE_CHAR_BUF_TILES_W * MON_SPRITE_CHAR_BUF_TILES_H * TILE_SIZE_4BPP)
 #define MON_SPRITE_PLTT_BUF_SIZE (MAX_MON_SPRITE_PALETTES * PALETTE_SIZE_BYTES)
 
 #define NCGR_Y_OFFSET   0x50
@@ -403,8 +403,8 @@ static const int sShadowTextureCoords[MAX_SHADOW_SIZES][4] = {
 
 static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan);
 static void BufferPokemonSpritePlttData(PokemonSpriteManager *monSpriteMan);
-static void RunPokemonSpriteAnim(PokemonSprite *monSprite);
-static void PokemonSprite_RunAnim(PokemonSprite *monSprite);
+static void TickPokemonSpriteAnim(PokemonSprite *monSprite);
+static void PokemonSprite_TickAnim(PokemonSprite *monSprite);
 static u8 SwapNybbles(u8 value);
 static void TryDrawSpindaSpots(PokemonSprite *monSprite, u8 *rawCharData);
 
@@ -488,7 +488,7 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
                 G3_Identity();
             }
 
-            PokemonSprite_RunAnim(&monSpriteMan->sprites[i]);
+            PokemonSprite_TickAnim(&monSpriteMan->sprites[i]);
 
             G3_TexPlttBase(monSpriteMan->plttBaseAddr + PLTT_OFFSET_CAST(i), monSpriteMan->imageProxy.attr.fmt);
             G3_Translate((monSpriteMan->sprites[i].transforms.xCenter + monSpriteMan->sprites[i].transforms.xPivot) << FX32_SHIFT, (monSpriteMan->sprites[i].transforms.yCenter + monSpriteMan->sprites[i].transforms.yPivot) << FX32_SHIFT, monSpriteMan->sprites[i].transforms.zCenter << FX32_SHIFT);
@@ -1136,7 +1136,7 @@ void PokemonSprite_CalcScaledYOffset(PokemonSprite *monSprite, int height)
     monSprite->transforms.yOffset = ((MON_SPRITE_HEIGHT / 2) - height) - ((((MON_SPRITE_HEIGHT / 2) - height) * monSprite->transforms.scaleY) >> 8);
 }
 
-static inline void RunPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8 *currAnimFrame, u8 *frameDelay, u8 *loopTimers, const SpriteAnimationFrame *animFrames)
+static inline void TickPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8 *currAnimFrame, u8 *frameDelay, u8 *loopTimers, const SpriteAnimationFrame *animFrames)
 {
     if (*active) {
         if (*frameDelay == 0) {
@@ -1167,7 +1167,7 @@ static inline void RunPokemonSpriteTaskAnim(u8 *active, u8 *currSpriteFrame, u8 
     }
 }
 
-static void RunPokemonSpriteAnim(PokemonSprite *monSprite)
+static void TickPokemonSpriteAnim(PokemonSprite *monSprite)
 {
     if (monSprite->animActive) {
         if (monSprite->animFrameDelay == 0) {
@@ -1202,9 +1202,9 @@ static void RunPokemonSpriteAnim(PokemonSprite *monSprite)
     }
 }
 
-static void PokemonSprite_RunAnim(PokemonSprite *monSprite)
+static void PokemonSprite_TickAnim(PokemonSprite *monSprite)
 {
-    RunPokemonSpriteAnim(monSprite);
+    TickPokemonSpriteAnim(monSprite);
 }
 
 void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimationFrame *animFrames)
@@ -1220,10 +1220,10 @@ void PokemonSpriteTaskAnim_Init(PokemonSpriteTaskAnim *anim, const SpriteAnimati
     }
 }
 
-int PokemonSpriteTaskAnim_Run(PokemonSpriteTaskAnim *anim)
+int PokemonSpriteTaskAnim_Tick(PokemonSpriteTaskAnim *anim)
 {
     if (anim->active) {
-        RunPokemonSpriteTaskAnim(&anim->active, &anim->currSpriteFrame, &anim->currAnimFrame, &anim->frameDelay, anim->loopTimers, anim->animFrames);
+        TickPokemonSpriteTaskAnim(&anim->active, &anim->currSpriteFrame, &anim->currAnimFrame, &anim->frameDelay, anim->loopTimers, anim->animFrames);
         return anim->currSpriteFrame;
     }
 
@@ -1274,8 +1274,8 @@ void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan)
 
         NNS_G2dInitImageProxy(&monSpriteMan->imageProxy);
 
-        monSpriteMan->charData.H = MON_SPRITE_WIDTH_TILES;
-        monSpriteMan->charData.W = MON_SPRITE_HEIGHT_TILES;
+        monSpriteMan->charData.H = MON_SPRITE_CHAR_BUF_TILES_H;
+        monSpriteMan->charData.W = MON_SPRITE_CHAR_BUF_TILES_W;
         monSpriteMan->charData.szByte = monSpriteMan->charSize;
         monSpriteMan->charData.pRawData = monSpriteMan->charRawData;
 
