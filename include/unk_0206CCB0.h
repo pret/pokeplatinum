@@ -52,7 +52,7 @@ void sub_0206DB5C(FieldSystem *fieldSystem, u8 param1);
 void sub_0206DBB0(SaveData *param0, u32 param1, Pokemon *param2, BOOL param3);
 void sub_0206DC6C(FieldSystem *fieldSystem, u32 param1, Pokemon *param2);
 void sub_0206DD38(FieldSystem *fieldSystem, u32 param1, u32 param2, u32 param3);
-void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 ribbonID);
+void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 monDataParam);
 void sub_0206DEEC(FieldSystem *fieldSystem, u16 param1, u16 param2);
 void sub_0206DF60(FieldSystem *fieldSystem, u16 param1);
 void sub_0206DFE0(SaveData *param0);

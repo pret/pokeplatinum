@@ -725,7 +725,7 @@ BOOL ScrCmd_22E(ScriptContext *param0)
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->fieldSystem->saveData), v2);
 
     for (v3 = 0, v4 = 0; v3 < 80; v3++) {
-        if (Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_RIBBON_ID), NULL) != 0) {
+        if (Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_MON_DATA_PARAM), NULL) != 0) {
             v4++;
         }
     }
@@ -750,7 +750,7 @@ BOOL ScrCmd_22F(ScriptContext *param0)
             v0 = Party_GetPokemonBySlotIndex(v1, v4);
 
             if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) == 0) {
-                if (Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_RIBBON_ID), NULL) != 0) {
+                if (Pokemon_GetValue(v0, Ribbon_GetData(v3, RIBBON_DATA_MON_DATA_PARAM), NULL) != 0) {
                     v5++;
                     break;
                 }
@@ -768,11 +768,11 @@ BOOL ScrCmd_GetPartyMonRibbon(ScriptContext *ctx)
     Pokemon *mon;
     u16 *hasRibbonVar = ScriptContext_GetVarPointer(ctx);
     u16 slot = ScriptContext_GetVar(ctx);
-    u16 ribbonNum = ScriptContext_GetVar(ctx);
+    u16 ribbonID = ScriptContext_GetVar(ctx);
     u8 unused = 1;
 
     mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
-    *hasRibbonVar = Pokemon_GetValue(mon, Ribbon_GetData(ribbonNum, RIBBON_DATA_RIBBON_ID), NULL);
+    *hasRibbonVar = Pokemon_GetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), NULL);
 
     return FALSE;
 }
@@ -781,13 +781,13 @@ BOOL ScrCmd_SetPartyMonRibbon(ScriptContext *ctx)
 {
     Pokemon *mon;
     u16 slot = ScriptContext_GetVar(ctx);
-    u16 ribbonNum = ScriptContext_GetVar(ctx);
+    u16 ribbonID = ScriptContext_GetVar(ctx);
     u8 value = TRUE;
 
     mon = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(ctx->fieldSystem->saveData), slot);
 
-    Pokemon_SetValue(mon, Ribbon_GetData(ribbonNum, RIBBON_DATA_RIBBON_ID), &value);
-    sub_0206DDB8(ctx->fieldSystem->saveData, mon, Ribbon_GetData(ribbonNum, RIBBON_DATA_RIBBON_ID));
+    Pokemon_SetValue(mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM), &value);
+    sub_0206DDB8(ctx->fieldSystem->saveData, mon, Ribbon_GetData(ribbonID, RIBBON_DATA_MON_DATA_PARAM));
 
     return FALSE;
 }

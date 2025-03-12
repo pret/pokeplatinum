@@ -1170,7 +1170,7 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     summaryScreen->ribbonMax = 0;
 
     for (i = 0; i < RIBBON_MAX; i++) {
-        if (Pokemon_GetValue(mon, Ribbon_GetData(i, RIBBON_DATA_RIBBON_ID), NULL) != 0) {
+        if (Pokemon_GetValue(mon, Ribbon_GetData(i, RIBBON_DATA_MON_DATA_PARAM), NULL) != 0) {
             monData->ribbons[i / 32] |= (1 << (i & 0x1F));
             summaryScreen->ribbonMax++;
         }
@@ -2127,7 +2127,7 @@ static void ChangeSelectedRibbon(PokemonSummaryScreen *summaryScreen, s8 delta)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
-    summaryScreen->ribbonNum = PokemonSummaryScreen_RibbonNumAt(summaryScreen, summaryScreen->ribbonCol);
+    summaryScreen->ribbonID = PokemonSummaryScreen_RibbonIDAt(summaryScreen, summaryScreen->ribbonCol);
 
     PokemonSummaryScreen_UpdateRibbonCursorPos(summaryScreen);
 
@@ -2151,16 +2151,16 @@ static void ChangeSelectedRibbon(PokemonSummaryScreen *summaryScreen, s8 delta)
     }
 }
 
-u8 PokemonSummaryScreen_RibbonNumAt(PokemonSummaryScreen *summaryScreen, u8 col)
+u8 PokemonSummaryScreen_RibbonIDAt(PokemonSummaryScreen *summaryScreen, u8 col)
 {
-    u16 ribbonNum;
+    u16 ribbonID;
     u8 ribbonIndex = col + summaryScreen->ribbonRow * RIBBONS_PER_ROW;
     u8 monRibbonIndex = 0;
 
-    for (ribbonNum = 0; ribbonNum < RIBBON_MAX; ribbonNum++) {
-        if ((summaryScreen->monData.ribbons[ribbonNum / 32] & (1 << (ribbonNum & 0x1F))) != 0) {
+    for (ribbonID = 0; ribbonID < RIBBON_MAX; ribbonID++) {
+        if ((summaryScreen->monData.ribbons[ribbonID / 32] & (1 << (ribbonID & 0x1F))) != 0) {
             if (ribbonIndex == monRibbonIndex) {
-                return ribbonNum;
+                return ribbonID;
             }
 
             monRibbonIndex++;

@@ -1366,7 +1366,7 @@ static int sub_0206DD5C(FieldSystem *fieldSystem, StringTemplate *param1, UnkStr
     return 3;
 }
 
-void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 ribbonID)
+void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 monDataParam)
 {
     u8 v0, v1;
     UnkUnion_0206D1B8 v2;
@@ -1381,7 +1381,7 @@ void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 ribbonID)
     case 30:
     case 35:
     case 40:
-        if (Ribbon_RibbonIDToNameID(ribbonID) > 0xff) {
+        if (Ribbon_MonDataParamToNameID(monDataParam) > 0xff) {
             GF_ASSERT(0);
             return;
         }
@@ -1389,7 +1389,7 @@ void sub_0206DDB8(SaveData *saveData, Pokemon *mon, u32 ribbonID)
         sub_0206CE38(mon, &v3->unk_1C, &v3->unk_19, &v3->unk_1A, &v3->unk_1B);
         sub_0206CED0(32, mon, &v3->unk_18, v3->unk_00);
 
-        v3->unk_16 = Ribbon_RibbonIDToNameID(ribbonID);
+        v3->unk_16 = Ribbon_MonDataParamToNameID(monDataParam);
         v3->unk_17 = v1;
 
         sub_0206CD7C(saveData, 3, 5, v3);
