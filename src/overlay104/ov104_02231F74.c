@@ -5,7 +5,6 @@
 
 #include "constants/narc.h"
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/sentence.h"
 
 #include "overlay063/ov63_0222BE18.h"
@@ -859,7 +858,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapI
     SpriteSystem *v0 = param0->unk_34.unk_00;
     SpriteManager *v1 = param0->unk_34.unk_04;
     PaletteData *v2 = param0->unk_04;
-    ArchivedSprite v3;
+    PokemonSpriteTemplate v3;
     void *v4;
     ManagedSprite *v5;
 
@@ -906,7 +905,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapI
         v9 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
-        Pokemon_BuildArchivedSprite(&v3, param1, 2);
+        Pokemon_BuildSpriteTemplate(&v3, param1, 2);
         sub_020136A4(v3.archive, v3.character, heapID, 0, 0, 10, 10, v4, v9, 0, 2, v10);
     }
 

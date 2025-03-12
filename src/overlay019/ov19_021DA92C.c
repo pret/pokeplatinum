@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
-
 #include "overlay019/ov19_021D0D80.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/pc_mon_preview.h"
@@ -18,12 +16,12 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200762C.h"
 #include "unk_0200C440.h"
 #include "unk_0207C908.h"
 
@@ -123,7 +121,7 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
     }
 
     if (param0->unk_24) {
-        sub_02007DC8(param0->unk_24);
+        PokemonSprite_Delete(param0->unk_24);
         param0->unk_24 = NULL;
     }
 
@@ -151,22 +149,22 @@ void ov19_021DA9E0(UnkStruct_ov19_021DA9E0 *param0)
 void ov19_021DAA80(UnkStruct_ov19_021DA9E0 *param0)
 {
     if (param0->unk_00) {
-        sub_02008A94(param0->unk_20);
+        PokemonSpriteManager_UpdateCharAndPltt(param0->unk_20);
     }
 }
 
 void ov19_021DAA90(UnkStruct_ov19_021DA9E0 *param0)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
 
-    BuildArchivedPokemonSprite(&v0, 1, 0, 0, 0, 0, 0);
-    param0->unk_24 = sub_02007C34(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
+    BuildPokemonSpriteTemplate(&v0, 1, 0, 0, 0, 0, 0);
+    param0->unk_24 = PokemonSpriteManager_CreateSprite(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
 }
 
 BOOL ov19_021DAAC4(UnkStruct_ov19_021DA9E0 *param0)
 {
     if (param0->unk_24) {
-        sub_02007DC8(param0->unk_24);
+        PokemonSprite_Delete(param0->unk_24);
         param0->unk_24 = NULL;
         return 0;
     }
@@ -474,7 +472,7 @@ void ov19_021DAFF8(UnkStruct_ov19_021DA9E0 *param0)
     Window_FillTilemap(&param0->unk_04[3], 0);
 
     if (param0->unk_24) {
-        sub_02007DC8(param0->unk_24);
+        PokemonSprite_Delete(param0->unk_24);
         param0->unk_24 = NULL;
     }
 
@@ -504,7 +502,7 @@ void ov19_021DB078(UnkStruct_ov19_021DA9E0 *param0)
     Window_FillTilemap(&param0->unk_04[3], 0);
 
     if (param0->unk_24) {
-        sub_02007DC8(param0->unk_24);
+        PokemonSprite_Delete(param0->unk_24);
         param0->unk_24 = NULL;
     }
 
@@ -520,7 +518,7 @@ void ov19_021DB078(UnkStruct_ov19_021DA9E0 *param0)
 
 static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     const PCMonPreview *preview = ov19_GetPCMonPreview(param0->unk_10);
 
     Text_AddPrinterWithParamsAndColor(&param0->unk_04[0], FONT_SYSTEM, preview->speciesName, 2, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 15), NULL);
@@ -546,8 +544,8 @@ static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
         sub_0200C648(param0->unk_1C, 1, preview->level, 3, 1, &(param0->unk_04[2]), 0, 16);
     }
 
-    BoxPokemon_BuildArchivedSprite(&v0, preview->mon, 2, 0);
-    param0->unk_24 = sub_02007C34(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
+    BoxPokemon_BuildSpriteTemplate(&v0, preview->mon, 2, 0);
+    param0->unk_24 = PokemonSpriteManager_CreateSprite(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
     ov19_021DB24C(param0, preview->markings);
 }
 

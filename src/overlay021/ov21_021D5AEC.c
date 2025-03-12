@@ -5,8 +5,6 @@
 
 #include "generated/text_banks.h"
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/ov21_021D4C0C.h"
@@ -29,6 +27,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -37,7 +36,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"
@@ -1346,13 +1344,13 @@ static void ov21_021D6F20(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
     v1 = v0 >> FX32_SHIFT;
     v2 = ov21_021D2170(param1);
 
-    sub_02007DEC(v2, 23, v1);
+    PokemonSprite_SetAttribute(v2, MON_SPRITE_ALPHA, v1);
 }
 
 static void ov21_021D6F64(PokedexGraphicData *param0, const UnkStruct_ov21_021D5B68 *param1)
 {
     PokemonSprite *v0 = ov21_021D2170(param0);
-    sub_02007DEC(v0, 23, 31);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_ALPHA, 31);
 }
 
 static void ov21_021D6F74(const UnkStruct_ov21_021D5B68 *param0)

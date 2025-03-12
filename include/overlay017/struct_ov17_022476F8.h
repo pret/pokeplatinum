@@ -1,8 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_022476F8_H
 #define POKEPLATINUM_STRUCT_OV17_022476F8_H
 
-#include "struct_decls/struct_02007768_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 
 #include "battle/struct_ov16_0223E0C8.h"
@@ -11,13 +9,14 @@
 #include "bg_window.h"
 #include "message.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
 
 typedef struct {
     UnkStruct_02095C48_sub1 *unk_00;
-    UnkStruct_02007768 *unk_04;
+    PokemonSpriteManager *unk_04;
     PokemonSprite *unk_08[4];
     PokemonSprite *unk_18;
     SpriteSystem *unk_1C;

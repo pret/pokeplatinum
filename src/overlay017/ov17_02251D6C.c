@@ -27,11 +27,11 @@
 #include "brightness_controller.h"
 #include "heap.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 
 static int ov17_02251DAC(UnkStruct_ov17_0224F30C *param0, void *param1, int param2, void *param3);
@@ -507,7 +507,7 @@ static void ov17_022523AC(SysTask *param0, void *param1)
             int v1;
 
             for (v1 = 0; v1 < 4; v1++) {
-                sub_02007DEC(v0->unk_00->unk_10.unk_08[v1], 6, 1);
+                PokemonSprite_SetAttribute(v0->unk_00->unk_10.unk_08[v1], MON_SPRITE_HIDE, 1);
             }
         }
 

@@ -4,8 +4,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
-
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223FB48.h"
@@ -582,10 +580,10 @@ void ov94_0223DA78(MessageLoader *param0, Window param1[], u16 *param2, Pokemon 
 
 void ov94_0223DB2C(Pokemon *param0)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     u8 *v1 = Heap_AllocFromHeap(HEAP_ID_62, (0x20 * 10 * 10));
 
-    Pokemon_BuildArchivedSprite(&v0, param0, 2);
+    Pokemon_BuildSpriteTemplate(&v0, param0, 2);
 
     {
         int v2 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);

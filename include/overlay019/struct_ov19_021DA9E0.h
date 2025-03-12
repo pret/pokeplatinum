@@ -3,14 +3,13 @@
 
 #include <nnsys.h>
 
-#include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
-#include "struct_defs/pokemon_sprite.h"
 
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
 #include "bg_window.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "strbuf.h"
 #include "sys_task_manager.h"
@@ -24,7 +23,7 @@ typedef struct {
     UnkStruct_ov19_021D61B0 *unk_14;
     UnkStruct_0200C440 *unk_18;
     UnkStruct_0200C440 *unk_1C;
-    UnkStruct_02007768 *unk_20;
+    PokemonSpriteManager *unk_20;
     PokemonSprite *unk_24;
     void *unk_28;
     NNSG2dCellDataBank *unk_2C;

@@ -3,8 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
-
 #include "overlay017/struct_ov17_022476F8.h"
 #include "overlay017/struct_ov17_0224792C.h"
 #include "overlay017/struct_ov17_02247A48.h"
@@ -17,6 +15,7 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "string_template.h"
@@ -24,7 +23,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 
 typedef struct {
     u8 *unk_00;
@@ -77,7 +75,7 @@ void ov17_022476F8(UnkStruct_ov17_022476F8 *param0, int param1)
         return;
     }
 
-    sub_02007DC8(param0->unk_08[param1]);
+    PokemonSprite_Delete(param0->unk_08[param1]);
     Heap_FreeToHeap(param0->unk_48[param1].unk_00);
 
     param0->unk_08[param1] = NULL;
@@ -160,12 +158,12 @@ static void ov17_02247840(SysTask *param0, void *param1)
 
 void ov17_022478D0(UnkStruct_ov17_02247A48 *param0, int param1)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
 
     GF_ASSERT(param0->unk_0C.unk_18 == NULL);
 
     sub_0207697C(&v0, param0->unk_00->unk_00.unk_10[param1].unk_0A);
-    param0->unk_0C.unk_18 = sub_02007C34(param0->unk_0C.unk_04, &v0, 320, 32, (-0x200 - 0x40), 3, NULL, NULL);
+    param0->unk_0C.unk_18 = PokemonSpriteManager_CreateSprite(param0->unk_0C.unk_04, &v0, 320, 32, (-0x200 - 0x40), 3, NULL, NULL);
 }
 
 void ov17_02247918(UnkStruct_ov17_02247A48 *param0)
@@ -174,7 +172,7 @@ void ov17_02247918(UnkStruct_ov17_02247A48 *param0)
         return;
     }
 
-    sub_02007DC8(param0->unk_0C.unk_18);
+    PokemonSprite_Delete(param0->unk_0C.unk_18);
     param0->unk_0C.unk_18 = NULL;
 }
 

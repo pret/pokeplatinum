@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_02093BBC.h"
@@ -707,7 +706,7 @@ static void ov22_02256708(UnkStruct_ov22_02255D44 *param0, Pokemon *param1, int 
     ov22_022578F4(&param0->unk_458, &v0);
 
     {
-        ArchivedSprite v1;
+        PokemonSpriteTemplate v1;
 
         if (param3 == 0) {
             ov22_02257998(&param0->unk_458, param1, &v1, 14);

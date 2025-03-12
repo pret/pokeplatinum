@@ -41,6 +41,7 @@
 #include "narc.h"
 #include "palette.h"
 #include "pokemon_icon.h"
+#include "pokemon_sprite.h"
 #include "savedata_misc.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -51,7 +52,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_02012744.h"
 #include "unk_02014A84.h"
 #include "unk_0202F1D4.h"
@@ -2023,7 +2023,7 @@ static void ov62_02233798(SysTask *param0, void *param1)
 
     v0->unk_14.unk_510 = 1;
 
-    sub_02008A94(v0->unk_14.unk_50);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_14.unk_50);
     SpriteSystem_DrawSprites(v0->unk_14.unk_08);
     SpriteSystem_TransferOam();
 

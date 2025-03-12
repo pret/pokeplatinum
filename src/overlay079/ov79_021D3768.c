@@ -3,9 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay079/struct_ov79_021D3820.h"
 #include "overlay079/struct_ov79_021D38D0.h"
 #include "overlay115/camera_angle.h"
@@ -13,7 +10,7 @@
 #include "camera.h"
 #include "gx_layers.h"
 #include "pokemon.h"
-#include "unk_0200762C.h"
+#include "pokemon_sprite.h"
 #include "unk_0202419C.h"
 
 static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1);
@@ -55,7 +52,7 @@ void ov79_021D3820(UnkStruct_ov79_021D3820 *param0)
 
     NNS_G3dGlbFlush();
     NNS_G2dSetupSoftwareSpriteCamera();
-    sub_02007768(param0->unk_04);
+    PokemonSpriteManager_DrawSprites(param0->unk_04);
 
     G3_SwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
@@ -63,7 +60,7 @@ void ov79_021D3820(UnkStruct_ov79_021D3820 *param0)
 void ov79_021D385C(UnkStruct_ov79_021D3820 *param0)
 {
     Camera_Delete(param0->camera);
-    sub_02007B6C(param0->unk_04);
+    PokemonSpriteManager_Free(param0->unk_04);
 }
 
 static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1)
@@ -83,15 +80,15 @@ static void ov79_021D3870(UnkStruct_ov79_021D3820 *param0, int param1)
 
 static void ov79_021D38D0(UnkStruct_ov79_021D3820 *param0, UnkStruct_ov79_021D38D0 *param1, int heapID)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     PokemonSprite *v1;
 
-    param0->unk_04 = sub_0200762C(heapID);
+    param0->unk_04 = PokemonSpriteManager_New(heapID);
 
-    Pokemon_BuildArchivedSprite(&v0, param1->unk_00, 2);
+    Pokemon_BuildSpriteTemplate(&v0, param1->unk_00, 2);
 
-    v1 = sub_02007C34(param0->unk_04, &v0, 128, 96, 0, 0, NULL, NULL);
-    sub_02007DEC(v1, 35, param1->unk_08);
+    v1 = PokemonSpriteManager_CreateSprite(param0->unk_04, &v0, 128, 96, 0, 0, NULL, NULL);
+    PokemonSprite_SetAttribute(v1, MON_SPRITE_FLIP_H, param1->unk_08);
 
     param0->unk_18 = v1;
 }
