@@ -317,7 +317,7 @@ void sub_0203AB00(FieldSystem *fieldSystem)
 {
     StartMenu *menu;
 
-    Sound_PlayEffect(1533);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
     menu = StartMenu_Alloc();
 
     menu->unk_228 = 0;

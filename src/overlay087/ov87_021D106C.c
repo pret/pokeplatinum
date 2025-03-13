@@ -172,7 +172,7 @@ static BOOL ov87_021D1260(UnkStruct_ov87_021D106C *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        Sound_PlayEffect(1550);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
         StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_61);
         (*param1)++;
         break;
@@ -238,7 +238,7 @@ static BOOL ov87_021D1334(UnkStruct_ov87_021D106C *param0, int *param1)
 
 static BOOL ov87_021D1384(UnkStruct_ov87_021D106C *param0, int *param1)
 {
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
     ov87_021D1640(param0);
     return 1;
 }

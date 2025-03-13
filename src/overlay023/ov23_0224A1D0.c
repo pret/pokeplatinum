@@ -386,7 +386,7 @@ static void ov23_0224A6E4(UnkStruct_ov23_0224A570 *param0, BOOL param1, SecretBa
     }
 
     sub_0200502C(4, 1060, 60, 0, 0xff, NULL);
-    Sound_PlayEffect(1526);
+    Sound_PlayEffect(SEQ_SE_DP_CARD10);
 }
 
 void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
@@ -431,7 +431,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
                 sub_020297EC(v4);
                 sub_020594FC();
                 ov23_02253F40(ov23_022421AC(), 13, 1, ov23_0224A300);
-                Sound_PlayEffect(1573);
+                Sound_PlayEffect(SEQ_SE_DP_UG_021);
             } else if (v1->unk_02 == CommSys_CurNetId()) {
                 ov23_0224A6E4(v1, 0, v4);
             }
@@ -444,7 +444,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
                 ov23_02254068(ov23_022421AC(), CommInfo_TrainerInfo(v1->unk_02));
                 ov23_02253F40(ov23_022421AC(), 12, 1, ov23_0224A328);
                 Sound_PlayBGM(1061);
-                Sound_PlayEffect(1573);
+                Sound_PlayEffect(SEQ_SE_DP_UG_021);
             } else if (v1->unk_02 == CommSys_CurNetId()) {
                 ov23_0224A6E4(v1, 1, v4);
             }
@@ -484,7 +484,7 @@ void ov23_0224A77C(int param0, int param1, void *param2, void *param3)
             }
 
             sub_020594FC();
-            Sound_PlayEffect(1579);
+            Sound_PlayEffect(SEQ_SE_DP_UG_027);
 
             if (v6 == sub_0202958C(v5)) {
                 ov23_02253F40(ov23_022421AC(), 7, 1, ov23_0224A300);

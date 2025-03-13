@@ -1258,13 +1258,13 @@ static void ov23_0223ED68(int param0, int param1, BOOL param2, BOOL param3, BOOL
 
     if (param3) {
         Sprite_SetAnim(Unk_ov23_02257740->unk_24C[3], 2);
-        Sound_PlayEffect(1700);
+        Sound_PlayEffect(SEQ_SE_DP_UG_004);
     } else if (param2) {
         Sprite_SetAnim(Unk_ov23_02257740->unk_24C[3], 3);
-        Sound_PlayEffect(1698);
+        Sound_PlayEffect(SEQ_SE_DP_UG_002);
     } else {
         Sprite_SetAnim(Unk_ov23_02257740->unk_24C[3], 4);
-        Sound_PlayEffect(1699);
+        Sound_PlayEffect(SEQ_SE_DP_UG_003);
     }
 
     Sprite_SetAnimateFlag(Unk_ov23_02257740->unk_24C[0], 1);
@@ -1448,7 +1448,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 7:
         if (IsScreenTransitionDone()) {
             v0->unk_08 = 0;
-            Sound_PlayEffect(1354);
+            Sound_PlayEffect(SEQ_SE_PL_UG_006);
             v0->unk_00 = 8;
         }
         break;
@@ -1507,7 +1507,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
 
         if (v0->unk_08 == 0) {
             Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), 64, 0, NULL);
-            Sound_PlayEffect(1507);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             v0->unk_4C = 60;
             v0->unk_00 = 15;
         }
@@ -1617,7 +1617,7 @@ static void ov23_0223F118(SysTask *param0, void *param1)
     case 23:
         SpriteList_Update(Unk_ov23_02257740->unk_20);
         StartScreenTransition(3, 2, 2, 0x0, 15, 1, HEAP_ID_29);
-        Sound_PlayEffect(1697);
+        Sound_PlayEffect(SEQ_SE_DP_UG_001);
         v0->unk_00 = 24;
         break;
     case 24:
@@ -1982,7 +1982,7 @@ static void ov23_0223FDE0(UnkStruct_ov23_0223EE80 *param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_38[v0] == 1) {
-            Sound_PlayEffect(1703);
+            Sound_PlayEffect(SEQ_SE_DP_KIRAKIRA4);
 
             for (v3 = 0; v3 < 3; v3++) {
                 v1 = MATH_Rand32(&Unk_ov23_02257740->unk_08, Unk_ov23_02257740->unk_874[v0].unk_00->unk_0C * 8);
@@ -2354,7 +2354,7 @@ static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3)
         if (2 == param3) {
             ov23_02240454(v2, Unk_ov23_02256BF8, 0x18, 54);
             ov23_02240454(v2, Unk_ov23_02256BF4, 0x24, 54);
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (2 + 1 == param3) {
             ov23_02240454(v2, Unk_ov23_02256BF8, 0x1e, 54);
         }
@@ -2373,7 +2373,7 @@ static void ov23_022404F8(BgConfig *param0, int param1, int param2, int param3)
         if (2 == param3) {
             ov23_02240454(v2, Unk_ov23_02256BF8, 0x12, 54);
             ov23_02240454(v2, Unk_ov23_02256BF4, 0x2a, 54);
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         } else if (2 + 1 == param3) {
             ov23_02240454(v2, Unk_ov23_02256BF4, 0x30, 54);
         }
@@ -2716,7 +2716,7 @@ static BOOL ov23_02240CFC(UnkStruct_ov23_0223EE80 *param0)
         param0->unk_14--;
 
         if (param0->unk_14 == 0) {
-            Sound_PlayEffect(1701);
+            Sound_PlayEffect(SEQ_SE_DP_KIRAKIRA3);
         }
     }
 
@@ -2918,7 +2918,7 @@ static void ov23_022412CC(SysTask *param0, void *param1)
     v0->unk_4E4++;
 
     if ((250 / 3) < v0->unk_4E4) {
-        Sound_PlayEffect(1354);
+        Sound_PlayEffect(SEQ_SE_PL_UG_006);
         v0->unk_4E4 = 0;
     }
 }

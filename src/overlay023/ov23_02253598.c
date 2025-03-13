@@ -236,7 +236,7 @@ void ov23_02253834(BgConfig *param0, TrainerInfo *param1, UnkFuncPtr_ov23_022538
     ov23_0225360C(&v4->unk_08, v1, param1, v0);
 
     Window_ScheduleCopyToVRAM(&v4->unk_08);
-    Sound_PlayEffect(1533);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
 
     Unk_ov23_022577BC->unk_04 = SysTask_Start(ov23_0225381C, v4, 10);
     Unk_ov23_022577BC->unk_00 = v4;
@@ -413,7 +413,7 @@ void *ov23_02253C64(BgConfig *param0, TrainerInfo *param1, UndergroundData *para
     v0 = Unk_ov23_022577BC->unk_0C;
     ov23_02253A78(&v4->unk_08, v1, param1, v0, param2);
 
-    Sound_PlayEffect(1533);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
     Window_ScheduleCopyToVRAM(&v4->unk_08);
     MessageLoader_Free(v1);
 

@@ -1595,7 +1595,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
     }
 
     if ((v5) && (ov16_0223F450(v0) == 0)) {
-        Sound_PlayEffect(1796);
+        Sound_PlayEffect(SEQ_SE_DP_HINSI);
         BattleSystem_SetRedHPSoundFlag(v0, 1);
         ov16_0223F48C(v0, 4);
     } else if ((v5 == 0) && (ov16_0223F450(v0))) {
@@ -1608,7 +1608,7 @@ static void ov16_0223CF8C(SysTask *param0, void *param1)
 
         if (Sound_IsEffectPlaying(1796) == 0) {
             if (--v7 == 0) {
-                Sound_PlayEffect(1796);
+                Sound_PlayEffect(SEQ_SE_DP_HINSI);
                 ov16_0223F48C(v0, 4);
             } else {
                 ov16_0223F48C(v0, v7);

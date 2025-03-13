@@ -109,7 +109,7 @@ static BOOL ov6_02246C9C(FieldTask *param0)
         v11.y = v1->unk_00.y + Unk_ov6_0224989C[v1->unk_0D].y;
         v11.z = v1->unk_00.z + Unk_ov6_0224989C[v1->unk_0D].z;
 
-        Sound_PlayEffect(1534);
+        Sound_PlayEffect(SEQ_SE_DP_BOWA);
 
         v1->unk_10[v1->unk_0D] = MapPropManager_LoadOne(fieldSystem->mapPropManager, fieldSystem->areaDataManager, MAP_PROP_MODEL_POKECENTER_HEALING_MACHINE_MINI_POKEBALL, &v11, &v12, fieldSystem->mapPropAnimMan);
 

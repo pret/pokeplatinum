@@ -275,12 +275,12 @@ int ov19_021DFD2C(UnkStruct_ov19_021D4DF0 *param0)
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return -1;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return v0->unk_00[v0->unk_20];
     }
 

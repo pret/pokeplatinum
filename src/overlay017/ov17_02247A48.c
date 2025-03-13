@@ -280,7 +280,7 @@ static void ov17_02247C5C(SysTask *param0, void *param1)
         G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
         PaletteData_BlendMulti(v0->unk_00->unk_0C.unk_44, 0, 0x1fff, 0, 0x0);
         PaletteData_BlendMulti(v0->unk_00->unk_0C.unk_44, 2, 0x3fff, 0, 0x0);
-        Sound_PlayEffect(1772);
+        Sound_PlayEffect(SEQ_SE_DP_CON_019);
         v0->unk_10++;
         break;
     case 4:
@@ -417,13 +417,13 @@ static void ov17_02247F8C(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        Sound_PlayEffect(1765);
+        Sound_PlayEffect(SEQ_SE_DP_CON_007);
         v0->unk_11 = 15;
         v0->unk_10++;
     case 1:
         if (v0->unk_13 >= v0->unk_12) {
             v0->unk_11 = 0;
-            Sound_PlayEffect(1765);
+            Sound_PlayEffect(SEQ_SE_DP_CON_007);
             v0->unk_10++;
             break;
         } else if (v0->unk_1B == 1) {
@@ -920,7 +920,7 @@ static void ov17_02248860(SysTask *param0, void *param1)
         break;
     case 2:
         if ((v0->unk_14.unk_15 == 1) && (v0->unk_38.unk_0D == 1) && (v0->unk_48.unk_0D == 1)) {
-            Sound_PlayEffect(1765);
+            Sound_PlayEffect(SEQ_SE_DP_CON_007);
             v0->unk_10++;
         }
         break;
@@ -1300,7 +1300,7 @@ static void ov17_02249014(SysTask *param0, void *param1)
         v0->unk_13 = v1;
 
         if (v0->unk_15 == 1) {
-            Sound_PlayEffect(1773);
+            Sound_PlayEffect(SEQ_SE_DP_CON_020);
             v0->unk_15 = 0;
         }
 

@@ -784,7 +784,7 @@ void ov97_022383C4(ListMenu *param0, u32 param1, u8 param2)
 {
     switch (param2) {
     case 0:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     case 1:
         break;

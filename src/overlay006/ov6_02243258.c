@@ -1454,7 +1454,7 @@ static int ov6_02244518(UnkStruct_ov6_02243FFC *param0)
         return 0;
     }
 
-    Sound_PlayEffect(1609);
+    Sound_PlayEffect(SEQ_SE_DP_FW019);
 
     param0->unk_54 = 0x800;
     param0->unk_14 = 2;

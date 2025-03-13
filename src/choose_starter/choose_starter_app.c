@@ -954,7 +954,7 @@ static BOOL IsSelectionMade(ChooseStarterApp *param0, int param1)
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             ov78_021D1C98(param0, 1);
 
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
         break;
     case 4:
@@ -983,7 +983,7 @@ static void UpdateGraphics(ChooseStarterApp *param0, int param1)
 
         if (param0->unk_0C < 0) {
             ov78_021D1C98(param0, 1);
-            Sound_PlayEffect(1738);
+            Sound_PlayEffect(SEQ_SE_DP_BAG_030);
         }
         break;
     case 2:
@@ -1128,14 +1128,14 @@ static void ov78_021D1C58(ChooseStarterApp *param0)
     if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (param0->cursorPosition - 1 >= 0) {
             param0->cursorPosition -= 1;
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
     }
 
     if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (param0->cursorPosition + 1 < 3) {
             param0->cursorPosition += 1;
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
     }
 }

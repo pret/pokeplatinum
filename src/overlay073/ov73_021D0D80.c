@@ -735,7 +735,7 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
 static void ov73_021D1634(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
@@ -811,7 +811,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
         Window_Remove(&param0->unk_30);
         ListMenu_Free(param0->unk_40, NULL, NULL);
         StringList_Free(param0->unk_44);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         param0->unk_2C = 0;
         v0 = 1;
@@ -877,7 +877,7 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
         break;
     case 3:
         if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_54 = 4;
         }
         break;
@@ -1756,7 +1756,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
                 int v3[] = { 33, 34, 0xffff };
 
                 if (v3[param0->unk_94[0]] == 0xffff) {
-                    Sound_PlayEffect(1798);
+                    Sound_PlayEffect(SEQ_SE_DP_BOWA2);
 
                     param0->unk_0C = 50;
                 } else {
@@ -1899,7 +1899,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
                 param0->unk_84 = 0;
             }
 
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
 
         ov73_021D1DE8(param0);

@@ -1524,7 +1524,7 @@ static int ov17_02240C90(UnkStruct_ov17_0223F7E4 *param0)
     if (v0->unk_00 == 0) {
         if ((param0->unk_304 == 1) || (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
             if (param0->unk_304 == 0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
 
             v0->unk_00 = 1;
@@ -1778,7 +1778,7 @@ static u32 ov17_02241004(UnkStruct_ov17_02241004 *param0, int param1, int param2
     }
 
     if ((param0->unk_02 != v1) || (param0->unk_01 != v0)) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else {
         if (v2 & PAD_KEY) {
             return 0;

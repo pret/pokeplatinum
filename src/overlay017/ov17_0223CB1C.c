@@ -217,7 +217,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     sub_02004550(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
     SetVBlankCallback(ov17_0223D0C8, v0);
-    Sound_PlayEffect(1541);
+    Sound_PlayEffect(SEQ_SE_DP_DOOR_OPEN);
 
     return 1;
 }
@@ -236,7 +236,7 @@ int ov17_0223CDDC(OverlayManager *param0, int *param1)
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x2, 0xffff, 6, 16, 0, 0x7fff);
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x4, 0x3fff, 6, 16, 0, 0x7fff);
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x8, 0xffff, 6, 16, 0, 0x7fff);
-            Sound_PlayEffect(1765);
+            Sound_PlayEffect(SEQ_SE_DP_CON_007);
             *param1 = 1;
         }
         break;

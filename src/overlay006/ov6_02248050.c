@@ -209,7 +209,7 @@ static void ov6_0224825C(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC_dtor(v2);
 
     ov6_022480BC(fieldSystem->playerAvatar, &v0->unk_00.unk_00);
-    Sound_PlayEffect(1611);
+    Sound_PlayEffect(SEQ_SE_DP_FW015);
 
     v0->unk_EC = 0;
 }
@@ -288,7 +288,7 @@ static void ov6_02248340(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     NARC_dtor(v2);
 
     ov6_022480BC(fieldSystem->playerAvatar, &v0->unk_00.unk_00);
-    Sound_PlayEffect(1610);
+    Sound_PlayEffect(SEQ_SE_DP_FW088);
 
     v0->unk_EC = 0;
 }
@@ -307,7 +307,7 @@ static void ov6_022483A0(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     ov6_02248140(&v0->unk_00, v2, 8, 4, 4, &v0->unk_DC);
     ov6_02248050(fieldSystem->mapObjMan, 0, &v0->unk_00.unk_00);
 
-    Sound_PlayEffect(1610);
+    Sound_PlayEffect(SEQ_SE_DP_FW088);
     NARC_dtor(v2);
 
     v0->unk_EC = 0;
@@ -406,7 +406,7 @@ static void ov6_02248498(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
     ov6_02248124(fieldSystem->playerAvatar, &v0->unk_00[0].unk_00);
 
     NARC_dtor(v2);
-    Sound_PlayEffect(1613);
+    Sound_PlayEffect(SEQ_SE_DP_FW463);
 
     v0->unk_1C8 = 0;
 }
@@ -501,7 +501,7 @@ static void ov6_02248610(UnkStruct_ov6_022486B4 *param0, PlayerAvatar *const pla
     }
 
     Easy3DObject_SetVisibility(&param0->unk_00, 1);
-    Sound_PlayEffect(1575);
+    Sound_PlayEffect(SEQ_SE_DP_UG_023);
 }
 
 static void ov6_02248678(UnkStruct_ov6_022486B4 *param0)

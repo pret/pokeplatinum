@@ -9,7 +9,6 @@
 #include "constants/pokemon.h"
 #include "constants/screen.h"
 #include "constants/species.h"
-#include "generated/sdat.h"
 #include "generated/text_banks.h"
 
 #include "struct_decls/struct_02015920_decl.h"

@@ -474,14 +474,14 @@ static void ov21_021E6E04(u32 param0, u32 param1, void *param2)
         switch (param0) {
         case 0:
             if (v1->unk_04 != 0) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 v1->unk_04 = 0;
                 *v1->unk_00 |= (1 << 0);
             }
             break;
         case 1:
             if (v1->unk_04 != 1) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 v1->unk_04 = 1;
                 *v1->unk_00 |= (1 << 1);
             }
@@ -739,7 +739,7 @@ static void ov21_021E72E8(UnkStruct_ov21_021E6DAC *param0, UnkStruct_ov21_021E6A
             param0->unk_10[1] = 2;
         }
 
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
     }
 }
 

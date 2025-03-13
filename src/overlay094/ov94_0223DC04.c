@@ -323,24 +323,24 @@ static int ov94_0223E0A4(UnkStruct_ov94_0223FD4C *param0)
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
         ov94_0223E300(param0, 16, TEXT_SPEED_FAST, 0, 0xf0f);
         ov94_0223C3F4(param0, 3, 4);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
         param0->unk_2C = 2;
         ov94_0223C4C0(param0, 4, 0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
         if (param0->unk_10E == 0) {
             param0->unk_10E = 1;
             param0->unk_2C = 6;
 
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
     } else if (gSystem.pressedKeys & PAD_KEY_LEFT) {
         if (param0->unk_10E != 0) {
             param0->unk_10E = 0;
             param0->unk_2C = 6;
 
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
     } else {
         int v0 = ov94_02244214(param0->unk_118);
@@ -351,7 +351,7 @@ static int ov94_0223E0A4(UnkStruct_ov94_0223FD4C *param0)
                 param0->unk_2C = 2;
                 ov94_0223C4C0(param0, 3, 0);
                 param0->unk_11C = v0;
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         }
     }

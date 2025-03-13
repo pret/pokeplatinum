@@ -324,7 +324,7 @@ int ov17_0223DAD0(OverlayManager *param0, int *param1)
 
     G2_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ), -6);
 
-    Sound_PlayEffect(1765);
+    Sound_PlayEffect(SEQ_SE_DP_CON_007);
     SetVBlankCallback(ov17_0223E09C, v0);
 
     return 1;

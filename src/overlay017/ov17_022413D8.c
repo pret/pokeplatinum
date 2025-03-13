@@ -711,16 +711,16 @@ void ov17_02241A8C(UnkStruct_ov17_0223F88C *param0, int param1, int param2)
 
     switch (param2) {
     case 0:
-        Sound_PlayEffect(1761);
+        Sound_PlayEffect(SEQ_SE_DP_CON_003);
         break;
     case 1:
-        Sound_PlayEffect(1759);
+        Sound_PlayEffect(SEQ_SE_DP_CON_001);
         break;
     case 2:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         break;
     case 3:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         break;
     }
 }
@@ -957,7 +957,7 @@ void ov17_02241F34(UnkStruct_ov17_0223F88C *param0, int param1, int param2, int 
         }
     }
 
-    Sound_PlayEffect(1761);
+    Sound_PlayEffect(SEQ_SE_DP_CON_003);
     sub_02004F7C(1761, 0xffff, 64 * (v0 - 1));
 }
 
@@ -1136,7 +1136,7 @@ static void ov17_022422B8(SysTask *param0, void *param1)
     default:
         Sprite_DeleteAndFreeResources(v0->unk_04);
         ManagedSprite_SetDrawFlag(v0->unk_08, 1);
-        Sound_PlayEffect(1760);
+        Sound_PlayEffect(SEQ_SE_DP_CON_002);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
         return;
@@ -1723,7 +1723,7 @@ static void ov17_022431E8(SysTask *param0, void *param1)
             break;
         }
 
-        Sound_PlayEffect(1765);
+        Sound_PlayEffect(SEQ_SE_DP_CON_007);
         sub_02004AD4(1765, v0->unk_04);
         v0->unk_08++;
     case 1: {
@@ -1900,7 +1900,7 @@ static void ov17_022434E0(SysTask *param0, void *param1)
         break;
     default:
         ManagedSprite_SetDrawFlag(v0->unk_08, 0);
-        Sound_PlayEffect(1505);
+        Sound_PlayEffect(SEQ_SE_DP_SELECT5);
         ov17_022414B0(v0->unk_04);
 
         (*(v0->unk_0C))--;
@@ -1993,7 +1993,7 @@ static void ov17_02243750(SysTask *param0, void *param1)
         v0->unk_1C = v1 << 8;
         v0->unk_20 = v2 << 8;
 
-        Sound_PlayEffect(2041);
+        Sound_PlayEffect(SEQ_SE_DP_W234);
         v0->unk_0E++;
     case 1:
         v0->unk_0C += 0x800;
@@ -2027,7 +2027,7 @@ static void ov17_02243750(SysTask *param0, void *param1)
                     v0->unk_18 = -v0->unk_18;
                 }
             }
-            Sound_PlayEffect(1770);
+            Sound_PlayEffect(SEQ_SE_DP_CON_013);
             v0->unk_0E++;
         }
         break;
@@ -2044,7 +2044,7 @@ static void ov17_02243750(SysTask *param0, void *param1)
         break;
     default:
         ManagedSprite_SetDrawFlag(v0->unk_04, 0);
-        Sound_PlayEffect(1505);
+        Sound_PlayEffect(SEQ_SE_DP_SELECT5);
         (*(v0->unk_08))--;
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);

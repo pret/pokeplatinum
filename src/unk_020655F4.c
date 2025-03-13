@@ -868,7 +868,7 @@ static int MovementAction_Jump_Step1(MapObject *mapObj)
     sub_02062B68(mapObj);
     sub_02062A0C(mapObj, 0x0);
     MapObject_AdvanceMovementStep(mapObj);
-    Sound_PlayEffect(1607);
+    Sound_PlayEffect(SEQ_SE_DP_SUTYA2);
 
     return 1;
 }
@@ -1939,7 +1939,7 @@ static int sub_02067068(MapObject *mapObj)
     sub_02062B68(mapObj);
     sub_02062A0C(mapObj, 0x0);
     MapObject_AdvanceMovementStep(mapObj);
-    Sound_PlayEffect(1607);
+    Sound_PlayEffect(SEQ_SE_DP_SUTYA2);
 
     return 1;
 }

@@ -533,7 +533,7 @@ static int ov101_021D5E84(UnkStruct_ov101_021D630C *param0)
     Sprite_SetPosition(param0->unk_3C.unk_04, &v0);
     Sprite_SetAnim(param0->unk_3C.unk_04, 0);
     Sprite_SetAnimFrame(param0->unk_3C.unk_04, 0);
-    Sound_PlayEffect(1572);
+    Sound_PlayEffect(SEQ_SE_DP_UG_020);
 
     param0->unk_04++;
     return 0;
@@ -589,7 +589,7 @@ static int ov101_021D5F70(UnkStruct_ov101_021D630C *param0)
     Sprite_RestartAnim(param0->unk_3C.unk_04);
     Sprite_SetAnimateFlag(param0->unk_3C.unk_04, 1);
 
-    Sound_PlayEffect(1744);
+    Sound_PlayEffect(SEQ_SE_DP_SLOT01);
     param0->unk_04++;
 
     return 0;
@@ -1196,7 +1196,7 @@ static int ov101_021D6994(UnkStruct_ov101_021D66D0 *param0)
     Sprite_SetAnim(param0->unk_24.unk_04, 1);
     Sprite_SetAnimSpeed(param0->unk_24.unk_04, 0);
     Sprite_SetAnimateFlag(param0->unk_24.unk_04, 0);
-    Sound_PlayEffect(1745);
+    Sound_PlayEffect(SEQ_SE_DP_SLOT02);
 
     param0->unk_08++;
     return 0;

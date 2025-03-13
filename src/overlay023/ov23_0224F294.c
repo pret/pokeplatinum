@@ -418,7 +418,7 @@ void ov23_0224F758(UnkFuncPtr_ov23_0224F758 param0, FieldSystem *fieldSystem)
     UnkStruct_ov23_02250CD4 *v0;
     ListMenuTemplate v1;
 
-    Sound_PlayEffect(1533);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN);
     ov23_022430D0(2);
 
     v0 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov23_02250CD4));
@@ -935,14 +935,14 @@ static BOOL ov23_02250048(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v1) {
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224FCF4(v0);
         ov23_0224FDE0(v0);
         v0->unk_2AA = 5;
@@ -952,10 +952,10 @@ static BOOL ov23_02250048(SysTask *param0, void *param1)
 
         if (v1 == 1) {
             ov23_02243AD4(ov23_0224F66C(Unk_ov23_022577B8->unk_04, v0));
-            Sound_PlayEffect(1585);
+            Sound_PlayEffect(SEQ_SE_DP_SUTYA);
             v0->unk_2AA = 3;
         } else if (v1 == 2) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             ov23_0224FD68(Unk_ov23_022577B8->unk_05);
             ov23_022541B4(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
@@ -1118,14 +1118,14 @@ static BOOL ov23_0225044C(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v1) {
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224FCF4(v0);
         ov23_022501BC(v0);
         v0->unk_2AA = 6;
@@ -1141,7 +1141,7 @@ static BOOL ov23_0225044C(SysTask *param0, void *param1)
             ov23_02254044(ov23_022421DC());
             ov23_02241AE8(Unk_ov23_022577B8->unk_05, ov23_0224F69C(Unk_ov23_022577B8->unk_04, v0), v4, v5);
         } else if (v1 == 2) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov23_02250128(Unk_ov23_022577B8->unk_05);
             ov23_022541A0(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
             ov23_02253F40(ov23_0224219C(), 130, 0, NULL);
@@ -1294,14 +1294,14 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v1) {
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224FCF4(v0);
         ov23_02250598(v0);
         v0->unk_2AA = 7;
@@ -1313,7 +1313,7 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
             int v3 = sub_02028938(Unk_ov23_022577B8->unk_05);
             Bag *v4 = SaveData_GetBag(v0->fieldSystem->saveData);
 
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (Bag_TryAddItem(v4, v3, 1, 4)) {
                 sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
@@ -1329,7 +1329,7 @@ static BOOL ov23_022507D8(SysTask *param0, void *param1)
                 ov23_02253F40(ov23_0224219C(), 80, 0, NULL);
             }
         } else if (v1 == 2) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_02028D80(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
 
             ov23_022541A0(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
@@ -1662,7 +1662,7 @@ static BOOL ov23_02250EAC(SysTask *param0, void *param1)
         ov23_0225128C(v0, v2, ListMenu_GetAttribute(v0->unk_4C->unk_0C, 2), 6);
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224FD3C(v0);
         break;
     default:
@@ -1697,14 +1697,14 @@ static BOOL ov23_02250F8C(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v0->unk_50, &v0->unk_2B0);
 
     if (v2 != v0->unk_2B0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v1) {
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov23_0224FCF4(v0);
         ov23_02250CD4(v0);
         v0->unk_2AA = 8;
@@ -1713,7 +1713,7 @@ static BOOL ov23_02250F8C(SysTask *param0, void *param1)
         ov23_0224FCF4(v0);
 
         if (v1 == 2) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_02028B94(Unk_ov23_022577B8->unk_00, Unk_ov23_022577B8->unk_04);
             ov23_022541C8(ov23_0224219C(), 2, Unk_ov23_022577B8->unk_05);
             ov23_02253F40(ov23_0224219C(), 130, 0, NULL);

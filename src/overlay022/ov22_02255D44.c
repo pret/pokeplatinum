@@ -545,7 +545,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         break;
     case 10:
         ov22_0225718C(v0);
-        Sound_PlayEffect(1603);
+        Sound_PlayEffect(SEQ_SE_DP_CON_016);
         (*param1)++;
         break;
     case 11:
@@ -574,7 +574,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
 
         if (0 == v2) {
             (*param1) = 15;
-            Sound_PlayEffect(1664);
+            Sound_PlayEffect(SEQ_SE_DP_MAZYO);
         }
 
         ov22_0225890C(&v0->unk_4FC);
@@ -587,7 +587,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
 
         if (0 == v2) {
             (*param1) = 15;
-            Sound_PlayEffect(1664);
+            Sound_PlayEffect(SEQ_SE_DP_MAZYO);
         }
 
         ov22_02257564(v0);
@@ -607,7 +607,7 @@ int ov22_022562EC(OverlayManager *param0, int *param1)
         }
 
         StartScreenTransition(1, 26, 26, 0x0, 6, 1, HEAP_ID_13);
-        Sound_PlayEffect(1668);
+        Sound_PlayEffect(SEQ_SE_DP_CON_017);
         (*param1)++;
         break;
     case 20:

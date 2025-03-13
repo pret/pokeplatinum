@@ -986,7 +986,7 @@ static int sub_02086B64(OverlayManager *param0, int *param1)
             break;
         case 6:
             if (Text_IsPrinterActive(v0->unk_4BC) == 0) {
-                Sound_PlayEffect(1506);
+                Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
                 v0->unk_4F4[6]++;
                 v0->unk_630 = 0;
                 v0->unk_4C0 = 7;
@@ -1039,7 +1039,7 @@ static int sub_02086D38(UnkStruct_02087A10 *param0, int param1)
             param0->unk_4F4[param0->unk_4C4]++;
 
             sub_02088844(param0->unk_3A, param0->unk_4C4);
-            Sound_PlayEffect(1694);
+            Sound_PlayEffect(SEQ_SE_DP_SYU03);
 
             param0->unk_1C.unk_14 = 1;
         }
@@ -1047,7 +1047,7 @@ static int sub_02086D38(UnkStruct_02087A10 *param0, int param1)
         param0->unk_4F4[param0->unk_4C4]++;
 
         sub_02088844(param0->unk_3A, param0->unk_4C4);
-        Sound_PlayEffect(1694);
+        Sound_PlayEffect(SEQ_SE_DP_SYU03);
     } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
         param1 = sub_02088898(param0, param0->unk_3A[param0->unk_1C.unk_04][param0->unk_1C.unk_00], 1);
         param0->unk_1C.unk_14 = 1;
@@ -1790,7 +1790,7 @@ static void sub_02087D64(BgConfig *param0, Window *param1, int *param2, int para
             (*param2)++;
             (*param4) ^= 1;
             sub_02088240(param0, *param4, param5);
-            Sound_PlayEffect(1691);
+            Sound_PlayEffect(SEQ_SE_DP_NAMEIN_01);
         }
         break;
     case 4:
@@ -1952,35 +1952,35 @@ static void sub_02088350(UnkStruct_02087A10 *param0)
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_UP) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         Sprite_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 1;
         v0++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         Sprite_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 2;
         v0++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         Sprite_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 3;
         v0++;
     }
 
     if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         Sprite_SetDrawFlag(param0->unk_390[8], 1);
         v1 = 4;
         v0++;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_START) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         Sprite_SetDrawFlag(param0->unk_390[8], 1);
         param0->unk_1C.unk_00 = 12;
         param0->unk_1C.unk_04 = 0;
@@ -2230,14 +2230,14 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
         if (sub_02088D08(42, (42 + 40), 1, 0xd001, param0->unk_D8, param0->unk_158)) {
             Window_FillTilemap(&param0->unk_41C[3], 0x101);
             sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
-            Sound_PlayEffect(1515);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02);
         }
         break;
     case (0xd001 + 1):
         if (sub_02088D08(72, (72 + 10), 2, (0xd001 + 1), param0->unk_D8, param0->unk_158)) {
             Window_FillTilemap(&param0->unk_41C[3], 0x101);
             sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
-            Sound_PlayEffect(1515);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02);
         }
         break;
     case (0xe001 + 5):
@@ -2245,7 +2245,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
             Window_FillTilemap(&param0->unk_41C[3], 0x101);
             sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, TEXT_SPEED_INSTANT, TEXT_COLOR(14, 15, 1), NULL);
             param0->unk_4F4[4]++;
-            Sound_PlayEffect(1515);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02);
         }
         break;
     case (0xe001 + 1):
@@ -2257,7 +2257,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
             param0->unk_4C4 = param1 - (0xe001 + 1);
             sub_02088844(param0->unk_3A, param0->unk_4C4);
             param0->unk_4F4[param1 - (0xe001 + 1)]++;
-            Sound_PlayEffect(1694);
+            Sound_PlayEffect(SEQ_SE_DP_SYU03);
             Sprite_SetDrawFlag(param0->unk_390[8], param2);
         }
         break;
@@ -2279,7 +2279,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
 
             param0->unk_4F4[5]++;
 
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             Sprite_SetDrawFlag(param0->unk_390[8], param2);
         }
         break;
@@ -2288,7 +2288,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
         Sprite_SetDrawFlag(param0->unk_390[8], param2);
 
         if (param0->unk_14 == 0) {
-            Sound_PlayEffect(1506);
+            Sound_PlayEffect(SEQ_SE_DP_PIRORIRO);
             param0->unk_4F4[6]++;
             StartScreenTransition(2, 0, 0, 0x0, 16, 1, HEAP_ID_18);
             return 3;
@@ -2310,7 +2310,7 @@ static int sub_02088898(UnkStruct_02087A10 *param0, u16 param1, int param2)
             param0->unk_158++;
 
             sub_02088E1C(param0->unk_3C8, param0->unk_158, param0->unk_0C);
-            Sound_PlayEffect(1515);
+            Sound_PlayEffect(SEQ_SE_DP_BOX02);
             Sprite_SetDrawFlag(param0->unk_390[8], 1);
             Sprite_SetExplicitOAMMode(param0->unk_390[8], GX_OAM_MODE_XLU);
 

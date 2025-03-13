@@ -8,7 +8,6 @@
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
-#include "generated/sdat.h"
 #include "generated/species.h"
 #include "generated/text_banks.h"
 

@@ -336,7 +336,7 @@ static void ov95_02247060(SysTask *param0, void *param1)
 
     if (v0->unk_E8 == 0) {
         if (--(v0->unk_F0) <= 0) {
-            Sound_PlayEffect(1710);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN08);
             v0->unk_F0 = 30;
             ov95_02247170(v0);
         }

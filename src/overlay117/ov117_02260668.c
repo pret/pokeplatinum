@@ -1178,7 +1178,7 @@ BOOL ov117_02261E38(UnkStruct_ov117_02261280 *param0, int param1)
 
             v0->unk_C8[v2][v3].unk_00 = 1;
 
-            Sound_PlayEffect(1401);
+            Sound_PlayEffect(SEQ_SE_PL_BALLOON03_2);
             return 1;
         }
     }

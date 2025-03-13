@@ -1072,7 +1072,7 @@ static int ov109_021D1648(UnkStruct_ov109_021D0F70 *param0)
         param0->unk_00 = 31;
     }
 
-    Sound_PlayEffect(1521);
+    Sound_PlayEffect(SEQ_SE_DP_PINPON);
     return 1;
 }
 
@@ -2641,7 +2641,7 @@ static int ov109_021D308C(UnkStruct_ov109_021D2FE0 *param0)
     if (param0->unk_08 == 0) {
         if (v0->unk_50.y <= (FX32_ONE * 104)) {
             param0->unk_08 = 1;
-            Sound_PlayEffect(1616);
+            Sound_PlayEffect(SEQ_SE_DP_FW104);
         }
     }
 
@@ -2977,7 +2977,7 @@ static void ov109_021D34A8(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
             ov109_021D3218(param0);
             param1->unk_04 = 1;
             param1->unk_00++;
-            Sound_PlayEffect(1623);
+            Sound_PlayEffect(SEQ_SE_DP_DANSA5);
         }
         break;
     case 4:
@@ -2999,7 +2999,7 @@ static void ov109_021D34A8(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
             param1->unk_08 = 0;
             param1->unk_04 = 0;
             param1->unk_00 = 0;
-            Sound_PlayEffect(1585);
+            Sound_PlayEffect(SEQ_SE_DP_SUTYA);
         }
         break;
     }
@@ -3121,7 +3121,7 @@ static void ov109_021D3700(UnkStruct_ov109_021D0F70 *param0, UnkStruct_ov109_021
         break;
     case 1:
         ov109_021D228C(param0);
-        Sound_PlayEffect(1508);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         param1->unk_04 = 0;
         param1->unk_00++;
     case 2:

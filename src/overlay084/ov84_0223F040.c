@@ -593,7 +593,7 @@ static BOOL ov84_022400E0(TextPrinterTemplate *param0, u16 param1)
     case 2:
         return sub_020061E4();
     case 3:
-        Sound_PlayEffect(1549);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         break;
     case 4:
         return Sound_IsEffectPlaying(1549);
