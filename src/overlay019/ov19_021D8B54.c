@@ -720,7 +720,7 @@ static void ov19_021D9894(SysTask *param0, void *param1)
 
 void ov19_021D9900(UnkStruct_ov19_021D8E00 *param0)
 {
-    if (param0->unk_790->unk_110 == ov19_021D5E68(param0->unk_790)) {
+    if (param0->unk_790->unk_110 == ov19_GetCurrentBox(param0->unk_790)) {
         ov19_021D84E0(param0->unk_758);
     }
 

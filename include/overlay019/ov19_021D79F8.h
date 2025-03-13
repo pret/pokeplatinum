@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV19_021D79F8_H
 #define POKEPLATINUM_OV19_021D79F8_H
 
+#include "overlay019/box_customization.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
-#include "overlay019/struct_ov19_021D4F5C.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021D8318.h"
 #include "overlay019/struct_ov19_021DCD18.h"
@@ -13,8 +13,8 @@
 BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4);
 void ov19_021D7A74(UnkStruct_ov19_021D8318 *param0);
 void ov19_021D7A9C(UnkStruct_ov19_021D8318 *param0);
-void ov19_021D7B4C(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_021D4F5C *param1, int param2, BOOL param3);
-void ov19_021D7D70(UnkStruct_ov19_021D8318 *param0, const UnkStruct_ov19_021D4F5C *param1, int param2);
+void ov19_021D7B4C(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *BoxCustomization, int param2, BOOL param3);
+void ov19_021D7D70(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *BoxCustomization, int param2);
 BOOL ov19_021D7E1C(UnkStruct_ov19_021D8318 *param0);
 void ov19_021D8350(UnkStruct_ov19_021D8318 *param0);
 BOOL ov19_021D8370(UnkStruct_ov19_021D8318 *param0);

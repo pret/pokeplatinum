@@ -10953,7 +10953,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                         int v29;
 
                         v24 = ov16_0223E228(v2->battleSys);
-                        v25 = PCBoxes_GetCurrentBox(v24);
+                        v25 = PCBoxes_GetCurrentBoxID(v24);
                         v26 = PCBoxes_FirstEmptyBox(v24);
 
                         PCBoxes_SetCurrentBox(v24, v26);
