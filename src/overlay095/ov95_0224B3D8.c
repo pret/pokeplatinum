@@ -692,7 +692,7 @@ static void ov95_0224BD5C(SysTask *param0, void *param1)
         ov95_02247968(v0->unk_14, &(v0->unk_24));
 
         if (v0->unk_24.y < UnkEnum_ov95_0224BD5C_02) {
-            Sound_PlayEffect(1510);
+            Sound_PlayEffect(SEQ_SE_DP_KON);
             v0->unk_30 *= -1;
 
             ov95_0224BBB0(v0->unk_08, 0, 16, 8);

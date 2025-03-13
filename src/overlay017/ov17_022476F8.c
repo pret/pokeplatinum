@@ -125,7 +125,7 @@ void ov17_022477B8(UnkStruct_ov17_02247A48 *param0, int param1, int param2, fx32
     param0->unk_4F7++;
 
     SysTask_Start(ov17_02247840, v0, 50000);
-    Sound_PlayEffect(1761);
+    Sound_PlayEffect(SEQ_SE_DP_CON_003);
 }
 
 static void ov17_02247840(SysTask *param0, void *param1)

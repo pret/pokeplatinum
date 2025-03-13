@@ -387,7 +387,7 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v2->unk_23C, &v2->unk_6F4);
 
     if (v0 != v2->unk_6F4) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v1) {
@@ -395,13 +395,13 @@ static void ov5_021F6A34(SysTask *param0, void *param1)
         break;
     case 0xfffffffe:
         if (v2->unk_207_0 == 1) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             *v2->unk_210 = 0xfffe;
             ov5_021F6AD4(param1);
         }
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         *v2->unk_210 = v1;
         ov5_021F6AD4(param1);
         break;
@@ -414,7 +414,7 @@ static void ov5_021F6AD4(UnkStruct_ov5_021F6704 *param0)
 {
     int v0;
 
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
     ListMenu_Free(param0->unk_23C, NULL, NULL);
     Window_EraseStandardFrame(param0->unk_21C.window, 0);
     Window_Remove(&param0->unk_08);
@@ -933,7 +933,7 @@ BOOL ScrCmd_32C(ScriptContext *param0)
 
         for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200C90)); v0++) {
             if ((v4 == Unk_ov5_02200C90[v0].unk_00) && (v5 == Unk_ov5_02200C90[v0].unk_02)) {
-                Sound_PlayEffect(1487);
+                Sound_PlayEffect(SEQ_SE_PL_JUMP2);
                 *v2 |= (1 << v0);
                 break;
             }
@@ -944,7 +944,7 @@ BOOL ScrCmd_32C(ScriptContext *param0)
 
         for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200CAC)); v0++) {
             if ((v4 == Unk_ov5_02200CAC[v0].unk_00) && (v5 == Unk_ov5_02200CAC[v0].unk_02)) {
-                Sound_PlayEffect(1487);
+                Sound_PlayEffect(SEQ_SE_PL_JUMP2);
                 *v2 |= (1 << v0);
                 break;
             }
@@ -955,7 +955,7 @@ BOOL ScrCmd_32C(ScriptContext *param0)
 
         for (v0 = 0; v0 < (NELEMS(Unk_ov5_02200CC8)); v0++) {
             if ((v4 == Unk_ov5_02200CC8[v0].unk_00) && (v5 == Unk_ov5_02200CC8[v0].unk_02)) {
-                Sound_PlayEffect(1487);
+                Sound_PlayEffect(SEQ_SE_PL_JUMP2);
                 *v2 |= (1 << v0);
                 break;
             }

@@ -132,7 +132,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
     } break;
     case 5:
         if (sub_02052FFC(v3)) {
-            Sound_PlayEffect(1563);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE);
             v3->unk_38 = 18;
             (*v4)++;
         }

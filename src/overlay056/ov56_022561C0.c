@@ -565,7 +565,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
 
             if (v3 == 1) {
                 if (param0->unk_2D8.unk_04 != 0) {
-                    Sound_PlayEffect(1509);
+                    Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                     param0->unk_2D8.unk_04--;
                 }
 
@@ -577,7 +577,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
 
             if (v3 == 1) {
                 if (param0->unk_2D8.unk_04 < param0->unk_2D8.unk_00 - 3) {
-                    Sound_PlayEffect(1509);
+                    Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                     param0->unk_2D8.unk_04++;
                 }
 
@@ -602,7 +602,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
                         v5 = (UnkStruct_0203330C *)&v4->gameInfo.userGameInfo;
 
                         if ((param0->unk_04->unk_0C[v1].unk_01 == 2) && (v5->unk_00 == param0->unk_2D4->unk_00[v2].unk_0C)) {
-                            Sound_PlayEffect(1509);
+                            Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                             param0->unk_04->unk_0C[v1].unk_03 = 1;
                             break;
                         }
@@ -613,7 +613,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 *param0)
                     TrainerInfo *v6 = sub_02033F9C();
 
                     if (param0->unk_2D4->unk_00[v2].unk_0C == TrainerInfo_ID(v6)) {
-                        Sound_PlayEffect(1509);
+                        Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
                         param0->unk_04->unk_0C[50].unk_03 = 1;
                     }
                 }
@@ -678,7 +678,7 @@ static void ov56_02256C84(UnkStruct_ov56_02256468 *param0)
         if (gSystem.pressedKeysRepeatable & PAD_BUTTON_L) {
             if (param0->unk_2D8.unk_04 != 0) {
                 param0->unk_2D8.unk_04--;
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
             }
         }
     } else if (gSystem.heldKeys & PAD_BUTTON_R) {
@@ -687,7 +687,7 @@ static void ov56_02256C84(UnkStruct_ov56_02256468 *param0)
         if (gSystem.pressedKeysRepeatable & PAD_BUTTON_R) {
             if (param0->unk_2D8.unk_04 < param0->unk_2D8.unk_00 - 3) {
                 param0->unk_2D8.unk_04++;
-                Sound_PlayEffect(1509);
+                Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
             }
         }
     }

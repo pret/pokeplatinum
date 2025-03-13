@@ -568,7 +568,7 @@ static BOOL ov6_0223E408(FieldTask *param0)
 
         if (v1->unk_04 <= 0) {
             v1->unk_0C++;
-            Sound_PlayEffect(1628);
+            Sound_PlayEffect(SEQ_SE_DP_FW089);
         }
         break;
     case 3:
@@ -1610,7 +1610,7 @@ static void ov6_0223FAF8(UnkStruct_ov5_021D1BEC *param0, FieldSystem *fieldSyste
         break;
     case 1:
         if (ov6_0223F9F4(v0)) {
-            Sound_PlayEffect(1750);
+            Sound_PlayEffect(SEQ_SE_DP_CLIMAX10);
             v0->unk_20 = 0;
             v0->unk_00++;
         } else {
@@ -1852,7 +1852,7 @@ void ov6_0223FE1C(UnkStruct_ov6_0223FDE4 *param0, fx32 param1, fx32 param2, u32 
 
     param0->unk_48 = param4;
 
-    Sound_PlayEffect(1749);
+    Sound_PlayEffect(SEQ_SE_DP_CLIMAX09);
 }
 
 void ov6_0223FE9C(UnkStruct_ov6_0223FDE4 *param0)
@@ -1982,7 +1982,7 @@ void ov6_02240000(UnkStruct_ov6_02240000 *param0, u32 param1, u32 param2, u32 pa
     GX_SetMasterBrightness(param0->unk_00.unk_00);
 
     param0->unk_20 = SysTask_ExecuteAfterVBlank(ov6_02240064, param0, 1024);
-    Sound_PlayEffect(1748);
+    Sound_PlayEffect(SEQ_SE_DP_CLIMAX06);
 }
 
 int ov6_02240060(const UnkStruct_ov6_02240000 *param0)
@@ -2794,7 +2794,7 @@ void ov6_02240C44(UnkStruct_ov6_02240C44 *param0, u32 param1)
     ov6_0223FDCC(&param0->unk_00, v0.x, v0.y, v0.z);
     ov6_0223FDC4(&param0->unk_00, 1);
 
-    Sound_PlayEffect(1752);
+    Sound_PlayEffect(SEQ_SE_DP_CLIMAX15);
 }
 
 BOOL ov6_02240C7C(UnkStruct_ov6_02240C44 *param0)

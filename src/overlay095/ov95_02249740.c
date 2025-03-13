@@ -207,7 +207,7 @@ static int ov95_02249840(UnkStruct_ov95_022497D8 *param0, int *param1)
         break;
     case 1:
         if (++(param0->unk_08) > 10) {
-            Sound_PlayEffect(1708);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN06);
             ov95_02249C44(param0, &(param0->unk_34));
             ov95_022479A8(param0->unk_2C, 1);
             (*param1)++;
@@ -215,7 +215,7 @@ static int ov95_02249840(UnkStruct_ov95_022497D8 *param0, int *param1)
         break;
     case 2:
         if (ov95_02249CF0(&(param0->unk_34))) {
-            Sound_PlayEffect(1709);
+            Sound_PlayEffect(SEQ_SE_DP_KOUKAN07);
             Sprite_SetAnim(param0->unk_20[0], 3);
             Sprite_SetDrawFlag(param0->unk_20[0], 1);
             (*param1)++;

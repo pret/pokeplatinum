@@ -620,7 +620,7 @@ static BOOL sub_0208279C(TextPrinterTemplate *param0, u16 param1)
     case 2:
         return sub_020061E4();
     case 3:
-        Sound_PlayEffect(1510);
+        Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 4:
         sub_02006150(1155);

@@ -379,7 +379,7 @@ static BOOL ov119_021D1E38(UnkStruct_ov119_021D0FD0 *param0)
         break;
     case 1:
         if ((++param0->unk_64) >= 25) {
-            Sound_PlayEffect(1812);
+            Sound_PlayEffect(SEQ_SE_DP_EGG01);
 
             param0->unk_68++;
         }
@@ -410,7 +410,7 @@ static BOOL ov119_021D1E80(UnkStruct_ov119_021D0FD0 *param0)
         v0 = ov119_021D176C(param0, 0);
 
         if (v0 == 2) {
-            Sound_PlayEffect(1812);
+            Sound_PlayEffect(SEQ_SE_DP_EGG01);
 
             ManagedSprite_SetAnimationFrame(param0->unk_74, 2);
             param0->unk_68++;
@@ -446,7 +446,7 @@ static BOOL ov119_021D1EF0(UnkStruct_ov119_021D0FD0 *param0)
         v0 = ov119_021D176C(param0, 1);
 
         if (v0 == 1) {
-            Sound_PlayEffect(1812);
+            Sound_PlayEffect(SEQ_SE_DP_EGG01);
             ManagedSprite_SetAnimationFrame(param0->unk_74, 3);
             ov119_021D14DC(param0->unk_04.unk_40, 0);
         }
@@ -481,7 +481,7 @@ static BOOL ov119_021D1F48(UnkStruct_ov119_021D0FD0 *param0)
         v0 = ov119_021D176C(param0, 2);
 
         if (v0 == 1) {
-            Sound_PlayEffect(1812);
+            Sound_PlayEffect(SEQ_SE_DP_EGG01);
 
             ManagedSprite_SetAnimationFrame(param0->unk_74, 4);
             ov119_021D14DC(param0->unk_04.unk_40, 1);
@@ -520,7 +520,7 @@ static BOOL ov119_021D1FAC(UnkStruct_ov119_021D0FD0 *param0)
 
         if (v0 == 1) {
             ManagedSprite_SetAnimationFrame(param0->unk_74, 5);
-            Sound_PlayEffect(1799);
+            Sound_PlayEffect(SEQ_SE_DP_BOWA3);
             ov119_021D14DC(param0->unk_04.unk_40, 2);
             ov119_021D14DC(param0->unk_04.unk_40, 3);
         }
@@ -629,13 +629,13 @@ static BOOL ov119_021D21BC(UnkStruct_ov119_021D0FD0 *param0)
     case 1:
         switch (param0->unk_64) {
         case 25:
-            Sound_PlayEffect(2054);
+            Sound_PlayEffect(SEQ_SE_DP_W278);
             break;
         case 80:
-            Sound_PlayEffect(1962);
+            Sound_PlayEffect(SEQ_SE_DP_W080C);
             break;
         case 142:
-            Sound_PlayEffect(2069);
+            Sound_PlayEffect(SEQ_SE_DP_W361);
             break;
         }
 

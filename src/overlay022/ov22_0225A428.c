@@ -453,7 +453,7 @@ static void ov22_0225ACBC(UnkStruct_ov22_0225AB54 *param0)
 
         if (param0->unk_1C <= 10) {
             ov22_0225ADC0(param0, &param0->unk_30);
-            Sound_PlayEffect(1667);
+            Sound_PlayEffect(SEQ_SE_DP_HYUN2);
         }
     }
 }

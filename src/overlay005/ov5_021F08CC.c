@@ -216,7 +216,7 @@ static int ov5_021F0A80(UnkStruct_ov5_021F0D6C *param0, PlayerAvatar *playerAvat
     param0->unk_10++;
 
     if (param0->unk_10 == 10) {
-        Sound_PlayEffect(1616);
+        Sound_PlayEffect(SEQ_SE_DP_FW104);
     }
 
     if (param0->unk_10 < 34) {

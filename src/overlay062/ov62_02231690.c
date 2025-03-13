@@ -1601,13 +1601,13 @@ void ov62_022331C8(UnkStruct_ov62_02233310 *param0, s16 param1)
         if (param0->unk_38.unk_00 > 0) {
             param0->unk_38.unk_00--;
             v1 = 0;
-            Sound_PlayEffect(1370);
+            Sound_PlayEffect(SEQ_SE_PL_BUTTON);
         }
     } else if (param1 > 0) {
         if (param0->unk_38.unk_00 < param0->unk_04 - 1) {
             param0->unk_38.unk_00++;
             v1 = 1;
-            Sound_PlayEffect(1370);
+            Sound_PlayEffect(SEQ_SE_PL_BUTTON);
         }
     }
 
@@ -1684,7 +1684,7 @@ void ov62_022332AC(UnkStruct_ov62_02233310 *param0, s16 param1)
     }
 
     if (v0 != param0->unk_08) {
-        Sound_PlayEffect(1370);
+        Sound_PlayEffect(SEQ_SE_PL_BUTTON);
     }
 
     ov62_02233454(param0);
@@ -2764,7 +2764,7 @@ static void ov62_02234440(UnkStruct_0208C06C *param0)
 void ov62_02234520(UnkStruct_0208C06C *param0)
 {
     ov62_02234440(param0);
-    Sound_PlayEffect(1379);
+    Sound_PlayEffect(SEQ_SE_PL_BREC57);
 }
 
 BOOL ov62_02234534(UnkStruct_0208C06C *param0)

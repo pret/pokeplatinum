@@ -5,7 +5,6 @@
 
 #include "constants/heap.h"
 #include "generated/genders.h"
-#include "generated/sdat.h"
 #include "generated/text_banks.h"
 
 #include "struct_defs/struct_02099F80.h"

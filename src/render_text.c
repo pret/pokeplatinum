@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/charcode.h"
-#include "generated/sdat.h"
 
 #include "bg_window.h"
 #include "charcode.h"

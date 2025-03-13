@@ -412,7 +412,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         }
 
         ov92_021D1DB4(v0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         switch (v3) {
         default:
@@ -467,7 +467,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         }
 
         ov92_021D1DB4(v0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (v5 != 0xfffffffe) {
             v5 = sub_02099780(0)[v5];
@@ -509,7 +509,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
         }
 
         ov92_021D1DB4(v0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (v7 != 0xfffffffe) {
             u32 v8 = sub_020996D4(v0->unk_BB1C);
@@ -588,7 +588,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
 
         if ((gSystem.pressedKeys & PAD_BUTTON_B) || (v0->unk_BAF8 & PAD_BUTTON_B)) {
             Window_EraseStandardFrame(&v0->unk_B834, 0);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             Window_FillRectWithColor(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
 
             if (v0->unk_BB14 == 0) {
@@ -604,7 +604,7 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
                 ov92_021D1F90(v0);
 
                 if (v0->unk_BB28 == 1) {
-                    Sound_PlayEffect(1501);
+                    Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 }
                 break;
             }
@@ -630,9 +630,9 @@ int ov92_021D0EB8(OverlayManager *param0, int *param1)
                 *param1 = 16;
 
                 if (v0->unk_BAD8 == 0) {
-                    Sound_PlayEffect(1474);
+                    Sound_PlayEffect(SEQ_SE_PL_FTIMER03);
                 } else {
-                    Sound_PlayEffect(1474);
+                    Sound_PlayEffect(SEQ_SE_PL_FTIMER03);
                 }
             }
         }
@@ -1013,7 +1013,7 @@ static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param
 static void ov92_021D1C38(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 

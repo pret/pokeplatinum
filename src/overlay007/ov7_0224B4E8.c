@@ -180,24 +180,24 @@ static int ov7_0224B6E8(UnkStruct_ov7_0224B4E8 *param0)
     ListMenu_CalcTrueCursorPos(param0->unk_00, &param0->unk_80);
 
     if (v1 != param0->unk_80) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v0) {
     case 0xffffffff:
         return 0;
     case 12:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->fieldSystem->unk_B0 = NULL;
         ov7_0224B6AC(param0);
         return 2;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->fieldSystem->unk_B0 = NULL;
         ov7_0224B6AC(param0);
         return -1;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->fieldSystem->unk_B0 = sub_02026150(param0->fieldSystem->saveData, v0);
         break;
     }
@@ -257,18 +257,18 @@ static int ov7_0224B83C(UnkStruct_ov7_0224B4E8 *param0)
     ListMenu_CalcTrueCursorPos(param0->unk_04, &param0->unk_82);
 
     if (v1 != param0->unk_82) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     switch (v0) {
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0 = -1;
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov7_0224B6AC(param0);
         break;
     }
@@ -429,7 +429,7 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
     case 0:
         return 1;
     case 4:
-        Sound_PlayEffect(1523);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov7_0224B57C(param0, param0->unk_78 - 1);
         v2 = sub_02026074(param0->fieldSystem->unk_B0, 1);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 1, 1, 1);
@@ -437,7 +437,7 @@ static BOOL ov7_0224BBC4(UnkStruct_ov7_0224B4E8 *param0)
         break;
     default:
     case 1:
-        Sound_PlayEffect(1523);
+        Sound_PlayEffect(SEQ_SE_DP_BOX03);
         ov7_0224B57C(param0, param0->unk_78 - 1);
         v2 = sub_02026074(param0->fieldSystem->unk_B0, 3);
         StringTemplate_SetNumber(param0->unk_64, 1, v2, 3, 0, 1);

@@ -224,6 +224,6 @@ ListMenu *ov88_0223ED94(StringList *param0, int param1, Window *param2, BgConfig
 static void ov88_0223EE14(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }

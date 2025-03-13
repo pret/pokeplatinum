@@ -1596,7 +1596,7 @@ static int ov88_0223CFF4(u32 *param0, int *param1, Sprite *param2, UnkStruct_ov8
             ov88_0223CF68(v1, param2, param4);
 
             if (*param1 != v1) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 *param1 = v1;
                 v2 = 1;
             }
@@ -1678,7 +1678,7 @@ static void ov88_0223D140(ChatotCry *param0)
 static int ov88_0223D150(UnkStruct_02095E80 *param0)
 {
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_88[0] = 12;
         ov88_0223BE28(param0);
         ov88_0223CF68(param0->unk_88[0], param0->unk_39C[0], 0);
@@ -1856,14 +1856,14 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v1 = CommInfo_TrainerInfo(param0->unk_36C4);
         StringTemplate_SetPlayerName(param0->unk_36CC, 0, v1);
         ov88_0223D49C(param0, 59);
         param0->unk_226C = ov88_0223D4C4;
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_36C8 = v0;
 
         {

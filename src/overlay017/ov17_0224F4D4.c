@@ -215,7 +215,7 @@ int ov17_0224F4D4(OverlayManager *param0, int *param1)
     SetVBlankCallback(ov17_0224FA24, v0);
 
     v0->unk_08 = SysTask_ExecuteOnVBlank(ov17_0224FAE4, v0, 10);
-    Sound_PlayEffect(1765);
+    Sound_PlayEffect(SEQ_SE_DP_CON_007);
 
     return 1;
 }

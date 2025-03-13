@@ -366,7 +366,7 @@ static void sub_0205C6E0(UnkStruct_0205C680 *param0, MapObject *param1, int para
         return;
     }
 
-    Sound_PlayEffect(1615);
+    Sound_PlayEffect(SEQ_SE_DP_TELE2);
     sub_02061AD4(param1, param0->unk_08);
     sub_0205C680(param0, 0);
     MapObject_SetPosDirFromCoords(param1, v0, v1, v2, 1);

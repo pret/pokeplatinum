@@ -366,7 +366,7 @@ static BOOL sub_020718D8(FieldTask *taskMan)
     case 2:
         ov5_021EF388(0, v2->unk_04, fieldSystem->unk_A0);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
-        Sound_PlayEffect(1562);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
     case 3:
@@ -419,7 +419,7 @@ static BOOL sub_020719D8(FieldTask *taskMan)
     case 2:
         ov5_021EF388(0, v2->unk_04, fieldSystem->unk_A0);
         sub_0205ED48(fieldSystem->playerAvatar, 1);
-        Sound_PlayEffect(1562);
+        Sound_PlayEffect(SEQ_SE_DP_KI_GASYAN);
         (v2->unk_00)++;
         break;
     case 3:
@@ -433,9 +433,9 @@ static BOOL sub_020719D8(FieldTask *taskMan)
 static void sub_02071ACC(const int param0)
 {
     if (param0 == 0) {
-        Sound_PlayEffect(1553);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA);
     } else {
-        Sound_PlayEffect(1556);
+        Sound_PlayEffect(SEQ_SE_DP_ELEBETA4);
     }
 }
 

@@ -2636,7 +2636,7 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
                     ov12_02237E30(v0->unk_04->unk_84, 1);
 
                     if (v0->unk_18 != 3) {
-                        Sound_PlayEffect(1802);
+                        Sound_PlayEffect(SEQ_SE_DP_NAGERU);
                     }
                 }
             }
@@ -2991,7 +2991,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
 
         if (v0->unk_0C != 0xffffffff) {
             v0->unk_0B = 10;
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             v0->unk_0A = 6;
         }
         break;
@@ -3231,7 +3231,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
         v0->unk_08 = ov16_0226925C(v2);
 
         if (v0->unk_08 != 0xffffffff) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             v0->unk_20++;
         }
         break;
@@ -3396,7 +3396,7 @@ static void ov16_02260F14(SysTask *param0, void *param1)
         v0->unk_08 = ov16_0226925C(v2);
 
         if (v0->unk_08 != 0xffffffff) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             v0->unk_0F++;
         }
         break;
@@ -4444,7 +4444,7 @@ static void ov16_022623F0(SysTask *param0, void *param1)
         v0->unk_08 = ov16_0226925C(v2);
 
         if (v0->unk_08 != 0xffffffff) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             v0->unk_0E = 3;
         }
         break;
@@ -4679,7 +4679,7 @@ static void ov16_022629DC(SysTask *param0, void *param1)
     switch (v0->state) {
     case 0:
         v0->unk_4E = 0;
-        Sound_PlayEffect(1803);
+        Sound_PlayEffect(SEQ_SE_DP_EXP);
         Healthbar_CalcExp(v0, v0->expReward);
         v0->state++;
     case 1:
@@ -4935,7 +4935,7 @@ static void ov16_02262F30(SysTask *param0, void *param1)
     switch (v0->unk_0A) {
     case 0:
         ov16_0226834C(v0->unk_04, &v0->unk_0B);
-        Sound_PlayEffect(1804);
+        Sound_PlayEffect(SEQ_SE_DP_EXPMAX);
         v0->unk_0A++;
         break;
     case 1:
@@ -5071,7 +5071,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
         v0->unk_08[1] = ov12_02237F38(v0->unk_04, &v5);
 
         ov12_02238004(v0->unk_08[0]);
-        Sound_PlayEffect(2127);
+        Sound_PlayEffect(SEQ_SE_DP_PASA2);
 
         v0->unk_14 = 1;
     }
@@ -5106,7 +5106,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
         }
 
         if (v0->unk_15 == 23) {
-            Sound_PlayEffect(2128);
+            Sound_PlayEffect(SEQ_SE_DP_PASA3);
         }
 
         if (v0->unk_15 == 28) {

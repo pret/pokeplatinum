@@ -123,7 +123,7 @@ BOOL ov100_021D14A8(void *param0)
         break;
     case 3:
         if (v0->unk_04 == v3[v0->unk_08]) {
-            Sound_PlayEffect(1479);
+            Sound_PlayEffect(SEQ_SE_PL_W392);
         }
 
         if (v0->unk_04 == v2[v0->unk_08]) {

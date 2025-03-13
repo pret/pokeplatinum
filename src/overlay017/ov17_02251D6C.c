@@ -630,7 +630,7 @@ static void ov17_0225266C(SysTask *param0, void *param1)
         ov17_02250FE4(v0->unk_00);
         ov17_02251598(v0->unk_00, 0, &v0->unk_12);
         Sound_PlayBGM(1182);
-        Sound_PlayEffect(1765);
+        Sound_PlayEffect(SEQ_SE_DP_CON_007);
         v0->unk_10++;
         break;
     case 1:
@@ -730,7 +730,7 @@ static void ov17_02252858(SysTask *param0, void *param1)
 
     switch (v0->unk_10) {
     case 0:
-        Sound_PlayEffect(1786);
+        Sound_PlayEffect(SEQ_SE_DP_CON_033);
         v0->unk_10++;
         break;
     case 1:
@@ -744,7 +744,7 @@ static void ov17_02252858(SysTask *param0, void *param1)
     case 2:
         for (v1 = 0; v1 < 4; v1++) {
             if (v0->unk_14[v1] > 0) {
-                Sound_PlayEffect(1787);
+                Sound_PlayEffect(SEQ_SE_DP_CON_034);
                 break;
             }
         }
@@ -778,7 +778,7 @@ static void ov17_02252858(SysTask *param0, void *param1)
     case 4:
         for (v1 = 0; v1 < 4; v1++) {
             if (v0->unk_14[v1] > 0) {
-                Sound_PlayEffect(1785);
+                Sound_PlayEffect(SEQ_SE_DP_CON_032);
                 break;
             }
         }

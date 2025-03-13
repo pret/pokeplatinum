@@ -407,7 +407,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
             if (ov104_0223B5A4(param0->unk_0D) == 0xfe) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_98);
 
                 param0->unk_10 = 1;
@@ -415,23 +415,23 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
             } else {
                 if (ov106_022430B0(param0) == 1) {
                     if (ov104_0223B5A4(param0->unk_0D) != 9) {
-                        Sound_PlayEffect(1523);
+                        Sound_PlayEffect(SEQ_SE_DP_BOX03);
                         return 0;
                     }
                 } else {
                     if (sub_020301E0(ov106_02243090(param0->unk_0D), param0->unk_294) >= 10) {
-                        Sound_PlayEffect(1523);
+                        Sound_PlayEffect(SEQ_SE_DP_BOX03);
 
                         return 0;
                     }
 
                     if (ov104_0223B5A4(param0->unk_0D) == 9) {
-                        Sound_PlayEffect(1523);
+                        Sound_PlayEffect(SEQ_SE_DP_BOX03);
                         return 0;
                     }
                 }
 
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
                 if (ov104_0223B5B0(param0->unk_09) == 0) {
                     ov106_02242FAC(param0->unk_48, param0->unk_0D, 1);
@@ -474,7 +474,7 @@ static BOOL ov106_02241E5C(UnkStruct_ov106_02243118 *param0)
                 param0->unk_08 = 4;
             } else {
                 Sound_StopEffect(1500, 0);
-                Sound_PlayEffect(1572);
+                Sound_PlayEffect(SEQ_SE_DP_UG_020);
 
                 if (param0->unk_1F != 0x75) {
                     param0->unk_0D = param0->unk_1F;
@@ -614,7 +614,7 @@ static BOOL ov106_02242108(UnkStruct_ov106_02243118 *param0)
             break;
         case 0:
             Sound_StopEffect(1500, 0);
-            Sound_PlayEffect(1572);
+            Sound_PlayEffect(SEQ_SE_DP_UG_020);
             ov106_02243200(param0);
             param0->unk_08 = 6;
             break;
@@ -1323,7 +1323,7 @@ static void ov106_02242D64(UnkStruct_ov106_02243118 *param0, int param1)
     }
 
     if (v0 == 1) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov106_02243670(param0->unk_280, ov106_02242F24(param0), ov106_02242F3C(param0));
     }
 

@@ -275,29 +275,29 @@ static void PlayerAvatar_PlayWalkSE(PlayerAvatar *playerAvatar)
         }
 
         if ((MapObject_IsOnSnow(mapObj, v2) == 1) || (TileBehavior_IsSnowWithShadows(v2) == 1)) {
-            Sound_PlayEffect(1353);
+            Sound_PlayEffect(SEQ_SE_PL_YUKI);
         }
 
         if (TileBehavior_IsPuddle(v2) == 1) {
-            Sound_PlayEffect(1601);
+            Sound_PlayEffect(SEQ_SE_DP_FOOT3_0);
         }
 
         if (TileBehavior_IsShallowWater(v2) == 1) {
-            Sound_PlayEffect(1602);
+            Sound_PlayEffect(SEQ_SE_DP_FOOT3_1);
         }
 
         if (TileBehavior_IsSand(v2) == 1) {
         }
 
         if ((TileBehavior_IsMud(v2) == 1) && (TileBehavior_IsDeepMud(v2) != 1)) {
-            Sound_PlayEffect(1621);
+            Sound_PlayEffect(SEQ_SE_DP_MARSH_WALK);
         }
 
         int code = MapObject_GetMovementAction(mapObj);
 
         if (sub_020613D8(code) == 0) {
             if ((TileBehavior_IsVeryTallGrass(v2) == 1) || (TileBehavior_IsVeryTallGrass(v1) == 1)) {
-                Sound_PlayEffect(1619);
+                Sound_PlayEffect(SEQ_SE_DP_KUSA);
             }
         }
     }
@@ -558,7 +558,7 @@ static int sub_0205F808(PlayerAvatar *playerAvatar, int param1)
     MapObject *mapObj = Player_MapObject(playerAvatar);
     int v2 = MapObject_GetMovingDir(mapObj);
 
-    Sound_PlayEffect(1620);
+    Sound_PlayEffect(SEQ_SE_DP_SUNA);
 
     if (v2 == 0) {
         if (PlayerAvatar_GetPlayerState(playerAvatar) == PLAYER_STATE_CYCLING && PlayerAvatar_Speed(playerAvatar) >= 3) {
@@ -615,7 +615,7 @@ static int sub_0205F95C(PlayerAvatar *playerAvatar, int param1)
     int v1 = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
-        Sound_PlayEffect(1622);
+        Sound_PlayEffect(SEQ_SE_DP_DANSA4);
         sub_02060B64(playerAvatar, mapObj, 0x5f, 2);
     } else {
         sub_02060B64(playerAvatar, mapObj, 0x5d, 3);
@@ -633,7 +633,7 @@ static int sub_0205F9AC(PlayerAvatar *playerAvatar, int param1)
     int v1 = MapObject_GetMovingDir(mapObj);
 
     if (PlayerAvatar_CyclingGear(playerAvatar) == 1) {
-        Sound_PlayEffect(1622);
+        Sound_PlayEffect(SEQ_SE_DP_DANSA4);
         sub_02060B64(playerAvatar, mapObj, 0x5e, 2);
     } else {
         sub_02060B64(playerAvatar, mapObj, 0x5c, 2);
@@ -923,7 +923,7 @@ static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(param1, param2);
@@ -960,7 +960,7 @@ static void sub_0205FDC8(PlayerAvatar *playerAvatar, MapObject *param1, int para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(param1, param2);
@@ -1005,7 +1005,7 @@ static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int para
         } else if (v0 != 0) {
             v1 = 0x1c;
             v2 = 1;
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(param1, param2);
         } else {
             PlayerData *player;
@@ -1031,7 +1031,7 @@ static void sub_0205FECC(PlayerAvatar *playerAvatar, MapObject *param1, int para
         } else {
             v1 = 0x1c;
             v2 = 1;
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(param1, param2);
         }
     }
@@ -1052,7 +1052,7 @@ static void sub_0206000C(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
         if (v0 != 0) {
             v1 = param8[param2];
             v2 = 1;
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(mapObj, param9[param2]);
         } else {
             PlayerData *v3;
@@ -1079,7 +1079,7 @@ static void sub_0206000C(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
             v1 = param8[param2];
             v2 = 1;
 
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             MapObject_Turn(mapObj, param9[param2]);
         }
     }
@@ -1182,9 +1182,9 @@ static void PlayerAvatar_TryCyclingGearChange(PlayerAvatar *playerAvatar, u16 pa
             PlayerAvatar_SetCyclingGear(playerAvatar, gear);
 
             if (gear == 0) {
-                Sound_PlayEffect(1564);
+                Sound_PlayEffect(SEQ_SE_DP_GEAR2);
             } else {
-                Sound_PlayEffect(1561);
+                Sound_PlayEffect(SEQ_SE_DP_GEAR);
             }
         }
     }
@@ -1367,7 +1367,7 @@ static void sub_02060570(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(mapObj, param2);
@@ -1430,7 +1430,7 @@ static void sub_020606C8(PlayerAvatar *playerAvatar, MapObject *mapObj, int dir,
         v1 = 1;
 
         if ((v0 & (1 << 3)) == 0) {
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
         }
 
         MapObject_Turn(mapObj, dir);
@@ -1564,7 +1564,7 @@ static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(mapObj, param2);
@@ -1583,7 +1583,7 @@ static void sub_020608E4(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
 
             MapObject_Turn(mapObj, param2);
@@ -1647,7 +1647,7 @@ static void sub_02060AA0(PlayerAvatar *playerAvatar, MapObject *mapObj, int para
         v2 = sub_02065838(param2, 0x1c);
 
         if ((v0 & (1 << 3)) == 0) {
-            Sound_PlayEffect(1537);
+            Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
         }
 
         MapObject_Turn(mapObj, param2);
@@ -2272,7 +2272,7 @@ u32 sub_0206147C(PlayerAvatar *playerAvatar, u16 param1, u16 param2, int param3,
             v0 = 0x1c;
 
             if ((v4 & (1 << 3)) == 0) {
-                Sound_PlayEffect(1537);
+                Sound_PlayEffect(SEQ_SE_DP_WALL_HIT);
             }
         } else {
             switch (param3) {

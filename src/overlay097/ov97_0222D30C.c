@@ -414,7 +414,7 @@ static void ov97_0222D614(void *param0)
         if (ov97_0222D5C8(&v1->unk_8C.unk_50.val1) == 1) {
             (void)0;
         } else {
-            Sound_PlayEffect(1563);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE);
         }
 
         v1->unk_2A48 = NULL;
@@ -890,7 +890,7 @@ static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(Ove
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (param2) {
             v1 = param2(param0);
@@ -901,7 +901,7 @@ static void ov97_0222DF70(OverlayManager *param0, int *param1, int (*param2)(Ove
         }
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (v0) {
             v3 = (static int (*)(OverlayManager *))v0;
@@ -965,7 +965,7 @@ static void ov97_0222E080(OverlayManager *param0, int *param1)
         Window_ClearAndCopyToVRAM(&v0->unk_26E0);
         Window_Remove(&v0->unk_26E0);
         Bg_ClearTilemap(v0->unk_00, 0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
         *param1 = 3;
@@ -1862,7 +1862,7 @@ static void ov97_0222F4BC(SysTask *param0, void *param1)
         ov97_0222F410(v0, 2, 2);
 
         if (v1 || (v5 == ((80 / 4) - 1))) {
-            Sound_PlayEffect(1563);
+            Sound_PlayEffect(SEQ_SE_DP_SAVE);
             v0->unk_00 = 5;
             ov97_0222E7B4(v0);
             ov97_0222E60C(v0);
@@ -2101,7 +2101,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
                 ov97_02238194(v3->unk_00, v2);
                 v3->unk_2A54 = 2;
             } else {
-                Sound_PlayEffect(1572);
+                Sound_PlayEffect(SEQ_SE_DP_UG_020);
             }
 
             *param1 = 35;
@@ -2248,13 +2248,13 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             ov97_0222D30C(v3, 0);
             ov97_0222D2DC();
             sub_02039794();
-            Sound_PlayEffect(1572);
+            Sound_PlayEffect(SEQ_SE_DP_UG_020);
             ov97_0222D40C(v3, -1);
             *param1 = ov97_0222E228(param0, &v3->unk_18, 8, 55);
         }
         break;
     case 16:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov97_0222DE78(param0, &v3->unk_18, 24);
         ov97_0222D444(&v3->unk_58, 0);
         *param1 = 18;
@@ -2266,14 +2266,14 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         }
 
         ov97_0222D30C(v3, 0);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov97_0222DE78(param0, &v3->unk_18, 23);
         ov97_0222D444(&v3->unk_58, 0);
         *param1 = 18;
         break;
     case 18:
         if (gSystem.pressedKeys) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
             *param1 = 3;
         }
@@ -2335,7 +2335,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
             v3->unk_43C = 1;
             ov97_0222D30C(v3, 0);
             ov97_0222D40C(v3, -1);
-            Sound_PlayEffect(1572);
+            Sound_PlayEffect(SEQ_SE_DP_UG_020);
             *param1 = ov97_0222E228(param0, &v3->unk_18, 8, 25);
         } else if (ov97_02238528() == 3) {
             ov97_0222D40C(v3, -1);
@@ -2383,7 +2383,7 @@ static int ov97_0222F75C(OverlayManager *param0, int *param1)
         break;
     case 55:
         if (gSystem.pressedKeys) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (v3->unk_8C.unk_00.unk_4E_2 == 1) {
                 ov97_02237790(0, 56, v3->unk_163C, 2);

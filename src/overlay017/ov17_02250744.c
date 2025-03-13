@@ -602,7 +602,7 @@ void ov17_0225131C(UnkStruct_ov17_0224FCA0 *param0, int param1, int param2)
 {
     ManagedSprite_SetAnim(param0->unk_10.unk_138[param1], param2);
     ManagedSprite_SetDrawFlag(param0->unk_10.unk_138[param1], 1);
-    Sound_PlayEffect(1501);
+    Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 }
 
 void ov17_02251344(UnkStruct_ov17_0224FCA0 *param0, NARC *param1)

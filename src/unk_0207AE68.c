@@ -319,7 +319,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 PokemonSprite_StartFade(param0->unk_1C[1], 0, 16, 4, 0x7fff);
 
                 GF_ASSERT(Heap_FndGetTotalFreeSizeForExpHeap(param0->unk_5C) > 0x8000);
-                Sound_PlayEffect(1529);
+                Sound_PlayEffect(SEQ_SE_DP_W025);
             }
             param0->unk_66 = 40;
             param0->unk_64++;
@@ -338,7 +338,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             sub_0207C8C4(param0->unk_30, 8);
             sub_0207C8C4(param0->unk_30, 9);
             sub_0207C8C4(param0->unk_30, 11);
-            Sound_PlayEffect(1530);
+            Sound_PlayEffect(SEQ_SE_DP_W060C);
             param0->unk_70 = 0x10;
             param0->unk_71 = 8;
             param0->unk_64++;
@@ -356,7 +356,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
             PokemonSprite_SetAttribute(param0->unk_1C[0], MON_SPRITE_SCALE_Y, 0x0);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_X, 0x100);
             PokemonSprite_SetAttribute(param0->unk_1C[1], MON_SPRITE_SCALE_Y, 0x100);
-            Sound_PlayEffect(1531);
+            Sound_PlayEffect(SEQ_SE_DP_W062);
             param0->unk_70 = 0;
             param0->unk_66 = 8;
             param0->unk_64++;
@@ -373,7 +373,7 @@ static void sub_0207B180(UnkStruct_0207AE68 *param0)
                 sub_0207C8C4(param0->unk_30, 12);
                 PaletteData_StartFade(param0->unk_14, (0x1 | 0x2 | 0x4 | 0x8), (0xc00 ^ 0xffff), 4, 16, 0, 0x7fff);
                 PokemonSpriteManager_StartFadeAll(param0->unk_18, 16, 0, 3, 0x7fff);
-                Sound_PlayEffect(1532);
+                Sound_PlayEffect(SEQ_SE_DP_W080);
                 param0->unk_64++;
             }
         }
@@ -995,7 +995,7 @@ static BOOL sub_0207C5CC(TextPrinterTemplate *param0, u16 param1)
         sub_02006150(1156);
         break;
     case 4:
-        Sound_PlayEffect(1510);
+        Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 5:
         sub_02006150(1155);

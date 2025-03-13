@@ -85,7 +85,7 @@ void ov5_021F5634(FieldSystem *fieldSystem, int param1, int param2, int param3)
     v1 = 0;
 
     ov5_021DF72C(v2.unk_00, &Unk_ov5_02200B1C, &v3, v1, &v2, 0xff);
-    Sound_PlayEffect(1545);
+    Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
 }
 
 static int ov5_021F5684(UnkStruct_ov101_021D5D90 *param0, void *param1)

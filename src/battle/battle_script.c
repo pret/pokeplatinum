@@ -10,7 +10,6 @@
 #include "constants/trainer.h"
 #include "generated/abilities.h"
 #include "generated/genders.h"
-#include "generated/sdat.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_decls/pc_boxes_decl.h"
@@ -10582,7 +10581,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v2->ballRotation = ov12_02237728(&v7);
                 v2->seqNum = 1;
 
-                Sound_PlayEffect(1802);
+                Sound_PlayEffect(SEQ_SE_DP_NAGERU);
                 v2->battleSys->unk_241E++;
                 ov12_022368C8(v2->ballRotation, 0);
             }
@@ -10597,7 +10596,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     v8->unk_84 = NULL;
                     v2->seqNum = 1;
 
-                    Sound_PlayEffect(1802);
+                    Sound_PlayEffect(SEQ_SE_DP_NAGERU);
                     v2->battleSys->unk_241E++;
                     ov12_022368C8(v2->ballRotation, 0);
                 }
@@ -10774,7 +10773,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             if (gSystem.pressedKeys & PAD_BUTTON_A) {
                 v2->seqNum = 14;
             } else if (TouchScreen_Tapped()) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 v2->seqNum = 14;
             }
 

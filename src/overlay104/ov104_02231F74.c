@@ -432,7 +432,7 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
 {
     int v0;
 
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
 
     Menu_Free(param0->unk_B0, NULL);
     Window_EraseStandardFrame(param0->unk_A4.window, 0);
@@ -626,7 +626,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v2->unk_1B4, &v2->unk_2D4);
 
     if (v0 != v2->unk_2D4) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     if ((gSystem.pressedKeysRepeatable & PAD_KEY_UP) || (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) || (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) || (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT)) {
@@ -641,7 +641,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
             break;
         case 0xfffffffe:
             if (v2->unk_97_0 == 1) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 *v2->unk_A0 = 0xfffe;
 
                 ov104_02232A58(param1, 1);
@@ -649,7 +649,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
 
             break;
         default:
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             *v2->unk_A0 = v1;
 
             ov104_02232A58(param1, 1);
@@ -665,7 +665,7 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
     int v0;
 
     if (param1 == 1) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     ListMenu_Free(param0->unk_1B4, NULL, NULL);

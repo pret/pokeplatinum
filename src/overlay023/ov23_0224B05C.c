@@ -1583,7 +1583,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         sub_0200F2C0();
         StartScreenTransition(2, 16, 18, 0x0, 6, 1, HEAP_ID_FIELD);
         ov23_0224942C(fieldSystem->unk_6C);
-        Sound_PlayEffect(1539);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         v1->unk_0C++;
         break;
     case 2:
@@ -1667,7 +1667,7 @@ static BOOL ov23_0224C790(FieldTask *param0)
         PlayerAvatar_SetAnimationCode(fieldSystem->playerAvatar, sub_02065838(1, 0x24), 1);
         CommPlayer_SetDir(1);
         ov23_02253F40(ov23_0224219C(), 68, 0, NULL);
-        Sound_PlayEffect(1540);
+        Sound_PlayEffect(SEQ_SE_DP_DOOR);
         v1->unk_0C = 12;
         break;
     case 12:
@@ -1752,7 +1752,7 @@ static void ov23_0224CB1C(SysTask *param0, void *param1)
     }
         sub_020594FC();
         ov23_02254098(ov23_0224219C(), 33);
-        Sound_PlayEffect(1566);
+        Sound_PlayEffect(SEQ_SE_DP_DORIRU);
 
         ov5_021F58FC(Player_MapObject(fieldSystem->playerAvatar), 0, 0, 0);
         ov23_02253F40(ov23_0224219C(), 33, 0, NULL);
@@ -2354,7 +2354,7 @@ static void ov23_0224D5BC(SysTask *param0, void *param1)
     case 0:
         sub_020594FC();
         ov23_02253F40(ov23_022421AC(), 7, 0, NULL);
-        Sound_PlayEffect(1507);
+        Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
         v0->unk_00 = 1;
         break;
     case 1:

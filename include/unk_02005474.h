@@ -2,6 +2,7 @@
 #define POKEPLATINUM_UNK_02005474_H
 
 #include "constants/sound.h"
+#include "generated/sdat.h"
 
 BOOL sub_02005474(u16 param0);
 BOOL Sound_PlayBGM(u16 param0);

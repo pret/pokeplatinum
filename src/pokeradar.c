@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/battle.h"
-#include "generated/sdat.h"
 
 #include "struct_defs/radar_chain_records.h"
 #include "struct_defs/struct_0201CFEC.h"

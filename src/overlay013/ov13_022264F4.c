@@ -245,14 +245,14 @@ static u8 ov13_02226760(UnkStruct_ov13_02227244 *param0)
         case 1:
         case 2:
         case 3:
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->unk_114D = (u8)v0;
             param0->unk_114B = 5;
             ov13_0222880C(param0, 0 + v0 - 0, 0);
             return 11;
         case 4:
             if (param0->unk_00->unk_20 != 0) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 param0->unk_114D = param0->unk_00->unk_1F;
                 param0->unk_114B = 6;
                 ov13_02227A7C(param0);
@@ -261,7 +261,7 @@ static u8 ov13_02226760(UnkStruct_ov13_02227244 *param0)
             }
             break;
         case 5:
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->unk_00->unk_1C = 0;
             param0->unk_00->unk_1E = 4;
             ov13_0222880C(param0, 5, 0);
@@ -295,7 +295,7 @@ static u8 ov13_02226838(UnkStruct_ov13_02227244 *param0)
         case 4:
         case 5:
             if (ov13_02227BA8(param0, v0) != 0) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 param0->unk_00->unk_27[param0->unk_114D] = (u8)v0;
                 param0->unk_114B = 6;
                 ov13_0222880C(param0, 6 + v0, 0);
@@ -304,7 +304,7 @@ static u8 ov13_02226838(UnkStruct_ov13_02227244 *param0)
             break;
         case 6:
             if (param0->unk_1154[param0->unk_114D] != 0) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 param0->unk_114B = 7;
                 param0->unk_114E = -1;
                 ov13_0222880C(param0, 12, 0);
@@ -313,7 +313,7 @@ static u8 ov13_02226838(UnkStruct_ov13_02227244 *param0)
             break;
         case 7:
             if (param0->unk_1154[param0->unk_114D] != 0) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 param0->unk_114B = 7;
                 param0->unk_114E = 1;
                 ov13_0222880C(param0, 13, 0);
@@ -321,7 +321,7 @@ static u8 ov13_02226838(UnkStruct_ov13_02227244 *param0)
             }
             break;
         case 8:
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->unk_114B = 4;
             ov13_0222880C(param0, 14, 0);
             return 11;
@@ -371,13 +371,13 @@ static u8 ov13_022269C0(UnkStruct_ov13_02227244 *param0)
 
         switch (v0) {
         case 0:
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->unk_00->unk_1C = ov13_02227BA8(param0, param0->unk_00->unk_27[param0->unk_114D]);
             param0->unk_00->unk_1E = param0->unk_114D;
             ov13_0222880C(param0, 15, 0);
             return ov13_02226A5C(param0);
         case 1:
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->unk_114B = 5;
             ov13_0222880C(param0, 16, 0);
             return 11;
@@ -580,7 +580,7 @@ static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0)
     case 0:
 
         if (ov16_0226DFD4(param0->unk_38) == 1) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->unk_114D = 2;
             param0->unk_114B = 12;
             ov13_0222880C(param0, 2, 0);
@@ -597,7 +597,7 @@ static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0)
         break;
     case 2:
         if (ov16_0226DFD4(param0->unk_38) == 1) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->unk_00->unk_27[param0->unk_114D] = 0;
             param0->unk_114B = 12;
             ov13_0222880C(param0, 6, 0);
@@ -614,7 +614,7 @@ static u8 ov13_02226D94(UnkStruct_ov13_02227244 *param0)
         break;
     case 4:
         if (ov16_0226DFD4(param0->unk_38) == 1) {
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             param0->unk_00->unk_1C = ov13_02227BA8(param0, param0->unk_00->unk_27[param0->unk_114D]);
             param0->unk_00->unk_1E = param0->unk_114D;
             ov13_0222880C(param0, 15, 0);

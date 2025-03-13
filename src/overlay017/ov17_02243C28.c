@@ -257,7 +257,7 @@ static void ov17_02243E2C(SysTask *param0, void *param1)
             ov17_02242E5C(v0->unk_00, v0->unk_18, &v0->unk_12, NULL);
         }
 
-        Sound_PlayEffect(1785);
+        Sound_PlayEffect(SEQ_SE_DP_CON_032);
         v0->unk_0C++;
         break;
     case 1:
@@ -349,7 +349,7 @@ static void ov17_02243F68(SysTask *param0, void *param1)
 
     case 2:
         if (v0->unk_15 == v0->unk_00->unk_00->unk_00.unk_113) {
-            Sound_PlayEffect(1784);
+            Sound_PlayEffect(SEQ_SE_DP_CON_031);
         }
 
         v0->unk_14++;
@@ -839,7 +839,7 @@ static void ov17_022449B8(SysTask *param0, void *param1)
         }
 
         if ((v0->unk_00->unk_220.unk_00 + 1 == 4) && (v0->unk_0E == 0)) {
-            Sound_PlayEffect(1782);
+            Sound_PlayEffect(SEQ_SE_DP_CON_029);
             v0->unk_0E++;
         }
 
@@ -857,7 +857,7 @@ static void ov17_022449B8(SysTask *param0, void *param1)
 
         if (v1 != 0xffffffff) {
             v0->unk_10.unk_00 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_MOVE1 + v1, NULL);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             v0->unk_0C++;
         }
         break;
@@ -894,7 +894,7 @@ static void ov17_022449B8(SysTask *param0, void *param1)
 
         if (v1 != 0xffffffff) {
             v0->unk_10.unk_02 = v1;
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             v0->unk_0C++;
         }
         break;
@@ -1103,7 +1103,7 @@ static void ov17_02244D98(SysTask *param0, void *param1)
             if (v0->unk_14.unk_10.unk_B3[v4] <= v3) {
                 v2++;
                 ov17_022424D4(&v0->unk_00->unk_0C, v4, v3);
-                Sound_PlayEffect(1759);
+                Sound_PlayEffect(SEQ_SE_DP_CON_001);
             }
         }
 
@@ -1133,7 +1133,7 @@ static void ov17_02244D98(SysTask *param0, void *param1)
 
             if ((v0->unk_14.unk_10.unk_00[v6].unk_28_4 != v0->unk_14.unk_10.unk_00[v6].unk_28_8) || (v0->unk_14.unk_10.unk_00[v6].unk_28_6 != v0->unk_14.unk_10.unk_00[v6].unk_28_10)) {
                 ov17_022430AC(&v0->unk_00->unk_0C, v5, v0->unk_14.unk_10.unk_00[v6].unk_28_6);
-                Sound_PlayEffect(1762);
+                Sound_PlayEffect(SEQ_SE_DP_CON_004);
             }
         }
     }
@@ -1334,7 +1334,7 @@ static void ov17_0224519C(SysTask *param0, void *param1)
             } else {
                 v0->unk_F4 -= 10;
                 ov17_022424D4(&v0->unk_00->unk_0C, v1->unk_03, v0->unk_F4);
-                Sound_PlayEffect(1759);
+                Sound_PlayEffect(SEQ_SE_DP_CON_001);
             }
 
             v0->unk_0C++;
@@ -1569,16 +1569,16 @@ static void ov17_022456E8(SysTask *param0, void *param1)
 
         if (v1->unk_09 == 0) {
             v5 = 4;
-            Sound_PlayEffect(1776);
+            Sound_PlayEffect(SEQ_SE_DP_CON_023);
         } else if (v1->unk_09 == 1) {
             v5 = 5;
-            Sound_PlayEffect(1775);
+            Sound_PlayEffect(SEQ_SE_DP_CON_022);
         } else if (v1->unk_09 == 2) {
             v5 = 6;
-            Sound_PlayEffect(1774);
+            Sound_PlayEffect(SEQ_SE_DP_CON_021);
         } else {
             v0->unk_0C = 3;
-            Sound_PlayEffect(1759);
+            Sound_PlayEffect(SEQ_SE_DP_CON_001);
             break;
         }
 
