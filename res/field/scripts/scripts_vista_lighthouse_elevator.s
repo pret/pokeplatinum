@@ -9,7 +9,7 @@ _0006:
     LockAll
     ApplyMovement LOCALID_PLAYER, _00B8
     WaitMovement
-    ScrCmd_11C 0x40CE
+    GetElevatorFloorsAbove 0x40CE
     SetVar 0x8008, 0x40CE
     GoToIfEq 0x8008, 1, _0038
     GoToIfEq 0x8008, 0, _006A

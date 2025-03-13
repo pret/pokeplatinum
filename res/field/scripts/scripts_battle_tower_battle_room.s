@@ -148,12 +148,12 @@ _0241:
     ScrCmd_1DD 33, 0, 0x8004
     BufferNumber 0, 0x8004
     Message 1
-    ScrCmd_044 31, 11, 0, 0, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_046 146, 0xFF, 0
-    ScrCmd_046 147, 0xFF, 1
-    ScrCmd_046 148, 0xFF, 2
-    ScrCmd_047
+    InitCommonStrings2ListMenuBuilder 31, 11, 0, FALSE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddListMenuEntry 146, LIST_MENU_ENTRY_NO_ALT_TEXT, 0
+    AddListMenuEntry 147, LIST_MENU_ENTRY_NO_ALT_TEXT, 1
+    AddListMenuEntry 148, LIST_MENU_ENTRY_NO_ALT_TEXT, 2
+    FinishAndShowListMenu
     CloseMessage
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _02AD
@@ -194,12 +194,12 @@ _02F7:
 
 _0336:
     Message 14
-    ScrCmd_044 31, 11, 0, 0, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_046 146, 0xFF, 0
-    ScrCmd_046 147, 0xFF, 1
-    ScrCmd_046 148, 0xFF, 2
-    ScrCmd_047
+    InitCommonStrings2ListMenuBuilder 31, 11, 0, FALSE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddListMenuEntry 146, LIST_MENU_ENTRY_NO_ALT_TEXT, 0
+    AddListMenuEntry 147, LIST_MENU_ENTRY_NO_ALT_TEXT, 1
+    AddListMenuEntry 148, LIST_MENU_ENTRY_NO_ALT_TEXT, 2
+    FinishAndShowListMenu
     CloseMessage
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0395

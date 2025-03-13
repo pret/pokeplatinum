@@ -483,14 +483,14 @@ _0685:
 
 _0696:
     Message 42
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 180, 0
-    ScrCmd_042 181, 1
-    ScrCmd_042 182, 2
-    ScrCmd_042 183, 3
-    ScrCmd_042 184, 4
-    ScrCmd_042 12, 5
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 180, 0
+    AddMenuEntrySmallStringID 181, 1
+    AddMenuEntrySmallStringID 182, 2
+    AddMenuEntrySmallStringID 183, 3
+    AddMenuEntrySmallStringID 184, 4
+    AddMenuEntrySmallStringID 12, 5
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _070A
     GoToIfEq 0x8008, 1, _0715

@@ -10,7 +10,7 @@ _0006:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_11C 0x40CE
+    GetElevatorFloorsAbove 0x40CE
     SetVar 0x8008, 0x40CE
     GoToIfEq 0x8008, 0, _0034
     GoToIfEq 0x8008, 1, _003E
@@ -27,11 +27,11 @@ _003E:
 _0048:
     ScrCmd_11D 20, 1, 0x40CE, 0x40CE
     Message 0
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 117, 0
-    ScrCmd_042 116, 1
-    ScrCmd_042 124, 2
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 117, 0
+    AddMenuEntrySmallStringID 116, 1
+    AddMenuEntrySmallStringID 124, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _008F
     GoToIfEq 0x8008, 1, _00CA
@@ -39,7 +39,7 @@ _0048:
 
 _008F:
     WaitTime 1, 0x800C
-    ScrCmd_11C 0x40CE
+    GetElevatorFloorsAbove 0x40CE
     ScrCmd_11B 0x1CE, 0, 18, 2, 1
     GoToIfEq 0x40CE, 0, _0164
     SetVar 0x8004, 0
@@ -49,7 +49,7 @@ _008F:
 
 _00CA:
     WaitTime 1, 0x800C
-    ScrCmd_11C 0x40CE
+    GetElevatorFloorsAbove 0x40CE
     ScrCmd_11B 0x1CD, 1, 18, 2, 1
     GoToIfEq 0x40CE, 1, _0164
     SetVar 0x8004, 1

@@ -61,16 +61,16 @@ _00D0:
     End
 
 _00EA:
-    ScrCmd_040 31, 3, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 165, 0
-    ScrCmd_042 56, 1
-    ScrCmd_042 49, 2
-    ScrCmd_042 22, 3
-    ScrCmd_042 140, 4
-    ScrCmd_042 139, 5
-    ScrCmd_042 23, 99
-    ScrCmd_2B9
+    InitCommonStrings2MenuBuilder 31, 3, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 165, 0
+    AddMenuEntrySmallStringID 56, 1
+    AddMenuEntrySmallStringID 49, 2
+    AddMenuEntrySmallStringID 22, 3
+    AddMenuEntrySmallStringID 140, 4
+    AddMenuEntrySmallStringID 139, 5
+    AddMenuEntrySmallStringID 23, 99
+    FinishAndShowUnionRoomInteractionMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0182
     GoToIfEq 0x8008, 1, _0334
@@ -784,12 +784,12 @@ _0BF3:
     CallIfSet 187, _0C50
     CallIfUnset 187, _0C55
     SetFlag 187
-    ScrCmd_040 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 10, 0
-    ScrCmd_042 166, 1
-    ScrCmd_042 23, 2
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 31, 11, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 10, 0
+    AddMenuEntrySmallStringID 166, 1
+    AddMenuEntrySmallStringID 23, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0C72
     GoToIfEq 0x8008, 1, _0C5A
@@ -818,16 +818,16 @@ _0C6A:
 
 _0C72:
     Message 159
-    ScrCmd_040 31, 3, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 49, 0
-    ScrCmd_042 22, 1
-    ScrCmd_042 140, 2
-    ScrCmd_042 56, 3
-    ScrCmd_042 167, 4
-    ScrCmd_042 139, 5
-    ScrCmd_042 12, 6
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 31, 3, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 49, 0
+    AddMenuEntrySmallStringID 22, 1
+    AddMenuEntrySmallStringID 140, 2
+    AddMenuEntrySmallStringID 56, 3
+    AddMenuEntrySmallStringID 167, 4
+    AddMenuEntrySmallStringID 139, 5
+    AddMenuEntrySmallStringID 12, 6
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0CFA
     GoToIfEq 0x8008, 1, _0D05

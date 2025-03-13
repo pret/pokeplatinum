@@ -53,13 +53,13 @@ _006C:
 _0078:
     Message 3
     ScrCmd_154
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 50, 0
-    ScrCmd_042 51, 1
-    ScrCmd_042 52, 2
-    ScrCmd_042 53, 3
-    ScrCmd_042 43, 4
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 50, 0
+    AddMenuEntrySmallStringID 51, 1
+    AddMenuEntrySmallStringID 52, 2
+    AddMenuEntrySmallStringID 53, 3
+    AddMenuEntrySmallStringID 43, 4
+    FinishAndShowMenu
     SetVar 0x8004, 0x800C
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 4, _00E9

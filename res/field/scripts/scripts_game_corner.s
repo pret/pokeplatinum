@@ -123,11 +123,11 @@ _0198:
     ScrCmd_072 20, 7
 _01A4:
     Message 2
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 125, 0
-    ScrCmd_042 126, 1
-    ScrCmd_042 127, 2
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 125, 0
+    AddMenuEntrySmallStringID 126, 1
+    AddMenuEntrySmallStringID 127, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _01E3
     GoToIfEq 0x8008, 1, _0240

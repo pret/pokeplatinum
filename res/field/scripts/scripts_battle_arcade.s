@@ -60,9 +60,9 @@ _009D:
 _00C3:
     CallIfEq 0x4004, 0, _0682
     CallIfEq 0x4004, 1, _069A
-    ScrCmd_042 41, 2
-    ScrCmd_042 42, 3
-    ScrCmd_043
+    AddMenuEntrySmallStringID 41, 2
+    AddMenuEntrySmallStringID 42, 3
+    FinishAndShowMenu
     GoToIfEq 0x800C, 0, _015E
     GoToIfEq 0x800C, 1, _018B
     GoToIfEq 0x800C, 2, _0123
@@ -167,12 +167,12 @@ _02A3:
 
 _02F1:
     Message 43
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 30, 1, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 13, 0
+    AddMenuEntrySmallStringID 14, 1
+    AddMenuEntrySmallStringID 5, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0335
     GoToIfEq 0x8008, 1, _0389
@@ -421,17 +421,17 @@ _067D:
     Return
 
 _0682:
-    ScrCmd_041 31, 9, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 38, 0
-    ScrCmd_042 39, 1
+    InitLocalTextBankMenuBuilder 31, 9, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 38, 0
+    AddMenuEntrySmallStringID 39, 1
     Message 1
     Return
 
 _069A:
-    ScrCmd_041 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 40, 4
+    InitLocalTextBankMenuBuilder 31, 11, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 40, 4
     Message 4
     Return
 

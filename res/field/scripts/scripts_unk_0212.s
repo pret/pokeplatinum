@@ -200,11 +200,11 @@ _023A:
 _0250:
     Message 12
 _0253:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 8, 0
-    ScrCmd_042 9, 1
-    ScrCmd_042 10, 2
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 8, 0
+    AddMenuEntrySmallStringID 9, 1
+    AddMenuEntrySmallStringID 10, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _02A8
     GoToIfEq 0x8008, 1, _02F0
@@ -252,12 +252,12 @@ _0305:
 _030E:
     Message 5
 _0311:
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 96, 0
-    ScrCmd_042 97, 1
-    ScrCmd_042 98, 2
-    ScrCmd_042 99, 3
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 96, 0
+    AddMenuEntrySmallStringID 97, 1
+    AddMenuEntrySmallStringID 98, 2
+    AddMenuEntrySmallStringID 99, 3
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0360
     GoToIfEq 0x8008, 1, _0368
@@ -282,13 +282,13 @@ _0373:
 _037E:
     Message 117
 _0381:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 36, 0
-    ScrCmd_042 37, 1
-    ScrCmd_042 38, 2
-    ScrCmd_042 39, 3
-    ScrCmd_042 40, 4
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 36, 0
+    AddMenuEntrySmallStringID 37, 1
+    AddMenuEntrySmallStringID 38, 2
+    AddMenuEntrySmallStringID 39, 3
+    AddMenuEntrySmallStringID 40, 4
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _03E1
     GoToIfEq 0x8008, 1, _03EC
@@ -319,13 +319,13 @@ _0402:
 
 _040D:
     Message 27
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 105, 0
-    ScrCmd_042 106, 1
-    ScrCmd_042 107, 2
-    ScrCmd_042 108, 3
-    ScrCmd_042 109, 4
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 105, 0
+    AddMenuEntrySmallStringID 106, 1
+    AddMenuEntrySmallStringID 107, 2
+    AddMenuEntrySmallStringID 108, 3
+    AddMenuEntrySmallStringID 109, 4
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0470
     GoToIfEq 0x8008, 1, _047E
@@ -356,14 +356,14 @@ _049A:
 
 _04A8:
     Message 28
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 110, 0
-    ScrCmd_042 111, 1
-    ScrCmd_042 112, 2
-    ScrCmd_042 113, 3
-    ScrCmd_042 114, 4
-    ScrCmd_042 115, 5
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 110, 0
+    AddMenuEntrySmallStringID 111, 1
+    AddMenuEntrySmallStringID 112, 2
+    AddMenuEntrySmallStringID 113, 3
+    AddMenuEntrySmallStringID 114, 4
+    AddMenuEntrySmallStringID 115, 5
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _051C
     GoToIfEq 0x8008, 1, _052A
@@ -445,12 +445,12 @@ _0610:
 
 _0625:
     Message 219
-    ScrCmd_040 30, 1, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 5, 2
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 30, 1, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 13, 0
+    AddMenuEntrySmallStringID 14, 1
+    AddMenuEntrySmallStringID 5, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0669
     GoToIfEq 0x8008, 1, _06BB
@@ -1029,11 +1029,11 @@ _0E74:
 
 _0E93:
     Message 112
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 113, 0
-    ScrCmd_042 114, 1
-    ScrCmd_042 115, 2
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 113, 0
+    AddMenuEntrySmallStringID 114, 1
+    AddMenuEntrySmallStringID 115, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0EE1
     GoToIfEq 0x8008, 1, _1169
@@ -1042,12 +1042,12 @@ _0E93:
     End
 
 _0EE1:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 155, 0
-    ScrCmd_042 156, 1
-    ScrCmd_042 157, 2
-    ScrCmd_042 158, 3
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 155, 0
+    AddMenuEntrySmallStringID 156, 1
+    AddMenuEntrySmallStringID 157, 2
+    AddMenuEntrySmallStringID 158, 3
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0F30
     GoToIfEq 0x8008, 1, _0F44
@@ -1256,14 +1256,14 @@ _1027:
 
 _103A:
     Message 160
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 161, 0
-    ScrCmd_042 162, 1
-    ScrCmd_042 163, 2
-    ScrCmd_042 164, 3
-    ScrCmd_042 165, 4
-    ScrCmd_042 166, 5
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 161, 0
+    AddMenuEntrySmallStringID 162, 1
+    AddMenuEntrySmallStringID 163, 2
+    AddMenuEntrySmallStringID 164, 3
+    AddMenuEntrySmallStringID 165, 4
+    AddMenuEntrySmallStringID 166, 5
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _10AE
     GoToIfEq 0x8008, 1, _10BC
@@ -1330,13 +1330,13 @@ _1146:
 _1169:
     Message 117
 _116C:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 121, 0
-    ScrCmd_042 118, 1
-    ScrCmd_042 119, 2
-    ScrCmd_042 120, 3
-    ScrCmd_042 122, 4
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 121, 0
+    AddMenuEntrySmallStringID 118, 1
+    AddMenuEntrySmallStringID 119, 2
+    AddMenuEntrySmallStringID 120, 3
+    AddMenuEntrySmallStringID 122, 4
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _1375
     GoToIfEq 0x8008, 1, _11CF
@@ -1348,12 +1348,12 @@ _116C:
 _11CC:
     Message 117
 _11CF:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 125, 0
-    ScrCmd_042 126, 1
-    ScrCmd_042 127, 2
-    ScrCmd_042 129, 3
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 125, 0
+    AddMenuEntrySmallStringID 126, 1
+    AddMenuEntrySmallStringID 127, 2
+    AddMenuEntrySmallStringID 129, 3
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _121E
     GoToIfEq 0x8008, 1, _1229
@@ -1383,13 +1383,13 @@ _123F:
 _1247:
     Message 117
 _124A:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 135, 0
-    ScrCmd_042 136, 1
-    ScrCmd_042 137, 2
-    ScrCmd_042 138, 3
-    ScrCmd_042 139, 4
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 135, 0
+    AddMenuEntrySmallStringID 136, 1
+    AddMenuEntrySmallStringID 137, 2
+    AddMenuEntrySmallStringID 138, 3
+    AddMenuEntrySmallStringID 139, 4
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _12AA
     GoToIfEq 0x8008, 1, _12B5
@@ -1425,13 +1425,13 @@ _12D6:
 _12DE:
     Message 117
 _12E1:
-    ScrCmd_041 1, 1, 0, 1, 0x800C
-    ScrCmd_042 145, 0
-    ScrCmd_042 146, 1
-    ScrCmd_042 147, 2
-    ScrCmd_042 148, 3
-    ScrCmd_042 149, 4
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 145, 0
+    AddMenuEntrySmallStringID 146, 1
+    AddMenuEntrySmallStringID 147, 2
+    AddMenuEntrySmallStringID 148, 3
+    AddMenuEntrySmallStringID 149, 4
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _1341
     GoToIfEq 0x8008, 1, _134C

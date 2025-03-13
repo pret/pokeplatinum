@@ -138,12 +138,12 @@ _0105:
 
 _0119:
     Message 11
-    ScrCmd_041 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 13, 0
-    ScrCmd_042 14, 1
-    ScrCmd_042 15, 2
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 31, 11, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 13, 0
+    AddMenuEntrySmallStringID 14, 1
+    AddMenuEntrySmallStringID 15, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0163
     GoToIfEq 0x8008, 1, _0184

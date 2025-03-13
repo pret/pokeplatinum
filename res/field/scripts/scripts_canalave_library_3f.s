@@ -530,12 +530,12 @@ _0616:
     LockAll
     Message 52
     Message 53
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_29D 0x103, 0
-    ScrCmd_29D 0x104, 1
-    ScrCmd_29D 0x105, 2
-    ScrCmd_29D 0x106, 3
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntryLargeStringID 0x103, 0
+    AddMenuEntryLargeStringID 0x104, 1
+    AddMenuEntryLargeStringID 0x105, 2
+    AddMenuEntryLargeStringID 0x106, 3
+    FinishAndShowMenu
     GoToIfEq 0x800C, 0, _0673
     GoToIfEq 0x800C, 1, _067E
     GoToIfEq 0x800C, 2, _0689

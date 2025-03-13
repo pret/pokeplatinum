@@ -119,12 +119,12 @@ _00FE:
     FacePlayer
     ScrCmd_072 20, 2
     Message 8
-    ScrCmd_041 31, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 14, 0
-    ScrCmd_042 15, 1
-    ScrCmd_042 16, 2
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 31, 11, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 14, 0
+    AddMenuEntrySmallStringID 15, 1
+    AddMenuEntrySmallStringID 16, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0150
     GoToIfEq 0x8008, 1, _018F
@@ -447,19 +447,19 @@ _0677:
 
 _0697:
     Message 18
-    ScrCmd_045 1, 1, 0, 1, 0x800C
-    ScrCmd_046 25, 0xFF, 0
-    ScrCmd_046 26, 0xFF, 1
-    ScrCmd_046 27, 0xFF, 2
-    ScrCmd_046 28, 0xFF, 3
-    ScrCmd_046 29, 0xFF, 4
-    ScrCmd_046 30, 0xFF, 5
-    ScrCmd_046 31, 0xFF, 6
-    ScrCmd_046 32, 0xFF, 7
-    ScrCmd_046 33, 0xFF, 8
-    ScrCmd_046 34, 0xFF, 9
-    ScrCmd_046 35, 0xFF, 10
-    ScrCmd_047
+    InitLocalTextBankListMenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddListMenuEntry 25, LIST_MENU_ENTRY_NO_ALT_TEXT, 0
+    AddListMenuEntry 26, LIST_MENU_ENTRY_NO_ALT_TEXT, 1
+    AddListMenuEntry 27, LIST_MENU_ENTRY_NO_ALT_TEXT, 2
+    AddListMenuEntry 28, LIST_MENU_ENTRY_NO_ALT_TEXT, 3
+    AddListMenuEntry 29, LIST_MENU_ENTRY_NO_ALT_TEXT, 4
+    AddListMenuEntry 30, LIST_MENU_ENTRY_NO_ALT_TEXT, 5
+    AddListMenuEntry 31, LIST_MENU_ENTRY_NO_ALT_TEXT, 6
+    AddListMenuEntry 32, LIST_MENU_ENTRY_NO_ALT_TEXT, 7
+    AddListMenuEntry 33, LIST_MENU_ENTRY_NO_ALT_TEXT, 8
+    AddListMenuEntry 34, LIST_MENU_ENTRY_NO_ALT_TEXT, 9
+    AddListMenuEntry 35, LIST_MENU_ENTRY_NO_ALT_TEXT, 10
+    FinishAndShowListMenu
     Return
 
 _06FE:

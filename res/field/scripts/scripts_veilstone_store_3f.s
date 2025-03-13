@@ -19,20 +19,20 @@ _001E:
     CheckIsDepartmentStoreRegular 0x800C
     GoToIfEq 0x800C, TRUE, _005F
     Message 0
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 229, 1
-    ScrCmd_042 228, 0
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 229, 1
+    AddMenuEntrySmallStringID 228, 0
+    FinishAndShowMenu
     GoToIfEq 0x800C, 1, _00C2
     GoTo _00B7
 
 _005F:
     BufferPlayerName 0
     Message 1
-    ScrCmd_040 1, 1, 0, 1, 0x800C
-    ScrCmd_042 229, 0
-    ScrCmd_042 228, 1
-    ScrCmd_043
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x800C
+    AddMenuEntrySmallStringID 229, 0
+    AddMenuEntrySmallStringID 228, 1
+    FinishAndShowMenu
     GoToIfNe 0x800C, 0, _00B7
     GetRandom2 0x800C, 4
     GoToIfEq 0x800C, 0, _00C2

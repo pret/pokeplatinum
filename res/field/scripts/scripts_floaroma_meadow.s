@@ -176,12 +176,12 @@ _01DA:
     End
 
 _01F3:
-    ScrCmd_041 30, 11, 0, 1, 0x800C
-    ScrCmd_33A 1
-    ScrCmd_042 15, 0
-    ScrCmd_042 16, 1
-    ScrCmd_042 17, 2
-    ScrCmd_043
+    InitLocalTextBankMenuBuilder 30, 11, 0, TRUE, 0x800C
+    SetMenuHorizontalAnchor FIELD_MENU_ANCHOR_RIGHT
+    AddMenuEntrySmallStringID 15, 0
+    AddMenuEntrySmallStringID 16, 1
+    AddMenuEntrySmallStringID 17, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x800C
     GoToIfEq 0x8008, 0, _0241
     GoToIfEq 0x8008, 1, _026A

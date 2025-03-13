@@ -252,13 +252,13 @@ _0346:
     ScrCmd_16E 0x800C
     SetVar 0x8001, 0
     GoToIfEq 0x800C, 2, _03BE
-    ScrCmd_040 1, 1, 0, 1, 0x8001
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x8001
     ScrCmd_1BC 0, 1, 2, 0
-    ScrCmd_042 134, 0
+    AddMenuEntrySmallStringID 134, 0
     ScrCmd_1BC 0, 1, 2, 1
-    ScrCmd_042 135, 1
-    ScrCmd_042 136, 2
-    ScrCmd_043
+    AddMenuEntrySmallStringID 135, 1
+    AddMenuEntrySmallStringID 136, 2
+    FinishAndShowMenu
     SetVar 0x8008, 0x8001
     GoToIfEq 0x8008, 0, _03BE
     GoToIfEq 0x8008, 1, _03BE

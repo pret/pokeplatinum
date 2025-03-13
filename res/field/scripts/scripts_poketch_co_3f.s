@@ -49,7 +49,7 @@ _0057:
     Message 3
 _0062:
     Message 4
-    ScrCmd_040 1, 1, 0, 1, 0x8004
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x8004
     ScrCmd_132 0x800C
     GoToIfEq 0x800C, 0, _00A2
     Call _00FE
@@ -59,8 +59,8 @@ _0062:
     Call _018E
     Call _01B2
 _00A2:
-    ScrCmd_29D 0x102, 0
-    ScrCmd_043
+    AddMenuEntryLargeStringID 0x102, 0
+    FinishAndShowMenu
     GoToIfEq 0x8004, 1, _0119
     GoToIfEq 0x8004, 2, _013D
     GoToIfEq 0x8004, 3, _0161
@@ -74,7 +74,7 @@ _00A2:
 _00FE:
     CheckPoketchAppRegistered POKETCH_APPID_DIGITALWATCH, 0x800C
     GoToIfEq 0x800C, 0, _01D6
-    ScrCmd_29D 233, 1
+    AddMenuEntryLargeStringID 233, 1
     Return
 
 _0119:
@@ -84,7 +84,7 @@ _0119:
 _0122:
     CheckPoketchAppRegistered POKETCH_APPID_ANALOGWATCH, 0x800C
     GoToIfEq 0x800C, 0, _01D6
-    ScrCmd_29D 237, 2
+    AddMenuEntryLargeStringID 237, 2
     Return
 
 _013D:
@@ -94,7 +94,7 @@ _013D:
 _0146:
     CheckPoketchAppRegistered POKETCH_APPID_UNUSED_STOPWATCH, 0x800C
     GoToIfEq 0x800C, 0, _01D6
-    ScrCmd_29D 234, 3
+    AddMenuEntryLargeStringID 234, 3
     Return
 
 _0161:
@@ -104,7 +104,7 @@ _0161:
 _016A:
     CheckPoketchAppRegistered POKETCH_APPID_KITCHENTIMER, 0x800C
     GoToIfEq 0x800C, 0, _01D6
-    ScrCmd_29D 250, 4
+    AddMenuEntryLargeStringID 250, 4
     Return
 
 _0185:
@@ -114,7 +114,7 @@ _0185:
 _018E:
     CheckPoketchAppRegistered POKETCH_APPID_UNUSED_ALARMCLOCK, 0x800C
     GoToIfEq 0x800C, 0, _01D6
-    ScrCmd_29D 249, 5
+    AddMenuEntryLargeStringID 249, 5
     Return
 
 _01A9:
@@ -124,7 +124,7 @@ _01A9:
 _01B2:
     CheckPoketchAppRegistered POKETCH_APPID_CALENDAR, 0x800C
     GoToIfEq 0x800C, 0, _01D6
-    ScrCmd_29D 254, 6
+    AddMenuEntryLargeStringID 254, 6
     Return
 
 _01CD:
@@ -141,7 +141,7 @@ _01D8:
     Message 5
 _01E3:
     Message 6
-    ScrCmd_040 1, 1, 0, 1, 0x8004
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x8004
     ScrCmd_132 0x800C
     GoToIfEq 0x800C, 0, _0229
     Call _0292
@@ -152,8 +152,8 @@ _01E3:
     Call _0346
     Call _036A
 _0229:
-    ScrCmd_29D 0x102, 0
-    ScrCmd_043
+    AddMenuEntryLargeStringID 0x102, 0
+    FinishAndShowMenu
     GoToIfEq 0x8004, 1, _02AD
     GoToIfEq 0x8004, 2, _02D1
     GoToIfEq 0x8004, 3, _02F5
@@ -168,7 +168,7 @@ _0229:
 _0292:
     CheckPoketchAppRegistered POKETCH_APPID_CALCULATOR, 0x800C
     GoToIfEq 0x800C, 0, _038E
-    ScrCmd_29D 235, 1
+    AddMenuEntryLargeStringID 235, 1
     Return
 
 _02AD:
@@ -178,7 +178,7 @@ _02AD:
 _02B6:
     CheckPoketchAppRegistered POKETCH_APPID_MEMOPAD, 0x800C
     GoToIfEq 0x800C, 0, _038E
-    ScrCmd_29D 236, 2
+    AddMenuEntryLargeStringID 236, 2
     Return
 
 _02D1:
@@ -188,7 +188,7 @@ _02D1:
 _02DA:
     CheckPoketchAppRegistered POKETCH_APPID_FRIENDSHIPCHECKER, 0x800C
     GoToIfEq 0x800C, 0, _038E
-    ScrCmd_29D 240, 3
+    AddMenuEntryLargeStringID 240, 3
     Return
 
 _02F5:
@@ -198,7 +198,7 @@ _02F5:
 _02FE:
     CheckPoketchAppRegistered POKETCH_APPID_DAYCARECHECKER, 0x800C
     GoToIfEq 0x800C, 0, _038E
-    ScrCmd_29D 244, 4
+    AddMenuEntryLargeStringID 244, 4
     Return
 
 _0319:
@@ -208,7 +208,7 @@ _0319:
 _0322:
     CheckPoketchAppRegistered POKETCH_APPID_MATCHUPCHECKER, 0x800C
     GoToIfEq 0x800C, 0, _038E
-    ScrCmd_29D 248, 5
+    AddMenuEntryLargeStringID 248, 5
     Return
 
 _033D:
@@ -218,7 +218,7 @@ _033D:
 _0346:
     CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, 0x800C
     GoToIfEq 0x800C, 0, _038E
-    ScrCmd_29D 0x101, 6
+    AddMenuEntryLargeStringID 0x101, 6
     Return
 
 _0361:
@@ -228,7 +228,7 @@ _0361:
 _036A:
     CheckPoketchAppRegistered POKETCH_APPID_BERRYSEARCHER, 0x800C
     GoToIfEq 0x800C, 0, _038E
-    ScrCmd_29D 252, 7
+    AddMenuEntryLargeStringID 252, 7
     Return
 
 _0385:
@@ -245,7 +245,7 @@ _0390:
     Message 7
 _039B:
     Message 8
-    ScrCmd_040 1, 1, 0, 1, 0x8004
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x8004
     ScrCmd_132 0x800C
     GoToIfEq 0x800C, 0, _03DB
     Call _0437
@@ -255,8 +255,8 @@ _039B:
     Call _04C7
     Call _04EB
 _03DB:
-    ScrCmd_29D 0x102, 0
-    ScrCmd_043
+    AddMenuEntryLargeStringID 0x102, 0
+    FinishAndShowMenu
     GoToIfEq 0x8004, 1, _0452
     GoToIfEq 0x8004, 2, _0476
     GoToIfEq 0x8004, 3, _049A
@@ -270,7 +270,7 @@ _03DB:
 _0437:
     CheckPoketchAppRegistered POKETCH_APPID_PARTYSTATUS, 0x800C
     GoToIfEq 0x800C, 0, _050F
-    ScrCmd_29D 239, 1
+    AddMenuEntryLargeStringID 239, 1
     Return
 
 _0452:
@@ -280,7 +280,7 @@ _0452:
 _045B:
     CheckPoketchAppRegistered POKETCH_APPID_DOTART, 0x800C
     GoToIfEq 0x800C, 0, _050F
-    ScrCmd_29D 238, 2
+    AddMenuEntryLargeStringID 238, 2
     Return
 
 _0476:
@@ -290,7 +290,7 @@ _0476:
 _047F:
     CheckPoketchAppRegistered POKETCH_APPID_COINTOSS, 0x800C
     GoToIfEq 0x800C, 0, _050F
-    ScrCmd_29D 246, 3
+    AddMenuEntryLargeStringID 246, 3
     Return
 
 _049A:
@@ -300,7 +300,7 @@ _049A:
 _04A3:
     CheckPoketchAppRegistered POKETCH_APPID_ROULETTE, 0x800C
     GoToIfEq 0x800C, 0, _050F
-    ScrCmd_29D 245, 4
+    AddMenuEntryLargeStringID 245, 4
     Return
 
 _04BE:
@@ -310,7 +310,7 @@ _04BE:
 _04C7:
     CheckPoketchAppRegistered POKETCH_APPID_COLORCHANGER, 0x800C
     GoToIfEq 0x800C, 0, _050F
-    ScrCmd_29D 253, 5
+    AddMenuEntryLargeStringID 253, 5
     Return
 
 _04E2:
@@ -320,7 +320,7 @@ _04E2:
 _04EB:
     CheckPoketchAppRegistered POKETCH_APPID_MARKINGMAP, 0x800C
     GoToIfEq 0x800C, 0, _050F
-    ScrCmd_29D 251, 6
+    AddMenuEntryLargeStringID 251, 6
     Return
 
 _0506:
@@ -337,7 +337,7 @@ _0511:
     Message 9
 _051C:
     Message 10
-    ScrCmd_040 1, 1, 0, 1, 0x8004
+    InitCommonStrings2MenuBuilder 1, 1, 0, TRUE, 0x8004
     ScrCmd_132 0x800C
     GoToIfEq 0x800C, 0, _055C
     Call _05B8
@@ -347,8 +347,8 @@ _051C:
     Call _0648
     Call _066C
 _055C:
-    ScrCmd_29D 0x102, 0
-    ScrCmd_043
+    AddMenuEntryLargeStringID 0x102, 0
+    FinishAndShowMenu
     GoToIfEq 0x8004, 1, _05D3
     GoToIfEq 0x8004, 2, _05F7
     GoToIfEq 0x8004, 3, _061B
@@ -362,7 +362,7 @@ _055C:
 _05B8:
     CheckPoketchAppRegistered POKETCH_APPID_PEDOMETER, 0x800C
     GoToIfEq 0x800C, 0, _0690
-    ScrCmd_29D 243, 1
+    AddMenuEntryLargeStringID 243, 1
     Return
 
 _05D3:
@@ -372,7 +372,7 @@ _05D3:
 _05DC:
     CheckPoketchAppRegistered POKETCH_APPID_COUNTER, 0x800C
     GoToIfEq 0x800C, 0, _0690
-    ScrCmd_29D 242, 2
+    AddMenuEntryLargeStringID 242, 2
     Return
 
 _05F7:
@@ -382,7 +382,7 @@ _05F7:
 _0600:
     CheckPoketchAppRegistered POKETCH_APPID_RADARCHAINCOUNTER, 0x800C
     GoToIfEq 0x800C, 0, _0690
-    ScrCmd_29D 0x100, 3
+    AddMenuEntryLargeStringID 0x100, 3
     Return
 
 _061B:
@@ -392,7 +392,7 @@ _061B:
 _0624:
     CheckPoketchAppRegistered POKETCH_APPID_LINKSEARCHER, 0x800C
     GoToIfEq 0x800C, 0, _0690
-    ScrCmd_29D 0xFF, 4
+    AddMenuEntryLargeStringID 0xFF, 4
     Return
 
 _063F:
@@ -402,7 +402,7 @@ _063F:
 _0648:
     CheckPoketchAppRegistered POKETCH_APPID_MOVETESTER, 0x800C
     GoToIfEq 0x800C, 0, _0690
-    ScrCmd_29D 247, 5
+    AddMenuEntryLargeStringID 247, 5
     Return
 
 _0663:
@@ -412,7 +412,7 @@ _0663:
 _066C:
     CheckPoketchAppRegistered POKETCH_APPID_DOWSINGMACHINE, 0x800C
     GoToIfEq 0x800C, 0, _0690
-    ScrCmd_29D 241, 6
+    AddMenuEntryLargeStringID 241, 6
     Return
 
 _0687:
