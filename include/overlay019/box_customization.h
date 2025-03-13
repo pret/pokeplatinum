@@ -4,7 +4,7 @@
 #include "strbuf.h"
 
 typedef struct {
-    u8 box;
+    u8 boxID;
     u8 wallpaper;
     u8 padding_02[2];
     Strbuf *name;

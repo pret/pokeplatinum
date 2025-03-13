@@ -258,7 +258,7 @@ static void ov19_021D5BAC(UnkStruct_ov19_021D4DF0 *param0);
 static void ov19_021D5BE8(UnkStruct_ov19_021D4DF0 *param0, u16 param1, UnkStruct_ov19_021D5DF8 *param2);
 static void ov19_LoadRightBoxCustomization(UnkStruct_ov19_021D4DF0 *param0);
 static void ov19_LoadLeftBoxCustomization(UnkStruct_ov19_021D4DF0 *param0);
-static void ov19_LoadCustomizationsFor(UnkStruct_ov19_021D4DF0 *param0, u32 box);
+static void ov19_LoadCustomizationsFor(UnkStruct_ov19_021D4DF0 *param0, u32 boxID);
 static void ov19_021D5D20(UnkStruct_ov19_021D4DF0 *param0, u32 param1);
 static void ov19_021D5D28(UnkStruct_ov19_021D4DF0 *param0, UnkStruct_ov19_021D5DF8 *param1);
 static void ov19_021D5D54(UnkStruct_ov19_021D4DF0 *param0);
@@ -862,7 +862,7 @@ static void ov19_021D1C84(UnkStruct_ov19_021D5DF8 *param0)
         param0->unk_12C.move = 0;
         param0->unk_12C.options = param0->unk_1A4;
     } else if (ov19_021D5E10(&param0->unk_00) == 0) {
-        param0->unk_12C.monData = PCBoxes_GetBoxMonAt(param0->pcBoxes, PCBoxes_GetCurrentBox(param0->pcBoxes), 0);
+        param0->unk_12C.monData = PCBoxes_GetBoxMonAt(param0->pcBoxes, PCBoxes_GetCurrentBoxID(param0->pcBoxes), 0);
         param0->unk_12C.dataType = SUMMARY_DATA_BOX_MON;
         param0->unk_12C.monMax = MAX_MONS_PER_BOX;
         param0->unk_12C.monIndex = ov19_021D5E24(&param0->unk_00);
@@ -2347,14 +2347,14 @@ static void ov19_021D3B34(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         if (ov19_021D6600(param0->unk_114, 3)) {
             ov19_021D64A0(param0->unk_114);
             Heap_Destroy(HEAP_ID_10);
-            PCBoxes_BufferBoxName(param0->pcBoxes, PCBoxes_GetCurrentBox(param0->pcBoxes), param0->unk_128->unk_18);
+            PCBoxes_BufferBoxName(param0->pcBoxes, PCBoxes_GetCurrentBoxID(param0->pcBoxes), param0->unk_128->unk_18);
             param0->unk_210 = OverlayManager_New(&Unk_020F2DAC, param0->unk_128, 9);
             (*param1)++;
         }
         break;
     case 2:
         if (OverlayManager_Exec(param0->unk_210)) {
-            u32 v0 = PCBoxes_GetCurrentBox(param0->pcBoxes);
+            u32 v0 = PCBoxes_GetCurrentBoxID(param0->pcBoxes);
 
             OverlayManager_Free(param0->unk_210);
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
@@ -2386,7 +2386,7 @@ static void ov19_021D3C28(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 2:
         if (OverlayManager_Exec(param0->unk_210)) {
-            u32 v0 = PCBoxes_GetCurrentBox(param0->pcBoxes);
+            u32 v0 = PCBoxes_GetCurrentBoxID(param0->pcBoxes);
 
             OverlayManager_Free(param0->unk_210);
             Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_10, 245760);
@@ -3227,7 +3227,7 @@ static void ov19_021D4E50(UnkStruct_ov19_021D5594 *param0)
 
 static void PCBoxes_InitCustomization(PCBoxes *pcBoxes, BoxCustomization *customization)
 {
-    customization->box = PCBoxes_GetCurrentBox(pcBoxes);
+    customization->boxID = PCBoxes_GetCurrentBoxID(pcBoxes);
     customization->name = Strbuf_Init(PC_BOX_NAME_BUFFER_LEN, HEAP_ID_9);
     PCBoxes_LoadCustomization(pcBoxes, customization);
 }
@@ -3286,14 +3286,14 @@ static void ov19_021D4F34(UnkStruct_ov19_021D4F34 *param0)
 
 static void PCBoxes_LoadCustomization(const PCBoxes *pcBoxes, BoxCustomization *customization)
 {
-    customization->wallpaper = PCBoxes_GetWallpaper(pcBoxes, customization->box);
-    PCBoxes_BufferBoxName(pcBoxes, customization->box, customization->name);
+    customization->wallpaper = PCBoxes_GetWallpaper(pcBoxes, customization->boxID);
+    PCBoxes_BufferBoxName(pcBoxes, customization->boxID, customization->name);
 }
 
 static void ov19_LoadWallpaper(UnkStruct_ov19_021D4DF0 *param0, PCBoxes *pcBoxes)
 {
     BoxCustomization *customization = &(param0->customization);
-    customization->wallpaper = PCBoxes_GetWallpaper(pcBoxes, customization->box);
+    customization->wallpaper = PCBoxes_GetWallpaper(pcBoxes, customization->boxID);
 }
 
 static BOOL ov19_021D4F74(u32 param0, UnkStruct_ov19_021D5DF8 *param1)
@@ -4114,8 +4114,8 @@ static void ov19_LoadRightBoxCustomization(UnkStruct_ov19_021D4DF0 *param0)
 {
     BoxCustomization *customization = &param0->customization;
 
-    if (++(customization->box) >= MAX_PC_BOXES) {
-        customization->box = 0;
+    if (++(customization->boxID) >= MAX_PC_BOXES) {
+        customization->boxID = 0;
     }
 
     PCBoxes_LoadCustomization(param0->pcBoxes, customization);
@@ -4125,20 +4125,20 @@ static void ov19_LoadLeftBoxCustomization(UnkStruct_ov19_021D4DF0 *param0)
 {
     BoxCustomization *customization = &param0->customization;
 
-    if (customization->box) {
-        customization->box--;
+    if (customization->boxID) {
+        customization->boxID--;
     } else {
-        customization->box = MAX_PC_BOXES - 1;
+        customization->boxID = MAX_PC_BOXES - 1;
     }
 
     PCBoxes_LoadCustomization(param0->pcBoxes, customization);
 }
 
-static void ov19_LoadCustomizationsFor(UnkStruct_ov19_021D4DF0 *param0, u32 box)
+static void ov19_LoadCustomizationsFor(UnkStruct_ov19_021D4DF0 *param0, u32 boxID)
 {
     BoxCustomization *customization = &param0->customization;
 
-    customization->box = box;
+    customization->boxID = boxID;
     PCBoxes_LoadCustomization(param0->pcBoxes, customization);
 }
 
@@ -4301,7 +4301,7 @@ BOOL ov19_021D5E4C(const UnkStruct_ov19_021D4DF0 *param0)
 
 u32 ov19_GetCurrentBox(const UnkStruct_ov19_021D4DF0 *param0)
 {
-    return param0->customization.box;
+    return param0->customization.boxID;
 }
 
 const PCMonPreview *ov19_GetPCMonPreview(const UnkStruct_ov19_021D4DF0 *param0)

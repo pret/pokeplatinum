@@ -520,7 +520,7 @@ static void ov19_021D6824(SysTask *param0, void *param1)
 
         v2->unk_06++;
     case 2: {
-        int v3 = ov19_021D77A4(v0->unk_494.box, v1->customization.box);
+        int v3 = ov19_021D77A4(v0->unk_494.boxID, v1->customization.boxID);
 
         ov19_021D7B4C(&v0->unk_494, &v1->customization, v3, TRUE);
         ov19_021D7D70(&v0->unk_494, &v1->customization, v3);

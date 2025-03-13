@@ -106,7 +106,7 @@ static const u16 Unk_ov19_021E0138[] = {
 
 BOOL ov19_021D79F8(UnkStruct_ov19_021D8318 *param0, UnkStruct_ov19_021D61B0 *param1, const UnkStruct_ov19_021D4DF0 *param2, BgConfig *param3, SpriteList *param4)
 {
-    param0->box = param2->customization.box;
+    param0->boxID = param2->customization.boxID;
     param0->unk_01 = 11;
     param0->unk_02 = 0;
     param0->unk_585C = ov19_021D7820(param1);
@@ -164,7 +164,7 @@ void ov19_021D7B4C(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *cust
 
     if (param3) {
         if (param2 == 0) {
-            ov19_021D85C4(param0, param0->unk_58F0, customization->box, param0->unk_02, param2 * ((21 + 2) * 8), param0->unk_A8[param0->unk_02]);
+            ov19_021D85C4(param0, param0->unk_58F0, customization->boxID, param0->unk_02, param2 * ((21 + 2) * 8), param0->unk_A8[param0->unk_02]);
         }
     }
 }
@@ -262,10 +262,10 @@ void ov19_021D7D70(UnkStruct_ov19_021D8318 *param0, const BoxCustomization *cust
     param0->unk_02 ^= 1;
 
     {
-        ov19_021D813C(param0, customization->box);
+        ov19_021D813C(param0, customization->boxID);
         ov19_021D7F14(param0, param0->unk_10, param2 * ((21 + 2) * 8));
 
-        param0->unk_30 = customization->box;
+        param0->unk_30 = customization->boxID;
         param0->unk_34 = param0->unk_02;
     }
 
@@ -295,7 +295,7 @@ static void ov19_021D7E24(SysTask *param0, void *param1)
     }
 
     v0->unk_0C = v0->unk_14;
-    v0->box = ov19_GetCurrentBox(v0->unk_58F8);
+    v0->boxID = ov19_GetCurrentBox(v0->unk_58F8);
     SysTask_Done(param0);
     v0->unk_9C = 1;
 }
@@ -586,7 +586,7 @@ void ov19_021D84E0(UnkStruct_ov19_021D8318 *param0)
     int v0, v1;
     BoxPokemon *v2;
 
-    v1 = PCBoxes_GetCurrentBox(param0->unk_58F8->pcBoxes);
+    v1 = PCBoxes_GetCurrentBoxID(param0->unk_58F8->pcBoxes);
 
     for (v0 = 0; v0 < (5 * 6); v0++) {
         v2 = PCBoxes_GetBoxMonAt(param0->unk_58F8->pcBoxes, v1, v0);
