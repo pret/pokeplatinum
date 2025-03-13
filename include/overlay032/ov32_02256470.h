@@ -51,8 +51,8 @@ struct PoketchPartyStatusGraphics {
     u32 hpBarBaseTile;
     u32 partyCount;
     Window hpBarWindows[MAX_PARTY_SIZE];
-    UnkStruct_ov25_022558C4 *unk_9C[MAX_PARTY_SIZE]; // mon icons?
-    UnkStruct_ov25_022558C4 *unk_B4[MAX_PARTY_SIZE]; // held item icons?
+    ov25_LinkedElement *unk_9C[MAX_PARTY_SIZE]; // mon icons?
+    ov25_LinkedElement *unk_B4[MAX_PARTY_SIZE]; // held item icons?
     UnkStruct_ov25_02255958 unk_CC;
     UnkStruct_ov25_02255958 unk_E0;
     SysTask *bounceAnimTask;

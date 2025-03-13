@@ -24,7 +24,7 @@ struct UnkStruct_ov37_022563D4_t {
     BgConfig *unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 *unk_20;
-    UnkStruct_ov25_022558C4 *unk_24;
+    ov25_LinkedElement *unk_24;
     UnkStruct_ov25_02255958 unk_28;
 };
 
@@ -73,19 +73,19 @@ static void ov37_0225641C(UnkStruct_ov37_022563D4 *param0, const UnkStruct_ov37_
     int v1;
 
     Graphics_LoadObjectTiles(12, 104, 1, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    ov25_02255958(&param0->unk_28, 12, 102, 103, 8);
+    ov25_LoadNARCMembers(&param0->unk_28, 12, 102, 103, 8);
 
-    param0->unk_24 = ov25_02255810(param0->unk_20, &v0, &param0->unk_28);
+    param0->unk_24 = ov25_SetupNewElem(param0->unk_20, &v0, &param0->unk_28);
 
     if (param1->unk_00 == 0) {
-        ov25_022558C4(param0->unk_24, 1);
+        ov25_InitAnimation(param0->unk_24, 1);
     }
 }
 
 static void ov37_02256470(UnkStruct_ov37_022563D4 *param0)
 {
-    ov25_022558B0(param0->unk_20, param0->unk_24);
-    ov25_022559B0(&(param0->unk_28));
+    ov25_RemoveElem(param0->unk_20, param0->unk_24);
+    ov25_FreeNARCMembers(&(param0->unk_28));
 }
 
 static const PoketchTask Unk_ov37_02256614[] = {
@@ -171,10 +171,10 @@ static void ov37_02256588(SysTask *param0, void *param1)
     PoketchSystem_PlaySoundEffect(1635);
 
     if (v1->unk_00) {
-        ov25_022558C4(v0->unk_24, 0);
+        ov25_InitAnimation(v0->unk_24, 0);
         PM_SetBackLight(PM_LCD_BOTTOM, PM_BACKLIGHT_ON);
     } else {
-        ov25_022558C4(v0->unk_24, 1);
+        ov25_InitAnimation(v0->unk_24, 1);
         PM_SetBackLight(PM_LCD_BOTTOM, PM_BACKLIGHT_OFF);
     }
 
