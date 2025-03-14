@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "constants/heap.h"
-#include "generated/sdat.h"
 
 #include "struct_defs/battle_io.h"
 

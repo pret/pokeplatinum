@@ -424,7 +424,7 @@ static int sub_02085384(void *param0)
     sub_02083014(v0, v0->unk_B11, v0->unk_704[v0->unk_B11].unk_0E_0);
     sub_02084E58(v0, v0->unk_5A4->unk_24, 0);
     sub_02082708(v0, 0xffffffff, 1);
-    Sound_PlayEffect(1516);
+    Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
 
     v0->unk_B00 = sub_02085348;
 
@@ -508,7 +508,7 @@ static int sub_020855C4(void *param0)
 
     sub_0207F8F8(v0, v0->unk_B11);
     v0->unk_B00 = sub_02085704;
-    Sound_PlayEffect(1516);
+    Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
 
     return 5;
 }
@@ -607,7 +607,7 @@ int sub_02085804(GameWindowLayout *param0)
         sub_02081FFC(param0, param0->unk_B11);
         sub_0207F8F8(param0, param0->unk_B11);
         sub_0208327C(param0, param0->unk_B11, 1);
-        Sound_PlayEffect(1516);
+        Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
 
         param0->unk_B0E++;
         break;
@@ -633,7 +633,7 @@ int sub_02085804(GameWindowLayout *param0)
         }
 
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             v3 = param0->unk_B11;
             param0->unk_B11 = sub_020857C0(param0, param0->unk_B11 + 1);
 
@@ -719,7 +719,7 @@ static int sub_02085C50(void *param0)
     case 0:
         if (Text_IsPrinterActive(v0->unk_B10) == 0) {
             if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 sub_020829DC(v0);
                 v0->unk_B13 = 1;
             }
@@ -727,14 +727,14 @@ static int sub_02085C50(void *param0)
         break;
     case 1:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_02082B58(v0);
             v0->unk_B13 = 2;
         }
         break;
     case 2:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             sub_02082C10(v0);
             v0->unk_B13 = 3;
             v0->unk_5A4->unk_34 = 0;
@@ -780,7 +780,7 @@ static int sub_02085C50(void *param0)
     case 4:
         if (Text_IsPrinterActive(v0->unk_B10) == 0) {
             if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 v0->unk_B13 = 3;
             }
         }
@@ -1232,7 +1232,7 @@ int sub_02086774(GameWindowLayout *param0)
             Pokemon *v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
             sub_02084E58(param0, param0->unk_5A4->unk_24, Pokemon_GetValue(v1, MON_DATA_MOVE1 + v0, NULL));
             Bag_TryRemoveItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
-            Sound_PlayEffect(1516);
+            Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
         } else {
             MessageLoader_GetStrbuf(param0->unk_69C, 105, param0->unk_6A4);
         }

@@ -4,7 +4,6 @@
 #include "constants/species.h"
 
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/struct_02099F80.h"
@@ -736,7 +735,7 @@ static BOOL ov73_021D1510(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
 static void ov73_021D1634(ListMenu *param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
@@ -812,7 +811,7 @@ static BOOL ov73_021D1648(UnkStruct_ov73_021D1058 *param0, int param1, int param
         Window_Remove(&param0->unk_30);
         ListMenu_Free(param0->unk_40, NULL, NULL);
         StringList_Free(param0->unk_44);
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         param0->unk_2C = 0;
         v0 = 1;
@@ -878,7 +877,7 @@ static BOOL ov73_021D1784(UnkStruct_ov73_021D1058 *param0, u32 param1, int param
         break;
     case 3:
         if (((gSystem.pressedKeys & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gSystem.pressedKeys & PAD_BUTTON_B) == PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_54 = 4;
         }
         break;
@@ -1094,7 +1093,7 @@ static const u8 Unk_ov72_021D39D4[] = {
 
 static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
 {
-    ArchivedSprite v0;
+    PokemonSpriteTemplate v0;
     void *v1;
     void *v2;
     void *v3;
@@ -1103,7 +1102,7 @@ static void ov73_021D1B80(UnkStruct_ov73_021D1058 *param0)
     int v6 = 8;
     int v7 = 10;
 
-    BuildArchivedPokemonSprite(&v0, 427, 0, 2, 0, 0, 0);
+    BuildPokemonSpriteTemplate(&v0, 427, 0, 2, 0, 0, 0);
 
     v1 = Heap_AllocFromHeap(param0->heapId, (10 * 10) * 2);
 
@@ -1757,7 +1756,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
                 int v3[] = { 33, 34, 0xffff };
 
                 if (v3[param0->unk_94[0]] == 0xffff) {
-                    Sound_PlayEffect(1798);
+                    Sound_PlayEffect(SEQ_SE_DP_BOWA2);
 
                     param0->unk_0C = 50;
                 } else {
@@ -1900,7 +1899,7 @@ static BOOL ov73_021D2318(UnkStruct_ov73_021D1058 *param0)
                 param0->unk_84 = 0;
             }
 
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
         }
 
         ov73_021D1DE8(param0);

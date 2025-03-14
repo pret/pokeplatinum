@@ -46,11 +46,11 @@ static BOOL ov62_02235278(UnkStruct_0208C06C *param0)
 
         switch (v0) {
         case 1:
-            Sound_PlayEffect(1379);
+            Sound_PlayEffect(SEQ_SE_PL_BREC57);
             ov62_0222FB60(param0, 7);
             return 0;
         case 2:
-            Sound_PlayEffect(1379);
+            Sound_PlayEffect(SEQ_SE_PL_BREC57);
             ov62_0222FB60(param0, 8);
             return 0;
         default:

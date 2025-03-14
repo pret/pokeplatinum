@@ -650,7 +650,7 @@ static int ov91_021D122C(UnkStruct_ov91_021D0ED8 *param0)
     u16 v1, v2;
 
     if (gSystem.pressedKeys & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         param0->unk_00->unk_14 ^= 1;
         ov91_021D1498(param0);
         return 1;
@@ -671,7 +671,7 @@ static int ov91_021D122C(UnkStruct_ov91_021D0ED8 *param0)
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov91_021D2548(param0, param0->unk_00->unk_10, 1);
         ov91_021D25E4(param0);
         ov91_021D1DF8(param0, 2);
@@ -679,7 +679,7 @@ static int ov91_021D122C(UnkStruct_ov91_021D0ED8 *param0)
         param0->unk_180 = 3;
         return 2;
     default:
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         ov91_021D2548(param0, param0->unk_00->unk_10, 1);
         ov91_021D25E4(param0);
 
@@ -931,7 +931,7 @@ static void ov91_021D188C(ListMenu *param0, u32 param1, u8 param2)
     UnkStruct_ov91_021D0ED8 *v0 = (UnkStruct_ov91_021D0ED8 *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 != 1) {
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
     }
 
     if (v0->unk_00->unk_14 == 0) {
@@ -1148,7 +1148,7 @@ static BOOL ov91_021D1E50(TextPrinterTemplate *param0, u16 param1)
     case 2:
         return sub_020061E4();
     case 3:
-        Sound_PlayEffect(1510);
+        Sound_PlayEffect(SEQ_SE_DP_KON);
         break;
     case 4:
         sub_02006150(1155);

@@ -245,12 +245,12 @@ void SystemVars_RandomizeJubilifeLotteryTrainerID(VarsFlags *varsFlags)
     SetJubilifeLotteryTrainerID(varsFlags, HI_AND_LO(hiRand, loRand));
 }
 
-#define LCRNG_INCREMENT 12345
+#define LOTTERY_LCRNG_INCREMENT 12345
 
 void SystemVars_SynchronizeJubilifeLotteryTrainerID(SaveData *saveData, u16 trainerID)
 {
     VarsFlags *varsFlags = SaveData_GetVarsFlags(saveData);
-    u32 recordMixedRand = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(saveData)) * LCRNG_MULTIPLIER + LCRNG_INCREMENT;
+    u32 recordMixedRand = RecordMixedRNG_GetRand(SaveData_GetRecordMixedRNG(saveData)) * LCRNG_MULTIPLIER + LOTTERY_LCRNG_INCREMENT;
     SetJubilifeLotteryTrainerID(varsFlags, recordMixedRand);
 }
 

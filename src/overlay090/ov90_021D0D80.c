@@ -312,7 +312,7 @@ static void ov90_021D1034(void *param0)
 static int ov90_021D105C(UnkStruct_ov90_021D0ECC *param0)
 {
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         return 1;
     }
 
@@ -358,12 +358,12 @@ static int ov90_021D1080(UnkStruct_ov90_021D0ECC *param0)
     int v0 = 0;
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         return 1;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (param0->unk_0B >= 10) {
             return 1;
@@ -376,27 +376,27 @@ static int ov90_021D1080(UnkStruct_ov90_021D0ECC *param0)
             v0 = inline_ov90_021D1080(param0);
 
             if (v0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         } else if (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) {
             v0 = inline_ov90_021D1080_1(param0);
 
             if (v0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         } else if (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) {
             param0->unk_0C = (param0->unk_0C + 2) % 3;
             v0 = 1;
 
             if (param0->unk_0B != 10) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         } else if (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT) {
             param0->unk_0C = (param0->unk_0C + 1) % 3;
             v0 = 1;
 
             if (param0->unk_0B != 10) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         }
 

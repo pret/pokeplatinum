@@ -199,7 +199,7 @@ void ov23_022513B0(int param0, int param1, void *param2, void *param3)
 
     if (v0->unk_00 == CommSys_CurNetId()) {
         if (v0->unk_01 == CommSys_CurNetId()) {
-            Sound_PlayEffect(1548);
+            Sound_PlayEffect(SEQ_SE_DP_PC_ON);
             sub_020594FC();
             ov23_02251F94(fieldSystem);
         } else {
@@ -297,7 +297,7 @@ static BOOL ov23_022514D8(SysTask *param0, void *param1)
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1550);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
         v0->unk_2AA = 2;
         break;
     case 0: {
@@ -315,19 +315,19 @@ static BOOL ov23_022514D8(SysTask *param0, void *param1)
         }
     } break;
     case 4:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0->unk_2AA = 8;
         break;
     case 3:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0->unk_2AA = 6;
         break;
     case 1:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0->unk_2AA = 17;
         break;
     case 2:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0->unk_2AA = 20;
         break;
     default:
@@ -450,7 +450,7 @@ static BOOL ov23_022517E0(SysTask *param0, void *param1)
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         v0->unk_2AA = 0;
         break;
     case 0:
@@ -612,7 +612,7 @@ static BOOL ov23_02251ACC(FieldTask *param0)
 
     switch (v1->unk_00) {
     case 0:
-        Sound_PlayEffect(1549);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGIN);
         StartScreenTransition(2, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
         v1->unk_00 = 1;
         break;
@@ -954,7 +954,7 @@ static void ov23_022521C8(UnkStruct_ov23_02250CD4 *param0)
     ListMenu_CalcTrueCursorPos(param0->unk_48, &param0->unk_2AE);
 
     if (v0 != param0->unk_2AE) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return;

@@ -71,9 +71,9 @@ static BOOL ov6_02246F40(FieldTask *param0)
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 0x1, v1->unk_01);
 
         if (v1->unk_01 == 0) {
-            Sound_PlayEffect(1554);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
         } else {
-            Sound_PlayEffect(1554);
+            Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
         }
 
         (v1->unk_02)++;
@@ -86,7 +86,7 @@ static BOOL ov6_02246F40(FieldTask *param0)
                 Sound_StopEffect(1554, 0);
             }
 
-            Sound_PlayEffect(1521);
+            Sound_PlayEffect(SEQ_SE_DP_PINPON);
             MapPropOneShotAnimationManager_UnloadAnimation(fieldSystem->mapPropAnimMan, fieldSystem->mapPropOneShotAnimMan, 0x1);
             (v1->unk_02)++;
         }

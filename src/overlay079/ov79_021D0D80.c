@@ -263,14 +263,14 @@ static int ov79_021D0FEC(UnkStruct_ov79_021D0E1C *param0)
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_1A = 0xFF;
         param0->unk_10 = 0;
         return 1;
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         switch (v0) {
         case 0xffffffff:
@@ -306,7 +306,7 @@ static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
     u32 v0 = ListMenu_ProcessInput(param0->unk_C8);
 
     if (gSystem.pressedKeys & PAD_BUTTON_B) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov79_021D1F60(param0);
         ov79_021D2214(param0, 0);
         param0->unk_18 = 0;
@@ -314,7 +314,7 @@ static int ov79_021D10B8(UnkStruct_ov79_021D0E1C *param0)
     }
 
     if (gSystem.pressedKeys & PAD_BUTTON_A) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         switch (v0) {
         case 0:
@@ -353,12 +353,12 @@ static int ov79_021D116C(UnkStruct_ov79_021D0E1C *param0)
 {
     switch (Menu_ProcessInputAndHandleExit(param0->unk_D4, param0->heapID)) {
     case 0:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov79_021D2008(param0);
         param0->unk_18 = 5;
         return 0;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         Window_EraseMessageBox(&param0->unk_E8[2], 0);
         param0->unk_18 = 1;
         return 0;

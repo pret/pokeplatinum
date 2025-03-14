@@ -1506,7 +1506,7 @@ static void sub_02094B30(SysTask *param0, void *param1)
 
         if (v1->unk_08 > v1->unk_04[v1->unk_0A]) {
             BrightnessController_StartTransition(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_MAIN_SCREEN);
-            Sound_PlayEffect(1528);
+            Sound_PlayEffect(SEQ_SE_DP_CON_014);
             v1->unk_0A++;
             v1->unk_08 = 0;
 

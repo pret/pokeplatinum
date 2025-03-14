@@ -220,7 +220,7 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
         break;
     case 1:
         if (v1->unk_08 == 4) {
-            Sound_PlayEffect(1755);
+            Sound_PlayEffect(SEQ_SE_DP_TRAIN04);
         }
 
         (v1->unk_05)++;
@@ -264,7 +264,7 @@ static BOOL ov6_02242D94(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param
         if ((param1->unk_06 < 7 - 1) && ((param3->z - ((FX32_ONE * 16) / 2)) / (FX32_ONE * 16) <= param1->unk_10)) {
             if (++(param1->unk_07) >= Unk_ov6_02249034[param1->unk_06]) {
                 if (param1->unk_06 == 0) {
-                    Sound_PlayEffect(1754);
+                    Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
                 }
 
                 param1->unk_06++;
@@ -277,7 +277,7 @@ static BOOL ov6_02242D94(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param
         if ((param1->unk_06 < 7 - 1) && ((param3->z - ((FX32_ONE * 16) / 2)) / (FX32_ONE * 16) >= param1->unk_10)) {
             if (++(param1->unk_07) >= Unk_ov6_02249034[param1->unk_06]) {
                 if (param1->unk_06 == 0) {
-                    Sound_PlayEffect(1754);
+                    Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
                 }
 
                 param1->unk_06++;
@@ -312,14 +312,14 @@ static BOOL ov6_02242E60(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param
 
                 if ((param1->unk_06 < 7 - 1) && (Player_GetZPos(fieldSystem->playerAvatar) > param1->unk_10)) {
                     if (param1->unk_06 == 0) {
-                        Sound_PlayEffect(1753);
+                        Sound_PlayEffect(SEQ_SE_DP_TRAIN02);
                     }
 
                     param1->unk_06++;
                 } else if (Player_GetZPos(fieldSystem->playerAvatar) <= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
-                            Sound_PlayEffect(1754);
+                            Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
                         }
 
                         param1->unk_06--;
@@ -332,14 +332,14 @@ static BOOL ov6_02242E60(FieldSystem *fieldSystem, UnkStruct_ov6_02242B58 *param
 
                 if ((param1->unk_06 < 7 - 1) && (Player_GetZPos(fieldSystem->playerAvatar) < param1->unk_10)) {
                     if (param1->unk_06 == 0) {
-                        Sound_PlayEffect(1753);
+                        Sound_PlayEffect(SEQ_SE_DP_TRAIN02);
                     }
 
                     param1->unk_06++;
                 } else if (Player_GetZPos(fieldSystem->playerAvatar) >= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
-                            Sound_PlayEffect(1754);
+                            Sound_PlayEffect(SEQ_SE_DP_TRAIN03);
                         }
 
                         param1->unk_06--;

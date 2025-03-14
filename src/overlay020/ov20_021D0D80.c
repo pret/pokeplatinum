@@ -337,7 +337,7 @@ static int ov20_021D1050(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if (param0->unk_30 & (PAD_KEY_DOWN | PAD_BUTTON_START)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_4C = 0;
             ov20_021D21A0(param0->unk_14, 4);
             (*param1) = 1;
@@ -345,13 +345,13 @@ static int ov20_021D1050(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if (param0->unk_30 & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov20_021D1C4C(param0, ov20_021D1DBC);
             break;
         }
 
         if (param0->unk_30 & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_50 = 0;
             ov20_021D21A0(param0->unk_14, 6);
             (*param1) = 2;
@@ -383,7 +383,7 @@ static int ov20_021D1130(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if (param0->unk_30 & (PAD_KEY_DOWN | PAD_BUTTON_START)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_4C = 0;
             ov20_021D21A0(param0->unk_14, 4);
             (*param1) = 1;
@@ -392,7 +392,7 @@ static int ov20_021D1130(UnkStruct_ov20_021D16E8 *param0, int *param1)
 
         if (param0->unk_30 & PAD_KEY_LEFT) {
             if (param0->unk_4E != 0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 param0->unk_4E = 0;
                 ov20_021D21A0(param0->unk_14, 12);
             }
@@ -401,7 +401,7 @@ static int ov20_021D1130(UnkStruct_ov20_021D16E8 *param0, int *param1)
 
         if (param0->unk_30 & PAD_KEY_RIGHT) {
             if (param0->unk_4E == 0) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 param0->unk_4E = 1;
                 ov20_021D21A0(param0->unk_14, 12);
             }
@@ -409,13 +409,13 @@ static int ov20_021D1130(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if (param0->unk_30 & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov20_021D1C4C(param0, ov20_021D1DBC);
             break;
         }
 
         if (param0->unk_30 & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_50 = 0;
             ov20_021D21A0(param0->unk_14, 6);
             (*param1) = 2;
@@ -451,7 +451,7 @@ static int ov20_021D1260(UnkStruct_ov20_021D16E8 *param0, int *param1)
 
         if (param0->unk_30 & PAD_KEY_UP) {
             if ((param0->unk_64) && (param0->unk_4E != 0)) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 param0->unk_4E--;
                 ov20_021D21A0(param0->unk_14, 12);
             }
@@ -459,7 +459,7 @@ static int ov20_021D1260(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if (param0->unk_30 & PAD_KEY_DOWN) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if ((param0->unk_64) && (param0->unk_4E < (param0->unk_64 - 1))) {
                 param0->unk_4E++;
@@ -473,7 +473,7 @@ static int ov20_021D1260(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if ((param0->unk_30 & PAD_BUTTON_START) || ((param0->unk_30 & PAD_BUTTON_A) && (param0->unk_64 == 0))) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_4C = 0;
             ov20_021D21A0(param0->unk_14, 4);
             (*param1) = 3;
@@ -481,7 +481,7 @@ static int ov20_021D1260(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if (param0->unk_34 & PAD_KEY_LEFT) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_4E = 0;
             ov20_021D0FCC(&param0->unk_60, &param0->unk_08);
             ov20_021D21A0(param0->unk_14, 3);
@@ -490,7 +490,7 @@ static int ov20_021D1260(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if (param0->unk_34 & PAD_KEY_RIGHT) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_4E = 0;
             ov20_021D0F88(&param0->unk_60, &param0->unk_08);
             ov20_021D21A0(param0->unk_14, 3);
@@ -499,13 +499,13 @@ static int ov20_021D1260(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if (param0->unk_30 & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov20_021D1C4C(param0, ov20_021D1DBC);
             break;
         }
 
         if (param0->unk_30 & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_50 = 0;
             ov20_021D21A0(param0->unk_14, 6);
             (*param1) = 4;
@@ -543,28 +543,28 @@ static int ov20_021D1468(UnkStruct_ov20_021D16E8 *param0, int *param1)
             }
 
             if (param0->unk_30 & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 param0->unk_4C ^= 1;
                 ov20_021D21A0(param0->unk_14, 13);
                 break;
             }
 
             if (param0->unk_30 & PAD_BUTTON_START) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 param0->unk_4C = 0;
                 ov20_021D21A0(param0->unk_14, 13);
                 break;
             }
 
             if (param0->unk_30 & PAD_KEY_UP) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov20_021D21A0(param0->unk_14, 5);
                 (*param1) = 5;
                 break;
             }
 
             if (param0->unk_30 & PAD_BUTTON_A) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 if (param0->unk_4C == 0) {
                     (*param1) = 1;
@@ -576,7 +576,7 @@ static int ov20_021D1468(UnkStruct_ov20_021D16E8 *param0, int *param1)
             }
 
             if (param0->unk_30 & PAD_BUTTON_B) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 (*param1) = 2;
                 break;
             }
@@ -613,7 +613,7 @@ static int ov20_021D15A0(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if ((param0->unk_38 == 0) && (param0->unk_65 != 0) || (param0->unk_38 == 1) && (param0->unk_65 != 1) || (param0->unk_30 & PAD_BUTTON_SELECT)) {
-            Sound_PlayEffect(1508);
+            Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
             param0->unk_65 ^= 1;
             param0->unk_50 = 0;
             ov20_021D21A0(param0->unk_14, 24);
@@ -622,7 +622,7 @@ static int ov20_021D15A0(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if (param0->unk_30 & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov20_021D21A0(param0->unk_14, 7);
             param0->unk_24 = ov20_021D103C;
             *param1 = 1;
@@ -631,24 +631,24 @@ static int ov20_021D15A0(UnkStruct_ov20_021D16E8 *param0, int *param1)
 
         if (param0->unk_30 & PAD_BUTTON_A) {
             if (param0->unk_50 == 0xfe) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov20_021D21A0(param0->unk_14, 7);
                 param0->unk_24 = ov20_021D103C;
                 *param1 = 1;
             } else if (ov20_021D16E8(param0)) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov20_021D1884(&param0->unk_54, param0);
                 param0->unk_24 = ov20_021D18E4;
                 ov20_021D21A0(param0->unk_14, 8);
                 *param1 = 1;
             } else {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
             break;
         }
 
         if (ov20_021D1720(param0)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov20_021D21A0(param0->unk_14, 14);
             break;
         }
@@ -845,7 +845,7 @@ static int ov20_021D18E4(UnkStruct_ov20_021D16E8 *param0, int *param1)
     case 0:
 
         if ((param0->unk_38 == 0) && (param0->unk_65 != 0) || (param0->unk_38 == 1) && (param0->unk_65 != 1) || (param0->unk_30 & PAD_BUTTON_SELECT)) {
-            Sound_PlayEffect(1508);
+            Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
             param0->unk_50 = 0;
             param0->unk_65 ^= 1;
             ov20_021D21A0(param0->unk_14, 9);
@@ -867,16 +867,16 @@ static int ov20_021D18E4(UnkStruct_ov20_021D16E8 *param0, int *param1)
 
             switch (v0) {
             case 1:
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov20_021D21A0(param0->unk_14, 15);
                 return 0;
             case 2:
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov20_021D21A0(param0->unk_14, 16);
                 (*param1) = 1;
                 return 0;
             case 3:
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov20_021D21A0(param0->unk_14, 16);
                 (*param1) = 2;
                 return 0;
@@ -884,7 +884,7 @@ static int ov20_021D18E4(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if (param0->unk_30 & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov20_021D21A0(param0->unk_14, 9);
             param0->unk_24 = ov20_021D15A0;
             *param1 = 3;
@@ -892,7 +892,7 @@ static int ov20_021D18E4(UnkStruct_ov20_021D16E8 *param0, int *param1)
         }
 
         if (param0->unk_30 & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov20_021D1BB0(param0);
             param0->unk_24 = ov20_021D103C;
             ov20_021D21A0(param0->unk_14, 10);
@@ -1125,18 +1125,18 @@ static void ov20_021D1C90(UnkStruct_ov20_021D16E8 *param0, int *param1)
         if (ov20_021D2210(param0->unk_14, 21)) {
             switch (ov20_021D1EDC(&(param0->unk_66), param0->unk_30)) {
             case -3:
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov20_021D21A0(param0->unk_14, 21);
                 break;
             case 1:
             case -2:
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov20_021D21A0(param0->unk_14, 22);
                 (*param1) = 3;
                 break;
 
             case 0:
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
 
                 if (param0->unk_04 == 2) {
                     sub_02014D10(&(param0->unk_08));
@@ -1175,17 +1175,17 @@ static void ov20_021D1DBC(UnkStruct_ov20_021D16E8 *param0, int *param1)
         if (ov20_021D2210(param0->unk_14, 21)) {
             switch (ov20_021D1EDC(&(param0->unk_66), param0->unk_30)) {
             case -3:
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov20_021D21A0(param0->unk_14, 21);
                 break;
             case 1:
             case -2:
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov20_021D21A0(param0->unk_14, 22);
                 (*param1) = 2;
                 break;
             case 0:
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov20_021D1034(param0, ov20_021D1C18);
                 (*param1) = 2;
                 break;
@@ -1265,7 +1265,7 @@ static void ov20_021D1F38(UnkStruct_ov20_021D16E8 *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        Sound_PlayEffect(1508);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
         param0->unk_65 ^= 1;
         ov20_021D21A0(param0->unk_14, 23);
         (*param1) = 1;

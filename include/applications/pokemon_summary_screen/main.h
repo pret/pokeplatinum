@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_defs/archived_poke_sprite_data.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/pokemon_sprite.h"
 #include "struct_defs/sprite_animation_frame.h"
 
 #include "bg_window.h"
@@ -18,6 +17,7 @@
 #include "message.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "savedata.h"
 #include "sprite.h"
 #include "sprite_system.h"

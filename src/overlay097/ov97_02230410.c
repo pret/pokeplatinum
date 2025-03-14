@@ -740,7 +740,7 @@ static void ov97_02231088(OverlayManager *param0, int *param1, int (*param2)(Ove
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (param2) {
             v1 = param2(param0);
@@ -751,7 +751,7 @@ static void ov97_02231088(OverlayManager *param0, int *param1, int (*param2)(Ove
         }
         break;
     default:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
 
         if (v0) {
             if (v0 < 30) {
@@ -946,7 +946,7 @@ static void ov97_02231464(void *param0)
     v0 = ov97_0223847C();
 
     if ((v0 == 2) || (v0 == 3)) {
-        Sound_PlayEffect(1563);
+        Sound_PlayEffect(SEQ_SE_DP_SAVE);
         v1->unk_3E0C = NULL;
     }
 }
@@ -1001,7 +1001,7 @@ static void ov97_022314FC(UnkStruct_ov97_02230868 *param0, int param1, int *para
     }
 
     if (v0 == 1) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         CommTiming_StartSync(0xAB);
 
         param0->unk_2C94 = 1;
@@ -1011,12 +1011,12 @@ static void ov97_022314FC(UnkStruct_ov97_02230868 *param0, int param1, int *para
     }
 
     if (v0 == 2) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ov97_02231F1C(param0, param2, 19);
     }
 
     if (v0 == 3) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 }
 
@@ -1063,15 +1063,15 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         } else if (gSystem.pressedKeys & PAD_KEY_DOWN) {
             v0 = ov97_02230F20(v4, v4->unk_2C20, 1);
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov97_02230C10(v4, 0, 28, param1);
         } else if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             *param1 = 4;
         }
 
         if (v4->unk_2C20 != v0) {
-            Sound_PlayEffect(1536);
+            Sound_PlayEffect(SEQ_SE_DP_CARD2);
             v4->unk_2C20 = v0;
             ov97_02230C44(v4, 1, 0);
         }
@@ -1085,12 +1085,12 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         ov97_02231088(param0, param1, NULL);
 
         if (gSystem.pressedKeys & PAD_BUTTON_B) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             *param1 = 11;
         }
         break;
     case 6:
-        Sound_PlayEffect(1536);
+        Sound_PlayEffect(SEQ_SE_DP_CARD2);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 0);
         ov97_02230518(&v4->unk_2C30, 0);
         ov97_02230500(&v4->unk_2C40, 0);
@@ -1108,7 +1108,7 @@ static int ov97_0223161C(OverlayManager *param0, int *param1)
         ov97_02231354(v4);
 
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1536);
+            Sound_PlayEffect(SEQ_SE_DP_CARD2);
             ov97_022312B4(v4, 1, 1 * FX32_ONE, 0.025 * FX32_ONE);
             *param1 = 9;
         }

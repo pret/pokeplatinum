@@ -91,16 +91,16 @@ subprocess.run([
 subprocess.run([
     args.nitrogfx,
     shadows,
-    private_dir / f'pl_otherpoke_{(i+3):04}.NCGR',
+    private_dir / f'pokemon_shadows.NCGR',
     '-scanfronttoback'
 ])
 subprocess.run([
     args.nitrogfx,
     shadows_pal,
-    private_dir / f'pl_otherpoke_{(i+4):04}.NCLR',
+    private_dir / f'pokemon_shadows_pal.NCLR',
     '-bitdepth', '8',
     '-nopad',
     '-comp', '10'
 ])
 
-subprocess.run([args.narc, 'create', '--output', output_dir / 'pl_otherpoke.narc', private_dir])
+subprocess.run([args.narc, 'create', '--naix', '--output', output_dir / 'pl_otherpoke.narc', private_dir])

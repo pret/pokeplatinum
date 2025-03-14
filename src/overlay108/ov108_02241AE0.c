@@ -532,7 +532,7 @@ static BOOL ov108_02241F28(UnkStruct_ov108_02241DB0 *param0)
         }
 
         ov108_02242884(param0, 3);
-        Sound_PlayEffect(1545);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
 
         param0->unk_0B = 24;
         param0->unk_08 = 3;
@@ -550,7 +550,7 @@ static BOOL ov108_02241F28(UnkStruct_ov108_02241DB0 *param0)
             }
         }
 
-        Sound_PlayEffect(1545);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
         param0->unk_0B = 24;
         param0->unk_08 = 4;
         break;
@@ -567,7 +567,7 @@ static BOOL ov108_02241F28(UnkStruct_ov108_02241DB0 *param0)
             }
         }
 
-        Sound_PlayEffect(1545);
+        Sound_PlayEffect(SEQ_SE_DP_WIN_OPEN2);
 
         param0->unk_0B = 24;
         param0->unk_08 = 5;
@@ -586,7 +586,7 @@ static BOOL ov108_02241F28(UnkStruct_ov108_02241DB0 *param0)
         }
 
         ov108_022435A8(param0->unk_338, 1);
-        Sound_PlayEffect(1572);
+        Sound_PlayEffect(SEQ_SE_DP_UG_020);
         ov108_022435F4(param0->unk_3BC, 0);
         param0->unk_08 = 6;
         break;
@@ -1093,7 +1093,7 @@ static void ov108_02242964(UnkStruct_ov108_02241DB0 *param0, int param1)
             param0->unk_0D++;
         }
 
-        Sound_PlayEffect(1509);
+        Sound_PlayEffect(SEQ_SE_DP_BUTTON3);
 
         if (param0->unk_0D >= param0->unk_2E) {
             param0->unk_0D = 0;
@@ -1323,7 +1323,7 @@ static void ov108_02242BA0(UnkStruct_ov108_02241DB0 *param0, u8 param1)
     }
 
     ov108_022429C8(param0, v3);
-    Sound_PlayEffect(1507);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 
     return;
 }
@@ -1601,7 +1601,7 @@ static BOOL ov108_02242FE8(UnkStruct_ov108_02241DB0 *param0)
 static void ov108_02243008(UnkStruct_ov108_02241DB0 *param0)
 {
     Sound_StopEffect(1500, 0);
-    Sound_PlayEffect(1508);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON9);
     ov108_022435F4(param0->unk_3BC, 1);
 
     return;

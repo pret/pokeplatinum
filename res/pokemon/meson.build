@@ -228,7 +228,10 @@ pl_pokegra_narc = custom_target('pl_pokegra.narc',
 )
 
 pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
-    output: 'pl_otherpoke.narc',
+    output: [
+        'pl_otherpoke.narc',
+        'pl_otherpoke.naix',
+    ],
     input: [
         otherpoke_files,
         form_sprites_shared,

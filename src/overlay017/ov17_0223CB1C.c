@@ -25,6 +25,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
@@ -35,7 +36,6 @@
 #include "system.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_0200F174.h"
 #include "unk_02014000.h"
 #include "unk_0201E3D8.h"
@@ -176,7 +176,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     SpriteSystem_InitManagerWithCapacities(v0->unk_0C.unk_1C, v0->unk_0C.unk_20, &Unk_ov17_02252EC8);
     SetSubScreenViewRect(SpriteSystem_GetRenderer(v0->unk_0C.unk_1C), 0, (256 * FX32_ONE));
 
-    v0->unk_0C.unk_04 = sub_0200762C(HEAP_ID_22);
+    v0->unk_0C.unk_04 = PokemonSpriteManager_New(HEAP_ID_22);
     ov17_0223D350();
 
     v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 209, HEAP_ID_22);
@@ -217,7 +217,7 @@ int ov17_0223CB1C(OverlayManager *param0, int *param1)
     sub_02004550(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
     SetVBlankCallback(ov17_0223D0C8, v0);
-    Sound_PlayEffect(1541);
+    Sound_PlayEffect(SEQ_SE_DP_DOOR_OPEN);
 
     return 1;
 }
@@ -236,7 +236,7 @@ int ov17_0223CDDC(OverlayManager *param0, int *param1)
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x2, 0xffff, 6, 16, 0, 0x7fff);
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x4, 0x3fff, 6, 16, 0, 0x7fff);
             PaletteData_StartFade(v0->unk_0C.unk_44, 0x8, 0xffff, 6, 16, 0, 0x7fff);
-            Sound_PlayEffect(1765);
+            Sound_PlayEffect(SEQ_SE_DP_CON_007);
             *param1 = 1;
         }
         break;
@@ -317,7 +317,7 @@ int ov17_0223CF8C(OverlayManager *param0, int *param1)
     ov17_02247734(&v0->unk_0C);
     ov17_02247918(v0);
 
-    sub_02007B6C(v0->unk_0C.unk_04);
+    PokemonSpriteManager_Free(v0->unk_0C.unk_04);
     Font_Free(FONT_SUBSCREEN);
     PaletteData_FreeBuffer(v0->unk_0C.unk_44, 0);
     PaletteData_FreeBuffer(v0->unk_0C.unk_44, 1);
@@ -355,7 +355,7 @@ static void ov17_0223D0C8(void *param0)
         G2_SetWnd1Position(v0->unk_F5C, v0->unk_F5D, v0->unk_F5E, v0->unk_F5F);
     }
 
-    sub_02008A94(v0->unk_0C.unk_04);
+    PokemonSpriteManager_UpdateCharAndPltt(v0->unk_0C.unk_04);
 
     {
         int v1;
@@ -380,7 +380,7 @@ static void ov17_0223D164(SysTask *param0, void *param1)
     UnkStruct_ov17_02247A48 *v0 = param1;
 
     if (v0->unk_4F6 == 1) {
-        sub_02007768(v0->unk_0C.unk_04);
+        PokemonSpriteManager_DrawSprites(v0->unk_0C.unk_04);
 
         {
             int v1;

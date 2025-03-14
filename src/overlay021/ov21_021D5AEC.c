@@ -5,8 +5,6 @@
 
 #include "generated/text_banks.h"
 
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/ov21_021D4C0C.h"
@@ -29,6 +27,7 @@
 #include "heap.h"
 #include "message.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -37,7 +36,6 @@
 #include "system.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 #include "unk_02012744.h"
 
 #include "res/text/bank/pokedex.h"
@@ -556,13 +554,13 @@ static BOOL ov21_021D601C(UnkStruct_ov21_021D5B68 *param0, UnkStruct_ov21_021D74
 {
     if (param0->unk_28) {
         ov21_021D744C(param0);
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return 1;
     }
 
     if (param0->unk_24) {
         ov21_021D7538(param0, param2);
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return 1;
     }
 
@@ -571,7 +569,7 @@ static BOOL ov21_021D601C(UnkStruct_ov21_021D5B68 *param0, UnkStruct_ov21_021D74
 
         if (PokedexSort_DisplayIndexToStatusIndex(param0->unk_04, v0) != (NATIONAL_DEX_COUNT + 1)) {
             ov21_021D7464(param1, param0);
-            Sound_PlayEffect(1501);
+            Sound_PlayEffect(SEQ_SE_DP_DECIDE);
             return 1;
         }
     }
@@ -1346,13 +1344,13 @@ static void ov21_021D6F20(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
     v1 = v0 >> FX32_SHIFT;
     v2 = ov21_021D2170(param1);
 
-    sub_02007DEC(v2, 23, v1);
+    PokemonSprite_SetAttribute(v2, MON_SPRITE_ALPHA, v1);
 }
 
 static void ov21_021D6F64(PokedexGraphicData *param0, const UnkStruct_ov21_021D5B68 *param1)
 {
     PokemonSprite *v0 = ov21_021D2170(param0);
-    sub_02007DEC(v0, 23, 31);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_ALPHA, 31);
 }
 
 static void ov21_021D6F74(const UnkStruct_ov21_021D5B68 *param0)
@@ -1373,7 +1371,7 @@ static void ov21_021D6FB4(UnkStruct_ov21_021D71A8 *param0, UnkStruct_ov21_021D5C
     int v2, v3;
     int v4;
 
-    Sound_PlayEffect(1669);
+    Sound_PlayEffect(SEQ_SE_DP_BUTTON01);
 
     if (param2->unk_10 == 0) {
         if (param3) {
@@ -1655,7 +1653,7 @@ static BOOL ov21_021D747C(UnkStruct_ov21_021D5B68 *param0)
         param0->unk_10 = 0;
         param0->unk_14 = 0;
         param0->unk_20 = 2;
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         return 1;
     }
 
@@ -1680,7 +1678,7 @@ static BOOL ov21_021D74B0(UnkStruct_ov21_021D5B68 *param0, int param1)
 
     if (ov21_021D36A4(param0->unk_04, v0)) {
         ov21_021D36C0(param0->unk_04, v0);
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
         PokedexSort_SortUnfiltered(param0->unk_04, 0, 0, 0, 0, 0, v0, param1);
         PokedexSort_SetCurrentStatusIndex(param0->unk_04, 0);
 
@@ -1723,7 +1721,7 @@ static void ov21_021D7590(UnkStruct_ov21_021D7464 *param0, UnkStruct_ov21_021D5B
         if (ov21_021D6108(param1, param0->unk_1C)) {
             ov21_021D60FC(param1, param0, param0->unk_20);
             param1->unk_20 = 1;
-            Sound_PlayEffect(1675);
+            Sound_PlayEffect(SEQ_SE_DP_DENSI06);
         } else {
             param0->unk_18 = 0;
         }
@@ -1740,7 +1738,7 @@ static void ov21_021D75DC(UnkStruct_ov21_021D7464 *param0, UnkStruct_ov21_021D5B
         if (ov21_021D6108(param1, -1)) {
             ov21_021D60FC(param1, param0, 2);
             param1->unk_20 = 1;
-            Sound_PlayEffect(1675);
+            Sound_PlayEffect(SEQ_SE_DP_DENSI06);
         } else {
             ov21_021D5F58(param1, param0);
             param1->unk_20 = 0;
@@ -1753,7 +1751,7 @@ static void ov21_021D75DC(UnkStruct_ov21_021D7464 *param0, UnkStruct_ov21_021D5B
         if (ov21_021D6108(param1, 1)) {
             ov21_021D60FC(param1, param0, 1);
             param1->unk_20 = 1;
-            Sound_PlayEffect(1675);
+            Sound_PlayEffect(SEQ_SE_DP_DENSI06);
         } else {
             ov21_021D5F58(param1, param0);
             param1->unk_20 = 0;

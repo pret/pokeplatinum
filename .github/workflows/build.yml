@@ -11,26 +11,24 @@ on:
 
 env:
   LM_LICENSE_FILE: "${{ github.workspace }}/tools/cw/license.dat"
-  CALCROM_DISCORD_WEBHOOK_AVATAR_URL: "https://i.imgur.com/38BQHdd.png"
-  CALCROM_DISCORD_WEBHOOK_USERNAME: "OK"
-  CALCROM_WEBHOOK_URL: "${{ secrets.WEBHOOKURL }}"
   BUILD: /var/tmp/pokeplatinum
+  WINEARCH: win32
 
 jobs:
   build:
     permissions:
       contents: write
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Install Software
         run: |
+          sudo dpkg --add-architecture i386
           sudo mkdir -pm755 /etc/apt/keyrings
           sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
           sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources
-          sudo dpkg --add-architecture i386
           sudo apt-get update -y
-          sudo apt-get install -y --install-recommends python3-pip ninja-build winehq-stable binutils-arm-none-eabi gcc-arm-none-eabi flex bison
-          pip install --user meson pyelftools
+          sudo apt-get install -y bison flex g++ gcc-arm-none-eabi git make ninja-build pkg-config python3
+          sudo apt-get install -y --install-recommends winehq-stable
 
       - name: Checkout Repo
         uses: actions/checkout@v2
@@ -40,14 +38,6 @@ jobs:
 
       - name: Build Repo
         run: make check
-
-      - name: Webhook
-        if: ${{ github.event_name == 'push' }}
-        env:
-          arm9name: ${{ vars.BUILD }}
-        run: |
-          .github/calcrom/webhook.sh "$CALCROM_WEBHOOK_URL" "$BUILD"
-        continue-on-error: true
 
       - name: Checkout xMAP
         if: ${{ github.event_name == 'push' }}

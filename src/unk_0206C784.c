@@ -114,7 +114,7 @@ void sub_0206C784(FieldSystem *fieldSystem, const u8 param1, const u8 param2, co
                 v0->unk_00 = 1;
 
                 sub_0206CBA0(fieldSystem);
-                Sound_PlayEffect(1757);
+                Sound_PlayEffect(SEQ_SE_DP_SHIP02);
             } else {
                 v0->unk_00 = 0;
             }
@@ -191,7 +191,7 @@ static BOOL sub_0206C964(FieldTask *taskMan)
             if (sub_0206CB8C(&v1->unk_10, &v1->unk_14, &v1->unk_02)) {
                 MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 1, 0);
                 MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 2, 0);
-                Sound_PlayEffect(1758);
+                Sound_PlayEffect(SEQ_SE_DP_SHIP03);
             }
         } else {
             if ((MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 1)) && (MapPropOneShotAnimationManager_IsAnimationLoopFinished(fieldSystem->mapPropOneShotAnimMan, 2)) && v2) {

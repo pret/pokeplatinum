@@ -3,7 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/struct_02013610.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -173,7 +172,7 @@ static BOOL ov87_021D1260(UnkStruct_ov87_021D106C *param0, int *param1)
 {
     switch (*param1) {
     case 0:
-        Sound_PlayEffect(1550);
+        Sound_PlayEffect(SEQ_SE_DP_PC_LOGOFF);
         StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_61);
         (*param1)++;
         break;
@@ -239,7 +238,7 @@ static BOOL ov87_021D1334(UnkStruct_ov87_021D106C *param0, int *param1)
 
 static BOOL ov87_021D1384(UnkStruct_ov87_021D106C *param0, int *param1)
 {
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
     ov87_021D1640(param0);
     return 1;
 }
@@ -532,7 +531,7 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
         10,
         10,
     };
-    ArchivedSprite v1;
+    PokemonSpriteTemplate v1;
     const UnkStruct_ov87_021D12C0 *v2;
     int v3;
 
@@ -541,7 +540,7 @@ static void ov87_021D1970(UnkStruct_ov87_021D106C *param0)
     for (v3 = 0; v3 < v2->unk_14; v3++) {
         Pokemon_InitWith(param0->unk_1FC, v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_12, INIT_IVS_RANDOM, TRUE, v2->unk_20[v3].unk_08, OTID_SET, v2->unk_20[v3].unk_0C);
         Pokemon_SetValue(param0->unk_1FC, MON_DATA_FORM, (void *)(&(v2->unk_20[v3].unk_13)));
-        Pokemon_BuildArchivedSprite(&v1, param0->unk_1FC, 2);
+        Pokemon_BuildSpriteTemplate(&v1, param0->unk_1FC, 2);
         sub_02013720(v1.archive, v1.character, HEAP_ID_61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].unk_10);
 
         DC_FlushRange(param0->unk_200, sizeof(param0->unk_200));

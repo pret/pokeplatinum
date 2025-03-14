@@ -5,7 +5,6 @@
 
 #include "constants/narc.h"
 
-#include "struct_defs/archived_sprite.h"
 #include "struct_defs/sentence.h"
 
 #include "overlay063/ov63_0222BE18.h"
@@ -433,7 +432,7 @@ static void ov104_02232570(UnkStruct_ov104_02232B5C *param0)
 {
     int v0;
 
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
 
     Menu_Free(param0->unk_B0, NULL);
     Window_EraseStandardFrame(param0->unk_A4.window, 0);
@@ -627,7 +626,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
     ListMenu_CalcTrueCursorPos(v2->unk_1B4, &v2->unk_2D4);
 
     if (v0 != v2->unk_2D4) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     if ((gSystem.pressedKeysRepeatable & PAD_KEY_UP) || (gSystem.pressedKeysRepeatable & PAD_KEY_DOWN) || (gSystem.pressedKeysRepeatable & PAD_KEY_LEFT) || (gSystem.pressedKeysRepeatable & PAD_KEY_RIGHT)) {
@@ -642,7 +641,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
             break;
         case 0xfffffffe:
             if (v2->unk_97_0 == 1) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 *v2->unk_A0 = 0xfffe;
 
                 ov104_02232A58(param1, 1);
@@ -650,7 +649,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
 
             break;
         default:
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             *v2->unk_A0 = v1;
 
             ov104_02232A58(param1, 1);
@@ -666,7 +665,7 @@ static void ov104_02232A58(UnkStruct_ov104_02232B5C *param0, u8 param1)
     int v0;
 
     if (param1 == 1) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     ListMenu_Free(param0->unk_1B4, NULL, NULL);
@@ -859,7 +858,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapI
     SpriteSystem *v0 = param0->unk_34.unk_00;
     SpriteManager *v1 = param0->unk_34.unk_04;
     PaletteData *v2 = param0->unk_04;
-    ArchivedSprite v3;
+    PokemonSpriteTemplate v3;
     void *v4;
     ManagedSprite *v5;
 
@@ -906,7 +905,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapI
         v9 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
-        Pokemon_BuildArchivedSprite(&v3, param1, 2);
+        Pokemon_BuildSpriteTemplate(&v3, param1, 2);
         sub_020136A4(v3.archive, v3.character, heapID, 0, 0, 10, 10, v4, v9, 0, 2, v10);
     }
 

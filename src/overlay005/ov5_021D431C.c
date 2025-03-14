@@ -942,7 +942,7 @@ BOOL ov5_021D4F14(FieldTask *param0)
         v1->unk_08 = 0;
         v1->unk_04 = 0;
 
-        Sound_PlayEffect(1539);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, HEAP_ID_FIELDMAP);
 
         v1->unk_08 = 1;
@@ -973,7 +973,7 @@ BOOL ov5_021D4FA0(FieldTask *param0)
         v1->unk_08 = 0;
         v1->unk_04 = 0;
 
-        Sound_PlayEffect(1539);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         sub_02056B30(param0, 0, 16, 0, 0x0, 6, 1, HEAP_ID_FIELDMAP);
 
         v1->unk_08 = 1;

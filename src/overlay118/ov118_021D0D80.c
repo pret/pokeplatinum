@@ -207,12 +207,12 @@ static void ov118_021D1028(OverlayMetadata *param0)
         sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 2, ov118_021D10B0, param0);
-        Sound_PlayEffect(1363);
+        Sound_PlayEffect(SEQ_SE_PL_W467109);
         break;
     case 492:
         sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
-        Sound_PlayEffect(1364);
+        Sound_PlayEffect(SEQ_SE_PL_W363);
         break;
     }
 }

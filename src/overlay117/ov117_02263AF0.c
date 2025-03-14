@@ -398,7 +398,7 @@ void ov117_02263AF0(BgConfig *param0, int param1, int param2, UnkStruct_ov117_02
     param3->unk_2C = 1;
 
     ov117_02263BA4(param0, param3, param1);
-    Sound_PlayEffect(1515);
+    Sound_PlayEffect(SEQ_SE_DP_BOX02);
 }
 
 static void ov117_02263B8C(BgConfig *param0, UnkStruct_ov117_02263DAC *param1)
@@ -1047,7 +1047,7 @@ BOOL ov117_02264808(UnkStruct_ov117_02261280 *param0)
         param0->unk_1428.unk_18[v1] = 0;
     }
 
-    Sound_PlayEffect(1404);
+    Sound_PlayEffect(SEQ_SE_PL_BALLOON07);
     v0->unk_00 = 1;
     return 1;
 }
@@ -1173,7 +1173,7 @@ static void ov117_022649D8(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_022
         if ((param1->unk_05 == 1) && (v0 > 75)) {
             param1->unk_05 = 2;
             ManagedSprite_SetAnim(param1->unk_00, 3 + param1->unk_04);
-            Sound_PlayEffect(1406);
+            Sound_PlayEffect(SEQ_SE_PL_ALERT4);
         }
 
         break;
@@ -1758,7 +1758,7 @@ static int ov117_022657C4(UnkStruct_ov117_02261280 *param0, UnkStruct_ov117_0226
 
     switch (param2->unk_11) {
     case 0:
-        Sound_PlayEffect(1403);
+        Sound_PlayEffect(SEQ_SE_PL_BALLOON05);
         Sprite_GetPositionXYWithSubscreenOffset2(param2->unk_00, &v0, &v1, ((192 + 160) << FX32_SHIFT));
         ManagedSprite_SetPositionXYWithSubscreenOffset(param2->unk_04, v0, v1 + -32, ((192 + 160) << FX32_SHIFT));
         ManagedSprite_SetAnim(param2->unk_04, 33);
@@ -1963,7 +1963,7 @@ static BOOL ov117_02265C3C(UnkStruct_ov117_02265C3C *param0, UnkStruct_ov117_022
         ManagedSprite_SetPositionXYWithSubscreenOffset(param1->unk_04, v0, v1 + -32, ((192 + 160) << FX32_SHIFT));
         ManagedSprite_SetAnim(param1->unk_04, 33);
         ManagedSprite_SetDrawFlag(param1->unk_04, 1);
-        Sound_PlayEffect(1403);
+        Sound_PlayEffect(SEQ_SE_PL_BALLOON05);
         ManagedSprite_SetAnim(param1->unk_00, Unk_ov117_02266B7A[param1->unk_12] + 2);
 
         param1->unk_14 = 8;

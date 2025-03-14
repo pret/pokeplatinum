@@ -695,7 +695,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         ov107_02244BD8(param0, gSystem.pressedKeys);
 
         if (gSystem.pressedKeys & PAD_BUTTON_A) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
 
             if (param0->unk_0D >= param0->unk_15) {
                 return 1;
@@ -707,7 +707,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             }
         } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
             if (param0->unk_0D != param0->unk_15) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 param0->unk_0D = param0->unk_15;
                 ov107_02244C70(param0);
             }
@@ -760,7 +760,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             if (param0->unk_16 == 0) {
                 ListMenu_TestInput(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, ((NELEMS(Unk_ov107_02249FF0)) - 1), 1, PAD_KEY_DOWN, NULL, NULL);
                 ListMenu_Draw(param0->unk_198);
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov107_0224379C(param0, &param0->unk_50[6], 28, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return 0;
             }
@@ -768,7 +768,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
             if (param0->unk_16 == ((NELEMS(Unk_ov107_02249FF0)) - 1)) {
                 ListMenu_TestInput(param0->unk_198, (ListMenuTemplate *)&param0->unk_1A0, 0, 0, 1, PAD_KEY_UP, NULL, NULL);
                 ListMenu_Draw(param0->unk_198);
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 ov107_0224379C(param0, &param0->unk_50[6], 24, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
                 return 0;
             }
@@ -812,7 +812,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
 
             if (v2 == 3) {
                 Sound_StopEffect(1500, 0);
-                Sound_PlayEffect(1523);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03);
             } else {
                 param0->unk_13 = v6;
                 ov107_02244094(param0);
@@ -938,7 +938,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         break;
     case 6:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_02245618(param0);
             ov107_02244064(param0);
             ov107_02249C60(param0->unk_430, 204, 100);
@@ -947,7 +947,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         break;
     case 7:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_02245288(&param0->unk_50[6]);
             ov107_02244064(param0);
             param0->unk_08 = 2;
@@ -998,7 +998,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
 
             if (v2 == 3) {
                 Sound_StopEffect(1500, 0);
-                Sound_PlayEffect(1523);
+                Sound_PlayEffect(SEQ_SE_DP_BOX03);
             } else {
                 param0->unk_13 = v6;
                 ov107_022440C0(param0);
@@ -1133,7 +1133,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         break;
     case 13:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_02245618(param0);
             ov107_0224409C(param0);
             ov107_02249C60(param0->unk_430, 211, 106);
@@ -1142,7 +1142,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         break;
     case 14:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_02245288(&param0->unk_50[6]);
             ov107_0224409C(param0);
             param0->unk_08 = 8;
@@ -1150,14 +1150,14 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         break;
     case 15:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_022456E4(param0);
             param0->unk_08 = 9;
         }
         break;
     case 16:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             param0->unk_0A = ov107_02243918(param0, 61, FONT_MESSAGE);
             ov107_022441DC(param0);
             param0->unk_08 = 17;
@@ -1204,7 +1204,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         break;
     case 19:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_02245288(&param0->unk_50[6]);
             ov107_02243FA4(param0);
             param0->unk_08 = 0;
@@ -1216,7 +1216,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
             ov107_02245140(param0, 1);
         } else if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_02245BE0(param0);
             ov107_02244018(param0);
             param0->unk_08 = 1;
@@ -1228,7 +1228,7 @@ static BOOL ov107_02241EC8 (UnkStruct_ov107_02241D6C * param0)
         } else if (gSystem.pressedKeys & PAD_KEY_RIGHT) {
             ov107_0224518C(param0, 1);
         } else if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             ov107_02245BE0(param0);
             ov107_02244018(param0);
             param0->unk_08 = 1;
@@ -2496,7 +2496,7 @@ static void ov107_0224440C(ListMenu *param0, u32 param1, u8 param2)
     UnkStruct_ov107_02241D6C *v6 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         ListMenu_CalcTrueCursorPos(v6->unk_198, &v5);
     } else {
         v5 = 0;
@@ -2587,7 +2587,7 @@ static void ov107_02244690(ListMenu *param0, u32 param1, u8 param2)
     UnkStruct_ov107_02241D6C *v2 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     v0 = ov107_02249CAC(v2->unk_1CC, v2->unk_09, 0);
@@ -2698,7 +2698,7 @@ static void ov107_0224486C(ListMenu *param0, u32 param1, u8 param2)
     UnkStruct_ov107_02241D6C *v2 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     v1 = ov107_02249CAC(v2->unk_1CC, v2->unk_09, 1);
@@ -2814,7 +2814,7 @@ static void ov107_02244A1C(ListMenu *param0, u32 param1, u8 param2)
     v0 = (UnkStruct_ov107_02241D6C *)ListMenu_GetAttribute(param0, 19);
 
     if (param2 == 0) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     ListMenu_CalcTrueCursorPos(param0, &v1);
@@ -2978,7 +2978,7 @@ static void ov107_02244BD8 (UnkStruct_ov107_02241D6C * param0, int param1)
 
 static void ov107_02244C70 (UnkStruct_ov107_02241D6C * param0)
 {
-    Sound_PlayEffect(1500);
+    Sound_PlayEffect(SEQ_SE_CONFIRM);
 
     if (ov104_0223BA14(param0->unk_09) == 1) {
         ov107_0224529C(param0, 12, param0->unk_0D);
@@ -3604,7 +3604,7 @@ static void ov107_022454F8 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
         GF_ASSERT(0);
     }
 
-    Sound_PlayEffect(1516);
+    Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);
 
     return;
 }
@@ -3622,7 +3622,7 @@ static void ov107_022455A0 (UnkStruct_ov107_02241D6C * param0, u8 param1, u16 pa
 
     StringTemplate_SetItemName(param0->unk_24, 1, param2);
     param0->unk_0A = ov107_02243918(param0, 59, FONT_MESSAGE);
-    Sound_PlayEffect(1572);
+    Sound_PlayEffect(SEQ_SE_DP_UG_020);
 
     return;
 }
@@ -3977,7 +3977,7 @@ static void ov107_022459D0 (UnkStruct_ov107_02241D6C * param0, u8 param1, u8 par
     u16 v3[4];
     u16 v4, v5, v6;
 
-    Sound_PlayEffect(1507);
+    Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 
     v1 = param0->unk_15;
     v0 = ov107_02249C9C(v1, param1);

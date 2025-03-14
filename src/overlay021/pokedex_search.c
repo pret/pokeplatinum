@@ -3,10 +3,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "generated/sdat.h"
-
-#include "struct_defs/pokemon_sprite.h"
-
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4340.h"
 #include "overlay021/pokedex_app.h"
@@ -25,6 +21,7 @@
 #include "font.h"
 #include "heap.h"
 #include "narc.h"
+#include "pokemon_sprite.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -32,7 +29,6 @@
 #include "strbuf.h"
 #include "text.h"
 #include "unk_02005474.h"
-#include "unk_0200762C.h"
 
 #include "res/text/bank/pokedex.h"
 
@@ -589,8 +585,8 @@ static void ov21_021D8C00(UnkStruct_ov21_021D879C *param0)
 {
     PokemonSprite *v0 = ov21_021D2170(param0->unk_00);
 
-    sub_02007DEC(v0, 6, 1);
-    sub_02008780(v0);
+    PokemonSprite_SetAttribute(v0, MON_SPRITE_HIDE, 1);
+    PokemonSprite_ClearFade(v0);
 }
 
 static void GetSearchGraphics(PokedexSearchDisplay *searchDisplay, UnkStruct_ov21_021D879C *param1, enum HeapId heapID)

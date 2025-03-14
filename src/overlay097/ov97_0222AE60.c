@@ -192,7 +192,7 @@ static BOOL ov97_0222AE64(UnkStruct_0222AE60 *param0)
         }
     } else {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             Window_EraseStandardFrame(&param0->unk_158, 0);
             Window_Remove(&param0->unk_158);
         }
@@ -380,7 +380,7 @@ static BOOL ov97_0222B07C(UnkStruct_0222AE60 *param0)
                 Window_Remove(&param0->unk_13C);
                 param0->unk_12C = 19;
                 param0->unk_138 = gSystem.pressedKeys;
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
             }
         }
         break;
@@ -833,7 +833,7 @@ static void ov97_0222BB88(UnkStruct_0222AE60 *param0, int param1)
         }
 
         if (param0->unk_DC[v0]) {
-            Sound_PlayEffect(1500);
+            Sound_PlayEffect(SEQ_SE_CONFIRM);
             break;
         }
     }
@@ -1061,7 +1061,7 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
     case 5:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             if (gSystem.pressedKeys & PAD_BUTTON_A) {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 v1->unk_58 = v1->unk_DC[v1->unk_54];
 
                 if (v1->unk_58 == 5) {
@@ -1074,7 +1074,7 @@ static int ov97_0222BE24(OverlayManager *param0, int *param1)
                     }
                 }
             } else {
-                Sound_PlayEffect(1500);
+                Sound_PlayEffect(SEQ_SE_CONFIRM);
                 v1->unk_58 = 0;
                 ov97_02237784(1);
             }

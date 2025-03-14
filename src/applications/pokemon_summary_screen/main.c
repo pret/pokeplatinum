@@ -8,7 +8,6 @@
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
-#include "generated/sdat.h"
 #include "generated/species.h"
 #include "generated/text_banks.h"
 
@@ -34,6 +33,7 @@
 #include "palette.h"
 #include "party.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
 #include "ribbon.h"
 #include "savedata.h"
@@ -47,7 +47,6 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
-#include "unk_0200762C.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
 #include "unk_02015F84.h"
@@ -370,7 +369,7 @@ static void PokemonSummaryScreenVBlank(void *data)
     PokemonSummaryScreen *summaryScreen = data;
 
     Bg_RunScheduledUpdates(summaryScreen->bgConfig);
-    sub_02008A94(summaryScreen->monSprite.spriteManager);
+    PokemonSpriteManager_UpdateCharAndPltt(summaryScreen->monSprite.spriteManager);
     VramTransfer_Process();
     SpriteSystem_TransferOam();
 

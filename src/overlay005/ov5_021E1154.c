@@ -61,7 +61,7 @@ static void ov5_021E11B0(FieldSystem *fieldSystem, PlayerAvatar *playerAvatar, i
     v0->playerAvatar = playerAvatar;
     v0->unk_00 = param2;
 
-    Sound_PlayEffect(1624);
+    Sound_PlayEffect(SEQ_SE_DP_F209);
     FieldSystem_CreateTask(fieldSystem, ov5_021E120C, v0);
 }
 

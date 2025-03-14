@@ -74,7 +74,7 @@ static void ov16_0226E188(SysTask *param0, void *param1)
     case 2:
         if (ov16_0223F7A4(v0->unk_00) == 1) {
             if (ov16_0226925C(v1) == 1) {
-                Sound_PlayEffect(1501);
+                Sound_PlayEffect(SEQ_SE_DP_DECIDE);
                 v0->unk_04++;
             }
         }

@@ -493,11 +493,11 @@ BOOL ov100_021D39E4(void *param0)
         }
 
         if ((v0->unk_04 == 310) || (v0->unk_04 == 375) || (v0->unk_04 == 432)) {
-            Sound_PlayEffect(1748);
+            Sound_PlayEffect(SEQ_SE_DP_CLIMAX06);
         }
 
         if ((v0->unk_04 == 284) || (v0->unk_04 == 338) || (v0->unk_04 == 406)) {
-            Sound_PlayEffect(1749);
+            Sound_PlayEffect(SEQ_SE_DP_CLIMAX09);
         }
 
         if (v0->unk_04 == 165) {

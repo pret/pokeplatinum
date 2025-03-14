@@ -761,7 +761,7 @@ static void ov59_021D1864(UnkStruct_020961E8 *param0)
 
                 ov59_021D28D8(param0, 0);
             } else {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
         }
     } else if (gSystem.pressedKeys & PAD_BUTTON_B) {
@@ -770,7 +770,7 @@ static void ov59_021D1864(UnkStruct_020961E8 *param0)
                 ov59_021D2628(param0, 4, 0);
                 ov59_021D19B0(param0, 4);
             } else {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
         } else {
             if ((CommSys_ConnectedCount() == param0->unk_4AAC) && (param0->unk_4AB4 == 0)) {
@@ -781,7 +781,7 @@ static void ov59_021D1864(UnkStruct_020961E8 *param0)
                 CommSys_SendData(117, &v1, 1);
                 ov59_021D28D8(param0, 0);
             } else {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
         }
     } else {
@@ -867,7 +867,7 @@ static int ov59_021D1A44(UnkStruct_020961E8 *param0, int param1)
     if (CommSys_CurNetId()) {
         if (param0->unk_4AA0) {
             if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
 
             ov59_021D1994(param0);
@@ -876,7 +876,7 @@ static int ov59_021D1A44(UnkStruct_020961E8 *param0, int param1)
     } else {
         if (param0->unk_4AB4 != 0) {
             if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
-                Sound_PlayEffect(1522);
+                Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
             }
 
             ov59_021D1994(param0);
@@ -993,7 +993,7 @@ static int ov59_021D1C64(UnkStruct_020961E8 *param0, int param1)
 
     if ((ov59_021D2528() != param0->unk_4AAC) || (param0->unk_4AB4 != 0)) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
         }
 
         ov59_021D1994(param0);
@@ -1159,7 +1159,7 @@ static int ov59_021D1F24(UnkStruct_020961E8 *param0, int param1)
 
     if ((param0->unk_4AAC != ov59_021D2528()) || (param0->unk_4AB4 != 0)) {
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
-            Sound_PlayEffect(1522);
+            Sound_PlayEffect(SEQ_SE_DP_CUSTOM06);
         }
 
         ov59_021D1994(param0);
@@ -1636,7 +1636,7 @@ static void ov59_021D26E8(UnkStruct_020961E8 *param0)
     }
 
     if (v1) {
-        Sound_PlayEffect(1615);
+        Sound_PlayEffect(SEQ_SE_DP_TELE2);
     }
 }
 

@@ -3,11 +3,11 @@
 
 #include "struct_decls/pc_boxes_decl.h"
 
+#include "overlay019/pc_compare_mon.h"
 #include "overlay019/pc_mon_preview.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D4F5C.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
-#include "overlay019/struct_ov19_021D5FAC.h"
 
 #include "message.h"
 #include "overlay_manager.h"
@@ -79,7 +79,7 @@ u32 ov19_021D5F7C(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5F88(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5F9C(const UnkStruct_ov19_021D4DF0 *param0);
 u32 ov19_021D5FA4(const UnkStruct_ov19_021D4DF0 *param0);
-const UnkStruct_ov19_021D5FAC *ov19_021D5FAC(const UnkStruct_ov19_021D4DF0 *param0, int param1);
+const PCCompareMon *GetCompareMonFrom(const UnkStruct_ov19_021D4DF0 *param0, int compareSlot);
 BOOL ov19_021D5FB8(const UnkStruct_ov19_021D4DF0 *param0, int param1);
 BOOL ov19_021D5FC0(const UnkStruct_ov19_021D4DF0 *param0);
 BOOL ov19_IsPreviewedMonEgg(const UnkStruct_ov19_021D4DF0 *param0);

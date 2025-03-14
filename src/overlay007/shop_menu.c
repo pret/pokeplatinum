@@ -8,7 +8,6 @@
 #include "constants/items.h"
 #include "constants/map_object.h"
 #include "generated/game_records.h"
-#include "generated/sdat.h"
 #include "generated/text_banks.h"
 
 #include "field/field_system.h"

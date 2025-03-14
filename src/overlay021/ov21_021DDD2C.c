@@ -557,7 +557,7 @@ static void ov21_021DE44C(u32 param0, u32 param1, void *param2)
     switch (param1) {
     case 0:
         ov21_021E33B4(v1->unk_08, 1);
-        Sound_PlayEffect(1501);
+        Sound_PlayEffect(SEQ_SE_DP_DECIDE);
 
         v2->unk_20 = 1;
         v2->unk_08 = gSystem.touchX - v2->unk_00;

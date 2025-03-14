@@ -121,7 +121,7 @@ void ov22_02259D2C(UnkStruct_ov22_02259D2C *param0, int param1, int param2)
             if (param2 == 0) {
                 ov22_02259DB0(v1);
 
-                Sound_PlayEffect(1661);
+                Sound_PlayEffect(SEQ_SE_DP_PASO);
             } else if (param2 == 2) {
                 ov22_02259D98(v1);
             } else {

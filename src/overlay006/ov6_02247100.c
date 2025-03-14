@@ -87,13 +87,13 @@ static int ov6_0224715C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
 
     switch (param2->unk_08) {
     case 0:
-        Sound_PlayEffect(1539);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         break;
     case 1:
-        Sound_PlayEffect(1539);
+        Sound_PlayEffect(SEQ_SE_DP_KAIDAN2);
         break;
     case 2:
-        Sound_PlayEffect(1614);
+        Sound_PlayEffect(SEQ_SE_DP_TELE);
         break;
     }
 

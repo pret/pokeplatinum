@@ -221,16 +221,16 @@ static void ov23_022544C0(UnkStruct_ov23_022542D8 *param0)
     case 0xffffffff:
         return;
     case 0xfffffffe:
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_3C = v0;
         param0->unk_38 = 2;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     default: {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_3C = v0;
         param0->unk_38 = 2;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } break;
     }
 
@@ -340,12 +340,12 @@ static void ov23_0225461C(UnkStruct_ov23_02254594 *param0)
     case 0xfffffffe:
         param0->unk_44 = 0xfffffffe;
         param0->unk_42 = 2;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
         break;
     default: {
         param0->unk_44 = v1;
         param0->unk_42 = 2;
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     } break;
     }
 
@@ -525,7 +525,7 @@ static void ov23_022549EC(UnkStruct_ov23_022542D8 *param0)
     ListMenu_CalcTrueCursorPos(param0->unk_28, &param0->unk_40);
 
     if (v0 != param0->unk_40) {
-        Sound_PlayEffect(1500);
+        Sound_PlayEffect(SEQ_SE_CONFIRM);
     }
 
     return;

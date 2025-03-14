@@ -2422,7 +2422,7 @@ static BOOL ov9_0224AAD4(FieldTask *param0)
             }
 
             ov5_021F3678(v13, v12);
-            Sound_PlayEffect(1607);
+            Sound_PlayEffect(SEQ_SE_DP_SUTYA2);
 
             v2->unk_00++;
         }
@@ -4999,7 +4999,7 @@ static int ov9_0224D0C8(UnkStruct_ov9_02249B04 *param0, UnkStruct_ov9_0224D078 *
         param1->unk_01 = 1;
         param1->unk_04 = 1;
 
-        Sound_PlayEffect(1481);
+        Sound_PlayEffect(SEQ_SE_PL_FW089);
     } else {
         param1->unk_04 = 2;
     }
@@ -6344,7 +6344,7 @@ static int ov9_0224E550(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         v1->unk_28 = v3.y;
     }
 
-    Sound_PlayEffect(1482);
+    Sound_PlayEffect(SEQ_SE_PL_FW089B);
 
     *param2 = 1;
     return 0;
@@ -6723,7 +6723,7 @@ static void ov9_0224EA94(UnkStruct_ov101_021D5D90 *param0, void *param1)
         if (v2->unk_07 == 1) {
             sub_02005844(SPECIES_GIRATINA, 0);
         } else if (v2->unk_07 == 2) {
-            Sound_PlayEffect(1609);
+            Sound_PlayEffect(SEQ_SE_DP_FW019);
         }
 
         v1->unk_2C++;
@@ -7415,7 +7415,7 @@ static BOOL ov9_0224F324(UnkStruct_ov9_0224F6EC *param0)
         return 0;
     }
 
-    Sound_PlayEffect(1571);
+    Sound_PlayEffect(SEQ_SE_DP_UG_008);
     v1.y = ((115 << 4) * FX32_ONE);
     MapObject_SetPosDirFromVec(v2, &v1, MapObject_GetFacingDir(v2));
     sub_02062914(v2, 580);
@@ -7535,7 +7535,7 @@ static BOOL ov9_0224F3BC(UnkStruct_ov9_0224F6EC *param0)
             param0->unk_1C = v11.y;
             param0->unk_20 = (FX32_ONE * 1);
 
-            Sound_PlayEffect(1571);
+            Sound_PlayEffect(SEQ_SE_DP_UG_008);
         }
 
         param0->unk_10++;
@@ -8041,7 +8041,7 @@ static int ov9_0224FB3C(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         v4->unk_24.z = (FX32_ONE * 4) / 32;
     }
 
-    Sound_PlayEffect(1488);
+    Sound_PlayEffect(SEQ_SE_PL_FW463);
 
     *param2 = 1;
     return 0;
@@ -8383,7 +8383,7 @@ static int ov9_02250170(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         v4->unk_20.z = (FX32_ONE * 0) / 4;
     }
 
-    Sound_PlayEffect(1488);
+    Sound_PlayEffect(SEQ_SE_PL_FW463);
 
     *param2 = 1;
     return 0;
@@ -8783,7 +8783,7 @@ static int ov9_022507FC(UnkStruct_ov9_02249B04 *param0, FieldTask *param1, u16 *
         ov9_0224F854(param0, 1);
 
         param0->unk_1EC2 = 2;
-        Sound_PlayEffect(1489);
+        Sound_PlayEffect(SEQ_SE_PL_GIRA);
         *param2 = 2;
         return 1;
     }
