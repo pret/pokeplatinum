@@ -707,15 +707,15 @@ static void sub_0207C028(UnkStruct_0207AE68 *param0)
                 Pokemon_SetValue(v1, MON_DATA_HELD_ITEM, &v2);
                 Pokemon_SetValue(v1, MON_DATA_MARKS, &v2);
 
-                for (v0 = MON_DATA_SINNOH_CHAMPION_RIBBON; v0 < MON_DATA_RIBBON_DUMMY + 1; v0++) {
+                for (v0 = MON_DATA_SINNOH_CHAMP_RIBBON; v0 < MON_DATA_SINNOH_RIBBON_DUMMY + 1; v0++) {
                     Pokemon_SetValue(v1, v0, &v2);
                 }
 
-                for (v0 = MON_DATA_HOENN_COOL_RIBBON; v0 < MON_DATA_WORLD_RIBBON + 1; v0++) {
+                for (v0 = MON_DATA_HOENN_COOL_RIBBON; v0 < MON_DATA_HOENN_WORLD_RIBBON + 1; v0++) {
                     Pokemon_SetValue(v1, v0, &v2);
                 }
 
-                for (v0 = MON_DATA_COOL_RIBBON; v0 < MON_DATA_CONTEST_RIBBON_DUMMY + 1; v0++) {
+                for (v0 = MON_DATA_SINNOH_SUPER_COOL_RIBBON; v0 < MON_DATA_CONTEST_RIBBON_DUMMY + 1; v0++) {
                     Pokemon_SetValue(v1, v0, &v2);
                 }
 

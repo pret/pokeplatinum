@@ -547,19 +547,19 @@ static int sub_02093B2C(Pokemon *param0, int param1)
     for (v1 = 0; v1 <= 3; v1++) {
         switch (param1) {
         case 0:
-            v2 = Pokemon_GetValue(param0, MON_DATA_COOL_RIBBON + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_COOL_RIBBON + v1, NULL);
             break;
         case 1:
-            v2 = Pokemon_GetValue(param0, MON_DATA_BEAUTY_RIBBON + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_BEAUTY_RIBBON + v1, NULL);
             break;
         case 2:
-            v2 = Pokemon_GetValue(param0, MON_DATA_CUTE_RIBBON + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_CUTE_RIBBON + v1, NULL);
             break;
         case 3:
-            v2 = Pokemon_GetValue(param0, MON_DATA_SMART_RIBBON + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_SMART_RIBBON + v1, NULL);
             break;
         case 4:
-            v2 = Pokemon_GetValue(param0, MON_DATA_TOUGH_RIBBON + v1, NULL);
+            v2 = Pokemon_GetValue(param0, MON_DATA_SINNOH_SUPER_TOUGH_RIBBON + v1, NULL);
             break;
         default:
             GF_ASSERT(0);
