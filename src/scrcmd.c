@@ -432,8 +432,8 @@ static BOOL ScrCmd_0F5(ScriptContext *ctx);
 static BOOL ScrCmd_StartLinkBattle(ScriptContext *ctx);
 static BOOL ScrCmd_0F7(ScriptContext *ctx);
 static BOOL ScrCmd_11B(ScriptContext *ctx);
-static BOOL ScrCmd_11C(ScriptContext *ctx);
-static BOOL ScrCmd_11D(ScriptContext *ctx);
+static BOOL ScrCmd_GetFloorsAbove(ScriptContext *ctx);
+static BOOL ScrCmd_ShowCurrentFloor(ScriptContext *ctx);
 static BOOL ScrCmd_11E(ScriptContext *ctx);
 static BOOL ScrCmd_11F(ScriptContext *ctx);
 static BOOL ScrCmd_120(ScriptContext *ctx);
@@ -1049,8 +1049,8 @@ const ScrCmdFunc Unk_020EAC58[] = {
     ScrCmd_CheckPartyPokerus,
     ScrCmd_11A,
     ScrCmd_11B,
-    ScrCmd_11C,
-    ScrCmd_11D,
+    ScrCmd_GetFloorsAbove,
+    ScrCmd_ShowCurrentFloor,
     ScrCmd_11E,
     ScrCmd_11F,
     ScrCmd_120,
@@ -4901,28 +4901,28 @@ static BOOL ScrCmd_11B(ScriptContext *ctx)
     return 0;
 }
 
-static BOOL ScrCmd_11C(ScriptContext *ctx)
+static BOOL ScrCmd_GetFloorsAbove(ScriptContext *ctx)
 {
     Location *location;
-    u16 *v1 = ScriptContext_GetVarPointer(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     location = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(ctx->fieldSystem->saveData));
-    *v1 = FieldMenu_GetFloorsAbove(location->mapId);
+    *destVar = FieldMenu_GetFloorsAbove(location->mapId);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ScrCmd_11D(ScriptContext *ctx)
+static BOOL ScrCmd_ShowCurrentFloor(ScriptContext *ctx)
 {
     FieldSystem *fieldSystem = ctx->fieldSystem;
-    StringTemplate **v1 = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
-    u8 v2 = ScriptContext_ReadByte(ctx);
-    u8 v3 = ScriptContext_ReadByte(ctx);
-    u16 *v4 = ScriptContext_GetVarPointer(ctx);
-    u16 v5 = ScriptContext_GetVar(ctx);
+    StringTemplate **stringTemplate = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    u8 tilemapLeft = ScriptContext_ReadByte(ctx);
+    u8 tilemapTop = ScriptContext_ReadByte(ctx);
+    u16 *selectedOptionVar = ScriptContext_GetVarPointer(ctx);
+    u16 unused = ScriptContext_GetVar(ctx);
 
-    FieldMenu_ShowCurrentFloorWindow(fieldSystem, v2, v3, v4, *v1, v5);
-    return 0;
+    FieldMenu_ShowCurrentFloorWindow(fieldSystem, tilemapLeft, tilemapTop, selectedOptionVar, *stringTemplate, unused);
+    return FALSE;
 }
 
 static BOOL ScrCmd_11E(ScriptContext *ctx)

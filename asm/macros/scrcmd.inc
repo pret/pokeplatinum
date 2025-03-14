@@ -1610,17 +1610,22 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_11C arg0
+    /*
+     * destVar will be set to the number of floors above the current floor for maps where there's an elevator, or 1 when there isn't
+     * The result is hardcoded per-map ID in FieldMenu_GetFloorsAbove
+     */
+    .macro GetFloorsAbove destVarID
     .short 284
-    .short \arg0
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_11D arg0, arg1, arg2, arg3
+    /* destVar is used to initialize a FieldMenuManager, setting it to 0xeeee, but is otherwise left without a meaningful value */
+    .macro ShowCurrentFloor tilemapLeft, tilemapTop, destVarID
     .short 285
-    .byte \arg0
-    .byte \arg1
-    .short \arg2
-    .short \arg3
+    .byte \tilemapLeft
+    .byte \tilemapTop
+    .short \destVarID
+    .short \destVarID    /* unused */
     .endm
 
     .macro ScrCmd_11E arg0
